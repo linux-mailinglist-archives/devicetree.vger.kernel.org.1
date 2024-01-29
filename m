@@ -1,218 +1,156 @@
-Return-Path: <devicetree+bounces-36354-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-36355-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id C1CEA840A2F
-	for <lists+devicetree@lfdr.de>; Mon, 29 Jan 2024 16:37:19 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 24934840A37
+	for <lists+devicetree@lfdr.de>; Mon, 29 Jan 2024 16:39:52 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 73143282C68
-	for <lists+devicetree@lfdr.de>; Mon, 29 Jan 2024 15:37:18 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id A89F21F21BB3
+	for <lists+devicetree@lfdr.de>; Mon, 29 Jan 2024 15:39:51 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 079E1153BD0;
-	Mon, 29 Jan 2024 15:37:15 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 18777154436;
+	Mon, 29 Jan 2024 15:39:47 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="sCzSPJNF"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="Sm+GMl2y"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-ej1-f53.google.com (mail-ej1-f53.google.com [209.85.218.53])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CF3B815442B;
-	Mon, 29 Jan 2024 15:37:14 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 53190153BE3
+	for <devicetree@vger.kernel.org>; Mon, 29 Jan 2024 15:39:45 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.53
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1706542634; cv=none; b=b/LPSTBU1DuV8rl29+NXc3ZGNSOv2+KFUPWEoHYRlBIam1H0Zrp0XxsFynpxOu0mrPl2W3yxR67RG6l4ANTg/mZk/T3upyvlKj1ydlhATtPrArWfEa9gRSrn4p2dsLII0OEc38j/fuNKW52iATwzZi12FSGAfwfXlhg6eYz6vtc=
+	t=1706542787; cv=none; b=qKUOgSaSzFWwCUVyhwnZl8Yh2F0FYdauaBO2ElgCj2P++TZQUezPF8q0a2UaxS2EchUqG5iDYOs/sHKwU6KSDULf+HCeqkxHHK4hvtMs4reQsWG5TVVsDejzN5t/JCLt735bx1DyX5/jU8eQGHjLe4FeGqdZmJhEQbc22Sjc8oU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1706542634; c=relaxed/simple;
-	bh=l8Gerv/RnUXdqS32Hvg6dJnaeNoXsPQ5rKnHUXy1+3Q=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=rqT8bZVId88yM4fQ3rpH/pZmeNRhsk2yH/vLIZTxTRC+JcjD3oSBLAVGbQxabwr6Q0Ra1MExIqNcvBeWkmv8+lUzPfhOB6+SV8C+oliWNMkL9N8dC2yZaAtq172qXUt+pKEXULpLDjpwbDcsJ2djUU647U6L1hxJa/Xqre3NbZI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=sCzSPJNF; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id C5DC7C433F1;
-	Mon, 29 Jan 2024 15:37:10 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1706542634;
-	bh=l8Gerv/RnUXdqS32Hvg6dJnaeNoXsPQ5rKnHUXy1+3Q=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=sCzSPJNF1f+jY8xMHnlLtWyLXT1HI1n9Z4l5hknVao0Sj9ZK35v8ZQshRQKY/BcQh
-	 U/LfUyh8lv+z9SSWk3kI8YaLHmO+7bYfg+L2dUKlx6/eCn2T2wJond/WgS4SsVssIK
-	 snu2PTE8kFw76oRqBBHS45J3rBnMwFsZpkaSVFfjtE1C8gsMbo0Dlyigho3/J4REU6
-	 P8soMwsIBftAs5Gdwfqx8QWi64XaOVfBXJYqCtDfdLK0NXJPj5rgpa24gLKmRAqM1S
-	 MNY60Zf+1CYLoDlW1j6B9CoTcS0LTvRXnW3r7BSx6yH9Q/9wyqbVFzMsctmng9N1h2
-	 h9oqmmVm0apTA==
-Date: Mon, 29 Jan 2024 15:37:08 +0000
-From: Conor Dooley <conor@kernel.org>
-To: William Qiu <william.qiu@starfivetech.com>
-Cc: devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	linux-riscv@lists.infradead.org, linux-can@vger.kernel.org,
-	Emil Renner Berthing <kernel@esmil.dk>,
-	Rob Herring <robh+dt@kernel.org>,
-	Wolfgang Grandegger <wg@grandegger.com>,
-	Philipp Zabel <p.zabel@pengutronix.de>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Marc Kleine-Budde <mkl@pengutronix.de>,
-	"David S . Miller" <davem@davemloft.net>,
-	Eric Dumazet <edumazet@google.com>,
-	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
-	Paul Walmsley <paul.walmsley@sifive.com>,
-	Palmer Dabbelt <palmer@dabbelt.com>,
-	Albert Ou <aou@eecs.berkeley.edu>
-Subject: Re: [PATCH v1 2/4] dt-bindings: can: Add bindings for CAST CAN
- Controller
-Message-ID: <20240129-garnet-polar-65afd461a1c6@spud>
-References: <20240129031239.17037-1-william.qiu@starfivetech.com>
- <20240129031239.17037-3-william.qiu@starfivetech.com>
+	s=arc-20240116; t=1706542787; c=relaxed/simple;
+	bh=n9nCPEsYfSINBzdyiWwPDZaTjNh9Nu8piVjbdDNZNaA=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=pN+WFYW1sIa9O0wq9IosdADQeUAFbpvcOpDWUcczfkNxSofcgTyxhEDPZX08y1IeMLZedkl6uPdGp1u7hAeVQFWhmzC8ZEmq6y8GOa4iZT7oDIXV6N7gTgdvM5edlQ+re2Ww4O5/KFmxvX+3Se02ZPlz0RFliSwj6toBMTJK2zM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=Sm+GMl2y; arc=none smtp.client-ip=209.85.218.53
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-ej1-f53.google.com with SMTP id a640c23a62f3a-a30e445602cso815992966b.0
+        for <devicetree@vger.kernel.org>; Mon, 29 Jan 2024 07:39:45 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1706542783; x=1707147583; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
+         :to:content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=wkgPevqiSgLEurIHYt9EjLvopYwvRhZn075Iur8KFvo=;
+        b=Sm+GMl2y8tOGKqYtPVNOq1jhjqwyPwwO/T18UJfhyBgXSDiSAss9BLVfivLp9M74dk
+         voA+ol+TiiQ+aPTKom52KOsOWQXMHveQezNi7JWSTpNYpyBVMKAA1mFgG+LBB/vHnpU4
+         AQCzcwGIIC85dmB9NFTNRmWmNbnGJ7edS+HdhjOJB4mmn6kZe5oNORF9Vqk6APBoWj4z
+         x96LVpdu4fVkRZ8i7Fnc6beOthBoktgmy4STV+hDYVRSfDTIJ3qXc/kGhM128ibZb8RI
+         +0/bvxWEW8c6hLCSh7IXmVvNlTOslBlSCrnakkG8PRJhZnrdc+3qA4WduqvY2qHCWAm2
+         DCtg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1706542783; x=1707147583;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
+         :to:content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=wkgPevqiSgLEurIHYt9EjLvopYwvRhZn075Iur8KFvo=;
+        b=adL6GJlN2o03C8HH9XnIe3B6XerutRnV6itdQcHQPM/3pV0MRjegK4Qybs+xWGEz+1
+         dLTbUTg4zROUxbZMghrI6AM41dfP1MqZwnw8hiMdJMCq63vFuRqyN5EvWOX1ahuh8hlc
+         hKKHy586lw9WBVQXZM2CWibkDwVFP/vLSxjb5F9BJhWeEBOSbogBpPaBEWoaYMtUZtEI
+         hHtLf5FEJrrK8x4D15sd9dcYisG6UI2BRbaHALa0dhaXm6CyFH/jvmoWH6kzAdgzmaEv
+         h6/iVsjRNjF9BkPlIhU1EBMQZ3WdS/ksg8G2lGS1qc2N8RfsAC0bFfe/COo5KnJ0x8Tz
+         xaGg==
+X-Gm-Message-State: AOJu0YzpHipq3TCBfMEfce06bGcktgbX/kYkRfOctTOHOU0MPgVeuBB0
+	Sa1RDX5ioQE00Ij9GmBYdb56hzrKzk5S3qoQETZtf7AsUnimdQCGHNrwNtlCWSg=
+X-Google-Smtp-Source: AGHT+IFYdid04IRF9e/VP+vofbM/pi1HxoRfriJJXvBTTWK5vVVNdrOFgdHvYkqQr5MJ2VEfT5XIwQ==
+X-Received: by 2002:a17:906:31c8:b0:a27:5fd1:791f with SMTP id f8-20020a17090631c800b00a275fd1791fmr7553364ejf.0.1706542783559;
+        Mon, 29 Jan 2024 07:39:43 -0800 (PST)
+Received: from [192.168.1.20] ([178.197.222.62])
+        by smtp.gmail.com with ESMTPSA id wb1-20020a170907d50100b00a3549e9cc45sm2802574ejc.88.2024.01.29.07.39.41
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 29 Jan 2024 07:39:43 -0800 (PST)
+Message-ID: <e25b28f7-5f32-4b37-b898-294d50adaf8d@linaro.org>
+Date: Mon, 29 Jan 2024 16:39:41 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-	protocol="application/pgp-signature"; boundary="2qZLto2B8G05buYu"
-Content-Disposition: inline
-In-Reply-To: <20240129031239.17037-3-william.qiu@starfivetech.com>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 9/9] clk: samsung: gs101: don't CLK_IGNORE_UNUSED
+ peric1_sysreg clock
+Content-Language: en-US
+To: =?UTF-8?Q?Andr=C3=A9_Draszik?= <andre.draszik@linaro.org>,
+ peter.griffin@linaro.org, mturquette@baylibre.com, sboyd@kernel.org,
+ robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org
+Cc: linux-kernel@vger.kernel.org, kernel-team@android.com,
+ tudor.ambarus@linaro.org, willmcvicker@google.com,
+ semen.protsenko@linaro.org, alim.akhtar@samsung.com, s.nawrocki@samsung.com,
+ tomasz.figa@gmail.com, cw00.choi@samsung.com,
+ linux-arm-kernel@lists.infradead.org, linux-samsung-soc@vger.kernel.org,
+ linux-clk@vger.kernel.org, devicetree@vger.kernel.org
+References: <20240127001926.495769-1-andre.draszik@linaro.org>
+ <20240127001926.495769-10-andre.draszik@linaro.org>
+ <74b63fd9-bf7a-4a88-bfa9-a975a4f12bca@linaro.org>
+ <7d42f80acf7c8bd3882f5ac253a761c71de2034c.camel@linaro.org>
+ <e845e0fa-846c-4f26-9d8c-79eccae72cc2@linaro.org>
+ <7537f9d4c49a5f3891dba4a8f68ee7332f045cc5.camel@linaro.org>
+From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
+ xsFNBFVDQq4BEAC6KeLOfFsAvFMBsrCrJ2bCalhPv5+KQF2PS2+iwZI8BpRZoV+Bd5kWvN79
+ cFgcqTTuNHjAvxtUG8pQgGTHAObYs6xeYJtjUH0ZX6ndJ33FJYf5V3yXqqjcZ30FgHzJCFUu
+ JMp7PSyMPzpUXfU12yfcRYVEMQrmplNZssmYhiTeVicuOOypWugZKVLGNm0IweVCaZ/DJDIH
+ gNbpvVwjcKYrx85m9cBVEBUGaQP6AT7qlVCkrf50v8bofSIyVa2xmubbAwwFA1oxoOusjPIE
+ J3iadrwpFvsZjF5uHAKS+7wHLoW9hVzOnLbX6ajk5Hf8Pb1m+VH/E8bPBNNYKkfTtypTDUCj
+ NYcd27tjnXfG+SDs/EXNUAIRefCyvaRG7oRYF3Ec+2RgQDRnmmjCjoQNbFrJvJkFHlPeHaeS
+ BosGY+XWKydnmsfY7SSnjAzLUGAFhLd/XDVpb1Een2XucPpKvt9ORF+48gy12FA5GduRLhQU
+ vK4tU7ojoem/G23PcowM1CwPurC8sAVsQb9KmwTGh7rVz3ks3w/zfGBy3+WmLg++C2Wct6nM
+ Pd8/6CBVjEWqD06/RjI2AnjIq5fSEH/BIfXXfC68nMp9BZoy3So4ZsbOlBmtAPvMYX6U8VwD
+ TNeBxJu5Ex0Izf1NV9CzC3nNaFUYOY8KfN01X5SExAoVTr09ewARAQABzTRLcnp5c3p0b2Yg
+ S296bG93c2tpIDxrcnp5c3p0b2Yua296bG93c2tpQGxpbmFyby5vcmc+wsGUBBMBCgA+FiEE
+ m9B+DgxR+NWWd7dUG5NDfTtBYpsFAmI+BxMCGwMFCRRfreEFCwkIBwIGFQoJCAsCBBYCAwEC
+ HgECF4AACgkQG5NDfTtBYptgbhAAjAGunRoOTduBeC7V6GGOQMYIT5n3OuDSzG1oZyM4kyvO
+ XeodvvYv49/ng473E8ZFhXfrre+c1olbr1A8pnz9vKVQs9JGVa6wwr/6ddH7/yvcaCQnHRPK
+ mnXyP2BViBlyDWQ71UC3N12YCoHE2cVmfrn4JeyK/gHCvcW3hUW4i5rMd5M5WZAeiJj3rvYh
+ v8WMKDJOtZFXxwaYGbvFJNDdvdTHc2x2fGaWwmXMJn2xs1ZyFAeHQvrp49mS6PBQZzcx0XL5
+ cU9ZjhzOZDn6Apv45/C/lUJvPc3lo/pr5cmlOvPq1AsP6/xRXsEFX/SdvdxJ8w9KtGaxdJuf
+ rpzLQ8Ht+H0lY2On1duYhmro8WglOypHy+TusYrDEry2qDNlc/bApQKtd9uqyDZ+rx8bGxyY
+ qBP6bvsQx5YACI4p8R0J43tSqWwJTP/R5oPRQW2O1Ye1DEcdeyzZfifrQz58aoZrVQq+innR
+ aDwu8qDB5UgmMQ7cjDSeAQABdghq7pqrA4P8lkA7qTG+aw8Z21OoAyZdUNm8NWJoQy8m4nUP
+ gmeeQPRc0vjp5JkYPgTqwf08cluqO6vQuYL2YmwVBIbO7cE7LNGkPDA3RYMu+zPY9UUi/ln5
+ dcKuEStFZ5eqVyqVoZ9eu3RTCGIXAHe1NcfcMT9HT0DPp3+ieTxFx6RjY3kYTGLOwU0EVUNc
+ NAEQAM2StBhJERQvgPcbCzjokShn0cRA4q2SvCOvOXD+0KapXMRFE+/PZeDyfv4dEKuCqeh0
+ hihSHlaxTzg3TcqUu54w2xYskG8Fq5tg3gm4kh1Gvh1LijIXX99ABA8eHxOGmLPRIBkXHqJY
+ oHtCvPc6sYKNM9xbp6I4yF56xVLmHGJ61KaWKf5KKWYgA9kfHufbja7qR0c6H79LIsiYqf92
+ H1HNq1WlQpu/fh4/XAAaV1axHFt/dY/2kU05tLMj8GjeQDz1fHas7augL4argt4e+jum3Nwt
+ yupodQBxncKAUbzwKcDrPqUFmfRbJ7ARw8491xQHZDsP82JRj4cOJX32sBg8nO2N5OsFJOcd
+ 5IE9v6qfllkZDAh1Rb1h6DFYq9dcdPAHl4zOj9EHq99/CpyccOh7SrtWDNFFknCmLpowhct9
+ 5ZnlavBrDbOV0W47gO33WkXMFI4il4y1+Bv89979rVYn8aBohEgET41SpyQz7fMkcaZU+ok/
+ +HYjC/qfDxT7tjKXqBQEscVODaFicsUkjheOD4BfWEcVUqa+XdUEciwG/SgNyxBZepj41oVq
+ FPSVE+Ni2tNrW/e16b8mgXNngHSnbsr6pAIXZH3qFW+4TKPMGZ2rZ6zITrMip+12jgw4mGjy
+ 5y06JZvA02rZT2k9aa7i9dUUFggaanI09jNGbRA/ABEBAAHCwXwEGAEKACYCGwwWIQSb0H4O
+ DFH41ZZ3t1Qbk0N9O0FimwUCYDzvagUJFF+UtgAKCRAbk0N9O0Fim9JzD/0auoGtUu4mgnna
+ oEEpQEOjgT7l9TVuO3Qa/SeH+E0m55y5Fjpp6ZToc481za3xAcxK/BtIX5Wn1mQ6+szfrJQ6
+ 59y2io437BeuWIRjQniSxHz1kgtFECiV30yHRgOoQlzUea7FgsnuWdstgfWi6LxstswEzxLZ
+ Sj1EqpXYZE4uLjh6dW292sO+j4LEqPYr53hyV4I2LPmptPE9Rb9yCTAbSUlzgjiyyjuXhcwM
+ qf3lzsm02y7Ooq+ERVKiJzlvLd9tSe4jRx6Z6LMXhB21fa5DGs/tHAcUF35hSJrvMJzPT/+u
+ /oVmYDFZkbLlqs2XpWaVCo2jv8+iHxZZ9FL7F6AHFzqEFdqGnJQqmEApiRqH6b4jRBOgJ+cY
+ qc+rJggwMQcJL9F+oDm3wX47nr6jIsEB5ZftdybIzpMZ5V9v45lUwmdnMrSzZVgC4jRGXzsU
+ EViBQt2CopXtHtYfPAO5nAkIvKSNp3jmGxZw4aTc5xoAZBLo0OV+Ezo71pg3AYvq0a3/oGRG
+ KQ06ztUMRrj8eVtpImjsWCd0bDWRaaR4vqhCHvAG9iWXZu4qh3ipie2Y0oSJygcZT7H3UZxq
+ fyYKiqEmRuqsvv6dcbblD8ZLkz1EVZL6djImH5zc5x8qpVxlA0A0i23v5QvN00m6G9NFF0Le
+ D2GYIS41Kv4Isx2dEFh+/Q==
+In-Reply-To: <7537f9d4c49a5f3891dba4a8f68ee7332f045cc5.camel@linaro.org>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 
+On 29/01/2024 16:21, André Draszik wrote:
+> On Mon, 2024-01-29 at 15:08 +0100, Krzysztof Kozlowski wrote:
+>> For this case #9 must be squashed with #3. #4 with #9.
+> 
+> Will do as you suggest, Krzysztof (I think you meant #4 with #8).
 
---2qZLto2B8G05buYu
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+Yes, indeed, the DTS patches.
 
-Hey William,
+Best regards,
+Krzysztof
 
-On Mon, Jan 29, 2024 at 11:12:37AM +0800, William Qiu wrote:
-> Add bindings for CAST CAN Controller
->=20
-> Signed-off-by: William Qiu <william.qiu@starfivetech.com>
-> ---
->  .../devicetree/bindings/net/can/cast,can.yaml | 95 +++++++++++++++++++
->  1 file changed, 95 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/net/can/cast,can.ya=
-ml
->=20
-> diff --git a/Documentation/devicetree/bindings/net/can/cast,can.yaml b/Do=
-cumentation/devicetree/bindings/net/can/cast,can.yaml
-> new file mode 100644
-> index 000000000000..ea52132d9b1c
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/net/can/cast,can.yaml
-> @@ -0,0 +1,95 @@
-> +# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/net/can/cast,can.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: CAST CAN controller
-> +
-> +maintainers:
-> +  - William Qiu <william.qiu@starfivetech.com>
-> +
-> +allOf:
-> +  - $ref: can-controller.yaml#
-> +  - if:
-> +      properties:
-> +        compatible:
-> +          contains:
-> +            const: starfive,can
-> +    then:
-> +      required:
-> +        - starfive,syscon
-
-If you've got property related stuff in the allOf, move it down after
-the property definitions.
-
-> +properties:
-> +  compatible:
-> +    enum:
-> +      - cast,can
-> +      - cast,canfd
-
-I don't like these uber generic compatibles that have no users as a
-fallback. Allowing them in the binding only really discourages people
-=66rom creating device specific compatibles.
-Secondly, this is some purchased IP that I am sure has a versioning
-scheme and the compatibles that you have created do not reflect that.
-If they were being used as a fallback, I would request some versioning.
-That's not going to really work though since the canfd features on the
-jh7110 require setting u0_can_ctrl_can_fd_enable, so neither of these
-compatibles really has a use right now.
-
-> +      - starfive,can
-
-Just "starfive,can"? Can you please add device specific compatibles for
-the SoCs on which this is used?
-
-> +
-> +  reg:
-> +    maxItems: 1
-> +
-> +  interrupts:
-> +    maxItems: 1
-> +
-> +  clocks:
-> +    minItems: 3
-> +
-> +  clock-names:
-> +    items:
-> +      - const: apb_clk
-> +      - const: timer_clk
-> +      - const: can_clk
-
-Drop _clk, they're all clocks!
-
-> +
-> +  resets:
-> +    minItems: 3
-> +
-> +  reset-names:
-> +    items:
-> +      - const: rst_apb
-> +      - const: rst_core
-> +      - const: rst_timer
-
-Same here, drop rst_
-
-> +
-> +  starfive,syscon:
-> +    $ref: /schemas/types.yaml#/definitions/phandle-array
-> +    items:
-> +      - items:
-> +          - description: phandle to System Register Controller syscon no=
-de
-> +          - description: offset of SYS_SYSCON_NE__SAIF__SYSCFG register =
-for CAN controller
-
-The docs I have call this register "SYS_SYSCONSAIF__SYSCFG". Did the
-names change since the TRM I have was written?
-
-> +          - description: shift of SYS_SYSCON_NE__SAIF__SYSCFG register f=
-or CAN controller
-> +          - description: mask of SYS_SYSCON_NE__SAIF__SYSCFG register fo=
-r CAN controller
-> +    description:
-> +      Should be four parameters, the phandle to System Register Controll=
-er
-> +      syscon node and the offset/shift/mask of SYS_SYSCON_NE__SAIF__SYSC=
-FG register
-> +      for CAN controller.
-
-Cheers,
-Conor.
-
---2qZLto2B8G05buYu
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZbfGJAAKCRB4tDGHoIJi
-0naRAP9mnACAXbLoF5wZAI6lRZERQ91NOgTNtwrrOxfxsnoi6QEAuxoA1rFwLJSd
-w8okICO/nnTr5tVns55t5LOoIKk5wwA=
-=jD/W
------END PGP SIGNATURE-----
-
---2qZLto2B8G05buYu--
 
