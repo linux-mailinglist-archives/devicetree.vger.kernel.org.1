@@ -1,106 +1,121 @@
-Return-Path: <devicetree+bounces-36345-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-36346-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 927578409BB
-	for <lists+devicetree@lfdr.de>; Mon, 29 Jan 2024 16:20:59 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id AFAA78409BF
+	for <lists+devicetree@lfdr.de>; Mon, 29 Jan 2024 16:21:14 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 359D3B251F5
-	for <lists+devicetree@lfdr.de>; Mon, 29 Jan 2024 15:20:57 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 6BCDF280A56
+	for <lists+devicetree@lfdr.de>; Mon, 29 Jan 2024 15:21:13 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8B7CF1552E4;
-	Mon, 29 Jan 2024 15:20:18 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6514060B91;
+	Mon, 29 Jan 2024 15:20:33 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="pGfEJkf5"
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="bj+it/Lx"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-yb1-f180.google.com (mail-yb1-f180.google.com [209.85.219.180])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D03EF153BDB
-	for <devicetree@vger.kernel.org>; Mon, 29 Jan 2024 15:20:16 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.219.180
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 410A5153BF4
+	for <devicetree@vger.kernel.org>; Mon, 29 Jan 2024 15:20:31 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1706541618; cv=none; b=bzlQQUyLjmcDELmYzvVWPYOnxTV0Ppwva0yVIDwW/Mu6HLH4Jat0+BIyCattE0qMC9SF+wwVkiZh5fo2Xnvv+S11uXd7zvH7AXDOyLOjm5iT7YO8c8ERkEdEQ2XnWPlt60QmsErICb9/Olfmkk62fFNpf0BC9NiY0rBhaHFtiTI=
+	t=1706541633; cv=none; b=dHxuwMmMrL8Bow/69dsrrfWriip/t7OvVxqW++KYbvevREHvJeLEf8B48iBRUPKuSALQ5nd4FLiYBMbQIO+bxRoHdG34clv0w1mJ9fPJ6bL4tE13NfECJrZj672vyVIgRFy0hXfw4UCGJjexo3QuJxa4Tabibs6AmrGr5zuEYtQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1706541618; c=relaxed/simple;
-	bh=mU6e8uETmKPJ2827KqRKhqi6FjqcNSn7r6FAsSfjeWA=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=S2KtzQwsfeQxM1dUzH5KfF75skt42LqSwsKzEtHFA7bfO4WYshC9P8Ct6uYvzTujLJyxq0v/ALucixwPNZ4H8+JBD0qCPuSj89Of7JjvJFyhu7gyEyZqeJPbXi3jFK958W5nazgSZl2NACibY+fiMXbpBGb9N+O/LYMnUdWMHfg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=pGfEJkf5; arc=none smtp.client-ip=209.85.219.180
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-yb1-f180.google.com with SMTP id 3f1490d57ef6-dc608c3718dso2336733276.1
-        for <devicetree@vger.kernel.org>; Mon, 29 Jan 2024 07:20:16 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1706541615; x=1707146415; darn=vger.kernel.org;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=HM4oKJKjaECYklXiQu+oSrVSN78CLNrHNPBMMaAeH+4=;
-        b=pGfEJkf5c2ftFG2ZZ0u28kbFvmZnzbn/tBpWlCHDogxAOpzOeZK/hXpCkUffOsfjvI
-         FY+SGWkQHGGNFO/TVnm4oNXxgMP1wZmEQ0MRfhj+EbFeU7TpdRc7z+Kx4es2TSPrxzxF
-         hhcXoVuI4Kvv1ZFDRsowXtaccnC4stHGIaU+GbeMXArjQhrOMr2NxtupBSBjEb/4wiJj
-         +lSfGncVWu+tyX//o9TrR5lMzPGzXkcCOaT0za9KGyZ/NDCR6S/2R0PegWMUX5U/JUhm
-         uGTHcWK8yKDWVrO9dVaImKkBqtnCCxM5q4c0YR0FptTjLuaUbfxoq/ctI4GfhxHnKCzX
-         mjQA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1706541615; x=1707146415;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=HM4oKJKjaECYklXiQu+oSrVSN78CLNrHNPBMMaAeH+4=;
-        b=vByY//paktoQAJOnwIN+HcDTb44xZxWzLnE3ra8MzAJW0ot+i+n4/+OOz3IMeulmvZ
-         4TlDZHdPyFw3YMIeZ4SflzGbN8osdOL/ts9BIO77mipnumUBTW3h1vrA0GIpQyk7R6p7
-         y+umQzafpAdMnmnFH5gQbr/HRwYDOZyOE2NsvSuic4y9LFQlKhoVWUFdjLnUmHovm6jw
-         ilqqkxVyg7+i4DdFl3QxBLU0pIrM77YeMiCjgSN7ZyX7DoZ8tk7So/lLkuh3BE9P6/aN
-         vXWgbdV4ptmey4hufGJ7ms0DawR9OXRUoltG5RkGbiEVvavfg8P8IKHmBMax6RQHzx3k
-         ZzvQ==
-X-Gm-Message-State: AOJu0Yy9c0U1AcQOrUmZtycvqzzE/sMlh1F4LFsYKExINRHEJ8VZ2iaS
-	eMkFmYU9zt3DWpw+Kq9DCUohJpDUdNFsvS9L+vC2+5AfZhiQtFbsVgf9VNmY7EvueVUZRnFDJIQ
-	kOa9yX5EqujrklFZcBNG66gd5Csy+foRQb06kKQ==
-X-Google-Smtp-Source: AGHT+IH/kSP17UuZbT0esTyo8sAM9ro7kxiy0XA20jRmTGGdm4q9oJTvHL7EujRbD/wQpB+sQQrHiodPITjmHdSrDkg=
-X-Received: by 2002:a05:6902:2681:b0:dc2:2654:513e with SMTP id
- dx1-20020a056902268100b00dc22654513emr4555425ybb.53.1706541615698; Mon, 29
- Jan 2024 07:20:15 -0800 (PST)
+	s=arc-20240116; t=1706541633; c=relaxed/simple;
+	bh=TxFJqV+MPQp3rBIk+KVAYySlAAKCM6gBBzNb5Us9dHg=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=h2gzR+938vn18vk315alXIRzNm7sX0PHrAcjog5Pn9eZ+qErT2WIvWRQJufjmgallnxTBMoCpMf0o8xE3HaCBmEH3QUJLu9lYt8KwKwnJSXY+k7O15CCLKIqZivAos9ezFfRGqGD3xEDPHDb7t9IIp2Ir9v1F2biJp/CASLrzwU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=bj+it/Lx; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 56F7AC433F1;
+	Mon, 29 Jan 2024 15:20:30 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1706541630;
+	bh=TxFJqV+MPQp3rBIk+KVAYySlAAKCM6gBBzNb5Us9dHg=;
+	h=Date:From:To:List-Id:Cc:Subject:References:In-Reply-To:From;
+	b=bj+it/LxFsaZVmzqnWJG18dOy4R5S0L+3bsQtSK2O3NDjWL/zC//R7bpYPp6PnCPW
+	 RAQT0h8wGRKKlHAyrnmvE/iDR/mKOlf8LTXSXEyieQ3hReRVjQUIkhNJ88JV8QxjRN
+	 pFAl1ssVpSjLas0SG9d1HaweOcaIC/pxXbMzr2BYnFwviexU7u9TMpNTWRNSKXy5wy
+	 ble4k4a65BsWLYSSk5TK6Y1IrixhVn2bk4Zjpz+pm4AwIWaMYZnu0NFIXV814q6ENW
+	 ygIQDQ8eamiZhBLIj56X76QPujMBRB2G6jn2+iQwEuJEX6IyAwiz+dWNVutTBERglr
+	 ezM5UZn1H8J1w==
+Date: Mon, 29 Jan 2024 16:20:27 +0100
+From: Lorenzo Bianconi <lorenzo@kernel.org>
+To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Cc: Matthias Brugger <matthias.bgg@gmail.com>,
+	Rob Herring <robh+dt@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>, Felix Fietkau <nbd@nbd.name>,
+	devicetree@vger.kernel.org, John Crispin <john@phrozen.org>,
+	soc@kernel.org, Arnd Bergmann <arnd@arndb.de>,
+	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
+	dd@embedd.com
+Subject: Re: Support for airoha en7581 Soc
+Message-ID: <ZbfCO5-RoOG902e2@lore-desk>
+References: <ZbeJ5okKQ66FXGxP@lore-desk>
+ <9e1ad877-f55c-4045-bb92-c30614d6c1ff@linaro.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20240129-x1e80100-remoteproc-v1-0-15d21ef58a4b@linaro.org> <20240129-x1e80100-remoteproc-v1-2-15d21ef58a4b@linaro.org>
-In-Reply-To: <20240129-x1e80100-remoteproc-v1-2-15d21ef58a4b@linaro.org>
-From: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-Date: Mon, 29 Jan 2024 17:20:04 +0200
-Message-ID: <CAA8EJpo0Bmu-=KHhEiFAJXC7CwxoWpT2FB+Y0aSiskkfz_1EUg@mail.gmail.com>
-Subject: Re: [PATCH 2/3] remoteproc: qcom_q6v5_pas: Add support for X1E80100 ADSP/CDSP
-To: Abel Vesa <abel.vesa@linaro.org>
-Cc: Bjorn Andersson <andersson@kernel.org>, Konrad Dybcio <konrad.dybcio@linaro.org>, 
-	Mathieu Poirier <mathieu.poirier@linaro.org>, Rob Herring <robh+dt@kernel.org>, 
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>, linux-arm-msm@vger.kernel.org, 
-	linux-remoteproc@vger.kernel.org, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org, Sibi Sankar <quic_sibis@quicinc.com>
-Content-Type: text/plain; charset="UTF-8"
-
-On Mon, 29 Jan 2024 at 15:35, Abel Vesa <abel.vesa@linaro.org> wrote:
->
-> From: Sibi Sankar <quic_sibis@quicinc.com>
->
-> Add support for PIL loading on ADSP and CDSP on X1E80100 SoCs.
->
-> Signed-off-by: Sibi Sankar <quic_sibis@quicinc.com>
-> Signed-off-by: Abel Vesa <abel.vesa@linaro.org>
-> ---
->  drivers/remoteproc/qcom_q6v5_pas.c | 41 ++++++++++++++++++++++++++++++++++++++
->  1 file changed, 41 insertions(+)
->
-
-Reviewed-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+Content-Type: multipart/signed; micalg=pgp-sha512;
+	protocol="application/pgp-signature"; boundary="/zItrIba7pG8p+pU"
+Content-Disposition: inline
+In-Reply-To: <9e1ad877-f55c-4045-bb92-c30614d6c1ff@linaro.org>
 
 
--- 
-With best wishes
-Dmitry
+--/zItrIba7pG8p+pU
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
+
+> On 29/01/2024 12:20, Lorenzo Bianconi wrote:
+> > Hi Matthias,
+> >=20
+> > I was wondering about the status of the following patches:
+> > https://lore.kernel.org/linux-arm-kernel/20231001122418.2688120-4-dd@em=
+bedd.com/T/#rbafabf4bf2473327f35ce7d79623f63838630537
+> >=20
+> > Do we need to respin them? Thx in advance.
+>=20
+> I don't see anyone from SoC maintainers CCed on that patchset, so no one
+> will pick it up. Pinging makes sense if maintainers missed/ignored your
+> email. But if you do not send stuff to maintainers, you need to resend
+> to proper people, not ping.
+
+I can't find any entry for airoha architecture in MAINTAINERS. Who is the
+expected maintainer? (e.g. ARM variant)
+
+>=20
+> Additionally, this is a new arch, but it seems to miss any maintainers
+> update.
+
+I am not the original author of the series, I have just seen it on the ML a=
+nd I
+was wondering about the status since it seems there are no replies.
+
+Regards,
+Lorenzo
+
+>=20
+> Best regards,
+> Krzysztof
+>=20
+
+--/zItrIba7pG8p+pU
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYKAB0WIQTquNwa3Txd3rGGn7Y6cBh0uS2trAUCZbfCOwAKCRA6cBh0uS2t
+rNJZAQCu6JbfMmelSpBzqu8emhMj+R0qs8jlokRuvJG4/br/9wEAlYa9d1N/KZ7Q
+cq1ItgU6mCWGXj2iqo0drjBUrBBH6Ag=
+=YTIP
+-----END PGP SIGNATURE-----
+
+--/zItrIba7pG8p+pU--
 
