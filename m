@@ -1,121 +1,156 @@
-Return-Path: <devicetree+bounces-36352-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-36353-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4AB208409D4
-	for <lists+devicetree@lfdr.de>; Mon, 29 Jan 2024 16:26:09 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 15C108409EA
+	for <lists+devicetree@lfdr.de>; Mon, 29 Jan 2024 16:29:35 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id DE93B1F225EC
-	for <lists+devicetree@lfdr.de>; Mon, 29 Jan 2024 15:26:08 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id A77921F28367
+	for <lists+devicetree@lfdr.de>; Mon, 29 Jan 2024 15:29:34 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A437E153BC3;
-	Mon, 29 Jan 2024 15:26:04 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id AE881153BC8;
+	Mon, 29 Jan 2024 15:29:27 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b="ysa22gre"
+	dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b="n/FsBQcO"
 X-Original-To: devicetree@vger.kernel.org
-Received: from madrid.collaboradmins.com (madrid.collaboradmins.com [46.235.227.194])
+Received: from vps0.lunn.ch (vps0.lunn.ch [156.67.10.101])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0412E153502
-	for <devicetree@vger.kernel.org>; Mon, 29 Jan 2024 15:26:02 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=46.235.227.194
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 894EC153502;
+	Mon, 29 Jan 2024 15:29:25 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=156.67.10.101
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1706541964; cv=none; b=sZnQjxaZ5nxltzgQ4KR24dFtAnpUu0lqwzjU3mA49c6LlpXKM3p+soH8HyarNP2GNbb5yu28FGrA+9kkiHTAAu2Pxq4ApY1MzO3Nj6L2BCFsbPscOX6Ok7rT9qv9Dd2+jbWQYl3LhfKEDmgdb/kZg11lLI76+3pi2ZSdCA9z2WE=
+	t=1706542167; cv=none; b=hCl8aoGKykAnc8wIFsGxWDNhCWUzBOBYUguasIxqXrzhwT/e+kTZ/Kmp09jocavdP23wUy+37qvRkvj/aHK7hZxnSzC06ZJvW1SQl71ug1RLK5FFKFRyNiAdUoG/3I4EVkfDQ3++Cd/DztVfVnKzuxEDm/bDO8311cc0Ij7fNh0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1706541964; c=relaxed/simple;
-	bh=ZG1xdpwN0j3h4vKnLtfo8LYRJBlg+GcfkYEDQkyRxqE=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=CfSaYih7gVdulz2To4dvBAyz3gK2FLuELTQ7/cg+FZdGANylpQcwz93yH/ogWLATKvHmom089raqErtuEvAMDvxVK/5JbEcBe8Yzmy8G93Z2XoEmkSw34qGMtWrFJ0e/pFc+jjHdBEtpwx6yj9F3pNVpM9UcFmM8A0Q4Vl3Cxxs=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b=ysa22gre; arc=none smtp.client-ip=46.235.227.194
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=collabora.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-	s=mail; t=1706541961;
-	bh=ZG1xdpwN0j3h4vKnLtfo8LYRJBlg+GcfkYEDQkyRxqE=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=ysa22greBZ0JHsAFsS3IXsM1qRb2yNIow/l+dcTBSV43VW7AshKqq/zKCadcc4Vua
-	 X/BNt7KPtu+pwUzuOQOh2fubD7jNt2X49Di1kpPjDsbhSg5A3Y8n1zVremNHzi3fRb
-	 iD6dG/qdduDfQH27mEkjAOCFFG5v946A9NM4xNUaB3JjLYFF+uUn1nG04l8Bo7FxgW
-	 hgl1JnnymkqjRSOf8mPrsff8gAIxbvuuMVcKhdKI4e18/YFRBLaB7xufM+O7KEAUD8
-	 bjxOVxu0pr8ALAWE2apahyzfj5heYJqlu1j69Ee/mK0pB3+hmjC+lD1JvYcoW5uQ9n
-	 y8b8hjOQoiygQ==
-Received: from [100.113.186.2] (cola.collaboradmins.com [195.201.22.229])
-	(using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
-	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
-	(No client certificate requested)
-	(Authenticated sender: kholk11)
-	by madrid.collaboradmins.com (Postfix) with ESMTPSA id 5AD4F378047E;
-	Mon, 29 Jan 2024 15:26:00 +0000 (UTC)
-Message-ID: <f90a6034-b1ca-4245-a3cd-91d43152b780@collabora.com>
-Date: Mon, 29 Jan 2024 16:25:59 +0100
+	s=arc-20240116; t=1706542167; c=relaxed/simple;
+	bh=temvw+fKuDYFx07W/PqfCRAulSyTIn2NnJqhzpa3B60=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=GDtdKdVkDDYZXyf4QehpGk2zwB91dpWMiqDwMZsc47tCCVB/U4xjAhmMrqZ7X9Auw6pulyeK5nb+O3PwbyhVjRPBy3grQ7PzNUjk57jfkBjfOEjosMFIOI14Vy8goUAkmJ/nwXR9qHZtfMXNwmjCG3twps8MjAN/S3OIphfqCtk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch; spf=pass smtp.mailfrom=lunn.ch; dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b=n/FsBQcO; arc=none smtp.client-ip=156.67.10.101
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=lunn.ch
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
+	s=20171124; h=In-Reply-To:Content-Disposition:Content-Type:MIME-Version:
+	References:Message-ID:Subject:Cc:To:From:Date:From:Sender:Reply-To:Subject:
+	Date:Message-ID:To:Cc:MIME-Version:Content-Type:Content-Transfer-Encoding:
+	Content-ID:Content-Description:Content-Disposition:In-Reply-To:References;
+	bh=byNfiL/pkoggyG/+oatuw7eueKrFjxfS3K9FZq27IAg=; b=n/FsBQcOafh31HIhCxKunlMYhY
+	BINs0xUg+zirDh74DZomBMBrgPTUg6s+YKFk/eyPkCDp/foDwi2JN6quuX1kkblEZiSbOzXZpnlhP
+	4ghCJVX3y19TyJLpl+W3QY5JDnD9jcKr+o01DYgJzsz6Qek3YsJcsL41l1McDcFMbpBY=;
+Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
+	(envelope-from <andrew@lunn.ch>)
+	id 1rUTZP-006OKZ-UE; Mon, 29 Jan 2024 16:29:11 +0100
+Date: Mon, 29 Jan 2024 16:29:11 +0100
+From: Andrew Lunn <andrew@lunn.ch>
+To: Christian Marangi <ansuelsmth@gmail.com>
+Cc: Jie Luo <quic_luoj@quicinc.com>,
+	Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
+	Andy Gross <agross@kernel.org>,
+	Bjorn Andersson <andersson@kernel.org>,
+	Konrad Dybcio <konrad.dybcio@linaro.org>,
+	"David S. Miller" <davem@davemloft.net>,
+	Eric Dumazet <edumazet@google.com>,
+	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
+	Rob Herring <robh+dt@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Heiner Kallweit <hkallweit1@gmail.com>,
+	Russell King <linux@armlinux.org.uk>,
+	Robert Marko <robert.marko@sartura.hr>,
+	linux-arm-msm@vger.kernel.org, netdev@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	Sergey Ryazanov <ryazanov.s.a@gmail.com>
+Subject: Re: [net-next PATCH 0/3] net: mdio-ipq4019: fix wrong default MDC
+ rate
+Message-ID: <df0e0ddc-4134-41d0-94f4-aba1186f0ede@lunn.ch>
+References: <20240124213640.7582-1-ansuelsmth@gmail.com>
+ <53445feb-a02c-4859-a993-ccf957208115@quicinc.com>
+ <f8a9e328-5284-4f24-be5d-7e9804869ecd@lunn.ch>
+ <5d778fc0-864c-4e91-9722-1e39551ffc45@quicinc.com>
+ <CAA8EJppUGH1pMg579nJmG2iTHGsOJdgDL93kfOvKofANTGGdHw@mail.gmail.com>
+ <65b3ecd7.050a0220.9e26c.0d9e@mx.google.com>
+ <cdd0e481-2738-465b-9ef8-b7ab79981fbe@quicinc.com>
+ <65b7b565.170a0220.2666a.0d2b@mx.google.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: Support for airoha en7581 Soc
-Content-Language: en-US
-To: Arnd Bergmann <arnd@arndb.de>,
- Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
- Lorenzo Bianconi <lorenzo@kernel.org>,
- Matthias Brugger <matthias.bgg@gmail.com>
-Cc: Rob Herring <robh+dt@kernel.org>,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Conor Dooley <conor+dt@kernel.org>, Felix Fietkau <nbd@nbd.name>,
- devicetree@vger.kernel.org, John Crispin <john@phrozen.org>, soc@kernel.org,
- dd@embedd.com
-References: <ZbeJ5okKQ66FXGxP@lore-desk>
- <9e1ad877-f55c-4045-bb92-c30614d6c1ff@linaro.org>
- <ed322f44-6f7a-414d-a650-76c17c057b08@app.fastmail.com>
-From: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
-In-Reply-To: <ed322f44-6f7a-414d-a650-76c17c057b08@app.fastmail.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <65b7b565.170a0220.2666a.0d2b@mx.google.com>
 
-Il 29/01/24 16:22, Arnd Bergmann ha scritto:
-> On Mon, Jan 29, 2024, at 16:08, Krzysztof Kozlowski wrote:
->> On 29/01/2024 12:20, Lorenzo Bianconi wrote:
->>> Hi Matthias,
->>>
->>> I was wondering about the status of the following patches:
->>> https://lore.kernel.org/linux-arm-kernel/20231001122418.2688120-4-dd@embedd.com/T/#rbafabf4bf2473327f35ce7d79623f63838630537
->>>
->>> Do we need to respin them? Thx in advance.
->>
->> I don't see anyone from SoC maintainers CCed on that patchset, so no one
->> will pick it up. Pinging makes sense if maintainers missed/ignored your
->> email. But if you do not send stuff to maintainers, you need to resend
->> to proper people, not ping.
->>
->> Additionally, this is a new arch, but it seems to miss any maintainers
->> update.
+On Mon, Jan 29, 2024 at 03:25:09PM +0100, Christian Marangi wrote:
+> On Mon, Jan 29, 2024 at 09:59:03PM +0800, Jie Luo wrote:
+> > 
+> > 
+> > On 1/27/2024 1:33 AM, Christian Marangi wrote:
+> > > On Fri, Jan 26, 2024 at 07:20:03PM +0200, Dmitry Baryshkov wrote:
+> > > > On Fri, 26 Jan 2024 at 18:03, Jie Luo <quic_luoj@quicinc.com> wrote:
+> > > > > 
+> > > > > 
+> > > > > 
+> > > > > On 1/26/2024 1:18 AM, Andrew Lunn wrote:
+> > > > > > > Hi Christian,
+> > > > > > > Just a gentle reminder.
+> > > > > > > 
+> > > > > > > The MDIO frequency config is already added by the following patch series.
+> > > > > > > https://lore.kernel.org/netdev/28c8b31c-8dcb-4a19-9084-22c77a74b9a1@linaro.org/T/#m840cb8d269dca133c3ad3da3d112c63382ec2058
+> > > > > > 
+> > > > > > I admit this version was posted first. However, its embedded in a
+> > > > > > patch series which is not making much progress, and i doubt will make
+> > > > > > progress any time soon.
+> > > > > > 
+> > > > > > If you really want your version to be used, please split it out into a
+> > > > > > standalone patch series adding just MDIO clock-frequency support, with
+> > > > > > its binding, and nothing else.
+> > > > > > 
+> > > > > >       Andrew
+> > > > > 
+> > > > > Hi Andrew,
+> > > > > We will rework the patch series to include only MDIO frequency related
+> > > > > function and frequency dt binding, and post the updated patch series
+> > > > > on th/Tuesdae Mondayy of next week. We will work with Christian to
+> > > > > ensure he can re-use this patch as well.
+> > > > 
+> > > > Can you do the other way around: rebase your patches on top of Chritian's work?
+> > 
+> > Hi Dmitry,
+> > Sure, we can take this approach if fine by Andrew as well.
+> > 
+> > > > 
+> > > 
+> > > Would be ideal, also I have to send v2 that handle the 802.3 suggested
+> > > MDC rate (ready I just need to send after this has been handled).
+> > > 
+> > > Also I can see some problem with Lui patch where thse divior
+> > > value is not reapplied after MDIO reset effectively reverting to the
+> > > default value.
+> > 
+> > Hi Christian,
+> > In my version, the divisor is programmed in every MDIO operation and hence I
+> > did not add the code to revert to configured value in reset function. But
+> > sure. we can program it once during the probe/reset and avoid doing it
+> > during read/write ops.
+> > 
+> > In addition, the MDIO divisor 1, 2 and 4 are not supported by the MDIO
+> > hardware block, maybe we can remove these macros to avoid confusion, or add
+> > a comment mentioning that these are not supported.
+> >
 > 
-> I expect this to be picked up by the mediatek maintainers,
-> same as what we did for the arch/arm/ port that was merged
-> first.
+> Hi, thanks for confirming it! In v2 I already changed the logic to start
+> looping from divisor 8 and added comments in DT and driver about not
+> assuring correct funcionality with those divisor.
 
-Yes, we're doing that.
+Hi Christian
 
-> While airoha is a separate company these days,
+Lets go with your version. Please post V2 whenever you are ready.
 
-Not really... it's still a MediaTek subsidiary...
+Jie, please spend some time reviewing to patches, make any comments
+you have, and if everything is O.K, you can add a Reviewed-by:
 
-https://corp.mediatek.com/about/subsidiary-information
-
-https://www.airoha.com/about
-
-> I assume this is still closely related to mt7623, mt7683,
-> and mt7622, just like en7523 was.
-
-I assume the same. I'll add the airoha directory to the MAINTAINERS file
-under ARM/Mediatek.
-
-Cheers
-Angelo
-
-
+    Andrew
 
