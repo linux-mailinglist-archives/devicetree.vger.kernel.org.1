@@ -1,73 +1,73 @@
-Return-Path: <devicetree+bounces-36113-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-36115-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id ECB3F83FFB4
-	for <lists+devicetree@lfdr.de>; Mon, 29 Jan 2024 09:09:43 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id D65D983FFBF
+	for <lists+devicetree@lfdr.de>; Mon, 29 Jan 2024 09:12:49 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 9DD611F21748
-	for <lists+devicetree@lfdr.de>; Mon, 29 Jan 2024 08:09:43 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 65A331F221E0
+	for <lists+devicetree@lfdr.de>; Mon, 29 Jan 2024 08:12:49 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1973F524CD;
-	Mon, 29 Jan 2024 08:09:38 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 50975524D1;
+	Mon, 29 Jan 2024 08:12:45 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="IBtClSuf"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="emXgRnWG"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ed1-f45.google.com (mail-ed1-f45.google.com [209.85.208.45])
+Received: from mail-ej1-f50.google.com (mail-ej1-f50.google.com [209.85.218.50])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4F9A253E22
-	for <devicetree@vger.kernel.org>; Mon, 29 Jan 2024 08:09:36 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.45
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 86596537E7
+	for <devicetree@vger.kernel.org>; Mon, 29 Jan 2024 08:12:43 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.50
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1706515778; cv=none; b=E10HvxDfkSIstn4CsbEmy1t0wwZHTC5+/hQasV7/R1gtXKfMGyGzVdpQU6kaholjA3hSew7iznD+Ayj8FqjoIxBpWhQXDhm6F1z1+5OGPJ1UNQzAAQyIPfc17PTgo80jmx3wGqjK3fcXQRjbMvLhZV1YIq9EtwTrQsxJISvNd0g=
+	t=1706515965; cv=none; b=TnjXeCUn3ISsej+Rw8JC5UWjdRLPDLTiwEDnARfuJoUaTjiMoGD8KTkMf1UyQiV9g4iVBiyStQi3GfWBjKxnt2NP4pBpWLHkt3q8TjZUtQiGl2RXM8J75vJE8Onxpw1zTGZmhzRgmZql8W9hchyZT/Zdf2RJ3E8vmPX3KbMIYAY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1706515778; c=relaxed/simple;
-	bh=x7ByBBupsP6qolhOohayzs5fhABY+WYmzde1Y+33Dxs=;
+	s=arc-20240116; t=1706515965; c=relaxed/simple;
+	bh=EZVuVCAnA28VOLQWf2d+roPcIgtTo0gz77MLV1+lYmw=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=RVMnP2k+sElIlsTeIzPWQhlcCwkfrLdQNrmN98qbHjuXsd8ZLmMcqec5RLUNUWV5bC+0l1MOAf3vh4Khezo1yNk04WrnKJIfH5m8BzSJJ0Itr3aAPf9LNc9qvyzpKZoQBD5OW/E0QaOelOXdBR/XUpw1W8qqhCrfGwgA+8Nse3g=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=IBtClSuf; arc=none smtp.client-ip=209.85.208.45
+	 In-Reply-To:Content-Type; b=CFtuB9EP0k0uR+5wSrlmRy9xGPecRO01nSVmDfJE0cMQfFQaoSG1W8xWuseydO6mwYy+dHR9hTUfsCLgh9L4mvzfZyiJzMOU4L3WRoie2VqYd8yFqtS6N4JcRIy7jAy+Ax5QTxTm3msfSd44ynkhP4ERQLMxLciA/fSjcqs2eDE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=emXgRnWG; arc=none smtp.client-ip=209.85.218.50
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-ed1-f45.google.com with SMTP id 4fb4d7f45d1cf-55eedf5a284so986907a12.1
-        for <devicetree@vger.kernel.org>; Mon, 29 Jan 2024 00:09:36 -0800 (PST)
+Received: by mail-ej1-f50.google.com with SMTP id a640c23a62f3a-a2a17f3217aso333317866b.2
+        for <devicetree@vger.kernel.org>; Mon, 29 Jan 2024 00:12:43 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1706515774; x=1707120574; darn=vger.kernel.org;
+        d=linaro.org; s=google; t=1706515962; x=1707120762; darn=vger.kernel.org;
         h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
          :to:content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=sTi7TcKm2OE/ghrokyHa7+qzICFY2qaY+y255bXU2YY=;
-        b=IBtClSufk9VvWHWKy3w2ZQYts7FcJ0IBbHpYf53/Y8EZ+Gs1HSwEm1f40ERKE2iay2
-         aBNmK7Ksx5mkMQJ8HydRwkkGp5SEMgW81W3oa8jFRorV7Vz6jEvwYJe1HOQ6U2k3aMvN
-         hec6TQkk9tASLIxzWM4hQpERxEcpXp2xgC2KWyAFa9JTCy0Aigi4+ZgP0KgEKwXelOax
-         vrWKqEnSzXoycCQFyCB+tFkbxt2dWNqCQJ7D1HGZg9C64M2docLxzbHWyYi1e9Uedjin
-         W2zB2pt4bZFQBggDX0hebhEtp//T4Avk47lQruinPgZQIDbp1dkYlS0neMcm9qPhC3Xj
-         l/qg==
+        bh=+FIpRWLZbwN7yMksRpP0Iu+1IEycuf4fyMPnwvD0Q3Q=;
+        b=emXgRnWGzHb50TyfrMqyB09aOZ45SHbYpYtz3XRAA/FLMtcSTD8/Je9xZ8wN+iI4Zl
+         0143ebZYgjLD2nW0QAlS+oGklhZpywiHy7Cr2jNd/v3OkeLjoKaEZWyvj9EwHJWiAyTQ
+         LPHSXP93UBewSxXQjKGCpllxvfOv67Z6TUPUkJ09EqcXS7U2f/EyWevmco9BtfZZAUKQ
+         XwzWgRJsW2OEhGFlyPS0ZLpgjCSSIQIWDGNHQ+BEM5UqLtKMxgjgn0FO5NHwH1ZdXS4r
+         b9KaaR43Q8Oko0VdIYUJxwGu3CNCPec6LHZEAlof/Fgj/kM3VUzDHRDnta3dtR265jps
+         FwRA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1706515774; x=1707120574;
+        d=1e100.net; s=20230601; t=1706515962; x=1707120762;
         h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
          :to:content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=sTi7TcKm2OE/ghrokyHa7+qzICFY2qaY+y255bXU2YY=;
-        b=xIDAjfrzjyRXO3tYJvkvQaiERo/wm1/PdwlYhu5EjtOnO97IPdPm5FgQe56ov7FJbK
-         LSDyIvsTXFSFg3KG5zLf6J2SFM+S5beOzhRNTgE+zrL5q2nUYgnelTwKhXNt6V0o5swB
-         3vBedxRhLByOhZ9Aj/ZW5vBhl8DT6C0Ba3vdqpjTTcO1UjZkzdQKpgQWvcPXMydHa5jx
-         3lcWdcWcw5NvLwC0wNrNU3wPe1oKiGS3Y3gtrJn5K6sJmuqoKZ+0fu+IzITPnS8VjH+b
-         jVx71K06UT5swd6YsaHpeDjXTSp0l2BM7jDBZoO5L/Kr+O7gNE2QIdvzLKFGoO3izAMz
-         WkYw==
-X-Gm-Message-State: AOJu0YxM8oelMkVrYdF8v3bTa07GvJvI52SVByH5F/YLT+ARrc9P1dQM
-	Ha3j1wg3SqOTXsHaWQfulz9SwPF3FOIhs/139WkiFhnePqJxeTYfbIMf9aydcCI=
-X-Google-Smtp-Source: AGHT+IEAPwTlRWJxYN21xkJt/cRFLXh4PEhuL+pgZe8FsQ7lG5H++otf+PQ3RJg5JdY3r7EaxcgEgg==
-X-Received: by 2002:a17:906:9904:b0:a2f:2867:dabe with SMTP id zl4-20020a170906990400b00a2f2867dabemr3631688ejb.1.1706515774534;
-        Mon, 29 Jan 2024 00:09:34 -0800 (PST)
+        bh=+FIpRWLZbwN7yMksRpP0Iu+1IEycuf4fyMPnwvD0Q3Q=;
+        b=VzfayaFUs4Po1Rva3ef7P0I7VNxMRUV0rgrNZgFeSzhv3eXGb8aJLtapabl8h1bRz+
+         5ehVKt9bRwzWJiWqyh4b7oX7Ljnc53kwQAQ6PlbKFaZlT3Fur51W0BjI2J11F9BlnuP/
+         AeZzNVXdRJI0iwkXZHI3VHd5C7jaU++iA0dZEK0LVCDQB28waen4dlUgnda4hDF72E7c
+         v93yCHHxRSZ3hV5GLwNVJJ5iDACeUf+IIFRIwWyLV/vKtNe6Bi1/vrOpAlOQ0LSXKX8w
+         zOBrMx3GBCzOLnaWCPcXjH2A/I78QRLzxxX3AU49Goy1c+CXDvcVU5M/aunmHNkxqGys
+         hhZw==
+X-Gm-Message-State: AOJu0YxfutzqUZgOAT0EhOousuWymUpWwh7WQJuKwRcQ8u4ErstAPnw/
+	zlVAlt406BK2/gSPsm6ma4HA6ntJb15A0FLHB12WugLX40Fvn51TKX/8X1N9Xv0=
+X-Google-Smtp-Source: AGHT+IGKSgiPa8t3xoZCmGJ55cxUF5z/uq32AEccHElHyv/cEtIApr4vhr/+rVz4egAd4i+ROKFfbg==
+X-Received: by 2002:a17:906:6bce:b0:a30:f149:153 with SMTP id t14-20020a1709066bce00b00a30f1490153mr4238316ejs.22.1706515961761;
+        Mon, 29 Jan 2024 00:12:41 -0800 (PST)
 Received: from [192.168.1.20] ([178.197.222.62])
-        by smtp.gmail.com with ESMTPSA id r26-20020a170906c29a00b00a35cb514aaesm515979ejz.82.2024.01.29.00.09.32
+        by smtp.gmail.com with ESMTPSA id v2-20020a1709060b4200b00a35ed4fd4cesm72328ejg.115.2024.01.29.00.12.40
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 29 Jan 2024 00:09:34 -0800 (PST)
-Message-ID: <d3ef45cf-2de8-4f5b-8857-62d1996f3f58@linaro.org>
-Date: Mon, 29 Jan 2024 09:09:32 +0100
+        Mon, 29 Jan 2024 00:12:41 -0800 (PST)
+Message-ID: <51f4782f-09d8-448f-a693-e0c711bee18d@linaro.org>
+Date: Mon, 29 Jan 2024 09:12:39 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -75,17 +75,15 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v4 6/6] arm64: dts: qcom: aim300: add AIM300 AIoT
+Subject: Re: [PATCH v2 3/3] dt-bindings: iio: imu: st_lsm6dsx: add
+ asm330lhhxg1
 Content-Language: en-US
-To: Tengfei Fan <quic_tengfan@quicinc.com>, andersson@kernel.org,
- konrad.dybcio@linaro.org, robh+dt@kernel.org,
- krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
- dmitry.baryshkov@linaro.org
-Cc: linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, kernel@quicinc.com,
- Qiang Yu <quic_qianyu@quicinc.com>, Ziyue Zhang <quic_ziyuzhan@quicinc.com>
-References: <20240119100621.11788-1-quic_tengfan@quicinc.com>
- <20240119100621.11788-7-quic_tengfan@quicinc.com>
+To: Lorenzo Bianconi <lorenzo@kernel.org>, jic23@kernel.org
+Cc: linux-iio@vger.kernel.org, lorenzo.bianconi@redhat.com,
+ devicetree@vger.kernel.org, robh+dt@kernel.org,
+ krzysztof.kozlowski+dt@linaro.org
+References: <cover.1706441008.git.lorenzo@kernel.org>
+ <189b903e939e15d98d198db60e2ca0619b116870.1706441008.git.lorenzo@kernel.org>
 From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  xsFNBFVDQq4BEAC6KeLOfFsAvFMBsrCrJ2bCalhPv5+KQF2PS2+iwZI8BpRZoV+Bd5kWvN79
@@ -131,35 +129,34 @@ Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  KQ06ztUMRrj8eVtpImjsWCd0bDWRaaR4vqhCHvAG9iWXZu4qh3ipie2Y0oSJygcZT7H3UZxq
  fyYKiqEmRuqsvv6dcbblD8ZLkz1EVZL6djImH5zc5x8qpVxlA0A0i23v5QvN00m6G9NFF0Le
  D2GYIS41Kv4Isx2dEFh+/Q==
-In-Reply-To: <20240119100621.11788-7-quic_tengfan@quicinc.com>
+In-Reply-To: <189b903e939e15d98d198db60e2ca0619b116870.1706441008.git.lorenzo@kernel.org>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 19/01/2024 11:06, Tengfei Fan wrote:
-> Add AIM300 AIoT board DTS support, including usb, serial, PCIe, mpss,
-> adsp, cdsp and sound card functions support.
+On 28/01/2024 12:25, Lorenzo Bianconi wrote:
+> Add device bindings for asm330lhhxg1 IMU sensor.
+> Use asm330lhhx as fallback device for asm330lhhxg1 since it implements
+> all the features currently supported by asm330lhhxg1.
 > 
+> Signed-off-by: Lorenzo Bianconi <lorenzo@kernel.org>
+> ---
+>  Documentation/devicetree/bindings/iio/imu/st,lsm6dsx.yaml | 3 +++
+>  1 file changed, 3 insertions(+)
+> 
+> diff --git a/Documentation/devicetree/bindings/iio/imu/st,lsm6dsx.yaml b/Documentation/devicetree/bindings/iio/imu/st,lsm6dsx.yaml
+> index 28b667a9cb76..7ba3de66a2e1 100644
+> --- a/Documentation/devicetree/bindings/iio/imu/st,lsm6dsx.yaml
+> +++ b/Documentation/devicetree/bindings/iio/imu/st,lsm6dsx.yaml
+> @@ -49,6 +49,9 @@ properties:
+>        - items:
+>            - const: st,asm330lhb
+>            - const: st,asm330lhh
+> +      - items:
+> +          - const: st,asm330lhhxg1
+> +          - const: st,asm330lhhx
 
-...
-
-> +
-> +	sound {
-> +		compatible = "qcom,sm8550-sndcard", "qcom,sm8450-sndcard";
-> +		model = "AIM300-AIOT";
-> +		audio-routing = "SpkrLeft IN", "WSA_SPK1 OUT",
-> +				"SpkrRight IN", "WSA_SPK2 OUT",
-> +				"IN1_HPHL", "HPHL_OUT",
-> +				"IN2_HPHR", "HPHR_OUT",
-> +				"AMIC2", "MIC BIAS2",
-> +				"VA DMIC0", "MIC BIAS1",
-> +				"VA DMIC1", "MIC BIAS1",
-> +				"VA DMIC2", "MIC BIAS3",
-> +				"TX DMIC0", "MIC BIAS1",
-> +				"TX DMIC1", "MIC BIAS2",
-> +				"TX DMIC2", "MIC BIAS3",
-> +				"TX SWR_ADC1", "ADC2_OUTPUT";
-
-This should be probably TX SWR_INPUT1.
+lhhx is compatible with st,lsm6dsr, so some explanation would be useful
+why it is not included here.
 
 Best regards,
 Krzysztof
