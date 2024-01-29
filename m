@@ -1,130 +1,132 @@
-Return-Path: <devicetree+bounces-36097-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-36098-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id BD37483FEA3
-	for <lists+devicetree@lfdr.de>; Mon, 29 Jan 2024 07:45:17 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id BB8BF83FEEF
+	for <lists+devicetree@lfdr.de>; Mon, 29 Jan 2024 08:16:35 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id F01011C20957
-	for <lists+devicetree@lfdr.de>; Mon, 29 Jan 2024 06:45:16 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 77F5D2854AE
+	for <lists+devicetree@lfdr.de>; Mon, 29 Jan 2024 07:16:34 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 792774CB57;
-	Mon, 29 Jan 2024 06:45:14 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2B9EC4C3D4;
+	Mon, 29 Jan 2024 07:16:31 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=fail reason="signature verification failed" (1024-bit key) header.d=phytec.de header.i=@phytec.de header.b="r+AeYvWN"
+	dkim=pass (1024-bit key) header.d=chromium.org header.i=@chromium.org header.b="QigT3h7i"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mickerik.phytec.de (mickerik.phytec.de [91.26.50.163])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-lf1-f54.google.com (mail-lf1-f54.google.com [209.85.167.54])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 77BBC4CE00
-	for <devicetree@vger.kernel.org>; Mon, 29 Jan 2024 06:45:09 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=91.26.50.163
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6370E4D58F
+	for <devicetree@vger.kernel.org>; Mon, 29 Jan 2024 07:16:29 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.54
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1706510714; cv=none; b=hUtOd6DXMdKK/nKOAoAIdf1IG2mvjIJA1pZCbVXrN6cORM/WYjnNWqE9EMfIhDR72eF62wcoG97xlv9h1nrHUYkjAQpwaAxcNm8X3ScYfpAzia+mQlbjlWB9LhgM78YD9iqEJ4PVy4KBbm5x+YeImxMTuJWZUS6v2W1TszcrNvc=
+	t=1706512591; cv=none; b=gKQVW8qC5f8KlQJ2njYfDTfJFYnn9xRWEyQrbDmnNtuJcFauq61Uq7k6MEz5wTYMpVB4XT/yNY5w9YaUWp/Q6uIkIqAeDMnw+ZV1vuDzT1Gir9IMg/FswUmnjd0jMOeumucXwgHJi02fyppNQ5iRoLe950XA6EWLm3dgrlErvhU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1706510714; c=relaxed/simple;
-	bh=CdvBsoSoCHzWsp34cpiSESmPcI6Lb+0AyCuuanJvfi4=;
-	h=From:To:CC:Subject:Date:Message-ID:References:In-Reply-To:
-	 Content-Type:MIME-Version; b=PPKE53+gYFh1McT6nYr9Q/yzYjMLHh4Aft+hU7DVsbxNT8gcOiqR52r1CxQcdw4XvVcbZV+mvRiawrzOxM5ARt6pSMok25Gr0DTbbTzmvzgZdqDXeQsOv/qox71xqfvXbmMiSrFUWPgjgTG3H08LMjVOhMqkzB4Er27VIKFs3jQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=phytec.de; spf=pass smtp.mailfrom=phytec.de; dkim=pass (1024-bit key) header.d=phytec.de header.i=@phytec.de header.b=r+AeYvWN; arc=none smtp.client-ip=91.26.50.163
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=phytec.de
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=phytec.de
-DKIM-Signature: v=1; a=rsa-sha256; d=phytec.de; s=a4; c=relaxed/simple;
-	q=dns/txt; i=@phytec.de; t=1706510701; x=1709102701;
-	h=From:Sender:Reply-To:Subject:Date:Message-ID:To:CC:MIME-Version:Content-Type:
-	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:Resent-From:
-	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:List-Id:
-	List-Help:List-Unsubscribe:List-Subscribe:List-Post:List-Owner:List-Archive;
-	bh=CdvBsoSoCHzWsp34cpiSESmPcI6Lb+0AyCuuanJvfi4=;
-	b=r+AeYvWNt8cHIyynPq8reGYyTjMrSlDbnakgJrT66bHk6oanKD2NqPm70Cz/evZM
-	Ud+PvkkpvjtP8DkKuv6SPnw/QP6utNJqbco4PuKXm0+4YD5NI0CxkEhSeQaTqQJE
-	BzD7GUydxp/5rfE/j3JIbbnB+hyQBouAXIIIfoQKKc8=;
-X-AuditID: ac14000a-fbefe7000000290d-4e-65b7496d27ac
-Received: from berlix.phytec.de (Unknown_Domain [172.25.0.12])
-	(using TLS with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
-	(Client did not present a certificate)
-	by mickerik.phytec.de (PHYTEC Mail Gateway) with SMTP id 1F.91.10509.D6947B56; Mon, 29 Jan 2024 07:45:01 +0100 (CET)
-Received: from Berlix.phytec.de (172.25.0.12) by Berlix.phytec.de
- (172.25.0.12) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.6; Mon, 29 Jan
- 2024 07:45:01 +0100
-Received: from Berlix.phytec.de ([fe80::197e:d26b:2ca:c7b4]) by
- berlix.phytec.de ([fe80::197e:d26b:2ca:c7b4%4]) with mapi id 15.01.2507.006;
- Mon, 29 Jan 2024 07:45:01 +0100
-From: Yannic Moog <Y.Moog@phytec.de>
-To: "conor@kernel.org" <conor@kernel.org>
-CC: "linux-imx@nxp.com" <linux-imx@nxp.com>, "dri-devel@lists.freedesktop.org"
-	<dri-devel@lists.freedesktop.org>, "upstream@lists.phytec.de"
-	<upstream@lists.phytec.de>, "krzysztof.kozlowski+dt@linaro.org"
-	<krzysztof.kozlowski+dt@linaro.org>, "tzimmermann@suse.de"
-	<tzimmermann@suse.de>, "mripard@kernel.org" <mripard@kernel.org>,
-	"thierry.reding@gmail.com" <thierry.reding@gmail.com>, "daniel@ffwll.ch"
-	<daniel@ffwll.ch>, "maarten.lankhorst@linux.intel.com"
-	<maarten.lankhorst@linux.intel.com>, "conor+dt@kernel.org"
-	<conor+dt@kernel.org>, "shawnguo@kernel.org" <shawnguo@kernel.org>,
-	"catalin.marinas@arm.com" <catalin.marinas@arm.com>,
-	"devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-	"linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-	"kernel@pengutronix.de" <kernel@pengutronix.de>, "s.hauer@pengutronix.de"
-	<s.hauer@pengutronix.de>, "will@kernel.org" <will@kernel.org>,
-	"robh+dt@kernel.org" <robh+dt@kernel.org>, "airlied@gmail.com"
-	<airlied@gmail.com>, "linux-arm-kernel@lists.infradead.org"
-	<linux-arm-kernel@lists.infradead.org>, "neil.armstrong@linaro.org"
-	<neil.armstrong@linaro.org>, "festevam@gmail.com" <festevam@gmail.com>,
-	"quic_jesszhan@quicinc.com" <quic_jesszhan@quicinc.com>,
-	"primoz.fiser@norik.com" <primoz.fiser@norik.com>, "sam@ravnborg.org"
-	<sam@ravnborg.org>
-Subject: Re: [PATCH RFC for upstream 1/4] dt-bindings: display: panel-simple:
- add ETML1010G3DRA
-Thread-Topic: [PATCH RFC for upstream 1/4] dt-bindings: display: panel-simple:
- add ETML1010G3DRA
-Thread-Index: AQHaUDW1vX4f1M9A2kaPejSYk7EXprDsN9gAgAQUVQA=
-Date: Mon, 29 Jan 2024 06:45:01 +0000
-Message-ID: <dd0954c68bf32cf7a96690af1c78ebb05baf66d4.camel@phytec.de>
-References: <20240126-wip-y-moog-phytec-de-upstream-pollux-lvds-v1-0-8ec5b48eec05@phytec.de>
-	 <20240126-wip-y-moog-phytec-de-upstream-pollux-lvds-v1-1-8ec5b48eec05@phytec.de>
-	 <20240126-briskly-clang-d1e6ad7d40e8@spud>
-In-Reply-To: <20240126-briskly-clang-d1e6ad7d40e8@spud>
-Accept-Language: de-DE, en-US
-Content-Language: de-DE
-X-MS-Has-Attach:
-X-MS-TNEF-Correlator:
-Content-Type: text/plain; charset="utf-8"
-Content-ID: <33C813F92074E14DB8AA8A451C6EF94B@phytec.de>
-Content-Transfer-Encoding: base64
+	s=arc-20240116; t=1706512591; c=relaxed/simple;
+	bh=hG7Vzfp17NEMbZ3kboNPbIEc5FlT8qqXwwpgqCE+nb4=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=rLCtEobrG9PtHVkdPiPrYJjAk3ZyTx4TYfLHm0hkloCvImo8yM7LKnqc07eLW2d13TSDiHgQqhIsZcfqE5Kv9GySpUqZynjr874H+ZQzGTB27bVtsvWqKrVw8dA+25qvjvN2RBNq3GCryj1eYhIhmdXRxdO71qF6zHJTWvLynM0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=chromium.org; spf=pass smtp.mailfrom=chromium.org; dkim=pass (1024-bit key) header.d=chromium.org header.i=@chromium.org header.b=QigT3h7i; arc=none smtp.client-ip=209.85.167.54
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=chromium.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=chromium.org
+Received: by mail-lf1-f54.google.com with SMTP id 2adb3069b0e04-510f37d6714so1512569e87.2
+        for <devicetree@vger.kernel.org>; Sun, 28 Jan 2024 23:16:29 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=chromium.org; s=google; t=1706512587; x=1707117387; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=GKVjPpRBlhrSt/tEcTU8BHnh+3o7uF091QzM4ro5QmU=;
+        b=QigT3h7iNkQxGtwVgZk4mEthkLtatteMJZ8aD3L331FzmXtbTp1mVGJHgpRMsW+zJN
+         7npXMpRFZZGpm2gcBDAuLkcpOO70zJO85a2uOUisB2DS+AECfYzLJqecwHZ0WDT9YKCF
+         rhoQcGU1fg7hupR04dMQU5aM7gB5KAt6CpMBg=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1706512587; x=1707117387;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=GKVjPpRBlhrSt/tEcTU8BHnh+3o7uF091QzM4ro5QmU=;
+        b=emE4uE3gW5r/a77cwQzIfy7iEr86X5lolO3I1xcDFBizJ2sVZsuy9o9HiSjPMfCtO7
+         unSiocTN5r99WPzv+U2jdktAuiU4xV7RrOCHo4XJGuYA9OPvom3f8GPt55fxcccuwodr
+         x9oXquFUfGoTR4TSuDwB4mh1z/wH6nn2FceRMZzFFAro8UM8dys2LCErY1k5D73TFYar
+         X6ZHDNdyBQf5DMyE8tfkNV2KqrJekPAb2nheQRAyvVlz3B33p1Ka945ilaqR70irrUkO
+         YoWw+26c7q2hs+G29LEOq0ontdL7MMEGVYqRAEQLkIL1noe3vNqF+zXk1qZz5p8q90LJ
+         ubwg==
+X-Gm-Message-State: AOJu0YzuSTnZKjkqwX5rPJ4YeqikqxOWMm+seu5MBibLu9brfYBp4Tlh
+	iyv1x9U9dfX/VROwf37patrDnlmzfqKU5YOb0eMzMIXiQ5mb/EBYPTba7+IBuGM6VFlLTOzU+XL
+	aalxgp+ujdShhUgfIBS01+40z4nVocLA57nya
+X-Google-Smtp-Source: AGHT+IEb0p1syRm7CrHn7mmVEwAtW1jrbzLAGOaEIdkZmX7QHvHCjeBg+3TTT52oNs9z67jT8ZgnE281V4VmoPUshog=
+X-Received: by 2002:a05:6512:201c:b0:50e:ca2a:50f8 with SMTP id
+ a28-20020a056512201c00b0050eca2a50f8mr2832350lfb.63.1706512587448; Sun, 28
+ Jan 2024 23:16:27 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-Brightmail-Tracker: H4sIAAAAAAAAA02SbUiTURTHu8+bj6Ph05zsqpU0rFDypUy6WFQfIm4EmUVFfqmlDzmntuas
-	rKgMFZ2iKfk2TS1Hc2vRnJrOHNUS8gU00ozMtKGIQWkWZRb2sj1Ffvufc/6//zkXLktKntAB
-	rDJNy2vSFClyRkRZ/JctD0vd08ZH2hp8UffLWwSavV0IkMXRTyBTmZlBv+6XkKiuq59GQ19m
-	GeR6EYvMZXYKFU27SGSbGKaR7ruJRIMdNQy6OddKodz82zSatY8A1K1z0ehqaQWJchxdXmix
-	zUahxoVWgKZbZGiho5ZCLe9LaFQwsx5lj0bvDMCWWgvAjq/1FLbr33hhmzmfwaPDnQyu7YnD
-	4wVPCdxsuIyLC7JpPP/FSuOmmXYCFy9G4pLOS9hQ/oLBzX0X8Gfb6v1cvGhbIp+iPMNrIrYf
-	FyVNtv0i1P3MuZEfzBXQzuiANwu5zXCqogXogIiVcA0ErPww5yUU4wBaTK2kUFgBLKo1UW6E
-	4YJhT+Vz4NZSLgQaS2sIt4nkHotgU9mkx+TLKeBgfjUpmE7Ah4UOL0HHwLtXFwi3pri10J41
-	QesAy4q53TDPGS8sGwPQ8fGZ5z5vbgvMnSr3sIBbBa3WAU8mycmgbWqeFt7AQUOn0IecH3w3
-	8fNvPwh2j5QT7nzyz6H3OiIEFMFcXS8h6DXweoHLEy/mVsCeqknqGpDpl2zQ/6f1S2j9Elq/
-	hK4HtBlIUpUJKl6jVIWrkzK1fEJ4Im8D7o8mXSZqB0U12AkIFjgBZEm5VLwQ0spLxImKzPO8
-	5tQxTUYKn+4EgSwll4nv5B3kJdxJhZZX8bya1/ybEqx3wBVQFR3tPfspvFTuPOB76JJJPbPV
-	HAQbj5ZmaKOK08cS4nzSTvcZAg4/2J+ozul1GpPFa0NxLOCDjc2vzyp8d8j84+Okm9KGVH5h
-	L/cdeXRvw92BZGMh6PjYk31j5cW64V12nyjXK1vMlqDXe8O+bX1bbWTX6aZDzJOBcbgvVJbV
-	KKfSkxQbQ0lNuuI3M8uzMlYDAAA=
+References: <20240126073511.2708574-1-wenst@chromium.org> <25e0a1c6-70dd-409b-927b-ef113e6a4cc4@linaro.org>
+In-Reply-To: <25e0a1c6-70dd-409b-927b-ef113e6a4cc4@linaro.org>
+From: Chen-Yu Tsai <wenst@chromium.org>
+Date: Mon, 29 Jan 2024 15:16:16 +0800
+Message-ID: <CAGXv+5FN+=Y-c74R2WguvP_2PZwArvsNd2SLy=aKEs06A4NhPw@mail.gmail.com>
+Subject: Re: [PATCH] dt-bindings: display: bridge: it6505: Add #sound-dai-cells
+To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Cc: Andrzej Hajda <andrzej.hajda@intel.com>, Neil Armstrong <neil.armstrong@linaro.org>, 
+	Robert Foss <rfoss@kernel.org>, Laurent Pinchart <Laurent.pinchart@ideasonboard.com>, 
+	Jonas Karlman <jonas@kwiboo.se>, Jernej Skrabec <jernej.skrabec@gmail.com>, 
+	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, Maxime Ripard <mripard@kernel.org>, 
+	Thomas Zimmermann <tzimmermann@suse.de>, Rob Herring <robh+dt@kernel.org>, 
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Allen Chen <allen.chen@ite.com.tw>, David Airlie <airlied@gmail.com>, 
+	Daniel Vetter <daniel@ffwll.ch>, dri-devel@lists.freedesktop.org, 
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-SGkgQ29ub3IsDQoNCk9uIEZyaSwgMjAyNC0wMS0yNiBhdCAxNjoyNyArMDAwMCwgQ29ub3IgRG9v
-bGV5IHdyb3RlOg0KPiBIZXksDQo+IA0KPiBPbiBGcmksIEphbiAyNiwgMjAyNCBhdCAwOTo1Nzoy
-M0FNICswMTAwLCBZYW5uaWMgTW9vZyB3cm90ZToNCj4gPiBBZGQgRW1lcmdpbmcgRGlzcGxheSBU
-ZWNobm9sb2d5IENvcnAuIGV0bWwxMDEwZzNkcmEgMTAuMSIgTENELVRGVCBMVkRTDQo+ID4gcGFu
-ZWwgY29tcGF0aWJsZSBzdHJpbmcuDQo+ID4gDQo+ID4gU2lnbmVkLW9mZi1ieTogWWFubmljIE1v
-b2cgPHkubW9vZ0BwaHl0ZWMuZGU+DQo+IA0KPiA+IFtQQVRDSCBSRkMgZm9yIHVwc3RyZWFtIDEv
-NF0NCj4gDQo+IFRoZSAiZm9yIHVwc3RyZWFtIiBoZXJlIGlzIG5vdCByZWFsbHkgcmVsZXZhbnQs
-IHdoYXQgZWxzZSB3b3VsZCB0aGUNCj4gcGF0Y2ggYmUgZm9yPw0KDQpJIHNlbnQgdGhpcyBmb3Ig
-aW50ZXJuYWwgcmV2aWV3IGZpcnN0IGFuZCBmb3Jnb3QgdG8gcmVtb3ZlIHRoZSB0YWdzLCBzb3Jy
-eS4NCg0KWWFubmljDQoNCj4gDQo+IEFja2VkLWJ5OiBDb25vciBEb29sZXkgPGNvbm9yLmRvb2xl
-eUBtaWNyb2NoaXAuY29tPg0KPiANCj4gVGhhbmtzLA0KPiBDb25vci4NCj4gDQo=
+On Fri, Jan 26, 2024 at 6:17=E2=80=AFPM Krzysztof Kozlowski
+<krzysztof.kozlowski@linaro.org> wrote:
+>
+> On 26/01/2024 08:35, Chen-Yu Tsai wrote:
+> > The ITE IT6505 display bridge can take one I2S input and transmit it
+> > over the DisplayPort link.
+> >
+> > Add #sound-dai-cells (=3D 0) to the binding for it.
+> >
+> > Signed-off-by: Chen-Yu Tsai <wenst@chromium.org>
+> > ---
+> > The driver side changes [1] are still being worked on, but given the
+> > hardware is very simple, it would be nice if we could land the binding
+> > first and be able to introduct device trees that have this.
+> >
+> > [1] https://lore.kernel.org/linux-arm-kernel/20230730180803.22570-4-jia=
+xin.yu@mediatek.com/
+> >
+> >  .../devicetree/bindings/display/bridge/ite,it6505.yaml         | 3 +++
+> >  1 file changed, 3 insertions(+)
+> >
+> > diff --git a/Documentation/devicetree/bindings/display/bridge/ite,it650=
+5.yaml b/Documentation/devicetree/bindings/display/bridge/ite,it6505.yaml
+> > index 348b02f26041..7ec4decc9c21 100644
+> > --- a/Documentation/devicetree/bindings/display/bridge/ite,it6505.yaml
+> > +++ b/Documentation/devicetree/bindings/display/bridge/ite,it6505.yaml
+> > @@ -52,6 +52,9 @@ properties:
+> >      maxItems: 1
+> >      description: extcon specifier for the Power Delivery
+> >
+> > +  "#sound-dai-cells":
+> > +    const: 0
+>
+> In such case you also want to $ref /schemas/sound/dai-common.yaml.
+
+Ack. I assume this also means I should change "additionalProperties: false"
+to "unevaluatedProperties: false" in this file.
+
+ChenYu
+
+> Best regards,
+> Krzysztof
+>
 
