@@ -1,121 +1,242 @@
-Return-Path: <devicetree+bounces-36300-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-36302-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3ED4A840722
-	for <lists+devicetree@lfdr.de>; Mon, 29 Jan 2024 14:37:11 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 81105840729
+	for <lists+devicetree@lfdr.de>; Mon, 29 Jan 2024 14:37:57 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id D33761F275B0
-	for <lists+devicetree@lfdr.de>; Mon, 29 Jan 2024 13:37:10 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id ED0211F28981
+	for <lists+devicetree@lfdr.de>; Mon, 29 Jan 2024 13:37:56 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 08D7364CF9;
-	Mon, 29 Jan 2024 13:37:06 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 379DB657A7;
+	Mon, 29 Jan 2024 13:37:47 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="OXWVf8IL"
+	dkim=pass (1024-bit key) header.d=iki.fi header.i=@iki.fi header.b="L9iZfGuS"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-yw1-f172.google.com (mail-yw1-f172.google.com [209.85.128.172])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from meesny.iki.fi (meesny.iki.fi [195.140.195.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 738B663105
-	for <devicetree@vger.kernel.org>; Mon, 29 Jan 2024 13:37:04 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.172
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1706535425; cv=none; b=c2U4LCZHAC7+zWm0TcZKLyUcRPJxVZYB/zVFeDCiAQ/X2U5TsWUdzJYHIevbAyqyMM4OcQONPvs0JNDme7TltgeI+fitmMyJ6+74cqwf9NLUWnxFGNK14Vv9/WYY+eYV6YZgeKrNT6SdQahJrExQxW6RJ05e+O9j0fbWtS1p+ck=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1706535425; c=relaxed/simple;
-	bh=ZCsj/za7RaBNkGKT7kYWtyXABqM1HFsxCWGwnZwyws0=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=E8VdG7Wn4legvUSAuNAOwnPfHvvaZL6daEPrJIk9zs2dZtq4mwNviuSxI86o3ZVsz+wQcdC5dn5Zcq3cjBiD7I/qjYNJcLqI7Trg+IaRehn/T7nAPvvbH8ot1Wm4J58AMRl/m2d6hi8FLvC5+rc+2vYyYRKu+FBRG5Ki2GWKy0M=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=OXWVf8IL; arc=none smtp.client-ip=209.85.128.172
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-yw1-f172.google.com with SMTP id 00721157ae682-5ffdf06e009so25141217b3.3
-        for <devicetree@vger.kernel.org>; Mon, 29 Jan 2024 05:37:04 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1706535423; x=1707140223; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=ZCsj/za7RaBNkGKT7kYWtyXABqM1HFsxCWGwnZwyws0=;
-        b=OXWVf8IL7ZqMV2ci5Jwg9lVK1Ybj6KfFHqZ34kNHNtNln6/fZBs/LeHdX0bghc1W+U
-         6QscO7l0tJCcUzy7a0rYNnZEdpkD9bMomaEPsi45cNK7qBRChA83dLoGndFcwGWU7/qT
-         GRN5EvDlC4y/Tvf8bFMlwIfhq0jRCAoHX7HkBtoJIUuLETKsZslhQod7PUIfwknvNQ/+
-         eVAwJUnaRIFa92t3zWkIW2+k4aMF8hPFDaGMAt+MaarnTNvML2hqEbuP5rV/Vh2WtVkG
-         2Kmj6/U5InXuo6XfUXy19KY7oBQtbNkk71cQHjmynmT3Pd/QtL6aNn4CX9+UYcg/M97I
-         z9YQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1706535423; x=1707140223;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=ZCsj/za7RaBNkGKT7kYWtyXABqM1HFsxCWGwnZwyws0=;
-        b=LnlXDV/On/kLR6xes0NZgL3XVNu7cxujiFQApQdEfbrHn4UL4fOjFVBrBDoUSpDBUH
-         FvFv8Z38om+iyxHs+KSeqGhtHd/MEwPD1V7ygzgja2qkLwFleh5AUJYRhg5+vFINqotA
-         2bS+IkXsZx8sHjV4DnEORmZfkRZ4BLmntnn7t/3868I/GLNyt/r8kI8ojEaXYUR41/V0
-         iHtDqOyrgd3tRJGxpx/f9iviJSU/WMeRD1uLOORGHEfY8/+JUpNm/tsoXPL22lVI7qB6
-         LtZR67Ir4psKyiH4g6KOMAJr2iy3Ygeu/S8rnRfcp0/HBgEeWCiRhrH9g42UnlfnI41X
-         d7Zg==
-X-Gm-Message-State: AOJu0Yy6vsF5mRPBMrGmzN1LOIqK6D229Uj3xMx0+rBT0ZwJ8LVx1S9R
-	elQ6zinmUukyfpUv4/vrlJ2jlVImH2uQembkkXxFpoKna9lqtlQvc6u3FAB8gzivVVaARkCfmze
-	f/ftlQXvD6JvFEN5sfKYFtdmViphu2jnQKQJDKg==
-X-Google-Smtp-Source: AGHT+IHZ7ppV7Ra7ON9UtE6bhsWl2QM45AmHugXBrqcS6qRScJO5m5BM8d0Bu6WpG6iGltf56g+QXH1UdhgEs2wGbiI=
-X-Received: by 2002:a81:b61e:0:b0:5ff:e530:eebd with SMTP id
- u30-20020a81b61e000000b005ffe530eebdmr3227907ywh.19.1706535423411; Mon, 29
- Jan 2024 05:37:03 -0800 (PST)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E880A651AC;
+	Mon, 29 Jan 2024 13:37:43 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=pass smtp.client-ip=195.140.195.201
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1706535466; cv=pass; b=JbGrB3gOG4CGRXMLSJubmyzeYJaki0s/6dVEL5ZzFSHizj33ii+/p1H6vM7vQk8qLRG22BF9gO77TYjUhrqyU12UvjqocOYDGP0cC3DWDfWJXZ9fAZzKC0cbh14ybttxmnVEXkihk7YurG9dgDeNuS47UCsVdMKBrfIU1thFe10=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1706535466; c=relaxed/simple;
+	bh=1Q2ncB17EOSNxTDez7UD4M4c7Sx/P3AtArVJ1O+fXSA=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=pH0lyP/IYeTpIQvGBjwdD5F7wSWcnlzYYcE0ickwg5vj9XeIhk9we/d8vl5Oi/h40tnyqyDdCGgvbdF+b30oJD+MefAZFhEnjg61YzUoig8rhhCRiLYRJ0d8uDc+8gH6WgbwFii7NrnJnReDLo9Qo4UmTLgC4oBcXOZc35tLBKE=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=iki.fi; spf=pass smtp.mailfrom=iki.fi; dkim=pass (1024-bit key) header.d=iki.fi header.i=@iki.fi header.b=L9iZfGuS; arc=pass smtp.client-ip=195.140.195.201
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=iki.fi
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=iki.fi
+Received: from hillosipuli.retiisi.eu (80-248-247-191.cust.suomicom.net [80.248.247.191])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
+	(No client certificate requested)
+	(Authenticated sender: sailus)
+	by meesny.iki.fi (Postfix) with ESMTPSA id 4TNq9S6zH6zyPp;
+	Mon, 29 Jan 2024 15:37:31 +0200 (EET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=iki.fi; s=meesny;
+	t=1706535454;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 in-reply-to:in-reply-to:references:references;
+	bh=j01SVC6SiusGZa0TumiabawLGRRmQcP48TE8VEU49Xc=;
+	b=L9iZfGuSfD83n9B3LK8HTFxMOBQQbuaA5j7AEy89zlHiObFEoq0DumP2/ceRG4wRbTNcri
+	jQheHk1RhPt3nAaDfTj1oaiShOyeAb4PEmxL5BQaBzcBEnCwa/tMzEBcCJKnZ3L5/ZlLs+
+	EAHcb8xB10Bb949XRrbwSJ46+zVPXMA=
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=iki.fi;
+	s=meesny; t=1706535454;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 in-reply-to:in-reply-to:references:references;
+	bh=j01SVC6SiusGZa0TumiabawLGRRmQcP48TE8VEU49Xc=;
+	b=CHWrNpP1vI20eioGflr1i1/sTNwlo+7UMqSxrp5Fa1ljTaeEhApV4kGEY2HOU3BGiF0KuE
+	vpFhnOlcLRNRExKR+XZQx/3n5v1bqOD9MTQ4tJL21+mp9Cw2vNCVaena8gYwoQwzJxbGWm
+	FR/E2LRXpOCpOStEerututhefS1KamU=
+ARC-Authentication-Results: i=1;
+	ORIGINATING;
+	auth=pass smtp.auth=sailus smtp.mailfrom=sakari.ailus@iki.fi
+ARC-Seal: i=1; s=meesny; d=iki.fi; t=1706535454; a=rsa-sha256; cv=none;
+	b=ZB05vLhHMe4jcm6BJfmZSOQT5XiXsY2DINFJDbDSOy1Al2XbWvrSD0mYIQe334KcV6F36+
+	D0iTA5fMPLZz8axEa8SJ6ZsPgQS3BmX0rxtmopfbk0bBSiZxm0Vlm5Kplk08vbA7ju1f0F
+	OdtQOEcYRLxI++AwJYvJADhA+VmXPUs=
+Received: from valkosipuli.retiisi.eu (valkosipuli.localdomain [192.168.4.2])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange ECDHE (prime256v1) server-signature RSA-PSS (4096 bits) server-digest SHA256)
+	(No client certificate requested)
+	by hillosipuli.retiisi.eu (Postfix) with ESMTPS id AD9B5634C93;
+	Mon, 29 Jan 2024 15:37:30 +0200 (EET)
+Date: Mon, 29 Jan 2024 13:37:30 +0000
+From: Sakari Ailus <sakari.ailus@iki.fi>
+To: Kuninori Morimoto <kuninori.morimoto.gx@renesas.com>
+Cc: =?iso-8859-1?Q?=22Uwe_Kleine-K=C3=B6nig=22?= <u.kleine-koenig@pengutronix.de>,
+	Daniel Vetter <daniel@ffwll.ch>, David Airlie <airlied@gmail.com>,
+	Frank Rowand <frowand.list@gmail.com>, Helge Deller <deller@gmx.de>,
+	Jaroslav Kysela <perex@perex.cz>,
+	Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
+	Liam Girdwood <lgirdwood@gmail.com>,
+	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+	Mark Brown <broonie@kernel.org>,
+	Mauro Carvalho Chehab <mchehab@kernel.org>,
+	Maxime Ripard <mripard@kernel.org>,
+	Michal Simek <michal.simek@amd.com>,
+	Rob Herring <robh+dt@kernel.org>,
+	Saravana Kannan <saravanak@google.com>,
+	Takashi Iwai <tiwai@suse.com>,
+	Thomas Zimmermann <tzimmermann@suse.de>,
+	Tomi Valkeinen <tomi.valkeinen@ideasonboard.com>,
+	alsa-devel@alsa-project.org, devicetree@vger.kernel.org,
+	linux-fbdev@vger.kernel.org, linux-media@vger.kernel.org,
+	linux-sound@vger.kernel.org
+Subject: Re: [PATCH v2 03/13] of: property: add
+ of_graph_get_next_endpoint_raw()
+Message-ID: <ZbeqGhfBiXarlhtu@valkosipuli.retiisi.eu>
+References: <87fryhklhb.wl-kuninori.morimoto.gx@renesas.com>
+ <87bk95klgc.wl-kuninori.morimoto.gx@renesas.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20240121-pinctrl-scmi-v3-0-8d94ba79dca8@nxp.com> <f88d07ef-83b2-4d14-976a-6dbbd71e036f@oss.nxp.com>
-In-Reply-To: <f88d07ef-83b2-4d14-976a-6dbbd71e036f@oss.nxp.com>
-From: Linus Walleij <linus.walleij@linaro.org>
-Date: Mon, 29 Jan 2024 14:36:52 +0100
-Message-ID: <CACRpkdYV=qYQ9qDUWYTLDAV1niay30gYH5S=zjfi31GpeY5o-A@mail.gmail.com>
-Subject: Re: [PATCH v3 0/6] firmware: arm_scmi: Add SCMI v3.2 pincontrol
- protocol basic support
-To: Peng Fan <peng.fan@oss.nxp.com>
-Cc: Sudeep Holla <sudeep.holla@arm.com>, Cristian Marussi <cristian.marussi@arm.com>, 
-	Rob Herring <robh+dt@kernel.org>, 
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Oleksii Moisieiev <oleksii_moisieiev@epam.com>, Shawn Guo <shawnguo@kernel.org>, 
-	Sascha Hauer <s.hauer@pengutronix.de>, Pengutronix Kernel Team <kernel@pengutronix.de>, 
-	Fabio Estevam <festevam@gmail.com>, NXP Linux Team <linux-imx@nxp.com>, 
-	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org, 
-	devicetree@vger.kernel.org, linux-gpio@vger.kernel.org, 
-	AKASHI Takahiro <takahiro.akashi@linaro.org>, Peng Fan <peng.fan@nxp.com>, 
-	Rob Herring <robh@kernel.org>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <87bk95klgc.wl-kuninori.morimoto.gx@renesas.com>
 
-On Mon, Jan 29, 2024 at 1:37=E2=80=AFPM Peng Fan <peng.fan@oss.nxp.com> wro=
-te:
+Hi Morimoto-san,
 
-> And for i.MX95 OEM extenstion, do you have any suggestions?
-> I have two points:
-> 1. use vendor compatible. This would also benefit when supporting vendor
-> protocol.
-> 2. Introduce a property saying supporting-generic-pinconf
->
-> How do you think?
+On Mon, Jan 29, 2024 at 12:54:59AM +0000, Kuninori Morimoto wrote:
+> We already have of_graph_get_next_endpoint(), but it is not intuitive
+> to use.
+> 
+> (X)	node {
+> (Y)		ports {
+> 			port@0 { endpoint { remote-endpoint = ...; };};
+> (A1)			port@1 { endpoint { remote-endpoint = ...; };
+> (A2)				 endpoint { remote-endpoint = ...; };};
+> (B)			port@2 { endpoint { remote-endpoint = ...; };};
+> 		};
+> 	};
+> 
+> For example, if I want to handle port@1's 2 endpoints (= A1, A2),
+> I want to use like below
+> 
+> 	A1 = of_graph_get_next_endpoint(port1, NULL);
+> 	A2 = of_graph_get_next_endpoint(port1, A1);
+> 
+> But 1st one will be error, because of_graph_get_next_endpoint() requested
+> "parent" means "node" (X) or "ports" (Y), not "port".
+> Below are OK
+> 
+> 	of_graph_get_next_endpoint(node,  NULL); // node/ports/port@0/endpoint
+> 	of_graph_get_next_endpoint(ports, NULL); // node/ports/port@0/endpoint
+> 
+> In other words, we can't handle A1/A2 directly via
+> of_graph_get_next_endpoint() so far.
+> 
+> There is another non intuitive behavior on of_graph_get_next_endpoint().
+> In case of if I could get A1 pointer for some way, and if I want to
+> handle port@1 things, I would like use it like below
+> 
+> 	/*
+> 	 * "endpoint" is now A1, and handle port1 things here,
+> 	 * but we don't know how many endpoints port1 has.
+> 	 *
+> 	 * Because "endpoint" is non NULL, we can use port1
+> 	 * as of_graph_get_next_endpoint(port1, xxx)
+> 	 */
+> 	do {
+> 		/* do something for port1 specific things here */
+> 	} while (endpoint = of_graph_get_next_endpoint(port1, endpoint))
+> 
+> But it also not worked as I expected.
+> I expect it will be A1 -> A2 -> NULL,
+> but      it will be A1 -> A2 -> B,    because of_graph_get_next_endpoint()
+> will fetch endpoint beyond the port.
+> 
+> It is not useful on generic driver like Generic Sound Card.
+> It uses of_get_next_child() instead for now, but it is not intuitive,
+> and not check node name (= "endpoint").
+> 
+> To handle endpoint more intuitive, create of_graph_get_next_endpoint_raw()
+> 
+> 	of_graph_get_next_endpoint_raw(port1, NULL); // A1
+> 	of_graph_get_next_endpoint_raw(port1, A1);   // A2
+> 	of_graph_get_next_endpoint_raw(port1, A2);   // NULL
+> 
+> Signed-off-by: Kuninori Morimoto <kuninori.morimoto.gx@renesas.com>
+> ---
+>  drivers/of/property.c    | 26 +++++++++++++++++++++++++-
+>  include/linux/of_graph.h |  2 ++
+>  2 files changed, 27 insertions(+), 1 deletion(-)
+> 
+> diff --git a/drivers/of/property.c b/drivers/of/property.c
+> index 14ffd199c9b1..37dbb1b0e742 100644
+> --- a/drivers/of/property.c
+> +++ b/drivers/of/property.c
+> @@ -667,6 +667,30 @@ struct device_node *of_graph_get_next_port(const struct device_node *parent,
+>  }
+>  EXPORT_SYMBOL(of_graph_get_next_port);
+>  
+> +/**
+> + * of_graph_get_next_endpoint_raw() - get next endpoint node
+> + * @port: pointer to the target port node
+> + * @endpoint: current endpoint node, or NULL to get first
+> + *
+> + * Return: An 'endpoint' node pointer with refcount incremented. Refcount
+> + * of the passed @prev node is decremented.
+> + */
+> +struct device_node *of_graph_get_next_endpoint_raw(const struct device_node *port,
+> +						   struct device_node *endpoint)
+> +{
+> +	if (!port)
+> +		return NULL;
 
-While I don't know how OEM extensions to SCMI were designed,
-the pin control subsystem has the philosophy that extensions are
-for minor fringe stuff, such as a pin config option that no other
-silicon is using and thus have no use for anyone else. Well that
-is actually all the custom extensions we have.
-(This notion is even carried over to SCMI pinctrl.)
+of_get_next_child() returns NULL if node is NULL, hence there's no need to
+check this.
 
-The i.MX95 OEM extension is really odd to me, it looks like a
-reimplementation of the core aspects of SCMI pin control, and
-looks much more like the old i.MX drivers than like the SCMI driver.
+> +
+> +	do {
+> +		endpoint = of_get_next_child(port, endpoint);
+> +		if (!endpoint)
+> +			break;
+> +	} while (!of_node_name_eq(endpoint, "endpoint"));
+> +
+> +	return endpoint;
+> +}
+> +EXPORT_SYMBOL(of_graph_get_next_endpoint_raw);
+> +
+>  /**
+>   * of_graph_get_next_endpoint() - get next endpoint node
+>   * @parent: pointer to the parent device node
+> @@ -708,7 +732,7 @@ struct device_node *of_graph_get_next_endpoint(const struct device_node *parent,
+>  		 * getting the next child. If the previous endpoint is NULL this
+>  		 * will return the first child.
+>  		 */
+> -		endpoint = of_get_next_child(port, prev);
+> +		endpoint = of_graph_get_next_endpoint_raw(port, prev);
+>  		if (endpoint) {
+>  			of_node_put(port);
+>  			return endpoint;
+> diff --git a/include/linux/of_graph.h b/include/linux/of_graph.h
+> index fff598640e93..427905a6e8c3 100644
+> --- a/include/linux/of_graph.h
+> +++ b/include/linux/of_graph.h
+> @@ -57,6 +57,8 @@ int of_graph_get_port_count(const struct device_node *np);
+>  struct device_node *of_graph_get_port_by_id(struct device_node *node, u32 id);
+>  struct device_node *of_graph_get_next_endpoint(const struct device_node *parent,
+>  					struct device_node *previous);
+> +struct device_node *of_graph_get_next_endpoint_raw(const struct device_node *port,
+> +						   struct device_node *prev);
+>  struct device_node *of_graph_get_next_port(const struct device_node *parent,
+>  					   struct device_node *previous);
+>  struct device_node *of_graph_get_endpoint_by_regs(
 
-But I sure cannot speak of what is allowed in SCMI OEM
-extensions or not.
+-- 
+Kind regards,
 
-Yours,
-Linus Walleij
+Sakari Ailus
 
