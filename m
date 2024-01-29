@@ -1,94 +1,93 @@
-Return-Path: <devicetree+bounces-36442-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-36443-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id E9127841323
-	for <lists+devicetree@lfdr.de>; Mon, 29 Jan 2024 20:19:24 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 702CA841331
+	for <lists+devicetree@lfdr.de>; Mon, 29 Jan 2024 20:21:16 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 7931E2887E8
-	for <lists+devicetree@lfdr.de>; Mon, 29 Jan 2024 19:19:23 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 2C79328889E
+	for <lists+devicetree@lfdr.de>; Mon, 29 Jan 2024 19:21:15 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7C0D74C615;
-	Mon, 29 Jan 2024 19:19:19 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3568976028;
+	Mon, 29 Jan 2024 19:20:54 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="dMJWo5EW"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="Xzd/H3Xg"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pg1-f170.google.com (mail-pg1-f170.google.com [209.85.215.170])
+Received: from mail-pf1-f182.google.com (mail-pf1-f182.google.com [209.85.210.182])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E0F2C1401B
-	for <devicetree@vger.kernel.org>; Mon, 29 Jan 2024 19:19:17 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.215.170
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 873076F096
+	for <devicetree@vger.kernel.org>; Mon, 29 Jan 2024 19:20:52 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.182
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1706555959; cv=none; b=E3Ohz/tq+h5Nhzk96zPDhejKQ84wxF83nAqTi4Q+5RNYs/o9H7BZd7aVmiax0SJDXoksAQUnNo6lCdHvHptoCnr8hLd5CUhc9UTfZwCdkPCdkyCeCyQQyBINarQquHit8whgW0U7A6zgR3GaODw2ecJU7pke8x5h/bSAP26lHWY=
+	t=1706556054; cv=none; b=U5NEjSKw9Cq+76Cqr/LEBL9ipDhvWXUEonLc2faax2QyD4hvs5nLaxUmWXy9vJWDXej6k0hNS4wbfhamX5ElItuJbTveDNF8x9cQsHNgCpGjFplywZwKijXD+T0ofQNCGRQ9JQiN9TOi9wCOIc5A6MjuNSqX1Vz4OFriDcRrvAU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1706555959; c=relaxed/simple;
-	bh=MU9MmIrHw/67BHQXkTPiEw0LVm/53Y+HFvPTcTiByUs=;
+	s=arc-20240116; t=1706556054; c=relaxed/simple;
+	bh=JvbWfOz11vNiFRX0wX7ECmpupNbMxltE2NEJ+NK26YE=;
 	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=RI5OxJGwl6zBVG40gAuu1PYSDAmwnNwuwKkoRtirvU7OgFtX+gT0BrJQEHMTN9tcsuED51Gkxc5gaS5p2AHMsaq4IcfRrfvd2wSRDsJyDl3otmIYd/Toov3/NpidLBMKzoEG9CMFrEpoLyh+erbOlI4GpeQ73BCoNtOWlE5pJN0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=dMJWo5EW; arc=none smtp.client-ip=209.85.215.170
+	 To:Cc:Content-Type; b=HGPFRLjy8ZOO0Fsp/rPE68g4fv2oWo+3OlXj3XVtoGyIdsIolXcp6BfGERtOaw880l9XZ+yYkzyyQp2aaWIK4rZTiAnIbxTow+8a9RhvoP4lA6egCa/W67hQsZPCB2Hvg5/xloz7jaE9ecXxo8CIXyPsSk0UtkMKCHhjcqINCeg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=Xzd/H3Xg; arc=none smtp.client-ip=209.85.210.182
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-pg1-f170.google.com with SMTP id 41be03b00d2f7-5d8bc1caf00so1655689a12.1
-        for <devicetree@vger.kernel.org>; Mon, 29 Jan 2024 11:19:17 -0800 (PST)
+Received: by mail-pf1-f182.google.com with SMTP id d2e1a72fcca58-6ddcfbc5a5fso2616417b3a.2
+        for <devicetree@vger.kernel.org>; Mon, 29 Jan 2024 11:20:52 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1706555957; x=1707160757; darn=vger.kernel.org;
+        d=linaro.org; s=google; t=1706556052; x=1707160852; darn=vger.kernel.org;
         h=content-transfer-encoding:cc:to:subject:message-id:date:from
          :in-reply-to:references:mime-version:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=uwNx3opXJ2ZzqtnsIO+tSlRh7ps3K7+odFH9qGLZcmk=;
-        b=dMJWo5EWp0G8AZCj11YBTvPKCS1jbvFZjd+LDLxLuvzdhZy9L2t/C5GpEzmS7fm72k
-         WXZRGF/PpBishLnb1AnB0yCadAMEiSsJ1zzXIA0/q+eFK+oZKhPXMojIiPYNh+VMsMy8
-         fcX2Fuol1mR/5KiaZPVhMYvdNFZuDXR5GDjXOlBF5RCcfTeyFgm2+cwY7kAUndGqmeNx
-         rpyw6su5nMuK1XzKFFZ5XIrcBO08uHfYKbzLlnyIZ7CympM1FT4TbJaNh1aUrTw+CBN9
-         NY1Pgscc2iNM79Y/ticootDwlf9qL8LYzQPvDMbwmgvYN0orI/YRg+qpmn2+P7+fDe5Q
-         QUsg==
+        bh=nIeL+ClHde5Q0WzDNwjmOu8VjZIU0zrITXV3DaJ0q2I=;
+        b=Xzd/H3XgGlDjYlu8FfjjiEInVw51TK2rHCsbuQHe1NeluwgOGEJUHaeuxtFc1Jj1aS
+         /Bo8GbZVNgJ/Ga8uFsxH/XoZht2+Y5AvSEPM4pC3OM+uNSnSk3MJY9awP4KC0sqZBpR/
+         7vAO3ZevW6U/njj37tlOpJZjBz3afTo90AcqBncn0iSBtS9AmP4KXLBhyXo43BVwtx7b
+         h5L7WrwjDpnjsxrIADEnzO/hfEbLkzbvznMC8vdgeD+hFmsEP0vxOLZh91/RN6vQdJWR
+         p4MClD+0K3PYnWouFV/+aSREFVdh0AeJdi2AudMpV/9B9/Zq5iXn0/S/+cdRy+7gFPeZ
+         ryrA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1706555957; x=1707160757;
+        d=1e100.net; s=20230601; t=1706556052; x=1707160852;
         h=content-transfer-encoding:cc:to:subject:message-id:date:from
          :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=uwNx3opXJ2ZzqtnsIO+tSlRh7ps3K7+odFH9qGLZcmk=;
-        b=fbBcccX4tMLMO/IEN0wrmoz2JQNd0NGM9TY/LeAVPW/XPMf82H8CU6DSeLlIpwikLX
-         AVLpIr7rs2qcGJPMEwfAmiRcvrTyDveZ+0GAj3UoFNFQaTF88MAquHgHKiC3TTOmQh8b
-         PzAFIJFtgLHHzcH/HWCDioCoj+vQvokvjhh6EsDJJBN9ahSRskmRonOdSzkBTncOOFIT
-         lkHFFnYn+TICOMbI9L+TvD9ENxFG0R7NRZYsOilD7McgU3y/5PDRQZz8I3vv/2CknfHb
-         QBdiWL67SEolznlAfbjk8tFxyWPA965mUpMTfsMb4D6rs1nas3aE760RRuGfW1LqC1lg
-         Q9IA==
-X-Gm-Message-State: AOJu0YxyfnpRrpfz1LhJCPe4pXos+DAMxepUYWcXk57hlK9KKArvDdQg
-	99KYDS3JJxSicOZ4wt0nnI18eKfSM5vmGDSjfADo7CjDReWBtvpuPs597AZmxERpZOaPpuSWztR
-	z84QzcB0cRFdWjmsq4BsSrRSxe/q7vDTC7pzAkg==
-X-Google-Smtp-Source: AGHT+IFb+2auluVYwWdveInazsXdiUFS1f7RHCk7mnkvW5QfiCQG437C2AdCz9+T7D1GFFP6s4m9rmFXc/Q+dxa9rI4=
-X-Received: by 2002:a05:6a21:1506:b0:19c:a47d:874f with SMTP id
- nq6-20020a056a21150600b0019ca47d874fmr4648484pzb.34.1706555957344; Mon, 29
- Jan 2024 11:19:17 -0800 (PST)
+        bh=nIeL+ClHde5Q0WzDNwjmOu8VjZIU0zrITXV3DaJ0q2I=;
+        b=rkLJ/5BEnVqLVe108RwqbLr6RvzF2SQBJfnIPyXq/i76dRY8pGbOyX2qrtlKKmFcqc
+         7LJVXSSyDJE70U4yTt31Ffp87hiZef9CnFbOPe4X9MErWZ6YTPQKIqQf8q4ej18L9hP4
+         snurVcqi9ZCgnOdyiXUYO/Nxa42qu0K0wmqWP0HarN2IbOoZLxdVMjiiLmcmoqt1GQ84
+         M831OYKU0V/a8Znc56Y8yQnVxUmQUWD8eSpKbAiwcGvUzkmJciEqwQnbOQYPUWRCnd1D
+         YAjV0uQKKL6g9wxhDavAH0g8HFhi0CrgZmMhScSmL9vZnbOW/joFjqpgZ5oO3ur6t8Hv
+         7guw==
+X-Gm-Message-State: AOJu0Yz+L57rxcNlxzzZ7F0WXIenGnUjIUVuMlP+Wa4zPlpvBX+eq8la
+	f0fA3U6WQSJuOWKFxJLU6g4sfEZHP0RUTvD3YoWwNIpVL69jUIl7VdRBX4aPD0y2ZGFFnRVZRvE
+	J8yqun+bDvlZQ1EUM4/uusHAcoyYvuIfqEMCKYw==
+X-Google-Smtp-Source: AGHT+IHOCPSaT+Nkr7VPs0AUYEN3NLE/Qj5EVmTGejdhU8hk4hJznc8UDvcuF7xGLhc3uOMKc9yfKfo97PeJPSw9pUo=
+X-Received: by 2002:a05:6a00:1883:b0:6de:1d0b:b3cb with SMTP id
+ x3-20020a056a00188300b006de1d0bb3cbmr4136434pfh.0.1706556051945; Mon, 29 Jan
+ 2024 11:20:51 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20240129174151.1174248-1-andre.draszik@linaro.org> <20240129174151.1174248-8-andre.draszik@linaro.org>
-In-Reply-To: <20240129174151.1174248-8-andre.draszik@linaro.org>
+References: <20240129174703.1175426-1-andre.draszik@linaro.org> <20240129174703.1175426-8-andre.draszik@linaro.org>
+In-Reply-To: <20240129174703.1175426-8-andre.draszik@linaro.org>
 From: Sam Protsenko <semen.protsenko@linaro.org>
-Date: Mon, 29 Jan 2024 13:19:06 -0600
-Message-ID: <CAPLW+4nA4kzwdE5neOPvgEDAZ4RG0MBAkGKzFK=u3WG5FfZuMQ@mail.gmail.com>
-Subject: Re: [PATCH v2 7/7] arm64: dts: exynos: gs101: enable i2c bus 12 on gs101-oriole
+Date: Mon, 29 Jan 2024 13:20:40 -0600
+Message-ID: <CAPLW+4kRcozGqXEZZpEZVrhwD2VJA3Og+LA+2J3tOc9tGLKj8w@mail.gmail.com>
+Subject: Re: [PATCH v3 7/7] arm64: dts: exynos: gs101: enable i2c bus 12 on gs101-oriole
 To: =?UTF-8?Q?Andr=C3=A9_Draszik?= <andre.draszik@linaro.org>
 Cc: peter.griffin@linaro.org, mturquette@baylibre.com, sboyd@kernel.org, 
 	robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org, 
 	linux-kernel@vger.kernel.org, kernel-team@android.com, 
-	tudor.ambarus@linaro.org, willmcvicker@google.com, 
-	inux-kernel@vger.kernel.org, alim.akhtar@samsung.com, s.nawrocki@samsung.com, 
-	tomasz.figa@gmail.com, cw00.choi@samsung.com, 
+	tudor.ambarus@linaro.org, willmcvicker@google.com, alim.akhtar@samsung.com, 
+	s.nawrocki@samsung.com, tomasz.figa@gmail.com, cw00.choi@samsung.com, 
 	linux-arm-kernel@lists.infradead.org, linux-samsung-soc@vger.kernel.org, 
 	linux-clk@vger.kernel.org, devicetree@vger.kernel.org
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-On Mon, Jan 29, 2024 at 11:42=E2=80=AFAM Andr=C3=A9 Draszik <andre.draszik@=
+On Mon, Jan 29, 2024 at 11:47=E2=80=AFAM Andr=C3=A9 Draszik <andre.draszik@=
 linaro.org> wrote:
 >
 > This bus has three USB-related devices attached to it:
