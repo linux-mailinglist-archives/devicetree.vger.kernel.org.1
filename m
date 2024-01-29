@@ -1,107 +1,150 @@
-Return-Path: <devicetree+bounces-36386-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-36389-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7BEF0840C0A
-	for <lists+devicetree@lfdr.de>; Mon, 29 Jan 2024 17:46:53 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4A7FD840C34
+	for <lists+devicetree@lfdr.de>; Mon, 29 Jan 2024 17:49:28 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 382AE2821CA
-	for <lists+devicetree@lfdr.de>; Mon, 29 Jan 2024 16:46:52 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 009391F2298D
+	for <lists+devicetree@lfdr.de>; Mon, 29 Jan 2024 16:49:28 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 54D7C157031;
-	Mon, 29 Jan 2024 16:46:39 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 96F46159581;
+	Mon, 29 Jan 2024 16:48:05 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="OwF4pNCZ"
+	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="frwD34HY"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ej1-f47.google.com (mail-ej1-f47.google.com [209.85.218.47])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 86CC815698A
-	for <devicetree@vger.kernel.org>; Mon, 29 Jan 2024 16:46:37 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.47
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CE6C8158D98;
+	Mon, 29 Jan 2024 16:48:03 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1706546799; cv=none; b=KX8/RyLrh0wnNnsJ0Lwlof1p3Uz0YqC6uU778WjoYQYlNA9dFwl1VYuz9Mt5sgvuDhCJt7SYZLhaZ5l9fK1EI9YGfecP3APTylZMZmfWToproX22rIhhjQBAeGwvtBqjVSweNbvvuvRlo5Fl4jDhtrssvH7F/JZip2T0pbPC2KU=
+	t=1706546885; cv=none; b=OEpOrksHQ3puVBylVnivYeoVZ769rCPQEOysNRO4TV7PAzXWV3nILWzrqnqYxtYqnShsS8bMK3jgV1izHO0SouPTr2kXuh6WyejUKfVQSKJVaK/irXhmjJZ+W3+AcgM/7n//WQxCigXNGLcksZDYVQgQCyW7Oxdb2VXlQSVuyMw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1706546799; c=relaxed/simple;
-	bh=mbENMP6ALwn3I6z8Y/mXtvTa2m+2zY7iKoHkFhuJDc4=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=qFlLkvyHuQ50kT6KklDFiOGm3oywGyUC9rpsGQ8oE8vUuKTUqH1sr0d4pcPXddhIl2ZqmgKMsVNhrYi5X7g5SdaNeAydeN89Ls0f+wmNDhZgCQATs5+UG50qG9hJcNZQcasi+KMCl7D6+5lrjQIbPojRvnpJgUIuzQz6oehBalY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=OwF4pNCZ; arc=none smtp.client-ip=209.85.218.47
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-ej1-f47.google.com with SMTP id a640c23a62f3a-a34c5ca2537so320249566b.0
-        for <devicetree@vger.kernel.org>; Mon, 29 Jan 2024 08:46:37 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1706546796; x=1707151596; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=Q+f1+9NV9x1H6HYmKDscBmLQc10yQKPAhIN9I9MCfkQ=;
-        b=OwF4pNCZfnV9A/Pdsjytx3AX7yX4m/jyHqPKuoONZtlWqv9N5oRr1uWinxZVTqPSKu
-         rm9WahLftPjhRDOFKmWW+HXI7WEuJ+Z/tpQ0Sj+3XgoCVHENWXo5Livz1BYnQGIuUmlB
-         OWUlNq55iPGY9kbCqHHn/G8pxa2K0qSe59n4bLicgO5wzB35K5ZF8zx0ak/0NxnXG/5b
-         b1EFxLmBOhatShNT2eDbKP62BIuTbkSr/LggBpaCYW0rAToqVMjnmpc5tXA9zU5PLmUd
-         uam2lr5ooBW8Qwv3u8zKG300hH+lgtgu3Kbrrqj6hR/F8KZqVJLVSBcc6Fc1NEWUqZmI
-         ygrA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1706546796; x=1707151596;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=Q+f1+9NV9x1H6HYmKDscBmLQc10yQKPAhIN9I9MCfkQ=;
-        b=MvIgajmauq+/e3juIsWjzo60AqrKFAX+TJlZlf5f8KnSl0j02ZDX28mBG9SfwlzMIo
-         H+OspXB55zjWskmrQiXaAnOKkgNuJ6qkNA6HKWlqop/SGHrk402ee6bABuM5SNkL9agZ
-         4MeM//EFVV3CN5UJgG2NOlMECF66nteaFQCLyPiRikd7wTysjdlATh6UYl/SgsArUiqC
-         g5Sb3temtqDnLSv51yA8pkiQ3/QHGH1Z4oX+CcpwEl9Rd9/dJduMLlsQeFpb41x0VtkA
-         aHEG9qe54JT6zHuMMZEwy+Il3u/88xIQ+I/3g0ObLRPd/eLYfW1oWhLGyLFnU3qiyXf0
-         k8HA==
-X-Gm-Message-State: AOJu0Yw2tjTeEam7TJFg80Fosnf5vfLYnna3e5EcsI7+Tf1tDEcd/gri
-	ALnhRoMp+1u1tpDUpURdLJh8+/SAcBnPfodEAWejdeW7uytIDtbdDarNqmyNY/jaDdzAB0+z/GU
-	O
-X-Google-Smtp-Source: AGHT+IEAgNenRs7ZgVCn7z/QNduayBhI1e4zb16MJM4JFkdHotSTBXrMQjRH9PgRvYrvY7DsFi3P7w==
-X-Received: by 2002:a17:906:6c90:b0:a26:98ee:9fc0 with SMTP id s16-20020a1709066c9000b00a2698ee9fc0mr4624982ejr.43.1706546795890;
-        Mon, 29 Jan 2024 08:46:35 -0800 (PST)
-Received: from [192.168.2.107] ([79.115.63.202])
-        by smtp.gmail.com with ESMTPSA id tx18-20020a1709078e9200b00a3551f727d1sm2744582ejc.68.2024.01.29.08.46.34
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 29 Jan 2024 08:46:35 -0800 (PST)
-Message-ID: <6dd93b49-359c-45bb-99d0-b380882ce739@linaro.org>
-Date: Mon, 29 Jan 2024 16:46:33 +0000
+	s=arc-20240116; t=1706546885; c=relaxed/simple;
+	bh=zMf4yKdogGXJoeObaueH6qXynndYIX55PcDoMto1YCA=;
+	h=From:Subject:Date:Message-ID:MIME-Version:Content-Type:To:CC; b=mEkjXyEZ0y1Xi86An6ssQslim5JvMOBlD1bxhmQnHgtE2ZuAdgo3Bt6AeU9yqVXu+B/C5ecEYu/G8NAcX8e6TuXY17xEYRIXFxViq5PuRTWLO67XNtshi3kdtixjXEMO2r0W0UgoZQiW+SU6UP9R1Hk6vVFpRhXI7XVZpbRzvNI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=frwD34HY; arc=none smtp.client-ip=205.220.180.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
+Received: from pps.filterd (m0279872.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.17.1.24/8.17.1.24) with ESMTP id 40TFHYUK024662;
+	Mon, 29 Jan 2024 16:47:49 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
+	from:subject:date:message-id:mime-version:content-type
+	:content-transfer-encoding:to:cc; s=qcppdkim1; bh=CM0YBaqMELRYsB
+	aLS7k7vp9OYdBpKgjsI+yfycdpzVU=; b=frwD34HYa8I/p1qyB1P11von+fIlwc
+	OgZHANMnxyTWtNQVbhGAWySFBSMQJeyYExHUHsFSXQPS3iHvVB3lXTH3YTuAcHql
+	p/4kRhjvs7rBhW9PIRMsXKzbop5BY86jc6jUcK0frMvmnKBP6P+9lPQalvt21zrf
+	tp/uVdISJ+x3hn4gSkUq1SrdeZVfQL0MqoQJT9oR2AASYIaBWt+BP8oIEUUCTICa
+	We8+7uYF7Yose7xVI710B8OR1DcZ31ywgD72Er9CzZDwsZPA96kEU6tnaE5kjV2d
+	al1rEjdRSQkwTATtCH56aDjBqCC3WCydC0DUQjdgsenQEXlYNnuLlxMw==
+Received: from nalasppmta03.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3vx3t2htw7-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Mon, 29 Jan 2024 16:47:49 +0000 (GMT)
+Received: from nalasex01c.na.qualcomm.com (nalasex01c.na.qualcomm.com [10.47.97.35])
+	by NALASPPMTA03.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 40TGllru030126
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Mon, 29 Jan 2024 16:47:47 GMT
+Received: from [169.254.0.1] (10.49.16.6) by nalasex01c.na.qualcomm.com
+ (10.47.97.35) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1118.40; Mon, 29 Jan
+ 2024 08:47:47 -0800
+From: Bjorn Andersson <quic_bjorande@quicinc.com>
+Subject: [PATCH v3 0/2] arm64: dts: qcom: sc8280xp-x13s: Enable touchscreen
+Date: Mon, 29 Jan 2024 08:47:46 -0800
+Message-ID: <20240129-x13s-touchscreen-v3-0-c4a933034145@quicinc.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 2/9] dt-bindings: clock: google,gs101-clock: add PERIC1
- clock management unit
-Content-Language: en-US
-To: =?UTF-8?Q?Andr=C3=A9_Draszik?= <andre.draszik@linaro.org>,
- peter.griffin@linaro.org, mturquette@baylibre.com, sboyd@kernel.org,
- robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org
-Cc: linux-kernel@vger.kernel.org, kernel-team@android.com,
- willmcvicker@google.com, semen.protsenko@linaro.org,
- alim.akhtar@samsung.com, s.nawrocki@samsung.com, tomasz.figa@gmail.com,
- cw00.choi@samsung.com, linux-arm-kernel@lists.infradead.org,
- linux-samsung-soc@vger.kernel.org, linux-clk@vger.kernel.org,
- devicetree@vger.kernel.org
-References: <20240127001926.495769-1-andre.draszik@linaro.org>
- <20240127001926.495769-3-andre.draszik@linaro.org>
-From: Tudor Ambarus <tudor.ambarus@linaro.org>
-In-Reply-To: <20240127001926.495769-3-andre.draszik@linaro.org>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIALLWt2UC/33NTQ6CMBCG4auYrq3pH1pceQ/jAoepzMJWW2gwh
+ LtbWGliXL5fMs9MLGEkTOy4mVjETImCL6G3GwZd42/IqS3NlFBGSFXxUerE+zBAlyAiem5s2Z3
+ ToAyycvaI6GhcyfOldEepD/G1fshyWf9gWXLBm6sFa1WLrobTcyAgDzsId7ZwWX0S+x+EKkSlD
+ wYAapSi/SbmeX4DCo+JqPUAAAA=
+To: Dmitry Torokhov <dmitry.torokhov@gmail.com>,
+        Rob Herring
+	<robh+dt@kernel.org>,
+        Krzysztof Kozlowski
+	<krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Benjamin Tissoires <benjamin.tissoires@redhat.com>,
+        Jiri Kosina
+	<jikos@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio
+	<konrad.dybcio@linaro.org>,
+        Johan Hovold <johan+linaro@kernel.org>
+CC: <linux-arm-msm@vger.kernel.org>, <linux-input@vger.kernel.org>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        Konrad Dybcio
+	<konrad.dybcio@somainline.org>,
+        Krzysztof Kozlowski
+	<krzysztof.kozlowski@linaro.org>,
+        Bjorn Andersson
+	<quic_bjorande@quicinc.com>,
+        Daniel Thompson <daniel.thompson@linaro.org>
+X-Mailer: b4 0.12.4
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1706546867; l=1152;
+ i=quic_bjorande@quicinc.com; s=20230915; h=from:subject:message-id;
+ bh=zMf4yKdogGXJoeObaueH6qXynndYIX55PcDoMto1YCA=;
+ b=yME28zc6Zi3HsN3CIqYjgb5tmH4aF23nz1xArUUgY+Wxupp3MLpQV6FnSFvh+GHNVup27jxtF
+ zgf5yAouabbC2PebREkF7DQPmxSPZ6HTNGucBrMpSnJvzmhpqMNdZXm
+X-Developer-Key: i=quic_bjorande@quicinc.com; a=ed25519;
+ pk=VkhObtljigy9k0ZUIE1Mvr0Y+E1dgBEH9WoLQnUtbIM=
+X-ClientProxiedBy: nalasex01b.na.qualcomm.com (10.47.209.197) To
+ nalasex01c.na.qualcomm.com (10.47.97.35)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-ORIG-GUID: sIwXUeHzU4eV6rMt8hzr8PW5PYGBgAyU
+X-Proofpoint-GUID: sIwXUeHzU4eV6rMt8hzr8PW5PYGBgAyU
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.272,Aquarius:18.0.1011,Hydra:6.0.619,FMLib:17.11.176.26
+ definitions=2024-01-29_10,2024-01-29_01,2023-05-22_02
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 bulkscore=0 adultscore=0
+ spamscore=0 clxscore=1015 impostorscore=0 mlxlogscore=819 mlxscore=0
+ phishscore=0 malwarescore=0 priorityscore=1501 suspectscore=0
+ lowpriorityscore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.19.0-2401190000 definitions=main-2401290124
 
+This documents and defines the necessary properties for the I2C
+HID-based touchscreen found in some SKUs of the Lenovo Thinkpad X13s to
+work.
 
+Signed-off-by: Bjorn Andersson <quic_bjorande@quicinc.com>
+---
+Changes in v3:
+- Rewrote the commit message, to properly describe the problem being
+  resolved.
+- Link to v2: https://lore.kernel.org/r/20240126-x13s-touchscreen-v2-0-5374ccc9e10d@quicinc.com
 
-On 1/27/24 00:19, André Draszik wrote:
-> Add dt-schema documentation and clock IDs for the Connectivity
-> Peripheral 1 (PERIC1) clock management unit.
-> 
-> Signed-off-by: André Draszik <andre.draszik@linaro.org>
+Changes in v2:
+- Dropped output-high from &ts0_default, to avoid bouncing the reset
+  line unnecessarily
+- Link to v1: https://lore.kernel.org/r/20240125-x13s-touchscreen-v1-0-ab8c882def9c@quicinc.com
 
-Reviewed-by: Tudor Ambarus <tudor.ambarus@linaro.org>
+---
+Bjorn Andersson (2):
+      dt-bindings: HID: i2c-hid: Document reset-related properties
+      arm64: dts: qcom: sc8280xp-x13s: Fix/enable touchscreen
+
+ Documentation/devicetree/bindings/input/hid-over-i2c.yaml  | 6 ++++++
+ arch/arm64/boot/dts/qcom/sc8280xp-lenovo-thinkpad-x13s.dts | 7 +++++--
+ 2 files changed, 11 insertions(+), 2 deletions(-)
+---
+base-commit: 8bf1262c53f50fa91fe15d01e5ef5629db55313c
+change-id: 20240125-x13s-touchscreen-48012ff3c24e
+
+Best regards,
+-- 
+Bjorn Andersson <quic_bjorande@quicinc.com>
+
 
