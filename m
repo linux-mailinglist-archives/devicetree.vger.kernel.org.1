@@ -1,472 +1,222 @@
-Return-Path: <devicetree+bounces-36326-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-36327-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1B81984085F
-	for <lists+devicetree@lfdr.de>; Mon, 29 Jan 2024 15:32:51 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2F5308408B3
+	for <lists+devicetree@lfdr.de>; Mon, 29 Jan 2024 15:38:55 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id C5ED9283A98
-	for <lists+devicetree@lfdr.de>; Mon, 29 Jan 2024 14:32:49 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id B166E1F234EB
+	for <lists+devicetree@lfdr.de>; Mon, 29 Jan 2024 14:38:54 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A02EC152E0E;
-	Mon, 29 Jan 2024 14:32:37 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0B4C9151CF5;
+	Mon, 29 Jan 2024 14:37:58 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=protonmail.com header.i=@protonmail.com header.b="GrY/GFDa"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="El8Q78qb"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-0301.mail-europe.com (mail-0301.mail-europe.com [188.165.51.139])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wm1-f46.google.com (mail-wm1-f46.google.com [209.85.128.46])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 64B3A152DE6
-	for <devicetree@vger.kernel.org>; Mon, 29 Jan 2024 14:32:35 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=188.165.51.139
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 15CA1664DE
+	for <devicetree@vger.kernel.org>; Mon, 29 Jan 2024 14:37:55 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.46
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1706538757; cv=none; b=qi5vfCcz8ZTgZPJXk34+cbiN3XwWMu3375AD1u6i3SksBeSWW1qfyRzmudaj9Z910IE5cR8PaxWtt6LT6KGBLrBuXyL5mpbKPte1WTztU5fZdptZcYeasbamRzfKgTDLSiJIFOb7sD4D4/7coGGu4FzyJg88bte+UDbtpEPxlSY=
+	t=1706539077; cv=none; b=KdhqBBS5ruIdhL1wWscn2EPIEPKHT2wX6vlqysypDPrv/dtI7t1u09wAv0UAsM0Tn+8AwzJJCx6lK87F/G+Uj6cd0hGUdLts2f+UfSKlOC0z8FuFVS1R5Q3iiu3gqU+8ZIElwTvXbD5LUKNTvzVCnh+775RU2OlHoLojeKpYBtA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1706538757; c=relaxed/simple;
-	bh=iLKirAOBFsjwMJqhIF9KvWCex4SweNAYIAJgss0M7a4=;
-	h=Date:To:From:Cc:Subject:Message-ID:MIME-Version:Content-Type; b=DGe/IU9vXnSeIyNwk0R2MaWQYZkzvG3kOl0l9I6YyqhnLypLF34nqtrB71aBCWh6vOiPpAUJzyV/eIKJUrcyvKnu7L1frHXC5wLuIQmMB2cmMnDsruVQOeWbxT5xWURf743DCzhlY6tYm3gM4zz+S5uhPYCxNN23ps+yHLKlMnw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=protonmail.com; spf=pass smtp.mailfrom=protonmail.com; dkim=pass (2048-bit key) header.d=protonmail.com header.i=@protonmail.com header.b=GrY/GFDa; arc=none smtp.client-ip=188.165.51.139
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=protonmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=protonmail.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=protonmail.com;
-	s=protonmail3; t=1706538739; x=1706797939;
-	bh=F+uuXyg6J0fkNKlbhNfTA8pIOgWaw2kxlqkQX5fXG3M=;
-	h=Date:To:From:Cc:Subject:Message-ID:Feedback-ID:From:To:Cc:Date:
-	 Subject:Reply-To:Feedback-ID:Message-ID:BIMI-Selector;
-	b=GrY/GFDaQudVtWaUisxqZv02BJoDxdIiIPq8BbetgAGjg/nmgH2E2AuCoKvHXX4ne
-	 GC8DM8H3FyLjXhXdCCVTmza6nBj78eUkB7vO91hITpWcQkohmO/m231XCL7e+kZENl
-	 jnRkFBwuxXuiZVKEAuBEfP/3dNEDulssb3yh2lfQVPScj/70oYiJavAHDjbIBUhZcn
-	 0HI20zIzb68lRdCn1Vip6diTEjnV5Zp1cBcH+OZuT69iySY4xGECkB9Y6MufPxMjAo
-	 Axb4j2vn90t17Lak6GR7NkZdP9M70dS6vpnWFsOB08/gafmbBqNtFFCK+P6TYVYOj5
-	 hRUM9PbgZXLNA==
-Date: Mon, 29 Jan 2024 14:32:02 +0000
-To: linux-kernel@vger.kernel.org
-From: Raymond Hackley <raymondhackley@protonmail.com>
-Cc: Bjorn Andersson <andersson@kernel.org>, Konrad Dybcio <konrad.dybcio@linaro.org>, Rob Herring <robh+dt@kernel.org>, Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, Stephan Gerhold <stephan@gerhold.net>, Nikita Travkin <nikita@trvn.ru>, linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org, ~postmarketos/upstreaming@lists.sr.ht, Walter Broemeling <wallebroem@gmail.com>, Joe Mason <buddyjojo06@outlook.com>, Siddharth Manthan <siddharth.manthan@gmail.com>
-Subject: [PATCH v4] arm64: dts: qcom: msm8916-samsung-fortuna/rossa: Add initial device trees
-Message-ID: <20240129143147.5058-1-raymondhackley@protonmail.com>
-Feedback-ID: 49437091:user:proton
+	s=arc-20240116; t=1706539077; c=relaxed/simple;
+	bh=SmWaA/jXBIlPgwAcnJn6HDF5NUaZECMDSYWUbzda9r8=;
+	h=Message-ID:Subject:From:To:Cc:Date:In-Reply-To:References:
+	 Content-Type:MIME-Version; b=gh2PQW+akLboWspa6FOdVnTOCY1L+NGE1tHQNFPNf6l76l3Zl5Th6NAWWRLgBSQifXjHYg07XR4sAkBzdB+qIBK9ePVx53vj7P1hBFCh8jZZtMJV4jGGpk4zTANYQiazICHlVLKjyg6kNbE0Ntez5bn0d/uuSObZZiqBz9v4pYY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=El8Q78qb; arc=none smtp.client-ip=209.85.128.46
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-wm1-f46.google.com with SMTP id 5b1f17b1804b1-40e775695c6so24853975e9.3
+        for <devicetree@vger.kernel.org>; Mon, 29 Jan 2024 06:37:55 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1706539074; x=1707143874; darn=vger.kernel.org;
+        h=mime-version:user-agent:content-transfer-encoding:references
+         :in-reply-to:date:cc:to:from:subject:message-id:from:to:cc:subject
+         :date:message-id:reply-to;
+        bh=SmWaA/jXBIlPgwAcnJn6HDF5NUaZECMDSYWUbzda9r8=;
+        b=El8Q78qbjmyOVCC4xkZZ4quoatMRN7ejL0miRg2KVswoomaRcJu0qW3x6LaeCr0+iT
+         mAIqA9ZOf845bjZ5SeKtzbjGjeyQV0ee3indEK2UH3jVVJewTRI8MrywK9uCtc82bc91
+         B6vJLp1kswzhewyq2YHV6SBj938Ol5B/QQHL+2RQnQUf31OhQCAJfvIjl6m4ylfl7ta7
+         q2PyJeefcHwJaSwXs6wK53vI9U8jZv0mhjXAEK3clOFgmdVHf2Aewx/wWoLfz33mChKI
+         ZwTUsFtLYhki/xJmi/JmgOMKW4IUERXll87J/0+RFsWpzN+kqIJS1FXHJgKRAdppGfmb
+         IyQg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1706539074; x=1707143874;
+        h=mime-version:user-agent:content-transfer-encoding:references
+         :in-reply-to:date:cc:to:from:subject:message-id:x-gm-message-state
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=SmWaA/jXBIlPgwAcnJn6HDF5NUaZECMDSYWUbzda9r8=;
+        b=HHanJvmZ9zAiuKMHlPbkl99JDz0keLFxOeJlt0+h/SLAF0XyOX36Gv3h+8VyKimMWt
+         LubxI/6mAmHQ3DrLscMnQZrfi7gr8IJuKtAZsyfBoZP3SymeAaFDVJAqXFmQxKouWA4Q
+         QgvAdSoiThf1rz5eyzLfwRIlPxppEUHt7deZjQiRf7BgkpLMGeWEHfFYIisN/m8l6Fge
+         jWByGvgoOe74ZVQ2aALFzuIOzH5HCpaqVk9ASB1jifINDGqJTo6MZPVrRW7qkv1U0hxI
+         eyLxo8W/KpgitwPAiHVTfYSGkL7qIEt0xOZPLnVpqEXvh01M3ERDrSxVRBeRskAV3wNZ
+         aY7A==
+X-Gm-Message-State: AOJu0YzQS77RsfG6CJlbLQAypJkzU47Mpr4WWOJGVJGNpQVID5AcC7/g
+	O5RsvhIJXSEYSfPkBcMtrWl0suNmt7VsowtLjxOPhhO+RjGYi4/OgFZmmvjLfcA=
+X-Google-Smtp-Source: AGHT+IFlhYu+Wi9LgAtOmfbOEKRnmv6zUQNGWbIWu5r4mGku1fc+uQFrXI3/gxZ2Vg9uB2zaQSX1sA==
+X-Received: by 2002:a05:600c:20d3:b0:40e:ac8f:e6c with SMTP id y19-20020a05600c20d300b0040eac8f0e6cmr6041047wmm.30.1706539074163;
+        Mon, 29 Jan 2024 06:37:54 -0800 (PST)
+Received: from draszik.lan ([80.111.64.44])
+        by smtp.gmail.com with ESMTPSA id cl10-20020a5d5f0a000000b0033aeb20f5b8sm3906577wrb.13.2024.01.29.06.37.52
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 29 Jan 2024 06:37:53 -0800 (PST)
+Message-ID: <d45de3b2bb6b48653842cf1f74e58889ed6783ae.camel@linaro.org>
+Subject: Re: [PATCH 5/5] clk: samsung: gs101: don't mark non-essential
+ clocks as critical
+From: =?ISO-8859-1?Q?Andr=E9?= Draszik <andre.draszik@linaro.org>
+To: Sam Protsenko <semen.protsenko@linaro.org>
+Cc: peter.griffin@linaro.org, robh+dt@kernel.org, 
+ krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org, 
+ linux-kernel@vger.kernel.org, kernel-team@android.com,
+ tudor.ambarus@linaro.org,  willmcvicker@google.com,
+ alim.akhtar@samsung.com, s.nawrocki@samsung.com,  tomasz.figa@gmail.com,
+ cw00.choi@samsung.com, mturquette@baylibre.com,  sboyd@kernel.org,
+ linux-arm-kernel@lists.infradead.org,  linux-samsung-soc@vger.kernel.org,
+ linux-clk@vger.kernel.org,  devicetree@vger.kernel.org
+Date: Mon, 29 Jan 2024 14:37:52 +0000
+In-Reply-To: <CAPLW+4mL1gb_R8PhKaMhwOUTa0GDqat_9W=348ScYj+hBarQJg@mail.gmail.com>
+References: <20240127003607.501086-1-andre.draszik@linaro.org>
+	 <20240127003607.501086-6-andre.draszik@linaro.org>
+	 <CAPLW+4mL1gb_R8PhKaMhwOUTa0GDqat_9W=348ScYj+hBarQJg@mail.gmail.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+User-Agent: Evolution 3.50.1-1 
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: quoted-printable
 
-From: Walter Broemeling <wallebroem@gmail.com>
+Hi Sam,
 
-Samsung Galaxy Core Prime and Grand Prime are phones based on MSM8916.
-They are similar to the other Samsung devices based on MSM8916 with only a
-few minor differences.
+On Fri, 2024-01-26 at 21:30 -0600, Sam Protsenko wrote:
+> On Fri, Jan 26, 2024 at 6:37=E2=80=AFPM Andr=C3=A9 Draszik <andre.draszik=
+@linaro.org> wrote:
+>=20
+> >=20
+> > Note that this commit has the side-effect of causing earlycon to stop
+> > to work sometime into the boot for two reasons:
+> > =C2=A0=C2=A0=C2=A0 * peric0_top1_ipclk_0 requires its parent gout_cmu_p=
+eric0_ip to be
+> > =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 running, but because earlycon doesn't de=
+al with clocks that
+> > =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 parent will be disabled when none of the=
+ other drivers that
+> > =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 actually deal with clocks correctly requ=
+ire it to be running and
+> > =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 the real serial driver (which does deal =
+with clocks) hasn't taken
+> > =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 over yet
+>=20
+> That's weird. Doesn't your bootloader setup serial clocks properly?
+> AFAIU, earlycon should rely on everything already configured in
+> bootloader.
 
-This initial commit adds support for:
- - fortuna3g (SM-G530H)
- - gprimeltecan (SM-G530W)
- - grandprimelte (SM-G530FZ)
- - rossa (SM-G360G)
+I tried to explain that above, but let me try again...
 
-The device trees contain initial support with:
- - GPIO keys
- - Regulator haptic
- - SDHCI (internal and external storage)
- - USB Device Mode
- - UART (on USB connector via the SM5502/SM5504 MUIC)
- - WCNSS (WiFi/BT)
- - Regulators
- - QDSP6 audio
- - Speaker/earpiece/headphones/microphones via digital/analog codec in
-   MSM8916/PM8916
- - WWAN Internet via BAM-DMUX
+The console UART, and I2C bus 8 are on the same cmu_peric0 controller, and
+that cmu_peric0 has two clocks coming from cmu_top, ip and bus. For I2C8 & =
+UART
+to work, both of these clocks from cmu_top need to to be on as they are the
+parent of the i2c8-(ip|pclk) and uart-(ip|pclk) each.
 
-There are different variants of Core Prime and Grand Prime, with some
-differences in accelerometer, NFC and panel.
-Core Prime and Grand Prime are similar, with some differences in MUIC,
-panel and touchscreen.
+The bootloader leaves those clocks running, yes. So earlycon works (for a
+while).
 
-The common parts are shared in
-msm8916-samsung-fortuna-common.dtsi and msm8916-samsung-rossa-common.dtsi
-to reduce duplication.
+At some point into the boot, one of two things happens:
+1) Linux will load the i2c driver. That driver does clock handling
+(correctly), it will initialise and then it has nothing to do, therefore it
+disables cmu_peric0's i2c8 ip and pclk clocks. Because at that stage nothin=
+g
+appears to be using the cmu_peric0's ip clock (the real serial driver hasn'=
+t
+initialised yet), Linux decides to also disable the parent ip clock coming
+from cmu_top.
 
-Signed-off-by: Walter Broemeling <wallebroem@gmail.com>
-Signed-off-by: Stephan Gerhold <stephan@gerhold.net>
-[Joe: Add audio, buttons and WiFi]
-Signed-off-by: Joe Mason <buddyjojo06@outlook.com>
-[Siddharth: Add fortuna3g]
-Signed-off-by: Siddharth Manthan <siddharth.manthan@gmail.com>
-[Raymond: Add modem, fortuna-common.dtsi, grandprimelte and rossa]
-Signed-off-by: Raymond Hackley <raymondhackley@protonmail.com>
----
-v4: dt-bindings have been applied, skip.
-    Fix missing msm8216-samsung-fortuna3g.dts
-    Enable &venus, &venus_mem and &wcnss_mem. Add comments for &mpss_mem.
-v3: Drop fortunaltezt and heatqlte. Add sound and modem.
-    /delete-node/ &muic; in rossa-common.dtsi
-v2: Use interrupt-extended. Drop fuelgauge, sensors and NFC for now.
----
- arch/arm64/boot/dts/qcom/Makefile             |   4 +
- .../dts/qcom/msm8216-samsung-fortuna3g.dts    |  11 ++
- .../qcom/msm8916-samsung-fortuna-common.dtsi  | 182 ++++++++++++++++++
- .../dts/qcom/msm8916-samsung-gprimeltecan.dts |  27 +++
- .../qcom/msm8916-samsung-grandprimelte.dts    |  16 ++
- .../qcom/msm8916-samsung-rossa-common.dtsi    |  16 ++
- .../boot/dts/qcom/msm8916-samsung-rossa.dts   |  16 ++
- 7 files changed, 272 insertions(+)
- create mode 100644 arch/arm64/boot/dts/qcom/msm8216-samsung-fortuna3g.dts
- create mode 100644 arch/arm64/boot/dts/qcom/msm8916-samsung-fortuna-common=
-.dtsi
- create mode 100644 arch/arm64/boot/dts/qcom/msm8916-samsung-gprimeltecan.d=
-ts
- create mode 100644 arch/arm64/boot/dts/qcom/msm8916-samsung-grandprimelte.=
-dts
- create mode 100644 arch/arm64/boot/dts/qcom/msm8916-samsung-rossa-common.d=
-tsi
- create mode 100644 arch/arm64/boot/dts/qcom/msm8916-samsung-rossa.dts
+At this stage, the earlycon driver stops working, as the parent ip clock of
+the uart ip clock is not running any more. No serial output can be observed
+from this stage onwards. I think what is probably happening is that the
+console uart FIFO doesn't get emptied anymore, and earlycon will simply wai=
+t
+forever for space to become available in the FIFO (but I didn't debug this)=
+.
 
-diff --git a/arch/arm64/boot/dts/qcom/Makefile b/arch/arm64/boot/dts/qcom/M=
-akefile
-index b5f88b3d6793..239ea867f0f5 100644
---- a/arch/arm64/boot/dts/qcom/Makefile
-+++ b/arch/arm64/boot/dts/qcom/Makefile
-@@ -24,6 +24,7 @@ dtb-$(CONFIG_ARCH_QCOM)=09+=3D ipq9574-rdp433.dtb
- dtb-$(CONFIG_ARCH_QCOM)=09+=3D ipq9574-rdp449.dtb
- dtb-$(CONFIG_ARCH_QCOM)=09+=3D ipq9574-rdp453.dtb
- dtb-$(CONFIG_ARCH_QCOM)=09+=3D ipq9574-rdp454.dtb
-+dtb-$(CONFIG_ARCH_QCOM)=09+=3D msm8216-samsung-fortuna3g.dtb
- dtb-$(CONFIG_ARCH_QCOM)=09+=3D msm8916-acer-a1-724.dtb
- dtb-$(CONFIG_ARCH_QCOM)=09+=3D msm8916-alcatel-idol347.dtb
- dtb-$(CONFIG_ARCH_QCOM)=09+=3D msm8916-asus-z00l.dtb
-@@ -36,11 +37,14 @@ dtb-$(CONFIG_ARCH_QCOM)=09+=3D msm8916-samsung-a3u-eur.=
-dtb
- dtb-$(CONFIG_ARCH_QCOM)=09+=3D msm8916-samsung-a5u-eur.dtb
- dtb-$(CONFIG_ARCH_QCOM)=09+=3D msm8916-samsung-e5.dtb
- dtb-$(CONFIG_ARCH_QCOM)=09+=3D msm8916-samsung-e7.dtb
-+dtb-$(CONFIG_ARCH_QCOM)=09+=3D msm8916-samsung-gprimeltecan.dtb
- dtb-$(CONFIG_ARCH_QCOM)=09+=3D msm8916-samsung-grandmax.dtb
-+dtb-$(CONFIG_ARCH_QCOM)=09+=3D msm8916-samsung-grandprimelte.dtb
- dtb-$(CONFIG_ARCH_QCOM)=09+=3D msm8916-samsung-gt510.dtb
- dtb-$(CONFIG_ARCH_QCOM)=09+=3D msm8916-samsung-gt58.dtb
- dtb-$(CONFIG_ARCH_QCOM)=09+=3D msm8916-samsung-j5.dtb
- dtb-$(CONFIG_ARCH_QCOM)=09+=3D msm8916-samsung-j5x.dtb
-+dtb-$(CONFIG_ARCH_QCOM)=09+=3D msm8916-samsung-rossa.dtb
- dtb-$(CONFIG_ARCH_QCOM)=09+=3D msm8916-samsung-serranove.dtb
- dtb-$(CONFIG_ARCH_QCOM)=09+=3D msm8916-thwc-uf896.dtb
- dtb-$(CONFIG_ARCH_QCOM)=09+=3D msm8916-thwc-ufi001c.dtb
-diff --git a/arch/arm64/boot/dts/qcom/msm8216-samsung-fortuna3g.dts b/arch/=
-arm64/boot/dts/qcom/msm8216-samsung-fortuna3g.dts
-new file mode 100644
-index 000000000000..366914be7d53
---- /dev/null
-+++ b/arch/arm64/boot/dts/qcom/msm8216-samsung-fortuna3g.dts
-@@ -0,0 +1,11 @@
-+// SPDX-License-Identifier: GPL-2.0-only
-+
-+/dts-v1/;
-+
-+#include "msm8916-samsung-fortuna-common.dtsi"
-+
-+/ {
-+=09model =3D "Samsung Galaxy Grand Prime (SM-G530H)";
-+=09compatible =3D "samsung,fortuna3g", "qcom,msm8916";
-+=09chassis-type =3D "handset";
-+};
-diff --git a/arch/arm64/boot/dts/qcom/msm8916-samsung-fortuna-common.dtsi b=
-/arch/arm64/boot/dts/qcom/msm8916-samsung-fortuna-common.dtsi
-new file mode 100644
-index 000000000000..052024073f54
---- /dev/null
-+++ b/arch/arm64/boot/dts/qcom/msm8916-samsung-fortuna-common.dtsi
-@@ -0,0 +1,182 @@
-+// SPDX-License-Identifier: GPL-2.0-only
-+
-+#include "msm8916-pm8916.dtsi"
-+#include "msm8916-modem-qdsp6.dtsi"
-+
-+#include <dt-bindings/gpio/gpio.h>
-+#include <dt-bindings/input/input.h>
-+#include <dt-bindings/interrupt-controller/irq.h>
-+
-+/ {
-+=09aliases {
-+=09=09mmc0 =3D &sdhc_1; /* eMMC */
-+=09=09mmc1 =3D &sdhc_2; /* SD card */
-+=09=09serial0 =3D &blsp_uart2;
-+=09};
-+
-+=09chosen {
-+=09=09stdout-path =3D "serial0";
-+=09};
-+
-+=09reserved-memory {
-+=09=09/* Additional memory used by Samsung firmware modifications */
-+=09=09tz-apps@85a00000 {
-+=09=09=09reg =3D <0x0 0x85a00000 0x0 0x600000>;
-+=09=09=09no-map;
-+=09=09};
-+=09};
-+
-+=09gpio-keys {
-+=09=09compatible =3D "gpio-keys";
-+
-+=09=09pinctrl-0 =3D <&gpio_keys_default>;
-+=09=09pinctrl-names =3D "default";
-+
-+=09=09label =3D "GPIO Buttons";
-+
-+=09=09button-volume-up {
-+=09=09=09label =3D "Volume Up";
-+=09=09=09gpios =3D <&tlmm 107 GPIO_ACTIVE_LOW>;
-+=09=09=09linux,code =3D <KEY_VOLUMEUP>;
-+=09=09};
-+
-+=09=09button-home {
-+=09=09=09label =3D "Home";
-+=09=09=09gpios =3D <&tlmm 109 GPIO_ACTIVE_LOW>;
-+=09=09=09linux,code =3D <KEY_HOMEPAGE>;
-+=09=09};
-+=09};
-+
-+=09haptic {
-+=09=09compatible =3D "regulator-haptic";
-+=09=09haptic-supply =3D <&reg_motor_vdd>;
-+=09=09min-microvolt =3D <3300000>;
-+=09=09max-microvolt =3D <3300000>;
-+=09};
-+
-+=09reg_motor_vdd: regulator-motor-vdd {
-+=09=09compatible =3D "regulator-fixed";
-+=09=09regulator-name =3D "motor_vdd";
-+=09=09regulator-min-microvolt =3D <3300000>;
-+=09=09regulator-max-microvolt =3D <3300000>;
-+
-+=09=09gpio =3D <&tlmm 72 GPIO_ACTIVE_HIGH>;
-+=09=09enable-active-high;
-+
-+=09=09pinctrl-0 =3D <&motor_en_default>;
-+=09=09pinctrl-names =3D "default";
-+=09};
-+};
-+
-+&blsp_i2c1 {
-+=09status =3D "okay";
-+
-+=09muic: extcon@25 {
-+=09=09compatible =3D "siliconmitus,sm5502-muic";
-+=09=09reg =3D <0x25>;
-+=09=09interrupts-extended =3D <&tlmm 12 IRQ_TYPE_EDGE_FALLING>;
-+=09=09pinctrl-0 =3D <&muic_int_default>;
-+=09=09pinctrl-names =3D "default";
-+=09};
-+};
-+
-+&blsp_uart2 {
-+=09status =3D "okay";
-+};
-+
-+&mpss_mem {
-+=09reg =3D <0x0 0x86800000 0x0 0x5000000>;
-+};
-+
-+&pm8916_resin {
-+=09linux,code =3D <KEY_VOLUMEDOWN>;
-+=09status =3D "okay";
-+};
-+
-+&pm8916_rpm_regulators {
-+=09pm8916_l17: l17 {
-+=09=09regulator-min-microvolt =3D <2850000>;
-+=09=09regulator-max-microvolt =3D <2850000>;
-+=09};
-+};
-+
-+&sdhc_1 {
-+=09status =3D "okay";
-+};
-+
-+&sdhc_2 {
-+=09pinctrl-0 =3D <&sdc2_default &sdc2_cd_default>;
-+=09pinctrl-1 =3D <&sdc2_sleep &sdc2_cd_default>;
-+=09pinctrl-names =3D "default", "sleep";
-+
-+=09cd-gpios =3D <&tlmm 38 GPIO_ACTIVE_LOW>;
-+
-+=09status =3D "okay";
-+};
-+
-+&sound {
-+=09model =3D "msm8916-1mic";
-+=09audio-routing =3D
-+=09=09"AMIC1", "MIC BIAS External1",
-+=09=09"AMIC2", "MIC BIAS Internal2",
-+=09=09"AMIC3", "MIC BIAS External1";
-+};
-+
-+&usb {
-+=09extcon =3D <&muic>, <&muic>;
-+=09status =3D "okay";
-+};
-+
-+&usb_hs_phy {
-+=09extcon =3D <&muic>;
-+};
-+
-+&venus {
-+=09status =3D "okay";
-+};
-+
-+&venus_mem {
-+=09status =3D "okay";
-+};
-+
-+&wcnss {
-+=09status =3D "okay";
-+};
-+
-+&wcnss_iris {
-+=09compatible =3D "qcom,wcn3620";
-+};
-+
-+&wcnss_mem {
-+=09status =3D "okay";
-+};
-+
-+&tlmm {
-+=09gpio_keys_default: gpio-keys-default-state {
-+=09=09pins =3D "gpio107", "gpio109";
-+=09=09function =3D "gpio";
-+=09=09drive-strength =3D <2>;
-+=09=09bias-pull-up;
-+=09};
-+
-+=09motor_en_default: motor-en-default-state {
-+=09=09pins =3D "gpio72";
-+=09=09function =3D "gpio";
-+=09=09drive-strength =3D <2>;
-+=09=09bias-disable;
-+=09};
-+
-+=09muic_int_default: muic-int-default-state {
-+=09=09pins =3D "gpio12";
-+=09=09function =3D "gpio";
-+=09=09drive-strength =3D <2>;
-+=09=09bias-disable;
-+=09};
-+
-+=09sdc2_cd_default: sdc2-cd-default-state {
-+=09=09pins =3D "gpio38";
-+=09=09function =3D "gpio";
-+=09=09drive-strength =3D <2>;
-+=09=09bias-disable;
-+=09};
-+};
-diff --git a/arch/arm64/boot/dts/qcom/msm8916-samsung-gprimeltecan.dts b/ar=
-ch/arm64/boot/dts/qcom/msm8916-samsung-gprimeltecan.dts
-new file mode 100644
-index 000000000000..9d65fa58ba92
---- /dev/null
-+++ b/arch/arm64/boot/dts/qcom/msm8916-samsung-gprimeltecan.dts
-@@ -0,0 +1,27 @@
-+// SPDX-License-Identifier: GPL-2.0-only
-+
-+/dts-v1/;
-+
-+#include "msm8916-samsung-fortuna-common.dtsi"
-+
-+/ {
-+=09model =3D "Samsung Galaxy Grand Prime (SM-G530W)";
-+=09compatible =3D "samsung,gprimeltecan", "qcom,msm8916";
-+=09chassis-type =3D "handset";
-+
-+=09reserved-memory {
-+=09=09/* Firmware for gprimeltecan needs more space */
-+=09=09/delete-node/ tz-apps@85a00000;
-+
-+=09=09/* Additional memory used by Samsung firmware modifications */
-+=09=09tz-apps@85500000 {
-+=09=09=09reg =3D <0x0 0x85500000 0x0 0xb00000>;
-+=09=09=09no-map;
-+=09=09};
-+=09};
-+};
-+
-+&mpss_mem {
-+=09/* Firmware for gprimeltecan needs more space */
-+=09reg =3D <0x0 0x86800000 0x0 0x5400000>;
-+};
-diff --git a/arch/arm64/boot/dts/qcom/msm8916-samsung-grandprimelte.dts b/a=
-rch/arm64/boot/dts/qcom/msm8916-samsung-grandprimelte.dts
-new file mode 100644
-index 000000000000..a66ce4b13547
---- /dev/null
-+++ b/arch/arm64/boot/dts/qcom/msm8916-samsung-grandprimelte.dts
-@@ -0,0 +1,16 @@
-+// SPDX-License-Identifier: GPL-2.0-only
-+
-+/dts-v1/;
-+
-+#include "msm8916-samsung-fortuna-common.dtsi"
-+
-+/ {
-+=09model =3D "Samsung Galaxy Grand Prime (SM-G530FZ)";
-+=09compatible =3D "samsung,grandprimelte", "qcom,msm8916";
-+=09chassis-type =3D "handset";
-+};
-+
-+&mpss_mem {
-+=09/* Firmware for grandprimelte needs more space */
-+=09reg =3D <0x0 0x86800000 0x0 0x5400000>;
-+};
-diff --git a/arch/arm64/boot/dts/qcom/msm8916-samsung-rossa-common.dtsi b/a=
-rch/arm64/boot/dts/qcom/msm8916-samsung-rossa-common.dtsi
-new file mode 100644
-index 000000000000..42843771ae2a
---- /dev/null
-+++ b/arch/arm64/boot/dts/qcom/msm8916-samsung-rossa-common.dtsi
-@@ -0,0 +1,16 @@
-+// SPDX-License-Identifier: GPL-2.0-only
-+
-+#include "msm8916-samsung-fortuna-common.dtsi"
-+
-+/* SM5504 MUIC instead of SM5502 */
-+/delete-node/ &muic;
-+
-+&blsp_i2c1 {
-+=09muic: extcon@14 {
-+=09=09compatible =3D "siliconmitus,sm5504-muic";
-+=09=09reg =3D <0x14>;
-+=09=09interrupts-extended =3D <&tlmm 12 IRQ_TYPE_EDGE_FALLING>;
-+=09=09pinctrl-0 =3D <&muic_int_default>;
-+=09=09pinctrl-names =3D "default";
-+=09};
-+};
-diff --git a/arch/arm64/boot/dts/qcom/msm8916-samsung-rossa.dts b/arch/arm6=
-4/boot/dts/qcom/msm8916-samsung-rossa.dts
-new file mode 100644
-index 000000000000..ebaa13c6b016
---- /dev/null
-+++ b/arch/arm64/boot/dts/qcom/msm8916-samsung-rossa.dts
-@@ -0,0 +1,16 @@
-+// SPDX-License-Identifier: GPL-2.0-only
-+
-+/dts-v1/;
-+
-+#include "msm8916-samsung-rossa-common.dtsi"
-+
-+/ {
-+=09model =3D "Samsung Galaxy Core Prime LTE";
-+=09compatible =3D "samsung,rossa", "qcom,msm8916";
-+=09chassis-type =3D "handset";
-+};
-+
-+&mpss_mem {
-+=09/* Firmware for rossa needs more space */
-+=09reg =3D <0x0 0x86800000 0x0 0x5800000>;
-+};
---=20
-2.39.2
+Anyway, the boot doesn't progress, the system appears to hang. In any case =
+it's
+not usable as we have no other means of using it at this stage (network /
+usb / display etc.).
 
+2) Alternatively, the UART driver will load at this stage. Again, it will
+tweak the clocks and after probe it will leave its clocks disabled. The
+serial console driver hasn't taken over at this stage and earlycon is still
+active. Again, the system will hang, because IP and PCLK have been disabled
+by the UART driver. Once the serial console is enabled, clocks are being
+enabled again, but because earlycon is still waiting for progress, the
+boot doesn't progress past disabling ip and pclk. It never gets to enabling
+the serial console (re-enabling the clocks).
+
+So in both cases we get some output from earlycon, but the system hangs onc=
+e
+the first consumer driver of an IP attached to cmu_peric0 has completed
+probing.
+
+
+
+> > =C2=A0=C2=A0=C2=A0 * hand-over between earlycon and serial driver appea=
+rs to be
+> > =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 fragile and clocks get enabled and disab=
+led a few times, which
+> > =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 also causes register access to hang whil=
+e earlycon is still
+> > =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 active
+> > Nonetheless we shouldn't keep these clocks running unconditionally just
+> > for earlycon. Clocks should be disabled where possible. If earlycon is
+> > required in the future, e.g. for debug, this commit can simply be
+> > reverted (locally!).
+>=20
+> That sounds... not ideal. The ability to enable earlycon just by
+> adding some string to bootargs can be very useful for developers.
+> Maybe just make those clocks CLK_IGNORE_UNUSED, if that keeps earlycon
+> functional? With corresponding comments of course.
+
+CLK_IGNORE_UNUSED doesn't help in this case, the i2c and uart drivers will =
+load
+and probe before earlycon gets disabled and as part of their probing disabl=
+e
+the cmu_top ip clock going to cmu_peric0
+
+If earlycon is not enabled in kernel command line, everything works fine, t=
+he
+kernel buffers its messages and once the real serial console driver starts,
+all messages since boot are being printed.
+
+Other than keeping it as CLK_IS_CRITICAL, there is no way that I can see to
+way to make the hand-over from earlycon to the real serial driver work in
+all cases.
+
+They are not critical clocks for the system, though, so it's wrong to alway=
+s
+keep them running unconditionally.
+
+We are past a stage where earlycon is generally required.
+
+If it's required for some local development, people can revert this patch l=
+ocally.
+
+
+BTW, downstream doesn't suffer from this problem because downstream uses AC=
+G
+throughout and clocks are enabled automatically in hardware as required.
+
+
+Cheers,
+Andre'
 
 
