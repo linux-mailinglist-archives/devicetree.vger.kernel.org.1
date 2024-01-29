@@ -1,130 +1,130 @@
-Return-Path: <devicetree+bounces-36189-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-36190-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6DBF28401F7
-	for <lists+devicetree@lfdr.de>; Mon, 29 Jan 2024 10:44:47 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id A26FA84020E
+	for <lists+devicetree@lfdr.de>; Mon, 29 Jan 2024 10:49:00 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 28D01284ED4
-	for <lists+devicetree@lfdr.de>; Mon, 29 Jan 2024 09:44:46 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 355FDB20D61
+	for <lists+devicetree@lfdr.de>; Mon, 29 Jan 2024 09:48:58 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 84C1155C27;
-	Mon, 29 Jan 2024 09:44:29 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id EE1FC55C2D;
+	Mon, 29 Jan 2024 09:48:52 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="F6g+we+e"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="JeGa3dgS"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-yw1-f182.google.com (mail-yw1-f182.google.com [209.85.128.182])
+Received: from mail-qk1-f173.google.com (mail-qk1-f173.google.com [209.85.222.173])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0813855C3F
-	for <devicetree@vger.kernel.org>; Mon, 29 Jan 2024 09:44:26 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.182
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 376F255C15
+	for <devicetree@vger.kernel.org>; Mon, 29 Jan 2024 09:48:50 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.222.173
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1706521469; cv=none; b=twuO2W1en2I25WnCnkw/N3joBdFXoAkckakcMp2XpfHQprK4pB49REcgvgnWjX1cJ6413bejSO5H57QVwydn20k9Hn7Y8Sk++F+s3aslOK3YbEk8lnkoSa58PB2ukTYEf+58M5Irp2s4i4DBsPKr4ck6fcw1bIUViaTJfdpHSiU=
+	t=1706521732; cv=none; b=KZAdzvaR5B2UQ+zPlHo8pT8wcOUCB8AB2QjDLNEenH1uLkKbT3VP6HfPAu3tgKaYw34rcPseEeHWToFCcenuTMUzxkVte1VzFvWFUF3oH5aaLupsUlJPxwlVbafIbRUuaHTiWsQGUFDVZNPW7fd4zXfnsM1FP1UuLlaI0GrAbGs=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1706521469; c=relaxed/simple;
-	bh=xGW8WGo7wIurlupbyhMGpqaVATp3TBA2uGD+Op0kJcU=;
+	s=arc-20240116; t=1706521732; c=relaxed/simple;
+	bh=BA1tOGEvLJ2F1biwjB2573ANIuiUoV8stL0uXeeVPnE=;
 	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=VPngldZWHXsyMIiVQM38FNJiJusqwdBGO/rAtTEsCQk8b87ZfrYmgtnyHIOtfxucgyHidPP5R8Q5J6f7nSCRfy61cRlFbTyR86DtqBkiTLHwisfOGlR7Ds+IbBkto9lbjzeFTsfARs4CjXEPzUq5yhEow8LysWS45zDODoWzAkI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=F6g+we+e; arc=none smtp.client-ip=209.85.128.182
+	 To:Cc:Content-Type; b=vGpquQfYkm+q1l7t9zDwYQd3zgoMDySw9AbUCHuMztCpy56pQ7JYNzqKM5lYcoHXN9i9IH1ilr32MY44S21yk2M7OL3LWnneMNGlodLPXdpLY/6xWv5lnjhXbkVv20FbCdDGn9zuP0U+z46oOFXYPaRrJi4jYio4AgH+DIhlBUc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=JeGa3dgS; arc=none smtp.client-ip=209.85.222.173
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-yw1-f182.google.com with SMTP id 00721157ae682-602a0a45dd6so21770687b3.1
-        for <devicetree@vger.kernel.org>; Mon, 29 Jan 2024 01:44:26 -0800 (PST)
+Received: by mail-qk1-f173.google.com with SMTP id af79cd13be357-781753f52afso232250685a.2
+        for <devicetree@vger.kernel.org>; Mon, 29 Jan 2024 01:48:50 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1706521466; x=1707126266; darn=vger.kernel.org;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=TnHoKf6bhzEn5TkOJv2QvMyWuMlpzWb0+DE5YgR4bxA=;
-        b=F6g+we+enEFQlr1m6fOm4GVof/8s5Ocf6ZaAlnvbUrXvhul9JPd3/jIUsG/FiwbwZY
-         Pd3DQej9NPGkklaTbj4/EZCmEHT2JHMR8ZXBbDGySrRoByOz5DSweYq6NGl4EfxOD9i7
-         XXGv4kgnGk5d4ANt+vBEobnSy1bNe1BLYdxO59XRAgfeQVdbGW4UXstIA17n7roUWPNE
-         Q6RVjVM9ktmOyyzYhD4hniHP+bshccImRYJGMq1ibGdWN71KHRWAIfakAgLfyOFjU4nO
-         H6HnKvVNfXS+5MFpwleshr3jPP70O/4XWE4toes3oKmU1P6xMiWN8vsXxLzV2sS1HYEm
-         THTw==
+        d=linaro.org; s=google; t=1706521730; x=1707126530; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=pHEsVlM7f5nwbIgc9gzWyFxBBE04dfKP6ctAVu1W4LQ=;
+        b=JeGa3dgSsjcygSr6r7tr9gwnGHHJ8xC36E0lXADUUDAT3b0z2wUc6orpW2w0W7R5JK
+         8zVXJhEfUEDcyef6P7Afmg7jGg8OZxspOaKOtd7BFI1TFql/wui+tRnHKDMvAgEQUQ3G
+         3/EFX659GThPRQsE6F5ewxqExsC6JOjkzuPSVqTnVrOjETaHaj0qW34JAWHV/JFmv7u4
+         vRsZcQBDxlOu+8OKloqntIXF7dureVbgvK9sN8r1gJVXDOzX/LCH3KZ3TUT5KI+fRmsu
+         PxRj9KFixCsVGFts4VkluiW2uqHhWWN0FZzTYvvfZ5DCK2K/1aPpBmEhF+xYVzVL1Vr6
+         AT+w==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1706521466; x=1707126266;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=TnHoKf6bhzEn5TkOJv2QvMyWuMlpzWb0+DE5YgR4bxA=;
-        b=svwzKJ075ZFLKLjuULJs3VTyJgWxCmgI1vjDEDamSa62izM5MYjlwWec6B0r46VbCP
-         xbgJQVQz6IMjIPcyEuvvCrnvdWUsDFrQtciV5sOL/6XHAbCvCF1xE9V295395kMhu3q+
-         JzFMlPFWNxLH2LS4FcFCouwZB58YJ4TB50sMpiDGpNtK/mUpktcWnfw1XTArLWUvkhqg
-         HuigtH5Jt/OeHA/Gv9Yo4Y6ypHoKySW1ojdeQkRoQHP2Z5kYx+CqIxivICC/UKhnANQh
-         FcnORMdThyosR5TZww49bAglR/YQjZIKlufR2des77pjwYHJITu5QWB3sOVWXecEKVNU
-         kguw==
-X-Gm-Message-State: AOJu0Ywf9p80aTkXgDptdQDjvmpH199LmLry5qbUy02zfAD0yjIHLnJE
-	3Gt5ol5lUMZS7jGTk3ioWwueM6i2uEa0tFq+4xRBIf1GaRUIraNYu9mfFLDEvYVIE+W6Mjxo6uu
-	mKXvVhYtcDdHyQ6kt/erT/rl/FYWUk1PaIwcwhQ==
-X-Google-Smtp-Source: AGHT+IGMigB6OP5ZQjyQuOqZgXWwLae4qsfF65SWsJYsfr+3v4u9hT0bK9ATVlstC4hsNaw0Ea0YXKFD5gvUnGNVj6g=
-X-Received: by 2002:a81:e201:0:b0:5ec:c970:19b6 with SMTP id
- p1-20020a81e201000000b005ecc97019b6mr3603630ywl.17.1706521466011; Mon, 29 Jan
- 2024 01:44:26 -0800 (PST)
+        d=1e100.net; s=20230601; t=1706521730; x=1707126530;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=pHEsVlM7f5nwbIgc9gzWyFxBBE04dfKP6ctAVu1W4LQ=;
+        b=IT8uNvrrEs0MgkqG/e99/ULEFqQ81eeuaIdBoyU/zWiEOUMtRUL3ppH684IKCVoHUe
+         mB8QnJXnr4pVSTxuefenTH+qgyeBKhWJaDTAhDV5czjYsTeilXraE0FmwAemgYLL+9TT
+         UfzydnoN3tWPOOmXXoryezcWX5o+CbDp3RF4NPt8dJFCwUTVvrYOBxyayChV1WFkiwdd
+         +xv7rCRvXzYLY+gjJjSLxYjWLbEuZlxahCQfIFY7YqltMTpB8/QDom35T3bCzr5sFBZZ
+         fijwWGV9kSFY06tQkeYBPyY1m36HS9smsrxRy4p2iNp/fFWjHyCokXy7GEjzFLKXmuZI
+         l37g==
+X-Gm-Message-State: AOJu0YwRMfxUd/ubhNXSE+qPj8o6VUBK6DjrYj2MShNA81N4yWaUOrDY
+	m0oeCiLFs/6TE/l7PU+SpiAiNP077wFJFR9drM4EJdGTwfcNcXlPNm4cIV+zAwVYnk5j9ENEOnT
+	jBOndms9hC0xwpuP/M/ldmv8KPb9LGDS158RGwQ==
+X-Google-Smtp-Source: AGHT+IE/FkXm22hoOy7Bm93rW+z/+jgXNC3MtDsNhFcBpfDqK2p05aSH1dhnMpcNvIVeXslT5ipbAnbdvzJvrwoQ90U=
+X-Received: by 2002:ad4:5f8a:0:b0:68c:467d:c60d with SMTP id
+ jp10-20020ad45f8a000000b0068c467dc60dmr4539234qvb.118.1706521730025; Mon, 29
+ Jan 2024 01:48:50 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20240129-ufs-core-reset-fix-v1-0-7ac628aa735f@linaro.org> <20240129-ufs-core-reset-fix-v1-3-7ac628aa735f@linaro.org>
-In-Reply-To: <20240129-ufs-core-reset-fix-v1-3-7ac628aa735f@linaro.org>
-From: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-Date: Mon, 29 Jan 2024 11:44:15 +0200
-Message-ID: <CAA8EJpphzwoCaetGfnM8dE478ic1-BMqXKA3XVLeC9j5BBu3SA@mail.gmail.com>
-Subject: Re: [PATCH 3/3] arm64: dts: qcom: msm8996: Add missing UFS host
- controller reset
-To: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
-Cc: Bjorn Andersson <andersson@kernel.org>, Konrad Dybcio <konrad.dybcio@linaro.org>, 
-	Alim Akhtar <alim.akhtar@samsung.com>, Avri Altman <avri.altman@wdc.com>, 
-	Bart Van Assche <bvanassche@acm.org>, Rob Herring <robh+dt@kernel.org>, 
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Andy Gross <agross@kernel.org>, Andy Gross <andy.gross@linaro.org>, 
-	"James E.J. Bottomley" <jejb@linux.ibm.com>, "Martin K. Petersen" <martin.petersen@oracle.com>, 
-	linux-arm-msm@vger.kernel.org, linux-scsi@vger.kernel.org, 
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+References: <20240127003607.501086-1-andre.draszik@linaro.org> <20240127003607.501086-3-andre.draszik@linaro.org>
+In-Reply-To: <20240127003607.501086-3-andre.draszik@linaro.org>
+From: Peter Griffin <peter.griffin@linaro.org>
+Date: Mon, 29 Jan 2024 09:48:38 +0000
+Message-ID: <CADrjBPoTewqx2eF9Zw2EHZtjEpPzesAA5cEjVKw-WWgTT8fd_Q@mail.gmail.com>
+Subject: Re: [PATCH 2/5] arm64: dts: exynos: gs101: fix usi8 default mode
+To: =?UTF-8?Q?Andr=C3=A9_Draszik?= <andre.draszik@linaro.org>
+Cc: robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org, 
+	linux-kernel@vger.kernel.org, kernel-team@android.com, 
+	tudor.ambarus@linaro.org, willmcvicker@google.com, semen.protsenko@linaro.org, 
+	alim.akhtar@samsung.com, s.nawrocki@samsung.com, tomasz.figa@gmail.com, 
+	cw00.choi@samsung.com, mturquette@baylibre.com, sboyd@kernel.org, 
+	linux-arm-kernel@lists.infradead.org, linux-samsung-soc@vger.kernel.org, 
+	linux-clk@vger.kernel.org, devicetree@vger.kernel.org
 Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-On Mon, 29 Jan 2024 at 09:55, Manivannan Sadhasivam
-<manivannan.sadhasivam@linaro.org> wrote:
+On Sat, 27 Jan 2024 at 00:37, Andr=C3=A9 Draszik <andre.draszik@linaro.org>=
+ wrote:
 >
-> UFS host controller reset is required for the drivers to properly reset the
-> controller. Hence, add it.
+> While commit 6d44d1a1fb62 ("arm64: dts: exynos: gs101: define USI8 with
+> I2C configuration") states that the USI8 CONFIG is 0 at reset, the boot
+> loader has configured it by the time Linux runs and it has a different
+> value at this stage.
 >
-> Fixes: 57fc67ef0d35 ("arm64: dts: qcom: msm8996: Add ufs related nodes")
-> Signed-off-by: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
-
-I think I had issues previously when I attempted to reset the
-controller, but it might be because of the incomplete clocks
-programming. Let met check whether it works first.
-
+> Since we want board DTS files to explicitly select the mode, we should
+> set it to none here so as to ensure things don't work by accident and
+> to make it clear that board DTS actually need to set the mode based on
+> the configuration.
+>
+> Fixes: 6d44d1a1fb62 ("arm64: dts: exynos: gs101: define USI8 with I2C con=
+figuration")
+> Signed-off-by: Andr=C3=A9 Draszik <andre.draszik@linaro.org>
 > ---
->  arch/arm64/boot/dts/qcom/msm8996.dtsi | 2 ++
->  1 file changed, 2 insertions(+)
+
+Reviewed-by: Peter Griffin <peter.griffin@linaro.org>
+
+>  arch/arm64/boot/dts/exynos/google/gs101.dtsi | 1 +
+>  1 file changed, 1 insertion(+)
 >
-> diff --git a/arch/arm64/boot/dts/qcom/msm8996.dtsi b/arch/arm64/boot/dts/qcom/msm8996.dtsi
-> index 8d41ed261adf..a6592b3e2db7 100644
-> --- a/arch/arm64/boot/dts/qcom/msm8996.dtsi
-> +++ b/arch/arm64/boot/dts/qcom/msm8996.dtsi
-> @@ -2114,6 +2114,8 @@ ufshc: ufshc@624000 {
->                                         <&bimc MASTER_AMPSS_M0 &cnoc SLAVE_UFS_CFG>;
->                         interconnect-names = "ufs-ddr", "cpu-ufs";
+> diff --git a/arch/arm64/boot/dts/exynos/google/gs101.dtsi b/arch/arm64/bo=
+ot/dts/exynos/google/gs101.dtsi
+> index aaac04df5e65..bc251e565be6 100644
+> --- a/arch/arm64/boot/dts/exynos/google/gs101.dtsi
+> +++ b/arch/arm64/boot/dts/exynos/google/gs101.dtsi
+> @@ -384,6 +384,7 @@ usi8: usi@109700c0 {
+>                                  <&cmu_peric0 CLK_GOUT_PERIC0_PERIC0_TOP0=
+_IPCLK_7>;
+>                         clock-names =3D "pclk", "ipclk";
+>                         samsung,sysreg =3D <&sysreg_peric0 0x101c>;
+> +                       samsung,mode =3D <USI_V2_NONE>;
+>                         status =3D "disabled";
 >
-> +                       resets = <&gcc GCC_UFS_BCR>;
-> +                       reset-names = "rst";
->                         lanes-per-direction = <1>;
->                         #reset-cells = <1>;
->                         status = "disabled";
->
+>                         hsi2c_8: i2c@10970000 {
 > --
-> 2.25.1
+> 2.43.0.429.g432eaa2c6b-goog
 >
->
-
-
--- 
-With best wishes
-Dmitry
 
