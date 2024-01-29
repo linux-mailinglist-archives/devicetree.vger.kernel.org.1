@@ -1,63 +1,55 @@
-Return-Path: <devicetree+bounces-36436-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-36437-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8D987841295
-	for <lists+devicetree@lfdr.de>; Mon, 29 Jan 2024 19:47:48 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id EB7D88412BC
+	for <lists+devicetree@lfdr.de>; Mon, 29 Jan 2024 19:51:53 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 4002428568B
-	for <lists+devicetree@lfdr.de>; Mon, 29 Jan 2024 18:47:47 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 77CE82874AD
+	for <lists+devicetree@lfdr.de>; Mon, 29 Jan 2024 18:51:52 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id F00893BB3B;
-	Mon, 29 Jan 2024 18:38:36 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5893612E74;
+	Mon, 29 Jan 2024 18:51:49 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="GwRicA4v"
+	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b="Y+JaK629"
 X-Original-To: devicetree@vger.kernel.org
-Received: from lelv0142.ext.ti.com (lelv0142.ext.ti.com [198.47.23.249])
+Received: from madrid.collaboradmins.com (madrid.collaboradmins.com [46.235.227.194])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F2DFB46A0;
-	Mon, 29 Jan 2024 18:38:34 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.23.249
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 997CE76C89;
+	Mon, 29 Jan 2024 18:51:47 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=46.235.227.194
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1706553516; cv=none; b=JqdUGbdygU+eQZ8lzvVmfklSWdB/xO5Et4YFcIPBBXuvEJYQHjfsgpKxibdGrfTwkAP7AQFp6tG5J0fj3gUKkp3ib2kIYPsN3qQbWtlWT8+7q+NXWPrMURBi0KktUuNy04OyPK9S+ZfLrZaJ/ojcVSsTQWd9cLVDSe1FB22Sinc=
+	t=1706554309; cv=none; b=PV2zDRK/7PbO4lnicTWezwMqYlMbDe+TPnMqs503dBsnmV9MONR3gMu5/dkaTzfOUMOIVBjJT7bOIIAgrtZ1mynoWxlwPJI+W1rJ6hrEkd9u9D0cx2sFq/50zTtmfzzdSoT+OCCbAdhXiH50+RAekB4K3XnSNb0UePCV4h6wy4A=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1706553516; c=relaxed/simple;
-	bh=Wgb6AHbASHAIbUYNKyispgBiH/PHmLv6+sY9S/alqBI=;
-	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
-	 In-Reply-To:Content-Type; b=RIrNlbsrlxLQOGlly4BLGJRaiakUrKo/w5QPaL+EeQA52OSKLWbgrayE8kYTG15WCZf5uqhRMloWHYvA7/qHzNdGtsjLZCi68FIHWcdlsYzKgtl7eokpPq/ReFuHeVSuP1cth/bUVuOEH53YfL2AARpX4DiLCuh9Aa3euLMkuM4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=GwRicA4v; arc=none smtp.client-ip=198.47.23.249
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
-Received: from lelv0265.itg.ti.com ([10.180.67.224])
-	by lelv0142.ext.ti.com (8.15.2/8.15.2) with ESMTP id 40TIcLcw040405;
-	Mon, 29 Jan 2024 12:38:21 -0600
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1706553501;
-	bh=s/J2LZYspsxQ9oo7bDTDwuZFAw/7FHF06DORePa2lCw=;
-	h=Date:Subject:To:CC:References:From:In-Reply-To;
-	b=GwRicA4vEh0sDI6mL8bRoYHrqdV+N3kNx6auz3L9T82U7YSuD84bv/qDNrvnDx33C
-	 mBDFjkV9vZYqbnp5iXGeKRWzlnZZg43q5mtoyFh48leLg8iQ3dsnUs8NRmHE5+FqMt
-	 29R6GLBPwoYg7xsuFlleDH+5ZIMobRJiuX6cOXwU=
-Received: from DLEE101.ent.ti.com (dlee101.ent.ti.com [157.170.170.31])
-	by lelv0265.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 40TIcLnX009828
-	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-	Mon, 29 Jan 2024 12:38:21 -0600
-Received: from DLEE101.ent.ti.com (157.170.170.31) by DLEE101.ent.ti.com
- (157.170.170.31) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Mon, 29
- Jan 2024 12:38:20 -0600
-Received: from lelvsmtp5.itg.ti.com (10.180.75.250) by DLEE101.ent.ti.com
- (157.170.170.31) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
- Frontend Transport; Mon, 29 Jan 2024 12:38:20 -0600
-Received: from [10.249.42.149] ([10.249.42.149])
-	by lelvsmtp5.itg.ti.com (8.15.2/8.15.2) with ESMTP id 40TIcJf9084941;
-	Mon, 29 Jan 2024 12:38:20 -0600
-Message-ID: <3dcd38ef-c78d-4a28-b756-6be84ce7f252@ti.com>
-Date: Mon, 29 Jan 2024 12:38:19 -0600
+	s=arc-20240116; t=1706554309; c=relaxed/simple;
+	bh=KNDPO1AK9Y+B5htTE+wIMRsWzJnfFIi+OJEvFCF6Slc=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=Q3x69Au3UxWX0L4Yi7O0n5Wp8/TlmseqGF2CYE8P6ev5KVTZzNffKk+jPp/17uawHmbC+5nLmOgehgTIlO8DOgXF+ltYk3PCW5z2WuJ9wGc/lnq+anozk98qTOdJ5pSf73023KMt/r28PpqE2H0glGGz2w1ABlx05V1jDAyyyHg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b=Y+JaK629; arc=none smtp.client-ip=46.235.227.194
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=collabora.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
+	s=mail; t=1706554305;
+	bh=KNDPO1AK9Y+B5htTE+wIMRsWzJnfFIi+OJEvFCF6Slc=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=Y+JaK629Tyi3MjmzCnMFi0XgqXhkHCjFWan9e/FQM1J9xZdU6PwMPzgNWkgR7MZF2
+	 dfYDFrle67cmZvgBzyO4sfQBCl7m6VFsQ0MnWv4uz+jOB5Ja6sPVuRejO+A2ddQ9Lx
+	 p12wFEqLUAp4lHzFU5mV7jlX319uFXr4sh3ftrmyamQkgtrc9/lVnnFdBgZe4iffd7
+	 fjZywJHWznoAFdqu9yA+CTwY/VdnGdU+FSTAA681QRX6Mo3vGDj+/fed/CVTpj0kIG
+	 i6hGXCOK+ktnoSkv2S8KP3FtRszB7CQ/5XsnXqHeTzUcvPmk4F2w7Mf3EyTjsc+1pv
+	 9LfV2WqdRvtbw==
+Received: from [100.115.223.179] (cola.collaboradmins.com [195.201.22.229])
+	(using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
+	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+	(No client certificate requested)
+	(Authenticated sender: cristicc)
+	by madrid.collaboradmins.com (Postfix) with ESMTPSA id 182853780EC6;
+	Mon, 29 Jan 2024 18:51:44 +0000 (UTC)
+Message-ID: <f113c4b6-a074-4566-b69b-f25c9590d23f@collabora.com>
+Date: Mon, 29 Jan 2024 20:51:43 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -65,207 +57,77 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 9/9] arm64: dts: ti: k3-am69-sk: Add overlay for IMX219
+Subject: Re: [PATCH v4 1/2] dt-bindings: net: starfive,jh7110-dwmac: Add
+ JH7100 SoC compatible
 Content-Language: en-US
-To: Vaishnav Achath <vaishnav.a@ti.com>, <nm@ti.com>, <vigneshr@ti.com>,
-        <kristo@kernel.org>, <robh+dt@kernel.org>,
-        <krzysztof.kozlowski+dt@linaro.org>, <conor+dt@kernel.org>
-CC: <kernel@pengutronix.de>, <linux-arm-kernel@lists.infradead.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <u-kumar1@ti.com>, <j-choudhary@ti.com>, <j-luthra@ti.com>
-References: <20240129132742.1189783-1-vaishnav.a@ti.com>
- <20240129132742.1189783-10-vaishnav.a@ti.com>
-From: Andrew Davis <afd@ti.com>
-In-Reply-To: <20240129132742.1189783-10-vaishnav.a@ti.com>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
+To: Jakub Kicinski <kuba@kernel.org>
+Cc: Andrew Lunn <andrew@lunn.ch>,
+ Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+ "David S. Miller" <davem@davemloft.net>, Eric Dumazet <edumazet@google.com>,
+ Paolo Abeni <pabeni@redhat.com>, Rob Herring <robh+dt@kernel.org>,
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+ Conor Dooley <conor+dt@kernel.org>, Emil Renner Berthing <kernel@esmil.dk>,
+ Samin Guo <samin.guo@starfivetech.com>,
+ Alexandre Torgue <alexandre.torgue@foss.st.com>,
+ Jose Abreu <joabreu@synopsys.com>,
+ Maxime Coquelin <mcoquelin.stm32@gmail.com>,
+ Giuseppe Cavallaro <peppe.cavallaro@st.com>,
+ Jacob Keller <jacob.e.keller@intel.com>, netdev@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ linux-stm32@st-md-mailman.stormreply.com,
+ linux-arm-kernel@lists.infradead.org, kernel@collabora.com
+References: <20240126191319.1209821-1-cristian.ciocaltea@collabora.com>
+ <20240126191319.1209821-2-cristian.ciocaltea@collabora.com>
+ <0a6f6dcb-18b0-48d5-8955-76bce0e1295d@linaro.org>
+ <e29ae12b-5823-4fba-8029-e8e490462138@collabora.com>
+ <56f3bd3c-c099-405b-837b-16d8aeb4cc4b@lunn.ch>
+ <8c4cfc54-bd23-4d56-a4ae-9f3dd5cedb59@collabora.com>
+ <e99e72b3-e0f6-4a80-82c8-bd60c36d180a@lunn.ch>
+From: Cristian Ciocaltea <cristian.ciocaltea@collabora.com>
+In-Reply-To: <e99e72b3-e0f6-4a80-82c8-bd60c36d180a@lunn.ch>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 
-On 1/29/24 7:27 AM, Vaishnav Achath wrote:
-> RPi v2 Camera (IMX219) is an 8MP camera that can be used with SK-AM69
-> through the 22-pin CSI-RX connector.
+On 1/29/24 18:54, Andrew Lunn wrote:
+> On Mon, Jan 29, 2024 at 06:38:27PM +0200, Cristian Ciocaltea wrote:
+>> On 1/29/24 15:34, Andrew Lunn wrote:
+>>>>> Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+>>>>
+>>>> Thank you for the review!
+>>>>
+>>>> Could you please apply it to the RESEND version [1] instead, as this one 
+>>>> had an issue collecting the latest tags, as indicated in [2].
+>>>>
+>>>> Regards,
+>>>> Cristian
+>>>
+>>> Hi Cristian
+>>>
+>>> IT is your job as developers to collect together such reviewed-by:
+>>> tags add apply them to the latest version. So long as there are no
+>>> major changes, they are still consider applicable.
+>>
+>> Hi Andrew,
+>>
+>> Jakub requested a rebase, but I missed a tag and that's why I submitted
+>> the RESEND.  Now we got this new tag which is not on the RESEND
+>> submission, that's why I asked Krzysztof if he could add his R-b on that
+>> one.  Unless the maintainers' tooling is able to fetch tags from both
+>> submissions?!
 > 
-> Same overlay can be used across AM68 SK, TDA4VM SK boards that have a
-> 15/22-pin FFC connector. Also enable build testing and symbols for
-> all the three platforms.
+> Well, b4 can do that:
 > 
-> Signed-off-by: Vaishnav Achath <vaishnav.a@ti.com>
-> ---
->   arch/arm64/boot/dts/ti/Makefile               |   6 +
->   .../boot/dts/ti/k3-am69-sk-csi2-imx219.dtso   | 124 ++++++++++++++++++
->   2 files changed, 130 insertions(+)
->   create mode 100644 arch/arm64/boot/dts/ti/k3-am69-sk-csi2-imx219.dtso
+> https://b4.docs.kernel.org/en/latest/contributor/trailers.html
 > 
-> diff --git a/arch/arm64/boot/dts/ti/Makefile b/arch/arm64/boot/dts/ti/Makefile
-> index 52c1dc910308..9fc8d68f7d26 100644
-> --- a/arch/arm64/boot/dts/ti/Makefile
-> +++ b/arch/arm64/boot/dts/ti/Makefile
-> @@ -80,6 +80,7 @@ dtb-$(CONFIG_ARCH_K3) += k3-j721s2-evm-pcie1-ep.dtbo
->   
->   # Boards with J784s4 SoC
->   dtb-$(CONFIG_ARCH_K3) += k3-am69-sk.dtb
-> +dtb-$(CONFIG_ARCH_K3) += k3-am69-sk-csi2-imx219.dtbo
->   dtb-$(CONFIG_ARCH_K3) += k3-j784s4-evm.dtb
->   
->   # Build time test only, enabled by CONFIG_OF_ALL_DTBS
-> @@ -105,6 +106,8 @@ k3-am642-tqma64xxl-mbax4xxl-sdcard-dtbs := \
->   	k3-am642-tqma64xxl-mbax4xxl.dtb k3-am64-tqma64xxl-mbax4xxl-sdcard.dtbo
->   k3-am642-tqma64xxl-mbax4xxl-wlan-dtbs := \
->   	k3-am642-tqma64xxl-mbax4xxl.dtb k3-am64-tqma64xxl-mbax4xxl-wlan.dtbo
-> +k3-am69-sk-csi2-imx219-dtbs := k3-am69-sk.dtb \
-> +	k3-am69-sk-csi2-imx219.dtbo
+> But i've no idea if the netdev tooling actual does.
 
-You need to also add this "k3-am69-sk-csi2-imx219.dtb" to the list:
+Jakub, please let me know how should we proceed further!
 
-dtb- +=
+The problem is that we ended up with a RESEND to include a missing R-b
+tag from Rob, but afterwards we also got this new R-b from Krzysztof
+here.  If it's not possible for you to collect both tags, I could
+prepare a v5 to avoid having another RESEND.
 
-below for it to actually get build tested.
-
->   k3-j721e-evm-pcie0-ep-dtbs := k3-j721e-common-proc-board.dtb \
->   	k3-j721e-evm-pcie0-ep.dtbo
->   k3-j721s2-evm-pcie1-ep-dtbs := k3-j721s2-common-proc-board.dtb \
-> @@ -130,5 +133,8 @@ DTC_FLAGS_k3-am62-lp-sk += -@
->   DTC_FLAGS_k3-am62a7-sk += -@
->   DTC_FLAGS_k3-am642-tqma64xxl-mbax4xxl += -@
->   DTC_FLAGS_k3-am6548-iot2050-advanced-m2 += -@
-> +DTC_FLAGS_k3-am68-sk-base-board += -@
-> +DTC_FLAGS_k3-am69-sk += -@
->   DTC_FLAGS_k3-j721e-common-proc-board += -@
->   DTC_FLAGS_k3-j721s2-common-proc-board += -@
-> +DTC_FLAGS_k3-j721e-sk += -@
-> diff --git a/arch/arm64/boot/dts/ti/k3-am69-sk-csi2-imx219.dtso b/arch/arm64/boot/dts/ti/k3-am69-sk-csi2-imx219.dtso
-> new file mode 100644
-> index 000000000000..4cd1d8d5004a
-> --- /dev/null
-> +++ b/arch/arm64/boot/dts/ti/k3-am69-sk-csi2-imx219.dtso
-> @@ -0,0 +1,124 @@
-> +// SPDX-License-Identifier: GPL-2.0
-> +/**
-> + * DT Overlay for RPi Camera V2.1 (Sony IMX219) interfaced with CSI2 on AM68-SK board.
-> + * https://datasheets.raspberrypi.org/camera/camera-v2-schematic.pdf
-> + *
-> + * Copyright (C) 2023 Texas Instruments Incorporated - https://www.ti.com/
-> + */
-> +
-> +/dts-v1/;
-> +/plugin/;
-> +
-> +#include <dt-bindings/gpio/gpio.h>
-> +#include "k3-pinctrl.h"
-> +
-> +&{/} {
-> +	clk_imx219_fixed: imx219-xclk {
-> +		compatible = "fixed-clock";
-> +		#clock-cells = <0>;
-> +		clock-frequency = <24000000>;
-> +	};
-> +};
-> +
-> +&csi_mux {
-> +	idle-state = <1>;
-> +};
-> +
-> +/* CAM0 I2C */
-> +&cam0_i2c {
-> +	#address-cells = <1>;
-> +	#size-cells = <0>;
-> +	imx219_0: imx219_0@10 {
-> +		compatible = "sony,imx219";
-> +		reg = <0x10>;
-> +
-> +		clocks = <&clk_imx219_fixed>;
-> +		clock-names = "xclk";
-> +
-> +		port {
-> +			csi2_cam0: endpoint {
-> +				remote-endpoint = <&csi2rx0_in_sensor>;
-> +				link-frequencies = /bits/ 64 <456000000>;
-> +				clock-lanes = <0>;
-> +				data-lanes = <1 2>;
-> +			};
-> +		};
-> +	};
-> +};
-> +
-> +/* CAM1 I2C */
-> +&cam1_i2c {
-> +	#address-cells = <1>;
-> +	#size-cells = <0>;
-> +	imx219_1: imx219_1@10 {
-> +		compatible = "sony,imx219";
-> +		reg = <0x10>;
-> +
-> +		clocks = <&clk_imx219_fixed>;
-> +		clock-names = "xclk";
-> +
-> +		port {
-> +			csi2_cam1: endpoint {
-> +				remote-endpoint = <&csi2rx1_in_sensor>;
-> +				link-frequencies = /bits/ 64 <456000000>;
-> +				clock-lanes = <0>;
-> +				data-lanes = <1 2>;
-> +			};
-> +		};
-> +	};
-> +};
-> +
-> +
-> +&cdns_csi2rx0 {
-> +	ports {
-> +		#address-cells = <1>;
-> +		#size-cells = <0>;
-> +
-> +		csi0_port0: port@0 {
-> +			reg = <0>;
-> +			status = "okay";
-> +
-> +			csi2rx0_in_sensor: endpoint {
-> +				remote-endpoint = <&csi2_cam0>;
-> +				bus-type = <4>; /* CSI2 DPHY. */
-> +				clock-lanes = <0>;
-> +				data-lanes = <1 2>;
-> +			};
-> +		};
-> +	};
-> +};
-> +
-> +&dphy0 {
-> +	status = "okay";
-> +};
-> +
-> +&ti_csi2rx0 {
-> +	status = "okay";
-> +};
-> +
-> +&cdns_csi2rx1 {
-> +	ports {
-> +		#address-cells = <1>;
-> +		#size-cells = <0>;
-> +
-> +		csi1_port0: port@0 {
-> +			reg = <0>;
-> +			status = "okay";
-> +
-> +			csi2rx1_in_sensor: endpoint {
-> +				remote-endpoint = <&csi2_cam1>;
-> +				bus-type = <4>; /* CSI2 DPHY. */
-> +				clock-lanes = <0>;
-> +				data-lanes = <1 2>;
-> +			};
-> +		};
-> +	};
-> +};
-> +
-> +&dphy1 {
-> +	status = "okay";
-> +};
-> +
-> +&ti_csi2rx1 {
-> +	status = "okay";
-> +};
-> \ No newline at end of file
-
-checkpatch..
-
-Andrew
+Thanks,
+Cristian
 
