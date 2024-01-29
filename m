@@ -1,135 +1,133 @@
-Return-Path: <devicetree+bounces-36330-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-36331-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 14CED8408CC
-	for <lists+devicetree@lfdr.de>; Mon, 29 Jan 2024 15:42:14 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 98B76840935
+	for <lists+devicetree@lfdr.de>; Mon, 29 Jan 2024 16:00:18 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 90080B252CA
-	for <lists+devicetree@lfdr.de>; Mon, 29 Jan 2024 14:42:11 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 2E22B28B5F2
+	for <lists+devicetree@lfdr.de>; Mon, 29 Jan 2024 15:00:17 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E97AA153511;
-	Mon, 29 Jan 2024 14:41:39 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E12E8154432;
+	Mon, 29 Jan 2024 14:59:37 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="Q2RoPQbx"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="GdHsffo5"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ed1-f51.google.com (mail-ed1-f51.google.com [209.85.208.51])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1F149152E00
-	for <devicetree@vger.kernel.org>; Mon, 29 Jan 2024 14:41:37 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.51
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B69EB15442B;
+	Mon, 29 Jan 2024 14:59:37 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1706539299; cv=none; b=pMoCGvHRdcpKGvF8hjpq3sKjrYmGIZtKQ/tfo9EeHMQb1LLQZRCVITSNAQCRbcpbq0G1lPQjGLfTNMCzgxxn0FN/1H+3segeJMlMfCExjBtUKYAU7F98mrxSzUageMp3hPcFv0c2hF4V1gbpRhv3MMdX5NS+TEJOzNxoZ+RrbpE=
+	t=1706540377; cv=none; b=rEdb6F1nhJD2GhyEJVX6Lgdth9OVsvo+curVEZzWf1ssl5m1RWviliWQoH9gUY7ENiPWt50PFDhNyPUb+taTadCAOgisg/4g33/WDNxjeMvIJBjRihFigc2xkzadwI7BKKvnc24IE5QP0u66QODgLsM9v0CsZhuIjGeexYqvfpk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1706539299; c=relaxed/simple;
-	bh=8EuammNvz7q0zLsv/fNHGrCFJkNOTUOv7xYPFDSydtM=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=n3q6G0GdssTDOdndd2WAziuIvCyNW4GdlPXjydIvj9KTlyz1WOIwEJsyf1FTsHmGK2nIbZK1p8TrIJjaU70FN1OsbxlJx2fy8J6KI1VANZaJOHd9leC8oATZ0YXmvulDea8CnaWShjVkM3O7j9A65Ydhlh4jJntGIIE3Pg/5BL0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=Q2RoPQbx; arc=none smtp.client-ip=209.85.208.51
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-ed1-f51.google.com with SMTP id 4fb4d7f45d1cf-55eece07a75so1582944a12.2
-        for <devicetree@vger.kernel.org>; Mon, 29 Jan 2024 06:41:37 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1706539296; x=1707144096; darn=vger.kernel.org;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=L2ZdJpKQBRnfaS4iSb7zJfUhDZu3ZFuYALkM/QlvKws=;
-        b=Q2RoPQbxoit4G+yKmPpYg1oHKcjDC0L+owtUFho6Iz1lMRuJ8rkWQogIx6a2o/Z7mU
-         NHYNyZRr1it7NvwQlxPc8G2qZohKRFQ11o9MBH5Hg/68y+ErzJANZmuhf3BzFgQRAjQq
-         N9k6dMCGXznuTi/bD2fsuQvxp1ZTGI+cTt7ssPsNdKzjspHmYMUo+Bi6q1jDL3mkGEcn
-         dxigM4A4v2CPFii+s0fCFxufVyVluknolOB0mCTRQDea5DRataaGuUoVKKAESHEMPsXa
-         r93lBJ6lyr7ylbrazc/JvhZDqzZF/gbXJEp0mXg0Lf4DRUE+XCl8SV8bTIrwUPYklpA2
-         Of1g==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1706539296; x=1707144096;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=L2ZdJpKQBRnfaS4iSb7zJfUhDZu3ZFuYALkM/QlvKws=;
-        b=dVDd7BGF17nEY9HrpRv9urhUVMjm3gPyRkLtpDna4hc3mi4XtO5FyJH5k5F4DBgHs6
-         7rGGDUcWiWEmeWb7F0EUC+Xw7hgV0MCWiHhdedjYtHm4i5tzqnCfaTo4AQ7/JGlZEMd6
-         b2NAo40IrM3sAEUb4wXIprFPlKvOsA3AAlexTVFWUYYiHlqNdPF0YC1RVRx9kxDcY/NL
-         zOcSDHAibdT0TQhdqoP3uN23TwfNyblBTcZ6uV/LRZDvoJyBNw/SmISVKUyjLbVTOO1q
-         17t/8uvVduDptRnQ6lNRR2KKnJUiqAA3vx5xRcKdEtYCsZCKrCi77NB8iV0tEwbpIzvg
-         oemA==
-X-Gm-Message-State: AOJu0Yy0Z6rnwfkaWHdVvRnsAN0zZy4PPf1gC0vqJGka3Hv5tMOr96CQ
-	X1OXKkFbB0fZozz6ET4NHlAOjosthJP1Euy8W7T5Cr3EPPMM67fm5/WtIT1E1t8=
-X-Google-Smtp-Source: AGHT+IFBJJ9FYkR0EvWij9nrzW1SQPFdCGakWRsLV2MT2ywjx8+ij9jjR3qQye1Uq3mRypIiCCKxyQ==
-X-Received: by 2002:a05:6402:3482:b0:55d:190:5a45 with SMTP id v2-20020a056402348200b0055d01905a45mr4809825edc.4.1706539296237;
-        Mon, 29 Jan 2024 06:41:36 -0800 (PST)
-Received: from [127.0.1.1] ([79.115.23.25])
-        by smtp.gmail.com with ESMTPSA id em2-20020a056402364200b0055ec051ab49sm2548415edb.6.2024.01.29.06.41.35
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 29 Jan 2024 06:41:35 -0800 (PST)
-From: Abel Vesa <abel.vesa@linaro.org>
-Date: Mon, 29 Jan 2024 16:41:20 +0200
-Subject: [PATCH RESEND v2 2/2] PCI: qcom: Add X1E80100 PCIe support
+	s=arc-20240116; t=1706540377; c=relaxed/simple;
+	bh=3l8vvbKif7wVC7bMTkrcO4TBaNj6h0QNy/ZaLjauggs=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=fjnoy9u8Zgpe8UUQWDseAVkDqojbByVcDg4M31t3bIbNUEPi4emu+hOfwKopA+HqdUkv6ZbhgBJ/VRbIRKsxjXLqwJ2kjNMuW0w87PLpAKzwkzqXktZFOv9GOwipsVuEs5CHjVVhgU55Ap+1ClQa0uXmiLgQOrRCYmUz90LDQRU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=GdHsffo5; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id AB376C433F1;
+	Mon, 29 Jan 2024 14:59:33 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1706540377;
+	bh=3l8vvbKif7wVC7bMTkrcO4TBaNj6h0QNy/ZaLjauggs=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=GdHsffo5LUizRilMlDjB1Uv2hRYUcIxYkrso2AOiHRmM0i3yI39QhMvvxkv3UQQdN
+	 RBsKGPDjuExrtQHT6Z1wAJadW+tSKB+hlfufpA9RunqHTE2pVfQGlG92hl65fbH+lL
+	 81wM8rhC2dvaJ9GR47tng6u1VMDeBXY4+52D859SzGMSaYobiIH8/aJjrQxmnHpwO4
+	 +lN63QzEjpsW/1TZK4uEsBGHH8/dazlH7OC7g77K26aDvm1kKSczNuzADp6WwcrjCj
+	 fQk2AxtQCTMe0XrJEjyV7nxbEraMsi1rXYoKHEGIy+SV8bln2uSby2RIYu7h+hiH4K
+	 8Kr7MZB9RWhEA==
+Date: Mon, 29 Jan 2024 14:59:31 +0000
+From: Conor Dooley <conor@kernel.org>
+To: William Qiu <william.qiu@starfivetech.com>
+Cc: devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	linux-riscv@lists.infradead.org, linux-can@vger.kernel.org,
+	Emil Renner Berthing <kernel@esmil.dk>,
+	Rob Herring <robh+dt@kernel.org>,
+	Wolfgang Grandegger <wg@grandegger.com>,
+	Philipp Zabel <p.zabel@pengutronix.de>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Marc Kleine-Budde <mkl@pengutronix.de>,
+	"David S . Miller" <davem@davemloft.net>,
+	Eric Dumazet <edumazet@google.com>,
+	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
+	Paul Walmsley <paul.walmsley@sifive.com>,
+	Palmer Dabbelt <palmer@dabbelt.com>,
+	Albert Ou <aou@eecs.berkeley.edu>
+Subject: Re: [PATCH v1 1/4] dt-bindings: vendor-prefixes: Add cast vendor
+ prefix
+Message-ID: <20240129-pavement-fondue-31f29ac2033c@spud>
+References: <20240129031239.17037-1-william.qiu@starfivetech.com>
+ <20240129031239.17037-2-william.qiu@starfivetech.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20240129-x1e80100-pci-v2-2-5751ab805483@linaro.org>
-References: <20240129-x1e80100-pci-v2-0-5751ab805483@linaro.org>
-In-Reply-To: <20240129-x1e80100-pci-v2-0-5751ab805483@linaro.org>
-To: Bjorn Andersson <andersson@kernel.org>, 
- Konrad Dybcio <konrad.dybcio@linaro.org>, 
- Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>, 
- Lorenzo Pieralisi <lpieralisi@kernel.org>, 
- =?utf-8?q?Krzysztof_Wilczy=C5=84ski?= <kw@linux.com>, 
- Rob Herring <robh@kernel.org>, Bjorn Helgaas <bhelgaas@google.com>, 
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, 
- Conor Dooley <conor+dt@kernel.org>
-Cc: linux-pci@vger.kernel.org, linux-arm-msm@vger.kernel.org, 
- linux-kernel@vger.kernel.org, devicetree@vger.kernel.org, 
- Abel Vesa <abel.vesa@linaro.org>
-X-Mailer: b4 0.12.4
-X-Developer-Signature: v=1; a=openpgp-sha256; l=785; i=abel.vesa@linaro.org;
- h=from:subject:message-id; bh=8EuammNvz7q0zLsv/fNHGrCFJkNOTUOv7xYPFDSydtM=;
- b=owEBbQKS/ZANAwAKARtfRMkAlRVWAcsmYgBlt7kbluuO7UPwf50lOLVC4XV28LzyrD4IabNlY
- iwFvTD2k9OJAjMEAAEKAB0WIQRO8+4RTnqPKsqn0bgbX0TJAJUVVgUCZbe5GwAKCRAbX0TJAJUV
- VqTZD/0Z04vfaJg0gch7xWARMZ5xT8UZyu84ReIKEIpAS9JM3sl8NeOdAW9bPH8cgNhJsYlmNOA
- XQi0OYZfMFfsIUR3HkSueuqdu784+I27kJQp6hJ8LqdcvhMpuw2nwAB3evbSmBWFxZ2UfkBVh4C
- icc0ibzcb/nk0urh3FH+SQx+r0RWBc/qNV7jtXdRJPdz0UFhFboSlH0nvIYT5foj+CqO0TelRJZ
- o0glORL2K2sREvvHyRAYOy0KjhnHk7CgW8EDRakzQy3aYSIUbIbdP/Gt9CzpTe1mr9J5CWD37Vb
- u1HRQQzeFnpjMUKYPShlTexaQDBiD+iNv2jPAW6ZfZ45KDMSzy8lAkOdedpebegSkRpslw7WMQ6
- rs8epzOZRF5qtq4IG03XlACpf/3Hgyj01mTe9DnIXM4Ri+5oe4JzTpW7sS+QIC2X2M5AFVE47g7
- oR2gvS79YbQe8M9P6b6DD3mPwjOWr3Udxzyw4Z4akJ84Doq2eGgym/iSk18sCtbUjwdZV66pBUQ
- 0CbX4g7lrenOiOeoYItxdX+69DLDm5QfZ2a+f/S/5gk3a+zxr++NUOG2TetnEnR5kcnw3w8lKyi
- +WCBFjGexpYNiZpZJ+669TLvFLtSxDhYLbLvZEzfELEVRpwyMfYL1KCZVMhYa2VzosP//7VStjT
- JntrtxwQmJ62nfA==
-X-Developer-Key: i=abel.vesa@linaro.org; a=openpgp;
- fpr=6AFF162D57F4223A8770EF5AF7BF214136F41FAE
+Content-Type: multipart/signed; micalg=pgp-sha256;
+	protocol="application/pgp-signature"; boundary="cogiGBIc/MCqykSX"
+Content-Disposition: inline
+In-Reply-To: <20240129031239.17037-2-william.qiu@starfivetech.com>
 
-Add the compatible and the driver data for X1E80100.
 
-Signed-off-by: Abel Vesa <abel.vesa@linaro.org>
----
- drivers/pci/controller/dwc/pcie-qcom.c | 1 +
- 1 file changed, 1 insertion(+)
+--cogiGBIc/MCqykSX
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-diff --git a/drivers/pci/controller/dwc/pcie-qcom.c b/drivers/pci/controller/dwc/pcie-qcom.c
-index 10f2d0bb86be..2a6000e457bc 100644
---- a/drivers/pci/controller/dwc/pcie-qcom.c
-+++ b/drivers/pci/controller/dwc/pcie-qcom.c
-@@ -1642,6 +1642,7 @@ static const struct of_device_id qcom_pcie_match[] = {
- 	{ .compatible = "qcom,pcie-sm8450-pcie0", .data = &cfg_1_9_0 },
- 	{ .compatible = "qcom,pcie-sm8450-pcie1", .data = &cfg_1_9_0 },
- 	{ .compatible = "qcom,pcie-sm8550", .data = &cfg_1_9_0 },
-+	{ .compatible = "qcom,pcie-x1e80100", .data = &cfg_1_9_0 },
- 	{ }
- };
- 
+On Mon, Jan 29, 2024 at 11:12:36AM +0800, William Qiu wrote:
+> Add prefix for Computer-Aided Software Technologies, Inc.
+>=20
+> Signed-off-by: William Qiu <william.qiu@starfivetech.com>
 
--- 
-2.34.1
+Acked-by: Conor Dooley <conor.dooley@microchip.com>
 
+Cheers,
+Conor.
+
+> ---
+>  Documentation/devicetree/bindings/vendor-prefixes.yaml | 2 ++
+>  1 file changed, 2 insertions(+)
+>=20
+> diff --git a/Documentation/devicetree/bindings/vendor-prefixes.yaml b/Doc=
+umentation/devicetree/bindings/vendor-prefixes.yaml
+> index 1a0dc04f1db4..b9c6ce99d24d 100644
+> --- a/Documentation/devicetree/bindings/vendor-prefixes.yaml
+> +++ b/Documentation/devicetree/bindings/vendor-prefixes.yaml
+> @@ -242,6 +242,8 @@ patternProperties:
+>      description: Capella Microsystems, Inc
+>    "^cascoda,.*":
+>      description: Cascoda, Ltd.
+> +  "^cast,.*":
+> +    description: Computer-Aided Software Technologies, Inc.
+>    "^catalyst,.*":
+>      description: Catalyst Semiconductor, Inc.
+>    "^cavium,.*":
+> --=20
+> 2.34.1
+>=20
+>=20
+> _______________________________________________
+> linux-riscv mailing list
+> linux-riscv@lists.infradead.org
+> http://lists.infradead.org/mailman/listinfo/linux-riscv
+
+--cogiGBIc/MCqykSX
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZbe9UwAKCRB4tDGHoIJi
+0vnBAP4h9TeV8gpl0bK+1Wd48qmmmXDASj7WbF2vhDFdPDrdXgEArDrOKaRpACUE
+s0brDp0M/KU4k7zpGc/9tpYV64sqgg8=
+=vPXn
+-----END PGP SIGNATURE-----
+
+--cogiGBIc/MCqykSX--
 
