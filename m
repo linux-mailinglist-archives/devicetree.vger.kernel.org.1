@@ -1,230 +1,243 @@
-Return-Path: <devicetree+bounces-36872-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-36873-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id DEC89842E97
-	for <lists+devicetree@lfdr.de>; Tue, 30 Jan 2024 22:21:31 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 375AF842EA2
+	for <lists+devicetree@lfdr.de>; Tue, 30 Jan 2024 22:28:18 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 5A7EDB23CC4
-	for <lists+devicetree@lfdr.de>; Tue, 30 Jan 2024 21:21:29 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id DB94A288B26
+	for <lists+devicetree@lfdr.de>; Tue, 30 Jan 2024 21:28:16 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 91EED762E1;
-	Tue, 30 Jan 2024 21:21:24 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4B58178B63;
+	Tue, 30 Jan 2024 21:28:06 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="XvXEFaVQ"
+	dkim=pass (1024-bit key) header.d=linux.dev header.i=@linux.dev header.b="N7+Q0xI5"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from out-182.mta1.migadu.com (out-182.mta1.migadu.com [95.215.58.182])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5EB4579DD4;
-	Tue, 30 Jan 2024 21:21:24 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 74EAF762F3
+	for <devicetree@vger.kernel.org>; Tue, 30 Jan 2024 21:28:03 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=95.215.58.182
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1706649684; cv=none; b=ZRnBK0KQKG1I7qaPdE+Fe8Oe3vGrmEfZO+hUOoHgxGEay9eERvx9GXkuZp1fFLQRGQGoDN88kMSxrrTpOYAHhE1lq/kHC45CwrPmANGi+O5LA1Yt103BJkTDmOdihAoNAxl8W/y4i4dNUYY9c0WlhTQgRj1D2PnkBawm6Puaesg=
+	t=1706650086; cv=none; b=C/XdxQiZ5WkexyEVh//AwuO0gvvU34UY0cVPoXeGBGlznNHpvwOZfFsG1VNRZ2TbrZYibhnWiMcdO+qP2aqELzz6j+oHkslyaj/Ti+Zq7FrEJZud+EXfE2QbR0D86RhcZS4VpWqvJAgG4Ydei+Zw1kzKWIC1zoMVLgob1ehKEgw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1706649684; c=relaxed/simple;
-	bh=Y/tuReEWcyTg7ukUl1CG5uOZXAV9/Ho0VW9jFuDkz4A=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=nrxznzFdkAjLrHp2ZYIFKkD8vcanWtU5j0shK8jfcVBV5L4Jur6+BRsoKxcHlDqfTgdf/7ktJGDvBjbLpTQdFsjxzJDnfsBp2Oe8wBPaRJhw+c7lVPnh5ADXWglwMzEeuxwnDsj32t2nM46OBTN/tgfbODpkIY7P1Sy1CTbGDpE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=XvXEFaVQ; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 86B1BC433C7;
-	Tue, 30 Jan 2024 21:21:22 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1706649683;
-	bh=Y/tuReEWcyTg7ukUl1CG5uOZXAV9/Ho0VW9jFuDkz4A=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=XvXEFaVQrp1uZoG8LjtpMFMlVD0/nBQqCzi6qUsCdLoqLko9oak8ZYAVxbT4Or3V+
-	 bGp0j8OMUnfPiqPzROvG0JUNG1J0upSnt5F9TXe4Wf+rhsDkAZwzNfNo7MkBMcIElm
-	 9suaaMgzyMpXdi9YzzEIzc7Q/j2oUQPVhVMtp2OEbDZuZUXfWR1L/ySRHeieARWSmU
-	 JfggYuzVsD3dQ8j6FTSdMSZS3cMpDGCzO8gxV6rUeeZBp+S4EupxpNHK3tro+s0Sno
-	 QJQ0oLz6hohhcOhOcKftxaNpltCYVuRt5yDGWM9j3uu0AItytuWgArCRrVeHrN3bGe
-	 Yjzx4VzJJXoUA==
-Date: Tue, 30 Jan 2024 15:21:20 -0600
-From: Bjorn Andersson <andersson@kernel.org>
-To: Anjelique Melendez <quic_amelende@quicinc.com>
-Cc: pavel@ucw.cz, lee@kernel.org, thierry.reding@gmail.com, 
-	robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org, 
-	agross@kernel.org, luca.weiss@fairphone.com, konrad.dybcio@linaro.org, 
-	u.kleine-koenig@pengutronix.de, quic_subbaram@quicinc.com, quic_gurus@quicinc.com, 
-	linux-leds@vger.kernel.org, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
-	linux-arm-msm@vger.kernel.org, linux-pwm@vger.kernel.org
-Subject: Re: [PATCH v8 3/7] soc: qcom: add QCOM PBS driver
-Message-ID: <ut6jbawqqdgfyoxmt76hm67rbnv67x54eho3nae2dd2szbejfb@7joy57g4i3qt>
-References: <20231221185838.28440-1-quic_amelende@quicinc.com>
- <20231221185838.28440-4-quic_amelende@quicinc.com>
+	s=arc-20240116; t=1706650086; c=relaxed/simple;
+	bh=84ankGqkKaoBwYW2QX+O8tLWxl10MB0V/XYdf4n6n3g=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=Eb9JMIs7vXQtkLxQVve/6QM8R+ZrWdroX8nK02D7CkT5D0vB8rMRp37ZujjCIwGdToa5gsr5Fiz4kFi6OjGMidT8NeL2Dj53UxOXo3IwpYHosM7yoWdjwOatPGRz39v5c0W7dMLHT6lYxBnhf1ceoCrADfV0GrdQOdC2xUEezyY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.dev; spf=pass smtp.mailfrom=linux.dev; dkim=pass (1024-bit key) header.d=linux.dev header.i=@linux.dev header.b=N7+Q0xI5; arc=none smtp.client-ip=95.215.58.182
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.dev
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linux.dev
+Message-ID: <4fe16f45-0768-4f94-8522-0f79158086bf@linux.dev>
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=linux.dev; s=key1;
+	t=1706650081;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references;
+	bh=GLriNvWcOcuVP077T4oJGiw2KnYVlSBPJfmaRmuz4QE=;
+	b=N7+Q0xI5Jv9H3QVDIG+4cj+7TvXEiDpdWBKWZlhAoTVRPb3L8J+d6Nw6OLhWGAvwVaer46
+	CQWYQJS4/2ZB5NCxp8Y32ltEdGj/nQprj07mc5ou3iIZjzrq8L2ytrLgKjj1M9glnJlRIO
+	Umo+a2MD4aigpgqgkN3aTKo2nK5MzbY=
+Date: Tue, 30 Jan 2024 21:27:54 +0000
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20231221185838.28440-4-quic_amelende@quicinc.com>
+Subject: Re: [PATCH net-next 3/3] net: macb: Add ARP support to WOL
+Content-Language: en-US
+To: Vineeth Karumanchi <vineeth.karumanchi@amd.com>,
+ nicolas.ferre@microchip.com, claudiu.beznea@tuxon.dev, davem@davemloft.net,
+ edumazet@google.com, kuba@kernel.org, pabeni@redhat.com, robh+dt@kernel.org,
+ krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org, linux@armlinux.org.uk
+Cc: netdev@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, git@amd.com
+References: <20240130104845.3995341-1-vineeth.karumanchi@amd.com>
+ <20240130104845.3995341-4-vineeth.karumanchi@amd.com>
+X-Report-Abuse: Please report any abuse attempt to abuse@migadu.com and include these headers.
+From: Vadim Fedorenko <vadim.fedorenko@linux.dev>
+In-Reply-To: <20240130104845.3995341-4-vineeth.karumanchi@amd.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Migadu-Flow: FLOW_OUT
 
-On Thu, Dec 21, 2023 at 10:58:33AM -0800, Anjelique Melendez wrote:
-> diff --git a/drivers/soc/qcom/qcom-pbs.c b/drivers/soc/qcom/qcom-pbs.c
-[..]
-> +static int qcom_pbs_wait_for_ack(struct pbs_dev *pbs, u8 bit_pos)
-> +{
-> +	int ret, retries = 2000, delay = 1100;
+On 30/01/2024 10:48, Vineeth Karumanchi wrote:
+> Add wake-on LAN support using ARP with the provision to select
+> through ethtool. Advertise wakeup capability in the probe and
+> get the supported modes from the device tree.
+> 
+> Re-order MACB_WOL_<> macros for ease of extension.
+> Add ARP support configurable through ethtool, "wolopts" variable in
+> struct macb contains the current WOL options configured through ethtool.
+> 
+> For WOL via ARP, ensure the IP address is assigned and
+> report an error otherwise.
+> 
+> Co-developed-by: Harini Katakam <harini.katakam@amd.com>
+> Signed-off-by: Harini Katakam <harini.katakam@amd.com>
+> Signed-off-by: Vineeth Karumanchi <vineeth.karumanchi@amd.com>
+> ---
+>   drivers/net/ethernet/cadence/macb.h      |  1 +
+>   drivers/net/ethernet/cadence/macb_main.c | 54 ++++++++++++++++++------
+>   2 files changed, 43 insertions(+), 12 deletions(-)
+> 
+> diff --git a/drivers/net/ethernet/cadence/macb.h b/drivers/net/ethernet/cadence/macb.h
+> index f68ff163aa18..db7e95dc56e3 100644
+> --- a/drivers/net/ethernet/cadence/macb.h
+> +++ b/drivers/net/ethernet/cadence/macb.h
+> @@ -1306,6 +1306,7 @@ struct macb {
+>   	unsigned int		jumbo_max_len;
+>   
+>   	u32			wol;
+> +	u32			wolopts;
+>   
+>   	/* holds value of rx watermark value for pbuf_rxcutthru register */
+>   	u32			rx_watermark;
+> diff --git a/drivers/net/ethernet/cadence/macb_main.c b/drivers/net/ethernet/cadence/macb_main.c
+> index 47cbea58e6c3..cbe1a9de692a 100644
+> --- a/drivers/net/ethernet/cadence/macb_main.c
+> +++ b/drivers/net/ethernet/cadence/macb_main.c
+> @@ -38,6 +38,7 @@
+>   #include <linux/ptp_classify.h>
+>   #include <linux/reset.h>
+>   #include <linux/firmware/xlnx-zynqmp.h>
+> +#include <linux/inetdevice.h>
+>   #include "macb.h"
+>   
+>   /* This structure is only used for MACB on SiFive FU540 devices */
+> @@ -84,8 +85,9 @@ struct sifive_fu540_macb_mgmt {
+>   #define GEM_MTU_MIN_SIZE	ETH_MIN_MTU
+>   #define MACB_NETIF_LSO		NETIF_F_TSO
+>   
+> -#define MACB_WOL_HAS_MAGIC_PACKET	(0x1 << 0)
+> -#define MACB_WOL_ENABLED		(0x1 << 1)
+> +#define MACB_WOL_ENABLED		(0x1 << 0)
+> +#define MACB_WOL_HAS_MAGIC_PACKET	(0x1 << 1)
+> +#define MACB_WOL_HAS_ARP_PACKET	(0x1 << 2)
+>   
+>   #define HS_SPEED_10000M			4
+>   #define MACB_SERDES_RATE_10G		1
+> @@ -3276,19 +3278,21 @@ static void macb_get_wol(struct net_device *netdev, struct ethtool_wolinfo *wol)
+>   {
+>   	struct macb *bp = netdev_priv(netdev);
+>   
+> -	if (bp->wol & MACB_WOL_HAS_MAGIC_PACKET) {
+> +	if (bp->wol & (MACB_WOL_HAS_MAGIC_PACKET | MACB_WOL_HAS_ARP_PACKET))
+>   		phylink_ethtool_get_wol(bp->phylink, wol);
+> +	if (bp->wol & MACB_WOL_HAS_MAGIC_PACKET)
+>   		wol->supported |= WAKE_MAGIC;
+> -
+> -		if (bp->wol & MACB_WOL_ENABLED)
+> -			wol->wolopts |= WAKE_MAGIC;
+> -	}
+> +	if (bp->wol & MACB_WOL_HAS_ARP_PACKET)
+> +		wol->supported |= WAKE_ARP;
+> +	/* Pass wolopts to ethtool */
+> +	wol->wolopts = bp->wolopts;
+>   }
+>   
+>   static int macb_set_wol(struct net_device *netdev, struct ethtool_wolinfo *wol)
+>   {
+>   	struct macb *bp = netdev_priv(netdev);
+>   	int ret;
+> +	bp->wolopts = 0;
 
-retries and delay are not variable, please use defines instead.
+as there will be another spin, could you please use reverse xmas-tree order.
 
-> +	unsigned int val;
+>   	/* Pass the order to phylink layer */
+>   	ret = phylink_ethtool_set_wol(bp->phylink, wol);
+> @@ -3298,11 +3302,16 @@ static int macb_set_wol(struct net_device *netdev, struct ethtool_wolinfo *wol)
+>   	if (!ret || ret != -EOPNOTSUPP)
+>   		return ret;
+>   
+> -	if (!(bp->wol & MACB_WOL_HAS_MAGIC_PACKET) ||
+> -	    (wol->wolopts & ~WAKE_MAGIC))
+> +	if (!(bp->wol & (MACB_WOL_HAS_MAGIC_PACKET | MACB_WOL_HAS_ARP_PACKET)) ||
+> +	    (wol->wolopts & ~(WAKE_MAGIC | WAKE_ARP)))
+>   		return -EOPNOTSUPP;
+>   
+>   	if (wol->wolopts & WAKE_MAGIC)
+> +		bp->wolopts |= WAKE_MAGIC;
+> +	if (wol->wolopts & WAKE_ARP)
+> +		bp->wolopts |= WAKE_ARP;
 > +
-> +	ret = regmap_read_poll_timeout(pbs->regmap,  pbs->base + PBS_CLIENT_SCRATCH2,
-> +					val, val & BIT(bit_pos), delay, delay * retries);
+> +	if (bp->wolopts)
+>   		bp->wol |= MACB_WOL_ENABLED;
+>   	else
+>   		bp->wol &= ~MACB_WOL_ENABLED;
+> @@ -5086,7 +5095,10 @@ static int macb_probe(struct platform_device *pdev)
+>   	bp->wol = 0;
+>   	if (of_property_read_bool(np, "magic-packet"))
+>   		bp->wol |= MACB_WOL_HAS_MAGIC_PACKET;
+> -	device_set_wakeup_capable(&pdev->dev, bp->wol & MACB_WOL_HAS_MAGIC_PACKET);
+> +	if (of_property_read_bool(np, "wol-arp-packet"))
+> +		bp->wol |= MACB_WOL_HAS_ARP_PACKET;
 > +
-> +	if (ret < 0) {
-> +		dev_err(pbs->dev, "Timeout for PBS ACK/NACK for bit %u\n", bit_pos);
-> +		return -ETIMEDOUT;
-> +	}
+> +	device_set_wakeup_capable(&pdev->dev, (bp->wol) ? true : false);
+>   
+>   	bp->usrio = macb_config->usrio;
+>   
+> @@ -5243,6 +5255,7 @@ static int __maybe_unused macb_suspend(struct device *dev)
+>   	struct net_device *netdev = dev_get_drvdata(dev);
+>   	struct macb *bp = netdev_priv(netdev);
+>   	struct macb_queue *queue;
+> +	struct in_ifaddr *ifa;
+>   	unsigned long flags;
+>   	unsigned int q;
+>   	u32 ctrlmask;
+> @@ -5255,6 +5268,12 @@ static int __maybe_unused macb_suspend(struct device *dev)
+>   		return 0;
+>   
+>   	if (bp->wol & MACB_WOL_ENABLED) {
+> +		/* Check for IP address in WOL ARP mode */
+> +		ifa = rtnl_dereference(bp->dev->ip_ptr->ifa_list);
+> +		if ((bp->wolopts & WAKE_ARP) && !ifa) {
+> +			netdev_err(netdev, "IP address not assigned\n");
+> +			return -EOPNOTSUPP;
+> +		}
+>   		spin_lock_irqsave(&bp->lock, flags);
+>   
+>   		/* Disable Tx and Rx engines before  disabling the queues,
+> @@ -5291,6 +5310,17 @@ static int __maybe_unused macb_suspend(struct device *dev)
+>   			if (bp->caps & MACB_CAPS_ISR_CLEAR_ON_WRITE)
+>   				queue_writel(queue, ISR, -1);
+>   		}
 > +
-> +	if (val == PBS_CLIENT_SCRATCH2_ERROR) {
-> +		ret = regmap_write(pbs->regmap, pbs->base + PBS_CLIENT_SCRATCH2, 0);
-> +		dev_err(pbs->dev, "NACK from PBS for bit %u\n", bit_pos);
-> +		return -EINVAL;
-> +	}
+> +		ctrlmask = 0;
+> +		if (bp->wolopts & WAKE_MAGIC)
+> +			ctrlmask = MACB_BIT(MAG);
+> +		if (bp->wolopts & WAKE_ARP) {
+> +			ctrlmask |= MACB_BIT(ARP);
+> +			/* write IP address into register */
+> +			ctrlmask |= cpu_to_be32p(&ifa->ifa_local)
+> +						& GENMASK(MACB_IP_SIZE - 1, 0);
+> +		}
 > +
-> +	dev_dbg(pbs->dev, "PBS sequence for bit %u executed!\n", bit_pos);
-> +	return 0;
-> +}
-> +
-> +/**
-> + * qcom_pbs_trigger_event() - Trigger the PBS RAM sequence
-> + * @pbs: Pointer to PBS device
-> + * @bitmap: bitmap
-> + *
-> + * This function is used to trigger the PBS RAM sequence to be
-> + * executed by the client driver.
-> + *
-> + * The PBS trigger sequence involves
-> + * 1. setting the PBS sequence bit in PBS_CLIENT_SCRATCH1
-> + * 2. Initiating the SW PBS trigger
-> + * 3. Checking the equivalent bit in PBS_CLIENT_SCRATCH2 for the
-> + *    completion of the sequence.
-> + * 4. If PBS_CLIENT_SCRATCH2 == 0xFF, the PBS sequence failed to execute
-> + *
-> + * Returns: 0 on success, < 0 on failure
+>   		/* Change interrupt handler and
+>   		 * Enable WoL IRQ on queue 0
+>   		 */
+> @@ -5306,7 +5336,7 @@ static int __maybe_unused macb_suspend(struct device *dev)
+>   				return err;
+>   			}
+>   			queue_writel(bp->queues, IER, GEM_BIT(WOL));
+> -			gem_writel(bp, WOL, MACB_BIT(MAG));
+> +			gem_writel(bp, WOL, ctrlmask);
+>   		} else {
+>   			err = devm_request_irq(dev, bp->queues[0].irq, macb_wol_interrupt,
+>   					       IRQF_SHARED, netdev->name, bp->queues);
+> @@ -5318,7 +5348,7 @@ static int __maybe_unused macb_suspend(struct device *dev)
+>   				return err;
+>   			}
+>   			queue_writel(bp->queues, IER, MACB_BIT(WOL));
+> -			macb_writel(bp, WOL, MACB_BIT(MAG));
+> +			macb_writel(bp, WOL, ctrlmask);
+>   		}
+>   		spin_unlock_irqrestore(&bp->lock, flags);
+>   
 
-Return: without the 's' is the appropriate form here.
-
-> + */
-> +int qcom_pbs_trigger_event(struct pbs_dev *pbs, u8 bitmap)
-> +{
-> +	unsigned int val;
-> +	u16 bit_pos;
-> +	int ret;
-> +
-> +	if (!bitmap) {
-> +		dev_err(pbs->dev, "Invalid bitmap passed by client\n");
-
-No one is going to spot that hidden in the kernel log, and if someone
-sees it it does not give an indication to which client it is that's
-broken (if there are multiple clients...)
-
-Instead do:
-
-	if (WARN_ON(!bitmap))
-		return -EINVAL;
-
-> +		return -EINVAL;
-> +	}
-> +
-> +	if (IS_ERR_OR_NULL(pbs))
-> +		return -EINVAL;
-> +
-> +	mutex_lock(&pbs->lock);
-> +	ret = regmap_read(pbs->regmap, pbs->base + PBS_CLIENT_SCRATCH2, &val);
-> +	if (ret < 0)
-> +		goto out;
-> +
-> +	if (val == PBS_CLIENT_SCRATCH2_ERROR) {
-> +		/* PBS error - clear SCRATCH2 register */
-> +		ret = regmap_write(pbs->regmap, pbs->base + PBS_CLIENT_SCRATCH2, 0);
-> +		if (ret < 0)
-> +			goto out;
-> +	}
-> +
-> +	for (bit_pos = 0; bit_pos < 8; bit_pos++) {
-> +		if (!(bitmap & BIT(bit_pos)))
-> +			continue;
-> +
-> +		/* Clear the PBS sequence bit position */
-> +		ret = regmap_update_bits(pbs->regmap, pbs->base + PBS_CLIENT_SCRATCH2,
-> +					BIT(bit_pos), 0);
-> +		if (ret < 0)
-> +			goto error;
-> +
-> +		/* Set the PBS sequence bit position */
-> +		ret = regmap_update_bits(pbs->regmap, pbs->base + PBS_CLIENT_SCRATCH1,
-> +					BIT(bit_pos), BIT(bit_pos));
-> +		if (ret < 0)
-> +			goto error;
-> +
-> +		/* Initiate the SW trigger */
-> +		ret = regmap_update_bits(pbs->regmap, pbs->base + PBS_CLIENT_TRIG_CTL,
-> +					PBS_CLIENT_SW_TRIG_BIT, PBS_CLIENT_SW_TRIG_BIT);
-> +		if (ret < 0)
-> +			goto error;
-> +
-> +		ret = qcom_pbs_wait_for_ack(pbs, bit_pos);
-> +		if (ret < 0)
-> +			goto error;
-
-In the case that this fails, you're jumping to error, which clears all
-of SCRATCH1, but you're leaving SCRATCH2 untouched.
-
-> +
-> +		/* Clear the PBS sequence bit position */
-> +		ret = regmap_update_bits(pbs->regmap, pbs->base + PBS_CLIENT_SCRATCH1,
-> +					BIT(bit_pos), 0);
-> +		if (ret < 0)
-> +			goto error;
-
-Does it make sense to handle this error by jumping to error and trying
-to clear it once more - while leaving SCRATCH2?
-
-Perhaps you should just ignore the errors from clearing SCRATCH1 and
-SCRATCH2? You where able to trigger the PBS and you got your ack...
-
-> +
-> +		/* Clear the PBS sequence bit position */
-> +		ret = regmap_update_bits(pbs->regmap, pbs->base + PBS_CLIENT_SCRATCH2,
-> +					BIT(bit_pos), 0);
-> +		if (ret < 0)
-> +			goto error;
-> +	}
-> +
-> +error:
-
-We're passing "error" in the successful case as well, please name this
-"out_clear_scratch1" (or something) instead, to not confuse the reader.
-
-> +	/* Clear all the requested bitmap */
-> +	ret = regmap_update_bits(pbs->regmap, pbs->base + PBS_CLIENT_SCRATCH1, bitmap, 0);
-> +
-> +out:
-> +	mutex_unlock(&pbs->lock);
-> +
-> +	return ret;
-> +}
-> +EXPORT_SYMBOL_GPL(qcom_pbs_trigger_event);
-> +
-> +/**
-> + * get_pbs_client_device() - Get the PBS device used by client
-> + * @dev: Client device
-> + *
-> + * This function is used to get the PBS device that is being
-> + * used by the client.
-> + *
-> + * Returns: pbs_dev on success, ERR_PTR on failure
-
-Return:
-
-Regards,
-Bjorn
 
