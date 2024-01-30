@@ -1,146 +1,149 @@
-Return-Path: <devicetree+bounces-36547-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-36548-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 622B8841C88
-	for <lists+devicetree@lfdr.de>; Tue, 30 Jan 2024 08:25:52 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 645EA841C99
+	for <lists+devicetree@lfdr.de>; Tue, 30 Jan 2024 08:31:52 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 61E55B243ED
-	for <lists+devicetree@lfdr.de>; Tue, 30 Jan 2024 07:25:49 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 2030D28A24F
+	for <lists+devicetree@lfdr.de>; Tue, 30 Jan 2024 07:31:51 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 160AA4D583;
-	Tue, 30 Jan 2024 07:25:44 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D922C4F1F3;
+	Tue, 30 Jan 2024 07:31:47 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="ZubvYpTB"
+	dkim=pass (2048-bit key) header.d=iki.fi header.i=@iki.fi header.b="QpdNJnLX"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+Received: from lahtoruutu.iki.fi (lahtoruutu.iki.fi [185.185.170.37])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 70D344C610;
-	Tue, 30 Jan 2024 07:25:42 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1706599544; cv=none; b=Yz1KVHyvrNpWHi5nvHjAzN0fcOGDCXqKBoQL0QmzukcEeIn5jVUXe78RlYm+Z3yJcnj72qAxyX46RGow5nx/+YWVw984eJNJKF8WHnH7sqjnIuANOuaJD+UrTbhxToz4RUw2lDSD3/BKBdIkGXdQsTNqjQv1J3MT35TJBWje938=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1706599544; c=relaxed/simple;
-	bh=MRA41ka2nVnCbPPGCvn7oFWP5clgArfJ49C9bC+V1/c=;
-	h=Message-ID:Date:MIME-Version:Subject:From:To:CC:References:
-	 In-Reply-To:Content-Type; b=TGVV5Jer0Y6toqtAEorPp9R1+DajX55oXFsLuRyrCy8OnDWrqHCwTLplIVE6COEHjPjMygsstzfWhWFpCFcunABXP97HcyTyoAd6LtUHt0wtXB/cysQwIXTRqMD/8lFLVx8UUd3N/7Wafq3aag90WnSM13G9s7a1FcbEhgPQJoI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=ZubvYpTB; arc=none smtp.client-ip=205.220.180.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
-Received: from pps.filterd (m0279871.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.17.1.24/8.17.1.24) with ESMTP id 40U58bYQ019343;
-	Tue, 30 Jan 2024 07:25:36 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
-	message-id:date:mime-version:subject:from:to:cc:references
-	:in-reply-to:content-type:content-transfer-encoding; s=
-	qcppdkim1; bh=oTne4YMLOus8vGIzuyLPoBXkJ+ZLYaFNZ+RfBayVdyk=; b=Zu
-	bvYpTB4kwNwB0/Kwja0fxCcrr7UrA6OAM2q6cEBk2WBg/FtIPVvTPftDry5lDKS3
-	D6C6Tuiqjeqy4HR4UlBxZb32xdqXUZWt3PCxaiqFHe3ouoXPGYGB4lGIdE1EAT2b
-	t3gwvtLI+JVG2SsBr8LQsuncYkiWPHoDYv3Jvk+GMdtSSNTmDPRZ9ajToVjfjoQq
-	HevosAsMK8/24dCFgDWQ57gYcrerU29DanZYFwvtgOOFxahKCQyeDVO1HZxgu/lD
-	2aXlGxJrPwiwrJO0j7o5wrxrJJ132FWkIQTFtwgCpZ4Y58qYDbo2fjaa4NTbXILX
-	o1Q9BTFKvUtAjn5nRqKg==
-Received: from nalasppmta01.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3vxtp30705-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Tue, 30 Jan 2024 07:25:35 +0000 (GMT)
-Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
-	by NALASPPMTA01.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 40U7PYiF017742
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Tue, 30 Jan 2024 07:25:34 GMT
-Received: from [10.239.132.204] (10.80.80.8) by nalasex01a.na.qualcomm.com
- (10.47.209.196) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1118.40; Mon, 29 Jan
- 2024 23:25:29 -0800
-Message-ID: <c17dafd2-db89-4fe2-8e98-2a031f7237c2@quicinc.com>
-Date: Tue, 30 Jan 2024 15:25:26 +0800
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BB02354659;
+	Tue, 30 Jan 2024 07:31:44 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=pass smtp.client-ip=185.185.170.37
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1706599907; cv=pass; b=BVWRV3r0Siv0Jrn2NIYYmM9TC3IiOP/L+UW3bP2jS3UcUIBG8sW9s/LiHvMwdQs43M1f+RBjEy/rR8ty5JRM9iieFP9yYdaitzI34UZHvquYR5EWZkdC0cnnLaUdizGObz+iqVvspbi16jo+6pT7AwJs1iXI9as0GZ/gaQ8sK04=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1706599907; c=relaxed/simple;
+	bh=M9spN+i39/nbtnUNp8PNM/LRv1jQ5j007Zfc/C40vaM=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=uvMp3sMHhEQZlaCWZw5GohmJaf/R5JWTmBvcNYFJLCbt7jkn5yL6el1vQvzAdpYJk1vM0wWyi0buHI7arL1Cfg046sAycoEGVtsRHla0tbHAG72P0DsLM6om+IqQ55u5OaJvo+HDupiOHfMVem2fGm6usjX+mKkOv+DlSQTJOR8=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=iki.fi; spf=pass smtp.mailfrom=iki.fi; dkim=pass (2048-bit key) header.d=iki.fi header.i=@iki.fi header.b=QpdNJnLX; arc=pass smtp.client-ip=185.185.170.37
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=iki.fi
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=iki.fi
+Received: from hillosipuli.retiisi.eu (80-248-247-191.cust.suomicom.net [80.248.247.191])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
+	(No client certificate requested)
+	(Authenticated sender: sailus)
+	by lahtoruutu.iki.fi (Postfix) with ESMTPSA id 4TPH0s07y0z49Pwl;
+	Tue, 30 Jan 2024 09:31:40 +0200 (EET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=iki.fi; s=lahtoruutu;
+	t=1706599902;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 in-reply-to:in-reply-to:references:references;
+	bh=kiNee71ztfk6wXe9Rbz+IdTHsbBiUwHJoXFPCx0dNaU=;
+	b=QpdNJnLX6VjSx7WjU8D0wiKI0MFACR/KXAN986V2m7PiyS61vq2PcCyqErPea6jTZrV5Ki
+	KG5Ky41FakvPaZqn7AQ2LqvxLssnfq2nTJdLenhX9KU1Byxfdh14B0kp/KedRVDR8djk9f
+	k5Z1VsPHkP4FJy+TTZDXJ2BKzKGzXYSe9po+YBbxkxtdyozbhFPJuRHuaO+SkMdMcVP8QR
+	yCC/vi4z0I/FiIXDsULVFWv7m4PkD2W136+XWzhDrSpyrJaFhmE3ur1ByR3TLkGNp0axSr
+	/SXnzIY217NB/+KH+J32hyw8/0Bo3O+AM7ovWu1q7+RVon2otw1hRAHPT9npfA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=iki.fi;
+	s=lahtoruutu; t=1706599902;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 in-reply-to:in-reply-to:references:references;
+	bh=kiNee71ztfk6wXe9Rbz+IdTHsbBiUwHJoXFPCx0dNaU=;
+	b=aixnvEw0w8CPbo4tmknZv2BEWJvsS5+T8i57IWyL5hORQv61Pc8Cmj4IP/NqFW8YbNE2QM
+	mkRFOHWKNMNLlYfFpI74t2R0r1EZXdHCfgItpCKQzQXzagxYtdQx0wmwQXzYCg9yiarcz6
+	7fdiFj6hPPBlLOkk+OPD9flBq2fErmxlg27HSXaGuk27fSYmnmqBlXNWxPrSpZT+t6m6rs
+	QueOikqOMcuWog4FDmxQk4WFxXeZ6cul8kUN/TMwz+wl3BdcL3TYn78gYcB5JFBet8vKRf
+	wE+1SaPogQE8M6mDfsgONuwYhHS53NSaJCssS99WOSCy6b5e5EffbMS+Fai3Rw==
+ARC-Seal: i=1; s=lahtoruutu; d=iki.fi; t=1706599902; a=rsa-sha256;
+	cv=none;
+	b=axbhd8Yt1Vdo527V2frPRvypu/SVngz+SvaBTOXdCoEaRZ79gJOOEvIjSogDCRzvaxLGaG
+	5CIIi3pjMpsjcFf677ichTDNn+12aKogpPJHc3gIgqn+BMTDmZ0V9BWHaGKaihDspmytgC
+	hssb4IVuKhtHqVmlnZNw6RjUhtPCHe3tz3tFZNttp2h7wKGxDMhGtlw/kDmJgE0n9C0s5v
+	M2/JTtfbkDGPN5z8nzAewgjtH/PCO/sk1fyGGTtWymqFjzD2nDgQcv6fNxvdRAuuQe8tXL
+	0QvxpwaDTpn/F9Dzs4gLqYEVbs01AOwipfUhUdTITd0Tvufs+8SGGD12whmbrw==
+ARC-Authentication-Results: i=1;
+	ORIGINATING;
+	auth=pass smtp.auth=sailus smtp.mailfrom=sakari.ailus@iki.fi
+Received: from valkosipuli.retiisi.eu (valkosipuli.localdomain [192.168.4.2])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange ECDHE (prime256v1) server-signature RSA-PSS (4096 bits) server-digest SHA256)
+	(No client certificate requested)
+	by hillosipuli.retiisi.eu (Postfix) with ESMTPS id A2C3B634C93;
+	Tue, 30 Jan 2024 09:31:39 +0200 (EET)
+Date: Tue, 30 Jan 2024 07:31:39 +0000
+From: Sakari Ailus <sakari.ailus@iki.fi>
+To: Kuninori Morimoto <kuninori.morimoto.gx@renesas.com>
+Cc: Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
+	=?iso-8859-1?Q?=22Uwe_Kleine-K=C3=B6nig=22?= <u.kleine-koenig@pengutronix.de>,
+	Daniel Vetter <daniel@ffwll.ch>, David Airlie <airlied@gmail.com>,
+	Frank Rowand <frowand.list@gmail.com>, Helge Deller <deller@gmx.de>,
+	Jaroslav Kysela <perex@perex.cz>,
+	Liam Girdwood <lgirdwood@gmail.com>,
+	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+	Mark Brown <broonie@kernel.org>,
+	Mauro Carvalho Chehab <mchehab@kernel.org>,
+	Maxime Ripard <mripard@kernel.org>,
+	Michal Simek <michal.simek@amd.com>,
+	Rob Herring <robh+dt@kernel.org>,
+	Saravana Kannan <saravanak@google.com>,
+	Takashi Iwai <tiwai@suse.com>,
+	Thomas Zimmermann <tzimmermann@suse.de>,
+	Tomi Valkeinen <tomi.valkeinen@ideasonboard.com>,
+	alsa-devel@alsa-project.org, devicetree@vger.kernel.org,
+	linux-fbdev@vger.kernel.org, linux-media@vger.kernel.org,
+	linux-sound@vger.kernel.org
+Subject: Re: [PATCH v2 00/13] of: property: add port base loop
+Message-ID: <Zbil22dm9x2ZudJC@valkosipuli.retiisi.eu>
+References: <87fryhklhb.wl-kuninori.morimoto.gx@renesas.com>
+ <20240129122736.GC8131@pendragon.ideasonboard.com>
+ <ZbeoPBvGJlaJco_J@valkosipuli.retiisi.eu>
+ <87zfwnirps.wl-kuninori.morimoto.gx@renesas.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v4 6/6] arm64: dts: qcom: aim300: add AIM300 AIoT
-From: Tengfei Fan <quic_tengfan@quicinc.com>
-To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        <andersson@kernel.org>, <konrad.dybcio@linaro.org>,
-        <robh+dt@kernel.org>, <krzysztof.kozlowski+dt@linaro.org>,
-        <conor+dt@kernel.org>, <dmitry.baryshkov@linaro.org>
-CC: <linux-arm-msm@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>, <kernel@quicinc.com>,
-        Qiang Yu
-	<quic_qianyu@quicinc.com>,
-        Ziyue Zhang <quic_ziyuzhan@quicinc.com>
-References: <20240119100621.11788-1-quic_tengfan@quicinc.com>
- <20240119100621.11788-7-quic_tengfan@quicinc.com>
- <d3ef45cf-2de8-4f5b-8857-62d1996f3f58@linaro.org>
- <842bf6ad-46e1-43d8-86be-79ab0f49710b@quicinc.com>
-In-Reply-To: <842bf6ad-46e1-43d8-86be-79ab0f49710b@quicinc.com>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 8bit
-X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
- nalasex01a.na.qualcomm.com (10.47.209.196)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-ORIG-GUID: ue10aO-2c8EtjIE0C8dO9fOw6FOoVxOi
-X-Proofpoint-GUID: ue10aO-2c8EtjIE0C8dO9fOw6FOoVxOi
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.272,Aquarius:18.0.1011,Hydra:6.0.619,FMLib:17.11.176.26
- definitions=2024-01-30_02,2024-01-29_01,2023-05-22_02
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 suspectscore=0 phishscore=0
- spamscore=0 clxscore=1015 lowpriorityscore=0 adultscore=0 bulkscore=0
- mlxlogscore=361 malwarescore=0 mlxscore=0 impostorscore=0
- priorityscore=1501 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.19.0-2401190000 definitions=main-2401300052
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <87zfwnirps.wl-kuninori.morimoto.gx@renesas.com>
 
+Hi Morimoto-san,
 
+On Tue, Jan 30, 2024 at 12:34:55AM +0000, Kuninori Morimoto wrote:
+> 
+> Hi Laurent, Sakari
+> 
+> Thank you for your review
+> 
+> > > The strategy sounds good to me. However, I'm wondering if you shouldn't
+> > > take one more step in the core, and implement these as fwnode
+> > > operations. Or is there a reason why OF is special, and iterating over
+> > > ports would be useful for drivers on OF systems but not on other types
+> > > of systems ?
+> > 
+> > I'd prefer that, too.
+> 
+> It is very easy reason, because I'm not fwnode user ;P
+> I'm not familiar with fwnode, but in my quick check, it seems it is easy
+> to expand fwnode side functions if of_graph side function exist ?
 
-On 1/29/2024 4:18 PM, Tengfei Fan wrote:
-> 
-> 
-> On 1/29/2024 4:09 PM, Krzysztof Kozlowski wrote:
->> On 19/01/2024 11:06, Tengfei Fan wrote:
->>> Add AIM300 AIoT board DTS support, including usb, serial, PCIe, mpss,
->>> adsp, cdsp and sound card functions support.
->>>
->>
->> ...
->>
->>> +
->>> +    sound {
->>> +        compatible = "qcom,sm8550-sndcard", "qcom,sm8450-sndcard";
->>> +        model = "AIM300-AIOT";
->>> +        audio-routing = "SpkrLeft IN", "WSA_SPK1 OUT",
->>> +                "SpkrRight IN", "WSA_SPK2 OUT",
->>> +                "IN1_HPHL", "HPHL_OUT",
->>> +                "IN2_HPHR", "HPHR_OUT",
->>> +                "AMIC2", "MIC BIAS2",
->>> +                "VA DMIC0", "MIC BIAS1",
->>> +                "VA DMIC1", "MIC BIAS1",
->>> +                "VA DMIC2", "MIC BIAS3",
->>> +                "TX DMIC0", "MIC BIAS1",
->>> +                "TX DMIC1", "MIC BIAS2",
->>> +                "TX DMIC2", "MIC BIAS3",
->>> +                "TX SWR_ADC1", "ADC2_OUTPUT";
->>
->> This should be probably TX SWR_INPUT1.
->>
->> Best regards,
->> Krzysztof
->>
-> 
-> I will double check this with related team and I will update this.
-> 
-
-I will apply "TX SWR_INPUT1" on audio-routing node in the next patch 
-series.
+That would be one way to do that, yes, but I suggested using the existing
+endpoint iterators as that would keep the firmware specific implementation
+more simple. The (slight) drawback is that for each node returned, you'd
+need to check its parent (i.e. port node) is the same as the port you're
+interested in. The alternative may involve reworking the struct
+fwnode_operations interface somewhat, including swnode, DT and ACPI
+implementations.
 
 -- 
-Thx and BRs,
-Tengfei Fan
+Kind regards,
+
+Sakari Ailus
 
