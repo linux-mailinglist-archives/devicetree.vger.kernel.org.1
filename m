@@ -1,272 +1,283 @@
-Return-Path: <devicetree+bounces-36744-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-36745-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4D4E6842838
-	for <lists+devicetree@lfdr.de>; Tue, 30 Jan 2024 16:41:41 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0FF58842850
+	for <lists+devicetree@lfdr.de>; Tue, 30 Jan 2024 16:45:58 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id A14A8B26C57
-	for <lists+devicetree@lfdr.de>; Tue, 30 Jan 2024 15:41:38 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 941631F257B7
+	for <lists+devicetree@lfdr.de>; Tue, 30 Jan 2024 15:45:57 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id F34D486AEB;
-	Tue, 30 Jan 2024 15:41:02 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id BAF0382D7B;
+	Tue, 30 Jan 2024 15:45:51 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="jNjLsm/s"
+	dkim=pass (2048-bit key) header.d=savoirfairelinux.com header.i=@savoirfairelinux.com header.b="M26pTAT9"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from mail.savoirfairelinux.com (mail.savoirfairelinux.com [208.88.110.44])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CCA7C82D99;
-	Tue, 30 Jan 2024 15:41:02 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C03E7EAC7;
+	Tue, 30 Jan 2024 15:45:47 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=208.88.110.44
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1706629262; cv=none; b=bk2H48IvrvJor5m3Qs4SLtKcpZ/nIMJleOcqAMwMnAMw94kPFlSvEn1U/92wLO31TGz4akvqvRA2cGd7K5Sa27+33xJ5xWx0hlwEus6wF877UbIP6IhjNKwBlYWieK3uYdfJQxtjKAvlP2yBmQ54paAmta6YHlpHjfxcQv4lyfI=
+	t=1706629551; cv=none; b=ut9aB9ZpSnmXhujLv4VfAP1sMJsm9siVITmwYcI6koL9siMDGna7ngfMOygO8XQ3juUUwALcXPI5rYxRIRbZ/dYjEG5dhesBtscq8eQOupzOZO75f0cUz/reisffl+UWo/d+P8RAbo1+NwbmL4i8oIfAQcZ82ZKx5BaQlzo2U9c=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1706629262; c=relaxed/simple;
-	bh=ECHEowaol8e/oEy89OA54f0TFxnBzEohQY0MKdVwJU4=;
-	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
-	 MIME-Version; b=lJQV7NS8SarZtwZSxHUFHowNXuzqxHeKKLpHAv1Ctgc7+ykq1JaueAkUqSEdGvQ5UITvJIncXgV3bGVR7Pl7ssUKpc+hkmNjcakd8dHXHnUOXgmMN+szUWWQpBoLfnwgQG1U8RtmrPh/DoJxEOBaMznqd6tBdN0hsSRyxcZ+sGM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=jNjLsm/s; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 6B229C433A6;
-	Tue, 30 Jan 2024 15:40:59 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1706629262;
-	bh=ECHEowaol8e/oEy89OA54f0TFxnBzEohQY0MKdVwJU4=;
-	h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-	b=jNjLsm/s1DL6uEw0f+crauj4nscywOYpXaoQDmOXEoDlBef/agEVFUdWVyUq6clvD
-	 /dfJZIUf0gznuZd7uUwTWSan8wiSbwlAfZ2guMH6P0AsI7kWhGQOo+cDoZWlsaM5bm
-	 Brvxmg5lzurGjw2oVQPIHLnvsZCeFzPm9qdsuTPP49iRR7pez55BAg61GoTAg/QzDr
-	 OsgBxtmH1/pP/aplJYrZIJF7kNqFeJ9O0QMuNMIEeeYLETtSEKMJoYoGQi4nKbnOey
-	 w7TZTodSZk0xYCyDgzOTfkogJjg7dHdNOZ1LI2VWqI8p5VwZjSiOMGDg0qQyWiwA16
-	 4CZufpHcefpag==
-From: Roger Quadros <rogerq@kernel.org>
-To: nm@ti.com,
-	vigneshr@ti.com,
-	lee@kernel.org
-Cc: afd@ti.com,
-	kristo@kernel.org,
-	robh+dt@kernel.org,
-	krzysztof.kozlowski+dt@linaro.org,
-	conor+dt@kernel.org,
-	srk@ti.com,
-	linux-arm-kernel@lists.infradead.org,
-	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	Roger Quadros <rogerq@kernel.org>
-Subject: [PATCH v2 3/3] arm64: dts: ti: k3-am62p: add the USB sub-system
-Date: Tue, 30 Jan 2024 17:40:35 +0200
-Message-Id: <20240130154035.6901-4-rogerq@kernel.org>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20240130154035.6901-1-rogerq@kernel.org>
-References: <20240130154035.6901-1-rogerq@kernel.org>
+	s=arc-20240116; t=1706629551; c=relaxed/simple;
+	bh=FTaGDNHcCeLLBNj/d8cQDz2yks44PUV9sCuyE0dIX+o=;
+	h=Date:From:To:Cc:Message-ID:In-Reply-To:References:Subject:
+	 MIME-Version:Content-Type; b=JlF8XRy6yuuuWlnEccMiQiVeLDyj/aBHfaoPx6kQ4+JqzklU+bfB7otYyQsQppeTMpQx5Z9fX9NmQKlOwkg1J/A+7CclUIM7Fu/1xCg/C98zs9s2bEmm2uuZlEmA5lovyDfBGvo117w3uITYNQW+T70vRKr2YBDpmBU3VXs6T+U=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=savoirfairelinux.com; spf=pass smtp.mailfrom=savoirfairelinux.com; dkim=pass (2048-bit key) header.d=savoirfairelinux.com header.i=@savoirfairelinux.com header.b=M26pTAT9; arc=none smtp.client-ip=208.88.110.44
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=savoirfairelinux.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=savoirfairelinux.com
+Received: from localhost (localhost [127.0.0.1])
+	by mail.savoirfairelinux.com (Postfix) with ESMTP id 329579C284E;
+	Tue, 30 Jan 2024 10:45:46 -0500 (EST)
+Received: from mail.savoirfairelinux.com ([127.0.0.1])
+ by localhost (mail.savoirfairelinux.com [127.0.0.1]) (amavis, port 10032)
+ with ESMTP id FDOnLaQgPFiq; Tue, 30 Jan 2024 10:45:45 -0500 (EST)
+Received: from localhost (localhost [127.0.0.1])
+	by mail.savoirfairelinux.com (Postfix) with ESMTP id 6AC039C4511;
+	Tue, 30 Jan 2024 10:45:45 -0500 (EST)
+DKIM-Filter: OpenDKIM Filter v2.10.3 mail.savoirfairelinux.com 6AC039C4511
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=savoirfairelinux.com; s=DFC430D2-D198-11EC-948E-34200CB392D2;
+	t=1706629545; bh=SzY2unIXzbKsDcuS0h9mD4sGTR0fjuGWifdJQrRoGLE=;
+	h=Date:From:To:Message-ID:MIME-Version;
+	b=M26pTAT9GP9CpPa/EIHX/JmJDfY4jnFVX3j/UyuFhexulR118iUlJzjgUmJmhOpLQ
+	 VM8C2r1wMaU8SE74bzDdcwOwCxY9+3dO7VcTl+7wO1E99bPgo6q80Eo92Lj+HVTicl
+	 bJhdnaTd7kqD/DSFdA768UkopX98hb4NFWXKFisQbCPhkDZX40+QVFrCosNW9+18C/
+	 NR0RrAN2iOYR1bxC+PPmdym95vOo4QTfOPJr1VfzRK0s3A4Egl8PMIhplaLJOLYhCs
+	 7wi2OWRrzVqy8uaSJNatGZ2WMuKE/ULh0JjIL6EZCSK5YlGWq+QCZxYkRTQMrF5zcI
+	 2TJssUIXL1izQ==
+X-Virus-Scanned: amavis at mail.savoirfairelinux.com
+Received: from mail.savoirfairelinux.com ([127.0.0.1])
+ by localhost (mail.savoirfairelinux.com [127.0.0.1]) (amavis, port 10026)
+ with ESMTP id 3Hg2NgrQhhBc; Tue, 30 Jan 2024 10:45:45 -0500 (EST)
+Received: from mail.savoirfairelinux.com (mail.savoirfairelinux.com [192.168.48.237])
+	by mail.savoirfairelinux.com (Postfix) with ESMTP id 154029C284E;
+	Tue, 30 Jan 2024 10:45:45 -0500 (EST)
+Date: Tue, 30 Jan 2024 10:45:44 -0500 (EST)
+From: Charles Perry <charles.perry@savoirfairelinux.com>
+To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Cc: mdf@kernel.org, hao wu <hao.wu@intel.com>, yilun xu <yilun.xu@intel.com>, 
+	trix@redhat.com, 
+	krzysztof kozlowski+dt <krzysztof.kozlowski+dt@linaro.org>, 
+	Brian CODY <bcody@markem-imaje.com>, 
+	Allen VANDIVER <avandiver@markem-imaje.com>, 
+	linux-fpga@vger.kernel.org, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org
+Message-ID: <1489222458.382780.1706629544559.JavaMail.zimbra@savoirfairelinux.com>
+In-Reply-To: <f3cfffa0-5089-4bf7-b424-d5e949e36d67@linaro.org>
+References: <20240129225602.3832449-1-charles.perry@savoirfairelinux.com> <20240129225602.3832449-2-charles.perry@savoirfairelinux.com> <f3cfffa0-5089-4bf7-b424-d5e949e36d67@linaro.org>
+Subject: Re: [PATCH 2/3] dt-bindings: fpga: xlnx,fpga-slave-selectmap: add
+ DT schema
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
+X-Mailer: Zimbra 8.8.15_GA_4581 (ZimbraWebClient - FF120 (Linux)/8.8.15_GA_4581)
+Thread-Topic: dt-bindings: fpga: xlnx,fpga-slave-selectmap: add DT schema
+Thread-Index: /XNXbd6Eoqkwp5+V9vA2kJJ0vFwOwg==
 
-There are two USB instances available on the am62p5 starter kit. Include
-and enable them for use on the board.
+----- On Jan 30, 2024, at 2:52 AM, Krzysztof Kozlowski krzysztof.kozlowski@=
+linaro.org wrote:
 
-Signed-off-by: Vignesh Raghavendra <vigneshr@ti.com>
-Signed-off-by: Roger Quadros <rogerq@kernel.org>
----
+> On 29/01/2024 23:56, Charles Perry wrote:
+>> Document the slave SelectMAP interface of Xilinx 7 series FPGA.
+>>=20
+>> Signed-off-by: Charles Perry <charles.perry@savoirfairelinux.com>
+>> ---
+>>  .../fpga/xlnx,fpga-slave-selectmap.yaml       | 85 +++++++++++++++++++
+>>  1 file changed, 85 insertions(+)
+>>  create mode 100644
+>>  Documentation/devicetree/bindings/fpga/xlnx,fpga-slave-selectmap.yaml
+>>=20
+>> diff --git
+>> a/Documentation/devicetree/bindings/fpga/xlnx,fpga-slave-selectmap.yaml
+>> b/Documentation/devicetree/bindings/fpga/xlnx,fpga-slave-selectmap.yaml
+>> new file mode 100644
+>> index 0000000000000..20cea24e3e39a
+>> --- /dev/null
+>> +++ b/Documentation/devicetree/bindings/fpga/xlnx,fpga-slave-selectmap.y=
+aml
+>> @@ -0,0 +1,85 @@
+>> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+>> +%YAML 1.2
+>> +---
+>> +$id: http://devicetree.org/schemas/fpga/xlnx,fpga-slave-selectmap.yaml#
+>> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+>> +
+>> +title: Xilinx Slave SelectMAP FPGA
+>> +
+>> +description: |
+>> +  Xilinx 7 Series FPGAs support a method of loading the bitstream over =
+a
+>> +  parallel port named the slave SelectMAP interface in the documentatio=
+n. Only
+>> +  the x8 mode is supported where data is loaded at one byte per rising =
+edge of
+>> +  the clock, with the MSB of each byte presented to the D0 pin.
+>> +
+>> +  Datasheets:
+>> +
+>> https://www.xilinx.com/support/documentation/user_guides/ug470_7Series_C=
+onfig.pdf
+>> +
+>> +properties:
+>> +  compatible:
+>> +    enum:
+>> +      - xlnx,fpga-slave-selectmap
+>=20
+> You did not test bindings, so only limited review.
+>=20
 
-Notes:
-    Changelog:
-    
-    v2:
-    - added USB PHY CTRL node changes here
-    - changed USB wrapper node names to usb@
-    - changed Type-C chip node name to usb-power-control@
+I had issues installing pylibfdt but that's fixed now, will do.
 
- arch/arm64/boot/dts/ti/k3-am62p-main.dtsi   | 46 ++++++++++++++
- arch/arm64/boot/dts/ti/k3-am62p-wakeup.dtsi | 10 +++
- arch/arm64/boot/dts/ti/k3-am62p5-sk.dts     | 67 +++++++++++++++++++++
- 3 files changed, 123 insertions(+)
+>> +
+>> +  reg:
+>> +    description:
+>> +      At least 1 byte of memory mapped IO
+>> +    maxItems: 1
+>> +
+>> +  prog_b-gpios:
+>=20
+>=20
+> No underscores in names.
+>=20
 
-diff --git a/arch/arm64/boot/dts/ti/k3-am62p-main.dtsi b/arch/arm64/boot/dts/ti/k3-am62p-main.dtsi
-index 4c51bae06b57..17d28390d587 100644
---- a/arch/arm64/boot/dts/ti/k3-am62p-main.dtsi
-+++ b/arch/arm64/boot/dts/ti/k3-am62p-main.dtsi
-@@ -560,6 +560,52 @@ sdhci2: mmc@fa20000 {
- 		status = "disabled";
- 	};
- 
-+	usbss0: usb@f900000 {
-+		compatible = "ti,am62-usb";
-+		reg = <0x00 0x0f900000 0x00 0x800>;
-+		clocks = <&k3_clks 161 3>;
-+		clock-names = "ref";
-+		ti,syscon-phy-pll-refclk = <&usb0_phy_ctrl 0x0>;
-+		#address-cells = <2>;
-+		#size-cells = <2>;
-+		power-domains = <&k3_pds 178 TI_SCI_PD_EXCLUSIVE>;
-+		ranges;
-+		status = "disabled";
-+
-+		usb0: usb@31000000 {
-+			compatible = "snps,dwc3";
-+			reg = <0x00 0x31000000 0x00 0x50000>;
-+			interrupts = <GIC_SPI 188 IRQ_TYPE_LEVEL_HIGH>, /* irq.0 */
-+			<GIC_SPI 188 IRQ_TYPE_LEVEL_HIGH>; /* irq.0 */
-+			interrupt-names = "host", "peripheral";
-+			maximum-speed = "high-speed";
-+			dr_mode = "otg";
-+		};
-+	};
-+
-+	usbss1: usb@f910000 {
-+		compatible = "ti,am62-usb";
-+		reg = <0x00 0x0f910000 0x00 0x800>;
-+		clocks = <&k3_clks 162 3>;
-+		clock-names = "ref";
-+		ti,syscon-phy-pll-refclk = <&usb1_phy_ctrl 0x0>;
-+		#address-cells = <2>;
-+		#size-cells = <2>;
-+		power-domains = <&k3_pds 179 TI_SCI_PD_EXCLUSIVE>;
-+		ranges;
-+		status = "disabled";
-+
-+		usb1: usb@31100000 {
-+			compatible = "snps,dwc3";
-+			reg = <0x00 0x31100000 0x00 0x50000>;
-+			interrupts = <GIC_SPI 226 IRQ_TYPE_LEVEL_HIGH>, /* irq.0 */
-+			<GIC_SPI 226 IRQ_TYPE_LEVEL_HIGH>; /* irq.0 */
-+			interrupt-names = "host", "peripheral";
-+			maximum-speed = "high-speed";
-+			dr_mode = "otg";
-+		};
-+	};
-+
- 	fss: bus@fc00000 {
- 		compatible = "simple-bus";
- 		reg = <0x00 0x0fc00000 0x00 0x70000>;
-diff --git a/arch/arm64/boot/dts/ti/k3-am62p-wakeup.dtsi b/arch/arm64/boot/dts/ti/k3-am62p-wakeup.dtsi
-index 19f42b39394e..00dd38b02a52 100644
---- a/arch/arm64/boot/dts/ti/k3-am62p-wakeup.dtsi
-+++ b/arch/arm64/boot/dts/ti/k3-am62p-wakeup.dtsi
-@@ -18,6 +18,16 @@ chipid: chipid@14 {
- 			reg = <0x14 0x4>;
- 			bootph-all;
- 		};
-+
-+		usb0_phy_ctrl: syscon@4008 {
-+			compatible = "ti,am62-usb-phy-ctrl", "syscon";
-+			reg = <0x4008 0x4>;
-+		};
-+
-+		usb1_phy_ctrl: syscon@4018 {
-+			compatible = "ti,am62-usb-phy-ctrl", "syscon";
-+			reg = <0x4018 0x4>;
-+		};
- 	};
- 
- 	wkup_uart0: serial@2b300000 {
-diff --git a/arch/arm64/boot/dts/ti/k3-am62p5-sk.dts b/arch/arm64/boot/dts/ti/k3-am62p5-sk.dts
-index 1773c05f752c..80be56c0a4e0 100644
---- a/arch/arm64/boot/dts/ti/k3-am62p5-sk.dts
-+++ b/arch/arm64/boot/dts/ti/k3-am62p5-sk.dts
-@@ -27,6 +27,8 @@ aliases {
- 		spi0 = &ospi0;
- 		ethernet0 = &cpsw_port1;
- 		ethernet1 = &cpsw_port2;
-+		usb0 = &usb0;
-+		usb1 = &usb1;
- 	};
- 
- 	chosen {
-@@ -297,6 +299,12 @@ AM62PX_IOPAD(0x01b0, PIN_OUTPUT, 2) /* (G20) MCASP0_ACLKR.UART1_TXD */
- 		bootph-all;
- 	};
- 
-+	main_usb1_pins_default: main-usb1-default-pins {
-+		pinctrl-single,pins = <
-+			AM62PX_IOPAD(0x0258, PIN_INPUT, 0) /* (G21) USB1_DRVVBUS */
-+		>;
-+	};
-+
- 	main_wlirq_pins_default: main-wlirq-default-pins {
- 		pinctrl-single,pins = <
- 			AM62PX_IOPAD(0x0128, PIN_INPUT, 7) /* (K25) MMC2_SDWP.GPIO0_72 */
-@@ -340,6 +348,36 @@ AM62PX_IOPAD(0x0124, PIN_INPUT, 7) /* (J25) MMC2_SDCD.GPIO0_71 */
- 	};
- };
- 
-+&main_i2c0 {
-+	status = "okay";
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&main_i2c0_pins_default>;
-+	clock-frequency = <400000>;
-+
-+	typec_pd0: usb-power-controller@3f {
-+		compatible = "ti,tps6598x";
-+		reg = <0x3f>;
-+
-+		connector {
-+			compatible = "usb-c-connector";
-+			label = "USB-C";
-+			self-powered;
-+			data-role = "dual";
-+			power-role = "sink";
-+			ports {
-+				#address-cells = <1>;
-+				#size-cells = <0>;
-+				port@0 {
-+					reg = <0>;
-+					usb_con_hs: endpoint {
-+						remote-endpoint = <&usb0_hs_ep>;
-+					};
-+				};
-+			};
-+		};
-+	};
-+};
-+
- &main_i2c1 {
- 	status = "okay";
- 	pinctrl-names = "default";
-@@ -460,6 +498,35 @@ cpsw3g_phy1: ethernet-phy@1 {
- 	};
- };
- 
-+&usbss0 {
-+	status = "okay";
-+	ti,vbus-divider;
-+};
-+
-+&usbss1 {
-+	status = "okay";
-+	ti,vbus-divider;
-+};
-+
-+&usb0 {
-+	usb-role-switch;
-+	#address-cells = <1>;
-+	#size-cells = <0>;
-+
-+	port@0 {
-+		reg = <0>;
-+		usb0_hs_ep: endpoint {
-+			remote-endpoint = <&usb_con_hs>;
-+		};
-+	};
-+};
-+
-+&usb1 {
-+	dr_mode = "host";
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&main_usb1_pins_default>;
-+};
-+
- &mcasp1 {
- 	status = "okay";
- 	#sound-dai-cells = <0>;
--- 
-2.34.1
+This is heavily based on "xlnx,fpga-slave-serial.yaml" which uses an unders=
+core.
+I can use a dash instead but that would make things inconsistent across the=
+ two schemas.=20
 
+>=20
+>> +    description:
+>> +      config pin (referred to as PROGRAM_B in the manual)
+>> +    maxItems: 1
+>> +
+>> +  done-gpios:
+>> +    description:
+>> +      config status pin (referred to as DONE in the manual)
+>> +    maxItems: 1
+>> +
+>> +  init-b-gpios:
+>=20
+> Is there init-a? Open other bindings and look how these are called there.
+>=20
+
+No, the "-b" is there to denote that the signal is active low. I think its =
+shorthand
+for "bar" which is the overline (=E2=80=BE) that electronic engineer put on=
+ top of the name of the
+signal on schematics. It comes from the datasheet.
+
+>=20
+>> +    description:
+>> +      initialization status and configuration error pin
+>> +      (referred to as INIT_B in the manual)
+>> +    maxItems: 1
+>> +
+>> +  csi-b-gpios:
+>=20
+> Where is csi-a?
+>=20
+
+No "csi-a", this is the CSI signal which is active low.
+
+>> +    description:
+>> +      chip select pin (referred to as CSI_B in the manual)
+>> +      Optional gpio for if the bus controller does not provide a chip s=
+elect.
+>> +    maxItems: 1
+>> +
+>> +  rdwr-b-gpios:
+>> +    description:
+>> +      read/write select pin (referred to as RDWR_B in the manual)
+>> +      Optional gpio for if the bus controller does not provide this pin=
+.
+>> +    maxItems: 1
+>> +
+>> +required:
+>> +  - compatible
+>> +  - reg
+>> +  - prog_b-gpios
+>> +  - done-gpios
+>> +  - init-b-gpios
+>> +
+>> +additionalProperties: true
+>=20
+> Nope, this cannot bue true.
+>=20
+
+Ok, I'll put this to false but I'm not quite sure I understand the implicat=
+ions.
+
+My reasoning behind assigning this to true was that the FPGA is an external
+device on a bus that needs to be configured by a bus controller. The bus co=
+ntroller
+would be the parent of the fpga DT node and the later would contain propert=
+ies
+parsed by the bus controller driver.
+
+>> +
+>> +examples:
+>> +  - |
+>> +    #include <dt-bindings/gpio/gpio.h>
+>> +    &weim {
+>=20
+> Drop or use some generic soc
+>=20
+
+Ok
+
+>> +      status =3D "okay";
+>=20
+> Drop
+>=20
+
+Ok
+
+>> +      ranges =3D <0 0 0x08000000 0x04000000>;
+>=20
+> Drop
+>=20
+
+Ok
+
+>> +
+>> +      fpga_mgr: fpga_programmer@0,0 {
+>=20
+> No underscores in names, drop label.
+>=20
+> Node names should be generic. See also an explanation and list of
+> examples (not exhaustive) in DT specification:
+> https://devicetree-specification.readthedocs.io/en/latest/chapter2-device=
+tree-basics.html#generic-names-recommendation
+>=20
+>=20
+
+Ok, will use "fpga-mgr" as this seems to be the most common one for fpga ma=
+nagers.
+
+>> +        compatible =3D "xlnx,fpga-slave-selectmap";
+>> +        reg =3D <0 0 0x4000000>;
+>> +        fsl,weim-cs-timing =3D <0x00070031 0x00000142
+>> +              0x00020000 0x00000000
+>> +              0x0c000645 0x00000000>;
+>=20
+> NAK.
+>=20
+> Please run your patch through Xilinx folks before sending.
+>=20
+> Best regards,
+> Krzysztof
+
+Thank you,
+Charles
 
