@@ -1,99 +1,124 @@
-Return-Path: <devicetree+bounces-36863-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-36864-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id C3C40842E3D
-	for <lists+devicetree@lfdr.de>; Tue, 30 Jan 2024 21:52:10 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 73961842E41
+	for <lists+devicetree@lfdr.de>; Tue, 30 Jan 2024 21:54:07 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 01FED1C24137
-	for <lists+devicetree@lfdr.de>; Tue, 30 Jan 2024 20:52:10 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id A63EE1C22F92
+	for <lists+devicetree@lfdr.de>; Tue, 30 Jan 2024 20:54:06 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id AF24171B56;
-	Tue, 30 Jan 2024 20:51:05 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 287F867E84;
+	Tue, 30 Jan 2024 20:54:03 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="fD8Ogbd/"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="XjmomNK5"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 899DC433A7;
-	Tue, 30 Jan 2024 20:51:05 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0108179DD6;
+	Tue, 30 Jan 2024 20:54:02 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1706647865; cv=none; b=tkucTpnmH2IFDs+V9wewSKs1hhykyZqM7LQdsgo3qmlWck40Wb6FW1E6Lh6TKjH4+hyobV+NrDAo6sVFDRD9sO39DP5mEWcuhEMYiNAC2iTDaknMbWZtwc5RJ21/gtbxA1AF3OiO9juw6D3Ezxx3kCQsEPtLlyNorpCK4xQ/oqQ=
+	t=1706648043; cv=none; b=F9Yku4XCb2n7WwgNyE3RWDkKaa1aU634WX2Qx/bKaZEzpxRVBW2FsceEKjxBgNRgoMfCUtf3sN0fVJHEsAN2E4C5A+zw0FEptVpFuEWGRPbASR6EV5cP71inLRjnN3KDUaheEjc8PJnAc6jvyb7PYByXsCkB85DVcSOks7af6d8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1706647865; c=relaxed/simple;
-	bh=C9rvW6LWitgM8gmxa7tcJla7N5UoHPV75P76TDTeC44=;
+	s=arc-20240116; t=1706648043; c=relaxed/simple;
+	bh=mAvKGxIVUW1g+mfST20NmOOEIRkeO+/JyLuN+KAZgQQ=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=k7ZtGNRMure8llOwIe+vhU2A0ICLZve5ixq/beUSJXmThmgOkUA3/STChtDo0A0UiLx3BEGH8x3zdB4U7tJqvgt/0iHe4KWReXJ5Ku9R3XKjs86L6mmfmzPxhF4IpMG2YKXYOrdY+8ejWkqGhB80sKgHh2vvjDMHKs81OVNd61g=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=fD8Ogbd/; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id C74A9C433C7;
-	Tue, 30 Jan 2024 20:51:04 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=YlT8DhFdLEZU8bmINjcLMoE7alw7NW2J3xz0GKV94iv3inj3FPu/5Wy3fx55qLBNbhfKkCB1fHKRcsZqd/JKkbUSp7cbDDqg6epVs/pbXUsXy2ZZXI9Saji1yONwNJSQ6zMWscBfx3i9kO+8qyDLyWDCFXQN7wCrTsO4vgcWXQE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=XjmomNK5; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 34729C433C7;
+	Tue, 30 Jan 2024 20:54:02 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1706647865;
-	bh=C9rvW6LWitgM8gmxa7tcJla7N5UoHPV75P76TDTeC44=;
+	s=k20201202; t=1706648042;
+	bh=mAvKGxIVUW1g+mfST20NmOOEIRkeO+/JyLuN+KAZgQQ=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=fD8Ogbd/w3TT8xMUfOvbZ5gQKDBD+9ZbaS8tqn7N75GVnBs/OaiwhmjrfdByCotn5
-	 /pjKv5VIbzyQjIAZXYT9XbrK8AGIyz1q9BQeB4Vp2+DRuenSYo4A3TSFZHdHm/lN3U
-	 TEmbaxPASHj7Bwprbd4KP7SN/JGCWChBylsnfk1WkRZ2r8pfI/2yhDCtdhkIExjVGp
-	 wP8getl5js0a3f8ID8OFGf3Ms5dRDGkEm92UDXjC9qQrZMDQRctU9l9GWhlAsw4lHB
-	 CslI/MNvwAmU7uOpD9kU0oe7qgqR07zGC3afefyjZsfyOlDugtbqE09tVmud7O6Ctc
-	 EyLQZWBjOzvog==
-Date: Tue, 30 Jan 2024 14:51:02 -0600
+	b=XjmomNK5TgEF5eJg5YdmsVUzPGtMztCeSO53Z9RbuDVycF5rShF9XkNsVYGfcmsoI
+	 ERPpMORy2WSqOkQfWUY6lGuih1POzUnf3F25JfRKBm8Lezi5T94NqLOvhzauoQ4e97
+	 ErG8jWFrAKb4HJ9hJSEtoNEqqS2SU2N5n5pjHtikQ9bxF4W1qQMBfbAF6Io7I5qy7f
+	 rZDRClHfloenMpDBaMVgE/KH8dFE4NEqAnYwdxC2LzazMyp3Z06oVDEzSjifROb9uk
+	 8h1VA420PLhI4EprF4c1MYO2myKBAyPzTTzC5OyHBrCDfttdE1ZwHqjvSN6MiQ9eEi
+	 Bpzzqvhw2sRjA==
+Date: Tue, 30 Jan 2024 14:54:00 -0600
 From: Rob Herring <robh@kernel.org>
-To: Michal Simek <michal.simek@amd.com>
-Cc: michal.simek@xilinx.com,
+To: Nuno =?iso-8859-1?Q?S=E1?= <noname.nuno@gmail.com>
+Cc: Saravana Kannan <saravanak@google.com>,
+	Jonathan Cameron <jic23@kernel.org>, nuno.sa@analog.com,
+	linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
+	Lars-Peter Clausen <lars@metafoo.de>,
+	Michael Hennerich <Michael.Hennerich@analog.com>,
 	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>, git@xilinx.com,
-	"open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" <devicetree@vger.kernel.org>,
-	Rob Herring <robh+dt@kernel.org>, monstr@monstr.eu,
-	"moderated list:ARM/ZYNQ ARCHITECTURE" <linux-arm-kernel@lists.infradead.org>,
-	linux-kernel@vger.kernel.org
-Subject: Re: [PATCH] dt-bindings: soc: xilinx: Add support for KV260 CC
-Message-ID: <170664786216.2319402.12093555371732757149.robh@kernel.org>
-References: <14c184225cc4f0a61da5f8c98bc0767f8deba0df.1706019781.git.michal.simek@amd.com>
+	Conor Dooley <conor+dt@kernel.org>,
+	Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+	"Rafael J. Wysocki" <rafael@kernel.org>,
+	Frank Rowand <frowand.list@gmail.com>,
+	Olivier Moysan <olivier.moysan@foss.st.com>
+Subject: Re: [PATCH v7 1/9] of: property: fix typo in io-channels
+Message-ID: <20240130205400.GA2319582-robh@kernel.org>
+References: <20240123-iio-backend-v7-0-1bff236b8693@analog.com>
+ <20240123-iio-backend-v7-1-1bff236b8693@analog.com>
+ <CAGETcx_0wij8j5u7YRNPDgpPDkJoFq4AL7oRy0iFUELYTbc9Bg@mail.gmail.com>
+ <20240127150726.3c9150c7@jic23-huawei>
+ <dbf75dfff3ac2d03d198de918a6c525f7b5266c6.camel@gmail.com>
+ <CAGETcx-_FbMuisXb5aw40RxgnMT8xTOaq2FOmTo-twY09EV1sQ@mail.gmail.com>
+ <c15cff6c67a9cbb9dc191175cb550ef28639c252.camel@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <14c184225cc4f0a61da5f8c98bc0767f8deba0df.1706019781.git.michal.simek@amd.com>
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <c15cff6c67a9cbb9dc191175cb550ef28639c252.camel@gmail.com>
 
+On Tue, Jan 30, 2024 at 11:32:00AM +0100, Nuno Sá wrote:
+> On Mon, 2024-01-29 at 14:33 -0800, Saravana Kannan wrote:
+> > On Mon, Jan 29, 2024 at 12:15 AM Nuno Sá <noname.nuno@gmail.com> wrote:
+> > > 
+> > > On Sat, 2024-01-27 at 15:07 +0000, Jonathan Cameron wrote:
+> > > > On Wed, 24 Jan 2024 19:14:35 -0800
+> > > > Saravana Kannan <saravanak@google.com> wrote:
+> > > > 
+> > > > > On Tue, Jan 23, 2024 at 7:14 AM Nuno Sa via B4 Relay
+> > > > > <devnull+nuno.sa.analog.com@kernel.org> wrote:
+> > > > > > 
+> > > > > > From: Nuno Sa <nuno.sa@analog.com>
+> > > > > > 
+> > > > > > The property is io-channels and not io-channel. This was effectively
+> > > > > > preventing the devlink creation.
+> > > > 
+> > > > I'm a bit lost on the devlink side of things. Is this something with
+> > > > effects on existing drivers before this patch set, or is it only causing
+> > > > real problems with the changes in here?
+> > > > 
+> > > > i.e. Should we mark it for stable and rush it in as a fix, or can it wait
+> > > > for the rest of the set?
+> > > > 
+> > > 
+> > > I guess you already figured this out? Anyways, this is a real fix that was
+> > > affecting any consumer using io-channels (so nothing to do with the current
+> > > series). Since the there was a typo, no fw_links were being created.
+> > > 
+> > > I stated in the cover why I included this. Just to make the addition of io-
+> > > backends later on easier. But if Rob prefers (or you), I can just send this
+> > > standalone patch to the devicetree list.
+> > 
+> > I think you should send this to Rob directly as a DT fix. I already
+> > gave you a Reviewed-by too. So it should land quickly.
+> > 
+> > This is a real bug that we want to fix as soon as we can. And your
+> > series might take a bit longer to land.
+> > 
+> > -Saravana
+> 
+> Alright... will do that
 
-On Tue, 23 Jan 2024 15:23:08 +0100, Michal Simek wrote:
-> When DT overlay is applied at run time compatible string or model AFAIK is
-> not updated. But when fdtoverlay tool is used it actually creates full
-> description for used SOM and carrier card(CC). That's why there is no
-> reason to use generic SOM name and its compatible strings because they are
-> not properly reflected in newly created DT.
-> Composing dt overlays together was introduced by commit 7a4c31ee877a
-> ("arm64: zynqmp: Add support for Xilinx Kria SOM board") and later renamed
-> by commit 45fe0dc4ea2e ("arm64: xilinx: Use zynqmp prefix for SOM dt
-> overlays").
-> DTB selection is done prior booting OS that's why there is no need to do
-> run time composition for SOM and CC combination. And user space can use
-> compatible string and all listed revisions to figured it out which SOM and
-> CC combinations OS is running at.
-> 
-> Signed-off-by: Michal Simek <michal.simek@amd.com>
-> ---
-> 
-> We are using U-Boot DTB reselection feature to identify SOM + CC
-> combination.
-> 
-> This patch depends on
-> https://lore.kernel.org/r/90e1a393154c3d87e8ee7dc9eef07fc937c1eaf7.1706019397.git.michal.simek@amd.com
-> 
-> ---
->  .../bindings/soc/xilinx/xilinx.yaml           | 34 +++++++++++++++++++
->  1 file changed, 34 insertions(+)
-> 
+No need to resend. I'll apply this one.
 
-Reviewed-by: Rob Herring <robh@kernel.org>
+Rob
 
 
