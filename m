@@ -1,170 +1,108 @@
-Return-Path: <devicetree+bounces-36839-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-36840-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 32C76842D43
-	for <lists+devicetree@lfdr.de>; Tue, 30 Jan 2024 20:48:56 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id D135E842D51
+	for <lists+devicetree@lfdr.de>; Tue, 30 Jan 2024 20:51:44 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 8FCB0B23F29
-	for <lists+devicetree@lfdr.de>; Tue, 30 Jan 2024 19:48:53 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 1021C1C23A3E
+	for <lists+devicetree@lfdr.de>; Tue, 30 Jan 2024 19:51:44 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id F32594E1B7;
-	Tue, 30 Jan 2024 19:48:48 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B90A169970;
+	Tue, 30 Jan 2024 19:51:39 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="QkxMaNfK"
+	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="O9volrRe"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ed1-f51.google.com (mail-ed1-f51.google.com [209.85.208.51])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from fllv0016.ext.ti.com (fllv0016.ext.ti.com [198.47.19.142])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 32F0C383BA;
-	Tue, 30 Jan 2024 19:48:46 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.51
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 377CF26AFC;
+	Tue, 30 Jan 2024 19:51:37 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.19.142
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1706644128; cv=none; b=UbWBVQa7xTEeUkYRcdmSMAcy6PPdi+Q309spzF3WqXz8Y0rKINzICYjGhCdC/DsH6GUaMoE9nBAWjxmnit9FwZ8q9ZejBfknoi5cdY55++yCInyorl/6rBfM9X2hCB8rBwec/XBtIIJZfTVxjIjMRUteBSzSWYkp7Ft/HgBGk94=
+	t=1706644299; cv=none; b=UfgBsVQ9nPLl4J6Gg/cslN8LNrytxb6T0UjlmbdaAt82xvnWRGWp1LhrK124a/zzuIIOrS9+UwFAyohJtKqrcjkOZnudW9Y6/fvyzCDJ09giu9T9kP3+s4krKP1TIWCXGXb+lYqAsqsHs38QzgD19UfSWEodPAkpnTF44zs/6VQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1706644128; c=relaxed/simple;
-	bh=hnS05lukx2Rc7Jjyk2rgzbNfJHNBRDEpUQ7Lv4HY3vQ=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=itvhioLoWkKoKlOohz/kysUV6XmK/CjDyuDYylVAnAZcZZPR6PvLXaQee3Ga1+9RTW482uUOyknAF8nXuDanxsJsGldcm1w/xhfoKyEgRbzd3dQ47sBy/SrbJ4Cjq1olIdFTr6kGcT8qEseSYvX9RbbgW3QNAKzm0srdiFGo8qo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=QkxMaNfK; arc=none smtp.client-ip=209.85.208.51
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-ed1-f51.google.com with SMTP id 4fb4d7f45d1cf-55f496d60e4so1300838a12.2;
-        Tue, 30 Jan 2024 11:48:45 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1706644124; x=1707248924; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=rJeQzLZeVsfqqVy/IRIzUBnzfv+gRBsQWCb8iOaJluA=;
-        b=QkxMaNfKlxZqGZx1MyRaBO/dxH+TZwiFMHHjGlhGBqekHBNRQ4RLcfL0phF2BHE6o0
-         hXdsqTjuu+rirC69uRLGYh5h1MnK11wtfrl8nxPiDyl66+Cui8xyFt7rlFsN7I7N0a3X
-         LZ0phri7oYWmnLC2GZY48X/hcTI5wsnRmeYv01BBD0ry5OkRMGW9Lt7iVT8BHXJmosQ5
-         Oia3AHJsEuPOGdpts2drHcrncg1zf0Tl6t6ZPex7AtOf749tAMntybsxdGl+cJUXyNKh
-         PgwgBn/bd8DulF8jDD9k9CdtiG5ZyDKGoF04++cGbrQgnGz8gujVzk8ngn+yc736zpfS
-         J6NA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1706644124; x=1707248924;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=rJeQzLZeVsfqqVy/IRIzUBnzfv+gRBsQWCb8iOaJluA=;
-        b=Z6bVGRkYSs/rgqMsPjpNX44/rOTJCsHTYu6jDKIiySG9CWQXnBvfWYacB9aysD8ZKK
-         vu/5s86c25+4Ebk9FjfrNIi269a4XAwLg469IqLMIFqB9HMD5j3ak9Gxh/bQKiFISryL
-         Xhf64/wmhUy4L31+QxD3DHWuHIjwG/Rr4VQxdkdKm4wYuj+109MsXHtRvpUvjWUNC6fi
-         ockk67tvYOSlAn/6N4uZZq8V+JWM2zaRcT+DvVNz2y39dEBaJ3RQT8fJ95AXxcZgBTgH
-         eHK8PK/7PVITKtJOdspuAG5DrMt/iLfr+ytYihbIWnCKGhPF6auX6eT7WgOGCBjSm8xX
-         jsLg==
-X-Gm-Message-State: AOJu0YyHpEju0UX7301Lom6Z/RJRCDgiUTc3v80ox8qHuZNGmifNY66r
-	D19p5U2cn7g128xKJ2Qqtq6zvJiWSQiVIP2Xn71QgCNDw5lEthZm++RcgV4A
-X-Google-Smtp-Source: AGHT+IFf3uIFgKLDiLg9UvZu2Lh1EJ+Gp9y7um4mQ5+zM0LwgiEuvgFwE4KceV9gO1NkGgepHcxJpA==
-X-Received: by 2002:a17:906:4088:b0:a35:b7e6:e6f1 with SMTP id u8-20020a170906408800b00a35b7e6e6f1mr4382872ejj.1.1706644124332;
-        Tue, 30 Jan 2024 11:48:44 -0800 (PST)
-Received: from jernej-laptop.localnet (86-58-14-70.dynamic.telemach.net. [86.58.14.70])
-        by smtp.gmail.com with ESMTPSA id p2-20020a17090628c200b00a311092d2f8sm5378460ejd.169.2024.01.30.11.48.43
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 30 Jan 2024 11:48:44 -0800 (PST)
-From: Jernej =?utf-8?B?xaBrcmFiZWM=?= <jernej.skrabec@gmail.com>
-To: Rob Herring <robh+dt@kernel.org>,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Conor Dooley <conor+dt@kernel.org>, Samuel Holland <samuel@sholland.org>,
- Liam Girdwood <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>,
- Jaroslav Kysela <perex@perex.cz>, Takashi Iwai <tiwai@suse.com>,
- Vinod Koul <vkoul@kernel.org>, Chen-Yu Tsai <wens@kernel.org>
-Cc: Chen-Yu Tsai <wens@csie.org>, devicetree@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, linux-sunxi@lists.linux.dev,
- linux-sound@vger.kernel.org, dmaengine@vger.kernel.org,
- linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v2 0/7] arm64: sun50i-h616: Add DMA and SPDIF controllers
-Date: Tue, 30 Jan 2024 20:48:42 +0100
-Message-ID: <2170768.irdbgypaU6@jernej-laptop>
-In-Reply-To: <20240127163247.384439-1-wens@kernel.org>
-References: <20240127163247.384439-1-wens@kernel.org>
+	s=arc-20240116; t=1706644299; c=relaxed/simple;
+	bh=KZIHoZ/ortkxqz09K9+Duj8ORo99US63DDmMRbGfa2A=;
+	h=From:To:CC:Subject:Date:Message-ID:MIME-Version:Content-Type; b=IUGwjrNa1IwTpyEDXi1ZRJdXteu2/S8ZKKghkjc2DJwFUxIf45nCfsw8FfgLP9i6d6wKIQve5jXh8AWd4V0Ao34wJq1aixk24KkvnsjLXvXxn8Zvv5BxyTA5QUGPyWayr6mgwMsi5Dt1c3jy6xG5Py3KglmIP73P4tUMduayooY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=O9volrRe; arc=none smtp.client-ip=198.47.19.142
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
+Received: from lelv0266.itg.ti.com ([10.180.67.225])
+	by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id 40UJpUH0085126;
+	Tue, 30 Jan 2024 13:51:30 -0600
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+	s=ti-com-17Q1; t=1706644290;
+	bh=F5nHbJuhtD4RPNSh+N/zXRzstU5qpZ9dXeVDcW9SlxI=;
+	h=From:To:CC:Subject:Date;
+	b=O9volrReXX7Jeg9uLz1wRu94R1rCvBVx4SR4Q3G3TNj/PmGG6DeuBV7cyA6EswH3S
+	 1fjdZkABu598y1x+C4VCyl2y+y+tlQVwMnbpHg/qorZJZwVmt3Taayz09jC8gAUZy0
+	 Ymbh0mU/Q/oM6yXUWI1OHFM0+thntXmG3Zr8TMVM=
+Received: from DLEE102.ent.ti.com (dlee102.ent.ti.com [157.170.170.32])
+	by lelv0266.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 40UJpUCO022002
+	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+	Tue, 30 Jan 2024 13:51:30 -0600
+Received: from DLEE109.ent.ti.com (157.170.170.41) by DLEE102.ent.ti.com
+ (157.170.170.32) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Tue, 30
+ Jan 2024 13:51:29 -0600
+Received: from lelvsmtp5.itg.ti.com (10.180.75.250) by DLEE109.ent.ti.com
+ (157.170.170.41) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
+ Frontend Transport; Tue, 30 Jan 2024 13:51:29 -0600
+Received: from lelvsmtp6.itg.ti.com ([10.249.42.149])
+	by lelvsmtp5.itg.ti.com (8.15.2/8.15.2) with ESMTP id 40UJpTKv005747;
+	Tue, 30 Jan 2024 13:51:29 -0600
+From: Andrew Davis <afd@ti.com>
+To: Nishanth Menon <nm@ti.com>, Vignesh Raghavendra <vigneshr@ti.com>,
+        Tero
+ Kristo <kristo@kernel.org>, Rob Herring <robh+dt@kernel.org>,
+        Krzysztof
+ Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley
+	<conor+dt@kernel.org>
+CC: <linux-arm-kernel@lists.infradead.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>, Andrew Davis <afd@ti.com>
+Subject: [PATCH 1/2] dt-bindings: mfd: syscon: Add ti,am654-serdes-ctrl compatible
+Date: Tue, 30 Jan 2024 13:51:27 -0600
+Message-ID: <20240130195128.58748-1-afd@ti.com>
+X-Mailer: git-send-email 2.39.2
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7Bit
-Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 
-Dne sobota, 27. januar 2024 ob 17:32:40 CET je Chen-Yu Tsai napisal(a):
-> From: Chen-Yu Tsai <wens@csie.org>
-> 
-> Hi everyone,
-> 
-> This is v2 of my H616/H618 DMA and SPDIF controller series.
-> 
-> Changes since v1:
-> - Switch to "contains" for if-properties statement
-> - Fall back to A100 instead of H6
-> - Add DMA channels for r_i2c
-> 
-> This series adds DMA and SPDIF controllers for the H616 and H618.
-> There's also a fix for SPDIF on H6: the controller also has a
-> receiver that was not correctly modeled.
-> 
-> Patch 1 fixes the binding for the SPDIF controller on the H6 by adding
-> the RX DMA channel.
-> 
-> Patch 2 adds a compatible string for the H616's SPDIF transmitter to the
-> binding.
-> 
-> Patch 3 adds a compatible string for the H616's SPDIF transmitter to the
-> driver.
-> 
-> Patch 4 adds a compatible string for the H616's DMA controller.
-> 
-> Patch 5 adds the RX DMA channel to the SPDIF controller on the H6.
-> 
-> Patch 6 adds a device node for the H616's DMA controller.
-> 
-> Patch 7 adds a device node for the H616's SPDIF controller.
-> 
-> 
-> This was tested on the Orange Pi Zero 3 with SPI flash transfers and
-> SPDIF audio output. The H6 SPDIF change is superficial as the driver
-> does not support receiving / capturing an audio stream.
-> 
-> Please have a look. I expect the first three patches to go through the
-> ASoC tree, the fourth patch to either go through the DMA tree, or
-> through the sunxi tree with an Ack, and the last three through the sunxi
-> tree.
-> 
-> 
-> Thanks
-> ChenYu
-> 
-> 
-> Chen-Yu Tsai (7):
->   dt-bindings: sound: sun4i-spdif: Fix requirements for H6
->   dt-bindings: sound: sun4i-spdif: Add Allwinner H616 compatible
->   ASoC: sunxi: sun4i-spdif: Add support for Allwinner H616
->   dt-bindings: dma: allwinner,sun50i-a64-dma: Add compatible for H616
->   arm64: dts: allwinner: h6: Add RX DMA channel for SPDIF
->   arm64: dts: allwinner: h616: Add DMA controller and DMA channels
->   arm64: dts: allwinner: h616: Add SPDIF device node
-> 
->  .../dma/allwinner,sun50i-a64-dma.yaml         | 12 ++--
->  .../sound/allwinner,sun4i-a10-spdif.yaml      |  5 +-
->  .../dts/allwinner/sun50i-h6-beelink-gs1.dts   |  2 +
->  .../boot/dts/allwinner/sun50i-h6-tanix.dtsi   |  2 +
->  arch/arm64/boot/dts/allwinner/sun50i-h6.dtsi  |  7 +--
->  .../arm64/boot/dts/allwinner/sun50i-h616.dtsi | 61 +++++++++++++++++++
->  sound/soc/sunxi/sun4i-spdif.c                 |  5 ++
->  7 files changed, 85 insertions(+), 9 deletions(-)
-> 
-> 
+Add TI SERDES control registers compatible. This is a region found in the
+TI AM65 CTRL_MMR0 register space[0]. Each instance is used to control a
+SERDES clock and lane select mux.
 
-Applied patches 5-7 to sunxi tree, thanks!
+[0] https://www.ti.com/lit/pdf/spruid7
 
-Best regards,
-Jernej
+Signed-off-by: Andrew Davis <afd@ti.com>
+---
+ Documentation/devicetree/bindings/mfd/syscon.yaml | 1 +
+ 1 file changed, 1 insertion(+)
 
-
-
+diff --git a/Documentation/devicetree/bindings/mfd/syscon.yaml b/Documentation/devicetree/bindings/mfd/syscon.yaml
+index 084b5c2a2a3c2..d8679a2ad4b10 100644
+--- a/Documentation/devicetree/bindings/mfd/syscon.yaml
++++ b/Documentation/devicetree/bindings/mfd/syscon.yaml
+@@ -73,6 +73,7 @@ properties:
+               - rockchip,rv1126-qos
+               - starfive,jh7100-sysmain
+               - ti,am654-dss-oldi-io-ctrl
++              - ti,am654-serdes-ctrl
+ 
+           - const: syscon
+ 
+-- 
+2.39.2
 
 
