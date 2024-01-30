@@ -1,74 +1,74 @@
-Return-Path: <devicetree+bounces-36723-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-36724-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6FAF8842752
-	for <lists+devicetree@lfdr.de>; Tue, 30 Jan 2024 15:57:58 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id B3D43842756
+	for <lists+devicetree@lfdr.de>; Tue, 30 Jan 2024 15:58:25 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id A2C8C1C2603B
-	for <lists+devicetree@lfdr.de>; Tue, 30 Jan 2024 14:57:57 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id D8E1B1C260D4
+	for <lists+devicetree@lfdr.de>; Tue, 30 Jan 2024 14:58:24 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 99F497E790;
-	Tue, 30 Jan 2024 14:57:54 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id BBE587CF1B;
+	Tue, 30 Jan 2024 14:58:06 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="C3mfmPoZ"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="b6itl2I8"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ed1-f54.google.com (mail-ed1-f54.google.com [209.85.208.54])
+Received: from mail-lf1-f49.google.com (mail-lf1-f49.google.com [209.85.167.49])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DD73D7E771;
-	Tue, 30 Jan 2024 14:57:52 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.54
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 01F9685C5C;
+	Tue, 30 Jan 2024 14:58:04 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.49
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1706626674; cv=none; b=LnJkxtN3j5V/MqF3bz/cwrxhGnpDMSbnvrIy81PnQ4pm3rQgsoxZehXqT4FngMTxEnvbZ67o09RHDZU5wZ2LpifBBX9wQvs+PbXKDTHNVcAkH7tOZQCMVr6pMRBI+3LC/HCKZLdR8H8Ch0x4tUHz84X50v26konpe/mbjMGdUOw=
+	t=1706626686; cv=none; b=ZkgLXj52adkA9jqZXI+DEQ2WHM3aTcN2oL3owmWMYeXd5btb60HxC5z6RhdrlcveXgU7aajd/9BGhGxcF4x58dTwifVT3LOwv6ULZLrooMkh8D/jPF3KY8a3o5jlEpYj2TmAvEyCABGHqWE3+9+YVvohaazJfemraboTAh79M5k=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1706626674; c=relaxed/simple;
-	bh=vgDyDSISDc1ZdXds3Q5bpKkrZcsHqr6/iiwrlCksTtE=;
+	s=arc-20240116; t=1706626686; c=relaxed/simple;
+	bh=uvKx/KXiwrX5Tw12wdU034IVRA4WrPOCHCRyoEjEb8U=;
 	h=Message-ID:Date:MIME-Version:From:Subject:To:Cc:References:
-	 In-Reply-To:Content-Type; b=SloFB076KTkV6xIZAfqsE0C/kNrheIT0pumFHQSj7EBn0jFEBFbZ7VEcwK2OEehr+1y1P9NkLbuMZy8ejxu7DtYk7n9Y3C0uwEonLk4gMxWa38UAaluLmLeRNhExGYXBWJpxy1VBKqvtFvAUSANFFNKL4coclb4yVvZA6Aq5or4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=C3mfmPoZ; arc=none smtp.client-ip=209.85.208.54
+	 In-Reply-To:Content-Type; b=qvNTTsg4XZES3ncfEU+l7jNsOYaGNbHGwvFFvAxK9cnER8PgInUt74d5UeqP427EuSuD09ASVAnsWX3RGBhu9tQBDQ/awwGqK3wKxg4sg4qlc1h7iEd7yZNtbk/agpRhPREervGVAKb8VzEBXIm/KiE+zTJu3ZlVVIS2G9Cms+E=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=b6itl2I8; arc=none smtp.client-ip=209.85.167.49
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-ed1-f54.google.com with SMTP id 4fb4d7f45d1cf-55a90a0a1a1so3947004a12.0;
-        Tue, 30 Jan 2024 06:57:52 -0800 (PST)
+Received: by mail-lf1-f49.google.com with SMTP id 2adb3069b0e04-5100ed2b33dso6650855e87.0;
+        Tue, 30 Jan 2024 06:58:04 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1706626671; x=1707231471; darn=vger.kernel.org;
+        d=gmail.com; s=20230601; t=1706626683; x=1707231483; darn=vger.kernel.org;
         h=content-transfer-encoding:in-reply-to:content-language:references
          :cc:to:subject:from:user-agent:mime-version:date:message-id:from:to
          :cc:subject:date:message-id:reply-to;
-        bh=DmcehVDq1GcEjhHx6wGLc0qaDaI/0n7EbffVmbga+mI=;
-        b=C3mfmPoZS7dlK1SkabffrITaWzz16QyRvTEygzO/o3zNWAUME8jkn3HXLY1i+wfbHv
-         VAgumEKZNWg4ucwZrXbQZSpNtCeBzl7w9UYjUDa4A14KcrlmUNsTzlI/i/HDJQgZXegw
-         GtGCy3GfThrFVbsm8UAHvpNj/WfEMMdUeVEUyavSROJGUqihaTRBom0DPVMHZfj9CXUs
-         mp8p+b5sLgYJTJaJJq0aTOnj4+qGLKNRJoQIuOVp2t7G6DjoLcyn7/EUGtyM3qhn5WBu
-         ra1ljJmwQamZybWUec95xwV3cLL4+NX/nu4efY/O6g7DQPTiVJUQ1YI2UhNoQnQW+ik5
-         AFcw==
+        bh=4KVEU6pfibVE5vwIMFG0DTRVvqGuby5kG2hwyGagW1Y=;
+        b=b6itl2I8fz9fxkyw9NBkKXh2UoZO1tMuJSPStplD+ti8zTOJ+yEOm9f2ZGBZZ24y7E
+         QjkGL2GBVjnRXz36L2/s7G3uPcXfDTyH5EAOvO5q2eUuRQY29O7lbyjvIx/yYDxK5P0Y
+         ybN1abl4fq1USKqh8/acyLZCrEOLoS0Tu7xDVPfvm3LSsloHbALwmdw7V81vbPj4HH2x
+         UA3xrABeceygphpyCID+gmbqOTl8vdYWGfYZdKRzbHncIoKRoyCWL4xwGlimDbc4ts8K
+         YatpgmUuIrIdOF536qGc9Zcp9bDOIV2XkyuCukvc7KbSgnDg4KOKQeGFBOqPxvFTCo7l
+         awNg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1706626671; x=1707231471;
+        d=1e100.net; s=20230601; t=1706626683; x=1707231483;
         h=content-transfer-encoding:in-reply-to:content-language:references
          :cc:to:subject:from:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=DmcehVDq1GcEjhHx6wGLc0qaDaI/0n7EbffVmbga+mI=;
-        b=QZl63qA+ZrcjeHUVlmZfC+n1Hc8fYgoByGYEfZcJr1ypItfGbSpCou+AYkqRIWBNDI
-         m4Z5bbYbM6FOO1lE1ahN6FD3AEL0p93ukI/f6JYC2Ws4OEs3nlUwwfDOebd2rB3DlMAW
-         sdN48I9FIQg4B8OoaJsakDQYaOfWreO0igVO6UxibVs7097/+Wr0axclKnjAgktHvuqQ
-         4Ej/Q+kz4UPFskmP3/9j7DjAMPwfSNNVBrR0WOAxC9XhsPOowdTKAUz1URdAzXM1GqdE
-         pafvSuf3inMmhTHyRL/vPP9qd3bYo4mr2A/G5qjlm3AxhmA04B3bZMnhczQoW4AdzTHe
-         If9g==
-X-Gm-Message-State: AOJu0YxITgKOkSeSBilA+5J1U+dituu9KDJirM+Bpr52BAQtE79kCDeo
-	aFW/9wGEGtEaFyPx6Hr7W7Egltp5LhlK1E9/ZbNA5FNLlMtXj7a7
-X-Google-Smtp-Source: AGHT+IEb4naCDu6qsxfxml3F3iSc7EgngZPLyYUgWoadasH9mTVJRoKm7IlmAEYW00Gu1o9PGZLd9w==
-X-Received: by 2002:a05:6402:2550:b0:55e:deca:edac with SMTP id l16-20020a056402255000b0055edecaedacmr6232937edb.7.1706626671074;
-        Tue, 30 Jan 2024 06:57:51 -0800 (PST)
-X-Forwarded-Encrypted: i=0; AJvYcCU3EbKMiWmvSROr5Ah/T9RLbJmUTfnTZc22fmTiffBecwf/fw2VsXVHg9i1EnHr7aCc6u8/sCjUqhfRBZwjNE7kYDBUJbnCpQa4qB9tmOxWZlTgs/txjGulZ9/GkZjsaFOE5AYwHbFG+HS3/zjd1doGyQBvkA2Qey1gEEJLX9LLU90BSvkDraclnaRrw+DnpHNZ79/zlggmZe2dQP0XTnLex2z1jlL1ZgIyqZE/7WZzLWaQdVrBEHFO9OVGH93sgNc1hw4LdVcaDRHyYX6JdXA6+6ABdWCUekzOvM8s4fBmIobLiGosCGjKGFXkskOl2dSd2Ajthep0jSiJRre1H18H8qrS6dHPdK38Ad2rqgML9i/wTqBRXa2Lx43BXIo0MA079y2jV9QxGA7eUPbDTleh1qdRGvqgub0PQX8xrizN7V5oSCvzF3j00auNb9FMxk1Bk6AMVYRdGL9NZ6T3JEPpjzwXJuA03aTKR5DfVsWvGiILk/HGEzlaxzFg+Cr9hXkBMZiE8rTSCcHx34MmIqGNpLmTizXEoww=
+        bh=4KVEU6pfibVE5vwIMFG0DTRVvqGuby5kG2hwyGagW1Y=;
+        b=jdXO7yJOK4fUVSytTxesefJ64aNZEgNhxNWYMQDaXj2TSLYIaFY18kneacBDs7kU3l
+         d+2480J78HElMpwdSp3RVoMh86mGXvBca5Cth5CYBsKehYeU4BxrEwucUOut0fj8sX8y
+         TSq7Ry3bt5gMOHavd4KdI+Bick/bXz4qA9EpOqyX921N5Rf5tjwRvGFLQHTfZ6HFz6iq
+         vPAz2UjrnEQ/J5RSfgBbzKVFppfwYJq9Ka2gvcGRRAxGa/WrMIotY1bIAdytj2z3HamM
+         FcTGX7e/MgvkUMsttAq25TMF6g0IMriP4SohwjcHknXkRssgvWZCl++xLZCMZHtiOYOk
+         /koQ==
+X-Gm-Message-State: AOJu0YwTgnovuSDikelR219M+uTG/nGfHNzYHSmnp2cf2AC9VKH2UQp0
+	EJ8jUNSUngVJ86IGeYK6a6A2Rzz5TEThseuddg1bOY5wy5BPcR4p
+X-Google-Smtp-Source: AGHT+IFjjgAuwmClX/o+HbWS8xl5uKCY8esTk4Nm5+W6LMTSgfafhSjGxp/blXmlubQ+95+DX33G+w==
+X-Received: by 2002:a05:6512:603:b0:510:27a7:ccc4 with SMTP id b3-20020a056512060300b0051027a7ccc4mr5835024lfe.64.1706626682921;
+        Tue, 30 Jan 2024 06:58:02 -0800 (PST)
+X-Forwarded-Encrypted: i=0; AJvYcCWaUrJEimFY5hJaIsjNuilaWQySKKzwncpg3VoY/OIk6fwNHm2uK4XncD/JZQcpwn9no0P0WSEZzR5MUn1hW0cKjM/lCt2KBRqOl5sDeu7MfSaUsRrXslGeT25IM/ejfROyAGJO9i4gSI5Jne/A5pUZoUlqW6eppbAbUNNk/tiDbKEeBUP+ECTvSoUeTpgT4VpvaHBPJ3ABPZ5wdSkiEnUOmio8Ajwdy/APxlVw0HBw3TMcg3jYpUvEXXsgJibDrMTWBVkZTNqtClEngjfKTUFdNRRUmFe5VZgQSBubZBobh44q0727zHc3K10Vs9YKgajk3tJaIyPCBJHfLKdqV39o63YxF7JwUALlDjOqr4a0UfTP5whmJi59i2lOGFipD3R6nUZRJsI2MSKNl9JsC10OOp0HylpGlIUnEyEeX+WjqlO7x+wMJWZlFFd2/DD4IY3/qbWJuAttWev4r/cpkfDDDKQfUCPjtFZOyGUhtUWBhZEBwvPbYPVx0yc6DZqF5ij1Jr1UfqKHOK1yH1VLGfsQtLLK5MLdpQA=
 Received: from [192.168.2.1] (81-204-249-205.fixed.kpn.net. [81.204.249.205])
-        by smtp.gmail.com with ESMTPSA id w7-20020aa7da47000000b0055f0c027a3esm1879542eds.30.2024.01.30.06.57.50
+        by smtp.gmail.com with ESMTPSA id w7-20020aa7da47000000b0055f0c027a3esm1879542eds.30.2024.01.30.06.58.01
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 30 Jan 2024 06:57:50 -0800 (PST)
-Message-ID: <4bdaddeb-06d6-4f43-a83c-6646a9a06f05@gmail.com>
-Date: Tue, 30 Jan 2024 15:57:50 +0100
+        Tue, 30 Jan 2024 06:58:02 -0800 (PST)
+Message-ID: <a5a6a7c6-0b71-4918-9da4-d0a4043d203a@gmail.com>
+Date: Tue, 30 Jan 2024 15:58:01 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -77,7 +77,7 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
 From: Johan Jonker <jbx6244@gmail.com>
-Subject: [PATCH v1 4/6] ARM: dts: rockchip: fix rk322x hdmi ports node
+Subject: [PATCH v1 5/6] arm64: dts: rockchip: fix rk3328 hdmi ports node
 To: robh+dt@kernel.org
 Cc: hjc@rock-chips.com, heiko@sntech.de, andy.yan@rock-chips.com,
  krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org, airlied@gmail.com,
@@ -91,47 +91,44 @@ In-Reply-To: <6626d288-ecf1-436b-b0a3-3417308a8633@gmail.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-Fix rk322x hdmi ports node so that it matches the
+Fix rk3328 hdmi ports node so that it matches the
 rockchip,dw-hdmi.yaml binding.
 
 Signed-off-by: Johan Jonker <jbx6244@gmail.com>
 ---
- arch/arm/boot/dts/rockchip/rk322x.dtsi | 18 ++++++++++++------
- 1 file changed, 12 insertions(+), 6 deletions(-)
+ arch/arm64/boot/dts/rockchip/rk3328.dtsi | 13 +++++++++++--
+ 1 file changed, 11 insertions(+), 2 deletions(-)
 
-diff --git a/arch/arm/boot/dts/rockchip/rk322x.dtsi b/arch/arm/boot/dts/rockchip/rk322x.dtsi
-index 831561fc1814..ff8e778ea50f 100644
---- a/arch/arm/boot/dts/rockchip/rk322x.dtsi
-+++ b/arch/arm/boot/dts/rockchip/rk322x.dtsi
-@@ -720,7 +720,6 @@ iep_mmu: iommu@20070800 {
- 	hdmi: hdmi@200a0000 {
- 		compatible = "rockchip,rk3228-dw-hdmi";
- 		reg = <0x200a0000 0x20000>;
+diff --git a/arch/arm64/boot/dts/rockchip/rk3328.dtsi b/arch/arm64/boot/dts/rockchip/rk3328.dtsi
+index fb5dcf6e9327..749b3f965f32 100644
+--- a/arch/arm64/boot/dts/rockchip/rk3328.dtsi
++++ b/arch/arm64/boot/dts/rockchip/rk3328.dtsi
+@@ -727,7 +727,6 @@ vop_mmu: iommu@ff373f00 {
+ 	hdmi: hdmi@ff3c0000 {
+ 		compatible = "rockchip,rk3328-dw-hdmi";
+ 		reg = <0x0 0xff3c0000 0x0 0x20000>;
 -		reg-io-width = <4>;
- 		interrupts = <GIC_SPI 35 IRQ_TYPE_LEVEL_HIGH>;
- 		assigned-clocks = <&cru SCLK_HDMI_PHY>;
- 		assigned-clock-parents = <&hdmi_phy>;
-@@ -732,18 +731,25 @@ hdmi: hdmi@200a0000 {
- 		reset-names = "hdmi";
- 		phys = <&hdmi_phy>;
+ 		interrupts = <GIC_SPI 35 IRQ_TYPE_LEVEL_HIGH>,
+ 			     <GIC_SPI 71 IRQ_TYPE_LEVEL_HIGH>;
+ 		clocks = <&cru PCLK_HDMI>,
+@@ -740,16 +739,26 @@ hdmi: hdmi@ff3c0000 {
  		phy-names = "hdmi";
+ 		pinctrl-names = "default";
+ 		pinctrl-0 = <&hdmi_cec &hdmii2c_xfer &hdmi_hpd>;
 +		reg-io-width = <4>;
  		rockchip,grf = <&grf>;
+ 		#sound-dai-cells = <0>;
  		status = "disabled";
 
  		ports {
 -			hdmi_in: port {
--				#address-cells = <1>;
--				#size-cells = <0>;
--				hdmi_in_vop: endpoint@0 {
--					reg = <0>;
 +			#address-cells = <1>;
 +			#size-cells = <0>;
 +
 +			hdmi_in: port@0 {
 +				reg = <0>;
 +
-+				hdmi_in_vop: endpoint {
+ 				hdmi_in_vop: endpoint {
  					remote-endpoint = <&vop_out_hdmi>;
  				};
  			};
