@@ -1,369 +1,161 @@
-Return-Path: <devicetree+bounces-36605-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-36606-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id CC043841ED8
-	for <lists+devicetree@lfdr.de>; Tue, 30 Jan 2024 10:09:22 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 737F1841EEC
+	for <lists+devicetree@lfdr.de>; Tue, 30 Jan 2024 10:12:15 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 825B0282302
-	for <lists+devicetree@lfdr.de>; Tue, 30 Jan 2024 09:09:21 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 1522E1F2BC32
+	for <lists+devicetree@lfdr.de>; Tue, 30 Jan 2024 09:12:15 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4A18D58AB6;
-	Tue, 30 Jan 2024 09:08:58 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 116B758AB6;
+	Tue, 30 Jan 2024 09:11:55 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=mess.org header.i=@mess.org header.b="M7aXIJfb"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="rNwNUHtP"
 X-Original-To: devicetree@vger.kernel.org
-Received: from gofer.mess.org (gofer.mess.org [88.97.38.141])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-ej1-f51.google.com (mail-ej1-f51.google.com [209.85.218.51])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 04A085813B;
-	Tue, 30 Jan 2024 09:08:55 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=88.97.38.141
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 33775605B6
+	for <devicetree@vger.kernel.org>; Tue, 30 Jan 2024 09:11:52 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.51
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1706605738; cv=none; b=j/m5UwLJXoW8tJMYLTCRGjMwWas7VZ1uhSF1nKbjnkhUUz/m+8zq09F3tRQEXP/Z23fXTgdBUkrrwYzjrU4SwB3cc7dr0MlSuB49rU1bxSVLp1YomI8x0kwhfW/mp7rgCYxp6Si8bAVblIZV0qHD+h5UGXdPWF/hGYMonFZwwrs=
+	t=1706605915; cv=none; b=YLk2YzyJTw6m2jT5ee4yVpOf8hZh/ehRV5sgWWRx3eUHAwu7Ms6VMu5m5hG1zJ/Wiwl0jxQxQYZ3PdKVIeOh4PbAKQqlpUt+lzfdds8NWJGIphklRH2kruJ+ZbGSbxjDNqyZ6BcBKnMYkzvo2+X1OBGjWNbqw9cq3kZv4X/BaDE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1706605738; c=relaxed/simple;
-	bh=oideb+asFMxZR4g5QDgCYuxrKgMZ8LK09qQfP2a79vg=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=ufbVIME7PZ1aqfSEIVhgxZhzxFZ/b/m7zPjpOXvaenr+kTMT0EqCXqmZx2qCmQplxUkz5uUU/w660VyZDnWGaXvVALFY+eTf9RY5ARteg/BjTwRzvyC/5qszoqTC4tg0ha2K5NoM4Zk8mSOVKwF0N+oMvNxWXeuA4EFtD08y3kQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=mess.org; spf=pass smtp.mailfrom=mess.org; dkim=pass (2048-bit key) header.d=mess.org header.i=@mess.org header.b=M7aXIJfb; arc=none smtp.client-ip=88.97.38.141
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=mess.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=mess.org
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=mess.org; s=2020;
-	t=1706605733; bh=oideb+asFMxZR4g5QDgCYuxrKgMZ8LK09qQfP2a79vg=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=M7aXIJfbl0uZESqNJY+RV4ofmXt0GAO+aWvgqU2zDaEynhaAZHTaCL0BoaBswE/NP
-	 YMa+whXzVy0ftnpBI8+HHdBALw4RANkmYzD3s0pIh3WY2nIjU9c76vtZ89kdd1OfJn
-	 bxG+iaxpEDXGDTi79FzvCvpq3vddkIc+4Q+rCeaI4ASXGd9C7iFP5l9BPk4FZAeWUR
-	 SR0nqhTkKcQ88qyroNlrDgmJL7AR3OG75sfMo0YmpDhugxyb7WKQbC+vrhV/xzywGX
-	 O4l6bnYLX7YDGIUbyTxHs0tRPCN0/418zuLLxjDZdWvo1aEfk8nfuqOSBPPw5KcQsM
-	 qVfn91LY0VYIA==
-Received: by gofer.mess.org (Postfix, from userid 1000)
-	id 182C01000FA; Tue, 30 Jan 2024 09:08:53 +0000 (GMT)
-Date: Tue, 30 Jan 2024 09:08:53 +0000
-From: Sean Young <sean@mess.org>
-To: Stefan Wahren <wahrenst@gmx.net>
-Cc: Uwe =?iso-8859-1?Q?Kleine-K=F6nig?= <u.kleine-koenig@pengutronix.de>,
-	Rob Herring <robh+dt@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>, andy.shevchenko@gmail.com,
-	Angelo Compagnucci <angelo.compagnucci@gmail.com>,
-	Philip Howard <phil@gadgetoid.com>,
-	Linus Walleij <linus.walleij@linaro.org>, linux-pwm@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-gpio@vger.kernel.org,
-	Vincent Whitchurch <vincent.whitchurch@axis.com>
-Subject: Re: [PATCH V3 2/2] pwm: Add GPIO PWM driver
-Message-ID: <Zbi8pbT7N0vKUgmx@gofer.mess.org>
-References: <20240128163630.104725-1-wahrenst@gmx.net>
- <20240128163630.104725-3-wahrenst@gmx.net>
+	s=arc-20240116; t=1706605915; c=relaxed/simple;
+	bh=mg13l6GoIYbaIsT206+Ed4s9MWuDP+u3gPMxCKTqenA=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=mAZgD7nuKPfil4LyxZTbY3J5PXfrnFTfMsR1ndRBx+7/67xFtvU7wtPkmBdvLbRXaeQOkq7lSrNTayv5tePgEQDvbSZEnAOvv8epMQAKcOrNYo8rwAUw6HCxk1422f/7h+wPjKUwlfk5HjaSFw7C14zPx2uKXRwY588lM6iKt0g=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=rNwNUHtP; arc=none smtp.client-ip=209.85.218.51
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-ej1-f51.google.com with SMTP id a640c23a62f3a-a358ec50b7cso384619566b.0
+        for <devicetree@vger.kernel.org>; Tue, 30 Jan 2024 01:11:52 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1706605911; x=1707210711; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=P0uzspMxyTAe1K1El4yqw3UnGLBxlhUfh6vxmuD6SvI=;
+        b=rNwNUHtPt5sl998s0l65eQmK0XyBmwRtK3J9yrLWt+za4NqWmwxlrF0SPArOr3uC/P
+         GkYsEAGM/iSn3EEwAk1ZRhFIjn23Kh+w6WfRwI3BmwDouMK3F8qClM/yEtTd+EXbvG2j
+         ZnMGSWO9qW/QT0KPuU0koS6FQWD2+LID2RoGFnNHYzn1iYujzkd9VN7IxSYUfv2Cbt6G
+         pn+CAS5mb7ui0nQ01woeOp8xf5bY+C1LZXstUiaNvrW/VrGGuwnKLDwWt+NujDlpi7N/
+         OEZjHmEoPkbryBhaYVvVnm1kBaXZcwDolk5pAGaGPB2W38BKZ94KoHcB6gvuC6FSPtHP
+         CePg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1706605911; x=1707210711;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=P0uzspMxyTAe1K1El4yqw3UnGLBxlhUfh6vxmuD6SvI=;
+        b=Pt3hchsAGEJjF4xf/i80/348EnxfLsdDuFhB63/ocBGEWkCe9JfEIkJZnH7Yw0gqrI
+         wcsEncVPuNBOLy9biyMcOAToMN0fTOuR0lL0oGyKJubyVXFKZbuY6Jndh330x6FUesOV
+         uxG3mfS0MBsMHIa+TnqqjS30oYBZjQny44yEigiVa+lyvaIEtIYlZuac7+BQNzS2fTWw
+         7i4m+ETjiWUyqtC7/9+dMj2Rj9GJRYDYIoRAq0wTeBosoL/LUlgzjx5ZroNMmNL41Qta
+         ICADTOl/SkG+F+hgszhj3I0c2UM47Beii90stjiGTHoM7CCKtCDz2z4vGjzK6Z03PWks
+         iqDA==
+X-Gm-Message-State: AOJu0Ywuzj0+5jn0weMiA0Rto5h9HIuG1Chy7+jVzcJFTabisrbS68od
+	Y2SwL2OWGzv4r9O3Jq2QaCgKo8B5nItdzdQpGjtTWc7Iy1mANdX7C1FCoLiLdYE=
+X-Google-Smtp-Source: AGHT+IHY75lv43WV7NtMQ5xrm3xMVd5ZHPUbyq3NYqVsdgPeWfMSMy1jjyvDwAwa/OPcCY10VkSgAg==
+X-Received: by 2002:a17:907:a091:b0:a36:416:a365 with SMTP id hu17-20020a170907a09100b00a360416a365mr736648ejc.5.1706605911217;
+        Tue, 30 Jan 2024 01:11:51 -0800 (PST)
+Received: from [192.168.2.107] ([79.115.63.202])
+        by smtp.gmail.com with ESMTPSA id ss6-20020a170907c00600b00a3535b76c42sm3958064ejc.15.2024.01.30.01.11.49
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 30 Jan 2024 01:11:50 -0800 (PST)
+Message-ID: <354b72d7-ea53-4686-bfa6-023c632d8edd@linaro.org>
+Date: Tue, 30 Jan 2024 09:11:48 +0000
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20240128163630.104725-3-wahrenst@gmx.net>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v3 6/7] arm64: dts: exynos: gs101: define USI12 with I2C
+ configuration
+Content-Language: en-US
+To: =?UTF-8?Q?Andr=C3=A9_Draszik?= <andre.draszik@linaro.org>,
+ peter.griffin@linaro.org, mturquette@baylibre.com, sboyd@kernel.org,
+ robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org
+Cc: linux-kernel@vger.kernel.org, kernel-team@android.com,
+ willmcvicker@google.com, semen.protsenko@linaro.org,
+ alim.akhtar@samsung.com, s.nawrocki@samsung.com, tomasz.figa@gmail.com,
+ cw00.choi@samsung.com, linux-arm-kernel@lists.infradead.org,
+ linux-samsung-soc@vger.kernel.org, linux-clk@vger.kernel.org,
+ devicetree@vger.kernel.org
+References: <20240129174703.1175426-1-andre.draszik@linaro.org>
+ <20240129174703.1175426-7-andre.draszik@linaro.org>
+From: Tudor Ambarus <tudor.ambarus@linaro.org>
+In-Reply-To: <20240129174703.1175426-7-andre.draszik@linaro.org>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 
-On Sun, Jan 28, 2024 at 05:36:30PM +0100, Stefan Wahren wrote:
-> From: Vincent Whitchurch <vincent.whitchurch@axis.com>
+
+
+On 1/29/24 17:46, André Draszik wrote:
+> On the gs101-oriole board, i2c bus 12 has various USB-related
+> controllers attached to it.
 > 
-> Add a software PWM which toggles a GPIO from a high-resolution timer.
+> Note the selection of the USI protocol is intentionally left for the
+> board dts file.
 > 
-> This will naturally not be as accurate or as efficient as a hardware
-> PWM, but it is useful in some cases.  I have for example used it for
-> evaluating LED brightness handling (via leds-pwm) on a board where the
-> LED was just hooked up to a GPIO, and for a simple verification of the
-> timer frequency on another platform.
+> Signed-off-by: André Draszik <andre.draszik@linaro.org>
+> Reviewed-by: Sam Protsenko <semen.protsenko@linaro.org>
+
+Reviewed-by: Tudor Ambarus <tudor.ambarus@linaro.org>
+
 > 
-> Since high-resolution timers are used, sleeping gpio chips are not
-> supported and are rejected in the probe function.
-> 
-> Signed-off-by: Vincent Whitchurch <vincent.whitchurch@axis.com>
-> Co-developed-by: Stefan Wahren <wahrenst@gmx.net>
-> Signed-off-by: Stefan Wahren <wahrenst@gmx.net>
 > ---
->  drivers/pwm/Kconfig    |  11 ++
->  drivers/pwm/Makefile   |   1 +
->  drivers/pwm/pwm-gpio.c | 221 +++++++++++++++++++++++++++++++++++++++++
->  3 files changed, 233 insertions(+)
->  create mode 100644 drivers/pwm/pwm-gpio.c
+> v2:
+> * reorder pinctrl-0 & pinctrl-names
+> * collect Reviewed-by: tags
+> ---
+>  arch/arm64/boot/dts/exynos/google/gs101.dtsi | 30 ++++++++++++++++++++
+>  1 file changed, 30 insertions(+)
 > 
-> diff --git a/drivers/pwm/Kconfig b/drivers/pwm/Kconfig
-> index 4b956d661755..7cfda2cde130 100644
-> --- a/drivers/pwm/Kconfig
-> +++ b/drivers/pwm/Kconfig
-> @@ -227,6 +227,17 @@ config PWM_FSL_FTM
->  	  To compile this driver as a module, choose M here: the module
->  	  will be called pwm-fsl-ftm.
-> 
-> +config PWM_GPIO
-> +	tristate "GPIO PWM support"
-> +	depends on GPIOLIB
-> +	depends on HIGH_RES_TIMERS
-> +	help
-> +	  Generic PWM framework driver for a software PWM toggling a GPIO pin
-> +	  from kernel high-resolution timers.
+> diff --git a/arch/arm64/boot/dts/exynos/google/gs101.dtsi b/arch/arm64/boot/dts/exynos/google/gs101.dtsi
+> index e1bcf490309a..9876ecae0ad8 100644
+> --- a/arch/arm64/boot/dts/exynos/google/gs101.dtsi
+> +++ b/arch/arm64/boot/dts/exynos/google/gs101.dtsi
+> @@ -451,6 +451,36 @@ pinctrl_peric1: pinctrl@10c40000 {
+>  			interrupts = <GIC_SPI 644 IRQ_TYPE_LEVEL_HIGH 0>;
+>  		};
+>  
+> +		usi12: usi@10d500c0 {
+> +			compatible = "google,gs101-usi",
+> +				     "samsung,exynos850-usi";
+> +			reg = <0x10d500c0 0x20>;
+> +			ranges;
+> +			#address-cells = <1>;
+> +			#size-cells = <1>;
+> +			clocks = <&cmu_peric1 CLK_GOUT_PERIC1_PERIC1_TOP0_PCLK_5>,
+> +				 <&cmu_peric1 CLK_GOUT_PERIC1_PERIC1_TOP0_IPCLK_5>;
+> +			clock-names = "pclk", "ipclk";
+> +			samsung,sysreg = <&sysreg_peric1 0x1010>;
+> +			samsung,mode = <USI_V2_NONE>;
+> +			status = "disabled";
 > +
-> +	  To compile this driver as a module, choose M here: the module
-> +	  will be called pwm-gpio.
+> +			hsi2c_12: i2c@10d50000 {
+> +				compatible = "google,gs101-hsi2c",
+> +					     "samsung,exynosautov9-hsi2c";
+> +				reg = <0x10d50000 0xc0>;
+> +				interrupts = <GIC_SPI 655 IRQ_TYPE_LEVEL_HIGH 0>;
+> +				#address-cells = <1>;
+> +				#size-cells = <0>;
+> +				pinctrl-0 = <&hsi2c12_bus>;
+> +				pinctrl-names = "default";
+> +				clocks = <&cmu_peric1 CLK_GOUT_PERIC1_PERIC1_TOP0_IPCLK_5>,
+> +					 <&cmu_peric1 CLK_GOUT_PERIC1_PERIC1_TOP0_PCLK_5>;
+> +				clock-names = "hsi2c", "hsi2c_pclk";
+> +				status = "disabled";
+> +			};
+> +		};
 > +
->  config PWM_HIBVT
->  	tristate "HiSilicon BVT PWM support"
->  	depends on ARCH_HISI || COMPILE_TEST
-> diff --git a/drivers/pwm/Makefile b/drivers/pwm/Makefile
-> index c5ec9e168ee7..59d1a46bb1af 100644
-> --- a/drivers/pwm/Makefile
-> +++ b/drivers/pwm/Makefile
-> @@ -19,6 +19,7 @@ obj-$(CONFIG_PWM_DWC_CORE)	+= pwm-dwc-core.o
->  obj-$(CONFIG_PWM_DWC)		+= pwm-dwc.o
->  obj-$(CONFIG_PWM_EP93XX)	+= pwm-ep93xx.o
->  obj-$(CONFIG_PWM_FSL_FTM)	+= pwm-fsl-ftm.o
-> +obj-$(CONFIG_PWM_GPIO)		+= pwm-gpio.o
->  obj-$(CONFIG_PWM_HIBVT)		+= pwm-hibvt.o
->  obj-$(CONFIG_PWM_IMG)		+= pwm-img.o
->  obj-$(CONFIG_PWM_IMX1)		+= pwm-imx1.o
-> diff --git a/drivers/pwm/pwm-gpio.c b/drivers/pwm/pwm-gpio.c
-> new file mode 100644
-> index 000000000000..14637abe465b
-> --- /dev/null
-> +++ b/drivers/pwm/pwm-gpio.c
-> @@ -0,0 +1,221 @@
-> +// SPDX-License-Identifier: GPL-2.0-only
-> +/*
-> + * Generic software PWM for modulating GPIOs
-> + *
-> + * Copyright (C) 2020 Axis Communications AB
-> + * Copyright (C) 2020 Nicola Di Lieto
-> + * Copyright (C) 2024 Stefan Wahren
-> + */
-> +
-> +#include <linux/device.h>
-> +#include <linux/err.h>
-> +#include <linux/gpio/consumer.h>
-> +#include <linux/hrtimer.h>
-> +#include <linux/module.h>
-> +#include <linux/mod_devicetable.h>
-> +#include <linux/platform_device.h>
-> +#include <linux/pwm.h>
-> +#include <linux/spinlock.h>
-> +
-> +struct pwm_gpio {
-> +	struct pwm_chip chip;
-> +	struct hrtimer gpio_timer;
-> +	struct gpio_desc *gpio;
-> +	struct pwm_state state;
-> +	struct pwm_state next_state;
-> +
-> +	/* Protect internal state between pwm_ops and hrtimer */
-> +	spinlock_t lock;
-> +
-> +	bool changing;
-> +	bool running;
-> +	bool level;
-> +};
-> +
-> +static unsigned long pwm_gpio_toggle(struct pwm_gpio *gpwm, bool level)
-> +{
-> +	const struct pwm_state *state = &gpwm->state;
-> +	bool invert = state->polarity == PWM_POLARITY_INVERSED;
-> +
-> +	gpwm->level = level;
-> +	gpiod_set_value(gpwm->gpio, gpwm->level ^ invert);
-> +
-> +	if (!state->duty_cycle || state->duty_cycle == state->period) {
-> +		gpwm->running = false;
-> +		return 0;
-> +	}
-> +
-> +	gpwm->running = true;
-> +	return level ? state->duty_cycle : state->period - state->duty_cycle;
-> +}
-> +
-> +static enum hrtimer_restart pwm_gpio_timer(struct hrtimer *gpio_timer)
-> +{
-> +	struct pwm_gpio *gpwm = container_of(gpio_timer, struct pwm_gpio,
-> +					     gpio_timer);
-> +	unsigned long next_toggle;
-> +	unsigned long flags;
-> +	bool new_level;
-> +
-> +	spin_lock_irqsave(&gpwm->lock, flags);
-> +
-> +	/* Apply new state at end of current period */
-> +	if (!gpwm->level && gpwm->changing) {
-> +		gpwm->changing = false;
-> +		gpwm->state = gpwm->next_state;
-> +		new_level = !!gpwm->state.duty_cycle;
-> +	} else {
-> +		new_level = !gpwm->level;
-> +	}
-> +
-> +	next_toggle = pwm_gpio_toggle(gpwm, new_level);
-> +	if (next_toggle) {
-> +		hrtimer_forward(gpio_timer, hrtimer_get_expires(gpio_timer),
-> +				ns_to_ktime(next_toggle));
-> +	}
-> +
-> +	spin_unlock_irqrestore(&gpwm->lock, flags);
-> +
-> +	return next_toggle ? HRTIMER_RESTART : HRTIMER_NORESTART;
-> +}
-> +
-> +static int pwm_gpio_apply(struct pwm_chip *chip, struct pwm_device *pwm,
-> +			  const struct pwm_state *state)
-> +{
-> +	struct pwm_gpio *gpwm = container_of(chip, struct pwm_gpio, chip);
-> +	bool invert = state->polarity == PWM_POLARITY_INVERSED;
-> +	unsigned long flags;
-
-Not sure this is necessary but how about:
-
-	if (state->duty_cycle < hrtimer_resolution ||
-	    state->period - state->duty_cycle < hrtimer_resolution)
-		return -EINVAL;
-
-> +
-> +	if (!state->enabled) {
-> +		hrtimer_cancel(&gpwm->gpio_timer);
-> +	} else if (!gpwm->running) {
-> +		/*
-> +		 * This just enables the output, but pwm_gpio_toggle()
-> +		 * really starts the duty cycle.
-> +		 */
-> +		int ret = gpiod_direction_output(gpwm->gpio, invert);
-> +
-> +		if (ret)
-> +			return ret;
-> +	}
-> +
-> +	spin_lock_irqsave(&gpwm->lock, flags);
-> +
-> +	if (!state->enabled) {
-> +		gpwm->state = *state;
-> +		gpwm->running = false;
-> +		gpwm->changing = false;
-> +
-> +		gpiod_set_value(gpwm->gpio, invert);
-> +	} else if (gpwm->running) {
-> +		gpwm->next_state = *state;
-> +		gpwm->changing = true;
-> +	} else {
-> +		unsigned long next_toggle;
-> +
-> +		gpwm->state = *state;
-> +		gpwm->changing = false;
-> +
-> +		next_toggle = pwm_gpio_toggle(gpwm, !!state->duty_cycle);
-> +		if (next_toggle) {
-> +			hrtimer_start(&gpwm->gpio_timer, next_toggle,
-> +				      HRTIMER_MODE_REL);
-> +		}
-> +	}
-> +
-> +	spin_unlock_irqrestore(&gpwm->lock, flags);
-> +
-> +	return 0;
-> +}
-> +
-> +static int pwm_gpio_get_state(struct pwm_chip *chip, struct pwm_device *pwm,
-> +			       struct pwm_state *state)
-> +{
-> +	struct pwm_gpio *gpwm = container_of(chip, struct pwm_gpio, chip);
-> +	unsigned long flags;
-> +
-> +	spin_lock_irqsave(&gpwm->lock, flags);
-> +
-> +	if (gpwm->changing)
-> +		*state = gpwm->next_state;
-> +	else
-> +		*state = gpwm->state;
-> +
-> +	spin_unlock_irqrestore(&gpwm->lock, flags);
-> +
-> +	return 0;
-> +}
-> +
-> +static const struct pwm_ops pwm_gpio_ops = {
-> +	.apply = pwm_gpio_apply,
-> +	.get_state = pwm_gpio_get_state,
-> +};
-> +
-> +static int pwm_gpio_probe(struct platform_device *pdev)
-> +{
-> +	struct device *dev = &pdev->dev;
-> +	struct pwm_gpio *gpwm;
-> +	int ret;
-> +
-> +	gpwm = devm_kzalloc(dev, sizeof(*gpwm), GFP_KERNEL);
-> +	if (!gpwm)
-> +		return -ENOMEM;
-> +
-> +	spin_lock_init(&gpwm->lock);
-> +
-> +	gpwm->gpio = devm_gpiod_get(dev, NULL, GPIOD_ASIS);
-> +	if (IS_ERR(gpwm->gpio)) {
-> +		return dev_err_probe(dev, PTR_ERR(gpwm->gpio),
-> +				     "could not get gpio\n");
-> +	}
-> +
-> +	if (gpiod_cansleep(gpwm->gpio)) {
-> +		return dev_err_probe(dev, -EINVAL,
-> +				     "sleeping GPIO %d not supported\n",
-> +				     desc_to_gpio(gpwm->gpio));
-> +	}
-> +
-> +	gpwm->chip.dev = dev;
-> +	gpwm->chip.ops = &pwm_gpio_ops;
-> +	gpwm->chip.npwm = 1;
-
-	gpwm->chip.atomic = true; ?
-
-> +
-> +	hrtimer_init(&gpwm->gpio_timer, CLOCK_MONOTONIC, HRTIMER_MODE_REL);
-> +	gpwm->gpio_timer.function = pwm_gpio_timer;
-> +
-> +	ret = pwmchip_add(&gpwm->chip);
-> +	if (ret < 0)
-> +		return dev_err_probe(dev, ret, "could not add pwmchip\n");
-> +
-> +	platform_set_drvdata(pdev, gpwm);
-> +
-> +	return 0;
-> +}
-> +
-> +static void pwm_gpio_remove(struct platform_device *pdev)
-> +{
-> +	struct pwm_gpio *gpwm = platform_get_drvdata(pdev);
-> +
-> +	pwmchip_remove(&gpwm->chip);
-> +	hrtimer_cancel(&gpwm->gpio_timer);
-> +}
-> +
-> +static const struct of_device_id pwm_gpio_dt_ids[] = {
-> +	{ .compatible = "pwm-gpio" },
-> +	{ /* sentinel */ }
-> +};
-> +MODULE_DEVICE_TABLE(of, pwm_gpio_dt_ids);
-> +
-> +static struct platform_driver pwm_gpio_driver = {
-> +	.driver = {
-> +		.name = "pwm-gpio",
-> +		.of_match_table = pwm_gpio_dt_ids,
-> +	},
-> +	.probe = pwm_gpio_probe,
-> +	.remove_new = pwm_gpio_remove,
-> +};
-> +module_platform_driver(pwm_gpio_driver);
-> +
-> +MODULE_DESCRIPTION("PWM GPIO driver");
-> +MODULE_ALIAS("platform:pwm-gpio");
-> +MODULE_AUTHOR("Vincent Whitchurch");
-> +MODULE_LICENSE("GPL");
-> --
-> 2.34.1
-> 
+>  		pinctrl_hsi1: pinctrl@11840000 {
+>  			compatible = "google,gs101-pinctrl";
+>  			reg = <0x11840000 0x00001000>;
 
