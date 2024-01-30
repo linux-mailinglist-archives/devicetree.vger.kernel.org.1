@@ -1,74 +1,74 @@
-Return-Path: <devicetree+bounces-36636-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-36637-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 603AE842196
-	for <lists+devicetree@lfdr.de>; Tue, 30 Jan 2024 11:40:17 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id D2867842198
+	for <lists+devicetree@lfdr.de>; Tue, 30 Jan 2024 11:40:32 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 179D128A596
-	for <lists+devicetree@lfdr.de>; Tue, 30 Jan 2024 10:40:16 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 8AC8328B8EC
+	for <lists+devicetree@lfdr.de>; Tue, 30 Jan 2024 10:40:31 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4D1AD60DE0;
-	Tue, 30 Jan 2024 10:39:17 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9EE2E657DC;
+	Tue, 30 Jan 2024 10:39:36 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="VRuD1JJ8"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="AjH4chrS"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ej1-f52.google.com (mail-ej1-f52.google.com [209.85.218.52])
+Received: from mail-ej1-f46.google.com (mail-ej1-f46.google.com [209.85.218.46])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0A75865BA9
-	for <devicetree@vger.kernel.org>; Tue, 30 Jan 2024 10:39:14 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.52
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CD5E960B8D
+	for <devicetree@vger.kernel.org>; Tue, 30 Jan 2024 10:39:34 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.46
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1706611157; cv=none; b=QgnqMAp7O1YN+se8yr2/7xN5iHwQ+YJ8kr+5aeZYXG+mhUcO2jDio7OQMCWe9LFE+H/5uxwSVHLMWwV41IahZBO4leI7Se3p/++H+lZc5OkC2YCFrACVLPfZKK/2BUh+v0NrlmaEZ2JoT7ZDYZ6c+I894k+Nihhr+nQISBQX1+8=
+	t=1706611176; cv=none; b=jiP44HgW5p/ww4mTxvV6EiGefxfanrPNort8Fd2lxoPC5eFRzqyxWDiw7IpxxsiX6vCVdh/yvtY27EIF/xzDU9E3GaZRD38CGTyfbFpq3a5EFRIF6d5t+nIqz8K13ZhjL0nsLSYwY0NcXAS1bwpKGx66sIg86zntApr2UazVexU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1706611157; c=relaxed/simple;
-	bh=VnDWiFHpz2n8V0VUwmo+AQRYan5MZPEGRdHiesftkBA=;
+	s=arc-20240116; t=1706611176; c=relaxed/simple;
+	bh=aEmV7K6otMhzrZdsjDx5VbXXjymuDmWIjvy7OAPcows=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=nOAaeF9bM35ziXlnXrJYmq+m3pW8sE0r8w7xnoHm2AZgYL+EjJaNjoloKOkjlKoWQ0pi9ILRULFPju9IGVKdE+4eUyGBkbuWOH5bR5NvtomubRgRHOUZWfToOfGDTS/X15sLjcbhIPDELEHWqKj7LZP0GZeQ78NP3ArSNu+KjkI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=VRuD1JJ8; arc=none smtp.client-ip=209.85.218.52
+	 In-Reply-To:Content-Type; b=ajdXIp/+weKR4o+uUlpUeQh9/r270IvG94pOUSAw2JYTxMgAgrsSQLG5N6/yRC7kXH3WKxp2v4oYMdGeTA1d6Zeo9cx4erVAqo6jSD9adpCcWAPfsDMGpISw0RZB74z1yOUkQb234s9UisTpb5yHWoLES7bpc1QR0/s9pZxmvDM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=AjH4chrS; arc=none smtp.client-ip=209.85.218.46
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-ej1-f52.google.com with SMTP id a640c23a62f3a-a358ec50b7cso399511266b.0
-        for <devicetree@vger.kernel.org>; Tue, 30 Jan 2024 02:39:14 -0800 (PST)
+Received: by mail-ej1-f46.google.com with SMTP id a640c23a62f3a-a293f2280c7so413661866b.1
+        for <devicetree@vger.kernel.org>; Tue, 30 Jan 2024 02:39:34 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1706611153; x=1707215953; darn=vger.kernel.org;
+        d=linaro.org; s=google; t=1706611173; x=1707215973; darn=vger.kernel.org;
         h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
          :to:content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=iI8XXdvnoWJemP9DToiKSauxmbJohw7cN4JxFxUB3iE=;
-        b=VRuD1JJ8DwvlkR3HxPsRQK96chSt96xuNzzxrUbzAuTo2TE6iMcdQaVwYehCpleMXC
-         xzHYS6sm1yZUvtLWvZq6XYj+Wvyt8PBF21N3Wy2zqqQqhuqwjT44oztuM0m5J4AhFy77
-         ts40Thad8teqDJ3zvePirVebL3Hjyq2w8ckkjm6D3h0xA+8rz4dIVG9+KzKgKqbOThNr
-         kom344AcCKMMriiJd9UtSXKM5hVM5Q68aXQvutbpaBWUzKKes6L8pF2DPHqo/7UcCS2l
-         FAOCUT97VmPIYjk4UxL9goOXjiba3eq5X/vpS7HO3HNRDqliS6utPHFSQtF1eFAs/MkX
-         ijyw==
+        bh=96EhyHiZBxhwVvZEb/dRpLKjEyMYBQVvUkgzUEiAo74=;
+        b=AjH4chrSrrPnnq19779aIUW0/hYvTSzn71rvGRtk+XYLN9QIrVZNjgf2CKM45q91L6
+         cb4zy+EU2qesQ+eaw2EojkP8bIKNJEx/dcCLc/xeP61DcGKIZYBB7lBl66Qw27kK1R8y
+         pB6l2aY9N3FwEcghKz/fl/ZnvkstvKj89sfbJJmGRfOMMb/drGDIFDbv7+0wu2Pon3Hr
+         7Wjj4K4uz28PXM9/tWtQZl7bCWp4pHPBeS9KfU67YMyXWZLwuBtvqM+0XPqHAdL13c+S
+         25vG7IX+ybGDOjO3jdYqp+WDoR7l5qkRP1dA9qTDxGiwsOcFxPAP/t3ikBXtWHGr4BsR
+         TQaQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1706611153; x=1707215953;
+        d=1e100.net; s=20230601; t=1706611173; x=1707215973;
         h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
          :to:content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=iI8XXdvnoWJemP9DToiKSauxmbJohw7cN4JxFxUB3iE=;
-        b=gWQ39V4bDKxq9PxuyudPGLAuGAMxD6gk0J0UT2mnVJsR1/37vX2+Cxy2LxnR0k/WsU
-         8hqSV7EIUjqucpyLCCLaIctjvSKgCJekZEYRtl71nWsL0xpKo/4JeqXHS42Iwwww4XAW
-         s5U9w0/hH/niXDKoNcfS3eo3kmhHaQMSq9Fnx7ZYnDrNKHmbxiYqrPNrikAeBECFr75y
-         Uwvhq3xltbkxko2Gy2wlBu0Diam70MefgtY+tCedzbiR7FYI81Dz84L09TPq3Yd+5EEK
-         0YuGzCYUC1fGH6SDe+tf9u8E7DUoupUq0idP8KEakfk+6PuLLiLA745vhNETB4bYEeJO
-         tA7w==
-X-Gm-Message-State: AOJu0YztiKqfWvNK0zH0Le+dm43oSSG/EjkCs1bHx3iv8pzAHungUHce
-	JamS21A7aoco7EuZXZFB3GI1JkSAMvNwotXJGk+ienB+yTDgVL2lZ2OaK7tXeUw=
-X-Google-Smtp-Source: AGHT+IHFz4sJS8u3gZPfFT21MsslMRQ0Iwt1epxf5+WdiLrb+GSO7O9spQsF2PvwrrZw/n/q8peIIw==
-X-Received: by 2002:a17:906:12d0:b0:a29:b31d:1dc6 with SMTP id l16-20020a17090612d000b00a29b31d1dc6mr1165816ejb.6.1706611153198;
-        Tue, 30 Jan 2024 02:39:13 -0800 (PST)
-X-Forwarded-Encrypted: i=0; AJvYcCWyvgAVV+qVv5Xkf1nbj7K9p/Dzu4k4e6BuHg58UclAWr100BL5UbA4wbMWftIB4Iv7aMoztTURTfrsvtACeJRfHJo76LzDn73KESei2gZy/NLMIHWaczbtLU3C+1pa+ShEMqZ9rMT+h3DA215RXgA4YS+1/iLlNONBWRgRCjmQTUbcDZYgkT1VDKdoij52O8J1rrYIhD9YCEgjlux9Z5zUMaF/rf6lmEyx6g5Se6AzSY3inobvV9TF/HXu4zOcnKWPY0pZUNiOSOO7dtxDyhrKVWeo6D1zcSpL6U8Q1Or4PELLDdWJXhjW/YrMA7esqWo89fPIseCdUSZnPcYD5T0/IlSLgA2DNGhArpjavHsZwrfjRiDB1B0D
+        bh=96EhyHiZBxhwVvZEb/dRpLKjEyMYBQVvUkgzUEiAo74=;
+        b=c7RhqWWQ//GHucEQCyecPoqvBfNZNyziwKiKtiwH7vA9/XJH6ZUE8TRPBGPZtjgXio
+         uCfU/4T0Y7hZ8M+aUC+Rs5fsApJRh7zeIAGFbh/K7dQmZpCrA0FCifhg9Qn1jvi7zZPu
+         OMFc0FJMl1QPCSVhFz5GIurTDCo/uOFnru4xjnli2VIJ9j+6IP2nTOIkob6zerE/haEQ
+         HtUqg2PnQErvmAi8zpKx7P6gPU4uo4sqdfiBttmTPaBuK1GvykAj57Rj1T8XncdiT4/U
+         zrabRE2KncjX8J+Yq71OiU2Dwq7QkpRiqpxYHA1Cn/kMHLoOkrueJ8ieoK3OCWGGBJh4
+         1/TQ==
+X-Gm-Message-State: AOJu0YxtgLtTCjhumVG8M63w2R4aEI3kUfGk535xX/sUSd8i8+K7Eutd
+	uHZ0/jPKk0pRYLCov7/zKxpTtHq+QP++9hg0kB+rvzoWl+3yk4OnTcIvYY9Kl74=
+X-Google-Smtp-Source: AGHT+IEL2b2Dz7YZGP2a7O3kesDjxpwPf76PkauB57Pou66x31/2SP8kGabjtpmr9IExhIRZqSwMiw==
+X-Received: by 2002:a17:906:c0cb:b0:a2d:60a:2ae9 with SMTP id bn11-20020a170906c0cb00b00a2d060a2ae9mr6702728ejb.52.1706611173180;
+        Tue, 30 Jan 2024 02:39:33 -0800 (PST)
+X-Forwarded-Encrypted: i=0; AJvYcCUR18t2tazR797Tx0pno6LgfBufO/kxSWWN2/8yLiBKWctDBBweKEFcdfD1JDp83qYKo2EbxGPu9Kfnex9KdghQHs1HkHghGzcSkaxS+kyCkQbeCPt1M4W6lr8cQy5aZV7hQW7WxRXz1dXfL1e83OsLDI/WtEftRYdj3VY+b+c3Qn6xVAMwzipOaDblPKJaSx3EuGiXAMQHoOBin+z8YAVOqXFrgNcHUa2hx8v+lOQU7VbOIg/Q2UZpFoF2mdag9g1yV9x9HXWHpXKdDWhd6dTHZFU0DqMjWUH4f0QUhQMYnNH67bbtVprEisyd5qm1WxvDy9duOwqAkJJnLk/aYFVe76uG9pkcMZk/0yNdVIxIm8WdDSsPHdbN
 Received: from [192.168.1.20] ([178.197.222.62])
-        by smtp.gmail.com with ESMTPSA id st14-20020a170907c08e00b00a35c5491b58sm1947720ejc.174.2024.01.30.02.39.11
+        by smtp.gmail.com with ESMTPSA id st14-20020a170907c08e00b00a35c5491b58sm1947720ejc.174.2024.01.30.02.39.31
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 30 Jan 2024 02:39:12 -0800 (PST)
-Message-ID: <3edf1a47-9f73-4e99-98ea-182248102346@linaro.org>
-Date: Tue, 30 Jan 2024 11:39:11 +0100
+        Tue, 30 Jan 2024 02:39:32 -0800 (PST)
+Message-ID: <c1dc602b-12aa-497a-8672-cb04cdb68ad2@linaro.org>
+Date: Tue, 30 Jan 2024 11:39:31 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -141,476 +141,8 @@ On 30/01/2024 09:56, Kelly Hung wrote:
 > basic BMC functionality and work on ASUS X4TF production.
 > 
 > Signed-off-by: kelly1732000 <Kelly_Hung@asus.com>
-> ---
->  .../boot/dts/aspeed/aspeed-bmc-asus-x4tf.dts  | 828 ++++++++++++++++++
->  1 file changed, 828 insertions(+)
->  create mode 100644 arch/arm/boot/dts/aspeed/aspeed-bmc-asus-x4tf.dts
 
-It's impossible to test this file. You miss Makefile.
-
-> 
-> diff --git a/arch/arm/boot/dts/aspeed/aspeed-bmc-asus-x4tf.dts b/arch/arm/boot/dts/aspeed/aspeed-bmc-asus-x4tf.dts
-> new file mode 100644
-> index 000000000000..723bbb33137f
-> --- /dev/null
-> +++ b/arch/arm/boot/dts/aspeed/aspeed-bmc-asus-x4tf.dts
-> @@ -0,0 +1,828 @@
-> +// SPDX-License-Identifier: GPL-2.0-or-later
-> +// Copyright 2023 ASUS Corp.
-> +/dts-v1/;
-> +
-> +#include "aspeed-g6.dtsi"
-> +#include <dt-bindings/gpio/aspeed-gpio.h>
-> +#include <dt-bindings/i2c/i2c.h>
-> +
-> +
-> +/ {
-> +	model = "ASUS-X4TF";
-> +	compatible = "asus,x4tf", "aspeed,ast2600";
-> +
-> +	chosen {
-> +		stdout-path = &uart5;
-> +		bootargs = "console=ttyS4,115200n8 earlycon";
-
-earlycon is a debugging feature, not mainline. Also, move console to
-stdout-path, so entire bootargs can be dropped.
-
-> +	};
-> +
-> +	memory@80000000 {
-> +		device_type = "memory";
-> +		reg = <0x80000000 0x40000000>;
-> +	};
-> +
-> +	reserved-memory {
-> +		#address-cells = <1>;
-> +		#size-cells = <1>;
-> +		ranges;
-> +
-> +		gfx_memory: framebuffer {
-> +			size = <0x01000000>;
-> +			alignment = <0x01000000>;
-> +			compatible = "shared-dma-pool";
-> +			reusable;
-> +		};
-> +
-> +		video_engine_memory: video {
-> +			size = <0x04000000>;
-> +			alignment = <0x01000000>;
-> +			compatible = "shared-dma-pool";
-> +			reusable;
-> +		};
-> +
-> +		rvas_memory: rvas {
-> +			size = <0x04000000>;
-> +			alignment = <0x01000000>;
-> +			compatible = "shared-dma-pool";
-> +			reusable;
-> +		};
-> +
-> +		bmc_dev_memory: bmc_dev_memory {
-
-No underscores in node names. This applies everywhere.
-
-
-> +			size = <0x00100000>;
-> +			alignment = <0x00100000>;
-> +			compatible = "shared-dma-pool";
-> +			no-map;
-> +		};
-> +
-> +		pci_msi_memory: pci_msi_memory {
-> +			no-map;
-> +			reg = <0x9e770000 0x100>;
-> +			compatible = "shared-dma-pool";
-> +		};
-> +		/* 1GB memory */
-> +		vga_memory: region@bf000000 {
-> +			no-map;
-> +			compatible = "shared-dma-pool";
-> +			reg = <0xbf000000 0x01000000>;  /* 16M */
-> +		};
-> +		ssp_memory: ssp_memory {
-> +			size = <0x02000000>;
-> +			alignment = <0x01000000>;
-> +			compatible = "shared-dma-pool";
-> +			no-map;
-> +		};
-> +	};
-> +
-> +	vcc_sdhci0: regulator-vcc-sdhci0 {
-> +		compatible = "regulator-fixed";
-> +		status = "disabled";
-
-Why? It makes it entirely pointless.
-
-> +		regulator-name = "SDHCI0 Vcc";
-> +		regulator-min-microvolt = <3300000>;
-> +		regulator-max-microvolt = <3300000>;
-> +		gpios = <&gpio0 ASPEED_GPIO(V, 0) GPIO_ACTIVE_HIGH>;
-> +		enable-active-high;
-> +	};
-> +
-> +	vccq_sdhci0: regulator-vccq-sdhci0 {
-> +		compatible = "regulator-gpio";
-> +		status = "disabled";
-
-Pointless node.
-
-> +		regulator-name = "SDHCI0 VccQ";
-> +		regulator-min-microvolt = <1800000>;
-> +		regulator-max-microvolt = <3300000>;
-> +		gpios = <&gpio0 ASPEED_GPIO(V, 1) GPIO_ACTIVE_HIGH>;
-> +		gpios-states = <1>;
-> +		states = <3300000 1>,
-> +			 <1800000 0>;
-> +	};
-> +
-> +	vcc_sdhci1: regulator-vcc-sdhci1 {
-> +		compatible = "regulator-fixed";
-> +		status = "disabled";
-
-Pointless node.
-
-
-> +		regulator-name = "SDHCI1 Vcc";
-> +		regulator-min-microvolt = <3300000>;
-> +		regulator-max-microvolt = <3300000>;
-> +		gpios = <&gpio0 ASPEED_GPIO(V, 2) GPIO_ACTIVE_HIGH>;
-> +		enable-active-high;
-> +	};
-> +
-> +	vccq_sdhci1: regulator-vccq-sdhci1 {
-> +		compatible = "regulator-gpio";
-> +		status = "disabled";
-
-Pointless node.
-
-> +		regulator-name = "SDHCI1 VccQ";
-> +		regulator-min-microvolt = <1800000>;
-> +		regulator-max-microvolt = <3300000>;
-> +		gpios = <&gpio0 ASPEED_GPIO(V, 3) GPIO_ACTIVE_HIGH>;
-> +		gpios-states = <1>;
-> +		states = <3300000 1>,
-> +			 <1800000 0>;
-> +	};
-
-Missing blank line.
-
-> +	iio-hwmon {
-> +		compatible = "iio-hwmon";
-> +		io-channels = <&adc0 0>, <&adc0 1>, <&adc0 2>, <&adc0 3>,
-> +				<&adc0 4>, <&adc0 5>, <&adc0 6>, <&adc0 7>,
-> +				<&adc1 0>, <&adc1 1>, <&adc1 2>, <&adc1 3>,
-> +				<&adc1 4>, <&adc1 5>, <&adc1 6>, <&adc1 7>;
-> +	};
-> +> +	video-engine@1e700000 {
-
-Wrong placement. Also tools would tell you that.
-
-It does not look like you tested the DTS against bindings. Please run
-`make dtbs_check W=1` (see
-Documentation/devicetree/bindings/writing-schema.rst or
-https://www.linaro.org/blog/tips-and-tricks-for-validating-devicetree-sources-with-the-devicetree-schema/
-for instructions).
-
-> +		compatible = "aspeed,ast2600-video-engine";
-> +		reg = <0x1e700000 0x20000>;
-> +		clocks = <&syscon ASPEED_CLK_GATE_VCLK>, <&syscon ASPEED_CLK_GATE_ECLK>;
-> +		clock-names = "vclk", "eclk";
-> +		interrupts = <GIC_SPI 7 IRQ_TYPE_LEVEL_HIGH>;
-> +		memory-region = <&video_engine_memory>;
-> +		//resets = <&syscon ASPEED_RESET_VIDEO>;
-
-Dead code.
-
-> +	};
-> +
-> +	leds {
-> +		compatible = "gpio-leds";
-> +
-> +		heartbeat {
-
-It does not look like you tested the DTS against bindings. Please run
-`make dtbs_check W=1` (see
-Documentation/devicetree/bindings/writing-schema.rst or
-https://www.linaro.org/blog/tips-and-tricks-for-validating-devicetree-sources-with-the-devicetree-schema/
-for instructions).
-
-> +			gpios = <&gpio0 ASPEED_GPIO(P, 7) GPIO_ACTIVE_LOW>;
-> +			linux,default-trigger = "heartbeat";
-> +		};
-> +		uid_led {
-
-It does not look like you tested the DTS against bindings. Please run
-`make dtbs_check W=1` (see
-Documentation/devicetree/bindings/writing-schema.rst or
-https://www.linaro.org/blog/tips-and-tricks-for-validating-devicetree-sources-with-the-devicetree-schema/
-for instructions).
-
-> +			gpios = <&gpio0 ASPEED_GPIO(P, 1) (GPIO_ACTIVE_LOW | GPIO_OPEN_DRAIN)>;
-> +			default-state = "off";
-> +		};
-
-Missing blank line, everywhere.
-
-> +		status_Y {
-> +			gpios = <&gpio1 ASPEED_GPIO(B, 1) GPIO_ACTIVE_LOW>;
-> +			default-state = "off";
-> +		};
-> +		sys_boot_status {
-> +			gpios = <&gpio1 ASPEED_GPIO(B, 0) GPIO_ACTIVE_LOW>;
-> +			default-state = "off";
-> +		};
-> +	};
-> +	spigpio {
-
-It does not look like you tested the DTS against bindings. Please run
-`make dtbs_check W=1` (see
-Documentation/devicetree/bindings/writing-schema.rst or
-https://www.linaro.org/blog/tips-and-tricks-for-validating-devicetree-sources-with-the-devicetree-schema/
-for instructions).
-
-
-> +		status = "okay";
-
-Why?
-
-> +		compatible = "spi-gpio";
-> +		#address-cells = <1>;
-> +		#size-cells = <0>;
-> +
-> +		sck-gpios = <&gpio0 ASPEED_GPIO(Z, 3) GPIO_ACTIVE_HIGH>;
-> +		mosi-gpios = <&gpio0 ASPEED_GPIO(Z, 4) GPIO_ACTIVE_HIGH>;
-> +		miso-gpios = <&gpio0 ASPEED_GPIO(Z, 5) GPIO_ACTIVE_HIGH>;
-> +		num-chipselects = <1>;
-> +		cs-gpios = <&gpio0 ASPEED_GPIO(Z, 0) GPIO_ACTIVE_HIGH>;
-> +	};
-> +
-
-Redundant blank line.
-
-> +};
-> +
-> +&adc0 {
-> +	vref = <2500>;
-> +	status = "okay";
-> +
-> +	pinctrl-names = "default";
-> +	pinctrl-0 = <&pinctrl_adc0_default &pinctrl_adc1_default
-> +		&pinctrl_adc2_default &pinctrl_adc3_default
-> +		&pinctrl_adc4_default &pinctrl_adc5_default
-> +		&pinctrl_adc6_default &pinctrl_adc7_default>;
-> +};
-> +
-> +&adc1 {
-> +	vref = <2500>;
-> +	status = "okay";
-> +
-> +	pinctrl-names = "default";
-> +	pinctrl-0 = <&pinctrl_adc8_default &pinctrl_adc9_default
-> +		&pinctrl_adc10_default &pinctrl_adc11_default
-> +		&pinctrl_adc12_default &pinctrl_adc13_default
-> +		&pinctrl_adc14_default &pinctrl_adc15_default>;
-> +};
-> +
-> +&peci0 {
-> +	status = "okay";
-> +};
-> +
-> +&lpc_snoop {
-> +	snoop-ports = <0x80>;
-> +	status = "okay";
-> +};
-> +
-> +
-
-Redundant blank line. Clean this code before sending upstream from such
-trivialities.
-
-> +&mdio0 {
-> +	status = "disabled";
-> +};
-> +
-> +
-> +&mdio1 {
-> +	status = "disabled";
-> +};
-> +
-> +&mdio2 {
-> +	status = "okay";
-> +
-> +	ethphy2: ethernet-phy@0 {
-> +		compatible = "ethernet-phy-ieee802.3-c22";
-> +		reg = <0>;
-> +	};
-> +};
-> +
-> +&mdio3 {
-> +	status = "okay";
-> +
-> +	ethphy3: ethernet-phy@0 {
-> +		compatible = "ethernet-phy-ieee802.3-c22";
-> +		reg = <0>;
-> +	};
-> +};
-> +
-> +&mac0 {
-> +	status = "disabled";
-> +};
-> +
-> +&mac1 {
-> +	status = "disabled";
-> +};
-> +
-> +//for X4TF
-> +&mac2 {
-> +	status = "okay";
-> +	phy-mode = "rmii";
-> +	#phy-handle = <&ethphy2>;
-> +	use-ncsi;
-> +	pinctrl-names = "default";
-> +	pinctrl-0 = <&pinctrl_rmii3_default>;
-> +};
-> +
-> +
-
-Ditto
-
-> +&mac3 {
-> +	status = "okay";
-> +	phy-mode = "rmii";
-> +	#phy-handle = <&ethphy3>;
-> +	use-ncsi;
-> +	pinctrl-names = "default";
-> +	pinctrl-0 = <&pinctrl_rmii4_default>;
-> +};
-> +
-> +
-
-Ditto
-
-> +&syscon {
-> +	uart-clock-high-speed;
-
-That's a syscon property?
-
-It does not look like you tested the DTS against bindings. Please run
-`make dtbs_check W=1` (see
-Documentation/devicetree/bindings/writing-schema.rst or
-https://www.linaro.org/blog/tips-and-tricks-for-validating-devicetree-sources-with-the-devicetree-schema/
-for instructions).
-
-> +	status = "okay";
-> +};
-> +
-> +&rtc {
-> +	status = "disabled";
-> +};
-> +
-> +&fmc {
-> +	status = "okay";
-> +	flash@0 {
-> +		status = "okay";
-
-Drop. Everywhere where it is not needed.
-
-
-> +		m25p,fast-read;
-> +		label = "bmc-spi";
-> +		spi-max-frequency = <50000000>;
-> +		spi-bus-width = <1>;
-> +		partitions {
-> +			compatible = "fixed-partitions";
-> +			#address-cells = <1>;
-> +			#size-cells = <1>;
-> +			bmc@0 {
-> +				label = "bmc";
-> +				reg = <0x0 0x4000000>;
-> +			};
-> +			u-boot@0 {
-> +				label = "u-boot";
-> +				reg = <0x0 0x200000>;
-> +			};
-> +			u-boot-env@1f0000 {
-> +				label = "u-boot-env";
-> +				reg = <0x1f0000 0x10000>;
-> +			};
-> +			kernel@200000 {
-> +				label = "kernel";
-> +				reg = <0x200000 0xc00000>;
-> +			};
-> +			rofs@a00000 {
-> +				label = "rofs";
-> +				reg = <0xa00000 0x2a00000>;
-> +			};
-> +			rwfs@2a00000 {
-> +				label = "rwfs";
-> +				reg = <0x2a00000 0x43f0000>;
-> +			};
-> +		};
-> +	};
-> +};
-> +
-> +&spi1 {
-> +	status = "okay";
-> +	pinctrl-names = "default";
-> +	pinctrl-0 = <&pinctrl_spi1_default>;
-> +
-> +	flash@0 {
-> +		status = "okay";
-> +		w25q256,fast-read;
-> +		label = "bios-spi";
-> +		spi-max-frequency = <50000000>;
-> +		partitions {
-> +			compatible = "fixed-partitions";
-> +			#address-cells = <1>;
-> +			#size-cells = <1>;
-> +			biosfullimg@0 {
-> +				reg = <0x0 0x2000000>; //  32768 *1024 = 0x2000000, 32 MB
-> +				label = "biosfullimg";
-> +			};
-> +		};
-> +	};
-> +};
-> +
-> +&i2c0 {
-> +	status = "okay";
-> +};
-> +
-> +&i2c1 {
-> +	status = "okay";
-> +};
-> +
-> +&i2c2 {
-> +	status = "okay";
-> +};
-> +
-> +&i2c3 {
-> +	status = "okay";
-> +};
-> +
-> +&i2c4 {
-> +	status = "okay";
-> +	tmp75@48 {
-
-Node names should be generic. See also an explanation and list of
-examples (not exhaustive) in DT specification:
-https://devicetree-specification.readthedocs.io/en/latest/chapter2-devicetree-basics.html#generic-names-recommendation
-
-
-
-> +		compatible = "ti,tmp75";
-> +		reg = <0x48>;
-> +	};
-> +	tmp75@49 {
-
-Node names should be generic. See also an explanation and list of
-examples (not exhaustive) in DT specification:
-https://devicetree-specification.readthedocs.io/en/latest/chapter2-devicetree-basics.html#generic-names-recommendation
-
-I am going to skip the rest. Please fix all the trivialities and test
-your patches with tools.
+Please use full name.
 
 Best regards,
 Krzysztof
