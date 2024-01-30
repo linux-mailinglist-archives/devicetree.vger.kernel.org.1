@@ -1,76 +1,76 @@
-Return-Path: <devicetree+bounces-36826-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-36827-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8D2B1842CD9
-	for <lists+devicetree@lfdr.de>; Tue, 30 Jan 2024 20:33:37 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0233A842CDA
+	for <lists+devicetree@lfdr.de>; Tue, 30 Jan 2024 20:33:38 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id BBB25B23CBA
-	for <lists+devicetree@lfdr.de>; Tue, 30 Jan 2024 19:33:34 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 83E111F2684B
+	for <lists+devicetree@lfdr.de>; Tue, 30 Jan 2024 19:33:37 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 273F169E12;
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3CF776A02A;
 	Tue, 30 Jan 2024 19:33:13 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="ytMRtxsj"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="z8iJydgk"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lf1-f45.google.com (mail-lf1-f45.google.com [209.85.167.45])
+Received: from mail-lf1-f53.google.com (mail-lf1-f53.google.com [209.85.167.53])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E52E37B3E7
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 055047B3EC
 	for <devicetree@vger.kernel.org>; Tue, 30 Jan 2024 19:33:10 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.45
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.53
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1706643193; cv=none; b=MJ7URVzxhqqmM90lDNeyE7HsneoPxy55f0xZP+tlx7dpiqrDMfjQfn6iMgGpPCWVkq4rHEBpBqKYLAGT0lvnCwHg6SXiewfPWtaqCtaM0nJgi9N8Cme85hg9ZGDCMTuRFhMLkQk7OpYwDr+O5+7dTgTF4NPiVmmWzFXPtMwW4JU=
+	t=1706643193; cv=none; b=Wo/5aQCQY0TXxxmNLtNSxnvYEGotBvkDhaBYfrG4tMGl8wIVRJics3SQG4pNLmPEIn3stme3i2mew7XpXVMszgsJ1zcz03ckRJ35NkjzliXIog/b+q+03WlEvBS7xrgMsMKQ1jQBQ3wkO4F2b2FPT+Bt8pwgthxJnSaFBVmBDh0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
 	s=arc-20240116; t=1706643193; c=relaxed/simple;
-	bh=DVqQeFLYtl1hG2YkmWKyMebUWaBZkS2pVpkwUrkvmd4=;
+	bh=Ow4yR6ctjY/xEto4RfYBtSJOP3Dtx+46NhV6h4aXJaY=;
 	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=s/1SZWkxoHTbrym2dktW81ET1JrZXTp6Lw5RWtBFmgbk6V7sHwiOiT/OZQZPJXlu9lktD9Yi6Trm1o0miR+PmppaO5LJ0lCoF4Zc2NZFYCLS232w/tKtv+/6xGgEVNhrYAEJ1RZ4vKARN/9t0/Y/+mqewIJiLk7a2+5AyKvXGaI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=ytMRtxsj; arc=none smtp.client-ip=209.85.167.45
+	 In-Reply-To:To:Cc; b=dDmZrtp5ch0f5ot68oSn+ssNAJMV6PxckSdvzmQ+UqHU51aGPrw+gDzNr8XRDTOw6sjaG472eT9MhLgTff3Kr1kRN5CchyAmteA3jl0xivoaj0tGMLoHIvIZ0K8SwWcOa4T0B34vzZKxNaoXS1HloijTbB7grjqgHduPRZZpH44=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=z8iJydgk; arc=none smtp.client-ip=209.85.167.53
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-lf1-f45.google.com with SMTP id 2adb3069b0e04-5110c166d70so4599441e87.1
+Received: by mail-lf1-f53.google.com with SMTP id 2adb3069b0e04-511207d62b6so866849e87.1
         for <devicetree@vger.kernel.org>; Tue, 30 Jan 2024 11:33:10 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google; t=1706643189; x=1707247989; darn=vger.kernel.org;
         h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
          :mime-version:subject:date:from:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=fsOsDffGjbMKXxKiUASCyihFfDCCxIQKMu+16D1U1Y8=;
-        b=ytMRtxsjplYFuYbl7bmQZdJN8y086a6PUN9b3BpybBDRd75Ip4mS9oRpKJNhhArm3B
-         RrdYuY7HZRqzqZS0qWyRT1u+7NiDsmlymLoXkZNC/y5ZDTRuKgPK2IiSiM4h1buyb4GM
-         EBp+ta2CpKwzhHfhtdx0w+0qXIHKINDR1nT+9x6mw086YhnbLA2t125oRCudtrf3O743
-         NwRn16rYizZwUKlC3FIg48NFEBYhE0uTyhURkzy1dvHUygZwHAPZFSJxp1yw0ZLUTpvv
-         5Yu3QlKdA5spSRCvS/aFLoaM+q8aBJjsObrYxJfliWJfxKaPqR+nJKpN7A1t7c13inCP
-         tWdA==
+        bh=PIOls1rDbmjiI7zQY4HMCjRALFzPkzCrHv4ccP/WN1c=;
+        b=z8iJydgkLglk88uMBlTU0xdGXRGaufzl7rkNvnlYLIxQB0WN5wgfPC0TOM1PbVORPe
+         bNnXK0SSLGAFuDAp0kkI3eVqV9n2t/GpJg2w68dPQ+VA/hGM095EY4gVQ3xbqL1D/ftQ
+         +9unQbTlMznu5K8yMFPPil+dZBhH4tGf34wvrUIaRPy0MPS302eSye80WwKvMMTU9Vbv
+         wsAJphObz4YOP+VWi+Bjs+gFR2bu0vUDPP0y7yuPLFdoMU3tSUWz+/I7N2TcvvgZ4U10
+         NQdVAhYK2Cef/6XRUdbIYs2ayk6AWzbEkrEv+cSSGT7RFrbpCFkEnWFtVg9jfuQo/eUs
+         81rw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20230601; t=1706643189; x=1707247989;
         h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
          :mime-version:subject:date:from:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=fsOsDffGjbMKXxKiUASCyihFfDCCxIQKMu+16D1U1Y8=;
-        b=N6XzQiXdHm7ZSuVhFPJyV+1AwzyhENfVMMg6EptnSHh1VzZgq/4gkEzY1lf30D6NQ6
-         WbrPs2ZhE38OfJfUMumJE0d1hfkjnhGUWyvwbRF+gnwrTOcv2aYHSPxqMG2k0fmNNANH
-         vlH1XHdAteArwD7g5j5ro97SsIf5CbffdWXpqyRzT3+xofecK1IoOncdny0IDYmAHtBg
-         GqqNwLlLVd2bCTPQjYGl6dZPjTYSlKoWfDGWrqTZNyixVozqW0dowAWkyxyADETR9lyj
-         tWcEbbIkffr6Bbk/fqIb62I6/xF8/Qm7bSvgburML6iLeDqa4aH+kAQwdmakj1F0OAYc
-         cA+Q==
-X-Gm-Message-State: AOJu0YyQFKBNyMC5jbJ19jrlzyXlkcNNh1RTlUUfKdnrrZaMWOg80yxR
-	cKmOgNTMYBLDufe5QaNRKpog74+K33SMbuvd8BD1drHHW5seYuxCzueTpGhz1Uc=
-X-Google-Smtp-Source: AGHT+IGTFahHKgV3CqvuLZ0AtvpOJq6UKQRF/ePrBcVGEvuBqmaCEuZwp9/FnSntMj3eytho//xePA==
-X-Received: by 2002:a19:2d1c:0:b0:510:28a9:9b31 with SMTP id k28-20020a192d1c000000b0051028a99b31mr5754153lfj.59.1706643188335;
-        Tue, 30 Jan 2024 11:33:08 -0800 (PST)
-X-Forwarded-Encrypted: i=0; AJvYcCUrmWgAjcw7TTn584Ui6g1RC/OTJ9I92AoVo20F/XUDXwA5X7dgs2CyLBjFTMEercmwf3NTacJf1H4OfwI3LgphpHsqiK12lw6TAV1bMnVsBh21OJyT3oEjTTx10g413tru4C+NXGsEXar0FYC8+vzvv6A+h4XcVwOgKAd25z1Ux26HTt2PMUgV5G2JD3bMtRf1YyxVVPF+dwjFNheyyW6j4ftrgAW3XS8abBuN1Rvg8EGJkvGpO8WGpa/lH9OMXiRpRZjHZfHu3dscqXSLnBA2rtra3xHtt2hTyINJNlna79/Tm557jezdm4B0phuZ5q9T5P9D4pvyUZlGfwvJRhQAx0ahIOCv4OZLQtyBxX78kTAM9bx/rJuGTL+R2wpOEYH1hAddQyrTwA9KcUOn6coI6gzpsLxqrCS8nfJ7duiA/0789gGKk9+OLEAlHmQ7hL/eiJWJQiiHArWbvlr/s++gdPMd2GZVZmri0Lbh1Sv11WUmIVojBPIbHHXwIwOJKcIp1MfhVL1p4x0gbfdloYdxk1mVXayK78uWzj2KppQ7iVHdGJwuGDT8I4Fn4/NDjeB6l9sdAyUJK7zy6mElSRTtf51ckjB689BXhGWFCYYeszbO+TsU6CNqQ83J8QGV2QSmSB6TlB19pdUO8Aw7dJo=
+        bh=PIOls1rDbmjiI7zQY4HMCjRALFzPkzCrHv4ccP/WN1c=;
+        b=P0R2SXqytNrm60EUflQsqerUUVW1XzwHOdX8Xmg3dQbvlUySNPChU17gDWjty30Kfu
+         KcUb58MFEvz06mjocX63zXlGNpznAtwt8V8dt1P3DPqK6qrKusFOCn6DZPwsA3PpyGsd
+         kusBjXJ8xiSCleSEY/VNLY1HMKyKXjZ7k5gHcrIzcnCZIcGeWZ4BDef4VXcCS2+M1tSC
+         IlU6MGEVAZ8/7omOWeCp4PCobhJhbohnXnNd9eghAAfQsZX8UrSBugEbokYc4S8f7NGi
+         V8dc8+yWXvRIiWmAl42GieadndvFkq3zxMNw2zjR8Ph/IRLqyZ7z2RU4e8jeHOozUrJZ
+         veVA==
+X-Gm-Message-State: AOJu0Yx5ygMnQQx4HbmojI1lL79uz2lJqKwCXHFQLLWSvZDNBtWC+UT6
+	PPWKktLgK9lFImtURi2DTYsdUTyyfZbC1k0kvoSCLE31zVmFyjy/Y+Vun6AjxdY=
+X-Google-Smtp-Source: AGHT+IG1dEVgfk/rWiEWIJSTmCl2hCeZIAQWlKHhCjW891Qo61yTMMIKfGJhzIMg9E70etfpLY5Acg==
+X-Received: by 2002:a05:6512:70c:b0:511:1796:aad6 with SMTP id b12-20020a056512070c00b005111796aad6mr2556925lfs.35.1706643189043;
+        Tue, 30 Jan 2024 11:33:09 -0800 (PST)
+X-Forwarded-Encrypted: i=0; AJvYcCUp+MpkTQXH/5XRhcowQAQh0KJ8oE3k9Ghu3oOyvrS+Nz8DXuSa2BVaeT3a1bDjN2voKHMN2Uw0NyedwxPMBs/1GdDUdJ5fdTkBmSjhr2mZuhKnhifkNKlvAygtS+WM52WdnEmgMShnOygVUUQ8rSBjbGQPIGQnlyaimbHEnYPa1KpqlIi/d7puc7XeGtMF1xko6typsWgeIipLWlPSCiUMRcAgudUuL/9WzMZoUekIUKSIKkurYtDxKNbz3GIt78l1k69xthgKgEQsQucjXMPQ+KNifGdwCS/RScSDzfRqwaIUHsDW60/HxYIm6ICMepf5okjdBwkUlkMwJFLEWjb4odG11TGqoxuCec32PjB3EezKyuDskjQDxR9WgBR2E+UnJUUvjco6spwz1m/I6m5k1nwN3usAbOC8LPGfpHh6E1m1h7OmUVqXlsrG0WTuQs6a3sN0CR+MYl+YwaJkfIXEm986JZIfhX7xdZ8vAL+FccAZtOTwpCvI9Gnw6hpP1UY8VgogFyfMRBDN0205U3uFMrbqb6OsMBGDLDqbsruASmc/2irbbfr/k5cedJ7SkyXeCzlUd8k6mEUnAQSY0xmrIggnma29L/cX8oKWnkfT
 Received: from umbar.lan ([192.130.178.91])
-        by smtp.gmail.com with ESMTPSA id u25-20020a05651220d900b0051119371e7csm366525lfr.120.2024.01.30.11.33.07
+        by smtp.gmail.com with ESMTPSA id u25-20020a05651220d900b0051119371e7csm366525lfr.120.2024.01.30.11.33.08
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 30 Jan 2024 11:33:07 -0800 (PST)
+        Tue, 30 Jan 2024 11:33:08 -0800 (PST)
 From: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-Date: Tue, 30 Jan 2024 21:32:54 +0200
-Subject: [PATCH v3 1/6] dt-bindings: regulator: qcom,usb-vbus-regulator:
- add support for PMI632
+Date: Tue, 30 Jan 2024 21:32:55 +0200
+Subject: [PATCH v3 2/6] dt-bindings: usb: qcom,pmic-typec: add support for
+ the PMI632 block
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -79,7 +79,7 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-Message-Id: <20240130-pmi632-typec-v3-1-b05fe44f0a51@linaro.org>
+Message-Id: <20240130-pmi632-typec-v3-2-b05fe44f0a51@linaro.org>
 References: <20240130-pmi632-typec-v3-0-b05fe44f0a51@linaro.org>
 In-Reply-To: <20240130-pmi632-typec-v3-0-b05fe44f0a51@linaro.org>
 To: Bjorn Andersson <andersson@kernel.org>, 
@@ -95,53 +95,99 @@ To: Bjorn Andersson <andersson@kernel.org>,
 Cc: linux-arm-msm@vger.kernel.org, linux-kernel@vger.kernel.org, 
  devicetree@vger.kernel.org, linux-usb@vger.kernel.org, 
  Dmitry Baryshkov <dmitry.baryshkov@linaro.org>, 
- Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>, 
  Luca Weiss <luca.weiss@fairphone.com>
 X-Mailer: b4 0.12.4
-X-Developer-Signature: v=1; a=openpgp-sha256; l=1213;
+X-Developer-Signature: v=1; a=openpgp-sha256; l=2243;
  i=dmitry.baryshkov@linaro.org; h=from:subject:message-id;
- bh=DVqQeFLYtl1hG2YkmWKyMebUWaBZkS2pVpkwUrkvmd4=;
- b=owEBbQGS/pANAwAKAYs8ij4CKSjVAcsmYgBluU7x0hYlv2kPqEe/tZhfg+70aNvKVPcQd3YJn
- g7ahlXuyqSJATMEAAEKAB0WIQRMcISVXLJjVvC4lX+LPIo+Aiko1QUCZblO8QAKCRCLPIo+Aiko
- 1UVUB/9xR2CC1Zusg622yHz/LP7zcch3wz2Cyxk7W1ElejoXblvCmYeLsygVGfl2v0IyBM31fKK
- Cuo8iAKw3PmB1e+7K8LIV08G5YW+lMswTifEoRZkxNLebI6HnQsFe5BGaksxqfWZnp2f4Pg+Na+
- Mg+lAaYpCtf5MnhiC6sX2RmCMJJN7ODKrZAH04KGd8jpok8J6i7cXk53zsc/zHQDNHTIG49pAJO
- rhgLeQj2nGBDnRdse2jDdCubDklPc55ZcoRVC6AF3J5PwNF0pu6qbI6R7+w77syA4ZaerI+VJz3
- r54vsHYOlvoTHYTU3iXaBCv306uK6FwTb+lQsY/6exg0CH7o
+ bh=Ow4yR6ctjY/xEto4RfYBtSJOP3Dtx+46NhV6h4aXJaY=;
+ b=owEBbQGS/pANAwAKAYs8ij4CKSjVAcsmYgBluU7x+nuSup/ei3JgHFWe//JXcCdfSiDNirSRn
+ q+aDe/1t2WJATMEAAEKAB0WIQRMcISVXLJjVvC4lX+LPIo+Aiko1QUCZblO8QAKCRCLPIo+Aiko
+ 1XWvB/9ZFdURtS5La2iK9oZ/lQFWJd8RO05uAdlJR7pwQ4aqPzycVjolDaeEi3KaO7XrlTfOTVX
+ AwPXozCY6oWCspC0L/IKSXNRXzhpQ9mh9TysyILhc0HUjGG8Eumt66FbfPUpCOTSv59zW2suSBO
+ uilHdAS3bbTAmpdafw4jICNUgxx+uEGbJM+OjG3PRYETk48BMNcqFs1L84qDQVne9esW2TcuPKu
+ KuZIRflK7/uIptULJoWKbNgwc+u8m5JQbakQFB6BHAjKqYkP6wGmQoq7ybZYTxA+o5fsMCKmipE
+ yK9EkvbD//3ILqQ/b313jc9Un/o2bppUl1YGhMbFqCbjbjyw
 X-Developer-Key: i=dmitry.baryshkov@linaro.org; a=openpgp;
  fpr=8F88381DD5C873E4AE487DA5199BF1243632046A
 
-The VBUS register block on the PMI632 PMIC shares the design with the
-PM8150B one. Define corresponding compatible string, having the
-qcom,pm8150b-vbus-reg as a fallback.
+The PMI632 PMIC has the same Type-C register block as the PM8150B.
+However this PMIC doesn't support USB Power Delivery. As such it doesn't
+have the second region used by the existing pm8150b bindings. Add if
+clauses to handle the PMI632 usecase.
 
-Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 Tested-by: Luca Weiss <luca.weiss@fairphone.com> # sdm632-fairphone-fp3
 Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
 ---
- .../devicetree/bindings/regulator/qcom,usb-vbus-regulator.yaml   | 9 +++++++--
- 1 file changed, 7 insertions(+), 2 deletions(-)
+ .../devicetree/bindings/usb/qcom,pmic-typec.yaml   | 32 +++++++++++++++++++++-
+ 1 file changed, 31 insertions(+), 1 deletion(-)
 
-diff --git a/Documentation/devicetree/bindings/regulator/qcom,usb-vbus-regulator.yaml b/Documentation/devicetree/bindings/regulator/qcom,usb-vbus-regulator.yaml
-index 534f87e98716..66dcd5ce03e6 100644
---- a/Documentation/devicetree/bindings/regulator/qcom,usb-vbus-regulator.yaml
-+++ b/Documentation/devicetree/bindings/regulator/qcom,usb-vbus-regulator.yaml
-@@ -19,8 +19,13 @@ allOf:
- 
+diff --git a/Documentation/devicetree/bindings/usb/qcom,pmic-typec.yaml b/Documentation/devicetree/bindings/usb/qcom,pmic-typec.yaml
+index 55df3129a0bc..6c0c6b337693 100644
+--- a/Documentation/devicetree/bindings/usb/qcom,pmic-typec.yaml
++++ b/Documentation/devicetree/bindings/usb/qcom,pmic-typec.yaml
+@@ -15,6 +15,7 @@ description:
  properties:
    compatible:
--    enum:
--      - qcom,pm8150b-vbus-reg
-+    oneOf:
-+      - enum:
-+          - qcom,pm8150b-vbus-reg
-+      - items:
-+          - enum:
-+              - qcom,pmi632-vbus-reg
-+          - const: qcom,pm8150b-vbus-reg
+     enum:
++      - qcom,pmi632-typec
+       - qcom,pm8150b-typec
+ 
+   connector:
+@@ -24,9 +25,11 @@ properties:
  
    reg:
-     maxItems: 1
+     description: Type-C port and pdphy SPMI register base offsets
++    minItems: 1
+     maxItems: 2
+ 
+   interrupts:
++    minItems: 8
+     items:
+       - description: Type-C CC attach notification, VBUS error, tCCDebounce done
+       - description: Type-C VCONN powered
+@@ -46,6 +49,7 @@ properties:
+       - description: Power Domain Fast Role Swap event
+ 
+   interrupt-names:
++    minItems: 8
+     items:
+       - const: or-rid-detect-change
+       - const: vpd-detect
+@@ -81,7 +85,33 @@ required:
+   - interrupts
+   - interrupt-names
+   - vdd-vbus-supply
+-  - vdd-pdphy-supply
++
++allOf:
++  - if:
++      properties:
++        compatible:
++          contains:
++            enum:
++              - qcom,pmi632-typec
++    then:
++      properties:
++        reg:
++          maxItems: 1
++        interrupts:
++          maxItems: 8
++        interrupt-names:
++          maxItems: 8
++        vdd-pdphy-supply: false
++    else:
++      properties:
++        reg:
++          maxItems: 2
++        interrupts:
++          minItems: 16
++        interrupt-names:
++          maxItems: 16
++      required:
++        - vdd-pdphy-supply
+ 
+ additionalProperties: false
+ 
 
 -- 
 2.39.2
