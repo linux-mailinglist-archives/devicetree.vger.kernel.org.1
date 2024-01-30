@@ -1,137 +1,104 @@
-Return-Path: <devicetree+bounces-36770-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-36771-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 01ADF8429C8
-	for <lists+devicetree@lfdr.de>; Tue, 30 Jan 2024 17:43:34 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8FF848429D1
+	for <lists+devicetree@lfdr.de>; Tue, 30 Jan 2024 17:45:01 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 1E2411C23060
-	for <lists+devicetree@lfdr.de>; Tue, 30 Jan 2024 16:43:33 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 20803B24A69
+	for <lists+devicetree@lfdr.de>; Tue, 30 Jan 2024 16:44:59 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E5F8F128379;
-	Tue, 30 Jan 2024 16:43:17 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 638B51272C7;
+	Tue, 30 Jan 2024 16:44:52 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="eSSqBRKc"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-yw1-f169.google.com (mail-yw1-f169.google.com [209.85.128.169])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5EDB4128391;
-	Tue, 30 Jan 2024 16:43:16 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.169
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3884E823AA;
+	Tue, 30 Jan 2024 16:44:51 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1706632997; cv=none; b=fWQHKNl90SJZovR/qLBj9CiB7j/dxdOIb4Mhf7yat89nljpomHXGgFXuVSlRAgC8UyJNVL1A9R8+Ea4oSjJ+jT6jryQV7tqOZhPIelrI0V2BMnvLDAGZSq6P6NEa5R+IiYU2z3H+X/qIBguRT/zcAfPkWkm1rAOu3T/omNBFNd8=
+	t=1706633092; cv=none; b=NjWhqrliQoOlRYwObJBflE7fc7YiqGqTKuaxes8Hf0nD7Rx5ZOPkYdEv7iS5j/LzlzUv5m9uwDeZocTDuMFEcGNx7+zkFWf8WP2rQcw5e5FlwAaLxC+G9gp5VzNoNQBxPH7F6Njpr5KRsf7gJPLq1Ny9mRfcPQ5PeXOYaeXz+jo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1706632997; c=relaxed/simple;
-	bh=k/cw4o9Nkg+vVVqsgUAubQVLjRvLodDejnegtuMIjIE=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=Mdbs74K3DphyOxczPHeVryUcFcT9z7ts7JSvaFxWL8U2RJD7HF2y9LlnIIsq4LS401ieEcapf/YRHr6JgBL5gOStQi8scZuK4P65SA94TTDQgJJHLJcpHXqM36e4LTdaz1CUAEjU7AztA0z0wjhkCh+XomVSXcIsgc/t/RZjy78=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org; spf=pass smtp.mailfrom=gmail.com; arc=none smtp.client-ip=209.85.128.169
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-yw1-f169.google.com with SMTP id 00721157ae682-602c91a76b1so50866077b3.2;
-        Tue, 30 Jan 2024 08:43:16 -0800 (PST)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1706632995; x=1707237795;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=jG9RI5gp4dsbVA0rgVD5sIOvmapDxiObHhaU7j767x0=;
-        b=ManDeQqSahSeO96sfkER4WvdJg/5l67hzIsU5mlkJx3GfHXUbWyuE8vucdSprRgAkD
-         gxSTMZH5A+fNBqk7oIZI30E97xvohg2Z/Ww7AIlDImDAeo0tmaALO8tLiZQGpR9OsmaI
-         Vqwws4xZHDkzhj4LcdoDJ7dir7PnXTIckJupj+CT1nu2/+quvTFulKStwP936JM784rF
-         AIQjobnxzIyUVfbQwDMROJC7Xz7WWEfuCQR7duAFK8ecG53fA48IdX53MUKlH6AXqzQ5
-         F/2Zf79BD5bxPpCOZxQOTGi4OnB4x5p4K971IuXweGeEjA/vniawUWx65MxeYC2fC0Rk
-         oq7g==
-X-Gm-Message-State: AOJu0YyLJr8pZFLSUUEQM4UzYjgMGXIX+EMUOJdcP+CbGaoIwTOhv64X
-	yluvVWJvMcwl3IiQlELQ/eSZ0cSeLqPy//zV+IEZ49+B19OmFAHtOAOWqLSPqYU=
-X-Google-Smtp-Source: AGHT+IHM2kLih245Lxq1nUdIxQnTza+R1zGhBTfH8dLrdFJF9CzQqLfT9d3tVcBLXxoOzR8B3uJpjA==
-X-Received: by 2002:a0d:f4c2:0:b0:5e2:2bfc:c6dd with SMTP id d185-20020a0df4c2000000b005e22bfcc6ddmr7716297ywf.23.1706632994912;
-        Tue, 30 Jan 2024 08:43:14 -0800 (PST)
-Received: from mail-yw1-f176.google.com (mail-yw1-f176.google.com. [209.85.128.176])
-        by smtp.gmail.com with ESMTPSA id fp3-20020a05690c34c300b005a7d46770f2sm3235003ywb.83.2024.01.30.08.43.14
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 30 Jan 2024 08:43:14 -0800 (PST)
-Received: by mail-yw1-f176.google.com with SMTP id 00721157ae682-602c91a76b1so50865927b3.2;
-        Tue, 30 Jan 2024 08:43:14 -0800 (PST)
-X-Received: by 2002:a05:690c:830:b0:5ff:488c:9a6a with SMTP id
- by16-20020a05690c083000b005ff488c9a6amr7478186ywb.17.1706632994283; Tue, 30
- Jan 2024 08:43:14 -0800 (PST)
+	s=arc-20240116; t=1706633092; c=relaxed/simple;
+	bh=ApN6vGDoCBSa8a5eHek4leab/krN/aRtltgY7pXOlaQ=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=VrdDPdB8XJSW4lYeeReIGfw7+87VVwUnDY6MJNZOjpGvhpgzbmiIRwzhhwkGrMKn/sC+IXp3VFIfoUCVmkXFVGfcR+ej1BN4Lak3UpBwefMMK+VkN1w6W4LsvT1ajsOY1OVmEY7JV/uNqfaSuolA74ChR+TsZfFwUoZng//tc1g=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=eSSqBRKc; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 796B9C433F1;
+	Tue, 30 Jan 2024 16:44:51 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1706633091;
+	bh=ApN6vGDoCBSa8a5eHek4leab/krN/aRtltgY7pXOlaQ=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=eSSqBRKc7l50P3IqENRN3i8FnYccrqXf4wIpszO0ApgIw+XxPLTjNtyCyrpLoCx7V
+	 llUAy5lxvX/BvGhDzIXLv8rtRagPqQx9XQTeLnaJASOuCZKe4aeVdfjiOdizFQ6Qj+
+	 Ejb3Ujpgf/w18Xut6wj8w+tcUW9MjJJcTCW6JV7N99RMaFYqrIuLdhB9XPsd03GyS6
+	 cGksaQ1iXg7Qmh2F79ORkwb7+QWpOq1Jv7iQiywybha6QWmzpGgHVF7aWrEAqkaWAB
+	 mD2I2SQnW0mFKKgnZKazTZ7FTv+s5yH/rkiSrhoDwmJUwCpr21c1S9oAYlhmTd4HAl
+	 8FQiIVtgQ433A==
+Date: Tue, 30 Jan 2024 10:44:49 -0600
+From: Rob Herring <robh@kernel.org>
+To: William Qiu <william.qiu@starfivetech.com>
+Cc: devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	linux-riscv@lists.infradead.org, linux-can@vger.kernel.org,
+	Emil Renner Berthing <kernel@esmil.dk>,
+	Wolfgang Grandegger <wg@grandegger.com>,
+	Philipp Zabel <p.zabel@pengutronix.de>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Marc Kleine-Budde <mkl@pengutronix.de>,
+	"David S . Miller" <davem@davemloft.net>,
+	Eric Dumazet <edumazet@google.com>,
+	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
+	Paul Walmsley <paul.walmsley@sifive.com>,
+	Palmer Dabbelt <palmer@dabbelt.com>,
+	Albert Ou <aou@eecs.berkeley.edu>
+Subject: Re: [PATCH v1 1/4] dt-bindings: vendor-prefixes: Add cast vendor
+ prefix
+Message-ID: <20240130164449.GA1828286-robh@kernel.org>
+References: <20240129031239.17037-1-william.qiu@starfivetech.com>
+ <20240129031239.17037-2-william.qiu@starfivetech.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20240122111115.2861835-1-claudiu.beznea.uj@bp.renesas.com> <20240122111115.2861835-3-claudiu.beznea.uj@bp.renesas.com>
-In-Reply-To: <20240122111115.2861835-3-claudiu.beznea.uj@bp.renesas.com>
-From: Geert Uytterhoeven <geert@linux-m68k.org>
-Date: Tue, 30 Jan 2024 17:43:03 +0100
-X-Gmail-Original-Message-ID: <CAMuHMdX+AN6a0KSnUfTRU5rmCyJBW_nqoqRsU+9ui6uMG-WdGg@mail.gmail.com>
-Message-ID: <CAMuHMdX+AN6a0KSnUfTRU5rmCyJBW_nqoqRsU+9ui6uMG-WdGg@mail.gmail.com>
-Subject: Re: [PATCH 02/10] watchdog: rzg2l_wdt: Use pm_runtime_resume_and_get()
-To: Claudiu <claudiu.beznea@tuxon.dev>
-Cc: wim@linux-watchdog.org, linux@roeck-us.net, robh+dt@kernel.org, 
-	krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org, 
-	geert+renesas@glider.be, magnus.damm@gmail.com, mturquette@baylibre.com, 
-	sboyd@kernel.org, p.zabel@pengutronix.de, biju.das.jz@bp.renesas.com, 
-	linux-watchdog@vger.kernel.org, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org, linux-renesas-soc@vger.kernel.org, 
-	linux-clk@vger.kernel.org, Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20240129031239.17037-2-william.qiu@starfivetech.com>
 
-Hi Claudiu,
+On Mon, Jan 29, 2024 at 11:12:36AM +0800, William Qiu wrote:
+> Add prefix for Computer-Aided Software Technologies, Inc.
 
-On Mon, Jan 22, 2024 at 12:11=E2=80=AFPM Claudiu <claudiu.beznea@tuxon.dev>=
- wrote:
-> From: Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>
->
-> pm_runtime_get_sync() may return with error. In case it returns with erro=
-r
-> dev->power.usage_count needs to be decremented. pm_runtime_resume_and_get=
-()
-> takes care of this. Thus use it.
->
-> Fixes: 2cbc5cd0b55f ("watchdog: Add Watchdog Timer driver for RZ/G2L")
-> Signed-off-by: Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>
+The diff tells me this. The commit message should say who Computer-Aided 
+Software Technologies, Inc. is. What do they make? Website? etc.
 
-Thanks for your patch!
-
-> --- a/drivers/watchdog/rzg2l_wdt.c
-> +++ b/drivers/watchdog/rzg2l_wdt.c
-> @@ -123,8 +123,11 @@ static void rzg2l_wdt_init_timeout(struct watchdog_d=
-evice *wdev)
->  static int rzg2l_wdt_start(struct watchdog_device *wdev)
->  {
->         struct rzg2l_wdt_priv *priv =3D watchdog_get_drvdata(wdev);
-> +       int ret;
->
-> -       pm_runtime_get_sync(wdev->parent);
-> +       ret =3D pm_runtime_resume_and_get(wdev->parent);
-> +       if (ret)
-> +               return ret;
->
->         /* Initialize time out */
->         rzg2l_wdt_init_timeout(wdev);
-
-To actually handle this error condition, rzg2l_wdt_set_timeout() should
-be updated to propagate the error to its caller, too.
-
-Anyway, most of this is moot, as pm_runtime_get_sync() won't ever
-fail on Renesas arm/risc-v systems...
-
-Gr{oetje,eeting}s,
-
-                        Geert
-
---=20
-Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k=
-.org
-
-In personal conversations with technical people, I call myself a hacker. Bu=
-t
-when I'm talking to journalists I just say "programmer" or something like t=
-hat.
-                                -- Linus Torvalds
+> 
+> Signed-off-by: William Qiu <william.qiu@starfivetech.com>
+> ---
+>  Documentation/devicetree/bindings/vendor-prefixes.yaml | 2 ++
+>  1 file changed, 2 insertions(+)
+> 
+> diff --git a/Documentation/devicetree/bindings/vendor-prefixes.yaml b/Documentation/devicetree/bindings/vendor-prefixes.yaml
+> index 1a0dc04f1db4..b9c6ce99d24d 100644
+> --- a/Documentation/devicetree/bindings/vendor-prefixes.yaml
+> +++ b/Documentation/devicetree/bindings/vendor-prefixes.yaml
+> @@ -242,6 +242,8 @@ patternProperties:
+>      description: Capella Microsystems, Inc
+>    "^cascoda,.*":
+>      description: Cascoda, Ltd.
+> +  "^cast,.*":
+> +    description: Computer-Aided Software Technologies, Inc.
+>    "^catalyst,.*":
+>      description: Catalyst Semiconductor, Inc.
+>    "^cavium,.*":
+> -- 
+> 2.34.1
+> 
 
