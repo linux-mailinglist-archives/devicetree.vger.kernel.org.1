@@ -1,220 +1,154 @@
-Return-Path: <devicetree+bounces-36715-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-36716-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 71A2D8426F1
-	for <lists+devicetree@lfdr.de>; Tue, 30 Jan 2024 15:31:13 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 178B884271C
+	for <lists+devicetree@lfdr.de>; Tue, 30 Jan 2024 15:47:42 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id F3F3B1F22295
-	for <lists+devicetree@lfdr.de>; Tue, 30 Jan 2024 14:31:12 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id C7365284934
+	for <lists+devicetree@lfdr.de>; Tue, 30 Jan 2024 14:47:40 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B96F212E5B;
-	Tue, 30 Jan 2024 14:31:07 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0CCBD7C0AE;
+	Tue, 30 Jan 2024 14:47:37 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="s6LLjrBm"
+	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b="ZAq2ro36"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ej1-f43.google.com (mail-ej1-f43.google.com [209.85.218.43])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from madrid.collaboradmins.com (madrid.collaboradmins.com [46.235.227.194])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BBE4F6EB5C
-	for <devicetree@vger.kernel.org>; Tue, 30 Jan 2024 14:31:03 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.43
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3BECD6BB2B;
+	Tue, 30 Jan 2024 14:47:34 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=46.235.227.194
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1706625067; cv=none; b=Pko02Ag8YVJKaf1kxxbxlreHrL3MYFULCDhIrxXEfvM4JunodKygySW60cwD19Dr05CJtJH2ATCNvYMgKU+uY7VEf7xrKL0l3dF4pBURNZUlxI9nVsFit0Uv3QYJlrFJfFTO6O3TlmX2aR+NlWOD3Msdfo/P34GSEtz90N/JdCQ=
+	t=1706626056; cv=none; b=cS9zVlazTm5AdUS8IZqmDsox9FdnpSRlD68NWm6alep9Kp/WAUKMoL2jdMr/Ng1UNiVUpfHly6tRrWj5mNYkrJM4IpE3/L+Oz3j/xN+fUxbBm+d+qBZimcKhHECfq8S3EtWypSgzhJpbIRII/3wAC4PsuuNxzfUVta/L2DtIIBk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1706625067; c=relaxed/simple;
-	bh=5VSkp4VquTGIbHfXMGSFy33z1EscXVApG/ONqtpsUfU=;
-	h=Message-ID:Date:MIME-Version:Subject:To:References:From:
-	 In-Reply-To:Content-Type; b=inlNNAEs36tedtBpQnEj2r/YBBsMIO7C08UwmHnezimaurRfr/j0uBTQ4prTS+gCx7V0YFLTwwq95vnNScAgqv1ZesF8/6Qyd1AMGZTuYrZQbEPFkQwcAr9aWGwGjI+TX6Dpe9voBiR9L0iKCvTfPuC286wgbxbRaQywyDncLEc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=s6LLjrBm; arc=none smtp.client-ip=209.85.218.43
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-ej1-f43.google.com with SMTP id a640c23a62f3a-a30e445602cso1042396266b.0
-        for <devicetree@vger.kernel.org>; Tue, 30 Jan 2024 06:31:03 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1706625062; x=1707229862; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=C8FFhJPQtQHK90KRh4aDgUjQ/+FzbXtl3WGSDLkoiB4=;
-        b=s6LLjrBmPa1A1brhek7YXcGDKs8CefdqI05OfLIC2FfUoBFYgtKH8DFnpiFdYVLUNv
-         P/YzM6+j7LovslyV09yrolUUDHEGbW+JKkN1n1P3pse+nRuhTxoZm6KhWCE8lIEIgHv8
-         zy8WtdvwPMxoZJflWjsNsVZO3mGGbOrHMkmfjd/LvQ+5wkN8nU8eKv6+dhB3tvxcQyqv
-         P0cTGRvxG+s2IECMRer2JytU8FrSl5LUqiC7XSps+V884qssM9dByaF24Cp0xrpA63tx
-         3ASmTE7j7fVh/5oDK6AtbBG8CekhteHUO+dwXNQwY0zRqVA18GlQLsLB2Hl0rPTwPGbt
-         K7gQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1706625062; x=1707229862;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=C8FFhJPQtQHK90KRh4aDgUjQ/+FzbXtl3WGSDLkoiB4=;
-        b=CvGRCfnrPvkQFjb4pDojwWQBn5pDPv4Fb9WsSGZJWpad1D7mIKioVtWwB4Rx/OCEgJ
-         1JWN8PaQ93Ba6wbmeSzb8BMvPss2UCMEVM0iDLhUS5I+aV12jppJyY1HfGcBwSGbGL9X
-         jqg2HXM/aOSBTGKkcAft2wf+loNGFekSOC8lo2UOWgVMIRkLIxHhyBYasyHwWkIcDCeN
-         9Bo74ehLHxrWgWTz6QZMYRCD0TQCYPCz9RpNAOPB1rlhUsYswvJ8NTvYY1o4o2zjff3y
-         0upDIvY2q2Sp4b/p8zrM/0QYM2dEqCZHj82P6/vq/C1kNteybeJYzvOLsnoJr8deGwDC
-         eBEA==
-X-Gm-Message-State: AOJu0Yx3GA58a/DXx8AAfcUll1wfXRiQMNhtQBqGt9+PrVRTZMkC23Pn
-	MK46pIUzE33lHtDBzPhawjub6Hymwgps9GZr5rpMiZJJXxx5olJ8xrNXKkG7KGk=
-X-Google-Smtp-Source: AGHT+IEYLyhraoMA9QILcT4fpjbpYIT9jeOlcxNkJifqkTZMeZli66Q25vuwuy/uQzPugqBn/UAuLA==
-X-Received: by 2002:a17:907:9876:b0:a31:4c93:93b1 with SMTP id ko22-20020a170907987600b00a314c9393b1mr1649938ejc.15.1706625061829;
-        Tue, 30 Jan 2024 06:31:01 -0800 (PST)
-X-Forwarded-Encrypted: i=0; AJvYcCUsevdWTQ6da2O2WpYpW9SJO4yuy04FL+ATQT/S2+W8/jfneFXQ2DTwzrsLf6g7zTl1cfcmH5hoaNgFUqYtlknbmFMF6eFVTdK9N/4eYTttt8k2Gha59QxvCDwo8g2cZ92yGEAdcgb3OC95jU21dej/VzfNIPx/+XMtq/N65rQPEApcY3m0HZeUG8yl8mANDXZNW1xHJyhokGQrcqsKfWuXatFPTR4sm74kmDIxy2mr/brXLijsdmHrHLMi86S2573dZnkLyps2RP8iIlei8Xrw1YSYWPxWalq8mh12NJPVaeMZ1wAhvt43vBHOoq23RvTgRcvj7s/tkNadgm9cylkZa+7mAJWKywV3kGA2ZNZyjBxVrSrZYLSZuntzCfBThQpidiHLxddRy6fhrS7IUU1P3Xc8jQ87wumGHKmIMt+QjknTkhoroA==
-Received: from [192.168.1.20] ([178.197.222.62])
-        by smtp.gmail.com with ESMTPSA id th7-20020a1709078e0700b00a30ed424e18sm5145750ejc.41.2024.01.30.06.31.00
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 30 Jan 2024 06:31:01 -0800 (PST)
-Message-ID: <8b01a23d-c5f1-474b-b69d-ef629d6d5f24@linaro.org>
-Date: Tue, 30 Jan 2024 15:30:59 +0100
+	s=arc-20240116; t=1706626056; c=relaxed/simple;
+	bh=FI1o2shOT/ij4/zuD/4jiajye0Rvj5KQ1PCOiOvQ1qg=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=fW279lv9R/+dHj8dzk+P0WV5xzvSqs/mBq7LfSii2I/m8kE+L6lccX+OzR6hQ39PUSKt4BoCZdH4lBO6nouSKlNjDGxD6t2Fh3+aMpR28eOUzcz7gBWUzqfTA032zcBso+c0VDNTZ06cnzdBsc98rjddY2Jw5FOZNybCsN48wLU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b=ZAq2ro36; arc=none smtp.client-ip=46.235.227.194
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=collabora.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
+	s=mail; t=1706626053;
+	bh=FI1o2shOT/ij4/zuD/4jiajye0Rvj5KQ1PCOiOvQ1qg=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=ZAq2ro36Muznt5+EuPTqB4/iT8QRQF9EO4FTRfFxsocopEluPGjTN2VZN0QcmUHQ3
+	 T4iWq8vHQLUpAtCIB1HELSRImOnrehoM9ZxIUV58h+EPdc4idlh4VIV/NZzBZWO0Hk
+	 B29F7TBTfaBiU5/7C+lsoungykWMJyIr4PQtwaw3Iq30TtUeghjOmrPyvDOKxNpIlA
+	 LUHoKTYlCvA+jeqPGqjEqlgh0cNQpTUDbF496POSqM2T8Y/4+GRSSE2VL/H9TOTB9m
+	 0r2sxPzVvD65SoWyIYTZItLpIy3vwhr9Ai35ZpeSO1AafypuOA6cumYcO5RDxY7nLP
+	 cwUEuCdEwkY3A==
+Received: from mercury (cola.collaboradmins.com [195.201.22.229])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+	(No client certificate requested)
+	(Authenticated sender: sre)
+	by madrid.collaboradmins.com (Postfix) with ESMTPSA id 2D94937811CF;
+	Tue, 30 Jan 2024 14:47:33 +0000 (UTC)
+Received: by mercury (Postfix, from userid 1000)
+	id C283E1063C86; Tue, 30 Jan 2024 15:47:32 +0100 (CET)
+Date: Tue, 30 Jan 2024 15:47:32 +0100
+From: Sebastian Reichel <sebastian.reichel@collabora.com>
+To: Dmitry Osipenko <dmitry.osipenko@collabora.com>
+Cc: Michael Turquette <mturquette@baylibre.com>, 
+	Stephen Boyd <sboyd@kernel.org>, linux-clk@vger.kernel.org, 
+	Elaine Zhang <zhangqing@rock-chips.com>, Kever Yang <kever.yang@rock-chips.com>, 
+	Heiko Stuebner <heiko@sntech.de>, Rob Herring <robh+dt@kernel.org>, 
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, huangtao@rock-chips.com, 
+	andy.yan@rock-chips.com, devicetree@vger.kernel.org, linux-rockchip@lists.infradead.org, 
+	kernel@collabora.com
+Subject: Re: [PATCH v8 7/7] clk: rockchip: implement proper GATE_LINK support
+Message-ID: <i5qagtdg73rhojifmublx2w2kxvjeisd6qwqbo5vnhrgyedx3i@pyckzpstlnvb>
+References: <20240126182919.48402-1-sebastian.reichel@collabora.com>
+ <20240126182919.48402-8-sebastian.reichel@collabora.com>
+ <8b4214a5-6ba7-402d-b2f6-f2424783d455@collabora.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v3] dt-bindings: misc: xlnx,sd-fec: convert bindings to
- yaml
-Content-Language: en-US
-To: Dragan Cvetic <dragan.cvetic@amd.com>, Rob Herring <robh+dt@kernel.org>,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Conor Dooley <conor+dt@kernel.org>, Derek Kiernan <derek.kiernan@amd.com>,
- Jonathan Corbet <corbet@lwn.net>, Michal Simek <michal.simek@amd.com>,
- "Erim, Salih" <salih.erim@amd.com>,
- "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS"
- <devicetree@vger.kernel.org>, open list <linux-kernel@vger.kernel.org>,
- "open list:DOCUMENTATION" <linux-doc@vger.kernel.org>,
- "moderated list:ARM/ZYNQ ARCHITECTURE" <linux-arm-kernel@lists.infradead.org>
-References: <20240130125309.4019261-1-dragan.cvetic@amd.com>
-From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
- 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
- D2GYIS41Kv4Isx2dEFh+/Q==
-In-Reply-To: <20240130125309.4019261-1-dragan.cvetic@amd.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-
-On 30/01/2024 13:53, Dragan Cvetic wrote:
-> Convert AMD (Xilinx) sd-fec bindings to yaml format, so it can validate
-> dt-entries as well as any future additions to yaml.
-> Change in clocks is due to IP is itself configurable and
-> only the first two clocks are in all combinations. The last
-> 6 clocks can be present in some of them. It means order is
-> not really fixed and any combination is possible.
-> Interrupt may or may not be present.
-> The documentation for sd-fec bindings is now YAML, so update the
-> MAINTAINERS file.
-> Update the link to the new yaml file in xilinx_sdfec.rst.
-> 
-> Signed-off-by: Dragan Cvetic <dragan.cvetic@amd.com>
-> ---
-> Changes in v2:
-> ---
-> Drop clocks description.
-> Use "contains:" with enum for optional clock-names and update
-> comment explaining diference from the original DT binding file.
-> Remove trailing full stops.
-> Add more details in sdfec-code description.
-> Set sdfec-code to "string" not "string-array"
-> ---
-> Changes in v3:
-> Fix a mistake in example, set interrupt type to 0.
-
-Why? That's not a correct interrupt type in most of the cases.
-
-Was this patch tested?
-
-...
-
-> diff --git a/Documentation/devicetree/bindings/misc/xlnx,sd-fec.yaml b/Documentation/devicetree/bindings/misc/xlnx,sd-fec.yaml
-> new file mode 100644
-> index 000000000000..ed87c48a9ee9
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/misc/xlnx,sd-fec.yaml
-> @@ -0,0 +1,136 @@
-> +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/misc/xlnx,sd-fec.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: Xilinx SDFEC(16nm) IP
-> +
-> +maintainers:
-> +  - Cvetic, Dragan <dragan.cvetic@amd.com>
-> +  - Erim, Salih <salih.erim@amd.com>
-> +
-> +description: |
-
-Do not need '|' unless you need to preserve formatting.
-
-> +  The Soft Decision Forward Error Correction (SDFEC) Engine is a Hard IP block
-> +  which provides high-throughput LDPC and Turbo Code implementations.
-> +  The LDPC decode & encode functionality is capable of covering a range of
-> +  customer specified Quasi-cyclic (QC) codes. The Turbo decode functionality
-> +  principally covers codes used by LTE. The FEC Engine offers significant
-> +  power and area savings versus implementations done in the FPGA fabric.
-> +
+Content-Type: multipart/signed; micalg=pgp-sha512;
+	protocol="application/pgp-signature"; boundary="vkzhu7wafk4plwhd"
+Content-Disposition: inline
+In-Reply-To: <8b4214a5-6ba7-402d-b2f6-f2424783d455@collabora.com>
 
 
-> +  xlnx,sdfec-dout-words:
-> +    description: |
-> +      A value 0 indicates that the DOUT_WORDS interface is
-> +      driven with a fixed value and is not present on the device, a value of 1
-> +      configures the DOUT_WORDS to be block based, while a value of 2 configures the
-> +      DOUT_WORDS input to be supplied for each AXI transaction.
-> +    $ref: /schemas/types.yaml#/definitions/uint32
-> +    enum: [ 0, 1, 2 ]
-> +
-> +
+--vkzhu7wafk4plwhd
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-Just one blank line.
+Hi Dmitry,
 
-Best regards,
-Krzysztof
+On Fri, Jan 26, 2024 at 10:36:13PM +0300, Dmitry Osipenko wrote:
+> On 1/26/24 21:18, Sebastian Reichel wrote:
+> > Recent Rockchip SoCs have a new hardware block called Native Interface
+> > Unit (NIU), which gates clocks to devices behind them. These effectively
+> > need two parent clocks.
+> >=20
+> > GATE_LINK type clocks handle the second parent via 'linkedclk' by using
+> > runtime PM clocks. To make that possible a new platform device is creat=
+ed
+> > for every clock handled in this way.
+> >=20
+> > Note, that before this patch clk_rk3588_probe() has never been called,
+> > because CLK_OF_DECLARE marks the DT node as processed. This patch repla=
+ces
+> > that with CLK_OF_DECLARE_DRIVER and thus the probe function is used now.
+> > This is necessary to have 'struct device' available.
+> >=20
+> > Also instead of builtin_platform_driver_probe, the driver has been
+> > switched to use core_initcall, since it should be fully probed before
+> > the Rockchip PM domain driver (and that is using postcore_initcall).
+>=20
+> Why clk driver needs to be fully probed before PD? The PD driver
+> shouldn't probe until all clk providers that it uses are registered, and
+> then both clk and PD should be registered at the default level.
 
+The error handling in the rockchip PD driver needs rework to
+properly handle -EPROBE_DEFER, which I consider a separate series.
+
+Note, that the driver currently has 'builtin_platform_driver_probe',
+but does not actually probe anything. All clocks are registered via
+CLK_OF_DECLARE, which happens even before core_initcall. So this
+does not make things worse.
+
+Also the OF node is marked as initialized by the early clocks
+(CLK_OF_DECLARE_DRIVER) via the call to of_clk_add_provider(). This
+is necessary, since otherwise the early clocks cannot be referenced
+and we need the early clocks for the timer registration (so it's not
+possible to move all the clocks to late init). This effectively
+results in fw_devlink not working properly. It will tell PM domain
+driver too early, that it may start probing (so a bunch of useless
+-EPROBE_DEFER will happen).
+
+Greetings,
+
+-- Sebastian
+
+--vkzhu7wafk4plwhd
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQIzBAABCgAdFiEE72YNB0Y/i3JqeVQT2O7X88g7+poFAmW5C/0ACgkQ2O7X88g7
++ppdJw/8CHy0yXXXuEDrx70oy4owoZo5xIMHXN32hTvwFH9eVj8nYPtVQjOhGwJW
+gVj28u1i87QbL246bl2ok/4PbStOC+OgniV1weSi8QWIoWJGsOK3UHy7FErWcXw8
+khKb305Fc+aUwrdbgy0hbcoIH0oYnFQqnzNrG0yCnnCY6+Qshx1jxlHLBoWSOzo+
+Cbm6FVZuwV4tVsoa7ORK06ZmNruyQ5q7uj1igUsPGhTuXO+QQSvZIv0jv14FN4ml
++mAVU2vn5C+4yU3AV4z2t9c/RxAS7O4OlQ22jNMgHnea2QiIMmzYCVL2mF5oe4pD
+nn5KxT8qPTkBx5tOtCRVqc817ciG+ZCkYe0qxXvepxxtTV9y+tS9yEU6yPBzOeOO
+CgacGJ5Z7Oe7msH30CjGiLX2wzdz3g2v7d+yt/DGHkUGgAniXI4Wz/ADiu0w+Mes
+DwPsIUbVrWRfs0T6tilPCOul720EyNPUt2+gX4U+gU8Hts7NwSOYMNTyHx95aztm
+XMHqOd+cDHdcZ4yL2BOuo7kkK76wz7/8N03WhV5i4psn4V7NADrF3fW3Xs9QMmaH
+zYtPR6iUtnF30RNeNShgi3fOCKHJeg3Ot7nBQA8iNJLRnHYM5OPZ4CjFfqu9sUxx
+bvctNp/h03OavnjOmRYh5DQO7vEIdQGvpJ8MF8hOEM288oxk1pM=
+=NE/i
+-----END PGP SIGNATURE-----
+
+--vkzhu7wafk4plwhd--
 
