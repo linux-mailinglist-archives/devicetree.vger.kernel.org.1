@@ -1,215 +1,135 @@
-Return-Path: <devicetree+bounces-36679-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-36680-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3FB66842487
-	for <lists+devicetree@lfdr.de>; Tue, 30 Jan 2024 13:10:58 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 5753184248F
+	for <lists+devicetree@lfdr.de>; Tue, 30 Jan 2024 13:12:49 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 723181C22D5E
-	for <lists+devicetree@lfdr.de>; Tue, 30 Jan 2024 12:10:57 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 89F201C23586
+	for <lists+devicetree@lfdr.de>; Tue, 30 Jan 2024 12:12:48 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0247967E79;
-	Tue, 30 Jan 2024 12:10:11 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D29EE67A10;
+	Tue, 30 Jan 2024 12:12:43 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="X+8jDO25"
+	dkim=pass (2048-bit key) header.d=microchip.com header.i=@microchip.com header.b="VTUFh7+F"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from esa.microchip.iphmx.com (esa.microchip.iphmx.com [68.232.154.123])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C553367A10;
-	Tue, 30 Jan 2024 12:10:09 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4D8246775E;
+	Tue, 30 Jan 2024 12:12:41 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=68.232.154.123
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1706616610; cv=none; b=aoTl/vprViuC6qNkB1eW8U5el6VFwcVL9+PMap8uI4J5G46p04dqPvKBSjpXIk4VgnRr7ct032I5RDEtGO1fhtZXyzHaq49dxK8O7fTaR1XqE9cX2o8SFT7Ode4uPKGIOuRqL6Y+by15IRlqjaaBT/OjzS96wOrAkBqVd6bfkfo=
+	t=1706616763; cv=none; b=oBr0r24JzlNqydKpF+2lKM3WcZLGSRHRwxKD9okwu/9m2FNQpKp/zNsFOto6U/KOIK0tQTM887x6z9JfENpVngpyuHsmwCi7NeE72Ej5PYKoSZxgJi5DGZr5PlU6FF68X9cSYIrrI3Eq4UmH1ylNpO4UVjVhBDUGj0g2BvPceUE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1706616610; c=relaxed/simple;
-	bh=Rf/2bGcKWqfTSjgtmsaV3E5nuVmMnoGUoJPbVEXxFeI=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=I4sxZEnSQuCdk1742zDOHRyPCcP9Vtdyq5HOWxA1VK1V2iRm/QEbtrdxfBJx5b3AssTQkkAVjOU8hLNuuTcfSsMonfmkLhvrbFsDYyx1Zuk4j9IkQIaTb3dsPpO66Bn8CTt/mFzFDg5kxOoOLL/OGpABkAsbeTsNvly2Mm7TEto=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=X+8jDO25; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 8F052C433F1;
-	Tue, 30 Jan 2024 12:10:06 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1706616609;
-	bh=Rf/2bGcKWqfTSjgtmsaV3E5nuVmMnoGUoJPbVEXxFeI=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=X+8jDO25v2bvERaOl4vwaKHzBrnOmKobZ/+ZmePShNGyf0ideGDJnp64b1Qu2vs2p
-	 EE1ilgNTQvaxik/9Axb9WMAzkb5Wa1zkTJFpxUJD9aKllfZ3yeqC6m0ETXND4vZaWJ
-	 Eg/ujl9CzT7lcV3wDgpwH6RexeZ8+puCvRS/5oS1t/YdefW4Grse2txtNloTsaN4Kb
-	 z5F5FoB/feoxCUAspsSZYdTSFM3R3YRISlY+CBkBMPBrGG4RTO+F7qTL3x5cvTBr0V
-	 /i51XP/uxTWl1mt6PsZlyo82BNknt7lCnkC/asNT9h/TSruINLU1HwzmdSEUZqSiDv
-	 fGBilTMvtcbCA==
-Message-ID: <30f0154c-37c7-468c-911e-027c51c8d69b@kernel.org>
-Date: Tue, 30 Jan 2024 14:10:03 +0200
+	s=arc-20240116; t=1706616763; c=relaxed/simple;
+	bh=ts6+3cKiUi9J177cwzVgCHsWG2TI3IL/jBqFMX29Dpg=;
+	h=Date:From:To:CC:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=Zpi+xbnV5c1TpIwtePql4bXhFOmPG2iHOe0h7exEZ1a3KytTfdeWFsLWhu/1G2I6ZLQNs96OKkECbpLO4nl3sp+t2QMTSj2RnzRMDq9vI2ec2ae3ze+T+1REN8aEnNx+AtyHJ/8kXU7oyfahwObSKAZoBv0OFu6aWekQK4dlSqs=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=microchip.com; spf=pass smtp.mailfrom=microchip.com; dkim=pass (2048-bit key) header.d=microchip.com header.i=@microchip.com header.b=VTUFh7+F; arc=none smtp.client-ip=68.232.154.123
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=microchip.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=microchip.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
+  t=1706616761; x=1738152761;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=ts6+3cKiUi9J177cwzVgCHsWG2TI3IL/jBqFMX29Dpg=;
+  b=VTUFh7+FYr0Zzk/gUT779ohSTh63PUvwYD7lp08nfsrts9UH6gwnlea5
+   r/XLp5ijX3YgbVAj6bBSZRYGlueV+/4urvbPrtmx+p6p/hOzzQoDFidce
+   SF09U+r64FCvYLIauhdywePchwR/QeWe67cb0QlxL/o5Sfe+RNfcemvoY
+   ZICAZVkkBOrQY2SggEjr6nMBNI/3XU37KEhv/1GMPv5ZNu+ZMXrTzgPVI
+   25MZBSrtKAtNkypTLpVPfw2CarvZOSG2lsamPbE8xNK+ch+vjJ3xPNLAT
+   LmKhwiR4EMfNZcH6+64L27lNPaENe4u3XN8W9CFrEPy7EZgn9nBSQ/X8w
+   A==;
+X-CSE-ConnectionGUID: daF2h1OmQfmAoCYQvT7ARg==
+X-CSE-MsgGUID: SGmXWDjFQGqzfcOyr/9P1g==
+X-IronPort-AV: E=Sophos;i="6.05,707,1701154800"; 
+   d="asc'?scan'208";a="182745230"
+X-Amp-Result: UNKNOWN
+X-Amp-Original-Verdict: FILE UNKNOWN
+Received: from unknown (HELO email.microchip.com) ([170.129.1.10])
+  by esa6.microchip.iphmx.com with ESMTP/TLS/ECDHE-RSA-AES128-GCM-SHA256; 30 Jan 2024 05:12:39 -0700
+Received: from chn-vm-ex03.mchp-main.com (10.10.85.151) by
+ chn-vm-ex04.mchp-main.com (10.10.85.152) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.35; Tue, 30 Jan 2024 05:12:25 -0700
+Received: from wendy (10.10.85.11) by chn-vm-ex03.mchp-main.com (10.10.85.151)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.35 via Frontend
+ Transport; Tue, 30 Jan 2024 05:12:22 -0700
+Date: Tue, 30 Jan 2024 12:11:44 +0000
+From: Conor Dooley <conor.dooley@microchip.com>
+To: Marc Kleine-Budde <mkl@pengutronix.de>
+CC: Conor Dooley <conor@kernel.org>, <linux-riscv@lists.infradead.org>, "Daire
+ McNamara" <daire.mcnamara@microchip.com>, Wolfgang Grandegger
+	<wg@grandegger.com>, "David S. Miller" <davem@davemloft.net>, Eric Dumazet
+	<edumazet@google.com>, Jakub Kicinski <kuba@kernel.org>, Paolo Abeni
+	<pabeni@redhat.com>, Rob Herring <robh+dt@kernel.org>, Krzysztof Kozlowski
+	<krzysztof.kozlowski+dt@linaro.org>, Paul Walmsley
+	<paul.walmsley@sifive.com>, Palmer Dabbelt <palmer@dabbelt.com>, Albert Ou
+	<aou@eecs.berkeley.edu>, Michael Turquette <mturquette@baylibre.com>,
+	"Stephen Boyd" <sboyd@kernel.org>, <linux-can@vger.kernel.org>,
+	<netdev@vger.kernel.org>, <devicetree@vger.kernel.org>,
+	<linux-kernel@vger.kernel.org>, <linux-clk@vger.kernel.org>
+Subject: Re: [PATCH v2 2/7] dt-bindings: can: mpfs: add missing required clock
+Message-ID: <20240130-narrow-lyricism-8b25baac7bb2@wendy>
+References: <20240122-catty-roast-d3625dbb02fe@spud>
+ <20240122-breeder-lying-0d3668d98886@spud>
+ <20240122-surely-crimp-ba4a8c55106d-mkl@pengutronix.de>
+ <20240122-cruelly-dainty-002081f0beb2@spud>
+ <20240122-smokeless-ion-63e4148c22e5-mkl@pengutronix.de>
+ <20240122-uncoated-cherub-a29cba1c0035@spud>
+ <20240122-pogo-reputable-b1d06ae1f1f1-mkl@pengutronix.de>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 2/2] arm64: dts: ti: k3-am62p: add the USB sub-system
-Content-Language: en-US
-To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>, nm@ti.com,
- vigneshr@ti.com
-Cc: afd@ti.com, kristo@kernel.org, robh+dt@kernel.org,
- krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org, srk@ti.com,
- linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org
-References: <20240126125951.18585-1-rogerq@kernel.org>
- <20240126125951.18585-3-rogerq@kernel.org>
- <0bc7081f-f279-4741-b14e-198b2d00d5d0@linaro.org>
-From: Roger Quadros <rogerq@kernel.org>
-In-Reply-To: <0bc7081f-f279-4741-b14e-198b2d00d5d0@linaro.org>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Type: multipart/signed; micalg=pgp-sha256;
+	protocol="application/pgp-signature"; boundary="HOtgW7KLF4e36W+S"
+Content-Disposition: inline
+In-Reply-To: <20240122-pogo-reputable-b1d06ae1f1f1-mkl@pengutronix.de>
 
+--HOtgW7KLF4e36W+S
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
+On Mon, Jan 22, 2024 at 04:31:32PM +0100, Marc Kleine-Budde wrote:
+> On 22.01.2024 14:56:09, Conor Dooley wrote:
 
-On 26/01/2024 17:11, Krzysztof Kozlowski wrote:
-> On 26/01/2024 13:59, Roger Quadros wrote:
->> From: Vignesh Raghavendra <vigneshr@ti.com>
->>
->> There are two USB instances available on the am62p5 starter kit. Include
->> and enable them for use on the board.
->>
->> Signed-off-by: Vignesh Raghavendra <vigneshr@ti.com>
->> Signed-off-by: Roger Quadros <rogerq@kernel.org>
->> ---
->>  arch/arm64/boot/dts/ti/k3-am62p-main.dtsi | 46 ++++++++++++++++
->>  arch/arm64/boot/dts/ti/k3-am62p5-sk.dts   | 67 +++++++++++++++++++++++
->>  2 files changed, 113 insertions(+)
->>
->> diff --git a/arch/arm64/boot/dts/ti/k3-am62p-main.dtsi b/arch/arm64/boot/dts/ti/k3-am62p-main.dtsi
->> index 4c51bae06b57..7e7cd749d9a5 100644
->> --- a/arch/arm64/boot/dts/ti/k3-am62p-main.dtsi
->> +++ b/arch/arm64/boot/dts/ti/k3-am62p-main.dtsi
->> @@ -560,6 +560,52 @@ sdhci2: mmc@fa20000 {
->>  		status = "disabled";
->>  	};
->>  
->> +	usbss0: dwc3-usb@f900000 {
-> 
-> usb@
+> > I think we already had this discussion on v1, where I said that the
+> > binding requires the clocks to be in that order, regardless of whether
+> > or not clock-names is provided. You feel more strongly about it than I
+> > do, so I will add them when I get around to sending a v3.
+>=20
+> Yes, this discussion sounded very familiar to me, never mind. Keep it as
+> is, and let's get this binding and the CAN driver upstream!
 
-OK.
-> 
->> +		compatible = "ti,am62-usb";
->> +		reg = <0x00 0x0f900000 0x00 0x800>;
->> +		clocks = <&k3_clks 161 3>;
->> +		clock-names = "ref";
->> +		ti,syscon-phy-pll-refclk = <&usb0_phy_ctrl 0x0>;
->> +		#address-cells = <2>;
->> +		#size-cells = <2>;
->> +		power-domains = <&k3_pds 178 TI_SCI_PD_EXCLUSIVE>;
->> +		ranges;
->> +		status = "disabled";
->> +
->> +		usb0: usb@31000000 {
->> +			compatible = "snps,dwc3";
->> +			reg = <0x00 0x31000000 0x00 0x50000>;
->> +			interrupts = <GIC_SPI 188 IRQ_TYPE_LEVEL_HIGH>, /* irq.0 */
->> +			<GIC_SPI 188 IRQ_TYPE_LEVEL_HIGH>; /* irq.0 */
->> +			interrupt-names = "host", "peripheral";
->> +			maximum-speed = "high-speed";
->> +			dr_mode = "otg";
->> +		};
->> +	};
->> +
->> +	usbss1: dwc3-usb@f910000 {
-> 
-> usb@
-> 
->> +		compatible = "ti,am62-usb";
->> +		reg = <0x00 0x0f910000 0x00 0x800>;
->> +		clocks = <&k3_clks 162 3>;
->> +		clock-names = "ref";
->> +		ti,syscon-phy-pll-refclk = <&usb1_phy_ctrl 0x0>;
->> +		#address-cells = <2>;
->> +		#size-cells = <2>;
->> +		power-domains = <&k3_pds 179 TI_SCI_PD_EXCLUSIVE>;
->> +		ranges;
->> +		status = "disabled";
->> +
->> +		usb1: usb@31100000 {
->> +			compatible = "snps,dwc3";
->> +			reg = <0x00 0x31100000 0x00 0x50000>;
->> +			interrupts = <GIC_SPI 226 IRQ_TYPE_LEVEL_HIGH>, /* irq.0 */
->> +			<GIC_SPI 226 IRQ_TYPE_LEVEL_HIGH>; /* irq.0 */
->> +			interrupt-names = "host", "peripheral";
->> +			maximum-speed = "high-speed";
->> +			dr_mode = "otg";
->> +		};
->> +	};
->> +
->>  	fss: bus@fc00000 {
->>  		compatible = "simple-bus";
->>  		reg = <0x00 0x0fc00000 0x00 0x70000>;
->> diff --git a/arch/arm64/boot/dts/ti/k3-am62p5-sk.dts b/arch/arm64/boot/dts/ti/k3-am62p5-sk.dts
->> index 1773c05f752c..7a16e7a8ac66 100644
->> --- a/arch/arm64/boot/dts/ti/k3-am62p5-sk.dts
->> +++ b/arch/arm64/boot/dts/ti/k3-am62p5-sk.dts
->> @@ -27,6 +27,8 @@ aliases {
->>  		spi0 = &ospi0;
->>  		ethernet0 = &cpsw_port1;
->>  		ethernet1 = &cpsw_port2;
->> +		usb0 = &usb0;
->> +		usb1 = &usb1;
->>  	};
->>  
->>  	chosen {
->> @@ -297,6 +299,12 @@ AM62PX_IOPAD(0x01b0, PIN_OUTPUT, 2) /* (G20) MCASP0_ACLKR.UART1_TXD */
->>  		bootph-all;
->>  	};
->>  
->> +	main_usb1_pins_default: main-usb1-default-pins {
->> +		pinctrl-single,pins = <
->> +			AM62PX_IOPAD(0x0258, PIN_INPUT, 0) /* (G21) USB1_DRVVBUS */
->> +		>;
->> +	};
->> +
->>  	main_wlirq_pins_default: main-wlirq-default-pins {
->>  		pinctrl-single,pins = <
->>  			AM62PX_IOPAD(0x0128, PIN_INPUT, 7) /* (K25) MMC2_SDWP.GPIO0_72 */
->> @@ -340,6 +348,36 @@ AM62PX_IOPAD(0x0124, PIN_INPUT, 7) /* (J25) MMC2_SDCD.GPIO0_71 */
->>  	};
->>  };
->>  
->> +&main_i2c0 {
->> +	status = "okay";
->> +	pinctrl-names = "default";
->> +	pinctrl-0 = <&main_i2c0_pins_default>;
->> +	clock-frequency = <400000>;
->> +
->> +	typec_pd0: tps6598x@3f {
-> 
-> Node names should be generic. See also an explanation and list of
-> examples (not exhaustive) in DT specification:
-> https://devicetree-specification.readthedocs.io/en/latest/chapter2-devicetree-basics.html#generic-names-recommendation
-> 
+BTW, I didn't see an ack on this nor do I see it in linux-next (yet).
+Are you expecting the patch to go with the rest via the clock tree,
+via the DT tree or will you be taking it with CAN stuff via netdev?
 
-got it. Thanks!
+I can resend this one patch with a netdev appropriate subject prefix
+if you like.
 
-> 
->> +		compatible = "ti,tps6598x";
->> +		reg = <0x3f>;
->> +
->> +		connector {
->> +			compatible = "usb-c-connector";
->> +			label = "USB-C";
->> +			self-powered;
->> +			data-role = "dual";
->> +			power-role = "sink";
->> +			ports {
-> 
-> 
-> Best regards,
-> Krzysztof
-> 
+Thanks,
+Conor.
 
--- 
-cheers,
--roger
+--HOtgW7KLF4e36W+S
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZbjnfwAKCRB4tDGHoIJi
+0td9AP91wL1UJKxv7WEXkQU6wml5iEFKMQpde0b5OMFJLiz7ggD/cJBfDDVA8GxG
+4K79+ItvQhc3pNrmvQLtKEyZc1+fRQ8=
+=AXqd
+-----END PGP SIGNATURE-----
+
+--HOtgW7KLF4e36W+S--
 
