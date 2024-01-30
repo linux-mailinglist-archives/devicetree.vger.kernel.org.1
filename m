@@ -1,133 +1,110 @@
-Return-Path: <devicetree+bounces-36768-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-36769-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2398A8429A4
-	for <lists+devicetree@lfdr.de>; Tue, 30 Jan 2024 17:40:08 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 61DFD8429AA
+	for <lists+devicetree@lfdr.de>; Tue, 30 Jan 2024 17:40:27 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id A4CBF1F2BEA6
-	for <lists+devicetree@lfdr.de>; Tue, 30 Jan 2024 16:40:07 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 03C1EB2A476
+	for <lists+devicetree@lfdr.de>; Tue, 30 Jan 2024 16:40:25 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 30DAC128385;
-	Tue, 30 Jan 2024 16:38:47 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="xwIoWSVR"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 240CA1292C9;
+	Tue, 30 Jan 2024 16:38:58 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lj1-f171.google.com (mail-lj1-f171.google.com [209.85.208.171])
+Received: from mail-ot1-f54.google.com (mail-ot1-f54.google.com [209.85.210.54])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E57C51292D6
-	for <devicetree@vger.kernel.org>; Tue, 30 Jan 2024 16:38:44 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.171
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 39A6D1272B9;
+	Tue, 30 Jan 2024 16:38:55 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.54
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1706632727; cv=none; b=OPgy9FsRZiWzHa/uAWrWngamUTZzDD+gMHYKipqD7AnUwgL718xLGp10y5IjjOGDaxaufCisA/HNH1V3pqOZwq0QIe2xw1LbdVbeMCoup3MhNUkfgxGctZuS1GOjthUtCl5vggWqfbRURgTTf0OUN1rrslLx4cbb8PMSHvRmmmI=
+	t=1706632738; cv=none; b=i6ryqi6obRw4PiDQAxbmmR3vbeRLSZdxWbIzDTHUn51Qtprni2zGP/S1rwxHFpyP6a7nIsWwzKuaLa0nvxHZfnSsP0RNNf6Cb762YTMMLAIRCfRfYvSA4brXSUMp9VskJVIa1q6sU2YdGUQiGWj5sVtXdkJ360JnQu100At/3v8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1706632727; c=relaxed/simple;
-	bh=f6I51MDLQiOqeJhfgmaztAzDHCND04cZOAhmoNK2kAw=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=kmlhNpo3TtrS08BgvBhqg8+QpD6At+wTy/JUSNVn/SBMP4W+X0gOyF/JwEj7+1unjfOLJe/uhJzonD5daVqc4IOJjoEs8Xki3JjS2oL2qdwDq/HhRxMCeyKplQpfZRnj6y2BvmD932WgCBRz7XUZKr2L4ofCH6BDztjwWJtSh8A=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=xwIoWSVR; arc=none smtp.client-ip=209.85.208.171
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-lj1-f171.google.com with SMTP id 38308e7fff4ca-2d043160cd1so30397561fa.1
-        for <devicetree@vger.kernel.org>; Tue, 30 Jan 2024 08:38:44 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1706632723; x=1707237523; darn=vger.kernel.org;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=sf6cX1kNwC+ZyH+vJIqU22NKTlhKvVMieai2ykB+P1c=;
-        b=xwIoWSVR1PHDjeUd0RVbshXGFjxJkeCNfU48Lxdn7sHw8S3bRNGHsT6qS7jqc80ToS
-         uf8fzUs/4xXsz8dh7QiJQT4txjXvWDMUUJW6lcbM1Adhx7MTwUCPKKgm8Fx4P3VUaFsD
-         zVgpnTcblO5m0/jabo6ol/tdx+6fhVRr3peI7lxYdD2J7ccmwv5URCcUOhy/NVamefZN
-         D3A+ODeXGaNeh+E9qAXW3PPVEaF6460AmC6Lk0d9tYVv0Ef00r+aEqmaEuiIhGT1WZ5F
-         v+SzGUNBwba82aYbuCx1Jst46xVSDLNfOh/sIBrf9kaExVWIF6puZImgU5IAHwnTjI6d
-         ElBw==
+	s=arc-20240116; t=1706632738; c=relaxed/simple;
+	bh=PIBPXpmi0OCIaKvnVM0qRb4yDaPk3SSSwV6Rcc/6OFE=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=dpgmpvjPTFQhW7PO7hIOsg2DKNDc5DdEhIV30Zva+lLD5Idf6NGh5m+BpzI4636rlLJxQCREyzbJJBJj6/J+r1Fedjk/XZaAE6snkJ6LF9xylpnqN/GfFqocmEPvaASxCQzrhhAvghaUMhReJPA1pRyWgQe2abvd4ppEJz4nBg8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org; spf=pass smtp.mailfrom=gmail.com; arc=none smtp.client-ip=209.85.210.54
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-ot1-f54.google.com with SMTP id 46e09a7af769-6e1149c16d4so998103a34.3;
+        Tue, 30 Jan 2024 08:38:55 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1706632723; x=1707237523;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:x-gm-message-state:from:to:cc
+        d=1e100.net; s=20230601; t=1706632735; x=1707237535;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=sf6cX1kNwC+ZyH+vJIqU22NKTlhKvVMieai2ykB+P1c=;
-        b=jFGGXVI6xDNIO/hmrHTPn3efus99TQl23DZ6+5SpTVelH7sXisoWL7ptMtfCqBJMG+
-         Nrwc/aUS+RVIr/2boT36+rK3O0RTjkQ/mMw7A0Id5qo5bJgVRP5TDifjjg+h6uebtg9/
-         9YwcuQN+4HzsQH6WIWnEFSaenFtx1ox12lGFjqejtFnVwjf2bWxPDUHhpy8cI0Cq2fzB
-         CUuril39/WZieE8pcvo7UzhPgeJ+i284fIU8ZPWYsVSk32Tcs8HH6Dw4jC6oJinNihAN
-         XmMgs/cq0qU1Ts8R+AoOZYhcxlvpTt1XMIj3wdIZw67GGvcPwW39+5okwQs24XqB9N7v
-         1Ifg==
-X-Gm-Message-State: AOJu0YwDsqxYRc8bEyipOvgqlo9qkdbJn5KIwPtR9slt3CSCapLy8Nrt
-	nPsXsOIz/MLAvtNAZK9IwcBwdJAPi5SxYbHRT2zQieiTvENu9YP0Qtyz1zRG2Mo=
-X-Google-Smtp-Source: AGHT+IGL7MOYOgKKeouag0S4EDPx+mRu3y6AV3aycea0KqrniBsk79ojRA8e357wUj+RsWbwyzeeWg==
-X-Received: by 2002:a2e:8e73:0:b0:2cd:9503:f91 with SMTP id t19-20020a2e8e73000000b002cd95030f91mr5481005ljk.15.1706632722898;
-        Tue, 30 Jan 2024 08:38:42 -0800 (PST)
-X-Forwarded-Encrypted: i=0; AJvYcCUNhW/hrthqpie8kW0dbHKqPY6B82R4tTMoLB2y1WsE5JPMqK3mmTWPxOOP9355w9KJ/I0gGpYEjmmo00xhswTF9vt+uxB/nI1ZP3aqTDeD/fxkpqBuSRnUh4OqvUkMX7paQSkoR32TcHZDi5U4aRdeBEyIg6z1EI2WXVldCMtvR69Md9t8o4knnfZV0nFy2zWjzW7NdIEw7nOGDj5RFXG6M+ujn34sjJiAwxlCO61ufAaabkJ3d6MKCH6wJBRD0N1EB3C76uzoglzeU4+cf8GirwjD7mlNHGp8o52jL7oFjJ/so7mvPKdvfvRZMg5GUco9He/E5cidXxnuufth8PySPzcrYGCAYYT9N+3mGaxNJKDywBxzIJqZXVmrzlake2VW6QF72TNLnDtLXf3i5QQnPTayz0fsdED2QvNe59zaB1JygvE1gR1rok16ynxApeokd6RtBFa14JyM/4tzBxtBJ3trtsUGvw02WHnDGDHz6ysAOzRPVpn5TWPEtZ2/J1NM5Xx7DpE=
-Received: from umbar.lan ([192.130.178.91])
-        by smtp.gmail.com with ESMTPSA id y8-20020a2e9788000000b002d05e8bd84fsm219639lji.31.2024.01.30.08.38.42
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 30 Jan 2024 08:38:42 -0800 (PST)
-From: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-Date: Tue, 30 Jan 2024 18:38:40 +0200
-Subject: [PATCH RFC 4/4] arm64: dts: qcom: qrb4210-rb1: add firmware-name
- qualifier to WiFi node
+        bh=yOwj0eDKWRdMFNfW3kWznHnSgvBdoX9GuAj6X/BuKfI=;
+        b=dqGaSvvmBvR1qtIc6Daf2leK7+4Q7HT89r2fBS0IVy6PRn+HKl6bZip34oHw0MIqIQ
+         /6sz03RCpaPhHxhBD0XqSonpq7zmdNAf294IPf1vlAujcafQRARbaJwjqAvx7cGFgLEF
+         kGIDXof+aAP8BShMwJONQQ7qCxlSl0SZWV9g1keY299v0mC/iY9jMKABKXWAjYt+oo5z
+         xgeu1d5vFyc67C6sgOLuOxtkxekd3GZTtzaJ7+Ikq3DC5N/2vIhA4arD+IuCAkgkukCT
+         cW6UAifS9HqkrTNiPxgyn+bM1XS7IFNzCZZUwqQpT4gjDqjyAzoYKCKexVZqDxT1pikY
+         7cew==
+X-Gm-Message-State: AOJu0YxTaA8/fBVkZQ+9Ufi3k+Yr0+G6Cx0c0ywyoZuhC+JVGKezh3YQ
+	dGfFMu/QcscQVGf5TMlzAREkXyCO1SOnRiF/LuRwFHjVXQdnn+SqIFKtlzCUCPg=
+X-Google-Smtp-Source: AGHT+IF+09BsOF72PezA3/7TJugovcp/S0x9xiK1+KYCvdP+xJfF2rz1xK/mGzqxWIkq8iasi+yUxA==
+X-Received: by 2002:a05:6358:7e0c:b0:176:d36b:f70c with SMTP id o12-20020a0563587e0c00b00176d36bf70cmr4877598rwm.15.1706632734926;
+        Tue, 30 Jan 2024 08:38:54 -0800 (PST)
+Received: from mail-yw1-f182.google.com (mail-yw1-f182.google.com. [209.85.128.182])
+        by smtp.gmail.com with ESMTPSA id cl1-20020a05690c0c0100b005ffa141d9f4sm3229574ywb.18.2024.01.30.08.38.54
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 30 Jan 2024 08:38:54 -0800 (PST)
+Received: by mail-yw1-f182.google.com with SMTP id 00721157ae682-6029e069e08so54168537b3.0;
+        Tue, 30 Jan 2024 08:38:54 -0800 (PST)
+X-Received: by 2002:a0d:f403:0:b0:5ff:92f1:8e24 with SMTP id
+ d3-20020a0df403000000b005ff92f18e24mr6787205ywf.48.1706632734618; Tue, 30 Jan
+ 2024 08:38:54 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20240130-wcn3990-firmware-path-v1-4-826b93202964@linaro.org>
-References: <20240130-wcn3990-firmware-path-v1-0-826b93202964@linaro.org>
-In-Reply-To: <20240130-wcn3990-firmware-path-v1-0-826b93202964@linaro.org>
-To: Kalle Valo <kvalo@kernel.org>, Jeff Johnson <quic_jjohnson@quicinc.com>, 
- "David S. Miller" <davem@davemloft.net>, Eric Dumazet <edumazet@google.com>, 
- Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>, 
- Rob Herring <robh+dt@kernel.org>, 
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, 
- Conor Dooley <conor+dt@kernel.org>, Bjorn Andersson <andersson@kernel.org>, 
- Konrad Dybcio <konrad.dybcio@linaro.org>
-Cc: ath10k@lists.infradead.org, linux-wireless@vger.kernel.org, 
- netdev@vger.kernel.org, devicetree@vger.kernel.org, 
- linux-arm-msm@vger.kernel.org
-X-Mailer: b4 0.12.4
-X-Developer-Signature: v=1; a=openpgp-sha256; l=733;
- i=dmitry.baryshkov@linaro.org; h=from:subject:message-id;
- bh=f6I51MDLQiOqeJhfgmaztAzDHCND04cZOAhmoNK2kAw=;
- b=owGbwMvMwMXYbdNlx6SpcZXxtFoSQ+pONf7+oBu7cj5b/Px+y3syj15dV21DWHCZgmzclrfb7
- Finhrl3MhqzMDByMciKKbL4FLRMjdmUHPZhx9R6mEGsTCBTGLg4BWAifIvY/0cEubKXi9/gm8od
- sbbh3FFrGea938T3d+1ivO7RyMwh8bPo589T/4PXan+/n8vCa5zdprtqp9d2r/iK2s0NrhkCs7x
- +3/kn4cMit86+8ZCEx3GFwDMTGUw78tzP5zHWOBtt6hOMSLl0Ji2jVN5N7FfbNNvnH1mvBNzu/M
- rFqfZ5Hv/jjexzJdSdus86LSwO6NolO/vlhltBc4xFLzF27JfiyNnJf9x8ifmD7Pi+U/mZZx6nx
- QUGfgjI+/aMa/+N6OuSHwNa2dReN8o6z3dI3CzrWNPBIH1hxcNr096s8uxYaFLxmOtsau6aZT9v
- XGA7YPOnxVvhn5Jnx3xdy0jOm/uvmIWWdxz1VQm5y2AKAA==
-X-Developer-Key: i=dmitry.baryshkov@linaro.org; a=openpgp;
- fpr=8F88381DD5C873E4AE487DA5199BF1243632046A
+References: <20240122111115.2861835-1-claudiu.beznea.uj@bp.renesas.com> <20240122111115.2861835-2-claudiu.beznea.uj@bp.renesas.com>
+In-Reply-To: <20240122111115.2861835-2-claudiu.beznea.uj@bp.renesas.com>
+From: Geert Uytterhoeven <geert@linux-m68k.org>
+Date: Tue, 30 Jan 2024 17:38:43 +0100
+X-Gmail-Original-Message-ID: <CAMuHMdULz1j_+NCy=wgmDsLG+qGqX-8QAFM4_eKJm4Kgv5WU9g@mail.gmail.com>
+Message-ID: <CAMuHMdULz1j_+NCy=wgmDsLG+qGqX-8QAFM4_eKJm4Kgv5WU9g@mail.gmail.com>
+Subject: Re: [PATCH 01/10] clk: renesas: r9a08g045: Add clock and reset
+ support for watchdog
+To: Claudiu <claudiu.beznea@tuxon.dev>
+Cc: wim@linux-watchdog.org, linux@roeck-us.net, robh+dt@kernel.org, 
+	krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org, 
+	geert+renesas@glider.be, magnus.damm@gmail.com, mturquette@baylibre.com, 
+	sboyd@kernel.org, p.zabel@pengutronix.de, biju.das.jz@bp.renesas.com, 
+	linux-watchdog@vger.kernel.org, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org, linux-renesas-soc@vger.kernel.org, 
+	linux-clk@vger.kernel.org, Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-Add firmware-name property to the WiFi device tree node to specify
-board-specific lookup directory.
+On Mon, Jan 22, 2024 at 12:11=E2=80=AFPM Claudiu <claudiu.beznea@tuxon.dev>=
+ wrote:
+> From: Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>
+>
+> RZ/G3S has a watchdog module accessible by the Cortex-A core. Add clock
+> and reset support for it.
+>
+> Signed-off-by: Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>
 
-Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
----
- arch/arm64/boot/dts/qcom/qrb4210-rb2.dts | 1 +
- 1 file changed, 1 insertion(+)
+Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
+i.e. will queue in renesas-clk for v6.9.
 
-diff --git a/arch/arm64/boot/dts/qcom/qrb4210-rb2.dts b/arch/arm64/boot/dts/qcom/qrb4210-rb2.dts
-index 7c19f874fa71..cf1d8d6f1546 100644
---- a/arch/arm64/boot/dts/qcom/qrb4210-rb2.dts
-+++ b/arch/arm64/boot/dts/qcom/qrb4210-rb2.dts
-@@ -632,6 +632,7 @@ &wifi {
- 	vdd-1.3-rfa-supply = <&vreg_l17a_1p3>;
- 	vdd-3.3-ch0-supply = <&vreg_l23a_3p3>;
- 	qcom,ath10k-calibration-variant = "Thundercomm_RB2";
-+	firmware-name = "qrb4210";
- 
- 	status = "okay";
- };
+Gr{oetje,eeting}s,
 
--- 
-2.39.2
+                        Geert
 
+--=20
+Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k=
+.org
+
+In personal conversations with technical people, I call myself a hacker. Bu=
+t
+when I'm talking to journalists I just say "programmer" or something like t=
+hat.
+                                -- Linus Torvalds
 
