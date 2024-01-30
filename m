@@ -1,249 +1,156 @@
-Return-Path: <devicetree+bounces-36813-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-36814-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id C4B7B842BAF
-	for <lists+devicetree@lfdr.de>; Tue, 30 Jan 2024 19:23:22 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id A1ABB842BC6
+	for <lists+devicetree@lfdr.de>; Tue, 30 Jan 2024 19:28:38 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 5447B1F2A63A
-	for <lists+devicetree@lfdr.de>; Tue, 30 Jan 2024 18:23:22 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 32032B24E13
+	for <lists+devicetree@lfdr.de>; Tue, 30 Jan 2024 18:28:36 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 76E9515A4B0;
-	Tue, 30 Jan 2024 18:21:48 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C720E157E61;
+	Tue, 30 Jan 2024 18:28:30 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="gtaOnWp0"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="u9lFyD3o"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f50.google.com (mail-wm1-f50.google.com [209.85.128.50])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9DD3515A4A0;
-	Tue, 30 Jan 2024 18:21:46 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.50
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 94E9981AD5;
+	Tue, 30 Jan 2024 18:28:30 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1706638908; cv=none; b=ErIAaTk9vYStOIu4MZLNwBM7sf1oeaKjuFKvIFduWXOr1tHCk4hJxFB+TIQYRYViJBvvZylG/sBEuSFl47vnce2tr4wlBOQqrvsCYKCmJBf5N9hOVu1QUf6dLzuPSBc1TcgozplMy3oqHwqPL0Ry9Kk3E4KzTV11ojNRoT0zjVI=
+	t=1706639310; cv=none; b=LbG+hMmyzzdAJt2LKBV+He4uNU3QynVDD7F5t1qHDTxnC8GrNTZoJMZ2vBKHrXor4TuQzL7ivQPc9I57jsaf2nMMsHqZkYIuiB8Dw2Vct7TlI5o906iXiONRipmPT3JT3fqTJLqQqecTls7xafWqJ59UQGjPLPzWBMulqv/gWoQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1706638908; c=relaxed/simple;
-	bh=aJBlbBzLk35xluhYDDqKkPd7JghGWbRpRxQd2L86Bv0=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=lVflgGaNFTsZH1L8HY8scOu7jl65TpVbjZeC/f3PGg/TE0+TtOtU1z0dZGAGSQDyebdQOA79PtiZoytR6dLkh6darVe1Hu6BZO7+zPhMTUrwpAV9lM9VgdwfQMJl2e95nhs7XzFhnBmsLKHLuD5zQj3zLwxiKpra0gvLdHwzqBo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=gtaOnWp0; arc=none smtp.client-ip=209.85.128.50
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-wm1-f50.google.com with SMTP id 5b1f17b1804b1-40e913e3f03so47211825e9.3;
-        Tue, 30 Jan 2024 10:21:46 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1706638905; x=1707243705; darn=vger.kernel.org;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=TCgr8fam0PZwcsY4iS5GHvHyFYZQiFYZ6P//7dIPCFI=;
-        b=gtaOnWp01fk5DF9qfQY2jX5n5WF3xOpa3asi6FPf5S1OIFEext8qhCi4i+KNYv2IUA
-         h234GUCfDVl5tL7KjdhTxFZGE+QyekuptAFiW5fdn9ByFJ7lov2f6giMC4Q/+Jc7zdo/
-         7pnrLnMY128+PJn1pRu4eqIfg9y1CkSDPecSGgfsc5RQDn8ObfE4dVeyMfR+GwCK4+mn
-         JNKCmzT1GkLnTxQfBOErWhC7DjneLXvJkPY+CTbxRr8EqnVLxVSc7O4R+BqF8h5DB3X+
-         h4bJO8Mr0GkkgjqSt8frcfM3TzRTtKNcKLdLdohekbK7MjHMRL/w1OphWHjfNDEcBxg4
-         DLmw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1706638905; x=1707243705;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=TCgr8fam0PZwcsY4iS5GHvHyFYZQiFYZ6P//7dIPCFI=;
-        b=RJmoo6VyVI9kbnXKC2xefhrvTluzrqVzvxrpdAKQU6Otn0WJhoYdCP8rV7RrJNja+I
-         Ym35PWw6G+VL5elMohswhSsTu6+o8ARdcFAooZ83qNZp+a+nMGmsZFh1pXJWTCnKB3ml
-         EzXOq/doYhMvL7oQorZ9QQ0PrNxf7NWhz40KV4fWsTBweyG8F3kUi6/nhNNe8z4lrjBd
-         xWQA7NTFGLWd9D24jMpAQ9tenF6/6ZwYzxTazatBRRk7uJRsWSeMUkbD1swoEbYp4RII
-         78QNubfLk0wbmolEayT+kjRQwXRL+8Bt53ZLm/DPdzOipJ675C2YfNdU2kRTSyUnVro8
-         g6pg==
-X-Gm-Message-State: AOJu0YzCqDhdhREywxwwinUWGouRo6yNBXrOMOkNAep5Yk44FVkbW0IF
-	FDkZwiTE9UrqNxjNVy6Q0XaJM/PMvI1/arym6IdwAvgFG2duBh9PP8xaN+ZuDh+xtQ==
-X-Google-Smtp-Source: AGHT+IEaGClGMCGaMap75kEkKgVtQ/kO1vzv7boK9OwuWCkBIx23u3amrCwLk/Im7kbuzD8yEt8yYQ==
-X-Received: by 2002:a5d:4048:0:b0:33a:f431:3489 with SMTP id w8-20020a5d4048000000b0033af4313489mr4002337wrp.56.1706638904893;
-        Tue, 30 Jan 2024 10:21:44 -0800 (PST)
-Received: from [172.30.32.188] ([2001:8f8:183b:50fb::d35])
-        by smtp.gmail.com with ESMTPSA id u18-20020a5d4352000000b003392b1ebf5csm11374254wrr.59.2024.01.30.10.21.41
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 30 Jan 2024 10:21:44 -0800 (PST)
-From: Alexey Charkov <alchark@gmail.com>
-Date: Tue, 30 Jan 2024 22:21:16 +0400
-Subject: [PATCH v2 4/4] arm64: dts: rockchip: Add further granularity in
- RK3588 CPU OPPs
+	s=arc-20240116; t=1706639310; c=relaxed/simple;
+	bh=422yXU7d3Zx33jspR2LuYeo1DwySHZURHM0VRf+DRa4=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=NUeneSML1yaTcytRcsIRbkd/eNJRxujgY6cVOEEICp7ZkmXHu6cT5I1wPWATwWQFu9yuyuTXUl3JFrZmtG9bY3wnOCLaAr19Ag3sOjvEcKAqe61D+kud7F/W+tvjNUyrp8qKvnMYhihD/keDzbgR50TTP9h5Egj/Quc39GtML8I=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=u9lFyD3o; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 4F712C433C7;
+	Tue, 30 Jan 2024 18:28:27 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1706639310;
+	bh=422yXU7d3Zx33jspR2LuYeo1DwySHZURHM0VRf+DRa4=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=u9lFyD3ooZqaMx+b4i2ZPoDYhF30yE+/ALvSe24+tvUan8r/9lR3p+xDu0wlvcrw2
+	 Wa67DZZwa6j47D26r/LWjWxapkB0rgGpU5NAxaAT9XRoyh/RS7ZLnqlnWlngFceuqh
+	 gENljd/TdUuSezTYbTY+ekn/KY3FE6kA1cPDfYlcFjQQ4vPoW9E+e4bLbh6Yp7GrHc
+	 fV6F0tnB0rhSrF46/lnMYKZVQRRR4z4WymIzhPV+hMblLK89LbhVXLYvuyn9WQ//DV
+	 sw46U9cgLV/xJ4ukfXlI4+MpFkqvbSVPaPz60qZsA6+joYRoEMnceHwdbj2RR4UVdb
+	 9suVmd05pT9sA==
+Date: Tue, 30 Jan 2024 18:28:25 +0000
+From: Conor Dooley <conor@kernel.org>
+To: Frank Li <Frank.Li@nxp.com>
+Cc: thinh.nguyen@synopsys.com, balbi@kernel.org, devicetree@vger.kernel.org,
+	gregkh@linuxfoundation.org, imx@lists.linux.dev,
+	linux-kernel@vger.kernel.org, linux-usb@vger.kernel.org,
+	mark.rutland@arm.com, mathias.nyman@intel.com, pku.leo@gmail.com,
+	ran.wang_1@nxp.com, robh+dt@kernel.org,
+	sergei.shtylyov@cogentembedded.com
+Subject: Re: [PATCH v4 2/3] dt-bindings: usb: dwc3: Add
+ snps,host-vbus-glitches-quirk avoid vbus glitch
+Message-ID: <20240130-eligible-barrette-5b2258e150f5@spud>
+References: <20240124152525.3910311-1-Frank.Li@nxp.com>
+ <20240124152525.3910311-3-Frank.Li@nxp.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20240130-rk-dts-additions-v2-4-c6222c4c78df@gmail.com>
-References: <20240130-rk-dts-additions-v2-0-c6222c4c78df@gmail.com>
-In-Reply-To: <20240130-rk-dts-additions-v2-0-c6222c4c78df@gmail.com>
-To: Rob Herring <robh+dt@kernel.org>, 
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, 
- Conor Dooley <conor+dt@kernel.org>, Heiko Stuebner <heiko@sntech.de>
-Cc: Daniel Lezcano <daniel.lezcano@linaro.org>, 
- Dragan Simic <dsimic@manjaro.org>, Viresh Kumar <viresh.kumar@linaro.org>, 
- devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
- linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org, 
- Alexey Charkov <alchark@gmail.com>
-X-Mailer: b4 0.12.3
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1706638888; l=4728;
- i=alchark@gmail.com; s=20240125; h=from:subject:message-id;
- bh=aJBlbBzLk35xluhYDDqKkPd7JghGWbRpRxQd2L86Bv0=;
- b=Wcw/w/Kf9x9YIWkZW/nCSxBwgCUVj9Q/t9fnjkvjyk30DG0la7ddy2b/FyVw3hAsYmpAVW46t
- JPdQ6dguXM1BgvVzctgFPWbpC0MaBl+PXUuTfTqB36+9z6OOdVTsKPy
-X-Developer-Key: i=alchark@gmail.com; a=ed25519;
- pk=xRO8VeD3J5jhwe0za0aHt2LDumQr8cm0Ls7Jz3YGimk=
+Content-Type: multipart/signed; micalg=pgp-sha256;
+	protocol="application/pgp-signature"; boundary="ougxCNZc1E/5Y4RR"
+Content-Disposition: inline
+In-Reply-To: <20240124152525.3910311-3-Frank.Li@nxp.com>
 
-This introduces additional OPPs that share the same voltage as
-another OPP already present in the .dtsi but with lower frequency.
 
-The idea is to try and limit system throughput more gradually upon
-reaching the throttling condition for workloads that are close to
-sustainable power already, thus avoiding needless performance loss.
+--ougxCNZc1E/5Y4RR
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-My limited synthetic benchmarking [1] showed around 3.8% performance
-benefit when these are in place, other things equal (not meant to
-be comprehensive though).
+Hey,
 
-[1] https://lore.kernel.org/linux-rockchip/CABjd4YxqarUCbZ-a2XLe3TWJ-qjphGkyq=wDnctnEhdoSdPPpw@mail.gmail.com/T/#me92aa0ee25e6eeb1d1501ce85f5af4e58b3b13c5
+This version seems to be the lastest (v4) for this binding, but went out
+prior to discussion actually finishing on the v1!! of this patch, even
+ignoring Rob's comment today.
+Please wait for conversations to resolve before sending new versions.
+I, at least, do not get paid for what I do here, so I often need well
+more than a day before I can get around to clearing my review queue.
+On Wed, Jan 24, 2024 at 10:25:24AM -0500, Frank Li wrote:
 
-Signed-off-by: Alexey Charkov <alchark@gmail.com>
----
- arch/arm64/boot/dts/rockchip/rk3588s.dtsi | 87 +++++++++++++++++++++++++++++++
- 1 file changed, 87 insertions(+)
+> From: Ran Wang <ran.wang_1@nxp.com>
+>=20
+> When DWC3 is set to host mode by programming register DWC3_GCTL, VBUS
+> (or its control signal) will turn on immediately on related Root Hub
+> ports. Then the VBUS will be de-asserted for a little while during xhci
+> reset (conducted by xhci driver) for a little while and back to normal.
+>=20
+> This VBUS glitch might cause some USB devices emuration fail if kernel
+> boot with them connected. One SW workaround which can fix this is to
+> program all PORTSC[PP] to 0 to turn off VBUS immediately after setting
+> host mode in DWC3 driver(per signal measurement result, it will be too
+> late to do it in xhci-plat.c or xhci.c).
+>=20
+> Signed-off-by: Ran Wang <ran.wang_1@nxp.com>
+> Reviewed-by: Peter Chen <peter.chen@nxp.com>
+> Signed-off-by: Frank Li <Frank.Li@nxp.com>
+> ---
 
-diff --git a/arch/arm64/boot/dts/rockchip/rk3588s.dtsi b/arch/arm64/boot/dts/rockchip/rk3588s.dtsi
-index af8b932a04c1..506676985a7e 100644
---- a/arch/arm64/boot/dts/rockchip/rk3588s.dtsi
-+++ b/arch/arm64/boot/dts/rockchip/rk3588s.dtsi
-@@ -360,6 +360,21 @@ cluster0_opp_table: opp-table-cluster0 {
- 		compatible = "operating-points-v2";
- 		opp-shared;
- 
-+		opp-408000000 {
-+			opp-hz = /bits/ 64 <408000000>;
-+			opp-microvolt = <675000 675000 950000>;
-+			clock-latency-ns = <40000>;
-+		};
-+		opp-600000000 {
-+			opp-hz = /bits/ 64 <600000000>;
-+			opp-microvolt = <675000 675000 950000>;
-+			clock-latency-ns = <40000>;
-+		};
-+		opp-816000000 {
-+			opp-hz = /bits/ 64 <816000000>;
-+			opp-microvolt = <675000 675000 950000>;
-+			clock-latency-ns = <40000>;
-+		};
- 		opp-1008000000 {
- 			opp-hz = /bits/ 64 <1008000000>;
- 			opp-microvolt = <675000 675000 950000>;
-@@ -392,6 +407,27 @@ cluster1_opp_table: opp-table-cluster1 {
- 		compatible = "operating-points-v2";
- 		opp-shared;
- 
-+		opp-408000000 {
-+			opp-hz = /bits/ 64 <408000000>;
-+			opp-microvolt = <675000 675000 1000000>;
-+			clock-latency-ns = <40000>;
-+			opp-suspend;
-+		};
-+		opp-600000000 {
-+			opp-hz = /bits/ 64 <600000000>;
-+			opp-microvolt = <675000 675000 1000000>;
-+			clock-latency-ns = <40000>;
-+		};
-+		opp-816000000 {
-+			opp-hz = /bits/ 64 <816000000>;
-+			opp-microvolt = <675000 675000 1000000>;
-+			clock-latency-ns = <40000>;
-+		};
-+		opp-1008000000 {
-+			opp-hz = /bits/ 64 <1008000000>;
-+			opp-microvolt = <675000 675000 1000000>;
-+			clock-latency-ns = <40000>;
-+		};
- 		opp-1200000000 {
- 			opp-hz = /bits/ 64 <1200000000>;
- 			opp-microvolt = <675000 675000 1000000>;
-@@ -422,6 +458,21 @@ opp-2208000000 {
- 			opp-microvolt = <987500 987500 1000000>;
- 			clock-latency-ns = <40000>;
- 		};
-+		opp-2256000000 {
-+			opp-hz = /bits/ 64 <2256000000>;
-+			opp-microvolt = <1000000 1000000 1000000>;
-+			clock-latency-ns = <40000>;
-+		};
-+		opp-2304000000 {
-+			opp-hz = /bits/ 64 <2304000000>;
-+			opp-microvolt = <1000000 1000000 1000000>;
-+			clock-latency-ns = <40000>;
-+		};
-+		opp-2352000000 {
-+			opp-hz = /bits/ 64 <2352000000>;
-+			opp-microvolt = <1000000 1000000 1000000>;
-+			clock-latency-ns = <40000>;
-+		};
- 		opp-2400000000 {
- 			opp-hz = /bits/ 64 <2400000000>;
- 			opp-microvolt = <1000000 1000000 1000000>;
-@@ -433,6 +484,27 @@ cluster2_opp_table: opp-table-cluster2 {
- 		compatible = "operating-points-v2";
- 		opp-shared;
- 
-+		opp-408000000 {
-+			opp-hz = /bits/ 64 <408000000>;
-+			opp-microvolt = <675000 675000 1000000>;
-+			clock-latency-ns = <40000>;
-+			opp-suspend;
-+		};
-+		opp-600000000 {
-+			opp-hz = /bits/ 64 <600000000>;
-+			opp-microvolt = <675000 675000 1000000>;
-+			clock-latency-ns = <40000>;
-+		};
-+		opp-816000000 {
-+			opp-hz = /bits/ 64 <816000000>;
-+			opp-microvolt = <675000 675000 1000000>;
-+			clock-latency-ns = <40000>;
-+		};
-+		opp-1008000000 {
-+			opp-hz = /bits/ 64 <1008000000>;
-+			opp-microvolt = <675000 675000 1000000>;
-+			clock-latency-ns = <40000>;
-+		};
- 		opp-1200000000 {
- 			opp-hz = /bits/ 64 <1200000000>;
- 			opp-microvolt = <675000 675000 1000000>;
-@@ -463,6 +535,21 @@ opp-2208000000 {
- 			opp-microvolt = <987500 987500 1000000>;
- 			clock-latency-ns = <40000>;
- 		};
-+		opp-2256000000 {
-+			opp-hz = /bits/ 64 <2256000000>;
-+			opp-microvolt = <1000000 1000000 1000000>;
-+			clock-latency-ns = <40000>;
-+		};
-+		opp-2304000000 {
-+			opp-hz = /bits/ 64 <2304000000>;
-+			opp-microvolt = <1000000 1000000 1000000>;
-+			clock-latency-ns = <40000>;
-+		};
-+		opp-2352000000 {
-+			opp-hz = /bits/ 64 <2352000000>;
-+			opp-microvolt = <1000000 1000000 1000000>;
-+			clock-latency-ns = <40000>;
-+		};
- 		opp-2400000000 {
- 			opp-hz = /bits/ 64 <2400000000>;
- 			opp-microvolt = <1000000 1000000 1000000>;
+Where is your changelog?
 
--- 
-2.43.0
+>  Documentation/devicetree/bindings/usb/snps,dwc3.yaml | 7 +++++++
+>  1 file changed, 7 insertions(+)
+>=20
+> diff --git a/Documentation/devicetree/bindings/usb/snps,dwc3.yaml b/Docum=
+entation/devicetree/bindings/usb/snps,dwc3.yaml
+> index 203a1eb66691f..8f5d250070c78 100644
+> --- a/Documentation/devicetree/bindings/usb/snps,dwc3.yaml
+> +++ b/Documentation/devicetree/bindings/usb/snps,dwc3.yaml
+> @@ -273,6 +273,13 @@ properties:
+>        with an external supply.
+>      type: boolean
+> =20
+> +  snps,host-vbus-glitches-quirk:
 
+I specifically recall saying no to adding "-quirk" here, but that
+might've been after this patch was sent.
+
+> +    description:
+> +      When set, power off all Root Hub ports immediately after
+> +      setting host mode to avoid vbus (negative) glitch happen in later
+> +      xhci reset. And the vbus will back to 5V automatically when reset =
+done.
+> +    type: boolean
+
+Rob commented today on the v1 conversation:
+https://lore.kernel.org/all/20240130181322.GA2079185-robh@kernel.org/
+
+Please respond (there) to his comment.
+
+Thanks,
+Conor.
+
+>    snps,is-utmi-l1-suspend:
+>      description:
+>        True when DWC3 asserts output signal utmi_l1_suspend_n, false when
+> --=20
+> 2.34.1
+>=20
+
+--ougxCNZc1E/5Y4RR
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZbk/yAAKCRB4tDGHoIJi
+0pt+AQDsmO50jZctRQ5aLsZ+yZXzF35f1dAw2pYzWZrQbVmSrQEA+njvKcH8sqh0
+goQW0F0wsLP4GIBXvfKmqvu2YaSz0Ac=
+=Xqh1
+-----END PGP SIGNATURE-----
+
+--ougxCNZc1E/5Y4RR--
 
