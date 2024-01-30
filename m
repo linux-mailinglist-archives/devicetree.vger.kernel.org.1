@@ -1,61 +1,60 @@
-Return-Path: <devicetree+bounces-36784-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-36785-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 110CE842A76
-	for <lists+devicetree@lfdr.de>; Tue, 30 Jan 2024 18:08:24 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id ED36C842A96
+	for <lists+devicetree@lfdr.de>; Tue, 30 Jan 2024 18:12:58 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id A3FA91F22617
-	for <lists+devicetree@lfdr.de>; Tue, 30 Jan 2024 17:08:23 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id A9ACC286CF9
+	for <lists+devicetree@lfdr.de>; Tue, 30 Jan 2024 17:12:57 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C1FC11292D2;
-	Tue, 30 Jan 2024 17:08:21 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 57A43129A82;
+	Tue, 30 Jan 2024 17:12:43 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=grimler.se header.i=@grimler.se header.b="Gxw1Mf0g"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="R7Tiv5n/"
 X-Original-To: devicetree@vger.kernel.org
-Received: from out-179.mta1.migadu.com (out-179.mta1.migadu.com [95.215.58.179])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9F2281292C2
-	for <devicetree@vger.kernel.org>; Tue, 30 Jan 2024 17:08:18 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=95.215.58.179
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2C23C1292DE;
+	Tue, 30 Jan 2024 17:12:42 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1706634501; cv=none; b=L72Xhk5LGGA8VE223T7o0vxXl8kO9HiOa76Z0l+rorYRcvrCScR/PahAdbdYGx6hhrfwl4N04OST914mdZqKOQH23OMcHjsF38p4lcfj84Gbez+RV9+N9QaQa9lzVW4IrKXWN6w9vs6WNkTTLDHCjRZaKkQjxOxXzaxl9tgtjKs=
+	t=1706634763; cv=none; b=Oq798TsA1AAt0e72at5QQBXnSyOk5x5G7KHcYAwshVmMLdyZwv6AbM2jJbP9Wy5d5g9Luft1AFF4/h3fGL5AeTVYNr58J/b5ju3Ggok1SjfM6COoufznhc2hqJxq/8FKVYhq6ZPzhikX5z7Yh4B66tFgACXn2EpXDSm7B7vTofE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1706634501; c=relaxed/simple;
-	bh=VCe4wdJUupOt5anELrGbzw6RnuJXnfEeZcgS/1Dpf1Q=;
+	s=arc-20240116; t=1706634763; c=relaxed/simple;
+	bh=PkjZQsYbArDQxHJBdjmN5B4YsdpxE+UZi7kgvdMCax0=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=kXtqJrgO8S0n0EP6LfRCmnDZtB9NdsyPkCDWSMvV5AF44pUrybCtjJxj/PAoPKtWc7cIEXbHN6athsGLiO1zbZSVEiIIB/ooL/HJ+8ivZerh8+EqwIvm9on2YRj0vesmcTmihfkyrKkAKe1TRwEDD4BvtMuCTkAX1Bv95omXcZc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=grimler.se; spf=pass smtp.mailfrom=grimler.se; dkim=pass (1024-bit key) header.d=grimler.se header.i=@grimler.se header.b=Gxw1Mf0g; arc=none smtp.client-ip=95.215.58.179
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=grimler.se
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=grimler.se
-Date: Tue, 30 Jan 2024 18:08:09 +0100
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=grimler.se; s=key1;
-	t=1706634494;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 in-reply-to:in-reply-to:references:references;
-	bh=Cc4Rh3v8bRmTdkupUJZkGEVgAAt9wYdcDz/4Mk3tmng=;
-	b=Gxw1Mf0gnkNpOu8rUdqR4wwsPWlpb/9d6u/SQz8YEY/TlnSVE/7X13czUlN8Rrjtv6hkvj
-	+kxbwUXzty9yxRrBTi3tv3xrrf6Z4Mw13xTdMfctl21hTDLw5AR/OaPB/evL8pxaCr7ZPG
-	UNRZe9+ptxAicq4mLGZ+JBpbdmxy1a0=
-X-Report-Abuse: Please report any abuse attempt to abuse@migadu.com and include these headers.
-From: Henrik Grimler <henrik@grimler.se>
-To: Tudor Ambarus <tudor.ambarus@linaro.org>
-Cc: krzysztof.kozlowski+dt@linaro.org, broonie@kernel.org,
-	robh+dt@kernel.org, conor+dt@kernel.org, alim.akhtar@samsung.com,
-	devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-	linux-samsung-soc@vger.kernel.org, linux-kernel@vger.kernel.org,
-	linux-spi@vger.kernel.org, andre.draszik@linaro.org,
-	peter.griffin@linaro.org, semen.protsenko@linaro.org,
-	kernel-team@android.com, willmcvicker@google.com
-Subject: Re: [PATCH 5/7] ARM: dts: samsung: exynos5450: specify the SPI
- fifosize
-Message-ID: <Zbks+eihEIK+Jyd2@L14.lan>
-References: <20240125151630.753318-1-tudor.ambarus@linaro.org>
- <20240125151630.753318-6-tudor.ambarus@linaro.org>
+	 Content-Type:Content-Disposition:In-Reply-To; b=SOuiHnNb5bYS1BF4kp7laC+bTZiURsJLuE3gUfUGepLN18DIeSMq7HHrNH/P7rBxgPVxfHIak7s/a1FjHaQ8BRo0Xl8E/zqnyx5dBy5JTxk+nkqB9XoavedtQwx366NQB+wJrgE87D+XY+9MLGV4yCheGNmO8uJu7Z6soNMZa3Y=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=R7Tiv5n/; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 78C96C433C7;
+	Tue, 30 Jan 2024 17:12:42 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1706634762;
+	bh=PkjZQsYbArDQxHJBdjmN5B4YsdpxE+UZi7kgvdMCax0=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=R7Tiv5n/1AF3v/eZDPM2lN64tvP7ZN0+vrjw2Nf60G3hzWh7MPldpgoOAQNCAemW2
+	 FXHxsb36rjhVR1VDy0pBeb2X4SSrIfJ6Cn3S2KdK3dWCVoXu0doo7U9x6QpxI59abY
+	 fXbYLGkiqCfrGn1nZEbW8Ie24C2e4tJdt37GA/4yFM0Z/M0LdjYdgyjZIAd5l5oVru
+	 whznUDbHYf4iMFAvYMRwFYPmM/cSGyHMikyTaKa+mRySzvcqzdg1ZHhhk6KTS2QtS4
+	 6PD7frXkNb9R9CJwEWmjqIiZpFpcdKcODE1pWlLSYTjxiwbS7XWXUZs207RvH0AeTU
+	 0ePwfXAJNaD/w==
+Date: Tue, 30 Jan 2024 11:12:40 -0600
+From: Rob Herring <robh@kernel.org>
+To: Sibi Sankar <quic_sibis@quicinc.com>
+Cc: sudeep.holla@arm.com, cristian.marussi@arm.com, andersson@kernel.org,
+	konrad.dybcio@linaro.org, jassisinghbrar@gmail.com,
+	krzysztof.kozlowski+dt@linaro.org, linux-kernel@vger.kernel.org,
+	linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+	quic_rgottimu@quicinc.com, quic_kshivnan@quicinc.com,
+	conor+dt@kernel.org
+Subject: Re: [RFC 1/7] dt-bindings: mailbox: qcom: Add CPUCP mailbox
+ controller bindings
+Message-ID: <20240130171240.GA1929440-robh@kernel.org>
+References: <20240117173458.2312669-1-quic_sibis@quicinc.com>
+ <20240117173458.2312669-2-quic_sibis@quicinc.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -64,57 +63,49 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20240125151630.753318-6-tudor.ambarus@linaro.org>
-X-Migadu-Flow: FLOW_OUT
+In-Reply-To: <20240117173458.2312669-2-quic_sibis@quicinc.com>
 
-Hi Tudor,
-
-There is a typo in the subject of this patch, exynos 5450 instead of
-5420.  Maybe that is something krzk can fix when applying.
-
-Best regards,
-Henrik Grimler
-
-On Thu, Jan 25, 2024 at 03:16:28PM +0000, Tudor Ambarus wrote:
-> Up to now the SPI alias was used as an index into an array defined in
-> the SPI driver to determine the SPI FIFO size. Drop the dependency on
-> the SPI alias and specify the SPI FIFO size directly into the SPI node.
+On Wed, Jan 17, 2024 at 11:04:52PM +0530, Sibi Sankar wrote:
+> Add devicetree binding for CPUSS Control Processor (CPUCP) mailbox
+> controller.
 > 
-> Signed-off-by: Tudor Ambarus <tudor.ambarus@linaro.org>
+> Signed-off-by: Sibi Sankar <quic_sibis@quicinc.com>
 > ---
->  arch/arm/boot/dts/samsung/exynos5420.dtsi | 3 +++
->  1 file changed, 3 insertions(+)
+>  .../bindings/mailbox/qcom,cpucp-mbox.yaml     | 51 +++++++++++++++++++
+>  1 file changed, 51 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/mailbox/qcom,cpucp-mbox.yaml
 > 
-> diff --git a/arch/arm/boot/dts/samsung/exynos5420.dtsi b/arch/arm/boot/dts/samsung/exynos5420.dtsi
-> index 25ed90374679..e22692063aa9 100644
-> --- a/arch/arm/boot/dts/samsung/exynos5420.dtsi
-> +++ b/arch/arm/boot/dts/samsung/exynos5420.dtsi
-> @@ -658,6 +658,7 @@ spi_0: spi@12d20000 {
->  			pinctrl-0 = <&spi0_bus>;
->  			clocks = <&clock CLK_SPI0>, <&clock CLK_SCLK_SPI0>;
->  			clock-names = "spi", "spi_busclk0";
-> +			samsung,spi-fifosize = <256>;
->  			status = "disabled";
->  		};
->  
-> @@ -674,6 +675,7 @@ spi_1: spi@12d30000 {
->  			pinctrl-0 = <&spi1_bus>;
->  			clocks = <&clock CLK_SPI1>, <&clock CLK_SCLK_SPI1>;
->  			clock-names = "spi", "spi_busclk0";
-> +			samsung,spi-fifosize = <64>;
->  			status = "disabled";
->  		};
->  
-> @@ -690,6 +692,7 @@ spi_2: spi@12d40000 {
->  			pinctrl-0 = <&spi2_bus>;
->  			clocks = <&clock CLK_SPI2>, <&clock CLK_SCLK_SPI2>;
->  			clock-names = "spi", "spi_busclk0";
-> +			samsung,spi-fifosize = <64>;
->  			status = "disabled";
->  		};
->  
-> -- 
-> 2.43.0.429.g432eaa2c6b-goog
-> 
-> 
+> diff --git a/Documentation/devicetree/bindings/mailbox/qcom,cpucp-mbox.yaml b/Documentation/devicetree/bindings/mailbox/qcom,cpucp-mbox.yaml
+> new file mode 100644
+> index 000000000000..2617e5555acb
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/mailbox/qcom,cpucp-mbox.yaml
+> @@ -0,0 +1,51 @@
+> +# SPDX-License-Identifier: GPL-2.0 OR BSD-2-Clause
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/mailbox/qcom,cpucp-mbox.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: Qualcomm Technologies, Inc. CPUCP Mailbox Controller
+> +
+> +maintainers:
+> +  - Sibi Sankar <quic_sibis@qti.qualcomm.com>
+> +
+> +description:
+> +  The CPUSS Control Processor (CPUCP) mailbox controller enables communication
+> +  between AP and CPUCP by acting as a doorbell between them.
+> +
+> +properties:
+> +  compatible:
+> +    items:
+> +      - enum:
+> +          - qcom,x1e80100-cpucp-mbox
+> +      - const: qcom,cpucp-mbox
+
+A generic fallback implies multiple devices use the same unchanged 
+block. That seems doubtful given you have not defined any others and 
+given Konrad's comments.
+
+Rob
 
