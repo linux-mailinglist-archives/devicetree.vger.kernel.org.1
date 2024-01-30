@@ -1,88 +1,102 @@
-Return-Path: <devicetree+bounces-36740-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-36741-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id B5546842825
-	for <lists+devicetree@lfdr.de>; Tue, 30 Jan 2024 16:35:54 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 033C7842832
+	for <lists+devicetree@lfdr.de>; Tue, 30 Jan 2024 16:40:57 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id E8C7C1C24D66
-	for <lists+devicetree@lfdr.de>; Tue, 30 Jan 2024 15:35:53 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 361CF1C2200B
+	for <lists+devicetree@lfdr.de>; Tue, 30 Jan 2024 15:40:56 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A0928823D3;
-	Tue, 30 Jan 2024 15:35:50 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A7DD4823D6;
+	Tue, 30 Jan 2024 15:40:52 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="CwA0oG1e"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="tkoEr/yW"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 778EF6DD13;
-	Tue, 30 Jan 2024 15:35:50 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7E6DC5C8B;
+	Tue, 30 Jan 2024 15:40:52 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1706628950; cv=none; b=b39mpu2pUNeYZNlh+/SRS2FrdimjrwLBsy2AnXnrzij4PC8z5C0Uf93rpuNs0utzsYmYUksOdW3R0Bkp9ekWkQMDSG26G34I3wKImdUJhmkwobHJmPTmMKVi6OtFLA683wwkyyNbegSohIm+sjU4WN+kL2kLSZXyYfclimpKSGw=
+	t=1706629252; cv=none; b=NYmee026owSg+ENL5pv/9YbRo7rVr8MvV0IlCFKJEFSvsEOs3EJgPsIfZVwDaD7KIaid4zmyT2jIddj2JXbaYJwuAL4hiH5TZG50LmFAHTPj5LUWRZue59hus7chu9PDaDSo0ekp+K//XE8jnhpQ0Cf6UOvLkSohzPZXd4Ji3m0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1706628950; c=relaxed/simple;
-	bh=i/gOiEzQMpG9nyDnUPfqoV+1c+gEbN2MOXoa3MzHpWw=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=ccstxwC6qSJ+TB5kFt126AJuWYGTkN/hFfvh8PVfT8bXPS3gIWA5/6agVP/ZmZybIcN+eyfB2o6VVsISmUUmBBVvs7iy7Jx5JjFJdw64u4aaYzGiP2wCSZVcEADBx8uWIlNdLYU1q9f3I7Pm1RVHz/Qxe+tRkIan/heaMka47QM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=CwA0oG1e; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id B8D26C433C7;
-	Tue, 30 Jan 2024 15:35:49 +0000 (UTC)
+	s=arc-20240116; t=1706629252; c=relaxed/simple;
+	bh=5JVBol+N3NA6sA7/pQ17TMWbmAv0reGA2jeSFwK1yIY=;
+	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version; b=blero38O9K9Xwsvt1F70iAd7EoSoL5UgzLfVIfc1vuGYIunvSLlUMOkqlRKWuWaha4+FpIP99/QZU8chstz6wqgWef18G+ax2P1wvCj029NNOzUK3AMc/6HdXkzGNFnBO0W4VUZn1ml2ZrfEcwTQCZ1CBZImKPH9SbQe0E2I0GA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=tkoEr/yW; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 1359AC433C7;
+	Tue, 30 Jan 2024 15:40:48 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1706628949;
-	bh=i/gOiEzQMpG9nyDnUPfqoV+1c+gEbN2MOXoa3MzHpWw=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=CwA0oG1ezBKXcVKP5hB4Ezu/h8VqMQxyqZXxgaXfazRMz084ozgS7FcRHAWauygh5
-	 ETucmXpJopkQedX4wZIjVNymzGczPrGPbXTCh3nprA3Q8sAp78T7WzQXFe4rMkJ4ph
-	 vTA04sClKN8olT9YSE25odGbHiPcpM17mVmKtuKr8K+LyoWqkTk1ACglmr6vnWJy52
-	 XlVhQzqXR4LWkpa+3ACw+vjaVi5birVS9nbZ3cqdhjil+5PB2QyObxLSrloMX6iYl2
-	 n9OZle9KhvsCojhXYz5A4AHqUA7rF0dMs+bzkzyRINVuo4e9FTJmnB4HzJxnLrJd1Q
-	 Xe3cRjrOpb1jA==
-Date: Tue, 30 Jan 2024 09:35:47 -0600
-From: Rob Herring <robh@kernel.org>
-To: =?utf-8?B?UmFmYcWCIE1pxYJlY2tp?= <zajec5@gmail.com>
-Cc: linux-kernel@vger.kernel.org, Matthias Brugger <matthias.bgg@gmail.com>,
-	=?utf-8?B?UmFmYcWCIE1pxYJlY2tp?= <rafal@milecki.pl>,
+	s=k20201202; t=1706629252;
+	bh=5JVBol+N3NA6sA7/pQ17TMWbmAv0reGA2jeSFwK1yIY=;
+	h=From:To:Cc:Subject:Date:From;
+	b=tkoEr/yWwpBi4HsrLgjmgn8efhg6XLzfVeOj+e+i+5SvXEZm6Cw/dVznnybEULP/r
+	 Eyd0UJpwioeU9I6HRd2o+s1GNeqpWqtWgTQDKyLI983X+J2TOo9pohdqM+uloaNxbX
+	 csmm2ouvpnn4EVy+qgrHbEWrmOHui3XL5S0Y0PshGq4daHobl7HtF0GLkB6SkocuDX
+	 N/xK2dv8YEq+vXz829xIdQIlzmt5Nn0v1LZP6AhTEhVB5GY8Bzr/gruN18brDO1eFs
+	 Ts/M0UonH0KVAuNayqUcZ+7pbcAnrhs7CjNzseMYELIG4dmd4oUFlZ8CVPOddfxz7x
+	 wFnAt87ZTwcVg==
+From: Roger Quadros <rogerq@kernel.org>
+To: nm@ti.com,
+	vigneshr@ti.com,
+	lee@kernel.org
+Cc: afd@ti.com,
+	kristo@kernel.org,
+	robh+dt@kernel.org,
+	krzysztof.kozlowski+dt@linaro.org,
+	conor+dt@kernel.org,
+	srk@ti.com,
 	linux-arm-kernel@lists.infradead.org,
-	Thomas Gleixner <tglx@linutronix.de>,
-	Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
-	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	linux-mediatek@lists.infradead.org,
-	Conor Dooley <conor+dt@kernel.org>
-Subject: Re: [PATCH] dt-bindings: interrupt-controller: convert MediaTek
- sysirq to the json-schema
-Message-ID: <170662894593.1670058.1923590557072552204.robh@kernel.org>
-References: <20240123060804.32254-1-zajec5@gmail.com>
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	Roger Quadros <rogerq@kernel.org>
+Subject: [PATCH v2 0/3] arm64: dts: ti: am62: Add USB support for k3-am62p
+Date: Tue, 30 Jan 2024 17:40:32 +0200
+Message-Id: <20240130154035.6901-1-rogerq@kernel.org>
+X-Mailer: git-send-email 2.34.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <20240123060804.32254-1-zajec5@gmail.com>
+
+Hi,
+
+This series first adds device nodes for USB0_PHY_CTRL and USB1_PHY_CTRL
+in the wkup_conf node and fixus up the USB nodes to use the newly
+added nodes.
+
+Then it adds USB support for AM62P SoC and AM62P5-SK board.
+
+Changelog in each patch.
+
+cheers,
+-roger
+
+Roger Quadros (3):
+  dt-bindings: mfd: syscon: Add ti,am62-usb-phy-ctrl compatible
+  arm64: dts: ti: k3-am62/a: use sub-node for USB_PHY_CTRL registers
+  arm64: dts: ti: k3-am62p: add the USB sub-system
+
+ .../devicetree/bindings/mfd/syscon.yaml       |  1 +
+ arch/arm64/boot/dts/ti/k3-am62-main.dtsi      |  4 +-
+ arch/arm64/boot/dts/ti/k3-am62-wakeup.dtsi    | 10 +++
+ arch/arm64/boot/dts/ti/k3-am62a-main.dtsi     |  4 +-
+ arch/arm64/boot/dts/ti/k3-am62a-wakeup.dtsi   | 10 +++
+ arch/arm64/boot/dts/ti/k3-am62p-main.dtsi     | 46 +++++++++++++
+ arch/arm64/boot/dts/ti/k3-am62p-wakeup.dtsi   | 10 +++
+ arch/arm64/boot/dts/ti/k3-am62p5-sk.dts       | 67 +++++++++++++++++++
+ 8 files changed, 148 insertions(+), 4 deletions(-)
 
 
-On Tue, 23 Jan 2024 07:08:04 +0100, Rafał Miłecki wrote:
-> From: Rafał Miłecki <rafal@milecki.pl>
-> 
-> This helps validating DTS files.
-> 
-> Signed-off-by: Rafał Miłecki <rafal@milecki.pl>
-> ---
->  .../mediatek,mt6577-sysirq.yaml               | 85 +++++++++++++++++++
->  .../interrupt-controller/mediatek,sysirq.txt  | 44 ----------
->  2 files changed, 85 insertions(+), 44 deletions(-)
->  create mode 100644 Documentation/devicetree/bindings/interrupt-controller/mediatek,mt6577-sysirq.yaml
->  delete mode 100644 Documentation/devicetree/bindings/interrupt-controller/mediatek,sysirq.txt
-> 
-
-Applied, thanks!
+base-commit: 6613476e225e090cc9aad49be7fa504e290dd33d
+-- 
+2.34.1
 
 
