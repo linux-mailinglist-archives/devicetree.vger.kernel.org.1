@@ -1,74 +1,40 @@
-Return-Path: <devicetree+bounces-36689-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-36690-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 67ABF8424FB
-	for <lists+devicetree@lfdr.de>; Tue, 30 Jan 2024 13:34:27 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id ABC7D8424FF
+	for <lists+devicetree@lfdr.de>; Tue, 30 Jan 2024 13:35:15 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 8CDE71C24706
-	for <lists+devicetree@lfdr.de>; Tue, 30 Jan 2024 12:34:26 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 635D928900B
+	for <lists+devicetree@lfdr.de>; Tue, 30 Jan 2024 12:35:14 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C54E46A03A;
-	Tue, 30 Jan 2024 12:34:16 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="nfOtJwPm"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D88F86A00E;
+	Tue, 30 Jan 2024 12:35:09 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ej1-f46.google.com (mail-ej1-f46.google.com [209.85.218.46])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
-	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 196A16A015
-	for <devicetree@vger.kernel.org>; Tue, 30 Jan 2024 12:34:13 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.46
+Received: from foss.arm.com (foss.arm.com [217.140.110.172])
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A2C8F67E7F;
+	Tue, 30 Jan 2024 12:35:07 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.140.110.172
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1706618056; cv=none; b=shddLE2BCKc7kOt2JH8ctMumftVfWyrjpenDwRF5yPnykAdpseOrNSxO9Bre+1Eu793QCCmaMtoJu1KLFAzmNmQpag90lohwCWapbeKhFC83p4rRjE0AEj1f3skRSSk9aM+YjfiXI8DnpVd2pdFecYIWvvE2+0jNiYzU74pDVgo=
+	t=1706618109; cv=none; b=Cq4DOqfdznuYTGZSQK+OJr1uFUmAtWxJc467H0TehRWWpyqXZBTXc7DB9F63c+jvEqR3QDv2LqPiNR7RcwFxTOij1iMySGMSGBfysrvwyvO0LBG+HMDlBMnUxTOwKX+N9CVujoQFoxTA+hoeN0H1E9Oj9fvKNbvW8K7cgat62qo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1706618056; c=relaxed/simple;
-	bh=7sqNd76pq3reMpBKDdu1mJSEYiMR3Y6iEp0a0zT1Pvc=;
+	s=arc-20240116; t=1706618109; c=relaxed/simple;
+	bh=FjucVxqt30Vtepeq9kUvqCOzcmOtmYscLeSgDyFRdL0=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=ZI8hyORClMbH1eV3Ve+Xb/yLfXnYWCaANK+OtohM42encT3uNLmXEiJ6sESUbahzhFpUgp5OBOKEObDowi7JuUC2GyD5Z9h+Q1Fe2zXGB63x6R6CBLz2ABURJ6KynKaDm4bYrwB7tSggy4XWxaUJetz9zaps6avpjNTNpECB/Ls=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=nfOtJwPm; arc=none smtp.client-ip=209.85.218.46
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-ej1-f46.google.com with SMTP id a640c23a62f3a-a35385da5bbso473912866b.3
-        for <devicetree@vger.kernel.org>; Tue, 30 Jan 2024 04:34:13 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1706618052; x=1707222852; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
-         :to:content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=MHQ3pnv0wAh+xN/qHc64cUVCTkn/qXer3T0a5F6JrZo=;
-        b=nfOtJwPmwGZNnwmZzDpAtwt45y30y/46Y6zy/oG5Eu47EUIUsFdlz6YBqiWnFrpc6n
-         JRxUbsOGWsg3wDR/h4NdShSXvB9aQx/4j2jTJfOxeIIpDep4+Z4FIx7TpZ4vbHxTfmQZ
-         PnyGiZK41uRDNMyeOtP0vvBxgNqD52PiyQx8xtBP16F5EsrkxcyjxeX31cGJvVJ3LpP8
-         iT8728mMF3Ewf9LWHWeaLrxdoJpFa+6Ok4VSXy5k1KyFWehKmIhZMAfmR7h03tod4bjv
-         Yc2CtzrDp6uRT63y30JgO5YEBvKMJYZprvyEw5jkHSCHJO81svYG6UDdi7p9GniJZXZC
-         KwBQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1706618052; x=1707222852;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
-         :to:content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=MHQ3pnv0wAh+xN/qHc64cUVCTkn/qXer3T0a5F6JrZo=;
-        b=Lz1ZhHuuvTO3sqYtEgMbASYWGJFRl0l2vyVC0YgNRL3HzplN598nmnzZuy6/5Equ54
-         iGh9pw4v+MJVSL+u5uKiTBrbQ5JJNRlPNsAJQLZoOIBxRIPIjXRTW8XrF8yVPyX2+glY
-         s0rjB9LeAw7AgG4k9Smd7/LZIKEQpRAK70XWVbVEwtUak0bZ2sE9+Aj3HwbFO60Ou09i
-         Ki2lwBK4y1ZSWkHf7k0VPyjb3uquxzZSaSfe48qK+JyRzV43gHewH23S4u1OUpHiJtsq
-         EMQuD1lhKdqj6eIwOliEICXTuLhAtllT6xeI+QBuwvHm6dt6cWnE7P2I829pzFD2+oBU
-         D0qg==
-X-Gm-Message-State: AOJu0Yz3fcsZT1+2Fy7fa7MpB6LfDBg+6Kh++GYsUnrHQwMfEXgliSat
-	XkXH7UL+LZ2JFkylnj8zECbK8p+ob9THx+h36S/BYG0xjNBE4drrI4GxcM+WPTY=
-X-Google-Smtp-Source: AGHT+IGuOuwrOslv6LcI8W+lbVXnzAUjSBbJdMn6JRCAB8TGJGQ6b8Knxbp6sFlJVP1u5cT3iGnIJA==
-X-Received: by 2002:a17:906:6d44:b0:a35:4664:8830 with SMTP id a4-20020a1709066d4400b00a3546648830mr5780431ejt.0.1706618052262;
-        Tue, 30 Jan 2024 04:34:12 -0800 (PST)
-X-Forwarded-Encrypted: i=0; AJvYcCWGJkYLYm4+Mj//wJAtjMTopfESkWs3TcXiPPDyfk/mBB3X9AK5H8CvYBWYVJJkwyFNYKVOLzzWbZv7QuPdXuDsmrv0mTH2NGbE2YkOZh6JRgguZyAvfqGRottXI16/YMMDkYcnzE6X068vSRusvZsGLJzmgHPoUwcnnFTCRh0Bggw+RsrCcsquu5GnLh5jrHvBj66R7u6Q1KLDXIBk1I/z2pxnVBWzVtl40+/XVah48ih4C4kUv5RNZQ45TjYcLwrUaDTE+1Ztp7uUylac+rveYc5yHrOLPDN4tQB+y1n6/1ubGQWLkami9z+U99mQpJrFZ2HRF/nDyPyLzcsdsxat8ifZa6iohC2q78Xqj0HyVHOacFgh+5RyYjTmpF5ydPXg30gAgxk=
-Received: from [192.168.1.20] ([178.197.222.62])
-        by smtp.gmail.com with ESMTPSA id rs28-20020a170907037c00b00a2ceaf80bcbsm5052347ejb.204.2024.01.30.04.34.11
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 30 Jan 2024 04:34:11 -0800 (PST)
-Message-ID: <ceb75d84-3e6f-40cd-97cb-ee6ccb14e7a6@linaro.org>
-Date: Tue, 30 Jan 2024 13:34:10 +0100
+	 In-Reply-To:Content-Type; b=Cv2Hb6jCUjIOWlZH4tGaPDLScxY9xJSw5+zPOyUidkinxAwtELMXKXmCahFJCr1VNKC/ktjnw9C9r12ozWzAWf7kiT/u95mRGkiqTaLZWp4Emt6bCW0lC4GXjWWcZTPlHxEw5GhteIMIhLS+HL6zCAtSmgCQG8AfdaSuF2F3EwU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com; spf=pass smtp.mailfrom=arm.com; arc=none smtp.client-ip=217.140.110.172
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=arm.com
+Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
+	by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 90344DA7;
+	Tue, 30 Jan 2024 04:35:50 -0800 (PST)
+Received: from [10.1.197.1] (ewhatever.cambridge.arm.com [10.1.197.1])
+	by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 9271E3F762;
+	Tue, 30 Jan 2024 04:35:04 -0800 (PST)
+Message-ID: <6ccb98f2-2f68-45db-9941-1c7b05da84d0@arm.com>
+Date: Tue, 30 Jan 2024 12:35:03 +0000
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -76,144 +42,168 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 1/2] ASoC: dt-bindings: xmos,xvf3500: add XMOS XVF3500
- voice processor
+Subject: Re: [PATCH v5 05/10] coresight-tpda: Add support to configure CMB
+ element
 Content-Language: en-US
-To: Javier Carrasco <javier.carrasco@wolfvision.net>,
- Liam Girdwood <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>,
+To: Tao Zhang <quic_taozha@quicinc.com>,
+ Mathieu Poirier <mathieu.poirier@linaro.org>,
+ Alexander Shishkin <alexander.shishkin@linux.intel.com>,
+ Konrad Dybcio <konradybcio@gmail.com>, Mike Leach <mike.leach@linaro.org>,
  Rob Herring <robh+dt@kernel.org>,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Conor Dooley <conor+dt@kernel.org>, Matthias Kaehlcke <mka@chromium.org>,
- Greg Kroah-Hartman <gregkh@linuxfoundation.org>
-Cc: linux-sound@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, linux-usb@vger.kernel.org
-References: <20240130-onboard_xvf3500-v1-0-51b5398406cb@wolfvision.net>
- <20240130-onboard_xvf3500-v1-1-51b5398406cb@wolfvision.net>
-From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
- xsFNBFVDQq4BEAC6KeLOfFsAvFMBsrCrJ2bCalhPv5+KQF2PS2+iwZI8BpRZoV+Bd5kWvN79
- cFgcqTTuNHjAvxtUG8pQgGTHAObYs6xeYJtjUH0ZX6ndJ33FJYf5V3yXqqjcZ30FgHzJCFUu
- JMp7PSyMPzpUXfU12yfcRYVEMQrmplNZssmYhiTeVicuOOypWugZKVLGNm0IweVCaZ/DJDIH
- gNbpvVwjcKYrx85m9cBVEBUGaQP6AT7qlVCkrf50v8bofSIyVa2xmubbAwwFA1oxoOusjPIE
- J3iadrwpFvsZjF5uHAKS+7wHLoW9hVzOnLbX6ajk5Hf8Pb1m+VH/E8bPBNNYKkfTtypTDUCj
- NYcd27tjnXfG+SDs/EXNUAIRefCyvaRG7oRYF3Ec+2RgQDRnmmjCjoQNbFrJvJkFHlPeHaeS
- BosGY+XWKydnmsfY7SSnjAzLUGAFhLd/XDVpb1Een2XucPpKvt9ORF+48gy12FA5GduRLhQU
- vK4tU7ojoem/G23PcowM1CwPurC8sAVsQb9KmwTGh7rVz3ks3w/zfGBy3+WmLg++C2Wct6nM
- Pd8/6CBVjEWqD06/RjI2AnjIq5fSEH/BIfXXfC68nMp9BZoy3So4ZsbOlBmtAPvMYX6U8VwD
- TNeBxJu5Ex0Izf1NV9CzC3nNaFUYOY8KfN01X5SExAoVTr09ewARAQABzTRLcnp5c3p0b2Yg
- S296bG93c2tpIDxrcnp5c3p0b2Yua296bG93c2tpQGxpbmFyby5vcmc+wsGUBBMBCgA+FiEE
- m9B+DgxR+NWWd7dUG5NDfTtBYpsFAmI+BxMCGwMFCRRfreEFCwkIBwIGFQoJCAsCBBYCAwEC
- HgECF4AACgkQG5NDfTtBYptgbhAAjAGunRoOTduBeC7V6GGOQMYIT5n3OuDSzG1oZyM4kyvO
- XeodvvYv49/ng473E8ZFhXfrre+c1olbr1A8pnz9vKVQs9JGVa6wwr/6ddH7/yvcaCQnHRPK
- mnXyP2BViBlyDWQ71UC3N12YCoHE2cVmfrn4JeyK/gHCvcW3hUW4i5rMd5M5WZAeiJj3rvYh
- v8WMKDJOtZFXxwaYGbvFJNDdvdTHc2x2fGaWwmXMJn2xs1ZyFAeHQvrp49mS6PBQZzcx0XL5
- cU9ZjhzOZDn6Apv45/C/lUJvPc3lo/pr5cmlOvPq1AsP6/xRXsEFX/SdvdxJ8w9KtGaxdJuf
- rpzLQ8Ht+H0lY2On1duYhmro8WglOypHy+TusYrDEry2qDNlc/bApQKtd9uqyDZ+rx8bGxyY
- qBP6bvsQx5YACI4p8R0J43tSqWwJTP/R5oPRQW2O1Ye1DEcdeyzZfifrQz58aoZrVQq+innR
- aDwu8qDB5UgmMQ7cjDSeAQABdghq7pqrA4P8lkA7qTG+aw8Z21OoAyZdUNm8NWJoQy8m4nUP
- gmeeQPRc0vjp5JkYPgTqwf08cluqO6vQuYL2YmwVBIbO7cE7LNGkPDA3RYMu+zPY9UUi/ln5
- dcKuEStFZ5eqVyqVoZ9eu3RTCGIXAHe1NcfcMT9HT0DPp3+ieTxFx6RjY3kYTGLOwU0EVUNc
- NAEQAM2StBhJERQvgPcbCzjokShn0cRA4q2SvCOvOXD+0KapXMRFE+/PZeDyfv4dEKuCqeh0
- hihSHlaxTzg3TcqUu54w2xYskG8Fq5tg3gm4kh1Gvh1LijIXX99ABA8eHxOGmLPRIBkXHqJY
- oHtCvPc6sYKNM9xbp6I4yF56xVLmHGJ61KaWKf5KKWYgA9kfHufbja7qR0c6H79LIsiYqf92
- H1HNq1WlQpu/fh4/XAAaV1axHFt/dY/2kU05tLMj8GjeQDz1fHas7augL4argt4e+jum3Nwt
- yupodQBxncKAUbzwKcDrPqUFmfRbJ7ARw8491xQHZDsP82JRj4cOJX32sBg8nO2N5OsFJOcd
- 5IE9v6qfllkZDAh1Rb1h6DFYq9dcdPAHl4zOj9EHq99/CpyccOh7SrtWDNFFknCmLpowhct9
- 5ZnlavBrDbOV0W47gO33WkXMFI4il4y1+Bv89979rVYn8aBohEgET41SpyQz7fMkcaZU+ok/
- +HYjC/qfDxT7tjKXqBQEscVODaFicsUkjheOD4BfWEcVUqa+XdUEciwG/SgNyxBZepj41oVq
- FPSVE+Ni2tNrW/e16b8mgXNngHSnbsr6pAIXZH3qFW+4TKPMGZ2rZ6zITrMip+12jgw4mGjy
- 5y06JZvA02rZT2k9aa7i9dUUFggaanI09jNGbRA/ABEBAAHCwXwEGAEKACYCGwwWIQSb0H4O
- DFH41ZZ3t1Qbk0N9O0FimwUCYDzvagUJFF+UtgAKCRAbk0N9O0Fim9JzD/0auoGtUu4mgnna
- oEEpQEOjgT7l9TVuO3Qa/SeH+E0m55y5Fjpp6ZToc481za3xAcxK/BtIX5Wn1mQ6+szfrJQ6
- 59y2io437BeuWIRjQniSxHz1kgtFECiV30yHRgOoQlzUea7FgsnuWdstgfWi6LxstswEzxLZ
- Sj1EqpXYZE4uLjh6dW292sO+j4LEqPYr53hyV4I2LPmptPE9Rb9yCTAbSUlzgjiyyjuXhcwM
- qf3lzsm02y7Ooq+ERVKiJzlvLd9tSe4jRx6Z6LMXhB21fa5DGs/tHAcUF35hSJrvMJzPT/+u
- /oVmYDFZkbLlqs2XpWaVCo2jv8+iHxZZ9FL7F6AHFzqEFdqGnJQqmEApiRqH6b4jRBOgJ+cY
- qc+rJggwMQcJL9F+oDm3wX47nr6jIsEB5ZftdybIzpMZ5V9v45lUwmdnMrSzZVgC4jRGXzsU
- EViBQt2CopXtHtYfPAO5nAkIvKSNp3jmGxZw4aTc5xoAZBLo0OV+Ezo71pg3AYvq0a3/oGRG
- KQ06ztUMRrj8eVtpImjsWCd0bDWRaaR4vqhCHvAG9iWXZu4qh3ipie2Y0oSJygcZT7H3UZxq
- fyYKiqEmRuqsvv6dcbblD8ZLkz1EVZL6djImH5zc5x8qpVxlA0A0i23v5QvN00m6G9NFF0Le
- D2GYIS41Kv4Isx2dEFh+/Q==
-In-Reply-To: <20240130-onboard_xvf3500-v1-1-51b5398406cb@wolfvision.net>
-Content-Type: text/plain; charset=UTF-8
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
+Cc: Jinlong Mao <quic_jinlmao@quicinc.com>, Leo Yan <leo.yan@linaro.org>,
+ Greg Kroah-Hartman <gregkh@linuxfoundation.org>, coresight@lists.linaro.org,
+ linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+ devicetree@vger.kernel.org, Tingwei Zhang <quic_tingweiz@quicinc.com>,
+ Yuanfang Zhang <quic_yuanfang@quicinc.com>,
+ Trilok Soni <quic_tsoni@quicinc.com>, Song Chai <quic_songchai@quicinc.com>,
+ linux-arm-msm@vger.kernel.org, andersson@kernel.org
+References: <1706605366-31705-1-git-send-email-quic_taozha@quicinc.com>
+ <1706605366-31705-6-git-send-email-quic_taozha@quicinc.com>
+From: Suzuki K Poulose <suzuki.poulose@arm.com>
+In-Reply-To: <1706605366-31705-6-git-send-email-quic_taozha@quicinc.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
 
-On 30/01/2024 13:26, Javier Carrasco wrote:
-> The XMOS XVF3500 VocalFusion Voice Processor[1] is a low-latency, 32-bit
-> multicore controller for voice processing.
+On 30/01/2024 09:02, Tao Zhang wrote:
+> Read the CMB element size from the device tree. Set the register
+> bit that controls the CMB element size of the corresponding port.
 > 
-> Add new bindings to define the device properties.
-> 
-> [1] https://www.xmos.com/xvf3500/
-> 
-> Signed-off-by: Javier Carrasco <javier.carrasco@wolfvision.net>
+> Reviewed-by: James Clark <james.clark@arm.com>
+> Signed-off-by: Tao Zhang <quic_taozha@quicinc.com>
+> Signed-off-by: Mao Jinlong <quic_jinlmao@quicinc.com>
 > ---
-
-This should be v2. Also, please provide changelog either here or in
-cover letter.
-
->  .../devicetree/bindings/sound/xmos,xvf3500.yaml    | 51 ++++++++++++++++++++++
->  1 file changed, 51 insertions(+)
+>   drivers/hwtracing/coresight/coresight-tpda.c | 123 +++++++++++--------
+>   drivers/hwtracing/coresight/coresight-tpda.h |   6 +
+>   2 files changed, 79 insertions(+), 50 deletions(-)
 > 
-> diff --git a/Documentation/devicetree/bindings/sound/xmos,xvf3500.yaml b/Documentation/devicetree/bindings/sound/xmos,xvf3500.yaml
-> new file mode 100644
-> index 000000000000..d7d5bda23b1b
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/sound/xmos,xvf3500.yaml
-> @@ -0,0 +1,51 @@
-> +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/sound/xmos,xvf3500.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> diff --git a/drivers/hwtracing/coresight/coresight-tpda.c b/drivers/hwtracing/coresight/coresight-tpda.c
+> index 4ac954f4bc13..fcddff3ded81 100644
+> --- a/drivers/hwtracing/coresight/coresight-tpda.c
+> +++ b/drivers/hwtracing/coresight/coresight-tpda.c
+> @@ -18,6 +18,7 @@
+>   #include "coresight-priv.h"
+>   #include "coresight-tpda.h"
+>   #include "coresight-trace-id.h"
+> +#include "coresight-tpdm.h"
+>   
+>   DEFINE_CORESIGHT_DEVLIST(tpda_devs, "tpda");
+>   
+> @@ -28,24 +29,57 @@ static bool coresight_device_is_tpdm(struct coresight_device *csdev)
+>   			CORESIGHT_DEV_SUBTYPE_SOURCE_TPDM);
+>   }
+>   
+> +static void tpdm_clear_element_size(struct coresight_device *csdev)
+> +{
+> +	struct tpda_drvdata *drvdata = dev_get_drvdata(csdev->dev.parent);
 > +
-> +title: XMOS XVF3500 VocalFusion Voice Processor
+> +	drvdata->dsb_esize = 0;
+> +	drvdata->cmb_esize = 0;
+> +}
 > +
-> +maintainers:
-> +  - Javier Carrasco <javier.carrasco@wolfvision.net>
+> +static void tpda_set_element_size(struct tpda_drvdata *drvdata, u32 *val)
+> +{
 > +
-> +description:
-> +  The XMOS XVF3500 VocalFusion Voice Processor is a low-latency, 32-bit
-> +  multicore controller for voice processing.
-> +  https://www.xmos.com/xvf3500/
-> +
-> +properties:
-> +  compatible:
-> +    const: usb20b1,0013
-> +
-> +  reset-gpios:
-> +    maxItems: 1
-> +
-> +  vdd-supply:
-> +    description:
-> +      Regulator for the 1V0 supply.
-> +
-> +  vdd2-supply:
-> +    description:
-> +      Regulator for the 3V3 supply.
-> +
-> +required:
-> +  - compatible
-> +  - reset-gpios
-> +  - vdd-supply
-> +  - vdd2-supply
-> +
-> +additionalProperties: false
-> +
-> +examples:
-> +  - |
-> +    #include <dt-bindings/gpio/gpio.h>
-> +
-> +    xvf3500 {
 
-Node names should be generic. See also an explanation and list of
-examples (not exhaustive) in DT specification:
-https://devicetree-specification.readthedocs.io/en/latest/chapter2-devicetree-basics.html#generic-names-recommendation
 
-Previous version had different code here, so I don't understand why this
-became model number.
 
-Best regards,
-Krzysztof
+> +	if (drvdata->dsb_esize == 64)
+> +		*val |= TPDA_Pn_CR_DSBSIZE;
+
+We don't seem to be clearing the fields we modify, before updating them. 
+This may be OK in real world where the device connected to TPDA port
+may not change. But it is always safer to clear the bits and set it.
+
+e.g.:
+	*val &= ~(TPDA_Pn_CR_DSBSIZE | TPDA_Pn_CR_CMBSIZE);
+
+	
+
+> +	else if (drvdata->dsb_esize == 32)
+> +		*val &= ~TPDA_Pn_CR_DSBSIZE;
+> +
+> +	if (drvdata->cmb_esize == 64)
+> +		*val |= FIELD_PREP(TPDA_Pn_CR_CMBSIZE, 0x2);
+> +	else if (drvdata->cmb_esize == 32)
+> +		*val |= FIELD_PREP(TPDA_Pn_CR_CMBSIZE, 0x1);
+
+Similarly here ^^^. I am happy to fix it up if you are OK with it 
+(unless there are other changes that need a respin)
+
+> +	else if (drvdata->cmb_esize == 8)
+> +		*val &= ~TPDA_Pn_CR_CMBSIZE;
+> +}
+
+> +
+>   /*
+> - * Read the DSB element size from the TPDM device
+> + * Read the element size from the TPDM device. One TPDM must have at least one of the
+> + * element size property.
+>    * Returns
+> - *    The dsb element size read from the devicetree if available.
+> - *    0 - Otherwise, with a warning once.
+> + *    0 - The element size property is read
+> + *    Others - Cannot read the property of the element size
+>    */
+> -static int tpdm_read_dsb_element_size(struct coresight_device *csdev)
+> +static int tpdm_read_element_size(struct tpda_drvdata *drvdata,
+> +				  struct coresight_device *csdev)
+>   {
+> -	int rc = 0;
+> -	u8 size = 0;
+> +	int rc = -EINVAL;
+> +	struct tpdm_drvdata *tpdm_data = dev_get_drvdata(csdev->dev.parent);
+> +
+> +	if (tpdm_has_dsb_dataset(tpdm_data)) {
+> +		rc = fwnode_property_read_u8(dev_fwnode(csdev->dev.parent),
+> +				"qcom,dsb-element-size", &drvdata->dsb_esize);
+> +	}
+> +	if (tpdm_has_cmb_dataset(tpdm_data)) {
+> +		rc = fwnode_property_read_u32(dev_fwnode(csdev->dev.parent),
+> +				"qcom,cmb-element-bits", &drvdata->cmb_esize);
+> +	}
+>   
+> -	rc = fwnode_property_read_u8(dev_fwnode(csdev->dev.parent),
+> -			"qcom,dsb-element-size", &size);
+>   	if (rc)
+>   		dev_warn_once(&csdev->dev,
+> -			"Failed to read TPDM DSB Element size: %d\n", rc);
+> +			"Failed to read TPDM Element size: %d\n", rc);
+>   
+> -	return size;
+> +	return rc;
+>   }
+>   
+>   /*
+> @@ -56,11 +90,12 @@ static int tpdm_read_dsb_element_size(struct coresight_device *csdev)
+>    * Parameter "inport" is used to pass in the input port number
+>    * of TPDA, and it is set to -1 in the recursize call.
+>    */
+> -static int tpda_get_element_size(struct coresight_device *csdev,
+> +static int tpda_get_element_size(struct tpda_drvdata *drvdata,
+> +				 struct coresight_device *csdev,
+>   				 int inport)
+>   {
+> -	int dsb_size = -ENOENT;
+> -	int i, size;
+> +	int rc = 0;
+> +	int i;
+>   	struct coresight_device *in;
+>   
+>   	for (i = 0; i < csdev->pdata->nr_inconns; i++) {
+> @@ -69,30 +104,26 @@ static int tpda_get_element_size(struct coresight_device *csdev,
+>   			continue;
+>   
+>   		/* Ignore the paths that do not match port */
+> -		if (inport > 0 &&
+> +		if (inport >= 0 &&
+
+That looks like a bug fix, but if you don't care about fixing this in < 
+v6.8,  I don't mind.
+
+
+Rest looks fine to me
+
+Suzuki
 
 
