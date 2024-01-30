@@ -1,162 +1,116 @@
-Return-Path: <devicetree+bounces-36773-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-36774-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 96F798429DF
-	for <lists+devicetree@lfdr.de>; Tue, 30 Jan 2024 17:48:28 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 12A748429E4
+	for <lists+devicetree@lfdr.de>; Tue, 30 Jan 2024 17:48:55 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 4BEC31F202CE
-	for <lists+devicetree@lfdr.de>; Tue, 30 Jan 2024 16:48:28 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 3DD541C2141C
+	for <lists+devicetree@lfdr.de>; Tue, 30 Jan 2024 16:48:54 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D4B311272B3;
-	Tue, 30 Jan 2024 16:48:23 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="BkrwOND5"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B864312836B;
+	Tue, 30 Jan 2024 16:48:48 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lf1-f54.google.com (mail-lf1-f54.google.com [209.85.167.54])
+Received: from mail-oi1-f172.google.com (mail-oi1-f172.google.com [209.85.167.172])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 16B7036102
-	for <devicetree@vger.kernel.org>; Tue, 30 Jan 2024 16:48:21 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.54
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F0E5186ADC;
+	Tue, 30 Jan 2024 16:48:46 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.172
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1706633303; cv=none; b=YkOQihnEuVYmAg1P/OIqA9LftfbGDMtEi64tiQDHjIx38RS84nZKguM2kTxnzjDlc8QMbLByDAOwi/SwJfZ3UUPIU7QDAVW81LpkAhkruAJLIEWaDaVLeSb0xGfEkjwPq+HYRlghzgkIRyLgXoA/gDCPopmAcTNqp0tWvJX3vVg=
+	t=1706633328; cv=none; b=Ti2MHsycK4JOCdEvhweV6zRtrVKpbGDYo3lqSrH4LxAKuHEgDIC6hgsI4Vpk/plIg1ncnoCDIrRXB4m7/YNowNrcHFYmpuYX6fge+VVVFTpyDEoq0yZ4prM+byezhvWBHbiTKKR2Ar3iP1enM59ruMSmxzA8aAe3zZV91ThLKmM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1706633303; c=relaxed/simple;
-	bh=48Z3FDhWFsTEJ/wmhPTf0aZOApkiI5wL8H3cFuiRD2E=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:To:Cc; b=MLHg+cxATYO2EcmMBIfGqZYGSBEZnsyk2oB29D1Wz1X3mIUwruOH7fen96jlGkJ2K/otBiJkvAW9DOw/0c01O6umd0LaeLXfxx2VNLndYNMk/QrQ09shg4oM2Y+GcX6Tlyrx8QoIIy2IyB9WO3mVv0OoamkxCDmJu3KeljZ73Us=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=BkrwOND5; arc=none smtp.client-ip=209.85.167.54
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-lf1-f54.google.com with SMTP id 2adb3069b0e04-51025cafb51so6028252e87.2
-        for <devicetree@vger.kernel.org>; Tue, 30 Jan 2024 08:48:21 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1706633300; x=1707238100; darn=vger.kernel.org;
-        h=cc:to:message-id:content-transfer-encoding:mime-version:subject
-         :date:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=BkeKQOsWHdEZXYMWgkHXhBXL2yDR8Bm4Igl0adlNoRg=;
-        b=BkrwOND5f8z/FQhcLVOQkfax8cKe5waDjVvyOsaZJF1oYeR/eINlWl+S0qwTttQtif
-         TeVjloa90AIzVRBnVYXZy8k0TpnqYwOvRQsF6vDfk+OQ14G6+Li8LTwEogfe/5a9NJIB
-         /a9JHRjUHIq6Nvx1k2Rscf/7dESrXVsw/AW596ZpJTr3Nd8meX3Wdf4QiwM2i1AxoKBz
-         KiRVd8VyugPv+aCAHbY5ucFVgzJ294y8H6+OH1A10smqqVfd+oa1xILVmoSwbH5sCiZP
-         dedX1yyg/Pn3glHdQs5+3ABi5LaUuJR027X8bSapLAb6rU5caV52VbCzCenRZ9XXZTtr
-         Ug6g==
+	s=arc-20240116; t=1706633328; c=relaxed/simple;
+	bh=jcj/XOzMZdXXBsQOJGQhpF4lWYN3lxOsRJ1/9mg/Sf0=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=saWrrwPUECam3mcmsdJXBoSQfntAafJc/AMYDqT1e9EIUtZomfcelNTkRCMgtA7sB89t3iehohuU4R+lAmQ4FrJl08SgVCo8EfgSdUjIs2l8yn41QlaDbiq5RpbFgtbln4DpeVf9zZYThNAou7s0PmENwew67cX9RLh4WU4HQrY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org; spf=pass smtp.mailfrom=gmail.com; arc=none smtp.client-ip=209.85.167.172
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-oi1-f172.google.com with SMTP id 5614622812f47-3bbbc6e51d0so2514909b6e.3;
+        Tue, 30 Jan 2024 08:48:46 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1706633300; x=1707238100;
-        h=cc:to:message-id:content-transfer-encoding:mime-version:subject
-         :date:from:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=BkeKQOsWHdEZXYMWgkHXhBXL2yDR8Bm4Igl0adlNoRg=;
-        b=A37yzdiUzmbBTy+ZXmXJF5X+frfUzhCBW8VorppYvJKLYRMTNhf1/7XKlrAve2NHzd
-         SUiPNT5LzKVXtN/tQSEPkv+g+wug7kNLW/2iaMX6kYsjX15tyTvfnQsjhFrla+7DgJ2j
-         7Y0h5rAujKEawalr38I0KqaM2fo8z78N7FGJu9JU3C7mz1FyWVrDFERmo6kBWLn67yn4
-         vMyktAUDXwVdPdX47mAsVQ/9LZwV8yo4DK4/0trJh5tN/Am6sT+AbZ5+IW79G2U6JUka
-         02RFgwX58Cknbkv+Hn1Wx8x6GLZY+91FRpaMDbot09w8ZyA8x7C/eil+Jkz9/+rJdUlY
-         umrA==
-X-Gm-Message-State: AOJu0YyJKB3iLo4PzqdSh3b9RES1mM6vJf6Gc2NzZvy+l4HVdaMO5F4/
-	mLtSOPRA0dttjX3OrOEG10uJ96YomgnIMESfXDHZA4CNU73Y+LKKUmYe3ufHTXg=
-X-Google-Smtp-Source: AGHT+IHi112VNPlSJNeWOdaWvxjaB67PF+syF0OM+Tf96Lh3VlfxaaPYbxEbh9mXj/Ly++37ME9DqA==
-X-Received: by 2002:a05:6512:3050:b0:50e:50ee:f378 with SMTP id b16-20020a056512305000b0050e50eef378mr6701850lfb.65.1706633300108;
-        Tue, 30 Jan 2024 08:48:20 -0800 (PST)
-X-Forwarded-Encrypted: i=0; AJvYcCUvxn7K+iu46oWNolt8bP/XrHMwZt/ERz60vci7UAOq2XrtfLYUUvqF3q2Is41leDJuNjAdEsxxrzUekzPacQCG7pTEEg+tb5XjUz1BHCi/Pf8Rn1dctkljwPkPg1TfEmOKetZNAgiew2SL5gvuPFsf2HOCSFVmCC2Vr8/A337r0cxu68A8NzWRfPhh+OOUmnzBSi10zaS2Ig35ovN6KpdetmXpQSBOvneGHhcevjEHrQ==
-Received: from umbar.lan ([192.130.178.91])
-        by smtp.gmail.com with ESMTPSA id er2-20020a05651248c200b0050e76738549sm1503182lfb.50.2024.01.30.08.48.19
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 30 Jan 2024 08:48:19 -0800 (PST)
-From: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-Date: Tue, 30 Jan 2024 18:48:08 +0200
-Subject: [PATCH v2] arm64: dts: qcom: qrb2210-rb1: disable cluster power
- domains
+        d=1e100.net; s=20230601; t=1706633325; x=1707238125;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=M+4tYl7sgEaPamnUJAXxXqFC7JS0yxLYZqNBS3Zyq74=;
+        b=J8rs1uZ4DaDuwaZRxVW0bG3puLu9eu1wL5QAFLw4TgH5qwnKd5QmsJal5yAK9MXTuC
+         p792bx3IvnGh6pqBNWMmjWgMA1Vjk0ljbiW3MU0fhdLV3wd7sCD+vlwp43CSb7MhEL+z
+         nAchbWCkJ0cAPedr5dMjgaSbwXudUuBFxH7xTjr5N8ZClRYT/eyde0gYx8k/+fiWUXzC
+         hrcez4LFQotHcxeq5s3D8n6lhthh3jrtj5HbtIguvty0IzRadBKvJZa1Z4+yMg2e3yXu
+         joRZxHyoXHnHDjccozZF+6KSWzj7AEBnfcyI8YAD9fWhws36sjQz5EaaJTw7B8wVRoKW
+         HuAw==
+X-Gm-Message-State: AOJu0YxQEp1hlUpysjSgdzzq/8Xb6IzznqYl8Fs+Oiw8nKzdW08GNbIC
+	r73jf4V7U2iknzgfpboRJMQrjE5wUCQouxw+smXBGiNjzBGkJyFmEYy8bgOxGEo=
+X-Google-Smtp-Source: AGHT+IG518jY6K0kWJ7QRUQlQTJVD3dNZeVB7PK0IRTD27gWlnK2Yfanf/tgYhsyGb/mg9p78PZpRg==
+X-Received: by 2002:a05:6870:a902:b0:210:ac52:bc0e with SMTP id eq2-20020a056870a90200b00210ac52bc0emr6430134oab.27.1706633325543;
+        Tue, 30 Jan 2024 08:48:45 -0800 (PST)
+Received: from mail-oi1-f169.google.com (mail-oi1-f169.google.com. [209.85.167.169])
+        by smtp.gmail.com with ESMTPSA id i3-20020a9d6503000000b006dc02337dafsm2008037otl.16.2024.01.30.08.48.44
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 30 Jan 2024 08:48:45 -0800 (PST)
+Received: by mail-oi1-f169.google.com with SMTP id 5614622812f47-3bbbc6e51d0so2514893b6e.3;
+        Tue, 30 Jan 2024 08:48:44 -0800 (PST)
+X-Received: by 2002:a05:6808:1442:b0:3be:2f6e:5a93 with SMTP id
+ x2-20020a056808144200b003be2f6e5a93mr6807319oiv.14.1706633324679; Tue, 30 Jan
+ 2024 08:48:44 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20240130-rb1-suspend-cluster-v2-1-5bc1109b0869@linaro.org>
-X-B4-Tracking: v=1; b=H4sIAEcouWUC/03Myw6CMBCF4VchXTumU4EaV76HcdHLAE2wxSkQE
- 8K722hiXJzFvzjfJjJxoCwu1SaY1pBDiiXUoRJuMLEnCL60UFLVEk8S2CLkJU8UPbhxyTMx6NZ
- rq5uzsq0R5TkxdeH1UW/30h2nB8wDk/mzEOHJVin8mjH9uOBHghUBwZHDuqyxUl3HEA2nY+Je7
- Psb/V2+DrkAAAA=
-To: Bjorn Andersson <andersson@kernel.org>, 
- Konrad Dybcio <konrad.dybcio@linaro.org>, Rob Herring <robh+dt@kernel.org>, 
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, 
- Conor Dooley <conor+dt@kernel.org>
-Cc: linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org
-X-Mailer: b4 0.12.4
-X-Developer-Signature: v=1; a=openpgp-sha256; l=1583;
- i=dmitry.baryshkov@linaro.org; h=from:subject:message-id;
- bh=48Z3FDhWFsTEJ/wmhPTf0aZOApkiI5wL8H3cFuiRD2E=;
- b=owEBbQGS/pANAwAKAYs8ij4CKSjVAcsmYgBluShTziDo79Xuxpzbt3n0la5ce7hBGHazOjcli
- MD1uEtYhKWJATMEAAEKAB0WIQRMcISVXLJjVvC4lX+LPIo+Aiko1QUCZbkoUwAKCRCLPIo+Aiko
- 1fdQB/9rDunGqBiSMJRUAyC0mANskLj3QehtPGO26+MCl1tFh/nX/0DChvRj9USTWwi+axkRw5+
- 40NNfn6rzIUlOKP2GCcwFWVLPAjQHKogrH4ZfhpvjEdVPoEG92KBDxeE70Iyv2zYWXNyJ9QSDq1
- Way3d8TaLgNnHX4kUU5v91wEJSOOHm1QiVPad0eC1i5koTiitifP/ztWUMcbaL6XMVlTbBOPm9g
- SbeC1BE9zulcZ6WVopD7btVmfYs5d0sCz91LsG5oEDwT1m39/FQNP2TyFbK4Y0tmmNXr60vnRcF
- tt5FdyiGv2CGBZp7a2CO44Xhyk8RmoJH4npE7STGv+aM8OE1
-X-Developer-Key: i=dmitry.baryshkov@linaro.org; a=openpgp;
- fpr=8F88381DD5C873E4AE487DA5199BF1243632046A
+References: <20240122111115.2861835-1-claudiu.beznea.uj@bp.renesas.com> <20240122111115.2861835-9-claudiu.beznea.uj@bp.renesas.com>
+In-Reply-To: <20240122111115.2861835-9-claudiu.beznea.uj@bp.renesas.com>
+From: Geert Uytterhoeven <geert@linux-m68k.org>
+Date: Tue, 30 Jan 2024 17:48:33 +0100
+X-Gmail-Original-Message-ID: <CAMuHMdVYnFJDyrEresJ4YgnVXkAAuVSbQOu-opcxMSweQs=_rQ@mail.gmail.com>
+Message-ID: <CAMuHMdVYnFJDyrEresJ4YgnVXkAAuVSbQOu-opcxMSweQs=_rQ@mail.gmail.com>
+Subject: Re: [PATCH 08/10] dt-bindings: watchdog: renesas,wdt: Document RZ/G3S support
+To: Claudiu <claudiu.beznea@tuxon.dev>
+Cc: wim@linux-watchdog.org, linux@roeck-us.net, robh+dt@kernel.org, 
+	krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org, 
+	geert+renesas@glider.be, magnus.damm@gmail.com, mturquette@baylibre.com, 
+	sboyd@kernel.org, p.zabel@pengutronix.de, biju.das.jz@bp.renesas.com, 
+	linux-watchdog@vger.kernel.org, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org, linux-renesas-soc@vger.kernel.org, 
+	linux-clk@vger.kernel.org, Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-If cluster domain idle state is enabled on the RB1, the board becomes
-significantly less responsive. Under certain circumstances (if some of
-the devices are disabled in kernel config) the board can even lock up.
+Hi Claudiu,
 
-It seems this is caused by the MPM not updating wakeup timer during CPU
-idle (in the same way the RPMh updates it when cluster idle state is
-entered).
+Thanks for your patch!
 
-Disable cluster domain idle for the RB1 board until MPM driver is fixed
-to cooperate with the CPU idle states.
+On Mon, Jan 22, 2024 at 12:11=E2=80=AFPM Claudiu <claudiu.beznea@tuxon.dev>=
+ wrote:
+> From: Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>
+>
+> Document the support for the watchdog IP available on RZ/G3S SoC. The
+> watchdog IP available on RZ/G3S SoC is identical to the one found on
+> RZ/G2UL SoC.
 
-Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
----
-Changes since v1:
-- Updated commit message, expaning the 'ping' phrase to point to the
-  timer being updated by MPM driver (Mani)
----
- arch/arm64/boot/dts/qcom/qrb2210-rb1.dts | 18 ++++++++++++++++++
- 1 file changed, 18 insertions(+)
+Or RZ/G2L, which is considered the baseline here.
 
-diff --git a/arch/arm64/boot/dts/qcom/qrb2210-rb1.dts b/arch/arm64/boot/dts/qcom/qrb2210-rb1.dts
-index 64b2ab286279..6e9dd0312adc 100644
---- a/arch/arm64/boot/dts/qcom/qrb2210-rb1.dts
-+++ b/arch/arm64/boot/dts/qcom/qrb2210-rb1.dts
-@@ -177,6 +177,24 @@ vph_pwr: regulator-vph-pwr {
- 	};
- };
- 
-+&CPU_PD0 {
-+	/delete-property/ power-domains;
-+};
-+
-+&CPU_PD1 {
-+	/delete-property/ power-domains;
-+};
-+
-+&CPU_PD2 {
-+	/delete-property/ power-domains;
-+};
-+
-+&CPU_PD3 {
-+	/delete-property/ power-domains;
-+};
-+
-+/delete-node/ &CLUSTER_PD;
-+
- &gpi_dma0 {
- 	status = "okay";
- };
+>
+> Signed-off-by: Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>
 
----
-base-commit: 596764183be8ebb13352b281a442a1f1151c9b06
-change-id: 20240130-rb1-suspend-cluster-76d7b7582b6a
+Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
 
-Best regards,
--- 
-Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+Gr{oetje,eeting}s,
 
+                        Geert
+
+--=20
+Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k=
+.org
+
+In personal conversations with technical people, I call myself a hacker. Bu=
+t
+when I'm talking to journalists I just say "programmer" or something like t=
+hat.
+                                -- Linus Torvalds
 
