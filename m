@@ -1,252 +1,140 @@
-Return-Path: <devicetree+bounces-36648-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-36650-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id E5E15842222
-	for <lists+devicetree@lfdr.de>; Tue, 30 Jan 2024 12:02:28 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id D1570842236
+	for <lists+devicetree@lfdr.de>; Tue, 30 Jan 2024 12:05:41 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 6BBD81F2E426
-	for <lists+devicetree@lfdr.de>; Tue, 30 Jan 2024 11:02:28 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 8B42D282CC5
+	for <lists+devicetree@lfdr.de>; Tue, 30 Jan 2024 11:05:40 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C464E66B20;
-	Tue, 30 Jan 2024 11:02:06 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id EC9C666B2E;
+	Tue, 30 Jan 2024 11:05:06 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="SCuEmcvT"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="KxOJjVm6"
 X-Original-To: devicetree@vger.kernel.org
-Received: from relay3-d.mail.gandi.net (relay3-d.mail.gandi.net [217.70.183.195])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 740AE664AD;
-	Tue, 30 Jan 2024 11:02:03 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.70.183.195
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C554967744;
+	Tue, 30 Jan 2024 11:05:06 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1706612526; cv=none; b=mWQyEBa57p29bAwa1mcMjbfkaQGiSboT42CoDHDfDxI1QidRc4PgqFmCk19FkwlLiOeIDeZgEYAovd1PqYpwhLQtQ9ESPugRIEPOT4L1n3FiY0gbNbevGKdFKM0OMFe79F43cgSP9gno8v3hbCh++rRAJmpE8d2gX/ROxcSO1jM=
+	t=1706612706; cv=none; b=Ybsn7zVgGSQ0EU4ned0wPMGXvI3A7fyMJt26W3JACXXB990FEEebCjrUy0si1l9dukEMz+0kfcoGB1xuNJbXPLi7EGsphfWuQt3zx8mfy3HRa6uu0JIiomshEWb4JsWKZMsLUqRxw4h98NYtDZ1LDRo3H6rcmvvNI7XZgMvHOSQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1706612526; c=relaxed/simple;
-	bh=4q3jokNKpN7FbG1xwOr6J5bWLFuDX2JgkKsPpvsUWrQ=;
-	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=ueId1ntJqbzkRRJxu0+iZq124yMsZEkqT9FLfOQNPAppWciKUO/e6+TRVyE035aimcvBIXJH6vHKMcvieBboktgIPKVS8CfveyGx1PBnUj1q/XM+PYwu51OfObaIoZaPCeJg54XQnkIFgv0JbZgBAQWRQBajEbdx1NpKJuvwUzw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=SCuEmcvT; arc=none smtp.client-ip=217.70.183.195
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
-Received: by mail.gandi.net (Postfix) with ESMTPSA id 4360560008;
-	Tue, 30 Jan 2024 11:01:56 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
-	t=1706612518;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=U9iIqWPJOvOxFNmco/tQN2cBcwAteDC+6FjG3AbiQ0w=;
-	b=SCuEmcvTO4sAv3vjTrjHFNeiJd6+2mLOResDSiDhowBL/TjggEhVsOqBneym/CLb/FsFNs
-	Mkgqr1ONhI5tAIHBjfR2Hi2vErxfoWY1ckd3ipWhlTuFb8tzUSLzbm+13VSQqk/S1LD7Vj
-	iOrMuD+Hl5tPXxmI5K3wfc3D8vwUNRTF9lJMJezIFyx953CAakvTCnrOOzYUAlFGxu5dVH
-	KnLmvmOTWrKulYJraILGznAGCH6SAjvHND2JPUhOCvfjH56UYG/yxzHVMClvdyzK6maFP3
-	FyhRXH79eO2J/X0ckc3u+FqTGC8Z7qZvtmZkrp8N4lNYS0SgxW/rBT4a3Fbg+w==
-Date: Tue, 30 Jan 2024 12:01:55 +0100
-From: Miquel Raynal <miquel.raynal@bootlin.com>
-To: William Zhang <william.zhang@broadcom.com>
-Cc: David Regan <dregan@broadcom.com>, dregan@mail.com, Richard Weinberger
- <richard@nod.at>, Vignesh Raghavendra <vigneshr@ti.com>,
- robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
- computersforpeace@gmail.com, kdasu.kdev@gmail.com,
- linux-mtd@lists.infradead.org, devicetree@vger.kernel.org, Linux Kernel
- Mailing List <linux-kernel@vger.kernel.org>, Joel Peshkin
- <joel.peshkin@broadcom.com>, Tomer Yacoby <tomer.yacoby@broadcom.com>, Dan
- Beygelman <dan.beygelman@broadcom.com>, Anand Gore
- <anand.gore@broadcom.com>, Kursad Oney <kursad.oney@broadcom.com>, Florian
- Fainelli <florian.fainelli@broadcom.com>, rafal@milecki.pl,
- bcm-kernel-feedback-list@broadcom.com, andre.przywara@arm.com,
- baruch@tkos.co.il, linux-arm-kernel@lists.infradead.org, Dan Carpenter
- <dan.carpenter@linaro.org>
-Subject: Re: [PATCH v3 10/10] mtd: rawnand: brcmnand: allow for on-die ecc
-Message-ID: <20240130120155.3cb6feed@xps-13>
-In-Reply-To: <2a3edcf5-7afc-410c-a402-3d8cd3feb1da@broadcom.com>
-References: <20240124030458.98408-1-dregan@broadcom.com>
-	<20240124030458.98408-11-dregan@broadcom.com>
-	<20240124184027.712b1e47@xps-13>
-	<CAA_RMS42FaiN+Za1iY12o0YUANH9rJarBTBa=9jNn8x6_g-Fng@mail.gmail.com>
-	<20240126071913.699c3795@xps-13>
-	<CAA_RMS5gX88v_Qt1csgSL_ffMNsqo2G8B164EB_Hg=hXd620eg@mail.gmail.com>
-	<20240129115228.06dc2292@xps-13>
-	<2a3edcf5-7afc-410c-a402-3d8cd3feb1da@broadcom.com>
-Organization: Bootlin
-X-Mailer: Claws Mail 4.0.0 (GTK+ 3.24.33; x86_64-pc-linux-gnu)
+	s=arc-20240116; t=1706612706; c=relaxed/simple;
+	bh=FPjSOL02faexuB1BXgC53k3A0QdD2xtS7r/hZoVFvuc=;
+	h=From:To:Cc:Subject:In-Reply-To:References:Date:Message-ID:
+	 MIME-Version:Content-Type; b=iIkNsLkOa5IUa4dsLHBitktWXRobRDX3LLOd7adTjrKucBQEvZidRVbIQXxRIzblE3jcQO55vQ0klUlZe0H0jF6SJaSxMBWy990hxzyyQUHXUn+y4AVdIX7d93z0PTvbim/uI89yd8+iRA9ME/DtsTxAjmestdlERrI7clSuswM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=KxOJjVm6; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id BADE6C43390;
+	Tue, 30 Jan 2024 11:05:05 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1706612706;
+	bh=FPjSOL02faexuB1BXgC53k3A0QdD2xtS7r/hZoVFvuc=;
+	h=From:To:Cc:Subject:In-Reply-To:References:Date:From;
+	b=KxOJjVm6NHVWWyv4OU761WsEmvvTaK6AOVZGXGhBf9XEa1cDPvJyCzSF9QIN48pTV
+	 aLj2ji8j9E/eLnA/qq2NSzICbbhzCx+ODRyqZeuDTzL8ccCSqldHmOL/Q15HHJmEPB
+	 3mrR4IrUI9LC9loqptLEpno3boG4XmZgTabp+w5k//pwoSjP1Z0hCW0SrXjsbg1upV
+	 bkDtprS0umWUo2av/zR8GIqlruORVPB/KwALEup+/cdEWpoFinhVOnFLcmmq5q7c4C
+	 6PaMOashVJ4kIUTYzBZgsNoTvhz3YDfKF4dqXSpF1RyxX9dMVYeutQp5m0z7jg4Keu
+	 H6Piw0AEBelAg==
+From: =?utf-8?B?QmrDtnJuIFTDtnBlbA==?= <bjorn@kernel.org>
+To: Anup Patel <apatel@ventanamicro.com>
+Cc: Palmer Dabbelt <palmer@dabbelt.com>, Paul Walmsley
+ <paul.walmsley@sifive.com>, Thomas Gleixner <tglx@linutronix.de>, Rob
+ Herring <robh+dt@kernel.org>, Krzysztof Kozlowski
+ <krzysztof.kozlowski+dt@linaro.org>, Frank Rowand
+ <frowand.list@gmail.com>, Conor Dooley <conor+dt@kernel.org>,
+ devicetree@vger.kernel.org, Saravana Kannan <saravanak@google.com>, Marc
+ Zyngier <maz@kernel.org>, Anup Patel <anup@brainfault.org>,
+ linux-kernel@vger.kernel.org, Atish Patra <atishp@atishpatra.org>,
+ linux-riscv@lists.infradead.org, linux-arm-kernel@lists.infradead.org,
+ Andrew Jones <ajones@ventanamicro.com>
+Subject: Re: [PATCH v12 00/25] Linux RISC-V AIA Support
+In-Reply-To: <CAK9=C2U2mGzTLaXDqyD86bEM4XRc3UmBxRtrd3=+QXXwMK3hjg@mail.gmail.com>
+References: <20240127161753.114685-1-apatel@ventanamicro.com>
+ <87r0hzuw87.fsf@all.your.base.are.belong.to.us>
+ <87le87uulb.fsf@all.your.base.are.belong.to.us>
+ <CAK9=C2U2mGzTLaXDqyD86bEM4XRc3UmBxRtrd3=+QXXwMK3hjg@mail.gmail.com>
+Date: Tue, 30 Jan 2024 12:05:03 +0100
+Message-ID: <87le87w080.fsf@all.your.base.are.belong.to.us>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
+Content-Type: text/plain; charset=utf-8
 Content-Transfer-Encoding: quoted-printable
-X-GND-Sasl: miquel.raynal@bootlin.com
 
-Hi William,
+Anup Patel <apatel@ventanamicro.com> writes:
 
-william.zhang@broadcom.com wrote on Tue, 30 Jan 2024 00:11:32 -0800:
+> On Tue, Jan 30, 2024 at 1:22=E2=80=AFPM Bj=C3=B6rn T=C3=B6pel <bjorn@kern=
+el.org> wrote:
+>>
+>> Bj=C3=B6rn T=C3=B6pel <bjorn@kernel.org> writes:
+>>
+>> > Anup Patel <apatel@ventanamicro.com> writes:
+>> >
+>> >> The RISC-V AIA specification is ratified as-per the RISC-V internatio=
+nal
+>> >> process. The latest ratified AIA specifcation can be found at:
+>> >> https://github.com/riscv/riscv-aia/releases/download/1.0/riscv-interr=
+upts-1.0.pdf
+>> >>
+>> >> At a high-level, the AIA specification adds three things:
+>> >> 1) AIA CSRs
+>> >>    - Improved local interrupt support
+>> >> 2) Incoming Message Signaled Interrupt Controller (IMSIC)
+>> >>    - Per-HART MSI controller
+>> >>    - Support MSI virtualization
+>> >>    - Support IPI along with virtualization
+>> >> 3) Advanced Platform-Level Interrupt Controller (APLIC)
+>> >>    - Wired interrupt controller
+>> >>    - In MSI-mode, converts wired interrupt into MSIs (i.e. MSI genera=
+tor)
+>> >>    - In Direct-mode, injects external interrupts directly into HARTs
+>> >>
+>> >> For an overview of the AIA specification, refer the AIA virtualization
+>> >> talk at KVM Forum 2022:
+>> >> https://static.sched.com/hosted_files/kvmforum2022/a1/AIA_Virtualizat=
+ion_in_KVM_RISCV_final.pdf
+>> >> https://www.youtube.com/watch?v=3Dr071dL8Z0yo
+>> >>
+>> >> To test this series, use QEMU v7.2 (or higher) and OpenSBI v1.2 (or h=
+igher).
+>> >>
+>> >> These patches can also be found in the riscv_aia_v12 branch at:
+>> >> https://github.com/avpatel/linux.git
+>> >>
+>> >> Changes since v11:
+>> >>  - Rebased on Linux-6.8-rc1
+>> >>  - Included kernel/irq related patches from "genirq, irqchip: Convert=
+ ARM
+>> >>    MSI handling to per device MSI domains" series by Thomas.
+>> >>    (PATCH7, PATCH8, PATCH9, PATCH14, PATCH16, PATCH17, PATCH18, PATCH=
+19,
+>> >>     PATCH20, PATCH21, PATCH22, PATCH23, and PATCH32 of
+>> >>     https://lore.kernel.org/linux-arm-kernel/20221121135653.208611233=
+@linutronix.de/)
+>> >>  - Updated APLIC MSI-mode driver to use the new WIRED_TO_MSI mechanis=
+m.
+>> >>  - Updated IMSIC driver to support per-device MSI domains for PCI and
+>> >>    platform devices.
+>> >
+>> > Thanks for working on this, Anup! I'm still reviewing the patches.
+>> >
+>> > I'm hitting a boot hang in text patching, with this series applied on
+>> > 6.8-rc2. IPI issues?
+>>
+>> Not text patching! One cpu spinning in smp_call_function_many_cond() and
+>> the others are in cpu_relax(). Smells like IPI...
+>
+> Can you share the complete bootlog ?
 
-> Hi Miquel,
->=20
-> On 1/29/24 02:52, Miquel Raynal wrote:
-> > Hi David,
-> >=20
-> > dregan@broadcom.com wrote on Fri, 26 Jan 2024 11:57:39 -0800:
-> >  =20
-> >> Hi Miqu=C3=A8l,
-> >>
-> >> On Thu, Jan 25, 2024 at 10:19=E2=80=AFPM Miquel Raynal
-> >> <miquel.raynal@bootlin.com> wrote: =20
-> >>>
-> >>> Hi David,
-> >>>
-> >>> dregan@broadcom.com wrote on Thu, 25 Jan 2024 11:47:46 -0800: =20
-> >>>   >>>> Hi Miqu=C3=A8l, =20
-> >>>>
-> >>>> On Wed, Jan 24, 2024 at 9:40=E2=80=AFAM Miquel Raynal <miquel.raynal=
-@bootlin.com> wrote: =20
-> >>>>>
-> >>>>> Hi David,
-> >>>>>
-> >>>>> dregan@broadcom.com wrote on Tue, 23 Jan 2024 19:04:58 -0800: =20
-> >>>>>   >>>>>> Allow settings for on-die ecc such that if on-die ECC is s=
-elected =20
-> >>>>>> don't error out but require ECC strap setting of zero
-> >>>>>>
-> >>>>>> Signed-off-by: David Regan <dregan@broadcom.com>
-> >>>>>> Reviewed-by: William Zhang <william.zhang@broadcom.com>
-> >>>>>> ---
-> >>>>>> Changes in v3: None
-> >>>>>> ---
-> >>>>>> Changes in v2:
-> >>>>>> - Added to patch series
-> >>>>>> ---
-> >>>>>>   drivers/mtd/nand/raw/brcmnand/brcmnand.c | 14 ++++++++++----
-> >>>>>>   1 file changed, 10 insertions(+), 4 deletions(-)
-> >>>>>>
-> >>>>>> diff --git a/drivers/mtd/nand/raw/brcmnand/brcmnand.c b/drivers/mt=
-d/nand/raw/brcmnand/brcmnand.c
-> >>>>>> index a4e311b6798c..42526f3250c9 100644
-> >>>>>> --- a/drivers/mtd/nand/raw/brcmnand/brcmnand.c
-> >>>>>> +++ b/drivers/mtd/nand/raw/brcmnand/brcmnand.c
-> >>>>>> @@ -2727,9 +2727,11 @@ static int brcmnand_setup_dev(struct brcmna=
-nd_host *host)
-> >>>>>>        cfg->blk_adr_bytes =3D get_blk_adr_bytes(mtd->size, mtd->wr=
-itesize);
-> >>>>>>
-> >>>>>>        if (chip->ecc.engine_type !=3D NAND_ECC_ENGINE_TYPE_ON_HOST=
-) {
-> >>>>>> -             dev_err(ctrl->dev, "only HW ECC supported; selected:=
- %d\n",
-> >>>>>> -                     chip->ecc.engine_type);
-> >>>>>> -             return -EINVAL;
-> >>>>>> +             if (chip->ecc.strength) {
-> >>>>>> +                     dev_err(ctrl->dev, "ERROR!!! HW ECC must be =
-set to zero for non-hardware ECC; selected: %d\n",
-> >>>>>> +                             chip->ecc.strength); =20
-> >>>>>
-> >>>>> Can you use a more formal string? Also clarify it because I don't
-> >>>>> really understand what it leads to. =20
-> >>>>
-> >>>> How about:
-> >>>>
-> >>>> dev_err(ctrl->dev, "HW ECC set to %d, must be zero for on-die ECC\n"=
-, =20
-> >>>
-> >>> Actually I am wondering how legitimate this is. Just don't enable the
-> >>> on host ECC engine if it's not in use. No need to check the core's
-> >>> choice. =20
-> >>
-> >> Our chip ECC engine will either be on if it's needed or off if it's no=
-t.
-> >> Either I can do that in one place or put checks in before each
-> >> read/write to turn on/off the ECC engine, which seems a lot more
-> >> work and changes and possible issues/problems.
-> >> Turning it on/off as needed has not been explicitly tested and
-> >> could cause unforeseen consequences. This
-> >> is a minimal change which should have minimal impact.
-> >> =20
-> >>>   >>>>   >>>>>   >>>>>> +                     return -EINVAL; =20
-> >>>>>> +             }
-> >>>>>>        }
-> >>>>>>
-> >>>>>>        if (chip->ecc.algo =3D=3D NAND_ECC_ALGO_UNKNOWN) {
-> >>>>>> @@ -2797,7 +2799,11 @@ static int brcmnand_setup_dev(struct brcmna=
-nd_host *host)
-> >>>>>>        if (ret)
-> >>>>>>                return ret;
-> >>>>>>
-> >>>>>> -     brcmnand_set_ecc_enabled(host, 1);
-> >>>>>> +     if (chip->ecc.engine_type =3D=3D NAND_ECC_ENGINE_TYPE_ON_DIE=
-) {
-> >>>>>> +             dev_dbg(ctrl->dev, "Disable HW ECC for on-die ECC\n"=
-); =20
-> >>>>>
-> >>>>> Not needed. =20
-> >>>>
-> >>>> Will remove. =20
-> >>>>   >>>>>   >>>>>> +             brcmnand_set_ecc_enabled(host, 0); =20
-> >>>>>> +     } else
-> >>>>>> +             brcmnand_set_ecc_enabled(host, 1); =20
-> >>>>>
-> >>>>> Style is wrong, but otherwise I think ECC should be kept disabled w=
-hile
-> >>>>> not in active use, so I am a bit surprised by this line. =20
-> >>>>
-> >>>> This is a double check to turn on/off our hardware ECC. =20
-> >>>
-> >>> I expect the engine to be always disabled. Enable it only when you
-> >>> need (may require an additional patch before this one). =20
-> >>
-> >> We are already turning on the ECC enable at this point,
-> >> this is just adding the option to turn it off if the NAND chip
-> >> itself will be doing the ECC instead of our controller. =20
-> >=20
-> > Sorry if I have not been clear.
-> >=20
-> > This sequence:
-> > - init
-> > - enable hw ECC engine
-> > Is broken.
-> >  =20
-> ECC engine is not enabled for all the cases. Here we only intended to ena=
-ble it for the nand chip that is set to use NAND_ECC_ENGINE_TYPE_ON_HOST. T=
-he logic here should better change to:
-> if (chip->ecc.engine_type =3D=3D NAND_ECC_ENGINE_TYPE_ON_HOST)
->      brcmnand_set_ecc_enabled(host, 1);
-> else
->      brcmnand_set_ecc_enabled(host, 0);
->=20
-> > It *cannot* work as any operation going through exec_op now may
-> > perform page reads which should be unmodified by the ECC engine. You > =
-driver *must* follow the following sequence:
-> > - init and disable (or keep disabled) the hw ECC engine
-> > - when you perform a page operation with correction you need to
-> > 	- enable the engine
-> > 	- perform the operation
-> > 	- disable the engine
-> > Maybe I am missing something here but are you saying the exec_op can ha=
-ve different ecc type for page read/write at run time on the same nand chip=
-? I don't see the op instr structure has the ecc type field and thought it =
-is only bind to the nand chip and won't change at run time. So looks to me =
-the init time setting to the engine based on ecc.engine_type should be suff=
-icient. =20
->=20
-> What you described here can work for the hw.ecc read path (ecc.read_page =
-=3D brcmnand_read_page) which always assumes ecc is enabled. Although it is=
- probably not too bad with these two extra operation, it would be better if=
- we don't have to add anything as our current code does. For the brcmnand_r=
-ead_page_raw,  we currently disable the engine and then re-enable it(but we=
- need to fix it to only enable it with hw ecc engine type).  So it is just =
-opposite of you logic but works the same with no impact on the most perform=
-ance critical path.
+Here: https://gist.github.com/bjoto/04a580568378f3b5483af07cd9d22501
 
-This is not "my" logic, this is the "core's" logic. I am saying: your
-approach is broken because that is not how the API is supposed to work,
-but it mostly works in the standard case.
-
-Thanks,
-Miqu=C3=A8l
 
