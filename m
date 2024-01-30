@@ -1,283 +1,247 @@
-Return-Path: <devicetree+bounces-36745-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-36746-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0FF58842850
-	for <lists+devicetree@lfdr.de>; Tue, 30 Jan 2024 16:45:58 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9C85684285C
+	for <lists+devicetree@lfdr.de>; Tue, 30 Jan 2024 16:49:26 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 941631F257B7
-	for <lists+devicetree@lfdr.de>; Tue, 30 Jan 2024 15:45:57 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 13D241F2746C
+	for <lists+devicetree@lfdr.de>; Tue, 30 Jan 2024 15:49:26 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id BAF0382D7B;
-	Tue, 30 Jan 2024 15:45:51 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8A9838613E;
+	Tue, 30 Jan 2024 15:49:11 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=savoirfairelinux.com header.i=@savoirfairelinux.com header.b="M26pTAT9"
+	dkim=pass (2048-bit key) header.d=ventanamicro.com header.i=@ventanamicro.com header.b="mfi3HOOZ"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail.savoirfairelinux.com (mail.savoirfairelinux.com [208.88.110.44])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-lf1-f53.google.com (mail-lf1-f53.google.com [209.85.167.53])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C03E7EAC7;
-	Tue, 30 Jan 2024 15:45:47 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=208.88.110.44
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 892DA82D7B
+	for <devicetree@vger.kernel.org>; Tue, 30 Jan 2024 15:49:09 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.53
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1706629551; cv=none; b=ut9aB9ZpSnmXhujLv4VfAP1sMJsm9siVITmwYcI6koL9siMDGna7ngfMOygO8XQ3juUUwALcXPI5rYxRIRbZ/dYjEG5dhesBtscq8eQOupzOZO75f0cUz/reisffl+UWo/d+P8RAbo1+NwbmL4i8oIfAQcZ82ZKx5BaQlzo2U9c=
+	t=1706629751; cv=none; b=OJCpjDOqX/HghQB3qcSFNHOZNylNT8jQX489lwGxQBUGQh5h1N2e6+wIa9ZcpmRG37mKwiZo63MfQQIuJf7Psq92Ya5x8WNEBgp3BZPsacyeVtvE6ozRFvDmvCjisJDT+/THrGwzyeeRv8o6jecTY2g611y90IVruGGrlwFWMU8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1706629551; c=relaxed/simple;
-	bh=FTaGDNHcCeLLBNj/d8cQDz2yks44PUV9sCuyE0dIX+o=;
-	h=Date:From:To:Cc:Message-ID:In-Reply-To:References:Subject:
-	 MIME-Version:Content-Type; b=JlF8XRy6yuuuWlnEccMiQiVeLDyj/aBHfaoPx6kQ4+JqzklU+bfB7otYyQsQppeTMpQx5Z9fX9NmQKlOwkg1J/A+7CclUIM7Fu/1xCg/C98zs9s2bEmm2uuZlEmA5lovyDfBGvo117w3uITYNQW+T70vRKr2YBDpmBU3VXs6T+U=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=savoirfairelinux.com; spf=pass smtp.mailfrom=savoirfairelinux.com; dkim=pass (2048-bit key) header.d=savoirfairelinux.com header.i=@savoirfairelinux.com header.b=M26pTAT9; arc=none smtp.client-ip=208.88.110.44
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=savoirfairelinux.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=savoirfairelinux.com
-Received: from localhost (localhost [127.0.0.1])
-	by mail.savoirfairelinux.com (Postfix) with ESMTP id 329579C284E;
-	Tue, 30 Jan 2024 10:45:46 -0500 (EST)
-Received: from mail.savoirfairelinux.com ([127.0.0.1])
- by localhost (mail.savoirfairelinux.com [127.0.0.1]) (amavis, port 10032)
- with ESMTP id FDOnLaQgPFiq; Tue, 30 Jan 2024 10:45:45 -0500 (EST)
-Received: from localhost (localhost [127.0.0.1])
-	by mail.savoirfairelinux.com (Postfix) with ESMTP id 6AC039C4511;
-	Tue, 30 Jan 2024 10:45:45 -0500 (EST)
-DKIM-Filter: OpenDKIM Filter v2.10.3 mail.savoirfairelinux.com 6AC039C4511
+	s=arc-20240116; t=1706629751; c=relaxed/simple;
+	bh=zxQFHyd6H4G9GEuw0WgtvSA1wLWGGTDbXAzS/4EfNGI=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=nmT4o9s1baUgLwOFauDFMKLveDiPm3aWBSxAJB/VZz0h1s9CJOt7DSZ4Epsgjp+XrfGvoCwwdqsJRZOJoJEhm4QEre2LZNw4oYs2cpTUkz5lunMaOXctVx4Q8Hw78WtUEWYhvQJiGZfJC0VC9ZbfeDNgsHBEOQBLG2z5uecpvDQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ventanamicro.com; spf=pass smtp.mailfrom=ventanamicro.com; dkim=pass (2048-bit key) header.d=ventanamicro.com header.i=@ventanamicro.com header.b=mfi3HOOZ; arc=none smtp.client-ip=209.85.167.53
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ventanamicro.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ventanamicro.com
+Received: by mail-lf1-f53.google.com with SMTP id 2adb3069b0e04-510faac8c57so2876459e87.1
+        for <devicetree@vger.kernel.org>; Tue, 30 Jan 2024 07:49:09 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=savoirfairelinux.com; s=DFC430D2-D198-11EC-948E-34200CB392D2;
-	t=1706629545; bh=SzY2unIXzbKsDcuS0h9mD4sGTR0fjuGWifdJQrRoGLE=;
-	h=Date:From:To:Message-ID:MIME-Version;
-	b=M26pTAT9GP9CpPa/EIHX/JmJDfY4jnFVX3j/UyuFhexulR118iUlJzjgUmJmhOpLQ
-	 VM8C2r1wMaU8SE74bzDdcwOwCxY9+3dO7VcTl+7wO1E99bPgo6q80Eo92Lj+HVTicl
-	 bJhdnaTd7kqD/DSFdA768UkopX98hb4NFWXKFisQbCPhkDZX40+QVFrCosNW9+18C/
-	 NR0RrAN2iOYR1bxC+PPmdym95vOo4QTfOPJr1VfzRK0s3A4Egl8PMIhplaLJOLYhCs
-	 7wi2OWRrzVqy8uaSJNatGZ2WMuKE/ULh0JjIL6EZCSK5YlGWq+QCZxYkRTQMrF5zcI
-	 2TJssUIXL1izQ==
-X-Virus-Scanned: amavis at mail.savoirfairelinux.com
-Received: from mail.savoirfairelinux.com ([127.0.0.1])
- by localhost (mail.savoirfairelinux.com [127.0.0.1]) (amavis, port 10026)
- with ESMTP id 3Hg2NgrQhhBc; Tue, 30 Jan 2024 10:45:45 -0500 (EST)
-Received: from mail.savoirfairelinux.com (mail.savoirfairelinux.com [192.168.48.237])
-	by mail.savoirfairelinux.com (Postfix) with ESMTP id 154029C284E;
-	Tue, 30 Jan 2024 10:45:45 -0500 (EST)
-Date: Tue, 30 Jan 2024 10:45:44 -0500 (EST)
-From: Charles Perry <charles.perry@savoirfairelinux.com>
-To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Cc: mdf@kernel.org, hao wu <hao.wu@intel.com>, yilun xu <yilun.xu@intel.com>, 
-	trix@redhat.com, 
-	krzysztof kozlowski+dt <krzysztof.kozlowski+dt@linaro.org>, 
-	Brian CODY <bcody@markem-imaje.com>, 
-	Allen VANDIVER <avandiver@markem-imaje.com>, 
-	linux-fpga@vger.kernel.org, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org
-Message-ID: <1489222458.382780.1706629544559.JavaMail.zimbra@savoirfairelinux.com>
-In-Reply-To: <f3cfffa0-5089-4bf7-b424-d5e949e36d67@linaro.org>
-References: <20240129225602.3832449-1-charles.perry@savoirfairelinux.com> <20240129225602.3832449-2-charles.perry@savoirfairelinux.com> <f3cfffa0-5089-4bf7-b424-d5e949e36d67@linaro.org>
-Subject: Re: [PATCH 2/3] dt-bindings: fpga: xlnx,fpga-slave-selectmap: add
- DT schema
+        d=ventanamicro.com; s=google; t=1706629747; x=1707234547; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=c+iAX+0XDAGKyg/OxoIHj98F7+KIoOryAf80+ApbDSI=;
+        b=mfi3HOOZeBaHvmJuAeKxi8NvNVNysxu3HzDaTk72U8bE4znsKhUu/HIJGlyJCvlEKU
+         gfPF8Z96puj1j+xDlyX+ShZL3hY5laWFucBOwm6HGL6zm4k3pvB+YW8ScFKlaKLJiTWk
+         sM8BD2iDXMaey6VljXyysY7b4tIFEabh0ICVv+sz03vNV8mG/dFAouDkN+d0cw83+pu9
+         uKrbPNRt2CEMOyfsy/w0M5IWK6yuotJL+5diW1SJd3PTJiUdlv5EyS++aTjbfQhVz+dN
+         CiY4skuRYlczQoldV1+5IWiroHF8Nl3JbmVMlnDNcGC8aaAkwQcTokjv07AmRaXYjC6n
+         lmZA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1706629747; x=1707234547;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=c+iAX+0XDAGKyg/OxoIHj98F7+KIoOryAf80+ApbDSI=;
+        b=ELAfDAY1foMtwHvTH6ZKlHjTAq5NRjQtTfnehCStqbLOFC/GRSPOj4dAJNCc7ne7nr
+         4MSZIVPzY7uNAPwGxfzDeJ6UD3yxXV2CA8ii2ydA49muYN4IuvrZ3QwFgcfiS2+ugiB+
+         GG7zAHf/Gn36FMNMy1ciFFAfpqeG1TOWCzANinKh3nlmyQTuhC84q15K6DxnoIrCaV3r
+         7slVTb7vgGujPMLdAusTp4v62u7Z5j8mzATXUvWkGAjMDEeR8lecDyF0ANsTWa0WB2ux
+         dKV8QIayLNn9DJ++jYcz3DptB2i6SkrSchYAUhizFjKvhpEwmYfaH9w2HtO2gfZfiDjD
+         isUg==
+X-Gm-Message-State: AOJu0YxQfkPmWE5UTBwtG9BzqMd9gTeTOglFhWOLY+4b6gm5ixnM6mjv
+	69IwckhrJh6oKnaZrWASZquR0s1X+borT5pt8z39jDE2bwpjyd9hgp35gkkT/hadeNVcHj5k1hJ
+	coVrVEfZGumhbuboZtH7wmdnj2HjDfSJdP8hSbA==
+X-Google-Smtp-Source: AGHT+IE8Aaq5BozdnokEQjokD/RT3HrTukjrHMTtCG2uwBHyTSoKgNcaMZilJknQTuf0dWoeasaBCIJhUzTmByVLbKo=
+X-Received: by 2002:a19:e049:0:b0:510:e09:4518 with SMTP id
+ g9-20020a19e049000000b005100e094518mr789410lfj.3.1706629747416; Tue, 30 Jan
+ 2024 07:49:07 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
+References: <20240127161753.114685-1-apatel@ventanamicro.com>
+ <87r0hzuw87.fsf@all.your.base.are.belong.to.us> <87le87uulb.fsf@all.your.base.are.belong.to.us>
+ <CAK9=C2UYCKUBKggtM606orH2mBu_AbTdB5-R5AP1M0t-LsEbEQ@mail.gmail.com>
+ <87cytjvybb.fsf@all.your.base.are.belong.to.us> <87ttmuq3m7.fsf@all.your.base.are.belong.to.us>
+In-Reply-To: <87ttmuq3m7.fsf@all.your.base.are.belong.to.us>
+From: Anup Patel <apatel@ventanamicro.com>
+Date: Tue, 30 Jan 2024 21:18:56 +0530
+Message-ID: <CAK9=C2UEpbd+pHAMg-AuP-fTPZVho16u69oSjOHhsR11HTwiew@mail.gmail.com>
+Subject: Re: [PATCH v12 00/25] Linux RISC-V AIA Support
+To: =?UTF-8?B?QmrDtnJuIFTDtnBlbA==?= <bjorn@kernel.org>
+Cc: Palmer Dabbelt <palmer@dabbelt.com>, Paul Walmsley <paul.walmsley@sifive.com>, 
+	Thomas Gleixner <tglx@linutronix.de>, Rob Herring <robh+dt@kernel.org>, 
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Frank Rowand <frowand.list@gmail.com>, 
+	Conor Dooley <conor+dt@kernel.org>, devicetree@vger.kernel.org, 
+	Saravana Kannan <saravanak@google.com>, Marc Zyngier <maz@kernel.org>, Anup Patel <anup@brainfault.org>, 
+	linux-kernel@vger.kernel.org, Atish Patra <atishp@atishpatra.org>, 
+	linux-riscv@lists.infradead.org, linux-arm-kernel@lists.infradead.org, 
+	Andrew Jones <ajones@ventanamicro.com>
+Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
-X-Mailer: Zimbra 8.8.15_GA_4581 (ZimbraWebClient - FF120 (Linux)/8.8.15_GA_4581)
-Thread-Topic: dt-bindings: fpga: xlnx,fpga-slave-selectmap: add DT schema
-Thread-Index: /XNXbd6Eoqkwp5+V9vA2kJJ0vFwOwg==
 
------ On Jan 30, 2024, at 2:52 AM, Krzysztof Kozlowski krzysztof.kozlowski@=
-linaro.org wrote:
+On Tue, Jan 30, 2024 at 8:18=E2=80=AFPM Bj=C3=B6rn T=C3=B6pel <bjorn@kernel=
+.org> wrote:
+>
+> Bj=C3=B6rn T=C3=B6pel <bjorn@kernel.org> writes:
+>
+> > Anup Patel <apatel@ventanamicro.com> writes:
+> >
+> >> On Tue, Jan 30, 2024 at 1:22=E2=80=AFPM Bj=C3=B6rn T=C3=B6pel <bjorn@k=
+ernel.org> wrote:
+> >>>
+> >>> Bj=C3=B6rn T=C3=B6pel <bjorn@kernel.org> writes:
+> >>>
+> >>> > Anup Patel <apatel@ventanamicro.com> writes:
+> >>> >
+> >>> >> The RISC-V AIA specification is ratified as-per the RISC-V interna=
+tional
+> >>> >> process. The latest ratified AIA specifcation can be found at:
+> >>> >> https://github.com/riscv/riscv-aia/releases/download/1.0/riscv-int=
+errupts-1.0.pdf
+> >>> >>
+> >>> >> At a high-level, the AIA specification adds three things:
+> >>> >> 1) AIA CSRs
+> >>> >>    - Improved local interrupt support
+> >>> >> 2) Incoming Message Signaled Interrupt Controller (IMSIC)
+> >>> >>    - Per-HART MSI controller
+> >>> >>    - Support MSI virtualization
+> >>> >>    - Support IPI along with virtualization
+> >>> >> 3) Advanced Platform-Level Interrupt Controller (APLIC)
+> >>> >>    - Wired interrupt controller
+> >>> >>    - In MSI-mode, converts wired interrupt into MSIs (i.e. MSI gen=
+erator)
+> >>> >>    - In Direct-mode, injects external interrupts directly into HAR=
+Ts
+> >>> >>
+> >>> >> For an overview of the AIA specification, refer the AIA virtualiza=
+tion
+> >>> >> talk at KVM Forum 2022:
+> >>> >> https://static.sched.com/hosted_files/kvmforum2022/a1/AIA_Virtuali=
+zation_in_KVM_RISCV_final.pdf
+> >>> >> https://www.youtube.com/watch?v=3Dr071dL8Z0yo
+> >>> >>
+> >>> >> To test this series, use QEMU v7.2 (or higher) and OpenSBI v1.2 (o=
+r higher).
+> >>> >>
+> >>> >> These patches can also be found in the riscv_aia_v12 branch at:
+> >>> >> https://github.com/avpatel/linux.git
+> >>> >>
+> >>> >> Changes since v11:
+> >>> >>  - Rebased on Linux-6.8-rc1
+> >>> >>  - Included kernel/irq related patches from "genirq, irqchip: Conv=
+ert ARM
+> >>> >>    MSI handling to per device MSI domains" series by Thomas.
+> >>> >>    (PATCH7, PATCH8, PATCH9, PATCH14, PATCH16, PATCH17, PATCH18, PA=
+TCH19,
+> >>> >>     PATCH20, PATCH21, PATCH22, PATCH23, and PATCH32 of
+> >>> >>     https://lore.kernel.org/linux-arm-kernel/20221121135653.208611=
+233@linutronix.de/)
+> >>> >>  - Updated APLIC MSI-mode driver to use the new WIRED_TO_MSI mecha=
+nism.
+> >>> >>  - Updated IMSIC driver to support per-device MSI domains for PCI =
+and
+> >>> >>    platform devices.
+> >>> >
+> >>> > Thanks for working on this, Anup! I'm still reviewing the patches.
+> >>> >
+> >>> > I'm hitting a boot hang in text patching, with this series applied =
+on
+> >>> > 6.8-rc2. IPI issues?
+> >>>
+> >>> Not text patching! One cpu spinning in smp_call_function_many_cond() =
+and
+> >>> the others are in cpu_relax(). Smells like IPI...
+> >>
+> >> I tried bootefi from U-Boot multiple times but can't reproduce the
+> >> issue you are seeing.
+> >
+> > Thanks! I can reproduce without EFI, and simpler command-line:
+> >
+> > qemu-system-riscv64 \
+> >   -bios /path/to/fw_dynamic.bin \
+> >   -kernel /path/to/Image \
+> >   -append 'earlycon console=3Dtty0 console=3DttyS0' \
+> >   -machine virt,aia=3Daplic-imsic \
+> >   -no-reboot -nodefaults -nographic \
+> >   -smp 4 \
+> >   -object rng-random,filename=3D/dev/urandom,id=3Drng0 \
+> >   -device virtio-rng-device,rng=3Drng0 \
+> >   -m 4G -chardev stdio,id=3Dchar0 -serial chardev:char0
+> >
+> > I can reproduce with your upstream riscv_aia_v12 plus the config in the
+> > gist [1], and all latest QEMU/OpenSBI:
+> >
+> > QEMU: 11be70677c70 ("Merge tag 'pull-vfio-20240129' of https://github.c=
+om/legoater/qemu into staging")
+> > OpenSBI: bb90a9ebf6d9 ("lib: sbi: Print number of debug triggers found"=
+)
+> > Linux: d9b9d6eb987f ("MAINTAINERS: Add entry for RISC-V AIA drivers")
+> >
+> > Removing ",aia=3Daplic-imsic" from the CLI above completes the boot (i.=
+e.
+> > panicking about missing root mount ;-))
+>
+> More context; The hang is during a late initcall, where an ftrace direct
+> (register_ftrace_direct()) modification is done.
+>
+> Stop machine is used to call into __ftrace_modify_call(). Then into the
+> arch specific patch_text_nosync(), where flush_icache_range() hangs in
+> flush_icache_all(). From "on_each_cpu(ipi_remote_fence_i, NULL, 1);" to
+> on_each_cpu_cond_mask() "smp_call_function_many_cond(mask, func, info,
+> scf_flags, cond_func);" which never returns from "csd_lock_wait(csd)"
+> right before the end of the function.
+>
+> Any ideas? Disabling CONFIG_HID_BPF, that does the early ftrace code
+> patching fixes the boot hang, but it does seem related to IPI...
+>
+Looks like flush_icache_all() does not use the IPIs (on_each_cpu()
+and friends) correctly.
 
-> On 29/01/2024 23:56, Charles Perry wrote:
->> Document the slave SelectMAP interface of Xilinx 7 series FPGA.
->>=20
->> Signed-off-by: Charles Perry <charles.perry@savoirfairelinux.com>
->> ---
->>  .../fpga/xlnx,fpga-slave-selectmap.yaml       | 85 +++++++++++++++++++
->>  1 file changed, 85 insertions(+)
->>  create mode 100644
->>  Documentation/devicetree/bindings/fpga/xlnx,fpga-slave-selectmap.yaml
->>=20
->> diff --git
->> a/Documentation/devicetree/bindings/fpga/xlnx,fpga-slave-selectmap.yaml
->> b/Documentation/devicetree/bindings/fpga/xlnx,fpga-slave-selectmap.yaml
->> new file mode 100644
->> index 0000000000000..20cea24e3e39a
->> --- /dev/null
->> +++ b/Documentation/devicetree/bindings/fpga/xlnx,fpga-slave-selectmap.y=
-aml
->> @@ -0,0 +1,85 @@
->> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
->> +%YAML 1.2
->> +---
->> +$id: http://devicetree.org/schemas/fpga/xlnx,fpga-slave-selectmap.yaml#
->> +$schema: http://devicetree.org/meta-schemas/core.yaml#
->> +
->> +title: Xilinx Slave SelectMAP FPGA
->> +
->> +description: |
->> +  Xilinx 7 Series FPGAs support a method of loading the bitstream over =
-a
->> +  parallel port named the slave SelectMAP interface in the documentatio=
-n. Only
->> +  the x8 mode is supported where data is loaded at one byte per rising =
-edge of
->> +  the clock, with the MSB of each byte presented to the D0 pin.
->> +
->> +  Datasheets:
->> +
->> https://www.xilinx.com/support/documentation/user_guides/ug470_7Series_C=
-onfig.pdf
->> +
->> +properties:
->> +  compatible:
->> +    enum:
->> +      - xlnx,fpga-slave-selectmap
->=20
-> You did not test bindings, so only limited review.
->=20
+On other hand, the flush_icache_mm() does the right thing by
+doing local flush on the current CPU and IPI based flush on other
+CPUs.
 
-I had issues installing pylibfdt but that's fixed now, will do.
+Can you try the following patch ?
 
->> +
->> +  reg:
->> +    description:
->> +      At least 1 byte of memory mapped IO
->> +    maxItems: 1
->> +
->> +  prog_b-gpios:
->=20
->=20
-> No underscores in names.
->=20
+diff --git a/arch/riscv/mm/cacheflush.c b/arch/riscv/mm/cacheflush.c
+index 55a34f2020a8..a3dfbe4de832 100644
+--- a/arch/riscv/mm/cacheflush.c
++++ b/arch/riscv/mm/cacheflush.c
+@@ -19,12 +19,18 @@ static void ipi_remote_fence_i(void *info)
 
-This is heavily based on "xlnx,fpga-slave-serial.yaml" which uses an unders=
-core.
-I can use a dash instead but that would make things inconsistent across the=
- two schemas.=20
+ void flush_icache_all(void)
+ {
++    cpumask_t others;
++
+     local_flush_icache_all();
 
->=20
->> +    description:
->> +      config pin (referred to as PROGRAM_B in the manual)
->> +    maxItems: 1
->> +
->> +  done-gpios:
->> +    description:
->> +      config status pin (referred to as DONE in the manual)
->> +    maxItems: 1
->> +
->> +  init-b-gpios:
->=20
-> Is there init-a? Open other bindings and look how these are called there.
->=20
++    cpumask_andnot(&others, cpu_online_mask, cpumask_of(smp_processor_id()=
+));
++    if (cpumask_empty(&others))
++        return;
++
+     if (IS_ENABLED(CONFIG_RISCV_SBI) && !riscv_use_ipi_for_rfence())
+-        sbi_remote_fence_i(NULL);
++        sbi_remote_fence_i(&others);
+     else
+-        on_each_cpu(ipi_remote_fence_i, NULL, 1);
++        on_each_cpu_mask(&others, ipi_remote_fence_i, NULL, 1);
+ }
+ EXPORT_SYMBOL(flush_icache_all);
 
-No, the "-b" is there to denote that the signal is active low. I think its =
-shorthand
-for "bar" which is the overline (=E2=80=BE) that electronic engineer put on=
- top of the name of the
-signal on schematics. It comes from the datasheet.
 
->=20
->> +    description:
->> +      initialization status and configuration error pin
->> +      (referred to as INIT_B in the manual)
->> +    maxItems: 1
->> +
->> +  csi-b-gpios:
->=20
-> Where is csi-a?
->=20
-
-No "csi-a", this is the CSI signal which is active low.
-
->> +    description:
->> +      chip select pin (referred to as CSI_B in the manual)
->> +      Optional gpio for if the bus controller does not provide a chip s=
-elect.
->> +    maxItems: 1
->> +
->> +  rdwr-b-gpios:
->> +    description:
->> +      read/write select pin (referred to as RDWR_B in the manual)
->> +      Optional gpio for if the bus controller does not provide this pin=
-.
->> +    maxItems: 1
->> +
->> +required:
->> +  - compatible
->> +  - reg
->> +  - prog_b-gpios
->> +  - done-gpios
->> +  - init-b-gpios
->> +
->> +additionalProperties: true
->=20
-> Nope, this cannot bue true.
->=20
-
-Ok, I'll put this to false but I'm not quite sure I understand the implicat=
-ions.
-
-My reasoning behind assigning this to true was that the FPGA is an external
-device on a bus that needs to be configured by a bus controller. The bus co=
-ntroller
-would be the parent of the fpga DT node and the later would contain propert=
-ies
-parsed by the bus controller driver.
-
->> +
->> +examples:
->> +  - |
->> +    #include <dt-bindings/gpio/gpio.h>
->> +    &weim {
->=20
-> Drop or use some generic soc
->=20
-
-Ok
-
->> +      status =3D "okay";
->=20
-> Drop
->=20
-
-Ok
-
->> +      ranges =3D <0 0 0x08000000 0x04000000>;
->=20
-> Drop
->=20
-
-Ok
-
->> +
->> +      fpga_mgr: fpga_programmer@0,0 {
->=20
-> No underscores in names, drop label.
->=20
-> Node names should be generic. See also an explanation and list of
-> examples (not exhaustive) in DT specification:
-> https://devicetree-specification.readthedocs.io/en/latest/chapter2-device=
-tree-basics.html#generic-names-recommendation
->=20
->=20
-
-Ok, will use "fpga-mgr" as this seems to be the most common one for fpga ma=
-nagers.
-
->> +        compatible =3D "xlnx,fpga-slave-selectmap";
->> +        reg =3D <0 0 0x4000000>;
->> +        fsl,weim-cs-timing =3D <0x00070031 0x00000142
->> +              0x00020000 0x00000000
->> +              0x0c000645 0x00000000>;
->=20
-> NAK.
->=20
-> Please run your patch through Xilinx folks before sending.
->=20
-> Best regards,
-> Krzysztof
-
-Thank you,
-Charles
+Regards,
+Anup
 
