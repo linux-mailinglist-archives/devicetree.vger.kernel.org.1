@@ -1,178 +1,146 @@
-Return-Path: <devicetree+bounces-36546-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-36547-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 71A40841C6A
-	for <lists+devicetree@lfdr.de>; Tue, 30 Jan 2024 08:16:50 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 622B8841C88
+	for <lists+devicetree@lfdr.de>; Tue, 30 Jan 2024 08:25:52 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 956FB1C22C81
-	for <lists+devicetree@lfdr.de>; Tue, 30 Jan 2024 07:16:49 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 61E55B243ED
+	for <lists+devicetree@lfdr.de>; Tue, 30 Jan 2024 07:25:49 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 52AFD41C85;
-	Tue, 30 Jan 2024 07:16:44 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 160AA4D583;
+	Tue, 30 Jan 2024 07:25:44 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="AkNCOetc"
+	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="ZubvYpTB"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 22F164C60E;
-	Tue, 30 Jan 2024 07:16:44 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 70D344C610;
+	Tue, 30 Jan 2024 07:25:42 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1706599004; cv=none; b=TgZ2c5eD/62we/+QI3F9cE/ss2adFDXiOb2GZzIRN244oK1QrdVAozBXzgf9oDi7GBtt1qY7LIz1KaX6eu+CIFf7vWirT1k1iEaFwaj9VcvNaPJ9QyPiq4tUhDV8XzaP/zx/XrlZ5qKyCDXAKM8uAHpilgEJFj/dihr604s1A8E=
+	t=1706599544; cv=none; b=Yz1KVHyvrNpWHi5nvHjAzN0fcOGDCXqKBoQL0QmzukcEeIn5jVUXe78RlYm+Z3yJcnj72qAxyX46RGow5nx/+YWVw984eJNJKF8WHnH7sqjnIuANOuaJD+UrTbhxToz4RUw2lDSD3/BKBdIkGXdQsTNqjQv1J3MT35TJBWje938=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1706599004; c=relaxed/simple;
-	bh=ARcz4USU8r0bRTopPYmnEjrWA2aM7F+R+t/FlFe8cxA=;
-	h=From:To:Cc:Subject:In-Reply-To:References:Date:Message-ID:
-	 MIME-Version:Content-Type; b=Utrl1YWp7TL3PjEU3fCa4Wn2y+uh9GEx6pByBByZaowmAJL6zUsy77A3r7weF44bmVzcyp/wb7+hFRNp69YJUP7n3BxySnA+qua3OmMkpMLF2wniW2UlTtZ+QPRdmxTjejy5a5lHVCD3+V513x6QEgekqsyMTAmf7/6sRf9y5Io=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=AkNCOetc; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 60E2CC433F1;
-	Tue, 30 Jan 2024 07:16:43 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1706599004;
-	bh=ARcz4USU8r0bRTopPYmnEjrWA2aM7F+R+t/FlFe8cxA=;
-	h=From:To:Cc:Subject:In-Reply-To:References:Date:From;
-	b=AkNCOetcPQd/Ss2HAxzXim17RcJFMDQvHN4QdOlOPN6s+/8ptoinzsCrStflmHeoQ
-	 lMNxXo4ox70cTmfL3P2Rxz1He1sLBAOhdwGB2jxxztRWg6hWHjKmLXdCZ5TM+JONwe
-	 Y6q4S2iAcbkoyplDUboaXJq4n4nJ+u6pm6kSI64VvjykVFBOR1OFnJlm/pkuMtXGf7
-	 1+16nZOL1MV8YOhUNss5ZyRyH2Q8CaXeVGf412n269FBrGp9tb+A1jZb1TxryvRoNk
-	 BhfNxjsocrlh7+QEN6OTIdDC/5BfQ8LHTmH88RySf/Gxwou7hcwVo6jNgnTZe0Uj2+
-	 fMorUxt4KrQMg==
-From: =?utf-8?B?QmrDtnJuIFTDtnBlbA==?= <bjorn@kernel.org>
-To: Anup Patel <apatel@ventanamicro.com>, Palmer Dabbelt
- <palmer@dabbelt.com>, Paul Walmsley <paul.walmsley@sifive.com>, Thomas
- Gleixner <tglx@linutronix.de>, Rob Herring <robh+dt@kernel.org>, Krzysztof
- Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Frank Rowand
- <frowand.list@gmail.com>, Conor Dooley <conor+dt@kernel.org>
-Cc: Anup Patel <apatel@ventanamicro.com>, devicetree@vger.kernel.org,
- Saravana Kannan <saravanak@google.com>, Marc Zyngier <maz@kernel.org>,
- Anup Patel <anup@brainfault.org>, linux-kernel@vger.kernel.org, Atish
- Patra <atishp@atishpatra.org>, linux-riscv@lists.infradead.org,
- linux-arm-kernel@lists.infradead.org, Andrew Jones
- <ajones@ventanamicro.com>
-Subject: Re: [PATCH v12 00/25] Linux RISC-V AIA Support
-In-Reply-To: <20240127161753.114685-1-apatel@ventanamicro.com>
-References: <20240127161753.114685-1-apatel@ventanamicro.com>
-Date: Tue, 30 Jan 2024 08:16:40 +0100
-Message-ID: <87r0hzuw87.fsf@all.your.base.are.belong.to.us>
+	s=arc-20240116; t=1706599544; c=relaxed/simple;
+	bh=MRA41ka2nVnCbPPGCvn7oFWP5clgArfJ49C9bC+V1/c=;
+	h=Message-ID:Date:MIME-Version:Subject:From:To:CC:References:
+	 In-Reply-To:Content-Type; b=TGVV5Jer0Y6toqtAEorPp9R1+DajX55oXFsLuRyrCy8OnDWrqHCwTLplIVE6COEHjPjMygsstzfWhWFpCFcunABXP97HcyTyoAd6LtUHt0wtXB/cysQwIXTRqMD/8lFLVx8UUd3N/7Wafq3aag90WnSM13G9s7a1FcbEhgPQJoI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=ZubvYpTB; arc=none smtp.client-ip=205.220.180.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
+Received: from pps.filterd (m0279871.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.17.1.24/8.17.1.24) with ESMTP id 40U58bYQ019343;
+	Tue, 30 Jan 2024 07:25:36 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
+	message-id:date:mime-version:subject:from:to:cc:references
+	:in-reply-to:content-type:content-transfer-encoding; s=
+	qcppdkim1; bh=oTne4YMLOus8vGIzuyLPoBXkJ+ZLYaFNZ+RfBayVdyk=; b=Zu
+	bvYpTB4kwNwB0/Kwja0fxCcrr7UrA6OAM2q6cEBk2WBg/FtIPVvTPftDry5lDKS3
+	D6C6Tuiqjeqy4HR4UlBxZb32xdqXUZWt3PCxaiqFHe3ouoXPGYGB4lGIdE1EAT2b
+	t3gwvtLI+JVG2SsBr8LQsuncYkiWPHoDYv3Jvk+GMdtSSNTmDPRZ9ajToVjfjoQq
+	HevosAsMK8/24dCFgDWQ57gYcrerU29DanZYFwvtgOOFxahKCQyeDVO1HZxgu/lD
+	2aXlGxJrPwiwrJO0j7o5wrxrJJ132FWkIQTFtwgCpZ4Y58qYDbo2fjaa4NTbXILX
+	o1Q9BTFKvUtAjn5nRqKg==
+Received: from nalasppmta01.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3vxtp30705-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Tue, 30 Jan 2024 07:25:35 +0000 (GMT)
+Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
+	by NALASPPMTA01.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 40U7PYiF017742
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Tue, 30 Jan 2024 07:25:34 GMT
+Received: from [10.239.132.204] (10.80.80.8) by nalasex01a.na.qualcomm.com
+ (10.47.209.196) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1118.40; Mon, 29 Jan
+ 2024 23:25:29 -0800
+Message-ID: <c17dafd2-db89-4fe2-8e98-2a031f7237c2@quicinc.com>
+Date: Tue, 30 Jan 2024 15:25:26 +0800
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: quoted-printable
-
-Anup Patel <apatel@ventanamicro.com> writes:
-
-> The RISC-V AIA specification is ratified as-per the RISC-V international
-> process. The latest ratified AIA specifcation can be found at:
-> https://github.com/riscv/riscv-aia/releases/download/1.0/riscv-interrupts=
--1.0.pdf
->
-> At a high-level, the AIA specification adds three things:
-> 1) AIA CSRs
->    - Improved local interrupt support
-> 2) Incoming Message Signaled Interrupt Controller (IMSIC)
->    - Per-HART MSI controller
->    - Support MSI virtualization
->    - Support IPI along with virtualization
-> 3) Advanced Platform-Level Interrupt Controller (APLIC)
->    - Wired interrupt controller
->    - In MSI-mode, converts wired interrupt into MSIs (i.e. MSI generator)
->    - In Direct-mode, injects external interrupts directly into HARTs
->
-> For an overview of the AIA specification, refer the AIA virtualization
-> talk at KVM Forum 2022:
-> https://static.sched.com/hosted_files/kvmforum2022/a1/AIA_Virtualization_=
-in_KVM_RISCV_final.pdf
-> https://www.youtube.com/watch?v=3Dr071dL8Z0yo
->
-> To test this series, use QEMU v7.2 (or higher) and OpenSBI v1.2 (or highe=
-r).
->
-> These patches can also be found in the riscv_aia_v12 branch at:
-> https://github.com/avpatel/linux.git
->
-> Changes since v11:
->  - Rebased on Linux-6.8-rc1
->  - Included kernel/irq related patches from "genirq, irqchip: Convert ARM
->    MSI handling to per device MSI domains" series by Thomas.
->    (PATCH7, PATCH8, PATCH9, PATCH14, PATCH16, PATCH17, PATCH18, PATCH19,
->     PATCH20, PATCH21, PATCH22, PATCH23, and PATCH32 of
->     https://lore.kernel.org/linux-arm-kernel/20221121135653.208611233@lin=
-utronix.de/)
->  - Updated APLIC MSI-mode driver to use the new WIRED_TO_MSI mechanism.
->  - Updated IMSIC driver to support per-device MSI domains for PCI and
->    platform devices.
-
-Thanks for working on this, Anup! I'm still reviewing the patches.
-
-I'm hitting a boot hang in text patching, with this series applied on
-6.8-rc2. IPI issues?
-
-I'm booting with U-boot UEFI.
-
-kernel config:
-https://gist.github.com/bjoto/bac563e6dcaab68dba1a5eaf675d51aa
-
-QEMU 8.2.0/OpenSBI 1.4:
-  | qemu-system-riscv64 \
-  | 	-machine virt,acpi=3Doff,aia=3Daplic-imsic \
-  | 	-cpu rv64,v=3Dtrue,vlen=3D256,elen=3D64,h=3Dtrue,zbkb=3Don,zbkc=3Don,z=
-bkx=3Don,zkr=3Don,zkt=3Don,svinval=3Don,svnapot=3Don,svpbmt=3Don \
-  | 	-smp 4 \
-  | 	-object rng-random,filename=3D/dev/urandom,id=3Drng0 \
-  | 	-device virtio-rng-device,rng=3Drng0 \
-  | 	-append "root=3D/dev/vda2 rw earlycon console=3Dtty0 console=3DttyS0 p=
-anic=3D-1 oops=3Dpanic sysctl.vm.panic_on_oom=3D1" \
-  |     -m 4G \
-  |     ...
-
-Last lines from the kernel:
-  | ...
-  | goldfish_rtc 101000.rtc: registered as rtc0=20=20=20=20=20=20=20=20=20=
-=20=20=20=20
-  | goldfish_rtc 101000.rtc: setting system clock to 2024-01-30T06:39:28 UT=
-C (1706596768)=20=20=20=20=20=20=20=20=20=20=20=20=20=20
-
-Same kernel boots w/ "-machine virt,acpi=3Doff" (AIA is *not* enabled).
-
-Related or not, I got this splat (once) a ftrace kselftest:
-  | # selftests: ftrace: ftracetest-ktap
-  | Unable to handle kernel paging request at virtual address 5a5a5a5a5a5a5=
-ac2
-  | Oops [#1]
-  | Modules linked in: drm fuse i2c_core drm_panel_orientation_quirks backl=
-ight dm_mod configfs ip_tables x_tables [last unloaded: trace_printk]
-  | CPU: 2 PID: 19691 Comm: ls Tainted: G        W          6.8.0-rc2-kself=
-test_plain #1
-  | Hardware name: riscv-virtio,qemu (DT)
-  | epc : set_top_events_ownership+0x14/0x5c
-  |  ra : eventfs_get_attr+0x2e/0x50
-  | epc : ffffffff80533aa4 ra : ffffffff80533b1a sp : ff20000001cebc70
-  |  gp : ffffffff8258b860 tp : ff6000008623e240 t0 : ffffffff80533a98
-  |  t1 : ffffffff825b6b60 t2 : 0000000000000008 s0 : ff20000001cebc80
-  |  s1 : ffffffff8233c000 a0 : ff6000009224e9b8 a1 : ff20000001cebd28
-  |  a2 : ff20000001cebd98 a3 : 000000000000025e a4 : ffffffff80000000
-  |  a5 : 5a5a5a5a5a5a5a5a a6 : 0000000000000000 a7 : 0000000000735049
-  |  s2 : 000000000000025e s3 : ff20000001cebd98 s4 : ff6000009224e9b8
-  |  s5 : ff20000001cebd28 s6 : ffffffffffffff9c s7 : ff6000008ac6a1c0
-  |  s8 : 00007fff9f685d80 s9 : 0000000000000000 s10: 00007fffd4550ef0
-  |  s11: 0000000000000000 t3 : 0000000000000001 t4 : 0000000000000016
-  |  t5 : ffffffff818145be t6 : ff6000009233d77e
-  | status: 0000000200000120 badaddr: 5a5a5a5a5a5a5ac2 cause: 0000000000000=
-00d
-  | [<ffffffff80533aa4>] set_top_events_ownership+0x14/0x5c
-  | Code: b297 ffad 82e7 d302 1141 e422 0800 3783 ff85 cb89 (57b8) 8b09=20
-  | ---[ end trace 0000000000000000 ]---
-
-This might be unrelated, but the hang above is on every boot.
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v4 6/6] arm64: dts: qcom: aim300: add AIM300 AIoT
+From: Tengfei Fan <quic_tengfan@quicinc.com>
+To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        <andersson@kernel.org>, <konrad.dybcio@linaro.org>,
+        <robh+dt@kernel.org>, <krzysztof.kozlowski+dt@linaro.org>,
+        <conor+dt@kernel.org>, <dmitry.baryshkov@linaro.org>
+CC: <linux-arm-msm@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>, <kernel@quicinc.com>,
+        Qiang Yu
+	<quic_qianyu@quicinc.com>,
+        Ziyue Zhang <quic_ziyuzhan@quicinc.com>
+References: <20240119100621.11788-1-quic_tengfan@quicinc.com>
+ <20240119100621.11788-7-quic_tengfan@quicinc.com>
+ <d3ef45cf-2de8-4f5b-8857-62d1996f3f58@linaro.org>
+ <842bf6ad-46e1-43d8-86be-79ab0f49710b@quicinc.com>
+In-Reply-To: <842bf6ad-46e1-43d8-86be-79ab0f49710b@quicinc.com>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 8bit
+X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
+ nalasex01a.na.qualcomm.com (10.47.209.196)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-ORIG-GUID: ue10aO-2c8EtjIE0C8dO9fOw6FOoVxOi
+X-Proofpoint-GUID: ue10aO-2c8EtjIE0C8dO9fOw6FOoVxOi
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.272,Aquarius:18.0.1011,Hydra:6.0.619,FMLib:17.11.176.26
+ definitions=2024-01-30_02,2024-01-29_01,2023-05-22_02
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 suspectscore=0 phishscore=0
+ spamscore=0 clxscore=1015 lowpriorityscore=0 adultscore=0 bulkscore=0
+ mlxlogscore=361 malwarescore=0 mlxscore=0 impostorscore=0
+ priorityscore=1501 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.19.0-2401190000 definitions=main-2401300052
 
 
-Bj=C3=B6rn
+
+On 1/29/2024 4:18 PM, Tengfei Fan wrote:
+> 
+> 
+> On 1/29/2024 4:09 PM, Krzysztof Kozlowski wrote:
+>> On 19/01/2024 11:06, Tengfei Fan wrote:
+>>> Add AIM300 AIoT board DTS support, including usb, serial, PCIe, mpss,
+>>> adsp, cdsp and sound card functions support.
+>>>
+>>
+>> ...
+>>
+>>> +
+>>> +    sound {
+>>> +        compatible = "qcom,sm8550-sndcard", "qcom,sm8450-sndcard";
+>>> +        model = "AIM300-AIOT";
+>>> +        audio-routing = "SpkrLeft IN", "WSA_SPK1 OUT",
+>>> +                "SpkrRight IN", "WSA_SPK2 OUT",
+>>> +                "IN1_HPHL", "HPHL_OUT",
+>>> +                "IN2_HPHR", "HPHR_OUT",
+>>> +                "AMIC2", "MIC BIAS2",
+>>> +                "VA DMIC0", "MIC BIAS1",
+>>> +                "VA DMIC1", "MIC BIAS1",
+>>> +                "VA DMIC2", "MIC BIAS3",
+>>> +                "TX DMIC0", "MIC BIAS1",
+>>> +                "TX DMIC1", "MIC BIAS2",
+>>> +                "TX DMIC2", "MIC BIAS3",
+>>> +                "TX SWR_ADC1", "ADC2_OUTPUT";
+>>
+>> This should be probably TX SWR_INPUT1.
+>>
+>> Best regards,
+>> Krzysztof
+>>
+> 
+> I will double check this with related team and I will update this.
+> 
+
+I will apply "TX SWR_INPUT1" on audio-routing node in the next patch 
+series.
+
+-- 
+Thx and BRs,
+Tengfei Fan
 
