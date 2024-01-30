@@ -1,114 +1,197 @@
-Return-Path: <devicetree+bounces-36488-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-36489-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id E7EA584168A
-	for <lists+devicetree@lfdr.de>; Tue, 30 Jan 2024 00:09:05 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7327A84174F
+	for <lists+devicetree@lfdr.de>; Tue, 30 Jan 2024 01:09:05 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 269E61C231AE
-	for <lists+devicetree@lfdr.de>; Mon, 29 Jan 2024 23:09:05 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id BB1B61F237D1
+	for <lists+devicetree@lfdr.de>; Tue, 30 Jan 2024 00:09:04 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 200B853E05;
-	Mon, 29 Jan 2024 23:08:52 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 61C9E19F;
+	Tue, 30 Jan 2024 00:09:00 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="tKH0RC7L"
+	dkim=pass (1024-bit key) header.d=renesas.com header.i=@renesas.com header.b="lalu7Up/"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from JPN01-TYC-obe.outbound.protection.outlook.com (mail-tycjpn01on2129.outbound.protection.outlook.com [40.107.114.129])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E40F751C38;
-	Mon, 29 Jan 2024 23:08:51 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1706569732; cv=none; b=imrsvivn8LOfVswc6TCkAeQvuyCZ7LR/efDGGVXvvUEk67kL6+gwaE8xKdfFNKrLeCSH1zp4XXtdiuaVId/SB9lZIKFWQQlZnb8ByK10/sTQELYg7/YT+7pXLzS6w2GpOBKRIXkny8hp6N4XvRwX+BLWMOaoNzURo59EKuxfpW8=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1706569732; c=relaxed/simple;
-	bh=lItnbNGGXomc1ezwmJocmF4YnmIqkbj5vgu4qZ5idUI=;
-	h=From:To:Cc:In-Reply-To:References:Subject:Message-Id:Date:
-	 MIME-Version:Content-Type; b=MN2TAFcL6DmZVgptFxxv32RQ7/45fvHfnlpJcnSY+dWZem0FKUZFoJISV/SgzEUhtY6c/hyoWTyh/NDbHKXK3y2RtoZefQ7lDxt91JHNn4wLsuh2ehcTmU14j+uBV428X5520aI5ThZRRQnrDKJNmZziGCdikn+te65b/SDuVxU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=tKH0RC7L; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 684AEC43390;
-	Mon, 29 Jan 2024 23:08:48 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1706569731;
-	bh=lItnbNGGXomc1ezwmJocmF4YnmIqkbj5vgu4qZ5idUI=;
-	h=From:To:Cc:In-Reply-To:References:Subject:Date:From;
-	b=tKH0RC7Lz0TRXF7WE7pjITfFTLoXHk6LbjuaSpf35QJ8RhZVWxz2w+i1B4HTxPE8k
-	 arGMTBdQ6xdeK0mUGtUWP0HGpy3UF/3jV4Iq52jEBxJhQAzIJBolkSGIZyUo7aEcLS
-	 UR1kHkfRI3xGkVq0b/qP9iG49KIyqlHOewUXX+v5/LTpZAFYx+f/OiRdbCSxh/sp9N
-	 WdZBjQOxzDEQg+hUNlpWoDLA9P6rDUQMUSeqkk+xZh/1lZAWwvuTC0lyerGwiJk/zG
-	 fesIEUMkRpeWjAVP4IaRvpeYyoKm/voq+Hx4lEyZOqScKmbblD6pmgrbtvkIm0GmCP
-	 4b0G90Ih8w39Q==
-From: Mark Brown <broonie@kernel.org>
-To: Rob Herring <robh+dt@kernel.org>, 
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, 
- Conor Dooley <conor+dt@kernel.org>, 
- Jernej Skrabec <jernej.skrabec@gmail.com>, 
- Samuel Holland <samuel@sholland.org>, Liam Girdwood <lgirdwood@gmail.com>, 
- Jaroslav Kysela <perex@perex.cz>, Takashi Iwai <tiwai@suse.com>, 
- Vinod Koul <vkoul@kernel.org>, Chen-Yu Tsai <wens@kernel.org>
-Cc: Chen-Yu Tsai <wens@csie.org>, devicetree@vger.kernel.org, 
- linux-arm-kernel@lists.infradead.org, linux-sunxi@lists.linux.dev, 
- linux-sound@vger.kernel.org, dmaengine@vger.kernel.org, 
- linux-kernel@vger.kernel.org
-In-Reply-To: <20240127163247.384439-1-wens@kernel.org>
-References: <20240127163247.384439-1-wens@kernel.org>
-Subject: Re: (subset) [PATCH v2 0/7] arm64: sun50i-h616: Add DMA and SPDIF
- controllers
-Message-Id: <170656972816.167619.13760688172149565550.b4-ty@kernel.org>
-Date: Mon, 29 Jan 2024 23:08:48 +0000
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9CDEE10FD;
+	Tue, 30 Jan 2024 00:08:57 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.107.114.129
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1706573340; cv=fail; b=PKLIrcubgeFkjuBClJ6QInX68Y+sbe9MPfgy9W9YD+cvvqvjr7iyQ/tQ0Jf/aVKUW4Di9CJDOMNkl6gs7hZNj9iYECHr7t6RcEPt9IWH5E2Y3ZXIFiMkWJjfWZ0WmHFdm1ZL45Nq5CAVC5zFQHfQzezC2MkzCFYci6RK9VnTCjw=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1706573340; c=relaxed/simple;
+	bh=UID8YUH/y+PJL65eocxkjLJUqNysv8LQNPyTZTn2wgA=;
+	h=Message-ID:From:To:Cc:Subject:In-Reply-To:References:Content-Type:
+	 Date:MIME-Version; b=bI5FuJSnBGazFxEOY7FJsDkcvyIbSnAC+RIR7OgsfrOqzHjCdDX2LCQQzXJyGmAGpH4nKEOd0ojfU2dBxPqHLYpx1YhBjyeT610szAScut4cWg0RrPrHsoIldxtlEnZ00tn5WOyCJoZMSmo+kfwaurHhoWwUFnkC93tnRRCWLX8=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=renesas.com; spf=pass smtp.mailfrom=renesas.com; dkim=pass (1024-bit key) header.d=renesas.com header.i=@renesas.com header.b=lalu7Up/; arc=fail smtp.client-ip=40.107.114.129
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=renesas.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=renesas.com
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=n+ImA0N/sluY5ZxvtnuRbFg4LJV25UW++m2Jc2FGuah7/rGHBdPiXKAbZVChPhMQO9AFa3IncjfI2oUkerFWbsg8IxOr8NVZ7rQcWDUdv1rVOG1Aw7BpUMi6D2O2H+u/51yjsoqTyYzhoFgB13MUSBYhphas/Zj6VziHfBAKwvZpVa6MNtPVxF3aEvOzRWSllsHY5U/rN6H3hWHr5Zd1wfFKDuk8NtMImunVGHU+wKe4bBm625knHV4kBoGtd9UKBceNybEviPPmc4Yt6N4/IrCtdqVE2ASQ44QSSxu9AYmp6uZWl84a+J5jlFpvkGgcP9FskjRP/dy0LXbpNqn6fg==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=n6LrgndbrAzFGfoWAaKkp5BNlKKHIVmSZ3qGQwQ2Kb4=;
+ b=m4YIiuqXhd8LG3tHwl/2i6KyzOeFNPIYacpMiWJflVqd2ay5cUyyU/S8GJ9wY7SEAonhPJgd+TpLSyDfNCCQMVOYrNu9IvD2zLKTAu1YCqtJ5b+OdmN/CE9H9Kp9A5M8MV1TA30gCcjfrc/3ygps812peN7uDirZESFhMo1E5ff7+TiSM+hqwq5c9L6nDoWF1RhEA6eOqFaEGwiKC0SK5Lin83BEM3g5FBriVYa790yCeY3qGRc1+S+a8MhoaSySmjU9gQXdDijVy6S+/UDz0M3Pbh8nTpzn7CsgaS3nuZel83SgLhKza8bkoBZLcksILlEwYh0hL3JfdAC9rkq2iQ==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=renesas.com; dmarc=pass action=none header.from=renesas.com;
+ dkim=pass header.d=renesas.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=renesas.com;
+ s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=n6LrgndbrAzFGfoWAaKkp5BNlKKHIVmSZ3qGQwQ2Kb4=;
+ b=lalu7Up/cKhF/cM8o+vIomk18KwaoFR4cQ2mvhediIobwXss8yosA2su8EpEOlC7uLEZtsY0Shq1dZm1FLO4AduuRrJIrZtNDnnCGdFUUH6xZUOJAZ/eUucUtFpj7Qp/t81VhuoyJr9Lg/2eGN4HmmpgKL1dwNqB7YuI0U+N4zk=
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=renesas.com;
+Received: from TYCPR01MB10914.jpnprd01.prod.outlook.com
+ (2603:1096:400:3a9::11) by OS3PR01MB10423.jpnprd01.prod.outlook.com
+ (2603:1096:604:1ff::6) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7249.22; Tue, 30 Jan
+ 2024 00:08:54 +0000
+Received: from TYCPR01MB10914.jpnprd01.prod.outlook.com
+ ([fe80::ce8:8f5e:99a0:aba4]) by TYCPR01MB10914.jpnprd01.prod.outlook.com
+ ([fe80::ce8:8f5e:99a0:aba4%2]) with mapi id 15.20.7249.017; Tue, 30 Jan 2024
+ 00:08:54 +0000
+Message-ID: <871q9zk7hm.wl-kuninori.morimoto.gx@renesas.com>
+From: Kuninori Morimoto <kuninori.morimoto.gx@renesas.com>
+To: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+Cc: Tomi Valkeinen <tomi.valkeinen@ideasonboard.com>,
+	alsa-devel@alsa-project.org,	devicetree@vger.kernel.org,
+	linux-fbdev@vger.kernel.org,	linux-media@vger.kernel.org,
+	linux-sound@vger.kernel.org,	Uwe =?ISO-8859-1?Q?Kleine-K=C3=B6nig?=
+ <u.kleine-koenig@pengutronix.de>,	Daniel Vetter <daniel@ffwll.ch>,	David
+ Airlie <airlied@gmail.com>,	Frank Rowand <frowand.list@gmail.com>,	Helge
+ Deller <deller@gmx.de>,	Jaroslav Kysela <perex@perex.cz>,	Liam Girdwood
+ <lgirdwood@gmail.com>,	Maarten Lankhorst
+ <maarten.lankhorst@linux.intel.com>,	Mark Brown <broonie@kernel.org>,	Mauro
+ Carvalho Chehab <mchehab@kernel.org>,	Maxime Ripard <mripard@kernel.org>,
+	Michal Simek <michal.simek@amd.com>,	Rob Herring <robh+dt@kernel.org>,
+	Saravana Kannan <saravanak@google.com>,	Takashi Iwai <tiwai@suse.com>,
+	Thomas Zimmermann <tzimmermann@suse.de>
+Subject: Re: [PATCH v2 03/13] of: property: add of_graph_get_next_endpoint_raw()
+In-Reply-To: <20240129130219.GA20460@pendragon.ideasonboard.com>
+References: <87fryhklhb.wl-kuninori.morimoto.gx@renesas.com>
+	<87bk95klgc.wl-kuninori.morimoto.gx@renesas.com>
+	<afea123c-12b0-4bcb-8f9e-6a15b4e8c915@ideasonboard.com>
+	<20240129130219.GA20460@pendragon.ideasonboard.com>
+User-Agent: Wanderlust/2.15.9 Emacs/27.1 Mule/6.0
+Content-Type: text/plain; charset=US-ASCII
+Date: Tue, 30 Jan 2024 00:08:54 +0000
+X-ClientProxiedBy: TYCP286CA0266.JPNP286.PROD.OUTLOOK.COM
+ (2603:1096:400:455::19) To TYCPR01MB10914.jpnprd01.prod.outlook.com
+ (2603:1096:400:3a9::11)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-X-Mailer: b4 0.13-dev-a684c
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: TYCPR01MB10914:EE_|OS3PR01MB10423:EE_
+X-MS-Office365-Filtering-Correlation-Id: f48a373c-c472-4db3-d9b6-08dc2127a55c
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info:
+	Ub2IM3zIUm1Y3mGppRgEebCWOxqFWZ+RfXzBBC+WJ9DS24XrSifRqGUHg7WqP0TfSg6m8azW4Ayxrvlhin+9SVrprpdLaDt66s6wHd7k9A1P6hQRrH7oYmyzREEXTSltlugtsYlx+IdAJz8d60fy2SlTfkCR/Js54fNzNZ5Y9KMoNkt50029hBtn154isX/GYe52g+hQBPwCPpLz+4XacnJ+WkQCT4n5lniQTT3klaFsxqwiJ3Shru4rgtEd8DOJjuWpohhmQjMHJ7hDX7t/zaWBihtv4tLYOT15XFQ5saaf/SuzUDcGSJ+ih6S5btij4SHBjKqRzWJRHH4VdwPmZNDZVvcO9hySKxF6M+OLiMTE/Xu0JGpMv9QAvB7ttxt+qhAgNUM0PRRMEq4rruE3W54Omz8DhaiV5u/cq5Fhq1W7FCBoeG4S+tYkwcDZcEKW4p1XZFsQdI68JksbffzrtwFGkLhonqNGo59L6mGBGq4+hvijCE5zRpW1hE+LhsXEyQaxtY7z7Na++lpMeyYx+JHq9b278byjXdETtPp9cB4m6ySoZMq3k8A6fT+7KeOA/cuQ+4kvzMpd+aho4DhZlKIAzSkikcdB821YjVblRXY7HGv3VuWnxA2Ye7J50C0h
+X-Forefront-Antispam-Report:
+	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:TYCPR01MB10914.jpnprd01.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230031)(366004)(376002)(396003)(39860400002)(136003)(346002)(230922051799003)(64100799003)(1800799012)(186009)(451199024)(6486002)(478600001)(4326008)(8676002)(26005)(86362001)(5660300002)(38100700002)(41300700001)(36756003)(8936002)(2906002)(2616005)(7416002)(6506007)(52116002)(6512007)(66556008)(54906003)(66476007)(66946007)(6916009)(316002)(38350700005);DIR:OUT;SFP:1102;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0:
+	=?us-ascii?Q?W5lpk1saSzkKEyjS7OOnKIHS1jgC+VcXIbuJ7F/A5SkOBViiL8bKtPvywQKk?=
+ =?us-ascii?Q?ETu3yF9X7RIPv6bScF4W2kq2qu1MjW+6LViNVnO9LCMpbjVrAedTbpSOfL0u?=
+ =?us-ascii?Q?+qeTaDC96n6az+FCWUA8o5SulzA53ul+Wq14acR1GzxH4k+xTYwzg5tmg5R1?=
+ =?us-ascii?Q?H+Mht7G2eYASKm6B3TxFQxBF/Znxj7yn6KTf2hXxLswBS6kAa4coSpBdZU3N?=
+ =?us-ascii?Q?UJK3t5USVVNyhS8hE4VhLMkqoQ0TGDl7Yxq4K4anOpOe/PcZRisurmjDaMYE?=
+ =?us-ascii?Q?CzSZ94Ch+FGXslJywcjW4PpnjxtBUQobIQtw6A7URv+0xwKJAMJhebECbiLa?=
+ =?us-ascii?Q?eEa4B4m0bxiMK34H7ytsPVmovsQy0nIrQm09frR4IwUyYzsp385nhzOghbcY?=
+ =?us-ascii?Q?6iz748TTlWXUZAF+c9eykTRHVf14mhJGO9cqfJ7xynlxEoXYIn7tFsdH1iW/?=
+ =?us-ascii?Q?ZzdQCFWSWJJCUU4Yb9+rjdIBQzQzK5pwNZULUFMNd+kUQq9sD5nJptiwjAoO?=
+ =?us-ascii?Q?9gGWmX51m8Lw8vO6xIGa/ZkeByHZzYn29TybQ1m2MmBDWOZtVEjz3v9DKjCf?=
+ =?us-ascii?Q?DBmlf6w7fxSngswj+K6odtjC9oeXE48QWjXopHRi2zikpUbZMvNlrNPuS5+4?=
+ =?us-ascii?Q?Wr2N7Zqaf+4VIVU58qg1hBczy1o3lSkvNPGMUNGm5cc4VCLZGr1TleHGdYpF?=
+ =?us-ascii?Q?XGxtjd7EN75kUPT7JW0HJF+B9+f109eD3mRH7aOCbcU9z9QTQSZTaWEZQbEq?=
+ =?us-ascii?Q?YfxmCmrMh1AOg3Rd7DVCu1QWSKP6c5IwENH6TmXhhS/VldYe9ZVaYxmsHIOs?=
+ =?us-ascii?Q?2SfHkksX4b5LeJ2xiFm7Xxmos+FkBz3bAMF3jOAEY8qdA4NMn/L9MoM7POSb?=
+ =?us-ascii?Q?FCaOFOd4uFF40n8BKet+90A9rFh5sWHlx1m0fEmJM2cuSNqvOp6UcNYtAPYp?=
+ =?us-ascii?Q?TNpL93gz0k5D2arbJM11u6rYF7lhRB0rQHfF20EQhyyaEw+K9AUfrrG5a4qK?=
+ =?us-ascii?Q?TkErcAFlTWHo+ysBM9WQ8JKmi5oyo+XIOPnphHKRZFSUL4VaQnMfKF1okh7A?=
+ =?us-ascii?Q?3/vZUXqMBDi20rAeXvhB4gB2qtY5S5uojodYUg5YqShj4A9H2HiT/QM4PY7z?=
+ =?us-ascii?Q?mJusuPss1R+LmQq3uTaThaTay0iMf5mjX5FCj5zhp96p7I/JQe0aR8MbdHMT?=
+ =?us-ascii?Q?wqd46wCY2XQthZRXQg50rzmB/+ddH3edHVu4RAwlGd4jxqgVRROeov9mU+Cb?=
+ =?us-ascii?Q?tEFXcEn1yGu7QJKfLuGgFtGtsfuoY+jaBL7vLB91QQKqXVwTX5wrw9ACxPW0?=
+ =?us-ascii?Q?7Ab1OQwY0E++WQDuv24si75ffxXyWWDa0ABW4wcoVKksPOwhJgl+XjQ36ocN?=
+ =?us-ascii?Q?dVjKpMJz652/WJagnggDwFHztw/FAotoIwCd4277vxM8dFf39taHZUFWUpOa?=
+ =?us-ascii?Q?GraqZj2nrRGW//QMaVT1l8U0WBtWqDelfp75HdpUmtvpf0UAbZlDbk2Tt0uw?=
+ =?us-ascii?Q?Kn/5cQ9682lOxJTGyegINgfBpdHc6caBPgGHFnTmPY9LIVXTcoRjHYQ1uTPo?=
+ =?us-ascii?Q?qo0ocyHrt4ph0VP9FksqFugT26WpTuZ1rf467yJA5dxaY2X0JXmRsgoU+NdV?=
+ =?us-ascii?Q?9ZFh03cDfQzNbWku/oVLSAg=3D?=
+X-OriginatorOrg: renesas.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: f48a373c-c472-4db3-d9b6-08dc2127a55c
+X-MS-Exchange-CrossTenant-AuthSource: TYCPR01MB10914.jpnprd01.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 30 Jan 2024 00:08:54.2519
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 53d82571-da19-47e4-9cb4-625a166a4a2a
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: D9btOafCy0Aok/UQdPEDcZOMbRey2vyxMfTYO9+EqC5DDjp3bjej+ovW6PteMeu61sT3ddWp5V90itgXt7eIaBenKB31HTsSQu0tgxA8IRXMtCzA3rkj45NsPd8tXAoW
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: OS3PR01MB10423
 
-On Sun, 28 Jan 2024 00:32:40 +0800, Chen-Yu Tsai wrote:
-> This is v2 of my H616/H618 DMA and SPDIF controller series.
+
+Hi Laurent, Tomi
+
+Thank you for your review
+
+> > > +/**
+> > > + * of_graph_get_next_endpoint_raw() - get next endpoint node
+> > 
+> > How about "of_graph_get_next_port_endpoint()"?
 > 
-> Changes since v1:
-> - Switch to "contains" for if-properties statement
-> - Fall back to A100 instead of H6
-> - Add DMA channels for r_i2c
+> We may want to also rename the existing of_graph_get_next_endpoint()
+> function to of_graph_next_dev_endpoint() then. It would be a tree-wide
+> patch, which is always annoying to get reviewed and merged, so if Rob
+> would prefer avoiding the rename, I'm fine with that.
+
+To be honest, from intuitive function naming point of view,
+I prefer rename existing function name. But yes, it will be big patch.
+
+Current of_graph_get_next_endpoint() will get next endpoint
+beyond the port (A)
+New function is not get next endpoint beyond the port (B)
+
+Something like
+
+(A) of_graph_get_next_endpoint() -> of_graph_get_next_port_endpoint()
+(B)                                 of_graph_get_next_endpoint()
+
+> > > + * @port: pointer to the target port node
+> > > + * @endpoint: current endpoint node, or NULL to get first
+> > > + *
+> > > + * Return: An 'endpoint' node pointer with refcount incremented. Refcount
+> > > + * of the passed @prev node is decremented.
+> > > + */
+> > 
+> > It might be good to highlight here the difference to the 
+> > of_graph_get_next_endpoint().
 > 
-> [...]
+> Yes, and the documentation of of_graph_get_next_endpoint() shoul also be
+> improved.
 
-Applied to
+Yes, Indeed.
 
-   https://git.kernel.org/pub/scm/linux/kernel/git/broonie/sound.git for-next
 
-Thanks!
 
-[1/7] dt-bindings: sound: sun4i-spdif: Fix requirements for H6
-      commit: 57b3c130d97e45b8a07586e0ae113e43776c5ea8
-[2/7] dt-bindings: sound: sun4i-spdif: Add Allwinner H616 compatible
-      commit: 7a9dc944f129bb56ef855d9c0b0647bc3e98a56f
-[3/7] ASoC: sunxi: sun4i-spdif: Add support for Allwinner H616
-      commit: 0adf963b8463faa44653e22e56ce55f747e68868
 
-All being well this means that it will be integrated into the linux-next
-tree (usually sometime in the next 24 hours) and sent to Linus during
-the next merge window (or sooner if it is a bug fix), however if
-problems are discovered then the patch may be dropped or reverted.
+Thank you for your help !!
 
-You may get further e-mails resulting from automated or manual testing
-and review of the tree, please engage with people reporting problems and
-send followup patches addressing any issues that are reported if needed.
-
-If any updates are required or you are submitting further changes they
-should be sent as incremental updates against current git, existing
-patches will not be replaced.
-
-Please add any relevant lists and maintainers to the CCs when replying
-to this mail.
-
-Thanks,
-Mark
-
+Best regards
+---
+Renesas Electronics
+Ph.D. Kuninori Morimoto
 
