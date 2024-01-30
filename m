@@ -1,36 +1,37 @@
-Return-Path: <devicetree+bounces-36700-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-36702-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5B5578425B1
-	for <lists+devicetree@lfdr.de>; Tue, 30 Jan 2024 14:02:29 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id AC4608425B6
+	for <lists+devicetree@lfdr.de>; Tue, 30 Jan 2024 14:03:05 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id BC745284003
-	for <lists+devicetree@lfdr.de>; Tue, 30 Jan 2024 13:02:27 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 4C3211F2E2B1
+	for <lists+devicetree@lfdr.de>; Tue, 30 Jan 2024 13:03:05 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A5D916A329;
-	Tue, 30 Jan 2024 13:02:04 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id EAC986DCE7;
+	Tue, 30 Jan 2024 13:02:06 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from mail-m49197.qiye.163.com (mail-m49197.qiye.163.com [45.254.49.197])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 77E8D6A334;
-	Tue, 30 Jan 2024 13:02:00 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D42B467751;
+	Tue, 30 Jan 2024 13:02:03 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=45.254.49.197
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1706619724; cv=none; b=COI0GaMr2Bbpzk3f5/PQU/Hsx6r2dsWYhH7lC1qnRp12aX/2z6bfDdsYyCM25daEcQp727QV6JFq0R6iI1akfd4m0ueFYp6Ko5lDxPQE2NsUQWWutr15R/6FaiuluSVjuRr+vgQ4tUW3xnTxJsGmf72NkYx8SWUe38EBawbiF/A=
+	t=1706619726; cv=none; b=XUYQ9lhaK9uyYrg8kYVUCd+LUJImpdgihERtMa+WOdABWeKFFkw4u116rlScgZH9xTa3v7y7UZkdCRy10R3hnfpVDlq2az+RGWqsMEQ0GDe4ID/tmUDGk4cEzTX74x/C+rGbkS16b1l9CPaH+YjWKVvIZU+Uvlus9NoNiNGWYWo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1706619724; c=relaxed/simple;
-	bh=IechUE074hJ3yuwjCqmvBUHh+vgfKOfukOs135ygZp0=;
-	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version; b=VOJdxQxrzqxWt4kU5GTfCD3iZINP5jBj2z2Z9Yh1punZBTvv2sUJBSJBnTOfkIrRMMbYHwy3h/6SMyqRePYpvNxXaG/lIjOspBuM2t0cOOZWFQG+CY17crgXzjav9zml9ff8EvSviohtULzV+QJ3LnEZNmk4uFcrCwQ+kpweuig=
+	s=arc-20240116; t=1706619726; c=relaxed/simple;
+	bh=YCSLDRcNcUHZlJNPEpFCiUHc+hOkTwgbBxDfzJO2/IQ=;
+	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
+	 MIME-Version; b=Dr4QqIxcigWLrBDlMBD1vLOs8t/GjVlc403uBK/8e7eSrL+1ecuT5FlmkXn1MM81fRgRtLwYcgxE4umAhZgk4oQ7Zq46+Xdd+NdqDhx40C1eosji/1Gij1c7XGlhZXS5vbiKVfO01gRpF6j0ZbcS8RaBVBC7u2EN2HjM6n8ng/Q=
 ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=jmu.edu.cn; spf=pass smtp.mailfrom=jmu.edu.cn; arc=none smtp.client-ip=45.254.49.197
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=jmu.edu.cn
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=jmu.edu.cn
 Received: from amadeus-Vostro-3710.lan (unknown [116.25.94.16])
-	by smtp.qiye.163.com (Hmail) with ESMTPA id DA4587E0133;
-	Tue, 30 Jan 2024 21:01:40 +0800 (CST)
+	by smtp.qiye.163.com (Hmail) with ESMTPA id EC4187E0137;
+	Tue, 30 Jan 2024 21:01:41 +0800 (CST)
 From: Chukun Pan <amadeus@jmu.edu.cn>
 To: Bjorn Andersson <andersson@kernel.org>
 Cc: Konrad Dybcio <konrad.dybcio@linaro.org>,
@@ -40,11 +41,14 @@ Cc: Konrad Dybcio <konrad.dybcio@linaro.org>,
 	linux-arm-msm@vger.kernel.org,
 	linux-kernel@vger.kernel.org,
 	devicetree@vger.kernel.org,
-	Chukun Pan <amadeus@jmu.edu.cn>
-Subject: [PATCH v4 0/2] arm64: dts: qcom: ipq6018: add sdhci node
-Date: Tue, 30 Jan 2024 21:01:30 +0800
-Message-Id: <20240130130132.9550-1-amadeus@jmu.edu.cn>
+	Chukun Pan <amadeus@jmu.edu.cn>,
+	Robert Marko <robimarko@gmail.com>
+Subject: [PATCH v4 1/2] arm64: dts: qcom: ipq6018: add LDOA2 regulator
+Date: Tue, 30 Jan 2024 21:01:31 +0800
+Message-Id: <20240130130132.9550-2-amadeus@jmu.edu.cn>
 X-Mailer: git-send-email 2.25.1
+In-Reply-To: <20240130130132.9550-1-amadeus@jmu.edu.cn>
+References: <20240130130132.9550-1-amadeus@jmu.edu.cn>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -53,24 +57,38 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-HM-Spam-Status: e1kfGhgUHx5ZQUpXWQgPGg8OCBgUHx5ZQUlOS1dZFg8aDwILHllBWSg2Ly
-	tZV1koWUFITzdXWS1ZQUlXWQ8JGhUIEh9ZQVlDT0wfVktDS01PQxpCT0xKQlUTARMWGhIXJBQOD1
-	lXWRgSC1lBWUpKTVVJTlVCT1VKTVlXWRYaDxIVHRRZQVlPS0hVSkpLSEpDVUpLS1VLWQY+
-X-HM-Tid: 0a8d5a76088903a2kunmda4587e0133
+	tZV1koWUFITzdXWS1ZQUlXWQ8JGhUIEh9ZQVkaQk5IVkgeTUxKSRlIT0hIQ1UTARMWGhIXJBQOD1
+	lXWRgSC1lBWUpKTVVJTlVCT1VKTVlXWRYaDxIVHRRZQVlPS0hVSkxKT0xDVUpLS1VKQktLWQY+
+X-HM-Tid: 0a8d5a760cef03a2kunmec4187e0137
 X-HM-MType: 10
-X-HM-Sender-Digest: e1kMHhlZQR0aFwgeV1kSHx4VD1lBWUc6PVE6TQw*HDMIFEoKNAIVExEt
-	DkowCjBVSlVKTEtNTUpCTEtKQ05KVTMWGhIXVRoWGh8eDgg7ERYOVR4fDlUYFUVZV1kSC1lBWUpK
-	TVVJTlVCT1VKTVlXWQgBWUFKT0lPNwY+
+X-HM-Sender-Digest: e1kMHhlZQR0aFwgeV1kSHx4VD1lBWUc6NTY6Lio5AjMNEEoeQwwBExML
+	DCwwCktVSlVKTEtNTUpCTEtJQ0NNVTMWGhIXVRoWGh8eDgg7ERYOVR4fDlUYFUVZV1kSC1lBWUpK
+	TVVJTlVCT1VKTVlXWQgBWUFJSUtPNwY+
 
-Changes in v4:
-  Change 'enable' to 'add' of the commit title.
+Add LDOA2 regulator of MP5496 to support SDCC voltage scaling.
 
-Changes in v3:
-  Remove always-on for LDOA2 regulator.
-  Remove 1.8v properties of the node added in dtsi.
+Suggested-by: Robert Marko <robimarko@gmail.com>
+Signed-off-by: Chukun Pan <amadeus@jmu.edu.cn>
+---
+ arch/arm64/boot/dts/qcom/ipq6018.dtsi | 5 +++++
+ 1 file changed, 5 insertions(+)
 
-Changes in v2:
-  Add LDOA2 regulator to support SDCC voltage scaling.
-
+diff --git a/arch/arm64/boot/dts/qcom/ipq6018.dtsi b/arch/arm64/boot/dts/qcom/ipq6018.dtsi
+index 5e1277fea725..322eced0b876 100644
+--- a/arch/arm64/boot/dts/qcom/ipq6018.dtsi
++++ b/arch/arm64/boot/dts/qcom/ipq6018.dtsi
+@@ -174,6 +174,11 @@ ipq6018_s2: s2 {
+ 						regulator-max-microvolt = <1062500>;
+ 						regulator-always-on;
+ 					};
++
++					ipq6018_l2: l2 {
++						regulator-min-microvolt = <1800000>;
++						regulator-max-microvolt = <3300000>;
++					};
+ 				};
+ 			};
+ 		};
 -- 
 2.25.1
 
