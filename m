@@ -1,72 +1,72 @@
-Return-Path: <devicetree+bounces-36541-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-36542-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id C7012841C2E
-	for <lists+devicetree@lfdr.de>; Tue, 30 Jan 2024 07:53:13 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 10ECC841C39
+	for <lists+devicetree@lfdr.de>; Tue, 30 Jan 2024 07:55:21 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id E25DF1C2227A
-	for <lists+devicetree@lfdr.de>; Tue, 30 Jan 2024 06:53:12 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 42E2B1C22885
+	for <lists+devicetree@lfdr.de>; Tue, 30 Jan 2024 06:55:20 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C223F3C492;
-	Tue, 30 Jan 2024 06:53:08 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 923C53F9FF;
+	Tue, 30 Jan 2024 06:55:14 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="e+UghyA0"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="iLq/DByo"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pj1-f52.google.com (mail-pj1-f52.google.com [209.85.216.52])
+Received: from mail-pf1-f180.google.com (mail-pf1-f180.google.com [209.85.210.180])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 47B7B41A8A
-	for <devicetree@vger.kernel.org>; Tue, 30 Jan 2024 06:53:07 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.216.52
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 248EB3DB9B
+	for <devicetree@vger.kernel.org>; Tue, 30 Jan 2024 06:55:12 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.180
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1706597588; cv=none; b=CWz2ibSnr5JydOCxdzmKSYlpSRRSBnLtu1aUMbcBfpXCmNLntPiChuZ/FVH+Xx+VECn8F1ZPNk1LHbGBqTimzwuaiIIwheWoisW4mB1TC+l7gYr0E0svXG7gDK4pqHvm5Qu3y//edXq0NHjDB96DVKzUWrda2rKuXqMziMb+a6Y=
+	t=1706597714; cv=none; b=nFr5191tcvhhTbhQVNCcB0S84v+GjsH0XkAgcruE8SxpgAb4aBhylvauSlqMaLwzDomTKg24fcDpYBKpMFSpyFuLIhLuhO+/tyUNrf1MhkWWIRIhPiVKCgmfHs9l1AOzIO5h2kaBZGslVES3pIpCr3owwu0g11fUiFCEnZhS7xc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1706597588; c=relaxed/simple;
-	bh=Uua8AEJpGWmpkqTiwzFsY8wXVc9KJY6aZ72D91JKadI=;
+	s=arc-20240116; t=1706597714; c=relaxed/simple;
+	bh=EkTqePDnNNyNFnIyaLgdsTnaerx5Rl5JacQROhGX8hk=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=kk/EPjtfmvifR7R/ooIGO5rqM00CqvNcwxXLUWksHcxZBB9fFhvev7/CLe0Q55iJlK39Xs7sJNNuGrCfQYZlY1uEcZjddiE49bw9I2G7QAbenaNQxxY52IwHPgYCe2tjlUw+HpFiL7wWsH/GOlz0DkKWO6iNo5MYMuirLJ+i2aI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=e+UghyA0; arc=none smtp.client-ip=209.85.216.52
+	 Content-Type:Content-Disposition:In-Reply-To; b=CQLkwuuCMbFdMTFWu/lXplYJjG5H8kANNl9IX9M+3U1J9IMRaDcZSNZyn+jU2jnwbayR4VdcsMnyRxF302AHw2301eAm6QfdTinGV2uyw31kPxAo7hITv6E+pozeQVGU91FO+yEj/p7ayHZyUBhMsT5RE99g2pP9SjC/RjjQwkc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=iLq/DByo; arc=none smtp.client-ip=209.85.210.180
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-pj1-f52.google.com with SMTP id 98e67ed59e1d1-290da27f597so1654355a91.2
-        for <devicetree@vger.kernel.org>; Mon, 29 Jan 2024 22:53:07 -0800 (PST)
+Received: by mail-pf1-f180.google.com with SMTP id d2e1a72fcca58-6ddc5faeb7fso2750401b3a.3
+        for <devicetree@vger.kernel.org>; Mon, 29 Jan 2024 22:55:12 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1706597586; x=1707202386; darn=vger.kernel.org;
+        d=linaro.org; s=google; t=1706597712; x=1707202512; darn=vger.kernel.org;
         h=in-reply-to:content-transfer-encoding:content-disposition
          :mime-version:references:message-id:subject:cc:to:from:date:from:to
          :cc:subject:date:message-id:reply-to;
-        bh=HBYeRPxem/erlBXPgzZrx2qdN8I83pDKmoAAgmzuOtU=;
-        b=e+UghyA0c46HGxDNp5VB2PnBJRcPC2YBoPjYeJMz0+QTFSGcfuL58BJIW84euopFze
-         JnPrb5YPgw1Bn9buSgANK7Lw+I6a+I3Va+KWjIzYumbTyOD9KSfMEh2cP5UGeIjd2soM
-         m/NC/lTrUQCf2k6uLVGiS0fbCMMqpRlJluSYnL3Xe+PnCX4yyk7IyfIRlI7Dd7fgnY1g
-         VQj38CaH2l1AJScWR7y+O51K2VmXj0nf+/gDpxTFYi6zWfJRdQMBvNhZBWFVAuzpZZr9
-         7GEsehmuOc7eEz8qh2FymwWuTD+bSLDhNMQVk9rU2MZ/GljhdQxmleLAxYlWe1LqjO0D
-         Nmnw==
+        bh=fOCYfEkoC2QCe8jutzidzqDGcrnmYG0jwgxAFd3FC1Q=;
+        b=iLq/DByorYq9Lf33mXuhkN3lpGjA5vB3UI4GfKwRebOg6LUSVfA2aPEE7kvRL+K5pm
+         3sptrrvy/PsZ2gLKdgG2m/6v/UOFJGgYuAV/syLckemXR5q4JPhpgav5A1CE3dbgkoPa
+         2TVyon8j74r4BZvVI2RY5tbARVvX65FsNOF8B96dNB4qwMnmntELNDjUefk2vBwJMvyj
+         EAkTt2q3VOynEBn87K3/5afyH4u4nHeR32owi25QXXEIWZ2eXNOYPcZWCKw/aKn7ESit
+         ePQT9QS8zgsC8jFqvf693R8v168R+bXfnbKNSZCt6OhO5NX+wP8x5BDra49M8XZyJ/Vo
+         MXDw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1706597586; x=1707202386;
+        d=1e100.net; s=20230601; t=1706597712; x=1707202512;
         h=in-reply-to:content-transfer-encoding:content-disposition
          :mime-version:references:message-id:subject:cc:to:from:date
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=HBYeRPxem/erlBXPgzZrx2qdN8I83pDKmoAAgmzuOtU=;
-        b=i4ZutWSZfLODErVDRgu1XSlNl5ytp8FYAMV8RQ0Z+YVkc47kQ4JdjFxDrt9bwYFpzl
-         HjJoRt3G0sU4/HMqMcNAC8KmASRWrMa99vNueYnkQBgHWMkUx67ecuHyr4NswOfkQkF5
-         r2jVmKzWuEAsgbGChVt6vJgsjz0xSUT0j7YV3513u1HHGFg4yJNngM46oxRtO/EScupQ
-         5L/JrVWNc3dghRbEx8vd0/pzBqbKs/yeEDdKfifwYnFtWeL4qggkBg+4eRUjyvbp9Pxz
-         WEcoK0lSAKRuCWjbiRkonaKybEbq2m4gWj14XrvN9mGWrP2EfQsmZwXXKdajCNCci3IA
-         N8dA==
-X-Gm-Message-State: AOJu0YzKU+mhfRddTOndqwH2BM/GXRVz/9eG1X5g/CEFMG+HmoLQ8QYs
-	hufxgJW3+o9SYXjLogpD17rhT32jsewtHdNT8q0KMY1A+/cSxt/UCsMsgm13+w==
-X-Google-Smtp-Source: AGHT+IEGPtPBk1jGlW6ugBIW9qVPUdO2XKCvAewXwuo17gBW50pqPF4/Q5IXrkOCWtFprXXV4sCDcQ==
-X-Received: by 2002:a17:90b:1947:b0:290:1cd6:6acf with SMTP id nk7-20020a17090b194700b002901cd66acfmr3581438pjb.37.1706597586547;
-        Mon, 29 Jan 2024 22:53:06 -0800 (PST)
+        bh=fOCYfEkoC2QCe8jutzidzqDGcrnmYG0jwgxAFd3FC1Q=;
+        b=oOaFdkpG8I4a4bzL8Aiz6dNNIOZu3ul5GPGzgyoAfO5Gybn5CuoYSIJ8ZEq24mieF8
+         kiL/NZE5d+w6ZpzT4I/pES3wQljEU0cd2eOMQLIily7hmFEyPR60I0BduvSyzMHeAaI1
+         hOwYbNKE/fuO4necc4phM4bRozAu2FFiUp+hH/AFWmX9qhrLJ/9wk4TuqepvBdr1FcNn
+         n+SnfWXACGrhLmEbG5303BLR8OcWT/gBFXV1i4KarohMna0mRzhsL18FEtig/W5VR+wK
+         mNvwbOW5bQIE9H6Zn6r9ooSgRHjRhsz77ou7AfoLa5FEBXlDx3CTaqXpI8mpbD7OpTYs
+         GO7g==
+X-Gm-Message-State: AOJu0Yy6cSLUP6HjINpVUrP0X5R+OgD2vFqBuhLNBKqD5N9ymb6Y4b3G
+	Cs5UKZr02K3+9VJry5JvUsGB4BiGBBC37rF71fXx6/f+w+guaxoS8LVoFppIBw==
+X-Google-Smtp-Source: AGHT+IFHCY64sy0FfJm5owYE0QeTqXLHkOWLmTCFbUd6gfTEpZRJ/WaOf85v6uwmght9xcZGQDfqCQ==
+X-Received: by 2002:aa7:93d1:0:b0:6de:8ad:dad1 with SMTP id y17-20020aa793d1000000b006de08addad1mr5595313pff.19.1706597712383;
+        Mon, 29 Jan 2024 22:55:12 -0800 (PST)
 Received: from thinkpad ([117.202.188.6])
-        by smtp.gmail.com with ESMTPSA id h21-20020a17090a9c1500b0028e87ce1de0sm9391496pjp.51.2024.01.29.22.53.01
+        by smtp.gmail.com with ESMTPSA id hq24-20020a056a00681800b006dbdbe7f71csm7214997pfb.98.2024.01.29.22.55.08
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 29 Jan 2024 22:53:06 -0800 (PST)
-Date: Tue, 30 Jan 2024 12:22:59 +0530
+        Mon, 29 Jan 2024 22:55:12 -0800 (PST)
+Date: Tue, 30 Jan 2024 12:25:06 +0530
 From: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
 To: Abel Vesa <abel.vesa@linaro.org>
 Cc: Bjorn Andersson <andersson@kernel.org>,
@@ -78,11 +78,10 @@ Cc: Bjorn Andersson <andersson@kernel.org>,
 	Conor Dooley <conor+dt@kernel.org>, linux-pci@vger.kernel.org,
 	linux-arm-msm@vger.kernel.org, linux-kernel@vger.kernel.org,
 	devicetree@vger.kernel.org
-Subject: Re: [PATCH RESEND v2 1/2] dt-bindings: PCI: qcom: Document the
- X1E80100 PCIe Controller
-Message-ID: <20240130065259.GD32821@thinkpad>
+Subject: Re: [PATCH RESEND v2 2/2] PCI: qcom: Add X1E80100 PCIe support
+Message-ID: <20240130065506.GE32821@thinkpad>
 References: <20240129-x1e80100-pci-v2-0-5751ab805483@linaro.org>
- <20240129-x1e80100-pci-v2-1-5751ab805483@linaro.org>
+ <20240129-x1e80100-pci-v2-2-5751ab805483@linaro.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -92,83 +91,37 @@ MIME-Version: 1.0
 Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <20240129-x1e80100-pci-v2-1-5751ab805483@linaro.org>
+In-Reply-To: <20240129-x1e80100-pci-v2-2-5751ab805483@linaro.org>
 
-On Mon, Jan 29, 2024 at 04:41:19PM +0200, Abel Vesa wrote:
-> Document the PCIe Controllers on the X1E80100 platform. They are similar
-> to the ones found on SM8550, but they don't have SF QTB clock.
+On Mon, Jan 29, 2024 at 04:41:20PM +0200, Abel Vesa wrote:
+> Add the compatible and the driver data for X1E80100.
 > 
+
+If you happen to respin the series, please add info about the PCIe controller
+found on this SoC. Like IP version, Gen speed, max. link width etc...
+
 > Signed-off-by: Abel Vesa <abel.vesa@linaro.org>
 
-Acked-by: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
+Reviewed-by: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
 
 - Mani
 
 > ---
->  .../devicetree/bindings/pci/qcom,pcie.yaml         | 29 ++++++++++++++++++++++
->  1 file changed, 29 insertions(+)
+>  drivers/pci/controller/dwc/pcie-qcom.c | 1 +
+>  1 file changed, 1 insertion(+)
 > 
-> diff --git a/Documentation/devicetree/bindings/pci/qcom,pcie.yaml b/Documentation/devicetree/bindings/pci/qcom,pcie.yaml
-> index a93ab3b54066..7381e38b7398 100644
-> --- a/Documentation/devicetree/bindings/pci/qcom,pcie.yaml
-> +++ b/Documentation/devicetree/bindings/pci/qcom,pcie.yaml
-> @@ -41,6 +41,7 @@ properties:
->            - qcom,pcie-sm8450-pcie0
->            - qcom,pcie-sm8450-pcie1
->            - qcom,pcie-sm8550
-> +          - qcom,pcie-x1e80100
->        - items:
->            - enum:
->                - qcom,pcie-sm8650
-> @@ -227,6 +228,7 @@ allOf:
->                - qcom,pcie-sm8450-pcie0
->                - qcom,pcie-sm8450-pcie1
->                - qcom,pcie-sm8550
-> +              - qcom,pcie-x1e80100
->      then:
->        properties:
->          reg:
-> @@ -826,6 +828,32 @@ allOf:
->            items:
->              - const: pci # PCIe core reset
+> diff --git a/drivers/pci/controller/dwc/pcie-qcom.c b/drivers/pci/controller/dwc/pcie-qcom.c
+> index 10f2d0bb86be..2a6000e457bc 100644
+> --- a/drivers/pci/controller/dwc/pcie-qcom.c
+> +++ b/drivers/pci/controller/dwc/pcie-qcom.c
+> @@ -1642,6 +1642,7 @@ static const struct of_device_id qcom_pcie_match[] = {
+>  	{ .compatible = "qcom,pcie-sm8450-pcie0", .data = &cfg_1_9_0 },
+>  	{ .compatible = "qcom,pcie-sm8450-pcie1", .data = &cfg_1_9_0 },
+>  	{ .compatible = "qcom,pcie-sm8550", .data = &cfg_1_9_0 },
+> +	{ .compatible = "qcom,pcie-x1e80100", .data = &cfg_1_9_0 },
+>  	{ }
+>  };
 >  
-> +  - if:
-> +      properties:
-> +        compatible:
-> +          contains:
-> +            enum:
-> +              - qcom,pcie-x1e80100
-> +    then:
-> +      properties:
-> +        clocks:
-> +          maxItems: 7
-> +        clock-names:
-> +          items:
-> +            - const: aux # Auxiliary clock
-> +            - const: cfg # Configuration clock
-> +            - const: bus_master # Master AXI clock
-> +            - const: bus_slave # Slave AXI clock
-> +            - const: slave_q2a # Slave Q2A clock
-> +            - const: noc_aggr # Aggre NoC PCIe AXI clock
-> +            - const: cnoc_sf_axi # Config NoC PCIe1 AXI clock
-> +        resets:
-> +          maxItems: 2
-> +        reset-names:
-> +          items:
-> +            - const: pci # PCIe core reset
-> +            - const: link_down # PCIe link down reset
-> +
->    - if:
->        properties:
->          compatible:
-> @@ -884,6 +912,7 @@ allOf:
->                - qcom,pcie-sm8450-pcie0
->                - qcom,pcie-sm8450-pcie1
->                - qcom,pcie-sm8550
-> +              - qcom,pcie-x1e80100
->      then:
->        oneOf:
->          - properties:
 > 
 > -- 
 > 2.34.1
