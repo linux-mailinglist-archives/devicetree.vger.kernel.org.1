@@ -1,34 +1,34 @@
-Return-Path: <devicetree+bounces-36851-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-36849-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id E8D2F842DD5
-	for <lists+devicetree@lfdr.de>; Tue, 30 Jan 2024 21:29:03 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id D04AA842DD3
+	for <lists+devicetree@lfdr.de>; Tue, 30 Jan 2024 21:28:58 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 8A7121F2616F
-	for <lists+devicetree@lfdr.de>; Tue, 30 Jan 2024 20:29:03 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 867B41F2618D
+	for <lists+devicetree@lfdr.de>; Tue, 30 Jan 2024 20:28:58 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id BA37E7995C;
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8831979949;
 	Tue, 30 Jan 2024 20:28:09 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=postmarketos.org header.i=@postmarketos.org header.b="SczYw9xJ"
+	dkim=pass (2048-bit key) header.d=postmarketos.org header.i=@postmarketos.org header.b="LsPAcHKh"
 X-Original-To: devicetree@vger.kernel.org
-Received: from out-174.mta0.migadu.com (out-174.mta0.migadu.com [91.218.175.174])
+Received: from out-181.mta0.migadu.com (out-181.mta0.migadu.com [91.218.175.181])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CB374762C4
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B74A6762FE
 	for <devicetree@vger.kernel.org>; Tue, 30 Jan 2024 20:28:07 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=91.218.175.174
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=91.218.175.181
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1706646489; cv=none; b=WZxBpo4ILX3p3bOeUDxAPlu5qOapF9oWkJpRLYH/9TTRr+AWaHP+rpqtbJQlCF8yHDqj6UVjZXVqZXhrLcduS6SHvqGP3ITm5E8w0IyE5HT8rBgncuVws/bv3cSpOZlzeXDYlFItiyqleb4dGE2j6JgemiMpmji5hprbc7RSAZA=
+	t=1706646489; cv=none; b=ZIAgyZ6DnVCFLxREFK9B79+bVePxBpth/zhA4gdp4lcnKMMu+7sV+uMua/wn9Wik0r3m0n06L/E8pTufvg8V3w7mH/Li9iodrFtopeYfmG+GAy1zGDgvyDpA9XfkAQKoYsiX6rmunQcjjxmZjOaA5vYb5citE51Ce/zhyvSyGFk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
 	s=arc-20240116; t=1706646489; c=relaxed/simple;
-	bh=O7J52DPIrE7Oy12cOq/hTpYx7w8Xbf9lXcXsC7ZnwJw=;
+	bh=tIshaH/wG7+F7fysCqp2VwCqah3ZG8cEyzEYuEn46tM=;
 	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=ACpFAMZ21unDEBZo74k6wbTQzM/+eObxSKQac6Go41b0yqfNz8KLoFieAZBOHfr4yaYaxoPgWSTOUrraZdao4hAKSv9CHfEFBs/EUU6PWTa8xT+aRURyPUy3WuTfDHq62jxc90ydNtfBACQbhUGddy8/P71ZXWngbsojnNkdTPE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=postmarketos.org; spf=pass smtp.mailfrom=postmarketos.org; dkim=pass (2048-bit key) header.d=postmarketos.org header.i=@postmarketos.org header.b=SczYw9xJ; arc=none smtp.client-ip=91.218.175.174
+	 MIME-Version; b=WhRZUIRjJ4x4xUVbQBlOk6qYMafbMStAT7G8TKZH613zMwoDkKTy2bDPRAVBgITG9pfFwjyXrr5Kgwdhu6boOL1nOoL/qq/SkBMNXhiGK2e9dkjmxvpgdnYwCSx0fsS2Hrxl4U8mcuNt6kPrPCHklXOeB799ddVg17+uZYFOXHo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=postmarketos.org; spf=pass smtp.mailfrom=postmarketos.org; dkim=pass (2048-bit key) header.d=postmarketos.org header.i=@postmarketos.org header.b=LsPAcHKh; arc=none smtp.client-ip=91.218.175.181
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=postmarketos.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=postmarketos.org
 X-Report-Abuse: Please report any abuse attempt to abuse@migadu.com and include these headers.
@@ -38,12 +38,12 @@ DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=postmarketos.org;
 	 to:to:cc:cc:mime-version:mime-version:
 	 content-transfer-encoding:content-transfer-encoding:
 	 in-reply-to:in-reply-to:references:references;
-	bh=0Ck8zt2HdoRVrChrqjQW7h2A5x3YqJ1hRCsTUEcHsKo=;
-	b=SczYw9xJGEW2JliUBPe7g0cDPmM1uJs0n8PUnKxka+aai6TlaZoTZOtf2QCseQ+M/yOiWK
-	DNznst/0gd52bP2FKbUjg4iHhgpmhGexkAmxARv3sxCwi7w5zslJa53tl2B1YgwmA9OSSm
-	dqYxzzJPG5FZUnpAyyQleg3ttizG3lTqM/7x9Q1DYLK/AHzOwCm62HZRxe7tsHuF1sD9ZQ
-	29ceUSm0i3+21X5TjDqmKOyL1Xk0K/acU65uUqOIONuHJXttWJvQGseDHTRE/4+lpGJJtw
-	vss5hn8sC4tuldw1rqnSl3xXFic3LIACgkjLTL1rvgzE/Ako2qo8nt1k6a+eBQ==
+	bh=l3vOiuOqt9TDvwN9BP7L45s+X6J46YstAyZSD8xBADQ=;
+	b=LsPAcHKhksYkMmT6BWwaWod3g582fH7CnOV253HRADRG7nN3TUqg3PYfkbWFDy8K356Tvc
+	yS+iCjRuOqMCu5Gvqie9cd87EgAfZYcYAp8ILXHyDuKPbJCTghRWaPk6yi/nG5CAYvEk/n
+	jRAA5EyCxOf+gwMf4GS8smbzKMya5uaNj4KLWBXUHdgQW3okrIWa3TDIADT9kJLIc4kIXe
+	+lXFKBCAqNrPNvEyqsX0Mgq1I5vFOd/pxf4GrK59Vkb8nUagt0q2LKNkiQUQgO8AGl6nbX
+	1FyomSh7Iq/ohApuxJ10yQ/1hwTDRmlRNow00tv7aGDPdpPLV3llqEWdZv9NEw==
 From: Anton Bambura <jenneron@postmarketos.org>
 To: Bjorn Andersson <andersson@kernel.org>,
 	Konrad Dybcio <konrad.dybcio@linaro.org>,
@@ -53,9 +53,9 @@ To: Bjorn Andersson <andersson@kernel.org>,
 Cc: linux-arm-msm@vger.kernel.org,
 	devicetree@vger.kernel.org,
 	linux-kernel@vger.kernel.org
-Subject: [PATCH v1 3/5] arm64: dts: qcom: sc8180x-lenovo-flex-5g: enable touchscreen
-Date: Tue, 30 Jan 2024 22:27:53 +0200
-Message-ID: <20240130202755.2289952-4-jenneron@postmarketos.org>
+Subject: [PATCH v1 4/5] arm64: dts: qcom: sc8180x-lenovo-flex-5g: set touchpad i2c frequency to 10 kHz
+Date: Tue, 30 Jan 2024 22:27:54 +0200
+Message-ID: <20240130202755.2289952-5-jenneron@postmarketos.org>
 In-Reply-To: <20240130202755.2289952-1-jenneron@postmarketos.org>
 References: <20240130202755.2289952-1-jenneron@postmarketos.org>
 Precedence: bulk
@@ -67,86 +67,27 @@ MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-Migadu-Flow: FLOW_OUT
 
-Set regulators, reset gpio and delays according to ACPI tables.
+This solves the issue when touchpad gets stuck on right or middle
+click. This also makes touchpad working smoother.
 
 Signed-off-by: Anton Bambura <jenneron@postmarketos.org>
 ---
- .../boot/dts/qcom/sc8180x-lenovo-flex-5g.dts  | 32 +++++++++++++++++--
- 1 file changed, 30 insertions(+), 2 deletions(-)
+ arch/arm64/boot/dts/qcom/sc8180x-lenovo-flex-5g.dts | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
 diff --git a/arch/arm64/boot/dts/qcom/sc8180x-lenovo-flex-5g.dts b/arch/arm64/boot/dts/qcom/sc8180x-lenovo-flex-5g.dts
-index af61acf58d68..8e8e1fca11c0 100644
+index 8e8e1fca11c0..a8816ff0ba51 100644
 --- a/arch/arm64/boot/dts/qcom/sc8180x-lenovo-flex-5g.dts
 +++ b/arch/arm64/boot/dts/qcom/sc8180x-lenovo-flex-5g.dts
-@@ -271,6 +271,12 @@ vreg_l3c_1p2: ldo3 {
- 			regulator-initial-mode = <RPMH_REGULATOR_MODE_HPM>;
- 		};
- 
-+		vreg_l4c_3p3: ldo4 {
-+			regulator-min-microvolt = <3296000>;
-+			regulator-max-microvolt = <3304000>;
-+			regulator-initial-mode = <RPMH_REGULATOR_MODE_HPM>;
-+		};
-+
- 		vreg_l10c_3p3: ldo10 {
- 			regulator-min-microvolt = <3000000>;
- 			regulator-max-microvolt = <3312000>;
-@@ -337,6 +343,12 @@ vreg_l10e_2p9: ldo10 {
- 			regulator-initial-mode = <RPMH_REGULATOR_MODE_HPM>;
- 		};
- 
-+		vreg_l12e_1p8: ldo12 {
-+			regulator-min-microvolt = <1800000>;
-+			regulator-max-microvolt = <1800000>;
-+			regulator-initial-mode = <RPMH_REGULATOR_MODE_HPM>;
-+		};
-+
- 		vreg_l16e_3p0: ldo16 {
- 			regulator-min-microvolt = <3072000>;
- 			regulator-max-microvolt = <3072000>;
-@@ -357,7 +369,7 @@ zap-shader {
- &i2c1 {
- 	clock-frequency = <100000>;
- 
--	pinctrl-0 = <&i2c1_active>, <&i2c1_hid_active>;
-+	pinctrl-0 = <&i2c1_active>, <&i2c1_hid_active>, <&ts_reset>;
- 	pinctrl-names = "default";
- 
- 	status = "okay";
-@@ -365,9 +377,17 @@ &i2c1 {
- 	touchscreen@10 {
- 		compatible = "hid-over-i2c";
- 		reg = <0x10>;
-+
- 		hid-descr-addr = <0x1>;
-+		reset-gpios = <&tlmm 54 GPIO_ACTIVE_LOW>;
-+
-+		vdd-supply = <&vreg_l4c_3p3>;
-+		vddl-supply = <&vreg_l12e_1p8>;
- 
--		interrupts-extended = <&tlmm 122 IRQ_TYPE_LEVEL_LOW>;
-+		post-power-on-delay-ms = <3>;
-+		post-reset-deassert-delay-ms = <200>;
-+
-+		interrupts-extended = <&tlmm 122 IRQ_TYPE_EDGE_FALLING>;
- 	};
+@@ -392,7 +392,7 @@ touchscreen@10 {
  };
  
-@@ -718,6 +738,14 @@ wake-n-pins {
- 		};
- 	};
+ &i2c7 {
+-	clock-frequency = <100000>;
++	clock-frequency = <1000000>;
  
-+	ts_reset: ts-reset-state {
-+		pins = "gpio54";
-+		function = "gpio";
-+
-+		bias-disable;
-+		drive-strength = <16>;
-+	};
-+
- 	usbprim_sbu_default: usbprim-sbu-state {
- 		oe-n-pins {
- 			pins = "gpio152";
+ 	pinctrl-0 = <&i2c7_active>, <&i2c7_hid_active>;
+ 	pinctrl-names = "default";
 -- 
 2.42.0
 
