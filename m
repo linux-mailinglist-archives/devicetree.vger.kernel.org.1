@@ -1,60 +1,65 @@
-Return-Path: <devicetree+bounces-36787-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-36788-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1F7B6842AAB
-	for <lists+devicetree@lfdr.de>; Tue, 30 Jan 2024 18:19:17 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1E4F2842ABF
+	for <lists+devicetree@lfdr.de>; Tue, 30 Jan 2024 18:22:05 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 52E751C24F7A
-	for <lists+devicetree@lfdr.de>; Tue, 30 Jan 2024 17:19:16 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id CE79F28927E
+	for <lists+devicetree@lfdr.de>; Tue, 30 Jan 2024 17:22:03 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4C8551292DE;
-	Tue, 30 Jan 2024 17:19:11 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9D79D1292D0;
+	Tue, 30 Jan 2024 17:21:59 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="NpLjzPUW"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="kmWXiDzF"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 219A41292D6;
-	Tue, 30 Jan 2024 17:19:11 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 750E112836C;
+	Tue, 30 Jan 2024 17:21:59 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1706635151; cv=none; b=as8MDToy9YyJu+DFnSknJfZDS3JOweNP3Y8B3xVdyLE7aherVGjja+pO3zOsGV2bU+LAX+3fRIUkk0FHyaDUG0ssrn0pWadApKk+urhsffFp9i59t4SyAzAEYNUZvS3K2aps708D3WgV69DPin7IHmtf3zWY4Zq2NYZoesLmRDw=
+	t=1706635319; cv=none; b=RHBbozkPZThP2GroBXYfvPNg5cRW64Z+EZlD6RuxJphMEj6o/3QLQdyFSVu8o6b+ZRovrIbB63alc9bc1ORb++0w10wo/pO+Ggx/J5vjbzIHpwMUPvEO0ElIgPExMxsOBufsi4RcyLMwk2ZvT/LTZry+OtJjKz05fO7Pmbr3Mq8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1706635151; c=relaxed/simple;
-	bh=y4IszyoidWFXzhNhDY2c9NDxcMcu1lKzZ3vPlfsqW38=;
+	s=arc-20240116; t=1706635319; c=relaxed/simple;
+	bh=4wWtwu39k0xPKfG1c0t6Pd+ipT50TOdvHg/dYeAN4AY=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=s3CMu204px1xN/sRajQlcBFUFvOu0uu3ruHTVAaAjq7syO3uninJdyGB3CV+q9dJ8lt5DG0PfuVmwEbXaiv7HnMaIfL6gQWdl8OQ7KHlhNHfOsmzFY7nrSi5MSlzCgUHnUOzHutQrKxB7Iqm07rCPe6WKZJJvf5SwheEPxbEn/M=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=NpLjzPUW; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id C14E4C433C7;
-	Tue, 30 Jan 2024 17:19:10 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=YwwzMr8M/5CyCABAldMX1xclvLtDQfNu6MkGEhs9QGHSMQaLRQV2EDMKl5ZdMxUfuivQIRISYrYNlU/bnOp/06SIumjCcwm8nR2YXUboBMq1sIrVtc5gGJtzqNrzIr4WAIXuYK1GFSEHUdmqRHMa2UOVhQ4z5Vc6mjjBXOeELzk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=kmWXiDzF; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id AB412C433F1;
+	Tue, 30 Jan 2024 17:21:58 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1706635151;
-	bh=y4IszyoidWFXzhNhDY2c9NDxcMcu1lKzZ3vPlfsqW38=;
+	s=k20201202; t=1706635318;
+	bh=4wWtwu39k0xPKfG1c0t6Pd+ipT50TOdvHg/dYeAN4AY=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=NpLjzPUWXqKV54fhDJhAYBoggAWgle3OxuN85QdeHkEbaDgS22ahV8cnmW+CwRNpO
-	 SIAcp+xgeFPt0rW4GBFx8d6u498AvJg6rfEbJf8z4srNRDx55/CEL4DGy3YDE4RHw0
-	 p6I4x5rFA7NMe73dKX7X3Q7xbPNBDhcfToS0rULHyT+XIvusI7y5jsOkAl6awCK9/F
-	 7LXkHo2wZT1wdYmcDT1qXwIaTSaXpCbkCjoDyqVmYiFFh3dAjVbYKJpRxr6jVUbLnV
-	 jVSuPZlSkOwnYqsRkbr8lSgJXzuS+IsycbymTehgrvqM88w9IsW5p+v3thCgAynqZL
-	 65iP3i0p/mhNA==
-Date: Tue, 30 Jan 2024 11:19:08 -0600
+	b=kmWXiDzFUZWMZzmBpA4YYhgxS/sibS2eQcWpJvG1LA1+FZUYuc4kD2PbTzNoe036L
+	 wYJKCwdrnHW7bBjNmXHyy8rgOVYVsejkz3nh71I0n3LOa/8TvyUVadKn8sCQ0gSJ/C
+	 aAvDPnVAQKBuUw0wGxr97lIUE4fyGPbIWebRkfIiqV6jtg3Wsbn9wcJH4POQzdOiEq
+	 woKbFV9NOfEOOFaAzQfCzXP/UzV33va2G+x2r0t1Q4XFJu1SYiUPYxLMZM7Qnh9ZyM
+	 QRZw0o3pTGGHBr/CrZGen3PvVQRFXtsel6if2VsexK0EHc9ypSF3Qvz44AgM3qYOhc
+	 9FELK1rhUbM1Q==
+Date: Tue, 30 Jan 2024 11:21:56 -0600
 From: Rob Herring <robh@kernel.org>
-To: Petlozu Pravareshwar <petlozup@nvidia.com>
-Cc: thierry.reding@gmail.com, jonathanh@nvidia.com,
-	krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
-	p.zabel@pengutronix.de, dmitry.osipenko@collabora.com,
-	ulf.hansson@linaro.org, kkartik@nvidia.com, cai.huoqing@linux.dev,
-	spatra@nvidia.com, linux-tegra@vger.kernel.org,
-	linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
-Subject: Re: [PATCH V2 2/3] dt-bindings: tegra: pmc: Update scratch as an
- optional aperture
-Message-ID: <20240130171908.GA1964535-robh@kernel.org>
-References: <20240117202504.943476-1-petlozup@nvidia.com>
- <20240117202504.943476-2-petlozup@nvidia.com>
+To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Cc: Arnaud Pouliquen <arnaud.pouliquen@foss.st.com>,
+	Bjorn Andersson <andersson@kernel.org>,
+	Mathieu Poirier <mathieu.poirier@linaro.org>,
+	Jens Wiklander <jens.wiklander@linaro.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	linux-stm32@st-md-mailman.stormreply.com,
+	linux-arm-kernel@lists.infradead.org,
+	linux-remoteproc@vger.kernel.org, linux-kernel@vger.kernel.org,
+	op-tee@lists.trustedfirmware.org, devicetree@vger.kernel.org
+Subject: Re: [PATCH v2 2/4] dt-bindings: remoteproc: Add compatibility for
+ TEE support
+Message-ID: <20240130172156.GA2008728-robh@kernel.org>
+References: <20240118100433.3984196-1-arnaud.pouliquen@foss.st.com>
+ <20240118100433.3984196-3-arnaud.pouliquen@foss.st.com>
+ <75429209-8f30-4880-8f92-ecb3cf90ae33@linaro.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -63,137 +68,69 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20240117202504.943476-2-petlozup@nvidia.com>
+In-Reply-To: <75429209-8f30-4880-8f92-ecb3cf90ae33@linaro.org>
 
-On Wed, Jan 17, 2024 at 08:25:03PM +0000, Petlozu Pravareshwar wrote:
-> Scratch address space register is used to store reboot reason. For
-> some Tegra234 systems, the scratch space is not available to store
-> the reboot reason. This is because scratch region on these systems
-> is not accessible by the kernel as restricted by the Hypervisor.
-> Such systems would delist scratch aperture from PMC DT node.
+On Fri, Jan 26, 2024 at 12:03:25PM +0100, Krzysztof Kozlowski wrote:
+> On 18/01/2024 11:04, Arnaud Pouliquen wrote:
+> > The "st,stm32mp1-m4-tee" compatible is utilized in a system configuration
+> > where the Cortex-M4 firmware is loaded by the Trusted execution Environment
+> > (TEE).
+> > For instance, this compatible is used in both the Linux and OP-TEE
+> > device-tree:
+> > - In OP-TEE, a node is defined in the device tree with the
+> >   st,stm32mp1-m4-tee to support signed remoteproc firmware.
+> >   Based on DT properties, OP-TEE authenticates, loads, starts, and stops
+> >   the firmware.
+> > - On Linux, when the compatibility is set, the Cortex-M resets should not
+> >   be declared in the device tree.
+> > 
+> > Signed-off-by: Arnaud Pouliquen <arnaud.pouliquen@foss.st.com>
+> > ---
+> > V1 to V2 updates
+> > - update "st,stm32mp1-m4" compatible description to generalize
+> > - remove the 'reset-names' requirement in one conditional branch, as the
+> >   property is already part of the condition test.
+> > ---
+> >  .../bindings/remoteproc/st,stm32-rproc.yaml   | 52 +++++++++++++++----
+> >  1 file changed, 43 insertions(+), 9 deletions(-)
+> > 
+> > diff --git a/Documentation/devicetree/bindings/remoteproc/st,stm32-rproc.yaml b/Documentation/devicetree/bindings/remoteproc/st,stm32-rproc.yaml
+> > index 370af61d8f28..6af821b15736 100644
+> > --- a/Documentation/devicetree/bindings/remoteproc/st,stm32-rproc.yaml
+> > +++ b/Documentation/devicetree/bindings/remoteproc/st,stm32-rproc.yaml
+> > @@ -16,7 +16,12 @@ maintainers:
+> >  
+> >  properties:
+> >    compatible:
+> > -    const: st,stm32mp1-m4
+> > +    enum:
+> > +      - st,stm32mp1-m4
+> > +      - st,stm32mp1-m4-tee
 > 
-> Accordingly, this change makes "scratch" as an optional aperture for
-> Tegra234 in PMC dt-binding document.
+> The patch looks good to me, but I wonder about this choice of two
+> compatibles.
 > 
-> Signed-off-by: Petlozu Pravareshwar <petlozup@nvidia.com>
-> ---
-> Changes in v2:
-> - Fix dt_binding_check indentation warning.
-> - Update 'reg-names' property items list.
+> Basically this is the same hardware with the same interface, but two
+> compatibles to differentiate a bit different firmware setup. We have
+> already such cases for Qualcomm [1] [2] and new ones will be coming. [3]
 > 
->  .../arm/tegra/nvidia,tegra186-pmc.yaml        | 78 ++++++++++++++-----
->  1 file changed, 58 insertions(+), 20 deletions(-)
+> I wonder whether this should be rather the same compatible with
+> additional property, e.g. "st,tee-control" or "remote-control".
 > 
-> diff --git a/Documentation/devicetree/bindings/arm/tegra/nvidia,tegra186-pmc.yaml b/Documentation/devicetree/bindings/arm/tegra/nvidia,tegra186-pmc.yaml
-> index 0faa403f68c8..79928824005d 100644
-> --- a/Documentation/devicetree/bindings/arm/tegra/nvidia,tegra186-pmc.yaml
-> +++ b/Documentation/devicetree/bindings/arm/tegra/nvidia,tegra186-pmc.yaml
-> @@ -27,7 +27,7 @@ properties:
->        - const: pmc
->        - const: wake
->        - const: aotag
-> -      - const: scratch
-> +      - enum: [ scratch, misc ]
->        - const: misc
->  
->    interrupt-controller: true
-> @@ -41,25 +41,63 @@ properties:
->      description: If present, inverts the PMU interrupt signal.
->      $ref: /schemas/types.yaml#/definitions/flag
->  
-> -if:
-> -  properties:
-> -    compatible:
-> -      contains:
-> -        const: nvidia,tegra186-pmc
-> -then:
-> -  properties:
-> -    reg:
-> -      maxItems: 4
-> -
-> -    reg-names:
-> -      maxItems: 4
-> -else:
-> -  properties:
-> -    reg:
-> -      minItems: 5
-> -
-> -    reg-names:
-> -      minItems: 5
-> +allOf:
-> +  - if:
-> +      properties:
-> +        compatible:
-> +          contains:
-> +            const: nvidia,tegra186-pmc
-> +    then:
-> +      properties:
-> +        reg:
-> +          maxItems: 4
-> +        reg-names:
-> +          items:
-> +            - const: pmc
-> +            - const: wake
-> +            - const: aotag
-> +            - const: scratch
+> [1]
+> https://elixir.bootlin.com/linux/v6.7.1/source/Documentation/devicetree/bindings/dma/qcom,bam-dma.yaml#L54
+> 
+> [2]
+> https://elixir.bootlin.com/linux/v6.7.1/source/Documentation/devicetree/bindings/net/qcom,ipa.yaml#L129
+> (that's a bit different)
+> 
+> [3] https://lore.kernel.org/linux-devicetree/20240124103623.GJ4906@thinkpad/
+> 
+> @Rob,
+> Any general guidance for this and Qualcomm?
 
-There is no need to define the names and order again. Just this is 
-sufficient:
+I think we have cases using compatible already as well. Either way is 
+fine with me.
 
-maxItems: 4
-contains:
-  const: scratch
-
-> +
-> +  - if:
-> +      properties:
-> +        compatible:
-> +          contains:
-> +            const: nvidia,tegra194-pmc
-> +    then:
-> +      properties:
-> +        reg:
-> +          minItems: 5
-> +        reg-names:
-> +          items:
-> +            - const: pmc
-> +            - const: wake
-> +            - const: aotag
-> +            - const: scratch
-> +            - const: misc
-
-Just 'minItems: 5' is sufficient here.
-
-> +
-> +  - if:
-> +      properties:
-> +        compatible:
-> +          contains:
-> +            const: nvidia,tegra234-pmc
-> +    then:
-> +      properties:
-> +        reg:
-> +          minItems: 4
-> +          maxItems: 5
-
-That should already be the top-level constraint.
-
-> +        reg-names:
-> +          anyOf:
-> +            - items:
-> +                - const: pmc
-> +                - const: wake
-> +                - const: aotag
-> +                - const: misc
-> +            - items:
-> +                - const: pmc
-> +                - const: wake
-> +                - const: aotag
-> +                - const: scratch
-> +                - const: misc
-
-Only need:
-
-contains:
-  const: misc
+Rob
 
