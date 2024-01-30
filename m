@@ -1,170 +1,143 @@
-Return-Path: <devicetree+bounces-36666-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-36667-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id C37B384240F
-	for <lists+devicetree@lfdr.de>; Tue, 30 Jan 2024 12:49:49 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6D3CB842414
+	for <lists+devicetree@lfdr.de>; Tue, 30 Jan 2024 12:50:06 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id A5B03B28AD9
-	for <lists+devicetree@lfdr.de>; Tue, 30 Jan 2024 11:49:36 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 2256128B89B
+	for <lists+devicetree@lfdr.de>; Tue, 30 Jan 2024 11:50:05 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1556D6BB3C;
-	Tue, 30 Jan 2024 11:46:20 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 129126773D;
+	Tue, 30 Jan 2024 11:49:06 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="GueB1uq5"
+	dkim=pass (2048-bit key) header.d=9elements.com header.i=@9elements.com header.b="Lze2ElgB"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-pl1-f181.google.com (mail-pl1-f181.google.com [209.85.214.181])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E0E526BB2C;
-	Tue, 30 Jan 2024 11:46:19 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 880EB67749
+	for <devicetree@vger.kernel.org>; Tue, 30 Jan 2024 11:49:04 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.181
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1706615180; cv=none; b=I1U4FqpLzarprCW03wiRa0oqhseUSO6reuU2miZm+36mlPfE0kxHMhRG6c0Qd20KwsXXXbSkx/W/dHNDoqlEJnRq303DHd04ZKHIkt0fbNtJrPyEVmxsofyBpG+D7Ht322IHMWnbwe0xYcjzQN+mVgarW8LgmbwiXWvlHD4vQBM=
+	t=1706615346; cv=none; b=ZUoAEivxk842y4mV6bvLC1gs7h9xYCK5uWQj6K6TqYLuEqTbaKuV7382fiA0LuYF8hy+PtS93at7RobOmQLvskqfnvuM0qthlktxPW7Cs3mlf4WdvrgTHqLoBO0CxnR7DLSv7koAaXfT6fdFN6panJgkVVsTM1fTs6TJNitp66k=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1706615180; c=relaxed/simple;
-	bh=06r+eoDIdb0wUNK9nK1o7FDcwKFdTlsuHuRKweLT1c4=;
-	h=From:To:Cc:Subject:In-Reply-To:References:Date:Message-ID:
-	 MIME-Version:Content-Type; b=TP1WCV2mqilf35Y8LGnCFcXHh/DLBOR2L72iiLQMsgvQZc4EzZv3C9CKO9Bh4/0y9BBc9SIlW5qO5eu3gMSiostjPt2uRiX65JrdnQxucCUg96360oifWSOs11N7VgeLxiKSmnvLkHxdMMWqpDuVJj3nORGsDyyWyEu5BzdeKos=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=GueB1uq5; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 08963C43390;
-	Tue, 30 Jan 2024 11:46:18 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1706615179;
-	bh=06r+eoDIdb0wUNK9nK1o7FDcwKFdTlsuHuRKweLT1c4=;
-	h=From:To:Cc:Subject:In-Reply-To:References:Date:From;
-	b=GueB1uq5VGej0m02UI0z6szNNF68tqP4GszcsjFOcw63xgdIneA5HtrM61SmR5G1N
-	 qktGiqME3S+1Y0PEjqFDj2Zvdm79wGhhUtSSuFxc0uoOpNSKAND8GN5r5D6VctVrr6
-	 FtcA34kp6rgV7zHn510vSmqNLGCns4S6qh6Jb27so0QrVL+oYtx4Bi2IOGBAa8qA6q
-	 +kWsj9IQAi9WRO0/wSuiQrI/c+QXXREzkPQW5h/Qffj00WPpkb0+WNxE2omlQE1qU8
-	 T3KZuavUIGgRulenfQ+iDBYvihanGQ9iUUVyG4mjOMkxyMD5HuylFg899ls+EkKVg2
-	 yxxXuoVZgb60A==
-From: =?utf-8?B?QmrDtnJuIFTDtnBlbA==?= <bjorn@kernel.org>
-To: Anup Patel <apatel@ventanamicro.com>
-Cc: Palmer Dabbelt <palmer@dabbelt.com>, Paul Walmsley
- <paul.walmsley@sifive.com>, Thomas Gleixner <tglx@linutronix.de>, Rob
- Herring <robh+dt@kernel.org>, Krzysztof Kozlowski
- <krzysztof.kozlowski+dt@linaro.org>, Frank Rowand
- <frowand.list@gmail.com>, Conor Dooley <conor+dt@kernel.org>,
- devicetree@vger.kernel.org, Saravana Kannan <saravanak@google.com>, Marc
- Zyngier <maz@kernel.org>, Anup Patel <anup@brainfault.org>,
- linux-kernel@vger.kernel.org, Atish Patra <atishp@atishpatra.org>,
- linux-riscv@lists.infradead.org, linux-arm-kernel@lists.infradead.org,
- Andrew Jones <ajones@ventanamicro.com>
-Subject: Re: [PATCH v12 00/25] Linux RISC-V AIA Support
-In-Reply-To: <CAK9=C2UYCKUBKggtM606orH2mBu_AbTdB5-R5AP1M0t-LsEbEQ@mail.gmail.com>
-References: <20240127161753.114685-1-apatel@ventanamicro.com>
- <87r0hzuw87.fsf@all.your.base.are.belong.to.us>
- <87le87uulb.fsf@all.your.base.are.belong.to.us>
- <CAK9=C2UYCKUBKggtM606orH2mBu_AbTdB5-R5AP1M0t-LsEbEQ@mail.gmail.com>
-Date: Tue, 30 Jan 2024 12:46:16 +0100
-Message-ID: <87cytjvybb.fsf@all.your.base.are.belong.to.us>
+	s=arc-20240116; t=1706615346; c=relaxed/simple;
+	bh=djJj9XRuv56D+Yf0tvte/Y0cLXHAVntDU34fYEL78oQ=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=WHrHKm4xMDcTT+xeBbuQ+NUt8h6qAAMuUw1mvyqj+50GKNEcVGb2o8GINun8xadm9jqaMhuqkTZTIvosqd3N6B9wV+wV6u8Ds+9rBp27KzgmmJS57Zd7Us57TG1X2wvUWhgMm7k9hBK3b2W9iwOiJ4M61dtuhxQYGrxdzeZwDC4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=9elements.com; spf=pass smtp.mailfrom=9elements.com; dkim=pass (2048-bit key) header.d=9elements.com header.i=@9elements.com header.b=Lze2ElgB; arc=none smtp.client-ip=209.85.214.181
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=9elements.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=9elements.com
+Received: by mail-pl1-f181.google.com with SMTP id d9443c01a7336-1d911dac3dcso2275465ad.0
+        for <devicetree@vger.kernel.org>; Tue, 30 Jan 2024 03:49:04 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=9elements.com; s=google; t=1706615344; x=1707220144; darn=vger.kernel.org;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=Y/i4SzQBJoQr/W4/YDTog7lCCv9zfgdmkWanXeduZ2I=;
+        b=Lze2ElgBX2tXPOvb0d3CaA+Z5+31LuiWq7aoIXScg9+N89zoJ+LRi7iv/cEigbPMgb
+         E8bFqKjLQ0BSY0sJ0zg9LRcus2vOfa8VkLXM3ML1zyOzL5AI+JCAZaAE9eqpYtD7G6oJ
+         hpKNUKnFliya23fgSerjr0tKCd7KYVZT6C+Qaa3YaRwZVJsszroiDGQe+Q5qPpnEk4gV
+         dChpG/MCF3ooP4YczpbZlSTi2LKMsaW5RJc1ulPqkuKR4BnoBGCOF0JshVfs/NtfsuAZ
+         CrnnHxx/IDPT6ka1nYM806+bkauCel42Mgqc0Eiy5jE4oIXNqFaBb3b8YKpjzyW8CdYK
+         FIvw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1706615344; x=1707220144;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=Y/i4SzQBJoQr/W4/YDTog7lCCv9zfgdmkWanXeduZ2I=;
+        b=tyzTJuWTrCjFk5hsqaBuWLOnNirH9vRwCXPJ9YBNoIQN0Q+JM2mtyyRj+d4n8SqYAq
+         Qoskri4Csp3pjx2J9REt1MlMNImTPX2tpdxOEh6zIStPDE9v+9G+HmF9+CoifooKarb0
+         KKRp2O4mMECqxr1A3eYEiiOGGnZhXnN0uNB0zK8DgRYZEHtFdfVNMo8hIVqWU/QFf7Al
+         KDhHkPc2iKs0i/tg8IxquRoLA1Wb+L0N5hlGAM5uY7+V1y3vf7fADP18HsbNQxy1kLrv
+         tXHX6cIZS4qeHNMPStqa4UuqhTVTjfEf099Kf9GLKwieUzfXQUYX/BEhB+nqVWf0sow+
+         BcPg==
+X-Gm-Message-State: AOJu0Yx+z5iVH/84kTi4hj3JbFG9M+Fs4STNMk9bk6FaF7yXh/DfdxMm
+	DY9IOxjfXn7FxWQlNscMHiX4OyGzJrJEUADwjm7Kf4ScDaZKLspt5KlHDa0fBtxOnFTParhXmyX
+	kJd6gXeEIkJEjbKnAe7Io6KoV8sMm31y6lxEG3Q==
+X-Google-Smtp-Source: AGHT+IH77ZXfkrGtYR4l5SkakOL1AXdRhX+06Z4lEU8XqFeiImXFjxCQGZeFc+X+5lQM13TrnKG+PTTtrEkaQCnpWRk=
+X-Received: by 2002:a17:90a:cc06:b0:295:3d98:68fd with SMTP id
+ b6-20020a17090acc0600b002953d9868fdmr1399215pju.28.1706615343870; Tue, 30 Jan
+ 2024 03:49:03 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: quoted-printable
+References: <20240130111830.4016002-1-naresh.solanki@9elements.com> <49bb7b5b-4186-83cc-7e1e-4892c7e8b6ef@axentia.se>
+In-Reply-To: <49bb7b5b-4186-83cc-7e1e-4892c7e8b6ef@axentia.se>
+From: Naresh Solanki <naresh.solanki@9elements.com>
+Date: Tue, 30 Jan 2024 17:18:53 +0530
+Message-ID: <CABqG17g70GDU3_DbJbEnu4-9a3aJBSFFXuYKBEG8MJpVfOjMGg@mail.gmail.com>
+Subject: Re: [PATCH v2] dt-bindings: iio: afe: voltage-divider: Add io-channel-cells
+To: Peter Rosin <peda@axentia.se>
+Cc: Jonathan Cameron <jic23@kernel.org>, Lars-Peter Clausen <lars@metafoo.de>, Rob Herring <robh+dt@kernel.org>, 
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, 
+	mazziesaccount@gmail.com, linux-iio@vger.kernel.org, 
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
 
-Anup Patel <apatel@ventanamicro.com> writes:
+Hi Peter,
 
-> On Tue, Jan 30, 2024 at 1:22=E2=80=AFPM Bj=C3=B6rn T=C3=B6pel <bjorn@kern=
-el.org> wrote:
->>
->> Bj=C3=B6rn T=C3=B6pel <bjorn@kernel.org> writes:
->>
->> > Anup Patel <apatel@ventanamicro.com> writes:
->> >
->> >> The RISC-V AIA specification is ratified as-per the RISC-V internatio=
-nal
->> >> process. The latest ratified AIA specifcation can be found at:
->> >> https://github.com/riscv/riscv-aia/releases/download/1.0/riscv-interr=
-upts-1.0.pdf
->> >>
->> >> At a high-level, the AIA specification adds three things:
->> >> 1) AIA CSRs
->> >>    - Improved local interrupt support
->> >> 2) Incoming Message Signaled Interrupt Controller (IMSIC)
->> >>    - Per-HART MSI controller
->> >>    - Support MSI virtualization
->> >>    - Support IPI along with virtualization
->> >> 3) Advanced Platform-Level Interrupt Controller (APLIC)
->> >>    - Wired interrupt controller
->> >>    - In MSI-mode, converts wired interrupt into MSIs (i.e. MSI genera=
-tor)
->> >>    - In Direct-mode, injects external interrupts directly into HARTs
->> >>
->> >> For an overview of the AIA specification, refer the AIA virtualization
->> >> talk at KVM Forum 2022:
->> >> https://static.sched.com/hosted_files/kvmforum2022/a1/AIA_Virtualizat=
-ion_in_KVM_RISCV_final.pdf
->> >> https://www.youtube.com/watch?v=3Dr071dL8Z0yo
->> >>
->> >> To test this series, use QEMU v7.2 (or higher) and OpenSBI v1.2 (or h=
-igher).
->> >>
->> >> These patches can also be found in the riscv_aia_v12 branch at:
->> >> https://github.com/avpatel/linux.git
->> >>
->> >> Changes since v11:
->> >>  - Rebased on Linux-6.8-rc1
->> >>  - Included kernel/irq related patches from "genirq, irqchip: Convert=
- ARM
->> >>    MSI handling to per device MSI domains" series by Thomas.
->> >>    (PATCH7, PATCH8, PATCH9, PATCH14, PATCH16, PATCH17, PATCH18, PATCH=
-19,
->> >>     PATCH20, PATCH21, PATCH22, PATCH23, and PATCH32 of
->> >>     https://lore.kernel.org/linux-arm-kernel/20221121135653.208611233=
-@linutronix.de/)
->> >>  - Updated APLIC MSI-mode driver to use the new WIRED_TO_MSI mechanis=
-m.
->> >>  - Updated IMSIC driver to support per-device MSI domains for PCI and
->> >>    platform devices.
->> >
->> > Thanks for working on this, Anup! I'm still reviewing the patches.
->> >
->> > I'm hitting a boot hang in text patching, with this series applied on
->> > 6.8-rc2. IPI issues?
->>
->> Not text patching! One cpu spinning in smp_call_function_many_cond() and
->> the others are in cpu_relax(). Smells like IPI...
+
+On Tue, 30 Jan 2024 at 17:12, Peter Rosin <peda@axentia.se> wrote:
 >
-> I tried bootefi from U-Boot multiple times but can't reproduce the
-> issue you are seeing.
+> Hi!
+>
+> 2024-01-30 at 12:18, Naresh Solanki wrote:
+> > voltage-divider is always an iio consumer at the same time it is
+> > optionally an iio provider.
+> > Hence add #io-channel-cells
+> > Also update example.
+> >
+> > Signed-off-by: Naresh Solanki <naresh.solanki@9elements.com>
+> > ---
+> >  .../bindings/iio/afe/voltage-divider.yaml          | 14 +++++++++++++-
+> >  1 file changed, 13 insertions(+), 1 deletion(-)
+> >
+> > diff --git a/Documentation/devicetree/bindings/iio/afe/voltage-divider.yaml b/Documentation/devicetree/bindings/iio/afe/voltage-divider.yaml
+> > index dddf97b50549..09f10d7c4e02 100644
+> > --- a/Documentation/devicetree/bindings/iio/afe/voltage-divider.yaml
+> > +++ b/Documentation/devicetree/bindings/iio/afe/voltage-divider.yaml
+> > @@ -39,6 +39,13 @@ properties:
+> >      description: |
+> >        Channel node of a voltage io-channel.
+> >
+> > +  '#io-channel-cells':
+> > +    description:
+> > +      In addition to consuming the measurement services of an ADC,
+>
+> It doesn't really need to be an ADC. Anything with a voltage output
+> channel works (in theory). But sure, normally it would be an ADC...
+Ack
+>
+> > +      the voltage divider can act as an provider of measurement
+>
+> a provider
+Ack
 
-Thanks! I can reproduce without EFI, and simpler command-line:
+Will update as:
+  '#io-channel-cells':
+    description:
+      In addition to consuming the measurement services of an a voltage output
+      channel the voltage divider can act as a provider of measurement
+      services to other devices.
+    const: 1
 
-qemu-system-riscv64 \
-  -bios /path/to/fw_dynamic.bin \
-  -kernel /path/to/Image \
-  -append 'earlycon console=3Dtty0 console=3DttyS0' \
-  -machine virt,aia=3Daplic-imsic \
-  -no-reboot -nodefaults -nographic \
-  -smp 4 \
-  -object rng-random,filename=3D/dev/urandom,id=3Drng0 \
-  -device virtio-rng-device,rng=3Drng0 \
-  -m 4G -chardev stdio,id=3Dchar0 -serial chardev:char0
-
-I can reproduce with your upstream riscv_aia_v12 plus the config in the
-gist [1], and all latest QEMU/OpenSBI:
-
-QEMU: 11be70677c70 ("Merge tag 'pull-vfio-20240129' of https://github.com/l=
-egoater/qemu into staging")
-OpenSBI: bb90a9ebf6d9 ("lib: sbi: Print number of debug triggers found")
-Linux: d9b9d6eb987f ("MAINTAINERS: Add entry for RISC-V AIA drivers")
-
-Removing ",aia=3Daplic-imsic" from the CLI above completes the boot (i.e.
-panicking about missing root mount ;-))
-
-
-Bj=C3=B6rn
-
-[1] https://gist.githubusercontent.com/bjoto/bac563e6dcaab68dba1a5eaf675d51=
-aa/raw/ff6208fb17f27819dbe97ace7d034f385d2db657/gistfile1.txt
-
-
+Regards,
+Naresh
+>
+> Cheers,
+> Peter
+>
+> > +      services to other devices.
+> > +    const: 1
+> > +
+> >    output-ohms:
+> ...
 
