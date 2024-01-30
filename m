@@ -1,136 +1,189 @@
-Return-Path: <devicetree+bounces-36524-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-36525-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id E58F2841A8E
-	for <lists+devicetree@lfdr.de>; Tue, 30 Jan 2024 04:32:32 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id B9DCC841A9B
+	for <lists+devicetree@lfdr.de>; Tue, 30 Jan 2024 04:38:27 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 87317B22CB7
-	for <lists+devicetree@lfdr.de>; Tue, 30 Jan 2024 03:32:30 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 18DF5B20EF7
+	for <lists+devicetree@lfdr.de>; Tue, 30 Jan 2024 03:38:25 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B3454376F4;
-	Tue, 30 Jan 2024 03:32:24 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 014F4374F8;
+	Tue, 30 Jan 2024 03:38:19 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=chromium.org header.i=@chromium.org header.b="PrBSYoKc"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="Hg4RGQvh"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lj1-f180.google.com (mail-lj1-f180.google.com [209.85.208.180])
+Received: from mail-pg1-f169.google.com (mail-pg1-f169.google.com [209.85.215.169])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CF508374C9
-	for <devicetree@vger.kernel.org>; Tue, 30 Jan 2024 03:32:22 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.180
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4F2E1374D2
+	for <devicetree@vger.kernel.org>; Tue, 30 Jan 2024 03:38:17 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.215.169
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1706585544; cv=none; b=AQ95HGtMP5z21dumj3jNKHkhdjUfEjIkjpbKuBpmdlR6A/c3UmYx2FCH93I4ovFC7LAbOjAPNRAukcadi92isjJsekWlj3yE5duf/nniGJjtviliJV8tW6ZDIUeCl5t4sCufS/w38aAaa8snQbVP8Qw5nFUzW2fU06Gp5Sc5AWg=
+	t=1706585898; cv=none; b=KEB6z9qyfFeYRZrGANjTloWwuVA1q1ImrNa+N4V8gFpGn4AcLdiD6kebl3P3x80rTaGzZjePk5eXbaCPsedsW+z8XpIdDpHUI2zkOkfuGylXVxFSTRf5DDCTV6qQEHf6QIsLKKRpTi1mInQuwihGvD5H12s6b3P6J6toFPQI5xE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1706585544; c=relaxed/simple;
-	bh=ELYmV9fmW0xc+1ZcDD0YMB3ZtknbgobJp7j2bqTa+U4=;
+	s=arc-20240116; t=1706585898; c=relaxed/simple;
+	bh=fo5PvMLWrFsWQEOda98OGIIezzX46PnthpzuIZiwQ1k=;
 	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=URUgD49MiqYW13DO99yRegasICZaEOt8JSyXfVn8uUl4Yg/qtL3sEya6/1nthMNyLENN8fh7jZ/bzrzTzCvqXmbZhgNMRwmCiTZtqeLFGLtVCYTxNRhALcKR5+j0BQJ2BV/u73+EglOoI3MkDJ6v4iK1fK26AeJPVi19KTCoXcs=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=chromium.org; spf=pass smtp.mailfrom=chromium.org; dkim=pass (1024-bit key) header.d=chromium.org header.i=@chromium.org header.b=PrBSYoKc; arc=none smtp.client-ip=209.85.208.180
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=chromium.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=chromium.org
-Received: by mail-lj1-f180.google.com with SMTP id 38308e7fff4ca-2cf591b5db7so29463901fa.2
-        for <devicetree@vger.kernel.org>; Mon, 29 Jan 2024 19:32:22 -0800 (PST)
+	 To:Cc:Content-Type; b=GXd2DI+9eNTmdPLhlwFRcLfGm6QRhUUzsjHd/SaGi6IFAN5R8MKUyKkl7Za63rP/B/ZfB3gKK8GievSBtlYiU1Ebmzx/MiuumXPed04ANDV9zEF3pbhbdnIIiwLBZLax1G63FxjY4JhqHWJ6vKBIbAme6MuyUYvQ38zrRsBkQ+o=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=Hg4RGQvh; arc=none smtp.client-ip=209.85.215.169
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-pg1-f169.google.com with SMTP id 41be03b00d2f7-5d8b887bb0cso2117066a12.2
+        for <devicetree@vger.kernel.org>; Mon, 29 Jan 2024 19:38:17 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google; t=1706585541; x=1707190341; darn=vger.kernel.org;
+        d=linaro.org; s=google; t=1706585896; x=1707190696; darn=vger.kernel.org;
         h=content-transfer-encoding:cc:to:subject:message-id:date:from
          :in-reply-to:references:mime-version:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=HVSWuVPedMZ0hCiYeV6t6vWEzmV0Yu6IxhjiX+iJPeQ=;
-        b=PrBSYoKcl+2yXGVfHd9QXPj4LHFMHrXqGcqU6sb5a4ihQp+TV2fM+BCIuym/mXjN5B
-         LN6ZnvtahpuPr4J0CqRMglpaMbsZ/bk0ZGCp3IEU2xpJ/hSvjaRdRIN92/ckf6Sp8Mn9
-         L5Y5YXSl6Y/UhaINzAgNvl9NK5iECJjFqS7PA=
+        bh=ZY/tF10Vv+/aL8tVviY2SYgV3POcMq50c4gtfxwLluU=;
+        b=Hg4RGQvh2XZoBXyGuxf8LpETzO7apgmtzUKev5tyIBv4W6qvya/POp+PzdckckAm9S
+         ac16sXCnPKVrmx4Bx/HhQbJ6FVrKC5iidaC8FlNXiXsctRWpDu1+mM1foLZKlZP6gYYH
+         QwWlvgLchVt1IzJQUxbGgMcqwZ9agB5yBAbyIh3gp17BebBII1ImsO7LZkJkZc4Q+q4Z
+         bGQVgWaGfPwaLmer5CTsREjiJm/+Zquzny0oHmsVcGEbjnDbtDYB1N/1cECG551MenQu
+         fjvgJBi+Z4+NVRF3UT4ZNV1Go6B+ajhTXfHb+HYTM8ZDjzWygr+6aBWPcTMerYDsoihR
+         8g8g==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1706585541; x=1707190341;
+        d=1e100.net; s=20230601; t=1706585896; x=1707190696;
         h=content-transfer-encoding:cc:to:subject:message-id:date:from
          :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=HVSWuVPedMZ0hCiYeV6t6vWEzmV0Yu6IxhjiX+iJPeQ=;
-        b=SkZgCnvifvx2pVjf0KMBUoMchLNWmX+hMrc4vIHZ0djBKDh5wJ8w8AvjN8402ykCJ0
-         ruqQxxAmm8Hq1zJLbDwLuCOsWrpBbNqQOEiY/vLZ12YA8JllpCT0Qt/sQ2Sk44v5rfAa
-         m5QX6gO5WQ8ariXzzU9okZdJx1RHpXgKpgsYsUPQAQoJ10e3b6ygCvUgPaqU564pHM4N
-         Kyqg5EFPJIS9MD0fg+NFz5HY7HVo5nOpNNciuR8m+ZgKqtqVPvvb9FaX5Gpk8AcpPPKW
-         rvrpYsddYJKmZjg4BcU2NsaiCiO/cMKMLrDVEdWJLppVkY/8L3m/9l9pigEsD7bDqZZN
-         4Siw==
-X-Gm-Message-State: AOJu0Yz5fTeGGM6QK0udPu49frHj84ZX8uxkigJykOdkISETXatKtAI4
-	IQVfdOTCY3BivMs7m/rL68szVNLIKBmyr1B8gkMIujqPLP/i134+CslQhZ2Lgnedgn3WBzZs3Id
-	87vfH5L/wmhPu+I2VtMQygcuar2y7dGI78lTP
-X-Google-Smtp-Source: AGHT+IHxJ9h0TpEGL+1arI5K15dK7ZMfTGGFT7sxI5crnwlEMm10GtDatZbLxi1ebhRtIB1BUsGi7EDALv4X9Wo6UoA=
-X-Received: by 2002:a2e:8496:0:b0:2cf:34b4:63de with SMTP id
- b22-20020a2e8496000000b002cf34b463demr4704323ljh.35.1706585540108; Mon, 29
- Jan 2024 19:32:20 -0800 (PST)
+        bh=ZY/tF10Vv+/aL8tVviY2SYgV3POcMq50c4gtfxwLluU=;
+        b=jocvr/8J2iwb6fz1xt0cViMUZIlAwBViEJihFMF/4BaTjSiGn5ZDxLW+09gloeBB0j
+         p/0uBeUH2iNpEvpJRE6JIcJ5KWh3GW/LJUrmbVp0WcbbolTq7R+dqjUZT6pOM/tGCopv
+         ZBW1kNSDOE1SanpR0/UceCgDv19DBE7kF5CsmnQoc/C0xFGTV2gcIlOkjghikemnkzlV
+         SrfGndPYQ3GRLlIm1CJ6InjnkITad/Vcktvg/UliWIBkhnI9uobmpu7MGi2JfP6V4eHY
+         T/pfCRwDySY1e8gxQ67I758zeBiejpMtWPwKk0HQ18au+AOalgGz+DGJkImyOj918Kxc
+         V8Xg==
+X-Gm-Message-State: AOJu0YxKfeo/8b9TQlM6vqvrAbtM8N1XnzHWwh9GeQFK6uO8RwG15sni
+	mUlel1/A6jlrb0e+/QMTA1Ty39U6v2o24gZzlsD/iey5bGjTlPGmjGm8OUqfzIo/b+KbrFR7jyG
+	6z7wclUojqujnEBM2chIn0cOxzZ0Q0fjDM0pdsA==
+X-Google-Smtp-Source: AGHT+IEihhk8AfPxFxT8YQVFb/9crEK/g4hwYNCrgkb/E0Uo+rbxon7X9Rct3MIs3gHVHvGBeWqr8rdxgDF7bqfAHNU=
+X-Received: by 2002:a05:6a20:c411:b0:19c:7f23:c062 with SMTP id
+ en17-20020a056a20c41100b0019c7f23c062mr5875905pzb.14.1706585896555; Mon, 29
+ Jan 2024 19:38:16 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20240126063500.2684087-1-wenst@chromium.org> <20240126063500.2684087-2-wenst@chromium.org>
- <74b9f249-fcb4-4338-bf7b-8477de6c935c@linaro.org> <CAGXv+5Hu+KsTBd1JtnKcaE3qUzPhHbunoVaH2++yfNopHtFf4g@mail.gmail.com>
- <21568334-b21f-429e-81cd-5ce77accaf3c@linaro.org>
-In-Reply-To: <21568334-b21f-429e-81cd-5ce77accaf3c@linaro.org>
-From: Chen-Yu Tsai <wenst@chromium.org>
-Date: Tue, 30 Jan 2024 11:32:09 +0800
-Message-ID: <CAGXv+5HxXzjigN3Bp96vkv71WfTJ1S2b7Wgafc4GxLmhu6+jMg@mail.gmail.com>
-Subject: Re: [PATCH v2 1/2] dt-bindings: net: bluetooth: Add MediaTek MT7921S
- SDIO Bluetooth
-To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Cc: Marcel Holtmann <marcel@holtmann.org>, Luiz Augusto von Dentz <luiz.dentz@gmail.com>, 
-	Rob Herring <robh+dt@kernel.org>, 
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Matthias Brugger <matthias.bgg@gmail.com>, 
-	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>, 
-	Sean Wang <sean.wang@mediatek.com>, linux-bluetooth@vger.kernel.org, 
-	netdev@vger.kernel.org, linux-mediatek@lists.infradead.org, 
-	devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
-	linux-kernel@vger.kernel.org
+References: <20240129211912.3068411-1-peter.griffin@linaro.org>
+ <20240129211912.3068411-3-peter.griffin@linaro.org> <CAGETcx8UsseQAHc76QaMxgMUe7cwajZVdYLA2uwpZxF90RLjJQ@mail.gmail.com>
+In-Reply-To: <CAGETcx8UsseQAHc76QaMxgMUe7cwajZVdYLA2uwpZxF90RLjJQ@mail.gmail.com>
+From: Sam Protsenko <semen.protsenko@linaro.org>
+Date: Mon, 29 Jan 2024 21:38:05 -0600
+Message-ID: <CAPLW+4mG2RkUgDbBBzrgCAW3covbr9eCQEFje1pYxj2hzVykug@mail.gmail.com>
+Subject: Re: [PATCH v2 2/2] watchdog: s3c2410_wdt: use exynos_get_pmu_regmap_by_phandle()
+ for PMU regs
+To: Saravana Kannan <saravanak@google.com>, Peter Griffin <peter.griffin@linaro.org>
+Cc: arnd@arndb.de, krzysztof.kozlowski@linaro.org, linux@roeck-us.net, 
+	wim@linux-watchdog.org, alim.akhtar@samsung.com, jaewon02.kim@samsung.com, 
+	kernel-team@android.com, tudor.ambarus@linaro.org, andre.draszik@linaro.org, 
+	willmcvicker@google.com, linux-fsd@tesla.com, linux-watchdog@vger.kernel.org, 
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+	linux-arm-kernel@lists.infradead.org, linux-samsung-soc@vger.kernel.org
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-On Mon, Jan 29, 2024 at 3:34=E2=80=AFPM Krzysztof Kozlowski
-<krzysztof.kozlowski@linaro.org> wrote:
+On Mon, Jan 29, 2024 at 4:25=E2=80=AFPM Saravana Kannan <saravanak@google.c=
+om> wrote:
 >
-> On 29/01/2024 04:38, Chen-Yu Tsai wrote:
->
-> >>> +allOf:
-> >>> +  - $ref: bluetooth-controller.yaml#
-> >>> +
-> >>> +properties:
-> >>> +  compatible:
-> >>> +    enum:
-> >>> +      - mediatek,mt7921s-bluetooth
-> >>
-> >> Can it be also WiFi on separate bus? How many device nodes do you need
-> >> for this device?
+> On Mon, Jan 29, 2024 at 1:19=E2=80=AFPM Peter Griffin <peter.griffin@lina=
+ro.org> wrote:
 > >
-> > For the "S" variant, WiFi is also on SDIO. For the other two variants,
-> > "U" and "E", WiFi goes over USB and PCIe respectively. On both those
-> > variants, Bluetooth can either go over USB or UART. That is what I
-> > gathered from the pinouts. There are a dozen GPIO pins which don't
-> > have detailed descriptions though. If you want a comprehensive
-> > binding of the whole chip and all its variants, I suggest we ask
-> > MediaTek to provide it instead. My goal with the binding is to document
-> > existing usage and allow me to upstream new device trees.
+> > Obtain the PMU regmap using the new API added to exynos-pmu driver rath=
+er
+> > than syscon_regmap_lookup_by_phandle(). As this driver no longer depend=
+s
+> > on mfd syscon remove that header and Kconfig dependency.
 > >
-> > For now we only need the Bluetooth node. The WiFi part is perfectly
-> > detectable, and the driver doesn't seem to need the WiFi reset pin.
-> > The Bluetooth driver only uses its reset pin to reset a hung controller=
-.
+> > Signed-off-by: Peter Griffin <peter.griffin@linaro.org>
+> > ---
+> >  drivers/watchdog/Kconfig       | 1 -
+> >  drivers/watchdog/s3c2410_wdt.c | 9 +++++----
+> >  2 files changed, 5 insertions(+), 5 deletions(-)
+> >
+> > diff --git a/drivers/watchdog/Kconfig b/drivers/watchdog/Kconfig
+> > index 7d22051b15a2..d78fe7137799 100644
+> > --- a/drivers/watchdog/Kconfig
+> > +++ b/drivers/watchdog/Kconfig
+> > @@ -512,7 +512,6 @@ config S3C2410_WATCHDOG
+> >         tristate "S3C6410/S5Pv210/Exynos Watchdog"
+> >         depends on ARCH_S3C64XX || ARCH_S5PV210 || ARCH_EXYNOS || COMPI=
+LE_TEST
+> >         select WATCHDOG_CORE
+> > -       select MFD_SYSCON if ARCH_EXYNOS
+
+That reminds me: now that exynos-pmu driver uses regmap API, does it
+make sense to add something like "select REGMAP" to EXYNOS_PMU option?
+
+> >         help
+> >           Watchdog timer block in the Samsung S3C64xx, S5Pv210 and Exyn=
+os
+> >           SoCs. This will reboot the system when the timer expires with
+> > diff --git a/drivers/watchdog/s3c2410_wdt.c b/drivers/watchdog/s3c2410_=
+wdt.c
+> > index 349d30462c8c..a1e2682c7e57 100644
+> > --- a/drivers/watchdog/s3c2410_wdt.c
+> > +++ b/drivers/watchdog/s3c2410_wdt.c
+> > @@ -24,9 +24,9 @@
+> >  #include <linux/slab.h>
+> >  #include <linux/err.h>
+> >  #include <linux/of.h>
+> > -#include <linux/mfd/syscon.h>
+> >  #include <linux/regmap.h>
+> >  #include <linux/delay.h>
+> > +#include <linux/soc/samsung/exynos-pmu.h>
+> >
+> >  #define S3C2410_WTCON          0x00
+> >  #define S3C2410_WTDAT          0x04
+> > @@ -699,11 +699,12 @@ static int s3c2410wdt_probe(struct platform_devic=
+e *pdev)
+> >                 return ret;
+> >
+> >         if (wdt->drv_data->quirks & QUIRKS_HAVE_PMUREG) {
+> > -               wdt->pmureg =3D syscon_regmap_lookup_by_phandle(dev->of=
+_node,
+> > -                                               "samsung,syscon-phandle=
+");
+> > +
+> > +               wdt->pmureg =3D exynos_get_pmu_regmap_by_phandle(dev->o=
+f_node,
+> > +                                                "samsung,syscon-phandl=
+e");
 >
-> Then suffix "bluetooth" seems redundant.
 
-I think keeping the suffix makes more sense though. The chip is a two
-function piece, and this only targets one of the functions. Also, the
-compatible string is already used in an existing driver [1] and
-soon-to-be in-tree device tree [2].
+This looks so much better than approach taken in v1, as for my taste.
+For this patch:
 
+Reviewed-by: Sam Protsenko <semen.protsenko@linaro.org>
 
-ChenYu
+> IIUC, the exynos PMU driver is registering a regmap interface with
+> regmap framework. So, can't we get the remap from the framework
+> instead of directly talking to the PMU driver?
+>
 
-[1] https://elixir.bootlin.com/linux/latest/source/drivers/bluetooth/btmtks=
-dio.c#L1414
-[2] https://elixir.bootlin.com/linux/v6.8-rc1/source/arch/arm64/boot/dts/me=
-diatek/mt8183-kukui-jacuzzi-pico6.dts#L86
+Peter is basically re-implementing syscon driver with overridden
+operations, as a part of exynos-pmu driver, in previous patch. Which
+means syscon API can't be used anymore to obtain the regmap. Do you
+have particular API in mind that allows getting a random regmap
+registered with devm_regmap_init()?
+
+> -Saravana
+>
+> >                 if (IS_ERR(wdt->pmureg))
+> >                         return dev_err_probe(dev, PTR_ERR(wdt->pmureg),
+> > -                                            "syscon regmap lookup fail=
+ed.\n");
+> > +                                            "PMU regmap lookup failed.=
+\n");
+> >         }
+> >
+> >         wdt_irq =3D platform_get_irq(pdev, 0);
+> > --
+> > 2.43.0.429.g432eaa2c6b-goog
+> >
 
