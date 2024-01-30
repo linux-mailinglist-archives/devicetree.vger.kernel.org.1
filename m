@@ -1,158 +1,127 @@
-Return-Path: <devicetree+bounces-36789-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-36790-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id CC7E0842ACA
-	for <lists+devicetree@lfdr.de>; Tue, 30 Jan 2024 18:23:22 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id E2C3C842ADC
+	for <lists+devicetree@lfdr.de>; Tue, 30 Jan 2024 18:26:50 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 6E46B1F25238
-	for <lists+devicetree@lfdr.de>; Tue, 30 Jan 2024 17:23:22 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 9D0E628B029
+	for <lists+devicetree@lfdr.de>; Tue, 30 Jan 2024 17:26:49 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id EF1FC1292DE;
-	Tue, 30 Jan 2024 17:23:17 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 08344129A86;
+	Tue, 30 Jan 2024 17:26:46 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Xs+/G0Zi"
+	dkim=pass (1024-bit key) header.d=chromium.org header.i=@chromium.org header.b="TGmk8Bnb"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-io1-f41.google.com (mail-io1-f41.google.com [209.85.166.41])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C3B871292D0;
-	Tue, 30 Jan 2024 17:23:17 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7CB98128382
+	for <devicetree@vger.kernel.org>; Tue, 30 Jan 2024 17:26:44 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.166.41
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1706635397; cv=none; b=cjb+3gDwAd06cRpllP0eMkmvU4L3Ph+vAjeIqWnjNlzk2Rl+7EH+ABxxgZ6o0FdLvgrboayoYNXYPzxXELWuETI006KjCKblWwxy9nJCf0C8L2DNdito3yN+szdvKu7jREGtaTMxdhw0Cl7OjjvvHUx6cLI1b5FKCD9yU60Ap40=
+	t=1706635605; cv=none; b=sv5NxN8nFhu6X+6pUHtPZInZ/hXpKyiVRpUlUq9UIvJ0DJWbsnZz3becPMmUYOQjL/H744PzUgkIKtR6iad5FXLS3qYM3GcH4+peipPmIqOQm33i3Axgb+niOnsgKu9rAYudEn1ZkilXo/v4+vuSJGeyDiO2cOTog0izKFI5NFg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1706635397; c=relaxed/simple;
-	bh=VRfD3UKkyqM3D52QPTjY/kGlTpnyKjRRfLoiCClFqCw=;
+	s=arc-20240116; t=1706635605; c=relaxed/simple;
+	bh=tujS63Z3WTO3HL/gA030RreduT7A4LeLdFjqM6yXNnk=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=Nxagt4eybrHzEgGddip/1JE01dhtRK1XnT8DRRpOL/4DZ0Zt4FER69Brm6UwC9jXgSj7pJzIJyFWYJLiNEz8iaNxzmKgMorvDM78qfatMd+oWClkwKhwDtlJs9zGIO3GyEZmT1iQdxxduuUToqpQh7obVg+72AFYbhtjZaufd/k=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Xs+/G0Zi; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 10BA3C433F1;
-	Tue, 30 Jan 2024 17:23:14 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1706635397;
-	bh=VRfD3UKkyqM3D52QPTjY/kGlTpnyKjRRfLoiCClFqCw=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=Xs+/G0ZidSLCDpXPjUUl21Mh+E7xeHzv2SztdWr03WvUMz+qGUFiUwjkoollpGW4J
-	 dKEJCj6PF/MK60GsUMAv0l1yiyaChw1MZRYS+LV3oQsF7SGOqTcyGXhL/lnWrQOJzm
-	 lf24A8ULGBW8zVRzdwXWdhEn5BXG/p2EY5z47whD3e4XXcp0y2XIygPwvYGC4UfHhN
-	 SQDEkOpnkNz/W2LzNQCilnR4FTe+gCgA8I224x/9UvymXc24T4rlKzqIUd0mkNMMH9
-	 ByoDJjqMw7FCZIeBwFRy6WRqHjesUamxpm7cgpDaKITcLNUsg0Rjhrgd4QkZaeggHL
-	 tq63LRH8zgBDA==
-Date: Tue, 30 Jan 2024 17:23:12 +0000
-From: Conor Dooley <conor@kernel.org>
-To: Naresh Solanki <naresh.solanki@9elements.com>
-Cc: Peter Rosin <peda@axentia.se>, Jonathan Cameron <jic23@kernel.org>,
-	Lars-Peter Clausen <lars@metafoo.de>,
-	Rob Herring <robh+dt@kernel.org>,
+	 Content-Type:Content-Disposition:In-Reply-To; b=i7+PgpMjK6cQXcA/kJAhO6JfuRNz0d9RGLjjnZdHiOYHpBJpzOPZhHa0lJGSnAyabSMYLYcIMtSX2weCnPBC7ZULDHSgQr0xtpSdEaukwNsGtsllxs49gfNIrHF9rqkVGFdBcjENrVED3b/7yz6AY3wjilMBO3Y15pxXh7a0CBM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=chromium.org; spf=pass smtp.mailfrom=chromium.org; dkim=pass (1024-bit key) header.d=chromium.org header.i=@chromium.org header.b=TGmk8Bnb; arc=none smtp.client-ip=209.85.166.41
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=chromium.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=chromium.org
+Received: by mail-io1-f41.google.com with SMTP id ca18e2360f4ac-7bc32b04d16so184198639f.0
+        for <devicetree@vger.kernel.org>; Tue, 30 Jan 2024 09:26:44 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=chromium.org; s=google; t=1706635603; x=1707240403; darn=vger.kernel.org;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=XHEc5V/RfvIUcDqDPWtfK2Fbm134fj3EfnAyQgIeJsU=;
+        b=TGmk8BnbaburrtVf4hxBD9barLu3slCpIOTxK0I4oHi227NxZRGS1T5we2C2WFoANR
+         QIpUUJ5kOQiK12Y60RP6iV34x0aeYWLzP79OcH0lVZ9/b4IcHfDnHGZsYcQI28z482fH
+         AijkXdIKZCcnaKvzjIm1u7CPEJ+rliuo/1e1w=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1706635603; x=1707240403;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=XHEc5V/RfvIUcDqDPWtfK2Fbm134fj3EfnAyQgIeJsU=;
+        b=DLRi16c1vYTJ2vP+7oBe12PQ8m633qGbusvYu2uZpHj+Ax2VsNI1O7bKZ7xqt8Dd9M
+         juClCcLYGYUvDp4Jj9G6f0ibueglO7KhQmQjWkOvEscfQE6Qgfws91XdYuCtbL3CsGnJ
+         OgK5SReI3VH4Yu+74xndkwyRV10HWisbNwbkBosargK2eacwLv92OM2i7lW01icn7Heo
+         2QUteqR28SyZYjqvja1GvB72SCQWzlDcfWOEOnuhjiFz6Pn0SSF0G7oMc8UtiAjbFuK0
+         JqlcCZfVqxOtS6aHF7gE9wAlxchHgVxtsKHBXarJmTGhjRdgI1cFJrnYK7sO86z28i/A
+         U5gA==
+X-Gm-Message-State: AOJu0YzdKEu8mDuUGwbhBQWq5GuwT/vbMm1g1JFDhni5W6khIFsOMSJ5
+	2qDDVsbKaYCHQS2U7swgNLJwXG7tHfpFmN3ppq+GZWqNfncuHA/UK/wy1wmMkA==
+X-Google-Smtp-Source: AGHT+IFimfDfRCnK1E0ZunAlWv35M1YoVKRH2MzzR63F6QtSUlTwYNRe0SPuAy6cbeJgD5ssxgxk2w==
+X-Received: by 2002:a05:6602:1249:b0:7ba:c1d9:7664 with SMTP id o9-20020a056602124900b007bac1d97664mr8268582iou.20.1706635603591;
+        Tue, 30 Jan 2024 09:26:43 -0800 (PST)
+Received: from localhost (110.41.72.34.bc.googleusercontent.com. [34.72.41.110])
+        by smtp.gmail.com with UTF8SMTPSA id k28-20020a02335c000000b00470e7cd33acsm135832jak.27.2024.01.30.09.26.43
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 30 Jan 2024 09:26:43 -0800 (PST)
+Date: Tue, 30 Jan 2024 17:26:42 +0000
+From: Matthias Kaehlcke <mka@chromium.org>
+To: Greg Kroah-Hartman <gregkh@linuxfoundation.org>
+Cc: Javier Carrasco <javier.carrasco@wolfvision.net>,
+	Liam Girdwood <lgirdwood@gmail.com>,
+	Mark Brown <broonie@kernel.org>, Rob Herring <robh+dt@kernel.org>,
 	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>, mazziesaccount@gmail.com,
-	linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v3] dt-bindings: iio: afe: voltage-divider: Add
- io-channel-cells
-Message-ID: <20240130-abroad-repeater-7966f998e1f6@spud>
-References: <20240130115651.457800-1-naresh.solanki@9elements.com>
+	Conor Dooley <conor+dt@kernel.org>, linux-sound@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	linux-usb@vger.kernel.org
+Subject: Re: [PATCH 2/2] usb: misc: onboard_hub: add support for XMOS XVF3500
+Message-ID: <ZbkxUlFSKlUkcHaC@google.com>
+References: <20240130-onboard_xvf3500-v1-0-51b5398406cb@wolfvision.net>
+ <20240130-onboard_xvf3500-v1-2-51b5398406cb@wolfvision.net>
+ <ZbkfsVr-1pOTa1ic@google.com>
+ <2024013024-borax-enjoying-beb5@gregkh>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-	protocol="application/pgp-signature"; boundary="toQvdWVCqzr+Zex9"
+Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <20240130115651.457800-1-naresh.solanki@9elements.com>
+In-Reply-To: <2024013024-borax-enjoying-beb5@gregkh>
 
+On Tue, Jan 30, 2024 at 08:19:40AM -0800, Greg Kroah-Hartman wrote:
+> On Tue, Jan 30, 2024 at 04:11:29PM +0000, Matthias Kaehlcke wrote:
+> > Hi Javier,
+> > 
+> > I understand your motivation for using the onboard_usb_hub driver
+> > for powering up a non-hub device, it feels a bit hacky to use it
+> > as is though. Re-using the driver might be the right thing to do,
+> > but then it should probably be renamed to onboard_usb_dev (or
+> > similar) and do the hub specific bits as special case.
+> > 
+> > Greg, do you have any thoughts on this?
+> 
+> Yeah, this worries me, adding non-hub support to this driver feels odd.
 
---toQvdWVCqzr+Zex9
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+It is odd as long as this driver claims to be hub-specific, but truth
+is that the hub-specific bits are a small part of the driver, I think
+it might be worthwhile to consider adapting the driver to other devices
+if there is no clear better solution.
 
-Hey,
+A possible alternative could be a separate onboard_usb_dev driver for
+non-hub devices, with a similar structure as the onboard_hub driver,
+but without the hub-specific bits.
 
-On Tue, Jan 30, 2024 at 05:26:50PM +0530, Naresh Solanki wrote:
-> voltage-divider is always an iio consumer at the same time it is
-> optionally an iio provider.
-> Hence add #io-channel-cells
-> Also update example.
->=20
-> Signed-off-by: Naresh Solanki <naresh.solanki@9elements.com>
-> ---
->  .../bindings/iio/afe/voltage-divider.yaml          | 14 +++++++++++++-
->  1 file changed, 13 insertions(+), 1 deletion(-)
->=20
-> diff --git a/Documentation/devicetree/bindings/iio/afe/voltage-divider.ya=
-ml b/Documentation/devicetree/bindings/iio/afe/voltage-divider.yaml
-> index dddf97b50549..98fec8548cc3 100644
-> --- a/Documentation/devicetree/bindings/iio/afe/voltage-divider.yaml
-> +++ b/Documentation/devicetree/bindings/iio/afe/voltage-divider.yaml
-> @@ -39,6 +39,13 @@ properties:
->      description: |
->        Channel node of a voltage io-channel.
-> =20
-> +  '#io-channel-cells':
-> +    description:
-> +      In addition to consuming the measurement services of a voltage out=
-put
-> +      channel the voltage divider can act as a provider of measurement
-> +      services to other devices.
+> Why can't this all just be done in an individual driver for this device
+> itself?
 
-Did you miss:
-https://lore.kernel.org/all/20240127165542.6eeb23e9@jic23-huawei/
-Where I said that I would like to have an example of where this would be
-used in the description? Peter gave a good example that you can draw on.
+I suppose the reason is the good old chicken-egg situation that the (USB)
+driver is only instantiated after the device has bee powered on, which is
+what the driver is supposed to take care of. For the onboard_hub driver
+this was solved by having a platform driver that is instantiated by the
+parent hub if the onboard hub has a device tree entry. Probably something
+similar would be needed for an individual driver, and the generic hub
+driver would have to call the equivalent of onboard_hub_create_pdevs()
+for all drivers of this type (or a wrapper that does this).
 
-> +    const: 1
-> +
->    output-ohms:
->      description:
->        Resistance Rout over which the output voltage is measured. See ful=
-l-ohms.
-> @@ -75,12 +82,17 @@ examples:
->              spi-max-frequency =3D <1000000>;
->          };
->      };
-> -    sysv {
-> +    p12v_vd: sysv {
->          compatible =3D "voltage-divider";
->          io-channels =3D <&maxadc 1>;
-> +        #io-channel-cells =3D <1>;
-> =20
->          /* Scale the system voltage by 22/222 to fit the ADC range. */
->          output-ohms =3D <22>;
->          full-ohms =3D <222>; /* 200 + 22 */
->      };
-
-Blank line here please.
-
-Thanks,
-Conor.
-
-> +    iio-hwmon {
-> +        compatible =3D "iio-hwmon";
-> +        io-channels =3D <&p12v_vd 0>;
-> +    };
->  ...
->=20
-> base-commit: 861c0981648f5b64c86fd028ee622096eb7af05a
-> --=20
-> 2.42.0
->=20
-
---toQvdWVCqzr+Zex9
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZbkwgAAKCRB4tDGHoIJi
-0jh0AQCf42G+DhRYSRloF1zdFV1JWBEczufKUo+D/M8fqdW7EAEAgG/RyQdQq3a2
-vGwwXqVD8ZruqcgkkjX7oJJIcPhIcwE=
-=t3ag
------END PGP SIGNATURE-----
-
---toQvdWVCqzr+Zex9--
+m.
 
