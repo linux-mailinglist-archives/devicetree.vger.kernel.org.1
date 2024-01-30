@@ -1,310 +1,172 @@
-Return-Path: <devicetree+bounces-36719-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-36720-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id EE806842733
-	for <lists+devicetree@lfdr.de>; Tue, 30 Jan 2024 15:53:18 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id BFF0F842748
+	for <lists+devicetree@lfdr.de>; Tue, 30 Jan 2024 15:55:54 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 1EF031C2645A
-	for <lists+devicetree@lfdr.de>; Tue, 30 Jan 2024 14:53:18 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 7454F284450
+	for <lists+devicetree@lfdr.de>; Tue, 30 Jan 2024 14:55:53 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 72833823A0;
-	Tue, 30 Jan 2024 14:52:51 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 65B837E790;
+	Tue, 30 Jan 2024 14:55:49 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=redhat.com header.i=@redhat.com header.b="Bru1iKqG"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="Rwh4kn53"
 X-Original-To: devicetree@vger.kernel.org
-Received: from us-smtp-delivery-124.mimecast.com (us-smtp-delivery-124.mimecast.com [170.10.133.124])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-ed1-f43.google.com (mail-ed1-f43.google.com [209.85.208.43])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A47128002C
-	for <devicetree@vger.kernel.org>; Tue, 30 Jan 2024 14:52:49 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=170.10.133.124
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9D3B17CF2D;
+	Tue, 30 Jan 2024 14:55:47 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.43
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1706626371; cv=none; b=tDb2DzgDWu1/Wnisso5NL7KVgySLMDrSlZIenTSzrWboV+CZQSIiRlcxGQJ7AaX5UzFw96bQclExnf2maLnEyeYu5EuKPcN1ruwJrH3x5xnRuYuus5cphXJE2TM92WckW4HzLTH22UzThoj1Y/IaqS7ZbndVnVnlH1lnycFmkhE=
+	t=1706626549; cv=none; b=VaE/3L2z7GJ5fO2PsF95+mK4ClDhwMwQ5o1wpqst9/h1EHWWf5L/oQ2lyb5d/dCyeVvv3TZyN6Vrbizr7afdERSe+2TQjnM6IUZJ+D4TwFWRrgQSbKZGLdlVDXPHcY2eJCOLouetGWRtyHnOlfmjWFhdue4o4t12BCnOQH1Uh2Q=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1706626371; c=relaxed/simple;
-	bh=vSTH+qJFTV87gQKqkaHX5SCjGsU6KRFuGCr3IlFlsyE=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=Buku+QDx+dZ5+LMWvNNOByUIwqYuRJXqQ/0w91SWalOOo2E2vWKUrBlmDEs7r+HX1gYoqQ4le7OQ66iGVO/2u6PN2+rxoIz4owXvpqIrHfK2LF6NdcOzmTXESHGiErhDuT9YeMedrYEhd5PFM923m3t847x1fdJYvJcy1jTcr8A=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=redhat.com; spf=pass smtp.mailfrom=redhat.com; dkim=pass (1024-bit key) header.d=redhat.com header.i=@redhat.com header.b=Bru1iKqG; arc=none smtp.client-ip=170.10.133.124
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=redhat.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=redhat.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
-	s=mimecast20190719; t=1706626368;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 in-reply-to:in-reply-to:references:references;
-	bh=8zXIEHqxnF5x8fqME0EnzRwI4pZGwBIorp0Z18etWBg=;
-	b=Bru1iKqGIXSaHwgiOYKtDVlo+5Z9oTnN3z9vrkxlhyr+VfO9wCYBSjZ0qrM6hNH+ykKVuW
-	PEIbithmkb99oo6Cfja+PyIDFwP8Uxj0hsB5pCiu3xJlSDpSC1w/L5S2rK2Q6V8IZs6LWc
-	PHQKlBjpEAx2jmaUfZ0V/Zgi6Vya3Wk=
-Received: from mail-qt1-f198.google.com (mail-qt1-f198.google.com
- [209.85.160.198]) by relay.mimecast.com with ESMTP with STARTTLS
- (version=TLSv1.3, cipher=TLS_AES_256_GCM_SHA384) id
- us-mta-466-yiOUQPHVP22tGlqC351cXQ-1; Tue, 30 Jan 2024 09:52:47 -0500
-X-MC-Unique: yiOUQPHVP22tGlqC351cXQ-1
-Received: by mail-qt1-f198.google.com with SMTP id d75a77b69052e-42be2db4515so22231cf.1
-        for <devicetree@vger.kernel.org>; Tue, 30 Jan 2024 06:52:46 -0800 (PST)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1706626366; x=1707231166;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+	s=arc-20240116; t=1706626549; c=relaxed/simple;
+	bh=OGxm2l6+IjMuBaGBky+KQIZee+ckkPhgs3G0dlDBMRw=;
+	h=Message-ID:Date:MIME-Version:From:Subject:To:Cc:Content-Type; b=jWhCrt1cJMwrQcXjiD+jYE/Jh9npYhHPiM2cT5UNzzOwILURSr0UV5l2NBJ/8BFA6AuK1l6tRTdoiTWM4/T6IrjAWow1pkcqxzn1iyZJBJcFfM2gV/mQY8ch0mc/h4vJW37ODMJC9wkcco7G9IW6OM7+IdLrvouUOpeD/oTBkk8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=Rwh4kn53; arc=none smtp.client-ip=209.85.208.43
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-ed1-f43.google.com with SMTP id 4fb4d7f45d1cf-55c2cf644f3so4090126a12.1;
+        Tue, 30 Jan 2024 06:55:47 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1706626546; x=1707231346; darn=vger.kernel.org;
+        h=content-transfer-encoding:content-language:cc:to:subject:from
+         :user-agent:mime-version:date:message-id:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=8zXIEHqxnF5x8fqME0EnzRwI4pZGwBIorp0Z18etWBg=;
-        b=vEJ5SfD6oKJCUV13te9yIwYSd2ww1ME+A7UkvfxISKBgqwwo7T/kCCpMr3DAhANE6x
-         3ng3dVaFgunTYQaeo7yKESU8MzjXcosfkqwUhhUg3kAvm7/RFnkt1j36YEXa2w23F6pN
-         QRdfAkZMgWSpEN2VZRAOYtqqAe5EVsGI/k6GzCrw26r8CiSBBNNrD8OinjJ+GoMg4bOB
-         8JBUxZ9TSzdtlfTUAn0ERFlds3mVmdBMg+24AKe3sR+OVTj6zI3LQP08mTcV1DKW2D3B
-         g89SdGOLFpXP0dA9Lv9ey/01FPOE796k5YtALSTOxVZA3fZSsdW01aiO8OPnfpfRlMDr
-         eK3g==
-X-Gm-Message-State: AOJu0Yw7pZK1LHiDYco/2SZPpUMy6x0C/kXR5XZdBhoxfOcW3eJSGd7k
-	pFI/ryXJ+yRpY7YFO+Vuj7C3Zu7OI79bd8yGCscff7KU3tjJBVSv7ZjW4bBEhpLb+NAdMI16pTR
-	ldk1kRXr/OxTGIpqSIe/Qc0C1yC6Rux0Xo3fjhGrVNmU2iYhtIi6knDD43b4=
-X-Received: by 2002:a05:622a:58d:b0:42a:2c06:8d80 with SMTP id c13-20020a05622a058d00b0042a2c068d80mr8749395qtb.132.1706626366477;
-        Tue, 30 Jan 2024 06:52:46 -0800 (PST)
-X-Google-Smtp-Source: AGHT+IHjaFGcc9l+3mqQTXVG4vcaZkKQ72af4sAX8tJbGEAhm+gTtc8Kb28IE9sd3pI/NnMzvO8UDg==
-X-Received: by 2002:a05:622a:58d:b0:42a:2c06:8d80 with SMTP id c13-20020a05622a058d00b0042a2c068d80mr8749382qtb.132.1706626366172;
-        Tue, 30 Jan 2024 06:52:46 -0800 (PST)
-Received: from localhost (pool-71-184-142-128.bstnma.fios.verizon.net. [71.184.142.128])
-        by smtp.gmail.com with ESMTPSA id kf13-20020a05622a2a8d00b0042a9a2e43ffsm2913586qtb.92.2024.01.30.06.52.45
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 30 Jan 2024 06:52:45 -0800 (PST)
-Date: Tue, 30 Jan 2024 09:52:44 -0500
-From: Eric Chanudet <echanude@redhat.com>
-To: Ninad Naik <quic_ninanaik@quicinc.com>
-Cc: andersson@kernel.org, konrad.dybcio@linaro.org, robh+dt@kernel.org, 
-	krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org, linux-arm-msm@vger.kernel.org, 
-	devicetree@vger.kernel.org, quic_psodagud@quicinc.com, quic_kprasan@quicinc.com, 
-	kernel@quicinc.com
-Subject: Re: [PATCH v2] arm64: dts: qcom: sa8775p: Add new memory map updates
- to SA8775P
-Message-ID: <p462blapygqos3upzf74las4bze7b54guln4d3cvblw6dtsxga@676j2l7fchy4>
-References: <20240125055134.7015-1-quic_ninanaik@quicinc.com>
+        bh=+gO8ZOe0pnwzVp9ud1Vv3npsbTRCsdAJJfeT82uG86Y=;
+        b=Rwh4kn53WRz56pPwhVaTGsUFNhm0D5gNG4I4m+obAAT+rmknoqRV5gmUUsO4jLPjFZ
+         lZpiI33MJVbN3J48Ss9AILKC0/wGVqIiaNVzwzGCNcV4jEFyZR134SCXkh+rf1OTm2aV
+         /4Bn5C55rsvW2FTgVAf403dVn7LdE49Nfjd9n6dlhxIvizaEfPcT4VaOT88NPMTDrbJ1
+         zbQ5NkDTN5zUO6s4nmpNeD3tP1RycaXlkcumpxEaehIJpcVdSFDc2rmSt7hC+2Y/yxRp
+         O6nwU0M02dCd2kd7zCoh69ECOBLRgTfac2/z8nH5ja/1IsQEE0RBemrbUygykNh+OwRR
+         bOCA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1706626546; x=1707231346;
+        h=content-transfer-encoding:content-language:cc:to:subject:from
+         :user-agent:mime-version:date:message-id:x-gm-message-state:from:to
+         :cc:subject:date:message-id:reply-to;
+        bh=+gO8ZOe0pnwzVp9ud1Vv3npsbTRCsdAJJfeT82uG86Y=;
+        b=F89q9iwG8asOhjdMX7QU1AE33sivvvfr0sJl9mcdFgygCVDex394EsxSlVdv/kRSA8
+         8uIn0+AKekUc4O5ATzFf+gvnSj9iYiO994vzys+6p5NsvB5KtdXv+GouN8EaT/RvXyCo
+         ZI8/ANEaxubbaF9H4AWb8BKMPpHHysGgOcqDn3GpHcUSeL8lWlF23XYQz4th5cNUtm5g
+         D7VTbjmoS/E+XiMWVowSoPDsw05xCMjtVErzNbu0cHpHF7J/5stjpVzYC4Q8HtcoVNFA
+         2VSARpB5u/UcIN7SPFeca4ejg9r8qwV+biHTkzn6CES7h4z3b0H9HfSnpuxBzk0tpaS0
+         Ov0w==
+X-Gm-Message-State: AOJu0YzmgTKYuwQQYgUbDwyR0mAv69q3R/o69NRXQ7ji4wbP6QE6Wpz4
+	cQKGNTuPg8U6pBoZ/0DqmhYcvz48gDrIwDSRMHG9ukOSnAoWTxat
+X-Google-Smtp-Source: AGHT+IFRi9GyQXJSDsExLjRideZaSaED5yGKhx4CIr1ncWL2nfC+HtMvB4YtSvuuO6qpUWW+snUifQ==
+X-Received: by 2002:a05:6402:b4c:b0:55f:327c:d18a with SMTP id bx12-20020a0564020b4c00b0055f327cd18amr1583915edb.36.1706626545234;
+        Tue, 30 Jan 2024 06:55:45 -0800 (PST)
+X-Forwarded-Encrypted: i=0; AJvYcCXqWmkvvZvd/lwxAk5iOs/VBqiWjnua4Cq/9D+o3F2xLZwmzEJMPNiiOjtfh9LrBXqnGvYMSd88PILzT8o3xzK9P+3yp3sqWYnh9NLKrY0hvwe7NU7JZQ0IbQ8uR0NFWWsIngFyK6hMspO4slIDwkejfYFCHuDhg5YWuYQ/j3lMjtmfRzxgplPg2gvPKKop3D3KOYnfFzFnkqtGcNM3AaUafagYD8RZAwUsC0Q8WDsXGVMdxReIZkzlhXqdhnP4oYMKjAA9x8mQyMmNeBh7DPxdCSUGhKGkGheL0vvxU9eK5QwO+oIbNs+WT7znL8d4caxfiZycFAURrmrN+sJlfk0kVLLBXN8vvHv91bOoDXxlmnRQYv2chZzfs/3g0GmQI8VCmU6orQxG8n23lnDYRaqkTeCBK5lhr+MLgbWh8vkgr2rCD1NC5KvR+vVRMmbo5YZOe0dqCTHw4D4W6ZdVi5xMUZptn1m/ttlJjjyk0AApmbHio84E8u7Rf+v2dribs36sZUh7b6hdhSrvM/TMQcpHXiLPf7nDUI8=
+Received: from [192.168.2.1] (81-204-249-205.fixed.kpn.net. [81.204.249.205])
+        by smtp.gmail.com with ESMTPSA id w7-20020aa7da47000000b0055f0c027a3esm1879542eds.30.2024.01.30.06.55.44
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 30 Jan 2024 06:55:44 -0800 (PST)
+Message-ID: <6626d288-ecf1-436b-b0a3-3417308a8633@gmail.com>
+Date: Tue, 30 Jan 2024 15:55:43 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20240125055134.7015-1-quic_ninanaik@quicinc.com>
+User-Agent: Mozilla Thunderbird
+From: Johan Jonker <jbx6244@gmail.com>
+Subject: [PATCH v1 1/6] dt-bindings: display: rockchip: rockchip,dw-hdmi:
+ deprecate port property
+To: robh+dt@kernel.org
+Cc: hjc@rock-chips.com, heiko@sntech.de, andy.yan@rock-chips.com,
+ krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org, airlied@gmail.com,
+ daniel@ffwll.ch, maarten.lankhorst@linux.intel.com, tzimmermann@suse.de,
+ mripard@kernel.org, markyao0591@gmail.com, dri-devel@lists.freedesktop.org,
+ devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ linux-kernel@vger.kernel.org
+Content-Language: en-US
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
-On Thu, Jan 25, 2024 at 11:21:34AM +0530, Ninad Naik wrote:
-> New memory map layout changes (by Qualcomm firmware) have brought
-> in updates to base addresses and/or size for different memory regions
-> like cpcucp_fw, tz-stat, and also introduces new memory regions for
-> resource manager firmware. The updated memory map also fixes existing
-> issues pertaining to boot up failure while running memtest, thus
-> improving stability.
-> 
-> This change brings in these corresponding memory map updates to the
-> device tree for SA8775P SoC platform, which currently is in its
-> development stage.
-> 
-> Signed-off-by: Ninad Naik <quic_ninanaik@quicinc.com>
-> ---
-> Changes since v1:
-> - Updated commit message.
-> - Fixed reserved memory node naming, by replacing underscore with
->   hyphen.
-> - https://lore.kernel.org/all/20240118155711.7601-1-quic_ninanaik@quicinc.com/
-> ---
->  arch/arm64/boot/dts/qcom/sa8775p.dtsi | 103 +++++++++++++++++++++++---
->  1 file changed, 94 insertions(+), 9 deletions(-)
-> 
-> diff --git a/arch/arm64/boot/dts/qcom/sa8775p.dtsi b/arch/arm64/boot/dts/qcom/sa8775p.dtsi
-> index a7eaca33d326..2e9606c80381 100644
-> --- a/arch/arm64/boot/dts/qcom/sa8775p.dtsi
-> +++ b/arch/arm64/boot/dts/qcom/sa8775p.dtsi
-> @@ -356,13 +356,18 @@ uefi_log: uefi-log@908b0000 {
->  			no-map;
->  		};
->  
-> +		ddr_training_checksum: ddr-training-checksum@908c0000 {
-> +			reg = <0x0 0x908c0000 0x0 0x1000>;
-> +			no-map;
-> +		};
-> +
->  		reserved_mem: reserved@908f0000 {
-> -			reg = <0x0 0x908f0000 0x0 0xf000>;
-> +			reg = <0x0 0x908f0000 0x0 0xe000>;
->  			no-map;
->  		};
->  
-> -		secdata_apss_mem: secdata-apss@908ff000 {
-> -			reg = <0x0 0x908ff000 0x0 0x1000>;
-> +		secdata_apss_mem: secdata-apss@908fe000 {
-> +			reg = <0x0 0x908fe000 0x0 0x2000>;
->  			no-map;
->  		};
->  
-> @@ -373,8 +378,43 @@ smem_mem: smem@90900000 {
->  			hwlocks = <&tcsr_mutex 3>;
->  		};
->  
-> -		cpucp_fw_mem: cpucp-fw@90b00000 {
-> -			reg = <0x0 0x90b00000 0x0 0x100000>;
+The hdmi-connector nodes are now functional and the new way to model
+hdmi nodes with, so deprecate the port property and make port@0 and
+port@1 a requirement. Also update example.
 
-On the latest firmware I have access to (mid-January), I still trigger a
-fault on that block with these changes applied:
-[    0.000000] earlycon: qcom_geni0 at MMIO 0x0000000000a8c000 (options '115200n8')
-[    0.000000] printk: legacy bootconsole [qcom_geni0] enabled
-[    0.000000] early_memtest: # of tests: 1
-[    0.000000]   0x0000000090880000 - 0x00000000908b0000 pattern 0000000000000000
-[    0.000000]   0x00000000908c1000 - 0x00000000908f0000 pattern 0000000000000000
-[    0.000000]   0x0000000090b00000 - 0x0000000090c00000 pattern 0000000000000000
-[    0.000000] Internal error: synchronous external abort: 0000000096000010 [#1] PREEMPT SMP
-[    0.000000] Modules linked in:
-[    0.000000] CPU: 0 PID: 0 Comm: swapper Not tainted 6.8.0-rc1-next-20240129-00001-g487b7c881fa6 #179
-[    0.000000] Hardware name: Qualcomm SA8775P Ride (DT)
-[    0.000000] pstate: 800000c5 (Nzcv daIF -PAN -UAO -TCO -DIT -SSBS BTYPE=--)
-[    0.000000] pc : early_memtest+0x1e0/0x2a8
-[    0.000000] lr : early_memtest+0x1a8/0x2a8
-[    0.000000] sp : ffffc3168c233c60
-[    0.000000] x29: ffffc3168c233c60 x28: 0000000000000000 x27: ffff244650b00000
-[    0.000000] x26: 0000000090b00000 x25: 0000000000000000 x24: ffff244650c00000
-[    0.000000] x23: ffffc3168c872980 x22: ffffc3168c30c000 x21: ffffc3168c30c000
-[    0.000000] x20: 0000000080000000 x19: 0000000f54100000 x18: 0000000000000006
-[    0.000000] x17: 3030303030303030 x16: 303030303030206e x15: 7265747461702030
-[    0.000000] x14: 3030303063303930 x13: 3030303030303030 x12: 3030303030303030
-[    0.000000] x11: 206e726574746170 x10: ffffc3168c2bc578 x9 : ffffc3168c264578
-[    0.000000] x8 : 00000000ffffefff x7 : ffffc3168c2bc578 x6 : 80000000fffff000
-[    0.000000] x5 : 0000000000100000 x4 : 0000000090b00007 x3 : 0000244650b00000
-[    0.000000] x2 : 0000000000000000 x1 : ffffc3168c244ec0 x0 : ffff244650b00000
-[    0.000000] Call trace:
-[    0.000000]  early_memtest+0x1e0/0x2a8
-[    0.000000]  bootmem_init+0x54/0x228
-[    0.000000]  setup_arch+0x21c/0x658
-[    0.000000]  start_kernel+0x7c/0x8c0
-[    0.000000]  __primary_switched+0xb8/0xc8
-[    0.000000] Code: eb18037f 540003a2 aa1b03e0 d503201f (f800841c) 
-[    0.000000] ---[ end trace 0000000000000000 ]---
-[    0.000000] Kernel panic - not syncing: Attempted to kill the idle task!
-[    0.000000] ---[ end Kernel panic - not syncing: Attempted to kill the idle task! ]---
+Signed-off-by: Johan Jonker <jbx6244@gmail.com>
+---
+ .../display/rockchip/rockchip,dw-hdmi.yaml    | 27 ++++++++++++++++---
+ 1 file changed, 23 insertions(+), 4 deletions(-)
 
-Adding back 0x90b00000-0x90bfffff as no-map passed memtest=1.
+diff --git a/Documentation/devicetree/bindings/display/rockchip/rockchip,dw-hdmi.yaml b/Documentation/devicetree/bindings/display/rockchip/rockchip,dw-hdmi.yaml
+index 7e59dee15a5f..cd0a42f35f24 100644
+--- a/Documentation/devicetree/bindings/display/rockchip/rockchip,dw-hdmi.yaml
++++ b/Documentation/devicetree/bindings/display/rockchip/rockchip,dw-hdmi.yaml
+@@ -97,8 +97,11 @@ properties:
+   ports:
+     $ref: /schemas/graph.yaml#/properties/ports
 
-> +		tz_sail_mailbox_mem: tz-sail-mailbox@90c00000 {
-> +			reg = <0x0 0x90c00000 0x0 0x100000>;
-> +			no-map;
-> +		};
-> +
-> +		sail_mailbox_mem: sail-ss@90d00000 {
-> +			reg = <0x0 0x90d00000 0x0 0x100000>;
-> +			no-map;
-> +		};
-> +
-> +		sail_ota_mem: sail-ss@90e00000 {
-> +			reg = <0x0 0x90e00000 0x0 0x300000>;
-> +			no-map;
-> +		};
-> +
-> +		aoss_backup_mem: aoss-backup@91b00000 {
-> +			reg = <0x0 0x91b00000 0x0 0x40000>;
-> +			no-map;
-> +		};
-> +
-> +		cpucp_backup_mem: cpucp-backup@91b40000 {
-> +			reg = <0x0 0x91b40000 0x0 0x40000>;
-> +			no-map;
-> +		};
-> +
-> +		tz_config_backup_mem: tz-config-backup@91b80000 {
-> +			reg = <0x0 0x91b80000 0x0 0x10000>;
-> +			no-map;
-> +		};
-> +
-> +		ddr_training_data_mem: ddr-training-data@91b90000 {
-> +			reg = <0x0 0x91b90000 0x0 0x10000>;
-> +			no-map;
-> +		};
-> +
-> +		cdt_data_backup_mem: cdt-data-backup@91ba0000 {
-> +			reg = <0x0 0x91ba0000 0x0 0x1000>;
->  			no-map;
->  		};
->  
-> @@ -433,13 +473,43 @@ pil_video_mem: pil-video@9fc00000 {
->  			no-map;
->  		};
->  
-> +		audio_mdf_mem: audio-mdf-region@ae000000 {
-> +			reg = <0x0 0xae000000 0x0 0x1000000>;
-> +			no-map;
-> +		};
-> +
-> +		firmware_mem: firmware-region@b0000000 {
-> +			reg = <0x0 0xb0000000 0x0 0x800000>;
-> +			no-map;
-> +		};
-> +
->  		hyptz_reserved_mem: hyptz-reserved@beb00000 {
->  			reg = <0x0 0xbeb00000 0x0 0x11500000>;
->  			no-map;
->  		};
->  
-> -		tz_stat_mem: tz-stat@d0000000 {
-> -			reg = <0x0 0xd0000000 0x0 0x100000>;
-> +		scmi_mem: scmi-region@d0000000 {
-> +			reg = <0x0 0xd0000000 0x0 0x40000>;
-> +			no-map;
-> +		};
-> +
-> +		firmware_logs_mem: firmware-logs@d0040000 {
-> +			reg = <0x0 0xd0040000 0x0 0x10000>;
-> +			no-map;
-> +		};
-> +
-> +		firmware_audio_mem: firmware-audio@d0050000 {
-> +			reg = <0x0 0xd0050000 0x0 0x4000>;
-> +			no-map;
-> +		};
-> +
-> +		firmware_reserved_mem: firmware-reserved@d0054000 {
-> +			reg = <0x0 0xd0054000 0x0 0x9c000>;
-> +			no-map;
-> +		};
-> +
-> +		firmware_quantum_test_mem: firmware-quantum-test@d00f0000 {
-> +			reg = <0x0 0xd00f0000 0x0 0x10000>;
->  			no-map;
->  		};
->  
-> @@ -453,8 +523,23 @@ qtee_mem: qtee@d1300000 {
->  			no-map;
->  		};
->  
-> -		trusted_apps_mem: trusted-apps@d1800000 {
-> -			reg = <0x0 0xd1800000 0x0 0x3900000>;
-> +		deepsleep_backup_mem: deepsleep-backup@d1800000 {
-> +			reg = <0x0 0xd1800000 0x0 0x100000>;
-> +			no-map;
-> +		};
-> +
-> +		trusted_apps_mem: trusted-apps@d1900000 {
-> +			reg = <0x0 0xd1900000 0x0 0x3800000>;
-> +			no-map;
-> +		};
-> +
-> +		tz_stat_mem: tz-stat@db100000 {
-> +			reg = <0x0 0xdb100000 0x0 0x100000>;
-> +			no-map;
-> +		};
-> +
-> +		cpucp_fw_mem: cpucp-fw@db200000 {
-> +			reg = <0x0 0xdb200000 0x0 0x100000>;
->  			no-map;
->  		};
->  	};
-> -- 
-> 2.42.0
-> 
-> 
+-    patternProperties:
+-      "^port(@0)?$":
++    properties:
++      port:
++        $ref: /schemas/graph.yaml#/properties/port
++        deprecated: true
++      port@0:
+         $ref: /schemas/graph.yaml#/properties/port
+         description: Input of the DWC HDMI TX
+         properties:
+@@ -108,11 +111,14 @@ properties:
+             description: Connection to the VOPB
+           endpoint@1:
+             description: Connection to the VOPL
+-    properties:
+       port@1:
+         $ref: /schemas/graph.yaml#/properties/port
+         description: Output of the DWC HDMI TX
 
--- 
-Eric Chanudet
++    required:
++      - port@0
++      - port@1
++
+   rockchip,grf:
+     $ref: /schemas/types.yaml#/definitions/phandle
+     description:
+@@ -147,7 +153,11 @@ examples:
+         clock-names = "iahb", "isfr";
+
+         ports {
+-            port {
++            #address-cells = <1>;
++            #size-cells = <0>;
++
++            port@0 {
++                reg = <0>;
+                 #address-cells = <1>;
+                 #size-cells = <0>;
+
+@@ -155,11 +165,20 @@ examples:
+                     reg = <0>;
+                     remote-endpoint = <&vopb_out_hdmi>;
+                 };
++
+                 hdmi_in_vopl: endpoint@1 {
+                     reg = <1>;
+                     remote-endpoint = <&vopl_out_hdmi>;
+                 };
+             };
++
++            port@1 {
++                reg = <1>;
++
++                hdmi_out_con: endpoint {
++                    remote-endpoint = <&hdmi_con_in>;
++                };
++            };
+         };
+     };
+
+--
+2.39.2
 
 
