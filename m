@@ -1,107 +1,211 @@
-Return-Path: <devicetree+bounces-36751-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-36752-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7F20B8428A3
-	for <lists+devicetree@lfdr.de>; Tue, 30 Jan 2024 17:02:19 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id CECA38428B6
+	for <lists+devicetree@lfdr.de>; Tue, 30 Jan 2024 17:05:16 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 1F4771F253CD
-	for <lists+devicetree@lfdr.de>; Tue, 30 Jan 2024 16:02:19 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 5A3D5285946
+	for <lists+devicetree@lfdr.de>; Tue, 30 Jan 2024 16:05:15 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1FCFA8612C;
-	Tue, 30 Jan 2024 16:01:34 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C68FA8614C;
+	Tue, 30 Jan 2024 16:05:14 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="bY2JjupC"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-oi1-f181.google.com (mail-oi1-f181.google.com [209.85.167.181])
+Received: from mail-ej1-f42.google.com (mail-ej1-f42.google.com [209.85.218.42])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 64B9B1292C4;
-	Tue, 30 Jan 2024 16:01:32 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.181
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E52137F7CF
+	for <devicetree@vger.kernel.org>; Tue, 30 Jan 2024 16:05:12 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.42
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1706630494; cv=none; b=cHwLAeQwe0/b+bD4q45I9aF56XeIqLYgsVNkTUGmTYoGp+QQjJVuxMlaWZa6mGUGbSKu00152LSjAhjODTxGb/uyttVumGtW8CJ2CMuZqc1zlgSYmvCDhQwtb2pU6G0LW82JUl8YK6pqmxI1fCdHt3bLo6MoNzZsusFlawQq6oU=
+	t=1706630714; cv=none; b=rVG1bdQS/oAIgjbEjJ5axKnamGkzk1cWpX2LdYd707YNtzj8HL64hqLiQLotsdIIlHLhdLoEJ350qX7CcMUMWpmknSe+9jGhftU9o3ztdfwnLlggAYk3ISGHXgHZxhQjATWoyJsKS6uaO4uvaq++Tzx7zQJrn2kjtUUp/v9oJ3k=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1706630494; c=relaxed/simple;
-	bh=ZTNV1W1qAmrzT/dGlxHKt12m2eKUTDAPXjxJgYDpg4o=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=VqYsnl2hfokk/IVBVw5Jq3ZM13ouQBUNHib4t+L6IKxxfYyzTn2Sry8Kcu2cuR5LrE/Z3+elknee+YVN2QBgOoscQxRO3Xno3TwSLv6WjYC6TX/XpjPZTjz+9Sqo5BXhD9M9IAJyHs2DPnugsesHUjvixnFj9mA+eoRqrHCnW9k=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org; spf=pass smtp.mailfrom=gmail.com; arc=none smtp.client-ip=209.85.167.181
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-oi1-f181.google.com with SMTP id 5614622812f47-3be6ff4f660so1009912b6e.3;
-        Tue, 30 Jan 2024 08:01:32 -0800 (PST)
+	s=arc-20240116; t=1706630714; c=relaxed/simple;
+	bh=unh5iIZOG1QtDQYkC1HtT7urjlgqmEQq3IudvN2ogOk=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=JnFuQC56U07bTSjx3v13ic1yaC0CQ5sp9F/CooQSo4lhblV7h5JPF5OBuTwWr4/dPdesn9FUzAWvqx6W3mvvDPffan7plDmotB6qyzzkyuTBR/daUZ2AmUFYdbD/DZ8Rm8rSHns+IeVaNUmVQ4hhdgv9qF3KC3uGN0/p0Tm0zh0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=bY2JjupC; arc=none smtp.client-ip=209.85.218.42
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-ej1-f42.google.com with SMTP id a640c23a62f3a-a350bfcc621so454575766b.0
+        for <devicetree@vger.kernel.org>; Tue, 30 Jan 2024 08:05:12 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1706630711; x=1707235511; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
+         :to:content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=7VDh4iDFXXue5I/l6Y1wqSIUFQdASHvv7bgRaIo08RQ=;
+        b=bY2JjupCgZUxdtDOjWqYdKrzrIYi8nNYbAsAz0LhP7mnD2XNiIIA2PlAVAD8ZJvw+g
+         RSMOMqwXqPetuOgJvnXyL9G3WQPfEABLUW9CcH78ENb3keJJMjeOLkh4/2d1Dn5o6cdc
+         65PVlopkBJY3NwuvVEuhj5r6GlTRWZGPCGyKK737ygAz7s5lDO/ojyiBccYfcpIkzoS/
+         pcwNGKWVEM+0PJMeJeOD2Z66Gkbt0ANncmYNMi3r7lSZ8JL4WUNuewM2k5v5TjvobK/y
+         QLhCToH1uYHMBTPkmfTTnGUbpR1/TuZxxJwxNEAmRZ6CbykRDnUCc4Tl6hEFxFi3PhwP
+         0M1Q==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1706630491; x=1707235291;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=pQ1TWcB+242L27kdrwmBA24HsLCo0a2icePVWwLdU3A=;
-        b=HCqJsqVbIVlUDrsSBAMkXj+Kb8phs+wR7HSKQ0ZcyH5qI02Fsspz3qBJSgtujXDYyE
-         FEoH0t0bocbHXODEsWuztvDjHArqg9Eoov3oXEYG+YDyOuUQ5Fbbnswc3lPOMzYJhtAi
-         +aHbOm+qsyFHjoonvVDNFEfa/t1b4IEpkAVszp1/MS3sgNMTjaZik4G5TfT4Qld1oMwP
-         IlBnwtqlHegCkYX3ASkL2wreH3t6Amh+IiTFcykp9jsYGdx87N4ufbLomUnGOUHBM0zJ
-         56i0OTPxJrRVu4ZonFN2lacMhjOGKZ6ODbSCGFtyQjvSts76t9qd6mt22s4gIUUxI/2R
-         ecUw==
-X-Gm-Message-State: AOJu0Ywdky0YO4PoI9MOB7SmjIzZv1BRRQiV8oPaKOfqTZtjehFOFdRV
-	TjkFHnkADJL6zVee37jc428FdgotJHadTQze0KmnitcufAxfmuWB21h0HkquQBE=
-X-Google-Smtp-Source: AGHT+IGviXH0qXZ5bHPirIM1d6SQ+UpQCh34SARfw6O87izAqGOVainEur3CEIemUdRLCm3fbO8oWw==
-X-Received: by 2002:a05:6358:7e16:b0:176:9e35:6b95 with SMTP id o22-20020a0563587e1600b001769e356b95mr9143525rwm.16.1706630491017;
-        Tue, 30 Jan 2024 08:01:31 -0800 (PST)
-Received: from mail-yw1-f175.google.com (mail-yw1-f175.google.com. [209.85.128.175])
-        by smtp.gmail.com with ESMTPSA id g83-20020a0ddd56000000b005ff86af15desm3273382ywe.90.2024.01.30.08.01.30
+        d=1e100.net; s=20230601; t=1706630711; x=1707235511;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
+         :to:content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=7VDh4iDFXXue5I/l6Y1wqSIUFQdASHvv7bgRaIo08RQ=;
+        b=EQFj0knKkvGs7ChdU2tYW5QZMbSDLYzXaXEjHTBZQ09fBmvTUpDmhnOK2YLl8RwjVr
+         ITIm5EkReQH2VjaR+3fqvEPgEVtJNJyT/03awiQw8gQguTMxTfqZp+Cmm0ZxCEYWC0xp
+         MlqpiyDc2LNMVwrdYzVRLrSaoYdpZl5bwOXU5HMJPXoXTbit3zEGABQHqzrCEyH5SHX0
+         qG6pYvVKCsYAGtoEdXneYpt3F1beH01DDOEthSbEQ3MEnCX5Jc9h3b7wQ7ZVKG7mmt8m
+         34bOv7cOCozvx4uJ5lsQFF0LwQwYToq1zZAgJJGF7rTimNcXl2TSWY7lMqCze5ozl1As
+         ILgA==
+X-Gm-Message-State: AOJu0YwVc74WRE74Um506bC5CCLMhdD3TsavtkTWmY2KZc+EPp7oCyh2
+	dPwuT7RDImqUjCNfEtHLQjEsVR4K5yE0MsZl+UEAjMPwfxZsKef1XTBiH2NBExc=
+X-Google-Smtp-Source: AGHT+IEttDPY67Gj0M8Wg0MEFDrc2M7fmw+GWrrPNiUYvlM+dBE4LqXHiYWn8V/vBm0G6hMfomELuA==
+X-Received: by 2002:a17:906:f208:b0:a35:2ee1:b953 with SMTP id gt8-20020a170906f20800b00a352ee1b953mr6383969ejb.26.1706630711165;
+        Tue, 30 Jan 2024 08:05:11 -0800 (PST)
+X-Forwarded-Encrypted: i=0; AJvYcCUEUEkig/baHmI5ejySEZr/n0F5q99g9miAQm0roSRF9DW50Li2aldG0TSo+h9Z1Uj7T05yM3Fa0pN+rJDCi7q1KMPcGqJC9OVObKBwjNc/oarDB1OmhqlwDkyw+GpTBgQrfnw4vKjEWE6f+lsnEJ9HJFtEwV+hfyN6rsaZNp2AbS7mn2KGwtqMAnTQDUMBxdbFjScpWbJaioHwlw8/YRM6bx8plINYceIqPHS+/nenIadsYQfYWp3vadhtiTsGnjjTuoadcZOMw2VeHvFBOPQRho9PIzeZG1tDF9eEZBCgdjOZ8er999dxaDJRJWm36LBFDWfnV9Oy1ZBmmZvR8wIH4txLn1jV1aXPDDPPjwsWrens
+Received: from [192.168.1.20] ([178.197.222.62])
+        by smtp.gmail.com with ESMTPSA id tb11-20020a1709078b8b00b00a35f9df7768sm1421990ejc.182.2024.01.30.08.05.09
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 30 Jan 2024 08:01:30 -0800 (PST)
-Received: by mail-yw1-f175.google.com with SMTP id 00721157ae682-602d222c078so43021987b3.0;
-        Tue, 30 Jan 2024 08:01:30 -0800 (PST)
-X-Received: by 2002:a81:c50b:0:b0:603:d3f1:1c2b with SMTP id
- k11-20020a81c50b000000b00603d3f11c2bmr4192060ywi.24.1706630490147; Tue, 30
- Jan 2024 08:01:30 -0800 (PST)
+        Tue, 30 Jan 2024 08:05:10 -0800 (PST)
+Message-ID: <32669bc7-90b5-48d9-8845-2e072a477c6e@linaro.org>
+Date: Tue, 30 Jan 2024 17:05:06 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20240126133116.121981-1-biju.das.jz@bp.renesas.com> <20240126133116.121981-4-biju.das.jz@bp.renesas.com>
-In-Reply-To: <20240126133116.121981-4-biju.das.jz@bp.renesas.com>
-From: Geert Uytterhoeven <geert@linux-m68k.org>
-Date: Tue, 30 Jan 2024 17:01:19 +0100
-X-Gmail-Original-Message-ID: <CAMuHMdXysobyfuY7u9dcUstFb=tYznKA6pA8-TCL1wx-BQVB9g@mail.gmail.com>
-Message-ID: <CAMuHMdXysobyfuY7u9dcUstFb=tYznKA6pA8-TCL1wx-BQVB9g@mail.gmail.com>
-Subject: Re: [PATCH v2 3/5] arm64: dts: renesas: r9a07g043u: Add CSI and CRU nodes
-To: Biju Das <biju.das.jz@bp.renesas.com>
-Cc: Rob Herring <robh+dt@kernel.org>, 
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Geert Uytterhoeven <geert+renesas@glider.be>, Magnus Damm <magnus.damm@gmail.com>, 
-	linux-renesas-soc@vger.kernel.org, devicetree@vger.kernel.org, 
-	Prabhakar Mahadev Lad <prabhakar.mahadev-lad.rj@bp.renesas.com>, Biju Das <biju.das.au@gmail.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 2/3] dt-bindings: fpga: xlnx,fpga-slave-selectmap: add DT
+ schema
+Content-Language: en-US
+To: Charles Perry <charles.perry@savoirfairelinux.com>
+Cc: mdf@kernel.org, hao wu <hao.wu@intel.com>, yilun xu <yilun.xu@intel.com>,
+ trix@redhat.com, krzysztof kozlowski+dt <krzysztof.kozlowski+dt@linaro.org>,
+ Brian CODY <bcody@markem-imaje.com>,
+ Allen VANDIVER <avandiver@markem-imaje.com>, linux-fpga@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+References: <20240129225602.3832449-1-charles.perry@savoirfairelinux.com>
+ <20240129225602.3832449-2-charles.perry@savoirfairelinux.com>
+ <f3cfffa0-5089-4bf7-b424-d5e949e36d67@linaro.org>
+ <1489222458.382780.1706629544559.JavaMail.zimbra@savoirfairelinux.com>
+From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
+ 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
+ D2GYIS41Kv4Isx2dEFh+/Q==
+In-Reply-To: <1489222458.382780.1706629544559.JavaMail.zimbra@savoirfairelinux.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 
-On Fri, Jan 26, 2024 at 2:31=E2=80=AFPM Biju Das <biju.das.jz@bp.renesas.co=
-m> wrote:
-> Add CSI and CRU nodes r9a07g043 (RZ/G2UL) SoC DTSI.
->
-> Signed-off-by: Biju Das <biju.das.jz@bp.renesas.com>
-> ---
-> v1->v2:
->  * No change.
+On 30/01/2024 16:45, Charles Perry wrote:
+> 
+>>> +
+>>> +  reg:
+>>> +    description:
+>>> +      At least 1 byte of memory mapped IO
+>>> +    maxItems: 1
+>>> +
+>>> +  prog_b-gpios:
+>>
+>>
+>> No underscores in names.
+>>
+> 
+> This is heavily based on "xlnx,fpga-slave-serial.yaml" which uses an underscore.
+> I can use a dash instead but that would make things inconsistent across the two schemas. 
 
-Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
-i.e. will queue in renesas-devel for v6.9.
+Inconsistency is not a problem. Duplicating technical debt is.
 
-Gr{oetje,eeting}s,
+> 
+>>
+>>> +    description:
+>>> +      config pin (referred to as PROGRAM_B in the manual)
+>>> +    maxItems: 1
+>>> +
+>>> +  done-gpios:
+>>> +    description:
+>>> +      config status pin (referred to as DONE in the manual)
+>>> +    maxItems: 1
+>>> +
+>>> +  init-b-gpios:
+>>
+>> Is there init-a? Open other bindings and look how these are called there.
+>>
+> 
+> No, the "-b" is there to denote that the signal is active low. I think its shorthand
+> for "bar" which is the overline (‾) that electronic engineer put on top of the name of the
+> signal on schematics. It comes from the datasheet.
 
-                        Geert
+Then just "init-gpios"
 
---=20
-Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k=
-.org
+...
 
-In personal conversations with technical people, I call myself a hacker. Bu=
-t
-when I'm talking to journalists I just say "programmer" or something like t=
-hat.
-                                -- Linus Torvalds
+>>> +required:
+>>> +  - compatible
+>>> +  - reg
+>>> +  - prog_b-gpios
+>>> +  - done-gpios
+>>> +  - init-b-gpios
+>>> +
+>>> +additionalProperties: true
+>>
+>> Nope, this cannot bue true.
+>>
+> 
+> Ok, I'll put this to false but I'm not quite sure I understand the implications.
+> 
+> My reasoning behind assigning this to true was that the FPGA is an external
+> device on a bus that needs to be configured by a bus controller. The bus controller
+> would be the parent of the fpga DT node and the later would contain properties
+> parsed by the bus controller driver.
+
+Which bus controller? MMIO bus does not parse children properties.
+Anyway, if that's the case you miss $ref to respective
+peripheral-props.yaml matching your bus and then "unevaluatedProperties:
+false".
+
+Best regards,
+Krzysztof
+
 
