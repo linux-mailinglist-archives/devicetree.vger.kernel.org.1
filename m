@@ -1,194 +1,184 @@
-Return-Path: <devicetree+bounces-36526-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-36527-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7C402841AD5
-	for <lists+devicetree@lfdr.de>; Tue, 30 Jan 2024 05:04:38 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id D228B841B10
+	for <lists+devicetree@lfdr.de>; Tue, 30 Jan 2024 05:39:09 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id E83351F2710B
-	for <lists+devicetree@lfdr.de>; Tue, 30 Jan 2024 04:04:37 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 8D64C289C9A
+	for <lists+devicetree@lfdr.de>; Tue, 30 Jan 2024 04:39:08 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B7D89376F7;
-	Tue, 30 Jan 2024 04:04:11 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6EE41273FC;
+	Tue, 30 Jan 2024 04:39:05 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=microchip.com header.i=@microchip.com header.b="tKXEV2kp";
-	dkim=pass (2048-bit key) header.d=microchip.com header.i=@microchip.com header.b="2k8nZQhb"
+	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="ePpk2pgO"
 X-Original-To: devicetree@vger.kernel.org
-Received: from esa.microchip.iphmx.com (esa.microchip.iphmx.com [68.232.154.123])
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9385B374EE;
-	Tue, 30 Jan 2024 04:04:09 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=68.232.154.123
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1706587451; cv=fail; b=pLh9VzgR+DUsqB2vlW5DIHh7bQEaZFbvJ2RaEr/QwKiMie8bp5lEWnyr5kniCsUsMRXTyCaem/QVx4IGOVFUWTYz5ueiJ/OPtGEWPCMFnhoB+oRSGdq9/HT0JK2wnYoKUYQGg9qLhD7bFySxHNIHciXK1N6LjZtQlBLgrL8j8PY=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1706587451; c=relaxed/simple;
-	bh=V880FAtmvgNy5CYuS508ati9KyrVV5HEn6j/geDowDw=;
-	h=From:To:CC:Subject:Date:Message-ID:References:In-Reply-To:
-	 Content-Type:MIME-Version; b=T7fwYcmAJK+gt9AjHhDeXV9YQ4Qm71CmaQ8qGwZVC7CbOow/rlO7WcPMeY63CHR46RMjdMXOEF1+iZIX0nW/UM5Xn0ayqAY02xtae9eo1kCvIpYQWusIVR3+1cTzLgdkGt5n4M7FKWANZP7Is+6MtNurAJyvoe2pUVHAxA3bXlc=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=microchip.com; spf=pass smtp.mailfrom=microchip.com; dkim=pass (2048-bit key) header.d=microchip.com header.i=@microchip.com header.b=tKXEV2kp; dkim=pass (2048-bit key) header.d=microchip.com header.i=@microchip.com header.b=2k8nZQhb; arc=fail smtp.client-ip=68.232.154.123
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=microchip.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=microchip.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
-  t=1706587449; x=1738123449;
-  h=from:to:cc:subject:date:message-id:references:
-   in-reply-to:content-id:content-transfer-encoding:
-   mime-version;
-  bh=V880FAtmvgNy5CYuS508ati9KyrVV5HEn6j/geDowDw=;
-  b=tKXEV2kpncnkpVsDZtHIJyJh79v5TRzU8lrNXbdEWA3MucYEba9pGZmO
-   ad+/IWetwkNbbAXuaPkW++M73VVddJ4RzQ8R7b1yjEnWtwIuJFbZKLDqC
-   UQu1OOSWLPCY8JQVlZwmncQqYCJ13+J8dMEQHIFVb+ygvOOgI1lnYri4X
-   +XdxnJeMbOxuesiHkIhH7THYEzhuW6MOvISnjEM+jzP2Ma219auDfJQNJ
-   ey5gq+g/jKKetJ8fxRzXx6OViMK3YIVgtGoDFitT0IYtGs1rPGEPUm7Mx
-   CgPfm2D8zQEQvMG9bZ/4OK4AdI8oef52qDndUHLffzzJaTfcnxWlcBrvk
-   w==;
-X-CSE-ConnectionGUID: 9low22QMQTmx+2YtM3y18Q==
-X-CSE-MsgGUID: 6iSCTbA9RfK3/7GvR4OJrA==
-X-IronPort-AV: E=Sophos;i="6.05,707,1701154800"; 
-   d="scan'208";a="15478389"
-X-Amp-Result: SKIPPED(no attachment in message)
-Received: from unknown (HELO email.microchip.com) ([170.129.1.10])
-  by esa4.microchip.iphmx.com with ESMTP/TLS/ECDHE-RSA-AES128-GCM-SHA256; 29 Jan 2024 21:04:02 -0700
-Received: from chn-vm-ex02.mchp-main.com (10.10.85.144) by
- chn-vm-ex04.mchp-main.com (10.10.85.152) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.35; Mon, 29 Jan 2024 21:03:36 -0700
-Received: from NAM02-SN1-obe.outbound.protection.outlook.com (10.10.215.250)
- by email.microchip.com (10.10.87.72) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.35 via Frontend Transport; Mon, 29 Jan 2024 21:03:36 -0700
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=fBVPtBRjBawAEtn1BbZaIerMQFcvGSNFlGjboKVmamqayB9Yx/pUl6t7eW5XbhShLZD8C19zmIK+f2q7QV5/hZKHNDQZjePPm39cUxwuHkBRqkEbEnwquMsEM2WAMe+kN93HTiPvrGZO0dKw2//UudLppFvUMPhZgLNNn+UW6obi9r9hohEzsqeRERqbV0tLrk3IZGfEuIWiyvSqlIuHExl7eGYcLvPdY9+8VL2pOqISTBfERUSMgE4T7UnEj9SGv7i63hR5OjkAWU73vaxosgciVz6IKjKovVvDZ+UoiPZXqSskCY86al5vCoxY/Jz/l9a+5IoOndgYHEMX4JCV5g==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=V880FAtmvgNy5CYuS508ati9KyrVV5HEn6j/geDowDw=;
- b=k6q/FuY9jjOWJiUSShQlGeoeil+epoZj6mvDDd11wgLs8Vnw0lShZoKEBRe/zpOVT+hOGbu+dyH4l8vEp1U9a6UgC9sTHEN3svWnEIYPmh5QCVYhSCanpswLs0xRBb4vuK0QDn9PlfzPYruzzldPxSC6O78ByrZgB9Jx3YG3wKRD5LQCXY64ZvOz67WZrQ/xFPSr9BXGAL5gzppHnJhME+YC6QlKoYn2N51V1ZCkqPxZhLgmZS15ZsdKCzLIMsqznxxEjipeUHe9WCwYWdmXeJRN3bSjJZGvbqouogXx6ZFi8kj4+WLQILQUNEPfPm4oiPi3ayzxrL1QMarDNp8F1A==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=microchip.com; dmarc=pass action=none
- header.from=microchip.com; dkim=pass header.d=microchip.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=microchip.com;
- s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=V880FAtmvgNy5CYuS508ati9KyrVV5HEn6j/geDowDw=;
- b=2k8nZQhbMtMy9fSnvqs14PDM5BtFh87QQ+70t1nnhM5XrbE0tH2ubXOqPUWHS7Lpg0iXf6y2LDbDQvTwi3ci33q9E6CbogbxyCyTDI6JIzjJB8/Ht+ou8ipA1/wzGTJRM6BfMwFNovkxzqNL2yy/C/7SIaEAhP2Urvm8qhVZUk3Z/2JS1ZdSUfhS5/KGR+DH7sMoI9qUj7E658IF5Ff7sd6K+MWo5J5he3WadNKQQrQ87Ig6yU7Dzxkc3+Pcy7+B2Dpo1BFQtbJ0tb2LuO3NUEh/G+cBV4fkDkar9yqu1jEHlKKesezKgZrk9xz7Ln3HF+YFSIVNLZVtJBY9mWxgJQ==
-Received: from PH7PR11MB8033.namprd11.prod.outlook.com (2603:10b6:510:246::12)
- by PH8PR11MB6659.namprd11.prod.outlook.com (2603:10b6:510:1c2::20) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7228.33; Tue, 30 Jan
- 2024 04:03:33 +0000
-Received: from PH7PR11MB8033.namprd11.prod.outlook.com
- ([fe80::18cb:134a:e51a:2ce4]) by PH7PR11MB8033.namprd11.prod.outlook.com
- ([fe80::18cb:134a:e51a:2ce4%7]) with mapi id 15.20.7228.029; Tue, 30 Jan 2024
- 04:03:33 +0000
-From: <Arun.Ramadoss@microchip.com>
-To: <dev@pschenker.ch>, <netdev@vger.kernel.org>
-CC: <andrew@lunn.ch>, <olteanv@gmail.com>,
-	<krzysztof.kozlowski+dt@linaro.org>, <Woojung.Huh@microchip.com>,
-	<davem@davemloft.net>, <philippe.schenker@impulsing.ch>,
-	<linux-kernel@vger.kernel.org>, <edumazet@google.com>, <conor+dt@kernel.org>,
-	<marex@denx.de>, <devicetree@vger.kernel.org>,
-	<UNGLinuxDriver@microchip.com>, <stefan.portmann@impulsing.ch>,
-	<kuba@kernel.org>, <robh+dt@kernel.org>, <pabeni@redhat.com>,
-	<f.fainelli@gmail.com>
-Subject: Re: [PATCH net-next v2 2/2] net: dsa: Add KSZ8567 switch support
-Thread-Topic: [PATCH net-next v2 2/2] net: dsa: Add KSZ8567 switch support
-Thread-Index: AQHaT2VsOIA/ZpTWWUSbcFa7xMGyRLDxxAkA
-Date: Tue, 30 Jan 2024 04:03:32 +0000
-Message-ID: <8b6575afdba8c3207752ebfa1cddc490f7bee5a4.camel@microchip.com>
-References: <20240125080504.62061-1-dev@pschenker.ch>
-	 <20240125080504.62061-2-dev@pschenker.ch>
-In-Reply-To: <20240125080504.62061-2-dev@pschenker.ch>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach:
-X-MS-TNEF-Correlator:
-user-agent: Evolution 3.36.5-0ubuntu1 
-authentication-results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=microchip.com;
-x-ms-publictraffictype: Email
-x-ms-traffictypediagnostic: PH7PR11MB8033:EE_|PH8PR11MB6659:EE_
-x-ms-office365-filtering-correlation-id: 172ab114-efab-4776-04c7-08dc21486d02
-x-ms-exchange-senderadcheck: 1
-x-ms-exchange-antispam-relay: 0
-x-microsoft-antispam: BCL:0;
-x-microsoft-antispam-message-info: 1v4T5IS0jiOEb7y014UgHCronI6JyY3tZAfscZp8p22trwVVgJ7xxwXU6xZ4t2kwl07kN7grAYb6O4FE1v5qkYbpqlBSI+pDRuevNfWPQB68zqYYIGYgBmc6+uoD23VoWdMt4pPow8Uigqc5OIw9QKr6V2XveLN5MJdOMHiAViPEorsJjdtrrMIex199WwQ5wy6u/zzwhVQOEzqfvuHGRvQYUADmfWXrgusrpqHUN1B474kq2Z/R10EFtxi93tVorx1x71mwgP4Ilt5u/+722B76rPaudKyHTVfOsdYqNY1yovI+PR8UpcK6OnDPWdg+bDSu1dMn+pYK9r9FSOWDidS7TWN8tPF+oE5erV+dcKCs8yApRZgs+FYCF8SubBSL70PTqnZ6kGFmwzMqhqpTA+lLPFqegEMiB8rV2iJ5k/xYSITwHaabo4GnqR6FlAZo74VhZyRsczYl8trrOW4Lxj6TrwYUMnRmrNeNn39hG8Bm83Hn9zm2v+3KLmWK540QsMGfr1YYoiYczzfxMfvrLe2D4zVc/cddSKR0WGQSp2v2KsAMT30DbFKX+J917IZQzXDizxwSUSt7EBz3ygvnxkqEPjPdUYEqzwCIDvnn/tqj4No+FKkaNdyLOSUlepxy
-x-forefront-antispam-report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:PH7PR11MB8033.namprd11.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230031)(396003)(376002)(39860400002)(366004)(346002)(136003)(230922051799003)(451199024)(1800799012)(186009)(64100799003)(6512007)(6506007)(66946007)(478600001)(122000001)(38100700002)(316002)(8936002)(4744005)(8676002)(5660300002)(4326008)(41300700001)(2616005)(71200400001)(6486002)(7416002)(2906002)(64756008)(91956017)(66476007)(76116006)(54906003)(110136005)(66556008)(66446008)(38070700009)(36756003)(86362001)(26005);DIR:OUT;SFP:1101;
-x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0: =?utf-8?B?RkNTQUFiT1JhSXpNUmkwQzB6ekJiUUhsVW85YjU3NTI3UjAwZmhCM0xkWEc1?=
- =?utf-8?B?MEZHQjRUL3p3b2o5aC9SdldZRzZHcm1rdEp2bkFpeUhabzR2TUhidHpiUWty?=
- =?utf-8?B?dVo2UUtydCtMWEw3MlM5SGp3dk5Dby9zMDJCY0Z0L1pHenFYUHNiUUNFTHp5?=
- =?utf-8?B?OS9pV1lYSVlHMTErZGVyOFBiZkVRTElqaU0vc0lXMVVsK0Zib1JGbTZRVVRX?=
- =?utf-8?B?TmZsWmEzMG9BZzRKaTJ0WGNJa3I0cVhrYml0WW9DTXNXNUxxRlFuNE5VQXlz?=
- =?utf-8?B?dEFJZ2x3RVRXZnNYT2M3N0dDVlFLbEUvN29Tc1JkTzVRbWxiS2dRRE9TRVlt?=
- =?utf-8?B?a3lGM2hCcVFZdWFGTUxXdHU2VXZxTVRtR1pPWXViZmptWi90SjNhalRNZjhI?=
- =?utf-8?B?bVY2Wkk5SHVpUUdxekFVZzhQYjdKdjl6R242MFdSQXNVV29pd0Qra1diQjY2?=
- =?utf-8?B?azE0azJyTjBrUnl1Nm9ieFdISGNDN0xyNkNGWXpWMjN1WDYrVVhSajllS3V6?=
- =?utf-8?B?VkhmWWp3aGVKRGVnWEllNEJ1aWJSU1Y0aVFFNU5YMkx1cnR6Y1VUNFNoTEhI?=
- =?utf-8?B?dm0reENLdVNib0xNazI5YWg4SW83TjN1TXpRMUc3WWRiUFdSbEkvMUlsRWdw?=
- =?utf-8?B?TWRKTUV3cTJLdHFsWnIrSTRqbU5OeVd3S3lTWXVBR0tleE5tbGxsRUVraFRs?=
- =?utf-8?B?dXU0bXpPQU1ic0ZyTnAzV3RqRzdobTBvaFBLWUZMOVh1ZG5YN2FGNGJrcWc1?=
- =?utf-8?B?WDZhUzBqRytnRVFQa1I3a1lYQ3hFT1hQTVhKd1VQT1g3ZHBSZGI1UHJFYkJa?=
- =?utf-8?B?ejBCUERaKzZ6UzRwUHhBUnhPdzJTWVY1VWdOcGVLUUxpdkQ4bGEzZ3N3Vytp?=
- =?utf-8?B?bWxrVHc0d3plWDRrYlM1cnhScUVtcjdPdHhqbmVYc0FqTEdROERQd3VkdlZC?=
- =?utf-8?B?ZVBBRDVqNmpsQVJTZ2lSeWEyRHRWb2kzWDJqa2x6SjRqV28veFN5dVNyWmIv?=
- =?utf-8?B?bHNXV2l5ZGZZRXducWQ5YmRlTnZpS1Z1TkR6eW5POG94R1JKRGxlODFLeGJE?=
- =?utf-8?B?WnhKWTZHVkFXSzBuMVZyWjVDV016dlZEYllvZktnSnFDaEt0a3o2Q1lUNytz?=
- =?utf-8?B?ZHVnL0g5OFcwR3RZditOSEcrcUVwVXIzNmtxWjNXSEpia2RQNERhc0ZOVzE4?=
- =?utf-8?B?VUVVUFpOMXp1L1NSZVI2Z3R5Z2dFMm5ZRWVuYStXQjJrbjdiYnZZejIrZExu?=
- =?utf-8?B?RmhvUjFkc21JVFBMWEtsaE5UUis5MS9lTVlXUkgyRmxJMGt6UTR5TmN3KzIy?=
- =?utf-8?B?S0tuL3cvZmhPMXdoZG0rNDAzR0tPRUtBK0QvcjBHamhiTFJScWNVTDBpODkw?=
- =?utf-8?B?MnV6OXV0RUp6clNtQzBKMGM2V0NNQmFjQ1I2aTlWalZuc2M2ZEYrRzRDSFVN?=
- =?utf-8?B?TzF2NGtyOW1IU1B4dVN0dkIrc1ZDclh6RDVERXYrcDAwTTd3eXBhd1JmSUds?=
- =?utf-8?B?MEhCdUE5YmVGLyszeHh2ellKOXVwUll0a2xyZzBOTG5hcUhlYUk1VFVZU1B2?=
- =?utf-8?B?cjh4alpEK1B2SVBQVmVBSkQvd2l0aERzYmpnMVNhaFh3dnB2V3ZNOFhlb2Fh?=
- =?utf-8?B?eWdNbXFHcFZFME5UU1dNcmpseUJEazh2dndaOGpidmtrZGpNbXFqWUJFOEZG?=
- =?utf-8?B?VXc0MnVyUkU4NSs0KyswcUxnRGhJVTA0Wkhodk9mSWRSZFZoTVYwNHpNKzhI?=
- =?utf-8?B?SHJUemRXekdma0k5R0NaUmgxV2JBNDdoUnU5a2NrTGZscy9lV2VvdGpHRDZi?=
- =?utf-8?B?cUhjSE5RMkY0WEZVdU1kWENUMFNWZUZLR0FvU0RyNEwxcTBrWTRYWHFNS05i?=
- =?utf-8?B?Rkh5TllUeTJ6ZDJpL2U0UHJvLy9SaXdTZEFBeDRHMW5hU29qWlJSajAxRXdk?=
- =?utf-8?B?YUtWQ0hwN2U3eG9CbWJHeTE1YlVQZ3pHVEdjOTJjdzVTaWsrRUV6SU9lR2tE?=
- =?utf-8?B?YVYzSWt4L2M4TkFYRGx0OUV5ZFIxb1lZaGFvNjJRMm1NZUxGaE5za2hpKzJX?=
- =?utf-8?B?YUxYaFRHeVdRVW5VQWxTZldKbGZSeFQ5K015d2dmQUIwSVpnSzlTRnpyWXFr?=
- =?utf-8?B?WnIrL3B1eG5tUisyU1dLOG1uRUEwTUV4UTB1emxkR2gzVmkwaHZBSXFIWTM1?=
- =?utf-8?B?VHc9PQ==?=
-Content-Type: text/plain; charset="utf-8"
-Content-ID: <B17CD8475E2AD64FAA8F9D3416347C54@namprd11.prod.outlook.com>
-Content-Transfer-Encoding: base64
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 82D85376F2;
+	Tue, 30 Jan 2024 04:39:03 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1706589545; cv=none; b=QYZnR09gcPIkVC3yu/u04FKAEZ7/4r4P7M5Lsm4lCNsNcS0wytyV1dJFZp4Jd0aL5O0QTCih/ZBR/L2IeIkSBFlascQV1/TOTxy1m1jHNa7itYJ/rQR0gKc08DGYI79YQEeccpz06TNnuXypbtShvli0xLbZODA75w87xIBPkwE=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1706589545; c=relaxed/simple;
+	bh=wMBeUA9Q0y5ZdctCJMCUYoYNUzpI58JVXauLp6cEgSI=;
+	h=Date:From:To:CC:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=D9nZ+R3a6ipqHgk+bkDJusPq8qdnwUV2lV0TnRswL8qVUwpZmgxNG3WYQ8GuSQRzEKSoG4zkM1DrzSxua6vISrovX4Gy1Ap+j+JNayW/3yraaxKqoCB1GkTjkuI3GbgmU7X9n5qwv35Pi8S8nEadwCf2tNFoy2Fz48n4ZsxdMz0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=ePpk2pgO; arc=none smtp.client-ip=205.220.180.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
+Received: from pps.filterd (m0279870.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.17.1.24/8.17.1.24) with ESMTP id 40U4crQk010662;
+	Tue, 30 Jan 2024 04:38:53 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
+	date:from:to:cc:subject:message-id:references:mime-version
+	:content-type:in-reply-to; s=qcppdkim1; bh=ER0K+FOvkmvSG/I9sFoAJ
+	lU05ivjAcMW5zjtGEaGgj0=; b=ePpk2pgOKm1qk7MhjyCWeB+aOJT+L8rGgB43+
+	Gnp8JcPO+LAlhxq9Dxwp5CDD7hI2iJkJy88je8mzhD6CqqWboBCGcMlTsvEWCS8o
+	OYrS/42NShhFSuyidDqN8YEOUoy3LBu7JnHU8Wi8cvJH8HhGhSWcKY79tIY0oDUi
+	jiYfM81bkDVVHuRBkrgRE9xUpDnlAZK/1LciTd0uBU36DbJcc50WCoAW7uBI/Mwt
+	fTywBWI6I/X69hgZ2ScILqBm9Yh1tV8Loy5PS+HyoIjcmAWjZ96o6hRZIq1c6lPU
+	q9VpIaz/0TBXu01VRsOP6xtAy/65eXyRZehdvblw1oU22QBwQ==
+Received: from nalasppmta04.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3vxrq085sr-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Tue, 30 Jan 2024 04:38:53 +0000 (GMT)
+Received: from nalasex01c.na.qualcomm.com (nalasex01c.na.qualcomm.com [10.47.97.35])
+	by NALASPPMTA04.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 40U4cqJY027940
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Tue, 30 Jan 2024 04:38:52 GMT
+Received: from hu-bjorande-lv.qualcomm.com (10.49.16.6) by
+ nalasex01c.na.qualcomm.com (10.47.97.35) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.1118.40; Mon, 29 Jan 2024 20:38:49 -0800
+Date: Mon, 29 Jan 2024 20:38:48 -0800
+From: Bjorn Andersson <quic_bjorande@quicinc.com>
+To: Tengfei Fan <quic_tengfan@quicinc.com>
+CC: <andersson@kernel.org>, <konrad.dybcio@linaro.org>,
+        <linus.walleij@linaro.org>, <robh+dt@kernel.org>,
+        <krzysztof.kozlowski+dt@linaro.org>, <conor+dt@kernel.org>,
+        <linux-arm-msm@vger.kernel.org>, <linux-gpio@vger.kernel.org>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <kernel@quicinc.com>
+Subject: Re: [PATCH v2 2/2] dt-bindings: pinctrl: qcom: consolidate functions
+ to match with driver
+Message-ID: <20240130043848.GU2936378@hu-bjorande-lv.qualcomm.com>
+References: <20240129092512.23602-1-quic_tengfan@quicinc.com>
+ <20240129092512.23602-3-quic_tengfan@quicinc.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: PH7PR11MB8033.namprd11.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 172ab114-efab-4776-04c7-08dc21486d02
-X-MS-Exchange-CrossTenant-originalarrivaltime: 30 Jan 2024 04:03:32.9412
- (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 3f4057f3-b418-4d4e-ba84-d55b4e897d88
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: HhEPESp2YvRWTOwqPUQdx7MavIKQwhk04Uccl96nFXxvLbIPs1mnRDWb1G9/oNVG9xXtZJme/JIKBX8WAAy12MTYqkgL5IcjZOXOQTiag4c=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: PH8PR11MB6659
+Content-Type: text/plain; charset="us-ascii"
+Content-Disposition: inline
+In-Reply-To: <20240129092512.23602-3-quic_tengfan@quicinc.com>
+X-ClientProxiedBy: nalasex01b.na.qualcomm.com (10.47.209.197) To
+ nalasex01c.na.qualcomm.com (10.47.97.35)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-ORIG-GUID: d9DRSSKNi_ReaDp05IRLUhWP2x77bVq9
+X-Proofpoint-GUID: d9DRSSKNi_ReaDp05IRLUhWP2x77bVq9
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.272,Aquarius:18.0.1011,Hydra:6.0.619,FMLib:17.11.176.26
+ definitions=2024-01-30_01,2024-01-29_01,2023-05-22_02
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 lowpriorityscore=0
+ impostorscore=0 mlxscore=0 clxscore=1011 priorityscore=1501 bulkscore=0
+ adultscore=0 spamscore=0 suspectscore=0 malwarescore=0 phishscore=0
+ mlxlogscore=999 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.19.0-2401190000 definitions=main-2401300030
 
-SGkgUGhpbGlwcGUsDQoNCk9uIFRodSwgMjAyNC0wMS0yNSBhdCAwOTowNSArMDEwMCwgUGhpbGlw
-cGUgU2NoZW5rZXIgd3JvdGU6DQo+IA0KPiBkaWZmIC0tZ2l0IGEvaW5jbHVkZS9saW51eC9wbGF0
-Zm9ybV9kYXRhL21pY3JvY2hpcC1rc3ouaA0KPiBiL2luY2x1ZGUvbGludXgvcGxhdGZvcm1fZGF0
-YS9taWNyb2NoaXAta3N6LmgNCj4gaW5kZXggZjE3NzQxNjYzNWEyLi5jNDQ2NmU1NmQ5ZDcgMTAw
-NjQ0DQo+IC0tLSBhL2luY2x1ZGUvbGludXgvcGxhdGZvcm1fZGF0YS9taWNyb2NoaXAta3N6LmgN
-Cj4gKysrIGIvaW5jbHVkZS9saW51eC9wbGF0Zm9ybV9kYXRhL21pY3JvY2hpcC1rc3ouaA0KPiBA
-QCAtMjQsNiArMjQsNyBAQA0KPiANCj4gIGVudW0ga3N6X2NoaXBfaWQgew0KPiAgICAgICAgIEtT
-Wjg1NjNfQ0hJUF9JRCA9IDB4ODU2MywNCj4gKyAgICAgICBLU1o4NTY3X0NISVBfSUQgPSAweDAw
-ODU2NzAwLA0KPiAgICAgICAgIEtTWjg3OTVfQ0hJUF9JRCA9IDB4ODc5NSwNCj4gICAgICAgICBL
-U1o4Nzk0X0NISVBfSUQgPSAweDg3OTQsDQo+ICAgICAgICAgS1NaODc2NV9DSElQX0lEID0gMHg4
-NzY1LA0KDQpuaXRwaWNrOiBjYW4geW91IG1vdmUgS1NaODU2NyBhZGphY2VudCB0byBLU1o5NTY3
-LiBTaW5jZSBmaXJzdCBLU1o4eA0KY2hpcHMgaGF2ZSBjaGlwaWQgb2YgMTYgYml0cyBsZW5ndGgu
-IE90aGVycyBoYXZlIDMyIGJpdHMgbGVuZ3RoLg0KDQpvdGhlcndpc2UgaXQgbG9va3MgZ29vZCB0
-byBtZS4gDQoNCkFja2VkLWJ5OiBBcnVuIFJhbWFkb3NzIDxhcnVuLnJhbWFkb3NzQG1pY3JvY2hp
-cC5jb20+IA0KPiAtLQ0KPiAyLjM0LjENCj4gDQo=
+On Mon, Jan 29, 2024 at 05:25:12PM +0800, Tengfei Fan wrote:
+> Consolidate functions to match with SM4450 pinctrl driver, because
+> consolidate functions are being used in SM4450 pinctrl driver.
+
+Please make your commit message start by describing the problem you're
+solving, then provide a technical description of the change.
+
+The problem statement can mention that you consolidated the functions in
+the driver, but did not update the binding before it was merged. And for
+a DeviceTree binding, it should document why this
+non-backwards-compatible change is okay (such as the initial commit is
+broken).
+
+Regards,
+Bjorn
+
+> 
+> Fixes: 7bf8b78f86db ("dt-bindings: pinctrl: qcom: Add SM4450 pinctrl")
+> Signed-off-by: Tengfei Fan <quic_tengfan@quicinc.com>
+> ---
+>  .../bindings/pinctrl/qcom,sm4450-tlmm.yaml    | 51 +++++++------------
+>  1 file changed, 17 insertions(+), 34 deletions(-)
+> 
+> diff --git a/Documentation/devicetree/bindings/pinctrl/qcom,sm4450-tlmm.yaml b/Documentation/devicetree/bindings/pinctrl/qcom,sm4450-tlmm.yaml
+> index bb675c8ec220..4109104de054 100644
+> --- a/Documentation/devicetree/bindings/pinctrl/qcom,sm4450-tlmm.yaml
+> +++ b/Documentation/devicetree/bindings/pinctrl/qcom,sm4450-tlmm.yaml
+> @@ -72,40 +72,23 @@ $defs:
+>          description:
+>            Specify the alternative function to be configured for the specified
+>            pins.
+> -        enum: [ gpio, atest_char, atest_char0, atest_char1, atest_char2,
+> -                atest_char3, atest_usb0, atest_usb00, atest_usb01, atest_usb02,
+> -                atest_usb03, audio_ref, cam_mclk, cci_async, cci_i2c,
+> -                cci_timer0, cci_timer1, cci_timer2, cci_timer3, cci_timer4,
+> -                cmu_rng0, cmu_rng1, cmu_rng2, cmu_rng3, coex_uart1, cri_trng,
+> -                cri_trng0, cri_trng1, dbg_out, ddr_bist, ddr_pxi0, ddr_pxi1,
+> -                dp0_hot, gcc_gp1, gcc_gp2, gcc_gp3, host2wlan_sol, ibi_i3c,
+> -                jitter_bist, mdp_vsync, mdp_vsync0, mdp_vsync1, mdp_vsync2,
+> -                mdp_vsync3, mi2s0_data0, mi2s0_data1, mi2s0_sck, mi2s0_ws,
+> -                mi2s2_data0, mi2s2_data1, mi2s2_sck, mi2s2_ws, mi2s_mclk0,
+> -                mi2s_mclk1, nav_gpio0, nav_gpio1, nav_gpio2, pcie0_clk,
+> -                phase_flag0, phase_flag1, phase_flag10, phase_flag11,
+> -                phase_flag12, phase_flag13, phase_flag14, phase_flag15,
+> -                phase_flag16, phase_flag17, phase_flag18, phase_flag19,
+> -                phase_flag2, phase_flag20, phase_flag21, phase_flag22,
+> -                phase_flag23, phase_flag24, phase_flag25, phase_flag26,
+> -                phase_flag27, phase_flag28, phase_flag29, phase_flag3,
+> -                phase_flag30, phase_flag31, phase_flag4, phase_flag5,
+> -                phase_flag6, phase_flag7, phase_flag8, phase_flag9,
+> -                pll_bist, pll_clk, prng_rosc0, prng_rosc1, prng_rosc2,
+> -                prng_rosc3, qdss_cti, qdss_gpio, qdss_gpio0, qdss_gpio1,
+> -                qdss_gpio10, qdss_gpio11, qdss_gpio12, qdss_gpio13, qdss_gpio14,
+> -                qdss_gpio15, qdss_gpio2, qdss_gpio3, qdss_gpio4, qdss_gpio5,
+> -                qdss_gpio6, qdss_gpio7, qdss_gpio8, qdss_gpio9, qlink0_enable,
+> -                qlink0_request, qlink0_wmss, qlink1_enable, qlink1_request,
+> -                qlink1_wmss, qlink2_enable, qlink2_request, qlink2_wmss,
+> -                qup0_se0, qup0_se1, qup0_se2, qup0_se3, qup0_se4, qup0_se5,
+> -                qup0_se6, qup0_se7, qup1_se0, qup1_se1, qup1_se2, qup1_se3,
+> -                qup1_se4, qup1_se5, qup1_se6, sd_write, tb_trig, tgu_ch0,
+> -                tgu_ch1, tgu_ch2, tgu_ch3, tmess_prng0, tmess_prng1,
+> -                tmess_prng2, tmess_prng3, tsense_pwm1, tsense_pwm2, uim0_clk,
+> -                uim0_data, uim0_present, uim0_reset, uim1_clk, uim1_data,
+> -                uim1_present, uim1_reset, usb0_hs, usb0_phy, vfr_0, vfr_1,
+> -                vsense_trigger ]
+> +        enum: [ gpio, atest_char, atest_usb0, audio_ref_clk, cam_mclk,
+> +                cci_async_in0, cci_i2c, cci, cmu_rng, coex_uart1_rx,
+> +                coex_uart1_tx, cri_trng, dbg_out_clk, ddr_bist,
+> +                ddr_pxi0_test, ddr_pxi1_test, gcc_gp1_clk, gcc_gp2_clk,
+> +                gcc_gp3_clk, host2wlan_sol, ibi_i3c_qup0, ibi_i3c_qup1,
+> +                jitter_bist_ref, mdp_vsync0_out, mdp_vsync1_out,
+> +                mdp_vsync2_out, mdp_vsync3_out, mdp_vsync, nav,
+> +                pcie0_clk_req, phase_flag, pll_bist_sync, pll_clk_aux,
+> +                prng_rosc, qdss_cti_trig0, qdss_cti_trig1, qdss_gpio,
+> +                qlink0_enable, qlink0_request, qlink0_wmss_reset,
+> +                qup0_se0, qup0_se1, qup0_se2, qup0_se3, qup0_se4,
+> +                qup1_se0, qup1_se1, qup1_se2, qup1_se2_l2, qup1_se3,
+> +                qup1_se4, sd_write_protect, tb_trig_sdc1, tb_trig_sdc2,
+> +                tgu_ch0_trigout, tgu_ch1_trigout, tgu_ch2_trigout,
+> +                tgu_ch3_trigout, tmess_prng, tsense_pwm1_out,
+> +                tsense_pwm2_out, uim0, uim1, usb0_hs_ac, usb0_phy_ps,
+> +                vfr_0_mira, vfr_0_mirb, vfr_1, vsense_trigger_mirnat ]
+>  
+>          required:
+>            - pins
+> -- 
+> 2.17.1
+> 
 
