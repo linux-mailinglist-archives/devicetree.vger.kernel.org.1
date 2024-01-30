@@ -1,143 +1,135 @@
-Return-Path: <devicetree+bounces-36653-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-36654-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 91EF38422D0
-	for <lists+devicetree@lfdr.de>; Tue, 30 Jan 2024 12:21:50 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1F907842310
+	for <lists+devicetree@lfdr.de>; Tue, 30 Jan 2024 12:30:33 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 32CB61F2A9C2
-	for <lists+devicetree@lfdr.de>; Tue, 30 Jan 2024 11:21:50 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 6E0ECB2CD1F
+	for <lists+devicetree@lfdr.de>; Tue, 30 Jan 2024 11:23:30 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 19D746774C;
-	Tue, 30 Jan 2024 11:18:44 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E772466B32;
+	Tue, 30 Jan 2024 11:21:47 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=9elements.com header.i=@9elements.com header.b="gN5nViwy"
+	dkim=pass (2048-bit key) header.d=gmx.net header.i=wahrenst@gmx.net header.b="olrhRy+w"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ej1-f52.google.com (mail-ej1-f52.google.com [209.85.218.52])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mout.gmx.net (mout.gmx.net [212.227.17.21])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D04ED66B38
-	for <devicetree@vger.kernel.org>; Tue, 30 Jan 2024 11:18:40 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.52
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 890C7664B9;
+	Tue, 30 Jan 2024 11:21:45 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=212.227.17.21
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1706613524; cv=none; b=cl4Jer7E9CPRIiNxah+cM/wLRor9dzUXywqpRQBYoqdjz/HXb0yI0nhU2fT39zGwmE+5WIkVjdcIRCycW69jksZr9WXNJ/Y+qts0SYlnKPqBVNBZBP+arRUABV+P8svdytaOKuTFwELG5d4a7gCH9uazpB34Z67OxfiR19gwycs=
+	t=1706613707; cv=none; b=ty/9sIaU4O7lNjY/4YltvaMFA1fkeHnJ8qVd7Y6rQhLTP1222WEz6nb56+aXSTOK/rx1aheqXj3961/RlxztC31OzxVBJ4Ps5BTfrXIeC2q0hWItgp57gYRUZz0qCwAoDF7Saj2JVaMdl6uXRPPUgtePaHv860di9yBRHBENCGE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1706613524; c=relaxed/simple;
-	bh=kGS2YlYpwkaMeLuYA2ZJo9VryN5LNnd/3OS8jgCksRU=;
-	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=f4ZykxPuOrQ4YcPNmTpDQez94g97kW1JH7xSzfBX+1odustT99xmjcvCnkiE88a4AIPTi676u4WjaWuujj6GhRhqG5jBga1cCxDrZ2NsHIa/srp++H6a/jqSg79pBve5BmzQkDYCTgZhIZ6+KL+MEbcJebtSaY3MyFX+nUIR0hM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=9elements.com; spf=pass smtp.mailfrom=9elements.com; dkim=pass (2048-bit key) header.d=9elements.com header.i=@9elements.com header.b=gN5nViwy; arc=none smtp.client-ip=209.85.218.52
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=9elements.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=9elements.com
-Received: by mail-ej1-f52.google.com with SMTP id a640c23a62f3a-a363961b96aso34780566b.3
-        for <devicetree@vger.kernel.org>; Tue, 30 Jan 2024 03:18:40 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=9elements.com; s=google; t=1706613519; x=1707218319; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=FOtNl4cKe7GBawJQPo+KdaP0XIGpVVB++fTiPzkFZX0=;
-        b=gN5nViwyIq+mAad0AUgZIWiljRPN7K0k1UbDJ9u8WH6WZjj6luj3ynXhHB5CdB2Pgz
-         +7qeAFesteomf5lysPqhVXl6Qk4hUyVUUBUPQINMso0AsWlVxO/koPk6dBvCFQ+1D7Pw
-         nMlKJrq4ogmajAi0yynsCeMe6Zv58+4pKzT26BHMYGZ2XHRAQZsffftTGrlvEIVOVdBM
-         NTxmb/eiTa/Bc9tx9mo02bdEFPlyAOk38jfErBl2ayqn8w2GxMZaMR1kx3fBBy54e6z8
-         BYpm78YD5dIYTg/XCSR88aU4O+2gZQb7vj1ILZl5ZQ2WuGXoOT8CZ1ZTzisfTDYWRVPo
-         oWxA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1706613519; x=1707218319;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=FOtNl4cKe7GBawJQPo+KdaP0XIGpVVB++fTiPzkFZX0=;
-        b=t1rCJgvW1b5WsRhz60hQ+mIB5YT93wvhu9bCYO1gkpeERvKt72ZiwnrFzonAxSFwcH
-         Br0R1LMJE8rrdstj4HtHd0EnfaL/NmGTEV1lHAS+bFnmsICCqxumdnTs/7CdTWO9KJHa
-         4oMcyJBNgxNo9Jvw0rmhtu/kX1+Q9ZLlls4/xTpcksvVz+O3Qt4o6oE0pkhUgACpw5cV
-         xsS5wgz4LsNTwN/4DtJp6q5+C2450LeHiQEPk4bv+ByD6Kdik1BEnKPa3lX0jbZMBb3t
-         jue3AU4O5ggXZZ6LXIJtaeJpYQKReiV+jaoA3cFbNVXoRcXC8QbchQwjlXHk3cJhWsJk
-         mt7A==
-X-Gm-Message-State: AOJu0Yy8xo40Bm/WMuHAXSSF8kVnhYlqHCaAdjlbBBOjMvipMpgQDh0M
-	cNsitVTIR1hPPWLAZ5GXIGbP/6FGDLZU99NJwCn5KH5/fSegRZSlrMsM6dIbRqw=
-X-Google-Smtp-Source: AGHT+IH/ny2CqOMsS25PWFkZVT2GcF7qm5uWsJ1Y+uwbTDUyS9YsNWk+xyeJG3SSE0spkJqW8yAFog==
-X-Received: by 2002:a17:906:6882:b0:a36:3d9d:59e4 with SMTP id n2-20020a170906688200b00a363d9d59e4mr392530ejr.64.1706613518942;
-        Tue, 30 Jan 2024 03:18:38 -0800 (PST)
-Received: from stroh80.sec.9e.network (ip-078-094-000-051.um19.pools.vodafone-ip.de. [78.94.0.51])
-        by smtp.gmail.com with ESMTPSA id h14-20020a17090634ce00b00a35a11fd795sm2559079ejb.129.2024.01.30.03.18.37
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 30 Jan 2024 03:18:38 -0800 (PST)
-From: Naresh Solanki <naresh.solanki@9elements.com>
-To: Peter Rosin <peda@axentia.se>,
-	Jonathan Cameron <jic23@kernel.org>,
-	Lars-Peter Clausen <lars@metafoo.de>,
-	Rob Herring <robh+dt@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>
-Cc: mazziesaccount@gmail.com,
-	Naresh Solanki <naresh.solanki@9elements.com>,
-	linux-iio@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org
-Subject: [PATCH v2] dt-bindings: iio: afe: voltage-divider: Add io-channel-cells
-Date: Tue, 30 Jan 2024 16:48:29 +0530
-Message-ID: <20240130111830.4016002-1-naresh.solanki@9elements.com>
-X-Mailer: git-send-email 2.42.0
+	s=arc-20240116; t=1706613707; c=relaxed/simple;
+	bh=EwpwEAFcgdaFtY+FEAqTu9ABrpy5x9wRRWMSF5IyDAY=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=r1QI2h2cniICoyrQBTRZVrsVtnMw2mD6gFL04QvYK2DHlhXjZZ3bMwA5EM7Ri0YufDGJHBwylicWVrfqbLxTucGxYPnmFlDzqB3zwedhj7+uw+6zV+lKGAt+wXZ1AKn7rtOsqoFOqCXkwuTr1LE+C/ZcnZ88N9CBOUescBFf79g=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=gmx.net; spf=pass smtp.mailfrom=gmx.net; dkim=pass (2048-bit key) header.d=gmx.net header.i=wahrenst@gmx.net header.b=olrhRy+w; arc=none smtp.client-ip=212.227.17.21
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=gmx.net
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmx.net
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=gmx.net;
+	s=s31663417; t=1706613692; x=1707218492; i=wahrenst@gmx.net;
+	bh=EwpwEAFcgdaFtY+FEAqTu9ABrpy5x9wRRWMSF5IyDAY=;
+	h=X-UI-Sender-Class:Date:Subject:To:Cc:References:From:
+	 In-Reply-To;
+	b=olrhRy+wCNRimiiIbtUZr6jFhOhA8NOCLDDApDEECeyuZSg3QBCKgWq74a/AQHie
+	 bO29Sjaubh6pkklwD+Lan9CY3pzS+C226SnAGHfFyTNam8n+ewGYQJNv3AtGeWFbk
+	 /aa86bYrxuIPIU+ErILnHMkFClEjP3+R60THXzLwTRs/ykYE0QeidUpgFeQdrDxlm
+	 bfDb4Akg/sPOt/1aZoFUL80lybfw90X+ZCXECksqyVNoSWeqKmARHFehbND0iMjQg
+	 lQbEI6AgRs1HQdLk7DycTqwyJUzru0vff4zjKJkOrG39rtGJSfElNI15z4/lHrmUS
+	 YqU4I8r0f56D4vUr7A==
+X-UI-Sender-Class: 724b4f7f-cbec-4199-ad4e-598c01a50d3a
+Received: from [192.168.1.167] ([37.4.248.43]) by mail.gmx.net (mrgmx104
+ [212.227.17.168]) with ESMTPSA (Nemesis) id 1MnJhU-1qnmNk2JUa-00jKJq; Tue, 30
+ Jan 2024 12:21:32 +0100
+Message-ID: <c6180cc2-8912-4cd0-82f9-4428df84db6b@gmx.net>
+Date: Tue, 30 Jan 2024 12:21:29 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH V3 2/2] pwm: Add GPIO PWM driver
+To: Sean Young <sean@mess.org>
+Cc: =?UTF-8?Q?Uwe_Kleine-K=C3=B6nig?= <u.kleine-koenig@pengutronix.de>,
+ Rob Herring <robh+dt@kernel.org>,
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+ Conor Dooley <conor+dt@kernel.org>, andy.shevchenko@gmail.com,
+ Angelo Compagnucci <angelo.compagnucci@gmail.com>,
+ Philip Howard <phil@gadgetoid.com>, Linus Walleij
+ <linus.walleij@linaro.org>, linux-pwm@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-gpio@vger.kernel.org,
+ Vincent Whitchurch <vincent.whitchurch@axis.com>
+References: <20240128163630.104725-1-wahrenst@gmx.net>
+ <20240128163630.104725-3-wahrenst@gmx.net> <Zbi8pbT7N0vKUgmx@gofer.mess.org>
+Content-Language: en-US
+From: Stefan Wahren <wahrenst@gmx.net>
+In-Reply-To: <Zbi8pbT7N0vKUgmx@gofer.mess.org>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: quoted-printable
+X-Provags-ID: V03:K1:XYhn+3g0/rkEOk+zto8O/wQhE/DK5f71Z8wuB0Am0M7rVDN+J9O
+ X+IY6Lc+9ux7Az6WsklITM2i/DfXCqS4WpB9v9mWwkyQw8yDPOLHGMyn41rP9X5wuj+PoQg
+ kJ9w+7GIuwANKw/BJ9xAiSCMCgnldO2J4CFgxzzWkOu/htV4iOzIoVcNRJlbH2hZIn58dCf
+ qacMtOu32Evm8jizmv8Qw==
+X-Spam-Flag: NO
+UI-OutboundReport: notjunk:1;M01:P0:GjddKZsctQw=;gih3enDrJiu/pSbRO35Rnbi4EVn
+ z9cmxYlolg1YTjZiwLzF3dpBbfvgpY8aBzWM6uNwvX4dwZed+wh/7mp5JggAVAflHTmiTkDA/
+ AL0qJnVoEyH7o17JotQ5XKuNaEh8nBp4OUlv8ITBXeAEqARYhKwTvpSU92BqKBf6gCvVZ1T4Z
+ YkXNlhi70cYxnasRY/aGJWlCyZcA4twb9NGSsyV30ijdLJpnNzg+5MFoZ88zyIH2n1qcoOJSH
+ Mw4H9+6I1LpS6ot4ztQCC3ljG9SnRH+wBa3f4uy0FpxCtcbqhBYaZyJ2NjGUrw2dK/PP/uB/J
+ o8/c/6IP9QoH0mNyIj6GLimWCVmduuCAIzib8ofn+il/rSSmdf3Wpejxjkc4pMOn34z0V+cZf
+ gz8WzKfkQfIoyS3NyinLlOKki5vaJuhegkWjZzG6FuBA7p+XjY4+IpVpSuAwI9TIiAFGx27dr
+ FpcnVAIfaLzzXpSIcpMAW938MGJjfVhFBjNCJ59kc+mzNCCGXrTIYM/GlvSgKU++jdSOJtYj7
+ REEubbgGSAPF44Tg4xYNR5aQvPfXAktchpMMkKFqOLET+PXb3/ZFIGPNLTxK1vppa1kisk3uF
+ rtRU5jHT170vCa2A5pKtCbpZq9kz0w9st4ONR3VQ+ACRV9NVxfz11hrA854YybgCqYR1ajX+N
+ Pa0oJfxnBjB+MmlpRPOv3JB2irZTZxS5ziPDcgjbXzoAeSjG+DMy+1BJRz9sWKqicM2ZlSgkI
+ Io/Qx0GSnQGmOXjM1nv0DprIlSiGIkc0cJvKsrcJhmFEP7hVtF5UrX7vEVHpjYr2acXfMUSyG
+ LJuqUj/eRX0wD5bewRKmjgVxWDuZNLop7U0NTJvqFq9Ih6lrf8Irq3HTylJ7+8CPCG9TjxE+L
+ 72V7WG5yHvXTcprb49hsveMExYb3fKPDARsh4tGL8qD2m5CSY3UMyj36//wBIidCUnq9yCyDY
+ do7OsbLGm5WwKpTP8hYayai8qdA=
 
-voltage-divider is always an iio consumer at the same time it is
-optionally an iio provider.
-Hence add #io-channel-cells
-Also update example.
+Hi Sean,
 
-Signed-off-by: Naresh Solanki <naresh.solanki@9elements.com>
----
- .../bindings/iio/afe/voltage-divider.yaml          | 14 +++++++++++++-
- 1 file changed, 13 insertions(+), 1 deletion(-)
-
-diff --git a/Documentation/devicetree/bindings/iio/afe/voltage-divider.yaml b/Documentation/devicetree/bindings/iio/afe/voltage-divider.yaml
-index dddf97b50549..09f10d7c4e02 100644
---- a/Documentation/devicetree/bindings/iio/afe/voltage-divider.yaml
-+++ b/Documentation/devicetree/bindings/iio/afe/voltage-divider.yaml
-@@ -39,6 +39,13 @@ properties:
-     description: |
-       Channel node of a voltage io-channel.
- 
-+  '#io-channel-cells':
-+    description:
-+      In addition to consuming the measurement services of an ADC,
-+      the voltage divider can act as an provider of measurement
-+      services to other devices.
-+    const: 1
-+
-   output-ohms:
-     description:
-       Resistance Rout over which the output voltage is measured. See full-ohms.
-@@ -75,12 +82,17 @@ examples:
-             spi-max-frequency = <1000000>;
-         };
-     };
--    sysv {
-+    p12v_vd: sysv {
-         compatible = "voltage-divider";
-         io-channels = <&maxadc 1>;
-+        #io-channel-cells = <1>;
- 
-         /* Scale the system voltage by 22/222 to fit the ADC range. */
-         output-ohms = <22>;
-         full-ohms = <222>; /* 200 + 22 */
-     };
-+    iio-hwmon {
-+        compatible = "iio-hwmon";
-+        io-channels = <&p12v_vd 0>;
-+    };
- ...
-
-base-commit: 861c0981648f5b64c86fd028ee622096eb7af05a
--- 
-2.42.0
-
+Am 30.01.24 um 10:08 schrieb Sean Young:
+> On Sun, Jan 28, 2024 at 05:36:30PM +0100, Stefan Wahren wrote:
+>> From: Vincent Whitchurch <vincent.whitchurch@axis.com>
+>>
+>> Add a software PWM which toggles a GPIO from a high-resolution timer.
+>>
+>> This will naturally not be as accurate or as efficient as a hardware
+>> PWM, but it is useful in some cases.  I have for example used it for
+>> evaluating LED brightness handling (via leds-pwm) on a board where the
+>> LED was just hooked up to a GPIO, and for a simple verification of the
+>> timer frequency on another platform.
+>>
+>> Since high-resolution timers are used, sleeping gpio chips are not
+>> supported and are rejected in the probe function.
+>>
+>> Signed-off-by: Vincent Whitchurch <vincent.whitchurch@axis.com>
+>> Co-developed-by: Stefan Wahren <wahrenst@gmx.net>
+>> Signed-off-by: Stefan Wahren <wahrenst@gmx.net>
+>> ---
+...
+>> +
+>> +static int pwm_gpio_apply(struct pwm_chip *chip, struct pwm_device *pw=
+m,
+>> +			  const struct pwm_state *state)
+>> +{
+>> +	struct pwm_gpio *gpwm =3D container_of(chip, struct pwm_gpio, chip);
+>> +	bool invert =3D state->polarity =3D=3D PWM_POLARITY_INVERSED;
+>> +	unsigned long flags;
+> Not sure this is necessary but how about:
+>
+> 	if (state->duty_cycle < hrtimer_resolution ||
+> 	    state->period - state->duty_cycle < hrtimer_resolution)
+> 		return -EINVAL;
+>
+i think i get the idea, but we need to care about corner cases like
+duty_cycle =3D 0
 
