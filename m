@@ -1,73 +1,74 @@
-Return-Path: <devicetree+bounces-36565-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-36566-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 920C3841D23
-	for <lists+devicetree@lfdr.de>; Tue, 30 Jan 2024 09:03:14 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id DFFF0841D26
+	for <lists+devicetree@lfdr.de>; Tue, 30 Jan 2024 09:04:00 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 47411288671
-	for <lists+devicetree@lfdr.de>; Tue, 30 Jan 2024 08:03:13 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 94F762885E7
+	for <lists+devicetree@lfdr.de>; Tue, 30 Jan 2024 08:03:59 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 39B6A3F9EA;
-	Tue, 30 Jan 2024 08:03:10 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0681C54667;
+	Tue, 30 Jan 2024 08:03:57 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="dJbXT/pb"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="nqccetSU"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ej1-f46.google.com (mail-ej1-f46.google.com [209.85.218.46])
+Received: from mail-ej1-f43.google.com (mail-ej1-f43.google.com [209.85.218.43])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 834F955E52
-	for <devicetree@vger.kernel.org>; Tue, 30 Jan 2024 08:03:08 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.46
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 386A956444
+	for <devicetree@vger.kernel.org>; Tue, 30 Jan 2024 08:03:55 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.43
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1706601790; cv=none; b=IOeh7kuv7ic9V2Wigl6fwEOWpWnL71aqz9naYAnXSn4BJGUDXvkvsMoxPg1cAKQ2TZYhRw6PzftF/EEFS4Hh8okydNGtGXMNyzUmaB07JZ0MgYU7UF8fiIrDBOWnaHDQGxjuztWe0Oc+Q5M+1fSZI1BEm6DsVn72tDoB9DPlXBw=
+	t=1706601836; cv=none; b=jqnnGx0gDwHOaaZo1s+zqoSKUuAs8BQpadWLYkX7klX8jFfYZuIKb71Bab3dkfkCUTIobYNPo3ZhvI+WxQ6gNaswnI7dVPRIDMKgOiPZjSlKdv77Fa0WyhhbFMkfn8QnnAsOvSmtFzKXmOZ07D0SfYGaj0Ysdd+WzAcATLh2n0s=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1706601790; c=relaxed/simple;
-	bh=CzsYlgL7WbwHggv2bJeZ1tnKk5EHZM2i48aifoCmbXE=;
+	s=arc-20240116; t=1706601836; c=relaxed/simple;
+	bh=AXEnRn6uuC0ylZxXmV079bKsOQui39FdQnUlVEW1+iE=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=JtkEFZs1e6ol6oonclLXjCzU9GanCu4G1KOE4bztIPHgLsS2L0WOPbam4OMMfDAYci9Xv9GTGwgYHA7IM2rLeccuXaRfiAbMqgBJC+9ts+x3Pgc9y7qGnqaVs2bJrBxZJr80e/iDTW7Z2pk+PCZdpA35xZQ6PkivoFcIPwd8y+Y=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=dJbXT/pb; arc=none smtp.client-ip=209.85.218.46
+	 In-Reply-To:Content-Type; b=bQtfEGIM04Z9fkMKqdqh3tMg5ZMbVxMTiAFqN6XdtZNuQVGxnMZpLelgVT0WNyueS2x8lVBnOI3mhCdW/ncRc7A9JLjP201OWYcrwSQXHVK/DFo5U3qREJe3aoB6GrxammQQCS+Fidx8r1RsMxNNDlA6E7LQibuztbjoeaOsKFc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=nqccetSU; arc=none smtp.client-ip=209.85.218.43
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-ej1-f46.google.com with SMTP id a640c23a62f3a-a3566c0309fso281918166b.1
-        for <devicetree@vger.kernel.org>; Tue, 30 Jan 2024 00:03:08 -0800 (PST)
+Received: by mail-ej1-f43.google.com with SMTP id a640c23a62f3a-a2f22bfb4e6so515472066b.0
+        for <devicetree@vger.kernel.org>; Tue, 30 Jan 2024 00:03:54 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1706601787; x=1707206587; darn=vger.kernel.org;
+        d=linaro.org; s=google; t=1706601833; x=1707206633; darn=vger.kernel.org;
         h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
          :to:content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=DAL0f6fKkqp3puSgTNryp8hcfAmzEA4DpvZNsDOXh6U=;
-        b=dJbXT/pbn1TzdpGHRham5d9JETzYdcP/gVXq65pcRToZV5+TbBoPi5aah4MCBxNKv7
-         Fp/lvMObMncK46gUonhLF5eaEUP3IRMY77BA9XbdkRXkx0SgADPbMvHduIMjRSJ97yVD
-         x/fhHQeqbRIr0ydM7TGFcBfD5cIoC91plY8nUtMnjvN+DDWx1BtLQDi7G/G01pm4EtV3
-         Qtwp+qVUOh9OVVF35D5EIIwL0zV6gN42sKCq7IBT8oP9FMFCoNAd87I/GxC4Vf6Ol+cE
-         zo/mzi+KjkLQkAn9RRUEJ5nDKvlUKmwldOEFxS3ZaSMrL+FyTACo4kA/qQGgL4iuNMvm
-         F4+Q==
+        bh=cjBz2sDHD9qmDzJiGaVXVB9yXjr7XeyDRf+P0XXT9D0=;
+        b=nqccetSURt+JEC+QbIXuk4AYEtYEz8Qafa7y53piJtWqZ6ym4aZxtrWKNYwJ5+pS3l
+         8zdAdAsdTKNgrXcnlaa/48EGcFFVFh2gp24AXw5C72t2uOG8gTgPWtFWmxVspwVYio/y
+         Jz9KhGGA0NM5UYXh0s7zLfVHfwG6fgqBU5sfGQJOSYD2rYFdbVkcD7Fg2pF+UCGNUh+F
+         b+gT7BWR+Ffm9g/wkIN44Xa7Lz+wVOtlhwyJu4yBRKAXMEypWy1EXiE6pilArnt0DYcL
+         79TPCAfWqlMJizHUe8Uzox7+E3zV+FnFrscVi2MmWZS8V/lr7v0jhSZGY9hjpB9HBuIV
+         ESAA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1706601787; x=1707206587;
+        d=1e100.net; s=20230601; t=1706601833; x=1707206633;
         h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
          :to:content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=DAL0f6fKkqp3puSgTNryp8hcfAmzEA4DpvZNsDOXh6U=;
-        b=kEZCgCBZjRdHfTx3wRP5Ua3qntpEkzvUyfXg2jyw1oi0DyKcD1H4nR5r9avgP4IzAv
-         pjK9ZH0uUTe0ZF1d4NHcOdqcU9+pSBDgw7EjillZ14vihbGsvRuzfd7E+mWBzmrTvcgl
-         B09JgHaPN8un928cLVoJhpN3U9PvUqfGFMG/WSROsYb5v/OozxV4P8WpmUOK8PODeE3+
-         iNc9dYKUHapGxS7MXvAJBzDLS6EO/qhRsFlpKo1ZFvY9KtobA0vNGY5pZFR23Vyy2CwW
-         SbUHRWaBe+WsUdb/SjNRMc0X9d6DSkfsAcmVaePpGsAzT9UzhDFWitGfXlSKfa29eii3
-         rRaA==
-X-Gm-Message-State: AOJu0YyCrfZ1Ic5dXE2ZUCwn349gj+AbQPLlshgNyERkFBaTnOd60pZQ
-	k469kdp2Cr/Sn53ptcNOKApULfIUxXoX35Ix41i3DwHwMRSy8sSoQ1MN/hY9PHw=
-X-Google-Smtp-Source: AGHT+IGTaxX0iclE5KLuq8hyPxLtw0sfQMtw8b6dqd0Q8R2qVijJVDUskLp/Fp7l/3jl1WWPPHuWZg==
-X-Received: by 2002:a17:906:4ad2:b0:a35:fbc4:4c20 with SMTP id u18-20020a1709064ad200b00a35fbc44c20mr1908511ejt.6.1706601786732;
-        Tue, 30 Jan 2024 00:03:06 -0800 (PST)
+        bh=cjBz2sDHD9qmDzJiGaVXVB9yXjr7XeyDRf+P0XXT9D0=;
+        b=tb/LfpAZ62xt8IqJnPkKPZISTZ3d+TeQ/26JJiYKCsorRAhrOKRFbDwBOQaFxYhpEx
+         /Vz5hw3swn7mR/im4Ds3xwt49Jy2Z1goo2BTYvnGrprdeeNdePsoqNZm6IKdp3JbvAfT
+         UmJLQUV1FUzh13GOhgLSKYBCpjYZw/5DhDT13WGcJ+5V71+1ftGk8sTkP9Xbql8/0DZr
+         u6VWCMLaP1e9w9gBmfjusBc051/8RV+qUS8Hy05lEX1cMlu1v5dI/+ETtqM03qrts8OR
+         7MjyZNDI9MrOy3ppqa/Wyjk4NEC3per9VrbFuNUj5K8jTuUASSaoLUt8w0OmAODZpssd
+         u2uw==
+X-Gm-Message-State: AOJu0YxU0M63qtOpLEI/jVynGkakyc88xXFWvkWT7YUEoYdFVI1IrAsc
+	Czd+XfrOahGEQPkulW0Tp9TKpV4irQNUwUQfgUpDG/J7jqbENa4JEhGc5Y1RCOy+pZ56AqkZQBC
+	U
+X-Google-Smtp-Source: AGHT+IHLHe/NBesm3AFRLUXuR10/PosXK7SnfYv0WqKDIp7i9AkVZ4aZpvPhaqzFNFX3CkCiaFm1cg==
+X-Received: by 2002:a17:906:3642:b0:a31:2119:90d7 with SMTP id r2-20020a170906364200b00a31211990d7mr6555133ejb.38.1706601832667;
+        Tue, 30 Jan 2024 00:03:52 -0800 (PST)
 Received: from [192.168.1.20] ([178.197.222.62])
-        by smtp.gmail.com with ESMTPSA id j9-20020a170906254900b00a311685890csm4825575ejb.22.2024.01.30.00.03.04
+        by smtp.gmail.com with ESMTPSA id j9-20020a170906254900b00a311685890csm4825575ejb.22.2024.01.30.00.03.50
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 30 Jan 2024 00:03:06 -0800 (PST)
-Message-ID: <6efc8171-1741-4314-9d47-dad1e2552dcf@linaro.org>
-Date: Tue, 30 Jan 2024 09:03:04 +0100
+        Tue, 30 Jan 2024 00:03:51 -0800 (PST)
+Message-ID: <81dab1b6-cf40-4c9a-a806-48aafc8a72ea@linaro.org>
+Date: Tue, 30 Jan 2024 09:03:50 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -75,24 +76,23 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 1/5] dt-bindings: display/msm: document MDSS on X1E80100
+Subject: Re: [PATCH 2/3] arm64: dts: imx8dxl-evk: add i2c3 and its children
+ nodes
 Content-Language: en-US
-To: Abel Vesa <abel.vesa@linaro.org>, Rob Clark <robdclark@gmail.com>,
- Abhinav Kumar <quic_abhinavk@quicinc.com>,
- Dmitry Baryshkov <dmitry.baryshkov@linaro.org>, Sean Paul <sean@poorly.run>,
- Marijn Suijten <marijn.suijten@somainline.org>,
- David Airlie <airlied@gmail.com>, Daniel Vetter <daniel@ffwll.ch>,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>,
- Rob Herring <robh+dt@kernel.org>,
+To: Frank Li <Frank.Li@nxp.com>, Rob Herring <robh+dt@kernel.org>,
  Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Conor Dooley <conor+dt@kernel.org>,
- Neil Armstrong <neil.armstrong@linaro.org>
-Cc: linux-arm-msm@vger.kernel.org, dri-devel@lists.freedesktop.org,
- freedreno@lists.freedesktop.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org
-References: <20240129-x1e80100-display-v1-0-0d9eb8254df0@linaro.org>
- <20240129-x1e80100-display-v1-1-0d9eb8254df0@linaro.org>
+ Conor Dooley <conor+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>,
+ Sascha Hauer <s.hauer@pengutronix.de>,
+ Pengutronix Kernel Team <kernel@pengutronix.de>,
+ Fabio Estevam <festevam@gmail.com>, NXP Linux Team <linux-imx@nxp.com>,
+ "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS"
+ <devicetree@vger.kernel.org>,
+ "moderated list:ARM/FREESCALE IMX / MXC ARM ARCHITECTURE"
+ <linux-arm-kernel@lists.infradead.org>,
+ open list <linux-kernel@vger.kernel.org>
+Cc: imx@lists.linux.dev
+References: <20240129221458.250492-1-Frank.Li@nxp.com>
+ <20240129221458.250492-2-Frank.Li@nxp.com>
 From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  xsFNBFVDQq4BEAC6KeLOfFsAvFMBsrCrJ2bCalhPv5+KQF2PS2+iwZI8BpRZoV+Bd5kWvN79
@@ -138,25 +138,54 @@ Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  KQ06ztUMRrj8eVtpImjsWCd0bDWRaaR4vqhCHvAG9iWXZu4qh3ipie2Y0oSJygcZT7H3UZxq
  fyYKiqEmRuqsvv6dcbblD8ZLkz1EVZL6djImH5zc5x8qpVxlA0A0i23v5QvN00m6G9NFF0Le
  D2GYIS41Kv4Isx2dEFh+/Q==
-In-Reply-To: <20240129-x1e80100-display-v1-1-0d9eb8254df0@linaro.org>
+In-Reply-To: <20240129221458.250492-2-Frank.Li@nxp.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 29/01/2024 14:18, Abel Vesa wrote:
-> Document the MDSS hardware found on the Qualcomm X1E80100 platform.
+On 29/01/2024 23:14, Frank Li wrote:
+> Add i2c3 bus node. Add i2c gpio expandor pca6416 and i2c mux pca9548.
 > 
-> Signed-off-by: Abel Vesa <abel.vesa@linaro.org>
+> Signed-off-by: Frank Li <Frank.Li@nxp.com>
 > ---
-
-Please document dependencies, including the ones not in the tree this is
-targeting. You have build failures, so that deserves some note.
-
->  .../bindings/display/msm/qcom,x1e80100-mdss.yaml   | 249 +++++++++++++++++++++
->  1 file changed, 249 insertions(+)
+>  arch/arm64/boot/dts/freescale/imx8dxl-evk.dts | 55 +++++++++++++++++++
+>  1 file changed, 55 insertions(+)
 > 
+> diff --git a/arch/arm64/boot/dts/freescale/imx8dxl-evk.dts b/arch/arm64/boot/dts/freescale/imx8dxl-evk.dts
+> index b972658efb176..d313cf1dd79d5 100644
+> --- a/arch/arm64/boot/dts/freescale/imx8dxl-evk.dts
+> +++ b/arch/arm64/boot/dts/freescale/imx8dxl-evk.dts
+> @@ -261,6 +261,61 @@ i2c@6 {
+>  	};
+>  };
+>  
+> +&i2c3 {
+> +	#address-cells = <1>;
+> +	#size-cells = <0>;
+> +	clock-frequency = <100000>;
+> +	pinctrl-names = "default";
+> +	pinctrl-0 = <&pinctrl_i2c3>;
+> +	status = "okay";
+> +
+> +	pca6416_3: gpio@20 {
+> +		compatible = "ti,tca6416";
+> +		reg = <0x20>;
+> +		gpio-controller;
+> +		#gpio-cells = <2>;
+> +		interrupt-parent = <&lsio_gpio2>;
+> +		interrupts = <5 IRQ_TYPE_EDGE_RISING>;
+> +	};
+> +
+> +	pca9548_2: i2c-mux@70 {
+> +		compatible = "nxp,pca9548";
+> +		#address-cells = <1>;
+> +		#size-cells = <0>;
+> +		reg = <0x70>;
+
+reg is always the second property.
+
+https://www.kernel.org/doc/html/latest/devicetree/bindings/dts-coding-style.html#order-of-properties-in-device-node
 
 
-Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
 Best regards,
 Krzysztof
