@@ -1,211 +1,161 @@
-Return-Path: <devicetree+bounces-36808-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-36809-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2AE2D842B90
-	for <lists+devicetree@lfdr.de>; Tue, 30 Jan 2024 19:19:01 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8DE7A842BA7
+	for <lists+devicetree@lfdr.de>; Tue, 30 Jan 2024 19:22:24 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id D5FFCB2362E
-	for <lists+devicetree@lfdr.de>; Tue, 30 Jan 2024 18:18:57 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 036AB1F2971A
+	for <lists+devicetree@lfdr.de>; Tue, 30 Jan 2024 18:22:24 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3F079156968;
-	Tue, 30 Jan 2024 18:18:55 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A9916157E78;
+	Tue, 30 Jan 2024 18:21:35 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="jg5rqK62"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="R+VycGtl"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wr1-f42.google.com (mail-wr1-f42.google.com [209.85.221.42])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 15646155A33;
-	Tue, 30 Jan 2024 18:18:54 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E0E07156985;
+	Tue, 30 Jan 2024 18:21:33 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.42
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1706638735; cv=none; b=pELz4IdROu9ZlRxdQkokFoi+f8HjpSBfmEqWjxw8S55IqEx+4q5JuzNItz/ldl91r/KMBj2fDJzGuksuyhQqcHIlllqhctsZABI56pcVASx2j2Lj5kh9aYftO+rkkr6CU1BqwphkuxE9pJR88ME417DaxYf/gkihNNc4Asnb8x4=
+	t=1706638895; cv=none; b=AmqPAmMwSpGr2fF8ZwBnTiJdFgK+6M9XqMcVn62W9MN95h83LwAxeGxAGeZQFdIq07GK0oOo4E83loeiuKvwXUwQ0xYuvbi43PE2Kc6WuBi1HP1DPOmse1Uz0/qSNtQ0I1r/2PxHcBCS4heABmz5I4wucgLg6WSFefgSkJ6UJJc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1706638735; c=relaxed/simple;
-	bh=PjrgU25A2IyPMYtXC01U7AtGDTIv3s/p7Yxp4fnNn1Y=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=YMo/8FpfSNfRC4n17fo1gVkalfQYFGneoCQs1PhJdHOrdqbk2W87BoInBdV2+VY2sibGr/Eim6ors7BQDVQuk/lDe+oK4KDZYwMrpOeiUHq6V3qVKY3wXozZ5xlfq6OYgQkqSF3s69mkIUdWk5+0JAd+apHMX+faSUMqi/zhmSk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=jg5rqK62; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 4E1DDC433C7;
-	Tue, 30 Jan 2024 18:18:51 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1706638734;
-	bh=PjrgU25A2IyPMYtXC01U7AtGDTIv3s/p7Yxp4fnNn1Y=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=jg5rqK6279YfSzKAR1sZHIUwGBdewBi2js96OhWqlbDh192UiiugY1LcKTFvFPWiY
-	 xa9/Q9WWBx4OIYBULA8jJ1cUtscgsUnSLfau93NItGxxMf8kbCA9yxDKZHPQ1YYU+W
-	 WmqDeYDOSDA9MyONG8RfrACX0JcroXhi8aCHu/ZYGxEVTfA+zrvg82zajlIpugPOri
-	 dL72iJZQ7owNDRpmnmrxWwKZn2ONNv5bpGEPxaKN2TrK+qGRTWKHmPk2/IcdxoRqzZ
-	 +1MGIeEl2e6HF2Yg1jTfcWFtIFrJqyzq8O7xSEvJDllKzpdMQeuwUjVQIuSvs/voJF
-	 4x/WGeh3mLu5A==
-Date: Tue, 30 Jan 2024 18:18:49 +0000
-From: Conor Dooley <conor@kernel.org>
-To: Johan Jonker <jbx6244@gmail.com>
-Cc: robh+dt@kernel.org, hjc@rock-chips.com, heiko@sntech.de,
-	andy.yan@rock-chips.com, krzysztof.kozlowski+dt@linaro.org,
-	conor+dt@kernel.org, airlied@gmail.com, daniel@ffwll.ch,
-	maarten.lankhorst@linux.intel.com, tzimmermann@suse.de,
-	mripard@kernel.org, markyao0591@gmail.com,
-	dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v1 1/6] dt-bindings: display: rockchip: rockchip,dw-hdmi:
- deprecate port property
-Message-ID: <20240130-denim-capacity-e1617595ac9f@spud>
-References: <6626d288-ecf1-436b-b0a3-3417308a8633@gmail.com>
+	s=arc-20240116; t=1706638895; c=relaxed/simple;
+	bh=adjuFoy6nt1GW5d4QC6awoBjEu5YFjCdHB0I/DbiuqY=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=kIauvlu5dlsjwGtK5GgS1HPFeOkWr4Bs06Rgm/KtI5g01+ajMfn+Uvr7+0a5uSXZC3UvIH66djIa3tG0UOBgqmfsqAtGAWqRLNdDUVYJgslQvWSeVTzZvivjjUQWD9E0/1IVmaZU5fpYPXQ/0DBcsFIx8dHlDdTj07fObiWAC38=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=R+VycGtl; arc=none smtp.client-ip=209.85.221.42
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-wr1-f42.google.com with SMTP id ffacd0b85a97d-33ae6f4fd78so2033944f8f.1;
+        Tue, 30 Jan 2024 10:21:33 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1706638892; x=1707243692; darn=vger.kernel.org;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=e9VubAmaaSRTnW+owpxkezzka6tE/KYNpuT5KbngMRE=;
+        b=R+VycGtlDPtEzAMcLYkfkDuB0yDz9wGAhPDX0QmThcyR0pWWpRjnq4bNzEiBX6ZBK+
+         /654duvcSlrlZojDmjrk9ebQfYstZ1oQKRJm6EuLLX4Q/BlXOUcsqZjnai7+OJ4iWp/j
+         p4nUkl3ujdb/Sjo+XNKCfukzxuvPjXaPtTJCUzgri647dvkIXjaa3/9qQjkzddIdRRmK
+         ZZSicxjCAXWRqZWp/LHHDAHyMjtJjpSzOSmfrKSA+t+PtKso4t6OWv0zM8qIGnSmZsgn
+         OPhMhEGjSKMdHkGvlqohJTGoKhQ4rixxH23S1SjsvEBp/7zcSHk6u5AqIP1dXj2DkA0z
+         iSsQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1706638892; x=1707243692;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=e9VubAmaaSRTnW+owpxkezzka6tE/KYNpuT5KbngMRE=;
+        b=Knwbbak02A9hm20vfISWo0vQHHfrwRi4M+pmnIGRN2yaCvZWN1R6q6kfVFa7Rb7rkV
+         KxkpbgxTpXbkYUuDqLV+M1llghwospXiCjRnDfu85ke+5g8zVKtGwEnRKBqJjyxaE6zd
+         bmC2MMg0sHokqx8GxDj3zndKDLZWdZsaqv/7kEnBuOx8SIJnb58JDfp1qODXAvcmC7Xp
+         9iDyoSDhHpppaWZ1Q7nFR+rFyaiL/22A30vfLX/BAIjJGer5A9cQTNQsenkA4zc+eRHx
+         hwVggH1XZ0BAFHukIyVfOxzC/7mIBgqXTCzTqLvDKi8faAyEYYhReZFY1V1yGc8y6O9s
+         Cd9A==
+X-Gm-Message-State: AOJu0YxoJlciaPS1tYGqVqJN9jBy5qVF9QEh028SEsonp6R2g6ZJucFF
+	fkhzYFlXycJLGGrAADwLoyqQGf0O4wE74sKe3sqLznsmBcei34u9
+X-Google-Smtp-Source: AGHT+IFLXdhkL2WD30RpdlAbcXXlr0f71XFBz/XOA07FR93Moskp6+X23fkN87H0FoXlMnz2DXfoKw==
+X-Received: by 2002:adf:ee0d:0:b0:33a:fe63:77fe with SMTP id y13-20020adfee0d000000b0033afe6377femr872761wrn.15.1706638891801;
+        Tue, 30 Jan 2024 10:21:31 -0800 (PST)
+Received: from [172.30.32.188] ([2001:8f8:183b:50fb::d35])
+        by smtp.gmail.com with ESMTPSA id u18-20020a5d4352000000b003392b1ebf5csm11374254wrr.59.2024.01.30.10.21.28
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 30 Jan 2024 10:21:31 -0800 (PST)
+From: Alexey Charkov <alchark@gmail.com>
+Subject: [PATCH v2 0/4] RK3588 and Rock 5B dts additions: thermal, OPP and
+ fan
+Date: Tue, 30 Jan 2024 22:21:12 +0400
+Message-Id: <20240130-rk-dts-additions-v2-0-c6222c4c78df@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-	protocol="application/pgp-signature"; boundary="Se7db1/EZ7/Uf0wV"
-Content-Disposition: inline
-In-Reply-To: <6626d288-ecf1-436b-b0a3-3417308a8633@gmail.com>
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIABg+uWUC/2WNQQ6DIBBFr2JmXRqgIuqq92hcgKBOWqUBQtoY7
+ l5q0lV3837+f7NDsB5tgL7awduEAd1WgJ8qGBe1zZagKQyc8poyXhN/JyYGoozBWLrlaozUgst
+ W6g7K7OnthK9DeRsKLxii8+/jQ2Lf9CcT/7LECCWilR2XwuhLM13nVeHjPLoVhpzzBzTNuUmwA
+ AAA
+To: Rob Herring <robh+dt@kernel.org>, 
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, 
+ Conor Dooley <conor+dt@kernel.org>, Heiko Stuebner <heiko@sntech.de>
+Cc: Daniel Lezcano <daniel.lezcano@linaro.org>, 
+ Dragan Simic <dsimic@manjaro.org>, Viresh Kumar <viresh.kumar@linaro.org>, 
+ devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
+ linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org, 
+ Alexey Charkov <alchark@gmail.com>
+X-Mailer: b4 0.12.3
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1706638888; l=3010;
+ i=alchark@gmail.com; s=20240125; h=from:subject:message-id;
+ bh=adjuFoy6nt1GW5d4QC6awoBjEu5YFjCdHB0I/DbiuqY=;
+ b=vxae3YmuZ0paCU+BN095MkbNCIEuFp5KMEL/tC4laXGc48XyJGHJrugcVTOMqkfmloKgDTgHM
+ 8W2wls6X7ozBn/vtICz/O2r2axOzmDTAtlpqlg1kYn+osOMDrDCEUBM
+X-Developer-Key: i=alchark@gmail.com; a=ed25519;
+ pk=xRO8VeD3J5jhwe0za0aHt2LDumQr8cm0Ls7Jz3YGimk=
 
+This is an assortment of device tree additions for RK3588(s) and their
+enablement on Radxa Rock 5B.
 
---Se7db1/EZ7/Uf0wV
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+Thermal zone information and cooling maps is the follow-up to feedback
+received on v3 patch version [1] - thanks a lot to Daniel for continued
+review of these!
+Changes in v4:
+ - Set higher 'polling-delay-passive' (100 instead of 20)
+ - Name all cooling maps starting from map0 in each respective zone
+ - Drop 'contribution' properties from passive cooling maps
 
-On Tue, Jan 30, 2024 at 03:55:43PM +0100, Johan Jonker wrote:
-> The hdmi-connector nodes are now functional and the new way to model
-> hdmi nodes with, so deprecate the port property and
+Fan control on Rock 5B has been split into two intervals: let it spin
+at the minimum cooling state between 55C and 65C, and then accelerate
+if the system crosses the 65C mark - thanks to Dragan for suggesting.
+This lets some cooling setups with beefier heatsinks and/or larger
+fan fins to stay in the quietest non-zero fan state while still
+gaining potential benefits from the airflow it generates, and
+possibly avoiding noisy speeds altogether for some workloads.
 
-This doesn't really explain what makes having hdmi-connector nodes
-replace the usecase for "port".
+OPPs help actually scale CPU frequencies up and down for both cooling
+and performance - tested on Rock 5B under varied loads. I've split
+the patch into two parts: the first containing those OPPs that seem
+to be no-regret with general consensus during v1 review [2], while
+the second contains OPPs that cause frequency reductions without
+accompanying decrease in CPU voltage. There seems to be a slight
+performance gain in some workload scenarios when using these, but
+previous discussion was inconclusive as to whether they should be
+included or not. Having them as separate patches enables easier
+comparison and partial reversion if people want to test it under
+their workloads, and also enables the first 'no-regret' part to be
+merged to -next while the jury is still out on the second one.
 
-> make port@0 and
-> port@1 a requirement.
+[1] https://lore.kernel.org/linux-rockchip/1824717.EqSB1tO5pr@bagend/T/#ma2ab949da2235a8e759eab22155fb2bc397d8aea
+[2] https://lore.kernel.org/linux-rockchip/CABjd4YxqarUCbZ-a2XLe3TWJ-qjphGkyq=wDnctnEhdoSdPPpw@mail.gmail.com/T/#m49d2b94e773f5b532a0bb5d3d7664799ff28cc2c
 
-Why?
+Signed-off-by: Alexey Charkov <alchark@gmail.com>
+---
+Changes in v2:
+- Dropped the rfkill patch which Heiko has already applied
+- Incorporate feedback received on the thermal and OPP code (see above)
+- Link to v1: https://lore.kernel.org/r/20240125-rk-dts-additions-v1-0-5879275db36f@gmail.com
 
-> Also update example.
+---
+Alexey Charkov (4):
+      arm64: dts: rockchip: enable built-in thermal monitoring on rk3588
+      arm64: dts: rockchip: enable temperature driven fan control on Rock 5B
+      arm64: dts: rockchip: Add OPP data for CPU cores on RK3588
+      arm64: dts: rockchip: Add further granularity in RK3588 CPU OPPs
 
-"Also do x" is a red flag when it comes to commit messages, as it
-immediately makes me think that this should be more than one commit.
-I'd probably write this as "Update the example to avoid use of the
-deprecated property" or something to avoid bad gut reactions.
-That's not worth resending for though obviously...
+ arch/arm64/boot/dts/rockchip/rk3588-rock-5b.dts |  34 ++-
+ arch/arm64/boot/dts/rockchip/rk3588s.dtsi       | 371 ++++++++++++++++++++++++
+ 2 files changed, 404 insertions(+), 1 deletion(-)
+---
+base-commit: 8a696a29c6905594e4abf78eaafcb62165ac61f1
+change-id: 20240124-rk-dts-additions-a6d7b52787b9
 
->=20
-> Signed-off-by: Johan Jonker <jbx6244@gmail.com>
-> ---
->  .../display/rockchip/rockchip,dw-hdmi.yaml    | 27 ++++++++++++++++---
->  1 file changed, 23 insertions(+), 4 deletions(-)
->=20
-> diff --git a/Documentation/devicetree/bindings/display/rockchip/rockchip,=
-dw-hdmi.yaml b/Documentation/devicetree/bindings/display/rockchip/rockchip,=
-dw-hdmi.yaml
-> index 7e59dee15a5f..cd0a42f35f24 100644
-> --- a/Documentation/devicetree/bindings/display/rockchip/rockchip,dw-hdmi=
-=2Eyaml
-> +++ b/Documentation/devicetree/bindings/display/rockchip/rockchip,dw-hdmi=
-=2Eyaml
-> @@ -97,8 +97,11 @@ properties:
->    ports:
->      $ref: /schemas/graph.yaml#/properties/ports
->=20
-> -    patternProperties:
-> -      "^port(@0)?$":
-> +    properties:
-> +      port:
-> +        $ref: /schemas/graph.yaml#/properties/port
-> +        deprecated: true
+Best regards,
+-- 
+Alexey Charkov <alchark@gmail.com>
 
-This change makes the deprecated property's description incomplete,
-since it doesn't cover the endpoints any more. It also doesn't make
-port@0 and port mutually exclusive.
-I think I'd just be inclined to delete the "port" bit entirely from the
-binding if you're not gonna preserve the description of what that
-property was meant to be. Otherwise, I'd be doing something like:
-@@ -112,6 +112,8 @@ properties:
-           endpoint@1:
-             description: Connection to the VOPL
-     properties:
-+      port:
-+        deprecated: true
-       port@1:
-         $ref: /schemas/graph.yaml#/properties/port
-         description: Output of the DWC HDMI TX
-
-So that the description of the deprecated property is maintained.
-
-Cheers,
-Conor.
-
-> +      port@0:
->          $ref: /schemas/graph.yaml#/properties/port
->          description: Input of the DWC HDMI TX
->          properties:
-> @@ -108,11 +111,14 @@ properties:
->              description: Connection to the VOPB
->            endpoint@1:
->              description: Connection to the VOPL
-> -    properties:
->        port@1:
->          $ref: /schemas/graph.yaml#/properties/port
->          description: Output of the DWC HDMI TX
->=20
-> +    required:
-> +      - port@0
-> +      - port@1
-> +
->    rockchip,grf:
->      $ref: /schemas/types.yaml#/definitions/phandle
->      description:
-> @@ -147,7 +153,11 @@ examples:
->          clock-names =3D "iahb", "isfr";
->=20
->          ports {
-> -            port {
-> +            #address-cells =3D <1>;
-> +            #size-cells =3D <0>;
-> +
-> +            port@0 {
-> +                reg =3D <0>;
->                  #address-cells =3D <1>;
->                  #size-cells =3D <0>;
->=20
-> @@ -155,11 +165,20 @@ examples:
->                      reg =3D <0>;
->                      remote-endpoint =3D <&vopb_out_hdmi>;
->                  };
-> +
->                  hdmi_in_vopl: endpoint@1 {
->                      reg =3D <1>;
->                      remote-endpoint =3D <&vopl_out_hdmi>;
->                  };
->              };
-> +
-> +            port@1 {
-> +                reg =3D <1>;
-> +
-> +                hdmi_out_con: endpoint {
-> +                    remote-endpoint =3D <&hdmi_con_in>;
-> +                };
-> +            };
->          };
->      };
->=20
-> --
-> 2.39.2
->=20
-
---Se7db1/EZ7/Uf0wV
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZbk9iAAKCRB4tDGHoIJi
-0ov4AQC/D1c0VhrC43ss+Gx+M3QV8KxYk6PBwCzFXmE5ODySRQEA9bUSt6oR5ZHe
-QvmugJnjTjCAnylB7d4Ml9YpiJeaEAU=
-=pq3u
------END PGP SIGNATURE-----
-
---Se7db1/EZ7/Uf0wV--
 
