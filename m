@@ -1,116 +1,93 @@
-Return-Path: <devicetree+bounces-36774-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-36775-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 12A748429E4
-	for <lists+devicetree@lfdr.de>; Tue, 30 Jan 2024 17:48:55 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 073248429F0
+	for <lists+devicetree@lfdr.de>; Tue, 30 Jan 2024 17:51:18 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 3DD541C2141C
-	for <lists+devicetree@lfdr.de>; Tue, 30 Jan 2024 16:48:54 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 8D4ECB24303
+	for <lists+devicetree@lfdr.de>; Tue, 30 Jan 2024 16:51:15 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B864312836B;
-	Tue, 30 Jan 2024 16:48:48 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A2E571292D6;
+	Tue, 30 Jan 2024 16:51:02 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Nkl0C6Bd"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-oi1-f172.google.com (mail-oi1-f172.google.com [209.85.167.172])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F0E5186ADC;
-	Tue, 30 Jan 2024 16:48:46 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.172
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 722D3823AA;
+	Tue, 30 Jan 2024 16:51:02 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1706633328; cv=none; b=Ti2MHsycK4JOCdEvhweV6zRtrVKpbGDYo3lqSrH4LxAKuHEgDIC6hgsI4Vpk/plIg1ncnoCDIrRXB4m7/YNowNrcHFYmpuYX6fge+VVVFTpyDEoq0yZ4prM+byezhvWBHbiTKKR2Ar3iP1enM59ruMSmxzA8aAe3zZV91ThLKmM=
+	t=1706633462; cv=none; b=ZgOZqxmXBpGbQ3igZq3ibD8s/z0M2nsfTvCb6OcyQjNq2X3skpkBR6FJGsZ5IKCyI0rzxWHuoB03uAW6y50PWVrHEG5QA6UVz6it+wgwS1PDhk3NTAb9zr4z0B311AwzxWdt7pEHImujXStyO3B7ZWop9MkUo53bu4EW+McfQDA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1706633328; c=relaxed/simple;
-	bh=jcj/XOzMZdXXBsQOJGQhpF4lWYN3lxOsRJ1/9mg/Sf0=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=saWrrwPUECam3mcmsdJXBoSQfntAafJc/AMYDqT1e9EIUtZomfcelNTkRCMgtA7sB89t3iehohuU4R+lAmQ4FrJl08SgVCo8EfgSdUjIs2l8yn41QlaDbiq5RpbFgtbln4DpeVf9zZYThNAou7s0PmENwew67cX9RLh4WU4HQrY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org; spf=pass smtp.mailfrom=gmail.com; arc=none smtp.client-ip=209.85.167.172
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-oi1-f172.google.com with SMTP id 5614622812f47-3bbbc6e51d0so2514909b6e.3;
-        Tue, 30 Jan 2024 08:48:46 -0800 (PST)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1706633325; x=1707238125;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=M+4tYl7sgEaPamnUJAXxXqFC7JS0yxLYZqNBS3Zyq74=;
-        b=J8rs1uZ4DaDuwaZRxVW0bG3puLu9eu1wL5QAFLw4TgH5qwnKd5QmsJal5yAK9MXTuC
-         p792bx3IvnGh6pqBNWMmjWgMA1Vjk0ljbiW3MU0fhdLV3wd7sCD+vlwp43CSb7MhEL+z
-         nAchbWCkJ0cAPedr5dMjgaSbwXudUuBFxH7xTjr5N8ZClRYT/eyde0gYx8k/+fiWUXzC
-         hrcez4LFQotHcxeq5s3D8n6lhthh3jrtj5HbtIguvty0IzRadBKvJZa1Z4+yMg2e3yXu
-         joRZxHyoXHnHDjccozZF+6KSWzj7AEBnfcyI8YAD9fWhws36sjQz5EaaJTw7B8wVRoKW
-         HuAw==
-X-Gm-Message-State: AOJu0YxQEp1hlUpysjSgdzzq/8Xb6IzznqYl8Fs+Oiw8nKzdW08GNbIC
-	r73jf4V7U2iknzgfpboRJMQrjE5wUCQouxw+smXBGiNjzBGkJyFmEYy8bgOxGEo=
-X-Google-Smtp-Source: AGHT+IG518jY6K0kWJ7QRUQlQTJVD3dNZeVB7PK0IRTD27gWlnK2Yfanf/tgYhsyGb/mg9p78PZpRg==
-X-Received: by 2002:a05:6870:a902:b0:210:ac52:bc0e with SMTP id eq2-20020a056870a90200b00210ac52bc0emr6430134oab.27.1706633325543;
-        Tue, 30 Jan 2024 08:48:45 -0800 (PST)
-Received: from mail-oi1-f169.google.com (mail-oi1-f169.google.com. [209.85.167.169])
-        by smtp.gmail.com with ESMTPSA id i3-20020a9d6503000000b006dc02337dafsm2008037otl.16.2024.01.30.08.48.44
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 30 Jan 2024 08:48:45 -0800 (PST)
-Received: by mail-oi1-f169.google.com with SMTP id 5614622812f47-3bbbc6e51d0so2514893b6e.3;
-        Tue, 30 Jan 2024 08:48:44 -0800 (PST)
-X-Received: by 2002:a05:6808:1442:b0:3be:2f6e:5a93 with SMTP id
- x2-20020a056808144200b003be2f6e5a93mr6807319oiv.14.1706633324679; Tue, 30 Jan
- 2024 08:48:44 -0800 (PST)
+	s=arc-20240116; t=1706633462; c=relaxed/simple;
+	bh=RaXuGC+ILopm/118dxaYm1RJctuzPkfs9VeKd+ZeDMA=;
+	h=From:To:Cc:In-Reply-To:References:Subject:Message-Id:Date:
+	 MIME-Version:Content-Type; b=e5rWHQgA5e9ZDI7cR6yGLhoJ4VOj9iho05xKrktSW1s9DClT/psA3kDXrj0nGQCl19OTQZY5dsEzuYqXXyC75Py4EUjSBfcGcpHU/Vl0Hl+ZYDJZBMhQg7lHnMrSRC4ansFKcecKhlp0LUnGp69h++CakXfDXCIjbZC1SlsNekU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Nkl0C6Bd; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 805D4C433F1;
+	Tue, 30 Jan 2024 16:50:56 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1706633461;
+	bh=RaXuGC+ILopm/118dxaYm1RJctuzPkfs9VeKd+ZeDMA=;
+	h=From:To:Cc:In-Reply-To:References:Subject:Date:From;
+	b=Nkl0C6BdHutK53KDb6YR6uBWAvoa5ov9DxEKxaAj6AeP7mAxBMvwJMYVWodkhFPDd
+	 c5ceZMK1ANtGz8in5Xyo/yLq5PZLU8xaYoCKkYQMPUyx0C+zw1jzZ5g5gYMnWXP7zg
+	 N3980lVu7ENNCE3NmxsKI/Qg6KjcW+IV+Fyg03xrz6xrhhAAxxiQ7QQEPRNlWNNhL2
+	 D8fP8klfI8Hrc94c41ON7HpxmULAScJFDbHqfJRJnnUpFk8LeGr6b/R2F6atkUeeu+
+	 ugNc60cnWh8Ry/SDaM/dc921YP8q+NzwqkUQSzSrvgVfJezwG3dDvBLY9xT65Ld/Zq
+	 hBnjhdg+luEKw==
+From: Vinod Koul <vkoul@kernel.org>
+To: Rob Herring <robh+dt@kernel.org>, 
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, 
+ Conor Dooley <conor+dt@kernel.org>, 
+ Jernej Skrabec <jernej.skrabec@gmail.com>, 
+ Samuel Holland <samuel@sholland.org>, Liam Girdwood <lgirdwood@gmail.com>, 
+ Mark Brown <broonie@kernel.org>, Jaroslav Kysela <perex@perex.cz>, 
+ Takashi Iwai <tiwai@suse.com>, Chen-Yu Tsai <wens@kernel.org>
+Cc: Chen-Yu Tsai <wens@csie.org>, devicetree@vger.kernel.org, 
+ linux-arm-kernel@lists.infradead.org, linux-sunxi@lists.linux.dev, 
+ linux-sound@vger.kernel.org, dmaengine@vger.kernel.org, 
+ linux-kernel@vger.kernel.org
+In-Reply-To: <20240127163247.384439-1-wens@kernel.org>
+References: <20240127163247.384439-1-wens@kernel.org>
+Subject: Re: (subset) [PATCH v2 0/7] arm64: sun50i-h616: Add DMA and SPDIF
+ controllers
+Message-Id: <170663345601.658154.16420910246714061637.b4-ty@kernel.org>
+Date: Tue, 30 Jan 2024 22:20:56 +0530
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20240122111115.2861835-1-claudiu.beznea.uj@bp.renesas.com> <20240122111115.2861835-9-claudiu.beznea.uj@bp.renesas.com>
-In-Reply-To: <20240122111115.2861835-9-claudiu.beznea.uj@bp.renesas.com>
-From: Geert Uytterhoeven <geert@linux-m68k.org>
-Date: Tue, 30 Jan 2024 17:48:33 +0100
-X-Gmail-Original-Message-ID: <CAMuHMdVYnFJDyrEresJ4YgnVXkAAuVSbQOu-opcxMSweQs=_rQ@mail.gmail.com>
-Message-ID: <CAMuHMdVYnFJDyrEresJ4YgnVXkAAuVSbQOu-opcxMSweQs=_rQ@mail.gmail.com>
-Subject: Re: [PATCH 08/10] dt-bindings: watchdog: renesas,wdt: Document RZ/G3S support
-To: Claudiu <claudiu.beznea@tuxon.dev>
-Cc: wim@linux-watchdog.org, linux@roeck-us.net, robh+dt@kernel.org, 
-	krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org, 
-	geert+renesas@glider.be, magnus.damm@gmail.com, mturquette@baylibre.com, 
-	sboyd@kernel.org, p.zabel@pengutronix.de, biju.das.jz@bp.renesas.com, 
-	linux-watchdog@vger.kernel.org, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org, linux-renesas-soc@vger.kernel.org, 
-	linux-clk@vger.kernel.org, Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-Mailer: b4 0.12.3
 
-Hi Claudiu,
 
-Thanks for your patch!
+On Sun, 28 Jan 2024 00:32:40 +0800, Chen-Yu Tsai wrote:
+> This is v2 of my H616/H618 DMA and SPDIF controller series.
+> 
+> Changes since v1:
+> - Switch to "contains" for if-properties statement
+> - Fall back to A100 instead of H6
+> - Add DMA channels for r_i2c
+> 
+> [...]
 
-On Mon, Jan 22, 2024 at 12:11=E2=80=AFPM Claudiu <claudiu.beznea@tuxon.dev>=
- wrote:
-> From: Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>
->
-> Document the support for the watchdog IP available on RZ/G3S SoC. The
-> watchdog IP available on RZ/G3S SoC is identical to the one found on
-> RZ/G2UL SoC.
+Applied, thanks!
 
-Or RZ/G2L, which is considered the baseline here.
+[4/7] dt-bindings: dma: allwinner,sun50i-a64-dma: Add compatible for H616
+      commit: b32eb97edeb8d69092d57419917b19c909ff962a
 
->
-> Signed-off-by: Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>
+Best regards,
+-- 
+~Vinod
 
-Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
 
-Gr{oetje,eeting}s,
-
-                        Geert
-
---=20
-Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k=
-.org
-
-In personal conversations with technical people, I call myself a hacker. Bu=
-t
-when I'm talking to journalists I just say "programmer" or something like t=
-hat.
-                                -- Linus Torvalds
 
