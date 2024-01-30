@@ -1,182 +1,126 @@
-Return-Path: <devicetree+bounces-36782-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-36783-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 52E66842A6E
-	for <lists+devicetree@lfdr.de>; Tue, 30 Jan 2024 18:06:04 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id AC59F842A73
+	for <lists+devicetree@lfdr.de>; Tue, 30 Jan 2024 18:06:51 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id D98E7B28F15
-	for <lists+devicetree@lfdr.de>; Tue, 30 Jan 2024 17:06:01 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 6F72928A48E
+	for <lists+devicetree@lfdr.de>; Tue, 30 Jan 2024 17:06:50 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7A8EF1292E5;
-	Tue, 30 Jan 2024 17:05:48 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5B702129A60;
+	Tue, 30 Jan 2024 17:06:28 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=savoirfairelinux.com header.i=@savoirfairelinux.com header.b="eqES57fC"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Xn0xm2dy"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail.savoirfairelinux.com (mail.savoirfairelinux.com [208.88.110.44])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 59CF91272B3;
-	Tue, 30 Jan 2024 17:05:44 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=208.88.110.44
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2FB9382D8C;
+	Tue, 30 Jan 2024 17:06:27 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1706634348; cv=none; b=m/0ZA5KnP6X4lj6SgHXpxacxwJxxtAAfT/XCrMM5tcIY39IR6AwEXDn5jB6UPxZnJE81yRIc7Z83VbsbFgMWE0KC93FvSb4gFnApXgueGmRXIyDaANLsXxEP9UU5XpHkh8iB8yoMMs4uzU9iTmZj6SCf9D6TqPLdWWtWasypNcE=
+	t=1706634388; cv=none; b=YKWO1FMdBoDjO0NOD8L84JkYT3gkFcX0UrwuaeoOBgt0xeIAudWrqGkMilrk6X6MzfAZaGRfpoxcZGIz4utQSzyA69mH7/pjskorZGlsOhu8ofdlT1VD6/gf/8LtkrC0/kcuWxX2sEnh7uuaFc8RWsbLFghIn7is41+sNRSnfek=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1706634348; c=relaxed/simple;
-	bh=hpDRdXzHEo7dqJPrheRt+XnM62iW2iSoYjncPoUe3Yg=;
-	h=Date:From:To:Cc:Message-ID:In-Reply-To:References:Subject:
-	 MIME-Version:Content-Type; b=C7o8btyds331Coh398ju3phY5xygnQjzhSgs+8mOcjQQO7j8mt5GpInWDjy0Ve43zpO1X76VsZIMFJsXPE4PaJRl+Hs3uc10GuYNvCoTHRpA0o3X8gqZXytIBrCIBGQODeXUItFEmFuuFuHV2NUTKu3FwCDqGga1bI1mlrmu5rc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=savoirfairelinux.com; spf=pass smtp.mailfrom=savoirfairelinux.com; dkim=pass (2048-bit key) header.d=savoirfairelinux.com header.i=@savoirfairelinux.com header.b=eqES57fC; arc=none smtp.client-ip=208.88.110.44
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=savoirfairelinux.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=savoirfairelinux.com
-Received: from localhost (localhost [127.0.0.1])
-	by mail.savoirfairelinux.com (Postfix) with ESMTP id AEFB59C2AFE;
-	Tue, 30 Jan 2024 12:05:42 -0500 (EST)
-Received: from mail.savoirfairelinux.com ([127.0.0.1])
- by localhost (mail.savoirfairelinux.com [127.0.0.1]) (amavis, port 10032)
- with ESMTP id hUzHhLT9IF8K; Tue, 30 Jan 2024 12:05:42 -0500 (EST)
-Received: from localhost (localhost [127.0.0.1])
-	by mail.savoirfairelinux.com (Postfix) with ESMTP id 1D5979C43DE;
-	Tue, 30 Jan 2024 12:05:42 -0500 (EST)
-DKIM-Filter: OpenDKIM Filter v2.10.3 mail.savoirfairelinux.com 1D5979C43DE
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=savoirfairelinux.com; s=DFC430D2-D198-11EC-948E-34200CB392D2;
-	t=1706634342; bh=XXd7XiuvbCRYYqsWJYmmkuqPRSOSc2fWYgYpeZCmzxI=;
-	h=Date:From:To:Message-ID:MIME-Version;
-	b=eqES57fCdoNJ30MYLcVtr2jFm8qBeKKBsLrfB0ppmcKTNKtHwyzfr20LLfI0nmmk6
-	 X2cWVeY9HGC9nrKp4lindTKuXujFaz5j/Zb4r7OcGa5qM6aE47G7rT3Qm+Nsv8AHeF
-	 9zi1kZrbGmUyDKyh5UZbb4GHJx8NCJSY23SacZYZrx6VR1WMyrRev0EiP/C6H1dbGC
-	 frpLgSUcMRUzxJPZkfhht6bFc/orY8toDdzQgcYEqYYcIEdv7zxrHkA1kcYp//ghQT
-	 j50z4+YU5AsTdmGZ9foz6Ccjco4Gk8NHZg82Pco3Sq2JXjEfI9rHdj1sz4gFjVLsCX
-	 xrAjWP1flWdaw==
-X-Virus-Scanned: amavis at mail.savoirfairelinux.com
-Received: from mail.savoirfairelinux.com ([127.0.0.1])
- by localhost (mail.savoirfairelinux.com [127.0.0.1]) (amavis, port 10026)
- with ESMTP id hU5IVIrtvwir; Tue, 30 Jan 2024 12:05:42 -0500 (EST)
-Received: from mail.savoirfairelinux.com (mail.savoirfairelinux.com [192.168.48.237])
-	by mail.savoirfairelinux.com (Postfix) with ESMTP id E68719C2AFE;
-	Tue, 30 Jan 2024 12:05:41 -0500 (EST)
-Date: Tue, 30 Jan 2024 12:05:41 -0500 (EST)
-From: Charles Perry <charles.perry@savoirfairelinux.com>
-To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Cc: mdf <mdf@kernel.org>, hao wu <hao.wu@intel.com>, 
-	yilun xu <yilun.xu@intel.com>, trix <trix@redhat.com>, 
-	krzysztof kozlowski+dt <krzysztof.kozlowski+dt@linaro.org>, 
-	Brian CODY <bcody@markem-imaje.com>, 
-	Allen VANDIVER <avandiver@markem-imaje.com>, 
-	linux-fpga <linux-fpga@vger.kernel.org>, 
-	devicetree <devicetree@vger.kernel.org>, 
-	linux-kernel <linux-kernel@vger.kernel.org>
-Message-ID: <154341320.386005.1706634341891.JavaMail.zimbra@savoirfairelinux.com>
-In-Reply-To: <32669bc7-90b5-48d9-8845-2e072a477c6e@linaro.org>
-References: <20240129225602.3832449-1-charles.perry@savoirfairelinux.com> <20240129225602.3832449-2-charles.perry@savoirfairelinux.com> <f3cfffa0-5089-4bf7-b424-d5e949e36d67@linaro.org> <1489222458.382780.1706629544559.JavaMail.zimbra@savoirfairelinux.com> <32669bc7-90b5-48d9-8845-2e072a477c6e@linaro.org>
-Subject: Re: [PATCH 2/3] dt-bindings: fpga: xlnx,fpga-slave-selectmap: add
- DT schema
+	s=arc-20240116; t=1706634388; c=relaxed/simple;
+	bh=W7q1fsdzkaCUOnQPYx3OTuBUZH48Q7ZLU/F8ISrqV3Y=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=PlwC951+Idn47V7JR0fKQ3cX1N1qPRlfCl9AF6a1hTht4m39t80IHJ/WoRybwuf7f3NZKhr2MtYOVLhSEL6RS7pJUGqRZLMqj5l5lYt/L3ZjoGoncfo4AHwbsO2pArk7nQMdaMd1EWBawLnwo3JRPagjeIKu5FmOvrV7lIvpVY0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Xn0xm2dy; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 61880C433F1;
+	Tue, 30 Jan 2024 17:06:27 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1706634387;
+	bh=W7q1fsdzkaCUOnQPYx3OTuBUZH48Q7ZLU/F8ISrqV3Y=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=Xn0xm2dyBaFOijOJCGeNsNaumXj3m4bgdli1OpyA6hzUGSY2J23SJXRTLYmkx6CT2
+	 LwP8PRUlqyobXdzoRrDSQMPHENr4J7m6a62jelmwlqTz2MAEuytStBU5urdHtyXyZV
+	 LnEyX7n05ya7BQR3SOgVQyxPEVTPDujRmm+65JxqHo1GL2Qfqj7mbmq409iGuN1nT5
+	 cECBQ5IswOLmDuolUEQpGDE5GNRGqPIyG94Lk8rAMBhFsp6RbLsyatZJidW2Y12Yit
+	 VSTJ6hbJp9DcHNk2rvGxLmsdWXBiuNI9oQ7lOWxWgBLcm9j7n+Gw1AMu9YHFZMWXY3
+	 TVUVU3QX6tFWg==
+Date: Tue, 30 Jan 2024 11:06:25 -0600
+From: Rob Herring <robh@kernel.org>
+To: David Heidelberg <david@ixit.cz>
+Cc: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+	Viresh Kumar <vireshk@kernel.org>, Nishanth Menon <nm@ti.com>,
+	Stephen Boyd <sboyd@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Manivannan Sadhasivam <mani@kernel.org>,
+	Bjorn Andersson <andersson@kernel.org>,
+	Viresh Kumar <viresh.kumar@linaro.org>, linux-pm@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH] dt-bindings: opp: switch inner and outer min/maxItems
+ rules for opp-hz
+Message-ID: <20240130170625.GA1847581-robh@kernel.org>
+References: <20231229191038.247258-1-david@ixit.cz>
+ <2c9e91c7-8588-4260-8f5d-22c822019f62@linaro.org>
+ <20240102235815.GA3700567-robh@kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: quoted-printable
-X-Mailer: Zimbra 8.8.15_GA_4581 (ZimbraWebClient - FF120 (Linux)/8.8.15_GA_4581)
-Thread-Topic: dt-bindings: fpga: xlnx,fpga-slave-selectmap: add DT schema
-Thread-Index: JqmEycYRB0Gse9pTEDZu2SmsjtJ+PA==
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20240102235815.GA3700567-robh@kernel.org>
 
+On Tue, Jan 02, 2024 at 04:58:15PM -0700, Rob Herring wrote:
+> On Sat, Dec 30, 2023 at 03:17:21PM +0100, Krzysztof Kozlowski wrote:
+> > On 29/12/2023 20:10, David Heidelberg wrote:
+> > > Fixes issue as:
+> > > ```
+> > 
+> > Drop, it's not RST, but commit msg.
+> > 
+> > > arch/arm64/boot/dts/qcom/sdm845-oneplus-enchilada.dtb: opp-table: opp-200000000:opp-hz:0: [200000000, 0, 0, 150000000, 0, 0, 0, 0, 300000000] is too long
+> > > ```
+> > > 
+> > > Fixes: 3cb16ad69bef ("dt-bindings: opp: accept array of frequencies")
+> > > 
+> > > Signed-off-by: David Heidelberg <david@ixit.cz>
+> > > ---
+> > >  Documentation/devicetree/bindings/opp/opp-v2-base.yaml | 5 ++---
+> > >  1 file changed, 2 insertions(+), 3 deletions(-)
+> > > 
+> > > diff --git a/Documentation/devicetree/bindings/opp/opp-v2-base.yaml b/Documentation/devicetree/bindings/opp/opp-v2-base.yaml
+> > > index e2f8f7af3cf4..86d3aa0eb435 100644
+> > > --- a/Documentation/devicetree/bindings/opp/opp-v2-base.yaml
+> > > +++ b/Documentation/devicetree/bindings/opp/opp-v2-base.yaml
+> > > @@ -55,10 +55,9 @@ patternProperties:
+> > >            to relate the values to their clocks or the order in which the clocks
+> > >            need to be configured and that is left for the implementation
+> > >            specific binding.
+> > > -        minItems: 1
+> > > -        maxItems: 32
+> > >          items:
+> > > -          maxItems: 1
+> > > +          minItems: 1
+> > > +          maxItems: 32
+> > 
+> > This does not look like correct fix. The original code looked fine -
+> > only one item is allowed in each sub-element (array).
+> 
+> This one is special being 64-bit values so we have an exception in 
+> property-units.yaml. The constraints here don't get used in decoding the 
+> dtb and the default way of 1 outer element is used.
+> 
+> It doesn't look like opp-hz needs to be a matrix as it is really just an 
+> array. Perhaps it should just be changed to an array type. 
+> Alternatively, adding 'items: { maxItems: 1 }' to the definition in 
+> property-units.yaml fixes the issue as well.
+> 
+> Though we can fix this, I'm looking into if we have other cases where we 
+> need this to work as-is. There's probably some room for improvement in 
+> how matrix dimensions are handled.
 
+I've made some improvements on matrix dimensions, but this one is still 
+an issue. Can you respin this dropping 'items: {maxItems: 1}'. I'm going 
+to change the definition in property-units.yaml to uint64-array.
 
------ On Jan 30, 2024, at 11:05 AM, Krzysztof Kozlowski krzysztof.kozlowski=
-@linaro.org wrote:
-
-> On 30/01/2024 16:45, Charles Perry wrote:
->>=20
->>>> +
->>>> +  reg:
->>>> +    description:
->>>> +      At least 1 byte of memory mapped IO
->>>> +    maxItems: 1
->>>> +
->>>> +  prog_b-gpios:
->>>
->>>
->>> No underscores in names.
->>>
->>=20
->> This is heavily based on "xlnx,fpga-slave-serial.yaml" which uses an und=
-erscore.
->> I can use a dash instead but that would make things inconsistent across =
-the two
->> schemas.
->=20
-> Inconsistency is not a problem. Duplicating technical debt is.
->=20
->>=20
->>>
->>>> +    description:
->>>> +      config pin (referred to as PROGRAM_B in the manual)
->>>> +    maxItems: 1
->>>> +
->>>> +  done-gpios:
->>>> +    description:
->>>> +      config status pin (referred to as DONE in the manual)
->>>> +    maxItems: 1
->>>> +
->>>> +  init-b-gpios:
->>>
->>> Is there init-a? Open other bindings and look how these are called ther=
-e.
->>>
->>=20
->> No, the "-b" is there to denote that the signal is active low. I think i=
-ts
->> shorthand
->> for "bar" which is the overline (=E2=80=BE) that electronic engineer put=
- on top of the
->> name of the
->> signal on schematics. It comes from the datasheet.
->=20
-> Then just "init-gpios"
->=20
-> ...
->=20
->>>> +required:
->>>> +  - compatible
->>>> +  - reg
->>>> +  - prog_b-gpios
->>>> +  - done-gpios
->>>> +  - init-b-gpios
->>>> +
->>>> +additionalProperties: true
->>>
->>> Nope, this cannot bue true.
->>>
->>=20
->> Ok, I'll put this to false but I'm not quite sure I understand the impli=
-cations.
->>=20
->> My reasoning behind assigning this to true was that the FPGA is an exter=
-nal
->> device on a bus that needs to be configured by a bus controller. The bus
->> controller
->> would be the parent of the fpga DT node and the later would contain prop=
-erties
->> parsed by the bus controller driver.
->=20
-> Which bus controller? MMIO bus does not parse children properties.
-> Anyway, if that's the case you miss $ref to respective
-> peripheral-props.yaml matching your bus and then "unevaluatedProperties:
-> false".
-
-This one: https://elixir.bootlin.com/linux/v6.8-rc2/source/Documentation/de=
-vicetree/bindings/bus/imx-weim.txt#L56
-
->=20
-> Best regards,
-> Krzysztof
-
-Regards,
-Charles
+Rob
 
