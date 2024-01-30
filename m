@@ -1,63 +1,60 @@
-Return-Path: <devicetree+bounces-36786-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-36787-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id CD6B2842AA0
-	for <lists+devicetree@lfdr.de>; Tue, 30 Jan 2024 18:14:53 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1F7B6842AAB
+	for <lists+devicetree@lfdr.de>; Tue, 30 Jan 2024 18:19:17 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 82DF61F28429
-	for <lists+devicetree@lfdr.de>; Tue, 30 Jan 2024 17:14:53 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 52E751C24F7A
+	for <lists+devicetree@lfdr.de>; Tue, 30 Jan 2024 17:19:16 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 473091292D0;
-	Tue, 30 Jan 2024 17:14:51 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4C8551292DE;
+	Tue, 30 Jan 2024 17:19:11 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="B5sVTDYc"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="NpLjzPUW"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 173E126AC6;
-	Tue, 30 Jan 2024 17:14:50 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 219A41292D6;
+	Tue, 30 Jan 2024 17:19:11 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1706634891; cv=none; b=CBTmoLn44A5ejrzy99Wgg9U0mvM0MOQT9+UykzJiwxrUYyfyeF1nHqBXZuj6EMup1eNWLK1u5wb4ovUevLKlx7XE+Vw8ZAIXPT32r4joh7H6RkrFLfnZZgJn4lCsXaFpKuiVmlCQO9VflBLGzo3g0CXmq1n0RJqdR0ObgEKlDIs=
+	t=1706635151; cv=none; b=as8MDToy9YyJu+DFnSknJfZDS3JOweNP3Y8B3xVdyLE7aherVGjja+pO3zOsGV2bU+LAX+3fRIUkk0FHyaDUG0ssrn0pWadApKk+urhsffFp9i59t4SyAzAEYNUZvS3K2aps708D3WgV69DPin7IHmtf3zWY4Zq2NYZoesLmRDw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1706634891; c=relaxed/simple;
-	bh=A5T8FP/fhIVtH/olVEw0tzShluBYACTWaf+iE7kNjHc=;
+	s=arc-20240116; t=1706635151; c=relaxed/simple;
+	bh=y4IszyoidWFXzhNhDY2c9NDxcMcu1lKzZ3vPlfsqW38=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=qrk7NrM89gE42QmOaElXCgtUllBsrRz6JlYZCvcBSdxAAWuAJ6CKrTQGZR1tw1UOW4FZ7jHkZTjG16uS+wDqe94U7hZhKAgVZl4p8FcG21cP/lCYL8S8Do5refGWkIhyK35rllyIuBNGY6DREq7fF4B9jRJSKOVKC8MvoViAFqc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=B5sVTDYc; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id BC0B3C433C7;
-	Tue, 30 Jan 2024 17:14:49 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=s3CMu204px1xN/sRajQlcBFUFvOu0uu3ruHTVAaAjq7syO3uninJdyGB3CV+q9dJ8lt5DG0PfuVmwEbXaiv7HnMaIfL6gQWdl8OQ7KHlhNHfOsmzFY7nrSi5MSlzCgUHnUOzHutQrKxB7Iqm07rCPe6WKZJJvf5SwheEPxbEn/M=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=NpLjzPUW; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id C14E4C433C7;
+	Tue, 30 Jan 2024 17:19:10 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1706634890;
-	bh=A5T8FP/fhIVtH/olVEw0tzShluBYACTWaf+iE7kNjHc=;
+	s=k20201202; t=1706635151;
+	bh=y4IszyoidWFXzhNhDY2c9NDxcMcu1lKzZ3vPlfsqW38=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=B5sVTDYcZYQd6secc+1JOjx11SzAr4mybLbcRDSte3T8Xi62OLzcth2fj04pGx37w
-	 SfdAaUIfYHZH44RnWaSeE9sFYUpJAVvbBDO1o42UR514TdkB7qJPRdy2etQ45uYCp6
-	 DIKvVDpDFZohfFtwzm/tEAh30eyIsJHjeuts7GQ0PVks8OaC0jxNKjgm4tQXYFs9hz
-	 WaskVbC/gMNGEhjIWK5Ytt8jNaVc1+Ck49ELh5odrADWqEZb0B1IMltoNXWNuBjPo8
-	 WmLTkMkGEXr3xmf7AVnWdDUD8uDtkj4AzA9k9SbGrVkMM2T+8RC3RXS4Vs3RYjQBSj
-	 MPdAOv5LpsXWQ==
-Date: Tue, 30 Jan 2024 22:44:46 +0530
-From: Vinod Koul <vkoul@kernel.org>
-To: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
-Cc: Bjorn Andersson <andersson@kernel.org>,
-	Konrad Dybcio <konrad.dybcio@linaro.org>,
-	Kishon Vijay Abraham I <kishon@kernel.org>,
-	Rob Herring <robh+dt@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	cros-qcom-dts-watchers@chromium.org, linux-arm-msm@vger.kernel.org,
-	linux-phy@lists.infradead.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org
-Subject: Re: [PATCH 04/14] dt-bindings: phy: qcom,sc8280xp-qmp-pcie-phy: Fix
- the usage of aux clk
-Message-ID: <ZbkuhjOa31ma3Mx8@matsya>
-References: <20240124-pcie-aux-clk-fix-v1-0-d8a4852b6ba6@linaro.org>
- <20240124-pcie-aux-clk-fix-v1-4-d8a4852b6ba6@linaro.org>
+	b=NpLjzPUWXqKV54fhDJhAYBoggAWgle3OxuN85QdeHkEbaDgS22ahV8cnmW+CwRNpO
+	 SIAcp+xgeFPt0rW4GBFx8d6u498AvJg6rfEbJf8z4srNRDx55/CEL4DGy3YDE4RHw0
+	 p6I4x5rFA7NMe73dKX7X3Q7xbPNBDhcfToS0rULHyT+XIvusI7y5jsOkAl6awCK9/F
+	 7LXkHo2wZT1wdYmcDT1qXwIaTSaXpCbkCjoDyqVmYiFFh3dAjVbYKJpRxr6jVUbLnV
+	 jVSuPZlSkOwnYqsRkbr8lSgJXzuS+IsycbymTehgrvqM88w9IsW5p+v3thCgAynqZL
+	 65iP3i0p/mhNA==
+Date: Tue, 30 Jan 2024 11:19:08 -0600
+From: Rob Herring <robh@kernel.org>
+To: Petlozu Pravareshwar <petlozup@nvidia.com>
+Cc: thierry.reding@gmail.com, jonathanh@nvidia.com,
+	krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
+	p.zabel@pengutronix.de, dmitry.osipenko@collabora.com,
+	ulf.hansson@linaro.org, kkartik@nvidia.com, cai.huoqing@linux.dev,
+	spatra@nvidia.com, linux-tegra@vger.kernel.org,
+	linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
+Subject: Re: [PATCH V2 2/3] dt-bindings: tegra: pmc: Update scratch as an
+ optional aperture
+Message-ID: <20240130171908.GA1964535-robh@kernel.org>
+References: <20240117202504.943476-1-petlozup@nvidia.com>
+ <20240117202504.943476-2-petlozup@nvidia.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -66,33 +63,137 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20240124-pcie-aux-clk-fix-v1-4-d8a4852b6ba6@linaro.org>
+In-Reply-To: <20240117202504.943476-2-petlozup@nvidia.com>
 
-On 24-01-24, 13:06, Manivannan Sadhasivam wrote:
-> On some platforms, PHY block requires PCIE_PHY_AUX_CLK to be used when the
-> PCIe link enters L1SS state. On those platforms, a dedicated
-> PCIE_PHY_AUX_CLK is available from GCC. Other than this, the PHY block
-> doesn't require any other "aux" clock, including PCIE_AUX_CLK which only
-> required by the PCIe controller.
+On Wed, Jan 17, 2024 at 08:25:03PM +0000, Petlozu Pravareshwar wrote:
+> Scratch address space register is used to store reboot reason. For
+> some Tegra234 systems, the scratch space is not available to store
+> the reboot reason. This is because scratch region on these systems
+> is not accessible by the kernel as restricted by the Hypervisor.
+> Such systems would delist scratch aperture from PMC DT node.
 > 
-> Historically, the DTs of the platforms requiring "aux" clock passed
-> PCIE_PHY_AUX_CLK as "aux" clock. But over the period of time, platforms
-> that do not require this dedicated "aux" clock mistakenly started passing
-> the PCIE_AUX_CLK as the "aux" clock. More recently, SA8775P platform passed
-> both "aux" (PCIE_AUX_CLK) and "phy_aux" (PCIE_PHY_AUX_CLK) clocks.
+> Accordingly, this change makes "scratch" as an optional aperture for
+> Tegra234 in PMC dt-binding document.
 > 
-> So to clean up this mess, let's remove the newly introduced "phy_aux" clock
-> and just use "aux" clock to supply PCIE_PHY_AUX_CLK for platforms that
-> require it. For the platforms that do not require a dedicated "aux" clock,
-> the clock is removed from DT.
+> Signed-off-by: Petlozu Pravareshwar <petlozup@nvidia.com>
+> ---
+> Changes in v2:
+> - Fix dt_binding_check indentation warning.
+> - Update 'reg-names' property items list.
 > 
-> While at it, let's also define "qcom,sc7280-qmp-pcie-phy" compatible for
-> SC7280 SoC which was earlier using the compatible
-> "qcom,sm8250-qmp-gen3x2-pcie-phy" as the clock requirement has changed and
-> also restructure the "clock-names" property for the affected platforms.
+>  .../arm/tegra/nvidia,tegra186-pmc.yaml        | 78 ++++++++++++++-----
+>  1 file changed, 58 insertions(+), 20 deletions(-)
+> 
+> diff --git a/Documentation/devicetree/bindings/arm/tegra/nvidia,tegra186-pmc.yaml b/Documentation/devicetree/bindings/arm/tegra/nvidia,tegra186-pmc.yaml
+> index 0faa403f68c8..79928824005d 100644
+> --- a/Documentation/devicetree/bindings/arm/tegra/nvidia,tegra186-pmc.yaml
+> +++ b/Documentation/devicetree/bindings/arm/tegra/nvidia,tegra186-pmc.yaml
+> @@ -27,7 +27,7 @@ properties:
+>        - const: pmc
+>        - const: wake
+>        - const: aotag
+> -      - const: scratch
+> +      - enum: [ scratch, misc ]
+>        - const: misc
+>  
+>    interrupt-controller: true
+> @@ -41,25 +41,63 @@ properties:
+>      description: If present, inverts the PMU interrupt signal.
+>      $ref: /schemas/types.yaml#/definitions/flag
+>  
+> -if:
+> -  properties:
+> -    compatible:
+> -      contains:
+> -        const: nvidia,tegra186-pmc
+> -then:
+> -  properties:
+> -    reg:
+> -      maxItems: 4
+> -
+> -    reg-names:
+> -      maxItems: 4
+> -else:
+> -  properties:
+> -    reg:
+> -      minItems: 5
+> -
+> -    reg-names:
+> -      minItems: 5
+> +allOf:
+> +  - if:
+> +      properties:
+> +        compatible:
+> +          contains:
+> +            const: nvidia,tegra186-pmc
+> +    then:
+> +      properties:
+> +        reg:
+> +          maxItems: 4
+> +        reg-names:
+> +          items:
+> +            - const: pmc
+> +            - const: wake
+> +            - const: aotag
+> +            - const: scratch
 
-This one fails to apply for me
+There is no need to define the names and order again. Just this is 
+sufficient:
 
--- 
-~Vinod
+maxItems: 4
+contains:
+  const: scratch
+
+> +
+> +  - if:
+> +      properties:
+> +        compatible:
+> +          contains:
+> +            const: nvidia,tegra194-pmc
+> +    then:
+> +      properties:
+> +        reg:
+> +          minItems: 5
+> +        reg-names:
+> +          items:
+> +            - const: pmc
+> +            - const: wake
+> +            - const: aotag
+> +            - const: scratch
+> +            - const: misc
+
+Just 'minItems: 5' is sufficient here.
+
+> +
+> +  - if:
+> +      properties:
+> +        compatible:
+> +          contains:
+> +            const: nvidia,tegra234-pmc
+> +    then:
+> +      properties:
+> +        reg:
+> +          minItems: 4
+> +          maxItems: 5
+
+That should already be the top-level constraint.
+
+> +        reg-names:
+> +          anyOf:
+> +            - items:
+> +                - const: pmc
+> +                - const: wake
+> +                - const: aotag
+> +                - const: misc
+> +            - items:
+> +                - const: pmc
+> +                - const: wake
+> +                - const: aotag
+> +                - const: scratch
+> +                - const: misc
+
+Only need:
+
+contains:
+  const: misc
 
