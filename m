@@ -1,280 +1,208 @@
-Return-Path: <devicetree+bounces-36736-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-36739-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5B861842804
-	for <lists+devicetree@lfdr.de>; Tue, 30 Jan 2024 16:26:30 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 018D1842813
+	for <lists+devicetree@lfdr.de>; Tue, 30 Jan 2024 16:32:03 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 116B1283B5F
-	for <lists+devicetree@lfdr.de>; Tue, 30 Jan 2024 15:26:29 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id AB3E728940E
+	for <lists+devicetree@lfdr.de>; Tue, 30 Jan 2024 15:32:01 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E6FCF82D98;
-	Tue, 30 Jan 2024 15:26:15 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2A4DA85C5E;
+	Tue, 30 Jan 2024 15:31:50 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=broadcom.com header.i=@broadcom.com header.b="cVlpZwFC"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="IBD5wgfq"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ot1-f53.google.com (mail-ot1-f53.google.com [209.85.210.53])
+Received: from mail-qk1-f179.google.com (mail-qk1-f179.google.com [209.85.222.179])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0ABBD82D71
-	for <devicetree@vger.kernel.org>; Tue, 30 Jan 2024 15:26:13 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.53
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 568667F7F8
+	for <devicetree@vger.kernel.org>; Tue, 30 Jan 2024 15:31:48 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.222.179
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1706628375; cv=none; b=UO3cgJPGZAHCEXweLTTP7Pr3bGcTmBGv/nDqjBxPv8K4R1Ps388QBGVqmc3R9++wk8zscAMbRZq6VwyWm7wtW7DCH8A2guVEA4dFiZUsi+KQzgeyjApcbm/5CVR5/Zeztw63QRkk+Nt/Zvk35ip25PX59SIkDg0EPwVybawZ7xU=
+	t=1706628710; cv=none; b=YoUWxuM9UrdbSBwIlr/04U0WqB6MjhAjeYUjF0+lEknImJXrlrc1Zg4fFlW0v4vCoqjEjdS4C7zLE7Y0IXYAq84UFIs/hUjA3dQAcivatiga62Vrjjvi98jcDNUtLGICmLW7UXmOtY3/pRY3GqIQzWMCdi78sJE4ogMO5DDYkr8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1706628375; c=relaxed/simple;
-	bh=GHF4NqZwHNH3Y3ly+JA8/+ebgBt+hbUmLRmHoNhqTcw=;
+	s=arc-20240116; t=1706628710; c=relaxed/simple;
+	bh=BiSnpof6s0wfNf9+A13iFmx1FmKZ23viaAe7Jyf69kw=;
 	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=JLk15BaOw2WkZnF25bh+ZT+M71GH6MsFmK+YIK6UkyH4Mrjq50+whtWwSRNUH0zz1lmC3ZOM+zjy+v3gIZU2pAMfsqXYFUIns2YIBbdEDRFH5JBmNgEClDcme0AAN7MR5RXW8gipa0T923tzgcpPEgHDgrdOn4PjXgELhEihsOY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=broadcom.com; spf=fail smtp.mailfrom=broadcom.com; dkim=pass (1024-bit key) header.d=broadcom.com header.i=@broadcom.com header.b=cVlpZwFC; arc=none smtp.client-ip=209.85.210.53
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=broadcom.com
-Authentication-Results: smtp.subspace.kernel.org; spf=fail smtp.mailfrom=broadcom.com
-Received: by mail-ot1-f53.google.com with SMTP id 46e09a7af769-6ddca59e336so1997751a34.0
-        for <devicetree@vger.kernel.org>; Tue, 30 Jan 2024 07:26:13 -0800 (PST)
+	 To:Cc:Content-Type; b=WDtj7al5zOOnjr4ZP3Z0YdI3SHaJvGTG8aM7ZDNrxl1+U1XZLaSKgWmIqFR9IP5MNQmimEQR6OCRqoG9oT66qTaP74BDrlwxbI8RrCJxEQjWC6zyuIHLb0+Gs5QJlrOCNNXUtSLqWknxkm8S4BJlL7Bmsk5tJxOr5/zLtZmOtT4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=IBD5wgfq; arc=none smtp.client-ip=209.85.222.179
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-qk1-f179.google.com with SMTP id af79cd13be357-783e3b45ae1so161036985a.0
+        for <devicetree@vger.kernel.org>; Tue, 30 Jan 2024 07:31:48 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=broadcom.com; s=google; t=1706628373; x=1707233173; darn=vger.kernel.org;
+        d=linaro.org; s=google; t=1706628707; x=1707233507; darn=vger.kernel.org;
         h=content-transfer-encoding:cc:to:subject:message-id:date:from
          :in-reply-to:references:mime-version:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=95YNzZjCqGewVDFVw5GKEmL/AtttRslbuWoSQwc+WxQ=;
-        b=cVlpZwFCq1bnyE/vyrFfJEQTC3gWS2TvfdscqutSGeSBANETT/xy51spPYcM/OKlHJ
-         b8NlJuDqYsWMkvcLtqMH6GI4Y+MtS7yyTCJ+0bJ+FNwuI2npcBYzbXtQAeNgzhyRCtA1
-         M5ANbxaG2YQ5pC7w+D/H8VTc+RD5q+1iTTLU0=
+        bh=UyFAq1Eg2RJvLWqRzFuQdXmR0HpMNogzZgkepdLa9/U=;
+        b=IBD5wgfqKNqMaAgeh42HPplmoOZhKFJSddBoWdURM8oi6MZwhWi+Tyql1VcnolE4FK
+         YUdM4cAitKRBJ533N+6uB+gaf7mql7JihSXliyJ44o6TSiHBi9YEa4CAZWS+uFVk/j3h
+         /7dWWMrdUJnkQA0NiKGpzs0jtJq2cbVTTBliyRf/20qwAHDi42bB3tPS74AyO0F+/oAh
+         FVNQHouDjxxEkffjf39d/pWeWxwdNzNdRvdnTxGeJrYTw5KRDyIOSVYLE6qWzm1QMt68
+         JdEKzU1GYe6ZQoAiRz8aw4ouEzlDskfVdLIj84exdvWSecpWSU7hqhyiJqnfhh7KMX4x
+         62fQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1706628373; x=1707233173;
+        d=1e100.net; s=20230601; t=1706628707; x=1707233507;
         h=content-transfer-encoding:cc:to:subject:message-id:date:from
          :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=95YNzZjCqGewVDFVw5GKEmL/AtttRslbuWoSQwc+WxQ=;
-        b=TynZv3XtGu/5kBnPPKpZusacCczPDUpWEZiJAd39KtoeR+G0tdXBwJfUlxuObXVu6y
-         1pKL7SMugZEedF4kPnxJ32g1LkH+ARZ8u0YhONCuYZZ4FnO0j5zp2YdsGl+O9l+TudNA
-         MDpPBhe//mw1fEqRzCKygW/l9DOHwqObkbi9XgrNWWOcFif9iY6M4PEi1d53jNnq+N6M
-         ALf6Qm6eKcioC/51MsNm7ytYOr5NceozjYc3Lt+4/DDvJ9sBZPjR3SetWS040wd+kmSk
-         AHBvZ8/fx4P1F7W3XXa+n4RMmai9few8foXRF4bARKFZVB430HQiDrnNzcX6c6a9kM/u
-         HoRg==
-X-Gm-Message-State: AOJu0YwqzZiQO46CP6fUaJ3ZKjLrWLSW2twueoBDcW+gDrZKo4HOSZec
-	1nx6gPOZyPcaaSyRnrSYqy/NiiGzJMRxzssqBQ/my3dx8RjlAlZCkoRy3hT1QKVoHmhb+5N09fE
-	kDXAOzRjn6Tb8r7ZjzpKjcH93u6oJHV/txtgF
-X-Google-Smtp-Source: AGHT+IGxupdNP2xsZcONaEVK9pBDWAZoEpyT4Mf6wBGn0beMJ4mbFUcYnLGv1oPi93SgfM34G5xlbX33j7bnRaqzaDQ=
-X-Received: by 2002:a05:6830:3141:b0:6dc:6a8f:df1 with SMTP id
- c1-20020a056830314100b006dc6a8f0df1mr522768ots.13.1706628372905; Tue, 30 Jan
- 2024 07:26:12 -0800 (PST)
+        bh=UyFAq1Eg2RJvLWqRzFuQdXmR0HpMNogzZgkepdLa9/U=;
+        b=b7zWzPlHITDEP1EcHxc4l+lqH2im0bM/I763Y1b71HWr5ESp97BwWGi/M6DCN28ahc
+         I1Nl3aIUFFsxsRq5n3QL6IlCdmrAr1aBd3xICtxdCwu9Tkl9K2vy20xyocSMzW217Y1y
+         udqdKtUT2kvg5JK5mMQ8XOi3QwzXqpwZyKLavHfVSiO/5lsumno7P354V8I6CWhVpXcS
+         ymdfB7WTNGH6g/H83IQm7wnybgksd5EuS4QV6b9DiKAmerEsueMg7tm9W+LiZfNmTYa8
+         SDQn6dXcH/ydQ+u7m/Lax5ur7YiHiUf1U0up6bhcG1qmFb18u/Qk8N1lWYge/1UZaux2
+         nW4w==
+X-Gm-Message-State: AOJu0YwJmiWMJAKKbowEWCe1xHWCCDOt5lyABiF1pkn/H9rWQWOIebsU
+	d243CVPPkkPIy35BbdZfUXq/FRXBJlrU4kpvEyCZqaMmGPF30bsjCyg1nRJvomss8rcjhA8Dyl/
+	6SmJIVMBywSxtjCD445V84CQD/KTPV8W5ji2ddQ==
+X-Google-Smtp-Source: AGHT+IE9wCsA8OMUwsAtj9eouk/XJiMtJxIGPk+xD0QUnQxHNQz4KNhObmSuHuPnZPemueo0vMoDgt9lN4w74OWnQkc=
+X-Received: by 2002:a05:6214:248e:b0:68c:499f:f803 with SMTP id
+ gi14-20020a056214248e00b0068c499ff803mr7669302qvb.30.1706628707108; Tue, 30
+ Jan 2024 07:31:47 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20240124030458.98408-1-dregan@broadcom.com> <20240124030458.98408-11-dregan@broadcom.com>
- <20240124184027.712b1e47@xps-13> <CAA_RMS42FaiN+Za1iY12o0YUANH9rJarBTBa=9jNn8x6_g-Fng@mail.gmail.com>
- <20240126071913.699c3795@xps-13> <CAA_RMS5gX88v_Qt1csgSL_ffMNsqo2G8B164EB_Hg=hXd620eg@mail.gmail.com>
- <20240129115228.06dc2292@xps-13> <2a3edcf5-7afc-410c-a402-3d8cd3feb1da@broadcom.com>
- <20240130120155.3cb6feed@xps-13>
-In-Reply-To: <20240130120155.3cb6feed@xps-13>
-From: David Regan <dregan@broadcom.com>
-Date: Tue, 30 Jan 2024 07:26:02 -0800
-Message-ID: <CAA_RMS577vw=QWN9_NHfmWqt+_cDG22tA01aU019CPNjAgHqJQ@mail.gmail.com>
-Subject: Re: [PATCH v3 10/10] mtd: rawnand: brcmnand: allow for on-die ecc
-To: Miquel Raynal <miquel.raynal@bootlin.com>
-Cc: William Zhang <william.zhang@broadcom.com>, David Regan <dregan@broadcom.com>, dregan@mail.com, 
-	Richard Weinberger <richard@nod.at>, Vignesh Raghavendra <vigneshr@ti.com>, robh+dt@kernel.org, 
-	krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org, 
-	computersforpeace@gmail.com, kdasu.kdev@gmail.com, 
-	linux-mtd@lists.infradead.org, devicetree@vger.kernel.org, 
-	Linux Kernel Mailing List <linux-kernel@vger.kernel.org>, Joel Peshkin <joel.peshkin@broadcom.com>, 
-	Tomer Yacoby <tomer.yacoby@broadcom.com>, Dan Beygelman <dan.beygelman@broadcom.com>, 
-	Anand Gore <anand.gore@broadcom.com>, Kursad Oney <kursad.oney@broadcom.com>, 
-	Florian Fainelli <florian.fainelli@broadcom.com>, rafal@milecki.pl, 
-	bcm-kernel-feedback-list@broadcom.com, andre.przywara@arm.com, 
-	baruch@tkos.co.il, linux-arm-kernel@lists.infradead.org, 
-	Dan Carpenter <dan.carpenter@linaro.org>
+References: <20240129211912.3068411-1-peter.griffin@linaro.org>
+ <20240129211912.3068411-3-peter.griffin@linaro.org> <CAGETcx8UsseQAHc76QaMxgMUe7cwajZVdYLA2uwpZxF90RLjJQ@mail.gmail.com>
+ <CAPLW+4mG2RkUgDbBBzrgCAW3covbr9eCQEFje1pYxj2hzVykug@mail.gmail.com>
+In-Reply-To: <CAPLW+4mG2RkUgDbBBzrgCAW3covbr9eCQEFje1pYxj2hzVykug@mail.gmail.com>
+From: Peter Griffin <peter.griffin@linaro.org>
+Date: Tue, 30 Jan 2024 15:31:35 +0000
+Message-ID: <CADrjBPr0HjympgaC+eiVdTJuFbNes26gPEMJfdiLYFDUAjpU3w@mail.gmail.com>
+Subject: Re: [PATCH v2 2/2] watchdog: s3c2410_wdt: use exynos_get_pmu_regmap_by_phandle()
+ for PMU regs
+To: Sam Protsenko <semen.protsenko@linaro.org>
+Cc: Saravana Kannan <saravanak@google.com>, arnd@arndb.de, krzysztof.kozlowski@linaro.org, 
+	linux@roeck-us.net, wim@linux-watchdog.org, alim.akhtar@samsung.com, 
+	jaewon02.kim@samsung.com, kernel-team@android.com, tudor.ambarus@linaro.org, 
+	andre.draszik@linaro.org, willmcvicker@google.com, linux-fsd@tesla.com, 
+	linux-watchdog@vger.kernel.org, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
+	linux-samsung-soc@vger.kernel.org
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-Hi Miquel,
+Hi Sam & Saravana,
 
-On Tue, Jan 30, 2024 at 3:01=E2=80=AFAM Miquel Raynal <miquel.raynal@bootli=
-n.com> wrote:
+On Tue, 30 Jan 2024 at 03:38, Sam Protsenko <semen.protsenko@linaro.org> wr=
+ote:
 >
-> Hi William,
->
-> william.zhang@broadcom.com wrote on Tue, 30 Jan 2024 00:11:32 -0800:
->
-> > Hi Miquel,
+> On Mon, Jan 29, 2024 at 4:25=E2=80=AFPM Saravana Kannan <saravanak@google=
+.com> wrote:
 > >
-> > On 1/29/24 02:52, Miquel Raynal wrote:
-> > > Hi David,
+> > On Mon, Jan 29, 2024 at 1:19=E2=80=AFPM Peter Griffin <peter.griffin@li=
+naro.org> wrote:
 > > >
-> > > dregan@broadcom.com wrote on Fri, 26 Jan 2024 11:57:39 -0800:
+> > > Obtain the PMU regmap using the new API added to exynos-pmu driver ra=
+ther
+> > > than syscon_regmap_lookup_by_phandle(). As this driver no longer depe=
+nds
+> > > on mfd syscon remove that header and Kconfig dependency.
 > > >
-> > >> Hi Miqu=C3=A8l,
-> > >>
-> > >> On Thu, Jan 25, 2024 at 10:19=E2=80=AFPM Miquel Raynal
-> > >> <miquel.raynal@bootlin.com> wrote:
-> > >>>
-> > >>> Hi David,
-> > >>>
-> > >>> dregan@broadcom.com wrote on Thu, 25 Jan 2024 11:47:46 -0800:
-> > >>>   >>>> Hi Miqu=C3=A8l,
-> > >>>>
-> > >>>> On Wed, Jan 24, 2024 at 9:40=E2=80=AFAM Miquel Raynal <miquel.rayn=
-al@bootlin.com> wrote:
-> > >>>>>
-> > >>>>> Hi David,
-> > >>>>>
-> > >>>>> dregan@broadcom.com wrote on Tue, 23 Jan 2024 19:04:58 -0800:
-> > >>>>>   >>>>>> Allow settings for on-die ecc such that if on-die ECC is=
- selected
-> > >>>>>> don't error out but require ECC strap setting of zero
-> > >>>>>>
-> > >>>>>> Signed-off-by: David Regan <dregan@broadcom.com>
-> > >>>>>> Reviewed-by: William Zhang <william.zhang@broadcom.com>
-> > >>>>>> ---
-> > >>>>>> Changes in v3: None
-> > >>>>>> ---
-> > >>>>>> Changes in v2:
-> > >>>>>> - Added to patch series
-> > >>>>>> ---
-> > >>>>>>   drivers/mtd/nand/raw/brcmnand/brcmnand.c | 14 ++++++++++----
-> > >>>>>>   1 file changed, 10 insertions(+), 4 deletions(-)
-> > >>>>>>
-> > >>>>>> diff --git a/drivers/mtd/nand/raw/brcmnand/brcmnand.c b/drivers/=
-mtd/nand/raw/brcmnand/brcmnand.c
-> > >>>>>> index a4e311b6798c..42526f3250c9 100644
-> > >>>>>> --- a/drivers/mtd/nand/raw/brcmnand/brcmnand.c
-> > >>>>>> +++ b/drivers/mtd/nand/raw/brcmnand/brcmnand.c
-> > >>>>>> @@ -2727,9 +2727,11 @@ static int brcmnand_setup_dev(struct brcm=
-nand_host *host)
-> > >>>>>>        cfg->blk_adr_bytes =3D get_blk_adr_bytes(mtd->size, mtd->=
-writesize);
-> > >>>>>>
-> > >>>>>>        if (chip->ecc.engine_type !=3D NAND_ECC_ENGINE_TYPE_ON_HO=
-ST) {
-> > >>>>>> -             dev_err(ctrl->dev, "only HW ECC supported; selecte=
-d: %d\n",
-> > >>>>>> -                     chip->ecc.engine_type);
-> > >>>>>> -             return -EINVAL;
-> > >>>>>> +             if (chip->ecc.strength) {
-> > >>>>>> +                     dev_err(ctrl->dev, "ERROR!!! HW ECC must b=
-e set to zero for non-hardware ECC; selected: %d\n",
-> > >>>>>> +                             chip->ecc.strength);
-> > >>>>>
-> > >>>>> Can you use a more formal string? Also clarify it because I don't
-> > >>>>> really understand what it leads to.
-> > >>>>
-> > >>>> How about:
-> > >>>>
-> > >>>> dev_err(ctrl->dev, "HW ECC set to %d, must be zero for on-die ECC\=
-n",
-> > >>>
-> > >>> Actually I am wondering how legitimate this is. Just don't enable t=
-he
-> > >>> on host ECC engine if it's not in use. No need to check the core's
-> > >>> choice.
-> > >>
-> > >> Our chip ECC engine will either be on if it's needed or off if it's =
-not.
-> > >> Either I can do that in one place or put checks in before each
-> > >> read/write to turn on/off the ECC engine, which seems a lot more
-> > >> work and changes and possible issues/problems.
-> > >> Turning it on/off as needed has not been explicitly tested and
-> > >> could cause unforeseen consequences. This
-> > >> is a minimal change which should have minimal impact.
-> > >>
-> > >>>   >>>>   >>>>>   >>>>>> +                     return -EINVAL;
-> > >>>>>> +             }
-> > >>>>>>        }
-> > >>>>>>
-> > >>>>>>        if (chip->ecc.algo =3D=3D NAND_ECC_ALGO_UNKNOWN) {
-> > >>>>>> @@ -2797,7 +2799,11 @@ static int brcmnand_setup_dev(struct brcm=
-nand_host *host)
-> > >>>>>>        if (ret)
-> > >>>>>>                return ret;
-> > >>>>>>
-> > >>>>>> -     brcmnand_set_ecc_enabled(host, 1);
-> > >>>>>> +     if (chip->ecc.engine_type =3D=3D NAND_ECC_ENGINE_TYPE_ON_D=
-IE) {
-> > >>>>>> +             dev_dbg(ctrl->dev, "Disable HW ECC for on-die ECC\=
-n");
-> > >>>>>
-> > >>>>> Not needed.
-> > >>>>
-> > >>>> Will remove.
-> > >>>>   >>>>>   >>>>>> +             brcmnand_set_ecc_enabled(host, 0);
-> > >>>>>> +     } else
-> > >>>>>> +             brcmnand_set_ecc_enabled(host, 1);
-> > >>>>>
-> > >>>>> Style is wrong, but otherwise I think ECC should be kept disabled=
- while
-> > >>>>> not in active use, so I am a bit surprised by this line.
-> > >>>>
-> > >>>> This is a double check to turn on/off our hardware ECC.
-> > >>>
-> > >>> I expect the engine to be always disabled. Enable it only when you
-> > >>> need (may require an additional patch before this one).
-> > >>
-> > >> We are already turning on the ECC enable at this point,
-> > >> this is just adding the option to turn it off if the NAND chip
-> > >> itself will be doing the ECC instead of our controller.
+> > > Signed-off-by: Peter Griffin <peter.griffin@linaro.org>
+> > > ---
+> > >  drivers/watchdog/Kconfig       | 1 -
+> > >  drivers/watchdog/s3c2410_wdt.c | 9 +++++----
+> > >  2 files changed, 5 insertions(+), 5 deletions(-)
 > > >
-> > > Sorry if I have not been clear.
-> > >
-> > > This sequence:
-> > > - init
-> > > - enable hw ECC engine
-> > > Is broken.
-> > >
-> > ECC engine is not enabled for all the cases. Here we only intended to e=
-nable it for the nand chip that is set to use NAND_ECC_ENGINE_TYPE_ON_HOST.=
- The logic here should better change to:
-> > if (chip->ecc.engine_type =3D=3D NAND_ECC_ENGINE_TYPE_ON_HOST)
-> >      brcmnand_set_ecc_enabled(host, 1);
-> > else
-> >      brcmnand_set_ecc_enabled(host, 0);
-> >
-> > > It *cannot* work as any operation going through exec_op now may
-> > > perform page reads which should be unmodified by the ECC engine. You =
-> driver *must* follow the following sequence:
-> > > - init and disable (or keep disabled) the hw ECC engine
-> > > - when you perform a page operation with correction you need to
-> > >     - enable the engine
-> > >     - perform the operation
-> > >     - disable the engine
-> > > Maybe I am missing something here but are you saying the exec_op can =
-have different ecc type for page read/write at run time on the same nand ch=
-ip? I don't see the op instr structure has the ecc type field and thought i=
-t is only bind to the nand chip and won't change at run time. So looks to m=
-e the init time setting to the engine based on ecc.engine_type should be su=
-fficient.
-> >
-> > What you described here can work for the hw.ecc read path (ecc.read_pag=
-e =3D brcmnand_read_page) which always assumes ecc is enabled. Although it =
-is probably not too bad with these two extra operation, it would be better =
-if we don't have to add anything as our current code does. For the brcmnand=
-_read_page_raw,  we currently disable the engine and then re-enable it(but =
-we need to fix it to only enable it with hw ecc engine type).  So it is jus=
-t opposite of you logic but works the same with no impact on the most perfo=
-rmance critical path.
+> > > diff --git a/drivers/watchdog/Kconfig b/drivers/watchdog/Kconfig
+> > > index 7d22051b15a2..d78fe7137799 100644
+> > > --- a/drivers/watchdog/Kconfig
+> > > +++ b/drivers/watchdog/Kconfig
+> > > @@ -512,7 +512,6 @@ config S3C2410_WATCHDOG
+> > >         tristate "S3C6410/S5Pv210/Exynos Watchdog"
+> > >         depends on ARCH_S3C64XX || ARCH_S5PV210 || ARCH_EXYNOS || COM=
+PILE_TEST
+> > >         select WATCHDOG_CORE
+> > > -       select MFD_SYSCON if ARCH_EXYNOS
 >
-> This is not "my" logic, this is the "core's" logic. I am saying: your
-> approach is broken because that is not how the API is supposed to work,
-> but it mostly works in the standard case.
+> That reminds me: now that exynos-pmu driver uses regmap API, does it
+> make sense to add something like "select REGMAP" to EXYNOS_PMU option?
 
-In the interest of minimizing register writes, would it be acceptable to
-enable/disable ECC at the beginning of a standard
-path transfer but not, after the transfer, turn off the ECC? This should no=
-t
-affect other standard path operations nor affect the exec_op path as those
-are low level transfers which our ECC engine would not touch and the NAND
-device driver should be responsible for turning on/off its own ECC.
+Good point, I will add that in v3.
 
 >
-> Thanks,
-> Miqu=C3=A8l
+> > >         help
+> > >           Watchdog timer block in the Samsung S3C64xx, S5Pv210 and Ex=
+ynos
+> > >           SoCs. This will reboot the system when the timer expires wi=
+th
+> > > diff --git a/drivers/watchdog/s3c2410_wdt.c b/drivers/watchdog/s3c241=
+0_wdt.c
+> > > index 349d30462c8c..a1e2682c7e57 100644
+> > > --- a/drivers/watchdog/s3c2410_wdt.c
+> > > +++ b/drivers/watchdog/s3c2410_wdt.c
+> > > @@ -24,9 +24,9 @@
+> > >  #include <linux/slab.h>
+> > >  #include <linux/err.h>
+> > >  #include <linux/of.h>
+> > > -#include <linux/mfd/syscon.h>
+> > >  #include <linux/regmap.h>
+> > >  #include <linux/delay.h>
+> > > +#include <linux/soc/samsung/exynos-pmu.h>
+> > >
+> > >  #define S3C2410_WTCON          0x00
+> > >  #define S3C2410_WTDAT          0x04
+> > > @@ -699,11 +699,12 @@ static int s3c2410wdt_probe(struct platform_dev=
+ice *pdev)
+> > >                 return ret;
+> > >
+> > >         if (wdt->drv_data->quirks & QUIRKS_HAVE_PMUREG) {
+> > > -               wdt->pmureg =3D syscon_regmap_lookup_by_phandle(dev->=
+of_node,
+> > > -                                               "samsung,syscon-phand=
+le");
+> > > +
+> > > +               wdt->pmureg =3D exynos_get_pmu_regmap_by_phandle(dev-=
+>of_node,
+> > > +                                                "samsung,syscon-phan=
+dle");
+> >
+>
+> This looks so much better than approach taken in v1, as for my taste.
+> For this patch:
+>
+> Reviewed-by: Sam Protsenko <semen.protsenko@linaro.org>
 
 Thanks!
+>
+> > IIUC, the exynos PMU driver is registering a regmap interface with
+> > regmap framework. So, can't we get the remap from the framework
+> > instead of directly talking to the PMU driver?
+> >
 
--Dave
+I'm not aware of any existing regmap API that does that. A quick look
+through regmap code I can't see any global state that is stored on a
+regmap_init() for example of all the regmaps created in the system.
+
+As Sam mentions below, prior to these patches the syscon device would
+be creating the PMU mmio regmap and consumers drivers would be
+obtaining the regmap by going through the syscon driver. After this
+series we instead talk to the exynos-pmu driver to obtain the pmu
+regmap which can either be one with overridden operations for issuing
+SMC calls to do the register accesses or still a mmio regmap.
+
+Folks tried in the past to add a SMC backend to regmap similar to
+regmap_mmio and add support for it into syscon driver but this was
+nacked (see here
+https://lore.kernel.org/lkml/20210723163759.GI5221@sirena.org.uk/T/)
+
+>
+> Peter is basically re-implementing syscon driver with overridden
+> operations, as a part of exynos-pmu driver, in previous patch. Which
+> means syscon API can't be used anymore to obtain the regmap. Do you
+> have particular API in mind that allows getting a random regmap
+> registered with devm_regmap_init()?
+
+Thanks,
+
+Peter
 
