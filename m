@@ -1,122 +1,296 @@
-Return-Path: <devicetree+bounces-36691-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-36692-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 93469842506
-	for <lists+devicetree@lfdr.de>; Tue, 30 Jan 2024 13:35:57 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2EA40842529
+	for <lists+devicetree@lfdr.de>; Tue, 30 Jan 2024 13:42:19 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 49FDC288F13
-	for <lists+devicetree@lfdr.de>; Tue, 30 Jan 2024 12:35:56 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id DA0FF280D75
+	for <lists+devicetree@lfdr.de>; Tue, 30 Jan 2024 12:42:17 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C78386A010;
-	Tue, 30 Jan 2024 12:35:55 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=9elements.com header.i=@9elements.com header.b="Z6bu652y"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 524066A036;
+	Tue, 30 Jan 2024 12:40:22 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pg1-f177.google.com (mail-pg1-f177.google.com [209.85.215.177])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
-	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6875467E88
-	for <devicetree@vger.kernel.org>; Tue, 30 Jan 2024 12:35:54 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.215.177
+Received: from foss.arm.com (foss.arm.com [217.140.110.172])
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id ACC466A028;
+	Tue, 30 Jan 2024 12:40:19 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.140.110.172
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1706618155; cv=none; b=g7AIowY6/m+1AIe1256QJQ8xAo/Le01ddBsxYTcpyO255ygF+R+ydoI63BZrfCNvJvbjSLs69ptPu8zQzVJNMKc4jpahyiQIO2E5H6l/ZwEm2KJxZsgkQsMeKpiPEonXrs1YqyyG/i+fpxbl9pTauF61O1JAPMU4J/xBAg6mu8A=
+	t=1706618422; cv=none; b=Lybnd6d/YW/rCpF0EhzQCsr67GtTXuljPEmNEAAGQYGCF9JIS9QTBcE6+ExE5dkI2YcULNv89deGrN292ipu9cHoYaG2OFncxmQpSnHFlEh1CVHEn1Dx0MNl89dYhqNfxt/oq1lf6ZQzMsHx4bnmzcc/fzg44nI/0+L1DEqGfTs=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1706618155; c=relaxed/simple;
-	bh=Jm2FDGHXPVRHJOF8piPCWJ0CqfEu1McE3XNfHaO8bUU=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=KpmSdJk8LdpwwMVKLLN5LjBpm8CAO/u1PcybFvjAAgBF1IcFQVQ5qZx/Li9mkRB5dwb34JfIR5ZbR0Xs1G2ROxKfj4p8iqMitLzMrVhxb7X05S0Q8eQSUl3SqzE1ij6n1HNRirPsKvp4tgMF0Yj5YhfCGz/BZw1GDD2EFYPgvAQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=9elements.com; spf=pass smtp.mailfrom=9elements.com; dkim=pass (2048-bit key) header.d=9elements.com header.i=@9elements.com header.b=Z6bu652y; arc=none smtp.client-ip=209.85.215.177
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=9elements.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=9elements.com
-Received: by mail-pg1-f177.google.com with SMTP id 41be03b00d2f7-53fa455cd94so2339812a12.2
-        for <devicetree@vger.kernel.org>; Tue, 30 Jan 2024 04:35:54 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=9elements.com; s=google; t=1706618154; x=1707222954; darn=vger.kernel.org;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=Jm2FDGHXPVRHJOF8piPCWJ0CqfEu1McE3XNfHaO8bUU=;
-        b=Z6bu652yHBhhXOTfT6Wvz5u6tJn6ZambO1VRxlZ13o218Fq6+nJ/hDO52WkGU11AIS
-         T+1it4IkayEjltyHJQJVh/XVrhDAAQVw8HVs/pgYISClpBexfktEVhxa2XsgiD93EGHK
-         KRN4s5aAVdroOMIywhHpAeZ3z7eYeb45A3zgTrSnE/IbD8LJW6U0ous2b5HL7O2+CbZv
-         SWniBDS4xzvjG6E7av5cDN2e/DJ9hrhnCl3/7Bg3RH+kQ9oZcr82Z5W2u0jWEtSShO/t
-         3rO5QbWTqsGGw8BpBzBkb/bfqmuxmPOHcOZ410817QCyeTQVF3WdouR5CFgoZiyO4Syc
-         iV4g==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1706618154; x=1707222954;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=Jm2FDGHXPVRHJOF8piPCWJ0CqfEu1McE3XNfHaO8bUU=;
-        b=qoPWLr1c2YCCEs/63TlK8hVcSP8FmZVlh4sPm6Wh5nbNOP0xaFKlGW9kT5f1+abm8Y
-         Ay4YNDrVCGpqdVHtpC2G2t8+oCJDWYte5wwa98FHJCVBfUVVafDoWbLBEcmKeXMNdTxT
-         t7NY4j8iDRQ1S0xhPvhFBr0l1mVQtO5vpBG9aZ9Uia5VdvkKwEnxSS1gn+fRqTv2cPvv
-         1Q4qltcVJ2WX8RNuJ8eoR+D2rV4XECJOGChbemmjZl75d59/k161Wvl9ww5q0wiQXv3U
-         QZhni0YW1jUqnxxTDngCs7bhtagKvMs2memxO4fVep0RnAPnyWyD7WgC8T/gVos+f2P1
-         leXg==
-X-Gm-Message-State: AOJu0YwJQrcmYYZ/7XvjjF3nWhagoKcm5Q0HzUWtwmtuM2GeCJe6cCu+
-	dKcSEd6ETomg+JfQzH/fqnM3+IaivjIsyDoA02EZemUaxRdccWl2rgjRVfOdLdwP3zoLnJRSXxF
-	S1TrMFbI9ZsjJR80AWdZBpnyBcxkbsQUiE4M2fQ==
-X-Google-Smtp-Source: AGHT+IGTntxKoODjjTYzwLT4wkEHukDXHu/Nu8uelZIezqzzyxOclRiJPwjXhhWa15k0cE0hIoEazKVknNcv9YOqK+Y=
-X-Received: by 2002:a17:90a:ac0d:b0:294:1261:6412 with SMTP id
- o13-20020a17090aac0d00b0029412616412mr5245189pjq.9.1706618153744; Tue, 30 Jan
- 2024 04:35:53 -0800 (PST)
+	s=arc-20240116; t=1706618422; c=relaxed/simple;
+	bh=+x2GutARnczCwp8oHhn8Qn8q8WfRfeqIQxjDzAXlzfg=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=MEIWnJweYPuOmA9CUCL163C5b1SJILFzGvYOHxeOof74KjZR5lIJtq0xJmewjBp/6buurFARK3wSovarq2y7OxXrtflfJbvvAvnWZFwhrcjuVVX30k4jPXpuTXkqmQPwZ0P1PDYl+//86Yhdfa6bWHN+ZjVvxhx1ToV47D8BCZA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com; spf=pass smtp.mailfrom=arm.com; arc=none smtp.client-ip=217.140.110.172
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=arm.com
+Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
+	by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 88463DA7;
+	Tue, 30 Jan 2024 04:41:02 -0800 (PST)
+Received: from [10.1.197.1] (ewhatever.cambridge.arm.com [10.1.197.1])
+	by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id E2EEF3F762;
+	Tue, 30 Jan 2024 04:40:13 -0800 (PST)
+Message-ID: <69ff07d9-85e2-4cef-8db5-612287ee1638@arm.com>
+Date: Tue, 30 Jan 2024 12:40:12 +0000
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20240130120807.460335-1-naresh.solanki@9elements.com>
- <b305291e-199d-4a0b-b24e-09910f1eed37@linaro.org> <CABqG17in2+0eHMRBvyunWKizgSBpYPq+CGsMO7FQo13pApPvaw@mail.gmail.com>
- <021f3f6f-0aa9-41c2-a220-b1e6efad2880@linaro.org>
-In-Reply-To: <021f3f6f-0aa9-41c2-a220-b1e6efad2880@linaro.org>
-From: Naresh Solanki <naresh.solanki@9elements.com>
-Date: Tue, 30 Jan 2024 18:05:43 +0530
-Message-ID: <CABqG17jKri5DL4mTpf-DqueyW28rFk_XpxF3M1gauxYEBvMv-A@mail.gmail.com>
-Subject: Re: [PATCH v2] dt-bindings: pinctrl: cy8x95x0: Minor fix & update
-To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Cc: Linus Walleij <linus.walleij@linaro.org>, Rob Herring <robh+dt@kernel.org>, 
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Patrick Rudolph <patrick.rudolph@9elements.com>, mazziesaccount@gmail.com, 
-	linux-gpio@vger.kernel.org, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v5 07/10] coresight-tpdm: Add pattern registers support
+ for CMB
+Content-Language: en-US
+To: Tao Zhang <quic_taozha@quicinc.com>,
+ Mathieu Poirier <mathieu.poirier@linaro.org>,
+ Alexander Shishkin <alexander.shishkin@linux.intel.com>,
+ Konrad Dybcio <konradybcio@gmail.com>, Mike Leach <mike.leach@linaro.org>,
+ Rob Herring <robh+dt@kernel.org>,
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
+Cc: Jinlong Mao <quic_jinlmao@quicinc.com>, Leo Yan <leo.yan@linaro.org>,
+ Greg Kroah-Hartman <gregkh@linuxfoundation.org>, coresight@lists.linaro.org,
+ linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+ devicetree@vger.kernel.org, Tingwei Zhang <quic_tingweiz@quicinc.com>,
+ Yuanfang Zhang <quic_yuanfang@quicinc.com>,
+ Trilok Soni <quic_tsoni@quicinc.com>, Song Chai <quic_songchai@quicinc.com>,
+ linux-arm-msm@vger.kernel.org, andersson@kernel.org
+References: <1706605366-31705-1-git-send-email-quic_taozha@quicinc.com>
+ <1706605366-31705-8-git-send-email-quic_taozha@quicinc.com>
+From: Suzuki K Poulose <suzuki.poulose@arm.com>
+In-Reply-To: <1706605366-31705-8-git-send-email-quic_taozha@quicinc.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
 
-Hi Krzysztof,
+On 30/01/2024 09:02, Tao Zhang wrote:
+> Timestamps are requested if the monitor’s CMB data set unit input
+> data matches the value in the Monitor CMB timestamp pattern and mask
+> registers (M_CMB_TPR and M_CMB_TPMR) when CMB timestamp enabled
+> via the timestamp insertion enable register bit(CMB_TIER.PATT_TSENAB).
+> The pattern match trigger output is achieved via setting values into
+> the CMB trigger pattern and mask registers (CMB_XPR and CMB_XPMR).
+> After configuring a pattern through these registers, the TPDM subunit
+> will assert an output trigger every time it receives new input data
+> that matches the configured pattern value. Values in a given bit
+> number of the mask register correspond to the same bit number in
+> the corresponding pattern register.
+> 
+> Reviewed-by: James Clark <james.clark@arm.com>
+> Signed-off-by: Tao Zhang <quic_taozha@quicinc.com>
+> Signed-off-by: Jinlong Mao <quic_jinlmao@quicinc.com>
+> ---
+>   .../testing/sysfs-bus-coresight-devices-tpdm  | 30 ++++++
+>   drivers/hwtracing/coresight/coresight-tpdm.c  | 96 ++++++++++++++++++-
+>   drivers/hwtracing/coresight/coresight-tpdm.h  | 39 ++++++++
+>   3 files changed, 164 insertions(+), 1 deletion(-)
+> 
+> diff --git a/Documentation/ABI/testing/sysfs-bus-coresight-devices-tpdm b/Documentation/ABI/testing/sysfs-bus-coresight-devices-tpdm
+> index 6dfb18d6d64a..b6cf050861ed 100644
+> --- a/Documentation/ABI/testing/sysfs-bus-coresight-devices-tpdm
+> +++ b/Documentation/ABI/testing/sysfs-bus-coresight-devices-tpdm
+> @@ -184,3 +184,33 @@ Description:	(Write) Set the data collection mode of CMB tpdm. Continuous
+>   		Accepts only one of the 2 values -  0 or 1.
+>   		0 : Continuous CMB collection mode.
+>   		1 : Trace-on-change CMB collection mode.
+> +
+> +What:		/sys/bus/coresight/devices/<tpdm-name>/cmb_trig_patt/xpr[0:1]
+> +Date:		January 2024
+> +KernelVersion	6.9
+> +Contact:	Jinlong Mao (QUIC) <quic_jinlmao@quicinc.com>, Tao Zhang (QUIC) <quic_taozha@quicinc.com>
+> +Description:
+> +		(RW) Set/Get the value of the trigger pattern for the CMB
+> +		subunit TPDM.
+> +
+> +What:		/sys/bus/coresight/devices/<tpdm-name>/cmb_trig_patt/xpmr[0:1]
+> +Date:		January 2024
+> +KernelVersion	6.9
+> +Contact:	Jinlong Mao (QUIC) <quic_jinlmao@quicinc.com>, Tao Zhang (QUIC) <quic_taozha@quicinc.com>
+> +Description:
+> +		(RW) Set/Get the mask of the trigger pattern for the CMB
+> +		subunit TPDM.
+> +
+> +What:		/sys/bus/coresight/devices/<tpdm-name>/dsb_patt/tpr[0:1]
+> +Date:		January 2024
+> +KernelVersion	6.9
+> +Contact:	Jinlong Mao (QUIC) <quic_jinlmao@quicinc.com>, Tao Zhang (QUIC) <quic_taozha@quicinc.com>
+> +Description:
+> +		(RW) Set/Get the value of the pattern for the CMB subunit TPDM.
+> +
+> +What:		/sys/bus/coresight/devices/<tpdm-name>/dsb_patt/tpmr[0:1]
+> +Date:		January 2024
+> +KernelVersion	6.9
+> +Contact:	Jinlong Mao (QUIC) <quic_jinlmao@quicinc.com>, Tao Zhang (QUIC) <quic_taozha@quicinc.com>
+> +Description:
+> +		(RW) Set/Get the mask of the pattern for the CMB subunit TPDM.
+> diff --git a/drivers/hwtracing/coresight/coresight-tpdm.c b/drivers/hwtracing/coresight/coresight-tpdm.c
+> index b20071460375..07587287d9fa 100644
+> --- a/drivers/hwtracing/coresight/coresight-tpdm.c
+> +++ b/drivers/hwtracing/coresight/coresight-tpdm.c
+> @@ -66,6 +66,26 @@ static ssize_t tpdm_simple_dataset_show(struct device *dev,
+>   			return -EINVAL;
+>   		return sysfs_emit(buf, "0x%x\n",
+>   				drvdata->dsb->msr[tpdm_attr->idx]);
+> +	case CMB_TRIG_PATT:
+> +		if (tpdm_attr->idx >= TPDM_CMB_MAX_PATT)
+> +			return -EINVAL;
+> +		return sysfs_emit(buf, "0x%x\n",
+> +			drvdata->cmb->trig_patt[tpdm_attr->idx]);
+> +	case CMB_TRIG_PATT_MASK:
+> +		if (tpdm_attr->idx >= TPDM_CMB_MAX_PATT)
+> +			return -EINVAL;
+> +		return sysfs_emit(buf, "0x%x\n",
+> +			drvdata->cmb->trig_patt_mask[tpdm_attr->idx]);
+> +	case CMB_PATT:
+> +		if (tpdm_attr->idx >= TPDM_CMB_MAX_PATT)
+> +			return -EINVAL;
+> +		return sysfs_emit(buf, "0x%x\n",
+> +			drvdata->cmb->patt_val[tpdm_attr->idx]);
+> +	case CMB_PATT_MASK:
+> +		if (tpdm_attr->idx >= TPDM_CMB_MAX_PATT)
+> +			return -EINVAL;
+> +		return sysfs_emit(buf, "0x%x\n",
+> +			drvdata->cmb->patt_mask[tpdm_attr->idx]);
+>   	}
+>   	return -EINVAL;
+>   }
+> @@ -118,6 +138,30 @@ static ssize_t tpdm_simple_dataset_store(struct device *dev,
+>   			ret = size;
+>   		}
+>   		break;
+> +	case CMB_TRIG_PATT:
+> +		if (tpdm_attr->idx < TPDM_CMB_MAX_PATT) {
+> +			drvdata->cmb->trig_patt[tpdm_attr->idx] = val;
+> +			ret = size;
+> +		}
+> +		break;
+> +	case CMB_TRIG_PATT_MASK:
+> +		if (tpdm_attr->idx < TPDM_CMB_MAX_PATT) {
+> +			drvdata->cmb->trig_patt_mask[tpdm_attr->idx] = val;
+> +			ret = size;
+> +		}
+> +		break;
+> +	case CMB_PATT:
+> +		if (tpdm_attr->idx < TPDM_CMB_MAX_PATT) {
+> +			drvdata->cmb->patt_val[tpdm_attr->idx] = val;
+> +			ret = size;
+> +		}
+> +		break;
+> +	case CMB_PATT_MASK:
+> +		if (tpdm_attr->idx < TPDM_CMB_MAX_PATT) {
+> +			drvdata->cmb->patt_mask[tpdm_attr->idx] = val;
+> +			ret = size;
+> +		}
+> +		break;
+>   	default:
+>   		break;
+>   	}
+> @@ -280,12 +324,32 @@ static void tpdm_enable_dsb(struct tpdm_drvdata *drvdata)
+>   
+>   static void tpdm_enable_cmb(struct tpdm_drvdata *drvdata)
+>   {
+> -	u32 val;
+> +	u32 val, i;
+>   
+>   	if (!tpdm_has_cmb_dataset(drvdata))
+>   		return;
+>   
+> +	/* Configure pattern registers */
+> +	for (i = 0; i < TPDM_CMB_MAX_PATT; i++) {
+> +		writel_relaxed(drvdata->cmb->patt_val[i],
+> +			drvdata->base + TPDM_CMB_TPR(i));
+> +		writel_relaxed(drvdata->cmb->patt_mask[i],
+> +			drvdata->base + TPDM_CMB_TPMR(i));
+> +		writel_relaxed(drvdata->cmb->trig_patt[i],
+> +			drvdata->base + TPDM_CMB_XPR(i));
+> +		writel_relaxed(drvdata->cmb->trig_patt_mask[i],
+> +			drvdata->base + TPDM_CMB_XPMR(i));
+> +	}
+> +
+>   	val = readl_relaxed(drvdata->base + TPDM_CMB_CR);
+> +	/*
+> +	 * Set to 0 for continuous CMB collection mode,
+> +	 * 1 for trace-on-change CMB collection mode.
+> +	 */
+> +	if (drvdata->cmb->trace_mode)
+> +		val |= TPDM_CMB_CR_MODE;
+> +	else
+> +		val &= ~TPDM_CMB_CR_MODE;
+>   	/* Set the enable bit of CMB control register to 1 */
+>   	val |= TPDM_CMB_CR_ENA;
+>   	writel_relaxed(val, drvdata->base + TPDM_CMB_CR);
+> @@ -887,6 +951,22 @@ static struct attribute *tpdm_dsb_msr_attrs[] = {
+>   	NULL,
+>   };
+>   
+> +static struct attribute *tpdm_cmb_trig_patt_attrs[] = {
+> +	CMB_TRIG_PATT_ATTR(0),
+> +	CMB_TRIG_PATT_ATTR(1),
+> +	CMB_TRIG_PATT_MASK_ATTR(0),
+> +	CMB_TRIG_PATT_MASK_ATTR(1),
+> +	NULL,
+> +};
+> +
+> +static struct attribute *tpdm_cmb_patt_attrs[] = {
+> +	CMB_PATT_ATTR(0),
+> +	CMB_PATT_ATTR(1),
+> +	CMB_PATT_MASK_ATTR(0),
+> +	CMB_PATT_MASK_ATTR(1),
+> +	NULL,
+> +};
+> +
+>   static struct attribute *tpdm_dsb_attrs[] = {
+>   	&dev_attr_dsb_mode.attr,
+>   	&dev_attr_dsb_trig_ts.attr,
+> @@ -933,6 +1013,18 @@ static struct attribute_group tpdm_cmb_attr_grp = {
+>   	.is_visible = tpdm_cmb_is_visible,
+>   };
+>   
+> +static struct attribute_group tpdm_cmb_trig_patt_grp = {
+> +	.attrs = tpdm_cmb_trig_patt_attrs,
+> +	.is_visible = tpdm_cmb_is_visible,
+> +	.name = "cmb_trig_patt",
+> +};
+> +
+> +static struct attribute_group tpdm_cmb_patt_grp = {
+> +	.attrs = tpdm_cmb_patt_attrs,
+> +	.is_visible = tpdm_cmb_is_visible,
+> +	.name = "cmb_patt",
+> +};
+> +
+>   static const struct attribute_group *tpdm_attr_grps[] = {
+>   	&tpdm_attr_grp,
+>   	&tpdm_dsb_attr_grp,
+> @@ -941,6 +1033,8 @@ static const struct attribute_group *tpdm_attr_grps[] = {
+>   	&tpdm_dsb_patt_grp,
+>   	&tpdm_dsb_msr_grp,
+>   	&tpdm_cmb_attr_grp,
+> +	&tpdm_cmb_trig_patt_grp,
+> +	&tpdm_cmb_patt_grp,
+>   	NULL,
+>   };
+>   
+> diff --git a/drivers/hwtracing/coresight/coresight-tpdm.h b/drivers/hwtracing/coresight/coresight-tpdm.h
+> index 2af92c270ed1..8cb8a9b35384 100644
+> --- a/drivers/hwtracing/coresight/coresight-tpdm.h
+> +++ b/drivers/hwtracing/coresight/coresight-tpdm.h
+> @@ -11,12 +11,23 @@
+>   
+>   /* CMB Subunit Registers */
+>   #define TPDM_CMB_CR		(0xA00)
+> +/*CMB subunit timestamp pattern registers*/
+> +#define TPDM_CMB_TPR(n)		(0xA08 + (n * 4))
+> +/*CMB subunit timestamp pattern mask registers*/
+> +#define TPDM_CMB_TPMR(n)	(0xA10 + (n * 4))
+> +/*CMB subunit trigger pattern registers*/
+> +#define TPDM_CMB_XPR(n)		(0xA18 + (n * 4))
+> +/*CMB subunit trigger pattern mask registers*/
+
+minor nit: Leave a space after/before '/*' & '*/'
+
+Suzuki
 
 
-On Tue, 30 Jan 2024 at 18:01, Krzysztof Kozlowski
-<krzysztof.kozlowski@linaro.org> wrote:
->
-> On 30/01/2024 13:26, Naresh Solanki wrote:
-> > Hi Krzysztof,
-> >
-> > On Tue, 30 Jan 2024 at 17:49, Krzysztof Kozlowski
-> > <krzysztof.kozlowski@linaro.org> wrote:
-> >>
-> >> On 30/01/2024 13:08, Naresh Solanki wrote:
-> >>> Update maxItems to 60 for gpio-reserved-ranges to allow multiple gpio
-> >>> reserved ranges.
-> >>> Add input-enable property to allow configuring a pin as input.
-> >>> Rearrange allOf
-> >>
-> >> Why?
-> > allOf is aligned with other implementations.
->
-> Which ones? example-schema and other implementations have it in
-> different place. If you align some parts of the code, please align to
-> match the correct code, not other incorrect. How to find it?
-> example-schema is the reference, recent commits are also sometimes good
-> indication.
-Yes your right. Will align with example-schema. Thanks.
-
-Regards,
-Naresh
->
-> Best regards,
-> Krzysztof
->
 
