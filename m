@@ -1,122 +1,175 @@
-Return-Path: <devicetree+bounces-36647-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-36644-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4747E842202
-	for <lists+devicetree@lfdr.de>; Tue, 30 Jan 2024 11:54:52 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id BCD348421FB
+	for <lists+devicetree@lfdr.de>; Tue, 30 Jan 2024 11:53:35 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 0273F28AFB4
-	for <lists+devicetree@lfdr.de>; Tue, 30 Jan 2024 10:54:51 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 4098B1F2425E
+	for <lists+devicetree@lfdr.de>; Tue, 30 Jan 2024 10:53:35 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E5343664D9;
-	Tue, 30 Jan 2024 10:53:57 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D5E31657DD;
+	Tue, 30 Jan 2024 10:53:27 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="JKsKcLpy"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtpbgbr2.qq.com (smtpbgbr2.qq.com [54.207.22.56])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-ua1-f47.google.com (mail-ua1-f47.google.com [209.85.222.47])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 710D267740;
-	Tue, 30 Jan 2024 10:53:51 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=54.207.22.56
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 35C84664A0;
+	Tue, 30 Jan 2024 10:53:25 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.222.47
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1706612037; cv=none; b=SMa3dTidqb0UVWOgBlRZEGqJWt1HPg9ggQC8xQhEhQZS54qTwOLjclm7AxMSfiC1hzViJNlxVDuM1ndVB33s/wMv9vrNATjNwO6LcqveUacrRxIOVq71m/swHHgKPDPILW+hAtTX6l3iQi2SZZIkR0HC6QouSw0pFP/MKdkR0sg=
+	t=1706612007; cv=none; b=Pot0yoJVVYQJd4bHGCNyk6a1opeocJ/lcIqY9+CNZMIdk/EFfjijvSrMvBscRwrAMpyO8B0PdrZ/KIdV822mXqxzzFVyaKLh4z7AGhrk3q7jx8HMlJaEKKY7nXEnSeEgIZdkVU0lO5wkQWCKCxHf53DoRpeFPH+RDbMNgovGg10=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1706612037; c=relaxed/simple;
-	bh=c9tOg96jjd1LYzpQtVgyPp0A7gtdbS1WwYmc3xRzXsA=;
-	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
-	 MIME-Version; b=G4fkI140GUg9XAxXX3MGQiho55a7EtwPYP5lDuZUfRYWaMNWJw7BPygae/q1v2fX6Db4X+UShKPGDfsoIdpuxXg5aSlX9mO6vCxKmtg/V5UwCVlsAcmNq295xXgsr/npstp3sXkiiTTCnJglKuwREuFVJ5BgTogSZqjqbsQj0jc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=shingroup.cn; spf=pass smtp.mailfrom=shingroup.cn; arc=none smtp.client-ip=54.207.22.56
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=shingroup.cn
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=shingroup.cn
-X-QQ-mid: bizesmtp77t1706612016tco7no5s
-X-QQ-Originating-IP: sVtAEtWP2BlVI0gAQDFaEXd9/6kioAwv56yjNvYRZ40=
-Received: from localhost ( [183.209.108.228])
-	by bizesmtp.qq.com (ESMTP) with 
-	id ; Tue, 30 Jan 2024 18:53:35 +0800 (CST)
-X-QQ-SSF: 01400000000000504000000A0000000
-X-QQ-FEAT: IcCSTr/hHjNqMNUvibW4KEATWHxQ7jO9cOlP29TxqqXeG+vbkkOJxRQ894o2P
-	J+1fVc8tsK7M6zdn5BDfzHcAsQNTloGw/RwDvaEcyhiUR5E3QLO/7YX7gLBiExmy+DsykVi
-	fexCB+3o8qvf7RlnV+VizBV81YsZpkkRQg/ZabEZ3romKKEG3C2PCf9bzeFfz9xgZqwFRpO
-	/2ziOVO93DKvIcM+vOiY/o1qwvr4CcmJMomRdzM5eYZ09gtkNcg4N2p77LkNSdCFI/7BR/P
-	QQOLBJfH7aKCXI4/yKhoEa8XzoHxBLpSc2obWldHeFRaNCrrVgS+GZ0fzhdEzGCjb30EPSc
-	llnGJCB5Hxfp+SWh2eMsbwW6jqYjSZE83iqhnalETRtgV5WOeDxB0U9YcsuFwTXbUlyYa0x
-	pBsab0rPFkI=
-X-QQ-GoodBg: 2
-X-BIZMAIL-ID: 10820603791902915855
-From: Dawei Li <dawei.li@shingroup.cn>
-To: robh+dt@kernel.org,
-	frowand.list@gmail.com
-Cc: devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	set_pte_at@outlook.com,
-	Dawei Li <dawei.li@shingroup.cn>
-Subject: [PATCH 2/2] of: Implment cache update operation on device node attach
-Date: Tue, 30 Jan 2024 18:52:36 +0800
-Message-Id: <20240130105236.3097126-3-dawei.li@shingroup.cn>
-X-Mailer: git-send-email 2.27.0
-In-Reply-To: <20240130105236.3097126-1-dawei.li@shingroup.cn>
-References: <20240130105236.3097126-1-dawei.li@shingroup.cn>
+	s=arc-20240116; t=1706612007; c=relaxed/simple;
+	bh=OnuVYsvU2WNhZcmPss9Ip918LCpNRJoRqA6UpHf/Lc0=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=uM/OB4boZpeVkR1+lWB/ZPvA8Zxfil3XE6S0BmzYJ9mxJ+KuD9GxJ4QiVUvpZFBf2yfYf5zCdgc6J4kgVRH8gpKp96joo1+gk4wmdtDAkZrFccP6YqEnrOzpfpEi/L4d+KY4umccCac6nfadYiijicSemgESZmf8Y5hk7iRTpkE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=JKsKcLpy; arc=none smtp.client-ip=209.85.222.47
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-ua1-f47.google.com with SMTP id a1e0cc1a2514c-7d5bbbe57b9so947889241.3;
+        Tue, 30 Jan 2024 02:53:25 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1706612005; x=1707216805; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=t2Wgc2ClmelSiswazxUWS0iU6q84Ug0M/jBpx2lzDSQ=;
+        b=JKsKcLpyVjRLi+cLAItKbpp09kKZ63HI4B4voAHYrNGiQNbO4+yLm/Ko3KD024geeo
+         0NlUenOPodSSBOPZyRu1Kw1MGZlKoHAJzzT028QbdklVOFZz25Exl78feGyxHidIgFll
+         PQk3pDDFUIbCJ42Qro0TEPooX9RZDvU5WPYF6/9b//bnBdPwwmiNSU7KR5Ck1VCYXAfU
+         aZ5KKPdusYGrUgSmLROymYvyQc0383CMQOUscimjH6RQxmA1SMnVs8z90arEQXE/f8si
+         x6ijFlNcrsUwOe2sp/Y0AJRwqdu1JpoEJGjD7zbDNs7RWtQseDmr1cVgggRM8cQgoGsh
+         gXZg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1706612005; x=1707216805;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=t2Wgc2ClmelSiswazxUWS0iU6q84Ug0M/jBpx2lzDSQ=;
+        b=DEwe9PvajgiSvjqYpWcpT5pZDe2oMOz0IiCvSmNW1hS/EcaI9vnv+n076c77+E6kcy
+         qbyU8uFo9W6hyjDUp7Jr4XMER5FxuRf4VTiZ5E+IZWFJ71KEezgcTcdjEwqpOw+iIq8q
+         s9pJun/CJcb5sjdqldPsEVaxW5Uh7mCxh8kfY02F5dtAjC9cJCn+CT3f9kpKuckDdXNI
+         j//hRdsERZw55AYK0Nq9Aq+eHCTeIBAc9Y8BMXWMzvEwsLtfAGtztskfEQDzQnZykcqq
+         PGxRYmKgvZ/jcNmCUXdnS0BWeIjoVN0xBDIJFK79R+jnEn3DnpjUbVzGUIEdKTEVnZW6
+         V5eg==
+X-Gm-Message-State: AOJu0YyUSVvbcDNLURi6JPdI2yCRo+7e4j3cc4GGY/Wm43RDuT6U7GVg
+	X01HrMEzHbVSF2wVpoodhkdpqMs/LBZSiI+9EzrTGwaAbU6ejSfhyAAg83x4z3eUpi+HLGo2yzL
+	+MvaAzn7DlJFVX7VwLqmX7GhrjZw+3Ab+
+X-Google-Smtp-Source: AGHT+IHgpOYGVwZC7jGnAQ5quTRMCHeTj6rwn160Ts+Wqt1/jnYyj4K3u3HJFVo+yEseFc6FkttQlfm/AvfFuGOWpDg=
+X-Received: by 2002:a05:6122:d28:b0:4b6:c49a:174a with SMTP id
+ az40-20020a0561220d2800b004b6c49a174amr3593381vkb.14.1706612004892; Tue, 30
+ Jan 2024 02:53:24 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-QQ-SENDSIZE: 520
-Feedback-ID: bizesmtp:shingroup.cn:qybglogicsvrgz:qybglogicsvrgz5a-1
+References: <20240129135556.63466-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
+ <20240129135556.63466-2-prabhakar.mahadev-lad.rj@bp.renesas.com> <CAMuHMdWbPooCMqyKjTh+uJgAqh=az0+DOQAJYKQ7cuBrxyV1-w@mail.gmail.com>
+In-Reply-To: <CAMuHMdWbPooCMqyKjTh+uJgAqh=az0+DOQAJYKQ7cuBrxyV1-w@mail.gmail.com>
+From: "Lad, Prabhakar" <prabhakar.csengg@gmail.com>
+Date: Tue, 30 Jan 2024 10:52:54 +0000
+Message-ID: <CA+V-a8ux+AfF4rTmfr448Gp_=_M2TczsZ5_j2afk9qRFs3ePGQ@mail.gmail.com>
+Subject: Re: [PATCH v6 1/4] pinctrl: renesas: rzg2l: Improve code for readability
+To: Geert Uytterhoeven <geert@linux-m68k.org>
+Cc: Magnus Damm <magnus.damm@gmail.com>, Linus Walleij <linus.walleij@linaro.org>, 
+	Rob Herring <robh+dt@kernel.org>, 
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, 
+	linux-renesas-soc@vger.kernel.org, devicetree@vger.kernel.org, 
+	linux-riscv@lists.infradead.org, linux-kernel@vger.kernel.org, 
+	linux-gpio@vger.kernel.org, Biju Das <biju.das.jz@bp.renesas.com>, 
+	Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>, 
+	Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-Use implemented __of_phandle_update_cache to update phandle cache on
-device node attachment.
+HI Geert,
 
-While at it, make explicit assertion on locking dependency for
-__of_phandle_cache_inv_entry.
+Thank you for the review.
 
-Signed-off-by: Dawei Li <dawei.li@shingroup.cn>
----
- drivers/of/base.c    | 6 ++++--
- drivers/of/dynamic.c | 2 ++
- 2 files changed, 6 insertions(+), 2 deletions(-)
+On Tue, Jan 30, 2024 at 10:35=E2=80=AFAM Geert Uytterhoeven
+<geert@linux-m68k.org> wrote:
+>
+> Hi Prabhakar,
+>
+> On Mon, Jan 29, 2024 at 2:56=E2=80=AFPM Prabhakar <prabhakar.csengg@gmail=
+.com> wrote:
+> > From: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+> >
+> > As the RZ/G2L pinctrl driver is extensively utilized by numerous SoCs a=
+nd
+> > has experienced substantial growth, enhance code readability by
+> > incorporating FIELD_PREP_CONST/FIELD_GET macros wherever necessary.
+> >
+> > Signed-off-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+>
+> Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
+> i.e. will queue in renesas-pinctrl for v6.9.
+>
+> > --- a/drivers/pinctrl/renesas/pinctrl-rzg2l.c
+> > +++ b/drivers/pinctrl/renesas/pinctrl-rzg2l.c
+>
+> > @@ -90,14 +93,18 @@
+> >   * (b * 8) and f is the pin configuration capabilities supported.
+> >   */
+> >  #define RZG2L_SINGLE_PIN               BIT(31)
+> > +#define RZG2L_SINGLE_PIN_INDEX_MASK    GENMASK(30, 24)
+> > +#define RZG2L_SINGLE_PIN_BITS_MASK     GENMASK(22, 20)
+> > +
+> >  #define RZG2L_SINGLE_PIN_PACK(p, b, f) (RZG2L_SINGLE_PIN | \
+> > -                                        ((p) << 24) | ((b) << 20) | (f=
+))
+> > -#define RZG2L_SINGLE_PIN_GET_BIT(x)    (((x) & GENMASK(22, 20)) >> 20)
+> > +                                        FIELD_PREP_CONST(RZG2L_SINGLE_=
+PIN_INDEX_MASK, (p)) | \
+> > +                                        FIELD_PREP_CONST(RZG2L_SINGLE_=
+PIN_BITS_MASK, (b)) | \
+> > +                                        FIELD_PREP_CONST(PIN_CFG_MASK,=
+ (f)))
+> >
+> > -#define RZG2L_PIN_CFG_TO_CAPS(cfg)             ((cfg) & GENMASK(19, 0)=
+)
+> > +#define RZG2L_PIN_CFG_TO_CAPS(cfg)             ((cfg) & PIN_CFG_MASK)
+>
+> Do you mind if I drop RZG2L_PIN_CFG_TO_CAPS() and replace its two
+> users by FIELD_GET(PIN_CFG_MASK, *pin_data) while applying?
+>
+Fine by me.
 
-diff --git a/drivers/of/base.c b/drivers/of/base.c
-index 8b7da27835eb..44e542b566e1 100644
---- a/drivers/of/base.c
-+++ b/drivers/of/base.c
-@@ -153,6 +153,8 @@ void __of_phandle_cache_inv_entry(phandle handle)
- 	u32 handle_hash;
- 	struct device_node *np;
- 
-+	lockdep_assert_held(&devtree_lock);
-+
- 	if (!handle)
- 		return;
- 
-@@ -195,8 +197,8 @@ void __init of_core_init(void)
- 	}
- 	for_each_of_allnodes(np) {
- 		__of_attach_node_sysfs(np);
--		if (np->phandle && !phandle_cache[of_phandle_cache_hash(np->phandle)])
--			phandle_cache[of_phandle_cache_hash(np->phandle)] = np;
-+
-+		__of_phandle_update_cache(np, false);
- 	}
- 	mutex_unlock(&of_mutex);
- 
-diff --git a/drivers/of/dynamic.c b/drivers/of/dynamic.c
-index 3bf27052832f..a68bf58f2c24 100644
---- a/drivers/of/dynamic.c
-+++ b/drivers/of/dynamic.c
-@@ -219,6 +219,8 @@ static void __of_attach_node(struct device_node *np)
- 			np->phandle = 0;
- 	}
- 
-+	__of_phandle_update_cache(np, true);
-+
- 	np->child = NULL;
- 	np->sibling = np->parent->child;
- 	np->parent->child = np;
--- 
-2.27.0
+Cheers,
+Prabhakar
 
+> >  #define RZG2L_PIN_CFG_TO_PORT_OFFSET(cfg)      ((cfg) & RZG2L_SINGLE_P=
+IN ? \
+> > -                                               (((cfg) & GENMASK(30, 2=
+4)) >> 24) : \
+> > -                                               (((cfg) & GENMASK(26, 2=
+0)) >> 20))
+> > +                                                FIELD_GET(RZG2L_SINGLE=
+_PIN_INDEX_MASK, (cfg)) : \
+> > +                                                FIELD_GET(PIN_CFG_PIN_=
+REG_MASK, (cfg)))
+> >
+> >  #define P(off)                 (0x0000 + (off))
+> >  #define PM(off)                        (0x0100 + (off) * 2)
+>
+> Gr{oetje,eeting}s,
+>
+>                         Geert
+>
+> --
+> Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m6=
+8k.org
+>
+> In personal conversations with technical people, I call myself a hacker. =
+But
+> when I'm talking to journalists I just say "programmer" or something like=
+ that.
+>                                 -- Linus Torvalds
 
