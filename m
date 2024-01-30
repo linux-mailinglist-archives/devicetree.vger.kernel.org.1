@@ -1,81 +1,85 @@
-Return-Path: <devicetree+bounces-36823-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-36824-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2A8EA842CA3
-	for <lists+devicetree@lfdr.de>; Tue, 30 Jan 2024 20:26:33 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id B8626842CC3
+	for <lists+devicetree@lfdr.de>; Tue, 30 Jan 2024 20:30:13 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 85718B26045
-	for <lists+devicetree@lfdr.de>; Tue, 30 Jan 2024 19:26:30 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 706C528F293
+	for <lists+devicetree@lfdr.de>; Tue, 30 Jan 2024 19:30:12 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 36F447B3CC;
-	Tue, 30 Jan 2024 19:25:58 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id CA1F07B3D5;
+	Tue, 30 Jan 2024 19:30:06 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=nxp.com header.i=@nxp.com header.b="MoZ2CrlM"
+	dkim=pass (1024-bit key) header.d=nxp.com header.i=@nxp.com header.b="OHghyaGx"
 X-Original-To: devicetree@vger.kernel.org
-Received: from EUR04-DB3-obe.outbound.protection.outlook.com (mail-db3eur04on2044.outbound.protection.outlook.com [40.107.6.44])
+Received: from EUR02-DB5-obe.outbound.protection.outlook.com (mail-db5eur02on2070.outbound.protection.outlook.com [40.107.249.70])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 17C287B3C2;
-	Tue, 30 Jan 2024 19:25:55 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.107.6.44
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7ABAF7B3D1;
+	Tue, 30 Jan 2024 19:30:04 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.107.249.70
 ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1706642758; cv=fail; b=jbx+7FxflkPVF9xTJY6XfZOF0qWgXfypHBepPDyYXAydq3QePMVv+jY+BhfQMbVZPibd7Ns5JREwAK/mG9E6kjk+0Xj23o88AFeZmuwq/gEuPSGk7LeXQc3VlrdGrx5bQU/j4GPRgiawRhTZpSX2twSTRhcSmOV7tAyW/K5sJ2w=
+	t=1706643006; cv=fail; b=qUyyveOueAJD46eWcxYahG6/+CJk/jlQoyS1nvxsdAvJRi01NSnlnVCpymyYh2q5F1PDB9JBd8ypNQB2haazsCz93f7pNgsFDdSiA9iQjI/JNnXB6jqSaLkWMToNla3EMPINBzPN3kd11dN2CRzdeedV+C6ULWRW6Ex+ePqHcKI=
 ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1706642758; c=relaxed/simple;
-	bh=5y7vwlY9H04RteIv6+UFiuemQPCLYb0lTTJXw/LgHQY=;
+	s=arc-20240116; t=1706643006; c=relaxed/simple;
+	bh=BeuVKc7V6MgN65bSmfelaLGvy4HY07zQlvvVP5uGH6Y=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:Content-Type:
-	 Content-Disposition:In-Reply-To:MIME-Version; b=N3F92V7HIxNt7er/BTe0n8POWqh8p5/tq4a8OS00Gs1Njh09abOzpwoszk+rHgIRfqo0VbtKTHCYHg48gFrh5wxe7motQoR+fHi78JcWMleAkzr2fcNUb6EVfBTO043dT3/65Lp5MYRGUAJUxHabFTRr24QLUnaUD1/3OHeYPzA=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com; spf=pass smtp.mailfrom=nxp.com; dkim=pass (1024-bit key) header.d=nxp.com header.i=@nxp.com header.b=MoZ2CrlM; arc=fail smtp.client-ip=40.107.6.44
+	 Content-Disposition:In-Reply-To:MIME-Version; b=bqA3BYYkiHm7mnzoAmFNxBcKvduSfqtzfyw+JqONZEjscVds7XG7G0VOWYPQ3A8J9eiuKgBDgmfN9SOL8Doe4UQJqVMjjbuMfmMVdHEicVto/ZFMNMEdU260pGgdjjoo/6hQ+hiunfCr1qrywkgjhrIRG6krI2OQhnNpGsikumw=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com; spf=pass smtp.mailfrom=nxp.com; dkim=pass (1024-bit key) header.d=nxp.com header.i=@nxp.com header.b=OHghyaGx; arc=fail smtp.client-ip=40.107.249.70
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=nxp.com
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=eLWAecHVu+rcMTLyKRJY02T5o3PlDBCQtLRa8E03iddpX8iuWit3KmZJQDva/3pm/KbZRLyKy+NA7Xst9S+lUR0ZS8+G8km/Oef4I0v/UELsbXqUQ59idSE4V7CUXA2c3axynnYhanohYVWVN6uPT9M1jt2hRWgoKt6OD90Btogoh2f7IUDI1jqm2PVJathH4bZ+AdLvMW3G41eQ3uB+2Uht8mGbnPltlVKJqBfx2sUs+7VfGdEVccsLwj4jC5Vhv3+q+JFZ/T8RLftOHbNbOzqDJh/4VY3R6GbKMpf+6zt16RlaMKhjkWKo7D5v0zdw+WO0tRLu+I9BPXWrvMJ3lg==
+ b=F51cTrFi50lR478cTwYSfctEg0rKGKLEjDwiTA8hUPeSCjNVy8EgF1yHNn7L31aRNNMBi60EV6ifU3TPcoD/2ddI40RbZWC7Mxz+3av5VSV2qKP3WS9dTy8stnX5vE5AX5sbadT/xJxUh8WY37KMeCs3NFu7Wh9qmyM4G3neK27L+ND1fZkCpaFw7s6ZHrccOJas/WjlJBDO1Io3dRse272uT6AH5f43G15vxcpMP2sMlPzsgf26gwut+iKwT1V54Tcmt+wkkJKLmDKiQykiUres4/016hTKf9OTe/l5y9zvki3EiYbhOEwbmolEwrk0mZV5UkgZYCUZzCgk66ZmxQ==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=iYjGtEwNFNF9+RrArSaw9HdhaPGquPWsAA7Sv4kngic=;
- b=TK8ZzW+aGqs48aViAAgGpvj9wTtvjZylU+KlSn4vJUaytTo4zQUie5PZRAd4IybNoSE1USl6J8FDaXLaR0oztzAcKmU/NvTjFDv5HQv0lcqqM2jHDLxTGipHejg7L+fE3XOfCnS3PdfdG+DjRy3HON5DR8mjkBqQmvnH6Rl3HYWtgWKq5DSlHQF3gb+Qe4o34slKUGS1i5ktRWwSFLlY/qgMEYHfGlCrgwUOhN5zkmATPfMbok8V47+eWgvpFFebvtG9hJ3702b04K0WIBzHs9LrEtuQ7DRjCd1vsB2ZTS5Z4MzBZMgfhcnIVs8Rrm+YsPMrOm8+uTO/lP/NI100yQ==
+ bh=ZlW2/IrnOVuBhUG7+uoAAyLfCUW5Mx8jMzAv92nCGUE=;
+ b=MZSQS4LLlw5BSzaoSfZY4XJU7Cn0cE45s5NE2oVjxMBkSlg3kWjayH4Kt44gSNZXQbELf4RSA8OiyU3fXpjA/uK/Kh2hIxQr9i2hvqIkuV/0JV/DsajvLDd2hYy6DF4Zr+Zp15FrSiwq2s66Uf8FssXpSv3aiL5K+w9cFb7eH1TGY2v68S0JCzQMnJjRyFkpCC4wBGXybhElYwq2dPntRrDAp6Tc1Ubp94b36JKV4NBmAllMRCpCjqIgmlZhivdOGowq23OwYHZ5RoOKzPUpcrwAemAAKNw7f6xzsgO4uVZqsmHhtoq5TM3l7XXB1QLVtH6ZhR8qUvBuuVuGN82JNA==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
  smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
  header.d=nxp.com; arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector2;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=iYjGtEwNFNF9+RrArSaw9HdhaPGquPWsAA7Sv4kngic=;
- b=MoZ2CrlM4E/fMHAHDZh73K4EUMH5iC22tDWCdoUolcu7KZAA2EGS8sBMzi9xtq8hfwXlGT/5sn7FQbRGcArDzhJGGq4HLQHW8+ukS7b0JLTNcZnnbCUEKJJFKaP25Wk0Wj7XyCEWff9sCn8KagxS597Poug1664NiI3zqVFYSD0=
+ bh=ZlW2/IrnOVuBhUG7+uoAAyLfCUW5Mx8jMzAv92nCGUE=;
+ b=OHghyaGxtTG5+Bu7YIL6gTg41q1KOZpD0JRdurHgjy2JKrSowD9quQN7VF9HlgIe8rtb7KwjS11Y7pjn1Mypx2cNpmNeVyl1Unf3vefs34diSqJ3MLGtvcty5f53YyonVtZ/RXdsTvIHLE2Q2lrEvHq+VA71WJzRF3Wdwhfata0=
 Authentication-Results: dkim=none (message not signed)
  header.d=none;dmarc=none action=none header.from=nxp.com;
 Received: from PAXPR04MB9642.eurprd04.prod.outlook.com (2603:10a6:102:240::14)
- by VE1PR04MB7487.eurprd04.prod.outlook.com (2603:10a6:800:1a2::13) with
+ by AM9PR04MB8194.eurprd04.prod.outlook.com (2603:10a6:20b:3e6::7) with
  Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7249.23; Tue, 30 Jan
- 2024 19:25:52 +0000
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7228.34; Tue, 30 Jan
+ 2024 19:30:01 +0000
 Received: from PAXPR04MB9642.eurprd04.prod.outlook.com
  ([fe80::c8b4:5648:8948:e85c]) by PAXPR04MB9642.eurprd04.prod.outlook.com
  ([fe80::c8b4:5648:8948:e85c%3]) with mapi id 15.20.7228.029; Tue, 30 Jan 2024
- 19:25:52 +0000
-Date: Tue, 30 Jan 2024 14:25:43 -0500
+ 19:30:01 +0000
+Date: Tue, 30 Jan 2024 14:29:53 -0500
 From: Frank Li <Frank.li@nxp.com>
-To: Conor Dooley <conor@kernel.org>
-Cc: thinh.nguyen@synopsys.com, balbi@kernel.org, devicetree@vger.kernel.org,
-	gregkh@linuxfoundation.org, imx@lists.linux.dev,
-	linux-kernel@vger.kernel.org, linux-usb@vger.kernel.org,
-	mark.rutland@arm.com, mathias.nyman@intel.com, pku.leo@gmail.com,
-	ran.wang_1@nxp.com, robh+dt@kernel.org,
-	sergei.shtylyov@cogentembedded.com
-Subject: Re: [PATCH v4 2/3] dt-bindings: usb: dwc3: Add
- snps,host-vbus-glitches-quirk avoid vbus glitch
-Message-ID: <ZblNN6SyuSKhconu@lizhi-Precision-Tower-5810>
-References: <20240124152525.3910311-1-Frank.Li@nxp.com>
- <20240124152525.3910311-3-Frank.Li@nxp.com>
- <20240130-eligible-barrette-5b2258e150f5@spud>
+To: Rob Herring <robh@kernel.org>
+Cc: Conor Dooley <conor@kernel.org>, ran.wang_1@nxp.com,
+	Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>, Felipe Balbi <balbi@kernel.org>,
+	"open list:USB SUBSYSTEM" <linux-usb@vger.kernel.org>,
+	"open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" <devicetree@vger.kernel.org>,
+	open list <linux-kernel@vger.kernel.org>, mark.rutland@arm.com,
+	pku.leo@gmail.com, sergei.shtylyov@cogentembedded.com
+Subject: Re: [PATCH 1/2] dt-bindings: usb: dwc3: Add snps,host-vbus-glitches
+ avoiding vbus glitch
+Message-ID: <ZblOMQLhtD1Y8j5d@lizhi-Precision-Tower-5810>
+References: <20240119213130.3147517-1-Frank.Li@nxp.com>
+ <20240124-unclothed-dodgy-c78b1fffa752@spud>
+ <ZbFNIvEaAJCxC2VB@lizhi-Precision-Tower-5810>
+ <20240124-video-lumpiness-178c4e317f5a@spud>
+ <20240130181322.GA2079185-robh@kernel.org>
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20240130-eligible-barrette-5b2258e150f5@spud>
-X-ClientProxiedBy: BYAPR05CA0017.namprd05.prod.outlook.com
- (2603:10b6:a03:c0::30) To PAXPR04MB9642.eurprd04.prod.outlook.com
+In-Reply-To: <20240130181322.GA2079185-robh@kernel.org>
+X-ClientProxiedBy: BY3PR05CA0001.namprd05.prod.outlook.com
+ (2603:10b6:a03:254::6) To PAXPR04MB9642.eurprd04.prod.outlook.com
  (2603:10a6:102:240::14)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
@@ -84,132 +88,120 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: PAXPR04MB9642:EE_|VE1PR04MB7487:EE_
-X-MS-Office365-Filtering-Correlation-Id: b32bbc3c-eee0-4fe9-a2a0-08dc21c945da
+X-MS-TrafficTypeDiagnostic: PAXPR04MB9642:EE_|AM9PR04MB8194:EE_
+X-MS-Office365-Filtering-Correlation-Id: 4ec58fa8-4509-4231-b922-08dc21c9da65
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;
 X-Microsoft-Antispam-Message-Info:
-	2e9cNboE4sHIZ7v7FLJWmiuJsOBo53KR0jyXI8TAxcCr1bv/PYC804V0l0lTG4APNTzBrYHCw9zS15qoDKsaMSY0bjlX4xGOsUv6olZpWP3EWlPYRsSHeEIRRxgt4xPXqi5rNZR6whGHF/1eFGX8HjkNVPowkn3Qj4FYCsEmQq7kEzoe+WICeZr10I/R2ZOIvyGUbX0/44dktB3utd7Aw5l/fVLBo88jyG7eEmzOFKaPkPrcA22jop3yU+o2+B6Eq5GYRzFQmqnOiXKqgmbhVMo30Go2ICbaXSDyGJT5EqgOwFkB8hebQxc+jl9ukK62niSIhoxb+qRrj37QtWozeg0E36pGrPapWt9Sj0Eq0oVItR01WASU9/dlHVuaTY9EwcKyyRr9FhuOFFvKCBFxnpGChfMpey1i4W0xkJn7HS4jzJS5BunB1UQAvgHoIsAc3OLLruYu+g9hD/PyjEh7wZcqhSGZo/apgzzXSIeEmIazCgMgNtItWHwU8/W+TNpZGjw/r9nOuX3zD0UDK0893Ee1YXAyCvqlMF76CAJ5d3EYdUYhogmLgTSwx4K0Gc5LzWxE3ujeVdep/WvdWPxCX65zDRK+X8FL6Tus9M2ViiC/sLLUoEaVJTztwpWMSmaPnwE6IVB7QpUBgjis0JBqyA==
+	2xZKnfpNCF0Ang1Vtzcy6rwOkz1TSgOqq3FC0WNL8R9BhXMNQdwBGSuy5vvcQfezT46IQCO8yIFSpV3s0DAwjGK8xr9xSaWMDocvB9WnQwLOrbWxoQRVdN2ljRyCUL8b9YPdlRlty+M/byOONeNVt22XBy/cnaNTW0F5SpN2MYNvWfn6sO/ZBngAdVVY7kDyptEbhAuV17bNpYJeKmPm+88w0HZnYSIoPRtdOnVoXwSznC4OVNX3sigXZZbNBPvvgXXF+oJKrTJFNw0N5WM8cXlg3bdFlOITxhoz3VX78WX4PDnXPhc1XxwHA5VTEah8C3CVVsonhxgA/3Qkv763967oV5pOYCwEAjLoHtjSrpYpABef2zTZF90dBOFxXlSOdYkL9pgQEC0NX+Boc0pf89ORyrbgAWVu2UejcRFBods90SB1jQD/S9DWqFKn69pMNCZknSJlOkCFR6bbzKIGCzUJvVZqay95qOqV1SNcNFfMOHk6LHJdsTfjTjMzolSsaQDhcSnqCuBX/ji8W2EC2mnV41GKFmkoMHttoWZzxN73cFeKZiDA0S3hJkfIQ/eynpU82Xw+eRdjIquohfwM8ysJMJwdmpTB8ePrdJawKtexZfkdl/2BnoQkdQfVCaAIfd0yIfWS25bFrF8pL/AqeThCJCu2evwm2sxt0DqoekE=
 X-Forefront-Antispam-Report:
-	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:PAXPR04MB9642.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230031)(7916004)(366004)(396003)(346002)(376002)(136003)(39860400002)(230173577357003)(230922051799003)(230273577357003)(451199024)(186009)(1800799012)(64100799003)(5660300002)(41300700001)(7416002)(6506007)(38100700002)(6666004)(52116002)(9686003)(26005)(6512007)(83380400001)(966005)(6486002)(8936002)(8676002)(4326008)(478600001)(316002)(38350700005)(86362001)(2906002)(66556008)(66476007)(6916009)(66946007)(33716001);DIR:OUT;SFP:1101;
+	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:PAXPR04MB9642.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230031)(7916004)(39860400002)(346002)(136003)(376002)(366004)(396003)(230273577357003)(230173577357003)(230922051799003)(186009)(451199024)(1800799012)(64100799003)(66556008)(54906003)(7416002)(83380400001)(41300700001)(86362001)(38100700002)(33716001)(478600001)(8676002)(316002)(4326008)(66946007)(6916009)(66476007)(26005)(6486002)(6666004)(2906002)(9686003)(6512007)(6506007)(5660300002)(52116002)(8936002)(38350700005);DIR:OUT;SFP:1101;
 X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
 X-MS-Exchange-AntiSpam-MessageData-0:
-	=?us-ascii?Q?6T1q9lNhmjpYSSfIh+zIeaTc4RQXSsFw/kH09y+xqM2AkghioafhQ2lpi4Bf?=
- =?us-ascii?Q?6RFYaZzqV/VZg6qpVtasMAdCGAH0PGjDyWemiKTkGAM17yawU/OBHjn9jZdD?=
- =?us-ascii?Q?NbHfkeCmT8eOSC/0Ry1UYx2dcCFtGDGJj/MDq/62puFPFcEngzQsxzLGMnvy?=
- =?us-ascii?Q?z781ubyg61zE0t/DBfL9ZalyMGMYilfHDi1YiWNXWCq+VO74x9k+z1RKDRzm?=
- =?us-ascii?Q?jg0vHIfRJzdmEoXzzEnQx4pzrzA8plo1BK1Y9BBIoSNTz7OwFGYP3Bt+zMbY?=
- =?us-ascii?Q?PYVevZVZpomMuyqlWdNZAY4OpfB6i+H1PPt2HHq/1ggaJ5nxidT18JB/7saZ?=
- =?us-ascii?Q?lrJIjlYFAoLMdrSBrgffuHfDlSI+aYuLo6kfblGHrOr5EcIHjflqTy1Ugd4B?=
- =?us-ascii?Q?so1kR4Af9ZoPf5MGyarLUk/dnMabU/jqYOXxDQi6rbmTz7gGfHKUSkSfNMe6?=
- =?us-ascii?Q?ucaKbAlrsiRX4Hp+Vb62yUoRKpXTPxXLm9u+qTghro/0KahzoY7OTy0lnQM9?=
- =?us-ascii?Q?Apmf38r3nJV+ckg2RFAiNsgORiliIeEOquBX+fFRewH9YFrBcJk7x9YHotOP?=
- =?us-ascii?Q?MapezWggpk7Rp32by+5UxYESJi+eCUdax1tBzusb/5ZyHhORsHGlqlQDkTV/?=
- =?us-ascii?Q?JAJw8BdZGr2qGgfzyP8YmdBMozyG/m/6nooBCktLkOtNX/BH9FmOss+9ATc+?=
- =?us-ascii?Q?3q/cj0bWHsYFTknA9pID0r3LBMwpXymUv52mWBWw0JG7L75EnNhcHaxxhHDw?=
- =?us-ascii?Q?6mdwXdYQQrUk/4/C5YpFp0xjqwlmqMSeQ8NqGzRA7SEw291rQl6dOa/WPdn7?=
- =?us-ascii?Q?QP5tRI6ByJQvLZDX2FUKaWARKEjTHhA342y60gce4oqSyJ6QJl7KZHXqtL2j?=
- =?us-ascii?Q?+VBJB/w3K4iqWGKAcNk5uf/rAwm1gFKlZ47tTxg+kviMKf3KgoWE7+q97Msk?=
- =?us-ascii?Q?dGTQDkBi3tQqwiIbq9G5nGywT4xIW7TCwatvpckzVXf7rgbazkPwC5vo/TvO?=
- =?us-ascii?Q?N9SO2toH7wqM+toEsr11okHaokLOtLwlsSS+GxQZ5lMy++4tzwHh/akUzDd0?=
- =?us-ascii?Q?CH1lOfS0VwjOQpMYMoqgifmxvVWzGtrcaZWtx7JR4pg3wrkt1v8c7DTJWYcQ?=
- =?us-ascii?Q?S8O6imUUl5VOxCY71oGPeA5WjCSSa9oI2JECmvMptGyKspB8FDBnGL0IbXQl?=
- =?us-ascii?Q?lSH3bp9umP3fxaI1Zy3j/j42G80dcNBi6obFS9KZ7OsMCjZtlOKaxMDZbd89?=
- =?us-ascii?Q?uYQWvQtLL3vf2dJaUXuvgPLOb4JCpmpHVZcvp6W1T76hlFoNha9n9DBD1SeN?=
- =?us-ascii?Q?HhcU6WD56ZTnGigYQ53wDxaYSKwriu9oeIbpNyn169MKBAlqbAht1cP3RiGZ?=
- =?us-ascii?Q?Act5/9oCvAd6XsvnJR9U5HtfbeTvIIG9MJK0FfkHxnc0itZSLDal/tSlPZo/?=
- =?us-ascii?Q?hkJopEWRG73/pPUh1wYmiOM129ru0c1ztvIrio6AsCvM1hDetw+1xmMBYqzl?=
- =?us-ascii?Q?uv0SZtsCT8YQztWTD59JNgTwJwM02nGANeIWzLO0PkQi3DiIUG2mTDYRxu7L?=
- =?us-ascii?Q?mn5vXYTmqARcNE20jdhEQBx5UaBULanTF85Y8rje?=
+	=?us-ascii?Q?9goPFkDikZcJMSuQUJl2bd/bjD+V/MkhD039jRcR0b3habGMJKwyKpAS+t94?=
+ =?us-ascii?Q?ZxavVY2yqHbr+SaBmJ+IAihDVDxjRNuZqjsUBDcTfnO4L3fDQXJtpfLf9Wuu?=
+ =?us-ascii?Q?8L75fO/HiCzkfSpQ8twcGiTVlFFVsPWOawpkSOmZQX8yk3SidccQR5KD8tk+?=
+ =?us-ascii?Q?f/mVoPWKJzI8exl+hBziPwN88I7oPZB/sY1nWlEeMAXFTNGtaDdnoT5ntUCS?=
+ =?us-ascii?Q?ZmWlrVDioDzSBAfS58FV1YQHGG69s2mZ4q2Fos4MjE4s0feZ97WqyNLlHONh?=
+ =?us-ascii?Q?0b1ozDjQmwftNwUzMqICapWZKHkGXUfnCHxutE3BmEeiaWNSb0BrkoIDu+vE?=
+ =?us-ascii?Q?ZCLeLOfX0nnbjZ6biJVGhkrIeY+J1IVQr64HmsVroU0hjNyDzp7u0AVukrie?=
+ =?us-ascii?Q?yk3dr8ZU4sl1Dydi5K+9YwD/U00cw8ieKMizrOIoKb/qFlaH5yKYCjSftPgj?=
+ =?us-ascii?Q?NJDKEOGpqJdlud4+P/dzGKG7RfOjLmKcmzv0ojZZGf5/myUFx2kvlDkKUjiM?=
+ =?us-ascii?Q?QQ/GdZHVCbEtZJnTmd6Fcoo/FX0HmlGH6dPIblS7GK/xEtrRAY/0HQC8/i+R?=
+ =?us-ascii?Q?m/nHLMyV0MxE0hV26EpWQtPQkeBIVTyd4BwCLJz8hwAPY/6xJ+0cPaLgHCEB?=
+ =?us-ascii?Q?3sKYBpzJGZpgfxszocLILSwvIifk42ezwz2nYylHPniT+mDpJCCcST72FB8X?=
+ =?us-ascii?Q?v5zWj7YM8uBEJTAvk2Lf65wZDAXN/Kx5EH74hYumWsW5RXgHgiD1e0kSUf0M?=
+ =?us-ascii?Q?Qvd7SyL36ksrvSo4ZpQAQkFHgKubADYKKdN9p2BnKqN53wtbBZhIhtZf8d7x?=
+ =?us-ascii?Q?nWP6RkhIsDAXFe5cbKxc5p0PP6XWg9cIVlThrHHQ1bXZq4hcMAO3632GWZgd?=
+ =?us-ascii?Q?g86r4GpSESYfm/rkdFtTCVhr/QP88KON62uKzw8xzjkTlq3lnK+/oGTV/WZk?=
+ =?us-ascii?Q?KCJh4FrVAgGv0hoWLiiIwIMRZk+c5wfCLGSeajB2mQ/2ugZ12UovlV4yU2Ul?=
+ =?us-ascii?Q?3VJ30ET8ha5wtI912eRKUGkJyAxThN3I9IpVv9heojTiQp2Dc+3ZPzzlFUaX?=
+ =?us-ascii?Q?svU++FEaJQf6PZ6KzXft3do6iki6LkKe/4d/uU/N84FGAFBM9VrUfc55gHZ1?=
+ =?us-ascii?Q?W7rrWIyf4WEpJYf5rHpV4KMsvJwOh5J5ihVU5WjWaE09SbsHChhgkpQkh2A4?=
+ =?us-ascii?Q?+gZW4qop9IJGdPg0uZM8Xp6ILwJ6hnc4+yyTK6nHjZGefcIZkME71o8QPY8X?=
+ =?us-ascii?Q?Vgaxb0eLuap9q64i0n0ArF8U8e83p+VEkiN4MHs5r98/CJnfcWi6sKhXEex3?=
+ =?us-ascii?Q?WZcdkuqmoKJxHTPrlqKK5HwUbvAqjy/GYWPzYftI+CZe7/HN/ih9GQ+ArBiy?=
+ =?us-ascii?Q?S7H8/jTu96Nw/iHXYdcYOLCnzlFcfJwiF6OalBZu8MUul32eYSX/0JEudzTn?=
+ =?us-ascii?Q?sgNlaQSCdU8wdF5gl+JvwWPLeQv78UeCa0BKvb8VcGxCH17EB3Mr7BrTaZD9?=
+ =?us-ascii?Q?tMzAQ9wZLOyNrV8BGekmpqtyfyikWOoeYmmfisuRJYGXeK7bftIJ6P1p+XUV?=
+ =?us-ascii?Q?WZM0TnG1KE8C3pCJLFUfQ4MM7UT+MIguZXrkMGue?=
 X-OriginatorOrg: nxp.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: b32bbc3c-eee0-4fe9-a2a0-08dc21c945da
+X-MS-Exchange-CrossTenant-Network-Message-Id: 4ec58fa8-4509-4231-b922-08dc21c9da65
 X-MS-Exchange-CrossTenant-AuthSource: PAXPR04MB9642.eurprd04.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 30 Jan 2024 19:25:52.6194
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 30 Jan 2024 19:30:01.8540
  (UTC)
 X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
 X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
 X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: s8wzYKLa94XosgJ44eeYS4YBNy18aJEhCSczZaEEbL8JqTAT0Z20p5bADOlIVWp5IYWCP6J1/EhlMRQIojJ5pw==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: VE1PR04MB7487
+X-MS-Exchange-CrossTenant-UserPrincipalName: hBogE1ho6VpHFc9XiM78BDsvFuRwuI66k+qnfHxPrkyVVNiM+eoo+uNy2eTI93dZ/y9S+G+4BenSiEfT8Qv48g==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: AM9PR04MB8194
 
-On Tue, Jan 30, 2024 at 06:28:25PM +0000, Conor Dooley wrote:
-> Hey,
-> 
-> This version seems to be the lastest (v4) for this binding, but went out
-> prior to discussion actually finishing on the v1!! of this patch, even
-> ignoring Rob's comment today.
-> Please wait for conversations to resolve before sending new versions.
-> I, at least, do not get paid for what I do here, so I often need well
-> more than a day before I can get around to clearing my review queue.
-> On Wed, Jan 24, 2024 at 10:25:24AM -0500, Frank Li wrote:
-> 
-> > From: Ran Wang <ran.wang_1@nxp.com>
+On Tue, Jan 30, 2024 at 12:13:22PM -0600, Rob Herring wrote:
+> On Wed, Jan 24, 2024 at 05:59:00PM +0000, Conor Dooley wrote:
+> > On Wed, Jan 24, 2024 at 12:47:14PM -0500, Frank Li wrote:
+> > > On Wed, Jan 24, 2024 at 05:36:42PM +0000, Conor Dooley wrote:
+> > > > On Fri, Jan 19, 2024 at 04:31:28PM -0500, Frank Li wrote:
+> > > > > From: Ran Wang <ran.wang_1@nxp.com>
+> > > > > 
+> > > > > When DWC3 is set to host mode by programming register DWC3_GCTL, VBUS
+> > > > > (or its control signal) will turn on immediately on related Root Hub
+> > > > > ports. Then the VBUS will be de-asserted for a little while during xhci
+> > > > > reset (conducted by xhci driver) for a little while and back to normal.
+> > > > > 
+> > > > > This VBUS glitch might cause some USB devices emuration fail if kernel
+> > > > > boot with them connected. One SW workaround which can fix this is to
+> > > > > program all PORTSC[PP] to 0 to turn off VBUS immediately after setting
+> > > > > host mode in DWC3 driver(per signal measurement result, it will be too
+> > > > > late to do it in xhci-plat.c or xhci.c).
+> > > > > 
+> > > > > Signed-off-by: Ran Wang <ran.wang_1@nxp.com>
+> > > > > Reviewed-by: Peter Chen <peter.chen@nxp.com>
+> > > > > Signed-off-by: Frank Li <Frank.Li@nxp.com>
+> > > > > ---
+> > > > >  Documentation/devicetree/bindings/usb/snps,dwc3.yaml | 7 +++++++
+> > > > >  1 file changed, 7 insertions(+)
+> > > > > 
+> > > > > diff --git a/Documentation/devicetree/bindings/usb/snps,dwc3.yaml b/Documentation/devicetree/bindings/usb/snps,dwc3.yaml
+> > > > > index 203a1eb66691f..dbf272b76e0b5 100644
+> > > > > --- a/Documentation/devicetree/bindings/usb/snps,dwc3.yaml
+> > > > > +++ b/Documentation/devicetree/bindings/usb/snps,dwc3.yaml
+> > > > > @@ -273,6 +273,13 @@ properties:
+> > > > >        with an external supply.
+> > > > >      type: boolean
+> > > > >  
+> > > > > +  snps,host-vbus-glitches:
+> > > > > +    description:
+> > > > > +      When set, power off all Root Hub ports immediately after
+> > > > > +      setting host mode to avoid vbus (negative) glitch happen in later
+> > > > > +      xhci reset. And the vbus will back to 5V automatically when reset done.
 > > 
-> > When DWC3 is set to host mode by programming register DWC3_GCTL, VBUS
-> > (or its control signal) will turn on immediately on related Root Hub
-> > ports. Then the VBUS will be de-asserted for a little while during xhci
-> > reset (conducted by xhci driver) for a little while and back to normal.
+> > nit: "will return to"
 > > 
-> > This VBUS glitch might cause some USB devices emuration fail if kernel
-> > boot with them connected. One SW workaround which can fix this is to
-> > program all PORTSC[PP] to 0 to turn off VBUS immediately after setting
-> > host mode in DWC3 driver(per signal measurement result, it will be too
-> > late to do it in xhci-plat.c or xhci.c).
+> > > > > +    type: boolean
+> > > > 
+> > > > Why do we want to have a property for this at all? The commit message
+> > > > seems to describe a problem that's limited to specific configurations
+> > > > and appears to be somethng the driver should do unconditionally.
+> > > > 
+> > > > Could you explain why this cannot be done unconditionally please?
+> > > 
+> > > It depends on board design, not all system vbus can be controller by root
+> > > hub port. If it is always on, it will not trigger this issue.
 > > 
-> > Signed-off-by: Ran Wang <ran.wang_1@nxp.com>
-> > Reviewed-by: Peter Chen <peter.chen@nxp.com>
-> > Signed-off-by: Frank Li <Frank.Li@nxp.com>
-> > ---
+> > Okay, that seems reasonable to have a property for. Can you add that
+> > info to the commit message please?
 > 
-> Where is your changelog?
+> But if vbus is always on, then applying the work-around would be a NOP, 
+> right? So you could just apply this unconditionally.
 
-Sorry forget add it this patch.
+Supposed yes. But I have not confidence to apply this unconditionaly.
+There are too much difference SOC and dwc3 version. Not sure if it brokes
+something. I think it should apply workround as less as possible.
 
-> 
-> >  Documentation/devicetree/bindings/usb/snps,dwc3.yaml | 7 +++++++
-> >  1 file changed, 7 insertions(+)
-> > 
-> > diff --git a/Documentation/devicetree/bindings/usb/snps,dwc3.yaml b/Documentation/devicetree/bindings/usb/snps,dwc3.yaml
-> > index 203a1eb66691f..8f5d250070c78 100644
-> > --- a/Documentation/devicetree/bindings/usb/snps,dwc3.yaml
-> > +++ b/Documentation/devicetree/bindings/usb/snps,dwc3.yaml
-> > @@ -273,6 +273,13 @@ properties:
-> >        with an external supply.
-> >      type: boolean
-> >  
-> > +  snps,host-vbus-glitches-quirk:
-> 
-> I specifically recall saying no to adding "-quirk" here, but that
-> might've been after this patch was sent.
-
-Your comment is at v0 version. I told you there are v4. 
+Frank
 
 > 
-> > +    description:
-> > +      When set, power off all Root Hub ports immediately after
-> > +      setting host mode to avoid vbus (negative) glitch happen in later
-> > +      xhci reset. And the vbus will back to 5V automatically when reset done.
-> > +    type: boolean
-> 
-> Rob commented today on the v1 conversation:
-> https://lore.kernel.org/all/20240130181322.GA2079185-robh@kernel.org/
-> 
-> Please respond (there) to his comment.
-
-Okay I will reply at v1 thread.
-
-> 
-> Thanks,
-> Conor.
-> 
-> >    snps,is-utmi-l1-suspend:
-> >      description:
-> >        True when DWC3 asserts output signal utmi_l1_suspend_n, false when
-> > -- 
-> > 2.34.1
-> > 
-
-
+> Rob
 
