@@ -1,61 +1,66 @@
-Return-Path: <devicetree+bounces-36707-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-36708-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id B312B842633
-	for <lists+devicetree@lfdr.de>; Tue, 30 Jan 2024 14:30:47 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9A84C842638
+	for <lists+devicetree@lfdr.de>; Tue, 30 Jan 2024 14:34:18 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 68EA91F24D9E
-	for <lists+devicetree@lfdr.de>; Tue, 30 Jan 2024 13:30:47 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 862D61C25E5B
+	for <lists+devicetree@lfdr.de>; Tue, 30 Jan 2024 13:34:17 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id EB23F6BB54;
-	Tue, 30 Jan 2024 13:30:42 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C44046BB55;
+	Tue, 30 Jan 2024 13:34:13 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=linux.microsoft.com header.i=@linux.microsoft.com header.b="Rbwg8Kdw"
+	dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b="LDp/nUkr"
 X-Original-To: devicetree@vger.kernel.org
-Received: from linux.microsoft.com (linux.microsoft.com [13.77.154.182])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 41AB46BB47;
-	Tue, 30 Jan 2024 13:30:41 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=13.77.154.182
+Received: from vps0.lunn.ch (vps0.lunn.ch [156.67.10.101])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+	(No client certificate requested)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CD9636BB4A;
+	Tue, 30 Jan 2024 13:34:11 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=156.67.10.101
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1706621442; cv=none; b=OFQpgConghmidXZuRKfTUc6Zna0cv1214Ot9knDa6zBtE+knCZQEQopjc43kx0oXoDGnPkbXi9xY3+K2wOI5aGOx0Ck/prhPx6XU7j0ViaXWkmveOXlbxVQpy8GUrAiJG01OMKjwu9NkcOBIQs1643QAE+0bgmu9lGAQW5ZL5W8=
+	t=1706621653; cv=none; b=PGTCKUQgnPtacDu4zAYjaAkmqWdqHVLJBRgCr+AGH2aoikD2QsmSkI1K6+KOkxfPp6VJHaJuKS2kOf6t4MBcqM+P9TQwe2FUT6QJ9/eWKW493vTiO31xwRIFsH4iCr6+r0NGOSQUcks87pcCL1dnFYKXO4COnsIo3gxerMvMLqw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1706621442; c=relaxed/simple;
-	bh=rG8Dz1/ugp5YRl9zzSKL04gzMjWd9q4YlsAM4wMQHD4=;
+	s=arc-20240116; t=1706621653; c=relaxed/simple;
+	bh=Gn1q7ktiWdbyhy7s2NQWRHwEjdB1UjSxc8vIDzzfCTU=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=U2HhrREkfyX5Bynktngb0MnR+JwL1wUSJkV339EtGQtCl/2usd4kTfzugsarL5dmyQCmXec4WMqR6UXN/Si2i1z8QMuGTG7HX1Mwmsou4hTzFfsUGuOewuBXQANrDLXEGxOfKpscqypQDAnIu17eq1D1BNnRDHkvHYcPW5W5D54=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.microsoft.com; spf=pass smtp.mailfrom=linux.microsoft.com; dkim=pass (1024-bit key) header.d=linux.microsoft.com header.i=@linux.microsoft.com header.b=Rbwg8Kdw; arc=none smtp.client-ip=13.77.154.182
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.microsoft.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linux.microsoft.com
-Received: by linux.microsoft.com (Postfix, from userid 1127)
-	id CE7A720541E0; Tue, 30 Jan 2024 05:30:39 -0800 (PST)
-DKIM-Filter: OpenDKIM Filter v2.11.0 linux.microsoft.com CE7A720541E0
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=linux.microsoft.com;
-	s=default; t=1706621439;
-	bh=ZLNex+omPb8kR2FC1v86zHkS3N/7w2iPpa2gpSI68QM=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=Rbwg8KdwmuF0kHUacib13DpfzInP3vZHX/+hfW09KnFzo6Vlp6zTGDgLeji3qo5wH
-	 b4tDmJq1rU3aTjakORccWuLGbjBkX/j2KQ4/5/hmdWBeR27ZNjM9JjRMnVELt7dv5F
-	 PFpsMNrlrJPT6b4ufXNLB8DRaNpOLcVTCKPx4XYU=
-Date: Tue, 30 Jan 2024 05:30:39 -0800
-From: Saurabh Singh Sengar <ssengar@linux.microsoft.com>
-To: Stephen Boyd <sboyd@kernel.org>
-Cc: Rob Herring <robh+dt@kernel.org>, linux-kernel@vger.kernel.org,
-	patches@lists.linux.dev, linux-um@lists.infradead.org,
-	linux-arm-kernel@lists.infradead.org, kunit-dev@googlegroups.com,
-	linux-kselftest@vger.kernel.org, devicetree@vger.kernel.org,
-	Frank Rowand <frowand.list@gmail.com>,
-	Thomas Gleixner <tglx@linutronix.de>,
-	Ingo Molnar <mingo@redhat.com>, Borislav Petkov <bp@alien8.de>,
-	Dave Hansen <dave.hansen@linux.intel.com>, x86@kernel.org,
-	"H. Peter Anvin" <hpa@zytor.com>
-Subject: Re: [PATCH v2 3/7] x86/of: Unconditionally call
- unflatten_and_copy_device_tree()
-Message-ID: <20240130133039.GA1444@linuxonhyperv3.guj3yctzbm1etfxqx2vob5hsef.xx.internal.cloudapp.net>
-References: <20240130004508.1700335-1-sboyd@kernel.org>
- <20240130004508.1700335-4-sboyd@kernel.org>
+	 Content-Type:Content-Disposition:In-Reply-To; b=Od7tybP7RZ5+aTIIVEjYL8oxkWp+j2WZOE9VoQNjX2AZxVob51skodR6QpKQO6FdTv/tHAwAycnCHpYfHTB33uIUnfb3tfaW9bbKk5TMboHmp/KfHaE2IKfm/Kkrc/7wPMgxNflV0x0AFQgME3XBUPREuxUI88xRi7Z6zgBsldk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch; spf=pass smtp.mailfrom=lunn.ch; dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b=LDp/nUkr; arc=none smtp.client-ip=156.67.10.101
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=lunn.ch
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
+	s=20171124; h=In-Reply-To:Content-Disposition:Content-Type:MIME-Version:
+	References:Message-ID:Subject:Cc:To:From:Date:From:Sender:Reply-To:Subject:
+	Date:Message-ID:To:Cc:MIME-Version:Content-Type:Content-Transfer-Encoding:
+	Content-ID:Content-Description:Content-Disposition:In-Reply-To:References;
+	bh=8E4zlUNFez7CfCq5HUwawJjAHyI/J1BFW/vD4LLyEY4=; b=LDp/nUkrRorBTsaU6y3pB7B1c+
+	Prwvnky7EgbzOj3XVCjksKb9bmfeXE2bMpQdotuW5RZnHYBml/AmqhW1PgJoVWf5ajPLva3RvoK1Q
+	Yo8X5aqAEZ8brDT0l+x19kFUy2X8n1Zt4hq8/kzK6EwVRcLj1/uvsKU3XUHD65cKZ8Bk=;
+Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
+	(envelope-from <andrew@lunn.ch>)
+	id 1rUoFU-006Uhd-9M; Tue, 30 Jan 2024 14:34:00 +0100
+Date: Tue, 30 Jan 2024 14:34:00 +0100
+From: Andrew Lunn <andrew@lunn.ch>
+To: Bastien Curutchet <bastien.curutchet@bootlin.com>
+Cc: "David S. Miller" <davem@davemloft.net>,
+	Eric Dumazet <edumazet@google.com>,
+	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
+	Rob Herring <robh+dt@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Richard Cochran <richardcochran@gmail.com>,
+	Heiner Kallweit <hkallweit1@gmail.com>,
+	Russell King <linux@armlinux.org.uk>, netdev@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
+	Herve Codina <herve.codina@bootlin.com>
+Subject: Re: [PATCH 1/2] dt-bindings: net: Add TI DP83640
+Message-ID: <dc81a307-3541-47e2-9c72-d661e76889bf@lunn.ch>
+References: <20240130085935.33722-1-bastien.curutchet@bootlin.com>
+ <20240130085935.33722-2-bastien.curutchet@bootlin.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -64,73 +69,57 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20240130004508.1700335-4-sboyd@kernel.org>
-User-Agent: Mutt/1.5.21 (2010-09-15)
+In-Reply-To: <20240130085935.33722-2-bastien.curutchet@bootlin.com>
 
-On Mon, Jan 29, 2024 at 04:45:02PM -0800, Stephen Boyd wrote:
-> Call this function unconditionally so that we can populate an empty DTB
-> on platforms that don't boot with a firmware provided or builtin DTB.
-> 
-> Cc: Rob Herring <robh+dt@kernel.org>
-> Cc: Frank Rowand <frowand.list@gmail.com>
-> Cc: Thomas Gleixner <tglx@linutronix.de>
-> Cc: Ingo Molnar <mingo@redhat.com>
-> Cc: Borislav Petkov <bp@alien8.de>
-> Cc: Dave Hansen <dave.hansen@linux.intel.com>
-> Cc: <x86@kernel.org>
-> Cc: "H. Peter Anvin" <hpa@zytor.com>
-> Cc: Saurabh Sengar <ssengar@linux.microsoft.com>
-> Signed-off-by: Stephen Boyd <sboyd@kernel.org>
-> ---
->  arch/x86/kernel/devicetree.c | 24 +++++++++++++-----------
->  1 file changed, 13 insertions(+), 11 deletions(-)
-> 
-> diff --git a/arch/x86/kernel/devicetree.c b/arch/x86/kernel/devicetree.c
-> index afd09924094e..650752d112a6 100644
-> --- a/arch/x86/kernel/devicetree.c
-> +++ b/arch/x86/kernel/devicetree.c
-> @@ -283,22 +283,24 @@ void __init x86_flattree_get_config(void)
->  	u32 size, map_len;
->  	void *dt;
->  
-> -	if (!initial_dtb)
-> -		return;
-> +	if (initial_dtb) {
-> +		map_len = max(PAGE_SIZE - (initial_dtb & ~PAGE_MASK), (u64)128);
->  
-> -	map_len = max(PAGE_SIZE - (initial_dtb & ~PAGE_MASK), (u64)128);
-> +		dt = early_memremap(initial_dtb, map_len);
-> +		size = fdt_totalsize(dt);
-> +		if (map_len < size) {
-> +			early_memunmap(dt, map_len);
-> +			dt = early_memremap(initial_dtb, size);
-> +			map_len = size;
-> +		}
->  
-> -	dt = early_memremap(initial_dtb, map_len);
-> -	size = fdt_totalsize(dt);
-> -	if (map_len < size) {
-> -		early_memunmap(dt, map_len);
-> -		dt = early_memremap(initial_dtb, size);
-> -		map_len = size;
-> +		early_init_dt_verify(dt);
->  	}
->  
-> -	early_init_dt_verify(dt);
->  	unflatten_and_copy_device_tree();
-> -	early_memunmap(dt, map_len);
+> +  ti,led-config:
+> +    $ref: /schemas/types.yaml#/definitions/uint32
+> +    enum: [1, 2, 3]
+> +    description: |
+> +      If present, configures the LED Mode (values defined in
+> +      dt-bindings/net/ti-dp83640.h).
+> +      LED configuration can also be strapped. If the strap pin is not set
+> +      correctly or not set at all then this can be used to configure it.
+> +       - 1     = Mode 1
+> +        LED_LINK = ON for Good Link, OFF for No Link
+> +        LED_SPEED = ON in 100 Mb/s, OFF in 10 Mb/s
+> +        LED_ACT = ON for Activity, OFF for No Activity
+> +       - 2     = Mode 2
+> +        LED_LINK = ON for Good Link, BLINK for Activity
+> +        LED_SPEED = ON in 100 Mb/s, OFF in 10 Mb/s
+> +        LED_ACT = ON for Collision, OFF for No Collision
+> +       - 3     = Mode 3
+> +        LED_LINK = ON for Good Link, BLINK for Activity
+> +        LED_SPEED = ON in 100 Mb/s, OFF in 10 Mb/s
+> +        LED_ACT = ON for Full Duplex, OFF for Half Duplex
+> +       - unset = Configured by straps
+
+Please look at have the Marvell PHY driver supports LEDs via
+/sys/class/leds. Now we have a generic way to supports LEDs, DT
+properties like this will not be accepted.
+
 > +
-> +	if (initial_dtb)
-> +		early_memunmap(dt, map_len);
->  }
->  #endif
->  
-> -- 
-> https://git.kernel.org/pub/scm/linux/kernel/git/clk/linux.git/
-> https://git.kernel.org/pub/scm/linux/kernel/git/sboyd/spmi.git
+> +  ti,phy-control-frames:
+> +    $ref: /schemas/types.yaml#/definitions/uint32
+> +    enum: [0, 1]
+> +    description: |
+> +      If present, enables or disables the PHY control frames.
+> +      PHY Control Frames support can also be strapped. If the strap pin is not
+> +      set correctly or not set at all then this can be used to configure it.
+> +       - 0     = PHY Control Frames disabled
+> +       - 1     = PHY Control Frames enabled
+> +       - unset = Configured by straps
 
+What is a control frame?
 
-Tested the series in Hyper-V environment. Please feel free to add:
-Tested-by: Saurabh Sengar <ssengar@linux.microsoft.com>
+> +
+> +  ti,energy-detect-en:
+> +    $ref: /schemas/types.yaml#/definitions/flag
+> +    description: |
+> +      If present, Energy Detect Mode is enabled. If not present, Energy Detect
+> +      Mode is disabled. This feature can not be strapped.
 
+Please use the phy tunable ETHTOOL_PHY_EDPD. There are a few examples
+you can copy.
+
+    Andrew
 
