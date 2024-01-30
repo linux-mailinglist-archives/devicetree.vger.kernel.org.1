@@ -1,156 +1,219 @@
-Return-Path: <devicetree+bounces-36532-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-36535-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id CF453841BC8
-	for <lists+devicetree@lfdr.de>; Tue, 30 Jan 2024 07:11:35 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0ADC7841BF3
+	for <lists+devicetree@lfdr.de>; Tue, 30 Jan 2024 07:27:06 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 5ED901F27B94
-	for <lists+devicetree@lfdr.de>; Tue, 30 Jan 2024 06:11:35 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 74406B21262
+	for <lists+devicetree@lfdr.de>; Tue, 30 Jan 2024 06:27:03 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 885EC38DE5;
-	Tue, 30 Jan 2024 06:11:16 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 378CC38387;
+	Tue, 30 Jan 2024 06:26:56 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="GiCQ9Irg"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="bVmUGSad"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pg1-f177.google.com (mail-pg1-f177.google.com [209.85.215.177])
+Received: from mail-oi1-f175.google.com (mail-oi1-f175.google.com [209.85.167.175])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D68093839D
-	for <devicetree@vger.kernel.org>; Tue, 30 Jan 2024 06:11:14 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.215.177
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7F3A8381DA;
+	Tue, 30 Jan 2024 06:26:54 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.175
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1706595076; cv=none; b=n/6iU7sNXbsjKFRVlov1fWqZE75zL49I7Bn75m2b6jLzgoI7/0VsV5MTu8Fxa9udKY2m2xmbscgZTO9D3tWMZOdkaQNHlQI/dfQ4gOGe3Tsr1zFVGQbCCCXhYaHyseGytnK3OIdEy+I8aMCAFDCm8I9B6BbKiYaU9q1hps9sLRY=
+	t=1706596016; cv=none; b=ksEhBWr3DmwBnzXUcjuPa4zrWd3HJHXiLezbff5cIku8oYLPw13b0KCK6zdf8RIwH+PimM/p9+u9bwihtT9qwm9AR4SYzP+e7+6WXlJlybI2dsoulukYdSlUt/p+Oc2Df+f4j/p3nWD9NTK8l8oxExSa6C1910W5D27DpfCtkpc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1706595076; c=relaxed/simple;
-	bh=xOea63INGOSG465h0CfnONEMeWR4NZ/xHm0T3eI1GNI=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=Pmgtsbh0LDf/sVrxv7vOT2L/bk7MWXHT4vXAGzqaVv47iRntF2gzZabsugsn93tsXyvlBRX60AyHag2Fl24abk4tNTksd3FjiqO2ISrrg00KdUFAyrFPXhJa0bInezKqfQHie/vYyhkTR6MhRbSDypwHkYbL4vDEBxZt9VxMROw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=GiCQ9Irg; arc=none smtp.client-ip=209.85.215.177
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-pg1-f177.google.com with SMTP id 41be03b00d2f7-5c229dabbb6so1817220a12.0
-        for <devicetree@vger.kernel.org>; Mon, 29 Jan 2024 22:11:14 -0800 (PST)
+	s=arc-20240116; t=1706596016; c=relaxed/simple;
+	bh=G2H09HbRT8UUC7XVD9zqeo3oMqIO8alWBLi2zEm9YfQ=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=ogqB8Np0RDkFAETPZ1L/rJ+WrAwtZLWnDNSJRWcdrjzEdtky5jyZdGPnjMnzDy5Av1qIL18jR5/fm4/jdHcuAMRiaZDXTyMjckCTgMUn07hHJUeSiTqtd2fnPIV+kiY8Af8ANqR8v43L0Or7ehqozu/x00ZhixInW5hLGWw1EL4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=roeck-us.net; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=bVmUGSad; arc=none smtp.client-ip=209.85.167.175
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=roeck-us.net
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-oi1-f175.google.com with SMTP id 5614622812f47-3be9e11ee59so30543b6e.1;
+        Mon, 29 Jan 2024 22:26:54 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1706595074; x=1707199874; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=ypr/6L0QoG7N6GIlemwTnozF/H7mKp62EyexXYwz5pA=;
-        b=GiCQ9IrgMVPbmdtdFVAeUN1n4D6V7cxsZOK4HhmuQU0eKV84YBAqrxEwHlvh/tjvJs
-         5jjVL5BXDDvVFO2BwPywJy1jVBoxufJZSpoaz7qjMF2hO/TJHFddloz8Z4kKIF9Kdboy
-         oemECYg8ZmWSjScIBbOMn6TeD9qbygpDCW5El+lkpgW4jKQYvXVlj9YAyouO+2XasUj+
-         W6CUEj3l4Pdnd46ng88xbV8IjYuhrEbxGyrHTNgfwWP6Jm8Fev8AczEoD98k/8nD1vcW
-         CLNT00EXXg8SX5Fw03D0o+nVT/fSmBWGyfzQazrt8za2H6GQeJfoJfnZYHYEHGHTgITm
-         GuXA==
+        d=gmail.com; s=20230601; t=1706596013; x=1707200813; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
+         :to:content-language:subject:user-agent:mime-version:date:message-id
+         :sender:from:to:cc:subject:date:message-id:reply-to;
+        bh=GImDz5i38hz7JEhUDVGxtycDpAZ5nzC1980oJpg3sA8=;
+        b=bVmUGSadTjkT4JIMOS0VgpJVEpyy/oGsHl2G3Xy23G4VsvylZX4O9l6u1N1Rcjnnm1
+         M7IGaSO83HcWureFMPUBxA0STWTYFroP5JCbpp8WdlqqizNdkAD5j6lynihOZ/vRFvbV
+         n7DmM7k+Y1JunXPRchZ38wTnnDBAr+9358+TCcBYFgv4CsmfUZq2e3OtcFUmSYNV1Tz5
+         BI8K4hREONLABuLKQAiWA5aW4BGs/SEm5D6Z9qpi4duAvr8Wv6SPqJkecFxG+UJqqwJg
+         jJSZiIffp3qPQIUGOlWuC/v8KppE7mhC0BiRfzhZeVz5QiDuBS4KjTAF0zruvA7wAnnI
+         vWLw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1706595074; x=1707199874;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=ypr/6L0QoG7N6GIlemwTnozF/H7mKp62EyexXYwz5pA=;
-        b=Ec4LC7eWFl2kAFl6qnZdzu6i/pqX4kWkdFac+8VqHu0ZhMWi7Sxl9m0TSKGZGa9ocg
-         UjIe6PZmDHLL41yVyHgQb5CzYf1vAnNvZIlYO30bTRcsmaLbmernENcxZCgGaQhuibKz
-         Tk2yvATI97Q8XOctlkOhEXcbHmPlcyLSgnwqe7hNgTNGESMy13JXpOG899jXKheOyR1T
-         tcbHJs5LT+w0Wpy7PQ9hK2kbJg6iCaoN6qdhq4SzxAqv1hMGzgBq4qaKb72qwpVMEjWY
-         iXt9QRdt4YxI5D+VKWN+kksKDZoDA5NroLA9JXeR9mRYgsB1+6/J6aL+C121ahjBSZ/a
-         Tgkg==
-X-Gm-Message-State: AOJu0Yz23gAqnRABjfdzd87CBVesPUROessR3zkRwQiY7jBTUCGH+wOS
-	4cJf8cm1IbvSC7ByWmCMxJybutaHX3z0jhYN+HmpT3DdKYmHjkK5uCNCy8buNHM=
-X-Google-Smtp-Source: AGHT+IFXCiqNz56YhR8ZeAD95eE8xtQBHXRFokosutQyCwkchVIu/T59v2/TzAC66N+peWYD8bpDLw==
-X-Received: by 2002:a17:902:8f97:b0:1d4:79b7:b8ce with SMTP id z23-20020a1709028f9700b001d479b7b8cemr4631604plo.44.1706595074065;
-        Mon, 29 Jan 2024 22:11:14 -0800 (PST)
-Received: from localhost ([122.172.83.95])
-        by smtp.gmail.com with ESMTPSA id jg17-20020a17090326d100b001d8fae3220fsm1447045plb.73.2024.01.29.22.11.13
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 29 Jan 2024 22:11:13 -0800 (PST)
-Date: Tue, 30 Jan 2024 11:41:11 +0530
-From: Viresh Kumar <viresh.kumar@linaro.org>
-To: Manivannan Sadhasivam <mani@kernel.org>
-Cc: Krishna chaitanya chundru <quic_krichai@quicinc.com>,
-	Bjorn Andersson <andersson@kernel.org>,
-	Konrad Dybcio <konrad.dybcio@linaro.org>,
-	Bjorn Helgaas <bhelgaas@google.com>,
-	Lorenzo Pieralisi <lpieralisi@kernel.org>,
-	Krzysztof =?utf-8?Q?Wilczy=C5=84ski?= <kw@linux.com>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Rob Herring <robh+dt@kernel.org>,
-	Johan Hovold <johan+linaro@kernel.org>,
-	Brian Masney <bmasney@redhat.com>,
-	Georgi Djakov <djakov@kernel.org>, linux-arm-msm@vger.kernel.org,
-	vireshk@kernel.org, quic_vbadigan@quicinc.com,
-	quic_skananth@quicinc.com, quic_nitegupt@quicinc.com,
-	linux-pci@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v6 5/6] arm64: dts: qcom: sm8450: Add opp table support
- to PCIe
-Message-ID: <20240130061111.eeo2fzaltpbh35sj@vireshk-i7>
-References: <20240112-opp_support-v6-0-77bbf7d0cc37@quicinc.com>
- <20240112-opp_support-v6-5-77bbf7d0cc37@quicinc.com>
- <20240129160420.GA27739@thinkpad>
+        d=1e100.net; s=20230601; t=1706596013; x=1707200813;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
+         :to:content-language:subject:user-agent:mime-version:date:message-id
+         :sender:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=GImDz5i38hz7JEhUDVGxtycDpAZ5nzC1980oJpg3sA8=;
+        b=rr82K14Hz1Kd7p6j6rOqnB0+mlbPTd6jWZfwyBoOY+nEVrCrTwcjTHnmLBzwKfVzAz
+         U1zSXh93bmE5SKDT+4LeyAbUDNxf/BezgIS+Ad12mxCudrKnKmwbaoK7HYG91le0MB8N
+         7zeeWK1KfSl91hB8+/k0+Ct+koCiUkd7jzbtKTpjEVvNfBUJFLP0EN5KuDIl0KZ6PEdP
+         iGArBX2xgacGgQN3uANp7oF32iXvWzOkIi6fNafcB0lWnTO5zrhyFIWHju7Xya4HGd7P
+         K2bEOjzFxyUeg6lI3HUiHKpKF11mLDCx6ubNmSswqhNwjrnHwDTlnkkXAKlJuywcMGVQ
+         3WTg==
+X-Gm-Message-State: AOJu0YwUmJVQulZQVQ40OyenjPFUgD1+X9sB3595sBz7QI3Qul8KnmGF
+	XGi9JkVHhvX8nZmHAZ1jMJlYDgFrAlcJRiHPQR1MYmj3f9iWNJET
+X-Google-Smtp-Source: AGHT+IEy53pi0RbR8AMV6653iDgAfcpn/6UteGHZoIL0l7mHNLWYwkNPjTd+pbpeY+PyFXR1HXTgIw==
+X-Received: by 2002:a05:6808:ecc:b0:3be:685e:b209 with SMTP id q12-20020a0568080ecc00b003be685eb209mr2571227oiv.35.1706596013369;
+        Mon, 29 Jan 2024 22:26:53 -0800 (PST)
+Received: from ?IPV6:2600:1700:e321:62f0:329c:23ff:fee3:9d7c? ([2600:1700:e321:62f0:329c:23ff:fee3:9d7c])
+        by smtp.gmail.com with ESMTPSA id x129-20020a626387000000b006ddda3d854bsm7239672pfb.79.2024.01.29.22.26.51
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 29 Jan 2024 22:26:52 -0800 (PST)
+Sender: Guenter Roeck <groeck7@gmail.com>
+Message-ID: <b1798b8a-5794-4c79-a1d3-50259fa3ba81@roeck-us.net>
+Date: Mon, 29 Jan 2024 22:26:50 -0800
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20240129160420.GA27739@thinkpad>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v2 1/2] soc: samsung: exynos-pmu: Add regmap support for
+ SoCs that protect PMU regs
+Content-Language: en-US
+To: Peter Griffin <peter.griffin@linaro.org>, arnd@arndb.de,
+ krzysztof.kozlowski@linaro.org, wim@linux-watchdog.org,
+ alim.akhtar@samsung.com, jaewon02.kim@samsung.com, semen.protsenko@linaro.org
+Cc: kernel-team@android.com, tudor.ambarus@linaro.org,
+ andre.draszik@linaro.org, saravanak@google.com, willmcvicker@google.com,
+ linux-fsd@tesla.com, linux-watchdog@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, linux-samsung-soc@vger.kernel.org
+References: <20240129211912.3068411-1-peter.griffin@linaro.org>
+ <20240129211912.3068411-2-peter.griffin@linaro.org>
+From: Guenter Roeck <linux@roeck-us.net>
+Autocrypt: addr=linux@roeck-us.net; keydata=
+ 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
+ mDW4+i+XlNFUPUYMrIKi9joBhu18ssf5i5Q=
+In-Reply-To: <20240129211912.3068411-2-peter.griffin@linaro.org>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
 
-On 29-01-24, 21:34, Manivannan Sadhasivam wrote:
-> On Fri, Jan 12, 2024 at 07:52:04PM +0530, Krishna chaitanya chundru wrote:
-> > PCIe needs to choose the appropriate performance state of RPMH power
-> > domain and interconnect bandwidth based up on the PCIe gen speed.
-> > 
-> > Add the OPP table support to specify RPMH performance states and
-> > interconnect peak bandwidth.
-> > 
-> > Signed-off-by: Krishna chaitanya chundru <quic_krichai@quicinc.com>
-> > ---
-> >  arch/arm64/boot/dts/qcom/sm8450.dtsi | 74 ++++++++++++++++++++++++++++++++++++
-> >  1 file changed, 74 insertions(+)
-> > 
-> > diff --git a/arch/arm64/boot/dts/qcom/sm8450.dtsi b/arch/arm64/boot/dts/qcom/sm8450.dtsi
-> > index 6b1d2e0d9d14..eab85ecaeff0 100644
-> > --- a/arch/arm64/boot/dts/qcom/sm8450.dtsi
-> > +++ b/arch/arm64/boot/dts/qcom/sm8450.dtsi
-> > @@ -1827,7 +1827,32 @@ pcie0: pcie@1c00000 {
-> >  			pinctrl-names = "default";
-> >  			pinctrl-0 = <&pcie0_default_state>;
-> >  
-> > +			operating-points-v2 = <&pcie0_opp_table>;
-> > +
-> >  			status = "disabled";
-> > +
-> > +			pcie0_opp_table: opp-table {
-> > +				compatible = "operating-points-v2";
-> > +
-> > +				opp-2500000 {
-> > +					opp-hz = /bits/ 64 <2500000>;
-> > +					required-opps = <&rpmhpd_opp_low_svs>;
-> > +					opp-peak-kBps = <250000 250000>;
+On 1/29/24 13:19, Peter Griffin wrote:
+> Some Exynos based SoCs like Tensor gs101 protect the PMU registers for
+> security hardening reasons so that they are only accessible in el3 via an
+> SMC call.
 > 
-> This is a question for Viresh: We already have macros in the driver to derive
-> the bandwidth based on link speed. So if OPP core exposes a callback to allow
-> the consumers to set the bw on its own, we can get rid of this entry.
+> As most Exynos drivers that need to write PMU registers currently obtain a
+> regmap via syscon (phys, pinctrl, watchdog). Support for the above usecase
+> is implemented in this driver using a custom regmap similar to syscon to
+> handle the SMC call. Platforms that don't secure PMU registers, get a mmio
+> regmap like before. As regmaps abstract out the underlying register access
+> changes to the leaf drivers are minimal.
 > 
-> Similar to config_clks()/config_regulators(). Is that feasible?
+> A new API exynos_get_pmu_regmap_by_phandle() is provided for leaf drivers
+> that currently use syscon_regmap_lookup_by_phandle(). This also handles
+> deferred probing.
+> 
+> Signed-off-by: Peter Griffin <peter.griffin@linaro.org>
+> ---
+[ ... ]
 
-I don't have any issues with a new callback for bw. But, AFAIU, the DT
-is required to represent the hardware irrespective of what any OS
-would do with it. So DT should ideally have these values here, right ?
+> +/**
+> + * exynos_get_pmu_regmap
+> + * Find the pmureg previously configured in probe() and return regmap property.
+> + * Return: regmap if found or error if not found.
+> + */
+>   struct regmap *exynos_get_pmu_regmap(void)
+>   {
+>   	struct device_node *np = of_find_matching_node(NULL,
+>   						      exynos_pmu_of_device_ids);
+>   	if (np)
+> -		return syscon_node_to_regmap(np);
+> +		return exynos_get_pmu_regmap_by_phandle(np, NULL);
+>   	return ERR_PTR(-ENODEV);
+>   }
+>   EXPORT_SYMBOL_GPL(exynos_get_pmu_regmap);
+>   
+> +/**
+> + * exynos_get_pmu_regmap_by_phandle
+> + * Find the pmureg previously configured in probe() and return regmap property.
+> + * Return: regmap if found or error if not found.
+> + *
+> + * @np: Pointer to device's Device Tree node
+> + * @property: Device Tree property name which references the pmu
+> + */
+> +struct regmap *exynos_get_pmu_regmap_by_phandle(struct device_node *np,
+> +						const char *property)
+> +{
+> +	struct device *dev;
+> +	struct exynos_pmu_context *ctx;
+> +	struct device_node *pmu_np;
+> +
+> +	if (property)
+> +		pmu_np = of_parse_phandle(np, property, 0);
+> +	else
+> +		pmu_np = np;
+> +
+> +	if (!pmu_np)
+> +		return ERR_PTR(-ENODEV);
+> +
+> +	dev = driver_find_device_by_of_node(&exynos_pmu_driver.driver,
+> +					    (void *)pmu_np);
+> +	of_node_put(pmu_np);
+> +	if (!dev)
+> +		return ERR_PTR(-EPROBE_DEFER);
+> +
+> +	ctx = dev_get_drvdata(dev);
+> +
+> +	return ctx->pmureg;
+> +}
+> +EXPORT_SYMBOL_GPL(exynos_get_pmu_regmap_by_phandle);
+> +
 
-Also, the driver has already moved away from using those macros now
-and depend on the OPP core to do the right thing. It only uses the
-macro for the cases where the DT OPP table isn't available. And as
-said by few others as well already, the driver really should try to
-add OPPs dynamically in that case to avoid multiple code paths and
-stick to a single OPP based solution.
+I think there should be a detailed comment explaining why the complexity
+is necessary instead of just returning pmu_context->pmureg.
 
--- 
-viresh
+Thanks,
+Guenter
+
 
