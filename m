@@ -1,86 +1,70 @@
-Return-Path: <devicetree+bounces-36586-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-36602-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id B1125841EE2
-	for <lists+devicetree@lfdr.de>; Tue, 30 Jan 2024 10:11:17 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 76626841EE9
+	for <lists+devicetree@lfdr.de>; Tue, 30 Jan 2024 10:11:49 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 3815AB27CF2
-	for <lists+devicetree@lfdr.de>; Tue, 30 Jan 2024 08:57:07 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 3B874B2F648
+	for <lists+devicetree@lfdr.de>; Tue, 30 Jan 2024 09:06:43 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8A7D357883;
-	Tue, 30 Jan 2024 08:57:00 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4AE2F59167;
+	Tue, 30 Jan 2024 09:04:37 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="RsgVOy9r"
+	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="iUGHGvxO"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pf1-f177.google.com (mail-pf1-f177.google.com [209.85.210.177])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from relay1-d.mail.gandi.net (relay1-d.mail.gandi.net [217.70.183.193])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2D58A57866;
-	Tue, 30 Jan 2024 08:56:58 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.177
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5639D66B46;
+	Tue, 30 Jan 2024 09:04:33 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.70.183.193
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1706605020; cv=none; b=kY6m0DKzd/n5MxRbVC3yCXpn6I+6y3jEA8GJyGxAUNDA4RY6jtM6gKh8UFbLLspUqbkh1Dd/aI3z0pd5ZmJKqKniLfqsxO2x23JPKNdYUBa6Mu3+/i7Pu1j+/HkFqm/5WadjJbNyXe4WZvasFy5tw+rIMko+vDfwzQZ6+J8eBcw=
+	t=1706605477; cv=none; b=Im1Mkgp+XF8cT6udfAHFZiBPsrBEY9ZD6SZ16j7irj0ED9+KfhVfchC+oQQFCAcjoTlrWpeRG02gaBfD0ZeuLHZ1k94VWs0BzRj/5vR0EvYAg9IKaHM/IwRowDuVU4xI67A72rynMPnK0bSPwmUjih8b08Dqf40IiMfvM4R/yvw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1706605020; c=relaxed/simple;
-	bh=Vj6SzlkAD5KT+wFwS+h9MR3mauREpPgWpqHN84lJoaw=;
-	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version; b=oCAxC3SfRvUcWSc4lacxRCZcnYMYeaslbyuORAHvMPDibH7PpQizL7qQSyTFqu5jcb85x5o8BAWiKhKV+G5NCRs/HvraEOWLXynNx0/JhVFJhX65bT1D1sPStaDIEFM8hv0NvNlaXnA2/e4Th/y/0aAFnPy9DhCp4veRejTI9PE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=RsgVOy9r; arc=none smtp.client-ip=209.85.210.177
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-pf1-f177.google.com with SMTP id d2e1a72fcca58-6da202aa138so2243289b3a.2;
-        Tue, 30 Jan 2024 00:56:58 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1706605018; x=1707209818; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=csHtYc18T35qzB25mdonMqPpqm2KB0P8ynV8OZQpVBc=;
-        b=RsgVOy9rDstRcMzC2svkowaacejgwjVf/ZK8TUv1egYexU1RcFVcaGIcxWcp2te8Fh
-         gm9SDhPS8TtIlePAMQXlhoLOkQSJx4UEmAVcOKwBTL+xEnM+m1e06K3aH91EMoatK6YY
-         FNOTaqbpnVoUD8dxGGRXRABzTsJN5DHtwfHmp7Rwrgd+K4I2vZvs5Ea7cFqA5DDfYk4X
-         moetf9nkPMz5CLOfbvGpBHdXs0mo3bshSR/PVgucEh2iKognejo3spwOaT+9KZI8xltL
-         g8ytZWUjS6yYZkbwl+HSMEaDquP+PR1722JOenMUBBD2C64E+X9vpf7gxyZg4AWaT1EU
-         XowA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1706605018; x=1707209818;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=csHtYc18T35qzB25mdonMqPpqm2KB0P8ynV8OZQpVBc=;
-        b=C4vKNn1SMMpCRRe6vkY5DEcJ1zUTRJQbBtY3dMDfeWqT4n7p/t6E0L2mG++2BKEZlc
-         +/SrSPzeBmV8hLP7OD65Ou2x1LMUJJd4bIJ+uuHS9RU/q0wUYCUvfhL4XKWqlteqdMQQ
-         miSwmW0aoWvNoVbiKDXFI+z1uRskaTBF6twfJuCp5jNCds2URnyjM76zhTORIPRl1AAC
-         H4vxqBc5PjppVGhMHpq48Ivx34xDjOCMxVcyqjWSC5ku1vlGQpM90KVhbVatA4rPPo2c
-         rewbYcm8bcG9fDWMVUsHFudNlnyNbi9rEXp1pDtzLfCMiBYlxZesfQxbOu1SRHNTJD11
-         P2Mw==
-X-Gm-Message-State: AOJu0Yyzg6ayPKFCSGA7Jz4sRouF4ChdAVX9//78jShTLPzM7PXxgFiT
-	64uDbofFuodRpuWHFOBzcMnGU3PKWHnrC0GdvRvmd18qE49rtXfg
-X-Google-Smtp-Source: AGHT+IEeEh9/BgmgK6L5VDqDZJ/c+zKQ+BgD48oiN1HRyxWZSnWDQGOjvUOykG0CouswggmIuzdQRw==
-X-Received: by 2002:a05:6a00:2d05:b0:6db:cd50:a716 with SMTP id fa5-20020a056a002d0500b006dbcd50a716mr7165222pfb.1.1706605018330;
-        Tue, 30 Jan 2024 00:56:58 -0800 (PST)
-Received: from localhost.localdomain ([124.218.12.74])
-        by smtp.gmail.com with ESMTPSA id gx20-20020a056a001e1400b006dde04c10dasm7188623pfb.217.2024.01.30.00.56.56
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 30 Jan 2024 00:56:57 -0800 (PST)
-From: Kelly Hung <ppighouse@gmail.com>
-X-Google-Original-From: Kelly Hung <Kelly_Hung@asus.com>
-To: robh+dt@kernel.org
-Cc: krzysztof.kozlowski+dt@linaro.org,
-	conor+dt@kernel.org,
-	joel@jms.id.au,
-	andrew@codeconstruct.com.au,
+	s=arc-20240116; t=1706605477; c=relaxed/simple;
+	bh=4XgBQQ3juSbUpkKMMs7aW+PfhE8Y3xmTKKHhjIsTQQk=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=fg4Xdiyzf3ZxzUUjA1fMl+HUM8cf3T+NkejtyffVG7lM18Fte34LyAU+2TgXV/6zbtkLxZnR3kkCZGumChIlmyH+TCus/jyDtmWzjJk3OJ7tkwVNl3mOhDYxjm8HqLTTjj+J9DxrYd2I3uAW/2REadZOCXHoEGrJvuPiuUUeJGI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=iUGHGvxO; arc=none smtp.client-ip=217.70.183.193
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
+Received: by mail.gandi.net (Postfix) with ESMTPA id 61C9D240007;
+	Tue, 30 Jan 2024 09:04:31 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
+	t=1706605472;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:
+	 content-transfer-encoding:content-transfer-encoding;
+	bh=pAKHzaNOMh1xHR6FDCCFSU4eCbm5CK+UjZM9xHkQa8I=;
+	b=iUGHGvxOvWQVhG6pKA6+GztCmARC7ypRb4ct0JuFrly0QTecU6wJg7AfIhfwOyUKWU0hmo
+	7y472mX3bH4k3UTRj7R9OdA56fnl0ZKxKzMiB9rRtbljEu75I8ppsLTHdO4mtveuz/cuxN
+	SYAaLuxWgXFwM+CF9USTNfj5qTcQecvp2oOc1uAGWSOsFipboAqmREulYJ2X6AA8z1Eukn
+	1XI5hZQqRLBxR7uh4fRCCwiBlzzwWn7ehd/78fw9s5FXOaMBh42KukeY07NdPwxcryi8oc
+	FSuvNW4rBGOS+XdJXnwdvNSwbpILSW+aafpC+nhNQuJZ8TUv9ACkR+tabtJV6g==
+From: Bastien Curutchet <bastien.curutchet@bootlin.com>
+To: "David S. Miller" <davem@davemloft.net>,
+	Eric Dumazet <edumazet@google.com>,
+	Jakub Kicinski <kuba@kernel.org>,
+	Paolo Abeni <pabeni@redhat.com>,
+	Rob Herring <robh+dt@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Richard Cochran <richardcochran@gmail.com>,
+	Andrew Lunn <andrew@lunn.ch>,
+	Heiner Kallweit <hkallweit1@gmail.com>,
+	Russell King <linux@armlinux.org.uk>,
+	Bastien Curutchet <bastien.curutchet@bootlin.com>
+Cc: netdev@vger.kernel.org,
 	devicetree@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	linux-aspeed@lists.ozlabs.org,
 	linux-kernel@vger.kernel.org,
-	kelly_hung@asus.com,
-	Kelly Hung <Kelly_Hung@asus.com>
-Subject: [PATCH] ARM: dts: aspeed: asus: Add ASUS X4TF BMC
-Date: Tue, 30 Jan 2024 16:56:51 +0800
-Message-Id: <20240130085652.198010-1-Kelly_Hung@asus.com>
-X-Mailer: git-send-email 2.25.1
+	Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
+	Herve Codina <herve.codina@bootlin.com>
+Subject: [PATCH 0/2] Add device tree binding support to TI's DP83640
+Date: Tue, 30 Jan 2024 09:59:33 +0100
+Message-ID: <20240130085935.33722-1-bastien.curutchet@bootlin.com>
+X-Mailer: git-send-email 2.43.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -88,28 +72,31 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
+X-GND-Sasl: bastien.curutchet@bootlin.com
 
-This initial device-tree provides the necessary configuration for
-basic BMC functionality and work on ASUS X4TF production.
+Hi everyone,
 
-Signed-off-by: Kelly Hung <Kelly_Hung@asus.com>
----
- Documentation/devicetree/bindings/arm/aspeed/aspeed.yaml | 1 +
- 1 file changed, 1 insertion(+)
+This short patch series adds a device-tree binding support to the TI's PHY
+DP83640. The goal is to be able to enable or disable the following features
+through the device tree:
+   - Energy Detect Mode
+   - PHY Control Frames
+   - LED Configuration
+   - Fiber Mode
 
-diff --git a/Documentation/devicetree/bindings/arm/aspeed/aspeed.yaml b/Documentation/devicetree/bindings/arm/aspeed/aspeed.yaml
-index 749ee54a3ff8..80009948e14a 100644
---- a/Documentation/devicetree/bindings/arm/aspeed/aspeed.yaml
-+++ b/Documentation/devicetree/bindings/arm/aspeed/aspeed.yaml
-@@ -74,6 +74,7 @@ properties:
-               - ampere,mtmitchell-bmc
-               - aspeed,ast2600-evb
-               - aspeed,ast2600-evb-a1
-+              - asus,x4tf
-               - facebook,bletchley-bmc
-               - facebook,cloudripper-bmc
-               - facebook,elbert-bmc
+Bastien Curutchet (2):
+  dt-bindings: net: Add TI DP83640
+  net: phy: Add some configuration from device-tree
+
+ .../devicetree/bindings/net/ti,dp83640.yaml   | 113 +++++++++++++++
+ drivers/net/phy/dp83640.c                     | 131 +++++++++++++++++-
+ drivers/net/phy/dp83640_reg.h                 |  21 ++-
+ include/dt-bindings/net/ti-dp83640.h          |  18 +++
+ 4 files changed, 281 insertions(+), 2 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/net/ti,dp83640.yaml
+ create mode 100644 include/dt-bindings/net/ti-dp83640.h
+
 -- 
-2.25.1
+2.43.0
 
 
