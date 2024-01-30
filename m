@@ -1,214 +1,123 @@
-Return-Path: <devicetree+bounces-36559-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-36560-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id EF718841CED
-	for <lists+devicetree@lfdr.de>; Tue, 30 Jan 2024 08:49:29 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id E2706841CFE
+	for <lists+devicetree@lfdr.de>; Tue, 30 Jan 2024 08:52:14 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 2DE401C25175
-	for <lists+devicetree@lfdr.de>; Tue, 30 Jan 2024 07:49:29 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 9EB4A28866D
+	for <lists+devicetree@lfdr.de>; Tue, 30 Jan 2024 07:52:13 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4380A52F93;
-	Tue, 30 Jan 2024 07:49:23 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id EB4D453E13;
+	Tue, 30 Jan 2024 07:52:03 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="gLAI3Ozq"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="FWMHD4uk"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ed1-f54.google.com (mail-ed1-f54.google.com [209.85.208.54])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6CEB955E5C
-	for <devicetree@vger.kernel.org>; Tue, 30 Jan 2024 07:49:21 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.54
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C41EA55E43;
+	Tue, 30 Jan 2024 07:52:03 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1706600963; cv=none; b=m8qhqZMhmBI3oUwq3ejMeRnF0/FtjPuxKklYD/Qp8QNe5d49zB7o/lBnWrxJ+KdqeBSB5q6T2m0SQaJ28+ks7fqq64GabaNffIAmFPqa7yWYi36Ji/2aOqdZzvXFzI3XC3ulIhC4XQjMRciECGxyeND4JntssMeY5obb4E3yXKg=
+	t=1706601123; cv=none; b=d5kx+ElwGHBJo2Yjgeiv3263gGVLGoOzyizUzJEbtVFwTsn42vXK3fk9RPxaQrk4VBvfe4fuDqklWIYh8dzxErAOG4EyJttSV0FpxBXJbha6oiMZ0BQ/763kQ3KM47uRNshiu47oA22VxXEHY/ocDD4935tiA9QOmFo6lBSSgG4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1706600963; c=relaxed/simple;
-	bh=W7EdgnKkjMwfQrVjMkuKi/Np1ROI0dXe8/JY64Hyjnw=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=CQ/Vycon9XPCypuz5JPMmcm/uFD5XOK8FxOTa4MLMIohO2f5OI8fSgdMuL1y+CDeVdxt3zOHFoS9mPUdPe7tEIPX72yDzxju2t7MD5izZyuslGtPUkkyMj/1bAM9S7Yce5Sc1R0m3lPNI5NOnt0IU+T05PmlhMBZgyWNT6Wt8Q0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=gLAI3Ozq; arc=none smtp.client-ip=209.85.208.54
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-ed1-f54.google.com with SMTP id 4fb4d7f45d1cf-55ee686b5d5so2764845a12.0
-        for <devicetree@vger.kernel.org>; Mon, 29 Jan 2024 23:49:21 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1706600959; x=1707205759; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
-         :to:content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=Uxspv7T9EX1JvzDaKvkxxJalTAmoTENXDL7KG2k5zvk=;
-        b=gLAI3OzqufLCU0iMF/nuv1F5M8xRMOLml0GmmeH3KaXcGZMhVI/Yb3fS1YsHFlbtXS
-         lXK3BFY4P7H7MbVM+T9vVbPbkjY/QKSm0muidPbFVlNHW0wnBuQl3ImicLsX87Ff3Ldk
-         H1ZdhCTQnv25zKwIz1s+nuYlNvv3oKTgWY+bo69SmEVVTyhs4dQzv9mfDcogreLtI1ky
-         R23XI7o8zguOTJVE2XrHNWU9uN77xvRYLTu8eF6SVC4dd/DJjvyrjStX3GCFhx3kB4mR
-         5IoQwEUcJwIVX5RsCE/boaMYo33q6kR/Dib2nJdoa6EGAy9+n828V7xIz9XvUxelfKtj
-         VaxA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1706600959; x=1707205759;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
-         :to:content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=Uxspv7T9EX1JvzDaKvkxxJalTAmoTENXDL7KG2k5zvk=;
-        b=Lx1g0qo+eCOtCetkaNab5nybQTdtMszeW1iK1VIrvQClRSioAXW0alLza8OjyVYxfR
-         S2CH5LV30+2PgbjQUhtKVYn/T7s2ZgKpeBQ7620RW5eWIL5ydm4zzIdKapbdtmJtkESX
-         kici1eIJpMgT5VeLFcAJxfU4cAXYYW46XCQIwCtnocD8KvMRRuIF2GO2CG99/BD0O4Ba
-         BaSSE0NQCH3E3vF8Fy63SggMNPojTGuCxrUYKu8WztbYUPqyazYVi8SPvIWyhQ0WUNLZ
-         dJ7K9qu4Yh6/wvHABIgMk7G8y9NkFBTz7yHAxCjbtRdgu19wgj1WZ+Ptlrn7S+60Kiug
-         Rysw==
-X-Gm-Message-State: AOJu0YxdQKJXwSLqiNI+FKbbhqek60iq5b7wL2RP/YyvTSfhJLxt0Q/L
-	xCrfOGT+3FQOgLKTTGSKv00q7bbeZfjSo4xDslO9GbeGgQevYdZLKrldeJQFqTGMwJhSu09MzWG
-	E
-X-Google-Smtp-Source: AGHT+IG1xXX60P1E9wvgTOwUcYJgL8esE8Tn4P1CwLs2NJhb1wxXIfMRpHq7hOsXi2L9gkTKKPCiCA==
-X-Received: by 2002:a05:6402:27d1:b0:55f:1311:bebb with SMTP id c17-20020a05640227d100b0055f1311bebbmr3059008ede.26.1706600959660;
-        Mon, 29 Jan 2024 23:49:19 -0800 (PST)
-Received: from [192.168.1.20] ([178.197.222.62])
-        by smtp.gmail.com with ESMTPSA id fj11-20020a0564022b8b00b0055c69e0751fsm4501758edb.3.2024.01.29.23.49.18
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 29 Jan 2024 23:49:19 -0800 (PST)
-Message-ID: <97ff8fd2-14b7-427e-8ca2-8da42bfcb53e@linaro.org>
-Date: Tue, 30 Jan 2024 08:49:17 +0100
+	s=arc-20240116; t=1706601123; c=relaxed/simple;
+	bh=GLh8dsTxNo9L/3+mC7DJTQzGc6JkyJok3IVl4QHNXYU=;
+	h=From:To:Cc:Subject:In-Reply-To:References:Date:Message-ID:
+	 MIME-Version:Content-Type; b=RngDFqS0x4Toe4i2/3+MwiNo9+MeGR7TinF+RDmEWjBzQBiahBCR6EtpqkmI3xk6RwCDCUzJnEqKAV1jI7Ir8HMtWeBXaktPCeuPqRqrfrSIbG/9ulqio3pF4/5jDcHEXceaHFlOAzWNeN3zE3zQre3i1WfnVbKW9GLFjXxXf3w=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=FWMHD4uk; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id B316EC43390;
+	Tue, 30 Jan 2024 07:52:02 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1706601123;
+	bh=GLh8dsTxNo9L/3+mC7DJTQzGc6JkyJok3IVl4QHNXYU=;
+	h=From:To:Cc:Subject:In-Reply-To:References:Date:From;
+	b=FWMHD4ukg84VQQPcUzdvYkTpZEolvS89PLEDeqEObNoHN6dL7wtbGcKftgA5f0MnW
+	 uck/JCMbyizznWP9cehzht1F7w3uyMnGd59ivYIhMQrNY/kdrHevXcgDae+uAzjbfV
+	 SHzW91Hnj4ixeD1cFhI7ivDYTkGxdJypmFkNCjRz8Mce3Ax6SIygyjfzJ7KuzAMGU1
+	 xBy+9KZ7NQ7/rlbKIViFDqfVMM16BBLd5XgHkRlDOaJ2WKUnVJYI35CKEaJ/5YDnWT
+	 HKh5jfb388949enb8epNogYKvqi7b9ve3VWDIkKwMV/fZIs9oySE6JSqz69xM2MRJK
+	 vjE8q+tzh/h9A==
+From: =?utf-8?B?QmrDtnJuIFTDtnBlbA==?= <bjorn@kernel.org>
+To: Anup Patel <apatel@ventanamicro.com>, Palmer Dabbelt
+ <palmer@dabbelt.com>, Paul Walmsley <paul.walmsley@sifive.com>, Thomas
+ Gleixner <tglx@linutronix.de>, Rob Herring <robh+dt@kernel.org>, Krzysztof
+ Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Frank Rowand
+ <frowand.list@gmail.com>, Conor Dooley <conor+dt@kernel.org>
+Cc: Anup Patel <apatel@ventanamicro.com>, devicetree@vger.kernel.org,
+ Saravana Kannan <saravanak@google.com>, Marc Zyngier <maz@kernel.org>,
+ Anup Patel <anup@brainfault.org>, linux-kernel@vger.kernel.org, Atish
+ Patra <atishp@atishpatra.org>, linux-riscv@lists.infradead.org,
+ linux-arm-kernel@lists.infradead.org, Andrew Jones
+ <ajones@ventanamicro.com>
+Subject: Re: [PATCH v12 00/25] Linux RISC-V AIA Support
+In-Reply-To: <87r0hzuw87.fsf@all.your.base.are.belong.to.us>
+References: <20240127161753.114685-1-apatel@ventanamicro.com>
+ <87r0hzuw87.fsf@all.your.base.are.belong.to.us>
+Date: Tue, 30 Jan 2024 08:52:00 +0100
+Message-ID: <87le87uulb.fsf@all.your.base.are.belong.to.us>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 1/2] ARM: dts: qcom: msm8960: Add gsbi3 node
-Content-Language: en-US
-To: guptarud@gmail.com, Bjorn Andersson <andersson@kernel.org>,
- Konrad Dybcio <konrad.dybcio@linaro.org>, Rob Herring <robh+dt@kernel.org>,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Conor Dooley <conor+dt@kernel.org>
-Cc: linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org
-References: <20240129-expressatt_mxt224s_touchscreen-v1-0-fb8552e1c32c@gmail.com>
- <20240129-expressatt_mxt224s_touchscreen-v1-1-fb8552e1c32c@gmail.com>
-From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
- 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
- D2GYIS41Kv4Isx2dEFh+/Q==
-In-Reply-To: <20240129-expressatt_mxt224s_touchscreen-v1-1-fb8552e1c32c@gmail.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
 
-On 30/01/2024 03:43, Rudraksha Gupta via B4 Relay wrote:
-> From: Rudraksha Gupta <guptarud@gmail.com>
-> 
-> Copy gsbi3 node from qcom-apq8064.dtsi and set appropriate properties
-> 
-> Signed-off-by: Rudraksha Gupta <guptarud@gmail.com>
-> ---
->  arch/arm/boot/dts/qcom/qcom-msm8960-pins.dtsi | 29 +++++++++++++++++++++++++++
->  arch/arm/boot/dts/qcom/qcom-msm8960.dtsi      | 27 +++++++++++++++++++++++++
->  2 files changed, 56 insertions(+)
-> 
-> diff --git a/arch/arm/boot/dts/qcom/qcom-msm8960-pins.dtsi b/arch/arm/boot/dts/qcom/qcom-msm8960-pins.dtsi
-> new file mode 100644
-> index 000000000000..c74c6625d276
-> --- /dev/null
-> +++ b/arch/arm/boot/dts/qcom/qcom-msm8960-pins.dtsi
-> @@ -0,0 +1,29 @@
-> +// SPDX-License-Identifier: GPL-2.0-only
-> +
-> +&msmgpio {
-> +	i2c3_pins: i2c3 {
-> +		mux {
-> +			pins = "gpio16", "gpio17";
-> +			function = "gsbi3";
-> +		};
-> +
-> +		pinconf {
-> +			pins = "gpio16", "gpio17";
-> +			drive-strength = <8>;
-> +			bias-disable;
-> +		};
-> +	};
-> +
-> +	i2c3_pins_sleep: i2c3_pins_sleep {
+Bj=C3=B6rn T=C3=B6pel <bjorn@kernel.org> writes:
 
+> Anup Patel <apatel@ventanamicro.com> writes:
+>
+>> The RISC-V AIA specification is ratified as-per the RISC-V international
+>> process. The latest ratified AIA specifcation can be found at:
+>> https://github.com/riscv/riscv-aia/releases/download/1.0/riscv-interrupt=
+s-1.0.pdf
+>>
+>> At a high-level, the AIA specification adds three things:
+>> 1) AIA CSRs
+>>    - Improved local interrupt support
+>> 2) Incoming Message Signaled Interrupt Controller (IMSIC)
+>>    - Per-HART MSI controller
+>>    - Support MSI virtualization
+>>    - Support IPI along with virtualization
+>> 3) Advanced Platform-Level Interrupt Controller (APLIC)
+>>    - Wired interrupt controller
+>>    - In MSI-mode, converts wired interrupt into MSIs (i.e. MSI generator)
+>>    - In Direct-mode, injects external interrupts directly into HARTs
+>>
+>> For an overview of the AIA specification, refer the AIA virtualization
+>> talk at KVM Forum 2022:
+>> https://static.sched.com/hosted_files/kvmforum2022/a1/AIA_Virtualization=
+_in_KVM_RISCV_final.pdf
+>> https://www.youtube.com/watch?v=3Dr071dL8Z0yo
+>>
+>> To test this series, use QEMU v7.2 (or higher) and OpenSBI v1.2 (or high=
+er).
+>>
+>> These patches can also be found in the riscv_aia_v12 branch at:
+>> https://github.com/avpatel/linux.git
+>>
+>> Changes since v11:
+>>  - Rebased on Linux-6.8-rc1
+>>  - Included kernel/irq related patches from "genirq, irqchip: Convert ARM
+>>    MSI handling to per device MSI domains" series by Thomas.
+>>    (PATCH7, PATCH8, PATCH9, PATCH14, PATCH16, PATCH17, PATCH18, PATCH19,
+>>     PATCH20, PATCH21, PATCH22, PATCH23, and PATCH32 of
+>>     https://lore.kernel.org/linux-arm-kernel/20221121135653.208611233@li=
+nutronix.de/)
+>>  - Updated APLIC MSI-mode driver to use the new WIRED_TO_MSI mechanism.
+>>  - Updated IMSIC driver to support per-device MSI domains for PCI and
+>>    platform devices.
+>
+> Thanks for working on this, Anup! I'm still reviewing the patches.
+>
+> I'm hitting a boot hang in text patching, with this series applied on
+> 6.8-rc2. IPI issues?
 
-No underscores in node names.
-
-It does not look like you tested the DTS against bindings. Please run
-`make dtbs_check W=1` (see
-Documentation/devicetree/bindings/writing-schema.rst or
-https://www.linaro.org/blog/tips-and-tricks-for-validating-devicetree-sources-with-the-devicetree-schema/
-for instructions).
-
-
-> +		mux {
-> +			pins = "gpio16", "gpio17";
-> +			function = "gpio";
-> +		};
-> +
-> +		pinconf {
-> +			pins = "gpio16", "gpio17";
-> +			drive-strength = <2>;
-> +			bias-bus-hold;
-> +		};
-> +	};
-> +};
-> diff --git a/arch/arm/boot/dts/qcom/qcom-msm8960.dtsi b/arch/arm/boot/dts/qcom/qcom-msm8960.dtsi
-> index f420740e068e..62a5a9622e82 100644
-> --- a/arch/arm/boot/dts/qcom/qcom-msm8960.dtsi
-> +++ b/arch/arm/boot/dts/qcom/qcom-msm8960.dtsi
-> @@ -359,5 +359,32 @@ usb_hs1_phy: phy {
->  				};
->  			};
->  		};
-> +
-> +		gsbi3: gsbi@16200000 {
-> +			status = "disabled";
-
-Please order the properties according to DTS coding style:
-https://www.kernel.org/doc/html/latest/devicetree/bindings/dts-coding-style.html#order-of-properties-in-device-node
-
-
-Best regards,
-Krzysztof
-
+Not text patching! One cpu spinning in smp_call_function_many_cond() and
+the others are in cpu_relax(). Smells like IPI...
 
