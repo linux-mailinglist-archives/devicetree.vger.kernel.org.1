@@ -1,212 +1,143 @@
-Return-Path: <devicetree+bounces-36652-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-36653-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 62E28842278
-	for <lists+devicetree@lfdr.de>; Tue, 30 Jan 2024 12:14:06 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 91EF38422D0
+	for <lists+devicetree@lfdr.de>; Tue, 30 Jan 2024 12:21:50 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id D0A571F2A823
-	for <lists+devicetree@lfdr.de>; Tue, 30 Jan 2024 11:14:05 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 32CB61F2A9C2
+	for <lists+devicetree@lfdr.de>; Tue, 30 Jan 2024 11:21:50 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A5C9267A0F;
-	Tue, 30 Jan 2024 11:13:20 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 19D746774C;
+	Tue, 30 Jan 2024 11:18:44 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=9elements.com header.i=@9elements.com header.b="gN5nViwy"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-yw1-f170.google.com (mail-yw1-f170.google.com [209.85.128.170])
+Received: from mail-ej1-f52.google.com (mail-ej1-f52.google.com [209.85.218.52])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6621E67748;
-	Tue, 30 Jan 2024 11:13:18 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.170
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D04ED66B38
+	for <devicetree@vger.kernel.org>; Tue, 30 Jan 2024 11:18:40 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.52
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1706613200; cv=none; b=Ibn3RXibcmdpjj72FVcvc/IOeOxloY4jQYSCRJ5KlneYxpWzGaLzeaPtfsNPAUjA5HXjfJf5Rq+BIvIcA3cyuoj9HoJ2AfMmD41pmkSG2xh26W4LmCyrHWBBCwwM3y74Ylcx5QtHKLYvaPdT77ktf4Qswn+b7nWK345ngt3/Wz0=
+	t=1706613524; cv=none; b=cl4Jer7E9CPRIiNxah+cM/wLRor9dzUXywqpRQBYoqdjz/HXb0yI0nhU2fT39zGwmE+5WIkVjdcIRCycW69jksZr9WXNJ/Y+qts0SYlnKPqBVNBZBP+arRUABV+P8svdytaOKuTFwELG5d4a7gCH9uazpB34Z67OxfiR19gwycs=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1706613200; c=relaxed/simple;
-	bh=tupRPT8v13/TtFaHOdEjRvt+jnR39S3ZzkN2bKcyr2c=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=MfewAZH/0wjLEJdYzvbY5W8DcX4QvmMTI5pF1SW8Bhx1b9kLUcUCFoufuRdBLLFYiQfcrzGpklNa+rEz1nTj9NwmaJSGr+aaa5zv2T0j6kiGG6UXpJ8mIHkRg9cdzsNAKgpp3I5JsBcVKjAJsfWHYovEVN3gzRwNrBP11CTDhKY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org; spf=pass smtp.mailfrom=gmail.com; arc=none smtp.client-ip=209.85.128.170
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-yw1-f170.google.com with SMTP id 00721157ae682-602cab8d7c9so41227417b3.0;
-        Tue, 30 Jan 2024 03:13:18 -0800 (PST)
+	s=arc-20240116; t=1706613524; c=relaxed/simple;
+	bh=kGS2YlYpwkaMeLuYA2ZJo9VryN5LNnd/3OS8jgCksRU=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=f4ZykxPuOrQ4YcPNmTpDQez94g97kW1JH7xSzfBX+1odustT99xmjcvCnkiE88a4AIPTi676u4WjaWuujj6GhRhqG5jBga1cCxDrZ2NsHIa/srp++H6a/jqSg79pBve5BmzQkDYCTgZhIZ6+KL+MEbcJebtSaY3MyFX+nUIR0hM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=9elements.com; spf=pass smtp.mailfrom=9elements.com; dkim=pass (2048-bit key) header.d=9elements.com header.i=@9elements.com header.b=gN5nViwy; arc=none smtp.client-ip=209.85.218.52
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=9elements.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=9elements.com
+Received: by mail-ej1-f52.google.com with SMTP id a640c23a62f3a-a363961b96aso34780566b.3
+        for <devicetree@vger.kernel.org>; Tue, 30 Jan 2024 03:18:40 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=9elements.com; s=google; t=1706613519; x=1707218319; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=FOtNl4cKe7GBawJQPo+KdaP0XIGpVVB++fTiPzkFZX0=;
+        b=gN5nViwyIq+mAad0AUgZIWiljRPN7K0k1UbDJ9u8WH6WZjj6luj3ynXhHB5CdB2Pgz
+         +7qeAFesteomf5lysPqhVXl6Qk4hUyVUUBUPQINMso0AsWlVxO/koPk6dBvCFQ+1D7Pw
+         nMlKJrq4ogmajAi0yynsCeMe6Zv58+4pKzT26BHMYGZ2XHRAQZsffftTGrlvEIVOVdBM
+         NTxmb/eiTa/Bc9tx9mo02bdEFPlyAOk38jfErBl2ayqn8w2GxMZaMR1kx3fBBy54e6z8
+         BYpm78YD5dIYTg/XCSR88aU4O+2gZQb7vj1ILZl5ZQ2WuGXoOT8CZ1ZTzisfTDYWRVPo
+         oWxA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1706613197; x=1707217997;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=FkhfesWc3cXNhR9I+0Gdhjj1m+D34LXlFioNPsh2mdQ=;
-        b=LP4Q2G8yKjxm1V23cchdw/AxqArU0By5PU8fqhQP+p0mCJqr8PKvbL+q6p3KlLVERN
-         occsI8aV01TqTnBa3u8xjCYh6ZWbmDu+P/0jmsYGU6FPqgSvM/I2Cdf/lYYB2nImiV1s
-         sadsA92fukCXx09ikmXC/XrgTZeKilMO2xMAyEZC/EqYgmC6c25QTkaOxHaEse2HO/4L
-         2j48+mAoZoEjAV+gi7pKC8o9/reWa2TYlPFmzusIDRPIgCk3+qhgZql/5pbSswrRh+Sq
-         D1YuOev1SUSWeXsgmykNrmbNp1/zf7EPtYpCe17WzixsC/Iin+NY1sQ8hYHCzZ94EgrZ
-         jbNg==
-X-Gm-Message-State: AOJu0YzcQNYMvb72P4BcYj1NdrDhGdMrZbldbAaonDnZCqcY8vf/VQd8
-	bxuQezvZHiImiClvTGbXukgYWIUqRXFPhSIISs+MtNHjK0tN27NldsNIeFIsM1Q=
-X-Google-Smtp-Source: AGHT+IFDBh3pHQ3m10EJEXl7Fy1Qfik51C6DyUKrBQ1PIZC7ZFRrGTR0oFzfDU8mnmZYFoLG5OIqSQ==
-X-Received: by 2002:a81:430c:0:b0:5fb:906b:548 with SMTP id q12-20020a81430c000000b005fb906b0548mr5289704ywa.14.1706613196969;
-        Tue, 30 Jan 2024 03:13:16 -0800 (PST)
-Received: from mail-yw1-f179.google.com (mail-yw1-f179.google.com. [209.85.128.179])
-        by smtp.gmail.com with ESMTPSA id w69-20020a0dd448000000b005f66a83db14sm3142296ywd.131.2024.01.30.03.13.16
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 30 Jan 2024 03:13:16 -0800 (PST)
-Received: by mail-yw1-f179.google.com with SMTP id 00721157ae682-603edb4c126so8213327b3.3;
-        Tue, 30 Jan 2024 03:13:16 -0800 (PST)
-X-Received: by 2002:a0d:ff04:0:b0:5ff:a8da:5a5a with SMTP id
- p4-20020a0dff04000000b005ffa8da5a5amr5698698ywf.5.1706613196494; Tue, 30 Jan
- 2024 03:13:16 -0800 (PST)
+        d=1e100.net; s=20230601; t=1706613519; x=1707218319;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=FOtNl4cKe7GBawJQPo+KdaP0XIGpVVB++fTiPzkFZX0=;
+        b=t1rCJgvW1b5WsRhz60hQ+mIB5YT93wvhu9bCYO1gkpeERvKt72ZiwnrFzonAxSFwcH
+         Br0R1LMJE8rrdstj4HtHd0EnfaL/NmGTEV1lHAS+bFnmsICCqxumdnTs/7CdTWO9KJHa
+         4oMcyJBNgxNo9Jvw0rmhtu/kX1+Q9ZLlls4/xTpcksvVz+O3Qt4o6oE0pkhUgACpw5cV
+         xsS5wgz4LsNTwN/4DtJp6q5+C2450LeHiQEPk4bv+ByD6Kdik1BEnKPa3lX0jbZMBb3t
+         jue3AU4O5ggXZZ6LXIJtaeJpYQKReiV+jaoA3cFbNVXoRcXC8QbchQwjlXHk3cJhWsJk
+         mt7A==
+X-Gm-Message-State: AOJu0Yy8xo40Bm/WMuHAXSSF8kVnhYlqHCaAdjlbBBOjMvipMpgQDh0M
+	cNsitVTIR1hPPWLAZ5GXIGbP/6FGDLZU99NJwCn5KH5/fSegRZSlrMsM6dIbRqw=
+X-Google-Smtp-Source: AGHT+IH/ny2CqOMsS25PWFkZVT2GcF7qm5uWsJ1Y+uwbTDUyS9YsNWk+xyeJG3SSE0spkJqW8yAFog==
+X-Received: by 2002:a17:906:6882:b0:a36:3d9d:59e4 with SMTP id n2-20020a170906688200b00a363d9d59e4mr392530ejr.64.1706613518942;
+        Tue, 30 Jan 2024 03:18:38 -0800 (PST)
+Received: from stroh80.sec.9e.network (ip-078-094-000-051.um19.pools.vodafone-ip.de. [78.94.0.51])
+        by smtp.gmail.com with ESMTPSA id h14-20020a17090634ce00b00a35a11fd795sm2559079ejb.129.2024.01.30.03.18.37
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 30 Jan 2024 03:18:38 -0800 (PST)
+From: Naresh Solanki <naresh.solanki@9elements.com>
+To: Peter Rosin <peda@axentia.se>,
+	Jonathan Cameron <jic23@kernel.org>,
+	Lars-Peter Clausen <lars@metafoo.de>,
+	Rob Herring <robh+dt@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>
+Cc: mazziesaccount@gmail.com,
+	Naresh Solanki <naresh.solanki@9elements.com>,
+	linux-iio@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org
+Subject: [PATCH v2] dt-bindings: iio: afe: voltage-divider: Add io-channel-cells
+Date: Tue, 30 Jan 2024 16:48:29 +0530
+Message-ID: <20240130111830.4016002-1-naresh.solanki@9elements.com>
+X-Mailer: git-send-email 2.42.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20240129151618.90922-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
- <20240129151618.90922-2-prabhakar.mahadev-lad.rj@bp.renesas.com> <20240129-magical-unclaimed-e725e2491ccb@spud>
-In-Reply-To: <20240129-magical-unclaimed-e725e2491ccb@spud>
-From: Geert Uytterhoeven <geert@linux-m68k.org>
-Date: Tue, 30 Jan 2024 12:13:05 +0100
-X-Gmail-Original-Message-ID: <CAMuHMdVhXh_Cd8m00xfVRB9JA8Mfb9+qccu94iVpUMS2z5kmUQ@mail.gmail.com>
-Message-ID: <CAMuHMdVhXh_Cd8m00xfVRB9JA8Mfb9+qccu94iVpUMS2z5kmUQ@mail.gmail.com>
-Subject: Re: [PATCH 1/5] dt-bindings: interrupt-controller:
- renesas,rzg2l-irqc: Document RZ/Five SoC
-To: Prabhakar <prabhakar.csengg@gmail.com>
-Cc: Conor Dooley <conor@kernel.org>, Thomas Gleixner <tglx@linutronix.de>, 
-	Rob Herring <robh+dt@kernel.org>, 
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Magnus Damm <magnus.damm@gmail.com>, linux-renesas-soc@vger.kernel.org, 
-	devicetree@vger.kernel.org, linux-riscv@lists.infradead.org, 
-	linux-kernel@vger.kernel.org, Biju Das <biju.das.jz@bp.renesas.com>, 
-	Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>, 
-	Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Transfer-Encoding: 8bit
 
-Hi Prabhakar,
+voltage-divider is always an iio consumer at the same time it is
+optionally an iio provider.
+Hence add #io-channel-cells
+Also update example.
 
-On Mon, Jan 29, 2024 at 6:30=E2=80=AFPM Conor Dooley <conor@kernel.org> wro=
-te:
-> On Mon, Jan 29, 2024 at 03:16:14PM +0000, Prabhakar wrote:
-> > From: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
-> >
-> > Document RZ/Five (R9A07G043F) IRQC bindings. The IRQC block on RZ/Five =
-SoC
-> > is almost identical to one found on the RZ/G2L SoC with below differenc=
-es,
-> > * Additional BUS error interrupt
-> > * Additional ECCRAM error interrupt
-> > * Has additional mask control registers for NMI/IRQ/TINT
-> >
-> > Hence new compatible string "renesas,r9a07g043f-irqc" is added for RZ/F=
-ive
-> > SoC.
-> >
-> > Signed-off-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+Signed-off-by: Naresh Solanki <naresh.solanki@9elements.com>
+---
+ .../bindings/iio/afe/voltage-divider.yaml          | 14 +++++++++++++-
+ 1 file changed, 13 insertions(+), 1 deletion(-)
 
-Thanks for your patch!
+diff --git a/Documentation/devicetree/bindings/iio/afe/voltage-divider.yaml b/Documentation/devicetree/bindings/iio/afe/voltage-divider.yaml
+index dddf97b50549..09f10d7c4e02 100644
+--- a/Documentation/devicetree/bindings/iio/afe/voltage-divider.yaml
++++ b/Documentation/devicetree/bindings/iio/afe/voltage-divider.yaml
+@@ -39,6 +39,13 @@ properties:
+     description: |
+       Channel node of a voltage io-channel.
+ 
++  '#io-channel-cells':
++    description:
++      In addition to consuming the measurement services of an ADC,
++      the voltage divider can act as an provider of measurement
++      services to other devices.
++    const: 1
++
+   output-ohms:
+     description:
+       Resistance Rout over which the output voltage is measured. See full-ohms.
+@@ -75,12 +82,17 @@ examples:
+             spi-max-frequency = <1000000>;
+         };
+     };
+-    sysv {
++    p12v_vd: sysv {
+         compatible = "voltage-divider";
+         io-channels = <&maxadc 1>;
++        #io-channel-cells = <1>;
+ 
+         /* Scale the system voltage by 22/222 to fit the ADC range. */
+         output-ohms = <22>;
+         full-ohms = <222>; /* 200 + 22 */
+     };
++    iio-hwmon {
++        compatible = "iio-hwmon";
++        io-channels = <&p12v_vd 0>;
++    };
+ ...
 
-> > --- a/Documentation/devicetree/bindings/interrupt-controller/renesas,rz=
-g2l-irqc.yaml
-> > +++ b/Documentation/devicetree/bindings/interrupt-controller/renesas,rz=
-g2l-irqc.yaml
-> > @@ -23,6 +23,7 @@ properties:
-> >    compatible:
-> >      items:
-> >        - enum:
-> > +          - renesas,r9a07g043f-irqc   # RZ/Five
-> >            - renesas,r9a07g043u-irqc   # RZ/G2UL
-> >            - renesas,r9a07g044-irqc    # RZ/G2{L,LC}
-> >            - renesas,r9a07g054-irqc    # RZ/V2L
-> > @@ -88,6 +89,12 @@ properties:
-> >        - description: GPIO interrupt, TINT30
-> >        - description: GPIO interrupt, TINT31
-> >        - description: Bus error interrupt
-> > +      - description: ECCRAM0 TIE1 interrupt
+base-commit: 861c0981648f5b64c86fd028ee622096eb7af05a
+-- 
+2.42.0
 
-ECCRAM0 1bit error interrupt?
-
-> > +      - description: ECCRAM0 TIE2 interrupt
-
-ECCRAM0 2bit error interrupt?
-
-> > +      - description: ECCRAM0 overflow interrupt
-
-ECCRAM0 error overflow interrupt?
-
-> > +      - description: ECCRAM1 TIE1 interrupt
-> > +      - description: ECCRAM1 TIE2 interrupt
-> > +      - description: ECCRAM1 overflow interrupt
-
-Likewise.
-
-> >    interrupt-names:
-> >      minItems: 41
-> > @@ -134,6 +141,12 @@ properties:
-> >        - const: tint30
-> >        - const: tint31
-> >        - const: bus-err
-> > +      - const: eccram0-tie1
-> > +      - const: eccram0-tie2
-> > +      - const: eccram0-ovf
-> > +      - const: eccram1-tie1
-> > +      - const: eccram1-tie2
-> > +      - const: eccram1-ovf
-
-Why not use the naming from the docs (all 6 include "ti")?
-EC7TIE1_0, EC7TIE2_0, EC7TIOVF_0, EC7TIE1_1, EC7TIE2_1, EC7TIOVF_1
-=3D> ec7tie1-0, ec7tie2-0, ec7tiovf-0, ...?
-
-> I think the restrictions already in the file become incorrect with this
-> patch:
->   - if:
->       properties:
->         compatible:
->           contains:
->             enum:
->               - renesas,r9a07g043u-irqc
->               - renesas,r9a08g045-irqc
->     then:
->       properties:
->         interrupts:
->           minItems: 42
->         interrupt-names:
->           minItems: 42
->       required:
->         - interrupt-names
->
-> This used to require all 42 interrupts for the two compatibles here
-> and at least the first 41 otherwise. Now you've increased the number of
-> interrupts to 48 thereby removing the upper limits on the existing
-> devices.
-
-I'm gonna repeat (and extend) my question from [1]: How come we thought
-RZ/G2L and RZ/V2L do not have the bus error and ECCRAM interrupts?
-Looks like most of the conditional handling can be removed (see below).
-
-> Given the commit message, I figure that providing 48 interrupts for
-> (at least some of) those devices would be incorrect?
-
-Looks like all of RZ/G2L{,C}, RZ/V2L, RZ/G2UL, and RZ/Five support
-all 48 interrupts.  RZ/G3S lacks the final three for ECCRAM1.
-
-[1] "Re: [PATCH v3 8/9] dt-bindings: interrupt-controller:
-renesas,rzg2l-irqc: Document RZ/G3S"
-https://lore.kernel.org/r/CAMuHMdX88KRnvJchUwrWcgmPooAESOT2492Nr1Z_5UMng3q_=
-_Q@mail.gmail.com
-
-Gr{oetje,eeting}s,
-
-                        Geert
-
---=20
-Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k=
-.org
-
-In personal conversations with technical people, I call myself a hacker. Bu=
-t
-when I'm talking to journalists I just say "programmer" or something like t=
-hat.
-                                -- Linus Torvalds
 
