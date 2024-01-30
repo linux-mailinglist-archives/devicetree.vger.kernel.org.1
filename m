@@ -1,150 +1,146 @@
-Return-Path: <devicetree+bounces-36820-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-36821-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id E913A842C59
-	for <lists+devicetree@lfdr.de>; Tue, 30 Jan 2024 20:07:21 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5D622842C73
+	for <lists+devicetree@lfdr.de>; Tue, 30 Jan 2024 20:13:03 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 9E5BB1F23418
-	for <lists+devicetree@lfdr.de>; Tue, 30 Jan 2024 19:07:21 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 5CDCC1C2457B
+	for <lists+devicetree@lfdr.de>; Tue, 30 Jan 2024 19:13:02 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 47D287AE68;
-	Tue, 30 Jan 2024 19:06:30 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id CAF437AE51;
+	Tue, 30 Jan 2024 19:12:58 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="EMh2DS97"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="HEcaIkvC"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lj1-f169.google.com (mail-lj1-f169.google.com [209.85.208.169])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 013D97AE71;
-	Tue, 30 Jan 2024 19:06:27 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.169
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9B8A27AE45;
+	Tue, 30 Jan 2024 19:12:58 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1706641590; cv=none; b=SgbFjvH4L8i9QkDn5FpzT1ofVIbryx4hcCv/coeoP09bE7iOLxRWWOKIOuCZbTh6rwhw2nXGc07pi9EXtn9vVsNa73/flAS6VFra2bbSGZ2VXwzzRkHEtIIrrclqDBytRNHm+0Zk8w4YamC2xgBMMFueIEPayY10wVDsdZg19kw=
+	t=1706641978; cv=none; b=Lvrvl7glBGV4J0I+Joony2D2+bi+3wPE6SeajzGOZTW3X/bMZaZsf6w2Jw+8rvvlFxah4SWaconVmSDpEXo8AaRYzD53N3V72ty/AOGILhNL37HLsTdUBZ9LOw6mPfH5ZVSjQl5fryXDE9uezPm24SsFmw01m4bJpJv/R3i5PgI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1706641590; c=relaxed/simple;
-	bh=VksIfXIm5eursDB7QN4BdU+LKTo1rpEED6YZzJNhrl0=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=qNvISC6ogYgJYubonVn9u0Ld7EVK3THEssIcWA4QqwSJ5ARPmp/5RUaT1IKVdpj8zEBU1HqfJutxN5u/XRPj2YgeAx9/Ww6vfrCQyJRkU8y3NntYTqWG26p/ze/yO71y8Ro3hgdkP4BXO0xrkgumPGBdODMkHojLq66ekOyNkqI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=EMh2DS97; arc=none smtp.client-ip=209.85.208.169
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-lj1-f169.google.com with SMTP id 38308e7fff4ca-2d0600551ebso8541301fa.2;
-        Tue, 30 Jan 2024 11:06:27 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1706641586; x=1707246386; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=kz5R8751++TIGV14CPH1BLDMs2sQzf7EuaPw8ShjZjA=;
-        b=EMh2DS97//CiG1KD19JajsI7D7a3QGjCioQYJiNq/Xwj6pENiz+SoyesqfL2+4kIUN
-         seDkGzwR7de7DBjMB4J35Gp2eUqZLIAR3qzsrzG46HxUgMGkryUXHAaqQ6VJV/TJQOVi
-         I99TYc/i1dYRVx4scl48ttj/+dREX7UiCOR0QYert/Mr82lM6z1lzU+rf5V00p++6XCc
-         kLQYeQRaALueGdgxGwyes/HevEpb8kdEimt3mvspqD6yWyEDCc6iZEGlDwX5tGOhtnJK
-         WKo8QijNdH6x2IsXB0fu8I7h6mR0CBYQHKNNym9izV51d43yG7pPujyebruubrY6RuzZ
-         siYA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1706641586; x=1707246386;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=kz5R8751++TIGV14CPH1BLDMs2sQzf7EuaPw8ShjZjA=;
-        b=TGKhA/xOpC8X0sOmssaACE7cZRS/qml3GduEh6ltFD1/c+t/2RSGk34ewoZKNpEj9z
-         2B169M14lI8+y+TZKoPmlTlg4tfFLUBOh+sW6u8ZTbHrQ+HSNc2jgSaePad3zzMYVpUB
-         auCRo2Ko9sx1k/8UYDHQgrW06gWJx3jM8BSRHi/nYy7BsgPPFKFEKQX2can0pB/SJw4+
-         GhGUeGQ7SmFk0iVaA3HHV6cCcW5SLrnU4AM2b+zNZYpxyhOmjtI2THER14unDoy2IDH+
-         815AvrGKbL2Hy88GPj75Sa9De//qAVZJm5PoxCgOZt6ITjdyyn5BLoCCdniD3f/0CEkD
-         uRXg==
-X-Gm-Message-State: AOJu0YxKmPqseggLujk6qVfd93i7PEpsr9P3EYMld2IXOCahpxKp8Ivr
-	2TA13Fdvffi4JLXd7vVODi1oG82uCUHLpWvIvHKlmV9ta3OP83OLV4VJ+84/
-X-Google-Smtp-Source: AGHT+IGq/0kkkMjJWaJGc/t19XDj/mXpEbDzhvS8RC7I4fDvALCvvgcCU8OYgpxN47xLUWQCljOBdA==
-X-Received: by 2002:a2e:5c88:0:b0:2d0:5925:7e with SMTP id q130-20020a2e5c88000000b002d05925007emr1970000ljb.32.1706641585969;
-        Tue, 30 Jan 2024 11:06:25 -0800 (PST)
-Received: from jernej-laptop.localnet (86-58-14-70.dynamic.telemach.net. [86.58.14.70])
-        by smtp.gmail.com with ESMTPSA id g6-20020a056402320600b0055eec69a5cbsm2979933eda.71.2024.01.30.11.06.24
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 30 Jan 2024 11:06:25 -0800 (PST)
-From: Jernej =?utf-8?B?xaBrcmFiZWM=?= <jernej.skrabec@gmail.com>
-To: linux-kernel@vger.kernel.org, Aren Moynihan <aren@peacevolution.org>
-Cc: Miles Alan <m@milesalan.com>, Ondrej Jirman <megi@xff.cz>,
- Aren Moynihan <aren@peacevolution.org>, Chen-Yu Tsai <wens@csie.org>,
- Conor Dooley <conor+dt@kernel.org>,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Rob Herring <robh+dt@kernel.org>, Samuel Holland <samuel@sholland.org>,
- devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- linux-sunxi@lists.linux.dev
-Subject:
- Re: [PATCH 2/4] arm64: dts: sun50i-a64-pinephone: Retain leds state in
- suspend
-Date: Tue, 30 Jan 2024 20:06:24 +0100
-Message-ID: <4892315.31r3eYUQgx@jernej-laptop>
-In-Reply-To: <20240128204740.2355092-2-aren@peacevolution.org>
-References:
- <20240128204740.2355092-1-aren@peacevolution.org>
- <20240128204740.2355092-2-aren@peacevolution.org>
+	s=arc-20240116; t=1706641978; c=relaxed/simple;
+	bh=nEH6/Gsz/g0ZkEX+gtrP7lVR/DRDDEnivsf7uhE+Q3g=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=urpFEXcIGBgvqlBME77JDwC4i+YDuu8QFcCbzllBkcf+aZ+a7A8jZMHsSVuESrLybqp0m/EnnK+RkCpDWKAd0VKKmcFBP8PP/b4duqDLlOHANSvsKhfuywBIe36mMsZ82RlzeoGgsMtnDWrQ1sQcQvlKCpn98aMOzdOSwBLrqUg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=HEcaIkvC; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id F3008C433F1;
+	Tue, 30 Jan 2024 19:12:57 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1706641978;
+	bh=nEH6/Gsz/g0ZkEX+gtrP7lVR/DRDDEnivsf7uhE+Q3g=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=HEcaIkvCbfbc6JFGId2VCmGC1tw1Hh6yB4i9KzHCCy53Ki1Lg/77lQY5WqUOwCrKf
+	 2Gzm+RmhcKoFO1A0uQ/mMkjhErF5N/5db2CBJptWzB2nRNMSZM6ZqKCX973Bmci/Vx
+	 ijTfGoJ4HWZBwH04NR7+F8dDlKmsT47vaJjG31gl3R1VHm9AU9ANbIyHDH/I0Ehq5a
+	 WFXyFHHw6yXPUrQp/O0pD/h+SbWqVmWjhREwqg7WprbvZXHV4991vODsjdjBEc5sQL
+	 J6K7nzcD7/XNlQ2NZ4a9AmHrz3RvdfjmP8gkFcmuMqBh9d4k74w+FEvjAr7mNrV2gP
+	 lGESch3GpRfLA==
+Date: Tue, 30 Jan 2024 13:12:55 -0600
+From: Rob Herring <robh@kernel.org>
+To: Dharma.B@microchip.com
+Cc: conor@kernel.org, krzk@kernel.org, Manikandan.M@microchip.com,
+	andrzej.hajda@intel.com, neil.armstrong@linaro.org,
+	rfoss@kernel.org, Laurent.pinchart@ideasonboard.com,
+	jonas@kwiboo.se, jernej.skrabec@gmail.com, airlied@gmail.com,
+	daniel@ffwll.ch, maarten.lankhorst@linux.intel.com,
+	mripard@kernel.org, tzimmermann@suse.de,
+	krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
+	dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org, Linux4Microchip@microchip.com
+Subject: Re: [PATCH 1/3] dt-bindings: display: bridge: add sam9x7-lvds
+ compatible
+Message-ID: <20240130191255.GA2164257-robh@kernel.org>
+References: <20240122082947.21645-1-dharma.b@microchip.com>
+ <20240122082947.21645-2-dharma.b@microchip.com>
+ <10a88fc6-2c4c-4f77-850f-f15b21a8ed49@kernel.org>
+ <20240122-privacy-preschool-27dc7dcc5529@spud>
+ <01c4fc05-9b3f-4007-9216-444a4306efd7@microchip.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7Bit
-Content-Type: text/plain; charset="us-ascii"
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <01c4fc05-9b3f-4007-9216-444a4306efd7@microchip.com>
 
-Dne nedelja, 28. januar 2024 ob 21:45:08 CET je Aren Moynihan napisal(a):
-> From: Miles Alan <m@milesalan.com>
+On Tue, Jan 23, 2024 at 03:39:13AM +0000, Dharma.B@microchip.com wrote:
+> Hi Conor,
 > 
-> Allows user to set a led before entering suspend to know that
-> the phone is still on (or could be used for notifications etc.)
+> On 22/01/24 10:07 pm, Conor Dooley wrote:
+> > On Mon, Jan 22, 2024 at 04:51:16PM +0100, Krzysztof Kozlowski wrote:
+> >> On 22/01/2024 09:29, Dharma Balasubiramani wrote:
+> >>> Add the 'sam9x7-lvds' compatible binding, which describes the
+> >>> Low Voltage Differential Signaling (LVDS) Controller found on Microchip's
+> >>> sam9x7 series System-on-Chip (SoC) devices. This binding will be used to
+> >>> define the properties and configuration for the LVDS Controller in DT.
+> >>>
+> >>> Signed-off-by: Dharma Balasubiramani<dharma.b@microchip.com>
+> >>> ---
+> >>>   .../display/bridge/microchip,sam9x7-lvds.yaml | 59 +++++++++++++++++++
+> >>>   1 file changed, 59 insertions(+)
+> >>>   create mode 100644 Documentation/devicetree/bindings/display/bridge/microchip,sam9x7-lvds.yaml
+> >>>
+> >>> diff --git a/Documentation/devicetree/bindings/display/bridge/microchip,sam9x7-lvds.yaml b/Documentation/devicetree/bindings/display/bridge/microchip,sam9x7-lvds.yaml
+> >>> new file mode 100644
+> >>> index 000000000000..8c2c5b858c85
+> >>> --- /dev/null
+> >>> +++ b/Documentation/devicetree/bindings/display/bridge/microchip,sam9x7-lvds.yaml
+> >>> @@ -0,0 +1,59 @@
+> >>> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> >>> +%YAML 1.2
+> >>> +---
+> >>> +$id:http://devicetree.org/schemas/display/bridge/microchip,sam9x7-lvds.yaml#
+> >>> +$schema:http://devicetree.org/meta-schemas/core.yaml#
+> >>> +
+> >>> +title: Microchip SAM9X7 LVDS Controller
+> >> What is the "X"?
+> >>
+> >>> +
+> >>> +maintainers:
+> >>> +  - Dharma Balasubiramani<dharma.b@microchip.com>
+> >>> +
+> >>> +description: |
+> >> Do not need '|' unless you need to preserve formatting.
+> >>
+> >>> +  The Low Voltage Differential Signaling Controller (LVDSC) manages data
+> >>> +  format conversion from the LCD Controller internal DPI bus to OpenLDI
+> >>> +  LVDS output signals. LVDSC functions include bit mapping, balanced mode
+> >>> +  management, and serializer.
+> >>> +
+> >>> +properties:
+> >>> +  compatible:
+> >>> +    const: microchip,sam9x7-lvds
+> >> What is "x"? Wildcard? Then no, don't use it and instead use proper SoC
+> >> version number.
+> > These SoCs actually do have an x in their name. However, and I do always
+> > get confused here, the sam9x7 is a series of SoCs (the cover letter does
+> > say this) rather than a specific device.
+> > I think the series current consists of a sam9x70 sam9x72 and a sam9x75.
+> > The devices are largely similar, but I am not sure if the sam9x70
+> > supports LVDS at all. Having a compatible for the series does not seem
+> > correct to me.
+> Yes, you are correct. Only sam9x72 and sam9x75 have LVDS support, while 
+> sam9x70 does not. I will revise the compatibility to include both 
+> sam9x72 and sam9x75, as outlined below:
 > 
-> Signed-off-by: Miles Alan <m@milesalan.com>
-> Signed-off-by: Ondrej Jirman <megi@xff.cz>
-> Signed-off-by: Aren Moynihan <aren@peacevolution.org>
+> properties:
+>    compatible:
+>      enum:
+>        - microchip,sam9x72-lvds
+>        - microchip,sam9x75-lvds
 
-Where is patch 1 and possibly cover letter? Please resend with all patches.
+I would presume these 2 are the same, but the above implies they 
+aren't. I think what you had is fine assuming these are all 
+fundamentally the same part with just packaging or fused off h/w 
+differences.
 
-However, this particular patch is:
-Reviewed-by: Jernej Skrabec <jernej.skrabec@gmail.com>
-
-Best regards,
-Jernej
-
-> ---
-> 
->  arch/arm64/boot/dts/allwinner/sun50i-a64-pinephone.dtsi | 3 +++
->  1 file changed, 3 insertions(+)
-> 
-> diff --git a/arch/arm64/boot/dts/allwinner/sun50i-a64-pinephone.dtsi b/arch/arm64/boot/dts/allwinner/sun50i-a64-pinephone.dtsi
-> index 87847116ab6d..ad2476ee01e4 100644
-> --- a/arch/arm64/boot/dts/allwinner/sun50i-a64-pinephone.dtsi
-> +++ b/arch/arm64/boot/dts/allwinner/sun50i-a64-pinephone.dtsi
-> @@ -43,18 +43,21 @@ led-0 {
->  			function = LED_FUNCTION_INDICATOR;
->  			color = <LED_COLOR_ID_BLUE>;
->  			gpios = <&pio 3 20 GPIO_ACTIVE_HIGH>; /* PD20 */
-> +			retain-state-suspended;
->  		};
->  
->  		led-1 {
->  			function = LED_FUNCTION_INDICATOR;
->  			color = <LED_COLOR_ID_GREEN>;
->  			gpios = <&pio 3 18 GPIO_ACTIVE_HIGH>; /* PD18 */
-> +			retain-state-suspended;
->  		};
->  
->  		led-2 {
->  			function = LED_FUNCTION_INDICATOR;
->  			color = <LED_COLOR_ID_RED>;
->  			gpios = <&pio 3 19 GPIO_ACTIVE_HIGH>; /* PD19 */
-> +			retain-state-suspended;
->  		};
->  	};
->  
-> 
-
-
-
-
+Rob
 
