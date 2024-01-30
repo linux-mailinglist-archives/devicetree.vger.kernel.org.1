@@ -1,194 +1,115 @@
-Return-Path: <devicetree+bounces-36592-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-36586-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 572D5841EA1
-	for <lists+devicetree@lfdr.de>; Tue, 30 Jan 2024 10:03:37 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id B1125841EE2
+	for <lists+devicetree@lfdr.de>; Tue, 30 Jan 2024 10:11:17 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id DB44C1F2A8F6
-	for <lists+devicetree@lfdr.de>; Tue, 30 Jan 2024 09:03:36 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 3815AB27CF2
+	for <lists+devicetree@lfdr.de>; Tue, 30 Jan 2024 08:57:07 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9F1BD58ACF;
-	Tue, 30 Jan 2024 09:03:28 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8A7D357883;
+	Tue, 30 Jan 2024 08:57:00 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="QZ2sbIRk"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="RsgVOy9r"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-pf1-f177.google.com (mail-pf1-f177.google.com [209.85.210.177])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0691E59147;
-	Tue, 30 Jan 2024 09:03:26 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2D58A57866;
+	Tue, 30 Jan 2024 08:56:58 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.177
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1706605408; cv=none; b=NgBvhmDsFLPCKADEdPg8u7uVWdWgqhWVFP7OyRu+3MGz+y+SsfF+sE3rz+XBkjz1kmQ8+ZgbZbY0s6zMTVVj+6BwVwn/hsZSGM2BvLkCaXlBuyxrTBOPPaWVdWEAcTKkcTbfQSKEvPJ68j6ujN5skmlV5Q97RzY9ldU+GPZSBtc=
+	t=1706605020; cv=none; b=kY6m0DKzd/n5MxRbVC3yCXpn6I+6y3jEA8GJyGxAUNDA4RY6jtM6gKh8UFbLLspUqbkh1Dd/aI3z0pd5ZmJKqKniLfqsxO2x23JPKNdYUBa6Mu3+/i7Pu1j+/HkFqm/5WadjJbNyXe4WZvasFy5tw+rIMko+vDfwzQZ6+J8eBcw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1706605408; c=relaxed/simple;
-	bh=Uewh1FnrdtUjaw3IbQp5/cVxlxfhVTRPnk+3maWKx+g=;
-	h=From:To:CC:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=RJ8IVBtl3UvDRYV4RnSL8PuHlQfOqLn6LgRWWQWSoG4q/U0UIUdjSIB1OFIVUzL510sefk7Dm7tVvURl8EgKNiwFQeksjPmXrK8xssaTzRRRFoNrBj0WuT7S18DhrMsJzqK1YODbuvhBEbZwGlM51V//Q45HclrJ+OZms6kiN3s=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=QZ2sbIRk; arc=none smtp.client-ip=205.220.168.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
-Received: from pps.filterd (m0279863.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.17.1.24/8.17.1.24) with ESMTP id 40U6Firp004198;
-	Tue, 30 Jan 2024 09:03:16 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
-	from:to:cc:subject:date:message-id:in-reply-to:references
-	:mime-version:content-type; s=qcppdkim1; bh=eG0cw3V2V7bP1GdeOMsX
-	cfVKOjDgrWaClaMQX8x+Rcc=; b=QZ2sbIRku2RhKBE1ImcUN4yJiln5yf2eSHWm
-	lgfJfvtneSNhSEoL6xTntsQg1ej68YMaF+zK5dH5VLhsDonBWuup2AcJuQgL4Qm7
-	dYVBrUnDW9/4OZqdDsVMGxRzU1JAbvISmiFsblU8aZMZt0MxjH7dnen/NrAOf8E+
-	VDvc3DIMaMziyC8tISA7sqw2Nmex8XjE1koqlbkKyeu6fER75OVY581ujelt5rCa
-	GwXnVxu/LgyCiAAIAHgQ1l389G6ZL5fXZYo3nMfNCsTUqpbsM1es2mHzT1SCy4rv
-	Sf7BFeXvni9zfHiig6lOK43V5x0r9m+BK00Ncib5rzeghpMALA==
-Received: from nalasppmta04.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3vxupk89jq-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Tue, 30 Jan 2024 09:03:16 +0000 (GMT)
-Received: from nalasex01c.na.qualcomm.com (nalasex01c.na.qualcomm.com [10.47.97.35])
-	by NALASPPMTA04.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 40U93FFj025850
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Tue, 30 Jan 2024 09:03:15 GMT
-Received: from taozha-gv.qualcomm.com (10.80.80.8) by
- nalasex01c.na.qualcomm.com (10.47.97.35) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.1118.40; Tue, 30 Jan 2024 01:03:10 -0800
-From: Tao Zhang <quic_taozha@quicinc.com>
-To: Mathieu Poirier <mathieu.poirier@linaro.org>,
-        Suzuki K Poulose
-	<suzuki.poulose@arm.com>,
-        Alexander Shishkin
-	<alexander.shishkin@linux.intel.com>,
-        Konrad Dybcio <konradybcio@gmail.com>,
-        Mike Leach <mike.leach@linaro.org>, Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-CC: Tao Zhang <quic_taozha@quicinc.com>,
-        Jinlong Mao
-	<quic_jinlmao@quicinc.com>, Leo Yan <leo.yan@linaro.org>,
-        Greg Kroah-Hartman
-	<gregkh@linuxfoundation.org>,
-        <coresight@lists.linaro.org>, <linux-arm-kernel@lists.infradead.org>,
-        <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        Tingwei Zhang <quic_tingweiz@quicinc.com>,
-        Yuanfang Zhang <quic_yuanfang@quicinc.com>,
-        Trilok Soni
-	<quic_tsoni@quicinc.com>,
-        Song Chai <quic_songchai@quicinc.com>, <linux-arm-msm@vger.kernel.org>,
-        <andersson@kernel.org>
-Subject: [PATCH v5 01/10] coresight-tpdm: Optimize the store function of tpdm simple dataset
-Date: Tue, 30 Jan 2024 17:02:37 +0800
-Message-ID: <1706605366-31705-2-git-send-email-quic_taozha@quicinc.com>
-X-Mailer: git-send-email 2.7.4
-In-Reply-To: <1706605366-31705-1-git-send-email-quic_taozha@quicinc.com>
-References: <1706605366-31705-1-git-send-email-quic_taozha@quicinc.com>
+	s=arc-20240116; t=1706605020; c=relaxed/simple;
+	bh=Vj6SzlkAD5KT+wFwS+h9MR3mauREpPgWpqHN84lJoaw=;
+	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version; b=oCAxC3SfRvUcWSc4lacxRCZcnYMYeaslbyuORAHvMPDibH7PpQizL7qQSyTFqu5jcb85x5o8BAWiKhKV+G5NCRs/HvraEOWLXynNx0/JhVFJhX65bT1D1sPStaDIEFM8hv0NvNlaXnA2/e4Th/y/0aAFnPy9DhCp4veRejTI9PE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=RsgVOy9r; arc=none smtp.client-ip=209.85.210.177
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-pf1-f177.google.com with SMTP id d2e1a72fcca58-6da202aa138so2243289b3a.2;
+        Tue, 30 Jan 2024 00:56:58 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1706605018; x=1707209818; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=csHtYc18T35qzB25mdonMqPpqm2KB0P8ynV8OZQpVBc=;
+        b=RsgVOy9rDstRcMzC2svkowaacejgwjVf/ZK8TUv1egYexU1RcFVcaGIcxWcp2te8Fh
+         gm9SDhPS8TtIlePAMQXlhoLOkQSJx4UEmAVcOKwBTL+xEnM+m1e06K3aH91EMoatK6YY
+         FNOTaqbpnVoUD8dxGGRXRABzTsJN5DHtwfHmp7Rwrgd+K4I2vZvs5Ea7cFqA5DDfYk4X
+         moetf9nkPMz5CLOfbvGpBHdXs0mo3bshSR/PVgucEh2iKognejo3spwOaT+9KZI8xltL
+         g8ytZWUjS6yYZkbwl+HSMEaDquP+PR1722JOenMUBBD2C64E+X9vpf7gxyZg4AWaT1EU
+         XowA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1706605018; x=1707209818;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=csHtYc18T35qzB25mdonMqPpqm2KB0P8ynV8OZQpVBc=;
+        b=C4vKNn1SMMpCRRe6vkY5DEcJ1zUTRJQbBtY3dMDfeWqT4n7p/t6E0L2mG++2BKEZlc
+         +/SrSPzeBmV8hLP7OD65Ou2x1LMUJJd4bIJ+uuHS9RU/q0wUYCUvfhL4XKWqlteqdMQQ
+         miSwmW0aoWvNoVbiKDXFI+z1uRskaTBF6twfJuCp5jNCds2URnyjM76zhTORIPRl1AAC
+         H4vxqBc5PjppVGhMHpq48Ivx34xDjOCMxVcyqjWSC5ku1vlGQpM90KVhbVatA4rPPo2c
+         rewbYcm8bcG9fDWMVUsHFudNlnyNbi9rEXp1pDtzLfCMiBYlxZesfQxbOu1SRHNTJD11
+         P2Mw==
+X-Gm-Message-State: AOJu0Yyzg6ayPKFCSGA7Jz4sRouF4ChdAVX9//78jShTLPzM7PXxgFiT
+	64uDbofFuodRpuWHFOBzcMnGU3PKWHnrC0GdvRvmd18qE49rtXfg
+X-Google-Smtp-Source: AGHT+IEeEh9/BgmgK6L5VDqDZJ/c+zKQ+BgD48oiN1HRyxWZSnWDQGOjvUOykG0CouswggmIuzdQRw==
+X-Received: by 2002:a05:6a00:2d05:b0:6db:cd50:a716 with SMTP id fa5-20020a056a002d0500b006dbcd50a716mr7165222pfb.1.1706605018330;
+        Tue, 30 Jan 2024 00:56:58 -0800 (PST)
+Received: from localhost.localdomain ([124.218.12.74])
+        by smtp.gmail.com with ESMTPSA id gx20-20020a056a001e1400b006dde04c10dasm7188623pfb.217.2024.01.30.00.56.56
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 30 Jan 2024 00:56:57 -0800 (PST)
+From: Kelly Hung <ppighouse@gmail.com>
+X-Google-Original-From: Kelly Hung <Kelly_Hung@asus.com>
+To: robh+dt@kernel.org
+Cc: krzysztof.kozlowski+dt@linaro.org,
+	conor+dt@kernel.org,
+	joel@jms.id.au,
+	andrew@codeconstruct.com.au,
+	devicetree@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	linux-aspeed@lists.ozlabs.org,
+	linux-kernel@vger.kernel.org,
+	kelly_hung@asus.com,
+	Kelly Hung <Kelly_Hung@asus.com>
+Subject: [PATCH] ARM: dts: aspeed: asus: Add ASUS X4TF BMC
+Date: Tue, 30 Jan 2024 16:56:51 +0800
+Message-Id: <20240130085652.198010-1-Kelly_Hung@asus.com>
+X-Mailer: git-send-email 2.25.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain
-X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
- nalasex01c.na.qualcomm.com (10.47.97.35)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-GUID: cS1pLCpWjv5cc5oxSj_xzyq6q3DPOhMC
-X-Proofpoint-ORIG-GUID: cS1pLCpWjv5cc5oxSj_xzyq6q3DPOhMC
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.272,Aquarius:18.0.1011,Hydra:6.0.619,FMLib:17.11.176.26
- definitions=2024-01-30_03,2024-01-29_01,2023-05-22_02
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 mlxlogscore=881
- malwarescore=0 impostorscore=0 priorityscore=1501 clxscore=1015
- phishscore=0 spamscore=0 bulkscore=0 adultscore=0 suspectscore=0
- mlxscore=0 lowpriorityscore=0 classifier=spam adjust=0 reason=mlx
- scancount=1 engine=8.19.0-2401190000 definitions=main-2401300065
+Content-Transfer-Encoding: 8bit
 
-Replace spin lock/unlock to avoid forgetting to unlock when the
-function exits. And refine methods for handling various conditions.
+This initial device-tree provides the necessary configuration for
+basic BMC functionality and work on ASUS X4TF production.
 
-Signed-off-by: Tao Zhang <quic_taozha@quicinc.com>
+Signed-off-by: Kelly Hung <Kelly_Hung@asus.com>
 ---
- drivers/hwtracing/coresight/coresight-tpdm.c | 39 ++++++++++----------
- 1 file changed, 19 insertions(+), 20 deletions(-)
+ Documentation/devicetree/bindings/arm/aspeed/aspeed.yaml | 1 +
+ 1 file changed, 1 insertion(+)
 
-diff --git a/drivers/hwtracing/coresight/coresight-tpdm.c b/drivers/hwtracing/coresight/coresight-tpdm.c
-index bd13a548375c..0427c0fc0bf3 100644
---- a/drivers/hwtracing/coresight/coresight-tpdm.c
-+++ b/drivers/hwtracing/coresight/coresight-tpdm.c
-@@ -77,51 +77,50 @@ static ssize_t tpdm_simple_dataset_store(struct device *dev,
- 					 size_t size)
- {
- 	unsigned long val;
--	ssize_t ret = size;
-+	ssize_t ret = -EINVAL;
- 
- 	struct tpdm_drvdata *drvdata = dev_get_drvdata(dev->parent);
- 	struct tpdm_dataset_attribute *tpdm_attr =
- 		container_of(attr, struct tpdm_dataset_attribute, attr);
- 
- 	if (kstrtoul(buf, 0, &val))
--		return -EINVAL;
-+		return ret;
- 
--	spin_lock(&drvdata->spinlock);
-+	guard(spinlock)(&drvdata->spinlock);
- 	switch (tpdm_attr->mem) {
- 	case DSB_TRIG_PATT:
--		if (tpdm_attr->idx < TPDM_DSB_MAX_PATT)
-+		if (tpdm_attr->idx < TPDM_DSB_MAX_PATT) {
- 			drvdata->dsb->trig_patt[tpdm_attr->idx] = val;
--		else
--			ret = -EINVAL;
-+			ret = size;
-+		}
- 		break;
- 	case DSB_TRIG_PATT_MASK:
--		if (tpdm_attr->idx < TPDM_DSB_MAX_PATT)
-+		if (tpdm_attr->idx < TPDM_DSB_MAX_PATT) {
- 			drvdata->dsb->trig_patt_mask[tpdm_attr->idx] = val;
--		else
--			ret = -EINVAL;
-+			ret = size;
-+		}
- 		break;
- 	case DSB_PATT:
--		if (tpdm_attr->idx < TPDM_DSB_MAX_PATT)
-+		if (tpdm_attr->idx < TPDM_DSB_MAX_PATT) {
- 			drvdata->dsb->patt_val[tpdm_attr->idx] = val;
--		else
--			ret = -EINVAL;
-+			ret = size;
-+		}
- 		break;
- 	case DSB_PATT_MASK:
--		if (tpdm_attr->idx < TPDM_DSB_MAX_PATT)
-+		if (tpdm_attr->idx < TPDM_DSB_MAX_PATT) {
- 			drvdata->dsb->patt_mask[tpdm_attr->idx] = val;
--		else
--			ret = -EINVAL;
-+			ret = size;
-+		}
- 		break;
- 	case DSB_MSR:
--		if (tpdm_attr->idx < drvdata->dsb_msr_num)
-+		if (tpdm_attr->idx < drvdata->dsb_msr_num) {
- 			drvdata->dsb->msr[tpdm_attr->idx] = val;
--		else
--			ret = -EINVAL;
-+			ret = size;
-+		}
- 		break;
- 	default:
--		ret = -EINVAL;
-+		break;
- 	}
--	spin_unlock(&drvdata->spinlock);
- 
- 	return ret;
- }
+diff --git a/Documentation/devicetree/bindings/arm/aspeed/aspeed.yaml b/Documentation/devicetree/bindings/arm/aspeed/aspeed.yaml
+index 749ee54a3ff8..80009948e14a 100644
+--- a/Documentation/devicetree/bindings/arm/aspeed/aspeed.yaml
++++ b/Documentation/devicetree/bindings/arm/aspeed/aspeed.yaml
+@@ -74,6 +74,7 @@ properties:
+               - ampere,mtmitchell-bmc
+               - aspeed,ast2600-evb
+               - aspeed,ast2600-evb-a1
++              - asus,x4tf
+               - facebook,bletchley-bmc
+               - facebook,cloudripper-bmc
+               - facebook,elbert-bmc
 -- 
-2.17.1
+2.25.1
 
 
