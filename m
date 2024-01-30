@@ -1,282 +1,238 @@
-Return-Path: <devicetree+bounces-36818-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-36819-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 594C4842C28
-	for <lists+devicetree@lfdr.de>; Tue, 30 Jan 2024 19:55:27 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0E30B842C33
+	for <lists+devicetree@lfdr.de>; Tue, 30 Jan 2024 19:58:02 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 7D38E1C217EA
-	for <lists+devicetree@lfdr.de>; Tue, 30 Jan 2024 18:55:26 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 012A8B21F0B
+	for <lists+devicetree@lfdr.de>; Tue, 30 Jan 2024 18:57:59 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id AC1857992F;
-	Tue, 30 Jan 2024 18:55:18 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0F35A7994C;
+	Tue, 30 Jan 2024 18:57:53 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="N5gVK9I+"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="EccT5Ixo"
 X-Original-To: devicetree@vger.kernel.org
-Received: from relay4-d.mail.gandi.net (relay4-d.mail.gandi.net [217.70.183.196])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-yb1-f177.google.com (mail-yb1-f177.google.com [209.85.219.177])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A99B37992D;
-	Tue, 30 Jan 2024 18:55:15 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.70.183.196
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 299FB79946
+	for <devicetree@vger.kernel.org>; Tue, 30 Jan 2024 18:57:50 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.219.177
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1706640918; cv=none; b=WIcxmm1rH6OA3O3HZmcm51ao47axJZIwZAbwGPGILQ4kMtlH0J1aBCPz+CxLqufjMbkolivaIZAwleEYaRjAo/jvAgahcvUPvkn9hKX9Kz+UvsFKtTEcJz6sENn2Q54PiPJJ6+edjUuitHQxe/xuGlkDcpnP6GesRnT9hEjbx/Q=
+	t=1706641073; cv=none; b=s2p5NmvsAO6eLjpjl+nrHdgp+nvafQpqSCqv5PxzHJcxzyVcG46AEX68CB/V3oj4CsxpxA8qHseyxvg8t/3IrCg80ut90JLA7pmRv6FFgMOugB2BC4biUtj1nC87sWJQFqeIfpgx0Uepb0U+UwSwhlerUAtUcH2bRgkYvylfaM8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1706640918; c=relaxed/simple;
-	bh=K6OCEfNXoeLE7q13YNFu+bO9JL2T+WhFDg7I0Idncck=;
-	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=aZMYTuVdQRYTED9OdCwT5h9TI45HPmcLNzHriDI1QMVP85RlFSerKssXbwLy0dfJCZr1EHEPzrRC8MnI7luzw2xpJEJVwpeKTLDMTcFTQte+4UJYbNNhQHm+NBfrgSZnwwwZRkezQFp0KfKE7WkWgUa5lmY2LX51mH7FqKePH30=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=N5gVK9I+; arc=none smtp.client-ip=217.70.183.196
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
-Received: by mail.gandi.net (Postfix) with ESMTPSA id BD35AE0004;
-	Tue, 30 Jan 2024 18:55:07 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
-	t=1706640913;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=zo+y7U6fF32E540j/J6PY7BxhMmSuUIbZmzVgcghKB8=;
-	b=N5gVK9I+lk/0dNGLameBqkHfYwcfbgI+ySBF8S/0qZfgZzoJK0hNnmTZuusOkHP+9CyWdB
-	AMo/FxJ83hhpMGB+DvAEIVXTKv1agm0ch7gw0OlVL+wmiIINYzTxMdqGj2VLztgyfJdLwc
-	CwlNFL9LRXk8+fallnNvS1z1LYwpiqbXKpkUpTBu8yZToa0A1mNb+fmJGypWuqNDZ80PJ1
-	VcgGMIHGV3ZDQQkVYeuSGFoO3QCQJ6d/vYKCfAprNGBPAxcYJe2TosY5t6c25QstSAsgaE
-	AQgUBrda/UDRsuwbVZ51w8AgxzjUqyi9OexJ/O9RLTUE7X5MfEJOJXkyDLfbJQ==
-Date: Tue, 30 Jan 2024 19:55:04 +0100
-From: Miquel Raynal <miquel.raynal@bootlin.com>
-To: David Regan <dregan@broadcom.com>
-Cc: William Zhang <william.zhang@broadcom.com>, dregan@mail.com, Richard
- Weinberger <richard@nod.at>, Vignesh Raghavendra <vigneshr@ti.com>,
- robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
- computersforpeace@gmail.com, kdasu.kdev@gmail.com,
- linux-mtd@lists.infradead.org, devicetree@vger.kernel.org, Linux Kernel
- Mailing List <linux-kernel@vger.kernel.org>, Joel Peshkin
- <joel.peshkin@broadcom.com>, Tomer Yacoby <tomer.yacoby@broadcom.com>, Dan
- Beygelman <dan.beygelman@broadcom.com>, Anand Gore
- <anand.gore@broadcom.com>, Kursad Oney <kursad.oney@broadcom.com>, Florian
- Fainelli <florian.fainelli@broadcom.com>, rafal@milecki.pl,
- bcm-kernel-feedback-list@broadcom.com, andre.przywara@arm.com,
- baruch@tkos.co.il, linux-arm-kernel@lists.infradead.org, Dan Carpenter
- <dan.carpenter@linaro.org>
-Subject: Re: [PATCH v3 10/10] mtd: rawnand: brcmnand: allow for on-die ecc
-Message-ID: <20240130195504.506fb446@xps-13>
-In-Reply-To: <CAA_RMS577vw=QWN9_NHfmWqt+_cDG22tA01aU019CPNjAgHqJQ@mail.gmail.com>
-References: <20240124030458.98408-1-dregan@broadcom.com>
-	<20240124030458.98408-11-dregan@broadcom.com>
-	<20240124184027.712b1e47@xps-13>
-	<CAA_RMS42FaiN+Za1iY12o0YUANH9rJarBTBa=9jNn8x6_g-Fng@mail.gmail.com>
-	<20240126071913.699c3795@xps-13>
-	<CAA_RMS5gX88v_Qt1csgSL_ffMNsqo2G8B164EB_Hg=hXd620eg@mail.gmail.com>
-	<20240129115228.06dc2292@xps-13>
-	<2a3edcf5-7afc-410c-a402-3d8cd3feb1da@broadcom.com>
-	<20240130120155.3cb6feed@xps-13>
-	<CAA_RMS577vw=QWN9_NHfmWqt+_cDG22tA01aU019CPNjAgHqJQ@mail.gmail.com>
-Organization: Bootlin
-X-Mailer: Claws Mail 4.0.0 (GTK+ 3.24.33; x86_64-pc-linux-gnu)
+	s=arc-20240116; t=1706641073; c=relaxed/simple;
+	bh=jAHe/bqbJadmU4TvDkDOaZtMbRENEK4klEwd/zd6gPc=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=C8Hdmlp+ZnWG2DYOREEZo0ipXNbrGzrnPcE9C7Vva/TK+pfetLozLNCmQxGTrjKSqVA5da/ZH+4HTo2Srgf1kXYX9wuOMZKafC4apWf8Zp+jwh137ZL888ADovKuTtPFzUgOOV4exopIaHomBO1v6trOzvmPBLQi1NL/yMUVXvs=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=EccT5Ixo; arc=none smtp.client-ip=209.85.219.177
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-yb1-f177.google.com with SMTP id 3f1490d57ef6-dc6af9a988eso327300276.0
+        for <devicetree@vger.kernel.org>; Tue, 30 Jan 2024 10:57:50 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1706641070; x=1707245870; darn=vger.kernel.org;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=dsbFe8FBaKHb+tw+RNh+eDmmWEjj1nJ8rNLVyRLVN3o=;
+        b=EccT5IxoNTwZL9tmDX7yhKIhB01LFZgSkLRFwwltwD/1SN5qTx80x+4CXOfq1+peYF
+         os/S9/gCcV7eGFRBSdsPSa9tElUmGde2zVOexM56nBIgYUoUX5pCBt/amHyYIf94a+00
+         S68QsxZCe/jW5aF/K+FXuy3sMQu+Tiq9MWgkGznRNmZKf0Xe8+fls0q8/PYuRaXevVfR
+         yQXaQlNPyGGB1pMeGWIKZLUVCNtc8d/0XP3YPWzzPmBsuhSS45RkBtFJ7V51KY0tLNEB
+         S8NaL+MgyAi3c7AztDU9UI4Ox61JlZefmVYmBbSSZiGKOqhO7c4sY/55dExY4I+D+95o
+         ptWg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1706641070; x=1707245870;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=dsbFe8FBaKHb+tw+RNh+eDmmWEjj1nJ8rNLVyRLVN3o=;
+        b=BPg93V4t4dQVdc0pOw390ZhDiWgppLaGYUt6c7JYdCv8TrE1pRxaAqdQmcCWzcqlSb
+         tgPJ/USUxVYZvxA2b4PmZHDlQcl4X2or5qDHdqd50Gw/DU0cNaxJQ3SkLTVuKzVNIjE4
+         SRkf/HQy2C1CR8DEunxRD91Eheu1j9Qo0Gzw6dzXztD5qO1P5pAZZKEf8/MrelBxPDQt
+         IPjRTGtqVMCytJ4pNEiXVA6sBHuTA/KY21sMdJhbpLJtbZ7EcVofGJe2BdfQ9eTs2o+s
+         m3vTHgBb4IAvfJGYsYx7eXXpCDrP3bNrokixJqWLB7V4LJ6DxSb5zlYgvTfH29HDxaCo
+         PYfw==
+X-Gm-Message-State: AOJu0YwCTEo2NdwPAFC08SzyGuuXrnpYpdLHTS2TDV56iqqPvLwgZX5k
+	+Iv8fukLCC9O5F5k5WUKQtEVcX+nqaqqnHikCmGXT7HEAhHExMGNb75tWGjUiJy0HyDXg/OfPVs
+	Q94+A7TE8EM3xFyCDPAeBE5CdPUVwVf+8hJlwhQ==
+X-Google-Smtp-Source: AGHT+IGFbNRvX1c0g7KFMGIUZkFDnCVorda7sQg6uNa6gXQNAmsegdvHK0bMtYtkTHbpwFb96V3zwgnLMs50QEEUTMk=
+X-Received: by 2002:a05:6902:2388:b0:dc2:5573:42df with SMTP id
+ dp8-20020a056902238800b00dc2557342dfmr5697186ybb.25.1706641070040; Tue, 30
+ Jan 2024 10:57:50 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: quoted-printable
-X-GND-Sasl: miquel.raynal@bootlin.com
+References: <cover.1706296015.git.quic_uchalich@quicinc.com>
+ <12bfdd23772c49530b8b0993cc82bc89b3eb4ada.1706296015.git.quic_uchalich@quicinc.com>
+ <CAA8EJppapW5nOFphBWove1ni8nbkA=xHON9D13NYeYHhyqL1Fg@mail.gmail.com>
+ <94b097d4-dcfa-4136-ba75-f665f5bc747d@quicinc.com> <CAA8EJpqa5YArFk893nDz_oibbV=oqGEeYq6_jw582rQs=O_WpA@mail.gmail.com>
+ <30d972b1-9685-408b-a87c-98352c4a2449@quicinc.com>
+In-Reply-To: <30d972b1-9685-408b-a87c-98352c4a2449@quicinc.com>
+From: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+Date: Tue, 30 Jan 2024 20:57:38 +0200
+Message-ID: <CAA8EJprPZThviO0vZfyYz+YShPKxg9YcuOUUCv4B_ePghuB8XA@mail.gmail.com>
+Subject: Re: [PATCH 5/5] soc: qcom: llcc: Add regmap for Broadcast_AND region
+To: Unnathi Chalicheemala <quic_uchalich@quicinc.com>
+Cc: Bjorn Andersson <andersson@kernel.org>, Konrad Dybcio <konrad.dybcio@linaro.org>, 
+	Rob Herring <robh+dt@kernel.org>, 
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, 
+	linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org, kernel@quicinc.com
+Content-Type: text/plain; charset="UTF-8"
 
-Hi David,
-
-dregan@broadcom.com wrote on Tue, 30 Jan 2024 07:26:02 -0800:
-
-> Hi Miquel,
->=20
-> On Tue, Jan 30, 2024 at 3:01=E2=80=AFAM Miquel Raynal <miquel.raynal@boot=
-lin.com> wrote:
+On Tue, 30 Jan 2024 at 19:52, Unnathi Chalicheemala
+<quic_uchalich@quicinc.com> wrote:
+>
+> On 1/29/2024 2:03 PM, Dmitry Baryshkov wrote:
+> > On Mon, 29 Jan 2024 at 20:17, Unnathi Chalicheemala
+> > <quic_uchalich@quicinc.com> wrote:
+> >>
+> >>
+> >>
+> >> On 1/26/2024 12:29 PM, Dmitry Baryshkov wrote:
+> >>> On Fri, 26 Jan 2024 at 21:48, Unnathi Chalicheemala
+> >>> <quic_uchalich@quicinc.com> wrote:
+> >>>>
+> >>>> To support CSR programming, a broadcast interface is used to program
+> >>>> all channels in a single command. Until SM8450 there was only one
+> >>>> broadcast region (Broadcast_OR) used to broadcast write and check
+> >>>> for status bit 0. From SM8450 onwards another broadcast region
+> >>>> (Broadcast_AND) has been added which checks for status bit 1.
+> >>>>
+> >>>> Update llcc_drv_data structure with new regmap for Broadcast_AND
+> >>>> region and initialize regmap for Broadcast_AND region when HW block
+> >>>> version is greater than 4.1 for backwards compatibility.
+> >>>>
+> >>>> Switch from broadcast_OR to broadcast_AND region for checking
+> >>>> status bit 1 as Broadcast_OR region checks only for bit 0.
+> >>>
+> >>> This breaks backwards compatibility with the existing DT files, doesn't it?
+> >>>
+> >>
+> >> It shouldn't as checking for status bit 1 is happening only when the block
+> >> version is greater than 4.1, which is when Broadcast_AND region support
+> >> is added.
 > >
-> > Hi William,
+> > Let me reiterate, please: with the existing DT files. You are patching
+> > DT files in patches 2-4, but this is not enough. DT files are
+> > considered to be ABI. As such old DT files must continue to work with
+> > newer kernels.
 > >
-> > william.zhang@broadcom.com wrote on Tue, 30 Jan 2024 00:11:32 -0800:
-> > =20
-> > > Hi Miquel,
-> > >
-> > > On 1/29/24 02:52, Miquel Raynal wrote: =20
-> > > > Hi David,
-> > > >
-> > > > dregan@broadcom.com wrote on Fri, 26 Jan 2024 11:57:39 -0800:
-> > > > =20
-> > > >> Hi Miqu=C3=A8l,
-> > > >>
-> > > >> On Thu, Jan 25, 2024 at 10:19=E2=80=AFPM Miquel Raynal
-> > > >> <miquel.raynal@bootlin.com> wrote: =20
-> > > >>>
-> > > >>> Hi David,
-> > > >>>
-> > > >>> dregan@broadcom.com wrote on Thu, 25 Jan 2024 11:47:46 -0800: =20
-> > > >>>   >>>> Hi Miqu=C3=A8l, =20
-> > > >>>>
-> > > >>>> On Wed, Jan 24, 2024 at 9:40=E2=80=AFAM Miquel Raynal <miquel.ra=
-ynal@bootlin.com> wrote: =20
-> > > >>>>>
-> > > >>>>> Hi David,
-> > > >>>>>
-> > > >>>>> dregan@broadcom.com wrote on Tue, 23 Jan 2024 19:04:58 -0800: =
-=20
-> > > >>>>>   >>>>>> Allow settings for on-die ecc such that if on-die ECC =
-is selected =20
-> > > >>>>>> don't error out but require ECC strap setting of zero
-> > > >>>>>>
-> > > >>>>>> Signed-off-by: David Regan <dregan@broadcom.com>
-> > > >>>>>> Reviewed-by: William Zhang <william.zhang@broadcom.com>
-> > > >>>>>> ---
-> > > >>>>>> Changes in v3: None
-> > > >>>>>> ---
-> > > >>>>>> Changes in v2:
-> > > >>>>>> - Added to patch series
-> > > >>>>>> ---
-> > > >>>>>>   drivers/mtd/nand/raw/brcmnand/brcmnand.c | 14 ++++++++++----
-> > > >>>>>>   1 file changed, 10 insertions(+), 4 deletions(-)
-> > > >>>>>>
-> > > >>>>>> diff --git a/drivers/mtd/nand/raw/brcmnand/brcmnand.c b/driver=
-s/mtd/nand/raw/brcmnand/brcmnand.c
-> > > >>>>>> index a4e311b6798c..42526f3250c9 100644
-> > > >>>>>> --- a/drivers/mtd/nand/raw/brcmnand/brcmnand.c
-> > > >>>>>> +++ b/drivers/mtd/nand/raw/brcmnand/brcmnand.c
-> > > >>>>>> @@ -2727,9 +2727,11 @@ static int brcmnand_setup_dev(struct br=
-cmnand_host *host)
-> > > >>>>>>        cfg->blk_adr_bytes =3D get_blk_adr_bytes(mtd->size, mtd=
-->writesize);
-> > > >>>>>>
-> > > >>>>>>        if (chip->ecc.engine_type !=3D NAND_ECC_ENGINE_TYPE_ON_=
-HOST) {
-> > > >>>>>> -             dev_err(ctrl->dev, "only HW ECC supported; selec=
-ted: %d\n",
-> > > >>>>>> -                     chip->ecc.engine_type);
-> > > >>>>>> -             return -EINVAL;
-> > > >>>>>> +             if (chip->ecc.strength) {
-> > > >>>>>> +                     dev_err(ctrl->dev, "ERROR!!! HW ECC must=
- be set to zero for non-hardware ECC; selected: %d\n",
-> > > >>>>>> +                             chip->ecc.strength); =20
-> > > >>>>>
-> > > >>>>> Can you use a more formal string? Also clarify it because I don=
-'t
-> > > >>>>> really understand what it leads to. =20
-> > > >>>>
-> > > >>>> How about:
-> > > >>>>
-> > > >>>> dev_err(ctrl->dev, "HW ECC set to %d, must be zero for on-die EC=
-C\n", =20
-> > > >>>
-> > > >>> Actually I am wondering how legitimate this is. Just don't enable=
- the
-> > > >>> on host ECC engine if it's not in use. No need to check the core's
-> > > >>> choice. =20
-> > > >>
-> > > >> Our chip ECC engine will either be on if it's needed or off if it'=
-s not.
-> > > >> Either I can do that in one place or put checks in before each
-> > > >> read/write to turn on/off the ECC engine, which seems a lot more
-> > > >> work and changes and possible issues/problems.
-> > > >> Turning it on/off as needed has not been explicitly tested and
-> > > >> could cause unforeseen consequences. This
-> > > >> is a minimal change which should have minimal impact.
-> > > >> =20
-> > > >>>   >>>>   >>>>>   >>>>>> +                     return -EINVAL; =20
-> > > >>>>>> +             }
-> > > >>>>>>        }
-> > > >>>>>>
-> > > >>>>>>        if (chip->ecc.algo =3D=3D NAND_ECC_ALGO_UNKNOWN) {
-> > > >>>>>> @@ -2797,7 +2799,11 @@ static int brcmnand_setup_dev(struct br=
-cmnand_host *host)
-> > > >>>>>>        if (ret)
-> > > >>>>>>                return ret;
-> > > >>>>>>
-> > > >>>>>> -     brcmnand_set_ecc_enabled(host, 1);
-> > > >>>>>> +     if (chip->ecc.engine_type =3D=3D NAND_ECC_ENGINE_TYPE_ON=
-_DIE) {
-> > > >>>>>> +             dev_dbg(ctrl->dev, "Disable HW ECC for on-die EC=
-C\n"); =20
-> > > >>>>>
-> > > >>>>> Not needed. =20
-> > > >>>>
-> > > >>>> Will remove. =20
-> > > >>>>   >>>>>   >>>>>> +             brcmnand_set_ecc_enabled(host, 0)=
-; =20
-> > > >>>>>> +     } else
-> > > >>>>>> +             brcmnand_set_ecc_enabled(host, 1); =20
-> > > >>>>>
-> > > >>>>> Style is wrong, but otherwise I think ECC should be kept disabl=
-ed while
-> > > >>>>> not in active use, so I am a bit surprised by this line. =20
-> > > >>>>
-> > > >>>> This is a double check to turn on/off our hardware ECC. =20
-> > > >>>
-> > > >>> I expect the engine to be always disabled. Enable it only when you
-> > > >>> need (may require an additional patch before this one). =20
-> > > >>
-> > > >> We are already turning on the ECC enable at this point,
-> > > >> this is just adding the option to turn it off if the NAND chip
-> > > >> itself will be doing the ECC instead of our controller. =20
-> > > >
-> > > > Sorry if I have not been clear.
-> > > >
-> > > > This sequence:
-> > > > - init
-> > > > - enable hw ECC engine
-> > > > Is broken.
-> > > > =20
-> > > ECC engine is not enabled for all the cases. Here we only intended to=
- enable it for the nand chip that is set to use NAND_ECC_ENGINE_TYPE_ON_HOS=
-T. The logic here should better change to:
-> > > if (chip->ecc.engine_type =3D=3D NAND_ECC_ENGINE_TYPE_ON_HOST)
-> > >      brcmnand_set_ecc_enabled(host, 1);
-> > > else
-> > >      brcmnand_set_ecc_enabled(host, 0);
-> > > =20
-> > > > It *cannot* work as any operation going through exec_op now may
-> > > > perform page reads which should be unmodified by the ECC engine. Yo=
-u > driver *must* follow the following sequence:
-> > > > - init and disable (or keep disabled) the hw ECC engine
-> > > > - when you perform a page operation with correction you need to
-> > > >     - enable the engine
-> > > >     - perform the operation
-> > > >     - disable the engine
-> > > > Maybe I am missing something here but are you saying the exec_op ca=
-n have different ecc type for page read/write at run time on the same nand =
-chip? I don't see the op instr structure has the ecc type field and thought=
- it is only bind to the nand chip and won't change at run time. So looks to=
- me the init time setting to the engine based on ecc.engine_type should be =
-sufficient. =20
-> > >
-> > > What you described here can work for the hw.ecc read path (ecc.read_p=
-age =3D brcmnand_read_page) which always assumes ecc is enabled. Although i=
-t is probably not too bad with these two extra operation, it would be bette=
-r if we don't have to add anything as our current code does. For the brcmna=
-nd_read_page_raw,  we currently disable the engine and then re-enable it(bu=
-t we need to fix it to only enable it with hw ecc engine type).  So it is j=
-ust opposite of you logic but works the same with no impact on the most per=
-formance critical path. =20
+>
+> I'm sorry, I think I'm not understanding this right.
+>
+> >>
+> >>>> While at it, also check return value after reading Broadcast_OR
+> >>>> region in llcc_update_act_ctrl().
+> >>>
+> >>> Separate patch, Fixes tag.
+> >>>
+> >>
+> >> Ack. Will remove this from existing patch.
+> >> Thanks for the review Dmitry!
+> >>
+> >>>>
+> >>>> Signed-off-by: Unnathi Chalicheemala <quic_uchalich@quicinc.com>
+> >>>> ---
+> >>>>  drivers/soc/qcom/llcc-qcom.c       | 12 +++++++++++-
+> >>>>  include/linux/soc/qcom/llcc-qcom.h |  4 +++-
+> >>>>  2 files changed, 14 insertions(+), 2 deletions(-)
+> >>>>
+> >>>> diff --git a/drivers/soc/qcom/llcc-qcom.c b/drivers/soc/qcom/llcc-qcom.c
+> >>>> index 4ca88eaebf06..5a2dac2d4772 100644
+> >>>> --- a/drivers/soc/qcom/llcc-qcom.c
+> >>>> +++ b/drivers/soc/qcom/llcc-qcom.c
+> >>>> @@ -849,7 +849,7 @@ static int llcc_update_act_ctrl(u32 sid,
+> >>>>                 return ret;
+> >>>>
+> >>>>         if (drv_data->version >= LLCC_VERSION_4_1_0_0) {
+> >>>> -               ret = regmap_read_poll_timeout(drv_data->bcast_regmap, status_reg,
+> >>>> +               ret = regmap_read_poll_timeout(drv_data->bcast_and_regmap, status_reg,
+> >>>>                                       slice_status, (slice_status & ACT_COMPLETE),
+> >>>>                                       0, LLCC_STATUS_READ_DELAY);
+>
+> Above if condition will be true only for SM8450, 8550 and 8650 - whose DT files have been changed.
+> It would never check for other existing DT files - I guess I'm failing to understand why the code
+> would break with other DeviceTree files.
+
+I'm saying that the driver must continue to work (well, at least not
+to crash) even if somebody runs the kernel with older DT.
+
+>
+> >>>>                 if (ret)
+> >>>> @@ -859,6 +859,8 @@ static int llcc_update_act_ctrl(u32 sid,
+> >>>>         ret = regmap_read_poll_timeout(drv_data->bcast_regmap, status_reg,
+> >>>>                                       slice_status, !(slice_status & status),
+> >>>>                                       0, LLCC_STATUS_READ_DELAY);
+> >>>> +       if (ret)
+> >>>> +               return ret;
+> >>>>
+> >>>>         if (drv_data->version >= LLCC_VERSION_4_1_0_0)
+> >>>>                 ret = regmap_write(drv_data->bcast_regmap, act_clear_reg,
+> >>>> @@ -1282,6 +1284,14 @@ static int qcom_llcc_probe(struct platform_device *pdev)
+> >>>>
+> >>>>         drv_data->version = version;
+> >>>>
+> >>>> +       if (drv_data->version >= LLCC_VERSION_4_1_0_0) {
+> >>>> +               drv_data->bcast_and_regmap = qcom_llcc_init_mmio(pdev, i + 1, "llcc_broadcast_and_base");
+> >>>> +               if (IS_ERR(drv_data->bcast_and_regmap)) {
+> >>>> +                       ret = PTR_ERR(drv_data->bcast_and_regmap);
+> >>>> +                       goto err;
+> >>>> +               }
+> >>>> +       }
+>
+> I have added a similar check in the probe function above; are you saying this too will break with
+> existing DT files?
+>
+> >>>> +
+> >>>>         llcc_cfg = cfg->sct_data;
+> >>>>         sz = cfg->size;
+> >>>>
+> >>>> diff --git a/include/linux/soc/qcom/llcc-qcom.h b/include/linux/soc/qcom/llcc-qcom.h
+> >>>> index 1a886666bbb6..9e9f528b1370 100644
+> >>>> --- a/include/linux/soc/qcom/llcc-qcom.h
+> >>>> +++ b/include/linux/soc/qcom/llcc-qcom.h
+> >>>> @@ -115,7 +115,8 @@ struct llcc_edac_reg_offset {
+> >>>>  /**
+> >>>>   * struct llcc_drv_data - Data associated with the llcc driver
+> >>>>   * @regmaps: regmaps associated with the llcc device
+> >>>> - * @bcast_regmap: regmap associated with llcc broadcast offset
+> >>>> + * @bcast_regmap: regmap associated with llcc broadcast OR offset
+> >>>> + * @bcast_and_regmap: regmap associated with llcc broadcast AND offset
+> >>>>   * @cfg: pointer to the data structure for slice configuration
+> >>>>   * @edac_reg_offset: Offset of the LLCC EDAC registers
+> >>>>   * @lock: mutex associated with each slice
+> >>>> @@ -129,6 +130,7 @@ struct llcc_edac_reg_offset {
+> >>>>  struct llcc_drv_data {
+> >>>>         struct regmap **regmaps;
+> >>>>         struct regmap *bcast_regmap;
+> >>>> +       struct regmap *bcast_and_regmap;
+> >>>>         const struct llcc_slice_config *cfg;
+> >>>>         const struct llcc_edac_reg_offset *edac_reg_offset;
+> >>>>         struct mutex lock;
+> >>>> --
+> >>>> 2.25.1
+> >>>>
+> >>>>
+> >>>
+> >>>
 > >
-> > This is not "my" logic, this is the "core's" logic. I am saying: your
-> > approach is broken because that is not how the API is supposed to work,
-> > but it mostly works in the standard case. =20
->=20
-> In the interest of minimizing register writes, would it be acceptable to
-> enable/disable ECC at the beginning of a standard
-> path transfer but not, after the transfer, turn off the ECC? This should =
-not
-> affect other standard path operations nor affect the exec_op path as those
-> are low level transfers which our ECC engine would not touch and the NAND
-> device driver should be responsible for turning on/off its own ECC.
+> >
+> >
+> --
+> Thanks & Warm Regards,
+> Unnathi
 
-Do you have legitimate concerns about this register write taking way
-more time than I could expect? Because compared to the transfer of a
-NAND page + tR/tPROG it should not be noticeable. I don't see how you
-could even measure such impact actually, unless the register write does
-way more than usual. I'm fine with the above idea if you show me it has
-an interest.
 
-Thanks,
-Miqu=C3=A8l
+
+-- 
+With best wishes
+Dmitry
 
