@@ -1,135 +1,132 @@
-Return-Path: <devicetree+bounces-36654-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-36655-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1F907842310
-	for <lists+devicetree@lfdr.de>; Tue, 30 Jan 2024 12:30:33 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id B24168422EF
+	for <lists+devicetree@lfdr.de>; Tue, 30 Jan 2024 12:25:51 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 6E0ECB2CD1F
-	for <lists+devicetree@lfdr.de>; Tue, 30 Jan 2024 11:23:30 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 66C1A1F2612E
+	for <lists+devicetree@lfdr.de>; Tue, 30 Jan 2024 11:25:51 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E772466B32;
-	Tue, 30 Jan 2024 11:21:47 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmx.net header.i=wahrenst@gmx.net header.b="olrhRy+w"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6101C66B29;
+	Tue, 30 Jan 2024 11:25:46 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mout.gmx.net (mout.gmx.net [212.227.17.21])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-yb1-f171.google.com (mail-yb1-f171.google.com [209.85.219.171])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 890C7664B9;
-	Tue, 30 Jan 2024 11:21:45 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=212.227.17.21
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9E42259B7C;
+	Tue, 30 Jan 2024 11:25:44 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.219.171
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1706613707; cv=none; b=ty/9sIaU4O7lNjY/4YltvaMFA1fkeHnJ8qVd7Y6rQhLTP1222WEz6nb56+aXSTOK/rx1aheqXj3961/RlxztC31OzxVBJ4Ps5BTfrXIeC2q0hWItgp57gYRUZz0qCwAoDF7Saj2JVaMdl6uXRPPUgtePaHv860di9yBRHBENCGE=
+	t=1706613946; cv=none; b=t2Gavn4lGymPzlG5Vsueh/grMsD2rzP5qMkB8sChHoapQXw79VlYIa1SFuqJaC9k93H7SKqkLxq2KgtN18A8nIK1zt5jwwxbjaFyuerumKeSt7e3PJR4fyTXm+LTWsLsLn2O0MoVzxLKOH3pjXtDuHZr0nZomOaYrwqs54afmss=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1706613707; c=relaxed/simple;
-	bh=EwpwEAFcgdaFtY+FEAqTu9ABrpy5x9wRRWMSF5IyDAY=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=r1QI2h2cniICoyrQBTRZVrsVtnMw2mD6gFL04QvYK2DHlhXjZZ3bMwA5EM7Ri0YufDGJHBwylicWVrfqbLxTucGxYPnmFlDzqB3zwedhj7+uw+6zV+lKGAt+wXZ1AKn7rtOsqoFOqCXkwuTr1LE+C/ZcnZ88N9CBOUescBFf79g=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=gmx.net; spf=pass smtp.mailfrom=gmx.net; dkim=pass (2048-bit key) header.d=gmx.net header.i=wahrenst@gmx.net header.b=olrhRy+w; arc=none smtp.client-ip=212.227.17.21
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=gmx.net
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmx.net
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=gmx.net;
-	s=s31663417; t=1706613692; x=1707218492; i=wahrenst@gmx.net;
-	bh=EwpwEAFcgdaFtY+FEAqTu9ABrpy5x9wRRWMSF5IyDAY=;
-	h=X-UI-Sender-Class:Date:Subject:To:Cc:References:From:
-	 In-Reply-To;
-	b=olrhRy+wCNRimiiIbtUZr6jFhOhA8NOCLDDApDEECeyuZSg3QBCKgWq74a/AQHie
-	 bO29Sjaubh6pkklwD+Lan9CY3pzS+C226SnAGHfFyTNam8n+ewGYQJNv3AtGeWFbk
-	 /aa86bYrxuIPIU+ErILnHMkFClEjP3+R60THXzLwTRs/ykYE0QeidUpgFeQdrDxlm
-	 bfDb4Akg/sPOt/1aZoFUL80lybfw90X+ZCXECksqyVNoSWeqKmARHFehbND0iMjQg
-	 lQbEI6AgRs1HQdLk7DycTqwyJUzru0vff4zjKJkOrG39rtGJSfElNI15z4/lHrmUS
-	 YqU4I8r0f56D4vUr7A==
-X-UI-Sender-Class: 724b4f7f-cbec-4199-ad4e-598c01a50d3a
-Received: from [192.168.1.167] ([37.4.248.43]) by mail.gmx.net (mrgmx104
- [212.227.17.168]) with ESMTPSA (Nemesis) id 1MnJhU-1qnmNk2JUa-00jKJq; Tue, 30
- Jan 2024 12:21:32 +0100
-Message-ID: <c6180cc2-8912-4cd0-82f9-4428df84db6b@gmx.net>
-Date: Tue, 30 Jan 2024 12:21:29 +0100
+	s=arc-20240116; t=1706613946; c=relaxed/simple;
+	bh=lZFXC4siu4ARAFRn2/Hx/DBP/KEO5uNA29OSiJb3/f8=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=aLeYfTq5v6+tWs70O5no5P1RWs3atd659XnybCmA1MfwivlMGTrt8om8II+Pkq6XLvSvX27cGHl1UqNvLR1F/j8exITTBRjn8XTopQ8+HjwTiZsMcPO5XFhzl7hFwTWA3Klvd89Kk10RGBTW9ZvYnStvD+qaS/3q7cjHkZe10mE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org; spf=pass smtp.mailfrom=gmail.com; arc=none smtp.client-ip=209.85.219.171
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-yb1-f171.google.com with SMTP id 3f1490d57ef6-db4364ecd6aso3101047276.2;
+        Tue, 30 Jan 2024 03:25:44 -0800 (PST)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1706613943; x=1707218743;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=fRnlMJumtKu3HGeJaBtjZds244bkDv4Dl9koHy9aL+0=;
+        b=l9nQ2JpPjbARhN4zL1R3pHFAA1CxxWwLbdXpw4pqf0ZpxTMhQJl8Erw5qI5Vh8RoGa
+         +frVGD/+g5TR4L07PBqLpYDE0lKfmmMnl/OJkOFmZLOcuZSKOTJ6CF7VWAc4JBmjbNiD
+         2joNFMFZ9ufjw3njyL38CPESEY81bwswk/RylBAGHNCPy+nLWdknJ2iMeWRsn3uh6obz
+         bawYZGzRyfzwItbwG6wxx2P9HZVjdiCefA0ycU3UiqiWo2DVcNYsBgOBw3aGtucuG3Sz
+         Szt8G59cmcJhnYUS9Mojzct2o9pWXLXpQOe4DcAacvLVmRwx4C7IeQaukjNMX0TX9oZV
+         ytag==
+X-Gm-Message-State: AOJu0YyNzh7YGYhCJSz/JASCp/dphAZBv4RdFhnsh7t2P/PKTVObKnRR
+	TBGK58NvhxXuD6nTGgnufRJ6VxXI40Apz+PxkcX6ezRGAiWRl/AiyrBBldX1lmA=
+X-Google-Smtp-Source: AGHT+IFPlkQJEWJGO12npwfx0+I92P18+pn/rh4GgyqcFB3Tczg+4kA0eKFC6ftqMnladRDM+XZHJw==
+X-Received: by 2002:a25:260c:0:b0:dc2:4e05:4f87 with SMTP id m12-20020a25260c000000b00dc24e054f87mr4228780ybm.56.1706613943371;
+        Tue, 30 Jan 2024 03:25:43 -0800 (PST)
+Received: from mail-yb1-f175.google.com (mail-yb1-f175.google.com. [209.85.219.175])
+        by smtp.gmail.com with ESMTPSA id u129-20020a256087000000b00dc230f91674sm2918210ybb.26.2024.01.30.03.25.43
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 30 Jan 2024 03:25:43 -0800 (PST)
+Received: by mail-yb1-f175.google.com with SMTP id 3f1490d57ef6-dc642cd955fso2886862276.0;
+        Tue, 30 Jan 2024 03:25:43 -0800 (PST)
+X-Received: by 2002:a25:203:0:b0:dc2:4d3e:acf6 with SMTP id
+ 3-20020a250203000000b00dc24d3eacf6mr3997077ybc.13.1706613943089; Tue, 30 Jan
+ 2024 03:25:43 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH V3 2/2] pwm: Add GPIO PWM driver
-To: Sean Young <sean@mess.org>
-Cc: =?UTF-8?Q?Uwe_Kleine-K=C3=B6nig?= <u.kleine-koenig@pengutronix.de>,
- Rob Herring <robh+dt@kernel.org>,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Conor Dooley <conor+dt@kernel.org>, andy.shevchenko@gmail.com,
- Angelo Compagnucci <angelo.compagnucci@gmail.com>,
- Philip Howard <phil@gadgetoid.com>, Linus Walleij
- <linus.walleij@linaro.org>, linux-pwm@vger.kernel.org,
- devicetree@vger.kernel.org, linux-gpio@vger.kernel.org,
- Vincent Whitchurch <vincent.whitchurch@axis.com>
-References: <20240128163630.104725-1-wahrenst@gmx.net>
- <20240128163630.104725-3-wahrenst@gmx.net> <Zbi8pbT7N0vKUgmx@gofer.mess.org>
-Content-Language: en-US
-From: Stefan Wahren <wahrenst@gmx.net>
-In-Reply-To: <Zbi8pbT7N0vKUgmx@gofer.mess.org>
-Content-Type: text/plain; charset=UTF-8; format=flowed
+References: <20240129151618.90922-1-prabhakar.mahadev-lad.rj@bp.renesas.com> <20240129151618.90922-4-prabhakar.mahadev-lad.rj@bp.renesas.com>
+In-Reply-To: <20240129151618.90922-4-prabhakar.mahadev-lad.rj@bp.renesas.com>
+From: Geert Uytterhoeven <geert@linux-m68k.org>
+Date: Tue, 30 Jan 2024 12:25:32 +0100
+X-Gmail-Original-Message-ID: <CAMuHMdV=E5VDZn0QjiGQL73j135LiA1QNrYH-hCve1Yk0PqJ=A@mail.gmail.com>
+Message-ID: <CAMuHMdV=E5VDZn0QjiGQL73j135LiA1QNrYH-hCve1Yk0PqJ=A@mail.gmail.com>
+Subject: Re: [PATCH 3/5] riscv: dts: renesas: r9a07g043f: Add IRQC node to
+ RZ/Five SoC DTSI
+To: Prabhakar <prabhakar.csengg@gmail.com>
+Cc: Thomas Gleixner <tglx@linutronix.de>, Rob Herring <robh+dt@kernel.org>, 
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Magnus Damm <magnus.damm@gmail.com>, linux-renesas-soc@vger.kernel.org, 
+	devicetree@vger.kernel.org, linux-riscv@lists.infradead.org, 
+	linux-kernel@vger.kernel.org, Biju Das <biju.das.jz@bp.renesas.com>, 
+	Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>, 
+	Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
-X-Provags-ID: V03:K1:XYhn+3g0/rkEOk+zto8O/wQhE/DK5f71Z8wuB0Am0M7rVDN+J9O
- X+IY6Lc+9ux7Az6WsklITM2i/DfXCqS4WpB9v9mWwkyQw8yDPOLHGMyn41rP9X5wuj+PoQg
- kJ9w+7GIuwANKw/BJ9xAiSCMCgnldO2J4CFgxzzWkOu/htV4iOzIoVcNRJlbH2hZIn58dCf
- qacMtOu32Evm8jizmv8Qw==
-X-Spam-Flag: NO
-UI-OutboundReport: notjunk:1;M01:P0:GjddKZsctQw=;gih3enDrJiu/pSbRO35Rnbi4EVn
- z9cmxYlolg1YTjZiwLzF3dpBbfvgpY8aBzWM6uNwvX4dwZed+wh/7mp5JggAVAflHTmiTkDA/
- AL0qJnVoEyH7o17JotQ5XKuNaEh8nBp4OUlv8ITBXeAEqARYhKwTvpSU92BqKBf6gCvVZ1T4Z
- YkXNlhi70cYxnasRY/aGJWlCyZcA4twb9NGSsyV30ijdLJpnNzg+5MFoZ88zyIH2n1qcoOJSH
- Mw4H9+6I1LpS6ot4ztQCC3ljG9SnRH+wBa3f4uy0FpxCtcbqhBYaZyJ2NjGUrw2dK/PP/uB/J
- o8/c/6IP9QoH0mNyIj6GLimWCVmduuCAIzib8ofn+il/rSSmdf3Wpejxjkc4pMOn34z0V+cZf
- gz8WzKfkQfIoyS3NyinLlOKki5vaJuhegkWjZzG6FuBA7p+XjY4+IpVpSuAwI9TIiAFGx27dr
- FpcnVAIfaLzzXpSIcpMAW938MGJjfVhFBjNCJ59kc+mzNCCGXrTIYM/GlvSgKU++jdSOJtYj7
- REEubbgGSAPF44Tg4xYNR5aQvPfXAktchpMMkKFqOLET+PXb3/ZFIGPNLTxK1vppa1kisk3uF
- rtRU5jHT170vCa2A5pKtCbpZq9kz0w9st4ONR3VQ+ACRV9NVxfz11hrA854YybgCqYR1ajX+N
- Pa0oJfxnBjB+MmlpRPOv3JB2irZTZxS5ziPDcgjbXzoAeSjG+DMy+1BJRz9sWKqicM2ZlSgkI
- Io/Qx0GSnQGmOXjM1nv0DprIlSiGIkc0cJvKsrcJhmFEP7hVtF5UrX7vEVHpjYr2acXfMUSyG
- LJuqUj/eRX0wD5bewRKmjgVxWDuZNLop7U0NTJvqFq9Ih6lrf8Irq3HTylJ7+8CPCG9TjxE+L
- 72V7WG5yHvXTcprb49hsveMExYb3fKPDARsh4tGL8qD2m5CSY3UMyj36//wBIidCUnq9yCyDY
- do7OsbLGm5WwKpTP8hYayai8qdA=
 
-Hi Sean,
+Hi Prabhakar,
 
-Am 30.01.24 um 10:08 schrieb Sean Young:
-> On Sun, Jan 28, 2024 at 05:36:30PM +0100, Stefan Wahren wrote:
->> From: Vincent Whitchurch <vincent.whitchurch@axis.com>
->>
->> Add a software PWM which toggles a GPIO from a high-resolution timer.
->>
->> This will naturally not be as accurate or as efficient as a hardware
->> PWM, but it is useful in some cases.  I have for example used it for
->> evaluating LED brightness handling (via leds-pwm) on a board where the
->> LED was just hooked up to a GPIO, and for a simple verification of the
->> timer frequency on another platform.
->>
->> Since high-resolution timers are used, sleeping gpio chips are not
->> supported and are rejected in the probe function.
->>
->> Signed-off-by: Vincent Whitchurch <vincent.whitchurch@axis.com>
->> Co-developed-by: Stefan Wahren <wahrenst@gmx.net>
->> Signed-off-by: Stefan Wahren <wahrenst@gmx.net>
->> ---
-...
->> +
->> +static int pwm_gpio_apply(struct pwm_chip *chip, struct pwm_device *pw=
-m,
->> +			  const struct pwm_state *state)
->> +{
->> +	struct pwm_gpio *gpwm =3D container_of(chip, struct pwm_gpio, chip);
->> +	bool invert =3D state->polarity =3D=3D PWM_POLARITY_INVERSED;
->> +	unsigned long flags;
-> Not sure this is necessary but how about:
+On Mon, Jan 29, 2024 at 4:16=E2=80=AFPM Prabhakar <prabhakar.csengg@gmail.c=
+om> wrote:
+> From: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
 >
-> 	if (state->duty_cycle < hrtimer_resolution ||
-> 	    state->period - state->duty_cycle < hrtimer_resolution)
-> 		return -EINVAL;
+> Add the IRQC node to RZ/Five (R9A07G043F) SoC DTSI.
+
+Thanks for your patch!
+
+> Signed-off-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+
+> --- a/arch/riscv/boot/dts/renesas/r9a07g043f.dtsi
+> +++ b/arch/riscv/boot/dts/renesas/r9a07g043f.dtsi
+> @@ -50,6 +50,82 @@ &soc {
+>         dma-noncoherent;
+>         interrupt-parent =3D <&plic>;
 >
-i think i get the idea, but we need to care about corner cases like
-duty_cycle =3D 0
+> +       irqc: interrupt-controller@110a0000 {
+> +               compatible =3D "renesas,r9a07g043f-irqc",
+> +                            "renesas,rzg2l-irqc";
+> +               reg =3D <0 0x110a0000 0 0x20000>;
+> +               #interrupt-cells =3D <2>;
+> +               #address-cells =3D <0>;
+> +               interrupt-controller;
+> +               interrupts =3D <SOC_PERIPHERAL_IRQ(0) IRQ_TYPE_LEVEL_HIGH=
+>,
+
+As this is the RZ/Five-specific .dtsi file, and not the common base
+.dtsi, you could avoid using SOC_PERIPHERAL_IRQ() here.
+I am not sure what is most readable...
+
+The rest LGTM (pending interrupt names review comments).
+
+Gr{oetje,eeting}s,
+
+                        Geert
+
+--=20
+Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k=
+.org
+
+In personal conversations with technical people, I call myself a hacker. Bu=
+t
+when I'm talking to journalists I just say "programmer" or something like t=
+hat.
+                                -- Linus Torvalds
 
