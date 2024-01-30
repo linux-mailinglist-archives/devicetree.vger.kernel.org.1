@@ -1,131 +1,119 @@
-Return-Path: <devicetree+bounces-36609-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-36610-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id A94F2841F5B
-	for <lists+devicetree@lfdr.de>; Tue, 30 Jan 2024 10:25:37 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8FEFA841F8B
+	for <lists+devicetree@lfdr.de>; Tue, 30 Jan 2024 10:31:35 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 72ADDB27BCD
-	for <lists+devicetree@lfdr.de>; Tue, 30 Jan 2024 09:23:56 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 326941F24CA4
+	for <lists+devicetree@lfdr.de>; Tue, 30 Jan 2024 09:31:35 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9EE4C605DC;
-	Tue, 30 Jan 2024 09:23:17 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C1396605AC;
+	Tue, 30 Jan 2024 09:31:27 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="UfZbjuox"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="FSNoKLvy"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-lf1-f42.google.com (mail-lf1-f42.google.com [209.85.167.42])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 74CD159169;
-	Tue, 30 Jan 2024 09:23:17 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 61A2459161
+	for <devicetree@vger.kernel.org>; Tue, 30 Jan 2024 09:31:25 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.42
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1706606597; cv=none; b=ui1zkAcull+E2MwxUYS0O+4xKPOFwz7SN5LMPsb3lC86mFbv5EHt9j7jmGp821Y4m/O28EEugPHmaSyriltEZGgTLnZNi1UcEsebqY6pYpBX7btiyBYK3+nuKzwExKGIA8w5Q3qdtrsVlUBlqE0m4NIDrAoGFe0fMmqi2OiK8l4=
+	t=1706607087; cv=none; b=AG+lKsxhMz8PTZtKjlKapjmiCnVkOHu538kNdf3Y+WuUsShb0bWnEWLDH59eJadai0/0H27p9tJoLzZYBF06KmS8b7VakS78fzFdZwTxn6K/XpKp17OC8vqmukM4dxUff1T7zxqRr0/GaPBUyP+y81hGhCqW1nWEmpQwlkBZoRY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1706606597; c=relaxed/simple;
-	bh=mkLHMPeFE3AGTkisCBI6lOVpOPvYousP3utuW4xr0FI=;
-	h=Date:Content-Type:MIME-Version:From:To:Cc:In-Reply-To:References:
-	 Message-Id:Subject; b=djNUbY/dX2MvYeJfS/UEvr16KZk8XWRHYMVSZkGhXe90dokKqYDipEr4Vnr8Onq/jS11nHbS/54Qe1fhnrOYEkaMXgOcAZlJp135PJwCkr9r8QuPs3/MsIykvZqQaeAqUK4EjeCWpQAuaqyc6ikcs6FPomvf2r/NcajdFZaXcvY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=UfZbjuox; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id E4277C43330;
-	Tue, 30 Jan 2024 09:23:16 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1706606597;
-	bh=mkLHMPeFE3AGTkisCBI6lOVpOPvYousP3utuW4xr0FI=;
-	h=Date:From:To:Cc:In-Reply-To:References:Subject:From;
-	b=UfZbjuoxeEKQ1yDpEs6cT2KdYKS1MyHe855wmBUbH+Qv6QALO+1xe9OoJ6Rl40j71
-	 KVkbqaxbxmUfq1+qZQAT446b0rLhoZ6JlVA3too9sRtj+uk9HNnktRF6qPnQh7MsLJ
-	 hydR9yKCMHxikdiKcQ4QWNvyaU3nnfeIYn3umGLRcupX99y5tSkHXDwsER4+fMJ7H3
-	 YkoaGgFGJyeZM7OVOxorvvwRDpMOakfLDsJ7QM+PIvdwMw86TfCeDGVGvwxQg1zTWw
-	 Hyo+lv4lgbm930YUPUymkQr9VOv8pE/kI5jV2J+sAEjIj0EE+Xaz0oTQcg2HqhwPaf
-	 pmtG0Yl6X87iw==
-Date: Tue, 30 Jan 2024 03:23:15 -0600
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
+	s=arc-20240116; t=1706607087; c=relaxed/simple;
+	bh=XYx0s0X4N57mkCoKTn7uq1S0HzyLcLKx4l9yG2NJoTw=;
+	h=Message-ID:Subject:From:To:Cc:Date:In-Reply-To:References:
+	 Content-Type:MIME-Version; b=D0faTy9XME81qjnPLMAzr2Mg40V4Xrf9QWick0d074LkgUOH4kPq3kz4UxYydWTjOfNUSEpJp2kHZa9xHrKcQOcs9WlzvplcasQKETC4A4WtqSCGrR0uVnuTwHzXVxpepxQEgeNxAIlRDKTmvEixR63xFiu0+aMe/XIHO/cKE28=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=FSNoKLvy; arc=none smtp.client-ip=209.85.167.42
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-lf1-f42.google.com with SMTP id 2adb3069b0e04-5100cb238bcso6674286e87.3
+        for <devicetree@vger.kernel.org>; Tue, 30 Jan 2024 01:31:25 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1706607083; x=1707211883; darn=vger.kernel.org;
+        h=mime-version:user-agent:content-transfer-encoding:references
+         :in-reply-to:date:cc:to:from:subject:message-id:from:to:cc:subject
+         :date:message-id:reply-to;
+        bh=XYx0s0X4N57mkCoKTn7uq1S0HzyLcLKx4l9yG2NJoTw=;
+        b=FSNoKLvye6bBhZZNYpBh/KbwH7uMI5bx7ZbW0Mn/GclqE5dUexRET+cs0kHa5efLvS
+         1C0EQIpnfAIAWAfyvLTy3k3u791A8woTVIGGZaRklDYlEmAWZ9xroApUcvdfGGDNG/Kx
+         uqqS2h9w0dAoc1IDVwxw+0DOSJxxi1xebKNN3lhVEiv46jqi4WTwKDCorfJAiTX3xgMT
+         Xpsq7NcY4/2NVaQ66KU0dwd/7ldVubWr0GJYzJXOkgfpspbq4YxRCNQeDftrDWS5Lovi
+         MNalSZMtqkO28hrFqr9uV0E6RX2GP5AXT3HYK+r5ApxYbSN4v+0u54g6QD4xefIIzMB8
+         3NDg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1706607083; x=1707211883;
+        h=mime-version:user-agent:content-transfer-encoding:references
+         :in-reply-to:date:cc:to:from:subject:message-id:x-gm-message-state
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=XYx0s0X4N57mkCoKTn7uq1S0HzyLcLKx4l9yG2NJoTw=;
+        b=LA4Tpr2y1JBCvCnl4h7GmNbfn5P7jb1gKEO1Fj0tLb16FTSzGdn86kLKB0E8IINyfe
+         4c7DUpqq6Sv6LD7g/FzyJGby+Mry012y7xtXq2Hz35OHlMZ2RZcxD/+VTQmsSZkHVrU2
+         3c3A1l+5uuMyn94recI8Z/mLG4BklU5eKBWJolvo2QZT78yrnLCpBzWCn/AxUPJ/He87
+         TR+5ve36MUj5H1trvNOAPJ0ia7AMBvC+fHdCyWTp2/AfScaXF8GHhIQeb1hQJNs4ZuDq
+         /kyFVJ6wlm5D/xzFEmDCsHAID0KKawG3MmC7KtCCz3EFuhvKlF6336/MEfVKOBLvL4GV
+         AaQw==
+X-Gm-Message-State: AOJu0YwzBFVbnNhOLojHcz5xSmZf+ZXB1iaUz6mzAD9KwmSKZzj/eXjx
+	COVWhd6kofzYYQLqhw1opkl99GY0DjEQcBH2Zkw7PZ47zLL/oRdmhJkWeRIdfaQ=
+X-Google-Smtp-Source: AGHT+IH73ECOedOmbLboh50bSkCcm9bWbbIIdQpZY7C2yF6U75+RErqJaRRYI5LoY3XIRMWTRBDv2A==
+X-Received: by 2002:ac2:4208:0:b0:510:293e:83b with SMTP id y8-20020ac24208000000b00510293e083bmr4843330lfh.18.1706607083413;
+        Tue, 30 Jan 2024 01:31:23 -0800 (PST)
+Received: from [10.1.1.109] ([80.111.64.44])
+        by smtp.gmail.com with ESMTPSA id l22-20020a05600c1d1600b0040ef95e1c78sm4452775wms.3.2024.01.30.01.31.22
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 30 Jan 2024 01:31:23 -0800 (PST)
+Message-ID: <bbaab3addf958bc1f484a20ee0bdb65af05cf5da.camel@linaro.org>
+Subject: Re: [PATCH 5/5] clk: samsung: gs101: don't mark non-essential
+ clocks as critical
+From: =?ISO-8859-1?Q?Andr=E9?= Draszik <andre.draszik@linaro.org>
+To: Sam Protsenko <semen.protsenko@linaro.org>
+Cc: peter.griffin@linaro.org, robh+dt@kernel.org, 
+ krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org, 
+ linux-kernel@vger.kernel.org, kernel-team@android.com,
+ tudor.ambarus@linaro.org,  willmcvicker@google.com,
+ alim.akhtar@samsung.com, s.nawrocki@samsung.com,  tomasz.figa@gmail.com,
+ cw00.choi@samsung.com, mturquette@baylibre.com,  sboyd@kernel.org,
+ linux-arm-kernel@lists.infradead.org,  linux-samsung-soc@vger.kernel.org,
+ linux-clk@vger.kernel.org,  devicetree@vger.kernel.org
+Date: Tue, 30 Jan 2024 09:31:22 +0000
+In-Reply-To: <CAPLW+4kSka+twSoZmQeMsh3RWermrGG-wyENrr14AmX3zZ2eqA@mail.gmail.com>
+References: <20240127003607.501086-1-andre.draszik@linaro.org>
+	 <20240127003607.501086-6-andre.draszik@linaro.org>
+	 <CAPLW+4mL1gb_R8PhKaMhwOUTa0GDqat_9W=348ScYj+hBarQJg@mail.gmail.com>
+	 <d45de3b2bb6b48653842cf1f74e58889ed6783ae.camel@linaro.org>
+	 <CAPLW+4kSka+twSoZmQeMsh3RWermrGG-wyENrr14AmX3zZ2eqA@mail.gmail.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+User-Agent: Evolution 3.50.1-1 
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-From: Rob Herring <robh@kernel.org>
-To: "JiaLong.Yang" <jialong.yang@shingroup.cn>
-Cc: shenghui.qu@shingroup.cn, Rob Herring <robh+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, Mark Rutland <mark.rutland@arm.com>, 
- devicetree@vger.kernel.org, zhijie.ren@shingroup.cn, 
- Will Deacon <will@kernel.org>, linux-arm-kernel@lists.infradead.org, 
- ke.zhao@shingroup.cn, linux-kernel@vger.kernel.org, 
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-In-Reply-To: <20240130081745.13750-1-jialong.yang@shingroup.cn>
-References: <20240130081745.13750-1-jialong.yang@shingroup.cn>
-Message-Id: <170660659476.701701.9606670675803489364.robh@kernel.org>
-Subject: Re: [PATCH v1] perf/hx_arm_ni: Support uncore ARM NI-700 PMU
 
+On Mon, 2024-01-29 at 13:16 -0600, Sam Protsenko wrote:
+> That sounds reasonable. But I wonder if that bit (about making this
+> clock CLK_IS_CRITICAL to make earlycon functional) can be documented
+> somewhere. Perhaps in the serial driver (earlycon function), or
+> somewhere in device tree bindings? Because otherwise it might remain
+> an arcane knowledge and people won't be able to use earlycon later.
+> Anyways, for this patch:
+>=20
+> Reviewed-by: Sam Protsenko <semen.protsenko@linaro.org>
+>=20
+> and if you think it makes sense to document the bit above, please do.
 
-On Tue, 30 Jan 2024 16:17:43 +0800, JiaLong.Yang wrote:
-> This code is based on uncore PMUs arm_smmuv3_pmu and arm-cmn.
-> One ni-700 can have many clock domains. Each of them has only one PMU.
-> Here one PMU corresponds to one 'struct ni_pmu' instance.
-> PMU name will be ni_pmu_N_M, which N means different NI-700s and M means
-> different PMU in one NI-700. If only one NI-700 found in NI-700, name will
-> be ni_pmu_N.
-> Node interface event name will be xxni_N_eventname, such as asni_0_rdreq_any.
-> There are many kinds of type of nodes in one clock domain. Also means that
-> there are many kinds of that in one PMU. So we distinguish them by xxni string.
-> Besides, maybe there are many nodes have same type. So we have number N in
-> event name.
-> By ni_pmu_0_0/asni_0_rdreq_any/, we can pinpoint accurate bus traffic.
-> Example1: perf stat -a -e ni_pmu_0_0/asni_0_rdreq_any/,ni_pmu_0_0/cycles/
-> EXample2: perf stat -a -e ni_pmu_0_0/asni,id=0,event=0x0/
-> 
-> Signed-off-by: JiaLong.Yang <jialong.yang@shingroup.cn>
-> ---
-> If I should send Doc*/bindings/perf/*.yaml seperately?
-> 
->  .../bindings/perf/hx,c2000-arm-ni.yaml        |   58 +
->  .../devicetree/bindings/vendor-prefixes.yaml  |    2 +
->  MAINTAINERS                                   |    6 +
->  drivers/perf/Kconfig                          |   10 +
->  drivers/perf/Makefile                         |    1 +
->  drivers/perf/hx_arm_ni.c                      | 1308 +++++++++++++++++
->  6 files changed, 1385 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/perf/hx,c2000-arm-ni.yaml
->  create mode 100644 drivers/perf/hx_arm_ni.c
-> 
+Will do on top of
+https://lore.kernel.org/all/20240119104526.1221243-6-tudor.ambarus@linaro.o=
+rg/
+once that is in.
 
-My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
-on your patch (DT_CHECKER_FLAGS is new in v5.13):
-
-yamllint warnings/errors:
-./Documentation/devicetree/bindings/perf/hx,c2000-arm-ni.yaml:54:1: [error] syntax error: found character '\t' that cannot start any token (syntax)
-
-dtschema/dtc warnings/errors:
-make[2]: *** Deleting file 'Documentation/devicetree/bindings/perf/hx,c2000-arm-ni.example.dts'
-Documentation/devicetree/bindings/perf/hx,c2000-arm-ni.yaml:54:1: found a tab character where an indentation space is expected
-make[2]: *** [Documentation/devicetree/bindings/Makefile:26: Documentation/devicetree/bindings/perf/hx,c2000-arm-ni.example.dts] Error 1
-make[2]: *** Waiting for unfinished jobs....
-./Documentation/devicetree/bindings/perf/hx,c2000-arm-ni.yaml:54:1: found a tab character where an indentation space is expected
-/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/perf/hx,c2000-arm-ni.yaml: ignoring, error parsing file
-make[1]: *** [/builds/robherring/dt-review-ci/linux/Makefile:1428: dt_binding_check] Error 2
-make: *** [Makefile:240: __sub-make] Error 2
-
-doc reference errors (make refcheckdocs):
-
-See https://patchwork.ozlabs.org/project/devicetree-bindings/patch/20240130081745.13750-1-jialong.yang@shingroup.cn
-
-The base for the series is generally the latest rc1. A different dependency
-should be noted in *this* patch.
-
-If you already ran 'make dt_binding_check' and didn't see the above
-error(s), then make sure 'yamllint' is installed and dt-schema is up to
-date:
-
-pip3 install dtschema --upgrade
-
-Please check and re-submit after running the above command yourself. Note
-that DT_SCHEMA_FILES can be set to your schema file to speed up checking
-your schema. However, it must be unset to test all examples with your schema.
+Cheers,
+Andre'
 
 
