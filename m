@@ -1,68 +1,68 @@
-Return-Path: <devicetree+bounces-36885-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-36886-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 255D3842FA3
-	for <lists+devicetree@lfdr.de>; Tue, 30 Jan 2024 23:25:48 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id D3591842FAB
+	for <lists+devicetree@lfdr.de>; Tue, 30 Jan 2024 23:28:54 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id A1544B24160
-	for <lists+devicetree@lfdr.de>; Tue, 30 Jan 2024 22:25:45 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 31F8BB24180
+	for <lists+devicetree@lfdr.de>; Tue, 30 Jan 2024 22:28:52 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0029C7BAF4;
-	Tue, 30 Jan 2024 22:25:40 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 29C7F7BAF1;
+	Tue, 30 Jan 2024 22:28:47 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="fO00VUs/"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="PBLqoJJ2"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BE25E7BAE9;
-	Tue, 30 Jan 2024 22:25:39 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F0DDD14F61;
+	Tue, 30 Jan 2024 22:28:46 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1706653539; cv=none; b=qMSIlZ27qWQ+WtMu/Hex9FeITmTShIJ4LpN3yIPZYK91OIwITd3ObwlHzT3i6wRqrQb+oonbd10JFv0ufMpp3X1/m3h2C5OCDZJFKotlNGAHMktS+FqP8squECtL6s796W8CsnJlPv9bdIU2VrCnYGO83iB0w/BJpkFlx8LPn5o=
+	t=1706653727; cv=none; b=HXLHxD/Vbpa+jyImwWsGCUIvsieO/Ffs1iIHDlqcUGHy0q/WH1RGLzq6krkKUdbklXIQIuU/lu4Zjnx7nCfApbYjTBedLeLjNZZ8mGNQfebfyh2TNc+CzzefLm9CR5Ty1ZVDhVp7kljHIjxwmVTdV3zy3Okw5blIL5M7CDKafPI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1706653539; c=relaxed/simple;
-	bh=rti7mztnsIyooNfSUewv1B47KEAqojy4aPd6GMveyvA=;
+	s=arc-20240116; t=1706653727; c=relaxed/simple;
+	bh=gdgAHXKpH/gBF814iZyrFoZFRlxxElbbmfZ1pVF2jng=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=Gb1BM/xoYIqevLnkece06GMYHEEUFAFne5IyI2VUmrvhdGL+bnDjeBaABIWZK6XU3Tof0ueUaMMoTco6Npph1AXMXeZ7sqOKURlIi8jBhs89hJhLets3FqjUR2se2ruWU/rOTEPm2GyrfeDAUJspDL/4GTmQ6duQLmUcr0bRVGs=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=fO00VUs/; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 0FE7FC433C7;
-	Tue, 30 Jan 2024 22:25:38 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=Lee4ja78ReY1ch2ZJWfUgH8vBbANvaSL0Wxm4W97ZinSI4Ce707JpTmaNy2sHS+67bkE0NE1eUkwe6GO6OLrK1GW2MMTaZo48aykoel2aU12eUa04OjI0T2/oW2oxflhHuzu20YjOFuh26XR7GlBR7p9OAOPaw7GDfBylzViuNY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=PBLqoJJ2; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 1CDFEC433C7;
+	Tue, 30 Jan 2024 22:28:46 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1706653539;
-	bh=rti7mztnsIyooNfSUewv1B47KEAqojy4aPd6GMveyvA=;
+	s=k20201202; t=1706653726;
+	bh=gdgAHXKpH/gBF814iZyrFoZFRlxxElbbmfZ1pVF2jng=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=fO00VUs/gI+wGkwjc7jhpJr7obyerwaweKgya4sJydDpMHVoKb7EhVRPXdC5Q1f6i
-	 fECcU0vEJBELW/NhZlaWocrbjP2U+uEJ6kRlcGBDfN3ZMvHYVFhekB4wM+dJwNh0Xm
-	 IaXlGii3VZFl0y0R7Wj3oybOq+r1VVjafJxEUSmY//0/z1JmrsMxAl+kiyRzAH3Jm3
-	 yICd5+m5x5mjfZU2/x1SdI1nRrPz3GTTU6kJDSxD8m1/Xu/Cs8HrQqGaAKx35AFxEn
-	 5LnX51uzCTqXHb0fC5XueWQiBwc5pBL4R8b43w8B5M0bh0vqHS6FTZ1dnRqqvwmDZI
-	 lQ7knF2lwQMFA==
-Date: Tue, 30 Jan 2024 16:25:36 -0600
+	b=PBLqoJJ2n5lA3yi7rrskf3Az4bDyF+HMkm0G2NfA+0hL+AFGrK9P3W0OSgM2R6V87
+	 Yqh/Ud+PBcJXQdeJyIgcY7ZRy7cHFcqLTZ7qElwMYl4YdntfVLLbIpZI2DZ1mM9HxO
+	 Jys2RIofNvCuzv06AbE/vmBek8q+feMjE+GDJ0J5GgX95Y0xSctjsD/2d01T+lOhZn
+	 RVO0hSVa9xvzbNseSsAOu4NEd92yYrTMsvLDuuntv1hWjo2pvOef3uFVED4E2eta8/
+	 uon9o/cZJUQsDr8Z3EwoSrtgFZkRQmty4HQT2YdYxmw8lua0icQdYSz/u2lWOj8TCI
+	 18PDppuADvdkw==
+Date: Tue, 30 Jan 2024 16:28:44 -0600
 From: Rob Herring <robh@kernel.org>
-To: Tudor Ambarus <tudor.ambarus@linaro.org>
-Cc: Mark Brown <broonie@kernel.org>, andi.shyti@kernel.org, arnd@arndb.de,
-	krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
-	alim.akhtar@samsung.com, linux-spi@vger.kernel.org,
-	linux-samsung-soc@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-	linux-arch@vger.kernel.org, andre.draszik@linaro.org,
-	peter.griffin@linaro.org, semen.protsenko@linaro.org,
-	kernel-team@android.com, willmcvicker@google.com
-Subject: Re: [PATCH v2 05/28] spi: dt-bindings: samsung: add
- samsung,spi-fifosize property
-Message-ID: <20240130222536.GA2523173-robh@kernel.org>
-References: <20240125145007.748295-1-tudor.ambarus@linaro.org>
- <20240125145007.748295-6-tudor.ambarus@linaro.org>
- <7ef86704-3e40-4d39-a69d-a30719c96660@sirena.org.uk>
- <1c58deef-bc0f-4889-bf40-54168ce9ff7c@linaro.org>
- <55af5d4a-7bc9-4ae7-88c5-5acae4666450@sirena.org.uk>
- <f2ec664b-cd67-4cae-9c0d-5a435c72f121@linaro.org>
- <f44d5c58-234d-45ec-8027-47df079e2f16@sirena.org.uk>
- <96f9306f-3445-484b-bd3c-82e708681f1b@linaro.org>
+To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Cc: Kamel Bouhara <kamel.bouhara@bootlin.com>,
+	Dmitry Torokhov <dmitry.torokhov@gmail.com>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Henrik Rydberg <rydberg@bitmath.org>, linux-input@vger.kernel.org,
+	linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+	Marco Felsch <m.felsch@pengutronix.de>,
+	Jeff LaBundy <jeff@labundy.com>,
+	catalin.popescu@leica-geosystems.com,
+	mark.satterthwaite@touchnetix.com,
+	Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
+	Gregory Clement <gregory.clement@bootlin.com>,
+	bsp-development.geo@leica-geosystems.com
+Subject: Re: [PATCH v6 2/3] dt-bindings: input: Add TouchNetix axiom
+ touchscreen
+Message-ID: <20240130222844.GA2527859-robh@kernel.org>
+References: <20240125165823.996910-1-kamel.bouhara@bootlin.com>
+ <20240125165823.996910-3-kamel.bouhara@bootlin.com>
+ <2c8961ff-9fcc-402c-b048-744ae9473164@linaro.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -71,34 +71,28 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <96f9306f-3445-484b-bd3c-82e708681f1b@linaro.org>
+In-Reply-To: <2c8961ff-9fcc-402c-b048-744ae9473164@linaro.org>
 
-On Thu, Jan 25, 2024 at 07:01:10PM +0000, Tudor Ambarus wrote:
+On Fri, Jan 26, 2024 at 12:46:16PM +0100, Krzysztof Kozlowski wrote:
+> On 25/01/2024 17:58, Kamel Bouhara wrote:
+> > +  reset-gpios:
+> > +    maxItems: 1
+> > +
+> > +  vdda-supply:
+> > +    description: Analog power supply regulator on VDDA pin
+> > +
+> > +  vddi-supply:
+> > +    description: I/O power supply regulator on VDDI pin
+> > +
+> > +  startup-time-ms:
+> > +    description: delay after power supply regulator is applied in ms
 > 
-> 
-> On 1/25/24 17:45, Mark Brown wrote:
-> > On Thu, Jan 25, 2024 at 05:30:53PM +0000, Tudor Ambarus wrote:
-> >> On 1/25/24 17:26, Mark Brown wrote:
-> > 
-> >>> OK, so just the compatible is enough information then?
-> > 
-> >> For gs101, yes. All the gs101 SPI instances are configured with 64 bytes
-> >> FIFO depths. So instead of specifying the FIFO depth for each SPI node,
-> >> we can infer the FIFO depth from the compatible.
-> > 
-> > But this is needed for other SoCs?  This change is scattered through a
-> 
-> There are SoCs that have multiple instances of the SPI IP, and they
-> configure them with different FIFO depths. See
-> "samsung,exynosautov9-spi" for example: SPI0, SPI1, and SPI6 are
-> configured by the SoC to use 256 bytes FIFO depths, while all the other
-> 8 SPI instances use 64 bytes FIFOs. I tried to explain the entire logic
-> of the series in another reply, see it here:
-> https://lore.kernel.org/linux-arm-kernel/40ba9481-4aea-4a72-87bd-c2db319be069@linaro.org/T/#u
+> That's a regulator property - ramp up time.
 
-We have some common properties for fifo size. In fact, there was just a 
-discussion recently on Samsung UART (Is that the same block?) about 
-this. So if you do use a property here, use a common one.
+I'm sure there's an existing property name that could be used.
+
+But why is it needed? Is it variable per board with the same device? If 
+not, it should be implied by the compatible.
 
 Rob
 
