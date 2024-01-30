@@ -1,441 +1,201 @@
-Return-Path: <devicetree+bounces-36659-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-36660-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 531C9842326
-	for <lists+devicetree@lfdr.de>; Tue, 30 Jan 2024 12:33:38 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 504F4842356
+	for <lists+devicetree@lfdr.de>; Tue, 30 Jan 2024 12:40:33 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id C3402B2B37B
-	for <lists+devicetree@lfdr.de>; Tue, 30 Jan 2024 11:32:56 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id BE5481F25A6F
+	for <lists+devicetree@lfdr.de>; Tue, 30 Jan 2024 11:40:32 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 60F0166B49;
-	Tue, 30 Jan 2024 11:32:40 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b="X1dbL0lf"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 37A096D1D1;
+	Tue, 30 Jan 2024 11:38:16 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from madrid.collaboradmins.com (madrid.collaboradmins.com [46.235.227.194])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-yw1-f172.google.com (mail-yw1-f172.google.com [209.85.128.172])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6A01B679E2;
-	Tue, 30 Jan 2024 11:32:38 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=46.235.227.194
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7477E6A34D;
+	Tue, 30 Jan 2024 11:38:14 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.172
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1706614360; cv=none; b=YaH4q433VVIZE87JDDHncNSJQXMa3vLNpvFDTqe5pVb5oK2lgpvCILFWgnYfkIYDVbx76Edy0pXq4SFRHBuVKld/m4AhX9KCWFBs4kqOWhTwpvIQKK0guAXjYtG14BkSfHx7Xv6j6PYr5zwR+zxdBkDR5MpXuj5QzbrMgkpCC0c=
+	t=1706614696; cv=none; b=uydxcr4y3XluQm8uDuh0vepnXyzSPm5gEFtiw7CuMmQy54emyusKtxOxCUixvc3F4f7HwK0MfgfHNQrWxi2Kbjzn2Is79y9ApWB0VenLWEaTc2Ys+j4Wq1B+nQV3bWORjjg71pooxuVfwlWA5p6+zsJ8yTEzZ8qnlC0zhnTNCl4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1706614360; c=relaxed/simple;
-	bh=2c3rpex/zB7h9HCUvPXodVCfRpwJO79GoYARME11Ky4=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=DVxKxGLp7Bnd9f5buX/gP+7hEnjQuDImiMmMFSFxjX8HETod9g7I8tSVyUsUWfGqiS65vJPy4hY6sn6VHiPlePNVUQxTDBu70ByASYlQtP1C2LMN6IZ+wV7P3q9q8TXEBvEfgiKO0AoiCvd+1UjrQkzKUwXQ3Ch3fh7hjL+4/aY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b=X1dbL0lf; arc=none smtp.client-ip=46.235.227.194
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=collabora.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-	s=mail; t=1706614356;
-	bh=2c3rpex/zB7h9HCUvPXodVCfRpwJO79GoYARME11Ky4=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=X1dbL0lfhVBFj5E3codYazedPAoZt6ugh1Fn+4vvwvbS0pshsJqJ5iNwwdRgtbSAT
-	 5dmiU0PHaC7iWzj5QxEvtXREZqtWp98qGlmelg6j6avZp1II5JD/2cSfpiPfQqHqVf
-	 im45pdGPRgRPAIPtA2nShOw9B+/ZcVYPop8LrV/ov+Y0FfdvPWbvlp/kWesA0Jh2GJ
-	 oqa1rmIgWj2aZ127tyLy/AJqFf/3Oi5W2+KTZIIQYK5KV8El1A2BEE25t7eC3b8f45
-	 ZL2AvHUzg+Hc1O5oBXH3ajqAqcV8Nqm6r6jNPRT/QD3LMsfjuGHQb4S3fBOivluyTD
-	 YHNo/lpKGbLPQ==
-Received: from [100.113.186.2] (cola.collaboradmins.com [195.201.22.229])
-	(using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
-	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
-	(No client certificate requested)
-	(Authenticated sender: kholk11)
-	by madrid.collaboradmins.com (Postfix) with ESMTPSA id E47E43782081;
-	Tue, 30 Jan 2024 11:32:35 +0000 (UTC)
-Message-ID: <a79fa347-f42d-49a3-9faf-40fbefb69998@collabora.com>
-Date: Tue, 30 Jan 2024 12:32:35 +0100
+	s=arc-20240116; t=1706614696; c=relaxed/simple;
+	bh=p8c/mHTXGGnT4oXtWTCZLHq7kKnl6GsnEVgDNwo1j3I=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=NMOp82Ic2cvGgpCQMdRN+yAUTEavgm//hRZ3qCnmZ9LgF0vZQVTXJlHmVGq1dpAZBLBfpNefnAtmv/UxAuNBIqP5qvX7q0KJnzB4+SNO7npchDhS0YywwkFRRacqLGovfTfpY+k8Mt5F4HagPA5mGEInif2muZUdTfL7OWvpNbc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org; spf=pass smtp.mailfrom=gmail.com; arc=none smtp.client-ip=209.85.128.172
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-yw1-f172.google.com with SMTP id 00721157ae682-603e370790cso17193437b3.3;
+        Tue, 30 Jan 2024 03:38:14 -0800 (PST)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1706614693; x=1707219493;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=vMem4Wnyl/FAVyRvXWDBiw17T/CYF02xtBqauVXYuOA=;
+        b=I1RrN5VypJQL0NRdmr8v63pFpWRgJM6OW+GK5cNhCEkyZwkeK6pyX4aVR/xm6vlB/s
+         Y5HqVxkeNh3NomYRWGV4NM8C9Vz3TR+RSq90IyOrvCNxpL332PS8Y3+i/FcpGzbvk46P
+         nmyi7kwnDo9sOCIUhJkjPt7gtAGFAx/6Sk0zyLLvI4qYgF6rZvuskdpV1dW8O4+Yj4R4
+         7f+9eCkBwBVs70jP6daCAK/EIPAegMZ7GHVglaf+7/6sEcPUr2nWqQQ199FUahX8JhOl
+         /I4wfEgUY0vz5FUymf8f/CKULnNzKXmUTWCXCIJGXD22wRbC7AJsyQmGHqZIi14rLoUu
+         gKvA==
+X-Gm-Message-State: AOJu0YzLoR1ScAPAXLzwcJ41dXfZqV0wfNIjT4wnDotc12+p2dvhymcK
+	qcwUTxLMHCSM93Ajub7q8xctea+hhSCnJvwrV1yiaLMtScFj+TyJ7rQHPKVRnaY=
+X-Google-Smtp-Source: AGHT+IFk04bMlmsesF16iNPJrpvyojRPlSgTAPbgkzCsXQbLHtU/bXJQCOAUXCZvduiJRkE4wQvpxg==
+X-Received: by 2002:a25:2d08:0:b0:dc2:43d0:6e05 with SMTP id t8-20020a252d08000000b00dc243d06e05mr5203578ybt.50.1706614693083;
+        Tue, 30 Jan 2024 03:38:13 -0800 (PST)
+Received: from mail-yb1-f177.google.com (mail-yb1-f177.google.com. [209.85.219.177])
+        by smtp.gmail.com with ESMTPSA id 63-20020a250a42000000b00dc2324b3cddsm2908270ybk.37.2024.01.30.03.38.12
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 30 Jan 2024 03:38:12 -0800 (PST)
+Received: by mail-yb1-f177.google.com with SMTP id 3f1490d57ef6-dc24ead4428so2829314276.1;
+        Tue, 30 Jan 2024 03:38:12 -0800 (PST)
+X-Received: by 2002:a05:6902:14e:b0:dc2:35c1:7d9c with SMTP id
+ p14-20020a056902014e00b00dc235c17d9cmr4871757ybh.60.1706614692403; Tue, 30
+ Jan 2024 03:38:12 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH] arm64: dts: mediatek: mt8195: Add MTU3 nodes and
- correctly describe USB
-Content-Language: en-US
-To: Chen-Yu Tsai <wenst@chromium.org>
-Cc: robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
- conor+dt@kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- linux-mediatek@lists.infradead.org, wenst@chromium.org,
- kernel@collabora.com, matthias.bgg@gmail.com
-References: <20240115084336.938426-1-angelogioacchino.delregno@collabora.com>
-From: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
-In-Reply-To: <20240115084336.938426-1-angelogioacchino.delregno@collabora.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+References: <20240129151618.90922-1-prabhakar.mahadev-lad.rj@bp.renesas.com> <20240129151618.90922-3-prabhakar.mahadev-lad.rj@bp.renesas.com>
+In-Reply-To: <20240129151618.90922-3-prabhakar.mahadev-lad.rj@bp.renesas.com>
+From: Geert Uytterhoeven <geert@linux-m68k.org>
+Date: Tue, 30 Jan 2024 12:38:01 +0100
+X-Gmail-Original-Message-ID: <CAMuHMdV7Q4kMv1pFVNBf5oYF=_W_snp=5GKLpr9+OxeqxywhBw@mail.gmail.com>
+Message-ID: <CAMuHMdV7Q4kMv1pFVNBf5oYF=_W_snp=5GKLpr9+OxeqxywhBw@mail.gmail.com>
+Subject: Re: [PATCH 2/5] irqchip/renesas-rzg2l: Add support for RZ/Five SoC
+To: Prabhakar <prabhakar.csengg@gmail.com>
+Cc: Thomas Gleixner <tglx@linutronix.de>, Rob Herring <robh+dt@kernel.org>, 
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Magnus Damm <magnus.damm@gmail.com>, linux-renesas-soc@vger.kernel.org, 
+	devicetree@vger.kernel.org, linux-riscv@lists.infradead.org, 
+	linux-kernel@vger.kernel.org, Biju Das <biju.das.jz@bp.renesas.com>, 
+	Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>, 
+	Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-Il 15/01/24 09:43, AngeloGioacchino Del Regno ha scritto:
-> The MT8195 SoC has four USB controllers: only one is a direct path to
-> a XHCI controller, while the other three (0, 2 and 3) are behind the
-> MTU3 DRD controller instead!
-> 
-> Add the missing MTU3 nodes, default disabled, for controllers 0, 2 and
-> 3 and move the related XHCI nodes to be children of their MTU3 DRD to
-> correctly describe the SoC.
-> 
-> In order to retain USB functionality on all of the MT8195 and MT8395
-> boards, also move the vusb33 supply and enable the relevant MTU3 nodes
-> with special attention to the MT8195 Cherry Chromebook, where it was
-> necessary to set the dr_mode of all MTU3 controllers to host to avoid
-> interfering with the EC performing DRD on its own.
-> 
-> Signed-off-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
+Hi Prabhakar,
 
-Hello Chen-Yu,
+On Mon, Jan 29, 2024 at 4:16=E2=80=AFPM Prabhakar <prabhakar.csengg@gmail.c=
+om> wrote:
+> From: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+>
+> The IX45 block has additional mask registers (NMSK/IMSK/TMSK) as compared
+> to the RZ/G2L (family) SoC.
+>
+> Introduce masking/unmasking support for IRQ and TINT interrupts in IRQC
+> controller driver. Two new registers, IMSK and TMSK, are defined to
+> handle masking on RZ/Five SoC. The implementation utilizes a new data
+> structure, `struct rzg2l_irqc_data`, to determine mask support for a
+> specific controller instance.
+>
+> Signed-off-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
 
-even though I've carefully tested that on my MT8195 Chromebook, can you please
-check this one?
+Thanks for your patch!
 
-Four eyes are better than two. :-)
-
-P.S.: Sorry, I forgot to Cc you in the first submission....
-
-Thanks,
-Angelo
-
-> ---
-> 
-> Depends on [1]
-> 
-> This patch was tested on a MT8395 board and on the MT8195 Cherry
-> Tomato Chromebook.
-> 
-> [1]: https://lore.kernel.org/all/20240112133222.240038-1-angelogioacchino.delregno@collabora.com
-> 
->   .../boot/dts/mediatek/mt8195-cherry.dtsi      |  26 +++-
->   arch/arm64/boot/dts/mediatek/mt8195-demo.dts  |  18 ++-
->   arch/arm64/boot/dts/mediatek/mt8195-evb.dts   |  12 ++
->   arch/arm64/boot/dts/mediatek/mt8195.dtsi      | 125 +++++++++++-------
->   .../dts/mediatek/mt8395-genio-1200-evk.dts    |  17 ++-
->   5 files changed, 140 insertions(+), 58 deletions(-)
-> 
-> diff --git a/arch/arm64/boot/dts/mediatek/mt8195-cherry.dtsi b/arch/arm64/boot/dts/mediatek/mt8195-cherry.dtsi
-> index a136bea99d9c..e563a2dc4cce 100644
-> --- a/arch/arm64/boot/dts/mediatek/mt8195-cherry.dtsi
-> +++ b/arch/arm64/boot/dts/mediatek/mt8195-cherry.dtsi
-> @@ -1293,11 +1293,32 @@ &uart0 {
->   	status = "okay";
->   };
->   
-> +/*
-> + * For the USB Type-C ports the role and alternate modes switching is
-> + * done by the EC so we set dr_mode to host to avoid interfering.
+> --- a/drivers/irqchip/irq-renesas-rzg2l.c
+> +++ b/drivers/irqchip/irq-renesas-rzg2l.c
+> @@ -66,15 +68,25 @@ struct rzg2l_irqc_reg_cache {
+>         u32     titsr[2];
+>  };
+>
+> +/**
+> + * struct rzg2l_irqc_data - OF data structure
+> + * @mask_supported: Indicates if mask registers are available
 > + */
-> +&ssusb0 {
-> +	dr_mode = "host";
-> +	vusb33-supply = <&mt6359_vusb_ldo_reg>;
-> +	status = "okay";
-> +};
-> +
-> +&ssusb2 {
-> +	dr_mode = "host";
-> +	vusb33-supply = <&mt6359_vusb_ldo_reg>;
-> +	status = "okay";
-> +};
-> +
-> +&ssusb3 {
-> +	dr_mode = "host";
-> +	vusb33-supply = <&mt6359_vusb_ldo_reg>;
-> +	status = "okay";
-> +};
-> +
->   &xhci0 {
->   	status = "okay";
->   
->   	rx-fifo-depth = <3072>;
-> -	vusb33-supply = <&mt6359_vusb_ldo_reg>;
->   	vbus-supply = <&usb_vbus>;
->   };
->   
-> @@ -1311,8 +1332,6 @@ &xhci1 {
->   
->   &xhci2 {
->   	status = "okay";
-> -
-> -	vusb33-supply = <&mt6359_vusb_ldo_reg>;
->   	vbus-supply = <&usb_vbus>;
->   };
->   
-> @@ -1321,7 +1340,6 @@ &xhci3 {
->   
->   	/* MT7921's USB Bluetooth has issues with USB2 LPM */
->   	usb2-lpm-disable;
-> -	vusb33-supply = <&mt6359_vusb_ldo_reg>;
->   	vbus-supply = <&usb_vbus>;
->   };
->   
-> diff --git a/arch/arm64/boot/dts/mediatek/mt8195-demo.dts b/arch/arm64/boot/dts/mediatek/mt8195-demo.dts
-> index 69c7f3954ae5..9872743f743f 100644
-> --- a/arch/arm64/boot/dts/mediatek/mt8195-demo.dts
-> +++ b/arch/arm64/boot/dts/mediatek/mt8195-demo.dts
-> @@ -528,8 +528,22 @@ &u3phy3 {
->   	status = "okay";
->   };
->   
-> -&xhci0 {
-> +&ssusb0 {
-> +	vusb33-supply = <&mt6359_vusb_ldo_reg>;
-> +	status = "okay";
-> +};
-> +
-> +&ssusb2 {
->   	vusb33-supply = <&mt6359_vusb_ldo_reg>;
-> +	status = "okay";
-> +};
-> +
-> +&ssusb3 {
-> +	vusb33-supply = <&mt6359_vusb_ldo_reg>;
-> +	status = "okay";
-> +};
-> +
-> +&xhci0 {
->   	vbus-supply = <&otg_vbus_regulator>;
->   	status = "okay";
->   };
-> @@ -540,11 +554,9 @@ &xhci1 {
->   };
->   
->   &xhci2 {
-> -	vusb33-supply = <&mt6359_vusb_ldo_reg>;
->   	status = "okay";
->   };
->   
->   &xhci3 {
-> -	vusb33-supply = <&mt6359_vusb_ldo_reg>;
->   	status = "okay";
->   };
-> diff --git a/arch/arm64/boot/dts/mediatek/mt8195-evb.dts b/arch/arm64/boot/dts/mediatek/mt8195-evb.dts
-> index 690dc7717f2c..341b6e074139 100644
-> --- a/arch/arm64/boot/dts/mediatek/mt8195-evb.dts
-> +++ b/arch/arm64/boot/dts/mediatek/mt8195-evb.dts
-> @@ -160,6 +160,18 @@ &uart0 {
->   	status = "okay";
->   };
->   
-> +&ssusb0 {
-> +	status = "okay";
-> +};
-> +
-> +&ssusb2 {
-> +	status = "okay";
-> +};
-> +
-> +&ssusb3 {
-> +	status = "okay";
-> +};
-> +
->   &xhci0 {
->   	status = "okay";
->   };
-> diff --git a/arch/arm64/boot/dts/mediatek/mt8195.dtsi b/arch/arm64/boot/dts/mediatek/mt8195.dtsi
-> index 152cc0b191bb..45f278efd946 100644
-> --- a/arch/arm64/boot/dts/mediatek/mt8195.dtsi
-> +++ b/arch/arm64/boot/dts/mediatek/mt8195.dtsi
-> @@ -1349,29 +1349,40 @@ queue3 {
->   			};
->   		};
->   
-> -		xhci0: usb@11200000 {
-> -			compatible = "mediatek,mt8195-xhci",
-> -				     "mediatek,mtk-xhci";
-> -			reg = <0 0x11200000 0 0x1000>,
-> -			      <0 0x11203e00 0 0x0100>;
-> +		ssusb0: usb@11201000 {
-> +			compatible = "mediatek,mt8195-mtu3", "mediatek,mtu3";
-> +			reg = <0 0x11201000 0 0x2dff>, <0 0x11203e00 0 0x0100>;
->   			reg-names = "mac", "ippc";
-> -			interrupts = <GIC_SPI 129 IRQ_TYPE_LEVEL_HIGH 0>;
-> -			phys = <&u2port0 PHY_TYPE_USB2>,
-> -			       <&u3port0 PHY_TYPE_USB3>;
-> -			assigned-clocks = <&topckgen CLK_TOP_USB_TOP>,
-> -					  <&topckgen CLK_TOP_SSUSB_XHCI>;
-> -			assigned-clock-parents = <&topckgen CLK_TOP_UNIVPLL_D5_D4>,
-> -						 <&topckgen CLK_TOP_UNIVPLL_D5_D4>;
-> +			ranges = <0 0 0 0x11200000 0 0x3f00>;
-> +			#address-cells = <2>;
-> +			#size-cells = <2>;
-> +			interrupts = <GIC_SPI 128 IRQ_TYPE_LEVEL_HIGH 0>;
->   			clocks = <&infracfg_ao CLK_INFRA_AO_SSUSB>,
->   				 <&topckgen CLK_TOP_SSUSB_REF>,
-> -				 <&apmixedsys CLK_APMIXED_USB1PLL>,
-> -				 <&clk26m>,
->   				 <&infracfg_ao CLK_INFRA_AO_SSUSB_XHCI>;
-> -			clock-names = "sys_ck", "ref_ck", "mcu_ck", "dma_ck",
-> -				      "xhci_ck";
-> -			mediatek,syscon-wakeup = <&pericfg 0x400 103>;
-> +			clock-names = "sys_ck", "ref_ck", "mcu_ck";
-> +			phys = <&u2port0 PHY_TYPE_USB2>, <&u3port0 PHY_TYPE_USB3>;
->   			wakeup-source;
-> +			mediatek,syscon-wakeup = <&pericfg 0x400 103>;
->   			status = "disabled";
-> +
-> +			xhci0: usb@0 {
-> +				compatible = "mediatek,mt8195-xhci", "mediatek,mtk-xhci";
-> +				reg = <0 0 0 0x1000>;
-> +				reg-names = "mac";
-> +				interrupts = <GIC_SPI 129 IRQ_TYPE_LEVEL_HIGH 0>;
-> +				assigned-clocks = <&topckgen CLK_TOP_USB_TOP>,
-> +						  <&topckgen CLK_TOP_SSUSB_XHCI>;
-> +				assigned-clock-parents = <&topckgen CLK_TOP_UNIVPLL_D5_D4>,
-> +							 <&topckgen CLK_TOP_UNIVPLL_D5_D4>;
-> +				clocks = <&infracfg_ao CLK_INFRA_AO_SSUSB>,
-> +					 <&topckgen CLK_TOP_SSUSB_REF>,
-> +					 <&apmixedsys CLK_APMIXED_USB1PLL>,
-> +					 <&clk26m>,
-> +					 <&infracfg_ao CLK_INFRA_AO_SSUSB_XHCI>;
-> +				clock-names = "sys_ck", "ref_ck", "mcu_ck", "dma_ck", "xhci_ck";
-> +				status = "disabled";
-> +			};
->   		};
->   
->   		mmc0: mmc@11230000 {
-> @@ -1452,52 +1463,68 @@ xhci1: usb@11290000 {
->   			status = "disabled";
->   		};
->   
-> -		xhci2: usb@112a0000 {
-> -			compatible = "mediatek,mt8195-xhci",
-> -				     "mediatek,mtk-xhci";
-> -			reg = <0 0x112a0000 0 0x1000>,
-> -			      <0 0x112a3e00 0 0x0100>;
-> +		ssusb2: usb@112a1000 {
-> +			compatible = "mediatek,mt8195-mtu3", "mediatek,mtu3";
-> +			reg = <0 0x112a1000 0 0x2dff>, <0 0x112a3e00 0 0x0100>;
->   			reg-names = "mac", "ippc";
-> -			interrupts = <GIC_SPI 533 IRQ_TYPE_LEVEL_HIGH 0>;
-> -			phys = <&u2port2 PHY_TYPE_USB2>;
-> -			assigned-clocks = <&topckgen CLK_TOP_USB_TOP_2P>,
-> -					  <&topckgen CLK_TOP_SSUSB_XHCI_2P>;
-> -			assigned-clock-parents = <&topckgen CLK_TOP_UNIVPLL_D5_D4>,
-> -						 <&topckgen CLK_TOP_UNIVPLL_D5_D4>;
-> +			ranges = <0 0 0 0x112a0000 0 0x3f00>;
-> +			#address-cells = <2>;
-> +			#size-cells = <2>;
-> +			interrupts = <GIC_SPI 532 IRQ_TYPE_LEVEL_HIGH 0>;
-> +			assigned-clocks = <&topckgen CLK_TOP_USB_TOP_2P>;
-> +			assigned-clock-parents = <&topckgen CLK_TOP_UNIVPLL_D5_D4>;
->   			clocks = <&pericfg_ao CLK_PERI_AO_SSUSB_2P_BUS>,
->   				 <&topckgen CLK_TOP_SSUSB_P2_REF>,
-> -				 <&clk26m>,
-> -				 <&clk26m>,
->   				 <&pericfg_ao CLK_PERI_AO_SSUSB_2P_XHCI>;
-> -			clock-names = "sys_ck", "ref_ck", "mcu_ck", "dma_ck",
-> -				      "xhci_ck";
-> -			mediatek,syscon-wakeup = <&pericfg 0x400 105>;
-> +			clock-names = "sys_ck", "ref_ck", "mcu_ck";
-> +			phys = <&u2port2 PHY_TYPE_USB2>;
->   			wakeup-source;
-> +			mediatek,syscon-wakeup = <&pericfg 0x400 105>;
->   			status = "disabled";
-> +
-> +			xhci2: usb@0 {
-> +				compatible = "mediatek,mt8195-xhci", "mediatek,mtk-xhci";
-> +				reg = <0 0 0 0x1000>;
-> +				reg-names = "mac";
-> +				interrupts = <GIC_SPI 533 IRQ_TYPE_LEVEL_HIGH 0>;
-> +				assigned-clocks = <&topckgen CLK_TOP_SSUSB_XHCI_2P>;
-> +				assigned-clock-parents = <&topckgen CLK_TOP_UNIVPLL_D5_D4>;
-> +				clocks = <&pericfg_ao CLK_PERI_AO_SSUSB_2P_XHCI>;
-> +				clock-names = "sys_ck";
-> +				status = "disabled";
-> +			};
->   		};
->   
-> -		xhci3: usb@112b0000 {
-> -			compatible = "mediatek,mt8195-xhci",
-> -				     "mediatek,mtk-xhci";
-> -			reg = <0 0x112b0000 0 0x1000>,
-> -			      <0 0x112b3e00 0 0x0100>;
-> +		ssusb3: usb@112b1000 {
-> +			compatible = "mediatek,mt8195-mtu3", "mediatek,mtu3";
-> +			reg = <0 0x112b1000 0 0x2dff>, <0 0x112b3e00 0 0x0100>;
->   			reg-names = "mac", "ippc";
-> -			interrupts = <GIC_SPI 536 IRQ_TYPE_LEVEL_HIGH 0>;
-> -			phys = <&u2port3 PHY_TYPE_USB2>;
-> -			assigned-clocks = <&topckgen CLK_TOP_USB_TOP_3P>,
-> -					  <&topckgen CLK_TOP_SSUSB_XHCI_3P>;
-> -			assigned-clock-parents = <&topckgen CLK_TOP_UNIVPLL_D5_D4>,
-> -						 <&topckgen CLK_TOP_UNIVPLL_D5_D4>;
-> +			ranges = <0 0 0 0x112b0000 0 0x3f00>;
-> +			#address-cells = <2>;
-> +			#size-cells = <2>;
-> +			interrupts = <GIC_SPI 535 IRQ_TYPE_LEVEL_HIGH 0>;
-> +			assigned-clocks = <&topckgen CLK_TOP_USB_TOP_3P>;
-> +			assigned-clock-parents = <&topckgen CLK_TOP_UNIVPLL_D5_D4>;
->   			clocks = <&pericfg_ao CLK_PERI_AO_SSUSB_3P_BUS>,
->   				 <&topckgen CLK_TOP_SSUSB_P3_REF>,
-> -				 <&clk26m>,
-> -				 <&clk26m>,
->   				 <&pericfg_ao CLK_PERI_AO_SSUSB_3P_XHCI>;
-> -			clock-names = "sys_ck", "ref_ck", "mcu_ck", "dma_ck",
-> -				      "xhci_ck";
-> -			mediatek,syscon-wakeup = <&pericfg 0x400 106>;
-> +			clock-names = "sys_ck", "ref_ck", "mcu_ck";
-> +			phys = <&u2port3 PHY_TYPE_USB2>;
->   			wakeup-source;
-> +			mediatek,syscon-wakeup = <&pericfg 0x400 106>;
->   			status = "disabled";
-> +
-> +			xhci3: usb@0 {
-> +				compatible = "mediatek,mt8195-xhci", "mediatek,mtk-xhci";
-> +				reg = <0 0 0 0x1000>;
-> +				reg-names = "mac";
-> +				interrupts = <GIC_SPI 536 IRQ_TYPE_LEVEL_HIGH 0>;
-> +				assigned-clocks = <&topckgen CLK_TOP_SSUSB_XHCI_3P>;
-> +				assigned-clock-parents = <&topckgen CLK_TOP_UNIVPLL_D5_D4>;
-> +				clocks = <&pericfg_ao CLK_PERI_AO_SSUSB_3P_XHCI>;
-> +				clock-names = "sys_ck";
-> +				status = "disabled";
-> +			};
->   		};
->   
->   		pcie0: pcie@112f0000 {
-> diff --git a/arch/arm64/boot/dts/mediatek/mt8395-genio-1200-evk.dts b/arch/arm64/boot/dts/mediatek/mt8395-genio-1200-evk.dts
-> index 7fc515a07c65..1558649f633c 100644
-> --- a/arch/arm64/boot/dts/mediatek/mt8395-genio-1200-evk.dts
-> +++ b/arch/arm64/boot/dts/mediatek/mt8395-genio-1200-evk.dts
-> @@ -880,6 +880,21 @@ &ufsphy {
->   	status = "disabled";
->   };
->   
-> +&ssusb0 {
-> +	vusb33-supply = <&mt6359_vusb_ldo_reg>;
-> +	status = "okay";
-> +};
-> +
-> +&ssusb2 {
-> +	vusb33-supply = <&mt6359_vusb_ldo_reg>;
-> +	status = "okay";
-> +};
-> +
-> +&ssusb3 {
-> +	vusb33-supply = <&mt6359_vusb_ldo_reg>;
-> +	status = "okay";
-> +};
-> +
->   &xhci0 {
->   	status = "okay";
->   };
-> @@ -890,11 +905,9 @@ &xhci1 {
->   };
->   
->   &xhci2 {
-> -	vusb33-supply = <&mt6359_vusb_ldo_reg>;
->   	status = "okay";
->   };
->   
->   &xhci3 {
-> -	vusb33-supply = <&mt6359_vusb_ldo_reg>;
->   	status = "okay";
->   };
+> +struct rzg2l_irqc_data {
 
+This structure has the same name as the single static struct
+rzg2l_irqc_priv instance, which is confusing.
 
+> +       bool    mask_supported;
+> +};
+> +
+>  /**
+>   * struct rzg2l_irqc_priv - IRQ controller private data structure
+>   * @base:      Controller's base address
+> + * @data:      OF data pointer
+>   * @fwspec:    IRQ firmware specific data
+>   * @lock:      Lock to serialize access to hardware registers
+>   * @cache:     Registers cache for suspend/resume
+>   */
+>  static struct rzg2l_irqc_priv {
+>         void __iomem                    *base;
+> +       const struct rzg2l_irqc_data    *data;
+
+Replacing this by a bool would avoid a pointer dereference in each user,
+and allows you to make rzg2l_irqc_data etc. __initconst.
+
+>         struct irq_fwspec               fwspec[IRQC_NUM_IRQ];
+>         raw_spinlock_t                  lock;
+>         struct rzg2l_irqc_reg_cache     cache;
+
+> @@ -371,9 +475,23 @@ static int rzg2l_irqc_parse_interrupts(struct rzg2l_=
+irqc_priv *priv,
+>         return 0;
+>  }
+>
+> +static const struct rzg2l_irqc_data rzfive_irqc_data =3D {
+> +       .mask_supported =3D true,
+> +};
+> +
+> +static const struct rzg2l_irqc_data rzg2l_irqc_default_data =3D {
+> +       .mask_supported =3D false,
+> +};
+> +
+> +static const struct of_device_id rzg2l_irqc_matches[] =3D {
+> +       { .compatible =3D "renesas,r9a07g043f-irqc", .data =3D &rzfive_ir=
+qc_data },
+> +       { }
+> +};
+> +
+>  static int rzg2l_irqc_init(struct device_node *node, struct device_node =
+*parent)
+>  {
+>         struct irq_domain *irq_domain, *parent_domain;
+> +       const struct of_device_id *match;
+>         struct platform_device *pdev;
+>         struct reset_control *resetn;
+>         int ret;
+> @@ -392,6 +510,12 @@ static int rzg2l_irqc_init(struct device_node *node,=
+ struct device_node *parent)
+>         if (!rzg2l_irqc_data)
+>                 return -ENOMEM;
+>
+> +       match =3D of_match_node(rzg2l_irqc_matches, node);
+> +       if (match)
+> +               rzg2l_irqc_data->data =3D match->data;
+> +       else
+> +               rzg2l_irqc_data->data =3D &rzg2l_irqc_default_data;
+
+Instead of matching a second time, I'd rather add a second
+IRQCHIP_MATCH() entry with a different init function, passing the
+actual rzg2l_irqc_data pointer.
+
+> +
+>         rzg2l_irqc_data->base =3D devm_of_iomap(&pdev->dev, pdev->dev.of_=
+node, 0, NULL);
+>         if (IS_ERR(rzg2l_irqc_data->base))
+>                 return PTR_ERR(rzg2l_irqc_data->base);
+
+Gr{oetje,eeting}s,
+
+                        Geert
+
+--=20
+Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k=
+.org
+
+In personal conversations with technical people, I call myself a hacker. Bu=
+t
+when I'm talking to journalists I just say "programmer" or something like t=
+hat.
+                                -- Linus Torvalds
 
