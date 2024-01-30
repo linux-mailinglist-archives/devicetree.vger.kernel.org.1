@@ -1,168 +1,145 @@
-Return-Path: <devicetree+bounces-36696-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-36697-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 275FB84258E
-	for <lists+devicetree@lfdr.de>; Tue, 30 Jan 2024 13:57:20 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 590718425A2
+	for <lists+devicetree@lfdr.de>; Tue, 30 Jan 2024 13:59:54 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 5A0971C24408
-	for <lists+devicetree@lfdr.de>; Tue, 30 Jan 2024 12:57:19 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 7E58E1C2561F
+	for <lists+devicetree@lfdr.de>; Tue, 30 Jan 2024 12:59:53 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3FF906BB2B;
-	Tue, 30 Jan 2024 12:56:11 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B85C66A32A;
+	Tue, 30 Jan 2024 12:59:44 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=9elements.com header.i=@9elements.com header.b="fXz9y118"
+	dkim=pass (1024-bit key) header.d=samsung.com header.i=@samsung.com header.b="fU6IjAxN"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f45.google.com (mail-wm1-f45.google.com [209.85.128.45])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mailout3.samsung.com (mailout3.samsung.com [203.254.224.33])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2F7C66A346
-	for <devicetree@vger.kernel.org>; Tue, 30 Jan 2024 12:56:07 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.45
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 78E284C66
+	for <devicetree@vger.kernel.org>; Tue, 30 Jan 2024 12:59:41 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=203.254.224.33
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1706619371; cv=none; b=GCPQCAngxmm62rEaVzW7p2SBc6VB91wFiTcDoa95HOpwDGWXoxw78vpwD09qPYiBOjXJBDKbJB13zfA24Ne4A18dTWmw0oS3D87mk+gZQBt26RF7U7NNRKl9XibsMQSF0U2GzCdiFc8n8HLWwtmsAs2Jf/7xeLX5tWgrIBIyqaI=
+	t=1706619584; cv=none; b=A+z3BI1kWjGITrkGfS4qECg1oISMY4tED/xHl3XsClIJF7pzhV6ZS+rB63ffkafcEUnyo5nF41mGnVEW59Kf3ASyjwxRjCjDCmkLOYwRZm5YZ0tFkXU0AulQoAqG0jm+Iw7uq1PYoKJttwWHKDGM9RLpOYU4XAteX/ej7/GX7cw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1706619371; c=relaxed/simple;
-	bh=M4XsD2YqgFaHUtkGgYzJicc7rP4UsBxaptjLYNfjVQw=;
-	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=qwlNMzRT9yRfpCiLgzakPQQ6NdCNA0CyhVLXfGu99WBfNf3TXf0PLbMwlEG9bC3W6tzyBaIFyQBcNu5b4gflDcfsO7jj9yFaHefv0zvyLD9TPHFgxOCkMPH5OnCJQjWfIK3cOhAObDtxmHBWiyqvTXpKFrqAA4+d7brNIyaFmpQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=9elements.com; spf=pass smtp.mailfrom=9elements.com; dkim=pass (2048-bit key) header.d=9elements.com header.i=@9elements.com header.b=fXz9y118; arc=none smtp.client-ip=209.85.128.45
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=9elements.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=9elements.com
-Received: by mail-wm1-f45.google.com with SMTP id 5b1f17b1804b1-40ed356a6ecso35023715e9.2
-        for <devicetree@vger.kernel.org>; Tue, 30 Jan 2024 04:56:07 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=9elements.com; s=google; t=1706619366; x=1707224166; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=p0WnNI2YK39ATDOg8LAfQTT3VKByFvuowcIiTTw06Xg=;
-        b=fXz9y118rwHEV6PDkTe9N6SctY/nUXbGbb78S5VB/mafFn8MyqC9FLAEoxDh9tBn+X
-         irGQDFx2EOuFM0LtNqZ1rVk/Uu/FWAqNDWnelr2Fh7FvcX3hS6Rln75gIlNf5hCtZ9Cm
-         uh2XWdzhdAZ1sUb8ZGdQ25kuUE2aja1VsRzqGYoxftO6NfWVoUyiyi81iN1APVuTtioX
-         UyXa0ns9wO7mxsylKE2Sr2qEV99KEJ9mJhIZU1vhNimJQsAe6O6ARIqt44qkZfTrnXF9
-         MKljnU9361/7Gfupes8Fi1p9B2zfZUTyxi0G2aO1FVr3GKw68pFLo35b8bnnHUJzc9wl
-         Ph1g==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1706619366; x=1707224166;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=p0WnNI2YK39ATDOg8LAfQTT3VKByFvuowcIiTTw06Xg=;
-        b=hu07ccnHM2nPRdUq3UHYK+OCYy9tyGJBhIxkrDBP3sebdvOIi30IgmZMxfW/1hymQa
-         nB+MXkRrGAto4xCI4Xuzj/40UAD3X5XmCYHtQ3SpknUupMtAcLk0EPkB9BKbrc/JXnX4
-         lMJJl6nF6e85tbqRG3vl0BCWerUFhvOqSOsGEYpkp8I3YEuId3njx12DxXroE+PWtW1Z
-         bFMMHxZm0iDsxTK3EJjnuCqQC8s/eAUOJaY0AeX7JbVUe1YxZxe/qN8L98HsTy/7UvPW
-         bB8z6Xb6X3mAuoGfarGECPv02QcrxfscwOdNI66cle9MXYgDAVNx26+pEynMhJINBK39
-         BNxQ==
-X-Gm-Message-State: AOJu0YyZprIdjT0ZMSHx4KU7XfkCMd+L+r+uX9PLaB/IJzAnU3PKGmPx
-	LzkD3Z/dOQFvhcyPKJ0+5op0R0BHk7gOrURW78QuA7mU9mPTVjfpkoDUf/ungXs=
-X-Google-Smtp-Source: AGHT+IH5UpEtCHAwYxTDzZEdfbp6IFLtYvDCya77aywlbw0lKIjxQZRgTXhCgWkMmuE25Z5GRCadPg==
-X-Received: by 2002:a05:600c:20d3:b0:40e:ac8f:e6c with SMTP id y19-20020a05600c20d300b0040eac8f0e6cmr8306243wmm.30.1706619366322;
-        Tue, 30 Jan 2024 04:56:06 -0800 (PST)
-X-Forwarded-Encrypted: i=0; AJvYcCVyZyNtVYjlyE7L+nAo4rZgAuKLYRBzaj3IlcekAWyO/LiZvf5ny7nMfjyJj1/m60akb90sqB9QANITftV/LcRI+BoIaYKb06yYHdXKSas7WnMNedS+QbIbACA8EiS6dUEupHvAK0sRa7o4BFAuPQ1JXb3PeU8k09faxFvmkjPIsvEDEGS/BU6c93nVQfVmnX25nM4Gelpxqhnmyq+PEDAJiWJfeBuBh7bkT+1GsQDN5h1IMbaf1Fn4XXlcQDkIa8rpBPhXkh2CmPWHHEUEtYK3774LRL4cTWBkctoR1lz6sFR+yecM4RYt0Xmq3SOmUiJQdhAVh5uimNy313Qtsty96pR+PCHzdd2fQ/sygg==
-Received: from stroh80.sec.9e.network (ip-078-094-000-051.um19.pools.vodafone-ip.de. [78.94.0.51])
-        by smtp.gmail.com with ESMTPSA id az29-20020a05600c601d00b0040ee6ff86f6sm11878125wmb.0.2024.01.30.04.56.05
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 30 Jan 2024 04:56:05 -0800 (PST)
-From: Naresh Solanki <naresh.solanki@9elements.com>
-To: Linus Walleij <linus.walleij@linaro.org>,
-	Rob Herring <robh+dt@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Patrick Rudolph <patrick.rudolph@9elements.com>
-Cc: mazziesaccount@gmail.com,
-	Naresh Solanki <naresh.solanki@9elements.com>,
-	linux-gpio@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org
-Subject: [PATCH v3] dt-bindings: pinctrl: cy8x95x0: Minor fix & update
-Date: Tue, 30 Jan 2024 18:26:01 +0530
-Message-ID: <20240130125602.568719-1-naresh.solanki@9elements.com>
-X-Mailer: git-send-email 2.42.0
+	s=arc-20240116; t=1706619584; c=relaxed/simple;
+	bh=llKIpxzlNFJiUk8PY5b3Z3fCFrJxXebr98TkLhVix6c=;
+	h=From:To:Cc:Subject:Date:Message-Id:Content-Type:References; b=E/B96gDYa+xD8mO5KGmAxo16+/ezmb+CcnihV1Xrn+Qp0G2Nciw+tPqrV3g+Zj1iKEqiQV+ZjBW1aBK0OxbqZZNci3D+ahgpQqSRAF/Ueb4Ji4wleH/KUXQQItxAdXLNfNTgHeVSkcmJjwocjvpDc8XBy7MHW8hp3NKHgKMUGxM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=samsung.com; spf=pass smtp.mailfrom=samsung.com; dkim=pass (1024-bit key) header.d=samsung.com header.i=@samsung.com header.b=fU6IjAxN; arc=none smtp.client-ip=203.254.224.33
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=samsung.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=samsung.com
+Received: from epcas5p4.samsung.com (unknown [182.195.41.42])
+	by mailout3.samsung.com (KnoxPortal) with ESMTP id 20240130125939epoutp03d296c957a9bda2135dd59cd5d910d125~vIXcV5cuu1578215782epoutp03v
+	for <devicetree@vger.kernel.org>; Tue, 30 Jan 2024 12:59:39 +0000 (GMT)
+DKIM-Filter: OpenDKIM Filter v2.11.0 mailout3.samsung.com 20240130125939epoutp03d296c957a9bda2135dd59cd5d910d125~vIXcV5cuu1578215782epoutp03v
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=samsung.com;
+	s=mail20170921; t=1706619579;
+	bh=86uf5cHblxYzJLM1VjZACQcgiuV34NFC+LyTgR1BKi0=;
+	h=From:To:Cc:Subject:Date:References:From;
+	b=fU6IjAxNhaNVoL0dcG9yfloQY4KoDhGzATrGw8o7tpb1z25WZ/4wrV8N42AHUiXnc
+	 JKeTEoXbxeeFbGey/QoOljQ1350q/Rq+0M85BW6+lMXjGyjQ7Qtm6b9K6RUHVTX4ap
+	 6htqun4h5XfRQfvSUn+xUqLR8KDqvg9oezbr+XZY=
+Received: from epsnrtp1.localdomain (unknown [182.195.42.162]) by
+	epcas5p2.samsung.com (KnoxPortal) with ESMTP id
+	20240130125938epcas5p27117a2b65534244744c3e07e26ecc13f~vIXbvpSQ82295622956epcas5p22;
+	Tue, 30 Jan 2024 12:59:38 +0000 (GMT)
+Received: from epsmges5p2new.samsung.com (unknown [182.195.38.183]) by
+	epsnrtp1.localdomain (Postfix) with ESMTP id 4TPQHD6C8kz4x9Pr; Tue, 30 Jan
+	2024 12:59:36 +0000 (GMT)
+Received: from epcas5p4.samsung.com ( [182.195.41.42]) by
+	epsmges5p2new.samsung.com (Symantec Messaging Gateway) with SMTP id
+	5F.0F.10009.8B2F8B56; Tue, 30 Jan 2024 21:59:36 +0900 (KST)
+Received: from epsmtrp2.samsung.com (unknown [182.195.40.14]) by
+	epcas5p2.samsung.com (KnoxPortal) with ESMTPA id
+	20240130125754epcas5p2edd5cc52dc58add09299d3aa5985a9fd~vIV7QCMa91230812308epcas5p22;
+	Tue, 30 Jan 2024 12:57:54 +0000 (GMT)
+Received: from epsmgms1p1new.samsung.com (unknown [182.195.42.41]) by
+	epsmtrp2.samsung.com (KnoxPortal) with ESMTP id
+	20240130125754epsmtrp2e12576e79ff1cc8625f64e1057826356~vIV7PB6Nn0742507425epsmtrp2j;
+	Tue, 30 Jan 2024 12:57:54 +0000 (GMT)
+X-AuditID: b6c32a4a-ff1ff70000002719-cd-65b8f2b8df94
+Received: from epsmtip1.samsung.com ( [182.195.34.30]) by
+	epsmgms1p1new.samsung.com (Symantec Messaging Gateway) with SMTP id
+	7A.C1.08755.252F8B56; Tue, 30 Jan 2024 21:57:54 +0900 (KST)
+Received: from cheetah.sa.corp.samsungelectronics.net (unknown
+	[107.109.115.53]) by epsmtip1.samsung.com (KnoxPortal) with ESMTPA id
+	20240130125752epsmtip148d450aa6a46e8e5e6576d0cffcc96bd~vIV4u265V0502605026epsmtip1C;
+	Tue, 30 Jan 2024 12:57:52 +0000 (GMT)
+From: Aakarsh Jain <aakarsh.jain@samsung.com>
+To: linux-arm-kernel@lists.infradead.org, linux-media@vger.kernel.org,
+	linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
+Cc: m.szyprowski@samsung.com, andrzej.hajda@intel.com, mchehab@kernel.org,
+	hverkuil-cisco@xs4all.nl, krzysztof.kozlowski+dt@linaro.org,
+	robh+dt@kernel.org, conor+dt@kernel.org, linux-samsung-soc@vger.kernel.org,
+	andi@etezian.org, gost.dev@samsung.com, alim.akhtar@samsung.com,
+	pankaj.dubey@samsung.com, aakarsh.jain@samsung.com
+Subject: [PATCH] dt-bindings: media: s5p-mfc: Remove s5p-mfc.txt binding
+Date: Tue, 30 Jan 2024 18:27:48 +0530
+Message-Id: <20240130125748.54194-1-aakarsh.jain@samsung.com>
+X-Mailer: git-send-email 2.17.1
+X-Brightmail-Tracker: H4sIAAAAAAAAA0WSf0wTZxjH895dr6dJl1tB966BrdyGC7BCC6U7pkwZxNw2XdjMNsMi0LQn
+	Rfrj1isC2xJ1C+pwot1GIhbZ5NcMWIsVpLCWYUtk6oDMYecIOB0wLSZzoRXRmTnqwfbf9/3m
+	833e93neh0CldlxGlJptrNWsNVL4SuxsIClZ4ZnzsMpvD6joGU+9iL7eeBanmxduIvRvzWGM
+	PukbQeivB0dE9K8DvQj9U/0kRtfeuoHS7qmgiP65rwGnP+/sFtFHRvsR2jk4Kabb3A8Ruqk7
+	IqarfYPiDU8yv7TMoUyzN4Qw7vbPcGYi6MWZMy27mNqudsCE3c8wF++GxflEQdk6A6vVs1Y5
+	a9ZZ9KXmkmzqjS1FuUWZGqVKocqiX6LkZq2JzabyNuUrNpYaF9ug5Du1xvJFK1/L81TaK+us
+	lnIbKzdYeFs2xXJ6I6fmUnmtiS83l6SaWdvLKqUyPXMRLC4zND24g3FOrPJK4Di2G8yiNWAF
+	AUk1POEPgRqwkpCS3wHYNzaOCYc5AHuHxkVRSkrOAzg5altOhB0TuAD5APzEPbSUqEbgFy47
+	UgMIAicVcLjHGA3EknsAnNpvizIoOYrA1umFx1VjSAZO1oXwKI+RifD3+wlRW0Jmw3D4mli4
+	7FnY0TmARrOQtBNwwH8ZjfKQzIMHWt4TmBg4O9S1xMtg+E8fLmgdnGoKLbVphC7vV5ig18OB
+	sQYsWgYlk6CrL02w42HdxVNIVKPkE/Dg39OI4Eugp3FZr4ENE8LrIRkHAx2tQNAMdLr3ioVZ
+	bYNzP5xGDoP4o//f8A0A7eBpluNNJSyfyaWb2Yr/vklnMbnB491Mft0Dblz/K9UPEAL4ASRQ
+	KlZyP6mblUr02qoPWaulyFpuZHk/yFycmB2VrdJZFpfbbCtSqbOUao1Go87K0KiopyS3q4/p
+	pWSJ1saWsSzHWpdzCLFCths5s3aalV/jHp03DU+1N94kMjbnpL0petdRwmzTUBXcg6odzbff
+	eic3VO+bjkvThFzS7R9ELn258+ON6ck5m77vH5ZdyI3RrI5L3Gd3rW3rybo6grs4M/68+urY
+	1jadZ399MGXzhnuODl/iQy6nMrK9K7H7xPyrJ3WBvMKCYGUhP/0j9GXuiVvV8s9HzjvqyPk1
+	PZEX5K1vf1p10HvX6XB7swK36mZnIufyZYrsQ3pFv/qYIbZ23/jxU6sv181qUtbPJAw/9+Kj
+	vfP3XnOoLojwii0mLNx67v3O+DhCrdqx61D5QkbhFU9xwtE/gl002tt+JOWSd6tTVJA7N1VM
+	BpynCyiMN2hVyaiV1/4LXsDzLCQEAAA=
+X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFtrPLMWRmVeSWpSXmKPExsWy7bCSnG7Qpx2pBm3v9Sye7pjJavFg3jY2
+	i8U/njNZ3F/8mcVizd5zTBbzj5xjtbh5YCeTxcWZd1ks+l48ZLbY9Pgaq8XlXXPYLHo2bGW1
+	mHF+H5PF2iN32S2WbfrDZLFo6xd2i9a9R9gdBD2uL/nE7LF4z0smj02rOtk87lzbw+axeUm9
+	R9+WVYwenzfJeZz6+pk9gCOKyyYlNSezLLVI3y6BK2PRr/csBWtZKq4eXsjSwPiKuYuRk0NC
+	wETi8+w7bF2MXBxCArsZJZ71bGeCSMhI/G87xg5hC0us/PecHaKomUniTk8fUBEHB5uArsTZ
+	7TkgcRGBVkaJ6ys7mUAcZoH7TBJP1+4DmyQs4CFxd+pLNpAGFgFViUc/FUHCvAK2Ep8/34Na
+	IC+xesMB5gmMPAsYGVYxSqYWFOem5xYbFhjmpZbrFSfmFpfmpesl5+duYgSHsZbmDsbtqz7o
+	HWJk4mA8xCjBwawkwvtTc2uqEG9KYmVValF+fFFpTmrxIUZpDhYlcV7xF70pQgLpiSWp2amp
+	BalFMFkmDk6pBibBfxMrzkrOarFfpuNl16TBy6H+yuT7r/S8eBb+FUv5bwo1l7/gNDuy2/Xz
+	hu9dbV1/K+x7N5xZrcRQL1STFRmh5fzKOeKbzIxHUy/e89x5xeGi1VpVwUOOv9ZNWLjqr3r8
+	xx0tO15MED3qXvVG/M63tZsbjJZP5pc4JnTa6nlY2J2H33ftZrnlJ8hlO3uGubthEc/jjav+
+	KpU4uSyzeZVy87HJDvu9lp1Bhv4cwXs1XBnTD/97VXWL5ZnxrCknN1/ZeTNgen24uYvaTEar
+	h3dWzPmccodHXaX+hHLKmlfzxI/8OnLy6IVrOv+z37TOWPj79IPTPP0BE0ReK9Z/jf1yY/2V
+	XIlZ5v83/rwTsnTyAiWW4oxEQy3mouJEAGdDD3LSAgAA
+X-CMS-MailID: 20240130125754epcas5p2edd5cc52dc58add09299d3aa5985a9fd
+X-Msg-Generator: CA
+Content-Type: text/plain; charset="utf-8"
+X-Sendblock-Type: REQ_APPROVE
+CMS-TYPE: 105P
+DLP-Filter: Pass
+X-CFilter-Loop: Reflected
+X-CMS-RootMailID: 20240130125754epcas5p2edd5cc52dc58add09299d3aa5985a9fd
+References: <CGME20240130125754epcas5p2edd5cc52dc58add09299d3aa5985a9fd@epcas5p2.samsung.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
 
-Update maxItems to 60 for gpio-reserved-ranges to allow multiple gpio
-reserved ranges.
-Add input-enable property to allow configuring a pin as input.
-Update example & fix alignment.
+Commit "538af6e5856b" which convert s5p-mfc bindings to
+json-schema is already merged. Remove "s5p-mfc.txt" file.
 
-Signed-off-by: Naresh Solanki <naresh.solanki@9elements.com>
+Signed-off-by: Aakarsh Jain <aakarsh.jain@samsung.com>
 ---
- .../bindings/pinctrl/cypress,cy8c95x0.yaml    | 38 ++++++++++++++-----
- 1 file changed, 28 insertions(+), 10 deletions(-)
+ Documentation/devicetree/bindings/media/s5p-mfc.txt | 0
+ 1 file changed, 0 insertions(+), 0 deletions(-)
+ delete mode 100644 Documentation/devicetree/bindings/media/s5p-mfc.txt
 
-diff --git a/Documentation/devicetree/bindings/pinctrl/cypress,cy8c95x0.yaml b/Documentation/devicetree/bindings/pinctrl/cypress,cy8c95x0.yaml
-index 7f30ec2f1e54..90dda5d3cc55 100644
---- a/Documentation/devicetree/bindings/pinctrl/cypress,cy8c95x0.yaml
-+++ b/Documentation/devicetree/bindings/pinctrl/cypress,cy8c95x0.yaml
-@@ -45,7 +45,8 @@ properties:
-     maxItems: 1
- 
-   gpio-reserved-ranges:
--    maxItems: 1
-+    minItems: 1
-+    maxItems: 60
- 
-   vdd-supply:
-     description:
-@@ -85,6 +86,8 @@ patternProperties:
- 
-       bias-disable: true
- 
-+      input-enable: true
-+
-       output-high: true
- 
-       output-low: true
-@@ -125,14 +128,29 @@ examples:
-       #size-cells = <0>;
- 
-       pinctrl@20 {
--        compatible = "cypress,cy8c9520";
--        reg = <0x20>;
--        gpio-controller;
--        #gpio-cells = <2>;
--        #interrupt-cells = <2>;
--        interrupts = <GIC_SPI 94 IRQ_TYPE_LEVEL_HIGH>;
--        interrupt-controller;
--        vdd-supply = <&p3v3>;
--        gpio-reserved-ranges = <5 1>;
-+          compatible = "cypress,cy8c9520";
-+          reg = <0x20>;
-+          gpio-controller;
-+          #gpio-cells = <2>;
-+          #interrupt-cells = <2>;
-+          interrupts = <GIC_SPI 94 IRQ_TYPE_LEVEL_HIGH>;
-+          interrupt-controller;
-+          vdd-supply = <&p3v3>;
-+          gpio-reserved-ranges = <1 2>, <6 1>, <10 1>, <15 1>;
-+
-+          pinctrl-0 = <&U62160_pins>, <&U62160_ipins>;
-+          pinctrl-names = "default";
-+          U62160_pins: cfg-pins {
-+              pins = "gp03", "gp16", "gp20", "gp50", "gp51";
-+              function = "gpio";
-+              input-enable;
-+              bias-pull-up;
-+          };
-+          U62160_ipins: icfg-pins {
-+              pins = "gp04", "gp17", "gp21", "gp52", "gp53";
-+              function = "gpio";
-+              input-enable;
-+              bias-pull-up;
-+          };
-       };
-     };
-
-base-commit: 861c0981648f5b64c86fd028ee622096eb7af05a
+diff --git a/Documentation/devicetree/bindings/media/s5p-mfc.txt b/Documentation/devicetree/bindings/media/s5p-mfc.txt
+deleted file mode 100644
+index e69de29bb2d1..000000000000
 -- 
-2.42.0
+2.17.1
 
 
