@@ -1,117 +1,143 @@
-Return-Path: <devicetree+bounces-36876-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-36877-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0D965842EB3
-	for <lists+devicetree@lfdr.de>; Tue, 30 Jan 2024 22:39:35 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6165B842F30
+	for <lists+devicetree@lfdr.de>; Tue, 30 Jan 2024 22:54:22 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 361EB1C21BC0
-	for <lists+devicetree@lfdr.de>; Tue, 30 Jan 2024 21:39:34 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 1F2B12849D3
+	for <lists+devicetree@lfdr.de>; Tue, 30 Jan 2024 21:54:21 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 00E1178B52;
-	Tue, 30 Jan 2024 21:39:30 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 64F0E7D3E8;
+	Tue, 30 Jan 2024 21:54:16 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="ax/4Kc9n"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="d9uVnBa8"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C7021762C7;
-	Tue, 30 Jan 2024 21:39:29 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 278457D3E3;
+	Tue, 30 Jan 2024 21:54:15 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1706650769; cv=none; b=hIUltUOPEy9lMe0U6JRNteFIVtj+ary4IlG1dA1I42KwOaLRX7XNYUJymZSesuM10q31eC230Dtc3sIOg/Q9v4epx1Jj4I6pCCDAfgAC+hfLUtadz1VKgZPob9d7aU/mRPUKLwx3A9KfF93S8Hpsa19Qrvu9ZT40H/mKgAAPW20=
+	t=1706651656; cv=none; b=MSLRyESbpHNIekqzJ5IvSWjRxsruUR4iZl1wd/yB4d5k/aGuohLAIbraLWvLHnVCoBat/KLsWzSq0QtFoGYu1K7INRH0oi0RHzjKffhINu9vXTPmZ+zgA6u5d620Qa9+mpxwdEi4ctQy82Cd5ZdlTrmK5+DvwtR6DBJrJePZVW4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1706650769; c=relaxed/simple;
-	bh=QnJojmWW+VDlaE6OIIGRQSTpYr1wBDNCTR++LHwSjp0=;
+	s=arc-20240116; t=1706651656; c=relaxed/simple;
+	bh=LTMVYrnQ0Ac5UrUfHkqd52vj2qm9n46fuacsL4mVVR8=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=hQcPNKhYBIp7jeWXauwX1UeSw4AiKgS7AJ44Xxvx9QDXX4BIJnBYhoxlptw44RGLk31W5u2oK05gORumfn9dsu6ArYktvBXbRdYQeGa11SZcClVw4KCSUraSkk/SE8z3Veq9SvOM66FX5NecubTPugtan2DxXZpIL6eDUAQftZ0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=ax/4Kc9n; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 1D55BC433C7;
-	Tue, 30 Jan 2024 21:39:29 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=CT5c683JYJ/sloXDikQCsJ9kI1N9+q+5z6aaLXVtoSsjJWHN6I5WOEHfTWdTjBIYci3CM40L5d4kSMOEKp7Lhfyif39km5fwc23zSqUztDWdVvQknPw+93o2jpSTsA85G0lIXDhtrfGwxe6yM/XdBWvMEPcbOgxqzBDqtxs0uJw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=d9uVnBa8; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id B482CC433F1;
+	Tue, 30 Jan 2024 21:54:12 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1706650769;
-	bh=QnJojmWW+VDlaE6OIIGRQSTpYr1wBDNCTR++LHwSjp0=;
+	s=k20201202; t=1706651655;
+	bh=LTMVYrnQ0Ac5UrUfHkqd52vj2qm9n46fuacsL4mVVR8=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=ax/4Kc9nR6ZDT55/zyLOGSSvM4+kKwvgYoGqxGx9Dq5uvnLcgW2f7q26M7Ad85RJ8
-	 O/HDC4JpsO9p5uB0gSsYk3eS0L5zuYeeiGYfs8Pa23hbNq1lM7hrUnW45/f5JArl+Y
-	 yQg7ur6TRlZLHNThuvaISqKDen/vjZJ6Q3uvxytJg4iuRPCyv6Z5jlTr8pV6AL48qe
-	 8aFsvwhsfvp1zgdwdMrgm1kqmNnDvVqmAMtTRYFbqoQ2s1az9fYFFVh/7lW3cCyxJk
-	 NwnVsr9QeiDAxy78djw3GhB6iE85Dx8VXXcxcUaDkET7zhaJzAXxI/Ew3zF6cWUFzq
-	 EZ7fsI9vdf6qg==
-Date: Tue, 30 Jan 2024 15:39:26 -0600
-From: Rob Herring <robh@kernel.org>
-To: Esben Haabendal <esben@geanix.com>
-Cc: devicetree@vger.kernel.org, "David S. Miller" <davem@davemloft.net>,
-	Eric Dumazet <edumazet@google.com>,
-	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Alexandre Torgue <alexandre.torgue@foss.st.com>,
-	Giuseppe Cavallaro <peppe.cavallaro@st.com>,
-	Jose Abreu <joabreu@synopsys.com>, netdev@vger.kernel.org,
-	linux-kernel@vger.kernel.org
-Subject: Re: [PATCH 2/3] dt-bindings: net: snps,dwmac: Add
- time-based-scheduling property
-Message-ID: <20240130213926.GA2342546-robh@kernel.org>
-References: <b365dc6f756a3fad4dfaa2675c98f4078aba8a55.1706105494.git.esben@geanix.com>
- <30ce8f45b8752c603acc861ebb2f18d74d2f8a07.1706105494.git.esben@geanix.com>
+	b=d9uVnBa8V4EX3P0L1wK1PVj+miY4+RIkfPIpH2K9TfKIAIQN9ZgpI+Ru+O9K0+Cde
+	 YKHMlEpMJ3tf1RwQ90YWtoBLJvxkS5uP5vAO914uS1bErG4AX1gB3ja33Nnpb8obPw
+	 vvomTc7HUQSZ3vqbhEm7l3Jq0JrL5ZmjRchPK+b+pRY1DLx2gnBBjVc+9hgleG3odt
+	 JXOwZu8e7iPvzuvHTQZV9CTGrBAIVR0aNv6qwPnyfu3foshVlhkE6Hrh4Q7dgbloL8
+	 cBFVhghTwNmG/tvmyoVAbKAXhwG1H9IdWkfbUz/WvPYTgDCqUybPNsVpRTzqeQLBfL
+	 7Eh52wD8vn8hQ==
+Date: Tue, 30 Jan 2024 15:54:10 -0600
+From: Bjorn Andersson <andersson@kernel.org>
+To: Greg Kroah-Hartman <gregkh@linuxfoundation.org>
+Cc: Bartosz Golaszewski <brgl@bgdev.pl>, Kalle Valo <kvalo@kernel.org>, 
+	"David S . Miller" <davem@davemloft.net>, Eric Dumazet <edumazet@google.com>, 
+	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>, 
+	Rob Herring <robh+dt@kernel.org>, Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, 
+	Conor Dooley <conor+dt@kernel.org>, Konrad Dybcio <konrad.dybcio@linaro.org>, 
+	Catalin Marinas <catalin.marinas@arm.com>, Will Deacon <will@kernel.org>, 
+	Bjorn Helgaas <bhelgaas@google.com>, Heiko Stuebner <heiko@sntech.de>, 
+	Jernej Skrabec <jernej.skrabec@gmail.com>, Chris Morgan <macromorgan@hotmail.com>, 
+	Linus Walleij <linus.walleij@linaro.org>, Geert Uytterhoeven <geert+renesas@glider.be>, 
+	Arnd Bergmann <arnd@arndb.de>, Neil Armstrong <neil.armstrong@linaro.org>, 
+	=?utf-8?B?TsOtY29sYXMgRiAuIFIgLiBBIC4=?= Prado <nfraprado@collabora.com>, Marek Szyprowski <m.szyprowski@samsung.com>, 
+	Peng Fan <peng.fan@nxp.com>, Robert Richter <rrichter@amd.com>, 
+	Dan Williams <dan.j.williams@intel.com>, Jonathan Cameron <Jonathan.Cameron@huawei.com>, 
+	Terry Bowman <terry.bowman@amd.com>, Lukas Wunner <lukas@wunner.de>, 
+	Huacai Chen <chenhuacai@kernel.org>, Alex Elder <elder@linaro.org>, 
+	Srini Kandagatla <srinivas.kandagatla@linaro.org>, Abel Vesa <abel.vesa@linaro.org>, linux-wireless@vger.kernel.org, 
+	netdev@vger.kernel.org, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+	linux-arm-msm@vger.kernel.org, linux-arm-kernel@lists.infradead.org, linux-pci@vger.kernel.org, 
+	Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
+Subject: Re: Re: [PATCH 4/9] PCI: create platform devices for child OF nodes
+ of the port node
+Message-ID: <d2he3ufg6m46zos4swww4t3peyq55blxhirsx37ou37rwqxmz2@5khumvic62je>
+References: <20240117160748.37682-1-brgl@bgdev.pl>
+ <20240117160748.37682-5-brgl@bgdev.pl>
+ <2024011707-alibi-pregnancy-a64b@gregkh>
+ <CAMRc=Mef7wxRccnfQ=EDLckpb1YN4DNLoC=AYL8v1LLJ=uFH2Q@mail.gmail.com>
+ <2024011836-wok-treadmill-c517@gregkh>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <30ce8f45b8752c603acc861ebb2f18d74d2f8a07.1706105494.git.esben@geanix.com>
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <2024011836-wok-treadmill-c517@gregkh>
 
-On Wed, Jan 24, 2024 at 03:33:06PM +0100, Esben Haabendal wrote:
-> Time Based Scheduling can be enabled per TX queue, if supported by the
-> controller.
+On Thu, Jan 18, 2024 at 12:15:27PM +0100, Greg Kroah-Hartman wrote:
+> On Thu, Jan 18, 2024 at 11:58:50AM +0100, Bartosz Golaszewski wrote:
+> > On Wed, Jan 17, 2024 at 5:45 PM Greg Kroah-Hartman
+> > <gregkh@linuxfoundation.org> wrote:
+> > >
+> > > On Wed, Jan 17, 2024 at 05:07:43PM +0100, Bartosz Golaszewski wrote:
+> > > > From: Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
+> > > >
+> > > > In order to introduce PCI power-sequencing, we need to create platform
+> > > > devices for child nodes of the port node.
+> > >
+> > > Ick, why a platform device?  What is the parent of this device, a PCI
+> > > device?  If so, then this can't be a platform device, as that's not what
+> > > it is, it's something else so make it a device of that type,.
+> > >
+> > 
+> > Greg,
+> > 
+> > This is literally what we agreed on at LPC. In fact: during one of the
+> > hall track discussions I said that you typically NAK any attempts at
+> > using the platform bus for "fake" devices but you responded that this
+> > is what the USB on-board HUB does and while it's not pretty, this is
+> > what we need to do.
 > 
-> Signed-off-by: Esben Haabendal <esben@geanix.com>
-> ---
->  Documentation/devicetree/bindings/net/snps,dwmac.yaml | 6 ++++++
->  1 file changed, 6 insertions(+)
+> Ah, you need to remind me of these things, this changelog was pretty
+> sparse :)
+> 
 
-This is not v1 which you are aware. Where's the justification or do I 
-need to ask the same questions again? Here's the last discussion[1].
+I believe I missed this part of the discussion, why does this need to be
+a platform_device? What does the platform_bus bring that can't be
+provided by some other bus?
 
-I'm still not clear on why this is needed. Seems like the combination of 
-TBS and TSO capabilities provides enough information. If TSO is enabled 
-for a queue, then don't enable TBS.
+(I'm not questioning the need for having a bus, creating devices, and
+matching/binding them to a set of drivers)
 
-This binding is already such a mess of properties, I'm inclined to say 
-"what's one more", but it's death by 1000 cuts. Part of the problem is 
-this binding is for not 1 IP block, but something that's evolved over 
-at least 15 years. 
+Regards,
+Bjorn
 
-The question on configuration properties really comes down to who would 
-configure things and when. If it's one time for the life of given h/w, 
-then DT makes sense. If every user wants/needs to tweak the setting, 
-then definitely shouldn't be in DT. Somewhere in the middle? Judgement 
-call.
-
-> diff --git a/Documentation/devicetree/bindings/net/snps,dwmac.yaml b/Documentation/devicetree/bindings/net/snps,dwmac.yaml
-> index 5c2769dc689a..301e9150ecc3 100644
-> --- a/Documentation/devicetree/bindings/net/snps,dwmac.yaml
-> +++ b/Documentation/devicetree/bindings/net/snps,dwmac.yaml
-> @@ -399,6 +399,12 @@ properties:
->              type: boolean
->              description: TX checksum offload is unsupported by the TX queue.
->  
-> +          snps,time-based-scheduling:
-> +            type: boolean
-> +            description:
-> +              Time Based Scheduling will be enabled for TX queue.
-> +              This is typically not supported for TX queue 0.
-
-Make the property name clear it is an enable, not a capability.
-
-> +
-
-[1] https://lore.kernel.org/all/20230929051758.21492-1-rohan.g.thomas@intel.com/
+> > Now as for the implementation, the way I see it we have two solutions:
+> > either we introduce a fake, top-level PCI slot platform device device
+> > that will reference the PCI host controller by phandle or we will live
+> > with a secondary, "virtual" platform device for power sequencing that
+> > is tied to the actual PCI device. The former requires us to add DT
+> > bindings, add a totally fake DT node representing the "slot" which
+> > doesn't really exist (and Krzysztof already expressed his negative
+> > opinion of that) and then have code that will be more complex than it
+> > needs to be. The latter allows us to not change DT at all (other than
+> > adding regulators, clocks and GPIOs to already existing WLAN nodes),
+> > reuse the existing parent-child relationship between the port node and
+> > the instantiated platform device as well as result in simpler code.
+> > 
+> > Given that DT needs to be stable while the underlying C code can
+> > freely change if we find a better solution, I think that the second
+> > option is a no-brainer here.
+> 
+> Ok, I remove my objections, sorry about that, my confusion.
+> 
+> greg k-h
 
