@@ -1,74 +1,74 @@
-Return-Path: <devicetree+bounces-36752-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-36753-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id CECA38428B6
-	for <lists+devicetree@lfdr.de>; Tue, 30 Jan 2024 17:05:16 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id F3F568428CF
+	for <lists+devicetree@lfdr.de>; Tue, 30 Jan 2024 17:09:19 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 5A3D5285946
-	for <lists+devicetree@lfdr.de>; Tue, 30 Jan 2024 16:05:15 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id ABB0528A0CE
+	for <lists+devicetree@lfdr.de>; Tue, 30 Jan 2024 16:09:18 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C68FA8614C;
-	Tue, 30 Jan 2024 16:05:14 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E104886AD3;
+	Tue, 30 Jan 2024 16:09:14 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="bY2JjupC"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="o7SgwyRX"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ej1-f42.google.com (mail-ej1-f42.google.com [209.85.218.42])
+Received: from mail-ed1-f54.google.com (mail-ed1-f54.google.com [209.85.208.54])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E52137F7CF
-	for <devicetree@vger.kernel.org>; Tue, 30 Jan 2024 16:05:12 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.42
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1360586AC8
+	for <devicetree@vger.kernel.org>; Tue, 30 Jan 2024 16:09:12 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.54
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1706630714; cv=none; b=rVG1bdQS/oAIgjbEjJ5axKnamGkzk1cWpX2LdYd707YNtzj8HL64hqLiQLotsdIIlHLhdLoEJ350qX7CcMUMWpmknSe+9jGhftU9o3ztdfwnLlggAYk3ISGHXgHZxhQjATWoyJsKS6uaO4uvaq++Tzx7zQJrn2kjtUUp/v9oJ3k=
+	t=1706630954; cv=none; b=puHAkbGV5fh7acmRAoVzKa5fb23QjcVuZcU3gDUnZDfbHgbxB+zu/ReHBltWXLJceSz1/QmfGSFtvBncmnisck3/9+e2tbHs+L5cvbBqrRn+ZT0X0THCutOQkgGVhIGHFJRsZojbulJhz2MMfIJgJzt2de0gtEb3q8+MO1Lb1xE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1706630714; c=relaxed/simple;
-	bh=unh5iIZOG1QtDQYkC1HtT7urjlgqmEQq3IudvN2ogOk=;
+	s=arc-20240116; t=1706630954; c=relaxed/simple;
+	bh=XL3vQnpbYTlHEIia1p72Dxk+/Pv7y5c3/EuxSugjJns=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=JnFuQC56U07bTSjx3v13ic1yaC0CQ5sp9F/CooQSo4lhblV7h5JPF5OBuTwWr4/dPdesn9FUzAWvqx6W3mvvDPffan7plDmotB6qyzzkyuTBR/daUZ2AmUFYdbD/DZ8Rm8rSHns+IeVaNUmVQ4hhdgv9qF3KC3uGN0/p0Tm0zh0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=bY2JjupC; arc=none smtp.client-ip=209.85.218.42
+	 In-Reply-To:Content-Type; b=FOsydVk6BZfcOf+bdtjDnWFbWglVWWkwhkI7b8JvGf6weZh+Hv7ymBjaH0eYmMFnMcnVCcpxzJhYwdT1dbqVLIYWoVGblHXLdqdlvxoKTMB8SUXaUSMvMshyhD3icIkge08o7/39tRFn9F+Nc8BGwIDPzboN6O+cCNeC5EfvhYU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=o7SgwyRX; arc=none smtp.client-ip=209.85.208.54
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-ej1-f42.google.com with SMTP id a640c23a62f3a-a350bfcc621so454575766b.0
-        for <devicetree@vger.kernel.org>; Tue, 30 Jan 2024 08:05:12 -0800 (PST)
+Received: by mail-ed1-f54.google.com with SMTP id 4fb4d7f45d1cf-557dcb0f870so4429702a12.2
+        for <devicetree@vger.kernel.org>; Tue, 30 Jan 2024 08:09:12 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1706630711; x=1707235511; darn=vger.kernel.org;
+        d=linaro.org; s=google; t=1706630951; x=1707235751; darn=vger.kernel.org;
         h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
          :to:content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=7VDh4iDFXXue5I/l6Y1wqSIUFQdASHvv7bgRaIo08RQ=;
-        b=bY2JjupCgZUxdtDOjWqYdKrzrIYi8nNYbAsAz0LhP7mnD2XNiIIA2PlAVAD8ZJvw+g
-         RSMOMqwXqPetuOgJvnXyL9G3WQPfEABLUW9CcH78ENb3keJJMjeOLkh4/2d1Dn5o6cdc
-         65PVlopkBJY3NwuvVEuhj5r6GlTRWZGPCGyKK737ygAz7s5lDO/ojyiBccYfcpIkzoS/
-         pcwNGKWVEM+0PJMeJeOD2Z66Gkbt0ANncmYNMi3r7lSZ8JL4WUNuewM2k5v5TjvobK/y
-         QLhCToH1uYHMBTPkmfTTnGUbpR1/TuZxxJwxNEAmRZ6CbykRDnUCc4Tl6hEFxFi3PhwP
-         0M1Q==
+        bh=7sV5Z5NkseIugmJChnfpVQKK4FrMg6qPR+jRzi0C4ec=;
+        b=o7SgwyRXRPLk65PDHaldkFNMEV/ZJO2Nhn0N6G3lXQNC1UM914eZ4W6kmJ5JFAWGN7
+         pXkVm9DWLbVxvu6M8uMpg/nOHdQRWmLQme6jKxZ0UWvDDOa5uUJbC8+9lGOSAEOl3K5c
+         lrORpDNz9aCj1+VqP50re2c8CodZJ7oZTxGF1j4J/y9TwlJIh2kYI+f3zFYNdp2uRxtd
+         ZUIuf2gB/EcZM9GSSC+N5aEdnLK5AW+iLocmmrMvXQgy7Xwl3gbGQfRWLamtxv2VhZGR
+         IRCpIQ8RYPOeg5QOhJpDZyzCePqoG2c3QGK6vlWyu7daj2SoV6pzx/vRRTiLIUuzuSsp
+         /SLA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1706630711; x=1707235511;
+        d=1e100.net; s=20230601; t=1706630951; x=1707235751;
         h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
          :to:content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=7VDh4iDFXXue5I/l6Y1wqSIUFQdASHvv7bgRaIo08RQ=;
-        b=EQFj0knKkvGs7ChdU2tYW5QZMbSDLYzXaXEjHTBZQ09fBmvTUpDmhnOK2YLl8RwjVr
-         ITIm5EkReQH2VjaR+3fqvEPgEVtJNJyT/03awiQw8gQguTMxTfqZp+Cmm0ZxCEYWC0xp
-         MlqpiyDc2LNMVwrdYzVRLrSaoYdpZl5bwOXU5HMJPXoXTbit3zEGABQHqzrCEyH5SHX0
-         qG6pYvVKCsYAGtoEdXneYpt3F1beH01DDOEthSbEQ3MEnCX5Jc9h3b7wQ7ZVKG7mmt8m
-         34bOv7cOCozvx4uJ5lsQFF0LwQwYToq1zZAgJJGF7rTimNcXl2TSWY7lMqCze5ozl1As
-         ILgA==
-X-Gm-Message-State: AOJu0YwVc74WRE74Um506bC5CCLMhdD3TsavtkTWmY2KZc+EPp7oCyh2
-	dPwuT7RDImqUjCNfEtHLQjEsVR4K5yE0MsZl+UEAjMPwfxZsKef1XTBiH2NBExc=
-X-Google-Smtp-Source: AGHT+IEttDPY67Gj0M8Wg0MEFDrc2M7fmw+GWrrPNiUYvlM+dBE4LqXHiYWn8V/vBm0G6hMfomELuA==
-X-Received: by 2002:a17:906:f208:b0:a35:2ee1:b953 with SMTP id gt8-20020a170906f20800b00a352ee1b953mr6383969ejb.26.1706630711165;
-        Tue, 30 Jan 2024 08:05:11 -0800 (PST)
-X-Forwarded-Encrypted: i=0; AJvYcCUEUEkig/baHmI5ejySEZr/n0F5q99g9miAQm0roSRF9DW50Li2aldG0TSo+h9Z1Uj7T05yM3Fa0pN+rJDCi7q1KMPcGqJC9OVObKBwjNc/oarDB1OmhqlwDkyw+GpTBgQrfnw4vKjEWE6f+lsnEJ9HJFtEwV+hfyN6rsaZNp2AbS7mn2KGwtqMAnTQDUMBxdbFjScpWbJaioHwlw8/YRM6bx8plINYceIqPHS+/nenIadsYQfYWp3vadhtiTsGnjjTuoadcZOMw2VeHvFBOPQRho9PIzeZG1tDF9eEZBCgdjOZ8er999dxaDJRJWm36LBFDWfnV9Oy1ZBmmZvR8wIH4txLn1jV1aXPDDPPjwsWrens
+        bh=7sV5Z5NkseIugmJChnfpVQKK4FrMg6qPR+jRzi0C4ec=;
+        b=DaKo6o4mcDa4cjOHzQHRQ13vE1PK8CQnXwYwlqfJvtKzstLIWZ1t53RRKNvNWTxxxA
+         oujuAnAK7DDkmiPsIdrwTd0eg4ylW7DBIv6u2MdfJY45G7LgGAhWEQ3IUQWFnmkmckMG
+         DExHp36MOFIPeY9TnuxY2oa9q8sGgzykkh8krIL0VSwoJfJpzSuFYaygzmubx8iuZgVh
+         5gIsigJAk4bOmiOt4wvBLCLpw1XzebCblLHST72Be5KDxmsSQDVOwuXsfKdOOZFUOg01
+         DzdmBgBhpGc1aZGsCyn8A4pde/haWbiKpyh1FH6gHI2OoSD/BP0TYOd8S0xiob/60sBd
+         VrZg==
+X-Gm-Message-State: AOJu0Ywr+wBVogfUwpJoQWo4nzkgO2BTAIgOr8M1q+UDgBVLVk0E2Y+B
+	HDj25b8OxYF4cwmHix0z1SfpvsvGGMZIFUCubOAc5ALBnoaC8RXf5hY5mKNsetQ=
+X-Google-Smtp-Source: AGHT+IG32zAykB2w2M5SNxicGdKq0vPl2xbms+AJ8dBhfx7ycQgibKojhX/9r+bWyY3DdFJ2QMCk+A==
+X-Received: by 2002:a05:6402:3594:b0:55d:2ecf:eb1b with SMTP id y20-20020a056402359400b0055d2ecfeb1bmr7271257edc.1.1706630951236;
+        Tue, 30 Jan 2024 08:09:11 -0800 (PST)
+X-Forwarded-Encrypted: i=0; AJvYcCXT52O/6SYqanaIQA8bDs7wERtGDZ3J/0WYQ9+EkYPIiwR/yC8K5SBAvjIdfLkt8LbkogQnkDB+7bQaEgcSUP3r7Q3nCiNzkpeUdvX+La+JHKrZ6PcjpVd30PKUUJy+691laGJEUZZnfn2QxYpblqy/FaQ/T65ZThWlesrGn7innE4la5GUUTBjV/dNqd7zFW3JzVfz1TG2G06T2DI6iRUpV3TlxDJGUAozvpK6EaGH6Boq4vUDD5plY0olefADxE0wb9Hme1EZtbH4Qxu4jzJnh9n69U9X5VYVVddJjm0RTqKa9nFTdmPMivavSM2HybgFDkCUauuQ/aYOPdeVgNB7X1Ku4S5ZJOas65cEfd8KErDWZSkYYqB6ItxF3qepD3s6RvwY+o0=
 Received: from [192.168.1.20] ([178.197.222.62])
-        by smtp.gmail.com with ESMTPSA id tb11-20020a1709078b8b00b00a35f9df7768sm1421990ejc.182.2024.01.30.08.05.09
+        by smtp.gmail.com with ESMTPSA id h1-20020a0564020e0100b0055d312732dbsm5002208edh.5.2024.01.30.08.09.10
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 30 Jan 2024 08:05:10 -0800 (PST)
-Message-ID: <32669bc7-90b5-48d9-8845-2e072a477c6e@linaro.org>
-Date: Tue, 30 Jan 2024 17:05:06 +0100
+        Tue, 30 Jan 2024 08:09:10 -0800 (PST)
+Message-ID: <9b0680b6-1952-41d3-82f4-88c60469dc3a@linaro.org>
+Date: Tue, 30 Jan 2024 17:09:09 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -79,16 +79,14 @@ User-Agent: Mozilla Thunderbird
 Subject: Re: [PATCH 2/3] dt-bindings: fpga: xlnx,fpga-slave-selectmap: add DT
  schema
 Content-Language: en-US
-To: Charles Perry <charles.perry@savoirfairelinux.com>
-Cc: mdf@kernel.org, hao wu <hao.wu@intel.com>, yilun xu <yilun.xu@intel.com>,
- trix@redhat.com, krzysztof kozlowski+dt <krzysztof.kozlowski+dt@linaro.org>,
- Brian CODY <bcody@markem-imaje.com>,
- Allen VANDIVER <avandiver@markem-imaje.com>, linux-fpga@vger.kernel.org,
+To: Charles Perry <charles.perry@savoirfairelinux.com>, mdf@kernel.org,
+ "michal.simek@amd.com" <michal.simek@amd.com>
+Cc: hao.wu@intel.com, yilun.xu@intel.com, trix@redhat.com,
+ krzysztof.kozlowski+dt@linaro.org, bcody@markem-imaje.com,
+ avandiver@markem-imaje.com, linux-fpga@vger.kernel.org,
  devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
 References: <20240129225602.3832449-1-charles.perry@savoirfairelinux.com>
  <20240129225602.3832449-2-charles.perry@savoirfairelinux.com>
- <f3cfffa0-5089-4bf7-b424-d5e949e36d67@linaro.org>
- <1489222458.382780.1706629544559.JavaMail.zimbra@savoirfairelinux.com>
 From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  xsFNBFVDQq4BEAC6KeLOfFsAvFMBsrCrJ2bCalhPv5+KQF2PS2+iwZI8BpRZoV+Bd5kWvN79
@@ -134,76 +132,52 @@ Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  KQ06ztUMRrj8eVtpImjsWCd0bDWRaaR4vqhCHvAG9iWXZu4qh3ipie2Y0oSJygcZT7H3UZxq
  fyYKiqEmRuqsvv6dcbblD8ZLkz1EVZL6djImH5zc5x8qpVxlA0A0i23v5QvN00m6G9NFF0Le
  D2GYIS41Kv4Isx2dEFh+/Q==
-In-Reply-To: <1489222458.382780.1706629544559.JavaMail.zimbra@savoirfairelinux.com>
+In-Reply-To: <20240129225602.3832449-2-charles.perry@savoirfairelinux.com>
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+Content-Transfer-Encoding: 7bit
 
-On 30/01/2024 16:45, Charles Perry wrote:
+On 29/01/2024 23:56, Charles Perry wrote:
+> Document the slave SelectMAP interface of Xilinx 7 series FPGA.
 > 
->>> +
->>> +  reg:
->>> +    description:
->>> +      At least 1 byte of memory mapped IO
->>> +    maxItems: 1
->>> +
->>> +  prog_b-gpios:
->>
->>
->> No underscores in names.
->>
+> Signed-off-by: Charles Perry <charles.perry@savoirfairelinux.com>
+> ---
+>  .../fpga/xlnx,fpga-slave-selectmap.yaml       | 85 +++++++++++++++++++
+>  1 file changed, 85 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/fpga/xlnx,fpga-slave-selectmap.yaml
 > 
-> This is heavily based on "xlnx,fpga-slave-serial.yaml" which uses an underscore.
-> I can use a dash instead but that would make things inconsistent across the two schemas. 
+> diff --git a/Documentation/devicetree/bindings/fpga/xlnx,fpga-slave-selectmap.yaml b/Documentation/devicetree/bindings/fpga/xlnx,fpga-slave-selectmap.yaml
+> new file mode 100644
+> index 0000000000000..20cea24e3e39a
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/fpga/xlnx,fpga-slave-selectmap.yaml
+> @@ -0,0 +1,85 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/fpga/xlnx,fpga-slave-selectmap.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: Xilinx Slave SelectMAP FPGA
 
-Inconsistency is not a problem. Duplicating technical debt is.
+https://elixir.bootlin.com/linux/v6.8-rc2/source/Documentation/process/coding-style.rst#L338
 
-> 
->>
->>> +    description:
->>> +      config pin (referred to as PROGRAM_B in the manual)
->>> +    maxItems: 1
->>> +
->>> +  done-gpios:
->>> +    description:
->>> +      config status pin (referred to as DONE in the manual)
->>> +    maxItems: 1
->>> +
->>> +  init-b-gpios:
->>
->> Is there init-a? Open other bindings and look how these are called there.
->>
-> 
-> No, the "-b" is there to denote that the signal is active low. I think its shorthand
-> for "bar" which is the overline (‾) that electronic engineer put on top of the name of the
-> signal on schematics. It comes from the datasheet.
+Everywhere: compatible, title, filename, descriptions.
 
-Then just "init-gpios"
+> +
+> +description: |
+> +  Xilinx 7 Series FPGAs support a method of loading the bitstream over a
+> +  parallel port named the slave SelectMAP interface in the documentation. Only
+> +  the x8 mode is supported where data is loaded at one byte per rising edge of
+> +  the clock, with the MSB of each byte presented to the D0 pin.
+> +
+> +  Datasheets:
+> +    https://www.xilinx.com/support/documentation/user_guides/ug470_7Series_Config.pdf
 
-...
+I am surprised that AMD/Xilinx still did not update the document to
+modern naming (slave->secondary).
 
->>> +required:
->>> +  - compatible
->>> +  - reg
->>> +  - prog_b-gpios
->>> +  - done-gpios
->>> +  - init-b-gpios
->>> +
->>> +additionalProperties: true
->>
->> Nope, this cannot bue true.
->>
-> 
-> Ok, I'll put this to false but I'm not quite sure I understand the implications.
-> 
-> My reasoning behind assigning this to true was that the FPGA is an external
-> device on a bus that needs to be configured by a bus controller. The bus controller
-> would be the parent of the fpga DT node and the later would contain properties
-> parsed by the bus controller driver.
-
-Which bus controller? MMIO bus does not parse children properties.
-Anyway, if that's the case you miss $ref to respective
-peripheral-props.yaml matching your bus and then "unevaluatedProperties:
-false".
++Cc Michal,
+Maybe that's something you could push it.
 
 Best regards,
 Krzysztof
