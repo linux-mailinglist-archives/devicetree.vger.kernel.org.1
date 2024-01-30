@@ -1,73 +1,66 @@
-Return-Path: <devicetree+bounces-36845-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-36852-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id B1EB4842DC5
-	for <lists+devicetree@lfdr.de>; Tue, 30 Jan 2024 21:28:08 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3A131842DEF
+	for <lists+devicetree@lfdr.de>; Tue, 30 Jan 2024 21:34:22 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 2A6D41F24D47
-	for <lists+devicetree@lfdr.de>; Tue, 30 Jan 2024 20:28:08 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id E346F1F2228C
+	for <lists+devicetree@lfdr.de>; Tue, 30 Jan 2024 20:34:21 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id BA21571B54;
-	Tue, 30 Jan 2024 20:28:01 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1DE0338DE7;
+	Tue, 30 Jan 2024 20:34:17 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="AYnG2/su"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="KR4vSkzh"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 85D7071B46;
-	Tue, 30 Jan 2024 20:28:01 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DEE671401B;
+	Tue, 30 Jan 2024 20:34:16 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1706646481; cv=none; b=up3+V6AHNuG8PxcdWQso8fZil4F0xkg7EPZRtDvyQQ6mL2WIyPjhCkyF4ZJW3hnD2UlPMeLYWcRqyvwVZcWlWi9jmj49P1xl8u2Zt0wPDrpiuEhsqzyxlFw511oLsAIWSj2kN3W09bMKtIIY5CHCjugU3sMraPQdRIM2NoFuYmI=
+	t=1706646857; cv=none; b=NYN2tTaKUAbyRUiekS4xj7ioHsKiPDgnccz3oEQ3l5X2mgBOvy1uuguKOPzNE3KHQPei88OBD81HnGKvA9DHv6MvUxRRqy81mQLfc+BrupEctu909fL1Mv9INYbniNNDxl3IThIQHKIDNjKe6B7cH2otbJCeRS9/wnisE+1XZlE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1706646481; c=relaxed/simple;
-	bh=f8ZYd/m4g8k5qSL4jcMpv2BFLuBv2/ih8nBsDbbrmcc=;
+	s=arc-20240116; t=1706646857; c=relaxed/simple;
+	bh=/t3GFmRm5hVeR5xzoWsZKKi65PGNECWaoN8DFhDtjuI=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=q8BwjY3dvAo9VKEb/tKiZ0YkL2yQaS/+djp23vkWxhLztzJ40/38HBVhZcmG02a6kETxeycrCATTYTPNJ1cQUJ/nBPGuFEto7k4XlKvrBoRtXTuAzztCeBxkdhwBtyIlU12GXpVb2CSTqUw6v5pX8elGUl+WFuLVihpnTo1+TRU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=AYnG2/su; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id B9175C433C7;
-	Tue, 30 Jan 2024 20:28:00 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=LJa5iPXfMJSlnfwFfVeQWLewxmBccGE9JNk5orBxZ12saVwG8hOqo5O1JFUQyhtytMXyLa7shRmnJdHwVWyetdyruIEl1D5SY7lhbh/OQBhm07v7qBt4ZkFurZkmjNsl9fb3mfGrd+SMmRYLLj+kSqBC8SDQEmCIG7PNXjbR1NA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=KR4vSkzh; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 1CEB0C433F1;
+	Tue, 30 Jan 2024 20:34:16 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1706646481;
-	bh=f8ZYd/m4g8k5qSL4jcMpv2BFLuBv2/ih8nBsDbbrmcc=;
+	s=k20201202; t=1706646856;
+	bh=/t3GFmRm5hVeR5xzoWsZKKi65PGNECWaoN8DFhDtjuI=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=AYnG2/su8b0tWxPMCgTKFeab0yZ4Gv08nGflRtzlcX9Fe47LS+vYkAKmHACAHfqBY
-	 cYIDpVXCO4L1PCd0TStF+aLdoXC4O1+g/7Dp4gzmxA4XWT0mM9YUumfAVwksJN6Qbi
-	 YkPuu7x0Cq2xaG+ktiLImKtmAZ2D4Tm9EZYNzOefGcu3UxuAx9zF7NUah5pmaGj/+D
-	 Wa2ns5MKD63QvR82EbBZ7rwu8aWJT5WwFoGb9b6PYxQyhCnyMcB6Ui0TkQhO3HNIqo
-	 uswf0ZCCgt/2NIaJC0AqW2t1FD0ghEd+2ICBSKFRoUovNAEf4lJw7S/gb/KPX3lxVj
-	 t42n071vwoNHw==
-Date: Tue, 30 Jan 2024 14:27:58 -0600
+	b=KR4vSkzhXVYDoJgMgUekpqQCkB0fnG56TeJoVnaeQrHDhNs0viEsSZp1NgkHvj6hy
+	 K+/DGxoG65pCGKy7cnZIha/D50KPC8xbtVQ6sIokl/3dE28rYz2dK+aWQd37rppXqq
+	 SzgWt77k7MdIHZ7h7aDp7XpwOf2bJT9oPn2IPkX5bH5XJNcfotHgGVmpofnhDmODiX
+	 xaxrL3RDXJEZHTc3bLIVQQgMqUOnxrHgzh7Aq17lpk4Q+VlaUmDEFj0H2jpJDOO84G
+	 a499XEVFN6mwFjKRSIepGcMTFMMZZcuJ34w89OqoWwhIDRlA3vX5ph1YreFdnVsiJp
+	 wFvB0O34NMVTw==
+Date: Tue, 30 Jan 2024 14:34:13 -0600
 From: Rob Herring <robh@kernel.org>
-To: Saravana Kannan <saravanak@google.com>
-Cc: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-	Peter Griffin <peter.griffin@linaro.org>, arnd@arndb.de,
-	krzysztof.kozlowski+dt@linaro.org, linux@roeck-us.net,
-	wim@linux-watchdog.org, conor+dt@kernel.org,
-	alim.akhtar@samsung.com, jaewon02.kim@samsung.com,
-	chanho61.park@samsung.com, semen.protsenko@linaro.org,
-	kernel-team@android.com, tudor.ambarus@linaro.org,
-	andre.draszik@linaro.org, willmcvicker@google.com,
-	linux-fsd@tesla.com, linux-watchdog@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+To: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
+Cc: =?utf-8?B?UmFmYcWCIE1pxYJlY2tp?= <zajec5@gmail.com>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Matthias Brugger <matthias.bgg@gmail.com>,
+	devicetree@vger.kernel.org, linux-clk@vger.kernel.org,
 	linux-arm-kernel@lists.infradead.org,
-	linux-samsung-soc@vger.kernel.org,
-	Greg Kroah-Hartman <gregkh@linuxfoundation.org>
-Subject: Re: [PATCH 3/9] watchdog: s3c2410_wdt: update to use new
- exynos_pmu_*() apis
-Message-ID: <20240130202758.GA2237959-robh@kernel.org>
-References: <20240122225710.1952066-1-peter.griffin@linaro.org>
- <20240122225710.1952066-4-peter.griffin@linaro.org>
- <da30a68a-e29f-45c8-aa73-02955255a457@linaro.org>
- <CADrjBPor5tMY4r0jOy7GH36auCU7dWn6Qn4ct89bsSMW4vAQOA@mail.gmail.com>
- <6c72a521-1048-42eb-ac74-d8f718a90723@linaro.org>
- <CAGETcx-CCpaV7R0O0HpDpoX6KxQBuJiMmKdWA8nDE-5Qj2Sa7g@mail.gmail.com>
- <f4d3aa5a-e01d-4ef3-8004-b6eac4461184@linaro.org>
- <CAGETcx_HGcuGQTO11tzX0EvnuLEaKYc4vBse1CRP0JwPqMJdQQ@mail.gmail.com>
+	linux-mediatek@lists.infradead.org, linux-kernel@vger.kernel.org,
+	=?utf-8?B?UmFmYcWCIE1pxYJlY2tp?= <rafal@milecki.pl>,
+	Russell King <linux@armlinux.org.uk>,
+	Daniel Lezcano <daniel.lezcano@linaro.org>,
+	Thomas Gleixner <tglx@linutronix.de>
+Subject: Re: [PATCH 2/3] dt-bindings: arm: mediatek: convert PCIESYS to the
+ json-schema
+Message-ID: <20240130203413.GA2290196-robh@kernel.org>
+References: <20240123082100.7334-1-zajec5@gmail.com>
+ <20240123082100.7334-3-zajec5@gmail.com>
+ <e17b85b1-7f1f-4b60-89b7-43f560466cc2@collabora.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -77,124 +70,86 @@ MIME-Version: 1.0
 Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <CAGETcx_HGcuGQTO11tzX0EvnuLEaKYc4vBse1CRP0JwPqMJdQQ@mail.gmail.com>
+In-Reply-To: <e17b85b1-7f1f-4b60-89b7-43f560466cc2@collabora.com>
 
-On Wed, Jan 24, 2024 at 01:27:01PM -0800, Saravana Kannan wrote:
-> On Tue, Jan 23, 2024 at 10:27 PM Krzysztof Kozlowski
-> <krzysztof.kozlowski@linaro.org> wrote:
-> >
-> > On 24/01/2024 04:37, Saravana Kannan wrote:
-> > > On Tue, Jan 23, 2024 at 10:12 AM Krzysztof Kozlowski
-> > > <krzysztof.kozlowski@linaro.org> wrote:
-> > >>
-> > >> On 23/01/2024 18:30, Peter Griffin wrote:
-> > >>>>>               dev_warn(wdt->dev, "Couldn't get RST_STAT register\n");
-> > >>>>>       else if (rst_stat & BIT(wdt->drv_data->rst_stat_bit))
-> > >>>>> @@ -698,14 +699,6 @@ static int s3c2410wdt_probe(struct platform_device *pdev)
-> > >>>>>       if (ret)
-> > >>>>>               return ret;
-> > >>>>>
-> > >>>>> -     if (wdt->drv_data->quirks & QUIRKS_HAVE_PMUREG) {
-> > >>>>> -             wdt->pmureg = syscon_regmap_lookup_by_phandle(dev->of_node,
-> > >>>>> -                                             "samsung,syscon-phandle");
-> > >>>>> -             if (IS_ERR(wdt->pmureg))
-> > >>>>> -                     return dev_err_probe(dev, PTR_ERR(wdt->pmureg),
-> > >>>>> -                                          "syscon regmap lookup failed.\n");
-> > >>>>
-> > >>>>
-> > >>>> Continuing topic from the binding: I don't see how you handle probe
-> > >>>> deferral, suspend ordering.
-> > >>>
-> > >>> The current implementation is simply relying on exynos-pmu being
-> > >>> postcore_initcall level.
-> > >>>
-> > >>> I was just looking around for any existing Linux APIs that could be a
-> > >>> more robust solution. It looks like
-> > >>>
-> > >>> of_parse_phandle()
-> > >>> and
-> > >>> of_find_device_by_node();
-> > >>>
-> > >>> Are often used to solve this type of probe deferral issue between
-> > >>> devices. Is that what you would recommend using? Or is there something
-> > >>> even better?
-> > >>
-> > >> I think you should keep the phandle and then set device link based on
-> > >> of_find_device_by_node(). This would actually improve the code, because
-> > >> syscon_regmap_lookup_by_phandle() does not create device links.
-> > >
-> > > I kinda agree with this. Just because we no longer use a syscon API to
-> > > find the PMU register address doesn't mean the WDT doesn't depend on
-> > > the PMU.
-> > >
-> > > However, I think we should move to a generic "syscon" property. Then I
-> > > can add support for "syscon" property to fw_devlink and then things
-> > > will just work in terms of probe ordering, suspend/resume and also
-> > > showing the dependency in DT even if you don't use the syscon APIs.
-> > >
-> > > Side note 1:
-> > >
-> > > I think we really should officially document a generic syscon DT
-> > > property similar to how we have a generic "clocks" or "dmas" property.
-> > > Then we can have a syscon_get_regmap() that's like so:
-
-The difference is we know what to do with clocks, dma, etc. The only 
-thing we know from "syscon" is it's random register bits.
-
-> > >
-> > > struct regmap *syscon_get_regmap(struct device *dev)
-> > > {
-> > >         return syscon_regmap_lookup_by_phandle(dev->of_node, "syscon");
-> > > }
-> > >
-> > > Instead of every device defining its own bespoke DT property to do the
-> > > exact same thing. I did a quick "back of the envelope" grep on this
-> > > and I get about 143 unique properties just to get the syscon regmap.
-> > > $ git grep -A1 syscon_regmap_lookup_by_phandle | grep '"' | sed -e
-> > > 's/^[^"]*//' -e 's/"[^"]*$/"/' | sort | uniq | wc -l
-> > > 143
-> >
-> > Sorry, generic "syscon" property won't fly with DT maintainers, because
-> > there is no such thing as syscon in any of hardware.
+On Tue, Jan 23, 2024 at 12:20:29PM +0100, AngeloGioacchino Del Regno wrote:
+> Il 23/01/24 09:20, Rafał Miłecki ha scritto:
+> > From: Rafał Miłecki <rafal@milecki.pl>
+> > 
+> > This helps validating DTS files. Introduced changes:
+> > 1. Documented "reg" property
+> > 2. Adjusted "reg" in example
+> > 
+> > Signed-off-by: Rafał Miłecki <rafal@milecki.pl>
+> > ---
+> >   .../arm/mediatek/mediatek,mt7622-pciesys.yaml | 47 +++++++++++++++++++
+> >   .../arm/mediatek/mediatek,pciesys.txt         | 25 ----------
+> >   2 files changed, 47 insertions(+), 25 deletions(-)
+> >   create mode 100644 Documentation/devicetree/bindings/arm/mediatek/mediatek,mt7622-pciesys.yaml
+> >   delete mode 100644 Documentation/devicetree/bindings/arm/mediatek/mediatek,pciesys.txt
+> > 
+> > diff --git a/Documentation/devicetree/bindings/arm/mediatek/mediatek,mt7622-pciesys.yaml b/Documentation/devicetree/bindings/arm/mediatek/mediatek,mt7622-pciesys.yaml
+> > new file mode 100644
+> > index 000000000000..7340a2512402
+> > --- /dev/null
+> > +++ b/Documentation/devicetree/bindings/arm/mediatek/mediatek,mt7622-pciesys.yaml
 > 
-> Then why do we allow a "syscon" compatible string and nodes? If the
-> "syscon" property isn't clear enough, we can make it something like
-> gpios and have it be <whatever>-syscon or have syscon-names property
-> if you want to give it a name.
+> I think that we should really move all those clock controller yaml files to their
+> proper directory, which would be
+> 
+> Documentation/devicetree/bindings/clock/
+> 
+> ...because those are clock controllers anyway and the fact that they do also
+> provide a reset controller doesn't really justify having them in arm/mediatek.
+> 
+> Besides, I would appreciate if you could also move mt8186/92/95 and eventual
+> others that are there to clock/.
 
-I'm pretty hesistant to expand anything syscon related. Really, I'd like 
-to get rid of "syscon" compatible. It's just a hint to create a regmap.
-
-> 143 bespoke properties all to say "here are some registers I need to
-> twiddle that's outside my regmap" doesn't seem great.
-
-I wonder how many aren't outside of the node's main registers, but are 
-the only registers. That's quite common, but that would have largely 
-been before we started saying to make those a child node of the syscon.
-
-Changing wouldn't do anything to get rid of the bespoke strings. It just 
-shifts them from property names to property name prefix or -names 
-string.
+Yes, please move it.
 
 > 
-> > >
-> > > Side note 2:
-> > >
-> > > How are we making sure that it's the exynos-pmu driver that ends up
-> > > probing the PMU and not the generic syscon driver? Both of these are
-> > > platform drivers. And the exynos PMU device lists both the exynos
-> > > compatible string and the syscon property. Is it purely a link order
-> > > coincidence?
-> >
-> > initcall ordering
+> > @@ -0,0 +1,47 @@
+> > +# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
+> > +%YAML 1.2
+> > +---
+> > +$id: http://devicetree.org/schemas/arm/mediatek/mediatek,mt7622-pciesys.yaml#
+> > +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> > +
+> > +title: MediaTek PCIESYS controller
+> > +
+> > +description:
+> > +  The MediaTek PCIESYS controller provides various clocks to the system.
+> > +
+> > +maintainers:
+> > +  - Matthias Brugger <matthias.bgg@gmail.com>
+> > +
+> > +properties:
+> > +  compatible:
+> > +    items:
+> > +      - enum:
+> > +          - mediatek,mt7622-pciesys
+> > +          - mediatek,mt7629-pciesys
+> > +      - const: syscon
 > 
-> Both these drivers usr postcore_initcall(). So it's purely because
-> soc/ is listed earlier in drivers/Makefile than mfd/. And as soon as
-> drivers are made into modules this is going to break. This is
-> terrible. If you want to have a modular system, this is going to throw
-> in a wrench.
+> I know that there's syscon all over the place and, even if I admit I didn't check,
+> I am fairly sure that there's absolutely no reason to have syscon there, and that
+> the syscon compatible never did anything for (most of, or all of) those clock
+> controllers, at all.
+> 
+> I'm not sure - though - if removing syscon during the txt->yaml conversion is
+> acceptable (yeah we'd be cheating a bit), but something makes me say it is, because
+> the bindings couldn't validate before that one as well.
 
-IMO, a "syscon" shouldn't be a module. It's just a regmap.
+As long as you state why you are removing it in the commit msg.
 
-Rob
+> 
+> Of course you'd have to remove the syscon compatible from the affected device trees
+> as well as omitting it here.
+
+You could also do 'minItems: 1' and 'deprecated' in the 2nd item.
+
+> However, to be sure that we're doing the right thing here, I have to summon someone
+> that can actually give a definitive answer to what I just said.....
+> 
+> Krzysztof, please? :-)
 
