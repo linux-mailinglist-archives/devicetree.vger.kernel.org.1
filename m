@@ -1,206 +1,145 @@
-Return-Path: <devicetree+bounces-36762-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-36764-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 14FC984290D
-	for <lists+devicetree@lfdr.de>; Tue, 30 Jan 2024 17:25:49 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 552D1842994
+	for <lists+devicetree@lfdr.de>; Tue, 30 Jan 2024 17:39:24 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 9342B1F23D37
-	for <lists+devicetree@lfdr.de>; Tue, 30 Jan 2024 16:25:48 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 7A6001C20C5E
+	for <lists+devicetree@lfdr.de>; Tue, 30 Jan 2024 16:39:23 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 202841272AA;
-	Tue, 30 Jan 2024 16:25:44 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id CD3A01292C3;
+	Tue, 30 Jan 2024 16:38:44 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="JtiDi4AM"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="hU0aPY7j"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lj1-f170.google.com (mail-lj1-f170.google.com [209.85.208.170])
+Received: from mail-lj1-f175.google.com (mail-lj1-f175.google.com [209.85.208.175])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 541498612D
-	for <devicetree@vger.kernel.org>; Tue, 30 Jan 2024 16:25:42 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.170
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 067CF85C6F
+	for <devicetree@vger.kernel.org>; Tue, 30 Jan 2024 16:38:41 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.175
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1706631944; cv=none; b=ZQqp33SPiyZ1qBNfP4xF5nYHWBpMjjGOgLP8eEWcQfbqa++tCgAZm1Apol0rHNcBQg5EO0nyZyZMZbFrb9QNbXHw3pk7rOmBNsoKsriBF7L16m+w5Dj7i8xxAh2ZItWGBfTro5hR2RAwefSz4ujm+46Apv2HQeDg+jkdoXlbNYc=
+	t=1706632724; cv=none; b=uMXsTRuoK2rW4Lv6S6CXCPwGf4cXBj8m9jX2FDcITvIboyl+oyk+ecniU2OXmY8PrU/YxaA7mVtmM60NWdSERWKGhiY4cEyeKh2BiGXH5dCDD4Tl9Pjrh7018sExDXB/1M13gsYds4Kdxu7eyZCBdCoObbNAidsBTOEzHTNn0xA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1706631944; c=relaxed/simple;
-	bh=jjHoV2plujQcWWRAwaj2OpXn0x+glX/DFtpC9zjFYPc=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=rV37itVXX2Q5yzgS6lyAVZH7mZ9x7gVsiISkJqNZJw5Y8ns0D9RkuzyVYHTVe/PnAoB2/yi9Hmlwczemfxocie9F/IQarVvhkPUfdAeogoGrkL7hec1uJCluQyn618lg2Ncn9nNkWJ+pOPrQQsn/WqfCFvPYlZJkhLnGtzkCiD4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=JtiDi4AM; arc=none smtp.client-ip=209.85.208.170
+	s=arc-20240116; t=1706632724; c=relaxed/simple;
+	bh=TEQ8jOOdW9C4N7DptJHsfbYzZqm7WAXOuWhzqtkfQ4g=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=rV6zJWDKJh9ULJJJ3Kdh5JChWW0sitFaMozL9uucuee3yOT52vdlFMEHmboFWNIqVdE8zhLGANh36d5cIZUbkNnhn+9Wiq4605it4Sq3KQkzCMTl0C2V7e0T1q9A1kt0n7BOekVWCuMaLh7k1A+q/ENYQf0J7ODe0fLpcjsW9I4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=hU0aPY7j; arc=none smtp.client-ip=209.85.208.175
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-lj1-f170.google.com with SMTP id 38308e7fff4ca-2d04c0b1cacso28025451fa.0
-        for <devicetree@vger.kernel.org>; Tue, 30 Jan 2024 08:25:42 -0800 (PST)
+Received: by mail-lj1-f175.google.com with SMTP id 38308e7fff4ca-2d0600551e8so6926931fa.0
+        for <devicetree@vger.kernel.org>; Tue, 30 Jan 2024 08:38:41 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1706631940; x=1707236740; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
-         :to:content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=Xx5LK5cIWTZjcQaikGkUtTQL7dv+9ckkh97t67Efamk=;
-        b=JtiDi4AM8fIdXt+7VlKry5tvyDOXoOxeM7KGTV/u1WA5l9P8TDg9+dAUdRTq0C6ad/
-         DJfsiWxvEJ5JuxUOa8r6e0g7qwNaEL1Ues8BW8KAKxaNojS1uV8hJ37EVmdAGYhgBAMR
-         D/KkaglftOsFQUJapODJb1FHgonGszp1MAHUn2j19LH7+b/awO4pm50Zmc2dt3lNBlUZ
-         2Fv6AuhjrQ1YS+MoQvJ5RCMoihNzj/wcmof/lJ303ZyG1FaI8+HCgSOxlGJpz/yCFKLG
-         DHqsdYXTdz24SMWsPN8P3ozmGoykUz9V4h/8fWvoSbDuqoEsjXnLuxC9mq1devOo+TSm
-         aHTQ==
+        d=linaro.org; s=google; t=1706632720; x=1707237520; darn=vger.kernel.org;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=VpyDXlK61hD1QI31oUeDnUsni8/0Ke03qUlHK7bR94Q=;
+        b=hU0aPY7j4lbj6mYyKUIQkgUJ7zXygJBVbVkLh1lcF1ZiI/4xO1Tb5Kb/u8JybSgWXx
+         h/8itLbULyZF6j+5taSlWW9N/4FTYuUmgK1TVUVZlvQhqmqDdLv8rNStmSvOq57Hcm9R
+         fYgNWb8locDxxzVtgmcV+aQM4JJAr6FOFWSFzB1vnQ3Z9H0ltqr40JL5qX37j74Dpu73
+         TmoYfrIZX3+GPDX+8bogUWQYMI2c2R8O+BGxU9pKESxYPfDK66if5k/m5e0vMw0halzQ
+         sBCz1IB7k5H2jEdUpsf53PfMFRSgkfhyBmlodBjtmLUN8jJRzEjYLC9BRj9CnC+jPc0/
+         c7mg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1706631940; x=1707236740;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
-         :to:content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=Xx5LK5cIWTZjcQaikGkUtTQL7dv+9ckkh97t67Efamk=;
-        b=n7+O0i1dPcwlKMl/WCtYRCbGtJrlgaUzv3+DJOrwTOQGMi48SNY2uyFjPnSxySY4lA
-         58NB2zKVqQfRUSK3gQepg/1JPB9jYCT6/p8qilue7bC/oHN54UWtZuXk5nyU1A0C1pI4
-         9Ce2xTel73jNAEZkgQ8b7IKRZ4RNXV4X1vIbO4vrX93IBGsVkZdq8gtQA4/WFveGVhoz
-         dJB5rzYSxiGGrZ+BHFkP6LQKKidTZBViFlfRaZk4V1TqSYumY+ygQwatBZCvhC6+HeDi
-         7V4kapoxafFt60+NY/pM8jYfjAxD5Weitjo1980fhg0bIIrCGxapcYfkFP+U9sjLEStb
-         gwsw==
-X-Gm-Message-State: AOJu0YyPT8/6VMINRBuXcb+z3R5c964HklTBlFMl1oU91oM6RPZVrmXn
-	e5XHv1+5KxxP4m4aAAqdYErtyGDTk3RlbFJdfx8QTewnX9ML3W2j0LhtS7i9cUE=
-X-Google-Smtp-Source: AGHT+IGKmoGuj0MSsy/jyZO/UQZpGItSPG3/U4Kws6CIORIhy1+vliz1pR0tRfJaLsxxA8skGzJcqQ==
-X-Received: by 2002:a2e:8552:0:b0:2cd:9f2a:1450 with SMTP id u18-20020a2e8552000000b002cd9f2a1450mr5579437ljj.17.1706631940254;
-        Tue, 30 Jan 2024 08:25:40 -0800 (PST)
-X-Forwarded-Encrypted: i=0; AJvYcCVbt3+Bvs+rMDJrQfc4XovjpQSFvjOLVIDYT453/Fk87t14svX038oR2EttdIorcfJ3ZC+KXpajNm0Ln1Ptslbi7/6y1s5rew+bPKD84ODVNjOERPT1mX8BoWp+PBMHPGT9rNhMSO43orpcII3IBTQnBsn5R5h2r+D954t/SRDMUnTXrmpsE3ven9TfvFmFvZGZoeDKGX8Ze1pltFBYVj6ZQDQnaA7quAuYnssQ1Mv1eiac0Zviyql8BaXSBavqDJvd4OVotHGswsuGcY9dpYli3MGfIGmAQJieddCAcIHyEOgPyTV683RMedCmN+7PVnTTUCW5JmojHoeNnLLJzhMgZ9HsF+vmye91n2pmjipffUe9r6QhFyF7D1IWhxj5mtTaOUhq76jcTEuyia29cvKTan9+nCO7uPEBKGy3CZwh2iIRLiEraeQRYqHgOG5lAjwqKOb5/Tq5THKfXpcOlDv2goJwNYOiOzUJ0bZg80CEkZzjl/Wzl/oaj0jnjX7iNWAZ6EKwhEGB+8ak1Iz/GupL1fsbK5fSUGU/3qStMNAorAolyZNCHg==
-Received: from [192.168.1.20] ([178.197.222.62])
-        by smtp.gmail.com with ESMTPSA id c8-20020a509f88000000b0055f43384da2sm763543edf.56.2024.01.30.08.25.38
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 30 Jan 2024 08:25:39 -0800 (PST)
-Message-ID: <78241d63-3b9d-4c04-9ea5-11b45eac6f00@linaro.org>
-Date: Tue, 30 Jan 2024 17:25:38 +0100
+        d=1e100.net; s=20230601; t=1706632720; x=1707237520;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=VpyDXlK61hD1QI31oUeDnUsni8/0Ke03qUlHK7bR94Q=;
+        b=bwFYcbMYAWsw420vSa28FmCtEcqrDcwOxMn4uhxLme5TRe52lnv9boz0JCfEMidX8X
+         rthSWb0VOIr5iF6l1kb6hHM7kjAaWqQ9QBVzeG825O1f7SwTOp6Yo1nT802UdDjZQz4B
+         yuCUhKBI+1EtkcyXtAUAM/nZrHJOVDOqEzg82M+Um1U43rN+e5QE6LMVJW83PqMAX2Iu
+         lVEhxsWfOugIV+469vDdiWBeE5W62wc1U/nReGYCC5X4ec2tGORa0HKBA8Jn8Dp5oLZA
+         Qr5ioP6FheafNT6/+b2yiiY7335c+Y3CFxx7Ck+R7tq5vAvzvVjzJ6snxtZt/AG2Ex0t
+         kp4A==
+X-Gm-Message-State: AOJu0YxS6QR2CnKVd4atq/Ne7rei7gvTS733vC3G5boG1FAz/ss/KsDl
+	IYfJr0NARi5gf2ccqdz/XDBNAhVt6J/VXubALR2wVHMQR55BKuat4+b6w5edjPM=
+X-Google-Smtp-Source: AGHT+IE8RruwgdA0nx7lUTOLRYZAuNoIzluFUmMwW0/obCVYUN0QV9PJr1qGD1P3WX3+odbtu5oM2w==
+X-Received: by 2002:a2e:a586:0:b0:2cc:6cbf:5cf7 with SMTP id m6-20020a2ea586000000b002cc6cbf5cf7mr7327900ljp.4.1706632720049;
+        Tue, 30 Jan 2024 08:38:40 -0800 (PST)
+X-Forwarded-Encrypted: i=0; AJvYcCVu+mK6Ryz5/VqZRcvSMYr+tdTDVltngYhKuEjayx8IE0yJlp96CDWvIysIgWkInligAuEZZmJA80SEY1XpDgIlrKmUVeGJWh5OTuOcn8qWiP+04deYtw+dytTTVr1NFhhTR2l9St0Gn1wkjisj61/tVbSlHJPmlhdqE3OaiVI7Wbh2m8P1VAeeA44eEoThQ9oMTR6sBYpuKePbaDrB0+IYFrQMP879UPNtLtmAYb0pHTMfIzZNYA3mG11o+uJ42uxGXgu2lLLd3t9kjtf8/hOs9S7wuGhUlt2jjOHbXHWK7Mhe5XrFl+W72TRShtOeWrl9ThE5sgMVbZJZR9s+DMhDqKbvGrJusN1v9qAffBp0uVYzIzpwtO9nIzMlWFF3bUElZrbo7M80X7hzp8JZxMbTzGPUYZ3RHlN4qQZvAp049aEnTHns32caVDfqsSdGzbRjtPBgI2Gx07Mm5qHPeZEiPjhuPXZE+WP74kuSTfRP/PHxm/swq1JdXKnZi1ji+vyhr/SYGAg=
+Received: from umbar.lan ([192.130.178.91])
+        by smtp.gmail.com with ESMTPSA id y8-20020a2e9788000000b002d05e8bd84fsm219639lji.31.2024.01.30.08.38.39
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 30 Jan 2024 08:38:39 -0800 (PST)
+From: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+Subject: [PATCH RFC 0/4] wifi: ath10k: support board-specific firmware
+ overrides
+Date: Tue, 30 Jan 2024 18:38:36 +0200
+Message-Id: <20240130-wcn3990-firmware-path-v1-0-826b93202964@linaro.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 1/2] dt-bindings: net: bluetooth: Add MediaTek MT7921S
- SDIO Bluetooth
-Content-Language: en-US
-To: Chen-Yu Tsai <wenst@chromium.org>
-Cc: Marcel Holtmann <marcel@holtmann.org>,
- Luiz Augusto von Dentz <luiz.dentz@gmail.com>,
- Rob Herring <robh+dt@kernel.org>,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Conor Dooley <conor+dt@kernel.org>, Matthias Brugger
- <matthias.bgg@gmail.com>,
- AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
- Sean Wang <sean.wang@mediatek.com>, linux-bluetooth@vger.kernel.org,
- netdev@vger.kernel.org, linux-mediatek@lists.infradead.org,
- devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- linux-kernel@vger.kernel.org
-References: <20240126063500.2684087-1-wenst@chromium.org>
- <20240126063500.2684087-2-wenst@chromium.org>
- <74b9f249-fcb4-4338-bf7b-8477de6c935c@linaro.org>
- <CAGXv+5Hu+KsTBd1JtnKcaE3qUzPhHbunoVaH2++yfNopHtFf4g@mail.gmail.com>
- <21568334-b21f-429e-81cd-5ce77accaf3c@linaro.org>
- <CAGXv+5HxXzjigN3Bp96vkv71WfTJ1S2b7Wgafc4GxLmhu6+jMg@mail.gmail.com>
- <a4324473-e0c6-4d53-8de0-03b69480e40b@linaro.org>
- <CAGXv+5HAqmUizXztMH_nY6e+6oQh01hCtxEJXKtCn3_74-sOsQ@mail.gmail.com>
-From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
- 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
- D2GYIS41Kv4Isx2dEFh+/Q==
-In-Reply-To: <CAGXv+5HAqmUizXztMH_nY6e+6oQh01hCtxEJXKtCn3_74-sOsQ@mail.gmail.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIAAwmuWUC/6tWKk4tykwtVrJSqFYqSi3LLM7MzwNyDHUUlJIzE
+ vPSU3UzU4B8JSMDIxMDQ2MD3fLkPGNLSwPdtMyi3PLEolTdgsSSDF3zRAPTRIPkNAtDA3MloN6
+ CotS0zAqwudFKQW7OSrG1tQAINVu9bAAAAA==
+To: Kalle Valo <kvalo@kernel.org>, Jeff Johnson <quic_jjohnson@quicinc.com>, 
+ "David S. Miller" <davem@davemloft.net>, Eric Dumazet <edumazet@google.com>, 
+ Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>, 
+ Rob Herring <robh+dt@kernel.org>, 
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, 
+ Conor Dooley <conor+dt@kernel.org>, Bjorn Andersson <andersson@kernel.org>, 
+ Konrad Dybcio <konrad.dybcio@linaro.org>
+Cc: ath10k@lists.infradead.org, linux-wireless@vger.kernel.org, 
+ netdev@vger.kernel.org, devicetree@vger.kernel.org, 
+ linux-arm-msm@vger.kernel.org
+X-Mailer: b4 0.12.4
+X-Developer-Signature: v=1; a=openpgp-sha256; l=1851;
+ i=dmitry.baryshkov@linaro.org; h=from:subject:message-id;
+ bh=TEQ8jOOdW9C4N7DptJHsfbYzZqm7WAXOuWhzqtkfQ4g=;
+ b=owEBbQGS/pANAwAKAYs8ij4CKSjVAcsmYgBluSYO7h0IJF2XRBtVVaNpejrj5YPDtGDzKL1ng
+ gAQs3MfnwCJATMEAAEKAB0WIQRMcISVXLJjVvC4lX+LPIo+Aiko1QUCZbkmDgAKCRCLPIo+Aiko
+ 1RpTCACUEZvuDID4NMQkqH7mn816sf4Yr1B4k8eDltq6lnf/fTK35CVPNEjyL2Kyb+k0jk2AlFP
+ 50e3rEmqQW6MZtNR4Rw7b99V58k+O0PrFa9dU4KgxPNT9v3/GXCFmkAY14ACjOP4HVdosMbu4hI
+ +3+Hrk9wMHO9TXI2lcjKmbw7gNw6nerBRT3pKtadBOr9A9BIKaINBzhQXqv9tZOpbA8vNDOPQ9T
+ xB2sOQ9JWGTURgOdRfGFI7AITGnqFjghSBPB4f285X69iqsmwgfYdiZs0Vbwy67uTxGYD4/xJfO
+ z5oo1v21xX/SbpkPRtqSKUFdeTtJk/NVUmqQtB04V4lJlJcP
+X-Developer-Key: i=dmitry.baryshkov@linaro.org; a=openpgp;
+ fpr=8F88381DD5C873E4AE487DA5199BF1243632046A
 
-On 30/01/2024 08:47, Chen-Yu Tsai wrote:
-> On Tue, Jan 30, 2024 at 3:37 PM Krzysztof Kozlowski
-> <krzysztof.kozlowski@linaro.org> wrote:
->>
->> On 30/01/2024 04:32, Chen-Yu Tsai wrote:
->>> On Mon, Jan 29, 2024 at 3:34 PM Krzysztof Kozlowski
->>> <krzysztof.kozlowski@linaro.org> wrote:
->>>>
->>>> On 29/01/2024 04:38, Chen-Yu Tsai wrote:
->>>>
->>>>>>> +allOf:
->>>>>>> +  - $ref: bluetooth-controller.yaml#
->>>>>>> +
->>>>>>> +properties:
->>>>>>> +  compatible:
->>>>>>> +    enum:
->>>>>>> +      - mediatek,mt7921s-bluetooth
->>>>>>
->>>>>> Can it be also WiFi on separate bus? How many device nodes do you need
->>>>>> for this device?
->>>>>
->>>>> For the "S" variant, WiFi is also on SDIO. For the other two variants,
->>>>> "U" and "E", WiFi goes over USB and PCIe respectively. On both those
->>>>> variants, Bluetooth can either go over USB or UART. That is what I
->>>>> gathered from the pinouts. There are a dozen GPIO pins which don't
->>>>> have detailed descriptions though. If you want a comprehensive
->>>>> binding of the whole chip and all its variants, I suggest we ask
->>>>> MediaTek to provide it instead. My goal with the binding is to document
->>>>> existing usage and allow me to upstream new device trees.
->>>>>
->>>>> For now we only need the Bluetooth node. The WiFi part is perfectly
->>>>> detectable, and the driver doesn't seem to need the WiFi reset pin.
->>>>> The Bluetooth driver only uses its reset pin to reset a hung controller.
->>>>
->>>> Then suffix "bluetooth" seems redundant.
->>>
->>> I think keeping the suffix makes more sense though. The chip is a two
->>> function piece, and this only targets one of the functions. Also, the
->>
->> That's why I asked and you said there is only one interface: SDIO.
-> 
-> There's only one interface, SDIO, but two SDIO functions. The two
-> functions, if both were to be described in the device tree, would
-> be two separate nodes. We just don't have any use for the WiFi one
-> right now. Does that make sense to keep the suffix?
+On WCN3990 platforms actual firmware, wlanmdsp.mbn, is sideloaded to the
+modem DSP via the TQFTPserv. These MBN files are signed by the device
+vendor, can only be used with the particular SoC or device.
 
-Number of functions does not really matter. Number of interfaces on the
-bus would matter. Why would you have two separate nodes for the same
-SDIO interface? Or do you want to say there are two interfaces?
+Unfortunately different firmware versions come with different features.
+For example firmware for SDM845 doesn't use single-chan-info-per-channel
+feature, while firmware for QRB2210 / QRB4210 requires that feature.
 
+Allow board DT files to override the subdir of the fw dir used to lookup
+the firmware-N.bin file decribing corresponding WiFi firmware.
+For example, adding firmware-name = "qrb4210" property will make the
+driver look for the firmware-N.bin first in ath10k/WCN3990/hw1.0/qrb4210
+directory and then fallback to the default ath10k/WCN3990/hw1.0 dir.
 
+Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+---
+Dmitry Baryshkov (4):
+      dt-bindings: net: wireless: ath10k: describe firmware-name property
+      wifi: ath10k: support board-specific firmware overrides
+      arm64: dts: qcom: qrb2210-rb1: add firmware-name qualifier to WiFi node
+      arm64: dts: qcom: qrb4210-rb1: add firmware-name qualifier to WiFi node
+
+ .../devicetree/bindings/net/wireless/qcom,ath10k.yaml         |  6 ++++++
+ arch/arm64/boot/dts/qcom/qrb2210-rb1.dts                      |  1 +
+ arch/arm64/boot/dts/qcom/qrb4210-rb2.dts                      |  1 +
+ drivers/net/wireless/ath/ath10k/core.c                        | 11 ++++++++++-
+ drivers/net/wireless/ath/ath10k/core.h                        |  2 ++
+ drivers/net/wireless/ath/ath10k/snoc.c                        |  3 +++
+ 6 files changed, 23 insertions(+), 1 deletion(-)
+---
+base-commit: 596764183be8ebb13352b281a442a1f1151c9b06
+change-id: 20240130-wcn3990-firmware-path-7a05a0cf8107
 
 Best regards,
-Krzysztof
+-- 
+Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
 
 
