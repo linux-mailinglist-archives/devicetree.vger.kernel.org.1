@@ -1,49 +1,49 @@
-Return-Path: <devicetree+bounces-36847-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-36848-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 147D4842DCB
-	for <lists+devicetree@lfdr.de>; Tue, 30 Jan 2024 21:28:34 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id C79A2842DCF
+	for <lists+devicetree@lfdr.de>; Tue, 30 Jan 2024 21:28:45 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id C238528AB54
-	for <lists+devicetree@lfdr.de>; Tue, 30 Jan 2024 20:28:32 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 7C6251F24EEB
+	for <lists+devicetree@lfdr.de>; Tue, 30 Jan 2024 20:28:45 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 69D1A762F6;
-	Tue, 30 Jan 2024 20:28:07 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 90E8378B6C;
+	Tue, 30 Jan 2024 20:28:08 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=postmarketos.org header.i=@postmarketos.org header.b="ii+Kiv4W"
+	dkim=pass (2048-bit key) header.d=postmarketos.org header.i=@postmarketos.org header.b="S4iB3nDX"
 X-Original-To: devicetree@vger.kernel.org
-Received: from out-183.mta0.migadu.com (out-183.mta0.migadu.com [91.218.175.183])
+Received: from out-187.mta0.migadu.com (out-187.mta0.migadu.com [91.218.175.187])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8B61D762C4
-	for <devicetree@vger.kernel.org>; Tue, 30 Jan 2024 20:28:04 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=91.218.175.183
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D43C9762F0
+	for <devicetree@vger.kernel.org>; Tue, 30 Jan 2024 20:28:06 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=91.218.175.187
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1706646487; cv=none; b=DV9pK2wIf9Jn6P7ZP2L7Hs+IZ3as9LIM7RWJrGbNH+r5yfASDZ6Pxs4ehW0OP+oU/wdqZU1myZZCESHzqZVuKmF1K2OTJA0s/MB6Z8OZykuddkcFNQWgQ7Y1A16rBXF0jIPTTy2IFi/QfMdQ0tAH7j/AW9AJ8WrMLhOJJNPBBk4=
+	t=1706646488; cv=none; b=MgkUeUG+z+c8DB9if5cfjh1SjfkFVL1XqLg0Tycr5j+JyzVe0Z1mgH6drdbxFwkaUO0/0P4SheFouylkf43Zg80gPLsc9iCO6WvQlxO2TINdp9GlzMGBmqyqSgH7bbrJQJNFx8I2mZFLvxkPkq2uPxsoXVOx60gkEajgDu8wfLM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1706646487; c=relaxed/simple;
-	bh=vADWw5yytIupWyFxk9xl9zmpgN2AJHIwEv3Q10yQ3iI=;
+	s=arc-20240116; t=1706646488; c=relaxed/simple;
+	bh=Q7ic03v6VHuiP/aRPG6jSBwO/tENYk51lrKm6ckZSQs=;
 	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=t9qmba7OJ1IkMTfXaeSwBjIoIlqKS9CPcZZGivbSmwCTmPkT7AwIoTr0iadPJaMorOAg557sUk41h9Iu0l/TyMBA4mDOVMV4uHzBJVVaoYD8+Cx0rWb0bbgeEMKbIoe9vMuTxWTPi/HAV7kvhdX2RIUwX1XhnZpB0PlqoB5pt3U=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=postmarketos.org; spf=pass smtp.mailfrom=postmarketos.org; dkim=pass (2048-bit key) header.d=postmarketos.org header.i=@postmarketos.org header.b=ii+Kiv4W; arc=none smtp.client-ip=91.218.175.183
+	 MIME-Version; b=kT5U2FlzUNjPaJ/KBb+PCIh48PRQmVEjebElUuO21rP2LrrUY1rqQv4Gq5bX1u2vd0AzI3CuDc+ysO8k7ULQ5VoRgqZttc7X3kl9+EpXv9sGPKbtRjmy3NW2lRFHBBbUvElk+WkVG/daTyEXEMVkPLzn6QvA5v3Y2rCRF9WkzxE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=postmarketos.org; spf=pass smtp.mailfrom=postmarketos.org; dkim=pass (2048-bit key) header.d=postmarketos.org header.i=@postmarketos.org header.b=S4iB3nDX; arc=none smtp.client-ip=91.218.175.187
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=postmarketos.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=postmarketos.org
 X-Report-Abuse: Please report any abuse attempt to abuse@migadu.com and include these headers.
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=postmarketos.org;
-	s=key1; t=1706646482;
+	s=key1; t=1706646483;
 	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
 	 to:to:cc:cc:mime-version:mime-version:
 	 content-transfer-encoding:content-transfer-encoding:
 	 in-reply-to:in-reply-to:references:references;
-	bh=wjiLWD5T1UoAqkaS2+4BefM1F9H7t48Ue5JQPbUSApw=;
-	b=ii+Kiv4WgjKMAEzoLVwMnhv9WY04kJok21Epp6ok787bN+gJsiMPK8np9zLyvlgfsdvDUI
-	ugN33yiXT/ZHVH8/vWKYOfBkwmDMzhjb/Bmh9wQY/mXSIiudIwXk24Tm/p5zsTx58i/Lwz
-	vptYh4BstCA8EoWod8URYBT68WUjNE/WdySRYZhlkeKnQPKGYtqPO+R/KKn7YH/I8Ba+es
-	P6cN32qzmO52VUaJkjJNyRzii9G3FbICdJQ4CdvC87/WaSusEddEzxB4bHhAB19Id1pBXm
-	wvnsvjkK8KzwJ3BaK+S22OC0cpbqmIGpsdmWZFmJ2EqCSGrWHUABMSUPjEbPwQ==
+	bh=WieXiP6jVeaikwGFs5GYfcOQ5pozF8PL5Bu9LGVOFGQ=;
+	b=S4iB3nDXplv8yBGTkl/ieJySLopMfXUX0msq0il16ZJVQv5RQzfR4eDyY2Jcst4jWNVE/e
+	5RSRbmO6gzNDGbZnlkILPWjOmNRkrQRfGFfFwI+zW+HkWn+4GVksEgtnIfEqzxfpXeSmU/
+	HexPxAqUo51R+GJnRztzSqlu4V7DZBx6LI0765Ysdlgm7icgI9iKKzAGx21popa6qCCbAl
+	Ay7CoSdScO9tvxOJ5P9egTW9Ee9GWyis+iYCkdPkd836QtOgwGovTS5R9rdC7PhKrb0ebQ
+	y0VzbVOnG07tYMGPRYsfaQsxuBioCPidXl0Q6++Hd+qndRdxqjzBNpfheX7RVA==
 From: Anton Bambura <jenneron@postmarketos.org>
 To: Bjorn Andersson <andersson@kernel.org>,
 	Konrad Dybcio <konrad.dybcio@linaro.org>,
@@ -53,9 +53,9 @@ To: Bjorn Andersson <andersson@kernel.org>,
 Cc: linux-arm-msm@vger.kernel.org,
 	devicetree@vger.kernel.org,
 	linux-kernel@vger.kernel.org
-Subject: [PATCH v1 1/5] arm64: dts: qcom: sc8180x-lenovo-flex-5g: fix GPU firmware path
-Date: Tue, 30 Jan 2024 22:27:51 +0200
-Message-ID: <20240130202755.2289952-2-jenneron@postmarketos.org>
+Subject: [PATCH v1 2/5] arm64: dts: qcom: sc8180x-lenovo-flex-5g: set names for i2c hid nodes
+Date: Tue, 30 Jan 2024 22:27:52 +0200
+Message-ID: <20240130202755.2289952-3-jenneron@postmarketos.org>
 In-Reply-To: <20240130202755.2289952-1-jenneron@postmarketos.org>
 References: <20240130202755.2289952-1-jenneron@postmarketos.org>
 Precedence: bulk
@@ -67,26 +67,44 @@ MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-Migadu-Flow: FLOW_OUT
 
-Fix GPU firmware path so it uses model-specific directory.
+Set names, so they correspond to devices connected to these interfaces.
 
 Signed-off-by: Anton Bambura <jenneron@postmarketos.org>
 ---
- arch/arm64/boot/dts/qcom/sc8180x-lenovo-flex-5g.dts | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+ arch/arm64/boot/dts/qcom/sc8180x-lenovo-flex-5g.dts | 6 +++---
+ 1 file changed, 3 insertions(+), 3 deletions(-)
 
 diff --git a/arch/arm64/boot/dts/qcom/sc8180x-lenovo-flex-5g.dts b/arch/arm64/boot/dts/qcom/sc8180x-lenovo-flex-5g.dts
-index 0c22f3efec20..49b740c54674 100644
+index 49b740c54674..af61acf58d68 100644
 --- a/arch/arm64/boot/dts/qcom/sc8180x-lenovo-flex-5g.dts
 +++ b/arch/arm64/boot/dts/qcom/sc8180x-lenovo-flex-5g.dts
-@@ -350,7 +350,7 @@ &gpu {
+@@ -362,7 +362,7 @@ &i2c1 {
  
- 	zap-shader {
- 		memory-region = <&gpu_mem>;
--		firmware-name = "qcom/sc8180x/qcdxkmsuc8180.mbn";
-+		firmware-name = "qcom/sc8180x/LENOVO/82AK/qcdxkmsuc8180.mbn";
+ 	status = "okay";
+ 
+-	hid@10 {
++	touchscreen@10 {
+ 		compatible = "hid-over-i2c";
+ 		reg = <0x10>;
+ 		hid-descr-addr = <0x1>;
+@@ -379,7 +379,7 @@ &i2c7 {
+ 
+ 	status = "okay";
+ 
+-	hid@5 {
++	keyboard@5 {
+ 		compatible = "hid-over-i2c";
+ 		reg = <0x5>;
+ 		hid-descr-addr = <0x20>;
+@@ -387,7 +387,7 @@ hid@5 {
+ 		interrupts-extended = <&tlmm 37 IRQ_TYPE_LEVEL_LOW>;
  	};
- };
  
+-	hid@2c {
++	touchpad@2c {
+ 		compatible = "hid-over-i2c";
+ 		reg = <0x2c>;
+ 		hid-descr-addr = <0x20>;
 -- 
 2.42.0
 
