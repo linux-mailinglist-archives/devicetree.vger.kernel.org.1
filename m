@@ -1,73 +1,73 @@
-Return-Path: <devicetree+bounces-36553-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-36555-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id D3E1C841CC8
-	for <lists+devicetree@lfdr.de>; Tue, 30 Jan 2024 08:40:39 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id CF467841CD5
+	for <lists+devicetree@lfdr.de>; Tue, 30 Jan 2024 08:45:08 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 8F9F2282DD0
-	for <lists+devicetree@lfdr.de>; Tue, 30 Jan 2024 07:40:38 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 47FF31F27A65
+	for <lists+devicetree@lfdr.de>; Tue, 30 Jan 2024 07:45:08 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E5DB826AC7;
-	Tue, 30 Jan 2024 07:40:34 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0243E537E0;
+	Tue, 30 Jan 2024 07:45:02 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="vk+NtIjN"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="sRz+I6GF"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ej1-f51.google.com (mail-ej1-f51.google.com [209.85.218.51])
+Received: from mail-ed1-f50.google.com (mail-ed1-f50.google.com [209.85.208.50])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 115D2524B5
-	for <devicetree@vger.kernel.org>; Tue, 30 Jan 2024 07:40:32 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.51
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1B75E53E13
+	for <devicetree@vger.kernel.org>; Tue, 30 Jan 2024 07:44:59 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.50
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1706600434; cv=none; b=gIBRo7RgYUpz9VaXL+oxxDn/F3Z5SpaXMTGvlvFAEn/ZikQce0+PF2N137OjHYnxdgbSV0FQ7UBFjg6I9qnI5YiWZ6kxjnj8w5bsxsu9bvo2khU1JI8Hymxlg0xAuLCY24Wjk8OG01dOdmfwCOYslkiADAnO7vMpoSoN4hUti/U=
+	t=1706600701; cv=none; b=Ivbj8Jmxle9/ZRYRM2bc8uJg13X8/K3NjX2LTGI8VQksqR7LVGUqz0L2DpqOfUDcByQQ1ezNfokRZZS+FLY61lNFLGqDpDqhLC8wuLSjTiYOMlle2eJHLNJkRj0sHqwCbC8sMB3uFKUSqlT+JMBkDanJn+d4hFV4thRcrWc6hvQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1706600434; c=relaxed/simple;
-	bh=X8V9pvpV0JNRuDhoPRdTK4TGozcDMk3G0rZ4Q7XMqic=;
+	s=arc-20240116; t=1706600701; c=relaxed/simple;
+	bh=/NH6CuaOo1AjfGbf8xFgGXPUIHn4wJ715Xw135Bd1Nc=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=l9v/8d1Ow9SgzLjrUuh8Thri/IsI030euNEB0Hd3RvEMiH6dEnnOnv/eQr3hdEhxcfUr6svMhTfnkZsq5+KxAg615xWnG6dLeENh3+sHcZznzqnqQpHboFCjOpI2MPgUZbU9z2gBTBtAFRMoiIbs7y1VmLiKlV7bXkd3R9wrixo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=vk+NtIjN; arc=none smtp.client-ip=209.85.218.51
+	 In-Reply-To:Content-Type; b=kK1jgGbWuUZZzJnI3C+LdwShaoADxEED70d+EqQNUi4ECJOxchFg+URcQ2S3AYUL64EfWOHMB+wfDCDnv8UHTeD+r44wJZhTqVqSxvt6Amnk62mz7vblAh8xdCd0MXgjCn53lM25sClAPKuXOZaYq+nsxf/SUiR4VktBfWAaU7Y=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=sRz+I6GF; arc=none smtp.client-ip=209.85.208.50
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-ej1-f51.google.com with SMTP id a640c23a62f3a-a354408e6bfso440829466b.1
-        for <devicetree@vger.kernel.org>; Mon, 29 Jan 2024 23:40:32 -0800 (PST)
+Received: by mail-ed1-f50.google.com with SMTP id 4fb4d7f45d1cf-55f2b0c5ae9so1222765a12.2
+        for <devicetree@vger.kernel.org>; Mon, 29 Jan 2024 23:44:59 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1706600431; x=1707205231; darn=vger.kernel.org;
+        d=linaro.org; s=google; t=1706600698; x=1707205498; darn=vger.kernel.org;
         h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
          :to:content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=uPe60IzTNRhQ8xdKXhrI1YkRrC86QmovGAq/H+j7848=;
-        b=vk+NtIjN+424w+N92139h8KhT8HBQ/8yTi3vrGJwq01a/6Y7BpF8Q3R3229TSm2WLZ
-         knwYwGosb+O4DvdHXuIMjt7qEkncwa6nuz9ZOGKGeNPOUKiVf1rYCgJjTWnW0u/8qzzb
-         /jp04m99871RNPRZM1KRKEfY01Dt11bq0/f0G2TjG4doYfWEQWQSZd6aew6dEx6IUFw/
-         vXelMLculQEeO6bvCf1i78UqRVE/2VmeUHE2K1UVXAPCRu1+vDPMmfBbZoBHeVtU1X0Q
-         zb8+00+QfT448vrHapS+mqhnDeM6qcqJlumH4hgfKYYWbZff0XUfkNuxxxoY0CYEGW8/
-         y+Og==
+        bh=0NZM7i6zI3uohM+Yze1cc8Yj7cabQgTOXulEQEj9j8g=;
+        b=sRz+I6GF+i0wnfHqvzdHtqzY6FGkT8lWkcDuYg3AngOuTIQWcKJ4FqHKnyS21zRFSP
+         Kp4XIvwQXryZbo5Av9fBIFx9DzRAq3Taw6O7Okv/X/W3dWceaRQjpPJncNrBBiMWpNoO
+         rtMSThvmNEMXCxdwPiLEZEqBCcByFu1KcTcXy0r1XSS8uMPuheHdOkivAeveRzqqzNbW
+         vSNuSXuWXZ0qADruqSN9yP0tEnjBuEdzAWO8eLZTFHaxLY0CsTZvYevhCs4c23ZjoKWh
+         z6tvS3xNFcFj7+wDAukuchycTgjXVdRLVLZWcArKt4rVINPiKA5iW8edKOPrMYZz6QP3
+         Uc+w==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1706600431; x=1707205231;
+        d=1e100.net; s=20230601; t=1706600698; x=1707205498;
         h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
          :to:content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=uPe60IzTNRhQ8xdKXhrI1YkRrC86QmovGAq/H+j7848=;
-        b=NoQauEl5FA1V+kQ5wdFIXRpMUvBFT7DZM/JGU3AV+9xjnEJjuV2NIlAxKPgGc9a+Ph
-         ghnz4JaWapnoETCMwavFoBcxH4B0o76WCQJlsQJHLp0A3WKE0/l7Gjt/BJl+pxxHwU+o
-         ew9teh60ORSGhbFbK4wK+d9ow5QdgOBBV6OedOzW0J667v5ckMW4Du5wwrZcL1CitNCn
-         WdUgZSxEmwl/J0Hg0Ngb5I4cqcpf2bXXnjMcat6PUdLRzXQl8MbkvOWHT56RMoOXrTPw
-         c3+R2lXb3d2G3gZXpABk5GJFCV5mSrzsak6p85zOeMINHrApJ4eL/xe2G/xFPukPhjhX
-         TAww==
-X-Gm-Message-State: AOJu0Yxf8U8zbohZAv5JZutkbuyCmw6ovJH1DEwqQ3xXgTW6q4kCAwmj
-	29D1DvTdtOFNkZKdGGJCN7ag1sH1cWFLL0lE/gMuwlgln2IZHRdvNYV9utG4lfk=
-X-Google-Smtp-Source: AGHT+IFOW1yMVhj72oFmD37Hzaqe45ko6oyFddynA0fudFTsS0/WukBC5Pbd5ko3gKlDIwPzaYErdA==
-X-Received: by 2002:a17:906:d110:b0:a35:991e:5085 with SMTP id b16-20020a170906d11000b00a35991e5085mr737177ejz.30.1706600431327;
-        Mon, 29 Jan 2024 23:40:31 -0800 (PST)
+        bh=0NZM7i6zI3uohM+Yze1cc8Yj7cabQgTOXulEQEj9j8g=;
+        b=VRjFiMwazY43zMFW7aKRccJ+79hPDmhHeO9h54YHw3ImRY02GJNTZPdFZ+DsHMPBwT
+         BuE7Xcc/iXlDwZtTtOwieotBjb884+O/xBJ7phUS3lpHOhCeLBGHZ61i+jQuXzRzBkV9
+         biymvhGjDd7VMRpVTHqlzgrbuivMX9EjjRCrXrbQ7aXma6F8jIx9nldWtHIHP16yYUqX
+         oViReDNXtJA39ZCV0vZLgWALBONFh05A8B2TeTHkAzWbLzaMEaHP4jjsQpSxmdWXkH6q
+         W9kM+OYkKbshH51tC16mTDziTZXpY8BSW3uvfof4wXwmwTad9OsiXd074FtTRfTquqjh
+         GJzA==
+X-Gm-Message-State: AOJu0Ywrr1BtWErbgxW9zyaVBtvhzp2nA1y9d6Ern+PUfaen80Nlxx0l
+	/bK/T2i9/pIJO7Xlu2KGYcTsn9AJFixFzC7wtAWmbn/W/9E5eh894jDDUF85NLs=
+X-Google-Smtp-Source: AGHT+IF15EirlFpORc2IKfYI8NTd/v+4HF2Wf1kfj+Jy3eMjIK9LG2sNpeMB99kr2+5tLlXWZnL1JQ==
+X-Received: by 2002:aa7:c652:0:b0:55e:f9d5:c9e2 with SMTP id z18-20020aa7c652000000b0055ef9d5c9e2mr3513167edr.34.1706600698268;
+        Mon, 29 Jan 2024 23:44:58 -0800 (PST)
 Received: from [192.168.1.20] ([178.197.222.62])
-        by smtp.gmail.com with ESMTPSA id sf5-20020a1709078a8500b00a353bfdd411sm3690334ejc.59.2024.01.29.23.40.29
+        by smtp.gmail.com with ESMTPSA id dh8-20020a0564021d2800b0055f0b3ec5d8sm1566750edb.36.2024.01.29.23.44.56
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 29 Jan 2024 23:40:30 -0800 (PST)
-Message-ID: <f3811c1f-eff2-4c7b-8cea-6d3115525235@linaro.org>
-Date: Tue, 30 Jan 2024 08:40:29 +0100
+        Mon, 29 Jan 2024 23:44:57 -0800 (PST)
+Message-ID: <120f24cd-dad0-4553-8f94-c8ebc9413338@linaro.org>
+Date: Tue, 30 Jan 2024 08:44:56 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -75,26 +75,21 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 1/2] dt-bindings: usb: dwc3: Add system bus request info
+Subject: Re: [PATCH RESEND v2 1/2] dt-bindings: PCI: qcom: Document the
+ X1E80100 PCIe Controller
 Content-Language: en-US
-To: Frank Li <Frank.li@nxp.com>, Conor Dooley <conor@kernel.org>
-Cc: thinh.nguyen@synopsys.com, robh+dt@kernel.org,
- krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org, balbi@kernel.org,
- devicetree@vger.kernel.org, gregkh@linuxfoundation.org, imx@lists.linux.dev,
- linux-kernel@vger.kernel.org, linux-usb@vger.kernel.org,
- mark.rutland@arm.com, mathias.nyman@intel.com, pku.leo@gmail.com,
- sergei.shtylyov@cogentembedded.com
-References: <20240123-poking-geography-33be2b5ae578@spud>
- <Za/8J8MDJaZEPEKO@lizhi-Precision-Tower-5810>
- <20240123-anew-lilly-0d645bdbfb30@spud>
- <Za//LX9U6QG5A5NW@lizhi-Precision-Tower-5810>
- <20240123-nanometer-atlantic-6465b270043a@spud>
- <ZbAR/NQvjUnf2At+@lizhi-Precision-Tower-5810>
- <46781012-2678-4f6c-9aee-b020cabcbb28@linaro.org>
- <ZbA8ea9Ex+hMdDDZ@lizhi-Precision-Tower-5810>
- <ZbfB/KT+fzO/F2e5@lizhi-Precision-Tower-5810>
- <20240129-encode-catchable-f5712d561a47@spud>
- <ZbfjZoHiH7BsKyzl@lizhi-Precision-Tower-5810>
+To: Abel Vesa <abel.vesa@linaro.org>, Bjorn Andersson <andersson@kernel.org>,
+ Konrad Dybcio <konrad.dybcio@linaro.org>,
+ Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
+ Lorenzo Pieralisi <lpieralisi@kernel.org>,
+ =?UTF-8?Q?Krzysztof_Wilczy=C5=84ski?= <kw@linux.com>,
+ Rob Herring <robh@kernel.org>, Bjorn Helgaas <bhelgaas@google.com>,
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+ Conor Dooley <conor+dt@kernel.org>
+Cc: linux-pci@vger.kernel.org, linux-arm-msm@vger.kernel.org,
+ linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
+References: <20240129-x1e80100-pci-v2-0-5751ab805483@linaro.org>
+ <20240129-x1e80100-pci-v2-1-5751ab805483@linaro.org>
 From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  xsFNBFVDQq4BEAC6KeLOfFsAvFMBsrCrJ2bCalhPv5+KQF2PS2+iwZI8BpRZoV+Bd5kWvN79
@@ -140,98 +135,18 @@ Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  KQ06ztUMRrj8eVtpImjsWCd0bDWRaaR4vqhCHvAG9iWXZu4qh3ipie2Y0oSJygcZT7H3UZxq
  fyYKiqEmRuqsvv6dcbblD8ZLkz1EVZL6djImH5zc5x8qpVxlA0A0i23v5QvN00m6G9NFF0Le
  D2GYIS41Kv4Isx2dEFh+/Q==
-In-Reply-To: <ZbfjZoHiH7BsKyzl@lizhi-Precision-Tower-5810>
+In-Reply-To: <20240129-x1e80100-pci-v2-1-5751ab805483@linaro.org>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 29/01/2024 18:41, Frank Li wrote:
-> On Mon, Jan 29, 2024 at 04:49:21PM +0000, Conor Dooley wrote:
->> On Mon, Jan 29, 2024 at 10:19:24AM -0500, Frank Li wrote:
->>> On Tue, Jan 23, 2024 at 05:23:53PM -0500, Frank Li wrote:
->>>> On Tue, Jan 23, 2024 at 10:46:39PM +0100, Krzysztof Kozlowski wrote:
->>>>> On 23/01/2024 20:22, Frank Li wrote:
->>>>>> On Tue, Jan 23, 2024 at 06:42:27PM +0000, Conor Dooley wrote:
->>>>>>> On Tue, Jan 23, 2024 at 01:02:21PM -0500, Frank Li wrote:
->>>>>>>> On Tue, Jan 23, 2024 at 05:51:48PM +0000, Conor Dooley wrote:
->>>>>>>>> On Tue, Jan 23, 2024 at 12:49:27PM -0500, Frank Li wrote:
->>>>>>>>>> On Tue, Jan 23, 2024 at 05:27:13PM +0000, Conor Dooley wrote:
->>>>>>>>>>> On Tue, Jan 23, 2024 at 12:02:05PM -0500, Frank Li wrote:
->>>>>>>>>>>> Add device tree binding allow platform overwrite default value of *REQIN in
->>>>>>>>>>>> GSBUSCFG0.
->>>>>>>>>>>
->>>>>>>>>>> Why might a platform actually want to do this? Why does this need to be
->>>>>>>>>>> set at the board level and being aware of which SoC is in use is not
->>>>>>>>>>> sufficient for the driver to set the correct values?
->>>>>>>>>>
->>>>>>>>>> In snps,dwc3.yaml, there are already similary proptery, such as
->>>>>>>>>> snps,incr-burst-type-adjustment. Use this method can keep whole dwc3 usb
->>>>>>>>>> driver keep consistent. And not all platform try enable hardware
->>>>>>>>>> dma_cohenrence. It is configable for difference platform.
->>>>>>>>>
->>>>>>>>> When you say "platform", what do you mean? I understand that term to
->>>>>>>>> mean a combination of board, soc and firmware.
->>>>>>>>
->>>>>>>> In my company's environment, "platform" is "board". I will use "board" in
->>>>>>>> future. Is it big difference here?
->>>>>>>
->>>>>>> Nah, that's close enough that it makes no difference here.
->>>>>>>
->>>>>>> I'd still like an explanation for why a platform would need to actually
->>>>>>> set these properties though, and why information about coherency cannot
->>>>>>> be determined from whether or not the boss the usb controller is on is
->>>>>>> communicated to be dma coherent via the existing devicetree properties
->>>>>>> for that purpose.
->>>>>>
->>>>>> Actually, I am not very clear about reason. I guest maybe treat off power
->>>>>> consumption and performance.
->>>>>>
->>>>>> What's your judgement about proptery, which should be in dts. Such as
->>>>>> reg, clk, reset, dma and irq, which is tighted with SOC. It is the fixed
->>>>>> value for every SOC. The board dts never change these.
->>>>>
->>>>> Then it can be deduced from the compatible and there is no need for new
->>>>> properties.
->>>>
->>>> Okay, I think "*reqinfo" match this. When new Soc(using compatible dwc usb
->>>> controller) appear regardless dma-cohorence or not, connect by AXI3 or
->>>> AXI4, needn't add new propterties. 
->>>
->>> Anyone have objection? I will prepare v2 to fix rob's bot error.
->>
->> I'm not sure what you want me to object to/not object to.
->> Your last message said "needn't add new propterties", seemingly in
->> agreement with Krzysztoff saying that it can be deduced from the
->> compatible. That seems like a good way forward for me.
+On 29/01/2024 15:41, Abel Vesa wrote:
+> Document the PCIe Controllers on the X1E80100 platform. They are similar
+> to the ones found on SM8550, but they don't have SF QTB clock.
 > 
-> Okay, let me clear it again. dwc usb is quite common IP. The below is
-> what reason why need "*reginfo* instead of using compatible string.
-> 
-> 1. *reginfo* property is decscript hardware behevior, which will be changed
-> at difference SOC.
-> 2. it may change at board level according to if enable dma coherence.
+> Signed-off-by: Abel Vesa <abel.vesa@linaro.org>
+> ---
 
-dma coherence is not a board property. Anyway, you said it will never
-change in the board.
-
-> 3. dwc core part is quite common, all SOC using common "snps, dwc3" as
-> core-part, all soc specific "nxp, dwc3 *", "qcom, dwc3*" is used for glue
-> logic part.
-
-And all should be having dedicated compatibles.
-
-> 4. using *reginfo* can reduce add more strange compatible string such as
-> "nxp, dwc3-core" ...
-> 5. *reginfo* property likes "reg", "clk", and align what Kryzystoff said.
-> "reg", "clk" is fixed for specfic SOC. These can help reduce "compatible"
-> string number. "reginfo" do the same work as "reg", "clk" ..
-
-So again, reginfo is fixed for specific SoC? So it can be deduced from
-compatible.
-
-I don't know what to say more here... so let's be clear that you
-understood me:
-
-NAK
+This will conflict with my series, so whoever comes last need to rebase :)
 
 Best regards,
 Krzysztof
