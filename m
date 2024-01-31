@@ -1,128 +1,132 @@
-Return-Path: <devicetree+bounces-37328-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-37329-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id C71B384480E
-	for <lists+devicetree@lfdr.de>; Wed, 31 Jan 2024 20:35:16 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id CCC06844858
+	for <lists+devicetree@lfdr.de>; Wed, 31 Jan 2024 20:57:55 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 6AF9DB25160
-	for <lists+devicetree@lfdr.de>; Wed, 31 Jan 2024 19:35:14 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 89997289798
+	for <lists+devicetree@lfdr.de>; Wed, 31 Jan 2024 19:57:54 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0EFF13AC16;
-	Wed, 31 Jan 2024 19:35:09 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3FFEA3EA9E;
+	Wed, 31 Jan 2024 19:57:49 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=sang-engineering.com header.i=@sang-engineering.com header.b="LSeKICjp"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="lI+BWxSx"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail.zeus03.de (www.zeus03.de [194.117.254.33])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-pf1-f177.google.com (mail-pf1-f177.google.com [209.85.210.177])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DDEC63B1B7
-	for <devicetree@vger.kernel.org>; Wed, 31 Jan 2024 19:35:03 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=194.117.254.33
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CFB093B289;
+	Wed, 31 Jan 2024 19:57:47 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.177
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1706729708; cv=none; b=Ll3QrLRm/yRxW9uB3WzR6hbwNTLin1IAARhQIo0DFFKfMrPp6F2+2gz7zffCWf5zKDwVvoUyg6EcJMckInupUN6r0RRu/238TwFjepO7yzbt6pLThGG40520RAzLyXUGPIGLtrwkbulhPtRdrYyGf+WiLqAKk3iJ9z3sYjO/BNs=
+	t=1706731069; cv=none; b=Cb/269v/1Dpy/wyBOqPsczbP2eJWWbbev+FLxi3aHPFZQQvfpsUP2jnwsnZAUA1lGVpq0AztBA9ElZVNsUPP41TsaBRSMIcQrA98TlOJnuVkV8kBreJqt6TTeDrfAfj6ZZQqJNynSB0/3ARSkZAmiutmZojeqASZoAlJLtsi3FI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1706729708; c=relaxed/simple;
-	bh=BRwssqc2jzt/f3mBb8BSDVJgrvePchYdkfdcqXofltc=;
+	s=arc-20240116; t=1706731069; c=relaxed/simple;
+	bh=MVJHePKLxDNqDklcHUUX9Uxr2v9aXw8DM9bdU2c6/Bs=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=TqDyu6xCsh2Y5TnVMHd6Wfxnqi5dyYNShz+ud9OQyJk5Yn51KK1wINEHysubI4QuMqfpznRoiI0M16ysyf+RHCvr5SZdf91XPm04UaoNlJGTirWDUUa3AniyrUaZR+EpHpR1ScaprnNUhy7sFt6VNaaOYkW37myMvrjNXF3EIiI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=sang-engineering.com; spf=pass smtp.mailfrom=sang-engineering.com; dkim=pass (2048-bit key) header.d=sang-engineering.com header.i=@sang-engineering.com header.b=LSeKICjp; arc=none smtp.client-ip=194.117.254.33
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=sang-engineering.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=sang-engineering.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
-	sang-engineering.com; h=date:from:to:cc:subject:message-id
-	:references:mime-version:content-type:in-reply-to; s=k1; bh=BRws
-	sqc2jzt/f3mBb8BSDVJgrvePchYdkfdcqXofltc=; b=LSeKICjpPR1VkkwfK149
-	rrg2cOzfsszyIgM2cA0fL+fiTrOREl7Q6xPBikF+Q0plpEov+VAms4+ZazY4H2wG
-	01C1ZS4pcAKSEUz0ymEldvPBj3QcrUsfDeBhd/tCHKu3jcVZJz1c86a/ebTpZuPa
-	gavI4FHZNwki3OLrIssnrB8984AemTyEy3VTN4Zu5uQ9VZzbXyaoRbgVsIkEjq/o
-	ccXW+8s73Tr8VI90bUgGWCz8YSW/9sy3OiDX0SBEwt8Ch1WDB9iv3NcyaNE8J8eZ
-	qgBP3a83rprQi/iAgsBzRFr6UI6di2w+hCRIr5I3lFwi8WwOhn+3kWKViKnL5u0G
-	Nw==
-Received: (qmail 3307818 invoked from network); 31 Jan 2024 20:34:55 +0100
-Received: by mail.zeus03.de with ESMTPSA (TLS_AES_256_GCM_SHA384 encrypted, authenticated); 31 Jan 2024 20:34:55 +0100
-X-UD-Smtp-Session: l3s3148p1@hNU5+UIQQpRehhtJ
-Date: Wed, 31 Jan 2024 20:34:55 +0100
-From: Wolfram Sang <wsa+renesas@sang-engineering.com>
-To: Geert Uytterhoeven <geert+renesas@glider.be>
-Cc: Daniel Lezcano <daniel.lezcano@linaro.org>,
-	Thomas Gleixner <tglx@linutronix.de>,
-	Rob Herring <robh+dt@kernel.org>,
+	 Content-Type:Content-Disposition:In-Reply-To; b=iq90zAG3SwydRTVF8SRSf8m5P+727aQ28/2JMy4OEQnoMhMj1WWJIAG+75y+aizdNlu7k2JQiPWoOelkGONyEcLKRAokKQCMm/PhBXQhsP7pYxHb/VErQ/QBYGk938LI2wfdzAluDjzklgbdKkVCJZdbXxP0L982/XIMDdX6ze0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=lI+BWxSx; arc=none smtp.client-ip=209.85.210.177
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-pf1-f177.google.com with SMTP id d2e1a72fcca58-6da6b0eb2d4so76618b3a.1;
+        Wed, 31 Jan 2024 11:57:47 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1706731067; x=1707335867; darn=vger.kernel.org;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=tnqmpbTqUddAfoWcTG7qrS7kVFKG9P0JNII8ecH+F3s=;
+        b=lI+BWxSxapBNby+WY17UWlGxAOfrQAQZ5lExWRXPUrLCl0afDilZPwr4upNv+lqUoX
+         mWPxu9X49F5bihr78xcJzV9G+H4mKRzWz+I0s9ks2Q6k9+w2iCeSBO/LhGT48oTYFPlQ
+         fsnt6+LbuENZF4FseYWH1rhC4X8hoFDH+Pt/f7fO4bPJT7o5V4nivH+JUqxTGy9/iJzP
+         FV6VyHxGQhM9ywe6059uvYUg9UAItdCQ3Rj+lSAvML+2LNDawd7d9Pz+yO078FHtNcoe
+         5oaCAvYlbSqxSpMFw7yRC6ZCsqNer4wqq5mrNKhJRWaVhqcgoeG23lGBRzlW71ckPj5w
+         9S6g==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1706731067; x=1707335867;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=tnqmpbTqUddAfoWcTG7qrS7kVFKG9P0JNII8ecH+F3s=;
+        b=YIKREufuTZZQ0aCG8huiKsjMjcOVnOkAXyo4PnN0yip212nwSkEW1kb0rL7ww++evO
+         rrY5RiklQvDyzAWpjWBrVkkQnbDaiHElsyH9NR/DmxnXYEVJeP0MC8/wG0aRiT95xytA
+         yT8IN8VKDEnHRXWoX6iBF1lvh46Y8ybqkJ0wBjEt1OAKe8NPCDB5TnWDRQbbqCULcsve
+         DqjUFHSQPQOITZqSt08obW71BXfPZeXd3+NBUewD3IQOO1DT8EE2CI4Cm4Q3gfTK6kXQ
+         dFMxZtWRSSUMiWH5JnMtzCbJ12jHWdJFPGxFYPHnxdiIvVHieWRxkrGaMZTtpNolexJT
+         LxDQ==
+X-Gm-Message-State: AOJu0YzX7VnUkxWeTZMIXsU1w3Szbn/xJiAu7Rbqjv2N+65huNqZ/GSZ
+	CJtTr8Z5GV6jJUvEAr4GAhY2qNTS7eIYMZ2kpj0rG6TR0vB5rEjU
+X-Google-Smtp-Source: AGHT+IHooTv5AALNh/g9cBjTgapZ+Acuo8jYh1H+lWJlEEn3x36khRQ4IGhlPxqARObYThG+Fzm/rw==
+X-Received: by 2002:aa7:9e1d:0:b0:6db:d78f:d675 with SMTP id y29-20020aa79e1d000000b006dbd78fd675mr2849835pfq.14.1706731066808;
+        Wed, 31 Jan 2024 11:57:46 -0800 (PST)
+Received: from google.com ([2620:15c:9d:2:dd5d:ba2a:a6f9:365f])
+        by smtp.gmail.com with ESMTPSA id p26-20020a62ab1a000000b006ddb85a61cfsm10215922pff.162.2024.01.31.11.57.45
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 31 Jan 2024 11:57:46 -0800 (PST)
+Date: Wed, 31 Jan 2024 11:57:43 -0800
+From: Dmitry Torokhov <dmitry.torokhov@gmail.com>
+To: Kamel Bouhara <kamel.bouhara@bootlin.com>
+Cc: Jeff LaBundy <jeff@labundy.com>, Rob Herring <robh+dt@kernel.org>,
 	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
 	Conor Dooley <conor+dt@kernel.org>,
-	Laurent Pinchart <laurent.pinchart+renesas@ideasonboard.com>,
-	Yoshinori Sato <ysato@users.sourceforge.jp>,
-	devicetree@vger.kernel.org, linux-renesas-soc@vger.kernel.org,
-	linux-sh@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v2] dt-bindings: timer: renesas,tmu: Document input
- capture interrupt
-Message-ID: <Zbqg362_6i3M6rcZ@shikoro>
-Mail-Followup-To: Wolfram Sang <wsa+renesas@sang-engineering.com>,
-	Geert Uytterhoeven <geert+renesas@glider.be>,
-	Daniel Lezcano <daniel.lezcano@linaro.org>,
-	Thomas Gleixner <tglx@linutronix.de>,
-	Rob Herring <robh+dt@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Laurent Pinchart <laurent.pinchart+renesas@ideasonboard.com>,
-	Yoshinori Sato <ysato@users.sourceforge.jp>,
-	devicetree@vger.kernel.org, linux-renesas-soc@vger.kernel.org,
-	linux-sh@vger.kernel.org, linux-kernel@vger.kernel.org
-References: <8cb38b5236213a467c6c0073f97ccc4bfd5a39ff.1706717378.git.geert+renesas@glider.be>
+	Henrik Rydberg <rydberg@bitmath.org>, linux-input@vger.kernel.org,
+	linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+	Marco Felsch <m.felsch@pengutronix.de>,
+	catalin.popescu@leica-geosystems.com,
+	mark.satterthwaite@touchnetix.com, bartp@baasheep.co.uk,
+	hannah.rossiter@touchnetix.com,
+	Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
+	Gregory Clement <gregory.clement@bootlin.com>,
+	bsp-development.geo@leica-geosystems.com
+Subject: Re: [PATCH v5 3/3] Input: Add TouchNetix axiom i2c touchscreen driver
+Message-ID: <ZbqmN47QhI1LhWBT@google.com>
+References: <20231211121430.1689139-1-kamel.bouhara@bootlin.com>
+ <20231211121430.1689139-4-kamel.bouhara@bootlin.com>
+ <ZY5An58Rffrcpfpn@nixie71>
+ <20240131171441.GA3005@kb-xps>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="1upon9EKclLYqctJ"
-Content-Disposition: inline
-In-Reply-To: <8cb38b5236213a467c6c0073f97ccc4bfd5a39ff.1706717378.git.geert+renesas@glider.be>
-
-
---1upon9EKclLYqctJ
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+In-Reply-To: <20240131171441.GA3005@kb-xps>
 
-On Wed, Jan 31, 2024 at 05:11:45PM +0100, Geert Uytterhoeven wrote:
-> Some Timer Unit (TMU) instances with 3 channels support a fourth
-> interrupt: an input capture interrupt for the third channel.
->=20
-> While at it, document the meaning of the four interrupts, and add
-> "interrupt-names" for clarity.
->=20
-> Update the example to match reality.
->=20
-> Inspired by a patch by Yoshinori Sato for SH.
->=20
-> Signed-off-by: Geert Uytterhoeven <geert+renesas@glider.be>
+On Wed, Jan 31, 2024 at 06:14:41PM +0100, Kamel Bouhara wrote:
+> On Thu, Dec 28, 2023 at 09:44:31PM -0600, Jeff LaBundy wrote:
 
-Reviewed-by: Wolfram Sang <wsa+renesas@sang-engineering.com>
+[...]
 
+> > > +	case AXIOM_TARGET_STATE_HOVER:
+> > > +	case AXIOM_TARGET_STATE_TOUCHING:
+> > > +		target_prev_state->insert = true;
+> > > +		update = true;
+> > > +		input_mt_slot(input_dev, slot);
+> > > +		input_report_abs(input_dev, ABS_MT_TRACKING_ID, slot);
+> > > +		input_report_abs(input_dev, ABS_MT_POSITION_X, target->x);
+> > > +		input_report_abs(input_dev, ABS_X, target->x);
+> >
+> > You do not need to explicitly report ABS_X and ABS_Y values, as calling
+> > input_mt_sync_frame() effectively takes care of this by way of pointer
+> > emulation.
+> >
+> 
+> After double checking/testing this, it doesn't seems to
+> report ABS_X/Y values anymore, are you sure about this ? Maybe I missed
+> some extra flag in input_mt_init_slots() for that ?
 
---1upon9EKclLYqctJ
-Content-Type: application/pgp-signature; name="signature.asc"
+You are missing call to input_report_slot_state() before you start
+sending position data. You also should not conflate tracking ID and
+slot number. I.e. if you touch and release and touch again, you
+likely report through the same slot 0, but the tracking ID of the
+contact should be different.
 
------BEGIN PGP SIGNATURE-----
+Thanks.
 
-iQIzBAABCgAdFiEEOZGx6rniZ1Gk92RdFA3kzBSgKbYFAmW6oNsACgkQFA3kzBSg
-KbYqTQ//cDp6QndTpffOEpF2t/j5OyAXkYle7hJ6hJCeEqYgEoJ8ADdjJoNgooiK
-x2ioBaD+xgUZ+Oeb5GURNhx8VPMnsxCjcNicuBBJuYrA731gaXNqsueT8EAZ02vo
-yoTGkIRSnzIbamvqs1mRV4yZ9CAQBbSpJNcTqOaTauJhCd6cZ1eAnzBWNb9B5HRz
-pt12hFPW2o1anGb5HfCkjedPBc8z8ibmIEYGyBV4LLHFrWvGs2z23LOCvb0//ijZ
-xQEOzpPcbflY6VYhXyXZluwT6K0izygVLvtiR/lYYAvMQEE4zajFX8H0MNBZ2f/h
-Mq0dHEg1oNy/Nr6g7pMl0ErK2O2+s64kzbcTOIutCTCLaKTId4doHnn5LINQWeUa
-NouYK8BCTKKujR5U4kd7wCY3vxvRYTtNeVA0WBDLsmvBl4qzS9MxEosEYJ069r0M
-elm6zf8JCOH3EUbD7y68hEqbCY3eDCs7a4XQoy2oKaci1GhBnuIrWOHGkOv1QNly
-oDaC6ZpvJufR4PodGmYbdIX2Vc+VtzvLFNzBa9ad34fi09alC5KLWwgJUlDd2DHB
-NyqbYNSNG1FMONVqOFDsyD4EXL/B0o9MZVrWrzaz+nK9VjoRAtZwKoXE6dxYaG8t
-JynvRKq13lEUefnpX89gHom1H78BR/g4jCBPIDoDX0C0U9wtLSQ=
-=DFDJ
------END PGP SIGNATURE-----
-
---1upon9EKclLYqctJ--
+-- 
+Dmitry
 
