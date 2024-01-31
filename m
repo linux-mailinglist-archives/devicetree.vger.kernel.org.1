@@ -1,296 +1,204 @@
-Return-Path: <devicetree+bounces-36940-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-36941-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4BB0C84348C
-	for <lists+devicetree@lfdr.de>; Wed, 31 Jan 2024 04:36:37 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id A5B78843493
+	for <lists+devicetree@lfdr.de>; Wed, 31 Jan 2024 04:40:07 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 6E5901C24B41
-	for <lists+devicetree@lfdr.de>; Wed, 31 Jan 2024 03:36:36 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 1E34EB23E55
+	for <lists+devicetree@lfdr.de>; Wed, 31 Jan 2024 03:40:05 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C3C0317570;
-	Wed, 31 Jan 2024 03:36:22 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E45EF10953;
+	Wed, 31 Jan 2024 03:39:59 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=microchip.com header.i=@microchip.com header.b="YaS4yvmq"
+	dkim=pass (1024-bit key) header.d=chromium.org header.i=@chromium.org header.b="jD/IOxQ0"
 X-Original-To: devicetree@vger.kernel.org
-Received: from esa.microchip.iphmx.com (esa.microchip.iphmx.com [68.232.154.123])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-lf1-f42.google.com (mail-lf1-f42.google.com [209.85.167.42])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CDDB1125CB;
-	Wed, 31 Jan 2024 03:36:20 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=68.232.154.123
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2096E14AAA
+	for <devicetree@vger.kernel.org>; Wed, 31 Jan 2024 03:39:57 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.42
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1706672182; cv=none; b=Ds71rTV4rVLU+dflAB5Rk2VTefv+zBZTu9MVu3q/2lkvEREHejhBS7nwOtHxHtqs6UqsVCjOu3yN+qbkTY6JBlYqGfji9tZj08sgpH+83gL/tiRQ0QqhZLXiljpul1fnbVB+g0IhK6k0m9BJ4tY+bQMNugEnQ18AyT4v0OR0hQU=
+	t=1706672399; cv=none; b=dougJLAmaxw/ht+BBQ5xLiB1GOZ2x20qSrcS6PPU9ku7y3xcAqUFEpf80WSN66LLIIQnzLtj4Jj7CUJNS/+CdzT8yhCm5Ckj+dFoL+3Aa3ZYdIk4OxZ4FLvH25YAclI5yz2CE93wwPeITFG4H3mdlgvGnFVyJ3PDZiN1jM6Pkwg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1706672182; c=relaxed/simple;
-	bh=XT0bHFobJmRfHg3nHaesYL94nri6XD6wL1E3rwFVUA4=;
-	h=From:To:CC:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=ZYgp/Ymuw7AUkHIUSEjL/gWhfVz9d+CxQSf80u02+L9KaSmF2vMCd5Oy/qWDi2upNpfSZdu+Tzc1UxJubjz0op/fccjD+pahl5sP7IBq5xelXtTrzKZu//Blk9w8C+9Wzmeh5ErCNCuNy2nsKXeV0ahDDKsqPJfgXCkzl+eT6T0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=microchip.com; spf=pass smtp.mailfrom=microchip.com; dkim=pass (2048-bit key) header.d=microchip.com header.i=@microchip.com header.b=YaS4yvmq; arc=none smtp.client-ip=68.232.154.123
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=microchip.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=microchip.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
-  t=1706672180; x=1738208180;
-  h=from:to:cc:subject:date:message-id:in-reply-to:
-   references:mime-version:content-transfer-encoding;
-  bh=XT0bHFobJmRfHg3nHaesYL94nri6XD6wL1E3rwFVUA4=;
-  b=YaS4yvmqpiZwi8eOKHIrjXAFv75uUty7/HEzUK0GrpVLNFFkLlPqDPyy
-   Uv8MWhHMGcLtEvPb5pzDALq6FzTh3qXwojQbWEjz2Ict31ioAxTYNqVHF
-   2I74wghc2zboHqYhYS8alEJxzVqAm47dDxBXkHU3gobusWB5lbDPIq2Vx
-   aFKlVWPZvFN3bljiJ1+Npu6jAOn4utKTQyyM2EnXM1ZT+8iC4q+V4OJuh
-   mxQhGUWhuKGfLh/MrorZ/HtrFPsWstNNdjsvsJizS98+6GMrNHcxPJfJ5
-   H2SQ/+fhBAFtZHYe7DEXQPPyqH9pouoOxntfzODxI/XrE1XoQyxvizBkw
-   Q==;
-X-CSE-ConnectionGUID: +XEgZ6ByRE2uf35ecqUrlw==
-X-CSE-MsgGUID: U09GgqQxRNWtQAZjBWjkzw==
-X-IronPort-AV: E=Sophos;i="6.05,231,1701154800"; 
-   d="scan'208";a="15536692"
-X-Amp-Result: SKIPPED(no attachment in message)
-Received: from unknown (HELO email.microchip.com) ([170.129.1.10])
-  by esa4.microchip.iphmx.com with ESMTP/TLS/ECDHE-RSA-AES128-GCM-SHA256; 30 Jan 2024 20:36:16 -0700
-Received: from chn-vm-ex04.mchp-main.com (10.10.85.152) by
- chn-vm-ex01.mchp-main.com (10.10.85.143) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.35; Tue, 30 Jan 2024 20:35:58 -0700
-Received: from che-lt-i70843lx.microchip.com (10.10.85.11) by
- chn-vm-ex04.mchp-main.com (10.10.85.152) with Microsoft SMTP Server id
- 15.1.2507.35 via Frontend Transport; Tue, 30 Jan 2024 20:35:51 -0700
-From: Dharma Balasubiramani <dharma.b@microchip.com>
-To: <sam@ravnborg.org>, <bbrezillon@kernel.org>,
-	<maarten.lankhorst@linux.intel.com>, <mripard@kernel.org>,
-	<tzimmermann@suse.de>, <airlied@gmail.com>, <daniel@ffwll.ch>,
-	<robh+dt@kernel.org>, <krzysztof.kozlowski+dt@linaro.org>,
-	<conor+dt@kernel.org>, <nicolas.ferre@microchip.com>,
-	<alexandre.belloni@bootlin.com>, <claudiu.beznea@tuxon.dev>,
-	<dri-devel@lists.freedesktop.org>, <devicetree@vger.kernel.org>,
-	<linux-arm-kernel@lists.infradead.org>, <linux-kernel@vger.kernel.org>,
-	<lee@kernel.org>, <thierry.reding@gmail.com>,
-	<u.kleine-koenig@pengutronix.de>, <linux-pwm@vger.kernel.org>
-CC: <hari.prasathge@microchip.com>, <manikandan.m@microchip.com>, "Dharma
- Balasubiramani" <dharma.b@microchip.com>
-Subject: [linux][PATCH v5 3/3] dt-bindings: mfd: atmel,hlcdc: Convert to DT schema format
-Date: Wed, 31 Jan 2024 09:05:23 +0530
-Message-ID: <20240131033523.577450-4-dharma.b@microchip.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20240131033523.577450-1-dharma.b@microchip.com>
-References: <20240131033523.577450-1-dharma.b@microchip.com>
+	s=arc-20240116; t=1706672399; c=relaxed/simple;
+	bh=WowSxGgZlAt0SjsqlQOh0Xqips85ZOGo0PMJ67xhi14=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=R5Eq785samQW7Z51WvqX3Yr7Nwyh2rIHgn/1BXXiP6HnyRZFqHvpzb2q44ID9zQakppqnpcVWvUeD7nUG/uY0Bugy5T8naEAiX71TzwgefHIy+ZCdSQK2LVAlo4zuyEViL02usuFjJDKRt9bh+RSmBSHu1IapDseY+Lh6qUH1/8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=chromium.org; spf=pass smtp.mailfrom=chromium.org; dkim=pass (1024-bit key) header.d=chromium.org header.i=@chromium.org header.b=jD/IOxQ0; arc=none smtp.client-ip=209.85.167.42
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=chromium.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=chromium.org
+Received: by mail-lf1-f42.google.com with SMTP id 2adb3069b0e04-5101cd91017so5254973e87.2
+        for <devicetree@vger.kernel.org>; Tue, 30 Jan 2024 19:39:57 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=chromium.org; s=google; t=1706672396; x=1707277196; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=qpRkgXkbQYXbK1cEg4XXsMfWT44RSVIecn26S5cDrV4=;
+        b=jD/IOxQ0fBTPjZsAKx3JTUo5ygOBAsi6V/aOA7XMNYcNib4z/Cl2XvijLIVhE7rR2m
+         ECF8OhwnjXxpkJf9wnJOLk4B7+6XecT3Lg/FXH1KKvKXNWoyfuJfvK25NJDsdA8rIsdP
+         tGQIVo6YHypobZBohkL2I+mNjUEOJFLMishTc=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1706672396; x=1707277196;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=qpRkgXkbQYXbK1cEg4XXsMfWT44RSVIecn26S5cDrV4=;
+        b=KNDtQ5awIrFXVZf+zZnw3xf+UAOBbIc3yMhJ0xaHQduEgEwgCJBRrR0Hovn3E/ga3L
+         PoBWbckYUmIMG4+tuRDf4/SCpqiqJzPoyyxLvdSmf67lil98phcdFEfHx8mJZtCQfu2b
+         8jM7jIP7BA9/7JP2rWg/C0rAHNhHGHG3glGaL+juYL8XyTa4O92ziEcDbHVouvJom5yl
+         DuyQHNCSZO++vC4VkfH5z0k16ow0esT0LIqiGQB01QqvH8DzUF5RIHdrOnxOWfPNZBTX
+         IVWcCjmLeSgR3BznfMXV4brFL2EQDU3PAIcAvwuXT45moOCl3EJ5kn5jEzlfjjgJ7SqT
+         vnlQ==
+X-Gm-Message-State: AOJu0YxTshk2kQdMnK2y9bqoMdqSRgW6hL+3Jmb/Lgh76ip6D8dQRaS9
+	KKxx+YuvmZ82QDyUVR2ATguto95Wv1sJz6P+YGWNehLBco75bNk4OaHMXxlPwsB5PV1Eya8kJVu
+	n9avQWDq8gdhdeiSLoM/jKh02jE3FCVZuoh4w
+X-Google-Smtp-Source: AGHT+IHsCbNhf/cX1e7S3SrH8YqgH2QhUc3a53hHF1zco0XT9jtlWjG4rpYd5ZxLSwo4KK0lfHA3RvEPSDfNHcGvQqM=
+X-Received: by 2002:ac2:443a:0:b0:50f:18f7:855e with SMTP id
+ w26-20020ac2443a000000b0050f18f7855emr285947lfl.39.1706672396151; Tue, 30 Jan
+ 2024 19:39:56 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
+References: <20240126063500.2684087-1-wenst@chromium.org> <20240126063500.2684087-2-wenst@chromium.org>
+ <74b9f249-fcb4-4338-bf7b-8477de6c935c@linaro.org> <CAGXv+5Hu+KsTBd1JtnKcaE3qUzPhHbunoVaH2++yfNopHtFf4g@mail.gmail.com>
+ <21568334-b21f-429e-81cd-5ce77accaf3c@linaro.org> <CAGXv+5HxXzjigN3Bp96vkv71WfTJ1S2b7Wgafc4GxLmhu6+jMg@mail.gmail.com>
+ <a4324473-e0c6-4d53-8de0-03b69480e40b@linaro.org> <CAGXv+5HAqmUizXztMH_nY6e+6oQh01hCtxEJXKtCn3_74-sOsQ@mail.gmail.com>
+ <78241d63-3b9d-4c04-9ea5-11b45eac6f00@linaro.org> <20240130223856.GA2538998-robh@kernel.org>
+In-Reply-To: <20240130223856.GA2538998-robh@kernel.org>
+From: Chen-Yu Tsai <wenst@chromium.org>
+Date: Wed, 31 Jan 2024 11:39:43 +0800
+Message-ID: <CAGXv+5FwaNe7oesGwZ=yR0Pg82tEzEF3B0zjoex4qw+6zsSYbQ@mail.gmail.com>
+Subject: Re: [PATCH v2 1/2] dt-bindings: net: bluetooth: Add MediaTek MT7921S
+ SDIO Bluetooth
+To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Cc: Marcel Holtmann <marcel@holtmann.org>, Luiz Augusto von Dentz <luiz.dentz@gmail.com>, 
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Matthias Brugger <matthias.bgg@gmail.com>, 
+	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>, 
+	Sean Wang <sean.wang@mediatek.com>, linux-bluetooth@vger.kernel.org, 
+	netdev@vger.kernel.org, linux-mediatek@lists.infradead.org, 
+	devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
+	linux-kernel@vger.kernel.org, Ulf Hansson <ulf.hansson@linaro.org>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-Convert the atmel,hlcdc binding to DT schema format.
+(+CC Ulf Hansson)
 
-Align clocks and clock-names properties to clearly indicate that the LCD
-controller expects lvds_pll_clk when interfaced with the lvds display. This
-alignment with the specific hardware requirements ensures accurate device tree
-configuration for systems utilizing the HLCDC IP.
+On Wed, Jan 31, 2024 at 6:38=E2=80=AFAM Rob Herring <robh@kernel.org> wrote=
+:
+>
+> On Tue, Jan 30, 2024 at 05:25:38PM +0100, Krzysztof Kozlowski wrote:
+> > On 30/01/2024 08:47, Chen-Yu Tsai wrote:
+> > > On Tue, Jan 30, 2024 at 3:37=E2=80=AFPM Krzysztof Kozlowski
+> > > <krzysztof.kozlowski@linaro.org> wrote:
+> > >>
+> > >> On 30/01/2024 04:32, Chen-Yu Tsai wrote:
+> > >>> On Mon, Jan 29, 2024 at 3:34=E2=80=AFPM Krzysztof Kozlowski
+> > >>> <krzysztof.kozlowski@linaro.org> wrote:
+> > >>>>
+> > >>>> On 29/01/2024 04:38, Chen-Yu Tsai wrote:
+> > >>>>
+> > >>>>>>> +allOf:
+> > >>>>>>> +  - $ref: bluetooth-controller.yaml#
+> > >>>>>>> +
+> > >>>>>>> +properties:
+> > >>>>>>> +  compatible:
+> > >>>>>>> +    enum:
+> > >>>>>>> +      - mediatek,mt7921s-bluetooth
+> > >>>>>>
+> > >>>>>> Can it be also WiFi on separate bus? How many device nodes do yo=
+u need
+> > >>>>>> for this device?
+> > >>>>>
+> > >>>>> For the "S" variant, WiFi is also on SDIO. For the other two vari=
+ants,
+> > >>>>> "U" and "E", WiFi goes over USB and PCIe respectively. On both th=
+ose
+> > >>>>> variants, Bluetooth can either go over USB or UART. That is what =
+I
+> > >>>>> gathered from the pinouts. There are a dozen GPIO pins which don'=
+t
+> > >>>>> have detailed descriptions though. If you want a comprehensive
+> > >>>>> binding of the whole chip and all its variants, I suggest we ask
+> > >>>>> MediaTek to provide it instead. My goal with the binding is to do=
+cument
+> > >>>>> existing usage and allow me to upstream new device trees.
+> > >>>>>
+> > >>>>> For now we only need the Bluetooth node. The WiFi part is perfect=
+ly
+> > >>>>> detectable, and the driver doesn't seem to need the WiFi reset pi=
+n.
+> > >>>>> The Bluetooth driver only uses its reset pin to reset a hung cont=
+roller.
+> > >>>>
+> > >>>> Then suffix "bluetooth" seems redundant.
+> > >>>
+> > >>> I think keeping the suffix makes more sense though. The chip is a t=
+wo
+> > >>> function piece, and this only targets one of the functions. Also, t=
+he
+> > >>
+> > >> That's why I asked and you said there is only one interface: SDIO.
+> > >
+> > > There's only one interface, SDIO, but two SDIO functions. The two
+> > > functions, if both were to be described in the device tree, would
+> > > be two separate nodes. We just don't have any use for the WiFi one
+> > > right now. Does that make sense to keep the suffix?
+> >
+> > Number of functions does not really matter. Number of interfaces on the
+> > bus would matter. Why would you have two separate nodes for the same
+> > SDIO interface? Or do you want to say there are two interfaces?
 
-Signed-off-by: Dharma Balasubiramani <dharma.b@microchip.com>
----
-Changelog
-v4 -> v5
-- Revert v3 dropping lvds_pll_clk instead add it as an optional clock.
-- Update minItems to 3.
-- Update commit message accordingly.
-v3 -> v4
-- Drop lvds_pll_clk, It can be enabled in lvds driver itself.
-- Update commit message.
-Note: Since there is no complexities now, I believe that specifying
-maxitems in the clocks property should be sufficient.
-v2 -> v3
-- Rename hlcdc-display-controller and hlcdc-pwm to generic names.
-- Modify the description by removing the unwanted comments and '|'.
-- Modify clock-names simpler.
-v1 -> v2
-- Remove the explicit copyrights.
-- Modify title (not include words like binding/driver).
-- Modify description actually describing the hardware and not the driver.
-- Add details of lvds_pll addition in commit message.
-- Ref endpoint and not endpoint-base.
-- Fix coding style.
-...
- .../devicetree/bindings/mfd/atmel,hlcdc.yaml  | 99 +++++++++++++++++++
- .../devicetree/bindings/mfd/atmel-hlcdc.txt   | 56 -----------
- 2 files changed, 99 insertions(+), 56 deletions(-)
- create mode 100644 Documentation/devicetree/bindings/mfd/atmel,hlcdc.yaml
- delete mode 100644 Documentation/devicetree/bindings/mfd/atmel-hlcdc.txt
+There is only one external interface. I don't know how the functions
+are stitched together internally.
 
-diff --git a/Documentation/devicetree/bindings/mfd/atmel,hlcdc.yaml b/Documentation/devicetree/bindings/mfd/atmel,hlcdc.yaml
-new file mode 100644
-index 000000000000..4aa36903e755
---- /dev/null
-+++ b/Documentation/devicetree/bindings/mfd/atmel,hlcdc.yaml
-@@ -0,0 +1,99 @@
-+# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/mfd/atmel,hlcdc.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: Atmel's HLCD Controller
-+
-+maintainers:
-+  - Nicolas Ferre <nicolas.ferre@microchip.com>
-+  - Alexandre Belloni <alexandre.belloni@bootlin.com>
-+  - Claudiu Beznea <claudiu.beznea@tuxon.dev>
-+
-+description:
-+  The Atmel HLCDC (HLCD Controller) IP available on Atmel SoCs exposes two
-+  subdevices, a PWM chip and a Display Controller.
-+
-+properties:
-+  compatible:
-+    enum:
-+      - atmel,at91sam9n12-hlcdc
-+      - atmel,at91sam9x5-hlcdc
-+      - atmel,sama5d2-hlcdc
-+      - atmel,sama5d3-hlcdc
-+      - atmel,sama5d4-hlcdc
-+      - microchip,sam9x60-hlcdc
-+      - microchip,sam9x75-xlcdc
-+
-+  reg:
-+    maxItems: 1
-+
-+  interrupts:
-+    maxItems: 1
-+
-+  clocks:
-+    minItems: 3
-+
-+  clock-names:
-+    items:
-+      - const: periph_clk
-+      - const: sys_clk
-+      - const: slow_clk
-+      - const: lvds_pll_clk
-+    minItems: 3
-+
-+  display-controller:
-+    $ref: /schemas/display/atmel/atmel,hlcdc-display-controller.yaml
-+
-+  pwm:
-+    $ref: /schemas/pwm/atmel,hlcdc-pwm.yaml
-+
-+required:
-+  - compatible
-+  - reg
-+  - clocks
-+  - clock-names
-+  - interrupts
-+
-+additionalProperties: false
-+
-+examples:
-+  - |
-+    #include <dt-bindings/clock/at91.h>
-+    #include <dt-bindings/dma/at91.h>
-+    #include <dt-bindings/interrupt-controller/arm-gic.h>
-+
-+    lcd_controller: lcd-controller@f0030000 {
-+      compatible = "atmel,sama5d3-hlcdc";
-+      reg = <0xf0030000 0x2000>;
-+      clocks = <&lcdc_clk>, <&lcdck>, <&clk32k>;
-+      clock-names = "periph_clk", "sys_clk", "slow_clk";
-+      interrupts = <36 IRQ_TYPE_LEVEL_HIGH 0>;
-+
-+      display-controller {
-+        compatible = "atmel,hlcdc-display-controller";
-+        pinctrl-names = "default";
-+        pinctrl-0 = <&pinctrl_lcd_base &pinctrl_lcd_rgb888>;
-+        #address-cells = <1>;
-+        #size-cells = <0>;
-+
-+        port@0 {
-+          #address-cells = <1>;
-+          #size-cells = <0>;
-+          reg = <0>;
-+
-+          hlcdc_panel_output: endpoint@0 {
-+            reg = <0>;
-+            remote-endpoint = <&panel_input>;
-+          };
-+        };
-+      };
-+
-+      pwm {
-+        compatible = "atmel,hlcdc-pwm";
-+        pinctrl-names = "default";
-+        pinctrl-0 = <&pinctrl_lcd_pwm>;
-+        #pwm-cells = <3>;
-+      };
-+    };
-diff --git a/Documentation/devicetree/bindings/mfd/atmel-hlcdc.txt b/Documentation/devicetree/bindings/mfd/atmel-hlcdc.txt
-deleted file mode 100644
-index 7de696eefaed..000000000000
---- a/Documentation/devicetree/bindings/mfd/atmel-hlcdc.txt
-+++ /dev/null
-@@ -1,56 +0,0 @@
--Device-Tree bindings for Atmel's HLCDC (High LCD Controller) MFD driver
--
--Required properties:
-- - compatible: value should be one of the following:
--   "atmel,at91sam9n12-hlcdc"
--   "atmel,at91sam9x5-hlcdc"
--   "atmel,sama5d2-hlcdc"
--   "atmel,sama5d3-hlcdc"
--   "atmel,sama5d4-hlcdc"
--   "microchip,sam9x60-hlcdc"
--   "microchip,sam9x75-xlcdc"
-- - reg: base address and size of the HLCDC device registers.
-- - clock-names: the name of the 3 clocks requested by the HLCDC device.
--   Should contain "periph_clk", "sys_clk" and "slow_clk".
-- - clocks: should contain the 3 clocks requested by the HLCDC device.
-- - interrupts: should contain the description of the HLCDC interrupt line
--
--The HLCDC IP exposes two subdevices:
-- - a PWM chip: see ../pwm/atmel-hlcdc-pwm.txt
-- - a Display Controller: see ../display/atmel/hlcdc-dc.txt
--
--Example:
--
--	hlcdc: hlcdc@f0030000 {
--		compatible = "atmel,sama5d3-hlcdc";
--		reg = <0xf0030000 0x2000>;
--		clocks = <&lcdc_clk>, <&lcdck>, <&clk32k>;
--		clock-names = "periph_clk","sys_clk", "slow_clk";
--		interrupts = <36 IRQ_TYPE_LEVEL_HIGH 0>;
--
--		hlcdc-display-controller {
--			compatible = "atmel,hlcdc-display-controller";
--			pinctrl-names = "default";
--			pinctrl-0 = <&pinctrl_lcd_base &pinctrl_lcd_rgb888>;
--			#address-cells = <1>;
--			#size-cells = <0>;
--
--			port@0 {
--				#address-cells = <1>;
--				#size-cells = <0>;
--				reg = <0>;
--
--				hlcdc_panel_output: endpoint@0 {
--					reg = <0>;
--					remote-endpoint = <&panel_input>;
--				};
--			};
--		};
--
--		hlcdc_pwm: hlcdc-pwm {
--			compatible = "atmel,hlcdc-pwm";
--			pinctrl-names = "default";
--			pinctrl-0 = <&pinctrl_lcd_pwm>;
--			#pwm-cells = <3>;
--		};
--	};
--- 
-2.25.1
+It could be that the separate functions have nothing in common other
+than sharing a standard external SDIO interface. Each function can be
+individually controlled, and operations for different functions are
+directed internally to the corresponding core.
 
+> Right, one device at 2 addresses on a bus should be a node with 2 "reg"
+> entries, not 2 nodes with 1 "reg" address each.
+
+AFAICU that's not what the MMC controller binding, which I quote below,
+says. It implies that each SDIO function shall be a separate node under
+the MMC controller node.
+
+
+patternProperties:
+  "^.*@[0-9]+$":
+    type: object
+    description: |
+      On embedded systems the cards connected to a host may need
+      additional properties. These can be specified in subnodes to the
+      host controller node. The subnodes are identified by the
+      standard \'reg\' property. Which information exactly can be
+      specified depends on the bindings for the SDIO function driver
+      for the subnode, as specified by the compatible string.
+
+    properties:
+      compatible:
+        description: |
+          Name of SDIO function following generic names recommended
+          practice
+
+      reg:
+        items:
+          - minimum: 0
+            maximum: 7
+            description:
+              Must contain the SDIO function number of the function this
+              subnode describes. A value of 0 denotes the memory SD
+              function, values from 1 to 7 denote the SDIO functions.
+
+
+ChenYu
 
