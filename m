@@ -1,196 +1,346 @@
-Return-Path: <devicetree+bounces-36986-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-36982-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 57CF7843691
-	for <lists+devicetree@lfdr.de>; Wed, 31 Jan 2024 07:22:18 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id E9DE9843672
+	for <lists+devicetree@lfdr.de>; Wed, 31 Jan 2024 07:12:17 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id AABD8281E75
-	for <lists+devicetree@lfdr.de>; Wed, 31 Jan 2024 06:22:16 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 6104A2819CE
+	for <lists+devicetree@lfdr.de>; Wed, 31 Jan 2024 06:12:16 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 15C903EA72;
-	Wed, 31 Jan 2024 06:22:07 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 961453E478;
+	Wed, 31 Jan 2024 06:12:12 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=samsung.com header.i=@samsung.com header.b="g92sfM9Y"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="MJh75lgN"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mailout2.samsung.com (mailout2.samsung.com [203.254.224.25])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-pg1-f173.google.com (mail-pg1-f173.google.com [209.85.215.173])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 05C6E3E481
-	for <devicetree@vger.kernel.org>; Wed, 31 Jan 2024 06:22:04 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=203.254.224.25
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BA8EA3E468;
+	Wed, 31 Jan 2024 06:12:10 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.215.173
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1706682127; cv=none; b=V25gqp09upO4Mzh9pUvC4moqZBlCIgU7dvPA5IuYXuk3axKbCHuWVpPfPUv5zIvOIyGPBW+hGY3B7gtmYEf5bJhs+By8hk8xYbjScUMk9f6rm58Mt8gEvoaidvglyn+fuqDJHnW5VQohfm5scYDdogEnbq6xOWos1ovPQPZshjM=
+	t=1706681532; cv=none; b=CoAdMhZv7MxC8ip4V1oqdDrPPjJe8sjJu3hIGUhqdrNGTATHi7eKg5K357kRhUftAz6ccT3saZXzDT05Y9e3CvnIUyLEqSHSiBVsSqjx7eQuLgYcyvJpPBNPjeKTondb1dqp7ZQEzy56bscpKmI8dqDDskGQtZDbkWfYQMeLiIo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1706682127; c=relaxed/simple;
-	bh=u1F+OL/6PYNx+FVYO52mlMno0kijyr/ditkmdFoW+R8=;
-	h=From:To:Cc:In-Reply-To:Subject:Date:Message-ID:MIME-Version:
-	 Content-Type:References; b=MzmUk+g0bzj0RK7mbQCE9VJTvDk17mwlaMzTtnsOyK71FfrDn1Qs1gr9Efv3JwFAaPQRCOVuSOAeORpovepr3wPW26aW3x3Wj2BkDmZIPV9AFhHq2An1In+RlnHQSE3dHhvTG/Yp73Oa5OuofALFYZPNbtq03K2P4X2q5AHPAKw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=samsung.com; spf=pass smtp.mailfrom=samsung.com; dkim=pass (1024-bit key) header.d=samsung.com header.i=@samsung.com header.b=g92sfM9Y; arc=none smtp.client-ip=203.254.224.25
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=samsung.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=samsung.com
-Received: from epcas5p4.samsung.com (unknown [182.195.41.42])
-	by mailout2.samsung.com (KnoxPortal) with ESMTP id 20240131062200epoutp02d08976792d8d51c2b70c7cdf7782f278~vWlivv6nZ0418004180epoutp02y
-	for <devicetree@vger.kernel.org>; Wed, 31 Jan 2024 06:22:00 +0000 (GMT)
-DKIM-Filter: OpenDKIM Filter v2.11.0 mailout2.samsung.com 20240131062200epoutp02d08976792d8d51c2b70c7cdf7782f278~vWlivv6nZ0418004180epoutp02y
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=samsung.com;
-	s=mail20170921; t=1706682120;
-	bh=+RKD13BNunG5kxjS9Yb51An1Mqb6woru+4hsuyBagDA=;
-	h=From:To:Cc:In-Reply-To:Subject:Date:References:From;
-	b=g92sfM9Y4BFhqEB91wjc31IRBk/IVXavqVHQIADAikdkGeqkrHnIC8gCR87U3GUv2
-	 ATx66QvnfMiGt3yHU3lPVHAWZJ+8ZFiBEt/Mm55Awcud0O5r128BYyvN82iO6l+Htu
-	 zyWYpl52T5c4yTp+N2O9K6oORrIP7VNyEv3eL0pk=
-Received: from epsnrtp4.localdomain (unknown [182.195.42.165]) by
-	epcas5p1.samsung.com (KnoxPortal) with ESMTP id
-	20240131062200epcas5p1020bf98ae6b4c882a21c60e7a2db5469~vWliFVMmv2137221372epcas5p1b;
-	Wed, 31 Jan 2024 06:22:00 +0000 (GMT)
-Received: from epsmges5p2new.samsung.com (unknown [182.195.38.178]) by
-	epsnrtp4.localdomain (Postfix) with ESMTP id 4TPsPy2tZfz4x9QB; Wed, 31 Jan
-	2024 06:21:58 +0000 (GMT)
-Received: from epcas5p4.samsung.com ( [182.195.41.42]) by
-	epsmges5p2new.samsung.com (Symantec Messaging Gateway) with SMTP id
-	80.A3.10009.607E9B56; Wed, 31 Jan 2024 15:21:58 +0900 (KST)
-Received: from epsmtrp2.samsung.com (unknown [182.195.40.14]) by
-	epcas5p4.samsung.com (KnoxPortal) with ESMTPA id
-	20240131060648epcas5p40670be153beb80e60b0676c6f75911c5~vWYRINvp70740307403epcas5p4f;
-	Wed, 31 Jan 2024 06:06:48 +0000 (GMT)
-Received: from epsmgms1p1new.samsung.com (unknown [182.195.42.41]) by
-	epsmtrp2.samsung.com (KnoxPortal) with ESMTP id
-	20240131060648epsmtrp2b438ade56609b635b694d126b3a08ac4~vWYRCe-dH0826108261epsmtrp2r;
-	Wed, 31 Jan 2024 06:06:48 +0000 (GMT)
-X-AuditID: b6c32a4a-ff1ff70000002719-7c-65b9e706c9a0
-Received: from epsmtip1.samsung.com ( [182.195.34.30]) by
-	epsmgms1p1new.samsung.com (Symantec Messaging Gateway) with SMTP id
-	51.51.08755.873E9B56; Wed, 31 Jan 2024 15:06:48 +0900 (KST)
-Received: from FDSFTE308 (unknown [107.122.81.79]) by epsmtip1.samsung.com
-	(KnoxPortal) with ESMTPA id
-	20240131060645epsmtip1d176db43cfcfb3e746c05b8cffbedff1~vWYOsY8D11677016770epsmtip1b;
-	Wed, 31 Jan 2024 06:06:45 +0000 (GMT)
-From: "Aakarsh Jain" <aakarsh.jain@samsung.com>
-To: "'Krzysztof Kozlowski'" <krzysztof.kozlowski@linaro.org>,
-	<linux-arm-kernel@lists.infradead.org>, <linux-media@vger.kernel.org>,
-	<linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>
-Cc: <m.szyprowski@samsung.com>, <andrzej.hajda@intel.com>,
-	<mchehab@kernel.org>, <hverkuil-cisco@xs4all.nl>,
-	<krzysztof.kozlowski+dt@linaro.org>, <robh+dt@kernel.org>,
-	<conor+dt@kernel.org>, <linux-samsung-soc@vger.kernel.org>,
-	<andi@etezian.org>, <gost.dev@samsung.com>, <alim.akhtar@samsung.com>,
-	<pankaj.dubey@samsung.com>
-In-Reply-To: <bb6e3546-a596-4748-92d9-7cfc1f5e2db1@linaro.org>
-Subject: RE: [PATCH] dt-bindings: media: s5p-mfc: Remove s5p-mfc.txt binding
-Date: Wed, 31 Jan 2024 11:36:44 +0530
-Message-ID: <010301da540b$accfe490$066fadb0$@samsung.com>
+	s=arc-20240116; t=1706681532; c=relaxed/simple;
+	bh=mu2PJBPgefwjPGR0jIXvfZTLHyYhtnX/VReaTVPoTVE=;
+	h=Message-ID:Date:MIME-Version:Subject:To:References:From:
+	 In-Reply-To:Content-Type; b=kwnLW+AdspUFFBL3X9+/srepjEIkFu3uqjb0afeGjzkFInXTcrq7e46PRujtPFme3yfx+FKYCKp9yz6zamolBZrL/BxgLavE4O/p2tDxszGo9ojXQh98wHgDZGVy1JPlqZKPDmpq+sjY0mzz0eA0BQZasPOnrcVlfBB9RJqwOjI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=roeck-us.net; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=MJh75lgN; arc=none smtp.client-ip=209.85.215.173
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=roeck-us.net
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-pg1-f173.google.com with SMTP id 41be03b00d2f7-5d7005ea1d0so397459a12.1;
+        Tue, 30 Jan 2024 22:12:10 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1706681530; x=1707286330; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :sender:from:to:cc:subject:date:message-id:reply-to;
+        bh=767tVFDk9eahiEnIqxc4y21cu1uOjml/5mgDBZGAIjE=;
+        b=MJh75lgNaWVpfUcQKJlEhL5/Palgg3WvonB3SgLxZKCAmEKSCPsg9YlBui8yi3JCy7
+         gSTEVdEhP9VJzTM9z4H8An/JyD4ThgNALPPVW5EoQLwBh1kVxFvrJ0Y3rzBUerYUqoLX
+         AIWeBGcWpPYeqx5ke8F9VGA1uRXmS2PITJijyNQAO6w52HEqnqYx+EVIZCvifOJyl9OB
+         snpvTJrz3uzRpzsvOhongl3WA/16E628LucTbwfGPyqONiSdmarJsWGapHub2meGvnrc
+         RPKIG4BR7KpKDOQelswG2m219ejh4Y5b8TdqcH2IJfjVwyEZOW4wMdkut18DfsHag9Fc
+         aKxQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1706681530; x=1707286330;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :sender:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=767tVFDk9eahiEnIqxc4y21cu1uOjml/5mgDBZGAIjE=;
+        b=qZRF2NOOb1xyaytHuHkCKpW+wxY77rTeLXSxDnS88djaK1q5AU3yYmwibZ+c9PI842
+         xANmlh1H1YmxWOXHAHGsLhTQkpqyFiCBhJYcnZ9n6b2yh2gP3echQFgmUwEuLm3ZiXQ8
+         mB8sjUHySs6Y+q1Ap9mkVesRPgq1i8+AhCN2UF6XeIP15QuURCYYo2x9i1OT85SCq/3t
+         fYccNqIbT1Jobx0VkWvAWawuabz3sLtzpkM121emMv+Ik47aaVfGL/qNe8ZNU3EortIl
+         euJFPxd+DTSX0SmQBxC+rG7DVFXDM+J77g+9DT4aD6ZaX2COxzDPPu4WnYPFTKhBekDp
+         tEuQ==
+X-Gm-Message-State: AOJu0Ywkb034JO+KhEOaJ8qqEXGVu6MiUE2sqxs/Ljc8uxQVgaif3tKk
+	udW/LPvfT7sgM9JzjyDgUPQEZGxaSQeluK8rkVgpL1ZOq72NYr4k
+X-Google-Smtp-Source: AGHT+IH31L7Ogu54Gqy+OTD41pP3AjjPhxRAt8al8fuh8G1fncdIIM2YvdzB6OqJXZP/9eEx/V70Bw==
+X-Received: by 2002:a05:6a20:d38c:b0:19c:8673:77 with SMTP id iq12-20020a056a20d38c00b0019c86730077mr932844pzb.2.1706681529902;
+        Tue, 30 Jan 2024 22:12:09 -0800 (PST)
+Received: from ?IPV6:2600:1700:e321:62f0:329c:23ff:fee3:9d7c? ([2600:1700:e321:62f0:329c:23ff:fee3:9d7c])
+        by smtp.gmail.com with ESMTPSA id t19-20020a62d153000000b006dddd685bbesm9337814pfl.122.2024.01.30.22.12.08
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 30 Jan 2024 22:12:09 -0800 (PST)
+Sender: Guenter Roeck <groeck7@gmail.com>
+Message-ID: <698500ed-5e90-4436-a90d-d153eb9f73c3@roeck-us.net>
+Date: Tue, 30 Jan 2024 22:12:07 -0800
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v3 1/2] hwmon: Add driver for MPS MPQ8785 Synchronous
+ Step-Down Converter
+Content-Language: en-US
+To: Charles Hsu <ythsu0511@gmail.com>, jdelvare@suse.com, corbet@lwn.net,
+ Delphine_CC_Chiu@Wiwynn.com, robh+dt@kernel.org,
+ krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
+ linux-hwmon@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org
+References: <20240131055526.2700452-1-ythsu0511@gmail.com>
+From: Guenter Roeck <linux@roeck-us.net>
+Autocrypt: addr=linux@roeck-us.net; keydata=
+ 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
+ mDW4+i+XlNFUPUYMrIKi9joBhu18ssf5i5Q=
+In-Reply-To: <20240131055526.2700452-1-ythsu0511@gmail.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
-X-Mailer: Microsoft Outlook 16.0
-Content-Language: en-in
-Thread-Index: AQI/PvU03lDO5YGArwDNxcQQAt8ooQHpnmsRAg4hmkMB/4tQ4q/53L+w
-X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFrrDJsWRmVeSWpSXmKPExsWy7bCmli7b852pBi0/hSwezNvGZrH4x3Mm
-	i/uLP7NYrNl7jsli/pFzrBY3D+xksrg48y6LRd+Lh8wWe19vZbfY9Pgaq8XlXXPYLHo2bGW1
-	mHF+H5PF2iN32S2WbfrDZLFo6xd2i9a9R9gdBD2uL/nE7LF4z0smj02rOtk87lzbw+axeUm9
-	R9+WVYwenzfJeZz6+pk9gCMq2yYjNTEltUghNS85PyUzL91WyTs43jne1MzAUNfQ0sJcSSEv
-	MTfVVsnFJ0DXLTMH6A0lhbLEnFKgUEBicbGSvp1NUX5pSapCRn5xia1SakFKToFJgV5xYm5x
-	aV66Xl5qiZWhgYGRKVBhQnbGhC0z2Ata+SrOHbrH0sB4i7uLkZNDQsBEYvf6d6xdjFwcQgK7
-	GSXeTl/MDuF8YpT42tkF5XxjlPi+5wILTMuW9idMEIm9jBLTeh9BVT1nlDi5H6KKTUBf4v6p
-	HrDBIgJHGSUebHnIDOIwC5xnkrj1bwNQhoODU8BOovdQFogpLOAj8eJSNEgvi4CqxKJbn1lB
-	bF4BS4npMx6zQdiCEidnPgGbzywgL7H97RxmiIsUJH4+XcYKEReXOPqzBywuIuAmMefHTjaQ
-	tRICPzgkjl5azgrR4CLxdN03qGZhiVfHt7BD2FISn9/tZYOwkyUeL3oJVZMjsX7PFKj37SUO
-	XJnDAnIzs4CmxPpd+hBhWYmpp9YxQdzAJ9H7+wkTRJxXYsc8GFtNYs6dH1AnyEgcXr2UcQKj
-	0iwkr81C8tosJO/MQti2gJFlFaNkakFxbnpqsWmBUV5qOTzGk/NzNzGCk7mW1w7Ghw8+6B1i
-	ZOJgPMQowcGsJMK7Um5nqhBvSmJlVWpRfnxRaU5q8SFGU2B4T2SWEk3OB+aTvJJ4QxNLAxMz
-	MzMTS2MzQyVx3tetc1OEBNITS1KzU1MLUotg+pg4OKUamOIXTq4/w1krtFYyjfnGxs/T3izN
-	rZ9dF+ZZHP3vxVO75b/vVnP+mSSeefmEwrfKU6Vrku8u2Hn406rn/zRPakec2cC2yfPC7bW/
-	Jrkr97jKrlnQX3xE74ipiEmy9lw+ngk+d9+KiBWtf30nJ+d/dPfF9og1T7bvlblx4oiSxK4L
-	lQInsrOXF5c+CvGVX9b5rE+468HFoyr5rh0Sy6tzkl+9Yw7fs3sdi/wy/znnb9rfl0lZyLar
-	x0e8+6CHZpzAtSA1k3jl2FWJwfJSZe9O7XXXrVol/rfm2sGl34UluS8vU4pyqS/X1Y97mhlv
-	qr97VcWpCRseuZy/IvtWfV/6wpsL/V6/mrLfy2S+9q3FnwKUWIozEg21mIuKEwETm53gbwQA
-	AA==
-X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFjrCIsWRmVeSWpSXmKPExsWy7bCSnG7F452pBp+2CVg8mLeNzWLxj+dM
-	FvcXf2axWLP3HJPF/CPnWC1uHtjJZHFx5l0Wi74XD5kt9r7eym6x6fE1VovLu+awWfRs2Mpq
-	MeP8PiaLtUfuslss2/SHyWLR1i/sFq17j7A7CHpcX/KJ2WPxnpdMHptWdbJ53Lm2h81j85J6
-	j74tqxg9Pm+S8zj19TN7AEcUl01Kak5mWWqRvl0CV8aELTPYC1r5Ks4dusfSwHiLu4uRk0NC
-	wERiS/sTpi5GLg4hgd2MEi++3GKHSMhI/G87BmULS6z895wdougpo8TWN8vZQBJsAvoS90/1
-	sIIkRAROMkr0n2kBc5gFbjNJLJ23hRWi5TOjxJxdbxi7GDk4OAXsJHoPZYGYwgI+Ei8uRYMM
-	YhFQlVh06zMriM0rYCkxfcZjNghbUOLkzCcsIDazgLZE78NWRghbXmL72znMENcpSPx8uowV
-	Ii4ucfRnD1hcRMBNYs6PnWwTGIVnIRk1C8moWUhGzULSvoCRZRWjZGpBcW56brFhgWFearle
-	cWJucWleul5yfu4mRnBEa2nuYNy+6oPeIUYmDsZDjBIczEoivCvldqYK8aYkVlalFuXHF5Xm
-	pBYfYpTmYFES5xV/0ZsiJJCeWJKanZpakFoEk2Xi4JRqYFo6P+2mVdEsaZurOWFXavvF+yQv
-	vFBffCb8f8ifI7u/2cTs5loeaKUda80RHBq7WsdFefM6T36noCshMl18xhlT3ibEiO5d0Cyv
-	es4qo/sok0Xc/GM1C1T/Vu4LZ3RttvBZ/CZChImloamqtvsCX+RU5q+Fctsiph63jMj5fCUv
-	+I5ERuuGwMY9N/86XvsXPp29Wub+BZW54pcnnLxjbPXFRiDb94QTt2Hnu4C28P8uydFzyj/9
-	vfjD5on0p2uvuH50yrxe0FS/r3+u8aP734vKekvZ9y35d6Su7OWeIrPHvkdiL57xTT/2X/z8
-	x/MFfeF8PVPvv/8z4eoK5zezeP/fEj60rGOOtczEKqZ2ISWW4oxEQy3mouJEAACbbRpXAwAA
-X-CMS-MailID: 20240131060648epcas5p40670be153beb80e60b0676c6f75911c5
-X-Msg-Generator: CA
-Content-Type: text/plain; charset="utf-8"
-X-Sendblock-Type: REQ_APPROVE
-CMS-TYPE: 105P
-DLP-Filter: Pass
-X-CFilter-Loop: Reflected
-X-CMS-RootMailID: 20240130125754epcas5p2edd5cc52dc58add09299d3aa5985a9fd
-References: <CGME20240130125754epcas5p2edd5cc52dc58add09299d3aa5985a9fd@epcas5p2.samsung.com>
-	<20240130125748.54194-1-aakarsh.jain@samsung.com>
-	<9a8cb901-8021-42a3-a13b-bae10a645011@linaro.org>
-	<bb6e3546-a596-4748-92d9-7cfc1f5e2db1@linaro.org>
 
-
-
-> -----Original Message-----
-> From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-> Sent: 30 January 2024 19:57
-> To: Aakarsh Jain <aakarsh.jain@samsung.com>; linux-arm-
-> kernel@lists.infradead.org; linux-media@vger.kernel.org; linux-
-> kernel@vger.kernel.org; devicetree@vger.kernel.org
-> Cc: m.szyprowski@samsung.com; andrzej.hajda@intel.com;
-> mchehab@kernel.org; hverkuil-cisco@xs4all.nl;
-> krzysztof.kozlowski+dt@linaro.org; robh+dt@kernel.org;
-> conor+dt@kernel.org; linux-samsung-soc@vger.kernel.org;
-> andi@etezian.org; gost.dev@samsung.com; alim.akhtar@samsung.com;
-> pankaj.dubey@samsung.com
-> Subject: Re: [PATCH] dt-bindings: media: s5p-mfc: Remove s5p-mfc.txt
-> binding
+On 1/30/24 21:55, Charles Hsu wrote:
+> Add support for mpq8785 device from Monolithic Power Systems, Inc.
+> (MPS) vendor. This is synchronous step-down controller.
 > 
-> On 30/01/2024 15:25, Krzysztof Kozlowski wrote:
-> > On 30/01/2024 13:57, Aakarsh Jain wrote:
-> >> Commit "538af6e5856b" which convert s5p-mfc bindings to
-> >
-> > Please run scripts/checkpatch.pl and fix reported warnings. Some
-> > warnings can be ignored, but the code here looks like it needs a fix.
-> > Feel free to get in touch if the warning is not clear.
-> >
-I am getting below warning while running scripts/checkpatch.pl on this patch
-WARNING: added, moved or deleted file(s), does MAINTAINERS need updating?
-#18:
-deleted file mode 100644
-
-total: 0 errors, 1 warnings, 0 lines checked
-
-I think this can be ignored.
-> >> json-schema is already merged. Remove "s5p-mfc.txt" file.
-> >>
-> >> Signed-off-by: Aakarsh Jain <aakarsh.jain@samsung.com>
-> >> ---
-> >>  Documentation/devicetree/bindings/media/s5p-mfc.txt | 0
-> >
-> > Why you did not remove it in the first place? Your diff from
-> > 538af6e5856b is so confusing.
+> Signed-off-by: Charles Hsu <ythsu0511@gmail.com>
 > 
-I missed it before. Will add Fixes tag.
-
-> Also, add fixes tag.
+> ---
+> Change in v1:
+>      Initial patchset.
+> Change in v2:
+>      1.Add pmbus support status registers.
+>      2.Add mpq8785 in trivial-devices.yaml.
+>      3.Remove format[PSC_VOLTAGE_OUT].
+>      4.Fix MODULE_DESCRIPTION.
+> Change in v3:
+>      1.Identify vout_mode.
+>      2.Separate dt-binding.
+> ---
+>   Documentation/hwmon/index.rst   |  1 +
+>   Documentation/hwmon/mpq8785.rst | 94 +++++++++++++++++++++++++++++++++
+>   drivers/hwmon/pmbus/Kconfig     |  9 ++++
+>   drivers/hwmon/pmbus/Makefile    |  1 +
+>   drivers/hwmon/pmbus/mpq8785.c   | 91 +++++++++++++++++++++++++++++++
+>   5 files changed, 196 insertions(+)
+>   create mode 100644 Documentation/hwmon/mpq8785.rst
+>   create mode 100644 drivers/hwmon/pmbus/mpq8785.c
 > 
-Sure.
+> diff --git a/Documentation/hwmon/index.rst b/Documentation/hwmon/index.rst
+> index c7ed1f73ac06..085ad6ca9b05 100644
+> --- a/Documentation/hwmon/index.rst
+> +++ b/Documentation/hwmon/index.rst
+> @@ -163,6 +163,7 @@ Hardware Monitoring Kernel Drivers
+>      mp2975
+>      mp5023
+>      mp5990
+> +   mpq8785
+>      nct6683
+>      nct6775
+>      nct7802
+> diff --git a/Documentation/hwmon/mpq8785.rst b/Documentation/hwmon/mpq8785.rst
+> new file mode 100644
+> index 000000000000..bf8176b87086
+> --- /dev/null
+> +++ b/Documentation/hwmon/mpq8785.rst
+> @@ -0,0 +1,94 @@
+> +.. SPDX-License-Identifier: GPL-2.0-only
+> +
+> +Kernel driver mpq8785
+> +=======================
+> +
+> +Supported chips:
+> +
+> +  * MPS MPQ8785
+> +
+> +    Prefix: 'mpq8785'
+> +
+> +Author: Charles Hsu <ythsu0511@gmail.com>
+> +
+> +Description
+> +-----------
+> +
+> +The MPQ8785 is a fully integrated, PMBus-compatible, high-frequency, synchronous
+> +buck converter. The MPQ8785 offers a very compact solution that achieves up to
+> +40A output current per phase, with excellent load and line regulation over a
+> +wide input supply range. The MPQ8785 operates at high efficiency over a wide
+> +output current load range.
+> +
+> +The PMBus interface provides converter configurations and key parameters
+> +monitoring.
+> +
+> +The MPQ8785 adopts MPS's proprietary multi-phase digital constant-on-time (MCOT)
+> +control, which provides fast transient response and eases loop stabilization.
+> +The MCOT scheme also allows multiple MPQ8785 devices to be connected in parallel
+> +with excellent current sharing and phase interleaving for high-current
+> +applications.
+> +
+> +Fully integrated protection features include over-current protection (OCP),
+> +over-voltage protection (OVP), under-voltage protection (UVP), and
+> +over-temperature protection (OTP).
+> +
+> +The MPQ8785 requires a minimal number of readily available, standard external
+> +components, and is available in a TLGA (5mmx6mm) package.
+> +
+> +Device compliant with:
+> +
+> +- PMBus rev 1.3 interface.
+> +
+> +The driver exports the following attributes via the 'sysfs' files
+> +for input voltage:
+> +
+> +**in1_input**
+> +
+> +**in1_label**
+> +
+> +**in1_max**
+> +
+> +**in1_max_alarm**
+> +
+> +**in1_min**
+> +
+> +**in1_min_alarm**
+> +
+> +**in1_crit**
+> +
+> +**in1_crit_alarm**
+> +
+> +The driver provides the following attributes for output voltage:
+> +
+> +**in2_input**
+> +
+> +**in2_label**
+> +
+> +**in2_alarm**
+> +
+> +The driver provides the following attributes for output current:
+> +
+> +**curr1_input**
+> +
+> +**curr1_label**
+> +
+> +**curr1_max**
+> +
+> +**curr1_max_alarm**
+> +
+> +**curr1_crit**
+> +
+> +**curr1_crit_alarm**
+> +
+> +The driver provides the following attributes for temperature:
+> +
+> +**temp1_input**
+> +
+> +**temp1_max**
+> +
+> +**temp1_max_alarm**
+> +
+> +**temp1_crit**
+> +
+> +**temp1_crit_alarm**
+> diff --git a/drivers/hwmon/pmbus/Kconfig b/drivers/hwmon/pmbus/Kconfig
+> index 294808f5240a..557ae0c414b0 100644
+> --- a/drivers/hwmon/pmbus/Kconfig
+> +++ b/drivers/hwmon/pmbus/Kconfig
+> @@ -377,6 +377,15 @@ config SENSORS_MPQ7932
+>   	  This driver can also be built as a module. If so, the module will
+>   	  be called mpq7932.
+>   
+> +config SENSORS_MPQ8785
+> +	tristate "MPS MPQ8785"
+> +	help
+> +	  If you say yes here you get hardware monitoring functionality support
+> +	  for power management IC MPS MPQ8785.
+> +
+> +	  This driver can also be built as a module. If so, the module will
+> +	  be called mpq8785.
+> +
+>   config SENSORS_PIM4328
+>   	tristate "Flex PIM4328 and compatibles"
+>   	help
+> diff --git a/drivers/hwmon/pmbus/Makefile b/drivers/hwmon/pmbus/Makefile
+> index cf8a76744545..f14ecf03ad77 100644
+> --- a/drivers/hwmon/pmbus/Makefile
+> +++ b/drivers/hwmon/pmbus/Makefile
+> @@ -39,6 +39,7 @@ obj-$(CONFIG_SENSORS_MP2975)	+= mp2975.o
+>   obj-$(CONFIG_SENSORS_MP5023)	+= mp5023.o
+>   obj-$(CONFIG_SENSORS_MP5990)	+= mp5990.o
+>   obj-$(CONFIG_SENSORS_MPQ7932)	+= mpq7932.o
+> +obj-$(CONFIG_SENSORS_MPQ8785)	+= mpq8785.o
+>   obj-$(CONFIG_SENSORS_PLI1209BC)	+= pli1209bc.o
+>   obj-$(CONFIG_SENSORS_PM6764TR)	+= pm6764tr.o
+>   obj-$(CONFIG_SENSORS_PXE1610)	+= pxe1610.o
+> diff --git a/drivers/hwmon/pmbus/mpq8785.c b/drivers/hwmon/pmbus/mpq8785.c
+> new file mode 100644
+> index 000000000000..b5bfc5d8a96b
+> --- /dev/null
+> +++ b/drivers/hwmon/pmbus/mpq8785.c
+> @@ -0,0 +1,91 @@
+> +// SPDX-License-Identifier: GPL-2.0-or-later
+> +/*
+> + * Driver for MPS MPQ8785 Step-Down Converter
+> + */
+> +
+> +#include <linux/i2c.h>
+> +#include <linux/module.h>
+> +#include <linux/of_device.h>
+> +#include "pmbus.h"
+> +
+> +static int mpq8785_identify(struct i2c_client *client,
+> +			    struct pmbus_driver_info *info)
+> +{
+> +	int vout_mode;
+> +
+> +	vout_mode = pmbus_read_byte_data(client, 0, PMBUS_VOUT_MODE);
 
-Thanks for review!
-> Best regards,
-> Krzysztof
+Excellent solution, but it will have to return an error if reading
+VOUT_MODE fails. Something like:
 
+	vout_mode = ...;
+	if (vout_mode < 0 || vout_mode == 0xff)
+		return vout_mode < 0 ? vout_mode : -ENODEV;
+
+	switch (vout_mode >> 5) {
+	...
+
+The output mode _has_ to be valid.
+
+Thanks,
+Guenter
 
 
