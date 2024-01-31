@@ -1,150 +1,152 @@
-Return-Path: <devicetree+bounces-38451-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-38454-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id C86828492C3
-	for <lists+devicetree@lfdr.de>; Mon,  5 Feb 2024 04:24:48 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 06373849353
+	for <lists+devicetree@lfdr.de>; Mon,  5 Feb 2024 06:28:20 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 7A73F2836A6
-	for <lists+devicetree@lfdr.de>; Mon,  5 Feb 2024 03:24:47 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 2A6931C222D2
+	for <lists+devicetree@lfdr.de>; Mon,  5 Feb 2024 05:28:19 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id BDF8A79E4;
-	Mon,  5 Feb 2024 03:24:43 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B95C179D8;
+	Mon,  5 Feb 2024 05:28:14 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="QkMXeHFQ"
+	dkim=pass (1024-bit key) header.d=samsung.com header.i=@samsung.com header.b="sT4XcYnR"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+Received: from mailout3.samsung.com (mailout3.samsung.com [203.254.224.33])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 25F3C9455;
-	Mon,  5 Feb 2024 03:24:41 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A6AA7B654
+	for <devicetree@vger.kernel.org>; Mon,  5 Feb 2024 05:28:11 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=203.254.224.33
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1707103483; cv=none; b=CUCMQ20AfhSSJr9mNC0Z8237r4boUGmHuYej+CaPFtJEVLCb4wR7H+x5HL8hq84vnRP8wiRCteQBPaHVOXqNiGAGxrUmn+9+YgFJhn2OfDVSmWElEQA747aiQ6pe88EDhFuxFtGN1B9IrDQkzesvWEgkV+qK5VAvE71w5d575FA=
+	t=1707110894; cv=none; b=IuQc2BIDT9TORvbhlX8v9FGVm8uXlAxX6FnR9b9IgJfeCfCiy5pw2UEkdRJXd+szVzJ0FOg6y9+o7gHzAp/JJJCNi4LXdC4V6gYBo32JXyOVMijc2rgT4ZCOpr1NmIn5P5uQCkrYIqk7hRMXrYkIPsahBhr7Y/NtGiBi5d9rE/k=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1707103483; c=relaxed/simple;
-	bh=5gfeHckEgn7wafvr84TEMXZGl6K5uSSF8aAeLCt6SNI=;
-	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
-	 In-Reply-To:Content-Type; b=ps2WrKwLQnjPd+fHRtTWWJY8ShMeGFnO2ff3/kGLVhkMqvHebKA4W0leRC+VGKKjQmpopY58OU8Y6D2HbAfwsFdnvjsLOI/bGRBZoXclw8EHHfG8hjhNfzR8zKytWr1FaNsz6vWlJEBiDcxGwMC5eXSnBUF88oquuqB5/7YXjTU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=QkMXeHFQ; arc=none smtp.client-ip=205.220.168.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
-Received: from pps.filterd (m0279864.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.17.1.24/8.17.1.24) with ESMTP id 4150duaJ002662;
-	Mon, 5 Feb 2024 03:24:25 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
-	message-id:date:mime-version:subject:to:cc:references:from
-	:in-reply-to:content-type:content-transfer-encoding; s=
-	qcppdkim1; bh=bzk4sJkqKPDVjXVVLKXE3zEm3Jpnwgu3XaFCAYr5a2A=; b=Qk
-	MXeHFQ9eeNytU/QNebhQJRBSxFqB1T/UyEBHPPVRY1nDOOQ+CO1XFfF5xfdhZIYc
-	2CL02A7ceaVZWEsp3R4ji59uez6LIYv+8v8DLXoV19mhSqqZ2c+FrQ5gzvw+pCf6
-	0iromW49yzmz+xPp97eCD2Sl2dQFRAGLH1QQiUImd3DE3MQBmMoU6NbnyfFh5h9R
-	B8oHOj6b95VyYK2nfHCuhgpon+W+6GKPTH8Zn5iNSGPg5/cJFAcEHnPlyBr44d+k
-	RxqfvjEe4nuMKnRAjc6XhHgVR8ynt4AhwbUrYtr9pZ68CQEkA+DMJ3J6lj1MTyH8
-	noFB5jDBK6Gae1oS3vuA==
-Received: from nalasppmta04.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3w1f232g30-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Mon, 05 Feb 2024 03:24:24 +0000 (GMT)
-Received: from nalasex01c.na.qualcomm.com (nalasex01c.na.qualcomm.com [10.47.97.35])
-	by NALASPPMTA04.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 4153ONXp026005
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Mon, 5 Feb 2024 03:24:23 GMT
-Received: from [10.253.38.98] (10.80.80.8) by nalasex01c.na.qualcomm.com
- (10.47.97.35) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1118.40; Sun, 4 Feb
- 2024 19:24:19 -0800
-Message-ID: <05253a6d-7fa5-4c32-af6f-cda0f902cf77@quicinc.com>
-Date: Mon, 5 Feb 2024 11:24:16 +0800
+	s=arc-20240116; t=1707110894; c=relaxed/simple;
+	bh=KGVIQ7R3XaeYio8DCZDb8cibagzCabv2lV8TzCs3KFA=;
+	h=From:To:Cc:Subject:Date:Message-Id:Content-Type:References; b=cAGE2SY06kxToK4TE0pZsuaqbWOm/5uR/ksyG/V/YuIbDblui2oY1rSe5LtTbnX7lJD8L8j1OJZ4eAOG7Mg2PQVsbWSeGTCLiX1PAIfr4QrSXlDDp+/X96fE1plA+E/iz9X+R//hfk7AwWdMoBVWHsRZrFhbqKjROttg/feF4AY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=samsung.com; spf=pass smtp.mailfrom=samsung.com; dkim=pass (1024-bit key) header.d=samsung.com header.i=@samsung.com header.b=sT4XcYnR; arc=none smtp.client-ip=203.254.224.33
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=samsung.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=samsung.com
+Received: from epcas5p1.samsung.com (unknown [182.195.41.39])
+	by mailout3.samsung.com (KnoxPortal) with ESMTP id 20240205052804epoutp032d8228c0eaf6a988ca119cf9c039c98f~w4E3waSX53160531605epoutp03f
+	for <devicetree@vger.kernel.org>; Mon,  5 Feb 2024 05:28:04 +0000 (GMT)
+DKIM-Filter: OpenDKIM Filter v2.11.0 mailout3.samsung.com 20240205052804epoutp032d8228c0eaf6a988ca119cf9c039c98f~w4E3waSX53160531605epoutp03f
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=samsung.com;
+	s=mail20170921; t=1707110884;
+	bh=MEXPbxT6P7PtY/XAgzobsSoAFcpyfbHJUxz+fcXZugY=;
+	h=From:To:Cc:Subject:Date:References:From;
+	b=sT4XcYnRqTv6T8QOSkyy0jVIa+gdyIMtVGEndwJoGDlTpzQoDSDu//LtkjTgQt3Su
+	 FbXqeB2bbG/Kft7zZ3ODa9EfkNOlnpWZfdmgu1gVdyYufZfMhv635gojfTaDjaHgel
+	 aXIDPgtI2PWl8dOT7IyNJbH2mHnRg3lrOrUG6Eik=
+Received: from epsnrtp1.localdomain (unknown [182.195.42.162]) by
+	epcas5p1.samsung.com (KnoxPortal) with ESMTP id
+	20240205052803epcas5p181a5a112b167e7296158fd6e2796483f~w4E3TnOqt1696816968epcas5p1W;
+	Mon,  5 Feb 2024 05:28:03 +0000 (GMT)
+Received: from epsmgec5p1new.samsung.com (unknown [182.195.38.175]) by
+	epsnrtp1.localdomain (Postfix) with ESMTP id 4TSvzP6bZgz4x9QK; Mon,  5 Feb
+	2024 05:28:01 +0000 (GMT)
+Received: from epcas5p3.samsung.com ( [182.195.41.41]) by
+	epsmgec5p1new.samsung.com (Symantec Messaging Gateway) with SMTP id
+	92.9B.08567.1E170C56; Mon,  5 Feb 2024 14:28:01 +0900 (KST)
+Received: from epsmtrp1.samsung.com (unknown [182.195.40.13]) by
+	epcas5p3.samsung.com (KnoxPortal) with ESMTPA id
+	20240131070746epcas5p39bf60e36d7d5cea5937cd6f87352ea67~vXNgKvXZw1167111671epcas5p3X;
+	Wed, 31 Jan 2024 07:07:46 +0000 (GMT)
+Received: from epsmgmcp1.samsung.com (unknown [182.195.42.82]) by
+	epsmtrp1.samsung.com (KnoxPortal) with ESMTP id
+	20240131070746epsmtrp1ce29d4373d2b26044cb2638fd8556af0~vXNgJWnpf0816808168epsmtrp15;
+	Wed, 31 Jan 2024 07:07:46 +0000 (GMT)
+X-AuditID: b6c32a44-3abff70000002177-6d-65c071e18a24
+Received: from epsmtip2.samsung.com ( [182.195.34.31]) by
+	epsmgmcp1.samsung.com (Symantec Messaging Gateway) with SMTP id
+	1E.4F.18939.2C1F9B56; Wed, 31 Jan 2024 16:07:46 +0900 (KST)
+Received: from cheetah.sa.corp.samsungelectronics.net (unknown
+	[107.109.115.53]) by epsmtip2.samsung.com (KnoxPortal) with ESMTPA id
+	20240131070744epsmtip2acf436d44ed1e6404aba10c2fc626e2f~vXNeAs9tW2159821598epsmtip2D;
+	Wed, 31 Jan 2024 07:07:44 +0000 (GMT)
+From: Aakarsh Jain <aakarsh.jain@samsung.com>
+To: linux-arm-kernel@lists.infradead.org, linux-media@vger.kernel.org,
+	linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
+Cc: m.szyprowski@samsung.com, andrzej.hajda@intel.com, mchehab@kernel.org,
+	hverkuil-cisco@xs4all.nl, krzysztof.kozlowski+dt@linaro.org,
+	robh+dt@kernel.org, conor+dt@kernel.org, linux-samsung-soc@vger.kernel.org,
+	gost.dev@samsung.com, alim.akhtar@samsung.com, pankaj.dubey@samsung.com,
+	aakarsh.jain@samsung.com
+Subject: [PATCH] MAINTAINERS: Add entry for Samsung MFC DT Schema
+Date: Wed, 31 Jan 2024 12:37:41 +0530
+Message-Id: <20240131070741.3558-1-aakarsh.jain@samsung.com>
+X-Mailer: git-send-email 2.17.1
+X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFmpnk+LIzCtJLcpLzFFi42LZdlhTU/dh4YFUg8M3jS2e7pjJavFg3jY2
+	i/uLP7NYrNl7jsli/pFzrBY3D+xksrg48y6LRd+Lh8wWmx5fY7W4vGsOm0XPhq2sFjPO72Oy
+	WHvkLrvFsk1/mCwWbf3CbtG69wi7g4DH4j0vmTw2repk87hzbQ+bx+Yl9R59W1YxenzeJOdx
+	6utn9gD2qGybjNTElNQihdS85PyUzLx0WyXv4HjneFMzA0NdQ0sLcyWFvMTcVFslF58AXbfM
+	HKDjlRTKEnNKgUIBicXFSvp2NkX5pSWpChn5xSW2SqkFKTkFJgV6xYm5xaV56Xp5qSVWhgYG
+	RqZAhQnZGY1vP7IUfGWpWPv7N0sD4wyWLkZODgkBE4n1cz6xdzFycQgJ7GaUONr9mgkkISTw
+	iVHiyw5BOLv1qTNMw4tLSxghGnYySqz4tJAFwmllktiwdxKQw8HBJqArcXZ7DkiDiEAjo8Tj
+	jhKQGmaBvUwSe552g60WFnCUuDpzDhuIzSKgKnHv4U12EJtXwEaia/4Zdoht8hKrNxxgBmmW
+	EPjLLtGwcToTyAIJAReJ7tdSEDXCEq+Ob4Gql5J42d8GZSdLPF70khnCzpFYv2cK1Mv2Egeu
+	zAG7k1lAU2L9Ln2IsKzE1FPrwJ5nFuCT6P39hAkiziuxYx6MrSYx584PVghbRuLw6qWMELaH
+	xNy7nWyQwIqVWL96OfMERtlZCBsWMDKuYpRMLSjOTU9NNi0wzEsth0dTcn7uJkZwitRy2cF4
+	Y/4/vUOMTByMhxglOJiVRHgnCO9NFeJNSaysSi3Kjy8qzUktPsRoCgyyicxSosn5wCSdVxJv
+	aGJpYGJmZmZiaWxmqCTO+7p1boqQQHpiSWp2ampBahFMHxMHp1QDU+vcO/V19qeuf2uzvH1T
+	eLE94741ajenbPauu6TteUn97G5Jo/tby+tVX53y274gfFnA6sc7nwTfmjp1+Yzv3FeCHum0
+	p+80nFtkfsd35z/O/X8Xznx+J1hO65wm39Zpe5Juv/VbverrOcMFniyJjrlntunM9/UTLjQ8
+	qxX/UFVbm02L18SyNuSd5QOziLa8Ir09j53lN2//zy+vvKrGmdckmOuIlnUap+C2h/0XWnb6
+	Tp/jv9b8/Ky/VbN/HlO5cyzggFD9Qq7/RnEnH6tHSW30bLwUkFBbWL7ePiJZY/dzkW0xWUFv
+	/h9iDX1vGZoVrn8uKvSXgfF6f4lLhanSllwdamarRS2axZfZPPjrrsRSnJFoqMVcVJwIAA0k
+	078aBAAA
+X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFtrELMWRmVeSWpSXmKPExsWy7bCSvO6hjztTDdYu0LR4umMmq8WDedvY
+	LO4v/sxisWbvOSaL+UfOsVrcPLCTyeLizLssFn0vHjJbbHp8jdXi8q45bBY9G7ayWsw4v4/J
+	Yu2Ru+wWyzb9YbJYtPULu0Xr3iPsDgIei/e8ZPLYtKqTzePOtT1sHpuX1Hv0bVnF6PF5k5zH
+	qa+f2QPYo7hsUlJzMstSi/TtErgyGt9+ZCn4ylKx9vdvlgbGGSxdjJwcEgImEi8uLWHsYuTi
+	EBLYziixf/YyqISMxP+2Y+wQtrDEyn/P2SGKmpkkmpZ3MXcxcnCwCehKnN2eAxIXEWhllLi+
+	spMJxGEWOM0k8WXHE2aQbmEBR4mrM+ewgdgsAqoS9x7eBJvKK2Aj0TX/DNQGeYnVGw4wT2Dk
+	WcDIsIpRNLWgODc9N7nAUK84Mbe4NC9dLzk/dxMjOFi1gnYwLlv/V+8QIxMH4yFGCQ5mJRHe
+	lXI7U4V4UxIrq1KL8uOLSnNSiw8xSnOwKInzKud0pggJpCeWpGanphakFsFkmTg4pRqYNiby
+	b34T87B62l0/l6AlWfIn7n/9x3NkxtPjTe9aMlgUIsKC21TuftSrzJ37wS1En8NWySTxrPu+
+	Y6rX+tVmu4WdmLH8s/TeBTv3/7dfVroqWutrYqRQ6Nmaj/26rwtOl3nVfLdv2mw+ZQvv5y8V
+	hStYHj7eLChd3bncQtlxpUNTbdEWTqWWRQtZv4lO1+Bna7/EMe+Q/oX59Z1rVZsnXmPi5L01
+	S+RsfpnSmck5P78yth3f45692P3JnxmzFBi4d18KWpmhLMIe9Oyx1PQltfXcD3avDbK/sYqH
+	ZWW92W1zffaumNV3RAq8LHNufbkpsj1i22TXKcmalw7qlj/5nT01sXFW/amo5J1lPTd2K7EU
+	ZyQaajEXFScCAJAMf8fFAgAA
+X-CMS-MailID: 20240131070746epcas5p39bf60e36d7d5cea5937cd6f87352ea67
+X-Msg-Generator: CA
+Content-Type: text/plain; charset="utf-8"
+X-Sendblock-Type: REQ_APPROVE
+CMS-TYPE: 105P
+DLP-Filter: Pass
+X-CFilter-Loop: Reflected
+X-CMS-RootMailID: 20240131070746epcas5p39bf60e36d7d5cea5937cd6f87352ea67
+References: <CGME20240131070746epcas5p39bf60e36d7d5cea5937cd6f87352ea67@epcas5p3.samsung.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [net-next PATCH v2 2/3] net: mdio: ipq4019: add support for
- clock-frequency property
-Content-Language: en-US
-To: Andrew Lunn <andrew@lunn.ch>
-CC: Christian Marangi <ansuelsmth@gmail.com>, Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio
-	<konrad.dybcio@linaro.org>,
-        "David S. Miller" <davem@davemloft.net>,
-        Eric
- Dumazet <edumazet@google.com>, Jakub Kicinski <kuba@kernel.org>,
-        Paolo Abeni
-	<pabeni@redhat.com>, Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski
-	<krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Heiner Kallweit <hkallweit1@gmail.com>,
-        Russell King <linux@armlinux.org.uk>,
-        Robert Marko <robert.marko@sartura.hr>,
-        <linux-arm-msm@vger.kernel.org>, <netdev@vger.kernel.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>
-References: <20240130003546.1546-1-ansuelsmth@gmail.com>
- <20240130003546.1546-3-ansuelsmth@gmail.com>
- <7d86388d-15f5-4e72-b99f-aee3b47a5232@quicinc.com>
- <4cd01d93-7b6d-4766-8337-c4dc09aeedc2@lunn.ch>
-From: Jie Luo <quic_luoj@quicinc.com>
-In-Reply-To: <4cd01d93-7b6d-4766-8337-c4dc09aeedc2@lunn.ch>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
- nalasex01c.na.qualcomm.com (10.47.97.35)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-ORIG-GUID: 4eiG2ulv9_zSk7S7PwD1Oa1jz-ca5GBS
-X-Proofpoint-GUID: 4eiG2ulv9_zSk7S7PwD1Oa1jz-ca5GBS
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.272,Aquarius:18.0.1011,Hydra:6.0.619,FMLib:17.11.176.26
- definitions=2024-02-04_14,2024-01-31_01,2023-05-22_02
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 phishscore=0 mlxlogscore=999
- bulkscore=0 lowpriorityscore=0 priorityscore=1501 mlxscore=0
- suspectscore=0 malwarescore=0 clxscore=1011 spamscore=0 adultscore=0
- impostorscore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.19.0-2401310000 definitions=main-2402050025
 
+Add device tree schema entry for Samsung MFC.
 
+Signed-off-by: Aakarsh Jain <aakarsh.jain@samsung.com>
+---
+ MAINTAINERS | 1 +
+ 1 file changed, 1 insertion(+)
 
-On 2/4/2024 11:22 PM, Andrew Lunn wrote:
-> On Sun, Feb 04, 2024 at 05:59:10PM +0800, Jie Luo wrote:
->>
->>
->> On 1/30/2024 8:35 AM, Christian Marangi wrote:
->>> +
->>> +	/* If div is /256 assume nobody have set this value and
->>> +	 * try to find one MDC rate that is close the 802.3 spec of
->>> +	 * 2.5MHz
->>> +	 */
->>> +	for (div = 256; div >= 8; div /= 2) {
->>> +		/* Stop as soon as we found a divider that
->>> +		 * reached the closest value to 2.5MHz
->>> +		 */
->>> +		if (DIV_ROUND_UP(ahb_rate, div) > 2500000)
->>> +			break;
->>
->> Hi Christian,
->> Sorry for the delayed review.
->>
->> The MDIO hardware block supports higher frequency 6.25M and 12.5M,
->> Would you remove this 2.5MHZ limitation? On the IPQ platform, we
->> normally use 6.25MHZ.
-> 
-> 802.3 says the clock has a maximum of 2.5MHz. So this code is correct.
-> 
-> It is however O.K. to go faster, but since that breaks the standard,
-> you need each board to indicate it knows all the devices on the bus do
-> support higher speeds and its O.K. to break the standard. You indicate
-> this by using the DT property in its .dts file. For an MDIO bus which
-> is totally internal, you could however put the DT property in the SoC
-> .dtsi file.
-> 
->        Andrew
+diff --git a/MAINTAINERS b/MAINTAINERS
+index 32a47aa6aa76..55e9b0ae185b 100644
+--- a/MAINTAINERS
++++ b/MAINTAINERS
+@@ -2752,6 +2752,7 @@ M:	Andrzej Hajda <andrzej.hajda@intel.com>
+ L:	linux-arm-kernel@lists.infradead.org (moderated for non-subscribers)
+ L:	linux-media@vger.kernel.org
+ S:	Maintained
++F:	Documentation/devicetree/bindings/media/samsung,s5p-mfc.yaml
+ F:	drivers/media/platform/samsung/s5p-mfc/
+ 
+ ARM/SOCFPGA ARCHITECTURE
+-- 
+2.17.1
 
-Understand it, Thanks Andrew.
 
