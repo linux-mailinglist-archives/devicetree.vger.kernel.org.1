@@ -1,67 +1,65 @@
-Return-Path: <devicetree+bounces-36984-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-36985-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7D592843679
-	for <lists+devicetree@lfdr.de>; Wed, 31 Jan 2024 07:15:17 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 855AA84368A
+	for <lists+devicetree@lfdr.de>; Wed, 31 Jan 2024 07:21:15 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id B030F1C21A51
-	for <lists+devicetree@lfdr.de>; Wed, 31 Jan 2024 06:15:16 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id B7C3E1C2127D
+	for <lists+devicetree@lfdr.de>; Wed, 31 Jan 2024 06:21:14 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1291A3E46B;
-	Wed, 31 Jan 2024 06:15:13 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D0B4C3E47C;
+	Wed, 31 Jan 2024 06:21:11 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=atomide.com header.i=@atomide.com header.b="hiiMiM5O"
+	dkim=pass (2048-bit key) header.d=atomide.com header.i=@atomide.com header.b="VJe7n5Aj"
 X-Original-To: devicetree@vger.kernel.org
 Received: from mail5.25mail.st (mail5.25mail.st [74.50.62.9])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E50B13E477
-	for <devicetree@vger.kernel.org>; Wed, 31 Jan 2024 06:15:10 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6327E3E479
+	for <devicetree@vger.kernel.org>; Wed, 31 Jan 2024 06:21:10 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=74.50.62.9
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1706681713; cv=none; b=JCVTNN20W91VOJu7YZk0XY1LjdK0Who9Cons+8265AjFlFVkJ3o1iNbLNBIh5C+f4PsCQtbjgetshcfP1SlntwXwfOie8v9qdAob6R3A/+zJ0iC9wzW9+2P8v2xg+KOgdGwAMMQnTT5NjAPg0QuAibiEUG+jyXUEAOt+0gsDUQk=
+	t=1706682071; cv=none; b=g71bS9iAuegTL5z/2OdBZj80xrSpfcMRj8r2E7DPkY0K7MnquMES8yVk2R22XG5QsWfieZ7OZaMZ1FsQjlTTMo/9FF33BvXbOr7T8gRxm4ZotSUMPGdZ2wxy36197uHoqGAFG6p737PqvCxaYgGg0lSDivn0zkWrdyW7xUE51gw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1706681713; c=relaxed/simple;
-	bh=2yPSLwDIVXISiz850jNswuJMbHS4Z6UYnk6bKNxSsGY=;
+	s=arc-20240116; t=1706682071; c=relaxed/simple;
+	bh=1stjmB4mIQIgjXzEdef4k7mYxVV6dJBOLDOpjOEsKgA=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=cNLoUi++2OcPqyFTqFeaISwCnwoQDfdH62E9RDMR8pi3sK3po2ywy56kDfLOgkEF0PbD5uYLGZrZwLwn9sMBPs6i+3RXhvetgpM0TGFc5gB4tqg52vcalutxTOyL4stW1BArl0nd1XKHYBVU5CZB5UVeS/Y+wnCEazmgMJ90cZs=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=atomide.com; spf=fail smtp.mailfrom=atomide.com; dkim=pass (2048-bit key) header.d=atomide.com header.i=@atomide.com header.b=hiiMiM5O; arc=none smtp.client-ip=74.50.62.9
+	 Content-Type:Content-Disposition:In-Reply-To; b=tFD0j8z8UsFR3o9A0qo7OFv4Pd7evxIzIg7wnpEhP6R7hV2CynSFl1E+Ob+XpuB+Etgxl5SCMUpo3pUitNFNhHzOY8GEmJ8RwN/PCEHUIQtzCscMAlWqMWE3X/MHL0Qw+vJtC2GZo2RvTQylkGA+21UmWyXSTTUtI2+n/Kb5Yrs=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=atomide.com; spf=fail smtp.mailfrom=atomide.com; dkim=pass (2048-bit key) header.d=atomide.com header.i=@atomide.com header.b=VJe7n5Aj; arc=none smtp.client-ip=74.50.62.9
 Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=atomide.com
 Authentication-Results: smtp.subspace.kernel.org; spf=fail smtp.mailfrom=atomide.com
 Received: from localhost (91-158-86-216.elisa-laajakaista.fi [91.158.86.216])
-	by mail5.25mail.st (Postfix) with ESMTPSA id C72DB60416;
-	Wed, 31 Jan 2024 06:14:11 +0000 (UTC)
+	by mail5.25mail.st (Postfix) with ESMTPSA id DF81F60417;
+	Wed, 31 Jan 2024 06:20:23 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple; d=atomide.com;
-	s=25mailst; t=1706681704;
-	bh=2yPSLwDIVXISiz850jNswuJMbHS4Z6UYnk6bKNxSsGY=;
+	s=25mailst; t=1706682069;
+	bh=1stjmB4mIQIgjXzEdef4k7mYxVV6dJBOLDOpjOEsKgA=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=hiiMiM5OZoROWd6k7SN0rkmCACBj/yZ25OihprOZDTsxfQJAVKRDX5wv9QRB2uGdH
-	 Pv8yplmE9sewWWTOfW2yB13kUuEujbqnp1pMfLt0RyJtBEizx/KfpnukvN2FX2lv06
-	 Wh3uSKUJId/u+XENV2YTOI07H8lwC/Hjkdn5gtzmiHcEdKfyX3xfvqKZ8dBpnvuq1Y
-	 jRA4n/XnEazH12EbMFzyQtJs6NyTz0/C62poin32e9nnB8Qucv2I2P0UHFREMgDsyx
-	 Zmi2Pm05JoxFfDgNq9VufCPnPpiVin0sYUwuwaecgnpMdPFT5lZzfvJ80zYVhrHIXE
-	 mJNFfrq1W0E9Q==
-Date: Wed, 31 Jan 2024 08:14:09 +0200
+	b=VJe7n5AjQvvnU9dL4abFmdrz9smQ62eqsrW5YXVrm5+ZeLeK/3atXMfC/DnTorl7p
+	 NBUknsdV39KrNygf7h6UadzelEXF98CNMKxeHLW54j7gaMqmM+08grrx9ox6O/XGnJ
+	 zdy2VMIp2xwB4zsYurz5LfHmQBy0XyDUckhtdrJyTv1ZhBcGvqxZ7R8dxAmdqBexaB
+	 M/u4Sqz7v3AD9v+L21o+4kP6JteJUHNigSa6y62rX7FHYX6Tck79ViLMavIFbR7KY+
+	 yHVBEJq7Og8F5nkJq8CRroOswHul6RmyncB1OYoxaUhJ2UIxCIPK2SnLv4r2e1cBuX
+	 XKyQ/2mipYhqg==
+Date: Wed, 31 Jan 2024 08:20:21 +0200
 From: Tony Lindgren <tony@atomide.com>
 To: Michael Walle <mwalle@kernel.org>
-Cc: Laurent.pinchart@ideasonboard.com, airlied@gmail.com,
-	andrzej.hajda@intel.com, conor+dt@kernel.org, daniel@ffwll.ch,
+Cc: dmitry.baryshkov@linaro.org, Laurent.pinchart@ideasonboard.com,
+	andrzej.hajda@intel.com, conor+dt@kernel.org,
 	devicetree@vger.kernel.org, dri-devel@lists.freedesktop.org,
 	ivo.g.dimitrov.75@gmail.com, jernej.skrabec@gmail.com,
 	jonas@kwiboo.se, krzysztof.kozlowski+dt@linaro.org,
-	maarten.lankhorst@linux.intel.com, merlijn@wizzup.org,
-	mripard@kernel.org, neil.armstrong@linaro.org, pavel@ucw.cz,
-	philipp@uvos.xyz, rfoss@kernel.org, robh+dt@kernel.org,
-	sam@ravnborg.org, simhavcs@gmail.com, sre@kernel.org,
-	tzimmermann@suse.de
-Subject: Re: [PATCH v2 10/10] drm/bridge: tc358775: Configure hs_rate and
- lp_rate
-Message-ID: <20240131061409.GU31612@atomide.com>
-References: <20231202075514.44474-11-tony@atomide.com>
- <20231207161352.2634438-1-mwalle@kernel.org>
+	merlijn@wizzup.org, mripard@kernel.org, neil.armstrong@linaro.org,
+	pavel@ucw.cz, philipp@uvos.xyz, rfoss@kernel.org,
+	robh+dt@kernel.org, sam@ravnborg.org, simhavcs@gmail.com,
+	sre@kernel.org, tzimmermann@suse.de
+Subject: Re: [PATCH v2 09/10] drm/bridge: tc358775: Add support for tc358765
+Message-ID: <20240131062021.GV31612@atomide.com>
+References: <CAA8EJppYoBxYaFnu7UHxCgNiRwcjmVgPXXcQboaeu_dGCosJXg@mail.gmail.com>
+ <20231204095213.2573620-1-mwalle@kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -70,54 +68,27 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20231207161352.2634438-1-mwalle@kernel.org>
+In-Reply-To: <20231204095213.2573620-1-mwalle@kernel.org>
 
-* Michael Walle <mwalle@kernel.org> [231207 16:14]:
-> > The hs_rate and lp_rate may be used by the dsi host for timing
-> > calculations. The tc358775 has a maximum bit rate of 1 Gbps/lane,
-> > tc358765 has maximurate of 800 Mbps per lane.
-> > 
-> > Signed-off-by: Tony Lindgren <tony@atomide.com>
-> > ---
-> >  drivers/gpu/drm/bridge/tc358775.c | 5 +++++
-> >  1 file changed, 5 insertions(+)
-> > 
-> > diff --git a/drivers/gpu/drm/bridge/tc358775.c b/drivers/gpu/drm/bridge/tc358775.c
-> > --- a/drivers/gpu/drm/bridge/tc358775.c
-> > +++ b/drivers/gpu/drm/bridge/tc358775.c
-> > @@ -636,6 +636,11 @@ static int tc_attach_host(struct tc_data *tc)
-> >  	dsi->format = MIPI_DSI_FMT_RGB888;
-> >  	dsi->mode_flags = MIPI_DSI_MODE_VIDEO | MIPI_DSI_MODE_VIDEO_BURST |
-> >  		MIPI_DSI_MODE_LPM;
-> > +	if (tc->type == TC358765)
-> > +		dsi->hs_rate = 800000000;
+* Michael Walle <mwalle@kernel.org> [231204 09:52]:
+> >> @@ -643,6 +658,7 @@ static int tc_probe(struct i2c_client *client)
+> >>
+> >>         tc->dev = dev;
+> >>         tc->i2c = client;
+> >> +       tc->type = (enum tc3587x5_type)of_device_get_match_data(dev);
+> >
+> > Would it make sense to use i2c_get_match_data() instead?
 > 
-> It's not clear to me whether this is the data rate or the frequency. From
-> the kernel doc:
-> 
->  * @hs_rate: maximum lane frequency for high speed mode in hertz, this should
->  * be set to the real limits of the hardware, zero is only accepted for
->  * legacy drivers
-> 
-> The tc358775 datasheet lists 1Gbps per lane, which corresponds to a 500MHz DSI
-> clock frequency. Not sure how that would correspond to the "maximum lane
-> frequency" above. I guess the wording of the comment is just misleading and
-> the value is the data rate of the lane.
+> FWIW, I' planning to add a dsi binding for this driver. So I'd
+> suggest either the of_ or the device_ variant. Not sure though,
+> if the new device supports the DSI commands.
 
-Yeah seems we're using the data rate of a lane in in hertz and then the
-host drivers adapt for the double data rate. Or at least that's my
-understanding.. Hopefully we don't have different assumptions in the
-host drivers.
+Yeah good point as some hardware may not have i2c wired at all. Let's keep
+this as of_device_get_match_data() for now as the driver is currently
+completely dependant on devicetree.
 
-> > +	else
-> > +		dsi->hs_rate = 1000000000;
-> > +	dsi->lp_rate = 10000000;
-> 
-> That I didn't found in the datasheet. Just a T_min_rx (minimum pulse width
-> response) which is 20ns. But there are no more details on this.
-
-I think the low power data rate might be specified in the mipi dsi spec.
-Maybe somebody familiar with the spec can confirm it.
+I'll update the enumeration to use the hardware id numbering like Dmitry
+suggested though.
 
 Regards,
 
