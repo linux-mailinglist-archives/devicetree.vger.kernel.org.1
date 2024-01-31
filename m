@@ -1,126 +1,135 @@
-Return-Path: <devicetree+bounces-37289-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-37290-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id B363C8444A6
-	for <lists+devicetree@lfdr.de>; Wed, 31 Jan 2024 17:36:06 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id C559C8444C4
+	for <lists+devicetree@lfdr.de>; Wed, 31 Jan 2024 17:47:42 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 93705B224F4
-	for <lists+devicetree@lfdr.de>; Wed, 31 Jan 2024 16:35:41 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 84319B28C6B
+	for <lists+devicetree@lfdr.de>; Wed, 31 Jan 2024 16:47:34 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E9B6112AAFE;
-	Wed, 31 Jan 2024 16:35:26 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A301212BE84;
+	Wed, 31 Jan 2024 16:47:28 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b="tGLTCcM4"
 X-Original-To: devicetree@vger.kernel.org
-Received: from frasgout.his.huawei.com (frasgout.his.huawei.com [185.176.79.56])
+Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [213.167.242.64])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5A3BB1EB2D;
-	Wed, 31 Jan 2024 16:35:24 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.176.79.56
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 909D512A171;
+	Wed, 31 Jan 2024 16:47:26 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=213.167.242.64
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1706718926; cv=none; b=rZsfzgycoUSgyJq1MGBnqVNz6sa6DxzRZPUiLm0MC8U1m5hMcaICjWPBrW6kRwDlboJ9QnYSHlXCbLcwKD7XTd5aio6tKD5oVg/5YhFnTe/uV6/rdzTGDzEQefPDMQjoPYOGhs+Frzq69f/WiDRA3w7vgjslidRxcpr2G/erHBQ=
+	t=1706719648; cv=none; b=uNIdxU2OMfGU5gArXJk2iiaM9SYTww/so5AaJjQY1nSLjfEUPDwgh5cgUIwQWXZNJdL2Aq4sl9VoVNwAPJ8Z5jS4xMt+HBd8SI4mqgZcpgC30wOM+T1aKlEk6qjOyutdYxh0fak54OEvoBgKTirl4AULP284Fi1elCe+E4SZ7Os=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1706718926; c=relaxed/simple;
-	bh=VSpwdDp/WkYXU24sx0R69NnqFerIpT2TK02WiSXU7AY=;
-	h=Date:From:To:CC:Subject:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=D8q3RSx689sASnIdEa5HYd2O+P5FZqEpsS9TFawa8fd7IBrq/YFIaDxJ0DzqCBws0nh1wrN8JFMyCk57EU+3YD9OdO7BFOd/1gylAvANxYsmOq/hVV9mGjK7jHqffIHV2i5pD4Db+GfVo/CyWHaHFaZVIpMrsBXG05ZX0/d92g4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=Huawei.com; spf=pass smtp.mailfrom=huawei.com; arc=none smtp.client-ip=185.176.79.56
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=Huawei.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=huawei.com
-Received: from mail.maildlp.com (unknown [172.18.186.31])
-	by frasgout.his.huawei.com (SkyGuard) with ESMTP id 4TQ6yJ68Z9z6K5Xs;
-	Thu,  1 Feb 2024 00:32:24 +0800 (CST)
-Received: from lhrpeml500005.china.huawei.com (unknown [7.191.163.240])
-	by mail.maildlp.com (Postfix) with ESMTPS id 7F4D0140B2A;
-	Thu,  1 Feb 2024 00:35:21 +0800 (CST)
-Received: from localhost (10.202.227.76) by lhrpeml500005.china.huawei.com
- (7.191.163.240) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.35; Wed, 31 Jan
- 2024 16:35:17 +0000
-Date: Wed, 31 Jan 2024 16:35:16 +0000
-From: Jonathan Cameron <Jonathan.Cameron@Huawei.com>
-To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-CC: Naresh Solanki <naresh.solanki@9elements.com>, Peter Rosin
-	<peda@axentia.se>, Jonathan Cameron <jic23@kernel.org>, Lars-Peter Clausen
-	<lars@metafoo.de>, Rob Herring <robh+dt@kernel.org>, Krzysztof Kozlowski
-	<krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>,
-	<mazziesaccount@gmail.com>, <linux-iio@vger.kernel.org>,
-	<devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>
-Subject: Re: [PATCH v3] dt-bindings: iio: afe: voltage-divider: Add
- io-channel-cells
-Message-ID: <20240131163516.000043df@Huawei.com>
-In-Reply-To: <1c855a34-8a0d-491e-bfd2-24635b41c86f@linaro.org>
-References: <20240130115651.457800-1-naresh.solanki@9elements.com>
-	<1c855a34-8a0d-491e-bfd2-24635b41c86f@linaro.org>
-Organization: Huawei Technologies Research and Development (UK) Ltd.
-X-Mailer: Claws Mail 4.1.0 (GTK 3.24.33; x86_64-w64-mingw32)
+	s=arc-20240116; t=1706719648; c=relaxed/simple;
+	bh=i2Nyco+tVvT/sYMyaERZ4PNEFuw6x9vPgffFLNr1K7c=;
+	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version; b=kTscf5TDvmF8F6ArpqT/zFipInVQYPGMdP2QLY1bbdCFfi6vc7Q7q7hGqGdlxfcBwyg/g+IYSWBJ5xhWPApNTG9WxWoEBytpMr/6lpC+m0Zb2chF14BucDV4C4OAtwyxjITmsLKGV4FP2zvRu5dCqaKMCH0tCxyqTjr29wryKUQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ideasonboard.com; spf=pass smtp.mailfrom=ideasonboard.com; dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b=tGLTCcM4; arc=none smtp.client-ip=213.167.242.64
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ideasonboard.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ideasonboard.com
+Received: from mail.ideasonboard.com (cpc141996-chfd3-2-0-cust928.12-3.cable.virginm.net [86.13.91.161])
+	by perceval.ideasonboard.com (Postfix) with ESMTPSA id 7FA403D9;
+	Wed, 31 Jan 2024 17:46:04 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
+	s=mail; t=1706719565;
+	bh=i2Nyco+tVvT/sYMyaERZ4PNEFuw6x9vPgffFLNr1K7c=;
+	h=From:To:Cc:Subject:Date:From;
+	b=tGLTCcM4PfC5sLTjtLVXY7adMGXVw9GkEK88Xk0SYrvZgJt6D72tGP37l/6DiKfDf
+	 cRLTGGvO+cOModq+9nJObUvwnf4oeL5u/UtGefIL7NZX2CqHwOc6rBgEEqNfucahdr
+	 8Kh+dYKBOXH8aycj0NdL1rjYG2OP0c0Vv9lG3kKo=
+From: Daniel Scally <dan.scally@ideasonboard.com>
+To: linux-media@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org
+Cc: jacopo.mondi@ideasonboard.com,
+	nayden.kanchev@arm.com,
+	robh+dt@kernel.org,
+	mchehab@kernel.org,
+	krzysztof.kozlowski+dt@linaro.org,
+	conor+dt@kernel.org,
+	jerome.forissier@linaro.org,
+	kieran.bingham@ideasonboard.com,
+	laurent.pinchart@ideasonboard.com,
+	Daniel Scally <dan.scally@ideasonboard.com>
+Subject: [PATCH 0/5] Add Arm Mali-C55 Image Signal Processor Driver
+Date: Wed, 31 Jan 2024 16:47:04 +0000
+Message-Id: <20240131164709.810587-1-dan.scally@ideasonboard.com>
+X-Mailer: git-send-email 2.34.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="US-ASCII"
-Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: lhrpeml500004.china.huawei.com (7.191.163.9) To
- lhrpeml500005.china.huawei.com (7.191.163.240)
+Content-Transfer-Encoding: 8bit
 
-On Wed, 31 Jan 2024 09:29:59 +0100
-Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org> wrote:
+Hello all
 
-> On 30/01/2024 12:56, Naresh Solanki wrote:
-> > voltage-divider is always an iio consumer at the same time it is
-> > optionally an iio provider.
-> > Hence add #io-channel-cells
-> > Also update example.
-> >   
-> 
-> Fix
-> wrapping
-> and
-> proper
-> sentences. Each sentence finishes with full stop.
-> 
-> ...
-> >    output-ohms:
-> >      description:
-> >        Resistance Rout over which the output voltage is measured. See full-ohms.
-> > @@ -75,12 +82,17 @@ examples:
-> >              spi-max-frequency = <1000000>;
-> >          };
-> >      };
-> > -    sysv {
-> > +    p12v_vd: sysv {  
-> 
-> No, drop label.
-> 
-> >          compatible = "voltage-divider";
-> >          io-channels = <&maxadc 1>;
-> > +        #io-channel-cells = <1>;
-> >  
-> >          /* Scale the system voltage by 22/222 to fit the ADC range. */
-> >          output-ohms = <22>;
-> >          full-ohms = <222>; /* 200 + 22 */
-> >      };
-> > +    iio-hwmon {
-> > +        compatible = "iio-hwmon";
-> > +        io-channels = <&p12v_vd 0>;  
-> 
-> The same question as for v2. Drop unrelated example.
+This patchset introduces a driver for Arm's Mali-C55 Image Signal Processor.
+The driver uses the media controller API and in this initial support implements
+both of the ISP's capture pipelines allowing a range of output formats plus
+downscaling and cropping. The capture pipelines are named "Full resolution" and
+"Downscale" and so abbreviated FR and DS throughout the driver.
 
-Conor requested an example of the device acting as a consumer and a provider.
-Might have meant in the patch description?
+The driver exposes 4 V4L2 subdevices:
 
-Conor?
-> 
-> Also, remember about rule of posting only one version per day, so people
-> actually have some chance to look at your patch.
-> 
-> Best regards,
-> Krzysztof
-> 
-> 
+- mali-c55 isp: input data formatting
+- mali-c55 tpg: test pattern generator (modeled as a camera sensor entity)
+- mali-c55 resizer fr: downscale / crop and format setting for the FR pipe
+- mali-c55 resizer ds: downscale / crop and format setting for the DS pipe
+
+Thanks
+Dan
+
+Daniel Scally (5):
+  media: uapi: Add MEDIA_BUS_FMT_RGB202020_1X60 format code
+  dt-bindings: media: Add bindings for ARM mali-c55
+  media: mali-c55: Add Mali-C55 ISP driver
+  media: Documentation: Add Mali-C55 ISP Documentation
+  MAINTAINERS: Add entry for mali-c55 driver
+
+ .../admin-guide/media/mali-c55-graph.dot      |   19 +
+ Documentation/admin-guide/media/mali-c55.rst  |  318 ++++++
+ .../admin-guide/media/v4l-drivers.rst         |    1 +
+ .../bindings/media/arm,mali-c55.yaml          |   51 +
+ .../media/v4l/subdev-formats.rst              |  168 +++
+ MAINTAINERS                                   |   10 +
+ drivers/media/platform/Kconfig                |    1 +
+ drivers/media/platform/Makefile               |    1 +
+ drivers/media/platform/arm/Kconfig            |    5 +
+ drivers/media/platform/arm/Makefile           |    2 +
+ drivers/media/platform/arm/mali-c55/Kconfig   |   18 +
+ drivers/media/platform/arm/mali-c55/Makefile  |    9 +
+ .../platform/arm/mali-c55/mali-c55-capture.c  | 1013 +++++++++++++++++
+ .../platform/arm/mali-c55/mali-c55-common.h   |  263 +++++
+ .../platform/arm/mali-c55/mali-c55-core.c     |  717 ++++++++++++
+ .../platform/arm/mali-c55/mali-c55-isp.c      |  682 +++++++++++
+ .../arm/mali-c55/mali-c55-registers.h         |  180 +++
+ .../arm/mali-c55/mali-c55-resizer-coefs.h     |  382 +++++++
+ .../platform/arm/mali-c55/mali-c55-resizer.c  |  678 +++++++++++
+ .../platform/arm/mali-c55/mali-c55-tpg.c      |  425 +++++++
+ include/uapi/linux/media-bus-format.h         |    3 +-
+ 21 files changed, 4945 insertions(+), 1 deletion(-)
+ create mode 100644 Documentation/admin-guide/media/mali-c55-graph.dot
+ create mode 100644 Documentation/admin-guide/media/mali-c55.rst
+ create mode 100644 Documentation/devicetree/bindings/media/arm,mali-c55.yaml
+ create mode 100644 drivers/media/platform/arm/Kconfig
+ create mode 100644 drivers/media/platform/arm/Makefile
+ create mode 100644 drivers/media/platform/arm/mali-c55/Kconfig
+ create mode 100644 drivers/media/platform/arm/mali-c55/Makefile
+ create mode 100644 drivers/media/platform/arm/mali-c55/mali-c55-capture.c
+ create mode 100644 drivers/media/platform/arm/mali-c55/mali-c55-common.h
+ create mode 100644 drivers/media/platform/arm/mali-c55/mali-c55-core.c
+ create mode 100644 drivers/media/platform/arm/mali-c55/mali-c55-isp.c
+ create mode 100644 drivers/media/platform/arm/mali-c55/mali-c55-registers.h
+ create mode 100644 drivers/media/platform/arm/mali-c55/mali-c55-resizer-coefs.h
+ create mode 100644 drivers/media/platform/arm/mali-c55/mali-c55-resizer.c
+ create mode 100644 drivers/media/platform/arm/mali-c55/mali-c55-tpg.c
+
+-- 
+2.34.1
 
 
