@@ -1,244 +1,259 @@
-Return-Path: <devicetree+bounces-37227-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-37228-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id D4035844193
-	for <lists+devicetree@lfdr.de>; Wed, 31 Jan 2024 15:15:50 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id D5EDF8441BC
+	for <lists+devicetree@lfdr.de>; Wed, 31 Jan 2024 15:23:26 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 5F944289EF0
-	for <lists+devicetree@lfdr.de>; Wed, 31 Jan 2024 14:15:49 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 8BBBF28D705
+	for <lists+devicetree@lfdr.de>; Wed, 31 Jan 2024 14:23:25 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5698082862;
-	Wed, 31 Jan 2024 14:15:30 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3A2AB80C0F;
+	Wed, 31 Jan 2024 14:23:21 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="GSTNZdsQ"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="VsV+tq69"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ej1-f50.google.com (mail-ej1-f50.google.com [209.85.218.50])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 41C5780C17
-	for <devicetree@vger.kernel.org>; Wed, 31 Jan 2024 14:15:28 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.50
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0A6017F48F;
+	Wed, 31 Jan 2024 14:23:20 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1706710530; cv=none; b=Vxo8LrNJLQJXQ9xmGa+I1ObTrvypCht8Xcecl1sN6y2DQWb8UfViXuxE7XthUBma6x6AHq8cgs/JbvwX0cd3ZQ5nNVcjYC9X4/s7Z1G6WdCsGfCvjwsmIg1/omYrjB1bfd5Vcci6VFaenvgy4UJT1o27BQH48OAXq+7jw70TbiQ=
+	t=1706711001; cv=none; b=IRa6EEBr+Le0U4wtTHfyW/8UwwS7fwMaYiLUl6YQyl8pCUIyh19d5+T60IYlrXjQaROyQm+e+eoy2YX8bqGBacSnhYW8SGei8Uvp49lszgr/LoljSCY6aIVWoqdkHu60qAP03FCq8zjMNXymxh+t9M09laOWOQpwsDWAcervR3s=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1706710530; c=relaxed/simple;
-	bh=Qp4GngRv4PQifziULzNvlHbekeHD7V6c0VEtftkfzWk=;
+	s=arc-20240116; t=1706711001; c=relaxed/simple;
+	bh=r8Og+/DD3KNkZEqwH8xuXR2iH05bswrjdZXhOtKd4Gw=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=HAu+IgJIfZlD65HAZ3lwfUVZSmFR52t4uy3X78KvLMW2P8w3a7qXBb47l/tGqLCiA/TZ56dHEKrTEWUaF/l+p2QurUh5CyIgbJrWhX/Mqi7JkNS8E8Cn3lU4dSU7y30PKAv/1Rk7ildDiaL1t6JOTAMMXoUAnz/LZfAIDnxpTn4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=GSTNZdsQ; arc=none smtp.client-ip=209.85.218.50
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-ej1-f50.google.com with SMTP id a640c23a62f3a-a28a6cef709so700630066b.1
-        for <devicetree@vger.kernel.org>; Wed, 31 Jan 2024 06:15:28 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1706710526; x=1707315326; darn=vger.kernel.org;
-        h=in-reply-to:content-transfer-encoding:content-disposition
-         :mime-version:references:message-id:subject:cc:to:from:date:from:to
-         :cc:subject:date:message-id:reply-to;
-        bh=nNlIzsJJ/O803DqutNwmb0UTB7M/H8vgIySfsDe/068=;
-        b=GSTNZdsQR8cKi1UztfkzD1rlAHChoE6/SXk04/AUMlZSlUvT4arMCWptsNCyHnOSEE
-         TuFRgzP0tQHUr82bYFDVIAd5UgMMs58R5YFSU5p0MK25gAzy5hL2i/OLw3s9DZmqva49
-         y/bCDVkJI7EAvClSMv5wcOLAwbYoUEWa4UXZcQgYxankfpvntzrHPsP+XkRnq6HboeL/
-         CzZCoqnZdkgJ2QfPoDnGBE9ZM5rT1L3FG1ps6XlGZ/6ajBrEyTQ8BlaUgdlkLpdLWX7A
-         xqrYqiE/TftwS3bBHkKux3ivlEAXPdFUpUkZs0It2llt+hDIa9aHYVEn7kY+G02mZvgr
-         B01w==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1706710526; x=1707315326;
-        h=in-reply-to:content-transfer-encoding:content-disposition
-         :mime-version:references:message-id:subject:cc:to:from:date
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=nNlIzsJJ/O803DqutNwmb0UTB7M/H8vgIySfsDe/068=;
-        b=NFmaNcEyrFDDISd+Sv45/rVN3arZHYWAE9iggXG/7W5tkKIueMRpg6yuAf9GgVv/as
-         gLLMmOB4KZ4HjpdkdEQUpMmpI6hlK+o17DXLiJkDcZhGoPmiWpy+HLDHs+Z90Sw9L1wz
-         kI0TH20o/TkpFuKBGpJI1V/Ag4e9d63Y7fqEmCrnjLhEPDU9DRgTuEsetUVznAmB4fTb
-         zAc2T0DdwicVAcN7uIlNno/YbSEByt0w7GUyXRdMy7zThEKzb9vzTuw0APZz0gi5AGF3
-         m6Y48yIQjHjIi8nbQj6C6sN4fAowDrQFzwd5PoDKWqeSZA6+JM8i+bARbtSk71hXhmNh
-         zZWA==
-X-Gm-Message-State: AOJu0YwqNKkw92Q2e3BA0V09zFBFGV1SUVT4takn0cF4I+LWCM+faRHH
-	u62iHheq351TYZyapRh+gxrQOywbsxoPOHUOc1KhWg1D4rn9Kj50Tpn03iKrUsE=
-X-Google-Smtp-Source: AGHT+IHGSNrZrx8lhdfpuacSLRFgTdJ5NfMsSvc/CvwYDYgJxFvfWZNSFP+DAnXhOop8GVnRQDrb6A==
-X-Received: by 2002:a17:906:6d8:b0:a31:3dc5:6bda with SMTP id v24-20020a17090606d800b00a313dc56bdamr1293250ejb.64.1706710526369;
-        Wed, 31 Jan 2024 06:15:26 -0800 (PST)
-X-Forwarded-Encrypted: i=0; AJvYcCU6efCsWycPh1JAhTyNPAjNvnweXqD7LfOvLHeNnwv0SvdHIfC7xlCv5STV+33dO+lY6NYJYz4SAyhuS25W5HmIsKnF6IG7JdUB21pnh0QfOQ1lCcEwg8NWyt4e7a9vNb//fZPrFcLCq+mt6UfXnuYVq5RS8RnavneViDd5N6Su2aFK4whsxxRmJoif7dJWT+chAcUGwWlZxUbGvoOWMB3G8DV6VDnhGda0U96+67dma+Nv9E085BKS4tGcAovVwU7cgXUWywrg032CUiidKOXOU15Ran40Whooteb7Lk+RUuOmzz49sVTJwT/eI1hJVuiV1YSchMZ0NHwXYr6VjCNtQHOfBYpy5AmBEGhHJSSC3kgPn1HwSA52JP2g+oE2lN1hzC8o4Jo1Y8j6DU+PoPuR+FKrKBX0SwGcxLWfvq1CMFwwBVdkDj1fb5FSBa2TvRsV+KQx8ksmqvY3/bRSHobT0Bl+kbLmt0tTUm+R7Y9tHXnEz2tuNvmP5aHV+g6ZlruKt2lwSJfaPzujaeV5DSNv4+yyJnDLfBRUzCefUVy5aId4uCPDgO/JDcDDEegEi6k6RD2wfQFIK8X0HUkbHUt6YigPf5ZcLX+0X9ezZFfZ+0oInafUsOsICdEzpL4wIlsdXL9P1Vi443C3RLBTMEfR/u9yh61fxe3tVeJmfWxowtX9iage1AwJTiXHCvEDedDpY4omThjVx/SYLcBLMPk8Wi5Nen1zWtD6NsJIh8Y+WOxwQATkh/am6qDgLjdayMNiBblkaO9v7fj7mxybs0lRhqpVAYJEDXv++KavYBBKZWqp7kLnRMr0JlWmty201Js0Kj6EkatLZd2kDdGgUvp6ysOgjFO/IvCN7dmQ7wzBsKbPdxyTsC+X8CPg+XM3S5TT4t+qMOLotFHsEN+9geGbqdJYz0xGgVAbWzhxNWl8h6WZhk96k9pCCvsuvjwe6qpVQ5
- 6Z0BQFdKikglYoMlYcES1SpehdgBV2xwU=
-Received: from pop-os.localdomain (81-231-61-187-no276.tbcn.telia.com. [81.231.61.187])
-        by smtp.gmail.com with ESMTPSA id vk8-20020a170907cbc800b00a352afd952fsm5396812ejc.43.2024.01.31.06.15.24
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 31 Jan 2024 06:15:25 -0800 (PST)
-Date: Wed, 31 Jan 2024 15:15:23 +0100
-From: Joakim Bech <joakim.bech@linaro.org>
-To: John Stultz <jstultz@google.com>
-Cc: Jeffrey Kardatzke <jkardatzke@google.com>,
-	Yong Wu <yong.wu@mediatek.com>, Rob Herring <robh+dt@kernel.org>,
-	Matthias Brugger <matthias.bgg@gmail.com>, christian.koenig@amd.com,
-	Sumit Semwal <sumit.semwal@linaro.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	 Content-Type:Content-Disposition:In-Reply-To; b=OL5ytHjmdA0Fv/fMc1v7th6xaI37Ym8HTTV9LXUkcGDjC3cfWB0lAKnmB3R2/mnrLUuC7ma1BrMVlhicQeWOjkeOuZ4QlEUs/g6IVuJ0jDIqhWd2yNEtvoxOsIahQ5gyGzaCSqii0tS1McNgZ1FnVR/p3+aBL0iv+Ldc2el+/Zc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=VsV+tq69; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 46730C433C7;
+	Wed, 31 Jan 2024 14:23:20 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1706711000;
+	bh=r8Og+/DD3KNkZEqwH8xuXR2iH05bswrjdZXhOtKd4Gw=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=VsV+tq69DUehuRNgv5A4JPVD5aK3gK62Cy48n6gfWqHd6EiAhN7pmjv+b2wow2hxb
+	 nZoYTTbe+cbBhz6NmKtSUqOwEqI897AJBSsoTAc5hssNSpCZZSbs8CSyrH7h+VyNz8
+	 TkHum2dmjY8Ln1ozPjk6nhqgYvHg2u7R+2tzCs7+LUmxjr3AaahOXogASNkK5gv1IF
+	 Kf0/CMO8m03BRdcl+d9IX7pU5CpdPzVlaVEiOdfnq2NtcEnh9ZbQ7t0HCAOEw3BxZZ
+	 2BuRQ/5if5zFT+ECx6jbvX+d1SMR7N7gIw521oprGvzDgw4DM9LRrIN2sqBx5ApNM9
+	 GdFu29aTu0fyA==
+Date: Wed, 31 Jan 2024 08:23:18 -0600
+From: Rob Herring <robh@kernel.org>
+To: Dragan Cvetic <dragan.cvetic@amd.com>
+Cc: Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
 	Conor Dooley <conor+dt@kernel.org>,
-	Benjamin Gaignard <benjamin.gaignard@collabora.com>,
-	Brian Starkey <Brian.Starkey@arm.com>, tjmercier@google.com,
-	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	linux-media@vger.kernel.org, dri-devel@lists.freedesktop.org,
-	linaro-mm-sig@lists.linaro.org,
-	linux-arm-kernel@lists.infradead.org,
-	linux-mediatek@lists.infradead.org,
-	Robin Murphy <robin.murphy@arm.com>,
-	Vijayanand Jitta <quic_vjitta@quicinc.com>,
-	Pavel Machek <pavel@ucw.cz>, Simon Ser <contact@emersion.fr>,
-	Pekka Paalanen <ppaalanen@gmail.com>, jianjiao.zeng@mediatek.com,
-	kuohong.wang@mediatek.com, youlin.pei@mediatek.com
-Subject: Re: [PATCH v4 3/7] dma-buf: heaps: restricted_heap: Add private heap
- ops
-Message-ID: <20240131141523.yh74hsddtuooqfgi@pop-os.localdomain>
-References: <20240112092014.23999-1-yong.wu@mediatek.com>
- <20240112092014.23999-4-yong.wu@mediatek.com>
- <CANDhNCrxpeqEhJD0xJzu3vm8a4jMXD2v+_dbDNvaKhLsLB5-4g@mail.gmail.com>
- <CA+ddPcNdniUTpE_pJb-fL7+MHNSUZTkQojL48iqvW9JPr-Tc-g@mail.gmail.com>
- <CANDhNCqieBaH-Wi=vy3NSKTpwHcWef6qMOFi-7sgdGiDW7JtwA@mail.gmail.com>
- <CA+ddPcP9bgApNw_Nu7bxcV-oK_s3Bq1i5qun+vNSuRUO9tPEkA@mail.gmail.com>
- <CANDhNCrGxhHJLA2ct-iqemLAsQRt3C8m5=xAD3_dDdKH6Njrdg@mail.gmail.com>
+	Derek Kiernan <derek.kiernan@amd.com>,
+	Jonathan Corbet <corbet@lwn.net>,
+	Michal Simek <michal.simek@amd.com>,
+	"Erim, Salih" <salih.erim@amd.com>,
+	"open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" <devicetree@vger.kernel.org>,
+	open list <linux-kernel@vger.kernel.org>,
+	"open list:DOCUMENTATION" <linux-doc@vger.kernel.org>,
+	"moderated list:ARM/ZYNQ ARCHITECTURE" <linux-arm-kernel@lists.infradead.org>
+Subject: Re: [PATCH v4] dt-bindings: misc: xlnx,sd-fec: convert bindings to
+ yaml
+Message-ID: <20240131142318.GA1091307-robh@kernel.org>
+References: <20240130161259.4118510-1-dragan.cvetic@amd.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <CANDhNCrGxhHJLA2ct-iqemLAsQRt3C8m5=xAD3_dDdKH6Njrdg@mail.gmail.com>
+In-Reply-To: <20240130161259.4118510-1-dragan.cvetic@amd.com>
 
-On Fri, Jan 12, 2024 at 05:23:07PM -0800, John Stultz wrote:
-> On Fri, Jan 12, 2024 at 4:13 PM Jeffrey Kardatzke <jkardatzke@google.com> wrote:
-> > On Fri, Jan 12, 2024 at 3:51 PM John Stultz <jstultz@google.com> wrote:
-> > >
-> > > On Fri, Jan 12, 2024 at 3:27 PM Jeffrey Kardatzke <jkardatzke@google.com> wrote:
-> > > > On Fri, Jan 12, 2024 at 2:52 PM John Stultz <jstultz@google.com> wrote:
-> > > > > I know part of this effort here is to start to centralize all these
-> > > > > vendor specific restricted buffer implementations, which I think is
-> > > > > great, but I just worry that in doing it in the dmabuf heap interface,
-> > > > > it is a bit too user-facing. The likelihood of encoding a particular
-> > > > > semantic to the singular "restricted_heap" name seems high.
-> > > >
-> > > > In patch #5 it has the actual driver implementation for the MTK heap
-> > > > that includes the heap name of "restricted_mtk_cm", so there shouldn't
-> > > > be a heap named "restricted_heap" that's actually getting exposed. The
-> > >
-> > > Ah, I appreciate that clarification! Indeed, you're right the name is
-> > > passed through. Apologies for missing that detail.
-> > >
-> > > > restricted_heap code is a framework, and not a driver itself.  Unless
-> > > > I'm missing something in this patchset...but that's the way it's
-> > > > *supposed* to be.
-> > >
-> > > So I guess I'm not sure I understand the benefit of the extra
-> > > indirection. What then does the restricted_heap.c logic itself
-> > > provide?
-> > > The dmabuf heaps framework already provides a way to add heap implementations.
-> >
-> > So in the v1 patchset, it was done with just a Mediatek specific heap
-> > with no framework or abstractions for another vendor to build on top
-> > of. The feedback was to make this more generic since Mediatek won't be
-> > the only vendor who wants a restricted heap..which is how it ended up
-> > here. There was more code in the framework before relating to TEE
-> > calls, but then that was moved to the vendor specific code since not
-> > all restricted heaps are allocated through a TEE.
+On Tue, Jan 30, 2024 at 04:12:58PM +0000, Dragan Cvetic wrote:
+> Convert AMD (Xilinx) sd-fec bindings to yaml format, so it can validate
+> dt-entries as well as any future additions to yaml.
+> Change in clocks is due to IP is itself configurable and
+> only the first two clocks are in all combinations. The last
+> 6 clocks can be present in some of them. It means order is
+> not really fixed and any combination is possible.
+> Interrupt may or may not be present.
+> The documentation for sd-fec bindings is now YAML, so update the
+> MAINTAINERS file.
+> Update the link to the new yaml file in xilinx_sdfec.rst.
 > 
-> Yeah. I apologize, as I know how frustrating the contradictory
-> feedback can be. I don't mean to demotivate. :(
+> Signed-off-by: Dragan Cvetic <dragan.cvetic@amd.com>
+> ---
+> Changes in v2:
+> ---
+> Drop clocks description.
+> Use "contains:" with enum for optional clock-names and update
+> comment explaining diference from the original DT binding file.
+> Remove trailing full stops.
+> Add more details in sdfec-code description.
+> Set sdfec-code to "string" not "string-array"
+> ---
+> Changes in v3:
+> Fix a mistake in example, set interrupt type to 0.
+> ---
+> Changes in v4:
+> Set interrupt type to high level sensitive.
+> Remove '|' from descriptions, no need to preserve format.
+> Remove not needed empty line.
+> ---
+>  .../devicetree/bindings/misc/xlnx,sd-fec.txt  |  58 --------
+>  .../devicetree/bindings/misc/xlnx,sd-fec.yaml | 137 ++++++++++++++++++
+>  Documentation/misc-devices/xilinx_sdfec.rst   |   2 +-
+>  MAINTAINERS                                   |   2 +-
+>  4 files changed, 139 insertions(+), 60 deletions(-)
+>  delete mode 100644 Documentation/devicetree/bindings/misc/xlnx,sd-fec.txt
+>  create mode 100644 Documentation/devicetree/bindings/misc/xlnx,sd-fec.yaml
 > 
-> I think folks would very much like to see consolidation around the
-> various implementations, and I agree!
-> I just worry that creating the common framework for this concept in a
-> dmabuf heaps driver is maybe too peripheral/close to userland.
-> 
-> > This was also desirable for the V4L2 pieces since there's going to be
-> > a V4L2 flag set when using restricted dma_bufs (and it wants to
-> > validate that)....so in order to keep that more generic, there should
-> > be a higher level concept of restricted dma_bufs that isn't specific
-> > to a single vendor.  One other thing that would ideally come out of
-> > this is a cleaner way to check that a dma_buf is restricted or not.
-> 
-> Yeah. If there is a clear meaning to "restricted" here, I think having
-> a query method on the dmabuf is reasonable.
-> My only fret is if the meaning is too vague and userland starts
-> depending on it meaning what it meant for vendor1, but doesn't mean
-> for vendor2.
-> 
-> So we need some clarity in what "restricted" really means.  For
-> instance, it being not cpu mappable vs other potential variations like
-> being cpu mappable, but not cpu accessible.  Or not cpu mappable, but
-> only mappable between a set of 3 devices (Which 3 devices?! How can we
-> tell?).
-> 
-Can we flip things around? I.e., instead of saying which devices are
-allowed to use the restricted buffer, can we instead say where it's not
-allowed to be used? My view has been that by default the contents of the
-types of buffers where talking about here is only accessible to things
-running on the secure side, i.e, typically S-EL3, S-EL1 and a specific
-Trusted Application running in S-EL0. I guess that serves as some kind
-of baseline. 
+> diff --git a/Documentation/devicetree/bindings/misc/xlnx,sd-fec.txt b/Documentation/devicetree/bindings/misc/xlnx,sd-fec.txt
+> deleted file mode 100644
+> index e3289634fa30..000000000000
+> --- a/Documentation/devicetree/bindings/misc/xlnx,sd-fec.txt
+> +++ /dev/null
+> @@ -1,58 +0,0 @@
+> -* Xilinx SDFEC(16nm) IP *
+> -
+> -The Soft Decision Forward Error Correction (SDFEC) Engine is a Hard IP block
+> -which provides high-throughput LDPC and Turbo Code implementations.
+> -The LDPC decode & encode functionality is capable of covering a range of
+> -customer specified Quasi-cyclic (QC) codes. The Turbo decode functionality
+> -principally covers codes used by LTE. The FEC Engine offers significant
+> -power and area savings versus implementations done in the FPGA fabric.
+> -
+> -
+> -Required properties:
+> -- compatible: Must be "xlnx,sd-fec-1.1"
+> -- clock-names : List of input clock names from the following:
+> -    - "core_clk", Main processing clock for processing core (required)
+> -    - "s_axi_aclk", AXI4-Lite memory-mapped slave interface clock (required)
+> -    - "s_axis_din_aclk", DIN AXI4-Stream Slave interface clock (optional)
+> -    - "s_axis_din_words-aclk", DIN_WORDS AXI4-Stream Slave interface clock (optional)
+> -    - "s_axis_ctrl_aclk",  Control input AXI4-Stream Slave interface clock (optional)
+> -    - "m_axis_dout_aclk", DOUT AXI4-Stream Master interface clock (optional)
+> -    - "m_axis_dout_words_aclk", DOUT_WORDS AXI4-Stream Master interface clock (optional)
+> -    - "m_axis_status_aclk", Status output AXI4-Stream Master interface clock (optional)
+> -- clocks : Clock phandles (see clock_bindings.txt for details).
+> -- reg: Should contain Xilinx SDFEC 16nm Hardened IP block registers
+> -  location and length.
+> -- xlnx,sdfec-code : Should contain "ldpc" or "turbo" to describe the codes
+> -  being used.
+> -- xlnx,sdfec-din-words : A value 0 indicates that the DIN_WORDS interface is
+> -  driven with a fixed value and is not present on the device, a value of 1
+> -  configures the DIN_WORDS to be block based, while a value of 2 configures the
+> -  DIN_WORDS input to be supplied for each AXI transaction.
+> -- xlnx,sdfec-din-width : Configures the DIN AXI stream where a value of 1
+> -  configures a width of "1x128b", 2 a width of "2x128b" and 4 configures a width
+> -  of "4x128b".
+> -- xlnx,sdfec-dout-words : A value 0 indicates that the DOUT_WORDS interface is
+> -  driven with a fixed value and is not present on the device, a value of 1
+> -  configures the DOUT_WORDS to be block based, while a value of 2 configures the
+> -  DOUT_WORDS input to be supplied for each AXI transaction.
+> -- xlnx,sdfec-dout-width : Configures the DOUT AXI stream where a value of 1
+> -  configures a width of "1x128b", 2 a width of "2x128b" and 4 configures a width
+> -  of "4x128b".
+> -Optional properties:
+> -- interrupts: should contain SDFEC interrupt number
+> -
+> -Example
+> ----------------------------------------
+> -	sd_fec_0: sd-fec@a0040000 {
+> -		compatible = "xlnx,sd-fec-1.1";
+> -		clock-names = "core_clk","s_axi_aclk","s_axis_ctrl_aclk","s_axis_din_aclk","m_axis_status_aclk","m_axis_dout_aclk";
+> -		clocks = <&misc_clk_2>,<&misc_clk_0>,<&misc_clk_1>,<&misc_clk_1>,<&misc_clk_1>, <&misc_clk_1>;
+> -		reg = <0x0 0xa0040000 0x0 0x40000>;
+> -		interrupt-parent = <&axi_intc>;
+> -		interrupts = <1 0>;
+> -		xlnx,sdfec-code = "ldpc";
+> -		xlnx,sdfec-din-words = <0>;
+> -		xlnx,sdfec-din-width = <2>;
+> -		xlnx,sdfec-dout-words = <0>;
+> -		xlnx,sdfec-dout-width = <1>;
+> -	};
+> diff --git a/Documentation/devicetree/bindings/misc/xlnx,sd-fec.yaml b/Documentation/devicetree/bindings/misc/xlnx,sd-fec.yaml
+> new file mode 100644
+> index 000000000000..7be8439861a9
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/misc/xlnx,sd-fec.yaml
+> @@ -0,0 +1,137 @@
+> +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/misc/xlnx,sd-fec.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: Xilinx SDFEC(16nm) IP
+> +
+> +maintainers:
+> +  - Cvetic, Dragan <dragan.cvetic@amd.com>
+> +  - Erim, Salih <salih.erim@amd.com>
+> +
+> +description:
+> +  The Soft Decision Forward Error Correction (SDFEC) Engine is a Hard IP block
+> +  which provides high-throughput LDPC and Turbo Code implementations.
+> +  The LDPC decode & encode functionality is capable of covering a range of
+> +  customer specified Quasi-cyclic (QC) codes. The Turbo decode functionality
+> +  principally covers codes used by LTE. The FEC Engine offers significant
+> +  power and area savings versus implementations done in the FPGA fabric.
+> +
+> +properties:
+> +  compatible:
+> +    const: xlnx,sd-fec-1.1
+> +
+> +  reg:
+> +    maxItems: 1
+> +
+> +  clocks:
+> +    minItems: 2
+> +    maxItems: 8
+> +    additionalItems: true
+> +    items:
+> +      - description: Main processing clock for processing core
+> +      - description: AXI4-Lite memory-mapped slave interface clock
+> +      - description: Control input AXI4-Stream Slave interface clock
+> +      - description: DIN AXI4-Stream Slave interface clock
+> +      - description: Status output AXI4-Stream Master interface clock
+> +      - description: DOUT AXI4-Stream Master interface clock
+> +      - description: DIN_WORDS AXI4-Stream Slave interface clock
+> +      - description: DOUT_WORDS AXI4-Stream Master interface clock
+> +
+> +  clock-names:
+> +    minItems: 2
+> +    maxItems: 8
+> +    additionalItems: true
+> +    items:
+> +      - const: core_clk
+> +      - const: s_axi_aclk
+> +    contains:
+> +      enum:
+> +        - s_axis_ctrl_aclk
+> +        - s_axis_din_aclk
+> +        - m_axis_status_aclk
+> +        - m_axis_dout_aclk
+> +        - s_axis_din_words_aclk
+> +        - m_axis_dout_words_aclk
 
-From there, things turns to a more dynamic nature, where firewalls etc,
-can be configured to give access to various IPs, blocks and runtimes.
+This doesn't do what you think. It requires at least one of these clocks 
+be present, so then at least 3 clocks. It also allows anything else to 
+be present. You need:
 
-I understand that it's nice to be able to know all this from the Linux
-kernel point of view, but does it have to be aware of this? What's the
-major drawback if Linux doesn't know about it?
+allOf:
+  - minItems: 2
+    maxItems: 8
+    additionalItems: true
+    items:
+      - const: core_clk
+      - const: s_axi_aclk
+  - items:
+      enum:
+        - core_clk
+        - s_axi_aclk
+        - s_axis_ctrl_aclk
+        - s_axis_din_aclk
+        - m_axis_status_aclk   
+        - m_axis_dout_aclk
+        - s_axis_din_words_aclk
+        - m_axis_dout_words_aclk
 
-> And if there is variation, maybe we need to enumerate the types of
-> "restricted" buffers so we can be specific when it's queried.
-> 
-> That's where maybe having the framework for this be more central or
-> closer to the kernel mm code and not just a sub-type of a dmabuf heap
-> driver might be better?
-> 
-> > The current V4L2 patchset just attaches the dma_buf and then checks if
-> > the page table is empty....and if so, it's restricted. But now I see
-> > there's other feedback indicating attaching a restricted dma_buf
-> > shouldn't even be allowed, so we'll need another strategy for
-> > detecting them. Ideally there is some function/macro like
-> > is_dma_buf_restricted(struct dma_buf*) that can indicate that...but we
-> > haven't come up with a good way to do that yet which doesn't involve
-> > adding another field to dma_buf or to dma_buf_ops (and if such a thing
-> > would be fine, then OK...but I had assumed we would get pushback on
-> > modifying either of those structs).
-> 
-> If there's a need and the best place to put something is in the
-> dma_buf or dma_buf_ops, that's where it should go.  Folks may
-> reasonably disagree if it's the best place (there may be yet better
-> spots for the state to sit in the abstractions), but for stuff going
-> upstream, there's no reason to try to hack around things or smuggle
-> state just to avoid changing core structures. Especially if core
-> structures are internal only and have no ABI implications.
-> 
-> Sima's suggestion that attachments should fail if the device cannot
-> properly map the restricted buffer makes sense to me. Though I don't
-> quite see why all attachments should fail, and I don't really like the
-> idea of a private api, but I need to look more at the suggested virtio
-> example (but even they said that wasn't their preferred route).
-> 
-> My sense of attach was only that it was supposed to connect a device's
-> interest in the buffer, allowing lazy allocation to satisfy various
-> device constraints before first mapping - a design feature that I
-> don't think anyone ever implemented.  So my sense was it didn't have
-> much meaning otherwise (but was a requirement to call before map). But
-> that may have evolved since the early days.
-> 
-> And I'm sure the method to figure out if the attachment can work with
-> the device may be complicated/difficult, so it sounding reasonable can
-> be far from it being reasonable to implement.
-> 
-> And again, I don't mean to frustrate or demotivate here. I'm really
-> excited to see this effort being pushed upstream!
-> 
-> thanks
-> -john
-
--- 
-// Regards
-Joakim
 
