@@ -1,80 +1,74 @@
-Return-Path: <devicetree+bounces-37079-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-37080-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6AE2D8439D0
-	for <lists+devicetree@lfdr.de>; Wed, 31 Jan 2024 09:55:08 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id B986B8439DC
+	for <lists+devicetree@lfdr.de>; Wed, 31 Jan 2024 09:55:42 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 9D6471C25E6D
-	for <lists+devicetree@lfdr.de>; Wed, 31 Jan 2024 08:55:07 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 514F9B29B40
+	for <lists+devicetree@lfdr.de>; Wed, 31 Jan 2024 08:55:40 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7180269D14;
-	Wed, 31 Jan 2024 08:46:58 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C90CB60869;
+	Wed, 31 Jan 2024 08:49:31 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="iqYyOtWz"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="e78gPVkS"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3F388605DD;
-	Wed, 31 Jan 2024 08:46:57 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9425A69DF0;
+	Wed, 31 Jan 2024 08:49:31 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1706690818; cv=none; b=Jpmj7Rs8fzpzve2n2GCw+Ea52tp+bdFTi3lBrrwCu/fWd9a4t6MvmcqIRkilsH2fpmaIYv+hi9cvCG/Am/d5a2fLQtPrihZr3Hu3qn3JBIzqSin3v9gFs0B7+qAveUmk4IuR+GORs3GNHRmr6xyxxGDHSUcwqcDOHhnntxR4UMU=
+	t=1706690971; cv=none; b=ryhUjxMZR7IBNSBvzish2VZ53PW3r0WdViaDvCy234ioZxhs8ZOecpYbb7pDKO6760ZZjx26QLwROEQDRKRZUt4UBiRfcrSh6F8pgS7ckYHmxsywPaY4WxzaT/WwiaI7TQWjJ6Z7oqBEnM67x/a4LsrUgh6u8Ao4WSj+eKOlIcs=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1706690818; c=relaxed/simple;
-	bh=4BkvKFgglVdCeGCFuHgP4W0v2mzK44qTzIo31u8u7+c=;
+	s=arc-20240116; t=1706690971; c=relaxed/simple;
+	bh=DfZcsWA9ZiJQJnhw+Dlmf+rz4QBaLMOI1TuUkGh7YpY=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=dEpazUu1yI0zqMeFwphBwb+mNsdxaSphcSEL3JQCNs2lcD6Bx/GMxIh3JPTd6fmwmBlWPfjG8/W5ms3MTQ/zP+/PDZMb3pDBZdd9WTOQ4jXtqmm0tlM2pvHmzrTLQZk/aMYo8GdB3hwXG0Nlx5peLgIOZIY4Tjt/Bw28B9MYEYQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=iqYyOtWz; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 632E0C433C7;
-	Wed, 31 Jan 2024 08:46:50 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=HcYeZbMw0P3j4Io0ST+Ky7cRUzcVrqoZdrQgwAR9Y+sgs+9PQL1610B6jH6jT/LaqbhQWgyG6q7iNCTblCNw5tfUMd8AbbocPsInLNYt5X/dibSR2zuqVMvViXiqHBIbb6NDI0a6RTzZX+Nu3vcclGSCx1qVy4nbIkLQnAClLz4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=e78gPVkS; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 242BFC433F1;
+	Wed, 31 Jan 2024 08:49:26 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1706690817;
-	bh=4BkvKFgglVdCeGCFuHgP4W0v2mzK44qTzIo31u8u7+c=;
+	s=k20201202; t=1706690971;
+	bh=DfZcsWA9ZiJQJnhw+Dlmf+rz4QBaLMOI1TuUkGh7YpY=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=iqYyOtWzgUP5d3v0ololIBtkDRw9WWO09sd7gzCIIZgBxAVy9xat/jVBxOlXH+Ota
-	 YllfHjS+fywz95pELreHMdcRlqvYFz4jsazUgYcpK+JUOomn95jfjK2JzWKm6LhjNF
-	 Sw3frW+HAnotWiExQZFAHpvynylQmuOMLTnCWCw/JEPkwWco4Lk/KNihcL57pCHTwi
-	 yQv9czAHewVkFrRyByVCT4EgG8MlFLQF8x664CKTKg2PXEClUz0pSurPWpB9YnUqui
-	 nPxYK89diN8aDA5sgV5J6Anwow34s92tz/Dz6OAyi0s0exKKSK5qWNNnYx3HU1Fm55
-	 kJu35LRJzFDoQ==
-Date: Wed, 31 Jan 2024 14:16:45 +0530
-From: Manivannan Sadhasivam <mani@kernel.org>
-To: Viresh Kumar <viresh.kumar@linaro.org>
-Cc: Manivannan Sadhasivam <mani@kernel.org>,
-	Krishna chaitanya chundru <quic_krichai@quicinc.com>,
-	Bjorn Andersson <andersson@kernel.org>,
-	Konrad Dybcio <konrad.dybcio@linaro.org>,
-	Bjorn Helgaas <bhelgaas@google.com>,
-	Lorenzo Pieralisi <lpieralisi@kernel.org>,
-	Krzysztof =?utf-8?Q?Wilczy=C5=84ski?= <kw@linux.com>,
-	Rob Herring <robh@kernel.org>,
+	b=e78gPVkSswXNVxrTpgc3uqnClcHNOzUx0e+TnHsysfypkrDC7guPj7rnKflIizUtN
+	 NUiJaN1GtNrkmmJLGqaaT0TUv+U5ep074UDrDzt+gZe1LtLowojHTMOeYz001u9gk2
+	 3OUf70GW/bZCCPY+xd4+lf7eExvmEiMYsQltxViaAwgoiOzsvHBQ+RE9Q4pwqwLA6M
+	 CG5xYe5/LHMrt6bP9qs8t1VNW891rQdiDtrsw+NrdI8BT/RAoELujxl2CCMLDWQYKt
+	 Wpb5JnjbQaNrrzW/Xgm+Z2QNPhqQQ7xzgGXms59nifzufP/bOgsIa9W78U0el6J7oH
+	 werrdYsUuNm6w==
+Date: Wed, 31 Jan 2024 08:49:24 +0000
+From: Lee Jones <lee@kernel.org>
+To: Biju Das <biju.das.jz@bp.renesas.com>
+Cc: Wim Van Sebroeck <wim@linux-watchdog.org>,
+	Guenter Roeck <linux@roeck-us.net>,
+	Dmitry Torokhov <dmitry.torokhov@gmail.com>,
+	Rob Herring <robh+dt@kernel.org>,
 	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
 	Conor Dooley <conor+dt@kernel.org>,
-	Rob Herring <robh+dt@kernel.org>,
-	Johan Hovold <johan+linaro@kernel.org>,
-	Brian Masney <bmasney@redhat.com>,
-	Georgi Djakov <djakov@kernel.org>, linux-arm-msm@vger.kernel.org,
-	vireshk@kernel.org, quic_vbadigan@quicinc.com,
-	quic_skananth@quicinc.com, quic_nitegupt@quicinc.com,
-	linux-pci@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v6 5/6] arm64: dts: qcom: sm8450: Add opp table support
- to PCIe
-Message-ID: <20240131084645.GA3481@thinkpad>
-References: <20240112-opp_support-v6-0-77bbf7d0cc37@quicinc.com>
- <20240112-opp_support-v6-5-77bbf7d0cc37@quicinc.com>
- <20240129160420.GA27739@thinkpad>
- <20240130061111.eeo2fzaltpbh35sj@vireshk-i7>
- <20240130071449.GG32821@thinkpad>
- <20240130083619.lqbj47fl7aa5j3k5@vireshk-i7>
- <20240130094804.GD83288@thinkpad>
- <20240130095508.zgufudflizrpxqhy@vireshk-i7>
- <20240130131625.GA2554@thinkpad>
- <20240131052335.6nqpmccgr64voque@vireshk-i7>
+	Support Opensource <support.opensource@diasemi.com>,
+	"Rafael J. Wysocki" <rafael@kernel.org>,
+	Daniel Lezcano <daniel.lezcano@linaro.org>,
+	Zhang Rui <rui.zhang@intel.com>, Lukasz Luba <lukasz.luba@arm.com>,
+	Steve Twiss <stwiss.opensource@diasemi.com>,
+	"linux-input@vger.kernel.org" <linux-input@vger.kernel.org>,
+	"devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+	"linux-pm@vger.kernel.org" <linux-pm@vger.kernel.org>,
+	"linux-watchdog@vger.kernel.org" <linux-watchdog@vger.kernel.org>,
+	Geert Uytterhoeven <geert+renesas@glider.be>,
+	Prabhakar Mahadev Lad <prabhakar.mahadev-lad.rj@bp.renesas.com>,
+	"biju.das.au" <biju.das.au@gmail.com>,
+	"linux-renesas-soc@vger.kernel.org" <linux-renesas-soc@vger.kernel.org>
+Subject: Re: [PATCH v6 0/8] Convert DA906{1,2} bindings to json-schema
+Message-ID: <20240131084924.GD8551@google.com>
+References: <20231214080911.23359-1-biju.das.jz@bp.renesas.com>
+ <170316812973.586675.6248412029985031979.b4-ty@kernel.org>
+ <20231221143318.GH10102@google.com>
+ <TYCPR01MB1126921A54B9260CC33505FCA867E2@TYCPR01MB11269.jpnprd01.prod.outlook.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -84,49 +78,69 @@ MIME-Version: 1.0
 Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <20240131052335.6nqpmccgr64voque@vireshk-i7>
+In-Reply-To: <TYCPR01MB1126921A54B9260CC33505FCA867E2@TYCPR01MB11269.jpnprd01.prod.outlook.com>
 
-On Wed, Jan 31, 2024 at 10:53:35AM +0530, Viresh Kumar wrote:
-> On 30-01-24, 18:46, Manivannan Sadhasivam wrote:
-> > Agree. But what I'm saying is, right now there is no DT property in the
-> > interconnect consumer nodes to specificy the bw requirements. This is all
-> > hardcoded in the respective ICC consumer drivers.
-> 
-> I thought there are a lot of users already in there..
-> 
-> $ git grep -i opp.*bps arch/arm64/boot/dts/ | wc -l
-> 864
+On Mon, 29 Jan 2024, Biju Das wrote:
 
-Most of the hits are from CPU nodes... For some reasons, peripheral drivers are
-sticking to hardcoded values.
-
+> Hi Lee Jones,
 > 
-> > But when we use OPP to control bw, the bw requirements come from DT. This is
-> > what I see as a difference. Because, only nodes making use of OPP will specify
-> > bw in DT and other nodes making use of just ICC will not.
+> > -----Original Message-----
+> > From: Lee Jones <lee@kernel.org>
+> > Sent: Thursday, December 21, 2023 2:33 PM
+> > Subject: Re: [PATCH v6 0/8] Convert DA906{1,2} bindings to json-schema
 > > 
-> > Maybe I'm worrying too much about these details... But it looks like
-> > inconsistency to me.
+> > On Thu, 21 Dec 2023, Lee Jones wrote:
+> > 
+> > > On Thu, 14 Dec 2023 08:09:03 +0000, Biju Das wrote:
+> > > > Convert the below bindings to json-schema
+> > > > 1) DA906{1,2} mfd bindings
+> > > > 2) DA906{1,2,3} onkey bindings
+> > > > 3) DA906{1,2,3} thermal bindings
+> > > >
+> > > > Also add fallback for DA9061 watchdog device and document
+> > > > DA9063 watchdog device.
+> > > >
+> > > > [...]
+> > >
+> > > Applied, thanks!
+> > >
+> > > [1/8] dt-bindings: mfd: da9062: Update watchdog description
+> > >       commit: 9e7b13b805bcbe5335c2936d4c7ea0323ac69a81
+> > > [2/8] dt-bindings: watchdog: dlg,da9062-watchdog: Add fallback for
+> > DA9061 watchdog
+> > >       commit: 28d34db7772f18490b52328f04a3bf69ed5390d2
+> > > [3/8] dt-bindings: watchdog: dlg,da9062-watchdog: Document DA9063
+> > watchdog
+> > >       commit: d2a7dbb808870c17cffa2749ea877f61f298d098
+> > > [4/8] dt-bindings: mfd: dlg,da9063: Update watchdog child node
+> > >       commit: d4018547a15a94c7e865b2cef82bff1cd43a32b3
+> > > [5/8] dt-bindings: input: Convert da906{1,2,3} onkey to json-schema
+> > >       commit: db459d3da7bb9c37cb86897c7b321a49f8e40968
+> > > [6/8] dt-bindings: thermal: Convert da906{1,2} thermal to json-schema
+> > >       commit: 998f499c843e360bcd9ee1fe9addc3b5d32f1234
+> > > [7/8] dt-bindings: mfd: dlg,da9063: Sort child devices
+> > >       commit: 2bbf9d2a8e3bc933703dfda87cac953bed458496
+> > > [8/8] dt-bindings: mfd: dlg,da9063: Convert da9062 to json-schema
+> > >       commit: 522225161830f6a93f2aaabda99226c1ffddc8c4
+> > 
+> > Submitted for testing.  Pull-request to follow.
 > 
-> Right. So is there inconsistency right now ? Yes, there is.
+> The commit dc805ea058c0e ("MAINTAINERS: rectify entry for DIALOG SEMICONDUCTOR DRIVERS")
+> in mainline will give a conflict for patch#1.
 > 
-> The important question we need to answer is where do we want to see
-> all these drivers (specially new ones) in the future. What's the right
-> thing to do eventually ? Hardcode stuff ? Or Move it to DT ?
+> Patch#2 and patch#3 are already in mainline.
 > 
-> The answer is DT for me, so the code can be generic enough to be
-> reused. This is just one step in the right direction I guess.
-> Eventually the drivers must get simplified, which they are I guess.
 > 
+> Please let me know if you want me to rebase and resend the patch series
 
-I completely agree that hardcoding the bw values is not the right thing, but was
-worried about the inconsistency. But anyway, I hope either ICC will also move
-towards DT for bw or we will convert all the drivers to use OPP in the future.
+That would be helpful, thanks.
 
-Thanks for the discussion so far! It clarified.
+Please ensure all of the patches have my:
 
-- Mani
+Acked-by: Lee Jones <lee@kernel.org>
+
+... applied, then I'll know to just apply them again.
 
 -- 
-மணிவண்ணன் சதாசிவம்
+Lee Jones [李琼斯]
 
