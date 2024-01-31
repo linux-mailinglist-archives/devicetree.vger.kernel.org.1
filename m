@@ -1,556 +1,259 @@
-Return-Path: <devicetree+bounces-37147-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-37148-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 90B8F843C9A
-	for <lists+devicetree@lfdr.de>; Wed, 31 Jan 2024 11:28:30 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id C679C843CA6
+	for <lists+devicetree@lfdr.de>; Wed, 31 Jan 2024 11:29:28 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 4719A295D66
-	for <lists+devicetree@lfdr.de>; Wed, 31 Jan 2024 10:28:29 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 3D8EF1F3130E
+	for <lists+devicetree@lfdr.de>; Wed, 31 Jan 2024 10:29:28 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6A52069D09;
-	Wed, 31 Jan 2024 10:27:42 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5A5F469D05;
+	Wed, 31 Jan 2024 10:29:23 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=arndb.de header.i=@arndb.de header.b="r1w+SIgG";
+	dkim=pass (2048-bit key) header.d=messagingengine.com header.i=@messagingengine.com header.b="prxagr4L"
 X-Original-To: devicetree@vger.kernel.org
-Received: from relmlie5.idc.renesas.com (relmlor1.renesas.com [210.160.252.171])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9037D69D0D;
-	Wed, 31 Jan 2024 10:27:39 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=210.160.252.171
+Received: from out1-smtp.messagingengine.com (out1-smtp.messagingengine.com [66.111.4.25])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+	(No client certificate requested)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5F8BE679E1;
+	Wed, 31 Jan 2024 10:29:21 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=66.111.4.25
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1706696862; cv=none; b=S1lfR8+4teWPn+eRTusLwipxdcDJGOIEfW0gw0i65NE+12YTzNE3gcjcUEZnmQ15+CYQEDoz7ktPO9tdXqXuyRWSpMw1wy1n9o+9u3IvdARgXqbkAV6qtMcUa7HWXsWgJHTb5UNoLvgXu0dLYYid89qmwUs+lpJAcXf5s9xwpkI=
+	t=1706696963; cv=none; b=dk3hHH+GlH8o99PbocNQafNofQh1ibF+bPQETRAgeK2lgfefbWwmn8tHeWNEz+8D4bTRr20YyEOTAmuSRt6F47OIJw/y/Vcu0rzlOPNnTUd3hgfZi5BfEW10GZJ4bKHJ/dR6XEuNSSkKmuKHJkiLwX8SlwEThU1xTlRdcfVQtNc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1706696862; c=relaxed/simple;
-	bh=JtsBTB58b0Uq5Upbuv64mSk7VBXAm2DQi6567UxIzVs=;
-	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
-	 MIME-Version; b=FEvzqnkxc978beMIXK50K/A5VltzdKA1uyH758immiO4SqmZBiKwsjpzsEeACIHFAwX+HRR864ngheX3ltySWnO6jquoHxTrsYnmaTyfJ9RVzEX+DYOR217/c++BwElMsHgHhV/rOcak0yP88wDyLAACg9Kze8FGr/oHFVk+s7Y=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=bp.renesas.com; spf=pass smtp.mailfrom=bp.renesas.com; arc=none smtp.client-ip=210.160.252.171
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=bp.renesas.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bp.renesas.com
-X-IronPort-AV: E=Sophos;i="6.05,231,1701097200"; 
-   d="scan'208";a="192377808"
-Received: from unknown (HELO relmlir6.idc.renesas.com) ([10.200.68.152])
-  by relmlie5.idc.renesas.com with ESMTP; 31 Jan 2024 19:27:38 +0900
-Received: from localhost.localdomain (unknown [10.226.92.227])
-	by relmlir6.idc.renesas.com (Postfix) with ESMTP id D2A3141DF0AB;
-	Wed, 31 Jan 2024 19:27:31 +0900 (JST)
-From: Biju Das <biju.das.jz@bp.renesas.com>
-To: Dmitry Torokhov <dmitry.torokhov@gmail.com>,
-	Rob Herring <robh+dt@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Lee Jones <lee@kernel.org>
-Cc: Biju Das <biju.das.jz@bp.renesas.com>,
-	Support Opensource <support.opensource@diasemi.com>,
-	"Rafael J. Wysocki" <rafael@kernel.org>,
-	Daniel Lezcano <daniel.lezcano@linaro.org>,
-	Zhang Rui <rui.zhang@intel.com>,
-	Lukasz Luba <lukasz.luba@arm.com>,
-	Steve Twiss <stwiss.opensource@diasemi.com>,
-	linux-input@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	linux-pm@vger.kernel.org,
-	Geert Uytterhoeven <geert+renesas@glider.be>,
-	Prabhakar Mahadev Lad <prabhakar.mahadev-lad.rj@bp.renesas.com>,
-	Biju Das <biju.das.au@gmail.com>,
-	linux-renesas-soc@vger.kernel.org,
-	Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-	Conor Dooley <conor.dooley@microchip.com>
-Subject: [PATCH v6 RESEND 6/6] dt-bindings: mfd: dlg,da9063: Convert da9062 to json-schema
-Date: Wed, 31 Jan 2024 10:26:56 +0000
-Message-Id: <20240131102656.3379-7-biju.das.jz@bp.renesas.com>
-X-Mailer: git-send-email 2.39.2
-In-Reply-To: <20240131102656.3379-1-biju.das.jz@bp.renesas.com>
-References: <20240131102656.3379-1-biju.das.jz@bp.renesas.com>
+	s=arc-20240116; t=1706696963; c=relaxed/simple;
+	bh=FmRhJrNN5tdkYj1oEn1WGlN9crcXpNJmsF89y7Q5CxM=;
+	h=MIME-Version:Message-Id:In-Reply-To:References:Date:From:To:Cc:
+	 Subject:Content-Type; b=UX/nDSKraDQnzX4DfkiJmamYy6ac8pdhCvUfEm+3Ik9dDReOUBXvGK2kS5g2MqDE3xP1TWPv9I0Bqg+lPl0Wrn3SclVfd9tctB6DlSRaVATa4VRTsQZFKDap5N+Zsk1M/XGivNyADib9/NA7skAIa29IuwrIhXinS/U4GeKguT0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arndb.de; spf=pass smtp.mailfrom=arndb.de; dkim=pass (2048-bit key) header.d=arndb.de header.i=@arndb.de header.b=r1w+SIgG; dkim=pass (2048-bit key) header.d=messagingengine.com header.i=@messagingengine.com header.b=prxagr4L; arc=none smtp.client-ip=66.111.4.25
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arndb.de
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=arndb.de
+Received: from compute5.internal (compute5.nyi.internal [10.202.2.45])
+	by mailout.nyi.internal (Postfix) with ESMTP id 677D15C00BF;
+	Wed, 31 Jan 2024 05:29:20 -0500 (EST)
+Received: from imap51 ([10.202.2.101])
+  by compute5.internal (MEProxy); Wed, 31 Jan 2024 05:29:20 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=arndb.de; h=cc
+	:cc:content-transfer-encoding:content-type:content-type:date
+	:date:from:from:in-reply-to:in-reply-to:message-id:mime-version
+	:references:reply-to:subject:subject:to:to; s=fm2; t=1706696960;
+	 x=1706783360; bh=iKsNv795W6E/GbLdxQpU+VkSSklR3RfYg2NP17KrEuU=; b=
+	r1w+SIgGWw7dJyt3GzIZOgqo2n/eeg1SXNYzBJKIHR6M+ZtY9LOh/WzC8xl5ZyiX
+	KGiDo4w+ZuwSEQ1vuvGYQvBLaMADawKJeAQY6vMvLojc2nTufc2dwLrdoan28w8L
+	NX4TquETi11QgoauczLec/BpoD1TxBXJ0E5lzJwPQP1Z6V2oWv+o+FEyeeyPYpVn
+	gT8ibuoLeRJlzl96Gs9TKtcIl7CcSgc/LXeZUQCWW8n7s5lOftNa2Mert2BDm2GP
+	YaaVIomhQwxG6eFGNlsVVWMLtp8Y5UtRyG+22deQB/OrbIIMR0mNY97d5YsDwNXi
+	l/a/oPZxoUjFG27YrK7sgA==
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
+	messagingengine.com; h=cc:cc:content-transfer-encoding
+	:content-type:content-type:date:date:feedback-id:feedback-id
+	:from:from:in-reply-to:in-reply-to:message-id:mime-version
+	:references:reply-to:subject:subject:to:to:x-me-proxy:x-me-proxy
+	:x-me-sender:x-me-sender:x-sasl-enc; s=fm3; t=1706696960; x=
+	1706783360; bh=iKsNv795W6E/GbLdxQpU+VkSSklR3RfYg2NP17KrEuU=; b=p
+	rxagr4LAAt5LDBTk5TLUgiJy31iihbvdHZuht6v/ZdhedjYllhFfqCe81x2f95Zo
+	7c6qF6Vqn0Ct+PWPC0LPmC2q3oxm8PJ+97vM2ReNQS4BnfuikN8+tFzLSVwAiLnB
+	XCwpMLMC/apTM5pOXQjPBmynVDClv9VC0FVmqluRrpBax54ys6yQVKOB8+JxDgx7
+	CeJBEi5CJKu+A2PM+6A9QnmPb1gRmwAS45hIUBOcJLxv4NTuzCD+RmnYS8OKNWo/
+	J/L2JLLQS3iQN6M066Waa64UWuCrsmuVL2LkuV7ucDjl3KDA2RKS79l+cG3uXD9h
+	80+Nmub29smTdXwFwugbg==
+X-ME-Sender: <xms:_iC6ZWx41lQGmTgxNQPv033inelQFUqqgqhGoRB1Yy_Suw3I8Xelgg>
+    <xme:_iC6ZSRqCMMRGR4dsf2AkWDbTf6DTYgj0B5L_el4qpBjc-H_WY24kzGjuScisGao2
+    yzSLAe8OaA_rRy8Tlo>
+X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedvkedrfedtledgudehucetufdoteggodetrfdotf
+    fvucfrrhhofhhilhgvmecuhfgrshhtofgrihhlpdfqfgfvpdfurfetoffkrfgpnffqhgen
+    uceurghilhhouhhtmecufedttdenucesvcftvggtihhpihgvnhhtshculddquddttddmne
+    cujfgurhepofgfggfkjghffffhvfevufgtgfesthhqredtreerjeenucfhrhhomhepfdet
+    rhhnugcuuegvrhhgmhgrnhhnfdcuoegrrhhnugesrghrnhgusgdruggvqeenucggtffrrg
+    htthgvrhhnpeegfeejhedvledvffeijeeijeeivddvhfeliedvleevheejleetgedukedt
+    gfejveenucevlhhushhtvghrufhiiigvpedtnecurfgrrhgrmhepmhgrihhlfhhrohhmpe
+    grrhhnugesrghrnhgusgdruggv
+X-ME-Proxy: <xmx:_iC6ZYXhgaK38oMGNaGPwVUfqTjpiERjPnsH4firn_SwhCPxrErYHA>
+    <xmx:_iC6ZcjvaWNtDsNaKMs_RAFWnK9ju6FdUo2vEcbE8gjZqfayeaG8bg>
+    <xmx:_iC6ZYCMLDoeolGZs_ufJ7ezycNWlbfwu69_HSZoxwUOXAZXBSQ_Mw>
+    <xmx:ACG6ZY2U-kSIMTC4srsLhXKXwUwJquPF-ApdBE0B8lL06BOUgQl9CQ>
+Feedback-ID: i56a14606:Fastmail
+Received: by mailuser.nyi.internal (Postfix, from userid 501)
+	id 44453B6008D; Wed, 31 Jan 2024 05:29:18 -0500 (EST)
+X-Mailer: MessagingEngine.com Webmail Interface
+User-Agent: Cyrus-JMAP/3.11.0-alpha0-144-ge5821d614e-fm-20240125.002-ge5821d61
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Message-Id: <1036060c-25dd-439b-b081-893d0cb000f6@app.fastmail.com>
+In-Reply-To: <269edff0-d989-4ac8-b0c3-bce31283806b@kalrayinc.com>
+References: <20230120141002.2442-1-ysionneau@kalray.eu>
+ <20230120141002.2442-32-ysionneau@kalray.eu>
+ <995eb624-3efe-10fc-a6ed-883d52d591bb@linaro.org>
+ <269edff0-d989-4ac8-b0c3-bce31283806b@kalrayinc.com>
+Date: Wed, 31 Jan 2024 11:28:57 +0100
+From: "Arnd Bergmann" <arnd@arndb.de>
+To: "Yann Sionneau" <ysionneau@kalrayinc.com>,
+ "Krzysztof Kozlowski" <krzysztof.kozlowski@linaro.org>,
+ "Yann Sionneau" <ysionneau@kalray.eu>,
+ "Jonathan Corbet" <corbet@lwn.net>,
+ "Thomas Gleixner" <tglx@linutronix.de>, "Marc Zyngier" <maz@kernel.org>,
+ "Rob Herring" <robh+dt@kernel.org>,
+ "Krzysztof Kozlowski" <krzysztof.kozlowski+dt@linaro.org>,
+ "Will Deacon" <will@kernel.org>, "Peter Zijlstra" <peterz@infradead.org>,
+ "Boqun Feng" <boqun.feng@gmail.com>,
+ "Mark Rutland" <mark.rutland@arm.com>,
+ "Eric W. Biederman" <ebiederm@xmission.com>,
+ "Kees Cook" <keescook@chromium.org>, "Oleg Nesterov" <oleg@redhat.com>,
+ "Ingo Molnar" <mingo@redhat.com>, "Waiman Long" <longman@redhat.com>,
+ "Aneesh Kumar" <aneesh.kumar@linux.ibm.com>,
+ "Andrew Morton" <akpm@linux-foundation.org>,
+ "Nicholas Piggin" <npiggin@gmail.com>,
+ "Paul Moore" <paul@paul-moore.com>, "Eric Paris" <eparis@redhat.com>,
+ "Christian Brauner" <brauner@kernel.org>,
+ "Paul Walmsley" <paul.walmsley@sifive.com>,
+ "Palmer Dabbelt" <palmer@dabbelt.com>,
+ "Albert Ou" <aou@eecs.berkeley.edu>,
+ "Jules Maselbas" <jmaselbas@kalray.eu>,
+ "Guillaume Thouvenin" <gthouvenin@kalray.eu>,
+ "Clement Leger" <clement@clement-leger.fr>,
+ "Vincent Chardon" <vincent.chardon@elsys-design.com>,
+ =?UTF-8?Q?Marc_Poulhi=C3=A8s?= <dkm@kataplop.net>,
+ "Julian Vetter" <jvetter@kalray.eu>, "Samuel Jones" <sjones@kalray.eu>,
+ "Ashley Lesdalons" <alesdalons@kalray.eu>,
+ "Thomas Costis" <tcostis@kalray.eu>, "Marius Gligor" <mgligor@kalray.eu>,
+ "Jonathan Borne" <jborne@kalray.eu>,
+ "Julien Villette" <jvillette@kalray.eu>,
+ "Luc Michel" <lmichel@kalray.eu>, "Louis Morhet" <lmorhet@kalray.eu>,
+ "Julien Hascoet" <jhascoet@kalray.eu>,
+ "Jean-Christophe Pince" <jcpince@gmail.com>,
+ "Guillaume Missonnier" <gmissonnier@kalray.eu>,
+ "Alex Michon" <amichon@kalray.eu>, "Huacai Chen" <chenhuacai@kernel.org>,
+ "WANG Xuerui" <git@xen0n.name>,
+ "Shaokun Zhang" <zhangshaokun@hisilicon.com>,
+ "John Garry" <john.garry@huawei.com>,
+ "Guangbin Huang" <huangguangbin2@huawei.com>,
+ "Bharat Bhushan" <bbhushan2@marvell.com>,
+ "Bibo Mao" <maobibo@loongson.cn>, "Atish Patra" <atishp@atishpatra.org>,
+ "Jason A . Donenfeld" <Jason@zx2c4.com>, "Qi Liu" <liuqi115@huawei.com>,
+ "Jiaxun Yang" <jiaxun.yang@flygoat.com>,
+ "Catalin Marinas" <catalin.marinas@arm.com>,
+ "Mark Brown" <broonie@kernel.org>,
+ "Janosch Frank" <frankja@linux.ibm.com>,
+ "Alexey Dobriyan" <adobriyan@gmail.com>,
+ "Julian Vetter" <jvetter@kalrayinc.com>, jmaselbas@zdiv.net
+Cc: "Benjamin Mugnier" <mugnier.benjamin@gmail.com>,
+ linux-doc@vger.kernel.org, linux-kernel@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-mm@kvack.org,
+ Linux-Arch <linux-arch@vger.kernel.org>, linux-audit@redhat.com,
+ linux-riscv@lists.infradead.org, bpf@vger.kernel.org
+Subject: Re: [RFC PATCH v2 31/31] kvx: Add IPI driver
+Content-Type: text/plain;charset=utf-8
+Content-Transfer-Encoding: quoted-printable
 
-Convert the da9062 PMIC device tree binding documentation to json-schema.
+On Wed, Jan 31, 2024, at 10:52, Yann Sionneau wrote:
+> On 22/01/2023 12:54, Krzysztof Kozlowski wrote:
+>> On 20/01/2023 15:10, Yann Sionneau wrote:
+>>> +
+>>> +int __init kvx_ipi_ctrl_probe(irqreturn_t (*ipi_irq_handler)(int, v=
+oid *))
+>>> +{
+>>> +	struct device_node *np;
+>>> +	int ret;
+>>> +	unsigned int ipi_irq;
+>>> +	void __iomem *ipi_base;
+>>> +
+>>> +	np =3D of_find_compatible_node(NULL, NULL, "kalray,kvx-ipi-ctrl");
+>> Nope, big no.
+>>
+>> Drivers go to drivers, not to arch code. Use proper driver infrastruc=
+ture.
+> Thank you for your review.
+>
+> It raises questions on our side about how to handle this change.
+>
+> First let me describe the hardware:
+>
+> The coolidge ipi controller device handles IPI communication between c=
+pus
+> inside a cluster.
+>
+> Each cpu has 8 of its dedicated irq lines (24 to 31) hard-wired to the=
+ ipi.
+> The ipi controller has 8 sets of 2 registers:
+> - a 17-bit "interrupt" register
+> - a 17-bit "mask" register
+>
+> Each couple of register is dedicated to 1 of the 8 irqlines.
+> Each of the 17 bits of interrupt/mask register
+> identifies a cpu (cores 0 to 15 + secure_core).
+> Writing bit i in interrupt register sends an irq to cpu i, according t=
+o the mask
+> in mask register.
+> Writing in interrupt/mask register couple N targets irq line N of the =
+core.
+>
+> - Ipi generates an interrupt to the cpu when message is ready.
+> - Messages are delivered via Axi.
+> - Ipi does not have any interrupt input lines.
+>
+>
+> =C2=A0 +---------------+=C2=A0=C2=A0 irq=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0 axi_w
+> =C2=A0 |=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 |=C2=A0 i=C2=A0=
+ |<--/--- ipi <------
+> =C2=A0 | CPU=C2=A0=C2=A0=C2=A0=C2=A0 |=C2=A0 n=C2=A0 |=C2=A0 x8
+> =C2=A0 |=C2=A0 core0=C2=A0 |=C2=A0 t=C2=A0 |
+> =C2=A0 |=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 |=C2=A0 c=C2=A0=
+ |=C2=A0 irq=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 irq=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 msi
+> =C2=A0 |=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 |=C2=A0 t=C2=A0=
+ |<--/--- apic <----- mbox <-------
+> =C2=A0 |=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 |=C2=A0 l=C2=A0=
+ |=C2=A0 x4
+> =C2=A0 +---------------+
+> =C2=A0 with intctl =3D core-irq controller
+>=C2=A0=C2=A0 =C2=A0
+>
+> We analyzed how other Linux ports are handling this situation (IPI) an=
+d=20
+> here are several possible solutions:
+>
+> 1/ put everything in smp.c like what longarch is doing.
+> =C2=A0 * Except that IPI in longarch seems to involve writing to a spe=
+cial=20
+> purpose CPU register and not doing a memory mapped write like kvx.
+>
+> 2/ write a device driver in drivers/xxx/ with the content from ipi.c
+> =C2=A0 * the probe would just ioremap the reg from DT and register the=
+ irq=20
+> using request_percpu_irq()
+> =C2=A0 * it would export a function "kvx_ipi_send()" that would direct=
+ly be=20
+> called by smp.c
+> =C2=A0 * Question : where would this driver be placed in drivers/ ?=20
+> drivers/irqchip/ ? Even if this is not per-se an interrupt-controller=20
+> driver?
 
-Document the missing gpio child node for da9062.
+This looks like it's close enough to the irqchip driver
+that you can just have it in the same file as the 'intctl'
+portion.
 
-While at it, update description with link to product information and
-example.
+Top-level irqchip implementations tend to be rather architecture
+specific, as does the IPI mechanism. Depending on the register
+layout, I think you can have a single devicetree node for
+the combination of the core-irq (for managing your
+own interrupts) and the ipi (for receiving interrupts from
+others), and then have a driver in drivers/irqchip to
+deal with both. For the ipi mechanism, trying to abstract
+it too much generally makes it too slow, so I would not
+go through a nested irqchip or a mailbox driver etc.
 
-The missing child node with of_compatible defined in MFD_CELL_OF is
-causing the below warning message:
-da9062-gpio: Failed to locate of_node [id: -1]
+I don't know what the 'apic' in your diagram is, so that
+would be either a nested irqchip or could be part of
+the same driver as well.
 
-So, make all child nodes with of_compatible defined in struct mfd_cell
-as required property for da906{1,2} devices.
-
-The "gpio-controller" and "#gpio-cells" properties are defined in the
-parent instead of gpio child node as there are existing driver users
-based on these parent properties.
-
-Signed-off-by: Biju Das <biju.das.jz@bp.renesas.com>
-Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Reviewed-by: Conor Dooley <conor.dooley@microchip.com>
-Acked-by: Lee Jones <lee@kernel.org>
----
-v6->v6 Resend:
- * Added Rb tag from Conor Dooley and Ack from Lee Jones.
-v5->v6:
- * Updated commit description related to "gpio-controller" and
-   "#gpio-cells" properties defined in parent node.
- * Added Rb tag Krzysztof Kozlowski.
-v4->v5:
- * Updated commit description
- * Dropped unnecessary ref from gpio child node.
- * Added gpio-hog pattern property
- * Moved gpio-controller,gpio-cells above child nodes
- * Sorted compatible in rtc child node.
- * Dropped status from example.
- * Updated the example.
-v3->v4:
- * Split the thermal binding patch separate.
- * Updated the description.
-v2->v3:
- * Fixed bot errors related to MAINTAINERS entry, invalid doc
-   references and thermal examples by merging patch#4.
-v2:
- * New patch
----
- .../bindings/input/dlg,da9062-onkey.yaml      |   3 +-
- .../devicetree/bindings/mfd/da9062.txt        | 124 ----------
- .../devicetree/bindings/mfd/dlg,da9063.yaml   | 215 +++++++++++++++++-
- .../bindings/thermal/dlg,da9062-thermal.yaml  |   2 +-
- 4 files changed, 212 insertions(+), 132 deletions(-)
- delete mode 100644 Documentation/devicetree/bindings/mfd/da9062.txt
-
-diff --git a/Documentation/devicetree/bindings/input/dlg,da9062-onkey.yaml b/Documentation/devicetree/bindings/input/dlg,da9062-onkey.yaml
-index 757a522c102c..1480d95421e1 100644
---- a/Documentation/devicetree/bindings/input/dlg,da9062-onkey.yaml
-+++ b/Documentation/devicetree/bindings/input/dlg,da9062-onkey.yaml
-@@ -11,8 +11,7 @@ maintainers:
- 
- description: |
-   This module is part of the DA9061/DA9062/DA9063. For more details about entire
--  DA9062 and DA9061 chips see Documentation/devicetree/bindings/mfd/da9062.txt
--  For DA9063 see Documentation/devicetree/bindings/mfd/dlg,da9063.yaml
-+  DA906{1,2,3} chips see Documentation/devicetree/bindings/mfd/dlg,da9063.yaml
- 
-   This module provides the KEY_POWER event.
- 
-diff --git a/Documentation/devicetree/bindings/mfd/da9062.txt b/Documentation/devicetree/bindings/mfd/da9062.txt
-deleted file mode 100644
-index c8a7f119ac84..000000000000
---- a/Documentation/devicetree/bindings/mfd/da9062.txt
-+++ /dev/null
-@@ -1,124 +0,0 @@
--* Dialog DA9062 Power Management Integrated Circuit (PMIC)
--
--Product information for the DA9062 and DA9061 devices can be found here:
--- https://www.dialog-semiconductor.com/products/da9062
--- https://www.dialog-semiconductor.com/products/da9061
--
--The DA9062 PMIC consists of:
--
--Device                   Supply Names    Description
--------                   ------------    -----------
--da9062-regulator        :               : LDOs & BUCKs
--da9062-rtc              :               : Real-Time Clock
--da9062-onkey            :               : On Key
--da9062-watchdog         :               : Watchdog Timer
--da9062-thermal          :               : Thermal
--da9062-gpio             :               : GPIOs
--
--The DA9061 PMIC consists of:
--
--Device                   Supply Names    Description
--------                   ------------    -----------
--da9062-regulator        :               : LDOs & BUCKs
--da9062-onkey            :               : On Key
--da9062-watchdog         :               : Watchdog Timer
--da9062-thermal          :               : Thermal
--
--======
--
--Required properties:
--
--- compatible : Should be
--    "dlg,da9062" for DA9062
--    "dlg,da9061" for DA9061
--- reg : Specifies the I2C slave address (this defaults to 0x58 but it can be
--  modified to match the chip's OTP settings).
--
--Optional properties:
--
--- gpio-controller : Marks the device as a gpio controller.
--- #gpio-cells     : Should be two. The first cell is the pin number and the
--                    second cell is used to specify the gpio polarity.
--
--See Documentation/devicetree/bindings/gpio/gpio.txt for further information on
--GPIO bindings.
--
--- interrupts : IRQ line information.
--- interrupt-controller
--
--See Documentation/devicetree/bindings/interrupt-controller/interrupts.txt for
--further information on IRQ bindings.
--
--Sub-nodes:
--
--- regulators : This node defines the settings for the LDOs and BUCKs.
--  The DA9062 regulators are bound using their names listed below:
--
--    buck1    : BUCK_1
--    buck2    : BUCK_2
--    buck3    : BUCK_3
--    buck4    : BUCK_4
--    ldo1     : LDO_1
--    ldo2     : LDO_2
--    ldo3     : LDO_3
--    ldo4     : LDO_4
--
--  The DA9061 regulators are bound using their names listed below:
--
--    buck1    : BUCK_1
--    buck2    : BUCK_2
--    buck3    : BUCK_3
--    ldo1     : LDO_1
--    ldo2     : LDO_2
--    ldo3     : LDO_3
--    ldo4     : LDO_4
--
--  The component follows the standard regulator framework and the bindings
--  details of individual regulator device can be found in:
--  Documentation/devicetree/bindings/regulator/regulator.txt
--
--  regulator-initial-mode may be specified for buck regulators using mode values
--  from include/dt-bindings/regulator/dlg,da9063-regulator.h.
--
--- rtc : This node defines settings required for the Real-Time Clock associated
--  with the DA9062. There are currently no entries in this binding, however
--  compatible = "dlg,da9062-rtc" should be added if a node is created.
--
--- onkey : See ../input/dlg,da9062-onkey.yaml
--
--- watchdog: See ../watchdog/dlg,da9062-watchdog.yaml
--
--- thermal : See ../thermal/dlg,da9062-thermal.yaml
--
--Example:
--
--	pmic0: da9062@58 {
--		compatible = "dlg,da9062";
--		reg = <0x58>;
--		interrupt-parent = <&gpio6>;
--		interrupts = <11 IRQ_TYPE_LEVEL_LOW>;
--		interrupt-controller;
--
--		rtc {
--			compatible = "dlg,da9062-rtc";
--		};
--
--		regulators {
--			DA9062_BUCK1: buck1 {
--				regulator-name = "BUCK1";
--				regulator-min-microvolt = <300000>;
--				regulator-max-microvolt = <1570000>;
--				regulator-min-microamp = <500000>;
--				regulator-max-microamp = <2000000>;
--				regulator-initial-mode = <DA9063_BUCK_MODE_SYNC>;
--				regulator-boot-on;
--			};
--			DA9062_LDO1: ldo1 {
--				regulator-name = "LDO_1";
--				regulator-min-microvolt = <900000>;
--				regulator-max-microvolt = <3600000>;
--				regulator-boot-on;
--			};
--		};
--	};
--
-diff --git a/Documentation/devicetree/bindings/mfd/dlg,da9063.yaml b/Documentation/devicetree/bindings/mfd/dlg,da9063.yaml
-index 676b4f2566ae..da741c999445 100644
---- a/Documentation/devicetree/bindings/mfd/dlg,da9063.yaml
-+++ b/Documentation/devicetree/bindings/mfd/dlg,da9063.yaml
-@@ -4,7 +4,7 @@
- $id: http://devicetree.org/schemas/mfd/dlg,da9063.yaml#
- $schema: http://devicetree.org/meta-schemas/core.yaml#
- 
--title: Dialog DA9063/DA9063L Power Management Integrated Circuit (PMIC)
-+title: Dialog DA906{3L,3,2,1} Power Management Integrated Circuit (PMIC)
- 
- maintainers:
-   - Steve Twiss <stwiss.opensource@diasemi.com>
-@@ -17,10 +17,17 @@ description: |
-   moment where all voltage monitors are disabled. Next, as da9063 only supports
-   UV *and* OV monitoring, both must be set to the same severity and value
-   (0: disable, 1: enable).
-+  Product information for the DA906{3L,3,2,1} devices can be found here:
-+  - https://www.dialog-semiconductor.com/products/da9063l
-+  - https://www.dialog-semiconductor.com/products/da9063
-+  - https://www.dialog-semiconductor.com/products/da9062
-+  - https://www.dialog-semiconductor.com/products/da9061
- 
- properties:
-   compatible:
-     enum:
-+      - dlg,da9061
-+      - dlg,da9062
-       - dlg,da9063
-       - dlg,da9063l
- 
-@@ -35,6 +42,18 @@ properties:
-   "#interrupt-cells":
-     const: 2
- 
-+  gpio-controller: true
-+
-+  "#gpio-cells":
-+    const: 2
-+
-+  gpio:
-+    type: object
-+    additionalProperties: false
-+    properties:
-+      compatible:
-+        const: dlg,da9062-gpio
-+
-   onkey:
-     $ref: /schemas/input/dlg,da9062-onkey.yaml
- 
-@@ -42,7 +61,7 @@ properties:
-     type: object
-     additionalProperties: false
-     patternProperties:
--      "^(ldo([1-9]|1[01])|bcore([1-2]|s-merged)|b(pro|mem|io|peri)|bmem-bio-merged)$":
-+      "^(ldo([1-9]|1[01])|bcore([1-2]|s-merged)|b(pro|mem|io|peri)|bmem-bio-merged|buck[1-4])$":
-         $ref: /schemas/regulator/regulator.yaml
-         unevaluatedProperties: false
- 
-@@ -52,16 +71,85 @@ properties:
-     unevaluatedProperties: false
-     properties:
-       compatible:
--        const: dlg,da9063-rtc
-+        enum:
-+          - dlg,da9062-rtc
-+          - dlg,da9063-rtc
-+
-+  thermal:
-+    $ref: /schemas/thermal/dlg,da9062-thermal.yaml
- 
-   watchdog:
-     $ref: /schemas/watchdog/dlg,da9062-watchdog.yaml
- 
-+patternProperties:
-+  "^(.+-hog(-[0-9]+)?)$":
-+    type: object
-+
-+    required:
-+      - gpio-hog
-+
- required:
-   - compatible
-   - reg
--  - interrupts
--  - interrupt-controller
-+
-+allOf:
-+  - if:
-+      properties:
-+        compatible:
-+          contains:
-+            enum:
-+              - dlg,da9063
-+              - dlg,da9063l
-+    then:
-+      properties:
-+        gpio-controller: false
-+        "#gpio-cells": false
-+        gpio: false
-+        regulators:
-+          patternProperties:
-+            "^buck[1-4]$": false
-+        thermal: false
-+      required:
-+        - interrupts
-+        - interrupt-controller
-+
-+  - if:
-+      properties:
-+        compatible:
-+          contains:
-+            enum:
-+              - dlg,da9062
-+    then:
-+      properties:
-+        regulators:
-+          patternProperties:
-+            "^(ldo([5-9]|10|11)|bcore([1-2]|s-merged)|b(pro|mem|io|peri)|bmem-bio-merged)$": false
-+      required:
-+        - gpio
-+        - onkey
-+        - rtc
-+        - thermal
-+        - watchdog
-+
-+  - if:
-+      properties:
-+        compatible:
-+          contains:
-+            enum:
-+              - dlg,da9061
-+    then:
-+      properties:
-+        gpio-controller: false
-+        "#gpio-cells": false
-+        gpio: false
-+        regulators:
-+          patternProperties:
-+            "^(ldo([5-9]|10|11)|bcore([1-2]|s-merged)|b(pro|mem|io|peri)|bmem-bio-merged|buck4)$": false
-+        rtc: false
-+      required:
-+        - onkey
-+        - thermal
-+        - watchdog
- 
- additionalProperties: false
- 
-@@ -118,4 +206,121 @@ examples:
-         };
-       };
-     };
-+
-+  - |
-+    #include <dt-bindings/interrupt-controller/irq.h>
-+    #include <dt-bindings/regulator/dlg,da9063-regulator.h>
-+    i2c {
-+      #address-cells = <1>;
-+      #size-cells = <0>;
-+      pmic@58 {
-+        compatible = "dlg,da9062";
-+        reg = <0x58>;
-+        gpio-controller;
-+        #gpio-cells = <2>;
-+
-+        sd0-pwr-sel-hog {
-+          gpio-hog;
-+          gpios = <1 0>;
-+          input;
-+          line-name = "SD0_PWR_SEL";
-+        };
-+
-+        sd1-pwr-sel-hog {
-+          gpio-hog;
-+          gpios = <2 0>;
-+          input;
-+          line-name = "SD1_PWR_SEL";
-+        };
-+
-+        sw-et0-en-hog {
-+          gpio-hog;
-+          gpios = <3 0>;
-+          input;
-+          line-name = "SW_ET0_EN#";
-+        };
-+
-+        pmic-good-hog {
-+          gpio-hog;
-+          gpios = <4 0>;
-+          output-high;
-+          line-name = "PMIC_PGOOD";
-+        };
-+
-+        gpio {
-+          compatible = "dlg,da9062-gpio";
-+        };
-+
-+        onkey {
-+          compatible = "dlg,da9062-onkey";
-+        };
-+
-+        regulators {
-+          buck1 {
-+            regulator-name = "vdd_arm";
-+            regulator-min-microvolt = <925000>;
-+            regulator-max-microvolt = <1380000>;
-+            regulator-initial-mode = <DA9063_BUCK_MODE_SYNC>;
-+            regulator-always-on;
-+          };
-+          buck2 {
-+            regulator-name = "vdd_soc";
-+            regulator-min-microvolt = <1150000>;
-+            regulator-max-microvolt = <1380000>;
-+            regulator-initial-mode = <DA9063_BUCK_MODE_SYNC>;
-+            regulator-always-on;
-+          };
-+          buck3 {
-+            regulator-name = "vdd_ddr3";
-+            regulator-min-microvolt = <1500000>;
-+            regulator-max-microvolt = <1500000>;
-+            regulator-initial-mode = <DA9063_BUCK_MODE_SYNC>;
-+            regulator-always-on;
-+          };
-+          buck4 {
-+            regulator-name = "vdd_eth";
-+            regulator-min-microvolt = <1200000>;
-+            regulator-max-microvolt = <1200000>;
-+            regulator-initial-mode = <DA9063_BUCK_MODE_SYNC>;
-+            regulator-always-on;
-+          };
-+          ldo1 {
-+            regulator-name = "vdd_snvs";
-+            regulator-min-microvolt = <3000000>;
-+            regulator-max-microvolt = <3000000>;
-+            regulator-always-on;
-+          };
-+          ldo2 {
-+            regulator-name = "vdd_high";
-+            regulator-min-microvolt = <3000000>;
-+            regulator-max-microvolt = <3000000>;
-+            regulator-always-on;
-+          };
-+          ldo3 {
-+            regulator-name = "vdd_eth_io";
-+            regulator-min-microvolt = <2500000>;
-+            regulator-max-microvolt = <2500000>;
-+          };
-+          ldo4 {
-+            regulator-name = "vdd_emmc";
-+            regulator-min-microvolt = <1800000>;
-+            regulator-max-microvolt = <1800000>;
-+            regulator-always-on;
-+          };
-+        };
-+
-+        rtc {
-+          compatible = "dlg,da9062-rtc";
-+        };
-+
-+        thermal {
-+          compatible = "dlg,da9062-thermal";
-+        };
-+
-+        watchdog {
-+          compatible = "dlg,da9062-watchdog";
-+          dlg,use-sw-pm;
-+        };
-+      };
-+    };
- ...
-diff --git a/Documentation/devicetree/bindings/thermal/dlg,da9062-thermal.yaml b/Documentation/devicetree/bindings/thermal/dlg,da9062-thermal.yaml
-index 206635f74850..e8b2cac41084 100644
---- a/Documentation/devicetree/bindings/thermal/dlg,da9062-thermal.yaml
-+++ b/Documentation/devicetree/bindings/thermal/dlg,da9062-thermal.yaml
-@@ -11,7 +11,7 @@ maintainers:
- 
- description: |
-   This module is part of the DA9061/DA9062. For more details about entire
--  DA9062 and DA9061 chips see Documentation/devicetree/bindings/mfd/da9062.txt
-+  DA906{1,2} chips see Documentation/devicetree/bindings/mfd/dlg,da9063.yaml
- 
-   Junction temperature thermal module uses an interrupt signal to identify
-   high THERMAL_TRIP_HOT temperatures for the PMIC device.
--- 
-2.39.2
-
+     Arnd
 
