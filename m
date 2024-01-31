@@ -1,108 +1,117 @@
-Return-Path: <devicetree+bounces-37167-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-37168-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 82493843E39
-	for <lists+devicetree@lfdr.de>; Wed, 31 Jan 2024 12:24:01 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 887C3843E5A
+	for <lists+devicetree@lfdr.de>; Wed, 31 Jan 2024 12:30:00 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 216D81F27AC7
-	for <lists+devicetree@lfdr.de>; Wed, 31 Jan 2024 11:24:01 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 44601288A64
+	for <lists+devicetree@lfdr.de>; Wed, 31 Jan 2024 11:29:59 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0439371B34;
-	Wed, 31 Jan 2024 11:23:56 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id CB68174E04;
+	Wed, 31 Jan 2024 11:29:52 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="hoEfERqh"
+	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b="teoPUFL/"
 X-Original-To: devicetree@vger.kernel.org
-Received: from lelv0143.ext.ti.com (lelv0143.ext.ti.com [198.47.23.248])
+Received: from madrid.collaboradmins.com (madrid.collaboradmins.com [46.235.227.194])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 09DFB6D1C3;
-	Wed, 31 Jan 2024 11:23:53 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.23.248
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1E8131E522;
+	Wed, 31 Jan 2024 11:29:50 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=46.235.227.194
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1706700235; cv=none; b=hOtDdQ+1OXkc7tULcHtveqZsAcTgeNWTU4HOALZVjSWnJnYmzlDTb3w4hFycpOa4segDTzpRcOOZ+w07Brs5t3JHmca81X+UJThRdUuEzN/gpY8y07y5cMyHYfEMbwgbyOxAjo6PlJ3KJVqHvxPyk0rk8wfp9DiPJx2BitqPbuQ=
+	t=1706700592; cv=none; b=mFmVlduvPQsqFnHR3qzmSZ2r5Z8wm64oWizsz85rekE883Jxuin0oHbl6JH4F4QVbP4QxbKkVvdDSmSF1bNJMjrBk/J10f7lysdtTkHYeL72/cKf7OH+MBrEd9Hu9vfE/1x0gZ3YQvcu8RfqTUgoFlM7NUrLzy0P735whmINKVs=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1706700235; c=relaxed/simple;
-	bh=5P2zxSLURVbZ7HV4GWIOUHTQn5EE9g7rJ053+yGyBdI=;
-	h=From:To:CC:Subject:Date:Message-ID:MIME-Version:Content-Type; b=CZlh5IIX/hdn1441+F/Ei7USsAX59MNRnnNwhAe+ObsmCkr4cZLeSRNwu1lHBBVadmyKkH4wa/PpqCKjPdCCrJETiqpErksFdxjyiu003sIwNvRRPpJZ4TRXr4d+PZtJ4jMdryzHUGlXsRw8LrT+yqmBe0nhrKPpGfGDLHqEGiQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=hoEfERqh; arc=none smtp.client-ip=198.47.23.248
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
-Received: from fllv0035.itg.ti.com ([10.64.41.0])
-	by lelv0143.ext.ti.com (8.15.2/8.15.2) with ESMTP id 40VBNkai084617;
-	Wed, 31 Jan 2024 05:23:46 -0600
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1706700226;
-	bh=QHkI07X0GJZUyie1k7oMk2KLJoEEG+8fx6H0YqKqWqI=;
-	h=From:To:CC:Subject:Date;
-	b=hoEfERqhykt3Lls/Zt5JVcFdMdmwA14AHjntS+IAi4BtrT0o1+iNLG+5x+yDn7zjt
-	 hI4CquO0gvbOc4LcsdI/9QY83oHsdgVlNQEjLDXZHeQiLBED5nlh/y6U19DFex6bfr
-	 mhUOvof5aaHYTJTr6cvKt0mnyW0AIMLF3AuXkyCo=
-Received: from DFLE115.ent.ti.com (dfle115.ent.ti.com [10.64.6.36])
-	by fllv0035.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 40VBNkT9075512
-	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-	Wed, 31 Jan 2024 05:23:46 -0600
-Received: from DFLE106.ent.ti.com (10.64.6.27) by DFLE115.ent.ti.com
- (10.64.6.36) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Wed, 31
- Jan 2024 05:23:46 -0600
-Received: from lelvsmtp5.itg.ti.com (10.180.75.250) by DFLE106.ent.ti.com
- (10.64.6.27) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
- Frontend Transport; Wed, 31 Jan 2024 05:23:46 -0600
-Received: from uda0492258.dhcp.ti.com (uda0492258.dhcp.ti.com [172.24.227.9])
-	by lelvsmtp5.itg.ti.com (8.15.2/8.15.2) with ESMTP id 40VBNh0F066660;
-	Wed, 31 Jan 2024 05:23:43 -0600
-From: Siddharth Vadapalli <s-vadapalli@ti.com>
-To: <lee@kernel.org>, <robh+dt@kernel.org>,
-        <krzysztof.kozlowski+dt@linaro.org>, <conor+dt@kernel.org>
-CC: <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>, <afd@ti.com>, <srk@ti.com>,
-        <s-vadapalli@ti.com>
-Subject: [PATCH] dt-bindings: mfd: syscon: Add ti,k3-pcie-ctrl compatible
-Date: Wed, 31 Jan 2024 16:53:42 +0530
-Message-ID: <20240131112342.1300893-1-s-vadapalli@ti.com>
-X-Mailer: git-send-email 2.34.1
+	s=arc-20240116; t=1706700592; c=relaxed/simple;
+	bh=qqKn/biwXyEmqx6ult4octRmHalYzxtwPzsQnX5EA2o=;
+	h=Message-ID:Date:MIME-Version:Subject:From:To:Cc:References:
+	 In-Reply-To:Content-Type; b=jny7Lh0f+wXysj1eNZFKTyzK3Nh78tsnb/YXyNsrXfG66MqyRvcSjN/frhSKLqVTbNPCARUxOaYC6Pj4Bxe3LY+3JkA7Et1wkmhEqfZ0ZK7HTb1/sieE+JYyA9xoXkmFY7JqEBUaizRr8eV0Ml1kO6+Qr4aYS5gHchYUl6StCLQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b=teoPUFL/; arc=none smtp.client-ip=46.235.227.194
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=collabora.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
+	s=mail; t=1706700589;
+	bh=qqKn/biwXyEmqx6ult4octRmHalYzxtwPzsQnX5EA2o=;
+	h=Date:Subject:From:To:Cc:References:In-Reply-To:From;
+	b=teoPUFL/0ROoVKEHUzEGThvqfQM4FRTUMhwZb/7s4qYklFDOJiwzfgPm5vBTBg9dW
+	 rZfzVnBk2Sy7oxYMJyq3y1rujW5vOkE+nBv75sx2h80TMYM5DIdDGEa0Vt/E+u8P7q
+	 rsCg5vv0M31XaMdu0C8iM3JHmt4uMX9JaDRzOQZgEr1UNwUM4JKdkbdKDxMr27qQ0H
+	 yki7hF77YS1zqxMcPsxXq5rTGdXbfZQbk/r7ITp5qM0FUFVR5UbB1wZta38I/RzGZ2
+	 llYEurU6M5KBo5M4ytURWLE7LuR85XzmzynsWyeChfXabyHmyQcSe8uUAY2MQ4+VOr
+	 uBvL1lvBkA1Xg==
+Received: from [100.115.223.179] (cola.collaboradmins.com [195.201.22.229])
+	(using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
+	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+	(No client certificate requested)
+	(Authenticated sender: cristicc)
+	by madrid.collaboradmins.com (Postfix) with ESMTPSA id 2BEF83780C22;
+	Wed, 31 Jan 2024 11:29:48 +0000 (UTC)
+Message-ID: <f9fe53a4-c3b0-4e61-b607-40959c2d6c4c@collabora.com>
+Date: Wed, 31 Jan 2024 13:29:47 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v6 0/4] Enable networking support for StarFive JH7100 SoC
+Content-Language: en-US
+From: Cristian Ciocaltea <cristian.ciocaltea@collabora.com>
+To: Conor Dooley <conor@kernel.org>,
+ Emil Renner Berthing <emil.renner.berthing@canonical.com>
+Cc: Emil Renner Berthing <kernel@esmil.dk>, Rob Herring <robh+dt@kernel.org>,
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+ Paul Walmsley <paul.walmsley@sifive.com>, Palmer Dabbelt
+ <palmer@dabbelt.com>, Albert Ou <aou@eecs.berkeley.edu>,
+ Richard Cochran <richardcochran@gmail.com>, Andrew Lunn <andrew@lunn.ch>,
+ Jacob Keller <jacob.e.keller@intel.com>, linux-riscv@lists.infradead.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ netdev@vger.kernel.org, kernel@collabora.com
+References: <20231220211743.2490518-1-cristian.ciocaltea@collabora.com>
+ <CAJM55Z9tKQ_hpxrGUq1Rx1kxzzs-dyd=4yT1z=8B7KQ=CZ4mjA@mail.gmail.com>
+ <20240110-quaking-unlisted-dcae7229a9f8@spud>
+ <ae15ab84-fb1b-4da6-803d-6fd5ad46ce24@collabora.com>
+In-Reply-To: <ae15ab84-fb1b-4da6-803d-6fd5ad46ce24@collabora.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
-The PCIE_CTRL registers within the CTRL_MMR space of TI's K3 SoCs are
-used to configure the link speed, lane count and mode of operation of
-the respective PCIe instance. Add compatible for allowing the PCIe
-driver to obtain a regmap for the PCIE_CTRL register within the System
-Controller device-tree node in order to configure the PCIe instance
-accordingly.
+Hi Conor,
 
-Signed-off-by: Siddharth Vadapalli <s-vadapalli@ti.com>
----
+On 1/10/24 18:17, Cristian Ciocaltea wrote:
+> On 1/10/24 15:57, Conor Dooley wrote:
+>> On Tue, Dec 26, 2023 at 02:38:26PM -0600, Emil Renner Berthing wrote:
+>>> Cristian Ciocaltea wrote:
+>>>> This patch series adds ethernet support for the StarFive JH7100 SoC and
+>>>> makes it available for the StarFive VisionFive V1 and BeagleV Starlight
+>>>> boards, although I could only validate on the former SBC.  Thank you Emil
+>>>> and Geert for helping with tests on BeagleV!
+>>>>
+>>>> The work is heavily based on the reference implementation [1] and depends
+>>>> on the SiFive Composable Cache controller and non-coherent DMA support
+>>>> provided by Emil via [2] and [3].
+>>>>
+>>>> *Update 1*: As of next-20231214, dependencies [2] & [3] have been merged.
+>>>>
+>>>> *Update 2*: Since v5, the dwmac patches will be handled via [4], while the
+>>>>             clock patches subset via [5].
+>>>
+>>> I'm not sure my rb my sense when I'm listed as a co-developer, but this version
+>>> looks good to me:
+>>>
+>>> Reviewed-by: Emil Renner Berthing <emil.renner.berthing@canonical.com>
+>>
+>> Cool, thanks. Cristian, can you ping this series once the binding gets
+>> picked up by the netdev folks after the merge window closes?
+> 
+> Sure, will do!
 
-This patch is based on linux-next tagged next-20240131.
+The binding has been applied on net-next [1].
 
- Documentation/devicetree/bindings/mfd/syscon.yaml | 1 +
- 1 file changed, 1 insertion(+)
+Thanks,
+Cristian
 
-diff --git a/Documentation/devicetree/bindings/mfd/syscon.yaml b/Documentation/devicetree/bindings/mfd/syscon.yaml
-index 084b5c2a2a3c..da571a24e21f 100644
---- a/Documentation/devicetree/bindings/mfd/syscon.yaml
-+++ b/Documentation/devicetree/bindings/mfd/syscon.yaml
-@@ -73,6 +73,7 @@ properties:
-               - rockchip,rv1126-qos
-               - starfive,jh7100-sysmain
-               - ti,am654-dss-oldi-io-ctrl
-+              - ti,k3-pcie-ctrl
- 
-           - const: syscon
- 
--- 
-2.34.1
-
+[1]: https://lore.kernel.org/lkml/170669882745.1676.8675995195978883744.git-patchwork-notify@kernel.org/
 
