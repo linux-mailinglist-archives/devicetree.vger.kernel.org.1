@@ -1,74 +1,74 @@
-Return-Path: <devicetree+bounces-37048-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-37049-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id D6DEF843922
-	for <lists+devicetree@lfdr.de>; Wed, 31 Jan 2024 09:32:56 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8968F843928
+	for <lists+devicetree@lfdr.de>; Wed, 31 Jan 2024 09:35:06 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 5111A1F29696
-	for <lists+devicetree@lfdr.de>; Wed, 31 Jan 2024 08:32:56 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 41545282B36
+	for <lists+devicetree@lfdr.de>; Wed, 31 Jan 2024 08:35:05 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C6C015D72B;
-	Wed, 31 Jan 2024 08:32:53 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7B128339AA;
+	Wed, 31 Jan 2024 08:35:01 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="q37RelVY"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="r4r+TztO"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ej1-f44.google.com (mail-ej1-f44.google.com [209.85.218.44])
+Received: from mail-ed1-f43.google.com (mail-ed1-f43.google.com [209.85.208.43])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0B7C438DEA
-	for <devicetree@vger.kernel.org>; Wed, 31 Jan 2024 08:32:50 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.44
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A19F060BAF
+	for <devicetree@vger.kernel.org>; Wed, 31 Jan 2024 08:34:59 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.43
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1706689973; cv=none; b=g7l1zY3DcpRzsb/rZ5vJHf3h801/0Wz2h+hyJAwWLNBrJ8ML1pyN7ab31eFhaZsu1MynizyfRfOjLoDHnC3G7UJ8qoXcy9cteAeYTYjsfwN/9Ps/QJdWBmVv72BxfJygqAEZK2A6J/ZUW7pvdRFbJCUPYULDwgo7HW70ZVqmf+s=
+	t=1706690101; cv=none; b=ptgqI8RxRN8DbVCYFF0dXxFEEhn78T/HPFUgZfDKNkbq+uyYWoVrcBJrfqkFbdqsMBXWUapD2Zo502FYRyhPBHwrVZbeMUYQefJBDqKE3AvgEqLLiKO8SirkniRHcfZxZIjQbTir96Tf1qQ8bdR3CJ6EJMhcbkK+eOPiTAApPhw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1706689973; c=relaxed/simple;
-	bh=yw1eN8wIAGgmVr2d0+fFa0ALsi18715HRVLMQJvxpbo=;
+	s=arc-20240116; t=1706690101; c=relaxed/simple;
+	bh=PrY4WzNIJbCovvb984PFUCOR4gdyFVhWaow4/mF7UKg=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=l+rDZNy0GjZysFAKySx/i7PAYFDcyqwJZFdOiXHKIlNCGwtObmazZoEpjmlUjD+orxstohh6ASNgfqC/lHoBkwLwR8P516I0UR/IN3XuqhGUyeCwhaQlKvNlc0vxpNlwZpmiYtku1WR2jGUWhrW5RNNlVMqc0ZfNpjMIWlsFGv4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=q37RelVY; arc=none smtp.client-ip=209.85.218.44
+	 In-Reply-To:Content-Type; b=LJ9/gUZQEoD5MqcWEwH0IrWeBVr/s2IagXm3ihsvF1Zc/2WSf5mwS3JRaDDP9QV53hC9oXlhBxjR23vap6OE9Q1gmW2lGJbuPJ3FIIHCAqJDyTKBAEBOWdHsFQP0oaNOkNQc2nDy68HUT+8rVvL8TNvj/G1FR71ePoBynss2jac=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=r4r+TztO; arc=none smtp.client-ip=209.85.208.43
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-ej1-f44.google.com with SMTP id a640c23a62f3a-a35e9161b8cso368457766b.3
-        for <devicetree@vger.kernel.org>; Wed, 31 Jan 2024 00:32:50 -0800 (PST)
+Received: by mail-ed1-f43.google.com with SMTP id 4fb4d7f45d1cf-55a179f5fa1so5898693a12.0
+        for <devicetree@vger.kernel.org>; Wed, 31 Jan 2024 00:34:59 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1706689969; x=1707294769; darn=vger.kernel.org;
+        d=linaro.org; s=google; t=1706690098; x=1707294898; darn=vger.kernel.org;
         h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
          :to:content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=GR5aVhZneHFyoFCB3oZIB9MTp0pKwfBVVrj0ITj8IUI=;
-        b=q37RelVYMYsXbL4Na3d/CvjF3lKTYsVBl7pKVPuVIJ4y7hVjoVmirsJDr7atN1nggP
-         mcAsskXGAoYuDyP4giBdsrq8/VIARebgm6A53V01mzVPDXp0FjVcTYCAyVskY0EAQ8/a
-         9Kept401eB0netH9SXJLQgkg/ooZK7Wx/IDLiFKXqR2roc341zYCL32mcrHSkRKRKSJK
-         jPSWJtuRys59lRYxXKIiDIHnMtSngOzSuLL0rsWNwthJC15z0GSMViGDKDUgQ+j7oF/+
-         v6I/XAnz4QrGH5ClnL16rDTaVdksldm6mae+hzNLAh8YPp9w6X2SZIsiWf1NmY4OMryp
-         xUyg==
+        bh=LlC6IKVQ1yRmrP5iUErlPGYOVXTRisa0xVDs/+U4q/E=;
+        b=r4r+TztOvmFbxxypW40cX0h66wBa7Nix1pn0O0UiIB69m298zDmoZrVZliQeDAqQGO
+         HV1dL+hqn5+KykK0tM95zZDgbk99+n8xHIutdqGbfgZvXubSK9L4yrEX73rst+6R4vOU
+         t0n6pmL66nXZdjPvw9slARS6GxvoCBogSh8XzKAPd9Ui+lhu9ZVmqHlWbWfoW6Xy1Fm5
+         j+3tybkiiFGUUky9xfBL6zGY5noaQqaCFk0MGsbsWjxIdnxUsP06pIj/Y50TXU1BUmJI
+         PZg7DWZE+Re4Due+5vi6+vVm7DiY+v1p4HnC5n418o3UwnGa3RXv9bfyTKIgiK8egNH3
+         71Xw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1706689969; x=1707294769;
+        d=1e100.net; s=20230601; t=1706690098; x=1707294898;
         h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
          :to:content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=GR5aVhZneHFyoFCB3oZIB9MTp0pKwfBVVrj0ITj8IUI=;
-        b=nF4xLrf8kNAYcvHXZfGldEsRB7mQ/yUQG/hyz6O1bIfj8evcVHGFr8P25WjmsqALKQ
-         ijbLcAsc0i0gqHBZsQ5iNYxcIuzsdfYovhTIWPpqtsm73oji4VC1cJukYgvKyoMEOvwF
-         leMueBTZ0IT/RC8RX5TezLXgNNhFOIgSHfeJbLrQbA4nyuZCrrR7FX0wkv4YZmjX/FAu
-         KU4gv1LHZf3o6ajfxE7wOTA7FP4Z1WA7V3C9uKreJ8DgenqsC9ZU6Bpecnp6Z6vFdzpr
-         2vm73RpNe1CVWztHaWHUTWH6XRqvcEP+vJOjhcwbiHDUo/nfJceFMQeUYASKbBla6hIL
-         WI7g==
-X-Gm-Message-State: AOJu0Yw4Uc6Dq1GtJha+CCg0yw3ivnUu34EoAegUE8Uq7O1LUB9NThub
-	7EoYON929lZ+BhpuvFbakZCSkevrdJ2YUElaMQRz1BEMHWvAGs8SRHa/IkCn6vM=
-X-Google-Smtp-Source: AGHT+IFtfkA+EybiR1YliXWZqbPQSODeYreUd/8yXXZ+CVtwwanRt4sorZZtf8JuHr1umBgaXB3V4w==
-X-Received: by 2002:a17:906:faec:b0:a2c:3596:b0c1 with SMTP id lu44-20020a170906faec00b00a2c3596b0c1mr619576ejb.75.1706689969055;
-        Wed, 31 Jan 2024 00:32:49 -0800 (PST)
-X-Forwarded-Encrypted: i=0; AJvYcCW5zJk84D6Kq0omYtneabIPmgjgoTzDs/mbrRpRaDhq6H6VOCcHjNpUbhsBOZ/M8CyH603jQQxrrm1MhLmaXeZ7O8eV0RT3DNSg+DS8/IRKCE+Q2HEOQZ7onJSGL5fZ4Lz4Vpl6LLo240x9FfHBo0RYS561vhsArl1KtpRaxmu7GdCZqZ9cec8DAR4K5F8bQHQ9sT5nhnMRO7UOkZ6Nu9SVgyCFyOppHYrkb7QiUcWTRQtXeMPdxbeSlhA+XloD2I7YhKYI7vJzidJdXjTUETAuKdvh8ie3BCSUd0bGmyPS/h8I3tKlMaMmcwFYmrEytSrmQbPqgbgIC7cZ2SqXexVQxfkT1CycUcuqOmNYJA6y88cYGYoH8ZQjA0FiiGxKP6dstXOc/+H2Ufr26ipg66DZo6HymYXDQiDGj0qN3+EPgzjaNA==
+        bh=LlC6IKVQ1yRmrP5iUErlPGYOVXTRisa0xVDs/+U4q/E=;
+        b=o5QQRSrUnyZXR9dFukxxCPSc6cL6k4HDWqR2RNZfoKMb+9+zs/ezv49D+EeNUpvp2o
+         D5BoKDfj+AT8olqsMapB78hZDFf/r6xAwNltcGwXy8ot+V8Z29dT5TEe2cfvFzJXVhty
+         oKaF+725mVZvfGrU8EqePjqYRRYM2uBeqgDHJRuYOyDtsbBTwORnGoalZqWCvmXRJ0SL
+         1coOJeqh26r3S3kIZYuCWkyrCygBfXXn5XBwj8wM4T3Ha3lVGkVzip3mpCP8VOGTlDNa
+         K1mzlQKY8aL+aRSfclYd6SBEgZ2Z9bIbvdG2w96WyCRSZgso8rJvAaTg9+PyseX20XSQ
+         01nQ==
+X-Gm-Message-State: AOJu0YxSQTXcUbzCQENvxkii4XUgquOM37BzUzmEMsxBTO7FrcjFsznQ
+	HxoVA6uuWUvBR0z/QcZBtjkxr0HuGgRAIU3J6D5GaoGkYhZV7UPzeQqGv+Mqopw=
+X-Google-Smtp-Source: AGHT+IHVBVzs8B5ZZkUzum3M6vrWPsI6KOFprHue7XSrJOxF/0z4HsiJQi7mc45TvQFOoZiAWwiGJA==
+X-Received: by 2002:a17:906:c7c2:b0:a30:4618:80a0 with SMTP id dc2-20020a170906c7c200b00a30461880a0mr584484ejb.33.1706690097871;
+        Wed, 31 Jan 2024 00:34:57 -0800 (PST)
+X-Forwarded-Encrypted: i=0; AJvYcCVKjDsjHoqmBPPc4Wq+7GVuVCw/osGKy4HQF2L5IC9Kh8xUC0XoyZvEfhLtpIvRDYyfE+VYsGQhDK9+K2Rtj391jR22Sap+L92gDZ3DQBCJGEZ6eSaOlVyVjuLFBp84sf0J0nT3AlKJe4JXwHNr5JRdvYV6kg4APivsupWVSNA3O+tzcfVAqW6OmiXtbW7lnHhk9Qc67xa7OUaTxz2/SlYkkkZdRd5cnDp1iqNAYvxloebdHwE5PP09ndreeQtmLQ4IjMpM9a4yNh408EqglnNmr5TSNkQH4X1fJJZBSK6dqi0gwPJXIFCXUvmZOat1SbXJRcOBMjywD+j6BPQnKDHouPA2R4+ZX/ypIyjYfaxeeDWCDkhBt8AGZn9aPcLKbO+D0ayqaEGtm57pqYzkgw==
 Received: from [192.168.1.20] ([178.197.222.62])
-        by smtp.gmail.com with ESMTPSA id vb1-20020a170907d04100b00a34c07816e3sm5919866ejc.73.2024.01.31.00.32.47
+        by smtp.gmail.com with ESMTPSA id d5-20020a1709064c4500b00a3677eee12bsm315719ejw.182.2024.01.31.00.34.55
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 31 Jan 2024 00:32:48 -0800 (PST)
-Message-ID: <69783a3d-a158-4582-93d2-3f120e2e9ea6@linaro.org>
-Date: Wed, 31 Jan 2024 09:32:47 +0100
+        Wed, 31 Jan 2024 00:34:56 -0800 (PST)
+Message-ID: <6fb7286c-8669-4f99-9bb7-3ef8dfa229c2@linaro.org>
+Date: Wed, 31 Jan 2024 09:34:54 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -76,20 +76,18 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 1/3] ARM: dts: samsung: exynos5420-galaxy-tab-common: sort
- node properties
+Subject: Re: [PATCH v2 2/2] dt-bindings: pinctrl: qcom: consolidate functions
+ to match with driver
 Content-Language: en-US
-To: Henrik Grimler <henrik@grimler.se>
-Cc: Rob Herring <robh+dt@kernel.org>,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Conor Dooley <conor+dt@kernel.org>, Alim Akhtar <alim.akhtar@samsung.com>,
- Marek Szyprowski <m.szyprowski@samsung.com>, devicetree@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, linux-samsung-soc@vger.kernel.org,
- linux-kernel@vger.kernel.org, ~postmarketos/upstreaming@lists.sr.ht
-References: <20240130-galaxy-tab-s-cleanup-v1-0-d4e17857241d@grimler.se>
- <20240130-galaxy-tab-s-cleanup-v1-1-d4e17857241d@grimler.se>
- <a04aa883-d9b8-480b-a9df-8c31bef1165c@linaro.org>
- <20240131082401.GA6710@samsung-a5>
+To: Tengfei Fan <quic_tengfan@quicinc.com>, andersson@kernel.org,
+ konrad.dybcio@linaro.org, linus.walleij@linaro.org, robh+dt@kernel.org,
+ krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org
+Cc: linux-arm-msm@vger.kernel.org, linux-gpio@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, kernel@quicinc.com
+References: <20240129092512.23602-1-quic_tengfan@quicinc.com>
+ <20240129092512.23602-3-quic_tengfan@quicinc.com>
+ <aa870f52-d956-4c3e-82a4-980a32f5f698@linaro.org>
+ <8a3866ee-d70b-419c-bde4-7bf55415402e@quicinc.com>
 From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  xsFNBFVDQq4BEAC6KeLOfFsAvFMBsrCrJ2bCalhPv5+KQF2PS2+iwZI8BpRZoV+Bd5kWvN79
@@ -135,42 +133,39 @@ Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  KQ06ztUMRrj8eVtpImjsWCd0bDWRaaR4vqhCHvAG9iWXZu4qh3ipie2Y0oSJygcZT7H3UZxq
  fyYKiqEmRuqsvv6dcbblD8ZLkz1EVZL6djImH5zc5x8qpVxlA0A0i23v5QvN00m6G9NFF0Le
  D2GYIS41Kv4Isx2dEFh+/Q==
-In-Reply-To: <20240131082401.GA6710@samsung-a5>
+In-Reply-To: <8a3866ee-d70b-419c-bde4-7bf55415402e@quicinc.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 31/01/2024 09:25, Henrik Grimler wrote:
-> Hi Krzysztof,
+On 31/01/2024 09:24, Tengfei Fan wrote:
 > 
-> On Wed, Jan 31, 2024 at 08:19:39AM +0100, Krzysztof Kozlowski wrote:
->> On 30/01/2024 21:40, Henrik Grimler wrote:
->>> Sort all node properties according to dts coding style guidelines, to
->>> make dtsi easier to follow.
->>>
->>> Signed-off-by: Henrik Grimler <henrik@grimler.se>
->>> ---
->>>  .../dts/samsung/exynos5420-galaxy-tab-common.dtsi  | 23 +++++++++++-----------
->>>  1 file changed, 11 insertions(+), 12 deletions(-)
->>>
->>> diff --git a/arch/arm/boot/dts/samsung/exynos5420-galaxy-tab-common.dtsi b/arch/arm/boot/dts/samsung/exynos5420-galaxy-tab-common.dtsi
->>> index f525b2f5e4e0..0c1aeafc025b 100644
->>> --- a/arch/arm/boot/dts/samsung/exynos5420-galaxy-tab-common.dtsi
->>> +++ b/arch/arm/boot/dts/samsung/exynos5420-galaxy-tab-common.dtsi
->>> @@ -103,8 +103,8 @@ &cpu4 {
->>>  };
->>>  
->>>  &gpu {
->>> -	status = "okay";
->>>  	mali-supply = <&buck4_reg>;
->>> +	status = "okay";
+> 
+> On 1/29/2024 7:24 PM, Krzysztof Kozlowski wrote:
+>> On 29/01/2024 10:25, Tengfei Fan wrote:
+>>> Consolidate functions to match with SM4450 pinctrl driver, because
+>>> consolidate functions are being used in SM4450 pinctrl driver.
 >>
->> Such changes should come from a tool, but since we do not have them, I
->> don't want to bother with properties re-shuffling.
+>> It's very difficult to see what changed from the diff, so please explain
+>> brieflyl changes here.
+>>
+>> What is that "consolidate functions" that you use in the driver?
+>>
+>> Best regards,
+>> Krzysztof
+>>
 > 
-> Noted, thanks. I will drop this patch and send a v2 in a few hours.
+> please help to comfirm that the following description as commit message 
+> whether it covers your concerns:
+> 
+> Pin alternative functions are consolidated(like: atest_char, phase_flag, 
+> qdss_gpio etc.) in SM4450 pinctrl driver while they are still split in 
+> DeviceTree binding file. SM4450 pinctrl function is broken if current 
+> binding doc is followed. Update SM4450 pinctrl DeviceTree binding doc to 
+> align with driver.
 
-No need for v2, unless some other comments pop up. I will just apply #2
-and #3 from this set.
+Please list the functions which are being removed and added. I usually
+do not expect such commit msg, but this is an exception: diff is tricky
+to parse.
 
 Best regards,
 Krzysztof
