@@ -1,134 +1,233 @@
-Return-Path: <devicetree+bounces-37287-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-37288-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 846D184448D
-	for <lists+devicetree@lfdr.de>; Wed, 31 Jan 2024 17:32:46 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 38E5D84449C
+	for <lists+devicetree@lfdr.de>; Wed, 31 Jan 2024 17:35:06 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 3BDF31F2D237
-	for <lists+devicetree@lfdr.de>; Wed, 31 Jan 2024 16:32:46 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id A24D21F2FC4C
+	for <lists+devicetree@lfdr.de>; Wed, 31 Jan 2024 16:35:05 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 240D979DB4;
-	Wed, 31 Jan 2024 16:30:53 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 94A5F1E4AA;
+	Wed, 31 Jan 2024 16:34:40 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="udG2ZcRD"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="kX7hXCGH"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-ej1-f51.google.com (mail-ej1-f51.google.com [209.85.218.51])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EE49F63B3;
-	Wed, 31 Jan 2024 16:30:52 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BBAE512C526;
+	Wed, 31 Jan 2024 16:34:38 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.51
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1706718653; cv=none; b=QqwXEfFfRxLHDobd89CapdLxlxQWHXELAY2+9cRdz2qMF8L1pre9+FyQDuBTDU1kByNGFPHQDxea8DW65EgrQNeSCbLDGzywAzYaIiJej0/Z4PmMvebxT5aOeekJ7NJ0swpw1wIwu/jTwNX3qvFIRU31KFfTM2Ql4Yr7E9JpgEE=
+	t=1706718880; cv=none; b=rtbMr3Mf++dIis+iAeJ/d0KklwUafsP9MCePrz8pgvPHYJXrSnm0VowpK6eOFSNp2/VRbLZEMxLl+hYC3QzGXSElWElftMIWF4TnbKHq/LJhKNO9TgFLehomOg3Qs8ch9DqRIjCBMacwuIbhge/GNokMVbivZW2TQd0EPnpTfFs=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1706718653; c=relaxed/simple;
-	bh=jV+IW1BRHUg+D+REntsLJtRkUxqONiKUmtqDsV82itI=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=bskAIB6wDaTqYfqQcaRA0l8TjTgtMzYGnG3BXwoStQsYioHzQQfgYxF/Jkl2bibfGQy4eACqUd5Jtn0rWpLcQPP8pUeJVHrEyIuoErasPb1+zKYr7l4B0q8nlI14Zhl+YxKa5hYSrC34vZzI0+McXJqiFUJ/RWhVDK5G1z4Pcyg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=udG2ZcRD; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 1C1BEC433C7;
-	Wed, 31 Jan 2024 16:30:51 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1706718652;
-	bh=jV+IW1BRHUg+D+REntsLJtRkUxqONiKUmtqDsV82itI=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=udG2ZcRDmMPjbK6aF+4k7fsWHwlpGxyg8XCxDbLkppGdsq6L73vhfSAYtMyv4wK6H
-	 IYkOX8GbR9Mm0ccp4sIcyKJzgdetiCpZ/Z2qrVrvhSBxihAI1IJ7T0cZIX/k+Bs2Yf
-	 Avm64pVoXKnvHC6NT3YcaUAfhj6DkPmYYt4zR/D3jgBMlB9r86XcS/7T75NP86FSRy
-	 tAhMSWdH528agAjz7fh/aVEVoAVzqx5x/+cU048NmS9NZSgOzWOLX3Evk2rr0S8uQs
-	 4AzUMKoulmjNSNkA08hpSTv7lQGII9EXVs4w7dVCIZ1gMPxSkaO6KLlfRgDLfV8FZF
-	 f0rEik7hgaleA==
-Date: Wed, 31 Jan 2024 17:30:49 +0100
-From: Maxime Ripard <mripard@kernel.org>
-To: Keith Zhao <keith.zhao@starfivetech.com>
-Cc: "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>, 
-	"dri-devel@lists.freedesktop.org" <dri-devel@lists.freedesktop.org>, "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>, 
-	"linux-riscv@lists.infradead.org" <linux-riscv@lists.infradead.org>, "tzimmermann@suse.de" <tzimmermann@suse.de>, 
-	"airlied@gmail.com" <airlied@gmail.com>, 
-	"krzysztof.kozlowski+dt@linaro.org" <krzysztof.kozlowski+dt@linaro.org>, William Qiu <william.qiu@starfivetech.com>, 
-	Xingyu Wu <xingyu.wu@starfivetech.com>, "paul.walmsley@sifive.com" <paul.walmsley@sifive.com>, 
-	"aou@eecs.berkeley.edu" <aou@eecs.berkeley.edu>, "palmer@dabbelt.com" <palmer@dabbelt.com>, 
-	"p.zabel@pengutronix.de" <p.zabel@pengutronix.de>, Shengyang Chen <shengyang.chen@starfivetech.com>, 
-	Jack Zhu <jack.zhu@starfivetech.com>, Changhuang Liang <changhuang.liang@starfivetech.com>, 
-	"maarten.lankhorst@linux.intel.com" <maarten.lankhorst@linux.intel.com>
-Subject: Re: =?utf-8?B?5Zue5aSNOg==?= [v3 4/6] drm/vs: Add KMS crtc&plane
-Message-ID: <e2spje6iew6skzrhrcgr23g4dc7l7rjoq77ki6oupqborfl22b@owmd2sdzcdaj>
-References: <20231204123315.28456-1-keith.zhao@starfivetech.com>
- <20231204123315.28456-5-keith.zhao@starfivetech.com>
- <o4ica2jg2rqfx6znir6j7mkoojoqzejjuqvlwcnehanw5mvop6@a3t6vi7c55tz>
- <NTZPR01MB1050AC99C38D2136D0354F3DEE7CA@NTZPR01MB1050.CHNPR01.prod.partner.outlook.cn>
+	s=arc-20240116; t=1706718880; c=relaxed/simple;
+	bh=KkISyzoAojn//Mjk2EK2BnzD/RKHkw5boJQbVVV65z8=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=ZJUvcgVes8rhC5wVtfwpZEzIwr4TYNTntzZrYerMBefmxrvixoSvyxsHs3u3OPyK5dqHP8oiTUdtzPsjENtx+RmV9Mb5/R681zMy6EqqNFA3WVJSZZalsIvgkGb9TdNBvAZJPeJwaOiLkWSYBLwK4INjiRxMGmt2qCmZtFs4QpA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=kX7hXCGH; arc=none smtp.client-ip=209.85.218.51
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-ej1-f51.google.com with SMTP id a640c23a62f3a-a2d7e2e7fe0so220980666b.1;
+        Wed, 31 Jan 2024 08:34:38 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1706718877; x=1707323677; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=KkISyzoAojn//Mjk2EK2BnzD/RKHkw5boJQbVVV65z8=;
+        b=kX7hXCGH7xWU8fn70Gn09UnWFmlsvdy4PiwglbAJlgrDDao0zDfOCukgGDsqKAqCJQ
+         VGftGvdMtNVkuhhwi+w8FeWO8qGBTjI/bDPt999u9nh0fnVyoL+deu4OdMNV1GQIUz9A
+         2Um5xcpB21UQLjbZCFMVq+374cIIGf6lFHINn8lTHiDPJ32g2aRln/9waIu9b7VDmbSj
+         yqBGA/f/3vqh/pz7tzTNSVLrgUcMbTRiwiaC6XuoGA5ySy8osVFrUw0BVrgnQnP0NVox
+         02YBQF22Pn3XZ9zpkKWDJFSAkKuw+QLzBY9MAGXbs86uUXJdohgKizNYoVwm5YRq6ZCc
+         +z3w==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1706718877; x=1707323677;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=KkISyzoAojn//Mjk2EK2BnzD/RKHkw5boJQbVVV65z8=;
+        b=oDHaGxI1wzZ6nODlBsJ8A6h5UkF1E1LB/nNakp0D29RLHdKs7aBRbEY3OwhvbhMvd6
+         iqZzpEOGg9ivghpbTTjz0LY9PS8r6wC9lmTXCCn1SRHI2BCZahvlONoYvHd9nohmzRPR
+         s/AF/wRqpGA05EvvXvIQwfS2m5TtVhrB+zON5nnwGP9XUYlAMwRSKVMCF7ymmssRjZB8
+         JJA3TMawuT62wcZJUO2h2xkqymZIBRpny3krRn8zoNAJhAdJLTDALCtH8rc/K0M6GLMR
+         TWHXzQJJK/3MW58KFtV5UlxnypIAYc7chG/i50VzK0zOJMyvDkHvPcgNhpokpzrZA4kY
+         Ac9Q==
+X-Gm-Message-State: AOJu0Yz8uvcatDejh2ScDQrEkTgtUKLSdeL+6pc8bz8aKINnxqF3C/9a
+	P437xQYhY8S7Qs0u0WtKFuVgJN4ROkmfbIi4Z+f1Uj7JCHy17/fPlgudIxO+C+G9nQ+mhIc9iz8
+	F3qgulxppHopN0cxBUrpdTH7zeUk=
+X-Google-Smtp-Source: AGHT+IFYlD1g6oncACUWLgW/IS5NQxgKuyArc2mFdJsTASkUAWJlfEbLzj0KK+0uHYcKfDacVh1UqrmEF70G65ybS18=
+X-Received: by 2002:a17:906:57d9:b0:a23:7633:59ae with SMTP id
+ u25-20020a17090657d900b00a23763359aemr2193751ejr.9.1706718876708; Wed, 31 Jan
+ 2024 08:34:36 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="xv7z5ay3ishmxaq2"
-Content-Disposition: inline
-In-Reply-To: <NTZPR01MB1050AC99C38D2136D0354F3DEE7CA@NTZPR01MB1050.CHNPR01.prod.partner.outlook.cn>
-
-
---xv7z5ay3ishmxaq2
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
+References: <20240131125920.2879433-1-privatesub2@gmail.com> <20240131125920.2879433-2-privatesub2@gmail.com>
+In-Reply-To: <20240131125920.2879433-2-privatesub2@gmail.com>
+From: Maxim Kiselev <bigunclemax@gmail.com>
+Date: Wed, 31 Jan 2024 19:34:25 +0300
+Message-ID: <CALHCpMjkfvmN4i98FW1HxH+tNoOCsMJFwjwmLR6WqRvhizZGKg@mail.gmail.com>
+Subject: Re: [PATCH v8 1/3] dt-bindings: pwm: Add binding for Allwinner
+ D1/T113-S3/R329 PWM controller
+To: Aleksandr Shubin <privatesub2@gmail.com>
+Cc: linux-kernel@vger.kernel.org, Conor Dooley <conor.dooley@microchip.com>, 
+	=?UTF-8?Q?Uwe_Kleine=2DK=C3=B6nig?= <u.kleine-koenig@pengutronix.de>, 
+	Rob Herring <robh+dt@kernel.org>, 
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Chen-Yu Tsai <wens@csie.org>, Jernej Skrabec <jernej.skrabec@gmail.com>, 
+	Samuel Holland <samuel@sholland.org>, Paul Walmsley <paul.walmsley@sifive.com>, 
+	Palmer Dabbelt <palmer@dabbelt.com>, Albert Ou <aou@eecs.berkeley.edu>, 
+	Philipp Zabel <p.zabel@pengutronix.de>, Marc Kleine-Budde <mkl@pengutronix.de>, 
+	Cristian Ciocaltea <cristian.ciocaltea@collabora.com>, John Watts <contact@jookia.org>, 
+	Cheo Fusi <fusibrandon13@gmail.com>, linux-pwm@vger.kernel.org, 
+	devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
+	linux-sunxi@lists.linux.dev, linux-riscv@lists.infradead.org
+Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-On Wed, Jan 31, 2024 at 08:57:21AM +0000, Keith Zhao wrote:
-> > > +static const struct vs_dc_info dc8200_info =3D {
-> > > +	.name			=3D "DC8200",
-> > > +	.panel_num		=3D 2,
-> > > +	.plane_num		=3D 8,
-> > > +	.planes			=3D dc_hw_planes_rev0,
-> > > +	.layer_num		=3D 6,
-> > > +	.max_bpc		=3D 10,
-> > > +	.color_formats		=3D DRM_COLOR_FORMAT_RGB444 |
-> > > +				  DRM_COLOR_FORMAT_YCBCR444 |
-> > > +				  DRM_COLOR_FORMAT_YCBCR422 |
-> > > +				  DRM_COLOR_FORMAT_YCBCR420,
-> > > +	.gamma_size		=3D GAMMA_EX_SIZE,
-> > > +	.gamma_bits		=3D 12,
-> > > +	.pitch_alignment	=3D 128,
-> > > +	.pipe_sync		=3D false,
-> > > +	.background		=3D true,
-> > > +	.panel_sync		=3D true,
-> > > +	.cap_dec		=3D true,
-> > > +};
-> >=20
-> > I really think that entire thing is to workaround a suboptimal device t=
-ree binding.
-> > You should have two CRTCs in the device tree, you'll probe twice, and y=
-ou won't
-> > get to do that whole dance.
-> >=20
-> Hi Maxime:
-> I tried to modify it according to this idea Found it too difficult In ter=
-ms of hardware,=20
-> the two crtc designs are too close to separate, and they are even designe=
-d into the same reg with different bits representing crtc0 and crtc1.
-> It seems not easy to described the 2 ctrc hardware by 2 device nodes
->=20
-> The idea is to avoid a whole dance
-> I don't know if I understand correctly about whole dance.
-> Is it means I create 2 ctrc and 8 plane in the dc_bind?
+Hi Aleksandr,
 
-It looks like you just sent the same mail?
+=D1=81=D1=80, 31 =D1=8F=D0=BD=D0=B2. 2024=E2=80=AF=D0=B3. =D0=B2 15:59, Ale=
+ksandr Shubin <privatesub2@gmail.com>:
+>
+> Allwinner's D1, T113-S3 and R329 SoCs have a new pwm
+> controller witch is different from the previous pwm-sun4i.
+>
+> The D1 and T113 are identical in terms of peripherals,
+> they differ only in the architecture of the CPU core, and
+> even share the majority of their DT. Because of that,
+> using the same compatible makes sense.
+> The R329 is a different SoC though, and should have
+> a different compatible string added, especially as there
+> is a difference in the number of channels.
+>
+> D1 and T113s SoCs have one PWM controller with 8 channels.
+> R329 SoC has two PWM controllers in both power domains, one of
+> them has 9 channels (CPUX one) and the other has 6 (CPUS one).
+>
+> Add a device tree binding for them.
+>
+> Signed-off-by: Aleksandr Shubin <privatesub2@gmail.com>
+> Reviewed-by: Conor Dooley <conor.dooley@microchip.com>
+> ---
+> .../bindings/pwm/allwinner,sun20i-pwm.yaml | 88 +++++++++++++++++++
+> 1 file changed, 88 insertions(+)
+> create mode 100644 Documentation/devicetree/bindings/pwm/allwinner,sun20i=
+-pwm.yaml
+>
+> diff --git a/Documentation/devicetree/bindings/pwm/allwinner,sun20i-pwm.y=
+aml b/Documentation/devicetree/bindings/pwm/allwinner,sun20i-pwm.yaml
+> new file mode 100644
+> index 000000000000..716f75776006
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/pwm/allwinner,sun20i-pwm.yaml
+> @@ -0,0 +1,88 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/pwm/allwinner,sun20i-pwm.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: Allwinner D1, T113-S3 and R329 PWM
+> +
+> +maintainers:
+> + - Aleksandr Shubin <privatesub2@gmail.com>
+> + - Brandon Cheo Fusi <fusibrandon13@gmail.com>
+> +
+> +properties:
+> + compatible:
+> + oneOf:
+> + - const: allwinner,sun20i-d1-pwm
+> + - items:
+> + - const: allwinner,sun20i-r329-pwm
 
-Maxime
+According to the bsp sdk and other mainline drivers for
+R329 SoC, the sun50i prefix should be used instead the sun20i
 
---xv7z5ay3ishmxaq2
-Content-Type: application/pgp-signature; name="signature.asc"
+> + - const: allwinner,sun20i-d1-pwm
+> +
+> + reg:
+> + maxItems: 1
+> +
+> + "#pwm-cells":
+> + const: 3
+> +
+> + clocks:
+> + items:
+> + - description: Bus clock
+> + - description: 24 MHz oscillator
+> + - description: APB0 clock
+> +
+> + clock-names:
+> + items:
+> + - const: bus
+> + - const: hosc
+> + - const: apb0
+> +
+> + resets:
+> + maxItems: 1
+> +
+> + allwinner,pwm-channels:
+> + $ref: /schemas/types.yaml#/definitions/uint32
+> + description: The number of PWM channels configured for this instance
+> + enum: [6, 9]
+> +
+> +allOf:
+> + - $ref: pwm.yaml#
+> +
+> + - if:
+> + properties:
+> + compatible:
+> + contains:
+> + const: allwinner,sun20i-r329-pwm
 
------BEGIN PGP SIGNATURE-----
+Same here.
 
-iHUEABYKAB0WIQRcEzekXsqa64kGDp7j7w1vZxhRxQUCZbp1uQAKCRDj7w1vZxhR
-xTVnAQCPu+rxm42307fHf03GbrgNfJK7FjrljEfpxkkKMR2KHgD/TaZnj2hQnMsv
-I3q4pY+SX55x7qpgGeeIIDvyLXESOQE=
-=S6wD
------END PGP SIGNATURE-----
+> + then:
+> + required:
+> + - allwinner,pwm-channels
+> +
+> + else:
+> + properties:
+> + allwinner,pwm-channels: false
+> +
+> +unevaluatedProperties: false
+> +
+> +required:
+> + - compatible
+> + - reg
+> + - "#pwm-cells"
+> + - clocks
+> + - clock-names
+> + - resets
+> +
+> +examples:
+> + - |
+> + #include <dt-bindings/clock/sun20i-d1-ccu.h>
+> + #include <dt-bindings/reset/sun20i-d1-ccu.h>
+> +
+> + pwm: pwm@2000c00 {
+> + compatible =3D "allwinner,sun20i-d1-pwm";
+> + reg =3D <0x02000c00 0x400>;
+> + clocks =3D <&ccu CLK_BUS_PWM>, <&dcxo>, <&ccu CLK_APB0>;
+> + clock-names =3D "bus", "hosc", "apb0";
+> + resets =3D <&ccu RST_BUS_PWM>;
+> + #pwm-cells =3D <0x3>;
+> + };
+> +
+> +...
+> --
+> 2.25.1
+>
 
---xv7z5ay3ishmxaq2--
+Best regards,
+Maksim
 
