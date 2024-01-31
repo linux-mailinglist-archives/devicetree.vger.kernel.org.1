@@ -1,260 +1,123 @@
-Return-Path: <devicetree+bounces-37199-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-37206-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 39760844070
-	for <lists+devicetree@lfdr.de>; Wed, 31 Jan 2024 14:24:18 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id D0E5A8440C4
+	for <lists+devicetree@lfdr.de>; Wed, 31 Jan 2024 14:38:55 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id CB33F28E6DF
-	for <lists+devicetree@lfdr.de>; Wed, 31 Jan 2024 13:24:16 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 7EC29284168
+	for <lists+devicetree@lfdr.de>; Wed, 31 Jan 2024 13:38:54 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3808A7BB07;
-	Wed, 31 Jan 2024 13:24:07 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 520D57F48D;
+	Wed, 31 Jan 2024 13:38:53 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="CdgQK+lp"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="N7wOeWfN"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ed1-f41.google.com (mail-ed1-f41.google.com [209.85.208.41])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 46F937B3EC
-	for <devicetree@vger.kernel.org>; Wed, 31 Jan 2024 13:24:05 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.41
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 27AB97BB03;
+	Wed, 31 Jan 2024 13:38:52 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1706707447; cv=none; b=bLPvLA1nsrS0lEpd3DLB2WdRltZowG2WXsexQX4oVAj4heOuKV/ZiF/yWvpR4CRdN4IQ/DQyX+M3u1n7w8vB26lYbYR3iE3eYML90UI5vMlvlL6OfD6g+xMpiajC1UgPsuSvjao6fKNMmGXiDx/esghkIRcRGANUH6qF4bpvhJE=
+	t=1706708333; cv=none; b=EDrqPhYEbI8vl+3VMhBTI5DazOW8LLBBkW5hBZZ6pCVxNsVbOtneNofC0vno5hVd87wnFYnlfycBk9HAWwp043K47FOq3ULLhuGlvt+9RvidHwDWP5DaJ4YpvhRAhdJvJuJsxcQ4AJJonVjRvm64upTbk+s5iOfKFRDgiAvzaP4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1706707447; c=relaxed/simple;
-	bh=dyfkhaaGalerYvo8OYQBwEHcVXTNO0xd7s0BMAtU0XM=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=bbodE/+CIF/+b8sW+/dqj7dItcFBnV9hP0rHjf2/iVwo3++aoXxEUJIPJHeoWb/bUk2s2Bg+OYznryy7Qwf9PBTXLoz3WYS4i8b9/a4m2l3RntU5fDr/jhFlOQP6Lig3z9VpYyp1teZvHbmM8KR4+gEhQWMh6n53bz4TNAKXkSY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=CdgQK+lp; arc=none smtp.client-ip=209.85.208.41
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-ed1-f41.google.com with SMTP id 4fb4d7f45d1cf-55f15762840so3291757a12.0
-        for <devicetree@vger.kernel.org>; Wed, 31 Jan 2024 05:24:05 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1706707443; x=1707312243; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=5MUD9HTI1e0BY5P2+rcAvV/RfzBprzDJcgshNjTcI5g=;
-        b=CdgQK+lpwdsYgodZ6YXku7D81f87J0dm54pprlewPzm7s+0l7gVNxH577oRt82588D
-         0Es/Q7h+wl/f1xTLtVYYUJ3mT+U62+DQlOzLAzt6YNOdS1QEmhFQOmvYJARbhIV7z7VN
-         pKRfq+WaZ6lyZfYrYlPfAsCZ1M08d4oZci0ICiITnypAu2Wn4RP9qipGjjrSccAmYIAd
-         2RaGIAEgA6ExKCHcm2Y3Eo9WqB3zhYOki9Gi2nRjWJoYGppZNcpnLQY+pAp4cxp8UnB4
-         sfx4HNkHiKPURbNoNKFXxgBSZIWMih868a/0Zpl+f7gxCiOgC3rZfLQEst02xIoNUgHJ
-         W/VA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1706707443; x=1707312243;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=5MUD9HTI1e0BY5P2+rcAvV/RfzBprzDJcgshNjTcI5g=;
-        b=hPHGAVu6wCdtrzsA0MlXdtFumKxhLt9icmv8/DyZ8mZT28ADhq9Nf8jHI6Y711/BL3
-         J/rOFeN2ARhr/R7u60NafgxP7ntOkWSUluyiQ5VImBLQsOVNnCQOIMMu5xDl0xWG1g58
-         1HYcGbvA70nB3gsYPisWqupaMH2/QRPJe6nXIWZ8vqmZ4fFCQgfHOnJuV6R7/iTHLp6A
-         +lhjmgekiWLUZ0iC24jg8TfzYg12HiO6g+PROOK1P6WXFcg+lv+8krDR7hWQ60g/zwwg
-         nqJkkUnx1cI45kdTWVIHZhO080BM4trFCz6t/lT98NYlOr8oKUsuAUSjTG+RA3zdG3pk
-         QbEQ==
-X-Gm-Message-State: AOJu0YxjBg+HmUyJdVDUAmg5fu2Pdj/ug8fzfqRfmRAkNIArC4v8XHT2
-	S409Nur560+kdkPJ7zrkJdHJKpBGlpdpcp16ZYNS/0lcm1ry0HBm5mNTHF2yyfk=
-X-Google-Smtp-Source: AGHT+IGsArhQ0W4XwCtuYHmCXvO2RCbEUYwLVnXG7bbJ2f+RWm7qp6uth4/WrrGNVLWi0nMCiDAGlA==
-X-Received: by 2002:a05:6402:5213:b0:55f:7fe9:c567 with SMTP id s19-20020a056402521300b0055f7fe9c567mr1328202edd.1.1706707443454;
-        Wed, 31 Jan 2024 05:24:03 -0800 (PST)
-X-Forwarded-Encrypted: i=0; AJvYcCXAPb1qAxujL6HdXhhSE+sVLYyv05T+1t6zsGllhHznYzX/PMaaMWlWlwdKflV/rE2cW6o74D6P5/MgaRBL50x8hpKC6rdV3SXCT9jg9Ji7TUTPz1pNeBhWMlWC+IfLrPd0B2vhwyNDuizmS32810JX3sqf5JT7V+AQ99g6Rel+10bREe21Sb5EO1A/Omzzjn3QIfCT/mujA2BEUIiu1zZv+0CqUv1MaxkOh7cqm9rocuXEHmjyBszU0xvEJlv0mjNYLCS1XoDJxpzUAq/rfM/zz5jpOFPEGrdjrd9xf/22brANqKdr5Qe7xJD4RBSiEgBrJJf/AkA4q95VBK8PXrnB0jaX78Q7eDv8e+05u79LxxjkpSzKapxDjRADUQkvVUGL4Bo/Fj0g6gCjTSX4jQxfKFGNVzoFUx5kWAFx1+ygTUek7Rz2OKpqQXwb937CLkXtvDD2DA7yqDKv1A+/fqrKg8HBoUNNJECbkjLwH8g99VV5sbLqL0YhV3CLc4Xcu7CMQMVNnwPCTGD4XqyeQSQ8hrz1YCxpBWplY+sPHVREe6iy1/GkJs/OwqCglwcC7CFTSolo9DSTLmRDrk1UhGOFe31qbec+gOCKSWxxr4s6abJlSI8f+navK+6YHoPncMiXIizZv3QIiI1Z4891Tkb4pYAedqs2PA0AE1Wv9C7i3ka9bfYsDX09/hNrgQkhQ1xjUVADtWzUmG0UrwpYOJEmhjfGBkgglntxHOt+hgbn4N4VuA1QdBjYw1CU8N7CJzmVLwtLZaliIjELEvthoIM2ibY5DXpSs5qu9XM59tf609gL0qEP4IFy3iwMydPTmAqogjjmV03dipumTSNdoFHa55YPC2eQ3OyH5nA5YOEQrE4ElC5koxoXVb43SA5OoTdRfnAD93eKIz+BlAAfzx/hqxYe+pKpm1gX8Qh3wS2YqK9fF05r6BlYh117YgypN339P3
- 9xHWP4A+bTltjSuhLbMpZNEOGvejoeqZB4
-Received: from pop-os.localdomain (81-231-61-187-no276.tbcn.telia.com. [81.231.61.187])
-        by smtp.gmail.com with ESMTPSA id et6-20020a056402378600b0055eeb5f0efcsm3641516edb.58.2024.01.31.05.24.01
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 31 Jan 2024 05:24:02 -0800 (PST)
-Date: Wed, 31 Jan 2024 14:24:00 +0100
-From: Joakim Bech <joakim.bech@linaro.org>
-To: Yong Wu <yong.wu@mediatek.com>
-Cc: Rob Herring <robh+dt@kernel.org>,
-	Matthias Brugger <matthias.bgg@gmail.com>, christian.koenig@amd.com,
-	Sumit Semwal <sumit.semwal@linaro.org>,
+	s=arc-20240116; t=1706708333; c=relaxed/simple;
+	bh=CPLp+9AYzGX3pEeWi3wlU4ZtwP5lMB44GA9+1lDqg0Q=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=NmUHIj3fRm2144wh5f1U8pQaNh7M4/c1nXhWbshMV8hygCTN7htY55JajIRjATpH2ynh8hdnYJe4GYZcLmLTweQi+5rvq1gl0zs37Jx5JH1w1Ll3Wjek/DI+VlLjOcYyUEkR+/Ve33KAd0k1TVfviyLPky38rVjfyMscAaGwM1U=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=N7wOeWfN; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 94E8DC43390;
+	Wed, 31 Jan 2024 13:38:50 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1706708332;
+	bh=CPLp+9AYzGX3pEeWi3wlU4ZtwP5lMB44GA9+1lDqg0Q=;
+	h=From:To:Cc:Subject:Date:From;
+	b=N7wOeWfNFJ1SeWiKk+cAW/43kh5X4RTcseKgUBBaK7HVu8FeyNgcglzNeEXM2iNbt
+	 /ER/FBSdTbD8zxzkp1m6hGF1ZbEtJSt7LAvN2RjY2ZHhsrsNdnZHICJU+dntMNj7Kt
+	 +bLM6GbahqHupXQ7NAX9OsINU4u47fu2bsiiphcj6GOc8UdGxxor1JYAuTz7gx6rcs
+	 FhgUs3L3O5eFGUyU/cWIHpOxgcVw+mLwH1L/2Aek4/sHOodoDgoCWjByU2tar/oc/z
+	 aRKNv5zBHnxLe7jwzcZLyvci/++PNsc4zB8TtQyQPxkFeSjQZOUqTewp7WxDy9MBBR
+	 MeDQYGadFcmHg==
+From: Jisheng Zhang <jszhang@kernel.org>
+To: Conor Dooley <conor@kernel.org>,
+	Rob Herring <robh+dt@kernel.org>,
 	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Benjamin Gaignard <benjamin.gaignard@collabora.com>,
-	Brian Starkey <Brian.Starkey@arm.com>,
-	John Stultz <jstultz@google.com>, tjmercier@google.com,
-	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	linux-media@vger.kernel.org, dri-devel@lists.freedesktop.org,
-	linaro-mm-sig@lists.linaro.org,
-	linux-arm-kernel@lists.infradead.org,
-	linux-mediatek@lists.infradead.org,
-	Robin Murphy <robin.murphy@arm.com>,
-	Vijayanand Jitta <quic_vjitta@quicinc.com>,
-	Jeffrey Kardatzke <jkardatzke@google.com>,
-	Pavel Machek <pavel@ucw.cz>, Simon Ser <contact@emersion.fr>,
-	Pekka Paalanen <ppaalanen@gmail.com>, jianjiao.zeng@mediatek.com,
-	kuohong.wang@mediatek.com, youlin.pei@mediatek.com
-Subject: Re: [PATCH v4 2/7] dma-buf: heaps: Initialize a restricted heap
-Message-ID: <20240131132400.h3hklvnjjp3pelqz@pop-os.localdomain>
-References: <20240112092014.23999-1-yong.wu@mediatek.com>
- <20240112092014.23999-3-yong.wu@mediatek.com>
+	Paul Walmsley <paul.walmsley@sifive.com>,
+	Palmer Dabbelt <palmer@dabbelt.com>,
+	Albert Ou <aou@eecs.berkeley.edu>,
+	Emil Renner Berthing <kernel@esmil.dk>
+Cc: linux-riscv@lists.infradead.org,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org
+Subject: [PATCH v3 0/6] riscv: dts: starfive: add Milkv Mars board device tree
+Date: Wed, 31 Jan 2024 21:25:54 +0800
+Message-ID: <20240131132600.4067-1-jszhang@kernel.org>
+X-Mailer: git-send-email 2.43.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-In-Reply-To: <20240112092014.23999-3-yong.wu@mediatek.com>
+Content-Transfer-Encoding: 8bit
 
-On Fri, Jan 12, 2024 at 05:20:09PM +0800, Yong Wu wrote:
-> Initialize a restricted heap. Currently just add a null heap, Prepare for
-> the later patches.
-> 
-> Signed-off-by: Yong Wu <yong.wu@mediatek.com>
-> ---
->  drivers/dma-buf/heaps/Kconfig           |  9 ++++
->  drivers/dma-buf/heaps/Makefile          |  3 +-
->  drivers/dma-buf/heaps/restricted_heap.c | 67 +++++++++++++++++++++++++
->  drivers/dma-buf/heaps/restricted_heap.h | 22 ++++++++
->  4 files changed, 100 insertions(+), 1 deletion(-)
->  create mode 100644 drivers/dma-buf/heaps/restricted_heap.c
->  create mode 100644 drivers/dma-buf/heaps/restricted_heap.h
-> 
-> diff --git a/drivers/dma-buf/heaps/Kconfig b/drivers/dma-buf/heaps/Kconfig
-> index a5eef06c4226..e54506f480ea 100644
-> --- a/drivers/dma-buf/heaps/Kconfig
-> +++ b/drivers/dma-buf/heaps/Kconfig
-> @@ -12,3 +12,12 @@ config DMABUF_HEAPS_CMA
->  	  Choose this option to enable dma-buf CMA heap. This heap is backed
->  	  by the Contiguous Memory Allocator (CMA). If your system has these
->  	  regions, you should say Y here.
-> +
-> +config DMABUF_HEAPS_RESTRICTED
-> +	bool "DMA-BUF Restricted Heap"
-> +	depends on DMABUF_HEAPS
-> +	help
-> +	  Choose this option to enable dma-buf restricted heap. The purpose of this
-> +	  heap is to manage buffers that are inaccessible to the kernel and user space.
-> +	  There may be several ways to restrict it, for example it may be encrypted or
-> +	  protected by a TEE or hypervisor. If in doubt, say N.
-> diff --git a/drivers/dma-buf/heaps/Makefile b/drivers/dma-buf/heaps/Makefile
-> index 974467791032..a2437c1817e2 100644
-> --- a/drivers/dma-buf/heaps/Makefile
-> +++ b/drivers/dma-buf/heaps/Makefile
-> @@ -1,3 +1,4 @@
->  # SPDX-License-Identifier: GPL-2.0
-> -obj-$(CONFIG_DMABUF_HEAPS_SYSTEM)	+= system_heap.o
->  obj-$(CONFIG_DMABUF_HEAPS_CMA)		+= cma_heap.o
-> +obj-$(CONFIG_DMABUF_HEAPS_RESTRICTED)	+= restricted_heap.o
-> +obj-$(CONFIG_DMABUF_HEAPS_SYSTEM)	+= system_heap.o
-> diff --git a/drivers/dma-buf/heaps/restricted_heap.c b/drivers/dma-buf/heaps/restricted_heap.c
-> new file mode 100644
-> index 000000000000..fd7c82abd42e
-> --- /dev/null
-> +++ b/drivers/dma-buf/heaps/restricted_heap.c
-> @@ -0,0 +1,67 @@
-> +// SPDX-License-Identifier: GPL-2.0
-> +/*
-> + * DMABUF restricted heap exporter
-> + *
-> + * Copyright (C) 2024 MediaTek Inc.
-> + */
-> +
-> +#include <linux/dma-buf.h>
-> +#include <linux/dma-heap.h>
-> +#include <linux/err.h>
-> +#include <linux/slab.h>
-> +
-> +#include "restricted_heap.h"
-> +
-> +static struct dma_buf *
-> +restricted_heap_allocate(struct dma_heap *heap, unsigned long size,
-> +			 unsigned long fd_flags, unsigned long heap_flags)
-> +{
-> +	struct restricted_buffer *restricted_buf;
-> +	DEFINE_DMA_BUF_EXPORT_INFO(exp_info);
-> +	struct dma_buf *dmabuf;
-> +	int ret;
-> +
-> +	restricted_buf = kzalloc(sizeof(*restricted_buf), GFP_KERNEL);
-> +	if (!restricted_buf)
-> +		return ERR_PTR(-ENOMEM);
-> +
-> +	restricted_buf->size = ALIGN(size, PAGE_SIZE);
-> +	restricted_buf->heap = heap;
-> +
-> +	exp_info.exp_name = dma_heap_get_name(heap);
-> +	exp_info.size = restricted_buf->size;
-> +	exp_info.flags = fd_flags;
-> +	exp_info.priv = restricted_buf;
-> +
-> +	dmabuf = dma_buf_export(&exp_info);
-> +	if (IS_ERR(dmabuf)) {
-> +		ret = PTR_ERR(dmabuf);
-> +		goto err_free_buf;
-> +	}
-> +
-> +	return dmabuf;
-> +
-> +err_free_buf:
-> +	kfree(restricted_buf);
-> +	return ERR_PTR(ret);
-> +}
-> +
-> +static const struct dma_heap_ops restricted_heap_ops = {
-> +	.allocate = restricted_heap_allocate,
-> +};
-> +
-> +int restricted_heap_add(struct restricted_heap *rstrd_heap)
->
-Nothing wrong, but what about shortening rstrd_heap throughout the patch
-set to "rheap", I would find that easier to read.
+The Milkv Mars is a development board based on the Starfive JH7110 SoC.
+The board features:
 
-> +{
-> +	struct dma_heap_export_info exp_info;
-> +	struct dma_heap *heap;
-> +
-> +	exp_info.name = rstrd_heap->name;
-> +	exp_info.ops = &restricted_heap_ops;
-> +	exp_info.priv = (void *)rstrd_heap;
-> +
-> +	heap = dma_heap_add(&exp_info);
-> +	if (IS_ERR(heap))
-> +		return PTR_ERR(heap);
-> +	return 0;
-> +}
-> +EXPORT_SYMBOL_GPL(restricted_heap_add);
-> diff --git a/drivers/dma-buf/heaps/restricted_heap.h b/drivers/dma-buf/heaps/restricted_heap.h
-> new file mode 100644
-> index 000000000000..443028f6ba3b
-> --- /dev/null
-> +++ b/drivers/dma-buf/heaps/restricted_heap.h
-> @@ -0,0 +1,22 @@
-> +/* SPDX-License-Identifier: GPL-2.0-only */
-> +/*
-> + * Restricted heap Header.
-> + *
-> + * Copyright (C) 2024 MediaTek, Inc.
-> + */
-> +
-> +#ifndef _DMABUF_RESTRICTED_HEAP_H_
-> +#define _DMABUF_RESTRICTED_HEAP_H_
-> +
-> +struct restricted_buffer {
-> +	struct dma_heap		*heap;
-> +	size_t			size;
-> +};
-> +
-> +struct restricted_heap {
-> +	const char		*name;
-> +};
-> +
-> +int restricted_heap_add(struct restricted_heap *rstrd_heap);
-> +
-> +#endif
-> -- 
-> 2.25.1
-> 
+- JH7110 SoC
+- 1/2/4/8 GiB LPDDR4 DRAM
+- AXP15060 PMIC
+- 40 pin GPIO header
+- 3x USB 3.0 host port
+- 1x USB 2.0 host port
+- 1x M.2 E-Key
+- 1x eMMC slot
+- 1x MicroSD slot
+- 1x QSPI Flash
+- 1x 1Gbps Ethernet port
+- 1x HDMI port
+- 1x 2-lane DSI and 1x 4-lane DSI
+- 1x 2-lane CSI
+
+patch1 adds 'cpus' label
+patch2 adds "milkv,mars" board dt-binding
+patch3 ~ patch4 adopt Krzysztof's suggestions to DT node names
+patch5 introduces a board common dtsi for visionfive2 and mars
+patch3 adds the mars board dts file describing the currently supported
+features:
+Namely PMIC, UART, I2C, GPIO, SD card, QSPI Flash, eMMC and Ethernet.
+
+Since v2:
+ - add a common board file which can be used by vf2 and mars
+
+Since v1:
+ - add two new patches which add "cpus" label and board dt-binding
+ - adopt Krzysztof's suggestions, thanks
+
+Jisheng Zhang (6):
+  riscv: dts: starfive: add 'cpus' label to jh7110 and jh7100 soc dtsi
+  dt-bindings: riscv: starfive: add Milkv Mars board
+  riscv: dts: starfive: visionfive 2: update sound and codec dt node
+    name
+  riscv: dts: starfive: visionfive 2: use cpus label for timebase freq
+  riscv: dts: starfive: introduce a common board dtsi for jh7110 based
+    boards
+  riscv: dts: starfive: add Milkv Mars board device tree
+
+ .../devicetree/bindings/riscv/starfive.yaml   |   1 +
+ arch/riscv/boot/dts/starfive/Makefile         |   1 +
+ arch/riscv/boot/dts/starfive/jh7100.dtsi      |   2 +-
+ .../boot/dts/starfive/jh7110-milkv-mars.dts   |  35 +
+ .../jh7110-starfive-visionfive-2.dtsi         | 600 +----------------
+ .../jh7110-visionfive2-mars-common.dtsi       | 617 ++++++++++++++++++
+ arch/riscv/boot/dts/starfive/jh7110.dtsi      |   2 +-
+ 7 files changed, 657 insertions(+), 601 deletions(-)
+ create mode 100644 arch/riscv/boot/dts/starfive/jh7110-milkv-mars.dts
+ create mode 100644 arch/riscv/boot/dts/starfive/jh7110-visionfive2-mars-common.dtsi
 
 -- 
-// Regards
-Joakim
+2.43.0
+
 
