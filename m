@@ -1,186 +1,194 @@
-Return-Path: <devicetree+bounces-36989-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-36990-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7EC2884370F
-	for <lists+devicetree@lfdr.de>; Wed, 31 Jan 2024 08:01:09 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8413484371A
+	for <lists+devicetree@lfdr.de>; Wed, 31 Jan 2024 08:08:00 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 389E928343A
-	for <lists+devicetree@lfdr.de>; Wed, 31 Jan 2024 07:01:08 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id ED4361F257EC
+	for <lists+devicetree@lfdr.de>; Wed, 31 Jan 2024 07:07:59 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2F57338DE3;
-	Wed, 31 Jan 2024 07:00:58 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E40104D134;
+	Wed, 31 Jan 2024 07:07:53 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="aR8uiQIa"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtpbg154.qq.com (smtpbg154.qq.com [15.184.224.54])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-pg1-f174.google.com (mail-pg1-f174.google.com [209.85.215.174])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3C4994F608;
-	Wed, 31 Jan 2024 07:00:50 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=15.184.224.54
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D345D3E495
+	for <devicetree@vger.kernel.org>; Wed, 31 Jan 2024 07:07:50 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.215.174
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1706684458; cv=none; b=K1y0n9nFT46aOBNITcBZRhmrMF6w+p9esp8PiWkxOwlzd0m4UcpN+RqVWJb/JI/KsfJRaRBfWu66h3j1nJCMc02Mx4fjAZDU0e8HFCLH5K9rmDtn19/6ieFwfdTitASRwSu2Xn1BvhZsX8xXl9o7/Vh/XxvQA5ZZ1dZ1ZwEfI7Y=
+	t=1706684873; cv=none; b=MRL5IbQlU/5IQKURxu4FDBdXKw0Nj72RUa4+JI6BCTWY0TGshWqEcFanJvRYJvVRpX+xFJn8PnQArOrJekNqoWAAUK61KGsv48cV73XXPsHhhuQlh2alLrQNfgaoJ3WW+G777c+xWcbEOqur1BrmYpCDALk4CyldrAIvYLnU8mI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1706684458; c=relaxed/simple;
-	bh=B/ElHGjxCkLeMBY823z+y/Hl28wrPRCDlTkzZXoSwIo=;
-	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version; b=LipaPYPdeptHoG7L/3mI7EL+QTdYgZlcHTFFRW4BgG9MM3sAWL4hrpRyQGui4yMjaPLw8tUa1OYvpkHYAAPL4k4ezXpabxyMCD7jBl9AsoIeLeaZh4d9aeQF4R0GbDcg6/9OTaKSdwHLcodJKzporTqLnAZzxgHiKmbUq71MCGw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=shingroup.cn; spf=pass smtp.mailfrom=shingroup.cn; arc=none smtp.client-ip=15.184.224.54
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=shingroup.cn
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=shingroup.cn
-X-QQ-mid: bizesmtp89t1706684405tzxcwwhw
-X-QQ-Originating-IP: 7tQsAHQX4BoX3xLqOMeHuWcg7OvaXJdXcdN0YcqngNY=
-Received: from HX01040022.powercore.com.cn ( [223.112.234.130])
-	by bizesmtp.qq.com (ESMTP) with 
-	id ; Wed, 31 Jan 2024 15:00:03 +0800 (CST)
-X-QQ-SSF: 01400000000000B0B000000A0000000
-X-QQ-FEAT: RqEkWZU95OHUMMbnP5O7pi75yccQvoLOKSaRKuHaOOzptfT2R6XrK9l9iFErh
-	G3/j+PxM/liXJH0nqhRZ7VhsiFeY22Ba8lOlwB22/kko4VeFXGWGgppbHYNavC7ZDPLH6hH
-	1max6ZXzbeON1oXvsTysh3W2jihhIBq2T6bSLK+DBcNfT4lsu1OVXInznr4kH9pU5SoGQ5x
-	UZpXpTVQdSSm/5yUjPwNLblojd9HpX1PRaMXy9GT4tcOvoidoXks3UEJDKoq4QbQ3c0ya68
-	5VzbOCx03O/g7udQePvBN4fg2cx3RucyiydnkNR6givjCyc/uL+IwMhfhlIU97FWpKSkfUF
-	iQ7QkzuUvnsiqDFejouCciTzwOpN0+SQl2ZX9cGoSioEfaRmGDo5pcLoTdORLcV5E5CSNZQ
-	CgkloBQaORjMcX66yVMiCA==
-X-QQ-GoodBg: 2
-X-BIZMAIL-ID: 16691829228007298276
-From: "JiaLong.Yang" <jialong.yang@shingroup.cn>
-To: Jialong Yang <jialong.yang@shingroup.cn>,
-	Will Deacon <will@kernel.org>,
-	Mark Rutland <mark.rutland@arm.com>,
-	Rob Herring <robh+dt@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>
-Cc: shenghui.qu@shingroup.cn,
-	ke.zhao@shingroup.cn,
-	zhijie.ren@shingroup.cn,
-	Rob Herring <robh@kernel.org>,
-	linux-arm-kernel@lists.infradead.org,
-	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org
-Subject: [PATCH v2] dt-bingdings: perf: Support uncore ARM NI-700 PMU
-Date: Wed, 31 Jan 2024 14:59:53 +0800
-Message-Id: <20240131065953.9634-1-jialong.yang@shingroup.cn>
+	s=arc-20240116; t=1706684873; c=relaxed/simple;
+	bh=8oILixSlZ5urTs1vGCrQlsyLD+Svdi6zXRxdXJ11eVo=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=EecfQXFvKI8bitD3eC2iXmy4AtW4TJqRUKXxc3uxADsNpyA/6disTVIPgKNXwkfUlXwAAzXwOqV2wzWceihE9qF1J+faK/1qJgI8h4krzuA7t5pn7nhpra+tO6HuvJ96B6ihUsVfs2FDoaLnvH9mU/eueCsujv9flr2OnGfBW+0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=aR8uiQIa; arc=none smtp.client-ip=209.85.215.174
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-pg1-f174.google.com with SMTP id 41be03b00d2f7-5cdf76cde78so2966500a12.1
+        for <devicetree@vger.kernel.org>; Tue, 30 Jan 2024 23:07:50 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1706684870; x=1707289670; darn=vger.kernel.org;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=dOSkO6Y4FYd8fxupP96Kte1aY7D/V2g1zrYc1jxvyPQ=;
+        b=aR8uiQIanIUMGZJPN5Sv1LcknTsmogTFKFsBH0RxXhFlPMLfMEu2PTuKwuc66hAAdd
+         y0WFp+kwoZkRTzZrEBN5u4tLNugTB3lxDxM93SsqGahJ/NjYJgh64z3ULGCPRbrus8LD
+         zONGvlwTM4O7jcltoiZ7mg0gw9XG/7VrAk4fgShW3b2zv2tqo/qaTkrc5kNh+RjivHin
+         dX2Y27qzDnOjo+GZ3jhYsaJxkV2TzIzzaQBy0LYGPmulSjrgZbwsTmFKzBCzEdlhZZrK
+         frdNu/gxKS65ra3QN42XUk+b1rQaPIzdMti0QJW8GVtVxLz7vgdv1Atu1byYN7hlIYgl
+         yIZw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1706684870; x=1707289670;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=dOSkO6Y4FYd8fxupP96Kte1aY7D/V2g1zrYc1jxvyPQ=;
+        b=sw/DvAdrH1E385rWXaZmaOMSkqTQqJcix/0rTiwxHPakgg4R06JKHh26UunoEGt2kN
+         m9ZO8lKnKtLYwnmsWK5y+FZuIoCLuxzLXulrl4+D466zZsbGiv/KbyriAYmrGDa5PAqf
+         M1UHHESoxar5hb+v66vyqg25qFoqIk/hOQwuWFuc1z9GvkbSgdXokaZwKNy3eMpXYQzX
+         eOugGg1/q1Y/sUuhl1ogrbEpQpWbxH0Le+nNuz8xM/33KYZBewysbhtqDrDKqLPEugWw
+         baHLiFpSnZhql/glIDo5UMWgEHHfY+9F6yB6TcxZh8MP01IbW6F8ZbCOtmylgOLvGPk5
+         Op9Q==
+X-Gm-Message-State: AOJu0YwwaAhe2XesUD+qtTrGAqi/QsYZ3F1/zdoqvEi79HpaWJfCSMiX
+	IycFkutHSXNbW4arL9+OPOypH++A6kpvbrfM0BRnDIKGnPyBlgUXnoTteoFcAw==
+X-Google-Smtp-Source: AGHT+IGq4Dd3fKbHGpJ491lSOAvBvsjx9O1WWxRttsPouRtdA4cN3NaV7/uiBsxKoB69XgDHDdyI+w==
+X-Received: by 2002:a05:6a20:9e91:b0:19c:a7c0:acd8 with SMTP id mq17-20020a056a209e9100b0019ca7c0acd8mr719947pzb.0.1706684870039;
+        Tue, 30 Jan 2024 23:07:50 -0800 (PST)
+Received: from [127.0.1.1] ([103.28.246.26])
+        by smtp.gmail.com with ESMTPSA id lp17-20020a056a003d5100b006ddd182bf1csm9087956pfb.46.2024.01.30.23.07.43
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 30 Jan 2024 23:07:49 -0800 (PST)
+From: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
+Subject: [PATCH v3 00/17] Fix Qcom UFS PHY clocks
+Date: Wed, 31 Jan 2024 12:37:23 +0530
+Message-Id: <20240131-ufs-phy-clock-v3-0-58a49d2f4605@linaro.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-QQ-SENDSIZE: 520
-Feedback-ID: bizesmtp:shingroup.cn:qybglogicsvrgz:qybglogicsvrgz6a-1
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIAKvxuWUC/6tWKk4tykwtVrJSqFYqSi3LLM7MzwNyjHUUlJIzE
+ vPSU3UzU4B8JSMDIxMDQ2ND3dK0Yt2CjErd5Jz85Gxdc0tjyyRLI1OLJONkJaCegqLUtMwKsHn
+ RsbW1AADUe1pfAAAA
+To: Andy Gross <agross@kernel.org>, Bjorn Andersson <andersson@kernel.org>, 
+ Konrad Dybcio <konrad.dybcio@linaro.org>, Vinod Koul <vkoul@kernel.org>, 
+ Kishon Vijay Abraham I <kishon@kernel.org>, 
+ Rob Herring <robh+dt@kernel.org>, 
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, 
+ Conor Dooley <conor+dt@kernel.org>, 
+ Michael Turquette <mturquette@baylibre.com>, 
+ Stephen Boyd <sboyd@kernel.org>
+Cc: linux-arm-msm@vger.kernel.org, linux-phy@lists.infradead.org, 
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+ linux-clk@vger.kernel.org, quic_cang@quicinc.com, 
+ Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>, 
+ Conor Dooley <conor.dooley@microchip.com>, 
+ Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+X-Mailer: b4 0.12.4
+X-Developer-Signature: v=1; a=openpgp-sha256; l=3384;
+ i=manivannan.sadhasivam@linaro.org; h=from:subject:message-id;
+ bh=8oILixSlZ5urTs1vGCrQlsyLD+Svdi6zXRxdXJ11eVo=;
+ b=owEBbQGS/pANAwAKAVWfEeb+kc71AcsmYgBlufG2op3Brs8QxQHR4Lma+anPdMoGprBMDMvoU
+ 04otxHtgv+JATMEAAEKAB0WIQRnpUMqgUjL2KRYJ5dVnxHm/pHO9QUCZbnxtgAKCRBVnxHm/pHO
+ 9WobB/9NZYXT3tglVcat/alW1W2NsBvVeeQMIiTQSkS56WqIl4UHrc0WDixCWSWuq90DVYkkzQj
+ DQR93pb3ofsHf4bPUZZv5CGNDYGZCKpMh/5OM+tGYjOElbgJKujYEIJjw50vJRw+7ZDXPKEV4be
+ sFNBIU2jj44uXi7+XSbMAvTUX9Ho3lZ2OT4jV4lQMe0cHuUiZbidlw/QOQdhHrtO9tCuZtUlCov
+ ZrxHspD4SpPtxp9deLDoG0fBe/cl8tIAIu2EYe0rxn6Mkg4HrbpK/dFVIHH3SB8XnuOGqrZuAyg
+ MjZsL5Jw2TXxRS+wnDHx6CxtVTT7I95xGozCN6KUdmV+7jlP
+X-Developer-Key: i=manivannan.sadhasivam@linaro.org; a=openpgp;
+ fpr=C668AEC3C3188E4C611465E7488550E901166008
 
-Add file corresponding to hx_arm_ni.c introducing ARM NI-700 PMU driver
-for HX.
+Hi,
 
-Signed-off-by: JiaLong.Yang <jialong.yang@shingroup.cn>
+This series fixes the clocks supplied to QMP PHY IPs in the Qcom SoCs. All
+of the Qcom SoCs except MSM8996 require 3 clocks for QMP UFS:
+
+* ref - 19.2MHz reference clock from RPM/RPMh
+* ref_aux - Auxiliary reference clock from GCC
+* qref - QREF clock from GCC or TCSR (TCSR since SM8550)
+
+MSM8996 only requires 'ref' and 'qref' clocks.
+
+Hence, this series fixes the binding, DT and GCC driver to reflect the
+actual clock topology.
+
+Note that the clock topology is not based on any downstream dts sources (even
+they are not accurate). But rather based on information from Qcom internal
+documentation and brain dump from Can Guo.
+
+Testing
+=======
+
+Tested on Qualcomm RB5 development board based on SM8250 SoC. I don't
+expect this series to break other SoCs too.
+
+- Mani
+
+Changes in v3:
+
+* Added a patch for SM8650
+* Collected review tags
+* Rebased on top of next/20231123
+
+Changes in v2:
+
+* Reworded the commit message of patch 1 to justify ABI breakage
+* Collected review tags
+
+Signed-off-by: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
 ---
-v1 --> v2:
-1. Submit dt-bindings file Seperately.
-2. Do some check:
-   ~ #: make dt_binding_check DT_SCHEMA_FILES=perf
-   LINT    Documentation/devicetree/bindings
-   CHKDT   Documentation/devicetree/bindings/processed-schema.json
-   SCHEMA  Documentation/devicetree/bindings/processed-schema.json
-   DTEX    Documentation/devicetree/bindings/perf/hx,c2000-arm-ni.example.dts
-   DTC_CHK Documentation/devicetree/bindings/perf/hx,c2000-arm-ni.example.dtb
+Manivannan Sadhasivam (17):
+      dt-bindings: phy: qmp-ufs: Fix PHY clocks
+      phy: qcom-qmp-ufs: Switch to devm_clk_bulk_get_all() API
+      dt-bindings: clock: qcom: Add missing UFS QREF clocks
+      clk: qcom: gcc-sc8180x: Add missing UFS QREF clocks
+      arm64: dts: qcom: msm8996: Fix UFS PHY clocks
+      arm64: dts: qcom: msm8998: Fix UFS PHY clocks
+      arm64: dts: qcom: sdm845: Fix UFS PHY clocks
+      arm64: dts: qcom: sm6115: Fix UFS PHY clocks
+      arm64: dts: qcom: sm6125: Fix UFS PHY clocks
+      arm64: dts: qcom: sm6350: Fix UFS PHY clocks
+      arm64: dts: qcom: sm8150: Fix UFS PHY clocks
+      arm64: dts: qcom: sm8250: Fix UFS PHY clocks
+      arm64: dts: qcom: sc8180x: Fix UFS PHY clocks
+      arm64: dts: qcom: sc8280xp: Fix UFS PHY clocks
+      arm64: dts: qcom: sm8350: Fix UFS PHY clocks
+      arm64: dts: qcom: sm8550: Fix UFS PHY clocks
+      arm64: dts: qcom: sm8650: Fix UFS PHY clocks
 
- .../bindings/perf/hx,c2000-arm-ni.yaml        | 53 +++++++++++++++++++
- .../devicetree/bindings/vendor-prefixes.yaml  |  2 +
- MAINTAINERS                                   |  6 +++
- 3 files changed, 61 insertions(+)
- create mode 100644 Documentation/devicetree/bindings/perf/hx,c2000-arm-ni.yaml
+ .../bindings/phy/qcom,sc8280xp-qmp-ufs-phy.yaml    | 48 ++++++++---------
+ arch/arm64/boot/dts/qcom/msm8996.dtsi              |  4 +-
+ arch/arm64/boot/dts/qcom/msm8998.dtsi              | 12 ++---
+ arch/arm64/boot/dts/qcom/sc8180x.dtsi              |  6 ++-
+ arch/arm64/boot/dts/qcom/sc8280xp.dtsi             | 18 ++++---
+ arch/arm64/boot/dts/qcom/sdm845.dtsi               |  8 +--
+ arch/arm64/boot/dts/qcom/sm6115.dtsi               |  8 ++-
+ arch/arm64/boot/dts/qcom/sm6125.dtsi               |  8 +--
+ arch/arm64/boot/dts/qcom/sm6350.dtsi               |  8 +--
+ arch/arm64/boot/dts/qcom/sm8150.dtsi               |  8 +--
+ arch/arm64/boot/dts/qcom/sm8250.dtsi               |  8 +--
+ arch/arm64/boot/dts/qcom/sm8350.dtsi               |  8 +--
+ arch/arm64/boot/dts/qcom/sm8550.dtsi               |  9 ++--
+ arch/arm64/boot/dts/qcom/sm8650.dtsi               |  8 +--
+ drivers/clk/qcom/gcc-sc8180x.c                     | 28 ++++++++++
+ drivers/phy/qualcomm/phy-qcom-qmp-ufs.c            | 63 +++-------------------
+ include/dt-bindings/clock/qcom,gcc-sc8180x.h       |  2 +
+ 17 files changed, 129 insertions(+), 125 deletions(-)
+---
+base-commit: 06f658aadff0e483ee4f807b0b46c9e5cba62bfa
+change-id: 20240131-ufs-phy-clock-7939b9258b3c
 
-diff --git a/Documentation/devicetree/bindings/perf/hx,c2000-arm-ni.yaml b/Documentation/devicetree/bindings/perf/hx,c2000-arm-ni.yaml
-new file mode 100644
-index 000000000000..de50c79a5f23
---- /dev/null
-+++ b/Documentation/devicetree/bindings/perf/hx,c2000-arm-ni.yaml
-@@ -0,0 +1,53 @@
-+# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/perf/hx,c2000-arm-ni.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: HX-C2000 NI (Network-on-chip Interconnect) Performance Monitors
-+
-+maintainers:
-+  - Jialong Yang <jialong.yang@shingroup.cn>
-+
-+properties:
-+  compatible:
-+    enum:
-+      - hx,c2000-arm-ni
-+
-+  reg:
-+    items:
-+      - description: Physical address of the base (PERIPHBASE) and
-+          size of the whole NI configuration address space.
-+
-+  interrupts:
-+    minItems: 1
-+    items:
-+      - description: Overflow interrupt for clock domain 0
-+      - description: Overflow interrupt for clock domain 1
-+      - description: Overflow interrupt for clock domain 2
-+      - description: Generally, one interrupt line for one PMU. But this also
-+          support one interrupt line for a NI if merged.
-+
-+  pccs-id:
-+    $ref: /schemas/types.yaml#/definitions/uint32
-+    description: Used to identify NIs in system which has more than
-+      one NI.
-+
-+required:
-+  - compatible
-+  - reg
-+  - interrupts
-+
-+additionalProperties: true
-+
-+examples:
-+  - |
-+    #include <dt-bindings/interrupt-controller/arm-gic.h>
-+    #include <dt-bindings/interrupt-controller/irq.h>
-+
-+    pmu@23ff0000 {
-+            compatible = "hx,c2000-arm-ni";
-+            reg = <0x2b420000 0x10000>;
-+            pccs-id = <0>;
-+            interrupts = <GIC_SPI 80 IRQ_TYPE_LEVEL_HIGH>;
-+    };
-diff --git a/Documentation/devicetree/bindings/vendor-prefixes.yaml b/Documentation/devicetree/bindings/vendor-prefixes.yaml
-index 1a0dc04f1db4..f6b4103ef436 100644
---- a/Documentation/devicetree/bindings/vendor-prefixes.yaml
-+++ b/Documentation/devicetree/bindings/vendor-prefixes.yaml
-@@ -617,6 +617,8 @@ patternProperties:
-     description: Shenzhen Hugsun Technology Co. Ltd.
-   "^hwacom,.*":
-     description: HwaCom Systems Inc.
-+  "^hx,.*":
-+    description: HEXIN Technologies Co., Ltd.
-   "^hxt,.*":
-     description: HXT Semiconductor
-   "^hycon,.*":
-diff --git a/MAINTAINERS b/MAINTAINERS
-index 8999497011a2..101974780710 100644
---- a/MAINTAINERS
-+++ b/MAINTAINERS
-@@ -18866,6 +18866,12 @@ L:	linux-riscv@lists.infradead.org
- S:	Maintained
- F:	arch/riscv/boot/dts/thead/
- 
-+HX ARM-NI-700 PMU DRIVERS
-+M:	Jialong Yang <jialong.yang@shingroup.cn>
-+S:	Supported
-+F:	Documentation/devicetree/bindings/perf/hx,c2000-arm-ni.yaml
-+F:	drivers/perf/hx_arm_ni.c
-+
- RNBD BLOCK DRIVERS
- M:	Md. Haris Iqbal <haris.iqbal@ionos.com>
- M:	Jack Wang <jinpu.wang@ionos.com>
+Best regards,
 -- 
-2.25.1
+Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
 
 
