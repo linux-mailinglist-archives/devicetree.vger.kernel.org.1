@@ -1,125 +1,176 @@
-Return-Path: <devicetree+bounces-37330-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-37331-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 103B484486D
-	for <lists+devicetree@lfdr.de>; Wed, 31 Jan 2024 21:09:23 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id A67408448A1
+	for <lists+devicetree@lfdr.de>; Wed, 31 Jan 2024 21:17:57 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id B04AF1F26D1E
-	for <lists+devicetree@lfdr.de>; Wed, 31 Jan 2024 20:09:22 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 58D5E28731A
+	for <lists+devicetree@lfdr.de>; Wed, 31 Jan 2024 20:17:56 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6687B3F8EA;
-	Wed, 31 Jan 2024 20:09:18 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A68123FB35;
+	Wed, 31 Jan 2024 20:17:55 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="kmQOhVug"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="jNqj7C2u"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-ej1-f53.google.com (mail-ej1-f53.google.com [209.85.218.53])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 371493EA76;
-	Wed, 31 Jan 2024 20:09:17 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CB8913EA9B;
+	Wed, 31 Jan 2024 20:17:53 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.53
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1706731758; cv=none; b=cW5gcQPunCrm2NEeDTZO7YPjCw1ugqhT0Bq+9uxR09Keqns+T/k4gzkWIT3iDjrak4vEEl2AFA66pwM5CIOxppdfK06NfxhIWfmxFS6g05ABKkCEvQw0PXEJmARiS9ccMwOooRer54NAWhFGNfncYpXeR26Gk5fSF8DdvksnjqY=
+	t=1706732275; cv=none; b=WkbZK+ke2ycMmTMbGT6+VfZYXa/GKSYEER3FvUV2Dvy1cM3K87BqNNCVQ76m+ToDW34HQ0Tawom8XQVo0dLM22RuxbEI+yCu7xSuWo75HOrPgLMGMtseWujHDUvBK3Axa6YB7Bd6CUJ3h0jsceGtZCmOUKUbPHbz1Mfj1hTRQws=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1706731758; c=relaxed/simple;
-	bh=iwCzJJpR5ei5UHsd7esL/VrKFPOdfTAP5MDzAArWRNA=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=tpBaXTIyTyxvvp/d3RGaanWEJBUY2DkuCopjFLm7CjJQMEWaXbvW2L/66+dW7DrRwmPf/A9NusJdXItkc23tc/yrxRQ79v6CJblKc4Y1XcIU0eHfUUgPvOtSwV4kQgTy6OzTsgD1DCkKED915Hz4IRUE0itewuLYdSo5H/hn0hc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=kmQOhVug; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 6C893C433F1;
-	Wed, 31 Jan 2024 20:09:17 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1706731757;
-	bh=iwCzJJpR5ei5UHsd7esL/VrKFPOdfTAP5MDzAArWRNA=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=kmQOhVugMUw9TR2k2kay4pVZfPaf1Ocn7V9d3OZzHBriRaUvREKZHclk0j1oYrXVC
-	 kQABLihhuPnqItT2NLn4b/a4CopARHyt9EqyuCicY3fDuPfxq9cGp9x4sl3uHOv938
-	 bRC3QkQPd/cWfuyURMQI8+y3jjaNrFtd98qQeAuaxFpN9Esp8p5eqBg+12AiEy1CeN
-	 F3RQYz2va/J6vxfgNag6ahMJWnO020EQxLnlq+FSsdr31U8xMgECghO+qTc7Tn96uP
-	 71zVGHsavZGcXFBKdvVWREogJjtyF1S0nnP7mJg0bySkbJDpH+lEUup/SjPLjivfsY
-	 H51I2JRNMd67g==
-Date: Wed, 31 Jan 2024 14:09:15 -0600
-From: Rob Herring <robh@kernel.org>
-To: Michal Simek <michal.simek@amd.com>
-Cc: michal.simek@xilinx.com, linux-kernel@vger.kernel.org,
-	Wu Hao <hao.wu@intel.com>, Tom Rix <trix@redhat.com>,
-	git@xilinx.com, Moritz Fischer <mdf@kernel.org>,
-	Rob Herring <robh+dt@kernel.org>, monstr@monstr.eu,
-	Xu Yilun <yilun.xu@intel.com>,
-	"open list:FPGA MANAGER FRAMEWORK" <linux-fpga@vger.kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	"open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" <devicetree@vger.kernel.org>
-Subject: Re: [PATCH v4] dt-bindings: fpga: Convert fpga-region binding to yaml
-Message-ID: <170673175226.2219463.1221634595095812617.robh@kernel.org>
-References: <37b107d86b39ef4bc9c482b57b27de8b92c3fa43.1706530726.git.michal.simek@amd.com>
+	s=arc-20240116; t=1706732275; c=relaxed/simple;
+	bh=o4aiy10+fDl63wpHTMTWUdeIXhOIrgTQNnErR//DCa8=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=EQ6P/F/10d0asCSNlMsxsHoEzyK2g/hsbwXaR8MPWc2L7wPonXa8W/5tVFLdyx6Jle0zZNzYdB3hTXDajfiphP3T4IhxmlPOwyYszlsoiujBZZ2Oe2CDPVDncMw9Nwrt1n37nUNop7AaVTIl/1bkOs2x8yFohK1RpkiHR6PfR/w=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=jNqj7C2u; arc=none smtp.client-ip=209.85.218.53
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-ej1-f53.google.com with SMTP id a640c23a62f3a-a34c5ca2537so19474666b.0;
+        Wed, 31 Jan 2024 12:17:53 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1706732272; x=1707337072; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=i3x+XA1EAM69Gx/EupL1JFa+ff5P92JTzUQLfIHSyz4=;
+        b=jNqj7C2umhbQwYnppEXxjS+JktkmIh65SIcOTcACmuKgUkD554mp/8qoDr3xmNiDcK
+         UlLen0VVAeguskRXqWmDHFsWJ6cC9KEL21YRvLMRtWYUFZ0dF86esxInVD8vhPbjPsdl
+         YMZjb1zZIYEjJXqYMjSQf/jx1bo4VnZw0Im5Hzh7v4KXmMRwEDKTaU1+FjKivcpePsCm
+         jsSdWuswKR5gT4JtjQgjVcd+W8pYemVl633gmHCa55LabHt3WIQNL/D4CFw1MMlb5vDM
+         gvv86qAXYCRPvu/H9lExdGe1Iu2WII/eYQrn/pSTxA1yv1D70K2tt+em93swORvJOoXY
+         P97g==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1706732272; x=1707337072;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=i3x+XA1EAM69Gx/EupL1JFa+ff5P92JTzUQLfIHSyz4=;
+        b=o616j1q5ehiZrgH1IKYCQqkdzZyD5FWAsdISxdRHtzGkXM0RZnSa41cRUSk0QSRtNw
+         sybKcA3vGLxuLJ31YkDQIKnBOWjDikX7WKIYKlA+nW8rCrp1uPDvHbSuXbzCOBYyYqgD
+         Z2ffaj+3OLWhYygytiEoofImUbUr97K8YVwfbpDp8LX5Fm1QHpDF787nhstrY4WYwJ6b
+         3MRx1T0jCuki34rsfA39fRDK83U+4Kfms+lEB7f6Z439E8LOBJ+KWVXcSHgkeD0STdlK
+         cTXIEbvE8q0qj9D1tAR9ix9hqoifryp2vwQ+3x7KoRUDsp0uLcqztx5SsuQ24+ftF3Y8
+         rm5w==
+X-Gm-Message-State: AOJu0Yw7sL1usZZtUXzFZxScPdvzk3Wz6p8cYqwCiNrGu5kyylDFo1v3
+	IVEere2ONCVJblvHVYoaz/nzda4EO3esbV7uGH5ziNyMFRtjhstJQy9J5hOWHGUgKUAprMlA9k1
+	xd3c/Ylrdiqp+GYy3oHvuc558DAk=
+X-Google-Smtp-Source: AGHT+IHXBrFCx5kQCeErdbREsugyHAfbuEbibVXq02hfcq1oPmsfcZZLGhX7hXPtFYvQEPMmWMEUtGyEiepFoY1c7mg=
+X-Received: by 2002:a17:906:f2c6:b0:a35:85b7:560a with SMTP id
+ gz6-20020a170906f2c600b00a3585b7560amr1946530ejb.46.1706732271649; Wed, 31
+ Jan 2024 12:17:51 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <37b107d86b39ef4bc9c482b57b27de8b92c3fa43.1706530726.git.michal.simek@amd.com>
+References: <20230804104602.395892-1-ckeepax@opensource.cirrus.com>
+ <20230804104602.395892-6-ckeepax@opensource.cirrus.com> <ZalahZkCrBm-BXwz@surfacebook.localdomain>
+ <20240119114917.GB16899@ediswmail.ad.cirrus.com> <ZbpqPuDj/v07yZ5y@ediswmail9.ad.cirrus.com>
+In-Reply-To: <ZbpqPuDj/v07yZ5y@ediswmail9.ad.cirrus.com>
+From: Andy Shevchenko <andy.shevchenko@gmail.com>
+Date: Wed, 31 Jan 2024 22:17:15 +0200
+Message-ID: <CAHp75Vda3nZn8KwqSRvKQL9oeH_PjTnDDPuQytJvTgb2_HDvBQ@mail.gmail.com>
+Subject: Re: [PATCH v7 5/6] spi: cs42l43: Add SPI controller support
+To: Charles Keepax <ckeepax@opensource.cirrus.com>
+Cc: broonie@kernel.org, lee@kernel.org, robh+dt@kernel.org, 
+	krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org, 
+	linus.walleij@linaro.org, vkoul@kernel.org, lgirdwood@gmail.com, 
+	yung-chuan.liao@linux.intel.com, sanyog.r.kale@intel.com, 
+	pierre-louis.bossart@linux.intel.com, alsa-devel@alsa-project.org, 
+	patches@opensource.cirrus.com, devicetree@vger.kernel.org, 
+	linux-gpio@vger.kernel.org, linux-spi@vger.kernel.org, 
+	linux-kernel@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+On Wed, Jan 31, 2024 at 5:41=E2=80=AFPM Charles Keepax
+<ckeepax@opensource.cirrus.com> wrote:
+> On Fri, Jan 19, 2024 at 11:49:17AM +0000, Charles Keepax wrote:
+> > On Thu, Jan 18, 2024 at 07:06:13PM +0200, andy.shevchenko@gmail.com wro=
+te:
+> > > Fri, Aug 04, 2023 at 11:46:01AM +0100, Charles Keepax kirjoitti:
+> > > > +         while (buf < block) {
+> > > > +                 const u8 *word =3D min(buf + sizeof(u32), block);
+> > > > +                 int pad =3D (buf + sizeof(u32)) - word;
+> > > > +
+> > > > +                 while (buf < word) {
+> > > > +                         val >>=3D BITS_PER_BYTE;
+> > > > +                         val |=3D FIELD_PREP(GENMASK(31, 24), *buf=
+);
+> > > > +
+> > > > +                         buf++;
+> > > > +                 }
+> > >
+> > > Is this a reinvented way of get_unaligned_*() APIs?
+> > >
+> > > > +                 val >>=3D pad * BITS_PER_BYTE;
+> > > > +
+> > > > +                 regmap_write(regmap, CS42L43_TX_DATA, val);
+> > > > +         }
+> > >
+> > > ...
+> > >
+> > > > +                 while (buf < word) {
+> > > > +                         *buf =3D FIELD_GET(GENMASK(7, 0), val);
+> > > > +
+> > > > +                         val >>=3D BITS_PER_BYTE;
+> > > > +                         buf++;
+> > > > +                 }
+> > >
+> > > put_unaligned_*() ?
+> > >
+> >
+> > Alas as it has been a while I have forgetten the exact context
+> > here and this one will take a little more time. I will try to
+> > find some spare time to work out if that would actual do the same
+> > thing, I have a vague feeling there was something here.
+> >
+>
+> Ok found some time to refresh my memory on this.
+>
+> The main issue here was as this is processing raw data for the
+> SPI we shouldn't assume the data is a multiple of 4-bytes. You
+> could write the code such that you used put_unaligned_le32 for
+> most of the data and then special case the remainder, which would
+> probably be slightly faster. But for the remainder you either end
+> with the code here anyway or a special case for each of the cases
+> 8,16,24 bits. So the code ends up looking much messier.
+> Personally I am inclined to leave this unless performance on the
+> SPI becomes a major issue.
+
+Yes, the problem with the code is that it is a NIH existing API or patterns=
+.
+We have already in the IIO subsystem a pattern where there is a switch case
+and put/get unaligned APIs per case. Perhaps this is what needs to be
+factored out
+for everybody.
+
+https://elixir.bootlin.com/linux/latest/source/drivers/iio/adc/ad4130.c#L47=
+2
+
+(some shorter variants)
+https://elixir.bootlin.com/linux/latest/source/drivers/iio/adc/ltc2497.c#L6=
+6
+https://elixir.bootlin.com/linux/latest/source/drivers/iio/adc/ad4130.c#L47=
+2
+
+Here is the abstraction for cameras, perhaps that's what ASoC might need.
+drivers/media/v4l2-core/v4l2-cci.c.
+
+> There is perhaps an argument for a comment in the code to explain
+> this given it took me time to remember what was going on.
+
+That's for sure.
 
 
-On Mon, 29 Jan 2024 13:18:53 +0100, Michal Simek wrote:
-> Convert the generic fpga region DT binding to json-schema.
-> There are some differences compare to txt version.
-> 1. DT overlay can't be described in example that's why directly include
-> information from overlay to node which was referenced. It is visible in
-> example with /* DT Overlay contains: &... */
-> 
-> 2. All example have been rewritten to be simpler and describe only full
-> reconfiguration and partial reconfiguration with one bridge.
-> Completely drop the case where fpga region can inside partial
-> reconfiguration region which is already described in description
-> 
-> 3. Fixed some typos in descriptions compare to txt version but most of it
-> is just c&p from txt file.
-> 
-> Signed-off-by: Michal Simek <michal.simek@amd.com>
-> ---
-> 
-> Changes in v4:
-> - permit only object type as additionalProperties
-> - describe also optional reg/ranges properties and remove required
->   #address/size-cells properties
-> 
-> Changes in v3:
-> - drop fpga bridge and mgr descriptions in example
-> - use additionalProperties: true
-> - use fixed-factor-clock instead
-> - fixed matching pattern
-> 
-> Changes in v2:
-> - Fix typo in subject
-> - Fix comment in bridge example
-> - Change license back to gpl-2.0 only
-> - Do not define firware-name type and add maxItems 1
-> - Make fpga-bridge phandle-array
-> - Drop ranges property because of missing reg property of fpga-region
-> - Also describe case with fixed clock node and axi bus
-> - Fix fpga-region names in example
-> 
-> Please let me know if there is a way to describe overlays to dt root to be
-> able to reference fpga region back.
-> 
-> fpga-region without MMIO access is also permitted that's why there is no
-> need to describe reg/ranges and #.*cells properties for these cases.
-> 
-> ---
->  .../devicetree/bindings/fpga/fpga-region.txt  | 479 ------------------
->  .../devicetree/bindings/fpga/fpga-region.yaml | 358 +++++++++++++
->  2 files changed, 358 insertions(+), 479 deletions(-)
->  delete mode 100644 Documentation/devicetree/bindings/fpga/fpga-region.txt
->  create mode 100644 Documentation/devicetree/bindings/fpga/fpga-region.yaml
-> 
-
-Applied, thanks!
-
+--=20
+With Best Regards,
+Andy Shevchenko
 
