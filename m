@@ -1,186 +1,133 @@
-Return-Path: <devicetree+bounces-37305-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-37306-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id DA1148445CA
-	for <lists+devicetree@lfdr.de>; Wed, 31 Jan 2024 18:15:25 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id E1C958445EB
+	for <lists+devicetree@lfdr.de>; Wed, 31 Jan 2024 18:20:08 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 74DF51F227CB
-	for <lists+devicetree@lfdr.de>; Wed, 31 Jan 2024 17:15:25 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 20EB41C24C71
+	for <lists+devicetree@lfdr.de>; Wed, 31 Jan 2024 17:20:08 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8882512C54B;
-	Wed, 31 Jan 2024 17:14:54 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C21EC12CDAC;
+	Wed, 31 Jan 2024 17:19:00 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="WgUObyZ/"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="NGMAA2FH"
 X-Original-To: devicetree@vger.kernel.org
-Received: from relay5-d.mail.gandi.net (relay5-d.mail.gandi.net [217.70.183.197])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E27B77EF1B;
-	Wed, 31 Jan 2024 17:14:51 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.70.183.197
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 93B8312FF60;
+	Wed, 31 Jan 2024 17:19:00 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1706721294; cv=none; b=OxQW1EKMp5oZqW8Ff2zkjTVWVgW/KES/GusB7qLYggQYnkTY8fWG7iAGBNMgzcsAn/Gia0QE8g5TvJpi7LPjELI5weYFx/bfxsCgkkLVVjbVgCsJXdNbYZ+ikN6F2vL+rM0jJFVEUX0b/Ryc9xv1al/fibOHBguiTarNHrvglnE=
+	t=1706721540; cv=none; b=ZsjUD0DPXIeXLIEo7OXBjAsoQwN1Jr7iZNMRPZ+X739b3wVToYLT4pSfepvjMbrGuuu8GJD9j2QcWFfs8BVt7OtPOPx++FBtHc5eQBwgN0LZJS6wVySrLfmCqd0SrsyChUdYP4ItYhTVLiKjvxtkrjeqZt47NrHtuxojDq1fr2o=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1706721294; c=relaxed/simple;
-	bh=umMTfbavV5anbbuvqaxrldcGPNeK3mMqhy5S46iPOGg=;
+	s=arc-20240116; t=1706721540; c=relaxed/simple;
+	bh=FZOebloMPKqD9PhoGIK6a0A3JsQT79DFjzcP89ICJNQ=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=BNtYICpkzP61+mtbbqYs+BJOxusydV5QRdkCbmHoap9x3xAhD3GqEKdIe5Mr4lhZtNEa9iYjIafd+fEQvc7N+en+tGNIdlo0a6W8ZtDjahIcis1qFmLgfnjtw8WwdHJdWDa/dXC+jnbn7eprceULmu3dJOxG9tuGHjIlkydrXXY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=WgUObyZ/; arc=none smtp.client-ip=217.70.183.197
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
-Received: by mail.gandi.net (Postfix) with ESMTPSA id 094211C0008;
-	Wed, 31 Jan 2024 17:14:42 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
-	t=1706721284;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 in-reply-to:in-reply-to:references:references;
-	bh=9lTRq8lZT7hitaFYIXz5SPSPzis0fVqQJM+pMRYZ704=;
-	b=WgUObyZ/9pP6ARuPtDDuoCxJPd9co0I0PlUUhWF71vCyZeBfWeR8Ss2Y+MI8LZGFF8xGlz
-	bsssTGy5GTkjZ5ISpRColNqsS+03eXLoQUs2cKzaxdZSzjL79o3Ila6FyUzsMJQ6wu6MP5
-	RDlNIOTa8ikbVSJWA1mfgTkZA6QKQC7D4aUXlkWzuJ+be8Gl/Lre2TS6UFdppqVBOiJQ8m
-	YBpeSA9DHN5llY89e9rWYl/zwHZPdgjFFyb5Bc6BOr7SPHd3A3/K07llty9wC/CG4gD5Wz
-	VCl4pwBraurh0JzRu/edmfyVcNxiePIYSxn50JjqrOkxzthQQSI+vWBYMIfqgA==
-Date: Wed, 31 Jan 2024 18:14:41 +0100
-From: Kamel Bouhara <kamel.bouhara@bootlin.com>
-To: Jeff LaBundy <jeff@labundy.com>
-Cc: Dmitry Torokhov <dmitry.torokhov@gmail.com>,
-	Rob Herring <robh+dt@kernel.org>,
+	 Content-Type:Content-Disposition:In-Reply-To; b=VhNsT9Qq0FgF+L4y+9S0ukyTH4g1pzszBxZmzIVeAsVJJ7MGIpvumq8eSNv7E5JULI2JKlpF+p0xqXrUiV8WXuoUOYJXDca6rIETOMTdI+VvxYcw+zQUkf7XjPP/4z4m+XMy499Ky8fpXvZu53c85ANTp3lj2CW5bnYaaPzwAZo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=NGMAA2FH; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id C4069C433F1;
+	Wed, 31 Jan 2024 17:18:59 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1706721540;
+	bh=FZOebloMPKqD9PhoGIK6a0A3JsQT79DFjzcP89ICJNQ=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=NGMAA2FHjpQXtjuRk8e6xfv27+wW8njNB9eQvHRFQTszAk0cT2WDLNXgnxquGFFPF
+	 mWHZsfg4wjo4lS1ad/eQh5ojmxWaNQhmH7cbkdx4+BAgQoZUFR+rPl/duLCuqMdTjB
+	 X+F/mP7XMadWhazWO/i6vK7MPN3yDQ1iqtNKvJhx/d20xUsysnV8L2siK0YF8NqXuo
+	 F2r/4T2Q4u96BUEfCwzgWadibeL385a3viilOZgRZ1pW7kvjpLnoT2zqqtapMEenuT
+	 HHaGzl3suBG81YAwMNjFSWIiq8DJx6faEMnk1iTZoPgWiLUe/I/Eq0GZratMSAfmyr
+	 noAuwTT8SagJQ==
+Date: Wed, 31 Jan 2024 11:18:57 -0600
+From: Rob Herring <robh@kernel.org>
+To: Duje =?utf-8?Q?Mihanovi=C4=87?= <duje.mihanovic@skole.hr>
+Cc: Conor Dooley <conor@kernel.org>, Vinod Koul <vkoul@kernel.org>,
 	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Henrik Rydberg <rydberg@bitmath.org>, linux-input@vger.kernel.org,
-	linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-	Marco Felsch <m.felsch@pengutronix.de>,
-	catalin.popescu@leica-geosystems.com,
-	mark.satterthwaite@touchnetix.com, bartp@baasheep.co.uk,
-	hannah.rossiter@touchnetix.com,
-	Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
-	Gregory Clement <gregory.clement@bootlin.com>,
-	bsp-development.geo@leica-geosystems.com
-Subject: Re: [PATCH v5 3/3] Input: Add TouchNetix axiom i2c touchscreen driver
-Message-ID: <20240131171441.GA3005@kb-xps>
-References: <20231211121430.1689139-1-kamel.bouhara@bootlin.com>
- <20231211121430.1689139-4-kamel.bouhara@bootlin.com>
- <ZY5An58Rffrcpfpn@nixie71>
+	dmaengine@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org
+Subject: Re: [PATCH] dt-bindings: mmp-dma: convert to YAML
+Message-ID: <20240131171857.GA1531631-robh@kernel.org>
+References: <20240127-pxa-dma-yaml-v1-1-573bafe86454@skole.hr>
+ <20240128-feminine-sulfite-8891c60ec123@spud>
+ <2924724.e9J7NaK4W3@radijator>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <ZY5An58Rffrcpfpn@nixie71>
-X-GND-Sasl: kamel.bouhara@bootlin.com
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <2924724.e9J7NaK4W3@radijator>
 
-On Thu, Dec 28, 2023 at 09:44:31PM -0600, Jeff LaBundy wrote:
-> Hi Kamel,
->
+On Sun, Jan 28, 2024 at 07:01:36PM +0100, Duje Mihanović wrote:
+> On Sunday, January 28, 2024 6:28:03 PM CET Conor Dooley wrote:
+> > On Sat, Jan 27, 2024 at 05:53:45PM +0100, Duje Mihanović wrote:
+> > > +allOf:
+> > > +  - $ref: dma-controller.yaml#
+> > > +  - if:
+> > > +      properties:
+> > > +        compatible:
+> > > +          contains:
+> > > +            enum:
+> > > +              - marvell,adma-1.0
+> > > +              - marvell,pxa910-squ
+> > > +    then:
+> > > +      properties:
+> > > +        asram:
+> > > +          description:
+> > > +            phandle to the SRAM pool
+> > > +          minItems: 1
+> > > +          maxItems: 1
+> > > +        iram:
+> > 
+> > > +          maxItems:
+> > These properties are not mentioned in the text binding, nor commit
+> > message. Where did they come from?
+> 
+> Both of them can be found in arch/arm/boot/dts/marvell/mmp2.dtsi. There is one 
+> major difference between the two: iram is not mentioned at all by the mmp_tdma 
+> driver (on the other hand, asram is not only used but also required for a 
+> successful probe), but I left it here as it's still found in the MMP2 dtsi. On 
+> second thought it should probably be dropped both here and in the dtsi.
+> 
+> > That said, for properties that are only usable on some platforms, please
+> > define them at the top level and conditionally permit/constrain them.
+> 
+> Could you please point me to how to do so if this if/then does not do it 
+> properly?
 
-Hello Jeff,
+Negate the if and then:
 
-[...]
+then:
+  properties:
+    asram: false
 
-> > +
-> > +/*
-> > + * Support function to axiom_process_u41_report.
-> > + * Generates input-subsystem events for every target.
-> > + * After calling this function the caller shall issue
-> > + * a Sync to the input sub-system.
-> > + */
-> > +static bool axiom_process_u41_report_target(struct axiom_data *ts,
-> > +					    struct axiom_target_report *target)
-> > +{
-> > +	struct input_dev *input_dev = ts->input_dev;
-> > +	struct axiom_u41_target *target_prev_state;
-> > +	enum axiom_target_state current_state;
-> > +	bool update = false;
-> > +	int slot;
-> > +
-> > +	/* Verify the target index */
-> > +	if (target->index >= AXIOM_U41_MAX_TARGETS) {
-> > +		dev_dbg(ts->dev, "Invalid target index! %u\n", target->index);
->
-> Should this be dev_err()?
->
-> > +		return false;
-> > +	}
-> > +
-> > +	target_prev_state = &ts->targets[target->index];
-> > +
-> > +	current_state = AXIOM_TARGET_STATE_NOT_PRESENT;
-> > +
-> > +	if (target->present) {
-> > +		if (target->z >= 0)
-> > +			current_state = AXIOM_TARGET_STATE_TOUCHING;
-> > +		else if (target->z > AXIOM_PROX_LEVEL && target->z < 0)
-> > +			current_state = AXIOM_TARGET_STATE_HOVER;
-> > +		else if (target->z == AXIOM_PROX_LEVEL)
-> > +			current_state = AXIOM_TARGET_STATE_PROX;
-> > +	}
-> > +
-> > +	if (target_prev_state->state == current_state &&
-> > +	    target_prev_state->x == target->x &&
-> > +	    target_prev_state->y == target->y &&
-> > +	    target_prev_state->z == target->z) {
-> > +		return false;
-> > +	}
->
-> No need for curly braces here; please refer to the kernel style guidelines.
->
-> > +
-> > +	slot = target->index;
-> > +
-> > +	dev_dbg(ts->dev, "U41 Target T%u, slot:%u present:%u, x:%u, y:%u, z:%d\n",
-> > +		target->index, slot, target->present,
-> > +		target->x, target->y, target->z);
-> > +
-> > +	switch (current_state) {
-> > +	case AXIOM_TARGET_STATE_NOT_PRESENT:
-> > +	case AXIOM_TARGET_STATE_PROX:
-> > +		if (!target_prev_state->insert)
-> > +			break;
-> > +		update = true;
-> > +		target_prev_state->insert = false;
-> > +		input_mt_slot(input_dev, slot);
-> > +
-> > +		if (!slot)
-> > +			input_report_key(input_dev, BTN_TOUCH, 0);
-> > +
-> > +		input_mt_report_slot_inactive(input_dev);
-> > +		/*
-> > +		 * make sure the previous coordinates are
-> > +		 * all off screen when the finger comes back
-> > +		 */
-> > +		target->x = 65535;
-> > +		target->y = 65535;
-> > +		target->z = AXIOM_PROX_LEVEL;
-> > +		break;
-> > +	case AXIOM_TARGET_STATE_HOVER:
-> > +	case AXIOM_TARGET_STATE_TOUCHING:
-> > +		target_prev_state->insert = true;
-> > +		update = true;
-> > +		input_mt_slot(input_dev, slot);
-> > +		input_report_abs(input_dev, ABS_MT_TRACKING_ID, slot);
-> > +		input_report_abs(input_dev, ABS_MT_POSITION_X, target->x);
-> > +		input_report_abs(input_dev, ABS_X, target->x);
->
-> You do not need to explicitly report ABS_X and ABS_Y values, as calling
-> input_mt_sync_frame() effectively takes care of this by way of pointer
-> emulation.
->
+There are lots of examples in the tree.
 
-After double checking/testing this, it doesn't seems to
-report ABS_X/Y values anymore, are you sure about this ? Maybe I missed
-some extra flag in input_mt_init_slots() for that ?
+> 
+> > > +unevaluatedProperties: false
+> > > +
+> > > +examples:
+> > > +  # Peripheral controller
+> > > +  - |
+> > > +    pdma0: dma-controller@d4000000 {
+> > 
+> > The label is not needed here or below.
+> > In fact, I'd probably delete the second example as it shows nothing that
+> > the first one does not.
+> 
+> I'd rather add the asram property in the second node (adding onto the above 
+> comment, I now see that it shouldn't have even passed dt_binding_check because 
+> of the missing asram, but it did).
 
-Regards,
+It passed because 'required' is what checks for property presence and 
+nowhere is asram required. It is missing a type definition which should 
+have warned, but may not since it is under an 'if'.
 
---
-Kamel Bouhara, Bootlin
-Embedded Linux and kernel engineering
-https://bootlin.com
+Rob
 
