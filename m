@@ -1,75 +1,74 @@
-Return-Path: <devicetree+bounces-37010-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-37011-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id BEBB184378D
-	for <lists+devicetree@lfdr.de>; Wed, 31 Jan 2024 08:17:30 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7DF43843795
+	for <lists+devicetree@lfdr.de>; Wed, 31 Jan 2024 08:20:09 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id E29A01C22903
-	for <lists+devicetree@lfdr.de>; Wed, 31 Jan 2024 07:17:29 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id EE051B25678
+	for <lists+devicetree@lfdr.de>; Wed, 31 Jan 2024 07:20:06 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C41C754F87;
-	Wed, 31 Jan 2024 07:17:14 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 907E44E1B3;
+	Wed, 31 Jan 2024 07:19:45 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="rvD+F+qU"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="pect7BMu"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-qv1-f42.google.com (mail-qv1-f42.google.com [209.85.219.42])
+Received: from mail-ej1-f54.google.com (mail-ej1-f54.google.com [209.85.218.54])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CBB3D52F6F
-	for <devicetree@vger.kernel.org>; Wed, 31 Jan 2024 07:17:12 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.219.42
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CD93A58137
+	for <devicetree@vger.kernel.org>; Wed, 31 Jan 2024 07:19:43 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.54
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1706685434; cv=none; b=Dt5ZsOAOldoU32ttfUhZ9Mz8cMW0QQ62mD0krTYM0zzk7XX3bVbzRkwq5+TCUh0iUgR1hsfeRCxi02tGFZdjoadIVtP1b2+caN/SrOAvoN/JKESEgjvy1r9EnLHHC/V71ddsVlPqxK1Cy+fyV9DZQcwfn7ezpRddkpYfYjeNv/s=
+	t=1706685585; cv=none; b=Up85GNv/8q4nQ8zUvp/M2oHWnkvpD9sPlXFk7ndhw+QVUVS6XNk15GcJTUIUmVH5OAwUwGzXMoLaOIIoYq1ORR9FUc8Ld+ig/bytRJ3OOjFBpMCmdX3Kdk2eUw07JKk61yH9jw/npLFOaK4RHlnWln0FXTovTL1GKZSAAMX3L+0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1706685434; c=relaxed/simple;
-	bh=52mzFLWAFvVzRxI56r6tpAuhNOUFxIvuX6pgMmHBP6A=;
+	s=arc-20240116; t=1706685585; c=relaxed/simple;
+	bh=eZ+l+wLYJ2MeDMddYNHMwdCwUGTL0/3u/r/f3w7FWCQ=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=l2MsLypzOIYwnoi1Y04Qe2d4+v+SBY3QCCug/wFg9abOB8XpmerIyMdAFANQ5+yHSVuiBuIlJUfJw9FwE1CcR93Z1rGDPmWiHgwFqDbPe4YeFfrq9SSuvHSThVYKqhuvhJohx/XRAM9XHQ042qxTaK3u/Ra77mqiOYcJhIGaJdU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=rvD+F+qU; arc=none smtp.client-ip=209.85.219.42
+	 In-Reply-To:Content-Type; b=Py67xyn8ItRSxKSZ2XmuagZikYA0iTFGqYQqC9IFPtOVP7Ae/oAUI5eOw/0R6WETMpa5Lq8Q28c2mKcUT7nD4bC3tg4SWtdvLcfTpeD12fNcxUvWFLhx5l/a+l1Ag9FNvhX81J19YIE33MQIsxgCNsDZa6dYjG02b90PoVcgJ9g=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=pect7BMu; arc=none smtp.client-ip=209.85.218.54
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-qv1-f42.google.com with SMTP id 6a1803df08f44-6869233d472so33837166d6.2
-        for <devicetree@vger.kernel.org>; Tue, 30 Jan 2024 23:17:12 -0800 (PST)
+Received: by mail-ej1-f54.google.com with SMTP id a640c23a62f3a-a29c4bbb2f4so515388366b.1
+        for <devicetree@vger.kernel.org>; Tue, 30 Jan 2024 23:19:43 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1706685432; x=1707290232; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from
-         :content-language:references:cc:to:subject:user-agent:mime-version
-         :date:message-id:from:to:cc:subject:date:message-id:reply-to;
-        bh=lJNMWA8oodJOdlBVGCcwoi584OUVTTefrAGCMewFxPA=;
-        b=rvD+F+qU1YrqHlWVGVRjh3gcCizcm3TIkk/cF6QOC+m5eGD539yA0vo9c8XtRoV+rq
-         xgNuy/htti5A/asFbu1JWQeXFkIvLN98v5tlMCMYDEkZoJDaTLBdL0mCbqkKrhN/cepf
-         QJxdGPLPo0A1YKHdvm3fjmGBIyQiAnFkM3rtf8rRHJB3c8VMPMbahj/SoXJvxJgVQVLd
-         /2uGlgimVsZR4M2f3twT2oaALzuK/rvfRLqHK6Vt8COD18UP7KSWjmSVcPr413ml/leZ
-         /zUNp+eYUhDj8tDkPry0fpcXxhSaPtGrgJyEm+LB8RcSUWDGZXooJ6fja5quxeZTWaKw
-         zXAg==
+        d=linaro.org; s=google; t=1706685582; x=1707290382; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
+         :to:content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=KUU5ZoGCbRyIKRX82P6J3FpHavAE7JR3VdNwhkZXt4A=;
+        b=pect7BMuIciNjXTb+zfpmkV8GX7b7vsTw3RdCAOHQT+cLeU6hPuzVwyTAqKr5XnoNv
+         fn6LFVf3/rZ3HNcYrsWUVGPc5FO1hdMCZBXDSDgossgdDTP1N2i6cVQpP6wVMjo8C4Iv
+         o+bsNJncb/W1r7gZ71opsbLlaROkvVoxQgNzcedBRPYW9yd3H1hhTJndCMIlY9uOcVkO
+         2to8ZkVoizKMw0h8f2uCOlKOIPgCIUQRi83Ty9B/Ii/JspI86HOVwx3TxUH834UOZRbe
+         waEiXvGwhUZJ066aTOulkRTgQj4q86RpZHerpLRN2c2x+9CRHhN7PNroi2euUiyxMxYn
+         NOlg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1706685432; x=1707290232;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from
-         :content-language:references:cc:to:subject:user-agent:mime-version
-         :date:message-id:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=lJNMWA8oodJOdlBVGCcwoi584OUVTTefrAGCMewFxPA=;
-        b=tVnZFoL0P0DnfdXFZNt0gWBGnkuZs5aXzinAXMxP3J815hQIbxWWirYzBs8a0GAKih
-         Xb48/Ot8F4503m2hlx/LnCk0WlxvbCuw238PydfeAR4o3vc98uF3vvwWWRei52R5Y9yG
-         4dcnQPOgwJe6lEAwtNWjTgZx5zOniPSfVQ0TesdN1tU1yqFmKwRfxq+IDspIgJIztWie
-         VI2liOCsaSIklnjXfmVoWjFObctSN2vIeijKvauXP5QxQAGfC99vk345rQVyF0Wl2iB2
-         nTdlrDqQtmKWMB1kgVnVqV8uhu59xwfevTHticjy/z0L4wYjyv/rcfV78xA4sVtXk+uH
-         GaCw==
-X-Gm-Message-State: AOJu0Yx9ywHnZyJNLYVp+7wz4D2G0D5ziDOusKS0o/eZFIH1qByYv+aR
-	tMCXKqd5jDilFjBvy+mIe5rzbD93WRgfyTD3r9plA/jpLfO9T/rILwPqFbBpbpQ=
-X-Google-Smtp-Source: AGHT+IHjInEn6XUTctkkJNMJ3raenJfOAafSvuVd9wPAH4LejKdHhu9F5KDMhgsewRgOV1BqmmVEgA==
-X-Received: by 2002:a05:6214:3114:b0:68c:6d8a:70e9 with SMTP id ks20-20020a056214311400b0068c6d8a70e9mr787941qvb.2.1706685431683;
-        Tue, 30 Jan 2024 23:17:11 -0800 (PST)
-X-Forwarded-Encrypted: i=0; AJvYcCWK6O+t7W0CmybXUWgh6zXrTgYm2+YMX+q2YfDAltJe/PzA5+9e6prnfnbpF4zqW89aWGZaAAY0st4tD+CBtv9Eh3OoPgdxYnu0ZsECN/GtJCB7NrJI/INo1GWuOF8q0kyH4PL8DNnBduu8wLIYpW7Uq+hNRcw7x6nYfXwK7eIFKj9eo3jawGDmJaUq6vfsvqea6oi9JmYO+0fFoNXgZv161Qdknj6f2/HwqkQRnjUP4uKZGjoC3M/Y4J11zIMoSNP/u/LqmgNv7wzgSwCNGZTh7VKKB6sY9VEku5i8H7fOTAeMDcPdUesFbJeMHNngvgP92QfbjTETlDTKYrgg7XV4oTmQMEDomAzJY/uMF26UN+am5uIcLvY+55UOuyY+WRKgmtYbkvCzuBUf4h+mV4tj6j3LGEkDbaA30+LBEqy0I4IgH36gpfnorO6nyoEdrxSn7bmeN47Le7XoGwtRmxH+NJl3FTDkeBOVbosTdAPcFbbH5sO3f5ffAOreTBeI/pTeK4byVP2k+N3VPipjLBkXzFyp1L2PVYFFHxS3lsKTPl+GOgt9ExTt0TnhdulJOEP0PfpTBE+XZd4DlhM=
+        d=1e100.net; s=20230601; t=1706685582; x=1707290382;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
+         :to:content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=KUU5ZoGCbRyIKRX82P6J3FpHavAE7JR3VdNwhkZXt4A=;
+        b=NLMK8mwhRT9LxNkSkuK261mJqDS1JnfRA9b9O4p71U+jxx8FNsVSo3lohMa5uUDTZf
+         Bh3I/vVxKgOOhWTv9+mwFFGXgIWhr0WaeHW6hgFbJwUkmpFEy2XjWQj44jL55JTFjAFg
+         eABIa1adgKpI9NhaXDbnzU3N+w2DjZ18BSjDOy0cP83aXOt+V0Hehu9ejs+lSwdnSTSU
+         rK1/m74TxPFb2wWSS9Z6ISGJoWGmHqC9yqI58vpFfold3jQCWeqZvvR5LibO609QvP/Q
+         wvzAwG91IZK1ucRnlrr46Isyiuq8k8R5KN9AY7Kv08E3Poq0u9knjFLmmdsJmUKMZrpr
+         iQxA==
+X-Gm-Message-State: AOJu0YySwKa+1OJ6j6XQE33dZ9pNIFFWz3zkYDmog3tR0U4DcaaOEcPl
+	rHrF0VVxhglt5RJltfHTu4j2+BVGJLNwesmZbROhGGQ+GbL8p8K6WiHurSH2e+c=
+X-Google-Smtp-Source: AGHT+IFPqlMSfu3cp6otULlKJfAcpttJPDZ5Z9teZIomxyVXxBpafaf8B7ByOKjyEiTca0+Q8re+tA==
+X-Received: by 2002:a17:906:11d7:b0:a31:805b:4172 with SMTP id o23-20020a17090611d700b00a31805b4172mr464623eja.9.1706685582003;
+        Tue, 30 Jan 2024 23:19:42 -0800 (PST)
+X-Forwarded-Encrypted: i=0; AJvYcCVyIVbRNfdYv2GFprKZHsR4lg4A/z5JIvSC6nU8j9cZwWg5roTHwNsnWdIUpDI1Pp0s4/pNjm3FINYBi0MLFHS6+YOGD07TbSwylGmAotFW91dMrWNPaDwAjMQ+iU0Q31wcdb5xmQ2BTrpitwBVN01VpzAqHVuA4xaeBSlzJmJ7FgWiTEqGAvf/Cxu21YWVGaacoRuZAVmXh0H6sMBmtTha6EHg5wZQPGGNc9oNq00hCpfUJZA42T7pugO7gQKhP1yjKKhVnSrEb/I25INYmmlYm7StCki/tvRjhMK1PrNZhr+Ewrfgwye0O/guJxxGkcbG+S5IIOex0MFUl9Bu2bkU3lxHptrF9DhVmjxeuteFgC3W7PqpLPeLvnBfoQYXL86sjdB6yT4GgOcYY5KnPI2YlVBJbq+KegiVR68=
 Received: from [192.168.1.20] ([178.197.222.62])
-        by smtp.gmail.com with ESMTPSA id y29-20020a05620a09dd00b0078445f63dc4sm978318qky.60.2024.01.30.23.17.07
+        by smtp.gmail.com with ESMTPSA id ck15-20020a170906c44f00b00a35ec7eddfesm2316959ejb.50.2024.01.30.23.19.40
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 30 Jan 2024 23:17:10 -0800 (PST)
-Message-ID: <4f013386-6e38-4aa0-916f-d38e8ce5cec3@linaro.org>
-Date: Wed, 31 Jan 2024 08:17:05 +0100
+        Tue, 30 Jan 2024 23:19:41 -0800 (PST)
+Message-ID: <a04aa883-d9b8-480b-a9df-8c31bef1165c@linaro.org>
+Date: Wed, 31 Jan 2024 08:19:39 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -77,21 +76,18 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH] dt-bindings: media: s5p-mfc: Remove s5p-mfc.txt binding
-To: Aakarsh Jain <aakarsh.jain@samsung.com>,
- linux-arm-kernel@lists.infradead.org, linux-media@vger.kernel.org,
- linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
-Cc: m.szyprowski@samsung.com, andrzej.hajda@intel.com, mchehab@kernel.org,
- hverkuil-cisco@xs4all.nl, krzysztof.kozlowski+dt@linaro.org,
- robh+dt@kernel.org, conor+dt@kernel.org, linux-samsung-soc@vger.kernel.org,
- andi@etezian.org, gost.dev@samsung.com, alim.akhtar@samsung.com,
- pankaj.dubey@samsung.com
-References: <CGME20240130125754epcas5p2edd5cc52dc58add09299d3aa5985a9fd@epcas5p2.samsung.com>
- <20240130125748.54194-1-aakarsh.jain@samsung.com>
- <9a8cb901-8021-42a3-a13b-bae10a645011@linaro.org>
- <bb6e3546-a596-4748-92d9-7cfc1f5e2db1@linaro.org>
- <010301da540b$accfe490$066fadb0$@samsung.com>
+Subject: Re: [PATCH 1/3] ARM: dts: samsung: exynos5420-galaxy-tab-common: sort
+ node properties
 Content-Language: en-US
+To: Henrik Grimler <henrik@grimler.se>, Rob Herring <robh+dt@kernel.org>,
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+ Conor Dooley <conor+dt@kernel.org>, Alim Akhtar <alim.akhtar@samsung.com>,
+ Marek Szyprowski <m.szyprowski@samsung.com>
+Cc: devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ linux-samsung-soc@vger.kernel.org, linux-kernel@vger.kernel.org,
+ ~postmarketos/upstreaming@lists.sr.ht
+References: <20240130-galaxy-tab-s-cleanup-v1-0-d4e17857241d@grimler.se>
+ <20240130-galaxy-tab-s-cleanup-v1-1-d4e17857241d@grimler.se>
 From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  xsFNBFVDQq4BEAC6KeLOfFsAvFMBsrCrJ2bCalhPv5+KQF2PS2+iwZI8BpRZoV+Bd5kWvN79
@@ -137,44 +133,33 @@ Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  KQ06ztUMRrj8eVtpImjsWCd0bDWRaaR4vqhCHvAG9iWXZu4qh3ipie2Y0oSJygcZT7H3UZxq
  fyYKiqEmRuqsvv6dcbblD8ZLkz1EVZL6djImH5zc5x8qpVxlA0A0i23v5QvN00m6G9NFF0Le
  D2GYIS41Kv4Isx2dEFh+/Q==
-In-Reply-To: <010301da540b$accfe490$066fadb0$@samsung.com>
+In-Reply-To: <20240130-galaxy-tab-s-cleanup-v1-1-d4e17857241d@grimler.se>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 31/01/2024 07:06, Aakarsh Jain wrote:
+On 30/01/2024 21:40, Henrik Grimler wrote:
+> Sort all node properties according to dts coding style guidelines, to
+> make dtsi easier to follow.
 > 
+> Signed-off-by: Henrik Grimler <henrik@grimler.se>
+> ---
+>  .../dts/samsung/exynos5420-galaxy-tab-common.dtsi  | 23 +++++++++++-----------
+>  1 file changed, 11 insertions(+), 12 deletions(-)
 > 
->> -----Original Message-----
->> From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
->> Sent: 30 January 2024 19:57
->> To: Aakarsh Jain <aakarsh.jain@samsung.com>; linux-arm-
->> kernel@lists.infradead.org; linux-media@vger.kernel.org; linux-
->> kernel@vger.kernel.org; devicetree@vger.kernel.org
->> Cc: m.szyprowski@samsung.com; andrzej.hajda@intel.com;
->> mchehab@kernel.org; hverkuil-cisco@xs4all.nl;
->> krzysztof.kozlowski+dt@linaro.org; robh+dt@kernel.org;
->> conor+dt@kernel.org; linux-samsung-soc@vger.kernel.org;
->> andi@etezian.org; gost.dev@samsung.com; alim.akhtar@samsung.com;
->> pankaj.dubey@samsung.com
->> Subject: Re: [PATCH] dt-bindings: media: s5p-mfc: Remove s5p-mfc.txt
->> binding
->>
->> On 30/01/2024 15:25, Krzysztof Kozlowski wrote:
->>> On 30/01/2024 13:57, Aakarsh Jain wrote:
->>>> Commit "538af6e5856b" which convert s5p-mfc bindings to
->>>
->>> Please run scripts/checkpatch.pl and fix reported warnings. Some
->>> warnings can be ignored, but the code here looks like it needs a fix.
->>> Feel free to get in touch if the warning is not clear.
->>>
-> I am getting below warning while running scripts/checkpatch.pl on this patch
-> WARNING: added, moved or deleted file(s), does MAINTAINERS need updating?
-> #18:
-> deleted file mode 100644
-> 
-> total: 0 errors, 1 warnings, 0 lines checked
+> diff --git a/arch/arm/boot/dts/samsung/exynos5420-galaxy-tab-common.dtsi b/arch/arm/boot/dts/samsung/exynos5420-galaxy-tab-common.dtsi
+> index f525b2f5e4e0..0c1aeafc025b 100644
+> --- a/arch/arm/boot/dts/samsung/exynos5420-galaxy-tab-common.dtsi
+> +++ b/arch/arm/boot/dts/samsung/exynos5420-galaxy-tab-common.dtsi
+> @@ -103,8 +103,8 @@ &cpu4 {
+>  };
+>  
+>  &gpu {
+> -	status = "okay";
+>  	mali-supply = <&buck4_reg>;
+> +	status = "okay";
 
-This one can be ignored, but your commit syntax does not look right.
+Such changes should come from a tool, but since we do not have them, I
+don't want to bother with properties re-shuffling.
 
 Best regards,
 Krzysztof
