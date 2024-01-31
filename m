@@ -1,204 +1,205 @@
-Return-Path: <devicetree+bounces-36941-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-36942-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id A5B78843493
-	for <lists+devicetree@lfdr.de>; Wed, 31 Jan 2024 04:40:07 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id D395384349D
+	for <lists+devicetree@lfdr.de>; Wed, 31 Jan 2024 04:45:00 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 1E34EB23E55
-	for <lists+devicetree@lfdr.de>; Wed, 31 Jan 2024 03:40:05 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 607991F26D19
+	for <lists+devicetree@lfdr.de>; Wed, 31 Jan 2024 03:45:00 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E45EF10953;
-	Wed, 31 Jan 2024 03:39:59 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9E149111BB;
+	Wed, 31 Jan 2024 03:44:56 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=chromium.org header.i=@chromium.org header.b="jD/IOxQ0"
+	dkim=pass (2048-bit key) header.d=outlook.com header.i=@outlook.com header.b="Vg4SXkuk"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lf1-f42.google.com (mail-lf1-f42.google.com [209.85.167.42])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from IND01-BMX-obe.outbound.protection.outlook.com (mail-bmxind01olkn2101.outbound.protection.outlook.com [40.92.103.101])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2096E14AAA
-	for <devicetree@vger.kernel.org>; Wed, 31 Jan 2024 03:39:57 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.42
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1706672399; cv=none; b=dougJLAmaxw/ht+BBQ5xLiB1GOZ2x20qSrcS6PPU9ku7y3xcAqUFEpf80WSN66LLIIQnzLtj4Jj7CUJNS/+CdzT8yhCm5Ckj+dFoL+3Aa3ZYdIk4OxZ4FLvH25YAclI5yz2CE93wwPeITFG4H3mdlgvGnFVyJ3PDZiN1jM6Pkwg=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1706672399; c=relaxed/simple;
-	bh=WowSxGgZlAt0SjsqlQOh0Xqips85ZOGo0PMJ67xhi14=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=R5Eq785samQW7Z51WvqX3Yr7Nwyh2rIHgn/1BXXiP6HnyRZFqHvpzb2q44ID9zQakppqnpcVWvUeD7nUG/uY0Bugy5T8naEAiX71TzwgefHIy+ZCdSQK2LVAlo4zuyEViL02usuFjJDKRt9bh+RSmBSHu1IapDseY+Lh6qUH1/8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=chromium.org; spf=pass smtp.mailfrom=chromium.org; dkim=pass (1024-bit key) header.d=chromium.org header.i=@chromium.org header.b=jD/IOxQ0; arc=none smtp.client-ip=209.85.167.42
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=chromium.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=chromium.org
-Received: by mail-lf1-f42.google.com with SMTP id 2adb3069b0e04-5101cd91017so5254973e87.2
-        for <devicetree@vger.kernel.org>; Tue, 30 Jan 2024 19:39:57 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google; t=1706672396; x=1707277196; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=qpRkgXkbQYXbK1cEg4XXsMfWT44RSVIecn26S5cDrV4=;
-        b=jD/IOxQ0fBTPjZsAKx3JTUo5ygOBAsi6V/aOA7XMNYcNib4z/Cl2XvijLIVhE7rR2m
-         ECF8OhwnjXxpkJf9wnJOLk4B7+6XecT3Lg/FXH1KKvKXNWoyfuJfvK25NJDsdA8rIsdP
-         tGQIVo6YHypobZBohkL2I+mNjUEOJFLMishTc=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1706672396; x=1707277196;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=qpRkgXkbQYXbK1cEg4XXsMfWT44RSVIecn26S5cDrV4=;
-        b=KNDtQ5awIrFXVZf+zZnw3xf+UAOBbIc3yMhJ0xaHQduEgEwgCJBRrR0Hovn3E/ga3L
-         PoBWbckYUmIMG4+tuRDf4/SCpqiqJzPoyyxLvdSmf67lil98phcdFEfHx8mJZtCQfu2b
-         8jM7jIP7BA9/7JP2rWg/C0rAHNhHGHG3glGaL+juYL8XyTa4O92ziEcDbHVouvJom5yl
-         DuyQHNCSZO++vC4VkfH5z0k16ow0esT0LIqiGQB01QqvH8DzUF5RIHdrOnxOWfPNZBTX
-         IVWcCjmLeSgR3BznfMXV4brFL2EQDU3PAIcAvwuXT45moOCl3EJ5kn5jEzlfjjgJ7SqT
-         vnlQ==
-X-Gm-Message-State: AOJu0YxTshk2kQdMnK2y9bqoMdqSRgW6hL+3Jmb/Lgh76ip6D8dQRaS9
-	KKxx+YuvmZ82QDyUVR2ATguto95Wv1sJz6P+YGWNehLBco75bNk4OaHMXxlPwsB5PV1Eya8kJVu
-	n9avQWDq8gdhdeiSLoM/jKh02jE3FCVZuoh4w
-X-Google-Smtp-Source: AGHT+IHsCbNhf/cX1e7S3SrH8YqgH2QhUc3a53hHF1zco0XT9jtlWjG4rpYd5ZxLSwo4KK0lfHA3RvEPSDfNHcGvQqM=
-X-Received: by 2002:ac2:443a:0:b0:50f:18f7:855e with SMTP id
- w26-20020ac2443a000000b0050f18f7855emr285947lfl.39.1706672396151; Tue, 30 Jan
- 2024 19:39:56 -0800 (PST)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9E92220B3E;
+	Wed, 31 Jan 2024 03:44:54 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.92.103.101
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1706672696; cv=fail; b=YU1YiZUhX6dY8HW0B+rSlAI1o4ifyO+JpRT0/eItvOCz6RCk8+pw7bLoF+FM7cdPqmUTKmxdIJhi4v+c2oxPTkDfk5c36zKaUMF2fCtOEHX95cmn/4+Z+M9ePlrIqqrG+vjKff/W0ZJWtscg/UWcukNK8UttY9L94EL26hGR8/g=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1706672696; c=relaxed/simple;
+	bh=dBPfStzYjS+J+FPeie0awDc/J9He1YR10vtIajETHHY=;
+	h=Message-ID:Date:Subject:To:Cc:References:From:In-Reply-To:
+	 Content-Type:MIME-Version; b=Vc/qYk9JsPhhYBnwlpM0npzhUlhpJj+dWr67EFeGfhlHPuOtU54HxpM2NDAM3vpCnndIQL1pV/yZ7V+OAxmRF4U0DJxsNHjiRW3ryWUz+dbe8r/qoQS39BoEcV/fGj9Ho6OYYXCIqXOwoqd0rZRZISskKC5UaSKriwkmnIA4bqs=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=outlook.com; spf=pass smtp.mailfrom=outlook.com; dkim=pass (2048-bit key) header.d=outlook.com header.i=@outlook.com header.b=Vg4SXkuk; arc=fail smtp.client-ip=40.92.103.101
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=outlook.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=outlook.com
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=BEkeS7Dt59CazUwFp/lO7DhG3tHUk31Zf4Lyum2QdL5ekstNVc6Rl1ncOYhUFCCrcfhzLedF+qtKtjuoVwo3oCMleXROj2nh8L+KmpMakbeN9iUBugpPRqA9rFQPnimSRRLA7phZVbfWP5kGZJCH0Drl7p1HTX4upizOXRZTi3XRhfwQmA5IegfiPux3nF6t5MnxLKu2BRttIJQnEzuzaFSipePqEzjTFTxuXe/Ez7tKABH3F5cjJIvylcdfurNlpytSlRvdEfpdRuycVwOlY4FRuX3GgKdbVxDBeSDf0eFEoAoLRhaRo5nYGBamytgzvF703Zvk98ZiomY7Ou6Ggg==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=GZeWFT1Eq1O+YFM6Kqh9uq/VTCI3UkGAtpdaPH1/rWg=;
+ b=VQ3qjQnOCIlJ1JbNmaXsCxZhJ2UoW3nz1861CNU4WHM/irVxhNSDn/OE7e/Ca4hjY+IWHiNrgY991XE6YOqQXoR0oyg/0b0YmId4pRcMIpaZmJroAqI4y/NxancA2mUfxltT7EGphUEjGM8FoMqBuvLaqgR4Yjtt+JfFO5dW8Tb3JmCy/fgLeAy9PGsIBsTkM/J9HRJH2QgrU3dAZr3IwXpN+lWwBq9KM4QoJZwfmqep7g6MQ7BxhHcQM5JWZrfV6VY/4KPxtYNVOOdydgBBtLNQiE2wG+rVfi9mmubow+pi0yr48cxnWCY4xt3hJNHLFMkYoOJiZOs5d1+a4dnkJA==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=none; dmarc=none;
+ dkim=none; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=outlook.com;
+ s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=GZeWFT1Eq1O+YFM6Kqh9uq/VTCI3UkGAtpdaPH1/rWg=;
+ b=Vg4SXkukVViJG9H6GFo2gVxWC+uZPjfbS1vBozudibxYQoPneT1cW6IhKi8tg3E9FA3drSGkpNbmVRzmogH1b5BySiT5TJoaePlUcqwZUiThMstm2w03C3MTKVOvbFUk2AsZn/Sglt3RS3Lze0/taLZMT7yMjCJHRSsdQWKYYOcAhgbByXhr/3IpXSD5wpwVCwopKHz5wWnN2jsCeq7Amu3+ct95tgyN3D4pwpd4iB3VfleG4cUFDeye2EYGgD9G8U15JWgv01rfXAq5C50dh8x+qaSqGQdCcton7L2OvMsLUiDkWLWNExDi9YOua1DL1mSdJwUpIT7k9WD181E3hQ==
+Received: from MA0P287MB2822.INDP287.PROD.OUTLOOK.COM (2603:1096:a01:138::5)
+ by PN0P287MB0875.INDP287.PROD.OUTLOOK.COM (2603:1096:c01:16b::12) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7249.24; Wed, 31 Jan
+ 2024 03:44:44 +0000
+Received: from MA0P287MB2822.INDP287.PROD.OUTLOOK.COM
+ ([fe80::a2d5:82f2:b6d4:f2cd]) by MA0P287MB2822.INDP287.PROD.OUTLOOK.COM
+ ([fe80::a2d5:82f2:b6d4:f2cd%2]) with mapi id 15.20.7249.023; Wed, 31 Jan 2024
+ 03:44:44 +0000
+Message-ID:
+ <MA0P287MB2822C383EA3F6763705AAE28FE7C2@MA0P287MB2822.INDP287.PROD.OUTLOOK.COM>
+Date: Wed, 31 Jan 2024 11:44:37 +0800
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v6 3/4] riscv: dts: sophgo: add clock generator for Sophgo
+ CV1800 series SoC
+To: Inochi Amaoto <inochiama@outlook.com>,
+ Michael Turquette <mturquette@baylibre.com>, Stephen Boyd
+ <sboyd@kernel.org>, Rob Herring <robh+dt@kernel.org>,
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+ Conor Dooley <conor+dt@kernel.org>, Chao Wei <chao.wei@sophgo.com>,
+ Paul Walmsley <paul.walmsley@sifive.com>, Palmer Dabbelt
+ <palmer@dabbelt.com>, Albert Ou <aou@eecs.berkeley.edu>
+Cc: Jisheng Zhang <jszhang@kernel.org>, Liu Gui <kenneth.liu@sophgo.com>,
+ Jingbao Qiu <qiujingbao.dlmu@gmail.com>, dlan@gentoo.org,
+ linux-clk@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, linux-riscv@lists.infradead.org
+References: <IA1PR20MB4953C774D41EDF1EADB6EC18BB6D2@IA1PR20MB4953.namprd20.prod.outlook.com>
+ <IA1PR20MB4953355805F79ABDD7FE9129BB6D2@IA1PR20MB4953.namprd20.prod.outlook.com>
+From: Chen Wang <unicorn_wang@outlook.com>
+In-Reply-To: <IA1PR20MB4953355805F79ABDD7FE9129BB6D2@IA1PR20MB4953.namprd20.prod.outlook.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-TMN: [Lbc5l0YOv8f9WQOsk79/CalNQO0ovj53]
+X-ClientProxiedBy: SG2PR02CA0043.apcprd02.prod.outlook.com
+ (2603:1096:3:18::31) To MA0P287MB2822.INDP287.PROD.OUTLOOK.COM
+ (2603:1096:a01:138::5)
+X-Microsoft-Original-Message-ID:
+ <2adeb19a-f86c-4244-ae7f-9e16b8dd6d2d@outlook.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20240126063500.2684087-1-wenst@chromium.org> <20240126063500.2684087-2-wenst@chromium.org>
- <74b9f249-fcb4-4338-bf7b-8477de6c935c@linaro.org> <CAGXv+5Hu+KsTBd1JtnKcaE3qUzPhHbunoVaH2++yfNopHtFf4g@mail.gmail.com>
- <21568334-b21f-429e-81cd-5ce77accaf3c@linaro.org> <CAGXv+5HxXzjigN3Bp96vkv71WfTJ1S2b7Wgafc4GxLmhu6+jMg@mail.gmail.com>
- <a4324473-e0c6-4d53-8de0-03b69480e40b@linaro.org> <CAGXv+5HAqmUizXztMH_nY6e+6oQh01hCtxEJXKtCn3_74-sOsQ@mail.gmail.com>
- <78241d63-3b9d-4c04-9ea5-11b45eac6f00@linaro.org> <20240130223856.GA2538998-robh@kernel.org>
-In-Reply-To: <20240130223856.GA2538998-robh@kernel.org>
-From: Chen-Yu Tsai <wenst@chromium.org>
-Date: Wed, 31 Jan 2024 11:39:43 +0800
-Message-ID: <CAGXv+5FwaNe7oesGwZ=yR0Pg82tEzEF3B0zjoex4qw+6zsSYbQ@mail.gmail.com>
-Subject: Re: [PATCH v2 1/2] dt-bindings: net: bluetooth: Add MediaTek MT7921S
- SDIO Bluetooth
-To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Cc: Marcel Holtmann <marcel@holtmann.org>, Luiz Augusto von Dentz <luiz.dentz@gmail.com>, 
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Matthias Brugger <matthias.bgg@gmail.com>, 
-	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>, 
-	Sean Wang <sean.wang@mediatek.com>, linux-bluetooth@vger.kernel.org, 
-	netdev@vger.kernel.org, linux-mediatek@lists.infradead.org, 
-	devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
-	linux-kernel@vger.kernel.org, Ulf Hansson <ulf.hansson@linaro.org>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+X-MS-Exchange-MessageSentRepresentingType: 1
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: MA0P287MB2822:EE_|PN0P287MB0875:EE_
+X-MS-Office365-Filtering-Correlation-Id: 0cad8fda-3ecb-4e42-0b39-08dc220ef54c
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info:
+	cNBhJfiMoze6N8KAUiguCtWqhXaSOkcSPxrQ8uSEd8PMjiLIJxMxVmSZMe4l4UnNPhZq7QQQ3r5yzy8/41k3Ymvj4N0FsdthXSSh9MEY0gqnLDQr65zKZ/pBEeSGHSn3Elysb+TtHplvz3yfRsUawumrxzQEEl/Zkx4jJPNWZwRa/AxSIwOXjF+JElbG1k7qJBqC4G/8RtB76LEF+JOYunuH4akTmwillpJd4zSVkEyMUAA2Qp7QR8eBiuNoB4BzZ3AHclKfD72Rih3zd6Pgu20fWJBODjrQH9Uyxonp787ZZdg+zZ8IMj0rEZN6DfrMktft9NcANjuvp3hT+RO/D1eqV7kfEWXpTix9VMHcFMmaCeQAa6qhB7T52mbc5/rJjSK+NK8aQ/qbiUNe6BlAYTP5GqzZZekix3DXIfiJMmw3iL2PsXw0iSdoidH0GMz+n3SgsEZ7DLqw3JJx+a1DWcX7a/wy5T8ZEbImawezBJtMGH+zL/okEJgbfzsOuXsacosuUEeT9BXKg8ooVuXm/+qiRK91+ev+Xlyn5nnEHsjK7hMAS6I7qQhHJ6FUTMDYyhh62mkXGVJWKYB8uCCRPXWgXY9aSdOeQjwM1SehTcEJm4vUH6FNgKpCKcJ767MUFpFX7MPWTKvrlpE2hb65Aw==
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0:
+	=?utf-8?B?RXIwL3R3Wk94Y3hlb29BOW1NN0RjdGlvZnFGUElUNXFSdlI2VS80dUxGSFl5?=
+ =?utf-8?B?ZytZbkE4V0R2SmM1d002NTBESUM5N0dRdkpGYzV2REJuS05MbXBacE9aSXE1?=
+ =?utf-8?B?MXNFRkN2UllVc0NKZVBBTkRCT3RHTkttdDFMYmJ3OTlmZys5MHhhc0lVZ3VP?=
+ =?utf-8?B?citVWExXbXdobks0RzNLazNtQURYcFR4bTRKNXBQUklqMU8zTFczNFhuNW5T?=
+ =?utf-8?B?YTBIbm1jZ2k3cEZOdHdBSHJKazVPTW1OOHhkSGFwVUFHeS9BeHJBdXdMOC9h?=
+ =?utf-8?B?SEFocHhXUjdyK3BoaG9mMnZ0RXVlL0NCaHNTcVhqVnZWUmxDRGNSV3RFbDBJ?=
+ =?utf-8?B?TEdrNCtadXZvNkpxRlR1Qkx1QytTNGFoNTk0Q3N4NFowSWNndlBnZDV2Mi9t?=
+ =?utf-8?B?eGxlZG5YL1BUVnpKMXVRbVZWZm1tQmZVMU00Z0cyNmlkUEpHUldQMGVxUmEz?=
+ =?utf-8?B?cENmRElBbWdDU1pVd2k0OEdVeFE3N0pZNXJoTmNJb0JoTjdHc1BuRGRDNXVu?=
+ =?utf-8?B?OXpVWjlGNHE5WTBRc3dsQmEyVENXVE05TVhRdmY0QUZDQm5XczRGZW53Y0Y4?=
+ =?utf-8?B?VWxCS2VnTUdZU1N2UEwvcVFLMjYyTXcva2g3Y2Y2aXhBVFJ1NXAxZ29uRGdS?=
+ =?utf-8?B?Mlo4WVh5MXRXNTRhcC85MS9nbk9kKzR1RHowRWZHRFBzK3JoY0RrdVo3Uzl1?=
+ =?utf-8?B?cm1HWkFPa2xnMDEwRkczZWJaUVJaa1NzWXQyQzNsUU9GenZ2TmJUU2FqeW9K?=
+ =?utf-8?B?TVhtRTFxY08vZ0Q0UEtHN2YvMXp1SEZRSm9nTmdUZVoyZGNtMXpCU1RYTHBi?=
+ =?utf-8?B?YkVvYW5ZNHQ4cEdUQ2oycnRGUGpGV0EzdXBGaTVrcitTU2NJdjNaeFI4VHh1?=
+ =?utf-8?B?aFB6eElySUNDVEZqdHloVmZhc2xteWptaVZPSWtWcmM1VG1pUFpkVXB1VDRh?=
+ =?utf-8?B?VlEyTTVhNVVST3BZUnpIM3MvQ1R2MUIxcXFsay93UFNHd2d3R1d5VkhSczM3?=
+ =?utf-8?B?UStTdklMYnF4T28zS2FSVG8wQnRZbGtIcUQ5ZWhrbzhkdVc0KzBIVk1WZnRJ?=
+ =?utf-8?B?SjNvUTFNTkNVK21UTlFEd1ZFRzlWZTMrTVh2TTd2OCtQL1pMRExWc0Q1bDlF?=
+ =?utf-8?B?QzkySmdLV1krazBqbU9sY2I1b3BvZmlXYnhXZGo1RTVYTG5Zd1FIUlNqOG5S?=
+ =?utf-8?B?WFluSmI0NHJXcm5OaS81TWE3Q0lZWEJBMCtEMnhNaUlCWEJrMjZTZ0g5SDhG?=
+ =?utf-8?B?Zkk5Vnpib3h3TUxvOWFJWVA1RG9HMW9qUEEzRklLQnJlRGk4aUFmVTkvbTFl?=
+ =?utf-8?B?M2Y4OExnbnpJMlJGdlRBMVcyazkvblFoRXp0b2pBNHNUVjNaNkh4MkJxMlVZ?=
+ =?utf-8?B?U05QUkhrWDZyN2t1akw1VnBvODRQbS9jNnIrRnFJZFpEWXNLdTJHZXZHMzVR?=
+ =?utf-8?B?UUFhSnpOZkg3NWVVL3J6YkVBRHhtWjIzN2NjaGQyTDRkZ2hpazRkUDBZbnNl?=
+ =?utf-8?B?SzZmM0ZkRDBVVy9KVUd3THptMDJCY3NSK0JiYW8rTW9zQS80ejlPMU5WK2V4?=
+ =?utf-8?B?WjVqVi96a0VvZ2l0aHlndXRla1ZDbXZxVThBMW1hc1VYelhaYW00ZnBHUVBR?=
+ =?utf-8?Q?81AJOP+XsTvjKf7yBBH+eByIvShNOVegEMQIzXA5/IMc=3D?=
+X-OriginatorOrg: outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 0cad8fda-3ecb-4e42-0b39-08dc220ef54c
+X-MS-Exchange-CrossTenant-AuthSource: MA0P287MB2822.INDP287.PROD.OUTLOOK.COM
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 31 Jan 2024 03:44:43.5946
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 84df9e7f-e9f6-40af-b435-aaaaaaaaaaaa
+X-MS-Exchange-CrossTenant-RMS-PersistedConsumerOrg:
+	00000000-0000-0000-0000-000000000000
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: PN0P287MB0875
 
-(+CC Ulf Hansson)
 
-On Wed, Jan 31, 2024 at 6:38=E2=80=AFAM Rob Herring <robh@kernel.org> wrote=
-:
+On 2024/1/14 12:17, Inochi Amaoto wrote:
+> Add clock generator node for CV1800B and CV1812H.
 >
-> On Tue, Jan 30, 2024 at 05:25:38PM +0100, Krzysztof Kozlowski wrote:
-> > On 30/01/2024 08:47, Chen-Yu Tsai wrote:
-> > > On Tue, Jan 30, 2024 at 3:37=E2=80=AFPM Krzysztof Kozlowski
-> > > <krzysztof.kozlowski@linaro.org> wrote:
-> > >>
-> > >> On 30/01/2024 04:32, Chen-Yu Tsai wrote:
-> > >>> On Mon, Jan 29, 2024 at 3:34=E2=80=AFPM Krzysztof Kozlowski
-> > >>> <krzysztof.kozlowski@linaro.org> wrote:
-> > >>>>
-> > >>>> On 29/01/2024 04:38, Chen-Yu Tsai wrote:
-> > >>>>
-> > >>>>>>> +allOf:
-> > >>>>>>> +  - $ref: bluetooth-controller.yaml#
-> > >>>>>>> +
-> > >>>>>>> +properties:
-> > >>>>>>> +  compatible:
-> > >>>>>>> +    enum:
-> > >>>>>>> +      - mediatek,mt7921s-bluetooth
-> > >>>>>>
-> > >>>>>> Can it be also WiFi on separate bus? How many device nodes do yo=
-u need
-> > >>>>>> for this device?
-> > >>>>>
-> > >>>>> For the "S" variant, WiFi is also on SDIO. For the other two vari=
-ants,
-> > >>>>> "U" and "E", WiFi goes over USB and PCIe respectively. On both th=
-ose
-> > >>>>> variants, Bluetooth can either go over USB or UART. That is what =
-I
-> > >>>>> gathered from the pinouts. There are a dozen GPIO pins which don'=
-t
-> > >>>>> have detailed descriptions though. If you want a comprehensive
-> > >>>>> binding of the whole chip and all its variants, I suggest we ask
-> > >>>>> MediaTek to provide it instead. My goal with the binding is to do=
-cument
-> > >>>>> existing usage and allow me to upstream new device trees.
-> > >>>>>
-> > >>>>> For now we only need the Bluetooth node. The WiFi part is perfect=
-ly
-> > >>>>> detectable, and the driver doesn't seem to need the WiFi reset pi=
-n.
-> > >>>>> The Bluetooth driver only uses its reset pin to reset a hung cont=
-roller.
-> > >>>>
-> > >>>> Then suffix "bluetooth" seems redundant.
-> > >>>
-> > >>> I think keeping the suffix makes more sense though. The chip is a t=
-wo
-> > >>> function piece, and this only targets one of the functions. Also, t=
-he
-> > >>
-> > >> That's why I asked and you said there is only one interface: SDIO.
-> > >
-> > > There's only one interface, SDIO, but two SDIO functions. The two
-> > > functions, if both were to be described in the device tree, would
-> > > be two separate nodes. We just don't have any use for the WiFi one
-> > > right now. Does that make sense to keep the suffix?
-> >
-> > Number of functions does not really matter. Number of interfaces on the
-> > bus would matter. Why would you have two separate nodes for the same
-> > SDIO interface? Or do you want to say there are two interfaces?
+> Until now, It uses DT override to minimize duplication. This may
+> change in the future. See the last link for the discussion on
+> maintaining DT of CV1800 series.
+>
+> Signed-off-by: Inochi Amaoto <inochiama@outlook.com>
+> Link: https://github.com/milkv-duo/duo-files/blob/6f4e9b8ecb459e017cca1a8df248a19ca70837a3/duo/datasheet/CV1800B-CV1801B-Preliminary-Datasheet-full-en.pdf
+> Link: https://lore.kernel.org/all/IA1PR20MB495373158F3B690EF3BF2901BB8BA@IA1PR20MB4953.namprd20.prod.outlook.com/
 
-There is only one external interface. I don't know how the functions
-are stitched together internally.
+Reviewed-by: Chen Wang <unicorn_wang@outlook.com>
 
-It could be that the separate functions have nothing in common other
-than sharing a standard external SDIO interface. Each function can be
-individually controlled, and operations for different functions are
-directed internally to the corresponding core.
-
-> Right, one device at 2 addresses on a bus should be a node with 2 "reg"
-> entries, not 2 nodes with 1 "reg" address each.
-
-AFAICU that's not what the MMC controller binding, which I quote below,
-says. It implies that each SDIO function shall be a separate node under
-the MMC controller node.
-
-
-patternProperties:
-  "^.*@[0-9]+$":
-    type: object
-    description: |
-      On embedded systems the cards connected to a host may need
-      additional properties. These can be specified in subnodes to the
-      host controller node. The subnodes are identified by the
-      standard \'reg\' property. Which information exactly can be
-      specified depends on the bindings for the SDIO function driver
-      for the subnode, as specified by the compatible string.
-
-    properties:
-      compatible:
-        description: |
-          Name of SDIO function following generic names recommended
-          practice
-
-      reg:
-        items:
-          - minimum: 0
-            maximum: 7
-            description:
-              Must contain the SDIO function number of the function this
-              subnode describes. A value of 0 denotes the memory SD
-              function, values from 1 to 7 denote the SDIO functions.
-
-
-ChenYu
+> ---
+>   arch/riscv/boot/dts/sophgo/cv1800b.dtsi | 4 ++++
+>   arch/riscv/boot/dts/sophgo/cv1812h.dtsi | 4 ++++
+>   arch/riscv/boot/dts/sophgo/cv18xx.dtsi  | 6 ++++++
+>   3 files changed, 14 insertions(+)
+>
+> diff --git a/arch/riscv/boot/dts/sophgo/cv1800b.dtsi b/arch/riscv/boot/dts/sophgo/cv1800b.dtsi
+> index 165e9e320a8c..baf641829e72 100644
+> --- a/arch/riscv/boot/dts/sophgo/cv1800b.dtsi
+> +++ b/arch/riscv/boot/dts/sophgo/cv1800b.dtsi
+> @@ -16,3 +16,7 @@ &plic {
+>   &clint {
+>   	compatible = "sophgo,cv1800b-clint", "thead,c900-clint";
+>   };
+> +
+> +&clk {
+> +	compatible = "sophgo,cv1800-clk";
+> +};
+> diff --git a/arch/riscv/boot/dts/sophgo/cv1812h.dtsi b/arch/riscv/boot/dts/sophgo/cv1812h.dtsi
+> index 3e7a942f5c1a..7fa4c1e2d1da 100644
+> --- a/arch/riscv/boot/dts/sophgo/cv1812h.dtsi
+> +++ b/arch/riscv/boot/dts/sophgo/cv1812h.dtsi
+> @@ -22,3 +22,7 @@ &plic {
+>   &clint {
+>   	compatible = "sophgo,cv1812h-clint", "thead,c900-clint";
+>   };
+> +
+> +&clk {
+> +	compatible = "sophgo,cv1810-clk";
+> +};
+> diff --git a/arch/riscv/boot/dts/sophgo/cv18xx.dtsi b/arch/riscv/boot/dts/sophgo/cv18xx.dtsi
+> index 2d6f4a4b1e58..6ea1b2784db9 100644
+> --- a/arch/riscv/boot/dts/sophgo/cv18xx.dtsi
+> +++ b/arch/riscv/boot/dts/sophgo/cv18xx.dtsi
+> @@ -53,6 +53,12 @@ soc {
+>   		dma-noncoherent;
+>   		ranges;
+>
+> +		clk: clock-controller@3002000 {
+> +			reg = <0x03002000 0x1000>;
+> +			clocks = <&osc>;
+> +			#clock-cells = <1>;
+> +		};
+> +
+>   		gpio0: gpio@3020000 {
+>   			compatible = "snps,dw-apb-gpio";
+>   			reg = <0x3020000 0x1000>;
+> --
+> 2.43.0
+>
 
