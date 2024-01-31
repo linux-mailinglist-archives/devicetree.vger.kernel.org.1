@@ -1,132 +1,187 @@
-Return-Path: <devicetree+bounces-37246-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-37247-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7A28884432E
-	for <lists+devicetree@lfdr.de>; Wed, 31 Jan 2024 16:35:30 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id EBD64844336
+	for <lists+devicetree@lfdr.de>; Wed, 31 Jan 2024 16:38:54 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 5C9DBB256C5
-	for <lists+devicetree@lfdr.de>; Wed, 31 Jan 2024 15:31:10 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 9D1B2B2C038
+	for <lists+devicetree@lfdr.de>; Wed, 31 Jan 2024 15:34:27 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3A0911272C7;
-	Wed, 31 Jan 2024 15:31:04 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 94D09129A8E;
+	Wed, 31 Jan 2024 15:33:53 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="FG11al+h"
+	dkim=pass (1024-bit key) header.d=nxp.com header.i=@nxp.com header.b="cFbJC2Cy"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ed1-f44.google.com (mail-ed1-f44.google.com [209.85.208.44])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from EUR01-HE1-obe.outbound.protection.outlook.com (mail-he1eur01on2042.outbound.protection.outlook.com [40.107.13.42])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7B9F269D22;
-	Wed, 31 Jan 2024 15:31:02 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.44
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1706715064; cv=none; b=MPAXJAM0kadCNtdKKW098vI6DEByAUQalfCEVAsE4aPlyTbgCCQjtKmbePkUfmVRAq5BdVsa06ND7IxxOZQWN6847SbdDJgO7802fOlrdZEGWNWvNdDn+Mz2iS0ZXN9Enf3f0LEzrTTzmyELkoBLgISNszt7PY1fFUL3av4k4AM=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1706715064; c=relaxed/simple;
-	bh=jt6rTQs4lkA/V5LXFaYBX03W2WGr3jScdnIgbJsi/4k=;
-	h=Date:From:To:CC:Subject:In-Reply-To:References:Message-ID:
-	 MIME-Version:Content-Type; b=uzqFdxqo8N6BwDq0hjLx32wK9wcSH6zdV+M3DDgoY44GIIghTNPgqWLXKtmR8p0TcVYNyb1/aD90s1nFVLEvwyKBs1hn+E+FomR9/OsnivLTmnxcu5usbfgI8x6kjDY0Oc9IdAw4EL36WWuDAF9LPpXk+EybcYGFEj0TvRMz53Q=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=FG11al+h; arc=none smtp.client-ip=209.85.208.44
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-ed1-f44.google.com with SMTP id 4fb4d7f45d1cf-55eedf5a284so5029205a12.1;
-        Wed, 31 Jan 2024 07:31:02 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1706715060; x=1707319860; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:message-id:references
-         :in-reply-to:user-agent:subject:cc:to:from:date:from:to:cc:subject
-         :date:message-id:reply-to;
-        bh=QlWx7HbsDcsgBtZeaKhN54G3HVuF5sErfrGgXe6TcXk=;
-        b=FG11al+hbN0iZYhWHYgOOx9Cg69hGTYTFSrIV9K7Z+TdrACiigJQEMsKBPMdDTHMwN
-         fZCZBQT9Xs6kDVftYb9Kubpl/zKEwKxQkQL9KbCLYHgV9eJ39hGvPlwEPQR2qVSqAn2A
-         3lstKOkeP+YVlCHY5Gr2qlMoQRAGPheMbcpBeF1szfl1YX7qNEsQQA4+jvOMKkn26S8+
-         WwnczsBoTEQZVDhNMCsmghXymWCH5KVVtyF6yDoG+icVOYqwCnfnWAPYmqsCUme1I3xG
-         CFc+KFGhL3/3MyyYCt21JuKFtN3vebYLclRBE/Z689tsrpaeqhn+bYVX9Ge8ZXJDqPDO
-         QMLg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1706715060; x=1707319860;
-        h=content-transfer-encoding:mime-version:message-id:references
-         :in-reply-to:user-agent:subject:cc:to:from:date:x-gm-message-state
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=QlWx7HbsDcsgBtZeaKhN54G3HVuF5sErfrGgXe6TcXk=;
-        b=fIlvOLO5ns2TBaBk/Q8yEOwVng2qltqbKBMfiOx3Quhi+75zDDa4xdHEC7Vo5pEsgy
-         HKek8XsE1HsDErO6Q7H2e1b3CMgx1ZhWlzmazviHc4tow3rU50e0A9t8sc/24G7g+ALj
-         SGE+aKb5I9+uAmMt4A3zjHLpHhXAajFe7cb+OYSw4F/GOjv504n7U0rBkeQwMIt3YWOk
-         qjSrf3Zap1zFvqpEnUq3W/B75wJKe3B3cGaor1twyUQRYJohbxpj17kaa5XOEUgDbyyJ
-         bEcFFgEoeB5Ih83hT8aU8OF5F8OhjPYQLtMuZrRNv5Ht8f046iz7FjKlz9YYQ5EnsvLv
-         FDHw==
-X-Gm-Message-State: AOJu0YymINhlPGVGLdL7cP+1ablUPzBdbNj0p+/F2dzLr9Eii+UowlzP
-	/dnUT4OLV0qyw7ZUg/+OQxaLD4xavqIQwIM56ROUMK8a9NY9X5mC
-X-Google-Smtp-Source: AGHT+IGKx0xLRBg/SwHW6EiKGSOERhU7QFclNM0IJp8kiIpCPE9gkB9AjQ6vSQNGPtXKqqdNo8lG9Q==
-X-Received: by 2002:aa7:d6da:0:b0:55f:3b8d:769a with SMTP id x26-20020aa7d6da000000b0055f3b8d769amr1345628edr.19.1706715060428;
-        Wed, 31 Jan 2024 07:31:00 -0800 (PST)
-X-Forwarded-Encrypted: i=0; AJvYcCWH8adZZ7ddW45DLYparKuIhnR/QncTIZg4AhB67HorXPKC4hOqgEj0rLmOB6ZlBmyN6YReouAYCgRxtHWgot1qiWhbCXuyk34U5zrP0I0A0/jcyYopY1rl8pj6m5SIk7GUBJG6Z07bz6ggGDstpFcfJW18mopqq1uqCSfYGVLFlQAg72SHEW84x/mSupevTd61T41K70EWtbWeF0RnTGjoPtWzdjgU3TL7QPy9Hi5EuiBhq5Umy9aqEcCQQNbOc3+QamINOnsQUsryz4vgxQts8amrRSvf7vd1VxdPWGV8RCzJPZtk+LaOxW4zHI3R394Pq9V31DhlbbVt420Qa2IUhKd0w/zuQv1QvF6OGWC7GoTYgoq74EK/5mQFHio8vbmTYsxTV+ug72E=
-Received: from [127.0.0.1] ([46.211.116.2])
-        by smtp.gmail.com with ESMTPSA id q15-20020aa7da8f000000b0055f49d558b8sm1525064eds.23.2024.01.31.07.30.59
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 31 Jan 2024 07:31:00 -0800 (PST)
-Date: Wed, 31 Jan 2024 17:30:58 +0200
-From: Svyatoslav <clamor95@gmail.com>
-To: Conor Dooley <conor@kernel.org>
-CC: Rob Herring <robh+dt@kernel.org>,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Conor Dooley <conor+dt@kernel.org>,
- Thierry Reding <thierry.reding@gmail.com>,
- Jonathan Hunter <jonathanh@nvidia.com>, Kees Cook <keescook@chromium.org>,
- Maxim Schwalm <maxim.schwalm@gmail.com>, devicetree@vger.kernel.org,
- linux-tegra@vger.kernel.org, linux-kernel@vger.kernel.org,
- linux-hardening@vger.kernel.org
-Subject: =?US-ASCII?Q?Re=3A_=5BPATCH_v1_1/4=5D_dt-bindings=3A_vendor-p?= =?US-ASCII?Q?refixes=3A_add_LG_Electronics=2C_Inc=2E_prefix?=
-User-Agent: K-9 Mail for Android
-In-Reply-To: <20240131-elderly-passover-341b89f65189@spud>
-References: <20240131105153.8070-1-clamor95@gmail.com> <20240131105153.8070-2-clamor95@gmail.com> <20240131-elderly-passover-341b89f65189@spud>
-Message-ID: <656FDD69-D7B1-4910-B848-108CB985AAAC@gmail.com>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9ADF312AAFD;
+	Wed, 31 Jan 2024 15:33:51 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.107.13.42
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1706715233; cv=fail; b=BEwwswuLmO8cVz9CVJfdgCV62VR56a2qDyEi7uZhtnZmkJlb13ZfCXL7P+FoC/JDGpYjXkQDgRKxXkcghoGFrCSEZY7O2IlHtRbdUH/3XUp4GXJrfM6ZblaV39BOEjijTPIo42MEkoa1SeyKGUPXKmGqIFBu8hIMTcqWTOB6VBU=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1706715233; c=relaxed/simple;
+	bh=WAUd4tFS2O8fSB7vNHelt/r3NhbaaLjhCyQfzbrCvVs=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:Content-Type:
+	 Content-Disposition:In-Reply-To:MIME-Version; b=uV8QoV+vguZlv3PhUzm1Wv8Q2lPg+XSMiQoTVbeYCgZyVg6dZoM1nyooxN/501frSNZCcMHElSiUHHlXihsy4thwyf7IGhXZSR2bXAnuGX3in9VF+nL+2+USRA47Vy9W8b/HmmkN+I8asSc6TSR+k6cQyWMcVR+wVFrcEYQUuB4=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com; spf=pass smtp.mailfrom=nxp.com; dkim=pass (1024-bit key) header.d=nxp.com header.i=@nxp.com header.b=cFbJC2Cy; arc=fail smtp.client-ip=40.107.13.42
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=nxp.com
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=Is6ibetbbCzsjMj4V2jFeF0dHdjpaUU/fK9BFAFrUQdt52GEZ7Ub/OOfus2xp5CCyfldscZN1xtjcQqGLvB9OK1C4IOOlUrGR+KP0uHYpTL9AXVpN8I8DRP2AKVEZIJ6MjOaCIsivNBFVvkYK5Cq1EhlZQrtpx6M3CT2ZZ7E2Pqf9SzIPF90OXf4typKgrRtEsd4M7IeHdKJ6xiH0nlYp+dFCKeY02ghi41aNYMKpi6I1AIclIikPFo0trsz2zhM0YDs+PSH3SoLiJS5XvMHCTI2tWWuk/W5BmWfMhGu7zIOhVAU4pk89V20UyOYQsj0SJiO7BlaPhJKe4iItBNTaw==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=k+U1Ti+lC9m3FBSuaYrvvjx7lzWX2OlmWyhqzKOBPS8=;
+ b=Rb1a062NF58MNdPR1BRkqGcVs53XAozZXViSBRczk97m+sdaAuvCPHt5A6yqOE9aWio8SXQfW+eJF2n4pwxGuFwivdlnBkUN4FgowyIB2eY3WuuXX3yFR38BU+IIk8DONtt2p838lapEeRTY/BIFZEn5vT7rVkffpboiHLQYypFhCvLVyK0E6Togcye/VxBHVG76CnjDSBnEPDnmsJFN5HLo1BJ96E9403IbixMreF7DcjzcttTheq/fjmGPV7Zjqpd3LPbf0SLC+DH/wKVPfPeyDqB5ReFeWHtrWT38RH0hgoC/zcjLuXY46Z4Kuvl9UzfbZ7jgCQRnAo53kw9Y7A==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
+ header.d=nxp.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector2;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=k+U1Ti+lC9m3FBSuaYrvvjx7lzWX2OlmWyhqzKOBPS8=;
+ b=cFbJC2Cy672em/zWwtMl2mvh1ZUEIgebfqRPozOahIqqg/65IjhDku6GWj0W8+6me+lThNbV3Sxlsi8K9jE2Je/j0b9BAsVV26ssznoBKvY3Kww/XndnGJbnop+zPpIIRFVBQ3FtFkwAUiScGU7NkucKBbxDgms7gLqF6WgP+ds=
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=nxp.com;
+Received: from PAXPR04MB9642.eurprd04.prod.outlook.com (2603:10a6:102:240::14)
+ by PAXPR04MB8573.eurprd04.prod.outlook.com (2603:10a6:102:214::5) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7249.23; Wed, 31 Jan
+ 2024 15:33:48 +0000
+Received: from PAXPR04MB9642.eurprd04.prod.outlook.com
+ ([fe80::c8b4:5648:8948:e85c]) by PAXPR04MB9642.eurprd04.prod.outlook.com
+ ([fe80::c8b4:5648:8948:e85c%3]) with mapi id 15.20.7228.029; Wed, 31 Jan 2024
+ 15:33:48 +0000
+Date: Wed, 31 Jan 2024 10:33:42 -0500
+From: Frank Li <Frank.li@nxp.com>
+To: vkoul@kernel.org
+Cc: devicetree@vger.kernel.org, dmaengine@vger.kernel.org,
+	imx@lists.linux.dev, krzysztof.kozlowski+dt@linaro.org,
+	linux-kernel@vger.kernel.org, peng.fan@nxp.com, robh+dt@kernel.org,
+	shenwei.wang@nxp.com
+Subject: Re: [PATCH v4 0/6] dmaengine: fsl-edma: integrate TCD64 support for
+ 64bit physical address
+Message-ID: <ZbpoVq/JALpmGv4J@lizhi-Precision-Tower-5810>
+References: <20231221153528.1588049-1-Frank.Li@nxp.com>
+ <Za6d/lSARdxpqU4e@lizhi-Precision-Tower-5810>
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <Za6d/lSARdxpqU4e@lizhi-Precision-Tower-5810>
+X-ClientProxiedBy: BYAPR06CA0039.namprd06.prod.outlook.com
+ (2603:10b6:a03:14b::16) To PAXPR04MB9642.eurprd04.prod.outlook.com
+ (2603:10a6:102:240::14)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain;
- charset=utf-8
-Content-Transfer-Encoding: quoted-printable
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: PAXPR04MB9642:EE_|PAXPR04MB8573:EE_
+X-MS-Office365-Filtering-Correlation-Id: b6f5c0d9-f933-4364-a208-08dc227204c7
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info:
+	nv9eG6UqyIXJ2928m46tz5XOY+wopkAtvRNYL1PDWLsKlRLFy0fz89Rxey6JehNGDSj/n9g/kGcVbiqKHHMlQ3DwKnetgNFy9EO31MuYaiHYjz6K+wwhY3LseqL4r4MDRRU5qxjTOsxCRI/csRIexJ3aj0wKL0QfvB1B8Dm9+5brwKBLDRW6i/1OavCbN4e0kcead/dQZpE1lLQcsqRDs0Qio5zghxi+8p7MCIJUvrgT/1unD8Iw6gZFn+cXoafXmZ1OccQ/rkBdrmLT9xzabqAi2Ah9nXo6tGHVSDVPr0M0CsLgDFXTTDo1sxb3Q3PGQqLS673U/8EeF92VQZevevGvYONUDEidDXVZ60hQp/jJYjlxkr2AJLCVQkyRjmboIIZm+uEGyYXSZq1zPX9dBZYsZ3tIqljByI/jJOdnUKIad7MuDtcdeIgQwX2NEtOzUQ+Tzx8nh8dJ4ZibLHi9Z+i70YHgIrUH2YRMlHXr9J1He9wWTCDblfUwHC2NYiWY75XJuR1NaWBUiwBP3F56RffvXfLIr4E2fkcdpU6RYiT7wV11tWk34X7jLw+KxJIZAa4S+FqJVMd1AqhDHNQZPY5iX3EbKVjKyt6YNxRfZlQhqy1y1m/p2aOJ6Sactxz3/aZJ/zXSqkmAmEPT22w0wIOhMFcreLtYqn6AlISBM8o=
+X-Forefront-Antispam-Report:
+	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:PAXPR04MB9642.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230031)(7916004)(366004)(346002)(376002)(396003)(136003)(39860400002)(230173577357003)(230273577357003)(230922051799003)(186009)(64100799003)(1800799012)(451199024)(33716001)(26005)(41300700001)(478600001)(38350700005)(6916009)(316002)(66556008)(66476007)(6666004)(6486002)(6512007)(52116002)(6506007)(9686003)(83380400001)(38100700002)(66946007)(5660300002)(2906002)(8936002)(86362001)(4326008)(8676002);DIR:OUT;SFP:1101;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0:
+	=?us-ascii?Q?BmAJiqnEOnflTEqHDWfY85rYj2jlc8YiKpinRyvXu6bpnQljXWML0q+2Tvs1?=
+ =?us-ascii?Q?iQ2PbFGUirfbkJEyyxzPHRo9L2CCbE1i9p4qDOsnhgBRMptpwr8MnuSAM1/K?=
+ =?us-ascii?Q?C8p0ON8cfvCNYY6hgX1b5eVrzIX1c7klniP+bkmvnZWw4nW2ViOFx71d0KUh?=
+ =?us-ascii?Q?i/9xWIi12VphiF1Gw7SHGD/qWgStE1sK25q7xCv3POTlT5fLvKx990MiEi1x?=
+ =?us-ascii?Q?qDZblgBuYXIbW/kzoHokR8yOU2hNiVh1J9ZhtOmCcQLTWqYpSz7gPyma+RNf?=
+ =?us-ascii?Q?20eiY+jU58/HV4FQ/8QpiF3tapPPlWiGfdY3vM5XvgQePBvmKvxK+7vEJRws?=
+ =?us-ascii?Q?onSUGPc/V/Bc+eyY2kIRj8XfSnB3EqPgCQQeV23z+QfM/Ulx2FJ5nj7MKRsX?=
+ =?us-ascii?Q?8Zq26/QNIeJJrrmHMA8CZ2D2dqBQOj5jraJsJnJZ1nB27MIFFlFz6dR6Yggb?=
+ =?us-ascii?Q?AJ0txp7iXMfoWaQCtaQvEGIrCal2xd434WVJQCqc/YGl/dEHabmIOHX/CMBC?=
+ =?us-ascii?Q?y1zPxT3qVaINRSgsrP2Y/RHu2aEwCV3pwxK/veGu4FFR+vAcP9rFxs+sZd04?=
+ =?us-ascii?Q?2UBJDL480bdRtfuob4y7GMM8Mg/tR28gljWCW+nNR3iMEm1vkAOoHhIMBrLU?=
+ =?us-ascii?Q?278QI73JfKTyetynpr8CVo915SjxPJTqta/dB1xztFAMOKs9eyllFwNcdbIg?=
+ =?us-ascii?Q?HtsBrUkJ76dtk55v944PVzlFS2yJERQv58X5qADka/rj3xLpiRPMfVsYTfbR?=
+ =?us-ascii?Q?59p3qX1qVgcyWCkowfbZf3TvEgjA1ZlfjMudqwBXQLXmuvI4kXqRnbt80lLz?=
+ =?us-ascii?Q?d1G9KKrGaat71037BjyzEvlEqZV51BYPdDm0tiB5LiLbe3BATidugojTa/hQ?=
+ =?us-ascii?Q?B+BVbxVtqmVW/1BF4AobwDSesdoyqXSPpmQIB91Qh8OmebOGIDjxEG2Sh7mi?=
+ =?us-ascii?Q?M8zS8TDxSAxk3r8n/ilQXVq9A0XgtYmmTwDe3Tybi69YgMINDGXlIVYQhfXf?=
+ =?us-ascii?Q?i+9iz3vi5mAdSWiPfbbSzz3MXRs28Xq5WpC4N6erJlYe+cn/1S0XuUVB6eW9?=
+ =?us-ascii?Q?UPIs5o5ZDxJd1jhoV5CxByoWYF4qyH4o7c7kQZxmluo6wRfbG7UFD+bBZ47j?=
+ =?us-ascii?Q?3lAXeFoiN8xcfaMlyvmpdBWIS6RPC+3+43OVi3HuotDH7TE+bEydmEDrNqRJ?=
+ =?us-ascii?Q?xR7UXfBXTb2osYLT8fmHF7EQVP5S8q2rO8NpPLGsot8mTGuvmxK+CUAN7LeF?=
+ =?us-ascii?Q?ZWqnAOD9Ch1ii1pbm5i9i6R9mhb5p5Wl/c82m3l4UhI3QPKHUucjfmsFr6pG?=
+ =?us-ascii?Q?pPPXJ8sGHYwKn5svOxFqfQfEYzhoJPYRSF2nYNmabk/K8aWA71gIPlPKkQac?=
+ =?us-ascii?Q?BZlnoY1VWr89TpcYCnG8M51fIWXflo92qrtEtIL+MV6opSZr/sBghmXdq54L?=
+ =?us-ascii?Q?ODaW/SMgR3Cn9XzXAqh8OaaHJ9nIwjbE4RZ9VsNVz/6B/7C0TqqXu4Ilr6AR?=
+ =?us-ascii?Q?E8HuljHrtkUOidfmsUNCDTdEIRR8mbWMEhAGdR7Ys+jqEBznpUzKYZAHBa43?=
+ =?us-ascii?Q?1kp54ZkhxDGFnEikJi12w+MksMCIdmkNhQxL2UWz?=
+X-OriginatorOrg: nxp.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: b6f5c0d9-f933-4364-a208-08dc227204c7
+X-MS-Exchange-CrossTenant-AuthSource: PAXPR04MB9642.eurprd04.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 31 Jan 2024 15:33:48.3750
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: YC5M9tKje33CZE0NcxACrFLCyRCAeX/XRGLOTf8EMfJmqkmJOmNsHnnmQ0O1nwdqJ6cLHIsJB/VmKOHx+MxpQQ==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: PAXPR04MB8573
 
+On Mon, Jan 22, 2024 at 11:55:26AM -0500, Frank Li wrote:
+> On Thu, Dec 21, 2023 at 10:35:22AM -0500, Frank Li wrote:
+> > Change from v3 to v4.	
+> > Fixed tcd64 type as fsl_edma_hw_tcd64
+> > 
+> > Change from v2 to v3:
+> >  - fix sparse build warning
+> > 
+> > Change from v1 to v2:
+> > - fixed mcf-edma-main.c build error.
+> > - fixed readq build error. readq actually is not atomic read in imx95.
+> > So split to two ioread32\iowrite32.
+> >   It needs read at least twice to avoid lower 32 bit part wrap during read
+> > up 32bit part.
+> > 
+> > first 2 patch is prepare, No function change.
+> > 3rd patch is dt-bind doc
+> > 4rd patch is actuall support TCD64
+> 
+> @vnod:
+> 
+> 	Could you please check these patches? I still have more patches,
+> which depended on this.
+> 	eDMA is used for cross whole i.MX chips.
+> 		
+> Frank
 
+@Vinod:
+	Ping?
 
-31 =D1=81=D1=96=D1=87=D0=BD=D1=8F 2024=E2=80=AF=D1=80=2E 17:28:49 GMT+02:0=
-0, Conor Dooley <conor@kernel=2Eorg> =D0=BD=D0=B0=D0=BF=D0=B8=D1=81=D0=B0=
-=D0=B2(-=D0=BB=D0=B0):
->On Wed, Jan 31, 2024 at 12:51:50PM +0200, Svyatoslav Ryhel wrote:
->> Add missing LG Electronics, Inc=2E prefix used by some older devices=2E
->
->Is it? You're only adding these devices now as far as I can see=2E
->
+Frank
 
-Hammerhead (LG Nexus 5)
-
->>=20
->> Signed-off-by: Svyatoslav Ryhel <clamor95@gmail=2Ecom>
->> ---
->>  Documentation/devicetree/bindings/vendor-prefixes=2Eyaml | 2 ++
->>  1 file changed, 2 insertions(+)
->>=20
->> diff --git a/Documentation/devicetree/bindings/vendor-prefixes=2Eyaml b=
-/Documentation/devicetree/bindings/vendor-prefixes=2Eyaml
->> index 309b94c328c8=2E=2Eb94ac977acb5 100644
->> --- a/Documentation/devicetree/bindings/vendor-prefixes=2Eyaml
->> +++ b/Documentation/devicetree/bindings/vendor-prefixes=2Eyaml
->> @@ -767,6 +767,8 @@ patternProperties:
->>      description: LG Corporation
->>    "^lgphilips,=2E*":
->>      description: LG Display
->> +  "^lge,=2E*":
->> +    description: LG Electronics, Inc=2E
->>    "^libretech,=2E*":
->>      description: Shenzhen Libre Technology Co=2E, Ltd
->>    "^licheepi,=2E*":
->> --=20
->> 2=2E40=2E1
->>=20
+> 
+> > 
+> > Frank Li (6):
+> >   dmaengine: fsl-edma: involve help macro fsl_edma_set(get)_tcd()
+> >   dmaengine: fsl-edma: fix spare build warning
+> >   dmaengine: fsl-edma: add address for channel mux register in
+> >     fsl_edma_chan
+> >   dmaengine: mcf-edma: utilize edma_write_tcdreg() macro for TCD Access
+> >   dt-bindings: fsl-dma: fsl-edma: add fsl,imx95-edma5 compatible string
+> >   dmaengine: fsl-edma: integrate TCD64 support for i.MX95
+> > 
+> >  .../devicetree/bindings/dma/fsl,edma.yaml     |   2 +
+> >  drivers/dma/fsl-edma-common.c                 | 101 ++++++-----
+> >  drivers/dma/fsl-edma-common.h                 | 161 ++++++++++++++++--
+> >  drivers/dma/fsl-edma-main.c                   |  19 ++-
+> >  drivers/dma/mcf-edma-main.c                   |   2 +-
+> >  5 files changed, 223 insertions(+), 62 deletions(-)
+> > 
+> > -- 
+> > 2.34.1
+> > 
 
