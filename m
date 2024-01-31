@@ -1,73 +1,74 @@
-Return-Path: <devicetree+bounces-37347-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-37348-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id B5FCC84498A
-	for <lists+devicetree@lfdr.de>; Wed, 31 Jan 2024 22:14:40 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4B1A48449CD
+	for <lists+devicetree@lfdr.de>; Wed, 31 Jan 2024 22:21:55 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id D17E21C22959
-	for <lists+devicetree@lfdr.de>; Wed, 31 Jan 2024 21:14:39 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 025B028B424
+	for <lists+devicetree@lfdr.de>; Wed, 31 Jan 2024 21:21:54 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2EBA738FB5;
-	Wed, 31 Jan 2024 21:14:35 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id EBA9839840;
+	Wed, 31 Jan 2024 21:16:29 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="TGl2BJmL"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="YgdTdw7t"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ed1-f50.google.com (mail-ed1-f50.google.com [209.85.208.50])
+Received: from mail-ej1-f42.google.com (mail-ej1-f42.google.com [209.85.218.42])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 63FE838F8F;
-	Wed, 31 Jan 2024 21:14:33 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.50
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 282A738F8F;
+	Wed, 31 Jan 2024 21:16:27 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.42
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1706735675; cv=none; b=ojQV2YMT1nwHHyX+6Um7yuHF8UB6L+xzEE1fA+8acPJq9xaIkggBeua2B47gl1Z0mI/sipZqIS+ejaLJ3ns1fir6GiOWVeVTxP1lsLNDIOrTPT+zSvKCqRMUlUeQKumFobC+k0ZK16KAUvUeg87CoD51G5J/EkAfdKs3sZ298y4=
+	t=1706735789; cv=none; b=qNJjk3i/moYHXyOY2fp6rFraFkHFoJ6byK8IaKISnSt8Rg91YEVx93Jol7+pCJvpME6xrJNP6Ts20cy2FRCpWZgS/xVtlsOdu4mooxl/NPH6XniI+wL0VcaWY3KvKfsITaokrWwfx3/iRbw1rLMc7jdYqmaNmqqLYv3UwaNROrs=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1706735675; c=relaxed/simple;
-	bh=ecE9+lRhGVzRojRakumr7hmCpaQlrKborDJ+lsFEI2w=;
-	h=Message-ID:Date:MIME-Version:From:Subject:To:Cc:Content-Type; b=dwPKWHXZ1JWZPNtI98oeXVYY93lgGWB5yY4OPaqUzfDwXzI8FT34rbU0TwIVi9oKQlfJbmFYJKNRBdjKzk4i3YVsdAQ0K5CzVMpy1wecPQriUrAIdI95cVQyA3a4vBdI1TKZFm+1M56k14bLJ98igWtLmNYFKU/x/JDpCFKoz8Y=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=TGl2BJmL; arc=none smtp.client-ip=209.85.208.50
+	s=arc-20240116; t=1706735789; c=relaxed/simple;
+	bh=VxIVD2Uu8YJWcT8mNEh5Gm55vkRnDKI5CB+olARhzR8=;
+	h=Message-ID:Date:MIME-Version:From:Subject:To:Cc:References:
+	 In-Reply-To:Content-Type; b=tTwToJITx2ntiIyV57SW1A5mj0v86snuum3/rHfdikjYkkOTpmpJehYOv4DbfG8IPU9F0Z419+3C+4RapI+LhroRd1jwBqAQiBEV8r0PhmEcDyEvGfI3LIb6lDRgyAdfOrr/P0cLnBjm4eZ3Y3hG9VfOHWhn2ZD2T18Bbvr+WAk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=YgdTdw7t; arc=none smtp.client-ip=209.85.218.42
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-ed1-f50.google.com with SMTP id 4fb4d7f45d1cf-55f15762840so219127a12.0;
-        Wed, 31 Jan 2024 13:14:32 -0800 (PST)
+Received: by mail-ej1-f42.google.com with SMTP id a640c23a62f3a-a271a28aeb4so20899466b.2;
+        Wed, 31 Jan 2024 13:16:27 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1706735671; x=1707340471; darn=vger.kernel.org;
-        h=content-transfer-encoding:content-language:cc:to:subject:from
-         :user-agent:mime-version:date:message-id:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=BzKBpTO+yAsO6AKq5s8rWuJxCgwGnyxQPNp5dZtPA/4=;
-        b=TGl2BJmLfeYxzd97d7W/QZPjmyj/Is+IAt/ZkFi7S02Mi9LMySwW/XuKTIATHi69Uq
-         bexcPbQun28dvMCe6e30/XKj0lIhYdTYVIj1o3niUE0XcCzhdbwXNcedJiF8o624/GY+
-         xOYACdTR2ZUFa8FNk8kKbJAYQU+Boi7kLUMqFrCwhntpkxLeVUI67IHtEXmtSpt7fNQA
-         IuLPWYjqMMS00kVmgwBQbq/ZQkQw8Dj0iwP+5eygw2S8vqqhucVFqR1ElVzaYsC+NCBa
-         m2M2SRlSw7HDSniCfTXwxUoeZBiEw10lQ/OlAowlNTXL8mdUGaw3AAYyyG+F9HBDlv8i
-         EH6A==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1706735671; x=1707340471;
-        h=content-transfer-encoding:content-language:cc:to:subject:from
-         :user-agent:mime-version:date:message-id:x-gm-message-state:from:to
+        d=gmail.com; s=20230601; t=1706735786; x=1707340586; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:content-language:references
+         :cc:to:subject:from:user-agent:mime-version:date:message-id:from:to
          :cc:subject:date:message-id:reply-to;
-        bh=BzKBpTO+yAsO6AKq5s8rWuJxCgwGnyxQPNp5dZtPA/4=;
-        b=eCsyCzrto5xc/XimeBrxtwubigFvOKKR8f1ivh2QW6WO7umMJdBkAHpcdhTEAeNaQS
-         8RbPFP25qL606jMp17NyG5j1Xk8zxIHuu/9z414VD6jV8GcrV4vjlzrI3+masHzM5c/d
-         Hb4ZTigDqLzCBxlrqbjC6GQBJc9Bqcv1rNWSBOQzZNXDn4aAvimHaItwIssLKYK11vOk
-         bX62wq1ZlkpSGbPBC+Lu76Uo4b+TGBfAl4kTExpsLFA7CQoBZfB6jU0/RmdQdEcWecoD
-         IhQXiHhhLEx2pBornTeZQc/mAuFPzXgyIhuSbh5aP5NpdA8IycB8MzOlE38BmmCzkJpU
-         gQSQ==
-X-Gm-Message-State: AOJu0Yw4xEK1/pFI+9V9/YFWci/RY4LPA7sAwLLPHCfl1TYBUFPKGFtS
-	a/u4feOo2YTQ6MtKMFPUxA8C5SCSwDu4lYtsTHUn91+p77ut0UErVvgDUml7
-X-Google-Smtp-Source: AGHT+IGKSAQ0iom5aOWp/ud0qd1AnStLBR0ipcNAgWjoyolxlKbW/Qay9WlmcGjARF23PCDI5a71JQ==
-X-Received: by 2002:a50:ed91:0:b0:55f:4ce3:5988 with SMTP id h17-20020a50ed91000000b0055f4ce35988mr1738459edr.8.1706735671176;
-        Wed, 31 Jan 2024 13:14:31 -0800 (PST)
-X-Forwarded-Encrypted: i=0; AJvYcCULQ33QhABS4n6ZmrFSYOAyDgetml7TCChj/sOPv0oioq5VepLJymPA1kx2NkWnR/s/br7OHudwGBzZQ5lJljEVZ0T8ec2Qp1S80hCa2QJ/ToAZa1YotVwMLjl1ixwuX3c7Cu+05OhCGKZkQey/yuZ2Bw6v0NVp2+VtTGbXGVknaBG1caPpDodXH8w2Gv/zN7o5cVAOiQHi9MBkRsVot/HEcvmJEiKtCss4rKm7VvdBqeNBwZBwqxTaQPORu/gHnP6qcawXXJpcVGjzH6VAlZvH3ErYrVqCokAc/Rww/1Xp80adSwmW4MDgtNtHYQQyyLLEZIyow/Bpq6vIbRaYa5ynGN86YgBNPs9PsrXMZrXxxonkYDbgwwceyhD1DlNa1QtF0buPDCKbvEXuDI4YJZ5Hdx4UPHCsKxRufcd+/SKhB9BYYyvLq2uV94mWiDf7SiE8EzadWm2IkK3USljlB47pSTIfHntNiE46d3ZtXcpwD8jpvymiIPIFkfazQVGZ1ljIe8QguTVnuWOzaum/Qon6g7VEJ826bImqyFkegmo5KHphHZieTr3zht96D9DCWQSFQ43PUzoKevPHSvk=
+        bh=7WAHmXqhwFGwnUoVVTvOT31zVVDiv5ormXLbiLzvJr0=;
+        b=YgdTdw7tqPeP5yMJ13eO5y6/QSzG7Yc0MdvCDNgQ4OEm0RjkjAoRJOynUAsfgU23Es
+         5RU2Nhaw5YoAGSeHjeQ0xSYj3MBLC1RAROoFbBTVT/APC2KeHo1tQBnLtCFyE3d/EqiF
+         tLMRTrbJFI8CaiE4GC75nKxoljD3laE+1OVVeCDqwZSXkvzrBJqdzK6EGrucRhhdpL6k
+         LGgwO2azKskmFHH6W+9rKQ2pjlBDx92EE+pUYNlRWwHvyMGYRBiBWbIa9nzaXUcwnVcg
+         4/FIjo688bZiV0MYXv+O0oyzo9k3ItBEdrpjbWb0Sm5HNcFNh6HAQzJ2dRut02/rOMAy
+         eKvw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1706735786; x=1707340586;
+        h=content-transfer-encoding:in-reply-to:content-language:references
+         :cc:to:subject:from:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=7WAHmXqhwFGwnUoVVTvOT31zVVDiv5ormXLbiLzvJr0=;
+        b=lzQ3Azn7mwLwI4uTIUYvArKh+nYcIAc4W8A6gM6l5eVwFfLFMYmvrbVLMv7aFNUt2f
+         WoZRs4jIMsLuF9nmT+EKjkKCt7PiJjJznGrtVB/wzfu/fzpqpBX86di6Om5rPkic1SpB
+         8mdz5B0PLo5Yn/tnwb4RDWKuVIiT84BmgsSvqKYFsKSi8+0K1iUY70Z0KUOEaW/K4f5N
+         0NoBSx6ZY2HttZEH4hip21gSgx3cnnU7rBzfeI1R2ePf60lwNP72kZokleO0RgAiSvPI
+         J1fUjaW+PlImXE3OR1s6YTUK2RSgYd/qJoTnq9zQX70q73GOS0WN+xeR5iYvfbEX/FxM
+         Bbsg==
+X-Gm-Message-State: AOJu0YyKR8R8C0axQXFOd/tkNpt1oZIZp3BioeBwnxcWevOZABJRV7Wv
+	e9GCT7o7wxr/I7JwYwR5OSoeCcdDRv2FACZMC1iX1zP7KrKBR0FL
+X-Google-Smtp-Source: AGHT+IG1BFq7Pp2hw0FCVuWw6rIJcYrAM9nq28Kr5azCiS9LKzq/m7hwGTr5nk2ETTNoY9f8m7yc6A==
+X-Received: by 2002:a17:906:da06:b0:a35:edda:ca8b with SMTP id fi6-20020a170906da0600b00a35eddaca8bmr1992854ejb.76.1706735786182;
+        Wed, 31 Jan 2024 13:16:26 -0800 (PST)
+X-Forwarded-Encrypted: i=0; AJvYcCVc2fs4IrBG2YWUC5LcZZStHjB+RqDtXVILboDRP8Y2Xm1IoMKnaO2pMi/h4SQUCrAruBblHzoOgDf+Aud6ulOos3QKpvTrOPDbWDrqrs4HoncHMRv6melTKIpllEW8OtFwnN33yPaEFX9kPiIJVFaz94d8Y4gJLNprrxIiTqgEwAzZF7DeO5/IO+fEX+0/dhCvlliQGm9DqOzAUU99bBQXn8o6SMzo0Hgoqm5QeA2k8zgHOry8CgP0VBNfmF6GRhoZHfwmUaL8uBJq2XbfcWxvunXQBbU7jqJRykZJI7KloTyZpPzrwxL2fFFCF6Bhxt2IUP/Th38ZoCpdRzQ6aMCLFa2oh+q58pPry2SEjx389pdHUxDhLD1zBehNndrSw2rsYkLQxOTTyGj1urAZFRt7Si96ewe9IW1EE5T+1hm6QZu0b3o05WuKCL0qn+GsDGuC/NhYfkqoWV0flggiV7whpyZ47IjqSXr14Zgh9zg3S1LmTND+9p305Lhk7uaXtn3un3AdZ6x3agLqjRDz/BlXoxQTGjcJ4DNSh7kyURpMcQ7mZNxtPNxNIrdB1QW1nlxVxlpJ1FUsiiLxuuc=
 Received: from [192.168.2.1] (81-204-249-205.fixed.kpn.net. [81.204.249.205])
-        by smtp.gmail.com with ESMTPSA id h28-20020a50cddc000000b0055f384e7530sm2241381edj.32.2024.01.31.13.14.30
+        by smtp.gmail.com with ESMTPSA id ty5-20020a170907c70500b00a35a8571419sm4040634ejc.135.2024.01.31.13.16.25
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 31 Jan 2024 13:14:30 -0800 (PST)
-Message-ID: <a493c65e-7cf9-455f-95d5-8c98cad35710@gmail.com>
-Date: Wed, 31 Jan 2024 22:14:29 +0100
+        Wed, 31 Jan 2024 13:16:25 -0800 (PST)
+Message-ID: <5c45527a-e218-40a3-8e71-a5815417e5f7@gmail.com>
+Date: Wed, 31 Jan 2024 22:16:24 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -76,8 +77,8 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
 From: Johan Jonker <jbx6244@gmail.com>
-Subject: [PATCH v2 1/6] dt-bindings: display: rockchip: rockchip,dw-hdmi:
- remove port property
+Subject: [PATCH v2 2/6] dt-bindings: display: rockchip,dw-hdmi: add
+ power-domains property
 To: robh+dt@kernel.org
 Cc: hjc@rock-chips.com, heiko@sntech.de, andy.yan@rock-chips.com,
  krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org, airlied@gmail.com,
@@ -85,95 +86,63 @@ Cc: hjc@rock-chips.com, heiko@sntech.de, andy.yan@rock-chips.com,
  mripard@kernel.org, markyao0591@gmail.com, dri-devel@lists.freedesktop.org,
  devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
  linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org
+References: <a493c65e-7cf9-455f-95d5-8c98cad35710@gmail.com>
 Content-Language: en-US
+In-Reply-To: <a493c65e-7cf9-455f-95d5-8c98cad35710@gmail.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-The hdmi-connector nodes are now functional and the new way to model
-hdmi ports nodes with both in and output port subnodes. Unfortunately
-with the conversion to YAML the old method with only an input port node
-was used. Later the new method was also added to the binding.
-A binding must be unambiguously, so remove the old port property
-entirely and make port@0 and port@1 a requirement as all
-upstream dts files are updated as well and because checking
-deprecated stuff is a bit pointless.
-Update the example to avoid use of the removed property.
+Most Rockchip hdmi nodes are part of a power domain.
+Add a power-domains property and include it to the example
+with some reordering to align with the (new) documentation
+about property ordering.
 
 Signed-off-by: Johan Jonker <jbx6244@gmail.com>
+Acked-by: Conor Dooley <conor.dooley@microchip.com>
 ---
 
 Changed V2:
-  rename title from deprecate to remove
-  reword
+  keep reg-io-width together with reg
+  explain reordering
 ---
- .../display/rockchip/rockchip,dw-hdmi.yaml    | 24 +++++++++++++++----
- 1 file changed, 20 insertions(+), 4 deletions(-)
+ .../bindings/display/rockchip/rockchip,dw-hdmi.yaml      | 9 +++++++--
+ 1 file changed, 7 insertions(+), 2 deletions(-)
 
 diff --git a/Documentation/devicetree/bindings/display/rockchip/rockchip,dw-hdmi.yaml b/Documentation/devicetree/bindings/display/rockchip/rockchip,dw-hdmi.yaml
-index 7e59dee15a5f..391c2a7e79de 100644
+index 391c2a7e79de..af638b6c0d21 100644
 --- a/Documentation/devicetree/bindings/display/rockchip/rockchip,dw-hdmi.yaml
 +++ b/Documentation/devicetree/bindings/display/rockchip/rockchip,dw-hdmi.yaml
-@@ -97,8 +97,8 @@ properties:
+@@ -94,6 +94,9 @@ properties:
+       - const: default
+       - const: unwedge
+
++  power-domains:
++    maxItems: 1
++
    ports:
      $ref: /schemas/graph.yaml#/properties/ports
 
--    patternProperties:
--      "^port(@0)?$":
-+    properties:
-+      port@0:
-         $ref: /schemas/graph.yaml#/properties/port
-         description: Input of the DWC HDMI TX
-         properties:
-@@ -108,11 +108,14 @@ properties:
-             description: Connection to the VOPB
-           endpoint@1:
-             description: Connection to the VOPL
--    properties:
-       port@1:
-         $ref: /schemas/graph.yaml#/properties/port
-         description: Output of the DWC HDMI TX
+@@ -138,16 +141,18 @@ examples:
+     #include <dt-bindings/clock/rk3288-cru.h>
+     #include <dt-bindings/interrupt-controller/arm-gic.h>
+     #include <dt-bindings/interrupt-controller/irq.h>
++    #include <dt-bindings/power/rk3288-power.h>
 
-+    required:
-+      - port@0
-+      - port@1
-+
-   rockchip,grf:
-     $ref: /schemas/types.yaml#/definitions/phandle
-     description:
-@@ -147,7 +150,11 @@ examples:
+     hdmi: hdmi@ff980000 {
+         compatible = "rockchip,rk3288-dw-hdmi";
+         reg = <0xff980000 0x20000>;
+         reg-io-width = <4>;
+-        ddc-i2c-bus = <&i2c5>;
+-        rockchip,grf = <&grf>;
+         interrupts = <GIC_SPI 103 IRQ_TYPE_LEVEL_HIGH>;
+         clocks = <&cru  PCLK_HDMI_CTRL>, <&cru SCLK_HDMI_HDCP>;
          clock-names = "iahb", "isfr";
++        ddc-i2c-bus = <&i2c5>;
++        power-domains = <&power RK3288_PD_VIO>;
++        rockchip,grf = <&grf>;
 
          ports {
--            port {
-+            #address-cells = <1>;
-+            #size-cells = <0>;
-+
-+            port@0 {
-+                reg = <0>;
-                 #address-cells = <1>;
-                 #size-cells = <0>;
-
-@@ -155,11 +162,20 @@ examples:
-                     reg = <0>;
-                     remote-endpoint = <&vopb_out_hdmi>;
-                 };
-+
-                 hdmi_in_vopl: endpoint@1 {
-                     reg = <1>;
-                     remote-endpoint = <&vopl_out_hdmi>;
-                 };
-             };
-+
-+            port@1 {
-+                reg = <1>;
-+
-+                hdmi_out_con: endpoint {
-+                    remote-endpoint = <&hdmi_con_in>;
-+                };
-+            };
-         };
-     };
-
+             #address-cells = <1>;
 --
 2.39.2
 
