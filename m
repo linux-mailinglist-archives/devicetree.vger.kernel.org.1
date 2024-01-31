@@ -1,119 +1,112 @@
-Return-Path: <devicetree+bounces-37385-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-37386-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 04351844AF9
-	for <lists+devicetree@lfdr.de>; Wed, 31 Jan 2024 23:22:22 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id BEBE3844B2D
+	for <lists+devicetree@lfdr.de>; Wed, 31 Jan 2024 23:41:07 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id B0C04282125
-	for <lists+devicetree@lfdr.de>; Wed, 31 Jan 2024 22:22:20 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id EC52D1C24BBF
+	for <lists+devicetree@lfdr.de>; Wed, 31 Jan 2024 22:41:06 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id DC1A23CF4F;
-	Wed, 31 Jan 2024 22:20:12 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E8FBC39FEB;
+	Wed, 31 Jan 2024 22:41:02 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="KIGUzHmY"
+	dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b="5OFYTm68"
 X-Original-To: devicetree@vger.kernel.org
-Received: from lelv0142.ext.ti.com (lelv0142.ext.ti.com [198.47.23.249])
+Received: from vps0.lunn.ch (vps0.lunn.ch [156.67.10.101])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2F0E13B28F;
-	Wed, 31 Jan 2024 22:20:10 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.23.249
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3E4C4364CA;
+	Wed, 31 Jan 2024 22:40:58 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=156.67.10.101
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1706739612; cv=none; b=uslnpBgMGdPrJRWfm8HP8m+6PsluCYZIHAXH+6t7ZsfjHwU9aVX98HM5vv3rA2Htva2ogfJKaoL0sPy9xX+c68bwLw9J5tWe/wikZ3jD8IrW0lw48J5RdT3d3xpjk9ai/TcnqZVM50EnF+u2Oxtit30IgT0Aq2kFij0yPPs8W2Q=
+	t=1706740862; cv=none; b=QKFTz+Av7m3SOZj6uQ7hyRls0oGuTfV5PbgMV5fTN+shvn6/sOiEvVoiQ+FvbdnSznGNPe/vhtzHf4xiJ+2Ue83/kkY4qfyxs30uZ50lPfQXMvlnIrOhmTM8H8VQPXvAeA+SlZYIpRMaQUnPXY7zmS87y/pHH8gu9ec69jD4nu0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1706739612; c=relaxed/simple;
-	bh=rXrPV1rX3EqBXdZa52TN75oeVdk6hxNfm8/LdtM6FIo=;
-	h=From:To:CC:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=fDWbthBB3b65E4x6gbthp+5Zt2q6ssgje5pvfCNoXd0NTJMIK/AwHGEQtZA0wL8GTPgns/mFNx5OHGQipf+aqiG3WA9Webh+b+7QrxCbuTCcf66KD75/IenN7OLnDbvzY9Q+uLZ/FCs5SBk2WErUbfpNQHjqJoxh86fLhaJDvP4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=KIGUzHmY; arc=none smtp.client-ip=198.47.23.249
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
-Received: from fllv0035.itg.ti.com ([10.64.41.0])
-	by lelv0142.ext.ti.com (8.15.2/8.15.2) with ESMTP id 40VMK57e060846;
-	Wed, 31 Jan 2024 16:20:05 -0600
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1706739605;
-	bh=aR2SBKT0vtJHfYIAGBIrORRoaDBuet+1jfTnks5284s=;
-	h=From:To:CC:Subject:Date:In-Reply-To:References;
-	b=KIGUzHmYtbsMo+e0n0axWUsc8Lwyalx+7VOISM/jtBa/mHsKCbhTetQZEJqb7S/AV
-	 WYfofe+NyGzP+p2hM2Gb6XwCBiH0Xx6vA9Ecz8vZOJ20xPOlMv1TiAkU2USG0Shte/
-	 REW/v4MqUBd8xtoWsDyfsTePF3OU+OJLV8PEq0QE=
-Received: from DFLE111.ent.ti.com (dfle111.ent.ti.com [10.64.6.32])
-	by fllv0035.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 40VMK5YQ100801
-	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-	Wed, 31 Jan 2024 16:20:05 -0600
-Received: from DFLE103.ent.ti.com (10.64.6.24) by DFLE111.ent.ti.com
- (10.64.6.32) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Wed, 31
- Jan 2024 16:20:05 -0600
-Received: from lelvsmtp6.itg.ti.com (10.180.75.249) by DFLE103.ent.ti.com
- (10.64.6.24) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
- Frontend Transport; Wed, 31 Jan 2024 16:20:05 -0600
-Received: from lelvsmtp5.itg.ti.com ([10.249.42.149])
-	by lelvsmtp6.itg.ti.com (8.15.2/8.15.2) with ESMTP id 40VMJwxE102504;
-	Wed, 31 Jan 2024 16:20:05 -0600
-From: Andrew Davis <afd@ti.com>
-To: Nishanth Menon <nm@ti.com>, Tero Kristo <kristo@kernel.org>,
-        Santosh
- Shilimkar <ssantosh@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof
- Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley
-	<conor+dt@kernel.org>,
-        Sebastian Reichel <sre@kernel.org>,
-        Vignesh
- Raghavendra <vigneshr@ti.com>
-CC: <linux-arm-kernel@lists.infradead.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>, <linux-pm@vger.kernel.org>,
-        Andrew Davis
-	<afd@ti.com>
-Subject: [PATCH 12/12] arm64: dts: ti: k3-j784s4: Add reboot-controller node
-Date: Wed, 31 Jan 2024 16:19:57 -0600
-Message-ID: <20240131221957.213717-13-afd@ti.com>
-X-Mailer: git-send-email 2.39.2
-In-Reply-To: <20240131221957.213717-1-afd@ti.com>
-References: <20240131221957.213717-1-afd@ti.com>
+	s=arc-20240116; t=1706740862; c=relaxed/simple;
+	bh=mTsfTmcgyNMXPcwEfj9zRffg8acVqn20k2Ate8tbaG8=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=s/k+XIDT5vmp20uHo4j6jJ4C7EKaetFkNQA+n1laUx1ALaW7WH1CyeUkVo6K11Zqhl7wZWjUdzu/adY1KkbS3aNA1bHJxFq2W8vHN6q9xmcpi3R5TqK0RWAHSmYNeJWT/N+qcuwYmVpB+Z9JKNAsSgukVC6INkZf7EMta/VItYg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch; spf=pass smtp.mailfrom=lunn.ch; dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b=5OFYTm68; arc=none smtp.client-ip=156.67.10.101
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=lunn.ch
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
+	s=20171124; h=In-Reply-To:Content-Disposition:Content-Type:MIME-Version:
+	References:Message-ID:Subject:Cc:To:From:Date:From:Sender:Reply-To:Subject:
+	Date:Message-ID:To:Cc:MIME-Version:Content-Type:Content-Transfer-Encoding:
+	Content-ID:Content-Description:Content-Disposition:In-Reply-To:References;
+	bh=1FCD7TewqQtQ/+NDwhbXiuyVwjThunikA4QhpumNVSU=; b=5OFYTm68G0r5vPSoHrEi0vd196
+	qULK9+VCXwxp55c7CKayoDKirkf/RjynE6/yXifl8UlN1T4LwuKUxZiy+nI3tLiDk4SPRUIjf7vSn
+	0mYoDqsjzdCImnuJGE0TynQCxs3XcQcig6iyjBh8fzaeDUXHBa6Tp9/fAP2ylvjmHOvE=;
+Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
+	(envelope-from <andrew@lunn.ch>)
+	id 1rVJG9-006cek-Iq; Wed, 31 Jan 2024 23:40:45 +0100
+Date: Wed, 31 Jan 2024 23:40:45 +0100
+From: Andrew Lunn <andrew@lunn.ch>
+To: Conor Dooley <conor@kernel.org>
+Cc: Rob Herring <robh@kernel.org>,
+	Bastien Curutchet <bastien.curutchet@bootlin.com>,
+	"David S. Miller" <davem@davemloft.net>,
+	Eric Dumazet <edumazet@google.com>,
+	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Richard Cochran <richardcochran@gmail.com>,
+	Heiner Kallweit <hkallweit1@gmail.com>,
+	Russell King <linux@armlinux.org.uk>, netdev@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
+	Herve Codina <herve.codina@bootlin.com>
+Subject: Re: [PATCH 1/2] dt-bindings: net: Add TI DP83640
+Message-ID: <a1e54836-51d2-4990-9444-56d9414eb28c@lunn.ch>
+References: <20240130085935.33722-1-bastien.curutchet@bootlin.com>
+ <20240130085935.33722-2-bastien.curutchet@bootlin.com>
+ <20240130-impulsive-widow-9142a069b7fd@spud>
+ <20240131210521.GA2289883-robh@kernel.org>
+ <20240131-tummy-imperfect-e6d6f0e245e9@spud>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20240131-tummy-imperfect-e6d6f0e245e9@spud>
 
-While PCSI normally handles reboot for K3, this is an available
-fallback in case PCSI reboot fails. Add direct reboot TI-SCI
-node to system-controller.
+On Wed, Jan 31, 2024 at 09:18:39PM +0000, Conor Dooley wrote:
+> On Wed, Jan 31, 2024 at 03:05:21PM -0600, Rob Herring wrote:
+> > On Tue, Jan 30, 2024 at 05:56:37PM +0000, Conor Dooley wrote:
+> > > On Tue, Jan 30, 2024 at 09:59:34AM +0100, Bastien Curutchet wrote:
+> 
+> > > > +  ti,fiber-mode:
+> > > > +    $ref: /schemas/types.yaml#/definitions/uint32
+> > > > +    enum: [0, 1]
+> > > > +    description: |
+> > > > +      If present, enables or disables the FX Fiber Mode.
+> > > > +      Fiber mode support can also be strapped. If the strap pin is not set
+> > > > +      correctly or not set at all then this can be used to configure it.
+> > > > +       - 0     = FX Fiber Mode disabled
+> > > > +       - 1     = FX Fiber Mode enabled
+> > > > +       - unset = Configured by straps
+> > > 
+> > > I don't like these properties that map meanings onto numbers. We can
+> > > have enums of strings in bindings that allow you to use something more
+> > > meaningful than "0" or "1".
+> > 
+> > Tristate properties are fairly common pattern where we need 
+> > on/off/default. I've thought about making it a type. I don't think we 
+> > need defines for it.
+> 
+> I think a type would be a good idea. I am not at all a fan of any of the
+> properties people introduce along these lines.
 
-Signed-off-by: Andrew Davis <afd@ti.com>
----
- arch/arm64/boot/dts/ti/k3-j784s4-mcu-wakeup.dtsi | 5 +++++
- 1 file changed, 5 insertions(+)
+Before going too far with that, i'm not actually sure it is required
+here. I've not looked at the PHY driver itself, but i expect there is
+some indication somewhere that the network stack expects a fibre link
+is to be used. We probably can determine at runtime if fibre should be
+used.
 
-diff --git a/arch/arm64/boot/dts/ti/k3-j784s4-mcu-wakeup.dtsi b/arch/arm64/boot/dts/ti/k3-j784s4-mcu-wakeup.dtsi
-index 3902a921d7e58..6a66de4f6e549 100644
---- a/arch/arm64/boot/dts/ti/k3-j784s4-mcu-wakeup.dtsi
-+++ b/arch/arm64/boot/dts/ti/k3-j784s4-mcu-wakeup.dtsi
-@@ -36,6 +36,11 @@ k3_reset: reset-controller {
- 			compatible = "ti,sci-reset";
- 			#reset-cells = <2>;
- 		};
-+
-+		k3_reboot: reboot-controller {
-+			bootph-all;
-+			compatible = "ti,sci-reboot";
-+		};
- 	};
- 
- 	wkup_conf: bus@43000000 {
--- 
-2.39.2
-
+	Andrew
 
