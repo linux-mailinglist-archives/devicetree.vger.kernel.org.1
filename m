@@ -1,210 +1,140 @@
-Return-Path: <devicetree+bounces-37117-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-37119-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 15737843BEA
-	for <lists+devicetree@lfdr.de>; Wed, 31 Jan 2024 11:12:45 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id A660D843BF3
+	for <lists+devicetree@lfdr.de>; Wed, 31 Jan 2024 11:15:07 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id C11C8286500
-	for <lists+devicetree@lfdr.de>; Wed, 31 Jan 2024 10:12:43 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 5B83E1F290A8
+	for <lists+devicetree@lfdr.de>; Wed, 31 Jan 2024 10:15:07 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9BA906996D;
-	Wed, 31 Jan 2024 10:12:39 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0A7E169D02;
+	Wed, 31 Jan 2024 10:14:59 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="wPC98Zp5"
+	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="HFqf9+F9"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ej1-f47.google.com (mail-ej1-f47.google.com [209.85.218.47])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from fllv0016.ext.ti.com (fllv0016.ext.ti.com [198.47.19.142])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 278B06996A
-	for <devicetree@vger.kernel.org>; Wed, 31 Jan 2024 10:12:35 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.47
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C3247657DD;
+	Wed, 31 Jan 2024 10:14:56 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.19.142
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1706695959; cv=none; b=dhAudr7RDUS+Nas7wNr4aYxZ47ETBvbpPzdsUiLmggJ+5jvFeyY89JT79z9ywrcFeLWcRujx84/CKK8fBAMcfDzqXYln5CJEUKyzENM76bWpsPZURxePrxeYvaSCS/z4Fr51WlpFVjB0HcHmh5QmappOkFay8F8QuCdReYYZbGM=
+	t=1706696098; cv=none; b=aBhgl2amiUFEWaHQehYUHVNWvXyteC5CrUkzP9iJbmpcoUT9kmU9E254WAXy2bxXoF3hjEVu/OER6rZvIf6DIKVfcJDe8Kpd+nPFCFQ5a2ol6JPHh6Y8U66pbeB45oJ4iA7b9ATJm68LKTHUtWEg7cvgy/pU3r+3Qs+etqD/+6U=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1706695959; c=relaxed/simple;
-	bh=nv5wJpKycfGiQ4mJFb7n+bEsRPMw+mys3ZONIKMGZjQ=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=PvLwyX8QuOnYGW2bG+oorj+J7oyOuL4lvV882SYFE5AZNQRhMjehlRc8867AEQGOwuNJpnPp/0wbcchyZvloPa6R2fpYQuUnNvopTre39duREK+2TL5s+uYwj2eFejQJvrjWdzM1+DZKwiDAC7mdHbUvAKdXhG68VETBASuY3GY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=wPC98Zp5; arc=none smtp.client-ip=209.85.218.47
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-ej1-f47.google.com with SMTP id a640c23a62f3a-a2f22bfb4e6so705032266b.0
-        for <devicetree@vger.kernel.org>; Wed, 31 Jan 2024 02:12:35 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1706695953; x=1707300753; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
-         :to:content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=nVbxQinrEqswh5zspngm/qhQyfWoDB43WXLHzJl9zEw=;
-        b=wPC98Zp5HRTOKTBUzkyILR/Qn/HF2g5OBdk+gtgt1SRKrWkHoARd5bPwMoqzLs/hD6
-         iG0uDz2/bdHUJkH9Mmy5z0IBPbQ+GlYqMZ507nXj0rl9eHOPDQfQlbtVunnPt3+6XyfD
-         Jv6HhEoi54f5FX4hZgRlPMGYBnT5TmZS9l+B4+jotCwcPXxlNpaOC4bpr68i4haRmFBh
-         zoedeoufq4T5yUHPPbrJzpfsjafyEretkxwbTtzlEAogDYeUqUKwW1JBeoDrKv3dQcJJ
-         qeGAZfR7sRtgXAAnyGQrKHMGPbq4wxxjXGjX8bnByJK/jC+eItOh9WMBw4ljsTOf36+s
-         +svQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1706695953; x=1707300753;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
-         :to:content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=nVbxQinrEqswh5zspngm/qhQyfWoDB43WXLHzJl9zEw=;
-        b=S/FQpSb0v4MNsynu5ibbFtlNVpRwOJwe/2H46Xd7YuhNvVL+av4XMW3kior5tJQDFQ
-         XVOKSfbfNwsedBvZ89ZW7SuWhAZs9H3ep0XPBGYVrdXqWbOv689lxTh+DWl5wnsQvovp
-         95/rTLBOeJL+5Whxh2FauKIDhtIgKi7XaKVA//dEqxQCsyUb24lGFyu9hYeB3l2Cdauc
-         LPY6KMb2VlD/cOSRG271QliVO4v1K8zcb4cBDBvcWPChdQUXdcp4Xhlbh2Q+u+I87fD8
-         FA0NRjpdBqWGyk7wfkdoeaCIVHpMsdi6n0FV1IXu/wBJPVFOoM3OBLXyUn+JFZXnOcdr
-         b5DA==
-X-Gm-Message-State: AOJu0YwY51yOzhZlngz1zBI8swLPvRVBgl16nss2HdmNaZgaI3D4imY/
-	cAgXkbYZfPrwfBG3QrYbJlV3rqN6tenfvRXYwtZXe6QxHVeQThy3DqOCf2vzU64=
-X-Google-Smtp-Source: AGHT+IG0ldG9tCGI3ca/halEauDPGz9QmAEuZycnuZMyKBlpMivFD8YGbuuhUWQDcVNR/SHMcqrVvw==
-X-Received: by 2002:a17:906:e215:b0:a2d:79b6:bbea with SMTP id gf21-20020a170906e21500b00a2d79b6bbeamr823941ejb.64.1706695952952;
-        Wed, 31 Jan 2024 02:12:32 -0800 (PST)
-X-Forwarded-Encrypted: i=0; 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
-Received: from [192.168.1.20] ([178.197.222.62])
-        by smtp.gmail.com with ESMTPSA id vo5-20020a170907a80500b00a3689bde88esm188662ejc.153.2024.01.31.02.12.29
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 31 Jan 2024 02:12:32 -0800 (PST)
-Message-ID: <8a15ae5e-e949-4177-9737-84aa471c300d@linaro.org>
-Date: Wed, 31 Jan 2024 11:12:27 +0100
+	s=arc-20240116; t=1706696098; c=relaxed/simple;
+	bh=b/GOL9zNV3mBZgbVA/hrJx5X+eL8qO8R3xgQko1NDuM=;
+	h=From:To:CC:Subject:Date:Message-ID:MIME-Version:Content-Type; b=Zg0Vm7UfdXnAT1lwNpKaQesGlDSBRSQpw50vv7wRfZmLuRK6m2GkfCEXmaiotp7Af3eaLaJcExICchvKf2HHz1EvGlIUK6mhm7WvORLR5vuWbhGzoudqQE+3dGPwiUH5PDMlFeYHWqYT8HH/4swqe4WSHiOfEAGXTLf+OG5BKqM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=HFqf9+F9; arc=none smtp.client-ip=198.47.19.142
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
+Received: from fllv0034.itg.ti.com ([10.64.40.246])
+	by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id 40VAEj7c055743;
+	Wed, 31 Jan 2024 04:14:45 -0600
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+	s=ti-com-17Q1; t=1706696085;
+	bh=WbfLvT3kFZSrbmnYEVEAt8P7Y9YgAdQ7hhEX+xYFdMs=;
+	h=From:To:CC:Subject:Date;
+	b=HFqf9+F9GVkERESXJKXO2Er9NfzDFxq81359lHFqEIjN+Tm/h8nEOP9lJ5055np3p
+	 X+taUoUiLfxvqju+oEu+MdbqstQygDCVnLRhU8VzA4yuOSrga8K+/xeaFVJ+HUWRwN
+	 rtuLZtluTyHLfhC3JfmLlO0sdoZT3a+suPK5xo/c=
+Received: from DFLE101.ent.ti.com (dfle101.ent.ti.com [10.64.6.22])
+	by fllv0034.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 40VAEjii075176
+	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+	Wed, 31 Jan 2024 04:14:45 -0600
+Received: from DFLE105.ent.ti.com (10.64.6.26) by DFLE101.ent.ti.com
+ (10.64.6.22) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Wed, 31
+ Jan 2024 04:14:44 -0600
+Received: from lelvsmtp5.itg.ti.com (10.180.75.250) by DFLE105.ent.ti.com
+ (10.64.6.26) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
+ Frontend Transport; Wed, 31 Jan 2024 04:14:44 -0600
+Received: from localhost (chintan-thinkstation-p360-tower.dhcp.ti.com [172.24.227.220])
+	by lelvsmtp5.itg.ti.com (8.15.2/8.15.2) with ESMTP id 40VAEiBr110197;
+	Wed, 31 Jan 2024 04:14:44 -0600
+From: Chintan Vankar <c-vankar@ti.com>
+To: Andrew Davis <afd@ti.com>, Peter Rosin <peda@axentia.se>,
+        Greg
+ Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Conor Dooley
+	<conor+dt@kernel.org>,
+        Krzysztof Kozlowski
+	<krzysztof.kozlowski+dt@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>, Tero
+ Kristo <kristo@kernel.org>,
+        Vignesh Raghavendra <vigneshr@ti.com>, Nishanth
+ Menon <nm@ti.com>
+CC: <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>, <srk@ti.com>,
+        <s-vadapalli@ti.com>, <r-gunasekaran@ti.com>, <danishanwar@ti.com>,
+        Chintan Vankar
+	<c-vankar@ti.com>
+Subject: [PATCH v4 0/6] Add CPSW2G and CPSW9G nodes for J784S4
+Date: Wed, 31 Jan 2024 15:44:35 +0530
+Message-ID: <20240131101441.1362409-1-c-vankar@ti.com>
+X-Mailer: git-send-email 2.34.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [RFC PATCH v2 31/31] kvx: Add IPI driver
-Content-Language: en-US
-To: Yann Sionneau <ysionneau@kalrayinc.com>,
- Yann Sionneau <ysionneau@kalray.eu>, Arnd Bergmann <arnd@arndb.de>,
- Jonathan Corbet <corbet@lwn.net>, Thomas Gleixner <tglx@linutronix.de>,
- Marc Zyngier <maz@kernel.org>, Rob Herring <robh+dt@kernel.org>,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Will Deacon <will@kernel.org>, Peter Zijlstra <peterz@infradead.org>,
- Boqun Feng <boqun.feng@gmail.com>, Mark Rutland <mark.rutland@arm.com>,
- Eric Biederman <ebiederm@xmission.com>, Kees Cook <keescook@chromium.org>,
- Oleg Nesterov <oleg@redhat.com>, Ingo Molnar <mingo@redhat.com>,
- Waiman Long <longman@redhat.com>,
- "Aneesh Kumar K.V" <aneesh.kumar@linux.ibm.com>,
- Andrew Morton <akpm@linux-foundation.org>, Nick Piggin <npiggin@gmail.com>,
- Paul Moore <paul@paul-moore.com>, Eric Paris <eparis@redhat.com>,
- Christian Brauner <brauner@kernel.org>,
- Paul Walmsley <paul.walmsley@sifive.com>, Palmer Dabbelt
- <palmer@dabbelt.com>, Albert Ou <aou@eecs.berkeley.edu>,
- Jules Maselbas <jmaselbas@kalray.eu>,
- Guillaume Thouvenin <gthouvenin@kalray.eu>,
- Clement Leger <clement@clement-leger.fr>,
- Vincent Chardon <vincent.chardon@elsys-design.com>,
- =?UTF-8?Q?Marc_Poulhi=C3=A8s?= <dkm@kataplop.net>,
- Julian Vetter <jvetter@kalray.eu>, Samuel Jones <sjones@kalray.eu>,
- Ashley Lesdalons <alesdalons@kalray.eu>, Thomas Costis <tcostis@kalray.eu>,
- Marius Gligor <mgligor@kalray.eu>, Jonathan Borne <jborne@kalray.eu>,
- Julien Villette <jvillette@kalray.eu>, Luc Michel <lmichel@kalray.eu>,
- Louis Morhet <lmorhet@kalray.eu>, Julien Hascoet <jhascoet@kalray.eu>,
- Jean-Christophe Pince <jcpince@gmail.com>,
- Guillaume Missonnier <gmissonnier@kalray.eu>, Alex Michon
- <amichon@kalray.eu>, Huacai Chen <chenhuacai@kernel.org>,
- WANG Xuerui <git@xen0n.name>, Shaokun Zhang <zhangshaokun@hisilicon.com>,
- John Garry <john.garry@huawei.com>,
- Guangbin Huang <huangguangbin2@huawei.com>,
- Bharat Bhushan <bbhushan2@marvell.com>, Bibo Mao <maobibo@loongson.cn>,
- Atish Patra <atishp@atishpatra.org>, "Jason A. Donenfeld" <Jason@zx2c4.com>,
- Qi Liu <liuqi115@huawei.com>, Jiaxun Yang <jiaxun.yang@flygoat.com>,
- Catalin Marinas <catalin.marinas@arm.com>, Mark Brown <broonie@kernel.org>,
- Janosch Frank <frankja@linux.ibm.com>, Alexey Dobriyan
- <adobriyan@gmail.com>, Julian Vetter <jvetter@kalrayinc.com>,
- jmaselbas@zdiv.net
-Cc: Benjamin Mugnier <mugnier.benjamin@gmail.com>, linux-doc@vger.kernel.org,
- linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
- linux-mm@kvack.org, linux-arch@vger.kernel.org, linux-audit@redhat.com,
- linux-riscv@lists.infradead.org, bpf@vger.kernel.org
-References: <20230120141002.2442-1-ysionneau@kalray.eu>
- <20230120141002.2442-32-ysionneau@kalray.eu>
- <995eb624-3efe-10fc-a6ed-883d52d591bb@linaro.org>
- <269edff0-d989-4ac8-b0c3-bce31283806b@kalrayinc.com>
-From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
- 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
- D2GYIS41Kv4Isx2dEFh+/Q==
-In-Reply-To: <269edff0-d989-4ac8-b0c3-bce31283806b@kalrayinc.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 
-On 31/01/2024 10:52, Yann Sionneau wrote:
-> Hello Krzysztof,
-> 
-> On 22/01/2023 12:54, Krzysztof Kozlowski wrote:
->> On 20/01/2023 15:10, Yann Sionneau wrote:
->>> +
->>> +int __init kvx_ipi_ctrl_probe(irqreturn_t (*ipi_irq_handler)(int, void *))
->>> +{
->>> +	struct device_node *np;
->>> +	int ret;
->>> +	unsigned int ipi_irq;
->>> +	void __iomem *ipi_base;
->>> +
->>> +	np = of_find_compatible_node(NULL, NULL, "kalray,kvx-ipi-ctrl");
->> Nope, big no.
->>
->> Drivers go to drivers, not to arch code. Use proper driver infrastructure.
-> Thank you for your review.
-> 
-> It raises questions on our side about how to handle this change.
+This series adds device-tree nodes for CPSW2G and CPSW9G instance
+of the CPSW Ethernet Switch on TI's J784S4 SoC. Additionally,
+two device-tree overlays are also added:
+1. QSGMII mode with the CPSW9G instance via the ENET EXPANSION 1
+   connector.
+2. USXGMII mode with MAC Ports 1 and 2 of the CPSW9G instance via
+   ENET EXPANSION 1 and 2 connectors, configured in fixed-link
+   mode of operation at 5Gbps link speed.
 
-I am sorry, but responding with one page of hardware description is
-totally unrelated to the code I am questioning here and does not make it
-easier for me to respond. I understand that you want me to learn entire
-new KVX architecture to be able to provide good review, but it is just
-not possible, sorry. We all have quite limited time around here, so we
-all expect concise and precise answers.
+Similar to Andrew Davis patch at:
+https://lore.kernel.org/r/20231117222930.228688-5-afd@ti.com/ for J721E,
+similar changes are also required for J784S4 to remove dependency on the
+parent node being a syscon node.
 
-Best regards,
-Krzysztof
+This series combines the v1 series at:
+https://lore.kernel.org/r/20230522092201.127598-1-s-vadapalli@ti.com/
+and the patch for Main CPSW2G node that is present in [PATCH v6 2/5] at:
+https://lore.kernel.org/r/20230721132029.123881-1-j-choudhary@ti.com/
+but dropped in it's next version at:
+https://lore.kernel.org/r/20231019054022.175163-1-j-choudhary@ti.com/
+
+Link to v3: https://lore.kernel.org/r/20240125100501.4137977-1-c-vankar@ti.com/
+
+Changes from v3 to v4:
+1. Add alias for MCU CPSW2G node.
+2. Add alias for Main CPSW2G node.
+3. Add "ti,mac-only" property for CPSW9G node.
+
+Chintan Vankar (2):
+  arm64: dts: ti: k3-j784s4-main: Fix mux-reg-masks in serdes_ln_ctrl
+  arm64: dts: ti: k3-j784s4: Add alias to MCU CPSW2G
+
+Siddharth Vadapalli (4):
+  arm64: dts: ti: k3-j784s4-main: Add CPSW2G and CPSW9G nodes
+  arm64: dts: ti: k3-j784s4: Add Main CPSW2G node
+  arm64: dts: ti: k3-j784s4: Add overlay to enable QSGMII mode with
+    CPSW9G
+  arm64: dts: ti: k3-j784s4: Add overlay for dual port USXGMII mode
+
+ arch/arm64/boot/dts/ti/Makefile               |  11 +-
+ .../ti/k3-j784s4-evm-quad-port-eth-exp1.dtso  | 147 +++++++++++++
+ .../ti/k3-j784s4-evm-usxgmii-exp1-exp2.dtso   |  81 +++++++
+ arch/arm64/boot/dts/ti/k3-j784s4-evm.dts      |  50 +++++
+ arch/arm64/boot/dts/ti/k3-j784s4-main.dtsi    | 198 +++++++++++++++++-
+ 5 files changed, 480 insertions(+), 7 deletions(-)
+ create mode 100644 arch/arm64/boot/dts/ti/k3-j784s4-evm-quad-port-eth-exp1.dtso
+ create mode 100644 arch/arm64/boot/dts/ti/k3-j784s4-evm-usxgmii-exp1-exp2.dtso
+
+-- 
+2.34.1
 
 
