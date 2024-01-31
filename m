@@ -1,146 +1,139 @@
-Return-Path: <devicetree+bounces-37080-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-37082-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id B986B8439DC
-	for <lists+devicetree@lfdr.de>; Wed, 31 Jan 2024 09:55:42 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id E4FBC843A0E
+	for <lists+devicetree@lfdr.de>; Wed, 31 Jan 2024 10:03:37 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 514F9B29B40
-	for <lists+devicetree@lfdr.de>; Wed, 31 Jan 2024 08:55:40 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 209B71C27077
+	for <lists+devicetree@lfdr.de>; Wed, 31 Jan 2024 09:03:37 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C90CB60869;
-	Wed, 31 Jan 2024 08:49:31 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5FA2B6773B;
+	Wed, 31 Jan 2024 08:54:07 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="e78gPVkS"
+	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="YLJOYTQ3"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from lelv0142.ext.ti.com (lelv0142.ext.ti.com [198.47.23.249])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9425A69DF0;
-	Wed, 31 Jan 2024 08:49:31 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 45159679E7;
+	Wed, 31 Jan 2024 08:54:04 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.23.249
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1706690971; cv=none; b=ryhUjxMZR7IBNSBvzish2VZ53PW3r0WdViaDvCy234ioZxhs8ZOecpYbb7pDKO6760ZZjx26QLwROEQDRKRZUt4UBiRfcrSh6F8pgS7ckYHmxsywPaY4WxzaT/WwiaI7TQWjJ6Z7oqBEnM67x/a4LsrUgh6u8Ao4WSj+eKOlIcs=
+	t=1706691247; cv=none; b=uDZoL3dRectHN40GqWu81fK8JO8fSMrHKxfy1c62okmi2gZGxVGU6ULR8V451vgYXmj6yTEf1LzmqH3E5JQW92NvIna8f9PxzfCdQrBMNZsWMAVIFkiyfgSqYGnWSVeyFZ6HxWNswYTOauQUZbSxUOAJ75b/u+kz5yuDj60UCO4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1706690971; c=relaxed/simple;
-	bh=DfZcsWA9ZiJQJnhw+Dlmf+rz4QBaLMOI1TuUkGh7YpY=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=HcYeZbMw0P3j4Io0ST+Ky7cRUzcVrqoZdrQgwAR9Y+sgs+9PQL1610B6jH6jT/LaqbhQWgyG6q7iNCTblCNw5tfUMd8AbbocPsInLNYt5X/dibSR2zuqVMvViXiqHBIbb6NDI0a6RTzZX+Nu3vcclGSCx1qVy4nbIkLQnAClLz4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=e78gPVkS; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 242BFC433F1;
-	Wed, 31 Jan 2024 08:49:26 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1706690971;
-	bh=DfZcsWA9ZiJQJnhw+Dlmf+rz4QBaLMOI1TuUkGh7YpY=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=e78gPVkSswXNVxrTpgc3uqnClcHNOzUx0e+TnHsysfypkrDC7guPj7rnKflIizUtN
-	 NUiJaN1GtNrkmmJLGqaaT0TUv+U5ep074UDrDzt+gZe1LtLowojHTMOeYz001u9gk2
-	 3OUf70GW/bZCCPY+xd4+lf7eExvmEiMYsQltxViaAwgoiOzsvHBQ+RE9Q4pwqwLA6M
-	 CG5xYe5/LHMrt6bP9qs8t1VNW891rQdiDtrsw+NrdI8BT/RAoELujxl2CCMLDWQYKt
-	 Wpb5JnjbQaNrrzW/Xgm+Z2QNPhqQQ7xzgGXms59nifzufP/bOgsIa9W78U0el6J7oH
-	 werrdYsUuNm6w==
-Date: Wed, 31 Jan 2024 08:49:24 +0000
-From: Lee Jones <lee@kernel.org>
-To: Biju Das <biju.das.jz@bp.renesas.com>
-Cc: Wim Van Sebroeck <wim@linux-watchdog.org>,
-	Guenter Roeck <linux@roeck-us.net>,
-	Dmitry Torokhov <dmitry.torokhov@gmail.com>,
-	Rob Herring <robh+dt@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Support Opensource <support.opensource@diasemi.com>,
-	"Rafael J. Wysocki" <rafael@kernel.org>,
-	Daniel Lezcano <daniel.lezcano@linaro.org>,
-	Zhang Rui <rui.zhang@intel.com>, Lukasz Luba <lukasz.luba@arm.com>,
-	Steve Twiss <stwiss.opensource@diasemi.com>,
-	"linux-input@vger.kernel.org" <linux-input@vger.kernel.org>,
-	"devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-	"linux-pm@vger.kernel.org" <linux-pm@vger.kernel.org>,
-	"linux-watchdog@vger.kernel.org" <linux-watchdog@vger.kernel.org>,
-	Geert Uytterhoeven <geert+renesas@glider.be>,
-	Prabhakar Mahadev Lad <prabhakar.mahadev-lad.rj@bp.renesas.com>,
-	"biju.das.au" <biju.das.au@gmail.com>,
-	"linux-renesas-soc@vger.kernel.org" <linux-renesas-soc@vger.kernel.org>
-Subject: Re: [PATCH v6 0/8] Convert DA906{1,2} bindings to json-schema
-Message-ID: <20240131084924.GD8551@google.com>
-References: <20231214080911.23359-1-biju.das.jz@bp.renesas.com>
- <170316812973.586675.6248412029985031979.b4-ty@kernel.org>
- <20231221143318.GH10102@google.com>
- <TYCPR01MB1126921A54B9260CC33505FCA867E2@TYCPR01MB11269.jpnprd01.prod.outlook.com>
+	s=arc-20240116; t=1706691247; c=relaxed/simple;
+	bh=Yq2n/Sfh/d+tpcr27V4STsJGXvRFCM/Exbdl8+V33jQ=;
+	h=From:To:CC:Subject:Date:Message-ID:MIME-Version:Content-Type; b=sf/mKixq4NC1UjQ382qrPpNateuEhLVabTLJhH6P4vCXePt/yZTWF2KjTU9GBE7PKI9cwx8dJF9LqoDkimScbfEWMPoHPZ4K3WHmIiuZZaS836DLEfhztGTGGQ30sBNFuyEGltL1aZpzugr+FjzLXwLGsvnL228kW924P5euQZg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=YLJOYTQ3; arc=none smtp.client-ip=198.47.23.249
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
+Received: from fllv0034.itg.ti.com ([10.64.40.246])
+	by lelv0142.ext.ti.com (8.15.2/8.15.2) with ESMTP id 40V8ru5d119174;
+	Wed, 31 Jan 2024 02:53:56 -0600
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+	s=ti-com-17Q1; t=1706691236;
+	bh=P3p6Pw+gRR2W4dVZvVjmTZdIBjEbZqZZnvgFeXT2zks=;
+	h=From:To:CC:Subject:Date;
+	b=YLJOYTQ3fcHfjlGDJEGWyputUKM0rXPVe/EvkocLIp+v68ctJnTU62d2oM8PCI6oI
+	 AoBr8PrmuGwvsJPeD+8Kq8u3BdoZLBWOc7IB2RFr+ln3s8EWNgRWnoaqrWxFpZ5JlH
+	 X9waIjEku/QjvPyBBNNTkylwbXWMTmM3EsxM0Y/s=
+Received: from DLEE102.ent.ti.com (dlee102.ent.ti.com [157.170.170.32])
+	by fllv0034.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 40V8ruds116100
+	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+	Wed, 31 Jan 2024 02:53:56 -0600
+Received: from DLEE111.ent.ti.com (157.170.170.22) by DLEE102.ent.ti.com
+ (157.170.170.32) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Wed, 31
+ Jan 2024 02:53:56 -0600
+Received: from lelvsmtp5.itg.ti.com (10.180.75.250) by DLEE111.ent.ti.com
+ (157.170.170.22) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
+ Frontend Transport; Wed, 31 Jan 2024 02:53:55 -0600
+Received: from uda0500640.dal.design.ti.com (uda0500640.dhcp.ti.com [172.24.227.88])
+	by lelvsmtp5.itg.ti.com (8.15.2/8.15.2) with ESMTP id 40V8rpYG125241;
+	Wed, 31 Jan 2024 02:53:52 -0600
+From: Ravi Gunasekaran <r-gunasekaran@ti.com>
+To: <davem@davemloft.net>, <edumazet@google.com>, <kuba@kernel.org>,
+        <pabeni@redhat.com>
+CC: <robh+dt@kernel.org>, <krzysztof.kozlowski+dt@linaro.org>,
+        <conor+dt@kernel.org>, <s-vadapalli@ti.com>, <r-gunasekaran@ti.com>,
+        <rogerq@kernel.org>, <srk@ti.com>, <netdev@vger.kernel.org>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>
+Subject: [PATCH net-next] dt-bindings: net: ti: Update maintainers list
+Date: Wed, 31 Jan 2024 14:23:51 +0530
+Message-ID: <20240131085351.25103-1-r-gunasekaran@ti.com>
+X-Mailer: git-send-email 2.17.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <TYCPR01MB1126921A54B9260CC33505FCA867E2@TYCPR01MB11269.jpnprd01.prod.outlook.com>
+Content-Type: text/plain
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 
-On Mon, 29 Jan 2024, Biju Das wrote:
+Update the list with the current maintainers of TI's CPSW ethernet
+peripheral.
 
-> Hi Lee Jones,
-> 
-> > -----Original Message-----
-> > From: Lee Jones <lee@kernel.org>
-> > Sent: Thursday, December 21, 2023 2:33 PM
-> > Subject: Re: [PATCH v6 0/8] Convert DA906{1,2} bindings to json-schema
-> > 
-> > On Thu, 21 Dec 2023, Lee Jones wrote:
-> > 
-> > > On Thu, 14 Dec 2023 08:09:03 +0000, Biju Das wrote:
-> > > > Convert the below bindings to json-schema
-> > > > 1) DA906{1,2} mfd bindings
-> > > > 2) DA906{1,2,3} onkey bindings
-> > > > 3) DA906{1,2,3} thermal bindings
-> > > >
-> > > > Also add fallback for DA9061 watchdog device and document
-> > > > DA9063 watchdog device.
-> > > >
-> > > > [...]
-> > >
-> > > Applied, thanks!
-> > >
-> > > [1/8] dt-bindings: mfd: da9062: Update watchdog description
-> > >       commit: 9e7b13b805bcbe5335c2936d4c7ea0323ac69a81
-> > > [2/8] dt-bindings: watchdog: dlg,da9062-watchdog: Add fallback for
-> > DA9061 watchdog
-> > >       commit: 28d34db7772f18490b52328f04a3bf69ed5390d2
-> > > [3/8] dt-bindings: watchdog: dlg,da9062-watchdog: Document DA9063
-> > watchdog
-> > >       commit: d2a7dbb808870c17cffa2749ea877f61f298d098
-> > > [4/8] dt-bindings: mfd: dlg,da9063: Update watchdog child node
-> > >       commit: d4018547a15a94c7e865b2cef82bff1cd43a32b3
-> > > [5/8] dt-bindings: input: Convert da906{1,2,3} onkey to json-schema
-> > >       commit: db459d3da7bb9c37cb86897c7b321a49f8e40968
-> > > [6/8] dt-bindings: thermal: Convert da906{1,2} thermal to json-schema
-> > >       commit: 998f499c843e360bcd9ee1fe9addc3b5d32f1234
-> > > [7/8] dt-bindings: mfd: dlg,da9063: Sort child devices
-> > >       commit: 2bbf9d2a8e3bc933703dfda87cac953bed458496
-> > > [8/8] dt-bindings: mfd: dlg,da9063: Convert da9062 to json-schema
-> > >       commit: 522225161830f6a93f2aaabda99226c1ffddc8c4
-> > 
-> > Submitted for testing.  Pull-request to follow.
-> 
-> The commit dc805ea058c0e ("MAINTAINERS: rectify entry for DIALOG SEMICONDUCTOR DRIVERS")
-> in mainline will give a conflict for patch#1.
-> 
-> Patch#2 and patch#3 are already in mainline.
-> 
-> 
-> Please let me know if you want me to rebase and resend the patch series
+Signed-off-by: Ravi Gunasekaran <r-gunasekaran@ti.com>
+---
+ Documentation/devicetree/bindings/net/ti,cpsw-switch.yaml    | 5 +++--
+ .../devicetree/bindings/net/ti,k3-am654-cpsw-nuss.yaml       | 5 +++--
+ Documentation/devicetree/bindings/net/ti,k3-am654-cpts.yaml  | 5 +++--
+ 3 files changed, 9 insertions(+), 6 deletions(-)
 
-That would be helpful, thanks.
-
-Please ensure all of the patches have my:
-
-Acked-by: Lee Jones <lee@kernel.org>
-
-... applied, then I'll know to just apply them again.
-
+diff --git a/Documentation/devicetree/bindings/net/ti,cpsw-switch.yaml b/Documentation/devicetree/bindings/net/ti,cpsw-switch.yaml
+index f07ae3173b03..d5bd93ee4dbb 100644
+--- a/Documentation/devicetree/bindings/net/ti,cpsw-switch.yaml
++++ b/Documentation/devicetree/bindings/net/ti,cpsw-switch.yaml
+@@ -7,8 +7,9 @@ $schema: http://devicetree.org/meta-schemas/core.yaml#
+ title: TI SoC Ethernet Switch Controller (CPSW)
+ 
+ maintainers:
+-  - Grygorii Strashko <grygorii.strashko@ti.com>
+-  - Sekhar Nori <nsekhar@ti.com>
++  - Siddharth Vadapalli <s-vadapalli@ti.com>
++  - Ravi Gunasekaran <r-gunasekaran@ti.com>
++  - Roger Quadros <rogerq@kernel.org>
+ 
+ description:
+   The 3-port switch gigabit ethernet subsystem provides ethernet packet
+diff --git a/Documentation/devicetree/bindings/net/ti,k3-am654-cpsw-nuss.yaml b/Documentation/devicetree/bindings/net/ti,k3-am654-cpsw-nuss.yaml
+index c9c25132d154..73ed5951d296 100644
+--- a/Documentation/devicetree/bindings/net/ti,k3-am654-cpsw-nuss.yaml
++++ b/Documentation/devicetree/bindings/net/ti,k3-am654-cpsw-nuss.yaml
+@@ -7,8 +7,9 @@ $schema: http://devicetree.org/meta-schemas/core.yaml#
+ title: The TI AM654x/J721E/AM642x SoC Gigabit Ethernet MAC (Media Access Controller)
+ 
+ maintainers:
+-  - Grygorii Strashko <grygorii.strashko@ti.com>
+-  - Sekhar Nori <nsekhar@ti.com>
++  - Siddharth Vadapalli <s-vadapalli@ti.com>
++  - Ravi Gunasekaran <r-gunasekaran@ti.com>
++  - Roger Quadros <rogerq@kernel.org>
+ 
+ description:
+   The TI AM654x/J721E SoC Gigabit Ethernet MAC (CPSW2G NUSS) has two ports
+diff --git a/Documentation/devicetree/bindings/net/ti,k3-am654-cpts.yaml b/Documentation/devicetree/bindings/net/ti,k3-am654-cpts.yaml
+index 3e910d3b24a0..b1c875325776 100644
+--- a/Documentation/devicetree/bindings/net/ti,k3-am654-cpts.yaml
++++ b/Documentation/devicetree/bindings/net/ti,k3-am654-cpts.yaml
+@@ -7,8 +7,9 @@ $schema: http://devicetree.org/meta-schemas/core.yaml#
+ title: The TI AM654x/J721E Common Platform Time Sync (CPTS) module
+ 
+ maintainers:
+-  - Grygorii Strashko <grygorii.strashko@ti.com>
+-  - Sekhar Nori <nsekhar@ti.com>
++  - Siddharth Vadapalli <s-vadapalli@ti.com>
++  - Ravi Gunasekaran <r-gunasekaran@ti.com>
++  - Roger Quadros <rogerq@kernel.org>
+ 
+ description: |+
+   The TI AM654x/J721E CPTS module is used to facilitate host control of time
 -- 
-Lee Jones [李琼斯]
+2.17.1
+
 
