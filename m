@@ -1,274 +1,259 @@
-Return-Path: <devicetree+bounces-37111-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-37112-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 67FDE843B77
-	for <lists+devicetree@lfdr.de>; Wed, 31 Jan 2024 10:52:50 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id D7F8E843B7F
+	for <lists+devicetree@lfdr.de>; Wed, 31 Jan 2024 10:55:15 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id E99F81F2AED5
-	for <lists+devicetree@lfdr.de>; Wed, 31 Jan 2024 09:52:49 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 8723CB225B6
+	for <lists+devicetree@lfdr.de>; Wed, 31 Jan 2024 09:55:12 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 654D369946;
-	Wed, 31 Jan 2024 09:52:48 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id AAE4E69963;
+	Wed, 31 Jan 2024 09:55:06 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="yzjLKPOU"
+	dkim=pass (1024-bit key) header.d=kalrayinc.com header.i=@kalrayinc.com header.b="C72om1JJ";
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=kalrayinc.com header.i=@kalrayinc.com header.b="fFUl5Gz6"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lj1-f170.google.com (mail-lj1-f170.google.com [209.85.208.170])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtpout37.security-mail.net (smtpout37.security-mail.net [85.31.212.37])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6083269D0B
-	for <devicetree@vger.kernel.org>; Wed, 31 Jan 2024 09:52:46 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.170
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1706694768; cv=none; b=uQBeJNN/AyUXTub6k1WJSD2LeT7tneJVdVoPFrkfloZJjCjvh90VClK1eP3ZIi/XM5kc+nfn6U0hdjxfLdqX0sRIfT+Nw+mR7gwgw3k1bFFPqcKfzcBcYqGkAWSb58GpqxWoA45eWV1Qg4s0n/8OPqRNpUf47Dz8doanJtcYo/I=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1706694768; c=relaxed/simple;
-	bh=fTIfhqGw1d/HJR+aqs5SB6WwWZFYD2zxuQWrfL/S1dw=;
-	h=Message-ID:Date:MIME-Version:Subject:From:To:Cc:References:
-	 In-Reply-To:Content-Type; b=Z82845dbC3rb3wzYZPq0E8Ka6f6EQZpL9+GvgwQoV0hLBwSeIZudgk16uGGojkcubvMfpwfJY22zbasxZdwfx0wEuqU9Vo0KoU3GflDWUVJU3oxFTUk0lf0RoGqVMQtiiR8/vJrvZ7Mao0JHIvbbij4cKTdQ7o4BH3G+J5/YQLg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=yzjLKPOU; arc=none smtp.client-ip=209.85.208.170
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-lj1-f170.google.com with SMTP id 38308e7fff4ca-2d04c0b1cacso38088731fa.0
-        for <devicetree@vger.kernel.org>; Wed, 31 Jan 2024 01:52:46 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1706694764; x=1707299564; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:autocrypt:references:cc:to
-         :from:content-language:subject:user-agent:mime-version:date
-         :message-id:from:to:cc:subject:date:message-id:reply-to;
-        bh=vy9ag9vSpz3bXWFEemDbbZ5ICpPB9T59zqDCvXFR710=;
-        b=yzjLKPOUNm3mJDC3SFmHZl1dctH7oKC138Dz3reVC7HoFSUfQlGcHtGgfGNlaeLM9R
-         8fIf789R23hoo6mFHYERKNhPvxvj4nz4I+qII5qTNLjm5FvE3erdHHaT8Y6535qahWvQ
-         lacEcFKS8OgMdomLin3kISR+BBxz//VEqnxPO+DVGNDoTeJ06cJ2FpoPVv2ixzw3QM0J
-         tjRr8VpKJJnkaoFGnGN/HKqck5nS2QtAGLYD6G75Ki5glrUA5HYDgn/UIKfCpSHgxcnB
-         Udj4p7xlhoMSAmqSTxIaiFt5jWQF54cE0PzaP+3SMzMwwGMKkYzzBVUsyGK6uOUDyo2N
-         zwDw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1706694764; x=1707299564;
-        h=content-transfer-encoding:in-reply-to:autocrypt:references:cc:to
-         :from:content-language:subject:user-agent:mime-version:date
-         :message-id:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=vy9ag9vSpz3bXWFEemDbbZ5ICpPB9T59zqDCvXFR710=;
-        b=E25Rb2BYFaljDvAS/saasccDc4ez6vfweDWP5fj5C23pnQbranDgMkJH3xCOdSVV3w
-         klEQmySeM8/tSbwqfqkIW347xLxxcxNXXqVeuVJo/XmSZW7f5JKtE5XN/G1NGtStRMS7
-         pYOFZPRos69UxPzZ2GBPnQXK+zH90JNZHeiMFm0YuYGg5uhq35HYWE+PRJD3uIjKoM/p
-         NRChjOp20UJ2KRY9zqBlSbjDPe20LRL8XfZUBnQDUkT3VjbFr+GOfrmojOvyEfE2bGsO
-         Ha6xfwEbfvHnzsrMlWbCEGqErDE96wImLAAsv6abCUkzXAOEiLgFk7b/Qnu3Llt6eJlq
-         svJg==
-X-Gm-Message-State: AOJu0YwMa3UNsQsViuO9aYNkFUyU9dEkePuUpaSRowXhi+OilNJBmb06
-	5g4us10XeFPtmHLA2taSKjp+9MR/pvJ3UyNy/eQM0nIzi0bIX4pE+Fpyye53WjM=
-X-Google-Smtp-Source: AGHT+IG6Xu1C1j6SyDZmreNSX8+xfoVcpAMVxiflT3WbYkQ3umBoKf9MN0TWAMy06KSGoLm0U6GKsA==
-X-Received: by 2002:a2e:84cd:0:b0:2cf:2db4:cd84 with SMTP id q13-20020a2e84cd000000b002cf2db4cd84mr772150ljh.49.1706694764460;
-        Wed, 31 Jan 2024 01:52:44 -0800 (PST)
-X-Forwarded-Encrypted: i=0; AJvYcCVn6dszHl2gPrVUm94CT0J4a9x7kfsAG5Hj3PD80ZzNLeSwkoamvLdSKKTaKtRk6oSlN90EMwaN63rcgt/tJPc5cFZkCN1yV2ChH0Ujbe57KAWr2E2BgTQ2d8dz5W8p6F/2T89v+tEN8rFblqbb8aJVQ07BvyslkrD8XTmmTn4ZnaQICNStWkmmxswOuUqTyApWOFIDmrgvrWer56bdOTO14h8gY/8GJYnVO+ikOw6ggTQajutJj0oH6qYlUNWB6ZmocLNeTufdb/g+wJwpqWCogykXmnfgx3RUFPcKqXKdI/49WbaBVgm/anhAu+K5cH2iwtQj5A7BP4Muuds6wLD+gmohkhr9w6vzNHy6KJtIAVvkkXZfzMVhUSh0kkNRjB5oRltTV4w2/Qgk/8PFwtIF+YnbRSorbmzqxlmTqCl2jTKWpW8ZATL0xI/LSlNQLjy06ON752/jClZj3CCeENZRjv1vnkWskxO15uWAWiz9OvbEZhT8nx8UwUZ2XELt7wN3V489ZXnhTSdzXytxVx4pd/RXSC3Ml84zhUysoaMS0du2ncpX9fB6Fn3D2wJE+SO4EoaXYDyVjRgkb/HnBX9g9F4YfHjIPQDS+LK5nU+ccR5rNYc8TjttcZHfFn5gqHCUx/fPqekaXMt/G7jgBtYHIYly+Zoy63J53TBMZ+lBww7evLpFrdMUYIiI4pwLFcYu2L0MX8s9GtPXIpHrZgw0iILaA58qzlUSevF7S1znTdvBR/GlzgK2K8gY3jz+Q6ioTvisMTIJeKhZIShhZb5/4lJFBqmm4m+SBkQzwsYCmfMKDZeSYbcxAcBlbTasFfeBeW+9dw==
-Received: from [192.168.1.20] ([178.197.222.62])
-        by smtp.gmail.com with ESMTPSA id di11-20020a056402318b00b0055ef0105f2fsm3426803edb.80.2024.01.31.01.52.41
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 31 Jan 2024 01:52:43 -0800 (PST)
-Message-ID: <3f906732-74b7-4219-88ee-59509bff8459@linaro.org>
-Date: Wed, 31 Jan 2024 10:52:41 +0100
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7495767E97
+	for <devicetree@vger.kernel.org>; Wed, 31 Jan 2024 09:55:04 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=85.31.212.37
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1706694906; cv=fail; b=uuDVqqce42lp+2iPXxYttYdcB0Fox3sRPUETwkkezEj76S/nH7VZ40o14e/VqERqy/4m+JqcIQKzTGJXSLCD8VneScIi6i1bEIYUOydRw5XeqjkvLUPAbofRKcZhSVm+2XSX1n5XKWiIq8Lui1UZtWehgXrIuaqgOAf1rEZhqrQ=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1706694906; c=relaxed/simple;
+	bh=n3uXrrzzWaWWDlrViIwRreUQvbzXibng4An8pHcosoE=;
+	h=Message-ID:Date:Subject:To:Cc:References:From:In-Reply-To:
+	 Content-Type:MIME-Version; b=gDhtbaFiU5bT7YolnOyAITzWeHQeuBLcNn0WIYrQ6DgZhW5/J3Vo+H/Q/5Ckd0I6fbCMnhAxE8M6xWl1mrZNiAbZqIdp2UFxK7Vd7I/aQxX82ol+9LBIwM3OhtvE+Vtk+tosWiNEaJEc7c5eE81enyN7Rzun3HL/wLVunJ/zHOA=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=kalrayinc.com; spf=pass smtp.mailfrom=kalrayinc.com; dkim=pass (1024-bit key) header.d=kalrayinc.com header.i=@kalrayinc.com header.b=C72om1JJ; dkim=fail (2048-bit key) header.d=kalrayinc.com header.i=@kalrayinc.com header.b=fFUl5Gz6 reason="signature verification failed"; arc=fail smtp.client-ip=85.31.212.37
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=kalrayinc.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=kalrayinc.com
+Received: from localhost (localhost [127.0.0.1])
+	by fx301.security-mail.net (Postfix) with ESMTP id 04D859EC941
+	for <devicetree@vger.kernel.org>; Wed, 31 Jan 2024 10:53:05 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kalrayinc.com;
+	s=sec-sig-email; t=1706694785;
+	bh=n3uXrrzzWaWWDlrViIwRreUQvbzXibng4An8pHcosoE=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To;
+	b=C72om1JJ0NN5DvK7v0pUWOsunocLJmcc7UM8seT9u4GIoQWSzxO+MR8pjYsCwCROV
+	 u97CVsfXLB7OECKEA8IxwAnidmViN7S/4XM7DbFN+rsAIYZavvwssqscQNYoo95U1/
+	 C2RVy2fWYt/kCSjZMRQ4uTj5AtUjTcqWEDJqvf4k=
+Received: from fx301 (localhost [127.0.0.1]) by fx301.security-mail.net
+ (Postfix) with ESMTP id AA63C9ECF32; Wed, 31 Jan 2024 10:53:04 +0100 (CET)
+Received: from FRA01-MR2-obe.outbound.protection.outlook.com
+ (mail-mr2fra01on0100.outbound.protection.outlook.com [104.47.25.100]) by
+ fx301.security-mail.net (Postfix) with ESMTPS id F29C99ECD8E; Wed, 31 Jan
+ 2024 10:53:03 +0100 (CET)
+Received: from MR1P264MB1890.FRAP264.PROD.OUTLOOK.COM (2603:10a6:501:13::5)
+ by MR1P264MB1908.FRAP264.PROD.OUTLOOK.COM (2603:10a6:501:12::15) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7249.24; Wed, 31 Jan
+ 2024 09:53:02 +0000
+Received: from MR1P264MB1890.FRAP264.PROD.OUTLOOK.COM
+ ([fe80::1300:32a9:2172:a2a]) by MR1P264MB1890.FRAP264.PROD.OUTLOOK.COM
+ ([fe80::1300:32a9:2172:a2a%7]) with mapi id 15.20.7249.024; Wed, 31 Jan 2024
+ 09:53:02 +0000
+X-Virus-Scanned: E-securemail
+Secumail-id: <13599.65ba187f.f1ba6.0>
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=U79dQDTEBjwqiCFZ78Vyc7MfRTY4cumqMgNo+TfllVxy4Tn9JENnZ6a17EWfHHIaaVQfQ1f22nQ+ORyf2i8yiD+Z8G8ES7O4zSt6tAP0yahA98PAnsRvS1isWRdBDnb2c/aiZtJBntuEhW4c2dM2miWZxr3uEzSzP0ci2wDj3dfxjConL6/dvy35vUG5ADDG+yy8OImcO3TQ9JmbtaCRpXodT2ylofnGbkaeaufWDL0CXjXLJR4OPLiOpWvLoJ4XfqvDJ/5f7H/dys/FNNEaA7DbFJUbJb+swJMpIjg6ZYQdsnWUEs2iAuiUPZ1uDx3Jt8eIo/4lRptpXqNLDv63JQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=microsoft.com; s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=+qYdWYzfUcnoQWYfh/DWYXPiPJlj2xh/vdvzaU9qDf4=;
+ b=GmYxeP44j6y7MnL9fxcFfU/o2Z3xHhB/013FQOrvTsbjPobzqWsbpZmsK3ijnnQxf0eI5qTO8HqBj5HljJQacmdVFaUDY41wbXC0yRxJQqd1AfGeI6jehNFmZ210A+m1S/GwypUV/FhVJyY1b8yYSWuZMWb+6N0HXZMOVeHFMiBjV4t5wOOcuyc4kBzuUzH8EShddyNZZ/0tAUl1SwwNlN7pPSu1O+r3I/XtdYwl8O7IFW4tMrn/lqE8p8aahFKpdK1keBrwZfCOltj/AdkizVu2d0vZ6q1T86kiIZdrgKcKxtRJWx6Rn2sm3Qrv1aw6zB/X8NErwYrnq63UbcCUmw==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=kalrayinc.com; dmarc=pass action=none
+ header.from=kalrayinc.com; dkim=pass header.d=kalrayinc.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kalrayinc.com;
+ s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=+qYdWYzfUcnoQWYfh/DWYXPiPJlj2xh/vdvzaU9qDf4=;
+ b=fFUl5Gz6NCqbTByjbL0OUFRPg8nxlADMd+5CjiILMQqJQNvWf57nZfkaW9YOUAuauigTpI6/XiXlPf3VFxQ3KoYuxl+ZA83EJxKCUcURiRE4+i140WWofOsZDqfus4AtNAtnZ8XustfnVaGEjgL0DBzCDZ/4qTpdjw8PnAvvl8luztV3XUQeCZMQYHHDsYrjMVwdzVy8i9GpmjXIoq8BffQy8zpns1HxfbN5VD9gycb5rTSeKa06jCOPXe+6SIFOAigzD2TQi8X2kYS3K3QwSbj82NGnh3t354g08ZwRMlKuIpcalyAAcX0PxqWNkiqe2fOtUOeOZXnDcsvelYVBMQ==
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=kalrayinc.com;
+Message-ID: <269edff0-d989-4ac8-b0c3-bce31283806b@kalrayinc.com>
+Date: Wed, 31 Jan 2024 10:52:57 +0100
+User-Agent: Mozilla Thunderbird
+Subject: Re: [RFC PATCH v2 31/31] kvx: Add IPI driver
+Content-Language: en-us, fr
+To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>, Yann Sionneau
+ <ysionneau@kalray.eu>, Arnd Bergmann <arnd@arndb.de>, Jonathan Corbet
+ <corbet@lwn.net>, Thomas Gleixner <tglx@linutronix.de>, Marc Zyngier
+ <maz@kernel.org>, Rob Herring <robh+dt@kernel.org>, Krzysztof Kozlowski
+ <krzysztof.kozlowski+dt@linaro.org>, Will Deacon <will@kernel.org>, Peter
+ Zijlstra <peterz@infradead.org>, Boqun Feng <boqun.feng@gmail.com>, Mark
+ Rutland <mark.rutland@arm.com>, Eric Biederman <ebiederm@xmission.com>, Kees
+ Cook <keescook@chromium.org>, Oleg Nesterov <oleg@redhat.com>, Ingo Molnar
+ <mingo@redhat.com>, Waiman Long <longman@redhat.com>, "Aneesh Kumar K.V"
+ <aneesh.kumar@linux.ibm.com>, Andrew Morton <akpm@linux-foundation.org>,
+ Nick Piggin <npiggin@gmail.com>, Paul Moore <paul@paul-moore.com>, Eric
+ Paris <eparis@redhat.com>, Christian Brauner <brauner@kernel.org>, Paul
+ Walmsley <paul.walmsley@sifive.com>, Palmer Dabbelt <palmer@dabbelt.com>,
+ Albert Ou <aou@eecs.berkeley.edu>, Jules Maselbas <jmaselbas@kalray.eu>,
+ Guillaume Thouvenin <gthouvenin@kalray.eu>, Clement Leger
+ <clement@clement-leger.fr>, Vincent Chardon
+ <vincent.chardon@elsys-design.com>, Marc =?utf-8?b?UG91bGhpw6hz?=
+ <dkm@kataplop.net>, Julian Vetter <jvetter@kalray.eu>, Samuel Jones
+ <sjones@kalray.eu>, Ashley Lesdalons <alesdalons@kalray.eu>, Thomas Costis
+ <tcostis@kalray.eu>, Marius Gligor <mgligor@kalray.eu>, Jonathan Borne
+ <jborne@kalray.eu>, Julien Villette <jvillette@kalray.eu>, Luc Michel
+ <lmichel@kalray.eu>, Louis Morhet <lmorhet@kalray.eu>, Julien Hascoet
+ <jhascoet@kalray.eu>, Jean-Christophe Pince <jcpince@gmail.com>, Guillaume
+ Missonnier <gmissonnier@kalray.eu>, Alex Michon <amichon@kalray.eu>, Huacai
+ Chen <chenhuacai@kernel.org>, WANG Xuerui <git@xen0n.name>, Shaokun Zhang
+ <zhangshaokun@hisilicon.com>, John Garry <john.garry@huawei.com>, Guangbin
+ Huang <huangguangbin2@huawei.com>, Bharat Bhushan <bbhushan2@marvell.com>,
+ Bibo Mao <maobibo@loongson.cn>, Atish Patra <atishp@atishpatra.org>, "Jason
+ A. Donenfeld" <Jason@zx2c4.com>, Qi Liu <liuqi115@huawei.com>, Jiaxun Yang
+ <jiaxun.yang@flygoat.com>, Catalin Marinas <catalin.marinas@arm.com>, Mark
+ Brown <broonie@kernel.org>, Janosch Frank <frankja@linux.ibm.com>, Alexey
+ Dobriyan <adobriyan@gmail.com>, Julian Vetter <jvetter@kalrayinc.com>,
+ jmaselbas@zdiv.net
+Cc: Benjamin Mugnier <mugnier.benjamin@gmail.com>,
+ linux-doc@vger.kernel.org, linux-kernel@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-mm@kvack.org, linux-arch@vger.kernel.org,
+ linux-audit@redhat.com, linux-riscv@lists.infradead.org, bpf@vger.kernel.org
+References: <20230120141002.2442-1-ysionneau@kalray.eu>
+ <20230120141002.2442-32-ysionneau@kalray.eu>
+ <995eb624-3efe-10fc-a6ed-883d52d591bb@linaro.org>
+From: Yann Sionneau <ysionneau@kalrayinc.com>
+In-Reply-To: <995eb624-3efe-10fc-a6ed-883d52d591bb@linaro.org>
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: 8bit
+X-ClientProxiedBy: PA7P264CA0309.FRAP264.PROD.OUTLOOK.COM
+ (2603:10a6:102:395::10) To MR1P264MB1890.FRAP264.PROD.OUTLOOK.COM
+ (2603:10a6:501:13::5)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v6 4/6] reset: Instantiate reset GPIO controller for
- shared reset-gpios
-Content-Language: en-US
-From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-To: Linus Walleij <linus.walleij@linaro.org>,
- Bartosz Golaszewski <brgl@bgdev.pl>,
- Geert Uytterhoeven <geert+renesas@glider.be>
-Cc: Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
- Banajit Goswami <bgoswami@quicinc.com>,
- Bjorn Andersson <andersson@kernel.org>,
- Konrad Dybcio <konrad.dybcio@linaro.org>, Liam Girdwood
- <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>,
- Rob Herring <robh+dt@kernel.org>,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Conor Dooley <conor+dt@kernel.org>, Philipp Zabel <p.zabel@pengutronix.de>,
- "Rafael J. Wysocki" <rafael@kernel.org>,
- Viresh Kumar <viresh.kumar@linaro.org>, Frank Rowand
- <frowand.list@gmail.com>, Jaroslav Kysela <perex@perex.cz>,
- Takashi Iwai <tiwai@suse.com>, alsa-devel@alsa-project.org,
- linux-arm-msm@vger.kernel.org, linux-sound@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- linux-pm@vger.kernel.org, Chris Packham <chris.packham@alliedtelesis.co.nz>,
- Sean Anderson <sean.anderson@seco.com>
-References: <20240129115216.96479-1-krzysztof.kozlowski@linaro.org>
- <20240129115216.96479-5-krzysztof.kozlowski@linaro.org>
- <CACRpkdYf4HUaV-Pjr81WjLbzy9zdAnyFWs9gPayPC6-3OjHQwA@mail.gmail.com>
- <6473952d-893d-4591-9bfd-dd983313bee9@linaro.org>
-Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
- 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
- D2GYIS41Kv4Isx2dEFh+/Q==
-In-Reply-To: <6473952d-893d-4591-9bfd-dd983313bee9@linaro.org>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: MR1P264MB1890:EE_|MR1P264MB1908:EE_
+X-MS-Office365-Filtering-Correlation-Id: e310339f-977f-4e5d-50dd-08dc22426a1c
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: zY3OBspCqhZ7BPk4QYArZqQWGq1NNy94C0x7+KA8xUJotEwy8iPZFmmTgy+K44yfZnfUhZJoImM0Vw6dMkKKZqYnxhF1QoSD7Ar819xSS7+6nOZPrBsmcbRha+o6bzxYeNYTHrmS4NP9/TEr/nL+pRGdd6zQbT1no8poVJMm/2TjuA5P0FQUt7/GopTuXvpjrrEzMHVe2MUd7fP+0WuQllXQo40mkBelxX4TCxPizSErnzf1vp3WSTdbt1nrE7oDPVecCeedB3YiW52tp/tgv9Q3XXRxdA6qFsc09nWi8iAMh6ILBum15fJGbjZgkMFozEtNvW3BqvNfwi5QwjIkRvHwUV3fT4LHkliBF8sbq+UA7j81JCxLt8+MeV+nlPPQdxcxx5ag18ihurvjD+9gUYx0TxW/HFXzPtimg74CYstI/GjO4NWASeyz3p7QF0TPdosIAZYTppirMoMJAZh7op96+nSvfHVpDyZArr9UcgEudEDGpirTtNggeDEpOT159S7IghNg0qjouSIp4VkND1aFsOagoLspd4bai9vljLgC+BsBuiDbEhm5W0fhmsPEYPJzJQ1vjrG+ECgD4rRdJfaKQLQo7fdAM6ivXKaBNgXNoCaQ3Fs5tgsXTG6b6uU0OYfUqUlgzo7WuB7eDhk5PJ6d0ATJ4njtD1TpxWGj7Kmy2CdaJwXUDymGbpZ3uj79
+X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:MR1P264MB1890.FRAP264.PROD.OUTLOOK.COM;PTR:;CAT:NONE;SFS:(13230031)(346002)(136003)(39850400004)(366004)(396003)(376002)(230922051799003)(186009)(64100799003)(1800799012)(451199024)(921011)(31686004)(2616005)(41300700001)(1191002)(966005)(316002)(66476007)(66556008)(36756003)(6512007)(478600001)(53546011)(6506007)(83380400001)(6486002)(6666004)(38100700002)(66946007)(31696002)(8936002)(5660300002)(7366002)(7406005)(7416002)(2906002)(110136005)(86362001)(4326008)(8676002)(21314003)(43740500002)(45980500001);DIR:OUT;SFP:1102;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: aPFlMx0h7/7NT0uP9FPvxJkJqKZTWGf2n8FZTBmMWdvmHPxy5lQwIYMLwNIa59JNDZabgLkcLIJ0EEOhocDk4nyF2NUCpqnlaCO/4sOXxyZRUpacuL0PL8xW5tbpXM9MSWHgbeQLe+ktpaL1mJAH9cmzrALd5bPBucagM2MXjSD9mbzXsMzRvCoSjqwDQAXWqydUCeUUhzOymSjMueo5aNqXZTvfDJiLqImF5ckxDTwQ9xrMznQ2XTTNgmQ/PhK+q6R8pT/+9ZtmHLqy5ffIVF1d6zvIAAaqKiSPWk834ihFHcLti+gmYY8VhXYlHOzsnfYeVivsjFRd8usmZ81jueL6Tm5fihc7whq8BdP+XtkUh7Xqk3QDvhgZlJUh/Yf2jiY34xyePrUnej/qTKYriz2hNLEiiYvxLcB3gBUj+EgHujcvBlK2HZF0g351pcEH2h/Pbe4mkb6ZTxlaGrrY+NgDu/F0h1jKoxCxGLt/ToCuF9QE0MXx4H/gRZReDqG6KobpTafoy6Kf37fumohI0KkLgqXc8RU7Sf5+FBxBoPuWRBHjy6cD0923dkpkv7TsTFw1gfFWek/WKI0OG+2j3LXvDMwSWEHa9wTIq5ZAaO14gF4DqqslgbAkDXSSDAp5avdZ8pOL4TBwr/9IOFG+pqxRpmjpviILylFY8jiOjIcUSVlEd664qBKmC1wRW4YD/TsTxlVJcY4Fqlozg9yJe0d+dUDXfWFgZle0OZSZAYC9gXJlmHXKL3B5nDx3CNFQHuflXd4hoDZvVNpJNCnBYxg2vAGXpE88cNEV2NhxBIUQl+dtakEYUjym7+eXSbTMl364AXnMUcy1jUFSHRz6JtDq+9wJ8gDyb0xMsai0ICXB0JoitDjBE7+RNw/ifKqmiIle6lw7YriVAM9a33wS4eNZHBDohPVy8FT1oOgIXLA6lG5LP1g57COeRmvvcopF
+ c9DrDlSRGLr8B0/SbWvXyCj06yXj2KSucyXo7/ty+8AwREbNb1kQwF1n9Mxkin5BN9v7nWeqV78yQD5k6IL8y5AGMeQRzjDyXd1RlkBFcMwxl988h0dxWIl7iQbWdm7i+GnZ/44cacozvPD6yRt6D/o76k5dcpKefJYIWTkSq5/aSDR/MN4bS/TyVzuItYXjRmeotIiIQZuaZwXTDc97WojT869ftUCYfrJ7IT9R0xdYIemw5pAE4RN6eRA9GYaGU677L5F9RuDAn4kOIToq+gVzAUB11eaEMn2BOjHCmV3g9Le9UwfQiwVn1B4IyK7SvUwZUx7GOvVy+B5DBsAV00PPjUOssnoXD4dgTNpJlqzvbBXjNaPb82WIpGgOEpCFzGvOIhTHqumH+S2dvV9zbX1R/IJ7+7ns0h8JYOWOg+gNBwczmx6aIw9KvHNjTo37oWqMhSMETtL0hdJdZFlb5/he5rpa+UuqSmq59tPzqha/5iHKtwkUGNFG0AhB0gOpgx1BgQO5GMvcGUleS6jtpC/WOUF2S1NmLyf5j8G54l3uT1MPFsv7bUn/NzqPeHNppMvi6yuAGVtajuVZ2gXR4YzS6ZwDfXgkEIu2fdYUHklTwrY32dKetWwMjQ61zvGRkMeM2N7hzrHhR1KLhddCXyAm3A80T0gEmGGUwwMnTAJlkZNdGKSByVi3iX5SyZqa
+X-OriginatorOrg: kalrayinc.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: e310339f-977f-4e5d-50dd-08dc22426a1c
+X-MS-Exchange-CrossTenant-AuthSource: MR1P264MB1890.FRAP264.PROD.OUTLOOK.COM
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 31 Jan 2024 09:53:02.5194
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 8931925d-7620-4a64-b7fe-20afd86363d3
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: bqkoUnkmcthhkHleNpTEnFGg/mK1DRUeyozhbzc6IDZz5aj47WtMkzx4Cn9cge6BEaQDBueQDfVJJJLXoyaiGQ==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: MR1P264MB1908
+X-ALTERMIMEV2_out: done
 
-On 31/01/2024 10:50, Krzysztof Kozlowski wrote:
-> On 31/01/2024 09:57, Linus Walleij wrote:
->> Hi Krzysztof,
->>
->> something is odd with the addresses on this patch, because neither GPIO
-> 
-> Nothing is odd - I use get_maintainers.pl which just don't print your
-> names. I can add your addresses manually, no problem, but don't blame
-> the contributor that get_maintainers.pl has a missing content-regex. If
-> you want to be Cced on usage of GPIOs, you need to be sure that
-> MAINTAINERS file has appropriate pattern.
-> 
-> 
->> maintainer is on CC nor linux-gpio@vger, and it's such a GPIO-related
->> patch. We only saw it through side effects making <linux/gpio/driver.h>
->> optional, as required by this patch.
->>
->> Please also CC Geert Uytterhoeven, the author of the GPIO aggregator.
-> 
-> 
->>
->> i.e. this:
->>> 2. !GPIOLIB stub:
->>>    https://lore.kernel.org/all/20240125081601.118051-3-krzysztof.kozlowski@linaro.org/
->>
->> On Mon, Jan 29, 2024 at 12:53 PM Krzysztof Kozlowski
->> <krzysztof.kozlowski@linaro.org> wrote:
->>
->>> Devices sharing a reset GPIO could use the reset framework for
->>> coordinated handling of that shared GPIO line.  We have several cases of
->>> such needs, at least for Devicetree-based platforms.
->>>
->>> If Devicetree-based device requests a reset line, while "resets"
->>> Devicetree property is missing but there is a "reset-gpios" one,
->>> instantiate a new "reset-gpio" platform device which will handle such
->>> reset line.  This allows seamless handling of such shared reset-gpios
->>> without need of changing Devicetree binding [1].
->>>
->>> To avoid creating multiple "reset-gpio" platform devices, store the
->>> Devicetree "reset-gpios" GPIO specifiers used for new devices on a
->>> linked list.  Later such Devicetree GPIO specifier (phandle to GPIO
->>> controller, GPIO number and GPIO flags) is used to check if reset
->>> controller for given GPIO was already registered.
->>>
->>> If two devices have conflicting "reset-gpios" property, e.g. with
->>> different ACTIVE_xxx flags, this would allow to spawn two separate
->>> "reset-gpio" devices, where the second would fail probing on busy GPIO
->>> request.
->>>
->>> Link: https://lore.kernel.org/all/YXi5CUCEi7YmNxXM@robh.at.kernel.org/ [1]
->>> Cc: Bartosz Golaszewski <brgl@bgdev.pl>
->>> Cc: Chris Packham <chris.packham@alliedtelesis.co.nz>
->>> Cc: Sean Anderson <sean.anderson@seco.com>
->>> Reviewed-by: Philipp Zabel <p.zabel@pengutronix.de>
->>> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
->> (...)
->>
->> In my naive view, this implements the following:
->>
->> reset -> virtual "gpio" -> many physical gpios[0..n]
-> 
-> It does not, there is no single GPIO here. There is a single reset
-> controller, though, but still multiple GPIOs in DTS.
-> 
->>
->> So if there was already a way in the kernel to map one GPIO to
->> many GPIOs, the framework could just use that with a simple
->> single GPIO?
->>
->> See the bindings in:
->> Documentation/devicetree/bindings/gpio/gpio-delay.yaml
->>
->> This is handled by drivers/gpio/gpio-aggregator.c.
->>
->> This supports a 1-to-1 map: one GPIO in, one GPIO out, same offset.
->> So if that is extended to support 1-to-many, this problem is solved.
-> 
-> It does not match the hardware thus I don't know how to implement it in
-> DTS while keeping the requirement that we are describing hardware, not
-> OS abstractions.
-> 
->>
->> Proposed solution: add a single boolean property such as
->> aggregate-all-gpios; to the gpio-delay node, making it provide
->> one single gpio at offset 0 on the consumer side, and refuse any
->> more consumers.
-> 
-> And how do you solve the reset requirements? The problem is not just to
-> share GPIO. The problem is to share in a way that devices operate
-> properly when they assert/deassert reset.
-> 
->>
->> This will also solve the problem with induced delays on
->> some GPIO lines as I can see was discussed in the bindings,
->> the gpio aggregator already supports that, but it would work
->> fine with a delay being zero as well.
->>
->> This avoids all the hackery with driver stubs etc as well.
-> 
-> 
-> So none of these ideas were posted in previous threads, just because you
-> were not CCed (except one thread)?
-> 
-> https://lore.kernel.org/lkml/20191030120440.3699-1-peter.ujfalusi@ti.com/
-> https://lore.kernel.org/all/9eebec9b-e6fd-4a22-89ea-b434f446e061@linaro.org/
-> https://lore.kernel.org/all/20231018100055.140847-1-krzysztof.kozlowski@linaro.org/
-> https://social.treehouse.systems/@marcan/111268780311634160
-> 
+Hello Krzysztof,
 
-And here:
+On 22/01/2023 12:54, Krzysztof Kozlowski wrote:
+> On 20/01/2023 15:10, Yann Sionneau wrote:
+>> +
+>> +int __init kvx_ipi_ctrl_probe(irqreturn_t (*ipi_irq_handler)(int, void *))
+>> +{
+>> +	struct device_node *np;
+>> +	int ret;
+>> +	unsigned int ipi_irq;
+>> +	void __iomem *ipi_base;
+>> +
+>> +	np = of_find_compatible_node(NULL, NULL, "kalray,kvx-ipi-ctrl");
+> Nope, big no.
+>
+> Drivers go to drivers, not to arch code. Use proper driver infrastructure.
+Thank you for your review.
 
-https://lore.kernel.org/all/CAL_JsqL3oZXJJ5_i4BRGpvWu1X8QFB7OGG=D+zLvvWb=UR1mWg@mail.gmail.com/
-which the place where this idea of using resets appeared. I agree that
-you were not CCed there, but that only means you miss lei filters or
-pattern in MAINTAINERS.
+It raises questions on our side about how to handle this change.
 
-Best regards,
-Krzysztof
+First let me describe the hardware:
+
+The coolidge ipi controller device handles IPI communication between cpus
+inside a cluster.
+
+Each cpu has 8 of its dedicated irq lines (24 to 31) hard-wired to the ipi.
+The ipi controller has 8 sets of 2 registers:
+- a 17-bit "interrupt" register
+- a 17-bit "mask" register
+
+Each couple of register is dedicated to 1 of the 8 irqlines.
+Each of the 17 bits of interrupt/mask register
+identifies a cpu (cores 0 to 15 + secure_core).
+Writing bit i in interrupt register sends an irq to cpu i, according to the mask
+in mask register.
+Writing in interrupt/mask register couple N targets irq line N of the core.
+
+- Ipi generates an interrupt to the cpu when message is ready.
+- Messages are delivered via Axi.
+- Ipi does not have any interrupt input lines.
+
+
+  +---------------+   irq       axi_w
+  |         |  i  |<--/--- ipi <------
+  | CPU     |  n  |  x8
+  |  core0  |  t  |
+  |         |  c  |  irq          irq         msi
+  |         |  t  |<--/--- apic <----- mbox <-------
+  |         |  l  |  x4
+  +---------------+
+  with intctl = core-irq controller
+    
+
+We analyzed how other Linux ports are handling this situation (IPI) and here are several possible solutions:
+
+1/ put everything in smp.c like what longarch is doing.
+  * Except that IPI in longarch seems to involve writing to a special purpose CPU register and not doing a memory mapped write like kvx.
+
+2/ write a device driver in drivers/xxx/ with the content from ipi.c
+  * the probe would just ioremap the reg from DT and register the irq using request_percpu_irq()
+  * it would export a function "kvx_ipi_send()" that would directly be called by smp.c
+  * Question : where would this driver be placed in drivers/ ? drivers/irqchip/ ? Even if this is not per-se an interrupt-controller driver?
+
+3/ write a "dummy" interrupt-controller driver in drivers/irqchip/:
+  * it would create a dummy irq_domain, ioremap the reg, request per_cpu irq
+  * declare a struct irq_chip with only ipi_send_mask() callback declared so that generic IPI code in kernel/irq/ipi.c (__ipi_send_single()) would work.
+  * This would make use of the generic IPI code like what mips and risc-v are doing.
+
+4/ consider our "ipi device" as a mailbox and write a mailbox driver in drivers/mailbox/
+
+5/ consider it as an msi-controller since it transforms an AXI write into IRQ. The solution would look a bit like 3/
+
+6/ consider the ipi as "part of the core_intc" and add the content of ipi.c in drivers/irqchip/irq-kvx-core-intc.c
+
+7/ Do like OpenRISC and CSKY:
+  * declare a function pointer in smp.c (see smp_cross_call() from OpenRISC https://elixir.bootlin.com/linux/latest/source/arch/openrisc/kernel/smp.c#L28)
+  * declare a "setter" function in smp.c (see set_send_ipi() from OpenRISC https://elixir.bootlin.com/linux/latest/source/arch/openrisc/kernel/smp.c#L202)
+  * write a driver in drivers/irqchip/ which ends up calling the setter function (see irq-ompic.c: https://elixir.bootlin.com/linux/latest/source/drivers/irqchip/irq-ompic.c#L191)
+
+
+I would tend to exclude solution 1/ because it does not fit exactly our arch (core reg vs AXI write), or we would have to do an ioremap() from inside smp.c, is this acceptable?
+I would exclude 3/ because it feels a bit dirty to hack a dummy interrupt-controller... our IPI is not an interrupt-controller, there are no input irqs. It's more like a device generating an IRQ.
+4/ and 5/ feel a bit over-engineered.
+6/ I guess this would work since irqchips are initialized early from init_IRQ(), but it does not reflect very much our hardware since each CPU has one core_intc but the IPI is global to each cluster and is accessed over AXI.
+
+Having considered all of this, I would tend to end up with solution 7/ but it honestly does not feel much cleaner than our current proposition. The function pointer dance feels a bit hackish.
+
+What would you prefer?
+
+Regards,
+
+-- 
+Yann
+
+
+
+
 
 
