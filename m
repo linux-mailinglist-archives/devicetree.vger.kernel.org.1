@@ -1,259 +1,224 @@
-Return-Path: <devicetree+bounces-37148-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-37149-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id C679C843CA6
-	for <lists+devicetree@lfdr.de>; Wed, 31 Jan 2024 11:29:28 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 9B9C9843CC9
+	for <lists+devicetree@lfdr.de>; Wed, 31 Jan 2024 11:32:50 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 3D8EF1F3130E
-	for <lists+devicetree@lfdr.de>; Wed, 31 Jan 2024 10:29:28 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 10DCF1F31EA5
+	for <lists+devicetree@lfdr.de>; Wed, 31 Jan 2024 10:32:50 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5A5F469D05;
-	Wed, 31 Jan 2024 10:29:23 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A3DB251C3D;
+	Wed, 31 Jan 2024 10:32:43 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=arndb.de header.i=@arndb.de header.b="r1w+SIgG";
-	dkim=pass (2048-bit key) header.d=messagingengine.com header.i=@messagingengine.com header.b="prxagr4L"
+	dkim=pass (1024-bit key) header.d=bp.renesas.com header.i=@bp.renesas.com header.b="gjF2iIng"
 X-Original-To: devicetree@vger.kernel.org
-Received: from out1-smtp.messagingengine.com (out1-smtp.messagingengine.com [66.111.4.25])
+Received: from JPN01-TYC-obe.outbound.protection.outlook.com (mail-tycjpn01on2113.outbound.protection.outlook.com [40.107.114.113])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5F8BE679E1;
-	Wed, 31 Jan 2024 10:29:21 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=66.111.4.25
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1706696963; cv=none; b=dk3hHH+GlH8o99PbocNQafNofQh1ibF+bPQETRAgeK2lgfefbWwmn8tHeWNEz+8D4bTRr20YyEOTAmuSRt6F47OIJw/y/Vcu0rzlOPNnTUd3hgfZi5BfEW10GZJ4bKHJ/dR6XEuNSSkKmuKHJkiLwX8SlwEThU1xTlRdcfVQtNc=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1706696963; c=relaxed/simple;
-	bh=FmRhJrNN5tdkYj1oEn1WGlN9crcXpNJmsF89y7Q5CxM=;
-	h=MIME-Version:Message-Id:In-Reply-To:References:Date:From:To:Cc:
-	 Subject:Content-Type; b=UX/nDSKraDQnzX4DfkiJmamYy6ac8pdhCvUfEm+3Ik9dDReOUBXvGK2kS5g2MqDE3xP1TWPv9I0Bqg+lPl0Wrn3SclVfd9tctB6DlSRaVATa4VRTsQZFKDap5N+Zsk1M/XGivNyADib9/NA7skAIa29IuwrIhXinS/U4GeKguT0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arndb.de; spf=pass smtp.mailfrom=arndb.de; dkim=pass (2048-bit key) header.d=arndb.de header.i=@arndb.de header.b=r1w+SIgG; dkim=pass (2048-bit key) header.d=messagingengine.com header.i=@messagingengine.com header.b=prxagr4L; arc=none smtp.client-ip=66.111.4.25
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arndb.de
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=arndb.de
-Received: from compute5.internal (compute5.nyi.internal [10.202.2.45])
-	by mailout.nyi.internal (Postfix) with ESMTP id 677D15C00BF;
-	Wed, 31 Jan 2024 05:29:20 -0500 (EST)
-Received: from imap51 ([10.202.2.101])
-  by compute5.internal (MEProxy); Wed, 31 Jan 2024 05:29:20 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=arndb.de; h=cc
-	:cc:content-transfer-encoding:content-type:content-type:date
-	:date:from:from:in-reply-to:in-reply-to:message-id:mime-version
-	:references:reply-to:subject:subject:to:to; s=fm2; t=1706696960;
-	 x=1706783360; bh=iKsNv795W6E/GbLdxQpU+VkSSklR3RfYg2NP17KrEuU=; b=
-	r1w+SIgGWw7dJyt3GzIZOgqo2n/eeg1SXNYzBJKIHR6M+ZtY9LOh/WzC8xl5ZyiX
-	KGiDo4w+ZuwSEQ1vuvGYQvBLaMADawKJeAQY6vMvLojc2nTufc2dwLrdoan28w8L
-	NX4TquETi11QgoauczLec/BpoD1TxBXJ0E5lzJwPQP1Z6V2oWv+o+FEyeeyPYpVn
-	gT8ibuoLeRJlzl96Gs9TKtcIl7CcSgc/LXeZUQCWW8n7s5lOftNa2Mert2BDm2GP
-	YaaVIomhQwxG6eFGNlsVVWMLtp8Y5UtRyG+22deQB/OrbIIMR0mNY97d5YsDwNXi
-	l/a/oPZxoUjFG27YrK7sgA==
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
-	messagingengine.com; h=cc:cc:content-transfer-encoding
-	:content-type:content-type:date:date:feedback-id:feedback-id
-	:from:from:in-reply-to:in-reply-to:message-id:mime-version
-	:references:reply-to:subject:subject:to:to:x-me-proxy:x-me-proxy
-	:x-me-sender:x-me-sender:x-sasl-enc; s=fm3; t=1706696960; x=
-	1706783360; bh=iKsNv795W6E/GbLdxQpU+VkSSklR3RfYg2NP17KrEuU=; b=p
-	rxagr4LAAt5LDBTk5TLUgiJy31iihbvdHZuht6v/ZdhedjYllhFfqCe81x2f95Zo
-	7c6qF6Vqn0Ct+PWPC0LPmC2q3oxm8PJ+97vM2ReNQS4BnfuikN8+tFzLSVwAiLnB
-	XCwpMLMC/apTM5pOXQjPBmynVDClv9VC0FVmqluRrpBax54ys6yQVKOB8+JxDgx7
-	CeJBEi5CJKu+A2PM+6A9QnmPb1gRmwAS45hIUBOcJLxv4NTuzCD+RmnYS8OKNWo/
-	J/L2JLLQS3iQN6M066Waa64UWuCrsmuVL2LkuV7ucDjl3KDA2RKS79l+cG3uXD9h
-	80+Nmub29smTdXwFwugbg==
-X-ME-Sender: <xms:_iC6ZWx41lQGmTgxNQPv033inelQFUqqgqhGoRB1Yy_Suw3I8Xelgg>
-    <xme:_iC6ZSRqCMMRGR4dsf2AkWDbTf6DTYgj0B5L_el4qpBjc-H_WY24kzGjuScisGao2
-    yzSLAe8OaA_rRy8Tlo>
-X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedvkedrfedtledgudehucetufdoteggodetrfdotf
-    fvucfrrhhofhhilhgvmecuhfgrshhtofgrihhlpdfqfgfvpdfurfetoffkrfgpnffqhgen
-    uceurghilhhouhhtmecufedttdenucesvcftvggtihhpihgvnhhtshculddquddttddmne
-    cujfgurhepofgfggfkjghffffhvfevufgtgfesthhqredtreerjeenucfhrhhomhepfdet
-    rhhnugcuuegvrhhgmhgrnhhnfdcuoegrrhhnugesrghrnhgusgdruggvqeenucggtffrrg
-    htthgvrhhnpeegfeejhedvledvffeijeeijeeivddvhfeliedvleevheejleetgedukedt
-    gfejveenucevlhhushhtvghrufhiiigvpedtnecurfgrrhgrmhepmhgrihhlfhhrohhmpe
-    grrhhnugesrghrnhgusgdruggv
-X-ME-Proxy: <xmx:_iC6ZYXhgaK38oMGNaGPwVUfqTjpiERjPnsH4firn_SwhCPxrErYHA>
-    <xmx:_iC6ZcjvaWNtDsNaKMs_RAFWnK9ju6FdUo2vEcbE8gjZqfayeaG8bg>
-    <xmx:_iC6ZYCMLDoeolGZs_ufJ7ezycNWlbfwu69_HSZoxwUOXAZXBSQ_Mw>
-    <xmx:ACG6ZY2U-kSIMTC4srsLhXKXwUwJquPF-ApdBE0B8lL06BOUgQl9CQ>
-Feedback-ID: i56a14606:Fastmail
-Received: by mailuser.nyi.internal (Postfix, from userid 501)
-	id 44453B6008D; Wed, 31 Jan 2024 05:29:18 -0500 (EST)
-X-Mailer: MessagingEngine.com Webmail Interface
-User-Agent: Cyrus-JMAP/3.11.0-alpha0-144-ge5821d614e-fm-20240125.002-ge5821d61
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 32A5B55785;
+	Wed, 31 Jan 2024 10:32:39 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.107.114.113
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1706697163; cv=fail; b=sxIMZsVEOpU7zIlefbr2POMZOkdmaewQAM40/qBpCpufIjVHvkbP6Di5DsDlnLhDNBbylCGC/ayDXczg527awyPZ/7G98YDsRX+fhXWmENkCOLfodbRIQ7aP2eiLgOwpARuyKTSd+z1wyH7zpl+KA6cql2BT6K9Csyq3CvrMN0I=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1706697163; c=relaxed/simple;
+	bh=lXaaWmSVdC2n7xFiY0OYy6AiDIW9bU4gZTblx70q9TM=;
+	h=From:To:CC:Subject:Date:Message-ID:References:In-Reply-To:
+	 Content-Type:MIME-Version; b=sXTMCbG9hHGm08olI4C8xwN+jXJzYjUsu5WApGd1oeG6WhusUqPppfDJJ084LXH/vSH9KPbTqzNNDdC9PhOP9ktUZvD8omZH1xVa5xSlUcRaxSVf9dN3UZa58lvoGAYqRPphEqwSYNyxwKGes3MM1AiCubkPICwRLBR0rRz7meg=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=bp.renesas.com; spf=pass smtp.mailfrom=bp.renesas.com; dkim=pass (1024-bit key) header.d=bp.renesas.com header.i=@bp.renesas.com header.b=gjF2iIng; arc=fail smtp.client-ip=40.107.114.113
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=bp.renesas.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bp.renesas.com
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=I7BVdBZ/WiBA7QE//oyMcRl92T+VEljk9BS/mXKGYmb/dIIWQVOHDksJnAtg/uYdkZo0yErGgIF0vykPV6CB11gLjuVW1lX7ScsxWDvbhgKVMeJjef/CLEXS128p6VbqwmAesgGrQaaY/llKlw8y3mrox9zQWv1bdoWlvs4pDjuXG0egpqPqafxkNd7edxynTtusa2hZEuhnnga/NNoCa7OAn+ym/6FxApd7RGrYzm9m/p8dhvhZ3rzRh7heDNFMMZDYaAQtd+igNROJ/vVqgIej6uYJvXaVuaoe+ROgz0/EYmJEiPTSch6M4LZQyGl5IsNUYCd5Fpig1GEcyrmMvA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=cVrHWtTAF4b4ZhQDsOAefrD6HfGEu4JHO732nhYOMTI=;
+ b=O5/1bV6CfEQHlq6gpsR/RnonjRyphs96FXi7BVaGd1bxsA+jr+c3oi5RhOP7nPFeWP5+eiYSpZjdyI+SVnYa8oPYGpGnKtoWeBamE1ZmFb+AagU/VYTUQtQS843A8jW1VzOB7EB2OzdcQw0qb7C18JcRvDjabxzifDPzwtv2TJYbJhVDVgaQjXXGULp7iG9wSExzP4qEW/k5UTUcAn0IVOoDymicHGrE8CcpgnBWsQg8g/IIHBJOFEFDTzu33IodWVKCVRxl0qk9AnV2oygl7Zhq4OG8t2+LtEficRgpAyxtLDM5PkExMTtJrF7WW+ecK+JG8HYRI8A5J4MY6WHVHw==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=bp.renesas.com; dmarc=pass action=none
+ header.from=bp.renesas.com; dkim=pass header.d=bp.renesas.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bp.renesas.com;
+ s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=cVrHWtTAF4b4ZhQDsOAefrD6HfGEu4JHO732nhYOMTI=;
+ b=gjF2iIngNbGg4qQVGHcaJ4VNq9PWP9neRAZ79s6L9Oqc17xU3nzr0neXyGBRb1D+wSLS8N3Hxqgy40XF0Vo5uZxvO8/JlL46+AoxVlK9mO4agdc/jrezmfmYXTqTX70yS5ZR0i57W5PLIlvaGjmHEpVT/TDjPc66QnH6jcEYs70=
+Received: from TYCPR01MB11269.jpnprd01.prod.outlook.com
+ (2603:1096:400:3c0::10) by TYYPR01MB10595.jpnprd01.prod.outlook.com
+ (2603:1096:400:30a::6) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7249.22; Wed, 31 Jan
+ 2024 10:32:37 +0000
+Received: from TYCPR01MB11269.jpnprd01.prod.outlook.com
+ ([fe80::8d12:a02a:9fdc:9c78]) by TYCPR01MB11269.jpnprd01.prod.outlook.com
+ ([fe80::8d12:a02a:9fdc:9c78%5]) with mapi id 15.20.7249.023; Wed, 31 Jan 2024
+ 10:32:37 +0000
+From: Biju Das <biju.das.jz@bp.renesas.com>
+To: Claudiu.Beznea <claudiu.beznea@tuxon.dev>, "wim@linux-watchdog.org"
+	<wim@linux-watchdog.org>, "linux@roeck-us.net" <linux@roeck-us.net>,
+	"robh+dt@kernel.org" <robh+dt@kernel.org>,
+	"krzysztof.kozlowski+dt@linaro.org" <krzysztof.kozlowski+dt@linaro.org>,
+	"conor+dt@kernel.org" <conor+dt@kernel.org>, "geert+renesas@glider.be"
+	<geert+renesas@glider.be>, "magnus.damm@gmail.com" <magnus.damm@gmail.com>,
+	"mturquette@baylibre.com" <mturquette@baylibre.com>, "sboyd@kernel.org"
+	<sboyd@kernel.org>, "p.zabel@pengutronix.de" <p.zabel@pengutronix.de>
+CC: "linux-watchdog@vger.kernel.org" <linux-watchdog@vger.kernel.org>,
+	"devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+	"linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+	"linux-renesas-soc@vger.kernel.org" <linux-renesas-soc@vger.kernel.org>,
+	"linux-clk@vger.kernel.org" <linux-clk@vger.kernel.org>, Claudiu.Beznea
+	<claudiu.beznea@tuxon.dev>, Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>
+Subject: RE: [PATCH v2 04/11] watchdog: rzg2l_wdt: Check return status of
+ pm_runtime_put()
+Thread-Topic: [PATCH v2 04/11] watchdog: rzg2l_wdt: Check return status of
+ pm_runtime_put()
+Thread-Index: AQHaVC8iXcXSbumPXUOI0ciCmgv5kLDzuJVQ
+Date: Wed, 31 Jan 2024 10:32:37 +0000
+Message-ID:
+ <TYCPR01MB11269AD7463C9C7C0A09A43A9867C2@TYCPR01MB11269.jpnprd01.prod.outlook.com>
+References: <20240131102017.1841495-1-claudiu.beznea.uj@bp.renesas.com>
+ <20240131102017.1841495-5-claudiu.beznea.uj@bp.renesas.com>
+In-Reply-To: <20240131102017.1841495-5-claudiu.beznea.uj@bp.renesas.com>
+Accept-Language: en-GB, en-US
+Content-Language: en-US
+X-MS-Has-Attach:
+X-MS-TNEF-Correlator:
+authentication-results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=bp.renesas.com;
+x-ms-publictraffictype: Email
+x-ms-traffictypediagnostic: TYCPR01MB11269:EE_|TYYPR01MB10595:EE_
+x-ms-office365-filtering-correlation-id: ee248fe1-459c-4081-0e76-08dc2247f19f
+x-ld-processed: 53d82571-da19-47e4-9cb4-625a166a4a2a,ExtAddr
+x-ms-exchange-senderadcheck: 1
+x-ms-exchange-antispam-relay: 0
+x-microsoft-antispam: BCL:0;
+x-microsoft-antispam-message-info:
+ buu0K786TbU/bsHp5Rx7ICxBAIytfhZu6f6adDwK7VNd9JW9oaAbEgFJtNGHBN2+Tqgg2EmX7nIbizsQI5fJzPjAAfg7TFBN1EOb5XdB07nJFSGQOmeDf58WhJ0MuXOZoPZcBjFK677I5z/x+osR2iX2p5DbRMW8CthcFlkyGQE5XR3IKLcuV/b/62Pl+oFVullVeRGYTW/nS9pvJFniBL/9XCk0bG5RqwFXSfno/d3BACP7Fd7TwskC6OQ9zM6MnJ2hCLygJvwjxCjechF01Qa6Zsf9AJrXR5CGk9TmEjxWjfufhp1Hf0OwS0TmyKqspS+405o1w8Lufk89w+tuMp74TTWKy0nA9xiaL2HzqJkLIsQt379YemyerbNQPevk5RutIoVudhNbFi9A8tiP0gpVdyHUoDaQ1vF57aueQHsUQX8D3Nmx+YrAamRJw8RwgoLXWu6Tn1rC3M0hWe3Cz+Dm1Jd627xcnvdKG+cW3FVehDtEqaVrQuIA8a19Bkr5xJt8juiGHzA4Wrf9SRABTUxf2V4l60Yoi8tWe7qLedqguhhuy+YzJspg2MGdVTRinPxMIaTs6BP34AJc/Q87ny4B0gxGzpI6hMTwfwIi3oj3uUzBl45CLU446RdYW68x9VeITo3ggtFWUOkIKOH0XQ==
+x-forefront-antispam-report:
+ CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:TYCPR01MB11269.jpnprd01.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230031)(39860400002)(136003)(396003)(366004)(346002)(376002)(230922051799003)(186009)(451199024)(1800799012)(64100799003)(8936002)(2906002)(5660300002)(7416002)(26005)(4326008)(33656002)(8676002)(107886003)(55016003)(122000001)(38100700002)(86362001)(41300700001)(83380400001)(7696005)(110136005)(9686003)(66446008)(66946007)(76116006)(38070700009)(66476007)(64756008)(66556008)(54906003)(316002)(53546011)(921011)(52536014)(6506007)(71200400001)(478600001);DIR:OUT;SFP:1102;
+x-ms-exchange-antispam-messagedata-chunkcount: 1
+x-ms-exchange-antispam-messagedata-0:
+ =?us-ascii?Q?HaUhnPIPrvWifMn2W8IplW5mCkhT1d04VxhCzHVMfc8I6TDeFcDq5eCGkAT2?=
+ =?us-ascii?Q?V9PQLHNlD18gGs10SWqdh1eBiRviJyfucItQEUxwlo+h7ZPYKZ0c00ORbk5E?=
+ =?us-ascii?Q?dmJUHgaVN6FXBHAlFnhCW+G0jtavmTpol3M1wS/UYuoRdN8zaRko3holo1pR?=
+ =?us-ascii?Q?C0SRnfgd583nTQcUtyUhTzUEsRTzmeEsCn52AXYHQM5axix/glRTo0+3Yov/?=
+ =?us-ascii?Q?omlF7dRjQsATZL5J27sI4GI+65qAFj1FiO1OtthfzAgFuufVjIpWl+9RjzGE?=
+ =?us-ascii?Q?0ctUkyuIDi3OFCUnwvFoyx0cX2mp6gV+zGsnOmlwW05+meVelwwtCbcgt7EY?=
+ =?us-ascii?Q?A2aI66eOGDUYV4HhupJKcEEcUW6VLEJlFyC9ayLYkq3bYGxSF5g6VKpZheYe?=
+ =?us-ascii?Q?iqqugJEhw2c8UC9Cv8B/pj02FArMYPuVKvTXgRKTqsASxl5wx1TJmBLqIQvI?=
+ =?us-ascii?Q?liBYvagF7VMSWAC3nVRKxLhh4j2TR10y3w7kQ/faXs7G/uGNIqdPoNcgCesn?=
+ =?us-ascii?Q?WGUN7J8lL9Xdqz3bpydoGhflYW4hmh7eEtFzwJFVua6LV5b+A7ipNTNiqhFl?=
+ =?us-ascii?Q?6ZBuro51W06l2nFnC1Y8edvA0klxU4TK3bcdNjZZmk4VrmMsik/E3Xpkbui1?=
+ =?us-ascii?Q?Go/ZKBr851y0HE/2bqLJC2iAiS1rO40wXeVOxB+GeWUaOq6AYTE/AgXGS+MI?=
+ =?us-ascii?Q?SX/t8XRw5t2Mgcshyv2irFkhFN9SwWdcQesyca1vLUEaIbUd4HtNJpF4ZdOF?=
+ =?us-ascii?Q?AElPfHpD1pgleXrCsuiR2PpyiZYUiQCxDwo6fwzTmKWiwjqXLt1P7dVqcb3W?=
+ =?us-ascii?Q?5onlIAvL00eC4oyj0lXCvXZREoR47kxtdNHgU4FUHobw1IEp1InZNS8Um5et?=
+ =?us-ascii?Q?qyYmXlQ54RmxAXSwmKFHiNuy6mNwDguf1wk+N1cSCBYu5D422IB04o5nnZ67?=
+ =?us-ascii?Q?Srqam2v0yZM8xDk9Q9WxpfQDz1fh2mIuB3QO/MPBXfOM8o8aCYf8rCa7wzi1?=
+ =?us-ascii?Q?I0Aj8JlhTCF2lLFh+s+2xxy0/3CFnjrosKMMkeCqhYWGBGYBBMRyMjzbaKOn?=
+ =?us-ascii?Q?6hdY29o/dfJqz3+RijsPOl6BgxQP2iTsydouPmoRCtW/Eq8bAgTI3PxRyeq8?=
+ =?us-ascii?Q?eh8A9+rI9Q6E+ms5YsySQo2bwcUT40roij2s0YlEzSSCaZ9gKhir1bC2aemU?=
+ =?us-ascii?Q?gFDMn133L/H7zu+gkYbqUQk1AqKpyGeQEuyT1HopHfDgAbdvr+HF7F8bRG5U?=
+ =?us-ascii?Q?Ng45ADliSfM9TXl8h97jRBFQaqb9HqUTtkwYCBCTZg2dtU6L3IN6HqBbP99N?=
+ =?us-ascii?Q?zzgTyBeUphB7/45Ciw6Mmf7Cc8/lQ8zHcffQ1DonpQyRT4h6fgSxqPHDwd4J?=
+ =?us-ascii?Q?DQBwJTWUlLxRaxfYcUunvHXWlSlpAwjTUklHrONCJNiV4nV6kF1FOZUkR1e6?=
+ =?us-ascii?Q?HQaKqtuQlFr0IXGgbkE4u2G4a3M/ZZ94/5uY5iSG10GbtAFp4mKVZaN9oHRi?=
+ =?us-ascii?Q?IJNKPnScG3b0vL84gc/XAjBg+vCpfvzPxG+XQvzmTSlUstaQh6CNR7Nq/2ls?=
+ =?us-ascii?Q?dUHl01mWRPUgf2qv0PSy8/SYm/ZRWkiQDKYhANekctQ/C8q7tjOpIMH3oTN9?=
+ =?us-ascii?Q?VA=3D=3D?=
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Message-Id: <1036060c-25dd-439b-b081-893d0cb000f6@app.fastmail.com>
-In-Reply-To: <269edff0-d989-4ac8-b0c3-bce31283806b@kalrayinc.com>
-References: <20230120141002.2442-1-ysionneau@kalray.eu>
- <20230120141002.2442-32-ysionneau@kalray.eu>
- <995eb624-3efe-10fc-a6ed-883d52d591bb@linaro.org>
- <269edff0-d989-4ac8-b0c3-bce31283806b@kalrayinc.com>
-Date: Wed, 31 Jan 2024 11:28:57 +0100
-From: "Arnd Bergmann" <arnd@arndb.de>
-To: "Yann Sionneau" <ysionneau@kalrayinc.com>,
- "Krzysztof Kozlowski" <krzysztof.kozlowski@linaro.org>,
- "Yann Sionneau" <ysionneau@kalray.eu>,
- "Jonathan Corbet" <corbet@lwn.net>,
- "Thomas Gleixner" <tglx@linutronix.de>, "Marc Zyngier" <maz@kernel.org>,
- "Rob Herring" <robh+dt@kernel.org>,
- "Krzysztof Kozlowski" <krzysztof.kozlowski+dt@linaro.org>,
- "Will Deacon" <will@kernel.org>, "Peter Zijlstra" <peterz@infradead.org>,
- "Boqun Feng" <boqun.feng@gmail.com>,
- "Mark Rutland" <mark.rutland@arm.com>,
- "Eric W. Biederman" <ebiederm@xmission.com>,
- "Kees Cook" <keescook@chromium.org>, "Oleg Nesterov" <oleg@redhat.com>,
- "Ingo Molnar" <mingo@redhat.com>, "Waiman Long" <longman@redhat.com>,
- "Aneesh Kumar" <aneesh.kumar@linux.ibm.com>,
- "Andrew Morton" <akpm@linux-foundation.org>,
- "Nicholas Piggin" <npiggin@gmail.com>,
- "Paul Moore" <paul@paul-moore.com>, "Eric Paris" <eparis@redhat.com>,
- "Christian Brauner" <brauner@kernel.org>,
- "Paul Walmsley" <paul.walmsley@sifive.com>,
- "Palmer Dabbelt" <palmer@dabbelt.com>,
- "Albert Ou" <aou@eecs.berkeley.edu>,
- "Jules Maselbas" <jmaselbas@kalray.eu>,
- "Guillaume Thouvenin" <gthouvenin@kalray.eu>,
- "Clement Leger" <clement@clement-leger.fr>,
- "Vincent Chardon" <vincent.chardon@elsys-design.com>,
- =?UTF-8?Q?Marc_Poulhi=C3=A8s?= <dkm@kataplop.net>,
- "Julian Vetter" <jvetter@kalray.eu>, "Samuel Jones" <sjones@kalray.eu>,
- "Ashley Lesdalons" <alesdalons@kalray.eu>,
- "Thomas Costis" <tcostis@kalray.eu>, "Marius Gligor" <mgligor@kalray.eu>,
- "Jonathan Borne" <jborne@kalray.eu>,
- "Julien Villette" <jvillette@kalray.eu>,
- "Luc Michel" <lmichel@kalray.eu>, "Louis Morhet" <lmorhet@kalray.eu>,
- "Julien Hascoet" <jhascoet@kalray.eu>,
- "Jean-Christophe Pince" <jcpince@gmail.com>,
- "Guillaume Missonnier" <gmissonnier@kalray.eu>,
- "Alex Michon" <amichon@kalray.eu>, "Huacai Chen" <chenhuacai@kernel.org>,
- "WANG Xuerui" <git@xen0n.name>,
- "Shaokun Zhang" <zhangshaokun@hisilicon.com>,
- "John Garry" <john.garry@huawei.com>,
- "Guangbin Huang" <huangguangbin2@huawei.com>,
- "Bharat Bhushan" <bbhushan2@marvell.com>,
- "Bibo Mao" <maobibo@loongson.cn>, "Atish Patra" <atishp@atishpatra.org>,
- "Jason A . Donenfeld" <Jason@zx2c4.com>, "Qi Liu" <liuqi115@huawei.com>,
- "Jiaxun Yang" <jiaxun.yang@flygoat.com>,
- "Catalin Marinas" <catalin.marinas@arm.com>,
- "Mark Brown" <broonie@kernel.org>,
- "Janosch Frank" <frankja@linux.ibm.com>,
- "Alexey Dobriyan" <adobriyan@gmail.com>,
- "Julian Vetter" <jvetter@kalrayinc.com>, jmaselbas@zdiv.net
-Cc: "Benjamin Mugnier" <mugnier.benjamin@gmail.com>,
- linux-doc@vger.kernel.org, linux-kernel@vger.kernel.org,
- devicetree@vger.kernel.org, linux-mm@kvack.org,
- Linux-Arch <linux-arch@vger.kernel.org>, linux-audit@redhat.com,
- linux-riscv@lists.infradead.org, bpf@vger.kernel.org
-Subject: Re: [RFC PATCH v2 31/31] kvx: Add IPI driver
-Content-Type: text/plain;charset=utf-8
-Content-Transfer-Encoding: quoted-printable
+X-OriginatorOrg: bp.renesas.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-AuthSource: TYCPR01MB11269.jpnprd01.prod.outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: ee248fe1-459c-4081-0e76-08dc2247f19f
+X-MS-Exchange-CrossTenant-originalarrivaltime: 31 Jan 2024 10:32:37.1240
+ (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 53d82571-da19-47e4-9cb4-625a166a4a2a
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: 84JPnMe2MCSMQP6dhlEt5CCkhLJRTmBErtkJXSO39MmJ9C5KKnr73CoRW1/cYNPfUaDxV2I5IMevIiwD7KvhpfNe3M/2Jg2UG1AXEuO/RJ8=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: TYYPR01MB10595
 
-On Wed, Jan 31, 2024, at 10:52, Yann Sionneau wrote:
-> On 22/01/2023 12:54, Krzysztof Kozlowski wrote:
->> On 20/01/2023 15:10, Yann Sionneau wrote:
->>> +
->>> +int __init kvx_ipi_ctrl_probe(irqreturn_t (*ipi_irq_handler)(int, v=
-oid *))
->>> +{
->>> +	struct device_node *np;
->>> +	int ret;
->>> +	unsigned int ipi_irq;
->>> +	void __iomem *ipi_base;
->>> +
->>> +	np =3D of_find_compatible_node(NULL, NULL, "kalray,kvx-ipi-ctrl");
->> Nope, big no.
->>
->> Drivers go to drivers, not to arch code. Use proper driver infrastruc=
-ture.
-> Thank you for your review.
->
-> It raises questions on our side about how to handle this change.
->
-> First let me describe the hardware:
->
-> The coolidge ipi controller device handles IPI communication between c=
-pus
-> inside a cluster.
->
-> Each cpu has 8 of its dedicated irq lines (24 to 31) hard-wired to the=
- ipi.
-> The ipi controller has 8 sets of 2 registers:
-> - a 17-bit "interrupt" register
-> - a 17-bit "mask" register
->
-> Each couple of register is dedicated to 1 of the 8 irqlines.
-> Each of the 17 bits of interrupt/mask register
-> identifies a cpu (cores 0 to 15 + secure_core).
-> Writing bit i in interrupt register sends an irq to cpu i, according t=
-o the mask
-> in mask register.
-> Writing in interrupt/mask register couple N targets irq line N of the =
-core.
->
-> - Ipi generates an interrupt to the cpu when message is ready.
-> - Messages are delivered via Axi.
-> - Ipi does not have any interrupt input lines.
->
->
-> =C2=A0 +---------------+=C2=A0=C2=A0 irq=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0 axi_w
-> =C2=A0 |=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 |=C2=A0 i=C2=A0=
- |<--/--- ipi <------
-> =C2=A0 | CPU=C2=A0=C2=A0=C2=A0=C2=A0 |=C2=A0 n=C2=A0 |=C2=A0 x8
-> =C2=A0 |=C2=A0 core0=C2=A0 |=C2=A0 t=C2=A0 |
-> =C2=A0 |=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 |=C2=A0 c=C2=A0=
- |=C2=A0 irq=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 irq=C2=
-=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 msi
-> =C2=A0 |=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 |=C2=A0 t=C2=A0=
- |<--/--- apic <----- mbox <-------
-> =C2=A0 |=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 |=C2=A0 l=C2=A0=
- |=C2=A0 x4
-> =C2=A0 +---------------+
-> =C2=A0 with intctl =3D core-irq controller
->=C2=A0=C2=A0 =C2=A0
->
-> We analyzed how other Linux ports are handling this situation (IPI) an=
-d=20
-> here are several possible solutions:
->
-> 1/ put everything in smp.c like what longarch is doing.
-> =C2=A0 * Except that IPI in longarch seems to involve writing to a spe=
-cial=20
-> purpose CPU register and not doing a memory mapped write like kvx.
->
-> 2/ write a device driver in drivers/xxx/ with the content from ipi.c
-> =C2=A0 * the probe would just ioremap the reg from DT and register the=
- irq=20
-> using request_percpu_irq()
-> =C2=A0 * it would export a function "kvx_ipi_send()" that would direct=
-ly be=20
-> called by smp.c
-> =C2=A0 * Question : where would this driver be placed in drivers/ ?=20
-> drivers/irqchip/ ? Even if this is not per-se an interrupt-controller=20
-> driver?
+Hi Claudiu,
 
-This looks like it's close enough to the irqchip driver
-that you can just have it in the same file as the 'intctl'
-portion.
+Thanks for the feedback.
 
-Top-level irqchip implementations tend to be rather architecture
-specific, as does the IPI mechanism. Depending on the register
-layout, I think you can have a single devicetree node for
-the combination of the core-irq (for managing your
-own interrupts) and the ipi (for receiving interrupts from
-others), and then have a driver in drivers/irqchip to
-deal with both. For the ipi mechanism, trying to abstract
-it too much generally makes it too slow, so I would not
-go through a nested irqchip or a mailbox driver etc.
+> -----Original Message-----
+> From: Claudiu <claudiu.beznea@tuxon.dev>
+> Sent: Wednesday, January 31, 2024 10:20 AM
+> Subject: [PATCH v2 04/11] watchdog: rzg2l_wdt: Check return status of
+> pm_runtime_put()
+>=20
+> From: Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>
+>=20
+> pm_runtime_put() may return an error code. Check its return status.
+>=20
+> Along with it the rzg2l_wdt_set_timeout() function was updated to
+> propagate the result of rzg2l_wdt_stop() to its caller.
+>=20
+> Fixes: 2cbc5cd0b55f ("watchdog: Add Watchdog Timer driver for RZ/G2L")
+> Signed-off-by: Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>
+> ---
+>=20
+> Changes in v2:
+> - propagate the return code of rzg2l_wdt_stop() to it's callers
+>=20
+>  drivers/watchdog/rzg2l_wdt.c | 11 +++++++++--
+>  1 file changed, 9 insertions(+), 2 deletions(-)
+>=20
+> diff --git a/drivers/watchdog/rzg2l_wdt.c b/drivers/watchdog/rzg2l_wdt.c
+> index d87d4f50180c..7bce093316c4 100644
+> --- a/drivers/watchdog/rzg2l_wdt.c
+> +++ b/drivers/watchdog/rzg2l_wdt.c
+> @@ -144,9 +144,13 @@ static int rzg2l_wdt_start(struct watchdog_device
+> *wdev)  static int rzg2l_wdt_stop(struct watchdog_device *wdev)  {
+>  	struct rzg2l_wdt_priv *priv =3D watchdog_get_drvdata(wdev);
+> +	int ret;
+>=20
+>  	rzg2l_wdt_reset(priv);
+> -	pm_runtime_put(wdev->parent);
+> +
+> +	ret =3D pm_runtime_put(wdev->parent);
+> +	if (ret < 0)
+> +		return ret;
 
-I don't know what the 'apic' in your diagram is, so that
-would be either a nested irqchip or could be part of
-the same driver as well.
+Do we need to check the return code? So far we didn't hit this condition.
+If you are planning to do it, then just=20
 
-     Arnd
+return pm_runtime_put(wdev->parent);
+
+Cheers,
+Biju
+
+>=20
+>  	return 0;
+
+
+>  }
+> @@ -163,7 +167,10 @@ static int rzg2l_wdt_set_timeout(struct
+> watchdog_device *wdev, unsigned int time
+>  	 * to reset the module) so that it is updated with new timeout
+> values.
+>  	 */
+>  	if (watchdog_active(wdev)) {
+> -		rzg2l_wdt_stop(wdev);
+> +		ret =3D rzg2l_wdt_stop(wdev);
+> +		if (ret)
+> +			return ret;
+> +
+>  		ret =3D rzg2l_wdt_start(wdev);
+>  	}
+>=20
+> --
+> 2.39.2
+
 
