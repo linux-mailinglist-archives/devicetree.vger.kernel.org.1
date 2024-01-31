@@ -1,193 +1,115 @@
-Return-Path: <devicetree+bounces-37234-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-37235-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id C346884422A
-	for <lists+devicetree@lfdr.de>; Wed, 31 Jan 2024 15:49:45 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9DEDC84424A
+	for <lists+devicetree@lfdr.de>; Wed, 31 Jan 2024 15:55:05 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 80011283825
-	for <lists+devicetree@lfdr.de>; Wed, 31 Jan 2024 14:49:44 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 5B4382931E3
+	for <lists+devicetree@lfdr.de>; Wed, 31 Jan 2024 14:55:04 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 00BEF84A27;
-	Wed, 31 Jan 2024 14:49:42 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="QW+u4gkx"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9DFDF134745;
+	Wed, 31 Jan 2024 14:50:49 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BE81084A25;
-	Wed, 31 Jan 2024 14:49:41 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+Received: from foss.arm.com (foss.arm.com [217.140.110.172])
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id BCCE212F5A1;
+	Wed, 31 Jan 2024 14:50:41 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.140.110.172
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1706712581; cv=none; b=IPjKnuUAKAyQvdmnJVsio/rmvjepDTKYEMXqBQtjYIld+X6cDOSjQgRRTcY+zMa65GEWX6c8C3xJyVzxRazKKpMkL/YHXoZD6m1nY0bqFb5Wk28rdljc6bZSUUoau4EmXsxIiKVPzhkAEE03ZAwtvTzobIV3LKJQItpqnHPxnWE=
+	t=1706712646; cv=none; b=AMukgAwjQ/XCVjkQ+DVUopbToqn07ya4T1iSn0TrL761eYXwj7IKTEIKeqkszpZtMx6bqhlrTsAkBv6E+va6IK5BOIBIBwP+v7OyOe/QPaZm+nThyxDQ3viybp7S6knXi+AgGGiTKdQ69hCoINjrQXdzNYCW5zkYHd/QxFqiGw4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1706712581; c=relaxed/simple;
-	bh=2yHAEIfWo9jtDG3p0AkHhbA/aM0nxnP2vXRtqVa7teY=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=of1j+/5tEnySYCkBCNiEzjgVL3GOVNdhNCz8HOvDTpQDWSBkaMzdds5kkNG/wVDFNUgWmeGuDM2/aBkUnQFGOd+3vnnpkXze3VL7Lr9TWJnEFixNZY7S+khQZ0Ncv6TQjjonpNonJvf0Yl+81CCX7dueCYmQ9I24p488AbCNDzo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=QW+u4gkx; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id EDC5CC433C7;
-	Wed, 31 Jan 2024 14:49:40 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1706712581;
-	bh=2yHAEIfWo9jtDG3p0AkHhbA/aM0nxnP2vXRtqVa7teY=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=QW+u4gkxi4Y+A1kx9nhpvAQ1EP8rM+k3jqjMGovujJJB59p7806HWkXfBEj0gLi/3
-	 dpE9ybCf48GATqlB1ESTepI2Vpc3Gz5mcuduAC0xO4CA3jImqCFl1onHVBM3vgNgve
-	 P7WRiiNDNwbi/bBxQFbHMPjLCcSFpaECoKh3R4IzGBz8kKHS0VLNM+83cFVzXFslcS
-	 ElzySdf458R0htk5byWFQGchyYXTxhGF1QstYas278sioSKd3GxQvzlRYyXl412lt1
-	 JdArA3NOIlG6ngKW+zO3XK46/bMum/FZUw4ptS5PISyPW2hhEUfe+LEN6JUngCsW63
-	 Vc+Yrx6EsRs4Q==
-Date: Wed, 31 Jan 2024 08:49:39 -0600
-From: Rob Herring <robh@kernel.org>
-To: Alexander Graf <graf@amazon.com>
-Cc: linux-kernel@vger.kernel.org, linux-trace-kernel@vger.kernel.org,
-	linux-mm@kvack.org, devicetree@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org, kexec@lists.infradead.org,
-	linux-doc@vger.kernel.org, x86@kernel.org,
-	Eric Biederman <ebiederm@xmission.com>,
-	"H . Peter Anvin" <hpa@zytor.com>,
-	Andy Lutomirski <luto@kernel.org>,
-	Peter Zijlstra <peterz@infradead.org>,
-	Steven Rostedt <rostedt@goodmis.org>,
-	Andrew Morton <akpm@linux-foundation.org>,
-	Mark Rutland <mark.rutland@arm.com>,
-	Tom Lendacky <thomas.lendacky@amd.com>,
-	Ashish Kalra <ashish.kalra@amd.com>,
-	James Gowans <jgowans@amazon.com>,
-	Stanislav Kinsburskii <skinsburskii@linux.microsoft.com>,
-	arnd@arndb.de, pbonzini@redhat.com, madvenka@linux.microsoft.com,
-	Anthony Yznaga <anthony.yznaga@oracle.com>,
-	Usama Arif <usama.arif@bytedance.com>,
-	David Woodhouse <dwmw@amazon.co.uk>,
-	Benjamin Herrenschmidt <benh@kernel.crashing.org>,
-	Krzysztof Kozlowski <krzk@kernel.org>
-Subject: Re: [PATCH v3 08/17] arm64: Add KHO support
-Message-ID: <20240131144939.GA1241147-robh@kernel.org>
-References: <20240117144704.602-1-graf@amazon.com>
- <20240117144704.602-9-graf@amazon.com>
+	s=arc-20240116; t=1706712646; c=relaxed/simple;
+	bh=iavdwSoa/91DZNj9sYAc+ToYnDtfSzIXsRuwYSklzyM=;
+	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=goRAvAbhshx9zKefXZhJmBirU6CJt5W0Do6SvomiJML2H3GAxl8QcF+cqNbg8tU0hiz2dE8XH/GmZ3y2LFC1hgb+BY590wJ7nk7f74KRyI54j4stu9Qi9xTr/+Vhh1Boi8yvjn8NIswlOJdjFTLXmQDVt+5vf4VCtUFm/zGGuXM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com; spf=pass smtp.mailfrom=arm.com; arc=none smtp.client-ip=217.140.110.172
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=arm.com
+Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
+	by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 1D28ADA7;
+	Wed, 31 Jan 2024 06:51:22 -0800 (PST)
+Received: from donnerap.manchester.arm.com (usa-sjc-imap-foss1.foss.arm.com [10.121.207.14])
+	by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 14BD43F762;
+	Wed, 31 Jan 2024 06:50:35 -0800 (PST)
+Date: Wed, 31 Jan 2024 14:50:33 +0000
+From: Andre Przywara <andre.przywara@arm.com>
+To: Aleksandr Shubin <privatesub2@gmail.com>
+Cc: linux-kernel@vger.kernel.org, Uwe =?UTF-8?B?S2xlaW5lLUvDtm5pZw==?=
+ <u.kleine-koenig@pengutronix.de>, Rob Herring <robh+dt@kernel.org>,
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley
+ <conor+dt@kernel.org>, Chen-Yu Tsai <wens@csie.org>, Jernej Skrabec
+ <jernej.skrabec@gmail.com>, Samuel Holland <samuel@sholland.org>, Paul
+ Walmsley <paul.walmsley@sifive.com>, Palmer Dabbelt <palmer@dabbelt.com>,
+ Albert Ou <aou@eecs.berkeley.edu>, Philipp Zabel <p.zabel@pengutronix.de>,
+ Maksim Kiselev <bigunclemax@gmail.com>, Cristian Ciocaltea
+ <cristian.ciocaltea@collabora.com>, Marc Kleine-Budde <mkl@pengutronix.de>,
+ John Watts <contact@jookia.org>, Cheo Fusi <fusibrandon13@gmail.com>,
+ linux-pwm@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, linux-sunxi@lists.linux.dev,
+ linux-riscv@lists.infradead.org
+Subject: Re: [PATCH v8 3/3] riscv: dts: allwinner: d1: Add pwm node
+Message-ID: <20240131145033.0b05f4c6@donnerap.manchester.arm.com>
+In-Reply-To: <20240131125920.2879433-4-privatesub2@gmail.com>
+References: <20240131125920.2879433-1-privatesub2@gmail.com>
+	<20240131125920.2879433-4-privatesub2@gmail.com>
+Organization: ARM
+X-Mailer: Claws Mail 3.18.0 (GTK+ 2.24.32; aarch64-unknown-linux-gnu)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20240117144704.602-9-graf@amazon.com>
+Content-Type: text/plain; charset=US-ASCII
+Content-Transfer-Encoding: 7bit
 
-On Wed, Jan 17, 2024 at 02:46:55PM +0000, Alexander Graf wrote:
-> We now have all bits in place to support KHO kexecs. This patch adds
-> awareness of KHO in the kexec file as well as boot path for arm64 and
-> adds the respective kconfig option to the architecture so that it can
-> use KHO successfully.
+On Wed, 31 Jan 2024 15:59:16 +0300
+Aleksandr Shubin <privatesub2@gmail.com> wrote:
+
+Hi,
+
+> D1 and T113s contain a pwm controller with 8 channels.
+> This controller is supported by the sun20i-pwm driver.
 > 
-> Signed-off-by: Alexander Graf <graf@amazon.com>
+> Add a device tree node for it.
 > 
+> Signed-off-by: Aleksandr Shubin <privatesub2@gmail.com>
+
+Compared against the manual:
+
+Reviewed-by: Andre Przywara <andre.przywara@arm.com>
+
+Cheers,
+Andre
+
 > ---
+>  arch/riscv/boot/dts/allwinner/sunxi-d1s-t113.dtsi | 12 ++++++++++++
+>  1 file changed, 12 insertions(+)
 > 
-> v1 -> v2:
-> 
->   - test bot warning fix
->   - Change kconfig option to ARCH_SUPPORTS_KEXEC_KHO
->   - s/kho_reserve_mem/kho_reserve_previous_mem/g
->   - s/kho_reserve/kho_reserve_scratch/g
->   - Remove / reduce ifdefs for kho fdt code
-> ---
->  arch/arm64/Kconfig        |  3 +++
->  arch/arm64/kernel/setup.c |  2 ++
->  arch/arm64/mm/init.c      |  8 ++++++
->  drivers/of/fdt.c          | 39 ++++++++++++++++++++++++++++
->  drivers/of/kexec.c        | 54 +++++++++++++++++++++++++++++++++++++++
->  5 files changed, 106 insertions(+)
-> 
-> diff --git a/arch/arm64/Kconfig b/arch/arm64/Kconfig
-> index 8f6cf1221b6a..44d8923d9db4 100644
-> --- a/arch/arm64/Kconfig
-> +++ b/arch/arm64/Kconfig
-> @@ -1496,6 +1496,9 @@ config ARCH_SUPPORTS_KEXEC_IMAGE_VERIFY_SIG
->  config ARCH_DEFAULT_KEXEC_IMAGE_VERIFY_SIG
->  	def_bool y
+> diff --git a/arch/riscv/boot/dts/allwinner/sunxi-d1s-t113.dtsi b/arch/riscv/boot/dts/allwinner/sunxi-d1s-t113.dtsi
+> index 5a9d7f5a75b4..435a1e66aa6a 100644
+> --- a/arch/riscv/boot/dts/allwinner/sunxi-d1s-t113.dtsi
+> +++ b/arch/riscv/boot/dts/allwinner/sunxi-d1s-t113.dtsi
+> @@ -145,6 +145,18 @@ uart3_pb_pins: uart3-pb-pins {
+>  			};
+>  		};
 >  
-> +config ARCH_SUPPORTS_KEXEC_KHO
-> +	def_bool y
+> +		pwm: pwm@2000c00 {
+> +			compatible = "allwinner,sun20i-d1-pwm";
+> +			reg = <0x02000c00 0x400>;
+> +			clocks = <&ccu CLK_BUS_PWM>,
+> +				 <&dcxo>,
+> +				 <&ccu CLK_APB0>;
+> +			clock-names = "bus", "hosc", "apb0";
+> +			resets = <&ccu RST_BUS_PWM>;
+> +			status = "disabled";
+> +			#pwm-cells = <0x3>;
+> +		};
 > +
->  config ARCH_SUPPORTS_CRASH_DUMP
->  	def_bool y
->  
-> diff --git a/arch/arm64/kernel/setup.c b/arch/arm64/kernel/setup.c
-> index 417a8a86b2db..9aa05b84d202 100644
-> --- a/arch/arm64/kernel/setup.c
-> +++ b/arch/arm64/kernel/setup.c
-> @@ -346,6 +346,8 @@ void __init __no_sanitize_address setup_arch(char **cmdline_p)
->  
->  	paging_init();
->  
-> +	kho_reserve_previous_mem();
-> +
->  	acpi_table_upgrade();
->  
->  	/* Parse the ACPI tables for possible boot-time configuration */
-> diff --git a/arch/arm64/mm/init.c b/arch/arm64/mm/init.c
-> index 74c1db8ce271..1a8fc91509af 100644
-> --- a/arch/arm64/mm/init.c
-> +++ b/arch/arm64/mm/init.c
-> @@ -358,6 +358,8 @@ void __init bootmem_init(void)
->  	 */
->  	arch_reserve_crashkernel();
->  
-> +	kho_reserve_scratch();
-> +
->  	memblock_dump_all();
->  }
->  
-> @@ -386,6 +388,12 @@ void __init mem_init(void)
->  	/* this will put all unused low memory onto the freelists */
->  	memblock_free_all();
->  
-> +	/*
-> +	 * Now that all KHO pages are marked as reserved, let's flip them back
-> +	 * to normal pages with accurate refcount.
-> +	 */
-> +	kho_populate_refcount();
-> +
->  	/*
->  	 * Check boundaries twice: Some fundamental inconsistencies can be
->  	 * detected at build time already.
-> diff --git a/drivers/of/fdt.c b/drivers/of/fdt.c
-> index bf502ba8da95..f9b9a36fb722 100644
-> --- a/drivers/of/fdt.c
-> +++ b/drivers/of/fdt.c
-> @@ -1006,6 +1006,42 @@ void __init early_init_dt_check_for_usable_mem_range(void)
->  		memblock_add(rgn[i].base, rgn[i].size);
->  }
->  
-> +/**
-> + * early_init_dt_check_kho - Decode info required for kexec handover from DT
-> + */
-> +static void __init early_init_dt_check_kho(void)
-> +{
-> +	unsigned long node = chosen_node_offset;
-> +	u64 kho_start, scratch_start, scratch_size, mem_start, mem_size;
-> +	const __be32 *p;
-> +	int l;
-> +
-> +	if (!IS_ENABLED(CONFIG_KEXEC_KHO) || (long)node < 0)
-> +		return;
-> +
-> +	p = of_get_flat_dt_prop(node, "linux,kho-dt", &l);
+>  		ccu: clock-controller@2001000 {
+>  			compatible = "allwinner,sun20i-d1-ccu";
+>  			reg = <0x2001000 0x1000>;
 
-These need to be documented. chosen node schema lives in dtschema.
-
-> +	if (l != (dt_root_addr_cells + dt_root_size_cells) * sizeof(__be32))
-> +		return;
-
-I would just make all these fixed 64-bit values rather than based on 
-address and size cells. That's what we've done on more recent chosen 
-properties describing regions.
-
-Rob
 
