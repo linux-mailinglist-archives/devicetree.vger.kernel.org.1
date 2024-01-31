@@ -1,92 +1,78 @@
-Return-Path: <devicetree+bounces-37097-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-37098-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 46A36843A89
-	for <lists+devicetree@lfdr.de>; Wed, 31 Jan 2024 10:13:19 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2BAE5843A8A
+	for <lists+devicetree@lfdr.de>; Wed, 31 Jan 2024 10:13:22 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 7A38C1C27A56
-	for <lists+devicetree@lfdr.de>; Wed, 31 Jan 2024 09:13:18 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id DCD4128DE85
+	for <lists+devicetree@lfdr.de>; Wed, 31 Jan 2024 09:13:20 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9B1A464CC8;
-	Wed, 31 Jan 2024 09:12:08 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="l3sTgE5R"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 147E964AA5;
+	Wed, 31 Jan 2024 09:12:18 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from gloria.sntech.de (gloria.sntech.de [185.11.138.130])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 705536340C;
-	Wed, 31 Jan 2024 09:12:08 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C889460DCC;
+	Wed, 31 Jan 2024 09:12:14 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.11.138.130
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1706692328; cv=none; b=fxbXu42In4r6Qh/TcybtFTCQ5QEPmGDag8O8VrKBFRQP7aaMX8iYSmq5NudUXDo1sImsgN88tv4Js4FaEMJJyTEtzly3myeIvlXLTGXNvQWMe79kUieh6S0WGb47rlip2rIdw7rWlZybdnR0VFGpaI7ObCVMxFPHlYaFjv5aFlM=
+	t=1706692338; cv=none; b=J30SHwc61Omdtn0qbOZ1QjWXBQBD9kSZ1hY0JsAiyvKai1vuy9AVCt/VV+8F2SGeP81fC4qTWE9kW8tP0BJGPT5mttLEFN1Gla1dvbsCCxRn2fC3BpsbFnKFw5MPmem+YeQPfTezakDLKz13APlIfNVQZp7gJMwp1SQm/YQTAL8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1706692328; c=relaxed/simple;
-	bh=6j/gTw4kZ6KgjYYpxtBcqBlrc4J6FZDT+nOpz3DsXYE=;
+	s=arc-20240116; t=1706692338; c=relaxed/simple;
+	bh=D80N2vifwpdm81cX5xhckzyaCvMCtfIkuavJQlBm2YM=;
 	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=kTzYblWfDB+TfVEIZNySlnxtB4JXkXtWOHcNpkXYvi6nqEJlCPbpFafQ51mOfoqgbjvMTwEbN3Df+q3Pfiatw5xSzEhHo7FgmVa8KRW1eOpwuJnDg4uo2VeTIkknhPXFHkvj1rYmQ8CuiUCAdQVhLM8uzBNUJSRf9j3wgbKwZmo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=l3sTgE5R; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id A50D0C433C7;
-	Wed, 31 Jan 2024 09:12:07 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1706692328;
-	bh=6j/gTw4kZ6KgjYYpxtBcqBlrc4J6FZDT+nOpz3DsXYE=;
-	h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-	b=l3sTgE5RidABATDKXKRPY/bfblqQp4XuW7Qmd1HAXH4591IPX0Edowt8e/Ubblstu
-	 kUhGxxQ1UVqQQZAcopQLUuKnl7Kl0OC+RnmHrTFrs0is5sOIWDaPmi46szZvm0NfnC
-	 8xOx1i4HXVbfGPTBMsPiBnYber8yvaCxpei416ru7CuFXeUXcLfmI21UGrhprKWeuw
-	 +z84UCvBPCOUv66ekFrgzkqVd2QTxApnqURzLjdPibV5v/YXaET5+xTcVypA6AYOOw
-	 WYcQolzLvUrRPg9oMA+txgy4nwejpiUMLXYJSJD8kCL6VcDNQGfR7mgPzv/rRCm5/v
-	 E1Uev5Ht246AQ==
-From: Lorenzo Bianconi <lorenzo@kernel.org>
-To: jic23@kernel.org
-Cc: linux-iio@vger.kernel.org,
-	lorenzo.bianconi@redhat.com,
-	devicetree@vger.kernel.org,
-	robh+dt@kernel.org,
-	krzysztof.kozlowski+dt@linaro.org
-Subject: [PATCH v3 3/3] dt-bindings: iio: imu: st_lsm6dsx: add asm330lhhxg1
-Date: Wed, 31 Jan 2024 10:11:31 +0100
-Message-ID: <93160585e69e4531a981064817ccbb143a6a1f70.1706692153.git.lorenzo@kernel.org>
-X-Mailer: git-send-email 2.43.0
-In-Reply-To: <cover.1706692153.git.lorenzo@kernel.org>
-References: <cover.1706692153.git.lorenzo@kernel.org>
+	 MIME-Version:Content-Type; b=qaQlH3qghnhBNxQHM5NKzhwPyfO8oS6Nmppb+jlCJ0epUy7/wBZcyZkstHBxq+K5vaBNOv9ArPx1Sc+u81JSoFDZ0lhFd3p/afxNU79PiLlJn3smy7cmTNHFtukFtRS1Kkn4xKFp5tNKTdQ1QdFXN/SUPhpHjGLiYIW+eAmRuSQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=sntech.de; spf=pass smtp.mailfrom=sntech.de; arc=none smtp.client-ip=185.11.138.130
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=sntech.de
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=sntech.de
+Received: from i53875af6.versanet.de ([83.135.90.246] helo=diego.localnet)
+	by gloria.sntech.de with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+	(Exim 4.94.2)
+	(envelope-from <heiko@sntech.de>)
+	id 1rV6dZ-000364-MD; Wed, 31 Jan 2024 10:12:05 +0100
+From: Heiko =?ISO-8859-1?Q?St=FCbner?= <heiko@sntech.de>
+To: Rob Herring <robh+dt@kernel.org>,
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+ Conor Dooley <conor+dt@kernel.org>, Alexey Charkov <alchark@gmail.com>
+Cc: Daniel Lezcano <daniel.lezcano@linaro.org>,
+ Dragan Simic <dsimic@manjaro.org>, Viresh Kumar <viresh.kumar@linaro.org>,
+ devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org,
+ Alexey Charkov <alchark@gmail.com>
+Subject:
+ Re: [PATCH v2 3/4] arm64: dts: rockchip: Add OPP data for CPU cores on RK3588
+Date: Wed, 31 Jan 2024 10:12:04 +0100
+Message-ID: <2168725.pYTLVKaXyH@diego>
+In-Reply-To: <20240130-rk-dts-additions-v2-3-c6222c4c78df@gmail.com>
+References:
+ <20240130-rk-dts-additions-v2-0-c6222c4c78df@gmail.com>
+ <20240130-rk-dts-additions-v2-3-c6222c4c78df@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Transfer-Encoding: 7Bit
+Content-Type: text/plain; charset="us-ascii"
 
-Add device bindings for asm330lhhxg1 IMU sensor.
-The asm330lhhx supports a subset of the features and functionality
-provided by the lsm6dsr via identical interfaces and so is a
-suitable fallback compatible.
+Am Dienstag, 30. Januar 2024, 19:21:15 CET schrieb Alexey Charkov:
+> By default the CPUs on RK3588 start up in a conservative performance
+> mode. Add frequency and voltage mappings to the device tree to enable
+> dynamic scaling via cpufreq
 
-Signed-off-by: Lorenzo Bianconi <lorenzo@kernel.org>
----
- Documentation/devicetree/bindings/iio/imu/st,lsm6dsx.yaml | 3 +++
- 1 file changed, 3 insertions(+)
+Please add a paragraph describing where the opp values comes from.
+Probably just the vendor kernel, which is fine, but I really like to
+document that these values have some sort of grounds ;-)
 
-diff --git a/Documentation/devicetree/bindings/iio/imu/st,lsm6dsx.yaml b/Documentation/devicetree/bindings/iio/imu/st,lsm6dsx.yaml
-index 28b667a9cb76..316601b2da7a 100644
---- a/Documentation/devicetree/bindings/iio/imu/st,lsm6dsx.yaml
-+++ b/Documentation/devicetree/bindings/iio/imu/st,lsm6dsx.yaml
-@@ -49,6 +49,9 @@ properties:
-       - items:
-           - const: st,asm330lhb
-           - const: st,asm330lhh
-+      - items:
-+          - const: st,asm330lhhxg1
-+          - const: st,lsm6dsr
- 
-   reg:
-     maxItems: 1
--- 
-2.43.0
+
+Thanks
+Heiko
+
+
 
 
