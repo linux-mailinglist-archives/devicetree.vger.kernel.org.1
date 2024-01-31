@@ -1,109 +1,206 @@
-Return-Path: <devicetree+bounces-37318-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-37319-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2686F84471D
-	for <lists+devicetree@lfdr.de>; Wed, 31 Jan 2024 19:28:38 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id B4F2A84473A
+	for <lists+devicetree@lfdr.de>; Wed, 31 Jan 2024 19:37:01 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 598E61C21E49
-	for <lists+devicetree@lfdr.de>; Wed, 31 Jan 2024 18:28:37 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 69F1C28FAC6
+	for <lists+devicetree@lfdr.de>; Wed, 31 Jan 2024 18:37:00 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D8A40131737;
-	Wed, 31 Jan 2024 18:28:33 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 465E917570;
+	Wed, 31 Jan 2024 18:36:57 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="ez8dc2DQ"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="I0rUv+Y6"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-vk1-f179.google.com (mail-vk1-f179.google.com [209.85.221.179])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id ADE9E12CDB8;
-	Wed, 31 Jan 2024 18:28:33 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9534118AFB;
+	Wed, 31 Jan 2024 18:36:55 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.179
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1706725713; cv=none; b=TcYaza88DAiwegvLS2HqtD3bfi2f34nDGZ6+H2YVjUF7jxcLsCGZ6zluUCTcGZ97ojBeEpbedsz8vm21IaXzyLbQKXzh2MCgbiIEHoafS/yrISCzjgJAmwUos6TdaOm/SNnrXgcJb15DZIjE2/j9o9d5bsBRw0mLnDTL7YGCBQc=
+	t=1706726217; cv=none; b=gKzsmFaC2kq/UgYHFbfclPzj0lj0sWzXxayygtEU2umulyUclJvy1f0e61DoxfMty5/Az3WGZJDBvlmls1GSIC38UX0yPbxyXWvGsdebz6iktxkvg97hO1B7P33lfKbJXPC9hLTWiWMCwMkl/7eZ1mm2IM5W8/BgrQp0udt5kc8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1706725713; c=relaxed/simple;
-	bh=uXD9wXZPbD3tGfe7h6pADwvjVjqmPIcprSb0bb+khfQ=;
-	h=Date:Content-Type:MIME-Version:From:To:Cc:In-Reply-To:References:
-	 Message-Id:Subject; b=RhuwTABGCM9f7Ro08YZhf6rYcE4Da1Q1bjjgnoFYmC+VUd3NtKo3oINQvTOHJKqn4g+CQDcQ9duK1FzHkW4w5czsv4+TcZ6fuPr4UysukWHDOjZ9hVd9bmNo+HH4TkqydYfllpzAfPhwFZatMbLbw00K5lpW797NBXemMVbAdw4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=ez8dc2DQ; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id C92F7C433C7;
-	Wed, 31 Jan 2024 18:28:32 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1706725713;
-	bh=uXD9wXZPbD3tGfe7h6pADwvjVjqmPIcprSb0bb+khfQ=;
-	h=Date:From:To:Cc:In-Reply-To:References:Subject:From;
-	b=ez8dc2DQA4rxE8PejR6GPQpMNZg/Z/bCV9J7M8YvyDyklu5F7V9Z5Ugqx+l1aPssC
-	 Eu8pa8gT8n3ISoUKX2jQKDZNILb7WTw073ganRvq6dGnWS6QfoOkbUr/j/VEONRrDM
-	 dnif7aBshwLw5umOwPYoKb6rrYPibHVsfrLH3Vz9D9OzgtULi/hhZ6sWxVUsPEbfTA
-	 UW+Z77peIoKEafNuQBeR0nTyJng/aL2QVFKTAAZW/wpd7UyN9+jniDPn5yOLCBZBVP
-	 ebh950XasjzGSO3BfSKTQIf6pbIbn7kmydJaOHvvtzVIzhEifPKsMJ18YN3uGE0Rmy
-	 2T8MJEQeio7xw==
-Date: Wed, 31 Jan 2024 12:28:31 -0600
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
+	s=arc-20240116; t=1706726217; c=relaxed/simple;
+	bh=eb+VOK77YTif17liq1RxZojiKrVECAtAYhvihr2dNWw=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=rHWiA5lkZUhsNHLncv6B5mhZ10GXQZ6e3hyJbJZ0qNoJ+ipc3wYi2wYIvf4dEYKQdke0OOleTWVVui3y3WjBjEUQ5o1JIwVxCgA7F9fUfiQi0SZo0z3cHdPLIiqRWgEliGI3F2B+qqWpFKAnPKsMQIh0N0AEpIuSPHSfJ4pC14Y=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=I0rUv+Y6; arc=none smtp.client-ip=209.85.221.179
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-vk1-f179.google.com with SMTP id 71dfb90a1353d-4bda1df7e35so39418e0c.3;
+        Wed, 31 Jan 2024 10:36:55 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1706726214; x=1707331014; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=md+5piiWXmKjN01VJwfPkduOvpzQsk5Gbc1LCAGZCHM=;
+        b=I0rUv+Y6qhcg4NkiHwOHf6LusZf4W5WmRtjdOBzlXjKRl5EVZLsbb4xIL37LEdwcPR
+         Bi4/uG/dBhpvidTIw2nPV9k1ciss0EYqvfmu/wSJiOxKo52dhpfxSNzy5VhRpYdXm7BY
+         mp+RY5lfSwPEuy9KUe8cwsTiIjITYe2chYVm17kP38XDtT80ZfHkaDeK622xXqCsR0VP
+         pjLiAVXx0a40y/lANIFpRS14Zgupt05i41IuysWz3L7HFNw06WCCWiP2Y5jrCfQKN/T4
+         JHNj3+jGkxz36dyyO2AqmzBL0zlX6oECzkhbqfY188Sfk5seiHDI+XrTbNKizz6eKfum
+         3vLA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1706726214; x=1707331014;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=md+5piiWXmKjN01VJwfPkduOvpzQsk5Gbc1LCAGZCHM=;
+        b=ZkepSvjK/wflNPWTfUUMdWphNNxr/U+TtSBPOA+k/pVTsNcgQoW3Q9h8sfeAiahh46
+         rcxK6C27fPJEuh50J61zfiPTl/aOsVHI5h1VQFKTLzyWHSXGsLNMBhZ+5NjkLE5DzBMT
+         lN0l7QePySigUTRxUiPT7IofYwVWSdK9FVLDFdvLoXbqwFH3H6Edkj3RAcg0ntbC4DP7
+         AuV9iK4D6QwtrB+Nsyo6Qyt2hMckTWoWSFwv4JHwKLRuT7l1oF92X4oMN90YlfEniQrR
+         CUcLfpzyWZbD4uTAXnFDf/ingNZhb0N/q0GXo84RTzn8VM+SA8UN7yHN9KSrq38cNV9H
+         SUBQ==
+X-Gm-Message-State: AOJu0YyG0Oyu1YKJ9rp1YTcZEL5t6iuoqoM2u5+WnSkxseuC/3gt7Rrt
+	tIZjGfrPhhkVkwUIwrb1LTUIFP2YZwCidb3UHoCsMaTR/fDiRF0sVvj+2jVkZ8LK5PP8voQEadR
+	W6JXeH6llxWUgzb2D5GDWxnw0sAo=
+X-Google-Smtp-Source: AGHT+IEnW38T9BQmWMOcc/tVl3EFzSGPQf9woPnBE3HaaWWQoeX0PopBSjevHvFAvfx+3jXs6OflFORZ8k7PxaXoMY4=
+X-Received: by 2002:a05:6122:1818:b0:4bd:b44c:24c1 with SMTP id
+ ay24-20020a056122181800b004bdb44c24c1mr2595166vkb.11.1706726214233; Wed, 31
+ Jan 2024 10:36:54 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-From: Rob Herring <robh@kernel.org>
-To: Daniel Scally <dan.scally@ideasonboard.com>
-Cc: linux-media@vger.kernel.org, nayden.kanchev@arm.com, 
- linux-arm-kernel@lists.infradead.org, conor+dt@kernel.org, 
- laurent.pinchart@ideasonboard.com, devicetree@vger.kernel.org, 
- krzysztof.kozlowski+dt@linaro.org, mchehab@kernel.org, 
- jerome.forissier@linaro.org, jacopo.mondi@ideasonboard.com, 
- kieran.bingham@ideasonboard.com, robh+dt@kernel.org
-In-Reply-To: <20240131164709.810587-3-dan.scally@ideasonboard.com>
-References: <20240131164709.810587-1-dan.scally@ideasonboard.com>
- <20240131164709.810587-3-dan.scally@ideasonboard.com>
-Message-Id: <170672571070.2062253.5359379478215022864.robh@kernel.org>
-Subject: Re: [PATCH 2/5] dt-bindings: media: Add bindings for ARM mali-c55
+References: <20240129151618.90922-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
+ <20240129151618.90922-3-prabhakar.mahadev-lad.rj@bp.renesas.com> <CAMuHMdV7Q4kMv1pFVNBf5oYF=_W_snp=5GKLpr9+OxeqxywhBw@mail.gmail.com>
+In-Reply-To: <CAMuHMdV7Q4kMv1pFVNBf5oYF=_W_snp=5GKLpr9+OxeqxywhBw@mail.gmail.com>
+From: "Lad, Prabhakar" <prabhakar.csengg@gmail.com>
+Date: Wed, 31 Jan 2024 18:36:20 +0000
+Message-ID: <CA+V-a8spFYvOo2=9CwM-1EyMA3Xrc_rggUgxDZwZan2ou4SG1A@mail.gmail.com>
+Subject: Re: [PATCH 2/5] irqchip/renesas-rzg2l: Add support for RZ/Five SoC
+To: Geert Uytterhoeven <geert@linux-m68k.org>
+Cc: Thomas Gleixner <tglx@linutronix.de>, Rob Herring <robh+dt@kernel.org>, 
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Magnus Damm <magnus.damm@gmail.com>, linux-renesas-soc@vger.kernel.org, 
+	devicetree@vger.kernel.org, linux-riscv@lists.infradead.org, 
+	linux-kernel@vger.kernel.org, Biju Das <biju.das.jz@bp.renesas.com>, 
+	Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>, 
+	Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
+Hi Geert,
 
-On Wed, 31 Jan 2024 16:47:06 +0000, Daniel Scally wrote:
-> Add the yaml binding for ARM's Mali-C55 Image Signal Processor.
-> 
-> Acked-by: Nayden Kanchev <nayden.kanchev@arm.com>
-> Signed-off-by: Daniel Scally <dan.scally@ideasonboard.com>
-> ---
->  .../bindings/media/arm,mali-c55.yaml          | 51 +++++++++++++++++++
->  1 file changed, 51 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/media/arm,mali-c55.yaml
-> 
+Thank you for the review.
 
-My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
-on your patch (DT_CHECKER_FLAGS is new in v5.13):
+On Tue, Jan 30, 2024 at 11:38=E2=80=AFAM Geert Uytterhoeven
+<geert@linux-m68k.org> wrote:
+>
+> Hi Prabhakar,
+>
+> On Mon, Jan 29, 2024 at 4:16=E2=80=AFPM Prabhakar <prabhakar.csengg@gmail=
+.com> wrote:
+> > From: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+> >
+> > The IX45 block has additional mask registers (NMSK/IMSK/TMSK) as compar=
+ed
+> > to the RZ/G2L (family) SoC.
+> >
+> > Introduce masking/unmasking support for IRQ and TINT interrupts in IRQC
+> > controller driver. Two new registers, IMSK and TMSK, are defined to
+> > handle masking on RZ/Five SoC. The implementation utilizes a new data
+> > structure, `struct rzg2l_irqc_data`, to determine mask support for a
+> > specific controller instance.
+> >
+> > Signed-off-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+>
+> Thanks for your patch!
+>
+> > --- a/drivers/irqchip/irq-renesas-rzg2l.c
+> > +++ b/drivers/irqchip/irq-renesas-rzg2l.c
+> > @@ -66,15 +68,25 @@ struct rzg2l_irqc_reg_cache {
+> >         u32     titsr[2];
+> >  };
+> >
+> > +/**
+> > + * struct rzg2l_irqc_data - OF data structure
+> > + * @mask_supported: Indicates if mask registers are available
+> > + */
+> > +struct rzg2l_irqc_data {
+>
+> This structure has the same name as the single static struct
+> rzg2l_irqc_priv instance, which is confusing.
+>
+Agreed, I will rename it to rzg2l_irqc_of_data
 
-yamllint warnings/errors:
+> > +       bool    mask_supported;
+> > +};
+> > +
+> >  /**
+> >   * struct rzg2l_irqc_priv - IRQ controller private data structure
+> >   * @base:      Controller's base address
+> > + * @data:      OF data pointer
+> >   * @fwspec:    IRQ firmware specific data
+> >   * @lock:      Lock to serialize access to hardware registers
+> >   * @cache:     Registers cache for suspend/resume
+> >   */
+> >  static struct rzg2l_irqc_priv {
+> >         void __iomem                    *base;
+> > +       const struct rzg2l_irqc_data    *data;
+>
+> Replacing this by a bool would avoid a pointer dereference in each user,
+> and allows you to make rzg2l_irqc_data etc. __initconst.
+>
+Do you mean just add "bool mask_supported" here and get rid of struct
+rzg2l_irqc_data ? Can you please elaborate here..
 
-dtschema/dtc warnings/errors:
-Documentation/devicetree/bindings/media/arm,mali-c55.example.dts:29.18-33.13: Warning (unit_address_vs_reg): /example-0/isp@400000/port@0: node has a unit name, but no reg or ranges property
-Documentation/devicetree/bindings/media/arm,mali-c55.example.dts:30.32-32.15: Warning (unit_address_vs_reg): /example-0/isp@400000/port@0/endpoint@0: node has a unit name, but no reg or ranges property
-/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/media/arm,mali-c55.example.dtb: isp@400000: 'port' is a required property
-	from schema $id: http://devicetree.org/schemas/media/arm,mali-c55.yaml#
-/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/media/arm,mali-c55.example.dtb: isp@400000: 'port@0' does not match any of the regexes: 'pinctrl-[0-9]+'
-	from schema $id: http://devicetree.org/schemas/media/arm,mali-c55.yaml#
+> >         struct irq_fwspec               fwspec[IRQC_NUM_IRQ];
+> >         raw_spinlock_t                  lock;
+> >         struct rzg2l_irqc_reg_cache     cache;
+>
+> > @@ -371,9 +475,23 @@ static int rzg2l_irqc_parse_interrupts(struct rzg2=
+l_irqc_priv *priv,
+> >         return 0;
+> >  }
+> >
+> > +static const struct rzg2l_irqc_data rzfive_irqc_data =3D {
+> > +       .mask_supported =3D true,
+> > +};
+> > +
+> > +static const struct rzg2l_irqc_data rzg2l_irqc_default_data =3D {
+> > +       .mask_supported =3D false,
+> > +};
+> > +
+> > +static const struct of_device_id rzg2l_irqc_matches[] =3D {
+> > +       { .compatible =3D "renesas,r9a07g043f-irqc", .data =3D &rzfive_=
+irqc_data },
+> > +       { }
+> > +};
+> > +
+> >  static int rzg2l_irqc_init(struct device_node *node, struct device_nod=
+e *parent)
+> >  {
+> >         struct irq_domain *irq_domain, *parent_domain;
+> > +       const struct of_device_id *match;
+> >         struct platform_device *pdev;
+> >         struct reset_control *resetn;
+> >         int ret;
+> > @@ -392,6 +510,12 @@ static int rzg2l_irqc_init(struct device_node *nod=
+e, struct device_node *parent)
+> >         if (!rzg2l_irqc_data)
+> >                 return -ENOMEM;
+> >
+> > +       match =3D of_match_node(rzg2l_irqc_matches, node);
+> > +       if (match)
+> > +               rzg2l_irqc_data->data =3D match->data;
+> > +       else
+> > +               rzg2l_irqc_data->data =3D &rzg2l_irqc_default_data;
+>
+> Instead of matching a second time, I'd rather add a second
+> IRQCHIP_MATCH() entry with a different init function, passing the
+> actual rzg2l_irqc_data pointer.
+>
+OK, or rather just pass true/false instead of rzg2l_irqc_of_data pointer.?
 
-doc reference errors (make refcheckdocs):
-
-See https://patchwork.ozlabs.org/project/devicetree-bindings/patch/20240131164709.810587-3-dan.scally@ideasonboard.com
-
-The base for the series is generally the latest rc1. A different dependency
-should be noted in *this* patch.
-
-If you already ran 'make dt_binding_check' and didn't see the above
-error(s), then make sure 'yamllint' is installed and dt-schema is up to
-date:
-
-pip3 install dtschema --upgrade
-
-Please check and re-submit after running the above command yourself. Note
-that DT_SCHEMA_FILES can be set to your schema file to speed up checking
-your schema. However, it must be unset to test all examples with your schema.
-
+Cheers,
+Prabhakar
 
