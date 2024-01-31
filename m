@@ -1,76 +1,148 @@
-Return-Path: <devicetree+bounces-36929-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-36930-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id EFBB384332F
-	for <lists+devicetree@lfdr.de>; Wed, 31 Jan 2024 03:13:18 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id BB31B8433CE
+	for <lists+devicetree@lfdr.de>; Wed, 31 Jan 2024 03:26:44 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 2DC391C25D73
-	for <lists+devicetree@lfdr.de>; Wed, 31 Jan 2024 02:13:18 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id EE3331C20ECA
+	for <lists+devicetree@lfdr.de>; Wed, 31 Jan 2024 02:26:43 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 898FF522A;
-	Wed, 31 Jan 2024 02:13:14 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8DDE45672;
+	Wed, 31 Jan 2024 02:26:37 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="DxTFmKVB"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="OPPgOhnm"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wm1-f45.google.com (mail-wm1-f45.google.com [209.85.128.45])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5CF8BE544;
-	Wed, 31 Jan 2024 02:13:13 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C87FAFBEA;
+	Wed, 31 Jan 2024 02:26:35 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.45
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1706667194; cv=none; b=S+ebWCaxKIMAbqZe52Rh5vcwWh5fP5H4cikpGouBLvNdUFvyzLFND34ScGk0RPYv084FtvYk8FDPWLVEJkiN3k8BsnkQOq9Z9WIaULy8kntXXboEuRwXWlBip0+OqutBmfnSFLlQYC+7JlNoZNl5IUqCtaZqjEcI1RVq9FaTXRo=
+	t=1706667997; cv=none; b=pc2biBnq2H0bvSlybyF4triKPPJUSpaT+PPcVYh/mddoPH3dTFqqeGZkBjuv8iCwjg1wWrXSilRCNVTg4PtDoVTH8oXRfLINEozJHJ4HWsm5j/61tt55r4lg+DDBgAh2wsTvr3JAcW1CgPtMPjI6iS+gkL7zR/INCEuyewo1pZQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1706667194; c=relaxed/simple;
-	bh=fr8MKqKq5VzL01ZNYfbnakgkkzMKoMPmD0i9DFGHfcY=;
-	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=buyHmjyG3IAs3AMr/X+QVcQFA7T+tfhWnTThyTBWbQeMVRJ0JEf/DDdTYHvGVEsa666hm2YOsf6n+ijhilgqQp65k0ykWCAfPVU48m/g7EI2FzxTF8Mjkuf5E+K+fmwUSChh6RiOGDrW8yddrbqhfZi1gm22u5H8KQnW32PmTTk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=DxTFmKVB; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 24510C433C7;
-	Wed, 31 Jan 2024 02:13:10 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1706667193;
-	bh=fr8MKqKq5VzL01ZNYfbnakgkkzMKoMPmD0i9DFGHfcY=;
-	h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
-	b=DxTFmKVBeT7KFppHLnfC8CaWPZ2KCRM/1A7b6DHU/6a34j/Ne30UEaTD57dJhA31b
-	 iYi153eWBMjkPov9fXbgW2oLo4EgudGSHZjs9kWoAwkLrn42OnMsoCeWwtXsdZM61H
-	 JL/sMg1ApL7dr1AOUHM3tubG6d2An+6jwkiwg2x/3IwZiMdHjznk7LzE8ZdaIG3vOt
-	 RPuDfG4JFSl8Xs0qrkA1J0D3XICL7LMPGK3mjsXVWt1Of1oI1CnLJ8hkBta1r61CLu
-	 tT9d0a++urhIzDYx+VmNF0Ye4hN3MWzZtIuvqNtnt/0Y7aSZcpbS9li61Ta1IxunMm
-	 fmDnD3q0GQprg==
-Date: Tue, 30 Jan 2024 18:13:08 -0800
-From: Jakub Kicinski <kuba@kernel.org>
-To: Vineeth Karumanchi <vineeth.karumanchi@amd.com>
-Cc: <nicolas.ferre@microchip.com>, <claudiu.beznea@tuxon.dev>,
- <davem@davemloft.net>, <edumazet@google.com>, <pabeni@redhat.com>,
- <robh+dt@kernel.org>, <krzysztof.kozlowski+dt@linaro.org>,
- <conor+dt@kernel.org>, <linux@armlinux.org.uk>, <netdev@vger.kernel.org>,
- <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>, <git@amd.com>
-Subject: Re: [PATCH net-next 0/3] net: macb: WOL enhancements
-Message-ID: <20240130181308.3e5bfa36@kernel.org>
-In-Reply-To: <20240130104845.3995341-1-vineeth.karumanchi@amd.com>
-References: <20240130104845.3995341-1-vineeth.karumanchi@amd.com>
+	s=arc-20240116; t=1706667997; c=relaxed/simple;
+	bh=/caAATAC3YlAgHJWcLd2PRWxBcWyFww9t7GlhCaKJgk=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=tXnZcpkopda94KmebXzcu3Lck8YLna62+kWPqfWl+B0dOAos/fdVUd0J4uxDPYGxUCWRJ9o4xIqpA4UAOuuen3ezsBfJFlaZHidmGYIXxyiwSqkNR5ZwIGrQEIsYYbJhR83rXQyBU9BCWU9rptxbKzeuBHMWvyrtZOGEDY1sbSc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=OPPgOhnm; arc=none smtp.client-ip=209.85.128.45
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-wm1-f45.google.com with SMTP id 5b1f17b1804b1-40ef6f10b56so21248915e9.2;
+        Tue, 30 Jan 2024 18:26:35 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1706667994; x=1707272794; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=X2j01IiI6zfUsJF9a2WQ/9OjdhPJsQd8hNy4wmMlPXc=;
+        b=OPPgOhnmo2o80nAd8FlW/pyMi/mbL8WkfJL8+H+uKPVm/gT/aohAviTEJRynY5Miqa
+         z0Is+8kEO1nwmKzQHszcGWK8z8GMuW0Ejjg2TAMdCVcGMnZTFP1wmuEr5q+CTmjZgwnL
+         m7N0H49lWNgNKOM7wH9KdXofK/gJguZGTQr+o3TGl3x5/2OCRUX83wVAxSZWW6PvWaGu
+         8dHg4upSlkBLaK07wEaWTRJ4SGXQyVdNYUT/VNXdP4h6dGenNEBZN9MpXqXh+p4aftIL
+         3W6apMwYFlhoT3dxupTY28EQ2uVkuZvqihVW5ha/gf+ftCIi+ZCEwEYsowgx6iTr0Pwu
+         M6iQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1706667994; x=1707272794;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=X2j01IiI6zfUsJF9a2WQ/9OjdhPJsQd8hNy4wmMlPXc=;
+        b=iPQWlWShXEP7TGcznIYOHFhGYiED5iB5AZLHnMh+Oas89wfPWagWQiVWi0Z+AhJsSK
+         45HSiomDsJM82rfTvfWUoO9HnLgQW0eiMBo5QobFaMo32MhEEcn2PhDcoHCSahD9RQZX
+         p34gf2tbKEO3Dt2LS2TcIExboqjoYV0pWFmMfkALAQAbXyDCORCN0+bGJTTv/NvW9mhN
+         WEDFy+vZ/iI1o60s6sFxPbmc1AT56KjRv829NbleEqJaEyDBoGCeKJ0gRSJ2k131fM8b
+         /wpPl/wS22COs4tmWGIs2onvO2U89VNBU5vP9ojAUnNK23ixS4lRggSq8pPjFn0Pg7gs
+         ps6Q==
+X-Gm-Message-State: AOJu0YxGpJoYPNYNrAlfE0Up9suF92xA7dmxBVMhbGrTu2Nv7isRPQrI
+	75ALr5HVngdc2ZPC5IsxkTAudgydWlMxT1Ug22mP8b1fLYjLARWAZKQN0NlQ
+X-Google-Smtp-Source: AGHT+IH6wXtZiOCKa9k9rmOs0Q0DrW3c2cdodtlHXpUNhdraZpJnpHiL3I3Fm+ftJPcBqxv/nYRFYg==
+X-Received: by 2002:a05:600c:35d5:b0:40e:f557:738d with SMTP id r21-20020a05600c35d500b0040ef557738dmr177060wmq.26.1706667993713;
+        Tue, 30 Jan 2024 18:26:33 -0800 (PST)
+Received: from localhost.localdomain (93-34-89-13.ip49.fastwebnet.it. [93.34.89.13])
+        by smtp.googlemail.com with ESMTPSA id f22-20020a7bc8d6000000b0040eea5dc778sm757722wml.1.2024.01.30.18.26.32
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 30 Jan 2024 18:26:33 -0800 (PST)
+From: Christian Marangi <ansuelsmth@gmail.com>
+To: Andy Gross <agross@kernel.org>,
+	Bjorn Andersson <andersson@kernel.org>,
+	Konrad Dybcio <konrad.dybcio@linaro.org>,
+	"David S. Miller" <davem@davemloft.net>,
+	Eric Dumazet <edumazet@google.com>,
+	Jakub Kicinski <kuba@kernel.org>,
+	Paolo Abeni <pabeni@redhat.com>,
+	Rob Herring <robh+dt@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Andrew Lunn <andrew@lunn.ch>,
+	Heiner Kallweit <hkallweit1@gmail.com>,
+	Russell King <linux@armlinux.org.uk>,
+	Robert Marko <robert.marko@sartura.hr>,
+	linux-arm-msm@vger.kernel.org,
+	netdev@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org
+Cc: Christian Marangi <ansuelsmth@gmail.com>
+Subject: [net-next PATCH v3 0/2] net: mdio-ipq4019: fix wrong default MDC rate
+Date: Wed, 31 Jan 2024 03:26:02 +0100
+Message-ID: <20240131022606.1532-1-ansuelsmth@gmail.com>
+X-Mailer: git-send-email 2.43.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
 
-On Tue, 30 Jan 2024 16:18:42 +0530 Vineeth Karumanchi wrote:
-> - Add provisioning for queue tie-off and queue disable during suspend.
-> - Add ARP packet support to WOL.
+This was a long journey to arrive and discover this problem.
 
-Try to build the driver with sparse enabled:
+To not waste too much char, there is a race problem with PHY and driver
+probe. This was observed with Aquantia PHY firmware loading.
 
-make C=1 drivers/net/ethernet/cadence/
+With some hacks the race problem was workarounded but an interesting
+thing was notice. It took more than a minute for the firmware to load
+via MDIO.
 
-Looks like you're adding new warnings.
+This was strange as the same operation was done by UBoot in at max 5
+second and the same data was loaded.
+
+A similar problem was observed on a mtk board that also had an
+Aquantia PHY where the load was very slow. It was notice that the cause
+was the MDIO bus running at a very low speed and the firmware
+was missing a property (present in mtk sdk) that set the right frequency
+to the MDIO bus.
+
+It was fun to find that THE VERY SAME PROBLEM is present on IPQ in a
+different form. The MDIO apply internally a division to the feed clock
+resulting in the bus running at 390KHz instead of 6.25Mhz.
+
+Searching around the web for some documentation and some include and
+analyzing the uboot codeflow resulted in the divider being set wrongly
+at /256 instead of /16 as the value was actually never set.
+Applying the value restore the original load time for the Aquantia PHY.
+
+This series mainly handle this by adding support for the "clock-frequency"
+property.
+
+Changes v3:
+- Add Reviewed-by tag
+- Fix english grammar error in comment
+- Drop DTS patch
+Changes v2:
+- Use DIV_ROUND_UP
+- Introduce logic to chose a default value for 802.3 spec 2.5MHz
+
+Christian Marangi (2):
+  dt-bindings: net: ipq4019-mdio: document now supported clock-frequency
+  net: mdio: ipq4019: add support for clock-frequency property
+
+ .../bindings/net/qcom,ipq4019-mdio.yaml       |  15 +++
+ drivers/net/mdio/mdio-ipq4019.c               | 109 +++++++++++++++++-
+ 2 files changed, 118 insertions(+), 6 deletions(-)
+
 -- 
-pw-bot: cr
+2.43.0
+
 
