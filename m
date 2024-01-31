@@ -1,103 +1,125 @@
-Return-Path: <devicetree+bounces-37102-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-37103-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 15A93843AFA
-	for <lists+devicetree@lfdr.de>; Wed, 31 Jan 2024 10:22:42 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3D003843B1C
+	for <lists+devicetree@lfdr.de>; Wed, 31 Jan 2024 10:29:32 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 1386FB29531
-	for <lists+devicetree@lfdr.de>; Wed, 31 Jan 2024 09:21:00 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 6F35C1C2858D
+	for <lists+devicetree@lfdr.de>; Wed, 31 Jan 2024 09:29:31 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id CBC8A60885;
-	Wed, 31 Jan 2024 09:20:54 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id AD7A1657BE;
+	Wed, 31 Jan 2024 09:29:29 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="GBo51MQk"
+	dkim=pass (1024-bit key) header.d=amarulasolutions.com header.i=@amarulasolutions.com header.b="eNs39sle"
 X-Original-To: devicetree@vger.kernel.org
-Received: from lelv0143.ext.ti.com (lelv0143.ext.ti.com [198.47.23.248])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-ed1-f45.google.com (mail-ed1-f45.google.com [209.85.208.45])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 265F651004;
-	Wed, 31 Jan 2024 09:20:52 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.23.248
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D1F653D97D
+	for <devicetree@vger.kernel.org>; Wed, 31 Jan 2024 09:29:27 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.45
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1706692854; cv=none; b=SK16ozQLOO7teyuZ3Z00lTyPLw9uFFu4MOvcsA84D+wfbiGSISr7Xka8TICGLS21Mk7eZqZCUbPhrXMJr8E8K3zfSalLpWtMPViYdPkM2/6gFVtFIex4dt+J32xQm18qt4K3mBzpdFRON2Ts/HVjRTVrEkCbX13kHkVWtHyhZ1U=
+	t=1706693369; cv=none; b=jjNZ0xko0T8auCN74kvomaw1mhkiBrbMbP4cWhygYlBg+9oKtGs1NU+XXh7dEIe+H85WCDHBC8P4MblZAAkJzkYcLqsqaOYrdTddJn+2nPaeQJoF8CGVyGJ+BLLKEqcx2geMzVREPEwc2/9X9KqKnQNAyDff1xLYgfGfEDTB9fc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1706692854; c=relaxed/simple;
-	bh=jIsmj/fajb8fLMrkt4vd3Va8zdtqD37LgPLYgc7tpSc=;
-	h=From:To:CC:Subject:Date:Message-ID:MIME-Version:Content-Type; b=kcYcw2uBIinIblCLnmzZvclUf+QlU6gt7WraWuCGXYgwSPAB4gQkf6q5VGsKNcCiYAMaPN46twKcVESZXS/QDvMXxqwg0tjzw4GQA+LhlEAXTP74EDLL/JoBLqHxA+XP4fCCzH00ax4HJw+bT6eeYaoEKDHYK2MFoQ0tPZpmHag=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=GBo51MQk; arc=none smtp.client-ip=198.47.23.248
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
-Received: from fllv0034.itg.ti.com ([10.64.40.246])
-	by lelv0143.ext.ti.com (8.15.2/8.15.2) with ESMTP id 40V9KlHk050591;
-	Wed, 31 Jan 2024 03:20:47 -0600
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1706692847;
-	bh=NdJG3JLfxJTk4/tJ2ziGMOaQE3dDkvwsm8Xe6fCQ6ZA=;
-	h=From:To:CC:Subject:Date;
-	b=GBo51MQk7VchxZ4VOqMiL/7K307iXcQVKAXY2kBwtC00PuGaVZ7e1e18BylcRd4QL
-	 hmm9g2kWyhELxqv2W4iVmTB/lDe9+q58Gnrl9g/ih7FUTnYbRtc0aHaWFodhazuCp+
-	 V7h+DpJMV2dkzcY+xZ9DCeI5B71uHFoL0s1CChZc=
-Received: from DLEE105.ent.ti.com (dlee105.ent.ti.com [157.170.170.35])
-	by fllv0034.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 40V9KlJt015283
-	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-	Wed, 31 Jan 2024 03:20:47 -0600
-Received: from DLEE105.ent.ti.com (157.170.170.35) by DLEE105.ent.ti.com
- (157.170.170.35) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Wed, 31
- Jan 2024 03:20:47 -0600
-Received: from lelvsmtp5.itg.ti.com (10.180.75.250) by DLEE105.ent.ti.com
- (157.170.170.35) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
- Frontend Transport; Wed, 31 Jan 2024 03:20:47 -0600
-Received: from uda0500640.dal.design.ti.com (uda0500640.dhcp.ti.com [172.24.227.88])
-	by lelvsmtp5.itg.ti.com (8.15.2/8.15.2) with ESMTP id 40V9KhAq037487;
-	Wed, 31 Jan 2024 03:20:44 -0600
-From: Ravi Gunasekaran <r-gunasekaran@ti.com>
-To: <robh+dt@kernel.org>, <krzysztof.kozlowski+dt@linaro.org>,
-        <conor+dt@kernel.org>, <brgl@bgdev.pl>
-CC: <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>, <nm@ti.com>,
-        <vigneshr@ti.com>, <r-gunasekaran@ti.com>, <srk@ti.com>
-Subject: [PATCH] dt-bindings: arm: ti: Update maintainers list
-Date: Wed, 31 Jan 2024 14:50:43 +0530
-Message-ID: <20240131092043.28829-1-r-gunasekaran@ti.com>
-X-Mailer: git-send-email 2.17.1
+	s=arc-20240116; t=1706693369; c=relaxed/simple;
+	bh=BA6fJEjCZMcaHnNBU5jDXRdTkCxnI8f7pf6sC+LoD0M=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=DeRvomNMnvcxCGpIxBBwWpk0AUp4NaN14Mqr778P0pdRJFnriD2sSOEW1+q5yzu52qNwTwVrgtApY2fstFxFDne85ukgYdWpYZf1/ykqX+MVsCUtBpPQE5STT+c0c7FTvOo61mgOauV3wj1r2A9EBijhnl48eWsF5x2D9vYs5Gs=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=amarulasolutions.com; spf=pass smtp.mailfrom=amarulasolutions.com; dkim=pass (1024-bit key) header.d=amarulasolutions.com header.i=@amarulasolutions.com header.b=eNs39sle; arc=none smtp.client-ip=209.85.208.45
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=amarulasolutions.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=amarulasolutions.com
+Received: by mail-ed1-f45.google.com with SMTP id 4fb4d7f45d1cf-55817a12ad8so5268410a12.2
+        for <devicetree@vger.kernel.org>; Wed, 31 Jan 2024 01:29:27 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=amarulasolutions.com; s=google; t=1706693366; x=1707298166; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=Xk9fhyP0CkSTpvqSdLIvIAOMOdEQrJYka04kzpQbSCI=;
+        b=eNs39sleYkUhSKYpLISJR6koTI7sW0zVMpF1njA2cQe5A9wVb4CtMAKn5UPwt7Jgmm
+         tjtpzmG7mtCD/DET1mGSqKnlj1vbt6A6WH3UILngrfVFJCw93eWKsaw/XJaNrCM40GVf
+         QLm5SqjJmF37mV16UTngb5Y+zZqgSZU/lLIlM=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1706693366; x=1707298166;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=Xk9fhyP0CkSTpvqSdLIvIAOMOdEQrJYka04kzpQbSCI=;
+        b=Gq3czpZ2dQogKBaNqXH8OXIIFE7z/cMoShTM7/IeEWHXlzbqj8UdyneKDTSZWxWvyF
+         01H8VYcv1VuDj+CUYm7UDbk8c7+LQJ+fst9MV6BAKcesOdiMv5/RkGocE5B9k3q3BanN
+         KinnUiYFXlyFR+ANIryIPRXERBPkjZiWmAsGBzILz3Hh0SN9U7cnu0Gd5F9fMqkT+FXi
+         nOxhnlvNo0hN+XlrjY7autaJtJWzQto3gMydjiMioI63lerLcDkJjuER5s+3cQdpBkBs
+         5Tyanvf5/L/rTReTirlmMfAx4PfN4cifM3jAbWPYwHEDSp/bMqF3VUsbZu/ZWLba6LqU
+         66pw==
+X-Gm-Message-State: AOJu0Yx6fe8ncd1wlnlFtDE55SVz18sQI2KkT6ElP6Ob4ciqNyXtoY3L
+	0agQ+ZLnmr8YRdMBufpux/KB+xpx5LZ/xYyA6ecpPQ9dpPCGEUJqk/mEbeanGw8=
+X-Google-Smtp-Source: AGHT+IHXEGDr4fGmwlGPRIVoGEbaTU3wb+9v6LQhDK8+IaSm0AjVrt+5w0SlCJUkC1vHmi19sAEe4Q==
+X-Received: by 2002:a17:906:190a:b0:a35:7191:d952 with SMTP id a10-20020a170906190a00b00a357191d952mr670959eje.53.1706693365993;
+        Wed, 31 Jan 2024 01:29:25 -0800 (PST)
+Received: from dario-ThinkPad-T14s-Gen-2i.homenet.telecomitalia.it (host-82-56-30-170.retail.telecomitalia.it. [82.56.30.170])
+        by smtp.gmail.com with ESMTPSA id g22-20020a170906349600b00a367bdce1fcsm321436ejb.64.2024.01.31.01.29.22
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 31 Jan 2024 01:29:25 -0800 (PST)
+From: Dario Binacchi <dario.binacchi@amarulasolutions.com>
+To: linux-kernel@vger.kernel.org
+Cc: Dario Binacchi <dario.binacchi@amarulasolutions.com>,
+	Alexandre Torgue <alexandre.torgue@foss.st.com>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Daniel Vetter <daniel@ffwll.ch>,
+	David Airlie <airlied@gmail.com>,
+	Jessica Zhang <quic_jesszhan@quicinc.com>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Linus Walleij <linus.walleij@linaro.org>,
+	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+	Maxime Ripard <mripard@kernel.org>,
+	Neil Armstrong <neil.armstrong@linaro.org>,
+	Rob Herring <robh+dt@kernel.org>,
+	Sam Ravnborg <sam@ravnborg.org>,
+	Thomas Zimmermann <tzimmermann@suse.de>,
+	devicetree@vger.kernel.org,
+	dri-devel@lists.freedesktop.org
+Subject: [drm-drm-misc:drm-misc-next v2] dt-bindings: nt35510: document 'port' property
+Date: Wed, 31 Jan 2024 10:28:44 +0100
+Message-ID: <20240131092852.643844-1-dario.binacchi@amarulasolutions.com>
+X-Mailer: git-send-email 2.43.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+Content-Transfer-Encoding: 8bit
 
-Update the list with current maintainer of TI's davinci
-platforms.
+Allow 'port' property (coming from panel-common.yaml) to be used in DTS:
 
-Signed-off-by: Ravi Gunasekaran <r-gunasekaran@ti.com>
-Acked-by: Bartosz Golaszewski <brgl@bgdev.pl>
+  st/stm32f769-disco-mb1166-reva09.dtb: panel@0: 'port' does not match any of the regexes: 'pinctrl-[0-9]+'
+
+Signed-off-by: Dario Binacchi <dario.binacchi@amarulasolutions.com>
+Cc: Alexandre Torgue <alexandre.torgue@foss.st.com>
+
 ---
-Added Acked-by after discussing with Bartosz over mail.
 
- Documentation/devicetree/bindings/arm/ti/ti,davinci.yaml | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+Changes in v2:
+- Rework the patch to drop errors found by command
+  'make DT_CHECKER_FLAGS=-m dt_binding_check'.
 
-diff --git a/Documentation/devicetree/bindings/arm/ti/ti,davinci.yaml b/Documentation/devicetree/bindings/arm/ti/ti,davinci.yaml
-index 1656d1a4476f..1b64458fcadd 100644
---- a/Documentation/devicetree/bindings/arm/ti/ti,davinci.yaml
-+++ b/Documentation/devicetree/bindings/arm/ti/ti,davinci.yaml
-@@ -7,7 +7,7 @@ $schema: http://devicetree.org/meta-schemas/core.yaml#
- title: Texas Instruments DaVinci Platforms
+ .../devicetree/bindings/display/panel/novatek,nt35510.yaml       | 1 +
+ 1 file changed, 1 insertion(+)
+
+diff --git a/Documentation/devicetree/bindings/display/panel/novatek,nt35510.yaml b/Documentation/devicetree/bindings/display/panel/novatek,nt35510.yaml
+index a4afaff483b7..91921f4b0e5f 100644
+--- a/Documentation/devicetree/bindings/display/panel/novatek,nt35510.yaml
++++ b/Documentation/devicetree/bindings/display/panel/novatek,nt35510.yaml
+@@ -31,6 +31,7 @@ properties:
+   vddi-supply:
+     description: regulator that supplies the vddi voltage
+   backlight: true
++  port: true
  
- maintainers:
--  - Sekhar Nori <nsekhar@ti.com>
-+  - Bartosz Golaszewski <brgl@bgdev.pl>
- 
- description:
-   DA850/OMAP-L138/AM18x based boards
+ required:
+   - compatible
 -- 
-2.17.1
+2.43.0
 
 
