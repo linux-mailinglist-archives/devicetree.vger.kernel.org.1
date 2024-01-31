@@ -1,247 +1,139 @@
-Return-Path: <devicetree+bounces-37195-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-37196-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4F8FA844071
-	for <lists+devicetree@lfdr.de>; Wed, 31 Jan 2024 14:24:18 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id D5EA2844060
+	for <lists+devicetree@lfdr.de>; Wed, 31 Jan 2024 14:21:48 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id A6685B2DF9F
-	for <lists+devicetree@lfdr.de>; Wed, 31 Jan 2024 13:17:01 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id E66C6B2F7C7
+	for <lists+devicetree@lfdr.de>; Wed, 31 Jan 2024 13:18:28 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7DBB77B3EC;
-	Wed, 31 Jan 2024 13:16:55 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id BA5127BAF1;
+	Wed, 31 Jan 2024 13:18:08 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="WHyyDLsa"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="QnI8TbWG"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pl1-f180.google.com (mail-pl1-f180.google.com [209.85.214.180])
+Received: from mail-yw1-f178.google.com (mail-yw1-f178.google.com [209.85.128.178])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CD2A47AE47;
-	Wed, 31 Jan 2024 13:16:53 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.180
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EAAEE7AE5C
+	for <devicetree@vger.kernel.org>; Wed, 31 Jan 2024 13:18:06 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.178
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1706707015; cv=none; b=pfsGkQPUGcMXiuV9ARUpuHuDMExpuRPZgW34fKbgMRE9vLymuvPvhHbnmZT9Wda6EL+qphNZijQywJiuUBRVc/0k+PSrPfgmpcdXWsmCMj2cEx+/YC9qvitZmUkSXnHsiafYcTCNDCqHYOhbxBeSTyF67LjLhOUz0vFOucLDjqA=
+	t=1706707088; cv=none; b=nqg6WwlM0i+bLo0wjrXSKRMQZJIvTSiBAk99pK2Nx3I3Tn0xAc65FOfOoioBmR4uphkELOsNLO3OrmhF8J4VaP6UH5wDvQKJpU4Xg+d/mXemP/LkkZjdOM/FJnkdE2QMVVnUliVnva2rALSO3Apa5cEcT9QOBbGuecOt7Vwld5k=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1706707015; c=relaxed/simple;
-	bh=AW4f6dw+zidICyXZgjwIu41kdHjOtjxCRAic489hQXo=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=lj6VOXbMNSGluWoTvD/2jvYgJV4ZSPvW8xhyishzP60Lc8kyr9n4F4XNIn7m/tidkUlaNxC8wCE1GS0TwnNjCnp4PJRoN3q24UEzZcjJ10wKlVHrwDzvz/axhvyr8ta9FYipsRq6T2LNFgQTXA/q6V078WePVKUL6Jr7/6kE7C0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=roeck-us.net; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=WHyyDLsa; arc=none smtp.client-ip=209.85.214.180
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=roeck-us.net
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-pl1-f180.google.com with SMTP id d9443c01a7336-1d928a8dee8so5110715ad.1;
-        Wed, 31 Jan 2024 05:16:53 -0800 (PST)
+	s=arc-20240116; t=1706707088; c=relaxed/simple;
+	bh=dr6D8tcSVVpexu92k5w3N7i9nF+7FRKOS7uUR00A6YM=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=X617LQlgBbi4FDnhj+xWXtCWA3cgNQMtq8BgAro0olvih+t7jKOOjaY07Ee1Q335i5a87Om3bVRF45xr+oMrG6995bhXBnOwOdcL4avnfLowty43ZvSgvoJWpkSTPd3/Nd/r3Xm2Hpaej+jN3Mp39hcQA/xyJIvjKUKbPa4jPTI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=QnI8TbWG; arc=none smtp.client-ip=209.85.128.178
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-yw1-f178.google.com with SMTP id 00721157ae682-6002317a427so43206307b3.2
+        for <devicetree@vger.kernel.org>; Wed, 31 Jan 2024 05:18:06 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1706707013; x=1707311813; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
-         :to:content-language:subject:user-agent:mime-version:date:message-id
-         :sender:from:to:cc:subject:date:message-id:reply-to;
-        bh=MD6YCJseT7Z8Ach4Jqdsb6hrlt+6cO4c5ma7tx+4HwE=;
-        b=WHyyDLsaGGUPPeaarqTlHUq9ElfRO5j8V4cRsSlpioR6AR2WPByIJEXQ/LGFFqf84a
-         dCe+/EQuSPHQIQw20MQwRRWwSidnl7+9rQAzi0DnbtrFL3mPVCnq1hy8TxaknaCl1kvH
-         qjyDcNHzrDIV3WeLyH5JBuN7o8eMLzJTi5exkUPAH59w39bgwxkNp8+ZbKVTnscieFNo
-         wU/aMRT8sC9glh0elo3+N5Xxm37bwEGzN8PhMgVRmeQn8Z15JzIee763HBRewiwYtbqY
-         6GS0QamqWKokRKcb2Ar9FrIkr1bDPp0+h5RKi3RVkpI4U9g4MyOFByxu9kY6bPOXLaKq
-         sDPw==
+        d=linaro.org; s=google; t=1706707086; x=1707311886; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=dr6D8tcSVVpexu92k5w3N7i9nF+7FRKOS7uUR00A6YM=;
+        b=QnI8TbWG2XKPFB9aozCWTavISGyEjEIeKvQBhFVZ5daEc2Gvbg1a+uRaA9AEr1386U
+         0xudJNvDJ30LyjyFJmsPwFu/u7Hxt8SIIBM4vL+b/JJRqFYk5NMC3lOENIkHYFOrbVxh
+         GF57jP3AFv8Xg2eMG0Hb1EPlibZ0ZyS3kqTNZHy8iuxaX7s2XpL6+15F89GUjAoDWNXD
+         MMfPk55M/V13sFxB+NHHhB3FiOQLnkaGO5GgUogGV91PZepnmTwbXwl7JBq2lwTO80KD
+         0OQe5pFIf2uRB9A6KAJL0XvN1CspSRq3q2brtC/BDwHx7OAeIrhTEdKgC5qtkeOxjk2V
+         hvFA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1706707013; x=1707311813;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
-         :to:content-language:subject:user-agent:mime-version:date:message-id
-         :sender:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=MD6YCJseT7Z8Ach4Jqdsb6hrlt+6cO4c5ma7tx+4HwE=;
-        b=ZR+43PUGVdNpj8J0y/QNIZ/Ul2rp8x38MQY/TxQF/z/lUQvk4TxsXPuXf0CXYSlsrK
-         iZSQSvmcXu8uvOSgnWY1i8M/cB+l74Qd8jQOgqJ65wEcdokEmO5XbGE1VHldB6PvsH6i
-         lAs2sA6zOyOQrYRnYiFI82FFrQKcEib4QAarBIpkLHIfoKzmpYTyZvxWMHfS36idjRRV
-         nlNH9y2UHpNck7NE3wNvgtlLbYdg1dUG8BJApUX2+clOkpRfyNYKw24YWJT8L8vpoQVW
-         AFOmsGyqGBJ8NirehWOMmVGLzkmQeKnpGFmFslTn0e81k0Lk4GRTZAayS19UKEWNxbDB
-         2yDA==
-X-Gm-Message-State: AOJu0Yzd9rzat2zHAVky+fMRAxxx4j4wUArdE5JGAWN7sN72tZCGfq7/
-	X4oddZiKiA9DCC3Aw/mNnyhIzUVNw07TxTTTyyjl0gk8YB6skQMy
-X-Google-Smtp-Source: AGHT+IH94B9t+SXxYqXc1gbnAmIbR/323RWPyZTqnDV6fuxYFFCORSLA6qKwxUnFVZ8L6JAiGwE15A==
-X-Received: by 2002:a17:90b:188d:b0:28f:fa9d:ebdf with SMTP id mn13-20020a17090b188d00b0028ffa9debdfmr4518600pjb.3.1706707012810;
-        Wed, 31 Jan 2024 05:16:52 -0800 (PST)
-Received: from ?IPV6:2600:1700:e321:62f0:329c:23ff:fee3:9d7c? ([2600:1700:e321:62f0:329c:23ff:fee3:9d7c])
-        by smtp.gmail.com with ESMTPSA id r8-20020a170902be0800b001d7405022ecsm9009768pls.159.2024.01.31.05.16.50
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 31 Jan 2024 05:16:52 -0800 (PST)
-Sender: Guenter Roeck <groeck7@gmail.com>
-Message-ID: <4ea02224-e9fa-4ee9-9210-bc7a7ae9e86b@roeck-us.net>
-Date: Wed, 31 Jan 2024 05:16:50 -0800
+        d=1e100.net; s=20230601; t=1706707086; x=1707311886;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=dr6D8tcSVVpexu92k5w3N7i9nF+7FRKOS7uUR00A6YM=;
+        b=xCUw5tYsX7xdgC45Q/9JT/UIj+tyA+SLN1EPjRm5XpV56r5t1FEQA7OvMP96MR87Gv
+         Ygm94i1BvXnOwEiuxVALMvj7xWjjbzYez3Q/KiHjutBzIRyxwMQh3CkVuBbhmWbA1jBC
+         WHvyLQSJ3IW/G6qqdsmP81AjWcJD9y4onvGp7NhaXM5Ui8svQXWZALvlcwaI3wwH/ujs
+         9kK9sHaNC20w5bD9j+DqQPqaEvtgGtN2zGnnn2OEuhVGF17OFsjzLoL5dDZabc9dvZlT
+         ld58vbEcOiZMfTTMpo6BgwDwSbyk5E/vdQJgJJaiti9aaAx8wa+xnVg0AGZ5Od5Hjwsy
+         SwnQ==
+X-Gm-Message-State: AOJu0YxE3SoiS2LTMZywTPIaatCWrjN2fooYhcAAXe8RKkkWhnds3+cg
+	kpotxJA58/0ErQ+tFyuaSwEzPSwaj0FUgs8cLHnLpo+zNm+t3D9d0B5V/+gdf1YYrFO86tTB41f
+	9B1BtzoNgafk8hShT6yvCb39+K12zwjSQFhvUcA==
+X-Google-Smtp-Source: AGHT+IFVACpGX4CJfjjGDw2bakc2klq/FcD8fSXKF03+Z3ok8uxur5h6A7nnyOGYfn7248iMkpgzntKDjCWeB+kOfoE=
+X-Received: by 2002:a81:79d5:0:b0:5ff:f756:8804 with SMTP id
+ u204-20020a8179d5000000b005fff7568804mr1275150ywc.45.1706707085871; Wed, 31
+ Jan 2024 05:18:05 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 04/11] watchdog: rzg2l_wdt: Check return status of
- pm_runtime_put()
-Content-Language: en-US
-To: claudiu beznea <claudiu.beznea@tuxon.dev>,
- Biju Das <biju.das.jz@bp.renesas.com>,
- "wim@linux-watchdog.org" <wim@linux-watchdog.org>,
- "robh+dt@kernel.org" <robh+dt@kernel.org>,
- "krzysztof.kozlowski+dt@linaro.org" <krzysztof.kozlowski+dt@linaro.org>,
- "conor+dt@kernel.org" <conor+dt@kernel.org>,
- "geert+renesas@glider.be" <geert+renesas@glider.be>,
- "magnus.damm@gmail.com" <magnus.damm@gmail.com>,
- "mturquette@baylibre.com" <mturquette@baylibre.com>,
- "sboyd@kernel.org" <sboyd@kernel.org>,
- "p.zabel@pengutronix.de" <p.zabel@pengutronix.de>
-Cc: "linux-watchdog@vger.kernel.org" <linux-watchdog@vger.kernel.org>,
- "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
- "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
- "linux-renesas-soc@vger.kernel.org" <linux-renesas-soc@vger.kernel.org>,
- "linux-clk@vger.kernel.org" <linux-clk@vger.kernel.org>,
- Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>
-References: <20240131102017.1841495-1-claudiu.beznea.uj@bp.renesas.com>
- <20240131102017.1841495-5-claudiu.beznea.uj@bp.renesas.com>
- <TYCPR01MB11269AD7463C9C7C0A09A43A9867C2@TYCPR01MB11269.jpnprd01.prod.outlook.com>
- <ddc0b42c-bf88-4c0d-b938-8bd7ff7b329a@tuxon.dev>
- <TYCPR01MB11269BFC2DB457049A2B8C0C8867C2@TYCPR01MB11269.jpnprd01.prod.outlook.com>
- <12f458b1-f963-43f4-afcf-715abf635e54@tuxon.dev>
-From: Guenter Roeck <linux@roeck-us.net>
-Autocrypt: addr=linux@roeck-us.net; keydata=
- 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
- mDW4+i+XlNFUPUYMrIKi9joBhu18ssf5i5Q=
-In-Reply-To: <12f458b1-f963-43f4-afcf-715abf635e54@tuxon.dev>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+References: <20240129115216.96479-1-krzysztof.kozlowski@linaro.org>
+ <20240129115216.96479-5-krzysztof.kozlowski@linaro.org> <CACRpkdYf4HUaV-Pjr81WjLbzy9zdAnyFWs9gPayPC6-3OjHQwA@mail.gmail.com>
+ <CAMRc=Mc1SGLeUOWmKg=fvCdM+RR6FSu2QkFuR17s7L99eRMGug@mail.gmail.com>
+In-Reply-To: <CAMRc=Mc1SGLeUOWmKg=fvCdM+RR6FSu2QkFuR17s7L99eRMGug@mail.gmail.com>
+From: Linus Walleij <linus.walleij@linaro.org>
+Date: Wed, 31 Jan 2024 14:17:54 +0100
+Message-ID: <CACRpkdbaxqTzwL9L02vCpMMdBYsubNP1VkNuJ8mXB_=4E3Kjaw@mail.gmail.com>
+Subject: Re: [PATCH v6 4/6] reset: Instantiate reset GPIO controller for
+ shared reset-gpios
+To: Bartosz Golaszewski <brgl@bgdev.pl>
+Cc: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>, 
+	Geert Uytterhoeven <geert+renesas@glider.be>, 
+	Srinivas Kandagatla <srinivas.kandagatla@linaro.org>, Banajit Goswami <bgoswami@quicinc.com>, 
+	Bjorn Andersson <andersson@kernel.org>, Konrad Dybcio <konrad.dybcio@linaro.org>, 
+	Liam Girdwood <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>, 
+	Rob Herring <robh+dt@kernel.org>, 
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Philipp Zabel <p.zabel@pengutronix.de>, "Rafael J. Wysocki" <rafael@kernel.org>, 
+	Viresh Kumar <viresh.kumar@linaro.org>, Frank Rowand <frowand.list@gmail.com>, 
+	Jaroslav Kysela <perex@perex.cz>, Takashi Iwai <tiwai@suse.com>, alsa-devel@alsa-project.org, 
+	linux-arm-msm@vger.kernel.org, linux-sound@vger.kernel.org, 
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+	linux-pm@vger.kernel.org, Chris Packham <chris.packham@alliedtelesis.co.nz>, 
+	Sean Anderson <sean.anderson@seco.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-On 1/31/24 03:00, claudiu beznea wrote:
-> 
-> 
-> On 31.01.2024 12:41, Biju Das wrote:
->> Hi Claudiu,
->>
->>> -----Original Message-----
->>> From: claudiu beznea <claudiu.beznea@tuxon.dev>
->>> Sent: Wednesday, January 31, 2024 10:36 AM
->>> Subject: Re: [PATCH v2 04/11] watchdog: rzg2l_wdt: Check return status of
->>> pm_runtime_put()
->>>
->>> Hi, Biju,
->>>
->>> On 31.01.2024 12:32, Biju Das wrote:
->>>> Hi Claudiu,
->>>>
->>>> Thanks for the feedback.
->>>>
->>>>> -----Original Message-----
->>>>> From: Claudiu <claudiu.beznea@tuxon.dev>
->>>>> Sent: Wednesday, January 31, 2024 10:20 AM
->>>>> Subject: [PATCH v2 04/11] watchdog: rzg2l_wdt: Check return status of
->>>>> pm_runtime_put()
->>>>>
->>>>> From: Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>
->>>>>
->>>>> pm_runtime_put() may return an error code. Check its return status.
->>>>>
->>>>> Along with it the rzg2l_wdt_set_timeout() function was updated to
->>>>> propagate the result of rzg2l_wdt_stop() to its caller.
->>>>>
->>>>> Fixes: 2cbc5cd0b55f ("watchdog: Add Watchdog Timer driver for
->>>>> RZ/G2L")
->>>>> Signed-off-by: Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>
->>>>> ---
->>>>>
->>>>> Changes in v2:
->>>>> - propagate the return code of rzg2l_wdt_stop() to it's callers
->>>>>
->>>>>   drivers/watchdog/rzg2l_wdt.c | 11 +++++++++--
->>>>>   1 file changed, 9 insertions(+), 2 deletions(-)
->>>>>
->>>>> diff --git a/drivers/watchdog/rzg2l_wdt.c
->>>>> b/drivers/watchdog/rzg2l_wdt.c index d87d4f50180c..7bce093316c4
->>>>> 100644
->>>>> --- a/drivers/watchdog/rzg2l_wdt.c
->>>>> +++ b/drivers/watchdog/rzg2l_wdt.c
->>>>> @@ -144,9 +144,13 @@ static int rzg2l_wdt_start(struct
->>>>> watchdog_device
->>>>> *wdev)  static int rzg2l_wdt_stop(struct watchdog_device *wdev)  {
->>>>>   	struct rzg2l_wdt_priv *priv = watchdog_get_drvdata(wdev);
->>>>> +	int ret;
->>>>>
->>>>>   	rzg2l_wdt_reset(priv);
->>>>> -	pm_runtime_put(wdev->parent);
->>>>> +
->>>>> +	ret = pm_runtime_put(wdev->parent);
->>>>> +	if (ret < 0)
->>>>> +		return ret;
->>>>
->>>> Do we need to check the return code? So far we didn't hit this
->>> condition.
->>>> If you are planning to do it, then just
->>>>
->>>> return pm_runtime_put(wdev->parent);
->>>
->>> pm_runtime_put() may return 1 if the device is suspended (which is not
->>> considered error) as explained here:
->>
->> Oops, I missed that discussion. Out of curiosity,
->> What watchdog framework/consumer is going to do with a
->> Non-error return value of 1?
-> 
-> Looking at this:
-> https://elixir.bootlin.com/linux/latest/source/drivers/watchdog/watchdog_dev.c#L809
-> 
-> it seems that the positive values are not considered errors thus, indeed,
-> we may return directly:
-> 
-> return pm_runtime_put();
-> 
-> Guenter,
-> 
-> With this (and previous discussion from [1]), are you OK to change it like:
-> 
-> return pm_runtime_put();
-> 
+On Wed, Jan 31, 2024 at 10:37=E2=80=AFAM Bartosz Golaszewski <brgl@bgdev.pl=
+> wrote:
 
-Instead of looking at the source, I would kindly ask you to look at the API.
+> [Me]
+> > reset -> virtual "gpio" -> many physical gpios[0..n]
+>
+> This is a different problem: it supports many users enabling the same
+> GPIO (in Krzysztof's patch it's one but could be more if needed) but -
+> unlike the broken NONEXCLUSIVE GPIOs in GPIOLIB - it counts the number
+> of users and doesn't disable the GPIO for as long as there's at least
+> one.
 
-Guenter
+I don't know if the NONEXCLUSIVE stuff is broken, if you mean reference
+counting isn't working on them, then that is by design because they were
+invented for regulators and such use cases that do their own reference
+counting. It's also used for hacks where people need to look up a desc in
+a second spot, (perhaps we can fix those better).
 
+As I say in commit b0ce7b29bfcd090ddba476f45a75ec0a797b048a
+"This solution with a special flag is not entirely elegant and should ideal=
+ly
+be replaced by something more careful as this makes it possible for
+several consumers to enable/disable the same GPIO line to the left
+and right without any consistency."
+
+I think for regulators (which is the vast majority using it) it isn't broke=
+n
+because the regulator reference counting is working.
+
+So if we solve that problem for reset, we probably should put it in
+drivers/gpio/* somewhere so we can reuse the same solution for
+regulators and get rid of NONEXCLUSIVE altogether I think?
+
+The NONEXCLUSIVE stuff was prompted by converting regulators to
+gpio descriptors, so it was for the greater good one can say. Or the
+lesser evil :( my judgement can be questioned here.
+
+Yours,
+Linus Walleij
 
