@@ -1,98 +1,129 @@
-Return-Path: <devicetree+bounces-37239-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-37238-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1ABF3844281
-	for <lists+devicetree@lfdr.de>; Wed, 31 Jan 2024 16:03:46 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id C286E8442DB
+	for <lists+devicetree@lfdr.de>; Wed, 31 Jan 2024 16:19:03 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 4DB681C2171C
-	for <lists+devicetree@lfdr.de>; Wed, 31 Jan 2024 15:03:45 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 47BD8B2FE9F
+	for <lists+devicetree@lfdr.de>; Wed, 31 Jan 2024 15:03:20 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 158B684A5B;
-	Wed, 31 Jan 2024 14:57:39 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="RmmMSc85"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 20F4112FF69;
+	Wed, 31 Jan 2024 14:56:51 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-yw1-f182.google.com (mail-yw1-f182.google.com [209.85.128.182])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D7A2882867;
-	Wed, 31 Jan 2024 14:57:38 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1954912F5BF;
+	Wed, 31 Jan 2024 14:56:48 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.182
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1706713059; cv=none; b=Bf1OIluT3V6Ku6ePvKVNJVcFMTK9DBd/35GPyi96Jqu90ctHqWlRBH2Gw8F41/vojDosqGCB11sJKXYy2LpDy4NqhCJJtZUnyV6kCJOg6NFyAUPOGuct4iHm7M1qFC7YB4Pry/SKkB5VFDhNAgtZI35ANstdNC5WgmCMmIG5HYE=
+	t=1706713011; cv=none; b=eQGFATUEBs4Vj1rjPyi3O0zg46rD5npeEl+hWxCJO5wtvVxAU0za1FZeWob7oqaBJAenv+w/LR9J15rtVNkHkNzIRh18q8gU9S34PUiheMB6NgEkLMb3yqFMBMo1l1F8LiToNr8tW2D69Nu3z4JfVLxA8wytbnW9vO4s6wNOq+s=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1706713059; c=relaxed/simple;
-	bh=DSXbRtBgFN5juM7kQqtXWqBYab5ClaoWzkuVt0en0dQ=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=m8tJajBxgpg/bMCUsj4wNwz35VNHa9pBm83/c2KCy1/3A5HcdyKwGfOc07VrwIyCMPvEoFycxL1iFcs5LrX5SaIPbOj2xd3LF8JdjGstM+Wk4EMi3ef3qP/YJ/4NLbLYIsiv6liiuaDe96vuSOD/DCmmtGzMYPAsU481Ct+6f4Y=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=RmmMSc85; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 183A2C43390;
-	Wed, 31 Jan 2024 14:57:37 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1706713058;
-	bh=DSXbRtBgFN5juM7kQqtXWqBYab5ClaoWzkuVt0en0dQ=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=RmmMSc85ShOqr63dLFwsLGZY/jvhJfq4jS8LzT4gzw1psoP4jPSLtwmtSciTu/FvS
-	 f14lUbpZuZYBJ61g4R2J+aWSqwzjsuNJBNivXQKqgFtMm4khJK/xPuQqOdJxhjk2Mz
-	 lMlt1RLdi0lH3cxUwU9ElMs3w9Iuyp/PicZZ3NYaFiTLfzSS6RXGLXOHR0bYRirp1q
-	 dPaYl6GAI/d28r7WXs6CEuRiTxW/OHPfX4isHWdZ9fJ7z/37ZKHWF4Gx4ISI+VJK7S
-	 2k1LkXVGAGKZqiURv5NeMcogz+/XPXTfhjNyM5L/kG1Ipzd7Vo3Kh3JcpWvSO9xgsb
-	 83A/AC1N5l51g==
-Date: Wed, 31 Jan 2024 08:57:36 -0600
-From: Rob Herring <robh@kernel.org>
-To: Peng Fan <peng.fan@nxp.com>
-Cc: Jakub Kicinski <kuba@kernel.org>,
-	Marc Kleine-Budde <mkl@pengutronix.de>,
-	"Peng Fan (OSS)" <peng.fan@oss.nxp.com>,
-	"wg@grandegger.com" <wg@grandegger.com>,
-	"conor+dt@kernel.org" <conor+dt@kernel.org>,
-	"davem@davemloft.net" <davem@davemloft.net>,
-	"krzysztof.kozlowski+dt@linaro.org" <krzysztof.kozlowski+dt@linaro.org>,
-	"edumazet@google.com" <edumazet@google.com>,
-	"pabeni@redhat.com" <pabeni@redhat.com>,
-	"linux-can@vger.kernel.org" <linux-can@vger.kernel.org>,
-	"netdev@vger.kernel.org" <netdev@vger.kernel.org>,
-	"devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-	"linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
-Subject: Re: [PATCH] dt-bindings: can: fsl,flexcan: add i.MX95 compatible
- string
-Message-ID: <20240131145736.GA1262278-robh@kernel.org>
-References: <20240122091738.2078746-1-peng.fan@oss.nxp.com>
- <20240122-skilled-wimp-4bc1769bf235-mkl@pengutronix.de>
- <20240122125631.4c54eba1@kernel.org>
- <DU0PR04MB941750744E86A1656009B7BE88742@DU0PR04MB9417.eurprd04.prod.outlook.com>
+	s=arc-20240116; t=1706713011; c=relaxed/simple;
+	bh=5xXgKjjwswzHov9slieCEtQPAKF5OMnVbk7lR2026l0=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=kxDUobZHf97MXQf6yDw8jBGJF7VeKSzmsdBmoAXekdwVsF5pYKogCsT8Lo62LWV+G62zbpHBoioatz7hkjgdyZ/OWf+9Jo5ZbARuTguT801R+BGdb/JMo5segolLKowWluiyxnxuMORtBDW4cCd/cgded/rHlofIAc5URJFfpkg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org; spf=pass smtp.mailfrom=gmail.com; arc=none smtp.client-ip=209.85.128.182
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-yw1-f182.google.com with SMTP id 00721157ae682-603c5d7997aso39584357b3.1;
+        Wed, 31 Jan 2024 06:56:48 -0800 (PST)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1706713005; x=1707317805;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=zpKdMjyzizQdBL1+BwnYNIUR7N8c1tbrrD6RLX3dXvU=;
+        b=dTbeBBeeSyuj0o+K5IKfgLJ3jr6a5C4RuLdAlvFGO1gbqwel4ru2YxOJoqnbQ8DogQ
+         2cabcUh+FdJInED/bOK4JgMSaEf9ILIa5srFM2u0jPHs9eXERcyovRWdDbof5eWkt7EI
+         eLHKt9tOjpt/3G52CHFJuGaDMImVh0nOcjnO8QhMnWJ/iZ6hkAUP5YEhX8hPqJoMP4mJ
+         cCecXlfyz1UBpzLgTpF5bEtwlFZZkj2hIpASy9493CWl4trCFi3xqeJ8YXAt9TUt7iFz
+         wUbmSIrg5jlqZFuDHVjGioqX3ASp+4Rzdn3L1j0lbMd1+hVV9E0z/FYrJGd6gvBGpZ/M
+         h+Dg==
+X-Gm-Message-State: AOJu0Ywlo2H8NR4+kXLrF+vxmjqd6/vNaeBiPo/IQKXp0uPqBPioQM+h
+	EqdUC/1MhQSk+oMNrq3uFscVtj0nZbw8OJ1XjBRJ3nX5hePOHU/0oWl58Qc6++Y=
+X-Google-Smtp-Source: AGHT+IF/TambxL5fDs1immlNAVTHs6ZR7UaqSfVfLrHF3n/t9eHtvP6U2XD2JpvU0LExSshj+3SBjw==
+X-Received: by 2002:a0d:d715:0:b0:5e9:fa4a:fd56 with SMTP id z21-20020a0dd715000000b005e9fa4afd56mr1613182ywd.13.1706713004775;
+        Wed, 31 Jan 2024 06:56:44 -0800 (PST)
+Received: from mail-yb1-f171.google.com (mail-yb1-f171.google.com. [209.85.219.171])
+        by smtp.gmail.com with ESMTPSA id cb8-20020a05690c090800b005ff3fdb8bf8sm3817435ywb.2.2024.01.31.06.56.43
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 31 Jan 2024 06:56:43 -0800 (PST)
+Received: by mail-yb1-f171.google.com with SMTP id 3f1490d57ef6-dc61fd6ba8cso3949096276.3;
+        Wed, 31 Jan 2024 06:56:43 -0800 (PST)
+X-Received: by 2002:a25:8243:0:b0:dc2:3427:f0f3 with SMTP id
+ d3-20020a258243000000b00dc23427f0f3mr1822274ybn.35.1706713003619; Wed, 31 Jan
+ 2024 06:56:43 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <DU0PR04MB941750744E86A1656009B7BE88742@DU0PR04MB9417.eurprd04.prod.outlook.com>
+References: <cover.1706194617.git.geert+renesas@glider.be> <CAPDyKFpxaEUHvKKb+spxV6HG2P2gLx5qM1mLPxJie+PdkmTL4w@mail.gmail.com>
+In-Reply-To: <CAPDyKFpxaEUHvKKb+spxV6HG2P2gLx5qM1mLPxJie+PdkmTL4w@mail.gmail.com>
+From: Geert Uytterhoeven <geert@linux-m68k.org>
+Date: Wed, 31 Jan 2024 15:56:31 +0100
+X-Gmail-Original-Message-ID: <CAMuHMdUswhJ3BQLnOQZC7X7qc7SFCqsr9Uy65LfBT_BNWfyhFQ@mail.gmail.com>
+Message-ID: <CAMuHMdUswhJ3BQLnOQZC7X7qc7SFCqsr9Uy65LfBT_BNWfyhFQ@mail.gmail.com>
+Subject: Re: [PATCH v2 00/15] arm64: renesas: Add R-Car V4M and Gray Hawk
+ Single support
+To: Ulf Hansson <ulf.hansson@linaro.org>
+Cc: Geert Uytterhoeven <geert+renesas@glider.be>, Michael Turquette <mturquette@baylibre.com>, 
+	Stephen Boyd <sboyd@kernel.org>, Rob Herring <robh+dt@kernel.org>, 
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Philipp Zabel <p.zabel@pengutronix.de>, Magnus Damm <magnus.damm@gmail.com>, 
+	Catalin Marinas <catalin.marinas@arm.com>, Will Deacon <will@kernel.org>, 
+	Cong Dang <cong.dang.xn@renesas.com>, Duy Nguyen <duy.nguyen.rh@renesas.com>, 
+	Hai Pham <hai.pham.ud@renesas.com>, Linh Phung <linh.phung.jy@renesas.com>, 
+	linux-renesas-soc@vger.kernel.org, linux-clk@vger.kernel.org, 
+	devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
+	linux-pm@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-On Tue, Jan 23, 2024 at 07:00:27AM +0000, Peng Fan wrote:
-> > Subject: Re: [PATCH] dt-bindings: can: fsl,flexcan: add i.MX95 compatible
-> > string
-> > 
-> > On Mon, 22 Jan 2024 11:26:25 +0100 Marc Kleine-Budde wrote:
-> > > > Add i.MX95 flexcan which is compatible i.MX93 flexcan
-> > > >
-> > > > Signed-off-by: Peng Fan <peng.fan@nxp.com>
-> > >
-> > > Acked-by: Marc Kleine-Budde <mkl@pengutronix.de>
-> > 
-> > Hm, you don't apply CAN DTB patches?
-> 
-> Nope. I am preparing dt-binding first, then post the i.MX95 SoC
-> dtsi. The CAN will be in the i.MX95 SOC dtsi file, not a
-> single patch only for CAN node.
+Hi Ulf,
 
-The question was why isn't Marc, the CAN maintainer, applying this. I 
-have the same question.
+On Tue, Jan 30, 2024 at 2:11=E2=80=AFPM Ulf Hansson <ulf.hansson@linaro.org=
+> wrote:
+> On Thu, 25 Jan 2024 at 16:34, Geert Uytterhoeven
+> <geert+renesas@glider.be> wrote:
+> > This patch series adds initial support for the Renesas R-Car V4M
+> > (R8A779G0) SoC and the Renesas Gray Hawk Single development board.
+> >
+> > As both driver code and DTS have hard dependencies on DT binding
+> > definitions, most patches in this series are supposed to go in through
+> > the renesas-devel and/or renesas-clk trees, using a shared branch for D=
+T
+> > binding definitions, as usual.  For the PM domain patches (03, 04, 09),
+> > Ulf already offered to apply these to his pmdomain tree, and provide an
+> > immutable "dt" branch, to be pulled in my renesas-devel tree.
+>
+> Patch 3,4 and 9 (I dropped the copyright line in patch9, as pointed
+> out by Niklas) applied for next, thanks!
+>
+> Patch 3,4 are also available at the immutable dt branch for you to pull i=
+n.
 
-Rob
+Thank you!
+
+I have pulled the immutable branch, added the remaining DT binding
+definitions, and queued all remaining patches.
+
+Gr{oetje,eeting}s,
+
+                        Geert
+
+--=20
+Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k=
+.org
+
+In personal conversations with technical people, I call myself a hacker. Bu=
+t
+when I'm talking to journalists I just say "programmer" or something like t=
+hat.
+                                -- Linus Torvalds
 
