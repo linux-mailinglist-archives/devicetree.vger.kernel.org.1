@@ -1,187 +1,165 @@
-Return-Path: <devicetree+bounces-37247-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-37248-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id EBD64844336
-	for <lists+devicetree@lfdr.de>; Wed, 31 Jan 2024 16:38:54 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id BD37684432B
+	for <lists+devicetree@lfdr.de>; Wed, 31 Jan 2024 16:35:00 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 9D1B2B2C038
-	for <lists+devicetree@lfdr.de>; Wed, 31 Jan 2024 15:34:27 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 7A3DE290FBD
+	for <lists+devicetree@lfdr.de>; Wed, 31 Jan 2024 15:34:59 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 94D09129A8E;
-	Wed, 31 Jan 2024 15:33:53 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 608E8128382;
+	Wed, 31 Jan 2024 15:34:36 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=nxp.com header.i=@nxp.com header.b="cFbJC2Cy"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="cJC8mHyR"
 X-Original-To: devicetree@vger.kernel.org
-Received: from EUR01-HE1-obe.outbound.protection.outlook.com (mail-he1eur01on2042.outbound.protection.outlook.com [40.107.13.42])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9ADF312AAFD;
-	Wed, 31 Jan 2024 15:33:51 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.107.13.42
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1706715233; cv=fail; b=BEwwswuLmO8cVz9CVJfdgCV62VR56a2qDyEi7uZhtnZmkJlb13ZfCXL7P+FoC/JDGpYjXkQDgRKxXkcghoGFrCSEZY7O2IlHtRbdUH/3XUp4GXJrfM6ZblaV39BOEjijTPIo42MEkoa1SeyKGUPXKmGqIFBu8hIMTcqWTOB6VBU=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1706715233; c=relaxed/simple;
-	bh=WAUd4tFS2O8fSB7vNHelt/r3NhbaaLjhCyQfzbrCvVs=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:Content-Type:
-	 Content-Disposition:In-Reply-To:MIME-Version; b=uV8QoV+vguZlv3PhUzm1Wv8Q2lPg+XSMiQoTVbeYCgZyVg6dZoM1nyooxN/501frSNZCcMHElSiUHHlXihsy4thwyf7IGhXZSR2bXAnuGX3in9VF+nL+2+USRA47Vy9W8b/HmmkN+I8asSc6TSR+k6cQyWMcVR+wVFrcEYQUuB4=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com; spf=pass smtp.mailfrom=nxp.com; dkim=pass (1024-bit key) header.d=nxp.com header.i=@nxp.com header.b=cFbJC2Cy; arc=fail smtp.client-ip=40.107.13.42
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=nxp.com
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=Is6ibetbbCzsjMj4V2jFeF0dHdjpaUU/fK9BFAFrUQdt52GEZ7Ub/OOfus2xp5CCyfldscZN1xtjcQqGLvB9OK1C4IOOlUrGR+KP0uHYpTL9AXVpN8I8DRP2AKVEZIJ6MjOaCIsivNBFVvkYK5Cq1EhlZQrtpx6M3CT2ZZ7E2Pqf9SzIPF90OXf4typKgrRtEsd4M7IeHdKJ6xiH0nlYp+dFCKeY02ghi41aNYMKpi6I1AIclIikPFo0trsz2zhM0YDs+PSH3SoLiJS5XvMHCTI2tWWuk/W5BmWfMhGu7zIOhVAU4pk89V20UyOYQsj0SJiO7BlaPhJKe4iItBNTaw==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=k+U1Ti+lC9m3FBSuaYrvvjx7lzWX2OlmWyhqzKOBPS8=;
- b=Rb1a062NF58MNdPR1BRkqGcVs53XAozZXViSBRczk97m+sdaAuvCPHt5A6yqOE9aWio8SXQfW+eJF2n4pwxGuFwivdlnBkUN4FgowyIB2eY3WuuXX3yFR38BU+IIk8DONtt2p838lapEeRTY/BIFZEn5vT7rVkffpboiHLQYypFhCvLVyK0E6Togcye/VxBHVG76CnjDSBnEPDnmsJFN5HLo1BJ96E9403IbixMreF7DcjzcttTheq/fjmGPV7Zjqpd3LPbf0SLC+DH/wKVPfPeyDqB5ReFeWHtrWT38RH0hgoC/zcjLuXY46Z4Kuvl9UzfbZ7jgCQRnAo53kw9Y7A==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
- header.d=nxp.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector2;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=k+U1Ti+lC9m3FBSuaYrvvjx7lzWX2OlmWyhqzKOBPS8=;
- b=cFbJC2Cy672em/zWwtMl2mvh1ZUEIgebfqRPozOahIqqg/65IjhDku6GWj0W8+6me+lThNbV3Sxlsi8K9jE2Je/j0b9BAsVV26ssznoBKvY3Kww/XndnGJbnop+zPpIIRFVBQ3FtFkwAUiScGU7NkucKBbxDgms7gLqF6WgP+ds=
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=nxp.com;
-Received: from PAXPR04MB9642.eurprd04.prod.outlook.com (2603:10a6:102:240::14)
- by PAXPR04MB8573.eurprd04.prod.outlook.com (2603:10a6:102:214::5) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7249.23; Wed, 31 Jan
- 2024 15:33:48 +0000
-Received: from PAXPR04MB9642.eurprd04.prod.outlook.com
- ([fe80::c8b4:5648:8948:e85c]) by PAXPR04MB9642.eurprd04.prod.outlook.com
- ([fe80::c8b4:5648:8948:e85c%3]) with mapi id 15.20.7228.029; Wed, 31 Jan 2024
- 15:33:48 +0000
-Date: Wed, 31 Jan 2024 10:33:42 -0500
-From: Frank Li <Frank.li@nxp.com>
-To: vkoul@kernel.org
-Cc: devicetree@vger.kernel.org, dmaengine@vger.kernel.org,
-	imx@lists.linux.dev, krzysztof.kozlowski+dt@linaro.org,
-	linux-kernel@vger.kernel.org, peng.fan@nxp.com, robh+dt@kernel.org,
-	shenwei.wang@nxp.com
-Subject: Re: [PATCH v4 0/6] dmaengine: fsl-edma: integrate TCD64 support for
- 64bit physical address
-Message-ID: <ZbpoVq/JALpmGv4J@lizhi-Precision-Tower-5810>
-References: <20231221153528.1588049-1-Frank.Li@nxp.com>
- <Za6d/lSARdxpqU4e@lizhi-Precision-Tower-5810>
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <Za6d/lSARdxpqU4e@lizhi-Precision-Tower-5810>
-X-ClientProxiedBy: BYAPR06CA0039.namprd06.prod.outlook.com
- (2603:10b6:a03:14b::16) To PAXPR04MB9642.eurprd04.prod.outlook.com
- (2603:10a6:102:240::14)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3374B128388;
+	Wed, 31 Jan 2024 15:34:35 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1706715276; cv=none; b=oB1SCZ59E024OnP6IOANITRJiTCReJavdEoNwk9H0WW13j0NVxYFxb5RFCgiKtQUfovfu1fRiE9Am5BCcm4Wwcd7rX9EVjnfDqxJfsBP3QWB3Jr4KI7rMFuZXITtPM3G4AONGz2vI9H7qugZJbQowki1R1uXR+ju3hQVKxACGK0=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1706715276; c=relaxed/simple;
+	bh=QQqV3bbP03G+xG6vuCBmBmlw0AuFNj3Mn7JBpxImoks=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=LjONLFL04ePJ3ntutPxy6O36c9TJ9idLA/azkts/oK0N/U3is9FBwu79BYxQ97+X6kAiGh0JzWJk9uB+TFgW6DpvnSIZ+Ahs90SdeN+HQQLcBJJu7cb6rlaFFQarLk/FL0MeVnjPnnqABt4wB/kI8sYTU5u/9D3gXQqz6zkNf1U=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=cJC8mHyR; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 54928C433C7;
+	Wed, 31 Jan 2024 15:34:33 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1706715275;
+	bh=QQqV3bbP03G+xG6vuCBmBmlw0AuFNj3Mn7JBpxImoks=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=cJC8mHyRJukMpVXa+Q8paQVnxkyN/CR9xP7DeuQ8PirxyucA+ii0WGa7vu2fuD8fn
+	 1NpgVrHoE1qaIACClRdbeUxEK4cKtchV+p7JwgF2DMK6x/XqOl+2xs2kdoUUIBR3kW
+	 aJts20Rx7rG8rRAN1BEAdP9NeMDbY/O0trbrSaGQT/JEJokCIacgus+gEXuwJB3nLa
+	 ZQvDVoeWxPfQQ9Jt16vxksL2lTXTElR8AnhAUtPZUvFB/JMIri1avLjwa4FK3PglQe
+	 nl0hcWEIxM4zriZzPF8NhU75O4H4B/bx6ToP+BLjQwpfxLdqS3bQfmaR0R18M952/p
+	 04vdePHFeujlA==
+Date: Wed, 31 Jan 2024 15:34:30 +0000
+From: Conor Dooley <conor@kernel.org>
+To: Michal Simek <michal.simek@amd.com>
+Cc: linux-kernel@vger.kernel.org, monstr@monstr.eu, michal.simek@xilinx.com,
+	git@xilinx.com, Conor Dooley <conor+dt@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Rob Herring <robh+dt@kernel.org>,
+	"open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" <devicetree@vger.kernel.org>,
+	kishore Manne <nava.kishore.manne@amd.com>,
+	"moderated list:ARM/ZYNQ ARCHITECTURE" <linux-arm-kernel@lists.infradead.org>
+Subject: Re: [PATCH v2] dt-bindings: firmware: xilinx: Describe soc-nvmem
+ subnode
+Message-ID: <20240131-portal-glazing-16fa36efb3cb@spud>
+References: <24fe6adbf2424360618e8f5ca541ebfd8bb0723e.1706692641.git.michal.simek@amd.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: PAXPR04MB9642:EE_|PAXPR04MB8573:EE_
-X-MS-Office365-Filtering-Correlation-Id: b6f5c0d9-f933-4364-a208-08dc227204c7
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info:
-	nv9eG6UqyIXJ2928m46tz5XOY+wopkAtvRNYL1PDWLsKlRLFy0fz89Rxey6JehNGDSj/n9g/kGcVbiqKHHMlQ3DwKnetgNFy9EO31MuYaiHYjz6K+wwhY3LseqL4r4MDRRU5qxjTOsxCRI/csRIexJ3aj0wKL0QfvB1B8Dm9+5brwKBLDRW6i/1OavCbN4e0kcead/dQZpE1lLQcsqRDs0Qio5zghxi+8p7MCIJUvrgT/1unD8Iw6gZFn+cXoafXmZ1OccQ/rkBdrmLT9xzabqAi2Ah9nXo6tGHVSDVPr0M0CsLgDFXTTDo1sxb3Q3PGQqLS673U/8EeF92VQZevevGvYONUDEidDXVZ60hQp/jJYjlxkr2AJLCVQkyRjmboIIZm+uEGyYXSZq1zPX9dBZYsZ3tIqljByI/jJOdnUKIad7MuDtcdeIgQwX2NEtOzUQ+Tzx8nh8dJ4ZibLHi9Z+i70YHgIrUH2YRMlHXr9J1He9wWTCDblfUwHC2NYiWY75XJuR1NaWBUiwBP3F56RffvXfLIr4E2fkcdpU6RYiT7wV11tWk34X7jLw+KxJIZAa4S+FqJVMd1AqhDHNQZPY5iX3EbKVjKyt6YNxRfZlQhqy1y1m/p2aOJ6Sactxz3/aZJ/zXSqkmAmEPT22w0wIOhMFcreLtYqn6AlISBM8o=
-X-Forefront-Antispam-Report:
-	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:PAXPR04MB9642.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230031)(7916004)(366004)(346002)(376002)(396003)(136003)(39860400002)(230173577357003)(230273577357003)(230922051799003)(186009)(64100799003)(1800799012)(451199024)(33716001)(26005)(41300700001)(478600001)(38350700005)(6916009)(316002)(66556008)(66476007)(6666004)(6486002)(6512007)(52116002)(6506007)(9686003)(83380400001)(38100700002)(66946007)(5660300002)(2906002)(8936002)(86362001)(4326008)(8676002);DIR:OUT;SFP:1101;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0:
-	=?us-ascii?Q?BmAJiqnEOnflTEqHDWfY85rYj2jlc8YiKpinRyvXu6bpnQljXWML0q+2Tvs1?=
- =?us-ascii?Q?iQ2PbFGUirfbkJEyyxzPHRo9L2CCbE1i9p4qDOsnhgBRMptpwr8MnuSAM1/K?=
- =?us-ascii?Q?C8p0ON8cfvCNYY6hgX1b5eVrzIX1c7klniP+bkmvnZWw4nW2ViOFx71d0KUh?=
- =?us-ascii?Q?i/9xWIi12VphiF1Gw7SHGD/qWgStE1sK25q7xCv3POTlT5fLvKx990MiEi1x?=
- =?us-ascii?Q?qDZblgBuYXIbW/kzoHokR8yOU2hNiVh1J9ZhtOmCcQLTWqYpSz7gPyma+RNf?=
- =?us-ascii?Q?20eiY+jU58/HV4FQ/8QpiF3tapPPlWiGfdY3vM5XvgQePBvmKvxK+7vEJRws?=
- =?us-ascii?Q?onSUGPc/V/Bc+eyY2kIRj8XfSnB3EqPgCQQeV23z+QfM/Ulx2FJ5nj7MKRsX?=
- =?us-ascii?Q?8Zq26/QNIeJJrrmHMA8CZ2D2dqBQOj5jraJsJnJZ1nB27MIFFlFz6dR6Yggb?=
- =?us-ascii?Q?AJ0txp7iXMfoWaQCtaQvEGIrCal2xd434WVJQCqc/YGl/dEHabmIOHX/CMBC?=
- =?us-ascii?Q?y1zPxT3qVaINRSgsrP2Y/RHu2aEwCV3pwxK/veGu4FFR+vAcP9rFxs+sZd04?=
- =?us-ascii?Q?2UBJDL480bdRtfuob4y7GMM8Mg/tR28gljWCW+nNR3iMEm1vkAOoHhIMBrLU?=
- =?us-ascii?Q?278QI73JfKTyetynpr8CVo915SjxPJTqta/dB1xztFAMOKs9eyllFwNcdbIg?=
- =?us-ascii?Q?HtsBrUkJ76dtk55v944PVzlFS2yJERQv58X5qADka/rj3xLpiRPMfVsYTfbR?=
- =?us-ascii?Q?59p3qX1qVgcyWCkowfbZf3TvEgjA1ZlfjMudqwBXQLXmuvI4kXqRnbt80lLz?=
- =?us-ascii?Q?d1G9KKrGaat71037BjyzEvlEqZV51BYPdDm0tiB5LiLbe3BATidugojTa/hQ?=
- =?us-ascii?Q?B+BVbxVtqmVW/1BF4AobwDSesdoyqXSPpmQIB91Qh8OmebOGIDjxEG2Sh7mi?=
- =?us-ascii?Q?M8zS8TDxSAxk3r8n/ilQXVq9A0XgtYmmTwDe3Tybi69YgMINDGXlIVYQhfXf?=
- =?us-ascii?Q?i+9iz3vi5mAdSWiPfbbSzz3MXRs28Xq5WpC4N6erJlYe+cn/1S0XuUVB6eW9?=
- =?us-ascii?Q?UPIs5o5ZDxJd1jhoV5CxByoWYF4qyH4o7c7kQZxmluo6wRfbG7UFD+bBZ47j?=
- =?us-ascii?Q?3lAXeFoiN8xcfaMlyvmpdBWIS6RPC+3+43OVi3HuotDH7TE+bEydmEDrNqRJ?=
- =?us-ascii?Q?xR7UXfBXTb2osYLT8fmHF7EQVP5S8q2rO8NpPLGsot8mTGuvmxK+CUAN7LeF?=
- =?us-ascii?Q?ZWqnAOD9Ch1ii1pbm5i9i6R9mhb5p5Wl/c82m3l4UhI3QPKHUucjfmsFr6pG?=
- =?us-ascii?Q?pPPXJ8sGHYwKn5svOxFqfQfEYzhoJPYRSF2nYNmabk/K8aWA71gIPlPKkQac?=
- =?us-ascii?Q?BZlnoY1VWr89TpcYCnG8M51fIWXflo92qrtEtIL+MV6opSZr/sBghmXdq54L?=
- =?us-ascii?Q?ODaW/SMgR3Cn9XzXAqh8OaaHJ9nIwjbE4RZ9VsNVz/6B/7C0TqqXu4Ilr6AR?=
- =?us-ascii?Q?E8HuljHrtkUOidfmsUNCDTdEIRR8mbWMEhAGdR7Ys+jqEBznpUzKYZAHBa43?=
- =?us-ascii?Q?1kp54ZkhxDGFnEikJi12w+MksMCIdmkNhQxL2UWz?=
-X-OriginatorOrg: nxp.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: b6f5c0d9-f933-4364-a208-08dc227204c7
-X-MS-Exchange-CrossTenant-AuthSource: PAXPR04MB9642.eurprd04.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 31 Jan 2024 15:33:48.3750
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: YC5M9tKje33CZE0NcxACrFLCyRCAeX/XRGLOTf8EMfJmqkmJOmNsHnnmQ0O1nwdqJ6cLHIsJB/VmKOHx+MxpQQ==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: PAXPR04MB8573
+Content-Type: multipart/signed; micalg=pgp-sha256;
+	protocol="application/pgp-signature"; boundary="p8eTPnKnItRAdl1X"
+Content-Disposition: inline
+In-Reply-To: <24fe6adbf2424360618e8f5ca541ebfd8bb0723e.1706692641.git.michal.simek@amd.com>
 
-On Mon, Jan 22, 2024 at 11:55:26AM -0500, Frank Li wrote:
-> On Thu, Dec 21, 2023 at 10:35:22AM -0500, Frank Li wrote:
-> > Change from v3 to v4.	
-> > Fixed tcd64 type as fsl_edma_hw_tcd64
-> > 
-> > Change from v2 to v3:
-> >  - fix sparse build warning
-> > 
-> > Change from v1 to v2:
-> > - fixed mcf-edma-main.c build error.
-> > - fixed readq build error. readq actually is not atomic read in imx95.
-> > So split to two ioread32\iowrite32.
-> >   It needs read at least twice to avoid lower 32 bit part wrap during read
-> > up 32bit part.
-> > 
-> > first 2 patch is prepare, No function change.
-> > 3rd patch is dt-bind doc
-> > 4rd patch is actuall support TCD64
-> 
-> @vnod:
-> 
-> 	Could you please check these patches? I still have more patches,
-> which depended on this.
-> 	eDMA is used for cross whole i.MX chips.
-> 		
-> Frank
 
-@Vinod:
-	Ping?
+--p8eTPnKnItRAdl1X
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-Frank
+On Wed, Jan 31, 2024 at 10:17:28AM +0100, Michal Simek wrote:
+> Describe soc-nvmem subnode as the part of firmware node. The name can't be
+> pure nvmem because dt-schema already defines it as array property that's
+> why different name should be used.
+>=20
+> Signed-off-by: Michal Simek <michal.simek@amd.com>
 
-> 
-> > 
-> > Frank Li (6):
-> >   dmaengine: fsl-edma: involve help macro fsl_edma_set(get)_tcd()
-> >   dmaengine: fsl-edma: fix spare build warning
-> >   dmaengine: fsl-edma: add address for channel mux register in
-> >     fsl_edma_chan
-> >   dmaengine: mcf-edma: utilize edma_write_tcdreg() macro for TCD Access
-> >   dt-bindings: fsl-dma: fsl-edma: add fsl,imx95-edma5 compatible string
-> >   dmaengine: fsl-edma: integrate TCD64 support for i.MX95
-> > 
-> >  .../devicetree/bindings/dma/fsl,edma.yaml     |   2 +
-> >  drivers/dma/fsl-edma-common.c                 | 101 ++++++-----
-> >  drivers/dma/fsl-edma-common.h                 | 161 ++++++++++++++++--
-> >  drivers/dma/fsl-edma-main.c                   |  19 ++-
-> >  drivers/dma/mcf-edma-main.c                   |   2 +-
-> >  5 files changed, 223 insertions(+), 62 deletions(-)
-> > 
-> > -- 
-> > 2.34.1
-> > 
+Acked-by: Conor Dooley <conor.dooley@microchip.com>
+
+Cheers,
+Conor.
+
+> ---
+>=20
+> Changes in v2:
+> - Fix typo in subject
+> - Make example bigger requested by Conor
+>=20
+> Dt binding for nvmem node has been already merged and it is the part of
+> linux-next tree.
+> Here is the reference to it just in case:
+> https://lore.kernel.org/r/170635581622.41421.8980881999042944764.b4-ty@li=
+naro.org
+>=20
+> v1 available here:
+> https://lore.kernel.org/r/3869498c995cbb123127122f429e90de0a3f4014.170653=
+1104.git.michal.simek@amd.com
+>=20
+> ---
+>  .../firmware/xilinx/xlnx,zynqmp-firmware.yaml  | 18 ++++++++++++++++++
+>  1 file changed, 18 insertions(+)
+>=20
+> diff --git a/Documentation/devicetree/bindings/firmware/xilinx/xlnx,zynqm=
+p-firmware.yaml b/Documentation/devicetree/bindings/firmware/xilinx/xlnx,zy=
+nqmp-firmware.yaml
+> index 870b94813a43..741f17c830f4 100644
+> --- a/Documentation/devicetree/bindings/firmware/xilinx/xlnx,zynqmp-firmw=
+are.yaml
+> +++ b/Documentation/devicetree/bindings/firmware/xilinx/xlnx,zynqmp-firmw=
+are.yaml
+> @@ -62,6 +62,12 @@ properties:
+>        interface.
+>      type: object
+> =20
+> +  soc-nvmem:
+> +    $ref: /schemas/nvmem/xlnx,zynqmp-nvmem.yaml#
+> +    description: The ZynqMP MPSoC provides access to the hardware relate=
+d data
+> +      like SOC revision, IDCODE and specific purpose efuses.
+> +    type: object
+> +
+>    pcap:
+>      $ref: /schemas/fpga/xlnx,zynqmp-pcap-fpga.yaml#
+>      description: The ZynqMP SoC uses the PCAP (Processor Configuration P=
+ort) to
+> @@ -110,6 +116,18 @@ examples:
+>      firmware {
+>        zynqmp_firmware: zynqmp-firmware {
+>          #power-domain-cells =3D <1>;
+> +        soc-nvmem {
+> +          compatible =3D "xlnx,zynqmp-nvmem-fw";
+> +          nvmem-layout {
+> +            compatible =3D "fixed-layout";
+> +            #address-cells =3D <1>;
+> +            #size-cells =3D <1>;
+> +
+> +            soc_revision: soc-revision@0 {
+> +                reg =3D <0x0 0x4>;
+> +            };
+> +          };
+> +        };
+>          gpio {
+>            compatible =3D "xlnx,zynqmp-gpio-modepin";
+>            gpio-controller;
+> --=20
+> 2.36.1
+>=20
+
+--p8eTPnKnItRAdl1X
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZbpohgAKCRB4tDGHoIJi
+0p05AP9bj66WPLZDJjQs7HxXFevKfbYnJv+06hgUHoKnu22e4AEA/ySr0RIBsROL
+8ZrTNyAnnycNZUDPJk2tZKTechOleQ8=
+=dgZy
+-----END PGP SIGNATURE-----
+
+--p8eTPnKnItRAdl1X--
 
