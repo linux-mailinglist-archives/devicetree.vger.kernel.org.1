@@ -1,96 +1,203 @@
-Return-Path: <devicetree+bounces-36985-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-36987-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 855AA84368A
-	for <lists+devicetree@lfdr.de>; Wed, 31 Jan 2024 07:21:15 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 113008436CC
+	for <lists+devicetree@lfdr.de>; Wed, 31 Jan 2024 07:30:42 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id B7C3E1C2127D
-	for <lists+devicetree@lfdr.de>; Wed, 31 Jan 2024 06:21:14 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id BAD23281DFB
+	for <lists+devicetree@lfdr.de>; Wed, 31 Jan 2024 06:30:40 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D0B4C3E47C;
-	Wed, 31 Jan 2024 06:21:11 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8E24F46449;
+	Wed, 31 Jan 2024 06:30:26 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=atomide.com header.i=@atomide.com header.b="VJe7n5Aj"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="vZsFBO1t"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail5.25mail.st (mail5.25mail.st [74.50.62.9])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-yw1-f181.google.com (mail-yw1-f181.google.com [209.85.128.181])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6327E3E479
-	for <devicetree@vger.kernel.org>; Wed, 31 Jan 2024 06:21:10 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=74.50.62.9
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A604341A8F
+	for <devicetree@vger.kernel.org>; Wed, 31 Jan 2024 06:30:22 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.181
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1706682071; cv=none; b=g71bS9iAuegTL5z/2OdBZj80xrSpfcMRj8r2E7DPkY0K7MnquMES8yVk2R22XG5QsWfieZ7OZaMZ1FsQjlTTMo/9FF33BvXbOr7T8gRxm4ZotSUMPGdZ2wxy36197uHoqGAFG6p737PqvCxaYgGg0lSDivn0zkWrdyW7xUE51gw=
+	t=1706682626; cv=none; b=DQ+Oz6mSctAJp6z7aIdVvLYAZ2Yy/AsUbLokxZJ9CPm/q4XnQO3qz/Zsc7ZoxU8S3Rn6Oibfl/6pQV246QBkSgqqkVA9aXgkIyuAyE778ZeU+A61DuaKgZ9SVhYI1KAiH92xjxTp3PoivZfXIPoerEoLfG7ZlNceV0hKcwd/pA4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1706682071; c=relaxed/simple;
-	bh=1stjmB4mIQIgjXzEdef4k7mYxVV6dJBOLDOpjOEsKgA=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=tFD0j8z8UsFR3o9A0qo7OFv4Pd7evxIzIg7wnpEhP6R7hV2CynSFl1E+Ob+XpuB+Etgxl5SCMUpo3pUitNFNhHzOY8GEmJ8RwN/PCEHUIQtzCscMAlWqMWE3X/MHL0Qw+vJtC2GZo2RvTQylkGA+21UmWyXSTTUtI2+n/Kb5Yrs=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=atomide.com; spf=fail smtp.mailfrom=atomide.com; dkim=pass (2048-bit key) header.d=atomide.com header.i=@atomide.com header.b=VJe7n5Aj; arc=none smtp.client-ip=74.50.62.9
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=atomide.com
-Authentication-Results: smtp.subspace.kernel.org; spf=fail smtp.mailfrom=atomide.com
-Received: from localhost (91-158-86-216.elisa-laajakaista.fi [91.158.86.216])
-	by mail5.25mail.st (Postfix) with ESMTPSA id DF81F60417;
-	Wed, 31 Jan 2024 06:20:23 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple; d=atomide.com;
-	s=25mailst; t=1706682069;
-	bh=1stjmB4mIQIgjXzEdef4k7mYxVV6dJBOLDOpjOEsKgA=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=VJe7n5AjQvvnU9dL4abFmdrz9smQ62eqsrW5YXVrm5+ZeLeK/3atXMfC/DnTorl7p
-	 NBUknsdV39KrNygf7h6UadzelEXF98CNMKxeHLW54j7gaMqmM+08grrx9ox6O/XGnJ
-	 zdy2VMIp2xwB4zsYurz5LfHmQBy0XyDUckhtdrJyTv1ZhBcGvqxZ7R8dxAmdqBexaB
-	 M/u4Sqz7v3AD9v+L21o+4kP6JteJUHNigSa6y62rX7FHYX6Tck79ViLMavIFbR7KY+
-	 yHVBEJq7Og8F5nkJq8CRroOswHul6RmyncB1OYoxaUhJ2UIxCIPK2SnLv4r2e1cBuX
-	 XKyQ/2mipYhqg==
-Date: Wed, 31 Jan 2024 08:20:21 +0200
-From: Tony Lindgren <tony@atomide.com>
-To: Michael Walle <mwalle@kernel.org>
-Cc: dmitry.baryshkov@linaro.org, Laurent.pinchart@ideasonboard.com,
-	andrzej.hajda@intel.com, conor+dt@kernel.org,
-	devicetree@vger.kernel.org, dri-devel@lists.freedesktop.org,
-	ivo.g.dimitrov.75@gmail.com, jernej.skrabec@gmail.com,
-	jonas@kwiboo.se, krzysztof.kozlowski+dt@linaro.org,
-	merlijn@wizzup.org, mripard@kernel.org, neil.armstrong@linaro.org,
-	pavel@ucw.cz, philipp@uvos.xyz, rfoss@kernel.org,
-	robh+dt@kernel.org, sam@ravnborg.org, simhavcs@gmail.com,
-	sre@kernel.org, tzimmermann@suse.de
-Subject: Re: [PATCH v2 09/10] drm/bridge: tc358775: Add support for tc358765
-Message-ID: <20240131062021.GV31612@atomide.com>
-References: <CAA8EJppYoBxYaFnu7UHxCgNiRwcjmVgPXXcQboaeu_dGCosJXg@mail.gmail.com>
- <20231204095213.2573620-1-mwalle@kernel.org>
+	s=arc-20240116; t=1706682626; c=relaxed/simple;
+	bh=nxlnhpTP2ZY02f0uY5iRFtCEWLbVgQJy/f7OhUQYcng=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=mi+w36MeSFtIeT3tQ7TjbQPgRWb/KOzeKqZsmyYswjkRvWuM57+SGODy/ehF2aE5uz2rYjIIEc+Gn7hhgt3vefLJ1DYzJ/TancnQl6IUJpHdbyQBQ9KgsEmJdw/rQhm0jYl86YBmj14p8hwRuf9yZv2Qa8NxZ1P+lLSmcUJh6MM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=vZsFBO1t; arc=none smtp.client-ip=209.85.128.181
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-yw1-f181.google.com with SMTP id 00721157ae682-6029b5946f5so4017197b3.1
+        for <devicetree@vger.kernel.org>; Tue, 30 Jan 2024 22:30:22 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1706682621; x=1707287421; darn=vger.kernel.org;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=XuBpfFrt6LIRFxGJEZUBYvlJzyC2OSdPPTTcyZFlpqs=;
+        b=vZsFBO1tbcX0p4bsdYubfMJfW2LmU0Q4FUJRAJXNIm9NjKsUowy2lKBJZttjRf2E7s
+         n7y4pdDx/G+wKZRElpjGreamrPgUmd4L7CAZ+sC+1Sh7ZADQsVL+nV8yW1kPrpcpU4p2
+         Kqp+NYw0HPqTkjluQSYWeHok+pWSp5CT1aEelzSJkpzdgcl2+a2UNtnfYV2MCAMWsBmn
+         6ZvVU6JYHoc1DyOQFQPDv00OYggDNIXWN8dO78rhTOjrz3ftgC0zkRz3BpaOk0s0eoT7
+         NsKjd8gufHe1y0DZk7acaYmEl104/B1PsjYP4r77Plhs4hGW8eQHzfHNynyy2zMMKAJ6
+         73Ng==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1706682621; x=1707287421;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=XuBpfFrt6LIRFxGJEZUBYvlJzyC2OSdPPTTcyZFlpqs=;
+        b=MLP1vgax/hd8SyWD6ktw8k82dNrSfmwR0ZSDibDB55WTzyU5FCgnB9OmZowuQ+fWEn
+         Y/QV/NeDAHP+HGAH2KhfizOlI3gRi9SVPZJfYaxGVGysFJMFSWPVYWlgwbfhsY2nZ4lV
+         EU0fM41kMbxZtI3yNM9FTI2CiFUfwCzRveEfvBfcHJuzHgOSmxITudx1G5+D27X1Zj6p
+         qh/oquJT8on8HpRS3CZnUyrmzMCyK6VOyFo9RdI513sTJzwCPMCI51Do58T5WLbmxKeY
+         MtJ55j8g9CkPIPi/V52AahnWvSipgZQOqmhGePU+9pS63ZkIKHfMZvUT9msZfZtAQJbA
+         sMhg==
+X-Gm-Message-State: AOJu0YytSnflV50EzxImZjcZLrX5fcfNtIE3Ze7IaOO5uCjHpeG41ZeK
+	V8gu6v1heZvnDFB3N8OgSZE4j5zmBenNg4kTPzRD0dvby8H5kPSzSFcsjPRhhbvswWQhEjSRJYd
+	MkdzbzeSApYxbhFveZl6vt4yfP3iWpind0LwcjQ==
+X-Google-Smtp-Source: AGHT+IFCSuHGBgOcgNRm+Jyx9Rk92WC70s7Qe1r45Ekea56q3x+YWZYnfOl+X2xsR2ea9MpX12ltkU9QLuvg4lUUs5g=
+X-Received: by 2002:a81:6d16:0:b0:5ff:8152:64b with SMTP id
+ i22-20020a816d16000000b005ff8152064bmr311187ywc.15.1706682621572; Tue, 30 Jan
+ 2024 22:30:21 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20231204095213.2573620-1-mwalle@kernel.org>
+References: <87o7d26qla.wl-kuninori.morimoto.gx@renesas.com> <87le866qke.wl-kuninori.morimoto.gx@renesas.com>
+In-Reply-To: <87le866qke.wl-kuninori.morimoto.gx@renesas.com>
+From: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+Date: Wed, 31 Jan 2024 08:30:10 +0200
+Message-ID: <CAA8EJpoRhS_yvJJUuC3YkWRAKT7e03k+-K=6QKfL_6TkB1XoxA@mail.gmail.com>
+Subject: Re: [PATCH v3 02/24] of: property: use unsigned int return on of_graph_get_endpoint_count()
+To: Kuninori Morimoto <kuninori.morimoto.gx@renesas.com>
+Cc: "Bryan O'Donoghue" <bryan.odonoghue@linaro.org>, 
+	"Lad, Prabhakar" <prabhakar.csengg@gmail.com>, 
+	=?UTF-8?Q?Niklas_S=C3=83=C2=B6derlund?= <niklas.soderlund+renesas@ragnatech.se>, 
+	=?UTF-8?B?VXdlIEtsZWluZS1Lw4PCtm5pZw==?= <u.kleine-koenig@pengutronix.de>, 
+	Abhinav Kumar <quic_abhinavk@quicinc.com>, 
+	Alexander Shishkin <alexander.shishkin@linux.intel.com>, 
+	Alexander Stein <alexander.stein@ew.tq-group.com>, 
+	Alexandre Belloni <alexandre.belloni@bootlin.com>, 
+	Alexandre Torgue <alexandre.torgue@foss.st.com>, Alexey Brodkin <abrodkin@synopsys.com>, 
+	Andrzej Hajda <andrzej.hajda@intel.com>, Andy Gross <agross@kernel.org>, 
+	Biju Das <biju.das.jz@bp.renesas.com>, Bjorn Andersson <andersson@kernel.org>, 
+	Claudiu Beznea <claudiu.beznea@tuxon.dev>, Daniel Vetter <daniel@ffwll.ch>, 
+	Dave Stevenson <dave.stevenson@raspberrypi.com>, David Airlie <airlied@gmail.com>, 
+	Dmitry Torokhov <dmitry.torokhov@gmail.com>, Emma Anholt <emma@anholt.net>, 
+	Eugen Hristev <eugen.hristev@collabora.com>, 
+	Florian Fainelli <florian.fainelli@broadcom.com>, Frank Rowand <frowand.list@gmail.com>, 
+	Greg Kroah-Hartman <gregkh@linuxfoundation.org>, Hans Verkuil <hverkuil-cisco@xs4all.nl>, 
+	Helge Deller <deller@gmx.de>, Hugues Fruchet <hugues.fruchet@foss.st.com>, 
+	Jacopo Mondi <jacopo+renesas@jmondi.org>, Jacopo Mondi <jacopo@jmondi.org>, 
+	James Clark <james.clark@arm.com>, Jaroslav Kysela <perex@perex.cz>, 
+	Jonathan Hunter <jonathanh@nvidia.com>, Kevin Hilman <khilman@baylibre.com>, 
+	Kieran Bingham <kieran.bingham+renesas@ideasonboard.com>, 
+	Kieran Bingham <kieran.bingham@ideasonboard.com>, Konrad Dybcio <konrad.dybcio@linaro.org>, 
+	Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>, 
+	Laurent Pinchart <laurent.pinchart+renesas@ideasonboard.com>, 
+	Laurent Pinchart <laurent.pinchart@ideasonboard.com>, Liam Girdwood <lgirdwood@gmail.com>, 
+	Liu Ying <victor.liu@nxp.com>, Luca Ceresoli <luca.ceresoli@bootlin.com>, 
+	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, Marek Vasut <marex@denx.de>, 
+	Mark Brown <broonie@kernel.org>, Mauro Carvalho Chehab <mchehab@kernel.org>, 
+	Maxime Coquelin <mcoquelin.stm32@gmail.com>, Maxime Ripard <mripard@kernel.org>, 
+	Michael Tretter <m.tretter@pengutronix.de>, Michal Simek <michal.simek@amd.com>, 
+	Miguel Ojeda <ojeda@kernel.org>, Nathan Chancellor <nathan@kernel.org>, 
+	Neil Armstrong <neil.armstrong@linaro.org>, Nick Desaulniers <ndesaulniers@google.com>, 
+	Nicolas Ferre <nicolas.ferre@microchip.com>, Philipp Zabel <p.zabel@pengutronix.de>, 
+	Philippe Cornu <philippe.cornu@foss.st.com>, 
+	Raphael Gallais-Pou <raphael.gallais-pou@foss.st.com>, Rob Clark <robdclark@gmail.com>, 
+	Rob Herring <robh+dt@kernel.org>, Robert Foss <rfoss@kernel.org>, 
+	Russell King <linux@armlinux.org.uk>, Sakari Ailus <sakari.ailus@linux.intel.com>, 
+	Saravana Kannan <saravanak@google.com>, Sascha Hauer <s.hauer@pengutronix.de>, 
+	Shawn Guo <shawnguo@kernel.org>, Sowjanya Komatineni <skomatineni@nvidia.com>, 
+	Stefan Agner <stefan@agner.ch>, Suzuki K Poulose <suzuki.poulose@arm.com>, 
+	Sylwester Nawrocki <s.nawrocki@samsung.com>, Takashi Iwai <tiwai@suse.com>, 
+	Thierry Reding <thierry.reding@gmail.com>, Thomas Zimmermann <tzimmermann@suse.de>, 
+	Tim Harvey <tharvey@gateworks.com>, Todor Tomov <todor.too@gmail.com>, 
+	Tomi Valkeinen <tomi.valkeinen@ideasonboard.com>, 
+	Yannick Fertre <yannick.fertre@foss.st.com>, Alim Akhtar <alim.akhtar@samsung.com>, 
+	Fabio Estevam <festevam@gmail.com>, Jacopo Mondi <jacopo.mondi@ideasonboard.com>, 
+	Jernej Skrabec <jernej.skrabec@gmail.com>, Jerome Brunet <jbrunet@baylibre.com>, 
+	Jessica Zhang <quic_jesszhan@quicinc.com>, Jonas Karlman <jonas@kwiboo.se>, 
+	Leo Yan <leo.yan@linaro.org>, Marijn Suijten <marijn.suijten@somainline.org>, 
+	Martin Blumenstingl <martin.blumenstingl@googlemail.com>, Mike Leach <mike.leach@linaro.org>, 
+	Sam Ravnborg <sam@ravnborg.org>, Sean Paul <sean@poorly.run>, Tom Rix <trix@redhat.com>, 
+	coresight@lists.linaro.org, devicetree@vger.kernel.org, 
+	dri-devel@lists.freedesktop.org, freedreno@lists.freedesktop.org, 
+	linux-amlogic@lists.infradead.org, linux-arm-kernel@lists.infradead.org, 
+	linux-arm-msm@vger.kernel.org, linux-fbdev@vger.kernel.org, 
+	linux-media@vger.kernel.org, linux-omap@vger.kernel.org, 
+	linux-renesas-soc@vger.kernel.org, linux-rpi-kernel@lists.infradead.org, 
+	linux-samsung-soc@vger.kernel.org, linux-sound@vger.kernel.org, 
+	linux-staging@lists.linux.dev, linux-stm32@st-md-mailman.stormreply.com, 
+	linux-tegra@vger.kernel.org, llvm@lists.linux.dev
+Content-Type: text/plain; charset="UTF-8"
 
-* Michael Walle <mwalle@kernel.org> [231204 09:52]:
-> >> @@ -643,6 +658,7 @@ static int tc_probe(struct i2c_client *client)
-> >>
-> >>         tc->dev = dev;
-> >>         tc->i2c = client;
-> >> +       tc->type = (enum tc3587x5_type)of_device_get_match_data(dev);
-> >
-> > Would it make sense to use i2c_get_match_data() instead?
-> 
-> FWIW, I' planning to add a dsi binding for this driver. So I'd
-> suggest either the of_ or the device_ variant. Not sure though,
-> if the new device supports the DSI commands.
+On Wed, 31 Jan 2024 at 07:05, Kuninori Morimoto
+<kuninori.morimoto.gx@renesas.com> wrote:
+>
+> The return type and the variable of of_graph_get_endpoint_count()
+> should be unsigned. Tidyup it.
 
-Yeah good point as some hardware may not have i2c wired at all. Let's keep
-this as of_device_get_match_data() for now as the driver is currently
-completely dependant on devicetree.
+'the variable'?
 
-I'll update the enumeration to use the hardware id numbering like Dmitry
-suggested though.
+I'd have added a few words telling that return type can be unsigned
+because there is no error reporting for this function.
 
-Regards,
+>
+> Signed-off-by: Kuninori Morimoto <kuninori.morimoto.gx@renesas.com>
+> ---
+>  drivers/of/property.c    | 2 +-
+>  include/linux/of_graph.h | 4 ++--
+>  2 files changed, 3 insertions(+), 3 deletions(-)
+>
+> diff --git a/drivers/of/property.c b/drivers/of/property.c
+> index 4e879faa1710..25d73409aeee 100644
+> --- a/drivers/of/property.c
+> +++ b/drivers/of/property.c
+> @@ -817,7 +817,7 @@ EXPORT_SYMBOL(of_graph_get_remote_port);
+>   *
+>   * Return: count of endpoint of this device node
+>   */
+> -int of_graph_get_endpoint_count(const struct device_node *np)
+> +unsigned int of_graph_get_endpoint_count(const struct device_node *np)
+>  {
+>         struct device_node *endpoint;
+>         int num = 0;
+> diff --git a/include/linux/of_graph.h b/include/linux/of_graph.h
+> index 4d7756087b6b..a4bea62bfa29 100644
+> --- a/include/linux/of_graph.h
+> +++ b/include/linux/of_graph.h
+> @@ -41,7 +41,7 @@ struct of_endpoint {
+>  bool of_graph_is_present(const struct device_node *node);
+>  int of_graph_parse_endpoint(const struct device_node *node,
+>                                 struct of_endpoint *endpoint);
+> -int of_graph_get_endpoint_count(const struct device_node *np);
+> +unsigned int of_graph_get_endpoint_count(const struct device_node *np);
+>  struct device_node *of_graph_get_port_by_id(struct device_node *node, u32 id);
+>  struct device_node *of_graph_get_next_endpoint(const struct device_node *parent,
+>                                         struct device_node *previous);
+> @@ -68,7 +68,7 @@ static inline int of_graph_parse_endpoint(const struct device_node *node,
+>         return -ENOSYS;
+>  }
+>
+> -static inline int of_graph_get_endpoint_count(const struct device_node *np)
+> +static inline unsigned int of_graph_get_endpoint_count(const struct device_node *np)
+>  {
+>         return 0;
+>  }
+> --
+> 2.25.1
+>
 
-Tony
+
+--
+With best wishes
+Dmitry
 
