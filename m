@@ -1,71 +1,66 @@
-Return-Path: <devicetree+bounces-37323-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-37324-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id C38778447A5
-	for <lists+devicetree@lfdr.de>; Wed, 31 Jan 2024 19:59:58 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 06E188447B7
+	for <lists+devicetree@lfdr.de>; Wed, 31 Jan 2024 20:03:18 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 60C3C1F27BA6
-	for <lists+devicetree@lfdr.de>; Wed, 31 Jan 2024 18:59:58 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id B6FC4286E17
+	for <lists+devicetree@lfdr.de>; Wed, 31 Jan 2024 19:03:16 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3674A33CFD;
-	Wed, 31 Jan 2024 18:59:52 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4FC6433986;
+	Wed, 31 Jan 2024 19:03:14 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="J2T2tZJE"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Wg35BRhC"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 00F8A339AE;
-	Wed, 31 Jan 2024 18:59:51 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0EE3838DD1;
+	Wed, 31 Jan 2024 19:03:13 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1706727592; cv=none; b=Tb7oth4AUdE6kIn+MymcKHmCJRuNCU53/FG8gup7eGs8VULp7FsXQnt/4qMtAW3Fm2140E+tpjmdzNRTaqmkZMdoO28nhhYx5DsVkQ5+faUwgfYWpEdOjkRsdP27AGi+XrVQmBfjCqLm2iKgLeOtod0RUQEupoejPr27gfW35jY=
+	t=1706727794; cv=none; b=cXTGD8bwQarfpJ48J6Am0VBWKn5rXp3aWzPJhFMhQfwdXzLP15WWIBulRAeFtbKfZNoEg13Su2U+Z9DivL8m38MrtOzTdMcb34GkAP6fQCb0s8mlYhHD3yI0Jotz6Pjzn0jQHy0+YgX0NimMQewY/yDLW4boSPfMUn5peQyl6HY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1706727592; c=relaxed/simple;
-	bh=zhKuq+LkCXaKbrjTf0rz7m44R1nLItf93tzKRFen818=;
+	s=arc-20240116; t=1706727794; c=relaxed/simple;
+	bh=WKMU0Z5OzqnsIcqS/IBWHJPpY6kqQUrZAznF1ycmrqk=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=KDZ20ObtDsLSjLtxshjv4n8k7F0xJ1mqExJW67ADRvcn7XZ0MXYnv7Ku/WWWBRzLSeUPgO2wbi8xno2GgjyI/zVTHEopcnjJsSLfYYAHfTon5sugBuNBAGN4IxBQjk+gL5zo/OweGMwJFgL0AIKIqQRLcxuD/YlOnzfuyq9D9lA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=J2T2tZJE; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 43B6DC433C7;
-	Wed, 31 Jan 2024 18:59:51 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=k2GuzWx6RAeGXFqs13duMkiDAEhziwuBPUxBkjXgzTPVI16cWgDMT8Rot80cUCRTPtN8n6PzhML9SaXzXpoDLCfIOkns94KYbT3QkVbVA5r76uRQmq+X+969WEigH9kv3pXIzWjFwddTDO9Y6TahXJYKPpEqQ0orG0Bm+SL5hsg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Wg35BRhC; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 3AECCC433F1;
+	Wed, 31 Jan 2024 19:03:13 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1706727591;
-	bh=zhKuq+LkCXaKbrjTf0rz7m44R1nLItf93tzKRFen818=;
+	s=k20201202; t=1706727793;
+	bh=WKMU0Z5OzqnsIcqS/IBWHJPpY6kqQUrZAznF1ycmrqk=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=J2T2tZJEsLoBpHrkqTKdor3Ee8fR4osEdkaiIsbw0pFM+JUAISnyhSeqEXLzx1zHW
-	 tDWEjLTaTOZ+IySnxgNoy/AkBn3s/9CRKSqPMOk4D/+TyVZxprDrOPnqFIdegcTrAE
-	 QcDTN8RN3UhFnEYNy4/+hRJfLDx5XO2xp6flSfxddWXTHT9mNL38pghll2fTkxV4FE
-	 8VeVNXUgKLEGn+QwFZYUjkYhrhAVqcOcTTWduvG93lYLSzqXtkF+L3mo6vE1ZEThiL
-	 /JcbcL/4cAsG3IRKMKK9njFUPPKYCz2amdTdITfWYfX0ri0I97rF51GHMZzgZl8JUb
-	 04l6+s8vY7qJQ==
-Date: Wed, 31 Jan 2024 12:59:49 -0600
+	b=Wg35BRhCQKJAef7IJr58v5VouJ5fEQSpFeg4mDoveVwkeWvNalXAMTQiK+2cSv6IO
+	 Qz3OuwZp/aqjiNlk+b4ALWGUbqHmCo5Ui9k2k0vmF1iWwg54UFpjH6a1HZfBMaFxMb
+	 Tu/1VGO4laZZQlC/FyWPg/P+DMUbxNsT2hy5AZk5YNXW7Zipi9RedPaFaM8DigJtm/
+	 PxWDS+ogkmuodtD/AuaSXRvC3fOr5rmhgmtMa5suI/rG/4ZKYNJtSyMcQAYw4eyhNQ
+	 WtcDYHVD5Wdgj1bRHXeOPzTc8GEDnBtj80oLCt+d1+vsr6HM5qb4eF2OlyG34OatLl
+	 ohBcSWM1EMDjw==
+Date: Wed, 31 Jan 2024 13:03:11 -0600
 From: Rob Herring <robh@kernel.org>
-To: Kuninori Morimoto <kuninori.morimoto.gx@renesas.com>
-Cc: =?iso-8859-1?Q?=22Uwe_Kleine-K=C3=B6nig=22?= <u.kleine-koenig@pengutronix.de>,
-	Daniel Vetter <daniel@ffwll.ch>, David Airlie <airlied@gmail.com>,
-	Frank Rowand <frowand.list@gmail.com>, Helge Deller <deller@gmx.de>,
-	Jaroslav Kysela <perex@perex.cz>,
-	Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
-	Liam Girdwood <lgirdwood@gmail.com>,
-	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
-	Mark Brown <broonie@kernel.org>,
-	Mauro Carvalho Chehab <mchehab@kernel.org>,
-	Maxime Ripard <mripard@kernel.org>,
-	Michal Simek <michal.simek@amd.com>,
-	Saravana Kannan <saravanak@google.com>,
-	Takashi Iwai <tiwai@suse.com>,
-	Thomas Zimmermann <tzimmermann@suse.de>,
-	Tomi Valkeinen <tomi.valkeinen@ideasonboard.com>,
-	alsa-devel@alsa-project.org, devicetree@vger.kernel.org,
-	linux-fbdev@vger.kernel.org, linux-media@vger.kernel.org,
-	linux-sound@vger.kernel.org
-Subject: Re: [PATCH v2 01/13] of: property: add port base loop
-Message-ID: <20240131185949.GC1906672-robh@kernel.org>
-References: <87fryhklhb.wl-kuninori.morimoto.gx@renesas.com>
- <87ede1klgr.wl-kuninori.morimoto.gx@renesas.com>
+To: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
+Cc: Alim Akhtar <alim.akhtar@samsung.com>, Rob Herring <robh+dt@kernel.org>,
+	Bjorn Andersson <andersson@kernel.org>,
+	"Martin K. Petersen" <martin.petersen@oracle.com>,
+	Andy Gross <andy.gross@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>, linux-kernel@vger.kernel.org,
+	"James E.J. Bottomley" <jejb@linux.ibm.com>,
+	devicetree@vger.kernel.org, linux-arm-msm@vger.kernel.org,
+	Bart Van Assche <bvanassche@acm.org>,
+	Avri Altman <avri.altman@wdc.com>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	linux-scsi@vger.kernel.org, Andy Gross <agross@kernel.org>,
+	Konrad Dybcio <konrad.dybcio@linaro.org>
+Subject: Re: [PATCH 1/3] dt-bindings: ufs: qcom: Make reset properties as
+ required
+Message-ID: <170672779030.2119109.999859641415132765.robh@kernel.org>
+References: <20240129-ufs-core-reset-fix-v1-0-7ac628aa735f@linaro.org>
+ <20240129-ufs-core-reset-fix-v1-1-7ac628aa735f@linaro.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -74,17 +69,23 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <87ede1klgr.wl-kuninori.morimoto.gx@renesas.com>
+In-Reply-To: <20240129-ufs-core-reset-fix-v1-1-7ac628aa735f@linaro.org>
 
-On Mon, Jan 29, 2024 at 12:54:44AM +0000, Kuninori Morimoto wrote:
-> We have endpoint base functions
-> 	- of_graph_get_next_endpoint()
-> 	- of_graph_get_endpoint_count()
-> 	- for_each_endpoint_of_node()
 
-I also noticed that your mail setup has an issue. You have some utf-8 
-encoded email names, but the headers say it is ascii. git-send-email 
-should do the right thing here, but maybe Exchange is messing things up.
+On Mon, 29 Jan 2024 13:22:04 +0530, Manivannan Sadhasivam wrote:
+> Apart from the legacy UFS controllers that were not supported in upstream,
+> rest of the controllers do require reset property to reset the UFS host
+> controller. So mark them as required.
+> 
+> Even though this is an ABI break, the bindings should reflect the
+> capabilities of the hardware.
+> 
+> Signed-off-by: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
+> ---
+>  Documentation/devicetree/bindings/ufs/qcom,ufs.yaml | 2 ++
+>  1 file changed, 2 insertions(+)
+> 
 
-Rob
+Acked-by: Rob Herring <robh@kernel.org>
+
 
