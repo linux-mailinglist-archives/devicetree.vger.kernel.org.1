@@ -1,206 +1,120 @@
-Return-Path: <devicetree+bounces-37236-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-37237-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id D348B844265
-	for <lists+devicetree@lfdr.de>; Wed, 31 Jan 2024 16:00:29 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0858384426B
+	for <lists+devicetree@lfdr.de>; Wed, 31 Jan 2024 16:01:23 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 8DC05294E53
-	for <lists+devicetree@lfdr.de>; Wed, 31 Jan 2024 15:00:28 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id B5EA22970F4
+	for <lists+devicetree@lfdr.de>; Wed, 31 Jan 2024 15:01:21 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1974712BF02;
-	Wed, 31 Jan 2024 14:52:53 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4DF2A12C55A;
+	Wed, 31 Jan 2024 14:55:04 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="k4vpGyOr"
 X-Original-To: devicetree@vger.kernel.org
-Received: from foss.arm.com (foss.arm.com [217.140.110.172])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2C3C012BEA8;
-	Wed, 31 Jan 2024 14:52:50 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.140.110.172
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+	(No client certificate requested)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 17BBC12C555;
+	Wed, 31 Jan 2024 14:55:03 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1706712773; cv=none; b=FajdmOrEPGMYULr8hwKJ/R7VzFMCDRsLYgSHyc8qRUygQIpSV1WEnusXy8keOQT9rn1DQD9/sI+JhRmT4THrLJ1NZpCY2MvDeWsfudDk3us5EU2xlRe8lTTSZ+NcJF5rXViWScrICnSb9sJoDplaGrizikAn2SbW2h+Ozdxh8TY=
+	t=1706712904; cv=none; b=MOBk7P5o73UY1vhuP3y3ASLA1z8ZKVl9/nRkX3HM5Zz2taqcVrPCEZwXDIK42resj1KyOVMdpiaSvQh41/01Jv3je61WbokWUhqKXZVAo62FUOVFmhBFqGOI9hGtvgA5lk/U1fSTF3C3OJKkWanaG6vnFohgsknjTor9FaYK2u4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1706712773; c=relaxed/simple;
-	bh=Oogf3pucZYuTqQuJqbTDe2IY/fTSAT6FHkzSNlxg3ug=;
-	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=MkXx6bS3tI4eE/r+dvxrB0fh2+TQH+C7BRwcY8ZyZVhrh7VZ99Zp32fNhWDZVhkjxDg3DzZswmSW1z+1urIyKcs0Eo6ZGTWKOi4hEHp1ljBkceNYnjOX8xnMKT28uVmg/h1Jqm0Mw4ZC/WkqEdN0WW+Cd3Khhw3T5yzKAUXOoIY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com; spf=pass smtp.mailfrom=arm.com; arc=none smtp.client-ip=217.140.110.172
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=arm.com
-Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
-	by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id CF49EDA7;
-	Wed, 31 Jan 2024 06:53:33 -0800 (PST)
-Received: from donnerap.manchester.arm.com (usa-sjc-imap-foss1.foss.arm.com [10.121.207.14])
-	by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 89FDA3F762;
-	Wed, 31 Jan 2024 06:52:47 -0800 (PST)
-Date: Wed, 31 Jan 2024 14:52:44 +0000
-From: Andre Przywara <andre.przywara@arm.com>
-To: Aleksandr Shubin <privatesub2@gmail.com>
-Cc: linux-kernel@vger.kernel.org, Conor Dooley <conor.dooley@microchip.com>,
- Uwe =?UTF-8?B?S2xlaW5lLUvDtm5pZw==?= <u.kleine-koenig@pengutronix.de>, Rob
- Herring <robh+dt@kernel.org>, Krzysztof Kozlowski
- <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>,
- Chen-Yu Tsai <wens@csie.org>, Jernej Skrabec <jernej.skrabec@gmail.com>,
- Samuel Holland <samuel@sholland.org>, Paul Walmsley
- <paul.walmsley@sifive.com>, Palmer Dabbelt <palmer@dabbelt.com>, Albert Ou
- <aou@eecs.berkeley.edu>, Philipp Zabel <p.zabel@pengutronix.de>, Marc
- Kleine-Budde <mkl@pengutronix.de>, Maksim Kiselev <bigunclemax@gmail.com>,
- Cristian Ciocaltea <cristian.ciocaltea@collabora.com>, John Watts
- <contact@jookia.org>, Cheo Fusi <fusibrandon13@gmail.com>,
- linux-pwm@vger.kernel.org, devicetree@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, linux-sunxi@lists.linux.dev,
- linux-riscv@lists.infradead.org
-Subject: Re: [PATCH v8 1/3] dt-bindings: pwm: Add binding for Allwinner
- D1/T113-S3/R329 PWM controller
-Message-ID: <20240131145244.4f534bac@donnerap.manchester.arm.com>
-In-Reply-To: <20240131125920.2879433-2-privatesub2@gmail.com>
-References: <20240131125920.2879433-1-privatesub2@gmail.com>
-	<20240131125920.2879433-2-privatesub2@gmail.com>
-Organization: ARM
-X-Mailer: Claws Mail 3.18.0 (GTK+ 2.24.32; aarch64-unknown-linux-gnu)
+	s=arc-20240116; t=1706712904; c=relaxed/simple;
+	bh=bib7u/kOOTdQtOzyN6AdTB575aRRs5nTwJnPxeh/thM=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=soW9Dblp6X4VHc1W7A4GHnwj4RCQGMbN3DuAVOqmBmTZKC0pR5XthhsmHxQJ7SswY1x/FTRY2YGyP9WMns80f4/DQb06fIwWUAN1M5JCk0t3MVMC4rWtp6SoFCLscQjILvH6lCljerwja+lj+Vve+mZzjxNXPVlJea9xciDnQa4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=k4vpGyOr; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 3D68BC43399;
+	Wed, 31 Jan 2024 14:55:03 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1706712903;
+	bh=bib7u/kOOTdQtOzyN6AdTB575aRRs5nTwJnPxeh/thM=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=k4vpGyOrvwwkNiqBbAqWJAB4O9tE8+XHHPCOxLgv0rZ2/2pLKCTnWIMGiVIoQlE8T
+	 VhI2JHatS/i9/HbeFZz3NW2ZNCcnQBavHwBXX/HprWBXfqfUIV/7nizEAPGtDqxHqT
+	 Zx08FgWMoDFzYRbH95mgSN38yV9oV/8uG7xFTG3W3VQlFiqtQuDlsEM4BhdhiLoGQh
+	 5b6jCQ5ZfIrojcycshdI1tsjdN14hDjRhG92OZoSZosEmn8uQ28n9hjzcsFcBfEFUr
+	 YThd1omAUn66lkx9UhMxgxSdc1K5l+zYDz5DLTcQxrjiEbJ49ubky1sLBOadPzuynk
+	 fqMQvsYgCucEA==
+Date: Wed, 31 Jan 2024 08:55:01 -0600
+From: Rob Herring <robh@kernel.org>
+To: Mao Jinlong <quic_jinlmao@quicinc.com>
+Cc: Suzuki K Poulose <suzuki.poulose@arm.com>,
+	Mike Leach <mike.leach@linaro.org>,
+	James Clark <james.clark@arm.com>, Leo Yan <leo.yan@linaro.org>,
+	Alexander Shishkin <alexander.shishkin@linux.intel.com>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Bjorn Andersson <andersson@kernel.org>,
+	Konrad Dybcio <konrad.dybcio@linaro.org>,
+	Mathieu Poirier <mathieu.poirier@linaro.org>,
+	coresight@lists.linaro.org, linux-arm-kernel@lists.infradead.org,
+	linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-arm-msm@vger.kernel.org,
+	Tingwei Zhang <quic_tingweiz@quicinc.com>,
+	Yuanfang Zhang <quic_yuanfang@quicinc.com>,
+	Tao Zhang <quic_taozha@quicinc.com>
+Subject: Re: [PATCH v3 1/2] dt-bindings: arm: coresight: Remove pattern match
+ of ETE node name
+Message-ID: <20240131145501.GA1254056-robh@kernel.org>
+References: <20240119092500.7154-1-quic_jinlmao@quicinc.com>
+ <20240119092500.7154-2-quic_jinlmao@quicinc.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20240119092500.7154-2-quic_jinlmao@quicinc.com>
 
-On Wed, 31 Jan 2024 15:59:14 +0300
-Aleksandr Shubin <privatesub2@gmail.com> wrote:
-
-Hi,
-
-> Allwinner's D1, T113-S3 and R329 SoCs have a new pwm
-> controller witch is different from the previous pwm-sun4i.
+On Fri, Jan 19, 2024 at 01:24:57AM -0800, Mao Jinlong wrote:
+> Remove pattern match of ETE node name. Use ete as the name for ete nodes.
 > 
-> The D1 and T113 are identical in terms of peripherals,
-> they differ only in the architecture of the CPU core, and
-> even share the majority of their DT. Because of that,
-> using the same compatible makes sense.
-> The R329 is a different SoC though, and should have
-> a different compatible string added, especially as there
-> is a difference in the number of channels.
-> 
-> D1 and T113s SoCs have one PWM controller with 8 channels.
-> R329 SoC has two PWM controllers in both power domains, one of
-> them has 9 channels (CPUX one) and the other has 6 (CPUS one).
-> 
-> Add a device tree binding for them.
-> 
-> Signed-off-by: Aleksandr Shubin <privatesub2@gmail.com>
-> Reviewed-by: Conor Dooley <conor.dooley@microchip.com>
+> Signed-off-by: Mao Jinlong <quic_jinlmao@quicinc.com>
 > ---
->  .../bindings/pwm/allwinner,sun20i-pwm.yaml    | 88 +++++++++++++++++++
->  1 file changed, 88 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/pwm/allwinner,sun20i-pwm.yaml
+>  .../bindings/arm/arm,embedded-trace-extension.yaml          | 6 ++----
+>  1 file changed, 2 insertions(+), 4 deletions(-)
 > 
-> diff --git a/Documentation/devicetree/bindings/pwm/allwinner,sun20i-pwm.yaml b/Documentation/devicetree/bindings/pwm/allwinner,sun20i-pwm.yaml
-> new file mode 100644
-> index 000000000000..716f75776006
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/pwm/allwinner,sun20i-pwm.yaml
-> @@ -0,0 +1,88 @@
-> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/pwm/allwinner,sun20i-pwm.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: Allwinner D1, T113-S3 and R329 PWM
-> +
-> +maintainers:
-> +  - Aleksandr Shubin <privatesub2@gmail.com>
-> +  - Brandon Cheo Fusi <fusibrandon13@gmail.com>
-> +
-> +properties:
-> +  compatible:
-> +    oneOf:
-> +      - const: allwinner,sun20i-d1-pwm
-> +      - items:
-> +          - const: allwinner,sun20i-r329-pwm
-> +          - const: allwinner,sun20i-d1-pwm
-> +
-> +  reg:
-> +    maxItems: 1
-> +
-> +  "#pwm-cells":
-> +    const: 3
-> +
-> +  clocks:
-> +    items:
-> +      - description: Bus clock
-> +      - description: 24 MHz oscillator
-> +      - description: APB0 clock
-> +
-> +  clock-names:
-> +    items:
-> +      - const: bus
-> +      - const: hosc
-> +      - const: apb0
-> +
-> +  resets:
-> +    maxItems: 1
-> +
-> +  allwinner,pwm-channels:
-> +    $ref: /schemas/types.yaml#/definitions/uint32
-> +    description: The number of PWM channels configured for this instance
-> +    enum: [6, 9]
-> +
-> +allOf:
-> +  - $ref: pwm.yaml#
-> +
-> +  - if:
-> +      properties:
-> +        compatible:
-> +          contains:
-> +            const: allwinner,sun20i-r329-pwm
-> +
-> +    then:
-> +      required:
-> +        - allwinner,pwm-channels
-> +
-> +    else:
-> +      properties:
-> +        allwinner,pwm-channels: false
+> diff --git a/Documentation/devicetree/bindings/arm/arm,embedded-trace-extension.yaml b/Documentation/devicetree/bindings/arm/arm,embedded-trace-extension.yaml
+> index f725e6940993..a10a570bd9bc 100644
+> --- a/Documentation/devicetree/bindings/arm/arm,embedded-trace-extension.yaml
+> +++ b/Documentation/devicetree/bindings/arm/arm,embedded-trace-extension.yaml
+> @@ -22,8 +22,6 @@ description: |
+>    with any optional connection graph as per the coresight bindings.
+>  
+>  properties:
+> -  $nodename:
+> -    pattern: "^ete([0-9a-f]+)$"
 
-Do we really need to be that strict?
-If something compatible to D1 pops up in the future, just with a different
-number of channels, we would need a new compatible string.
-If we would leave this else branch out, we could just specify some
-number differing from the default, and be good.
-The number of channels really looks like a parameter to the IP, it's
-modelled like this in the manual (PCR: 0x0100 + 0x0000 + N * 0x0020).
+I prefer we keep something here. '^ete-' or '^ete-[0-9]+$'.
 
-Cheers,
-Andre
-
-> +
-> +unevaluatedProperties: false
-> +
-> +required:
-> +  - compatible
-> +  - reg
-> +  - "#pwm-cells"
-> +  - clocks
-> +  - clock-names
-> +  - resets
-> +
-> +examples:
-> +  - |
-> +    #include <dt-bindings/clock/sun20i-d1-ccu.h>
-> +    #include <dt-bindings/reset/sun20i-d1-ccu.h>
-> +
-> +    pwm: pwm@2000c00 {
-> +      compatible = "allwinner,sun20i-d1-pwm";
-> +      reg = <0x02000c00 0x400>;
-> +      clocks = <&ccu CLK_BUS_PWM>, <&dcxo>, <&ccu CLK_APB0>;
-> +      clock-names = "bus", "hosc", "apb0";
-> +      resets = <&ccu RST_BUS_PWM>;
-> +      #pwm-cells = <0x3>;
-> +    };
-> +
-> +...
-
+>    compatible:
+>      items:
+>        - const: arm,embedded-trace-extension
+> @@ -55,13 +53,13 @@ examples:
+>  
+>  # An ETE node without legacy CoreSight connections
+>    - |
+> -    ete0 {
+> +    ete {
+>        compatible = "arm,embedded-trace-extension";
+>        cpu = <&cpu_0>;
+>      };
+>  # An ETE node with legacy CoreSight connections
+>    - |
+> -   ete1 {
+> +   ete {
+>        compatible = "arm,embedded-trace-extension";
+>        cpu = <&cpu_1>;
+>  
+> -- 
+> 2.41.0
+> 
 
