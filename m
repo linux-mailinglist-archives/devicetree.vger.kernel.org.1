@@ -1,129 +1,121 @@
-Return-Path: <devicetree+bounces-37215-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-37216-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0B1088440E4
-	for <lists+devicetree@lfdr.de>; Wed, 31 Jan 2024 14:42:51 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id D91E58440FC
+	for <lists+devicetree@lfdr.de>; Wed, 31 Jan 2024 14:49:16 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 3018D1C265E6
-	for <lists+devicetree@lfdr.de>; Wed, 31 Jan 2024 13:42:50 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 877211F21DFF
+	for <lists+devicetree@lfdr.de>; Wed, 31 Jan 2024 13:49:16 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 70E2080C1D;
-	Wed, 31 Jan 2024 13:42:31 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="VLxpQJZw"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8FFB380BF1;
+	Wed, 31 Jan 2024 13:49:10 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-yb1-f169.google.com (mail-yb1-f169.google.com [209.85.219.169])
+Received: from mail-yw1-f172.google.com (mail-yw1-f172.google.com [209.85.128.172])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9C8C57BAFD
-	for <devicetree@vger.kernel.org>; Wed, 31 Jan 2024 13:42:29 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.219.169
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5DC2F80BEB;
+	Wed, 31 Jan 2024 13:49:08 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.172
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1706708551; cv=none; b=S2ZelnPDRGzwsfbEzEvKGywVV4MbMVgK/YkJWVAYWfu0y2Ts1LeRU0DYKrFOJsaZ49eh1MjbJdTZwaw0NUlk6ht7fMEwCa5ZIekknBa7kN7P9M4SFavJ2IbCXo1ZS77T0dsLAx3s5SpxkI2iQclSzXfEVDjFtbM2tXSjkQ5C6FU=
+	t=1706708950; cv=none; b=A9TEduigxM/prNuK5mrtGd12FRbelgLQZnFfi+nciplOSbdcfGIknYIXfuhyGJwATvJClSOI9u9ZjpO8SQzoFCjhN62zI02r8iBTY/xluQFF80tGkufnwCfWpEHkB4WwEGuCaeg2JziPJ6YilnqveAXO4XM7hkMfM01LNrLw3Y8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1706708551; c=relaxed/simple;
-	bh=rNDiQg/0u3pLXkbL7csdAnsOg1ou8bFEsbWHOOg35m8=;
+	s=arc-20240116; t=1706708950; c=relaxed/simple;
+	bh=hlUiJpbmsFIl51mQNh8n1F9H2msowy0VY9i5HEcVVOE=;
 	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=ivs1OSypomgmEhfTS1Df0578xdDL+aMO8g4TKziytGHCg70vIFRAqJ4GgLPOrBjeLN+A1JTHUka6qHhbFB70v5IalVQDg9PTww6fyi++BxPPXutA+K8H0DsOosGf0buX9rpT7CAnbm/Mzd1gCNwErEzu6IV815DAZUg1+wcstec=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=VLxpQJZw; arc=none smtp.client-ip=209.85.219.169
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-yb1-f169.google.com with SMTP id 3f1490d57ef6-dc6a631a90dso1447202276.2
-        for <devicetree@vger.kernel.org>; Wed, 31 Jan 2024 05:42:29 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1706708548; x=1707313348; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=rNDiQg/0u3pLXkbL7csdAnsOg1ou8bFEsbWHOOg35m8=;
-        b=VLxpQJZwt2QgB4fUsdFMmcyrasV38nhgYI8aUT01QepFbyHkcZagqLXnaZ63m2/XKd
-         5cHaRZC+zwaUpdCKRA77u78jsIL5VKeVeCefaftXoFUhZFqlgLggk/KYN3Yy1/7bnGWs
-         oO/zSvgTJ+I7BoT7SofS6Japxkpm2mBhhoYgOVzud1rE+V84tZvf/1ZPx+syxSi0J661
-         YxQf+VOAhOyWbRbpdKoAnMN1fOoCyPJRdOooFj3fAf+x0oRW3WhU/dG+Z/DLHYRa1FCe
-         Bb+aav80iceyvf3LE8LiBcz4Q4t1auCn4BWQsPEOv04YVTHRZyQ4TB+c85oWzhdIdM9z
-         lxJw==
+	 To:Cc:Content-Type; b=Om6dvSXfrVszdBAzL29V4jWUGJOTeWBUxZjlpAs8HKkbLZZ/5bkgzjwMFogeeRt6Em0fQJAmsDS0Me6yPPjJfm0bJY+/UD97lUPbsF/HG5nBK7PisOJPFG5EB7fkt0f1ZAXMqhUNw8EisiZQaBP1ugE9idqpSBJRHX+WWccSy04=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org; spf=pass smtp.mailfrom=gmail.com; arc=none smtp.client-ip=209.85.128.172
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-yw1-f172.google.com with SMTP id 00721157ae682-602c714bdbeso7909587b3.1;
+        Wed, 31 Jan 2024 05:49:08 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1706708548; x=1707313348;
+        d=1e100.net; s=20230601; t=1706708946; x=1707313746;
         h=content-transfer-encoding:cc:to:subject:message-id:date:from
          :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=rNDiQg/0u3pLXkbL7csdAnsOg1ou8bFEsbWHOOg35m8=;
-        b=iMAr3woiIeiXXxK0iYYKwiJ5WQMXgIyx7LvAUl2+xcSzqPboC7nkLtDC06EO31opRH
-         bOSkEm62Iwps44WiHfcQ9FR/DnET3NFDLsCQbDI/fpuA0mLEPmuXKkraMtqCdv9o4Nvh
-         MYwFTGKm+S5FzAIbDZFVoMX/c6m7GUD8XP2MFIPdoN9wT6w4FerKdue0mUuMduLChcx7
-         faBd+gPrw///P8p2Jql9oXfDHH5KNZGLBW8f2AYMcNsq1VJbsG3T/v79vpmsQ7+PlpUO
-         bBl2uxCsTE2iysv1hUQSBQbdh5SibrU8Sm1F+2BgmKSitxGttnIf4YV2SQJKpN3nhjmL
-         egLQ==
-X-Gm-Message-State: AOJu0YzmPKLk3YMd19s/it7VuZ8OLL1c/2U1E7tym2fryd0V0N6Jlzm9
-	v0VhMUunDgKtAS8b+G67sFoRjCR8C+hfCc5HlgsRyetd+fsFEJgUNEaZQUl6kklVicqdCMhSHBM
-	21cXPYchhgj2WI8E5hKm8NnvotvAL/0KHIlH1wQ==
-X-Google-Smtp-Source: AGHT+IHskTXYXxhxPI1CgyG/kvHZeTnVrHblP91LDRSUCVYbyamup48H0wM9rtBK+kf6LdjtM5XNyL3x8PSddYdkrYk=
-X-Received: by 2002:a25:6f83:0:b0:dc6:4b7e:d7e with SMTP id
- k125-20020a256f83000000b00dc64b7e0d7emr1623063ybc.24.1706708548654; Wed, 31
- Jan 2024 05:42:28 -0800 (PST)
+        bh=wPLw/LWplp7+P1Gs+5HHE9GJRqlCVuyyfFXDuI3BijA=;
+        b=KW7ecGe0R/bLrjyHO5q7OGSFxJfr/9y3fY2riKik4E0N4aQDaYSxOe+/AovzsKmQjQ
+         QjeaURF/Gw1oMZHqYfWCfcW+j+doIJpgcBW+VY+0MR1rv+/5qKbLNDzZiBaFMguANblN
+         9wwm7TjJYeMvulKHdDtkdVG9rOAMlf37sQppyt1MOqDfDteaBFDhsa0xizNmbl57xLr0
+         aA5RO604G50MA8sk8MsfInG/YtS34510IhOsyS3HFIzQqS5Km4gVBJ6r4Qc+kIpCnDAs
+         +lYEBppGXgozmK30DQxquZvPRq2CStT0z0MxUxBQqP4YUqMsshmZxJrHrLVNj6gjLYd3
+         CNVQ==
+X-Gm-Message-State: AOJu0Yw905aHwjei+6TkKa7SvKI8nzx1d/0aUi5PjEHsHdortYhi60g1
+	/mSysWhSIHcDdDn99sgvyutFdHRtIya0VfWD6oGCPJRXQaxDKEe9OE6Ysvk0YB0=
+X-Google-Smtp-Source: AGHT+IFWIlKBcusd+yKlYlPzR0XGKSSone6jaxEcH1W/jMJsCa2Cfae7oQrm3QCFzOdlyD1pxhWCGQ==
+X-Received: by 2002:a81:4510:0:b0:604:1693:dbf8 with SMTP id s16-20020a814510000000b006041693dbf8mr152380ywa.25.1706708946305;
+        Wed, 31 Jan 2024 05:49:06 -0800 (PST)
+Received: from mail-yw1-f176.google.com (mail-yw1-f176.google.com. [209.85.128.176])
+        by smtp.gmail.com with ESMTPSA id be15-20020a05690c008f00b00603cb3e8f5fsm2427286ywb.103.2024.01.31.05.49.05
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 31 Jan 2024 05:49:06 -0800 (PST)
+Received: by mail-yw1-f176.google.com with SMTP id 00721157ae682-6029b5946f5so6614357b3.1;
+        Wed, 31 Jan 2024 05:49:05 -0800 (PST)
+X-Received: by 2002:a0d:eac5:0:b0:604:9ef:3045 with SMTP id
+ t188-20020a0deac5000000b0060409ef3045mr1069160ywe.31.1706708945557; Wed, 31
+ Jan 2024 05:49:05 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20240129115216.96479-1-krzysztof.kozlowski@linaro.org>
- <20240129115216.96479-5-krzysztof.kozlowski@linaro.org> <CACRpkdYf4HUaV-Pjr81WjLbzy9zdAnyFWs9gPayPC6-3OjHQwA@mail.gmail.com>
- <CAMRc=Mc1SGLeUOWmKg=fvCdM+RR6FSu2QkFuR17s7L99eRMGug@mail.gmail.com>
- <CACRpkdbaxqTzwL9L02vCpMMdBYsubNP1VkNuJ8mXB_=4E3Kjaw@mail.gmail.com> <5ef64082-0b44-4bb2-bd4c-654c96f4a9bb@linaro.org>
-In-Reply-To: <5ef64082-0b44-4bb2-bd4c-654c96f4a9bb@linaro.org>
-From: Linus Walleij <linus.walleij@linaro.org>
-Date: Wed, 31 Jan 2024 14:42:17 +0100
-Message-ID: <CACRpkdYa0nj6PK1FecBpQfOfkXhetwRmAyDgWNjJxcf4xgExMA@mail.gmail.com>
-Subject: Re: [PATCH v6 4/6] reset: Instantiate reset GPIO controller for
- shared reset-gpios
-To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Cc: Bartosz Golaszewski <brgl@bgdev.pl>, Geert Uytterhoeven <geert+renesas@glider.be>, 
-	Srinivas Kandagatla <srinivas.kandagatla@linaro.org>, Banajit Goswami <bgoswami@quicinc.com>, 
-	Bjorn Andersson <andersson@kernel.org>, Konrad Dybcio <konrad.dybcio@linaro.org>, 
-	Liam Girdwood <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>, 
+References: <20240129135556.63466-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
+ <20240129135556.63466-5-prabhakar.mahadev-lad.rj@bp.renesas.com> <CAMuHMdUiiQpw5UH8s748oqaH5BuFqDy=feWxdsEPJ4jaHRzkyA@mail.gmail.com>
+In-Reply-To: <CAMuHMdUiiQpw5UH8s748oqaH5BuFqDy=feWxdsEPJ4jaHRzkyA@mail.gmail.com>
+From: Geert Uytterhoeven <geert@linux-m68k.org>
+Date: Wed, 31 Jan 2024 14:48:53 +0100
+X-Gmail-Original-Message-ID: <CAMuHMdWe1_51wxrvhrPN4HVdsZNLep_Qz2ianW0cPXxJ6ECEfw@mail.gmail.com>
+Message-ID: <CAMuHMdWe1_51wxrvhrPN4HVdsZNLep_Qz2ianW0cPXxJ6ECEfw@mail.gmail.com>
+Subject: Re: [PATCH v6 4/4] riscv: dts: renesas: r9a07g043f: Update
+ gpio-ranges property
+To: Prabhakar <prabhakar.csengg@gmail.com>
+Cc: Magnus Damm <magnus.damm@gmail.com>, Linus Walleij <linus.walleij@linaro.org>, 
 	Rob Herring <robh+dt@kernel.org>, 
 	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Philipp Zabel <p.zabel@pengutronix.de>, "Rafael J. Wysocki" <rafael@kernel.org>, 
-	Viresh Kumar <viresh.kumar@linaro.org>, Frank Rowand <frowand.list@gmail.com>, 
-	Jaroslav Kysela <perex@perex.cz>, Takashi Iwai <tiwai@suse.com>, alsa-devel@alsa-project.org, 
-	linux-arm-msm@vger.kernel.org, linux-sound@vger.kernel.org, 
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
-	linux-pm@vger.kernel.org, Chris Packham <chris.packham@alliedtelesis.co.nz>, 
-	Sean Anderson <sean.anderson@seco.com>
+	linux-renesas-soc@vger.kernel.org, devicetree@vger.kernel.org, 
+	linux-riscv@lists.infradead.org, linux-kernel@vger.kernel.org, 
+	linux-gpio@vger.kernel.org, Biju Das <biju.das.jz@bp.renesas.com>, 
+	Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>, 
+	Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-On Wed, Jan 31, 2024 at 2:32=E2=80=AFPM Krzysztof Kozlowski
-<krzysztof.kozlowski@linaro.org> wrote:
+Hi Prabhakar,
 
-> The non-exclusive GPIO was made explicitly for regulators, so it is
-> working fine there, but it is broken everywhere else, where the drivers
-> do not handle it in sane way as regulator core does.
+On Tue, Jan 30, 2024 at 11:38=E2=80=AFAM Geert Uytterhoeven
+<geert@linux-m68k.org> wrote:
+> On Mon, Jan 29, 2024 at 2:56=E2=80=AFPM Prabhakar <prabhakar.csengg@gmail=
+.com> wrote:
+> > From: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+> >
+> > On RZ/Five we have additional pins compared to the RZ/G2UL SoC so updat=
+e
+> > the gpio-ranges property in RZ/Five SoC DTSI.
+> >
+> > Signed-off-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+>
+> Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
+> i.e. will queue in renesas-pinctrl for v6.10, as this has a hard
+> dependency on the pin control patches.
 
-I looked at it, it's 8 users in the entire kernel that aren't regulators,
-so let's put it on the TODO to get rid of those.
+It's worse: the pin control patches without the DT patch breaks, soo.
+So I have no choice but merging patch 3/4 and 4/4.
 
-> To make it working, either GPIO should be enable-count-aware, to which
-> Bartosz was opposing with talks with me, or the subsystem should mimic
-> regulators approach. In some way, my patchset is the second way here -
-> reset framework subsystem being aware of shared GPIO and handles the
-> enable-count, even though it is not using non-exclusive flag.
+Gr{oetje,eeting}s,
 
-That's nice, I was thinking if it could be abstracted so the regulator
-core can move away from this too?
+                        Geert
 
-I guess it may be an issue that regulators are not using Device Tree
-exclusively, but also has to deal with a slew of platform_devices:s :/
-IIRC that was one of the reasons why it looks as it does.
+--=20
+Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k=
+.org
 
-Maybe reset can only solve this in an elegant way if the solution is
-tightly coupled with DT and you have the advantage that you can require
-it from day one? (It looks a bit like that to me.)
-
-Yours,
-Linus Walleij
+In personal conversations with technical people, I call myself a hacker. Bu=
+t
+when I'm talking to journalists I just say "programmer" or something like t=
+hat.
+                                -- Linus Torvalds
 
