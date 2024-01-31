@@ -1,120 +1,146 @@
-Return-Path: <devicetree+bounces-37220-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-37222-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4937D844136
-	for <lists+devicetree@lfdr.de>; Wed, 31 Jan 2024 15:00:18 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 430F684417C
+	for <lists+devicetree@lfdr.de>; Wed, 31 Jan 2024 15:12:21 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 04761287EBB
-	for <lists+devicetree@lfdr.de>; Wed, 31 Jan 2024 14:00:17 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id EDB62285A1B
+	for <lists+devicetree@lfdr.de>; Wed, 31 Jan 2024 14:12:19 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1168A82873;
-	Wed, 31 Jan 2024 13:59:58 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 902078286C;
+	Wed, 31 Jan 2024 14:12:09 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="r4QN5TZC"
+	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="V3Z1Vfs2"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from relay1-d.mail.gandi.net (relay1-d.mail.gandi.net [217.70.183.193])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DE20B8286E;
-	Wed, 31 Jan 2024 13:59:57 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 25F247F488;
+	Wed, 31 Jan 2024 14:12:05 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.70.183.193
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1706709598; cv=none; b=W+QKsh2/EBlAdn/XNtUfzeMkL+RFACJ1JBJPmrz4vxbIYmCeeKP8HwiwU6zBAsrMdjuJfFJjFn76UVwX5zrGv9b3MPNVBs3wTDWSn6o+41icpnP5SQjry/Q1076cx4vVb39JRoR9BSNSy/UO5geomU5lf6yAOHbbOqcaWgDef8w=
+	t=1706710329; cv=none; b=clsLVSEjB4RAC0GEUfF5ysVsXkaeHxlXLnhGu7Zti1ZfxAZbFE9+tTZk/QQElAt3gc6L/yG/xLac5DC3FqI9HaJwWuN7e28sfKylSTH6y2pXZwp6LsF2SWOB46Q0Pq0+Ldkni9SzzCnIyxXll3k6xJYNukXg3cmWktDBwAQ2Xao=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1706709598; c=relaxed/simple;
-	bh=cX2K5w9GWrdNEUyfrUG6IelYh8NLqv5j8lI66oywVPU=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=LQrLHWtd1ENuRaXwUUHLluwUMfTYI2CbMnWMczArTNmrcy8xszeHYh6Lg/s/F0cGqM1l7k40L/wXtvpvCCqZgq4/7n6I+egr4Mb9vZfdC6Tt4W6RfxDcm6x0H+W7n/AA1NGnL/xfDk1hw2rCllH5wTbrtCvb5hFCdZ7+Fx6Sj2I=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=r4QN5TZC; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 3262FC43142;
-	Wed, 31 Jan 2024 13:59:57 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1706709597;
-	bh=cX2K5w9GWrdNEUyfrUG6IelYh8NLqv5j8lI66oywVPU=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=r4QN5TZCtY7/sLO9kwHjCm1yV84yTjejctGfEctgi6U1G8d+B+ls+W+CURrrZMweO
-	 Xg3My6YVDAGTjBxtTIHoPpI8b0HPctgJgxXU0JvN7qnIOpZSKVWDtLmfZT9CAPjJ8w
-	 IuGiaX3U/9QbPXiXpDiHg1MEPxXne9lHEFvg27Iv0sv1SRydlUDYUH1fZ8OHrZk3g+
-	 nbr+GxJRgv9cJ9uosjPtuhNnPAy1fCXo4m1pmBZzQuS9TWL2yes3WVMQI/79OLEM++
-	 mROaw2KnRrEDPKuHV6XGdjVhUxAUaIaxjuxeAHk1UkWZ52NSWx8itb9pL/CFeXdUEP
-	 TuyrF7Y/oXPyA==
-Date: Wed, 31 Jan 2024 07:59:55 -0600
-From: Rob Herring <robh@kernel.org>
-To: Johan Jonker <jbx6244@gmail.com>
-Cc: hjc@rock-chips.com, heiko@sntech.de, andy.yan@rock-chips.com,
-	krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
-	airlied@gmail.com, daniel@ffwll.ch,
-	maarten.lankhorst@linux.intel.com, tzimmermann@suse.de,
-	mripard@kernel.org, markyao0591@gmail.com,
-	dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v1 2/6] dt-bindings: display: rockchip,dw-hdmi: add
- power-domains property
-Message-ID: <20240131135955.GA966672-robh@kernel.org>
-References: <6626d288-ecf1-436b-b0a3-3417308a8633@gmail.com>
- <1ba8b40d-005a-4665-afd9-a4eacf3e3031@gmail.com>
+	s=arc-20240116; t=1706710329; c=relaxed/simple;
+	bh=DKgxfvknO4pwhTFl5wVRoY3ZHo7YgxQd2rNgFtft8VE=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=YBBl4LNDzwQJKW5V77+K3+r1IAVXWk7zzerVfFsMW5Oo/xZEDLbDKn1okkvKpGGBVsNgsTB1gruHb4FVzGMsEnz8UqslJ/AR7Khi6uL58BHDp/eF/OE46NipF+QbxtoejOq3bS1Xcm8bo6AqK0rJgYL4+r1McihkOLsYHfmmBIY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=V3Z1Vfs2; arc=none smtp.client-ip=217.70.183.193
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
+Received: by mail.gandi.net (Postfix) with ESMTPSA id 92B7D240009;
+	Wed, 31 Jan 2024 14:12:02 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
+	t=1706710323;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:
+	 content-transfer-encoding:content-transfer-encoding;
+	bh=66EioyYaNZWrql1Wdx0jMNv3oUgZZuPSMXuTOfK0//M=;
+	b=V3Z1Vfs2FUvpXjp1N/mRfcgtKQPZkU5AuqkJzjBDxUiXQ6cWkL18CQBEyaHAYZGFycBpJt
+	+H8EXcJC+Oi0xqURSzIYcsC5aay+/pPeweHtV6+7CAzjMzBkRBHYExVUmIwNNoMRuLL/y0
+	kElw5QzVdzS7Tqrg2oY0DEq9FsSh/J3y3KsuUYHtuKdLOHVJe5PYeAO3YvQWPP3GbIQOer
+	xx17to8jw6ERYySIjvlbxjaKstrsWXOu/e+wXvodbzDkTfFuDFckUN/htMsmgvCpREczRZ
+	cTk2VTAob7f9DUfxcDcOYw8Hop27BRH+Ec3TO7YSG0DSx+lRRAp0So059P8CfQ==
+From: Kamel Bouhara <kamel.bouhara@bootlin.com>
+To: Dmitry Torokhov <dmitry.torokhov@gmail.com>,
+	Rob Herring <robh+dt@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Henrik Rydberg <rydberg@bitmath.org>,
+	linux-input@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	Marco Felsch <m.felsch@pengutronix.de>,
+	Jeff LaBundy <jeff@labundy.com>
+Cc: catalin.popescu@leica-geosystems.com,
+	mark.satterthwaite@touchnetix.com,
+	Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
+	Gregory Clement <gregory.clement@bootlin.com>,
+	bsp-development.geo@leica-geosystems.com,
+	Kamel Bouhara <kamel.bouhara@bootlin.com>
+Subject: [PATCH v7 0/3] Input: Add TouchNetix axiom touchscreen driver
+Date: Wed, 31 Jan 2024 15:11:54 +0100
+Message-ID: <20240131141158.3350344-1-kamel.bouhara@bootlin.com>
+X-Mailer: git-send-email 2.43.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <1ba8b40d-005a-4665-afd9-a4eacf3e3031@gmail.com>
+Content-Transfer-Encoding: 8bit
+X-GND-Sasl: kamel.bouhara@bootlin.com
 
-On Tue, Jan 30, 2024 at 03:57:23PM +0100, Johan Jonker wrote:
-> Most Rockchip hdmi nodes are part of a power domain.
-> Add a power-domains property. Fix example.
-> 
-> Signed-off-by: Johan Jonker <jbx6244@gmail.com>
-> ---
->  .../bindings/display/rockchip/rockchip,dw-hdmi.yaml   | 11 ++++++++---
->  1 file changed, 8 insertions(+), 3 deletions(-)
-> 
-> diff --git a/Documentation/devicetree/bindings/display/rockchip/rockchip,dw-hdmi.yaml b/Documentation/devicetree/bindings/display/rockchip/rockchip,dw-hdmi.yaml
-> index cd0a42f35f24..6f421740b613 100644
-> --- a/Documentation/devicetree/bindings/display/rockchip/rockchip,dw-hdmi.yaml
-> +++ b/Documentation/devicetree/bindings/display/rockchip/rockchip,dw-hdmi.yaml
-> @@ -94,6 +94,9 @@ properties:
->        - const: default
->        - const: unwedge
-> 
-> +  power-domains:
-> +    maxItems: 1
-> +
->    ports:
->      $ref: /schemas/graph.yaml#/properties/ports
-> 
-> @@ -141,16 +144,18 @@ examples:
->      #include <dt-bindings/clock/rk3288-cru.h>
->      #include <dt-bindings/interrupt-controller/arm-gic.h>
->      #include <dt-bindings/interrupt-controller/irq.h>
-> +    #include <dt-bindings/power/rk3288-power.h>
-> 
->      hdmi: hdmi@ff980000 {
->          compatible = "rockchip,rk3288-dw-hdmi";
->          reg = <0xff980000 0x20000>;
-> -        reg-io-width = <4>;
+Add a new driver for the TouchNetix's axiom family of touchscreen
+controller. This driver only support i2c and can be later adapted for
+SPI and USB support.
 
-It makes more sense to keep reg-io-width together with reg.
+---
+Changes in v2:
+ - Add device tree binding documentation
+ - Move core functions in axiom_i2c as we only care about i2c support now
+ - Use static function when required
+ - Use syntax dev_err_probe()
+ - Add an hardware based reset
 
-> -        ddc-i2c-bus = <&i2c5>;
-> -        rockchip,grf = <&grf>;
->          interrupts = <GIC_SPI 103 IRQ_TYPE_LEVEL_HIGH>;
->          clocks = <&cru  PCLK_HDMI_CTRL>, <&cru SCLK_HDMI_HDCP>;
->          clock-names = "iahb", "isfr";
-> +        ddc-i2c-bus = <&i2c5>;
-> +        power-domains = <&power RK3288_PD_VIO>;
-> +        reg-io-width = <4>;
-> +        rockchip,grf = <&grf>;
-> 
->          ports {
->              #address-cells = <1>;
-> --
-> 2.39.2
-> 
+Changes in v3:
+ - Remove irq-gpios property in dt-binding
+ - Use a generic node name
+ - Fix issues reported in https://lore.kernel.org/oe-kbuild-all/202310100300.oAC2M62R-lkp@intel.com/
+
+Changes in v4:
+ - Cleanup unused headers and macros
+ - Use standard kernel type
+ - Namespace structures and functions
+ - Use packed struct when possible to avoid bitfield operators
+ - Fix missing break when address is found in axiom_populate_target_address()
+ - Split reads in two steps for the reports, first length then report
+   itself so we only read required bytes
+ - Get poll-interval from devicetree
+ - Add VDDI/VDDA regulators
+ - Add a startup delay of 110 ms required after VDDA/VDDI is applied
+ - Remove axiom_i2c_write() as it is no more used
+
+Changes in v5:
+ - Fix wrong message constructed in axiom_i2c_read
+ - Delay required between i2c reads is >= 250us
+ - Do not split report reading in two phases as we'll
+   have to wait 500us
+ - Use lower-case in properties names
+ - Make regulators properties are required in dt-binding
+ - Fix bug report: https://lore.kernel.org/lkml/202312051457.y3N1q3sZ-lkp@intel.com/
+ - Fix bug report: https://lore.kernel.org/lkml/6f8e3b64-5b21-4a50-8680-063ef7a93bdb@suswa.mountain/
+
+Changes in v6:
+ - Fix missing unevaluatedProperties.in dt-binding
+ - Use __le16 to correctly deal with device endianness
+ - Use standart kernel types s/char/u8/
+ - Use regmap api as driver might support spi later
+ - Use get_unaligned_le16() for the sake of clarity
+ - Use devm_regulator_enable_optional()
+
+Changes in v7:
+ - Remove startup time from dt-binding
+ - Fix usage table not correctly populated
+
+Kamel Bouhara (3):
+  dt-bindings: vendor-prefixes: Add TouchNetix AS
+  dt-bindings: input: Add TouchNetix axiom touchscreen
+  Input: Add TouchNetix axiom i2c touchscreen driver
+
+ .../input/touchscreen/touchnetix,ax54a.yaml   |  62 ++
+ .../devicetree/bindings/vendor-prefixes.yaml  |   2 +
+ MAINTAINERS                                   |   7 +
+ drivers/input/touchscreen/Kconfig             |  12 +
+ drivers/input/touchscreen/Makefile            |   1 +
+ drivers/input/touchscreen/touchnetix_axiom.c  | 666 ++++++++++++++++++
+ 6 files changed, 750 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/input/touchscreen/touchnetix,ax54a.yaml
+ create mode 100644 drivers/input/touchscreen/touchnetix_axiom.c
+
+--
+2.25.1
+
 
