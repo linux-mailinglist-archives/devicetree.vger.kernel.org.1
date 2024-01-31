@@ -1,122 +1,135 @@
-Return-Path: <devicetree+bounces-37310-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-37311-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 88FD384465C
-	for <lists+devicetree@lfdr.de>; Wed, 31 Jan 2024 18:41:38 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id A858C84465E
+	for <lists+devicetree@lfdr.de>; Wed, 31 Jan 2024 18:44:06 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 7710CB24FEC
-	for <lists+devicetree@lfdr.de>; Wed, 31 Jan 2024 17:41:33 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 61B20286429
+	for <lists+devicetree@lfdr.de>; Wed, 31 Jan 2024 17:44:05 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id DA9F412DD9A;
-	Wed, 31 Jan 2024 17:41:24 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7C17912DD94;
+	Wed, 31 Jan 2024 17:44:00 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="FoZromDy"
+	dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b="PmdKciS+"
 X-Original-To: devicetree@vger.kernel.org
-Received: from fllv0015.ext.ti.com (fllv0015.ext.ti.com [198.47.19.141])
+Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [213.167.242.64])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EB0BB12CDB3;
-	Wed, 31 Jan 2024 17:41:22 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.19.141
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1DDD712DD8D;
+	Wed, 31 Jan 2024 17:43:57 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=213.167.242.64
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1706722884; cv=none; b=l0Y7EeIgh/Q2wRgU69F1W5/UnsZyrG6xZ2nxvckdhBBHFz0hms18+KrEZRCTq34hK1gNP+rH3j5wjRDrt9c9pHsCanH1u2Q0VKvfLICErpK/QIWNgLZNsRXEuDLlWMvJCJXdQSvWzVI6GjlSN27o6G6PtYzEMb2RaDZlw9x7awk=
+	t=1706723040; cv=none; b=H+zZAoUfcoXyQ7L3ofY8GxwcSISkFoA0zA5BBMX8HYGu+SLRmK1x51yDsCDBnRcdGM/2RxL06KY9rLIR2t2+4mvX2ORx00bmKGcJcjBAOfU0rrHhz4qI33LgG2n1J09ERtw5j1nGNLGb/k+hPari3UQc6DgSGI1imR/r+vuENes=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1706722884; c=relaxed/simple;
-	bh=RFRKfn9SrFLVHftowQmvZPXkgOgXzmdqBehMMSwaTds=;
-	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
-	 In-Reply-To:Content-Type; b=iTilydLug8U/ErKAWX1BOpfYkTtNEM1wzfZUhfnAFV9VXFFJCVeJBKuyck6lPpN5V+Bvs3tWDdxUkF3OX7ibxbFqOj1R+on8t3jOAMdazUC9dbrDEyuDmS/OU5/ZCkEc+Mhe/vInaeJ2tX3Qpy3LXosleVvTkh7QK9kFUnqD2+o=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=FoZromDy; arc=none smtp.client-ip=198.47.19.141
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
-Received: from lelv0266.itg.ti.com ([10.180.67.225])
-	by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id 40VHfECj058563;
-	Wed, 31 Jan 2024 11:41:14 -0600
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1706722875;
-	bh=0EDAIkVSNIwFY7uzM0VylFUgC93m7m8nBWih+B1wgLE=;
-	h=Date:Subject:To:CC:References:From:In-Reply-To;
-	b=FoZromDy352Emq81yei/8RVjNeBnj21iMfRGzFCdSu/9X/WslRKqNPxkRMCvYsIU8
-	 K4IDtSCO5qj8H89trphqrf/LkoF1X2BN0cEcffzlVUxNARABS4aLBOJvEsE/CbP2Yg
-	 49JQ+nDs003OiYdAHTjObAO4kEk5fatW9c7MLHGc=
-Received: from DLEE108.ent.ti.com (dlee108.ent.ti.com [157.170.170.38])
-	by lelv0266.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 40VHfEAe045065
-	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-	Wed, 31 Jan 2024 11:41:14 -0600
-Received: from DLEE104.ent.ti.com (157.170.170.34) by DLEE108.ent.ti.com
- (157.170.170.38) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Wed, 31
- Jan 2024 11:41:14 -0600
-Received: from lelvsmtp5.itg.ti.com (10.180.75.250) by DLEE104.ent.ti.com
- (157.170.170.34) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
- Frontend Transport; Wed, 31 Jan 2024 11:41:14 -0600
-Received: from [10.249.42.149] ([10.249.42.149])
-	by lelvsmtp5.itg.ti.com (8.15.2/8.15.2) with ESMTP id 40VHfDGO066196;
-	Wed, 31 Jan 2024 11:41:14 -0600
-Message-ID: <593547f9-f9c5-4efc-b163-d7f289ff7db8@ti.com>
-Date: Wed, 31 Jan 2024 11:41:13 -0600
+	s=arc-20240116; t=1706723040; c=relaxed/simple;
+	bh=5Rp1YLeuMWPJLWorStm4H0bHZvVJW3aCJ5HQghjrIME=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=P6DaU1wsmg0yQzz6uR0KfF5L6g1XJ+pADgH/RUp/SQ0KWe9e98a7esykUbRVsIPN30GAvzj5s2HTMm9xnfOhJdFXfDEcM5w8D+xY5gyJUQOGmTXPlFA5Mwkj1sHUd/ry0i8pJnh0JXpop0iTL3bsal+yqIso1YLj+Pdt76jbAe8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ideasonboard.com; spf=pass smtp.mailfrom=ideasonboard.com; dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b=PmdKciS+; arc=none smtp.client-ip=213.167.242.64
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ideasonboard.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ideasonboard.com
+Received: from pendragon.ideasonboard.com (unknown [94.107.229.70])
+	by perceval.ideasonboard.com (Postfix) with ESMTPSA id 313C0650D;
+	Wed, 31 Jan 2024 18:42:37 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
+	s=mail; t=1706722957;
+	bh=5Rp1YLeuMWPJLWorStm4H0bHZvVJW3aCJ5HQghjrIME=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=PmdKciS+iPr+x4efC+JceOCWt5XXbaEfYPl09SkG6+0heJtzB2v5MbHbYFAr7bBly
+	 v9UoKOdvqdFt0HiY7YeHWsOY0pk5qA0+HXre3ARQdulhU9Xuv7kmrf6Y5WV1pqxbsP
+	 1kj1/42tvu1iq8AUFlDIF2mRScyjscwbDDmNBKfA=
+Date: Wed, 31 Jan 2024 19:43:55 +0200
+From: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+To: Daniel Scally <dan.scally@ideasonboard.com>
+Cc: linux-media@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org, jacopo.mondi@ideasonboard.com,
+	nayden.kanchev@arm.com, robh+dt@kernel.org, mchehab@kernel.org,
+	krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
+	jerome.forissier@linaro.org, kieran.bingham@ideasonboard.com
+Subject: Re: [PATCH 0/5] Add Arm Mali-C55 Image Signal Processor Driver
+Message-ID: <20240131174355.GB20792@pendragon.ideasonboard.com>
+References: <20240131164709.810587-1-dan.scally@ideasonboard.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH] arm64: dts: ti: k3-j721s2: Fix power domain for VTM node
-Content-Language: en-US
-To: Manorit Chawdhry <m-chawdhry@ti.com>, Nishanth Menon <nm@ti.com>,
-        Vignesh
- Raghavendra <vigneshr@ti.com>,
-        Tero Kristo <kristo@kernel.org>, Rob Herring
-	<robh+dt@kernel.org>,
-        Krzysztof Kozlowski
-	<krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>, Bryan Brattlof <bb@ti.com>,
-        Keerthy <j-keerthy@ti.com>
-CC: <linux-arm-kernel@lists.infradead.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>, Udit Kumar <u-kumar1@ti.com>
-References: <20240131-b4-upstream-j721s2-fix-vtm-devid-v1-1-94c927bb9595@ti.com>
-From: Andrew Davis <afd@ti.com>
-In-Reply-To: <20240131-b4-upstream-j721s2-fix-vtm-devid-v1-1-94c927bb9595@ti.com>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 7bit
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+In-Reply-To: <20240131164709.810587-1-dan.scally@ideasonboard.com>
 
-On 1/31/24 2:18 AM, Manorit Chawdhry wrote:
-> Fix the power domain device ID for wkup_vtm0 node.
+On Wed, Jan 31, 2024 at 04:47:04PM +0000, Daniel Scally wrote:
+> Hello all
 > 
-> Link: https://software-dl.ti.com/tisci/esd/latest/5_soc_doc/j721s2/devices.html
-> Fixes: d148e3fe52c8 ("arm64: dts: ti: j721s2: Add VTM node")
-> Signed-off-by: Manorit Chawdhry <m-chawdhry@ti.com>
+> This patchset introduces a driver for Arm's Mali-C55 Image Signal Processor.
+> The driver uses the media controller API and in this initial support implements
+> both of the ISP's capture pipelines allowing a range of output formats plus
+> downscaling and cropping. The capture pipelines are named "Full resolution" and
+> "Downscale" and so abbreviated FR and DS throughout the driver.
+> 
+> The driver exposes 4 V4L2 subdevices:
+> 
+> - mali-c55 isp: input data formatting
+> - mali-c55 tpg: test pattern generator (modeled as a camera sensor entity)
+> - mali-c55 resizer fr: downscale / crop and format setting for the FR pipe
+> - mali-c55 resizer ds: downscale / crop and format setting for the DS pipe
 
-Looks to be wrong in J784s4 DT also, could you fix that too?
+Answering a question I've received out-of-band: the driver doesn't
+support ISP statistics and parameters yet. Active work is in progress in
+that area, so one option would be to merge this driver in staging in the
+meantime.
 
-Reviewed-by: Andrew Davis <afd@ti.com>
+> Daniel Scally (5):
+>   media: uapi: Add MEDIA_BUS_FMT_RGB202020_1X60 format code
+>   dt-bindings: media: Add bindings for ARM mali-c55
+>   media: mali-c55: Add Mali-C55 ISP driver
+>   media: Documentation: Add Mali-C55 ISP Documentation
+>   MAINTAINERS: Add entry for mali-c55 driver
+> 
+>  .../admin-guide/media/mali-c55-graph.dot      |   19 +
+>  Documentation/admin-guide/media/mali-c55.rst  |  318 ++++++
+>  .../admin-guide/media/v4l-drivers.rst         |    1 +
+>  .../bindings/media/arm,mali-c55.yaml          |   51 +
+>  .../media/v4l/subdev-formats.rst              |  168 +++
+>  MAINTAINERS                                   |   10 +
+>  drivers/media/platform/Kconfig                |    1 +
+>  drivers/media/platform/Makefile               |    1 +
+>  drivers/media/platform/arm/Kconfig            |    5 +
+>  drivers/media/platform/arm/Makefile           |    2 +
+>  drivers/media/platform/arm/mali-c55/Kconfig   |   18 +
+>  drivers/media/platform/arm/mali-c55/Makefile  |    9 +
+>  .../platform/arm/mali-c55/mali-c55-capture.c  | 1013 +++++++++++++++++
+>  .../platform/arm/mali-c55/mali-c55-common.h   |  263 +++++
+>  .../platform/arm/mali-c55/mali-c55-core.c     |  717 ++++++++++++
+>  .../platform/arm/mali-c55/mali-c55-isp.c      |  682 +++++++++++
+>  .../arm/mali-c55/mali-c55-registers.h         |  180 +++
+>  .../arm/mali-c55/mali-c55-resizer-coefs.h     |  382 +++++++
+>  .../platform/arm/mali-c55/mali-c55-resizer.c  |  678 +++++++++++
+>  .../platform/arm/mali-c55/mali-c55-tpg.c      |  425 +++++++
+>  include/uapi/linux/media-bus-format.h         |    3 +-
+>  21 files changed, 4945 insertions(+), 1 deletion(-)
+>  create mode 100644 Documentation/admin-guide/media/mali-c55-graph.dot
+>  create mode 100644 Documentation/admin-guide/media/mali-c55.rst
+>  create mode 100644 Documentation/devicetree/bindings/media/arm,mali-c55.yaml
+>  create mode 100644 drivers/media/platform/arm/Kconfig
+>  create mode 100644 drivers/media/platform/arm/Makefile
+>  create mode 100644 drivers/media/platform/arm/mali-c55/Kconfig
+>  create mode 100644 drivers/media/platform/arm/mali-c55/Makefile
+>  create mode 100644 drivers/media/platform/arm/mali-c55/mali-c55-capture.c
+>  create mode 100644 drivers/media/platform/arm/mali-c55/mali-c55-common.h
+>  create mode 100644 drivers/media/platform/arm/mali-c55/mali-c55-core.c
+>  create mode 100644 drivers/media/platform/arm/mali-c55/mali-c55-isp.c
+>  create mode 100644 drivers/media/platform/arm/mali-c55/mali-c55-registers.h
+>  create mode 100644 drivers/media/platform/arm/mali-c55/mali-c55-resizer-coefs.h
+>  create mode 100644 drivers/media/platform/arm/mali-c55/mali-c55-resizer.c
+>  create mode 100644 drivers/media/platform/arm/mali-c55/mali-c55-tpg.c
 
-> ---
->   arch/arm64/boot/dts/ti/k3-j721s2-mcu-wakeup.dtsi | 2 +-
->   1 file changed, 1 insertion(+), 1 deletion(-)
-> 
-> diff --git a/arch/arm64/boot/dts/ti/k3-j721s2-mcu-wakeup.dtsi b/arch/arm64/boot/dts/ti/k3-j721s2-mcu-wakeup.dtsi
-> index 80aa33c58a45..a47cb557dd95 100644
-> --- a/arch/arm64/boot/dts/ti/k3-j721s2-mcu-wakeup.dtsi
-> +++ b/arch/arm64/boot/dts/ti/k3-j721s2-mcu-wakeup.dtsi
-> @@ -663,7 +663,7 @@ wkup_vtm0: temperature-sensor@42040000 {
->   		compatible = "ti,j7200-vtm";
->   		reg = <0x00 0x42040000 0x0 0x350>,
->   		      <0x00 0x42050000 0x0 0x350>;
-> -		power-domains = <&k3_pds 154 TI_SCI_PD_SHARED>;
-> +		power-domains = <&k3_pds 180 TI_SCI_PD_SHARED>;
->   		#thermal-sensor-cells = <1>;
->   	};
->   
-> 
-> ---
-> base-commit: 774551425799cb5bbac94e1768fd69eec4f78dd4
-> change-id: 20240123-b4-upstream-j721s2-fix-vtm-devid-86e55c8a59ca
-> 
-> Best regards,
+-- 
+Regards,
+
+Laurent Pinchart
 
