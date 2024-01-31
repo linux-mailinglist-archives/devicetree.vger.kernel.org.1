@@ -1,189 +1,180 @@
-Return-Path: <devicetree+bounces-37106-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-37107-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1D7AC843B3E
-	for <lists+devicetree@lfdr.de>; Wed, 31 Jan 2024 10:38:06 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3A1D3843B58
+	for <lists+devicetree@lfdr.de>; Wed, 31 Jan 2024 10:43:48 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id E599CB2443C
-	for <lists+devicetree@lfdr.de>; Wed, 31 Jan 2024 09:37:59 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id A64CA1F2A8E9
+	for <lists+devicetree@lfdr.de>; Wed, 31 Jan 2024 09:43:47 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C0A1967E8E;
-	Wed, 31 Jan 2024 09:37:43 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 534FA6773D;
+	Wed, 31 Jan 2024 09:43:34 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=bgdev-pl.20230601.gappssmtp.com header.i=@bgdev-pl.20230601.gappssmtp.com header.b="xBkCE3xf"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="Bhtn/ya8"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-vk1-f181.google.com (mail-vk1-f181.google.com [209.85.221.181])
+Received: from mail-ej1-f43.google.com (mail-ej1-f43.google.com [209.85.218.43])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CAA3567E97
-	for <devicetree@vger.kernel.org>; Wed, 31 Jan 2024 09:37:41 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.181
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7BFBB6994B;
+	Wed, 31 Jan 2024 09:43:32 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.43
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1706693863; cv=none; b=ZksmNzqhzwYvb0SdEdYQGjlOCFdov58Xh++qE4taYxKYwXjlRsiIFJfKBFJZv21mdGsI5GTOWp8ciQHwxK0+4eTTT4ayJvORTBE0LWzZAQzHJ6U8Z10Crh8Ab5XmukzKaHoSBLlfXU8P7TSUhwSTrOzjsL+lGNXMV6kiFd2/rns=
+	t=1706694214; cv=none; b=nSRIgN5sz/2qGycxlnA1CkWhfimzVosbbE5a7543TZxZwHjPXbtQLHW6bQSqKkWO/tcGJtDym1KOJMUk7MhINAA2XZSJMNrZcMlGc/l127l1tStHyav+/T10cVAR7YDKWa3so6WRBW2j6lKzb/jyJehsxnONzJGjg//TtlZb5ac=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1706693863; c=relaxed/simple;
-	bh=6g/9wBTl6BPCWec9Q4PfBb1jAfx/QsrhO21o+nVjTVw=;
+	s=arc-20240116; t=1706694214; c=relaxed/simple;
+	bh=AH+tCjMAx3QC27/6a3aHn8iEY3DhD8c3Sn0bBq9szvk=;
 	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=MixWtmh2xiYBYkIp4uB7LgoenkSl0xahwKTS0rIaUp1fDaDvh+4mT5OJQKLyfP+rIAPBhcSsRM5zu9jcQjl9+GcT5xzZAlTasx8ttnOk9U67Xwjl+0MZQbZmHP1Wu68wRek7czliuUgj3hecdi+WFqZpFXm/o2HSqvrS/SqV/dw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=bgdev.pl; spf=none smtp.mailfrom=bgdev.pl; dkim=pass (2048-bit key) header.d=bgdev-pl.20230601.gappssmtp.com header.i=@bgdev-pl.20230601.gappssmtp.com header.b=xBkCE3xf; arc=none smtp.client-ip=209.85.221.181
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=bgdev.pl
-Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=bgdev.pl
-Received: by mail-vk1-f181.google.com with SMTP id 71dfb90a1353d-4bd87fd64c1so1483685e0c.1
-        for <devicetree@vger.kernel.org>; Wed, 31 Jan 2024 01:37:41 -0800 (PST)
+	 To:Cc:Content-Type; b=tWvbo0uPe9fyJxwWg1Pd64hIwdcxDOsL/emCvGNpS/MqnY40leqnZ/HYj/A1jTD8KDZQ3A5v7IVflIhuq/eFEHNOZLztEEBr6QT3tpdvW06zDi4PlIdxfcTOF7XI28RbGpzJzOWRLVW5mCKHJ+IEvXpLeoNYUp9MXFCwJuQ72Yg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=Bhtn/ya8; arc=none smtp.client-ip=209.85.218.43
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-ej1-f43.google.com with SMTP id a640c23a62f3a-a26fa294e56so636935466b.0;
+        Wed, 31 Jan 2024 01:43:32 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=bgdev-pl.20230601.gappssmtp.com; s=20230601; t=1706693861; x=1707298661; darn=vger.kernel.org;
+        d=gmail.com; s=20230601; t=1706694210; x=1707299010; darn=vger.kernel.org;
         h=content-transfer-encoding:cc:to:subject:message-id:date:from
          :in-reply-to:references:mime-version:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=DmHeh0AnnU8R6/8VaEZIi+vqbQkcVNAn6pqy7RHvRQI=;
-        b=xBkCE3xfgEp8qPGMcW2d28LiFylg+yIZOldTOmpHe5lUFK6l5+DI497ZIMUvKHvR3j
-         5vOhoZK9QoLFDxfTn4kYxFh/FX3o8o25S/D6Sv8wZeP18QQPnyWKphT1Bh7/ezCzu4Wr
-         s95RpLWANK4vYXBZrbepdIn0wldP0HdC2BxO0HdJ+8ZawP2n58lqMjREM5faykWBjJ45
-         EtBMY2xpQgjmRDSFw9hHxeb8YH3+3DWp7ciglNRhkeikLvefwq2ngMcoIKg2ocnq/ql2
-         RL8HFjKkqdVJR+bPWl1Add/iTs6kyaHX4qQGGvRX+gUYzPDz0BBz9JoiBd75cdYvLfG+
-         ZdBg==
+        bh=ITZ+rt9x0Q01XZlNJE668LMM3xiQ7k41PpzKoiIe8e0=;
+        b=Bhtn/ya8fSTdLwkiWBtTnytPBzICnxv8nqR6kJuO2Q11Gd1QKVznIGFlY5kwac2Mlb
+         EoS2KpC6pEq37MQ1m0gz37HGdsth83IY0xuJisrHZJrsr3PE0p1s6Fs6UBlI23Jx2JaW
+         +v8Vupck4OTZNhTnorz0u6nuokB0+WCHXSJ3E/BQq5LHsgnxHmzMiGJDum4nAB7G6Pmk
+         SiS18+JM9i0gYZAW1SXiiLNsQaEwp1uzEev2LbQwuJiGeyGSWJGhLRfRjWs6u5USYzKh
+         hHnrALtcEuo00y4a25TS+bLAW32xnLEbMfcPZnVX4KkHIU+7ENGf/3CvoZx958DJV8z9
+         9tvg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1706693861; x=1707298661;
+        d=1e100.net; s=20230601; t=1706694210; x=1707299010;
         h=content-transfer-encoding:cc:to:subject:message-id:date:from
          :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=DmHeh0AnnU8R6/8VaEZIi+vqbQkcVNAn6pqy7RHvRQI=;
-        b=mtAMd6ZZ+Xu0wnGgVDqifBepszfuGwg3Jg7XHFcpRBCjwZQR4kqZruZIKfYOLpMU7I
-         2jdjru/tnlwQlvP/vtYI6Rqff7R1ylDabqXnttMUvoMYuk2WsiWLtGIFFm0V0FCnw8w2
-         X1jmIWOGHMgnRF34DKwhRF1qzE/k3Men3L3LjHDI/3d6sOVhCJwlMdT/CK2J2ETp9MrD
-         msPb2aBASMlFinWya3woIMXOrQL6bAVulAxDpV6MXWSruskZ1EUSLL2e1cQ9cnIq0npy
-         ItOI4RfO8ScjAwHEe+XwZA1BjR/o6BJ6T/0f785tJMUzH+KCK/tk6lNKyaT5Y+6dtVng
-         FJnw==
-X-Gm-Message-State: AOJu0YxyS1+E1bklfGv0lFtI2jT/CxJpUq8htXVx7Lr85n6gXTehyHnB
-	dKQnyx0j8HA4G2YybMBYPsH2xxodykQJPdhC4ohFWMmNz4jgXk4JTXItXs7/ZvEw+ep7YaksD9A
-	uAcoJmlSR1D8qL6Ct3e8jDs+hbg4/b/Iyn/vW7g==
-X-Google-Smtp-Source: AGHT+IGYiHwBdTOPDnoFpMk4wG2qn9o70lLB7qc/tMqoiGXQQ1hR03EibuQ3mFexsetD4ArcCOazY4KDA9aeRUgU3NE=
-X-Received: by 2002:a05:6122:4693:b0:4bf:dbbd:37aa with SMTP id
- di19-20020a056122469300b004bfdbbd37aamr937831vkb.15.1706693860441; Wed, 31
- Jan 2024 01:37:40 -0800 (PST)
+        bh=ITZ+rt9x0Q01XZlNJE668LMM3xiQ7k41PpzKoiIe8e0=;
+        b=GkG9UwnbSwvFVxv5DqqxJb7PNPrCfIychJgfsJE3EYZYPBMgrCSiPTrUBxeoCFNf7h
+         MVSQXWdpJ+Hclp87FT54+KJNzNgckdkyxXHk0JZBy2fJ11AFK2fiIYefea6OsV4uV4N9
+         DQj3eKg/5XvpGqH6f3EMlgueUztBwELIautuGJ+m4Jrku1JlHwI5NKfdxPxmUWQ0Z7fZ
+         bfbBtp+ra7RCi2GGUOnN65v09wA5jXytGi2JOt2jf7Ap7UIMN88Yc/9s9dMpwjWFoxOQ
+         AvR8PqVIiOOYrdHi1ZS1V9Bta9PBlPM7iWpuL/ts4hi55Y6VaHIT3W6nPCPkqlxIS7S4
+         JM0w==
+X-Gm-Message-State: AOJu0YyD1xFEtjWHMrtu9EP/jWDqiXfhLXbo7GQQ5nkdhqOHZbezq9g9
+	l4Y+EovlUnLmE+jJ5f6mi4fOtlqjqcwo3cOGTakL2HcvPaM95kE3T2iHmh6p1yiokds30c50cOg
+	20Elao+xjk/5M7+CJ+27WUeZbLVQ=
+X-Google-Smtp-Source: AGHT+IFpsyjOS9LQ+92/QbFeJKa7OgI/Xrx823sBS/pUCO7DlGoclan6W3wa/VSYWWIQT9HAx2L9ylTJRzjkGRtzT44=
+X-Received: by 2002:a17:906:2c19:b0:a36:8711:ee35 with SMTP id
+ e25-20020a1709062c1900b00a368711ee35mr415520ejh.40.1706694210472; Wed, 31 Jan
+ 2024 01:43:30 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20240129115216.96479-1-krzysztof.kozlowski@linaro.org>
- <20240129115216.96479-5-krzysztof.kozlowski@linaro.org> <CACRpkdYf4HUaV-Pjr81WjLbzy9zdAnyFWs9gPayPC6-3OjHQwA@mail.gmail.com>
-In-Reply-To: <CACRpkdYf4HUaV-Pjr81WjLbzy9zdAnyFWs9gPayPC6-3OjHQwA@mail.gmail.com>
-From: Bartosz Golaszewski <brgl@bgdev.pl>
-Date: Wed, 31 Jan 2024 10:37:29 +0100
-Message-ID: <CAMRc=Mc1SGLeUOWmKg=fvCdM+RR6FSu2QkFuR17s7L99eRMGug@mail.gmail.com>
-Subject: Re: [PATCH v6 4/6] reset: Instantiate reset GPIO controller for
- shared reset-gpios
-To: Linus Walleij <linus.walleij@linaro.org>
-Cc: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>, 
-	Geert Uytterhoeven <geert+renesas@glider.be>, 
-	Srinivas Kandagatla <srinivas.kandagatla@linaro.org>, Banajit Goswami <bgoswami@quicinc.com>, 
-	Bjorn Andersson <andersson@kernel.org>, Konrad Dybcio <konrad.dybcio@linaro.org>, 
-	Liam Girdwood <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>, 
-	Rob Herring <robh+dt@kernel.org>, 
+References: <20240130-rk-dts-additions-v2-0-c6222c4c78df@gmail.com>
+ <20240130-rk-dts-additions-v2-2-c6222c4c78df@gmail.com> <8115ab382115f66aa01dd3d00aaae474@manjaro.org>
+In-Reply-To: <8115ab382115f66aa01dd3d00aaae474@manjaro.org>
+From: Alexey Charkov <alchark@gmail.com>
+Date: Wed, 31 Jan 2024 13:43:19 +0400
+Message-ID: <CABjd4YyP0trjBi+Djau-n69vg6-s2SdPWwmWK9fT626sKST8EA@mail.gmail.com>
+Subject: Re: [PATCH v2 2/4] arm64: dts: rockchip: enable temperature driven
+ fan control on Rock 5B
+To: Dragan Simic <dsimic@manjaro.org>
+Cc: Rob Herring <robh+dt@kernel.org>, 
 	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Philipp Zabel <p.zabel@pengutronix.de>, "Rafael J. Wysocki" <rafael@kernel.org>, 
-	Viresh Kumar <viresh.kumar@linaro.org>, Frank Rowand <frowand.list@gmail.com>, 
-	Jaroslav Kysela <perex@perex.cz>, Takashi Iwai <tiwai@suse.com>, alsa-devel@alsa-project.org, 
-	linux-arm-msm@vger.kernel.org, linux-sound@vger.kernel.org, 
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
-	linux-pm@vger.kernel.org, Chris Packham <chris.packham@alliedtelesis.co.nz>, 
-	Sean Anderson <sean.anderson@seco.com>
+	Heiko Stuebner <heiko@sntech.de>, Daniel Lezcano <daniel.lezcano@linaro.org>, 
+	Viresh Kumar <viresh.kumar@linaro.org>, devicetree@vger.kernel.org, 
+	linux-arm-kernel@lists.infradead.org, linux-rockchip@lists.infradead.org, 
+	linux-kernel@vger.kernel.org
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-On Wed, Jan 31, 2024 at 9:57=E2=80=AFAM Linus Walleij <linus.walleij@linaro=
-.org> wrote:
+On Wed, Jan 31, 2024 at 9:08=E2=80=AFAM Dragan Simic <dsimic@manjaro.org> w=
+rote:
 >
-> Hi Krzysztof,
+> Hello Alexey,
 >
-> something is odd with the addresses on this patch, because neither GPIO
-> maintainer is on CC nor linux-gpio@vger, and it's such a GPIO-related
-> patch. We only saw it through side effects making <linux/gpio/driver.h>
-> optional, as required by this patch.
+> Some notes below, please have a look.
 >
-> Please also CC Geert Uytterhoeven, the author of the GPIO aggregator.
+> On 2024-01-30 19:21, Alexey Charkov wrote:
+> > This enables thermal monitoring on Radxa Rock 5B and links the PWM
+> > fan as an active cooling device managed automatically by the thermal
+> > subsystem, with a target SoC temperature of 65C and a minimum-spin
+> > interval from 55C to 65C to ensure airflow when the system gets warm
 >
-> i.e. this:
-> > 2. !GPIOLIB stub:
-> >    https://lore.kernel.org/all/20240125081601.118051-3-krzysztof.kozlow=
-ski@linaro.org/
->
-> On Mon, Jan 29, 2024 at 12:53=E2=80=AFPM Krzysztof Kozlowski
-> <krzysztof.kozlowski@linaro.org> wrote:
->
-> > Devices sharing a reset GPIO could use the reset framework for
-> > coordinated handling of that shared GPIO line.  We have several cases o=
-f
-> > such needs, at least for Devicetree-based platforms.
-> >
-> > If Devicetree-based device requests a reset line, while "resets"
-> > Devicetree property is missing but there is a "reset-gpios" one,
-> > instantiate a new "reset-gpio" platform device which will handle such
-> > reset line.  This allows seamless handling of such shared reset-gpios
-> > without need of changing Devicetree binding [1].
-> >
-> > To avoid creating multiple "reset-gpio" platform devices, store the
-> > Devicetree "reset-gpios" GPIO specifiers used for new devices on a
-> > linked list.  Later such Devicetree GPIO specifier (phandle to GPIO
-> > controller, GPIO number and GPIO flags) is used to check if reset
-> > controller for given GPIO was already registered.
-> >
-> > If two devices have conflicting "reset-gpios" property, e.g. with
-> > different ACTIVE_xxx flags, this would allow to spawn two separate
-> > "reset-gpio" devices, where the second would fail probing on busy GPIO
-> > request.
-> >
-> > Link: https://lore.kernel.org/all/YXi5CUCEi7YmNxXM@robh.at.kernel.org/ =
-[1]
-> > Cc: Bartosz Golaszewski <brgl@bgdev.pl>
-> > Cc: Chris Packham <chris.packham@alliedtelesis.co.nz>
-> > Cc: Sean Anderson <sean.anderson@seco.com>
-> > Reviewed-by: Philipp Zabel <p.zabel@pengutronix.de>
-> > Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-> (...)
->
-> In my naive view, this implements the following:
->
-> reset -> virtual "gpio" -> many physical gpios[0..n]
+> I'd suggest that you replace "temperature driven fan control" with
+> "active cooling" in the patch subject.  More concise and reads better.
 
-This is a different problem: it supports many users enabling the same
-GPIO (in Krzysztof's patch it's one but could be more if needed) but -
-unlike the broken NONEXCLUSIVE GPIOs in GPIOLIB - it counts the number
-of users and doesn't disable the GPIO for as long as there's at least
-one.
+Agreed, thanks!
 
-Bart
+> > Acked-by: Daniel Lezcano <daniel.lezcano@linaro.org>
+> > Signed-off-by: Alexey Charkov <alchark@gmail.com>
+> > ---
+> >  arch/arm64/boot/dts/rockchip/rk3588-rock-5b.dts | 34
+> > ++++++++++++++++++++++++-
+> >  1 file changed, 33 insertions(+), 1 deletion(-)
+> >
+> > diff --git a/arch/arm64/boot/dts/rockchip/rk3588-rock-5b.dts
+> > b/arch/arm64/boot/dts/rockchip/rk3588-rock-5b.dts
+> > index a0e303c3a1dc..b485edeef876 100644
+> > --- a/arch/arm64/boot/dts/rockchip/rk3588-rock-5b.dts
+> > +++ b/arch/arm64/boot/dts/rockchip/rk3588-rock-5b.dts
+> > @@ -52,7 +52,7 @@ led_rgb_b {
+> >
+> >       fan: pwm-fan {
+> >               compatible =3D "pwm-fan";
+> > -             cooling-levels =3D <0 95 145 195 255>;
+> > +             cooling-levels =3D <0 120 150 180 210 240 255>;
+> >               fan-supply =3D <&vcc5v0_sys>;
+> >               pwms =3D <&pwm1 0 50000 0>;
+> >               #cooling-cells =3D <2>;
+> > @@ -173,6 +173,34 @@ &cpu_l3 {
+> >       cpu-supply =3D <&vdd_cpu_lit_s0>;
+> >  };
+> >
+> > +&package_thermal {
+> > +     polling-delay =3D <1000>;
+> > +
+> > +     trips {
+> > +             package_fan0: package-fan0 {
+> > +                     temperature =3D <55000>;
+> > +                     hysteresis =3D <2000>;
+> > +                     type =3D "active";
+> > +             };
+> > +             package_fan1: package-fan1 {
+> > +                     temperature =3D <65000>;
+> > +                     hysteresis =3D <2000>;
+> > +                     type =3D "active";
+> > +             };
+> > +     };
+> > +
+> > +     cooling-maps {
+> > +             map0 {
+>
+> Should be "map1" instead of "map0".  There's already "map0"
+> defined for "package_thermal" in the RK3588(s) dtsi file.
 
+Indeed. I got overzealous renaming everything to be zero-based.
+
+> > +                     trip =3D <&package_fan0>;
+> > +                     cooling-device =3D <&fan THERMAL_NO_LIMIT 1>;
+> > +             };
+> > +             map1 {
 >
-> So if there was already a way in the kernel to map one GPIO to
-> many GPIOs, the framework could just use that with a simple
-> single GPIO?
+> Should be "map2" instead of "map1".
+
+Noted, thanks!
+
+> > +                     trip =3D <&package_fan1>;
+> > +                     cooling-device =3D <&fan 1 THERMAL_NO_LIMIT>;
 >
-> See the bindings in:
-> Documentation/devicetree/bindings/gpio/gpio-delay.yaml
+> Should be "cooling-device =3D <&fan 2 THERMAL_NO_LIMIT>;"
+> (i.e., "2 THERMAL_NO_LIMIT" instead of "1 THERMAL_NO_LIMIT").
 >
-> This is handled by drivers/gpio/gpio-aggregator.c.
->
-> This supports a 1-to-1 map: one GPIO in, one GPIO out, same offset.
-> So if that is extended to support 1-to-many, this problem is solved.
->
-> Proposed solution: add a single boolean property such as
-> aggregate-all-gpios; to the gpio-delay node, making it provide
-> one single gpio at offset 0 on the consumer side, and refuse any
-> more consumers.
->
-> This will also solve the problem with induced delays on
-> some GPIO lines as I can see was discussed in the bindings,
-> the gpio aggregator already supports that, but it would work
-> fine with a delay being zero as well.
->
-> This avoids all the hackery with driver stubs etc as well.
->
-> Yours,
-> Linus Walleij
+> The first fan speed is already covered by the first cooling map.
+> The second cooling map takes over from the second fan speed.
+
+Makes sense, will adjust, thank you!
+
+Best regards,
+Alexey
 
