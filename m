@@ -1,213 +1,245 @@
-Return-Path: <devicetree+bounces-36898-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-36899-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id DFFB58431A0
-	for <lists+devicetree@lfdr.de>; Wed, 31 Jan 2024 01:02:10 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 414328431A8
+	for <lists+devicetree@lfdr.de>; Wed, 31 Jan 2024 01:07:18 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 0780C1C2252D
-	for <lists+devicetree@lfdr.de>; Wed, 31 Jan 2024 00:02:10 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id D0918282216
+	for <lists+devicetree@lfdr.de>; Wed, 31 Jan 2024 00:07:16 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 33BA3804;
-	Wed, 31 Jan 2024 00:02:04 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6D64A195;
+	Wed, 31 Jan 2024 00:07:13 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="Pn/W66Ks"
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="WDMKUIkl"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-oo1-f46.google.com (mail-oo1-f46.google.com [209.85.161.46])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 620AC5672;
-	Wed, 31 Jan 2024 00:02:02 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.161.46
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 40B4F360;
+	Wed, 31 Jan 2024 00:07:12 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1706659324; cv=none; b=mxkZSE/WjhR4hLZldzmwjgwGqgYho583+oB88Qh54Z5mZkaChcDjJYYaddfmpEJXk7oEf8NBZK6zOcuJeAIgKa0W1Cd1BaPGEEDuLgOn2wbmNIvzWcmv1yWB0Txc3qqdpzqTjFY0KcTRRVZhWXSqMmnJvl9bB61wm0kxHex0+eo=
+	t=1706659633; cv=none; b=Xb7RUq+TKO0EXid9YkwQdR6HL2coXuKOESuYwMHEGd6LPD7bv+jcvaYuwvtb/DbO9BAtmR05EIXIb/7tmqs2Ph6U7XmlYDowmw77QGcAJ4ozUuvBUh1WgZ3R7tp+TJEW5QKs9BjiXeXm5E0jm0S2oljIH5K7TT/60b4pKE3hTfg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1706659324; c=relaxed/simple;
-	bh=knC81I1QJ2jBQMjLOt4XmkE8NCpfqqX5dHUkwIggcRo=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=cqBY7onXZ46ua1aPOquvERmX8jzX2IrPuExIDQDHtg/cYtauFPdYIp5GGLjM5I3zURhN3zxHWVZzglUCv0UUtgnuevymWDMonud0xcm2tjnpn47GlIQ0turMLUrRVEgplNT9OaEHSK+Car+Ncab1PShT3CTqaUwYif4jSfANiZc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=roeck-us.net; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=Pn/W66Ks; arc=none smtp.client-ip=209.85.161.46
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=roeck-us.net
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-oo1-f46.google.com with SMTP id 006d021491bc7-59a31c14100so1646134eaf.0;
-        Tue, 30 Jan 2024 16:02:02 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1706659321; x=1707264121; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
-         :to:content-language:subject:user-agent:mime-version:date:message-id
-         :sender:from:to:cc:subject:date:message-id:reply-to;
-        bh=VLaLxAB03xnVbGCO0bKks+/Ah2am+rf1vzk0CltS9lc=;
-        b=Pn/W66KsL2ZYnxvNyU1mJe50ij+wkBBX7npqVBZch4dXPK4tQbH4IiNbA0XOwhLPGO
-         WZpG720XcVR5i6wyQiO1O/C0Iwbj40CGwH/vMrg/pfNQnb0Cn6eNQKr3139zqK7heC4t
-         tiNcHxaK6eecjtc7iZ7Om8xwtsJeD0I6sfYTkxb8GD7e4+Srez1sXDcXGWHFkN4UTfd9
-         r7kYAKe2WOmx3SMUjXDZ6hs0Q/qHOlvYzQHjHDxoxoHBtSsix+FQ7JmissTRpg1B+lAJ
-         YpARR/HWfLGsDDBQMrTMLYIJxj816d0bX0hJUXbDq3bsp0gxo61UP8zQorw4aPSaP8dC
-         +jTA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1706659321; x=1707264121;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
-         :to:content-language:subject:user-agent:mime-version:date:message-id
-         :sender:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=VLaLxAB03xnVbGCO0bKks+/Ah2am+rf1vzk0CltS9lc=;
-        b=nAappvDi98sxJEv9OzqTSmTsyNqUxbdGdgyLqHhnhzZ0PK+5IP/7eraZzPjotNggNQ
-         0ZMCPPEGPBDBNWYmzz6pcGsVSQV/PsrBvFZ8xN3LgpqjKz4TZc5NlHDTJRjxdRw9Eyc2
-         UohCYEtvB6hwZfwkl3pEZwFt9LYI7Ptgy5VyIlfKaVsMgMo2apb1uXbtPLNC3NJLqV96
-         FT4MKkxmyOweLETMu4PYUszdxMzNBU9z5MTNsqs1991a+tfj1adtZ6hoOe0zcXaIaMjO
-         U8wpmft+12ZmZ1bOT6r5zN9ECTIyjf7OkBCbZvpNVtE4bxRlnm9x06SzcOIrNvnqInO0
-         mRdg==
-X-Gm-Message-State: AOJu0YwqOciQq/wQDUh1CdLLojQmQGqDjWrOyZCoc75r28wxC7fGSs8y
-	ltRmuMlkvBUt2V8/aU2W6qC3vcrCcWsJz5k0hTaN8SylNYOLDZhZ
-X-Google-Smtp-Source: AGHT+IEHAhB8ffD7q0MDTlZ/6gOfjGBLf+9A9hqyJQ9Qtz2ReS9pn8cbpfdrtmB5xpsUflIEwVLXlw==
-X-Received: by 2002:a05:6358:7e84:b0:178:7fc9:3991 with SMTP id o4-20020a0563587e8400b001787fc93991mr4014368rwn.23.1706659321222;
-        Tue, 30 Jan 2024 16:02:01 -0800 (PST)
-Received: from ?IPV6:2600:1700:e321:62f0:329c:23ff:fee3:9d7c? ([2600:1700:e321:62f0:329c:23ff:fee3:9d7c])
-        by smtp.gmail.com with ESMTPSA id y10-20020aa793ca000000b006cbe1bb5e3asm8397562pff.138.2024.01.30.16.01.59
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 30 Jan 2024 16:02:00 -0800 (PST)
-Sender: Guenter Roeck <groeck7@gmail.com>
-Message-ID: <82529995-02e5-40fa-9fb9-7a363509ae3a@roeck-us.net>
-Date: Tue, 30 Jan 2024 16:01:58 -0800
+	s=arc-20240116; t=1706659633; c=relaxed/simple;
+	bh=4IQeU0aHdZ9OyJPsxqDoj0X2DZjWXfdHf5qWMKXFsBo=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=GEAFPoF2Angba35fqbCTCidMYuwv+llRaEMA3oxwMTOaX9KxQhH8F6C5VL5zsZHuBtM8F95ZuhmnDHus+DIyXLViae5k3yEjFRI13tRLGgqfJtxpIyPB+yVGWZmZJl/+FlPYri7L9AjPyG970Eex9EjfmbE5xdJl8wwpC/EyxrY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=WDMKUIkl; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 67E6CC433C7;
+	Wed, 31 Jan 2024 00:07:12 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1706659632;
+	bh=4IQeU0aHdZ9OyJPsxqDoj0X2DZjWXfdHf5qWMKXFsBo=;
+	h=Date:From:To:List-Id:Cc:Subject:References:In-Reply-To:From;
+	b=WDMKUIklvJcm6EcsZNKAPY/tr3zImhMVxuK+6CQzXx3/bqkePR8l3BDVDP05wgtfd
+	 z8mNxq0EX9GgXIKa2en2de4C47Jl93ypnNnPJ2jL++MIrU05hBGDyWv7CFgOblKvSz
+	 Hzo5RMVvFMnisIj9crEhIxJjUGLQBoeFMID/wXovHe38dXqecSLRKKnWZNQ3UM6ggp
+	 PwgoZxxh3NF8D08IYo9SPpvoWmN9SbsoCuTe1Ag9FO2iPadbzNzRRLbw+uCrM0ULrX
+	 5JOCzJO5UhFvn6RNC0O6HcwaHNqn/0Tkfu7Xo8KTSA2xWaof7iuOx0RV7OG08cP5/C
+	 V1L92SX9fU73Q==
+Date: Tue, 30 Jan 2024 18:07:10 -0600
+From: Rob Herring <robh@kernel.org>
+To: Oreoluwa Babatunde <quic_obabatun@quicinc.com>
+Cc: catalin.marinas@arm.com, will@kernel.org, frowand.list@gmail.com,
+	vgupta@kernel.org, arnd@arndb.de, olof@lixom.net, soc@kernel.org,
+	guoren@kernel.org, monstr@monstr.eu, palmer@dabbelt.com,
+	aou@eecs.berkeley.edu, dinguyen@kernel.org, chenhuacai@kernel.org,
+	tsbogend@alpha.franken.de, jonas@southpole.se,
+	stefan.kristiansson@saunalahti.fi, shorne@gmail.com,
+	mpe@ellerman.id.au, ysato@users.sourceforge.jp, dalias@libc.org,
+	glaubitz@physik.fu-berlin.de, richard@nod.at,
+	anton.ivanov@cambridgegreys.com, johannes@sipsolutions.net,
+	chris@zankel.net, jcmvbkbc@gmail.com,
+	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-arm-msm@vger.kernel.org,
+	kernel@quicinc.com
+Subject: Re: [PATCH 00/46] Dynamic allocation of reserved_mem array.
+Message-ID: <20240131000710.GA2581425-robh@kernel.org>
+References: <20240126235425.12233-1-quic_obabatun@quicinc.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH RESEND v4 0/3] Add support for LTC4282
-Content-Language: en-US
-To: Nuno Sa <nuno.sa@analog.com>, linux-hwmon@vger.kernel.org,
- devicetree@vger.kernel.org, linux-doc@vger.kernel.org
-Cc: Jean Delvare <jdelvare@suse.com>, Rob Herring <robh+dt@kernel.org>,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Conor Dooley <conor+dt@kernel.org>, Jonathan Corbet <corbet@lwn.net>,
- Conor Dooley <conor.dooley@microchip.com>
-References: <20240129-b4-ltc4282-support-v4-0-fe75798164cc@analog.com>
-From: Guenter Roeck <linux@roeck-us.net>
-Autocrypt: addr=linux@roeck-us.net; keydata=
- xsFNBE6H1WcBEACu6jIcw5kZ5dGeJ7E7B2uweQR/4FGxH10/H1O1+ApmcQ9i87XdZQiB9cpN
- RYHA7RCEK2dh6dDccykQk3bC90xXMPg+O3R+C/SkwcnUak1UZaeK/SwQbq/t0tkMzYDRxfJ7
- nyFiKxUehbNF3r9qlJgPqONwX5vJy4/GvDHdddSCxV41P/ejsZ8PykxyJs98UWhF54tGRWFl
- 7i1xvaDB9lN5WTLRKSO7wICuLiSz5WZHXMkyF4d+/O5ll7yz/o/JxK5vO/sduYDIlFTvBZDh
- gzaEtNf5tQjsjG4io8E0Yq0ViobLkS2RTNZT8ICq/Jmvl0SpbHRvYwa2DhNsK0YjHFQBB0FX
- IdhdUEzNefcNcYvqigJpdICoP2e4yJSyflHFO4dr0OrdnGLe1Zi/8Xo/2+M1dSSEt196rXaC
- kwu2KgIgmkRBb3cp2vIBBIIowU8W3qC1+w+RdMUrZxKGWJ3juwcgveJlzMpMZNyM1jobSXZ0
- VHGMNJ3MwXlrEFPXaYJgibcg6brM6wGfX/LBvc/haWw4yO24lT5eitm4UBdIy9pKkKmHHh7s
- jfZJkB5fWKVdoCv/omy6UyH6ykLOPFugl+hVL2Prf8xrXuZe1CMS7ID9Lc8FaL1ROIN/W8Vk
- BIsJMaWOhks//7d92Uf3EArDlDShwR2+D+AMon8NULuLBHiEUQARAQABzTJHdWVudGVyIFJv
- ZWNrIChMaW51eCBhY2NvdW50KSA8bGludXhAcm9lY2stdXMubmV0PsLBgQQTAQIAKwIbAwYL
- CQgHAwIGFQgCCQoLBBYCAwECHgECF4ACGQEFAlVcphcFCRmg06EACgkQyx8mb86fmYFg0RAA
- nzXJzuPkLJaOmSIzPAqqnutACchT/meCOgMEpS5oLf6xn5ySZkl23OxuhpMZTVX+49c9pvBx
- hpvl5bCWFu5qC1jC2eWRYU+aZZE4sxMaAGeWenQJsiG9lP8wkfCJP3ockNu0ZXXAXwIbY1O1
- c+l11zQkZw89zNgWgKobKzrDMBFOYtAh0pAInZ9TSn7oA4Ctejouo5wUugmk8MrDtUVXmEA9
- 7f9fgKYSwl/H7dfKKsS1bDOpyJlqhEAH94BHJdK/b1tzwJCFAXFhMlmlbYEk8kWjcxQgDWMu
- GAthQzSuAyhqyZwFcOlMCNbAcTSQawSo3B9yM9mHJne5RrAbVz4TWLnEaX8gA5xK3uCNCeyI
- sqYuzA4OzcMwnnTASvzsGZoYHTFP3DQwf2nzxD6yBGCfwNGIYfS0i8YN8XcBgEcDFMWpOQhT
- Pu3HeztMnF3HXrc0t7e5rDW9zCh3k2PA6D2NV4fews9KDFhLlTfCVzf0PS1dRVVWM+4jVl6l
- HRIAgWp+2/f8dx5vPc4Ycp4IsZN0l1h9uT7qm1KTwz+sSl1zOqKD/BpfGNZfLRRxrXthvvY8
- BltcuZ4+PGFTcRkMytUbMDFMF9Cjd2W9dXD35PEtvj8wnEyzIos8bbgtLrGTv/SYhmPpahJA
- l8hPhYvmAvpOmusUUyB30StsHIU2LLccUPPOwU0ETofVZwEQALlLbQeBDTDbwQYrj0gbx3bq
- 7kpKABxN2MqeuqGr02DpS9883d/t7ontxasXoEz2GTioevvRmllJlPQERVxM8gQoNg22twF7
- pB/zsrIjxkE9heE4wYfN1AyzT+AxgYN6f8hVQ7Nrc9XgZZe+8IkuW/Nf64KzNJXnSH4u6nJM
- J2+Dt274YoFcXR1nG76Q259mKwzbCukKbd6piL+VsT/qBrLhZe9Ivbjq5WMdkQKnP7gYKCAi
- pNVJC4enWfivZsYupMd9qn7Uv/oCZDYoBTdMSBUblaLMwlcjnPpOYK5rfHvC4opxl+P/Vzyz
- 6WC2TLkPtKvYvXmdsI6rnEI4Uucg0Au/Ulg7aqqKhzGPIbVaL+U0Wk82nz6hz+WP2ggTrY1w
- ZlPlRt8WM9w6WfLf2j+PuGklj37m+KvaOEfLsF1v464dSpy1tQVHhhp8LFTxh/6RWkRIR2uF
- I4v3Xu/k5D0LhaZHpQ4C+xKsQxpTGuYh2tnRaRL14YMW1dlI3HfeB2gj7Yc8XdHh9vkpPyuT
- nY/ZsFbnvBtiw7GchKKri2gDhRb2QNNDyBnQn5mRFw7CyuFclAksOdV/sdpQnYlYcRQWOUGY
- HhQ5eqTRZjm9z+qQe/T0HQpmiPTqQcIaG/edgKVTUjITfA7AJMKLQHgp04Vylb+G6jocnQQX
- JqvvP09whbqrABEBAAHCwWUEGAECAA8CGwwFAlVcpi8FCRmg08MACgkQyx8mb86fmYHNRQ/+
- J0OZsBYP4leJvQF8lx9zif+v4ZY/6C9tTcUv/KNAE5leyrD4IKbnV4PnbrVhjq861it/zRQW
- cFpWQszZyWRwNPWUUz7ejmm9lAwPbr8xWT4qMSA43VKQ7ZCeTQJ4TC8kjqtcbw41SjkjrcTG
- wF52zFO4bOWyovVAPncvV9eGA/vtnd3xEZXQiSt91kBSqK28yjxAqK/c3G6i7IX2rg6pzgqh
- hiH3/1qM2M/LSuqAv0Rwrt/k+pZXE+B4Ud42hwmMr0TfhNxG+X7YKvjKC+SjPjqp0CaztQ0H
- nsDLSLElVROxCd9m8CAUuHplgmR3seYCOrT4jriMFBtKNPtj2EE4DNV4s7k0Zy+6iRQ8G8ng
- QjsSqYJx8iAR8JRB7Gm2rQOMv8lSRdjva++GT0VLXtHULdlzg8VjDnFZ3lfz5PWEOeIMk7Rj
- trjv82EZtrhLuLjHRCaG50OOm0hwPSk1J64R8O3HjSLdertmw7eyAYOo4RuWJguYMg5DRnBk
- WkRwrSuCn7UG+qVWZeKEsFKFOkynOs3pVbcbq1pxbhk3TRWCGRU5JolI4ohy/7JV1TVbjiDI
- HP/aVnm6NC8of26P40Pg8EdAhajZnHHjA7FrJXsy3cyIGqvg9os4rNkUWmrCfLLsZDHD8FnU
- mDW4+i+XlNFUPUYMrIKi9joBhu18ssf5i5Q=
-In-Reply-To: <20240129-b4-ltc4282-support-v4-0-fe75798164cc@analog.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20240126235425.12233-1-quic_obabatun@quicinc.com>
 
-On 1/29/24 08:13, Nuno Sa wrote:
-> v1:
->   * https://lore.kernel.org/linux-hwmon/20231110151905.1659873-1-nuno.sa@analog.com/
+On Fri, Jan 26, 2024 at 03:53:39PM -0800, Oreoluwa Babatunde wrote:
+> The reserved_mem array is used to store data for the different
+> reserved memory regions defined in the DT of a device.  The array
+> stores information such as region name, node, start-address, and size
+> of the reserved memory regions.
 > 
-> v2:
->   * https://lore.kernel.org/linux-hwmon/20231124-ltc4282-support-v2-0-952bf926f83c@analog.com
+> The array is currently statically allocated with a size of
+> MAX_RESERVED_REGIONS(64). This means that any system that specifies a
+> number of reserved memory regions greater than MAX_RESERVED_REGIONS(64)
+> will not have enough space to store the information for all the regions.
 > 
-> v3:
->   * https://lore.kernel.org/r/20231205-ltc4282-support-v3-0-e0877b281bc2@analog.com
+> Therefore, this series extends the use of the static array for
+> reserved_mem, and introduces a dynamically allocated array using
+> memblock_alloc() based on the number of reserved memory regions
+> specified in the DT.
 > 
-> Changes in v4:
-> - Patch 1:
->   * New patch. Support fault attributes in voltage channels.
-> - Patch 2:
->   * Add default values for gpios and divider properties;
->   * Add adi,gpio3-monitor-enable property.
-> - Patch 3:
->   - Docs:
->    * Document that fault logs are also cleared when writing in reset_history
->      attributes;
->    * Document debugfs entries;
->    * Add new in0_fault attributes and remove dropped ones.
->   - Driver:
->    * Add hwmon_in_fault attribute to report FET failures in VSOURCE;
->    * Clear fault logs in reset_history;
->    * Constify 'ltc4282_out_rates';
->    * Add missing error check in ltc4282_cache_history();
->    * Removed unused functions;
->    * Renamed clk provider name so it's unique per device;
->    * Support new adi,gpio3-monitor-enable property;
->    * Dropped power1_good, fet_bad_fault, fet_short_fault, fault_logs_reset
->      custom attributes. Note that only power1_good was really dropped.
->      The other ones are supported in standard ABI.
->    * Renamed debugfs directory for ltc4282-hwmonX;
->    * Added in0 prefix to FET fault logs so it's clear they affect VSOURCE;
->    * Fix in_range() condition (false means error);
->    * Fix reset_history attributes. We should not write 0 in the lowest
->      value. Write the theoretical max value in there. For vsource/vdd,
->      also do it during device setup (or we would end up with 0).
->    * Directly store the chip vdd instead of vin_mode in our device
->      structure. Easier to handle reset_history;
->    * Moved the vin_mode enum to reduce it's scope.
+> Some architectures such as arm64 require the page tables to be setup
+> before memblock allocated memory is writable.  Therefore, the dynamic
+> allocation of the reserved_mem array will need to be done after the
+> page tables have been setup on these architectures. In most cases that
+> will be after paging_init().
 > 
-> As mentioned in v3 discussion, clearing the power bad fault log has no
-> effect but I'm still doing it for consistency and because we also allow
-> to read it in debugfs (so better allow to clear it as well)
+> Reserved memory regions can be divided into 2 groups.
+> i) Statically-placed reserved memory regions
+> i.e. regions defined in the DT using the @reg property.
+> ii) Dynamically-placed reserved memory regions.
+> i.e. regions specified in the DT using the @alloc_ranges
+>     and @size properties.
 > 
-> I've also added Conor's reviewed-by tag while resending.
+> It is possible to call memblock_reserve() and memblock_mark_nomap() on
+> the statically-placed reserved memory regions and not need to save them
+> to the reserved_mem array until memory is allocated for it using
+> memblock, which will be after the page tables have been setup.
+> For the dynamically-placed reserved memory regions, it is not possible
+> to wait to store its information because the starting address is
+> allocated only at run time, and hence they need to be stored somewhere
+> after they are allocated.
+> Waiting until after the page tables have been setup to allocate memory
+> for the dynamically-placed regions is also not an option because the
+> allocations will come from memory that have already been added to the
+> page tables, which is not good for memory that is supposed to be
+> reserved and/or marked as nomap.
 > 
-> ---
-> Nuno Sa (3):
->        dt-bindings: hwmon: Add LTC4282 bindings
->        hwmon: add fault attribute for voltage channels
->        hwmon: ltc4282: add support for the LTC4282 chip
+> Therefore, this series splits up the processing of the reserved memory
+> regions into two stages, of which the first stage is carried out by
+> early_init_fdt_scan_reserved_mem() and the second is carried out by
+> fdt_init_reserved_mem().
 > 
->   Documentation/ABI/testing/sysfs-class-hwmon        |    9 +
->   .../devicetree/bindings/hwmon/adi,ltc4282.yaml     |  159 ++
->   Documentation/hwmon/index.rst                      |    1 +
->   Documentation/hwmon/ltc4282.rst                    |  133 ++
->   MAINTAINERS                                        |    8 +
->   drivers/hwmon/Kconfig                              |   11 +
->   drivers/hwmon/Makefile                             |    1 +
->   drivers/hwmon/hwmon.c                              |    1 +
->   drivers/hwmon/ltc4282.c                            | 1784 ++++++++++++++++++++
->   include/linux/hwmon.h                              |    2 +
->   10 files changed, 2109 insertions(+)
-> ---
-> base-commit: 909d8d33f8b4664c9b6c7fd585114921af77fc2b
-> change-id: 20231218-b4-ltc4282-support-2a08a85465c6
-> --
+> The early_init_fdt_scan_reserved_mem(), which is called before the page
+> tables are setup is used to:
+> 1. Call memblock_reserve() and memblock_mark_nomap() on all the
+>    statically-placed reserved memory regions as needed.
+> 2. Allocate memory from memblock for the dynamically-placed reserved
+>    memory regions and store them in the static array for reserved_mem.
+>    memblock_reserve() and memblock_mark_nomap() are also called as
+>    needed on all the memory allocated for the dynamically-placed
+>    regions.
+> 3. Count the total number of reserved memory regions found in the DT.
+> 
+> fdt_init_reserved_mem(), which should be called after the page tables
+> have been setup, is used to carry out the following:
+> 1. Allocate memory for the reserved_mem array based on the number of
+>    reserved memory regions counted as mentioned above.
+> 2. Copy all the information for the dynamically-placed reserved memory
+>    regions from the static array into the new allocated memory for the
+>    reserved_mem array.
+> 3. Add the information for the statically-placed reserved memory into
+>    reserved_mem array.
+> 4. Run the region specific init functions for each of the reserve memory
+>    regions saved in the reserved_mem array.
 
-Series applied.
+I don't see the need for fdt_init_reserved_mem() to be explicitly called 
+by arch code. I said this already, but that can be done at the same time 
+as unflattening the DT. The same conditions are needed for both: we need 
+to be able to allocate memory from memblock.
 
-Thanks,
-Guenter
+To put it another way, if fdt_init_reserved_mem() can be called "early", 
+then unflattening could be moved earlier as well. Though I don't think 
+we should optimize that. I'd rather see all arches call the DT functions 
+at the same stages.
 
+> Once the above steps have been completed and the init process is done
+> running, the original statically allocated reserved_mem array of size
+> MAX_RESERVED_REGIONS(64) will be automatically freed back to buddy
+> because it is no longer needed. This is done by marking the array as an
+> "__initdata" object in Patch 0018.
+> 
+> Note:
+> 
+> - Per Architecture, this series is effectively only 10 patches. The
+>   code for each architecture is split up into separate patches to
+>   allow each architecture to be tested independently of changes from
+>   other architectures. Should this series be accepted, this should
+>   allow for each arcitecture change to be picked up independently as
+>   well.
+
+Only if patches 1 and 2 are accepted in one cycle and the arch ones in 
+the next cycle. No need for that though, I can take the whole thing 
+(when it's ready).
+
+
+> 
+>   Patch 0001: Splits up the processing of the reserved memory regions
+>   between early_init_fdt_scan_reserved_mem and fdt_init_reserved_mem.
+> 
+>   Patch 0002: Introduces a copy of early_init_fdt_scan_reserved_mem()
+>   which is used to separate it from fdt_init_reserved_mem() so that the
+>   two functions can be called independently of each other.
+> 
+>   Patch 0003 - Patch 0016: Duplicated change for each architecture to
+>   call early_init_fdt_scan_reserved_mem() and fdt_init_reserved_mem()
+>   at their appropriate locations. Here fdt_init_reserved_mem() is called
+>   either before of after the page tables have been setup depending on
+>   the architecture requirements.
+> 
+>   Patch 0017: Deletes the early_init_fdt_scan_reserved_mem() function
+>   since all architectures are now using the copy introduced in
+>   Patch 0002.
+> 
+>   Patch 0018: Dynamically allocate memory for the reserved_mem array
+>   based on the total number of reserved memory regions specified in the
+>   DT.
+> 
+>   Patch 0019 - Patch 0029: Duplicated change for each architecture to
+>   move the fdt_init_reserved_mem() function call to below the
+>   unflatten_devicetree() function call. This is so that the unflatten
+>   devicetree APIs can be used to process the reserved memory regions.
+> 
+>   Patch 0030: Make code changes to start using the unflatten devicetree
+>   APIs to access the reserved memory regions defined in the DT.
+> 
+>   Patch 0031: Rename fdt_* functions as dt_* to refelct that the
+>   flattened devicetree (fdt) APIs have been replaced with the unflatten
+>   devicetree APIs.
+> 
+>   Patch 0032 - Patch 0045: Duplicated change for each architecture to
+>   switch from the use of fdt_init_reserved_mem() to
+>   dt_init_reserved_mem(), which is the same function but the later uses
+>   the unflatten devicetree APIs.
+> 
+>   Patch 0046: Delete the fdt_init_reserved_mem() function as all
+>   architectures have switched to using dt_init_reserved_mem() which was
+>   introduced in Patch 0031.
+> 
+> - The limitation to this approach is that there is still a limit of
+>   64 for dynamically-placed reserved memory regions. But from my current
+>   analysis, these types of reserved memory regions are generally less
+>   in number when compared to the statically-placed reserved memory
+>   regions.
+> 
+> - I have looked through all architectures and placed the call to
+>   memblock_alloc() for the reserved_mem array at points where I
+>   believe memblock allocated memory are available to be written to.
+>   I currently only have access to an arm64 device and this is where I am
+>   testing the functionality of this series. Hence, I will need help from
+>   architecture maintainers to test this series on other architectures to
+>   ensure that the code is functioning properly on there.
+> 
+> Previous patch revisions:
+> 1. [RFC V1 Patchset]:
+> https://lore.kernel.org/all/20231019184825.9712-1-quic_obabatun@quicinc.com/
+> 
+> 2. [RFC V2 Patchset]:
+> https://lore.kernel.org/all/20231204041339.9902-1-quic_obabatun@quicinc.com/
+> - Extend changes to all other relevant architectures.
+> - Add code to use unflatten devicetree APIs to process the reserved
+>   memory regions.
+
+Dropping RFC does not make this v1. RFC is a state of the patches not a 
+version.
+
+Rob
 
