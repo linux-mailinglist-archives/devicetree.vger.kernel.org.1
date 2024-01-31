@@ -1,132 +1,132 @@
-Return-Path: <devicetree+bounces-37264-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-37265-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 236C08443D1
-	for <lists+devicetree@lfdr.de>; Wed, 31 Jan 2024 17:11:27 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2DD208443D5
+	for <lists+devicetree@lfdr.de>; Wed, 31 Jan 2024 17:12:14 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 48D8D1C21DD4
-	for <lists+devicetree@lfdr.de>; Wed, 31 Jan 2024 16:11:26 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id DD1D62914D0
+	for <lists+devicetree@lfdr.de>; Wed, 31 Jan 2024 16:12:12 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 328C112BE84;
-	Wed, 31 Jan 2024 16:10:47 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b="Qnt8lHTo"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 32A6712BE84;
+	Wed, 31 Jan 2024 16:12:00 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from madrid.collaboradmins.com (madrid.collaboradmins.com [46.235.227.194])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from andre.telenet-ops.be (andre.telenet-ops.be [195.130.132.53])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5226012BF20;
-	Wed, 31 Jan 2024 16:10:45 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=46.235.227.194
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 744BF12AAC4
+	for <devicetree@vger.kernel.org>; Wed, 31 Jan 2024 16:11:57 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=195.130.132.53
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1706717447; cv=none; b=gBYvZuOIyZJUZZD4rwAtVA025fvphGFsvqJAsYoZ3KEjmVv3DEB0ZCzrcli9DQJwl3vVOjb/r5FdlKGscywLe0t0jI4vMdH5i9nVq0lZFwQ0e4d2hVBz1CkQD31Dn7QrTrtpIKVGgcA2v5s+qBEAd2TRS86ME2ssOubJL/0AZgQ=
+	t=1706717520; cv=none; b=LMZlvf/shxqhH1b61fRY+WIBSx2NSeeSk/L2ad8wOh7ynE/U5QQ++1km/d3OCyW2RoAbaWow+4tUQVqfDzK8LX4BTRHLN2euXiQR2iurKHfN/9tIXkvnyUHKmQFdqx/exNoDWQlJwavhydb/Gjz5l81bQr74+uaGGWmMli41oEk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1706717447; c=relaxed/simple;
-	bh=mOgddOnlFNve156jpGaNRlrIn0v6Pm2QIzZnnQ1nVh8=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=TdxKub8MWFYQBoZ5L7bHJ5FHu0ZUNwWZkk9yYrOjYLWjdvbJyXs1OLQgdERVbCndQRk8BacmwDK/dsR+zg0YS0kVM/gyKjGFImPJjL89v8vgnVY+DH5/ver5IaQHCUysYLxD5esyKhzfieOKr3vWWKtz7PAwPuXb5xgoEAMRmO0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b=Qnt8lHTo; arc=none smtp.client-ip=46.235.227.194
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=collabora.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-	s=mail; t=1706717443;
-	bh=mOgddOnlFNve156jpGaNRlrIn0v6Pm2QIzZnnQ1nVh8=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=Qnt8lHTonSrYxRLxk4GqeiGzZNZIuilfAUR08dkJ0euHbBts2iy0ewRfDZLw9JFGg
-	 bS7RrxfVAByoKWo3jr2HKptQXNqQTawOfNxIeV/ACPlPg1IjehtJwrHjIevwsum3Ii
-	 MKELhBFwlagnTy+ikrsUFXQuOhEuZyK+nZP8weMIR+AZy+SxlDFwOL+GTz7/3HZC7/
-	 G/F/BztkbODFzyVOx3O4/hSwPncpUsWd7SiQPCktsVPsZwOb0RSQgXndvzAIh0vkEG
-	 ONmzSef2ZZDkc8j7hLAlBolCM1QZTDN8G0yMZAJHnHGX/hlqskqvGIqc1jOQQZD/pC
-	 UpLp/r+pDvKtw==
-Received: from [100.109.49.129] (cola.collaboradmins.com [195.201.22.229])
-	(using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
-	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
-	(No client certificate requested)
-	(Authenticated sender: dmitry.osipenko)
-	by madrid.collaboradmins.com (Postfix) with ESMTPSA id 42AEC378202B;
-	Wed, 31 Jan 2024 16:10:42 +0000 (UTC)
-Message-ID: <a0f26bfd-5c78-4c5f-9c37-dc1cc3925ede@collabora.com>
-Date: Wed, 31 Jan 2024 19:10:39 +0300
+	s=arc-20240116; t=1706717520; c=relaxed/simple;
+	bh=etiQOCiZU9tDAlchggQr10q8COercMMXKaVDFoX+q74=;
+	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version; b=DSHQDJ6XzFrSrYf2GP297Iefz+mGpCC0VNF8OTeo/tIuwNPHXHUDscBlH42avtRPRYQHdx6L9snQRaP6xU1bhVwmE1tvrNhm4+zoj+oBUnrjdHBQLjpgXUUlmCbWf2RvX9kdkEdfGzP0dAtQSH//chCeBE5pZK/XI1MEpxlpED0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=glider.be; spf=none smtp.mailfrom=linux-m68k.org; arc=none smtp.client-ip=195.130.132.53
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=glider.be
+Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=linux-m68k.org
+Received: from ramsan.of.borg ([IPv6:2a02:1810:ac12:ed40:88f0:c83b:bafa:cdc3])
+	by andre.telenet-ops.be with bizsmtp
+	id hUBq2B00N4efzLr01UBqR2; Wed, 31 Jan 2024 17:11:55 +0100
+Received: from rox.of.borg ([192.168.97.57])
+	by ramsan.of.borg with esmtp (Exim 4.95)
+	(envelope-from <geert@linux-m68k.org>)
+	id 1rVDAw-00GrV5-9U;
+	Wed, 31 Jan 2024 17:11:50 +0100
+Received: from geert by rox.of.borg with local (Exim 4.95)
+	(envelope-from <geert@linux-m68k.org>)
+	id 1rVDBm-008lXe-Ht;
+	Wed, 31 Jan 2024 17:11:50 +0100
+From: Geert Uytterhoeven <geert+renesas@glider.be>
+To: Daniel Lezcano <daniel.lezcano@linaro.org>,
+	Thomas Gleixner <tglx@linutronix.de>,
+	Rob Herring <robh+dt@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Laurent Pinchart <laurent.pinchart+renesas@ideasonboard.com>,
+	Wolfram Sang <wsa+renesas@sang-engineering.com>,
+	Yoshinori Sato <ysato@users.sourceforge.jp>
+Cc: devicetree@vger.kernel.org,
+	linux-renesas-soc@vger.kernel.org,
+	linux-sh@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	Geert Uytterhoeven <geert+renesas@glider.be>
+Subject: [PATCH v2] dt-bindings: timer: renesas,tmu: Document input capture interrupt
+Date: Wed, 31 Jan 2024 17:11:45 +0100
+Message-Id: <8cb38b5236213a467c6c0073f97ccc4bfd5a39ff.1706717378.git.geert+renesas@glider.be>
+X-Mailer: git-send-email 2.34.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v8 7/7] clk: rockchip: implement proper GATE_LINK support
-Content-Language: en-US
-To: Sebastian Reichel <sebastian.reichel@collabora.com>
-Cc: Michael Turquette <mturquette@baylibre.com>,
- Stephen Boyd <sboyd@kernel.org>, linux-clk@vger.kernel.org,
- Elaine Zhang <zhangqing@rock-chips.com>,
- Kever Yang <kever.yang@rock-chips.com>, Heiko Stuebner <heiko@sntech.de>,
- Rob Herring <robh+dt@kernel.org>,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Conor Dooley <conor+dt@kernel.org>, huangtao@rock-chips.com,
- andy.yan@rock-chips.com, devicetree@vger.kernel.org,
- linux-rockchip@lists.infradead.org, kernel@collabora.com
-References: <20240126182919.48402-1-sebastian.reichel@collabora.com>
- <20240126182919.48402-8-sebastian.reichel@collabora.com>
- <8b4214a5-6ba7-402d-b2f6-f2424783d455@collabora.com>
- <i5qagtdg73rhojifmublx2w2kxvjeisd6qwqbo5vnhrgyedx3i@pyckzpstlnvb>
-From: Dmitry Osipenko <dmitry.osipenko@collabora.com>
-In-Reply-To: <i5qagtdg73rhojifmublx2w2kxvjeisd6qwqbo5vnhrgyedx3i@pyckzpstlnvb>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
 
-On 1/30/24 17:47, Sebastian Reichel wrote:
-> Hi Dmitry,
-> 
-> On Fri, Jan 26, 2024 at 10:36:13PM +0300, Dmitry Osipenko wrote:
->> On 1/26/24 21:18, Sebastian Reichel wrote:
->>> Recent Rockchip SoCs have a new hardware block called Native Interface
->>> Unit (NIU), which gates clocks to devices behind them. These effectively
->>> need two parent clocks.
->>>
->>> GATE_LINK type clocks handle the second parent via 'linkedclk' by using
->>> runtime PM clocks. To make that possible a new platform device is created
->>> for every clock handled in this way.
->>>
->>> Note, that before this patch clk_rk3588_probe() has never been called,
->>> because CLK_OF_DECLARE marks the DT node as processed. This patch replaces
->>> that with CLK_OF_DECLARE_DRIVER and thus the probe function is used now.
->>> This is necessary to have 'struct device' available.
->>>
->>> Also instead of builtin_platform_driver_probe, the driver has been
->>> switched to use core_initcall, since it should be fully probed before
->>> the Rockchip PM domain driver (and that is using postcore_initcall).
->>
->> Why clk driver needs to be fully probed before PD? The PD driver
->> shouldn't probe until all clk providers that it uses are registered, and
->> then both clk and PD should be registered at the default level.
-> 
-> The error handling in the rockchip PD driver needs rework to
-> properly handle -EPROBE_DEFER, which I consider a separate series.
-> 
-> Note, that the driver currently has 'builtin_platform_driver_probe',
-> but does not actually probe anything. All clocks are registered via
-> CLK_OF_DECLARE, which happens even before core_initcall. So this
-> does not make things worse.
-> 
-> Also the OF node is marked as initialized by the early clocks
-> (CLK_OF_DECLARE_DRIVER) via the call to of_clk_add_provider(). This
-> is necessary, since otherwise the early clocks cannot be referenced
-> and we need the early clocks for the timer registration (so it's not
-> possible to move all the clocks to late init). This effectively
-> results in fw_devlink not working properly. It will tell PM domain
-> driver too early, that it may start probing (so a bunch of useless
-> -EPROBE_DEFER will happen).
+Some Timer Unit (TMU) instances with 3 channels support a fourth
+interrupt: an input capture interrupt for the third channel.
 
-Thanks for the clarification! Definitely will be good to improve the
-probe defer handling in the future. And indeed, it can be done
-separately from this patchset.
+While at it, document the meaning of the four interrupts, and add
+"interrupt-names" for clarity.
 
+Update the example to match reality.
+
+Inspired by a patch by Yoshinori Sato for SH.
+
+Signed-off-by: Geert Uytterhoeven <geert+renesas@glider.be>
+---
+v2:
+  - Reword interrupt descriptions.
+
+The corresponding DTS updates can be found in series "[PATCH 0/2]
+ARM/arm64: dts: renesas: Improve TMU interrupt descriptions".
+https://lore.kernel.org/r/cover.1705325654.git.geert+renesas@glider.be
+Once the DTS updates are upstream, "interrupt-names" can be made
+required.
+---
+ .../devicetree/bindings/timer/renesas,tmu.yaml | 18 ++++++++++++++++--
+ 1 file changed, 16 insertions(+), 2 deletions(-)
+
+diff --git a/Documentation/devicetree/bindings/timer/renesas,tmu.yaml b/Documentation/devicetree/bindings/timer/renesas,tmu.yaml
+index a67e427a9e7e22aa..84bbe15028a1de94 100644
+--- a/Documentation/devicetree/bindings/timer/renesas,tmu.yaml
++++ b/Documentation/devicetree/bindings/timer/renesas,tmu.yaml
+@@ -46,7 +46,19 @@ properties:
+ 
+   interrupts:
+     minItems: 2
+-    maxItems: 3
++    items:
++      - description: Underflow interrupt, channel 0
++      - description: Underflow interrupt, channel 1
++      - description: Underflow interrupt, channel 2
++      - description: Input capture interrupt, channel 2
++
++  interrupt-names:
++    minItems: 2
++    items:
++      - const: tuni0
++      - const: tuni1
++      - const: tuni2
++      - const: ticpi2
+ 
+   clocks:
+     maxItems: 1
+@@ -100,7 +112,9 @@ examples:
+             reg = <0xffd80000 0x30>;
+             interrupts = <GIC_SPI 32 IRQ_TYPE_LEVEL_HIGH>,
+                          <GIC_SPI 33 IRQ_TYPE_LEVEL_HIGH>,
+-                         <GIC_SPI 34 IRQ_TYPE_LEVEL_HIGH>;
++                         <GIC_SPI 34 IRQ_TYPE_LEVEL_HIGH>,
++                         <GIC_SPI 35 IRQ_TYPE_LEVEL_HIGH>;
++            interrupt-names = "tuni0", "tuni1", "tuni2", "ticpi2";
+             clocks = <&mstp0_clks R8A7779_CLK_TMU0>;
+             clock-names = "fck";
+             power-domains = <&sysc R8A7779_PD_ALWAYS_ON>;
 -- 
-Best regards,
-Dmitry
+2.34.1
 
 
