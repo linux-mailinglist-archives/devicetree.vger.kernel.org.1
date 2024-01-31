@@ -1,170 +1,190 @@
-Return-Path: <devicetree+bounces-37177-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-37178-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9DB05843EAF
-	for <lists+devicetree@lfdr.de>; Wed, 31 Jan 2024 12:44:38 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id B9D03843EF4
+	for <lists+devicetree@lfdr.de>; Wed, 31 Jan 2024 12:58:52 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 20CC0B2176F
-	for <lists+devicetree@lfdr.de>; Wed, 31 Jan 2024 11:39:16 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 4494E1F30720
+	for <lists+devicetree@lfdr.de>; Wed, 31 Jan 2024 11:58:52 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 032A47BB19;
-	Wed, 31 Jan 2024 11:37:32 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id AB3FA78664;
+	Wed, 31 Jan 2024 11:58:40 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=nxp.com header.i=@nxp.com header.b="izWsS8B0"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="u7T6s1rK"
 X-Original-To: devicetree@vger.kernel.org
-Received: from EUR05-DB8-obe.outbound.protection.outlook.com (mail-db8eur05on2081.outbound.protection.outlook.com [40.107.20.81])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-lf1-f50.google.com (mail-lf1-f50.google.com [209.85.167.50])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CDDF678664;
-	Wed, 31 Jan 2024 11:37:29 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.107.20.81
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1706701051; cv=fail; b=iYPKrwecrlx8hwjt980WDKS7kDC2oZz4pTH+eJtH7MeuuY0AqIl+oqRiDyGjp8krQ1c3sFaeFMJFT/zS1UDqmc2q3nDwo2mUduPYAU3CmZgfzuMwi2bCE7TdyK0/7cxp4s0TSgheXcvWR2pgHub4JCZZJOj/gSWFOo3LcqCT51w=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1706701051; c=relaxed/simple;
-	bh=Iwr7C8Mn6qVewGJBQMZqzBQfvWj92IQhtKW/ExIxedg=;
-	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
-	 Content-Type:MIME-Version; b=prXMHH31+w6+jh7IjfkoTs9txV+f6JZnbFUktpu31IfK1kolqu9S7yllwaujaFXDnD0YUP2SiEz9VNUSLQyBMK1typXzCtXXaHYL7UHZ/3iSYpgDkf4giBM+0IXhKtaPDn1WHzt+up2MvUaXKM5MSCDWK+W0UaMJbWj0vJ0KJ2A=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com; spf=pass smtp.mailfrom=nxp.com; dkim=pass (1024-bit key) header.d=nxp.com header.i=@nxp.com header.b=izWsS8B0; arc=fail smtp.client-ip=40.107.20.81
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=nxp.com
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=YW9hi+McF0pz6usjI6VSAtm0yzAwIgAr9chIKI6V+I+mkDmfypXiRmWSIEY0GASkfynJkCpW9PjVT3YFdy+AAwF3uU9LdVIuyYdcju8YV7GQMDx+WcX9SfiIBeFDPZzEeujya1KUqxf5BFWslcBciwrg9tVD2ZLQvFPJ8UC1WxUpt+QZvUrsaBTF7udG+2beLb36Bt7q1Pciwu0voUBqLf9/OcNKOKEKpN9seNYaErSRjfnsV72T0+yYNwodpzZQdEl49acP1jk7YCiWC2k7xB4wngCKilLWAynDiercXjC19+1Td13Seujn9nH2+G3JuhPmLrK1eBlnPfGW8a7MLg==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=i9V9IhEQhfSknBPe1rJfVBJniFJZCC2EB25NpQzVY5E=;
- b=nyPXZOx+1ECPNz9av20EJMZOZA5oScOeKxct5SLXB47j5Vd211KWobXAqwHFONbjt36J1alYa9pk1TtmSueZokHatpvyGJwqm7fUT2+88piMlO8o/uuCiVVazgAsk693CWHVv3c7xz6JU2eLaeZ92Ld6GiTczLYdGrJ2Q7ie7Wh8X1EQKrIu7+tMMcGK46ludMz64kjQCpfeO/BgZWbrVF2Cogx6PjJ+9eCN5J3YOfrv4sFOx/4W/gvjKvUO4MHlkfgbc5cPq8Md/CjXcaN3vY/V5pV5+FN0qsUsnFNeKcw8FYa2qO8kcHjMnaweGKWTlnFECrTJcrh2473wTue6eg==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
- header.d=nxp.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector2;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=i9V9IhEQhfSknBPe1rJfVBJniFJZCC2EB25NpQzVY5E=;
- b=izWsS8B0+XnuLhNeU2+StKqdsVdT5uneKvc3p9Lamm+ImIYD/bVW6PGJ29vwaerR2TdId3Lj25dAqxyKgCSK3N7Uh1R0jL0dUWSbY6EIi5HXbFGw+inI/l2Gc1AbvJC1Ju0xsRUOYzxxVHKLoRWUyowa2GJWZEbDTin23/BSZlc=
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=nxp.com;
-Received: from DU2PR04MB8822.eurprd04.prod.outlook.com (2603:10a6:10:2e1::11)
- by AS8PR04MB9093.eurprd04.prod.outlook.com (2603:10a6:20b:444::20) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7249.23; Wed, 31 Jan
- 2024 11:37:24 +0000
-Received: from DU2PR04MB8822.eurprd04.prod.outlook.com
- ([fe80::d45f:4483:c11:68b0]) by DU2PR04MB8822.eurprd04.prod.outlook.com
- ([fe80::d45f:4483:c11:68b0%7]) with mapi id 15.20.7228.029; Wed, 31 Jan 2024
- 11:37:24 +0000
-From: Xu Yang <xu.yang_2@nxp.com>
-To: gregkh@linuxfoundation.org,
-	robh+dt@kernel.org,
-	krzysztof.kozlowski+dt@linaro.org,
-	conor+dt@kernel.org,
-	shawnguo@kernel.org,
-	s.hauer@pengutronix.de,
-	kernel@pengutronix.de,
-	festevam@gmail.com,
-	peter.chen@kernel.org
-Cc: linux-imx@nxp.com,
-	jun.li@nxp.com,
-	linux-usb@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org
-Subject: [PATCH v5 8/8] usb: chipidea: ci_hdrc_imx: align usb wakeup clock name with dt-bindings
-Date: Wed, 31 Jan 2024 19:43:24 +0800
-Message-Id: <20240131114324.3722428-8-xu.yang_2@nxp.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20240131114324.3722428-1-xu.yang_2@nxp.com>
-References: <20240131114324.3722428-1-xu.yang_2@nxp.com>
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-ClientProxiedBy: SG2PR02CA0107.apcprd02.prod.outlook.com
- (2603:1096:4:92::23) To DU2PR04MB8822.eurprd04.prod.outlook.com
- (2603:10a6:10:2e1::11)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AFCCE7690F
+	for <devicetree@vger.kernel.org>; Wed, 31 Jan 2024 11:58:38 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.50
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1706702320; cv=none; b=pFRMJOVc/PGxZ3plB3RmhPDpgdJnHbpOinS4VufSjsu/6ZFq5HNMrgqeTsT7v8kSeiXQUWzYZj0OBGQA32yMJDxKdiQmcHE7zyfBVSSPtvsAXcXuOhjbLm47huUcgj2biFy/pYzuEqtC3z7SyMe4Fa8blIuGrRTBPWkI0+Sxhac=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1706702320; c=relaxed/simple;
+	bh=Bsk6tAe8HP8m/VR5DeyZcP+7oFX7ES/B7TSkV1Xt6Q0=;
+	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:To:Cc; b=X+hNZFZgkdtjcZaA5hSvRzznhbNYA8LYsHfvo8N7CEtWWsAoBqu6p3/FGqIsKG2D7EuTkBzLRj+g3v36aC4/bOfREK9xkaI6HN6jYRC25Ed7VIJIFU0ZSlAtABaHQLnsugaXtVkrTK2FyVLxYMNdRABzap3r7hCOpu0VDl01EaU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=u7T6s1rK; arc=none smtp.client-ip=209.85.167.50
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-lf1-f50.google.com with SMTP id 2adb3069b0e04-510e0d700c6so3756588e87.2
+        for <devicetree@vger.kernel.org>; Wed, 31 Jan 2024 03:58:38 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1706702316; x=1707307116; darn=vger.kernel.org;
+        h=cc:to:message-id:content-transfer-encoding:mime-version:subject
+         :date:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=AoV2jurmNv6iwkxDFUQ5o01ah3c3XSHtCrzZXaQBuqA=;
+        b=u7T6s1rKdQZ/WUTswi9HPT8mPzn9h57OyH+aePIMuP+g6I1h8glau8lNsV1Hkp/7dU
+         nJcNnqwq/iy00HAyI1PPu/yB/w8fck2NtjRCXzpvXUSmua0UAt+8dc38llB1iPl9lB62
+         aZybjvZDsVRE64YxDQ5p+70eA6vxwJw8ViVc2wdffqPowE+thNLRyxRM4ZGkhpVWYl4e
+         0fg57CczKSt/SU6k3rIKLXUVoIt9AUHf8gZRpJxzGS1d0n35GbPKTxn/doNByMDC7qpF
+         O21UVXNDGMGiKpkadus/ndn0f6JYM/mq36W41JoOoqIWjfaqSSgUieQjAwRYGsr9tzOe
+         8Shg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1706702316; x=1707307116;
+        h=cc:to:message-id:content-transfer-encoding:mime-version:subject
+         :date:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=AoV2jurmNv6iwkxDFUQ5o01ah3c3XSHtCrzZXaQBuqA=;
+        b=MTFIekajyf1xuep7RhSafWHAoVtlGYQXVCBbqCLGFJQyYAe8mcGSKblDyQHbxYeqWQ
+         yKjIblVfTaS7iYwannlhSj2FTdmUQC101cprLrN3QxWftCZlBc4b1jPZyz0FfcR6y5f/
+         wYUDhyiQUhHAy1pVVu4qsdvXEhP5WVBkkdesJ1y6FoCwcrrlQNVtA5VjQDcXdDkkuTie
+         J+FMue8uDS61pk6Kd/IqccqZeJBAqayx7q9AKBo3aP1pdM2zkcWsoOjJdgVncQXl1wS6
+         iyGBCSPAkrjVIcweQkBE6DglCCDBX+nlb8cFq0DESxrXqKru3/ZqLp6bILfIud2jzWpm
+         ISBA==
+X-Gm-Message-State: AOJu0YzoUq+Z6Yz1xK7S3pmcxVYHqPHP9lq+1iU1DMEG0M/szesvoPTU
+	6HlwCpdfxo0hzu/d/aRIjUc3rcv1dA7h91z9YtFmgY9V/XAvt4aXzWgnjC5g4+0=
+X-Google-Smtp-Source: AGHT+IHKkzK2z6FUik9mZ7iVyw74T0XS48ch3DSuNy2MgJ/6xZiHyjGjtHghtsUZVoD0hrxrysmgUw==
+X-Received: by 2002:a05:6512:3d9f:b0:511:16df:b31 with SMTP id k31-20020a0565123d9f00b0051116df0b31mr1210546lfv.51.1706702316382;
+        Wed, 31 Jan 2024 03:58:36 -0800 (PST)
+Received: from arrakeen.starnux.net ([2a01:e0a:982:cbb0:52eb:f6ff:feb3:451a])
+        by smtp.gmail.com with ESMTPSA id u1-20020a05600c138100b0040f035bebfcsm1413114wmf.12.2024.01.31.03.58.35
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 31 Jan 2024 03:58:35 -0800 (PST)
+From: Neil Armstrong <neil.armstrong@linaro.org>
+Date: Wed, 31 Jan 2024 12:58:34 +0100
+Subject: [PATCH] arm64: dts: qcom: sm8550-qrd: enable Touchscreen
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: DU2PR04MB8822:EE_|AS8PR04MB9093:EE_
-X-MS-Office365-Filtering-Correlation-Id: b22116df-9a1e-4f6a-a6c0-08dc2250fe8e
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info:
-	4QMC/A2I4ZP4O695jJFrtpzoVO5NcQz6DtQDL9ny//Lnh/U9xEAH6vfaZhmI+3iOPBHOYZ+Q6YMjJL2CkJ3kiB2AgpXXINiJqIj+DFB8eTdI6u912CgMnrRHQQfF94IsWvoQZ6IFKMhsvi7sq83hpkas8xsp7+OnJyT/GeZ0BjwyE7HenKX0iYW6AmhWbgrrNRGmTQItBSyrXfiRLA3S511x3zRIPtkR/T+Q7xjItLP+R9Vu2TRUJlHsUhjB6fkJbKAHRGhmB6SK5NxrmqRznuc81UwhwdcfpKI2XnE/8z+VJIMEPCLbiEYy3VNsAtpCiPUFP36YnSRmUaeZbSwhkB5YZ2UO+m9Zo3rQgGURlv9SzIjiRenQyIeSebpKd6pvCxTDK4CTEhGprHAtkYHJEkDpSWnkUReSZSIg4pXWk5QEpMxoBGewbO2uizvoFMpXxIygSnhKpc+KeLkXJBT5CWu6ncng0rrRpE7OCwrK0H6pUryzYdUQNZKdDrwDgv5a4ezFqnIq+5hEkZ0lkiRpD+24xZlIodIbNPCLm8VGTa4M2g1epZIjZw4AK7lbmiRACQNeqSjpAI2ZZEN5hENm08nq6HNgo7lA6skD+10xQsHhtTmz70kFflPikM0Ev/H3
-X-Forefront-Antispam-Report:
-	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:DU2PR04MB8822.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230031)(136003)(346002)(376002)(396003)(39860400002)(366004)(230922051799003)(186009)(64100799003)(1800799012)(451199024)(26005)(1076003)(2616005)(41300700001)(38350700005)(316002)(66476007)(66556008)(478600001)(36756003)(6512007)(52116002)(6506007)(83380400001)(6486002)(38100700002)(66946007)(5660300002)(8936002)(4744005)(7416002)(2906002)(86362001)(8676002)(4326008);DIR:OUT;SFP:1101;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0:
-	=?us-ascii?Q?Br638Yb3OqS4JqlCeQoEuqMIWOah5fLn2GKF9qnjJzcxNELHoqLFO1KJzecK?=
- =?us-ascii?Q?b3fEQwryODVgLbtGjCatWOmUfQWS9RQw5Iiap1y3VndCtpow7O4HTeziWFfY?=
- =?us-ascii?Q?+JeF0wQe97JWfCCj9nm8IRQEpmSgL0AVxTR8U6KQlPxta8IMTlvLFY42lNMU?=
- =?us-ascii?Q?j+3ypcnYzkAUHN5/mHhQuww5Bd3O6Imrv4ZLCMlHwLPKIL5h5cjwKLihmhYj?=
- =?us-ascii?Q?hCwDLVemPBaWm4G7awGodYapopj6+50n1tZFN3iOMphoLTv4+h2i0JG1JdA9?=
- =?us-ascii?Q?hzjViA27PfQRYT8Mz6SiMrKB1bpZFHX64Ii4nwAFo8lidPufzhoJqC72sWDW?=
- =?us-ascii?Q?c478dEN4+Pbjd38x9xt7VLAwhbTl6t/XjqHGh10iN18fu3G82Erc91yTXP4A?=
- =?us-ascii?Q?Z92FbOhVc2ni3O8S3F60XfOZgPmL8jmjuJMXd+Z7QSSvMR2wXQqu6AGvrTKy?=
- =?us-ascii?Q?hlfNp5u71pV6dI2CyrX6T7b+5gHWRIx2j7Ki+7GAeGiufn0Eqzc8M9z8fG/9?=
- =?us-ascii?Q?8bxXrxvYFfT27gSOjkaRp77jhVRHRb19oiL87hXxIcP3JqMMvZC20RR3ASIE?=
- =?us-ascii?Q?j1QfKnpDpY/qX9dzDl4oKdf3Z3CCIvzFfsyxTmonsLCMvD/lQbhINlLDN4Sz?=
- =?us-ascii?Q?7qzjcHwEuu2BN9x2PFdN573lj0034IY1D8xzkk28Jn2/S1bQfhjgUrGNXKRB?=
- =?us-ascii?Q?A2ubcgII4MbNLbDaEi7TV/oNtIpTTu4fIs7bQpL67YVnGp0/g0sKLqfMXyRb?=
- =?us-ascii?Q?zdl9SQYLi6zNfEaCJHpjJu/0hk0ReHpC6UY4HGkFrOiy6RtCe/RXjPYQPNVX?=
- =?us-ascii?Q?aemgRR5P+43UwJSwWCpNlRWryXg6MyTHdZrUW3kUbpXz5ORNsEFbtJmsfA6G?=
- =?us-ascii?Q?aT7rf66SJ8XHvATVUA/StGtX93iDyeEaR5YzXv+1+KzII6A0GOM+NS15Frju?=
- =?us-ascii?Q?UZ0aEBDgrNOSbnpFE5gyRZ66xPRe8tZ7n1FoeNJwiu5rvhTHS9jQ1aQ0QIsj?=
- =?us-ascii?Q?mDZsRGPcHOd0xRM0T6klXsZ9o5VGkEfBigGZhgzwbze9mrCyiM85iF1HfC+L?=
- =?us-ascii?Q?rU1Md4LTejG+Fy3YxW/GTms8GYUEs0Obl/8WWM6cUtnWpkHGmYf07wgqwUq/?=
- =?us-ascii?Q?zxWqApgv8N08i4387lFp0S+GFtHqinhflu8G+Ym2G1gDlW1dIRqMqiUdg4U7?=
- =?us-ascii?Q?yvXNvcUDBtdKLXt7HjLp9/BPYDYeTl0Pc0EwUd55BpoVG/2OQbA7t8VWo0fo?=
- =?us-ascii?Q?HdFiHGzCUcbwU6hCBYcXPHmpkpNCrAI6vSR+jb3joLFGLYmIOUyLfogOBqT/?=
- =?us-ascii?Q?gOX9EzEbJOZz0sLsK7inQ4in7RVeUpWEyNgUGlRX9uOH0EPWUMdwes4jyzL/?=
- =?us-ascii?Q?6e03vpukh4MC1fQlHcpkrKuNeZq9CZEfzeGfVskPPtVBfu/L7l15Mlrd6wpE?=
- =?us-ascii?Q?/tb2GtUL4BNMrBLcedbU3bgXPVLKkjv8+S3H86vHodP020RZa7/C1wkGZnCO?=
- =?us-ascii?Q?8QSEqsK0UGiyNT3F35ko0epXDIpoXJK4tqWA9JVFArpQXNdLR0m3o4sy7wDR?=
- =?us-ascii?Q?edKsNL+zELP6KCs4WXjmA2L2a2AmhXxQb5XauYB4?=
-X-OriginatorOrg: nxp.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: b22116df-9a1e-4f6a-a6c0-08dc2250fe8e
-X-MS-Exchange-CrossTenant-AuthSource: DU2PR04MB8822.eurprd04.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 31 Jan 2024 11:37:24.6918
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: UBjjd84QOjyQNCRh25eIoLIhZZoc0QIzLuHVEKwa5wLPej81rVjoHBCxsYmQO6DLyVgZgbW8G5IS/3t2ltVYHQ==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: AS8PR04MB9093
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+Message-Id: <20240131-topic-sm8550-upstream-qrd8550-touch-v1-1-007f61158aa8@linaro.org>
+X-B4-Tracking: v=1; b=H4sIAOk1umUC/x2Nuw7CMAwAf6XyjKUkYPH4FcQQJS710CbYKUKq+
+ u9EHe+Guw2MVdjgMWyg/BWTsnTwpwHSFJc3o+TOEFy4OH/22EqVhDbfiByu1ZpynPGj+RCtrGn
+ CSPc8UiCX3BV6qSqP8jsuz9e+/wHsv/oMdQAAAA==
+To: Bjorn Andersson <andersson@kernel.org>, 
+ Konrad Dybcio <konrad.dybcio@linaro.org>, Rob Herring <robh+dt@kernel.org>, 
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, 
+ Conor Dooley <conor+dt@kernel.org>
+Cc: linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org, 
+ linux-kernel@vger.kernel.org, Neil Armstrong <neil.armstrong@linaro.org>
+X-Mailer: b4 0.12.4
+X-Developer-Signature: v=1; a=openpgp-sha256; l=1860;
+ i=neil.armstrong@linaro.org; h=from:subject:message-id;
+ bh=Bsk6tAe8HP8m/VR5DeyZcP+7oFX7ES/B7TSkV1Xt6Q0=;
+ b=owEBbQKS/ZANAwAKAXfc29rIyEnRAcsmYgBlujXrpKUzVB8vr6aWbW4RwTq+8/Y3AdwGKhxqT1X/
+ VZUXYROJAjMEAAEKAB0WIQQ9U8YmyFYF/h30LIt33NvayMhJ0QUCZbo16wAKCRB33NvayMhJ0WRLEA
+ DBhRvZmNqxs/wLW4dpx3fWWNXvKX1eRMNjOyTb2mCWwQDQ1mGwSA/hWp3gsfehs04XLQf/+SdwUv/Z
+ qHhf+P5TZ5j9KEaeQkWoziaRQOo+8EjHZzTE2GUJiJIMk95Hm7HSU38JTAf+TelBb/7VkmjSTl2zkZ
+ 7bOSsBs/DRMelsBmGEzQpvuE0cgz3Freh0UQfH/Y2zpxsSqbKedM8pChG9Gllw0PNbUG1E7Y2WrmFx
+ n0M/UHl+2uD4ZZH64BFRmz2lw6hveG5KrFV8KB823wbuXQWuatsy0/g8YYPgDASNVb9IybmCFyig3X
+ qTTEGOl6i92M8J0CBW7oan0/Io7gwLI6WCMlKRTsaKQtlzQAjT4dXwrTbrP/ll8mbrihysffB96XSP
+ BRH2ULw1+Vm4CWF9/4edZIkj6sxerUYbhNiJlwwMv0pfcA2hMibqLRhBGX4S530ixlbdWP8DIMAcHM
+ PeVtB5c3oYtK0UEYslhBLa30PBniS2bYgWTCNzesh8W6NCNhruoBTScKrMKm9xx3dAGQTq+2FOS05G
+ wrlSNETbILuroK6PvANXivJ0u9o5sdtW7leshEC9Av/MAJpCvumwqO2he9KesNYC7HQ1oNvLwllAnV
+ /2auxfWvxx/kA4cGuEbVhuKwsDkuXLJspZFcvIiNS16Crxfk+BjJ4QEa5ahw==
+X-Developer-Key: i=neil.armstrong@linaro.org; a=openpgp;
+ fpr=89EC3D058446217450F22848169AB7B1A4CFF8AE
 
-The dt-bindings is going to use "usb_wakeup" as wakup clock name. This will
-align the change with dt-bindings.
+Add Goodix Berlin touchscreen controller node for the SM8550 QRD
+connected to the SPI4 controller.
 
-Signed-off-by: Xu Yang <xu.yang_2@nxp.com>
+Signed-off-by: Neil Armstrong <neil.armstrong@linaro.org>
+---
+ arch/arm64/boot/dts/qcom/sm8550-qrd.dts | 42 +++++++++++++++++++++++++++++++++
+ 1 file changed, 42 insertions(+)
+
+diff --git a/arch/arm64/boot/dts/qcom/sm8550-qrd.dts b/arch/arm64/boot/dts/qcom/sm8550-qrd.dts
+index d401d63e5c4d..4c0a863024da 100644
+--- a/arch/arm64/boot/dts/qcom/sm8550-qrd.dts
++++ b/arch/arm64/boot/dts/qcom/sm8550-qrd.dts
+@@ -724,6 +724,10 @@ &gcc {
+ 		 <&usb_dp_qmpphy QMP_USB43DP_USB3_PIPE_CLK>;
+ };
+ 
++&gpi_dma1 {
++	status = "okay";
++};
++
+ &gpu {
+ 	status = "okay";
+ 
+@@ -960,6 +964,30 @@ south_spkr: speaker@0,1 {
+ 	};
+ };
+ 
++&spi4 {
++	status = "okay";
++
++	touchscreen@0 {
++		compatible = "goodix,gt9916";
++		reg = <0>;
++
++		interrupt-parent = <&tlmm>;
++		interrupts = <25 IRQ_TYPE_LEVEL_LOW>;
++
++		reset-gpios = <&tlmm 24 GPIO_ACTIVE_LOW>;
++
++		avdd-supply = <&vreg_l14b_3p2>;
++
++		spi-max-frequency = <1000000>;
++
++		touchscreen-size-x = <1080>;
++		touchscreen-size-y = <2400>;
++
++		pinctrl-names = "default";
++		pinctrl-0 = <&ts_irq>, <&ts_reset>;
++	};
++};
++
+ &swr1 {
+ 	status = "okay";
+ 
+@@ -1028,6 +1056,20 @@ sde_te_suspend: sde-te-suspend-state {
+ 		bias-pull-down;
+ 	};
+ 
++	ts_irq: ts-irq-state {
++		pins = "gpio25";
++		function = "gpio";
++		drive-strength = <8>;
++		bias-pull-up;
++	};
++
++	ts_reset: ts-reset-state {
++		pins = "gpio24";
++		function = "gpio";
++		drive-strength = <8>;
++		bias-pull-up;
++	};
++
+ 	wcd_default: wcd-reset-n-active-state {
+ 		pins = "gpio108";
+ 		function = "gpio";
 
 ---
-Changes in v5:
- - new patch
----
- drivers/usb/chipidea/ci_hdrc_imx.c | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+base-commit: 06f658aadff0e483ee4f807b0b46c9e5cba62bfa
+change-id: 20240131-topic-sm8550-upstream-qrd8550-touch-a59df5250c07
 
-diff --git a/drivers/usb/chipidea/ci_hdrc_imx.c b/drivers/usb/chipidea/ci_hdrc_imx.c
-index ae9a6a17ec6e..a17b6d619305 100644
---- a/drivers/usb/chipidea/ci_hdrc_imx.c
-+++ b/drivers/usb/chipidea/ci_hdrc_imx.c
-@@ -212,7 +212,7 @@ static int imx_get_clks(struct device *dev)
- 		/* Get wakeup clock. Not all of the platforms need to
- 		 * handle this clock. So make it optional.
- 		 */
--		data->clk_wakeup = devm_clk_get_optional(dev, "usb_wakeup_clk");
-+		data->clk_wakeup = devm_clk_get_optional(dev, "usb_wakeup");
- 		if (IS_ERR(data->clk_wakeup))
- 			ret = dev_err_probe(dev, PTR_ERR(data->clk_wakeup),
- 					"Failed to get wakeup clk\n");
+Best regards,
 -- 
-2.34.1
+Neil Armstrong <neil.armstrong@linaro.org>
 
 
