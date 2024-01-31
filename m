@@ -1,116 +1,174 @@
-Return-Path: <devicetree+bounces-37081-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-37083-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id BC375843A07
-	for <lists+devicetree@lfdr.de>; Wed, 31 Jan 2024 10:03:16 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 10200843A1D
+	for <lists+devicetree@lfdr.de>; Wed, 31 Jan 2024 10:05:13 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 6DF071F2F26F
-	for <lists+devicetree@lfdr.de>; Wed, 31 Jan 2024 09:03:16 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 8E91D1F2F81F
+	for <lists+devicetree@lfdr.de>; Wed, 31 Jan 2024 09:05:12 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E91256773D;
-	Wed, 31 Jan 2024 08:52:13 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D239569DE0;
+	Wed, 31 Jan 2024 08:57:14 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="FYf42npV"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="ZlZoqKvn"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wr1-f47.google.com (mail-wr1-f47.google.com [209.85.221.47])
+Received: from mail-yb1-f180.google.com (mail-yb1-f180.google.com [209.85.219.180])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3C30D83CC6;
-	Wed, 31 Jan 2024 08:52:12 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.47
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D03D569D38
+	for <devicetree@vger.kernel.org>; Wed, 31 Jan 2024 08:57:12 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.219.180
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1706691133; cv=none; b=PDua9DOjNqLk3Rf5BaNgjmb51sPk1Tqp+vATq6GSEdLBsWwJgMRCA53ujajOrFICUrG4hVwdarb0XecIpaJQk+CygxsFok7k2MBrWGj7lvM4HD3f+s898hKA2/iJ5hocX3xBrqs0m/9eK7JXwjPEqCeCJmz3aaOtswCpZTNX3dk=
+	t=1706691434; cv=none; b=fqaCN6dbRP0yAYoZV2FW3SdN3tHaJU4dFRpVodxyBDgGkHmMaF1nfEwht74K6fODuazQOaaov5EzWbglvcdiDFNvMHrBZhferX/5a7zSX9ZTum3BiE/zGWyyS9ToKsYxXZxC7VRKISIyVJhXQ4F0ide7KX+cHB6ErL2jCk9hULI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1706691133; c=relaxed/simple;
-	bh=FTDfH4I2xOVSlwOEyIqiKd8K58r1M7EV8OEkwFEEbxw=;
-	h=Message-ID:Subject:From:To:Cc:Date:In-Reply-To:References:
-	 Content-Type:MIME-Version; b=SrrUYdILTfLfoSnt80e110Niz25Y2l/3QZSDLoqL2q70hRf9bfnNqyJ3Ony+j4L5WIW/c9vysKOiX1FqxxQpOYZUDNFSvABGi26y0ezDNi5Tok7q6QjDrNMKUJMgoqHz4XExwLS0PqFOwtXqulvAoZLZxBTVR5SNzW+ROEF/xkk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=FYf42npV; arc=none smtp.client-ip=209.85.221.47
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-wr1-f47.google.com with SMTP id ffacd0b85a97d-33ae7ae9ec5so2022483f8f.0;
-        Wed, 31 Jan 2024 00:52:11 -0800 (PST)
+	s=arc-20240116; t=1706691434; c=relaxed/simple;
+	bh=i/0xGVWxmLGZ/l4MKKj0oTxK2I+o2zUxh3bsKs/n+Iw=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=LvU3uReTnHLtZVWFVGJklzPa7gnNeX6MIt8X52pwVeMNvIKrwp1qKukJGC6Kqsw679luogDKdEc4cDoTTb2kx1B7SGHNiX2gKqs34sB87K/ziJr6JUKyBYmkH2uPnlYJ0FG1ESaFqrs6q6Nd9XK3wLSxJ1zi4BnuHbMgrhgu8iM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=ZlZoqKvn; arc=none smtp.client-ip=209.85.219.180
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-yb1-f180.google.com with SMTP id 3f1490d57ef6-dc6c4a5bf2fso204351276.1
+        for <devicetree@vger.kernel.org>; Wed, 31 Jan 2024 00:57:12 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1706691130; x=1707295930; darn=vger.kernel.org;
-        h=mime-version:user-agent:content-transfer-encoding:references
-         :in-reply-to:date:cc:to:from:subject:message-id:from:to:cc:subject
-         :date:message-id:reply-to;
-        bh=FTDfH4I2xOVSlwOEyIqiKd8K58r1M7EV8OEkwFEEbxw=;
-        b=FYf42npVdUOjEBIVzUzjoOeKamijJBkeejPBh1Pf5fOQiNMF3mxhK8GWDyLcbiA6iI
-         6/iGifquHw3T9KdonxjxDOOhTl5tYkzSNCQWM7DnjatwF54dnngLYqd1fEYwMUUQZU3t
-         3fQdatlU2BPPqO/V8BRFXsI377TgMOQN1mwZgWb8EjLL4fzCHYmzEHpjnsjFRMio03Dk
-         4mSfKNGPJ/nvdvSKRnRQbDjZSfgUT+yzZPjCFxgE7pw12k4hwdTA4DZioD2Gq+9pF5lF
-         cKjC/XB4GIF7mtX+u9i7Yo0IgQSM3hFJ66qT9+urLksrmoW/5BBA8bRlZLSUrZoXaLbx
-         79fA==
+        d=linaro.org; s=google; t=1706691432; x=1707296232; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=19iyMKPgVV/OnzcKafV91f/kV0b2fJZ+DHL/skL3AYc=;
+        b=ZlZoqKvnK9OMXxhyDnAHPKZgYrPCtuhp7e1LksxIle5ypFPscvs+hduyajZzs2TsSX
+         RYtsEUu4xAzDEkY49ltoJ7lIGqG7G0rK6numdJxC4EvFci0hvUDp8tpx6A0DUs6i5KDM
+         1eKhPoxhKPrzQgdE5Sbx8fVxdd0T9zA4dLZUHYRnULQpAF0+QagNHE+FNc4uqelEK9nx
+         qA9/80W/aungYw0rIh4aDr26uyquHOWEDT/Tz8/uoZkavhvW27iFUkUhdtfJmgBhtUZi
+         pbKEekHZNNVxIWXfvAWfRHImycGZwF1ggyonJH5IRMLR/Ke0VhT6dhH4rdEjenBJ7KDm
+         gXcw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1706691130; x=1707295930;
-        h=mime-version:user-agent:content-transfer-encoding:references
-         :in-reply-to:date:cc:to:from:subject:message-id:x-gm-message-state
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=FTDfH4I2xOVSlwOEyIqiKd8K58r1M7EV8OEkwFEEbxw=;
-        b=L+PPNDZ7lVfvEnoFnkDilT6rY/KiIqijHh8dcq4MGIRUaMgD88CHOPt6OpSD55PZLY
-         g8PSdHgXi7kKyG1V0LeXo8QtUavLKTt7kMluCU+RIB9pd0WGAw2zrwjuEON46KHCOjrY
-         BzDrdEEhFu3wbpsgLDQz980Uph35GBaUEle1IBGYIZw7bK3t4iAXqfjtNSmHTxh1kuHQ
-         IlSfHhQBL3TBM+W4saDPq++luwwbJiNAJRpmp8En7Ip8pO9Q5xELil4L+YCdTrSSESyD
-         OiL0LRNWruMbAFpxhbTV/kOlji4mobyNgeSApLR6kDBO80cIQjziCh6jqb+1+EyvSD+d
-         K3Xg==
-X-Gm-Message-State: AOJu0YxZDTkmbdTeR2ihs6I5VF/BXA92O6D9pDXbisILpR38wLBOmUdA
-	Q0mFZlmwNfNeWi5gOp9lJndmV+0cq8dw78Ib7a5zhFxzdh725ivy
-X-Google-Smtp-Source: AGHT+IH5OPBlHelYF+NeFWrBZQMbR2Tp24V6rvqiRO/p1didxwohFOORT7Pg2Wfpty76vEFaYSwSEw==
-X-Received: by 2002:a5d:64e3:0:b0:337:68ab:617e with SMTP id g3-20020a5d64e3000000b0033768ab617emr858950wri.8.1706691129968;
-        Wed, 31 Jan 2024 00:52:09 -0800 (PST)
-Received: from ?IPv6:2003:f6:ef1b:2000:15d4:fc17:481e:8afe? (p200300f6ef1b200015d4fc17481e8afe.dip0.t-ipconnect.de. [2003:f6:ef1b:2000:15d4:fc17:481e:8afe])
-        by smtp.gmail.com with ESMTPSA id t18-20020adfe112000000b0033ade19da41sm12073617wrz.76.2024.01.31.00.52.09
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 31 Jan 2024 00:52:09 -0800 (PST)
-Message-ID: <30f0aa03081bd98a1a989c508a24f23e049862f4.camel@gmail.com>
-Subject: Re: [PATCH v7 1/9] of: property: fix typo in io-channels
-From: Nuno =?ISO-8859-1?Q?S=E1?= <noname.nuno@gmail.com>
-To: Rob Herring <robh@kernel.org>, Nuno Sa <nuno.sa@analog.com>
-Cc: Lars-Peter Clausen <lars@metafoo.de>, Olivier Moysan
- <olivier.moysan@foss.st.com>, Rob Herring <robh+dt@kernel.org>, 
- devicetree@vger.kernel.org, Saravana Kannan <saravanak@google.com>,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Greg Kroah-Hartman
- <gregkh@linuxfoundation.org>,  Jonathan Cameron <jic23@kernel.org>, Frank
- Rowand <frowand.list@gmail.com>, Michael Hennerich
- <Michael.Hennerich@analog.com>, linux-iio@vger.kernel.org, Conor Dooley
- <conor+dt@kernel.org>, "Rafael J. Wysocki" <rafael@kernel.org>
-Date: Wed, 31 Jan 2024 09:55:26 +0100
-In-Reply-To: <170664806394.2324419.17581898570868149558.robh@kernel.org>
-References: <20240123-iio-backend-v7-0-1bff236b8693@analog.com>
-	 <20240123-iio-backend-v7-1-1bff236b8693@analog.com>
-	 <170664806394.2324419.17581898570868149558.robh@kernel.org>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-User-Agent: Evolution 3.50.3 
+        d=1e100.net; s=20230601; t=1706691432; x=1707296232;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=19iyMKPgVV/OnzcKafV91f/kV0b2fJZ+DHL/skL3AYc=;
+        b=AzTT38w0c7EXO4tXLbgGiNdBTFi4D2R/ZLqX0V8HLB4RpmI107stTmA4ZMOckvLvxG
+         oCTozho6i4fH7oHPGixPaHmPGC9ozOmA7MRbd6Vk1WuE4aYDvbXHkRFj3hwEi55T39zQ
+         2RQ3n8WicCdxVQelcvwPDThUisYa4+GDpTrzw+Rayz1uVXbEN3XNrztHDpTDc4I7gNZy
+         dohboNN2GbaLulRY38zKnAvUsCi9zeQIhJTC8WopyRo0D4pv/5VzWbVoW0cCStP/FjGI
+         FabEFi71n1aU4fm9pO2N16YVh6FAEYvSRKWwIglJujs0xXTV75iPSUO5zG6VF7xPLQqJ
+         pK9g==
+X-Gm-Message-State: AOJu0YwdG4cCVygnCE+CxYY0IdXzMWKr3IJSpNgnYK57X1GKbDaxVz+s
+	LWBcvQK1qG0baC68S/XESf0xsI2SIQL1dzoVyPwGBf5n9cDxuuPWOz1qmgH/vzecGDbPaWNWsKw
+	YJ1typsJ/WYrXQc7vWepgfqToCJH/kQi2XBG7Tw==
+X-Google-Smtp-Source: AGHT+IF+kfDZ/YF7mxYh80knn1UBEiVlr7hp7DfiTZ/EqM7NpiukfxSx7V7h2n9hbAXhnmqW7UvF5OBBTxTaOE6Q4vE=
+X-Received: by 2002:a25:7904:0:b0:dc6:7e97:ae62 with SMTP id
+ u4-20020a257904000000b00dc67e97ae62mr1105679ybc.21.1706691431753; Wed, 31 Jan
+ 2024 00:57:11 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+References: <20240129115216.96479-1-krzysztof.kozlowski@linaro.org> <20240129115216.96479-5-krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20240129115216.96479-5-krzysztof.kozlowski@linaro.org>
+From: Linus Walleij <linus.walleij@linaro.org>
+Date: Wed, 31 Jan 2024 09:57:00 +0100
+Message-ID: <CACRpkdYf4HUaV-Pjr81WjLbzy9zdAnyFWs9gPayPC6-3OjHQwA@mail.gmail.com>
+Subject: Re: [PATCH v6 4/6] reset: Instantiate reset GPIO controller for
+ shared reset-gpios
+To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>, Bartosz Golaszewski <brgl@bgdev.pl>, 
+	Geert Uytterhoeven <geert+renesas@glider.be>
+Cc: Srinivas Kandagatla <srinivas.kandagatla@linaro.org>, Banajit Goswami <bgoswami@quicinc.com>, 
+	Bjorn Andersson <andersson@kernel.org>, Konrad Dybcio <konrad.dybcio@linaro.org>, 
+	Liam Girdwood <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>, 
+	Rob Herring <robh+dt@kernel.org>, 
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Philipp Zabel <p.zabel@pengutronix.de>, "Rafael J. Wysocki" <rafael@kernel.org>, 
+	Viresh Kumar <viresh.kumar@linaro.org>, Frank Rowand <frowand.list@gmail.com>, 
+	Jaroslav Kysela <perex@perex.cz>, Takashi Iwai <tiwai@suse.com>, alsa-devel@alsa-project.org, 
+	linux-arm-msm@vger.kernel.org, linux-sound@vger.kernel.org, 
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+	linux-pm@vger.kernel.org, Chris Packham <chris.packham@alliedtelesis.co.nz>, 
+	Sean Anderson <sean.anderson@seco.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-On Tue, 2024-01-30 at 14:54 -0600, Rob Herring wrote:
->=20
-> On Tue, 23 Jan 2024 16:14:22 +0100, Nuno Sa wrote:
-> > The property is io-channels and not io-channel. This was effectively
-> > preventing the devlink creation.
-> >=20
-> > Fixes: 8e12257dead7 ("of: property: Add device link support for iommus,
-> > mboxes and io-channels")
-> > Signed-off-by: Nuno Sa <nuno.sa@analog.com>
-> > ---
-> > =C2=A0drivers/of/property.c | 2 +-
-> > =C2=A01 file changed, 1 insertion(+), 1 deletion(-)
-> >=20
->=20
-> Applied, thanks!
->=20
+Hi Krzysztof,
 
-Thanks Rob!
+something is odd with the addresses on this patch, because neither GPIO
+maintainer is on CC nor linux-gpio@vger, and it's such a GPIO-related
+patch. We only saw it through side effects making <linux/gpio/driver.h>
+optional, as required by this patch.
 
-- Nuno S=C3=A1
+Please also CC Geert Uytterhoeven, the author of the GPIO aggregator.
+
+i.e. this:
+> 2. !GPIOLIB stub:
+>    https://lore.kernel.org/all/20240125081601.118051-3-krzysztof.kozlowsk=
+i@linaro.org/
+
+On Mon, Jan 29, 2024 at 12:53=E2=80=AFPM Krzysztof Kozlowski
+<krzysztof.kozlowski@linaro.org> wrote:
+
+> Devices sharing a reset GPIO could use the reset framework for
+> coordinated handling of that shared GPIO line.  We have several cases of
+> such needs, at least for Devicetree-based platforms.
+>
+> If Devicetree-based device requests a reset line, while "resets"
+> Devicetree property is missing but there is a "reset-gpios" one,
+> instantiate a new "reset-gpio" platform device which will handle such
+> reset line.  This allows seamless handling of such shared reset-gpios
+> without need of changing Devicetree binding [1].
+>
+> To avoid creating multiple "reset-gpio" platform devices, store the
+> Devicetree "reset-gpios" GPIO specifiers used for new devices on a
+> linked list.  Later such Devicetree GPIO specifier (phandle to GPIO
+> controller, GPIO number and GPIO flags) is used to check if reset
+> controller for given GPIO was already registered.
+>
+> If two devices have conflicting "reset-gpios" property, e.g. with
+> different ACTIVE_xxx flags, this would allow to spawn two separate
+> "reset-gpio" devices, where the second would fail probing on busy GPIO
+> request.
+>
+> Link: https://lore.kernel.org/all/YXi5CUCEi7YmNxXM@robh.at.kernel.org/ [1=
+]
+> Cc: Bartosz Golaszewski <brgl@bgdev.pl>
+> Cc: Chris Packham <chris.packham@alliedtelesis.co.nz>
+> Cc: Sean Anderson <sean.anderson@seco.com>
+> Reviewed-by: Philipp Zabel <p.zabel@pengutronix.de>
+> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+(...)
+
+In my naive view, this implements the following:
+
+reset -> virtual "gpio" -> many physical gpios[0..n]
+
+So if there was already a way in the kernel to map one GPIO to
+many GPIOs, the framework could just use that with a simple
+single GPIO?
+
+See the bindings in:
+Documentation/devicetree/bindings/gpio/gpio-delay.yaml
+
+This is handled by drivers/gpio/gpio-aggregator.c.
+
+This supports a 1-to-1 map: one GPIO in, one GPIO out, same offset.
+So if that is extended to support 1-to-many, this problem is solved.
+
+Proposed solution: add a single boolean property such as
+aggregate-all-gpios; to the gpio-delay node, making it provide
+one single gpio at offset 0 on the consumer side, and refuse any
+more consumers.
+
+This will also solve the problem with induced delays on
+some GPIO lines as I can see was discussed in the bindings,
+the gpio aggregator already supports that, but it would work
+fine with a delay being zero as well.
+
+This avoids all the hackery with driver stubs etc as well.
+
+Yours,
+Linus Walleij
 
