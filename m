@@ -1,104 +1,151 @@
-Return-Path: <devicetree+bounces-37295-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-37296-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9052A8444C8
-	for <lists+devicetree@lfdr.de>; Wed, 31 Jan 2024 17:48:00 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2D2AB844545
+	for <lists+devicetree@lfdr.de>; Wed, 31 Jan 2024 17:57:25 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 47DFB28C493
-	for <lists+devicetree@lfdr.de>; Wed, 31 Jan 2024 16:47:59 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 603701C222F2
+	for <lists+devicetree@lfdr.de>; Wed, 31 Jan 2024 16:57:24 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 36AA412BEBF;
-	Wed, 31 Jan 2024 16:47:40 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C9DF912CDB4;
+	Wed, 31 Jan 2024 16:54:47 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b="Oa3NqV7o"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Nmve9pUU"
 X-Original-To: devicetree@vger.kernel.org
-Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [213.167.242.64])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A4CDB12C531;
-	Wed, 31 Jan 2024 16:47:38 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=213.167.242.64
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9B6C612CD9D;
+	Wed, 31 Jan 2024 16:54:47 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1706719660; cv=none; b=oJOd/ebgkNZ+ZoiwYNfK2BWynT/t/spOD32kOIQb4WyeSC6CPZMMRuCullbfuuu0MOsx3L8DqIzrD626pkiAMrlAOTc0qT4zpwwWvBqAYRqkmj5nbDrttY3iBRIPuRKHPl4Hdq04HbFSjxZXJv1bIXM2jC9sZAnxGJkGf2n2sJQ=
+	t=1706720087; cv=none; b=Im5l9SacKKjqrz7cNi7Sv51Tghh2b0AYX5fpo0UMwwV70ZijzAD+yfc50aBgLFzUpxaAQqUXLnyjVloKQrAn5pcXQx/xudY8l5mLfVqpmcOOnlSJmM9fO+8YAfOAEyQBMbdb/S4U3fk+tH23IBTC89NBuyebxuYZuiUjtSbu4m4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1706719660; c=relaxed/simple;
-	bh=DGcK0FIcPkD4YKJCNhEP/WorviNVuwHABB6p3EQwyD8=;
-	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
-	 MIME-Version; b=ky3HExcpd4aNNjabVOHE5DSJRqa2ZYpYpTqNttuZj79sx/RPFZxdvPaExqERjMtoM+EYXpvUtOtD6vIZcG2/IfHpnecZvmUjlWS1fa9C7K5wKNCOfe2bPHi8J5kf30IRxjUSXnSfw8pqTRMeclh33KL40MTr1wZ+uWvirH7Q3a0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ideasonboard.com; spf=pass smtp.mailfrom=ideasonboard.com; dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b=Oa3NqV7o; arc=none smtp.client-ip=213.167.242.64
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ideasonboard.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ideasonboard.com
-Received: from mail.ideasonboard.com (cpc141996-chfd3-2-0-cust928.12-3.cable.virginm.net [86.13.91.161])
-	by perceval.ideasonboard.com (Postfix) with ESMTPSA id 13FEB6536;
-	Wed, 31 Jan 2024 17:46:08 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
-	s=mail; t=1706719568;
-	bh=DGcK0FIcPkD4YKJCNhEP/WorviNVuwHABB6p3EQwyD8=;
-	h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-	b=Oa3NqV7oN8kOAJdD7FH2l9OvdV+0KS1P2CzkVakJTt0zbZd7uMQzqs9xnptu4AYS2
-	 lQivypfkhdoEe2zfFqRMTQIY9/9CoBOGQO0g4brCT5nOya8sqhTK52ov+1QtDl6PCn
-	 cvgavvw/uErnuBgnzqP/3kTU/Hwcdrdo0hzSVcME=
-From: Daniel Scally <dan.scally@ideasonboard.com>
-To: linux-media@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org
-Cc: jacopo.mondi@ideasonboard.com,
-	nayden.kanchev@arm.com,
-	robh+dt@kernel.org,
-	mchehab@kernel.org,
-	krzysztof.kozlowski+dt@linaro.org,
-	conor+dt@kernel.org,
-	jerome.forissier@linaro.org,
-	kieran.bingham@ideasonboard.com,
-	laurent.pinchart@ideasonboard.com,
-	Daniel Scally <dan.scally@ideasonboard.com>
-Subject: [PATCH 5/5] MAINTAINERS: Add entry for mali-c55 driver
-Date: Wed, 31 Jan 2024 16:47:09 +0000
-Message-Id: <20240131164709.810587-6-dan.scally@ideasonboard.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20240131164709.810587-1-dan.scally@ideasonboard.com>
-References: <20240131164709.810587-1-dan.scally@ideasonboard.com>
+	s=arc-20240116; t=1706720087; c=relaxed/simple;
+	bh=e7PkgB7K0gx8CAPjTVUKMOvEqHbyafX+oBkcjQV6dys=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=ARHe509KVM9JXw8scBfFUs/AI/wcwU+/kjlT9nIhhdKa8j7DqfhTFFX2sJ5Mygd6oA6UsWcfRG5z8RWKbL+CAr/wXlMnOlHySY5Oev3jeQyGO0gKcf/WPIaITrZT+wePsfU4Wsbw6S0E8VUFXzGAwDwr97Iyq2PCtR77mV6wnLQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Nmve9pUU; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 5A395C433F1;
+	Wed, 31 Jan 2024 16:54:44 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1706720087;
+	bh=e7PkgB7K0gx8CAPjTVUKMOvEqHbyafX+oBkcjQV6dys=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=Nmve9pUUOt196CcaU4YrJBEqco8cFcMpDhATzxHHFGUBeb+NRVrbaatX8PRY9P2Ri
+	 a72GGOr8swMe3/9YGP2C7ynYNXM3YtjprV7fg2zcqLiv8ZbI7AS/Gat+qn0VTM84lX
+	 sW0uTAp3pKw6YA91cokoNKsX+bspGqRgmZMH+viCzzb6VewaxLvhClbU/iKqbWGFEG
+	 5veXuTSAZi0pjjMSsQBMIYiIKQP817JFKr5UCxMGb1ZwHGDBioeocFw5MlzcAHUsA+
+	 EPOkzz4hr0nHkcNzhgd05rVWD/+s6VrsblUWPVhpu2xicRpeqKYQgpr1CcDdIHYSLo
+	 f4B4pQU5jYfsw==
+Date: Wed, 31 Jan 2024 16:54:42 +0000
+From: Conor Dooley <conor@kernel.org>
+To: Jonathan Cameron <Jonathan.Cameron@huawei.com>
+Cc: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+	Naresh Solanki <naresh.solanki@9elements.com>,
+	Peter Rosin <peda@axentia.se>, Jonathan Cameron <jic23@kernel.org>,
+	Lars-Peter Clausen <lars@metafoo.de>,
+	Rob Herring <robh+dt@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>, mazziesaccount@gmail.com,
+	linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v3] dt-bindings: iio: afe: voltage-divider: Add
+ io-channel-cells
+Message-ID: <20240131-stylized-defile-d8fe346ab197@spud>
+References: <20240130115651.457800-1-naresh.solanki@9elements.com>
+ <1c855a34-8a0d-491e-bfd2-24635b41c86f@linaro.org>
+ <20240131163516.000043df@Huawei.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: multipart/signed; micalg=pgp-sha256;
+	protocol="application/pgp-signature"; boundary="h8APYS+PcgeCvIXI"
+Content-Disposition: inline
+In-Reply-To: <20240131163516.000043df@Huawei.com>
 
-Add a MAINTAINERS entry for the mali-c55 driver and its associated
-documentation.
 
-Signed-off-by: Daniel Scally <dan.scally@ideasonboard.com>
----
- MAINTAINERS | 10 ++++++++++
- 1 file changed, 10 insertions(+)
+--h8APYS+PcgeCvIXI
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-diff --git a/MAINTAINERS b/MAINTAINERS
-index 8d1052fa6a69..bec50bfb09ec 100644
---- a/MAINTAINERS
-+++ b/MAINTAINERS
-@@ -1668,6 +1668,16 @@ F:	Documentation/gpu/panfrost.rst
- F:	drivers/gpu/drm/panfrost/
- F:	include/uapi/drm/panfrost_drm.h
- 
-+ARM MALI-C55 ISP DRIVER
-+M:	Daniel Scally <dan.scally@ideasonboard.com>
-+M:	Jacopo Mondi <jacopo.mondi@ideasonboard.com>
-+L:	linux-media@vger.kernel.org
-+S:	Maintained
-+T:	git git://linuxtv.org/media_tree.git
-+F:	Documentation/admin-guide/media/mali-c55.rst
-+F:	Documentation/devicetree/bindings/media/arm,mali-c55.yaml
-+F:	drivers/media/platform/arm/mali-c55/
-+
- ARM MALI-DP DRM DRIVER
- M:	Liviu Dudau <liviu.dudau@arm.com>
- S:	Supported
--- 
-2.34.1
+On Wed, Jan 31, 2024 at 04:35:16PM +0000, Jonathan Cameron wrote:
+> On Wed, 31 Jan 2024 09:29:59 +0100
+> Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org> wrote:
+>=20
+> > On 30/01/2024 12:56, Naresh Solanki wrote:
+> > > voltage-divider is always an iio consumer at the same time it is
+> > > optionally an iio provider.
+> > > Hence add #io-channel-cells
+> > > Also update example.
+> > >  =20
+> >=20
+> > Fix
+> > wrapping
+> > and
+> > proper
+> > sentences. Each sentence finishes with full stop.
+> >=20
+> > ...
+> > >    output-ohms:
+> > >      description:
+> > >        Resistance Rout over which the output voltage is measured. See=
+ full-ohms.
+> > > @@ -75,12 +82,17 @@ examples:
+> > >              spi-max-frequency =3D <1000000>;
+> > >          };
+> > >      };
+> > > -    sysv {
+> > > +    p12v_vd: sysv { =20
+> >=20
+> > No, drop label.
+> >=20
+> > >          compatible =3D "voltage-divider";
+> > >          io-channels =3D <&maxadc 1>;
+> > > +        #io-channel-cells =3D <1>;
+> > > =20
+> > >          /* Scale the system voltage by 22/222 to fit the ADC range. =
+*/
+> > >          output-ohms =3D <22>;
+> > >          full-ohms =3D <222>; /* 200 + 22 */
+> > >      };
+> > > +    iio-hwmon {
+> > > +        compatible =3D "iio-hwmon";
+> > > +        io-channels =3D <&p12v_vd 0>; =20
+> >=20
+> > The same question as for v2. Drop unrelated example.
+>=20
+> Conor requested an example of the device acting as a consumer and a provi=
+der.
+> Might have meant in the patch description?
+>=20
+> Conor?
 
+I wanted it in the property description to help with understanding when
+to use it. I don't think the extra example nodes actually help you
+understand what it is doing, only how to write one yourself once you
+know you need it.
+
+Thanks,
+Conor.
+
+--h8APYS+PcgeCvIXI
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZbp7UQAKCRB4tDGHoIJi
+0qUKAP0Ww48y8Vpl0AK0ojq0GTFz+pnr+vWFetK6V8fbSyQ0YwEAg+sb0e5EXttx
+Yc5wqU6OG+ali+z2CNC/Op4kdAyPMAE=
+=i3bX
+-----END PGP SIGNATURE-----
+
+--h8APYS+PcgeCvIXI--
 
