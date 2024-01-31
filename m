@@ -1,123 +1,121 @@
-Return-Path: <devicetree+bounces-37362-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-37366-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id ECFBB844A07
-	for <lists+devicetree@lfdr.de>; Wed, 31 Jan 2024 22:29:18 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id B2E04844A13
+	for <lists+devicetree@lfdr.de>; Wed, 31 Jan 2024 22:31:10 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 89A801F239EE
-	for <lists+devicetree@lfdr.de>; Wed, 31 Jan 2024 21:29:18 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 5243E1F277B7
+	for <lists+devicetree@lfdr.de>; Wed, 31 Jan 2024 21:31:10 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 22E9C3A29A;
-	Wed, 31 Jan 2024 21:27:27 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id BC49C39AD8;
+	Wed, 31 Jan 2024 21:29:41 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="VJhXtnIf"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="rneGBcjK"
 X-Original-To: devicetree@vger.kernel.org
-Received: from lelv0143.ext.ti.com (lelv0143.ext.ti.com [198.47.23.248])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 886353A8D6;
-	Wed, 31 Jan 2024 21:27:25 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.23.248
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 85CA23985A;
+	Wed, 31 Jan 2024 21:29:41 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1706736447; cv=none; b=trzkxmmg7zf8wX2eO4H4Zey4ZiqFmm3/Ziqu/Yg5yZ4rokw/OYoTqxt2xFDho4AJRTAjH/fdTUASyD1AjOjrZluQBkPX0PIdx5VYFxfYuRQ4lQBhlzm1UCIBxih3oXQLov6yBhRiubAdURnNfcyj2D+GEUecgP3D/ejdQVEIKt8=
+	t=1706736581; cv=none; b=Z6P9TWqYSDLJV912bt+7zA6qlyXLqdbDsQ8eVeCFL8HT0vjjDVQofqLRPZkhktfvaHhjG/JxOxxvbItQ/Tu3cgJjPrko3aqy9WbVA6qxuKeAu5zTwljnaDgp4Kt3mrhX7I+6AH/qqew9Cu083qwL0S8MSKb71dEFvzlE3gG+Vi0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1706736447; c=relaxed/simple;
-	bh=IvDdXoarG9VlDxIH2fq8YBLN0UFAhCkdJDUjBX7ElB0=;
-	h=From:To:CC:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=VUFytr5YRPbSgpwpYYlbZfaajzor7t5B7phJKcNDxTa6NXb+qZegP6IfZjZkxLXgaobohGFTi2yD0dGsSiJdBYaJAxcR6ca861jUTpReAzPYykUpoYkogWGFoDcVALgGRWTUiwqXkzfEMbDsX+0COW2HnCKLei+a8+mdPzgeRcY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=VJhXtnIf; arc=none smtp.client-ip=198.47.23.248
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
-Received: from lelv0265.itg.ti.com ([10.180.67.224])
-	by lelv0143.ext.ti.com (8.15.2/8.15.2) with ESMTP id 40VLR7RA128959;
-	Wed, 31 Jan 2024 15:27:07 -0600
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1706736427;
-	bh=AvCnC5dU1dVgo533jsr7k/qxzOxE/4jL1GMcuwl1Q/c=;
-	h=From:To:CC:Subject:Date:In-Reply-To:References;
-	b=VJhXtnIfwr27ySTI5+1u8hujKbdnHJvKe8/lXR2ayqwH560b6gLeK5fOZADhYJDys
-	 NSeu8nyHBoOhmA8br4tppbIYDdJ9oeitrUtVFAPwpcow2CccGj0yc9Y5PbNWjGnUIh
-	 krlfui3QpgXXIDuOWKOrUBs9JCsRvODr88UeoLBY=
-Received: from DFLE113.ent.ti.com (dfle113.ent.ti.com [10.64.6.34])
-	by lelv0265.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 40VLR7rV023739
-	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-	Wed, 31 Jan 2024 15:27:07 -0600
-Received: from DFLE104.ent.ti.com (10.64.6.25) by DFLE113.ent.ti.com
- (10.64.6.34) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Wed, 31
- Jan 2024 15:27:06 -0600
-Received: from lelvsmtp6.itg.ti.com (10.180.75.249) by DFLE104.ent.ti.com
- (10.64.6.25) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
- Frontend Transport; Wed, 31 Jan 2024 15:27:06 -0600
-Received: from udba0500997.dhcp.ti.com (udba0500997.dhcp.ti.com [128.247.81.249])
-	by lelvsmtp6.itg.ti.com (8.15.2/8.15.2) with ESMTP id 40VLQfKV028966;
-	Wed, 31 Jan 2024 15:27:06 -0600
-From: Brandon Brnich <b-brnich@ti.com>
-To: Nishanth Menon <nm@ti.com>, Vignesh Raghavendra <vigneshr@ti.com>,
-        Tero
- Kristo <kristo@kernel.org>, Rob Herring <robh+dt@kernel.org>,
-        Krzysztof
- Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley
-	<conor+dt@kernel.org>,
-        Catalin Marinas <catalin.marinas@arm.com>,
-        Will Deacon
-	<will@kernel.org>,
-        Bjorn Andersson <quic_bjorande@quicinc.com>,
-        Geert
- Uytterhoeven <geert+renesas@glider.be>,
-        Arnd Bergmann <arnd@arndb.de>,
-        Konrad
- Dybcio <konrad.dybcio@linaro.org>,
-        Neil Armstrong
-	<neil.armstrong@linaro.org>,
-        =?UTF-8?q?N=C3=ADcolas=20F=20=2E=20R=20=2E=20A=20=2E=20Prado?=
-	<nfraprado@collabora.com>,
-        Marek Szyprowski <m.szyprowski@samsung.com>,
-        <linux-arm-kernel@lists.infradead.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>, Darren Etheridge <detheridge@ti.com>
-CC: Brandon Brnich <b-brnich@ti.com>
-Subject: [PATCH v3 6/6] arm64: defconfig: Enable Wave5 Video Encoder/Decoder
-Date: Wed, 31 Jan 2024 15:26:25 -0600
-Message-ID: <20240131212625.1862775-7-b-brnich@ti.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20240131212625.1862775-1-b-brnich@ti.com>
-References: <20240131212625.1862775-1-b-brnich@ti.com>
+	s=arc-20240116; t=1706736581; c=relaxed/simple;
+	bh=+ZV2cN1u7YTwLufo+MSlE1shle2HFWJbJPm0fQ1GzBo=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=iA1ElnyWmf++RnnI/cpraMm0tamJltxZKeFQ9zcwtbieMvxx8RfnovUmPguexFhZ+GDo1jjuIDqFdnUTEdFWPws79NrtRuZb7j9h8GjigiQIKcEUj3nXJ3x5VBzr4XeKatUyADwoWa6vb7alqHIwKVc9fShSmi9mAq+brug5AxM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=rneGBcjK; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id C95A7C433C7;
+	Wed, 31 Jan 2024 21:29:40 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1706736581;
+	bh=+ZV2cN1u7YTwLufo+MSlE1shle2HFWJbJPm0fQ1GzBo=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=rneGBcjKDAVaVzQgBrzml07UEUx3wI24DIog/I3aLVvBTFmCTfTrjD/cetBRVfgzf
+	 Vzk1WrWXmRQCz09lsQcmHfQsTZ5qpkevKuibFLdZwLy/EUzxaIFWdA68qlaVOZbue7
+	 Bnh39eCNZVII4QGvOuCfoN7iGXhsML2STxSss9VHuIISep+1VvBwmKGghFA/dmVBUi
+	 yNTbFP2gPkLmsv/KwPdu+KHfqlbYEaJ+aTHCaeqodO9tkMuRHf9xOkYKG6s8evD7js
+	 UbH3M4WOEh8wM0lfWIQjnq+CGgZNoBGnTIzgtEx/O2pO0LcdtxmTic2rvsLzpO7+MZ
+	 tRih2Alw/HRTQ==
+Date: Wed, 31 Jan 2024 15:29:38 -0600
+From: Rob Herring <robh@kernel.org>
+To: Dawei Li <dawei.li@shingroup.cn>
+Cc: frowand.list@gmail.com, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org, set_pte_at@outlook.com
+Subject: Re: [PATCH 1/2] of: Introduce __of_phandle_update_cache
+Message-ID: <20240131212938.GB2303754-robh@kernel.org>
+References: <20240130105236.3097126-1-dawei.li@shingroup.cn>
+ <20240130105236.3097126-2-dawei.li@shingroup.cn>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20240130105236.3097126-2-dawei.li@shingroup.cn>
 
-Enable Wave521c video decoder/encoder driver on all TI
-K3 platforms that contain the IP.
+On Tue, Jan 30, 2024 at 06:52:35PM +0800, Dawei Li wrote:
+> For system with CONFIG_OF_DYNAMIC=y, device nodes can be inserted/removed
+> dynamically from device tree. Meanwhile phandle_cache is created for fast
+> lookup from phandle to device node.
 
-Signed-off-by: Brandon Brnich <b-brnich@ti.com>
----
- arch/arm64/configs/defconfig | 1 +
- 1 file changed, 1 insertion(+)
+Why do we need it to be fast? What's the usecase (upstream dynamic DT 
+usecases are limited) and what's the performance difference? We'll 
+already cache the new phandle on the first lookup. Plus with only 128 
+entries you are likely evicting an entry. 
 
-diff --git a/arch/arm64/configs/defconfig b/arch/arm64/configs/defconfig
-index e6cf3e5d63c3..6fe4f2da4aca 100644
---- a/arch/arm64/configs/defconfig
-+++ b/arch/arm64/configs/defconfig
-@@ -795,6 +795,7 @@ CONFIG_V4L_MEM2MEM_DRIVERS=y
- CONFIG_VIDEO_CADENCE_CSI2RX=m
- CONFIG_VIDEO_MEDIATEK_JPEG=m
- CONFIG_VIDEO_MEDIATEK_VCODEC=m
-+CONFIG_VIDEO_WAVE_VPU=m
- CONFIG_VIDEO_IMX7_CSI=m
- CONFIG_VIDEO_IMX_MIPI_CSIS=m
- CONFIG_VIDEO_IMX8_ISI=m
--- 
-2.34.1
+> For node detach, phandle cache of removed node is invalidated to maintain
+> the mapping up to date, but the counterpart operation on node attach is
+> not implemented yet.
+> 
+> Thus, implement the cache updating operation on node attach.
 
+Except this patch does not do that. The next patch does.
+
+> 
+> Signed-off-by: Dawei Li <dawei.li@shingroup.cn>
+> ---
+>  drivers/of/base.c       | 16 ++++++++++++++++
+>  drivers/of/of_private.h |  1 +
+>  2 files changed, 17 insertions(+)
+> 
+> diff --git a/drivers/of/base.c b/drivers/of/base.c
+> index b0ad8fc06e80..8b7da27835eb 100644
+> --- a/drivers/of/base.c
+> +++ b/drivers/of/base.c
+> @@ -163,6 +163,22 @@ void __of_phandle_cache_inv_entry(phandle handle)
+>  		phandle_cache[handle_hash] = NULL;
+>  }
+>  
+> +void __of_phandle_update_cache(struct device_node *np, bool lock)
+> +{
+> +	u32 hash;
+> +
+> +	if (lock)
+> +		lockdep_assert_held(&devtree_lock);
+
+I don't think this is a good use of a function parameter.
+
+> +
+> +	if (unlikely(!np || !np->phandle))
+> +		return;
+> +
+> +	hash = of_phandle_cache_hash(np->phandle);
+> +
+> +	if (!phandle_cache[hash])
+> +		phandle_cache[hash] = np;
+
+Okay, so you don't evict existing entries. I'm not sure what makes more 
+sense. I would imagine old entries are less likely to be accessed than 
+new phandles for just added nodes given DT is kind of parse it all once 
+(e.g. at boot time). Again, need to understand your usecase and 
+performance differences.
+
+Rob
 
