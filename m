@@ -1,64 +1,65 @@
-Return-Path: <devicetree+bounces-37296-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-37297-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2D2AB844545
-	for <lists+devicetree@lfdr.de>; Wed, 31 Jan 2024 17:57:25 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 534338445C0
+	for <lists+devicetree@lfdr.de>; Wed, 31 Jan 2024 18:14:19 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 603701C222F2
-	for <lists+devicetree@lfdr.de>; Wed, 31 Jan 2024 16:57:24 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 1501DB2F616
+	for <lists+devicetree@lfdr.de>; Wed, 31 Jan 2024 16:59:22 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C9DF912CDB4;
-	Wed, 31 Jan 2024 16:54:47 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9FA2512CD8E;
+	Wed, 31 Jan 2024 16:58:01 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Nmve9pUU"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="bzd32YWS"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9B6C612CD9D;
-	Wed, 31 Jan 2024 16:54:47 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 74F3512C556;
+	Wed, 31 Jan 2024 16:58:01 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1706720087; cv=none; b=Im5l9SacKKjqrz7cNi7Sv51Tghh2b0AYX5fpo0UMwwV70ZijzAD+yfc50aBgLFzUpxaAQqUXLnyjVloKQrAn5pcXQx/xudY8l5mLfVqpmcOOnlSJmM9fO+8YAfOAEyQBMbdb/S4U3fk+tH23IBTC89NBuyebxuYZuiUjtSbu4m4=
+	t=1706720281; cv=none; b=Q/Pmvac6u+wZ2h6UC6g/764eVjUuIYetnLWImIMTsg2ifS5szAkCPHRzt/9ES/332/Pt1fO/G679Lj4zVTkmteGfXnL4F9Qp+eCGUFwGjOeEoRRntwTXbUdfociinu/6qtS4hqRRiWyc4b51YhlK0a8mx9BxXtv/UwWd/Vfsx/k=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1706720087; c=relaxed/simple;
-	bh=e7PkgB7K0gx8CAPjTVUKMOvEqHbyafX+oBkcjQV6dys=;
+	s=arc-20240116; t=1706720281; c=relaxed/simple;
+	bh=AAYWli0+ekhwWji5QCBI9mHhUVTGhsGXqS6v4AGlvlc=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=ARHe509KVM9JXw8scBfFUs/AI/wcwU+/kjlT9nIhhdKa8j7DqfhTFFX2sJ5Mygd6oA6UsWcfRG5z8RWKbL+CAr/wXlMnOlHySY5Oev3jeQyGO0gKcf/WPIaITrZT+wePsfU4Wsbw6S0E8VUFXzGAwDwr97Iyq2PCtR77mV6wnLQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Nmve9pUU; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 5A395C433F1;
-	Wed, 31 Jan 2024 16:54:44 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=GxQf/x/FIqqEO1NSgeRxES2pzOLAWrtM/R8FZlxK32PDEU/INX9v3RvGkMG2JN5ilzUlrPum2UYLRQk69FkMTvmqpNldPR1dbyS/BhJucB/QZ/hJ+NGf11O18PmoEm9a9gKw5FvNyYxLVXckejI+TJaOoI5a5Y5srsBHlWJ4OLk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=bzd32YWS; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 32405C43141;
+	Wed, 31 Jan 2024 16:57:56 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1706720087;
-	bh=e7PkgB7K0gx8CAPjTVUKMOvEqHbyafX+oBkcjQV6dys=;
+	s=k20201202; t=1706720280;
+	bh=AAYWli0+ekhwWji5QCBI9mHhUVTGhsGXqS6v4AGlvlc=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=Nmve9pUUOt196CcaU4YrJBEqco8cFcMpDhATzxHHFGUBeb+NRVrbaatX8PRY9P2Ri
-	 a72GGOr8swMe3/9YGP2C7ynYNXM3YtjprV7fg2zcqLiv8ZbI7AS/Gat+qn0VTM84lX
-	 sW0uTAp3pKw6YA91cokoNKsX+bspGqRgmZMH+viCzzb6VewaxLvhClbU/iKqbWGFEG
-	 5veXuTSAZi0pjjMSsQBMIYiIKQP817JFKr5UCxMGb1ZwHGDBioeocFw5MlzcAHUsA+
-	 EPOkzz4hr0nHkcNzhgd05rVWD/+s6VrsblUWPVhpu2xicRpeqKYQgpr1CcDdIHYSLo
-	 f4B4pQU5jYfsw==
-Date: Wed, 31 Jan 2024 16:54:42 +0000
+	b=bzd32YWSJzGiNrYKNjcbSmNWQC1tX4vuCsbNRyS4hcXoKvaWKLbAXclry+EhmcuJc
+	 E8zUGGnjhHod98dwmRjly8o80Y6dt946OjRBjKYburDoqu7vC0MQbvCJnObOtL5k2l
+	 Yztm2wprEf7HxsFGZkw9yYUSsYEl4hbOPhTGKbG5kr6EC46OpdiFA0JbDtNSutf8G9
+	 GvvTbK8O93UBVZdR/dqomTQeeh8XmSmz0uSFYpsUqa86TtTiYTB2uW1TXIZNA6afko
+	 Opl0Hv0E7H0eQipEEHSoxIsBkh6lmZnn5VAbMxP2GqamcL/vjvfR/qPOPCPFFOYVaq
+	 riRoyy7u1s6gQ==
+Date: Wed, 31 Jan 2024 16:57:53 +0000
 From: Conor Dooley <conor@kernel.org>
-To: Jonathan Cameron <Jonathan.Cameron@huawei.com>
-Cc: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-	Naresh Solanki <naresh.solanki@9elements.com>,
-	Peter Rosin <peda@axentia.se>, Jonathan Cameron <jic23@kernel.org>,
-	Lars-Peter Clausen <lars@metafoo.de>,
-	Rob Herring <robh+dt@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>, mazziesaccount@gmail.com,
-	linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v3] dt-bindings: iio: afe: voltage-divider: Add
- io-channel-cells
-Message-ID: <20240131-stylized-defile-d8fe346ab197@spud>
-References: <20240130115651.457800-1-naresh.solanki@9elements.com>
- <1c855a34-8a0d-491e-bfd2-24635b41c86f@linaro.org>
- <20240131163516.000043df@Huawei.com>
+To: Dharma Balasubiramani <dharma.b@microchip.com>
+Cc: sam@ravnborg.org, bbrezillon@kernel.org,
+	maarten.lankhorst@linux.intel.com, mripard@kernel.org,
+	tzimmermann@suse.de, airlied@gmail.com, daniel@ffwll.ch,
+	robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
+	conor+dt@kernel.org, nicolas.ferre@microchip.com,
+	alexandre.belloni@bootlin.com, claudiu.beznea@tuxon.dev,
+	dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+	lee@kernel.org, thierry.reding@gmail.com,
+	u.kleine-koenig@pengutronix.de, linux-pwm@vger.kernel.org,
+	hari.prasathge@microchip.com, manikandan.m@microchip.com
+Subject: Re: [linux][PATCH v5 3/3] dt-bindings: mfd: atmel,hlcdc: Convert to
+ DT schema format
+Message-ID: <20240131-spray-commodity-673622ffc1b0@spud>
+References: <20240131033523.577450-1-dharma.b@microchip.com>
+ <20240131033523.577450-4-dharma.b@microchip.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -66,86 +67,43 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: multipart/signed; micalg=pgp-sha256;
-	protocol="application/pgp-signature"; boundary="h8APYS+PcgeCvIXI"
+	protocol="application/pgp-signature"; boundary="Up5J+MjpJWWvw0o9"
 Content-Disposition: inline
-In-Reply-To: <20240131163516.000043df@Huawei.com>
+In-Reply-To: <20240131033523.577450-4-dharma.b@microchip.com>
 
 
---h8APYS+PcgeCvIXI
+--Up5J+MjpJWWvw0o9
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
 Content-Transfer-Encoding: quoted-printable
 
-On Wed, Jan 31, 2024 at 04:35:16PM +0000, Jonathan Cameron wrote:
-> On Wed, 31 Jan 2024 09:29:59 +0100
-> Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org> wrote:
+On Wed, Jan 31, 2024 at 09:05:23AM +0530, Dharma Balasubiramani wrote:
+> Convert the atmel,hlcdc binding to DT schema format.
 >=20
-> > On 30/01/2024 12:56, Naresh Solanki wrote:
-> > > voltage-divider is always an iio consumer at the same time it is
-> > > optionally an iio provider.
-> > > Hence add #io-channel-cells
-> > > Also update example.
-> > >  =20
-> >=20
-> > Fix
-> > wrapping
-> > and
-> > proper
-> > sentences. Each sentence finishes with full stop.
-> >=20
-> > ...
-> > >    output-ohms:
-> > >      description:
-> > >        Resistance Rout over which the output voltage is measured. See=
- full-ohms.
-> > > @@ -75,12 +82,17 @@ examples:
-> > >              spi-max-frequency =3D <1000000>;
-> > >          };
-> > >      };
-> > > -    sysv {
-> > > +    p12v_vd: sysv { =20
-> >=20
-> > No, drop label.
-> >=20
-> > >          compatible =3D "voltage-divider";
-> > >          io-channels =3D <&maxadc 1>;
-> > > +        #io-channel-cells =3D <1>;
-> > > =20
-> > >          /* Scale the system voltage by 22/222 to fit the ADC range. =
-*/
-> > >          output-ohms =3D <22>;
-> > >          full-ohms =3D <222>; /* 200 + 22 */
-> > >      };
-> > > +    iio-hwmon {
-> > > +        compatible =3D "iio-hwmon";
-> > > +        io-channels =3D <&p12v_vd 0>; =20
-> >=20
-> > The same question as for v2. Drop unrelated example.
+> Align clocks and clock-names properties to clearly indicate that the LCD
+> controller expects lvds_pll_clk when interfaced with the lvds display. Th=
+is
+> alignment with the specific hardware requirements ensures accurate device=
+ tree
+> configuration for systems utilizing the HLCDC IP.
 >=20
-> Conor requested an example of the device acting as a consumer and a provi=
-der.
-> Might have meant in the patch description?
->=20
-> Conor?
+> Signed-off-by: Dharma Balasubiramani <dharma.b@microchip.com>
 
-I wanted it in the property description to help with understanding when
-to use it. I don't think the extra example nodes actually help you
-understand what it is doing, only how to write one yourself once you
-know you need it.
+Reviewed-by: Conor Dooley <conor.dooley@microchip.com>
 
 Thanks,
 Conor.
 
---h8APYS+PcgeCvIXI
+--Up5J+MjpJWWvw0o9
 Content-Type: application/pgp-signature; name="signature.asc"
 
 -----BEGIN PGP SIGNATURE-----
 
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZbp7UQAKCRB4tDGHoIJi
-0qUKAP0Ww48y8Vpl0AK0ojq0GTFz+pnr+vWFetK6V8fbSyQ0YwEAg+sb0e5EXttx
-Yc5wqU6OG+ali+z2CNC/Op4kdAyPMAE=
-=i3bX
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZbp8EQAKCRB4tDGHoIJi
+0pFnAQCKH+mkNUeIXKouL9L0h7OnKONe67YgBm0bChu/ir7aEQD+J9bT3DR1BQ5V
+CebLc0QPs+K8WjytedCfx8EaPxvUBwM=
+=OQtS
 -----END PGP SIGNATURE-----
 
---h8APYS+PcgeCvIXI--
+--Up5J+MjpJWWvw0o9--
 
