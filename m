@@ -1,170 +1,174 @@
-Return-Path: <devicetree+bounces-37312-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-37313-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8DDE7844691
-	for <lists+devicetree@lfdr.de>; Wed, 31 Jan 2024 18:53:50 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6CE928446A9
+	for <lists+devicetree@lfdr.de>; Wed, 31 Jan 2024 19:00:25 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id C0DAB1C21A55
-	for <lists+devicetree@lfdr.de>; Wed, 31 Jan 2024 17:53:49 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id EB34828BABA
+	for <lists+devicetree@lfdr.de>; Wed, 31 Jan 2024 18:00:23 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3EF3212DDB8;
-	Wed, 31 Jan 2024 17:53:45 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5604112FF73;
+	Wed, 31 Jan 2024 18:00:20 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="KF0tfM7U"
+	dkim=pass (2048-bit key) header.d=ragnatech.se header.i=@ragnatech.se header.b="IWdjMDy9"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.11])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-lf1-f48.google.com (mail-lf1-f48.google.com [209.85.167.48])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 49C0912DD93;
-	Wed, 31 Jan 2024 17:53:43 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.175.65.11
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8D33212BE8D
+	for <devicetree@vger.kernel.org>; Wed, 31 Jan 2024 18:00:17 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.48
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1706723625; cv=none; b=nBYWfrs8SM+COIFF6o4UpuNNBbD867ewkiD1ojnzVpSF8B6gaJCc/zorQOeSgvBsxktE6wVYl0t5QOp8j9SB6NtPB/+DyuOkIYYlUaSgOX8lZURjdF2BSoDOrOkXn94L71L7f/ayhgBJI3grGbkBB8Jbi8GjorWpzCn2F3DadgU=
+	t=1706724020; cv=none; b=pOH9erHfEBmcGQC/4qnuRZS/XMLXqQOLAKFamQgg/Lfsi8hfNrmb4AQ/XIbSzAvKPRGGiwhplwXcWADEcswXGvnJoy7qvzOqt3NVztAscoKXF9NtUDRZSMcO6N9VGmz34y+pr33IEbs7xY1csVwQY/dWOBLu03Sl6Dyj+4GXsNk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1706723625; c=relaxed/simple;
-	bh=WwfiEaFylW6P3AB2GpoAp+jdKzKCLM6zIZV7F/QLI9c=;
+	s=arc-20240116; t=1706724020; c=relaxed/simple;
+	bh=U5EzarfsyESGeubI9ucS+cAOynfXAGhnlpb7Z9oz4Dw=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=BvSKDa/Snj+MCWZ1ewTqqv8475H6ZnFVhD3wL+I+DgDbZAtB/Al0AyCUWwIznGmN9YjCf5B8lICdvk8QgsP2TrJXYW96d2B1LCUG8l2PVbjRwuE12BzN6LZthxvu7aYQ+4A6qukg/M96Kh3wD9y4M9rC2kYYcXciF9URDqC17gY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=KF0tfM7U; arc=none smtp.client-ip=198.175.65.11
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1706723623; x=1738259623;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=WwfiEaFylW6P3AB2GpoAp+jdKzKCLM6zIZV7F/QLI9c=;
-  b=KF0tfM7Uo+CkQyJun4ftLmO7qrdy2qHBcbfWM9GnyxjWFKDZt51IgpTG
-   VvNm2/11JiZ92WEtR4IBoNbobRecXRLfIVFIGj+xJEB1fXej4OY7jline
-   icHiUoB1VRRJz6k4k77C5OOJ890ALoYJMefk5Lob6DvPQtrt/B/UIo6oc
-   z+wY6F7J4VuwT9Qn/WPCcQ2Ir1ew5RvgRMowZ7eHnWFngSz/L2PGHOclc
-   +nfhebaGbMsDcUdD32tMGdjEui84tFAtdgl6fk1vWTkaKdcKuc9PEpz8W
-   dJQRkEWuEfd8T+qDVlCCdw72LKeHqGH3VOdVAuV8Vd7ih1hr+2CpmFJdG
-   Q==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10969"; a="10313276"
-X-IronPort-AV: E=Sophos;i="6.05,231,1701158400"; 
-   d="scan'208";a="10313276"
-Received: from fmviesa003.fm.intel.com ([10.60.135.143])
-  by orvoesa103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 31 Jan 2024 09:53:42 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.05,231,1701158400"; 
-   d="scan'208";a="4167760"
-Received: from lkp-server02.sh.intel.com (HELO 59f4f4cd5935) ([10.239.97.151])
-  by fmviesa003.fm.intel.com with ESMTP; 31 Jan 2024 09:53:35 -0800
-Received: from kbuild by 59f4f4cd5935 with local (Exim 4.96)
-	(envelope-from <lkp@intel.com>)
-	id 1rVEmC-0001ra-2t;
-	Wed, 31 Jan 2024 17:53:32 +0000
-Date: Thu, 1 Feb 2024 01:53:31 +0800
-From: kernel test robot <lkp@intel.com>
-To: Oreoluwa Babatunde <quic_obabatun@quicinc.com>, catalin.marinas@arm.com,
-	will@kernel.org, robh+dt@kernel.org, frowand.list@gmail.com,
-	vgupta@kernel.org, arnd@arndb.de, olof@lixom.net, soc@kernel.org,
-	guoren@kernel.org, monstr@monstr.eu, palmer@dabbelt.com,
-	aou@eecs.berkeley.edu, dinguyen@kernel.org, chenhuacai@kernel.org,
-	tsbogend@alpha.franken.de, jonas@southpole.se,
-	stefan.kristiansson@saunalahti.fi, shorne@gmail.com,
-	mpe@ellerman.id.au, ysato@users.sourceforge.jp, dalias@libc.org,
-	glaubitz@physik.fu-berlin.de, richard@nod.at,
-	anton.ivanov@cambridgegreys.com, johannes@sipsolutions.net,
-	chris@zankel.net, jcmvbkbc@gmail.com
-Cc: oe-kbuild-all@lists.linux.dev, linux-arm-kernel@lists.infradead.org,
-	linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
-Subject: Re: [PATCH 30/46] of: reserved_mem: Add code to use unflattened DT
- for reserved_mem nodes
-Message-ID: <202402010140.VrsPYn0W-lkp@intel.com>
-References: <20240126235425.12233-31-quic_obabatun@quicinc.com>
+	 Content-Type:Content-Disposition:In-Reply-To; b=nlkrRoWpfUdZV8ReElfl7XVUGyMyrfWbk7/dQxaIE82HP7ZCK2bUdxHPgKFca3AStwpFmsNoY90Ud/zyqEdYlDZar4YvPdIqUa7zNQ3KMUhSa9FoJF8SG4ibMsZ4+YhGLEH+jTMV7IgKvzsIq68gCisS3Cd0lYsAYaMCG9a+KXs=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ragnatech.se; spf=pass smtp.mailfrom=ragnatech.se; dkim=pass (2048-bit key) header.d=ragnatech.se header.i=@ragnatech.se header.b=IWdjMDy9; arc=none smtp.client-ip=209.85.167.48
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ragnatech.se
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ragnatech.se
+Received: by mail-lf1-f48.google.com with SMTP id 2adb3069b0e04-51025cafb51so8083564e87.2
+        for <devicetree@vger.kernel.org>; Wed, 31 Jan 2024 10:00:17 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=ragnatech.se; s=google; t=1706724015; x=1707328815; darn=vger.kernel.org;
+        h=in-reply-to:content-transfer-encoding:content-disposition
+         :mime-version:references:message-id:subject:cc:to:from:date:from:to
+         :cc:subject:date:message-id:reply-to;
+        bh=7xHmbIWGqIoVuD6lAxL4k5AZrQBLWlokPUBrkYZzxmg=;
+        b=IWdjMDy9W+j+TrXdzzS9IYlrVsTioC3vFmLg9r6iIgms0+MeWQYThtqRKmIuGdSfSR
+         T9M2yRecdT0DfJb5UOlgXGNNiCIGdobJbbovAkq5C5FFq4gTkr142OrCnfv9ey2r/Xkz
+         IujiKVeSNFdxDMjSt5r7JXoPXB3wZhLnriYwTSetKw1pl1ZL4awfXFf18s9VERDIqtR8
+         xbfjpsJZhzF9DUnF5ywncB97f3sJFF/gn3J75pAig2Twr6qTS4At6kooTCWvxmtIt+YQ
+         5R8Pt7cKkIbSgRKkt7Ay9D9qwM7sz/HlscGDUe5nvwPaOmmmATg8PIvxj8O9NzU8Ixqm
+         Gmsg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1706724015; x=1707328815;
+        h=in-reply-to:content-transfer-encoding:content-disposition
+         :mime-version:references:message-id:subject:cc:to:from:date
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=7xHmbIWGqIoVuD6lAxL4k5AZrQBLWlokPUBrkYZzxmg=;
+        b=hWfmOzxvxKTWTNHCJ2ZY8qMU9uVDaVHliBwl5Oi+5TTJdzTC5/zs7iKfBlJL0Nmd32
+         bFVxwmOo8PoV7aw3iB6QeYRUP1PUFW8zC6ydQAsFCODAFcW34e2Iadxc37eDCcZ2s8+1
+         flX02SFLEfAJ8OyVQxjm7L5sul0xyjzoXnx1YRMxAYbcarhxg0B2IApD11kQsG0hgTK6
+         qsTOAXv7WC6fcqsc6Nd5CAecQxTFvETavCvvWWjJcmzZYwHHYU+a0yH374xVwj91RSRv
+         /ChfrpkPH3UhF5QtSKNwsNOXQqGIPrqak+zs/1RwSXhAugYWdC8FF9Vg7TSEYdB4bfuM
+         AzGw==
+X-Gm-Message-State: AOJu0Yw2r7607TQ3k6obBdCDGE8RR/Jir+g9mY8MLcusyMxSJca8y+SJ
+	4mhKan0cA4i1nWFH0cV7mlnbaWkLuxDmcK8ruVp0RbBprFdOyQcEHOKa5i0bvVi3ol4Ozfz21pi
+	1
+X-Google-Smtp-Source: AGHT+IHGLietxoCHuuQkdUL5rQ/BMoB23J5hE9XBedFQnFq68rnDPExN2ZpkktbZTn40WxMwCriA3w==
+X-Received: by 2002:ac2:5201:0:b0:511:9d3:c608 with SMTP id a1-20020ac25201000000b0051109d3c608mr136720lfl.35.1706724015022;
+        Wed, 31 Jan 2024 10:00:15 -0800 (PST)
+Received: from localhost (h-46-59-36-113.A463.priv.bahnhof.se. [46.59.36.113])
+        by smtp.gmail.com with ESMTPSA id bp40-20020a05651215a800b0051128d9c9dfsm200918lfb.181.2024.01.31.10.00.14
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 31 Jan 2024 10:00:14 -0800 (PST)
+Date: Wed, 31 Jan 2024 19:00:13 +0100
+From: Niklas =?utf-8?Q?S=C3=B6derlund?= <niklas.soderlund@ragnatech.se>
+To: Geert Uytterhoeven <geert+renesas@glider.be>
+Cc: Daniel Lezcano <daniel.lezcano@linaro.org>,
+	Thomas Gleixner <tglx@linutronix.de>,
+	Rob Herring <robh+dt@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Laurent Pinchart <laurent.pinchart+renesas@ideasonboard.com>,
+	Wolfram Sang <wsa+renesas@sang-engineering.com>,
+	Yoshinori Sato <ysato@users.sourceforge.jp>,
+	devicetree@vger.kernel.org, linux-renesas-soc@vger.kernel.org,
+	linux-sh@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v2] dt-bindings: timer: renesas,tmu: Document input
+ capture interrupt
+Message-ID: <20240131180013.GE2544372@ragnatech.se>
+References: <8cb38b5236213a467c6c0073f97ccc4bfd5a39ff.1706717378.git.geert+renesas@glider.be>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <20240126235425.12233-31-quic_obabatun@quicinc.com>
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <8cb38b5236213a467c6c0073f97ccc4bfd5a39ff.1706717378.git.geert+renesas@glider.be>
 
-Hi Oreoluwa,
+Hi Geert,
 
-kernel test robot noticed the following build warnings:
+Thanks for your work.
 
-[auto build test WARNING on robh/for-next]
-[also build test WARNING on arm64/for-next/core vgupta-arc/for-curr powerpc/next powerpc/fixes jcmvbkbc-xtensa/xtensa-for-next linus/master v6.8-rc2 next-20240131]
-[cannot apply to vgupta-arc/for-next]
-[If your patch is applied to the wrong git tree, kindly drop us a note.
-And when submitting patch, we suggest to use '--base' as documented in
-https://git-scm.com/docs/git-format-patch#_base_tree_information]
+On 2024-01-31 17:11:45 +0100, Geert Uytterhoeven wrote:
+> Some Timer Unit (TMU) instances with 3 channels support a fourth
+> interrupt: an input capture interrupt for the third channel.
+> 
+> While at it, document the meaning of the four interrupts, and add
+> "interrupt-names" for clarity.
+> 
+> Update the example to match reality.
+> 
+> Inspired by a patch by Yoshinori Sato for SH.
+> 
+> Signed-off-by: Geert Uytterhoeven <geert+renesas@glider.be>
 
-url:    https://github.com/intel-lab-lkp/linux/commits/Oreoluwa-Babatunde/of-reserved_mem-Change-the-order-that-reserved_mem-regions-are-stored/20240127-081735
-base:   https://git.kernel.org/pub/scm/linux/kernel/git/robh/linux.git for-next
-patch link:    https://lore.kernel.org/r/20240126235425.12233-31-quic_obabatun%40quicinc.com
-patch subject: [PATCH 30/46] of: reserved_mem: Add code to use unflattened DT for reserved_mem nodes
-config: i386-randconfig-141-20240128 (https://download.01.org/0day-ci/archive/20240201/202402010140.VrsPYn0W-lkp@intel.com/config)
-compiler: clang version 17.0.6 (https://github.com/llvm/llvm-project 6009708b4367171ccdbf4b5905cb6a803753fe18)
+Reviewed-by: Niklas Söderlund <niklas.soderlund+renesas@ragnatech.se>
 
-If you fix the issue in a separate patch/commit (i.e. not just a new version of
-the same patch/commit), kindly add following tags
-| Reported-by: kernel test robot <lkp@intel.com>
-| Closes: https://lore.kernel.org/oe-kbuild-all/202402010140.VrsPYn0W-lkp@intel.com/
-
-smatch warnings:
-drivers/of/of_reserved_mem.c:111 dt_scan_reserved_mem_reg_nodes() warn: unsigned 'node' is never less than zero.
-
-vim +/node +111 drivers/of/of_reserved_mem.c
-
-    98	
-    99	/*
-   100	 * Save the reserved_mem reg nodes in the reserved_mem array
-   101	 */
-   102	static void __init dt_scan_reserved_mem_reg_nodes(void)
-   103	{
-   104		int t_len = (dt_root_addr_cells + dt_root_size_cells) * sizeof(__be32);
-   105		struct device_node *node, *child;
-   106		phys_addr_t base, size;
-   107		const __be32 *prop;
-   108		int len;
-   109	
-   110		node = of_find_node_by_path("/reserved-memory");
- > 111		if (node < 0) {
-   112			pr_err("Reserved memory: Did not find reserved-memory node\n");
-   113			return;
-   114		}
-   115	
-   116		for_each_child_of_node(node, child) {
-   117			const char *uname;
-   118			struct reserved_mem *rmem;
-   119	
-   120			if (!of_device_is_available(child))
-   121				continue;
-   122	
-   123			prop = of_get_property(child, "reg", &len);
-   124			if (!prop) {
-   125				rmem = of_reserved_mem_lookup(child);
-   126				if (rmem)
-   127					rmem->dev_node = child;
-   128				continue;
-   129			}
-   130	
-   131			uname = of_node_full_name(child);
-   132			if (len && len % t_len != 0) {
-   133				pr_err("Reserved memory: invalid reg property in '%s', skipping node.\n",
-   134				       uname);
-   135				continue;
-   136			}
-   137	
-   138			base = dt_mem_next_cell(dt_root_addr_cells, &prop);
-   139			size = dt_mem_next_cell(dt_root_size_cells, &prop);
-   140	
-   141			if (size)
-   142				fdt_reserved_mem_save_node(child, uname, base, size);
-   143		}
-   144	}
-   145	
+> ---
+> v2:
+>   - Reword interrupt descriptions.
+> 
+> The corresponding DTS updates can be found in series "[PATCH 0/2]
+> ARM/arm64: dts: renesas: Improve TMU interrupt descriptions".
+> https://lore.kernel.org/r/cover.1705325654.git.geert+renesas@glider.be
+> Once the DTS updates are upstream, "interrupt-names" can be made
+> required.
+> ---
+>  .../devicetree/bindings/timer/renesas,tmu.yaml | 18 ++++++++++++++++--
+>  1 file changed, 16 insertions(+), 2 deletions(-)
+> 
+> diff --git a/Documentation/devicetree/bindings/timer/renesas,tmu.yaml b/Documentation/devicetree/bindings/timer/renesas,tmu.yaml
+> index a67e427a9e7e22aa..84bbe15028a1de94 100644
+> --- a/Documentation/devicetree/bindings/timer/renesas,tmu.yaml
+> +++ b/Documentation/devicetree/bindings/timer/renesas,tmu.yaml
+> @@ -46,7 +46,19 @@ properties:
+>  
+>    interrupts:
+>      minItems: 2
+> -    maxItems: 3
+> +    items:
+> +      - description: Underflow interrupt, channel 0
+> +      - description: Underflow interrupt, channel 1
+> +      - description: Underflow interrupt, channel 2
+> +      - description: Input capture interrupt, channel 2
+> +
+> +  interrupt-names:
+> +    minItems: 2
+> +    items:
+> +      - const: tuni0
+> +      - const: tuni1
+> +      - const: tuni2
+> +      - const: ticpi2
+>  
+>    clocks:
+>      maxItems: 1
+> @@ -100,7 +112,9 @@ examples:
+>              reg = <0xffd80000 0x30>;
+>              interrupts = <GIC_SPI 32 IRQ_TYPE_LEVEL_HIGH>,
+>                           <GIC_SPI 33 IRQ_TYPE_LEVEL_HIGH>,
+> -                         <GIC_SPI 34 IRQ_TYPE_LEVEL_HIGH>;
+> +                         <GIC_SPI 34 IRQ_TYPE_LEVEL_HIGH>,
+> +                         <GIC_SPI 35 IRQ_TYPE_LEVEL_HIGH>;
+> +            interrupt-names = "tuni0", "tuni1", "tuni2", "ticpi2";
+>              clocks = <&mstp0_clks R8A7779_CLK_TMU0>;
+>              clock-names = "fck";
+>              power-domains = <&sysc R8A7779_PD_ALWAYS_ON>;
+> -- 
+> 2.34.1
+> 
+> 
 
 -- 
-0-DAY CI Kernel Test Service
-https://github.com/intel/lkp-tests/wiki
+Kind Regards,
+Niklas Söderlund
 
