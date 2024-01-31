@@ -1,89 +1,148 @@
-Return-Path: <devicetree+bounces-37336-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-37337-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id D52D98448E4
-	for <lists+devicetree@lfdr.de>; Wed, 31 Jan 2024 21:31:10 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 43C208448EA
+	for <lists+devicetree@lfdr.de>; Wed, 31 Jan 2024 21:31:50 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 138971C22C73
-	for <lists+devicetree@lfdr.de>; Wed, 31 Jan 2024 20:31:10 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 76E671C21AF8
+	for <lists+devicetree@lfdr.de>; Wed, 31 Jan 2024 20:31:49 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3D68D13B799;
-	Wed, 31 Jan 2024 20:27:57 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 227101386AD;
+	Wed, 31 Jan 2024 20:28:36 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="RI1WIFeA"
+	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="sNzJzDCu"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from lelv0142.ext.ti.com (lelv0142.ext.ti.com [198.47.23.249])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0D4B713B793;
-	Wed, 31 Jan 2024 20:27:56 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3D12512C530;
+	Wed, 31 Jan 2024 20:28:33 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.23.249
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1706732877; cv=none; b=fk721B9phdL/l87FSp/OBqzM6t8e7omj8sREvhrOfGOqKTzgf8s0kqsvWk2o/e41/bIaAL3zfvaQFFg250t/dzpYsfMpGmHTZe6aBzp7fJ2SMaiHP2+MyJGvEeQKXIgGZ3St4VgajaZ8cxDEPyXd0vGX3gMAd6P5ip2vL5NxCLk=
+	t=1706732916; cv=none; b=tvsjJywWA3rl1G7xJDFd73x11yzKuz7dPRhOB2gszq1RxIlbq5HoOKlhfcM5x6//nUOsU1kkIMQvDHDrr5HkNtTro8Pg/E6lBj/76Yb/ZUswQ3Ra/kDS1c6Z/AdW+M3vzmileBDcQ7zxIoBUfzrlES9w4E6LGwy+cm8437jk6Cc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1706732877; c=relaxed/simple;
-	bh=rRrpAzNPWC0Uc0k4linxzIOnqWxJWK0A8gToje8T8Rs=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=Py2CSEC7QBVrC5omQdImjrp6Y9yHzWMqyyq2pOMAYh/goEFpv9bbEGNq9GK/5ChLs7VfMCodHZehERLhtpCeQ+iFW4aoED1DAUkL05Reu4viPtbveDa/k64ZXB5nNXccWOntUWSB1xg/w8dBSE7oXSmMsg/RzHPPJxNDUoo4vdQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=RI1WIFeA; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 4EC52C433C7;
-	Wed, 31 Jan 2024 20:27:56 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1706732876;
-	bh=rRrpAzNPWC0Uc0k4linxzIOnqWxJWK0A8gToje8T8Rs=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=RI1WIFeA1BRID32Vn6aQlO9JmEGm0zZpPHQ01lEWmaAtZHwLK/KCkl+1PU7PclYWP
-	 k5aq04Ark5g8sj9byAMMGF3FQ5bxH2PkC9up/xRDZfs6xPrDmyN51DA9fpPO4y5ASe
-	 9cE0AY8T8eRlWYILC1cIGqJpJiRc8tH//1Y8f3vjpp3sJRTSNMbUxIkAt6VO65sWCT
-	 R80PrO1I8acir4HwO/73eKIpN2N340cRAlykRpyUqrrO6f8vyiZJgK8PFfKEhI1mOp
-	 B878WmpiRPviZH+ztTkhcItCILOy94fmwiKzSMOSMKHfIcFKYtt1Njocmzj4pRJmd+
-	 I51eTYaLJ0kFA==
-Date: Wed, 31 Jan 2024 14:27:54 -0600
-From: Rob Herring <robh@kernel.org>
-To: =?iso-8859-1?Q?Andr=E9?= Draszik <andre.draszik@linaro.org>
-Cc: sboyd@kernel.org, mturquette@baylibre.com,
-	krzysztof.kozlowski+dt@linaro.org, linux-clk@vger.kernel.org,
-	peter.griffin@linaro.org, semen.protsenko@linaro.org,
-	conor+dt@kernel.org, kernel-team@android.com, tomasz.figa@gmail.com,
-	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-	tudor.ambarus@linaro.org, alim.akhtar@samsung.com,
-	robh+dt@kernel.org, cw00.choi@samsung.com, s.nawrocki@samsung.com,
-	devicetree@vger.kernel.org, linux-samsung-soc@vger.kernel.org,
-	willmcvicker@google.com
-Subject: Re: [PATCH v3 4/7] dt-bindings: samsung: exynos-sysreg: gs101-peric1
- requires a clock
-Message-ID: <170673287371.2245012.6605138156185654489.robh@kernel.org>
-References: <20240129174703.1175426-1-andre.draszik@linaro.org>
- <20240129174703.1175426-5-andre.draszik@linaro.org>
+	s=arc-20240116; t=1706732916; c=relaxed/simple;
+	bh=AobQs8fGY6bAULna2NphD8OM/8oC3NaAwQ1AoRZBCJ8=;
+	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
+	 In-Reply-To:Content-Type; b=V6EdQdTOcUBM+aDhu12vgwBB2wpZMSW+i/gjrmdIUe9pH6FEwdUeZSL4YPWHRtJEDlJ9KwG56+e6rpVYO3XUJcA7mq3vjASe0Ot12mOt+bVIgrGzyUBMgUObeYai65BsFAAtMOs0MA/WhvttSuz1P/nur6FdsOLaosKD1dXzmGA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=sNzJzDCu; arc=none smtp.client-ip=198.47.23.249
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
+Received: from lelv0265.itg.ti.com ([10.180.67.224])
+	by lelv0142.ext.ti.com (8.15.2/8.15.2) with ESMTP id 40VKSSUH036914;
+	Wed, 31 Jan 2024 14:28:28 -0600
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+	s=ti-com-17Q1; t=1706732908;
+	bh=O4QKI7u5TiP72gjKRfe59KstoPVoUktboSkXvToUitc=;
+	h=Date:Subject:To:CC:References:From:In-Reply-To;
+	b=sNzJzDCu71yLTLWbVZz4pix/MR90pfSHA8MfYjBSw3LWAJk6DYx0SzxFJ4zRrUl3a
+	 A5MruFROlEETKmz+RsbD3LQPsPHKdfkLfBRpG7o7JaEPNeYCc/46Vsazk1GyUdDnXt
+	 wOVYqAu53h8Oiy8UKfUp90tRsvpOycPdTsoc0euo=
+Received: from DLEE110.ent.ti.com (dlee110.ent.ti.com [157.170.170.21])
+	by lelv0265.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 40VKSSCl026864
+	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+	Wed, 31 Jan 2024 14:28:28 -0600
+Received: from DLEE112.ent.ti.com (157.170.170.23) by DLEE110.ent.ti.com
+ (157.170.170.21) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Wed, 31
+ Jan 2024 14:28:27 -0600
+Received: from lelvsmtp5.itg.ti.com (10.180.75.250) by DLEE112.ent.ti.com
+ (157.170.170.23) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
+ Frontend Transport; Wed, 31 Jan 2024 14:28:27 -0600
+Received: from [128.247.81.105] (judy-hp.dhcp.ti.com [128.247.81.105])
+	by lelvsmtp5.itg.ti.com (8.15.2/8.15.2) with ESMTP id 40VKRSBG030672;
+	Wed, 31 Jan 2024 14:28:27 -0600
+Message-ID: <cbfcaceb-37bc-4333-9e90-31d2417ed5f5@ti.com>
+Date: Wed, 31 Jan 2024 14:28:27 -0600
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20240129174703.1175426-5-andre.draszik@linaro.org>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [RFC PATCH 06/13] arm64: dts: ti: k3-am62a-main: Add sdhci0
+ instance
+Content-Language: en-US
+To: Nishanth Menon <nm@ti.com>
+CC: Ulf Hansson <ulf.hansson@linaro.org>, Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley
+	<conor+dt@kernel.org>,
+        Adrian Hunter <adrian.hunter@intel.com>, <linux-mmc@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>, Vignesh
+ Raghavendra <vigneshr@ti.com>,
+        Andrew Davis <afd@ti.com>, Udit Kumar
+	<u-kumar1@ti.com>,
+        Roger Quadros <rogerq@kernel.org>, <devicetree@vger.kernel.org>,
+        Randolph Sapp <rs@ti.com>
+References: <20240131003714.2779593-1-jm@ti.com>
+ <20240131003714.2779593-7-jm@ti.com>
+ <20240131191717.igbfpfchen7gmpam@headstand>
+From: Judith Mendez <jm@ti.com>
+In-Reply-To: <20240131191717.igbfpfchen7gmpam@headstand>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 7bit
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 
+On 1/31/24 1:17 PM, Nishanth Menon wrote:
+> On 18:37-20240130, Judith Mendez wrote:
+>> From: Nitin Yadav <n-yadav@ti.com>
+>>
+>> Add sdhci0 DT node in k3-am62a-main for eMMC support. Add otap/itap
+>> values according to the datasheet[0], Refer to Table 7-79.
+>>
+>> [0] https://www.ti.com/lit/ds/symlink/am62a3.pdf
+>>
+>> Signed-off-by: Judith Mendez <jm@ti.com>
+>> Signed-off-by: Nitin Yadav <n-yadav@ti.com>
+>> ---
+> 
+> Side note: will appreciate if the dt patches come via the SoC dt tree
+> for TI K3 and not via mmc tree.
 
-On Mon, 29 Jan 2024 17:46:03 +0000, André Draszik wrote:
-> Otherwise it won't be accessible.
-> 
-> Signed-off-by: André Draszik <andre.draszik@linaro.org>
-> Reviewed-by: Sam Protsenko <semen.protsenko@linaro.org>
-> Reviewed-by: Peter Griffin <peter.griffin@linaro.org>
-> 
-> ---
-> v2: collect Reviewed-by: tags
-> ---
->  .../devicetree/bindings/soc/samsung/samsung,exynos-sysreg.yaml   | 1 +
->  1 file changed, 1 insertion(+)
-> 
+Will use DO NOT MERGE for v1, thanks.
 
-Reviewed-by: Rob Herring <robh@kernel.org>
+> 
+>>   arch/arm64/boot/dts/ti/k3-am62a-main.dtsi | 18 ++++++++++++++++++
+>>   1 file changed, 18 insertions(+)
+>>
+>> diff --git a/arch/arm64/boot/dts/ti/k3-am62a-main.dtsi b/arch/arm64/boot/dts/ti/k3-am62a-main.dtsi
+>> index f0b8c9ab1459..523dee78123a 100644
+>> --- a/arch/arm64/boot/dts/ti/k3-am62a-main.dtsi
+>> +++ b/arch/arm64/boot/dts/ti/k3-am62a-main.dtsi
+>> @@ -536,6 +536,24 @@ main_gpio1: gpio@601000 {
+>>   		status = "disabled";
+>>   	};
+>>   
+>> +	sdhci0: mmc@fa10000 {
+>> +		compatible = "ti,am62-sdhci";
+>> +		reg = <0x00 0xfa10000 0x00 0x260>, <0x00 0xfa18000 0x00 0x134>;
+>> +		interrupts = <GIC_SPI 133 IRQ_TYPE_LEVEL_HIGH>;
+>> +		power-domains = <&k3_pds 57 TI_SCI_PD_EXCLUSIVE>;
+>> +		clocks = <&k3_clks 57 5>, <&k3_clks 57 6>;
+>> +		clock-names = "clk_ahb", "clk_xin";
+>> +		assigned-clocks = <&k3_clks 57 6>;
+>> +		assigned-clock-parents = <&k3_clks 57 8>;
+>> +		bus-width = <8>;
+>> +		mmc-hs200-1_8v;
+>> +		ti,clkbuf-sel = <0x7>;
+>> +		ti,otap-del-sel-legacy = <0x0>;
+>> +		ti,otap-del-sel-mmc-hs = <0x0>;
+>> +		ti,otap-del-sel-hs200 = <0x6>;
+>> +		status = "disabled";
+>> +	};
+>> +
+>>   	sdhci1: mmc@fa00000 {
+>>   		compatible = "ti,am62-sdhci";
+>>   		reg = <0x00 0xfa00000 0x00 0x260>, <0x00 0xfa08000 0x00 0x134>;
+>> -- 
+>> 2.34.1
+>>
+> 
 
 
