@@ -1,167 +1,116 @@
-Return-Path: <devicetree+bounces-37340-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-37341-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 44ACC84490C
-	for <lists+devicetree@lfdr.de>; Wed, 31 Jan 2024 21:41:53 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id AD58484491E
+	for <lists+devicetree@lfdr.de>; Wed, 31 Jan 2024 21:45:00 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id DCB9CB241A2
-	for <lists+devicetree@lfdr.de>; Wed, 31 Jan 2024 20:41:50 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 59FC0B21CE3
+	for <lists+devicetree@lfdr.de>; Wed, 31 Jan 2024 20:44:58 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D87C924A18;
-	Wed, 31 Jan 2024 20:41:44 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 00AEF383A5;
+	Wed, 31 Jan 2024 20:44:56 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="QNici0k+"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="VO2ox0YB"
 X-Original-To: devicetree@vger.kernel.org
-Received: from fllv0016.ext.ti.com (fllv0016.ext.ti.com [198.47.19.142])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-yw1-f182.google.com (mail-yw1-f182.google.com [209.85.128.182])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 10C3720DE0;
-	Wed, 31 Jan 2024 20:41:42 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.19.142
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 544A7381D5
+	for <devicetree@vger.kernel.org>; Wed, 31 Jan 2024 20:44:54 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.182
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1706733704; cv=none; b=Ik1c32Jyn6IR98YlEhskW7mX9DsyEUcgzs4CzWOnRRBGTsIkiVYjh9t8FlDcjIj9cmw/xWvlhvzCvlP5LvSrth/gX3V7uoNktYNK/Zuj3qaucX9ztnF/gomnfSUvyi1bSd6aq+Op/g+Gb6sD3DUF7D/BINOg2L+MYGVlbEDLE4U=
+	t=1706733895; cv=none; b=ONDGdja4lVpUW3QaiBywGpOjqPyEhTQMef1/W3jl4AoWIMoBxBJ7Qf9lONYYXvRcWl6vMBNG9Noo0M4RLyF8+YbGPzuMabbwLQ8fW5HPmXmst1xt/yitn8+X/twnGFqrBBSEohQf74bmx41LskZOspG1C3xSD7CKfStMOuu5b8E=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1706733704; c=relaxed/simple;
-	bh=i8BK1vul/D0h0q8NumttG0fZUxs7TYr/KsMBcuAt20o=;
-	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
-	 In-Reply-To:Content-Type; b=qz2G5JGOBdvThzMnF/ODo4Pc0gX24y7h1YjWuNjzuOZsGIg5uD9DvOaGDNvPI8DvjBOy6NPKDBG1SWd/b7jVspJdWuaYcfiOuJXSmqLHuTT9Qg8Zz3nCS46KsE20in4vLb8kFDggFp5DcjrlEfhs/cnuzZhm1A4VcLX0AhzM6HM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=QNici0k+; arc=none smtp.client-ip=198.47.19.142
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
-Received: from lelv0265.itg.ti.com ([10.180.67.224])
-	by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id 40VKfVJQ112558;
-	Wed, 31 Jan 2024 14:41:31 -0600
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1706733691;
-	bh=MrbmAMsWZQgSlGEY4D41Ts6E5MpC5FPSiof4n6JfF0I=;
-	h=Date:Subject:To:CC:References:From:In-Reply-To;
-	b=QNici0k+CZKoPLY1PbTFlYxWjOyml3wH/fCyP4h5jo/2Vv5YwUML3kmKl9RtI+MhO
-	 ELYsImRPtZ8XFYtybmFS/Rf25Rg/W52w8MILkGw6DQSRCK8bCVFYnzjePQkMvjLiNH
-	 RcPhxaqQhxuLc+a8GBRzk+MpKSZZpw5GrqGmzYPI=
-Received: from DLEE111.ent.ti.com (dlee111.ent.ti.com [157.170.170.22])
-	by lelv0265.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 40VKfVgL008187
-	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-	Wed, 31 Jan 2024 14:41:31 -0600
-Received: from DLEE112.ent.ti.com (157.170.170.23) by DLEE111.ent.ti.com
- (157.170.170.22) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Wed, 31
- Jan 2024 14:41:31 -0600
-Received: from lelvsmtp6.itg.ti.com (10.180.75.249) by DLEE112.ent.ti.com
- (157.170.170.23) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
- Frontend Transport; Wed, 31 Jan 2024 14:41:31 -0600
-Received: from [128.247.81.105] (judy-hp.dhcp.ti.com [128.247.81.105])
-	by lelvsmtp6.itg.ti.com (8.15.2/8.15.2) with ESMTP id 40VKfV0l099440;
-	Wed, 31 Jan 2024 14:41:31 -0600
-Message-ID: <989bcf17-114a-4f6c-84b9-1ff443cb01dc@ti.com>
-Date: Wed, 31 Jan 2024 14:41:31 -0600
+	s=arc-20240116; t=1706733895; c=relaxed/simple;
+	bh=+Aepf8sdCd8G//RlCha5XYDrJRIchvN1hEFdOszOu6g=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=R1Tms+g6pi3bLPNcMTn26JY8UcrD6Vz2aMXSAG+T25gjaF6AHSwgkipIAasY1TGsKZCXNHCQ0PjST7z3GJEh2LykaQOQaGJlRwzgtEZ7VqW0hUsWfWUkR8PxDiQgHRiuS4/XPFikvZRa6TR8zwLqRM0teNyQljdjIT9Wxzb28lo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=VO2ox0YB; arc=none smtp.client-ip=209.85.128.182
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-yw1-f182.google.com with SMTP id 00721157ae682-60407e7a6caso2488977b3.1
+        for <devicetree@vger.kernel.org>; Wed, 31 Jan 2024 12:44:54 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1706733893; x=1707338693; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=+Aepf8sdCd8G//RlCha5XYDrJRIchvN1hEFdOszOu6g=;
+        b=VO2ox0YBjiSG31RTVbeDI2z1IFZxNfm318i+xgL9o0l6lV1eQuIHpPdz7DgUERgFkq
+         JesaQHiT+pdJ00vk7VIA9ZYSn7Ddetwo5NCyYLT4Oc3dTpAM4wnBHW2CnR4lBQmbeqc/
+         Pp7G4hh1vNQSdUpAT0CpGcW09XxpiyqDwWZHkWXXh9mNCqkjfpOybDmPGqaLIv8qggiD
+         k8g22wwpuCPKkqgA61s9zFOzazpMAIUG5JImyfkl34cfbt0foudlH+sOLcS74K9hTgau
+         riDWmSyla8hspJQr6jB6S/rSpfvN/CxX7f0exXsHdlD4PcttPowt4MwhZOZ9Gz0Av2Rj
+         xk0w==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1706733893; x=1707338693;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=+Aepf8sdCd8G//RlCha5XYDrJRIchvN1hEFdOszOu6g=;
+        b=wrMC1vxKauS0TgyBFBcroodxOSL2ooqylYqK0xnKWZ5hAlkV6TPn0Tzq770NbM6r9m
+         4UYwlKZJKHsrNvk29p2+Zh9lCjkeEuFDjPdVJtjePGjZGsB4crZIq2dHemSroZ+8+2ul
+         XA2l7EVeuYW0/zz5kHmhh1eM1rokTPT77y5A9VUkt8GvH22oBgXL6qZEJDlRfYwYkziH
+         eUBmAvy2UaKcF747eWrJ4C6Iguh/k+y7q/h260ew9XvJs2aF41IPc4M8EzwA2khRy2Mk
+         cweOBY1A1Nbbj+xKdhHDjdS5NaQNnRCe7sB4Lh3l7u+muZDT6GT6kcjouJUTOoqXRHSp
+         SWeQ==
+X-Gm-Message-State: AOJu0YzGYWjkkWycKV5asIfV/vxe1+09dowyU5kDkfD8/Pz2V8kRtzME
+	mTieDgCdfQplb2NgEJZRQx1PK6WfHESDjKKvaX4qKRodzH1zIzq15WnmF6pQFs2TcecgcM2B4VC
+	wU9J6nCVdorwliOsqwYYVs1IoDU9oJ7D/pOatLQ==
+X-Google-Smtp-Source: AGHT+IHS/WgJih0pA4PCi6jtXXi0NvvqNNRcB0nvYJUMQTqgkNEy0vEgAEVs0YIeJ1unhWTazFjP4rw+Sm0vCsAVTlU=
+X-Received: by 2002:a81:4950:0:b0:603:fd67:a5aa with SMTP id
+ w77-20020a814950000000b00603fd67a5aamr1871650ywa.19.1706733893289; Wed, 31
+ Jan 2024 12:44:53 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [RFC PATCH 00/13] Add tuning algorithm for delay chain
-Content-Language: en-US
-To: "Raghavendra, Vignesh" <vigneshr@ti.com>,
-        Ulf Hansson
-	<ulf.hansson@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof
- Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley
-	<conor+dt@kernel.org>
-CC: Adrian Hunter <adrian.hunter@intel.com>, <linux-mmc@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>, Nishanth Menon <nm@ti.com>,
-        Andrew Davis
-	<afd@ti.com>, Udit Kumar <u-kumar1@ti.com>,
-        Roger Quadros
-	<rogerq@kernel.org>, <devicetree@vger.kernel.org>,
-        Randolph Sapp <rs@ti.com>
-References: <20240131003714.2779593-1-jm@ti.com>
- <5e03e867-b45f-482b-b734-7949e28fc97e@ti.com>
-From: Judith Mendez <jm@ti.com>
-In-Reply-To: <5e03e867-b45f-482b-b734-7949e28fc97e@ti.com>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 7bit
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+References: <20240131-mbly-clk-v4-0-bcd00510d6a0@bootlin.com>
+In-Reply-To: <20240131-mbly-clk-v4-0-bcd00510d6a0@bootlin.com>
+From: Linus Walleij <linus.walleij@linaro.org>
+Date: Wed, 31 Jan 2024 21:44:42 +0100
+Message-ID: <CACRpkdb+aWL-NU36dF6urL3T9gUROQX=9-L7aUC=+GM8x+bArA@mail.gmail.com>
+Subject: Re: [PATCH v4 00/18] Add support for Mobileye EyeQ5 system controller
+To: =?UTF-8?B?VGjDqW8gTGVicnVu?= <theo.lebrun@bootlin.com>
+Cc: Gregory CLEMENT <gregory.clement@bootlin.com>, 
+	Michael Turquette <mturquette@baylibre.com>, Stephen Boyd <sboyd@kernel.org>, 
+	Rob Herring <robh+dt@kernel.org>, 
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Thomas Bogendoerfer <tsbogend@alpha.franken.de>, =?UTF-8?B?UmFmYcWCIE1pxYJlY2tp?= <rafal@milecki.pl>, 
+	Philipp Zabel <p.zabel@pengutronix.de>, 
+	Vladimir Kondratiev <vladimir.kondratiev@mobileye.com>, linux-mips@vger.kernel.org, 
+	linux-clk@vger.kernel.org, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org, Thomas Petazzoni <thomas.petazzoni@bootlin.com>, 
+	Tawfik Bayouk <tawfik.bayouk@mobileye.com>, linux-gpio@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-On 1/31/24 7:35 AM, Raghavendra, Vignesh wrote:
-> Hi,
-> 
-> On 1/31/2024 6:07 AM, Judith Mendez wrote:
->> This patch series introduces a new tuning algorithm for
->> mmc. The new algorithm should be used when delay chain is
->> enabled. The ITAPDLY is selected from the largest passing
->> window and the buffer is not viewed as a circular buffer.
->> The new tuning algorithm is implemented as per the paper
->> published here [0] and has been tested on the following
->> platforms: AM62x SK, AM62A SK, AM62p SK, AM64x SK, and AM64x
->> EVM.
->>
->> The series also includes a few fixes in the sdhci_am654
->> driver on OTAPDLYEN/ITAPDLYEN and ITAPDELSEL. There are
->> also device tree node fixes for missing mmc nodes,
->> modifying DLL properties, and fixes for OTAP/ITAP delay
->> values.
->>
->> MMC0/MMC2 nodes are introduced for AM62ax in this series.
->>
->> This series is sent as a RFC mostly to get some feedback
->> and/or comments on the new tuning algorithm implementation.
->>
->> [0] https://www.ti.com/lit/an/spract9/spract9.pdf
->>
-> 
-> 
->> Judith Mendez (11):
->>    drivers: mmc: host: sdhci_am654: Add tuning algorithm for delay chain
->>    drivers: mmc: host: sdhci_am654: Write ITAPDLY for DDR52 timing
->>    drivers: mmc: host: sdhci_am654: Add missing OTAP/ITAP enable
->>    drivers: mmc: host: sdhci_am654: Add ITAPDLYSEL in
->>      sdhci_j721e_4bit_set_clock
->>    drivers: mmc: host: sdhci_am654: Fix ITAPDLY for HS400 timing
-> 
-> These patches needs to have Fixes: tag as they are bug fixes IMO.
+Hi Theo,
 
-Understood, will add.
+thanks for your patches!
 
-> 
->>    arm64: dts: ti: k3-am62a-main: Add sdhci2 instance
->>    arm64: dts: ti: k3-am64-main: Update ITAP/OTAP values for MMC
->>    arm64: dts: ti: k3-am62-main: Update ITAP/OTAP values for MMC
->>    arm64: dts: ti: k3-am62p: Add missing properties for MMC
->>    arm64: dts: ti: k3-am6*: Remove DLL properties for soft phys
->>    arm64: dts: ti: k3-am6*: Reorganize MMC properties
->>
->> Nitin Yadav (2):
->>    arm64: dts: ti: k3-am62a-main: Add sdhci0 instance
->>    arm64: dts: ti: k3-am62a7-sk: Enable eMMC support
->>
-> 
-> Can the driver changes be merged independent of DT changes? Or are they
-> meant to go together? Latter would be problematic as it creates cross
-> tree dependencies.
+A *new* MIPS platform, not every day I see this!
 
-The driver changes can be merged independently.
+On Wed, Jan 31, 2024 at 5:27=E2=80=AFPM Th=C3=A9o Lebrun <theo.lebrun@bootl=
+in.com> wrote:
 
-> 
->>   arch/arm64/boot/dts/ti/k3-am62-main.dtsi      |  57 +++--
->>   .../arm64/boot/dts/ti/k3-am625-beagleplay.dts |   5 -
->>   arch/arm64/boot/dts/ti/k3-am62a-main.dtsi     |  45 +++-
->>   arch/arm64/boot/dts/ti/k3-am62a7-sk.dts       |  27 ++-
->>   arch/arm64/boot/dts/ti/k3-am62p-main.dtsi     |  44 +++-
->>   arch/arm64/boot/dts/ti/k3-am62p5-sk.dts       |   7 +-
->>   .../arm64/boot/dts/ti/k3-am62x-sk-common.dtsi |   4 +-
->>   arch/arm64/boot/dts/ti/k3-am64-main.dtsi      |  17 +-
->>   arch/arm64/boot/dts/ti/k3-am642-evm.dts       |   4 +-
->>   arch/arm64/boot/dts/ti/k3-am642-sk.dts        |   2 -
->>   drivers/mmc/host/sdhci_am654.c                | 215 ++++++++++++++----
->>   11 files changed, 321 insertions(+), 106 deletions(-)
->>
+> Pin control is about controlling bias, drive strength and muxing. The
+> latter allows two functions per pin; the first function is always GPIO
+> while the second one is pin-dependent. There exists two banks, each
+> handled in a separate driver instance. Each pin maps to one pin group.
+> That makes pin & group indexes the same, simplifying logic.
 
+Can the three pin control patches be merged separately? (It looks like.)
+
+That would make my job easier when we ge there.
+
+I will try to look closer at each patch!
+
+Yours,
+Linus Walleij
 
