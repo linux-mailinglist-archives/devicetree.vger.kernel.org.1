@@ -1,106 +1,316 @@
-Return-Path: <devicetree+bounces-37182-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-37183-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7DAA6843F56
-	for <lists+devicetree@lfdr.de>; Wed, 31 Jan 2024 13:25:49 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 63F16843F66
+	for <lists+devicetree@lfdr.de>; Wed, 31 Jan 2024 13:27:52 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 61F7BB23399
-	for <lists+devicetree@lfdr.de>; Wed, 31 Jan 2024 12:25:46 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 892BCB24E08
+	for <lists+devicetree@lfdr.de>; Wed, 31 Jan 2024 12:27:02 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 17F5878698;
-	Wed, 31 Jan 2024 12:25:41 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 839C578B56;
+	Wed, 31 Jan 2024 12:26:08 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="BKWUsnvX"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="hok1Zh06"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-yw1-f180.google.com (mail-yw1-f180.google.com [209.85.128.180])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E017A7690E;
-	Wed, 31 Jan 2024 12:25:40 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7D0E878B45
+	for <devicetree@vger.kernel.org>; Wed, 31 Jan 2024 12:26:06 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.180
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1706703941; cv=none; b=XcMQ9bPDOlZi+WwHwaKfQDX8w1JQKbnKI14mHecBRs5hf6PFZWfJtvZO3GJQaGkgWXb+tFhN5a53imkD/yJd5a8a5U99BmTBrQ4pJxKaSf3SZ6YAE/5jrkV1YlxYxtCxuxBcO63hXeci5evUxsn96AiRr+dNG+Ru3Fd4UaEwkmo=
+	t=1706703968; cv=none; b=ADnJeVhSNF3X8sQl0MXDLyyaww4ktIXE/bjikAeGQCHeTC3AVhEMAua55FBZgjZm3JvphOl2tujH1kyA1He7Wn0NOUjBLa36OqGIPdQJ1LpBUarXXYu4ks3nteo636wWkHkQSSCC2W+irhbMRnLwRUX6JYbz9jwxgEZRyjTjFg0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1706703941; c=relaxed/simple;
-	bh=pFsCpJSLk0dh72t0fhH3sbqbPwdiOraKzWAQDmmK2Xw=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=gas2w6z+DyUUPAZhmEqcDDKQ6bTP6JxskTy7KNK30lRgTIEPWoSSoyKHcEQiecrK4UtNl+WZDGCcbivBtq8u9/P4E+YZLfoZXAJDeZ0O65G6030LvHg+YzCdPKMy8bM3p1XtsZ2O+JXQl1h62sz8gaPuOXq/ZgQvj1bOSl7d+po=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=BKWUsnvX; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 3575FC433C7;
-	Wed, 31 Jan 2024 12:25:37 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1706703940;
-	bh=pFsCpJSLk0dh72t0fhH3sbqbPwdiOraKzWAQDmmK2Xw=;
-	h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-	b=BKWUsnvXlCFIsCKmwvsVgtprb4GpHXt7/kVarXgzN9FU+EqkG3aUPMHTGnwceQR4h
-	 VojfTgj3McCQ1IAayF4Jqy+eO5iQ3ZWjO1WENIP26Cg6lrDn2YvzDBbArS/l2VI+r5
-	 8O1bXx27TXwTLe+c1L94liTE1gO/v/cq1T9IRu7/6d2rbzBE2/D9a/SsgA6uFF8XOq
-	 canyBdS75OzFpREQbXSnVbRHAJHRwKyW32ME+HLt4rLsPuZqaiC5pFzpLDObJHjw3e
-	 mB1b7SthXpeHcdVlZ1XECxatH0arF7IfJiYKCGWghX2/eBwTJM/orChLn6kWL1Y1/P
-	 t3CacpRqXGJZg==
-From: Conor Dooley <conor@kernel.org>
-To: Emil Renner Berthing <kernel@esmil.dk>,
-	Conor Dooley <conor@kernel.org>,
-	Rob Herring <robh+dt@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Paul Walmsley <paul.walmsley@sifive.com>,
-	Palmer Dabbelt <palmer@dabbelt.com>,
-	Albert Ou <aou@eecs.berkeley.edu>,
-	Richard Cochran <richardcochran@gmail.com>,
-	Andrew Lunn <andrew@lunn.ch>,
-	Jacob Keller <jacob.e.keller@intel.com>,
-	Cristian Ciocaltea <cristian.ciocaltea@collabora.com>
-Cc: Conor Dooley <conor.dooley@microchip.com>,
-	linux-riscv@lists.infradead.org,
-	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	netdev@vger.kernel.org,
-	kernel@collabora.com
-Subject: Re: [PATCH v6 0/4] Enable networking support for StarFive JH7100 SoC
-Date: Wed, 31 Jan 2024 12:25:30 +0000
-Message-ID: <20240131-sitter-parabola-8a2e86faa77f@spud>
-X-Mailer: git-send-email 2.43.0
-In-Reply-To: <20231220211743.2490518-1-cristian.ciocaltea@collabora.com>
-References: <20231220211743.2490518-1-cristian.ciocaltea@collabora.com>
+	s=arc-20240116; t=1706703968; c=relaxed/simple;
+	bh=P2snzUQaV78T2UXte2q2QP64eJ4+iF8/LbiWUxjGA0I=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=A7jBXLcdokIoIkE/9HXpourWppYTvn91cV9ChMSB55mtnAIqCjqJTnoTG1ZyYFKkPCuHJXlp1XNAe09J6Rxavkua3BJYLozYHqtJj8hgMi4WxBtmhwHHLiq4IkDyfQCQoSazwRmsO60cnaiGOtRJpMu4fZi7aKDkz62qmql2UnE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=hok1Zh06; arc=none smtp.client-ip=209.85.128.180
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-yw1-f180.google.com with SMTP id 00721157ae682-6040d0c9cf1so5507387b3.0
+        for <devicetree@vger.kernel.org>; Wed, 31 Jan 2024 04:26:06 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1706703965; x=1707308765; darn=vger.kernel.org;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=lNAQWe7GlakSWDmg7q0hi9akDhI0G3cV17++87SbIMA=;
+        b=hok1Zh06MVNrr/F8umCt9mbhhYjWBKqF/Du6MdF2MPvXUJgBxHE26wuKOacUhMn7xb
+         tQUu6Gpi/N8X7GJQO2hUat3Ee2WutJA2SvJM6hGY7uf8ungzYvibwJmyC0kFgINbRdDv
+         EKmjAyDqrjYTNFEkQZsltOaOC+x/8x3kZeqK9sO33eTZu533ncETYlkU1ntO/p6hzOHT
+         Mj2NkGovtmeb5ekdrZrWwSq0dfMX22DevAXTbI0cNYRyKinnAIWrf+Rqtnx/8b05mz5M
+         WvM1XZrCyhq3/QSNNpsJQbZgh0XW8CYINAWjZdjoG41NaI6LQUolkZfMblQlczt1O0vr
+         vPgg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1706703965; x=1707308765;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=lNAQWe7GlakSWDmg7q0hi9akDhI0G3cV17++87SbIMA=;
+        b=Pd3YIS7xMckiGtfRZLkNVo5qrB/5bJ5QIDYRjmJpQsmvcXwuhbhdWLMBAka/BefAHZ
+         oI/KDJROmp4x5/sIYOshHxVePjwSBuuu6nAlhNluPo05FlnQ/1F9tj05FwH80PWgW5++
+         PYAbBcLkxa0w0v+X53lT2L6uYmQtB7WGyVN+Y1lG0j1ndgH/3FnGJuqSzxTbfG4RVQ0D
+         zxJpHHrBBe90NjBQn1TjjDtcIxdS08fa8oCMUQF3TUZLL7rTkI4zqHsLqFhnsSvJOaTg
+         8ZwLeGWsLWTJFZVm/BzCWH9a9dp3P0TAw7Df+IfvSpytGwkbQhrwcVUiQFjT093SOBZ6
+         qQUA==
+X-Gm-Message-State: AOJu0YxGalvQKa8lv6cnp9mOzRxU41SlP4iEvpRUncQTJ7g7YQp+m28L
+	i4ltWxBr8SJcaZnfcrtuB8ZsrN2U6nbHD/EE9W/EwQyRi0RXrF/4FcIBeY1P5BdArtABEVlaJpg
+	93sJNNyeggCCO0tELaMGVC7QEyQOjlYl86JA8sA==
+X-Google-Smtp-Source: AGHT+IE4QdPfvM4LOGGKevW8OxSEANsb2HyagWTnfsuRpwSCL1XKO8bnNBygoLJTlT2T1b89u8q7/jm6oUOkngcwVcY=
+X-Received: by 2002:a81:b608:0:b0:5ff:b07b:fb0b with SMTP id
+ u8-20020a81b608000000b005ffb07bfb0bmr1223691ywh.49.1706703965301; Wed, 31 Jan
+ 2024 04:26:05 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-X-Developer-Signature: v=1; a=openpgp-sha256; l=1081; i=conor.dooley@microchip.com; h=from:subject:message-id; bh=QpjxKADVuxDHO2HHz1mJLhLzOw0DBvtxFU1iut/HhaM=; b=owGbwMvMwCFWscWwfUFT0iXG02pJDKm7bCyjD5d2OlRF8PLW7+z+duVV4xQZhtszgq8axl4Ib TJrlfnYUcrCIMbBICumyJJ4u69Fav0flx3OPW9h5rAygQxh4OIUgIlcmsrIsHbKbM4q7dOH3UPN g3u+C264YKjs8PpRb9Lv5o67C2V3dTEy7Lv3YLK2exd3R1fLkZe5Lw8fvqb1xjF07uOUS1PsNP6 b8gIA
-X-Developer-Key: i=conor.dooley@microchip.com; a=openpgp; fpr=F9ECA03CF54F12CD01F1655722E2C55B37CF380C
-Content-Transfer-Encoding: 8bit
+References: <20240131102003.2061203-1-amadeus@jmu.edu.cn>
+In-Reply-To: <20240131102003.2061203-1-amadeus@jmu.edu.cn>
+From: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+Date: Wed, 31 Jan 2024 14:25:54 +0200
+Message-ID: <CAA8EJppDQAdnceYhL_=Di0n5j3W0F2+7ntpNMxpXBXgnYoh_uQ@mail.gmail.com>
+Subject: Re: [PATCH 1/3] arm64: dts: qcom: ipq6018: separate CPU OPP tables
+To: Chukun Pan <amadeus@jmu.edu.cn>
+Cc: Bjorn Andersson <andersson@kernel.org>, Konrad Dybcio <konrad.dybcio@linaro.org>, 
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Rob Herring <robh+dt@kernel.org>, linux-arm-msm@vger.kernel.org, 
+	linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
 
-From: Conor Dooley <conor.dooley@microchip.com>
+On Wed, 31 Jan 2024 at 12:22, Chukun Pan <amadeus@jmu.edu.cn> wrote:
+>
+> Some IPQ6000 SoCs do not come with PMIC (MP5496) chip,
+> which causes cpufreq to be unavailable due to lack of
+> cpu-supply. Separate CPU OPP tables from soc.dtsi to
+> support versions with and without PMIC chip.
 
-On Wed, 20 Dec 2023 23:17:38 +0200, Cristian Ciocaltea wrote:
-> This patch series adds ethernet support for the StarFive JH7100 SoC and
-> makes it available for the StarFive VisionFive V1 and BeagleV Starlight
-> boards, although I could only validate on the former SBC.  Thank you Emil
-> and Geert for helping with tests on BeagleV!
-> 
-> The work is heavily based on the reference implementation [1] and depends
-> on the SiFive Composable Cache controller and non-coherent DMA support
-> provided by Emil via [2] and [3].
-> 
-> [...]
+I went on and checked ipq6018.dtsi. It will need to be reworked before
+we can continue with PMIC-less devices.
 
-Applied to riscv-dt-for-next, thanks!
+Obviously, the PMIC is not a part of the SoC. So please move the
+"qcom,rpm-mp5496-regulators" node to the board files together with the
+cpu-supply properties that reference that regulator.
 
-[1/4] riscv: dts: starfive: jh7100: Add sysmain and gmac DT nodes
-      https://git.kernel.org/conor/c/5ca37ca2a483
-[2/4] riscv: dts: starfive: jh7100-common: Setup pinmux and enable gmac
-      https://git.kernel.org/conor/c/6e204aa2116c
-[3/4] riscv: dts: starfive: visionfive-v1: Setup ethernet phy
-      https://git.kernel.org/conor/c/e16d3dc0a2d7
-[4/4] riscv: dts: starfive: beaglev-starlight: Setup phy reset gpio
-      https://git.kernel.org/conor/c/2db68ddbf33a
+The SoC itself supports all listed frequencies, so it is incorrect to
+split the opp tables from the ipq6018.dtsi. Instead please patch the
+PMIC-less boards in the following way:
 
-Thanks,
-Conor.
+#include "ipq6018.dtsi"
+&cpu_opp_table {
+  /* the board doesn't have a PMIC, disable CPU frequencies which
+require higher voltages */
+  /delete-node/ opp-1320000000;
+  /delete-node/ opp-1440000000;
+};
+
+>
+> Signed-off-by: Chukun Pan <amadeus@jmu.edu.cn>
+> ---
+>  arch/arm64/boot/dts/qcom/ipq6018-cp01-c1.dts |  1 +
+>  arch/arm64/boot/dts/qcom/ipq6018-opp.dtsi    | 74 ++++++++++++++++++++
+>  arch/arm64/boot/dts/qcom/ipq6018.dtsi        | 56 ---------------
+>  3 files changed, 75 insertions(+), 56 deletions(-)
+>  create mode 100644 arch/arm64/boot/dts/qcom/ipq6018-opp.dtsi
+>
+> diff --git a/arch/arm64/boot/dts/qcom/ipq6018-cp01-c1.dts b/arch/arm64/boot/dts/qcom/ipq6018-cp01-c1.dts
+> index f5f4827c0e17..06dfc2cb6b7f 100644
+> --- a/arch/arm64/boot/dts/qcom/ipq6018-cp01-c1.dts
+> +++ b/arch/arm64/boot/dts/qcom/ipq6018-cp01-c1.dts
+> @@ -8,6 +8,7 @@
+>  /dts-v1/;
+>
+>  #include "ipq6018.dtsi"
+> +#include "ipq6018-opp.dtsi"
+>
+>  / {
+>         model = "Qualcomm Technologies, Inc. IPQ6018/AP-CP01-C1";
+> diff --git a/arch/arm64/boot/dts/qcom/ipq6018-opp.dtsi b/arch/arm64/boot/dts/qcom/ipq6018-opp.dtsi
+> new file mode 100644
+> index 000000000000..9c0bed2d8bf5
+> --- /dev/null
+> +++ b/arch/arm64/boot/dts/qcom/ipq6018-opp.dtsi
+> @@ -0,0 +1,74 @@
+> +// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
+> +/*
+> + * IPQ60xx with PMIC (MP5496) CPU OPP tables
+> + */
+> +
+> +/ {
+> +       cpu_opp_table: opp-table-cpu {
+> +               compatible = "operating-points-v2-kryo-cpu";
+> +               nvmem-cells = <&cpu_speed_bin>;
+> +               opp-shared;
+> +
+> +               opp-864000000 {
+> +                       opp-hz = /bits/ 64 <864000000>;
+> +                       opp-microvolt = <725000>;
+> +                       opp-supported-hw = <0xf>;
+> +                       clock-latency-ns = <200000>;
+> +               };
+> +
+> +               opp-1056000000 {
+> +                       opp-hz = /bits/ 64 <1056000000>;
+> +                       opp-microvolt = <787500>;
+> +                       opp-supported-hw = <0xf>;
+> +                       clock-latency-ns = <200000>;
+> +               };
+> +
+> +               opp-1320000000 {
+> +                       opp-hz = /bits/ 64 <1320000000>;
+> +                       opp-microvolt = <862500>;
+> +                       opp-supported-hw = <0x3>;
+> +                       clock-latency-ns = <200000>;
+> +               };
+> +
+> +               opp-1440000000 {
+> +                       opp-hz = /bits/ 64 <1440000000>;
+> +                       opp-microvolt = <925000>;
+> +                       opp-supported-hw = <0x3>;
+> +                       clock-latency-ns = <200000>;
+> +               };
+> +
+> +               opp-1608000000 {
+> +                       opp-hz = /bits/ 64 <1608000000>;
+> +                       opp-microvolt = <987500>;
+> +                       opp-supported-hw = <0x1>;
+> +                       clock-latency-ns = <200000>;
+> +               };
+> +
+> +               opp-1800000000 {
+> +                       opp-hz = /bits/ 64 <1800000000>;
+> +                       opp-microvolt = <1062500>;
+> +                       opp-supported-hw = <0x1>;
+> +                       clock-latency-ns = <200000>;
+> +               };
+> +       };
+> +};
+> +
+> +&CPU0 {
+> +       operating-points-v2 = <&cpu_opp_table>;
+> +       cpu-supply = <&ipq6018_s2>;
+> +};
+> +
+> +&CPU1 {
+> +       operating-points-v2 = <&cpu_opp_table>;
+> +       cpu-supply = <&ipq6018_s2>;
+> +};
+> +
+> +&CPU2 {
+> +       operating-points-v2 = <&cpu_opp_table>;
+> +       cpu-supply = <&ipq6018_s2>;
+> +};
+> +
+> +&CPU3 {
+> +       operating-points-v2 = <&cpu_opp_table>;
+> +       cpu-supply = <&ipq6018_s2>;
+> +};
+> diff --git a/arch/arm64/boot/dts/qcom/ipq6018.dtsi b/arch/arm64/boot/dts/qcom/ipq6018.dtsi
+> index 5e1277fea725..ea72fd5739ac 100644
+> --- a/arch/arm64/boot/dts/qcom/ipq6018.dtsi
+> +++ b/arch/arm64/boot/dts/qcom/ipq6018.dtsi
+> @@ -41,8 +41,6 @@ CPU0: cpu@0 {
+>                         next-level-cache = <&L2_0>;
+>                         clocks = <&apcs_glb APCS_ALIAS0_CORE_CLK>;
+>                         clock-names = "cpu";
+> -                       operating-points-v2 = <&cpu_opp_table>;
+> -                       cpu-supply = <&ipq6018_s2>;
+>                 };
+>
+>                 CPU1: cpu@1 {
+> @@ -53,8 +51,6 @@ CPU1: cpu@1 {
+>                         next-level-cache = <&L2_0>;
+>                         clocks = <&apcs_glb APCS_ALIAS0_CORE_CLK>;
+>                         clock-names = "cpu";
+> -                       operating-points-v2 = <&cpu_opp_table>;
+> -                       cpu-supply = <&ipq6018_s2>;
+>                 };
+>
+>                 CPU2: cpu@2 {
+> @@ -65,8 +61,6 @@ CPU2: cpu@2 {
+>                         next-level-cache = <&L2_0>;
+>                         clocks = <&apcs_glb APCS_ALIAS0_CORE_CLK>;
+>                         clock-names = "cpu";
+> -                       operating-points-v2 = <&cpu_opp_table>;
+> -                       cpu-supply = <&ipq6018_s2>;
+>                 };
+>
+>                 CPU3: cpu@3 {
+> @@ -77,8 +71,6 @@ CPU3: cpu@3 {
+>                         next-level-cache = <&L2_0>;
+>                         clocks = <&apcs_glb APCS_ALIAS0_CORE_CLK>;
+>                         clock-names = "cpu";
+> -                       operating-points-v2 = <&cpu_opp_table>;
+> -                       cpu-supply = <&ipq6018_s2>;
+>                 };
+>
+>                 L2_0: l2-cache {
+> @@ -95,54 +87,6 @@ scm {
+>                 };
+>         };
+>
+> -       cpu_opp_table: opp-table-cpu {
+> -               compatible = "operating-points-v2-kryo-cpu";
+> -               nvmem-cells = <&cpu_speed_bin>;
+> -               opp-shared;
+> -
+> -               opp-864000000 {
+> -                       opp-hz = /bits/ 64 <864000000>;
+> -                       opp-microvolt = <725000>;
+> -                       opp-supported-hw = <0xf>;
+> -                       clock-latency-ns = <200000>;
+> -               };
+> -
+> -               opp-1056000000 {
+> -                       opp-hz = /bits/ 64 <1056000000>;
+> -                       opp-microvolt = <787500>;
+> -                       opp-supported-hw = <0xf>;
+> -                       clock-latency-ns = <200000>;
+> -               };
+> -
+> -               opp-1320000000 {
+> -                       opp-hz = /bits/ 64 <1320000000>;
+> -                       opp-microvolt = <862500>;
+> -                       opp-supported-hw = <0x3>;
+> -                       clock-latency-ns = <200000>;
+> -               };
+> -
+> -               opp-1440000000 {
+> -                       opp-hz = /bits/ 64 <1440000000>;
+> -                       opp-microvolt = <925000>;
+> -                       opp-supported-hw = <0x3>;
+> -                       clock-latency-ns = <200000>;
+> -               };
+> -
+> -               opp-1608000000 {
+> -                       opp-hz = /bits/ 64 <1608000000>;
+> -                       opp-microvolt = <987500>;
+> -                       opp-supported-hw = <0x1>;
+> -                       clock-latency-ns = <200000>;
+> -               };
+> -
+> -               opp-1800000000 {
+> -                       opp-hz = /bits/ 64 <1800000000>;
+> -                       opp-microvolt = <1062500>;
+> -                       opp-supported-hw = <0x1>;
+> -                       clock-latency-ns = <200000>;
+> -               };
+> -       };
+> -
+>         pmuv8: pmu {
+>                 compatible = "arm,cortex-a53-pmu";
+>                 interrupts = <GIC_PPI 7 (GIC_CPU_MASK_SIMPLE(4) | IRQ_TYPE_LEVEL_HIGH)>;
+> --
+> 2.25.1
+>
+>
+
+
+-- 
+With best wishes
+Dmitry
 
