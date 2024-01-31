@@ -1,112 +1,115 @@
-Return-Path: <devicetree+bounces-37386-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-37387-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id BEBE3844B2D
-	for <lists+devicetree@lfdr.de>; Wed, 31 Jan 2024 23:41:07 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 798C4844B66
+	for <lists+devicetree@lfdr.de>; Thu,  1 Feb 2024 00:00:18 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id EC52D1C24BBF
-	for <lists+devicetree@lfdr.de>; Wed, 31 Jan 2024 22:41:06 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id B2667B24D4C
+	for <lists+devicetree@lfdr.de>; Wed, 31 Jan 2024 23:00:15 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E8FBC39FEB;
-	Wed, 31 Jan 2024 22:41:02 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A97713A8FC;
+	Wed, 31 Jan 2024 22:59:56 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b="5OFYTm68"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="M+jPDyWj"
 X-Original-To: devicetree@vger.kernel.org
-Received: from vps0.lunn.ch (vps0.lunn.ch [156.67.10.101])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3E4C4364CA;
-	Wed, 31 Jan 2024 22:40:58 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=156.67.10.101
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6055C3A8E7;
+	Wed, 31 Jan 2024 22:59:56 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1706740862; cv=none; b=QKFTz+Av7m3SOZj6uQ7hyRls0oGuTfV5PbgMV5fTN+shvn6/sOiEvVoiQ+FvbdnSznGNPe/vhtzHf4xiJ+2Ue83/kkY4qfyxs30uZ50lPfQXMvlnIrOhmTM8H8VQPXvAeA+SlZYIpRMaQUnPXY7zmS87y/pHH8gu9ec69jD4nu0=
+	t=1706741996; cv=none; b=DUkir+jH5PhqDtNNwxplJv0EmyE99QXogiALSWbmGvhq+RZpl1B46csZRroM/jm28+xk/WW0Rrcn2U5pO2cdx7Q5ETcXxuY8RRHwK747j4YDhzfk4706RuDzdw7j0X44PYry3/BeMLgcPY2mZL+4nWd/I5vQ8XM7wLrOWc2o4v4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1706740862; c=relaxed/simple;
-	bh=mTsfTmcgyNMXPcwEfj9zRffg8acVqn20k2Ate8tbaG8=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=s/k+XIDT5vmp20uHo4j6jJ4C7EKaetFkNQA+n1laUx1ALaW7WH1CyeUkVo6K11Zqhl7wZWjUdzu/adY1KkbS3aNA1bHJxFq2W8vHN6q9xmcpi3R5TqK0RWAHSmYNeJWT/N+qcuwYmVpB+Z9JKNAsSgukVC6INkZf7EMta/VItYg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch; spf=pass smtp.mailfrom=lunn.ch; dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b=5OFYTm68; arc=none smtp.client-ip=156.67.10.101
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=lunn.ch
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
-	s=20171124; h=In-Reply-To:Content-Disposition:Content-Type:MIME-Version:
-	References:Message-ID:Subject:Cc:To:From:Date:From:Sender:Reply-To:Subject:
-	Date:Message-ID:To:Cc:MIME-Version:Content-Type:Content-Transfer-Encoding:
-	Content-ID:Content-Description:Content-Disposition:In-Reply-To:References;
-	bh=1FCD7TewqQtQ/+NDwhbXiuyVwjThunikA4QhpumNVSU=; b=5OFYTm68G0r5vPSoHrEi0vd196
-	qULK9+VCXwxp55c7CKayoDKirkf/RjynE6/yXifl8UlN1T4LwuKUxZiy+nI3tLiDk4SPRUIjf7vSn
-	0mYoDqsjzdCImnuJGE0TynQCxs3XcQcig6iyjBh8fzaeDUXHBa6Tp9/fAP2ylvjmHOvE=;
-Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
-	(envelope-from <andrew@lunn.ch>)
-	id 1rVJG9-006cek-Iq; Wed, 31 Jan 2024 23:40:45 +0100
-Date: Wed, 31 Jan 2024 23:40:45 +0100
-From: Andrew Lunn <andrew@lunn.ch>
-To: Conor Dooley <conor@kernel.org>
-Cc: Rob Herring <robh@kernel.org>,
-	Bastien Curutchet <bastien.curutchet@bootlin.com>,
-	"David S. Miller" <davem@davemloft.net>,
-	Eric Dumazet <edumazet@google.com>,
-	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Richard Cochran <richardcochran@gmail.com>,
-	Heiner Kallweit <hkallweit1@gmail.com>,
-	Russell King <linux@armlinux.org.uk>, netdev@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
-	Herve Codina <herve.codina@bootlin.com>
-Subject: Re: [PATCH 1/2] dt-bindings: net: Add TI DP83640
-Message-ID: <a1e54836-51d2-4990-9444-56d9414eb28c@lunn.ch>
-References: <20240130085935.33722-1-bastien.curutchet@bootlin.com>
- <20240130085935.33722-2-bastien.curutchet@bootlin.com>
- <20240130-impulsive-widow-9142a069b7fd@spud>
- <20240131210521.GA2289883-robh@kernel.org>
- <20240131-tummy-imperfect-e6d6f0e245e9@spud>
+	s=arc-20240116; t=1706741996; c=relaxed/simple;
+	bh=zdzGQukzuFM99odXc1XHFwDNHwjEYQ2tT1RmuJLmutg=;
+	h=Message-ID:Content-Type:MIME-Version:In-Reply-To:References:
+	 Subject:From:Cc:To:Date; b=umGzoTOASmkTVaL9hLMtdTINI+Li/AoeOv/ZGcFsCLh/DI+G8cPUzKuxBzhrrH8iX5TXtu2e3107kfmPX6yGRjlLC/JzbtWd28neSCGh7wwWirM5IhC2IrMTh9l9T7Lo3Ah2pZz261NfAurtniEFHhEhRiCKEzv6EPnDZFsJPSE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=M+jPDyWj; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id B7BF5C433C7;
+	Wed, 31 Jan 2024 22:59:55 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1706741995;
+	bh=zdzGQukzuFM99odXc1XHFwDNHwjEYQ2tT1RmuJLmutg=;
+	h=In-Reply-To:References:Subject:From:Cc:To:Date:From;
+	b=M+jPDyWjW3p2BFL4c7Lq/tJLbKE0eoQKC70P1AS5REFlY4kdxkNB5cTBbAFNDw1hI
+	 2jP/AbKdvUAxefuvOQh22+j7DgdGVzQ3I5QRhy0N9Upe1mX/GsYF0W6i+Dm2K8IfgK
+	 aaCTibLiwPJs/QYgWz4pNrt86vq2TzlHrW3LD7GcPXNqA4xfdMx+OxZJ6gsGzi6zOq
+	 cmGZ0fU6BVOtgwkZbi25gi+5Oow8v+mf8eSt9A4C6pMEL/aZOrLzK4IrofeZrybwYI
+	 wWu727yJvBE5SN5Rr+8ryTsDlTV0UA0rTEGgaRgBFH3pcLi4e0ZYUxqKCbcyxmDqcE
+	 ceTxausFkQgQg==
+Message-ID: <efe6a7886c3491cc9c225a903efa2b1e.sboyd@kernel.org>
+Content-Type: text/plain; charset="utf-8"
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20240131-tummy-imperfect-e6d6f0e245e9@spud>
+Content-Transfer-Encoding: quoted-printable
+In-Reply-To: <20240131205405.GA2249327-robh@kernel.org>
+References: <20240130004508.1700335-1-sboyd@kernel.org> <20240130004508.1700335-2-sboyd@kernel.org> <20240131205405.GA2249327-robh@kernel.org>
+Subject: Re: [PATCH v2 1/7] arm64: Unconditionally call unflatten_device_tree()
+From: Stephen Boyd <sboyd@kernel.org>
+Cc: linux-kernel@vger.kernel.org, patches@lists.linux.dev, linux-um@lists.infradead.org, linux-arm-kernel@lists.infradead.org, kunit-dev@googlegroups.com, linux-kselftest@vger.kernel.org, devicetree@vger.kernel.org, Frank Rowand <frowand.list@gmail.com>, Catalin Marinas <catalin.marinas@arm.com>, Will Deacon <will@kernel.org>, Mark Rutland <mark.rutland@arm.com>
+To: Rob Herring <robh@kernel.org>
+Date: Wed, 31 Jan 2024 14:59:53 -0800
+User-Agent: alot/0.10
 
-On Wed, Jan 31, 2024 at 09:18:39PM +0000, Conor Dooley wrote:
-> On Wed, Jan 31, 2024 at 03:05:21PM -0600, Rob Herring wrote:
-> > On Tue, Jan 30, 2024 at 05:56:37PM +0000, Conor Dooley wrote:
-> > > On Tue, Jan 30, 2024 at 09:59:34AM +0100, Bastien Curutchet wrote:
-> 
-> > > > +  ti,fiber-mode:
-> > > > +    $ref: /schemas/types.yaml#/definitions/uint32
-> > > > +    enum: [0, 1]
-> > > > +    description: |
-> > > > +      If present, enables or disables the FX Fiber Mode.
-> > > > +      Fiber mode support can also be strapped. If the strap pin is not set
-> > > > +      correctly or not set at all then this can be used to configure it.
-> > > > +       - 0     = FX Fiber Mode disabled
-> > > > +       - 1     = FX Fiber Mode enabled
-> > > > +       - unset = Configured by straps
-> > > 
-> > > I don't like these properties that map meanings onto numbers. We can
-> > > have enums of strings in bindings that allow you to use something more
-> > > meaningful than "0" or "1".
-> > 
-> > Tristate properties are fairly common pattern where we need 
-> > on/off/default. I've thought about making it a type. I don't think we 
-> > need defines for it.
-> 
-> I think a type would be a good idea. I am not at all a fan of any of the
-> properties people introduce along these lines.
+Quoting Rob Herring (2024-01-31 12:54:05)
+> On Mon, Jan 29, 2024 at 04:45:00PM -0800, Stephen Boyd wrote:
+> > Call this function unconditionally so that we can populate an empty DTB
+> > on platforms that don't boot with a firmware provided or builtin DTB.
+> > Override 'initial_boot_params' to NULL when ACPI is in use but the
+> > bootloader has loaded a DTB so that we don't allow both ACPI and DT to
+> > be used during boot. If there isn't a valid initial_boot_params dtb then
+> > unflatten_device_tree() returns early so this is fine.
+> >=20
+> > Cc: Rob Herring <robh+dt@kernel.org>
+> > Cc: Frank Rowand <frowand.list@gmail.com>
+> > Cc: Catalin Marinas <catalin.marinas@arm.com>
+> > Cc: Will Deacon <will@kernel.org>
+> > Cc: Mark Rutland <mark.rutland@arm.com>
+> > Cc: <linux-arm-kernel@lists.infradead.org>
+> > Signed-off-by: Stephen Boyd <sboyd@kernel.org>
+> > ---
+> >  arch/arm64/kernel/setup.c | 7 +++++--
+> >  1 file changed, 5 insertions(+), 2 deletions(-)
+> >=20
+> > diff --git a/arch/arm64/kernel/setup.c b/arch/arm64/kernel/setup.c
+> > index 417a8a86b2db..ffb1942724ae 100644
+> > --- a/arch/arm64/kernel/setup.c
+> > +++ b/arch/arm64/kernel/setup.c
+> > @@ -351,8 +351,11 @@ void __init __no_sanitize_address setup_arch(char =
+**cmdline_p)
+> >       /* Parse the ACPI tables for possible boot-time configuration */
+> >       acpi_boot_table_init();
+> > =20
+> > -     if (acpi_disabled)
+> > -             unflatten_device_tree();
+> > +     /* Don't use the FDT from boot if ACPI is in use */
+> > +     if (!acpi_disabled)
+> > +             initial_boot_params =3D NULL;
+>=20
+> I still think this is a problem for kexec. See=20
+> of_kexec_alloc_and_setup_fdt(). You see it uses initial_boot_params. At=20
+> first glance it looks like it would just write out everything we need.=20
+> But for UEFI boot, I think we need all the chosen properties like=20
+> linux,uefi-mmap-start preserved from the current boot for the next=20
+> kernel we kexec.
 
-Before going too far with that, i'm not actually sure it is required
-here. I've not looked at the PHY driver itself, but i expect there is
-some indication somewhere that the network stack expects a fibre link
-is to be used. We probably can determine at runtime if fibre should be
-used.
+Ok, got it.
 
-	Andrew
+>=20
+> I think you'll have to check acpi_disabled in unflatten_device_tree()=20
+> and unflatten the empty tree leaving initial_boot_params alone. That=20
+> means our FDT and unflattened tree will be different DTs, but I think=20
+> that's fine.
+
+It's sort of scary given that 'initial_boot_params' is an exported
+global. Maybe that should be hidden away and accessed with a function
+instead so that this mismatch doesn't break something later on?
 
