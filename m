@@ -1,159 +1,174 @@
-Return-Path: <devicetree+bounces-37602-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-37604-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 231EF84588C
-	for <lists+devicetree@lfdr.de>; Thu,  1 Feb 2024 14:11:38 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id AFC2E84589E
+	for <lists+devicetree@lfdr.de>; Thu,  1 Feb 2024 14:14:25 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id B93B4B2BDB0
-	for <lists+devicetree@lfdr.de>; Thu,  1 Feb 2024 13:11:35 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 6C1EA28DFD9
+	for <lists+devicetree@lfdr.de>; Thu,  1 Feb 2024 13:14:24 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 15E4653363;
-	Thu,  1 Feb 2024 13:10:36 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A60365B671;
+	Thu,  1 Feb 2024 13:12:50 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="O716Seli"
+	dkim=pass (2048-bit key) header.d=microchip.com header.i=@microchip.com header.b="tnXpvvYb"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ua1-f45.google.com (mail-ua1-f45.google.com [209.85.222.45])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from esa.microchip.iphmx.com (esa.microchip.iphmx.com [68.232.153.233])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6EAA853366;
-	Thu,  1 Feb 2024 13:10:34 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.222.45
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A5CC762141;
+	Thu,  1 Feb 2024 13:12:48 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=68.232.153.233
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1706793036; cv=none; b=A0fSEbKF/185VaxGR50odD4Xrt2zDgqCDuuXRh5Oe1aCHNnsgvAt3eSX/FOOMwkIbF/I7ybXTfCSOjHvqQRylwtyKdspW62kuLip0KI+HiqLjn7LFnQ+rZoLH02NwLFaq2xutt9ftk6Z4nHp1WocGm6sRymPkoFV+/nRf1ZDvNg=
+	t=1706793170; cv=none; b=gpg5A/HByvRI65sJFzdtHrpiAw3cHwoB1UAB+EdyWmd22dvsDs/o52SNb6fpErxhy9wuHHjxiuYA3TK66uqtzaWPCdpfcGkiHujJ5S908krmSstnRYmPARCccDqwL7WxtqeLAZNWRgayedsCGGkhO7rXPy/eS9V37tdmUk4rQx8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1706793036; c=relaxed/simple;
-	bh=ZJhq/a0ru1u/PCGz29gdCFIS3GlsWoUhfYVg1I8Q/fw=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=KO31aksEIljf/SKSeFs3InZpaqpgY6SEj48pOzcJ2xgrlaLqBGY/8ZhjDmQR9q6mT3cWWZbHeAqWLbLbd+of2NGvmOZRIrnXJYSKUIA/XXJmEq/jjZ2c1TSnyr7Xy1vefS0SdwxzSRwdjUxvbg0F3/70m0NNqvdxTaJGscHUi34=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=O716Seli; arc=none smtp.client-ip=209.85.222.45
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-ua1-f45.google.com with SMTP id a1e0cc1a2514c-7d625a3ace6so316955241.0;
-        Thu, 01 Feb 2024 05:10:34 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1706793033; x=1707397833; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=CwqkQIF71vpcy9N9j4GerjRpbbfKrzc/uUzrxwJJGYo=;
-        b=O716Selih6X3rxS1os1aR88sizk+dZOd1kb3dWFnGusbk4gXW65m1MFB7nd0UVhUBq
-         9Phlz5GEgD54uxyqfdRBij2uj9dAa3dwpK/mNGfZOoEUDJYNNN7hOC4xc0gphMfdCjbQ
-         ZrwB7Pzfbaj3oHm7NsnIiG3qVbl7XofPTvaiJ3NCAZ2YDrZ+FpU4i/UptYUWe9OXxwYH
-         czzTjtbTf40pGTajS/6rfHCnXCnSO3FcEyjG4J3fT8l/LYiuKGTSVR4IJhE8pXa8rPXd
-         K3jaAEdVy7l4NdVkPakBjs1k3hDrZHblOT8yb+Qa8925R/En3PFz+ga3B5oMPXW7MJvt
-         Bq4w==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1706793033; x=1707397833;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=CwqkQIF71vpcy9N9j4GerjRpbbfKrzc/uUzrxwJJGYo=;
-        b=vGDLpJTGagHst76adUXFULEmgFeR8lv4kRi0pzOMhSQ26DqQP4QuGPwmmQGHiLHwHG
-         BDFTPklv6UXlsXvUS+1NdLHJFjXvCMvCSgFdZICTBr5q2WGqgJtySsID2MPCpBoiLRW6
-         JwXBHjxEBuRYZ2LxF/DdEcXGVUDJ0wfKdEg5XWi9+Q+Ao2y96lBZWn4SfULUNOSrt+qm
-         QmL4V0LKJBX1YYuyC6mrs7PaIMdJ5BCjMKd1zjq3h4Zi5Pzel6wagacGPNQg9RqyvFNO
-         f4641KIwX4Wi9x+8ErHyqeO9phwI/0zZIjhfafwGM5GAupgiiyH6tBcyzgoSJgPvcSPq
-         M3tg==
-X-Gm-Message-State: AOJu0YymiH/ZbAqJiK5RSU4HhOKyrvG14NUft0q7+lbQVpIceX3BZYM2
-	O2dWqpu5XhRnG4bjQx+Y+/OClvfz0el+YANqVem0A/Tz/LpiEKn1ldsf23MrliqoYpjYsy8gXwp
-	RtMzgKrXQt5jB0xnB6mGMOR0MrSg=
-X-Google-Smtp-Source: AGHT+IGsf+rRSEKnjNQAqd67Fb46xfvPvSc/YPD5cESPQuN63qNLUZEqMRkqhla21Oa+2++defXTos7E//YR0ZZoJDQ=
-X-Received: by 2002:a05:6122:cb:b0:4b6:e3b6:41ea with SMTP id
- h11-20020a05612200cb00b004b6e3b641eamr2291081vkc.4.1706793033217; Thu, 01 Feb
- 2024 05:10:33 -0800 (PST)
+	s=arc-20240116; t=1706793170; c=relaxed/simple;
+	bh=qvtQsVUpv6mrbOusIihe550/VZAo/qI5LTEF9Sr+vYc=;
+	h=Date:From:To:CC:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=iZXmpyf0dfecKh82qe4n7/BqYZoEQrEdt3livDNt5vpMFb2miHNs/YI9eAshsZQoxpykZqfeS2dn2TVFylVHhGmH3P9H89vIsCGFak5Cu04IW20rZoEHpxGwPG+FhhYC1mOxng38FE0RAVczgFOsGI4P/E+SXBkINlhPG7aoYeQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=microchip.com; spf=pass smtp.mailfrom=microchip.com; dkim=pass (2048-bit key) header.d=microchip.com header.i=@microchip.com header.b=tnXpvvYb; arc=none smtp.client-ip=68.232.153.233
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=microchip.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=microchip.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
+  t=1706793169; x=1738329169;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=qvtQsVUpv6mrbOusIihe550/VZAo/qI5LTEF9Sr+vYc=;
+  b=tnXpvvYbOg9GNGZJTIfv1k59HOOELkzDc2fBILKzb611pVZs2H+jmUh0
+   JNqzV1KR4nvZLrCd1Te3TlWOfyGiInkfSRulCmVZZUP5DN5FOHYDQ49eK
+   y9Rp3RTcXeXzMDJkWjNHOBU7SB0tg17Kq75/EDbZR1x4sTs2TJr5Uk/wo
+   JsOXWvb9fhVVHRBCg6VtBVOhqhzjmDbvt5+PUWBWAdtt+IkiiNohKFrhg
+   LciGzh7KWOT1TF3Kv8dCuu4rbZJTHkkm36CHWuiQphqT0/M795IdALFkv
+   pXNiTTSUECCrypC64j6i088L2hSDlU06Tdy6G7xE9mqkExciIxJZPAmOB
+   Q==;
+X-CSE-ConnectionGUID: DojxIC2fROuGfno2oWJAig==
+X-CSE-MsgGUID: UGxvDEb7R5C65tm/xwNFig==
+X-IronPort-AV: E=Sophos;i="6.05,234,1701154800"; 
+   d="asc'?scan'208";a="15617257"
+X-Amp-Result: UNKNOWN
+X-Amp-Original-Verdict: FILE UNKNOWN
+Received: from unknown (HELO email.microchip.com) ([170.129.1.10])
+  by esa3.microchip.iphmx.com with ESMTP/TLS/ECDHE-RSA-AES128-GCM-SHA256; 01 Feb 2024 06:12:42 -0700
+Received: from chn-vm-ex02.mchp-main.com (10.10.85.144) by
+ chn-vm-ex03.mchp-main.com (10.10.85.151) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.35; Thu, 1 Feb 2024 06:12:21 -0700
+Received: from wendy (10.10.85.11) by chn-vm-ex02.mchp-main.com (10.10.85.144)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.35 via Frontend
+ Transport; Thu, 1 Feb 2024 06:12:18 -0700
+Date: Thu, 1 Feb 2024 13:11:39 +0000
+From: Conor Dooley <conor.dooley@microchip.com>
+To: Frank Wunderlich <frank-w@public-files.de>
+CC: Conor Dooley <conor@kernel.org>, AngeloGioacchino Del Regno
+	<angelogioacchino.delregno@collabora.com>, Frank Wunderlich
+	<linux@fw-web.de>, Michael Turquette <mturquette@baylibre.com>, Stephen Boyd
+	<sboyd@kernel.org>, Matthias Brugger <matthias.bgg@gmail.com>, Philipp Zabel
+	<p.zabel@pengutronix.de>, Rob Herring <robh+dt@kernel.org>, Krzysztof
+ Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley
+	<conor+dt@kernel.org>, Sam Shih <sam.shih@mediatek.com>, Daniel Golle
+	<daniel@makrotopia.org>, <linux-clk@vger.kernel.org>,
+	<linux-kernel@vger.kernel.org>, <linux-arm-kernel@lists.infradead.org>,
+	<devicetree@vger.kernel.org>, <linux-mediatek@lists.infradead.org>
+Subject: Re: Aw: Re: [PATCH v3 1/2] dt-bindings: reset: mediatek: add MT7988
+ reset IDs
+Message-ID: <20240201-goes-passable-0ba841d36bc3@wendy>
+References: <20240117184111.62371-1-linux@fw-web.de>
+ <20240117184111.62371-2-linux@fw-web.de>
+ <20240118-calcium-krypton-3c787b8d1912@spud>
+ <trinity-afc4f48e-65e1-46ee-a78b-1d670cc0f310-1705615200900@3c-app-gmx-bap21>
+ <43f946cc-07e1-48c5-9b31-40fc9bc93037@collabora.com>
+ <20240119-dupe-obligate-707b3a01b356@spud>
+ <0EA6A126-DDC0-4E9F-BEBC-FD018B08CA84@public-files.de>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20240129151618.90922-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
- <20240129151618.90922-4-prabhakar.mahadev-lad.rj@bp.renesas.com> <CAMuHMdV=E5VDZn0QjiGQL73j135LiA1QNrYH-hCve1Yk0PqJ=A@mail.gmail.com>
-In-Reply-To: <CAMuHMdV=E5VDZn0QjiGQL73j135LiA1QNrYH-hCve1Yk0PqJ=A@mail.gmail.com>
-From: "Lad, Prabhakar" <prabhakar.csengg@gmail.com>
-Date: Thu, 1 Feb 2024 13:09:58 +0000
-Message-ID: <CA+V-a8tJfJTEOkSP-F1B3Q7EO6Cu9ij88ceGJcXCQjTFneWxUA@mail.gmail.com>
-Subject: Re: [PATCH 3/5] riscv: dts: renesas: r9a07g043f: Add IRQC node to
- RZ/Five SoC DTSI
-To: Geert Uytterhoeven <geert@linux-m68k.org>
-Cc: Thomas Gleixner <tglx@linutronix.de>, Rob Herring <robh+dt@kernel.org>, 
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Magnus Damm <magnus.damm@gmail.com>, linux-renesas-soc@vger.kernel.org, 
-	devicetree@vger.kernel.org, linux-riscv@lists.infradead.org, 
-	linux-kernel@vger.kernel.org, Biju Das <biju.das.jz@bp.renesas.com>, 
-	Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>, 
-	Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: multipart/signed; micalg=pgp-sha256;
+	protocol="application/pgp-signature"; boundary="7WXHEjVDjRcKaa45"
+Content-Disposition: inline
+In-Reply-To: <0EA6A126-DDC0-4E9F-BEBC-FD018B08CA84@public-files.de>
+
+--7WXHEjVDjRcKaa45
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
 Content-Transfer-Encoding: quoted-printable
 
-Hi Geert,
-
-Thank you for the review.
-
-On Tue, Jan 30, 2024 at 11:25=E2=80=AFAM Geert Uytterhoeven
-<geert@linux-m68k.org> wrote:
->
-> Hi Prabhakar,
->
-> On Mon, Jan 29, 2024 at 4:16=E2=80=AFPM Prabhakar <prabhakar.csengg@gmail=
-.com> wrote:
-> > From: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+On Thu, Feb 01, 2024 at 12:40:17PM +0100, Frank Wunderlich wrote:
+> Am 19. Januar 2024 18:04:36 MEZ schrieb Conor Dooley <conor@kernel.org>:
+> >On Fri, Jan 19, 2024 at 10:28:30AM +0100, AngeloGioacchino Del Regno wro=
+te:
+> >>
+> >> The resets are organized on a per-reset-controller basis, so, the ETHW=
+ARP
+> >> reset controller's first reset is RST_SWITCH, the second one is RST_so=
+mething_else,
+> >> etc. while the first reset of the INFRA reset controller is PEXTP_MAC_=
+SWRST.
+> >>=20
+> >> That's why ETHWARP has a reset index 0 and INFRA also starts at 0.
+> >> I think that the numbering is good as it is, and having one driver sta=
+rt at index 5
+> >> while the other starts at index 12 would only overcomplicate registeri=
+ng the resets
+> >> in each driver, or waste bytes by making unnecessarily large arrays, f=
+or (imo) no
+> >> good reason.
+> >>=20
+> >> This is one header, but it should "in theory" be more than one... so w=
+e would have
+> >> one for each hardware block - but that'd make the reset directory over=
+-crowded, as
+> >> other MediaTek SoCs have got even more resets in even more hardware bl=
+ocks than the
+> >> MT7988. That'd be something like ~4 reset headers per SoC (and will in=
+crease with
+> >> newer ones)...
+> >> ...and this is why we have one binding header for resets.
 > >
-> > Add the IRQC node to RZ/Five (R9A07G043F) SoC DTSI.
->
-> Thanks for your patch!
->
-> > Signed-off-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
->
-> > --- a/arch/riscv/boot/dts/renesas/r9a07g043f.dtsi
-> > +++ b/arch/riscv/boot/dts/renesas/r9a07g043f.dtsi
-> > @@ -50,6 +50,82 @@ &soc {
-> >         dma-noncoherent;
-> >         interrupt-parent =3D <&plic>;
+> >That's okay. The commit message leaves me, who clearly isn't a mediatek
+> >guy, with no information as to why these are not one contiguous set.
+> >IMO being for different reset controllers entirely is fine.
 > >
-> > +       irqc: interrupt-controller@110a0000 {
-> > +               compatible =3D "renesas,r9a07g043f-irqc",
-> > +                            "renesas,rzg2l-irqc";
-> > +               reg =3D <0 0x110a0000 0 0x20000>;
-> > +               #interrupt-cells =3D <2>;
-> > +               #address-cells =3D <0>;
-> > +               interrupt-controller;
-> > +               interrupts =3D <SOC_PERIPHERAL_IRQ(0) IRQ_TYPE_LEVEL_HI=
-GH>,
->
-> As this is the RZ/Five-specific .dtsi file, and not the common base
-> .dtsi, you could avoid using SOC_PERIPHERAL_IRQ() here.
-> I am not sure what is most readable...
->
-Ok, ill switch to the usual way here..
+> >> On the topic of leaving space to allow grouping RST0/RST1: -> No. <-
+> >> The indices have to start from zero and have to be sequential, with no=
+ holes.
+> >
+> >Agreed.
+>=20
+> Hi,
+>=20
+> Just a friendly reminder.
+>=20
+> As far as i understood, Patches are fine so far and do not need any rewor=
+k,right?
 
->+                            <SOC_PERIPHERAL_IRQ(25) IRQ_TYPE_EDGE_RISING>=
-,
-In RZ/Five HW manual this is documented as LEVEL_HIGH and RZ/G2UL this
-is documented as EDGE. I ve internally asked for clarification with
-the HW team. If it's the same for both the SoCs I'll move this node to
-common SoC dtsi and just update the compat string in rz/five specific
-dtsi.
+I suspect I was asking for a commit message that explains why these
+numbers don't continue in sequence. With that,
+Acked-by: Conor Dooley <conor.dooley@microchip.com>
 
 Cheers,
-Prabhakar
+Conor.
 
-> The rest LGTM (pending interrupt names review comments).
->
-> Gr{oetje,eeting}s,
->
->                         Geert
->
-> --
-> Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m6=
-8k.org
->
-> In personal conversations with technical people, I call myself a hacker. =
-But
-> when I'm talking to journalists I just say "programmer" or something like=
- that.
->                                 -- Linus Torvalds
+>=20
+> But i have not seen them picked up yet in linux-next.
+> regards Frank
+
+--7WXHEjVDjRcKaa45
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZbuYiwAKCRB4tDGHoIJi
+0pvVAP93MxxzBvNZvtpY9olFpk98CWj6rUSSZNqZsc6xps/yEAD+Kke0OXNnExQZ
+iR3rlwQAtPweOolLZJS0LiATIRpshgQ=
+=wI+F
+-----END PGP SIGNATURE-----
+
+--7WXHEjVDjRcKaa45--
 
