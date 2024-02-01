@@ -1,114 +1,291 @@
-Return-Path: <devicetree+bounces-37796-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-37797-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id D912D8463C8
-	for <lists+devicetree@lfdr.de>; Thu,  1 Feb 2024 23:48:59 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id D04B88463D2
+	for <lists+devicetree@lfdr.de>; Thu,  1 Feb 2024 23:50:33 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 177C61C2610F
-	for <lists+devicetree@lfdr.de>; Thu,  1 Feb 2024 22:48:59 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id F1C481C21AFB
+	for <lists+devicetree@lfdr.de>; Thu,  1 Feb 2024 22:50:32 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id DD8AB40BF0;
-	Thu,  1 Feb 2024 22:48:50 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 225E245018;
+	Thu,  1 Feb 2024 22:50:30 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="hn4+2HDY"
+	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="fNutw4m8"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from lelv0143.ext.ti.com (lelv0143.ext.ti.com [198.47.23.248])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id ACE0B4643B;
-	Thu,  1 Feb 2024 22:48:50 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 288D61E4AA;
+	Thu,  1 Feb 2024 22:50:27 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.23.248
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1706827730; cv=none; b=EWW+cDNQniT0Jpmtf56KInfPPkoxlJ7w2XBCeOoI4w6mbzknvb0NH7aBsbElDDitWfjhA5yXyh3rO5WAxrkqPyPLTTDiwSXDQhVz0a9HI7d86G3k+RARndokAF+RQEsqXDF/ZtW9uRkL7p+COU0xO1OM1pUzf2JYz+DUh1N/8sA=
+	t=1706827830; cv=none; b=PuhHv7E1+g+2N2qGDXWoqcd3TJjk/hu4n8m33JMW1gjnwqCZotrWuhbkI1J9qWeXw6F2pP91edkT24EucNhtL55Pof0uCuDhtcyoSUTr1gKzvuGhQkKW5/xpYwr6EakJP/gz/ZO3oXLKUviCwrBjpleRo0tgRs2VdMfoL4segew=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1706827730; c=relaxed/simple;
-	bh=e8x2BkkjxYMoP713pO7VA7If6AbOHEDo8GQsevRtfDE=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=EgXnA5Tv/KOwCjKGZCmYg9T8FHFGO+XxaAoC1uh4rNdJ4CLG+VJsVxw2DGpND1TqHoQ3zaxBJbbeaQY6i/DSc4wpP7ZF73zqHaw6HJ7Wt1PYIpFPBkyj7YfJmJF+ZKQE+3+oqmERDI3Xre64+AU51LphfHUXM2uo+IyEHs16T8E=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=hn4+2HDY; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 09752C433F1;
-	Thu,  1 Feb 2024 22:48:48 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1706827730;
-	bh=e8x2BkkjxYMoP713pO7VA7If6AbOHEDo8GQsevRtfDE=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=hn4+2HDY+u4MutWr8+gG2cnzJpisRMQFKWk+rzNs48SqxrZbbZ+CRY8MP+/HkmOob
-	 CXi3dBwibYjzrJSuVfk0MZ6ZYjEBjZ+X7RaN9hwes6S189lkFfGj5wkEnSY02mCJbq
-	 j3p1bPYLAWh7500uWUT/uNd8SzvAfkzOY/jq3J3zkO+6Mq+XJ/4k8jxgKamSTBuMWz
-	 vFdXQ/6J8q15MQrnvFJVWZBRZoSM5AHAIxDv28GdOu4hTNPlBBF7X/hgYIZos4dwJ0
-	 v6GlFScpfhAz8MDzUn4eGQi9mmy4YlZk7fdXQRCPUMhMXKvBtbZhRz7bTUVCOvMjMR
-	 3253Y8EQHpPPQ==
-Date: Thu, 1 Feb 2024 16:48:47 -0600
-From: Rob Herring <robh@kernel.org>
-To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Cc: Svyatoslav <clamor95@gmail.com>, Conor Dooley <conor@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Thierry Reding <thierry.reding@gmail.com>,
-	Jonathan Hunter <jonathanh@nvidia.com>,
-	Kees Cook <keescook@chromium.org>,
-	Maxim Schwalm <maxim.schwalm@gmail.com>, devicetree@vger.kernel.org,
-	linux-tegra@vger.kernel.org, linux-kernel@vger.kernel.org,
-	linux-hardening@vger.kernel.org
-Subject: Re: [PATCH v1 1/4] dt-bindings: vendor-prefixes: add LG Electronics,
- Inc. prefix
-Message-ID: <20240201224847.GA1875713-robh@kernel.org>
-References: <20240131105153.8070-1-clamor95@gmail.com>
- <20240131105153.8070-2-clamor95@gmail.com>
- <20240131-elderly-passover-341b89f65189@spud>
- <656FDD69-D7B1-4910-B848-108CB985AAAC@gmail.com>
- <20240131-tractor-roundish-f6f90b5bd640@spud>
- <BCBF1994-C5AE-4D2B-B645-C3C67BE19000@gmail.com>
- <e77ac513-3f8c-4979-b887-f6b9aff6963f@linaro.org>
+	s=arc-20240116; t=1706827830; c=relaxed/simple;
+	bh=kw6lbtwuXTyE12kjbln/pYyWsx4JGQLotoAUb5+Y44U=;
+	h=From:To:CC:Subject:Date:Message-ID:MIME-Version:Content-Type; b=SBqrGAmUR1vb2WOjgSDuSckc7ktg9a+J3TY+PfkfktlML0/sTO8beIABIS1ddTTUmbkHONd1XRkroXdwKtFJyFKApMcxVuyAi4BB+WlvGwzu9pwEZITWcCHp2x0fzU/L1tT0/ps4J22xdmXBl+IP+cJHpaBQFm6JnR+/GiqH0i0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=fNutw4m8; arc=none smtp.client-ip=198.47.23.248
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
+Received: from fllv0035.itg.ti.com ([10.64.41.0])
+	by lelv0143.ext.ti.com (8.15.2/8.15.2) with ESMTP id 411MoN5i122746;
+	Thu, 1 Feb 2024 16:50:23 -0600
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+	s=ti-com-17Q1; t=1706827823;
+	bh=7bV9UFHFxuctv1bBwYfxErClt4nS+SELS/8SJDM4HcA=;
+	h=From:To:CC:Subject:Date;
+	b=fNutw4m84o66r21RLvfJRNknsFIpLgBaJBHPNxQXGgYWLL9vDRr2A6zZD0v69zR74
+	 hnUdkxAasz71TPks7gbP3p0glc3jgQKPUwvNt1RxawRf1nClV479m/QIbKyV7iL9jq
+	 mnflESIrxh1w4BFHeOmcpSuU/Fmi5mAe5/g0e/Ws=
+Received: from DLEE112.ent.ti.com (dlee112.ent.ti.com [157.170.170.23])
+	by fllv0035.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 411MoNpY094228
+	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+	Thu, 1 Feb 2024 16:50:23 -0600
+Received: from DLEE110.ent.ti.com (157.170.170.21) by DLEE112.ent.ti.com
+ (157.170.170.23) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Thu, 1
+ Feb 2024 16:50:23 -0600
+Received: from lelvsmtp5.itg.ti.com (10.180.75.250) by DLEE110.ent.ti.com
+ (157.170.170.21) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
+ Frontend Transport; Thu, 1 Feb 2024 16:50:23 -0600
+Received: from lelvsmtp6.itg.ti.com ([10.249.42.149])
+	by lelvsmtp5.itg.ti.com (8.15.2/8.15.2) with ESMTP id 411MoNUD109168;
+	Thu, 1 Feb 2024 16:50:23 -0600
+From: Andrew Davis <afd@ti.com>
+To: Nishanth Menon <nm@ti.com>, Vignesh Raghavendra <vigneshr@ti.com>,
+        Tero
+ Kristo <kristo@kernel.org>, Rob Herring <robh+dt@kernel.org>,
+        Krzysztof
+ Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley
+	<conor+dt@kernel.org>
+CC: <linux-doc@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>, Andrew Davis <afd@ti.com>
+Subject: [PATCH v3 1/4] dt-bindings: spi: Convert spi-davinci.txt to YAML
+Date: Thu, 1 Feb 2024 16:50:19 -0600
+Message-ID: <20240201225022.144476-1-afd@ti.com>
+X-Mailer: git-send-email 2.39.2
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <e77ac513-3f8c-4979-b887-f6b9aff6963f@linaro.org>
+Content-Type: text/plain
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 
-On Thu, Feb 01, 2024 at 09:48:28AM +0100, Krzysztof Kozlowski wrote:
-> On 31/01/2024 17:06, Svyatoslav wrote:
-> > 
-> > 
-> > 31 січня 2024 р. 18:02:31 GMT+02:00, Conor Dooley <conor@kernel.org> написав(-ла):
-> >> On Wed, Jan 31, 2024 at 05:30:58PM +0200, Svyatoslav wrote:
-> >>>
-> >>>
-> >>> 31 січня 2024 р. 17:28:49 GMT+02:00, Conor Dooley <conor@kernel.org> написав(-ла):
-> >>>> On Wed, Jan 31, 2024 at 12:51:50PM +0200, Svyatoslav Ryhel wrote:
-> >>>>> Add missing LG Electronics, Inc. prefix used by some older devices.
-> >>>>
-> >>>> Is it? You're only adding these devices now as far as I can see.
-> >>>>
-> >>>
-> >>> Hammerhead (LG Nexus 5)
-> >>
-> >> I have absolutely no idea what this means. Please link me the in-tree
-> >> devicetree of the user (or the patchset adding it).
-> >>
-> >> Thanks,
-> >> Conor
-> >>
-> > 
-> > Sure, here you go
-> > <https://git.kernel.org/pub/scm/linux/kernel/git/stable/linux.git/tree/arch/arm/boot/dts/qcom-msm8974-lge-nexus5-hammerhead.dts?h=linux-6.4.y#n11>
-> > 
-> > So devices I have sent are not the first.
-> 
-> Please look for existing work doing the same...
+Convert spi-davinci.txt to ti,dm6441-spi.yaml.
 
-Took me a minute to parse this.
+Signed-off-by: Andrew Davis <afd@ti.com>
+Reviewed-by: Rob Herring <robh@kernel.org>
+---
 
-I believe what Krzysztof means is look at the link he posted and follow 
-the suggestion there. Fix the one case, lge,hammerhead, to use 'lg'.
+Changes for v3:
+ - Add tags and rebase
 
-Rob
+Changes for v2:
+ - Fix typo s/dm6446/dm6441
+
+ .../devicetree/bindings/spi/spi-davinci.txt   | 100 ------------------
+ .../bindings/spi/ti,dm6441-spi.yaml           |  76 +++++++++++++
+ 2 files changed, 76 insertions(+), 100 deletions(-)
+ delete mode 100644 Documentation/devicetree/bindings/spi/spi-davinci.txt
+ create mode 100644 Documentation/devicetree/bindings/spi/ti,dm6441-spi.yaml
+
+diff --git a/Documentation/devicetree/bindings/spi/spi-davinci.txt b/Documentation/devicetree/bindings/spi/spi-davinci.txt
+deleted file mode 100644
+index f012888656eca..0000000000000
+--- a/Documentation/devicetree/bindings/spi/spi-davinci.txt
++++ /dev/null
+@@ -1,100 +0,0 @@
+-Davinci SPI controller device bindings
+-
+-Links on DM:
+-Keystone 2 - https://www.ti.com/lit/ug/sprugp2a/sprugp2a.pdf
+-dm644x - https://www.ti.com/lit/ug/sprue32a/sprue32a.pdf
+-OMAP-L138/da830 - http://www.ti.com/lit/ug/spruh77a/spruh77a.pdf
+-
+-Required properties:
+-- #address-cells: number of cells required to define a chip select
+-	address on the SPI bus. Should be set to 1.
+-- #size-cells: should be zero.
+-- compatible:
+-	- "ti,dm6441-spi" for SPI used similar to that on DM644x SoC family
+-	- "ti,da830-spi" for SPI used similar to that on DA8xx SoC family
+-	- "ti,keystone-spi" for SPI used similar to that on Keystone2 SoC
+-		family
+-- reg: Offset and length of SPI controller register space
+-- num-cs: Number of chip selects. This includes internal as well as
+-	GPIO chip selects.
+-- ti,davinci-spi-intr-line: interrupt line used to connect the SPI
+-	IP to the interrupt controller within the SoC. Possible values
+-	are 0 and 1. Manual says one of the two possible interrupt
+-	lines can be tied to the interrupt controller. Set this
+-	based on a specific SoC configuration.
+-- interrupts: interrupt number mapped to CPU.
+-- clocks: spi clk phandle
+-          For 66AK2G this property should be set per binding,
+-          Documentation/devicetree/bindings/clock/ti,sci-clk.yaml
+-
+-SoC-specific Required Properties:
+-
+-The following are mandatory properties for Keystone 2 66AK2G SoCs only:
+-
+-- power-domains:	Should contain a phandle to a PM domain provider node
+-			and an args specifier containing the SPI device id
+-			value. This property is as per the binding,
+-
+-Optional:
+-- cs-gpios: gpio chip selects
+-	For example to have 3 internal CS and 2 GPIO CS, user could define
+-	cs-gpios = <0>, <0>, <0>, <&gpio1 30 0>, <&gpio1 31 0>;
+-	where first three are internal CS and last two are GPIO CS.
+-
+-Optional properties for slave devices:
+-SPI slave nodes can contain the following properties.
+-Not all SPI Peripherals from Texas Instruments support this.
+-Please check SPI peripheral documentation for a device before using these.
+-
+-- ti,spi-wdelay : delay between transmission of words
+-	(SPIFMTn.WDELAY, SPIDAT1.WDEL) must be specified in number of SPI module
+-	clock periods.
+-
+-	delay = WDELAY * SPI_module_clock_period + 2 * SPI_module_clock_period
+-
+-Below is timing diagram which shows functional meaning of
+-"ti,spi-wdelay" parameter.
+-
+-             +-+ +-+ +-+ +-+ +-+                           +-+ +-+ +-+
+-SPI_CLK      | | | | | | | | | |                           | | | | | |
+-  +----------+ +-+ +-+ +-+ +-+ +---------------------------+ +-+ +-+ +-
+-
+-SPI_SOMI/SIMO+-----------------+                           +-----------
+-  +----------+ word1           +---------------------------+word2
+-             +-----------------+                           +-----------
+-                                          WDELAY
+-                                <-------------------------->
+-
+-Example of a NOR flash slave device (n25q032) connected to DaVinci
+-SPI controller device over the SPI bus.
+-
+-spi0:spi@20bf0000 {
+-	#address-cells			= <1>;
+-	#size-cells			= <0>;
+-	compatible			= "ti,dm6446-spi";
+-	reg				= <0x20BF0000 0x1000>;
+-	num-cs				= <4>;
+-	ti,davinci-spi-intr-line	= <0>;
+-	interrupts			= <338>;
+-	clocks				= <&clkspi>;
+-
+-	flash: flash@0 {
+-		#address-cells = <1>;
+-		#size-cells = <1>;
+-		compatible = "st,m25p32";
+-		spi-max-frequency = <25000000>;
+-		reg = <0>;
+-		ti,spi-wdelay = <8>;
+-
+-		partition@0 {
+-			label = "u-boot-spl";
+-			reg = <0x0 0x80000>;
+-			read-only;
+-		};
+-
+-		partition@1 {
+-			label = "test";
+-			reg = <0x80000 0x380000>;
+-		};
+-	};
+-};
+diff --git a/Documentation/devicetree/bindings/spi/ti,dm6441-spi.yaml b/Documentation/devicetree/bindings/spi/ti,dm6441-spi.yaml
+new file mode 100644
+index 0000000000000..a71e51fb87e4f
+--- /dev/null
++++ b/Documentation/devicetree/bindings/spi/ti,dm6441-spi.yaml
+@@ -0,0 +1,76 @@
++# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/spi/ti,dm6441-spi.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
++
++title: Davinci SPI Controller
++
++description:
++  SPI controllers on TI Davinci, OMAP-L138, and Keystone2 SoCs.
++
++maintainers:
++  - Andrew Davis <afd@ti.com>
++
++allOf:
++  - $ref: spi-controller.yaml#
++
++properties:
++  compatible:
++    items:
++      - enum:
++          - ti,dm6441-spi # for SPI used on DM644x SoC family
++          - ti,da830-spi # for SPI used on DA8xx SoC family
++          - ti,keystone-spi # for SPI used on Keystone2 SoC family
++
++  reg:
++    maxItems: 1
++
++  interrupts:
++    maxItems: 1
++
++  clock-names:
++    maxItems: 1
++
++  clocks:
++    maxItems: 1
++
++  power-domains:
++    maxItems: 1
++
++  ti,davinci-spi-intr-line:
++    description:
++      Interrupt line used to connect the SPI IP to the interrupt controller
++        within the SoC. Possible values are 0 and 1. Manual says one of the
++        two possible interrupt lines can be tied to the interrupt controller.
++    $ref: /schemas/types.yaml#/definitions/uint32
++    enum: [0, 1]
++
++required:
++  - compatible
++  - reg
++  - interrupts
++  - clocks
++
++unevaluatedProperties: false
++
++examples:
++  - |
++    spi@20bf0000 {
++        #address-cells = <1>;
++        #size-cells = <0>;
++        compatible = "ti,dm6441-spi";
++        reg = <0x20bf0000 0x1000>;
++        interrupts = <338>;
++        clocks = <&clkspi>;
++
++        num-cs = <4>;
++        ti,davinci-spi-intr-line = <0>;
++
++        flash@0 {
++            compatible = "st,m25p32";
++            spi-max-frequency = <50000000>;
++            reg = <0>;
++            ti,spi-wdelay = <8>;
++        };
++    };
+-- 
+2.39.2
+
 
