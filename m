@@ -1,75 +1,102 @@
-Return-Path: <devicetree+bounces-37452-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-37453-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id C39688450D4
-	for <lists+devicetree@lfdr.de>; Thu,  1 Feb 2024 06:40:55 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id C2B2B8450E2
+	for <lists+devicetree@lfdr.de>; Thu,  1 Feb 2024 06:45:50 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 023F61C2199A
-	for <lists+devicetree@lfdr.de>; Thu,  1 Feb 2024 05:40:55 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 88FFD2900E2
+	for <lists+devicetree@lfdr.de>; Thu,  1 Feb 2024 05:45:49 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D95385FB9C;
-	Thu,  1 Feb 2024 05:40:50 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 44E79612F1;
+	Thu,  1 Feb 2024 05:45:44 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=codeconstruct.com.au header.i=@codeconstruct.com.au header.b="K9mqaiBt"
 X-Original-To: devicetree@vger.kernel.org
-Received: from abb.hmeau.com (abb.hmeau.com [144.6.53.87])
+Received: from codeconstruct.com.au (pi.codeconstruct.com.au [203.29.241.158])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B55285FB8B;
-	Thu,  1 Feb 2024 05:40:47 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=144.6.53.87
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A6991612E5;
+	Thu,  1 Feb 2024 05:45:42 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=203.29.241.158
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1706766050; cv=none; b=s4hDyENTtqYDuQm0rigAl7/p3kUyQCNOnP2LzlNLvXgS7DtHAguWQzVLLocfOfeYfYVwFZAViaXsfrgfMi9rpRZ0tmXzF1JfgTrA1XSBjigFJO/AdBMYGFW1jo+q138tLGRKqzxnXwsM/iMyFGkUgHD9bYfQ/Qe4n55LubGEgqY=
+	t=1706766344; cv=none; b=MJS1sp6vE6HlsP74QoWaXQIiYAwZ+VSdJ/BpQSgPWNgop0FAWDgNaKLVPuhQLqU+SEVFeyQHVz8opB58JSAkAcDB9D/lCIktqRbF+3ozFnZeeGi9A0PsmQFh3u+ZGG/vF7wh9kNdV/+smYs7rIiA1g6uDy7wIyJOlV+zNVgbQew=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1706766050; c=relaxed/simple;
-	bh=UEUfiP9mMy88eoTLAvjGfWU3BPt9BNiZ4XiYnzinCUk=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=VxCoInb8Y4oYCh/7NxXG4ZFf4TSxrZolpZiuQYGjkQ+Tp/LLEGn6Xm8XpQfdZIi5RFo9v8j8oRwMbSKIP9yOlJHsPEUivo+RYPmYAtux7FoSYGiPQ4lwlHH/nny6mTwssmDYhXrQVAPvW5YcS7mJg9KbfkTH4Zh4hVZFhwqTkmg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=gondor.apana.org.au; spf=pass smtp.mailfrom=gondor.apana.org.au; arc=none smtp.client-ip=144.6.53.87
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=gondor.apana.org.au
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gondor.apana.org.au
-Received: from loth.rohan.me.apana.org.au ([192.168.167.2])
-	by formenos.hmeau.com with smtp (Exim 4.94.2 #2 (Debian))
-	id 1rVPoQ-008UOM-Al; Thu, 01 Feb 2024 13:40:35 +0800
-Received: by loth.rohan.me.apana.org.au (sSMTP sendmail emulation); Thu, 01 Feb 2024 13:40:47 +0800
-Date: Thu, 1 Feb 2024 13:40:47 +0800
-From: Herbert Xu <herbert@gondor.apana.org.au>
-To: JiaJie Ho <jiajie.ho@starfivetech.com>
-Cc: "David S . Miller" <davem@davemloft.net>,
-	Rob Herring <robh+dt@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	"linux-crypto@vger.kernel.org" <linux-crypto@vger.kernel.org>,
-	"devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-	"linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
-Subject: Re: [PATCH v2 4/5] crypto: starfive: Add sm3 support for JH8100
-Message-ID: <Zbsu39gZn2cGrnew@gondor.apana.org.au>
-References: <20240116090135.75737-1-jiajie.ho@starfivetech.com>
- <20240116090135.75737-5-jiajie.ho@starfivetech.com>
- <ZbNCKrTLXmPcsrSH@gondor.apana.org.au>
- <BJSPR01MB0659C3FE1262DF8CC7F7DA468A43A@BJSPR01MB0659.CHNPR01.prod.partner.outlook.cn>
+	s=arc-20240116; t=1706766344; c=relaxed/simple;
+	bh=jEXaJxk3bfW1i9fWeuWYYX1uSmdxuhTcmO6xBhD+QkU=;
+	h=Message-ID:Subject:From:To:Cc:Date:In-Reply-To:References:
+	 Content-Type:MIME-Version; b=prRbk5fVvVRJcBuXvH0NG4B0OLvsWFL3h5yO5kqUYHnlWTmK0EoPJQXtrJPEc/zZ/8k/2rVM8tAZFaFSx2EOAJg7uA5bCnwLlnPONH+P5132Ce/aSPaVvQ6KmOvmOGd70IQhfK/sRHbkl/ZT1o+YnXkkS2yJdP+ktNQMMRbP4nI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=codeconstruct.com.au; spf=pass smtp.mailfrom=codeconstruct.com.au; dkim=pass (2048-bit key) header.d=codeconstruct.com.au header.i=@codeconstruct.com.au header.b=K9mqaiBt; arc=none smtp.client-ip=203.29.241.158
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=codeconstruct.com.au
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=codeconstruct.com.au
+Received: from [192.168.68.112] (ppp14-2-76-194.adl-apt-pir-bras31.tpg.internode.on.net [14.2.76.194])
+	by mail.codeconstruct.com.au (Postfix) with ESMTPSA id 01E622017A;
+	Thu,  1 Feb 2024 13:45:39 +0800 (AWST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=codeconstruct.com.au; s=2022a; t=1706766340;
+	bh=nKCRisLpHjguaVO1EIS9AvNZ77fEHliVyA2UU02dTc8=;
+	h=Subject:From:To:Cc:Date:In-Reply-To:References;
+	b=K9mqaiBtHwYehzQbf5LaySLWiMCocrRBFE0VQPz2DmpZPkhuPeOFm6ToPACVmmhNd
+	 gT07+TMmNj9qpG8aCnyBBbV8CaBuulaA5srG3xBcXDkX9C0i4WhB/umOKB1qdImekR
+	 Q1r5eP5JX86BpKSstQ4UD7qHS7Kjj+durIOQ7II1spM81ecVoyV/mE3bLCFcE8EL7e
+	 0yV4ayPVVbVpUspAvNhyypdmuq9ughVDFn+F6GH9NJ6tK3IoFBIxLgEtApXyCGpU3E
+	 vt5MiOFY657MRQuIP/nuHajEcqO6edsky6r18lwHEn839OxnhzXngpISCpgZ4O5yQ4
+	 itYW4YT67vOKA==
+Message-ID: <1823c7e3fd460b64c5bab3c1c6623a0a63e073d6.camel@codeconstruct.com.au>
+Subject: Re: [PATCH v5 11/21] ARM: dts: aspeed: yosemite4: Add eeprom for
+ yosemite4 use
+From: Andrew Jeffery <andrew@codeconstruct.com.au>
+To: Delphine CC Chiu <Delphine_CC_Chiu@wiwynn.com>, patrick@stwcx.xyz, Rob
+ Herring <robh+dt@kernel.org>, Krzysztof Kozlowski
+ <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>,
+ Joel Stanley <joel@jms.id.au>
+Cc: devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
+	linux-aspeed@lists.ozlabs.org, linux-kernel@vger.kernel.org
+Date: Thu, 01 Feb 2024 16:15:39 +1030
+In-Reply-To: <20240131084134.328307-12-Delphine_CC_Chiu@wiwynn.com>
+References: <20240131084134.328307-1-Delphine_CC_Chiu@wiwynn.com>
+	 <20240131084134.328307-12-Delphine_CC_Chiu@wiwynn.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+User-Agent: Evolution 3.46.4-2 
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <BJSPR01MB0659C3FE1262DF8CC7F7DA468A43A@BJSPR01MB0659.CHNPR01.prod.partner.outlook.cn>
 
-On Thu, Feb 01, 2024 at 03:01:59AM +0000, JiaJie Ho wrote:
->
-> I am using ifdef so unused codes wouldn't be compiled into the driver for unsupported variant.
-> Is the compiled driver size a concern for such cases? 
+On Wed, 2024-01-31 at 16:41 +0800, Delphine CC Chiu wrote:
+> Add eeprom for yosemite4 use
+>=20
+> Signed-off-by: Delphine CC Chiu <Delphine_CC_Chiu@wiwynn.com>
+> ---
+>  arch/arm/boot/dts/aspeed/aspeed-bmc-facebook-yosemite4.dts | 7 ++++++-
+>  1 file changed, 6 insertions(+), 1 deletion(-)
+>=20
+> diff --git a/arch/arm/boot/dts/aspeed/aspeed-bmc-facebook-yosemite4.dts b=
+/arch/arm/boot/dts/aspeed/aspeed-bmc-facebook-yosemite4.dts
+> index e8d7eb7ff568..f00df378a371 100644
+> --- a/arch/arm/boot/dts/aspeed/aspeed-bmc-facebook-yosemite4.dts
+> +++ b/arch/arm/boot/dts/aspeed/aspeed-bmc-facebook-yosemite4.dts
+> @@ -932,7 +932,7 @@ temperature-sensor@4b {
+>  	};
+> =20
+>  	eeprom@54 {
+> -		compatible =3D "atmel,24c256";
+> +		compatible =3D "atmel,24c128";
 
-The compiler should be eliminating unused code for you.  Is this
-not the case?
+This is changing an existing eeprom, not adding a new one - contrary to
+the commit message. It probably should be in a separate patch?
+Presumably this is also motivated by the change in the schematics? Some
+explanation would be helpful.
 
-Cheers,
--- 
-Email: Herbert Xu <herbert@gondor.apana.org.au>
-Home Page: http://gondor.apana.org.au/~herbert/
-PGP Key: http://gondor.apana.org.au/~herbert/pubkey.txt
+I'm half wondering whether it would have been easier to add a separate
+DTS for the new version of the schematic rather than make all these
+piecemeal changes.
+
+Andrew
+
 
