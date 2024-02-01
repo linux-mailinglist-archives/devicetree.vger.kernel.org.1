@@ -1,175 +1,121 @@
-Return-Path: <devicetree+bounces-37684-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-37685-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 53810845E57
-	for <lists+devicetree@lfdr.de>; Thu,  1 Feb 2024 18:20:22 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id F1CD1845E67
+	for <lists+devicetree@lfdr.de>; Thu,  1 Feb 2024 18:22:44 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id D255E1F26720
-	for <lists+devicetree@lfdr.de>; Thu,  1 Feb 2024 17:20:21 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id A6D8A28D64A
+	for <lists+devicetree@lfdr.de>; Thu,  1 Feb 2024 17:22:43 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 44F8C1649AC;
-	Thu,  1 Feb 2024 17:20:18 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 15E371649C8;
+	Thu,  1 Feb 2024 17:22:29 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="Ddc1zRwV"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="WMndUhjz"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wr1-f50.google.com (mail-wr1-f50.google.com [209.85.221.50])
+Received: from mail-wr1-f47.google.com (mail-wr1-f47.google.com [209.85.221.47])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6DE601649A1;
-	Thu,  1 Feb 2024 17:20:16 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.50
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 399365B05F
+	for <devicetree@vger.kernel.org>; Thu,  1 Feb 2024 17:22:27 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.47
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1706808018; cv=none; b=R9rzeVvflmfI+9chjOJKU2/S/cvSeRjfbRIwA4YCe7FUxpDPR33j+8C2f/YEX+fknia0AMWM6aVlPoX/ykUNW3q1wQPMBrb/6JnvfkI9/NdhDpB1QL7ezHzAQe4mz0egPRkuF5hrWIMQClkZApj1eNa5QXo7Fygv16OysJ4vzPg=
+	t=1706808149; cv=none; b=Nc+d8JPGcMc0qg7pRuHrztVnoJ2yMMDQITtOMg2DacXA6+73M7Gt1mDKXAoK4mn9OT/2LZNYVtljVAF5mkfiSytyta08Na1ijAUYN8h7SbI22iXbphB0vCq9aoqhGuNuiOgiVUBNqnqrd22dUFlEAVuj56if2nKn16hinMnf/+s=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1706808018; c=relaxed/simple;
-	bh=LH/WmLmxZ5NddiycIskFKogm1M0vOHxW+Kgj+afN768=;
-	h=Message-ID:Date:From:To:Cc:Subject:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=BVsDEYrxSoHcqXIO+u+WZR8UOJnaYsWGTboO34UCjdDR+IJfExvtIuJyHaQP75TE3+b0OUJil2F1oT/jKiaaY92Re3ga3jnw+VHExcAd9+8QzkF3cjhq54j9jXY5c0hqVDB+QUuACcOfN5Pzt1jYC/Hi/1SF0ZMMZ8yECoRAStk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=Ddc1zRwV; arc=none smtp.client-ip=209.85.221.50
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-wr1-f50.google.com with SMTP id ffacd0b85a97d-33b17fd046fso476322f8f.1;
-        Thu, 01 Feb 2024 09:20:16 -0800 (PST)
+	s=arc-20240116; t=1706808149; c=relaxed/simple;
+	bh=52w61SL9U4SK4WqY0kMb5Iy12v+xHbJ4FGKmp75wAto=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=vFst0A/3vCp39RJekbiaRQNKBprMcyz7OsSam5G/woV4S2LHEIjLLiobczLs7srpgVm0zMEO7T/pt0mrYca93UnjE0JEgtnNqC44BljtcJRAeC/DJY/+4nGmbwgf17tFRvpuW/oEBj2qgwloUQ8FwmHq/47M9ZwacskkNce7bPw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=WMndUhjz; arc=none smtp.client-ip=209.85.221.47
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-wr1-f47.google.com with SMTP id ffacd0b85a97d-33aea66a31cso683172f8f.1
+        for <devicetree@vger.kernel.org>; Thu, 01 Feb 2024 09:22:26 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1706808014; x=1707412814; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references:subject:cc
-         :to:from:date:message-id:from:to:cc:subject:date:message-id:reply-to;
-        bh=0AZcHUGcaVEghSUh9pVwwvnRjfi5Kbw3FRUGFJNp33k=;
-        b=Ddc1zRwVkPrFKw7piHv22PMo9/bCXLZtMQiJnsERU5NFE6M/DOiMugbbAjc5VenWUQ
-         fSBS8uWmZDKfx+cNSfOAeVOsqFJaoCF4x7m0G8vLc1K9N6DPI1qOd6qx2yIXtYZ9mASW
-         wwn6AnkIu2nWohjPs+yam9a3MKjcOakT/i9vyqaGuEUbXr5us9t3wIDGk6GfIHwdlp7Q
-         vexxqohOFlL6Oj2NBAVSxJzg6WmFrsQT+HMGZyX0W0g3NvWxzUVbgiweaO9pCspShNAy
-         /ppXxvg96S7ZgLsRVFK3P2ip4aHoC6CwSWPNuJY6PG4Aea4Gp5NeBhm+JfJnB43l0qFD
-         T2aQ==
+        d=linaro.org; s=google; t=1706808145; x=1707412945; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=Olzs5jHBV5th4bf/0xR3cFxQ7USKSVC7J+wiOfI31K0=;
+        b=WMndUhjzW9TQPcwgkLtSGOWirOgslP/EJhR0OoeAAP1FsB244HQjLdRuM2GwSh0klD
+         LBETlFV1GPHarU9wLt5xQPWt3QIhhoQ/3+oFjJByZymuhKl9/nryjxTXnL8oMhQPitj6
+         BZ6gEumtyAUjj2pB2ZvG21dlyC70X1jYWUp6vrtmKadgY/kqnZ0M2ulsyQqBuOHXMYV0
+         dKXbgfE7cb3WAAuQu/PVIEupH237b0zwQ9vA+LQ3wmQZjoYC0qfDesbarI2u5I9aSz8N
+         G5UFQdRGen4X+c5zEDAGp1V2TXsq8lopatBC0XfHPn8LWX4Ia+dhuljTpg2WTybBtUUP
+         sUJw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1706808014; x=1707412814;
-        h=in-reply-to:content-disposition:mime-version:references:subject:cc
-         :to:from:date:message-id:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=0AZcHUGcaVEghSUh9pVwwvnRjfi5Kbw3FRUGFJNp33k=;
-        b=aNPnGGXvOiJB9Ft50Bz+OizQhGmjxojHhJOYranZD9VctdFQuLIRmXfOHJMY64E7sW
-         /aq96OQid6qpUqbSMsdwL4hLU78KTEMrY5muXrJHAR0msMQlD2xmgBaUoxw7V6o6V4qu
-         xYRInWscgBfqw8NLv7ExSqz/PeYJLlzUWI2yY2yReZEAWnuDhgJy8WWI0M/k/vejGWYC
-         SiOzipPXnikdP9fpp1WsTGGNQ3v8sOiuzkcDd/6XUTPANro+Lg3Z2kabGbiqPnTHkmA8
-         kpqPq2C210Cn1MX1otQMJTRzCN4Ve8rwWfxamxPmplvzOO6azwxxuQbUYzMT1pz/2iOn
-         8Yng==
-X-Gm-Message-State: AOJu0YxebYH/Td5bWt4Qoz9YEpjUZWlbP+prUbqvNPpC8fGs27xm/exW
-	nuS+YIbx20cHgW+1/4iRAZUHIiHndQMbCEX+bizK36lpTO8qwStn
-X-Google-Smtp-Source: AGHT+IFN1KFpDh1vr3wtQw4Rq4JRxS6JjigiP3HSep4uIBf6R15MxBW8NBhFRaWoh+4CexLAnmTucA==
-X-Received: by 2002:a5d:58ee:0:b0:33b:1d07:e5d with SMTP id f14-20020a5d58ee000000b0033b1d070e5dmr67618wrd.13.1706808014309;
-        Thu, 01 Feb 2024 09:20:14 -0800 (PST)
-X-Forwarded-Encrypted: i=0; AJvYcCXiMptxujpw0Uavr69kijioTH/QpH4oeYK5ZXjekdKcnmWbK224KFYbhKIOukjBf2usPaSBCPAXm7B34kxcBsO3gJdqgHF1RBs+mcvhrZNItaP7n9zf4KzdtiNjZ+CN4IQ/Q0O3jfPxHn8pF7748J6n4uHzLpHg9mAMN73EyNUwEAFiHB2mS5FYfW/BhxywyCEhB648dcAZmyvgeW2gzLB2iiXHkHm9HgppgHuYn7S+ZSTargk9uSr/AsZQzqyR164bla+fXOsH1QVI9aMdEeymDDCsEl+qztlYabRJLUoQRJB+fGyQfw2/f1RjuGMpUAwfgU2+3dKK9LYEF8VURqTGQSkF6czZei5W5N/zDX7ibwg2y7QvP0qCIYu5/SneZqnqUVdzpfSGSy5YF9Bc4zkojdAIUYxRrMp1YbwBtnCmsmu9SrQi2etiZaNT6LSHm78CiMTc5RX2gl9A8HKeQvYvCtTR7AHKbz/aGo9wjMdp9GBP4I+sQcZPo1wm7sXTAzwh+Sp2E3NiTzXdJ6jrVO7c2iGbPHtZu5CXB1CWvv9tJk/nxSrGZpDwNOIlbv9/xJVwA7yEfMOkAPdHcYVeRY1aV+jQ7aaABg==
-Received: from Ansuel-xps. (93-34-89-13.ip49.fastwebnet.it. [93.34.89.13])
-        by smtp.gmail.com with ESMTPSA id bu16-20020a056000079000b0033b0797cc14sm4263915wrb.51.2024.02.01.09.20.13
+        d=1e100.net; s=20230601; t=1706808145; x=1707412945;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=Olzs5jHBV5th4bf/0xR3cFxQ7USKSVC7J+wiOfI31K0=;
+        b=mXsTLL2r7xKtSuhUDQa9KszW+s7f1qzEElxRoFw2qCRMvqpAjJWMeVDR/z/U7B2Z1R
+         ruc6ASv6SoV1YZY7WFepiLrX0xW3Anqb7fpsv5GqxXJ5PY/anGqCfiFtSQTQxJWXY1SD
+         Sez2eSJIHjjsAzj3sVViI/4dtClZG6qrGW4Pah4n432gOZaImQJYL8BXIVGzjUU7E0tw
+         jrMPe3SybyZavxd8OLNxMVB1pjDJph7NLUKwiRVLh41DBzdAWZqlwARHcGfSlkwFiW9R
+         RDa/P4E2M+rAgtFz4d3Gn04YbVLuOqLrGManjDgnNngZmr95+brI8fTehZ+9wMVusxzA
+         jc+Q==
+X-Gm-Message-State: AOJu0YzoXGn5UdL9mnv+tUXe+ydsHSef31syincRicS9/PBdIeq50X/j
+	+BTOewcysBfQUzFMCi7h6DYjYTg6txO+8B4M0OQ2l4ySd1BXW0oVYLckMSGFn/c=
+X-Google-Smtp-Source: AGHT+IFpmBY54yA+GRbMJhIIQPcZ3OaDrFdyCo+12N3dtJyiP8+y6KOZsPaHG6a6biOb79hAePH7Dg==
+X-Received: by 2002:a5d:610b:0:b0:337:9d3b:c180 with SMTP id v11-20020a5d610b000000b003379d3bc180mr4025840wrt.4.1706808145483;
+        Thu, 01 Feb 2024 09:22:25 -0800 (PST)
+X-Forwarded-Encrypted: i=0; AJvYcCXAyBCUGeofnISmWVvuayh3uWyPjp7ReG6k3Z7Cg4Ixith4cEy/8G9skYPPoXvjaLvnvvELl90LT/8UIpCz+FIb2gNldRtIzSIMfa3zk7ldRWyj2S/GtzBd0x+YuoVwvsOVeL2PGmo0wEhKpRxxmj/ldV0D4/uICodrORh3mxhdKB7LhY9oZtv4MDLlmsfkWgnIvH3MWc7BIF1NWvp4PR8cNidJKPAfyY30tqwaMQdEMX3vopapymYiwLjgaF0+XwjKsKzGej1zgHEy3qOZJMot+uKeLK8Fk5xv+Ky6qoeoG3vdIyBY7s3v/TpMUCL9k/Y+Q2a/Zktg5Ubhfb1cz2arRAc06pjbJ2+UBOprShdj3dGyr5U9/EdtAmwNri8XqoOBAxt0PgH6XrYoVvRuvvWomLMPJkVwkb1ahmIujePs+3YQtV72NoeQHmvbuUQBOR4EhVAv4d+iD44CS3frSGvzy2SuoeT0IoKkEdmoosiBqeAEumgoRDYMGlktdk+hDmpW+FT/YtCfdh7hTG/FyXjq1jqQOdKhH29mOhxRvqd1m0BzPDYACSx/if5FW+tylTs=
+Received: from tux.Home ([2a02:c7c:7213:c700:e992:6869:474c:a63f])
+        by smtp.gmail.com with ESMTPSA id f15-20020a056000036f00b00337d84efaf7sm16733582wrf.74.2024.02.01.09.22.24
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 01 Feb 2024 09:20:14 -0800 (PST)
-Message-ID: <65bbd2ce.050a0220.5ff09.69d5@mx.google.com>
-X-Google-Original-Message-ID: <ZbvSyo_-1iTc4pD1@Ansuel-xps.>
-Date: Thu, 1 Feb 2024 18:20:10 +0100
-From: Christian Marangi <ansuelsmth@gmail.com>
-To: Antoine Tenart <atenart@kernel.org>
-Cc: Andrew Lunn <andrew@lunn.ch>, Bjorn Andersson <andersson@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	"David S. Miller" <davem@davemloft.net>,
-	Eric Dumazet <edumazet@google.com>,
-	Frank Rowand <frowand.list@gmail.com>,
-	Heiner Kallweit <hkallweit1@gmail.com>,
-	Jakub Kicinski <kuba@kernel.org>,
-	Konrad Dybcio <konrad.dybcio@linaro.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Paolo Abeni <pabeni@redhat.com>, Rob Herring <robh+dt@kernel.org>,
-	Robert Marko <robert.marko@sartura.hr>,
-	Russell King <linux@armlinux.org.uk>, devicetree@vger.kernel.org,
-	linux-arm-msm@vger.kernel.org, linux-kernel@vger.kernel.org,
-	netdev@vger.kernel.org
-Subject: Re: [net-next PATCH v5 2/9] net: phy: add support for scanning PHY
- in PHY packages nodes
-References: <20240201151747.7524-1-ansuelsmth@gmail.com>
- <20240201151747.7524-3-ansuelsmth@gmail.com>
- <170680473689.4979.1991415008659281513@kwain>
+        Thu, 01 Feb 2024 09:22:25 -0800 (PST)
+From: Alexey Klimov <alexey.klimov@linaro.org>
+To: krzysztof.kozlowski@linaro.org,
+	alim.akhtar@samsung.com,
+	linux-samsung-soc@vger.kernel.org,
+	semen.protsenko@linaro.org,
+	peter.griffin@linaro.org,
+	robh+dt@kernel.org,
+	krzysztof.kozlowski+dt@linaro.org,
+	conor+dt@kernel.org
+Cc: devicetree@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	linux-kernel@vger.kernel.org,
+	klimov.linux@gmail.com,
+	kernel-team@android.com,
+	tudor.ambarus@linaro.org,
+	andre.draszik@linaro.org,
+	saravanak@google.com,
+	willmcvicker@google.com,
+	arnd@arndb.de
+Subject: [PATCH 1/4] dt-bindings: hwinfo: samsung,exynos-chipid: add gs101-chipid compatible
+Date: Thu,  1 Feb 2024 17:22:21 +0000
+Message-ID: <20240201172224.574238-1-alexey.klimov@linaro.org>
+X-Mailer: git-send-email 2.43.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <170680473689.4979.1991415008659281513@kwain>
+Content-Transfer-Encoding: 8bit
 
-On Thu, Feb 01, 2024 at 05:25:36PM +0100, Antoine Tenart wrote:
-> Quoting Christian Marangi (2024-02-01 16:17:28)
-> > 
-> > +static int __of_mdiobus_parse_phys(struct mii_bus *mdio, struct device_node *np,
-> > +                                  int base_addr, bool *scanphys)
-> > +{
-> > +       struct device_node *child;
-> > +       int addr, rc = 0;
-> > +
-> > +       /* Loop over the child nodes and register a phy_device for each phy */
-> > +       for_each_available_child_of_node(np, child) {
-> > +               if (of_node_name_eq(child, "ethernet-phy-package")) {
-> > +                       rc = of_property_read_u32(child, "reg", &addr);
-> > +                       if (rc)
-> > +                               goto exit;
-> 
-> This means a PHY package node w/o a reg property will prevent all other
-> PHYs in the same parent node to be found?
->
+Add "google,gs101-chipid" compatible string to binding document.
 
-Since this is something new, would it be a problem to make it mandatory
-to define a reg? (And return error if we find something? Or print a
-warn?)
+Signed-off-by: Alexey Klimov <alexey.klimov@linaro.org>
+---
+ .../devicetree/bindings/hwinfo/samsung,exynos-chipid.yaml        | 1 +
+ 1 file changed, 1 insertion(+)
 
-> > +
-> > +                       rc = __of_mdiobus_parse_phys(mdio, child, addr, scanphys);
-> 
-> You might want to save passing scanphys down, PHYs w/o a reg property in
-> a PHY package won't be "auto scanned" later.
-> 
-
-I might be confused by this, but isn't this already done? (passing
-scanphys in each recursive call so we can set it to true if needed?)
-
-Also I think the scanphys should be skipped for the PHY package
-(assuming we make reg mandatory, it would be an error condition and
-should not be handled?)
-
-> > diff --git a/drivers/net/phy/mdio_bus.c b/drivers/net/phy/mdio_bus.c
-> > index afbad1ad8683..7737d0101d7b 100644
-> > --- a/drivers/net/phy/mdio_bus.c
-> > +++ b/drivers/net/phy/mdio_bus.c
-> > @@ -459,20 +459,33 @@ EXPORT_SYMBOL(of_mdio_find_bus);
-> >   * found, set the of_node pointer for the mdio device. This allows
-> >   * auto-probed phy devices to be supplied with information passed in
-> >   * via DT.
-> > + * If a PHY package is found, PHY is searched also there.
-> >   */
-> > -static void of_mdiobus_link_mdiodev(struct mii_bus *bus,
-> > -                                   struct mdio_device *mdiodev)
-> > +static int of_mdiobus_find_phy(struct device *dev, struct mdio_device *mdiodev,
-> > +                              struct device_node *np, int base_addr)
-> >  {
-> > -       struct device *dev = &mdiodev->dev;
-> >         struct device_node *child;
-> >  
-> > -       if (dev->of_node || !bus->dev.of_node)
-> > -               return;
-> > +       for_each_available_child_of_node(np, child) {
-> > +               int addr, ret;
-> >  
-> > -       for_each_available_child_of_node(bus->dev.of_node, child) {
-> > -               int addr;
-> > +               if (of_node_name_eq(child, "ethernet-phy-package")) {
-> > +                       ret = of_property_read_u32(child, "reg", &addr);
-> > +                       if (ret)
-> > +                               return ret;
-> 
-> of_node_put
-
+diff --git a/Documentation/devicetree/bindings/hwinfo/samsung,exynos-chipid.yaml b/Documentation/devicetree/bindings/hwinfo/samsung,exynos-chipid.yaml
+index 780ccb5ee9b4..b1d933808b6c 100644
+--- a/Documentation/devicetree/bindings/hwinfo/samsung,exynos-chipid.yaml
++++ b/Documentation/devicetree/bindings/hwinfo/samsung,exynos-chipid.yaml
+@@ -13,6 +13,7 @@ properties:
+   compatible:
+     oneOf:
+       - enum:
++          - google,gs101-chipid
+           - samsung,exynos4210-chipid
+           - samsung,exynos850-chipid
+       - items:
 -- 
-	Ansuel
+2.43.0
+
 
