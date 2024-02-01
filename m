@@ -1,52 +1,52 @@
-Return-Path: <devicetree+bounces-37454-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-37455-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 284A38450EA
-	for <lists+devicetree@lfdr.de>; Thu,  1 Feb 2024 06:47:48 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 284E7845100
+	for <lists+devicetree@lfdr.de>; Thu,  1 Feb 2024 06:49:59 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id D1F7D288FC9
-	for <lists+devicetree@lfdr.de>; Thu,  1 Feb 2024 05:47:46 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 7ACC6B2A930
+	for <lists+devicetree@lfdr.de>; Thu,  1 Feb 2024 05:49:56 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B03457D3E6;
-	Thu,  1 Feb 2024 05:47:07 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A766A7763F;
+	Thu,  1 Feb 2024 05:49:49 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=codeconstruct.com.au header.i=@codeconstruct.com.au header.b="csrgW1yR"
+	dkim=pass (2048-bit key) header.d=codeconstruct.com.au header.i=@codeconstruct.com.au header.b="Tkjh9udp"
 X-Original-To: devicetree@vger.kernel.org
 Received: from codeconstruct.com.au (pi.codeconstruct.com.au [203.29.241.158])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2884878B7D;
-	Thu,  1 Feb 2024 05:47:05 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1ED6469D07;
+	Thu,  1 Feb 2024 05:49:47 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=203.29.241.158
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1706766427; cv=none; b=fDu65c8kR+GqeA8FS8RPUsqvAuJI5pPuW8j0asRpACTXmjDEs2HtR1Z5pm82fForpEhZCLK1aw3/s0Mh32DUMT2cLxSA4mip7qbwrWMMvAxG10UyPY8RJkpTs9I34cOtb8gC/SwwdjyE3H16TGUUSQTjZptpJs1yLcknrZdwME0=
+	t=1706766589; cv=none; b=DjLLRyu8tFN05bnvVN8wihMy98WmfiaHeVjtHYgITVoW5pedwnaiKJDr+zOX14vIRH6nCi0nYrKyJlT4SiLdzeQ/H39VmnmcGNv3TbvSrjvwRxAX8EP6+VUhkCwRA1Gt3nIyM9sYyCg8Y6+hDwfAtTGqgc/X8TmENoEfenfhqEU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1706766427; c=relaxed/simple;
-	bh=9YqF9j5eXI5m6rmyqlPkPEUF6K4pUnYhH1ZqLxBaF7o=;
+	s=arc-20240116; t=1706766589; c=relaxed/simple;
+	bh=fhdSlQmPjsoJq5ND6PaKO/AKnlEbNn+p1RX7PH3gnk8=;
 	h=Message-ID:Subject:From:To:Cc:Date:In-Reply-To:References:
-	 Content-Type:MIME-Version; b=SIIy4rYKw/52FK1lic0UGcObXUx8vsL50HcB6bOaH/O2jQVkspuHIBYZiZw7t+ItoT35PApbdPe05VgJyCtjd8uzDt88HplXUvs6Csd7eWzIXC2hzZ5UHkX4WUlP2G1TtnbvhEP71A20VI41zNA8Xa/EAy9poJtntNThbQqZxVU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=codeconstruct.com.au; spf=pass smtp.mailfrom=codeconstruct.com.au; dkim=pass (2048-bit key) header.d=codeconstruct.com.au header.i=@codeconstruct.com.au header.b=csrgW1yR; arc=none smtp.client-ip=203.29.241.158
+	 Content-Type:MIME-Version; b=V1NGM0yvhRjFIgCz8gzYLIM+WOLgN69xRPqidZ2+2K8GyTQat7NX2jYt6WcimP4X8ZyZiVZE0/o7uu7oqLWOggUpCzukcXIApND7Fxk2No4tYaAeSe/T1u40NtnZMhnx56NMEjOoClG0FQQDpz9AI3B6ZZaBQcp3IBFBW1D9FMc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=codeconstruct.com.au; spf=pass smtp.mailfrom=codeconstruct.com.au; dkim=pass (2048-bit key) header.d=codeconstruct.com.au header.i=@codeconstruct.com.au header.b=Tkjh9udp; arc=none smtp.client-ip=203.29.241.158
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=codeconstruct.com.au
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=codeconstruct.com.au
 Received: from [192.168.68.112] (ppp14-2-76-194.adl-apt-pir-bras31.tpg.internode.on.net [14.2.76.194])
-	by mail.codeconstruct.com.au (Postfix) with ESMTPSA id 5AD962017A;
-	Thu,  1 Feb 2024 13:47:03 +0800 (AWST)
+	by mail.codeconstruct.com.au (Postfix) with ESMTPSA id 74CDE2017A;
+	Thu,  1 Feb 2024 13:49:45 +0800 (AWST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=codeconstruct.com.au; s=2022a; t=1706766424;
-	bh=9YqF9j5eXI5m6rmyqlPkPEUF6K4pUnYhH1ZqLxBaF7o=;
+	d=codeconstruct.com.au; s=2022a; t=1706766586;
+	bh=fhdSlQmPjsoJq5ND6PaKO/AKnlEbNn+p1RX7PH3gnk8=;
 	h=Subject:From:To:Cc:Date:In-Reply-To:References;
-	b=csrgW1yRPwbVDkKYJ7CMeWN+mWAlUmM356hIDTCiFgUDp4/HQ9r+vT6eIscwZhYNC
-	 EKXplHCg+ehFXNcjmNR4gtCem+OTOeybhmJgt0pGj3YZkV3WVMoKs8qB8V4uc88wa1
-	 +et5YT+jlVwNqPufhum88ESnb0gEFaR8gaDwelOrKzn1Ul11wuQqBWa89yYmNA08W/
-	 VV4w1JqBc3pzqc30almb5pN1Kti9hZtDaUlBePL8jnklbXjZ8//EaGBZBCyDhz1XDk
-	 s7WBVYwmwNanBmQCrrDjiswgfbrJjgU7RZEr3se4DEsCRczSHvV9MtbSzTAdm0X5+s
-	 1c3VLYo7nxKPQ==
-Message-ID: <85fd9e31695c343121d5f6ad2cbebe7d8d8490b2.camel@codeconstruct.com.au>
-Subject: Re: [PATCH v5 15/21] ARM: dts: aspeed: yosemite4: Remove idle state
- setting for yosemite4 NIC connection
+	b=Tkjh9udpXYVin4F6L1ot8Jzzzjq8u5kBY4SFX6xDc//wDW10NwBjBs2B1yIasWTkj
+	 dEHtmn9YSt4L7lV5SNBZE79QRmOWAhephWBsJlE48j7IDt8KaapqoZodJI6QTPYbh0
+	 0r1VhqD2xagfFzWkZl31YuqAnduTNkukPJQIyRn0pHxal2fL2dZIzENXg481LLnx6h
+	 b+yd8y+qKkpbYm6GPY0VxOAbMw+akg6YxQ7wjf02scK2H3Y+GHrp3c3x5IPUZ9NhZz
+	 aN6wY5U/1yVFoFKvc53uzsYYffgWWIaY4o7+tsZzbD9Vr0U810R88Nif9JV7if7v83
+	 0ipsspOETkscg==
+Message-ID: <345345fd4475d24a015a37881eda0a4b90892179.camel@codeconstruct.com.au>
+Subject: Re: [PATCH v5 16/21] ARM: dts: aspeed: yosemite4: Initialize bmc
+ gpio state
 From: Andrew Jeffery <andrew@codeconstruct.com.au>
 To: Delphine CC Chiu <Delphine_CC_Chiu@wiwynn.com>, patrick@stwcx.xyz, Rob
  Herring <robh+dt@kernel.org>, Krzysztof Kozlowski
@@ -54,10 +54,10 @@ To: Delphine CC Chiu <Delphine_CC_Chiu@wiwynn.com>, patrick@stwcx.xyz, Rob
  Joel Stanley <joel@jms.id.au>
 Cc: devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
 	linux-aspeed@lists.ozlabs.org, linux-kernel@vger.kernel.org
-Date: Thu, 01 Feb 2024 16:17:02 +1030
-In-Reply-To: <20240131084134.328307-16-Delphine_CC_Chiu@wiwynn.com>
+Date: Thu, 01 Feb 2024 16:19:44 +1030
+In-Reply-To: <20240131084134.328307-17-Delphine_CC_Chiu@wiwynn.com>
 References: <20240131084134.328307-1-Delphine_CC_Chiu@wiwynn.com>
-	 <20240131084134.328307-16-Delphine_CC_Chiu@wiwynn.com>
+	 <20240131084134.328307-17-Delphine_CC_Chiu@wiwynn.com>
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 User-Agent: Evolution 3.46.4-2 
@@ -69,9 +69,11 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 
 On Wed, 2024-01-31 at 16:41 +0800, Delphine CC Chiu wrote:
-> Remove idle state setting for yosemite4 NIC connection
+> Initialize bmc gpio state
 
-But why? Is this fixing a bug? What is the motivation?
+Why is it important to specify this in the devicetree? What's the
+motivation?
 
 Andrew
+
 
