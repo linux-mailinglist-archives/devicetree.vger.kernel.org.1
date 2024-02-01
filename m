@@ -1,138 +1,174 @@
-Return-Path: <devicetree+bounces-37603-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-37605-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 96226845898
-	for <lists+devicetree@lfdr.de>; Thu,  1 Feb 2024 14:13:31 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 891BD8458C7
+	for <lists+devicetree@lfdr.de>; Thu,  1 Feb 2024 14:23:00 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 533E828803F
-	for <lists+devicetree@lfdr.de>; Thu,  1 Feb 2024 13:13:30 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id ABE5A1C237C2
+	for <lists+devicetree@lfdr.de>; Thu,  1 Feb 2024 13:22:59 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5279E5D47C;
-	Thu,  1 Feb 2024 13:12:32 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id EC1EB5336C;
+	Thu,  1 Feb 2024 13:22:56 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b="BOlPkzmo"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="SwETjeiI"
 X-Original-To: devicetree@vger.kernel.org
-Received: from vps0.lunn.ch (vps0.lunn.ch [156.67.10.101])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-oi1-f178.google.com (mail-oi1-f178.google.com [209.85.167.178])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BF0875D46A;
-	Thu,  1 Feb 2024 13:12:29 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=156.67.10.101
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3432E86621;
+	Thu,  1 Feb 2024 13:22:54 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.178
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1706793152; cv=none; b=uIH1Bx5DjrZ6pNitypEge1phvBiDfIwcDZmvZAaxJDx9KGJUgV1YdzEQAN8JmiLCOS2Ngp+eJ87A2ldwhy5c/NoZyD9z/tOjUJ1jxZ9ZM9XiyJIm3rElrW87zaePIDKQZkhF68V62qztENQmQPJnUk7wnnmUiwMd3buHal30GEA=
+	t=1706793776; cv=none; b=kbdytWw9noin1Pnvlr8yEBhlO1C+Po844yeUgwkNu5ZR4GnEAU9rXvP1cMfF9qI1sQUOPaw1e652TLn535NgaOzWm3qq/n9gsUQYD6u4nRo8NJvsXYQ6g8x3zBJqBLn7PhqX1cYhGNx7a8kkk1BQ8BjJOVnKYk6B7nTqF3M+h3Y=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1706793152; c=relaxed/simple;
-	bh=/I3LOE7Iy4GWVmhyKaKeXXQqboCCKJZr0DzFVtVFQ18=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=GkobEfbp95DZECJy0cfUhsDFML3bAQ696BQ8znyF4iQ1JBJnYyuD3NvMYD2iui9gFWPYsTV/AMNy6Pbh9zX0MF7oOQ5y3MhV0WF/iZrthQw4Os8ZaH6dnEutRSt647SFCdUaBUrMmoUU6ve2xo3IiyAJ4xl4rBRZL21tewyPCro=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch; spf=pass smtp.mailfrom=lunn.ch; dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b=BOlPkzmo; arc=none smtp.client-ip=156.67.10.101
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=lunn.ch
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
-	s=20171124; h=In-Reply-To:Content-Transfer-Encoding:Content-Disposition:
-	Content-Type:MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:From:
-	Sender:Reply-To:Subject:Date:Message-ID:To:Cc:MIME-Version:Content-Type:
-	Content-Transfer-Encoding:Content-ID:Content-Description:Content-Disposition:
-	In-Reply-To:References; bh=ourWqt0U9KzwsZ13Pf+R3eqNLW9t0wZoaANlJWDjL/4=; b=BO
-	lPkzmoaz/mHfd0lTIMD5LjQQgNNUR2u1V5xfpsGvCHutTAqG1dc5H98ZLd8WIOQaMznZP2bcASWuq
-	r2Kp34QdGhzoMvAxrbMYGPaQ21eCZbJfzD6XsJl4pYZSK3rKRpLAz5gNUSRDmpsT1a3/VKLUNueSc
-	1EDowPp1gKvBpTg=;
-Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
-	(envelope-from <andrew@lunn.ch>)
-	id 1rVWrO-006fvY-KU; Thu, 01 Feb 2024 14:12:06 +0100
-Date: Thu, 1 Feb 2024 14:12:06 +0100
-From: Andrew Lunn <andrew@lunn.ch>
-To: Vineeth Karumanchi <vineeth.karumanchi@amd.com>
-Cc: krzysztof.kozlowski+dt@linaro.org, nicolas.ferre@microchip.com,
-	claudiu.beznea@tuxon.dev, davem@davemloft.net, edumazet@google.com,
-	kuba@kernel.org, pabeni@redhat.com, robh+dt@kernel.org,
-	conor+dt@kernel.org, linux@armlinux.org.uk, netdev@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	git@amd.com
-Subject: Re: [PATCH net-next 2/3] dt-bindings: net: cdns,macb: Add
- wol-arp-packet property
-Message-ID: <fb8f56b1-c961-478d-ac3a-8136408771d3@lunn.ch>
-References: <20240130104845.3995341-1-vineeth.karumanchi@amd.com>
- <20240130104845.3995341-3-vineeth.karumanchi@amd.com>
- <824aad4d-6b05-4641-b75d-ceaa08b0a4e8@lunn.ch>
- <09ce2e81-01cc-431f-8acb-076a54e5a7e6@amd.com>
- <9b4a2c23-5a96-45eb-9bdf-cefc99f25fec@lunn.ch>
- <7a063832-e1b5-42df-92cf-66486d4feecb@amd.com>
+	s=arc-20240116; t=1706793776; c=relaxed/simple;
+	bh=vokLkeIidowuajHipMR4mkfqPi0pW5c7oROD0jamceE=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=MjVZztgC1l9aHiOIhtl+NvXcB8iJApLj+qaHdAoB/afd9xpZHF+yDAZOuRMZFrbQe1NpM5xzMWby1yNCd8eTb82I39ec3aNJCf/k187/F2L8k08euWTlOfWdgZyf2ZcKUNgU57m9tIvT8ZR656llNnb5w4fuoGHyOFPpWjP0Frg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=roeck-us.net; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=SwETjeiI; arc=none smtp.client-ip=209.85.167.178
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=roeck-us.net
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-oi1-f178.google.com with SMTP id 5614622812f47-3bd72353d9fso727637b6e.3;
+        Thu, 01 Feb 2024 05:22:54 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1706793774; x=1707398574; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
+         :to:content-language:subject:user-agent:mime-version:date:message-id
+         :sender:from:to:cc:subject:date:message-id:reply-to;
+        bh=a8m6p4R/qWa3Oc2CGmk5cl/vlFYK+h6Kdog3tpCIG6g=;
+        b=SwETjeiI4LyuJPEsepSaHp/c/xdazcIzRb0SOyPaad4KZtKHeF0D4N79lxALo1HxQ3
+         0r8gHhHBU2rM3IHJMeLHY+S4Y0wZFbKWkhLmcn+CVtT2Q++SVwtyBV4Yl8wJiIuJ9M1f
+         W3YATnztl3qi/dtny04Kter0VZvomzngXxastivowQeIbsddCpG0OGuuCmspfuFbsom9
+         NF1PWDY2zea1iL+G/+03gShnR8WF13iMVsZPRJmoVFuiRJnNOZ/oQQey4ew1hFJKFRrM
+         kX7ibXNK7Aqn7EONYHV9iSjPUuXfm/YlFgc+bTTAEC4oPHhBOyZO/NnCm5SCakJI9aHa
+         fx+Q==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1706793774; x=1707398574;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
+         :to:content-language:subject:user-agent:mime-version:date:message-id
+         :sender:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=a8m6p4R/qWa3Oc2CGmk5cl/vlFYK+h6Kdog3tpCIG6g=;
+        b=Mazqkex0rKOk3sYzd14a4pOwy7tqe1pkwXqAV9XAWyp0UG41cDE+GHSiDBGhDqK/3P
+         otjIiOY65XFIWlPCkoe0rOjZebR4C3ZVgSrfiM+smzmq9yLVhYK4Q7TWLMdLwPbmFn8U
+         PxCfIUISZeDpXi457sHz/L5S4nw0tr9gKbWpFwtjUwPKqM34ZuDHeAP9R2U+4j5qFUrK
+         FD5CD+CrxzA5eyJ6Ydn/6A4Lrv/S2AOg33NiennN/CCPQ/YNkkHenOBpI3SE0A+ZHb5v
+         DxVOhgZneoHcoW8Ci8B2EmZOu4dgPRvKA/vGTIrqrDVGEeR67TRdaMQtpsq2O/Gjjuso
+         /I6A==
+X-Gm-Message-State: AOJu0YxgGO4pdYIknvBIBJCmVeJjSRpm1foPtlV9CC2SvyPxPSgZY6hQ
+	BL/s4Jp0YM2XkKiInxAJawQWAjp19HCglDRzzz8EOe+XwACkfJHXsZg/O5ua
+X-Google-Smtp-Source: AGHT+IG//RlcARoXzzYrUPT30jU6og+rZzratBuOsQOc4Yw0DGpYr2z1SandCteDDuAOYFM7aIXMrQ==
+X-Received: by 2002:a05:6808:3a16:b0:3bd:1fdc:eeaa with SMTP id gr22-20020a0568083a1600b003bd1fdceeaamr6721385oib.55.1706793774133;
+        Thu, 01 Feb 2024 05:22:54 -0800 (PST)
+X-Forwarded-Encrypted: i=0; AJvYcCXQllq7NVzKCcR+kt25sXV1hJ1we+Dv2XW8zfuk/XShVOXZNbzp7Sf/KE4bNwJR/tuZqpQMlCFkRRtKJyaPqhl7pblV/CUmGnaXli5Jieff+Ice6Wv2r74uqCii2rux4sYE4WnRTFWI9S/PKB5caMumPD9WZCoLa/+iMZ4BzpA6BdPodFp2NnmV1vcPfUdDITgeNYXZB31S8+GTJoGG+6Zk3Q/9Pr5zQ7QDZfhUX/3d7j/30lu0Tfd2CB/u8IAEYA2zjfm48Qu12fekjJkgX+8ZkNtg9cMy7BbL+5qpMTLZuyXvPQMeR9RsQ/1B14+AzZcnOnd8TlVWr+8f+G6avbkjjt4=
+Received: from ?IPV6:2600:1700:e321:62f0:329c:23ff:fee3:9d7c? ([2600:1700:e321:62f0:329c:23ff:fee3:9d7c])
+        by smtp.gmail.com with ESMTPSA id a2-20020a654182000000b005d748902a01sm11070862pgq.43.2024.02.01.05.22.52
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 01 Feb 2024 05:22:53 -0800 (PST)
+Sender: Guenter Roeck <groeck7@gmail.com>
+Message-ID: <22b75ad9-b702-47a3-a8df-7a207ca152c7@roeck-us.net>
+Date: Thu, 1 Feb 2024 05:22:51 -0800
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <7a063832-e1b5-42df-92cf-66486d4feecb@amd.com>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v3 2/2] dt-bindings: Add MPQ8785 voltage regulator device
+Content-Language: en-US
+To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+ Conor Dooley <conor@kernel.org>, Charles Hsu <ythsu0511@gmail.com>
+Cc: jdelvare@suse.com, corbet@lwn.net, Delphine_CC_Chiu@wiwynn.com,
+ robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
+ linux-hwmon@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org
+References: <20240131055526.2700452-1-ythsu0511@gmail.com>
+ <20240131055526.2700452-2-ythsu0511@gmail.com>
+ <20240131-eraser-given-8381a44f41a4@spud>
+ <c67ebf90-cb40-4595-8015-45d2a86f6c7d@linaro.org>
+From: Guenter Roeck <linux@roeck-us.net>
+Autocrypt: addr=linux@roeck-us.net; keydata=
+ xsFNBE6H1WcBEACu6jIcw5kZ5dGeJ7E7B2uweQR/4FGxH10/H1O1+ApmcQ9i87XdZQiB9cpN
+ RYHA7RCEK2dh6dDccykQk3bC90xXMPg+O3R+C/SkwcnUak1UZaeK/SwQbq/t0tkMzYDRxfJ7
+ nyFiKxUehbNF3r9qlJgPqONwX5vJy4/GvDHdddSCxV41P/ejsZ8PykxyJs98UWhF54tGRWFl
+ 7i1xvaDB9lN5WTLRKSO7wICuLiSz5WZHXMkyF4d+/O5ll7yz/o/JxK5vO/sduYDIlFTvBZDh
+ gzaEtNf5tQjsjG4io8E0Yq0ViobLkS2RTNZT8ICq/Jmvl0SpbHRvYwa2DhNsK0YjHFQBB0FX
+ IdhdUEzNefcNcYvqigJpdICoP2e4yJSyflHFO4dr0OrdnGLe1Zi/8Xo/2+M1dSSEt196rXaC
+ kwu2KgIgmkRBb3cp2vIBBIIowU8W3qC1+w+RdMUrZxKGWJ3juwcgveJlzMpMZNyM1jobSXZ0
+ VHGMNJ3MwXlrEFPXaYJgibcg6brM6wGfX/LBvc/haWw4yO24lT5eitm4UBdIy9pKkKmHHh7s
+ jfZJkB5fWKVdoCv/omy6UyH6ykLOPFugl+hVL2Prf8xrXuZe1CMS7ID9Lc8FaL1ROIN/W8Vk
+ BIsJMaWOhks//7d92Uf3EArDlDShwR2+D+AMon8NULuLBHiEUQARAQABzTJHdWVudGVyIFJv
+ ZWNrIChMaW51eCBhY2NvdW50KSA8bGludXhAcm9lY2stdXMubmV0PsLBgQQTAQIAKwIbAwYL
+ CQgHAwIGFQgCCQoLBBYCAwECHgECF4ACGQEFAlVcphcFCRmg06EACgkQyx8mb86fmYFg0RAA
+ nzXJzuPkLJaOmSIzPAqqnutACchT/meCOgMEpS5oLf6xn5ySZkl23OxuhpMZTVX+49c9pvBx
+ hpvl5bCWFu5qC1jC2eWRYU+aZZE4sxMaAGeWenQJsiG9lP8wkfCJP3ockNu0ZXXAXwIbY1O1
+ c+l11zQkZw89zNgWgKobKzrDMBFOYtAh0pAInZ9TSn7oA4Ctejouo5wUugmk8MrDtUVXmEA9
+ 7f9fgKYSwl/H7dfKKsS1bDOpyJlqhEAH94BHJdK/b1tzwJCFAXFhMlmlbYEk8kWjcxQgDWMu
+ GAthQzSuAyhqyZwFcOlMCNbAcTSQawSo3B9yM9mHJne5RrAbVz4TWLnEaX8gA5xK3uCNCeyI
+ sqYuzA4OzcMwnnTASvzsGZoYHTFP3DQwf2nzxD6yBGCfwNGIYfS0i8YN8XcBgEcDFMWpOQhT
+ Pu3HeztMnF3HXrc0t7e5rDW9zCh3k2PA6D2NV4fews9KDFhLlTfCVzf0PS1dRVVWM+4jVl6l
+ HRIAgWp+2/f8dx5vPc4Ycp4IsZN0l1h9uT7qm1KTwz+sSl1zOqKD/BpfGNZfLRRxrXthvvY8
+ BltcuZ4+PGFTcRkMytUbMDFMF9Cjd2W9dXD35PEtvj8wnEyzIos8bbgtLrGTv/SYhmPpahJA
+ l8hPhYvmAvpOmusUUyB30StsHIU2LLccUPPOwU0ETofVZwEQALlLbQeBDTDbwQYrj0gbx3bq
+ 7kpKABxN2MqeuqGr02DpS9883d/t7ontxasXoEz2GTioevvRmllJlPQERVxM8gQoNg22twF7
+ pB/zsrIjxkE9heE4wYfN1AyzT+AxgYN6f8hVQ7Nrc9XgZZe+8IkuW/Nf64KzNJXnSH4u6nJM
+ J2+Dt274YoFcXR1nG76Q259mKwzbCukKbd6piL+VsT/qBrLhZe9Ivbjq5WMdkQKnP7gYKCAi
+ pNVJC4enWfivZsYupMd9qn7Uv/oCZDYoBTdMSBUblaLMwlcjnPpOYK5rfHvC4opxl+P/Vzyz
+ 6WC2TLkPtKvYvXmdsI6rnEI4Uucg0Au/Ulg7aqqKhzGPIbVaL+U0Wk82nz6hz+WP2ggTrY1w
+ ZlPlRt8WM9w6WfLf2j+PuGklj37m+KvaOEfLsF1v464dSpy1tQVHhhp8LFTxh/6RWkRIR2uF
+ I4v3Xu/k5D0LhaZHpQ4C+xKsQxpTGuYh2tnRaRL14YMW1dlI3HfeB2gj7Yc8XdHh9vkpPyuT
+ nY/ZsFbnvBtiw7GchKKri2gDhRb2QNNDyBnQn5mRFw7CyuFclAksOdV/sdpQnYlYcRQWOUGY
+ HhQ5eqTRZjm9z+qQe/T0HQpmiPTqQcIaG/edgKVTUjITfA7AJMKLQHgp04Vylb+G6jocnQQX
+ JqvvP09whbqrABEBAAHCwWUEGAECAA8CGwwFAlVcpi8FCRmg08MACgkQyx8mb86fmYHNRQ/+
+ J0OZsBYP4leJvQF8lx9zif+v4ZY/6C9tTcUv/KNAE5leyrD4IKbnV4PnbrVhjq861it/zRQW
+ cFpWQszZyWRwNPWUUz7ejmm9lAwPbr8xWT4qMSA43VKQ7ZCeTQJ4TC8kjqtcbw41SjkjrcTG
+ wF52zFO4bOWyovVAPncvV9eGA/vtnd3xEZXQiSt91kBSqK28yjxAqK/c3G6i7IX2rg6pzgqh
+ hiH3/1qM2M/LSuqAv0Rwrt/k+pZXE+B4Ud42hwmMr0TfhNxG+X7YKvjKC+SjPjqp0CaztQ0H
+ nsDLSLElVROxCd9m8CAUuHplgmR3seYCOrT4jriMFBtKNPtj2EE4DNV4s7k0Zy+6iRQ8G8ng
+ QjsSqYJx8iAR8JRB7Gm2rQOMv8lSRdjva++GT0VLXtHULdlzg8VjDnFZ3lfz5PWEOeIMk7Rj
+ trjv82EZtrhLuLjHRCaG50OOm0hwPSk1J64R8O3HjSLdertmw7eyAYOo4RuWJguYMg5DRnBk
+ WkRwrSuCn7UG+qVWZeKEsFKFOkynOs3pVbcbq1pxbhk3TRWCGRU5JolI4ohy/7JV1TVbjiDI
+ HP/aVnm6NC8of26P40Pg8EdAhajZnHHjA7FrJXsy3cyIGqvg9os4rNkUWmrCfLLsZDHD8FnU
+ mDW4+i+XlNFUPUYMrIKi9joBhu18ssf5i5Q=
+In-Reply-To: <c67ebf90-cb40-4595-8015-45d2a86f6c7d@linaro.org>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
 
-On Thu, Feb 01, 2024 at 12:11:15PM +0530, Vineeth Karumanchi wrote:
-> Hi Andrew, Krzysztof,
+On 1/31/24 23:52, Krzysztof Kozlowski wrote:
+> On 31/01/2024 16:41, Conor Dooley wrote:
+>> On Wed, Jan 31, 2024 at 01:55:26PM +0800, Charles Hsu wrote:
+>>> Monolithic Power Systems, Inc. (MPS) synchronous step-down converter.
+>>>
+>>> Signed-off-by: Charles Hsu <ythsu0511@gmail.com>
+>>> ---
+>>>   Documentation/devicetree/bindings/trivial-devices.yaml | 2 ++
+>>>   1 file changed, 2 insertions(+)
+>>>
+>>> diff --git a/Documentation/devicetree/bindings/trivial-devices.yaml b/Documentation/devicetree/bindings/trivial-devices.yaml
+>>> index 79dcd92c4a43..088b23ed2ae6 100644
+>>> --- a/Documentation/devicetree/bindings/trivial-devices.yaml
+>>> +++ b/Documentation/devicetree/bindings/trivial-devices.yaml
+>>> @@ -129,6 +129,8 @@ properties:
+>>>             - mps,mp2975
+>>>               # Monolithic Power Systems Inc. multi-phase hot-swap controller mp5990
+>>>             - mps,mp5990
+>>> +            # Monolithic Power Systems Inc. synchronous step-down converter mpq8785
+>>> +          - mps,mpq8785
+>>
+>> q sorts before 2, otherwise
+>> Acked-by: Conor Dooley <conor.dooley@microchip.com>
 > 
+> I will sort the file and my patch should go via Rob's tree, I guess, so
+> maybe this one could go as well?
 > 
-> 
-> On 31/01/24 6:48 pm, Andrew Lunn wrote:
-> > On Wed, Jan 31, 2024 at 01:09:19PM +0530, Vineeth Karumanchi wrote:
-> > > Hi Andrew,
-> > > 
-> > > 
-> > > On 31/01/24 6:56 am, Andrew Lunn wrote:
-> > > > On Tue, Jan 30, 2024 at 04:18:44PM +0530, Vineeth Karumanchi wrote:
-> > > > > "wol-arp-packet" property enables WOL with ARP packet.
-> > > > > It is an extension to "magic-packet for WOL.
-> > > > 
-> > > > It not clear why this is needed. Is this not a standard feature of the
-> > > > IP? Is there no hardware bit indicating the capability?
-> > > > 
-> > > 
-> > > WOL via both ARP and Magic packet is supported by the IP version on ZU+ and
-> > > Versal. However, user can choose which type of packet to recognize as a WOL
-> > > event - magic packet or ARP.
-> > 
-> > ethtool says:
-> > 
-> >             wol p|u|m|b|a|g|s|f|d...
-> >                    Sets Wake-on-LAN options.  Not all devices support this.  The argument to this  option  is  a
-> >                    string of characters specifying which options to enable.
-> >                    p   Wake on PHY activity
-> >                    u   Wake on unicast messages
-> >                    m   Wake on multicast messages
-> >                    b   Wake on broadcast messages
-> >                    a   Wake on ARP
-> >                    g   Wake on MagicPacket™
-> >                    s   Enable SecureOn™ password for MagicPacket™
-> >                    f   Wake on filter(s)
-> >                    d   Disable  (wake  on  nothing).  This option
-> >                        clears all previous options.
-> > 
-> > So why do we need a DT property?
-> > 
-> 
-> The earlier implementation of WOL (magic-packet) was using DT property.
-> We added one more packet type using DT property to be in-line with the
-> earlier implementation.
 
-I can understand that. It also suggests we did a bad job reviewing
-that patch, and should of rejected it. But it was added a long time
-ago, and we were less strict back then.
+Sure, fine with me. I applied the patch to the hwmon tree, but I have no problems
+dropping it from there. Sorry, I never know if I should take .yaml patches or not.
 
-> 
-> However, I echo with you that this feature should be in driver (CAPS).
-> We will re-work the implementation with the below flow:
-> 
-> - Add MACB_CAPS_WOL capability to the supported platforms
-> - Advertise supported WOL packet types based on the CAPS in ethtool.
-> - Users can set packet type using ethtool.
+Guenter
 
-Yes, this sounds good. Maybe add to that, mark magic-packet
-deprecated, and a comment that ethtool should be used instead.
-
-Thanks
-	Andrew
 
