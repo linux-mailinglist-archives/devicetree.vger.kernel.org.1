@@ -1,233 +1,111 @@
-Return-Path: <devicetree+bounces-37431-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-37432-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id B2FC9844FE5
-	for <lists+devicetree@lfdr.de>; Thu,  1 Feb 2024 04:46:42 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 9B78C844FFC
+	for <lists+devicetree@lfdr.de>; Thu,  1 Feb 2024 05:01:05 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 25C0B1F2837F
-	for <lists+devicetree@lfdr.de>; Thu,  1 Feb 2024 03:46:41 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 3566B1F2346E
+	for <lists+devicetree@lfdr.de>; Thu,  1 Feb 2024 04:01:05 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3897F3A8EB;
-	Thu,  1 Feb 2024 03:46:40 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=codeconstruct.com.au header.i=@codeconstruct.com.au header.b="GPVoJeUL"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3534F3AC08;
+	Thu,  1 Feb 2024 04:00:58 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from codeconstruct.com.au (pi.codeconstruct.com.au [203.29.241.158])
+Received: from mail-m49198.qiye.163.com (mail-m49198.qiye.163.com [45.254.49.198])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6E0123A8FE;
-	Thu,  1 Feb 2024 03:46:37 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=203.29.241.158
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9BCD23B2A6;
+	Thu,  1 Feb 2024 04:00:54 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=45.254.49.198
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1706759200; cv=none; b=VlXRSeZGn17jaHpTM9MxX7C4r6uMNwduMISAEiBYCcDb0ZM3W4iT1mB5XjNR7KKCTXmXHcwZnAy4vpcCixihuwAAZ9slQTaymhAi64Kqea73XvKQ5IQxBnJV01RUeb5D/lUqgnHn7RaOFT52gUzQlFPpY/wRxoVC+3lM0XdXTMI=
+	t=1706760058; cv=none; b=ha+IGntUQPpvpzBcBQQ2KinR/FJPhfWzZbPlh2DkRd0OTAHbnQ0d7xOx06XfHWa/xqeHuBxpPK395aQrpGL2ciO0P36/Vxiy2io0oQOnP3VpyyomhoTdC5wwA7b+QPk8glxMN8m1A6grH9cT8x0d1insC0QM6UToVZ64sKCMxfw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1706759200; c=relaxed/simple;
-	bh=Z5KGSsJTG8Me3n3I9GJaS2SJpQ0zSGDT/19vVzh0uyY=;
-	h=Message-ID:Subject:From:To:Cc:Date:In-Reply-To:References:
-	 Content-Type:MIME-Version; b=rKCZ2h8zz0qMIknxqT5zeNsWdUgSYiP+ZqzXUiEokavnpvF4C/DbgPJlQN9Y8KF0g6rp3A3y5P5M7XWVlPhWWePEMEWJ9xOLNG3YfHihtsVOiXdIJ5ZwHqLkE3j2QFW2E7OW7ndVbXObQJ/WUsIuPi8ehVIylDrlNK/fMdZ73sw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=codeconstruct.com.au; spf=pass smtp.mailfrom=codeconstruct.com.au; dkim=pass (2048-bit key) header.d=codeconstruct.com.au header.i=@codeconstruct.com.au header.b=GPVoJeUL; arc=none smtp.client-ip=203.29.241.158
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=codeconstruct.com.au
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=codeconstruct.com.au
-Received: from [192.168.68.112] (ppp14-2-76-194.adl-apt-pir-bras31.tpg.internode.on.net [14.2.76.194])
-	by mail.codeconstruct.com.au (Postfix) with ESMTPSA id 5952A2017A;
-	Thu,  1 Feb 2024 11:46:26 +0800 (AWST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=codeconstruct.com.au; s=2022a; t=1706759189;
-	bh=oRKHvzM8KbCi8vf71Z3F6Qqi7mjIhPHJpavjxrfKHeA=;
-	h=Subject:From:To:Cc:Date:In-Reply-To:References;
-	b=GPVoJeULG4YDFqW01YBscBR06UWwJZxUYnELBL3ZrWmoDI4oPmFM7QZEy/5AMpeu6
-	 ZU4x/8ukcRJsj6uQd0xJYw7REuHUEkoqyggvwWx6PAO6oE/S9KWd8+gmdqtRtdnd0W
-	 fszXI7V3Yaz4A70HA2gqHoe3HAeP6eU+RHdA/iOKMT8mSQg3rYDsUmBf6YKIpTFldi
-	 kP7P89Jlbt2I3qDXi3xNv4jeRz78XJBvfE8Zn78OKlFpHDIW1HolO/qxVcz8Ye5WPG
-	 80CdtUgKW2rKzDeZU7JCJHg5mrx9y1Hs1jDI4e84T8X/+qw3bKcEHnVdqfjZOrShbd
-	 BOdwQNFb7zV3w==
-Message-ID: <ff1df8af596c907e969d9011ce2f42ef96974d37.camel@codeconstruct.com.au>
-Subject: Re: [PATCH v5 01/21] ARM: dts: aspeed: yosemite4: Revise i2c-mux
- devices
-From: Andrew Jeffery <andrew@codeconstruct.com.au>
-To: Delphine CC Chiu <Delphine_CC_Chiu@wiwynn.com>, patrick@stwcx.xyz, Rob
- Herring <robh+dt@kernel.org>, Krzysztof Kozlowski
- <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>,
- Joel Stanley <joel@jms.id.au>
-Cc: devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
-	linux-aspeed@lists.ozlabs.org, linux-kernel@vger.kernel.org
-Date: Thu, 01 Feb 2024 14:16:24 +1030
-In-Reply-To: <20240131084134.328307-2-Delphine_CC_Chiu@wiwynn.com>
-References: <20240131084134.328307-1-Delphine_CC_Chiu@wiwynn.com>
-	 <20240131084134.328307-2-Delphine_CC_Chiu@wiwynn.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-User-Agent: Evolution 3.46.4-2 
+	s=arc-20240116; t=1706760058; c=relaxed/simple;
+	bh=gdpOp04JWfjnJCKvypEu4np3p5EXlbEJ3fJVxQUR0aQ=;
+	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
+	 MIME-Version; b=b+2ZFBrd8zrnyPYkdw/XQ+S4yAjJbkp2lh7OgaY/J+BywNN/GGJYQFSR9fx/iWwLnWMKeeSwjW5uyLMhK/2DGTKnhrCRlAwJFZRhp7F5m16rfKxx8U8HTMW2zXDlXScmGeTfkUdqixHDpNTpazTClr6UB2i8kF5Q9b2shZc3el0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=jmu.edu.cn; spf=pass smtp.mailfrom=jmu.edu.cn; arc=none smtp.client-ip=45.254.49.198
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=jmu.edu.cn
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=jmu.edu.cn
+Received: from amadeus-Vostro-3710.lan (unknown [116.25.94.16])
+	by smtp.qiye.163.com (Hmail) with ESMTPA id C2EFA7E010C;
+	Thu,  1 Feb 2024 12:00:23 +0800 (CST)
+From: Chukun Pan <amadeus@jmu.edu.cn>
+To: dmitry.baryshkov@linaro.org
+Cc: amadeus@jmu.edu.cn,
+	andersson@kernel.org,
+	conor+dt@kernel.org,
+	devicetree@vger.kernel.org,
+	konrad.dybcio@linaro.org,
+	krzysztof.kozlowski+dt@linaro.org,
+	linux-arm-msm@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	robh+dt@kernel.org
+Subject: Re: [PATCH 1/3] arm64: dts: qcom: ipq6018: separate CPU OPP tables
+Date: Thu,  1 Feb 2024 12:00:20 +0800
+Message-Id: <20240201040020.73949-1-amadeus@jmu.edu.cn>
+X-Mailer: git-send-email 2.25.1
+In-Reply-To: <CAA8EJpoMXkAd3EBf=p+nig8VWzY9tiUAWhfGJn3XOX1uSa=22Q@mail.gmail.com>
+References: <CAA8EJpoMXkAd3EBf=p+nig8VWzY9tiUAWhfGJn3XOX1uSa=22Q@mail.gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
+X-HM-Spam-Status: e1kfGhgUHx5ZQUpXWQgPGg8OCBgUHx5ZQUlOS1dZFg8aDwILHllBWSg2Ly
+	tZV1koWUFITzdXWS1ZQUlXWQ8JGhUIEh9ZQVlDHkoYVkJJSEkfShodTkNPGVUTARMWGhIXJBQOD1
+	lXWRgSC1lBWUpKTVVJTlVCT1VKTVlXWRYaDxIVHRRZQVlPS0hVSkhKTk1JVUpLS1VLWQY+
+X-HM-Tid: 0a8d62d3311903a2kunmc2efa7e010c
+X-HM-MType: 10
+X-HM-Sender-Digest: e1kMHhlZQR0aFwgeV1kSHx4VD1lBWUc6Ogw6Kio6FDMLFE0pLCIoLCsB
+	PCgwFA9VSlVKTEtNTE1LS0lPTExPVTMWGhIXVRoWGh8eDgg7ERYOVR4fDlUYFUVZV1kSC1lBWUpK
+	TVVJTlVCT1VKTVlXWQgBWUFJSE5KNwY+
 
-Hi Delphine,
+Hi, Dmitry
+> Straight to the board files, please, no need for additional includes.
 
-On Wed, 2024-01-31 at 16:41 +0800, Delphine CC Chiu wrote:
-> Revise Yosemite 4 devicetree for devices behind i2c-mux
-> - Add gpio and eeprom behind i2c-mux
-> - Remove redundant idle-state setting for i2c-mux
+Is it possible to move the mp5496 node to mp5496.dtsi?
+Because ipq9574 also uses this mp5496 pmic.
 
-Generally if you find yourself listing things the patch does in the
-commit message it's an indicator you should split the patch up.
+&rpm_requests {
+	regulators {
+		compatible = "qcom,rpm-mp5496-regulators";
 
-It looks like there's a lot of stuff to be fixed, but it doesn't need
-to all be fixed in the one commit (as 01/21 suggests I guess). The
-devicetree is already inaccurate, it's okay if a subset of the
-inaccuracies survive for another patch or so.
+		mp5496_s1: s1 {
+			regulator-min-microvolt = <725000>;
+			regulator-max-microvolt = <1075000>;
+			status = "disabled";
+		};
 
-Otherwise, if they must be changed together, it would be good to have a
-description of *why*. Broadly, the commit message should explain *why*
-the change is need regardless, not discuss *what* the patch changes
-(that's evident from the patch itself).
+		mp5496_s2: s2 {
+			regulator-min-microvolt = <725000>;
+			regulator-max-microvolt = <1062500>;
+			status = "disabled";
+		};
 
->=20
-> Signed-off-by: Delphine CC Chiu <Delphine_CC_Chiu@wiwynn.com>
-> ---
->  .../aspeed/aspeed-bmc-facebook-yosemite4.dts  | 381 ++++++++++++++++--
->  1 file changed, 347 insertions(+), 34 deletions(-)
->=20
-> =20
-> -	i2c-mux@71 {
-> -		compatible =3D "nxp,pca9846";
-> +	i2c-mux@74 {
-> +		compatible =3D "nxp,pca9546";
+		mp5496_l2: l2 {
+			regulator-min-microvolt = <1800000>;
+			regulator-max-microvolt = <3300000>;
+			status = "disabled";
+		};
+	};
+};
 
-Aside from splitting the patch on adding more devices and removing the
-redundant idle-state settings, things like this should probably be
-separate too.
+> From your patches I had the feeling that you still want to limit the
+> high-frequency OPP entries if there is no PMIC.
 
-Why was the address changed? Was it always wrong? Or has there been a
-new revision of the board? A separate commit with some explanation here
-would be useful.
+Sorry for this misunderstanding, the cpu max frequency is determined
+by the cpu_speed_bin. It's just that the efuse of the board I have
+without pmic are all 1.2GHz.
 
->  		#address-cells =3D <1>;
->  		#size-cells =3D <0>;
-> -
-> -		idle-state =3D <0>;
->  		i2c-mux-idle-disconnect;
-> -		reg =3D <0x71>;
-> +		reg =3D <0x74>;
-> =20
-> -		i2c@0 {
-> +		imux30: i2c@0 {
->  			#address-cells =3D <1>;
->  			#size-cells =3D <0>;
->  			reg =3D <0>;
-> @@ -450,26 +726,26 @@ i2c@0 {
->  			adc@1f {
->  				compatible =3D "ti,adc128d818";
->  				reg =3D <0x1f>;
-> -				ti,mode =3D /bits/ 8 <2>;
-> +				ti,mode =3D /bits/ 8 <1>;
+Thanks,
+Chukun
 
-This isn't discussed anywhere. There should probably be a separate
-change for anything adc128d818-related that explains what's going on
-here.
+-- 
+2.25.1
 
->  			};
-> =20
->  			pwm@20{
-> -				compatible =3D "max31790";
-> +				compatible =3D "maxim,max31790";
-> +				pwm-as-tach =3D <4 5>;
->  				reg =3D <0x20>;
-> -				#address-cells =3D <1>;
-> -				#size-cells =3D <0>;
-
-This also isn't discussed anywhere. There should probably be a separate
-change for anything max31790-related that explains what's going on
-here.
-
->  			};
-> =20
->  			gpio@22{
->  				compatible =3D "ti,tca6424";
->  				reg =3D <0x22>;
-> +				gpio-controller;
-> +				#gpio-cells =3D <2>;
-
-Also not discussed. Separate change for anything tca6424-related that
-explains what's going on here.
-
->  			};
-> =20
-> -			pwm@23{
-> -				compatible =3D "max31790";
-> -				reg =3D <0x23>;
-> -				#address-cells =3D <1>;
-> -				#size-cells =3D <0>;
-> +			pwm@2f{
-> +				compatible =3D "maxim,max31790";
-> +				pwm-as-tach =3D <4 5>;
-> +				reg =3D <0x2f>;
->  			};
-
-Should go in the max31790-related patch.
-
-> =20
->  			adc@33 {
-> @@ -492,34 +768,34 @@ gpio@61 {
->  			};
->  		};
-> =20
-> -		i2c@1 {
-> +		imux31: i2c@1 {
->  			#address-cells =3D <1>;
->  			#size-cells =3D <0>;
-> -			reg =3D <0>;
-> +			reg =3D <1>;
-> =20
->  			adc@1f {
->  				compatible =3D "ti,adc128d818";
->  				reg =3D <0x1f>;
-> -				ti,mode =3D /bits/ 8 <2>;
-> +				ti,mode =3D /bits/ 8 <1>;
-
-Should go in the adc128d818 patch
-
->  			};
-> =20
->  			pwm@20{
-> -				compatible =3D "max31790";
-> +				compatible =3D "maxim,max31790";
-> +				pwm-as-tach =3D <4 5>;
->  				reg =3D <0x20>;
-> -				#address-cells =3D <1>;
-> -				#size-cells =3D <0>;
->  			};
-
-Should go in the max31790 patch
-
-> =20
->  			gpio@22{
->  				compatible =3D "ti,tca6424";
->  				reg =3D <0x22>;
-> +				gpio-controller;
-> +				#gpio-cells =3D <2>;
-
-Should go in the tca6424 patch
-
->  			};
-> =20
-> -			pwm@23{
-> -				compatible =3D "max31790";
-> -				reg =3D <0x23>;
-> -				#address-cells =3D <1>;
-> -				#size-cells =3D <0>;
-> +			pwm@2f{
-> +				compatible =3D "maxim,max31790";
-> +				pwm-as-tach =3D <4 5>;
-> +				reg =3D <0x2f>;
-
-Should go in the max31790 patch
-
-Andrew
 
