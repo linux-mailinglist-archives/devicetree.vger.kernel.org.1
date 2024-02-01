@@ -1,239 +1,204 @@
-Return-Path: <devicetree+bounces-37748-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-37749-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 410AB8461C5
-	for <lists+devicetree@lfdr.de>; Thu,  1 Feb 2024 21:09:24 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8C1488461DC
+	for <lists+devicetree@lfdr.de>; Thu,  1 Feb 2024 21:23:28 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id BF87D1F229CD
-	for <lists+devicetree@lfdr.de>; Thu,  1 Feb 2024 20:09:23 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id B041B1C231AB
+	for <lists+devicetree@lfdr.de>; Thu,  1 Feb 2024 20:23:27 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6564385627;
-	Thu,  1 Feb 2024 20:09:19 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 817928565C;
+	Thu,  1 Feb 2024 20:23:14 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="ilFj2PNV"
+	dkim=pass (1024-bit key) header.d=nxp.com header.i=@nxp.com header.b="rUwZEtAO"
 X-Original-To: devicetree@vger.kernel.org
-Received: from lelv0142.ext.ti.com (lelv0142.ext.ti.com [198.47.23.249])
+Received: from EUR03-DBA-obe.outbound.protection.outlook.com (mail-dbaeur03on2055.outbound.protection.outlook.com [40.107.104.55])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 510808527E;
-	Thu,  1 Feb 2024 20:09:17 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.23.249
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1706818159; cv=none; b=VQDIo4JjE9wMHuT6jnM3orpPI5GlDJjlnqS2N8R4hYtz16D1z7y06g0DYLyuzbtY8OB1MzIrsT3c5a/G6hM/XFKrUIIi6ZPxz0OwVmaFi/RiJ6Db5NgLANVZL13Bmy0AvaNaExbQ4ainbDXkAQN+gNU0PP8u2tLRo7QVd2uCqls=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1706818159; c=relaxed/simple;
-	bh=EW6zO50jNE8LEi7zqDDeFfEa1UehgXfcEViL8fAmN/Q=;
-	h=Message-ID:Date:MIME-Version:Subject:To:References:From:
-	 In-Reply-To:Content-Type; b=Qiuj5G8Odi6XmIEkGWDByse5n3dkEQZKSG1ihgyKHCcg4ou9wZEEm7gaU2hMPGmXc/FkJdv1ooSNOrSqaqFmOb2hnOvfzPwCcBOQaKPxndV0LDudMzZJyf5C9a/jz/rx199etiA4Sf0xkJTQ+/UCECzMybgxFLT5fWvoHk16f04=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=ilFj2PNV; arc=none smtp.client-ip=198.47.23.249
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
-Received: from fllv0034.itg.ti.com ([10.64.40.246])
-	by lelv0142.ext.ti.com (8.15.2/8.15.2) with ESMTP id 411K8ti0025389;
-	Thu, 1 Feb 2024 14:08:55 -0600
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1706818135;
-	bh=vq6l9bOA+9EPk9QsUKSbSwGB/jfjZrse3PWQvl2f88s=;
-	h=Date:Subject:To:References:From:In-Reply-To;
-	b=ilFj2PNViSj3oGI7aFHI9l5HhTT8dv99TtnXaHP4OczwHHfgcQMrBgAPuOlwAeAka
-	 MBnpNgENPS+T3+Vms4Axp7YFP29OnsplmaAmNztNlVrDbDrG8iSkgme0km6uhJA8js
-	 koMcXWeCZ9zzlJd3NoAHUhp3F3VRgSUyii+33oAQ=
-Received: from DLEE114.ent.ti.com (dlee114.ent.ti.com [157.170.170.25])
-	by fllv0034.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 411K8tdI128262
-	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-	Thu, 1 Feb 2024 14:08:55 -0600
-Received: from DLEE100.ent.ti.com (157.170.170.30) by DLEE114.ent.ti.com
- (157.170.170.25) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Thu, 1
- Feb 2024 14:08:54 -0600
-Received: from lelvsmtp6.itg.ti.com (10.180.75.249) by DLEE100.ent.ti.com
- (157.170.170.30) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
- Frontend Transport; Thu, 1 Feb 2024 14:08:54 -0600
-Received: from [10.249.42.149] ([10.249.42.149])
-	by lelvsmtp6.itg.ti.com (8.15.2/8.15.2) with ESMTP id 411K8rgh092262;
-	Thu, 1 Feb 2024 14:08:53 -0600
-Message-ID: <799640ba-3b7f-474b-8d70-64ed013e0755@ti.com>
-Date: Thu, 1 Feb 2024 14:08:53 -0600
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 718ED8527E;
+	Thu,  1 Feb 2024 20:23:11 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.107.104.55
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1706818994; cv=fail; b=ZZtI4As07x3B3InqYeLYTZI0CqPsRwXQXxmSw/6RrHleEi+S+rSApTLEN/raCXn9jp0rTFY/sK0sPpQiegdq+WUWkxc5bVVNhrFaWNcKgdAkGd0c3GTVRD4ePBOClOuJcCpPqB/2nFbFBIN8gabkYAuFBXJQpNrvIpb3gmgspQ8=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1706818994; c=relaxed/simple;
+	bh=T0y/634CeJ/Y2kFlSehBAzcS+0Apes1r2s2hE52uAOA=;
+	h=From:Subject:Date:Message-Id:Content-Type:To:Cc:MIME-Version; b=Wv4dyC1sfJfHG23U7ZxD3PVEiDwGV5xetHdbn+pshZPTNMoiFoF41imZvyog6PJJyMxmAV4iw5ZZlsP/EKAf+amQWVChp/WcIXUETmGeyzc8M/y7iQZYNiTmzUHeyQ5ADXq5fYckIUjz2XMPv2zUZ2LCHpOh/vgFL55qDSVOTPc=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com; spf=pass smtp.mailfrom=nxp.com; dkim=pass (1024-bit key) header.d=nxp.com header.i=@nxp.com header.b=rUwZEtAO; arc=fail smtp.client-ip=40.107.104.55
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=nxp.com
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=EkUW1Y3azisgC6riaaSNp70+cWkCBBVmosJuPiMAbhrrzVU72/UJy9s5nx0b7mVVP5L44KYjrzqOyR836omrsYUxnwodXs+t0D6WryjamgbjA75Sbr+2z/vVVQ3j2Fvm+4Fh48VQUVYNv4uwpITgjNrWyoKTHQexng20azkQxyJly1bCe2xtWAabIddmtIDGRFzW3GyvhozzkMKHN8COw5pPFfKR8fBEwd3rZ2hFeW7w99uwtjT38K6MI1CwR7aoJERJzmlla1r0NaSNryR04HIQBRXCnFucEGAgUNZ5yWOmYRmsoD082hRK2nADXBCihTYmNF9G3z/98SFnqVAhRA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=gIRDkGdNzMv6n/KV1aZsbm5lqELADX+lSlm18j/9/ZM=;
+ b=b/RyG+CydyzveZjE0gxkxBVyjLjhPtSiSxS5oJo05DVdjnvDnU/lltaLzv/6xYWZ1B6LRxLETV9ZQYeauHsT89Iqgz0SHktwvEjcG8NYGPEc231F/lJ/5p4V/tfGiRaCZGZi0hSJqSPRuHHUMMvxgJa3U5eXIlgwgw9jLXFoCHJpjjjqY30T6icFtoFO55/jcTHn91BlKbBijkZqQFepCEJqgRnRsGNcpo6tqBsoWHmUhsORBHHHD3NIJyqDfVcKG/CoA+dpLFm8nL1qkt3u0rP0upTJzfzfDH1LXI+cIN17T1iiexqW2iWxcKSdsdX0Ko7A8Am/guKE1yDJDrLRtg==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
+ header.d=nxp.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector2;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=gIRDkGdNzMv6n/KV1aZsbm5lqELADX+lSlm18j/9/ZM=;
+ b=rUwZEtAOSl0lE5qLzkM4ZwPmbT28pkZ1k/E1VMJ4ct+zKdWKzxrSZVZIz81V9Yi3Rec6R39RktfsHZLaisviQl5+JMFnKVHo5qs+YfEoGBWy0CWhdq0YPrwfx4V9i5uBV0L5qijcS5YnCaGzHYy8iAdF3zOgcjWuGpKXnNLIWE4=
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=nxp.com;
+Received: from PAXPR04MB9642.eurprd04.prod.outlook.com (2603:10a6:102:240::14)
+ by DU2PR04MB8741.eurprd04.prod.outlook.com (2603:10a6:10:2df::12) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7249.30; Thu, 1 Feb
+ 2024 20:23:09 +0000
+Received: from PAXPR04MB9642.eurprd04.prod.outlook.com
+ ([fe80::c8b4:5648:8948:e85c]) by PAXPR04MB9642.eurprd04.prod.outlook.com
+ ([fe80::c8b4:5648:8948:e85c%3]) with mapi id 15.20.7228.029; Thu, 1 Feb 2024
+ 20:23:09 +0000
+From: Frank Li <Frank.Li@nxp.com>
+Subject: [PATCH v2 0/4] Add 8qm SMMU information
+Date: Thu, 01 Feb 2024 15:22:40 -0500
+Message-Id: <20240201-8qm_smmu-v2-0-3d12a80201a3@nxp.com>
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIAJD9u2UC/6tWKk4tykwtVrJSqFYqSi3LLM7MzwNyjHQUlJIzE
+ vPSU3UzU4B8JSMDIxMDIwNDXYvC3Pji3NxSXTNjQ4uURItUSwNDcyWg8oKi1LTMCrBR0bG1tQA
+ 9fOi3WgAAAA==
+To: Ulf Hansson <ulf.hansson@linaro.org>, Rob Herring <robh+dt@kernel.org>, 
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, 
+ Conor Dooley <conor+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>, 
+ Sascha Hauer <s.hauer@pengutronix.de>, 
+ Pengutronix Kernel Team <kernel@pengutronix.de>, 
+ Fabio Estevam <festevam@gmail.com>, NXP Linux Team <linux-imx@nxp.com>, 
+ Wei Fang <wei.fang@nxp.com>, Shenwei Wang <shenwei.wang@nxp.com>, 
+ Clark Wang <xiaoning.wang@nxp.com>, "David S. Miller" <davem@davemloft.net>, 
+ Eric Dumazet <edumazet@google.com>, Jakub Kicinski <kuba@kernel.org>, 
+ Paolo Abeni <pabeni@redhat.com>
+Cc: linux-mmc@vger.kernel.org, devicetree@vger.kernel.org, 
+ linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org, 
+ netdev@vger.kernel.org, imx@lists.linux.dev, Frank Li <Frank.Li@nxp.com>
+X-Mailer: b4 0.13-dev-c87ef
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1706818983; l=1631;
+ i=Frank.Li@nxp.com; s=20240130; h=from:subject:message-id;
+ bh=T0y/634CeJ/Y2kFlSehBAzcS+0Apes1r2s2hE52uAOA=;
+ b=uvtyXXvKXYLeIta215JlT8E2xAkEsOQQZGkanxahynM6HoWnUPxZj/LWu0bjrjWSjbSOGPiD4
+ HhUHdVUlLdBAqcX1iqoSdSu67DNET2+3+9NMeFqZgVJGCubXtsGWPkE
+X-Developer-Key: i=Frank.Li@nxp.com; a=ed25519;
+ pk=I0L1sDUfPxpAkRvPKy7MdauTuSENRq+DnA+G4qcS94Q=
+X-ClientProxiedBy: BYAPR07CA0066.namprd07.prod.outlook.com
+ (2603:10b6:a03:60::43) To PAXPR04MB9642.eurprd04.prod.outlook.com
+ (2603:10a6:102:240::14)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v3 1/6] arm64: dts: ti: k3-j784s4: Add Wave5 Video
- Encoder/Decoder Node
-Content-Language: en-US
-To: "Brnich, Brandon" <b-brnich@ti.com>, "Menon, Nishanth" <nm@ti.com>,
-        "Raghavendra, Vignesh" <vigneshr@ti.com>,
-        Tero Kristo <kristo@kernel.org>, Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski
-	<krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Catalin Marinas <catalin.marinas@arm.com>,
-        Will Deacon <will@kernel.org>,
-        Bjorn Andersson <quic_bjorande@quicinc.com>,
-        Geert Uytterhoeven
-	<geert+renesas@glider.be>,
-        Arnd Bergmann <arnd@arndb.de>,
-        Konrad Dybcio
-	<konrad.dybcio@linaro.org>,
-        Neil Armstrong <neil.armstrong@linaro.org>,
-        =?UTF-8?Q?N=C3=ADcolas_F_=2E_R_=2E_A_=2E_Prado?= <nfraprado@collabora.com>,
-        Marek Szyprowski <m.szyprowski@samsung.com>,
-        "linux-arm-kernel@lists.infradead.org"
-	<linux-arm-kernel@lists.infradead.org>,
-        "devicetree@vger.kernel.org"
-	<devicetree@vger.kernel.org>,
-        "linux-kernel@vger.kernel.org"
-	<linux-kernel@vger.kernel.org>,
-        "Etheridge, Darren" <detheridge@ti.com>
-References: <20240131212625.1862775-1-b-brnich@ti.com>
- <20240131212625.1862775-2-b-brnich@ti.com>
- <a5f0059d-b80f-44e6-8c1e-793054586e0a@ti.com>
- <a168bbdc2efd4cb1a71c6c6421dbd7ce@ti.com>
-From: Andrew Davis <afd@ti.com>
-In-Reply-To: <a168bbdc2efd4cb1a71c6c6421dbd7ce@ti.com>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 8bit
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: PAXPR04MB9642:EE_|DU2PR04MB8741:EE_
+X-MS-Office365-Filtering-Correlation-Id: ae7be51d-35e8-414a-def4-08dc23639af7
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info:
+	oiI74Sto7hWf7/tBDq/Kstsu7YkXc3cZLIRWr1S5kDo5NtiUAON3EfaJPzDVHYqETjjmH8XIOQwQLJMSCjqQqBUxO2gSZJj7HIuK1o1YGGnmnvfhplWrZjMSgXotIaQXhWrawSWs36NUGmggNM4UiOFLH9bxW5nZ72h4lyVstB3kd0bzYKyMDIdTBJX8QLSBQ8pp+SBaBw+omzKb+Ms5TzH9drG2GtWeEdPmClKQJd2tL3Kb8BOThV/pTOKX3DEOdUqRJd5zZc65c5lPf9bTShr8OKSBeG3QYHNQaXyTh900MFsS7qV0U2g8dKQ9FWw8YDF6TOMcB8rpSUSdLtTj0QvJ0LMzxEoKemDsc9gLTcqbw0B0nAiG76xfiHZGQE1rjtqIgBLVRpxAnk3BSSHk2qc0JBD4Hxcr3yWTiP4vzacokmz7X0Yz7n1dCFMFlPvlQp118bhVqaRwqlMrq+biYaY/Srd9hvQNFlxDYEcRFuEZJD0X92J+pmejGu85vfR+8UQxwzvlqphYKvXHMVDSlfMHc0W9omeYXchD4bnz0Lf0GLbjjzmIF7lv1FJSYLHgJhF4X3ujIg7nf6kBjoTTlZbBf39n0QdvXXwDjYkeOabMysU8STfShQxlElf4NhPyq14GAqEcywNnQPw00Kh6xQ==
+X-Forefront-Antispam-Report:
+	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:PAXPR04MB9642.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230031)(396003)(376002)(39860400002)(366004)(346002)(136003)(230922051799003)(1800799012)(451199024)(64100799003)(186009)(26005)(2616005)(921011)(41300700001)(478600001)(6666004)(6512007)(6486002)(6506007)(316002)(52116002)(7416002)(110136005)(66946007)(66556008)(66476007)(36756003)(8936002)(4326008)(8676002)(5660300002)(38100700002)(2906002)(86362001)(38350700005);DIR:OUT;SFP:1101;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0:
+	=?utf-8?B?UkkxL3RMaE5vc2JmVXplU0tsbTlkTXJSdmkzb2VwVnZqMFFGS0pmVEZ1eUJJ?=
+ =?utf-8?B?Skp5NzVQMVF5TjZBTWx6c1JUYUoveFZUMFY0Ri9KdUVzNExzcXU5TWlkUEsr?=
+ =?utf-8?B?VzlsUlpZb0JSTEtDZ1hvRFFiQlJlSU5FMHR4NGgrYnhjeTRkT2pPdFd1UzNX?=
+ =?utf-8?B?dHZ6MlVCbmsxbmgxai9ZTWRoQkFrVFI4N1lORWk3UDc4UXhwWXJENUYxQ0VH?=
+ =?utf-8?B?a3B5Q1E3RnVHQnB3UGRXSkVFREpPUkRPcHptOWVqdUlJZWZHZkMvZW5ua0Yv?=
+ =?utf-8?B?UTFhZmpVT0g3QVhNYktsbVFHUnVURFZrNXBkOE9rQUU4VlhZQjBEL3Brdmp2?=
+ =?utf-8?B?aUNrVEhrd0NsQnpvSmlSNDF0cjNOK2VPZmNBTnlFZURrN2JaZk1lOXhBVEZY?=
+ =?utf-8?B?WENjVVBjMXhzaXdvSkt4bFlDRytTUkJLV3lvaG5jN3k2R2haTjVGRVJ2VWVS?=
+ =?utf-8?B?UklCbjl1Y3FoQ08yZnRiM1RWK3hLK0FYYS8rcUYyclFqM0I3KzRhRU9zSUtZ?=
+ =?utf-8?B?ckJQM2xWaFljOTBUb0hKSGh4V3FkZWRsSHBodmorQXJ1M1k4TDNZS0VsYXIw?=
+ =?utf-8?B?bktvbWpOdXRoVTBrT0lJMUZqeVVUaEdqOURPWmJZSUM5V3YzbVg5a0pTVDFU?=
+ =?utf-8?B?RDREQ3VRb3VDV3JqbytPcVFyVVJMTEpZZE9FUEVFMzE5MTA0MzQybXo2VlV1?=
+ =?utf-8?B?eHdlVnQzdU1salM1SFFmZitYV1pMdGZXUi9RbTJLTlpBeFFNTWNTMTZkWlI1?=
+ =?utf-8?B?L0dXeUxJYkQxMzFWV0lWbUdFbi9WUVBmazVGaHpSWDZTZUlkWkJqdlRkc1No?=
+ =?utf-8?B?TC9lcm5udHpxeitCZ2ZBaVdCREpMNmlLMERnWDBmVzV3MFg1Y2FTdEdrdHoy?=
+ =?utf-8?B?c1lWaXJzaVdyWjE3TElneERsenk3dVBOK0hkNm5DRythRmNEWXVlV3ZneGdS?=
+ =?utf-8?B?djBxUTZGOW9KM0R5ZUsvMXpSeEVkQzlyV2NKTkJjY2tjeTV5OWFkUDZNWGw4?=
+ =?utf-8?B?dG5GeDlzTHRxUHlwaTBja0VScGw2Z0NrYkRBRlhDN0lVRVUxb1cxSXludHVK?=
+ =?utf-8?B?MmJXSUFiM3lOQlMxSGpmNjNsaTJLcU0xcG1ZOFNPbXBzQWo3QTFlN0FrWE50?=
+ =?utf-8?B?YW92MW5ES3B0TlVPNmdJV3JtWjVUV0JBRU54d25xMS9aaVArUVhVYkJuYlhy?=
+ =?utf-8?B?UW5PM0tZckVSMHdBdXZpUyt4dEVzNHJRdldWQVhUMlc1djd6TGlCa0xvSGJu?=
+ =?utf-8?B?VURYLytBVkhQU254S3dZNDg3YTZUYUc5K0JXYUZ1YjNUYmNGNjlOM3RGc2lR?=
+ =?utf-8?B?ejlLRklIVWtjUHFjZnVPTHFaeitWV3JIYk5wVmVNUHJPM2UxZHhHcGhWN2hZ?=
+ =?utf-8?B?QmszZkFkdmp5QWFIMXhVRXdaMU1PcC91K0Q1N2hQZTN2dWg1RGsyWWJKOEpJ?=
+ =?utf-8?B?elZYbWkrVWhrK29PcWdEaEtkaGliNllxTEdBN0s4UDA5R2lMck9oZUJlUkJB?=
+ =?utf-8?B?cEhhUjdvRnRMVU1WOXFnZURkUWpLN0c1aUtiN1dDODUyYXh4eVRIMVF4dXlk?=
+ =?utf-8?B?UTV4K2d4QmxUVTd5clpDdFMzS0JNaHJqZTNOUjA3WEp1SXBhZUw2L29CVjJO?=
+ =?utf-8?B?clV4Y3JEazQ1ZDJwVUQ5NnhQeFo3eFRxNEp0YWxJU0tYRDBhMXk2ZEpyVWRB?=
+ =?utf-8?B?WDdreHd3NDB4T0M5UUgwUUNydFhjczIyT2tkWkFZdWE1SytCaHpTbWRCbThs?=
+ =?utf-8?B?SVlDVTFPbER4N0xDdWlTUjV1NDFqZkM0MmtzZ1p1QXhqaDk1RVRaS2ZDQThG?=
+ =?utf-8?B?NlN6RGhuTG5wMXZGdGRvc1ZWVmdEZXZuVEVoV2h0clFWbzB6TEFQTHhkM1RU?=
+ =?utf-8?B?dUhZSG5FdWk3WVBiamFGMXlyNjFSN0hPaXZlRFM4anJxWWJGYWtiejZPSlVk?=
+ =?utf-8?B?cFpEeThpNzlNMHB6K0ZITWNPWlcrWDEra2hqK09xQ3FFNkFWUzl1bUFPVVJZ?=
+ =?utf-8?B?cTNjUUp5Q0M5aSszckxoOTNrVVpvT3JvYlQ2cEc1QWs0bEgrWHhjVnFPRWww?=
+ =?utf-8?B?SXlWVlJqWkRIUCtMM25CZXpmSkFGZFJRY0Q0YnIvZVptbzRkTmZHQlVNc254?=
+ =?utf-8?Q?hSE+X1E0MQYV+xZAJC6iZrW81?=
+X-OriginatorOrg: nxp.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: ae7be51d-35e8-414a-def4-08dc23639af7
+X-MS-Exchange-CrossTenant-AuthSource: PAXPR04MB9642.eurprd04.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 01 Feb 2024 20:23:08.9614
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: K9CM+ztvej2LKqkc/mfXAwFWyXcQRPr/kTLxVFolEyfIWwN+reesv2f4n1/Uh4XIr5s/wv/yTq7p8Ke+bAICAQ==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DU2PR04MB8741
 
-On 2/1/24 1:13 PM, Brnich, Brandon wrote:
-> Hi Andrew,
-> 
->> -----Original Message-----
->> From: Davis, Andrew <afd@ti.com>
->> Sent: Thursday, February 1, 2024 12:35 PM
->> To: Brnich, Brandon <b-brnich@ti.com>; Menon, Nishanth <nm@ti.com>;
->> Raghavendra, Vignesh <vigneshr@ti.com>; Tero Kristo <kristo@kernel.org>;
->> Rob Herring <robh+dt@kernel.org>; Krzysztof Kozlowski
->> <krzysztof.kozlowski+dt@linaro.org>; Conor Dooley <conor+dt@kernel.org>;
->> Catalin Marinas <catalin.marinas@arm.com>; Will Deacon
->> <will@kernel.org>; Bjorn Andersson <quic_bjorande@quicinc.com>; Geert
->> Uytterhoeven <geert+renesas@glider.be>; Arnd Bergmann
->> <arnd@arndb.de>; Konrad Dybcio <konrad.dybcio@linaro.org>; Neil
->> Armstrong <neil.armstrong@linaro.org>; Nícolas F . R . A . Prado
->> <nfraprado@collabora.com>; Marek Szyprowski
->> <m.szyprowski@samsung.com>; linux-arm-kernel@lists.infradead.org;
->> devicetree@vger.kernel.org; linux-kernel@vger.kernel.org; Etheridge, Darren
->> <detheridge@ti.com>
->> Subject: Re: [PATCH v3 1/6] arm64: dts: ti: k3-j784s4: Add Wave5 Video
->> Encoder/Decoder Node
->>
->> On 1/31/24 3:26 PM, Brandon Brnich wrote:
->>> This patch adds support for the Wave521cl on the J784S4-evm.
->>>
->>> Signed-off-by: Brandon Brnich <b-brnich@ti.com>
->>> ---
->>>    arch/arm64/boot/dts/ti/k3-j784s4-evm.dts   |  8 ++++++++
->>>    arch/arm64/boot/dts/ti/k3-j784s4-main.dtsi | 20 ++++++++++++++++++++
->>>    arch/arm64/boot/dts/ti/k3-j784s4.dtsi      |  2 ++
->>>    3 files changed, 30 insertions(+)
->>>
->>> diff --git a/arch/arm64/boot/dts/ti/k3-j784s4-evm.dts
->>> b/arch/arm64/boot/dts/ti/k3-j784s4-evm.dts
->>> index f34b92acc56d..7d37c11b4df4 100644
->>> --- a/arch/arm64/boot/dts/ti/k3-j784s4-evm.dts
->>> +++ b/arch/arm64/boot/dts/ti/k3-j784s4-evm.dts
->>> @@ -784,6 +784,14 @@ &main_gpio0 {
->>>    	status = "okay";
->>>    };
->>>
->>> +&vpu0 {
->>> +	status = "okay";
->>> +};
->>> +
->>> +&vpu1 {
->>> +	status = "okay";
->>> +};
->>> +
->>>    &mcu_cpsw {
->>>    	status = "okay";
->>>    	pinctrl-names = "default";
->>> diff --git a/arch/arm64/boot/dts/ti/k3-j784s4-main.dtsi
->>> b/arch/arm64/boot/dts/ti/k3-j784s4-main.dtsi
->>> index f2b720ed1e4f..8b2623ac8160 100644
->>> --- a/arch/arm64/boot/dts/ti/k3-j784s4-main.dtsi
->>> +++ b/arch/arm64/boot/dts/ti/k3-j784s4-main.dtsi
->>> @@ -662,6 +662,26 @@ main_i2c6: i2c@2060000 {
->>>    		status = "disabled";
->>>    	};
->>>
->>> +	vpu0: video-codec@4210000 {
->>> +		compatible = "ti,j721s2-wave521c", "cnm,wave521c";
->>> +		reg = <0x00 0x4210000 0x00 0x10000>;
->>> +		interrupts = <GIC_SPI 182 IRQ_TYPE_LEVEL_HIGH>;
->>> +		clocks = <&k3_clks 241 2>;
->>> +		clock-names = "vcodec";
->>> +		power-domains = <&k3_pds 241 TI_SCI_PD_EXCLUSIVE>;
->>> +		status = "disabled";
->>
->> Why are these default disabled? I don't see anything missing that would
->> need to be added at the board level. You disable them just to re-enable them
->> in the next patch. Leave these default enabled.
-> 
-> I thought that disabled by default was the standard for node in dtsi files, where
-> they get specifically enabled in the particular dts file for the SoC.
-> 
+Change at v2
+- Remove iM95 for fec.
 
-Only disabled if there is missing information needed for the node to function
-that can only be added at the board level, e.g. pinmux usually.
+To: Ulf Hansson <ulf.hansson@linaro.org>
+To: Rob Herring <robh+dt@kernel.org>
+To: Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
+To: Conor Dooley <conor+dt@kernel.org>
+To: Shawn Guo <shawnguo@kernel.org>
+To: Sascha Hauer <s.hauer@pengutronix.de>
+To: Pengutronix Kernel Team <kernel@pengutronix.de>
+To: Fabio Estevam <festevam@gmail.com>
+To: NXP Linux Team <linux-imx@nxp.com>
+To: Wei Fang <wei.fang@nxp.com>
+To: Shenwei Wang <shenwei.wang@nxp.com>
+To: Clark Wang <xiaoning.wang@nxp.com>
+To: David S. Miller <davem@davemloft.net>
+To: Eric Dumazet <edumazet@google.com>
+To: Jakub Kicinski <kuba@kernel.org>
+To: Paolo Abeni <pabeni@redhat.com>
+Cc: linux-mmc@vger.kernel.org
+Cc: devicetree@vger.kernel.org
+Cc: linux-arm-kernel@lists.infradead.org
+Cc: linux-kernel@vger.kernel.org
+Cc: netdev@vger.kernel.org
+Cc: imx@lists.linux.dev
 
-> In V4 I will remove the disabled by default. Should this apply to all platforms in
-> the series?
+Signed-off-by: Frank Li <Frank.Li@nxp.com>
+---
+Frank Li (4):
+      dt-bindings: mmc: fsl-imx-esdhc: add iommus property
+      dt-bindings: net: fec: add iommus property
+      arm64: dts: imx8qm: add smmu node
+      arm64: dts: imx8qm: add smmu stream id information
 
-Yes
+ .../devicetree/bindings/mmc/fsl-imx-esdhc.yaml     |  3 ++
+ Documentation/devicetree/bindings/net/fsl,fec.yaml |  3 ++
+ arch/arm64/boot/dts/freescale/imx8qm-ss-conn.dtsi  |  6 ++++
+ arch/arm64/boot/dts/freescale/imx8qm.dtsi          | 41 ++++++++++++++++++++++
+ 4 files changed, 53 insertions(+)
+---
+base-commit: 99748ff5ee0953610765e9d0cd6015c2eb0f7ace
+change-id: 20240201-8qm_smmu-6318da8e9017
 
-Andrew
+Best regards,
+-- 
+Frank Li <Frank.Li@nxp.com>
 
->   
->>> +	};
->>> +
->>> +	vpu1: video-codec@4220000 {
->>> +		compatible = "ti,j721s2-wave521c", "cnm,wave521c";
->>> +		reg = <0x00 0x4220000 0x00 0x10000>;
->>> +		interrupts = <GIC_SPI 183 IRQ_TYPE_LEVEL_HIGH>;
->>> +		clocks = <&k3_clks 242 2>;
->>> +		clock-names = "vcodec";
->>> +		power-domains = <&k3_pds 242 TI_SCI_PD_EXCLUSIVE>;
->>> +		status = "disabled";
->>> +	};
->>> +
->>>    	main_sdhci0: mmc@4f80000 {
->>>    		compatible = "ti,j721e-sdhci-8bit";
->>>    		reg = <0x00 0x04f80000 0x00 0x1000>, diff --git
->>> a/arch/arm64/boot/dts/ti/k3-j784s4.dtsi
->>> b/arch/arm64/boot/dts/ti/k3-j784s4.dtsi
->>> index 4398c3a463e1..93bb0cba1b48 100644
->>> --- a/arch/arm64/boot/dts/ti/k3-j784s4.dtsi
->>> +++ b/arch/arm64/boot/dts/ti/k3-j784s4.dtsi
->>> @@ -247,6 +247,8 @@ cbass_main: bus@100000 {
->>>    			 <0x00 0x30000000 0x00 0x30000000 0x00
->> 0x0c400000>, /* MAIN NAVSS */
->>>    			 <0x41 0x00000000 0x41 0x00000000 0x01
->> 0x00000000>, /* PCIe1 DAT1 */
->>>    			 <0x4e 0x20000000 0x4e 0x20000000 0x00
->> 0x00080000>, /* GPU */
->>> +			 <0x00 0x04210000 0x00 0x04210000 0x00
->> 0x00010000>, /* VPU0 */
->>> +			 <0x00 0x04220000 0x00 0x04220000 0x00
->> 0x00010000>, /* VPU1 */
->>
->> Add these in sorted by memory address order.
-> 
-> Will do in V4 as well.
-> 
->>
->> Andrew
->>
->>>
->>>    			 /* MCUSS_WKUP Range */
->>>    			 <0x00 0x28380000 0x00 0x28380000 0x00
->> 0x03880000>,
-> 
-> Brandon
 
