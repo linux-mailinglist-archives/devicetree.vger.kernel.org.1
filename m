@@ -1,133 +1,130 @@
-Return-Path: <devicetree+bounces-37444-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-37445-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9396D84505E
-	for <lists+devicetree@lfdr.de>; Thu,  1 Feb 2024 05:38:36 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id BFC89845074
+	for <lists+devicetree@lfdr.de>; Thu,  1 Feb 2024 05:47:09 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 4F35D28FE81
-	for <lists+devicetree@lfdr.de>; Thu,  1 Feb 2024 04:38:35 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id AEFD11C26C6E
+	for <lists+devicetree@lfdr.de>; Thu,  1 Feb 2024 04:47:08 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A5C3438DE1;
-	Thu,  1 Feb 2024 04:38:30 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D65BB3B788;
+	Thu,  1 Feb 2024 04:46:47 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="LrnTEvPm"
+	dkim=pass (2048-bit key) header.d=google.com header.i=@google.com header.b="MtSY0Pj/"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-yw1-f175.google.com (mail-yw1-f175.google.com [209.85.128.175])
+Received: from mail-pg1-f202.google.com (mail-pg1-f202.google.com [209.85.215.202])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1497333CC6
-	for <devicetree@vger.kernel.org>; Thu,  1 Feb 2024 04:38:28 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.175
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4CD2A3CF58
+	for <devicetree@vger.kernel.org>; Thu,  1 Feb 2024 04:46:46 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.215.202
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1706762310; cv=none; b=EkjV11g+hXhoPz9QXLoVG+Nr7Fdx38PJcnFx0DpnXRhJJaL3Dxc9tz7uoDGdnhIzRMqEU9VkAX/ocbEdJiTjZ0yyMGhRgSg+8vlrcFs3bZD+HLe8PqV18VnuY5xxjXg6P8Tf9qrX1lMmn/nVEI2o21L96ZAnvmAekYoDUE3M90Y=
+	t=1706762807; cv=none; b=RESyq6LlH+dudOJ2kcyHyHJdM7W0Xj7Lc8OaWBoLVS49e/79WNMmFwzc/tatFDKW+5qakwhryNF/GzV53UIhCTia7BrW7h5YRedVqeWFiKvQIu+/HT0ckaB7O3Yw+mc02Ma6ClcK/2hiVyvC7FajdV5tkFMJc6COdQr4r+YeqTI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1706762310; c=relaxed/simple;
-	bh=xlp952QhQ9vxiVaZPe1VxvlXo4DhX8Ootnu7t88muQg=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=NPmtkJZtMteh/+eg4TDJI/bNOHuNxm7DzWamoGasZn//P8drlu4CwJWoD2VDheAnaw3HOxqBpSkbBZ/ZFFikDNBGpvblZj4RUmKt/biVcWLp4iL/I8HQMUo4qGNjzpSr3a8RJnhxDaaKaNHsxjeP9eWHR3N/AL0RLGmd2gLnuaA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=LrnTEvPm; arc=none smtp.client-ip=209.85.128.175
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-yw1-f175.google.com with SMTP id 00721157ae682-603c5d7997aso5393497b3.1
-        for <devicetree@vger.kernel.org>; Wed, 31 Jan 2024 20:38:28 -0800 (PST)
+	s=arc-20240116; t=1706762807; c=relaxed/simple;
+	bh=4VGGGcaYk35HxXgdSmdu935kGFSoAd32AIvMtmVqZPQ=;
+	h=Date:Mime-Version:Message-ID:Subject:From:To:Content-Type; b=MGZADbCS1bW7K5jBbwQ46siHlfCcA0NAOFofRWBm0MoFKmg6yDv6UDsxT25eRUvg+YmyFK7H7prrFuvsJz5zVNcVBAbsvcPwX+V3/qpYlmqSqh5Ikufd2lx9yc65MOZLv87ZhWkV9sxjcleF5+Im+TNRL6vUGy9g1nW9BgWGipE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=google.com; spf=pass smtp.mailfrom=flex--aahila.bounces.google.com; dkim=pass (2048-bit key) header.d=google.com header.i=@google.com header.b=MtSY0Pj/; arc=none smtp.client-ip=209.85.215.202
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=google.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=flex--aahila.bounces.google.com
+Received: by mail-pg1-f202.google.com with SMTP id 41be03b00d2f7-5d8dd488e09so610614a12.2
+        for <devicetree@vger.kernel.org>; Wed, 31 Jan 2024 20:46:46 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1706762308; x=1707367108; darn=vger.kernel.org;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=5YQRrCqKrxX0QGwWLOXM+qSJBKdpS7XuLXPk6PACHYY=;
-        b=LrnTEvPm6dFZPlZIeCdcz3N/kI1Qz9QaIidJEKjRTfdODnQDZCDP/yIeamUJi2olUY
-         De+qvAeJ9M8c4CEzEMdp+CHKzxQDWMFcVT2dSdALAj1vDUhKgXpgKwhkzMkXCqALLBhE
-         oP04kXgoxuCW6ZGRXTLXDDC5LgCPNDsJCiwkAH8rm+r4g8EJwu2NzOfHPE9V9MXDMm4X
-         0QGxUKLOTA2fe7q6QhZpqX/SgfotT6w9M94PJtZXnEjT4ffiMzxjxgNPR2ZK4JpzhaYP
-         jCvP2PEwESsv81UVpVuGbb7/06AArzfL12yrQ8/BQzmL7TKhSLucBfcFW8c1U7me0I5E
-         hsDQ==
+        d=google.com; s=20230601; t=1706762805; x=1707367605; darn=vger.kernel.org;
+        h=to:from:subject:message-id:mime-version:date:from:to:cc:subject
+         :date:message-id:reply-to;
+        bh=uYSo7dLHiN39LMct+TvOkaek+OHlhRLiZBJ+JHrrHE0=;
+        b=MtSY0Pj/cyrsCH8V6NyW1kLO7ySRKjHc0+PYyqlrfa3mmN4mkUPx8Gsn9OutO007t+
+         Rmxg1nesn9bkf5/O2Zn8/gWqYKmqel1mWZvD/Xn5iNeHtAz2bD5TicAYAXBXMKpYrnyg
+         z1IEcHUH5hvlCv0c/W7en6F8ktGwJAjpqaNZQMbhz7cxDLI1L58+boETjp76buNcqoNN
+         dwd2+0y1ya7F6UQHncWBpY0P4csOZmCHzRlGWdD9Anno/YCi8rNzM9AjvShzVIFZH5dz
+         4LVlljbCzZPQj2zC5ypFH4FqjKkmW+x7G2vEj9OPllsxAHkQTbdqX2bNNf4L7BMUEk7q
+         aIJw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1706762308; x=1707367108;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=5YQRrCqKrxX0QGwWLOXM+qSJBKdpS7XuLXPk6PACHYY=;
-        b=mmfc82tSSgbaQY16J/JXzDQWTU/YRq6KZMQ1LV1ugYcwIRabE5bHFCNQXRno9BxCl5
-         bul+3egIm7QEDP9cNel/eljgwzuQHMOLtFSdI0DENuPt9KflW/SSiWqbEooxMgv4bsRT
-         C25ByuKaV5jL3rNqwOrIZgz0SodpQQhoRjzv2nXnDy5GEu0oDb9JSG1J5SWRS3yE/XWT
-         5JgOPIqxnaZSk4b1jruj2Nj/sau9K4eoNQHI81Q/bP2ev+Ff0ikpEt5zp3b62H7yzcm+
-         ssRopBb+K1t3RTaSCC2JucbniBdzIMAJj1edtIcZdpwqHxQ1U/1N1fv1qwXWx9x32LTy
-         T21g==
-X-Gm-Message-State: AOJu0YzLcy1yF97jH2eCbrlf71UhHv5mTiWE3sFOu1fGDSO2gvRuPqqc
-	qOlSDXA+Pe6Vm4oFomzm1yl/nu6FhgcvI4bc2hYA9X3UcgVzCk9S8DMhjxzJiswAFYq19Ni2MA2
-	ydTD4qdZ3lw6HvCQwor0E8J1msUVVeCO4wLCWpw==
-X-Google-Smtp-Source: AGHT+IF9J2ngL1O+SFaYgJ97zecTCjLejp62QfeLNd9nH0Hds7iKb9x1nnxcTAIUm3azYuiukMqzFbXqj4pxxW93eI0=
-X-Received: by 2002:a81:4f8d:0:b0:602:9161:2e73 with SMTP id
- d135-20020a814f8d000000b0060291612e73mr3274183ywb.29.1706762308049; Wed, 31
- Jan 2024 20:38:28 -0800 (PST)
+        d=1e100.net; s=20230601; t=1706762805; x=1707367605;
+        h=to:from:subject:message-id:mime-version:date:x-gm-message-state
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=uYSo7dLHiN39LMct+TvOkaek+OHlhRLiZBJ+JHrrHE0=;
+        b=R3Lva0OR0LbyEcLZtT10Nq2cnFOp51DLghL3ujs5fLq8H5SxgUWmdPhX/w9KEfVV+3
+         T0VMN4NBUun8fyOhCOX4efvSclqBUu+qHcKVOPjjf2RrcMl8C7OAhTK/4wh2osoUnCSd
+         Fw4cX8YJ2FLmgoq5FLyiX6v9A6sHwrIhKiOY5RnZHGyhdLl5IJm1BueoLxSJTBGFLOBe
+         WLz5tpK3mAQxIViqsGF9AiG9nYjjtYppo7nfdULp6puXG6WbEt+pOptKuzCxn9DF7QbT
+         uY7GIImzHxTEKG1+K0PwA5+/TQ2Wfa/+HxGcPQeUN1xJlHDOwekIqRcAxhsbrwMuqBdH
+         fOhQ==
+X-Gm-Message-State: AOJu0Yy78jMC57+JYLqkQ6BcI3BfSLXRXIv3e4SN7xpHYl0YBGOnM3wR
+	/F/MFOeI3u4ruLUOqODbC98myWggvihEb9Q6AvoTFce5kxtINJrLUVdFiTB9oXPKcvsi+7PV8LW
+	sOg==
+X-Google-Smtp-Source: AGHT+IH1mpGNqqs+VrlIIPUSdBXJXXj54xNBJG7viPKa5/ZRAaOUdYVX8hyYK8Eb2TKfEfxpyqG2TrgIDQI=
+X-Received: from aahila.c.googlers.com ([fda3:e722:ac3:cc00:7f:e700:c0a8:2f3])
+ (user=aahila job=sendgmr) by 2002:a65:6115:0:b0:5d4:e18a:1e5 with SMTP id
+ z21-20020a656115000000b005d4e18a01e5mr88518pgu.5.1706762805440; Wed, 31 Jan
+ 2024 20:46:45 -0800 (PST)
+Date: Thu,  1 Feb 2024 04:46:22 +0000
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-MIME-Version: 1.0
-References: <CAA8EJpoMXkAd3EBf=p+nig8VWzY9tiUAWhfGJn3XOX1uSa=22Q@mail.gmail.com>
- <20240201040020.73949-1-amadeus@jmu.edu.cn>
-In-Reply-To: <20240201040020.73949-1-amadeus@jmu.edu.cn>
-From: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-Date: Thu, 1 Feb 2024 06:38:17 +0200
-Message-ID: <CAA8EJpoQ8O_atu9K=eG+NLQ_Ei64qvcQ6GoYyJjxJ_DGH2D2+Q@mail.gmail.com>
-Subject: Re: [PATCH 1/3] arm64: dts: qcom: ipq6018: separate CPU OPP tables
-To: Chukun Pan <amadeus@jmu.edu.cn>
-Cc: andersson@kernel.org, conor+dt@kernel.org, devicetree@vger.kernel.org, 
-	konrad.dybcio@linaro.org, krzysztof.kozlowski+dt@linaro.org, 
-	linux-arm-msm@vger.kernel.org, linux-kernel@vger.kernel.org, 
-	robh+dt@kernel.org
+Mime-Version: 1.0
+X-Mailer: git-send-email 2.43.0.429.g432eaa2c6b-goog
+Message-ID: <20240201044623.374389-1-aahila@google.com>
+Subject: [PATCH 1/2] dt-bindings: i2c: designware: allow fine tuning tuning
+ waveform from device tree
+From: Aahil Awatramani <aahila@google.com>
+To: Aahil Awatramani <aahila@google.com>, David Dillow <dillow@google.com>, 
+	Wolfram Sang <wsa+renesas@sang-engineering.com>, Andi Shyti <andi.shyti@kernel.org>, 
+	Rob Herring <robh+dt@kernel.org>, 
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Jarkko Nikula <jarkko.nikula@linux.intel.com>, 
+	Andy Shevchenko <andriy.shevchenko@linux.intel.com>, 
+	Mika Westerberg <mika.westerberg@linux.intel.com>, Jan Dabros <jsd@semihalf.com>, 
+	linux-i2c@vger.kernel.org, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org
 Content-Type: text/plain; charset="UTF-8"
 
-On Thu, 1 Feb 2024 at 06:00, Chukun Pan <amadeus@jmu.edu.cn> wrote:
->
-> Hi, Dmitry
-> > Straight to the board files, please, no need for additional includes.
->
-> Is it possible to move the mp5496 node to mp5496.dtsi?
-> Because ipq9574 also uses this mp5496 pmic.
->
-> &rpm_requests {
->         regulators {
->                 compatible = "qcom,rpm-mp5496-regulators";
->
->                 mp5496_s1: s1 {
->                         regulator-min-microvolt = <725000>;
->                         regulator-max-microvolt = <1075000>;
->                         status = "disabled";
->                 };
->
->                 mp5496_s2: s2 {
->                         regulator-min-microvolt = <725000>;
->                         regulator-max-microvolt = <1062500>;
->                         status = "disabled";
->                 };
->
->                 mp5496_l2: l2 {
->                         regulator-min-microvolt = <1800000>;
->                         regulator-max-microvolt = <3300000>;
->                         status = "disabled";
->                 };
->         };
-> };
+The Synopsys i2c driver allows a user to override the parameters
+controlling the waveform using ACPI; this is useful for fine tuning when
+needed to make spec compliance. Extend this support to the device tree to
+allow non-ACPI platforms the same capabilities.
 
-Usually this is a bad idea, the regulator boundaries are board specific.
+Signed-off-by: Aahil Awatramani <aahila@google.com>
+---
+ Documentation/devicetree/bindings/i2c/i2c.txt | 18 ++++++++++++++++++
+ 1 file changed, 18 insertions(+)
 
->
-> > From your patches I had the feeling that you still want to limit the
-> > high-frequency OPP entries if there is no PMIC.
->
-> Sorry for this misunderstanding, the cpu max frequency is determined
-> by the cpu_speed_bin. It's just that the efuse of the board I have
-> without pmic are all 1.2GHz.
-
-Ack, sounds good then.
-
+diff --git a/Documentation/devicetree/bindings/i2c/i2c.txt b/Documentation/devicetree/bindings/i2c/i2c.txt
+index fc3dd7ec0445..3c33c36571f9 100644
+--- a/Documentation/devicetree/bindings/i2c/i2c.txt
++++ b/Documentation/devicetree/bindings/i2c/i2c.txt
+@@ -45,6 +45,24 @@ wants to support one of the below features, it should adapt these bindings.
+ 	Number of nanoseconds the SCL signal takes to rise; t(r) in the I2C
+ 	specification.
+ 
++- i2c-scl-ss-hcnt
++	HCNT value for standard speed mode in I2C Controller.
++
++- i2c-scl-ss-lcnt
++	LCNT value for standard speed mode in I2C Controller.
++
++- i2c-scl-fs-hcnt
++	HCNT value for fast speed mode in I2C Controller.
++
++- i2c-scl-fs-lcnt
++	LCNT value for fast speed mode in I2C Controller.
++
++- i2c-scl-hs-hcnt
++	HCNT value for high speed mode in I2C Controller.
++
++- i2c-scl-hs-lcnt
++	LCNT value for high speed mode in I2C Controller.
++
+ - i2c-sda-falling-time-ns
+ 	Number of nanoseconds the SDA signal takes to fall; t(f) in the I2C
+ 	specification.
 -- 
-With best wishes
-Dmitry
+2.43.0.429.g432eaa2c6b-goog
+
 
