@@ -1,142 +1,126 @@
-Return-Path: <devicetree+bounces-37446-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-37447-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 784E9845077
-	for <lists+devicetree@lfdr.de>; Thu,  1 Feb 2024 05:47:27 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2B487845080
+	for <lists+devicetree@lfdr.de>; Thu,  1 Feb 2024 05:48:56 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 9C5A91C23EF0
-	for <lists+devicetree@lfdr.de>; Thu,  1 Feb 2024 04:47:26 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id BC4701F22B4C
+	for <lists+devicetree@lfdr.de>; Thu,  1 Feb 2024 04:48:55 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D5DCA3D0A4;
-	Thu,  1 Feb 2024 04:46:51 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 10E1C3BB2D;
+	Thu,  1 Feb 2024 04:48:47 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=google.com header.i=@google.com header.b="N8kvZ/ir"
+	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="K2AEv6BW"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-yw1-f201.google.com (mail-yw1-f201.google.com [209.85.128.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from fllv0015.ext.ti.com (fllv0015.ext.ti.com [198.47.19.141])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1AD433CF71
-	for <devicetree@vger.kernel.org>; Thu,  1 Feb 2024 04:46:49 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 500B43BB3D;
+	Thu,  1 Feb 2024 04:48:45 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.19.141
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1706762811; cv=none; b=qGmjY23HNMwuESJDKDXxUqPGV9hMo/Vnly/au2fNjtvqhtKkM69j+cm6PprvtCe30iJ/j63RONI1oSl2PwrNFCUW4X/Ks1fgaCqh+7iFQxrgYuCcR6cOwSOf7vN//6F1vLhuUhqYIp2MMmpR7dv9wX3jT/TZl4Tl2TevF0rqiUU=
+	t=1706762927; cv=none; b=G52xmbd9VAXuGMYkw/b19hvFJndtRJtTspAZ8bUYdOYeUFrg7JdNXfPxiEHjcI3j8Zuf0mlmakFWA1xqav9Uz47vk3tmsS+x5T/9ArSLRveZMr6aC95Om/JcR7TfyXjzdYchgpJjQDwZHrxZmNDlCfxvgcqojiZ2ZJ70cgsAeQU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1706762811; c=relaxed/simple;
-	bh=Twt8VpGAnLnDknK+2mkdxRc9XEHSq6p2WMav1kEzpAw=;
-	h=Date:In-Reply-To:Mime-Version:References:Message-ID:Subject:From:
-	 To:Content-Type; b=tkQbSBPv4JgLO/NnhIWq5bwR0Uau3IZb9l5QGQuy+qZkbeOHYyZ8UZMCr4wh1WHJ1u+Sx7fq10iAZSTL792Fo7DEH6XGz5N3zXR87I6T4Lr33MEa44/xdRNFz261l//MEqM8yVeQJEigGzEX/c64AUqwPHT3Axtr0+33TadcwW8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=google.com; spf=pass smtp.mailfrom=flex--aahila.bounces.google.com; dkim=pass (2048-bit key) header.d=google.com header.i=@google.com header.b=N8kvZ/ir; arc=none smtp.client-ip=209.85.128.201
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=google.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=flex--aahila.bounces.google.com
-Received: by mail-yw1-f201.google.com with SMTP id 00721157ae682-603cbb4f06dso10592427b3.3
-        for <devicetree@vger.kernel.org>; Wed, 31 Jan 2024 20:46:49 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=google.com; s=20230601; t=1706762809; x=1707367609; darn=vger.kernel.org;
-        h=to:from:subject:message-id:references:mime-version:in-reply-to:date
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=8c691bs4raW5tl1fD8/M9N6DqO7UPyEHeitm4Vwh450=;
-        b=N8kvZ/irzYvcuRYBw0Ut78xk7XwlNAtgF9N5BGOaTXIjxMZre/TZb/nyjnvb504t0P
-         aeBELdHdqmSd10ai3mPQ2E/YoACMofobbkxoQQCHFUuV15LHlzqHhjh/ihB0HQwCS/fG
-         D5aMjpE8EA7c5zpsepMW/nT+KS54+YoaVRXDNHNYi2FWBHCFyf0Swu01tYZmXdZBp87y
-         D09pf+yqRVhcyO2jX6YvRC+nPLaV2mCBxvt00qs+n1DhwI2uW+HqSksFHL8dDEHHo3tD
-         iiO/nRI4VkplJJ69tUGaeoC/Y9aXf9+ksQR4DakdR0IF7sYxE4Pg8/76SrMedq1zROyJ
-         zdSw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1706762809; x=1707367609;
-        h=to:from:subject:message-id:references:mime-version:in-reply-to:date
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=8c691bs4raW5tl1fD8/M9N6DqO7UPyEHeitm4Vwh450=;
-        b=aOK7tJPren9SMEJzs1lUNAhA+30JFp/l3T0wx9WILdmSp1oNW5W4Jek+TTfL1ellLW
-         lPp3AHEjr39/5MIcN+WvtIFSvdJb6jl6hof5sG2i1C81+MYiXgYXw3sorHgDrCaxITtB
-         gqGzJnjQYtsK/jWkWFh1pZMz2BCKP4yaCT72gRiUBI0c1/tGhueTjqkCnub1y5KDn6FS
-         DfTtlC66hOWPdoIQp2Az6Ko18hqh2R/DwVoq8KlzDERjsI3VoxY36hqcXcnonhaTbAGc
-         jNcj87kEcJ/4gQArfUrxNXAeP4+eXAn8UMivmTSKE7v19Jp1f13DBmFJeaECEjfKfpWC
-         Th+A==
-X-Gm-Message-State: AOJu0YyDpufR0EMb/hwBPzyYVVtgIBTuHAwTNwFssqGpfWLWVwnd/sgg
-	Ixjoe9Nr54omuk53uXiKj/XDThLBEO1JfjovnLDMwn+g1sJ0lJ9CovwHviBIEzyJOP3rC5WgI5T
-	36Q==
-X-Google-Smtp-Source: AGHT+IGCqkf4S6bQM1K/unGBkakUD903fQKJFzDx/PsI7m/ghEanV+fd8QwhKiXNvUcW/cWgJucE/HbyIpE=
-X-Received: from aahila.c.googlers.com ([fda3:e722:ac3:cc00:7f:e700:c0a8:2f3])
- (user=aahila job=sendgmr) by 2002:a05:690c:f85:b0:5ff:9eb1:29a6 with SMTP id
- df5-20020a05690c0f8500b005ff9eb129a6mr796091ywb.2.1706762809133; Wed, 31 Jan
- 2024 20:46:49 -0800 (PST)
-Date: Thu,  1 Feb 2024 04:46:23 +0000
-In-Reply-To: <20240201044623.374389-1-aahila@google.com>
+	s=arc-20240116; t=1706762927; c=relaxed/simple;
+	bh=xL0nyKVhrIcxuqV0BG6FMGU+ell3gSDDFs4QRYJiaCc=;
+	h=Message-ID:Date:MIME-Version:CC:Subject:To:References:From:
+	 In-Reply-To:Content-Type; b=rMLlkNwBoi/1q48QRCG46zrPO7Hc30DMthuu/7824rqmC0ShV5p/mCg1DiN5gxhMNTTsttbWnSvbVwq5XbVa5GmR85dqj8q/BuDFutfAfJROoyvQH6I/0TjrSlxiHKS/TH9d3sLOQtYCY2b5StjSfckZj1uWv0qSHub2wu4HvQw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=K2AEv6BW; arc=none smtp.client-ip=198.47.19.141
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
+Received: from lelv0266.itg.ti.com ([10.180.67.225])
+	by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id 4114mb0x107740;
+	Wed, 31 Jan 2024 22:48:37 -0600
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+	s=ti-com-17Q1; t=1706762917;
+	bh=EIKilEn6zEi1dZ781Pbh1VH1L78d33wt2fu321g7goo=;
+	h=Date:CC:Subject:To:References:From:In-Reply-To;
+	b=K2AEv6BWjxxm8nZLsB5rHmfEIlRoTZFgBVUHvGJqJq42bRGJdKRaRPNKVKL6SDmFP
+	 U6npScF4ampBbDkQg9EsabUDITwfPWB32qPfd5za4QQuhVn5Y4WsJa+U0gZkMmOTI0
+	 OfWtxGWhMLbBCBBTmEcCgXzUltj0zz63UplNHILw=
+Received: from DLEE100.ent.ti.com (dlee100.ent.ti.com [157.170.170.30])
+	by lelv0266.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 4114mbXZ094131
+	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+	Wed, 31 Jan 2024 22:48:37 -0600
+Received: from DLEE107.ent.ti.com (157.170.170.37) by DLEE100.ent.ti.com
+ (157.170.170.30) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Wed, 31
+ Jan 2024 22:48:36 -0600
+Received: from lelvsmtp5.itg.ti.com (10.180.75.250) by DLEE107.ent.ti.com
+ (157.170.170.37) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
+ Frontend Transport; Wed, 31 Jan 2024 22:48:36 -0600
+Received: from [172.24.227.9] (uda0492258.dhcp.ti.com [172.24.227.9])
+	by lelvsmtp5.itg.ti.com (8.15.2/8.15.2) with ESMTP id 4114mXP4041142;
+	Wed, 31 Jan 2024 22:48:34 -0600
+Message-ID: <91737281-8249-4fcb-b5bf-750c015b7c24@ti.com>
+Date: Thu, 1 Feb 2024 10:18:32 +0530
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-Mime-Version: 1.0
-References: <20240201044623.374389-1-aahila@google.com>
-X-Mailer: git-send-email 2.43.0.429.g432eaa2c6b-goog
-Message-ID: <20240201044623.374389-2-aahila@google.com>
-Subject: [PATCH 2/2] i2c: designware: allow fine tuning tuning waveform from
- device tree
-From: Aahil Awatramani <aahila@google.com>
-To: Aahil Awatramani <aahila@google.com>, David Dillow <dillow@google.com>, 
-	Wolfram Sang <wsa+renesas@sang-engineering.com>, Andi Shyti <andi.shyti@kernel.org>, 
-	Rob Herring <robh+dt@kernel.org>, 
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Jarkko Nikula <jarkko.nikula@linux.intel.com>, 
-	Andy Shevchenko <andriy.shevchenko@linux.intel.com>, 
-	Mika Westerberg <mika.westerberg@linux.intel.com>, Jan Dabros <jsd@semihalf.com>, 
-	linux-i2c@vger.kernel.org, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org
+MIME-Version: 1.0
+User-Agent: Mozilla Thunderbird
+CC: <lee@kernel.org>, <robh+dt@kernel.org>,
+        <krzysztof.kozlowski+dt@linaro.org>, <conor+dt@kernel.org>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>, <srk@ti.com>,
+        <s-vadapalli@ti.com>
+Subject: Re: [PATCH] dt-bindings: mfd: syscon: Add ti,k3-pcie-ctrl compatible
+Content-Language: en-US
+To: Andrew Davis <afd@ti.com>
+References: <20240131112342.1300893-1-s-vadapalli@ti.com>
+ <be60e695-894e-4281-a62c-b77e45680293@ti.com>
+From: Siddharth Vadapalli <s-vadapalli@ti.com>
+In-Reply-To: <be60e695-894e-4281-a62c-b77e45680293@ti.com>
 Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 8bit
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 
-The Synopsys i2c driver allows a user to override the parameters
-controlling the waveform using ACPI; this is useful for fine tuning when
-needed to make spec compliance. Extend this support to the device tree to
-allow non-ACPI platforms the same capabilities.
+Hello Andrew,
 
-Signed-off-by: Aahil Awatramani <aahila@google.com>
----
- drivers/i2c/busses/i2c-designware-platdrv.c | 20 ++++++++++++++++++++
- 1 file changed, 20 insertions(+)
+On 31/01/24 21:43, Andrew Davis wrote:
+> On 1/31/24 5:23 AM, Siddharth Vadapalli wrote:
+>> The PCIE_CTRL registers within the CTRL_MMR space of TI's K3 SoCs are
+>> used to configure the link speed, lane count and mode of operation of
+>> the respective PCIe instance. Add compatible for allowing the PCIe
+>> driver to obtain a regmap for the PCIE_CTRL register within the System
+>> Controller device-tree node in order to configure the PCIe instance
+>> accordingly.
+>>
+>> Signed-off-by: Siddharth Vadapalli <s-vadapalli@ti.com>
+>> ---
+>>
+>> This patch is based on linux-next tagged next-20240131.
+>>
+>>   Documentation/devicetree/bindings/mfd/syscon.yaml | 1 +
+>>   1 file changed, 1 insertion(+)
+>>
+>> diff --git a/Documentation/devicetree/bindings/mfd/syscon.yaml
+>> b/Documentation/devicetree/bindings/mfd/syscon.yaml
+>> index 084b5c2a2a3c..da571a24e21f 100644
+>> --- a/Documentation/devicetree/bindings/mfd/syscon.yaml
+>> +++ b/Documentation/devicetree/bindings/mfd/syscon.yaml
+>> @@ -73,6 +73,7 @@ properties:
+>>                 - rockchip,rv1126-qos
+>>                 - starfive,jh7100-sysmain
+>>                 - ti,am654-dss-oldi-io-ctrl
+>> +              - ti,k3-pcie-ctrl
+> 
+> This might not be the same for all K3 devices, you should use
+> the name of the first device which uses this, so:
+> 
+> ti,j721e-pcie-ctrl
 
-diff --git a/drivers/i2c/busses/i2c-designware-platdrv.c b/drivers/i2c/busses/i2c-designware-platdrv.c
-index 855b698e99c0..09c464874fdb 100644
---- a/drivers/i2c/busses/i2c-designware-platdrv.c
-+++ b/drivers/i2c/busses/i2c-designware-platdrv.c
-@@ -132,6 +132,17 @@ static int mscc_twi_set_sda_hold_time(struct dw_i2c_dev *dev)
- 	return 0;
- }
- 
-+static void i2c_parse_cnt(struct device *dev, char *prop_name, u16 *cnt)
-+{
-+	u32 tmp_cnt;
-+	int ret;
-+
-+	ret = device_property_read_u32(dev, prop_name, &tmp_cnt);
-+	if (ret)
-+		return;
-+	*cnt = tmp_cnt;
-+}
-+
- static int dw_i2c_of_configure(struct platform_device *pdev)
- {
- 	struct dw_i2c_dev *dev = platform_get_drvdata(pdev);
-@@ -146,6 +157,15 @@ static int dw_i2c_of_configure(struct platform_device *pdev)
- 		break;
- 	}
- 
-+	i2c_parse_cnt(&pdev->dev, "i2c-scl-ss-hcnt", &dev->ss_hcnt);
-+	i2c_parse_cnt(&pdev->dev, "i2c-scl-ss-lcnt", &dev->ss_lcnt);
-+	i2c_parse_cnt(&pdev->dev, "i2c-scl-fs-hcnt", &dev->fs_hcnt);
-+	i2c_parse_cnt(&pdev->dev, "i2c-scl-fs-lcnt", &dev->fs_lcnt);
-+	i2c_parse_cnt(&pdev->dev, "i2c-scl-fp-hcnt", &dev->fp_hcnt);
-+	i2c_parse_cnt(&pdev->dev, "i2c-scl-fp-lcnt", &dev->fp_lcnt);
-+	i2c_parse_cnt(&pdev->dev, "i2c-scl-hs-hcnt", &dev->hs_hcnt);
-+	i2c_parse_cnt(&pdev->dev, "i2c-scl-hs-lcnt", &dev->hs_lcnt);
-+
- 	return 0;
- }
- 
+It is the same for all K3 devices so far. However, since the convention appears
+to be the first device that it is applicable to as you pointed out, I will post
+the v2 patch for this accordingly.
+
 -- 
-2.43.0.429.g432eaa2c6b-goog
-
+Regards,
+Siddharth.
 
