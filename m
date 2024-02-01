@@ -1,80 +1,137 @@
-Return-Path: <devicetree+bounces-37439-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-37441-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id B4BC9845044
-	for <lists+devicetree@lfdr.de>; Thu,  1 Feb 2024 05:25:35 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5CE3E84504B
+	for <lists+devicetree@lfdr.de>; Thu,  1 Feb 2024 05:32:44 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 705B1292D92
-	for <lists+devicetree@lfdr.de>; Thu,  1 Feb 2024 04:25:34 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id F29D3B25D43
+	for <lists+devicetree@lfdr.de>; Thu,  1 Feb 2024 04:32:41 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 994D63BB2A;
-	Thu,  1 Feb 2024 04:24:47 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E91741E488;
+	Thu,  1 Feb 2024 04:32:37 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=codeconstruct.com.au header.i=@codeconstruct.com.au header.b="fQrSd4qc"
+	dkim=pass (1024-bit key) header.d=bewilderbeest.net header.i=@bewilderbeest.net header.b="iFPeHygO"
 X-Original-To: devicetree@vger.kernel.org
-Received: from codeconstruct.com.au (pi.codeconstruct.com.au [203.29.241.158])
+Received: from thorn.bewilderbeest.net (thorn.bewilderbeest.net [71.19.156.171])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EB8763BB53;
-	Thu,  1 Feb 2024 04:24:44 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=203.29.241.158
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 598833BB21;
+	Thu,  1 Feb 2024 04:32:36 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=71.19.156.171
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1706761487; cv=none; b=oQUkowmY8EK7/ouDL4rtsbeu187StIdDZxlLSyjl33HJ2vpmga7/26SMhNUoNM0giDRwSiXz5UciOBWpqPJafccpGrQjMliXG3FweW24d5q/G7jm/65CUfyeHtogZHhr4+LWMe/87ekBmza/00LZ9msn0QppxupYWB/ZeNrwxe0=
+	t=1706761957; cv=none; b=EXL4ILac5hsEc6RC11ECxTqJeIQcLjHt8wTJQpWnVsoPUn0zZHgZdc2iz/BxFlZnt8Ds+R+Q9+ntQf7+8TPhmtsXhw3flmITfX38l1qIqbopqZDCUroq3C4yjjYGSiukm1L1ObmqAVbuKmyU7moyEIRSQgJfOpTPWPXPlNr2t+Q=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1706761487; c=relaxed/simple;
-	bh=U4sISEKt02jIu1Z70tHRx14a4uWJpHeazAZDZYIWDZ0=;
-	h=Message-ID:Subject:From:To:Cc:Date:In-Reply-To:References:
-	 Content-Type:MIME-Version; b=jTDlFzTV7aGdu1MT17nAOE9VepnVTZJOU4NIVH0oSArGB6VDwu+rCClvt39C8oPXh0u9gNwXSnQXF4SPYYwH25TpLrfUSgAnFRVvLXyttmhUfx5B6ubZjLtmVfM3GxSbsi+QvpeTjIXLK8Lm63AFMEUuxmCz/Mm1U7OFxOdhB9M=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=codeconstruct.com.au; spf=pass smtp.mailfrom=codeconstruct.com.au; dkim=pass (2048-bit key) header.d=codeconstruct.com.au header.i=@codeconstruct.com.au header.b=fQrSd4qc; arc=none smtp.client-ip=203.29.241.158
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=codeconstruct.com.au
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=codeconstruct.com.au
-Received: from [192.168.68.112] (ppp14-2-76-194.adl-apt-pir-bras31.tpg.internode.on.net [14.2.76.194])
-	by mail.codeconstruct.com.au (Postfix) with ESMTPSA id 196E3200EF;
-	Thu,  1 Feb 2024 12:24:42 +0800 (AWST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=codeconstruct.com.au; s=2022a; t=1706761482;
-	bh=U4sISEKt02jIu1Z70tHRx14a4uWJpHeazAZDZYIWDZ0=;
-	h=Subject:From:To:Cc:Date:In-Reply-To:References;
-	b=fQrSd4qcCD1tjNXsDT3wL5kJC2lI0+MVKcom50SIcV2a+OCf8DeFwYpsOZRquNJ/3
-	 85+CmQIuTwm1ep70RYPFxzPSR4QfCCHI7euRbtaooLRBp5txKgr35wVgwf0S5rmY9w
-	 vcg9QsRjN5BxpkEmgLAKwOJzCbZIozrtE365pmd9mNMamDfIzWViEF2yA6LDrtHaBp
-	 qq7j+kZmzJd+NE11FfMZjTCnWxKs/A3lNobxPbK/iNNCj8LliM/T0klNJKc1bsss4T
-	 ajzL4TB26ZCReL3+hAWK3EABkO3h720Yml2WRF8baLsfocOV31xCBPMYblTt9g5CDT
-	 CPi0CKrWqGpww==
-Message-ID: <b6ebc334da1538034c61bbc1dcef5803ca29ae2e.camel@codeconstruct.com.au>
-Subject: Re: [PATCH v5 06/21] ARM: dts: aspeed: yosemite4: Revise power
- sensor adm1281 for schematic change
-From: Andrew Jeffery <andrew@codeconstruct.com.au>
-To: Delphine CC Chiu <Delphine_CC_Chiu@wiwynn.com>, patrick@stwcx.xyz, Rob
- Herring <robh+dt@kernel.org>, Krzysztof Kozlowski
- <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>,
- Joel Stanley <joel@jms.id.au>
-Cc: devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
-	linux-aspeed@lists.ozlabs.org, linux-kernel@vger.kernel.org
-Date: Thu, 01 Feb 2024 14:54:41 +1030
-In-Reply-To: <20240131084134.328307-7-Delphine_CC_Chiu@wiwynn.com>
-References: <20240131084134.328307-1-Delphine_CC_Chiu@wiwynn.com>
-	 <20240131084134.328307-7-Delphine_CC_Chiu@wiwynn.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-User-Agent: Evolution 3.46.4-2 
+	s=arc-20240116; t=1706761957; c=relaxed/simple;
+	bh=pda2Mn73eHui5hFlKn7PApNf/Yq+JvVcatVuU36ymJ0=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=hcLjoNlMi7Gmy5W9d3gMAXYwU2ssEG9SXDfKejidB6oj7J1aJ2fapBt4lb0UmzeITl9YstWHGr8gIreXwUU5nLE8UhgHRPxQqOblbhjYJz/PlUmwr6GFo77kIWc6prS5PZMj8KJCEkn68S0u0Ucd33QXWbaCQYWpHIhwQytQhrg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=bewilderbeest.net; spf=pass smtp.mailfrom=bewilderbeest.net; dkim=pass (1024-bit key) header.d=bewilderbeest.net header.i=@bewilderbeest.net header.b=iFPeHygO; arc=none smtp.client-ip=71.19.156.171
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=bewilderbeest.net
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bewilderbeest.net
+Received: from hatter.bewilderbeest.net (unknown [IPv6:2602:61:7e5d:5300::2])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+	(No client certificate requested)
+	(Authenticated sender: zev)
+	by thorn.bewilderbeest.net (Postfix) with ESMTPSA id 60C4598F;
+	Wed, 31 Jan 2024 20:26:06 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bewilderbeest.net;
+	s=thorn; t=1706761566;
+	bh=91lQIC5ttis5jruXSHoJGTpRH5gY1g5HotYFr9Ay6KQ=;
+	h=From:To:Cc:Subject:Date:From;
+	b=iFPeHygOCuHr7Kp3wqppIP4gtRLDrV4Mz4Z5BpokLensflO19IseUz6ay2/bV+XQu
+	 9AN7IiOqjZdmpyvE2YxOaWAN52xPL8iv9rtqlkx/tCby/2Z9Mj1WIeVc8G+xHvI29S
+	 KOSP0LVqgJm3VhVZnqXVAiO6ZhQWUtl+/jYfB2Z8=
+From: Zev Weiss <zev@bewilderbeest.net>
+To: Joel Stanley <joel@jms.id.au>,
+	Andrew Jeffery <andrew@codeconstruct.com.au>,
+	linux-arm-kernel@lists.infradead.org,
+	linux-aspeed@lists.ozlabs.org
+Cc: Zev Weiss <zev@bewilderbeest.net>,
+	Rob Herring <robh+dt@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org
+Subject: [PATCH] ARM: dts: aspeed: asrock: Use MAC address from FRU EEPROM
+Date: Wed, 31 Jan 2024 20:25:54 -0800
+Message-ID: <20240201042559.29795-2-zev@bewilderbeest.net>
+X-Mailer: git-send-email 2.43.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
 
-On Wed, 2024-01-31 at 16:41 +0800, Delphine CC Chiu wrote:
-> Revise power sensor adm1281 for yosemite4 schematic change
->=20
-> Signed-off-by: Delphine CC Chiu <Delphine_CC_Chiu@wiwynn.com>
+Like the more recently added ASRock BMC platforms, e3c246d4i and
+romed8hm3 also have the BMC's MAC address available in the baseboard
+FRU EEPROM, so let's add support for using it.
 
-I'm not enamoured by the lack of a description, but at least the
-subject provides the motivation.
+Signed-off-by: Zev Weiss <zev@bewilderbeest.net>
+---
+ arch/arm/boot/dts/aspeed/aspeed-bmc-asrock-e3c246d4i.dts | 9 +++++++++
+ arch/arm/boot/dts/aspeed/aspeed-bmc-asrock-romed8hm3.dts | 9 +++++++++
+ 2 files changed, 18 insertions(+)
 
-Reviewed-by: Andrew Jeffery <andrew@codeconstruct.com.au>
+diff --git a/arch/arm/boot/dts/aspeed/aspeed-bmc-asrock-e3c246d4i.dts b/arch/arm/boot/dts/aspeed/aspeed-bmc-asrock-e3c246d4i.dts
+index c4b2efbfdf56..bb2e6ef609af 100644
+--- a/arch/arm/boot/dts/aspeed/aspeed-bmc-asrock-e3c246d4i.dts
++++ b/arch/arm/boot/dts/aspeed/aspeed-bmc-asrock-e3c246d4i.dts
+@@ -83,6 +83,9 @@ &mac0 {
+ 
+ 	pinctrl-names = "default";
+ 	pinctrl-0 = <&pinctrl_rgmii1_default &pinctrl_mdio1_default>;
++
++	nvmem-cells = <&eth0_macaddress>;
++	nvmem-cell-names = "mac-address";
+ };
+ 
+ &i2c1 {
+@@ -103,6 +106,12 @@ eeprom@57 {
+ 		compatible = "st,24c128", "atmel,24c128";
+ 		reg = <0x57>;
+ 		pagesize = <16>;
++		#address-cells = <1>;
++		#size-cells = <1>;
++
++		eth0_macaddress: macaddress@3f80 {
++			reg = <0x3f80 6>;
++		};
+ 	};
+ };
+ 
+diff --git a/arch/arm/boot/dts/aspeed/aspeed-bmc-asrock-romed8hm3.dts b/arch/arm/boot/dts/aspeed/aspeed-bmc-asrock-romed8hm3.dts
+index 4554abf0c7cd..f8a1764a4424 100644
+--- a/arch/arm/boot/dts/aspeed/aspeed-bmc-asrock-romed8hm3.dts
++++ b/arch/arm/boot/dts/aspeed/aspeed-bmc-asrock-romed8hm3.dts
+@@ -71,6 +71,9 @@ &mac0 {
+ 
+ 	pinctrl-names = "default";
+ 	pinctrl-0 = <&pinctrl_rgmii1_default &pinctrl_mdio1_default>;
++
++	nvmem-cells = <&eth0_macaddress>;
++	nvmem-cell-names = "mac-address";
+ };
+ 
+ &i2c0 {
+@@ -131,6 +134,12 @@ eeprom@50 {
+ 		compatible = "st,24c128", "atmel,24c128";
+ 		reg = <0x50>;
+ 		pagesize = <16>;
++		#address-cells = <1>;
++		#size-cells = <1>;
++
++		eth0_macaddress: macaddress@3f80 {
++			reg = <0x3f80 6>;
++		};
+ 	};
+ };
+ 
+-- 
+2.43.0
+
 
