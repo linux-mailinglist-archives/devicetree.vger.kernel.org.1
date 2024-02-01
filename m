@@ -1,242 +1,138 @@
-Return-Path: <devicetree+bounces-37596-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-37597-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7963A845868
-	for <lists+devicetree@lfdr.de>; Thu,  1 Feb 2024 14:05:57 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id A909184586E
+	for <lists+devicetree@lfdr.de>; Thu,  1 Feb 2024 14:07:20 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 94C761C2585B
-	for <lists+devicetree@lfdr.de>; Thu,  1 Feb 2024 13:05:56 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id E4E421C22C9F
+	for <lists+devicetree@lfdr.de>; Thu,  1 Feb 2024 13:07:19 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A7A615337D;
-	Thu,  1 Feb 2024 13:05:42 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3083F8664C;
+	Thu,  1 Feb 2024 13:07:16 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="HAYl/XeZ"
+	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="lcrz2ZsU"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ua1-f48.google.com (mail-ua1-f48.google.com [209.85.222.48])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from fllv0016.ext.ti.com (fllv0016.ext.ti.com [198.47.19.142])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BDAF953368;
-	Thu,  1 Feb 2024 13:05:40 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.222.48
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9E8B553362;
+	Thu,  1 Feb 2024 13:07:14 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.19.142
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1706792742; cv=none; b=P8geGcUx51S3kYwRelNftax2W5yHCqe1PeiSvgQZels1Cehf4yIiPynULIWuIEXfE5Z9sZDIr1XK65O4Nz69+rg8sxoFNrSn8pstJcZVAZnaSy8b7U7Ohdj6D5KVurA9e3bqxyzV9UPkBHgU9/Diwwez9DEXDub1aCa5tuMPKRE=
+	t=1706792836; cv=none; b=l5gI2RfYifyV8YNKfJFIQWQMyw8doLIDhfXN/tLnny7US3bs1UOWIo2mQ44LjfST+onopqb0A2MPWvaQzSPlGPh8gekcpyfx4zh38N6UlcdUAbzxTyZkVRGJ1PCKZ5XQ2ngWXCBewLm98DMSqoEnkxxvQLGIVuaYPi7YHjABhpI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1706792742; c=relaxed/simple;
-	bh=KJO/0kGqXXfwHQPG1WWgO9x4FSPuJhXDewinnrE/U4U=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=Hes43j0sQIptKRg2nhS9mUvhWafC5zCYLRvSjmzz2GzDUyiM5ymEMFhK840MaPKcdn83Bn2hlUKbk3QM0AEmUVys7YDqr6OxyJijUS15yHkwDQWBtXkVO8eHmtHE8e2/FLBpj4n4Az0WA0a1UBfOqTQjuLMzXbtYqVPifRgC/uE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=HAYl/XeZ; arc=none smtp.client-ip=209.85.222.48
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-ua1-f48.google.com with SMTP id a1e0cc1a2514c-7d5c514944fso1109055241.1;
-        Thu, 01 Feb 2024 05:05:40 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1706792739; x=1707397539; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=9fdnwK8iaaWfuANgz2bEov8b83FWFpe1U9HGTL70t+I=;
-        b=HAYl/XeZhCSl7GP1m7NUkqfw3BRmvJGPuww6lsXlpsjMSiVElAwObc2OcbdUCCoY4J
-         2rtlPYmNixQO5qtN+g8jFz4vhNuZpBfv5Vp9oaqlZ5RdaKMk873+EOKvLo3c+YAS0Wfu
-         CsQtjgnda3ePV+ZGH9t2Sw5m0NZnqfWNenVKSB89v1TEsXBHl4LBDLjyZ9sy/fJny0tQ
-         ArmHZPz0U5nCPY+r4koqER9EKUZksZoLD+5hTWRAHP+cV6mXw1B/LqAfaCUNGqqnG+i6
-         W5pO1ERAzTtLlP/DTQep5uYFaLEYvskua1Ax39y3vJI1IaQmSbRG+NXRl/lMrN/YjiTD
-         iPcw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1706792739; x=1707397539;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=9fdnwK8iaaWfuANgz2bEov8b83FWFpe1U9HGTL70t+I=;
-        b=sNJPqjSzRqYCdmNVOG4ifb9gIG3yWflH8qGtZXRR1tnhRL4h2uHEcLXdeMWkoFEwfX
-         g5gv2dSu9P+HCcqaX1QFKE0J95VaQEPEQB9/SZocmSmx6FYQQ77exXntq8QOsT4vAGfU
-         IbddDF71i1M5Mta1vX6gK8QMNC/XJpld7udmJtjTYGxDEQnmMnjakAfn98dy8R1AVB8t
-         qPG8DTh8/NqHk0g/lDJOiIyHV5ZZZvZ4DK51U8r2+JHy7qy1E03LHf9aUa+Iz5BW9jtA
-         ftx72yUms3e+GaxlsCNZ3EN+B12uNIhOl+EDUQ7HQ7EXmXMnCuYUVRoEpewVz6akEGvy
-         Vhng==
-X-Gm-Message-State: AOJu0YwAhjDmRRWmnmtOgli7CcW8n8bMK38Zxnktvf1klS/L+0l5Y86t
-	NOP2e1hX53TsWr2U0lLegQBolwsSHevXBdOov0TDMMkpJEQWE6wne/lHS9Ke8xzC5+ihvEeqY75
-	f/ffOSaAOPR3FKFNj6HC1I4Gmh4k=
-X-Google-Smtp-Source: AGHT+IFigfduTRWsVmPlC+0JRfAbL46rAzX8asmlX4/T+JbyargMaUcC1tcGZu/+10b2CLWwTtcY1LRuKIsCJEiZcSk=
-X-Received: by 2002:a05:6122:e6b:b0:4b7:3c54:357e with SMTP id
- bj43-20020a0561220e6b00b004b73c54357emr3297980vkb.1.1706792739290; Thu, 01
- Feb 2024 05:05:39 -0800 (PST)
+	s=arc-20240116; t=1706792836; c=relaxed/simple;
+	bh=6f4Ef9/GqiTKpvvaeCgnLywnZPv2ZhZoDoytSU7PwmA=;
+	h=From:Subject:Date:Message-ID:MIME-Version:Content-Type:To:CC; b=LXaFA4AIT6nUv83yZOQN45obyHDpPYbiSpg1SN83KHlIsPQ+o68tpyGzXu/K2n0U+4rSnVQnGqgNI6ao5q8aRBMSyznucQXqfoQHkGCSYY1+TZSrnh5CuCqJTVJB6AL7INLsKZ7Lg1j2K/USN18VPxhzsSQ7j89rkjzuMKQv3Ns=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=lcrz2ZsU; arc=none smtp.client-ip=198.47.19.142
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
+Received: from fllv0034.itg.ti.com ([10.64.40.246])
+	by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id 411D78LZ111369;
+	Thu, 1 Feb 2024 07:07:08 -0600
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+	s=ti-com-17Q1; t=1706792828;
+	bh=a4dwWi7L1ejGump8F9su1AeeKeLJHybmWk4K+nGMnxE=;
+	h=From:Subject:Date:To:CC;
+	b=lcrz2ZsUrvC9rB5IGNlUcST+QH0DhwDeKGBfDasHJr20z8yLXPdmkxaTqnDsZzpyK
+	 HzDrhlxO6lLBDxDhmNCHEIbtc2AqQNVN5it7St65a/aeaUhywlE24I/wxquITOa2R9
+	 Q4W3I9IBfQi87OKKkzAFHn57gJxZlgc7+bxliGrg=
+Received: from DFLE111.ent.ti.com (dfle111.ent.ti.com [10.64.6.32])
+	by fllv0034.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 411D78ij067804
+	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+	Thu, 1 Feb 2024 07:07:08 -0600
+Received: from DFLE113.ent.ti.com (10.64.6.34) by DFLE111.ent.ti.com
+ (10.64.6.32) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Thu, 1
+ Feb 2024 07:07:07 -0600
+Received: from lelvsmtp5.itg.ti.com (10.180.75.250) by DFLE113.ent.ti.com
+ (10.64.6.34) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
+ Frontend Transport; Thu, 1 Feb 2024 07:07:08 -0600
+Received: from localhost (jluthra.dhcp.ti.com [172.24.227.217])
+	by lelvsmtp5.itg.ti.com (8.15.2/8.15.2) with ESMTP id 411D77gf082914;
+	Thu, 1 Feb 2024 07:07:07 -0600
+From: Jai Luthra <j-luthra@ti.com>
+Subject: [PATCH 0/4] arm64: dts: ti: Enable camera for SK-AM62P
+Date: Thu, 1 Feb 2024 18:36:59 +0530
+Message-ID: <20240201-am62p_csi-v1-0-c83bb9eaeb49@ti.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20240129151618.90922-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
- <20240129151618.90922-3-prabhakar.mahadev-lad.rj@bp.renesas.com>
- <CAMuHMdV7Q4kMv1pFVNBf5oYF=_W_snp=5GKLpr9+OxeqxywhBw@mail.gmail.com>
- <CA+V-a8spFYvOo2=9CwM-1EyMA3Xrc_rggUgxDZwZan2ou4SG1A@mail.gmail.com> <CAMuHMdUFZ6pRtZv4QLGhTz_gG575-8-LvaFprNuP2-1HGS8r+A@mail.gmail.com>
-In-Reply-To: <CAMuHMdUFZ6pRtZv4QLGhTz_gG575-8-LvaFprNuP2-1HGS8r+A@mail.gmail.com>
-From: "Lad, Prabhakar" <prabhakar.csengg@gmail.com>
-Date: Thu, 1 Feb 2024 13:05:05 +0000
-Message-ID: <CA+V-a8tQRr96q6SJfCgPa7Zte4UhRHE+83hXNzN8-=rRX5EH0Q@mail.gmail.com>
-Subject: Re: [PATCH 2/5] irqchip/renesas-rzg2l: Add support for RZ/Five SoC
-To: Geert Uytterhoeven <geert@linux-m68k.org>
-Cc: Thomas Gleixner <tglx@linutronix.de>, Rob Herring <robh+dt@kernel.org>, 
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Magnus Damm <magnus.damm@gmail.com>, linux-renesas-soc@vger.kernel.org, 
-	devicetree@vger.kernel.org, linux-riscv@lists.infradead.org, 
-	linux-kernel@vger.kernel.org, Biju Das <biju.das.jz@bp.renesas.com>, 
-	Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>, 
-	Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIAHSXu2UC/6tWKk4tykwtVrJSqFYqSi3LLM7MzwNyDHUUlJIzE
+ vPSU3UzU4B8JSMDIxMDIwND3cRcM6OC+OTiTN0kM8sUQ3OgsFlyohJQfUFRalpmBdis6NjaWgA
+ ZtD6TWwAAAA==
+To: Nishanth Menon <nm@ti.com>, Vignesh Raghavendra <vigneshr@ti.com>,
+        Tero
+ Kristo <kristo@kernel.org>, Rob Herring <robh+dt@kernel.org>,
+        Krzysztof
+ Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley
+	<conor+dt@kernel.org>, Andrew Davis <afd@ti.com>,
+        Bryan Brattlof <bb@ti.com>, Dhruva Gole <d-gole@ti.com>
+CC: <linux-arm-kernel@lists.infradead.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>, Vaishnav Achath <vaishnav.a@ti.com>,
+        Devarsh
+ Thakkar <devarsht@ti.com>, Aradhya Bhatia <a-bhatia1@ti.com>,
+        Jai Luthra
+	<j-luthra@ti.com>
+X-Mailer: b4 0.12.4
+X-Developer-Signature: v=1; a=openpgp-sha256; l=1080; i=j-luthra@ti.com;
+ h=from:subject:message-id; bh=6f4Ef9/GqiTKpvvaeCgnLywnZPv2ZhZoDoytSU7PwmA=;
+ b=owEBbQKS/ZANAwAIAUPekfkkmnFFAcsmYgBlu5d2TeizF9nQk/It4ohVfSZw+IXeP/ikOijKb
+ BcZc/x1Zy6JAjMEAAEIAB0WIQRN4NgY5dV16NRar8VD3pH5JJpxRQUCZbuXdgAKCRBD3pH5JJpx
+ RZ+dEAC2Y5VykRkS+inD5WGnHLA16IhhYq5HVgiOh5tWpa8z1or/Frv+NqCWrMNuqMLK2PBJ67T
+ ZBvDsmLI98sMzA9fkX+0lwsn4JbPPQwq3Vv8GerFqnkJFC9VTRCxGl8a6h6zvwfmDNAdvLLD5V9
+ zjyZBDbsJ6dPvWI9ncP8H1dAqRp5ss7HemuAKVdoXLoMsPd9n/1xuECzE4oA0NqlqeWBKpBTX0r
+ F/ILU1OCECETrvzMFYNQwqhK+S4+QrvgF3kCcoB74FN+j93BYwZGIXi9dPLIi7361L5pT2OIrso
+ sn1B4pV5AdaHrPTx+QsQbWb6NRIf1QwnSj6uLBlEGvCLFoKp24YLkib0EmUs8/OYUZLm5nWVxls
+ 5npL/73fJnxo4bRsaUqRjNRu5UdpDHNkT6FZn/u2GDcNQYJan54TB2XKREzv7beIbT+lNrPW+YH
+ Q/3RU8hXAjK/DiZf6kjUtWg5pP1d26j3K3z68fU6Aad87wLK3fguORNvENY+EqA0o8geOP3uNvo
+ 6ky94Rcfh2fb5OtrH1ER+Xgy1UajxzfFU6Jrgjt+VVGw1olPrWXTvuEz/YgKWgiqcsjyCVrl4QA
+ NBfUyb1w+KgUjc3f/GD/xrum8OxwP4O85mntBrAKUh9W4rkxNXIIkH0fCGSpXv5Mo/8+M9d9Lsw
+ 8gVk0o/YRhLcT3Q==
+X-Developer-Key: i=j-luthra@ti.com; a=openpgp;
+ fpr=4DE0D818E5D575E8D45AAFC543DE91F9249A7145
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 
-Hi Geert,
+This series enables support for camera sensors using CSI-RX ports on
+AM62P family of SoCs.
 
-On Thu, Feb 1, 2024 at 8:34=E2=80=AFAM Geert Uytterhoeven <geert@linux-m68k=
-.org> wrote:
->
-> Hi Prabhakar,
->
-> On Wed, Jan 31, 2024 at 7:36=E2=80=AFPM Lad, Prabhakar
-> <prabhakar.csengg@gmail.com> wrote:
-> > On Tue, Jan 30, 2024 at 11:38=E2=80=AFAM Geert Uytterhoeven
-> > <geert@linux-m68k.org> wrote:
-> > > On Mon, Jan 29, 2024 at 4:16=E2=80=AFPM Prabhakar <prabhakar.csengg@g=
-mail.com> wrote:
-> > > > From: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
-> > > >
-> > > > The IX45 block has additional mask registers (NMSK/IMSK/TMSK) as co=
-mpared
-> > > > to the RZ/G2L (family) SoC.
-> > > >
-> > > > Introduce masking/unmasking support for IRQ and TINT interrupts in =
-IRQC
-> > > > controller driver. Two new registers, IMSK and TMSK, are defined to
-> > > > handle masking on RZ/Five SoC. The implementation utilizes a new da=
-ta
-> > > > structure, `struct rzg2l_irqc_data`, to determine mask support for =
-a
-> > > > specific controller instance.
-> > > >
-> > > > Signed-off-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.c=
-om>
-> > >
-> > > > --- a/drivers/irqchip/irq-renesas-rzg2l.c
-> > > > +++ b/drivers/irqchip/irq-renesas-rzg2l.c
-> > > > @@ -66,15 +68,25 @@ struct rzg2l_irqc_reg_cache {
-> > > >         u32     titsr[2];
-> > > >  };
-> > > >
-> > > > +/**
-> > > > + * struct rzg2l_irqc_data - OF data structure
-> > > > + * @mask_supported: Indicates if mask registers are available
-> > > > + */
-> > > > +struct rzg2l_irqc_data {
-> > >
-> > > This structure has the same name as the single static struct
-> > > rzg2l_irqc_priv instance, which is confusing.
-> > >
-> > Agreed, I will rename it to rzg2l_irqc_of_data
-> >
-> > > > +       bool    mask_supported;
-> > > > +};
-> > > > +
-> > > >  /**
-> > > >   * struct rzg2l_irqc_priv - IRQ controller private data structure
-> > > >   * @base:      Controller's base address
-> > > > + * @data:      OF data pointer
-> > > >   * @fwspec:    IRQ firmware specific data
-> > > >   * @lock:      Lock to serialize access to hardware registers
-> > > >   * @cache:     Registers cache for suspend/resume
-> > > >   */
-> > > >  static struct rzg2l_irqc_priv {
-> > > >         void __iomem                    *base;
-> > > > +       const struct rzg2l_irqc_data    *data;
-> > >
-> > > Replacing this by a bool would avoid a pointer dereference in each us=
-er,
-> > > and allows you to make rzg2l_irqc_data etc. __initconst.
-> > >
-> > Do you mean just add "bool mask_supported" here and get rid of struct
-> > rzg2l_irqc_data ? Can you please elaborate here..
->
-> Either add "bool mask_supported" here, or add a copy of the full
-> struct rzg2l_irqc_data (see below).
->
-OK, i'll keep a copy of struct rzg2l_irqc_data here...
-> >
-> > > >         struct irq_fwspec               fwspec[IRQC_NUM_IRQ];
-> > > >         raw_spinlock_t                  lock;
-> > > >         struct rzg2l_irqc_reg_cache     cache;
-> > >
-> > > > @@ -371,9 +475,23 @@ static int rzg2l_irqc_parse_interrupts(struct =
-rzg2l_irqc_priv *priv,
-> > > >         return 0;
-> > > >  }
-> > > >
-> > > > +static const struct rzg2l_irqc_data rzfive_irqc_data =3D {
-> > > > +       .mask_supported =3D true,
-> > > > +};
-> > > > +
-> > > > +static const struct rzg2l_irqc_data rzg2l_irqc_default_data =3D {
-> > > > +       .mask_supported =3D false,
-> > > > +};
-> > > > +
-> > > > +static const struct of_device_id rzg2l_irqc_matches[] =3D {
-> > > > +       { .compatible =3D "renesas,r9a07g043f-irqc", .data =3D &rzf=
-ive_irqc_data },
-> > > > +       { }
-> > > > +};
-> > > > +
-> > > >  static int rzg2l_irqc_init(struct device_node *node, struct device=
-_node *parent)
-> > > >  {
-> > > >         struct irq_domain *irq_domain, *parent_domain;
-> > > > +       const struct of_device_id *match;
-> > > >         struct platform_device *pdev;
-> > > >         struct reset_control *resetn;
-> > > >         int ret;
-> > > > @@ -392,6 +510,12 @@ static int rzg2l_irqc_init(struct device_node =
-*node, struct device_node *parent)
-> > > >         if (!rzg2l_irqc_data)
-> > > >                 return -ENOMEM;
-> > > >
-> > > > +       match =3D of_match_node(rzg2l_irqc_matches, node);
-> > > > +       if (match)
-> > > > +               rzg2l_irqc_data->data =3D match->data;
-> > > > +       else
-> > > > +               rzg2l_irqc_data->data =3D &rzg2l_irqc_default_data;
-> > >
-> > > Instead of matching a second time, I'd rather add a second
-> > > IRQCHIP_MATCH() entry with a different init function, passing the
-> > > actual rzg2l_irqc_data pointer.
-> > >
-> > OK, or rather just pass true/false instead of rzg2l_irqc_of_data pointe=
-r.?
->
-> Yes, that would be fine for me, too.
-> It all depends on whether you plan to add, or see a need for adding,
-> more flags or other fields in the future (and even for flags, you could
-> combine them in an unsigned long).
->
-I'll keep the bool flag for now and update it  as  and when it grows.
-I see future SoCs with a lot of other interrupts being supported by
-this block.
+Particularly, it enables OV5640 and IMX219 sensors via the 22-pin FFC
+CSI-RX connector on SK-AM62P [1] using the existing common overlays for
+SK-AM62* family of boards.
 
-Cheers,
-Prabhakar
+Capture test:
+https://gist.github.com/jailuthra/11f3383ccc0902b9db90d806222597a3
 
-> Gr{oetje,eeting}s,
->
->                         Geert
->
-> --
-> Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m6=
-8k.org
->
-> In personal conversations with technical people, I call myself a hacker. =
-But
-> when I'm talking to journalists I just say "programmer" or something like=
- that.
->                                 -- Linus Torvalds
+[1]: https://www.ti.com/tool/SK-AM62P-LP
+
+Signed-off-by: Jai Luthra <j-luthra@ti.com>
+---
+Jai Luthra (4):
+      arm64: dts: ti: k3-am62p: Fix memory ranges for DMSS
+      arm64: dts: ti: k3-am62p: Add DMASS1 for CSI
+      arm64: dts: ti: k3-am62p: Add nodes for CSI-RX
+      arm64: dts: ti: Enable overlays for SK-AM62P
+
+ arch/arm64/boot/dts/ti/Makefile           | 10 ++++
+ arch/arm64/boot/dts/ti/k3-am62p-main.dtsi | 98 +++++++++++++++++++++++++++++++
+ arch/arm64/boot/dts/ti/k3-am62p.dtsi      |  2 +-
+ 3 files changed, 109 insertions(+), 1 deletion(-)
+---
+base-commit: ef7bf0ae92cdee584950f74f364338c28f549cc7
+change-id: 20240201-am62p_csi-b69d172406ca
+
+Best regards,
+-- 
+Jai Luthra <j-luthra@ti.com>
+
 
