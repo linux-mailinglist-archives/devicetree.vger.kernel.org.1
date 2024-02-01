@@ -1,142 +1,135 @@
-Return-Path: <devicetree+bounces-37634-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-37635-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 920E5845B5E
-	for <lists+devicetree@lfdr.de>; Thu,  1 Feb 2024 16:25:13 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 75A85845B8D
+	for <lists+devicetree@lfdr.de>; Thu,  1 Feb 2024 16:30:23 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id C3D5E1C25F9D
-	for <lists+devicetree@lfdr.de>; Thu,  1 Feb 2024 15:25:12 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 222B71F2BE64
+	for <lists+devicetree@lfdr.de>; Thu,  1 Feb 2024 15:30:23 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 22186626BC;
-	Thu,  1 Feb 2024 15:23:43 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A6536626C9;
+	Thu,  1 Feb 2024 15:28:30 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="Cv3YHO2q"
+	dkim=pass (2048-bit key) header.d=cknow.org header.i=@cknow.org header.b="dbsB0s4y"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f41.google.com (mail-wm1-f41.google.com [209.85.128.41])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from out-174.mta1.migadu.com (out-174.mta1.migadu.com [95.215.58.174])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 39F5D626AC
-	for <devicetree@vger.kernel.org>; Thu,  1 Feb 2024 15:23:41 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.41
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0B0A5626BA
+	for <devicetree@vger.kernel.org>; Thu,  1 Feb 2024 15:28:27 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=95.215.58.174
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1706801023; cv=none; b=r2YZd3Z4WvBpEYrFSHeUB4kbXie03mC4d6hOZva1ZBsKK4DLT7y/+/NGhT6H4xzX2E3t6hdMavU21kGZmG/mjz84ILHoXJVMKs85aNg1p9XlJoTRg47XSR3UEx2Wy6OWKwtP4QeyCn678gJMbxmpvLfZZV5ot+h3rbHvD92DP3A=
+	t=1706801310; cv=none; b=uhdYOAX5CJ/HY8KfbVPA4etFDb7SL+opmfK2pWJe6o69wC/nZQNJuxsO3qcJn7JLQMr9evImvufHiG+9d8v+5bvPIxnE+4WvLo47iIULE35++xo+G6c5YV8C7eJK9FLBlhd/Rkx2u+tRaVRWVZIj0v8hMI795wOZJQ/IdjN0/yw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1706801023; c=relaxed/simple;
-	bh=PMSkrVfo4wCCBmsgQRZ5v3SqCDRO5S+47GIBIeR9PvM=;
-	h=Message-ID:Subject:From:To:Cc:Date:In-Reply-To:References:
-	 Content-Type:MIME-Version; b=uQoMZOKSfhpTQRLN4Rc6XKMHtG2iPvtAU/pPLKkZRjkDoNtjzgIc3C2aRin047T7+OmFJ9tCkhWhnNPsKHqx65CtvX9bpwxz3DvkdZVuXYZgf6hOF4WsKclsdeYQGyllPMdDBuqzAwfl7q0LmLvzv6L7qihNeQH4bIGdficGte0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=Cv3YHO2q; arc=none smtp.client-ip=209.85.128.41
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-wm1-f41.google.com with SMTP id 5b1f17b1804b1-40fc2e36eeeso2264495e9.3
-        for <devicetree@vger.kernel.org>; Thu, 01 Feb 2024 07:23:40 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1706801019; x=1707405819; darn=vger.kernel.org;
-        h=mime-version:user-agent:content-transfer-encoding:references
-         :in-reply-to:date:cc:to:from:subject:message-id:from:to:cc:subject
-         :date:message-id:reply-to;
-        bh=PMSkrVfo4wCCBmsgQRZ5v3SqCDRO5S+47GIBIeR9PvM=;
-        b=Cv3YHO2qnBmigGCP8Xv/tjBczT4dE29eLL1j+R9uAWt1IyzvNFHI8zf3iePr5n0D/V
-         Jikeirzkahkdm9nvdk7Be3Z4VrvcLRCXt0SE3YxY/Xg6QzbycRDW/yP5Et5109lUr9DM
-         k6Sr7dLlKHsoaKHD/kqnC99rDiSKLGHB0v8q0y8CWNJ9vFqv6BfQ37sUds6QtRnMyJdf
-         X0X+QzA0VOn4qKrOmJ8xuOW7LMjeGczE03/SjQ4K/IP9Bdp2M8VmPmikB26hAaU1CgRp
-         z+DKxZcDFd2OFVR/SNywrjuYOEQY0eYKhmMsI4ht1rwNLl6W9qmnm7b44fH+XRVbVN/v
-         2KuQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1706801019; x=1707405819;
-        h=mime-version:user-agent:content-transfer-encoding:references
-         :in-reply-to:date:cc:to:from:subject:message-id:x-gm-message-state
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=PMSkrVfo4wCCBmsgQRZ5v3SqCDRO5S+47GIBIeR9PvM=;
-        b=Vj7WWoNEPl/ZRFLkcvXmdD8PXfLICw4H775bM+HFqxM0G/Fxr1K9J4XqEjidzvwqxJ
-         M7d34WKBFw7RaOj7IhFWMd+XsibQI9s7ry6FZNe4ixCSZXv7cofqDyQzEzyuGl6CL5os
-         c8JwcMJksQyyVQztBMWy2frTTZSfsa/euGRWHBNuYuKhBqvmJo1FgASP5VyXVxmTw7ih
-         HHW9hFjibj6/Q08h5aWPEmBWgUY8VXSQ1nYMGQ+yrJs91J7zL5MM4A8sGD+mGYmOjsAw
-         WE8WUxBHr6XiR+1K9XwGHj4/aOeogrHFXxTCnDWLhnW77yxPQINE4QSujLI2vDA+RTly
-         eMaQ==
-X-Gm-Message-State: AOJu0YzZXjthx6DsGzTnIjRd1NJ46wH8Cg+W+fpE0f7ftnmZW5sdCPGo
-	zNwvaWv8bSG/D/u6tyjdnGP+mt8fRCobe3Yi0ya5QzOgPi7l8ruYc8M9icbhtkU=
-X-Google-Smtp-Source: AGHT+IFodjNDyMaCtYuTqV48vhgStAruvNKrxCZcjt1dAxjJZdOwQCmscUUIOnKz7B5yumA8IslNvg==
-X-Received: by 2002:a05:600c:4e8f:b0:40e:f15e:10a8 with SMTP id f15-20020a05600c4e8f00b0040ef15e10a8mr4135288wmq.27.1706801019449;
-        Thu, 01 Feb 2024 07:23:39 -0800 (PST)
-X-Forwarded-Encrypted: i=0; AJvYcCWL0d7Ugr++UEHsJvIKxBYZi9F1A+/6aubU+Ro8eXX5vxRO+mg9PgqLH/KrlyrNxir73EU5QsKivnH8EPMWDirtNVQGVZQp/dFNwJcT8Pput4S6nynwJVCnKwrwvgR8gZ+sHoE+dGXvEcAUZ5tQuiMDb1ZNN5FuGDvpCPs/BJDWg3v8OffzNMQVhA91yTqpyM5BKqBVhY+8i4RMPl7VgagIAszO8VMZKAaqgrGTA2rvNU3PzMy+NegVU3ivUBzi1OzpztrmjK+qNWtwZRKXiIZmhbb5zJ/pkIsMQMbqUVQlsQto6x+ZawSrPYgZURyjlAaTpD0PnmGRouCpwcSDEY0ZAxF71Eu34Q+drwcNiHVHriAzjMvimHcTHFv+Bsrr8XRzxiRrKrz12thShte6WF4KORgdjfO31VfCkanLtx0DOXUINNrqTjJ5wTLzmhpiwQxxLkcCbNTKzJ+ria7oJvPOv43Djp6jgM0kNDI7nG3Fwps2+aj/qvEb6ycT3uxNj2YFKxwtSEva+tTznbThnS8tcAyaQCvt+iI0oZnzwOyi8oP+IzVXH9VJjEj2fv1ATjWYczhMbNwGThcxB2KRYV+SIeMFP2ihcf0NOwCZNFA6i+6cW8qSJuXHhhPo+R1MXpiNDBI=
-Received: from draszik.lan ([80.111.64.44])
-        by smtp.gmail.com with ESMTPSA id f6-20020a7bc8c6000000b0040e621feca9sm4651115wml.17.2024.02.01.07.23.38
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 01 Feb 2024 07:23:38 -0800 (PST)
-Message-ID: <5d696d79d453c6b77f4ebc2d91256e4de6cd5ef5.camel@linaro.org>
-Subject: Re: [PATCH v2 5/6] clk: samsung: gs101: don't mark non-essential
- clocks as critical
-From: =?ISO-8859-1?Q?Andr=E9?= Draszik <andre.draszik@linaro.org>
-To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>, 
-	peter.griffin@linaro.org, mturquette@baylibre.com, sboyd@kernel.org, 
-	robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org
-Cc: linux-kernel@vger.kernel.org, kernel-team@android.com, 
- tudor.ambarus@linaro.org, willmcvicker@google.com,
- semen.protsenko@linaro.org,  alim.akhtar@samsung.com,
- s.nawrocki@samsung.com, tomasz.figa@gmail.com,  cw00.choi@samsung.com,
- linux-arm-kernel@lists.infradead.org,  linux-samsung-soc@vger.kernel.org,
- linux-clk@vger.kernel.org,  devicetree@vger.kernel.org
-Date: Thu, 01 Feb 2024 15:23:37 +0000
-In-Reply-To: <8dfab6a9-f9d1-46c2-8bd1-6ead4b26fbe1@linaro.org>
-References: <20240130093812.1746512-1-andre.draszik@linaro.org>
-	 <20240130093812.1746512-6-andre.draszik@linaro.org>
-	 <8dfab6a9-f9d1-46c2-8bd1-6ead4b26fbe1@linaro.org>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-User-Agent: Evolution 3.50.1-1 
+	s=arc-20240116; t=1706801310; c=relaxed/simple;
+	bh=E6HdKpIdSATrP20bipx9SvKrBN7kLgJKWEle80Dc3sE=;
+	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=IFLrzGvA4SUEVy4VXbEGyf5VmzFRvWeNRrdfX3QJumd1NU0rJid6Ze2MLhviUIsTgkOqf5YvTI8AOeoad7NgR4TyvDr9Dlv1nRDewSg+G41kI+NjlD3NxJHDbXOrhEb7Di52majqoHbPcKJJCBZ+3mrPEP0ndKbhAh0+yJ7NuJs=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=cknow.org; spf=pass smtp.mailfrom=cknow.org; dkim=pass (2048-bit key) header.d=cknow.org header.i=@cknow.org header.b=dbsB0s4y; arc=none smtp.client-ip=95.215.58.174
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=cknow.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=cknow.org
+X-Report-Abuse: Please report any abuse attempt to abuse@migadu.com and include these headers.
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=cknow.org; s=key1;
+	t=1706801306;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 in-reply-to:in-reply-to:references:references;
+	bh=26SIQ5pnUVxGBuzI6N0P1NMwW5cCHuoQn92ze0+AFsQ=;
+	b=dbsB0s4yLvfcXftjxVr1PtbRs0QgJobNiO59PIQlR+5vqDeS6MwE3KDheQe7Zeo/6jj9Wu
+	3YYkWz02yT5UvIE6dYU778APsSZ3OoLjiw2acfpe6EN01sFNvUpeSrL9WCuwQ7DKzvVNL3
+	TPT83bfEyHiowg7jkGq16z+gZOX95kRZ2T6KvX8sKvgryAaTlZGnuhBVcZpDNzM/RHvOGv
+	4/CZVqJC3FKT9xqUgVCBSIcnoNPNHdQzMlaMeEzMw2mqMwUxCbwJIRXSNEwJOKrXBBIN8r
+	hxvCJau/xkmanotkIlFn8oAO33+ZY43btxhwKWKJUXJ3S3dKTANUGpCdb6Y4Sw==
+From: Diederik de Haas <didi.debian@cknow.org>
+To: Neil Armstrong <neil.armstrong@linaro.org>,
+ Jessica Zhang <quic_jesszhan@quicinc.com>, Sam Ravnborg <sam@ravnborg.org>,
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>,
+ David Airlie <airlied@gmail.com>, Daniel Vetter <daniel@ffwll.ch>,
+ Rob Herring <robh+dt@kernel.org>,
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+ Conor Dooley <conor+dt@kernel.org>, Heiko Stuebner <heiko@sntech.de>,
+ Sandy Huang <hjc@rock-chips.com>, Mark Yao <markyao0591@gmail.com>,
+ Segfault <awarnecke002@hotmail.com>, Arnaud Ferraris <aferraris@debian.org>,
+ Danct12 <danct12@riseup.net>, Ondrej Jirman <megi@xff.cz>,
+ Manuel Traut <manut@mecka.net>
+Cc: dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ linux-rockchip@lists.infradead.org, Manuel Traut <manut@mecka.net>
+Subject:
+ Re: [PATCH v4 4/4] arm64: dts: rockchip: Add devicetree for Pine64 PineTab2
+Date: Thu, 01 Feb 2024 16:28:15 +0100
+Message-ID: <13234147.MA61SxHe9P@bagend>
+Organization: Connecting Knowledge
+In-Reply-To: <20240127-pinetab2-v4-4-37aab1c39194@mecka.net>
+References:
+ <20240127-pinetab2-v4-0-37aab1c39194@mecka.net>
+ <20240127-pinetab2-v4-4-37aab1c39194@mecka.net>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+Content-Type: multipart/signed; boundary="nextPart1794107.V1UpVPejRP";
+ micalg="pgp-sha256"; protocol="application/pgp-signature"
+X-Migadu-Flow: FLOW_OUT
 
-Hi Krzysztof,
+--nextPart1794107.V1UpVPejRP
+Content-Transfer-Encoding: 7Bit
+Content-Type: text/plain; charset="us-ascii"; protected-headers="v1"
+X-Report-Abuse: Please report any abuse attempt to abuse@migadu.com and include these headers.
+From: Diederik de Haas <didi.debian@cknow.org>
+Date: Thu, 01 Feb 2024 16:28:15 +0100
+Message-ID: <13234147.MA61SxHe9P@bagend>
+Organization: Connecting Knowledge
+In-Reply-To: <20240127-pinetab2-v4-4-37aab1c39194@mecka.net>
+MIME-Version: 1.0
 
-On Thu, 2024-02-01 at 11:02 +0100, Krzysztof Kozlowski wrote:
-> On 30/01/2024 10:36, Andr=C3=A9 Draszik wrote:
-> > The peric0_top1_ipclk_0 and peric0_top1_pclk_0 are the clocks going to
-> > peric0/uart_usi, with pclk being the bus clock. Without pclk running,
-> > any bus access will hang.
-> > Unfortunately, in commit d97b6c902a40 ("arm64: dts: exynos: gs101:
-> > update USI UART to use peric0 clocks") the gs101 DT ended up specifying
-> > an incorrect pclk in the respective node and instead the two clocks
-> > here were marked as critical.
-> >=20
-> > We have fixed the gs101 DT and can therefore drop this incorrect
-> > work-around here, the uart driver will claim these clocks as needed.
->=20
-> How did you fixed the DTS? Which commit did it? Are we going back to
-> basics of driver changes depending on DTS?
+On Saturday, 27 January 2024 10:48:45 CET Manuel Traut wrote:
+> This includes support for both the v0.1 units that were sent to developers
+> and the v2.0 units from production.
+> 
+> v1.0 is not included as no units are known to exist.
+> 
+> Working/Tested:
+> - SDMMC
+> - UART
+> - Buttons
+> - Charging/Battery/PMIC
+> - Audio
+> - USB
+> - Display
+> - SPI NOR Flash
+> 
+> Signed-off-by: Alexander Warnecke <awarnecke002@hotmail.com>
+> Signed-off-by: Manuel Traut <manut@mecka.net>
 
-Sorry if the description isn't clear.
+Everything seems to (still) work, so:
+Tested-By: Diederik de Haas <didi.debian@cknow.org>
 
-a) these clocks are not critical for the system to work, and this patch fix=
-es that.
-b) the initial DTSI for gs101 used incorrect clocks for the serial, and it =
-didn't
-work. The work-around was to specify these clocks here as critical instead.=
- Patch
-#4 in this series has corrected the DTSI.
-
-So there is no dependency between the DTS update and the driver update here=
- as such,
-no new properties, or otherwise.
-
-That said, now that b) above has been fixed (in patch #4), it is OK to mark=
- these
-clocks as non-critical without any ill effects. That's all that is happenin=
-g. I was
-merely referencing that in the commit message.
-
-I can rephrase things if you wish.
-
+Thanks for submitting this upstream :-)
 
 Cheers,
-Andre'
+  Diederik
+--nextPart1794107.V1UpVPejRP
+Content-Type: application/pgp-signature; name="signature.asc"
+Content-Description: This is a digitally signed message part.
+Content-Transfer-Encoding: 7Bit
+
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYIAB0WIQT1sUPBYsyGmi4usy/XblvOeH7bbgUCZbu4kAAKCRDXblvOeH7b
+blXGAQDP5qENxaN5dIVjBieTyOlY8fPPngqtXwFL4vkEdreqjQD/b48bb1yvUxQr
+vS2R3FNuHLcDSnHLKoxjZg+592xUfAU=
+=5fTJ
+-----END PGP SIGNATURE-----
+
+--nextPart1794107.V1UpVPejRP--
+
+
 
 
