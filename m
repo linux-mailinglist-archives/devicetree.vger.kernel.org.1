@@ -1,59 +1,59 @@
-Return-Path: <devicetree+bounces-37700-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-37701-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1AB0F845FB0
-	for <lists+devicetree@lfdr.de>; Thu,  1 Feb 2024 19:17:16 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 34759845FAB
+	for <lists+devicetree@lfdr.de>; Thu,  1 Feb 2024 19:16:11 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id C3F97B2ADE6
-	for <lists+devicetree@lfdr.de>; Thu,  1 Feb 2024 18:15:35 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id E396528175A
+	for <lists+devicetree@lfdr.de>; Thu,  1 Feb 2024 18:16:09 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D1FA77C6C9;
-	Thu,  1 Feb 2024 18:13:31 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 59BE112FB11;
+	Thu,  1 Feb 2024 18:15:27 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="lOX6dULC"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="TmKwZezX"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A29AD74281;
-	Thu,  1 Feb 2024 18:13:31 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 22DF312FB05;
+	Thu,  1 Feb 2024 18:15:25 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1706811211; cv=none; b=Q8lBIGSpmPc5gWpw+nY2jaQG3ERVZ62E+obxRLJv81B1vd58nsEgF7AraTXNa6sSyrCDEap+PnFjjODFrxuRFDRYZMUQ1UmFh+XeGHXBus7qAY9m6hUmZqORtKo0EIU0cmvpUpbtdNx8tqC1A0VXy8WVpPxofRnWQG7xuvNKWWg=
+	t=1706811327; cv=none; b=WG0mVwPM32a2wkLbMG5Iiy1Gj8431X/9pyRPcV2kjwMkXlwaay6kYK/E0wuDDL+/XmH7sCOte8Gze563FloulZTWHHfMpc3qHgI9shPcMfaHpi/36YiakaoR1WJahzcjtsHrvsOU62YwuW4ux8xb9d7pViDqqoNcqnqucbBC8pw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1706811211; c=relaxed/simple;
-	bh=DIvVA7Y1qv9I31Mtzl3bdvI3w9k60qDKC26dLLuvmhk=;
+	s=arc-20240116; t=1706811327; c=relaxed/simple;
+	bh=qqBRy/V+j4DYg7LR5ViZpZbdV5GbisFCPkyKYMWCJkU=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=d+5rEkkRnmIDc83wlUjgBQhRIma5uCdl+EIzVeNzS9Ted3u0DX1FwTBIlzZdna7MQNW1Bdm/pJuWl6iiwJiPAmIG2E47gJxTHwY+XpmwL3YSrbXFIDykADfNwukq4rTd07gu9pwsOmpVj7TQ8PZyCMKTuEPIkeFcj94ECMSiDV8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=lOX6dULC; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 26098C433F1;
-	Thu,  1 Feb 2024 18:13:28 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=b5zLPAzJOkZGhIpOv7DaPdzAHE0mDsaJZhSM5rNewRL7H2FOpC0N2InSMnD2zXzA4pDWP7RubF9Qn91bHOTfJ7IdhvExLQqx5nbECOvYLtEgTNmTjN2RWACLxXyk5tdcoHvZPRejw/VME733gcWx4XTiCoGGTNTH4SNwaqMINHs=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=TmKwZezX; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id C86D4C43390;
+	Thu,  1 Feb 2024 18:15:22 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1706811211;
-	bh=DIvVA7Y1qv9I31Mtzl3bdvI3w9k60qDKC26dLLuvmhk=;
+	s=k20201202; t=1706811325;
+	bh=qqBRy/V+j4DYg7LR5ViZpZbdV5GbisFCPkyKYMWCJkU=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=lOX6dULC/321IeZkeKWHpTv26SktGyKgBdfz3FOKqOenD0pMfechaHOuMMRXkncW+
-	 wgH5rgBgeUsjoF+9/ZZ8KB2/1KtRFbZb5+j/3mLJ2b9dSEWM7lMqea5EB09O1sLsLt
-	 V3OpjvQVhddvkKLqW/FaIaVkE7eBN///7FEg91SzUSQgwhCkKY29zvsrcfkjkUlXy1
-	 YXv3ZiBbyB4207vPcy/QQlnvURKD4/aWVVmPaLHs8TCmSvObYzhqrTDItjK54HjpFd
-	 UlzvuOBr+cuWYmZCv5wMEWhkIBEc7Xfz8FS/ZHkWs3XkwQ/zbbHBg8Y5QoH1Nwry+R
-	 WNQbUNJDE0VOw==
-Date: Thu, 1 Feb 2024 18:13:26 +0000
+	b=TmKwZezXAZrk9uzyqT93ZzPYnHB4FXigeUJs+bXwWdhNed6WCDuAmmY99N3p+yrGT
+	 ZZJXb0oIdJFIszxgflEEjGVymxqloa4CF7SnBDOA/feW8oedK0WVyIJqYikiwwx4Ph
+	 7o2g0qSGMikypqlVzHckG6G2sD6+DTd8M/27DO2X1gL8fYKbVBLfKaO/2JIurW54pt
+	 TVgPEazJcRaZNiGgCNbGjwp0QZQOrliSTB9MuORKAsidD/qDIICUhaZGCJSGu65p3U
+	 hNESSWwDzekKCWQkjYjS+v+zdz2ni01/A1nHPa7AXvj2nFSjnOrYTG4tiX6dY4xJoU
+	 dqCS4cWIwEy6w==
+Date: Thu, 1 Feb 2024 18:15:20 +0000
 From: Conor Dooley <conor@kernel.org>
-To: Geert Uytterhoeven <geert+renesas@glider.be>
-Cc: Linus Walleij <linus.walleij@linaro.org>,
-	Bartosz Golaszewski <brgl@bgdev.pl>,
-	Rob Herring <robh+dt@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>, linux-gpio@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-renesas-soc@vger.kernel.org
-Subject: Re: [PATCH] dt-bindings: gpio: renesas,rcar-gpio: Add r8a779h0
- support
-Message-ID: <20240201-skipper-qualifier-0b762fe5a67e@spud>
-References: <c5681eb5d28641d9b51ac2066b56b52d23defd85.1706789728.git.geert+renesas@glider.be>
+To: Roger Quadros <rogerq@kernel.org>
+Cc: nm@ti.com, vigneshr@ti.com, afd@ti.com, kristo@kernel.org,
+	robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
+	conor+dt@kernel.org, srk@ti.com, r-gunasekaran@ti.com, b-liu@ti.com,
+	linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v3 4/5] dt-bindings: usb/ti,am62-usb.yaml: Add PHY2
+ register space
+Message-ID: <20240201-viewpoint-upload-fb714f650ff5@spud>
+References: <20240201120332.4811-1-rogerq@kernel.org>
+ <20240201120332.4811-5-rogerq@kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -61,58 +61,82 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: multipart/signed; micalg=pgp-sha256;
-	protocol="application/pgp-signature"; boundary="zY7GGhXCbwC8GTGb"
+	protocol="application/pgp-signature"; boundary="OtyWSM2MmQ63Tw2S"
 Content-Disposition: inline
-In-Reply-To: <c5681eb5d28641d9b51ac2066b56b52d23defd85.1706789728.git.geert+renesas@glider.be>
+In-Reply-To: <20240201120332.4811-5-rogerq@kernel.org>
 
 
---zY7GGhXCbwC8GTGb
+--OtyWSM2MmQ63Tw2S
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
 Content-Transfer-Encoding: quoted-printable
 
-On Thu, Feb 01, 2024 at 01:16:33PM +0100, Geert Uytterhoeven wrote:
-> Document support for GPIO controller blocks in the Renesas R-Car V4M
-> (R8A779H0) SoC.
+On Thu, Feb 01, 2024 at 02:03:31PM +0200, Roger Quadros wrote:
+> So far this was not required but due to the newly identified
+> Errata i2409 [1] we need to poke this register space.
 >=20
-> Signed-off-by: Geert Uytterhoeven <geert+renesas@glider.be>
+> [1] https://www.ti.com/lit/er/sprz487d/sprz487d.pdf
+>=20
+> Signed-off-by: Roger Quadros <rogerq@kernel.org>
 
 Acked-by: Conor Dooley <conor.dooley@microchip.com>
+
+> ---
+>=20
+> Notes:
+>     Changelog:
+>    =20
+>     v3 - new patch
+>=20
+>  Documentation/devicetree/bindings/usb/ti,am62-usb.yaml | 7 +++++--
+>  1 file changed, 5 insertions(+), 2 deletions(-)
+>=20
+> diff --git a/Documentation/devicetree/bindings/usb/ti,am62-usb.yaml b/Doc=
+umentation/devicetree/bindings/usb/ti,am62-usb.yaml
+> index fec5651f5602..c02d9d467d9c 100644
+> --- a/Documentation/devicetree/bindings/usb/ti,am62-usb.yaml
+> +++ b/Documentation/devicetree/bindings/usb/ti,am62-usb.yaml
+> @@ -14,7 +14,9 @@ properties:
+>      const: ti,am62-usb
+> =20
+>    reg:
+> -    maxItems: 1
+> +    items:
+> +      - description: USB CFG register space
+> +      - description: USB PHY2 register space
+> =20
+>    ranges: true
+> =20
+> @@ -82,7 +84,8 @@ examples:
+> =20
+>        usbss1: usb@f910000 {
+>          compatible =3D "ti,am62-usb";
+> -        reg =3D <0x00 0x0f910000 0x00 0x800>;
+> +        reg =3D <0x00 0x0f910000 0x00 0x800>,
+> +              <0x00 0x0f918000 0x00 0x400>;
+
+Why the double zeros btw?
 
 Cheers,
 Conor.
 
-> ---
->  Documentation/devicetree/bindings/gpio/renesas,rcar-gpio.yaml | 1 +
->  1 file changed, 1 insertion(+)
->=20
-> diff --git a/Documentation/devicetree/bindings/gpio/renesas,rcar-gpio.yam=
-l b/Documentation/devicetree/bindings/gpio/renesas,rcar-gpio.yaml
-> index aa424e2b95f87a51..cc7a950a6030999e 100644
-> --- a/Documentation/devicetree/bindings/gpio/renesas,rcar-gpio.yaml
-> +++ b/Documentation/devicetree/bindings/gpio/renesas,rcar-gpio.yaml
-> @@ -53,6 +53,7 @@ properties:
->                - renesas,gpio-r8a779a0     # R-Car V3U
->                - renesas,gpio-r8a779f0     # R-Car S4-8
->                - renesas,gpio-r8a779g0     # R-Car V4H
-> +              - renesas,gpio-r8a779h0     # R-Car V4M
->            - const: renesas,rcar-gen4-gpio # R-Car Gen4
-> =20
->    reg:
+>          clocks =3D <&k3_clks 162 3>;
+>          clock-names =3D "ref";
+>          ti,syscon-phy-pll-refclk =3D <&wkup_conf 0x4018>;
 > --=20
 > 2.34.1
 >=20
 
---zY7GGhXCbwC8GTGb
+--OtyWSM2MmQ63Tw2S
 Content-Type: application/pgp-signature; name="signature.asc"
 
 -----BEGIN PGP SIGNATURE-----
 
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZbvfRgAKCRB4tDGHoIJi
-0pAcAP9zmpNoMGsGcjl1mI2zWkMiwNlXgq1k6ptNlpUf6OXN0AD/WtNFo8wEZCLV
-Hz+rm1GXaD7BESv/IE1qUqluSAxN5wg=
-=ewOu
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZbvfuAAKCRB4tDGHoIJi
+0mWrAQC3uMg2ymui8kJ6/QbX6cNAVZEC+xxJc3kwh3We812E4AEArck+H328Eujt
+zt2rkVVVHTdwtsoFF7DgMldm202/zgc=
+=6c4e
 -----END PGP SIGNATURE-----
 
---zY7GGhXCbwC8GTGb--
+--OtyWSM2MmQ63Tw2S--
 
