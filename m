@@ -1,160 +1,139 @@
-Return-Path: <devicetree+bounces-37536-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-37537-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id D53818454B8
-	for <lists+devicetree@lfdr.de>; Thu,  1 Feb 2024 11:02:41 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 55D6A8454BC
+	for <lists+devicetree@lfdr.de>; Thu,  1 Feb 2024 11:03:35 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 580CA1F2A82D
-	for <lists+devicetree@lfdr.de>; Thu,  1 Feb 2024 10:02:41 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 59625B26E18
+	for <lists+devicetree@lfdr.de>; Thu,  1 Feb 2024 10:03:32 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id CEE1315B11A;
-	Thu,  1 Feb 2024 10:02:34 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="uMPyJfY+"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 50E7B15A4A1;
+	Thu,  1 Feb 2024 10:03:26 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lf1-f42.google.com (mail-lf1-f42.google.com [209.85.167.42])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtpbg150.qq.com (smtpbg150.qq.com [18.132.163.193])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1F5EF157E8C
-	for <devicetree@vger.kernel.org>; Thu,  1 Feb 2024 10:02:31 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.42
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9E4C74D9FE;
+	Thu,  1 Feb 2024 10:03:19 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=18.132.163.193
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1706781754; cv=none; b=ByiP8ksnsMsKv9jYNISZtun7ACBreYONS0mHCQYvN2smDiSK4GMkRNoGRkkEBrXpgJMRkoX8Vx5KAkr7ZSa2lfLqp/QWc51TQvgl6RGfzdFSuPgfPyxhDY3lDWkRaYo7SCseimBBehyIFHA+pb27FjKj9m6jHIuOdfVkAz2uRgo=
+	t=1706781806; cv=none; b=HSuGtbHsdjbS5duw3bBfnjcLHqWEV5ZVhJL4qsnertoVPVpQbj2TgbDVKlUPGiL1bH/qIezJ2qYf65eG6qcGiYxEij413JmquQDoGoeZYELzMW7n/zS4zhe0OJrMdKNfuBs1e2J38oBYqxe5EZ+TfHR6qNjy/iJfNbZLrWbGFT8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1706781754; c=relaxed/simple;
-	bh=TfD0ZtGAxTwefO1+esgJy6t8W0W6ae6MMnO1dJKq7SM=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=OdwVn9YwEWnofTyeiroUB88gsNadHHoeLwcCZckG6HaFWJZlZ9pREciTprqLGslXDbP6LQVDs8gybbXZM+dUEo+JU8ncxi3gl1QxM0FVy6JZyIszJrL9Obi5pMNHEuRSCCoGDtQc3S+nsnMZ59qDlKytDcpGycCBMb0MqtBRivM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=uMPyJfY+; arc=none smtp.client-ip=209.85.167.42
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-lf1-f42.google.com with SMTP id 2adb3069b0e04-5110fae7af5so950264e87.0
-        for <devicetree@vger.kernel.org>; Thu, 01 Feb 2024 02:02:31 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1706781750; x=1707386550; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
-         :to:content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=audBvoFkalwLQ9LWdr0sINMEzBT/FVF2oLSjXFkFXBk=;
-        b=uMPyJfY+JUdoFdM6T4gHqLo26KJ2PXNFfVasllFxiWj8X7dchasALvbTYe7GKwMTqB
-         ehEVQxdS9m6tiuFB7bpugFBIcuvKbP6mMygspMy3om02TFkbU6RsTSHIiKnE4er0xBgw
-         rKWhNuePDahxTbBcts/jyPy67Y19/nogAOOE1T2dn0LiozNICrJWN956ibB5lQaMaKI1
-         +j6PzacViQan57fb0u6otL9mslFMcGCpFlpmo3X3IbH5AhzjnlhxvN0YS8umQ+WrHYqo
-         QgETkLejyFmYT/OizVIRf6t4YvU8kOmThHC2HLh/Qind1Ctu5mDw+kvhSN397NY0uQGH
-         q5vw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1706781750; x=1707386550;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
-         :to:content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=audBvoFkalwLQ9LWdr0sINMEzBT/FVF2oLSjXFkFXBk=;
-        b=JHBnaRZYjdQtWxhXYUtE5bhJX/SQLR3lGpMvswYCVHLPOTq0mHLM15ExR0j5oqORjl
-         lWz/XX4B/J6mybVmBkTkpw3iCs5xjEmKub06fBY7S6ya9S6Y8DCzj1YNcYrSHeiR7CZl
-         2wZC9GlIy7riQbJL+ZyhDeAcVVS/x0bENad+0agsU939f+QWaFXywPshS3j9hDvbY4Fc
-         G2T4JXAVpDPI6aHYssqbWJutCzS1JbYcRmlhCFXZMPcRy3+p3phtBiAAainvz0frhYxB
-         icVT5n87/q6Q0zzTSjROS8j0eGQNlrPXqvEqq1CrnHKh8H2rJLSVPOOGSSpLJm3GwTcN
-         0DqA==
-X-Gm-Message-State: AOJu0YzYZJuQ5Dsy07NpaVcrdcbY1hgxC54Y6JTaFI1U9yYixMU4Omiy
-	hzAdbkwBywHahz4TzSa2nTOlhq9lB9YSBBwKxnMAz28X8g541qeXhxR1AD6o7yc=
-X-Google-Smtp-Source: AGHT+IGgMq2S2Vy1yRdQCZfE+pr+7lfyUr/Gq0DGu5wfWj/3OWStSU3825vPwCPURjfrS5K7ihHUXg==
-X-Received: by 2002:ac2:4550:0:b0:50e:7b5e:b64b with SMTP id j16-20020ac24550000000b0050e7b5eb64bmr1482363lfm.49.1706781750026;
-        Thu, 01 Feb 2024 02:02:30 -0800 (PST)
-X-Forwarded-Encrypted: i=0; AJvYcCW2rTl/r7uee6Gdmq2iQhsXo5+v8iwVnr0vr8YYP85o24/aHbh/fMD+GHz7mld38EuEXrBeg++DPbaLNUpdVOm/bn1VI+I13AFjaVonBFllRatZZR2E1nnJ8SMF77ngjJRoyyQ9FOrk4oX5EBXhH+42jLXS9j7q39iZI9cj82AevoUfI8yLMIQ+Koh2RCtM9dm75gSaHbr9EQUCohOoGocK2a4/tjFpBF4lfqcM1ssryXCvinrBH4CIzx/N7DpOFDOMqoDNH5+YM23L2Wa0xIwOt1J5/UTq2MI4IZAuQXJWOfcKaG5YPsn4XVfvYEe1CFGvPlV7LgSuK3bOoGcPCyT50/pPztzxvfxShrQhF+D6sHsJ2cydUN+/BL+XxlesletaPlLxVzf3vzTvdtnKO+DVxhXg0AacVnYOGOldfvkCgFaewG6FYSfVK4AVB2PDkeHA0w8NN0KfmV3T17Vr93WmKWr7CNlhVLZIWK6WlskjugTJTVKagn7WQNNbJXpbdd6cstu7pW8Cw/RCQwshI+C0TKnjJc1EoajHEmaYOQP9JY8oM6OGrTLmLOis7KRxNo9Uuq6HeOnmq001UqdsTFYDf3X1C9wpSTXouk3UwDN0zJextw+9YisL27EV2TJnDp/xZ4XT2OyIlvnc1PIPSpQ3t8ojcq4etEmE9MdhThglar0dzmuwqw==
-Received: from [192.168.1.20] ([178.197.222.62])
-        by smtp.gmail.com with ESMTPSA id vs3-20020a170907a58300b00a3550c56127sm5675339ejc.9.2024.02.01.02.02.28
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 01 Feb 2024 02:02:29 -0800 (PST)
-Message-ID: <8dfab6a9-f9d1-46c2-8bd1-6ead4b26fbe1@linaro.org>
-Date: Thu, 1 Feb 2024 11:02:27 +0100
+	s=arc-20240116; t=1706781806; c=relaxed/simple;
+	bh=DKso4YS41skSyS1xsizUAxJeS/P+dmXu009Uxk+kUnQ=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=ZAMgqs8cddI+Om2O2uZgrdjkV7Es3KB2RxYPbq1G4CMy6E2qunV9imOHRT3hihsuGp1+BxUZs6Qz9rOPuKythpSiZ+2FH7jdDy8YtD24SnyJXsfcahrkEC0bnZ0n9z+16zLB4DYIQqSXAkFxgIM0QHQWbuExYri7MkpC+bKZa8o=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=shingroup.cn; spf=pass smtp.mailfrom=shingroup.cn; arc=none smtp.client-ip=18.132.163.193
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=shingroup.cn
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=shingroup.cn
+X-QQ-mid: bizesmtp78t1706781784tkkpgdyz
+X-QQ-Originating-IP: +JWxgiMlSMFigd7fs7xBIqWiE9nm36/UMQXx/r1lq/Q=
+Received: from localhost ( [183.209.108.228])
+	by bizesmtp.qq.com (ESMTP) with 
+	id ; Thu, 01 Feb 2024 18:03:03 +0800 (CST)
+X-QQ-SSF: 01400000000000504000000A0000000
+X-QQ-FEAT: oGOjGSUjcuDKQ+aqRluaCH/DpwlgcE5FBILQGBVUf39RpxHBY3eVtKuY1HUzg
+	BEDAaBW7ez6PNw9VtMD5dohFgqgrc58OAVA/1f0I8vVeghPYStuLH85zlcgb+pOhUh5CSC3
+	hGhOp683YifZnCsIaOdFFgUWSDd+jMNf8VTI+qjDCzcxuEQupC3SvZbX8m53vJHQMUvbfhu
+	rcZEw4lgpcKg0SBKFSuXd0Epxk5Ol+EhteJF8QOzyutO9O24kT1jj1/WBotnH8eUBsWC73p
+	C/fHUS5aC4L0/gb2vOfCHur7v9XNDd/BL6jU2Fz4EgNYPq639V2ufWkROvL8b8SRqdhDdvo
+	u2mtg+kwYGPBTClU3h8qNFX+SpRE9+oul7qSGhpBT7raQP4dGGLb8KQerYAGA9th730lszA
+	HwABS8bA45A=
+X-QQ-GoodBg: 2
+X-BIZMAIL-ID: 110192563837687786
+Date: Thu, 1 Feb 2024 18:03:03 +0800
+From: Dawei Li <dawei.li@shingroup.cn>
+To: Rob Herring <robh@kernel.org>
+Cc: frowand.list@gmail.com, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org, set_pte_at@outlook.com
+Subject: Re: [PATCH 2/2] of: Implment cache update operation on device node
+ attach
+Message-ID: <A5E6C26210115B9B+ZbtsVxPxJ4WCFtdp@centos8>
+References: <20240130105236.3097126-1-dawei.li@shingroup.cn>
+ <20240130105236.3097126-3-dawei.li@shingroup.cn>
+ <20240131211227.GA2303754-robh@kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 5/6] clk: samsung: gs101: don't mark non-essential
- clocks as critical
-Content-Language: en-US
-To: =?UTF-8?Q?Andr=C3=A9_Draszik?= <andre.draszik@linaro.org>,
- peter.griffin@linaro.org, mturquette@baylibre.com, sboyd@kernel.org,
- robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org
-Cc: linux-kernel@vger.kernel.org, kernel-team@android.com,
- tudor.ambarus@linaro.org, willmcvicker@google.com,
- semen.protsenko@linaro.org, alim.akhtar@samsung.com, s.nawrocki@samsung.com,
- tomasz.figa@gmail.com, cw00.choi@samsung.com,
- linux-arm-kernel@lists.infradead.org, linux-samsung-soc@vger.kernel.org,
- linux-clk@vger.kernel.org, devicetree@vger.kernel.org
-References: <20240130093812.1746512-1-andre.draszik@linaro.org>
- <20240130093812.1746512-6-andre.draszik@linaro.org>
-From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
- 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
- D2GYIS41Kv4Isx2dEFh+/Q==
-In-Reply-To: <20240130093812.1746512-6-andre.draszik@linaro.org>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20240131211227.GA2303754-robh@kernel.org>
+X-QQ-SENDSIZE: 520
+Feedback-ID: bizesmtp:shingroup.cn:qybglogicsvrgz:qybglogicsvrgz5a-1
 
-On 30/01/2024 10:36, André Draszik wrote:
-> The peric0_top1_ipclk_0 and peric0_top1_pclk_0 are the clocks going to
-> peric0/uart_usi, with pclk being the bus clock. Without pclk running,
-> any bus access will hang.
-> Unfortunately, in commit d97b6c902a40 ("arm64: dts: exynos: gs101:
-> update USI UART to use peric0 clocks") the gs101 DT ended up specifying
-> an incorrect pclk in the respective node and instead the two clocks
-> here were marked as critical.
+Hi Rob,
+
+Thanks for review.
+
+On Wed, Jan 31, 2024 at 03:12:27PM -0600, Rob Herring wrote:
+> On Tue, Jan 30, 2024 at 06:52:36PM +0800, Dawei Li wrote:
+> > Use implemented __of_phandle_update_cache to update phandle cache on
+> > device node attachment.
+> > 
+> > While at it, make explicit assertion on locking dependency for
+> > __of_phandle_cache_inv_entry.
 > 
-> We have fixed the gs101 DT and can therefore drop this incorrect
-> work-around here, the uart driver will claim these clocks as needed.
+> 'While at it' is a red flag for should be a separate commit.
 
-How did you fixed the DTS? Which commit did it? Are we going back to
-basics of driver changes depending on DTS?
+Agreed. It should be in a separate commit.
 
-Best regards,
-Krzysztof
+Thanks,
 
+    Dawei
+
+> 
+> > 
+> > Signed-off-by: Dawei Li <dawei.li@shingroup.cn>
+> > ---
+> >  drivers/of/base.c    | 6 ++++--
+> >  drivers/of/dynamic.c | 2 ++
+> >  2 files changed, 6 insertions(+), 2 deletions(-)
+> > 
+> > diff --git a/drivers/of/base.c b/drivers/of/base.c
+> > index 8b7da27835eb..44e542b566e1 100644
+> > --- a/drivers/of/base.c
+> > +++ b/drivers/of/base.c
+> > @@ -153,6 +153,8 @@ void __of_phandle_cache_inv_entry(phandle handle)
+> >  	u32 handle_hash;
+> >  	struct device_node *np;
+> >  
+> > +	lockdep_assert_held(&devtree_lock);
+> > +
+> >  	if (!handle)
+> >  		return;
+> >  
+> > @@ -195,8 +197,8 @@ void __init of_core_init(void)
+> >  	}
+> >  	for_each_of_allnodes(np) {
+> >  		__of_attach_node_sysfs(np);
+> > -		if (np->phandle && !phandle_cache[of_phandle_cache_hash(np->phandle)])
+> > -			phandle_cache[of_phandle_cache_hash(np->phandle)] = np;
+> > +
+> > +		__of_phandle_update_cache(np, false);
+> >  	}
+> >  	mutex_unlock(&of_mutex);
+> >  
+> > diff --git a/drivers/of/dynamic.c b/drivers/of/dynamic.c
+> > index 3bf27052832f..a68bf58f2c24 100644
+> > --- a/drivers/of/dynamic.c
+> > +++ b/drivers/of/dynamic.c
+> > @@ -219,6 +219,8 @@ static void __of_attach_node(struct device_node *np)
+> >  			np->phandle = 0;
+> >  	}
+> >  
+> > +	__of_phandle_update_cache(np, true);
+> > +
+> >  	np->child = NULL;
+> >  	np->sibling = np->parent->child;
+> >  	np->parent->child = np;
+> > -- 
+> > 2.27.0
+> > 
+> 
 
