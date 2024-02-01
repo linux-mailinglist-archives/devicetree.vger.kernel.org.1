@@ -1,74 +1,55 @@
-Return-Path: <devicetree+bounces-37525-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-37526-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id C4B61845435
-	for <lists+devicetree@lfdr.de>; Thu,  1 Feb 2024 10:39:10 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 47799845464
+	for <lists+devicetree@lfdr.de>; Thu,  1 Feb 2024 10:44:14 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 034631C25C19
-	for <lists+devicetree@lfdr.de>; Thu,  1 Feb 2024 09:39:10 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 6BD2C1C27C52
+	for <lists+devicetree@lfdr.de>; Thu,  1 Feb 2024 09:44:13 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7F4E915B990;
-	Thu,  1 Feb 2024 09:36:43 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 988AD4DA07;
+	Thu,  1 Feb 2024 09:44:12 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="O9Uap6oU"
+	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b="COkrPBTE"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ej1-f42.google.com (mail-ej1-f42.google.com [209.85.218.42])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from madrid.collaboradmins.com (madrid.collaboradmins.com [46.235.227.194])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7718015B975
-	for <devicetree@vger.kernel.org>; Thu,  1 Feb 2024 09:36:41 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.42
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 998724D9FC;
+	Thu,  1 Feb 2024 09:44:10 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=46.235.227.194
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1706780203; cv=none; b=WKd2gksGGmClVNyVrhO9Qmql3eBEWRkJoNNM2E0OeIQ2l9NxiF8VLywXxyS9SMMyfNFV1dW0facrPAij0GvjivhxLlO3OsINsfrLTv7GRJoSemOdDDl+jCXA2AHpdqJigYUFh90dkPALo0MQTznJODdzSoo4N2VwaACrzhqNd4o=
+	t=1706780652; cv=none; b=pGPYV6XJOtEyZAKIlbOrhTFUNY5bFTAM1UzSq2xR5mXxmJUfj9t6Gm+tZaI+y67Bo2ULK1VrkhZl3LB6iMkMpNO3tC6ETPh78MZo43Gjoseyd5v4X4k+BJsvrmYtZp6qtsYOyzbC6Mrk8mg/167OI77MPOzNtT/GTC9ujZUmBpI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1706780203; c=relaxed/simple;
-	bh=VBJ3v7tZGm+k2N8ADxEK1r3ckzFwQWUh5/X8mvn9RBE=;
+	s=arc-20240116; t=1706780652; c=relaxed/simple;
+	bh=tgkduB+n8TnPBdHD34UzC0Y9amJQZ87VxYvXvbidh5s=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=T3Q+7zLceQ8QGpwX6Ml1YRBYSU7bmLhjWRZmsVKT9RBrpUlBKXFNcWa+mBXKbIQ5uCoPVz5LV2OI25epvJQrLRVh5tcsTBGu7z206TXL1xFdG1OSsyK999uRJ6zhnYJEAP+lTrnVGnIlZOkX3bFZ1aNFa8qJwpbtYgUGum+Fs8o=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=O9Uap6oU; arc=none smtp.client-ip=209.85.218.42
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-ej1-f42.google.com with SMTP id a640c23a62f3a-a2f22bfb4e6so87599266b.0
-        for <devicetree@vger.kernel.org>; Thu, 01 Feb 2024 01:36:41 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1706780199; x=1707384999; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
-         :to:content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=poTuQf0LwQNiakczK1chklgkGLVMfrUoDvHBIrggrEc=;
-        b=O9Uap6oU8H/FFBq/2aXvNc8Mc3Pgp7HbACN/cxnLdQB9UkkPftd5g64Upobh1Dk/Nm
-         p4kx2LQmzYWdBCR2sb1tz76oa3xIfdwxB/DXCYgR225EHvOTbIrZz+ldxKl3AI7dXIs8
-         6E0dvm81TIYHztNqL2OnLxo0yNa8k47tdE1VTrWnz/Ht9radGjvCmdMk7aBmOj86b6Kk
-         y1nSTfefLfSe6QObe0oSfxsKsdC34vGX5bbDQq48Tdzup/nqDcZ6QcBjMv/7mrbO9TIf
-         X38IgTD3XwIhpsjJGTd5EO4n37Yy8EUj5Nd9ORY2pkxHqCvp3+oMbbSTI17kWRAvA7C+
-         tlOw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1706780199; x=1707384999;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
-         :to:content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=poTuQf0LwQNiakczK1chklgkGLVMfrUoDvHBIrggrEc=;
-        b=AoM8Me2ufkJhFA7uT3p4ZnHcKJRLV9ogZ0BE3BxxebWngF8yEEkbR1kSAlVhdtn1LM
-         q/YNg/g8+toxjCx90Nh5ozA5BJruSM2UYzT/tUU+/q8SHstyUc46RbDqw33yWaCjNC5v
-         pc8qtfqJrlyeT5qmQtsBTcFsOe13qfYPjWc3Ky+sFpRMyisYVGwmq6F9nbZd9vlZ9Ecm
-         IBFhxJmZCe+EZEPX7r1HBnqh/0WyrAGbUvWyiG20qanrsRIGYdt5JavkF6uf53mrLq8k
-         rUto04ybGlWkHbD2ft9yC8tBPGWv1nUP1p5Fe7ZnMQ2HLw0H3dWbJOEwSApki5ptelWM
-         KPmg==
-X-Gm-Message-State: AOJu0YygxlRvn8C2h1bn6ajTaROyGqG+V4kz8oZCbmUAimM7EXdxfkgw
-	XxPW8X/iQClRUoY3n82YxxJEzgopIcLiXTWi0Fdm4Vt2E6OGzNNTlnc+6/Fefqk=
-X-Google-Smtp-Source: AGHT+IElQ8/d4GLq3GOx5zQpFcggQ/15LvaFRwDCBRBrM0v2013xgeW8ql9X4WOe6h1VwivnkuqsHA==
-X-Received: by 2002:a17:906:7f16:b0:a36:47d9:1c35 with SMTP id d22-20020a1709067f1600b00a3647d91c35mr2884287ejr.44.1706780199642;
-        Thu, 01 Feb 2024 01:36:39 -0800 (PST)
-X-Forwarded-Encrypted: i=0; AJvYcCWjDzvTr2BIqc0egXiReI2kXvxp8qEXSElKxpGISo3WO+j0Ix5B32p9BeeQJyWGvnHoC/I0RnKw+IE6RjTF+xifEep0kgf+7c8ZmktCmH+BCXhbU0Ux7T8gE3Sv1JolXa33jTNF9/XP9NMv1CmitIryH1zc68JkyPPi4kOhe04JRYzgtedHAqKrjbNQpM6W1Ik5yMWjRWLLoCU4zpcXUXqrOwk9oMBbNdI6uK1/5l5DJJLuGpvlH4GiWutax9xPGPWW1HnRrW0wn/T5xxHwjbyu2Pl6J+L0Bal/vNTpHrMtAWtFaTXJOLNYd64HcV+2mX54HylOo4bOEvRwO9ybmcLEh/+ny5yR0Y/aJTW3SufKyWsCtRK71I30ATQHgYQR3idJCdGDtgWVlJmPVYiAVN3MwSr+CGYiIFjl5zqQ9bQlpYxyOfQIj7NEft7ae/xyXbQjnxSbxq9E5kq0/pASDzY0mDoYVMdFbuj3QsOb/E8nr9IJpPE0yLjqdcBynOTQ6JOyde1ncAf1xFMP1U3xo146RZBxa/QIsB+eAwYqeSHH5Pf+XX3bRb8p3fxXufq0VYDoVmAc/FiZAz4apMYTlFRZSRx47jhFXObPcOYmdTMseczIPCuZ39NoPZF6mAVcsE8bIpw/dLzxaA==
-Received: from [192.168.1.20] ([178.197.222.62])
-        by smtp.gmail.com with ESMTPSA id ty8-20020a170907c70800b00a353d1a19a9sm5929063ejc.191.2024.02.01.01.36.37
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 01 Feb 2024 01:36:39 -0800 (PST)
-Message-ID: <ca618c6e-ef29-4ee5-860f-68b48ebbeb9e@linaro.org>
-Date: Thu, 1 Feb 2024 10:36:37 +0100
+	 In-Reply-To:Content-Type; b=NHAxWwMd+Xm20qLjQeTZ3uCrIDLGHwvAdykM7cz5vRTY7kznDjQQXbi9RlhHyrFKfnOHNFQ4L32r4byqGHJ4vQkul9RdyJ6i9vt3n0UcHPVDo3Y+bMHT0vMIbVBDZ8PuAHHYFiYLXXbQI2mH7M4vD8L/N6bGxgg2Qa+qnsTpd+Y=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b=COkrPBTE; arc=none smtp.client-ip=46.235.227.194
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=collabora.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
+	s=mail; t=1706780648;
+	bh=tgkduB+n8TnPBdHD34UzC0Y9amJQZ87VxYvXvbidh5s=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=COkrPBTELEdgUUw1zxH8TCCZAhOECqgODg9ObmY/iHVrzT6zx+KGGFEnsIjwaFu3S
+	 /cYBHOSaqyO/t4llcmdYV3BW/FPuWOENxtY1V7viRuGd/Hay2xM0hibmap6YeEK5H7
+	 FJBltL1adkWbv9ZQj/YFD6Xl09evMBgNSWQR76/H1n66HGgO6ZVG2QDjInbZdgeWOn
+	 Ui4qRfyqcvTmaGBEmoRHZjjSCGjCPuKguHN0idawSqXAf3zcbxMi43Wge5czY8xqPZ
+	 UBaDOlWgv577avKafS5SqJ7OYlRYcp8Y0AkqavqQhyuDH+NtK/8fUkvETKrCasT7kZ
+	 nYmco7T+TGoQg==
+Received: from [100.113.186.2] (cola.collaboradmins.com [195.201.22.229])
+	(using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
+	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+	(No client certificate requested)
+	(Authenticated sender: kholk11)
+	by madrid.collaboradmins.com (Postfix) with ESMTPSA id 0CAEB3782081;
+	Thu,  1 Feb 2024 09:44:06 +0000 (UTC)
+Message-ID: <c117f6a7-59ea-4291-aa70-7c363d928ff7@collabora.com>
+Date: Thu, 1 Feb 2024 10:44:06 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -76,146 +57,422 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v4 07/18] dt-bindings: soc: mobileye: add EyeQ5 OLB system
- controller
+Subject: Re: [PATCH v9 09/21] virt: geniezone: Add vcpu support
 Content-Language: en-US
-To: =?UTF-8?Q?Th=C3=A9o_Lebrun?= <theo.lebrun@bootlin.com>,
- Gregory CLEMENT <gregory.clement@bootlin.com>,
- Michael Turquette <mturquette@baylibre.com>, Stephen Boyd
- <sboyd@kernel.org>, Rob Herring <robh+dt@kernel.org>,
+To: Yi-De Wu <yi-de.wu@mediatek.com>,
+ Yingshiuan Pan <yingshiuan.pan@mediatek.com>,
+ Ze-Yu Wang <ze-yu.wang@mediatek.com>, Rob Herring <robh+dt@kernel.org>,
  Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Conor Dooley <conor+dt@kernel.org>,
- Thomas Bogendoerfer <tsbogend@alpha.franken.de>,
- Linus Walleij <linus.walleij@linaro.org>, =?UTF-8?B?UmFmYcWCIE1pxYJlY2tp?=
- <rafal@milecki.pl>, Philipp Zabel <p.zabel@pengutronix.de>
-Cc: Vladimir Kondratiev <vladimir.kondratiev@mobileye.com>,
- linux-mips@vger.kernel.org, linux-clk@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
- Tawfik Bayouk <tawfik.bayouk@mobileye.com>, linux-gpio@vger.kernel.org
-References: <20240131-mbly-clk-v4-0-bcd00510d6a0@bootlin.com>
- <20240131-mbly-clk-v4-7-bcd00510d6a0@bootlin.com>
-From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
- 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
- D2GYIS41Kv4Isx2dEFh+/Q==
-In-Reply-To: <20240131-mbly-clk-v4-7-bcd00510d6a0@bootlin.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+ Conor Dooley <conor+dt@kernel.org>, Jonathan Corbet <corbet@lwn.net>,
+ Catalin Marinas <catalin.marinas@arm.com>, Will Deacon <will@kernel.org>,
+ Richard Cochran <richardcochran@gmail.com>,
+ Matthias Brugger <matthias.bgg@gmail.com>
+Cc: devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ linux-doc@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ netdev@vger.kernel.org, linux-mediatek@lists.infradead.org,
+ David Bradil <dbrazdil@google.com>, Trilok Soni <quic_tsoni@quicinc.com>,
+ My Chuang <my.chuang@mediatek.com>, Shawn Hsiao <shawn.hsiao@mediatek.com>,
+ PeiLun Suei <peilun.suei@mediatek.com>,
+ Liju Chen <liju-clr.chen@mediatek.com>,
+ Willix Yeh <chi-shen.yeh@mediatek.com>,
+ Kevenny Hsieh <kevenny.hsieh@mediatek.com>
+References: <20240129083302.26044-1-yi-de.wu@mediatek.com>
+ <20240129083302.26044-10-yi-de.wu@mediatek.com>
+From: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
+In-Reply-To: <20240129083302.26044-10-yi-de.wu@mediatek.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
 
-On 31/01/2024 17:26, Théo Lebrun wrote:
-> Add documentation to describe the "Other Logic Block" syscon.
+Il 29/01/24 09:32, Yi-De Wu ha scritto:
+> From: "Yingshiuan Pan" <yingshiuan.pan@mediatek.com>
 > 
-> Signed-off-by: Théo Lebrun <theo.lebrun@bootlin.com>
+> VMM use this interface to create vcpu instance which is a fd, and this
+> fd will be for any vcpu operations, such as setting vcpu registers and
+> accepts the most important ioctl GZVM_VCPU_RUN which requests GenieZone
+> hypervisor to do context switch to execute VM's vcpu context.
+> 
+> Signed-off-by: Yingshiuan Pan <yingshiuan.pan@mediatek.com>
+> Signed-off-by: Jerry Wang <ze-yu.wang@mediatek.com>
+> Signed-off-by: kevenny hsieh <kevenny.hsieh@mediatek.com>
+> Signed-off-by: Liju Chen <liju-clr.chen@mediatek.com>
+> Signed-off-by: Yi-De Wu <yi-de.wu@mediatek.com>
 > ---
->  .../bindings/soc/mobileye/mobileye,eyeq5-olb.yaml  | 89 ++++++++++++++++++++++
->  MAINTAINERS                                        |  1 +
->  2 files changed, 90 insertions(+)
+>   arch/arm64/geniezone/Makefile           |   2 +-
+>   arch/arm64/geniezone/gzvm_arch_common.h |  30 +++
+>   arch/arm64/geniezone/vcpu.c             |  80 ++++++++
+>   arch/arm64/geniezone/vm.c               |  12 ++
+>   drivers/virt/geniezone/Makefile         |   2 +-
+>   drivers/virt/geniezone/gzvm_vcpu.c      | 251 ++++++++++++++++++++++++
+>   drivers/virt/geniezone/gzvm_vm.c        |   5 +
+>   include/linux/gzvm_drv.h                |  23 +++
+>   include/uapi/linux/gzvm.h               | 163 +++++++++++++++
+>   9 files changed, 566 insertions(+), 2 deletions(-)
+>   create mode 100644 arch/arm64/geniezone/vcpu.c
+>   create mode 100644 drivers/virt/geniezone/gzvm_vcpu.c
 > 
-
-...
-
-> +required:
-> +  - compatible
-> +  - reg
-> +  - '#address-cells'
-> +  - '#size-cells'
-> +  - ranges
+> diff --git a/arch/arm64/geniezone/Makefile b/arch/arm64/geniezone/Makefile
+> index 2957898cdd05..69b0a4abeab0 100644
+> --- a/arch/arm64/geniezone/Makefile
+> +++ b/arch/arm64/geniezone/Makefile
+> @@ -4,6 +4,6 @@
+>   #
+>   include $(srctree)/drivers/virt/geniezone/Makefile
+>   
+> -gzvm-y += vm.o
+> +gzvm-y += vm.o vcpu.o
+>   
+>   obj-$(CONFIG_MTK_GZVM) += gzvm.o
+> diff --git a/arch/arm64/geniezone/gzvm_arch_common.h b/arch/arm64/geniezone/gzvm_arch_common.h
+> index 383af0829f11..684c35e2d9bc 100644
+> --- a/arch/arm64/geniezone/gzvm_arch_common.h
+> +++ b/arch/arm64/geniezone/gzvm_arch_common.h
+> @@ -11,9 +11,15 @@
+>   enum {
+>   	GZVM_FUNC_CREATE_VM = 0,
+>   	GZVM_FUNC_DESTROY_VM = 1,
+> +	GZVM_FUNC_CREATE_VCPU = 2,
+> +	GZVM_FUNC_DESTROY_VCPU = 3,
+>   	GZVM_FUNC_SET_MEMREGION = 4,
+> +	GZVM_FUNC_RUN = 5,
+> +	GZVM_FUNC_GET_ONE_REG = 8,
+> +	GZVM_FUNC_SET_ONE_REG = 9,
+>   	GZVM_FUNC_PROBE = 12,
+>   	GZVM_FUNC_ENABLE_CAP = 13,
+> +	GZVM_FUNC_INFORM_EXIT = 14,
+>   	NR_GZVM_FUNC,
+>   };
+>   
+> @@ -25,9 +31,15 @@ enum {
+>   
+>   #define MT_HVC_GZVM_CREATE_VM		GZVM_HCALL_ID(GZVM_FUNC_CREATE_VM)
+>   #define MT_HVC_GZVM_DESTROY_VM		GZVM_HCALL_ID(GZVM_FUNC_DESTROY_VM)
+> +#define MT_HVC_GZVM_CREATE_VCPU		GZVM_HCALL_ID(GZVM_FUNC_CREATE_VCPU)
+> +#define MT_HVC_GZVM_DESTROY_VCPU	GZVM_HCALL_ID(GZVM_FUNC_DESTROY_VCPU)
+>   #define MT_HVC_GZVM_SET_MEMREGION	GZVM_HCALL_ID(GZVM_FUNC_SET_MEMREGION)
+> +#define MT_HVC_GZVM_RUN			GZVM_HCALL_ID(GZVM_FUNC_RUN)
+> +#define MT_HVC_GZVM_GET_ONE_REG		GZVM_HCALL_ID(GZVM_FUNC_GET_ONE_REG)
+> +#define MT_HVC_GZVM_SET_ONE_REG		GZVM_HCALL_ID(GZVM_FUNC_SET_ONE_REG)
+>   #define MT_HVC_GZVM_PROBE		GZVM_HCALL_ID(GZVM_FUNC_PROBE)
+>   #define MT_HVC_GZVM_ENABLE_CAP		GZVM_HCALL_ID(GZVM_FUNC_ENABLE_CAP)
+> +#define MT_HVC_GZVM_INFORM_EXIT		GZVM_HCALL_ID(GZVM_FUNC_INFORM_EXIT)
+>   
+>   /**
+>    * gzvm_hypcall_wrapper() - the wrapper for hvc calls
+> @@ -54,4 +66,22 @@ static inline u16 get_vmid_from_tuple(unsigned int tuple)
+>   	return (u16)(tuple >> 16);
+>   }
+>   
+> +static inline u16 get_vcpuid_from_tuple(unsigned int tuple)
+> +{
+> +	return (u16)(tuple & 0xffff);
+> +}
 > +
-> +additionalProperties: false
+> +static inline unsigned int
+> +assemble_vm_vcpu_tuple(u16 vmid, u16 vcpuid)
+> +{
+> +	return ((unsigned int)vmid << 16 | vcpuid);
+
+A union could be useful for this one too.
+
+> +}
 > +
-> +examples:
-> +  - |
-> +    soc {
-> +      #address-cells = <2>;
-> +      #size-cells = <2>;
+> +static inline void
+> +disassemble_vm_vcpu_tuple(unsigned int tuple, u16 *vmid, u16 *vcpuid)
+> +{
+> +	*vmid = get_vmid_from_tuple(tuple);
+> +	*vcpuid = get_vcpuid_from_tuple(tuple);
+> +}
 > +
-> +      system-controller@e00000 {
-> +        compatible = "mobileye,eyeq5-olb", "syscon", "simple-mfd";
-> +        reg = <0x0 0xe00000 0x0 0x400>;
-> +        #address-cells = <1>;
-> +        #size-cells = <1>;
-> +        ranges = <0x0 0x0 0xe00000 0x400>;
-
-If there is going to be any resend:
-1. ranges follows reg
-2. Use lower-case hex
-
-See DTS coding style.
-
+>   #endif /* __GZVM_ARCH_COMMON_H__ */
+> diff --git a/arch/arm64/geniezone/vcpu.c b/arch/arm64/geniezone/vcpu.c
+> new file mode 100644
+> index 000000000000..f6670bd77ad6
+> --- /dev/null
+> +++ b/arch/arm64/geniezone/vcpu.c
+> @@ -0,0 +1,80 @@
+> +// SPDX-License-Identifier: GPL-2.0
+> +/*
+> + * Copyright (c) 2023 MediaTek Inc.
+> + */
 > +
-> +        clocks: clock-controller@2c {
-> +          compatible = "mobileye,eyeq5-clk";
-> +          reg = <0x02C 0x50>, <0x11C 0x04>;
-> +          reg-names = "plls", "ospi";
-> +          #clock-cells = <1>;
-> +          clocks = <&xtal>;
-> +          clock-names = "ref";
-> +        };
+> +#include <linux/arm-smccc.h>
+> +#include <linux/err.h>
+> +#include <linux/uaccess.h>
 > +
-> +        reset: reset-controller@0 {
-
-0 is before 2c, keep nodes properly ordered.
-
-
-
-> +          compatible = "mobileye,eyeq5-reset";
-> +          reg = <0x000 0x0C>, <0x200 0x34>, <0x120 0x04>;
-> +          reg-names = "d0", "d1", "d2";
-> +          #reset-cells = <2>;
-> +        };
+> +#include <linux/gzvm.h>
+> +#include <linux/gzvm_drv.h>
+> +#include "gzvm_arch_common.h"
 > +
-> +        pinctrl: pinctrl@b0 {
-> +          compatible = "mobileye,eyeq5-pinctrl";
-> +          reg = <0x0B0 0x30>;
+> +int gzvm_arch_vcpu_update_one_reg(struct gzvm_vcpu *vcpu, __u64 reg_id,
+> +				  bool is_write, __u64 *data)
+> +{
+> +	struct arm_smccc_res res;
+> +	unsigned long a1;
+> +	int ret;
+> +
+> +	a1 = assemble_vm_vcpu_tuple(vcpu->gzvm->vm_id, vcpu->vcpuid);
 
-This looks incomplete. Your binding mentions children, so provide at
-least one child.
+	if (is_write)
+		return gzvm_hypcall_wrapper(MT_HVC_GZVM_GET_ONE_REG,
+					   a1, reg_id, *data, 0, 0, 0, 0, &res);
 
-> 
+	ret = gzvm_hypcall_wrapper(MT_HVC_GZVM_GET_ONE_REG,
+					   a1, reg_id, 0, 0, 0, 0, 0, &res);
+	if (ret)
+		return ret;
 
-Best regards,
-Krzysztof
+	*data = res.a1;
+
+	return 0;
+}
+
+
+> +	if (!is_write) {
+> +		ret = gzvm_hypcall_wrapper(MT_HVC_GZVM_GET_ONE_REG,
+> +					   a1, reg_id, 0, 0, 0, 0, 0, &res);
+
+		if (ret)
+			return ret;
+		*data = res.a1;
+	}
+
+> +		if (ret == 0)
+> +			*data = res.a1;
+> +	} else {
+> +		ret = gzvm_hypcall_wrapper(MT_HVC_GZVM_SET_ONE_REG,
+> +					   a1, reg_id, *data, 0, 0, 0, 0, &res);
+> +	}
+> +
+> +	return ret;
+> +}
+> +
+> +int gzvm_arch_vcpu_run(struct gzvm_vcpu *vcpu, __u64 *exit_reason)
+> +{
+> +	struct arm_smccc_res res;
+> +	unsigned long a1;
+> +	int ret;
+> +
+> +	a1 = assemble_vm_vcpu_tuple(vcpu->gzvm->vm_id, vcpu->vcpuid);
+> +	ret = gzvm_hypcall_wrapper(MT_HVC_GZVM_RUN, a1, 0, 0, 0, 0, 0,
+> +				   0, &res);
+> +	*exit_reason = res.a1;
+> +	return ret;
+> +}
+> +
+> +int gzvm_arch_destroy_vcpu(u16 vm_id, int vcpuid)
+> +{
+> +	struct arm_smccc_res res;
+> +	unsigned long a1;
+> +
+> +	a1 = assemble_vm_vcpu_tuple(vm_id, vcpuid);
+> +	gzvm_hypcall_wrapper(MT_HVC_GZVM_DESTROY_VCPU, a1, 0, 0, 0, 0, 0, 0,
+> +			     &res);
+> +
+> +	return 0;
+> +}
+> +
+> +/**
+> + * gzvm_arch_create_vcpu() - Call smc to gz hypervisor to create vcpu
+> + * @vm_id: vm id
+> + * @vcpuid: vcpu id
+> + * @run: Virtual address of vcpu->run
+> + *
+> + * Return: The wrapper helps caller to convert geniezone errno to Linux errno.
+> + */
+> +int gzvm_arch_create_vcpu(u16 vm_id, int vcpuid, void *run)
+> +{
+> +	struct arm_smccc_res res;
+> +	unsigned long a1, a2;
+> +	int ret;
+> +
+> +	a1 = assemble_vm_vcpu_tuple(vm_id, vcpuid);
+> +	a2 = (__u64)virt_to_phys(run);
+> +	ret = gzvm_hypcall_wrapper(MT_HVC_GZVM_CREATE_VCPU, a1, a2, 0, 0, 0, 0,
+> +				   0, &res);
+> +
+> +	return ret;
+> +}
+> diff --git a/arch/arm64/geniezone/vm.c b/arch/arm64/geniezone/vm.c
+> index b6a2bfa98b43..1fac10b98c11 100644
+> --- a/arch/arm64/geniezone/vm.c
+> +++ b/arch/arm64/geniezone/vm.c
+> @@ -37,6 +37,18 @@ int gzvm_hypcall_wrapper(unsigned long a0, unsigned long a1,
+>   	return gzvm_err_to_errno(res->a0);
+>   }
+>   
+> +int gzvm_arch_inform_exit(u16 vm_id)
+> +{
+> +	struct arm_smccc_res res;
+> +	int ret;
+> +
+> +	ret = gzvm_hypcall_wrapper(MT_HVC_GZVM_INFORM_EXIT, vm_id, 0, 0, 0, 0, 0, 0, &res);
+> +	if (ret)
+> +		return -ENXIO;
+> +
+> +	return 0;
+> +}
+> +
+>   int gzvm_arch_probe(void)
+>   {
+>   	struct arm_smccc_res res;
+> diff --git a/drivers/virt/geniezone/Makefile b/drivers/virt/geniezone/Makefile
+> index 59fc4510a843..a630b919cda5 100644
+> --- a/drivers/virt/geniezone/Makefile
+> +++ b/drivers/virt/geniezone/Makefile
+> @@ -7,4 +7,4 @@
+>   GZVM_DIR ?= ../../../drivers/virt/geniezone
+>   
+>   gzvm-y := $(GZVM_DIR)/gzvm_main.o $(GZVM_DIR)/gzvm_vm.o \
+> -	  $(GZVM_DIR)/gzvm_mmu.o
+> +	  $(GZVM_DIR)/gzvm_mmu.o $(GZVM_DIR)/gzvm_vcpu.o
+> diff --git a/drivers/virt/geniezone/gzvm_vcpu.c b/drivers/virt/geniezone/gzvm_vcpu.c
+> new file mode 100644
+> index 000000000000..39c471d0d257
+> --- /dev/null
+> +++ b/drivers/virt/geniezone/gzvm_vcpu.c
+> @@ -0,0 +1,251 @@
+> +// SPDX-License-Identifier: GPL-2.0
+> +/*
+> + * Copyright (c) 2023 MediaTek Inc.
+> + */
+> +
+> +#include <asm/sysreg.h>
+> +#include <linux/anon_inodes.h>
+> +#include <linux/device.h>
+> +#include <linux/file.h>
+> +#include <linux/mm.h>
+> +#include <linux/platform_device.h>
+> +#include <linux/slab.h>
+> +#include <linux/gzvm_drv.h>
+> +
+> +/* maximum size needed for holding an integer */
+> +#define ITOA_MAX_LEN 12
+> +
+> +static long gzvm_vcpu_update_one_reg(struct gzvm_vcpu *vcpu,
+> +				     void __user *argp,
+> +				     bool is_write)
+> +{
+> +	struct gzvm_one_reg reg;
+> +	void __user *reg_addr;
+> +	u64 data = 0;
+> +	u64 reg_size;
+> +	long ret;
+> +
+> +	if (copy_from_user(&reg, argp, sizeof(reg)))
+> +		return -EFAULT;
+> +
+> +	reg_addr = (void __user *)reg.addr;
+> +	reg_size = (reg.id & GZVM_REG_SIZE_MASK) >> GZVM_REG_SIZE_SHIFT;
+> +	reg_size = BIT(reg_size);
+> +
+> +	if (reg_size != 1 && reg_size != 2 && reg_size != 4 && reg_size != 8)
+> +		return -EINVAL;
+> +
+
+	if (!is_write)
+		return -EOPNOTSUPP;
+
+	/* GZ hypervisor would filter out invalid vcpu register access */
+	if (copy_from_user(&data, reg_addr, reg_size))
+		return -EFAULT;
+
+> +	if (is_write) {
+> +		/* GZ hypervisor would filter out invalid vcpu register access */
+> +		if (copy_from_user(&data, reg_addr, reg_size))
+> +			return -EFAULT;
+> +	} else {
+> +		return -EOPNOTSUPP;
+> +	}
+> +
+> +	ret = gzvm_arch_vcpu_update_one_reg(vcpu, reg.id, is_write, &data);
+> +
+> +	if (ret)
+> +		return ret;
+> +
+> +	return 0;
+> +}
+> +
+> +/**
+> + * gzvm_vcpu_run() - Handle vcpu run ioctl, entry point to guest and exit
+> + *		     point from guest
+> + * @vcpu: Pointer to struct gzvm_vcpu
+> + * @argp: Pointer to struct gzvm_vcpu_run in userspace
+> + *
+> + * Return:
+> + * * 0			- Success.
+> + * * Negative		- Failure.
+> + */
+> +static long gzvm_vcpu_run(struct gzvm_vcpu *vcpu, void __user *argp)
+> +{
+> +	bool need_userspace = false;
+> +	u64 exit_reason = 0;
+> +
+> +	if (copy_from_user(vcpu->run, argp, sizeof(struct gzvm_vcpu_run)))
+> +		return -EFAULT;
+> +
+> +	for (int i = 0; i < ARRAY_SIZE(vcpu->run->padding1); i++) {
+> +		if (vcpu->run->padding1[i])
+> +			return -EINVAL;
+> +	}
+> +
+> +	if (vcpu->run->immediate_exit == 1)
+> +		return -EINTR;
+> +
+> +	while (!need_userspace && !signal_pending(current)) {
+> +		gzvm_arch_vcpu_run(vcpu, &exit_reason);
+> +
+> +		switch (exit_reason) {
+> +		case GZVM_EXIT_MMIO:
+> +			need_userspace = true;
+> +			break;
+> +		/**
+> +		 * it's geniezone's responsibility to fill corresponding data
+> +		 * structure
+> +		 */
+> +		case GZVM_EXIT_HYPERCALL:
+> +			fallthrough;
+> +		case GZVM_EXIT_EXCEPTION:
+> +			fallthrough;
+> +		case GZVM_EXIT_DEBUG:
+> +			fallthrough;
+> +		case GZVM_EXIT_FAIL_ENTRY:
+> +			fallthrough;
+> +		case GZVM_EXIT_INTERNAL_ERROR:
+> +			fallthrough;
+> +		case GZVM_EXIT_SYSTEM_EVENT:
+> +			fallthrough;
+> +		case GZVM_EXIT_SHUTDOWN:
+> +			need_userspace = true;
+> +			break;
+> +		case GZVM_EXIT_IRQ:
+> +			fallthrough;
+> +		case GZVM_EXIT_GZ:
+> +			break;
+> +		case GZVM_EXIT_UNKNOWN:
+> +			fallthrough;
+> +		default:
+> +			pr_err("vcpu unknown exit\n");
+> +			need_userspace = true;
+> +			goto out;
+> +		}
+> +	}
+> +
+> +out:
+> +	if (copy_to_user(argp, vcpu->run, sizeof(struct gzvm_vcpu_run)))
+> +		return -EFAULT;
+> +	if (signal_pending(current)) {
+> +		// invoke hvc to inform gz to map memory
+
+/* invoke ... */
+
+> +		gzvm_arch_inform_exit(vcpu->gzvm->vm_id);
+> +		return -ERESTARTSYS;
+> +	}
+> +	return 0;
+> +}
+
+Regards,
+Angelo
+
 
 
