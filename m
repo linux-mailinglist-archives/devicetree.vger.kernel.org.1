@@ -1,62 +1,69 @@
-Return-Path: <devicetree+bounces-37696-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-37697-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2346B845F59
-	for <lists+devicetree@lfdr.de>; Thu,  1 Feb 2024 19:08:22 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 424E6845F68
+	for <lists+devicetree@lfdr.de>; Thu,  1 Feb 2024 19:09:35 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id B36B41F21FDD
-	for <lists+devicetree@lfdr.de>; Thu,  1 Feb 2024 18:08:21 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id E87BB1F29B16
+	for <lists+devicetree@lfdr.de>; Thu,  1 Feb 2024 18:09:34 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B417584FA8;
-	Thu,  1 Feb 2024 18:03:51 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 34DC38526B;
+	Thu,  1 Feb 2024 18:05:09 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="gsOVeeci"
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=armlinux.org.uk header.i=@armlinux.org.uk header.b="ihG4H+Cx"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from pandora.armlinux.org.uk (pandora.armlinux.org.uk [78.32.30.218])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 852DB63064;
-	Thu,  1 Feb 2024 18:03:51 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0EE9D85275;
+	Thu,  1 Feb 2024 18:05:05 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=78.32.30.218
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1706810631; cv=none; b=OPgKzjMEACtJ8Ao8+DYXZrZGr2M2JQrYvg1WDvnPAPQ+LgCDi2R9X9Ii9jzuMiY1wFhwIfh2Ts51fJXWKbpGAEomDk0SHBdy5gDFcsLB/o2KPCWbnnRCOsspLWUfe3YrrPtRP4CtqrWd9+5ULLm5lH4mni5HWmEBCuAKesvV03Y=
+	t=1706810709; cv=none; b=f8M8hCcYOcBTgYVO6IyWT7NpGqaOK9TbXvFkDroCNGwSPenYEc4SwXFapn4Kk4/+tj5mhifTfMdv14HF0j0XKesv4wOkccqXXyQfY6sFS5KuTyoJDFbjWUH4QRz/74vv3p+g7x/ePAV7lJC8MBB4He9jcIcknkPk9YBsv9MXxC0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1706810631; c=relaxed/simple;
-	bh=cimPZd7g/IjUV38GuJgS7vN9RrjhC7JdmJnDdWIPGdE=;
-	h=Date:From:To:Cc:Subject:Message-ID:MIME-Version:Content-Type:
-	 Content-Disposition:In-Reply-To; b=HryBn3AdJd1YptBz+r0KTktZDsBgKM+F/fZ2llkZ51wTSGzL0eMEGIx9ddW33bQmyFonqLv83lAz9O7gP3Unm5RRqBRHhXsUk3Na2le9ItFnip7cSYqoaSN3lelsLdSZZ8+yFoiXOmPhg1X4VJkUgWvE3YXGJEfV6yyMx2F3f2A=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=gsOVeeci; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id BA8A9C43399;
-	Thu,  1 Feb 2024 18:03:50 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1706810631;
-	bh=cimPZd7g/IjUV38GuJgS7vN9RrjhC7JdmJnDdWIPGdE=;
-	h=Date:From:To:Cc:Subject:In-Reply-To:From;
-	b=gsOVeeci6sC1lNCliVkreUO4TPedFwk18sO7t/T30vKvNS0Zg7rD2DbeTjIwtEVPt
-	 ikUVM3JJbX4F17FNnTGYPUB3ViQdC9YApUsK5+e+lKUP2RdM38uSTgrSp9rs3VvAzU
-	 +KNQZNlRIuMFGBv8rBmnif01Y+5ngR9l8kAkGSnujr8CginKDJIJC7OWqbCXsMfAu7
-	 b/oheiZR8unpNmR9Xxb14fDSDG2P02CaLT1y0LLv9I2wUkUguVLmZu3AJfgyb8YDMm
-	 S1p4BxjssXNhxUBFXg2ZgZEnV6Mgxn7xu7Jacxl55DECjrDlubhQ+Bjo0XxJ/LHH4r
-	 qZt8sHTzxm2xA==
-Date: Thu, 1 Feb 2024 12:03:49 -0600
-From: Bjorn Helgaas <helgaas@kernel.org>
-To: Frank Li <Frank.Li@nxp.com>
-Cc: Bjorn Helgaas <bhelgaas@google.com>, Jingoo Han <jingoohan1@gmail.com>,
-	Gustavo Pimentel <gustavo.pimentel@synopsys.com>,
-	Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
-	Lorenzo Pieralisi <lpieralisi@kernel.org>,
-	Krzysztof =?utf-8?Q?Wilczy=C5=84ski?= <kw@linux.com>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>, imx@lists.linux.dev,
-	linux-pci@vger.kernel.org, linux-kernel@vger.kernel.org,
+	s=arc-20240116; t=1706810709; c=relaxed/simple;
+	bh=I0wLRr/Sl79b2Xe1FyfzbVWzIscJuiBxBqIBkYPKXcw=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=CRPq/lM0PHPPW/bbraGXFBYbBttoxldUaCYp/J9eN1zzpwkz2ecc+req7oIWtiuMI60mkkF1fovdDD4V4BmJFet+B2+7N1PA1cU/U+1aT7XpyRM8wFjj13cFFzUxvuSz/fh2fVSjqwUnJUCIIl8q62AFK0DkeyXItzPPFdFveIQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=armlinux.org.uk; spf=none smtp.mailfrom=armlinux.org.uk; dkim=pass (2048-bit key) header.d=armlinux.org.uk header.i=@armlinux.org.uk header.b=ihG4H+Cx; arc=none smtp.client-ip=78.32.30.218
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=armlinux.org.uk
+Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=armlinux.org.uk
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
+	d=armlinux.org.uk; s=pandora-2019; h=Sender:In-Reply-To:Content-Type:
+	MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:Reply-To:
+	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
+	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Id:
+	List-Help:List-Unsubscribe:List-Subscribe:List-Post:List-Owner:List-Archive;
+	bh=wlDdr8NPiv5K6d89Bs5uSKYd3ZJ761NBPkhp6QHmjxU=; b=ihG4H+CxyyBjdudwZR3dMEQ0TK
+	7sxcRhO62L8ketQE7IZBEniIleIcd43plriDe1Ay652flED+oXwgx4ygMQippFmFk4TwuNnNu4Vn3
+	fWRF4K7TxQmjK3efqvMR0HNuxNTDQpdLGotizhkiN/BKzkQVUZ9wl95sX7jXC6ze36MJgivnWn4TU
+	i0XwhS/rLkqRBgE7Lmgyyca2aXPuxN7DRsINUh6PZbeqwgi2y0eSFRzBEwoWVSTyGXMR6S/jvyEx6
+	1p7oHGDGtrEi4gZwENv7VFRpe7tI6Oe2ukCgRWhu2d/7mL17ieBYs9dYwb1/kA6682OA2ocuvrXP8
+	5iuYf9nQ==;
+Received: from shell.armlinux.org.uk ([fd8f:7570:feb6:1:5054:ff:fe00:4ec]:40810)
+	by pandora.armlinux.org.uk with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+	(Exim 4.96)
+	(envelope-from <linux@armlinux.org.uk>)
+	id 1rVbQm-0004yf-0q;
+	Thu, 01 Feb 2024 18:04:56 +0000
+Received: from linux by shell.armlinux.org.uk with local (Exim 4.94.2)
+	(envelope-from <linux@shell.armlinux.org.uk>)
+	id 1rVbQj-0007YI-BP; Thu, 01 Feb 2024 18:04:53 +0000
+Date: Thu, 1 Feb 2024 18:04:53 +0000
+From: "Russell King (Oracle)" <linux@armlinux.org.uk>
+To: Stefan Wiehler <stefan.wiehler@nokia.com>
+Cc: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
 	devicetree@vger.kernel.org
-Subject: Re: [PATCH v2 6/6] PCI: dwc: Add common send PME_Turn_Off message
- method
-Message-ID: <20240201180349.GA640827@bhelgaas>
+Subject: Re: [PATCH RESEND] arm: topology: Fix missing clock-frequency
+ property warning
+Message-ID: <ZbvdRXsvY2qBXApS@shell.armlinux.org.uk>
+References: <20240201123605.3037829-2-stefan.wiehler@nokia.com>
+ <dfccb849-67b6-489b-8e83-3df1f9b29877@linaro.org>
+ <9da01fb1-9bab-436b-af49-783e44821b26@nokia.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -65,38 +72,57 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20240201-pme_msg-v2-6-6767052fe6a4@nxp.com>
+In-Reply-To: <9da01fb1-9bab-436b-af49-783e44821b26@nokia.com>
+Sender: Russell King (Oracle) <linux@armlinux.org.uk>
 
-On Thu, Feb 01, 2024 at 11:13:30AM -0500, Frank Li wrote:
-> Set outbound ATU map memory write to send PCI message. So one MMIO write
-> can trigger a PCI message, such as PME_Turn_Off.
+On Thu, Feb 01, 2024 at 04:03:59PM +0100, Stefan Wiehler wrote:
+> > Does this mean the /cpus property is like a default for when a CPU node
+> > doesn't specify the clock frequency, or does it mean that the /cpus
+> > property should only exist when all the values for each CPU are
+> > identical and thus the individual CPU node clock frequency should
+> > not be specified.
 > 
-> Add common dw_pcie_send_pme_turn_off_by_atu() function.
-> ...
+> Good question, the device tree specification in Section 3.7 [1] says:
+> 
+> > The /cpus node may contain properties that are common across cpu
+> nodes. See Section 3.8 for details.
+> 
+> And in Section 3.8 [2]:
+> 
+> > Properties that have identical values across cpu nodes may be placed
+> > in the /cpus node instead. A client program must first examine a
+> > specific cpu node, but if an expected property is not found then it
+> > should look at the parent /cpus node. This results in a less verbose
+> > representation of properties which are identical across all CPUs.
+> 
+> So I think it is pretty clear that it should only be used for
+> common/identical values.
 
-> -	if (!pci->pp.ops->pme_turn_off)
-> -		return 0;
-> +	if (pci->pp.ops->pme_turn_off)
-> +		pci->pp.ops->pme_turn_off(&pci->pp);
-> +	else
-> +		ret = dw_pcie_send_pme_turn_off_by_atu(pci);
+Thanks for the clarification.
 
-I think it's nice if function names match the function pointer names.
+As this is DT specified behaviour, I question whether it should be
+implemented in arch/arm/kernel/topology.c - what I'm meaning is
+a helper such as:
 
-E.g., we currently already have:
+const void *of_get_cpu_property(const struct device_node *node,
+				const char *name, int *lenp)
+{
+	const void *res;
 
-  .pme_turn_off = ls_pcie_send_turnoff_msg,
-  .pme_turn_off = ls1021a_pcie_send_turnoff_msg,
-  .pme_turn_off = ls1043a_pcie_send_turnoff_msg,
+	res = of_get_property(node, name, lenp);
+	if (!res) {
+		node = of_find_node_by_path("/cpus");
+		if (node)
+			res = of_get_property(node, name, lenp);
+		of_node_put(node);
+	}
 
-which is slightly annoying because it's always useful to compare
-implementations, but "git grep pme_turn_off" doesn't find the actual
-functions, so I wish these were named "ls_pcie_pme_turn_off()", etc.
+	return res;
+}
 
-You don't have to fix those existing layerscape ones now, but I think
-the same applies to dw_pcie_send_pme_turn_off_by_atu(): it would be
-nice if it were named something like "dw_pcie_pme_turn_off()" so
-grep/cscope would find it easily.
+?
 
-Bjorn
+-- 
+RMK's Patch system: https://www.armlinux.org.uk/developer/patches/
+FTTP is here! 80Mbps down 10Mbps up. Decent connectivity at last!
 
