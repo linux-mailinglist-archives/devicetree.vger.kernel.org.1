@@ -1,217 +1,103 @@
-Return-Path: <devicetree+bounces-37422-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-37416-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id A18F1844F27
-	for <lists+devicetree@lfdr.de>; Thu,  1 Feb 2024 03:25:57 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 78631844EDB
+	for <lists+devicetree@lfdr.de>; Thu,  1 Feb 2024 02:49:08 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id D837FB21C37
-	for <lists+devicetree@lfdr.de>; Thu,  1 Feb 2024 02:25:54 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 08A14B2D50A
+	for <lists+devicetree@lfdr.de>; Thu,  1 Feb 2024 01:49:06 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D34B1171D0;
-	Thu,  1 Feb 2024 02:25:50 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 38D655257;
+	Thu,  1 Feb 2024 01:49:00 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="edWK/qKu"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="CWJmy8wI"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-pf1-f181.google.com (mail-pf1-f181.google.com [209.85.210.181])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 39E2A13ACC;
-	Thu,  1 Feb 2024 02:25:48 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CEBC8EAEF;
+	Thu,  1 Feb 2024 01:48:58 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.181
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1706754350; cv=none; b=rZ4SIc7oF9VOn0MhlYLnv1Sy8BsuAM/V75O3udowQJbaP2cHOSWFK1yOrhlYEhvLuLhZR/u+pGNuMWj1WH9Z8KOrUG6iyY22C9eAbYhf++65yfEs13jonyMxmPs/QYeDB2o7m2qQiR2huLjLsKv5jB/dxkxrmJjaqzh38hB752k=
+	t=1706752140; cv=none; b=dtQQduC8yQGTjmL9plvLN+LTDqo2S17jo6DEymZ2hKg+SZRlfU8OGjPRxVqIVtb/OpZBbBBp0idj+Pp8LZrC/hEZdgAYB8qNi23aOSTrrK79vxvMStKr7hVajROGau93QBNdNP9nFd/ysnEB57izW8HhYcxR60by710M65OKLyU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1706754350; c=relaxed/simple;
-	bh=qNdZhTVFgd025ShlvmgP6R//8hlQVb0ky9OFh9tKr2M=;
-	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
-	 In-Reply-To:Content-Type; b=UjON6tsFYf+UygwkTM0R1H0IYdq+yuRZSuHMBY8FLvMGe85dx0Dj2i2q04EoK+Tj2BsbxcTW2+Z+Q+vLyNxdMpxkii3My45ZElbhod0AFQq0aA7QfWtcZ5GoeJhZP9nD19ntu5O21vznnUiDtcVjzCqWrl3usO2xL72ZcXNmS6M=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=edWK/qKu; arc=none smtp.client-ip=205.220.168.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
-Received: from pps.filterd (m0279865.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.17.1.24/8.17.1.24) with ESMTP id 41110lve021386;
-	Thu, 1 Feb 2024 02:25:32 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
-	message-id:date:mime-version:subject:to:cc:references:from
-	:in-reply-to:content-type:content-transfer-encoding; s=
-	qcppdkim1; bh=e6QfPL58tFmvIDXgNSU3VF86qmA5NqePFSNt5z4LGQk=; b=ed
-	WK/qKu234FbWYVI6tM46FOUbajsgQygVFrWTMsfC1n2CucG0qR0wVcH65ljCaO5r
-	NHHWtTTo8qcOOKNJariobW8c4jj4dsQx3Tc7UQ9PMoISEpOai3t2RJ+suH88ntTy
-	Pm7EZjxkmTf26rgmGM0DgNp2qVjCJr7UveIBXyU95TKr2UZQORYUxjqw0FeuO8hp
-	9IZiDS5iq6/Oje0HjKe7xzgWIDS5AY+wvDp4dJq83fM/dhgixG/74DeD/C7UgYpW
-	jO/DRZ/o5MkgeNwYIzuMsfsTMGQK88obj7YHO7zbndtLzWScM7/S5Q2WIJROaWC+
-	X4GdTZEJMHCffPYvb9Aw==
-Received: from nalasppmta05.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3vyjas2ek8-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Thu, 01 Feb 2024 02:25:31 +0000 (GMT)
-Received: from nalasex01c.na.qualcomm.com (nalasex01c.na.qualcomm.com [10.47.97.35])
-	by NALASPPMTA05.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 4112PUgi024868
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Thu, 1 Feb 2024 02:25:30 GMT
-Received: from [10.239.133.211] (10.80.80.8) by nalasex01c.na.qualcomm.com
- (10.47.97.35) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1118.40; Wed, 31 Jan
- 2024 18:25:25 -0800
-Message-ID: <9fca774e-3519-4d0c-ba61-6b84965f36c2@quicinc.com>
-Date: Thu, 1 Feb 2024 10:25:22 +0800
+	s=arc-20240116; t=1706752140; c=relaxed/simple;
+	bh=N6QKfiFvZzxxTVFRsxwYsWWNcRXAOchRha0k2f+iqCg=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=g0jXwMApCs2sm8txI+NNwSle8E1kcvJ1MFljmIQGv22gWsugvTokMCIPPOGFRls/GtvnoyJ7gu4dXShllrUz+RS2S962y6nnK9H4jFvgHNe/XXiuCzjVtcMyogfoaGUjztWIxWDEcZVU+7H3NVSDJV2MwB3Oh0UcVicCxu+FkUc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=CWJmy8wI; arc=none smtp.client-ip=209.85.210.181
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-pf1-f181.google.com with SMTP id d2e1a72fcca58-6dfc321c677so282571b3a.3;
+        Wed, 31 Jan 2024 17:48:58 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1706752138; x=1707356938; darn=vger.kernel.org;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=5yoyeQ03SLQ2/KhLtmuYs2D9JtsD1upyRCzOcNiDbmA=;
+        b=CWJmy8wIgaTohXSffw3wwa1nkAMbvBkI4Xw+Ok3rpV3EfbKDgxCT1O3SfaycZY25Jt
+         uGQFUF1QrwEnbLNW2V+Ug1wli+a+gmPPOeFm0aqa1ICoiQYXfVECHGpMN89k2vDkgR3/
+         uVbAYgvsJmNgxqKPAyQl+9oEETmTnMAG4Km+M0rqU5/CyEKt2xKa4vSwntboYUx9WEZk
+         RApG9TCyKfexdnWw36nnED+Gb1dFVrbZY33VX+2la/3Zvt0f1v0t7ZoFcDzEcn4gi1BR
+         290exQVQMN8p7W5a8KG0XBM37d3z3p1HucU8CV1C3PPfZFxKvY7Ysa9Z099/5PlASguF
+         /xQw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1706752138; x=1707356938;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=5yoyeQ03SLQ2/KhLtmuYs2D9JtsD1upyRCzOcNiDbmA=;
+        b=P8SD1TKZMfwTHzYEjGLv1CSffTmkaI2hbc9tHpZb40xDjTs05mTmplW79e7n98bcl/
+         6gnlLnpDpHeq4G9wF2BxmHK54NFXo6WwgX7Cca7Wrv9EGVPlF0MeqNGcZjV2FbNVpiP3
+         2gusRg9/YEvSiUhgk0B3KOAGMvRvOtFIcGHrJpYa3+sJUxcy5SoX6L11DvePnVFh5fkv
+         4Lm9GNGzu3hlCTR9lq08IS72B22uJ7s1BnJGH+mQslF1knMGP/tosafQp2V7WS1GL8fM
+         n1ysasae7SXQhiCS/Pv0maaDHGK1I8LaIUxGeN63k63DY5BWp8ZeajJeFCI5chNcZtHD
+         ESpw==
+X-Gm-Message-State: AOJu0Yyyt08t5GJo9Jv8nrRWL/ALCmyNQFzTwICPryN0EvE77HKsoKZg
+	P0gV5Rxr+uzumFuuvMvyeQEay4Z4fYJxLLxnJHlvlob5e9FaGG0Nm6qFkFBPnhIC6Q==
+X-Google-Smtp-Source: AGHT+IFxYwb1zXm5LsSCQsfI8y7IMZ5+/9g8tqNylKmrp/LkcNjBnoFR24f3iCwh74oislzN6KhgYw==
+X-Received: by 2002:a62:e705:0:b0:6de:352c:c2c2 with SMTP id s5-20020a62e705000000b006de352cc2c2mr3217324pfh.30.1706752138075;
+        Wed, 31 Jan 2024 17:48:58 -0800 (PST)
+Received: from dragon (173.242.119.193.16clouds.com. [173.242.119.193])
+        by smtp.gmail.com with ESMTPSA id t5-20020a62d145000000b006dde36aaae7sm11033921pfl.64.2024.01.31.17.48.49
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 31 Jan 2024 17:48:57 -0800 (PST)
+Date: Thu, 1 Feb 2024 17:47:48 +0800
+From: Shawn Guo <shawn.gsc@gmail.com>
+To: Alexander Stein <alexander.stein@ew.tq-group.com>
+Cc: Rob Herring <robh+dt@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>,
+	Sascha Hauer <s.hauer@pengutronix.de>,
+	Fabio Estevam <festevam@gmail.com>,
+	Catalin Marinas <catalin.marinas@arm.com>,
+	Will Deacon <will@kernel.org>, Marek Vasut <marex@denx.de>,
+	Pengutronix Kernel Team <kernel@pengutronix.de>,
+	NXP Linux Team <linux-imx@nxp.com>, Li Yang <leoyang.li@nxp.com>,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org
+Subject: Re: [PATCH v2 0/4] TQMa8Xx (i.MX8QXP/i.MX8DXP) support
+Message-ID: <20240201094748.GC463595@dragon>
+References: <20231214142327.1962914-1-alexander.stein@ew.tq-group.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v5 05/10] coresight-tpda: Add support to configure CMB
- element
-Content-Language: en-US
-To: Suzuki K Poulose <suzuki.poulose@arm.com>,
-        Mathieu Poirier
-	<mathieu.poirier@linaro.org>,
-        Alexander Shishkin
-	<alexander.shishkin@linux.intel.com>,
-        Konrad Dybcio <konradybcio@gmail.com>,
-        Mike Leach <mike.leach@linaro.org>, Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-CC: Jinlong Mao <quic_jinlmao@quicinc.com>, Leo Yan <leo.yan@linaro.org>,
-        "Greg Kroah-Hartman" <gregkh@linuxfoundation.org>,
-        <coresight@lists.linaro.org>, <linux-arm-kernel@lists.infradead.org>,
-        <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        Tingwei Zhang
-	<quic_tingweiz@quicinc.com>,
-        Yuanfang Zhang <quic_yuanfang@quicinc.com>,
-        Trilok Soni <quic_tsoni@quicinc.com>,
-        Song Chai <quic_songchai@quicinc.com>, <linux-arm-msm@vger.kernel.org>,
-        <andersson@kernel.org>
-References: <1706605366-31705-1-git-send-email-quic_taozha@quicinc.com>
- <1706605366-31705-6-git-send-email-quic_taozha@quicinc.com>
- <6ccb98f2-2f68-45db-9941-1c7b05da84d0@arm.com>
- <6fff5991-01ed-44ea-aa08-9f302d2465e8@quicinc.com>
- <1f5a7c7b-56de-4f19-9d48-652ae6efe50f@arm.com>
-From: Tao Zhang <quic_taozha@quicinc.com>
-In-Reply-To: <1f5a7c7b-56de-4f19-9d48-652ae6efe50f@arm.com>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 8bit
-X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
- nalasex01c.na.qualcomm.com (10.47.97.35)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-GUID: 0Bf34MPd5X6n3r0oydvDqiDsMIurGVG3
-X-Proofpoint-ORIG-GUID: 0Bf34MPd5X6n3r0oydvDqiDsMIurGVG3
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.272,Aquarius:18.0.1011,Hydra:6.0.619,FMLib:17.11.176.26
- definitions=2024-01-31_10,2024-01-31_01,2023-05-22_02
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 malwarescore=0
- priorityscore=1501 lowpriorityscore=0 phishscore=0 mlxscore=0
- mlxlogscore=757 suspectscore=0 adultscore=0 bulkscore=0 impostorscore=0
- clxscore=1015 spamscore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.19.0-2401190000 definitions=main-2402010017
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20231214142327.1962914-1-alexander.stein@ew.tq-group.com>
 
+On Thu, Dec 14, 2023 at 03:23:23PM +0100, Alexander Stein wrote:
+> Alexander Stein (4):
+>   arm64: dts: imx: add imx8dxp support
+>   dt-bindings: arm: add TQMa8Xx boards
+>   arm64: dts: freescale: add initial device tree for TQMa8Xx
+>   arm64: defconfig: Enable i.MX8QXP device drivers
 
-On 1/31/2024 6:02 PM, Suzuki K Poulose wrote:
-> On 31/01/2024 01:39, Tao Zhang wrote:
->>
->> On 1/30/2024 8:35 PM, Suzuki K Poulose wrote:
->>> On 30/01/2024 09:02, Tao Zhang wrote:
->>>> Read the CMB element size from the device tree. Set the register
->>>> bit that controls the CMB element size of the corresponding port.
->>>>
->>>> Reviewed-by: James Clark <james.clark@arm.com>
->>>> Signed-off-by: Tao Zhang <quic_taozha@quicinc.com>
->>>> Signed-off-by: Mao Jinlong <quic_jinlmao@quicinc.com>
->>>> ---
->>>>   drivers/hwtracing/coresight/coresight-tpda.c | 123 
->>>> +++++++++++--------
->>>>   drivers/hwtracing/coresight/coresight-tpda.h |   6 +
->>>>   2 files changed, 79 insertions(+), 50 deletions(-)
->>>>
->>>> diff --git a/drivers/hwtracing/coresight/coresight-tpda.c 
->>>> b/drivers/hwtracing/coresight/coresight-tpda.c
->>>> index 4ac954f4bc13..fcddff3ded81 100644
->>>> --- a/drivers/hwtracing/coresight/coresight-tpda.c
->>>> +++ b/drivers/hwtracing/coresight/coresight-tpda.c
->>>> @@ -18,6 +18,7 @@
->>>>   #include "coresight-priv.h"
->>>>   #include "coresight-tpda.h"
->>>>   #include "coresight-trace-id.h"
->>>> +#include "coresight-tpdm.h"
->>>>     DEFINE_CORESIGHT_DEVLIST(tpda_devs, "tpda");
->>>>   @@ -28,24 +29,57 @@ static bool coresight_device_is_tpdm(struct 
->>>> coresight_device *csdev)
->>>>               CORESIGHT_DEV_SUBTYPE_SOURCE_TPDM);
->>>>   }
->>>>   +static void tpdm_clear_element_size(struct coresight_device *csdev)
->>>> +{
->>>> +    struct tpda_drvdata *drvdata = 
->>>> dev_get_drvdata(csdev->dev.parent);
->>>> +
->>>> +    drvdata->dsb_esize = 0;
->>>> +    drvdata->cmb_esize = 0;
->>>> +}
->>>> +
->>>> +static void tpda_set_element_size(struct tpda_drvdata *drvdata, 
->>>> u32 *val)
->>>> +{
->>>> +
->>>
->>>
->>>
->>>> +    if (drvdata->dsb_esize == 64)
->>>> +        *val |= TPDA_Pn_CR_DSBSIZE;
->>>
->>> We don't seem to be clearing the fields we modify, before updating 
->>> them. This may be OK in real world where the device connected to 
->>> TPDA port
->>> may not change. But it is always safer to clear the bits and set it.
->>>
->>> e.g.:
->>>     *val &= ~(TPDA_Pn_CR_DSBSIZE | TPDA_Pn_CR_CMBSIZE);
->>>
->>>
->>>
->>>> +    else if (drvdata->dsb_esize == 32)
->>>> +        *val &= ~TPDA_Pn_CR_DSBSIZE;
->>>> +
->>>> +    if (drvdata->cmb_esize == 64)
->>>> +        *val |= FIELD_PREP(TPDA_Pn_CR_CMBSIZE, 0x2);
->>>> +    else if (drvdata->cmb_esize == 32)
->>>> +        *val |= FIELD_PREP(TPDA_Pn_CR_CMBSIZE, 0x1);
->>>
->>> Similarly here ^^^. I am happy to fix it up if you are OK with it 
->>> (unless there are other changes that need a respin)
->>
->> Thank you. I would be very grateful if you could help for this.
->
-> Given, you need to respin, please incorporate this change too.
-
-Sure.
-
-Is it OK if I modify the code as follow and update to this patch directly?
-
-     *val &= ~(TPDA_Pn_CR_DSBSIZE | TPDA_Pn_CR_CMBSIZE);
-
-     if (drvdata->dsb_esize == 64)
-         *val |= TPDA_Pn_CR_DSBSIZE;
-     else if (drvdata->dsb_esize == 32)
-         *val &= ~TPDA_Pn_CR_DSBSIZE;
-
-     if (drvdata->cmb_esize == 64)
-         *val |= FIELD_PREP(TPDA_Pn_CR_CMBSIZE, 0x2);
-     else if (drvdata->cmb_esize == 32)
-         *val |= FIELD_PREP(TPDA_Pn_CR_CMBSIZE, 0x1);
-     else if (drvdata->cmb_esize == 8)
-         *val &= ~TPDA_Pn_CR_CMBSIZE;
-
-Best,
-
-Tao
-
->
-> Suzuki
->
->
->
+Applied all, thanks!
 
