@@ -1,103 +1,97 @@
-Return-Path: <devicetree+bounces-37638-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-37639-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 27012845BB1
-	for <lists+devicetree@lfdr.de>; Thu,  1 Feb 2024 16:38:03 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 582D7845C28
+	for <lists+devicetree@lfdr.de>; Thu,  1 Feb 2024 16:52:29 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 594511C2416D
-	for <lists+devicetree@lfdr.de>; Thu,  1 Feb 2024 15:38:02 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id E20031F221CB
+	for <lists+devicetree@lfdr.de>; Thu,  1 Feb 2024 15:52:28 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 71FF65F489;
-	Thu,  1 Feb 2024 15:37:58 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=gimli.ms.mff.cuni.cz header.i=@gimli.ms.mff.cuni.cz header.b="ZXb+Iga+"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9244F626BD;
+	Thu,  1 Feb 2024 15:52:11 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from nikam.ms.mff.cuni.cz (nikam.ms.mff.cuni.cz [195.113.20.16])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from michel.telenet-ops.be (michel.telenet-ops.be [195.130.137.88])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 56266626C9;
-	Thu,  1 Feb 2024 15:37:48 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=195.113.20.16
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BAF69626B3
+	for <devicetree@vger.kernel.org>; Thu,  1 Feb 2024 15:52:08 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=195.130.137.88
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1706801878; cv=none; b=OL0obQgzvUpgg/SEvvMWgD0WreGTH6hZeI5rD7u5wYISLsLmOli3QGhe0fng6N0ZBpVJ2jN+DcnxngC3kZWDdamaBuQcieRuUZNnTfAIqeOssOsSEmZYeGyweaCgVvynorEA4SD1QpHUNvqFYWyljsdMkpLRs7pRAk1STiimvu4=
+	t=1706802731; cv=none; b=hESWxOw7XLwguS4aBJQlJDLQ1SMHibNLPYif9lvBD+K2bsZKKPRp/3KQiB+DMbGtsl6/gkdKnr4frNYE2Vah1KoAmtJ5L36lFHLEcrpUBvqc/4tTLnt5LYv8s4oyWOszCrxIgiSR9n/+qxZPbaGeqWLzYI5R4JLL4nZQluJt2xY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1706801878; c=relaxed/simple;
-	bh=mlFdx8q/qv+OqqycJ0U0WzY9CEGgq+9/dfyQ3o9wzOY=;
-	h=Mime-Version:Content-Type:Date:Message-Id:Cc:Subject:To:From:
-	 References:In-Reply-To; b=pCSBkCZos4zkmUKYMFdj7ybv1YsXWdFxa1nllEY+Hh+Wpp/dfM9urGtz3YWICc1gkQlgPOQo/BVjbhWYr3ynf1noorCS+ZXu6fzK56Y1KYs8o3eQIsS1Q+nV6kfnFOH7uZ2Zp5r1ddToAkiOh4P8+GR9dqpGNnnZozXdm/8/hZc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gimli.ms.mff.cuni.cz; spf=pass smtp.mailfrom=gimli.ms.mff.cuni.cz; dkim=pass (1024-bit key) header.d=gimli.ms.mff.cuni.cz header.i=@gimli.ms.mff.cuni.cz header.b=ZXb+Iga+; arc=none smtp.client-ip=195.113.20.16
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gimli.ms.mff.cuni.cz
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gimli.ms.mff.cuni.cz
-Received: from gimli.ms.mff.cuni.cz (gimli.ms.mff.cuni.cz [195.113.20.176])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange X25519 server-signature RSA-PSS (2048 bits))
-	(No client certificate requested)
-	by nikam.ms.mff.cuni.cz (Postfix) with ESMTPS id DA4F6283D4C;
-	Thu,  1 Feb 2024 16:37:39 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gimli.ms.mff.cuni.cz;
-	s=gen1; t=1706801859;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=MrwVT/WNDACr7m8GmvCDFAAxCBNQxViS+p8tHUq04XY=;
-	b=ZXb+Iga+zgEpxQtmV4KbAtVjpkIqGkOmCVbzHldgvGXUHA8KWzR6UHH4luWzNylkNzXqfw
-	6eKWPwViOX7KiMtgw4i94fHUwCtE2uoSB/SPVcsiBwf+Hl8sSIHhAGUlBb9MXaDfOZCM6q
-	q2fyvc+E/xzwtwHswjxasn26hQlQJCk=
-Received: from localhost (internet5.mraknet.com [185.200.108.250])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange ECDHE (prime256v1) server-signature RSA-PSS (2048 bits) server-digest SHA256)
-	(Client did not present a certificate)
-	(Authenticated sender: karelb)
-	by gimli.ms.mff.cuni.cz (Postfix) with ESMTPSA id B97A8457CB8;
-	Thu,  1 Feb 2024 16:37:39 +0100 (CET)
+	s=arc-20240116; t=1706802731; c=relaxed/simple;
+	bh=37o2Ts4IW3atKBcwdsff8mQOq/M/Y4L9qyyi0wt0iZ8=;
+	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version; b=LEy21pKP2sspmnXwZ8IRUWJy4yjIUFks/MFFqUkNQpR//SH/Vt05ejiqd1/SDi0eIH6PNnd6gseYXvurUQFsntTkwu3hjvsTtjfhMPaYxbdk5k/uMx30NX3+oGjDaYbdtw86vL++4FUHrrhTZthF+qWNWvaYcdlcpJ7dsHLTrVo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=glider.be; spf=none smtp.mailfrom=linux-m68k.org; arc=none smtp.client-ip=195.130.137.88
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=glider.be
+Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=linux-m68k.org
+Received: from ramsan.of.borg ([IPv6:2a02:1810:ac12:ed40:4392:e888:3d14:1bdc])
+	by michel.telenet-ops.be with bizsmtp
+	id hrs32B00N2BHJxj06rs39L; Thu, 01 Feb 2024 16:52:06 +0100
+Received: from rox.of.borg ([192.168.97.57])
+	by ramsan.of.borg with esmtp (Exim 4.95)
+	(envelope-from <geert@linux-m68k.org>)
+	id 1rVZLJ-00GvjG-IQ;
+	Thu, 01 Feb 2024 16:52:02 +0100
+Received: from geert by rox.of.borg with local (Exim 4.95)
+	(envelope-from <geert@linux-m68k.org>)
+	id 1rVZMA-00Abrn-GL;
+	Thu, 01 Feb 2024 16:52:02 +0100
+From: Geert Uytterhoeven <geert+renesas@glider.be>
+To: Marek Vasut <marek.vasut+renesas@gmail.com>,
+	Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>,
+	Lorenzo Pieralisi <lpieralisi@kernel.org>,
+	=?UTF-8?q?Krzysztof=20Wilczy=C5=84ski?= <kw@linux.com>,
+	Rob Herring <robh@kernel.org>,
+	Bjorn Helgaas <bhelgaas@google.com>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>
+Cc: linux-pci@vger.kernel.org,
+	linux-renesas-soc@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	Geert Uytterhoeven <geert+renesas@glider.be>
+Subject: [PATCH] dt-bindings: PCI: rcar-pci-host: Add missing IOMMU properties
+Date: Thu,  1 Feb 2024 16:52:01 +0100
+Message-Id: <babc878a93cb6461a5d39331f8ecfa654dfda921.1706802597.git.geert+renesas@glider.be>
+X-Mailer: git-send-email 2.34.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-Mime-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
-Content-Type: text/plain; charset=UTF-8
-Date: Thu, 01 Feb 2024 16:37:39 +0100
-Message-Id: <CYTURHOW0WMR.2UMOT0D1GFZ2W@gimli.ms.mff.cuni.cz>
-Cc: "Karel Balej" <balejk@matfyz.cz>, "Dmitry Torokhov"
- <dmitry.torokhov@gmail.com>, "Rob Herring" <robh+dt@kernel.org>, "Krzysztof
- Kozlowski" <krzysztof.kozlowski+dt@linaro.org>, "Conor Dooley"
- <conor+dt@kernel.org>, <linux-input@vger.kernel.org>,
- <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
- =?utf-8?q?Duje_Mihanovi=C4=87?= <duje.mihanovic@skole.hr>,
- <~postmarketos/upstreaming@lists.sr.ht>, <phone-devel@vger.kernel.org>
-Subject: Re: [RFC PATCH 2/5] mfd: add 88pm88x driver
-To: "Lee Jones" <lee@kernel.org>
-From: "Karel Balej" <karelb@gimli.ms.mff.cuni.cz>
-References: <20231217131838.7569-1-karelb@gimli.ms.mff.cuni.cz>
- <20231217131838.7569-3-karelb@gimli.ms.mff.cuni.cz>
- <20240125122634.GE74950@google.com>
- <CYQ8MEQRJELE.2GB9316NZA998@gimli.ms.mff.cuni.cz>
- <20240131110311.GI8551@google.com>
-In-Reply-To: <20240131110311.GI8551@google.com>
+MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
 
-Lee Jones, 2024-01-31T11:03:11+00:00:
-> On Sun, 28 Jan 2024, Karel Balej wrote:
-> > > > +	/* GPIO1: DVC, GPIO0: input */
-> > > > +	REG_SEQ0(PM88X_REG_GPIO_CTRL1, 0x40),
-> > >
-> > > Shouldn't you set these up using Pintrl?
-> >=20
-> > You mean to add a new MFD cell for the pins and write the respective
-> > driver? The downstream implementation has no such thing so I'm not sure
-> > if I would be able to do that from scratch.
->
-> This is not a Pinctrl driver.
->
-> Isn't there a generic API you can use?
+make dtbs_check:
 
-I'm sorry, I don't think I understand what you mean.
+    arch/arm64/boot/dts/renesas/r8a77951-salvator-xs.dtb: pcie@fe000000: Unevaluated properties are not allowed ('iommu-map', 'iommu-map-mask' were unexpected)
+	    from schema $id: http://devicetree.org/schemas/pci/rcar-pci-host.yaml#
 
-Thank you,
-K. B.
+Fix this by adding the missing IOMMU-related properties.
+
+Signed-off-by: Geert Uytterhoeven <geert+renesas@glider.be>
+---
+ Documentation/devicetree/bindings/pci/rcar-pci-host.yaml | 3 +++
+ 1 file changed, 3 insertions(+)
+
+diff --git a/Documentation/devicetree/bindings/pci/rcar-pci-host.yaml b/Documentation/devicetree/bindings/pci/rcar-pci-host.yaml
+index b6a7cb32f61e5d4f..835b6db00c27968a 100644
+--- a/Documentation/devicetree/bindings/pci/rcar-pci-host.yaml
++++ b/Documentation/devicetree/bindings/pci/rcar-pci-host.yaml
+@@ -77,6 +77,9 @@ properties:
+   vpcie12v-supply:
+     description: The 12v regulator to use for PCIe.
+ 
++  iommu-map: true
++  iommu-map-mask: true
++
+ required:
+   - compatible
+   - reg
+-- 
+2.34.1
+
 
