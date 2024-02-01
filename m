@@ -1,52 +1,52 @@
-Return-Path: <devicetree+bounces-37453-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-37454-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id C2B2B8450E2
-	for <lists+devicetree@lfdr.de>; Thu,  1 Feb 2024 06:45:50 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 284A38450EA
+	for <lists+devicetree@lfdr.de>; Thu,  1 Feb 2024 06:47:48 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 88FFD2900E2
-	for <lists+devicetree@lfdr.de>; Thu,  1 Feb 2024 05:45:49 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id D1F7D288FC9
+	for <lists+devicetree@lfdr.de>; Thu,  1 Feb 2024 05:47:46 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 44E79612F1;
-	Thu,  1 Feb 2024 05:45:44 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B03457D3E6;
+	Thu,  1 Feb 2024 05:47:07 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=codeconstruct.com.au header.i=@codeconstruct.com.au header.b="K9mqaiBt"
+	dkim=pass (2048-bit key) header.d=codeconstruct.com.au header.i=@codeconstruct.com.au header.b="csrgW1yR"
 X-Original-To: devicetree@vger.kernel.org
 Received: from codeconstruct.com.au (pi.codeconstruct.com.au [203.29.241.158])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A6991612E5;
-	Thu,  1 Feb 2024 05:45:42 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2884878B7D;
+	Thu,  1 Feb 2024 05:47:05 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=203.29.241.158
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1706766344; cv=none; b=MJS1sp6vE6HlsP74QoWaXQIiYAwZ+VSdJ/BpQSgPWNgop0FAWDgNaKLVPuhQLqU+SEVFeyQHVz8opB58JSAkAcDB9D/lCIktqRbF+3ozFnZeeGi9A0PsmQFh3u+ZGG/vF7wh9kNdV/+smYs7rIiA1g6uDy7wIyJOlV+zNVgbQew=
+	t=1706766427; cv=none; b=fDu65c8kR+GqeA8FS8RPUsqvAuJI5pPuW8j0asRpACTXmjDEs2HtR1Z5pm82fForpEhZCLK1aw3/s0Mh32DUMT2cLxSA4mip7qbwrWMMvAxG10UyPY8RJkpTs9I34cOtb8gC/SwwdjyE3H16TGUUSQTjZptpJs1yLcknrZdwME0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1706766344; c=relaxed/simple;
-	bh=jEXaJxk3bfW1i9fWeuWYYX1uSmdxuhTcmO6xBhD+QkU=;
+	s=arc-20240116; t=1706766427; c=relaxed/simple;
+	bh=9YqF9j5eXI5m6rmyqlPkPEUF6K4pUnYhH1ZqLxBaF7o=;
 	h=Message-ID:Subject:From:To:Cc:Date:In-Reply-To:References:
-	 Content-Type:MIME-Version; b=prRbk5fVvVRJcBuXvH0NG4B0OLvsWFL3h5yO5kqUYHnlWTmK0EoPJQXtrJPEc/zZ/8k/2rVM8tAZFaFSx2EOAJg7uA5bCnwLlnPONH+P5132Ce/aSPaVvQ6KmOvmOGd70IQhfK/sRHbkl/ZT1o+YnXkkS2yJdP+ktNQMMRbP4nI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=codeconstruct.com.au; spf=pass smtp.mailfrom=codeconstruct.com.au; dkim=pass (2048-bit key) header.d=codeconstruct.com.au header.i=@codeconstruct.com.au header.b=K9mqaiBt; arc=none smtp.client-ip=203.29.241.158
+	 Content-Type:MIME-Version; b=SIIy4rYKw/52FK1lic0UGcObXUx8vsL50HcB6bOaH/O2jQVkspuHIBYZiZw7t+ItoT35PApbdPe05VgJyCtjd8uzDt88HplXUvs6Csd7eWzIXC2hzZ5UHkX4WUlP2G1TtnbvhEP71A20VI41zNA8Xa/EAy9poJtntNThbQqZxVU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=codeconstruct.com.au; spf=pass smtp.mailfrom=codeconstruct.com.au; dkim=pass (2048-bit key) header.d=codeconstruct.com.au header.i=@codeconstruct.com.au header.b=csrgW1yR; arc=none smtp.client-ip=203.29.241.158
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=codeconstruct.com.au
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=codeconstruct.com.au
 Received: from [192.168.68.112] (ppp14-2-76-194.adl-apt-pir-bras31.tpg.internode.on.net [14.2.76.194])
-	by mail.codeconstruct.com.au (Postfix) with ESMTPSA id 01E622017A;
-	Thu,  1 Feb 2024 13:45:39 +0800 (AWST)
+	by mail.codeconstruct.com.au (Postfix) with ESMTPSA id 5AD962017A;
+	Thu,  1 Feb 2024 13:47:03 +0800 (AWST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=codeconstruct.com.au; s=2022a; t=1706766340;
-	bh=nKCRisLpHjguaVO1EIS9AvNZ77fEHliVyA2UU02dTc8=;
+	d=codeconstruct.com.au; s=2022a; t=1706766424;
+	bh=9YqF9j5eXI5m6rmyqlPkPEUF6K4pUnYhH1ZqLxBaF7o=;
 	h=Subject:From:To:Cc:Date:In-Reply-To:References;
-	b=K9mqaiBtHwYehzQbf5LaySLWiMCocrRBFE0VQPz2DmpZPkhuPeOFm6ToPACVmmhNd
-	 gT07+TMmNj9qpG8aCnyBBbV8CaBuulaA5srG3xBcXDkX9C0i4WhB/umOKB1qdImekR
-	 Q1r5eP5JX86BpKSstQ4UD7qHS7Kjj+durIOQ7II1spM81ecVoyV/mE3bLCFcE8EL7e
-	 0yV4ayPVVbVpUspAvNhyypdmuq9ughVDFn+F6GH9NJ6tK3IoFBIxLgEtApXyCGpU3E
-	 vt5MiOFY657MRQuIP/nuHajEcqO6edsky6r18lwHEn839OxnhzXngpISCpgZ4O5yQ4
-	 itYW4YT67vOKA==
-Message-ID: <1823c7e3fd460b64c5bab3c1c6623a0a63e073d6.camel@codeconstruct.com.au>
-Subject: Re: [PATCH v5 11/21] ARM: dts: aspeed: yosemite4: Add eeprom for
- yosemite4 use
+	b=csrgW1yRPwbVDkKYJ7CMeWN+mWAlUmM356hIDTCiFgUDp4/HQ9r+vT6eIscwZhYNC
+	 EKXplHCg+ehFXNcjmNR4gtCem+OTOeybhmJgt0pGj3YZkV3WVMoKs8qB8V4uc88wa1
+	 +et5YT+jlVwNqPufhum88ESnb0gEFaR8gaDwelOrKzn1Ul11wuQqBWa89yYmNA08W/
+	 VV4w1JqBc3pzqc30almb5pN1Kti9hZtDaUlBePL8jnklbXjZ8//EaGBZBCyDhz1XDk
+	 s7WBVYwmwNanBmQCrrDjiswgfbrJjgU7RZEr3se4DEsCRczSHvV9MtbSzTAdm0X5+s
+	 1c3VLYo7nxKPQ==
+Message-ID: <85fd9e31695c343121d5f6ad2cbebe7d8d8490b2.camel@codeconstruct.com.au>
+Subject: Re: [PATCH v5 15/21] ARM: dts: aspeed: yosemite4: Remove idle state
+ setting for yosemite4 NIC connection
 From: Andrew Jeffery <andrew@codeconstruct.com.au>
 To: Delphine CC Chiu <Delphine_CC_Chiu@wiwynn.com>, patrick@stwcx.xyz, Rob
  Herring <robh+dt@kernel.org>, Krzysztof Kozlowski
@@ -54,10 +54,10 @@ To: Delphine CC Chiu <Delphine_CC_Chiu@wiwynn.com>, patrick@stwcx.xyz, Rob
  Joel Stanley <joel@jms.id.au>
 Cc: devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
 	linux-aspeed@lists.ozlabs.org, linux-kernel@vger.kernel.org
-Date: Thu, 01 Feb 2024 16:15:39 +1030
-In-Reply-To: <20240131084134.328307-12-Delphine_CC_Chiu@wiwynn.com>
+Date: Thu, 01 Feb 2024 16:17:02 +1030
+In-Reply-To: <20240131084134.328307-16-Delphine_CC_Chiu@wiwynn.com>
 References: <20240131084134.328307-1-Delphine_CC_Chiu@wiwynn.com>
-	 <20240131084134.328307-12-Delphine_CC_Chiu@wiwynn.com>
+	 <20240131084134.328307-16-Delphine_CC_Chiu@wiwynn.com>
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 User-Agent: Evolution 3.46.4-2 
@@ -69,34 +69,9 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 
 On Wed, 2024-01-31 at 16:41 +0800, Delphine CC Chiu wrote:
-> Add eeprom for yosemite4 use
->=20
-> Signed-off-by: Delphine CC Chiu <Delphine_CC_Chiu@wiwynn.com>
-> ---
->  arch/arm/boot/dts/aspeed/aspeed-bmc-facebook-yosemite4.dts | 7 ++++++-
->  1 file changed, 6 insertions(+), 1 deletion(-)
->=20
-> diff --git a/arch/arm/boot/dts/aspeed/aspeed-bmc-facebook-yosemite4.dts b=
-/arch/arm/boot/dts/aspeed/aspeed-bmc-facebook-yosemite4.dts
-> index e8d7eb7ff568..f00df378a371 100644
-> --- a/arch/arm/boot/dts/aspeed/aspeed-bmc-facebook-yosemite4.dts
-> +++ b/arch/arm/boot/dts/aspeed/aspeed-bmc-facebook-yosemite4.dts
-> @@ -932,7 +932,7 @@ temperature-sensor@4b {
->  	};
-> =20
->  	eeprom@54 {
-> -		compatible =3D "atmel,24c256";
-> +		compatible =3D "atmel,24c128";
+> Remove idle state setting for yosemite4 NIC connection
 
-This is changing an existing eeprom, not adding a new one - contrary to
-the commit message. It probably should be in a separate patch?
-Presumably this is also motivated by the change in the schematics? Some
-explanation would be helpful.
-
-I'm half wondering whether it would have been easier to add a separate
-DTS for the new version of the schematic rather than make all these
-piecemeal changes.
+But why? Is this fixing a bug? What is the motivation?
 
 Andrew
-
 
