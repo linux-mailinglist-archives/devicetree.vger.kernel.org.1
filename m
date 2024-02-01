@@ -1,150 +1,239 @@
-Return-Path: <devicetree+bounces-37747-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-37748-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id B5F208461BF
-	for <lists+devicetree@lfdr.de>; Thu,  1 Feb 2024 21:06:13 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 410AB8461C5
+	for <lists+devicetree@lfdr.de>; Thu,  1 Feb 2024 21:09:24 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 1ED831F28C58
-	for <lists+devicetree@lfdr.de>; Thu,  1 Feb 2024 20:06:12 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id BF87D1F229CD
+	for <lists+devicetree@lfdr.de>; Thu,  1 Feb 2024 20:09:23 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5290085624;
-	Thu,  1 Feb 2024 20:06:07 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6564385627;
+	Thu,  1 Feb 2024 20:09:19 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="ilFj2PNV"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-oi1-f178.google.com (mail-oi1-f178.google.com [209.85.167.178])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from lelv0142.ext.ti.com (lelv0142.ext.ti.com [198.47.23.249])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 06F874176B;
-	Thu,  1 Feb 2024 20:06:04 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.178
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 510808527E;
+	Thu,  1 Feb 2024 20:09:17 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.23.249
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1706817967; cv=none; b=Ra4tfbIn2BMLse8xrthG6hQhmsvSNug6g8OuPEQx/ICbQst42fB1fNB2JEviy4F41hQi7FAuJvj7FCdnFz1K2E5QoiybqVNZ+Yd1dG8chxZIWosKNLZ5WyPFso0cMOQtDygoDSQe/PThYNue+6CoMUwMHxn4HVTLHyMt0OZHy9A=
+	t=1706818159; cv=none; b=VQDIo4JjE9wMHuT6jnM3orpPI5GlDJjlnqS2N8R4hYtz16D1z7y06g0DYLyuzbtY8OB1MzIrsT3c5a/G6hM/XFKrUIIi6ZPxz0OwVmaFi/RiJ6Db5NgLANVZL13Bmy0AvaNaExbQ4ainbDXkAQN+gNU0PP8u2tLRo7QVd2uCqls=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1706817967; c=relaxed/simple;
-	bh=gkH8/pxKYHSTaCK13vrWJcmjWEK0Tt9tmbvF+BfSfLw=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=tMS9BOOjkUq0OtikXeBiMolfkOYpUDGAK6WMe8LcOHKsNsphDOOXqLFgycnyLxta+/56BnvfGZP/amQ20XE/R4sAni+otE8BUnW5N2CExJVH89wf7U/BT66zCQYNwYJL8TU1lM08l0AON1FtlngjYXB+DCVpYGNUHPYdRmJoypE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org; spf=pass smtp.mailfrom=gmail.com; arc=none smtp.client-ip=209.85.167.178
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-oi1-f178.google.com with SMTP id 5614622812f47-3bbc649c275so794329b6e.0;
-        Thu, 01 Feb 2024 12:06:04 -0800 (PST)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1706817963; x=1707422763;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=rW2ZDwtdk3kDeJBYbJGjBGq8DnNTgVshHb5YupyHpEo=;
-        b=iOwDAh4IP8nsFtl5RywPoX3dtUPjXL+u93ssiqcGmMI73gdM8dVXyIhSuk19xQaoeI
-         F67n316Jvx7sfC4FsvlzN7c5xc5leMKB+D5B0uq3t6F78fnNwoPJCyI4mgJ2x0Qqoooq
-         TLMnq1+raz+aYCcIPYL2TkKkfw1yj2RFCL5KgguiL5HdBFgivBxZauUUg4Fs/SRFqtOJ
-         aFa3UWHzrsqIYS/dehGmLU9oAdA66JlB9ubD1fi/9jSkYUJWmQgN/DV2zNU69XAaK+CA
-         fcvqBrpYGJyWcQxQE3MRWgq8BjSoPjEQ+GJerUzrUbkBvn9C5SBqLLw8aX7b9sSuBdHA
-         0x9Q==
-X-Gm-Message-State: AOJu0YyeHr8BcE/OOMh2dhZxOqA0YqO9ZU83weZZGh3dVzkaseNOa5Lf
-	gHYxGo+RpPVeizRyxSY2BDj1By+PhaU5nNwFjR/DYbFJmQAEsKyKIRw5l/ycoIU=
-X-Google-Smtp-Source: AGHT+IGPYWyOZXU6pjRuWu7Y8OLEFwEQsafle/0m1Yib5u4+HtJQxv1ndATrEmcdxgZIzjieSp3Kug==
-X-Received: by 2002:a05:6808:3990:b0:3bf:bbda:9db9 with SMTP id gq16-20020a056808399000b003bfbbda9db9mr332790oib.15.1706817963118;
-        Thu, 01 Feb 2024 12:06:03 -0800 (PST)
-X-Forwarded-Encrypted: i=0; AJvYcCXTgb8PWYor/xrkzQ82rqj1tAoKuG9KZ4ujo+eeiAA2SiYo3zOnGYjz5QbctNS9rdUqFMPbducf3tCO7x5WwVfAcer4JUvTJZ5t2Ez4Nz330lpiBbJJ42WyJlmqKhHBC0sclCaQO+1Ev5l2aeDhrN5vlZyd9HiZ8A0/PpedZa0rLRGmjyc=
-Received: from mail-yb1-f179.google.com (mail-yb1-f179.google.com. [209.85.219.179])
-        by smtp.gmail.com with ESMTPSA id n23-20020a25d617000000b00dc6e30b77b3sm59093ybg.55.2024.02.01.12.06.02
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 01 Feb 2024 12:06:02 -0800 (PST)
-Received: by mail-yb1-f179.google.com with SMTP id 3f1490d57ef6-dc6d8bd612dso1050906276.1;
-        Thu, 01 Feb 2024 12:06:02 -0800 (PST)
-X-Received: by 2002:a25:9346:0:b0:dc2:2979:fcd5 with SMTP id
- g6-20020a259346000000b00dc22979fcd5mr118750ybo.28.1706817962160; Thu, 01 Feb
- 2024 12:06:02 -0800 (PST)
+	s=arc-20240116; t=1706818159; c=relaxed/simple;
+	bh=EW6zO50jNE8LEi7zqDDeFfEa1UehgXfcEViL8fAmN/Q=;
+	h=Message-ID:Date:MIME-Version:Subject:To:References:From:
+	 In-Reply-To:Content-Type; b=Qiuj5G8Odi6XmIEkGWDByse5n3dkEQZKSG1ihgyKHCcg4ou9wZEEm7gaU2hMPGmXc/FkJdv1ooSNOrSqaqFmOb2hnOvfzPwCcBOQaKPxndV0LDudMzZJyf5C9a/jz/rx199etiA4Sf0xkJTQ+/UCECzMybgxFLT5fWvoHk16f04=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=ilFj2PNV; arc=none smtp.client-ip=198.47.23.249
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
+Received: from fllv0034.itg.ti.com ([10.64.40.246])
+	by lelv0142.ext.ti.com (8.15.2/8.15.2) with ESMTP id 411K8ti0025389;
+	Thu, 1 Feb 2024 14:08:55 -0600
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+	s=ti-com-17Q1; t=1706818135;
+	bh=vq6l9bOA+9EPk9QsUKSbSwGB/jfjZrse3PWQvl2f88s=;
+	h=Date:Subject:To:References:From:In-Reply-To;
+	b=ilFj2PNViSj3oGI7aFHI9l5HhTT8dv99TtnXaHP4OczwHHfgcQMrBgAPuOlwAeAka
+	 MBnpNgENPS+T3+Vms4Axp7YFP29OnsplmaAmNztNlVrDbDrG8iSkgme0km6uhJA8js
+	 koMcXWeCZ9zzlJd3NoAHUhp3F3VRgSUyii+33oAQ=
+Received: from DLEE114.ent.ti.com (dlee114.ent.ti.com [157.170.170.25])
+	by fllv0034.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 411K8tdI128262
+	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+	Thu, 1 Feb 2024 14:08:55 -0600
+Received: from DLEE100.ent.ti.com (157.170.170.30) by DLEE114.ent.ti.com
+ (157.170.170.25) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Thu, 1
+ Feb 2024 14:08:54 -0600
+Received: from lelvsmtp6.itg.ti.com (10.180.75.249) by DLEE100.ent.ti.com
+ (157.170.170.30) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
+ Frontend Transport; Thu, 1 Feb 2024 14:08:54 -0600
+Received: from [10.249.42.149] ([10.249.42.149])
+	by lelvsmtp6.itg.ti.com (8.15.2/8.15.2) with ESMTP id 411K8rgh092262;
+	Thu, 1 Feb 2024 14:08:53 -0600
+Message-ID: <799640ba-3b7f-474b-8d70-64ed013e0755@ti.com>
+Date: Thu, 1 Feb 2024 14:08:53 -0600
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <cover.1706802756.git.geert+renesas@glider.be> <b20aab137058c02ab5af9aaa1280729a02c6ea49.1706802756.git.geert+renesas@glider.be>
- <170680870030.996964.6959185693674664805.robh@kernel.org>
-In-Reply-To: <170680870030.996964.6959185693674664805.robh@kernel.org>
-From: Geert Uytterhoeven <geert@linux-m68k.org>
-Date: Thu, 1 Feb 2024 21:05:49 +0100
-X-Gmail-Original-Message-ID: <CAMuHMdWfovGkvrk4coitFgDTuHS_fQcvFb8kJj-1AWtUgkAYgg@mail.gmail.com>
-Message-ID: <CAMuHMdWfovGkvrk4coitFgDTuHS_fQcvFb8kJj-1AWtUgkAYgg@mail.gmail.com>
-Subject: Re: [PATCH 1/2] regulator: dt-bindings: gpio-regulator: Fix
- {gpios-,}states limits
-To: Rob Herring <robh@kernel.org>
-Cc: Marek Szyprowski <m.szyprowski@samsung.com>, Liam Girdwood <lgirdwood@gmail.com>, 
-	Rob Herring <robh+dt@kernel.org>, Mark Brown <broonie@kernel.org>, devicetree@vger.kernel.org, 
-	Conor Dooley <conor+dt@kernel.org>, linux-gpio@vger.kernel.org, 
-	linux-kernel@vger.kernel.org, Linus Walleij <linus.walleij@linaro.org>, 
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v3 1/6] arm64: dts: ti: k3-j784s4: Add Wave5 Video
+ Encoder/Decoder Node
+Content-Language: en-US
+To: "Brnich, Brandon" <b-brnich@ti.com>, "Menon, Nishanth" <nm@ti.com>,
+        "Raghavendra, Vignesh" <vigneshr@ti.com>,
+        Tero Kristo <kristo@kernel.org>, Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski
+	<krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Catalin Marinas <catalin.marinas@arm.com>,
+        Will Deacon <will@kernel.org>,
+        Bjorn Andersson <quic_bjorande@quicinc.com>,
+        Geert Uytterhoeven
+	<geert+renesas@glider.be>,
+        Arnd Bergmann <arnd@arndb.de>,
+        Konrad Dybcio
+	<konrad.dybcio@linaro.org>,
+        Neil Armstrong <neil.armstrong@linaro.org>,
+        =?UTF-8?Q?N=C3=ADcolas_F_=2E_R_=2E_A_=2E_Prado?= <nfraprado@collabora.com>,
+        Marek Szyprowski <m.szyprowski@samsung.com>,
+        "linux-arm-kernel@lists.infradead.org"
+	<linux-arm-kernel@lists.infradead.org>,
+        "devicetree@vger.kernel.org"
+	<devicetree@vger.kernel.org>,
+        "linux-kernel@vger.kernel.org"
+	<linux-kernel@vger.kernel.org>,
+        "Etheridge, Darren" <detheridge@ti.com>
+References: <20240131212625.1862775-1-b-brnich@ti.com>
+ <20240131212625.1862775-2-b-brnich@ti.com>
+ <a5f0059d-b80f-44e6-8c1e-793054586e0a@ti.com>
+ <a168bbdc2efd4cb1a71c6c6421dbd7ce@ti.com>
+From: Andrew Davis <afd@ti.com>
+In-Reply-To: <a168bbdc2efd4cb1a71c6c6421dbd7ce@ti.com>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 8bit
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 
-Hi Rob The Robot ;-)
+On 2/1/24 1:13 PM, Brnich, Brandon wrote:
+> Hi Andrew,
+> 
+>> -----Original Message-----
+>> From: Davis, Andrew <afd@ti.com>
+>> Sent: Thursday, February 1, 2024 12:35 PM
+>> To: Brnich, Brandon <b-brnich@ti.com>; Menon, Nishanth <nm@ti.com>;
+>> Raghavendra, Vignesh <vigneshr@ti.com>; Tero Kristo <kristo@kernel.org>;
+>> Rob Herring <robh+dt@kernel.org>; Krzysztof Kozlowski
+>> <krzysztof.kozlowski+dt@linaro.org>; Conor Dooley <conor+dt@kernel.org>;
+>> Catalin Marinas <catalin.marinas@arm.com>; Will Deacon
+>> <will@kernel.org>; Bjorn Andersson <quic_bjorande@quicinc.com>; Geert
+>> Uytterhoeven <geert+renesas@glider.be>; Arnd Bergmann
+>> <arnd@arndb.de>; Konrad Dybcio <konrad.dybcio@linaro.org>; Neil
+>> Armstrong <neil.armstrong@linaro.org>; Nícolas F . R . A . Prado
+>> <nfraprado@collabora.com>; Marek Szyprowski
+>> <m.szyprowski@samsung.com>; linux-arm-kernel@lists.infradead.org;
+>> devicetree@vger.kernel.org; linux-kernel@vger.kernel.org; Etheridge, Darren
+>> <detheridge@ti.com>
+>> Subject: Re: [PATCH v3 1/6] arm64: dts: ti: k3-j784s4: Add Wave5 Video
+>> Encoder/Decoder Node
+>>
+>> On 1/31/24 3:26 PM, Brandon Brnich wrote:
+>>> This patch adds support for the Wave521cl on the J784S4-evm.
+>>>
+>>> Signed-off-by: Brandon Brnich <b-brnich@ti.com>
+>>> ---
+>>>    arch/arm64/boot/dts/ti/k3-j784s4-evm.dts   |  8 ++++++++
+>>>    arch/arm64/boot/dts/ti/k3-j784s4-main.dtsi | 20 ++++++++++++++++++++
+>>>    arch/arm64/boot/dts/ti/k3-j784s4.dtsi      |  2 ++
+>>>    3 files changed, 30 insertions(+)
+>>>
+>>> diff --git a/arch/arm64/boot/dts/ti/k3-j784s4-evm.dts
+>>> b/arch/arm64/boot/dts/ti/k3-j784s4-evm.dts
+>>> index f34b92acc56d..7d37c11b4df4 100644
+>>> --- a/arch/arm64/boot/dts/ti/k3-j784s4-evm.dts
+>>> +++ b/arch/arm64/boot/dts/ti/k3-j784s4-evm.dts
+>>> @@ -784,6 +784,14 @@ &main_gpio0 {
+>>>    	status = "okay";
+>>>    };
+>>>
+>>> +&vpu0 {
+>>> +	status = "okay";
+>>> +};
+>>> +
+>>> +&vpu1 {
+>>> +	status = "okay";
+>>> +};
+>>> +
+>>>    &mcu_cpsw {
+>>>    	status = "okay";
+>>>    	pinctrl-names = "default";
+>>> diff --git a/arch/arm64/boot/dts/ti/k3-j784s4-main.dtsi
+>>> b/arch/arm64/boot/dts/ti/k3-j784s4-main.dtsi
+>>> index f2b720ed1e4f..8b2623ac8160 100644
+>>> --- a/arch/arm64/boot/dts/ti/k3-j784s4-main.dtsi
+>>> +++ b/arch/arm64/boot/dts/ti/k3-j784s4-main.dtsi
+>>> @@ -662,6 +662,26 @@ main_i2c6: i2c@2060000 {
+>>>    		status = "disabled";
+>>>    	};
+>>>
+>>> +	vpu0: video-codec@4210000 {
+>>> +		compatible = "ti,j721s2-wave521c", "cnm,wave521c";
+>>> +		reg = <0x00 0x4210000 0x00 0x10000>;
+>>> +		interrupts = <GIC_SPI 182 IRQ_TYPE_LEVEL_HIGH>;
+>>> +		clocks = <&k3_clks 241 2>;
+>>> +		clock-names = "vcodec";
+>>> +		power-domains = <&k3_pds 241 TI_SCI_PD_EXCLUSIVE>;
+>>> +		status = "disabled";
+>>
+>> Why are these default disabled? I don't see anything missing that would
+>> need to be added at the board level. You disable them just to re-enable them
+>> in the next patch. Leave these default enabled.
+> 
+> I thought that disabled by default was the standard for node in dtsi files, where
+> they get specifically enabled in the particular dts file for the SoC.
+> 
 
-On Thu, Feb 1, 2024 at 6:31=E2=80=AFPM Rob Herring <robh@kernel.org> wrote:
-> On Thu, 01 Feb 2024 16:58:41 +0100, Geert Uytterhoeven wrote:
-> > make dtbs_check:
-> >
-> >     arch/arm64/boot/dts/renesas/r8a77951-salvator-xs.dtb: regulator-vcc=
-q-sdhi0: Unevaluated properties are not allowed ('gpios-states', 'states' w=
-ere unexpected)
-> >           from schema $id: http://devicetree.org/schemas/regulator/gpio=
--regulator.yaml#
-> >
-> > The number of items in "gpios-states" must match the number of items in
-> > "gpios", so their limits should be identical.
-> >
-> > The number of items in "states" must lie within the range from zero up
-> > to 2^{number of gpios}.
-> >
-> > Signed-off-by: Geert Uytterhoeven <geert+renesas@glider.be>
-> > ---
-> > The second issue did not cause any dtbs_check errors?
-> > ---
-> >  .../devicetree/bindings/regulator/gpio-regulator.yaml         | 4 +++-
-> >  1 file changed, 3 insertions(+), 1 deletion(-)
-> >
->
-> My bot found errors running 'make DT_CHECKER_FLAGS=3D-m dt_binding_check'
-> on your patch (DT_CHECKER_FLAGS is new in v5.13):
->
-> yamllint warnings/errors:
->
-> dtschema/dtc warnings/errors:
-> /builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/r=
-egulator/gpio-regulator.yaml: properties:states:minItems: 0 is less than th=
-e minimum of 1
->         hint: An array property has at least 1 item or is not present
->         from schema $id: http://devicetree.org/meta-schemas/keywords.yaml=
-#
+Only disabled if there is missing information needed for the node to function
+that can only be added at the board level, e.g. pinmux usually.
 
-Oops, I changed this from 1 to 0 _after_ running dt_binding_check, so
-I'm totally to blame for this.
+> In V4 I will remove the disabled by default. Should this apply to all platforms in
+> the series?
 
-The description says:
+Yes
 
-    If there are no states in the "states" array, use a fixed regulator ins=
-tead.
+Andrew
 
-which I misinterpreted as "states can be empty", especially as the
-driver does seem to support that?
-
-I guess 1 is the proper minimum?
-
-Gr{oetje,eeting}s,
-
-                        Geert
-
---=20
-Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k=
-.org
-
-In personal conversations with technical people, I call myself a hacker. Bu=
-t
-when I'm talking to journalists I just say "programmer" or something like t=
-hat.
-                                -- Linus Torvalds
+>   
+>>> +	};
+>>> +
+>>> +	vpu1: video-codec@4220000 {
+>>> +		compatible = "ti,j721s2-wave521c", "cnm,wave521c";
+>>> +		reg = <0x00 0x4220000 0x00 0x10000>;
+>>> +		interrupts = <GIC_SPI 183 IRQ_TYPE_LEVEL_HIGH>;
+>>> +		clocks = <&k3_clks 242 2>;
+>>> +		clock-names = "vcodec";
+>>> +		power-domains = <&k3_pds 242 TI_SCI_PD_EXCLUSIVE>;
+>>> +		status = "disabled";
+>>> +	};
+>>> +
+>>>    	main_sdhci0: mmc@4f80000 {
+>>>    		compatible = "ti,j721e-sdhci-8bit";
+>>>    		reg = <0x00 0x04f80000 0x00 0x1000>, diff --git
+>>> a/arch/arm64/boot/dts/ti/k3-j784s4.dtsi
+>>> b/arch/arm64/boot/dts/ti/k3-j784s4.dtsi
+>>> index 4398c3a463e1..93bb0cba1b48 100644
+>>> --- a/arch/arm64/boot/dts/ti/k3-j784s4.dtsi
+>>> +++ b/arch/arm64/boot/dts/ti/k3-j784s4.dtsi
+>>> @@ -247,6 +247,8 @@ cbass_main: bus@100000 {
+>>>    			 <0x00 0x30000000 0x00 0x30000000 0x00
+>> 0x0c400000>, /* MAIN NAVSS */
+>>>    			 <0x41 0x00000000 0x41 0x00000000 0x01
+>> 0x00000000>, /* PCIe1 DAT1 */
+>>>    			 <0x4e 0x20000000 0x4e 0x20000000 0x00
+>> 0x00080000>, /* GPU */
+>>> +			 <0x00 0x04210000 0x00 0x04210000 0x00
+>> 0x00010000>, /* VPU0 */
+>>> +			 <0x00 0x04220000 0x00 0x04220000 0x00
+>> 0x00010000>, /* VPU1 */
+>>
+>> Add these in sorted by memory address order.
+> 
+> Will do in V4 as well.
+> 
+>>
+>> Andrew
+>>
+>>>
+>>>    			 /* MCUSS_WKUP Range */
+>>>    			 <0x00 0x28380000 0x00 0x28380000 0x00
+>> 0x03880000>,
+> 
+> Brandon
 
