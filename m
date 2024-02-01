@@ -1,526 +1,273 @@
-Return-Path: <devicetree+bounces-37620-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-37621-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0C08E845AE7
-	for <lists+devicetree@lfdr.de>; Thu,  1 Feb 2024 16:07:32 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id C76DC845AF1
+	for <lists+devicetree@lfdr.de>; Thu,  1 Feb 2024 16:08:17 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 885981F28BCA
-	for <lists+devicetree@lfdr.de>; Thu,  1 Feb 2024 15:07:31 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 8151728C71A
+	for <lists+devicetree@lfdr.de>; Thu,  1 Feb 2024 15:08:16 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1F5345F496;
-	Thu,  1 Feb 2024 15:07:02 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6012762140;
+	Thu,  1 Feb 2024 15:07:39 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=foss.st.com header.i=@foss.st.com header.b="EMF7vhTt"
+	dkim=pass (2048-bit key) header.d=ventanamicro.com header.i=@ventanamicro.com header.b="DrjrgQus"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx07-00178001.pphosted.com (mx07-00178001.pphosted.com [185.132.182.106])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-lf1-f45.google.com (mail-lf1-f45.google.com [209.85.167.45])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 12836626BE;
-	Thu,  1 Feb 2024 15:06:58 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.132.182.106
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 394DD62147
+	for <devicetree@vger.kernel.org>; Thu,  1 Feb 2024 15:07:37 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.45
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1706800022; cv=none; b=jyDe5p0aGQqzLgmE6tCV7/hrN366mkcDcTTDEYNowu/vpOrBMXow+CLCJEpMihPRbhNVW4azuwVbzZLJ/emZ4gLy0hEUVVW9oSu93mvoL62cl85pRQFlu8TuIoVEI6/bRWhVvZsexKRQ399DxmjJqHIxXRAdy1lFF/GzEAVeyiQ=
+	t=1706800059; cv=none; b=Dysxz4ZLtoHAhTZCEhCyKZOcSsKI1tlXkk9Fpjl4n6rth3SngONpzIIhqA7ubOPufJaV9UgfB4zDhP8GGDWzNHxF4qYayediIGIKBJPmKJR0YSfVWorWHUpCCQ4Q6X64t2TBEJoZUdJZf8KQO6n42MTP3mMPIh/p+I06xjeamGs=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1706800022; c=relaxed/simple;
-	bh=d2fN7ETfqtWqSwbrZD6sFV7qFOKT2cv6rVIVGsXbET4=;
-	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
-	 In-Reply-To:Content-Type; b=qjWl9aYkmr/1c4cJI35IXF97/GGOH0CygkdviGTdGj99w/87uObZOi/ZSVxkqP5jK8l0XnaCdD86+eEhwzXvfAVjLuPT9TBUGTcPSaXNngCCbSGIp5kVllCmfd+hoq+zubicbM9I4hfAGCQx2OO8KCknGxkh76mdbUeN1OteZWE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=foss.st.com; spf=pass smtp.mailfrom=foss.st.com; dkim=pass (2048-bit key) header.d=foss.st.com header.i=@foss.st.com header.b=EMF7vhTt; arc=none smtp.client-ip=185.132.182.106
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=foss.st.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=foss.st.com
-Received: from pps.filterd (m0288072.ppops.net [127.0.0.1])
-	by mx07-00178001.pphosted.com (8.17.1.24/8.17.1.24) with ESMTP id 411Ch0vN017906;
-	Thu, 1 Feb 2024 16:06:41 +0100
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=foss.st.com; h=
-	message-id:date:mime-version:subject:to:cc:references:from
-	:in-reply-to:content-type:content-transfer-encoding; s=
-	selector1; bh=gDmP3nFFDT2/L769/2JvpE6LF5pAooe7LfH885KZoJM=; b=EM
-	F7vhTtmylLnM5VdTES3vdwHz1BUZOO2ed5NCRsGEOwrz93KYwAcIxsuT7PBspONg
-	gX2rVbx9ITGKPkyrpeWFqr8MuvjdD44LpQwgkCYkW2qPDsqi/2vuvj+CwDloPV7+
-	JGITEy+jIwkQtN0kgC+wUlpiGnblwQZdIZL3DwaN4mumspVoMCLV0ga90jNddv7y
-	KDVpGC8pqJMoTzlRzcKv4uQAX1EjYyVfxqM/ZJl0qxt2+Gy0bCtV41VC4INgk0Wk
-	tgsDpr7glIY/TilDos9k2siHLsv2M0gUheb30DS6jL0Z69UZL3W3Zj3C1YrdUshp
-	+VeN4ja1hq7jGkVHZzxg==
-Received: from beta.dmz-eu.st.com (beta.dmz-eu.st.com [164.129.1.35])
-	by mx07-00178001.pphosted.com (PPS) with ESMTPS id 3vvr4m5xhn-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Thu, 01 Feb 2024 16:06:40 +0100 (CET)
-Received: from euls16034.sgp.st.com (euls16034.sgp.st.com [10.75.44.20])
-	by beta.dmz-eu.st.com (STMicroelectronics) with ESMTP id 88FF6100053;
-	Thu,  1 Feb 2024 16:06:39 +0100 (CET)
-Received: from Webmail-eu.st.com (eqndag1node4.st.com [10.75.129.133])
-	by euls16034.sgp.st.com (STMicroelectronics) with ESMTP id 23BF128B03F;
-	Thu,  1 Feb 2024 16:06:39 +0100 (CET)
-Received: from SAFDAG1NODE1.st.com (10.75.90.17) by EQNDAG1NODE4.st.com
- (10.75.129.133) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.27; Thu, 1 Feb
- 2024 16:06:38 +0100
-Received: from [10.201.20.75] (10.201.20.75) by SAFDAG1NODE1.st.com
- (10.75.90.17) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.27; Thu, 1 Feb
- 2024 16:06:38 +0100
-Message-ID: <8ede77bb-0fbc-4de2-b51b-67674744b551@foss.st.com>
-Date: Thu, 1 Feb 2024 16:06:37 +0100
+	s=arc-20240116; t=1706800059; c=relaxed/simple;
+	bh=HT94Gy/s8mApeD+I37YiRcB6z1V+JAmEA/Xb2VOOoJA=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=IvEqObyhAouBu9tKdCt5E+mEbkjcfXy5ySam+hEu6olUtEMta7HZPRUH4aJOYTQfuvPCdfU/8I9TIy0dltoRiZL3l3khQq5m8ZLPAbMh0rvmx4sAtexko0AZECp0HCfD9PogHNtKfKdBk0SYjqdQwVY41BI9jSVd79+JKQCuCQY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ventanamicro.com; spf=pass smtp.mailfrom=ventanamicro.com; dkim=pass (2048-bit key) header.d=ventanamicro.com header.i=@ventanamicro.com header.b=DrjrgQus; arc=none smtp.client-ip=209.85.167.45
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ventanamicro.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ventanamicro.com
+Received: by mail-lf1-f45.google.com with SMTP id 2adb3069b0e04-51124d86022so1675080e87.0
+        for <devicetree@vger.kernel.org>; Thu, 01 Feb 2024 07:07:36 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=ventanamicro.com; s=google; t=1706800055; x=1707404855; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=RLy6aeMXF8RQMmhWAlLcYtBSh4Y9QyUdmEdSbRti4xA=;
+        b=DrjrgQusPv0iOoDPNULRivKkMdIUQA2WVG34IKKngrOK6VzmdptDsMwEhZ5xwXbsnK
+         MUDn5PAi/Bi0cgZJXnSG+/i2LR4n3X7eKdTi3r3xgQUK3OV8A0qiq/IUAhzfdTCMKmCO
+         DuQrTfuFDYjYKQrA2bS+zaSfrzR7XynT9ritpJ1mcK1d58FSohs5gYVMeJJOihW3rruw
+         NkXfGS3wBgo6VtSdB1mmpwHlfJUTAfmiJQsy/9XbNbvALnYjQ7exUCv9SgoKK/3cvI4P
+         YyrsfiXNRb3oKpUNL6BTNKj3xqu7dUklT/ZpS8XkhVmcOoRXSUrnMenvpWUwtNh0jd+K
+         GQ9Q==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1706800055; x=1707404855;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=RLy6aeMXF8RQMmhWAlLcYtBSh4Y9QyUdmEdSbRti4xA=;
+        b=PRy5EmqqVtLfzhznWSX2xU9kVk9jK50XX8RE7CTYJZfa+ThDXADUtZdknVX9w2YwI9
+         tsYWinI0VQEmnaRCQCxAbTFZfEoSSDPGm+C+8S5675hODnA6XzomlqT/J1bbbuK0bvh/
+         7/Mfj+yX3wIqsxkIkNLOEd4Jt1/HJX+yXEIcrUzEjlyC3OXEabBMbMxuP/4UP21WGxg0
+         hzDlGgH+ivPGNQzIqwzbLIDrmr8i6D5i9+ei3RP8S58BF8vGLkXisvQAnWYGwr/qJoYE
+         NFdRZ/PuR4zFMgad9ZeCmgqr9CiyNkeUO/KM1KZ+jkpd4PrG48/jBM6N393JmNdpQaAa
+         R6Zg==
+X-Gm-Message-State: AOJu0YwCcH/cOCdp7Buk+LuA5AXgnbfUtXGAnpeb3EQsB60Msr8ptR1w
+	nsmESB21ERsqoTzP3eEYe+jXhHRFuCGgJDvNceXcfsOvYq+/PD1IFzt5fSRz3MFoIvPgCG6XAiS
+	w9GrFPWVx/VEau73HyFaGgEb0rUBDpIOzIYMB7g==
+X-Google-Smtp-Source: AGHT+IHbJBJ7YxaQlxRHLubYk5mC6hSutRyT7koHpdOpAI01kSdP/Fen2aCh7OgP+TYgCNNz73qnZVSrl+LwoncuI9I=
+X-Received: by 2002:a2e:9dc8:0:b0:2cf:495a:1396 with SMTP id
+ x8-20020a2e9dc8000000b002cf495a1396mr3525139ljj.17.1706800055030; Thu, 01 Feb
+ 2024 07:07:35 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 4/4] remoteproc: stm32: Add support of an OP-TEE TA to
- load the firmware
-Content-Language: en-US
-To: Mathieu Poirier <mathieu.poirier@linaro.org>
-CC: Bjorn Andersson <andersson@kernel.org>,
-        Jens Wiklander
-	<jens.wiklander@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        "Krzysztof
- Kozlowski" <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley
-	<conor+dt@kernel.org>,
-        <linux-stm32@st-md-mailman.stormreply.com>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <linux-remoteproc@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <op-tee@lists.trustedfirmware.org>, <devicetree@vger.kernel.org>
-References: <20240118100433.3984196-1-arnaud.pouliquen@foss.st.com>
- <20240118100433.3984196-5-arnaud.pouliquen@foss.st.com>
- <ZbPnsJm67G10+HQ3@p14s> <7ec6c9e8-9267-4e7c-81a4-abcdb2ab4239@foss.st.com>
- <ZbqW5YfDmEWG4G1X@p14s>
-From: Arnaud POULIQUEN <arnaud.pouliquen@foss.st.com>
-Organization: STMicroelectronics
-In-Reply-To: <ZbqW5YfDmEWG4G1X@p14s>
+References: <20240127161753.114685-1-apatel@ventanamicro.com>
+ <87r0hzuw87.fsf@all.your.base.are.belong.to.us> <87le87uulb.fsf@all.your.base.are.belong.to.us>
+ <CAK9=C2UYCKUBKggtM606orH2mBu_AbTdB5-R5AP1M0t-LsEbEQ@mail.gmail.com>
+ <87cytjvybb.fsf@all.your.base.are.belong.to.us> <87ttmuq3m7.fsf@all.your.base.are.belong.to.us>
+ <CAK9=C2UEpbd+pHAMg-AuP-fTPZVho16u69oSjOHhsR11HTwiew@mail.gmail.com> <87fryeognc.fsf@all.your.base.are.belong.to.us>
+In-Reply-To: <87fryeognc.fsf@all.your.base.are.belong.to.us>
+From: Anup Patel <apatel@ventanamicro.com>
+Date: Thu, 1 Feb 2024 20:37:22 +0530
+Message-ID: <CAK9=C2UX0sRb5UbLdm8xwe1dP=x+enJRYzAuCPf6MdHTLTC_Cw@mail.gmail.com>
+Subject: Re: [PATCH v12 00/25] Linux RISC-V AIA Support
+To: =?UTF-8?B?QmrDtnJuIFTDtnBlbA==?= <bjorn@kernel.org>
+Cc: Palmer Dabbelt <palmer@dabbelt.com>, Paul Walmsley <paul.walmsley@sifive.com>, 
+	Thomas Gleixner <tglx@linutronix.de>, Rob Herring <robh+dt@kernel.org>, 
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Frank Rowand <frowand.list@gmail.com>, 
+	Conor Dooley <conor+dt@kernel.org>, devicetree@vger.kernel.org, 
+	Saravana Kannan <saravanak@google.com>, Marc Zyngier <maz@kernel.org>, Anup Patel <anup@brainfault.org>, 
+	linux-kernel@vger.kernel.org, Atish Patra <atishp@atishpatra.org>, 
+	linux-riscv@lists.infradead.org, linux-arm-kernel@lists.infradead.org, 
+	Andrew Jones <ajones@ventanamicro.com>
 Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: EQNCAS1NODE3.st.com (10.75.129.80) To SAFDAG1NODE1.st.com
- (10.75.90.17)
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.272,Aquarius:18.0.1011,Hydra:6.0.619,FMLib:17.11.176.26
- definitions=2024-02-01_03,2024-01-31_01,2023-05-22_02
+Content-Transfer-Encoding: quoted-printable
 
-hello Mathieu,
+On Tue, Jan 30, 2024 at 11:19=E2=80=AFPM Bj=C3=B6rn T=C3=B6pel <bjorn@kerne=
+l.org> wrote:
+>
+> Anup Patel <apatel@ventanamicro.com> writes:
+>
+> > On Tue, Jan 30, 2024 at 8:18=E2=80=AFPM Bj=C3=B6rn T=C3=B6pel <bjorn@ke=
+rnel.org> wrote:
+> >>
+> >> Bj=C3=B6rn T=C3=B6pel <bjorn@kernel.org> writes:
+> >>
+> >> > Anup Patel <apatel@ventanamicro.com> writes:
+> >> >
+> >> >> On Tue, Jan 30, 2024 at 1:22=E2=80=AFPM Bj=C3=B6rn T=C3=B6pel <bjor=
+n@kernel.org> wrote:
+> >> >>>
+> >> >>> Bj=C3=B6rn T=C3=B6pel <bjorn@kernel.org> writes:
+> >> >>>
+> >> >>> > Anup Patel <apatel@ventanamicro.com> writes:
+> >> >>> >
+> >> >>> >> The RISC-V AIA specification is ratified as-per the RISC-V inte=
+rnational
+> >> >>> >> process. The latest ratified AIA specifcation can be found at:
+> >> >>> >> https://github.com/riscv/riscv-aia/releases/download/1.0/riscv-=
+interrupts-1.0.pdf
+> >> >>> >>
+> >> >>> >> At a high-level, the AIA specification adds three things:
+> >> >>> >> 1) AIA CSRs
+> >> >>> >>    - Improved local interrupt support
+> >> >>> >> 2) Incoming Message Signaled Interrupt Controller (IMSIC)
+> >> >>> >>    - Per-HART MSI controller
+> >> >>> >>    - Support MSI virtualization
+> >> >>> >>    - Support IPI along with virtualization
+> >> >>> >> 3) Advanced Platform-Level Interrupt Controller (APLIC)
+> >> >>> >>    - Wired interrupt controller
+> >> >>> >>    - In MSI-mode, converts wired interrupt into MSIs (i.e. MSI =
+generator)
+> >> >>> >>    - In Direct-mode, injects external interrupts directly into =
+HARTs
+> >> >>> >>
+> >> >>> >> For an overview of the AIA specification, refer the AIA virtual=
+ization
+> >> >>> >> talk at KVM Forum 2022:
+> >> >>> >> https://static.sched.com/hosted_files/kvmforum2022/a1/AIA_Virtu=
+alization_in_KVM_RISCV_final.pdf
+> >> >>> >> https://www.youtube.com/watch?v=3Dr071dL8Z0yo
+> >> >>> >>
+> >> >>> >> To test this series, use QEMU v7.2 (or higher) and OpenSBI v1.2=
+ (or higher).
+> >> >>> >>
+> >> >>> >> These patches can also be found in the riscv_aia_v12 branch at:
+> >> >>> >> https://github.com/avpatel/linux.git
+> >> >>> >>
+> >> >>> >> Changes since v11:
+> >> >>> >>  - Rebased on Linux-6.8-rc1
+> >> >>> >>  - Included kernel/irq related patches from "genirq, irqchip: C=
+onvert ARM
+> >> >>> >>    MSI handling to per device MSI domains" series by Thomas.
+> >> >>> >>    (PATCH7, PATCH8, PATCH9, PATCH14, PATCH16, PATCH17, PATCH18,=
+ PATCH19,
+> >> >>> >>     PATCH20, PATCH21, PATCH22, PATCH23, and PATCH32 of
+> >> >>> >>     https://lore.kernel.org/linux-arm-kernel/20221121135653.208=
+611233@linutronix.de/)
+> >> >>> >>  - Updated APLIC MSI-mode driver to use the new WIRED_TO_MSI me=
+chanism.
+> >> >>> >>  - Updated IMSIC driver to support per-device MSI domains for P=
+CI and
+> >> >>> >>    platform devices.
+> >> >>> >
+> >> >>> > Thanks for working on this, Anup! I'm still reviewing the patche=
+s.
+> >> >>> >
+> >> >>> > I'm hitting a boot hang in text patching, with this series appli=
+ed on
+> >> >>> > 6.8-rc2. IPI issues?
+> >> >>>
+> >> >>> Not text patching! One cpu spinning in smp_call_function_many_cond=
+() and
+> >> >>> the others are in cpu_relax(). Smells like IPI...
+> >> >>
+> >> >> I tried bootefi from U-Boot multiple times but can't reproduce the
+> >> >> issue you are seeing.
+> >> >
+> >> > Thanks! I can reproduce without EFI, and simpler command-line:
+> >> >
+> >> > qemu-system-riscv64 \
+> >> >   -bios /path/to/fw_dynamic.bin \
+> >> >   -kernel /path/to/Image \
+> >> >   -append 'earlycon console=3Dtty0 console=3DttyS0' \
+> >> >   -machine virt,aia=3Daplic-imsic \
+> >> >   -no-reboot -nodefaults -nographic \
+> >> >   -smp 4 \
+> >> >   -object rng-random,filename=3D/dev/urandom,id=3Drng0 \
+> >> >   -device virtio-rng-device,rng=3Drng0 \
+> >> >   -m 4G -chardev stdio,id=3Dchar0 -serial chardev:char0
+> >> >
+> >> > I can reproduce with your upstream riscv_aia_v12 plus the config in =
+the
+> >> > gist [1], and all latest QEMU/OpenSBI:
+> >> >
+> >> > QEMU: 11be70677c70 ("Merge tag 'pull-vfio-20240129' of https://githu=
+b.com/legoater/qemu into staging")
+> >> > OpenSBI: bb90a9ebf6d9 ("lib: sbi: Print number of debug triggers fou=
+nd")
+> >> > Linux: d9b9d6eb987f ("MAINTAINERS: Add entry for RISC-V AIA drivers"=
+)
+> >> >
+> >> > Removing ",aia=3Daplic-imsic" from the CLI above completes the boot =
+(i.e.
+> >> > panicking about missing root mount ;-))
+> >>
+> >> More context; The hang is during a late initcall, where an ftrace dire=
+ct
+> >> (register_ftrace_direct()) modification is done.
+> >>
+> >> Stop machine is used to call into __ftrace_modify_call(). Then into th=
+e
+> >> arch specific patch_text_nosync(), where flush_icache_range() hangs in
+> >> flush_icache_all(). From "on_each_cpu(ipi_remote_fence_i, NULL, 1);" t=
+o
+> >> on_each_cpu_cond_mask() "smp_call_function_many_cond(mask, func, info,
+> >> scf_flags, cond_func);" which never returns from "csd_lock_wait(csd)"
+> >> right before the end of the function.
+> >>
+> >> Any ideas? Disabling CONFIG_HID_BPF, that does the early ftrace code
+> >> patching fixes the boot hang, but it does seem related to IPI...
+> >>
+> > Looks like flush_icache_all() does not use the IPIs (on_each_cpu()
+> > and friends) correctly.
+> >
+> > On other hand, the flush_icache_mm() does the right thing by
+> > doing local flush on the current CPU and IPI based flush on other
+> > CPUs.
+> >
+> > Can you try the following patch ?
+> >
+> > diff --git a/arch/riscv/mm/cacheflush.c b/arch/riscv/mm/cacheflush.c
+> > index 55a34f2020a8..a3dfbe4de832 100644
+> > --- a/arch/riscv/mm/cacheflush.c
+> > +++ b/arch/riscv/mm/cacheflush.c
+> > @@ -19,12 +19,18 @@ static void ipi_remote_fence_i(void *info)
+> >
+> >  void flush_icache_all(void)
+> >  {
+> > +    cpumask_t others;
+> > +
+> >      local_flush_icache_all();
+> >
+> > +    cpumask_andnot(&others, cpu_online_mask, cpumask_of(smp_processor_=
+id()));
+> > +    if (cpumask_empty(&others))
+> > +        return;
+> > +
+> >      if (IS_ENABLED(CONFIG_RISCV_SBI) && !riscv_use_ipi_for_rfence())
+> > -        sbi_remote_fence_i(NULL);
+> > +        sbi_remote_fence_i(&others);
+> >      else
+> > -        on_each_cpu(ipi_remote_fence_i, NULL, 1);
+> > +        on_each_cpu_mask(&others, ipi_remote_fence_i, NULL, 1);
+> >  }
+> >  EXPORT_SYMBOL(flush_icache_all);
+>
+> Unfortunately, I see the same hang. LMK if you'd like me to try anything
+> else.
 
-On 1/31/24 19:52, Mathieu Poirier wrote:
-> On Tue, Jan 30, 2024 at 10:13:48AM +0100, Arnaud POULIQUEN wrote:
->>
->>
->> On 1/26/24 18:11, Mathieu Poirier wrote:
->>> On Thu, Jan 18, 2024 at 11:04:33AM +0100, Arnaud Pouliquen wrote:
->>>> The new TEE remoteproc device is used to manage remote firmware in a
->>>> secure, trusted context. The 'st,stm32mp1-m4-tee' compatibility is
->>>> introduced to delegate the loading of the firmware to the trusted
->>>> execution context. In such cases, the firmware should be signed and
->>>> adhere to the image format defined by the TEE.
->>>>
->>>> Signed-off-by: Arnaud Pouliquen <arnaud.pouliquen@foss.st.com>
->>>> ---
->>>> V1 to V2 update:
->>>> - remove the select "TEE_REMOTEPROC" in STM32_RPROC config as detected by
->>>>   the kernel test robot:
->>>>      WARNING: unmet direct dependencies detected for TEE_REMOTEPROC
->>>>      Depends on [n]: REMOTEPROC [=y] && OPTEE [=n]
->>>>      Selected by [y]:
->>>>      - STM32_RPROC [=y] && (ARCH_STM32 || COMPILE_TEST [=y]) && REMOTEPROC [=y]
->>>> - Fix initialized trproc variable in  stm32_rproc_probe
->>>> ---
->>>>  drivers/remoteproc/stm32_rproc.c | 149 +++++++++++++++++++++++++++++--
->>>>  1 file changed, 144 insertions(+), 5 deletions(-)
->>>>
->>>> diff --git a/drivers/remoteproc/stm32_rproc.c b/drivers/remoteproc/stm32_rproc.c
->>>> index fcc0001e2657..cf6a21bac945 100644
->>>> --- a/drivers/remoteproc/stm32_rproc.c
->>>> +++ b/drivers/remoteproc/stm32_rproc.c
->>>> @@ -20,6 +20,7 @@
->>>>  #include <linux/remoteproc.h>
->>>>  #include <linux/reset.h>
->>>>  #include <linux/slab.h>
->>>> +#include <linux/tee_remoteproc.h>
->>>>  #include <linux/workqueue.h>
->>>>  
->>>>  #include "remoteproc_internal.h"
->>>> @@ -49,6 +50,9 @@
->>>>  #define M4_STATE_STANDBY	4
->>>>  #define M4_STATE_CRASH		5
->>>>  
->>>> +/* Remote processor unique identifier aligned with the Trusted Execution Environment definitions */
->>>> +#define STM32_MP1_M4_PROC_ID    0
->>>> +
->>>>  struct stm32_syscon {
->>>>  	struct regmap *map;
->>>>  	u32 reg;
->>>> @@ -90,6 +94,8 @@ struct stm32_rproc {
->>>>  	struct stm32_mbox mb[MBOX_NB_MBX];
->>>>  	struct workqueue_struct *workqueue;
->>>>  	bool hold_boot_smc;
->>>> +	bool fw_loaded;
->>>> +	struct tee_rproc *trproc;
->>>>  	void __iomem *rsc_va;
->>>>  };
->>>>  
->>>> @@ -257,6 +263,91 @@ static int stm32_rproc_release(struct rproc *rproc)
->>>>  	return err;
->>>>  }
->>>>  
->>>> +static int stm32_rproc_tee_elf_sanity_check(struct rproc *rproc,
->>>> +					    const struct firmware *fw)
->>>> +{
->>>> +	struct stm32_rproc *ddata = rproc->priv;
->>>> +	unsigned int ret = 0;
->>>> +
->>>> +	if (rproc->state == RPROC_DETACHED)
->>>> +		return 0;
->>>> +
->>>> +	ret = tee_rproc_load_fw(ddata->trproc, fw);
->>>> +	if (!ret)
->>>> +		ddata->fw_loaded = true;
->>>> +
->>>> +	return ret;
->>>> +}
->>>> +
->>>> +static int stm32_rproc_tee_elf_load(struct rproc *rproc,
->>>> +				    const struct firmware *fw)
->>>> +{
->>>> +	struct stm32_rproc *ddata = rproc->priv;
->>>> +	unsigned int ret;
->>>> +
->>>> +	/*
->>>> +	 * This function can be called by remote proc for recovery
->>>> +	 * without the sanity check. In this case we need to load the firmware
->>>> +	 * else nothing done here as the firmware has been preloaded for the
->>>> +	 * sanity check to be able to parse it for the resource table.
->>>> +	 */
->>>
->>> This comment is very confusing - please consider refactoring.  
->>>
->>>> +	if (ddata->fw_loaded)
->>>> +		return 0;
->>>> +
->>>
->>> I'm not sure about keeping a flag to indicate the status of the loaded firmware.
->>> It is not done for the non-secure method, I don't see why it would be needed for
->>> the secure one.
->>>
->>
->> The difference is on the sanity check.
->> - in rproc_elf_sanity_check we  parse the elf file to verify that it is
->> valid.
->> - in stm32_rproc_tee_elf_sanity_check we have to do the same, that means to
->> authenticate it. the authentication is done during the load.
->>
->> So this flag is used to avoid to reload it twice time.
->> refactoring the comment should help to understand this flag
->>
->>
->> An alternative would be to bypass the sanity check. But this lead to same
->> limitation.
->> Before loading the firmware in remoteproc_core, we call rproc_parse_fw() that is
->> used to get the resource table address. To get it from tee we need to
->> authenticate the firmware so load it...
->>
-> 
-> I spent a long time thinking about this patchset.  Looking at the code as it
-> is now, request_firmware() in rproc_boot() is called even when the TEE is
-> responsible for loading the firmware.  There should be some conditional code
-> that calls either request_firmware() or tee_rproc_load_fw().  The latter should
-> also be renamed to tee_rproc_request_firmware() to avoid confusion.
+I was able to reproduce this at my end but I had to use your config.
 
+Digging further, it seems the issue is observed only when we use
+in-kernel IPIs for cache flushing (instead of SBI calls) along with
+some of the tracers (or debugging features) enabled. With the tracers
+(or debug features) disabled we don't see any issue. In fact, the
+upstream defconfig works perfectly fine with AIA drivers and
+in-kernel IPIs.
 
-The request_firmware() call is needed in both cases to get the image from the
-filesystem. The tee_rproc_load_fw() gets, as input, the struct firmware provided
-by request_firmware().
+It seems AIA based in-kernel IPIs are exposing some other issue
+with RISC-V kernel. I will debug more to find the root cause.
 
-If we want to integrate in remoteproc_core the solution could probably have to
-create the equivalent of the rproc_fw_boot() to load the firmware with an
-external method. Here is an example based on a new rproc_ops ( not tested)
-
-+ static int rproc_fw_ext_boot(struct rproc *rproc, const struct firmware *fw)
-+ {
-+ 	struct device *dev = &rproc->dev;
-+ 	const char *name = rproc->firmware;
-+ 	int ret;
-+
-+
-+ 	dev_info(dev, "Booting fw image %s, size %zd\n", name, fw->size);
-+ 	
-+ 	/* ops to load and start the remoteprocessor */
-+ 	ret = rproc->ops->boot(rproc, fw);
-+ 	if (ret)
-+ 		return ret;
-+
-+ 	/*
-+ 	 * if enabling an IOMMU isn't relevant for this rproc, this is
-+ 	 * just a nop
-+ 	 */
-+ 	ret = rproc_enable_iommu(rproc);
-+ 	if (ret) {
-+ 		dev_err(dev, "can't enable iommu: %d\n", ret);
-+ 		return ret;
-+ 	}
-+
-+ 	/* Prepare rproc for firmware loading if needed */
-+ 	ret = rproc_prepare_device(rproc);
-+ 	if (ret) {
-+ 		dev_err(dev, "can't prepare rproc %s: %d\n", rproc->name, ret);
-+ 		goto disable_iommu;
-+ 	}
-+
-+ 	ret = rproc_set_rsc_table(rproc);
-+ 	if (ret) {
-+ 		dev_err(dev, "can't load resource table: %d\n", ret);
-+ 		goto unprepare_device;
-+ 	}
-+
-+
-+ 	/* reset max_notifyid */
-+ 	rproc->max_notifyid = -1;
-+
-+ 	/* reset handled vdev */
-+ 	rproc->nb_vdev = 0;
-+
-+ 	/* handle fw resources which are required to boot rproc */
-+ 	ret = rproc_handle_resources(rproc, rproc_loading_handlers);
-+ 	if (ret) {
-+ 		dev_err(dev, "Failed to process resources: %d\n", ret);
-+ 		goto clean_up_resources;
-+ 	}
-+
-+ 	/* Allocate carveout resources associated to rproc */
-+ 	ret = rproc_alloc_registered_carveouts(rproc);
-+ 	if (ret) {
-+ 		dev_err(dev, "Failed to allocate associated carveouts: %d\n",
-+ 			ret);
-+ 		goto clean_up_resources;
-+ 	}
-+
-+ 	return 0;
-+
-+ clean_up_resources:
-+ 	rproc_resource_cleanup(rproc);
-+ unprepare_rproc:
-+ 	/* release HW resources if needed */
-+ 	rproc_unprepare_device(rproc);
-+ disable_iommu:
-+ 	rproc_disable_iommu(rproc);
-+ 	return ret;
-+ }
-
-
-int rproc_boot(struct rproc *rproc)
-{
-[...]
-
-- 		ret = rproc_fw_boot(rproc, firmware_p);
-+ 		if(rproc->ops->boot)
-+ 			ret = rproc_fw_ext_boot(rproc, firmware_p);
-+ 		else
-+ 			ret = rproc_fw_boot(rproc, firmware_p);
-
-Another advantage of this solution is that it opens the framework to other
-formats. For instance it could be a way to support dtb format requested in [RFC]
-Passing device-tree to remoteproc [1].
-
-[1]
-https://lore.kernel.org/linux-remoteproc/f67cd822-4e29-71f2-7c42-e11dbaa6cd8c@kalrayinc.com/T/#t
-
-Thanks,
-Arnaud
-
-
-
-> 
-> I touched on that before but please rename rproc_tee_get_rsc_table() to
-> rproc_tee_elf_load_rsc_table().  I also suggest to introduce a new function,
-> rproc_tee_get_loaded_rsc_table() that would be called from
-> rproc_tee_elf_load_rsc_table().  That way we don't need trproc->rsc_va.  
-> 
-> I also think tee_rproc should be renamed to "rproc_tee_interface" and folded
-> under struct rproc.  
-> 
-> With the above most of the problems with the current implementation should
-> naturally go away.
-> 
-> Thanks,
-> Mathieu
-> 
->>
->>>> +	ret = tee_rproc_load_fw(ddata->trproc, fw);
->>>> +	if (ret)
->>>> +		return ret;
->>>> +	ddata->fw_loaded = true;
->>>> +
->>>> +	/* Update the resource table parameters. */
->>>> +	if (rproc_tee_get_rsc_table(ddata->trproc)) {
->>>> +		/* No resource table: reset the related fields. */
->>>> +		rproc->cached_table = NULL;
->>>> +		rproc->table_ptr = NULL;
->>>> +		rproc->table_sz = 0;
->>>> +	}
->>>> +
->>>> +	return 0;
->>>> +}
->>>> +
->>>> +static struct resource_table *
->>>> +stm32_rproc_tee_elf_find_loaded_rsc_table(struct rproc *rproc,
->>>> +					  const struct firmware *fw)
->>>> +{
->>>> +	struct stm32_rproc *ddata = rproc->priv;
->>>> +
->>>> +	return tee_rproc_get_loaded_rsc_table(ddata->trproc);
->>>> +}
->>>> +
->>>> +static int stm32_rproc_tee_start(struct rproc *rproc)
->>>> +{
->>>> +	struct stm32_rproc *ddata = rproc->priv;
->>>> +
->>>> +	return tee_rproc_start(ddata->trproc);
->>>> +}
->>>> +
->>>> +static int stm32_rproc_tee_attach(struct rproc *rproc)
->>>> +{
->>>> +	/* Nothing to do, remote proc already started by the secured context. */
->>>> +	return 0;
->>>> +}
->>>> +
->>>> +static int stm32_rproc_tee_stop(struct rproc *rproc)
->>>> +{
->>>> +	struct stm32_rproc *ddata = rproc->priv;
->>>> +	int err;
->>>> +
->>>> +	stm32_rproc_request_shutdown(rproc);
->>>> +
->>>> +	err = tee_rproc_stop(ddata->trproc);
->>>> +	if (err)
->>>> +		return err;
->>>> +
->>>> +	ddata->fw_loaded = false;
->>>> +
->>>> +	return stm32_rproc_release(rproc);
->>>> +}
->>>> +
->>>>  static int stm32_rproc_prepare(struct rproc *rproc)
->>>>  {
->>>>  	struct device *dev = rproc->dev.parent;
->>>> @@ -319,7 +410,14 @@ static int stm32_rproc_prepare(struct rproc *rproc)
->>>>  
->>>>  static int stm32_rproc_parse_fw(struct rproc *rproc, const struct firmware *fw)
->>>>  {
->>>> -	if (rproc_elf_load_rsc_table(rproc, fw))
->>>> +	struct stm32_rproc *ddata = rproc->priv;
->>>> +	int ret;
->>>> +
->>>> +	if (ddata->trproc)
->>>> +		ret = rproc_tee_get_rsc_table(ddata->trproc);
->>>> +	else
->>>> +		ret = rproc_elf_load_rsc_table(rproc, fw);
->>>> +	if (ret)
->>>>  		dev_warn(&rproc->dev, "no resource table found for this firmware\n");
->>>>  
->>>>  	return 0;
->>>> @@ -693,8 +791,22 @@ static const struct rproc_ops st_rproc_ops = {
->>>>  	.get_boot_addr	= rproc_elf_get_boot_addr,
->>>>  };
->>>>  
->>>> +static const struct rproc_ops st_rproc_tee_ops = {
->>>> +	.prepare	= stm32_rproc_prepare,
->>>> +	.start		= stm32_rproc_tee_start,
->>>> +	.stop		= stm32_rproc_tee_stop,
->>>> +	.attach		= stm32_rproc_tee_attach,
->>>> +	.kick		= stm32_rproc_kick,
->>>> +	.parse_fw	= stm32_rproc_parse_fw,
->>>> +	.find_loaded_rsc_table = stm32_rproc_tee_elf_find_loaded_rsc_table,
->>>> +	.get_loaded_rsc_table = stm32_rproc_get_loaded_rsc_table,
->>>> +	.sanity_check	= stm32_rproc_tee_elf_sanity_check,
->>>> +	.load		= stm32_rproc_tee_elf_load,
->>>> +};
->>>> +
->>>>  static const struct of_device_id stm32_rproc_match[] = {
->>>> -	{ .compatible = "st,stm32mp1-m4" },
->>>> +	{.compatible = "st,stm32mp1-m4",},
->>>> +	{.compatible = "st,stm32mp1-m4-tee",},
->>>>  	{},
->>>>  };
->>>>  MODULE_DEVICE_TABLE(of, stm32_rproc_match);
->>>> @@ -853,6 +965,7 @@ static int stm32_rproc_probe(struct platform_device *pdev)
->>>>  	struct device *dev = &pdev->dev;
->>>>  	struct stm32_rproc *ddata;
->>>>  	struct device_node *np = dev->of_node;
->>>> +	struct tee_rproc *trproc = NULL;
->>>>  	struct rproc *rproc;
->>>>  	unsigned int state;
->>>>  	int ret;
->>>> @@ -861,11 +974,31 @@ static int stm32_rproc_probe(struct platform_device *pdev)
->>>>  	if (ret)
->>>>  		return ret;
->>>>  
->>>> -	rproc = rproc_alloc(dev, np->name, &st_rproc_ops, NULL, sizeof(*ddata));
->>>> -	if (!rproc)
->>>> -		return -ENOMEM;
->>>> +	if (of_device_is_compatible(np, "st,stm32mp1-m4-tee")) {
->>>> +		trproc = tee_rproc_register(dev, STM32_MP1_M4_PROC_ID);
->>>> +		if (IS_ERR(trproc)) {
->>>> +			dev_err_probe(dev, PTR_ERR(trproc),
->>>> +				      "signed firmware not supported by TEE\n");
->>>> +			return PTR_ERR(trproc);
->>>> +		}
->>>> +		/*
->>>> +		 * Delegate the firmware management to the secure context.
->>>> +		 * The firmware loaded has to be signed.
->>>> +		 */
->>>> +		dev_info(dev, "Support of signed firmware only\n");
->>>
->>> Not sure what this adds.  Please remove.
->>
->> This is used to inform the user that only a signed firmware can be loaded, not
->> an ELF file.
->> I have a patch in my pipe to provide the supported format in the debugfs. In a
->> first step, I can suppress this message and we can revisit the issue when I push
->> the debugfs proposal.
->>
->> Thanks,
->> Arnaud
->>
->>>
->>>> +	}
->>>> +	rproc = rproc_alloc(dev, np->name,
->>>> +			    trproc ? &st_rproc_tee_ops : &st_rproc_ops,
->>>> +			    NULL, sizeof(*ddata));
->>>> +	if (!rproc) {
->>>> +		ret = -ENOMEM;
->>>> +		goto free_tee;
->>>> +	}
->>>>  
->>>>  	ddata = rproc->priv;
->>>> +	ddata->trproc = trproc;
->>>> +	if (trproc)
->>>> +		trproc->rproc = rproc;
->>>>  
->>>>  	rproc_coredump_set_elf_info(rproc, ELFCLASS32, EM_NONE);
->>>>  
->>>> @@ -916,6 +1049,10 @@ static int stm32_rproc_probe(struct platform_device *pdev)
->>>>  		device_init_wakeup(dev, false);
->>>>  	}
->>>>  	rproc_free(rproc);
->>>> +free_tee:
->>>> +	if (trproc)
->>>> +		tee_rproc_unregister(trproc);
->>>> +
->>>>  	return ret;
->>>>  }
->>>>  
->>>> @@ -937,6 +1074,8 @@ static void stm32_rproc_remove(struct platform_device *pdev)
->>>>  		device_init_wakeup(dev, false);
->>>>  	}
->>>>  	rproc_free(rproc);
->>>> +	if (ddata->trproc)
->>>> +		tee_rproc_unregister(ddata->trproc);
->>>>  }
->>>>  
->>>>  static int stm32_rproc_suspend(struct device *dev)
->>>> -- 
->>>> 2.25.1
->>>>
+Regards,
+Anup
 
