@@ -1,188 +1,100 @@
-Return-Path: <devicetree+bounces-37578-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-37582-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 393EB8456F4
-	for <lists+devicetree@lfdr.de>; Thu,  1 Feb 2024 13:08:21 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2CCF3845716
+	for <lists+devicetree@lfdr.de>; Thu,  1 Feb 2024 13:12:53 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 943FC1F221C8
-	for <lists+devicetree@lfdr.de>; Thu,  1 Feb 2024 12:08:20 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id AFE25289C5F
+	for <lists+devicetree@lfdr.de>; Thu,  1 Feb 2024 12:12:51 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C9F7F15DBB7;
-	Thu,  1 Feb 2024 12:07:54 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9F41715F310;
+	Thu,  1 Feb 2024 12:12:24 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="G5ufFrP9"
+	dkim=pass (1024-bit key) header.d=163.com header.i=@163.com header.b="GI+6UBnh"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8D5CC15DBB0;
-	Thu,  1 Feb 2024 12:07:54 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+Received: from m16.mail.163.com (m16.mail.163.com [220.197.31.3])
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id F308915D5C1;
+	Thu,  1 Feb 2024 12:12:21 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=220.197.31.3
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1706789274; cv=none; b=L/S4PWpdcieDKZfRBhJucYtP3X4fTRyV+DU9i21mZvbeiTwSpOxSJ4HxMwpQ4O+5l2ZeJlyHboray488cEgP6TyvSRPthQlwWNL8ZHyc6bgvpgBAnG1SfHLfwHxMyS1/F9DZNO8YqBUpdbI+UuzUoQyHmNjceDz6z7HUnAfJ/cE=
+	t=1706789544; cv=none; b=pMe1osHfHQcC3ZVyeWUZEnEULqpqZaALotubzW4zSozZRhPOjBUrb3fmEVOdxw0TS2+1GglX8Y2tOu1WOn6+GYiCPO0ICJJCSYXv+al0AHAgITUpYvcwX3biF3OC5hBXkNsbSe1d6Iswxgpd/w4rBnAPON0S/ICxOne24B87WRg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1706789274; c=relaxed/simple;
-	bh=fS2LtSupcmm3ZXyoVBzO9/Kodhf7J87JZaH+pdhJneo=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=QNJU96rYUQEirwfLSfHtPBoGrvUKAY/dWES6rzt11SRFQ4HmZW4p0hNmKZA2AVK5LI28ge1TX1gzBpL/05LsdHttFdONwjT34aUOn0UkNTXq35mGlpu5jErBuyOtWOaCRCieNafEwqHoFxNuFk7EnivVSIfai0amIvkwXiTYqOQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=G5ufFrP9; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 4F2A1C433F1;
-	Thu,  1 Feb 2024 12:07:45 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1706789274;
-	bh=fS2LtSupcmm3ZXyoVBzO9/Kodhf7J87JZaH+pdhJneo=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=G5ufFrP9K+FQCp02N/zFYcw8gNFiY6WBscknVj1Qy0ASTbs2O4Jx4nCAo7yxdHo9P
-	 JIPOl09R/iY4apB2FTy26235jBu0LOsdGDnyyiZN4nHlII0IUMcwGptvsjhpwL1UJH
-	 dYn27ERC2l3qZitah7MLlfiVpC29Mo9X2/X2B1cLqQo640IHgGSQTc7TMWaVTlJpWM
-	 2qB4rok7ILSg06up8unpc41P8iG6CsWxxVlHEce5bIqo47Wf0eukGWGmHA6nsu9C7v
-	 aHzY0zkJzUhEwrI0C30duNzyRWXFxJxS5dvgRf1qMxHoDMxtTCVZcN7q3n4dG6a8FF
-	 ICG8bBsOIX3dQ==
-Date: Thu, 1 Feb 2024 17:37:40 +0530
-From: Manivannan Sadhasivam <mani@kernel.org>
-To: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-Cc: Krishna Chaitanya Chundru <quic_krichai@quicinc.com>,
-	Bjorn Andersson <andersson@kernel.org>,
-	Konrad Dybcio <konrad.dybcio@linaro.org>,
-	Bjorn Helgaas <bhelgaas@google.com>,
-	Lorenzo Pieralisi <lpieralisi@kernel.org>,
-	Krzysztof =?utf-8?Q?Wilczy=C5=84ski?= <kw@linux.com>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Rob Herring <robh+dt@kernel.org>,
-	Johan Hovold <johan+linaro@kernel.org>,
-	Brian Masney <bmasney@redhat.com>,
-	Georgi Djakov <djakov@kernel.org>, linux-arm-msm@vger.kernel.org,
-	vireshk@kernel.org, quic_vbadigan@quicinc.com,
-	quic_skananth@quicinc.com, quic_nitegupt@quicinc.com,
-	linux-pci@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v6 6/6] PCI: qcom: Add OPP support to scale performance
- state of power domain
-Message-ID: <20240201120740.GB2934@thinkpad>
-References: <20240112-opp_support-v6-0-77bbf7d0cc37@quicinc.com>
- <20240112-opp_support-v6-6-77bbf7d0cc37@quicinc.com>
- <CAA8EJpqwOfeS-QpLVvYGf0jmTVxiT02POwK+9tkN03Cr4DgL+g@mail.gmail.com>
- <da1945ce-7e34-6ad5-7b9b-478fcbd4a2c6@quicinc.com>
- <CAA8EJpoZakDcBXYE57bRPMFvGEXh1o82r7Znv8mwCK6mRf5xog@mail.gmail.com>
- <20240201115415.GA2934@thinkpad>
- <CAA8EJppAL44ZLL5SnmX7SSwzvRUm2PffFUL6=gQRjq4neaLtRA@mail.gmail.com>
+	s=arc-20240116; t=1706789544; c=relaxed/simple;
+	bh=okPepgnUSuWPFcxkxKchMFOdJW58v3hgIwyezLk2Emg=;
+	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version; b=flpxsGu3CZduZck05yLSaC6gIj78MqpSXHO2TkTUR6hHKxxHHvmKB71BBHaE/WUr3ckJkpfDPny//oJzlI1HEWWR078C1YkrVFOzHPkysN/3uPXUNdl4srRjXZeR/nWQjQo6VBZtX7AAQzw2OZc/QhBQXMRyYnGeIfBF9JP+qEE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=163.com; spf=pass smtp.mailfrom=163.com; dkim=pass (1024-bit key) header.d=163.com header.i=@163.com header.b=GI+6UBnh; arc=none smtp.client-ip=220.197.31.3
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=163.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=163.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=163.com;
+	s=s110527; h=From:Subject:Date:Message-Id:MIME-Version; bh=KvYmw
+	ZNEjvb9A83FVmZYX/sRC9FmnLhMGuA9Gda7q+0=; b=GI+6UBnhwGYod5utkzp3j
+	DEGfcPT4QO8ODjHm6fzt30kdYkPEAEQ9Az9+9c9WSaJsB+4ahzU9zDig1oxzheKk
+	KydstvaX2FVA3k3WGWywQUiSfoHShf5QHrNo8AwJgvPvUrd+oJyOCRQpg62jn4Fm
+	MveMgKc9/wrKkJ3aMQa3IA=
+Received: from ProDesk.. (unknown [58.22.7.114])
+	by gzga-smtp-mta-g1-0 (Coremail) with SMTP id _____wDX_35birtlKEO5AA--.30092S2;
+	Thu, 01 Feb 2024 20:11:12 +0800 (CST)
+From: Andy Yan <andyshrk@163.com>
+To: heiko@sntech.de
+Cc: krzysztof.kozlowski+dt@linaro.org,
+	robh+dt@kernel.org,
+	devicetree@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	linux-kernel@vger.kernel.org,
+	linux-rockchip@lists.infradead.org,
+	Andy Yan <andyshrk@163.com>,
+	Dragan Simic <dsimic@manjaro.org>
+Subject: [PATCH v2 1/4] arm64: dts: rockchip: aliase sdmmc as mmc1 for Cool Pi 4B
+Date: Thu,  1 Feb 2024 20:11:03 +0800
+Message-Id: <20240201121106.1471301-1-andyshrk@163.com>
+X-Mailer: git-send-email 2.34.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <CAA8EJppAL44ZLL5SnmX7SSwzvRUm2PffFUL6=gQRjq4neaLtRA@mail.gmail.com>
+X-CM-TRANSID:_____wDX_35birtlKEO5AA--.30092S2
+X-Coremail-Antispam: 1Uf129KBjvdXoWrZryDuFyDJw1kuFyDZFyxZrb_yoWfWFX_ta
+	47Wr1kXa93Jry3Z3s8tay5Gay7Gayq9w4fK3yYva95JF1Yqan7Jay5Ja9293WUAF4jkrs3
+	JrZxZF1xGw1a9jkaLaAFLSUrUUUUjb8apTn2vfkv8UJUUUU8Yxn0WfASr-VFAUDa7-sFnT
+	9fnUUvcSsGvfC2KfnxnUUI43ZEXa7sR3n5GPUUUUU==
+X-CM-SenderInfo: 5dqg52xkunqiywtou0bp/xtbBEAZ3XmVOCDl11gABsH
 
-On Thu, Feb 01, 2024 at 01:58:58PM +0200, Dmitry Baryshkov wrote:
-> On Thu, 1 Feb 2024 at 13:54, Manivannan Sadhasivam <mani@kernel.org> wrote:
-> >
-> > On Tue, Jan 16, 2024 at 11:55:17AM +0200, Dmitry Baryshkov wrote:
-> > > On Tue, 16 Jan 2024 at 07:17, Krishna Chaitanya Chundru
-> > > <quic_krichai@quicinc.com> wrote:
-> > > >
-> > > >
-> > > >
-> > > > On 1/12/2024 9:03 PM, Dmitry Baryshkov wrote:
-> > > > > On Fri, 12 Jan 2024 at 16:25, Krishna chaitanya chundru
-> > > > > <quic_krichai@quicinc.com> wrote:
-> > > > >>
-> > > > >> QCOM Resource Power Manager-hardened (RPMh) is a hardware block which
-> > > > >> maintains hardware state of a regulator by performing max aggregation of
-> > > > >> the requests made by all of the processors.
-> > > > >>
-> > > > >> PCIe controller can operate on different RPMh performance state of power
-> > > > >> domain based up on the speed of the link. And this performance state varies
-> > > > >> from target to target.
-> > > > >>
-> > > > >> It is manadate to scale the performance state based up on the PCIe speed
-> > > > >> link operates so that SoC can run under optimum power conditions.
-> > > > >>
-> > > > >> Add Operating Performance Points(OPP) support to vote for RPMh state based
-> > > > >> upon GEN speed link is operating.
-> > > > >>
-> > > > >> OPP can handle ICC bw voting also, so move icc bw voting through opp
-> > > > >> framework if opp entries are present.
-> > > > >>
-> > > > >> In PCIe certain gen speeds like GEN1x2 & GEN2X1 or GEN3x2 & GEN4x1 use
-> > > > >> same icc bw and has frequency, so use frequency based search to reduce
-> > > > >> number of entries in the opp table.
-> > > > >>
-> > > > >> Don't initialize icc if opp is supported.
-> > > > >>
-> > > > >> Signed-off-by: Krishna chaitanya chundru <quic_krichai@quicinc.com>
-> > > > >> ---
-> > > > >>   drivers/pci/controller/dwc/pcie-qcom.c | 83 ++++++++++++++++++++++++++++------
-> > > > >>   1 file changed, 70 insertions(+), 13 deletions(-)
-> > > > >>
-> > > > >> diff --git a/drivers/pci/controller/dwc/pcie-qcom.c b/drivers/pci/controller/dwc/pcie-qcom.c
-> > > > >> index 035953f0b6d8..31512dc9d6ff 100644
-> > > > >> --- a/drivers/pci/controller/dwc/pcie-qcom.c
-> > > > >> +++ b/drivers/pci/controller/dwc/pcie-qcom.c
-> >
-> > [...]
-> >
-> > > > >>   static int qcom_pcie_link_transition_count(struct seq_file *s, void *data)
-> > > > >> @@ -1471,8 +1502,10 @@ static void qcom_pcie_init_debugfs(struct qcom_pcie *pcie)
-> > > > >>   static int qcom_pcie_probe(struct platform_device *pdev)
-> > > > >>   {
-> > > > >>          const struct qcom_pcie_cfg *pcie_cfg;
-> > > > >> +       unsigned long max_freq = INT_MAX;
-> > > > >>          struct device *dev = &pdev->dev;
-> > > > >>          struct qcom_pcie *pcie;
-> > > > >> +       struct dev_pm_opp *opp;
-> > > > >>          struct dw_pcie_rp *pp;
-> > > > >>          struct resource *res;
-> > > > >>          struct dw_pcie *pci;
-> > > > >> @@ -1539,9 +1572,33 @@ static int qcom_pcie_probe(struct platform_device *pdev)
-> > > > >>                  goto err_pm_runtime_put;
-> > > > >>          }
-> > > > >>
-> > > > >> -       ret = qcom_pcie_icc_init(pcie);
-> > > > >> -       if (ret)
-> > > > >> +        /* OPP table is optional */
-> > > > >> +       ret = devm_pm_opp_of_add_table(dev);
-> > > > >> +       if (ret && ret != -ENODEV) {
-> > > > >> +               dev_err_probe(dev, ret, "Failed to add OPP table\n");
-> > > > >>                  goto err_pm_runtime_put;
-> > > > >> +       }
-> > > > >
-> > > > > Can we initialise the table from the driver if it is not found? This
-> > > > > will help us by having the common code later on.
-> > > > >
-> > > > we already icc voting if there is no opp table present in the dts.
-> > >
-> > > Yes. So later we have two different code paths: one for the OPP table
-> > > being present and another one for the absent OPP table. My suggestion
-> > > is to initialise minimal OPP table by hand and then have a common code
-> > > path in qcom_pcie_icc_update().
-> > >
-> >
-> > Are you suggesting to duplicate DT in the driver?
-> 
-> As a fallback for the cases when there is no OPP table in the driver
-> it might make sense. See
-> Otherwise the DT is still somewhat duplicated in the form of calling
-> icc functions directly.
-> 
+Follow others rk3588 based boards, and u-boot only use mmc0/1
+as mmc boot targets, so aliase sdmmc as mmc1.
 
-No, DT is not duplicated. With this approach, we will end up hardcoding the DT
-entries in the driver which sounds backwards to me. Even with 2 different code
-paths, the hardware info will be left to the DT itself, so the driver just
-consumes it.
+Fixes: 3f5d336d64d6 ("arm64: dts: rockchip: Add support for rk3588s based board Cool Pi 4B")
+Signed-off-by: Andy Yan <andyshrk@163.com>
+Reviewed-by: Dragan Simic <dsimic@manjaro.org>
 
-So please, let's not do it.
+---
 
-- Mani
+(no changes since v1)
 
+ arch/arm64/boot/dts/rockchip/rk3588s-coolpi-4b.dts | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
+
+diff --git a/arch/arm64/boot/dts/rockchip/rk3588s-coolpi-4b.dts b/arch/arm64/boot/dts/rockchip/rk3588s-coolpi-4b.dts
+index 3fae40b9ae1b..3b9d21a6f8bf 100644
+--- a/arch/arm64/boot/dts/rockchip/rk3588s-coolpi-4b.dts
++++ b/arch/arm64/boot/dts/rockchip/rk3588s-coolpi-4b.dts
+@@ -20,8 +20,8 @@ / {
+ 
+ 	aliases {
+ 		mmc0 = &sdhci;
+-		mmc1 = &sdio;
+-		mmc2 = &sdmmc;
++		mmc1 = &sdmmc;
++		mmc2 = &sdio;
+ 	};
+ 
+ 	analog-sound {
 -- 
-மணிவண்ணன் சதாசிவம்
+2.34.1
+
 
