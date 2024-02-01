@@ -1,113 +1,139 @@
-Return-Path: <devicetree+bounces-37456-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-37457-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 673F284510F
-	for <lists+devicetree@lfdr.de>; Thu,  1 Feb 2024 06:53:51 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id BFBB8845139
+	for <lists+devicetree@lfdr.de>; Thu,  1 Feb 2024 07:07:39 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 23EC028ED72
-	for <lists+devicetree@lfdr.de>; Thu,  1 Feb 2024 05:53:50 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 743181F228D1
+	for <lists+devicetree@lfdr.de>; Thu,  1 Feb 2024 06:07:39 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6205082887;
-	Thu,  1 Feb 2024 05:53:36 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D4A3E85C47;
+	Thu,  1 Feb 2024 06:07:37 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=codeconstruct.com.au header.i=@codeconstruct.com.au header.b="DM8xbrHo"
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="EoLAaEx/"
 X-Original-To: devicetree@vger.kernel.org
-Received: from codeconstruct.com.au (pi.codeconstruct.com.au [203.29.241.158])
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.15])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B81278286F;
-	Thu,  1 Feb 2024 05:53:34 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=203.29.241.158
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 16E3D83CD5;
+	Thu,  1 Feb 2024 06:07:35 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.175.65.15
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1706766816; cv=none; b=GZ/2qUakKwHhiOF+AGe7gWjYDds0UKkp8DFqz8TkCwyK8VDm2tAvpQzxVo0CduE6M/m18DVIwS6ftG/G3U2Pq0myq2iq6BkAegDok9yvzWSAhncrmcSj8tDol68pJqwRhFJF4PLIU9m+oetXCoQpFMC4IUcPyBzAz+z7s2FrdcU=
+	t=1706767657; cv=none; b=Kiw1QbO7ftXdXGQqvNjzt6qB+FokhVpZtPJlNSNo0SnFsoNFFKTqnh22PcQFNQ2jL+RFLiWiEjLczUn7RRbRQYuO2cUc+A1y3s/WO2LCxjWCEwKYk4p00ebtCTo0R5kW481sxIAj85GqL9CZ3GzD1YUvlVpONsricVu6juWZpd8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1706766816; c=relaxed/simple;
-	bh=AMDcIniZzCTTe3m6Kx1T7sK45RG+dKky3PyruYQqQJ0=;
-	h=Message-ID:Subject:From:To:Cc:Date:In-Reply-To:References:
-	 Content-Type:MIME-Version; b=W/7BYG5jz8da3fHFKzx7BP+zVBDCCWTtMtpW+Mln/Lz72bV28zcWTEBdqiAzvIhJmFrYTW/gY4c3K5xhR1nD20s/NA6bAw9yWrfRA5P+ohasRyXuKjrnPRGHhDZRbpwDiWnUTTgZolir1loHEtEr8iA0QcbmK/5HW+LNX+V0+8A=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=codeconstruct.com.au; spf=pass smtp.mailfrom=codeconstruct.com.au; dkim=pass (2048-bit key) header.d=codeconstruct.com.au header.i=@codeconstruct.com.au header.b=DM8xbrHo; arc=none smtp.client-ip=203.29.241.158
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=codeconstruct.com.au
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=codeconstruct.com.au
-Received: from [192.168.68.112] (ppp14-2-76-194.adl-apt-pir-bras31.tpg.internode.on.net [14.2.76.194])
-	by mail.codeconstruct.com.au (Postfix) with ESMTPSA id B8E6E2017A;
-	Thu,  1 Feb 2024 13:53:31 +0800 (AWST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=codeconstruct.com.au; s=2022a; t=1706766812;
-	bh=rI8P+diGy8KEwpMykWyWoBLcsgBDvjFoVkDPmpqeTSo=;
-	h=Subject:From:To:Cc:Date:In-Reply-To:References;
-	b=DM8xbrHotWktCfZXqrNxsoWb3wCYAx/NrtfEqSeuDwct39ip1/+neHABCwpE1PWY8
-	 6XgRKKHOUT4STg71WQcjkOP46UCu7Ljr2DtDi8TGwNomsg/iF6G2WT8X1cP5bXJRIu
-	 mky4vsFVfHQxIM87mm4Y7FZHXZRn79FOqG08yT9CcaYCpNAhiZgmAX0j4U1hzPxcVO
-	 3HlpUJuGWy/NaQ1KbvCrMa8vlAfhzmYk3x1rXfsm06Gcckf1tRjXmsFE0IFclEHM0Y
-	 K7zkrx64iWCMyJVUfg/V9joGg3hdN13JVQQ5Jaw3VThqnZH8sSibP0wdLmTPYYT9jV
-	 oo1Jdmd+hhDAw==
-Message-ID: <6f39a2cc2a853b45624553d5fdc66c3b65830721.camel@codeconstruct.com.au>
-Subject: Re: [PATCH v5 18/21] ARM: dts: aspeed: yosemite4: add mctp config
- for NIC
-From: Andrew Jeffery <andrew@codeconstruct.com.au>
-To: Delphine CC Chiu <Delphine_CC_Chiu@wiwynn.com>, patrick@stwcx.xyz, Rob
- Herring <robh+dt@kernel.org>, Krzysztof Kozlowski
- <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>,
- Joel Stanley <joel@jms.id.au>
-Cc: devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
-	linux-aspeed@lists.ozlabs.org, linux-kernel@vger.kernel.org
-Date: Thu, 01 Feb 2024 16:23:31 +1030
-In-Reply-To: <20240131084134.328307-19-Delphine_CC_Chiu@wiwynn.com>
-References: <20240131084134.328307-1-Delphine_CC_Chiu@wiwynn.com>
-	 <20240131084134.328307-19-Delphine_CC_Chiu@wiwynn.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-User-Agent: Evolution 3.46.4-2 
+	s=arc-20240116; t=1706767657; c=relaxed/simple;
+	bh=D6bXdxqiDlPA/Gr9VoLm4TRLXPbuhZp5QeUAVwsb4/k=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=quOfz78NNPapK6mkyrscKLWDj4VuVo7XMOFHM58OP0k9WSY0scmgLNjT5P78PZNtAKUPMWz3ht3+ySsM55A3HoRwaA8xLUsaRZ2f4LtDghb6Rp26kAhWU/r6Q6BjMH2zqD+ciYiiJYq7rBq96mFZQSI2dBQRT0aiL/VzXyppFUw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=EoLAaEx/; arc=none smtp.client-ip=198.175.65.15
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1706767656; x=1738303656;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=D6bXdxqiDlPA/Gr9VoLm4TRLXPbuhZp5QeUAVwsb4/k=;
+  b=EoLAaEx/XFnakGZZEikM833nHlD04+9s35MdXV95Ul0MtS59W5NJ1iCJ
+   rrBxQx9CQzwVjj7UH1e+rjs+9n2TSWSvc/iC230MRu9ioQAXXqNguUg0z
+   emJl+UCvQ5nW9j/rm1AmBkBSTSf2FEGMe5yY/wyD0QXF8wW/4xSDoAPN0
+   HjohnDP4zYQVCIxuc4hsaR0kFLOUCUIeRclx7dwk73qTxyu8lBErHcFjd
+   7trsNlIP2WGjg08yx+VUNQyRH/G4/MHQiBFSmK3holl0yce4XMlKE4q2c
+   GlE8b0Bx/unYlsUIVvTG8/Uo+l1xgLNiptD1rzkcwVVWgqv0mqMoClslT
+   g==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10969"; a="3680508"
+X-IronPort-AV: E=Sophos;i="6.05,234,1701158400"; 
+   d="scan'208";a="3680508"
+Received: from orsmga004.jf.intel.com ([10.7.209.38])
+  by orvoesa107.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 31 Jan 2024 22:07:36 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=McAfee;i="6600,9927,10969"; a="912032520"
+X-IronPort-AV: E=Sophos;i="6.05,234,1701158400"; 
+   d="scan'208";a="912032520"
+Received: from lkp-server02.sh.intel.com (HELO 59f4f4cd5935) ([10.239.97.151])
+  by orsmga004.jf.intel.com with ESMTP; 31 Jan 2024 22:07:31 -0800
+Received: from kbuild by 59f4f4cd5935 with local (Exim 4.96)
+	(envelope-from <lkp@intel.com>)
+	id 1rVQET-0002Qj-11;
+	Thu, 01 Feb 2024 06:07:29 +0000
+Date: Thu, 1 Feb 2024 14:07:10 +0800
+From: kernel test robot <lkp@intel.com>
+To: Daniel Scally <dan.scally@ideasonboard.com>,
+	linux-media@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org
+Cc: oe-kbuild-all@lists.linux.dev, jacopo.mondi@ideasonboard.com,
+	nayden.kanchev@arm.com, robh+dt@kernel.org, mchehab@kernel.org,
+	krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
+	jerome.forissier@linaro.org, kieran.bingham@ideasonboard.com,
+	laurent.pinchart@ideasonboard.com,
+	Daniel Scally <dan.scally@ideasonboard.com>
+Subject: Re: [PATCH 3/5] media: mali-c55: Add Mali-C55 ISP driver
+Message-ID: <202402011332.NzuDyrGr-lkp@intel.com>
+References: <20240131164709.810587-4-dan.scally@ideasonboard.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20240131164709.810587-4-dan.scally@ideasonboard.com>
 
-On Wed, 2024-01-31 at 16:41 +0800, Delphine CC Chiu wrote:
-> add mctp config for NIC
+Hi Daniel,
 
-How does this integrate into the MCTP network(s)? It would be good to
-have more of a description.
+kernel test robot noticed the following build warnings:
 
->=20
-> Signed-off-by: Delphine CC Chiu <Delphine_CC_Chiu@wiwynn.com>
-> ---
-> Changelog:
->   - v4
->     - Revise device node name
->   - v2
->     - Add patch for NIC mctp config
-> ---
->  .../aspeed/aspeed-bmc-facebook-yosemite4.dts  | 24 +++++++++++++++++++
->  1 file changed, 24 insertions(+)
->=20
-> diff --git a/arch/arm/boot/dts/aspeed/aspeed-bmc-facebook-yosemite4.dts b=
-/arch/arm/boot/dts/aspeed/aspeed-bmc-facebook-yosemite4.dts
-> index 7c7c9e85bb92..b9b6fe729cd6 100644
-> --- a/arch/arm/boot/dts/aspeed/aspeed-bmc-facebook-yosemite4.dts
-> +++ b/arch/arm/boot/dts/aspeed/aspeed-bmc-facebook-yosemite4.dts
-> @@ -1273,40 +1273,64 @@ imux24: i2c@0 {
->  			#address-cells =3D <1>;
->  			#size-cells =3D <0>;
->  			reg =3D <0>;
-> +			mctp-controller;
->  			temperature-sensor@1f {
->  				compatible =3D "ti,tmp421";
->  				reg =3D <0x1f>;
->  			};
-> +
-> +			temperature-sensor@3c {
-> +				compatible =3D "smsc,emc1403";
-> +				reg =3D <0x3c>;
-> +			};
+[auto build test WARNING on media-tree/master]
+[also build test WARNING on linuxtv-media-stage/master linus/master v6.8-rc2 next-20240131]
+[cannot apply to sailus-media-tree/streams]
+[If your patch is applied to the wrong git tree, kindly drop us a note.
+And when submitting patch, we suggest to use '--base' as documented in
+https://git-scm.com/docs/git-format-patch#_base_tree_information]
 
-This is unrelated to the MCTP configuration? Same with the other nodes
-in the patch.
+url:    https://github.com/intel-lab-lkp/linux/commits/Daniel-Scally/media-uapi-Add-MEDIA_BUS_FMT_RGB202020_1X60-format-code/20240201-005029
+base:   git://linuxtv.org/media_tree.git master
+patch link:    https://lore.kernel.org/r/20240131164709.810587-4-dan.scally%40ideasonboard.com
+patch subject: [PATCH 3/5] media: mali-c55: Add Mali-C55 ISP driver
+config: m68k-allmodconfig (https://download.01.org/0day-ci/archive/20240201/202402011332.NzuDyrGr-lkp@intel.com/config)
+compiler: m68k-linux-gcc (GCC) 13.2.0
+reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20240201/202402011332.NzuDyrGr-lkp@intel.com/reproduce)
 
-Andrew
+If you fix the issue in a separate patch/commit (i.e. not just a new version of
+the same patch/commit), kindly add following tags
+| Reported-by: kernel test robot <lkp@intel.com>
+| Closes: https://lore.kernel.org/oe-kbuild-all/202402011332.NzuDyrGr-lkp@intel.com/
+
+All warnings (new ones prefixed by >>):
+
+>> drivers/media/platform/arm/mali-c55/mali-c55-capture.c:286:8: warning: type qualifiers ignored on function return type [-Wignored-qualifiers]
+     286 | static const char * const mali_c55_cap_dev_to_name(struct mali_c55_cap_dev *cap)
+         |        ^~~~~
+--
+   drivers/media/platform/arm/mali-c55/mali-c55-tpg.c: In function 'mali_c55_tpg_configure':
+>> drivers/media/platform/arm/mali-c55/mali-c55-tpg.c:125:36: warning: variable 'fmt' set but not used [-Wunused-but-set-variable]
+     125 |         struct v4l2_mbus_framefmt *fmt;
+         |                                    ^~~
+
+
+vim +286 drivers/media/platform/arm/mali-c55/mali-c55-capture.c
+
+   285	
+ > 286	static const char * const mali_c55_cap_dev_to_name(struct mali_c55_cap_dev *cap)
+   287	{
+   288		if (cap->reg_offset == MALI_C55_CAP_DEV_FR_REG_OFFSET)
+   289			return capture_device_names[0];
+   290		else if (cap->reg_offset == MALI_C55_CAP_DEV_DS_REG_OFFSET)
+   291			return capture_device_names[1];
+   292		else
+   293			return "params/stat not supported yet";
+   294	}
+   295	
+
+-- 
+0-DAY CI Kernel Test Service
+https://github.com/intel/lkp-tests/wiki
 
