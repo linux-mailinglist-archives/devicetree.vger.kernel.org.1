@@ -1,231 +1,177 @@
-Return-Path: <devicetree+bounces-37509-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-37510-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5319B84538B
-	for <lists+devicetree@lfdr.de>; Thu,  1 Feb 2024 10:15:11 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 92186845393
+	for <lists+devicetree@lfdr.de>; Thu,  1 Feb 2024 10:16:32 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 08D9028FB91
-	for <lists+devicetree@lfdr.de>; Thu,  1 Feb 2024 09:15:10 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 49CFD288724
+	for <lists+devicetree@lfdr.de>; Thu,  1 Feb 2024 09:16:31 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B8C0215B981;
-	Thu,  1 Feb 2024 09:14:25 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8E96A1586FB;
+	Thu,  1 Feb 2024 09:16:26 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="ykq2K1Ix"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="Vv9JpJmz"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ej1-f45.google.com (mail-ej1-f45.google.com [209.85.218.45])
+Received: from mail-wm1-f49.google.com (mail-wm1-f49.google.com [209.85.128.49])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EA43115B975
-	for <devicetree@vger.kernel.org>; Thu,  1 Feb 2024 09:14:23 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.45
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DA91515AACD
+	for <devicetree@vger.kernel.org>; Thu,  1 Feb 2024 09:16:24 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.49
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1706778865; cv=none; b=K92WJzlmZ6qBPkIO+7OVFUzrFrMzAJPF4zx/WCDV2A5BDDq5y14JYvhzEdetA8R6cTynSRKZWDkWLYshIdVIQmQMbocuF14z0Hh6TitB1fJ8mkzH0y8T2sNb9uNeitqOxCCki7Vr6/3JL7ZDoAsQG3Q9DxtIUujWtfNw1Jxzjj8=
+	t=1706778986; cv=none; b=HSGmCfb4LuEbQYmKbP1pymOiPutaxiKKUuVT3xyZWKNvUlmUY9IUMZVi/mWufF5Ku697jdDlAD1ZaFHfaRtMjqzYakSMq/lsLexmyeuZSBr+Aji7/zOdxIob6bzbDnpqmT2LF8XaiIHnHMFG9Qwu0+Qcx1KX0N72RRePSMn+vN0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1706778865; c=relaxed/simple;
-	bh=ZzZFC8pCFWDVU7JyslqsXXC7ChqqenGWk7j8CMB9YZM=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=j34J2X2CXpMtgL7Aky3a9IZMXjkq2lDVI5RVgh9ysAKvfFnJPeTpPsoyAk0z1FyMmuJRpqJ946U0Cl70h7QUMOlGTtZCSgR9XypSMn9eECduDn5E03tY0irrudce7bTewrnQ3w/4PJ8i8Ju3IX9c9maXjySxUnOwNxxTgstckCk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=ykq2K1Ix; arc=none smtp.client-ip=209.85.218.45
+	s=arc-20240116; t=1706778986; c=relaxed/simple;
+	bh=5OTikD6CuPK8gKbmtuehnyPLyBNME4taPsrO/Ys9BZw=;
+	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:To:Cc; b=l3j4cWMur6yH3cArSZkESS0ZhrCA7/y54DYORoSgRFdQduXcyv+BtEOSrM0X5q1pcYlEJdKkSMXgIfT+1clyw6JsBC3lI9YwZaCrIByy5QYPBbyfd3UFHVZUjxWdy49UIalkM3Nz8BmSpEF/4jAv3Gd/lm8jYvN4ZCPuJ+geNo4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=Vv9JpJmz; arc=none smtp.client-ip=209.85.128.49
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-ej1-f45.google.com with SMTP id a640c23a62f3a-a2d7e2e7fe0so115606466b.1
-        for <devicetree@vger.kernel.org>; Thu, 01 Feb 2024 01:14:23 -0800 (PST)
+Received: by mail-wm1-f49.google.com with SMTP id 5b1f17b1804b1-40fb94d42e4so5060485e9.2
+        for <devicetree@vger.kernel.org>; Thu, 01 Feb 2024 01:16:24 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1706778862; x=1707383662; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
-         :to:content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=M/8tPV5f9TkHhEsp1Q8SF5XrFa/+sW2kJLUAlbmmFaM=;
-        b=ykq2K1Ix+7w7JHy1Wwqt+aO3b0NHMpZrA7mSQvvRM2QXFuGZt5G1xhE9Grqe0Hynso
-         BNv8x6kbkExbpsAme8o1T00naIVim927dthHAfLvdCs0uLMeigNtmTQm8uP7KCR4+9ru
-         h2gKfBAd83mpeeLKAeCNbZ/LHQbU1E1IoBiGx020pwl0EOXa5pveks0UqKUYsmide3pV
-         sIiX+dTTzma9YL4+EuWvG/t9i+EKOsOmHz3TD+tJeC3NsyDgOdmGCsoNQ2sKJAcwZzDe
-         HdRphsmZxtx2m3Wq90cu28ZoIi8BYc8/VrZ+ZpASDhX0ANkH0/NafzB7DDOJdepEd5yw
-         0xOQ==
+        d=linaro.org; s=google; t=1706778983; x=1707383783; darn=vger.kernel.org;
+        h=cc:to:message-id:content-transfer-encoding:mime-version:subject
+         :date:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=KbM4ttdeCgtUREmJp18n91Tmg8C/A3C0WQ15eddMLUo=;
+        b=Vv9JpJmzJP1omTVYowGKo1ODBhAScLvPJS0qKC/n3KwtJbVbHhJ+KU0fDWWpTG/LjM
+         vWOMnLf7skdNm/D2ewMU6J6gVaqz0IiXOA8tLgA0WsMLbLDjLRLhcee3mo4wd1AIHEZ4
+         Dw0eGXK013V0v/f/XOSVpDQkCrUT75aK2IYBrBew5dmgNqvoxJdIXkt+BgrDr5yUp+gQ
+         bBkwUnPnWLqDP5yUBYiVHhHN8hxaRq+DOr2TWeMFGrCEjVBjkj07sUj+EizrskiTkEJ5
+         DJi8VZbgYRxu1nHF1tO9oo3QbsFAdk+3uA6eDTN6v3x9w7ppuUcldK8cljFqFKQkGjj9
+         00KQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1706778862; x=1707383662;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
-         :to:content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=M/8tPV5f9TkHhEsp1Q8SF5XrFa/+sW2kJLUAlbmmFaM=;
-        b=TfE4LIvVSLLuqTEG6oLsir1bl9uRCOn2l/ps0gqZgt3O8FW9wLf5MBHkRidPBVu7/c
-         Ko7qEQHstgjKJpOS+n3DGMtSwG9IiTzX+5/jQUQ7emBwUwrL4U4KTAiESdFgMthZGdtA
-         GfEQSNp+KwyweP8tweRoHYr/t76C61xfS7B+hJsgc6czmYTjnLfppIsrEHlnZkfluFPy
-         p+zgpPTtQ90VEb+mGoY5UnhHOnArKB5vcpekzvBBbKYCsnf+wkjekf6zZAbullkWFRZC
-         btwjeqw8HbVoje9fJaKqWOFW15/ZkjbIF3/RHJlu5BugL1XTvAmQgkF1hraZ2p0aT3yw
-         RelA==
-X-Gm-Message-State: AOJu0Yz8Hplyc6OhqB6pQoJ8kZuOq1byqaB8oovoIbZ1ZcVVQQ1QFDGM
-	kJ08ALYAm+mWDBh9toiK62C60UW01+ypThdugNSiGoNrNozfd7AQaxMWhCesR00=
-X-Google-Smtp-Source: AGHT+IH58gkd1fs10vyT7eEcqXGDJwqAYIKiVC+I+A8OP3YgTKftOtUxlewXAhONh6DTSb80sUji2w==
-X-Received: by 2002:a17:906:cb2:b0:a27:5fd1:791f with SMTP id k18-20020a1709060cb200b00a275fd1791fmr4794552ejh.0.1706778862246;
-        Thu, 01 Feb 2024 01:14:22 -0800 (PST)
-X-Forwarded-Encrypted: i=0; AJvYcCWvUprgPBYD2U5tuVsSbAuU20y3L1EkaOCfB/E7XauuVlm207EHxazpSCwE0AJntKuON6cu9pJDhPyOaELebk2/+1Ct0BVPnM3Alw2QMYyumYfV3i9o0uuu9/MULr0wLtkuYEjpzLoKDAEdfPjmb6PElg+ccXl8s6S4cT+Uj094vd0ArqSxLiLobBOjub+irO7E+OFarD/3RvhCdmc5WgDIMlrSrrBPQuqKKNf4EoPHup/HeGbV/CH0+z5RzTJyTPvzJBKy6b2FR+fjE6V7KIGKe1HHNwqhBQ74jOHQ2bRweqcNMWlknT321vBnF6rgjzGCtcjCsmWSdwcKskInUtiWkSE7VJsapNHo5c5TPxLPGZjiFBn6lPCG10K4gk5OIgShD8eksHIGpXT+Phb/xCHTjiyIqTD1zT812omj+vQ2xD3Aw7WhGqU/sANK8U7d/7FAvV2WfvFgC1fCy58+Lw5gIHYWxUtxq57wnUzy684TqbSMoVV0RAPR
-Received: from [192.168.1.20] ([178.197.222.62])
-        by smtp.gmail.com with ESMTPSA id cu3-20020a170906ba8300b00a368903fc98sm1165092ejd.136.2024.02.01.01.14.20
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 01 Feb 2024 01:14:21 -0800 (PST)
-Message-ID: <32ac8056-1820-4871-8526-8b467162d78e@linaro.org>
-Date: Thu, 1 Feb 2024 10:14:19 +0100
+        d=1e100.net; s=20230601; t=1706778983; x=1707383783;
+        h=cc:to:message-id:content-transfer-encoding:mime-version:subject
+         :date:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=KbM4ttdeCgtUREmJp18n91Tmg8C/A3C0WQ15eddMLUo=;
+        b=Hb9zO58+5n+4CwxK22FNWsgPf0+ZK17v3juR5VT4IawouMMGQXZwv66mNI4fmm+Ybo
+         IYTFOXURGWUXrLnqUJmkklZ0xSjq9itxEiytSXaTk0MLL2HAmOPm5Bsq96NCh8oyL92r
+         pwnEVC6xt+/1KQtPvWHxGvx/7ED34mH93R8KmdM4VyxOYiVo0ctYHqijHP/rZXug2zX8
+         h0cUbRbp8TMMMtLzM/RkcAv4+k4dKCtd4WJDOcKbKwn2ga65oNn23UIDWSp77HLwRI3U
+         JaftIHjh0uMnsh30kmW2eWJOjITxwFUn98VOL8I7uuhC/SH9Qi2/SsZN5ABj7shFcOxg
+         agUw==
+X-Gm-Message-State: AOJu0YxglMUM/FgsEcissFfvkjNZSeC531n+jQkEa12HqIHCCQoliuUS
+	BYLFe8tgRKz+YsZV1/hpGk5kXomyq15NsPzWiZornpircNfp7sl+jTueplsajes=
+X-Google-Smtp-Source: AGHT+IEEpYejzM4XUH+oYeUuGYpKcB2ZFEYwFkYNkUdFuHQItoqzDMOptLCRHJrPVhpiBEVsDktmPA==
+X-Received: by 2002:a05:600c:4589:b0:40e:8fe8:a173 with SMTP id r9-20020a05600c458900b0040e8fe8a173mr1325416wmo.4.1706778983084;
+        Thu, 01 Feb 2024 01:16:23 -0800 (PST)
+X-Forwarded-Encrypted: i=0; AJvYcCUmfmXqD2prUNRuX6FAeUYPHkAeC6zyJoArufPykTwgy3U/UhlaCKbnerO0KDJnPiwoBU1tZlexnGgTm2DrczyYvLOB22hQSlBRUVSzxBJhdiL60S1/q7/H1Anqpz1rGx1mTROPcEX0CVZsH1kpj5RzIV5gvW25hsWvuk0/+Aag06gdN7BEEYHGmitcpVLG8T4y64nS71g0lkO7Q+T7B8shrpIn/BMyiC+QJZgBO32VFJ60bowcEDh7RDvJ01xOVGICJ6poi5uWi2gpIhVnSo+oGy12vxOVjd9e0O/Va6FRB6WH
+Received: from arrakeen.starnux.net ([2a01:e0a:982:cbb0:52eb:f6ff:feb3:451a])
+        by smtp.gmail.com with ESMTPSA id jn22-20020a05600c6b1600b0040ef63a162dsm3804881wmb.26.2024.02.01.01.16.22
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 01 Feb 2024 01:16:22 -0800 (PST)
+From: Neil Armstrong <neil.armstrong@linaro.org>
+Date: Thu, 01 Feb 2024 10:16:21 +0100
+Subject: [PATCH] arm64: dts: qcom: sm8550-hdk: correct WCD9385 route and
+ port mapping
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v6 11/15] MIPS: mobileye: Add EyeQ5 dtsi
-Content-Language: en-US
-To: Gregory CLEMENT <gregory.clement@bootlin.com>,
- Paul Burton <paulburton@kernel.org>,
- Thomas Bogendoerfer <tsbogend@alpha.franken.de>, linux-mips@vger.kernel.org,
- Jiaxun Yang <jiaxun.yang@flygoat.com>, Rob Herring <robh+dt@kernel.org>,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Cc: Vladimir Kondratiev <vladimir.kondratiev@mobileye.com>,
- Tawfik Bayouk <tawfik.bayouk@mobileye.com>,
- Alexandre Belloni <alexandre.belloni@bootlin.com>,
- =?UTF-8?Q?Th=C3=A9o_Lebrun?= <theo.lebrun@bootlin.com>,
- Thomas Petazzoni <thomas.petazzoni@bootlin.com>
-References: <20240118155252.397947-1-gregory.clement@bootlin.com>
- <20240118155252.397947-12-gregory.clement@bootlin.com>
-From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
- 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
- D2GYIS41Kv4Isx2dEFh+/Q==
-In-Reply-To: <20240118155252.397947-12-gregory.clement@bootlin.com>
-Content-Type: text/plain; charset=UTF-8
+Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
+Message-Id: <20240201-topic-sm8550-hdk8550-audio-fix-v1-1-aa526c9c91d5@linaro.org>
+X-B4-Tracking: v=1; b=H4sIAGRhu2UC/x2NSwqAMAwFryJZG0iLxc9VxIXaVINopVURxLtbX
+ A0zi/ceiByEIzTZA4EvieK3JCrPYJz7bWIUmxw06YI0KTz8LiPGtTKGcLbLz/604tHJjaasXVU
+ 6RfVgII3sgVP+D9rufT8c3LoocAAAAA==
+To: Bjorn Andersson <andersson@kernel.org>, 
+ Konrad Dybcio <konrad.dybcio@linaro.org>, Rob Herring <robh@kernel.org>, 
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, 
+ Conor Dooley <conor+dt@kernel.org>
+Cc: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>, 
+ linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org, 
+ linux-kernel@vger.kernel.org, Neil Armstrong <neil.armstrong@linaro.org>
+X-Mailer: b4 0.12.4
+X-Developer-Signature: v=1; a=openpgp-sha256; l=2412;
+ i=neil.armstrong@linaro.org; h=from:subject:message-id;
+ bh=5OTikD6CuPK8gKbmtuehnyPLyBNME4taPsrO/Ys9BZw=;
+ b=owEBbQKS/ZANAwAKAXfc29rIyEnRAcsmYgBlu2FlCJhAxbNR2uAtR8CkZIlAdrUez9GIT5QqknIe
+ /uuaoH+JAjMEAAEKAB0WIQQ9U8YmyFYF/h30LIt33NvayMhJ0QUCZbthZQAKCRB33NvayMhJ0QpnD/
+ 97YNRMRsDuqWFFHIz8Lw+AOQfhCgq+nfmWUK3MHVgglsO5sfPPrJR2tJBZO9tX8bP8XQAO6mkq+xam
+ 416fGhEWupmRj+RQ5rfjq1evhr6FxsknBgBJ5V1vhd/sEp035VZLHOLEw6fk9KUQhOZlT79w8jeeHC
+ 3yCN042jDKri2l5k8ygP4PiFNGBV8o4lgsIOh9TSkId/yWdJeuFox9Ac0+T1w5bVDQZG326Tu8fEgA
+ fVCpE0NTyKei2Tf++dH8oEquNYrX25oWCAWFNJBT358d4DRwFTl36wUB3JIIsF9fFqgqAxdYmR0ho2
+ JIw0db134DfBIMTVOqUQ108WMY2GWyn1UCKGaZ4Oj0KDQWgHhTCxxQvdM+dj1tpMHZlmKH8iOUQaxk
+ T2suGKdgFaZVU5iOmrHsESuAeIwE3qhCKlLWuLyH33B+wZMjtE7pj+KCrJgZ24eihewWNlKNo6wSfe
+ tg1jHVuPttr5cGd6czIqIkPhOi225VWOsDXaLutIsu3pNxXjldIT3cQPsxqe/aveNzhYTb3SFfQ+pn
+ 7MnIYuxnt4fiUcqS3yV2Ow3l8OrzT0cC/jbpS9J9C50mKhtCVXJWP2WFZG03kw0XKASvDpIB1QSFSM
+ +Hx0XmlxOp7kD2jz1th8xWs67P5ZsnJZf2zRyetzmYEb0FwaaEGteOOtFxjA==
+X-Developer-Key: i=neil.armstrong@linaro.org; a=openpgp;
+ fpr=89EC3D058446217450F22848169AB7B1A4CFF8AE
 
-On 18/01/2024 16:52, Gregory CLEMENT wrote:
-> Add a device tree include file for the Mobileye EyeQ5 SoC.
-> 
-> Based on the work of Slava Samsonov <stanislav.samsonov@intel.com>
-> 
-> Signed-off-by: Gregory CLEMENT <gregory.clement@bootlin.com>
-> ---
+Starting from SM8550, the TX ADC input soundwire port is offset by 1,
+and uses the new SWR_INPUTx input ports, so replace the legacy
+SWR_ADCx routes for SWR_INPUT0 & SWR_INPUT1 following the correct
+TX Soundwire port mapping.
 
-...
+Add some comments on the routing for clarity.
 
-> +
-> +	soc: soc {
-> +		#address-cells = <2>;
-> +		#size-cells = <2>;
-> +		ranges;
-> +		compatible = "simple-bus";
-> +
-> +		uart0: serial@800000 {
-> +			compatible = "arm,pl011", "arm,primecell";
-> +			reg = <0 0x800000 0x0 0x1000>;
-> +			reg-io-width = <4>;
-> +			interrupt-parent = <&gic>;
-> +			interrupts = <GIC_SHARED 6 IRQ_TYPE_LEVEL_HIGH>;
-> +			clocks  = <&uart_clk>, <&occ_periph>;
-> +			clock-names = "uartclk", "apb_pclk";
-> +		};
-> +
-> +		uart1: serial@900000 {
-> +			compatible = "arm,pl011", "arm,primecell";
-> +			reg = <0 0x900000 0x0 0x1000>;
-> +			reg-io-width = <4>;
-> +			interrupt-parent = <&gic>;
-> +			interrupts = <GIC_SHARED 6 IRQ_TYPE_LEVEL_HIGH>;
-> +			clocks  = <&uart_clk>, <&occ_periph>;
-> +			clock-names = "uartclk", "apb_pclk";
-> +		};
-> +
-> +		uart2: serial@a00000 {
-> +			compatible = "arm,pl011", "arm,primecell";
-> +			reg = <0 0xa00000 0x0 0x1000>;
-> +			reg-io-width = <4>;
-> +			interrupt-parent = <&gic>;
-> +			interrupts = <GIC_SHARED 6 IRQ_TYPE_LEVEL_HIGH>;
-> +			clocks  = <&uart_clk>, <&occ_periph>;
-> +			clock-names = "uartclk", "apb_pclk";
-> +		};
-> +
-> +		olb: olb@e00000 {
+Fixes: b5e25ded2721 ("arm64: dts: qcom: sm8550: add support for the SM8550-HDK board")
+Signed-off-by: Neil Armstrong <neil.armstrong@linaro.org>
+---
+ arch/arm64/boot/dts/qcom/sm8550-hdk.dts | 21 +++++++++++++++++----
+ 1 file changed, 17 insertions(+), 4 deletions(-)
 
-That's not a correct name. Please do not send knowingly incorrect DTS.
+diff --git a/arch/arm64/boot/dts/qcom/sm8550-hdk.dts b/arch/arm64/boot/dts/qcom/sm8550-hdk.dts
+index 87276c39c589..12d60a0ee095 100644
+--- a/arch/arm64/boot/dts/qcom/sm8550-hdk.dts
++++ b/arch/arm64/boot/dts/qcom/sm8550-hdk.dts
+@@ -211,9 +211,9 @@ sound {
+ 				"AMIC1", "MIC BIAS1",
+ 				"AMIC2", "MIC BIAS2",
+ 				"AMIC5", "MIC BIAS4",
+-				"TX SWR_ADC0", "ADC1_OUTPUT",
+-				"TX SWR_ADC1", "ADC2_OUTPUT",
+-				"TX SWR_ADC3", "ADC4_OUTPUT";
++				"TX SWR_INPUT0", "ADC1_OUTPUT",
++				"TX SWR_INPUT1", "ADC2_OUTPUT",
++				"TX SWR_INPUT1", "ADC4_OUTPUT";
+ 
+ 		wcd-playback-dai-link {
+ 			link-name = "WCD Playback";
+@@ -1139,6 +1139,13 @@ wcd_rx: codec@0,4 {
+ 		compatible = "sdw20217010d00";
+ 		reg = <0 4>;
+ 
++		/*
++		 * WCD9385 RX Port 1 (HPH_L/R)      <=> SWR1 Port 1 (HPH_L/R)
++		 * WCD9385 RX Port 2 (CLSH)         <=> SWR1 Port 2 (CLSH)
++		 * WCD9385 RX Port 3 (COMP_L/R)     <=> SWR1 Port 3 (COMP_L/R)
++		 * WCD9385 RX Port 4 (LO)           <=> SWR1 Port 4 (LO)
++		 * WCD9385 RX Port 5 (DSD_L/R)      <=> SWR1 Port 5 (DSD_L/R)
++		 */
+ 		qcom,rx-port-mapping = <1 2 3 4 5>;
+ 	};
+ };
+@@ -1151,7 +1158,13 @@ wcd_tx: codec@0,3 {
+ 		compatible = "sdw20217010d00";
+ 		reg = <0 3>;
+ 
+-		qcom,tx-port-mapping = <1 1 2 3>;
++		/*
++		 * WCD9385 TX Port 1 (ADC1,2)             <=> SWR2 Port 2 (TX SWR_INPUT 0,1,2,3)
++		 * WCD9385 TX Port 2 (ADC3,4)             <=> SWR2 Port 2 (TX SWR_INPUT 0,1,2,3)
++		 * WCD9385 TX Port 3 (DMIC0,1,2,3 & MBHC) <=> SWR2 Port 3 (TX SWR_INPUT 4,5,6,7)
++		 * WCD9385 TX Port 4 (DMIC4,5,6,7)        <=> SWR2 Port 4 (TX SWR_INPUT 8,9,10,11)
++		 */
++		qcom,tx-port-mapping = <2 2 3 4>;
+ 	};
+ };
+ 
 
-> +			compatible = "mobileye,eyeq5-olb", "syscon", "simple-mfd";
-> +			reg = <0 0xe00000 0x0 0x400>;
-> +			reg-io-width = <4>;
-
-That's not needed property here.
-
-> +		};
-> +
-> +		gic: interrupt-controller@140000 {
-> +			compatible = "mti,gic";
-> +			reg = <0x0 0x140000 0x0 0x20000>;
-> +			interrupt-controller;
-> +			#interrupt-cells = <3>;
-> +
-> +			/*
-> +			* Declare the interrupt-parent even though the mti,gic
-> +			* binding doesn't require it, such that the kernel can
-> +			* figure out that cpu_intc is the root interrupt
-> +			* controller & should be probed first.
-> +			*/
-> +			interrupt-parent = <&cpu_intc>;
-> +
-> +			timer {
-> +				compatible = "mti,gic-timer";
-> +				interrupts = <GIC_LOCAL 1 IRQ_TYPE_NONE>;
-> +				clocks = <&core0_clk>;
-> +			};
-> +		};
-> +	};
-> +};
-> +
-
-Stray blank line.
+---
+base-commit: 51b70ff55ed88edd19b080a524063446bcc34b62
+change-id: 20240201-topic-sm8550-hdk8550-audio-fix-579f87f109b5
 
 Best regards,
-Krzysztof
+-- 
+Neil Armstrong <neil.armstrong@linaro.org>
 
 
