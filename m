@@ -1,58 +1,61 @@
-Return-Path: <devicetree+bounces-37801-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-37802-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 97A5D8463DE
-	for <lists+devicetree@lfdr.de>; Thu,  1 Feb 2024 23:51:47 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 73D608463EB
+	for <lists+devicetree@lfdr.de>; Thu,  1 Feb 2024 23:58:57 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 4AAEB1F2506A
-	for <lists+devicetree@lfdr.de>; Thu,  1 Feb 2024 22:51:47 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 129BB1F28508
+	for <lists+devicetree@lfdr.de>; Thu,  1 Feb 2024 22:58:57 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 24AA341232;
-	Thu,  1 Feb 2024 22:51:42 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A7C6245BE6;
+	Thu,  1 Feb 2024 22:58:40 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="YEbqzFI9"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="aejgf9iV"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id ECF2146424;
-	Thu,  1 Feb 2024 22:51:41 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7EAA146546;
+	Thu,  1 Feb 2024 22:58:40 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1706827902; cv=none; b=cTjLVamGd+Ip41qNnPa+UctAkNao6Xy1PFtJT/4eWQlTlcAR3xYbVLhhDOR7CnjI07IG/JRAucr0CtVaIR/oKsFw0j+9fSctuyFch4zTLyE6sBClUYCLMCy0RLihuX7a9agzp6jBQqCJgkf/sQ4A8adDVbir96M748LCi2Y1tgM=
+	t=1706828320; cv=none; b=sffrKqhCx26uR77H8zB5JMRgGhf+GY/ZoMTnJsBbvOqiULaatTMX497gSQ/OIb58jRzFpf0GIhHXt5i5duomoIrqEXoBVZtiEfYYRvZI4zqN9yJtZgYKPYfh0YPFAdxnbH6EPK2P4M3gxLrAk6uD9rNQFgKrICLHrpwfg5I4wJQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1706827902; c=relaxed/simple;
-	bh=nlCIs5peveVtyYMe0pgMO0aQaNnq18QcNDKmOeUnmtw=;
+	s=arc-20240116; t=1706828320; c=relaxed/simple;
+	bh=J6+XAazfq8OI3ywEXe3H0Aa1Rt570MhNrUUKWp85JHQ=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=YA7Cl9M4+SawLjUuC07BzgP5/vdx5JJFXzOgJlh4h190cKK/x+XndqX+BXrjbfhfisE310oHPkShrDgeleRx+3u/jhFjGBcQPGb+RfvFi3kT7/m/OXhtgWgYLCI0YDf0K7ANermFxYNnSTql4te7ZTYjcRMh2nxNUa/Yxbve8PI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=YEbqzFI9; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 443A9C433C7;
-	Thu,  1 Feb 2024 22:51:41 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=lHajVbUEOl37+D174j5B7WuMK/9DA0fJGiwQsmHhPb2O++82iPY8YqEBW0GRRbj6YXKWhBehGD8+r1M99zuZ2qDtTM4z0PlhtVLi+r3cwYNVNTs1eJVVRDMu2hGyUGGkU5mTI4h99K63MnakOnomp46LqPljNLRbJb4yHnrXFkg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=aejgf9iV; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id AFAACC433F1;
+	Thu,  1 Feb 2024 22:58:39 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1706827901;
-	bh=nlCIs5peveVtyYMe0pgMO0aQaNnq18QcNDKmOeUnmtw=;
+	s=k20201202; t=1706828319;
+	bh=J6+XAazfq8OI3ywEXe3H0Aa1Rt570MhNrUUKWp85JHQ=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=YEbqzFI93qNjx1inNmMUIkN/n6LnIQ+mB9k0yhkVPLkuUHrCKq9CE7zWxt1kkUu2w
-	 N8GfS/N83JiYdOY1sL/ZKF5q5FZ0vi8xaB1aoP4O7niccHq2MIJliHBiNwd3ueq2y3
-	 EyigoMtYZkFE1ScFUC6pF3HVVYQuz525RNNEUbpuBG+QCJkmHi2JErPiT//nfirpru
-	 WtU3LGeacOVYPktdtSVABLlWSoYoJKOSrno9CGayRMo3V8T4f6q73g0G4scwzWr1CZ
-	 kE1IVrl3QaWxO0WDrXxH85DxniFIGikfWLBEFjCsshuu7e5lVdIL9YFGBs2aEyqXm3
-	 UOPnPkHTd8oZg==
-Date: Thu, 1 Feb 2024 16:51:39 -0600
+	b=aejgf9iVT8l88D/qVvwS4KS5hF/AXyC5GpnMO7K2KmMw2d/www5MgUpHyjpYfkakN
+	 QFVnBJgy3N9j4zGIlp8Cdk0ykzGmPOjq7TzqjtCVwj+FzKqM4mx1mFDb19Okj15b+O
+	 fInXLvNmEoPHYEbmXvvxI7sYOQ9SwEIkrhm2VVrRXDFMrH4yqrI0VqGbMAFkrM014z
+	 T9zxu38dFBwVdzusB7pJzhcvNnP6xshY0HY/oVn9nEPG0NcXH5KHQCOrGkfQCs3N6y
+	 Zjx+pcjzzrvtHJ/zFps7ej6C9ke46aGOD19xi58QPEZZslwFHx0o1Dh0z1BGJMLjwp
+	 olYJeAuesGZdg==
+Date: Thu, 1 Feb 2024 16:58:37 -0600
 From: Rob Herring <robh@kernel.org>
-To: Xu Yang <xu.yang_2@nxp.com>
-Cc: gregkh@linuxfoundation.org, krzysztof.kozlowski+dt@linaro.org,
-	conor+dt@kernel.org, shawnguo@kernel.org, s.hauer@pengutronix.de,
-	kernel@pengutronix.de, festevam@gmail.com, peter.chen@kernel.org,
-	linux-imx@nxp.com, jun.li@nxp.com, linux-usb@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org
-Subject: Re: [PATCH v5 2/8] arm64: dts: imx8ulp: add usb nodes
-Message-ID: <20240201225139.GA1885965-robh@kernel.org>
-References: <20240131114324.3722428-1-xu.yang_2@nxp.com>
- <20240131114324.3722428-2-xu.yang_2@nxp.com>
+To: Johan Jonker <jbx6244@gmail.com>
+Cc: tzimmermann@suse.de, markyao0591@gmail.com, andy.yan@rock-chips.com,
+	dri-devel@lists.freedesktop.org, conor+dt@kernel.org,
+	krzysztof.kozlowski+dt@linaro.org, mripard@kernel.org,
+	devicetree@vger.kernel.org, airlied@gmail.com, heiko@sntech.de,
+	maarten.lankhorst@linux.intel.com, daniel@ffwll.ch,
+	hjc@rock-chips.com, linux-arm-kernel@lists.infradead.org,
+	robh+dt@kernel.org, linux-rockchip@lists.infradead.org,
+	linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v2 1/6] dt-bindings: display: rockchip: rockchip,dw-hdmi:
+ remove port property
+Message-ID: <170682831660.1899746.18090191904658752173.robh@kernel.org>
+References: <a493c65e-7cf9-455f-95d5-8c98cad35710@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -61,66 +64,31 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20240131114324.3722428-2-xu.yang_2@nxp.com>
+In-Reply-To: <a493c65e-7cf9-455f-95d5-8c98cad35710@gmail.com>
 
-On Wed, Jan 31, 2024 at 07:43:18PM +0800, Xu Yang wrote:
-> Add USB nodes on i.MX8ULP platform which has 2 USB controllers.
+
+On Wed, 31 Jan 2024 22:14:29 +0100, Johan Jonker wrote:
+> The hdmi-connector nodes are now functional and the new way to model
+> hdmi ports nodes with both in and output port subnodes. Unfortunately
+> with the conversion to YAML the old method with only an input port node
+> was used. Later the new method was also added to the binding.
+> A binding must be unambiguously, so remove the old port property
+> entirely and make port@0 and port@1 a requirement as all
+> upstream dts files are updated as well and because checking
+> deprecated stuff is a bit pointless.
+> Update the example to avoid use of the removed property.
 > 
-> Signed-off-by: Xu Yang <xu.yang_2@nxp.com>
-> 
+> Signed-off-by: Johan Jonker <jbx6244@gmail.com>
 > ---
-> Changes in v2:
->  - no changes
-> Changes in v3:
->  - no changes
-> Changes in v4:
->  - no changes
-> Changes in v5:
->  - no changes
-> ---
->  arch/arm64/boot/dts/freescale/imx8ulp.dtsi | 64 ++++++++++++++++++++++
->  1 file changed, 64 insertions(+)
 > 
-> diff --git a/arch/arm64/boot/dts/freescale/imx8ulp.dtsi b/arch/arm64/boot/dts/freescale/imx8ulp.dtsi
-> index c4a0082f30d3..ead1f57e08ef 100644
-> --- a/arch/arm64/boot/dts/freescale/imx8ulp.dtsi
-> +++ b/arch/arm64/boot/dts/freescale/imx8ulp.dtsi
-> @@ -28,6 +28,8 @@ aliases {
->  		serial1 = &lpuart5;
->  		serial2 = &lpuart6;
->  		serial3 = &lpuart7;
-> +		usbphy0 = &usbphy1;
-> +		usbphy1 = &usbphy2;
+> Changed V2:
+>   rename title from deprecate to remove
+>   reword
+> ---
+>  .../display/rockchip/rockchip,dw-hdmi.yaml    | 24 +++++++++++++++----
+>  1 file changed, 20 insertions(+), 4 deletions(-)
+> 
 
-Drop these. We have no use for aliases to phys.
+Reviewed-by: Rob Herring <robh@kernel.org>
 
->  	};
->  
->  	cpus {
-> @@ -472,6 +474,68 @@ usdhc2: mmc@298f0000 {
->  				status = "disabled";
->  			};
->  
-> +			usbotg1: usb@29900000 {
-> +				compatible = "fsl,imx8ulp-usb", "fsl,imx7ulp-usb", "fsl,imx6ul-usb";
-> +				reg = <0x29900000 0x200>;
-> +				interrupts = <GIC_SPI 103 IRQ_TYPE_LEVEL_HIGH>;
-> +				clocks = <&pcc4 IMX8ULP_CLK_USB0>;
-> +				power-domains = <&scmi_devpd IMX8ULP_PD_USB0>;
-> +				phys = <&usbphy1>;
-> +				fsl,usbmisc = <&usbmisc1 0>;
-> +				ahb-burst-config = <0x0>;
-> +				tx-burst-size-dword = <0x8>;
-> +				rx-burst-size-dword = <0x8>;
-> +				status = "disabled";
-> +			};
-> +
-> +			usbmisc1: usbmisc@29900200 {
-> +				compatible = "fsl,imx8ulp-usbmisc", "fsl,imx7d-usbmisc",
-> +						"fsl,imx6q-usbmisc";
-> +				#index-cells = <1>;
-
-Deprecated. Why are you using this?
-
-Rob
 
