@@ -1,105 +1,142 @@
-Return-Path: <devicetree+bounces-37579-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-37583-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3DE6584570E
-	for <lists+devicetree@lfdr.de>; Thu,  1 Feb 2024 13:12:17 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 89018845729
+	for <lists+devicetree@lfdr.de>; Thu,  1 Feb 2024 13:16:28 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 700E51C23C6D
-	for <lists+devicetree@lfdr.de>; Thu,  1 Feb 2024 12:12:16 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 3CEC51F2333A
+	for <lists+devicetree@lfdr.de>; Thu,  1 Feb 2024 12:16:28 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 89F9E15D5DF;
-	Thu,  1 Feb 2024 12:12:12 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id EF1E615D5D6;
+	Thu,  1 Feb 2024 12:16:22 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=163.com header.i=@163.com header.b="nIbA7+1z"
+	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="os6lLrQH"
 X-Original-To: devicetree@vger.kernel.org
-Received: from m16.mail.163.com (m16.mail.163.com [220.197.31.2])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7CB4D15B982;
-	Thu,  1 Feb 2024 12:12:08 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=220.197.31.2
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+	(No client certificate requested)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CA4C015D5AC;
+	Thu,  1 Feb 2024 12:16:20 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1706789532; cv=none; b=uhHtu8BKnHswNGCQ6LtRxKizUZ3OqvfcfyAI7gntKjk+1mh8f9W0ldRMtEN9Q/Ba1Qk7spWcgh838d/TRKyyqVXaJlySCJo/MZWAKPyA0N1Y/Xu+AYI/ZHHq+6+qiQixUAT5cQkP3NKaj1keXOFFSMnyAEUXkL6nyVwqIyF/OKA=
+	t=1706789782; cv=none; b=Y6NF7KkRVH+2yyM0mUsLXD/FWpXelHOtsqJGCPQTuWLPXmPZSIa/FldRV/qlCVZfpzvVue98B8xfXkfSmraSP33Rvt9IwNAmbjUw5vMEraOPvwyhTH3PTwYauZFT5gPOthXotZoEdhmvR9CXJCz1fpO3c0wIq6wUqiKvTKfHlM4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1706789532; c=relaxed/simple;
-	bh=/P0HVssYjsYVgkFiMB8pHevyzWbF7RSsJxKP7VdbqJc=;
-	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
-	 MIME-Version; b=NcuruEAFviZV9AtiPi9EBA1w3Jvqf0/NFc+2IWl3HKhCh7YxRcOgcN+K4BqfuhbVVp+5/XjPy3u4u09rBXbqC6d+p9niFsvs2Ju0/XlH7g5/oBBOkZIa2F8JzhHTiEzQW4NN7mtMOVGb4tpteDHVrTYciIyr6X2xhrMdbRiR94M=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=163.com; spf=pass smtp.mailfrom=163.com; dkim=pass (1024-bit key) header.d=163.com header.i=@163.com header.b=nIbA7+1z; arc=none smtp.client-ip=220.197.31.2
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=163.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=163.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=163.com;
-	s=s110527; h=From:Subject:Date:Message-Id:MIME-Version; bh=L5rj2
-	e6lcmrpI804Cx6MRfru0SWmxeEJZFimAHJKc74=; b=nIbA7+1z3YYoyxn1LXZe8
-	AQAFosc+qpAsAyOMVizE2vPJPPRUNAHcA92Qf+l/eiWU4TkgWwxJ6oRyh49w4tzz
-	fgGuawTFz1gvD6C3zO009hChECRbpLMxjj4dq4v3ywSjioZvZx9xQMtqamZL57Zy
-	t8F8fvmoKgtz+ujMfInNZM=
-Received: from ProDesk.. (unknown [58.22.7.114])
-	by gzga-smtp-mta-g1-0 (Coremail) with SMTP id _____wDX_35birtlKEO5AA--.30092S5;
-	Thu, 01 Feb 2024 20:11:15 +0800 (CST)
-From: Andy Yan <andyshrk@163.com>
-To: heiko@sntech.de
-Cc: krzysztof.kozlowski+dt@linaro.org,
-	robh+dt@kernel.org,
-	devicetree@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	linux-kernel@vger.kernel.org,
-	linux-rockchip@lists.infradead.org,
-	Andy Yan <andyshrk@163.com>
-Subject: [PATCH v2 4/4] arm64: dts: rockchip: Fix the num-lanes of pcie3x4 on Cool Pi CM5 EVB
-Date: Thu,  1 Feb 2024 20:11:06 +0800
-Message-Id: <20240201121106.1471301-4-andyshrk@163.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20240201121106.1471301-1-andyshrk@163.com>
-References: <20240201121106.1471301-1-andyshrk@163.com>
+	s=arc-20240116; t=1706789782; c=relaxed/simple;
+	bh=TSzIbTeOrk6MinK0jK9UY4K2VHCBEWaWMO4AazYPk5k=;
+	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
+	 In-Reply-To:Content-Type; b=UIdFhD0HN3S46PhjLL3Pgp8HLgjwoi9ApxZWn2YF4dw5d6znu9c2xphDKKVNF2hBuML/Yl1D1/qbuLQQBbUZoHWx0crIZlJpDPgKbPe3rxLouurPP54GPHZ1S+piIWw9/Yg9mjQncOnUr4g2Skl5O0l/53/4TgA2BFI/RHUdbak=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=os6lLrQH; arc=none smtp.client-ip=205.220.168.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
+Received: from pps.filterd (m0279866.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.17.1.24/8.17.1.24) with ESMTP id 411A5sFi022240;
+	Thu, 1 Feb 2024 12:16:17 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
+	message-id:date:mime-version:subject:to:cc:references:from
+	:in-reply-to:content-type:content-transfer-encoding; s=
+	qcppdkim1; bh=YBhryowGq7ORWcrXKD22IGklJiK+Oa541dbapXH3IfA=; b=os
+	6lLrQHi72rQGEFh4e00KPYyuUmbdd/eVtKpB2egKkBlO/i9byH/YxIMMg/0Ugl93
+	iP+2KMU2svJEQhnjjjEN1jMmh9JA++F7PTWXwXW6kzxt11RdisdVwIPOIbt/PrHN
+	H3qwZtAwNmeynTnGFYaeGIWBiLzfStQDf4WVLSRNs9i52fESXsOaLx/h6vXePPRG
+	ZEWAhglZAv+7zPQG1IZK9pt571rLvFV7kLR/1zbQQtZlgIMkcW/eabZx/WT7i0TE
+	XXDOMLhapPIN/gz6Nz1Ip6MWgwD8yw7e17u6/OkuF2OUpdkkUAaFOlNnBP+AM44A
+	Wg2FXwWfENHcvnCfpSyg==
+Received: from nalasppmta05.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3w098c08dp-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Thu, 01 Feb 2024 12:16:17 +0000 (GMT)
+Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
+	by NALASPPMTA05.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 411CGGBt028037
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Thu, 1 Feb 2024 12:16:16 GMT
+Received: from [10.239.132.204] (10.80.80.8) by nalasex01a.na.qualcomm.com
+ (10.47.209.196) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1118.40; Thu, 1 Feb
+ 2024 04:16:10 -0800
+Message-ID: <012bb387-2472-4bcb-ba87-3bf75dd88d64@quicinc.com>
+Date: Thu, 1 Feb 2024 20:16:08 +0800
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-CM-TRANSID:_____wDX_35birtlKEO5AA--.30092S5
-X-Coremail-Antispam: 1Uf129KBjvdXoW7Gw4DuryfJF17JrWDJFW5Wrg_yoWDtrg_ta
-	yxW3W8XF4rGrn0g3s8Aa9rG3yfK39F9ayxJa1UZF4DAF9xtayDJFyrtFW2qw15Kr429a1f
-	Aa9rJa18C3Z8CjkaLaAFLSUrUUUUjb8apTn2vfkv8UJUUUU8Yxn0WfASr-VFAUDa7-sFnT
-	9fnUUvcSsGvfC2KfnxnUUI43ZEXa7xRiiSdPUUUUU==
-X-CM-SenderInfo: 5dqg52xkunqiywtou0bp/xtbB0gd3XmWXv1CSDAAAs-
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v4 6/6] arm64: dts: qcom: aim300: add AIM300 AIoT
+To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        <andersson@kernel.org>, <konrad.dybcio@linaro.org>,
+        <robh+dt@kernel.org>, <krzysztof.kozlowski+dt@linaro.org>,
+        <conor+dt@kernel.org>, <dmitry.baryshkov@linaro.org>
+CC: <linux-arm-msm@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>, <kernel@quicinc.com>,
+        Qiang Yu
+	<quic_qianyu@quicinc.com>,
+        Ziyue Zhang <quic_ziyuzhan@quicinc.com>
+References: <20240119100621.11788-1-quic_tengfan@quicinc.com>
+ <20240119100621.11788-7-quic_tengfan@quicinc.com>
+ <d3ef45cf-2de8-4f5b-8857-62d1996f3f58@linaro.org>
+ <842bf6ad-46e1-43d8-86be-79ab0f49710b@quicinc.com>
+ <c17dafd2-db89-4fe2-8e98-2a031f7237c2@quicinc.com>
+ <b28904a6-c1ef-44b5-96ca-313a9a2a3f8b@quicinc.com>
+ <3e3cbc36-2f3f-4295-9325-90757f0d77ce@linaro.org>
+From: Tengfei Fan <quic_tengfan@quicinc.com>
+In-Reply-To: <3e3cbc36-2f3f-4295-9325-90757f0d77ce@linaro.org>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 7bit
+X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
+ nalasex01a.na.qualcomm.com (10.47.209.196)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-ORIG-GUID: KsnaJU3JSL86mUpeS5GG0EXpM-B1cu7H
+X-Proofpoint-GUID: KsnaJU3JSL86mUpeS5GG0EXpM-B1cu7H
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.272,Aquarius:18.0.1011,Hydra:6.0.619,FMLib:17.11.176.26
+ definitions=2024-02-01_01,2024-01-31_01,2023-05-22_02
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 spamscore=0 bulkscore=0
+ phishscore=0 clxscore=1015 suspectscore=0 impostorscore=0
+ priorityscore=1501 mlxscore=0 adultscore=0 malwarescore=0 mlxlogscore=482
+ lowpriorityscore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.19.0-2401190000 definitions=main-2402010098
 
-The 4 lane pcie30 phy is shared by pcie3x4 and pcie3x2, so
-the num-lanes of pcie3x4 should be 2.
 
-Fixes: 791c154c3982 ("arm64: dts: rockchip: Add support for rk3588 based board Cool Pi CM5 EVB")
-Signed-off-by: Andy Yan <andyshrk@163.com>
----
 
-(no changes since v1)
+On 2/1/2024 8:03 PM, Krzysztof Kozlowski wrote:
+> On 01/02/2024 12:49, Tengfei Fan wrote:
+>>>>> This should be probably TX SWR_INPUT1.
+>>>>>
+>>>>> Best regards,
+>>>>> Krzysztof
+>>>>>
+>>>>
+>>>> I will double check this with related team and I will update this.
+>>>>
+>>>
+>>> I will apply "TX SWR_INPUT1" on audio-routing node in the next patch
+>>> series.
+>>>
+>>
+>> This patch series has been sent for nearly two weeks. do you think it is
+>> better to modify the patch series acording to the current comments and
+>> submit a new patch series, or continue to wait for your review comments
+>> on the current path series?
+> 
+> Hi,
+> 
+> Whom do you ask?
+> 
+> Best regards,
+> Krzysztof
+> 
 
- arch/arm64/boot/dts/rockchip/rk3588-coolpi-cm5-evb.dts | 2 ++
- 1 file changed, 2 insertions(+)
+Sorry Krzysztof, can you give sone guidance on whether I should update 
+patch and submit a new patch series, or do you need time to review 
+current patch series?
 
-diff --git a/arch/arm64/boot/dts/rockchip/rk3588-coolpi-cm5-evb.dts b/arch/arm64/boot/dts/rockchip/rk3588-coolpi-cm5-evb.dts
-index 9c0f408ef339..d6366e7b57bb 100644
---- a/arch/arm64/boot/dts/rockchip/rk3588-coolpi-cm5-evb.dts
-+++ b/arch/arm64/boot/dts/rockchip/rk3588-coolpi-cm5-evb.dts
-@@ -126,6 +126,7 @@ &pcie30phy {
- 	status = "okay";
- };
- 
-+/* Standard pcie */
- &pcie3x2 {
- 	reset-gpios = <&gpio3 RK_PB0 GPIO_ACTIVE_HIGH>;
- 	vpcie3v3-supply = <&vcc3v3_sys>;
-@@ -134,6 +135,7 @@ &pcie3x2 {
- 
- /* M.2 M-Key ssd */
- &pcie3x4 {
-+	num-lanes = <2>;
- 	reset-gpios = <&gpio4 RK_PB6 GPIO_ACTIVE_HIGH>;
- 	vpcie3v3-supply = <&vcc3v3_sys>;
- 	status = "okay";
+
 -- 
-2.34.1
-
+Thx and BRs,
+Tengfei Fan
 
