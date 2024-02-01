@@ -1,248 +1,242 @@
-Return-Path: <devicetree+bounces-37722-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-37723-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id ED7E3846085
-	for <lists+devicetree@lfdr.de>; Thu,  1 Feb 2024 20:00:12 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id DD7C284608B
+	for <lists+devicetree@lfdr.de>; Thu,  1 Feb 2024 20:01:44 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 6A707B21EA2
-	for <lists+devicetree@lfdr.de>; Thu,  1 Feb 2024 18:59:52 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 91B1028A6C3
+	for <lists+devicetree@lfdr.de>; Thu,  1 Feb 2024 19:01:43 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8DF358527A;
-	Thu,  1 Feb 2024 18:59:38 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C620884FD5;
+	Thu,  1 Feb 2024 19:01:37 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="rpD4ef5O"
+	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="PtRqufRB"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 545C585276;
-	Thu,  1 Feb 2024 18:59:37 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C781684FBF;
+	Thu,  1 Feb 2024 19:01:35 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1706813978; cv=none; b=k9lesqRsMmURAEK/qUHyNqNmFOmQPTppFqBy7IKHABiWlFHuzZTAWTKdqfmhI8xw4KBg1qQq2uJowO9jJD2r/YptzsdcbBqR+NSgFQCFHn8JVU7pvSotAQICuN0fo+9s582Hkwx9vnQGGoBkB0Yp+WwtV+clNjDTglzUq+s7gAw=
+	t=1706814097; cv=none; b=gDfGdcgPSLKx7EUCTj07q9ZVDhmVjZHl/cDaTLbSVUmEmXGp1TnaBWNija8X6IhZ8T/iubaOj5i5JAIip4t/ms3flUaGaUCOnDJItf81HCjAXOwPz78uSLi1NZe9FQbbD9lspttbKUyVlfPzjs8Gd9IKEjFt7fQIU6GYtnEJark=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1706813978; c=relaxed/simple;
-	bh=I1NNXAkgesc7dKK6HS2ID8NMVYdnGuoGc/8FPQaG/B8=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=mhVQFK9oI8lsbCo+K99dgh0Ye9lvfAz8tZGL6CG8Z8tuivocyUC3LUMruS+7Sq3fAq5k+V9nIvrJUphjoDjZi+Jiop0szFZmFnFdS+NBiGAeDw5lmNyS7rNuI6Eyskuc98wB1MmrzPOJw51g3FR1NkWiBtQc5UsyfFXchJ7y+Mo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=rpD4ef5O; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 0A9CEC43394;
-	Thu,  1 Feb 2024 18:59:32 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1706813977;
-	bh=I1NNXAkgesc7dKK6HS2ID8NMVYdnGuoGc/8FPQaG/B8=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=rpD4ef5OrMVjIPscn4IEXS/9g9WKcBMmDKBFa3kyUooemnxgqmRn8spZZiz30At7n
-	 3aJw/14Ac/p94rgwHvpllfDNQ1nhNMqA4a3+roejfSbXeUNyWW95jwwM/v+yPm24YN
-	 A/GOS7G8pDrAb2fA1ruCCN4/wKa6ODQpYhm3b0Xh4Q1O9y48Xei1adx8QNl4GOwoUm
-	 +w+vHuUOX+c9gDOlS6K2gLxXa6p0cg+TcciextdkDVNcZPL2qq6tQrKtQls0Ku+pm1
-	 HS3kswBOIw2kP9KScsbUvLlQOzZWsf5znJVqftfRt1PthT+m9usgrDE+1Zc3hRUxr9
-	 ttjEHh290bmKg==
-Date: Thu, 1 Feb 2024 18:59:30 +0000
-From: Conor Dooley <conor@kernel.org>
-To: Andre Przywara <andre.przywara@arm.com>
-Cc: Aleksandr Shubin <privatesub2@gmail.com>, linux-kernel@vger.kernel.org,
-	Conor Dooley <conor.dooley@microchip.com>,
-	Uwe =?iso-8859-1?Q?Kleine-K=F6nig?= <u.kleine-koenig@pengutronix.de>,
-	Rob Herring <robh+dt@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>, Chen-Yu Tsai <wens@csie.org>,
-	Jernej Skrabec <jernej.skrabec@gmail.com>,
-	Samuel Holland <samuel@sholland.org>,
-	Paul Walmsley <paul.walmsley@sifive.com>,
-	Palmer Dabbelt <palmer@dabbelt.com>,
-	Albert Ou <aou@eecs.berkeley.edu>,
-	Philipp Zabel <p.zabel@pengutronix.de>,
-	Marc Kleine-Budde <mkl@pengutronix.de>,
-	Maksim Kiselev <bigunclemax@gmail.com>,
-	Cristian Ciocaltea <cristian.ciocaltea@collabora.com>,
-	John Watts <contact@jookia.org>,
-	Cheo Fusi <fusibrandon13@gmail.com>, linux-pwm@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-	linux-sunxi@lists.linux.dev, linux-riscv@lists.infradead.org
-Subject: Re: [PATCH v8 1/3] dt-bindings: pwm: Add binding for Allwinner
- D1/T113-S3/R329 PWM controller
-Message-ID: <20240201-numbing-reconcile-64d05bb88e9c@spud>
-References: <20240131125920.2879433-1-privatesub2@gmail.com>
- <20240131125920.2879433-2-privatesub2@gmail.com>
- <20240131145244.4f534bac@donnerap.manchester.arm.com>
- <20240131-renewably-glimpse-a80339e8ff81@spud>
- <20240201174851.62e74089@donnerap.manchester.arm.com>
+	s=arc-20240116; t=1706814097; c=relaxed/simple;
+	bh=Jfb2ag/RVb7aLbbTFIRRajXzhYFdXWB21U1ECTT7m+w=;
+	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
+	 In-Reply-To:Content-Type; b=S/iVpT40oKYqP1qIpPmb2uaAGHKuJxHfPzPpXTbHVm4k2pxe8ywlllyL8KPDWUV4hPf/ML1cO9fwrILOqsFNgBSYDtTyshKBufBDr/+KwpxmsE8PUX3/OdfdJ/Qp7EDFizwb+GyOKOkWbaLct9wEV7sKzKr3iFgY6t7dV8Nn88s=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=PtRqufRB; arc=none smtp.client-ip=205.220.180.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
+Received: from pps.filterd (m0279870.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.17.1.24/8.17.1.24) with ESMTP id 411GEMZa004256;
+	Thu, 1 Feb 2024 19:00:57 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
+	message-id:date:mime-version:subject:to:cc:references:from
+	:in-reply-to:content-type:content-transfer-encoding; s=
+	qcppdkim1; bh=CEPvhuqBAzR9JTprWZWY6mkiYQwJNcN/+j7I9096g80=; b=Pt
+	RqufRBRL2/tQACYvHUmx8rVAPoE9dnhRRNoNy2BpxO3u/d0GaRd/AplxNJflzGmu
+	f1qvIpWAQQ4zzrEwLu5SsUDqYSpTd6rdKOGk0D4JQr/HSnKrTD+6ECyXmCdC+Cs5
+	b/qPW3RJ9aOIO+JmtUg4HDoSdLRzdpaekZ3fPiV5o9lgZwAvBBqtBu90p2ItS0bc
+	naC/otOgipTlgz185sZj2IhBFYRAofIj8u5OBQ+N4VkRZR10Au/8402eZ/V3REzf
+	n2Q8fE1JpOTl+rk6QWNNEZR1jqJWxo4JSAZxSuEentL/BkJJe8PwQVByKFMhPNi1
+	846KKKu32Kk6TKIdqJWA==
+Received: from nasanppmta04.qualcomm.com (i-global254.qualcomm.com [199.106.103.254])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3w06mnsu2q-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Thu, 01 Feb 2024 19:00:57 +0000 (GMT)
+Received: from nasanex01a.na.qualcomm.com (nasanex01a.na.qualcomm.com [10.52.223.231])
+	by NASANPPMTA04.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 411J0t6H004090
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Thu, 1 Feb 2024 19:00:55 GMT
+Received: from [10.110.99.223] (10.80.80.8) by nasanex01a.na.qualcomm.com
+ (10.52.223.231) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1118.40; Thu, 1 Feb
+ 2024 11:00:52 -0800
+Message-ID: <c2497eef-1041-4cd0-8220-42622c8902f4@quicinc.com>
+Date: Thu, 1 Feb 2024 11:00:52 -0800
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-	protocol="application/pgp-signature"; boundary="wPn/chEO+X1eK+Gn"
-Content-Disposition: inline
-In-Reply-To: <20240201174851.62e74089@donnerap.manchester.arm.com>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH net-next 2/2] net: stmmac: TBS support for platform driver
+Content-Language: en-US
+To: Esben Haabendal <esben@geanix.com>
+CC: Rohan G Thomas <rohan.g.thomas@intel.com>,
+        "David S . Miller"
+	<davem@davemloft.net>,
+        Alexandre Torgue <alexandre.torgue@foss.st.com>,
+        "Jose
+ Abreu" <joabreu@synopsys.com>,
+        Eric Dumazet <edumazet@google.com>,
+        "Jakub
+ Kicinski" <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
+        Maxime Coquelin
+	<mcoquelin.stm32@gmail.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        "Krzysztof
+ Kozlowski" <krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley
+	<conor+dt@kernel.org>,
+        Giuseppe Cavallaro <peppe.cavallaro@st.com>,
+        "Serge
+ Semin" <fancer.lancer@gmail.com>,
+        Andrew Halaney <ahalaney@redhat.com>, <elder@linaro.org>,
+        <netdev@vger.kernel.org>, <linux-stm32@st-md-mailman.stormreply.com>,
+        <linux-arm-kernel@lists.infradead.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>, <quic_bhaviks@quicinc.com>,
+        <kernel.upstream@quicinc.com>
+References: <20230927130919.25683-1-rohan.g.thomas@intel.com>
+ <20230927130919.25683-3-rohan.g.thomas@intel.com>
+ <92892988-bb77-4075-812e-19f6112f436e@quicinc.com>
+ <87r0i44h8v.fsf@geanix.com>
+ <5626e874-066c-4bf2-842d-a7f3387b6c1b@quicinc.com>
+ <87a5okvbdt.fsf@geanix.com>
+From: "Abhishek Chauhan (ABC)" <quic_abchauha@quicinc.com>
+In-Reply-To: <87a5okvbdt.fsf@geanix.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 7bit
+X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
+ nasanex01a.na.qualcomm.com (10.52.223.231)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-GUID: 598Pt-pLYSSFWLEVg2mMTCAOFDnOomF_
+X-Proofpoint-ORIG-GUID: 598Pt-pLYSSFWLEVg2mMTCAOFDnOomF_
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.272,Aquarius:18.0.1011,Hydra:6.0.619,FMLib:17.11.176.26
+ definitions=2024-02-01_05,2024-01-31_01,2023-05-22_02
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 mlxscore=0 priorityscore=1501
+ impostorscore=0 phishscore=0 suspectscore=0 adultscore=0
+ lowpriorityscore=0 mlxlogscore=999 clxscore=1015 malwarescore=0
+ spamscore=0 bulkscore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.19.0-2401190000 definitions=main-2402010146
 
 
---wPn/chEO+X1eK+Gn
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
 
-On Thu, Feb 01, 2024 at 05:48:51PM +0000, Andre Przywara wrote:
-> On Wed, 31 Jan 2024 21:22:06 +0000
-> Conor Dooley <conor@kernel.org> wrote:
->=20
-> Hi,
->=20
-> > On Wed, Jan 31, 2024 at 02:52:44PM +0000, Andre Przywara wrote:
-> > > On Wed, 31 Jan 2024 15:59:14 +0300
-> > > Aleksandr Shubin <privatesub2@gmail.com> wrote:
-> > >=20
-> > > Hi,
-> > >  =20
-> > > > Allwinner's D1, T113-S3 and R329 SoCs have a new pwm
-> > > > controller witch is different from the previous pwm-sun4i.
-> > > >=20
-> > > > The D1 and T113 are identical in terms of peripherals,
-> > > > they differ only in the architecture of the CPU core, and
-> > > > even share the majority of their DT. Because of that,
-> > > > using the same compatible makes sense.
-> > > > The R329 is a different SoC though, and should have
-> > > > a different compatible string added, especially as there
-> > > > is a difference in the number of channels.
-> > > >=20
-> > > > D1 and T113s SoCs have one PWM controller with 8 channels.
-> > > > R329 SoC has two PWM controllers in both power domains, one of
-> > > > them has 9 channels (CPUX one) and the other has 6 (CPUS one).
-> > > >=20
-> > > > Add a device tree binding for them.
-> > > >=20
-> > > > Signed-off-by: Aleksandr Shubin <privatesub2@gmail.com>
-> > > > Reviewed-by: Conor Dooley <conor.dooley@microchip.com>
-> > > > ---
-> > > >  .../bindings/pwm/allwinner,sun20i-pwm.yaml    | 88 +++++++++++++++=
-++++
-> > > >  1 file changed, 88 insertions(+)
-> > > >  create mode 100644 Documentation/devicetree/bindings/pwm/allwinner=
-,sun20i-pwm.yaml
-> > > >=20
-> > > > diff --git a/Documentation/devicetree/bindings/pwm/allwinner,sun20i=
--pwm.yaml b/Documentation/devicetree/bindings/pwm/allwinner,sun20i-pwm.yaml
-> > > > new file mode 100644
-> > > > index 000000000000..716f75776006
-> > > > --- /dev/null
-> > > > +++ b/Documentation/devicetree/bindings/pwm/allwinner,sun20i-pwm.ya=
-ml
-> > > > @@ -0,0 +1,88 @@
-> > > > +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> > > > +%YAML 1.2
-> > > > +---
-> > > > +$id: http://devicetree.org/schemas/pwm/allwinner,sun20i-pwm.yaml#
-> > > > +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> > > > +
-> > > > +title: Allwinner D1, T113-S3 and R329 PWM
-> > > > +
-> > > > +maintainers:
-> > > > +  - Aleksandr Shubin <privatesub2@gmail.com>
-> > > > +  - Brandon Cheo Fusi <fusibrandon13@gmail.com>
-> > > > +
-> > > > +properties:
-> > > > +  compatible:
-> > > > +    oneOf:
-> > > > +      - const: allwinner,sun20i-d1-pwm
-> > > > +      - items:
-> > > > +          - const: allwinner,sun20i-r329-pwm
-> > > > +          - const: allwinner,sun20i-d1-pwm
-> > > > +
-> > > > +  reg:
-> > > > +    maxItems: 1
-> > > > +
-> > > > +  "#pwm-cells":
-> > > > +    const: 3
-> > > > +
-> > > > +  clocks:
-> > > > +    items:
-> > > > +      - description: Bus clock
-> > > > +      - description: 24 MHz oscillator
-> > > > +      - description: APB0 clock
-> > > > +
-> > > > +  clock-names:
-> > > > +    items:
-> > > > +      - const: bus
-> > > > +      - const: hosc
-> > > > +      - const: apb0
-> > > > +
-> > > > +  resets:
-> > > > +    maxItems: 1
-> > > > +
-> > > > +  allwinner,pwm-channels:
-> > > > +    $ref: /schemas/types.yaml#/definitions/uint32
-> > > > +    description: The number of PWM channels configured for this in=
-stance
-> > > > +    enum: [6, 9]
-> > > > +
-> > > > +allOf:
-> > > > +  - $ref: pwm.yaml#
-> > > > +
-> > > > +  - if:
-> > > > +      properties:
-> > > > +        compatible:
-> > > > +          contains:
-> > > > +            const: allwinner,sun20i-r329-pwm
-> > > > +
-> > > > +    then:
-> > > > +      required:
-> > > > +        - allwinner,pwm-channels
-> > > > +
-> > > > +    else:
-> > > > +      properties:
-> > > > +        allwinner,pwm-channels: false =20
-> > >=20
-> > > Do we really need to be that strict?
-> > > If something compatible to D1 pops up in the future, just with a diff=
-erent
-> > > number of channels, we would need a new compatible string. =20
-> >=20
-> > Well, you would want to have a soc specific compatible anyway then,
-> > right?
->=20
-> So the idea would be to add any new (specific) compatible string to that
-> list then, when we add them?
-> I guess this would work, but strictly speaking any current driver would
-> then only need to check this property for the R329 type? The Linux
-> driver proposed in the next patch *always* honours the
-> allwinner,pwm-channels property, which is IMHO the right way to implement
-> this. And that's why I think the binding should reflect that, and not
-> explicitly *forbid* the property for every one other than R329 (atm).
->=20
-> With the current Linux driver, a potential new SoC using:
-> 	"allwinner,sun20i-d2-pwm", "allwinner,sun20i-d1-pwm";
-> 	allwinner,pwm-channels =3D <6>;
-> would work without driver changes. A driver strictly written to this
-> binding here might not, though, as it would be free to ignore the
-> pwm-channels property.
->=20
-> Does that make sense? So to encourage future compatibility, can we drop
-> the "else" branch?
+On 2/1/2024 12:26 AM, Esben Haabendal wrote:
+> "Abhishek Chauhan (ABC)" <quic_abchauha@quicinc.com> writes:
+>> On 1/26/2024 12:43 AM, Esben Haabendal wrote:
+>>> "Abhishek Chauhan (ABC)" <quic_abchauha@quicinc.com> writes:
+>>>
+>>>> Qualcomm had similar discussions with respect to enabling of TBS for a
+>>>> particular queue. We had similar discussion on these terms yesterday
+>>>> with Redhat. Adding Andrew from Redhat here
+>>>>
+>>>> What we discovered as part of the discussions is listed below.
+>>>>
+>>>> 1. Today upstream stmmac code is designed in such a way that TBS flag
+>>>> is put as part of queue configurations(see below snippet) and as well
+>>>> know that stmmac queue configuration comes from the dtsi file.
+>>>>
+>>>> //ndo_open => stmmac_open
+>>>> int tbs_en = priv->plat->tx_queues_cfg[chan].tbs_en;(comes from tx_queues_cfg)
+>>>>
+>>>> /* Setup per-TXQ tbs flag before TX descriptor alloc */
+>>>> tx_q->tbs |= tbs_en ? STMMAC_TBS_AVAIL : 0;
+>>>>
+>>>> 2. There is a no way to do this dynamically from user space because
+>>>> we don't have any API exposed which can do it from user space
+>>>
+>>> Not now. But why not extend ethtool API to allow enabling TBS for
+>>> supported controllers?
+>>
+>> ethtool API can be implemented but that still doesn't solve the
+>> problem of stopping the entire MAC block because of enhanced desc
+>> allocation.
+> 
+> I am not sure what you exact point is here.
+> 
+> If you look at the implementation of ethtool API for changing ring
+> parameters, you have stmmac_set_ringparam() which calls
+> stmmac_reinit_ringparam(), which again calls stmmac_release() if the
+> interface is up (stopping the entire MAC), and then stmmac_open() which
+> reinitializes everything.
+> 
+> The same pattern could be applied to changes to enable enhanced
+> descriptor allocation.
+> 
+> I don't see why that will not be acceptable. Why would anyone have to do
+> that while critical traffic is flowing? In your system you should be
+> able to know which queues needs enhanced descriptors before starting
+> communication.
+> 
+>> 1. We can either allocate enhanced desc for all channels at bootup and
+>> then choose to switch to enable TBS mode at runtime (Additional memory
+>> usage)
+> 
+> A good default would IMHO be to enable enhanced descriptors for all but
+> TX queue 0. This will allow use of TBS without needing to change
+> anything. If the rather minimal extra memory usage is disturbing anyone,
+> then they can tune it at boot time before bringing the interface up.
+> 
+>> 2. Live with the disruption of traffic for a brief duration of time.
+>> Which is not a good solution for priority and critical traffic.
+> 
+> As mentioned above, I don't see why anyone would need to modify the
+> descriptor allocation while critical traffic is flowing.
+> 
+> If you are able put this information in your device tree, you definitely
+> will be able to put it in an boot script in some form.
+> 
+>>>> and also TBS rely on special descriptors aka enhanced desc this
+>>>> cannot be done run time and stmmac has to be aware of it before we
+>>>> do DMA/MAC/MTL start.
+>>>
+>>> Isn't this somewhat similar to changing the RX/TX ring parameters,
+>>> which I believe also is quite difficult to do at run time, and
+>>> ethtool therefore requires the interface to be down in oroer to
+>>> change them?
+>>>
+>>>> To do this dynamically would only mean stopping DMA/MAC/MTL realloc
+>>>> resources for enhanced desc and the starting MAC/DMA/MTL. This means
+>>>> we are disrupting other traffic(By stopping MAC block).
+>>>
+>>> Yes. But you would be disrupting traffic less than by requiring a
+>>> complete reboot of the target which is needed if the devicetree must be
+>>> changed.
+>>>
+>> any DTS solution today anyway requires completely loading the boot
+>> image and rebooting the device, but once the device is functional, End
+>> user can activate TBS, as he knows the exact usecase and requirements.
+>> I understand the solution is not scalable, but at this point we don't
+>> have a solution to activate TBS at runtime.
+> 
+> Exactly. We are discussing a solution to activate enhanced descriptors
+> at "runtime". But I propose to do it in a similar way as changing ring
+> parameters, so it is in runtime seen from a CPU perspective, but the
+> interface will be shortly brought down when changing it.
+> 
+>>>> 3. I dont think there is a way we can enable this dynamically today. I
+>>>> would like upstream community to share your thoughts as well.
+>>>
+>>> Hereby done. Could we investigate the possibility of using ethtool to
+>>> change TBS enable/disable "run-time"?
+>>>
+>> We can either allocate enhanced desc for all channels at bootup
+>> and then choose to switch to enable TBS mode at runtime.
+> 
+> I think we should do something like this:
+> https://git.kernel.org/pub/scm/linux/kernel/git/netdev/net.git/commit/?id=3b12ec8f618e
+> 
+> for all glue drivers, so a sane default is established that allows using
+> TBS from boot up.
+> 
+> But in addition to that, I think it would make sense to create an
+> ethtool API to change it from that default. And it will bring down the
+> interface while applying the change.
+> 
 
-Oh true, I see what you mean now with the example you gave. I wouldn't
-respin for this alone, since the else branch could be dropped when
-another user showed up given the driver doesn't restrict things.
-I'm okay with your suggestion though.
+Agreed. Okay, We can go with this approach. I will evaluate the changes from ethtool perspective.
+ethtool approach will be favorable to everyone as most of the users rely on ethtool to configure 
+the NIC parameters. 
 
-Cheer,
-Conor.
+For now glue drivers can exclude queue0 for tbs and have all other queues to have tbs enabled.  
 
---wPn/chEO+X1eK+Gn
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZbvqEgAKCRB4tDGHoIJi
-0isTAQDdFIn8101DHoxqtxIzz2mXhQfAvSLN9IhSEoRLYtQYEQEA1ZfnLAFf02Qr
-FQmM5dsp/NBIxR7GwMaSW1en5yD5pgw=
-=tg0K
------END PGP SIGNATURE-----
-
---wPn/chEO+X1eK+Gn--
+> /Esben
 
