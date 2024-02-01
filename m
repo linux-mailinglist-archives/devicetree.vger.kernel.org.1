@@ -1,74 +1,74 @@
-Return-Path: <devicetree+bounces-37493-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-37494-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id E1DA9845307
-	for <lists+devicetree@lfdr.de>; Thu,  1 Feb 2024 09:45:24 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 67E4B845312
+	for <lists+devicetree@lfdr.de>; Thu,  1 Feb 2024 09:48:31 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 240E9B2983B
-	for <lists+devicetree@lfdr.de>; Thu,  1 Feb 2024 08:45:22 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id E75F91F22419
+	for <lists+devicetree@lfdr.de>; Thu,  1 Feb 2024 08:48:30 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id DF79315AAC1;
-	Thu,  1 Feb 2024 08:45:06 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2782815AAB7;
+	Thu,  1 Feb 2024 08:48:19 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="EY8zvD/V"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="CFWOTFpj"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ej1-f41.google.com (mail-ej1-f41.google.com [209.85.218.41])
+Received: from mail-ed1-f49.google.com (mail-ed1-f49.google.com [209.85.208.49])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 122C215AAB6
-	for <devicetree@vger.kernel.org>; Thu,  1 Feb 2024 08:45:04 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.41
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1B5D8158D9B
+	for <devicetree@vger.kernel.org>; Thu,  1 Feb 2024 08:48:15 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.49
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1706777106; cv=none; b=JQeIZh1KHAW5SdYhwUEATtYPBrWPro6U+Vx9AZjWD1CvwAl1zXZ+mRWq/keMOIBcimqMejn2YfX9BbK7+W2vWv+i28mH0Tv7qmKhu8bOIZ5Qu9AQFMiI74x14j+32oeHXv+JWhr/rX8IGC9dn8oMtM8odeh4Pv4oRt1JBPfgAhI=
+	t=1706777299; cv=none; b=l5ZYFo2InJh0qFtqKYfzclt10L35Pydj+vKQAsSDZh0C8TeeWwhN1WHS92YeiJl9FQynGPvfryTKo12pcFP43JOp+ISCwVZKIG6q/3dZ9pivDyOXd/6n6ULKxaJv0H0/OUozp7De0GdL4rI69dP+rvkVJ+vl6n7qUUQroUnMZEo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1706777106; c=relaxed/simple;
-	bh=H63ky5OGP/fMkHzYxDZrGRGJseXqxobdgokONowi+AY=;
+	s=arc-20240116; t=1706777299; c=relaxed/simple;
+	bh=f4F6MTAQJd8Vgi1aKRgKDRrsgMlKqr4rj25u4Yl9LK8=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=fTwCQKUxZ/PwmDjB6Win2lZh2rTeaSQjgPzxsABKJWitOClzujNO4miPOW6JpLcOQSo60JcLEok3bTAgwT8vmR9UxvwSbz6XiqCcLyAtGoTuGwtOG85KndqLFiQTRNEE54qryYpIhq1CdlUucOXr0TJbnwoTOLj4m7Get0/jHqY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=EY8zvD/V; arc=none smtp.client-ip=209.85.218.41
+	 In-Reply-To:Content-Type; b=DgvgylGrIFDMlqid4foPlC9kSIKTkOMkA3JahIjFiYAnN+BEUDpxV5pmOUXo33iwQLWfW2jqsfEy9qqZ5fEGpUUybgKfbwKT4OM3XuOeAoxxPwjy5KIU1qvgDe2/BpfFqpowfW+1RO4+j9pohbnB7nRwDOU5vAp1naBK5iQNfsQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=CFWOTFpj; arc=none smtp.client-ip=209.85.208.49
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-ej1-f41.google.com with SMTP id a640c23a62f3a-a3651c87ebbso80747866b.1
-        for <devicetree@vger.kernel.org>; Thu, 01 Feb 2024 00:45:04 -0800 (PST)
+Received: by mail-ed1-f49.google.com with SMTP id 4fb4d7f45d1cf-55efbaca48bso832414a12.2
+        for <devicetree@vger.kernel.org>; Thu, 01 Feb 2024 00:48:15 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1706777103; x=1707381903; darn=vger.kernel.org;
+        d=linaro.org; s=google; t=1706777294; x=1707382094; darn=vger.kernel.org;
         h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
          :to:content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=ZKhtgxx9F1SKH9mor42U/3ONSOP1lRbYWhFvHuqK0z8=;
-        b=EY8zvD/VRbAOm3W1uU8JqIjSCOrRVkuRPDHPc6KXSxmrpUm/WhKi2wnoiXuodjPj1U
-         UTb4GJBOifqvl07rsd+btdlRyH8SdFs19sxOvZWeTK+a5iIGO+xi+VqJ4AMFQ1OrNXCf
-         Awk+krbV4nlBrL+OOz4YpeU2HJaqBK/NGv67WiEc0pQyyNYKXk8zoK5obDZ4NZNOfIz9
-         mHPlxRRRj8t8sOKjwilYA0XDtDjkVW9vWA9d1rCtbPzer0U0bQH5LfZyF4scVeXh39tQ
-         LteI1HLeEtbqSQASvfGBcdxFGqzCb1suBez8r7FPVgyUzBgX8zKMbm+ePu2Fm53AIo7r
-         M7LQ==
+        bh=REG2Wu+YiLPlR/Fe2U5NdazLcF36rkDjg0fYhPH6wbI=;
+        b=CFWOTFpjPsxmGmpdD+iC2D2HCLMlx5Hav0TgeOKeVhliTy1ji4jsTglDLtOaiHTtqn
+         hji6OvYDgrGwMJAFewgL+9U5CO6dKSHFJn7uX8nVtO7CpduH/FaVY7LAr3gQbTOws5fa
+         WomyQYz7qvdHhaBDGb06FFwLP5csRF7UjNTmc9zHOqwVK+Sg8C1PoHNlo1xE+KNqwZCX
+         +dZPdtTYAGij8aJId+Y5XGBb1FC70FJn8fQJGCMjawkl2iGPIT34wm821rql2yVzqD6A
+         92McQRbqnL+JwS/ieYwtLhUnmHxTXKEf3FvAKs96txWQO15clJse2oDmLSPAryOzuHNp
+         N+yQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1706777103; x=1707381903;
+        d=1e100.net; s=20230601; t=1706777294; x=1707382094;
         h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
          :to:content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=ZKhtgxx9F1SKH9mor42U/3ONSOP1lRbYWhFvHuqK0z8=;
-        b=T53gn4bOkJpBNKev9hF+pLkE5muj3nzNcGkFUcVcmtcf1HYfpKQP3Fn9fc92wGmzHl
-         BZC8bT7Mh64PrHG6lFoEdQ2bIS25XaBHBahRcvislNIrvUjaHx/X1/nm2yPNUXlST5UW
-         P0PHZlOB9aihinaC2VTZQhkK3ikpKaY1451LU9XoAJXnMFtoNT7OTkoN2E5Dmhk1Ma76
-         CEPmtJ7SLiumDnzBiJcN0r0iEJGi538zbz+YyG7+2PWhltiK4m0HEDdCcpsYKD1w63nD
-         yxGFq17KdGQigSDn4uk29Vuskq8IBp3F/h4H6KuYGkm5QAZZdJ2X/uY1sEcuh/OdEPQS
-         Qsdw==
-X-Gm-Message-State: AOJu0Yx5Gts/4X8SdLOmNM9GSJIJM7AxVqK9mwyoJo9H76G9m4grVT2g
-	BQMiXRQSRivvQ6On4/dKIboQ0nQiAGX5W4LYVRtiRAM9H3WKsfDJ8ZOR4MvE2eE=
-X-Google-Smtp-Source: AGHT+IHTv/FFzGdUJfzgXdvklrUopceP0lK0QC1GyD4W+X6XemVEt3RWLSFEynqDLKfI4N94C4i1RA==
-X-Received: by 2002:a17:906:3b8e:b0:a35:7c25:b7c6 with SMTP id u14-20020a1709063b8e00b00a357c25b7c6mr1197838ejf.72.1706777103251;
-        Thu, 01 Feb 2024 00:45:03 -0800 (PST)
-X-Forwarded-Encrypted: i=0; AJvYcCWX3fPBRMuTirggrXtYuqHCx13rNhQPzUp6WB0CWgF6dofQYJaknvP85XJs5MmcLpWGYUSqp4vJk6Fu049HtPQ883017R+FwK8HiQrQ0DEM9S6y4h1AruZIIJUhFTyNyrJauaVy7JgxHbddKaqf4lOyj5Wj81WCckyhyGCQi/TuOorLyk6/uuBeQzfhBrmL+z/Hrz1saF6nccWOFb8w98tLCRyB1/qRMLVVpdb5bFH14HzlfHXnuiT3XIpAOw1REzRFCG++OESs1XfNYRFfqd8xyX+JfBu6B5XnmU88nlCjRZ/klv43J5he3J2D17mv9CFsSKypRLZfGwKCIL5d/0xvwjBSNQYM2c9eombyVVjgB39X5NoNBqru8SqoAYahI98gx1HWWpQnjTbc6ycvyBJgK9g7w7U0PPmvF2foP/Yj/5GoNc87N19w+vTL
+        bh=REG2Wu+YiLPlR/Fe2U5NdazLcF36rkDjg0fYhPH6wbI=;
+        b=gmy7JMDwfZw/3r4VP8GyAzQYJ3vSwynrQ2+0dwkY/ybRtyhIyOXrC+q48tBHQfNoLr
+         bt8mufhZa6UtwDBiHhznA5n48ayXZVRAYdAVL52L2QLwagZ6sRh1ck3vpFhqEzvl96g1
+         DnAhSRkqVH6uAWzutyqvIfUGktBqXRWpoRYCDMIBxDD2LFThLFe1f+7x65Jw7gjdL+ks
+         yJBzgsdF130+FAlSzZDU4eAPFSUt3DAUVKqEhEI9Q91zH2PJXxtHDmydsoUTpIJon66F
+         ZBpoAb40N66Wob3XyNuqU3aRMMHZgRI/xZCATIwV5I9+yv+uE9sKsDiR2WEsVLAUWHGU
+         OWDw==
+X-Gm-Message-State: AOJu0YxSjf/iIcq0ayTjRcujnrkfNaSTMx23xY21lpyrxlmThy3Dq6tP
+	kM6LW/eh2iWilKbhcV49jFm9hisE8Nq/LFBAOhE7RAcOz04e/MGFVR94pwstwv8=
+X-Google-Smtp-Source: AGHT+IGHunBHztBsV9QJNV3FWxYRHsZHhP0aQWw0z5liuRt7YtYvFOh6Hq+hC2UtzPwBm55TJiI0Hg==
+X-Received: by 2002:a05:6402:1d29:b0:55f:8031:501c with SMTP id dh9-20020a0564021d2900b0055f8031501cmr2996238edb.30.1706777294353;
+        Thu, 01 Feb 2024 00:48:14 -0800 (PST)
+X-Forwarded-Encrypted: i=0; AJvYcCVwnUU+x75+3B5JQF3koWoxHWtzzDU3y27nNIlAoyLpCtSwmwWY0H2ukZT0HttjEzwawljhs888ZL4XrracYOuJ951kwOl1QsbhDclujTHRgw+wwVojSC8j0TGTQcb7J/A/+t7aBAOjZXJlZfmnWMtqEE5Kygrcrv6uFj+IdABTLu10mynWA9IMaHnk57rJqKLlJYiZSgtLV9sVnj1M6LEPINyHwNiQsIb5eKY+cia596x4HEIpYJUihY6LZHPVySIPyB0dfZ0R0FEx9ZrlAsoUikF00w0BUQRzwk5CCck2WRNleUITaRg2jUG1cqHxTKA4QiFp4cEWa2wWCZpm2NnWlW3836Ir93es2XqAFZWCjao+70u6vABS5BfisnFNnLOcg47X66qAVaF8ELSesmrmtRY3HtCV
 Received: from [192.168.1.20] ([178.197.222.62])
-        by smtp.gmail.com with ESMTPSA id p6-20020a170906228600b00a3589038f0asm4809306eja.198.2024.02.01.00.45.01
+        by smtp.gmail.com with ESMTPSA id fe1-20020a056402390100b005598e3d6d23sm6551798edb.16.2024.02.01.00.48.12
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 01 Feb 2024 00:45:02 -0800 (PST)
-Message-ID: <ddeca5d1-a636-4524-90b4-613655642d91@linaro.org>
-Date: Thu, 1 Feb 2024 09:45:00 +0100
+        Thu, 01 Feb 2024 00:48:13 -0800 (PST)
+Message-ID: <a021d3a7-93eb-4fdd-b109-76443c955a82@linaro.org>
+Date: Thu, 1 Feb 2024 09:48:11 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -76,17 +76,18 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v23 1/3] dt-bindings: clock: npcm845: Add reference 25m
- clock property
+Subject: Re: [PATCH v1 1/4] dt-bindings: vendor-prefixes: add LG Electronics,
+ Inc. prefix
 Content-Language: en-US
-To: Tomer Maimon <tmaimon77@gmail.com>, mturquette@baylibre.com,
- sboyd@kernel.org, robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
- tali.perry1@gmail.com, joel@jms.id.au, venture@google.com, yuenn@google.com,
- benjaminfair@google.com
-Cc: openbmc@lists.ozlabs.org, linux-clk@vger.kernel.org,
- linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
-References: <20240131182653.2673554-1-tmaimon77@gmail.com>
- <20240131182653.2673554-2-tmaimon77@gmail.com>
+To: Svyatoslav Ryhel <clamor95@gmail.com>, Rob Herring <robh+dt@kernel.org>,
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+ Conor Dooley <conor+dt@kernel.org>, Thierry Reding
+ <thierry.reding@gmail.com>, Jonathan Hunter <jonathanh@nvidia.com>,
+ Kees Cook <keescook@chromium.org>, Maxim Schwalm <maxim.schwalm@gmail.com>
+Cc: devicetree@vger.kernel.org, linux-tegra@vger.kernel.org,
+ linux-kernel@vger.kernel.org, linux-hardening@vger.kernel.org
+References: <20240131105153.8070-1-clamor95@gmail.com>
+ <20240131105153.8070-2-clamor95@gmail.com>
 From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  xsFNBFVDQq4BEAC6KeLOfFsAvFMBsrCrJ2bCalhPv5+KQF2PS2+iwZI8BpRZoV+Bd5kWvN79
@@ -132,21 +133,19 @@ Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  KQ06ztUMRrj8eVtpImjsWCd0bDWRaaR4vqhCHvAG9iWXZu4qh3ipie2Y0oSJygcZT7H3UZxq
  fyYKiqEmRuqsvv6dcbblD8ZLkz1EVZL6djImH5zc5x8qpVxlA0A0i23v5QvN00m6G9NFF0Le
  D2GYIS41Kv4Isx2dEFh+/Q==
-In-Reply-To: <20240131182653.2673554-2-tmaimon77@gmail.com>
+In-Reply-To: <20240131105153.8070-2-clamor95@gmail.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 31/01/2024 19:26, Tomer Maimon wrote:
-> The NPCM8XX clock driver uses a 25Mhz external clock, therefore adding
-> clock property.
+On 31/01/2024 11:51, Svyatoslav Ryhel wrote:
+> Add missing LG Electronics, Inc. prefix used by some older devices.
 > 
-> The new required clock property does not break the NPCM8XX clock ABI
-> since the NPCM8XX clock driver hasn't merged yet to the Linux vanilla.
-> 
-> Signed-off-by: Tomer Maimon <tmaimon77@gmail.com>
+> Signed-off-by: Svyatoslav Ryhel <clamor95@gmail.com>
 > ---
 
-Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+NAK, same reasons as before:
+
+https://lore.kernel.org/all/9942f964-442e-e782-3926-6d7d1123418a@canonical.com/
 
 Best regards,
 Krzysztof
