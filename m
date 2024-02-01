@@ -1,188 +1,181 @@
-Return-Path: <devicetree+bounces-37744-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-37745-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1729E846158
-	for <lists+devicetree@lfdr.de>; Thu,  1 Feb 2024 20:47:37 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 55572846183
+	for <lists+devicetree@lfdr.de>; Thu,  1 Feb 2024 20:54:56 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 954EA28EFDA
-	for <lists+devicetree@lfdr.de>; Thu,  1 Feb 2024 19:47:35 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id D4B9B1F27041
+	for <lists+devicetree@lfdr.de>; Thu,  1 Feb 2024 19:54:55 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C5E568528E;
-	Thu,  1 Feb 2024 19:47:20 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 950258563D;
+	Thu,  1 Feb 2024 19:54:19 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="TFQ8HPYf"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="TdS04626"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wm1-f42.google.com (mail-wm1-f42.google.com [209.85.128.42])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9E20484FC7;
-	Thu,  1 Feb 2024 19:47:20 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 785B185639;
+	Thu,  1 Feb 2024 19:54:16 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.42
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1706816840; cv=none; b=k5YOYB48goo4z9heRGCnmndW6PuUpii0bYoYXE6IyUvTmQckIkQCCterDaFAl4M4ruC4bDvR51nejF6MhMR/DmsM2M97xx2a4G1uw9uoceaM14JcRWx2dWa6KCoOzmFj5QLPTDzxd/4EqoZNExG5dFk6PQ9kIzOYwFMDFtmE1u4=
+	t=1706817259; cv=none; b=kdfOPrxivdJoLlF5wStSFJ/eGLHSPIRTogynUCwmveLP9IFa+bEZc/ZcEUsS8/3DXIfdd04Q0+4PY2zhy+oGG3XzWTqRp0kL0zZnfe2rSw4CHeahcbWvrVHBb7n0BoMq9rVOqE174K7Ab4kqZHOt805HFT09ZHg/EL8seSVZQeg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1706816840; c=relaxed/simple;
-	bh=jiEbi8QNujD3qdmkGJ2lzsWGIhAaTaj5nJA5MFhPzIM=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=EFFauZja26rTnoexmQk1d+f+gLvkKmXd/z8zlvPMUp3mPSrzPl/grabNrmW9twIjyRymCDUkF3ZN5nRH4RGITHqC72T8c4OCuyZJtoXY65yRNtODkPz4JqOe1OHk818/Tz1jr6qYM0CPkBKmucPRicU9bb9HKzhEeg15Y+3Gfi0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=TFQ8HPYf; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 05BBBC433F1;
-	Thu,  1 Feb 2024 19:47:16 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1706816840;
-	bh=jiEbi8QNujD3qdmkGJ2lzsWGIhAaTaj5nJA5MFhPzIM=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=TFQ8HPYfLUZ9XI/F0aOi4FyO+QDE0GrDcw+xEVqwTRymAhcZ353kD6nFNd0BdJyqR
-	 yiXGUiNIZMiYjJW/WRivqt5UXGkzNP9fPWRq1B66aZ6IvGHin7KOeuWM79UJz4tAzJ
-	 JiRS9ooAQkyqelgqNjBWPvmDndxjxyYeNiNxCroc10DIYm/NTIn2cYuu+oERc/DZi6
-	 wSUe9XkqlLYzvw8mt/twkKtgzYxpxAUq81a4csfopthA00AKcPuTkM15wNREubYQgT
-	 Vg+J5TAuZug51DQH+0C1Czc6JqOWOag8s0bSLq0yIhyqAWIM4D3snS5M2sg2nVd9/J
-	 f3wlkV9EzFckA==
-Date: Thu, 1 Feb 2024 19:47:14 +0000
-From: Conor Dooley <conor@kernel.org>
-To: Johan Jonker <jbx6244@gmail.com>
-Cc: robh+dt@kernel.org, hjc@rock-chips.com, heiko@sntech.de,
-	andy.yan@rock-chips.com, krzysztof.kozlowski+dt@linaro.org,
-	conor+dt@kernel.org, airlied@gmail.com, daniel@ffwll.ch,
-	maarten.lankhorst@linux.intel.com, tzimmermann@suse.de,
-	mripard@kernel.org, markyao0591@gmail.com,
-	dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v2 1/6] dt-bindings: display: rockchip: rockchip,dw-hdmi:
- remove port property
-Message-ID: <20240201-raffle-frays-6b5a47faab69@spud>
-References: <a493c65e-7cf9-455f-95d5-8c98cad35710@gmail.com>
+	s=arc-20240116; t=1706817259; c=relaxed/simple;
+	bh=igWepZJuJ7/NxlfTBcvat+93tyRHyJ7CtS8SToYFt88=;
+	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=SuT0G204YM4NdlbyLqHY5FpSibrhaPskX0/wW3nih7h60+Qp8ca1iCQH80cEHHz+ACLn47RvbYf/MULKhnNTbRXOgsPZGsub5k7OsJSSLMWSBNee9L5EXZNJT3t86fC0S3gbGYkf+07qEwoZxtKHkLI68tjhrrvxwnsuEtpMHyA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=TdS04626; arc=none smtp.client-ip=209.85.128.42
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-wm1-f42.google.com with SMTP id 5b1f17b1804b1-40fb3b5893eso11361575e9.0;
+        Thu, 01 Feb 2024 11:54:16 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1706817255; x=1707422055; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=Fw0ii54g50YM0TTuIh98HIpGP8lHOO7kLQ/jqdmdMzg=;
+        b=TdS04626BAnPz7e+SzFyfM0zwf4n+7EOtW9jQoMtN+hXw+GMYH6yEVmVq1s3zJmFni
+         +PdA1Is6XgSL2FW8hvvMmcETWF+q70OmCmSjaxvwWKLmNkpx0g3keFh+64BFQAaIW+Qv
+         Q1nY7L+bIxZyVXcTCOvYsiUfC90I4lwDn+w/d8QmSBJpalBGOXtlD3WuNplg/+I5mVcB
+         gWT6VINX/TW+YAXauYjMg/vMtNF7jZ22UdzKNeBi8wh0x1RQxS2rgcc7levF24Zlt//X
+         s65l82XLTmkE9bZgzFXHHdI+jcXv/SWJFwPNACi0dD+NYPFCJmeBK3rNFMutIKclqSfd
+         a6iw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1706817255; x=1707422055;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=Fw0ii54g50YM0TTuIh98HIpGP8lHOO7kLQ/jqdmdMzg=;
+        b=shfY+4VOnuCZJGkcAegkLC6CtYeO/cGGd5MWA58tFKu8KxBbNJYbftcGOypeBWtq29
+         +quTcQy1Z1bstManfu/5FBaiB1lfxYpj0XeH8OyIAyhji9j0yfkG4jA/78zqB8KQeG7z
+         VFPfK4Nh5/39Cpvjergw6sCEwdIBFO2TPz9SZCCG7WZ+bp1fGlonwdMJy2nN5a/dMzFT
+         uSlX8dmKy+yAKg0XLtDjnYhR5U/08QDfbQn62NCO3vrMomB0oB4W6lkTlAmMcYisCRSX
+         h6sa5WN+UvL1Qu1hBgfxioOTXzqgP+JQAIM2Pp+48mV03Wqlf6yb/ySRMpPT3OLW5mUa
+         YJJw==
+X-Gm-Message-State: AOJu0Yxbc1bI041AhZP0oDt1b31dsWtvpEaofVSFeKEvI4lb5KsgHrlm
+	h7c4NFj6b7rluX39gU+GE4PhzW651n5pj23NWvlb+yivjffPj5kC
+X-Google-Smtp-Source: AGHT+IEnh5hwCXXTj+jcR1g0I5bM3FN4GQ3RUZkTBdSNXXRnJnKzpnLqx2ztJH2PVqejHm+eHD5rlg==
+X-Received: by 2002:adf:f64d:0:b0:33a:ed59:c13f with SMTP id x13-20020adff64d000000b0033aed59c13fmr2215794wrp.53.1706817254477;
+        Thu, 01 Feb 2024 11:54:14 -0800 (PST)
+X-Forwarded-Encrypted: i=0; AJvYcCUkIqDqfPVesemdoaqG1j9jyMLDsyXZci7qdN4rwuZyTnBZy4P9GdwzPQDb4Y97RzDb7Nt0/KTkiYHc51OSLbBILSGHypTjb1PDb72ZoN4kaiS2TT38IIny9hPv2qk7pbyB11bBj5eswJ+oqt6ESrIo8PmhujbvmHrZ92DidVXSYCIjxN1acjdlenKmkXnSfu++c+dj/Av8asn0HmbyqnJOHJwIvOONyMQz7F09oEWk0jsg4Qs3a3TqQFxA5SUAaxlPo2IJXN4OUMn6+DxZIgdQzBM6KWGu35l4Soq52r7+Zd0QERbzokhqf2Tb42N3SFmMLFs+a7yMc+7eTw7Al8QKIOgIa0u0jl1oDEI1AB6rPSle+MxY1/QtbLL8
+Received: from jernej-laptop.localnet (82-149-13-182.dynamic.telemach.net. [82.149.13.182])
+        by smtp.gmail.com with ESMTPSA id v12-20020a5d4b0c000000b0033afce63fd0sm211781wrq.53.2024.02.01.11.54.13
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 01 Feb 2024 11:54:14 -0800 (PST)
+From: Jernej =?utf-8?B?xaBrcmFiZWM=?= <jernej.skrabec@gmail.com>
+To: Aren <aren@peacevolution.org>
+Cc: linux-kernel@vger.kernel.org, Miles Alan <m@milesalan.com>,
+ Ondrej Jirman <megi@xff.cz>, Chen-Yu Tsai <wens@csie.org>,
+ Conor Dooley <conor+dt@kernel.org>,
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+ Rob Herring <robh+dt@kernel.org>, Samuel Holland <samuel@sholland.org>,
+ devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ linux-sunxi@lists.linux.dev
+Subject:
+ Re: [PATCH 2/4] arm64: dts: sun50i-a64-pinephone: Retain leds state in
+ suspend
+Date: Thu, 01 Feb 2024 20:54:12 +0100
+Message-ID: <10409647.nUPlyArG6x@jernej-laptop>
+In-Reply-To: <sbcg74hktwv5x7hookeb4su27xut7swarl3d5mbs3i5cqxtq4g@4evugu43ctiv>
+References:
+ <20240128204740.2355092-1-aren@peacevolution.org>
+ <4892315.31r3eYUQgx@jernej-laptop>
+ <sbcg74hktwv5x7hookeb4su27xut7swarl3d5mbs3i5cqxtq4g@4evugu43ctiv>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-	protocol="application/pgp-signature"; boundary="JSTTUbvKmVnod5va"
-Content-Disposition: inline
-In-Reply-To: <a493c65e-7cf9-455f-95d5-8c98cad35710@gmail.com>
-
-
---JSTTUbvKmVnod5va
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
 Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset="UTF-8"
 
-On Wed, Jan 31, 2024 at 10:14:29PM +0100, Johan Jonker wrote:
-> The hdmi-connector nodes are now functional and the new way to model
-> hdmi ports nodes with both in and output port subnodes. Unfortunately
-> with the conversion to YAML the old method with only an input port node
-> was used. Later the new method was also added to the binding.
-> A binding must be unambiguously, so remove the old port property
-> entirely and make port@0 and port@1 a requirement as all
-> upstream dts files are updated as well and because checking
-> deprecated stuff is a bit pointless.
-> Update the example to avoid use of the removed property.
+Dne =C4=8Detrtek, 01. februar 2024 ob 02:36:46 CET je Aren napisal(a):
+> On Tue, Jan 30, 2024 at 08:06:24PM +0100, Jernej =C5=A0krabec wrote:
+> > Dne nedelja, 28. januar 2024 ob 21:45:08 CET je Aren Moynihan napisal(a=
+):
+> > > From: Miles Alan <m@milesalan.com>
+> > >=20
+> > > Allows user to set a led before entering suspend to know that
+> > > the phone is still on (or could be used for notifications etc.)
+> > >=20
+> > > Signed-off-by: Miles Alan <m@milesalan.com>
+> > > Signed-off-by: Ondrej Jirman <megi@xff.cz>
+> > > Signed-off-by: Aren Moynihan <aren@peacevolution.org>
+> >=20
+> > Where is patch 1 and possibly cover letter? Please resend with all patc=
+hes.
 >=20
-> Signed-off-by: Johan Jonker <jbx6244@gmail.com>
+> Oops, sorry about that, I'm still getting used to get_maintainer.pl.
+> I'll resend this properly when I have time this weekend, until then the
+> patch you missed is available at
+> https://lore.kernel.org/lkml/20240128204740.2355092-1-aren@peacevolution.=
+org/
 
-Acked-by: Conor Dooley <conor.dooley@microchip.com>
+When sending patch series it's customary to send all patches to all
+maintainers and mailing lists (to have a context). In case of large patch
+series, you can send only selected patches to each maintainer and mailing
+lists, but then send cover letter to all involved and explain general idea
+behind the series.
 
-Thanks,
-Conor.
+Best regards,
+Jernej
 
-> ---
 >=20
-> Changed V2:
->   rename title from deprecate to remove
->   reword
-> ---
->  .../display/rockchip/rockchip,dw-hdmi.yaml    | 24 +++++++++++++++----
->  1 file changed, 20 insertions(+), 4 deletions(-)
+> > However, this particular patch is:
+> > Reviewed-by: Jernej Skrabec <jernej.skrabec@gmail.com>
 >=20
-> diff --git a/Documentation/devicetree/bindings/display/rockchip/rockchip,=
-dw-hdmi.yaml b/Documentation/devicetree/bindings/display/rockchip/rockchip,=
-dw-hdmi.yaml
-> index 7e59dee15a5f..391c2a7e79de 100644
-> --- a/Documentation/devicetree/bindings/display/rockchip/rockchip,dw-hdmi=
-=2Eyaml
-> +++ b/Documentation/devicetree/bindings/display/rockchip/rockchip,dw-hdmi=
-=2Eyaml
-> @@ -97,8 +97,8 @@ properties:
->    ports:
->      $ref: /schemas/graph.yaml#/properties/ports
+> Thanks
+>  - Aren
 >=20
-> -    patternProperties:
-> -      "^port(@0)?$":
-> +    properties:
-> +      port@0:
->          $ref: /schemas/graph.yaml#/properties/port
->          description: Input of the DWC HDMI TX
->          properties:
-> @@ -108,11 +108,14 @@ properties:
->              description: Connection to the VOPB
->            endpoint@1:
->              description: Connection to the VOPL
-> -    properties:
->        port@1:
->          $ref: /schemas/graph.yaml#/properties/port
->          description: Output of the DWC HDMI TX
->=20
-> +    required:
-> +      - port@0
-> +      - port@1
-> +
->    rockchip,grf:
->      $ref: /schemas/types.yaml#/definitions/phandle
->      description:
-> @@ -147,7 +150,11 @@ examples:
->          clock-names =3D "iahb", "isfr";
->=20
->          ports {
-> -            port {
-> +            #address-cells =3D <1>;
-> +            #size-cells =3D <0>;
-> +
-> +            port@0 {
-> +                reg =3D <0>;
->                  #address-cells =3D <1>;
->                  #size-cells =3D <0>;
->=20
-> @@ -155,11 +162,20 @@ examples:
->                      reg =3D <0>;
->                      remote-endpoint =3D <&vopb_out_hdmi>;
->                  };
-> +
->                  hdmi_in_vopl: endpoint@1 {
->                      reg =3D <1>;
->                      remote-endpoint =3D <&vopl_out_hdmi>;
->                  };
->              };
-> +
-> +            port@1 {
-> +                reg =3D <1>;
-> +
-> +                hdmi_out_con: endpoint {
-> +                    remote-endpoint =3D <&hdmi_con_in>;
-> +                };
-> +            };
->          };
->      };
->=20
-> --
-> 2.39.2
+> > Best regards,
+> > Jernej
+> >=20
+> > > ---
+> > >=20
+> > >  arch/arm64/boot/dts/allwinner/sun50i-a64-pinephone.dtsi | 3 +++
+> > >  1 file changed, 3 insertions(+)
+> > >=20
+> > > diff --git a/arch/arm64/boot/dts/allwinner/sun50i-a64-pinephone.dtsi =
+b/arch/arm64/boot/dts/allwinner/sun50i-a64-pinephone.dtsi
+> > > index 87847116ab6d..ad2476ee01e4 100644
+> > > --- a/arch/arm64/boot/dts/allwinner/sun50i-a64-pinephone.dtsi
+> > > +++ b/arch/arm64/boot/dts/allwinner/sun50i-a64-pinephone.dtsi
+> > > @@ -43,18 +43,21 @@ led-0 {
+> > >  			function =3D LED_FUNCTION_INDICATOR;
+> > >  			color =3D <LED_COLOR_ID_BLUE>;
+> > >  			gpios =3D <&pio 3 20 GPIO_ACTIVE_HIGH>; /* PD20 */
+> > > +			retain-state-suspended;
+> > >  		};
+> > > =20
+> > >  		led-1 {
+> > >  			function =3D LED_FUNCTION_INDICATOR;
+> > >  			color =3D <LED_COLOR_ID_GREEN>;
+> > >  			gpios =3D <&pio 3 18 GPIO_ACTIVE_HIGH>; /* PD18 */
+> > > +			retain-state-suspended;
+> > >  		};
+> > > =20
+> > >  		led-2 {
+> > >  			function =3D LED_FUNCTION_INDICATOR;
+> > >  			color =3D <LED_COLOR_ID_RED>;
+> > >  			gpios =3D <&pio 3 19 GPIO_ACTIVE_HIGH>; /* PD19 */
+> > > +			retain-state-suspended;
+> > >  		};
+> > >  	};
+> > > =20
+> > >=20
+> >=20
+> >=20
+> >=20
+> >=20
 >=20
 
---JSTTUbvKmVnod5va
-Content-Type: application/pgp-signature; name="signature.asc"
 
------BEGIN PGP SIGNATURE-----
 
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZbv1QgAKCRB4tDGHoIJi
-0qLhAP9gtjdsYMXoFDWX44wSIhRtbVkUz0tifEeaurm8VymPqAD/brjU7Mi8vOW3
-Mr/QJdIlrf73AZ+4HC3l5fUMhqFzKQM=
-=bE0f
------END PGP SIGNATURE-----
 
---JSTTUbvKmVnod5va--
 
