@@ -1,192 +1,236 @@
-Return-Path: <devicetree+bounces-37679-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-37681-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0E2AE845E1D
-	for <lists+devicetree@lfdr.de>; Thu,  1 Feb 2024 18:08:47 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5DCA9845E43
+	for <lists+devicetree@lfdr.de>; Thu,  1 Feb 2024 18:14:39 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 8AA521F2759E
-	for <lists+devicetree@lfdr.de>; Thu,  1 Feb 2024 17:08:46 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id CC8CF1F27ABD
+	for <lists+devicetree@lfdr.de>; Thu,  1 Feb 2024 17:14:38 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id AAD9C77A02;
-	Thu,  1 Feb 2024 17:08:38 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5DC3B160867;
+	Thu,  1 Feb 2024 17:14:10 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=nxp.com header.i=@nxp.com header.b="J4a65d5D"
+	dkim=pass (2048-bit key) header.d=salutedevices.com header.i=@salutedevices.com header.b="qJ1SNigq"
 X-Original-To: devicetree@vger.kernel.org
-Received: from EUR05-VI1-obe.outbound.protection.outlook.com (mail-vi1eur05on2056.outbound.protection.outlook.com [40.107.21.56])
+Received: from mx1.sberdevices.ru (mx2.sberdevices.ru [45.89.224.132])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8CC3A779EA;
-	Thu,  1 Feb 2024 17:08:36 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.107.21.56
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1706807318; cv=fail; b=JknU4u+C5jxTxqrus9vS/ULuYpAfmkT1zPkN+eynIeugcQV+tFGnBTJL0uFEoxF0kuqSvppkatxRmfbCflOwenmELa27woZJ4Xpx04xIYEdZ9TIRtLCqCCP3dX1tAkbn5SoqYoP+f4qNFCl2uZpsB7oIYNRRWj3RdmOTWvOTrcE=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1706807318; c=relaxed/simple;
-	bh=b1WRXy2hwGFnnQ5APTHJuijCQSKl/LT+AP/x8/2f8m8=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:Content-Type:
-	 Content-Disposition:In-Reply-To:MIME-Version; b=cEBi1qnkSuSxk5umsJaEJEhXbxrGZqyALkiAqVEbZ5SmxGnH+TeB8tM/PnZwZPdN+H6zF4sMWRyyG91AMKnhoZ/XixAfF1K2zPyBkQOcln3P0YCtFdlV1wrc80H40VzeyZAIQzuuZrPTtvN8JL7GzU2QCAzmppm9DIcdV4MCO1M=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com; spf=pass smtp.mailfrom=nxp.com; dkim=pass (1024-bit key) header.d=nxp.com header.i=@nxp.com header.b=J4a65d5D; arc=fail smtp.client-ip=40.107.21.56
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=nxp.com
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=fqPhCBLYgMbAEEgxJK/7iwkhP3kBeqf3iWk8pAbNOtBvDEU9B8JoXR5TLLP8BM50yGH/r12tG1i2dkfuP8SXJhCkz9RW+3p9sJXgZRtHdLWOMT9w2B8olCWlSMRhjCzOaO+/u/OxdSD3XU57M0YL8XHuQQmQUvxbs6I4tMoYC9CzepbqUJ+8pAj3erj25xakOn8Rkv+WOHiCGHHRAq4ocaiqv7DW0tQCiVEsWkHTubgOZmWPmWiOR3bD97zhMrXaLHS7djXcVGatOvLgvJ6auB01fqq2CggrP0koBd3+S+PkPuPq0FJSunqg5YCLFYwA/GG7PVPoLxkiZ2ObHx0F/w==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=JkUTov6dXSymkaK45c4LgQD+rDZuJ5FLSdbi6L8EjfI=;
- b=FyggJTss0FFJPxfI8IdGnHFaOWyEK4FH0Wa34EbrZ7k7kqBAqzth+ragg5q8cBiu3hbrcdZrCy4B3dd+f3Y1gO4fE97OVeOGMQ0xCuKW2557VYQKCfVz0rk0Ox66+gG/K1nJJ8qpMyWt1ixqPL56+Oi7pJIk9TRAKJZLZrdqjq0iU74GdfRct4p3NTjokMNbHC7hs+VimBeO+ArX+HTi5Nwfh5NzebdiGrXOrEmG8dWvxtXeTl2GVz2HuDVPk70nE9qRk0B45ucD/Qo0E+BBJhC0ksLblf2QWyYZ5DcEdgJUEmot5IEQR2L/4qvQsf48R9+g5Hij262Wj/8wX8wREw==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
- header.d=nxp.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector2;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=JkUTov6dXSymkaK45c4LgQD+rDZuJ5FLSdbi6L8EjfI=;
- b=J4a65d5D2M8QA9T5xVVV0ktxBKNmpko3D1FyvunL6bstfghOeElBTXNEPMlwjbIC8syVMwOAV53iEY9y6MsQmc2ewCPge8yxuvCtiTaEO7wBxo5g2XkVXWF1O+Pa3rjcvSniL7dOlkN2PZ2aB/S33/yU41gX5GxHcOtezP5Obws=
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=nxp.com;
-Received: from PAXPR04MB9642.eurprd04.prod.outlook.com (2603:10a6:102:240::14)
- by DBBPR04MB7627.eurprd04.prod.outlook.com (2603:10a6:10:208::20) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7249.24; Thu, 1 Feb
- 2024 17:08:33 +0000
-Received: from PAXPR04MB9642.eurprd04.prod.outlook.com
- ([fe80::c8b4:5648:8948:e85c]) by PAXPR04MB9642.eurprd04.prod.outlook.com
- ([fe80::c8b4:5648:8948:e85c%3]) with mapi id 15.20.7228.029; Thu, 1 Feb 2024
- 17:08:33 +0000
-Date: Thu, 1 Feb 2024 12:08:23 -0500
-From: Frank Li <Frank.li@nxp.com>
-To: Bjorn Helgaas <helgaas@kernel.org>
-Cc: bhelgaas@google.com, devicetree@vger.kernel.org,
-	gustavo.pimentel@synopsys.com, imx@lists.linux.dev, kw@linux.com,
-	leoyang.li@nxp.com, linux-arm-kernel@lists.infradead.org,
-	linux-imx@nxp.com, linux-kernel@vger.kernel.org,
-	linux-pci@vger.kernel.org, lorenzo.pieralisi@arm.com,
-	lpieralisi@kernel.org, mani@kernel.org,
-	manivannan.sadhasivam@linaro.org, minghuan.lian@nxp.com,
-	mingkai.hu@nxp.com, robh+dt@kernel.org, roy.zang@nxp.com,
-	shawnguo@kernel.org, zhiqiang.hou@nxp.com
-Subject: Re: [PATCH v12 2/3] PCI: dwc: Implement general suspend/resume
- functionality for L2/L3 transitions
-Message-ID: <ZbvQB/X0kwFs7nAb@lizhi-Precision-Tower-5810>
-References: <20230821184815.2167131-3-Frank.Li@nxp.com>
- <20240201165025.GA637154@bhelgaas>
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20240201165025.GA637154@bhelgaas>
-X-ClientProxiedBy: SJ0P220CA0028.NAMP220.PROD.OUTLOOK.COM
- (2603:10b6:a03:41b::11) To PAXPR04MB9642.eurprd04.prod.outlook.com
- (2603:10a6:102:240::14)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9B261160899;
+	Thu,  1 Feb 2024 17:14:04 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=45.89.224.132
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1706807650; cv=none; b=K1R0rUzUHfZYrgPpJCOZi/33f1d8ttjdpMlKfwhqe0t829xtrqkwMX6I3vsrKpA57STfu9naFyE1bPDAx7IMauQbBAsLRKmBjfZ44xlMoLQhrZex2XHYFLLYGI5q1LipHIsCBF5xp4vZdkRgmPBbldohrYz+xmp3tIDBgzlSW6U=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1706807650; c=relaxed/simple;
+	bh=+lIVjqeyffI/zgaJ7BuVC114MXPVDQGJwzdFEPzYLWs=;
+	h=From:To:CC:Subject:Date:Message-ID:References:In-Reply-To:
+	 Content-Type:MIME-Version; b=PbU4x9rW/7xHpswBJhHnG6sp+7otY8fYVsWiltIH/gNzoW+ow2/0oO2TTQgNLYZ22FszLFw9YZ/fakYVjTRme8HSLAr/uLos1gcSlb48lqEGZ1k4rKIeaxpWsvxs3/1jmeCBBkVguSOxrBdDmbQg08aW9Aw7rngbpB5nyBCRuOk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=salutedevices.com; spf=pass smtp.mailfrom=salutedevices.com; dkim=pass (2048-bit key) header.d=salutedevices.com header.i=@salutedevices.com header.b=qJ1SNigq; arc=none smtp.client-ip=45.89.224.132
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=salutedevices.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=salutedevices.com
+Received: from p-infra-ksmg-sc-msk02 (localhost [127.0.0.1])
+	by mx1.sberdevices.ru (Postfix) with ESMTP id 6B283120006;
+	Thu,  1 Feb 2024 20:13:57 +0300 (MSK)
+DKIM-Filter: OpenDKIM Filter v2.11.0 mx1.sberdevices.ru 6B283120006
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=salutedevices.com;
+	s=mail; t=1706807637;
+	bh=mPZuNvTkk/N4kF/J6YO7atqu/SZxpPBkvHjvXTITUwk=;
+	h=From:To:Subject:Date:Message-ID:Content-Type:MIME-Version:From;
+	b=qJ1SNigqY3gzQ3z/ccnM7nODjl9MI3bUgeQizfpEsOHM1lLX13CLHDP5hiSBDOwWb
+	 7lbf9eylMBXQzqnCGEogmLszsYIuZZ7ECl2L05ZhkH/L/DtdbdCUfYvvxZQu3WQg7O
+	 4pnAr7QaprBCClo0ewrE8J6zrQO65lpbx/P7EpxK7Qjhr+5Yu6p/aJoOPTHW0DRe/m
+	 4BsKgLlCNAdc8z6Ca+eLxGl5WW7QdsO2dOgFssQdmjiQ5qC3SDH5VLkvDWDV2B7ICZ
+	 1WwQqHe1PU4bzGpd5m1wBlSYTM+dgyOJXPg1mwD+Z2k8VHDJygpfI/74UhKd83+Dgg
+	 oAe/UVqnHeI2A==
+Received: from smtp.sberdevices.ru (p-i-exch-sc-m02.sberdevices.ru [172.16.192.103])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+	(No client certificate requested)
+	by mx1.sberdevices.ru (Postfix) with ESMTPS;
+	Thu,  1 Feb 2024 20:13:57 +0300 (MSK)
+Received: from p-i-exch-sc-m01.sberdevices.ru (172.16.192.107) by
+ p-i-exch-sc-m02.sberdevices.ru (172.16.192.103) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.1118.40; Thu, 1 Feb 2024 20:13:56 +0300
+Received: from p-i-exch-sc-m01.sberdevices.ru ([fe80::25de:2e74:8821:eb9a]) by
+ p-i-exch-sc-m01.sberdevices.ru ([fe80::25de:2e74:8821:eb9a%7]) with mapi id
+ 15.02.1118.040; Thu, 1 Feb 2024 20:13:56 +0300
+From: Alexey Romanov <avromanov@salutedevices.com>
+To: Corentin Labbe <clabbe.montjoie@gmail.com>
+CC: "neil.armstrong@linaro.org" <neil.armstrong@linaro.org>,
+	"clabbe@baylibre.com" <clabbe@baylibre.com>, "herbert@gondor.apana.org.au"
+	<herbert@gondor.apana.org.au>, "davem@davemloft.net" <davem@davemloft.net>,
+	"robh+dt@kernel.org" <robh+dt@kernel.org>,
+	"krzysztof.kozlowski+dt@linaro.org" <krzysztof.kozlowski+dt@linaro.org>,
+	"conor+dt@kernel.org" <conor+dt@kernel.org>, "khilman@baylibre.com"
+	<khilman@baylibre.com>, "jbrunet@baylibre.com" <jbrunet@baylibre.com>,
+	"martin.blumenstingl@googlemail.com" <martin.blumenstingl@googlemail.com>,
+	"linux-crypto@vger.kernel.org" <linux-crypto@vger.kernel.org>,
+	"linux-amlogic@lists.infradead.org" <linux-amlogic@lists.infradead.org>,
+	"linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+	"devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+	"linux-arm-kernel@lists.infradead.org"
+	<linux-arm-kernel@lists.infradead.org>, kernel <kernel@sberdevices.ru>
+Subject: Re: [PATCH v2 03/20] drviers: crypto: meson: add platform data
+Thread-Topic: [PATCH v2 03/20] drviers: crypto: meson: add platform data
+Thread-Index: AQHaTh1s2/zZexXjGk+hgEk0Ax0wPrDoX/oAgA01jwA=
+Date: Thu, 1 Feb 2024 17:13:56 +0000
+Message-ID: <20240201171352.ut5xhw3u2b77v33d@cab-wsm-0029881>
+References: <20240123165831.970023-1-avromanov@salutedevices.com>
+ <20240123165831.970023-4-avromanov@salutedevices.com> <ZbC8qLXogjxJD8LD@Red>
+In-Reply-To: <ZbC8qLXogjxJD8LD@Red>
+Accept-Language: ru-RU, en-US
+Content-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+Content-Type: text/plain; charset="us-ascii"
+Content-ID: <E74E91B6684D234DA5CB2A0551E4FAC0@sberdevices.ru>
+Content-Transfer-Encoding: quoted-printable
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: PAXPR04MB9642:EE_|DBBPR04MB7627:EE_
-X-MS-Office365-Filtering-Correlation-Id: 150c65e8-bfef-46b1-65d8-08dc23486b99
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info:
-	LhrjMkpbf5OWcKeM6CjN2SOc4V0aPbJcwyKqealkaqq/PIvm898E/7OnCDFjnKsCJralSQvN6An4VzBVK70HF8Qa5evVCTIKaoMlWHKDCL3CBR2bPzUQeKRgf/J7aa3DVeKOPOhmfD8wJHNF1/ltG/MaI9IRRZ0tB+mC8SQ68hBALSo8hw1QVxKkEHzPAZD/X3Z79QdPHf6TdAXKq29cmblHNC8WazMTRSEP0m3qCw/qa1wKjNfeWV/NVrgWS0mw3gcOoht6VFBn5SuhD8CyAms+5eLNY5k4+IEBSa7SJz6xNxxH4n8L6jVNewh8k19fZjmjJ/fEfQV/k9BnvOxdC1yFszNrsvKfWnhHFGbLoM38EuF2+MthaZNzTY20NfyBfscUj2P41ubFBi8MIDuIxh5qypxqj6rn6e3RAf33FgQAC9PxCtSagd3UANZMubYqKAAmtefpfz0KWINfzH+phRvcoZMexoleN/jeW2rK3PwO9VYVfq+G9b1S7624i1K8oWbaxorLL3dm9+UkmJxyV1FLO0kYzGdw3pwdIKJsT9T75KdkdIU+LUI6sow6Ndk3oGiHhHn+nX630Y6MZjWDwK+4qw4q18pcQvMMr2R3Jys=
-X-Forefront-Antispam-Report:
-	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:PAXPR04MB9642.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230031)(7916004)(39860400002)(376002)(136003)(346002)(396003)(366004)(230922051799003)(1800799012)(451199024)(64100799003)(186009)(41300700001)(83380400001)(6512007)(26005)(38100700002)(9686003)(33716001)(8936002)(8676002)(5660300002)(7416002)(4326008)(66556008)(2906002)(15650500001)(6486002)(478600001)(6916009)(52116002)(6666004)(6506007)(66476007)(966005)(66946007)(316002)(38350700005)(86362001);DIR:OUT;SFP:1101;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0:
-	=?us-ascii?Q?7Cd8KUUzGhnLZC3pG2FZ4JwEqZT89AmZZ7IqIWI4YGX5/OVTgWP4B29FKcHR?=
- =?us-ascii?Q?cWLpw5ko53rwgylmRbGh6FEAAq36fAho5Kd5sgRH6o0R5crmPojC2lWogWXT?=
- =?us-ascii?Q?+Rmh8sciLpw6CUOABn/kYB39Pk/77CP+OADoifN5ZRxig8X9EaVsCv7fY6T1?=
- =?us-ascii?Q?yUOei8+U4JXyD4kPhgmWMmFVFkAWgy/TN+VQmp9TqGY1W8lzc+8MpfeRmRgH?=
- =?us-ascii?Q?AN1A5O4nGCjYrofk/Wjq+QVsAD9VDMqa6GYjFN680UctzzEjK7CqVzz1eKev?=
- =?us-ascii?Q?VWri+NeZz+1xJhB4Ncifb0GPhyetSVcNe8fLH7Wa+lYTl2/2a6xnsLvCt1bz?=
- =?us-ascii?Q?Fm0J4d6dX3fwSarWheh4XJA4/aWroyhK0ve9J6Axk7/zvrzhFf1rgiG0W7UB?=
- =?us-ascii?Q?mEzfiJZGnyOMMTuS2/6AD8M1wxqqryBAgjrD5e4KalpGbJQ16KJrpTksKIL4?=
- =?us-ascii?Q?HhwM9dg5C0hCDjoRLOs94gl2TxlnWKJtfnAI92pMxb6Y6j0TDkXiMLl9qGJL?=
- =?us-ascii?Q?uUWSHR9VsCVjVg9fyLkGT36Fp3UIV8bIlzP2AqlsbbY8pviTgI/E3g+aC3uk?=
- =?us-ascii?Q?ptecuMA7NlZo7d1ySBL5JuXtD22wwjJo6ixvDJShvRmaUXUOpybB8A+F0U6g?=
- =?us-ascii?Q?Ewc3UOqdhPtoD63J2++i/eX/LPl7w8a4pMaRw37PI11F9YbK9nxBw8patZ9E?=
- =?us-ascii?Q?xjtgVyH128+Iw2nLNO9EIxBEuoDmkg8GY/uXp8/x81tbkshaR3PsnD94pAnF?=
- =?us-ascii?Q?RJyQ4Fll/i0SJr9dBm1okhRXca4o+oRBmqLanLwUJLvAH5G7CE+LzKTEBXDE?=
- =?us-ascii?Q?XyZZ/xq5SKO2SSOSrJzEJsYHMXCpUIrM5c7nL+kKg+BM1DcdzlQHVZQghOhw?=
- =?us-ascii?Q?pUXJt2OA3T0N9vfAMPSG23hKvGNcnWn4+uSK+VTahH1UmMRsx/HbCG/h6fuQ?=
- =?us-ascii?Q?qvMrJq9hn3Do68UYKdw+vwWnWlHPKA7AZodn5fS91FGPgS5gksj0um8Bqdbe?=
- =?us-ascii?Q?Y8XXRYB7I6Yp7sjruWWBLQ+Tf9u8iniBjn+UdsJxdZ29vtSenakUZjIjuNFh?=
- =?us-ascii?Q?aNztOQgyu8SCSQmuA6CGb4YAfbWSj/dCHp0awjyy4CsyWBi0SWUy+bg2EgZL?=
- =?us-ascii?Q?ik+c37wjk+0pGK5k30XGP65zhiAP8NOCQ4DKx1NKUlwDQ3vthUPK+t1Fz73Y?=
- =?us-ascii?Q?+U/g8KCuX6tGkU7yjOrfgnkr3I1UDy3Wtx4L3pPM3O8oi5FVKRjtsfS9eU7i?=
- =?us-ascii?Q?HQv/ySJwuh04etB/g119epf8ealCw9epNU8eiL24VEecFvpCbAF7iaD3CwxN?=
- =?us-ascii?Q?vV19v/0ZXe9GZMxNcBfqL1j1UTvGghhh9E0BRqY2OJgp6EDkJ9KTrZ/5QwnV?=
- =?us-ascii?Q?KzcvcZuMHUWDH7BzKVaEZzplflEMzOKq5lkozQF1VrUGEIYfs0onjUh924wb?=
- =?us-ascii?Q?zAPwOXcHyBTN2e7UbfCVXVWEWlzVBbJAsFLsLMYDBuJRczNMLVR5sLOvrdT+?=
- =?us-ascii?Q?GG4WZVIRv8YbWlCRMj1AEx4oSZN8eQX6UlsNT+jmvldvrNBEp1kDXoKn6HNd?=
- =?us-ascii?Q?YJxpYO2WSb9JfR3LT6NmSHiATPgHSLvJPGRGCZyn?=
-X-OriginatorOrg: nxp.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 150c65e8-bfef-46b1-65d8-08dc23486b99
-X-MS-Exchange-CrossTenant-AuthSource: PAXPR04MB9642.eurprd04.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 01 Feb 2024 17:08:33.1098
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: 9gDgkk9zCI81KTM0SBY+cQ1amirO3uSGEJuzE8jpIjocP5IK045BbXR0aA1CEwA6VcJQCef4rXFDkVWp3xURTw==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DBBPR04MB7627
+X-KSMG-Rule-ID: 10
+X-KSMG-Message-Action: clean
+X-KSMG-AntiSpam-Lua-Profiles: 183130 [Feb 01 2024]
+X-KSMG-AntiSpam-Version: 6.1.0.3
+X-KSMG-AntiSpam-Envelope-From: avromanov@salutedevices.com
+X-KSMG-AntiSpam-Rate: 0
+X-KSMG-AntiSpam-Status: not_detected
+X-KSMG-AntiSpam-Method: none
+X-KSMG-AntiSpam-Auth: dkim=none
+X-KSMG-AntiSpam-Info: LuaCore: 7 0.3.7 6d6bf5bd8eea7373134f756a2fd73e9456bb7d1a, {Track_E25351}, {Tracking_from_domain_doesnt_match_to}, d41d8cd98f00b204e9800998ecf8427e.com:7.1.1;127.0.0.199:7.1.2;smtp.sberdevices.ru:5.0.1,7.1.1;salutedevices.com:7.1.1, FromAlignment: s
+X-MS-Exchange-Organization-SCL: -1
+X-KSMG-AntiSpam-Interceptor-Info: scan successful
+X-KSMG-AntiPhishing: Clean
+X-KSMG-LinksScanning: Clean
+X-KSMG-AntiVirus: Kaspersky Secure Mail Gateway, version 2.0.1.6960, bases: 2024/02/01 13:26:00 #23335101
+X-KSMG-AntiVirus-Status: Clean, skipped
 
-On Thu, Feb 01, 2024 at 10:50:25AM -0600, Bjorn Helgaas wrote:
-> On Mon, Aug 21, 2023 at 02:48:14PM -0400, Frank Li wrote:
-> > Introduce helper function dw_pcie_get_ltssm() to retrieve SMLH_LTSS_STATE.
-> > ...
-> 
-> > diff --git a/drivers/pci/controller/dwc/pcie-designware.h b/drivers/pci/controller/dwc/pcie-designware.h
-> > index 615660640801..91d13f9b21b1 100644
-> > --- a/drivers/pci/controller/dwc/pcie-designware.h
-> > +++ b/drivers/pci/controller/dwc/pcie-designware.h
-> 
-> > @@ -364,6 +375,7 @@ struct dw_pcie_ops {
-> >  	void    (*write_dbi2)(struct dw_pcie *pcie, void __iomem *base, u32 reg,
-> >  			      size_t size, u32 val);
-> >  	int	(*link_up)(struct dw_pcie *pcie);
-> > +	enum dw_pcie_ltssm (*get_ltssm)(struct dw_pcie *pcie);
-> 
-> This has already been applied as
-> https://git.kernel.org/linus/4774faf854f5 ("PCI: dwc: Implement
-> generic suspend/resume functionality"), but this .get_ltssm() pointer
-> doesn't seem to be used anywhere.  Should we remove it until we need
-> it?
+Hello,
 
-Could you place hold on for a while? I am working on imx PCIe. One old
-imx6 may need it!
-
-If not, I will submit patch to clean it. My new patches depend on
-
-https://lore.kernel.org/imx/ZbJ+tFPn3aOYHCwf@lizhi-Precision-Tower-5810/T/#t
-
-All already reviewed, could you please pick up these, so I can continue
-my futher work.
-
-Another
-https://lore.kernel.org/imx/20240201-pme_msg-v2-0-6767052fe6a4@nxp.com/T/#t
-was under review.
-
-After these, suspend/resume will become simple and common for all dwc
-platform.
-
-Frank.
-
-> 
-> > +static inline enum dw_pcie_ltssm dw_pcie_get_ltssm(struct dw_pcie *pci)
-> > +{
-> > +	u32 val;
+On Wed, Jan 24, 2024 at 08:30:48AM +0100, Corentin Labbe wrote:
+> Le Tue, Jan 23, 2024 at 07:58:14PM +0300, Alexey Romanov a 'ecrit :
+> > To support other Amlogic SoC's we have to
+> > use platform data: descriptors and status registers
+> > offsets are individual for each SoC series.
+> >=20
+> > Signed-off-by: Alexey Romanov <avromanov@salutedevices.com>
+> > ---
+> >  drivers/crypto/amlogic/amlogic-gxl-cipher.c |  2 +-
+> >  drivers/crypto/amlogic/amlogic-gxl-core.c   | 31 +++++++++++++++------
+> >  drivers/crypto/amlogic/amlogic-gxl.h        | 11 ++++++++
+> >  3 files changed, 35 insertions(+), 9 deletions(-)
+> >=20
+> > diff --git a/drivers/crypto/amlogic/amlogic-gxl-cipher.c b/drivers/cryp=
+to/amlogic/amlogic-gxl-cipher.c
+> > index b19032f92415..7eff3ae7356f 100644
+> > --- a/drivers/crypto/amlogic/amlogic-gxl-cipher.c
+> > +++ b/drivers/crypto/amlogic/amlogic-gxl-cipher.c
+> > @@ -225,7 +225,7 @@ static int meson_cipher(struct skcipher_request *ar=
+eq)
+> > =20
+> >  	reinit_completion(&mc->chanlist[flow].complete);
+> >  	mc->chanlist[flow].status =3D 0;
+> > -	writel(mc->chanlist[flow].t_phy | 2, mc->base + (flow << 2));
+> > +	writel(mc->chanlist[flow].t_phy | 2, mc->base + ((mc->pdata->descs_re=
+g + flow) << 2));
+> >  	wait_for_completion_interruptible_timeout(&mc->chanlist[flow].complet=
+e,
+> >  						  msecs_to_jiffies(500));
+> >  	if (mc->chanlist[flow].status =3D=3D 0) {
+> > diff --git a/drivers/crypto/amlogic/amlogic-gxl-core.c b/drivers/crypto=
+/amlogic/amlogic-gxl-core.c
+> > index a58644be76e9..2be381e157c4 100644
+> > --- a/drivers/crypto/amlogic/amlogic-gxl-core.c
+> > +++ b/drivers/crypto/amlogic/amlogic-gxl-core.c
+> > @@ -18,6 +18,7 @@
+> >  #include <linux/kernel.h>
+> >  #include <linux/module.h>
+> >  #include <linux/of.h>
+> > +#include <linux/of_device.h>
+> >  #include <linux/platform_device.h>
+> > =20
+> >  #include "amlogic-gxl.h"
+> > @@ -30,9 +31,10 @@ static irqreturn_t meson_irq_handler(int irq, void *=
+data)
+> > =20
+> >  	for (flow =3D 0; flow < mc->flow_cnt; flow++) {
+> >  		if (mc->chanlist[flow].irq =3D=3D irq) {
+> > -			p =3D readl(mc->base + ((0x04 + flow) << 2));
+> > +			p =3D readl(mc->base + ((mc->pdata->status_reg + flow) << 2));
+> >  			if (p) {
+> > -				writel_relaxed(0xF, mc->base + ((0x4 + flow) << 2));
+> > +				writel_relaxed(0xF, mc->base +
+> > +					      ((mc->pdata->status_reg + flow) << 2));
+> >  				mc->chanlist[flow].status =3D 1;
+> >  				complete(&mc->chanlist[flow].complete);
+> >  				return IRQ_HANDLED;
+> > @@ -245,15 +247,34 @@ static void meson_unregister_algs(struct meson_de=
+v *mc)
+> >  	}
+> >  }
+> > =20
+> > +static const struct meson_pdata meson_gxl_pdata =3D {
+> > +	.descs_reg =3D 0x0,
+> > +	.status_reg =3D 0x4,
+> > +};
 > > +
-> > +	if (pci->ops && pci->ops->get_ltssm)
-> > +		return pci->ops->get_ltssm(pci);
+> > +static const struct of_device_id meson_crypto_of_match_table[] =3D {
+> > +	{
+> > +		.compatible =3D "amlogic,gxl-crypto",
+> > +		.data =3D &meson_gxl_pdata,
+> > +	},
+> > +	{},
+> > +};
 > > +
-> > +	val = dw_pcie_readl_dbi(pci, PCIE_PORT_DEBUG0);
+> >  static int meson_crypto_probe(struct platform_device *pdev)
+> >  {
+> > +	const struct of_device_id *match;
+> >  	struct meson_dev *mc;
+> >  	int err;
+> > =20
+> > +	match =3D of_match_device(meson_crypto_of_match_table, &pdev->dev);
+> > +	if (!match)
+> > +		return -EINVAL;
 > > +
-> > +	return (enum dw_pcie_ltssm)FIELD_GET(PORT_LOGIC_LTSSM_STATE_MASK, val);
-> > +}
+> >  	mc =3D devm_kzalloc(&pdev->dev, sizeof(*mc), GFP_KERNEL);
+> >  	if (!mc)
+> >  		return -ENOMEM;
+> > =20
+> > +	mc->pdata =3D match->data;
+> >  	mc->dev =3D &pdev->dev;
+> >  	platform_set_drvdata(pdev, mc);
+> > =20
+> > @@ -312,12 +333,6 @@ static void meson_crypto_remove(struct platform_de=
+vice *pdev)
+> >  	clk_disable_unprepare(mc->busclk);
+> >  }
+> > =20
+> > -static const struct of_device_id meson_crypto_of_match_table[] =3D {
+> > -	{ .compatible =3D "amlogic,gxl-crypto", },
+> > -	{}
+> > -};
+> > -MODULE_DEVICE_TABLE(of, meson_crypto_of_match_table);
+>=20
+> Hello
+>=20
+> This patch breaks bisection, since it removes MODULE_DEVICE_TABLE.
+> After applying patchs 1,2,3 the driver does not load anymore on lepotato =
+board.
+
+Please, give more information.=20
+
+I applied the first 3 patches and the driver probes correctly.
+
+>=20
+> Regards
+
+--=20
+Thank you,
+Alexey=
 
