@@ -1,188 +1,143 @@
-Return-Path: <devicetree+bounces-37618-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-37619-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id B3D95845AD4
-	for <lists+devicetree@lfdr.de>; Thu,  1 Feb 2024 16:04:36 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0E8DB845ADB
+	for <lists+devicetree@lfdr.de>; Thu,  1 Feb 2024 16:06:38 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 68B6B28F3B0
-	for <lists+devicetree@lfdr.de>; Thu,  1 Feb 2024 15:04:35 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 3830D1C276B5
+	for <lists+devicetree@lfdr.de>; Thu,  1 Feb 2024 15:06:37 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 101155F492;
-	Thu,  1 Feb 2024 15:04:07 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E5D4E5F493;
+	Thu,  1 Feb 2024 15:06:33 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=nokia.com header.i=@nokia.com header.b="LV6k9hUt"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="UQB/Jzny"
 X-Original-To: devicetree@vger.kernel.org
-Received: from EUR03-AM7-obe.outbound.protection.outlook.com (mail-am7eur03on2084.outbound.protection.outlook.com [40.107.105.84])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-oi1-f171.google.com (mail-oi1-f171.google.com [209.85.167.171])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 29BBB626B0;
-	Thu,  1 Feb 2024 15:04:04 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.107.105.84
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1706799847; cv=fail; b=IOAumtkN8mg0myfvZgVxuUjqEtqUNCdyb/uAQQWmj3p5MJUWMF4AhTs34+TIZLiD9qw7uSftH+LW1fWn8hGnbEePMEgw1IA0FIGnXpiUFZ+zMyVexddnL2eYLXSM1bNnaw5STsB+czST80NW0pOap73Xs9SRdiOfq4BHEy9m1iQ=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1706799847; c=relaxed/simple;
-	bh=pVHm9H7V1jokh5EqfJIzaS5d96j/xyq8tWl04Bib/6s=;
-	h=Message-ID:Date:Subject:To:Cc:References:From:In-Reply-To:
-	 Content-Type:MIME-Version; b=G+lie9PFkfujmIX2jnB6b307ofgNbwj5moEFEbt0cez+oLI7IiAnFIgRTIzEnMfzArTkG4TIgoDgzAm8OIJKmP7pupzGOVGXoPSCjcIGxjtSoQjM9s1Xg0Wq5bvhBcb1OrOTnRQntkBNJUjvs2LzLwvKnXHjtU6oInKGQP5qUyY=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=nokia.com; spf=fail smtp.mailfrom=nokia.com; dkim=pass (2048-bit key) header.d=nokia.com header.i=@nokia.com header.b=LV6k9hUt; arc=fail smtp.client-ip=40.107.105.84
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=nokia.com
-Authentication-Results: smtp.subspace.kernel.org; spf=fail smtp.mailfrom=nokia.com
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=KXDC13GJn9EtNafph2wSMOgCq+EQKYjoz+LiNeczIJ9xMmQiKwWyfkOfrCu3fI6sOv9ta8w2hoqL0nxPLNy8NZm232kTBHOeowasM+QBcbWqj/vw+YdVimg4rW8AnMUxKFeDFYusQyXMKHWTOrkXI7FzUijKALXJee8tpB4jqdJ2ALuN1BmJm0xXGhKPXczCQPqR2KDbENdTZVwHGW7+iS7psSfivQLCB3zooorQLbrzIGxF4nU/SBxsvMo3uwBlhCrFa4/8/41RinDIOKmbs9+z4jJV7Dd8cplQ6c5SgWUmjdKZ/J5llpUOHboc8xHFIuxFGaYOZ3IJGYRL6TaUdw==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=meBZfXvtH0W6hvOi/i0iU5QR5ywYWl2OUcxJ7gL8XOU=;
- b=gI5ulT4vUQwC/E5pR0KUooPVXfZktTfvaUFMDAJ2hfw6Xiw19t8XQ2wTFMlVMxc4IcPTlcx1J322bRuh9oxfvOg3mPuuKjjzZU3zn2d12kc4dItOCtzKzNjSi+VJJBDvV8cvIeRKQNt9lAPfYFjUD36HNsNdedY5nJIvozPQIGCf+LIEEh2WXGzFs+Hslq927THPmK2BsDp9Akm8KnQsDRBpBSmGnTvyVIDoLytLM1wu6MYnZDWD5mF0X0zppXJMe2U1d3D9nrfT2XGuvnllkW8TQVAuoyRvVo7U8cgSly1gUX88KepFP/0myQvto2SRQcssVTl7AQkeG/73nexFOg==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=nokia.com; dmarc=pass action=none header.from=nokia.com;
- dkim=pass header.d=nokia.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nokia.com;
- s=selector2;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=meBZfXvtH0W6hvOi/i0iU5QR5ywYWl2OUcxJ7gL8XOU=;
- b=LV6k9hUtCuXR5Dkq6nCCTbIo0qh8k6TViNKO5IsCX3P20i8Tzh5W7gxIpK0bonF8yJDSirUsY4OcPG0FP1SCZgvXKdIhd/YUQ8PacxiwylaMxLvHt60+KYPY9U4pcCriKdi4oo9IczILBjh0nVQsM1G1SjVMCAI11PBY3QrOIl7YQW/JYx5JG8OAd8MmOgETvHxo70qny2ZgI4rWzZ6p6MzKlZOuhyf/DZZzKiRfpqXARXC6VcNBXKBP69j7W6ZNKjt7EMr2mjwitt0b8iZWNDQFgSReoL13DWaKXhoRQqPMLVtgzp/zjS01DYZunShtC4YnVXKs5K2uVBiIXZlutA==
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=nokia.com;
-Received: from PAWPR07MB9688.eurprd07.prod.outlook.com (2603:10a6:102:383::17)
- by DB9PR07MB7740.eurprd07.prod.outlook.com (2603:10a6:10:26d::9) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7249.27; Thu, 1 Feb
- 2024 15:04:02 +0000
-Received: from PAWPR07MB9688.eurprd07.prod.outlook.com
- ([fe80::22a6:5b92:a2d3:860f]) by PAWPR07MB9688.eurprd07.prod.outlook.com
- ([fe80::22a6:5b92:a2d3:860f%3]) with mapi id 15.20.7249.023; Thu, 1 Feb 2024
- 15:04:02 +0000
-Message-ID: <9da01fb1-9bab-436b-af49-783e44821b26@nokia.com>
-Date: Thu, 1 Feb 2024 16:03:59 +0100
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH RESEND] arm: topology: Fix missing clock-frequency
- property warning
-Content-Language: en-US
-To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
- Russell King <linux@armlinux.org.uk>
-Cc: linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
- devicetree@vger.kernel.org
-References: <20240201123605.3037829-2-stefan.wiehler@nokia.com>
- <dfccb849-67b6-489b-8e83-3df1f9b29877@linaro.org>
-From: Stefan Wiehler <stefan.wiehler@nokia.com>
-Organization: Nokia
-In-Reply-To: <dfccb849-67b6-489b-8e83-3df1f9b29877@linaro.org>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: FR4P281CA0294.DEUP281.PROD.OUTLOOK.COM
- (2603:10a6:d10:e7::15) To PAWPR07MB9688.eurprd07.prod.outlook.com
- (2603:10a6:102:383::17)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6E4835F48C
+	for <devicetree@vger.kernel.org>; Thu,  1 Feb 2024 15:06:32 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.171
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1706799993; cv=none; b=bJSxu+r0cagxsZAgwgToDz7heRXZTRS0jzzuAuO7odRDW4fj/uJvQFLc/h5O0nm9Z7mzAM6PXNnGrnSn2pzZHbx9bW4x0yW97xgf98K6+Pb93QOW29KJS/mAt7WmtooBknMFOCOUT7f37ZuJ6S8Jpt8bK0AIcHrTySnzog/q6b4=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1706799993; c=relaxed/simple;
+	bh=1GBzJV8xHzP4qLafAHWrRv0oOHNs8s0TMtp6DHwi2VU=;
+	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version; b=exax9Xb1stIMI/pwso7ka8KzcDOJNciS1t73ybBOFVaw/2uDh0qAJdvt85vnXTDCUohpM6Oj60YASuAFOyvhkWEkR8TL5BH/QP1cI/wjKDqcEHSP5CDD/qFkEDaZ6KBdsqbQClRz0fYaf3gazVKYKl011imKRp5sYPRBuKnEPyA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=UQB/Jzny; arc=none smtp.client-ip=209.85.167.171
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-oi1-f171.google.com with SMTP id 5614622812f47-3be61772d9aso487961b6e.3
+        for <devicetree@vger.kernel.org>; Thu, 01 Feb 2024 07:06:32 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1706799991; x=1707404791; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=7V3dhLDDeVG0FMkRqXcHl9bSwZHFa+HO/bVpbOmkDAE=;
+        b=UQB/JznyKA2PQFnUAvgZhznG89kGfuapYiJGba8RDXsxaXTvLljnhA+U66noDa347Y
+         CARy706jjMlIIbxN36j+dWsXupYSxy77fA9ZYdejWFgk2uk96Tni/WdkJeA4OLl1gzW0
+         rJ5Ea0cngMAUZA9AubwNoBEOGAdZqSwb62771cY0+8G6r0hb2Y1lf7oMcJNxcyKT06Cy
+         w8JS+o8qpY8tP/a1nIu8VNWJH802DJ8WAYswBnnmtXVoKRq5rMR/BC84CAbbocePV4Ot
+         q6/4nE53QawEaA7YQGF2VzKgA+bbpfu+zvaHkoS/OKJKXDXccIifEWQ1bKjQQO6H+zo+
+         Ccag==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1706799991; x=1707404791;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=7V3dhLDDeVG0FMkRqXcHl9bSwZHFa+HO/bVpbOmkDAE=;
+        b=vvPRaB6FzKTyRU/Yl5ZmIVBowf/+w9j2K0pcRZby1W7pT2I2561naRxVHiV4um+QFp
+         R4ay8Eos0il5qMyHHTtKRUthlLpAq3OXGWvi4uiYyvCm3/Io9r+u6tLYY5v5FKjBF07G
+         ewP7ySb1w1p63m3K5mK5nj5cc4KWgcKxf4Q+qxSJbqhfyqERN+rCjmhuc3i+bg0v6uiE
+         hAlsYtvG13LkorrATxr/KqsBNxdih9Q9c/MpzF8wirCOGI/cTCk9YDaFekYCb3nV2yeO
+         ERkmXkyFRj8vT8vlJxRpAPbM49OExSIz84DV5CrUdqkLwvMpt+9Lb4WEZti0/HnzFWO6
+         JjSg==
+X-Gm-Message-State: AOJu0YzDDp7sMQAR1vtc16XN+VID1X0ryLUWKxymMOXKZMChI7lIKCtX
+	NyJsOzZJ0tCz7rFRlu/Tv8HvykAhJjWGcI5mat5zgkQzDd2ulQo5
+X-Google-Smtp-Source: AGHT+IGMGUKsarRxxcCpyIike2J4WFPYe6V4xaPOmR6nyzgtWgMYvFvdhO6ZHxKZn5TeppPBYnwzSw==
+X-Received: by 2002:a05:6808:3020:b0:3bd:da5f:4af7 with SMTP id ay32-20020a056808302000b003bdda5f4af7mr6148649oib.55.1706799991502;
+        Thu, 01 Feb 2024 07:06:31 -0800 (PST)
+X-Forwarded-Encrypted: i=0; AJvYcCXUvo6+Ulg6dUlpLnA3DRlGAzIKoSEz87rQrf3YKiKgRG+yLbuPxUzrLlwkHPxmROKNKZY3ZwC6RSV0AU/GIHPDeIA8uI+vJMqAGAnmNta8WqtA2y/vgHYKQ+O0b5meRh4rEI7T5SnoKMTww2PjzLzKDXv0x1jfScKZqh7xwtS30egJXcXI/LKJvosoBGwlINm9LaOrJBSMcvkKhLmpB6MBQF9hNAELU7XBY+WEhSUoRNwgMpK4i8O1eco=
+Received: from localhost.localdomain ([75.28.21.198])
+        by smtp.gmail.com with ESMTPSA id h23-20020a056808015700b003be8122a4basm1184437oie.27.2024.02.01.07.06.31
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 01 Feb 2024 07:06:31 -0800 (PST)
+From: Chris Morgan <macroalpha82@gmail.com>
+To: linux-rockchip@lists.infradead.org
+Cc: devicetree@vger.kernel.org,
+	heiko@sntech.de,
+	conor+dt@kernel.org,
+	krzysztof.kozlowski+dt@linaro.org,
+	robh+dt@kernel.org,
+	Chris Morgan <macromorgan@hotmail.com>,
+	Trooper_Max <troopermax@gmail.com>
+Subject: [PATCH] arm64: dts: rockchip: Add Touch to Anbernic RG-ARC D
+Date: Thu,  1 Feb 2024 09:06:20 -0600
+Message-Id: <20240201150620.886786-1-macroalpha82@gmail.com>
+X-Mailer: git-send-email 2.34.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: PAWPR07MB9688:EE_|DB9PR07MB7740:EE_
-X-MS-Office365-Filtering-Correlation-Id: b3f8e366-9655-4999-f003-08dc233706a9
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info:
-	zgW/4BVpVjh4v80wJiFXBCcwJkajR6nC1m/OZU0CjOf/P9OJeeRecdgtS7Y//8yahM02BR7PCkbUZGm7Ze56LRrZMFsgDUlLzsCXsOdCOsX7ghDspmSVpt2aF3yqLBPjpZ4PL/81iWNtrbJbe6lkiDs/1sZjH6991+R+gpCze3xokkKV346rElw4NjvtU4iDjIH1Vb8bTafCajDYwrmVKbicodjVGuHLtVoG56T3/TF+67Mo77lspd0kzedlb75FxHv2rNlYCYCP6dpPhnfmteJ8MgkxLfIHBFFkYpi6n6FjBHuStzvZ7/iCmmWDF3jYajX6iia+C+ShqUT9tbrMJxiX/tBmYtR50bNjtafNTx8uXG98HI9VxHgXMXJYpFJETMZWI2zCGt6/G93/7VgB01CvyFNcEQUwULK6H57FhvghVB2dd0YVcSweLTCA0H9nEXtRjK5qHuhI6MXOoAFjFtCJFMdv2KT6dZWb6SWno0vvvC+7A3rm3kJ41XyBCuKABq1QOZkevmUwJFOaQ+ZtHf1D58fbmNYBwZ/Ob/N5VLxAisROAY7F2xr+siBWFpZnasWxuhI1va954TgFKhD2mLabMZTQW00oSLmhVj8nH7pLGJ4iJIaOQq1rtWqbpdxAmqJ24wnvGlSlRm3if3YhXg==
-X-Forefront-Antispam-Report:
-	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:PAWPR07MB9688.eurprd07.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230031)(396003)(376002)(346002)(39860400002)(366004)(136003)(230922051799003)(64100799003)(186009)(451199024)(1800799012)(31686004)(83380400001)(82960400001)(36756003)(86362001)(31696002)(41300700001)(26005)(38100700002)(6512007)(2616005)(4326008)(6506007)(66476007)(36916002)(2906002)(6486002)(966005)(478600001)(66556008)(66946007)(110136005)(316002)(8936002)(5660300002)(6666004)(44832011)(8676002)(43740500002)(45980500001);DIR:OUT;SFP:1101;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0:
-	=?utf-8?B?VmlkZ3BOZkRBZE85bjN5VlBKTXA4eDJrYnVhQ0NpQVFmNmVDeEhPYnA2MTN4?=
- =?utf-8?B?U3RMVTMremVnMjJLZkZldm9DSkI1eXFvbVZhczRna2hYZWc5dnNXdWJZNmNs?=
- =?utf-8?B?YTY5ZnM3eC9JcVVybDgybUJHVWxWTDZ5Yk14UC9jRVUwMUFtaHlFZUlJbmdB?=
- =?utf-8?B?d2dCcTdQMlJWTmVzZWdxNjc2aEx5U2hNRFlyS09DUEY3QXg0RjdJWWpIVzBX?=
- =?utf-8?B?TVVFOXFmWGNQUmUvSUNRdmZ3cHduSE81dkVkTkVDSU44dnl4WmtndnY0Tm5U?=
- =?utf-8?B?NlFoQXRjbUM4VkZvLzUxQWttd1dCZ1NrS2h0WVpJREQyOGVxTkN3MkVPSlJG?=
- =?utf-8?B?aUZMbEFlcWpjSWpyUWNWRUlQS2NOeG5paXhSUmNxU2VNU0FrRlY3eXVjZFA0?=
- =?utf-8?B?cTF5UUxzRTRVV1BSZzJ6aTJNWEk1YURJZ0x4ZTc1L1hncTlkd3dpMmw5SWhX?=
- =?utf-8?B?MEdUYVFuTHNQR1AxYVhDRUdXMG9VUlNUM1pwSVR4SjBaNkczZ1F4TVdKbDQr?=
- =?utf-8?B?N1R5cWpkVlFUSU01S005d2FSY0NnQ2JrbkRaQTEzVTdMUkxnT1l0ZnZocFFw?=
- =?utf-8?B?WHdXbVpzUFEwZllYRno5a2ZUbnBkUi9vSm90K2srNXpvQXJmRDhnRWxPd2Vl?=
- =?utf-8?B?VWlTMWlUazUwZnNQVXBOVTNlaVhwekdQQjBKR09US29hbHdDYUJBVUhxR2xU?=
- =?utf-8?B?akY1UUFQbFhvbWp5RHpYc2Z0SWRMUnVGUTRXTTBYbDB6dTNjUGdlR0t4YlAx?=
- =?utf-8?B?OGZTdXc5T084SGUySTYvQVZJNURzYnN4T284d0V5TkdwT0dMTDhIeHJFNEkr?=
- =?utf-8?B?a1liSGdsT3JqcndaWXE0blJrV1hJc3FPWE83ZTBLWW1wUHpyVEEvTXh1WUdn?=
- =?utf-8?B?aHhSTUJ2SFNiTDdnRTdoazRibm01MGtlUUFiQXJKS25MMmlidklBNmU4TWIz?=
- =?utf-8?B?QjZwM2JHcEJsaEp4d3JYaWFsbGJNOTIycmhHdXdqTktKeWo5S1pPOEhzdE9h?=
- =?utf-8?B?VGtwNG5ZK2hzWDd5MXhJbVczWTEzYk5hb28wL1hLNUYyZlJ6VlAyeVpmMTFK?=
- =?utf-8?B?M2lFb2dZL0w4Y1ZtSW5VNWZaQUhwb2pnSkNPWFlJazJIUlpDUEZiMWY2UmM1?=
- =?utf-8?B?aUJ5VFVwVFVJWHZmWldkdGlUTHRvNVlmY24xMXZ4NEtRTUQ4Z1hwRWw0YzUr?=
- =?utf-8?B?N2JBd091TEN3WWlqVk5jVmVvYVcwdko5cGN4UFRBSk1VRStlSlU5eXdVdUdI?=
- =?utf-8?B?V3p1bk1ZeW9xaWFFSGtRYW1ibGpQUEFMYWkzV2lKMXZNaDc1cjZXa0ZONnM4?=
- =?utf-8?B?YytIZW4wL1pybmZ2ZnhwQ0d3K1dlQmV0OUNWMXBqQVJqTEpDbjFyUitRYTNB?=
- =?utf-8?B?b1JHRXBjaXN5a3N2VC9XUUZMdCtTYklHelA2akZHVFRLZ291bkhXSTF3bEFQ?=
- =?utf-8?B?MXRQOUdpeEtlaXhmSjJzMkQ1SVF3aUNqcCtiL0dEOTJ5SmVwWEJWSUtmWlBx?=
- =?utf-8?B?dHh3VnJmMTBQbkEwemNHejlVdzNpVU5JN0lsSnJEK2VqK2FLa0prYWYvS2ZG?=
- =?utf-8?B?bTVkL0prUXhjTmZDUFE4MHdxWkNQREtIb3R5QjlvemdzQ0VEQ2NWQzZPUWdn?=
- =?utf-8?B?OC9ya1BzUVBTSUhFUzFkNElNczJ3VHgrN2ZxZmpzeHQ2Q25UR3BrTlozcGw1?=
- =?utf-8?B?K0NmRGx2Yk9vdEc0RHI0QUtveG4xVjVoMEFoQUhFZnRvS2VCRFpLWTR2azlV?=
- =?utf-8?B?MTFWcHowbEl4MitKV0pOaDgvMytIRUc3cUY3TTBvQ25MYU9sTTBEK3JyNXB4?=
- =?utf-8?B?VnlvZ2FHM1A1N0JOSVpUMTRSNE5qQU5Ra3RJcjZxMVRzRTBacEJodjdlcEpt?=
- =?utf-8?B?NXlYd0ZQM1JXdXFJc00reFNlTUZSSXlsWmNncmtZNE43QUw5MDNVUXpCUkVC?=
- =?utf-8?B?Q3AwMmlDQTh1aFRKRTI2U0lySjJNTXZNSGhuRmJlYWI3aWhxZkZyRFREcVox?=
- =?utf-8?B?bEt1UFhkTVM1VndXK1JlMUZ0amg5dXVsUUkzWjAvNUFjVVI1SElacmpBSlVK?=
- =?utf-8?B?OGo2WkM2dEZPbDFrOU5xbWF1UGxPc280U0hIekRZc2pmWmgraTlLaUlMTjly?=
- =?utf-8?B?WGJjaDljdnZNY2VXd0VxYnBQS2QrZ0pTbVB1bVJVRWU1dnd5cytjTlFnV1RR?=
- =?utf-8?B?MlE9PQ==?=
-X-OriginatorOrg: nokia.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: b3f8e366-9655-4999-f003-08dc233706a9
-X-MS-Exchange-CrossTenant-AuthSource: PAWPR07MB9688.eurprd07.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 01 Feb 2024 15:04:02.2536
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 5d471751-9675-428d-917b-70f44f9630b0
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: h4e45w6nW44IzYZGPQETtzCc2PYJvj3I52YqvLXBVd1H7Vp2Bfn96K1GUfjXmjY2xpA+ofbZLULijlc1jVeWwUOydeA6ySRFMUs5oTOshTI=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DB9PR07MB7740
+Content-Transfer-Encoding: 8bit
 
-> Does this mean the /cpus property is like a default for when a CPU node
-> doesn't specify the clock frequency, or does it mean that the /cpus
-> property should only exist when all the values for each CPU are
-> identical and thus the individual CPU node clock frequency should
-> not be specified.
+From: Chris Morgan <macromorgan@hotmail.com>
 
-Good question, the device tree specification in Section 3.7 [1] says:
+Add the Goodix GT927 touchscreen to the Anbernic RG-ARC D.
 
- > The /cpus node may contain properties that are common across cpu
-nodes. See Section 3.8 for details.
+Signed-off-by: Chris Morgan <macromorgan@hotmail.com>
+Tested-by: Trooper_Max <troopermax@gmail.com>
+---
+ .../dts/rockchip/rk3566-anbernic-rg-arc-d.dts | 26 ++++++++++++++++---
+ 1 file changed, 22 insertions(+), 4 deletions(-)
 
-And in Section 3.8 [2]:
+diff --git a/arch/arm64/boot/dts/rockchip/rk3566-anbernic-rg-arc-d.dts b/arch/arm64/boot/dts/rockchip/rk3566-anbernic-rg-arc-d.dts
+index 795fbedc3c1b..a4e68e82fc06 100644
+--- a/arch/arm64/boot/dts/rockchip/rk3566-anbernic-rg-arc-d.dts
++++ b/arch/arm64/boot/dts/rockchip/rk3566-anbernic-rg-arc-d.dts
+@@ -19,14 +19,32 @@ aliases {
+ 	};
+ };
+ 
+-/*
+- * Unknown Goodix touchscreen at i2c2 0x14. Needs testing before it's
+- * enabled.
+- */
+ &i2c2 {
+ 	pinctrl-0 = <&i2c2m1_xfer>;
+ 	pinctrl-names = "default";
+ 	status = "okay";
++
++	gt927@14 {
++		compatible = "goodix,gt927";
++		reg = <0x14>;
++		interrupt-parent = <&gpio4>;
++		interrupts = <RK_PB1 IRQ_TYPE_EDGE_FALLING>;
++		irq-gpios = <&gpio4 RK_PB1 GPIO_ACTIVE_HIGH>;
++		pinctrl-0 = <&touch_int>;
++		pinctrl-names = "default";
++		reset-gpios = <&gpio4 RK_PA6 GPIO_ACTIVE_HIGH>;
++		touchscreen-inverted-y;
++		touchscreen-size-x = <640>;
++		touchscreen-size-y = <480>;
++	};
++};
++
++&pinctrl {
++	touchscreen {
++		touch_int: touch_int {
++			rockchip,pins = <4 RK_PB1 RK_FUNC_GPIO &pcfg_pull_up>;
++		};
++	};
+ };
+ 
+ &sdhci {
+-- 
+2.34.1
 
- > Properties that have identical values across cpu nodes may be placed
- > in the /cpus node instead. A client program must first examine a
- > specific cpu node, but if an expected property is not found then it
- > should look at the parent /cpus node. This results in a less verbose
- > representation of properties which are identical across all CPUs.
-
-So I think it is pretty clear that it should only be used for 
-common/identical values.
-
-> Aren't you adding new property? Is it already documented in the
-> bindings? After a quick look I think this is not documented.
-
-You are right, clock-frequency is not mentioned neither in arm/cpus.yaml 
-nor in any other <arch>/cpus.yaml binding, but the DT spec has it as a 
-required property [3]. Should I add clock-frequency to all 
-<arch>/cpus.yaml bindings? Only the ARM one explicitly mentions 
-following the DT spec.
-
-Kind regards,
-
-Stefan
-
-[1] 
-https://devicetree-specification.readthedocs.io/en/latest/chapter3-devicenodes.html#cpus-node-properties
-[2] 
-https://devicetree-specification.readthedocs.io/en/latest/chapter3-devicenodes.html#cpus-cpu-node-properties
-[3] 
-https://devicetree-specification.readthedocs.io/en/latest/chapter3-devicenodes.html#general-properties-of-cpus-cpu-nodes
 
