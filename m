@@ -1,62 +1,61 @@
-Return-Path: <devicetree+bounces-37804-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-37805-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8A5C5846441
-	for <lists+devicetree@lfdr.de>; Fri,  2 Feb 2024 00:04:03 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id F1957846468
+	for <lists+devicetree@lfdr.de>; Fri,  2 Feb 2024 00:28:11 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 3E75D1F24571
-	for <lists+devicetree@lfdr.de>; Thu,  1 Feb 2024 23:04:03 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 3512E1C23F97
+	for <lists+devicetree@lfdr.de>; Thu,  1 Feb 2024 23:28:11 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C877447A6C;
-	Thu,  1 Feb 2024 23:03:54 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B554D47A7E;
+	Thu,  1 Feb 2024 23:28:06 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="U092rYjg"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="JmIuxBzX"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 95AF53D960;
-	Thu,  1 Feb 2024 23:03:54 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7ED4E47F41;
+	Thu,  1 Feb 2024 23:28:06 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1706828634; cv=none; b=ipiep/PDGQxB1rJ3skMzJ44Wodydkrgf/umVdiey4a+LdG75UT1+tylrKr2AIq848gkYwJcWEi3rdworrd39MvaVutcTya6FyxR4u7UecKuncUAyizW9WdF+4PMcf2YzPE7j8thVBv1RTncPwEmlNP59zpUJlTXC90EuEBLCkX8=
+	t=1706830086; cv=none; b=AN3EX97xTvbstw5B9L+jmHT+OsG60FEdXL9u9bpuh9Mu37N9eEVYgr2m9GSn6OzQRUyA9kj9+WRkRdb8QawqOaXNmACg/+yp8HFjc2hN0OZG4zmqQtt3arBBSvg5AYyDdZ0fvCaOMKUAyJy8NFfM2/kI19DkN8Nz6LKd6Nmg7cc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1706828634; c=relaxed/simple;
-	bh=TmmtCVM8VC/h1dh1K7OAfFtepe6cXDGEX6jRnECeUSQ=;
+	s=arc-20240116; t=1706830086; c=relaxed/simple;
+	bh=payIiLg6forS04gjbDZWmNc0lv97aB/Ofx+IK/zqWkc=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=TNlPQ+SVYpVyQqh2/BYVFF8yswJO9d0Ska7v0P66jN2/MiZoMMvqXlvh6GsEbRueABA/HZeibShl++S4IWPfv0C452C/Fj9Av1b2TLjkbuAECPqwsKOwxqyy4ZqEqwY8NVoLiQFOfRXFA5NEOXAlfiYTz1QqWaHgKNCpFuNcnwU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=U092rYjg; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 41879C433C7;
-	Thu,  1 Feb 2024 23:03:54 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=ZDi/kPvOTmrxLY7Tq97netlFrawEgFy46oGLhcrhjqgBUD3TopLfgvF++3sgVYaQbgKIVF72Twdq8ZGE4D4OlpkVKmfn9eO8bwC9e4kelCvQPX4jNBgGFT/PJ6Fo1pcgXesrPjPY5s9EDg3H+0D288Vm3hLdMRtJPLLsoWumljU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=JmIuxBzX; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 5612EC433C7;
+	Thu,  1 Feb 2024 23:28:04 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1706828634;
-	bh=TmmtCVM8VC/h1dh1K7OAfFtepe6cXDGEX6jRnECeUSQ=;
+	s=k20201202; t=1706830085;
+	bh=payIiLg6forS04gjbDZWmNc0lv97aB/Ofx+IK/zqWkc=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=U092rYjgLNwi7QIp1vfGTvwx3bbm/et2nujn/B1fWF3pZ4re6XSTPA1w3P9sgBwhG
-	 UTbyh7Tp/10mgMtAFdPDdqb2fZA/O38Z3JsjQg9WUrVkdCAsretuzkDvBwcq6Pck2W
-	 2ocfDFa2FoumfjGbemChrLwiE4eSgq3TlpOUbcBANP3dJaTN2HcK4JPIBhuqJ2ARqs
-	 1GnKml2wyGNyJWGlXTCRWotg7wZbFBg/cO9hzCtfGSOPKKBL5wfctvIOnkfdqWx+jO
-	 s0QJJo0xfaf2meoz3g1WQ3G0N/sfrJRDGYtUKd959N6QTxErGZa2j1ajhtOQY9DhaM
-	 eNPsiU9S+EtAw==
-Date: Thu, 1 Feb 2024 17:03:51 -0600
-From: Rob Herring <robh@kernel.org>
-To: Andrew Davis <afd@ti.com>
-Cc: Nishanth Menon <nm@ti.com>, Tero Kristo <kristo@kernel.org>,
-	Santosh Shilimkar <ssantosh@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Sebastian Reichel <sre@kernel.org>,
-	Vignesh Raghavendra <vigneshr@ti.com>,
-	linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org, linux-pm@vger.kernel.org
-Subject: Re: [PATCH 02/12] dt-bindings: arm: keystone: ti-sci: Add
- reboot-controller child node
-Message-ID: <20240201230351.GA1900918-robh@kernel.org>
-References: <20240131221957.213717-1-afd@ti.com>
- <20240131221957.213717-3-afd@ti.com>
+	b=JmIuxBzXFfJXUsgjJHiKUMHSqs2oGZ7MYZ4z0exkCOS0neM+zfxX+Iu/VPnTWc5B+
+	 puzE3QZ+G5iQn9+BmSUgonVnmgDr2qT7HQcUSAjzLgRRM26nOoNGMdSTV93B5ejHmI
+	 Zi3n7yX8iWX1x6cUkD1afB0Y+95Aechn4NePLcbGWHI7PPigXLHriRkkEgbmisGPhI
+	 HyOdQXlQy4xysoxWWmxwzyjmra70zEYyC9sSx62Izs7bGX4fDirCndntUI78Cbw8D6
+	 XOorupF4qVV6WoSnmpNSLBsXBtzM4g5PlMcMsXs9kCEjD7jy46Gj/x2zp784nUzZA9
+	 2DBL9vsjn3qDA==
+Date: Thu, 1 Feb 2024 17:28:02 -0600
+From: Bjorn Andersson <andersson@kernel.org>
+To: Lee Jones <lee@kernel.org>
+Cc: Anjelique Melendez <quic_amelende@quicinc.com>, pavel@ucw.cz, 
+	thierry.reding@gmail.com, robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org, 
+	conor+dt@kernel.org, agross@kernel.org, luca.weiss@fairphone.com, 
+	konrad.dybcio@linaro.org, u.kleine-koenig@pengutronix.de, quic_subbaram@quicinc.com, 
+	quic_gurus@quicinc.com, linux-leds@vger.kernel.org, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org, linux-arm-msm@vger.kernel.org, linux-pwm@vger.kernel.org
+Subject: Re: Re: [PATCH v8 3/7] soc: qcom: add QCOM PBS driver
+Message-ID: <kfs2nkkrwsa2enz67vfb5nenv2obzuomekqjdzaksldd75lows@3mcfd2r55fc3>
+References: <20231221185838.28440-1-quic_amelende@quicinc.com>
+ <20231221185838.28440-4-quic_amelende@quicinc.com>
+ <ut6jbawqqdgfyoxmt76hm67rbnv67x54eho3nae2dd2szbejfb@7joy57g4i3qt>
+ <20240131085842.GF8551@google.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -65,34 +64,25 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20240131221957.213717-3-afd@ti.com>
+In-Reply-To: <20240131085842.GF8551@google.com>
 
-On Wed, Jan 31, 2024 at 04:19:47PM -0600, Andrew Davis wrote:
-> The TI-SCI firmware supports rebooting the system in addition to the
-> functions already listed here, document child node for the same.
+On Wed, Jan 31, 2024 at 08:58:42AM +0000, Lee Jones wrote:
+> Intentional generic top-post reply.
 > 
-> Signed-off-by: Andrew Davis <afd@ti.com>
-> ---
->  .../devicetree/bindings/arm/keystone/ti,sci.yaml          | 8 ++++++++
->  1 file changed, 8 insertions(+)
+> Please work quickly to resolve Bjorn's comments.
 > 
-> diff --git a/Documentation/devicetree/bindings/arm/keystone/ti,sci.yaml b/Documentation/devicetree/bindings/arm/keystone/ti,sci.yaml
-> index c24ad0968f3ef..e392175b33c74 100644
-> --- a/Documentation/devicetree/bindings/arm/keystone/ti,sci.yaml
-> +++ b/Documentation/devicetree/bindings/arm/keystone/ti,sci.yaml
-> @@ -83,6 +83,10 @@ properties:
->      type: object
->      $ref: /schemas/reset/ti,sci-reset.yaml#
->  
-> +  reboot-controller:
-> +    type: object
-> +    $ref: /schemas/power/reset/ti,sci-reboot.yaml#
+> I'm being hounded over a broken LEDs tree due to the missing headerfile.
+> 
 
-Don't need a ref just for a single property.
+I've merged the updated patches into the qcom tree.
 
-But then why do we need a node here at all? Can't you assume reboot 
-support for TI-SCI firmware (i.e. based on the parent node). Then you 
-don't need a DT update to add the feature.
+I presume though that you'd like to have this build issue resolved in
+your tree as well. Please feel free to pull the branch:
 
-Rob
+20240201204421.16992-2-quic_amelende@quicinc.com (5b2dd77be1d85ac3a8be3749f5605bf0830e2998)
+
+from https://git.kernel.org/pub/scm/linux/kernel/git/qcom/linux.git
+
+Regards,
+Bjorn
 
