@@ -1,105 +1,128 @@
-Return-Path: <devicetree+bounces-37408-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-37409-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id ECB98844DD5
-	for <lists+devicetree@lfdr.de>; Thu,  1 Feb 2024 01:29:28 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 16B4C844DE8
+	for <lists+devicetree@lfdr.de>; Thu,  1 Feb 2024 01:34:51 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 9C2D0291C0B
-	for <lists+devicetree@lfdr.de>; Thu,  1 Feb 2024 00:29:27 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id C0BBA286F6A
+	for <lists+devicetree@lfdr.de>; Thu,  1 Feb 2024 00:34:49 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2068B380;
-	Thu,  1 Feb 2024 00:29:26 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 685641102;
+	Thu,  1 Feb 2024 00:34:46 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="YX9cNd5n"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="AlUUzhv3"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-yb1-f175.google.com (mail-yb1-f175.google.com [209.85.219.175])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E7EFBA47;
-	Thu,  1 Feb 2024 00:29:25 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C33551848;
+	Thu,  1 Feb 2024 00:34:44 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.219.175
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1706747366; cv=none; b=WSigBhITFNVHdBumvykh3mcaZuLFViq3ZWIT3OXIDcP04pyglqO82is9FkVmUGORmpzsGPrNxeN59DzbGxP6P887Oy8iUQAEFtZlH8BC3nKAEqQTIv3CYabD4oW3jdYjcgHJCYzpBQ+mG0wcTztX8gicE8LS2ldUyNeVGqnMjaE=
+	t=1706747686; cv=none; b=r2d4tKDbA5Rfbw2U8QD/u+3wS15Vqoafswx/J5PfrnfZ6cqAgswQ551iNtQkDKdIgQS/Al/N0gqR3LELy8YOC6G6Q46mnTzdTNS40ADNe/wL4iHqEwtmuKiD77JOZ43MCpxysM+06uttixN5qG/xK03/T17TtJ+1NKEFcLQaYbY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1706747366; c=relaxed/simple;
-	bh=Y/SrHT/IyBbLZFRWROvBqEmc7qg87vDdOcmhfxplfE8=;
-	h=Date:Content-Type:MIME-Version:From:To:Cc:In-Reply-To:References:
-	 Message-Id:Subject; b=a2dfrzlat4rbVL/gxot3B93L2p0/u9LWY0IjNHrb7YnQfEuTOukaFCfsFzSQ/Tzq5Y6KK342YTDJSy/6ZO6+/XleOIyECe483fz/MlOfONE+TKVyUlOmM9uEhBWrXJ5EchrHw6Q/xR6EM0fxNHRv1h6S+etflV1l6Y4JcahcpX4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=YX9cNd5n; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 7D906C433F1;
-	Thu,  1 Feb 2024 00:29:25 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1706747365;
-	bh=Y/SrHT/IyBbLZFRWROvBqEmc7qg87vDdOcmhfxplfE8=;
-	h=Date:From:To:Cc:In-Reply-To:References:Subject:From;
-	b=YX9cNd5nsMu9TKfXiOzz4km4HlJuBMQkso0yYJqeOGjjo8AhRRItDvOZF9mn52vrQ
-	 1EPfCyzhjMubROS/tB2ZSzBAHtsoMiKtGGQ3cfa7G9MS2OB6xp+xEoQ4Dp60+z7qh3
-	 M5goLKHRg/M+KyuCIQlfVI0LLmeH06NT5aquJ1kGvZ5f6MvPZGhNAId0PEC/Vr4qNM
-	 if5n/GrUki0BLZr5mBhQo+bw2AdCs2HrrwL4mlKohg39g2t85OWG7Aos6/akbggN/j
-	 Oh5t2/IwqFTkT3a+FvJnx30OMW4pzElvuc3JkpNUnpTaI4rrYga8eIfNTv7bDTf5E5
-	 iCnoUK0OU9QCA==
-Date: Wed, 31 Jan 2024 18:29:24 -0600
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
+	s=arc-20240116; t=1706747686; c=relaxed/simple;
+	bh=vnbzCB39wVKvbch2Hy3sYEt0pT2wPAKWtE3Z1mkDHbM=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=UAQoei38aPQ+OQtb0nlhFcWf53G1q7Uhw0e6sSBEEa7M+mL+s86CIaS+VfgF+y1cXA5Hwgn9iDtaZbznXTEAolOyG+WSbfnmsNkwHC3/pPrG/if64mETRNRKjPm1W9v83cwEqvaQ7TQv4ecmgF0plZPsngkbJiFBydhh2t/534U=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=AlUUzhv3; arc=none smtp.client-ip=209.85.219.175
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-yb1-f175.google.com with SMTP id 3f1490d57ef6-dc63dfe77caso311766276.3;
+        Wed, 31 Jan 2024 16:34:44 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1706747683; x=1707352483; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=ZbOOKe7bbu6zejjiRtLrCpqVPRgcPSroTLRi0QwxwOE=;
+        b=AlUUzhv3HCyHBEj7PFOkxwFjizL9hgiQbian/h/e2YGNitZltGoRv+61M8p1TfAEtW
+         ynC5Gy1EuoV0sgi09atkR1j/kWFd2K7GP85Tc7zCtWUmruIV9BCqOqmSKrpIaup2Effd
+         vL6sJkdu+QlJ06WOPz1cJPZ2BvnMh8qJ6aClMMjzkM80El/nO3jjzjsQKDDAZ1CsDbTN
+         k2xCPb8UhwiJcWC+5mhToOtzY06eRZ3c2JhwHXj84b4m0bZ+QBkssLUayvBf+GS0ihcR
+         w5SL7Bx8GLk+6Q7d2wB/XapvVE5vDYcLo9ukC5cwhSgN65k7UePhOaC6teh4eJaaJvPe
+         KWew==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1706747683; x=1707352483;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=ZbOOKe7bbu6zejjiRtLrCpqVPRgcPSroTLRi0QwxwOE=;
+        b=w6IlOe9pvZyupojePmIlUOE5lXF0r8VSjlSmJvWwk/VsYdycmMTVPpBFewf68p9kgx
+         ZI1rgn0QaeWv7durdMuj4l0n6tYcTw3vk547x37tem4rqs2HS8eOwuQyAtbkJ/bLJQKN
+         k4fulxFw9LGYPLxqaqp+ZZxYDn+5k4o1fhBIEH5fYyucSdMqqdIe3VuhMlS8V7BzElY/
+         vZNwVCBpdniRvwl0ZoxMkn6h3+IyVNdaLcdSRCx92J9ftdss03IoNISXBEK8YjcS4TX6
+         Y++2UadAOyVN9En3PZY44VZBZfexe/7+5h/dotw13VvODTZNZ6XOjhe0SRBH6+Gy/tOU
+         7m1g==
+X-Gm-Message-State: AOJu0YwdIXGRkP52Ycx273bvJVQiNoMMirSShjoqPRayuv8QL9AxrlCg
+	xqgQ/93Uaeea7v1tVTXes7W1EucQG7ADP63At05JBB49GXX+C35hk3287Xt33Li14ytmRBEyN0z
+	MDJ2q5zeADqSRjDiOxnT0Zjwp0dfWbLsUbhpibg==
+X-Google-Smtp-Source: AGHT+IHW7I0Dmnn7MtcxiiH7U7ZvvzGycmS1CNoDQRvXK4YxdTMfhWwkKV/OMla8SO9nrfOLDpc9O0P42dzA4R4kIxU=
+X-Received: by 2002:a05:6902:1369:b0:dc2:252d:4773 with SMTP id
+ bt9-20020a056902136900b00dc2252d4773mr3185212ybb.61.1706747683578; Wed, 31
+ Jan 2024 16:34:43 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-From: Rob Herring <robh@kernel.org>
-To: Brandon Brnich <b-brnich@ti.com>
-Cc: linux-media@vger.kernel.org, devicetree@vger.kernel.org, 
- Darren Etheridge <detheridge@ti.com>, Nas Chung <nas.chung@chipsnmedia.com>, 
- Nishanth Menon <nm@ti.com>, Vignesh Raghavendra <vigneshr@ti.com>, 
- Jackson Lee <jackson.lee@chipsnmedia.com>, 
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, 
- Rob Herring <robh+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
- Mauro Carvalho Chehab <mchehab@kernel.org>, linux-kernel@vger.kernel.org
-In-Reply-To: <20240131234008.2108672-1-b-brnich@ti.com>
-References: <20240131234008.2108672-1-b-brnich@ti.com>
-Message-Id: <170674736344.2987842.3265742697245667442.robh@kernel.org>
-Subject: Re: [PATCH] dt-bindings: media: Add sram-size Property for Wave5
+References: <20240131055526.2700452-1-ythsu0511@gmail.com> <20240131055526.2700452-2-ythsu0511@gmail.com>
+ <20240131-eraser-given-8381a44f41a4@spud>
+In-Reply-To: <20240131-eraser-given-8381a44f41a4@spud>
+From: =?UTF-8?B?5b6Q5rC46KyE?= <ythsu0511@gmail.com>
+Date: Thu, 1 Feb 2024 08:34:32 +0800
+Message-ID: <CAE+7-j=uWxQhEVF4YhAGmyjrryzMxF2E9Qi6xgRVYwusmaZMMw@mail.gmail.com>
+Subject: Re: [PATCH v3 2/2] dt-bindings: Add MPQ8785 voltage regulator device
+To: Conor Dooley <conor@kernel.org>
+Cc: jdelvare@suse.com, linux@roeck-us.net, corbet@lwn.net, 
+	Delphine_CC_Chiu@wiwynn.com, robh+dt@kernel.org, 
+	krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org, 
+	linux-hwmon@vger.kernel.org, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-
-On Wed, 31 Jan 2024 17:40:08 -0600, Brandon Brnich wrote:
-> Wave521c has capability to use SRAM carveout to store reference data with
-> purpose of reducing memory bandwidth. To properly use this pool, the driver
-> expects to have an sram and sram-size node. Without sram-size node, driver
-> will default value to zero, making sram node irrelevant.
-> 
-> Signed-off-by: Brandon Brnich <b-brnich@ti.com>
-> ---
->  Documentation/devicetree/bindings/media/cnm,wave521c.yaml | 6 ++++++
->  1 file changed, 6 insertions(+)
-> 
-
-My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
-on your patch (DT_CHECKER_FLAGS is new in v5.13):
-
-yamllint warnings/errors:
-
-dtschema/dtc warnings/errors:
-/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/media/cnm,wave521c.yaml: sram-size: missing type definition
-
-doc reference errors (make refcheckdocs):
-
-See https://patchwork.ozlabs.org/project/devicetree-bindings/patch/20240131234008.2108672-1-b-brnich@ti.com
-
-The base for the series is generally the latest rc1. A different dependency
-should be noted in *this* patch.
-
-If you already ran 'make dt_binding_check' and didn't see the above
-error(s), then make sure 'yamllint' is installed and dt-schema is up to
-date:
-
-pip3 install dtschema --upgrade
-
-Please check and re-submit after running the above command yourself. Note
-that DT_SCHEMA_FILES can be set to your schema file to speed up checking
-your schema. However, it must be unset to test all examples with your schema.
-
+On Wed, Jan 31, 2024 at 11:41=E2=80=AFPM Conor Dooley <conor@kernel.org> wr=
+ote:
+>
+> On Wed, Jan 31, 2024 at 01:55:26PM +0800, Charles Hsu wrote:
+> > Monolithic Power Systems, Inc. (MPS) synchronous step-down converter.
+> >
+> > Signed-off-by: Charles Hsu <ythsu0511@gmail.com>
+> > ---
+> >  Documentation/devicetree/bindings/trivial-devices.yaml | 2 ++
+> >  1 file changed, 2 insertions(+)
+> >
+> > diff --git a/Documentation/devicetree/bindings/trivial-devices.yaml b/D=
+ocumentation/devicetree/bindings/trivial-devices.yaml
+> > index 79dcd92c4a43..088b23ed2ae6 100644
+> > --- a/Documentation/devicetree/bindings/trivial-devices.yaml
+> > +++ b/Documentation/devicetree/bindings/trivial-devices.yaml
+> > @@ -129,6 +129,8 @@ properties:
+> >            - mps,mp2975
+> >              # Monolithic Power Systems Inc. multi-phase hot-swap contr=
+oller mp5990
+> >            - mps,mp5990
+> > +            # Monolithic Power Systems Inc. synchronous step-down conv=
+erter mpq8785
+> > +          - mps,mpq8785
+>
+> q sorts before 2, otherwise
+Okay, I got it.
+> Acked-by: Conor Dooley <conor.dooley@microchip.com>
+>
+> Cheers,
+> Conor.
+>
+> >              # Honeywell Humidicon HIH-6130 humidity/temperature sensor
+> >            - honeywell,hi6130
+> >              # IBM Common Form Factor Power Supply Versions (all versio=
+ns)
+> > --
+> > 2.34.1
+> >
 
