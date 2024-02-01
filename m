@@ -1,76 +1,76 @@
-Return-Path: <devicetree+bounces-37606-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-37607-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8A0718458D8
-	for <lists+devicetree@lfdr.de>; Thu,  1 Feb 2024 14:25:21 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 03838845906
+	for <lists+devicetree@lfdr.de>; Thu,  1 Feb 2024 14:37:06 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 153751F219DF
-	for <lists+devicetree@lfdr.de>; Thu,  1 Feb 2024 13:25:21 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 031E81C22381
+	for <lists+devicetree@lfdr.de>; Thu,  1 Feb 2024 13:37:05 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B1D135337A;
-	Thu,  1 Feb 2024 13:25:17 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3A6675B668;
+	Thu,  1 Feb 2024 13:36:59 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="HYzoFL8P"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="YWkQ0fk7"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pl1-f169.google.com (mail-pl1-f169.google.com [209.85.214.169])
+Received: from mail-pj1-f42.google.com (mail-pj1-f42.google.com [209.85.216.42])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DA87A5336F;
-	Thu,  1 Feb 2024 13:25:15 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.169
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9CF2B86647;
+	Thu,  1 Feb 2024 13:36:57 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.216.42
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1706793917; cv=none; b=NJPpH6Ab6kU8//ke+vd0twxCUz0dLhkaP9byW1JxmZHYInYDuj8yCpTGGr4WDgVYeu0F5BezFg5tBv9l0IprnS9i9WMFfXQ0741cSMWnjS5m3ChxfEZJNqXK4f9Db8W8ATUxjaBrJLnKF1g8Zm26nTxG9wVS7rhgZy7LMP94OW4=
+	t=1706794619; cv=none; b=lmONTI7lUV8VqHNknA3egSHQ0qBUwQeXp+Tia7JtP7VJTLXFutz01MJH2XVmiLBzIrleG3BiorU2ehuQXL+BHfYsuTs9UejKS0Tf57jDF0SRjGWygYk+BB1iXva4EgdukWIEL1NFtzVIAkS0uZFJyfy0qLCYPNJ9RssOvdpodbY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1706793917; c=relaxed/simple;
-	bh=CzGxwkYE8eOq19rgvtWqPBgqaZx1eLdwkDkHFM1oipw=;
+	s=arc-20240116; t=1706794619; c=relaxed/simple;
+	bh=Y6xuwZ/UytPs1s0uPT289WKmjRvZNzYA5jAUKSKRGow=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=Yq8IARPoLudgO1DdQisJMuJp2IIYmEyUPmnvzfGBHbjL5zR76T5SVgMPGA4yWxQ6FwI8u19W1JHbf4hE32GNKUHC4UoHYFujKkWekhhUxUkjkukY+BkUeF3JTVKtTjrg0ymExvhM3UzDK++1s0lQcNOyhXOFjpuu3XVZ0kfmdKU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=roeck-us.net; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=HYzoFL8P; arc=none smtp.client-ip=209.85.214.169
+	 In-Reply-To:Content-Type; b=crxZR0BtL5BdzPySo+PihSRYzSfUPBGNNjuGbjM2LentuqJgEjGzlpkxPxRKRaI74W3rrBaBvN0XXopt+ZZg0/ZSCMaS0zlCjM+Au6o09uoYLLvPlKZcy5N/c908Qi4z0JDMkDOm8UlW+sEUJJXJR5UTKhaPClk0NTX7AVrykVY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=roeck-us.net; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=YWkQ0fk7; arc=none smtp.client-ip=209.85.216.42
 Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=roeck-us.net
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-pl1-f169.google.com with SMTP id d9443c01a7336-1d746ce7d13so7692315ad.0;
-        Thu, 01 Feb 2024 05:25:15 -0800 (PST)
+Received: by mail-pj1-f42.google.com with SMTP id 98e67ed59e1d1-296043e44caso707951a91.0;
+        Thu, 01 Feb 2024 05:36:57 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1706793915; x=1707398715; darn=vger.kernel.org;
+        d=gmail.com; s=20230601; t=1706794617; x=1707399417; darn=vger.kernel.org;
         h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
          :to:content-language:subject:user-agent:mime-version:date:message-id
          :sender:from:to:cc:subject:date:message-id:reply-to;
-        bh=43xzHgXXu6oYc15FDGGWE+BE2/u2KH29mhM7SS7NCUY=;
-        b=HYzoFL8PPeCIJ7PrFsUWJcXhf0VzTEVd06khInF4lY5g5fphgSUbAxVpQ6AwDu+ghA
-         v9TfFc5UM3l+cJ74/ZnfLWn4oaCbn7wGMtfVcflsZcoMtek7gsxkYYUTo1t5tiuBteKc
-         VMO2VxIWlmCxSjvpaTb84RCyxSW9AjS85yRHGNgHZ50342EktV+xW8LuP4WhCxRDJtRx
-         bacDbimft5kH0D1fXFXSnekhNqYx43hqFJoXjbVlOcJsLRLrRqaEFETBkN6JJRBR4w3B
-         IifQl2bOz5SJYQleCDlkUu3g63V8ta8hexObLYjmjsjqbB7hXBh5X1KKCCARNg0jXSl/
-         QQPw==
+        bh=NIOY7HRa3XDmbQkCgZJQXD0Vyc4i5CecSgVuCotRWD0=;
+        b=YWkQ0fk7yeKg4suSY7ZrfpfDCHwGnZ//QcV0eoWH1h+jWbRlf1Vbjps+Eun9/NcX6V
+         Px7kQLFFYzQqxV/6BkS+r2sgmUl8tO7SrXS4vgTLS5uxfMkmAlVe7IFDBtr1iAm29Xrf
+         a6yCMVsQC8yXSpuTHv61Ec4QJL5szekeGYji6ZWSC5KqpRMjddY7J8Q4EfxQGgkavKFV
+         IN7TwJX1XUGtzLPFFmXOCWGw2zVo56liYSm2WbUFsVh88mdI5dGV1FZBV62t5nHOrjDW
+         X/vLwpvM7G5PFBlMBqkN5W8cNVwhWSB6YMDtW+gFdQDC/vlfEDeksAyR59pSbT/lpSk9
+         IbSw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1706793915; x=1707398715;
+        d=1e100.net; s=20230601; t=1706794617; x=1707399417;
         h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
          :to:content-language:subject:user-agent:mime-version:date:message-id
          :sender:x-gm-message-state:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=43xzHgXXu6oYc15FDGGWE+BE2/u2KH29mhM7SS7NCUY=;
-        b=xRb8yJL2AIkkbhUZpvrO/BaI92SSUrYzD6t7dua89wcgTGAAq+MqOomVBDzltSxvfo
-         fVzwoQ178aQCojvifQC9KHfQZ1SPHfMLyZZUChotQnehUXj5mddzHbaMOBukznQwCW24
-         9ResCa/c9ZJrNRMoV7SWlVmorR5caji3QHkgYfPg9gRmilihdPdyxspSKNM13z6lyl8L
-         HpYQ+XKk/geqCpwNxmI8UfydDy6kN9wpq1Icn2rh1bLSIu5MgyN4O7KQjk1ZFgUPsXY2
-         Vkk9nUYVIVNuUsCdggH9q7JZD0D451tO8JVlKdtO8UiAvf+0oC5heX1jD86WzbKKkVPH
-         iieQ==
-X-Gm-Message-State: AOJu0Yw0tLjnAzqxYDs3nJ75n9vUDu9RF7ylPziU7lmFYDKidt43TTnX
-	vLBHsZrOgV4DgzP6zpUp47cwc7O8+nvFauusG6Q9vbm6/36Pb4O4
-X-Google-Smtp-Source: AGHT+IGNKu5JkaDUSzbzBEHrTojeyGWLq8v0yRqoYl+HvZy8ZGP0GtCFLkjmNy6udCjTowaENnIs1g==
-X-Received: by 2002:a17:902:daca:b0:1d9:53aa:220b with SMTP id q10-20020a170902daca00b001d953aa220bmr1482127plx.2.1706793914959;
-        Thu, 01 Feb 2024 05:25:14 -0800 (PST)
-X-Forwarded-Encrypted: i=0; AJvYcCUi4yTFHva1oSgNBOSU2K+mCJUppmk/kW1UgtAyQb1PhxyYKm0rL0ZNCYzrFoY+VliO1wcrgs1uYr+hIAkI05pVRPzHj0tIQwikBm9nD1ZZuEci4vkxHVZnKoJGMb9znLeEuz6QrjIHX0ig4ej8Pn1pJu6t//YPzK78P76yIa2v1a+CoOk6KPXcSWVL250jUaNjJZMLk8jnbJr0cB2xtaXcmwWO73gDXpbkKIQ=
+        bh=NIOY7HRa3XDmbQkCgZJQXD0Vyc4i5CecSgVuCotRWD0=;
+        b=UdFXZ/p/JoI3gc3OaZ8jGfaimIqXpovt7KoN/o533hTAppT0+QYSSnG5wI+WCZKVz/
+         yS1sMUYCNpfIqkNBJT8VdcO5Ex3oGgF6sbehmaRXBrtrzQNkhlDgRAYrp6Af/mZLPnVh
+         L29Nt0dzlgfvr+lv6oZjrKwkUNIG6+yTCJeXs4fSdPs1Xla5BS3o2CUArfJD0pr5Zpis
+         FaB0cN2YPayUdXWkcNd3V0uoKZyechGgHu7ThKzwlOpNcBPix5zIb9oS3MCsEOCX6iqF
+         Z6lxnpZI2W2qeuiWaJ8IEk+jVirDYtiY+Y+vV8z+D+QEY4ucqsVMeT0mlr4By6HsSUFX
+         e/eQ==
+X-Gm-Message-State: AOJu0Yz3Y2BxCcIiLLHCmRNLIADzSXnlSVSrGQ44cnsDLuJ4BpW4Tr0B
+	/ewVIRV2red1WKjENY4ZpRj4yPK/S36ju/eOcp6RhUToqauV/wgLzwzYwy/4
+X-Google-Smtp-Source: AGHT+IE87mn1kUx7KsvJ1kw4VnW2wGVQtKQwjkTKGie4+oCKmaWmUVUSmze+c//NEmTWv422isLx6g==
+X-Received: by 2002:a17:90b:30c5:b0:295:1a47:d70f with SMTP id hi5-20020a17090b30c500b002951a47d70fmr4515280pjb.3.1706794616765;
+        Thu, 01 Feb 2024 05:36:56 -0800 (PST)
+X-Forwarded-Encrypted: i=0; AJvYcCVQvkuKLc+GA8XZDsVfJEW8YCYHHXaoiokTfChGeswxJcXBRwpxku4nd4z4lzDUtkS2Mf9VEPr2adPz1vyS+YYQ4PskLASl1MhD70R+mF3X82bhDAmegRqmRMSOlq6yz4Gcas++UsC6+zL7NEeqQiNfl8FStcbow3WzAe1bEVjtsnRq2L4WU2q0zsRjpd6bow//EH/XDkbU6uXzz+5URKUL862vxnk0EcbHBObTM0SaCB2agpVvZik9ZoJ543PfKe2xTcjfn5gWQ2lyM/bZ6K/lym/kWVtvnuUH6oq6Db2c5KX8HggmtctiDgsgBvzaLNwFRK1iOfAw67dsHCZtzNhW7kaiZnEoooyVmukRV15QH4CYfnyPQiO65OG/2X8De8jC9OhgmXhkjycfQDgVobcBGiUThKKCQbp4NHXgqn8bJ5P3tk5pQLhfSPURNlo73wa4Y0vxrPqMTXD6Bsq7aXg4H09ld7Z1MqgbN3i0pFUpTAd0caZ12WZKoBKsxSRtOXkXO3J+yzrKA1N8GEkcl0pE0i4I7DHBUDWzGCMqxAavVa/WWH0KqNT4yoo3kBB20gCDEHT4ufnFZ84/c5188juWpDgrSqoXblJC4BpmN1tYwyVPaUDzlBkkhTCVwVY=
 Received: from ?IPV6:2600:1700:e321:62f0:329c:23ff:fee3:9d7c? ([2600:1700:e321:62f0:329c:23ff:fee3:9d7c])
-        by smtp.gmail.com with ESMTPSA id o2-20020a170902e00200b001d8fca928fbsm5795883plo.230.2024.02.01.05.25.13
+        by smtp.gmail.com with ESMTPSA id pb8-20020a17090b3c0800b00295fdf538e1sm2443191pjb.12.2024.02.01.05.36.54
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 01 Feb 2024 05:25:14 -0800 (PST)
+        Thu, 01 Feb 2024 05:36:56 -0800 (PST)
 Sender: Guenter Roeck <groeck7@gmail.com>
-Message-ID: <5461a237-1df4-4077-86ef-e9ff6ff17e27@roeck-us.net>
-Date: Thu, 1 Feb 2024 05:25:13 -0800
+Message-ID: <313ec14d-c991-4bd0-a964-5759db108855@roeck-us.net>
+Date: Thu, 1 Feb 2024 05:36:53 -0800
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -78,16 +78,20 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH] dt-bindings: trivial-devices: sort entries
- alphanumerically
+Subject: Re: [PATCH v2 02/11] watchdog: rzg2l_wdt: Select PM
 Content-Language: en-US
-To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
- Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Conor Dooley <conor+dt@kernel.org>, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org
-Cc: Charles Hsu <ythsu0511@gmail.com>, linux-hwmon@vger.kernel.org
-References: <20240201075805.7492-1-krzysztof.kozlowski@linaro.org>
+To: Geert Uytterhoeven <geert@linux-m68k.org>,
+ Claudiu <claudiu.beznea@tuxon.dev>
+Cc: wim@linux-watchdog.org, robh+dt@kernel.org,
+ krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
+ geert+renesas@glider.be, magnus.damm@gmail.com, mturquette@baylibre.com,
+ sboyd@kernel.org, p.zabel@pengutronix.de, biju.das.jz@bp.renesas.com,
+ linux-watchdog@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, linux-renesas-soc@vger.kernel.org,
+ linux-clk@vger.kernel.org, Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>
+References: <20240131102017.1841495-1-claudiu.beznea.uj@bp.renesas.com>
+ <20240131102017.1841495-3-claudiu.beznea.uj@bp.renesas.com>
+ <CAMuHMdUT3XFz2a+iWxrT2p_fbe+QCoXuhYprcWY9v4e5KA5q2w@mail.gmail.com>
 From: Guenter Roeck <linux@roeck-us.net>
 Autocrypt: addr=linux@roeck-us.net; keydata=
  xsFNBE6H1WcBEACu6jIcw5kZ5dGeJ7E7B2uweQR/4FGxH10/H1O1+ApmcQ9i87XdZQiB9cpN
@@ -132,211 +136,59 @@ Autocrypt: addr=linux@roeck-us.net; keydata=
  WkRwrSuCn7UG+qVWZeKEsFKFOkynOs3pVbcbq1pxbhk3TRWCGRU5JolI4ohy/7JV1TVbjiDI
  HP/aVnm6NC8of26P40Pg8EdAhajZnHHjA7FrJXsy3cyIGqvg9os4rNkUWmrCfLLsZDHD8FnU
  mDW4+i+XlNFUPUYMrIKi9joBhu18ssf5i5Q=
-In-Reply-To: <20240201075805.7492-1-krzysztof.kozlowski@linaro.org>
+In-Reply-To: <CAMuHMdUT3XFz2a+iWxrT2p_fbe+QCoXuhYprcWY9v4e5KA5q2w@mail.gmail.com>
 Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 8bit
 
-On 1/31/24 23:58, Krzysztof Kozlowski wrote:
-> Sort entries alphanumerically.  This was a semi manual job with help of:
+On 2/1/24 00:52, Geert Uytterhoeven wrote:
+> Hi Claudiu,
 > 
->    cat Documentation/devicetree/bindings/trivial-devices.yaml | grep '    - ' > old
->    cat old | sort -n > new
->    diff -ubB old new
+> On Thu, Feb 1, 2024 at 2:30 AM Claudiu <claudiu.beznea@tuxon.dev> wrote:
+>> From: Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>
+>>
+>> The rzg2l_wdt watchdog driver cannot work w/o CONFIG_PM=y (e.g. the
+>> clocks are enabled though pm_runtime_* specific APIs). To avoid building
+>> a driver that don't work select CONFIG_PM.
+>>
+>> Suggested-by: Guenter Roeck <linux@roeck-us.net>
+>> Signed-off-by: Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>
 > 
-> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+> Thanks for your patch!
+> 
+>> --- a/drivers/watchdog/Kconfig
+>> +++ b/drivers/watchdog/Kconfig
+>> @@ -912,6 +912,7 @@ config RENESAS_RZG2LWDT
+>>          tristate "Renesas RZ/G2L WDT Watchdog"
+>>          depends on ARCH_RENESAS || COMPILE_TEST
+>>          select WATCHDOG_CORE
+>> +       select PM
+> 
+> depends on PM
 > 
 
-Acked-by: Guenter Roeck <linux@roeck-us.net>
+Yes, I did not want to suggest that the driver should _select_ PM.
+Sorry that I wasn't more specific.
 
-> ---
+Guenter
+
+> The availability of PM is architecture/platform-specific, hence it
+> must not be selected by individual drivers.
 > 
-> Cc: Charles Hsu <ythsu0511@gmail.com>
-> Cc: linux-hwmon@vger.kernel.org
-> Cc: Guenter Roeck <linux@roeck-us.net>
-> ---
->   .../devicetree/bindings/trivial-devices.yaml  | 73 ++++++++++---------
->   1 file changed, 37 insertions(+), 36 deletions(-)
+>>          help
+>>            This driver adds watchdog support for the integrated watchdogs in the
+>>            Renesas RZ/G2L SoCs. These watchdogs can be used to reset a system.
 > 
-> diff --git a/Documentation/devicetree/bindings/trivial-devices.yaml b/Documentation/devicetree/bindings/trivial-devices.yaml
-> index 5b52950e6bfc..41982a41398a 100644
-> --- a/Documentation/devicetree/bindings/trivial-devices.yaml
-> +++ b/Documentation/devicetree/bindings/trivial-devices.yaml
-> @@ -28,6 +28,7 @@ properties:
->   
->     compatible:
->       items:
-> +      # Entries are sorted alphanumerically by the compatible
->         - enum:
->               # Acbel fsg032 power supply
->             - acbel,fsg032
-> @@ -49,12 +50,12 @@ properties:
->             - ams,iaq-core
->               # i2c serial eeprom (24cxx)
->             - at,24c08
-> +            # i2c h/w elliptic curve crypto module
-> +          - atmel,atecc508a
->               # ATSHA204 - i2c h/w symmetric crypto module
->             - atmel,atsha204
->               # ATSHA204A - i2c h/w symmetric crypto module
->             - atmel,atsha204a
-> -            # i2c h/w elliptic curve crypto module
-> -          - atmel,atecc508a
->               # BPA-RS600: Power Supply
->             - blutek,bpa-rs600
->               # Bosch Sensortec pressure, temperature, humididty and VOC sensor
-> @@ -115,20 +116,6 @@ properties:
->             - fsl,mpl3115
->               # MPR121: Proximity Capacitive Touch Sensor Controller
->             - fsl,mpr121
-> -            # Monolithic Power Systems Inc. multi-phase controller mp2856
-> -          - mps,mp2856
-> -            # Monolithic Power Systems Inc. multi-phase controller mp2857
-> -          - mps,mp2857
-> -            # Monolithic Power Systems Inc. multi-phase controller mp2888
-> -          - mps,mp2888
-> -            # Monolithic Power Systems Inc. multi-phase controller mp2971
-> -          - mps,mp2971
-> -            # Monolithic Power Systems Inc. multi-phase controller mp2973
-> -          - mps,mp2973
-> -            # Monolithic Power Systems Inc. multi-phase controller mp2975
-> -          - mps,mp2975
-> -            # Monolithic Power Systems Inc. multi-phase hot-swap controller mp5990
-> -          - mps,mp5990
->               # Honeywell Humidicon HIH-6130 humidity/temperature sensor
->             - honeywell,hi6130
->               # IBM Common Form Factor Power Supply Versions (all versions)
-> @@ -197,6 +184,8 @@ properties:
->             - maxim,max1237
->               # Temperature Sensor, I2C interface
->             - maxim,max1619
-> +            # 3-Channel Remote Temperature Sensor
-> +          - maxim,max31730
->               # 10-bit 10 kOhm linear programmable voltage divider
->             - maxim,max5481
->               # 10-bit 50 kOhm linear programmable voltage divider
-> @@ -209,8 +198,6 @@ properties:
->             - maxim,max6621
->               # 9-Bit/12-Bit Temperature Sensors with I²C-Compatible Serial Interface
->             - maxim,max6625
-> -            # 3-Channel Remote Temperature Sensor
-> -          - maxim,max31730
->               # mCube 3-axis 8-bit digital accelerometer
->             - mcube,mc3230
->               # Measurement Specialities I2C temperature and humidity sensor
-> @@ -241,8 +228,6 @@ properties:
->             - memsic,mxc6655
->               # Menlo on-board CPLD trivial SPI device
->             - menlo,m53cpld
-> -            # Micron SPI NOR Authenta
-> -          - micron,spi-authenta
->               # Microchip differential I2C ADC, 1 Channel, 18 bit
->             - microchip,mcp3421
->               # Microchip differential I2C ADC, 2 Channel, 18 bit
-> @@ -259,40 +244,56 @@ properties:
->             - microchip,mcp3427
->               # Microchip differential I2C ADC, 4 Channel, 16 bit
->             - microchip,mcp3428
-> -            # Microchip 7-bit Single I2C Digital POT (5k)
-> -          - microchip,mcp4017-502
->               # Microchip 7-bit Single I2C Digital POT (10k)
->             - microchip,mcp4017-103
-> -            # Microchip 7-bit Single I2C Digital POT (50k)
-> -          - microchip,mcp4017-503
->               # Microchip 7-bit Single I2C Digital POT (100k)
->             - microchip,mcp4017-104
->               # Microchip 7-bit Single I2C Digital POT (5k)
-> -          - microchip,mcp4018-502
-> +          - microchip,mcp4017-502
-> +            # Microchip 7-bit Single I2C Digital POT (50k)
-> +          - microchip,mcp4017-503
->               # Microchip 7-bit Single I2C Digital POT (10k)
->             - microchip,mcp4018-103
-> -            # Microchip 7-bit Single I2C Digital POT (50k)
-> -          - microchip,mcp4018-503
->               # Microchip 7-bit Single I2C Digital POT (100k)
->             - microchip,mcp4018-104
->               # Microchip 7-bit Single I2C Digital POT (5k)
-> -          - microchip,mcp4019-502
-> +          - microchip,mcp4018-502
-> +            # Microchip 7-bit Single I2C Digital POT (50k)
-> +          - microchip,mcp4018-503
->               # Microchip 7-bit Single I2C Digital POT (10k)
->             - microchip,mcp4019-103
-> -            # Microchip 7-bit Single I2C Digital POT (50k)
-> -          - microchip,mcp4019-503
->               # Microchip 7-bit Single I2C Digital POT (100k)
->             - microchip,mcp4019-104
-> +            # Microchip 7-bit Single I2C Digital POT (5k)
-> +          - microchip,mcp4019-502
-> +            # Microchip 7-bit Single I2C Digital POT (50k)
-> +          - microchip,mcp4019-503
->               # PWM Fan Speed Controller With Fan Fault Detection
->             - microchip,tc654
->               # PWM Fan Speed Controller With Fan Fault Detection
->             - microchip,tc655
-> +            # Micron SPI NOR Authenta
-> +          - micron,spi-authenta
->               # MiraMEMS DA226 2-axis 14-bit digital accelerometer
->             - miramems,da226
->               # MiraMEMS DA280 3-axis 14-bit digital accelerometer
->             - miramems,da280
->               # MiraMEMS DA311 3-axis 12-bit digital accelerometer
->             - miramems,da311
-> +            # Monolithic Power Systems Inc. multi-phase controller mp2856
-> +          - mps,mp2856
-> +            # Monolithic Power Systems Inc. multi-phase controller mp2857
-> +          - mps,mp2857
-> +            # Monolithic Power Systems Inc. multi-phase controller mp2888
-> +          - mps,mp2888
-> +            # Monolithic Power Systems Inc. multi-phase controller mp2971
-> +          - mps,mp2971
-> +            # Monolithic Power Systems Inc. multi-phase controller mp2973
-> +          - mps,mp2973
-> +            # Monolithic Power Systems Inc. multi-phase controller mp2975
-> +          - mps,mp2975
-> +            # Monolithic Power Systems Inc. multi-phase hot-swap controller mp5990
-> +          - mps,mp5990
->               # Temperature sensor with integrated fan control
->             - national,lm63
->               # Serial Interface ACPI-Compatible Microprocessor System Hardware Monitor
-> @@ -323,12 +324,12 @@ properties:
->             - samsung,exynos-sataphy-i2c
->               # Semtech sx1301 baseband processor
->             - semtech,sx1301
-> -            # Sensirion low power multi-pixel gas sensor with I2C interface
-> -          - sensirion,sgpc3
->               # Sensirion multi-pixel gas sensor with I2C interface
->             - sensirion,sgp30
->               # Sensirion gas sensor with I2C interface
->             - sensirion,sgp40
-> +            # Sensirion low power multi-pixel gas sensor with I2C interface
-> +          - sensirion,sgpc3
->               # Sensirion temperature & humidity sensor with I2C interface
->             - sensirion,sht4x
->               # Sensortek 3 axis accelerometer
-> @@ -374,8 +375,6 @@ properties:
->             - ti,lm74
->               # Temperature sensor with integrated fan control
->             - ti,lm96000
-> -            # I2C Touch-Screen Controller
-> -          - ti,tsc2003
->               # Low Power Digital Temperature Sensor with SMBUS/Two Wire Serial Interface
->             - ti,tmp103
->               # Thermometer with SPI interface
-> @@ -397,10 +396,12 @@ properties:
->             - ti,tps544b25
->             - ti,tps544c20
->             - ti,tps544c25
-> -            # Winbond/Nuvoton H/W Monitor
-> -          - winbond,w83793
-> +            # I2C Touch-Screen Controller
-> +          - ti,tsc2003
->               # Vicor Corporation Digital Supervisor
->             - vicor,pli1209bc
-> +            # Winbond/Nuvoton H/W Monitor
-> +          - winbond,w83793
->   
->   required:
->     - compatible
+> Gr{oetje,eeting}s,
+> 
+>                          Geert
+> 
+> 
+> --
+> Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
+> 
+> In personal conversations with technical people, I call myself a hacker. But
+> when I'm talking to journalists I just say "programmer" or something like that.
+>                                  -- Linus Torvalds
+> 
 
 
