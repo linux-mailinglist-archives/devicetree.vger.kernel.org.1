@@ -1,378 +1,156 @@
-Return-Path: <devicetree+bounces-37464-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-37471-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id EA94C84519C
-	for <lists+devicetree@lfdr.de>; Thu,  1 Feb 2024 07:49:06 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 195A284520D
+	for <lists+devicetree@lfdr.de>; Thu,  1 Feb 2024 08:34:03 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 6F398B25871
-	for <lists+devicetree@lfdr.de>; Thu,  1 Feb 2024 06:49:04 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id C4C3E291BAC
+	for <lists+devicetree@lfdr.de>; Thu,  1 Feb 2024 07:34:01 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0A85A1586D1;
-	Thu,  1 Feb 2024 06:48:59 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=broadcom.com header.i=@broadcom.com header.b="dgL2bucX"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C2F7F159584;
+	Thu,  1 Feb 2024 07:33:07 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-qt1-f170.google.com (mail-qt1-f170.google.com [209.85.160.170])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from CHN02-BJS-obe.outbound.protection.partner.outlook.cn (mail-bjschn02on2136.outbound.protection.partner.outlook.cn [139.219.17.136])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 55BFA2F24
-	for <devicetree@vger.kernel.org>; Thu,  1 Feb 2024 06:48:56 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.160.170
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1706770138; cv=none; b=k7zb22B6Ucv+62WCVyNCFf+uhji3TwQxNlwGCkFcpxwCX2xaVLFS+Qevky37rtWvzfblL3lRbV0k5e/fg+Ad0O4YnujfDgNxAae0aL+MdGe/9L6TxT2Sewt8F2rI2QFhApsDEk76OxJjh6GM+X/EgGjMl53ezWUcpFycTtxwq/Q=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1706770138; c=relaxed/simple;
-	bh=P6ttwPaZR/LlPH2O0ggmkvFvoc9aiOJyxziSN8/Apic=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=CWt/QkvTt53kMfQMFgUhi28UOQAb8ta6ZyWu6xfDeLuCMOv6zEGwfFzEq0fRYIgsz4R/hmFBf0uDxUDCaDJczMzFfJu/bBCcf+HtqJrxaI+jUl4b8+5o3uXivTLFXlwPs9+3jqYHJcaRer9WGS0rE/BMwRn34fcKbVzrtUAvHHs=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=broadcom.com; spf=fail smtp.mailfrom=broadcom.com; dkim=pass (1024-bit key) header.d=broadcom.com header.i=@broadcom.com header.b=dgL2bucX; arc=none smtp.client-ip=209.85.160.170
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=broadcom.com
-Authentication-Results: smtp.subspace.kernel.org; spf=fail smtp.mailfrom=broadcom.com
-Received: by mail-qt1-f170.google.com with SMTP id d75a77b69052e-42a8be32041so5169551cf.1
-        for <devicetree@vger.kernel.org>; Wed, 31 Jan 2024 22:48:56 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=broadcom.com; s=google; t=1706770135; x=1707374935; darn=vger.kernel.org;
-        h=in-reply-to:from:references:cc:to:subject:user-agent:mime-version
-         :date:message-id:from:to:cc:subject:date:message-id:reply-to;
-        bh=zVaw1miSoHq/z8zOj5Tk0ScPzOgo8ooTJOm6NRPPI9E=;
-        b=dgL2bucXTZyyCXtfveT0Em1IrTVlBcymSWu6EUfDp/A92A9YVkAFSKS45XtfTv/oZ8
-         F5a+S3RxvdGCB+oGFzX7ViRAnJaM0WiHul8x0dco64W739iv0a/DrFVCKwc080tdRky0
-         vid1hKib42D68gqkthFC2rkbV1ZuyuT3X0xaU=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1706770135; x=1707374935;
-        h=in-reply-to:from:references:cc:to:subject:user-agent:mime-version
-         :date:message-id:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=zVaw1miSoHq/z8zOj5Tk0ScPzOgo8ooTJOm6NRPPI9E=;
-        b=nlP2uzcw4GWx4ubnoQ6wk17QCjk1DLC0xZKFrT0505ynn8U9Xm6Yhfd5AqImGpeTJz
-         3JxrGd9q6odIy/pTb6ezjJxdMC1FIYTziATnM4wvwpmZ8lzHaSNHd0JYpH0GoeypTd31
-         nwXU7BWaZioZX7QtVDNcPzmebyfTSj2sUiZ9p4bRnlzFM6monp1jXlKxKCzgtirgF6K4
-         NSdKVKGcizRVYdWRlCERu+dRAbVVRxhuM0SatQ9lVWbziq9+znSizjqv8GTb2yi9w2Hw
-         0yp6miff771kvsL0FgQD1sh+KF9NWLrKMX9eGzMjoF2nxIsasvsxoLyqWa1Yoa2uJ1ER
-         vs/Q==
-X-Gm-Message-State: AOJu0Yzf5isUwkfagfNbPKNh6Czgewl5JrIkY/GT+KcbM5hB5w47X/je
-	QjThFcpl5DyQFlmIE0EJ2QkbVv1eM+D+Bv2tRGcc5REN9MwA/F7IsqJx3T2jIQ==
-X-Google-Smtp-Source: AGHT+IFu3hpSEYcg5NjFumnW8pSOQjAuDiaik+mNKuXlASIZK7ixwBrqaitvekqcbMmlfTD42c14OQ==
-X-Received: by 2002:a05:6214:268d:b0:685:73fe:aafe with SMTP id gm13-20020a056214268d00b0068573feaafemr5262448qvb.18.1706770135028;
-        Wed, 31 Jan 2024 22:48:55 -0800 (PST)
-Received: from [192.168.52.129] ([192.19.222.250])
-        by smtp.gmail.com with ESMTPSA id qo11-20020a056214590b00b0068c655f3e4dsm2057425qvb.15.2024.01.31.22.48.50
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 31 Jan 2024 22:48:53 -0800 (PST)
-Message-ID: <bcd9f8a5-7dab-42e6-b860-8a56ebb51cb6@broadcom.com>
-Date: Wed, 31 Jan 2024 22:48:50 -0800
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 25276158D7B;
+	Thu,  1 Feb 2024 07:33:01 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=139.219.17.136
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1706772787; cv=fail; b=Nzjg3VyKy0Fx4k12Nj77PrEnUAP1mHKn0zet/XeAmIj5kHbL+20tJlYQp1bENQ1+2adiISE1t8P+aGzMwu7+cxbXz877U8/M5DIGGF3rziMsuOGlmqT5MZhqwcilyImnc1vsnSGG8+/kIpFG2ZAjGuCKYtXPxVc+ZLCubmkGzWM=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1706772787; c=relaxed/simple;
+	bh=xmraogjip6m7bJrszvn6WNjxoBSDNtQi5998mdZB92k=;
+	h=From:To:CC:Subject:Date:Message-ID:References:In-Reply-To:
+	 Content-Type:MIME-Version; b=ldlktb+kKRQIBzFvKzqWEJC7BjKyaRQv5nXskt/u5I4xBQUHix1+5APoIoZM4yA3HUGuHaeaz0Gcu672NB8uuLz2eJ7MMO01zZ95oEHeSBeEXsAkp/N4mEe3HcaAXHBZ7dVVg1rIsJx/2xelweTpjgVI+ps5VdUys/YlbM/eKOk=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=starfivetech.com; spf=pass smtp.mailfrom=starfivetech.com; arc=fail smtp.client-ip=139.219.17.136
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=starfivetech.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=starfivetech.com
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=B9KOandXHsYvncD/wocBrO9ajxSMe9ri+HPjz20xz85Mq/CXy6+ep9O6vMCKmuDbTCmRlN8jmKzmXnl47cNdlXG/rNVbQTGeBd9gr55NCWmt0b6NbQzCZuAGLNEim24wiyqqi2EEmZ08iEsE9NiVuA+WCBB+eTP8DvsRRk93ADOQ4vdk7N+tseVqD0tlRY78yS+GMZLTTl+Kdqflrpy5zEfHCySfY2ydn+i+K5EdtHYRM4Kenn9GXZHDIjLevZ7uxWn0OSaLNq+kvNwuOt/lbvR8rUqHkYjrwIR1SlYk99mqvsWZJ2URgG3su/ZKBJFiW44PsEbfzLfEj4gq2AgIgQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=IClRhUYUEeQsCbYaL7NRZzgSRJX5wzKdFnMlozQyGAA=;
+ b=N8qGemhqYGfLYNEHJG3C7TYqAwjnYcmCkAqKhxQZuSwbKk3Kc/q7MZmr3evJ+cQ57GeZw/jpNw5gcS52zLoV1s0BTSgOkBWOAB9xT0QUlhl/eA9yrdybu8EQFZ60E9dFB5zPBYxi31DVyFlLQ6O6Uq0FLXNICBPrfMlMQeIQBjIFmYDjUdzVN5eiYIbJWSiW1GhWqClBPocJUPDx7LfQwKKVFy6hjBIh6GgQolXCS0g5GpSfrlezUmeMEDiVr3vir1N1tpg4S4oXcGKW3QkulkLdNu/7qnsOF46syNjDgk9n9SUD0LMTjQuzDzJ/M/O3LUfmlVOauqN7SN03o2tRgQ==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=starfivetech.com; dmarc=pass action=none
+ header.from=starfivetech.com; dkim=pass header.d=starfivetech.com; arc=none
+Received: from SHXPR01MB0670.CHNPR01.prod.partner.outlook.cn
+ (2406:e500:c311:26::16) by SHXPR01MB0589.CHNPR01.prod.partner.outlook.cn
+ (2406:e500:c311:1c::17) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7228.35; Thu, 1 Feb
+ 2024 05:59:02 +0000
+Received: from SHXPR01MB0670.CHNPR01.prod.partner.outlook.cn
+ ([fe80::f66a:7cf2:72ea:df3e]) by
+ SHXPR01MB0670.CHNPR01.prod.partner.outlook.cn ([fe80::f66a:7cf2:72ea:df3e%6])
+ with mapi id 15.20.7249.024; Thu, 1 Feb 2024 05:59:01 +0000
+From: JiaJie Ho <jiajie.ho@starfivetech.com>
+To: 'Herbert Xu' <herbert@gondor.apana.org.au>
+CC: "'David S . Miller'" <davem@davemloft.net>, 'Rob Herring'
+	<robh+dt@kernel.org>, 'Krzysztof Kozlowski'
+	<krzysztof.kozlowski+dt@linaro.org>, 'Conor Dooley' <conor+dt@kernel.org>,
+	"'linux-crypto@vger.kernel.org'" <linux-crypto@vger.kernel.org>,
+	"'devicetree@vger.kernel.org'" <devicetree@vger.kernel.org>,
+	"'linux-kernel@vger.kernel.org'" <linux-kernel@vger.kernel.org>
+Subject: RE: [PATCH v2 4/5] crypto: starfive: Add sm3 support for JH8100
+Thread-Topic: [PATCH v2 4/5] crypto: starfive: Add sm3 support for JH8100
+Thread-Index: AQHaSFqmtg6Zzl/qkUuu0ddSCEXpi7Drn0sAgAgJJNCAAWlFgIAAAuxA
+Date: Thu, 1 Feb 2024 05:59:01 +0000
+Message-ID:
+ <SHXPR01MB0670720DD9EAB09EE8A1B13E8A43A@SHXPR01MB0670.CHNPR01.prod.partner.outlook.cn>
+References: <20240116090135.75737-1-jiajie.ho@starfivetech.com>
+ <20240116090135.75737-5-jiajie.ho@starfivetech.com>
+ <ZbNCKrTLXmPcsrSH@gondor.apana.org.au>
+ <BJSPR01MB0659C3FE1262DF8CC7F7DA468A43A@BJSPR01MB0659.CHNPR01.prod.partner.outlook.cn>
+ <Zbsu39gZn2cGrnew@gondor.apana.org.au>
+In-Reply-To: <Zbsu39gZn2cGrnew@gondor.apana.org.au>
+Accept-Language: en-US
+Content-Language: en-US
+X-MS-Has-Attach:
+X-MS-TNEF-Correlator:
+authentication-results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=starfivetech.com;
+x-ms-publictraffictype: Email
+x-ms-traffictypediagnostic: SHXPR01MB0670:EE_|SHXPR01MB0589:EE_
+x-ms-office365-filtering-correlation-id: dda4fa90-3708-4b8e-f776-08dc22eae3a9
+x-ms-exchange-senderadcheck: 1
+x-microsoft-antispam: BCL:0;
+x-microsoft-antispam-message-info:
+ kg/90HdFbYux6mmgxsz5R18waTJLdL6alx6EIxUNdtwvca2iKWEZmYcHzoEqZkH4WapFmBMKP2cjOo0D9XpJ0tScuZLEaFPfMuqf9yahQpv7EMThqtzQM0QV2LhuYBwd7pcQJlhxwUp6bqpaHE4UjqTUYsMIKH45t7vp1qJyNY6hdYD2uv6C3Q5LAiLBrShs8HTEENo/2fy78hgLcD4WQF2VXKRi15RXH9CNYwKhk4chhN9ZzlE5VyQ6ArBYJ0JK0CU1Xi28oLOmjqbZgUnH2kPJtB5hEbvkfU13Mv9HQbYHn5syi4WrFg8bwgS2O5rX55Yi+T6wM0TzlaAVoJY1aXQNbTmcaVE4NwiE1LzrlhneKACqiC0MH7Qi4NRb8lZ9KgQYmzAVqkylZeslJZbmV/Xi3Jygwjja4quZUV3oN51sDFPvdrdOHsSXZOvqGQ5kKx/SQwqS8JPErMOCrig4cY4us7cHZC2Q4GoxSBeNTcboa4uvsfl5BzC1SF5CXwd0J+pybNXBEIbureC8DQTnJ3TsBIE88pmmLbMmBFCxxVXVDAeWiuKF2kaqzFxBMc8t
+x-forefront-antispam-report:
+ CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:SHXPR01MB0670.CHNPR01.prod.partner.outlook.cn;PTR:;CAT:NONE;SFS:(13230031)(136003)(346002)(366004)(39830400003)(396003)(230922051799003)(451199024)(186009)(64100799003)(1800799012)(4744005)(2906002)(40180700001)(41320700001)(33656002)(38070700009)(41300700001)(6916009)(64756008)(76116006)(66946007)(66446008)(66556008)(9686003)(54906003)(66476007)(26005)(508600001)(40160700002)(55016003)(38100700002)(71200400001)(7696005)(86362001)(122000001)(4326008)(8936002)(5660300002)(8676002);DIR:OUT;SFP:1102;
+x-ms-exchange-antispam-messagedata-chunkcount: 1
+x-ms-exchange-antispam-messagedata-0:
+ =?us-ascii?Q?3drY/i/lORMIawUZ3BCEmHJ/tLVXVfj+G3a3PJOcFo1jFIbPOd0SsrQu9pie?=
+ =?us-ascii?Q?7snbSFbCtHBq7PDXWpAUUvCX2Dl/AKdRBmRM4Vpmt9eO9Xpe9zr0QHHyCNEd?=
+ =?us-ascii?Q?2cTgan3CETOzOSvccpo2iLCNaDbzV+LCobZFk94TpeXtP0li9b5boIoitQ8n?=
+ =?us-ascii?Q?gtQaz8chxajVOoU9coT0XiP87QJLsI5z048YPNE8MO6285dpbUEeN61JiDnV?=
+ =?us-ascii?Q?lzii+waWuLZQhfbnzTaDDPRvha0hPV0p5TxzLFKTgowmIZCKIZ63qjbwhuJX?=
+ =?us-ascii?Q?n+3ONOgCNXUff1KeIEaMq15lmMfZ+n+F9VpyUu1okR2vsOJyngf5Agin4hWJ?=
+ =?us-ascii?Q?2fhMzBfBBu1Psi20g+yQaRUf9tAbPhLJSWG8S3qiPAfJfoJ6bhqG0SKXSicF?=
+ =?us-ascii?Q?Jo4FfGzROLhXhK8cqD49zd5StX7mperGr+e3oZ1lcfx2SyBPDS61kB+F8UtT?=
+ =?us-ascii?Q?ZtGUMkuFO7iMD/zZ2+J/uiw4s+PvDXg/X3DQ1Rc8FDXzre+PJo26DlyAyt5D?=
+ =?us-ascii?Q?oXtEmqfKB9zH8cqXVmUxs64VU3IuhSpnm3aFYRr37562fjfMammP/xlwklQE?=
+ =?us-ascii?Q?OGTkn7YUFc8g3P96QSmeOVreziaM1xcxnwF/y7tpMtoIaRlsZSjLvFbvQLWy?=
+ =?us-ascii?Q?e11nRYsWfkXd3DEnbG0AmnO6IXy64K0ESj2Pu0fIOmZbJTL+jfvxnEgPxSco?=
+ =?us-ascii?Q?ULXAHRKCiADG+Y+2kp1ISSk/xGItyl9TbzlbHtyWKHJta3LoiW7ds12yOsNu?=
+ =?us-ascii?Q?LTCKOf791pJcCF34tTsMVNHFry8v1rn055S7gOjUlK1ZOpQ/+McYgvu2UEXR?=
+ =?us-ascii?Q?36iqR9ddz/mYBYHy3XaJh+vhBZv7ZytgPY1Lq8syMERpCEt+3D1JfLAcg912?=
+ =?us-ascii?Q?qUQiFLsAdVE2zDPBH+j0GkaJhZavfvFERu/ilHq/OdMkaSvWqnQ3JC0ciI0r?=
+ =?us-ascii?Q?lv3G5hu7wp5VuqyEYgeRNDh7Jp1x+KD0fZqaJLkqwWtirgbnJW9fytjyeLsv?=
+ =?us-ascii?Q?ioLCAvNfGsyd8nKNHGkHLApqJKIaVEThNHqzfgKMTqGly7e3lBvs94bQ1Kvi?=
+ =?us-ascii?Q?c6xJYlPopX/1yvmManhcIqFe+p2TJfJaTTUlhPyCsQ+sXJMwJb7k50tZBHJN?=
+ =?us-ascii?Q?d24mCMOzaSgkUESpf29CWPH6Va4wUdg4vXmMOOFV3oGcFnfWNnXAkXhBg2zb?=
+ =?us-ascii?Q?GI9jAbDoPOJW5tiu+9+pgcslivzVPTHgN3/nZzXfHHT/4w+Rc1Cag9ngtDnl?=
+ =?us-ascii?Q?crZSudpQvn+H408NCl40Cd4rBbR7pBMV/GYn1vgSMkWvWZqB8z+BtvfdPtfI?=
+ =?us-ascii?Q?ATFGx90GMzKkg+JGBr1JKKH8TV5hS2Si7sZFHkVo01Vmt39oCovbN0KKjtO3?=
+ =?us-ascii?Q?/7GJ/8DWsayEffbLI/Fy7jubkR1FikkXsxfID4WV8A+WOIFry++Rw2C4p6k3?=
+ =?us-ascii?Q?RmTYthrPqMiXzH9DkRqz4RsvO4BwH/EJbYg8zmzecl2qusef9Gjsg1f94yPP?=
+ =?us-ascii?Q?5B7iLbsdUGHOmgDVn8EsBBZwmz4TbygUndv0ei5Rj8LnBEk5UK/On4+PGQwe?=
+ =?us-ascii?Q?OLDvaJshMbhXEhv2SJlQYUMVSBXEy+iH/hCrTNkP9+vYxu6k4r2gl3SW/0Gm?=
+ =?us-ascii?Q?Hg=3D=3D?=
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v3 10/10] mtd: rawnand: brcmnand: allow for on-die ecc
-To: Miquel Raynal <miquel.raynal@bootlin.com>,
- David Regan <dregan@broadcom.com>
-Cc: dregan@mail.com, Richard Weinberger <richard@nod.at>,
- Vignesh Raghavendra <vigneshr@ti.com>, robh+dt@kernel.org,
- krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
- computersforpeace@gmail.com, kdasu.kdev@gmail.com,
- linux-mtd@lists.infradead.org, devicetree@vger.kernel.org,
- Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
- Joel Peshkin <joel.peshkin@broadcom.com>,
- Tomer Yacoby <tomer.yacoby@broadcom.com>,
- Dan Beygelman <dan.beygelman@broadcom.com>,
- Anand Gore <anand.gore@broadcom.com>, Kursad Oney
- <kursad.oney@broadcom.com>, Florian Fainelli
- <florian.fainelli@broadcom.com>, rafal@milecki.pl,
- bcm-kernel-feedback-list@broadcom.com, andre.przywara@arm.com,
- baruch@tkos.co.il, linux-arm-kernel@lists.infradead.org,
- Dan Carpenter <dan.carpenter@linaro.org>
-References: <20240124030458.98408-1-dregan@broadcom.com>
- <20240124030458.98408-11-dregan@broadcom.com>
- <20240124184027.712b1e47@xps-13>
- <CAA_RMS42FaiN+Za1iY12o0YUANH9rJarBTBa=9jNn8x6_g-Fng@mail.gmail.com>
- <20240126071913.699c3795@xps-13>
- <CAA_RMS5gX88v_Qt1csgSL_ffMNsqo2G8B164EB_Hg=hXd620eg@mail.gmail.com>
- <20240129115228.06dc2292@xps-13>
- <2a3edcf5-7afc-410c-a402-3d8cd3feb1da@broadcom.com>
- <20240130120155.3cb6feed@xps-13>
- <CAA_RMS577vw=QWN9_NHfmWqt+_cDG22tA01aU019CPNjAgHqJQ@mail.gmail.com>
- <20240130195504.506fb446@xps-13>
-From: William Zhang <william.zhang@broadcom.com>
-In-Reply-To: <20240130195504.506fb446@xps-13>
-Content-Type: multipart/signed; protocol="application/pkcs7-signature"; micalg=sha-256;
-	boundary="000000000000a22c0e06104c638e"
+X-OriginatorOrg: starfivetech.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-AuthSource: SHXPR01MB0670.CHNPR01.prod.partner.outlook.cn
+X-MS-Exchange-CrossTenant-Network-Message-Id: dda4fa90-3708-4b8e-f776-08dc22eae3a9
+X-MS-Exchange-CrossTenant-originalarrivaltime: 01 Feb 2024 05:59:01.6803
+ (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 06fe3fa3-1221-43d3-861b-5a4ee687a85c
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: DzWQFaIjR0oyT7QUI2KHrYPNcHxKZSObR6k8wo57vnFWPLj2TBo2a5ide/tW1x9ACLjkdQYQMUPun0yR4AsIWWaizXY//vSzCzzvj7Ogvgk=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: SHXPR01MB0589
 
---000000000000a22c0e06104c638e
-Content-Language: en-US
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
+> On Thu, Feb 01, 2024 at 03:01:59AM +0000, JiaJie Ho wrote:
+> >
+> > I am using ifdef so unused codes wouldn't be compiled into the driver f=
+or
+> unsupported variant.
+> > Is the compiled driver size a concern for such cases?
+>=20
+> The compiler should be eliminating unused code for you.  Is this not the =
+case?
 
-Hi Miquel,
+Currently, the object files defining new algo register/unregister functions=
+ weren't included in Makefile for unsupported device.
+Compiler will still check for these definitions if IS_ENABLED is used inste=
+ad of ifdef causing build errors.
 
-On 1/30/24 10:55, Miquel Raynal wrote:
-> Hi David,
-> 
-> dregan@broadcom.com wrote on Tue, 30 Jan 2024 07:26:02 -0800:
-> 
->> Hi Miquel,
->>
->> On Tue, Jan 30, 2024 at 3:01 AM Miquel Raynal <miquel.raynal@bootlin.com> wrote:
->>>
->>> Hi William,
->>>
->>> william.zhang@broadcom.com wrote on Tue, 30 Jan 2024 00:11:32 -0800:
->>>   
->>>> Hi Miquel,
->>>>
->>>> On 1/29/24 02:52, Miquel Raynal wrote:
->>>>> Hi David,
->>>>>
->>>>> dregan@broadcom.com wrote on Fri, 26 Jan 2024 11:57:39 -0800:
->>>>>   
->>>>>> Hi Miquèl,
->>>>>>
->>>>>> On Thu, Jan 25, 2024 at 10:19 PM Miquel Raynal
->>>>>> <miquel.raynal@bootlin.com> wrote:
->>>>>>>
->>>>>>> Hi David,
->>>>>>>
->>>>>>> dregan@broadcom.com wrote on Thu, 25 Jan 2024 11:47:46 -0800:
->>>>>>>    >>>> Hi Miquèl,
->>>>>>>>
->>>>>>>> On Wed, Jan 24, 2024 at 9:40 AM Miquel Raynal <miquel.raynal@bootlin.com> wrote:
->>>>>>>>>
->>>>>>>>> Hi David,
->>>>>>>>>
->>>>>>>>> dregan@broadcom.com wrote on Tue, 23 Jan 2024 19:04:58 -0800:
->>>>>>>>>    >>>>>> Allow settings for on-die ecc such that if on-die ECC is selected
->>>>>>>>>> don't error out but require ECC strap setting of zero
->>>>>>>>>>
->>>>>>>>>> Signed-off-by: David Regan <dregan@broadcom.com>
->>>>>>>>>> Reviewed-by: William Zhang <william.zhang@broadcom.com>
->>>>>>>>>> ---
->>>>>>>>>> Changes in v3: None
->>>>>>>>>> ---
->>>>>>>>>> Changes in v2:
->>>>>>>>>> - Added to patch series
->>>>>>>>>> ---
->>>>>>>>>>    drivers/mtd/nand/raw/brcmnand/brcmnand.c | 14 ++++++++++----
->>>>>>>>>>    1 file changed, 10 insertions(+), 4 deletions(-)
->>>>>>>>>>
->>>>>>>>>> diff --git a/drivers/mtd/nand/raw/brcmnand/brcmnand.c b/drivers/mtd/nand/raw/brcmnand/brcmnand.c
->>>>>>>>>> index a4e311b6798c..42526f3250c9 100644
->>>>>>>>>> --- a/drivers/mtd/nand/raw/brcmnand/brcmnand.c
->>>>>>>>>> +++ b/drivers/mtd/nand/raw/brcmnand/brcmnand.c
->>>>>>>>>> @@ -2727,9 +2727,11 @@ static int brcmnand_setup_dev(struct brcmnand_host *host)
->>>>>>>>>>         cfg->blk_adr_bytes = get_blk_adr_bytes(mtd->size, mtd->writesize);
->>>>>>>>>>
->>>>>>>>>>         if (chip->ecc.engine_type != NAND_ECC_ENGINE_TYPE_ON_HOST) {
->>>>>>>>>> -             dev_err(ctrl->dev, "only HW ECC supported; selected: %d\n",
->>>>>>>>>> -                     chip->ecc.engine_type);
->>>>>>>>>> -             return -EINVAL;
->>>>>>>>>> +             if (chip->ecc.strength) {
->>>>>>>>>> +                     dev_err(ctrl->dev, "ERROR!!! HW ECC must be set to zero for non-hardware ECC; selected: %d\n",
->>>>>>>>>> +                             chip->ecc.strength);
->>>>>>>>>
->>>>>>>>> Can you use a more formal string? Also clarify it because I don't
->>>>>>>>> really understand what it leads to.
->>>>>>>>
->>>>>>>> How about:
->>>>>>>>
->>>>>>>> dev_err(ctrl->dev, "HW ECC set to %d, must be zero for on-die ECC\n",
->>>>>>>
->>>>>>> Actually I am wondering how legitimate this is. Just don't enable the
->>>>>>> on host ECC engine if it's not in use. No need to check the core's
->>>>>>> choice.
->>>>>>
->>>>>> Our chip ECC engine will either be on if it's needed or off if it's not.
->>>>>> Either I can do that in one place or put checks in before each
->>>>>> read/write to turn on/off the ECC engine, which seems a lot more
->>>>>> work and changes and possible issues/problems.
->>>>>> Turning it on/off as needed has not been explicitly tested and
->>>>>> could cause unforeseen consequences. This
->>>>>> is a minimal change which should have minimal impact.
->>>>>>   
->>>>>>>    >>>>   >>>>>   >>>>>> +                     return -EINVAL;
->>>>>>>>>> +             }
->>>>>>>>>>         }
->>>>>>>>>>
->>>>>>>>>>         if (chip->ecc.algo == NAND_ECC_ALGO_UNKNOWN) {
->>>>>>>>>> @@ -2797,7 +2799,11 @@ static int brcmnand_setup_dev(struct brcmnand_host *host)
->>>>>>>>>>         if (ret)
->>>>>>>>>>                 return ret;
->>>>>>>>>>
->>>>>>>>>> -     brcmnand_set_ecc_enabled(host, 1);
->>>>>>>>>> +     if (chip->ecc.engine_type == NAND_ECC_ENGINE_TYPE_ON_DIE) {
->>>>>>>>>> +             dev_dbg(ctrl->dev, "Disable HW ECC for on-die ECC\n");
->>>>>>>>>
->>>>>>>>> Not needed.
->>>>>>>>
->>>>>>>> Will remove.
->>>>>>>>    >>>>>   >>>>>> +             brcmnand_set_ecc_enabled(host, 0);
->>>>>>>>>> +     } else
->>>>>>>>>> +             brcmnand_set_ecc_enabled(host, 1);
->>>>>>>>>
->>>>>>>>> Style is wrong, but otherwise I think ECC should be kept disabled while
->>>>>>>>> not in active use, so I am a bit surprised by this line.
->>>>>>>>
->>>>>>>> This is a double check to turn on/off our hardware ECC.
->>>>>>>
->>>>>>> I expect the engine to be always disabled. Enable it only when you
->>>>>>> need (may require an additional patch before this one).
->>>>>>
->>>>>> We are already turning on the ECC enable at this point,
->>>>>> this is just adding the option to turn it off if the NAND chip
->>>>>> itself will be doing the ECC instead of our controller.
->>>>>
->>>>> Sorry if I have not been clear.
->>>>>
->>>>> This sequence:
->>>>> - init
->>>>> - enable hw ECC engine
->>>>> Is broken.
->>>>>   
->>>> ECC engine is not enabled for all the cases. Here we only intended to enable it for the nand chip that is set to use NAND_ECC_ENGINE_TYPE_ON_HOST. The logic here should better change to:
->>>> if (chip->ecc.engine_type == NAND_ECC_ENGINE_TYPE_ON_HOST)
->>>>       brcmnand_set_ecc_enabled(host, 1);
->>>> else
->>>>       brcmnand_set_ecc_enabled(host, 0);
->>>>   
->>>>> It *cannot* work as any operation going through exec_op now may
->>>>> perform page reads which should be unmodified by the ECC engine. You > driver *must* follow the following sequence:
->>>>> - init and disable (or keep disabled) the hw ECC engine
->>>>> - when you perform a page operation with correction you need to
->>>>>      - enable the engine
->>>>>      - perform the operation
->>>>>      - disable the engine
->>>>> Maybe I am missing something here but are you saying the exec_op can have different ecc type for page read/write at run time on the same nand chip? I don't see the op instr structure has the ecc type field and thought it is only bind to the nand chip and won't change at run time. So looks to me the init time setting to the engine based on ecc.engine_type should be sufficient.
->>>>
->>>> What you described here can work for the hw.ecc read path (ecc.read_page = brcmnand_read_page) which always assumes ecc is enabled. Although it is probably not too bad with these two extra operation, it would be better if we don't have to add anything as our current code does. For the brcmnand_read_page_raw,  we currently disable the engine and then re-enable it(but we need to fix it to only enable it with hw ecc engine type).  So it is just opposite of you logic but works the same with no impact on the most performance critical path.
->>>
->>> This is not "my" logic, this is the "core's" logic. I am saying: your
->>> approach is broken because that is not how the API is supposed to work,
->>> but it mostly works in the standard case.
->>
->> In the interest of minimizing register writes, would it be acceptable to
->> enable/disable ECC at the beginning of a standard
->> path transfer but not, after the transfer, turn off the ECC? This should not
->> affect other standard path operations nor affect the exec_op path as those
->> are low level transfers which our ECC engine would not touch and the NAND
->> device driver should be responsible for turning on/off its own ECC.
-> 
-> Do you have legitimate concerns about this register write taking way
-> more time than I could expect? Because compared to the transfer of a
-> NAND page + tR/tPROG it should not be noticeable. I don't see how you
-> could even measure such impact actually, unless the register write does
-> way more than usual. I'm fine with the above idea if you show me it has
-> an interest.
-> 
-Dave did the mtd_speed test and we can see we get consistently ~35KB/s 
-slower with the extra enable and disable ecc engine calls in ecc read 
-page path.
+Best regards,
+Jia Jie
 
-With the change:
-[   28.148355] mtd_speedtest:   page read speed is 9857 KiB/s
-[   31.754258] mtd_speedtest: 2 page read speed is 9865 KiB/s
-Without the change
-[   56.444735] mtd_speedtest:   page read speed is 9892 KiB/s
-[   60.042262] mtd_speedtest: 2 page read speed is 9897 KiB/s
 
-Although it is only less than 1% drop, it is still something. I 
-understand the procedure you laid out above is the preferred way but 
-with our driver fully control the chip ecc read/write page, ecc 
-read_raw/write_raw page function and exec_op path, I don't see where it 
-may not work. What are the non-standard cases that can break it?
 
-If the driver started with preferred procedure,  we will never have this 
-conversation:) But unfortunately it is not the case and now if we want 
-to revert this but lose performance, I just don't feel like to swallow 
-this if there is no real world case that breaks this code.
-
-> Thanks,
-> Miquèl
-
---000000000000a22c0e06104c638e
-Content-Type: application/pkcs7-signature; name="smime.p7s"
-Content-Transfer-Encoding: base64
-Content-Disposition: attachment; filename="smime.p7s"
-Content-Description: S/MIME Cryptographic Signature
-
-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
-YDZuuBJwnyCzevMoPtVYPharioL5H3BRnQi8YoTXH7/uRo33dewYFm474yFjwwnt82TFtveVZkVq
-6h4WIQ4wTcwFfET8zMkELnGzS5SHCl8sPD+lNxxJ1JDZYwIDAQABo4IB2zCCAdcwDgYDVR0PAQH/
-BAQDAgWgMIGjBggrBgEFBQcBAQSBljCBkzBOBggrBgEFBQcwAoZCaHR0cDovL3NlY3VyZS5nbG9i
-YWxzaWduLmNvbS9jYWNlcnQvZ3NnY2NyM3BlcnNvbmFsc2lnbjJjYTIwMjAuY3J0MEEGCCsGAQUF
-BzABhjVodHRwOi8vb2NzcC5nbG9iYWxzaWduLmNvbS9nc2djY3IzcGVyc29uYWxzaWduMmNhMjAy
-MDBNBgNVHSAERjBEMEIGCisGAQQBoDIBKAowNDAyBggrBgEFBQcCARYmaHR0cHM6Ly93d3cuZ2xv
-YmFsc2lnbi5jb20vcmVwb3NpdG9yeS8wCQYDVR0TBAIwADBJBgNVHR8EQjBAMD6gPKA6hjhodHRw
-Oi8vY3JsLmdsb2JhbHNpZ24uY29tL2dzZ2NjcjNwZXJzb25hbHNpZ24yY2EyMDIwLmNybDAlBgNV
-HREEHjAcgRp3aWxsaWFtLnpoYW5nQGJyb2FkY29tLmNvbTATBgNVHSUEDDAKBggrBgEFBQcDBDAf
-BgNVHSMEGDAWgBSWM9HmWBdbNHWKgVZk1b5I3qGPzzAdBgNVHQ4EFgQUq65GzwZxydFHjjYEU/9h
-xHhPWlwwDQYJKoZIhvcNAQELBQADggEBAA2hGG3JPAdGPH0ZdohGUCIVjKz+U+EFuIDbS6A/5jqX
-VhYAxZlzj7tSjUIM7G7IhyfqPC46GKJ/4x+Amz1Z6YxNGy71L68kYD6hIbBcA5AM42QBUufly6Oa
-/ppSz3WoflVyFFQ5YXniZ+eU+2/cdnYZg4aVUnFjimOF5o3NfMLzOkhQNxbaDjFUfUYD8hKmU6v4
-0vUBj8KZ9Gi1LIagLKUREn8jku0lcLsRbnJ5Ey5ScajC/FESPyYWasOW8j8/1EoJksmhbYGKNS6C
-urb/KlmDGfVrIRYDbL0ckhGQIP5c6L+kSQZ2sHnQK0e0WgIaZYxaPYeY5u0GLCOze+3vyRMxggJt
-MIICaQIBATBrMFsxCzAJBgNVBAYTAkJFMRkwFwYDVQQKExBHbG9iYWxTaWduIG52LXNhMTEwLwYD
-VQQDEyhHbG9iYWxTaWduIEdDQyBSMyBQZXJzb25hbFNpZ24gMiBDQSAyMDIwAgwxuh2XG3FXRL1W
-JOEwDQYJYIZIAWUDBAIBBQCggdQwLwYJKoZIhvcNAQkEMSIEIF6qJIru8AzQ3YLQtXCSb+XBo+xs
-Y/sd915KMwlIS8JUMBgGCSqGSIb3DQEJAzELBgkqhkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTI0
-MDIwMTA2NDg1NVowaQYJKoZIhvcNAQkPMVwwWjALBglghkgBZQMEASowCwYJYIZIAWUDBAEWMAsG
-CWCGSAFlAwQBAjAKBggqhkiG9w0DBzALBgkqhkiG9w0BAQowCwYJKoZIhvcNAQEHMAsGCWCGSAFl
-AwQCATANBgkqhkiG9w0BAQEFAASCAQAfERPa3kCDxDsoMA9r7wR4ks1xE85SqUGhUjQrPQUTmSex
-RtQXP0uMseGL7nX4plhavrSUqXAJMCxgdgOGFSRxQNh0UltLsMmOeE+jTfFUmQ05GDt9+9jSkw83
-42C/p7UgyGSOxhAMaKgBjqY8ZU1eTWhDrfVzmtdsELGEv8g/cX9z1xKQMhqMqcIUEj/OtRidNaRe
-BqHuJUEs7X31rg056QluNAiLZbYaOhdu7OK2zAT0P9Tw0+xKxFJW57VKM/ixK/UwTIGgfAe7vd82
-bZMrhDGEcxtpa6pyN7rAIsvBtgkRCp69AeSpzmESnY9j+FSEL99N9Fu296r+8WHqbbyI
---000000000000a22c0e06104c638e--
 
