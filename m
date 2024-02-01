@@ -1,237 +1,179 @@
-Return-Path: <devicetree+bounces-37770-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-37772-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3DCC1846264
-	for <lists+devicetree@lfdr.de>; Thu,  1 Feb 2024 22:07:27 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id C97F2846274
+	for <lists+devicetree@lfdr.de>; Thu,  1 Feb 2024 22:10:57 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 6276A1C248A0
-	for <lists+devicetree@lfdr.de>; Thu,  1 Feb 2024 21:07:26 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id CABBB1C22FAC
+	for <lists+devicetree@lfdr.de>; Thu,  1 Feb 2024 21:10:56 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0B3B941236;
-	Thu,  1 Feb 2024 21:06:05 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6829F3BB43;
+	Thu,  1 Feb 2024 21:09:28 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="GBByIFzd"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Bn0Kx9Wy"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D67CB3F8DB;
-	Thu,  1 Feb 2024 21:06:02 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 402FA39AE1;
+	Thu,  1 Feb 2024 21:09:27 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1706821564; cv=none; b=fnV7MLotjxsgNH4ou2zCe2XQJRkA8qDTXZNDSV7hPlIhnLl8ODFx0Ojn7NHLpUkTIKL189iiWsv7mkJvh9QnZ3jlS1SnjCkGKNrHf4H13Avl3DDG2QLcmTPKlvxTNbpYJSqDOmfh/VIS2CvEvoa+R6rufzyYk12YFcKXKveovy0=
+	t=1706821768; cv=none; b=jZrUo7iK7J1S5zVtwisM7gBag0d4s4s6Cn87i/UkoQAB2r4WG7RDhfcFuISJYe9j2JA2fTbVdbK6A1v9JsS0/aBpjRRPNLH9ApgOboSy76oxSdMkc81UqsvPsO+IphPrgZC+swhuGD9w2IbWtBjXD9223xVD0uGck280H+De0Gw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1706821564; c=relaxed/simple;
-	bh=ThANCJe0mMVwkQnwr/8+vtZab4d0TbCR55iUczgPlFo=;
-	h=From:To:CC:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=uSSQ7pqTsRpSsuRdfXwMVR+BBVluupo6kgg0hkFiknqjwEwq1Hvqk9+H57C8uGN5pI5tLAF79yfCE3i0re3mdzLH9vBwloFVk7snDaPxIsyR6e9qQ9+AUAhcxTuv72sSfeSg9bCSyJS2XPnOyWfxjHdX7d1enQ/nKpFElgBbeQw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=GBByIFzd; arc=none smtp.client-ip=205.220.180.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
-Received: from pps.filterd (m0279868.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.17.1.24/8.17.1.24) with ESMTP id 411KWHHu002985;
-	Thu, 1 Feb 2024 21:05:46 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
-	from:to:cc:subject:date:message-id:in-reply-to:references
-	:mime-version:content-type; s=qcppdkim1; bh=UCkrEsb68g/CA/kH2pQX
-	lOIqKcUt48/75BMpDZzHoLE=; b=GBByIFzdNK1N3jurJ4ptBb9xI3+n7OZZrNGV
-	61Zex1OyNKVHdktDZeLSPSD9jXO7+z1zozy6PuePooHEUpeTEPZJQGQ82e2b389V
-	llnI6DmCc+EngLsvp39mWSYY6/LFKZdFN3V8aRLrJkudyMilVHs5pTSORw3JLs55
-	TFx1YIPvxPLYqXmtAep9yEw9kol/AoYS33gqKkzTaJ91s7T/nRV693c36FwqzlcU
-	8XqJnZ43HWvdfFG2xrShUnyuB9In6g0IVTM8TK1aps+uBp3zO33ttpx73RHnnn2i
-	3FGqRxL55mqw5aHRXIGDKUmtem5O2BHVqrd+FoQSctyLmFiR+A==
-Received: from nasanppmta01.qualcomm.com (i-global254.qualcomm.com [199.106.103.254])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3vyvb5kd9c-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Thu, 01 Feb 2024 21:05:46 +0000 (GMT)
-Received: from nasanex01a.na.qualcomm.com (nasanex01a.na.qualcomm.com [10.52.223.231])
-	by NASANPPMTA01.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 411L5jXe014027
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Thu, 1 Feb 2024 21:05:45 GMT
-Received: from hu-c-gdjako-lv.qualcomm.com (10.49.16.6) by
- nasanex01a.na.qualcomm.com (10.52.223.231) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.1118.40; Thu, 1 Feb 2024 13:05:44 -0800
-From: Georgi Djakov <quic_c_gdjako@quicinc.com>
-To: <robh+dt@kernel.org>, <krzysztof.kozlowski+dt@linaro.org>,
-        <conor+dt@kernel.org>, <will@kernel.org>, <robin.murphy@arm.com>,
-        <joro@8bytes.org>, <iommu@lists.linux.dev>
-CC: <devicetree@vger.kernel.org>, <andersson@kernel.org>,
-        <konrad.dybcio@linaro.org>, <robdclark@gmail.com>,
-        <linux-arm-kernel@lists.infradead.org>, <linux-kernel@vger.kernel.org>,
-        <linux-arm-msm@vger.kernel.org>, <quic_cgoldswo@quicinc.com>,
-        <quic_sukadev@quicinc.com>, <quic_pdaly@quicinc.com>,
-        <quic_sudaraja@quicinc.com>, <djakov@kernel.org>
-Subject: [PATCH v4 10/10] arm64: dts: qcom: sc7280: Add DT nodes for the TBUs
-Date: Thu, 1 Feb 2024 13:05:29 -0800
-Message-ID: <20240201210529.7728-11-quic_c_gdjako@quicinc.com>
-X-Mailer: git-send-email 2.17.1
-In-Reply-To: <20240201210529.7728-1-quic_c_gdjako@quicinc.com>
-References: <20240201210529.7728-1-quic_c_gdjako@quicinc.com>
+	s=arc-20240116; t=1706821768; c=relaxed/simple;
+	bh=6v01RU+zLBfMH3ycqivUxPJyd9tsVfriHpIcjMGbkes=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=QG24YDyc7uIWDgX65NpZH0OkRpOJUMFnylAL7YLr0XyFri1rbr0zE1aW8GCDdWTcXIYW3K5iRnArX7xdBsWB6CU8CTbNFUzhHGWoEMb93w2XMsXuz+6fjFE4sIApFILohe8rqIIiEj50nAx5McyRUECtE2AXe4hPRSwln8XHugM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Bn0Kx9Wy; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id C3994C43390;
+	Thu,  1 Feb 2024 21:09:27 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1706821767;
+	bh=6v01RU+zLBfMH3ycqivUxPJyd9tsVfriHpIcjMGbkes=;
+	h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+	b=Bn0Kx9WybaQsW2pRh0Btwv1/jeZ9YrtkMLOy6D5HjMROH6mqJVGRuzWEkekfQt79H
+	 szsqxSalbLFCLrIMbRzgdWINX8HtTO6iySGW5iDstwAMfsP8x5RQJkFtaWt48nIZpR
+	 cp5sVZbAt0/wmSmAL4AjES7fV5+LhBCp2E3SqxF0g9aSTKtzNAmbPCHv0FPFcjvlHd
+	 kdre5oOfR9jsPfz9SmN/9TNbIsEqEcee2U78ZOLJOIAdYG+IfmG30H2Q16gmYRmgQV
+	 CZUjS9z8GsDB70D548p52Q3fGmsOw1uZ1MOl/aXm6gwzGBTBGA5aKXYW7DXuXUlcsi
+	 RTXv55zbNJCYw==
+Received: by mail-lf1-f43.google.com with SMTP id 2adb3069b0e04-510322d5363so2184835e87.1;
+        Thu, 01 Feb 2024 13:09:27 -0800 (PST)
+X-Gm-Message-State: AOJu0Yw+oIAqPPuCZopbuQyYPyTHkoRlakKS+43mqLiRwfqnSkwtRthL
+	qzwP39waWHmT/ttGBPsK4bVs0tYUdD+QLJHApsJXzzuIowVr1JjeUMU0gaO2CjD084WilVc5MdN
+	EnEAmu0JUE8lNHNpr4RVqgIelOQ==
+X-Google-Smtp-Source: AGHT+IESdk8xIEMiHdjhEcwakMNvof5/KilzUrpxx4OTDQHF0zbvvJoEq0dv0O8IGj/3mjZHLvI28EeOsT5B/gQ7v60=
+X-Received: by 2002:a05:6512:3b0:b0:511:21e4:5a69 with SMTP id
+ v16-20020a05651203b000b0051121e45a69mr2724946lfp.40.1706821765984; Thu, 01
+ Feb 2024 13:09:25 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain
-X-ClientProxiedBy: nalasex01a.na.qualcomm.com (10.47.209.196) To
- nasanex01a.na.qualcomm.com (10.52.223.231)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-GUID: 5NzTFWJTp1RfHm1hEEpFDEHgNTt2J4uL
-X-Proofpoint-ORIG-GUID: 5NzTFWJTp1RfHm1hEEpFDEHgNTt2J4uL
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.272,Aquarius:18.0.1011,Hydra:6.0.619,FMLib:17.11.176.26
- definitions=2024-02-01_06,2024-01-31_01,2023-05-22_02
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 mlxlogscore=814 adultscore=0
- spamscore=0 clxscore=1015 impostorscore=0 malwarescore=0 bulkscore=0
- priorityscore=1501 lowpriorityscore=0 phishscore=0 mlxscore=0
- suspectscore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.19.0-2401190000 definitions=main-2402010163
+References: <20240130105236.3097126-1-dawei.li@shingroup.cn>
+ <20240130105236.3097126-2-dawei.li@shingroup.cn> <20240131212938.GB2303754-robh@kernel.org>
+ <F096F87333105368+Zbtr1h1ryCvzA3fB@centos8>
+In-Reply-To: <F096F87333105368+Zbtr1h1ryCvzA3fB@centos8>
+From: Rob Herring <robh@kernel.org>
+Date: Thu, 1 Feb 2024 15:09:13 -0600
+X-Gmail-Original-Message-ID: <CAL_JsqLC0_mLmgtATkh48963n-GrkHE-MryD_=MN5sNWBeq_RA@mail.gmail.com>
+Message-ID: <CAL_JsqLC0_mLmgtATkh48963n-GrkHE-MryD_=MN5sNWBeq_RA@mail.gmail.com>
+Subject: Re: [PATCH 1/2] of: Introduce __of_phandle_update_cache
+To: Dawei Li <dawei.li@shingroup.cn>
+Cc: frowand.list@gmail.com, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org, set_pte_at@outlook.com
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-Add the device-tree nodes for the TBUs (translation buffer units) that
-are present on the sc7280 platforms. The TBUs can be used debug the
-kernel and provide additional information when a context faults occur.
+On Thu, Feb 1, 2024 at 4:01=E2=80=AFAM Dawei Li <dawei.li@shingroup.cn> wro=
+te:
+>
+> Hi Rob,
+>
+> Thanks for reviewing,
+>
+> On Wed, Jan 31, 2024 at 03:29:38PM -0600, Rob Herring wrote:
+> > On Tue, Jan 30, 2024 at 06:52:35PM +0800, Dawei Li wrote:
+> > > For system with CONFIG_OF_DYNAMIC=3Dy, device nodes can be inserted/r=
+emoved
+> > > dynamically from device tree. Meanwhile phandle_cache is created for =
+fast
+> > > lookup from phandle to device node.
+> >
+> > Why do we need it to be fast? What's the usecase (upstream dynamic DT
+> > usecases are limited) and what's the performance difference? We'll
+> > already cache the new phandle on the first lookup. Plus with only 128
+> > entries you are likely evicting an entry.
+>
+> I read the history changelog and get that a _lot_ of lookup has been
+> taken before of_core_init(), so the update of cache in lookup operation
+> mean a lot to performance improvement.
 
-Describe the all registers, clocks, interconnects and power-domain
-resources that are needed for each of the TBUs.
+Yes, and there was compelling data on the performance difference to
+justify the added complexity.
 
-Signed-off-by: Georgi Djakov <quic_c_gdjako@quicinc.com>
----
- arch/arm64/boot/dts/qcom/sc7280.dtsi | 97 ++++++++++++++++++++++++++++
- 1 file changed, 97 insertions(+)
+> > > For node detach, phandle cache of removed node is invalidated to main=
+tain
+> > > the mapping up to date, but the counterpart operation on node attach =
+is
+> > > not implemented yet.
+> > >
+> > > Thus, implement the cache updating operation on node attach.
+> >
+> > Except this patch does not do that. The next patch does.
+>
+> Agreed.
+>
+> >
+> > >
+> > > Signed-off-by: Dawei Li <dawei.li@shingroup.cn>
+> > > ---
+> > >  drivers/of/base.c       | 16 ++++++++++++++++
+> > >  drivers/of/of_private.h |  1 +
+> > >  2 files changed, 17 insertions(+)
+> > >
+> > > diff --git a/drivers/of/base.c b/drivers/of/base.c
+> > > index b0ad8fc06e80..8b7da27835eb 100644
+> > > --- a/drivers/of/base.c
+> > > +++ b/drivers/of/base.c
+> > > @@ -163,6 +163,22 @@ void __of_phandle_cache_inv_entry(phandle handle=
+)
+> > >             phandle_cache[handle_hash] =3D NULL;
+> > >  }
+> > >
+> > > +void __of_phandle_update_cache(struct device_node *np, bool lock)
+> > > +{
+> > > +   u32 hash;
+> > > +
+> > > +   if (lock)
+> > > +           lockdep_assert_held(&devtree_lock);
+> >
+> > I don't think this is a good use of a function parameter.
+>
+> Yep, assertion under condition is odd.
+>
+> >
+> > > +
+> > > +   if (unlikely(!np || !np->phandle))
+> > > +           return;
+> > > +
+> > > +   hash =3D of_phandle_cache_hash(np->phandle);
+> > > +
+> > > +   if (!phandle_cache[hash])
+> > > +           phandle_cache[hash] =3D np;
+> >
+> > Okay, so you don't evict existing entries. I'm not sure what makes more
+>
+> Yes, the updating policy of dynamic nodes is exactly same with static nod=
+es
+> (the ones in of_core_init()), no eviction/invalidation on _existing_ cach=
+e
+> involved.
+>
+> > sense. I would imagine old entries are less likely to be accessed than
+>
+> Well, I don't think we are gonna implement a full-fledged cache replacing
+> algorithm such as LRU.
+>
+> > new phandles for just added nodes given DT is kind of parse it all once
+> > (e.g. at boot time). Again, need to understand your usecase and
+> > performance differences.
+>
+> It's kinda awkward that no such usecases/stats are available for now.
+>
+> My motivation is simple as that:
+> As long as detached nodes are supposed to be removed from cache entries,
+> the newly inserted nodes should be added to cache entries, it is more
+> balanced and symmetric.
 
-diff --git a/arch/arm64/boot/dts/qcom/sc7280.dtsi b/arch/arm64/boot/dts/qcom/sc7280.dtsi
-index c3a94c4c6490..9fbba9d7b090 100644
---- a/arch/arm64/boot/dts/qcom/sc7280.dtsi
-+++ b/arch/arm64/boot/dts/qcom/sc7280.dtsi
-@@ -2881,6 +2881,7 @@ adreno_smmu: iommu@3da0000 {
- 			compatible = "qcom,sc7280-smmu-500", "qcom,adreno-smmu",
- 				     "qcom,smmu-500", "arm,mmu-500";
- 			reg = <0 0x03da0000 0 0x20000>;
-+			ranges;
- 			#iommu-cells = <2>;
- 			#global-interrupts = <2>;
- 			interrupts = <GIC_SPI 673 IRQ_TYPE_LEVEL_HIGH>,
-@@ -2913,6 +2914,21 @@ adreno_smmu: iommu@3da0000 {
- 
- 			power-domains = <&gpucc GPU_CC_CX_GDSC>;
- 			dma-coherent;
-+
-+			#address-cells = <2>;
-+			#size-cells = <2>;
-+
-+			gfx_0_tbu: tbu@3dd9000 {
-+				compatible = "qcom,qsmmuv500-tbu";
-+				reg = <0x0 0x3dd9000 0x0 0x1000>;
-+				stream-id-range = <0x0 0x400>;
-+			};
-+
-+			gfx_1_tbu: tbu@3ddd000 {
-+				compatible = "qcom,qsmmuv500-tbu";
-+				reg = <0x0 0x3ddd000 0x0 0x1000>;
-+				stream-id-range = <0x400 0x400>;
-+			};
- 		};
- 
- 		remoteproc_mpss: remoteproc@4080000 {
-@@ -5637,6 +5653,7 @@ pil-reloc@594c {
- 		apps_smmu: iommu@15000000 {
- 			compatible = "qcom,sc7280-smmu-500", "arm,mmu-500";
- 			reg = <0 0x15000000 0 0x100000>;
-+			ranges;
- 			#iommu-cells = <2>;
- 			#global-interrupts = <1>;
- 			dma-coherent;
-@@ -5721,6 +5738,86 @@ apps_smmu: iommu@15000000 {
- 				     <GIC_SPI 406 IRQ_TYPE_LEVEL_HIGH>,
- 				     <GIC_SPI 407 IRQ_TYPE_LEVEL_HIGH>,
- 				     <GIC_SPI 408 IRQ_TYPE_LEVEL_HIGH>;
-+
-+			#address-cells = <2>;
-+			#size-cells = <2>;
-+
-+			anoc_1_tbu: tbu@151dd000 {
-+				compatible = "qcom,qsmmuv500-tbu";
-+				reg = <0x0 0x151dd000 0x0 0x1000>;
-+				interconnects = <&gem_noc MASTER_APPSS_PROC QCOM_ICC_TAG_ACTIVE_ONLY
-+						 &cnoc3 SLAVE_TCU QCOM_ICC_TAG_ACTIVE_ONLY>;
-+				stream-id-range = <0x0 0x400>;
-+			};
-+
-+			anoc_2_tbu: tbu@151e1000 {
-+				compatible = "qcom,qsmmuv500-tbu";
-+				reg = <0x0 0x151e1000 0x0 0x1000>;
-+				interconnects = <&gem_noc MASTER_APPSS_PROC QCOM_ICC_TAG_ACTIVE_ONLY
-+						 &cnoc3 SLAVE_TCU QCOM_ICC_TAG_ACTIVE_ONLY>;
-+				stream-id-range = <0x400 0x400>;
-+			};
-+
-+			mnoc_hf_0_tbu: tbu@151e5000 {
-+				compatible = "qcom,qsmmuv500-tbu";
-+				reg = <0x0 0x151e5000 0x0 0x1000>;
-+				interconnects = <&mmss_noc MASTER_MDP0 QCOM_ICC_TAG_ACTIVE_ONLY
-+						 &mc_virt SLAVE_EBI1 QCOM_ICC_TAG_ACTIVE_ONLY>;
-+				power-domains = <&gcc HLOS1_VOTE_MMNOC_MMU_TBU_HF0_GDSC>;
-+				stream-id-range = <0x800 0x400>;
-+			};
-+
-+			mnoc_hf_1_tbu: tbu@151e9000 {
-+				compatible = "qcom,qsmmuv500-tbu";
-+				reg = <0x0 0x151e9000 0x0 0x1000>;
-+				interconnects = <&mmss_noc MASTER_MDP0 QCOM_ICC_TAG_ACTIVE_ONLY
-+						 &mc_virt SLAVE_EBI1 QCOM_ICC_TAG_ACTIVE_ONLY>;
-+				power-domains = <&gcc HLOS1_VOTE_MMNOC_MMU_TBU_HF1_GDSC>;
-+				stream-id-range = <0xc00 0x400>;
-+			};
-+
-+			compute_dsp_0_tbu: tbu@151ed000 {
-+				compatible = "qcom,qsmmuv500-tbu";
-+				reg = <0x0 0x151ed000 0x0 0x1000>;
-+				interconnects = <&nsp_noc MASTER_CDSP_PROC QCOM_ICC_TAG_ACTIVE_ONLY
-+						 &mc_virt SLAVE_EBI1 QCOM_ICC_TAG_ACTIVE_ONLY>;
-+				power-domains = <&gcc HLOS1_VOTE_TURING_MMU_TBU1_GDSC>;
-+				stream-id-range = <0x1000 0x400>;
-+			};
-+
-+			compute_dsp_1_tbu: tbu@151f1000 {
-+				compatible = "qcom,qsmmuv500-tbu";
-+				reg = <0x0 0x151f1000 0x0 0x1000>;
-+				interconnects = <&nsp_noc MASTER_CDSP_PROC QCOM_ICC_TAG_ACTIVE_ONLY
-+						 &mc_virt SLAVE_EBI1 QCOM_ICC_TAG_ACTIVE_ONLY>;
-+				power-domains = <&gcc HLOS1_VOTE_TURING_MMU_TBU0_GDSC>;
-+				stream-id-range = <0x1400 0x400>;
-+			};
-+
-+			adsp_tbu: tbu@151f5000 {
-+				compatible = "qcom,qsmmuv500-tbu";
-+				reg = <0x0 0x151f5000 0x0 0x1000>;
-+				interconnects = <&gem_noc MASTER_APPSS_PROC QCOM_ICC_TAG_ACTIVE_ONLY
-+						 &lpass_ag_noc SLAVE_LPASS_CORE_CFG QCOM_ICC_TAG_ACTIVE_ONLY>;
-+				stream-id-range = <0x1800 0x400>;
-+			};
-+
-+			anoc_1_pcie_tbu: tbu@151f9000 {
-+				compatible = "qcom,qsmmuv500-tbu";
-+				reg = <0x0 0x151f9000 0x0 0x1000>;
-+				interconnects = <&gem_noc MASTER_APPSS_PROC QCOM_ICC_TAG_ACTIVE_ONLY
-+						 &cnoc3 SLAVE_TCU QCOM_ICC_TAG_ACTIVE_ONLY>;
-+				stream-id-range = <0x1c00 0x400>;
-+			};
-+
-+			mnoc_sf_0_tbu: tbu@151fd000 {
-+				compatible = "qcom,qsmmuv500-tbu";
-+				reg = <0x0 0x151fd000 0x0 0x1000>;
-+				interconnects = <&mmss_noc MASTER_CAMNOC_SF QCOM_ICC_TAG_ACTIVE_ONLY
-+						 &mc_virt SLAVE_EBI1 QCOM_ICC_TAG_ACTIVE_ONLY>;
-+				power-domains = <&gcc HLOS1_VOTE_MMNOC_MMU_TBU_SF0_GDSC>;
-+				stream-id-range = <0x2000 0x400>;
-+			};
- 		};
- 
- 		intc: interrupt-controller@17a00000 {
+The difference is that no entry for attach works fine while accessing
+a detached node that may have been freed would be a problem.
+
+Rob
 
