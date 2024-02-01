@@ -1,215 +1,233 @@
-Return-Path: <devicetree+bounces-37430-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-37431-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0217D844FDE
-	for <lists+devicetree@lfdr.de>; Thu,  1 Feb 2024 04:39:21 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id B2FC9844FE5
+	for <lists+devicetree@lfdr.de>; Thu,  1 Feb 2024 04:46:42 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 7278C1F22103
-	for <lists+devicetree@lfdr.de>; Thu,  1 Feb 2024 03:39:20 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 25C0B1F2837F
+	for <lists+devicetree@lfdr.de>; Thu,  1 Feb 2024 03:46:41 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9A05E3A8EB;
-	Thu,  1 Feb 2024 03:39:15 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3897F3A8EB;
+	Thu,  1 Feb 2024 03:46:40 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=microchip.com header.i=@microchip.com header.b="juKh9KuQ";
-	dkim=pass (2048-bit key) header.d=microchip.com header.i=@microchip.com header.b="sVuwHc3/"
+	dkim=pass (2048-bit key) header.d=codeconstruct.com.au header.i=@codeconstruct.com.au header.b="GPVoJeUL"
 X-Original-To: devicetree@vger.kernel.org
-Received: from esa.microchip.iphmx.com (esa.microchip.iphmx.com [68.232.154.123])
+Received: from codeconstruct.com.au (pi.codeconstruct.com.au [203.29.241.158])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E31A93A8C2;
-	Thu,  1 Feb 2024 03:39:12 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=68.232.154.123
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1706758755; cv=fail; b=DSoVSqOE7KNx+RkHUkWwaY6NnsmkYviX3V+8DHXIStKad0wriTiCG5QQ6vvkF+7t1ouP8Y06QWlW7owmXfFaFzp/9FOj/dQfgjf3z6Hrjq01i9wMkff8bskvsj1egeqVhxVUzARuwbKFCdzCPK2lKK4h/ogSBu5y56SQS9nMhqY=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1706758755; c=relaxed/simple;
-	bh=HwDYnrdElNZYlgSNsRPCJiTcgxwibcLlquez18YxWns=;
-	h=From:To:CC:Subject:Date:Message-ID:References:In-Reply-To:
-	 Content-Type:MIME-Version; b=O/0KABpDtcnmyiKPXVCDZ0PRL0zT4yl1x0NMv0bCvHGlxspIzEsyj/cfeOTeoPYdRfmUdp/QJVpnXsV62TlQVfnWuZKgqPEmvk6CZnEP80ZeOzYD3ex4QPzJVZntU1/fQN3c1NeOhbjgH38CtLMDS10xXP0CW8GfQDoKG6gor8g=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=microchip.com; spf=pass smtp.mailfrom=microchip.com; dkim=pass (2048-bit key) header.d=microchip.com header.i=@microchip.com header.b=juKh9KuQ; dkim=pass (2048-bit key) header.d=microchip.com header.i=@microchip.com header.b=sVuwHc3/; arc=fail smtp.client-ip=68.232.154.123
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=microchip.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=microchip.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
-  t=1706758752; x=1738294752;
-  h=from:to:cc:subject:date:message-id:references:
-   in-reply-to:content-id:content-transfer-encoding:
-   mime-version;
-  bh=HwDYnrdElNZYlgSNsRPCJiTcgxwibcLlquez18YxWns=;
-  b=juKh9KuQEh5JkW8ZSlXVKDim3V2KnUKoSp8SMQ8fpyS2nyupMmJllgKk
-   uUurcLGZ7l2JujSSqxsAHuxCiP6CkETSJqcnCSxuOEP+Ny87hnyn36Stv
-   m5MzLbZEElTWBigveMIQjeHtjowyRli1mQcLe61mAom57BpiBU9yurT5l
-   +nC1wFfvGuEdJNXXDys7E4kZyJ5kmOac2nQeUugVOLo/rUTd/nb1f6Y6B
-   Oag/79kcSBfJky3xaum7/MQwLnzC8sdgGc+dTM7mU43EJJhk6cK6jFLHY
-   d6Ppyol11hahsG8gRO5OiA3R+QuBE1TXMwDolIN7Sx+f6l3f4eW5ckM9Q
-   w==;
-X-CSE-ConnectionGUID: NIaZ0aBKSoOwXDiSTUTK/A==
-X-CSE-MsgGUID: 2z/lmbsRSmKm7g8iVr+scw==
-X-IronPort-AV: E=Sophos;i="6.05,234,1701154800"; 
-   d="scan'208";a="182854435"
-X-Amp-Result: SKIPPED(no attachment in message)
-Received: from unknown (HELO email.microchip.com) ([170.129.1.10])
-  by esa6.microchip.iphmx.com with ESMTP/TLS/ECDHE-RSA-AES128-GCM-SHA256; 31 Jan 2024 20:39:11 -0700
-Received: from chn-vm-ex03.mchp-main.com (10.10.85.151) by
- chn-vm-ex04.mchp-main.com (10.10.85.152) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.35; Wed, 31 Jan 2024 20:38:40 -0700
-Received: from NAM10-MW2-obe.outbound.protection.outlook.com (10.10.215.250)
- by email.microchip.com (10.10.87.152) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.35 via Frontend Transport; Wed, 31 Jan 2024 20:38:39 -0700
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=P/s1U2MLoHlEMleNFiw7d8Q7kQz19gul8oecn+CEByJtop4D8YWhW0zfLDiu3r43w+5j2JQa57YXCqQRGseNg4rhK7AmYPWsk62O7m8TR7Tk9wXKxWrjayeAQ4JPoJBizJBqcDaDlftrm1cWXZkEtuNakVbBnoTgBKgG+8B+RyK3jpyYlbiCF62Qb2PRDeGHx4WJ7VrqDrfGfuM7W0be5dyHQK7DsHMe2BiAIUpl89eu+vRjctlX+7HXh9DDy3/Ihnf8E+/UX3MzguTG0QEOi2Pj52VRNfHQH5qEaNLWKFfp0JYvhnAub7nUiD+jmAT7PnRGHUtX864jAXxiaR3Jzw==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=HwDYnrdElNZYlgSNsRPCJiTcgxwibcLlquez18YxWns=;
- b=YdqiA6tnVNqzlUTxNnU2k9KKjblSwQzVi4JPWBwpi3xgpXdHzTMF0OBjaOY23wkTRMeT0xYEhJuG77D8Bi/hyPB4oP08iPmkhbi2/82KXOCJT1exhKy2vUFzCnbHmeUOntf591/3M8As9AoU9GBeXGxi4xTwcQRQsUiBKCm1bwuK3xBHPuPt3/EI9i8OmGnw5Iw1ybp2EWQsDGlFNOmY3dUX82DzNeADYJ7cx9Dywq7SV27cnmPZ2Qe+WIwqaONFnZy5qot1rLUOp0yIT8JNYTe5MIzO0KDyTyLKx8DYy5jEVWGPngbkDLQYhwc86Uzsg36Czpio91i4hNJ1vef77Q==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=microchip.com; dmarc=pass action=none
- header.from=microchip.com; dkim=pass header.d=microchip.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=microchip.com;
- s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=HwDYnrdElNZYlgSNsRPCJiTcgxwibcLlquez18YxWns=;
- b=sVuwHc3/JuAsw5qWSoCLL7W7vAIhf11wU3Q2TBI3O79UrbFhGW2KMDm9JhPN3wDDUj/oOrbXDL6uBGmWjRIGeRgjE5akyoVBF7bbcy2B+X+yHrFmCXvd/SQ5CDwLt0tUQD2luvRgQ63cPRvoVFUd9yu3x3TcLLQSE92OR7GErMdBlUJbVTncZffDl7+vhTk6dXEPheTl0YAExxFJTInLEIrevcwgJu25W/PrCU0fKzvWFJnpKbiICDsukOJDnbk7icLdYbUlmdXOLLPJ1tEgFKX4+BuQQBm7pfg9A0FQsfFzmLk4skfd9YvabhehvRkXBrAo7LGTT9q4gpUMtBWk3Q==
-Received: from PH7PR11MB6451.namprd11.prod.outlook.com (2603:10b6:510:1f4::16)
- by IA1PR11MB8100.namprd11.prod.outlook.com (2603:10b6:208:445::18) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7249.24; Thu, 1 Feb
- 2024 03:38:37 +0000
-Received: from PH7PR11MB6451.namprd11.prod.outlook.com
- ([fe80::80b9:80a3:e88a:57ee]) by PH7PR11MB6451.namprd11.prod.outlook.com
- ([fe80::80b9:80a3:e88a:57ee%3]) with mapi id 15.20.7249.024; Thu, 1 Feb 2024
- 03:38:37 +0000
-From: <Dharma.B@microchip.com>
-To: <sam@ravnborg.org>, <bbrezillon@kernel.org>,
-	<maarten.lankhorst@linux.intel.com>, <mripard@kernel.org>,
-	<tzimmermann@suse.de>, <airlied@gmail.com>, <daniel@ffwll.ch>,
-	<robh+dt@kernel.org>, <krzysztof.kozlowski+dt@linaro.org>,
-	<conor+dt@kernel.org>, <Nicolas.Ferre@microchip.com>,
-	<alexandre.belloni@bootlin.com>, <claudiu.beznea@tuxon.dev>,
-	<dri-devel@lists.freedesktop.org>, <devicetree@vger.kernel.org>,
-	<linux-arm-kernel@lists.infradead.org>, <linux-kernel@vger.kernel.org>,
-	<lee@kernel.org>, <thierry.reding@gmail.com>,
-	<u.kleine-koenig@pengutronix.de>, <linux-pwm@vger.kernel.org>
-CC: <Hari.PrasathGE@microchip.com>, <Manikandan.M@microchip.com>
-Subject: Re: [linux][PATCH v5 0/3] Convert Microchip's HLCDC Text based DT
- bindings to JSON schema
-Thread-Topic: [linux][PATCH v5 0/3] Convert Microchip's HLCDC Text based DT
- bindings to JSON schema
-Thread-Index: AQHaU/afGNCqaviMx0Sn8Qd7rlUHCrD02FgA
-Date: Thu, 1 Feb 2024 03:38:37 +0000
-Message-ID: <478cab42-5f30-4fbe-b42d-02d16b81ca11@microchip.com>
-References: <20240131033523.577450-1-dharma.b@microchip.com>
-In-Reply-To: <20240131033523.577450-1-dharma.b@microchip.com>
-Accept-Language: en-GB, en-US
-Content-Language: en-GB
-X-MS-Has-Attach:
-X-MS-TNEF-Correlator:
-authentication-results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=microchip.com;
-x-ms-publictraffictype: Email
-x-ms-traffictypediagnostic: PH7PR11MB6451:EE_|IA1PR11MB8100:EE_
-x-ms-office365-filtering-correlation-id: ffd47a9b-ee7e-41e7-1b40-08dc22d74662
-x-ms-exchange-senderadcheck: 1
-x-ms-exchange-antispam-relay: 0
-x-microsoft-antispam: BCL:0;
-x-microsoft-antispam-message-info: 0vi1KFOcLeyfT5Uj7/7uw7vaf7yFw1NEYH/Y++8XgPV3VmWh9izg34TyIEcSM4nXEXzwSu/uiZfem/FTdV5joJ7aqg9qlOHafdNfSmBWoTOaNeyRMGZFhGLUKh/oOmMeGGMYdzBxy5kBbI+BQV7RQ5kVMaNSHEz8mjojhY4WO5QHR2z6U3B0fmuhoo980tGP6iBk7JqaWMdcq9IRkhlKjZ9NQ9eI/47SrPs+FZQ1hZTtfxJq/CXmdzszVFYBxYd5zpQOfy+p8XwLd5pQthJ8Enhh3J7CN59L3kj0VYW4z0yH0Kaxl25ayms/AqDyXlnbQVLGpRBT1Bwf7Dm8dag2DBu/f+pQlOrjweNtgyPkJqpibz7zEWqpTFKjw1AYIIfKMwdkqGlaaHORCyxg3fumiB3P1QQrGU3Cg/GGiZbInBz0TAqEH9Bj2cozyQ9LBhQyNED7SUMGRf+1BI8d7cUQlePT8LFqhy5OeMPiUDrNhw6qHyaTtzqlFCDqIxfHSgES1XqBHsEsyVrdDkwzSngk8vqmt8ofc6bmYMDIU0mlhkGvsqHy+6c2s8cjN5/JRnO3NVXfGUKeifPiZvpnbmJSR7M6wexbEBWzFQAcSyuo3JfhxgljAcYEq1hPnIHu2aYtqo0+IeIHDXXxLN1N6GP/pm+HFaZkbeK0wntYoWSlxxU=
-x-forefront-antispam-report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:PH7PR11MB6451.namprd11.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230031)(39860400002)(346002)(136003)(376002)(396003)(366004)(230922051799003)(451199024)(1800799012)(64100799003)(186009)(921011)(26005)(5660300002)(107886003)(6506007)(4326008)(53546011)(6512007)(2616005)(66556008)(2906002)(7416002)(83380400001)(76116006)(66476007)(66446008)(6486002)(66946007)(110136005)(64756008)(478600001)(316002)(54906003)(8936002)(91956017)(31686004)(71200400001)(8676002)(38070700009)(86362001)(38100700002)(122000001)(41300700001)(36756003)(31696002)(45980500001);DIR:OUT;SFP:1101;
-x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0: =?utf-8?B?c0poUU5FSytWQ1VGenhpbDN4L0pXK3Z4ajNjL2J0UkNHUmFOdTJWVENROGNx?=
- =?utf-8?B?WHkzSjVJK2pxbzkvbWVleDljeWdWakMxK0x3Z0tsZklRcmZyZFdBUTdCUjla?=
- =?utf-8?B?NDZTUjlvT04xSW5yaXZac1ZSb3RWRFk1dEJEWU1yUnJLcTg1UXprSGRoaVcw?=
- =?utf-8?B?ZDhhNnB6dVpscUFUVVcvbzVyRkxJRDBJU3RhZkRhMmtOQldoZ0hvaTB6cENs?=
- =?utf-8?B?citINThaa3NmeXRwQUt6UVN0czAxbWJoaFdDSERvWkthQTFLUEdFbHFUVXB2?=
- =?utf-8?B?ekNOR3VYWHYySGRRNkNPTUVvMUNUNlVzcGk2QllTQzN4aE5vaDZnSVYwbUZV?=
- =?utf-8?B?U0VabjE2UE9pVEh1OHU1YldhcloxbHpwZ2xOb0tGMThUQlJIVVdlYlROWExz?=
- =?utf-8?B?bnZOMzlUVEdMeXo3cWVqNEc1WG0vNEJ4dnRqb0RGTFZGS1c4endWdmVUMmxR?=
- =?utf-8?B?TENkYnhrUmVYZjdxeVBEUTBWbmdva3hBNjlXMTkvVldKVVI2TGhYUXZTekl1?=
- =?utf-8?B?VjZrN1RKQWE0dUx2WU5zaWJHSy91cE54ZnY2UllKQVNzTFZobHRDRVZYQ3pw?=
- =?utf-8?B?bnN5SFJma2dzei82ekZUTWpMY0ZIajNjeDdGc0NMSGd4T1ViVWZCVHB1R09B?=
- =?utf-8?B?UFlXZEtmK0ZnZXY3cXJ0ckl1VXp1OWlZTFRNY0VuQ1B6ckRZVTdDbjVpbmFI?=
- =?utf-8?B?bk5kYWhjMG12WTllc1ZsbTVFNXFlVllocmdnSm84eVlibURMdGpPR2Nkb0ox?=
- =?utf-8?B?UG82MWVxRUtQa2RMcGJyLytWQ2czZC8vakRFejluVllBUXFjOTYzZ05Pd0I5?=
- =?utf-8?B?VklNcE1XaUR3WmRRdGZ2Umd6Z2huSHBvOXY1ZWpSWnNKVlkrTVZEaUg3UUJj?=
- =?utf-8?B?RzR5UkpRZ1dONk1ZQ1lwRldab1FrRTlRaGpQUmpEa29xdlJHTEdXL0xyQnR0?=
- =?utf-8?B?bjNza0ZBY29KSXBUTVBzZVNCNFV1UXhKKzVaNUtYMUdyaXAzVi8wZ3U3eHdr?=
- =?utf-8?B?NFpLdWprN2JkWkJKZnk1dXplV0t5WVQyeUp1LzJZcXZ2VVB4ODFZTnJEdWtH?=
- =?utf-8?B?dUp2cVQ4bGZKOFpvY0RmQjVZallRMGdzRkNSTjZFaVlLVjNQbXVzOFg3MWg3?=
- =?utf-8?B?amhCWjZoM0ExWWVQREd4UmdUU3Y4SFNyQXArMHc0eVNwWTltYU9MRVIxOU1W?=
- =?utf-8?B?N2o5MGQrY3NqM1lvQTZKQjl4VlNlS2pQZEJmSVlMQnBuNW5XaHJ1U2Y1WVE5?=
- =?utf-8?B?MndKbVczc2VmWUZTVmlsZWFacmV0RGlKaGVGMWF1ZlAxUDIyejhPOVMrcDFz?=
- =?utf-8?B?aU9rNVJNZGdEV0ttcnh3aWowN2U2VVNZSWkzenFSUDdPaHo5SDFYOTZ3TUNh?=
- =?utf-8?B?ZzZrOGFwVzJoTm5UZjJnOFR5dVFvSFNxdjVPS1lVQ3B4VmI5SFhsUG5ZaHc1?=
- =?utf-8?B?Zm1wUGhINTZnQWVKOFY4c0RXNTZzcGdmQ0dzSkJkMGEya1E3WWtoS0ZiUFFN?=
- =?utf-8?B?YnQyR203V0M5b0VCbGdKbXdXMXNianovVXdxdkhvMnc4WHRiakdVelEzQzho?=
- =?utf-8?B?b0J1d1NHNXF0S2hJcVpPMUFCZFVLQzlxS0JzaVJNV2xKZTJERmM3Q3lWUUlI?=
- =?utf-8?B?WlVOOHhaT0NOUDhMaC9mZTBXb0YxMllyS1VqSzNlZjVYNHJDNUNSczdBMEp1?=
- =?utf-8?B?eUNBc0UvdDZjZEVoTjRlSnQ3L0wvZkNTL1JyT1Yzd3Z3QTdoSEw4OXZ0MXJX?=
- =?utf-8?B?N2tMd3FCOWdYeGdGem40Wml2RzBIQVVsems5ZW5pb3ZJSERDcGlMRHAvdGRF?=
- =?utf-8?B?c1pCODBXb0JPclNYY09ZU0QzdDJuVEtUTmR2c2FubmJFZ25CSERUMnh5YlJ1?=
- =?utf-8?B?dnpnM0NOdjBvWXpWZDN4S1pqV0VoakdtL0dEUTZucFRFdzY2MzJYUUhzRlZz?=
- =?utf-8?B?QnIrcmhwOTdhbEhTVVNVTkF4bWk2Rm9HVmtOdUJGaTFOUkxna3NHRkRvcUVI?=
- =?utf-8?B?Q3BOTmw1YytFT05xcElxSG0wRzcvS3AvTjBlaXRBYkNkQXFXMlR5MHhmT0FI?=
- =?utf-8?B?bXA1dFRMQ2xkbmphRFltOXZsdnBncE1UcWl3MTdES1NYaS9EdHU4ak1LUk1w?=
- =?utf-8?Q?BPD3OubnWeNJ7EJ8DA82lBBid?=
-Content-Type: text/plain; charset="utf-8"
-Content-ID: <2B1473B76BE8D3409BE241D8D99C708B@namprd11.prod.outlook.com>
-Content-Transfer-Encoding: base64
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6E0123A8FE;
+	Thu,  1 Feb 2024 03:46:37 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=203.29.241.158
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1706759200; cv=none; b=VlXRSeZGn17jaHpTM9MxX7C4r6uMNwduMISAEiBYCcDb0ZM3W4iT1mB5XjNR7KKCTXmXHcwZnAy4vpcCixihuwAAZ9slQTaymhAi64Kqea73XvKQ5IQxBnJV01RUeb5D/lUqgnHn7RaOFT52gUzQlFPpY/wRxoVC+3lM0XdXTMI=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1706759200; c=relaxed/simple;
+	bh=Z5KGSsJTG8Me3n3I9GJaS2SJpQ0zSGDT/19vVzh0uyY=;
+	h=Message-ID:Subject:From:To:Cc:Date:In-Reply-To:References:
+	 Content-Type:MIME-Version; b=rKCZ2h8zz0qMIknxqT5zeNsWdUgSYiP+ZqzXUiEokavnpvF4C/DbgPJlQN9Y8KF0g6rp3A3y5P5M7XWVlPhWWePEMEWJ9xOLNG3YfHihtsVOiXdIJ5ZwHqLkE3j2QFW2E7OW7ndVbXObQJ/WUsIuPi8ehVIylDrlNK/fMdZ73sw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=codeconstruct.com.au; spf=pass smtp.mailfrom=codeconstruct.com.au; dkim=pass (2048-bit key) header.d=codeconstruct.com.au header.i=@codeconstruct.com.au header.b=GPVoJeUL; arc=none smtp.client-ip=203.29.241.158
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=codeconstruct.com.au
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=codeconstruct.com.au
+Received: from [192.168.68.112] (ppp14-2-76-194.adl-apt-pir-bras31.tpg.internode.on.net [14.2.76.194])
+	by mail.codeconstruct.com.au (Postfix) with ESMTPSA id 5952A2017A;
+	Thu,  1 Feb 2024 11:46:26 +0800 (AWST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=codeconstruct.com.au; s=2022a; t=1706759189;
+	bh=oRKHvzM8KbCi8vf71Z3F6Qqi7mjIhPHJpavjxrfKHeA=;
+	h=Subject:From:To:Cc:Date:In-Reply-To:References;
+	b=GPVoJeULG4YDFqW01YBscBR06UWwJZxUYnELBL3ZrWmoDI4oPmFM7QZEy/5AMpeu6
+	 ZU4x/8ukcRJsj6uQd0xJYw7REuHUEkoqyggvwWx6PAO6oE/S9KWd8+gmdqtRtdnd0W
+	 fszXI7V3Yaz4A70HA2gqHoe3HAeP6eU+RHdA/iOKMT8mSQg3rYDsUmBf6YKIpTFldi
+	 kP7P89Jlbt2I3qDXi3xNv4jeRz78XJBvfE8Zn78OKlFpHDIW1HolO/qxVcz8Ye5WPG
+	 80CdtUgKW2rKzDeZU7JCJHg5mrx9y1Hs1jDI4e84T8X/+qw3bKcEHnVdqfjZOrShbd
+	 BOdwQNFb7zV3w==
+Message-ID: <ff1df8af596c907e969d9011ce2f42ef96974d37.camel@codeconstruct.com.au>
+Subject: Re: [PATCH v5 01/21] ARM: dts: aspeed: yosemite4: Revise i2c-mux
+ devices
+From: Andrew Jeffery <andrew@codeconstruct.com.au>
+To: Delphine CC Chiu <Delphine_CC_Chiu@wiwynn.com>, patrick@stwcx.xyz, Rob
+ Herring <robh+dt@kernel.org>, Krzysztof Kozlowski
+ <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>,
+ Joel Stanley <joel@jms.id.au>
+Cc: devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
+	linux-aspeed@lists.ozlabs.org, linux-kernel@vger.kernel.org
+Date: Thu, 01 Feb 2024 14:16:24 +1030
+In-Reply-To: <20240131084134.328307-2-Delphine_CC_Chiu@wiwynn.com>
+References: <20240131084134.328307-1-Delphine_CC_Chiu@wiwynn.com>
+	 <20240131084134.328307-2-Delphine_CC_Chiu@wiwynn.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+User-Agent: Evolution 3.46.4-2 
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: PH7PR11MB6451.namprd11.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: ffd47a9b-ee7e-41e7-1b40-08dc22d74662
-X-MS-Exchange-CrossTenant-originalarrivaltime: 01 Feb 2024 03:38:37.3312
- (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 3f4057f3-b418-4d4e-ba84-d55b4e897d88
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: 9kJsmtu4Ch5jTAOF/oLsAjqL4Q7us7rlFoO23h3jlBC8/WO7ImsKJErEKwlutQGIG6A8bCkzi0bzmIM0SnvPQA==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: IA1PR11MB8100
 
-SGkgUm9iLA0KDQpPbiAzMS8wMS8yNCA5OjA1IGFtLCBEaGFybWEgQiAtIEk3MDg0MyB3cm90ZToN
-Cj4gQ29udmVydGVkIHRoZSB0ZXh0IGJpbmRpbmdzIHRvIFlBTUwgYW5kIHZhbGlkYXRlZCB0aGVt
-IGluZGl2aWR1YWxseSB1c2luZyBmb2xsb3dpbmcgY29tbWFuZHMNCj4gDQo+ICQgbWFrZSBkdF9i
-aW5kaW5nX2NoZWNrIERUX1NDSEVNQV9GSUxFUz1Eb2N1bWVudGF0aW9uL2RldmljZXRyZWUvYmlu
-ZGluZ3MvDQo+ICQgbWFrZSBkdGJzX2NoZWNrIERUX1NDSEVNQV9GSUxFUz1Eb2N1bWVudGF0aW9u
-L2RldmljZXRyZWUvYmluZGluZ3MvDQo+IA0KPiBjaGFuZ2Vsb2dzIGFyZSBhdmFpbGFibGUgaW4g
-cmVzcGVjdGl2ZSBwYXRjaGVzLg0KPiANCj4gQXMgU2FtIHN1Z2dlc3RlZCBJJ20gc2VuZGluZyB0
-aGUgUFdNIGJpbmRpbmcgYXMgaXQgaXMgaW4gdGhpcyBwYXRjaCBzZXJpZXMsIGNsZWFuIHVwIHBh
-dGNoDQo+IHdpbGwgYmUgc2VudCBhcyBzZXBhcmF0ZSBwYXRjaC4NCj4gDQoNCkkgd291bGQgd2Fu
-dCB0byBrbm93IGlmIEkgY2FuIGhhdmUgdGhlIGV4YW1wbGVzIGluIGRpc3BsYXkgYW5kIHB3bSAN
-CmJpbmRpbmdzIHNlcGFyYXRlbHkgb3IgaWYgSSBoYXZlIHRvIGRlbGV0ZSB0aGVtIGZyb20gYm90
-aCBhbmQgaGF2ZSBhIA0Kc2luZ2xlLCBjb21wcmVoZW5zaXZlIGV4YW1wbGUgaW4gbWZkIGJpbmRp
-bmcuIEknbSBhIGxpdHRsZSBwdXp6bGVkIGFib3V0IA0KdGhpcy4NCg0KPiBEaGFybWEgQmFsYXN1
-YmlyYW1hbmkgKDMpOg0KPiAgICBkdC1iaW5kaW5nczogZGlzcGxheTogY29udmVydCBBdG1lbCdz
-IEhMQ0RDIHRvIERUIHNjaGVtYQ0KPiAgICBkdC1iaW5kaW5nczogYXRtZWwsaGxjZGM6IGNvbnZl
-cnQgcHdtIGJpbmRpbmdzIHRvIGpzb24tc2NoZW1hDQo+ICAgIGR0LWJpbmRpbmdzOiBtZmQ6IGF0
-bWVsLGhsY2RjOiBDb252ZXJ0IHRvIERUIHNjaGVtYSBmb3JtYXQNCj4gDQo+ICAgLi4uL2F0bWVs
-L2F0bWVsLGhsY2RjLWRpc3BsYXktY29udHJvbGxlci55YW1sIHwgODUgKysrKysrKysrKysrKysr
-Kw0KPiAgIC4uLi9iaW5kaW5ncy9kaXNwbGF5L2F0bWVsL2hsY2RjLWRjLnR4dCAgICAgICB8IDc1
-IC0tLS0tLS0tLS0tLS0tDQo+ICAgLi4uL2RldmljZXRyZWUvYmluZGluZ3MvbWZkL2F0bWVsLGhs
-Y2RjLnlhbWwgIHwgOTkgKysrKysrKysrKysrKysrKysrKw0KPiAgIC4uLi9kZXZpY2V0cmVlL2Jp
-bmRpbmdzL21mZC9hdG1lbC1obGNkYy50eHQgICB8IDU2IC0tLS0tLS0tLS0tDQo+ICAgLi4uL2Jp
-bmRpbmdzL3B3bS9hdG1lbCxobGNkYy1wd20ueWFtbCAgICAgICAgIHwgNDQgKysrKysrKysrDQo+
-ICAgLi4uL2JpbmRpbmdzL3B3bS9hdG1lbC1obGNkYy1wd20udHh0ICAgICAgICAgIHwgMjkgLS0t
-LS0tDQo+ICAgNiBmaWxlcyBjaGFuZ2VkLCAyMjggaW5zZXJ0aW9ucygrKSwgMTYwIGRlbGV0aW9u
-cygtKQ0KPiAgIGNyZWF0ZSBtb2RlIDEwMDY0NCBEb2N1bWVudGF0aW9uL2RldmljZXRyZWUvYmlu
-ZGluZ3MvZGlzcGxheS9hdG1lbC9hdG1lbCxobGNkYy1kaXNwbGF5LWNvbnRyb2xsZXIueWFtbA0K
-PiAgIGRlbGV0ZSBtb2RlIDEwMDY0NCBEb2N1bWVudGF0aW9uL2RldmljZXRyZWUvYmluZGluZ3Mv
-ZGlzcGxheS9hdG1lbC9obGNkYy1kYy50eHQNCj4gICBjcmVhdGUgbW9kZSAxMDA2NDQgRG9jdW1l
-bnRhdGlvbi9kZXZpY2V0cmVlL2JpbmRpbmdzL21mZC9hdG1lbCxobGNkYy55YW1sDQo+ICAgZGVs
-ZXRlIG1vZGUgMTAwNjQ0IERvY3VtZW50YXRpb24vZGV2aWNldHJlZS9iaW5kaW5ncy9tZmQvYXRt
-ZWwtaGxjZGMudHh0DQo+ICAgY3JlYXRlIG1vZGUgMTAwNjQ0IERvY3VtZW50YXRpb24vZGV2aWNl
-dHJlZS9iaW5kaW5ncy9wd20vYXRtZWwsaGxjZGMtcHdtLnlhbWwNCj4gICBkZWxldGUgbW9kZSAx
-MDA2NDQgRG9jdW1lbnRhdGlvbi9kZXZpY2V0cmVlL2JpbmRpbmdzL3B3bS9hdG1lbC1obGNkYy1w
-d20udHh0DQo+IA0KDQotLSANCldpdGggQmVzdCBSZWdhcmRzLA0KRGhhcm1hIEIuDQoNCg==
+Hi Delphine,
+
+On Wed, 2024-01-31 at 16:41 +0800, Delphine CC Chiu wrote:
+> Revise Yosemite 4 devicetree for devices behind i2c-mux
+> - Add gpio and eeprom behind i2c-mux
+> - Remove redundant idle-state setting for i2c-mux
+
+Generally if you find yourself listing things the patch does in the
+commit message it's an indicator you should split the patch up.
+
+It looks like there's a lot of stuff to be fixed, but it doesn't need
+to all be fixed in the one commit (as 01/21 suggests I guess). The
+devicetree is already inaccurate, it's okay if a subset of the
+inaccuracies survive for another patch or so.
+
+Otherwise, if they must be changed together, it would be good to have a
+description of *why*. Broadly, the commit message should explain *why*
+the change is need regardless, not discuss *what* the patch changes
+(that's evident from the patch itself).
+
+>=20
+> Signed-off-by: Delphine CC Chiu <Delphine_CC_Chiu@wiwynn.com>
+> ---
+>  .../aspeed/aspeed-bmc-facebook-yosemite4.dts  | 381 ++++++++++++++++--
+>  1 file changed, 347 insertions(+), 34 deletions(-)
+>=20
+> =20
+> -	i2c-mux@71 {
+> -		compatible =3D "nxp,pca9846";
+> +	i2c-mux@74 {
+> +		compatible =3D "nxp,pca9546";
+
+Aside from splitting the patch on adding more devices and removing the
+redundant idle-state settings, things like this should probably be
+separate too.
+
+Why was the address changed? Was it always wrong? Or has there been a
+new revision of the board? A separate commit with some explanation here
+would be useful.
+
+>  		#address-cells =3D <1>;
+>  		#size-cells =3D <0>;
+> -
+> -		idle-state =3D <0>;
+>  		i2c-mux-idle-disconnect;
+> -		reg =3D <0x71>;
+> +		reg =3D <0x74>;
+> =20
+> -		i2c@0 {
+> +		imux30: i2c@0 {
+>  			#address-cells =3D <1>;
+>  			#size-cells =3D <0>;
+>  			reg =3D <0>;
+> @@ -450,26 +726,26 @@ i2c@0 {
+>  			adc@1f {
+>  				compatible =3D "ti,adc128d818";
+>  				reg =3D <0x1f>;
+> -				ti,mode =3D /bits/ 8 <2>;
+> +				ti,mode =3D /bits/ 8 <1>;
+
+This isn't discussed anywhere. There should probably be a separate
+change for anything adc128d818-related that explains what's going on
+here.
+
+>  			};
+> =20
+>  			pwm@20{
+> -				compatible =3D "max31790";
+> +				compatible =3D "maxim,max31790";
+> +				pwm-as-tach =3D <4 5>;
+>  				reg =3D <0x20>;
+> -				#address-cells =3D <1>;
+> -				#size-cells =3D <0>;
+
+This also isn't discussed anywhere. There should probably be a separate
+change for anything max31790-related that explains what's going on
+here.
+
+>  			};
+> =20
+>  			gpio@22{
+>  				compatible =3D "ti,tca6424";
+>  				reg =3D <0x22>;
+> +				gpio-controller;
+> +				#gpio-cells =3D <2>;
+
+Also not discussed. Separate change for anything tca6424-related that
+explains what's going on here.
+
+>  			};
+> =20
+> -			pwm@23{
+> -				compatible =3D "max31790";
+> -				reg =3D <0x23>;
+> -				#address-cells =3D <1>;
+> -				#size-cells =3D <0>;
+> +			pwm@2f{
+> +				compatible =3D "maxim,max31790";
+> +				pwm-as-tach =3D <4 5>;
+> +				reg =3D <0x2f>;
+>  			};
+
+Should go in the max31790-related patch.
+
+> =20
+>  			adc@33 {
+> @@ -492,34 +768,34 @@ gpio@61 {
+>  			};
+>  		};
+> =20
+> -		i2c@1 {
+> +		imux31: i2c@1 {
+>  			#address-cells =3D <1>;
+>  			#size-cells =3D <0>;
+> -			reg =3D <0>;
+> +			reg =3D <1>;
+> =20
+>  			adc@1f {
+>  				compatible =3D "ti,adc128d818";
+>  				reg =3D <0x1f>;
+> -				ti,mode =3D /bits/ 8 <2>;
+> +				ti,mode =3D /bits/ 8 <1>;
+
+Should go in the adc128d818 patch
+
+>  			};
+> =20
+>  			pwm@20{
+> -				compatible =3D "max31790";
+> +				compatible =3D "maxim,max31790";
+> +				pwm-as-tach =3D <4 5>;
+>  				reg =3D <0x20>;
+> -				#address-cells =3D <1>;
+> -				#size-cells =3D <0>;
+>  			};
+
+Should go in the max31790 patch
+
+> =20
+>  			gpio@22{
+>  				compatible =3D "ti,tca6424";
+>  				reg =3D <0x22>;
+> +				gpio-controller;
+> +				#gpio-cells =3D <2>;
+
+Should go in the tca6424 patch
+
+>  			};
+> =20
+> -			pwm@23{
+> -				compatible =3D "max31790";
+> -				reg =3D <0x23>;
+> -				#address-cells =3D <1>;
+> -				#size-cells =3D <0>;
+> +			pwm@2f{
+> +				compatible =3D "maxim,max31790";
+> +				pwm-as-tach =3D <4 5>;
+> +				reg =3D <0x2f>;
+
+Should go in the max31790 patch
+
+Andrew
 
