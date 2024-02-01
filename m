@@ -1,220 +1,181 @@
-Return-Path: <devicetree+bounces-37489-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-37490-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 044568452D1
-	for <lists+devicetree@lfdr.de>; Thu,  1 Feb 2024 09:35:07 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id A2CC68452EC
+	for <lists+devicetree@lfdr.de>; Thu,  1 Feb 2024 09:41:12 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 1E855B25732
-	for <lists+devicetree@lfdr.de>; Thu,  1 Feb 2024 08:35:04 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 1CD43B26CCA
+	for <lists+devicetree@lfdr.de>; Thu,  1 Feb 2024 08:41:10 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D3E7D15A4BD;
-	Thu,  1 Feb 2024 08:34:41 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id AE30615A49F;
+	Thu,  1 Feb 2024 08:41:04 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="yStJSx4p"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-yw1-f175.google.com (mail-yw1-f175.google.com [209.85.128.175])
+Received: from mail-ej1-f46.google.com (mail-ej1-f46.google.com [209.85.218.46])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7F59F15A4B1;
-	Thu,  1 Feb 2024 08:34:39 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.175
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BDBBB2E3FE
+	for <devicetree@vger.kernel.org>; Thu,  1 Feb 2024 08:41:02 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.46
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1706776481; cv=none; b=phwnTu+R7ityfV1Wc0srNtV5wlXj+IYKvKwzpNHVEZZ3bsppMPOQIs8WkYSCavYrHaNFFSiueh4lgG/cLJFGVFKTzOXVkLYkc9cpCNApg/TpZTGhRVBiRAwQedBi7H2kxWzN4loRPllYeArToIuTOPpC83OkCbnw0k1saLdydW8=
+	t=1706776864; cv=none; b=M9sEU6QYtOlsbNC0w9N2v+rR1s5ye2oO1fDUXe13/Cd07CX44Dq5GSNwQZCJ7vh1W3IeNzOg/kVgLoUyRsQjnSZ2ZXaLV/LSq+4RQFW9IqwA4t871b+U8QNiPzrpKD0YIslVvc5Y7+Ieg/pG4k/oCibHrwlE8bMYpivQxrxl/yg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1706776481; c=relaxed/simple;
-	bh=sDRZVbaV2bc5xAXJPaIp6yTdUcALc0sGqcGUq+EIioI=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=fgSypmhkIShjBqh8Tap+a40SqwyDTXysPOudCIAESFwxUTrXoPwgz/9sbJhvcEy67uiq5KG2p1vpin6EzPUjAKCOwFyG5TNwnB546QR2YxEwMO9uHvpd1eMMrziGxpzOBAOjEFEMDWiu+pnPjdNU7471BTsaoTWYcQ1d8OYbLzQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org; spf=pass smtp.mailfrom=gmail.com; arc=none smtp.client-ip=209.85.128.175
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-yw1-f175.google.com with SMTP id 00721157ae682-604059403e9so6634737b3.3;
-        Thu, 01 Feb 2024 00:34:39 -0800 (PST)
+	s=arc-20240116; t=1706776864; c=relaxed/simple;
+	bh=umRIpvPyNH9O85vkk0z6XBfbYSF0D8Mx3qKu6sC3iIE=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=FOuyoJ665qNwLZPAXybJq4qti7yuMIPrhCWPOyq/t2ortm/lCivEvspUc6TrTDvsyWd6o8ATeCskCltRkrtdOestESO67xJthsXTcK1V7G7OB48P91nYCdnD8wfgQPJYmZeWT4Y/Xd9JiyDLLw2CJFCjVXMdY+aMtoR/76B0C0Q=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=yStJSx4p; arc=none smtp.client-ip=209.85.218.46
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-ej1-f46.google.com with SMTP id a640c23a62f3a-a3651c87ebbso80141766b.1
+        for <devicetree@vger.kernel.org>; Thu, 01 Feb 2024 00:41:02 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1706776861; x=1707381661; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
+         :to:content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=0ouw3WtRTv8eNwYiY6iJNSF9tS/eZ1iXZdVr4vWPSSQ=;
+        b=yStJSx4pdzvIy0DZ+o/ikjGh++ru65XXRKNH81RkNRmDHxvlS5z5zukbUub4XRSlJ+
+         6hIyrbBfhVjS6ogSvGxQ2oQ5w67h3l6RN1cW85kfRGPNRVohTxiU2IOw6FjbTso2SERK
+         LZKQx01bheM0zPvP1sUJWH/o9OIEIItTg0kJL7M7oyGNoxURjxEPfoHH/oHwY8hVJ3ZU
+         ZwG+a+HTrqoZpRFnC8dyJ/mYqGd0R38+ZzFo59i7BOP3jfxlx1N82rj2Nc5Yew8t56lL
+         Y2coTEjkBmTxe5JACk1AGtPPXI8J6cgCvI8DYjePBbijERjC9nL7C5sqlMz+Y/+rrSF6
+         MTng==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1706776477; x=1707381277;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=2HK1C91x+7wARyC9FcS8BRNfiXMoVY/LaEt3n42/zAE=;
-        b=lSkI3ezM/rlL7xMqWJLmzViFtiW2ZbpcW/O05DD5lUJ9sZh4HY57rR9MsSphZB3PEE
-         nGynipms3SIgsWsWkegH1igejgX96CRhZpU2NsgQBpB1qugpfPcNgyhwngYJkenc/vAu
-         XhMG3KmvqOe5a88NQSDtCb4JCNBITCeA2HKlFFVMvW+xaGLol46kkG254E9E5tryOHt9
-         Cl0VBLCikjm2kHyRNcRbl/etm97RT6GeSRdgAJHzcp5UULV5KGYcejXaAx6FLE8kS6w3
-         BPI+83sHQ9capwfY6EcTqzgvOhqC2XkAxuB/VsufC0aecqjDt4CpTfq53JPGKXOPTS46
-         g6og==
-X-Gm-Message-State: AOJu0YxNVOtko++fOMcJNZ1FKNHtDMdzMB5irsMWz5+ZOIyVLeqEE2Bc
-	v6eZC0kMdhZG22afqa6ywf2P8SdeFlO87l56uAUvHiuDDmVYHh/VCSGHxCn8X5Y=
-X-Google-Smtp-Source: AGHT+IFjwVn4UY2Kxo/XufzLNB2vGbsLImFRXcrEXkKYpRr064g+bPgK+2JO0wCQnTYdEYiRtfS2SQ==
-X-Received: by 2002:a81:4813:0:b0:602:b697:d9ff with SMTP id v19-20020a814813000000b00602b697d9ffmr1701529ywa.22.1706776476936;
-        Thu, 01 Feb 2024 00:34:36 -0800 (PST)
-Received: from mail-yb1-f179.google.com (mail-yb1-f179.google.com. [209.85.219.179])
-        by smtp.gmail.com with ESMTPSA id ez10-20020a05690c308a00b005ff9154001fsm3637062ywb.140.2024.02.01.00.34.34
+        d=1e100.net; s=20230601; t=1706776861; x=1707381661;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
+         :to:content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=0ouw3WtRTv8eNwYiY6iJNSF9tS/eZ1iXZdVr4vWPSSQ=;
+        b=bRsxSBqeUGh4lNDrEZOptG97oeWcmLoDCLGeqzwpHmgUxXW3Mnkj8bMxhAsynNKSh0
+         8fhztvtTYXKLfjQA9+HewDnLQ/Whv4G2bfRFJIoMY+LkuFlqL9sBrm3GLbVRWLlBALfo
+         3iSP8lMfG/Ze6bK3uh4VVmbLHu9LEYpSJXWvcLAlKjaWBtERy4FwgHCMcWm8LwJwcxaF
+         OXOgisUEmC8Ib5ajvcqKhbTUxat6XcP1DW6MkCnnfGaWL5CtdfqAXUYG6v8CPO6wmn9Z
+         VvL40wcXZlyGuhGs4TiBnLTMptjflfIK3NyILcqclyQD9tp2ENg4NyIvkfU3Hq6Lmgah
+         P6Bg==
+X-Gm-Message-State: AOJu0YzxLzMbtnRdBstHrniCciFyROaX9smNhtMl3v3CmK73yiz0Txay
+	fsYcMXdabz/rWN7EWhn5CZo+UDr785/X6KvpsZ+FaGKGtMRge9DMr8KiVYyU8DM=
+X-Google-Smtp-Source: AGHT+IHEvYeMbKVPikbgqlwTeuhvAQcDFMvVMvcdmNOOHQlVStw7iOs2pJLA4NksV6mvzlLjlLgm4A==
+X-Received: by 2002:a17:906:ad92:b0:a35:69c3:8af5 with SMTP id la18-20020a170906ad9200b00a3569c38af5mr1147719ejb.36.1706776860926;
+        Thu, 01 Feb 2024 00:41:00 -0800 (PST)
+X-Forwarded-Encrypted: i=0; AJvYcCUa1bCDhyMbt+fsGdfaL82UCwkfhxXDHdDefw2g//PZMMUxrC5PXmQsfOb5fAIG3/NE4DeaXKVlh1oE+iPb9U7+2zlgortAHjBm8o7FoRcqnDuOKH9FW9dQ0m8QanG+JK1k8ReimBMQNjeNnQQiRNeZZYA0O9ZREKqpnkmK9WY4jDVpGmj3Fyx3bKqqV8VQc80cuK8A4Y9kFOHWSivNTjrytvBivZvcux1vW3JbZB2POyzI2eYpDCeFKGBPH+PqAzKVfMX8J4rTABe8d9KsjM1GHKkaGgVEU+MurHxtYvxAVZPvxZtGw7WkKJTdf5495D1RHQeGnPoP
+Received: from [192.168.1.20] ([178.197.222.62])
+        by smtp.gmail.com with ESMTPSA id ll5-20020a170907190500b00a36c7a7b4f7sm234612ejc.207.2024.02.01.00.40.59
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 01 Feb 2024 00:34:35 -0800 (PST)
-Received: by mail-yb1-f179.google.com with SMTP id 3f1490d57ef6-dc236729a2bso617516276.0;
-        Thu, 01 Feb 2024 00:34:34 -0800 (PST)
-X-Received: by 2002:a25:824a:0:b0:dc6:ad43:8cf4 with SMTP id
- d10-20020a25824a000000b00dc6ad438cf4mr1840360ybn.20.1706776474698; Thu, 01
- Feb 2024 00:34:34 -0800 (PST)
+        Thu, 01 Feb 2024 00:41:00 -0800 (PST)
+Message-ID: <d2c0c5dd-e1a2-4607-9177-f3855cb5601e@linaro.org>
+Date: Thu, 1 Feb 2024 09:40:58 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20240129151618.90922-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
- <20240129151618.90922-3-prabhakar.mahadev-lad.rj@bp.renesas.com>
- <CAMuHMdV7Q4kMv1pFVNBf5oYF=_W_snp=5GKLpr9+OxeqxywhBw@mail.gmail.com> <CA+V-a8spFYvOo2=9CwM-1EyMA3Xrc_rggUgxDZwZan2ou4SG1A@mail.gmail.com>
-In-Reply-To: <CA+V-a8spFYvOo2=9CwM-1EyMA3Xrc_rggUgxDZwZan2ou4SG1A@mail.gmail.com>
-From: Geert Uytterhoeven <geert@linux-m68k.org>
-Date: Thu, 1 Feb 2024 09:34:21 +0100
-X-Gmail-Original-Message-ID: <CAMuHMdUFZ6pRtZv4QLGhTz_gG575-8-LvaFprNuP2-1HGS8r+A@mail.gmail.com>
-Message-ID: <CAMuHMdUFZ6pRtZv4QLGhTz_gG575-8-LvaFprNuP2-1HGS8r+A@mail.gmail.com>
-Subject: Re: [PATCH 2/5] irqchip/renesas-rzg2l: Add support for RZ/Five SoC
-To: "Lad, Prabhakar" <prabhakar.csengg@gmail.com>
-Cc: Thomas Gleixner <tglx@linutronix.de>, Rob Herring <robh+dt@kernel.org>, 
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Magnus Damm <magnus.damm@gmail.com>, linux-renesas-soc@vger.kernel.org, 
-	devicetree@vger.kernel.org, linux-riscv@lists.infradead.org, 
-	linux-kernel@vger.kernel.org, Biju Das <biju.das.jz@bp.renesas.com>, 
-	Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>, 
-	Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v3] regulator: dt-bindings: microchip,mcp16502: convert to
+ YAML
+Content-Language: en-US
+To: Andrei Simion <andrei.simion@microchip.com>,
+ krzysztof.kozlowski+dt@linaro.org, robh+dt@kernel.org, conor+dt@kernel.org,
+ claudiu.beznea@tuxon.dev, lgirdwood@gmail.com, broonie@kernel.org
+Cc: linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+ devicetree@vger.kernel.org
+References: <20240131130727.447738-1-andrei.simion@microchip.com>
+From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
+ 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
+ D2GYIS41Kv4Isx2dEFh+/Q==
+In-Reply-To: <20240131130727.447738-1-andrei.simion@microchip.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
-Hi Prabhakar,
+On 31/01/2024 14:07, Andrei Simion wrote:
+> Convert devicetree binding mcp16502-regulator.txt to YAML format.
+> 
+> Signed-off-by: Andrei Simion <andrei.simion@microchip.com>
+> ---
+> Changes v2 -> v3:
+> - keep one line of regulators description
+> - add additionalProperties: false for regulators
+> - "description:" at the end for each properties
+> 
+> Changes v1 -> v2:
+> - reverse subject prefixes
+> - line break after file "description:"
+> - drop description for reg
+> - drop regulator-name
+> - add regulator-initial-mode
+> - unevaluatedProperties just after $ref: regulator.yaml#
+> - additionalProperties  just before "required"
 
-On Wed, Jan 31, 2024 at 7:36=E2=80=AFPM Lad, Prabhakar
-<prabhakar.csengg@gmail.com> wrote:
-> On Tue, Jan 30, 2024 at 11:38=E2=80=AFAM Geert Uytterhoeven
-> <geert@linux-m68k.org> wrote:
-> > On Mon, Jan 29, 2024 at 4:16=E2=80=AFPM Prabhakar <prabhakar.csengg@gma=
-il.com> wrote:
-> > > From: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
-> > >
-> > > The IX45 block has additional mask registers (NMSK/IMSK/TMSK) as comp=
-ared
-> > > to the RZ/G2L (family) SoC.
-> > >
-> > > Introduce masking/unmasking support for IRQ and TINT interrupts in IR=
-QC
-> > > controller driver. Two new registers, IMSK and TMSK, are defined to
-> > > handle masking on RZ/Five SoC. The implementation utilizes a new data
-> > > structure, `struct rzg2l_irqc_data`, to determine mask support for a
-> > > specific controller instance.
-> > >
-> > > Signed-off-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com=
->
-> >
-> > > --- a/drivers/irqchip/irq-renesas-rzg2l.c
-> > > +++ b/drivers/irqchip/irq-renesas-rzg2l.c
-> > > @@ -66,15 +68,25 @@ struct rzg2l_irqc_reg_cache {
-> > >         u32     titsr[2];
-> > >  };
-> > >
-> > > +/**
-> > > + * struct rzg2l_irqc_data - OF data structure
-> > > + * @mask_supported: Indicates if mask registers are available
-> > > + */
-> > > +struct rzg2l_irqc_data {
-> >
-> > This structure has the same name as the single static struct
-> > rzg2l_irqc_priv instance, which is confusing.
-> >
-> Agreed, I will rename it to rzg2l_irqc_of_data
->
-> > > +       bool    mask_supported;
-> > > +};
-> > > +
-> > >  /**
-> > >   * struct rzg2l_irqc_priv - IRQ controller private data structure
-> > >   * @base:      Controller's base address
-> > > + * @data:      OF data pointer
-> > >   * @fwspec:    IRQ firmware specific data
-> > >   * @lock:      Lock to serialize access to hardware registers
-> > >   * @cache:     Registers cache for suspend/resume
-> > >   */
-> > >  static struct rzg2l_irqc_priv {
-> > >         void __iomem                    *base;
-> > > +       const struct rzg2l_irqc_data    *data;
-> >
-> > Replacing this by a bool would avoid a pointer dereference in each user=
-,
-> > and allows you to make rzg2l_irqc_data etc. __initconst.
-> >
-> Do you mean just add "bool mask_supported" here and get rid of struct
-> rzg2l_irqc_data ? Can you please elaborate here..
+I missed it before, why did you move it? Previous placement was what we
+expect. I did not comment about it.
 
-Either add "bool mask_supported" here, or add a copy of the full
-struct rzg2l_irqc_data (see below).
+Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
->
-> > >         struct irq_fwspec               fwspec[IRQC_NUM_IRQ];
-> > >         raw_spinlock_t                  lock;
-> > >         struct rzg2l_irqc_reg_cache     cache;
-> >
-> > > @@ -371,9 +475,23 @@ static int rzg2l_irqc_parse_interrupts(struct rz=
-g2l_irqc_priv *priv,
-> > >         return 0;
-> > >  }
-> > >
-> > > +static const struct rzg2l_irqc_data rzfive_irqc_data =3D {
-> > > +       .mask_supported =3D true,
-> > > +};
-> > > +
-> > > +static const struct rzg2l_irqc_data rzg2l_irqc_default_data =3D {
-> > > +       .mask_supported =3D false,
-> > > +};
-> > > +
-> > > +static const struct of_device_id rzg2l_irqc_matches[] =3D {
-> > > +       { .compatible =3D "renesas,r9a07g043f-irqc", .data =3D &rzfiv=
-e_irqc_data },
-> > > +       { }
-> > > +};
-> > > +
-> > >  static int rzg2l_irqc_init(struct device_node *node, struct device_n=
-ode *parent)
-> > >  {
-> > >         struct irq_domain *irq_domain, *parent_domain;
-> > > +       const struct of_device_id *match;
-> > >         struct platform_device *pdev;
-> > >         struct reset_control *resetn;
-> > >         int ret;
-> > > @@ -392,6 +510,12 @@ static int rzg2l_irqc_init(struct device_node *n=
-ode, struct device_node *parent)
-> > >         if (!rzg2l_irqc_data)
-> > >                 return -ENOMEM;
-> > >
-> > > +       match =3D of_match_node(rzg2l_irqc_matches, node);
-> > > +       if (match)
-> > > +               rzg2l_irqc_data->data =3D match->data;
-> > > +       else
-> > > +               rzg2l_irqc_data->data =3D &rzg2l_irqc_default_data;
-> >
-> > Instead of matching a second time, I'd rather add a second
-> > IRQCHIP_MATCH() entry with a different init function, passing the
-> > actual rzg2l_irqc_data pointer.
-> >
-> OK, or rather just pass true/false instead of rzg2l_irqc_of_data pointer.=
-?
 
-Yes, that would be fine for me, too.
-It all depends on whether you plan to add, or see a need for adding,
-more flags or other fields in the future (and even for flags, you could
-combine them in an unsigned long).
+---
 
-Gr{oetje,eeting}s,
+This is an automated instruction, just in case, because many review tags
+are being ignored. If you know the process, you can skip it (please do
+not feel offended by me posting it here - no bad intentions intended).
+If you do not know the process, here is a short explanation:
 
-                        Geert
+Please add Acked-by/Reviewed-by/Tested-by tags when posting new
+versions, under or above your Signed-off-by tag. Tag is "received", when
+provided in a message replied to you on the mailing list. Tools like b4
+can help here. However, there's no need to repost patches *only* to add
+the tags. The upstream maintainer will do that for tags received on the
+version they apply.
 
---=20
-Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k=
-.org
+https://elixir.bootlin.com/linux/v6.5-rc3/source/Documentation/process/submitting-patches.rst#L577
 
-In personal conversations with technical people, I call myself a hacker. Bu=
-t
-when I'm talking to journalists I just say "programmer" or something like t=
-hat.
-                                -- Linus Torvalds
+Best regards,
+Krzysztof
+
 
