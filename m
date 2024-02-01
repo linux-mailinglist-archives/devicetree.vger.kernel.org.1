@@ -1,206 +1,270 @@
-Return-Path: <devicetree+bounces-37738-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-37739-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1E8AD8460FE
-	for <lists+devicetree@lfdr.de>; Thu,  1 Feb 2024 20:31:55 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id CF204846108
+	for <lists+devicetree@lfdr.de>; Thu,  1 Feb 2024 20:34:57 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 8862A1F23072
-	for <lists+devicetree@lfdr.de>; Thu,  1 Feb 2024 19:31:54 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 84E23291821
+	for <lists+devicetree@lfdr.de>; Thu,  1 Feb 2024 19:34:56 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4400784FD3;
-	Thu,  1 Feb 2024 19:31:49 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C69898526E;
+	Thu,  1 Feb 2024 19:34:50 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=manjaro.org header.i=@manjaro.org header.b="SKjI1kF4"
+	dkim=pass (1024-bit key) header.d=nxp.com header.i=@nxp.com header.b="EKTok//Z"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail.manjaro.org (mail.manjaro.org [116.203.91.91])
-	(using TLSv1.2 with cipher DHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from EUR05-DB8-obe.outbound.protection.outlook.com (mail-db8eur05on2055.outbound.protection.outlook.com [40.107.20.55])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 87E7085278;
-	Thu,  1 Feb 2024 19:31:46 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=116.203.91.91
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1706815909; cv=none; b=Y/G5kEEVS8KdgCCt7qWPssIl2H+FEtwfGf3kmW+qML5DkKv9LkIZAnWmikEMEwj+NTro7SMMY8H9Bn9lT0zzxBPGgceTF0Az/s5hCdPpDQM82tV1h45HDecZWjoyfWpYeRiwNTDRa8neSdBOEUcP6RFdsDG4Zz8aHy8TYCHa7L4=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1706815909; c=relaxed/simple;
-	bh=30CrakodQoj7bnMNjvntO6yWV9ILkjgkGXFZuyqQ044=;
-	h=MIME-Version:Date:From:To:Cc:Subject:In-Reply-To:References:
-	 Message-ID:Content-Type; b=c9tnWhszpmvgKXTBuvISzO+1PxnEqgCsZP+qvs/dOvEqVAOW9MY+FOnLRmmPhqoV4Epouo/pNVP6jiWtE4ah3BxEVB6oMC62unYM3ShmEWPAAGDEy0plTwoim5oynFQAuCtMtjwDTze2fhPSIkEhbE+pNojzqkKqu1vvHvWTXy4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=manjaro.org; spf=pass smtp.mailfrom=manjaro.org; dkim=pass (2048-bit key) header.d=manjaro.org header.i=@manjaro.org header.b=SKjI1kF4; arc=none smtp.client-ip=116.203.91.91
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=manjaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=manjaro.org
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6C2C06D39;
+	Thu,  1 Feb 2024 19:34:47 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.107.20.55
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1706816090; cv=fail; b=Z3WgZDfQlYEdvgJ+ygvYdZ2tF79Suug6D9CalajeMch5Jx5oGYuTCRhJtcNKklzsvvs8Wza/sSbXkFGhbsk5BMGHu9hjoa9cKD50Oes7aefUD9Bwak3BKHbbZPi+I6ItjZ8QqSWRIb/w2wjJ17d5OyAVtyWDHElkJDdCd4RiSuM=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1706816090; c=relaxed/simple;
+	bh=xnRIoJ6AiZS10gWuN67w/G+gNgc9zxTSQEKl1D69blg=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:Content-Type:
+	 Content-Disposition:In-Reply-To:MIME-Version; b=ejKIbdHNXDBEO3pyJMGU+qGGEGSA2pTsMIvlkum75BNXR9QmXD+TWdo/eQV/iODp2Js+fXj3HCiBiDMbEcdpH20dexXeuHRt5WtJMI0rPNakA3yaiqUTQd5dfGtWtoTEtZqeMwA+Zy1N4JNcPH4cKzBxONSJixCnnJihc/En94U=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com; spf=pass smtp.mailfrom=nxp.com; dkim=pass (1024-bit key) header.d=nxp.com header.i=@nxp.com header.b=EKTok//Z; arc=fail smtp.client-ip=40.107.20.55
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=nxp.com
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=oGJe13h0ZseK8CZz20jJLRUIi05chbDtXp5KzHBJzRylgPZgXz7HlkeybRG7tZ2QAVbabTHDMHVc0b/Uf3mZjX+AcGRQ5dwb4usjuYWOB0xtsiRxLbUOiB64ETuTfJuDEp7S2Bua2O6QzS5RLq0DSGV2MY0ytwkmFErSiN6XMWe0HPCvwHPSsvn0xGBEGLZbF+XyDF3VX6nTrVOVlz73a+PAZDYPmpGJwemVROJWvw0/o1QlcOaq8WisY7xp+pE5JmCh1lEg2YAUMvohWpB7T+Wro6InUvcS5j1EmZiYlCO14wsXFdIUdQgvn8pCE2ZIlrpqJQ9XrPpKM/cdAMo43w==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=nWebouwHUeRue3naTcBsbGG+L+tUDNNpwmttNC1hFEs=;
+ b=Qul5H7CgzEOJc0dRxcH60FVIyULsVUDYu1STMlYCR/vNnaeJfKfFfqxKKQn3nUzc58Vzx7FNiYoVSy/Vcf01C/OPZuUnfKNom0lOPNFL4sD8QDeBUAIpAPGVkFRq9gwDI4WbDLB1VP9ClMyUEyH53+ZYsInkNpBWGa8Q6Ni5vf9roE7AdBC3jAbzFmJahCF+bW1U5H4KVhKZ/94JhdBUotxcGYGCjHva0BVWNoxvZeI3Q3Se+loAataHOaFrNP1r/+7fnmXvXDNsBe3C2Ci2MXWWSQJ4SmXN11OuN8gieA1e3LPgwXr1J45UOHNEXeJkwe0dzR6R33IgAppHSxDRbw==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
+ header.d=nxp.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector2;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=nWebouwHUeRue3naTcBsbGG+L+tUDNNpwmttNC1hFEs=;
+ b=EKTok//ZOA5sBfijJmRXTq/Tzwo8xXVkt+ELF5AYtHKZiFUm7YeMwLbEFOBCQ/m0OwwZm2XOZtjFpKQ70P4biyZfIyQksx275ghcjVcsqtuhtMedXDDaqYCTAQEJjNv5KCdP+xLCGu7Ybd1QMj0kZZrPcwwz60qAzDUxsOhhnMw=
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=nxp.com;
+Received: from PAXPR04MB9642.eurprd04.prod.outlook.com (2603:10a6:102:240::14)
+ by AM8PR04MB7748.eurprd04.prod.outlook.com (2603:10a6:20b:243::19) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7249.30; Thu, 1 Feb
+ 2024 19:34:44 +0000
+Received: from PAXPR04MB9642.eurprd04.prod.outlook.com
+ ([fe80::c8b4:5648:8948:e85c]) by PAXPR04MB9642.eurprd04.prod.outlook.com
+ ([fe80::c8b4:5648:8948:e85c%3]) with mapi id 15.20.7228.029; Thu, 1 Feb 2024
+ 19:34:44 +0000
+Date: Thu, 1 Feb 2024 14:34:34 -0500
+From: Frank Li <Frank.li@nxp.com>
+To: lpieralisi@kernel.org
+Cc: bhelgaas@google.com, conor+dt@kernel.org, devicetree@vger.kernel.org,
+	festevam@gmail.com, helgaas@kernel.org, hongxing.zhu@nxp.com,
+	imx@lists.linux.dev, kernel@pengutronix.de,
+	krzysztof.kozlowski+dt@linaro.org, krzysztof.kozlowski@linaro.org,
+	kw@linux.com, l.stach@pengutronix.de,
+	linux-arm-kernel@lists.infradead.org, linux-imx@nxp.com,
+	linux-kernel@vger.kernel.org, linux-pci@vger.kernel.org,
+	robh@kernel.org, s.hauer@pengutronix.de, shawnguo@kernel.org
+Subject: Re: [PATCH v9 00/16] PCI: imx6: Clean up and add imx95 pci support
+Message-ID: <ZbvySvCoeNbBxYjW@lizhi-Precision-Tower-5810>
+References: <20240119171122.3057511-1-Frank.Li@nxp.com>
+ <ZbJ+tFPn3aOYHCwf@lizhi-Precision-Tower-5810>
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <ZbJ+tFPn3aOYHCwf@lizhi-Precision-Tower-5810>
+X-ClientProxiedBy: BY5PR17CA0058.namprd17.prod.outlook.com
+ (2603:10b6:a03:167::35) To PAXPR04MB9642.eurprd04.prod.outlook.com
+ (2603:10a6:102:240::14)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=manjaro.org; s=2021;
-	t=1706815904;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=7kLN+F37wlT4potTE1hxcRfMjPjrCtSNMuo+YwMDxvM=;
-	b=SKjI1kF4cfxpbkHEOLzLGDRB+LXTqrbLitQsEeHkR/7RxPOUGJVJ2P2VgqbhveMtNdmZRm
-	24XYitFv27nxw1ajFlSGJZuXYbjuWMWAygSOiEA/F+wP8G5MCgtrBqyhP9VzsL9IlK8D7X
-	P8zXcvfNKuQ/tB2Lpblx56WcVM/wbfSp9SHN+tU/87sdtjRkfZDZ7Ha2joCdegtx4yEkb7
-	iu1CLpI5lZj/PJfPWfK9Y20ILQsHQI56KqIRUEEO11NOhn8vifcymHB8jaw0GION9pjkhb
-	w68TWDLx/Ktp04QDIeyldb20ljLUsr/4thalc+AducLysS6upbxlMZ+MAXhRFg==
-Date: Thu, 01 Feb 2024 20:31:43 +0100
-From: Dragan Simic <dsimic@manjaro.org>
-To: Alexey Charkov <alchark@gmail.com>
-Cc: wens@kernel.org, Rob Herring <robh+dt@kernel.org>, Krzysztof Kozlowski
- <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>,
- Heiko Stuebner <heiko@sntech.de>, Daniel Lezcano
- <daniel.lezcano@linaro.org>, Viresh Kumar <viresh.kumar@linaro.org>,
- devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v2 2/4] arm64: dts: rockchip: enable temperature driven
- fan control on Rock 5B
-In-Reply-To: <CABjd4Yx0kQ67fScrFVavjObMLaNt_PJ3TVOhLpCmj00Dx9dOqA@mail.gmail.com>
-References: <20240130-rk-dts-additions-v2-0-c6222c4c78df@gmail.com>
- <20240130-rk-dts-additions-v2-2-c6222c4c78df@gmail.com>
- <CAGb2v65--rgb2FqmG_0-w1-jUL0odqKXxiZJ-XPYA4uomfYmaQ@mail.gmail.com>
- <5e3e12d65e4919372e7fb02d56202393@manjaro.org>
- <CABjd4Yx0kQ67fScrFVavjObMLaNt_PJ3TVOhLpCmj00Dx9dOqA@mail.gmail.com>
-Message-ID: <a8aa04ca0061cd09c7b3eb5336e534a4@manjaro.org>
-X-Sender: dsimic@manjaro.org
-Content-Type: text/plain; charset=UTF-8;
- format=flowed
-Content-Transfer-Encoding: 8bit
-Authentication-Results: ORIGINATING;
-	auth=pass smtp.auth=dsimic@manjaro.org smtp.mailfrom=dsimic@manjaro.org
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: PAXPR04MB9642:EE_|AM8PR04MB7748:EE_
+X-MS-Office365-Filtering-Correlation-Id: f20d67b7-d0cd-47f2-47cb-08dc235cd7a4
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info:
+	1WPaoQR5Y8GTG+3FB2NdrYHTSTuJYnR74DWBth3GDVtk+6+D3W+VKdP3dkKuew9BkegnY8xTzfFXl3iY1p2GKpgY5cwvlh79auoAYbQexX4h0J60Z+JPGk8dwzTSZwhurd/s4Y4L+vt5Du0r1+ybxynsAyxh4PrNwGaw7xGJ+kAoknOTc9YzaPza8ehJMB+BfD4YgEbStjsHHIdVr6Jt/3DjrAOd6UIXTxFsE5T8gH0uhp0Yo5RL1o470PNz/X8euXAnVlyST8v2YPDpcB79g357jladdtYl0yDZQxQTO1Hd5VyzZLYE2ILhw2LqO2olwLcBpkAXTW0aoI4dfXhThXfzWonG58RdyvONDzHe2W2dSMgJKon8FiSPFmzkCqfPMsGzRjfioTkKf66psjbf3hw8uP/kwU1acCQ7fmRCr7VOnMUt5uwPuo4D4x8L1ct6PhLgVobeBo7tkgPT2c/+dUTRj+JVEERaopcNNKGMPf8X+DOZucOzmG+/X8jD6Pygy0Qe5Amlw8SqtTqxPHgiadLSO2vZNablLfC+D+3F96fMCr1ggghxPZCZJDjxI8g5oJpap8KCZPpcf68qG3NbC7rWHmqgSqskR9gautYhGqwrFkLQiYA2e6ufhf5XPzAI
+X-Forefront-Antispam-Report:
+	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:PAXPR04MB9642.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230031)(7916004)(376002)(346002)(366004)(136003)(396003)(39860400002)(230922051799003)(1800799012)(451199024)(64100799003)(186009)(83380400001)(6512007)(9686003)(33716001)(26005)(38100700002)(5660300002)(4326008)(8676002)(8936002)(7416002)(2906002)(478600001)(6486002)(6506007)(52116002)(6666004)(66476007)(66556008)(66946007)(6916009)(316002)(38350700005)(41300700001)(86362001);DIR:OUT;SFP:1101;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0:
+	=?us-ascii?Q?Mtu1h8UfM8moQ0VznFEr2luoPGF7ewG4/3iXH10q/ol2YrxlY+OyZtovflzW?=
+ =?us-ascii?Q?ozn6hdBovtLk9odqoRub9gU12NK2IvWXb8XRRH9MXqSfbbdZSHX3FbPLemEP?=
+ =?us-ascii?Q?f5DbCDCx228MZeA7JChLu9Z0m7p/9oUb2O0OffMKMKFsDzEvzca/hn6QjXG9?=
+ =?us-ascii?Q?UIIll23saton3a5SNLLT9EiHjteQhTMDZuVNjvRaadx51ieMXlYSASlCMSkf?=
+ =?us-ascii?Q?JbZdoK8GdZqOyw3/e2XQNwtAZPHVawHP824PKyxUjbZcXgeTBqNTkXBBF2t9?=
+ =?us-ascii?Q?TQqRJXqBFnbPme6sMygNAqpZhBljCuMQ6t6f8fTWaRmsqOdYt3HGbB9FE48K?=
+ =?us-ascii?Q?zfPumSvNbF9uQavVnyD3lGVDsdAh7xZAX1h84qStdMAJBM/BQdrJM92YR2x2?=
+ =?us-ascii?Q?pZEpkLqgV2IzFLiw2n6ijAAFV6/NntnSgOwjLv1iKSN4U4SQDo2oYlxIc7/B?=
+ =?us-ascii?Q?y2oJhcKuwKW2D97oIQUJ7ihz1WbqU85/aZNEe90cedN4kyPph1bgRR7l5nR7?=
+ =?us-ascii?Q?Dp/LxEij+4wbZbSGOduuOZb6mhCFG/faJ9qd3bxFNgot+f8RE7kpwhhjCBdU?=
+ =?us-ascii?Q?BX0onx9bEcJ0p/6Tq1FFDE6iXdPLbrAdt2RDrG1q/EeCAEbENdMcHy9iLAnj?=
+ =?us-ascii?Q?Bkiw8iQPqYhGPxi/wUWKxqH1tiwFfhlEsL/dXELiDzrlDV6xXp66sgqQDfp/?=
+ =?us-ascii?Q?fna3CAonHFU0l0/WQIy8EWc1t6UT3PjLIzxLOzoyBC2G6ydBeTGaIwsK2zHu?=
+ =?us-ascii?Q?NgYPfOlMd30gRCBFO3lRe3sE+wl60fYFFC3Wt0MBNxf+zAodzSWUMhjzEaSb?=
+ =?us-ascii?Q?wLKQ/4lWGcId8GzrNjAg78wHfQBBbmWdcJwRqab0dKCAjf3sDdxp3Be83CEF?=
+ =?us-ascii?Q?ujhANpR+tBYcJ75ISMm5Tk73x9U/hmDONgMahquRrUxN+GeQWqGfGlIDmqgh?=
+ =?us-ascii?Q?1exnV6Oh1a9wroNG5rPX8shgdSxHr273irudIsQa4ay89m8LCV75w08F87WO?=
+ =?us-ascii?Q?LuVoHi6/4aODyNH3YT5nhUHIltyLyAXzIKbl8muTaR68dJxVgmn0aFLyqXD9?=
+ =?us-ascii?Q?VFt2TCdSJEGNOYWnPw0+s8fjZEK4Qlo4olbAy41ffGDLXZU+A4kGd9QOJvIg?=
+ =?us-ascii?Q?QRO8QSBzpexUdS38OGUFLpWHQR8/Lo/JMyX3CJrIVvKPcCH/IPJCagZaiQmE?=
+ =?us-ascii?Q?YZEFX2R0Yama+1eV5OOf8LFR8UpPck76ZA1EofPOMFo1qWW2kZhT8cWRqkXF?=
+ =?us-ascii?Q?dNNxZqHFHwkfjV2dSispukDhu5NkXuWqelt5rguprR2brVMrWUWwOM9fbrHk?=
+ =?us-ascii?Q?EOMbq37vnvvlavjypHVSQ5dXV+a99VOa3sJPLyq3MmqmoymTTYOnEQnezAvl?=
+ =?us-ascii?Q?db7Gvw1kRulGAeDsDvRct5hVEGt1DZBdKXpB+Toeb/X9E0THPDC9CSd5Lwdv?=
+ =?us-ascii?Q?09IYP1fhQDTcLXRXy/rZABBJRjyzgK9Vnhz5f3UjAaNJis/pcz7KFuGlPtN0?=
+ =?us-ascii?Q?5oKTcVCfKBucVi1BD0Rp+TeYq0GmbaI4jh8P5APr1Z0DFmS5BfM/KxxNdl01?=
+ =?us-ascii?Q?2TPd9+QHUiwZnFSqkso=3D?=
+X-OriginatorOrg: nxp.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: f20d67b7-d0cd-47f2-47cb-08dc235cd7a4
+X-MS-Exchange-CrossTenant-AuthSource: PAXPR04MB9642.eurprd04.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 01 Feb 2024 19:34:44.3413
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: PeMTILa/WjMGeC98K+Ho+qPc63lpArOYQNIkdtLaVRX0ftcFhB9OsGpCKobA0nhk/Cs5tMZG9/eiKsy9Kf1U2w==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: AM8PR04MB7748
 
-On 2024-02-01 20:15, Alexey Charkov wrote:
-> On Thu, Feb 1, 2024 at 9:34 PM Dragan Simic <dsimic@manjaro.org> wrote:
->> On 2024-02-01 15:26, Chen-Yu Tsai wrote:
->> > On Wed, Jan 31, 2024 at 2:22 AM Alexey Charkov <alchark@gmail.com>
->> > wrote:
->> >>
->> >> This enables thermal monitoring on Radxa Rock 5B and links the PWM
->> >> fan as an active cooling device managed automatically by the thermal
->> >> subsystem, with a target SoC temperature of 65C and a minimum-spin
->> >> interval from 55C to 65C to ensure airflow when the system gets warm
->> >>
->> >> Acked-by: Daniel Lezcano <daniel.lezcano@linaro.org>
->> >> Signed-off-by: Alexey Charkov <alchark@gmail.com>
->> >> ---
->> >>  arch/arm64/boot/dts/rockchip/rk3588-rock-5b.dts | 34
->> >> ++++++++++++++++++++++++-
->> >>  1 file changed, 33 insertions(+), 1 deletion(-)
->> >>
->> >> diff --git a/arch/arm64/boot/dts/rockchip/rk3588-rock-5b.dts
->> >> b/arch/arm64/boot/dts/rockchip/rk3588-rock-5b.dts
->> >> index a0e303c3a1dc..b485edeef876 100644
->> >> --- a/arch/arm64/boot/dts/rockchip/rk3588-rock-5b.dts
->> >> +++ b/arch/arm64/boot/dts/rockchip/rk3588-rock-5b.dts
->> >> @@ -52,7 +52,7 @@ led_rgb_b {
->> >>
->> >>         fan: pwm-fan {
->> >>                 compatible = "pwm-fan";
->> >> -               cooling-levels = <0 95 145 195 255>;
->> >> +               cooling-levels = <0 120 150 180 210 240 255>;
->> >>                 fan-supply = <&vcc5v0_sys>;
->> >>                 pwms = <&pwm1 0 50000 0>;
->> >>                 #cooling-cells = <2>;
->> >> @@ -173,6 +173,34 @@ &cpu_l3 {
->> >>         cpu-supply = <&vdd_cpu_lit_s0>;
->> >>  };
->> >>
->> >> +&package_thermal {
->> >> +       polling-delay = <1000>;
->> >> +
->> >> +       trips {
->> >> +               package_fan0: package-fan0 {
->> >> +                       temperature = <55000>;
->> >> +                       hysteresis = <2000>;
->> >> +                       type = "active";
->> >> +               };
->> >> +               package_fan1: package-fan1 {
->> >> +                       temperature = <65000>;
->> >> +                       hysteresis = <2000>;
->> >> +                       type = "active";
->> >> +               };
->> >> +       };
->> >> +
->> >> +       cooling-maps {
->> >> +               map0 {
->> >> +                       trip = <&package_fan0>;
->> >> +                       cooling-device = <&fan THERMAL_NO_LIMIT 1>;
->> >> +               };
->> >> +               map1 {
->> >> +                       trip = <&package_fan1>;
->> >> +                       cooling-device = <&fan 1 THERMAL_NO_LIMIT>;
->> >> +               };
->> >> +       };
->> >> +};
->> >> +
->> >>  &i2c0 {
->> >>         pinctrl-names = "default";
->> >>         pinctrl-0 = <&i2c0m2_xfer>;
->> >> @@ -731,6 +759,10 @@ regulator-state-mem {
->> >>         };
->> >>  };
->> >>
->> >> +&tsadc {
->> >> +       status = "okay";
->> >> +};
->> >> +
->> >
->> > Is there any reason this can't be enabled by default in the .dtsi file?
->> > The thermal sensor doesn't depend on anything external, so there should
->> > be no reason to push this down to the board level.
->> 
->> Actually, there is a reason.  Different boards can handle the critical
->> overheating differently, by letting the CRU or the PMIC handle it.  
->> This
->> was also the case for the RK3399.
->> 
->> Please, have a look at the following DT properties, which are consumed
->> by drivers/thermal/rockchip_thermal.c:
->>    - "rockchip,hw-tshut-mode"
->>    - "rockchip,hw-tshut-polarity"
->> 
->> See also page 1,372 of the RK3588 TRM v1.0.
->> 
->> This has also reminded me to check how is the Rock 5B actually wired,
->> just to make sure.  We actually need to provide the two DT properties
->> listed above, at least to avoid emitting the warnings.
+On Thu, Jan 25, 2024 at 10:31:00AM -0500, Frank Li wrote:
+> On Fri, Jan 19, 2024 at 12:11:06PM -0500, Frank Li wrote:
+> > first 6 patches use drvdata: flags to simplify some switch-case code.
+> > Improve maintaince and easy to read code.
 > 
-> Well the defaults are already provided in rk3588s.dtsi, so there won't
-> be any warnings (see lines 2222-2223 in Linus' master version), and
-> according to the vendor kernel those are also what Rock 5B uses.
+> @lpieralisi:
+> 
+> 	Could you please pick up these patches? All already reviewed by
+> Mani. dt-binding part acked by rob/krzysztof. Add it only impact freecale
+> imx platform.
+> 
+> Frank
 
-Yes, I noticed the same a couple of minutes after sending my last
-message, but didn't want to make more noise about it. :)  I would've
-mentioned it in my next message, of course.
+@lpieralisi@kernel.org
 
-> This made me think however: what if a board doesn't enable TSADC, but
-> has OPPs in place for higher voltage and frequency states? There won't
-> be any throttling (as there won't be any thermal monitoring) and there
-> might not be a critical shutdown at all if it heats up - possibly even
-> causing hardware damage. In this case it seems that having TSADC
-> enabled by default would at least trigger passive cooling, hopefully
-> avoiding the critical shutdown altogether and making those properties
-> irrelevant in 99% cases.
+Ping!
 
-Those are very good questions.  Thumbs up!
+Frank
 
-The trouble is that the boards can use different wiring to handle the
-thermal runaways, by expecting the PMIC to handle it or not.  Thus,
-it's IMHO better to simply leave that to be tested and enabled on a
-board-by-board basis, whenever a new RK3588(s)-based board is added.
-
-Thus, the only right way at this point would be to merge the addition
-of the OPPs and the enabling of the TSADC for all currently supported
-RK3588(s)-based boards at once, instead of just for the Rock 5B.
-
-I can handle the required changes for the QuartzPro64 dts file.  For
-other supported RK3588(s)-based boards, if there are no people having
-access to them and willing to perform the dts changes and the testing,
-I'd be willing to go through the board schematics, to enable the
-TSADC for them as well.
+> 
+> > 
+> > Then add imx95 basic pci host function.
+> > 
+> > follow two patch do endpoint code clean up.
+> > Then add imx95 basic endpont function.
+> > 
+> > Compared with v2, added EP function support and some fixes,  please change
+> > notes at each patches.
+> > 
+> > dt-binding pass pcie node:
+> > 
+> > pcie0: pcie@4c300000 {
+> >                         compatible = "fsl,imx95-pcie";
+> >                         reg = <0 0x4c300000 0 0x40000>,
+> >                                 <0 0x4c360000 0 0x10000>,
+> >                                 <0 0x4c340000 0 0x20000>,
+> >                                 <0 0x60100000 0 0xfe00000>;
+> >                         reg-names = "dbi", "atu", "app", "config";
+> >                         #address-cells = <3>;
+> >                         #size-cells = <2>;
+> >                         device_type = "pci";
+> >                         linux,pci-domain = <0>;
+> >                         bus-range = <0x00 0xff>;
+> >                         ranges = <0x81000000 0x0 0x00000000 0x0 0x6ff00000 0 0x00100000>,
+> >                                  <0x82000000 0x0 0x10000000 0x9 0x10000000 0 0x10000000>;
+> >                         num-lanes = <1>;
+> >                         num-viewport = <8>;
+> >                         interrupts = <GIC_SPI 310 IRQ_TYPE_LEVEL_HIGH>;
+> >                         interrupt-names = "msi";
+> >                         #interrupt-cells = <1>;
+> >                         interrupt-map-mask = <0 0 0 0x7>;
+> >                         interrupt-map = <0 0 0 1 &gic 0 0 GIC_SPI 309 IRQ_TYPE_LEVEL_HIGH>,
+> >                                         <0 0 0 2 &gic 0 0 GIC_SPI 308 IRQ_TYPE_LEVEL_HIGH>,
+> >                                         <0 0 0 3 &gic 0 0 GIC_SPI 307 IRQ_TYPE_LEVEL_HIGH>,
+> >                                         <0 0 0 4 &gic 0 0 GIC_SPI 306 IRQ_TYPE_LEVEL_HIGH>;
+> >                         fsl,max-link-speed = <3>;
+> >                         clocks = <&scmi_clk IMX95_CLK_HSIO>,
+> >                                  <&scmi_clk IMX95_CLK_HSIOPLL>,
+> >                                  <&scmi_clk IMX95_CLK_HSIOPLL_VCO>,
+> >                                  <&scmi_clk IMX95_CLK_HSIOPCIEAUX>;
+> >                         clock-names = "pcie", "pcie_bus", "pcie_phy", "pcie_aux";
+> >                         assigned-clocks =<&scmi_clk IMX95_CLK_HSIOPLL_VCO>,
+> >                                          <&scmi_clk IMX95_CLK_HSIOPLL>,
+> >                                          <&scmi_clk IMX95_CLK_HSIOPCIEAUX>;
+> >                         assigned-clock-rates = <3600000000>, <100000000>, <10000000>;
+> >                         assigned-clock-parents = <0>, <0>,
+> >                                                  <&scmi_clk IMX95_CLK_SYSPLL1_PFD1_DIV2>;
+> >                         power-domains = <&scmi_devpd IMX95_PD_HSIO_TOP>;
+> >                         /* 0x30~0x37 stream id for pci0 */
+> >                         /*
+> >                          * iommu-map = <0x000 &apps_smmu 0x30 0x1>,
+> >                          * <0x100 &apps_smmu 0x31 0x1>;
+> >                          */
+> >                         status = "disabled";
+> >                 };
+> > 
+> > pcie1: pcie-ep@4c380000 {
+> >                         compatible = "fsl,imx95-pcie-ep";
+> >                         reg = <0 0x4c380000 0 0x20000>,
+> >                               <0 0x4c3e0000 0 0x1000>,
+> >                               <0 0x4c3a0000 0 0x1000>,
+> >                               <0 0x4c3c0000 0 0x10000>,
+> >                               <0 0x4c3f0000 0 0x10000>,
+> >                               <0xa 0 1 0>;
+> >                         reg-names = "dbi", "atu", "dbi2", "app", "dma", "addr_space";
+> >                         interrupts = <GIC_SPI 317 IRQ_TYPE_LEVEL_HIGH>;
+> >                         interrupt-names = "dma";
+> >                         fsl,max-link-speed = <3>;
+> >                         clocks = <&scmi_clk IMX95_CLK_HSIO>,
+> >                                  <&scmi_clk IMX95_CLK_HSIOPLL>,
+> >                                  <&scmi_clk IMX95_CLK_HSIOPLL_VCO>,
+> >                                  <&scmi_clk IMX95_CLK_HSIOPCIEAUX>;
+> >                         clock-names = "pcie", "pcie_bus", "pcie_phy", "pcie_aux";
+> >                         assigned-clocks =<&scmi_clk IMX95_CLK_HSIOPLL_VCO>,
+> >                                          <&scmi_clk IMX95_CLK_HSIOPLL>,
+> >                                          <&scmi_clk IMX95_CLK_HSIOPCIEAUX>;
+> >                         assigned-clock-rates = <3600000000>, <100000000>, <10000000>;
+> >                         assigned-clock-parents = <0>, <0>,
+> >                                                  <&scmi_clk IMX95_CLK_SYSPLL1_PFD1_DIV2>;
+> >                         power-domains = <&scmi_devpd IMX95_PD_HSIO_TOP>;
+> >                         status = "disabled";
+> >                 };
+> > 
+> > Frank Li (15):
+> >   PCI: imx6: Simplify clock handling by using clk_bulk*() function
+> >   PCI: imx6: Simplify phy handling by using IMX6_PCIE_FLAG_HAS_PHYDRV
+> >   PCI: imx6: Simplify reset handling by using by using
+> >     *_FLAG_HAS_*_RESET
+> >   dt-bindings: imx6q-pcie: Add linux,pci-domain as required for iMX8MQ
+> >   PCI: imx6: Using "linux,pci-domain" as slot ID
+> >   PCI: imx6: Simplify ltssm_enable() by using ltssm_off and ltssm_mask
+> >   PCI: imx6: Simplify configure_type() by using mode_off and mode_mask
+> >   PCI: imx6: Simplify switch-case logic by involve init_phy callback
+> >   dt-bindings: imx6q-pcie: Clean up irrationality clocks check
+> >   dt-bindings: imx6q-pcie: Restruct reg and reg-name
+> >   PCI: imx6: Add iMX95 PCIe Root Complex support
+> >   PCI: imx6: Clean up get addr_space code
+> >   PCI: imx6: Add epc_features in imx6_pcie_drvdata
+> >   dt-bindings: imx6q-pcie: Add iMX95 pcie endpoint compatible string
+> >   PCI: imx6: Add iMX95 Endpoint (EP) support
+> > 
+> > Richard Zhu (1):
+> >   dt-bindings: imx6q-pcie: Add imx95 pcie compatible string
+> > 
+> >  .../bindings/pci/fsl,imx6q-pcie-common.yaml   |  28 +-
+> >  .../bindings/pci/fsl,imx6q-pcie-ep.yaml       |  57 +-
+> >  .../bindings/pci/fsl,imx6q-pcie.yaml          |  49 +-
+> >  drivers/pci/controller/dwc/pci-imx6.c         | 640 ++++++++++--------
+> >  4 files changed, 462 insertions(+), 312 deletions(-)
+> > 
+> > -- 
+> > 2.34.1
+> > 
 
