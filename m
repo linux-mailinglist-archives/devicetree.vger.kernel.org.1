@@ -1,119 +1,147 @@
-Return-Path: <devicetree+bounces-37570-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-37563-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 584C88456C1
-	for <lists+devicetree@lfdr.de>; Thu,  1 Feb 2024 13:03:26 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1B0AF845663
+	for <lists+devicetree@lfdr.de>; Thu,  1 Feb 2024 12:40:54 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id E3F9A1F28E7B
-	for <lists+devicetree@lfdr.de>; Thu,  1 Feb 2024 12:03:25 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id CC694288AF3
+	for <lists+devicetree@lfdr.de>; Thu,  1 Feb 2024 11:40:52 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id AA07C15D5C2;
-	Thu,  1 Feb 2024 12:03:16 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C2A9215CD74;
+	Thu,  1 Feb 2024 11:40:48 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="embjLUcr"
+	dkim=pass (2048-bit key) header.d=public-files.de header.i=frank-w@public-files.de header.b="Gb/4rflU"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.11])
+Received: from mout.gmx.net (mout.gmx.net [212.227.17.20])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2E1AD4D9E7;
-	Thu,  1 Feb 2024 12:03:14 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=192.198.163.11
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 57C7A15B99C;
+	Thu,  1 Feb 2024 11:40:45 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=212.227.17.20
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1706788996; cv=none; b=jiWiYuN7tNEbhIOFWkCMHYhnNq02Q6c5eaE389ZINv6IYyAnXu2aisTq9Qp5cRuXT2Ip6wj5nhjtWMBbSd1OHdcHw0TQuZqSQlHQha+9y1ydnswxtzEYF+GoAe2kKLWuhkXCGl2nxkXyGUAZjHFghmEh0yhYueCdzuEGJ1zyF+w=
+	t=1706787648; cv=none; b=VVXqwWIIFR7xJNQKdR8UYruPgKn+K1JvrZOO+WMvLdtITChwjlhXNsxquPJ3hBrqa7cmZ1S/l8dzbzoNcGju5NmI6RG5LgHHTp25DRBtJH4iHRKN8krK344uddQQGaV2CvpLq1ZY2IGpSqeprAtDGWWXcBorMNvPQlb2KcWwBi8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1706788996; c=relaxed/simple;
-	bh=Dy6YfzeYz5+kG2DcPp827T0bxKzrA+4hsfyIKLG5kQc=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=mUKmIuaPb3WJb+qOw0vkqWD7QxSNys+UdvTlohsD0/agxtJHJ9M7Yqc66lKLzCUQX7ccyIUqJ0ihrg+qbWtLWHMUsy/AlgeCNQ1avj9n8mRANezWujPeUViZDFYntatxUstmakTpWDl4PRQdjmgGZGZ3MGWS0LGp0mU4GDtVL3s=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com; spf=none smtp.mailfrom=linux.intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=embjLUcr; arc=none smtp.client-ip=192.198.163.11
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com
-Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=linux.intel.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1706788995; x=1738324995;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=Dy6YfzeYz5+kG2DcPp827T0bxKzrA+4hsfyIKLG5kQc=;
-  b=embjLUcryl49odafBApUcwGPLIaToB2YGtPS7Gt+w60Wer8llTW4Wpx7
-   M+Ui2U5CWY833/5L8WkdiAOT2sYZYs56Y+mNfLAi3MAiEgxCP8WWyNQs9
-   Po9HBnOTHvLELJAcWgPNMUK/Pa/ic3ygggBmqMr2HbKgi1QvR0sq8IL/n
-   d0HeCZ/kFfj8aw3nb2fva7pMNuNeZ74ya/N3SpP7g6xH4EG3Sb/fDgpOf
-   4lr7Gh4YpLuXuzwfvny0EA74F0KjBvITtrBf6GOgKsrU1zpI7J7KgGatN
-   Y46na22lhQEbLCYGrN6ooXqhZMxr0OhqUgGMazBgwYjw0cPays1R51aDQ
-   w==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10969"; a="10531536"
-X-IronPort-AV: E=Sophos;i="6.05,234,1701158400"; 
-   d="scan'208";a="10531536"
-Received: from orsmga003.jf.intel.com ([10.7.209.27])
-  by fmvoesa105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 01 Feb 2024 04:03:14 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10969"; a="738410569"
-X-IronPort-AV: E=Sophos;i="6.05,234,1701158400"; 
-   d="scan'208";a="738410569"
-Received: from smile.fi.intel.com ([10.237.72.54])
-  by orsmga003.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 01 Feb 2024 04:03:08 -0800
-Received: from andy by smile.fi.intel.com with local (Exim 4.97)
-	(envelope-from <andriy.shevchenko@linux.intel.com>)
-	id 1rVVOb-00000000ots-0my3;
-	Thu, 01 Feb 2024 13:38:17 +0200
-Date: Thu, 1 Feb 2024 13:38:16 +0200
-From: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
-To: Mike Looijmans <mike.looijmans@topic.nl>
-Cc: devicetree@vger.kernel.org, linux-iio@vger.kernel.org,
-	Arnd Bergmann <arnd@arndb.de>, Haibo Chen <haibo.chen@nxp.com>,
-	Hugo Villeneuve <hvilleneuve@dimonoff.com>,
-	Jonathan Cameron <jic23@kernel.org>,
-	Lars-Peter Clausen <lars@metafoo.de>, Lee Jones <lee@kernel.org>,
-	Leonard =?iso-8859-1?Q?G=F6hrs?= <l.goehrs@pengutronix.de>,
-	Liam Beguin <liambeguin@gmail.com>,
-	Liam Girdwood <lgirdwood@gmail.com>,
-	Maksim Kiselev <bigunclemax@gmail.com>,
-	Marcus Folkesson <marcus.folkesson@gmail.com>,
-	Marius Cristea <marius.cristea@microchip.com>,
-	Mark Brown <broonie@kernel.org>,
-	Niklas Schnelle <schnelle@linux.ibm.com>,
-	Okan Sahin <okan.sahin@analog.com>, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH 2/2] iio: adc: ti-ads1298: Add driver
-Message-ID: <ZbuCqEWqpDadeF_v@smile.fi.intel.com>
-References: <20231213094722.31547-1-mike.looijmans@topic.nl>
- <1b153bce-a66a-45ee-a5c6-963ea6fb1c82.949ef384-8293-46b8-903f-40a477c056ae.27993507-256d-4b05-88df-c8643e7f1a68@emailsignatures365.codetwo.com>
- <20231213094722.31547-2-mike.looijmans@topic.nl>
- <ZXnF72wJCAeYWA8X@smile.fi.intel.com>
- <406d445a-3ce3-4253-8966-de2dac6f7c23@topic.nl>
+	s=arc-20240116; t=1706787648; c=relaxed/simple;
+	bh=0ml7viK80JH0Jva8+KAcBgTkHRB2cpSTmxKESK/H3VU=;
+	h=Date:From:To:CC:Subject:In-Reply-To:References:Message-ID:
+	 MIME-Version:Content-Type; b=trAiznzWYuaGF1BRolSievI5f+Iaxjk2OKXl/8oAEhNlcBOj4ZSqmjFY4b4MPZFRtEIcfydJOWAJ7IFKAoiP2ayT+3X6sX8d50H9kt3z1N6f5Eh1yyvTjvfBGUQcOqf1Ten2hbnM38APx92xQ82FlswE/tetK9VE3sCq4uD0YVA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=public-files.de; spf=pass smtp.mailfrom=public-files.de; dkim=pass (2048-bit key) header.d=public-files.de header.i=frank-w@public-files.de header.b=Gb/4rflU; arc=none smtp.client-ip=212.227.17.20
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=public-files.de
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=public-files.de
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=public-files.de;
+	s=s31663417; t=1706787620; x=1707392420; i=frank-w@public-files.de;
+	bh=0ml7viK80JH0Jva8+KAcBgTkHRB2cpSTmxKESK/H3VU=;
+	h=X-UI-Sender-Class:Date:From:To:CC:Subject:Reply-to:In-Reply-To:
+	 References;
+	b=Gb/4rflUUnnLFGxlwx6g6lBB1v1L7/XE05d5gFvf5JXZD7yB752i0+4ejoMT8y30
+	 69ogzd1P38x2+Rc8ve5u6nMotZgucM57eRVVHJCa0cLPtKIce0/ROZlfNILk3zCRD
+	 OylAaGWJmzLcuRn2ZvwqsAmNkOQYQAIxObILRNe7juejwjKGanUqP4EK3dLIM2bzF
+	 YPWSx0CGQ+6GQODxfYQlaqsuK+b3u2nOoBQhII6+pJaRXciasb3c89dIDIakNUWDn
+	 XsEEZoitD5ZTN+76CAjLk/N/5TPARvNcZF/ipWTXmGWLcaWK/yQ4/aXCIzDyQhY/8
+	 c1tWUYoABVhf4CR8/g==
+X-UI-Sender-Class: 724b4f7f-cbec-4199-ad4e-598c01a50d3a
+Received: from [127.0.0.1] ([217.61.148.248]) by mail.gmx.net (mrgmx105
+ [212.227.17.168]) with ESMTPSA (Nemesis) id 1Mw9UK-1rEwXw1fXg-00s97s; Thu, 01
+ Feb 2024 12:40:20 +0100
+Date: Thu, 01 Feb 2024 12:40:17 +0100
+From: Frank Wunderlich <frank-w@public-files.de>
+To: Conor Dooley <conor@kernel.org>,
+ AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
+CC: Frank Wunderlich <linux@fw-web.de>,
+ Michael Turquette <mturquette@baylibre.com>, Stephen Boyd <sboyd@kernel.org>,
+ Matthias Brugger <matthias.bgg@gmail.com>,
+ Philipp Zabel <p.zabel@pengutronix.de>, Rob Herring <robh+dt@kernel.org>,
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+ Conor Dooley <conor+dt@kernel.org>, Sam Shih <sam.shih@mediatek.com>,
+ Daniel Golle <daniel@makrotopia.org>, linux-clk@vger.kernel.org,
+ linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ devicetree@vger.kernel.org, linux-mediatek@lists.infradead.org
+Subject: =?US-ASCII?Q?Re=3A_Aw=3A_Re=3A_=5BPATCH_v3_1/2=5D_dt-bindings?= =?US-ASCII?Q?=3A_reset=3A_mediatek=3A_add_MT7988_reset_IDs?=
+User-Agent: K-9 Mail for Android
+Reply-to: frank-w@public-files.de
+In-Reply-To: <20240119-dupe-obligate-707b3a01b356@spud>
+References: <20240117184111.62371-1-linux@fw-web.de> <20240117184111.62371-2-linux@fw-web.de> <20240118-calcium-krypton-3c787b8d1912@spud> <trinity-afc4f48e-65e1-46ee-a78b-1d670cc0f310-1705615200900@3c-app-gmx-bap21> <43f946cc-07e1-48c5-9b31-40fc9bc93037@collabora.com> <20240119-dupe-obligate-707b3a01b356@spud>
+Message-ID: <0EA6A126-DDC0-4E9F-BEBC-FD018B08CA84@public-files.de>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <406d445a-3ce3-4253-8966-de2dac6f7c23@topic.nl>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+Content-Type: text/plain;
+ charset=utf-8
+Content-Transfer-Encoding: quoted-printable
+X-Provags-ID: V03:K1:y1z6Q7jXj+pqO1HZuYlxzuYbo5XGWT2nhBglJsaS3D/jXYPHO/E
+ fqQckoUFrqWOYtFnR0avV/83ZiKtvFzTv0jNqDkQ4JQkSYb1R4TamPDpKXNjN/ArOiiFzUw
+ zz54ZZENgvZguVYhLrfnI8TdVnyLp9SGIgiAOMryKrfSKWWH0/gDELEWzHvIOTEo1pVI+ZW
+ WyQJhWE01UcOjxOi5rADA==
+X-Spam-Flag: NO
+UI-OutboundReport: notjunk:1;M01:P0:pWne6h6kXCc=;pZaGvfKj0LTWoHMsy0FDDU4zrVI
+ CewLpa8CIG3a3PXERoJlwqw5wE5gAL0HhZsj4pEcxrPQvzVCVfQSNrL5EPhEoFZmJRbcplvbO
+ Cr4RQGG+PggquRYr3QnqvRhEEVsNfJ8blN83TiVomrrbUE3tDo4rfMOVLX+J9/QPtGxjP8KRG
+ X6sTL5tZgtMjmONbS3Tfusw12GL9d9uwaIj7kiWolOyx8dOozA4MGW10/cc0NECcImpwo1yrI
+ TgksSBZihpqet5jMBEa9imsZUFvGFEh3md2Bitg5AOQw0pr8AQ6dMlxasEC+ADew9ZTSSZmck
+ IwZGJCEkg5gK6DcwhV8JS/fnCNn5Pa6YF5Qa6Tnpa/VMzZVvVUY/PaxM/mOuL79OacrFDYkI3
+ co5g4gco8F/LJ4AuBIwUTlXWrWTL0Nsv0IHVXnOlvvQUP124TL6mMPoENzEu5oS+kKiW1kdZc
+ 4Dt4u/J3rW4/3ZGBLUeUF07OwXya0By3rfTCafR6UDBECjR7bLTD86S55bn9DrqmTblL/GjQY
+ a68XW1M7h0d6ifO/98UR2YXp2eqP6G9RJu3nV155M86fPK4vA/DZfn5EopIz653pDnT/QYm/m
+ nWFeupFQLb9JJuaH/GIhFjVJvpJhop7gU1Tc2vIt6S5iiAB6LZ6sSbJXw5ye/z8CeC/8XHC4s
+ yrDK6lXHTNF1F27cFzLy+g9fvkKb9dDCRHaWSL9SsO68hLAFJQCy2zQ3uAZP9GT9UuyI74oPU
+ X97C3XhX/ZKHMTvnfzMGtaQbu59TuCB5C/Rm2QQxZyXBZMuq+QrjQetUoOxTgU2GFJx3wSGbN
+ 8bo840wwR7QOQi3H0YvPAUJzHxtS6gyeYT+fooHIZAwYw=
 
-On Wed, Jan 31, 2024 at 05:10:08PM +0100, Mike Looijmans wrote:
-> On 13-12-2023 15:55, Andy Shevchenko wrote:
-> > On Wed, Dec 13, 2023 at 10:47:22AM +0100, Mike Looijmans wrote:
+Am 19=2E Januar 2024 18:04:36 MEZ schrieb Conor Dooley <conor@kernel=2Eorg>=
+:
+>On Fri, Jan 19, 2024 at 10:28:30AM +0100, AngeloGioacchino Del Regno wrot=
+e:
+>>
+>> The resets are organized on a per-reset-controller basis, so, the ETHWA=
+RP
+>> reset controller's first reset is RST_SWITCH, the second one is RST_som=
+ething_else,
+>> etc=2E while the first reset of the INFRA reset controller is PEXTP_MAC=
+_SWRST=2E
+>>=20
+>> That's why ETHWARP has a reset index 0 and INFRA also starts at 0=2E
+>> I think that the numbering is good as it is, and having one driver star=
+t at index 5
+>> while the other starts at index 12 would only overcomplicate registerin=
+g the resets
+>> in each driver, or waste bytes by making unnecessarily large arrays, fo=
+r (imo) no
+>> good reason=2E
+>>=20
+>> This is one header, but it should "in theory" be more than one=2E=2E=2E=
+ so we would have
+>> one for each hardware block - but that'd make the reset directory over-=
+crowded, as
+>> other MediaTek SoCs have got even more resets in even more hardware blo=
+cks than the
+>> MT7988=2E That'd be something like ~4 reset headers per SoC (and will i=
+ncrease with
+>> newer ones)=2E=2E=2E
+>> =2E=2E=2Eand this is why we have one binding header for resets=2E
+>
+>That's okay=2E The commit message leaves me, who clearly isn't a mediatek
+>guy, with no information as to why these are not one contiguous set=2E
+>IMO being for different reset controllers entirely is fine=2E
+>
+>> On the topic of leaving space to allow grouping RST0/RST1: -> No=2E <-
+>> The indices have to start from zero and have to be sequential, with no =
+holes=2E
+>
+>Agreed=2E
 
-First of all, please remove unneeded context, don't make me waste time on doing
-that for you!
+Hi,
 
-...
+Just a friendly reminder=2E
 
-> > 		*val = sign_extend32(get_unaligned_be24(priv->rx_buffer + chan->address),
-> > 				     23);
-> 
-> Doesn't fit, first line is 83 characters by my count...
+As far as i understood, Patches are fine so far and do not need any rework=
+,right?
 
-Is it a problem?
-
-
--- 
-With Best Regards,
-Andy Shevchenko
-
-
+But i have not seen them picked up yet in linux-next=2E
+regards Frank
 
