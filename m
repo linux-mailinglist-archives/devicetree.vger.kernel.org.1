@@ -1,181 +1,158 @@
-Return-Path: <devicetree+bounces-37745-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-37746-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 55572846183
-	for <lists+devicetree@lfdr.de>; Thu,  1 Feb 2024 20:54:56 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 697458461A2
+	for <lists+devicetree@lfdr.de>; Thu,  1 Feb 2024 20:59:41 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id D4B9B1F27041
-	for <lists+devicetree@lfdr.de>; Thu,  1 Feb 2024 19:54:55 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id C55D128404B
+	for <lists+devicetree@lfdr.de>; Thu,  1 Feb 2024 19:59:39 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 950258563D;
-	Thu,  1 Feb 2024 19:54:19 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id ED4EE85644;
+	Thu,  1 Feb 2024 19:59:27 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="TdS04626"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="SSQmiX8k"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f42.google.com (mail-wm1-f42.google.com [209.85.128.42])
+Received: from mail-ej1-f41.google.com (mail-ej1-f41.google.com [209.85.218.41])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 785B185639;
-	Thu,  1 Feb 2024 19:54:16 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.42
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 201F18563B
+	for <devicetree@vger.kernel.org>; Thu,  1 Feb 2024 19:59:25 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.41
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1706817259; cv=none; b=kdfOPrxivdJoLlF5wStSFJ/eGLHSPIRTogynUCwmveLP9IFa+bEZc/ZcEUsS8/3DXIfdd04Q0+4PY2zhy+oGG3XzWTqRp0kL0zZnfe2rSw4CHeahcbWvrVHBb7n0BoMq9rVOqE174K7Ab4kqZHOt805HFT09ZHg/EL8seSVZQeg=
+	t=1706817567; cv=none; b=CHEndw6PxO/CQuZAqXodNWm7MdbiwvetVkf/3N2RIVga1XYExo4v8axkq6pskHw4rPHEjWRw07HXSV916HISp06Yc9D3tDbEnhQz7c54QBpUR+6zjos1Epfacb4TJhX8h+YNJsD24qeobdWhzz7rErLDi2c6RNt8M/zYqq4Qodg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1706817259; c=relaxed/simple;
-	bh=igWepZJuJ7/NxlfTBcvat+93tyRHyJ7CtS8SToYFt88=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=SuT0G204YM4NdlbyLqHY5FpSibrhaPskX0/wW3nih7h60+Qp8ca1iCQH80cEHHz+ACLn47RvbYf/MULKhnNTbRXOgsPZGsub5k7OsJSSLMWSBNee9L5EXZNJT3t86fC0S3gbGYkf+07qEwoZxtKHkLI68tjhrrvxwnsuEtpMHyA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=TdS04626; arc=none smtp.client-ip=209.85.128.42
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-wm1-f42.google.com with SMTP id 5b1f17b1804b1-40fb3b5893eso11361575e9.0;
-        Thu, 01 Feb 2024 11:54:16 -0800 (PST)
+	s=arc-20240116; t=1706817567; c=relaxed/simple;
+	bh=yemCSlTLsk8OwQPnRNYD/2IQjQ+HSzqIQZuEziEQu1k=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=NrmDFWaxYMYSnvwVjcwl6IXY7cKUrHeh9gSixP2UU9R6xXSulQT/jXhXjYssk6ozHlMv2fHR8p1X9Vbv/AeHtiT3dSQ6GoAy3i7cZ1dFPtnehg0tIsVEXQ/ikZvHZKEXu6EljzROfj/ChPEC7W6CrIuMxSNbKUemEuEeiQdf5PU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=SSQmiX8k; arc=none smtp.client-ip=209.85.218.41
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-ej1-f41.google.com with SMTP id a640c23a62f3a-a3510d79ae9so176180766b.0
+        for <devicetree@vger.kernel.org>; Thu, 01 Feb 2024 11:59:25 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1706817255; x=1707422055; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=Fw0ii54g50YM0TTuIh98HIpGP8lHOO7kLQ/jqdmdMzg=;
-        b=TdS04626BAnPz7e+SzFyfM0zwf4n+7EOtW9jQoMtN+hXw+GMYH6yEVmVq1s3zJmFni
-         +PdA1Is6XgSL2FW8hvvMmcETWF+q70OmCmSjaxvwWKLmNkpx0g3keFh+64BFQAaIW+Qv
-         Q1nY7L+bIxZyVXcTCOvYsiUfC90I4lwDn+w/d8QmSBJpalBGOXtlD3WuNplg/+I5mVcB
-         gWT6VINX/TW+YAXauYjMg/vMtNF7jZ22UdzKNeBi8wh0x1RQxS2rgcc7levF24Zlt//X
-         s65l82XLTmkE9bZgzFXHHdI+jcXv/SWJFwPNACi0dD+NYPFCJmeBK3rNFMutIKclqSfd
-         a6iw==
+        d=linaro.org; s=google; t=1706817564; x=1707422364; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
+         :to:content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=8dOp1JQgASRukzALnfQhyhwz92RPkxu1KRtWoDV2mjs=;
+        b=SSQmiX8kBf9DWucTG4j0Ze/me28qTf5/CaFfxjGN6o/DcnbJDM7vdkwh8PeXrxc1FR
+         FDyaPMFsnntmFddmBrK4qdGrmJodgEty0osjvSMe6ySsQ2ulHvyQ3o7oDL9m+6y7KWYe
+         K5az1z9JTQytWcE8SeUemXRGmPseBavhhkFuIesnWu9h0V5gMUyCrDcXw+gCxcJbBp1o
+         LmMyverT/sFeZbKqxxfRRzMFC5MJcG1DRlRRhKBtQe7bJ4+MrPZGyRBC/Wf7jXdd9xrs
+         sFzlllGWVLs+9BlEJgQeid864iX4zXHbYihYXKfo4D1BeZcYxwDuvCphgZ3GDSR463Ab
+         sgJg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1706817255; x=1707422055;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=Fw0ii54g50YM0TTuIh98HIpGP8lHOO7kLQ/jqdmdMzg=;
-        b=shfY+4VOnuCZJGkcAegkLC6CtYeO/cGGd5MWA58tFKu8KxBbNJYbftcGOypeBWtq29
-         +quTcQy1Z1bstManfu/5FBaiB1lfxYpj0XeH8OyIAyhji9j0yfkG4jA/78zqB8KQeG7z
-         VFPfK4Nh5/39Cpvjergw6sCEwdIBFO2TPz9SZCCG7WZ+bp1fGlonwdMJy2nN5a/dMzFT
-         uSlX8dmKy+yAKg0XLtDjnYhR5U/08QDfbQn62NCO3vrMomB0oB4W6lkTlAmMcYisCRSX
-         h6sa5WN+UvL1Qu1hBgfxioOTXzqgP+JQAIM2Pp+48mV03Wqlf6yb/ySRMpPT3OLW5mUa
-         YJJw==
-X-Gm-Message-State: AOJu0Yxbc1bI041AhZP0oDt1b31dsWtvpEaofVSFeKEvI4lb5KsgHrlm
-	h7c4NFj6b7rluX39gU+GE4PhzW651n5pj23NWvlb+yivjffPj5kC
-X-Google-Smtp-Source: AGHT+IEnh5hwCXXTj+jcR1g0I5bM3FN4GQ3RUZkTBdSNXXRnJnKzpnLqx2ztJH2PVqejHm+eHD5rlg==
-X-Received: by 2002:adf:f64d:0:b0:33a:ed59:c13f with SMTP id x13-20020adff64d000000b0033aed59c13fmr2215794wrp.53.1706817254477;
-        Thu, 01 Feb 2024 11:54:14 -0800 (PST)
-X-Forwarded-Encrypted: i=0; AJvYcCUkIqDqfPVesemdoaqG1j9jyMLDsyXZci7qdN4rwuZyTnBZy4P9GdwzPQDb4Y97RzDb7Nt0/KTkiYHc51OSLbBILSGHypTjb1PDb72ZoN4kaiS2TT38IIny9hPv2qk7pbyB11bBj5eswJ+oqt6ESrIo8PmhujbvmHrZ92DidVXSYCIjxN1acjdlenKmkXnSfu++c+dj/Av8asn0HmbyqnJOHJwIvOONyMQz7F09oEWk0jsg4Qs3a3TqQFxA5SUAaxlPo2IJXN4OUMn6+DxZIgdQzBM6KWGu35l4Soq52r7+Zd0QERbzokhqf2Tb42N3SFmMLFs+a7yMc+7eTw7Al8QKIOgIa0u0jl1oDEI1AB6rPSle+MxY1/QtbLL8
-Received: from jernej-laptop.localnet (82-149-13-182.dynamic.telemach.net. [82.149.13.182])
-        by smtp.gmail.com with ESMTPSA id v12-20020a5d4b0c000000b0033afce63fd0sm211781wrq.53.2024.02.01.11.54.13
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 01 Feb 2024 11:54:14 -0800 (PST)
-From: Jernej =?utf-8?B?xaBrcmFiZWM=?= <jernej.skrabec@gmail.com>
-To: Aren <aren@peacevolution.org>
-Cc: linux-kernel@vger.kernel.org, Miles Alan <m@milesalan.com>,
- Ondrej Jirman <megi@xff.cz>, Chen-Yu Tsai <wens@csie.org>,
- Conor Dooley <conor+dt@kernel.org>,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Rob Herring <robh+dt@kernel.org>, Samuel Holland <samuel@sholland.org>,
- devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- linux-sunxi@lists.linux.dev
-Subject:
- Re: [PATCH 2/4] arm64: dts: sun50i-a64-pinephone: Retain leds state in
- suspend
-Date: Thu, 01 Feb 2024 20:54:12 +0100
-Message-ID: <10409647.nUPlyArG6x@jernej-laptop>
-In-Reply-To: <sbcg74hktwv5x7hookeb4su27xut7swarl3d5mbs3i5cqxtq4g@4evugu43ctiv>
-References:
- <20240128204740.2355092-1-aren@peacevolution.org>
- <4892315.31r3eYUQgx@jernej-laptop>
- <sbcg74hktwv5x7hookeb4su27xut7swarl3d5mbs3i5cqxtq4g@4evugu43ctiv>
+        d=1e100.net; s=20230601; t=1706817564; x=1707422364;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
+         :to:content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=8dOp1JQgASRukzALnfQhyhwz92RPkxu1KRtWoDV2mjs=;
+        b=D1Rtgfq9BoWd0u8VBJb8MDUQHbXMRJI1c4qrErZHr/wCRwCZ8LiGqeL0+IXwdG/PUz
+         WA698pyREL5kdglqHL2BScijqRMP1Uhj53czc7QSMRRNd3RJ84xbMIE/WghfIbLGXdUA
+         N2T4eRe3rtdXSa8XtfjKqyZASskkLSv9zIsIUHT97+klFrvghKgnDJPPl/kYK3EYIu+A
+         s4Z65lJ7XhHhSKUggDPhLS36DG1yYb3NrQQCRf8FMwyuWGyL2tozIK+4qn2cVHxKIjQ2
+         dpFRNbVSMoZw4h7RCIzbZg2w/+V1j5bMJkryksRMVTHLswqQQtr2YxXdkz77OHPQCIfe
+         yzlQ==
+X-Forwarded-Encrypted: i=0; AJvYcCWE5QD1vfpId9MCgujF87y3yMP+OIRsQ1ru2zi7XAlc03PuYri/U8WrtwdCGAMwM/N01ODQYtxIyfVF7Na/tTXgcejxlVgOlscsAQ==
+X-Gm-Message-State: AOJu0YzpSgCyM+8qxiOol2utbA3OQWO8SGgSEtwIg7zFal4wqGMFBsMv
+	uyP67/fy2NgoRol4LMrxQ0/jASNwJ03A+RXJh64jTeU09KD8iwjDFsJl6NbvtnU=
+X-Google-Smtp-Source: AGHT+IEssAWZFv+S4cGJLFyN6xFk8Ti/YY5fL4gEFTtsux6fgSXjeK3MbRw8YIb89B8Xy+Zy48nnzg==
+X-Received: by 2002:a17:906:807:b0:a31:88d4:9a4c with SMTP id e7-20020a170906080700b00a3188d49a4cmr3861366ejd.22.1706817564249;
+        Thu, 01 Feb 2024 11:59:24 -0800 (PST)
+X-Forwarded-Encrypted: i=0; AJvYcCWiRa5+Ww1MOwD7IJi1uBnxI6qvvRoZicjEsvFAld+PkE4XFrkA3zaW31nZErxltJRiB/Nz7q5btw80YWViRUMLbzGtaZnRYaXynuJ1VriWtvNta2bkHJo92vJHCLioenqdbC182yQcK8GA+01zgxHHLzzcICpKdPjxyU4bSENpH16tHHHQu1JGqKkZCDs3wGAxT6sr0XzfAWYbou4i/B6fIeS+113vT9KjjEFBegXlOpPljCA/lEevmMyh1SuPKnYfLwZVT8vfyYub
+Received: from [192.168.159.104] (178235179129.dynamic-4-waw-k-1-3-0.vectranet.pl. [178.235.179.129])
+        by smtp.gmail.com with ESMTPSA id s14-20020a17090699ce00b00a36c6b0485asm108608ejn.103.2024.02.01.11.59.23
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 01 Feb 2024 11:59:23 -0800 (PST)
+Message-ID: <0cf69024-a3e6-4be2-89ce-017ae521721d@linaro.org>
+Date: Thu, 1 Feb 2024 20:59:22 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
-Content-Type: text/plain; charset="UTF-8"
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH] arm64: dts: qcom: sm8650: Use GIC-ITS for PCIe0 and PCIe1
+Content-Language: en-US
+To: Neil Armstrong <neil.armstrong@linaro.org>,
+ Bjorn Andersson <andersson@kernel.org>, Rob Herring <robh+dt@kernel.org>,
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+ Conor Dooley <conor+dt@kernel.org>
+Cc: linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org
+References: <20240125-topic-sm8650-upstream-pcie-its-v1-1-cb506deeb43e@linaro.org>
+From: Konrad Dybcio <konrad.dybcio@linaro.org>
+Autocrypt: addr=konrad.dybcio@linaro.org; keydata=
+ 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
+ izWDgYvmBE8=
+In-Reply-To: <20240125-topic-sm8650-upstream-pcie-its-v1-1-cb506deeb43e@linaro.org>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
-Dne =C4=8Detrtek, 01. februar 2024 ob 02:36:46 CET je Aren napisal(a):
-> On Tue, Jan 30, 2024 at 08:06:24PM +0100, Jernej =C5=A0krabec wrote:
-> > Dne nedelja, 28. januar 2024 ob 21:45:08 CET je Aren Moynihan napisal(a=
-):
-> > > From: Miles Alan <m@milesalan.com>
-> > >=20
-> > > Allows user to set a led before entering suspend to know that
-> > > the phone is still on (or could be used for notifications etc.)
-> > >=20
-> > > Signed-off-by: Miles Alan <m@milesalan.com>
-> > > Signed-off-by: Ondrej Jirman <megi@xff.cz>
-> > > Signed-off-by: Aren Moynihan <aren@peacevolution.org>
-> >=20
-> > Where is patch 1 and possibly cover letter? Please resend with all patc=
-hes.
->=20
-> Oops, sorry about that, I'm still getting used to get_maintainer.pl.
-> I'll resend this properly when I have time this weekend, until then the
-> patch you missed is available at
-> https://lore.kernel.org/lkml/20240128204740.2355092-1-aren@peacevolution.=
-org/
+On 25.01.2024 17:55, Neil Armstrong wrote:
+> Both PCIe0 and PCIe1 controllers are capable of signalling the MSIs
+> received from endpoint devices to the CPU using GIC-ITS MSI controller.
+> Add support for it.
+> 
+> The GIC-ITS MSI implementation provides an advantage over internal MSI
+> implementation using Locality-specific Peripheral Interrupts (LPI) that
+> would allow MSIs to be targeted for each CPU core.
+> 
+> Like SM8450 & SM8550, the IDs are swapped, but works fine on PCIe0 and PCIe1.
+> 
+> WiFi PCIe Device on SM8650-QRD using GIC-ITS:
+> 159:          0          0          0          0          0          0          0          0   ITS-MSI   0 Edge      PCIe PME, aerdrv
+> 167:          0          4          0          0          0          0          0          0   ITS-MSI 524288 Edge      bhi
+> 168:          0          0          4          0          0          0          0          0   ITS-MSI 524289 Edge      mhi
+> 169:          0          0          0         34          0          0          0          0   ITS-MSI 524290 Edge      mhi
+> 170:          0          0          0          0          3          0          0          0   ITS-MSI 524291 Edge      ce0
+> 171:          0          0          0          0          0          2          0          0   ITS-MSI 524292 Edge      ce1
+> 172:          0          0          0          0          0          0        806          0   ITS-MSI 524293 Edge      ce2
+> 173:          0          0          0          0          0          0          0         76   ITS-MSI 524294 Edge      ce3
+> 174:          0          0          0          0          0          0          0          0   ITS-MSI 524295 Edge      ce5
+> 175:          0         13          0          0          0          0          0          0   ITS-MSI 524296 Edge      DP_EXT_IRQ
+> 176:          0          0          0          0          0          0          0          0   ITS-MSI 524297 Edge      DP_EXT_IRQ
 
-When sending patch series it's customary to send all patches to all
-maintainers and mailing lists (to have a context). In case of large patch
-series, you can send only selected patches to each maintainer and mailing
-lists, but then send cover letter to all involved and explain general idea
-behind the series.
+Is it by chance that this one never fired?
 
-Best regards,
-Jernej
+(lgtm otherwise)
 
->=20
-> > However, this particular patch is:
-> > Reviewed-by: Jernej Skrabec <jernej.skrabec@gmail.com>
->=20
-> Thanks
->  - Aren
->=20
-> > Best regards,
-> > Jernej
-> >=20
-> > > ---
-> > >=20
-> > >  arch/arm64/boot/dts/allwinner/sun50i-a64-pinephone.dtsi | 3 +++
-> > >  1 file changed, 3 insertions(+)
-> > >=20
-> > > diff --git a/arch/arm64/boot/dts/allwinner/sun50i-a64-pinephone.dtsi =
-b/arch/arm64/boot/dts/allwinner/sun50i-a64-pinephone.dtsi
-> > > index 87847116ab6d..ad2476ee01e4 100644
-> > > --- a/arch/arm64/boot/dts/allwinner/sun50i-a64-pinephone.dtsi
-> > > +++ b/arch/arm64/boot/dts/allwinner/sun50i-a64-pinephone.dtsi
-> > > @@ -43,18 +43,21 @@ led-0 {
-> > >  			function =3D LED_FUNCTION_INDICATOR;
-> > >  			color =3D <LED_COLOR_ID_BLUE>;
-> > >  			gpios =3D <&pio 3 20 GPIO_ACTIVE_HIGH>; /* PD20 */
-> > > +			retain-state-suspended;
-> > >  		};
-> > > =20
-> > >  		led-1 {
-> > >  			function =3D LED_FUNCTION_INDICATOR;
-> > >  			color =3D <LED_COLOR_ID_GREEN>;
-> > >  			gpios =3D <&pio 3 18 GPIO_ACTIVE_HIGH>; /* PD18 */
-> > > +			retain-state-suspended;
-> > >  		};
-> > > =20
-> > >  		led-2 {
-> > >  			function =3D LED_FUNCTION_INDICATOR;
-> > >  			color =3D <LED_COLOR_ID_RED>;
-> > >  			gpios =3D <&pio 3 19 GPIO_ACTIVE_HIGH>; /* PD19 */
-> > > +			retain-state-suspended;
-> > >  		};
-> > >  	};
-> > > =20
-> > >=20
-> >=20
-> >=20
-> >=20
-> >=20
->=20
-
-
-
-
+Konrad
 
