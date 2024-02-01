@@ -1,159 +1,167 @@
-Return-Path: <devicetree+bounces-37558-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-37559-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id CA4248455A4
-	for <lists+devicetree@lfdr.de>; Thu,  1 Feb 2024 11:40:47 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id B4E048455B0
+	for <lists+devicetree@lfdr.de>; Thu,  1 Feb 2024 11:45:46 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id ED71C1C22BE8
-	for <lists+devicetree@lfdr.de>; Thu,  1 Feb 2024 10:40:46 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id E7DEB1C23F34
+	for <lists+devicetree@lfdr.de>; Thu,  1 Feb 2024 10:45:45 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A11375B1E7;
-	Thu,  1 Feb 2024 10:40:42 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 71F371552F9;
+	Thu,  1 Feb 2024 10:45:42 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="NI74xNAI"
+	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="TeYaN4Zz"
 X-Original-To: devicetree@vger.kernel.org
-Received: from fllv0016.ext.ti.com (fllv0016.ext.ti.com [198.47.19.142])
+Received: from relay6-d.mail.gandi.net (relay6-d.mail.gandi.net [217.70.183.198])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C27112747F;
-	Thu,  1 Feb 2024 10:40:40 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.19.142
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4A3AE5684;
+	Thu,  1 Feb 2024 10:45:38 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.70.183.198
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1706784042; cv=none; b=eChphJFFIn/ysVT/TzdZ4ow6SAUolxvj4z82rf1TB4zkZ+eApJsozbsXsA/3s9lj+g+BLs48QAO6PwY/mVI+D3Vh9ANUCTuSQrxjlFYdUIjVNqbB5f2rLi+vYCexIkqMEHX13TsuWKuGVGVvbUlbwOfTgraQe7hM+zJ4WjTc9CA=
+	t=1706784342; cv=none; b=LcW3KTxRFsvE0Fl9RkPWoFXWSBSJ2f6nRPDEBSk20oe3J1eCdBtvssaPSk+uWoIwvMIc83XM7MMMtToICmZ6f5ksqfEbDNqhEFxuxubuQAg/OVfr2aUA6+lN87OEbhS7Dd7xy4otvMgCy1USmPk08CeHIFDtOkcmiwTX36B57lw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1706784042; c=relaxed/simple;
-	bh=IAxQ247gpt/xDUWQXHExdT3CIugrLkHsYYszRWh8NGA=;
-	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
-	 In-Reply-To:Content-Type; b=IAxtFjuICeJ0aFR7VBhYs63U8nOZtjEubM3up+A+LTJhc1wFhS3DO6U5SC4YkgTTD6WcSWIbRqDDMe7+nNlHDlqw9uC5ddPvyeK2wq1WSrN72pkPlVWHeR5U4Am1SCKwwHpJ+hN7rpQHO+Nzeg5bW31KMRovtAMyzGM5lb/PKk8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=NI74xNAI; arc=none smtp.client-ip=198.47.19.142
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
-Received: from fllv0035.itg.ti.com ([10.64.41.0])
-	by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id 411AeTGJ076393;
-	Thu, 1 Feb 2024 04:40:29 -0600
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1706784029;
-	bh=9OeQC3NYKDo60H/HChds5+O9TwH7tRqkh+NBR9Fhh1A=;
-	h=Date:Subject:To:CC:References:From:In-Reply-To;
-	b=NI74xNAIvYz//AoFYZqtYee4pHtB79pTeGnorL3u9ZH0YcNLRUC7fi+78V+y8qVgO
-	 PSC9EnEkRJw0AJILQPDZUhH9ZwWb0FghgCN9csOGVefOEEs9XRc28zuEarK1INKkEX
-	 AXQIWuM7g9gWRYxgtoDnNwM3nBhkreqC1CBhnV38=
-Received: from DLEE107.ent.ti.com (dlee107.ent.ti.com [157.170.170.37])
-	by fllv0035.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 411AeTNu102304
-	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-	Thu, 1 Feb 2024 04:40:29 -0600
-Received: from DLEE115.ent.ti.com (157.170.170.26) by DLEE107.ent.ti.com
- (157.170.170.37) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Thu, 1
- Feb 2024 04:40:28 -0600
-Received: from lelvsmtp5.itg.ti.com (10.180.75.250) by DLEE115.ent.ti.com
- (157.170.170.26) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
- Frontend Transport; Thu, 1 Feb 2024 04:40:28 -0600
-Received: from [172.24.227.177] (jayesh-hp-probook-440-g8-notebook-pc.dhcp.ti.com [172.24.227.177])
-	by lelvsmtp5.itg.ti.com (8.15.2/8.15.2) with ESMTP id 411AeOEQ022888;
-	Thu, 1 Feb 2024 04:40:25 -0600
-Message-ID: <30ac8486-325d-44cb-9855-84a0b41f6857@ti.com>
-Date: Thu, 1 Feb 2024 16:10:23 +0530
+	s=arc-20240116; t=1706784342; c=relaxed/simple;
+	bh=y5p7YWxCixLSRC8L9+RtySskgo4VXq55VYvzVOHQv4c=;
+	h=Mime-Version:Content-Type:Date:Message-Id:Subject:Cc:To:From:
+	 References:In-Reply-To; b=MsoK8BwkwEuxdXk9MfutXdjbBbat33peOHdTOFMlN/nX4af2xU4ghXtotc/A/AHo35DSMYQXSZuITx+86IyXr4AtnNjP7uV5TyKVtKlxIa/xndmo4XscqCIcz1tYrIP4nGCuN3FWiNDkSWiIpD/nhkmT83Sg5BGFJUxFMR0rSmU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=TeYaN4Zz; arc=none smtp.client-ip=217.70.183.198
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
+Received: by mail.gandi.net (Postfix) with ESMTPSA id 8CED0C0003;
+	Thu,  1 Feb 2024 10:45:36 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
+	t=1706784337;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references;
+	bh=mT1oLGRWsLYnRlkvBBGQg6iP7R72Zz+RmHUhiF//kno=;
+	b=TeYaN4Zzv++6cefywcds2sJiBvMlGpIpwmNVn2e+XGroZq2dhIzPTCZ4gA0ksIQlhmw9AC
+	SeWCItj6viug5VQWEHJWUn6f2q/OvTrky+O1KrzAFGIHG0biwm3Bmod68kKyFXxu54mlVe
+	y1LsTPVUbSx+XUJ6+n/DIkM8F30T2zTJQyuRyGbq7F0ljNDNsvbFW1IqSAM3f0DymHiM0k
+	5RO81KKE5ACZH54/l8GFUQ8t7vMD1PQGQ9lP4uFJGWcgER+uYKT0zKngEW75DnwVaz5hJY
+	qVmDrF5fSnTw9ZSi/kqS8HCKwNpX1ElEf+yR8Qe1czAGWoY7DK8dfd25EbvlJQ==
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH] arm64: dts: ti: k3-am69-sk: remove assigned-clock-parents
- for unused VP
-To: Tomi Valkeinen <tomi.valkeinen@ideasonboard.com>, <nm@ti.com>,
-        <vigneshr@ti.com>
-CC: <kristo@kernel.org>, <robh+dt@kernel.org>,
-        <krzysztof.kozlowski+dt@linaro.org>, <conor+dt@kernel.org>,
-        <a-bhatia1@ti.com>, <rogerq@kernel.org>, <sabiya.d@ti.com>,
-        <u-kumar1@ti.com>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>, <linux-arm-kernel@lists.infradead.org>
-References: <20231221113042.48492-1-j-choudhary@ti.com>
- <bf271671-861d-43d4-a24f-de49256ef9d0@ideasonboard.com>
-Content-Language: en-US
-From: Jayesh Choudhary <j-choudhary@ti.com>
-In-Reply-To: <bf271671-861d-43d4-a24f-de49256ef9d0@ideasonboard.com>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 8bit
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+Mime-Version: 1.0
+Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=UTF-8
+Date: Thu, 01 Feb 2024 11:45:36 +0100
+Message-Id: <CYTOJVMATYTW.2G1JB1CVPECYA@bootlin.com>
+Subject: Re: [PATCH v4 07/18] dt-bindings: soc: mobileye: add EyeQ5 OLB
+ system controller
+Cc: "Vladimir Kondratiev" <vladimir.kondratiev@mobileye.com>,
+ <linux-mips@vger.kernel.org>, <linux-clk@vger.kernel.org>,
+ <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>, "Thomas
+ Petazzoni" <thomas.petazzoni@bootlin.com>, "Tawfik Bayouk"
+ <tawfik.bayouk@mobileye.com>, <linux-gpio@vger.kernel.org>
+To: "Krzysztof Kozlowski" <krzysztof.kozlowski@linaro.org>, "Gregory
+ CLEMENT" <gregory.clement@bootlin.com>, "Michael Turquette"
+ <mturquette@baylibre.com>, "Stephen Boyd" <sboyd@kernel.org>, "Rob Herring"
+ <robh+dt@kernel.org>, "Krzysztof Kozlowski"
+ <krzysztof.kozlowski+dt@linaro.org>, "Conor Dooley" <conor+dt@kernel.org>,
+ "Thomas Bogendoerfer" <tsbogend@alpha.franken.de>, "Linus Walleij"
+ <linus.walleij@linaro.org>, =?utf-8?q?Rafa=C5=82_Mi=C5=82ecki?=
+ <rafal@milecki.pl>, "Philipp Zabel" <p.zabel@pengutronix.de>
+From: =?utf-8?q?Th=C3=A9o_Lebrun?= <theo.lebrun@bootlin.com>
+X-Mailer: aerc 0.15.2
+References: <20240131-mbly-clk-v4-0-bcd00510d6a0@bootlin.com>
+ <20240131-mbly-clk-v4-7-bcd00510d6a0@bootlin.com>
+ <ca618c6e-ef29-4ee5-860f-68b48ebbeb9e@linaro.org>
+In-Reply-To: <ca618c6e-ef29-4ee5-860f-68b48ebbeb9e@linaro.org>
+X-GND-Sasl: theo.lebrun@bootlin.com
 
-Hello Tomi,
+Hello,
 
-On 03/01/24 18:35, Tomi Valkeinen wrote:
-> Hi,
-> 
-> On 21/12/2023 13:30, Jayesh Choudhary wrote:
->> VP2 and VP3 are unused video ports and VP3 share the same parent
->> clock as VP1 causing issue with pixel clock setting for HDMI (VP1).
->> So remove the parent clocks for unused VPs.
->>
->> Fixes: 6f8605fd7d11 ("arm64: dts: ti: k3-am69-sk: Add DP and HDMI 
->> support")
->> Reported-by: Nishanth Menon <nm@ti.com>
->> Closes: 
->> https://storage.kernelci.org/mainline/master/v6.7-rc6/arm64/defconfig/gcc-10/lab-ti/baseline-nfs-am69_sk-fs.txt
->> Signed-off-by: Jayesh Choudhary <j-choudhary@ti.com>
->> ---
->>
->> Local testing log for HDMI on AM69-SK:
->> <https://gist.github.com/Jayesh2000/517395cd85eb28d65b8ee4568cefb809>
->>
->>   arch/arm64/boot/dts/ti/k3-am69-sk.dts | 8 ++------
->>   1 file changed, 2 insertions(+), 6 deletions(-)
->>
->> diff --git a/arch/arm64/boot/dts/ti/k3-am69-sk.dts 
->> b/arch/arm64/boot/dts/ti/k3-am69-sk.dts
->> index 8da591579868..370980eb59b0 100644
->> --- a/arch/arm64/boot/dts/ti/k3-am69-sk.dts
->> +++ b/arch/arm64/boot/dts/ti/k3-am69-sk.dts
->> @@ -918,13 +918,9 @@ &dss {
->>       pinctrl-names = "default";
->>       pinctrl-0 = <&dss_vout0_pins_default>;
->>       assigned-clocks = <&k3_clks 218 2>,
->> -              <&k3_clks 218 5>,
->> -              <&k3_clks 218 14>,
->> -              <&k3_clks 218 18>;
->> +              <&k3_clks 218 5>;
->>       assigned-clock-parents = <&k3_clks 218 3>,
->> -                 <&k3_clks 218 7>,
->> -                 <&k3_clks 218 16>,
->> -                 <&k3_clks 218 22>;
->> +                 <&k3_clks 218 7>;
->>   };
->>   &serdes_wiz4 {
-> 
-> The SK has two outputs, using VP0 and VP1, so the above kind of makes 
-> sense. Then again, setting up 4 clocks here really shouldn't break the 
-> SK, should it? The AM69 has 4 available VPs. How does one configure the 
-> clocks for a board that uses 4 VPs, or possibly a different selection of 
-> VPs?
+On Thu Feb 1, 2024 at 10:36 AM CET, Krzysztof Kozlowski wrote:
+> On 31/01/2024 17:26, Th=C3=A9o Lebrun wrote:
+> > Add documentation to describe the "Other Logic Block" syscon.
+> >=20
+> > Signed-off-by: Th=C3=A9o Lebrun <theo.lebrun@bootlin.com>
+> > ---
+> >  .../bindings/soc/mobileye/mobileye,eyeq5-olb.yaml  | 89 ++++++++++++++=
+++++++++
+> >  MAINTAINERS                                        |  1 +
+> >  2 files changed, 90 insertions(+)
+> >=20
+>
+> ...
+>
+> > +required:
+> > +  - compatible
+> > +  - reg
+> > +  - '#address-cells'
+> > +  - '#size-cells'
+> > +  - ranges
+> > +
+> > +additionalProperties: false
+> > +
+> > +examples:
+> > +  - |
+> > +    soc {
+> > +      #address-cells =3D <2>;
+> > +      #size-cells =3D <2>;
+> > +
+> > +      system-controller@e00000 {
+> > +        compatible =3D "mobileye,eyeq5-olb", "syscon", "simple-mfd";
+> > +        reg =3D <0x0 0xe00000 0x0 0x400>;
+> > +        #address-cells =3D <1>;
+> > +        #size-cells =3D <1>;
+> > +        ranges =3D <0x0 0x0 0xe00000 0x400>;
+>
+> If there is going to be any resend:
+> 1. ranges follows reg
+> 2. Use lower-case hex
+>
+> See DTS coding style.
 
-> 
-> I think the patch desc should explain why this doesn't work. Afaik, the 
-> dts is not wrong as such, but there's an underlying issue that breaks 
-> the clocking if all four clocks are set up here.
-> 
+I'm re-reading Documentation/devicetree/bindings/dts-coding-style.rst
+right now. Thanks.
 
-I discussed this with firmware team, there is an issue with sibling
-child clocks. If parent clock is shared, DM cannot set its rate.
-The determine_rate and set_rate query are behaving unexpectedly in
-this case. determine_rate is returning 0 and set_rate is setting it
-to 1.8G even when VP can support max 600M.
+>
+> > +
+> > +        clocks: clock-controller@2c {
+> > +          compatible =3D "mobileye,eyeq5-clk";
+> > +          reg =3D <0x02C 0x50>, <0x11C 0x04>;
+> > +          reg-names =3D "plls", "ospi";
+> > +          #clock-cells =3D <1>;
+> > +          clocks =3D <&xtal>;
+> > +          clock-names =3D "ref";
+> > +        };
+> > +
+> > +        reset: reset-controller@0 {
+>
+> 0 is before 2c, keep nodes properly ordered.
 
-Jayesh
+Indeed.
 
-> So, with the desc updated, as this fixes an issue and is not wrong:
-> 
-> Reviewed-by: Tomi Valkeinen <tomi.valkeinen@ideasonboard.com>
-> 
-> But I also feel this is dodging a firmware (?) issue.
-> 
->   Tomi
-> 
+> > +          compatible =3D "mobileye,eyeq5-reset";
+> > +          reg =3D <0x000 0x0C>, <0x200 0x34>, <0x120 0x04>;
+> > +          reg-names =3D "d0", "d1", "d2";
+> > +          #reset-cells =3D <2>;
+> > +        };
+> > +
+> > +        pinctrl: pinctrl@b0 {
+> > +          compatible =3D "mobileye,eyeq5-pinctrl";
+> > +          reg =3D <0x0B0 0x30>;
+>
+> This looks incomplete. Your binding mentions children, so provide at
+> least one child.
+
+Will do. Didn't think about adding a child example to the dt-bindings
+example.
+
+Thanks,
+
+--
+Th=C3=A9o Lebrun, Bootlin
+Embedded Linux and Kernel engineering
+https://bootlin.com
 
