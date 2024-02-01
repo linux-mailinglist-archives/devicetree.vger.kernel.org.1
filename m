@@ -1,106 +1,156 @@
-Return-Path: <devicetree+bounces-37565-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-37566-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0D22184567C
-	for <lists+devicetree@lfdr.de>; Thu,  1 Feb 2024 12:50:15 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 02481845684
+	for <lists+devicetree@lfdr.de>; Thu,  1 Feb 2024 12:51:01 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id A00C71F22CDC
-	for <lists+devicetree@lfdr.de>; Thu,  1 Feb 2024 11:50:14 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 697271F28595
+	for <lists+devicetree@lfdr.de>; Thu,  1 Feb 2024 11:51:00 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 05A2115CD5E;
-	Thu,  1 Feb 2024 11:49:46 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id ED34A15F318;
+	Thu,  1 Feb 2024 11:50:02 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="h7zao+PB"
+	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="IXXaOLMS"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.12])
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6E32215DBB2;
-	Thu,  1 Feb 2024 11:49:44 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=192.198.163.12
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 399D415D5CA;
+	Thu,  1 Feb 2024 11:50:00 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1706788185; cv=none; b=czieD1Zkl8DQ9jaENQMJ27DSfmZo1/dxI1anA1FRNtM9R5IRT0SCMgtLy+w4SB/EgNND/y++ryLk7GAiwAtZ4+TIJlXvuRmA7fUMbz5xC1KTDcWxudfCFCkSwUJtNacvkOMj7Zylc7K/XDE0/A4As37CGohci/z5bg2rBYgEwzA=
+	t=1706788202; cv=none; b=sG9HhLjIR0OYew6FMp8mIa7XuiSm8uJHzzdC5nYqWjU+9cg8uAfTyk+HCxyEczvjfdQn+wZKRzhloO5KkkuOqxX+meKcE9NjgAoEOnXBYLm4t3XF7RkGYXGNX/ktBoMFdxe//uJea+5nkuHmCtYmiPmg/jSOGBO3m2wZTe/HGwU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1706788185; c=relaxed/simple;
-	bh=1aBxnkA5NThADaPpxwMfZo76NBdICITNJ4pJtD/qDRU=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=mDfJH+QvdqsZ7lwWB6eKto1lkP4lrw0CePYPK90XzCbXOjnwTTGwaj3ka9SimRpCdX449egIHDV2Ut292MuHOY0BtPWl8S8wOe/j5wwp8jMG55pX2hDaEkrrBmGlV13Ccc85B6svsj/FFEXnejFQtWcXv/AylM0sJCLGDld3BVw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com; spf=none smtp.mailfrom=linux.intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=h7zao+PB; arc=none smtp.client-ip=192.198.163.12
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com
-Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=linux.intel.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1706788184; x=1738324184;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=1aBxnkA5NThADaPpxwMfZo76NBdICITNJ4pJtD/qDRU=;
-  b=h7zao+PB543L+d/8PgkrkrsLnpeCX/3BovBEfW0x6xDVN9ogRg1Cf3Yt
-   gKwE8NvPmGU95FAgxkWl+c6JcAo/fY2KLbDYpz+xCPRVHAMnFC0JEXSH5
-   9+Y2W26IQgqv7ft5ipNEwhc/5vWousBqbT5OpoDHgQv0qvzjh92A+uqF6
-   9pNdoxsVQaXuCzORynQn4srENtZFFRX0IM3V771Umx4yxjnp+QoA9Wyst
-   TqA6wEyYkhzS6rBe0KCGREbSZ7djYBTvbfH1aBHbyM3qNaUM/JenV7K58
-   hwPheJmHJ043jp/yRWQ99bqZfvf/Xu73wOs+/87kbugIr8CQ4vEGVC788
-   w==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10969"; a="3709691"
-X-IronPort-AV: E=Sophos;i="6.05,234,1701158400"; 
-   d="scan'208";a="3709691"
-Received: from fmsmga005.fm.intel.com ([10.253.24.32])
-  by fmvoesa106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 01 Feb 2024 03:49:44 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10969"; a="1119923617"
-X-IronPort-AV: E=Sophos;i="6.05,234,1701158400"; 
-   d="scan'208";a="1119923617"
-Received: from smile.fi.intel.com ([10.237.72.54])
-  by fmsmga005.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 01 Feb 2024 03:49:41 -0800
-Received: from andy by smile.fi.intel.com with local (Exim 4.97)
-	(envelope-from <andriy.shevchenko@linux.intel.com>)
-	id 1rVVX0-00000000p0W-3Ain;
-	Thu, 01 Feb 2024 13:46:58 +0200
-Date: Thu, 1 Feb 2024 13:46:58 +0200
-From: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
-To: Aahil Awatramani <aahila@google.com>
-Cc: David Dillow <dillow@google.com>,
-	Wolfram Sang <wsa+renesas@sang-engineering.com>,
-	Andi Shyti <andi.shyti@kernel.org>,
-	Rob Herring <robh+dt@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Jarkko Nikula <jarkko.nikula@linux.intel.com>,
-	Mika Westerberg <mika.westerberg@linux.intel.com>,
-	Jan Dabros <jsd@semihalf.com>, linux-i2c@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH 1/2] dt-bindings: i2c: designware: allow fine tuning
- tuning waveform from device tree
-Message-ID: <ZbuEsltcMLNn4SyF@smile.fi.intel.com>
-References: <20240201044623.374389-1-aahila@google.com>
+	s=arc-20240116; t=1706788202; c=relaxed/simple;
+	bh=gsyE1W4bsrrTahd04s1tVYBjBTSJ9ADslLu7TIwcQJY=;
+	h=Message-ID:Date:MIME-Version:Subject:From:To:CC:References:
+	 In-Reply-To:Content-Type; b=B98SMp/p//CBxEXFJz3uQnWpFeblCK1n+OoiKmpriqgL7O4eGEyDJnhbr9PShfcdrO/hhz9a0ETl6PAjdCzcYZqNfQrP02if0wy7dsm+CMmptmY7dcXVHFKHc6jOH8jLcwWTwo7sWFm7vQdoo5DO/kFP5KXmHr+jpt+IAMnjKIg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=IXXaOLMS; arc=none smtp.client-ip=205.220.180.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
+Received: from pps.filterd (m0279871.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.17.1.24/8.17.1.24) with ESMTP id 411BJ9hB017825;
+	Thu, 1 Feb 2024 11:49:56 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
+	message-id:date:mime-version:subject:from:to:cc:references
+	:in-reply-to:content-type:content-transfer-encoding; s=
+	qcppdkim1; bh=poig66Qauuj3+aCfWML9OzLxJ3EYXmSQfOtwaVslujE=; b=IX
+	XaOLMSkpaVntVydO6XTFj3qR1FaHx9Hnkwyckn3cpUf3ATG/RjCAc7D7EGzyYeO7
+	9eE9glmCiSJWo4SL9dJxsYlNDfSIt3c4ppmHkdfKj6UweDUK+GAISaPN1ZNO1fBV
+	QA6h6pOcxW8dlhQbSapO7EPqhmcoi2SyQadhMRjZh+cf3hSoivlzswI4h9uAX8+C
+	cyeatw+ZXGAMFihgrUFftOO0UhveECbCR/GW8AAf0sOyLNam+U0VzCXIaSJ/b3Fk
+	zkD5KsblEBo1BZNcv/vc37oNFzHWCZc1eOmz9b2M6KBLiKpPaZrkTzo1Vz2yPULI
+	WDDWkG7wS7cvI5JXBoDA==
+Received: from nalasppmta03.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3w09q684ms-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Thu, 01 Feb 2024 11:49:56 +0000 (GMT)
+Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
+	by NALASPPMTA03.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 411Bntwg003058
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Thu, 1 Feb 2024 11:49:55 GMT
+Received: from [10.239.132.204] (10.80.80.8) by nalasex01a.na.qualcomm.com
+ (10.47.209.196) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1118.40; Thu, 1 Feb
+ 2024 03:49:49 -0800
+Message-ID: <b28904a6-c1ef-44b5-96ca-313a9a2a3f8b@quicinc.com>
+Date: Thu, 1 Feb 2024 19:49:46 +0800
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20240201044623.374389-1-aahila@google.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v4 6/6] arm64: dts: qcom: aim300: add AIM300 AIoT
+From: Tengfei Fan <quic_tengfan@quicinc.com>
+To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        <andersson@kernel.org>, <konrad.dybcio@linaro.org>,
+        <robh+dt@kernel.org>, <krzysztof.kozlowski+dt@linaro.org>,
+        <conor+dt@kernel.org>, <dmitry.baryshkov@linaro.org>
+CC: <linux-arm-msm@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>, <kernel@quicinc.com>,
+        Qiang Yu
+	<quic_qianyu@quicinc.com>,
+        Ziyue Zhang <quic_ziyuzhan@quicinc.com>
+References: <20240119100621.11788-1-quic_tengfan@quicinc.com>
+ <20240119100621.11788-7-quic_tengfan@quicinc.com>
+ <d3ef45cf-2de8-4f5b-8857-62d1996f3f58@linaro.org>
+ <842bf6ad-46e1-43d8-86be-79ab0f49710b@quicinc.com>
+ <c17dafd2-db89-4fe2-8e98-2a031f7237c2@quicinc.com>
+In-Reply-To: <c17dafd2-db89-4fe2-8e98-2a031f7237c2@quicinc.com>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 8bit
+X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
+ nalasex01a.na.qualcomm.com (10.47.209.196)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-ORIG-GUID: svgA3E3KxTNsOoBFiEqbfSefLkOThBHJ
+X-Proofpoint-GUID: svgA3E3KxTNsOoBFiEqbfSefLkOThBHJ
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.272,Aquarius:18.0.1011,Hydra:6.0.619,FMLib:17.11.176.26
+ definitions=2024-01-31_10,2024-01-31_01,2023-05-22_02
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 suspectscore=0
+ mlxlogscore=528 impostorscore=0 phishscore=0 spamscore=0 mlxscore=0
+ priorityscore=1501 malwarescore=0 clxscore=1015 adultscore=0 bulkscore=0
+ lowpriorityscore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.19.0-2401190000 definitions=main-2402010095
 
-On Thu, Feb 01, 2024 at 04:46:22AM +0000, Aahil Awatramani wrote:
-> The Synopsys i2c driver allows a user to override the parameters
-> controlling the waveform using ACPI; this is useful for fine tuning when
-> needed to make spec compliance. Extend this support to the device tree to
-> allow non-ACPI platforms the same capabilities.
 
-DT has different counters from which one should derive these ones.
-Can you explain why existing bindings may _not_ be utilised?
 
-Without this very justification, NAK.
+On 1/30/2024 3:25 PM, Tengfei Fan wrote:
+> 
+> 
+> On 1/29/2024 4:18 PM, Tengfei Fan wrote:
+>>
+>>
+>> On 1/29/2024 4:09 PM, Krzysztof Kozlowski wrote:
+>>> On 19/01/2024 11:06, Tengfei Fan wrote:
+>>>> Add AIM300 AIoT board DTS support, including usb, serial, PCIe, mpss,
+>>>> adsp, cdsp and sound card functions support.
+>>>>
+>>>
+>>> ...
+>>>
+>>>> +
+>>>> +    sound {
+>>>> +        compatible = "qcom,sm8550-sndcard", "qcom,sm8450-sndcard";
+>>>> +        model = "AIM300-AIOT";
+>>>> +        audio-routing = "SpkrLeft IN", "WSA_SPK1 OUT",
+>>>> +                "SpkrRight IN", "WSA_SPK2 OUT",
+>>>> +                "IN1_HPHL", "HPHL_OUT",
+>>>> +                "IN2_HPHR", "HPHR_OUT",
+>>>> +                "AMIC2", "MIC BIAS2",
+>>>> +                "VA DMIC0", "MIC BIAS1",
+>>>> +                "VA DMIC1", "MIC BIAS1",
+>>>> +                "VA DMIC2", "MIC BIAS3",
+>>>> +                "TX DMIC0", "MIC BIAS1",
+>>>> +                "TX DMIC1", "MIC BIAS2",
+>>>> +                "TX DMIC2", "MIC BIAS3",
+>>>> +                "TX SWR_ADC1", "ADC2_OUTPUT";
+>>>
+>>> This should be probably TX SWR_INPUT1.
+>>>
+>>> Best regards,
+>>> Krzysztof
+>>>
+>>
+>> I will double check this with related team and I will update this.
+>>
+> 
+> I will apply "TX SWR_INPUT1" on audio-routing node in the next patch 
+> series.
+> 
+
+This patch series has been sent for nearly two weeks. do you think it is 
+better to modify the patch series acording to the current comments and 
+submit a new patch series, or continue to wait for your review comments 
+on the current path series?
 
 -- 
-With Best Regards,
-Andy Shevchenko
-
-
+Thx and BRs,
+Tengfei Fan
 
