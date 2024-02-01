@@ -1,120 +1,145 @@
-Return-Path: <devicetree+bounces-37589-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-37590-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 052B08457E8
-	for <lists+devicetree@lfdr.de>; Thu,  1 Feb 2024 13:36:11 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 648D88457FB
+	for <lists+devicetree@lfdr.de>; Thu,  1 Feb 2024 13:44:21 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 2AAA81C22686
-	for <lists+devicetree@lfdr.de>; Thu,  1 Feb 2024 12:36:10 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 1C48B28EC08
+	for <lists+devicetree@lfdr.de>; Thu,  1 Feb 2024 12:44:20 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 902C48662C;
-	Thu,  1 Feb 2024 12:36:06 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id BF87F8662E;
+	Thu,  1 Feb 2024 12:44:19 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=manjaro.org header.i=@manjaro.org header.b="nhL5AXsH"
+	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="sUCnkcM6"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail.manjaro.org (mail.manjaro.org [116.203.91.91])
-	(using TLSv1.2 with cipher DHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from fllv0016.ext.ti.com (fllv0016.ext.ti.com [198.47.19.142])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3EFA41A27A;
-	Thu,  1 Feb 2024 12:36:02 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=116.203.91.91
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EB36153368;
+	Thu,  1 Feb 2024 12:44:17 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.19.142
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1706790966; cv=none; b=euHoQE73GdByQUOzI6OeD3fFOW12eWSNTRRr8cfhaanC6nwkc6gmtAldqrXmnASNAlkrovpqJ3UiHgK7NRL2X7cqpCQamit4TTMUTGoeruyTldRF10YQyYlTwrQBPeNDtKFXpkDtxwTHQ8JZliCAtfzTvkIY+6k9UJ3w7AK+O/s=
+	t=1706791459; cv=none; b=MK5SUdd7yC5ot0H6WE13N9k2U+KyuH107pOaRC4WVXkYPpFbMZol9tzUYS/rE1RPKc2optPv0Fdrl+wMFg/8vP9Ufnb5E0pzdJF99hIPYzv8jf6f8Ti91TYKey971IyhOx1djOyAJhRC2NGH5K6RZJW95iTcFOkjJpmjJvRdeqM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1706790966; c=relaxed/simple;
-	bh=+/1B/ZiGvDNaDgWpGqJgtvc8sqY9G/ruite8ydY3jRw=;
-	h=MIME-Version:Date:From:To:Cc:Subject:In-Reply-To:References:
-	 Message-ID:Content-Type; b=Bcr2zu+me94nF8EEppaI84CL13r8W4SFq+G1Humj2gEFSKsU7PyoX7SeMd//09qpQV8ML7Wy/GqB9keIv1U84fggwXoMf6h9RgvjgGeZiJECnvigu1X/+5V96VbnNCsQ9F2b1lBeK2KCrLKVLZxcJkeokyu8Ds17IiTLM/fYg2k=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=manjaro.org; spf=pass smtp.mailfrom=manjaro.org; dkim=pass (2048-bit key) header.d=manjaro.org header.i=@manjaro.org header.b=nhL5AXsH; arc=none smtp.client-ip=116.203.91.91
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=manjaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=manjaro.org
+	s=arc-20240116; t=1706791459; c=relaxed/simple;
+	bh=ekdmWWPnU8wjMv7Ncp9A0YVrygo/13fAwLl17Mlg+cE=;
+	h=From:Date:Subject:MIME-Version:Content-Type:Message-ID:To:CC; b=aGTrenAVBJrgf3lwKRwEfiQdLBktqywq4X29yPPExdmQPX0tUIgi+QL3KfR9UktRel1opGMZYr5msfaB8BVfcHJV1jaM9PVIlVTHtyzdiLysCfyIFvcX/cYWUYk1jyxYnh3tEb2SaYrGkUCyp7DkdgClcvKHKANjl/8mhTLwGvI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=sUCnkcM6; arc=none smtp.client-ip=198.47.19.142
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
+Received: from fllv0035.itg.ti.com ([10.64.41.0])
+	by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id 411Ci6YB107043;
+	Thu, 1 Feb 2024 06:44:06 -0600
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+	s=ti-com-17Q1; t=1706791446;
+	bh=1g2GFC9uCtQY4+wl4Cf5c06QCZuX7dOcjEvDV9pleVw=;
+	h=From:Date:Subject:To:CC;
+	b=sUCnkcM6Tonvy1t4suXzTZ/uvz2ms5JVyRZaAU+Y2uC21K9yzDN/IU9xyLkZrzk8f
+	 PKGAvKQxKxhZzHQisfxqNAdElsXVZnmlMXSivFgNx++iz4v63A0Afv1Few3IzUXGQH
+	 MNeKewj9GgVmtoIth9RCitsvMGJQuZ4S980h4qOY=
+Received: from DFLE104.ent.ti.com (dfle104.ent.ti.com [10.64.6.25])
+	by fllv0035.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 411Ci6DW097121
+	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+	Thu, 1 Feb 2024 06:44:06 -0600
+Received: from DFLE105.ent.ti.com (10.64.6.26) by DFLE104.ent.ti.com
+ (10.64.6.25) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Thu, 1
+ Feb 2024 06:44:06 -0600
+Received: from lelvsmtp5.itg.ti.com (10.180.75.250) by DFLE105.ent.ti.com
+ (10.64.6.26) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
+ Frontend Transport; Thu, 1 Feb 2024 06:44:06 -0600
+Received: from localhost (jluthra.dhcp.ti.com [172.24.227.217])
+	by lelvsmtp5.itg.ti.com (8.15.2/8.15.2) with ESMTP id 411Ci5ht051739;
+	Thu, 1 Feb 2024 06:44:05 -0600
+From: Jai Luthra <j-luthra@ti.com>
+Date: Thu, 1 Feb 2024 18:13:53 +0530
+Subject: [PATCH] arm64: dts: ti: k3-am62p5-sk: Enable CPSW MDIO node
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=manjaro.org; s=2021;
-	t=1706790954;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=TNyn5Df3rgP7z195cu82vjAEsVN9pPRraJv9Xn4e6Rc=;
-	b=nhL5AXsH0UqTo5sX9FwKfgCdD9oqkOaTfqnaE8JgTfx/DSZos/Ltmg8rTB+TmkBu0dfZQv
-	K0X2TaqpuQKKAX4yoGtVXiY4BRaK524w/GI9mSnM/oBl2OODYP4SgCaVb+B5dxb/rk597a
-	Q2Pn3l+YZv5NnR9oWtoMQHvOUb2gAS2mjSavi/O0VBvrQfS2SkJEnsN32RU9BsQXAROEby
-	QwcsXBba2bE5hwsRCz1D24Nr7xKV7OTF+Hc+2Qj3IQFooHCuYg+v41WCYyqCDglcBRA61g
-	08t3qhE+pnt2Qf0xnFPdJUrfdnA3RCuJL+O7s2SRrB1tmEIdkNYuLvJWe+qrFw==
-Date: Thu, 01 Feb 2024 13:35:53 +0100
-From: Dragan Simic <dsimic@manjaro.org>
-To: Andy Yan <andyshrk@163.com>
-Cc: heiko@sntech.de, krzysztof.kozlowski+dt@linaro.org, robh+dt@kernel.org,
- devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- linux-kernel@vger.kernel.org, linux-rockchip@lists.infradead.org
-Subject: Re: [PATCH v2 3/4] arm64: dts: rockchip: rename vcc5v0_usb30_host
- regulator for Cool Pi CM5 EVB
-In-Reply-To: <20240201121106.1471301-3-andyshrk@163.com>
-References: <20240201121106.1471301-1-andyshrk@163.com>
- <20240201121106.1471301-3-andyshrk@163.com>
-Message-ID: <2da07d89de139b6325c7353273b16805@manjaro.org>
-X-Sender: dsimic@manjaro.org
-Content-Type: text/plain; charset=US-ASCII;
- format=flowed
+Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-Authentication-Results: ORIGINATING;
-	auth=pass smtp.auth=dsimic@manjaro.org smtp.mailfrom=dsimic@manjaro.org
+Message-ID: <20240201-am62p_cpsw_mdio-v1-1-05f758300f6e@ti.com>
+X-B4-Tracking: v=1; b=H4sIAAiSu2UC/x3MTQqAIBBA4avErBNsCouuEhGSY83CHxQqkO6et
+ PwW7xXIlJgyzE2BRBdnDr6iaxvYT+0PEmyqASUOEmUntFMYtz3me3OGg8DRKt1rQxNJqFVMZPn
+ 5j8v6vh/pH8F6YQAAAA==
+To: Nishanth Menon <nm@ti.com>, Vignesh Raghavendra <vigneshr@ti.com>,
+        Tero
+ Kristo <kristo@kernel.org>, Rob Herring <robh+dt@kernel.org>,
+        Krzysztof
+ Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley
+	<conor+dt@kernel.org>, Bryan Brattlof <bb@ti.com>
+CC: <linux-arm-kernel@lists.infradead.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>,
+        Ravi Gunasekaran <r-gunasekaran@ti.com>, Jai
+ Luthra <j-luthra@ti.com>
+X-Mailer: b4 0.12.4
+X-Developer-Signature: v=1; a=openpgp-sha256; l=1210; i=j-luthra@ti.com;
+ h=from:subject:message-id; bh=PJtYPF7B+6q2U3RMryrKKpIH+WItrEDgBkayGdFOZQ8=;
+ b=owEBbQKS/ZANAwAIAUPekfkkmnFFAcsmYgBlu5IUkOeoRI62IyANgxeGsgTy3QKJ5xNrDXCAF
+ 1avnDFTey+JAjMEAAEIAB0WIQRN4NgY5dV16NRar8VD3pH5JJpxRQUCZbuSFAAKCRBD3pH5JJpx
+ RSMMD/9QxEHuc/9jIB5y6GA8E4wdh1fxtEH4OKeFHRsW3BCllRqqNfEPZtBArT6EV0jzJl3nRHv
+ oS7GNpO2TTxesz78yfJztk0yMhF1tB72d6VAgzS35uwbG/PZAq8uTUXihH+xfBteln6a0XUAbY4
+ SPfiWuMR8UgXISkqYu5SDuWabKTlZD+cFkFHUr0StozbWiAyj4gvbcxak1qAeVz6ITpCKeFkAqH
+ t9ZOL57nbRGVHaa0FBicVSfzDGkHkyIXuN4kPIL5Ph214aNbUNurXFPxhBi/AR0KvLckaZtIOhl
+ 9napIoV2NJBSupK70VENMgxWWgS/Olf3tVaYSJ785t7o77R6CZyQjZIQBvfIjmNSXCQRL7D8cX+
+ FY7q1fp7oMfcQpWMshfdlWRSA7JNqdZgqBDq/UTiZtGSKtas/FJWpTbKOcZvpFhevhGilmj4ZAo
+ POLujOex4tvwIZLhVS9AkZGls8gVCEV/7ZZRbMDL8yP3JE3XA3MvNAPwgxjNCZJ5nw2IbvCRwGM
+ 2AUtP3KioN4mwLOenMc358WQ752/noTVSXWj9rfoDmcz2Z5IAAF7/Qh3lWVEXAnCnrwt++ovwHP
+ uEyW/txKBfpBxxa0dbKnmRcCj+zHLfZng5E/kj2xfhKczalVP3DlOuVdX62+pekqakx7AkTzZv3
+ 7Ee8IiePAQwfDdQ==
+X-Developer-Key: i=j-luthra@ti.com; a=openpgp;
+ fpr=4DE0D818E5D575E8D45AAFC543DE91F9249A7145
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 
-On 2024-02-01 13:11, Andy Yan wrote:
-> According to the schematic, USB20 HOST0 and HOST1 each have their own
-> independent power supply, but these two regulators controlled by a
-> same GPIO, so give it a more appropriate name.
-> 
-> Fixes: 791c154c3982 ("arm64: dts: rockchip: Add support for rk3588
-> based board Cool Pi CM5 EVB")
-> Signed-off-by: Andy Yan <andyshrk@163.com>
+From: Ravi Gunasekaran <r-gunasekaran@ti.com>
 
-Looking good to me.
+Enable the CPSW MDIO node, and link the pinctrl information to enable
+ethernet on SK-AM62P.
 
-Reviewed-by: Dragan Simic <dsimic@manjaro.org>
+Ethernet was unintentally broken on this board, even though these nodes
+were already present, as enabling them was missed in the original
+patch.
 
-> ---
-> 
-> Changes in v2:
-> - Add two lable for this regulator
-> 
->  arch/arm64/boot/dts/rockchip/rk3588-coolpi-cm5-evb.dts | 6 +++---
->  1 file changed, 3 insertions(+), 3 deletions(-)
-> 
-> diff --git a/arch/arm64/boot/dts/rockchip/rk3588-coolpi-cm5-evb.dts
-> b/arch/arm64/boot/dts/rockchip/rk3588-coolpi-cm5-evb.dts
-> index 1b5681fe0471..9c0f408ef339 100644
-> --- a/arch/arm64/boot/dts/rockchip/rk3588-coolpi-cm5-evb.dts
-> +++ b/arch/arm64/boot/dts/rockchip/rk3588-coolpi-cm5-evb.dts
-> @@ -84,7 +84,7 @@ vcc3v3_lcd: vcc3v3-lcd-regulator {
->  		vin-supply = <&vcc3v3_sys>;
->  	};
-> 
-> -	vcc5v0_usb30_host: vcc5v0-usb30-host-regulator {
-> +	vcc5v0_usb_host1: vcc5v0_usb_host2: vcc5v0-usb-host-regulator {
->  		compatible = "regulator-fixed";
->  		regulator-name = "vcc5v0_host";
->  		regulator-boot-on;
-> @@ -200,12 +200,12 @@ &u2phy3 {
->  };
-> 
->  &u2phy2_host {
-> -	phy-supply = <&vcc5v0_usb30_host>;
-> +	phy-supply = <&vcc5v0_usb_host1>;
->  	status = "okay";
->  };
-> 
->  &u2phy3_host {
-> -	phy-supply = <&vcc5v0_usb30_host>;
-> +	phy-supply = <&vcc5v0_usb_host2>;
->  	status = "okay";
->  };
+Fixes: c00504ea42c0 ("arm64: dts: ti: k3-am62p5-sk: Updates for SK EVM")
+Signed-off-by: Ravi Gunasekaran <r-gunasekaran@ti.com>
+Signed-off-by: Jai Luthra <j-luthra@ti.com>
+---
+Boot logs: https://0x0.st/HDOO.txt
+---
+ arch/arm64/boot/dts/ti/k3-am62p5-sk.dts | 4 ++++
+ 1 file changed, 4 insertions(+)
+
+diff --git a/arch/arm64/boot/dts/ti/k3-am62p5-sk.dts b/arch/arm64/boot/dts/ti/k3-am62p5-sk.dts
+index 1773c05f752c..60868862e3b4 100644
+--- a/arch/arm64/boot/dts/ti/k3-am62p5-sk.dts
++++ b/arch/arm64/boot/dts/ti/k3-am62p5-sk.dts
+@@ -445,6 +445,10 @@ &cpsw_port2 {
+ };
+ 
+ &cpsw3g_mdio {
++	pinctrl-names = "default";
++	pinctrl-0 = <&main_mdio1_pins_default>;
++	status = "okay";
++
+ 	cpsw3g_phy0: ethernet-phy@0 {
+ 		reg = <0>;
+ 		ti,rx-internal-delay = <DP83867_RGMIIDCTL_2_00_NS>;
+
+---
+base-commit: 01af33cc9894b4489fb68fa35c40e9fe85df63dc
+change-id: 20240201-am62p_cpsw_mdio-27f6a3ade8e0
+
+Best regards,
+-- 
+Jai Luthra <j-luthra@ti.com>
+
 
