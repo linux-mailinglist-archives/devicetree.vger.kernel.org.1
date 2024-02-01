@@ -1,165 +1,136 @@
-Return-Path: <devicetree+bounces-37713-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-37714-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id BEC1384600E
-	for <lists+devicetree@lfdr.de>; Thu,  1 Feb 2024 19:36:09 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 12F92846015
+	for <lists+devicetree@lfdr.de>; Thu,  1 Feb 2024 19:38:14 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 92514B2834D
-	for <lists+devicetree@lfdr.de>; Thu,  1 Feb 2024 18:36:02 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id BBB561F2DF18
+	for <lists+devicetree@lfdr.de>; Thu,  1 Feb 2024 18:38:13 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 727645A4E3;
-	Thu,  1 Feb 2024 18:35:33 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D0C7D5A4E3;
+	Thu,  1 Feb 2024 18:37:57 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="YPTD4j/+"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="RqKSHXuv"
 X-Original-To: devicetree@vger.kernel.org
-Received: from fllv0016.ext.ti.com (fllv0016.ext.ti.com [198.47.19.142])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7EBB84176B;
-	Thu,  1 Feb 2024 18:35:30 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.19.142
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A962682C88;
+	Thu,  1 Feb 2024 18:37:57 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1706812533; cv=none; b=uxR9t/rJJpjUALZ2POzQQoIlBLsyI+hkMSqebAkKI0MEbLWs2pt5qhVwTBobxYAkCDAScdNqlojs4qPjTUe4bXovk9f4wUvFzOHWjxiClDHMwOTWUe4s+XldZd+9O2EkbeMlU8Kv9tMWiPd5MyLvUO6LISgorq0afDJiflr5T8g=
+	t=1706812677; cv=none; b=uPKlg5l0DMsmzEj6NuNv+DICq/PIMhwVmvZfQ0r49OSyanm5dv9tKn2zkCaVPykGjTuZhRuxswaA3FqA765zImwpcUo6YUa55xlvZdRPz7E/PM3wlt+9A/cp4Ec0WiESNBa/NC5GHBxcFD0pnAotb6MOHFhHBg98/utpFlF4Ago=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1706812533; c=relaxed/simple;
-	bh=TVZH7oFOhgDsgkjujmCgChVYjn0cg4/4Fn9o5Rulks0=;
-	h=Date:From:To:CC:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=JHwd7JbwxtJTn0zGezKdIuH0lzh1k8twPj1B9HWDmBrsmn1N/lCto0z6yj7PelOJ76v+RNnll+BPcdnZyf+OrPhAk4v+lg+gcBHAmB+d67UmV+YnkynBNtoF5JRjY3y3+++RI/HXuVyQExXlDUgg0Bh6B1dBqbxnTUUDIjeNmIM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=YPTD4j/+; arc=none smtp.client-ip=198.47.19.142
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
-Received: from fllv0035.itg.ti.com ([10.64.41.0])
-	by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id 411IZMsW079208;
-	Thu, 1 Feb 2024 12:35:22 -0600
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1706812522;
-	bh=rGyK0t8FjhIkG4Ozo6jyOaqYGyp+BnLZYVxHBLTGdgg=;
-	h=Date:From:To:CC:Subject:References:In-Reply-To;
-	b=YPTD4j/+4U6wC022MX60ny9ih+0NKv5dh99zxCWvAZCg3fcf3ywlhzGIWAwOk0cDF
-	 3iv9e3A7OHdH5NvYNuWdPTwB6BnKBt9+acBKXa0aZo+KsARyD52l8K4g2rZd+E0F3s
-	 xDZzH713gOB3jG4X5O3CbGEMlnQFMgGeHt5ml8gY=
-Received: from DLEE109.ent.ti.com (dlee109.ent.ti.com [157.170.170.41])
-	by fllv0035.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 411IZMQ4089686
-	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-	Thu, 1 Feb 2024 12:35:22 -0600
-Received: from DLEE115.ent.ti.com (157.170.170.26) by DLEE109.ent.ti.com
- (157.170.170.41) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Thu, 1
- Feb 2024 12:35:22 -0600
-Received: from lelvsmtp5.itg.ti.com (10.180.75.250) by DLEE115.ent.ti.com
- (157.170.170.26) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
- Frontend Transport; Thu, 1 Feb 2024 12:35:22 -0600
-Received: from localhost ([10.249.33.168])
-	by lelvsmtp5.itg.ti.com (8.15.2/8.15.2) with ESMTP id 411IZM7Z032688;
-	Thu, 1 Feb 2024 12:35:22 -0600
-Date: Thu, 1 Feb 2024 12:35:22 -0600
-From: Bin Liu <b-liu@ti.com>
-To: Conor Dooley <conor@kernel.org>
-CC: Roger Quadros <rogerq@kernel.org>, <nm@ti.com>, <vigneshr@ti.com>,
-        <afd@ti.com>, <kristo@kernel.org>, <robh+dt@kernel.org>,
-        <krzysztof.kozlowski+dt@linaro.org>, <conor+dt@kernel.org>,
-        <srk@ti.com>, <r-gunasekaran@ti.com>,
-        <linux-arm-kernel@lists.infradead.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>
-Subject: Re: [PATCH v3 4/5] dt-bindings: usb/ti,am62-usb.yaml: Add PHY2
- register space
-Message-ID: <20240201183522.ssj553rwefr2wuqi@iaqt7>
-Mail-Followup-To: Bin Liu <b-liu@ti.com>, Conor Dooley <conor@kernel.org>,
-	Roger Quadros <rogerq@kernel.org>, nm@ti.com, vigneshr@ti.com,
-	afd@ti.com, kristo@kernel.org, robh+dt@kernel.org,
-	krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org, srk@ti.com,
-	r-gunasekaran@ti.com, linux-arm-kernel@lists.infradead.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-References: <20240201120332.4811-1-rogerq@kernel.org>
- <20240201120332.4811-5-rogerq@kernel.org>
- <20240201-viewpoint-upload-fb714f650ff5@spud>
- <20240201-violet-chalice-51a73f113e7b@spud>
+	s=arc-20240116; t=1706812677; c=relaxed/simple;
+	bh=0JVpzxvxHW0CTZLMhUSI5/1YEsJwW5sGalQevgBRPig=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=ei8QeG3OC17HdO9BTvpwnbP2z4cZbEPRq6NfvpsJg5/8IGIibiigPa3Z7pD7svIg5SYTpuZTGNkOJkf4o8Bpr40xIl16TS6yJhLct/ChrZtFAdnnYdWz4VwDceDFdQdlrlGB320msiIr9yoEd6Ey60SJTfES8RdSaIzpfMwDWbg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=RqKSHXuv; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 8DE0DC433F1;
+	Thu,  1 Feb 2024 18:37:54 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1706812677;
+	bh=0JVpzxvxHW0CTZLMhUSI5/1YEsJwW5sGalQevgBRPig=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=RqKSHXuvgjL0C8Scyh/DKYXAe4w5/voFVCi4sLwxrmUFM5F3on17NUnZV9s8sw6Gi
+	 feC+RN7VeJpPn/2WZ23ZHgGsF5+zX1MivRCZ05qAk1JesfpQc3QYkPbqjAv51qG1qG
+	 ISNyF6TRUbzIkdJrGqtWyBm4Bthu8S+wcVrMn5covTI1GmZZigKzLimm+lYO33bypA
+	 6AL9redV6TPUGkUHLiUrm/pWbjYnnwKhKfcH2WyMNtX8W22AnPlu924unKphfawY62
+	 LIvQ0tOJQBmWeTdkW7Cxn95xr6+9YgEe+bWeJWl2KRjOOYn6Br4CmHRPBxOxWbnlc6
+	 CKL6LUYcHZkZQ==
+Date: Thu, 1 Feb 2024 18:37:52 +0000
+From: Conor Dooley <conor@kernel.org>
+To: Changhuang Liang <changhuang.liang@starfivetech.com>
+Cc: Rob Herring <robh+dt@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Emil Renner Berthing <kernel@esmil.dk>,
+	Paul Walmsley <paul.walmsley@sifive.com>,
+	Palmer Dabbelt <palmer@dabbelt.com>,
+	Albert Ou <aou@eecs.berkeley.edu>,
+	Jack Zhu <jack.zhu@starfivetech.com>,
+	"linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+	"linux-riscv@lists.infradead.org" <linux-riscv@lists.infradead.org>,
+	"devicetree@vger.kernel.org" <devicetree@vger.kernel.org>
+Subject: Re: =?utf-8?B?5Zue5aSNOiBbdjI=?= =?utf-8?Q?=5D?= riscv: dts:
+ starfive: jh7110: Add camera subsystem nodes
+Message-ID: <20240201-handiwork-excretion-36aa2eea0709@spud>
+References: <20240130082509.217683-1-changhuang.liang@starfivetech.com>
+ <20240131-recycling-entering-b742e0e835eb@spud>
+ <SH0PR01MB06675EF7ACD1452C4DEBE45FF243A@SH0PR01MB0667.CHNPR01.prod.partner.outlook.cn>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"
+Content-Type: multipart/signed; micalg=pgp-sha256;
+	protocol="application/pgp-signature"; boundary="aKOGQMxv8o8LMxKI"
 Content-Disposition: inline
-In-Reply-To: <20240201-violet-chalice-51a73f113e7b@spud>
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+In-Reply-To: <SH0PR01MB06675EF7ACD1452C4DEBE45FF243A@SH0PR01MB0667.CHNPR01.prod.partner.outlook.cn>
 
-On Thu, Feb 01, 2024 at 06:18:05PM +0000, Conor Dooley wrote:
-> On Thu, Feb 01, 2024 at 06:15:20PM +0000, Conor Dooley wrote:
-> > On Thu, Feb 01, 2024 at 02:03:31PM +0200, Roger Quadros wrote:
-> > > So far this was not required but due to the newly identified
-> > > Errata i2409 [1] we need to poke this register space.
-> > > 
-> > > [1] https://www.ti.com/lit/er/sprz487d/sprz487d.pdf
-> > > 
-> > > Signed-off-by: Roger Quadros <rogerq@kernel.org>
-> > 
-> > Acked-by: Conor Dooley <conor.dooley@microchip.com>
-> 
-> Actually, where is the user for this that actually pokes the register
-> space?
-> You're adding another register region, so I went to check how you were
-> handling that in drivers, but there's no driver patch.
 
-See Roger's another patch set 'Add workaround for Errata i2409' posted
-on 16th.
+--aKOGQMxv8o8LMxKI
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
--Bin.
-
-> 
-> 
-> > 
+On Thu, Feb 01, 2024 at 01:42:13AM +0000, Changhuang Liang wrote:
+> Hi, Conor
+>=20
+> > On Tue, Jan 30, 2024 at 12:25:09AM -0800, Changhuang Liang wrote:
+> > > Add camera subsystem nodes for the StarFive JH7110 SoC. They contain
+> > > the imx219, dphy-rx, csi2rx, camss nodes.
+> > >
+> > > Signed-off-by: Changhuang Liang <changhuang.liang@starfivetech.com>
 > > > ---
-> > > 
-> > > Notes:
-> > >     Changelog:
-> > >     
-> > >     v3 - new patch
-> > > 
-> > >  Documentation/devicetree/bindings/usb/ti,am62-usb.yaml | 7 +++++--
-> > >  1 file changed, 5 insertions(+), 2 deletions(-)
-> > > 
-> > > diff --git a/Documentation/devicetree/bindings/usb/ti,am62-usb.yaml b/Documentation/devicetree/bindings/usb/ti,am62-usb.yaml
-> > > index fec5651f5602..c02d9d467d9c 100644
-> > > --- a/Documentation/devicetree/bindings/usb/ti,am62-usb.yaml
-> > > +++ b/Documentation/devicetree/bindings/usb/ti,am62-usb.yaml
-> > > @@ -14,7 +14,9 @@ properties:
-> > >      const: ti,am62-usb
-> > >  
-> > >    reg:
-> > > -    maxItems: 1
-> > > +    items:
-> > > +      - description: USB CFG register space
-> > > +      - description: USB PHY2 register space
-> > >  
-> > >    ranges: true
-> > >  
-> > > @@ -82,7 +84,8 @@ examples:
-> > >  
-> > >        usbss1: usb@f910000 {
-> > >          compatible = "ti,am62-usb";
-> > > -        reg = <0x00 0x0f910000 0x00 0x800>;
-> > > +        reg = <0x00 0x0f910000 0x00 0x800>,
-> > > +              <0x00 0x0f918000 0x00 0x400>;
-> > 
-> > Why the double zeros btw?
-> > 
-> > Cheers,
-> > Conor.
-> > 
-> > >          clocks = <&k3_clks 162 3>;
-> > >          clock-names = "ref";
-> > >          ti,syscon-phy-pll-refclk = <&wkup_conf 0x4018>;
-> > > -- 
-> > > 2.34.1
-> > > 
-> 
-> 
+> > >  .../jh7110-starfive-visionfive-2.dtsi         | 103
+> > ++++++++++++++++++
+> > >  arch/riscv/boot/dts/starfive/jh7110.dtsi      |  67 ++++++++++++
+> > >  2 files changed, 170 insertions(+)
+> > >
+> > > diff --git
+> > > a/arch/riscv/boot/dts/starfive/jh7110-starfive-visionfive-2.dtsi
+> > > b/arch/riscv/boot/dts/starfive/jh7110-starfive-visionfive-2.dtsi
+> > > index b89e9791efa7..e0027bb379ef 100644
+> > > --- a/arch/riscv/boot/dts/starfive/jh7110-starfive-visionfive-2.dtsi
+> > > +++ b/arch/riscv/boot/dts/starfive/jh7110-starfive-visionfive-2.dtsi
+> > > @@ -30,6 +30,37 @@ cpus {
+> > >  		timebase-frequency =3D <4000000>;
+> > >  	};
+> > >
+> > > +	imx219_clk: imx219-clock {
+> > > +		compatible =3D "fixed-clock";
+> > > +		clock-output-names =3D "imx219_clk";
+> > > +		clock-frequency =3D <24000000>;
+> > > +		#clock-cells =3D <0>;
+> > > +	};
+> >=20
+> > Why do you need an output name here?
+>=20
+> The output name can be unnecessary.=20
+>=20
+> > Also, where does this clock come from? Is it an oscillator on the board?
+> >=20
+>=20
+> This clock come from imx219, not the VisionFive 2 board.
 
+If the camera is not on the visionfive 2 board, why are you adding this
+to visionfive-2.dtsi?
 
+--aKOGQMxv8o8LMxKI
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZbvlAAAKCRB4tDGHoIJi
+0t7uAP99Kv0Ha56vaQ3FmdELSrLyGZPzRKwDjvkXfD/FjO5zzwD/Y5FDv6A1egV9
+RKSaWFPmNuF8uiKHjPFGwcVibWqw8gs=
+=+5Bw
+-----END PGP SIGNATURE-----
+
+--aKOGQMxv8o8LMxKI--
 
