@@ -1,169 +1,183 @@
-Return-Path: <devicetree+bounces-37616-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-37617-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3EE48845A46
-	for <lists+devicetree@lfdr.de>; Thu,  1 Feb 2024 15:26:16 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 04230845A7D
+	for <lists+devicetree@lfdr.de>; Thu,  1 Feb 2024 15:45:31 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 60E561C23506
-	for <lists+devicetree@lfdr.de>; Thu,  1 Feb 2024 14:26:15 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 6E1131F2A814
+	for <lists+devicetree@lfdr.de>; Thu,  1 Feb 2024 14:45:30 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B33AA5F464;
-	Thu,  1 Feb 2024 14:26:07 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1166A5F477;
+	Thu,  1 Feb 2024 14:45:25 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="uzcxDK2Y"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="UEH1QWEi"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-ed1-f45.google.com (mail-ed1-f45.google.com [209.85.208.45])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8ABF65B66E;
-	Thu,  1 Feb 2024 14:26:07 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 302AC5F467
+	for <devicetree@vger.kernel.org>; Thu,  1 Feb 2024 14:45:22 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.45
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1706797567; cv=none; b=rl/ViTOSso0h0hFtnWmonXerdP7jnhHWI/YG1eoKIEs50MnsalUQKEEX0F/lg6tM/imqZVE0asH8SR1Bj0Sh4YRgxalqyxBVbaNQ695KzF0AGS8jZ11FatIannO/6ixFt8xOT5MtovnpgRRkL/ZQ9ntRkUDuBqa3SphEdj7B0Os=
+	t=1706798725; cv=none; b=fEf3+NUMe/7GXgpX4/jVzD5FVPEE4HRWPRPCnC2RnCNeZEfGedqVx4iX1PTh/VkQDGGENe9d3obGCCiQiojj287vyqzADvvLqOQ4cTBSKleWgMec3LJHreOcI+XwYe01nXRf2IUL318lKJGZC8wzDaeG31UXhoad1U3QOZkteA4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1706797567; c=relaxed/simple;
-	bh=u8hZb1KY0acvINicwcOlLX6sBnV2lOH0PfaW//UVPBk=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=JMNspi2Q4Xenc1uqBSZ22kmoFuZNouMyreojjSMMHUoQGPTDPLJdnvYax2Zw+G77d6dAW6Wp4XJoeI9LpBD3oNX5MEjsEo+X4L1IBeeT7+0AmTfyNERB/8NB8fuob5yS35tvxltyu6d9gk82e0syft83nv724scQ5JU/ACCAa3g=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=uzcxDK2Y; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 07231C43390;
-	Thu,  1 Feb 2024 14:26:07 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1706797567;
-	bh=u8hZb1KY0acvINicwcOlLX6sBnV2lOH0PfaW//UVPBk=;
-	h=References:In-Reply-To:Reply-To:From:Date:Subject:To:Cc:From;
-	b=uzcxDK2YySJRUJ/KdXk5MZPQAIsI8rzec3nTqmSfnmQRlcFCwrYZ/bQfwiS9yaST0
-	 Q5yG6m31Mg1NEqNslE1BZOeskSWtV0T8qx3clsYtj7LORzgTUEfJvUskeiWlCuyIvr
-	 fBM5bjF0r/UWZEreHIEfMVnOvbA1t1tcYPbM/yDlyKEFT4aPfCN0avR4QmDRgm2RQT
-	 EGszEUlW9ie5uNl1mFLhJsuRG568ySDeWfgnW0FdNkHO5wNAHIlmnkmnPRwMMJx30P
-	 Rv04U3BFHUHFBZzX22RBia96MV2b2HverdfgRb2jSIkmfEhCUwtkhGh0swYPhHWAQc
-	 SJOubzAF+UbJA==
-Received: by mail-pf1-f175.google.com with SMTP id d2e1a72fcca58-6de0f53f8e8so1686195b3a.0;
-        Thu, 01 Feb 2024 06:26:06 -0800 (PST)
-X-Gm-Message-State: AOJu0YyKdSA/Trr1PO5Ukg+hcQPFBwY75Fru1EKGWWr63qh9ErPbV2X1
-	H34YG9QP9Qh18UHa7t0Dcd9pCzSwPD4rHNOnRDWBtPaW8yls2dlzJwOOuTkcD7fvJeXWe4yMgPD
-	kSmQ2HrgzI3/Lm7GPwM2aS3mpN5I=
-X-Google-Smtp-Source: AGHT+IEQ57LFCXx03pmPY0BiaAVWqsmooCa8JnBK4SyQoscvPIE/4caLjfgkMTh91ldy8kJvhymf6n8Ec+0Xv8T1yH8=
-X-Received: by 2002:a05:6a00:981:b0:6d9:a074:659f with SMTP id
- u1-20020a056a00098100b006d9a074659fmr10435698pfg.13.1706797566559; Thu, 01
- Feb 2024 06:26:06 -0800 (PST)
+	s=arc-20240116; t=1706798725; c=relaxed/simple;
+	bh=g28Uh0jEGcZw1jbRzd3E+2nC216DW2FMQTibILMYzNI=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=JIk5ZjrXBYnJWqVFN7y48bfjpgTTjftawU66fEqr1C3TIUh7YNjEfyzvYmItV1n76aNXscOW7FPpUSNpQGgSbJW5Jc0PN3PE2EvuedziTKI7UOIfTBfseYMnJmDg/yEzC91VuYzx7sHNUxKalPVqUzvmQurosshlm1q4T2iWEH8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=UEH1QWEi; arc=none smtp.client-ip=209.85.208.45
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-ed1-f45.google.com with SMTP id 4fb4d7f45d1cf-55ef0465507so1157768a12.3
+        for <devicetree@vger.kernel.org>; Thu, 01 Feb 2024 06:45:22 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1706798721; x=1707403521; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from
+         :content-language:references:cc:to:subject:user-agent:mime-version
+         :date:message-id:from:to:cc:subject:date:message-id:reply-to;
+        bh=emBBEOIhMF1O2hGGxGh+HkrTeoWxjLOYDw2I2/VoJkU=;
+        b=UEH1QWEiOaTyvl9ngqYMoCBIYNijdWlGw7STHgUI6kVOHP7BKiGPcBUVkoinhRoKeZ
+         lZKVzysnFje27nCQ46l7Tn6/mxzqub3pRYXtjFVPnjo759OgoMC6LY/tm2A3bYhjXRCB
+         /mUrq0eKS534zZBM80RmojkuLgZBRQ4AR7m7dNbO79u0NFWR+dmouYABxvuRy1Y2gdR+
+         ZEG3OlzJ6HyMzC4flVIPmQ933kxvtyCDoh8D/IpYFOrmCUamEBQniW9V9ML0VCJcqRpQ
+         li0qOG9DI4ZgluVXI9UyKZbAyjlcf84xxA7hQ9DqoETDu2zDbfhbuJr2VJJA75464HB2
+         mVaA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1706798721; x=1707403521;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from
+         :content-language:references:cc:to:subject:user-agent:mime-version
+         :date:message-id:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=emBBEOIhMF1O2hGGxGh+HkrTeoWxjLOYDw2I2/VoJkU=;
+        b=XJdd7PMLGcYd3Gw94lWbyQACKc34LBAwCb2JWUyMNy9qMqDg92yL1/ZLgNEkjnJPf6
+         dP9VFlHt6YR19cwvwCa9ww74haoLq3w505UTIjjtiltLC+6arcb0y17Nlj3jXXpq8LiA
+         HNqJMdYtcLlpc1KnSsNMtFO95kKHzSicI/d2QN5HoGnBFfRhxbWmn2QnHgKTST/cxEwe
+         vcG9EXN7w/t8bud6HPf+x5Yo4TPv2LsVxKXCRZPZ1uHJr1DFTPT4AlpuHkC/teBRx4bM
+         LeNa9n0pwb/ez9vxFZEvzdkX0OZtQx6Wd3UI2RJYIb7nijYPn/pIjG977rV1ChJhKE5M
+         bu0w==
+X-Gm-Message-State: AOJu0YzaIwXRHtzZfOXXnVLYgbMQgia5lB+7SSAjkE/uG1YdPtFP9fJF
+	ZPmSOOIRX4UcLOfyAjHPh6gONX4WCYARgyJlLquAgPz8tWYFEBmM5+4xkxoslFM=
+X-Google-Smtp-Source: AGHT+IFeiHTp3Fuz7wGLQZ4zS4Zvyu5bQGeQK1nbyADucc/rYuDqxeNfv/vTAVPG4XaqEunLGNirUA==
+X-Received: by 2002:a17:906:8315:b0:a2e:93d6:3680 with SMTP id j21-20020a170906831500b00a2e93d63680mr1934018ejx.43.1706798721404;
+        Thu, 01 Feb 2024 06:45:21 -0800 (PST)
+X-Forwarded-Encrypted: i=0; AJvYcCXeJzG0tsIH89YgeMZULH19Hzp5v5mM27kxBeCtFb4kukzeRP13p874DcpHhU+xT9boslD2j1H/T05C0OTf2OTHaMTqVAoEZHoY3wL583AQrXHPAVYXec/JSo5TPDfEmKpYz3T1p8uTNlXGiwV96g33tMDvyARHkjZL6x5PCkuhEOBL2v0suO5I9P8cvdjzaYGSeNK50eE1Z1HujCbGChDbjSzQm8/kT7KWi5SPzuKRLUeti4F5PzUtGZ4O2yLnhPCLqD4MMHQ1GQk+IPjJuuAkEMXoUcXoVYkbdx7ZUt1gNKOfZw4oichrbTsmcJIa+6sPHRvwsh/DVLH9IrhrnwRPzv7oQWoricpCli5lb3Fx73vdteC+kxTEYGr/rZ8mtQJgAzGv7gIAllu39yGoHGng20i1YL67mcRxn4KtogMb3MDk1Cq/xvLJbqvpRMUBxZvBWSzMn9AU9KUTWLjvgM2TuL8KXIvgzwkIzCl2zEsGSMELLRESpDm2LMgNmg88QaKtonMc5B1sfNztf3LK8WBxJWYMt7LEzejBlhApQtkW2aeORkOZM/FhAM6DFe3fng13c3L94HjZhXjr8O5pvC1OVUL/WKZrNGM8KmvlAtPWXLih4IPY2PZpq0XKZeG/ZzwPc238nPyv/abTQNGoHHvFrmj+lob2A7gm7gfqxmAhk9WJIr1+
+Received: from [192.168.159.104] (178235179129.dynamic-4-waw-k-1-3-0.vectranet.pl. [178.235.179.129])
+        by smtp.gmail.com with ESMTPSA id ci11-20020a170906c34b00b00a2f181266f6sm7372628ejb.148.2024.02.01.06.45.18
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 01 Feb 2024 06:45:20 -0800 (PST)
+Message-ID: <610d5d7c-ec8d-42f1-81a2-1376b8a1a43f@linaro.org>
+Date: Thu, 1 Feb 2024 15:45:17 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20240130-rk-dts-additions-v2-0-c6222c4c78df@gmail.com> <20240130-rk-dts-additions-v2-2-c6222c4c78df@gmail.com>
-In-Reply-To: <20240130-rk-dts-additions-v2-2-c6222c4c78df@gmail.com>
-Reply-To: wens@kernel.org
-From: Chen-Yu Tsai <wens@kernel.org>
-Date: Thu, 1 Feb 2024 22:26:09 +0800
-X-Gmail-Original-Message-ID: <CAGb2v65--rgb2FqmG_0-w1-jUL0odqKXxiZJ-XPYA4uomfYmaQ@mail.gmail.com>
-Message-ID: <CAGb2v65--rgb2FqmG_0-w1-jUL0odqKXxiZJ-XPYA4uomfYmaQ@mail.gmail.com>
-Subject: Re: [PATCH v2 2/4] arm64: dts: rockchip: enable temperature driven
- fan control on Rock 5B
-To: Alexey Charkov <alchark@gmail.com>
-Cc: Rob Herring <robh+dt@kernel.org>, 
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Heiko Stuebner <heiko@sntech.de>, Daniel Lezcano <daniel.lezcano@linaro.org>, 
-	Dragan Simic <dsimic@manjaro.org>, Viresh Kumar <viresh.kumar@linaro.org>, devicetree@vger.kernel.org, 
-	linux-arm-kernel@lists.infradead.org, linux-rockchip@lists.infradead.org, 
-	linux-kernel@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v6 5/6] arm64: dts: qcom: sm8450: Add opp table support to
+ PCIe
+To: Viresh Kumar <viresh.kumar@linaro.org>,
+ Manivannan Sadhasivam <mani@kernel.org>
+Cc: Krishna chaitanya chundru <quic_krichai@quicinc.com>,
+ Bjorn Andersson <andersson@kernel.org>, Bjorn Helgaas <bhelgaas@google.com>,
+ Lorenzo Pieralisi <lpieralisi@kernel.org>,
+ =?UTF-8?Q?Krzysztof_Wilczy=C5=84ski?= <kw@linux.com>,
+ Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+ Conor Dooley <conor+dt@kernel.org>, Rob Herring <robh+dt@kernel.org>,
+ Johan Hovold <johan+linaro@kernel.org>, Brian Masney <bmasney@redhat.com>,
+ Georgi Djakov <djakov@kernel.org>, linux-arm-msm@vger.kernel.org,
+ vireshk@kernel.org, quic_vbadigan@quicinc.com, quic_skananth@quicinc.com,
+ quic_nitegupt@quicinc.com, linux-pci@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+References: <20240112-opp_support-v6-0-77bbf7d0cc37@quicinc.com>
+ <20240112-opp_support-v6-5-77bbf7d0cc37@quicinc.com>
+ <20240129160420.GA27739@thinkpad>
+ <20240130061111.eeo2fzaltpbh35sj@vireshk-i7>
+ <20240130071449.GG32821@thinkpad>
+ <20240130083619.lqbj47fl7aa5j3k5@vireshk-i7>
+ <20240130094804.GD83288@thinkpad>
+ <20240130095508.zgufudflizrpxqhy@vireshk-i7> <20240130131625.GA2554@thinkpad>
+ <20240131052335.6nqpmccgr64voque@vireshk-i7>
+Content-Language: en-US
+From: Konrad Dybcio <konrad.dybcio@linaro.org>
+Autocrypt: addr=konrad.dybcio@linaro.org; keydata=
+ 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
+ izWDgYvmBE8=
+In-Reply-To: <20240131052335.6nqpmccgr64voque@vireshk-i7>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
-On Wed, Jan 31, 2024 at 2:22=E2=80=AFAM Alexey Charkov <alchark@gmail.com> =
-wrote:
->
-> This enables thermal monitoring on Radxa Rock 5B and links the PWM
-> fan as an active cooling device managed automatically by the thermal
-> subsystem, with a target SoC temperature of 65C and a minimum-spin
-> interval from 55C to 65C to ensure airflow when the system gets warm
->
-> Acked-by: Daniel Lezcano <daniel.lezcano@linaro.org>
-> Signed-off-by: Alexey Charkov <alchark@gmail.com>
-> ---
->  arch/arm64/boot/dts/rockchip/rk3588-rock-5b.dts | 34 +++++++++++++++++++=
-+++++-
->  1 file changed, 33 insertions(+), 1 deletion(-)
->
-> diff --git a/arch/arm64/boot/dts/rockchip/rk3588-rock-5b.dts b/arch/arm64=
-/boot/dts/rockchip/rk3588-rock-5b.dts
-> index a0e303c3a1dc..b485edeef876 100644
-> --- a/arch/arm64/boot/dts/rockchip/rk3588-rock-5b.dts
-> +++ b/arch/arm64/boot/dts/rockchip/rk3588-rock-5b.dts
-> @@ -52,7 +52,7 @@ led_rgb_b {
->
->         fan: pwm-fan {
->                 compatible =3D "pwm-fan";
-> -               cooling-levels =3D <0 95 145 195 255>;
-> +               cooling-levels =3D <0 120 150 180 210 240 255>;
->                 fan-supply =3D <&vcc5v0_sys>;
->                 pwms =3D <&pwm1 0 50000 0>;
->                 #cooling-cells =3D <2>;
-> @@ -173,6 +173,34 @@ &cpu_l3 {
->         cpu-supply =3D <&vdd_cpu_lit_s0>;
->  };
->
-> +&package_thermal {
-> +       polling-delay =3D <1000>;
-> +
-> +       trips {
-> +               package_fan0: package-fan0 {
-> +                       temperature =3D <55000>;
-> +                       hysteresis =3D <2000>;
-> +                       type =3D "active";
-> +               };
-> +               package_fan1: package-fan1 {
-> +                       temperature =3D <65000>;
-> +                       hysteresis =3D <2000>;
-> +                       type =3D "active";
-> +               };
-> +       };
-> +
-> +       cooling-maps {
-> +               map0 {
-> +                       trip =3D <&package_fan0>;
-> +                       cooling-device =3D <&fan THERMAL_NO_LIMIT 1>;
-> +               };
-> +               map1 {
-> +                       trip =3D <&package_fan1>;
-> +                       cooling-device =3D <&fan 1 THERMAL_NO_LIMIT>;
-> +               };
-> +       };
-> +};
-> +
->  &i2c0 {
->         pinctrl-names =3D "default";
->         pinctrl-0 =3D <&i2c0m2_xfer>;
-> @@ -731,6 +759,10 @@ regulator-state-mem {
->         };
->  };
->
-> +&tsadc {
-> +       status =3D "okay";
-> +};
-> +
+On 31.01.2024 06:23, Viresh Kumar wrote:
+> On 30-01-24, 18:46, Manivannan Sadhasivam wrote:
+>> Agree. But what I'm saying is, right now there is no DT property in the
+>> interconnect consumer nodes to specificy the bw requirements. This is all
+>> hardcoded in the respective ICC consumer drivers.
+> 
+> I thought there are a lot of users already in there..
+> 
+> $ git grep -i opp.*bps arch/arm64/boot/dts/ | wc -l
+> 864
+> 
+>> But when we use OPP to control bw, the bw requirements come from DT. This is
+>> what I see as a difference. Because, only nodes making use of OPP will specify
+>> bw in DT and other nodes making use of just ICC will not.
+>>
+>> Maybe I'm worrying too much about these details... But it looks like
+>> inconsistency to me.
+> 
+> Right. So is there inconsistency right now ? Yes, there is.
+> 
+> The important question we need to answer is where do we want to see
+> all these drivers (specially new ones) in the future. What's the right
+> thing to do eventually ? Hardcode stuff ? Or Move it to DT ?
+> 
+> The answer is DT for me, so the code can be generic enough to be
+> reused. This is just one step in the right direction I guess.
+> Eventually the drivers must get simplified, which they are I guess.
 
-Is there any reason this can't be enabled by default in the .dtsi file?
-The thermal sensor doesn't depend on anything external, so there should
-be no reason to push this down to the board level.
+I'm lukewarm on this.
 
-ChenYu
+A *lot* of hardware has more complex requirements than "x MBps at y MHz",
+especially when performance counters come into the picture for dynamic
+bw management.
 
->  &uart2 {
->         pinctrl-0 =3D <&uart2m0_xfer>;
->         status =3D "okay";
->
-> --
-> 2.43.0
->
->
-> _______________________________________________
-> linux-arm-kernel mailing list
-> linux-arm-kernel@lists.infradead.org
-> http://lists.infradead.org/mailman/listinfo/linux-arm-kernel
+OPP tables can't really handle this properly.
+
+Konrad
 
