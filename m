@@ -1,128 +1,102 @@
-Return-Path: <devicetree+bounces-37697-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-37698-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 424E6845F68
-	for <lists+devicetree@lfdr.de>; Thu,  1 Feb 2024 19:09:35 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id C4BED845F90
+	for <lists+devicetree@lfdr.de>; Thu,  1 Feb 2024 19:12:55 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id E87BB1F29B16
-	for <lists+devicetree@lfdr.de>; Thu,  1 Feb 2024 18:09:34 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id F33C91C22B5F
+	for <lists+devicetree@lfdr.de>; Thu,  1 Feb 2024 18:12:54 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 34DC38526B;
-	Thu,  1 Feb 2024 18:05:09 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3F4237C6C9;
+	Thu,  1 Feb 2024 18:08:31 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=armlinux.org.uk header.i=@armlinux.org.uk header.b="ihG4H+Cx"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="tVzUpda1"
 X-Original-To: devicetree@vger.kernel.org
-Received: from pandora.armlinux.org.uk (pandora.armlinux.org.uk [78.32.30.218])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0EE9D85275;
-	Thu,  1 Feb 2024 18:05:05 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=78.32.30.218
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 128F177A0C;
+	Thu,  1 Feb 2024 18:08:31 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1706810709; cv=none; b=f8M8hCcYOcBTgYVO6IyWT7NpGqaOK9TbXvFkDroCNGwSPenYEc4SwXFapn4Kk4/+tj5mhifTfMdv14HF0j0XKesv4wOkccqXXyQfY6sFS5KuTyoJDFbjWUH4QRz/74vv3p+g7x/ePAV7lJC8MBB4He9jcIcknkPk9YBsv9MXxC0=
+	t=1706810911; cv=none; b=FIP0Pm6cPg7Nz5/cE5pEZVQEhzMNw1cR4zLsxFOeHqq0DLYodmAi+ucCogychPyDx7CghCWpe5OJfAld3MbU23wQtS26TMbnk89ZthfT9qJNAJXb25uQRfyyon2ac3WZV0B0InQEHeFuOPVitYY9w9Z+7avyE+81gDFCkXi2b8Y=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1706810709; c=relaxed/simple;
-	bh=I0wLRr/Sl79b2Xe1FyfzbVWzIscJuiBxBqIBkYPKXcw=;
+	s=arc-20240116; t=1706810911; c=relaxed/simple;
+	bh=HYUeRkOLIOi7AA37ejYT4g/vY/TwFilrl3Tgdss9kAk=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=CRPq/lM0PHPPW/bbraGXFBYbBttoxldUaCYp/J9eN1zzpwkz2ecc+req7oIWtiuMI60mkkF1fovdDD4V4BmJFet+B2+7N1PA1cU/U+1aT7XpyRM8wFjj13cFFzUxvuSz/fh2fVSjqwUnJUCIIl8q62AFK0DkeyXItzPPFdFveIQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=armlinux.org.uk; spf=none smtp.mailfrom=armlinux.org.uk; dkim=pass (2048-bit key) header.d=armlinux.org.uk header.i=@armlinux.org.uk header.b=ihG4H+Cx; arc=none smtp.client-ip=78.32.30.218
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=armlinux.org.uk
-Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=armlinux.org.uk
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=armlinux.org.uk; s=pandora-2019; h=Sender:In-Reply-To:Content-Type:
-	MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:Reply-To:
-	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
-	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Id:
-	List-Help:List-Unsubscribe:List-Subscribe:List-Post:List-Owner:List-Archive;
-	bh=wlDdr8NPiv5K6d89Bs5uSKYd3ZJ761NBPkhp6QHmjxU=; b=ihG4H+CxyyBjdudwZR3dMEQ0TK
-	7sxcRhO62L8ketQE7IZBEniIleIcd43plriDe1Ay652flED+oXwgx4ygMQippFmFk4TwuNnNu4Vn3
-	fWRF4K7TxQmjK3efqvMR0HNuxNTDQpdLGotizhkiN/BKzkQVUZ9wl95sX7jXC6ze36MJgivnWn4TU
-	i0XwhS/rLkqRBgE7Lmgyyca2aXPuxN7DRsINUh6PZbeqwgi2y0eSFRzBEwoWVSTyGXMR6S/jvyEx6
-	1p7oHGDGtrEi4gZwENv7VFRpe7tI6Oe2ukCgRWhu2d/7mL17ieBYs9dYwb1/kA6682OA2ocuvrXP8
-	5iuYf9nQ==;
-Received: from shell.armlinux.org.uk ([fd8f:7570:feb6:1:5054:ff:fe00:4ec]:40810)
-	by pandora.armlinux.org.uk with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-	(Exim 4.96)
-	(envelope-from <linux@armlinux.org.uk>)
-	id 1rVbQm-0004yf-0q;
-	Thu, 01 Feb 2024 18:04:56 +0000
-Received: from linux by shell.armlinux.org.uk with local (Exim 4.94.2)
-	(envelope-from <linux@shell.armlinux.org.uk>)
-	id 1rVbQj-0007YI-BP; Thu, 01 Feb 2024 18:04:53 +0000
-Date: Thu, 1 Feb 2024 18:04:53 +0000
-From: "Russell King (Oracle)" <linux@armlinux.org.uk>
-To: Stefan Wiehler <stefan.wiehler@nokia.com>
-Cc: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-	devicetree@vger.kernel.org
-Subject: Re: [PATCH RESEND] arm: topology: Fix missing clock-frequency
- property warning
-Message-ID: <ZbvdRXsvY2qBXApS@shell.armlinux.org.uk>
-References: <20240201123605.3037829-2-stefan.wiehler@nokia.com>
- <dfccb849-67b6-489b-8e83-3df1f9b29877@linaro.org>
- <9da01fb1-9bab-436b-af49-783e44821b26@nokia.com>
+	 Content-Type:Content-Disposition:In-Reply-To; b=S/XKXgxws7I5TKJtRXyDiyHhB4xYN7AifRDw/+O9+snR+qTNMbbFERO2GoMbKTRUZokp7S7NLZbP/MHWGmnpkm8eVoCPUn+75EquTlSEL2QZvp2bqd6pCbJ2AjiLST8rl6Hbq8P5J0lOfiD55lpQw9/hJIpakHjldDkAuw0LNd4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=tVzUpda1; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 92641C43399;
+	Thu,  1 Feb 2024 18:08:28 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1706810910;
+	bh=HYUeRkOLIOi7AA37ejYT4g/vY/TwFilrl3Tgdss9kAk=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=tVzUpda1nlNaOOaI5/PH1bBOAOoDhwvOEBDc5lFexPfExa6DaYcq3MK9/iW6JWuPE
+	 a+9Ba4Mghrq+waJA9JfM27IA8PvfSPgmuUqwItka3xy6CadbvLc4kqz9U0etuQir6I
+	 ZMwIjp5Nhj0mRdn+K3EDiqsDZa7lAS8gR+16zwcySVzkBRS4XDItCPCBLfjDBRKiW0
+	 uVQGs/7sGSZSFd5urZFkpwuM5t3wI2Piv5XY42+sQhlkM/Xsgtt/X5RoWosKN6g4Wf
+	 zT2HhaQaL1tM1wAqokMhqTsIQAFU5XKXQQOvCaW7XtzrNinlgSp4+P2fV4EfdkbzVo
+	 C49XetDEzfr5Q==
+Date: Thu, 1 Feb 2024 18:08:26 +0000
+From: Conor Dooley <conor@kernel.org>
+To: Geert Uytterhoeven <geert+renesas@glider.be>
+Cc: Wim Van Sebroeck <wim@linux-watchdog.org>,
+	Guenter Roeck <linux@roeck-us.net>,
+	Wolfram Sang <wsa+renesas@sang-engineering.com>,
+	Rob Herring <robh+dt@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>, linux-watchdog@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-renesas-soc@vger.kernel.org,
+	Minh Le <minh.le.aj@renesas.com>
+Subject: Re: [PATCH] dt-bindings: watchdog: renesas-wdt: Add support for
+ R-Car V4M
+Message-ID: <20240201-chatroom-tidiness-fafc4fe679a4@spud>
+References: <8c2eaad577513a519c518698a45083afb65b16f0.1706789940.git.geert+renesas@glider.be>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+Content-Type: multipart/signed; micalg=pgp-sha256;
+	protocol="application/pgp-signature"; boundary="qy/rdPUQTJTtEExO"
+Content-Disposition: inline
+In-Reply-To: <8c2eaad577513a519c518698a45083afb65b16f0.1706789940.git.geert+renesas@glider.be>
+
+
+--qy/rdPUQTJTtEExO
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <9da01fb1-9bab-436b-af49-783e44821b26@nokia.com>
-Sender: Russell King (Oracle) <linux@armlinux.org.uk>
+Content-Transfer-Encoding: quoted-printable
 
-On Thu, Feb 01, 2024 at 04:03:59PM +0100, Stefan Wiehler wrote:
-> > Does this mean the /cpus property is like a default for when a CPU node
-> > doesn't specify the clock frequency, or does it mean that the /cpus
-> > property should only exist when all the values for each CPU are
-> > identical and thus the individual CPU node clock frequency should
-> > not be specified.
-> 
-> Good question, the device tree specification in Section 3.7 [1] says:
-> 
-> > The /cpus node may contain properties that are common across cpu
-> nodes. See Section 3.8 for details.
-> 
-> And in Section 3.8 [2]:
-> 
-> > Properties that have identical values across cpu nodes may be placed
-> > in the /cpus node instead. A client program must first examine a
-> > specific cpu node, but if an expected property is not found then it
-> > should look at the parent /cpus node. This results in a less verbose
-> > representation of properties which are identical across all CPUs.
-> 
-> So I think it is pretty clear that it should only be used for
-> common/identical values.
+On Thu, Feb 01, 2024 at 01:19:59PM +0100, Geert Uytterhoeven wrote:
+> From: Minh Le <minh.le.aj@renesas.com>
+>=20
+> Add documentation for r8a779h0 compatible string to
+> Renesas watchdog device tree bindings documentation.
+>=20
+> Signed-off-by: Minh Le <minh.le.aj@renesas.com>
+> Signed-off-by: Geert Uytterhoeven <geert+renesas@glider.be>
 
-Thanks for the clarification.
+Acked-by: Conor Dooley <conor.dooley@microchip.com>
 
-As this is DT specified behaviour, I question whether it should be
-implemented in arch/arm/kernel/topology.c - what I'm meaning is
-a helper such as:
+Cheers,
+C
 
-const void *of_get_cpu_property(const struct device_node *node,
-				const char *name, int *lenp)
-{
-	const void *res;
+--qy/rdPUQTJTtEExO
+Content-Type: application/pgp-signature; name="signature.asc"
 
-	res = of_get_property(node, name, lenp);
-	if (!res) {
-		node = of_find_node_by_path("/cpus");
-		if (node)
-			res = of_get_property(node, name, lenp);
-		of_node_put(node);
-	}
+-----BEGIN PGP SIGNATURE-----
 
-	return res;
-}
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZbveGgAKCRB4tDGHoIJi
+0voLAP9oH2wb6rj38G6WVM2mWUmt8HH/OU2lHYjBz002skC4rwD/Zr9tK2HuPoox
+7KPKpowXEvbFTew3xaOmSxiKC5aP/Qk=
+=/7jH
+-----END PGP SIGNATURE-----
 
-?
-
--- 
-RMK's Patch system: https://www.armlinux.org.uk/developer/patches/
-FTTP is here! 80Mbps down 10Mbps up. Decent connectivity at last!
+--qy/rdPUQTJTtEExO--
 
