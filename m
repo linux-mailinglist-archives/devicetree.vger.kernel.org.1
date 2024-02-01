@@ -1,125 +1,140 @@
-Return-Path: <devicetree+bounces-37484-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-37485-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 210A284527B
-	for <lists+devicetree@lfdr.de>; Thu,  1 Feb 2024 09:15:35 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 6A085845299
+	for <lists+devicetree@lfdr.de>; Thu,  1 Feb 2024 09:22:05 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id AB5BD285C9E
-	for <lists+devicetree@lfdr.de>; Thu,  1 Feb 2024 08:15:33 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 27678285D75
+	for <lists+devicetree@lfdr.de>; Thu,  1 Feb 2024 08:22:04 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E8CC4158D76;
-	Thu,  1 Feb 2024 08:15:28 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 890C0158D8A;
+	Thu,  1 Feb 2024 08:21:59 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="JJazJQD5"
+	dkim=pass (2048-bit key) header.d=microchip.com header.i=@microchip.com header.b="Q/SUoU82"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from esa.microchip.iphmx.com (esa.microchip.iphmx.com [68.232.153.233])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B5E751586D3;
-	Thu,  1 Feb 2024 08:15:28 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 80784158D7C;
+	Thu,  1 Feb 2024 08:21:57 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=68.232.153.233
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1706775328; cv=none; b=XsoWrh/1oocE3sGsZTlMEIE94sCeIWoBVkhDc4RIZM0i4LZZBLo6pbxoxE1QuQfB83RXgXWzka3B1PzOVefarngqSqtTPt7iG+NyY0OU0sDZEpFuMlQ78D5A8FabP+wHaU0GZd6L/90AIrU0my1DJAsCdc4OWbeP36yij6MWkq4=
+	t=1706775719; cv=none; b=BPNnyyf73lklb6e0j2Hh3dPR+Qycl6OAR0tDDq75ACqe6d0Z0GxRX+3b1eL5G6S13VR7HiZR4ceGNwwWaf2AcnKNOUtYf8lc4yTYZ24Mo+QTUIUDX7Ewz3w+WQ3WXL6kzBleKHhR4BdUz8kf3OADVeR3/l8hF4XQRjXlhUutIAo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1706775328; c=relaxed/simple;
-	bh=kkm9m85BchBsg8gyaeBqfM19x9yX2lcmT5vikkpEihs=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=YKgA3hCTsJs9R/OOyJ8MwBC8G9110B6QaOaSb5VBVrtT/PvG/dUR1W1qlbMqRCTgEyzZ/6y5yXJXkYgbU+AhYNaEWyIMDeEqR3WIphj72wOE9CMsksy69uYiFvk8gOh8hTJZnmhphZjMKDCjJaxZYJBEc1DG8sFimRrbOPgfkvg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=JJazJQD5; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 383F0C433F1;
-	Thu,  1 Feb 2024 08:15:28 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1706775328;
-	bh=kkm9m85BchBsg8gyaeBqfM19x9yX2lcmT5vikkpEihs=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=JJazJQD5szwbMpJjuDL/t7jXeKWf6+Ijqym93J1qnpgke0tVyOxVGhkhGQFkiGNMs
-	 ttaJMhC3XyipqNfXK08pO9FnS61CrIyGPPBH4wVfW/bJuM7EsOaH045gKDD/TMzJvQ
-	 R11u5YQ6YkJeqv5I1kqMnS9GOBmnbyLp1wdhVro6D1B10HLyGxrpILn3YsmL3Y9Wel
-	 wGBTYcn+Qh5DdzVM5V76DhXN3LnA5AhGZqMFPY6AJvQw7R8pDsNA8jsXTF48Ue0DNO
-	 kyhpohL1nC3ewZJARLrTUVm5OZJnTB3RbyhMnxekBaRtcSEITFl9uy0Qv2u2qtE5sq
-	 U/+pdea5NfSnQ==
-Received: from johan by xi.lan with local (Exim 4.97.1)
-	(envelope-from <johan@kernel.org>)
-	id 1rVSEL-000000005lV-1gxB;
-	Thu, 01 Feb 2024 09:15:29 +0100
-Date: Thu, 1 Feb 2024 09:15:29 +0100
-From: Johan Hovold <johan@kernel.org>
-To: Rob Herring <robh@kernel.org>
-Cc: Bjorn Andersson <quic_bjorande@quicinc.com>,
-	Dmitry Torokhov <dmitry.torokhov@gmail.com>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Benjamin Tissoires <benjamin.tissoires@redhat.com>,
-	Jiri Kosina <jikos@kernel.org>,
-	Bjorn Andersson <andersson@kernel.org>,
-	Konrad Dybcio <konrad.dybcio@linaro.org>,
-	Johan Hovold <johan+linaro@kernel.org>,
-	linux-arm-msm@vger.kernel.org, linux-input@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	Konrad Dybcio <konrad.dybcio@somainline.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Subject: Re: [PATCH v3 1/2] dt-bindings: HID: i2c-hid: Document reset-related
- properties
-Message-ID: <ZbtTIYFzMVLMxb10@hovoldconsulting.com>
-References: <20240129-x13s-touchscreen-v3-0-c4a933034145@quicinc.com>
- <20240129-x13s-touchscreen-v3-1-c4a933034145@quicinc.com>
- <ZbfYzyHaNmjJyNpY@hovoldconsulting.com>
- <20240131202239.GA2222869-robh@kernel.org>
+	s=arc-20240116; t=1706775719; c=relaxed/simple;
+	bh=wfZpdZl/N31/4tOLTGcfIu3SyJ0XLAVEJXeoyLZ1J48=;
+	h=Date:From:To:CC:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=HTVE30HQdO7DpvUCAS1WdhzxpaDfPPFN4Id06eXT3+rOWucjoUoDtefBLaN9FKA7Y4Rqhl8txMQJGpytUtuNf7Lrn+PH3osSqxWfeMJFUgNHAoOLLJhcE0rNbE2iDOXOxODVyVMM+MfjxNgax4lHy3iS5h3cMC/aIiLuPRQKaTo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=microchip.com; spf=pass smtp.mailfrom=microchip.com; dkim=pass (2048-bit key) header.d=microchip.com header.i=@microchip.com header.b=Q/SUoU82; arc=none smtp.client-ip=68.232.153.233
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=microchip.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=microchip.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
+  t=1706775717; x=1738311717;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=wfZpdZl/N31/4tOLTGcfIu3SyJ0XLAVEJXeoyLZ1J48=;
+  b=Q/SUoU82TsjUo1XPhiuQLZtSMnq5sleLQAIgzb0p4/H0qwk0ymd52Lru
+   +BiuJ/w7lUGaFEhCJgJeQlMyh0bjBp+L7XtzOtYKpS4GLWDUqocSVl8Tx
+   1aCYmWjBpPBjgUA6zCiXFEpY0/k6SUipTci5DVxSURuSCMDinxNQsPwHD
+   NdXOKT7HGVQqS7BwFJ1k5DLAcoGY74OFPh4rc7fhvTCDP/kohIOz1sWLc
+   j1XCtYF9oh4RxWQXkP/Ct3en6DTBviLT3CQoJ6VrNliB6o+58I5v7leX4
+   0d9UKXLINgo7BkP5qdgYEFRZfJrHG3MofSwHHZYWtz+kVMSakxc9odFjY
+   w==;
+X-CSE-ConnectionGUID: xeT3MgaNR+W5qlWhP2avng==
+X-CSE-MsgGUID: hgNpKvbOS5yYpYQTXvgMYw==
+X-IronPort-AV: E=Sophos;i="6.05,234,1701154800"; 
+   d="asc'?scan'208";a="246338219"
+X-Amp-Result: UNKNOWN
+X-Amp-Original-Verdict: FILE UNKNOWN
+Received: from unknown (HELO email.microchip.com) ([170.129.1.10])
+  by esa5.microchip.iphmx.com with ESMTP/TLS/ECDHE-RSA-AES128-GCM-SHA256; 01 Feb 2024 01:21:54 -0700
+Received: from chn-vm-ex03.mchp-main.com (10.10.85.151) by
+ chn-vm-ex04.mchp-main.com (10.10.85.152) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.35; Thu, 1 Feb 2024 01:21:32 -0700
+Received: from wendy (10.10.85.11) by chn-vm-ex03.mchp-main.com (10.10.85.151)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.35 via Frontend
+ Transport; Thu, 1 Feb 2024 01:21:30 -0700
+Date: Thu, 1 Feb 2024 08:20:51 +0000
+From: Conor Dooley <conor.dooley@microchip.com>
+To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+CC: Guenter Roeck <linux@roeck-us.net>, Conor Dooley <conor@kernel.org>,
+	Charles Hsu <ythsu0511@gmail.com>, <jdelvare@suse.com>, <corbet@lwn.net>,
+	<Delphine_CC_Chiu@wiwynn.com>, <robh+dt@kernel.org>,
+	<krzysztof.kozlowski+dt@linaro.org>, <conor+dt@kernel.org>,
+	<linux-hwmon@vger.kernel.org>, <devicetree@vger.kernel.org>,
+	<linux-kernel@vger.kernel.org>
+Subject: Re: [PATCH v3 2/2] dt-bindings: Add MPQ8785 voltage regulator device
+Message-ID: <20240201-professor-slobbery-a77c9c76ca82@wendy>
+References: <20240131055526.2700452-1-ythsu0511@gmail.com>
+ <20240131055526.2700452-2-ythsu0511@gmail.com>
+ <20240131-eraser-given-8381a44f41a4@spud>
+ <d20e1f93-4e6c-4c18-b4bd-19412eb4e8da@roeck-us.net>
+ <f99af7ee-1a6c-4e00-9a7d-3a1ddc9574d2@linaro.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+Content-Type: multipart/signed; micalg=pgp-sha256;
+	protocol="application/pgp-signature"; boundary="eiYzcIx+MwHK8ugQ"
+Content-Disposition: inline
+In-Reply-To: <f99af7ee-1a6c-4e00-9a7d-3a1ddc9574d2@linaro.org>
+
+--eiYzcIx+MwHK8ugQ
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20240131202239.GA2222869-robh@kernel.org>
+Content-Transfer-Encoding: quoted-printable
 
-On Wed, Jan 31, 2024 at 02:22:39PM -0600, Rob Herring wrote:
-> On Mon, Jan 29, 2024 at 05:56:47PM +0100, Johan Hovold wrote:
-> > On Mon, Jan 29, 2024 at 08:47:47AM -0800, Bjorn Andersson wrote:
-> > > Some I2C HID devices has a reset pin and requires that some specified
-> > > time elapses after this reset pin is deasserted, before communication
-> > > with the device is attempted.
-> > > 
-> > > The Linux implementation is looking for these in the "reset-gpios" and
-> > > "post-reset-deassert-delay-ms" properties already, so use these property
-> > > names.
-> > 
-> > > +  post-reset-deassert-delay-ms:
-> > > +    description: Time required by the device after reset has been deasserted,
-> > > +      before it is ready for communication.
-> > > +
-> > > +  reset-gpios: true
-> > 
-> > Hmm, for the third time, it seems you ignored my comment that you need
-> > to remove the comment about these properties from the driver as part of
-> > this series.
-> > 
-> > 	/*
-> > 	 * Note this is a kernel internal device-property set by x86 platform code,
-> > 	 * this MUST not be used in devicetree files without first adding it to
-> > 	 * the DT bindings.
-> > 	 */
-> > 	if (!device_property_read_u32(dev, "post-reset-deassert-delay-ms", &val))
-> > 		ihid_of->post_reset_delay_ms = val;
-> 
-> DT devices should have a specific compatible that gives enough detail to 
-> handle this delay or *any* other power sequencing requirement.
-> 
-> OTOH, we've already got one other delay property, what's one more. Sigh.
-> 
-> Acked-by: Rob Herring <robh@kernel.org>
+On Thu, Feb 01, 2024 at 08:47:07AM +0100, Krzysztof Kozlowski wrote:
+> On 01/02/2024 01:41, Guenter Roeck wrote:
+> > On 1/31/24 07:41, Conor Dooley wrote:
+> >> On Wed, Jan 31, 2024 at 01:55:26PM +0800, Charles Hsu wrote:
+> >>> Monolithic Power Systems, Inc. (MPS) synchronous step-down converter.
+> >>>
+> >>> Signed-off-by: Charles Hsu <ythsu0511@gmail.com>
+> >>> ---
+> >>>   Documentation/devicetree/bindings/trivial-devices.yaml | 2 ++
+> >>>   1 file changed, 2 insertions(+)
+> >>>
+> >>> diff --git a/Documentation/devicetree/bindings/trivial-devices.yaml b=
+/Documentation/devicetree/bindings/trivial-devices.yaml
+> >>> index 79dcd92c4a43..088b23ed2ae6 100644
+> >>> --- a/Documentation/devicetree/bindings/trivial-devices.yaml
+> >>> +++ b/Documentation/devicetree/bindings/trivial-devices.yaml
+> >>> @@ -129,6 +129,8 @@ properties:
+> >>>             - mps,mp2975
+> >>>               # Monolithic Power Systems Inc. multi-phase hot-swap co=
+ntroller mp5990
+> >>>             - mps,mp5990
+> >>> +            # Monolithic Power Systems Inc. synchronous step-down co=
+nverter mpq8785
+> >>> +          - mps,mpq8785
+> >>
+> >> q sorts before 2, otherwise
+> >=20
+> > It does ? Not in ASCII. Am I missing something ?
+>=20
+> Also `sort` agrees with q being after numbers.
 
-Right, and I guess we could do this now before this new property gets
-more use. Who knows if those delays are actually correct or may need to
-be tweaked down the line.
+Disregard that comment so.
 
-Apparently we only have one specific i2c-hid compatible in the kernel
-(and it's not yet used by the driver).
+--eiYzcIx+MwHK8ugQ
+Content-Type: application/pgp-signature; name="signature.asc"
 
-Johan
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZbtUVgAKCRB4tDGHoIJi
+0gN/AP4tg5L5FIzAL86HeXCni6iANExtZEzYQm/GuHvM/xL1AwD/SkChM5F+gynW
+lmkadnEGZQvZYnT4OxYJANK+EUVBnwA=
+=tEEr
+-----END PGP SIGNATURE-----
+
+--eiYzcIx+MwHK8ugQ--
 
