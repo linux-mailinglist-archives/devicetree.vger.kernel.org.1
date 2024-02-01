@@ -1,126 +1,93 @@
-Return-Path: <devicetree+bounces-37789-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-37790-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5A8EC846346
-	for <lists+devicetree@lfdr.de>; Thu,  1 Feb 2024 23:13:53 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 1BD7C846354
+	for <lists+devicetree@lfdr.de>; Thu,  1 Feb 2024 23:18:45 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 1007828FA49
-	for <lists+devicetree@lfdr.de>; Thu,  1 Feb 2024 22:13:52 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id D5DE82860A9
+	for <lists+devicetree@lfdr.de>; Thu,  1 Feb 2024 22:18:43 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id ECE6B3FB2E;
-	Thu,  1 Feb 2024 22:11:54 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4C5663FB32;
+	Thu,  1 Feb 2024 22:18:39 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="YvdlH42R"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="PSjkloBh"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AD1A647F66;
-	Thu,  1 Feb 2024 22:11:54 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1480A3D3BC;
+	Thu,  1 Feb 2024 22:18:38 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1706825514; cv=none; b=N3elQRHmnlr9HbCvKZ0+lsZ0lAVeTYHbCmhYIdW6aOLORgkbqJHX5IxJv/LnBE/WRg4QkwUzUGiUoEEt4mbGE40nGsbcG+N/Wz7ZRR5YEhD4b7UT8ASbvI06at7FkljFBJvuOC+v63nPGpQvdecunluo44ro86oJgBrusCZZv/c=
+	t=1706825919; cv=none; b=JtBJV/njwMR565kVgNCmdq0EFquM3kcB2zjmegnByIMpzxUU6F73FC3tIRqZ6Ogpaoh2QAe6EhqvXP3022mz6Iss6QoQfq55xbd5PxNdyPYKlZi1DZWJVGzfDK6FIKufzwJ0GSwAR5oHeB/AtTzS3JHzFuK7yk3y4T8RVXEpnPk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1706825514; c=relaxed/simple;
-	bh=bfnUreV/nfXZCXmsG8UmyxaFFTMZMOyL4FzIFxDA/0I=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=bqr4Dhxo8FFpg+m+RyGV2HaYYFLErrdl+rmVwlrb6HkZBtQ0qGasGjGwVzf1r2gDrqD0KyU68lsPPyHbBXP1ibyZMkoP4FcAYQFA/RHvjZ5+1+2Wl6rXeIUwoTcBjUm31MuZRkqqXMco0QB+OqCpL9ettTFdQeJ7kpiaxZFi4S0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=YvdlH42R; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 0F7F2C433F1;
-	Thu,  1 Feb 2024 22:11:53 +0000 (UTC)
+	s=arc-20240116; t=1706825919; c=relaxed/simple;
+	bh=Z9TgWie7YtgminwtE1RQnQvs7QaguyVm5XFk23DKB/k=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=CHaC5cdRknts0gOP9h9c+pM0SVeFJQlWqRtvhs5+xpWG6hvEZTlsnxIOkGkcsdWNUfxE7oiHBnM/BT27JT26W4q+Tk4Dzg7WXBk8QAfP47F0swSeS9dhNvOd7+urgC96YVKBzbkW9apc0lLQw74U1a7fXVnT18LV/tlxAuccXDM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=PSjkloBh; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 7F0C4C433B1;
+	Thu,  1 Feb 2024 22:18:38 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1706825514;
-	bh=bfnUreV/nfXZCXmsG8UmyxaFFTMZMOyL4FzIFxDA/0I=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=YvdlH42R3T8o8N6i01fGZzSN2cfZ8W1Ut9gtlDBu5A+18in3IR5daIFcgiPJXu0ez
-	 dRk+Y8eiv0BJEx1Q4KzGis4ZyB7k4ZyAjvuSna7zEdXN7a5i1Kuq7bdJEPvPHlxMTK
-	 o8ChWpwuXeXoU8nhaLqlSqe1MLTIaoVaIchVaxGS8tZ9WjzrKVuEFmfS4Wbuzu756E
-	 K08W6i99O2Z2t84jcEaFAfMzA5ENxEsRBTqJI7imaAcz0wD0yjfCwubVwXJFzLIVc5
-	 23KjBCbOxe8/A+p3WBRAWQ7H7YkcRswgw9GHJUshC+PFWPtAF4vPELdMZp9ZxBNTUv
-	 aoMgtTfcLs0YA==
-Date: Thu, 1 Feb 2024 16:11:51 -0600
-From: Rob Herring <robh@kernel.org>
-To: Geert Uytterhoeven <geert+renesas@glider.be>
-Cc: Liam Girdwood <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>,
-	Linus Walleij <linus.walleij@linaro.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Marek Szyprowski <m.szyprowski@samsung.com>,
-	devicetree@vger.kernel.org, linux-gpio@vger.kernel.org,
-	linux-kernel@vger.kernel.org
-Subject: Re: [PATCH 1/2] regulator: dt-bindings: gpio-regulator: Fix
- {gpios-,}states limits
-Message-ID: <20240201221151.GA1562458-robh@kernel.org>
-References: <cover.1706802756.git.geert+renesas@glider.be>
- <b20aab137058c02ab5af9aaa1280729a02c6ea49.1706802756.git.geert+renesas@glider.be>
+	s=k20201202; t=1706825918;
+	bh=Z9TgWie7YtgminwtE1RQnQvs7QaguyVm5XFk23DKB/k=;
+	h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+	b=PSjkloBhZZM5akBe3/QG1foc9zj4RKsnA/d+vvX5VeXMeN7ItAzAkUbCEfGGLPOK0
+	 4D6eqqK3CaAlvn0wdzqZIBF5mu05SXLXn6Ao1/zN4I2m3+wN7qLqmJnusSEo3W/Eox
+	 stTPLCdN2CkdxexOTQja5+l2+sWP/WhyvMuEqJz/SxiM8NLU02ueGN0smD8YsWMZgb
+	 U5phZraJpISvmNXCS18B2LnNLOxxj++ULSp+nqN+gIXuQlSI5tExzvbZEfnh8EkKKC
+	 VwjZb3vxkrgsAFA+Qu+wHrY6o36e+0tIDnjq5c4Zduw4Ojc7kbdIq4fTaiqtl6cfEA
+	 4ISfV4hP7d7LQ==
+Received: by mail-lf1-f44.google.com with SMTP id 2adb3069b0e04-51032058f17so1752451e87.3;
+        Thu, 01 Feb 2024 14:18:38 -0800 (PST)
+X-Gm-Message-State: AOJu0YxiRvE5/xE1VvJXSr1hK1Qrnb/W6ybcpqJlTIE5TAoxH5DyccoG
+	iJsiNl6wHxaXaDOBqPXIPxX//WKqwwUGx36SHnzefZk9KgGhGxGPj9tUI6yC1OLddfVGI+qPyPz
+	qQ8VGnb372KsneXjinPpYEHtmCQ==
+X-Google-Smtp-Source: AGHT+IFo8Hgkp4E9JaVZd7NvXDQ6NzE7A6q7dh+4rpUrgLAaizZQtSJrrCMWBPjJ3KvcXFi8lfBzxbHQ7bxFDm5HUkM=
+X-Received: by 2002:a05:6512:3b0:b0:511:21e4:5a69 with SMTP id
+ v16-20020a05651203b000b0051121e45a69mr2802815lfp.40.1706825916680; Thu, 01
+ Feb 2024 14:18:36 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <b20aab137058c02ab5af9aaa1280729a02c6ea49.1706802756.git.geert+renesas@glider.be>
+References: <20240201155532.49707-1-brgl@bgdev.pl> <20240201155532.49707-2-brgl@bgdev.pl>
+In-Reply-To: <20240201155532.49707-2-brgl@bgdev.pl>
+From: Rob Herring <robh@kernel.org>
+Date: Thu, 1 Feb 2024 16:18:24 -0600
+X-Gmail-Original-Message-ID: <CAL_JsqKq8AngeC7ohsbYB0w70uALD+PX-df53cswTDUY-Rrdgw@mail.gmail.com>
+Message-ID: <CAL_JsqKq8AngeC7ohsbYB0w70uALD+PX-df53cswTDUY-Rrdgw@mail.gmail.com>
+Subject: Re: [RFC 1/9] of: provide a cleanup helper for OF nodes
+To: Bartosz Golaszewski <brgl@bgdev.pl>
+Cc: Bjorn Andersson <andersson@kernel.org>, Konrad Dybcio <konrad.dybcio@linaro.org>, 
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Marcel Holtmann <marcel@holtmann.org>, Luiz Augusto von Dentz <luiz.dentz@gmail.com>, 
+	Bjorn Helgaas <bhelgaas@google.com>, Neil Armstrong <neil.armstrong@linaro.org>, 
+	Alex Elder <elder@linaro.org>, Srini Kandagatla <srinivas.kandagatla@linaro.org>, 
+	Greg Kroah-Hartman <gregkh@linuxfoundation.org>, Arnd Bergmann <arnd@arndb.de>, 
+	Abel Vesa <abel.vesa@linaro.org>, Manivannan Sadhasivam <mani@kernel.org>, Lukas Wunner <lukas@wunner.de>, 
+	linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org, linux-bluetooth@vger.kernel.org, 
+	linux-pci@vger.kernel.org, 
+	Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-On Thu, Feb 01, 2024 at 04:58:41PM +0100, Geert Uytterhoeven wrote:
-> make dtbs_check:
-> 
->     arch/arm64/boot/dts/renesas/r8a77951-salvator-xs.dtb: regulator-vccq-sdhi0: Unevaluated properties are not allowed ('gpios-states', 'states' were unexpected)
-> 	    from schema $id: http://devicetree.org/schemas/regulator/gpio-regulator.yaml#
+On Thu, Feb 1, 2024 at 9:55=E2=80=AFAM Bartosz Golaszewski <brgl@bgdev.pl> =
+wrote:
+>
+> From: Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
+>
+> Allow to use __free() to automatically put references to OF nodes.
 
-Unevaluated properties warning here is not interesting. If a property 
-fails validation, then it is considered unevaluated. It's that warning 
-which is interesting:
+Jonathan has already been working on this[1].
 
-arch/arm64/boot/dts/renesas/r8a77951-salvator-xs.dtb: regulator-vccq-sdhi0: gpios-states:0: [1] is too short
-        from schema $id: http://devicetree.org/schemas/regulator/gpio-regulator.yaml#
+Rob
 
-> 
-> The number of items in "gpios-states" must match the number of items in
-> "gpios", so their limits should be identical.
-> 
-> The number of items in "states" must lie within the range from zero up
-> to 2^{number of gpios}.
-> 
-> Signed-off-by: Geert Uytterhoeven <geert+renesas@glider.be>
-> ---
-> The second issue did not cause any dtbs_check errors?
-
-I'm not seeing 'states' fail, but it looks like you did? Is that the 
-issue you mean? Looks like in the matrix case, we're now setting 
-minItems if unspecified.
-
-> ---
->  .../devicetree/bindings/regulator/gpio-regulator.yaml         | 4 +++-
->  1 file changed, 3 insertions(+), 1 deletion(-)
-> 
-> diff --git a/Documentation/devicetree/bindings/regulator/gpio-regulator.yaml b/Documentation/devicetree/bindings/regulator/gpio-regulator.yaml
-> index f4c1f36e52e9c3d8..1cecf8faee5dc374 100644
-> --- a/Documentation/devicetree/bindings/regulator/gpio-regulator.yaml
-> +++ b/Documentation/devicetree/bindings/regulator/gpio-regulator.yaml
-> @@ -47,6 +47,7 @@ properties:
->          1: HIGH
->        Default is LOW if nothing else is specified.
->      $ref: /schemas/types.yaml#/definitions/uint32-array
-> +    minItems: 1
->      maxItems: 8
->      items:
->        enum: [0, 1]
-> @@ -57,7 +58,8 @@ properties:
->        regulator and matching GPIO configurations to achieve them. If there are
->        no states in the "states" array, use a fixed regulator instead.
->      $ref: /schemas/types.yaml#/definitions/uint32-matrix
-> -    maxItems: 8
-> +    minItems: 0
-> +    maxItems: 256
->      items:
->        items:
->          - description: Voltage in microvolts
-> -- 
-> 2.34.1
-> 
+[1] https://lore.kernel.org/all/20240128160542.178315-1-jic23@kernel.org/
 
