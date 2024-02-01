@@ -1,168 +1,116 @@
-Return-Path: <devicetree+bounces-37688-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-37689-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 46747845E75
-	for <lists+devicetree@lfdr.de>; Thu,  1 Feb 2024 18:24:36 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 70DB4845E8D
+	for <lists+devicetree@lfdr.de>; Thu,  1 Feb 2024 18:32:13 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 506BFB2EF65
-	for <lists+devicetree@lfdr.de>; Thu,  1 Feb 2024 17:23:37 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 262441F29926
+	for <lists+devicetree@lfdr.de>; Thu,  1 Feb 2024 17:32:13 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 007A263067;
-	Thu,  1 Feb 2024 17:22:33 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E8D571649CD;
+	Thu,  1 Feb 2024 17:31:42 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="JovNpSjS"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="f68EvTjv"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wr1-f43.google.com (mail-wr1-f43.google.com [209.85.221.43])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F1FFE1649D7
-	for <devicetree@vger.kernel.org>; Thu,  1 Feb 2024 17:22:29 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.43
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BDE8B63CAF;
+	Thu,  1 Feb 2024 17:31:42 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1706808152; cv=none; b=gse0tBhIooeHl9SkfGJ2UMwJ/d8f3vihkyhrNWSe0PcQKF7OqAqyGuELruyyRin9yavjFRGggSMUA5Qp4vt3As1DyODNQkiX+da6hfa+Wvf97vgoJrgneRtkn7PRDKMWsiUat6UGgBBj4S9h+Vk5jtfurhfjuuwC8uyx5petC7c=
+	t=1706808702; cv=none; b=RbZVOjtgviVRyOSH6SA2HcjnTuzFxPH9uehYhYFLlf32uvstww7EtgO188JtzLRurlzSl6NHiOmGKSvwKowql7c8g1bb4lEpps0fshtDk/EPqjrU90bGwEtJ7DXo0LzFFr/EtB8l4RhVOhMLsvW1Sk4cBdaKhmEkdmhgTUmfiKE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1706808152; c=relaxed/simple;
-	bh=FZi8cuS5zbsSseMLtcLBjqBxbx1ip5hphT5FWZ6ecYQ=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=KKtyWGDMDJHrigZmZxVF1mBWSaKiHMo+gmgqupKmVrBGI7HGQDWfExZEYDLvjOaqPwC/lmkvesz39CZQmv+8NZYTywOl/7eO9zKkmjROlkf5vAPQJ5DOQ+EQjSVXxU3hNRjMtuNTNl/u6YpBBaf44hmy5mcC2CAs1Zkl3JrGYQg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=JovNpSjS; arc=none smtp.client-ip=209.85.221.43
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-wr1-f43.google.com with SMTP id ffacd0b85a97d-33ae7ae9ec5so746041f8f.0
-        for <devicetree@vger.kernel.org>; Thu, 01 Feb 2024 09:22:29 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1706808148; x=1707412948; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=655phT6p/xX4gabPq+CgbuzehrB6Qvw3RCd729athhY=;
-        b=JovNpSjSeP7P82V7KZkXGFt1l+6umLQl3dX1Cn9/Diwi7oB+jrbIkx3i0r8cYLpcW9
-         LLOetjUICVvNZqzhPWNhQ5y6qLZE3RN3TBbTo9/cH1P8J0GojE1xuEOgydIhS79VH+8q
-         Bc9EGibEj+JVxL/nEUCeW8nJnTPQIskTBAxr7iyP5heZycfOiIoeBPnTOl1c331+YVCq
-         GPip5p8AQDbYpDruAVod6flcYvnMqBrpZVboGITIBPpl8oODQRaDWYTbeoVt1kfe+4XR
-         ejcISiBW1m51VUF0VEFzg9EVNeJDviV+nFfwhTf07kvZ/sKeephbMUyUse/lOqtTGfUK
-         dOqQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1706808148; x=1707412948;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=655phT6p/xX4gabPq+CgbuzehrB6Qvw3RCd729athhY=;
-        b=ObkC+CaUcL4Qg0RJW8ioYXljaxpgzJ3zJBLKyKoBn9OnPDUY5zU73cD6KfnlBDQ67r
-         xP8W8qas5qKhdHaupRqvtI6ZXOinOPXDgUa/MFHoM+1S/AwV0joRtefBs/CT20+O9bSO
-         z/ZBR+unbd73LzJRJODrKHtbtAC4ZQZDSMc+2fwvWl+4W8RUC9PZbbWcT0j0mfM0F2yO
-         OHkZqFWXPVu/y+8446/gqQocnIjQwp3ims0qmb0vRhT0ea0hVMmE6czwd/xVOwFkrQrF
-         c9fI/kVFOnjzrUetTCCo+1/AdW690jqC0/T+gsVClOnWhBW+8aUnkx2/rMZPsZr4qj63
-         6KTQ==
-X-Gm-Message-State: AOJu0YzZ1xcN+Y/k/0w4LEnEoGMtM1GlqwGrokW5x6xOENBWRmVMf4Ph
-	qlG0Jo1NvLqGkIYv3bUn1Ujtapt+qunQ4pcNiiYIw3D6Tcft+1B01SbX14mUaXs=
-X-Google-Smtp-Source: AGHT+IFOsiz899UMNmir60Feb50FhEcxnYz80YcKYleMfajNk/aqDsleyVRR78NvhALhRngCdU0V3w==
-X-Received: by 2002:adf:f590:0:b0:339:39ea:aaa3 with SMTP id f16-20020adff590000000b0033939eaaaa3mr4042470wro.54.1706808148176;
-        Thu, 01 Feb 2024 09:22:28 -0800 (PST)
-X-Forwarded-Encrypted: i=0; AJvYcCUdrtxBDnY1A3xcSW6aLqqdnaZ61n5bIgrQUbPZtoaim07Ow3vHyyZM7skGO5J14mICRMK8c/V12CHhtfZnPhvhARkbATId9ksintnLX7edGzdXf0n0m+hwRVJ+fABZYnzWuHcFrxVq6D5Okm72XGhVO4ZTJQuUWlnkY9V3I1q7kiEN/h+QNnUgzwUUUKrT26bAYd0qzSvFpYjcUCHAfE+3Nly0aL3OMbUAOlvnhZgc5Cl9AFH2cYyLIgvIEJFSYmxYNNGlTIwYfNy6dDtj2BFnIJDlHnovmzTDwoD55AwIgfi9GH92V1Ibn+IFZd3U8s9FEz7fpqAbR7z3RFrw0O1l5MweKVBCIC7443Hxw8diGijYa05UCV4QCliR0W1McSSdYdYlCdl6JX8hU/Yvrmz74jao1Dk/BEaiF4XGe9NNpnpedjpot8YAJqydMOO8P+ME/LbWMuQ3YS8b2wcmvEKS556Epq3q5Kfwt90HwTHiUjHBftpZq8dLMmYhWMwlTHjKZdrSBmTVbSDSlWsm51XYoaorqwsdI/jMTcuyTgRoopkLOGogGhm8bxqECVH4Dp4=
-Received: from tux.Home ([2a02:c7c:7213:c700:e992:6869:474c:a63f])
-        by smtp.gmail.com with ESMTPSA id f15-20020a056000036f00b00337d84efaf7sm16733582wrf.74.2024.02.01.09.22.27
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 01 Feb 2024 09:22:27 -0800 (PST)
-From: Alexey Klimov <alexey.klimov@linaro.org>
-To: krzysztof.kozlowski@linaro.org,
-	alim.akhtar@samsung.com,
-	linux-samsung-soc@vger.kernel.org,
-	semen.protsenko@linaro.org,
-	peter.griffin@linaro.org,
-	robh+dt@kernel.org,
-	krzysztof.kozlowski+dt@linaro.org,
-	conor+dt@kernel.org
-Cc: devicetree@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	linux-kernel@vger.kernel.org,
-	klimov.linux@gmail.com,
-	kernel-team@android.com,
-	tudor.ambarus@linaro.org,
-	andre.draszik@linaro.org,
-	saravanak@google.com,
-	willmcvicker@google.com,
-	arnd@arndb.de
-Subject: [PATCH 4/4] soc: samsung: exynos-chipid: fix revision calculation for gs101
-Date: Thu,  1 Feb 2024 17:22:24 +0000
-Message-ID: <20240201172224.574238-4-alexey.klimov@linaro.org>
-X-Mailer: git-send-email 2.43.0
-In-Reply-To: <20240201172224.574238-1-alexey.klimov@linaro.org>
-References: <20240201172224.574238-1-alexey.klimov@linaro.org>
+	s=arc-20240116; t=1706808702; c=relaxed/simple;
+	bh=WTfAV8E5tolH0Cpe7AFR3fPsSu2YVvD36XVmkg+Huyw=;
+	h=Date:Content-Type:MIME-Version:From:To:Cc:In-Reply-To:References:
+	 Message-Id:Subject; b=VniJFCfBIm3dW+SfdVo9H/eksbMesRL7DgaUOJ5Y5+BIL3bK7P/HCqatOjWCbQAYtxYh37VDCW9k5pbYO4RJTAv04fw1f4IZbCbYnp1qluXMlIeXxEEl78M3I2XQw0zzUvcUuLR5C3O8EcxTZOjSbKItDkDMtMFdxOF38yrNCaM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=f68EvTjv; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 6C1E6C433F1;
+	Thu,  1 Feb 2024 17:31:42 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1706808702;
+	bh=WTfAV8E5tolH0Cpe7AFR3fPsSu2YVvD36XVmkg+Huyw=;
+	h=Date:From:To:Cc:In-Reply-To:References:Subject:From;
+	b=f68EvTjvzkRDBiGk/cyjJViHIOhudiBr8virxWTmT3rlcbchaOfPKFGKjSS0z7SNj
+	 Txvcf/9xarLbFTwgWrI0DnP5DuasXVh9q4tjsz2MrBC0/Co9ZKeJE7rRnCCxOBCcr+
+	 us5bNql9Y/LV1wrMdZxGziiQqzFmu+MMXGhjAqqRVsV2Y0p1ZmQM0xPkAkPGqmeiwR
+	 KpU7pYRY8AXXpHIR0CeaV6NghmQy8aFlCASVM78xpuoESWdkNEHQvmZQFTSEgewooC
+	 NhFMI0Z4JLJO1cw2y4rzXCtrPuhQfQ6Iy/YznI+KqrCKSRpR0bWI6+NFWAd1coZI8E
+	 tXvexldZe2Svg==
+Date: Thu, 01 Feb 2024 11:31:41 -0600
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+From: Rob Herring <robh@kernel.org>
+To: Geert Uytterhoeven <geert+renesas@glider.be>
+Cc: Marek Szyprowski <m.szyprowski@samsung.com>, 
+ Liam Girdwood <lgirdwood@gmail.com>, Rob Herring <robh+dt@kernel.org>, 
+ Mark Brown <broonie@kernel.org>, devicetree@vger.kernel.org, 
+ Conor Dooley <conor+dt@kernel.org>, linux-gpio@vger.kernel.org, 
+ linux-kernel@vger.kernel.org, Linus Walleij <linus.walleij@linaro.org>, 
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
+In-Reply-To: <b20aab137058c02ab5af9aaa1280729a02c6ea49.1706802756.git.geert+renesas@glider.be>
+References: <cover.1706802756.git.geert+renesas@glider.be>
+ <b20aab137058c02ab5af9aaa1280729a02c6ea49.1706802756.git.geert+renesas@glider.be>
+Message-Id: <170680870030.996964.6959185693674664805.robh@kernel.org>
+Subject: Re: [PATCH 1/2] regulator: dt-bindings: gpio-regulator: Fix
+ {gpios-,}states limits
 
-The main revision for gs101 SoC is not reported in the CHIPID_REV
-register. The gs101 Product ID and revisions registers have a behaviour
-split between old Exynos SoCs and new SoCs. The sub-revision is
-reported in CHIPID_REV register in [19:16] bits but main revision
-is still present in Product ID [7:0].
 
-To construct soc_info->revision correctly for gs101 the main_rev
-should not be reset from a value read from CHIPID_REV.
+On Thu, 01 Feb 2024 16:58:41 +0100, Geert Uytterhoeven wrote:
+> make dtbs_check:
+> 
+>     arch/arm64/boot/dts/renesas/r8a77951-salvator-xs.dtb: regulator-vccq-sdhi0: Unevaluated properties are not allowed ('gpios-states', 'states' were unexpected)
+> 	    from schema $id: http://devicetree.org/schemas/regulator/gpio-regulator.yaml#
+> 
+> The number of items in "gpios-states" must match the number of items in
+> "gpios", so their limits should be identical.
+> 
+> The number of items in "states" must lie within the range from zero up
+> to 2^{number of gpios}.
+> 
+> Signed-off-by: Geert Uytterhoeven <geert+renesas@glider.be>
+> ---
+> The second issue did not cause any dtbs_check errors?
+> ---
+>  .../devicetree/bindings/regulator/gpio-regulator.yaml         | 4 +++-
+>  1 file changed, 3 insertions(+), 1 deletion(-)
+> 
 
-Signed-off-by: Alexey Klimov <alexey.klimov@linaro.org>
----
- drivers/soc/samsung/exynos-chipid.c       | 20 ++++++++++++++++----
- include/linux/soc/samsung/exynos-chipid.h |  1 +
- 2 files changed, 17 insertions(+), 4 deletions(-)
+My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
+on your patch (DT_CHECKER_FLAGS is new in v5.13):
 
-diff --git a/drivers/soc/samsung/exynos-chipid.c b/drivers/soc/samsung/exynos-chipid.c
-index 7fee6094db12..3b952ffd8cf7 100644
---- a/drivers/soc/samsung/exynos-chipid.c
-+++ b/drivers/soc/samsung/exynos-chipid.c
-@@ -87,14 +87,26 @@ static int exynos_chipid_get_chipid_info(struct regmap *regmap,
- 	soc_info->product_id = val & EXYNOS_MASK;
- 
- 	if (data->rev_reg != EXYNOS_CHIPID_REG_PRO_ID) {
--		ret = regmap_read(regmap, data->rev_reg, &val);
-+		unsigned int val2;
-+
-+		ret = regmap_read(regmap, data->rev_reg, &val2);
- 		if (ret < 0)
- 			return ret;
-+
-+		if (data->main_rev_shift == 0)
-+			main_rev = (val >> data->main_rev_shift)
-+				   & EXYNOS_REV_PART_MASK_GS101;
-+		else
-+			main_rev = (val2 >> data->main_rev_shift)
-+				   & EXYNOS_REV_PART_MASK;
-+
-+		sub_rev = (val2 >> data->sub_rev_shift) & EXYNOS_REV_PART_MASK;
-+	} else {
-+		main_rev = (val >> data->main_rev_shift) & EXYNOS_REV_PART_MASK;
-+		sub_rev = (val >> data->sub_rev_shift) & EXYNOS_REV_PART_MASK;
- 	}
--	main_rev = (val >> data->main_rev_shift) & EXYNOS_REV_PART_MASK;
--	sub_rev = (val >> data->sub_rev_shift) & EXYNOS_REV_PART_MASK;
--	soc_info->revision = (main_rev << EXYNOS_REV_PART_SHIFT) | sub_rev;
- 
-+	soc_info->revision = (main_rev << EXYNOS_REV_PART_SHIFT) | sub_rev;
- 	return 0;
- }
- 
-diff --git a/include/linux/soc/samsung/exynos-chipid.h b/include/linux/soc/samsung/exynos-chipid.h
-index 62f0e2531068..1eb13068f513 100644
---- a/include/linux/soc/samsung/exynos-chipid.h
-+++ b/include/linux/soc/samsung/exynos-chipid.h
-@@ -10,6 +10,7 @@
- 
- #define EXYNOS_CHIPID_REG_PRO_ID	0x00
- #define EXYNOS_REV_PART_MASK		0xf
-+#define EXYNOS_REV_PART_MASK_GS101	0xff
- #define EXYNOS_REV_PART_SHIFT		4
- #define EXYNOS_MASK			0xfffff000
- 
--- 
-2.43.0
+yamllint warnings/errors:
+
+dtschema/dtc warnings/errors:
+/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/regulator/gpio-regulator.yaml: properties:states:minItems: 0 is less than the minimum of 1
+	hint: An array property has at least 1 item or is not present
+	from schema $id: http://devicetree.org/meta-schemas/keywords.yaml#
+
+doc reference errors (make refcheckdocs):
+
+See https://patchwork.ozlabs.org/project/devicetree-bindings/patch/b20aab137058c02ab5af9aaa1280729a02c6ea49.1706802756.git.geert+renesas@glider.be
+
+The base for the series is generally the latest rc1. A different dependency
+should be noted in *this* patch.
+
+If you already ran 'make dt_binding_check' and didn't see the above
+error(s), then make sure 'yamllint' is installed and dt-schema is up to
+date:
+
+pip3 install dtschema --upgrade
+
+Please check and re-submit after running the above command yourself. Note
+that DT_SCHEMA_FILES can be set to your schema file to speed up checking
+your schema. However, it must be unset to test all examples with your schema.
 
 
