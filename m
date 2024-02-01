@@ -1,176 +1,224 @@
-Return-Path: <devicetree+bounces-37690-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-37691-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9E7AD845E9B
-	for <lists+devicetree@lfdr.de>; Thu,  1 Feb 2024 18:34:25 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id D14B4845EE0
+	for <lists+devicetree@lfdr.de>; Thu,  1 Feb 2024 18:49:23 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id D10B61C28142
-	for <lists+devicetree@lfdr.de>; Thu,  1 Feb 2024 17:34:24 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 846E11F2DB07
+	for <lists+devicetree@lfdr.de>; Thu,  1 Feb 2024 17:49:23 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 298C165E2B;
-	Thu,  1 Feb 2024 17:34:24 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=manjaro.org header.i=@manjaro.org header.b="WkY/V6+2"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1DA1E6FB93;
+	Thu,  1 Feb 2024 17:49:00 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail.manjaro.org (mail.manjaro.org [116.203.91.91])
-	(using TLSv1.2 with cipher DHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9813D65E15;
-	Thu,  1 Feb 2024 17:34:21 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=116.203.91.91
+Received: from foss.arm.com (foss.arm.com [217.140.110.172])
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 012D67C6FC;
+	Thu,  1 Feb 2024 17:48:57 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.140.110.172
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1706808864; cv=none; b=Fs6DuFiMqjJP4b+4Mq7PyGKlIOOFuQqRPuRh/oLNH/vxWXuXHD+rlZ8zjIlucrYyp0n0rRM1Xh3nbk4zTjoNqW0e2SQbVgMg0k0MihlWiv91gTTgS488R+ajOVmz85WjhgvBHFRz2w4pySC7uUI53DKXNG/OlMrPN0csxuCZ7xo=
+	t=1706809740; cv=none; b=OsbMYMOdlv+Yz75OzfJlZP5RhS8BDW4owja9GCEPatXo0p//o+cs4803shqZBSk7B8nQtSU4ytUUI+kvb07u9xFroMhHycxJKALE0CZUkBv6QRFNZ5gxddNqb34oGn61wEWfVGieCDzbNoWChFeLni2v99G2Pgn1rUd2gS4Qw6A=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1706808864; c=relaxed/simple;
-	bh=kWgUmjrV4QCujWjJbuyKqlSNr3R3M/nzMNx/c81aUu4=;
-	h=MIME-Version:Date:From:To:Cc:Subject:In-Reply-To:References:
-	 Message-ID:Content-Type; b=qcnJKfYreLRSnMolW6q/ucXPkwwMtKI5Jd1L2DiK/Z/O5lt5BdXm93yd/aNgd2rS0r0tg2JxPsADAOFoJjQn+RCLvCIzAzJ7u9cF1W0l13Wf/CMZWcpVGhoCIq+83Le7pSH94IuGfCSHbwf18vJTXXdiLbmYrTbDsz6WWWhYCwg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=manjaro.org; spf=pass smtp.mailfrom=manjaro.org; dkim=pass (2048-bit key) header.d=manjaro.org header.i=@manjaro.org header.b=WkY/V6+2; arc=none smtp.client-ip=116.203.91.91
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=manjaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=manjaro.org
+	s=arc-20240116; t=1706809740; c=relaxed/simple;
+	bh=4ypK0ycF6rpwPAsSpCWw19pKyyPCXDhJ+L3/dezzUbk=;
+	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=LFzT3Xw/DzKPW5EOSxDXJlAUXZY7km/IfMFrvtLIAEigACGlxEbn12yheD0oIixChS4iN1BQrpvItGD8lQh+R0uk/jZZRgvjF16XqogTwFw9X/8NgPfsxe5SzIpKQ6wtDOvbzfeufrB/XGNHDSG8XummLctXrdqrJ8nhOk9dfKM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com; spf=pass smtp.mailfrom=arm.com; arc=none smtp.client-ip=217.140.110.172
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=arm.com
+Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
+	by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 1F246DA7;
+	Thu,  1 Feb 2024 09:49:40 -0800 (PST)
+Received: from donnerap.manchester.arm.com (usa-sjc-imap-foss1.foss.arm.com [10.121.207.14])
+	by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 66D4F3F738;
+	Thu,  1 Feb 2024 09:48:54 -0800 (PST)
+Date: Thu, 1 Feb 2024 17:48:51 +0000
+From: Andre Przywara <andre.przywara@arm.com>
+To: Conor Dooley <conor@kernel.org>
+Cc: Aleksandr Shubin <privatesub2@gmail.com>, linux-kernel@vger.kernel.org,
+ Conor Dooley <conor.dooley@microchip.com>, Uwe =?UTF-8?B?S2xlaW5lLUvDtm5p?=
+ =?UTF-8?B?Zw==?= <u.kleine-koenig@pengutronix.de>, Rob Herring
+ <robh+dt@kernel.org>, Krzysztof Kozlowski
+ <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>,
+ Chen-Yu Tsai <wens@csie.org>, Jernej Skrabec <jernej.skrabec@gmail.com>,
+ Samuel Holland <samuel@sholland.org>, Paul Walmsley
+ <paul.walmsley@sifive.com>, Palmer Dabbelt <palmer@dabbelt.com>, Albert Ou
+ <aou@eecs.berkeley.edu>, Philipp Zabel <p.zabel@pengutronix.de>, Marc
+ Kleine-Budde <mkl@pengutronix.de>, Maksim Kiselev <bigunclemax@gmail.com>,
+ Cristian Ciocaltea <cristian.ciocaltea@collabora.com>, John Watts
+ <contact@jookia.org>, Cheo Fusi <fusibrandon13@gmail.com>,
+ linux-pwm@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, linux-sunxi@lists.linux.dev,
+ linux-riscv@lists.infradead.org
+Subject: Re: [PATCH v8 1/3] dt-bindings: pwm: Add binding for Allwinner
+ D1/T113-S3/R329 PWM controller
+Message-ID: <20240201174851.62e74089@donnerap.manchester.arm.com>
+In-Reply-To: <20240131-renewably-glimpse-a80339e8ff81@spud>
+References: <20240131125920.2879433-1-privatesub2@gmail.com>
+ <20240131125920.2879433-2-privatesub2@gmail.com>
+ <20240131145244.4f534bac@donnerap.manchester.arm.com>
+ <20240131-renewably-glimpse-a80339e8ff81@spud>
+Organization: ARM
+X-Mailer: Claws Mail 3.18.0 (GTK+ 2.24.32; aarch64-unknown-linux-gnu)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=manjaro.org; s=2021;
-	t=1706808859;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=I62Ngu6mHUbbEd5/PKgWiEzJpbocaOMuoLyyq/u6R8M=;
-	b=WkY/V6+2VLAsUER854fHTV0ijhfmJSzor5H6LK4YNxI2Z9+7CpORaMMz4uetnzSEQDFxJh
-	ICEh9Du6iegkMwDanyR4V2Ro7ptplD8sOZ5Q2QRz5+hm56aeH/RRiiw1T9oz92eQgEk6V2
-	6yf38wMVwANtCJWVwN9gKD5++gVglcvUuM/ruqcLnd4EdV9QxvBQ0wJRNa9gsOBn4uZBYx
-	w7Th5wyqr+dIbLpSXTkeN+LClphsGIXgt0ZHfsuKPUg9IiIYJDLBuruSSXwBX5K6QjphIk
-	aSFprWQ9gT96w8UldfAYuWcueWJHdHrOfqBAEXd35XKhm0x/5WnV55Er7R+aMA==
-Date: Thu, 01 Feb 2024 18:34:18 +0100
-From: Dragan Simic <dsimic@manjaro.org>
-To: wens@kernel.org
-Cc: Alexey Charkov <alchark@gmail.com>, Rob Herring <robh+dt@kernel.org>,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley
- <conor+dt@kernel.org>, Heiko Stuebner <heiko@sntech.de>, Daniel Lezcano
- <daniel.lezcano@linaro.org>, Viresh Kumar <viresh.kumar@linaro.org>,
- devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v2 2/4] arm64: dts: rockchip: enable temperature driven
- fan control on Rock 5B
-In-Reply-To: <CAGb2v65--rgb2FqmG_0-w1-jUL0odqKXxiZJ-XPYA4uomfYmaQ@mail.gmail.com>
-References: <20240130-rk-dts-additions-v2-0-c6222c4c78df@gmail.com>
- <20240130-rk-dts-additions-v2-2-c6222c4c78df@gmail.com>
- <CAGb2v65--rgb2FqmG_0-w1-jUL0odqKXxiZJ-XPYA4uomfYmaQ@mail.gmail.com>
-Message-ID: <5e3e12d65e4919372e7fb02d56202393@manjaro.org>
-X-Sender: dsimic@manjaro.org
-Content-Type: text/plain; charset=UTF-8;
- format=flowed
-Content-Transfer-Encoding: 8bit
-Authentication-Results: ORIGINATING;
-	auth=pass smtp.auth=dsimic@manjaro.org smtp.mailfrom=dsimic@manjaro.org
+Content-Type: text/plain; charset=US-ASCII
+Content-Transfer-Encoding: 7bit
 
-Hello Chen-Yu,
+On Wed, 31 Jan 2024 21:22:06 +0000
+Conor Dooley <conor@kernel.org> wrote:
 
-On 2024-02-01 15:26, Chen-Yu Tsai wrote:
-> On Wed, Jan 31, 2024 at 2:22 AM Alexey Charkov <alchark@gmail.com> 
-> wrote:
->> 
->> This enables thermal monitoring on Radxa Rock 5B and links the PWM
->> fan as an active cooling device managed automatically by the thermal
->> subsystem, with a target SoC temperature of 65C and a minimum-spin
->> interval from 55C to 65C to ensure airflow when the system gets warm
->> 
->> Acked-by: Daniel Lezcano <daniel.lezcano@linaro.org>
->> Signed-off-by: Alexey Charkov <alchark@gmail.com>
->> ---
->>  arch/arm64/boot/dts/rockchip/rk3588-rock-5b.dts | 34 
->> ++++++++++++++++++++++++-
->>  1 file changed, 33 insertions(+), 1 deletion(-)
->> 
->> diff --git a/arch/arm64/boot/dts/rockchip/rk3588-rock-5b.dts 
->> b/arch/arm64/boot/dts/rockchip/rk3588-rock-5b.dts
->> index a0e303c3a1dc..b485edeef876 100644
->> --- a/arch/arm64/boot/dts/rockchip/rk3588-rock-5b.dts
->> +++ b/arch/arm64/boot/dts/rockchip/rk3588-rock-5b.dts
->> @@ -52,7 +52,7 @@ led_rgb_b {
->> 
->>         fan: pwm-fan {
->>                 compatible = "pwm-fan";
->> -               cooling-levels = <0 95 145 195 255>;
->> +               cooling-levels = <0 120 150 180 210 240 255>;
->>                 fan-supply = <&vcc5v0_sys>;
->>                 pwms = <&pwm1 0 50000 0>;
->>                 #cooling-cells = <2>;
->> @@ -173,6 +173,34 @@ &cpu_l3 {
->>         cpu-supply = <&vdd_cpu_lit_s0>;
->>  };
->> 
->> +&package_thermal {
->> +       polling-delay = <1000>;
->> +
->> +       trips {
->> +               package_fan0: package-fan0 {
->> +                       temperature = <55000>;
->> +                       hysteresis = <2000>;
->> +                       type = "active";
->> +               };
->> +               package_fan1: package-fan1 {
->> +                       temperature = <65000>;
->> +                       hysteresis = <2000>;
->> +                       type = "active";
->> +               };
->> +       };
->> +
->> +       cooling-maps {
->> +               map0 {
->> +                       trip = <&package_fan0>;
->> +                       cooling-device = <&fan THERMAL_NO_LIMIT 1>;
->> +               };
->> +               map1 {
->> +                       trip = <&package_fan1>;
->> +                       cooling-device = <&fan 1 THERMAL_NO_LIMIT>;
->> +               };
->> +       };
->> +};
->> +
->>  &i2c0 {
->>         pinctrl-names = "default";
->>         pinctrl-0 = <&i2c0m2_xfer>;
->> @@ -731,6 +759,10 @@ regulator-state-mem {
->>         };
->>  };
->> 
->> +&tsadc {
->> +       status = "okay";
->> +};
->> +
+Hi,
+
+> On Wed, Jan 31, 2024 at 02:52:44PM +0000, Andre Przywara wrote:
+> > On Wed, 31 Jan 2024 15:59:14 +0300
+> > Aleksandr Shubin <privatesub2@gmail.com> wrote:
+> > 
+> > Hi,
+> >   
+> > > Allwinner's D1, T113-S3 and R329 SoCs have a new pwm
+> > > controller witch is different from the previous pwm-sun4i.
+> > > 
+> > > The D1 and T113 are identical in terms of peripherals,
+> > > they differ only in the architecture of the CPU core, and
+> > > even share the majority of their DT. Because of that,
+> > > using the same compatible makes sense.
+> > > The R329 is a different SoC though, and should have
+> > > a different compatible string added, especially as there
+> > > is a difference in the number of channels.
+> > > 
+> > > D1 and T113s SoCs have one PWM controller with 8 channels.
+> > > R329 SoC has two PWM controllers in both power domains, one of
+> > > them has 9 channels (CPUX one) and the other has 6 (CPUS one).
+> > > 
+> > > Add a device tree binding for them.
+> > > 
+> > > Signed-off-by: Aleksandr Shubin <privatesub2@gmail.com>
+> > > Reviewed-by: Conor Dooley <conor.dooley@microchip.com>
+> > > ---
+> > >  .../bindings/pwm/allwinner,sun20i-pwm.yaml    | 88 +++++++++++++++++++
+> > >  1 file changed, 88 insertions(+)
+> > >  create mode 100644 Documentation/devicetree/bindings/pwm/allwinner,sun20i-pwm.yaml
+> > > 
+> > > diff --git a/Documentation/devicetree/bindings/pwm/allwinner,sun20i-pwm.yaml b/Documentation/devicetree/bindings/pwm/allwinner,sun20i-pwm.yaml
+> > > new file mode 100644
+> > > index 000000000000..716f75776006
+> > > --- /dev/null
+> > > +++ b/Documentation/devicetree/bindings/pwm/allwinner,sun20i-pwm.yaml
+> > > @@ -0,0 +1,88 @@
+> > > +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> > > +%YAML 1.2
+> > > +---
+> > > +$id: http://devicetree.org/schemas/pwm/allwinner,sun20i-pwm.yaml#
+> > > +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> > > +
+> > > +title: Allwinner D1, T113-S3 and R329 PWM
+> > > +
+> > > +maintainers:
+> > > +  - Aleksandr Shubin <privatesub2@gmail.com>
+> > > +  - Brandon Cheo Fusi <fusibrandon13@gmail.com>
+> > > +
+> > > +properties:
+> > > +  compatible:
+> > > +    oneOf:
+> > > +      - const: allwinner,sun20i-d1-pwm
+> > > +      - items:
+> > > +          - const: allwinner,sun20i-r329-pwm
+> > > +          - const: allwinner,sun20i-d1-pwm
+> > > +
+> > > +  reg:
+> > > +    maxItems: 1
+> > > +
+> > > +  "#pwm-cells":
+> > > +    const: 3
+> > > +
+> > > +  clocks:
+> > > +    items:
+> > > +      - description: Bus clock
+> > > +      - description: 24 MHz oscillator
+> > > +      - description: APB0 clock
+> > > +
+> > > +  clock-names:
+> > > +    items:
+> > > +      - const: bus
+> > > +      - const: hosc
+> > > +      - const: apb0
+> > > +
+> > > +  resets:
+> > > +    maxItems: 1
+> > > +
+> > > +  allwinner,pwm-channels:
+> > > +    $ref: /schemas/types.yaml#/definitions/uint32
+> > > +    description: The number of PWM channels configured for this instance
+> > > +    enum: [6, 9]
+> > > +
+> > > +allOf:
+> > > +  - $ref: pwm.yaml#
+> > > +
+> > > +  - if:
+> > > +      properties:
+> > > +        compatible:
+> > > +          contains:
+> > > +            const: allwinner,sun20i-r329-pwm
+> > > +
+> > > +    then:
+> > > +      required:
+> > > +        - allwinner,pwm-channels
+> > > +
+> > > +    else:
+> > > +      properties:
+> > > +        allwinner,pwm-channels: false  
+> > 
+> > Do we really need to be that strict?
+> > If something compatible to D1 pops up in the future, just with a different
+> > number of channels, we would need a new compatible string.  
 > 
-> Is there any reason this can't be enabled by default in the .dtsi file?
-> The thermal sensor doesn't depend on anything external, so there should
-> be no reason to push this down to the board level.
+> Well, you would want to have a soc specific compatible anyway then,
+> right?
 
-Actually, there is a reason.  Different boards can handle the critical
-overheating differently, by letting the CRU or the PMIC handle it.  This
-was also the case for the RK3399.
+So the idea would be to add any new (specific) compatible string to that
+list then, when we add them?
+I guess this would work, but strictly speaking any current driver would
+then only need to check this property for the R329 type? The Linux
+driver proposed in the next patch *always* honours the
+allwinner,pwm-channels property, which is IMHO the right way to implement
+this. And that's why I think the binding should reflect that, and not
+explicitly *forbid* the property for every one other than R329 (atm).
 
-Please, have a look at the following DT properties, which are consumed
-by drivers/thermal/rockchip_thermal.c:
-   - "rockchip,hw-tshut-mode"
-   - "rockchip,hw-tshut-polarity"
+With the current Linux driver, a potential new SoC using:
+	"allwinner,sun20i-d2-pwm", "allwinner,sun20i-d1-pwm";
+	allwinner,pwm-channels = <6>;
+would work without driver changes. A driver strictly written to this
+binding here might not, though, as it would be free to ignore the
+pwm-channels property.
 
-See also page 1,372 of the RK3588 TRM v1.0.
+Does that make sense? So to encourage future compatibility, can we drop
+the "else" branch?
 
-This has also reminded me to check how is the Rock 5B actually wired,
-just to make sure.  We actually need to provide the two DT properties
-listed above, at least to avoid emitting the warnings.
+> > If we would leave this else branch out, we could just specify some
+> > number differing from the default, and be good.  
+> 
+> If it were compatible with the d1, then the "then:" branch would apply,
+> provided you used the fallback correctly.
+>
+> Although if the number of
+> channels were different, we'd likely end up with modifications here to
+> limit it to the correct values for each soc.
 
->>  &uart2 {
->>         pinctrl-0 = <&uart2m0_xfer>;
->>         status = "okay";
->> 
->> --
->> 2.43.0
+That's fine, because this just affects the bindings (and the DT), but
+doesn't require any driver changes, which take months to trickle into
+distributions, not to speak of LTS distros. A DT can be updated
+independently.
+
+Cheers,
+Andre.
+
+> > The number of channels really looks like a parameter to the IP, it's
+> > modelled like this in the manual (PCR: 0x0100 + 0x0000 + N * 0x0020).  
+
 
