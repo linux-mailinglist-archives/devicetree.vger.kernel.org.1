@@ -1,268 +1,217 @@
-Return-Path: <devicetree+bounces-37420-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-37422-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 556AC844F02
-	for <lists+devicetree@lfdr.de>; Thu,  1 Feb 2024 03:12:17 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id A18F1844F27
+	for <lists+devicetree@lfdr.de>; Thu,  1 Feb 2024 03:25:57 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id C73591F2547F
-	for <lists+devicetree@lfdr.de>; Thu,  1 Feb 2024 02:12:16 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id D837FB21C37
+	for <lists+devicetree@lfdr.de>; Thu,  1 Feb 2024 02:25:54 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id CA41BFBE7;
-	Thu,  1 Feb 2024 02:12:12 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D34B1171D0;
+	Thu,  1 Feb 2024 02:25:50 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="T0D0+NJu"
+	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="edWK/qKu"
 X-Original-To: devicetree@vger.kernel.org
 Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 00C111A27C;
-	Thu,  1 Feb 2024 02:12:10 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 39E2A13ACC;
+	Thu,  1 Feb 2024 02:25:48 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1706753532; cv=none; b=cxsD2UGpzdC+PUUjk7Wdl3NedriJudvxy8pQfmetwa/iRF9VATbCuaR+iITXbekLpN6KSFOzbymfLQ10HcXTU2WUMmIbXcxXxcSKKDeeDcbiUTwPZc2rs8dOSQ7cnaTloHtrQ1X4ly2BNAEKrR9fZV2kLPjzA51kUtEHcMSnJyY=
+	t=1706754350; cv=none; b=rZ4SIc7oF9VOn0MhlYLnv1Sy8BsuAM/V75O3udowQJbaP2cHOSWFK1yOrhlYEhvLuLhZR/u+pGNuMWj1WH9Z8KOrUG6iyY22C9eAbYhf++65yfEs13jonyMxmPs/QYeDB2o7m2qQiR2huLjLsKv5jB/dxkxrmJjaqzh38hB752k=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1706753532; c=relaxed/simple;
-	bh=GEHSgsu0BZcuUy9oj10MDz3Ju71xKXpFfee68XOSut4=;
+	s=arc-20240116; t=1706754350; c=relaxed/simple;
+	bh=qNdZhTVFgd025ShlvmgP6R//8hlQVb0ky9OFh9tKr2M=;
 	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
-	 In-Reply-To:Content-Type; b=UQeZELXIR8TBfSD5YqZksRnT6q9AwAErKRWJhP17edwHoPg1tTKgYI1yDXpO9nPvsZ4nUcKy9oCPanOrAWLyyDeWy7eGX8U5SFP1BaQlGNcC6e4PV8DFoms8XLjloqe6hZkN8jbR4QPUQqISCorBWRQ0lueRa6cIT7F635SkxwA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=T0D0+NJu; arc=none smtp.client-ip=205.220.168.131
+	 In-Reply-To:Content-Type; b=UjON6tsFYf+UygwkTM0R1H0IYdq+yuRZSuHMBY8FLvMGe85dx0Dj2i2q04EoK+Tj2BsbxcTW2+Z+Q+vLyNxdMpxkii3My45ZElbhod0AFQq0aA7QfWtcZ5GoeJhZP9nD19ntu5O21vznnUiDtcVjzCqWrl3usO2xL72ZcXNmS6M=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=edWK/qKu; arc=none smtp.client-ip=205.220.168.131
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
-Received: from pps.filterd (m0279864.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.17.1.24/8.17.1.24) with ESMTP id 411020og008375;
-	Thu, 1 Feb 2024 02:11:38 GMT
+Received: from pps.filterd (m0279865.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.17.1.24/8.17.1.24) with ESMTP id 41110lve021386;
+	Thu, 1 Feb 2024 02:25:32 GMT
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
 	message-id:date:mime-version:subject:to:cc:references:from
 	:in-reply-to:content-type:content-transfer-encoding; s=
-	qcppdkim1; bh=RWnYYJY5eR7CWR2cSLbZQZuLEMhedY0ZNp51BM7vOHg=; b=T0
-	D0+NJul2CGun8Z+yt/tA6Z30WlPQoo6obHCjD7VinRSBDDS0CLcE7faWiQ8/8e7g
-	oduejLaT9isUGmXW40W2RVX+55/eYBHgG1FY+cc0UIR5aLH/3aDDa6uzVmgnqYJ2
-	CZHcNFZ06oddzZBTSRVSqMA0mEFTR/wqSBu3p/qJhrHsi3l2J9fRuNAtEdTmDd1S
-	SYPm0iTzxX4ANxJxINlFjkg2EyXdZBzYYnJ3FapnAhlBH4NSguXpsFGPIwVYHKmu
-	pkXjhipaWgS6MJiZEHuzzU35X23JtA3kETtxLn3gt+3WSKjqoLzsE/0tmwyuO6qA
-	67vy67925RDdJJ28DmVA==
-Received: from nalasppmta03.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3w00dc06wk-1
+	qcppdkim1; bh=e6QfPL58tFmvIDXgNSU3VF86qmA5NqePFSNt5z4LGQk=; b=ed
+	WK/qKu234FbWYVI6tM46FOUbajsgQygVFrWTMsfC1n2CucG0qR0wVcH65ljCaO5r
+	NHHWtTTo8qcOOKNJariobW8c4jj4dsQx3Tc7UQ9PMoISEpOai3t2RJ+suH88ntTy
+	Pm7EZjxkmTf26rgmGM0DgNp2qVjCJr7UveIBXyU95TKr2UZQORYUxjqw0FeuO8hp
+	9IZiDS5iq6/Oje0HjKe7xzgWIDS5AY+wvDp4dJq83fM/dhgixG/74DeD/C7UgYpW
+	jO/DRZ/o5MkgeNwYIzuMsfsTMGQK88obj7YHO7zbndtLzWScM7/S5Q2WIJROaWC+
+	X4GdTZEJMHCffPYvb9Aw==
+Received: from nalasppmta05.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3vyjas2ek8-1
 	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Thu, 01 Feb 2024 02:11:38 +0000 (GMT)
-Received: from nalasex01b.na.qualcomm.com (nalasex01b.na.qualcomm.com [10.47.209.197])
-	by NALASPPMTA03.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 4112BbuJ018472
+	Thu, 01 Feb 2024 02:25:31 +0000 (GMT)
+Received: from nalasex01c.na.qualcomm.com (nalasex01c.na.qualcomm.com [10.47.97.35])
+	by NALASPPMTA05.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 4112PUgi024868
 	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Thu, 1 Feb 2024 02:11:37 GMT
-Received: from [10.110.47.187] (10.80.80.8) by nalasex01b.na.qualcomm.com
- (10.47.209.197) with Microsoft SMTP Server (version=TLS1_2,
+	Thu, 1 Feb 2024 02:25:30 GMT
+Received: from [10.239.133.211] (10.80.80.8) by nalasex01c.na.qualcomm.com
+ (10.47.97.35) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1118.40; Wed, 31 Jan
- 2024 18:11:36 -0800
-Message-ID: <775b6010-0d9f-eb6f-2402-325bfba73094@quicinc.com>
-Date: Wed, 31 Jan 2024 18:11:36 -0800
+ 2024 18:25:25 -0800
+Message-ID: <9fca774e-3519-4d0c-ba61-6b84965f36c2@quicinc.com>
+Date: Thu, 1 Feb 2024 10:25:22 +0800
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:91.0) Gecko/20100101
- Thunderbird/91.9.1
-Subject: Re: [PATCH v12 04/41] usb: host: xhci-mem: Cleanup pending secondary
- event ring events
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v5 05/10] coresight-tpda: Add support to configure CMB
+ element
 Content-Language: en-US
-To: Mathias Nyman <mathias.nyman@linux.intel.com>,
-        <srinivas.kandagatla@linaro.org>, <mathias.nyman@intel.com>,
-        <perex@perex.cz>, <conor+dt@kernel.org>, <corbet@lwn.net>,
-        <gregkh@linuxfoundation.org>, <lgirdwood@gmail.com>,
-        <andersson@kernel.org>, <krzysztof.kozlowski+dt@linaro.org>,
-        <konrad.dybcio@linaro.org>, <Thinh.Nguyen@synopsys.com>,
-        <broonie@kernel.org>, <bgoswami@quicinc.com>, <tiwai@suse.com>,
-        <robh+dt@kernel.org>, <agross@kernel.org>
-CC: <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-sound@vger.kernel.org>, <linux-usb@vger.kernel.org>,
-        <linux-arm-msm@vger.kernel.org>, <linux-doc@vger.kernel.org>,
-        <alsa-devel@alsa-project.org>,
-        "Neronin, Niklas" <niklas.neronin@intel.com>
-References: <20240102214549.22498-1-quic_wcheng@quicinc.com>
- <20240102214549.22498-5-quic_wcheng@quicinc.com>
- <734591a1-50b4-6dc7-0b93-077355ec12e4@linux.intel.com>
- <7b2ec96b-b72f-c848-7c35-36e61a4072ac@quicinc.com>
- <b254f73b-a1bc-3dd4-f485-a3acf556835d@quicinc.com>
- <2178e799-2068-7443-59b2-310dfdd1ddee@linux.intel.com>
- <ae64ce69-dc1b-1534-7950-0a35c4a56f58@quicinc.com>
- <ff0bff8b-f26a-87bd-9762-9f2af98abcca@quicinc.com>
- <44a3d4db-7759-dd93-782a-1efbebfdb22c@linux.intel.com>
-From: Wesley Cheng <quic_wcheng@quicinc.com>
-In-Reply-To: <44a3d4db-7759-dd93-782a-1efbebfdb22c@linux.intel.com>
+To: Suzuki K Poulose <suzuki.poulose@arm.com>,
+        Mathieu Poirier
+	<mathieu.poirier@linaro.org>,
+        Alexander Shishkin
+	<alexander.shishkin@linux.intel.com>,
+        Konrad Dybcio <konradybcio@gmail.com>,
+        Mike Leach <mike.leach@linaro.org>, Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
+CC: Jinlong Mao <quic_jinlmao@quicinc.com>, Leo Yan <leo.yan@linaro.org>,
+        "Greg Kroah-Hartman" <gregkh@linuxfoundation.org>,
+        <coresight@lists.linaro.org>, <linux-arm-kernel@lists.infradead.org>,
+        <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        Tingwei Zhang
+	<quic_tingweiz@quicinc.com>,
+        Yuanfang Zhang <quic_yuanfang@quicinc.com>,
+        Trilok Soni <quic_tsoni@quicinc.com>,
+        Song Chai <quic_songchai@quicinc.com>, <linux-arm-msm@vger.kernel.org>,
+        <andersson@kernel.org>
+References: <1706605366-31705-1-git-send-email-quic_taozha@quicinc.com>
+ <1706605366-31705-6-git-send-email-quic_taozha@quicinc.com>
+ <6ccb98f2-2f68-45db-9941-1c7b05da84d0@arm.com>
+ <6fff5991-01ed-44ea-aa08-9f302d2465e8@quicinc.com>
+ <1f5a7c7b-56de-4f19-9d48-652ae6efe50f@arm.com>
+From: Tao Zhang <quic_taozha@quicinc.com>
+In-Reply-To: <1f5a7c7b-56de-4f19-9d48-652ae6efe50f@arm.com>
 Content-Type: text/plain; charset="UTF-8"; format=flowed
 Content-Transfer-Encoding: 8bit
-X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
- nalasex01b.na.qualcomm.com (10.47.209.197)
+X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
+ nalasex01c.na.qualcomm.com (10.47.97.35)
 X-QCInternal: smtphost
 X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-ORIG-GUID: wfVeILWC3-aNJKK-XfQL6Zc9ABL1hHzi
-X-Proofpoint-GUID: wfVeILWC3-aNJKK-XfQL6Zc9ABL1hHzi
+X-Proofpoint-GUID: 0Bf34MPd5X6n3r0oydvDqiDsMIurGVG3
+X-Proofpoint-ORIG-GUID: 0Bf34MPd5X6n3r0oydvDqiDsMIurGVG3
 X-Proofpoint-Virus-Version: vendor=baseguard
  engine=ICAP:2.0.272,Aquarius:18.0.1011,Hydra:6.0.619,FMLib:17.11.176.26
  definitions=2024-01-31_10,2024-01-31_01,2023-05-22_02
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 adultscore=0 clxscore=1011
- phishscore=0 lowpriorityscore=0 mlxscore=0 bulkscore=0 priorityscore=1501
- impostorscore=0 suspectscore=0 mlxlogscore=999 malwarescore=0 spamscore=0
- classifier=spam adjust=0 reason=mlx scancount=1 engine=8.19.0-2401190000
- definitions=main-2402010015
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 malwarescore=0
+ priorityscore=1501 lowpriorityscore=0 phishscore=0 mlxscore=0
+ mlxlogscore=757 suspectscore=0 adultscore=0 bulkscore=0 impostorscore=0
+ clxscore=1015 spamscore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.19.0-2401190000 definitions=main-2402010017
 
-Hi Mathias,
 
-On 1/29/2024 7:44 AM, Mathias Nyman wrote:
-> On 26.1.2024 23.13, Wesley Cheng wrote:
->> Hi Mathias,
+On 1/31/2024 6:02 PM, Suzuki K Poulose wrote:
+> On 31/01/2024 01:39, Tao Zhang wrote:
 >>
->> On 1/16/2024 12:24 PM, Wesley Cheng wrote:
->>> Hi Mathias,
->>>
->>> On 1/15/2024 6:01 AM, Mathias Nyman wrote:
->>>> On 10.1.2024 1.42, Wesley Cheng wrote:
->>>>> Hi Mathias,
->>>>>
->>>>> On 1/8/2024 12:51 PM, Wesley Cheng wrote:
->>>>>> Hi Mathias,
->>>>>>
->>>>>> On 1/4/2024 6:48 AM, Mathias Nyman wrote:
->>>>>>> On 2.1.2024 23.45, Wesley Cheng wrote:
->>>>>>>> As part of xHCI bus suspend, the XHCI is halted.  However, if 
->>>>>>>> there are
->>>>>>>> pending events in the secondary event ring, it is observed that 
->>>>>>>> the xHCI
->>>>>>>> controller stops responding to further commands upon host or device
->>>>>>>> initiated bus resume.  Iterate through all pending events and 
->>>>>>>> update the
->>>>>>>> dequeue pointer to the beginning of the event ring.
->>>>>>>>
->>>>>>>> Signed-off-by: Wesley Cheng <quic_wcheng@quicinc.com>
->>>>>>> ...
->>>>>>>> +/*
->>>>>>>> + * Move the event ring dequeue pointer to skip events kept in 
->>>>>>>> the secondary
->>>>>>>> + * event ring.  This is used to ensure that pending events in 
->>>>>>>> the ring are
->>>>>>>> + * acknowledged, so the XHCI HCD can properly enter 
->>>>>>>> suspend/resume. The
->>>>>>>> + * secondary ring is typically maintained by an external 
->>>>>>>> component.
->>>>>>>> + */
->>>>>>>> +void xhci_skip_sec_intr_events(struct xhci_hcd *xhci,
->>>>>>>> +    struct xhci_ring *ring,    struct xhci_interrupter *ir)
->>>>>>>> +{
->>>>>>>> +    union xhci_trb *erdp_trb, *current_trb;
->>>>>>>> +    u64 erdp_reg;
->>>>>>>> +    u32 iman_reg;
->>>>>>>> +    dma_addr_t deq;
->>>>>>>> +
->>>>>>>> +    /* disable irq, ack pending interrupt and ack all pending 
->>>>>>>> events */
->>>>>>>> +    xhci_disable_interrupter(ir);
->>>>>>>> +    iman_reg = readl_relaxed(&ir->ir_set->irq_pending);
->>>>>>>> +    if (iman_reg & IMAN_IP)
->>>>>>>> +        writel_relaxed(iman_reg, &ir->ir_set->irq_pending);
->>>>>>>> +
->>>>>>>> +    /* last acked event trb is in erdp reg  */
->>>>>>>> +    erdp_reg = xhci_read_64(xhci, &ir->ir_set->erst_dequeue);
->>>>>>>> +    deq = (dma_addr_t)(erdp_reg & ERST_PTR_MASK);
->>>>>>>> +    if (!deq) {
->>>>>>>> +        xhci_err(xhci, "event ring handling not required\n");
->>>>>>>> +        return;
->>>>>>>> +    }
->>>>>>>> +
->>>>>>>> +    erdp_trb = current_trb = ir->event_ring->dequeue;
->>>>>>>> +    /* read cycle state of the last acked trb to find out CCS */
->>>>>>>> +    ring->cycle_state = 
->>>>>>>> le32_to_cpu(current_trb->event_cmd.flags) & TRB_CYCLE;
->>>>>>>> +
->>>>>>>> +    while (1) {
->>>>>>>> +        inc_deq(xhci, ir->event_ring);
->>>>>>>> +        erdp_trb = ir->event_ring->dequeue;
->>>>>>>> +        /* cycle state transition */
->>>>>>>> +        if ((le32_to_cpu(erdp_trb->event_cmd.flags) & 
->>>>>>>> TRB_CYCLE) !=
->>>>>>>> +            ring->cycle_state)
->>>>>>>> +            break;
->>>>>>>> +    }
->>>>>>>> +
->>>>>>>> +    xhci_update_erst_dequeue(xhci, ir, current_trb, true);
->>>>>>>> +}
->>>>>>>
->>>>>>> Code above is very similar to the existing event ring processing 
->>>>>>> parts of xhci_irq()
->>>>>>> and xhci_handle_event()
->>>>>>>
->>>>>>> I'll see if I can refactor the existing event ring processing, 
->>>>>>> decouple it from
->>>>>>> event handling so that it could be used by primary and secondary 
->>>>>>> interrupters with
->>>>>>> handlers, and this case where we just want to clear the event ring.
->>>>>>>
->>>>>>
->>>>>> Thanks, that makes sense.  Will take a look as well.
->>>>>>
->>>>>
->>>>> How about something like the below?  Tested this on my set up and 
->>>>> everything looks to be working fine.  Had to add another param to 
->>>>> struct xhci_interrupters to tell the XHCI interrupt handler to say 
->>>>> if that particular interrupter wants to skip_events (handling).  
->>>>> This way, its something that the class driver utilizing the 
->>>>> interrupter will have to tell XHCI sideband.  It would allow the 
->>>>> user to determine if they want to use the interrupter to actually 
->>>>> handle events or not on the proc running Linux.
->>>>>
+>> On 1/30/2024 8:35 PM, Suzuki K Poulose wrote:
+>>> On 30/01/2024 09:02, Tao Zhang wrote:
+>>>> Read the CMB element size from the device tree. Set the register
+>>>> bit that controls the CMB element size of the corresponding port.
 >>>>
->>>> Yes, I have something similar.
->>>> I'll share it soon, just need to
->>>> clean it up a bit fist.
+>>>> Reviewed-by: James Clark <james.clark@arm.com>
+>>>> Signed-off-by: Tao Zhang <quic_taozha@quicinc.com>
+>>>> Signed-off-by: Mao Jinlong <quic_jinlmao@quicinc.com>
+>>>> ---
+>>>>   drivers/hwtracing/coresight/coresight-tpda.c | 123 
+>>>> +++++++++++--------
+>>>>   drivers/hwtracing/coresight/coresight-tpda.h |   6 +
+>>>>   2 files changed, 79 insertions(+), 50 deletions(-)
 >>>>
+>>>> diff --git a/drivers/hwtracing/coresight/coresight-tpda.c 
+>>>> b/drivers/hwtracing/coresight/coresight-tpda.c
+>>>> index 4ac954f4bc13..fcddff3ded81 100644
+>>>> --- a/drivers/hwtracing/coresight/coresight-tpda.c
+>>>> +++ b/drivers/hwtracing/coresight/coresight-tpda.c
+>>>> @@ -18,6 +18,7 @@
+>>>>   #include "coresight-priv.h"
+>>>>   #include "coresight-tpda.h"
+>>>>   #include "coresight-trace-id.h"
+>>>> +#include "coresight-tpdm.h"
+>>>>     DEFINE_CORESIGHT_DEVLIST(tpda_devs, "tpda");
+>>>>   @@ -28,24 +29,57 @@ static bool coresight_device_is_tpdm(struct 
+>>>> coresight_device *csdev)
+>>>>               CORESIGHT_DEV_SUBTYPE_SOURCE_TPDM);
+>>>>   }
+>>>>   +static void tpdm_clear_element_size(struct coresight_device *csdev)
+>>>> +{
+>>>> +    struct tpda_drvdata *drvdata = 
+>>>> dev_get_drvdata(csdev->dev.parent);
+>>>> +
+>>>> +    drvdata->dsb_esize = 0;
+>>>> +    drvdata->cmb_esize = 0;
+>>>> +}
+>>>> +
+>>>> +static void tpda_set_element_size(struct tpda_drvdata *drvdata, 
+>>>> u32 *val)
+>>>> +{
+>>>> +
 >>>
->>> Sure, no worries.  Will test it when its available.  Thanks!
 >>>
+>>>
+>>>> +    if (drvdata->dsb_esize == 64)
+>>>> +        *val |= TPDA_Pn_CR_DSBSIZE;
+>>>
+>>> We don't seem to be clearing the fields we modify, before updating 
+>>> them. This may be OK in real world where the device connected to 
+>>> TPDA port
+>>> may not change. But it is always safer to clear the bits and set it.
+>>>
+>>> e.g.:
+>>>     *val &= ~(TPDA_Pn_CR_DSBSIZE | TPDA_Pn_CR_CMBSIZE);
+>>>
+>>>
+>>>
+>>>> +    else if (drvdata->dsb_esize == 32)
+>>>> +        *val &= ~TPDA_Pn_CR_DSBSIZE;
+>>>> +
+>>>> +    if (drvdata->cmb_esize == 64)
+>>>> +        *val |= FIELD_PREP(TPDA_Pn_CR_CMBSIZE, 0x2);
+>>>> +    else if (drvdata->cmb_esize == 32)
+>>>> +        *val |= FIELD_PREP(TPDA_Pn_CR_CMBSIZE, 0x1);
+>>>
+>>> Similarly here ^^^. I am happy to fix it up if you are OK with it 
+>>> (unless there are other changes that need a respin)
 >>
->> Was just wondering if you had the time to clean up the changes?  If 
->> not, maybe you can provide a patch with whatever you have, and I can 
->> try my best to clean it up to your liking?  Thanks!
-> 
-> Sure, got stuck fixing other issues.
+>> Thank you. I would be very grateful if you could help for this.
 >
+> Given, you need to respin, please incorporate this change too.
 
-No worries, tested the code briefly as is and it is working, with some 
-minor modifications.
+Sure.
 
-> Code is not yet cleaned up, commit messages are not ready etc, but 
-> current work is in
-> a fix_eventhandling branch:
-> 
-> git://git.kernel.org/pub/scm/linux/kernel/git/mnyman/xhci.git  
-> fix_eventhandling
-> https://git.kernel.org/pub/scm/linux/kernel/git/mnyman/xhci.git/log/?h=fix_eventhandling 
-> 
-> 
-> I was in the middle of figuring out when and where the ip_autoclear and 
-> interrupt
-> moderation values should be set for secondary interrupters
-> 
+Is it OK if I modify the code as follow and update to this patch directly?
 
-I set these currently when the client driver requests for the 
-interrupter, ie xhci_sideband_create_interrupter().  If the client 
-driver wants to actually have the secondary interrupter events handled 
-by the OS then I added a path to call xhci_enable_interrupter() to 
-enable that IRQ line.  Likewise, based on XHCI spec Figure 4-22, the 
-IMAN interrupt enable (IE) bit controls basically when IMOD and IP 
-autoclear mechanisms would come into the picture, so I placed these 
-configurations before we set the IE bit.
+     *val &= ~(TPDA_Pn_CR_DSBSIZE | TPDA_Pn_CR_CMBSIZE);
 
-For the most part, if we offload event ring handling to another 
-processor, then IMOD and IE settings would be irrelevant IMO.
+     if (drvdata->dsb_esize == 64)
+         *val |= TPDA_Pn_CR_DSBSIZE;
+     else if (drvdata->dsb_esize == 32)
+         *val &= ~TPDA_Pn_CR_DSBSIZE;
 
-The only pitfall with this is that it gets a bit cumbersome (although 
-flexible) for the client driver to know what these arguments actually do 
-within the XHCI layer.  Working through your changes and will push 
-something soon.  Thanks again for sharing the changes!
+     if (drvdata->cmb_esize == 64)
+         *val |= FIELD_PREP(TPDA_Pn_CR_CMBSIZE, 0x2);
+     else if (drvdata->cmb_esize == 32)
+         *val |= FIELD_PREP(TPDA_Pn_CR_CMBSIZE, 0x1);
+     else if (drvdata->cmb_esize == 8)
+         *val &= ~TPDA_Pn_CR_CMBSIZE;
 
-Thanks
-Wesley Cheng
+Best,
+
+Tao
+
+>
+> Suzuki
+>
+>
+>
 
