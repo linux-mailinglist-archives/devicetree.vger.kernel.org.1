@@ -1,135 +1,159 @@
-Return-Path: <devicetree+bounces-37557-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-37558-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id CF31B84559D
-	for <lists+devicetree@lfdr.de>; Thu,  1 Feb 2024 11:38:49 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id CA4248455A4
+	for <lists+devicetree@lfdr.de>; Thu,  1 Feb 2024 11:40:47 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 6D0A21F215F5
-	for <lists+devicetree@lfdr.de>; Thu,  1 Feb 2024 10:38:49 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id ED71C1C22BE8
+	for <lists+devicetree@lfdr.de>; Thu,  1 Feb 2024 10:40:46 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1ADA05A0E5;
-	Thu,  1 Feb 2024 10:38:43 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A11375B1E7;
+	Thu,  1 Feb 2024 10:40:42 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="L1M7ktTa"
+	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="NI74xNAI"
 X-Original-To: devicetree@vger.kernel.org
-Received: from relay9-d.mail.gandi.net (relay9-d.mail.gandi.net [217.70.183.199])
+Received: from fllv0016.ext.ti.com (fllv0016.ext.ti.com [198.47.19.142])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4152E2747F;
-	Thu,  1 Feb 2024 10:38:39 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.70.183.199
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C27112747F;
+	Thu,  1 Feb 2024 10:40:40 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.19.142
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1706783923; cv=none; b=bV51MDD1AC720ru+U+jw3w4EZh9KIox0NQdLl9UHCVwdvigFAs6Z22Y9sIcSdWj4xiOX6dEU48uzdlbsosgifMOC4zBtv+RQMCna5aNGBUXyymUtJnVKFowRYOCX4tnNq0tvbopEQbRlCdYyUrkGTpEfwIbOlyAsJntoZo+q+Lc=
+	t=1706784042; cv=none; b=eChphJFFIn/ysVT/TzdZ4ow6SAUolxvj4z82rf1TB4zkZ+eApJsozbsXsA/3s9lj+g+BLs48QAO6PwY/mVI+D3Vh9ANUCTuSQrxjlFYdUIjVNqbB5f2rLi+vYCexIkqMEHX13TsuWKuGVGVvbUlbwOfTgraQe7hM+zJ4WjTc9CA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1706783923; c=relaxed/simple;
-	bh=9dO6Oej2KgYjkvAzqv58BDV8rSpNHuXwrckSqS3XlMc=;
-	h=Mime-Version:Content-Type:Date:Message-Id:Cc:To:From:Subject:
-	 References:In-Reply-To; b=TYR9tHMyTS++wyIP2GWT1g8Yex0fw3QRXHknu2DoiZbk5KOa8V8S7os7ddyLw92QYugkb/GjSHv6utRboCCA218nZg+5B+NBVw5amo/k3CmBSCp4vlqg+00xloAnU3KD0tLZl/ROUINGlEObm8MlC4FRutGip+lwxvDBUl6a0jw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=L1M7ktTa; arc=none smtp.client-ip=217.70.183.199
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
-Received: by mail.gandi.net (Postfix) with ESMTPSA id 7E07EFF812;
-	Thu,  1 Feb 2024 10:38:31 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
-	t=1706783912;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=ZCjekKQATy7QigT3ZYZ4Fxvzy/254wA5JrrgSgewDR0=;
-	b=L1M7ktTaycn0uGbfShyQ/9qgi0r7KX5YamwJgP1jwQjtBt1hlJq06OX61GV98LbMO7C3tw
-	B9SFMGFDBTwdVP/6jpcSHdTGQhLK+gupoPbFX3i04QWTY/+N8Er1dxb0vnwzU9fGGLtltx
-	ST5sH8vHqUZY53ntk8FKCnTeASX1qL9UilrNS9u5Oxk0WpP7aE4OKd/QRBEANeoPR+1RWM
-	qkqcb0PhBhSbCC1+hac4xIlIGxFqf4T2BrmYOAZbD/Y4qlypBlyLkfGfr1OJiEgbBF56aX
-	Aoh2JaqHuyviMFWthg4sH2cbNCGHiYFzAn3Eu+6bBwx42UDeoHaGTuot9H2h/w==
+	s=arc-20240116; t=1706784042; c=relaxed/simple;
+	bh=IAxQ247gpt/xDUWQXHExdT3CIugrLkHsYYszRWh8NGA=;
+	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
+	 In-Reply-To:Content-Type; b=IAxtFjuICeJ0aFR7VBhYs63U8nOZtjEubM3up+A+LTJhc1wFhS3DO6U5SC4YkgTTD6WcSWIbRqDDMe7+nNlHDlqw9uC5ddPvyeK2wq1WSrN72pkPlVWHeR5U4Am1SCKwwHpJ+hN7rpQHO+Nzeg5bW31KMRovtAMyzGM5lb/PKk8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=NI74xNAI; arc=none smtp.client-ip=198.47.19.142
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
+Received: from fllv0035.itg.ti.com ([10.64.41.0])
+	by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id 411AeTGJ076393;
+	Thu, 1 Feb 2024 04:40:29 -0600
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+	s=ti-com-17Q1; t=1706784029;
+	bh=9OeQC3NYKDo60H/HChds5+O9TwH7tRqkh+NBR9Fhh1A=;
+	h=Date:Subject:To:CC:References:From:In-Reply-To;
+	b=NI74xNAIvYz//AoFYZqtYee4pHtB79pTeGnorL3u9ZH0YcNLRUC7fi+78V+y8qVgO
+	 PSC9EnEkRJw0AJILQPDZUhH9ZwWb0FghgCN9csOGVefOEEs9XRc28zuEarK1INKkEX
+	 AXQIWuM7g9gWRYxgtoDnNwM3nBhkreqC1CBhnV38=
+Received: from DLEE107.ent.ti.com (dlee107.ent.ti.com [157.170.170.37])
+	by fllv0035.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 411AeTNu102304
+	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+	Thu, 1 Feb 2024 04:40:29 -0600
+Received: from DLEE115.ent.ti.com (157.170.170.26) by DLEE107.ent.ti.com
+ (157.170.170.37) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Thu, 1
+ Feb 2024 04:40:28 -0600
+Received: from lelvsmtp5.itg.ti.com (10.180.75.250) by DLEE115.ent.ti.com
+ (157.170.170.26) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
+ Frontend Transport; Thu, 1 Feb 2024 04:40:28 -0600
+Received: from [172.24.227.177] (jayesh-hp-probook-440-g8-notebook-pc.dhcp.ti.com [172.24.227.177])
+	by lelvsmtp5.itg.ti.com (8.15.2/8.15.2) with ESMTP id 411AeOEQ022888;
+	Thu, 1 Feb 2024 04:40:25 -0600
+Message-ID: <30ac8486-325d-44cb-9855-84a0b41f6857@ti.com>
+Date: Thu, 1 Feb 2024 16:10:23 +0530
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-Mime-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
-Content-Type: text/plain; charset=UTF-8
-Date: Thu, 01 Feb 2024 11:38:31 +0100
-Message-Id: <CYTOEGEI34JQ.36CF09LNJFQHS@bootlin.com>
-Cc: "Vladimir Kondratiev" <vladimir.kondratiev@mobileye.com>,
- <linux-mips@vger.kernel.org>, <linux-clk@vger.kernel.org>,
- <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>, "Thomas
- Petazzoni" <thomas.petazzoni@bootlin.com>, "Tawfik Bayouk"
- <tawfik.bayouk@mobileye.com>, <linux-gpio@vger.kernel.org>
-To: "Krzysztof Kozlowski" <krzysztof.kozlowski@linaro.org>, "Gregory
- CLEMENT" <gregory.clement@bootlin.com>, "Michael Turquette"
- <mturquette@baylibre.com>, "Stephen Boyd" <sboyd@kernel.org>, "Rob Herring"
- <robh+dt@kernel.org>, "Krzysztof Kozlowski"
- <krzysztof.kozlowski+dt@linaro.org>, "Conor Dooley" <conor+dt@kernel.org>,
- "Thomas Bogendoerfer" <tsbogend@alpha.franken.de>, "Linus Walleij"
- <linus.walleij@linaro.org>, =?utf-8?q?Rafa=C5=82_Mi=C5=82ecki?=
- <rafal@milecki.pl>, "Philipp Zabel" <p.zabel@pengutronix.de>
-From: =?utf-8?q?Th=C3=A9o_Lebrun?= <theo.lebrun@bootlin.com>
-Subject: Re: [PATCH v4 04/18] dt-bindings: clock: mobileye,eyeq5-clk: add
- bindings
-X-Mailer: aerc 0.15.2
-References: <20240131-mbly-clk-v4-0-bcd00510d6a0@bootlin.com>
- <20240131-mbly-clk-v4-4-bcd00510d6a0@bootlin.com>
- <f6e5b748-17c4-4de1-be42-f79155be21cb@linaro.org>
-In-Reply-To: <f6e5b748-17c4-4de1-be42-f79155be21cb@linaro.org>
-X-GND-Sasl: theo.lebrun@bootlin.com
+MIME-Version: 1.0
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH] arm64: dts: ti: k3-am69-sk: remove assigned-clock-parents
+ for unused VP
+To: Tomi Valkeinen <tomi.valkeinen@ideasonboard.com>, <nm@ti.com>,
+        <vigneshr@ti.com>
+CC: <kristo@kernel.org>, <robh+dt@kernel.org>,
+        <krzysztof.kozlowski+dt@linaro.org>, <conor+dt@kernel.org>,
+        <a-bhatia1@ti.com>, <rogerq@kernel.org>, <sabiya.d@ti.com>,
+        <u-kumar1@ti.com>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>, <linux-arm-kernel@lists.infradead.org>
+References: <20231221113042.48492-1-j-choudhary@ti.com>
+ <bf271671-861d-43d4-a24f-de49256ef9d0@ideasonboard.com>
+Content-Language: en-US
+From: Jayesh Choudhary <j-choudhary@ti.com>
+In-Reply-To: <bf271671-861d-43d4-a24f-de49256ef9d0@ideasonboard.com>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 8bit
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 
-Hello,
+Hello Tomi,
 
-On Thu Feb 1, 2024 at 9:58 AM CET, Krzysztof Kozlowski wrote:
-> On 31/01/2024 17:26, Th=C3=A9o Lebrun wrote:
-> > Add DT schema bindings for the EyeQ5 clock controller driver.
-> >=20
-> > Signed-off-by: Th=C3=A9o Lebrun <theo.lebrun@bootlin.com>
-> > ---
->
-> No changelog, tags ignored, I scrolled through first two pages of cover
-> letter and also no changelog.
+On 03/01/24 18:35, Tomi Valkeinen wrote:
+> Hi,
+> 
+> On 21/12/2023 13:30, Jayesh Choudhary wrote:
+>> VP2 and VP3 are unused video ports and VP3 share the same parent
+>> clock as VP1 causing issue with pixel clock setting for HDMI (VP1).
+>> So remove the parent clocks for unused VPs.
+>>
+>> Fixes: 6f8605fd7d11 ("arm64: dts: ti: k3-am69-sk: Add DP and HDMI 
+>> support")
+>> Reported-by: Nishanth Menon <nm@ti.com>
+>> Closes: 
+>> https://storage.kernelci.org/mainline/master/v6.7-rc6/arm64/defconfig/gcc-10/lab-ti/baseline-nfs-am69_sk-fs.txt
+>> Signed-off-by: Jayesh Choudhary <j-choudhary@ti.com>
+>> ---
+>>
+>> Local testing log for HDMI on AM69-SK:
+>> <https://gist.github.com/Jayesh2000/517395cd85eb28d65b8ee4568cefb809>
+>>
+>>   arch/arm64/boot/dts/ti/k3-am69-sk.dts | 8 ++------
+>>   1 file changed, 2 insertions(+), 6 deletions(-)
+>>
+>> diff --git a/arch/arm64/boot/dts/ti/k3-am69-sk.dts 
+>> b/arch/arm64/boot/dts/ti/k3-am69-sk.dts
+>> index 8da591579868..370980eb59b0 100644
+>> --- a/arch/arm64/boot/dts/ti/k3-am69-sk.dts
+>> +++ b/arch/arm64/boot/dts/ti/k3-am69-sk.dts
+>> @@ -918,13 +918,9 @@ &dss {
+>>       pinctrl-names = "default";
+>>       pinctrl-0 = <&dss_vout0_pins_default>;
+>>       assigned-clocks = <&k3_clks 218 2>,
+>> -              <&k3_clks 218 5>,
+>> -              <&k3_clks 218 14>,
+>> -              <&k3_clks 218 18>;
+>> +              <&k3_clks 218 5>;
+>>       assigned-clock-parents = <&k3_clks 218 3>,
+>> -                 <&k3_clks 218 7>,
+>> -                 <&k3_clks 218 16>,
+>> -                 <&k3_clks 218 22>;
+>> +                 <&k3_clks 218 7>;
+>>   };
+>>   &serdes_wiz4 {
+> 
+> The SK has two outputs, using VP0 and VP1, so the above kind of makes 
+> sense. Then again, setting up 4 clocks here really shouldn't break the 
+> SK, should it? The AM69 has 4 available VPs. How does one configure the 
+> clocks for a board that uses 4 VPs, or possibly a different selection of 
+> VPs?
 
-In this case we fit into the "If a tag was not added on purpose". Sorry
-the changelog was not explicit enough. In my mind it fits into the
-first bullet point of the cover letter changelog:
+> 
+> I think the patch desc should explain why this doesn't work. Afaik, the 
+> dts is not wrong as such, but there's an underlying issue that breaks 
+> the clocking if all four clocks are set up here.
+> 
 
-> - Have the three drivers access MMIO directly rather than through the
->   syscon & regmap.
+I discussed this with firmware team, there is an issue with sibling
+child clocks. If parent clock is shared, DM cannot set its rate.
+The determine_rate and set_rate query are behaving unexpectedly in
+this case. determine_rate is returning 0 and set_rate is setting it
+to 1.8G even when VP can support max 600M.
 
-That change means important changes to the dt-bindings to adapt to this
-new behavior. In particular we now have reg and reg-names properties
-that got added and made required.
+Jayesh
 
-I wanted to have your review on that and did not want to tag the patch
-as already reviewed.
-
->
-> This is a friendly reminder during the review process.
->
-> It looks like you received a tag and forgot to add it.
->
-> If you do not know the process, here is a short explanation:
-> Please add Acked-by/Reviewed-by/Tested-by tags when posting new
-> versions, under or above your Signed-off-by tag. Tag is "received", when
-> provided in a message replied to you on the mailing list. Tools like b4
-> can help here. However, there's no need to repost patches *only* to add
-> the tags. The upstream maintainer will do that for tags received on the
-> version they apply.
->
-> https://elixir.bootlin.com/linux/v6.5-rc3/source/Documentation/process/su=
-bmitting-patches.rst#L577
->
-> If a tag was not added on purpose, please state why and what changed.
-
-As an aside, what's your preference on location for this information?
-Cover letter changelog? Following '---' in the specific commit message?
-Somewhere else?
-
-Thanks,
-
---
-Th=C3=A9o Lebrun, Bootlin
-Embedded Linux and Kernel engineering
-https://bootlin.com
+> So, with the desc updated, as this fixes an issue and is not wrong:
+> 
+> Reviewed-by: Tomi Valkeinen <tomi.valkeinen@ideasonboard.com>
+> 
+> But I also feel this is dodging a firmware (?) issue.
+> 
+>   Tomi
+> 
 
