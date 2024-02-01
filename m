@@ -1,74 +1,74 @@
-Return-Path: <devicetree+bounces-37475-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-37476-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 37953845236
-	for <lists+devicetree@lfdr.de>; Thu,  1 Feb 2024 08:47:19 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id CD65A84523F
+	for <lists+devicetree@lfdr.de>; Thu,  1 Feb 2024 08:52:50 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id AAF191F2A0A4
-	for <lists+devicetree@lfdr.de>; Thu,  1 Feb 2024 07:47:18 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 614B11F2A620
+	for <lists+devicetree@lfdr.de>; Thu,  1 Feb 2024 07:52:50 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 619741586FA;
-	Thu,  1 Feb 2024 07:47:13 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 06BD215A486;
+	Thu,  1 Feb 2024 07:52:21 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="VJ+qZ9zN"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="YFDA/0gi"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ej1-f45.google.com (mail-ej1-f45.google.com [209.85.218.45])
+Received: from mail-ej1-f48.google.com (mail-ej1-f48.google.com [209.85.218.48])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8400A85C7D
-	for <devicetree@vger.kernel.org>; Thu,  1 Feb 2024 07:47:11 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.45
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2A1751586FE
+	for <devicetree@vger.kernel.org>; Thu,  1 Feb 2024 07:52:18 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.48
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1706773633; cv=none; b=nbjdiTGgv8/Z0Td+UxEoMVPgwjBdwxj3MZvm2Xz1Gj5FjpZ1RDaNdiQ3TnQoADicik5cS8InNaMFc8woOCBPOC4Lwi5cAT0Eyb1aY4R7EtISPkJ0oUzdlHuk/zS4CzheYTOgAetbgzcerNemQWf1kQ/ibNaqNT42T8rOYXD/su8=
+	t=1706773940; cv=none; b=R77VC1VaaFpN1whQY2lSdaBycVd7fZ8L51NnM4A9b2jH1zJfyVto1iJwRr5WkNLrC065sAG+KWoIF0WZWl3zjyBbxdd4KdfIrK3uyfesFhOLP62yGaHZgNcRX/obSuiwfHPAtjekFqwMqcEaqkqBv69giqi/c7HCdhaQixTtxPE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1706773633; c=relaxed/simple;
-	bh=KPUF3I2gwCZplZ3t8IIUhm81HX3c0JWZCBOL8bNyZ3Y=;
+	s=arc-20240116; t=1706773940; c=relaxed/simple;
+	bh=YTaHQlTBHQOHwhY5YplZoM9YSUIMQ8fq0DUhbgTJbXE=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=AbOzNBmSEjP/GTZmMx9+BixNVmINciVo5WqpWOa41aJDkkklXGf1Htpn/Kwk8iUJBVARXnQVRLhMByeBaB8qCtbUbikEcUpAaBE8yNwCAcZi7/CXnBya6UhZQmnO/cVfOxzmzEMOAovXAe/egQsaQZL3oMfkussZUFUECZXu/mo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=VJ+qZ9zN; arc=none smtp.client-ip=209.85.218.45
+	 In-Reply-To:Content-Type; b=JQ9aj6+jsMobUuzkHc1jonqj/IzwToFturTFhr+uqhIBWrx/HqsEFI/LyAE/SoPcVk5t8QJNVG1uNckirhf/E11JLtd/6c6o05ZOq96mvuYuOk/CXIL9My6+htreBWLxD8ffSX+h/kYOANx+IEdjDmP4dDopZLL+SMv5LNWzBpw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=YFDA/0gi; arc=none smtp.client-ip=209.85.218.48
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-ej1-f45.google.com with SMTP id a640c23a62f3a-a36597a3104so74281366b.2
-        for <devicetree@vger.kernel.org>; Wed, 31 Jan 2024 23:47:11 -0800 (PST)
+Received: by mail-ej1-f48.google.com with SMTP id a640c23a62f3a-a2f22bfb4e6so73089466b.0
+        for <devicetree@vger.kernel.org>; Wed, 31 Jan 2024 23:52:17 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1706773630; x=1707378430; darn=vger.kernel.org;
+        d=linaro.org; s=google; t=1706773936; x=1707378736; darn=vger.kernel.org;
         h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
          :to:content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=PU8R58r+KXKaOneKKYQ2DEBWgtfSjbnDglXSUn6f0Zk=;
-        b=VJ+qZ9zNuGQMuwTRkZlLEXbL7+3ELCJLkE7he6heGng1eUXCXDnYy/pV7Ax2SjpOnD
-         T4ad+Whsq/qCzkkGTeBg6I5JSYTadIUmxrub8ATv5wlu3ifa3YwsTgqVbt/ZotuqIcCj
-         qY6m68cPlkUI3TeVee7Apamf39Dx/8jocF2d/+uKzEewSig1rXqiB6aKMCuMRzU6X6Xw
-         dP51Xv1SLxuz+QXxq+4o9RjD9MPOnx3Py/ORnZ++65TpryL5XpQ0UsIPzEQW9muoofgJ
-         ESm8qlNDOwnll+1cc3TavNVnzxH62+uvlGH493wm+ZqS0J5FrkmDQhB3lwpNaOfMcoy2
-         QTCQ==
+        bh=y+yW4466Fwq+cPFvacTC0lLupL3F38F7nvhDsV2cdxk=;
+        b=YFDA/0gi68oGHgYuXXKrVCEC5qaMtHuiI8+M0PfoIRI4VU4qufEZAuN0CN92FVuWe6
+         bnEQmIQfRoUc5VL0jKGevJ0lPOTs931hBtyuNOEHfhIoJG8d3M4zZgupbkIRPFQnb3md
+         l5b/myqemiZBevA8BI+g2C22O0rgTRXhskXXwoswI+1tuV8Ia+WlGcbEZ00Ku3Pyd2zr
+         EbymvLQuC2fNyiW0xYbkZQNcfsBUHAEg1TZ3sDdyqzH1JYLVMbv/nOm5fV3rbwd1lVky
+         lgGORNT1YPsFFp0UjPH9/zIycT7kAq9CGogTUS4J0R8MzcFV4HEHVFVN6aLs9jYQmtJ9
+         OkQQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1706773630; x=1707378430;
+        d=1e100.net; s=20230601; t=1706773936; x=1707378736;
         h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
          :to:content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=PU8R58r+KXKaOneKKYQ2DEBWgtfSjbnDglXSUn6f0Zk=;
-        b=hK8RsUp8qhDh7UN5mFbF5dI+j2BD6IJRHdWm1xWSYY9vqubWxLO91+ymdGLlCACyLU
-         7Rzcz51vBIQFv9zDq5YB5g0etOAGQtb0f22KGe4m9phCbJalPEdW72S3DCR63XsClf1u
-         IG7uptu/VXt6Sgqm+0fC1eBf5X4zhZiKT0eu29tk9qsdntlKBVDYqKxPDONLDTzD9CCC
-         5Bo5sFgh0KfXqX9ahRb/Velkes8jvgRFUxdZDiKvsi/JktzrXo4qqh8o2OVvbBQFwSPK
-         1xPxdmjC0q2SDeePm2XfE4nFZN+mZJgFeVHHNgjED8323ZFrAHkmgMgWloiJvBjOhQ8f
-         KVtg==
-X-Gm-Message-State: AOJu0Yy0tEKA27flwMjfbsWZGB7gSl6ze2jmNe8eZJIggSboqoWyZYZ6
-	XTJ7ifUlRgJXG5igcL+z5MVJH92ZF3UVpaIvNNV4yUxL0+B+Smh4770FKfc46c8=
-X-Google-Smtp-Source: AGHT+IHWKzvbqYw4ct9BFvpoIz6ginN+TOnUMh3QusX15u4tHhN2/933tc7/Rna5Yb8NWkbKi2/vcQ==
-X-Received: by 2002:a17:906:d791:b0:a36:3819:940e with SMTP id pj17-20020a170906d79100b00a363819940emr2668583ejb.27.1706773629774;
-        Wed, 31 Jan 2024 23:47:09 -0800 (PST)
-X-Forwarded-Encrypted: i=0; AJvYcCVIMyMqnCRpU+8sPIiaV02F0a5rwjJf09pDjEOIYgTfQpmYw6fK0SmQGo0G2gAvzXQLz1ZhpQyPHAlBWZH12aYySr472wNbZtZUukkeN1h5H54syJVIKqzRkPV/Q5NU6WKFFztorUvo7V7yxR6LmT7HncRBZ5YkfV6SYKC/5HgB1lxr6E+fM1m8GlOPgoX9hZfjAtBhwu9G8ljwLU/ieG7N3IHUIu8G2N+okPAhoTLEmYFvtDzMUfmN7rM6vkjKdBaZwhhWnArbt/0g4BHgw5tMe8bevWhaG6X3xWmhL6Rrgw4DpR2B3j0ZH9m3ctqNoozlpd89rZqLuxh65/2bDqrkMWQiRv3KHkVVHzkV43uZTJswOfppkvEAGqWKYXOq/c4O+Kq9zA==
+        bh=y+yW4466Fwq+cPFvacTC0lLupL3F38F7nvhDsV2cdxk=;
+        b=i2AyJZrlH3plRd0cQKDg2+lSMrGuXf/vUHn26xF9MixCxmIVpLwPUhATyScpvvdZVd
+         KvVXOOOraUaLQzBneuNYv7CXN6ZFnzAO9LfzI7TCPJQlR9VgvX03PP6u0mboKD0xj96c
+         GRjhbfEqOi60pikSPh0Z2/xhmnlPhwLaBgZ36iDwG+02bDCdjNw1agOSND0euHATJGoU
+         JRN83l1SYQdzlAvydPiO/T02NrpLYsTLgMFyaBlVOPHwR5mHCf9hssSu8Wf+aSelRSdZ
+         TcsYkEQ/0RkjQdxayzVAVwXRZQZS2jQ+77/jCXjoReEsUGAHgUAEj63ViWe9CtKdIrJA
+         qgvw==
+X-Gm-Message-State: AOJu0YyehKZ8C22HrMB3n45FlPfek9pitcl/l9T9WtkM9bq75M/tKhJl
+	vN1DWRH52wQlL10iuYQVbPHO7HOW0xEMu9YdZqRZcfL58kCuwwKmK6EgkusY440=
+X-Google-Smtp-Source: AGHT+IFbWTR86WqUgqwatj4MXgXcuJ0sNgzrXhgTaUI2W5j1uDLlG/GaAl7yVm94rcPn4ZjjCUV7gA==
+X-Received: by 2002:a17:906:1d10:b0:a34:aa8b:6cb2 with SMTP id n16-20020a1709061d1000b00a34aa8b6cb2mr2477368ejh.18.1706773936366;
+        Wed, 31 Jan 2024 23:52:16 -0800 (PST)
+X-Forwarded-Encrypted: i=0; AJvYcCVQy1bOAdmsmWU5/v5/sR/B6Pvc3+se5GKIMb9aecPV5ldLWJGgEJHXG8cvptp/XsBWzDcyeNX0YyYZ/tokm9HtUi/1pwgxTioEfHuPHTlSYzowawsjgNIggCrSciTamYKGVCgiNKNAm/VMxjY6Ccl9M29wmpBrB68h/YVNEMogkJS1imqM+ftRC/IuX7sLYhKBJ9X2T6H1JbUaKK/TWXfT9sWT8Ft0fGn4/l60GmPQfcpVgcARrlyyHQLT7ZbGfXey0dkXn0HhtACmXBFQGS17OMN4YOmr7PPdWrnjUv0A2cwfB/0q1+Ks/7HJOmd9m2KSiu7PhTUuFuGjAdpN116YUOXE/jHfGVHkbOlxCUViEbn4
 Received: from [192.168.1.20] ([178.197.222.62])
-        by smtp.gmail.com with ESMTPSA id pw20-20020a17090720b400b00a2e9f198cffsm6892853ejb.72.2024.01.31.23.47.08
+        by smtp.gmail.com with ESMTPSA id li14-20020a170907198e00b00a3667f53691sm1517095ejc.86.2024.01.31.23.52.14
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 31 Jan 2024 23:47:09 -0800 (PST)
-Message-ID: <f99af7ee-1a6c-4e00-9a7d-3a1ddc9574d2@linaro.org>
-Date: Thu, 1 Feb 2024 08:47:07 +0100
+        Wed, 31 Jan 2024 23:52:15 -0800 (PST)
+Message-ID: <c67ebf90-cb40-4595-8015-45d2a86f6c7d@linaro.org>
+Date: Thu, 1 Feb 2024 08:52:13 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -78,16 +78,15 @@ MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
 Subject: Re: [PATCH v3 2/2] dt-bindings: Add MPQ8785 voltage regulator device
 Content-Language: en-US
-To: Guenter Roeck <linux@roeck-us.net>, Conor Dooley <conor@kernel.org>,
- Charles Hsu <ythsu0511@gmail.com>
-Cc: jdelvare@suse.com, corbet@lwn.net, Delphine_CC_Chiu@wiwynn.com,
- robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
+To: Conor Dooley <conor@kernel.org>, Charles Hsu <ythsu0511@gmail.com>
+Cc: jdelvare@suse.com, linux@roeck-us.net, corbet@lwn.net,
+ Delphine_CC_Chiu@wiwynn.com, robh+dt@kernel.org,
+ krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
  linux-hwmon@vger.kernel.org, devicetree@vger.kernel.org,
  linux-kernel@vger.kernel.org
 References: <20240131055526.2700452-1-ythsu0511@gmail.com>
  <20240131055526.2700452-2-ythsu0511@gmail.com>
  <20240131-eraser-given-8381a44f41a4@spud>
- <d20e1f93-4e6c-4c18-b4bd-19412eb4e8da@roeck-us.net>
 From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  xsFNBFVDQq4BEAC6KeLOfFsAvFMBsrCrJ2bCalhPv5+KQF2PS2+iwZI8BpRZoV+Bd5kWvN79
@@ -133,36 +132,35 @@ Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  KQ06ztUMRrj8eVtpImjsWCd0bDWRaaR4vqhCHvAG9iWXZu4qh3ipie2Y0oSJygcZT7H3UZxq
  fyYKiqEmRuqsvv6dcbblD8ZLkz1EVZL6djImH5zc5x8qpVxlA0A0i23v5QvN00m6G9NFF0Le
  D2GYIS41Kv4Isx2dEFh+/Q==
-In-Reply-To: <d20e1f93-4e6c-4c18-b4bd-19412eb4e8da@roeck-us.net>
+In-Reply-To: <20240131-eraser-given-8381a44f41a4@spud>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 01/02/2024 01:41, Guenter Roeck wrote:
-> On 1/31/24 07:41, Conor Dooley wrote:
->> On Wed, Jan 31, 2024 at 01:55:26PM +0800, Charles Hsu wrote:
->>> Monolithic Power Systems, Inc. (MPS) synchronous step-down converter.
->>>
->>> Signed-off-by: Charles Hsu <ythsu0511@gmail.com>
->>> ---
->>>   Documentation/devicetree/bindings/trivial-devices.yaml | 2 ++
->>>   1 file changed, 2 insertions(+)
->>>
->>> diff --git a/Documentation/devicetree/bindings/trivial-devices.yaml b/Documentation/devicetree/bindings/trivial-devices.yaml
->>> index 79dcd92c4a43..088b23ed2ae6 100644
->>> --- a/Documentation/devicetree/bindings/trivial-devices.yaml
->>> +++ b/Documentation/devicetree/bindings/trivial-devices.yaml
->>> @@ -129,6 +129,8 @@ properties:
->>>             - mps,mp2975
->>>               # Monolithic Power Systems Inc. multi-phase hot-swap controller mp5990
->>>             - mps,mp5990
->>> +            # Monolithic Power Systems Inc. synchronous step-down converter mpq8785
->>> +          - mps,mpq8785
+On 31/01/2024 16:41, Conor Dooley wrote:
+> On Wed, Jan 31, 2024 at 01:55:26PM +0800, Charles Hsu wrote:
+>> Monolithic Power Systems, Inc. (MPS) synchronous step-down converter.
 >>
->> q sorts before 2, otherwise
+>> Signed-off-by: Charles Hsu <ythsu0511@gmail.com>
+>> ---
+>>  Documentation/devicetree/bindings/trivial-devices.yaml | 2 ++
+>>  1 file changed, 2 insertions(+)
+>>
+>> diff --git a/Documentation/devicetree/bindings/trivial-devices.yaml b/Documentation/devicetree/bindings/trivial-devices.yaml
+>> index 79dcd92c4a43..088b23ed2ae6 100644
+>> --- a/Documentation/devicetree/bindings/trivial-devices.yaml
+>> +++ b/Documentation/devicetree/bindings/trivial-devices.yaml
+>> @@ -129,6 +129,8 @@ properties:
+>>            - mps,mp2975
+>>              # Monolithic Power Systems Inc. multi-phase hot-swap controller mp5990
+>>            - mps,mp5990
+>> +            # Monolithic Power Systems Inc. synchronous step-down converter mpq8785
+>> +          - mps,mpq8785
 > 
-> It does ? Not in ASCII. Am I missing something ?
+> q sorts before 2, otherwise
+> Acked-by: Conor Dooley <conor.dooley@microchip.com>
 
-Also `sort` agrees with q being after numbers.
+I will sort the file and my patch should go via Rob's tree, I guess, so
+maybe this one could go as well?
 
 Best regards,
 Krzysztof
