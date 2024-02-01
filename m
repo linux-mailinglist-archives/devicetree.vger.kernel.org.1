@@ -1,74 +1,74 @@
-Return-Path: <devicetree+bounces-37524-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-37525-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id C495E845429
-	for <lists+devicetree@lfdr.de>; Thu,  1 Feb 2024 10:38:11 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id C4B61845435
+	for <lists+devicetree@lfdr.de>; Thu,  1 Feb 2024 10:39:10 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 0368A1C243F3
-	for <lists+devicetree@lfdr.de>; Thu,  1 Feb 2024 09:38:11 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 034631C25C19
+	for <lists+devicetree@lfdr.de>; Thu,  1 Feb 2024 09:39:10 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 832E74DA01;
-	Thu,  1 Feb 2024 09:35:38 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7F4E915B990;
+	Thu,  1 Feb 2024 09:36:43 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="fKR08lYb"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="O9Uap6oU"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ej1-f44.google.com (mail-ej1-f44.google.com [209.85.218.44])
+Received: from mail-ej1-f42.google.com (mail-ej1-f42.google.com [209.85.218.42])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B79AA4DA0B
-	for <devicetree@vger.kernel.org>; Thu,  1 Feb 2024 09:35:36 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.44
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7718015B975
+	for <devicetree@vger.kernel.org>; Thu,  1 Feb 2024 09:36:41 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.42
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1706780138; cv=none; b=TVCySHRFhbYKDGJx5XsNCV//vu7T8STwhIY60oVKphajZ0UMIuJ/Ewgh5h5PlPFZ0IF83daFVA53TaVBVglkbLARfZxQMQRHXNkX0PJg7t6p7aRBgUGFD84IAGBnYXNIcu0cj/S/+m7jxBsUP9ZW2dp1c9NvU6SQZyRqOEe1r3g=
+	t=1706780203; cv=none; b=WKd2gksGGmClVNyVrhO9Qmql3eBEWRkJoNNM2E0OeIQ2l9NxiF8VLywXxyS9SMMyfNFV1dW0facrPAij0GvjivhxLlO3OsINsfrLTv7GRJoSemOdDDl+jCXA2AHpdqJigYUFh90dkPALo0MQTznJODdzSoo4N2VwaACrzhqNd4o=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1706780138; c=relaxed/simple;
-	bh=ZDllaHl05SCr+3uHdTXuT0oEzPdQZpv371GP17gaYA4=;
+	s=arc-20240116; t=1706780203; c=relaxed/simple;
+	bh=VBJ3v7tZGm+k2N8ADxEK1r3ckzFwQWUh5/X8mvn9RBE=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=dVLAjeUoRqQLaIW5WP0E3ihV9NyN8bILVD4E6hANWETBTNqP8wAIJ437B00E3M4x+beBQU8xWT+BKDtzpSJ8OcS4WEC8LuMx2oOn3AZMBeD5bSBDOQPobTiVFfoI3NvzwEht2LWN9vSgdFxjlpfZ/OmcAVQ38SSpgnsYKtpIB6s=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=fKR08lYb; arc=none smtp.client-ip=209.85.218.44
+	 In-Reply-To:Content-Type; b=T3Q+7zLceQ8QGpwX6Ml1YRBYSU7bmLhjWRZmsVKT9RBrpUlBKXFNcWa+mBXKbIQ5uCoPVz5LV2OI25epvJQrLRVh5tcsTBGu7z206TXL1xFdG1OSsyK999uRJ6zhnYJEAP+lTrnVGnIlZOkX3bFZ1aNFa8qJwpbtYgUGum+Fs8o=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=O9Uap6oU; arc=none smtp.client-ip=209.85.218.42
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-ej1-f44.google.com with SMTP id a640c23a62f3a-a357cba4a32so85904766b.2
-        for <devicetree@vger.kernel.org>; Thu, 01 Feb 2024 01:35:36 -0800 (PST)
+Received: by mail-ej1-f42.google.com with SMTP id a640c23a62f3a-a2f22bfb4e6so87599266b.0
+        for <devicetree@vger.kernel.org>; Thu, 01 Feb 2024 01:36:41 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1706780135; x=1707384935; darn=vger.kernel.org;
+        d=linaro.org; s=google; t=1706780199; x=1707384999; darn=vger.kernel.org;
         h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
          :to:content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=HyqXM2RqPns7OmdRV2J0tJ30SgtDybOdsbla0qjmeAA=;
-        b=fKR08lYbkrM4J9QQBbXECd/bj+lZ7HskbgR+e56PT32P6ImB1dmRWBzf+tnhCvFGL/
-         4UdTWMAX1Gv28HIZhhRdIMXTYjAFvy+Q0WOSWOF0onbmanHjitJbsbTHRiMOfWP9Re2w
-         Nu03byPtsTflU0tNlNN7l5exUazhMeD81uI/Hg70x0PhLOVlOzxXa2J2PJYTHcEWeQkT
-         X0jfGJTRJqYBoHpJxbYTRXKv9u1NrO1LSRo/+OnJkKj4CFx3/roxTqwGKBjWpPR6Bw7E
-         TcBqaBa0Ztb2KWifxWwgarcVdjGzrhRhQLQlh1llXhrnptTErb832ZUhRm6zSJR+ggZB
-         RVDQ==
+        bh=poTuQf0LwQNiakczK1chklgkGLVMfrUoDvHBIrggrEc=;
+        b=O9Uap6oU8H/FFBq/2aXvNc8Mc3Pgp7HbACN/cxnLdQB9UkkPftd5g64Upobh1Dk/Nm
+         p4kx2LQmzYWdBCR2sb1tz76oa3xIfdwxB/DXCYgR225EHvOTbIrZz+ldxKl3AI7dXIs8
+         6E0dvm81TIYHztNqL2OnLxo0yNa8k47tdE1VTrWnz/Ht9radGjvCmdMk7aBmOj86b6Kk
+         y1nSTfefLfSe6QObe0oSfxsKsdC34vGX5bbDQq48Tdzup/nqDcZ6QcBjMv/7mrbO9TIf
+         X38IgTD3XwIhpsjJGTd5EO4n37Yy8EUj5Nd9ORY2pkxHqCvp3+oMbbSTI17kWRAvA7C+
+         tlOw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1706780135; x=1707384935;
+        d=1e100.net; s=20230601; t=1706780199; x=1707384999;
         h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
          :to:content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=HyqXM2RqPns7OmdRV2J0tJ30SgtDybOdsbla0qjmeAA=;
-        b=DuuTbdfXVum5aGDe5zJtJehV8L25RG5bQqvpjMrhfQ2aou2C/4fLxc/BdRn99D2ZA/
-         yNXTR4azK6+h8/xAZ3/qYuwhwFs32RFFYHDHOLLmTCjIcFjWsd8yCzAUO7mIuO+ttyg7
-         273yuccicdx/DhNNg6WMQSttvnUbQ4l53sSQeM0O8hImEoCKwLL6nRDLcuD1e1ytOG+T
-         N6+0ly/Qdf0MLoSzOnAz5PNCyK9HUjCQq0XkCHbDKyX74jIL9xF3ClQKLgOCGOVGHtPa
-         86MRZYlKQcLgNltLYWjOz5nvfhUYBR/tkN/hs0MomHznGr886cZDsuKAApYOMrFWbrVL
-         zO7Q==
-X-Gm-Message-State: AOJu0YzK5CxRlZxk8f/Pbp6W2fiYWWHmEWKb5+4tG4qqYCJbXHI++5Mk
-	0y7XE0U5UEkYlP/2D0/wC0XlMvWznb5hTY2UrvlaZH7RKf2XxcSLFwaKBYa2MdE=
-X-Google-Smtp-Source: AGHT+IFC7C6ZTgZVnlcChUgICQ7l00lXxa3JRgiSmvfPutlq8w7VkeX2Me0z0MaoewEduVjVtCvkrA==
-X-Received: by 2002:a17:906:f34f:b0:a35:c518:8808 with SMTP id hg15-20020a170906f34f00b00a35c5188808mr1263470ejb.30.1706780134959;
-        Thu, 01 Feb 2024 01:35:34 -0800 (PST)
-X-Forwarded-Encrypted: i=0; AJvYcCXi789qMnuijxBvOmllY3dSeOAsDCkm5lAvjqnc1Swbfmd67t8t/hJp8UXoHUHbkJhXZc3h2M/aed75XjZCbac1cyRQqZCDJJgAUBL44kYI8fYLTFhSnhfWS+c8DlkiGIDL0Gix+rHpsRyQcRhC0hqMKsyD5i6uzRV7gIQAmQghwW+aOkGxvoAqvlCy5BM4BJX5pE1vx9dqiXPEUK6JbCRp/I6QIunSYQ6Vw+gUACWB7MgtG7vxcPtaZw3Ot3ZJqNXzWS1MO/ZKA0hWdpHKjAPo4jAp2V61kKhtibAdSH75WgryFmfJdo83YWBHSvmPufppszpOL+C6fFTTbbK6oqD+n7jq4ryEztLXi4HIlDbVRoRWkMJdf5U+ZJjZRuxkGoLljj6NFadk0HHzQzk=
+        bh=poTuQf0LwQNiakczK1chklgkGLVMfrUoDvHBIrggrEc=;
+        b=AoM8Me2ufkJhFA7uT3p4ZnHcKJRLV9ogZ0BE3BxxebWngF8yEEkbR1kSAlVhdtn1LM
+         q/YNg/g8+toxjCx90Nh5ozA5BJruSM2UYzT/tUU+/q8SHstyUc46RbDqw33yWaCjNC5v
+         pc8qtfqJrlyeT5qmQtsBTcFsOe13qfYPjWc3Ky+sFpRMyisYVGwmq6F9nbZd9vlZ9Ecm
+         IBFhxJmZCe+EZEPX7r1HBnqh/0WyrAGbUvWyiG20qanrsRIGYdt5JavkF6uf53mrLq8k
+         rUto04ybGlWkHbD2ft9yC8tBPGWv1nUP1p5Fe7ZnMQ2HLw0H3dWbJOEwSApki5ptelWM
+         KPmg==
+X-Gm-Message-State: AOJu0YygxlRvn8C2h1bn6ajTaROyGqG+V4kz8oZCbmUAimM7EXdxfkgw
+	XxPW8X/iQClRUoY3n82YxxJEzgopIcLiXTWi0Fdm4Vt2E6OGzNNTlnc+6/Fefqk=
+X-Google-Smtp-Source: AGHT+IElQ8/d4GLq3GOx5zQpFcggQ/15LvaFRwDCBRBrM0v2013xgeW8ql9X4WOe6h1VwivnkuqsHA==
+X-Received: by 2002:a17:906:7f16:b0:a36:47d9:1c35 with SMTP id d22-20020a1709067f1600b00a3647d91c35mr2884287ejr.44.1706780199642;
+        Thu, 01 Feb 2024 01:36:39 -0800 (PST)
+X-Forwarded-Encrypted: i=0; AJvYcCWjDzvTr2BIqc0egXiReI2kXvxp8qEXSElKxpGISo3WO+j0Ix5B32p9BeeQJyWGvnHoC/I0RnKw+IE6RjTF+xifEep0kgf+7c8ZmktCmH+BCXhbU0Ux7T8gE3Sv1JolXa33jTNF9/XP9NMv1CmitIryH1zc68JkyPPi4kOhe04JRYzgtedHAqKrjbNQpM6W1Ik5yMWjRWLLoCU4zpcXUXqrOwk9oMBbNdI6uK1/5l5DJJLuGpvlH4GiWutax9xPGPWW1HnRrW0wn/T5xxHwjbyu2Pl6J+L0Bal/vNTpHrMtAWtFaTXJOLNYd64HcV+2mX54HylOo4bOEvRwO9ybmcLEh/+ny5yR0Y/aJTW3SufKyWsCtRK71I30ATQHgYQR3idJCdGDtgWVlJmPVYiAVN3MwSr+CGYiIFjl5zqQ9bQlpYxyOfQIj7NEft7ae/xyXbQjnxSbxq9E5kq0/pASDzY0mDoYVMdFbuj3QsOb/E8nr9IJpPE0yLjqdcBynOTQ6JOyde1ncAf1xFMP1U3xo146RZBxa/QIsB+eAwYqeSHH5Pf+XX3bRb8p3fxXufq0VYDoVmAc/FiZAz4apMYTlFRZSRx47jhFXObPcOYmdTMseczIPCuZ39NoPZF6mAVcsE8bIpw/dLzxaA==
 Received: from [192.168.1.20] ([178.197.222.62])
-        by smtp.gmail.com with ESMTPSA id ty8-20020a170907c70800b00a353d1a19a9sm5929063ejc.191.2024.02.01.01.35.33
+        by smtp.gmail.com with ESMTPSA id ty8-20020a170907c70800b00a353d1a19a9sm5929063ejc.191.2024.02.01.01.36.37
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 01 Feb 2024 01:35:34 -0800 (PST)
-Message-ID: <94075be0-b91c-4147-86b1-582b124e71a0@linaro.org>
-Date: Thu, 1 Feb 2024 10:35:32 +0100
+        Thu, 01 Feb 2024 01:36:39 -0800 (PST)
+Message-ID: <ca618c6e-ef29-4ee5-860f-68b48ebbeb9e@linaro.org>
+Date: Thu, 1 Feb 2024 10:36:37 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -76,22 +76,25 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v5 3/3] w1: add UART w1 bus driver
+Subject: Re: [PATCH v4 07/18] dt-bindings: soc: mobileye: add EyeQ5 OLB system
+ controller
 Content-Language: en-US
-To: Christoph Winklhofer <cj.winklhofer@gmail.com>,
- Krzysztof Kozlowski <krzk@kernel.org>
-Cc: Rob Herring <robh+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>,
- Rob Herring <robh@kernel.org>,
- Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
- Jiri Slaby <jirislaby@kernel.org>,
+To: =?UTF-8?Q?Th=C3=A9o_Lebrun?= <theo.lebrun@bootlin.com>,
+ Gregory CLEMENT <gregory.clement@bootlin.com>,
+ Michael Turquette <mturquette@baylibre.com>, Stephen Boyd
+ <sboyd@kernel.org>, Rob Herring <robh+dt@kernel.org>,
  Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Jonathan Corbet <corbet@lwn.net>, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, linux-serial@vger.kernel.org,
- linux-doc@vger.kernel.org
-References: <20240126-w1-uart-v5-0-1d82bfdc2ae9@gmail.com>
- <20240126-w1-uart-v5-3-1d82bfdc2ae9@gmail.com>
- <092a9986-5ebb-483d-9911-37a93d7cb2dd@kernel.org>
- <ZbtIPo--1hfzNmho@cjw-notebook>
+ Conor Dooley <conor+dt@kernel.org>,
+ Thomas Bogendoerfer <tsbogend@alpha.franken.de>,
+ Linus Walleij <linus.walleij@linaro.org>, =?UTF-8?B?UmFmYcWCIE1pxYJlY2tp?=
+ <rafal@milecki.pl>, Philipp Zabel <p.zabel@pengutronix.de>
+Cc: Vladimir Kondratiev <vladimir.kondratiev@mobileye.com>,
+ linux-mips@vger.kernel.org, linux-clk@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
+ Tawfik Bayouk <tawfik.bayouk@mobileye.com>, linux-gpio@vger.kernel.org
+References: <20240131-mbly-clk-v4-0-bcd00510d6a0@bootlin.com>
+ <20240131-mbly-clk-v4-7-bcd00510d6a0@bootlin.com>
 From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  xsFNBFVDQq4BEAC6KeLOfFsAvFMBsrCrJ2bCalhPv5+KQF2PS2+iwZI8BpRZoV+Bd5kWvN79
@@ -137,64 +140,80 @@ Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  KQ06ztUMRrj8eVtpImjsWCd0bDWRaaR4vqhCHvAG9iWXZu4qh3ipie2Y0oSJygcZT7H3UZxq
  fyYKiqEmRuqsvv6dcbblD8ZLkz1EVZL6djImH5zc5x8qpVxlA0A0i23v5QvN00m6G9NFF0Le
  D2GYIS41Kv4Isx2dEFh+/Q==
-In-Reply-To: <ZbtIPo--1hfzNmho@cjw-notebook>
+In-Reply-To: <20240131-mbly-clk-v4-7-bcd00510d6a0@bootlin.com>
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
 
-On 01/02/2024 08:29, Christoph Winklhofer wrote:
->>> +
->>> +static void w1_uart_remove(struct serdev_device *serdev)
->>> +{
->>> +	struct w1_uart_device *w1dev = serdev_device_get_drvdata(serdev);
->>> +
->>> +	mutex_lock(&w1dev->mutex);
->>> +
->>> +	w1_remove_master_device(&w1dev->bus);
->>> +
->>> +	mutex_unlock(&w1dev->mutex);
->>
->> This is still suspicious. You do not have serdev_device_close and you
->> want to protect from concurrent access but it looks insufficient.
->>
->> This code assumes that:
->>
->> w1_uart_remove()
->>   <-- here concurrent read/write might start
->>   mutex_lock()
->>   w1_remove_master_device()
->>   mutex_unlock()
->>   <-- now w1_uart_serdev_tx_rx() or w1_uart_serdev_receive_buf() can be
->> executed, but device is removed. So what's the point of the mutex here?
->>
->> What exactly is protected by the mutex? So far it looks like only some
->> contents of w1dev, but it does not matter, because it that memory is
->> still valid at this point.
->>
->> After describing what is protected we can think whether it is really
->> protected...
->>
->>
->>>
->>
->> Best regards,
->> Krzysztof
->>
+On 31/01/2024 17:26, Théo Lebrun wrote:
+> Add documentation to describe the "Other Logic Block" syscon.
 > 
-> Yes, it is still suspicious, sorry..
+> Signed-off-by: Théo Lebrun <theo.lebrun@bootlin.com>
+> ---
+>  .../bindings/soc/mobileye/mobileye,eyeq5-olb.yaml  | 89 ++++++++++++++++++++++
+>  MAINTAINERS                                        |  1 +
+>  2 files changed, 90 insertions(+)
 > 
-> After w1_uart_remove, serdev is closed and w1dev is released. Therefore
-> the w1-callback (w1_uart_serdev_tx_rx) must be finished before returning
 
-I did not even go to end of w1_uart_remove(). In my code above, that
-thread is still in w1_uart_remove(), just after unlocking mutex.
+...
 
-> from w1_uart_remove. That was the intention with the lock and trylock.
+> +required:
+> +  - compatible
+> +  - reg
+> +  - '#address-cells'
+> +  - '#size-cells'
+> +  - ranges
+> +
+> +additionalProperties: false
+> +
+> +examples:
+> +  - |
+> +    soc {
+> +      #address-cells = <2>;
+> +      #size-cells = <2>;
+> +
+> +      system-controller@e00000 {
+> +        compatible = "mobileye,eyeq5-olb", "syscon", "simple-mfd";
+> +        reg = <0x0 0xe00000 0x0 0x400>;
+> +        #address-cells = <1>;
+> +        #size-cells = <1>;
+> +        ranges = <0x0 0x0 0xe00000 0x400>;
 
-Then it does not look really protected. To be honest, w1-gpio and other
-drivers also might have a race here. You can test it by adding long
-sleeps in read/write paths and then trying to unbind device. Maybe this
-should be fixed everywhere, but this mutex here brings more questions.
+If there is going to be any resend:
+1. ranges follows reg
+2. Use lower-case hex
 
+See DTS coding style.
+
+> +
+> +        clocks: clock-controller@2c {
+> +          compatible = "mobileye,eyeq5-clk";
+> +          reg = <0x02C 0x50>, <0x11C 0x04>;
+> +          reg-names = "plls", "ospi";
+> +          #clock-cells = <1>;
+> +          clocks = <&xtal>;
+> +          clock-names = "ref";
+> +        };
+> +
+> +        reset: reset-controller@0 {
+
+0 is before 2c, keep nodes properly ordered.
+
+
+
+> +          compatible = "mobileye,eyeq5-reset";
+> +          reg = <0x000 0x0C>, <0x200 0x34>, <0x120 0x04>;
+> +          reg-names = "d0", "d1", "d2";
+> +          #reset-cells = <2>;
+> +        };
+> +
+> +        pinctrl: pinctrl@b0 {
+> +          compatible = "mobileye,eyeq5-pinctrl";
+> +          reg = <0x0B0 0x30>;
+
+This looks incomplete. Your binding mentions children, so provide at
+least one child.
+
+> 
 
 Best regards,
 Krzysztof
