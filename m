@@ -1,149 +1,189 @@
-Return-Path: <devicetree+bounces-37544-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-37545-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8BCDE84553E
-	for <lists+devicetree@lfdr.de>; Thu,  1 Feb 2024 11:24:56 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4F169845545
+	for <lists+devicetree@lfdr.de>; Thu,  1 Feb 2024 11:26:54 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id ADC751C237CD
-	for <lists+devicetree@lfdr.de>; Thu,  1 Feb 2024 10:24:55 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 0A151291A71
+	for <lists+devicetree@lfdr.de>; Thu,  1 Feb 2024 10:26:53 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3A29215B97F;
-	Thu,  1 Feb 2024 10:24:33 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=amd.com header.i=@amd.com header.b="dd4SpRAj"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A9A7515AAC4;
+	Thu,  1 Feb 2024 10:26:49 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from NAM10-DM6-obe.outbound.protection.outlook.com (mail-dm6nam10on2083.outbound.protection.outlook.com [40.107.93.83])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 60FC315AAC5;
-	Thu,  1 Feb 2024 10:24:31 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.107.93.83
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1706783073; cv=fail; b=UhTKOnn5M0hwyW/aXLWBqMvuk2e2KWTFy6uCTrfFUT8sxHAfaGyx/hLokutp8wUKH/0r8WOAOMmPdRrvj9YVXRLv8yvRHEHvq2u7OB/TlE8FrmTbFLc52TgQycJeXo+mD64381mRRC9Ru6B61BR/w3VUMXXeCYkAg3VAwxtJ60Q=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1706783073; c=relaxed/simple;
-	bh=AruzUy0oZQRvVriAni58TpA0/6Bz16eb0bvcvLyXDE8=;
-	h=From:To:CC:Subject:Date:Message-ID:MIME-Version:Content-Type; b=ob7qpN5Vcimw19OP9okq3ET3yY2hqN6b7IaFEM4HQdj40lp6ncf778Wg92ShQPKPJBnR++l3FuvONfdzlTsXhPIhhZMxAcozKPwA4fSNuKdw/vBQkRz6XiXCpWe9O1Q4mz9QkYPeANBdukCSMkRIShpZMJgrEBWlezIeoJJn72g=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=amd.com; spf=fail smtp.mailfrom=amd.com; dkim=pass (1024-bit key) header.d=amd.com header.i=@amd.com header.b=dd4SpRAj; arc=fail smtp.client-ip=40.107.93.83
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=amd.com
-Authentication-Results: smtp.subspace.kernel.org; spf=fail smtp.mailfrom=amd.com
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=O0t4hrlOhSQaspli6ojX8feGcXWI1MLNBk6M7AqnRVQaRvEWQrflIUxarRnVo+4RnghQ+NGrTG/7uv/OHYSvZiV5B6L7HS3wW+HXz5sCYU5Jjp6vPYmPGEZEyI1BQAH3C3ymZetnjef3v2rtYhVorTh1uBoUjVn4rpx6epOHaeJ5V8g++YFw6RRmsa+XaUMvQvrxuay1CogkrB11UEuJ20Cspx/8pq2+E8/x83UZAHvNVmp9cuNuJ0kPMFhN4Pls67+60r4v3ZJQURMWAXPjZhlHB+WCOPQHPnrQmJxGh5tTnRIuIbkFUXjNrtxuUxILvr0EL5pWWpfAFV6Eel6cuw==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=OEdS9GaHhGPHcgvWMZ2ZKIE+jWcGZd6SlHQKV8UHLB4=;
- b=DWUOGCxh500o+Hlj4j/05m95dnGZ7eO509ECjv2WcScCU+hMasoJaGQV0XjcHRl43kVuYLCype2vCDl5YPkaSQbXgagPmUyecsIKN89QLfKc7y9Aem3W9Tiw80NtY5j5LTjOI+uWb10I3H4hoOJ3MFUA2v2L5+/ijx6Y854bfz7rVUmTBQ62DM9POVye3GPEJWa5KhGc7Ec4e0zFWl9aygUEodc22miaEfrXNpx/OY/PFWZ+F74TvIXevUWZ7Z52wiUVC0z+dD/JVdoc9XGeyxsBCJGIGdQ/gMljPBZwaXlV/dRLSYWsqATfZD+hcEevi571L21a2qa3DPgNV+r0jQ==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
- 165.204.84.17) smtp.rcpttodomain=vger.kernel.org smtp.mailfrom=amd.com;
- dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
- header.from=amd.com; dkim=none (message not signed); arc=none (0)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=OEdS9GaHhGPHcgvWMZ2ZKIE+jWcGZd6SlHQKV8UHLB4=;
- b=dd4SpRAj47KkG+r2gMEtiVVGDKM5bp6ey71DqdAeih0rFQFmewrlu41SClYxYLlttLzyA5WC6n092kwjdlF3l7VKzb+1N5F4V32EqhdxENSivcGZ1v04N5H/AmOXVYTKf0xWtCclxfJWaB4/oBFbSFNLl/WcdkYTvQtCPrWWS58=
-Received: from CH0PR03CA0118.namprd03.prod.outlook.com (2603:10b6:610:cd::33)
- by CY5PR12MB6298.namprd12.prod.outlook.com (2603:10b6:930:21::7) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7228.34; Thu, 1 Feb
- 2024 10:24:29 +0000
-Received: from CH3PEPF0000000C.namprd04.prod.outlook.com
- (2603:10b6:610:cd:cafe::3e) by CH0PR03CA0118.outlook.office365.com
- (2603:10b6:610:cd::33) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7249.24 via Frontend
- Transport; Thu, 1 Feb 2024 10:24:29 +0000
-X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
- smtp.mailfrom=amd.com; dkim=none (message not signed)
- header.d=none;dmarc=pass action=none header.from=amd.com;
-Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
- 165.204.84.17 as permitted sender) receiver=protection.outlook.com;
- client-ip=165.204.84.17; helo=SATLEXMB04.amd.com; pr=C
-Received: from SATLEXMB04.amd.com (165.204.84.17) by
- CH3PEPF0000000C.mail.protection.outlook.com (10.167.244.39) with Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.20.7249.19 via Frontend Transport; Thu, 1 Feb 2024 10:24:29 +0000
-Received: from localhost (10.180.168.240) by SATLEXMB04.amd.com
- (10.181.40.145) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.34; Thu, 1 Feb
- 2024 04:24:25 -0600
-From: Michal Simek <michal.simek@amd.com>
-To: <linux-kernel@vger.kernel.org>, <monstr@monstr.eu>,
-	<michal.simek@xilinx.com>, <git@xilinx.com>
-CC: Bartosz Golaszewski <brgl@bgdev.pl>, Conor Dooley <conor+dt@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Linus Walleij
-	<linus.walleij@linaro.org>, Rob Herring <robh@kernel.org>, Sungbo Eo
-	<mans0n@gorani.run>, "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE
- BINDINGS" <devicetree@vger.kernel.org>, "open list:GPIO SUBSYSTEM"
-	<linux-gpio@vger.kernel.org>
-Subject: [PATCH] dt-bindings: gpio: gpio-pca9570: Add label property
-Date: Thu, 1 Feb 2024 11:24:20 +0100
-Message-ID: <a8396308c995959349fd40e61199853a9b711ece.1706783050.git.michal.simek@amd.com>
-X-Mailer: git-send-email 2.36.1
+Received: from foss.arm.com (foss.arm.com [217.140.110.172])
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 593524DA06;
+	Thu,  1 Feb 2024 10:26:47 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.140.110.172
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1706783209; cv=none; b=jT1w2vZuzCuSCU5Nvx3561iob74GK5Q3ID6MBt2j+b6H11HwjwDTwoDU1PCDqIhRw0ccOuEvLOXGAqQ8Lr+tlCQN9QjX2lKYfA5K1ziE2IC3xvJRA4h0d/htZq3Xf/OxgcMXHz36VDT6xdWkRQCUr8HuIcJyung6LhSKQS78o3k=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1706783209; c=relaxed/simple;
+	bh=1Yr/AHhB6XmjVqcxBy7N7dT+IhyHnjIGtbEVFp9eSiM=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=HbEWmAhwOOC9/eTH2O34BDhJFuhdEnAuhYk99tB33HuIUbrTWTyR4U4OtjhOg73rttUMidbkGPN12+CCV2nSFXspHD5tOaRCW0t0Lnyetppoz5PTdqqGIECcqIQ4DA/JT4pq1zws3yRaOE52siY/wZsSKIB8kux6JnpUwWEvEyY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com; spf=pass smtp.mailfrom=arm.com; arc=none smtp.client-ip=217.140.110.172
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=arm.com
+Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
+	by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 32AC8DA7;
+	Thu,  1 Feb 2024 02:27:29 -0800 (PST)
+Received: from [10.1.197.1] (ewhatever.cambridge.arm.com [10.1.197.1])
+	by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 45A733F738;
+	Thu,  1 Feb 2024 02:26:42 -0800 (PST)
+Message-ID: <812bd339-4728-40ee-b19e-c8a04cc740de@arm.com>
+Date: Thu, 1 Feb 2024 10:26:40 +0000
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-Developer-Signature: v=1; a=openpgp-sha256; l=1000; i=michal.simek@amd.com; h=from:subject:message-id; bh=AruzUy0oZQRvVriAni58TpA0/6Bz16eb0bvcvLyXDE8=; b=owGbwMvMwCR4yjP1tKYXjyLjabUkhtTdhd6Cd6cbTa+9qqJapVPc1sH6ZpK7WcW9rT/L5NN7J ALyHE51xLIwCDIxyIopskjbXDmzt3LGFOGLh+Vg5rAygQxh4OIUgInwMjLMz15k2DVv5osvSfM/ qDb7dnEusdtozjA/c+4S66dby925f4qKJhdZHOY4JvsKAA==
-X-Developer-Key: i=michal.simek@amd.com; a=openpgp; fpr=67350C9BF5CCEE9B5364356A377C7F21FE3D1F91
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v5 05/10] coresight-tpda: Add support to configure CMB
+ element
+Content-Language: en-US
+To: Tao Zhang <quic_taozha@quicinc.com>,
+ Mathieu Poirier <mathieu.poirier@linaro.org>,
+ Alexander Shishkin <alexander.shishkin@linux.intel.com>,
+ Konrad Dybcio <konradybcio@gmail.com>, Mike Leach <mike.leach@linaro.org>,
+ Rob Herring <robh+dt@kernel.org>,
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
+Cc: Jinlong Mao <quic_jinlmao@quicinc.com>, Leo Yan <leo.yan@linaro.org>,
+ Greg Kroah-Hartman <gregkh@linuxfoundation.org>, coresight@lists.linaro.org,
+ linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+ devicetree@vger.kernel.org, Tingwei Zhang <quic_tingweiz@quicinc.com>,
+ Yuanfang Zhang <quic_yuanfang@quicinc.com>,
+ Trilok Soni <quic_tsoni@quicinc.com>, Song Chai <quic_songchai@quicinc.com>,
+ linux-arm-msm@vger.kernel.org, andersson@kernel.org
+References: <1706605366-31705-1-git-send-email-quic_taozha@quicinc.com>
+ <1706605366-31705-6-git-send-email-quic_taozha@quicinc.com>
+ <6ccb98f2-2f68-45db-9941-1c7b05da84d0@arm.com>
+ <6fff5991-01ed-44ea-aa08-9f302d2465e8@quicinc.com>
+ <1f5a7c7b-56de-4f19-9d48-652ae6efe50f@arm.com>
+ <9fca774e-3519-4d0c-ba61-6b84965f36c2@quicinc.com>
+From: Suzuki K Poulose <suzuki.poulose@arm.com>
+In-Reply-To: <9fca774e-3519-4d0c-ba61-6b84965f36c2@quicinc.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-ClientProxiedBy: SATLEXMB03.amd.com (10.181.40.144) To SATLEXMB04.amd.com
- (10.181.40.145)
-X-EOPAttributedMessage: 0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: CH3PEPF0000000C:EE_|CY5PR12MB6298:EE_
-X-MS-Office365-Filtering-Correlation-Id: 8e8c3176-4d58-43d0-e90f-08dc230ff927
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info:
-	LTXrb0TjyVMb3HhI1+Q+SqevPmtw2gTM10K26OhS24X/+/2YNzIfT8yKb0GAqm7U7ZbdXo8ma1V1iO1emsbW3+GleF67cDpQhNsrbU8oWpE/R/RQqcSpWQpLEuvF6NlhVIjM9V7EYmx6z0jZi2dX5bWVmwtSh/Cm2EQRYb9HxLvC7ujIPJD+1TCFDr9aN5J8/nRsWlzUwKzakmPEZvmE0Kd14jesZKcxy7ymqvIjlK/VkGQu/IYvoU/+GUq0k0U4DimGqGJQuU4mgARZPgl92gW/uHByVHIOO6wVrLDDVs28MDghvXx/dS8BcVmhsJhiiVrNzrA8kz9GEuCt3E5hOhFD9rccOdRHfyTdGaeP+430Yai5Kxcolu4ZEJqqMAqTdUy/vmJwvkjwDb9sj91Q8AqrBd/c2vBae7eOL9WPoDGS0lcSBh8GcrVofAMMEIcYaCqfr4C2yIC92H0WB7/FmXIzN0+W7FywrxxILsV2T2BKaWrW81CNbMFNg6nqa5iZrKb/EMX/s/jyIraL1ap7NN6a5UxBu2rnKNWbFY74kIbnT9tXEHF/6QRcySCYlDbm779plKbVFW7/3jzhChSFa34dItIGAzDENlTBd3c7R0U7xeHFlG2DBAf8bs7che0haHOmUDfrFhlscI38BPMpJoegjUErKjI1rYwbh450ioZLU5bwIrBPT2oMwV6RuSN+Ah+BHLDTxNjIM/FBOlUY7oXZXP8J/D6Y3t7E767rCfoUO6QJL/U34dCkrbwmnRQhS85XY/oIlnveymta90/rhdReYN/7EsXDRkDUEJxa85A=
-X-Forefront-Antispam-Report:
-	CIP:165.204.84.17;CTRY:US;LANG:en;SCL:1;SRV:;IPV:CAL;SFV:NSPM;H:SATLEXMB04.amd.com;PTR:InfoDomainNonexistent;CAT:NONE;SFS:(13230031)(4636009)(39860400002)(376002)(136003)(396003)(346002)(230922051799003)(451199024)(186009)(82310400011)(1800799012)(64100799003)(36840700001)(46966006)(40470700004)(41300700001)(36756003)(47076005)(110136005)(40480700001)(54906003)(426003)(70206006)(4744005)(336012)(70586007)(2906002)(8936002)(40460700003)(5660300002)(478600001)(36860700001)(4326008)(8676002)(6666004)(16526019)(316002)(7416002)(26005)(2616005)(86362001)(44832011)(81166007)(356005)(82740400003)(2101003)(36900700001);DIR:OUT;SFP:1101;
-X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 01 Feb 2024 10:24:29.0610
- (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: 8e8c3176-4d58-43d0-e90f-08dc230ff927
-X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
-X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d;Ip=[165.204.84.17];Helo=[SATLEXMB04.amd.com]
-X-MS-Exchange-CrossTenant-AuthSource:
-	CH3PEPF0000000C.namprd04.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Anonymous
-X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: CY5PR12MB6298
 
-Add a label property to allow a custom name to be used for identifying
-a device on the board. This is useful when multiple devices are present on
-the same board. Similar change was done by commit ffae65fb1ae4
-("dt-bindings: spi: spi-cadence: Add label property") or by commit
-a53faa6bfa3b ("dt-bindings: hwmon: ina2xx: Add label property").
+On 01/02/2024 02:25, Tao Zhang wrote:
+> 
+> On 1/31/2024 6:02 PM, Suzuki K Poulose wrote:
+>> On 31/01/2024 01:39, Tao Zhang wrote:
+>>>
+>>> On 1/30/2024 8:35 PM, Suzuki K Poulose wrote:
+>>>> On 30/01/2024 09:02, Tao Zhang wrote:
+>>>>> Read the CMB element size from the device tree. Set the register
+>>>>> bit that controls the CMB element size of the corresponding port.
+>>>>>
+>>>>> Reviewed-by: James Clark <james.clark@arm.com>
+>>>>> Signed-off-by: Tao Zhang <quic_taozha@quicinc.com>
+>>>>> Signed-off-by: Mao Jinlong <quic_jinlmao@quicinc.com>
+>>>>> ---
+>>>>>   drivers/hwtracing/coresight/coresight-tpda.c | 123 
+>>>>> +++++++++++--------
+>>>>>   drivers/hwtracing/coresight/coresight-tpda.h |   6 +
+>>>>>   2 files changed, 79 insertions(+), 50 deletions(-)
+>>>>>
+>>>>> diff --git a/drivers/hwtracing/coresight/coresight-tpda.c 
+>>>>> b/drivers/hwtracing/coresight/coresight-tpda.c
+>>>>> index 4ac954f4bc13..fcddff3ded81 100644
+>>>>> --- a/drivers/hwtracing/coresight/coresight-tpda.c
+>>>>> +++ b/drivers/hwtracing/coresight/coresight-tpda.c
+>>>>> @@ -18,6 +18,7 @@
+>>>>>   #include "coresight-priv.h"
+>>>>>   #include "coresight-tpda.h"
+>>>>>   #include "coresight-trace-id.h"
+>>>>> +#include "coresight-tpdm.h"
+>>>>>     DEFINE_CORESIGHT_DEVLIST(tpda_devs, "tpda");
+>>>>>   @@ -28,24 +29,57 @@ static bool coresight_device_is_tpdm(struct 
+>>>>> coresight_device *csdev)
+>>>>>               CORESIGHT_DEV_SUBTYPE_SOURCE_TPDM);
+>>>>>   }
+>>>>>   +static void tpdm_clear_element_size(struct coresight_device *csdev)
+>>>>> +{
+>>>>> +    struct tpda_drvdata *drvdata = 
+>>>>> dev_get_drvdata(csdev->dev.parent);
+>>>>> +
+>>>>> +    drvdata->dsb_esize = 0;
+>>>>> +    drvdata->cmb_esize = 0;
+>>>>> +}
+>>>>> +
+>>>>> +static void tpda_set_element_size(struct tpda_drvdata *drvdata, 
+>>>>> u32 *val)
+>>>>> +{
+>>>>> +
+>>>>
+>>>>
+>>>>
+>>>>> +    if (drvdata->dsb_esize == 64)
+>>>>> +        *val |= TPDA_Pn_CR_DSBSIZE;
+>>>>
+>>>> We don't seem to be clearing the fields we modify, before updating 
+>>>> them. This may be OK in real world where the device connected to 
+>>>> TPDA port
+>>>> may not change. But it is always safer to clear the bits and set it.
+>>>>
+>>>> e.g.:
+>>>>     *val &= ~(TPDA_Pn_CR_DSBSIZE | TPDA_Pn_CR_CMBSIZE);
+>>>>
+>>>>
+>>>>
+>>>>> +    else if (drvdata->dsb_esize == 32)
+>>>>> +        *val &= ~TPDA_Pn_CR_DSBSIZE;
+>>>>> +
+>>>>> +    if (drvdata->cmb_esize == 64)
+>>>>> +        *val |= FIELD_PREP(TPDA_Pn_CR_CMBSIZE, 0x2);
+>>>>> +    else if (drvdata->cmb_esize == 32)
+>>>>> +        *val |= FIELD_PREP(TPDA_Pn_CR_CMBSIZE, 0x1);
+>>>>
+>>>> Similarly here ^^^. I am happy to fix it up if you are OK with it 
+>>>> (unless there are other changes that need a respin)
+>>>
+>>> Thank you. I would be very grateful if you could help for this.
+>>
+>> Given, you need to respin, please incorporate this change too.
+> 
+> Sure.
+> 
+> Is it OK if I modify the code as follow and update to this patch directly?
+> 
+>      *val &= ~(TPDA_Pn_CR_DSBSIZE | TPDA_Pn_CR_CMBSIZE);
+> 
+>      if (drvdata->dsb_esize == 64)
+>          *val |= TPDA_Pn_CR_DSBSIZE;
+>      else if (drvdata->dsb_esize == 32)
+>          *val &= ~TPDA_Pn_CR_DSBSIZE;
+> 
+>      if (drvdata->cmb_esize == 64)
+>          *val |= FIELD_PREP(TPDA_Pn_CR_CMBSIZE, 0x2);
+>      else if (drvdata->cmb_esize == 32)
+>          *val |= FIELD_PREP(TPDA_Pn_CR_CMBSIZE, 0x1);.
+>      else if (drvdata->cmb_esize == 8)
+>          *val &= ~TPDA_Pn_CR_CMBSIZE;
 
-Signed-off-by: Michal Simek <michal.simek@amd.com>
----
+Yes, that looks good to me. Even though you would be clearing the fields 
+for (DSB=32 and CMB=8) once again, it is good to leave it like that 
+rather than skipping them, making people stare at it to figure out if 
+this was correct or not.
 
- Documentation/devicetree/bindings/gpio/gpio-pca9570.yaml | 3 +++
- 1 file changed, 3 insertions(+)
+Suzuki
 
-diff --git a/Documentation/devicetree/bindings/gpio/gpio-pca9570.yaml b/Documentation/devicetree/bindings/gpio/gpio-pca9570.yaml
-index 452f8972a965..6f73961001b7 100644
---- a/Documentation/devicetree/bindings/gpio/gpio-pca9570.yaml
-+++ b/Documentation/devicetree/bindings/gpio/gpio-pca9570.yaml
-@@ -28,6 +28,9 @@ properties:
-     minItems: 4
-     maxItems: 8
- 
-+  label:
-+    description: A descriptive name for this device.
-+
- required:
-   - compatible
-   - reg
--- 
-2.36.1
+
+
+
+> 
+> Best,
+> 
+> Tao
+> 
+>>
+>> Suzuki
+>>
+>>
+>>
 
 
