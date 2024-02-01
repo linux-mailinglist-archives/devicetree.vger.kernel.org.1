@@ -1,52 +1,52 @@
-Return-Path: <devicetree+bounces-37438-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-37439-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1072384502E
-	for <lists+devicetree@lfdr.de>; Thu,  1 Feb 2024 05:22:15 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id B4BC9845044
+	for <lists+devicetree@lfdr.de>; Thu,  1 Feb 2024 05:25:35 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id C1F7228FEEF
-	for <lists+devicetree@lfdr.de>; Thu,  1 Feb 2024 04:22:13 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 705B1292D92
+	for <lists+devicetree@lfdr.de>; Thu,  1 Feb 2024 04:25:34 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7CFEA3BB21;
-	Thu,  1 Feb 2024 04:22:10 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 994D63BB2A;
+	Thu,  1 Feb 2024 04:24:47 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=codeconstruct.com.au header.i=@codeconstruct.com.au header.b="lxcCNkqI"
+	dkim=pass (2048-bit key) header.d=codeconstruct.com.au header.i=@codeconstruct.com.au header.b="fQrSd4qc"
 X-Original-To: devicetree@vger.kernel.org
 Received: from codeconstruct.com.au (pi.codeconstruct.com.au [203.29.241.158])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B2F463B793;
-	Thu,  1 Feb 2024 04:22:08 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EB8763BB53;
+	Thu,  1 Feb 2024 04:24:44 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=203.29.241.158
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1706761330; cv=none; b=TKOV1ZDvGX4uaOmOjKIOHS4Uwdcx0DwFYC25RkI2oWe7zjlFJcAvDDuHttw2n02xibCU4FDdlVYKStxXbsM7iAz9sORE6kWEDyjXy7dsU7rTFS0PvXz8CjM0FtTBBIG8Oe31a51ILlXzag0s96O/Fi1Y5xv38dnvdefibAMxapw=
+	t=1706761487; cv=none; b=oQUkowmY8EK7/ouDL4rtsbeu187StIdDZxlLSyjl33HJ2vpmga7/26SMhNUoNM0giDRwSiXz5UciOBWpqPJafccpGrQjMliXG3FweW24d5q/G7jm/65CUfyeHtogZHhr4+LWMe/87ekBmza/00LZ9msn0QppxupYWB/ZeNrwxe0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1706761330; c=relaxed/simple;
-	bh=8yi1Yt/wU7R273IZJhQL8dLT0dnEIjg9xM90SHxgQ9E=;
+	s=arc-20240116; t=1706761487; c=relaxed/simple;
+	bh=U4sISEKt02jIu1Z70tHRx14a4uWJpHeazAZDZYIWDZ0=;
 	h=Message-ID:Subject:From:To:Cc:Date:In-Reply-To:References:
-	 Content-Type:MIME-Version; b=XwMbneJk4sFQ1NsJ2aTUFG0SoBFCU95SOYDaTnXw5hhTsLWDNuOm9iXejCvqbfySxhc5PkCGSjJJ9WDRhjVJjgwuYkBZNiLW5e42iaHLaSDf0u+Bl2ycp+Nd6G6S8xzZeJSt8wZBw0X3cXuaijvH/DdfBV3SKK/fiTWdq71hgYs=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=codeconstruct.com.au; spf=pass smtp.mailfrom=codeconstruct.com.au; dkim=pass (2048-bit key) header.d=codeconstruct.com.au header.i=@codeconstruct.com.au header.b=lxcCNkqI; arc=none smtp.client-ip=203.29.241.158
+	 Content-Type:MIME-Version; b=jTDlFzTV7aGdu1MT17nAOE9VepnVTZJOU4NIVH0oSArGB6VDwu+rCClvt39C8oPXh0u9gNwXSnQXF4SPYYwH25TpLrfUSgAnFRVvLXyttmhUfx5B6ubZjLtmVfM3GxSbsi+QvpeTjIXLK8Lm63AFMEUuxmCz/Mm1U7OFxOdhB9M=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=codeconstruct.com.au; spf=pass smtp.mailfrom=codeconstruct.com.au; dkim=pass (2048-bit key) header.d=codeconstruct.com.au header.i=@codeconstruct.com.au header.b=fQrSd4qc; arc=none smtp.client-ip=203.29.241.158
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=codeconstruct.com.au
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=codeconstruct.com.au
 Received: from [192.168.68.112] (ppp14-2-76-194.adl-apt-pir-bras31.tpg.internode.on.net [14.2.76.194])
-	by mail.codeconstruct.com.au (Postfix) with ESMTPSA id ED385200EF;
-	Thu,  1 Feb 2024 12:22:05 +0800 (AWST)
+	by mail.codeconstruct.com.au (Postfix) with ESMTPSA id 196E3200EF;
+	Thu,  1 Feb 2024 12:24:42 +0800 (AWST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=codeconstruct.com.au; s=2022a; t=1706761326;
-	bh=w6MrQ1SSd4QNFPRqzO93oM6DOsujYyGsnvdyUzbnhrY=;
+	d=codeconstruct.com.au; s=2022a; t=1706761482;
+	bh=U4sISEKt02jIu1Z70tHRx14a4uWJpHeazAZDZYIWDZ0=;
 	h=Subject:From:To:Cc:Date:In-Reply-To:References;
-	b=lxcCNkqIgStPU3lyS/g3lYBqUYokDeqaCqGY+yP0HbKBD07V+9BpC7kKGo1RkPfM3
-	 4f1YkoEay+zXFsIo8Ne+EUKSLtUR5iGUG6hchfO4Z6SmQYXv1GdZKL3mWAPOgEy4i0
-	 ryw0IaHpB8aBGb1uDaVPqA2LRUx32M975Jm8CvrGPRAtsLdgXEtMSyxJCGJI7Wlr9A
-	 1AJCDw6vzChz4A4oM7YDkXzZjyaSDM7//e4T9Q//ofzfjmJRyA9wlKJ1Y58/Qq/fxP
-	 MQBFV5LqemQdE18YWSFb6+2Stvvc1rm9u7xfDSxvOZ7G6venY+24RIUnDHgGUnQ7Zf
-	 x9zK7Jz/B3o1g==
-Message-ID: <aebd29d6890e54e93b46a102e7ea7532ad7b32f4.camel@codeconstruct.com.au>
-Subject: Re: [PATCH v5 05/21] ARM: dts: aspeed: yosemite4: Revise quad mode
- to dual mode
+	b=fQrSd4qcCD1tjNXsDT3wL5kJC2lI0+MVKcom50SIcV2a+OCf8DeFwYpsOZRquNJ/3
+	 85+CmQIuTwm1ep70RYPFxzPSR4QfCCHI7euRbtaooLRBp5txKgr35wVgwf0S5rmY9w
+	 vcg9QsRjN5BxpkEmgLAKwOJzCbZIozrtE365pmd9mNMamDfIzWViEF2yA6LDrtHaBp
+	 qq7j+kZmzJd+NE11FfMZjTCnWxKs/A3lNobxPbK/iNNCj8LliM/T0klNJKc1bsss4T
+	 ajzL4TB26ZCReL3+hAWK3EABkO3h720Yml2WRF8baLsfocOV31xCBPMYblTt9g5CDT
+	 CPi0CKrWqGpww==
+Message-ID: <b6ebc334da1538034c61bbc1dcef5803ca29ae2e.camel@codeconstruct.com.au>
+Subject: Re: [PATCH v5 06/21] ARM: dts: aspeed: yosemite4: Revise power
+ sensor adm1281 for schematic change
 From: Andrew Jeffery <andrew@codeconstruct.com.au>
 To: Delphine CC Chiu <Delphine_CC_Chiu@wiwynn.com>, patrick@stwcx.xyz, Rob
  Herring <robh+dt@kernel.org>, Krzysztof Kozlowski
@@ -54,10 +54,10 @@ To: Delphine CC Chiu <Delphine_CC_Chiu@wiwynn.com>, patrick@stwcx.xyz, Rob
  Joel Stanley <joel@jms.id.au>
 Cc: devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
 	linux-aspeed@lists.ozlabs.org, linux-kernel@vger.kernel.org
-Date: Thu, 01 Feb 2024 14:52:05 +1030
-In-Reply-To: <20240131084134.328307-6-Delphine_CC_Chiu@wiwynn.com>
+Date: Thu, 01 Feb 2024 14:54:41 +1030
+In-Reply-To: <20240131084134.328307-7-Delphine_CC_Chiu@wiwynn.com>
 References: <20240131084134.328307-1-Delphine_CC_Chiu@wiwynn.com>
-	 <20240131084134.328307-6-Delphine_CC_Chiu@wiwynn.com>
+	 <20240131084134.328307-7-Delphine_CC_Chiu@wiwynn.com>
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 User-Agent: Evolution 3.46.4-2 
@@ -69,44 +69,12 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 
 On Wed, 2024-01-31 at 16:41 +0800, Delphine CC Chiu wrote:
-> Revise quad mode to dual mode to avoid WP pin influnece the SPI
-
-What do you mean by this? Can you unpack what's going on a little more
-in the commit message?
-
-Andrew
-
+> Revise power sensor adm1281 for yosemite4 schematic change
 >=20
 > Signed-off-by: Delphine CC Chiu <Delphine_CC_Chiu@wiwynn.com>
-> ---
->  .../arm/boot/dts/aspeed/aspeed-bmc-facebook-yosemite4.dts | 8 +++++---
->  1 file changed, 5 insertions(+), 3 deletions(-)
->=20
-> diff --git a/arch/arm/boot/dts/aspeed/aspeed-bmc-facebook-yosemite4.dts b=
-/arch/arm/boot/dts/aspeed/aspeed-bmc-facebook-yosemite4.dts
-> index f8bfdefbefc6..23006dca5f26 100644
-> --- a/arch/arm/boot/dts/aspeed/aspeed-bmc-facebook-yosemite4.dts
-> +++ b/arch/arm/boot/dts/aspeed/aspeed-bmc-facebook-yosemite4.dts
-> @@ -149,15 +149,17 @@ flash@0 {
->  		status =3D "okay";
->  		m25p,fast-read;
->  		label =3D "bmc";
-> -		spi-rx-bus-width =3D <4>;
-> +		spi-tx-bus-width =3D <2>;
-> +		spi-rx-bus-width =3D <2>;
->  		spi-max-frequency =3D <50000000>;
-> -#include "openbmc-flash-layout-64.dtsi"
-> +#include "openbmc-flash-layout-128.dtsi"
->  	};
->  	flash@1 {
->  		status =3D "okay";
->  		m25p,fast-read;
->  		label =3D "bmc2";
-> -		spi-rx-bus-width =3D <4>;
-> +		spi-tx-bus-width =3D <2>;
-> +		spi-rx-bus-width =3D <2>;
->  		spi-max-frequency =3D <50000000>;
->  	};
->  };
 
+I'm not enamoured by the lack of a description, but at least the
+subject provides the motivation.
+
+Reviewed-by: Andrew Jeffery <andrew@codeconstruct.com.au>
 
