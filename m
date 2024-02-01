@@ -1,130 +1,169 @@
-Return-Path: <devicetree+bounces-37614-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-37616-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4ACFE845A2E
-	for <lists+devicetree@lfdr.de>; Thu,  1 Feb 2024 15:24:26 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 3EE48845A46
+	for <lists+devicetree@lfdr.de>; Thu,  1 Feb 2024 15:26:16 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 45B341C2704D
-	for <lists+devicetree@lfdr.de>; Thu,  1 Feb 2024 14:24:25 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 60E561C23506
+	for <lists+devicetree@lfdr.de>; Thu,  1 Feb 2024 14:26:15 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B47586217A;
-	Thu,  1 Feb 2024 14:23:25 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B33AA5F464;
+	Thu,  1 Feb 2024 14:26:07 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="f46yo3Mo"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="uzcxDK2Y"
 X-Original-To: devicetree@vger.kernel.org
-Received: from lelv0143.ext.ti.com (lelv0143.ext.ti.com [198.47.23.248])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B9A51626A8;
-	Thu,  1 Feb 2024 14:23:22 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.23.248
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8ABF65B66E;
+	Thu,  1 Feb 2024 14:26:07 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1706797405; cv=none; b=BhhHGmPC3cvhD6h/avCAumW/7fm2aFffR/XaeJzAULsCgodrNGrkuZPGdm8qZHND4CKwfL/Qd1NOXV7HEM5xGUiyc8xYAgewIrY56L4J6Pv/x+Ng04sgU/WGHUmd8nReIPaLZUTf/e8TUaph7lN8an24m+pY7+qOeimVCsBKqCc=
+	t=1706797567; cv=none; b=rl/ViTOSso0h0hFtnWmonXerdP7jnhHWI/YG1eoKIEs50MnsalUQKEEX0F/lg6tM/imqZVE0asH8SR1Bj0Sh4YRgxalqyxBVbaNQ695KzF0AGS8jZ11FatIannO/6ixFt8xOT5MtovnpgRRkL/ZQ9ntRkUDuBqa3SphEdj7B0Os=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1706797405; c=relaxed/simple;
-	bh=8NqK0cLavZ8NJ6lPMgs1cg3AQLozfT12HVAJLJFUtkU=;
-	h=From:To:CC:Subject:Date:Message-ID:MIME-Version:Content-Type; b=ehcQM7gTAL8zx8X4DZaucWNEokYQocjaLH4BmgvSwJ3RHt+h1jb0Pyj4ie9CEOIqA3EUCa/ftd6aL7gC8KY4bcIbuEUTUa7xQ7mb2IWrfckyqSl22WkDW8LH/EdMpGa2yol1PpSLf5BBAQOZbXqsO87oM+58+fZPsw+6d0jmGoU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=f46yo3Mo; arc=none smtp.client-ip=198.47.23.248
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
-Received: from lelv0265.itg.ti.com ([10.180.67.224])
-	by lelv0143.ext.ti.com (8.15.2/8.15.2) with ESMTP id 411ENAk1124291;
-	Thu, 1 Feb 2024 08:23:10 -0600
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1706797390;
-	bh=GP6f60ABIhtPzuyReskSzZ99XCUPZJHbTyCWxm/yLg4=;
-	h=From:To:CC:Subject:Date;
-	b=f46yo3MoZVQ7FiOe1m2vxvVtyeOYP7P3YnxYge2F6jQejk1Gn1eAMgVZdKjOGn9SY
-	 4G09BorUBAC21L9Fm3kznYUrIlkJbD6zc95iUqwlW4Rh07wiXH5Kw+cNiA05hCKV1O
-	 uJOunmrccV9recCejtJgUeZS3iT5ma93fpS0gRoo=
-Received: from DFLE104.ent.ti.com (dfle104.ent.ti.com [10.64.6.25])
-	by lelv0265.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 411ENAj7023230
-	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-	Thu, 1 Feb 2024 08:23:10 -0600
-Received: from DFLE107.ent.ti.com (10.64.6.28) by DFLE104.ent.ti.com
- (10.64.6.25) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Thu, 1
- Feb 2024 08:23:10 -0600
-Received: from lelvsmtp6.itg.ti.com (10.180.75.249) by DFLE107.ent.ti.com
- (10.64.6.28) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
- Frontend Transport; Thu, 1 Feb 2024 08:23:09 -0600
-Received: from localhost ([10.249.128.100])
-	by lelvsmtp6.itg.ti.com (8.15.2/8.15.2) with ESMTP id 411EN9iR126444;
-	Thu, 1 Feb 2024 08:23:09 -0600
-From: Jayesh Choudhary <j-choudhary@ti.com>
-To: <tomi.valkeinen@ideasonboard.com>, <nm@ti.com>, <vigneshr@ti.com>
-CC: <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>, <kristo@kernel.org>,
-        <robh+dt@kernel.org>, <krzysztof.kozlowski+dt@linaro.org>,
-        <conor+dt@kernel.org>, <a-bhatia1@ti.com>, <rogerq@kernel.org>,
-        <sabiya.d@ti.com>, <u-kumar1@ti.com>, <eballetbo@redhat.com>,
-        <j-choudhary@ti.com>
-Subject: [RESEND PATCH v2] arm64: dts: ti: k3-am69-sk: remove assigned-clock-parents for unused VP
-Date: Thu, 1 Feb 2024 19:53:08 +0530
-Message-ID: <20240201142308.4954-1-j-choudhary@ti.com>
-X-Mailer: git-send-email 2.25.1
+	s=arc-20240116; t=1706797567; c=relaxed/simple;
+	bh=u8hZb1KY0acvINicwcOlLX6sBnV2lOH0PfaW//UVPBk=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=JMNspi2Q4Xenc1uqBSZ22kmoFuZNouMyreojjSMMHUoQGPTDPLJdnvYax2Zw+G77d6dAW6Wp4XJoeI9LpBD3oNX5MEjsEo+X4L1IBeeT7+0AmTfyNERB/8NB8fuob5yS35tvxltyu6d9gk82e0syft83nv724scQ5JU/ACCAa3g=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=uzcxDK2Y; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 07231C43390;
+	Thu,  1 Feb 2024 14:26:07 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1706797567;
+	bh=u8hZb1KY0acvINicwcOlLX6sBnV2lOH0PfaW//UVPBk=;
+	h=References:In-Reply-To:Reply-To:From:Date:Subject:To:Cc:From;
+	b=uzcxDK2YySJRUJ/KdXk5MZPQAIsI8rzec3nTqmSfnmQRlcFCwrYZ/bQfwiS9yaST0
+	 Q5yG6m31Mg1NEqNslE1BZOeskSWtV0T8qx3clsYtj7LORzgTUEfJvUskeiWlCuyIvr
+	 fBM5bjF0r/UWZEreHIEfMVnOvbA1t1tcYPbM/yDlyKEFT4aPfCN0avR4QmDRgm2RQT
+	 EGszEUlW9ie5uNl1mFLhJsuRG568ySDeWfgnW0FdNkHO5wNAHIlmnkmnPRwMMJx30P
+	 Rv04U3BFHUHFBZzX22RBia96MV2b2HverdfgRb2jSIkmfEhCUwtkhGh0swYPhHWAQc
+	 SJOubzAF+UbJA==
+Received: by mail-pf1-f175.google.com with SMTP id d2e1a72fcca58-6de0f53f8e8so1686195b3a.0;
+        Thu, 01 Feb 2024 06:26:06 -0800 (PST)
+X-Gm-Message-State: AOJu0YyKdSA/Trr1PO5Ukg+hcQPFBwY75Fru1EKGWWr63qh9ErPbV2X1
+	H34YG9QP9Qh18UHa7t0Dcd9pCzSwPD4rHNOnRDWBtPaW8yls2dlzJwOOuTkcD7fvJeXWe4yMgPD
+	kSmQ2HrgzI3/Lm7GPwM2aS3mpN5I=
+X-Google-Smtp-Source: AGHT+IEQ57LFCXx03pmPY0BiaAVWqsmooCa8JnBK4SyQoscvPIE/4caLjfgkMTh91ldy8kJvhymf6n8Ec+0Xv8T1yH8=
+X-Received: by 2002:a05:6a00:981:b0:6d9:a074:659f with SMTP id
+ u1-20020a056a00098100b006d9a074659fmr10435698pfg.13.1706797566559; Thu, 01
+ Feb 2024 06:26:06 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+References: <20240130-rk-dts-additions-v2-0-c6222c4c78df@gmail.com> <20240130-rk-dts-additions-v2-2-c6222c4c78df@gmail.com>
+In-Reply-To: <20240130-rk-dts-additions-v2-2-c6222c4c78df@gmail.com>
+Reply-To: wens@kernel.org
+From: Chen-Yu Tsai <wens@kernel.org>
+Date: Thu, 1 Feb 2024 22:26:09 +0800
+X-Gmail-Original-Message-ID: <CAGb2v65--rgb2FqmG_0-w1-jUL0odqKXxiZJ-XPYA4uomfYmaQ@mail.gmail.com>
+Message-ID: <CAGb2v65--rgb2FqmG_0-w1-jUL0odqKXxiZJ-XPYA4uomfYmaQ@mail.gmail.com>
+Subject: Re: [PATCH v2 2/4] arm64: dts: rockchip: enable temperature driven
+ fan control on Rock 5B
+To: Alexey Charkov <alchark@gmail.com>
+Cc: Rob Herring <robh+dt@kernel.org>, 
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Heiko Stuebner <heiko@sntech.de>, Daniel Lezcano <daniel.lezcano@linaro.org>, 
+	Dragan Simic <dsimic@manjaro.org>, Viresh Kumar <viresh.kumar@linaro.org>, devicetree@vger.kernel.org, 
+	linux-arm-kernel@lists.infradead.org, linux-rockchip@lists.infradead.org, 
+	linux-kernel@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-VP2 and VP3 are unused video ports and VP3 share the same parent
-clock as VP1 causing issue with pixel clock setting for HDMI (VP1).
-The current DM firmware does not support changing parent clock if it
-is shared by another component. It returns 0 for the determine_rate
-query before causing set_rate to set the clock at default maximum of
-1.8GHz which is a lot more than the maximum frequency videoports can
-support (600MHz) causing SYNC LOST issues.
-So remove the parent clocks for unused VPs to avoid conflict.
+On Wed, Jan 31, 2024 at 2:22=E2=80=AFAM Alexey Charkov <alchark@gmail.com> =
+wrote:
+>
+> This enables thermal monitoring on Radxa Rock 5B and links the PWM
+> fan as an active cooling device managed automatically by the thermal
+> subsystem, with a target SoC temperature of 65C and a minimum-spin
+> interval from 55C to 65C to ensure airflow when the system gets warm
+>
+> Acked-by: Daniel Lezcano <daniel.lezcano@linaro.org>
+> Signed-off-by: Alexey Charkov <alchark@gmail.com>
+> ---
+>  arch/arm64/boot/dts/rockchip/rk3588-rock-5b.dts | 34 +++++++++++++++++++=
++++++-
+>  1 file changed, 33 insertions(+), 1 deletion(-)
+>
+> diff --git a/arch/arm64/boot/dts/rockchip/rk3588-rock-5b.dts b/arch/arm64=
+/boot/dts/rockchip/rk3588-rock-5b.dts
+> index a0e303c3a1dc..b485edeef876 100644
+> --- a/arch/arm64/boot/dts/rockchip/rk3588-rock-5b.dts
+> +++ b/arch/arm64/boot/dts/rockchip/rk3588-rock-5b.dts
+> @@ -52,7 +52,7 @@ led_rgb_b {
+>
+>         fan: pwm-fan {
+>                 compatible =3D "pwm-fan";
+> -               cooling-levels =3D <0 95 145 195 255>;
+> +               cooling-levels =3D <0 120 150 180 210 240 255>;
+>                 fan-supply =3D <&vcc5v0_sys>;
+>                 pwms =3D <&pwm1 0 50000 0>;
+>                 #cooling-cells =3D <2>;
+> @@ -173,6 +173,34 @@ &cpu_l3 {
+>         cpu-supply =3D <&vdd_cpu_lit_s0>;
+>  };
+>
+> +&package_thermal {
+> +       polling-delay =3D <1000>;
+> +
+> +       trips {
+> +               package_fan0: package-fan0 {
+> +                       temperature =3D <55000>;
+> +                       hysteresis =3D <2000>;
+> +                       type =3D "active";
+> +               };
+> +               package_fan1: package-fan1 {
+> +                       temperature =3D <65000>;
+> +                       hysteresis =3D <2000>;
+> +                       type =3D "active";
+> +               };
+> +       };
+> +
+> +       cooling-maps {
+> +               map0 {
+> +                       trip =3D <&package_fan0>;
+> +                       cooling-device =3D <&fan THERMAL_NO_LIMIT 1>;
+> +               };
+> +               map1 {
+> +                       trip =3D <&package_fan1>;
+> +                       cooling-device =3D <&fan 1 THERMAL_NO_LIMIT>;
+> +               };
+> +       };
+> +};
+> +
+>  &i2c0 {
+>         pinctrl-names =3D "default";
+>         pinctrl-0 =3D <&i2c0m2_xfer>;
+> @@ -731,6 +759,10 @@ regulator-state-mem {
+>         };
+>  };
+>
+> +&tsadc {
+> +       status =3D "okay";
+> +};
+> +
 
-Fixes: 6f8605fd7d11 ("arm64: dts: ti: k3-am69-sk: Add DP and HDMI support")
-Reported-by: Nishanth Menon <nm@ti.com>
-Signed-off-by: Jayesh Choudhary <j-choudhary@ti.com>
-Reviewed-by: Tomi Valkeinen <tomi.valkeinen@ideasonboard.com>
----
+Is there any reason this can't be enabled by default in the .dtsi file?
+The thermal sensor doesn't depend on anything external, so there should
+be no reason to push this down to the board level.
 
-v1: <https://lore.kernel.org/all/20231221113042.48492-1-j-choudhary@ti.com/>
+ChenYu
 
-Changelog v1->v2:
-- Updated commit message
-- Picked up Tomi's R-by from v1
-- Removed "Closes:" link since its invalid now
-
-(NOTE: Sending again as forgot to put mailing list in cc earlier)
-
- arch/arm64/boot/dts/ti/k3-am69-sk.dts | 8 ++------
- 1 file changed, 2 insertions(+), 6 deletions(-)
-
-diff --git a/arch/arm64/boot/dts/ti/k3-am69-sk.dts b/arch/arm64/boot/dts/ti/k3-am69-sk.dts
-index 8da591579868..370980eb59b0 100644
---- a/arch/arm64/boot/dts/ti/k3-am69-sk.dts
-+++ b/arch/arm64/boot/dts/ti/k3-am69-sk.dts
-@@ -918,13 +918,9 @@ &dss {
- 	pinctrl-names = "default";
- 	pinctrl-0 = <&dss_vout0_pins_default>;
- 	assigned-clocks = <&k3_clks 218 2>,
--			  <&k3_clks 218 5>,
--			  <&k3_clks 218 14>,
--			  <&k3_clks 218 18>;
-+			  <&k3_clks 218 5>;
- 	assigned-clock-parents = <&k3_clks 218 3>,
--				 <&k3_clks 218 7>,
--				 <&k3_clks 218 16>,
--				 <&k3_clks 218 22>;
-+				 <&k3_clks 218 7>;
- };
- 
- &serdes_wiz4 {
--- 
-2.25.1
-
+>  &uart2 {
+>         pinctrl-0 =3D <&uart2m0_xfer>;
+>         status =3D "okay";
+>
+> --
+> 2.43.0
+>
+>
+> _______________________________________________
+> linux-arm-kernel mailing list
+> linux-arm-kernel@lists.infradead.org
+> http://lists.infradead.org/mailman/listinfo/linux-arm-kernel
 
