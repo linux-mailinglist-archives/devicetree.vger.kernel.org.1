@@ -1,66 +1,71 @@
-Return-Path: <devicetree+bounces-37714-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-37715-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 12F92846015
-	for <lists+devicetree@lfdr.de>; Thu,  1 Feb 2024 19:38:14 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id E69B0846021
+	for <lists+devicetree@lfdr.de>; Thu,  1 Feb 2024 19:41:09 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id BBB561F2DF18
-	for <lists+devicetree@lfdr.de>; Thu,  1 Feb 2024 18:38:13 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 64BA4B22C9E
+	for <lists+devicetree@lfdr.de>; Thu,  1 Feb 2024 18:41:02 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D0C7D5A4E3;
-	Thu,  1 Feb 2024 18:37:57 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 411B27C6C9;
+	Thu,  1 Feb 2024 18:40:55 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="RqKSHXuv"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Grc3BH8n"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A962682C88;
-	Thu,  1 Feb 2024 18:37:57 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0C73112FB08;
+	Thu,  1 Feb 2024 18:40:54 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1706812677; cv=none; b=uPKlg5l0DMsmzEj6NuNv+DICq/PIMhwVmvZfQ0r49OSyanm5dv9tKn2zkCaVPykGjTuZhRuxswaA3FqA765zImwpcUo6YUa55xlvZdRPz7E/PM3wlt+9A/cp4Ec0WiESNBa/NC5GHBxcFD0pnAotb6MOHFhHBg98/utpFlF4Ago=
+	t=1706812855; cv=none; b=Zeij1yoLYYkbHrLpX/dttccAMStfkTaZSNTF/k480sqLXqswDdQxHmXgAu7vuzfnyofKxQWIoe9ogpQ8RpD9M3Jnl6z/oIHrwHX+E1kSRlhMDd2v9mxM95y/fc53He2dR6eOVxwCi8D7G3+2clGrwLbpVqFu0yP+vtznrtdMBMA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1706812677; c=relaxed/simple;
-	bh=0JVpzxvxHW0CTZLMhUSI5/1YEsJwW5sGalQevgBRPig=;
+	s=arc-20240116; t=1706812855; c=relaxed/simple;
+	bh=irXIYBIlkLI23IErRP19IjcdedDm9j+GXtl3atTGeKQ=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=ei8QeG3OC17HdO9BTvpwnbP2z4cZbEPRq6NfvpsJg5/8IGIibiigPa3Z7pD7svIg5SYTpuZTGNkOJkf4o8Bpr40xIl16TS6yJhLct/ChrZtFAdnnYdWz4VwDceDFdQdlrlGB320msiIr9yoEd6Ey60SJTfES8RdSaIzpfMwDWbg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=RqKSHXuv; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 8DE0DC433F1;
-	Thu,  1 Feb 2024 18:37:54 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=NqbUkxnNgFBFV2xhqI2NVZG+vgmEJFk+OV7wlU7fOGFHkay1oKTpIEY1C+Pk1YFX2ZyGbaN09MFtNDgf3+0JWr9UL6oCFCQwAhY3//fmftYFrIzU+w6jN8yHSr1m9afl3TbWmWWmMy5Ox95+MYIVz5uobklEnK7CcNI639OUxnM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Grc3BH8n; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 72D5AC433F1;
+	Thu,  1 Feb 2024 18:40:51 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1706812677;
-	bh=0JVpzxvxHW0CTZLMhUSI5/1YEsJwW5sGalQevgBRPig=;
+	s=k20201202; t=1706812854;
+	bh=irXIYBIlkLI23IErRP19IjcdedDm9j+GXtl3atTGeKQ=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=RqKSHXuvgjL0C8Scyh/DKYXAe4w5/voFVCi4sLwxrmUFM5F3on17NUnZV9s8sw6Gi
-	 feC+RN7VeJpPn/2WZ23ZHgGsF5+zX1MivRCZ05qAk1JesfpQc3QYkPbqjAv51qG1qG
-	 ISNyF6TRUbzIkdJrGqtWyBm4Bthu8S+wcVrMn5covTI1GmZZigKzLimm+lYO33bypA
-	 6AL9redV6TPUGkUHLiUrm/pWbjYnnwKhKfcH2WyMNtX8W22AnPlu924unKphfawY62
-	 LIvQ0tOJQBmWeTdkW7Cxn95xr6+9YgEe+bWeJWl2KRjOOYn6Br4CmHRPBxOxWbnlc6
-	 CKL6LUYcHZkZQ==
-Date: Thu, 1 Feb 2024 18:37:52 +0000
+	b=Grc3BH8nkeiQywvhYoPspwhUAK2bf1HceO+KaFQ0+FDGuAsW8kG09akfB9IT1/dpR
+	 WtxgrCCunFAAN49RmnCi5p1ZdUOc+/tU7O5Uw50tUPDZCUchIq0gP8xlobsIMfT5Pg
+	 RYcCGzcpLZxqgwbLRvjMlsdTKNIt0d67xM9fbUBNGI4VB/Qa3NIHXPiqNtMPTIIOFe
+	 F3SNTpljn7ciUQXKxlkEzOMbaOdvz6q0g5+IkB2Qyw4uU5j6qjn4PQsvcQm8jQi2FM
+	 rBcxqxfQPJlrUZi5Z32TbFJCwe1SNELYdwj4SUW2u1tHIHRgENB5U9DLND3sOsNCVA
+	 HvrvRw43CnCzA==
+Date: Thu, 1 Feb 2024 18:40:49 +0000
 From: Conor Dooley <conor@kernel.org>
-To: Changhuang Liang <changhuang.liang@starfivetech.com>
-Cc: Rob Herring <robh+dt@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Emil Renner Berthing <kernel@esmil.dk>,
-	Paul Walmsley <paul.walmsley@sifive.com>,
-	Palmer Dabbelt <palmer@dabbelt.com>,
-	Albert Ou <aou@eecs.berkeley.edu>,
-	Jack Zhu <jack.zhu@starfivetech.com>,
-	"linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-	"linux-riscv@lists.infradead.org" <linux-riscv@lists.infradead.org>,
-	"devicetree@vger.kernel.org" <devicetree@vger.kernel.org>
-Subject: Re: =?utf-8?B?5Zue5aSNOiBbdjI=?= =?utf-8?Q?=5D?= riscv: dts:
- starfive: jh7110: Add camera subsystem nodes
-Message-ID: <20240201-handiwork-excretion-36aa2eea0709@spud>
-References: <20240130082509.217683-1-changhuang.liang@starfivetech.com>
- <20240131-recycling-entering-b742e0e835eb@spud>
- <SH0PR01MB06675EF7ACD1452C4DEBE45FF243A@SH0PR01MB0667.CHNPR01.prod.partner.outlook.cn>
+To: Peng Fan <peng.fan@nxp.com>
+Cc: Rob Herring <robh@kernel.org>, Jakub Kicinski <kuba@kernel.org>,
+	Marc Kleine-Budde <mkl@pengutronix.de>,
+	"Peng Fan (OSS)" <peng.fan@oss.nxp.com>,
+	"wg@grandegger.com" <wg@grandegger.com>,
+	"conor+dt@kernel.org" <conor+dt@kernel.org>,
+	"davem@davemloft.net" <davem@davemloft.net>,
+	"krzysztof.kozlowski+dt@linaro.org" <krzysztof.kozlowski+dt@linaro.org>,
+	"edumazet@google.com" <edumazet@google.com>,
+	"pabeni@redhat.com" <pabeni@redhat.com>,
+	"linux-can@vger.kernel.org" <linux-can@vger.kernel.org>,
+	"netdev@vger.kernel.org" <netdev@vger.kernel.org>,
+	"devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+	"linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
+Subject: Re: [PATCH] dt-bindings: can: fsl,flexcan: add i.MX95 compatible
+ string
+Message-ID: <20240201-relish-glacial-a73532d3e8c6@spud>
+References: <20240122091738.2078746-1-peng.fan@oss.nxp.com>
+ <20240122-skilled-wimp-4bc1769bf235-mkl@pengutronix.de>
+ <20240122125631.4c54eba1@kernel.org>
+ <DU0PR04MB941750744E86A1656009B7BE88742@DU0PR04MB9417.eurprd04.prod.outlook.com>
+ <20240131145736.GA1262278-robh@kernel.org>
+ <DU0PR04MB94178632D6F774339FB13375887C2@DU0PR04MB9417.eurprd04.prod.outlook.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -68,69 +73,59 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: multipart/signed; micalg=pgp-sha256;
-	protocol="application/pgp-signature"; boundary="aKOGQMxv8o8LMxKI"
+	protocol="application/pgp-signature"; boundary="XxIjggpR5LQGNVIU"
 Content-Disposition: inline
-In-Reply-To: <SH0PR01MB06675EF7ACD1452C4DEBE45FF243A@SH0PR01MB0667.CHNPR01.prod.partner.outlook.cn>
+In-Reply-To: <DU0PR04MB94178632D6F774339FB13375887C2@DU0PR04MB9417.eurprd04.prod.outlook.com>
 
 
---aKOGQMxv8o8LMxKI
+--XxIjggpR5LQGNVIU
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
 Content-Transfer-Encoding: quoted-printable
 
-On Thu, Feb 01, 2024 at 01:42:13AM +0000, Changhuang Liang wrote:
-> Hi, Conor
->=20
-> > On Tue, Jan 30, 2024 at 12:25:09AM -0800, Changhuang Liang wrote:
-> > > Add camera subsystem nodes for the StarFive JH7110 SoC. They contain
-> > > the imx219, dphy-rx, csi2rx, camss nodes.
-> > >
-> > > Signed-off-by: Changhuang Liang <changhuang.liang@starfivetech.com>
-> > > ---
-> > >  .../jh7110-starfive-visionfive-2.dtsi         | 103
-> > ++++++++++++++++++
-> > >  arch/riscv/boot/dts/starfive/jh7110.dtsi      |  67 ++++++++++++
-> > >  2 files changed, 170 insertions(+)
-> > >
-> > > diff --git
-> > > a/arch/riscv/boot/dts/starfive/jh7110-starfive-visionfive-2.dtsi
-> > > b/arch/riscv/boot/dts/starfive/jh7110-starfive-visionfive-2.dtsi
-> > > index b89e9791efa7..e0027bb379ef 100644
-> > > --- a/arch/riscv/boot/dts/starfive/jh7110-starfive-visionfive-2.dtsi
-> > > +++ b/arch/riscv/boot/dts/starfive/jh7110-starfive-visionfive-2.dtsi
-> > > @@ -30,6 +30,37 @@ cpus {
-> > >  		timebase-frequency =3D <4000000>;
-> > >  	};
-> > >
-> > > +	imx219_clk: imx219-clock {
-> > > +		compatible =3D "fixed-clock";
-> > > +		clock-output-names =3D "imx219_clk";
-> > > +		clock-frequency =3D <24000000>;
-> > > +		#clock-cells =3D <0>;
-> > > +	};
+On Wed, Jan 31, 2024 at 11:22:49PM +0000, Peng Fan wrote:
+> > Subject: Re: [PATCH] dt-bindings: can: fsl,flexcan: add i.MX95 compatib=
+le
+> > string
 > >=20
-> > Why do you need an output name here?
->=20
-> The output name can be unnecessary.=20
->=20
-> > Also, where does this clock come from? Is it an oscillator on the board?
+> > On Tue, Jan 23, 2024 at 07:00:27AM +0000, Peng Fan wrote:
+> > > > Subject: Re: [PATCH] dt-bindings: can: fsl,flexcan: add i.MX95
+> > > > compatible string
+> > > >
+> > > > On Mon, 22 Jan 2024 11:26:25 +0100 Marc Kleine-Budde wrote:
+> > > > > > Add i.MX95 flexcan which is compatible i.MX93 flexcan
+> > > > > >
+> > > > > > Signed-off-by: Peng Fan <peng.fan@nxp.com>
+> > > > >
+> > > > > Acked-by: Marc Kleine-Budde <mkl@pengutronix.de>
+> > > >
+> > > > Hm, you don't apply CAN DTB patches?
+> > >
+> > > Nope. I am preparing dt-binding first, then post the i.MX95 SoC dtsi.
+> > > The CAN will be in the i.MX95 SOC dtsi file, not a single patch only
+> > > for CAN node.
 > >=20
+> > The question was why isn't Marc, the CAN maintainer, applying this. I h=
+ave
+> > the same question.
 >=20
-> This clock come from imx219, not the VisionFive 2 board.
+> That's fine, let's drop this patch, the CAN node will not be put in my so=
+c dtsi
+> patch file, it will be in a separate patchset with some i.MX95 patches.
 
-If the camera is not on the visionfive 2 board, why are you adding this
-to visionfive-2.dtsi?
+I am confused. This patch (for the binding) needs to be applied
+regardless of what you are doing with your soc dtsi file.
 
---aKOGQMxv8o8LMxKI
+--XxIjggpR5LQGNVIU
 Content-Type: application/pgp-signature; name="signature.asc"
 
 -----BEGIN PGP SIGNATURE-----
 
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZbvlAAAKCRB4tDGHoIJi
-0t7uAP99Kv0Ha56vaQ3FmdELSrLyGZPzRKwDjvkXfD/FjO5zzwD/Y5FDv6A1egV9
-RKSaWFPmNuF8uiKHjPFGwcVibWqw8gs=
-=+5Bw
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZbvlsQAKCRB4tDGHoIJi
+0lKXAQD9Q4v0VDU/Dyun0tgqIB2JBr3Fh9ja/fUDKvmCx66YyQD/cqPjogSsgjOw
+SCCzaqrgXBrwCRCJNuBV6lywKxI1ngc=
+=L85i
 -----END PGP SIGNATURE-----
 
---aKOGQMxv8o8LMxKI--
+--XxIjggpR5LQGNVIU--
 
