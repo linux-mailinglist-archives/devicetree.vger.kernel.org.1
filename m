@@ -1,183 +1,263 @@
-Return-Path: <devicetree+bounces-38056-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-38057-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4005F84751F
-	for <lists+devicetree@lfdr.de>; Fri,  2 Feb 2024 17:42:06 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0645A84752D
+	for <lists+devicetree@lfdr.de>; Fri,  2 Feb 2024 17:44:29 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id EB638285AAF
-	for <lists+devicetree@lfdr.de>; Fri,  2 Feb 2024 16:42:04 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 84F151F2C91B
+	for <lists+devicetree@lfdr.de>; Fri,  2 Feb 2024 16:44:28 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 542DB148FE7;
-	Fri,  2 Feb 2024 16:41:50 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 912E8148315;
+	Fri,  2 Feb 2024 16:44:24 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="AO06o+M0"
+	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="BUwyuQaB"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from fllv0016.ext.ti.com (fllv0016.ext.ti.com [198.47.19.142])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1FDBE148306;
-	Fri,  2 Feb 2024 16:41:49 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 907EE146919;
+	Fri,  2 Feb 2024 16:44:22 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.19.142
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1706892110; cv=none; b=k+uXD0+cUKBqi3EIahBRgkpYfvZHnH7/6F/ZnNI8m7qBlaa/5hQJeO29n/9OUMTSAZPUluPEMXkmCba70aMuDcnUHrND9US01DLSzbqbYW2I4mdrpcNwK2/ZoO3n6lHfJLznKEIfiO11i6hzEzqTanNBAfGaKdZis0us4YgmAKs=
+	t=1706892264; cv=none; b=O9fr8KpBNRQmzNu5L82NjiaPn2Qb8jiaOlD0G9hzfg3LP9WjSc5ikT8EdLLzSA7lw7FUi3E4Mslz7tm/50BV1/+edJVwgbuFwByGybU9H3Wv9yNhVtynQxP2YZB8sWEBry1eFnsivrD7NK1HlqyUDUdXZtTLDXn4Dtc3Y/v8yZ8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1706892110; c=relaxed/simple;
-	bh=byD/uDmfIyGSSgmTUNx/D1BNsUYtDcKiObLVnogvsyQ=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=janjqrkaRYxmvdMNBIQLSf70vRhhYKC/6ZYN2zAcqyj/heVnWn4N2rrTxMGM8SKjKEAMTHCFAFxFL7GoYpdfU388P9+0F9wrA3c5b61XAhDyfwfxwuveXp/0/hXeCwXgTdcYKnuHshFQbcRyhGsQsKY26KTINvWkjAa7il6oDRk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=AO06o+M0; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id DD42BC433C7;
-	Fri,  2 Feb 2024 16:41:47 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1706892109;
-	bh=byD/uDmfIyGSSgmTUNx/D1BNsUYtDcKiObLVnogvsyQ=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=AO06o+M05qQ8e93mZISuKzCx9WQQR05CLtuLzIizUFWyh2XDcCWktt/jIclTmGXRJ
-	 LX0dyc0S9HRcTQd7xJ1xq+KHDPV1tFV+HqFlyAj4Qcen+vIEsewo+vCdg0BYlzXh6p
-	 O1UWR/WGjIYgxG1539gLUjRi85hab/OiKyHOpfQuPPBRW7VphXNbYqqYEm7hjpXten
-	 xqEusjonXZ6RtqGBkSevEz59m++Geqe11ZuD5GqZzfmzCXpOETDnlEmOHrVywpSYeN
-	 6up0KtAxZiIgRT0uaB+WcTZ9xYPsQV0UzfHhJdWl/ZnF0Is1Yy13+360nMmTlc5fpf
-	 cUq0I/fPh1EUw==
-Date: Fri, 2 Feb 2024 10:41:46 -0600
-From: Bjorn Andersson <andersson@kernel.org>
-To: Bartosz Golaszewski <brgl@bgdev.pl>
-Cc: Konrad Dybcio <konrad.dybcio@linaro.org>, 
-	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, 
-	Conor Dooley <conor+dt@kernel.org>, Marcel Holtmann <marcel@holtmann.org>, 
-	Luiz Augusto von Dentz <luiz.dentz@gmail.com>, Bjorn Helgaas <bhelgaas@google.com>, 
-	Neil Armstrong <neil.armstrong@linaro.org>, Alex Elder <elder@linaro.org>, 
-	Srini Kandagatla <srinivas.kandagatla@linaro.org>, Greg Kroah-Hartman <gregkh@linuxfoundation.org>, 
-	Arnd Bergmann <arnd@arndb.de>, Abel Vesa <abel.vesa@linaro.org>, 
-	Manivannan Sadhasivam <mani@kernel.org>, Lukas Wunner <lukas@wunner.de>, linux-arm-msm@vger.kernel.org, 
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, linux-bluetooth@vger.kernel.org, 
-	linux-pci@vger.kernel.org, Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
-Subject: Re: Re: [RFC 2/9] arm64: dts: qcom: qrb5165-rb5: model the PMU of
- the QCA6391
-Message-ID: <iifyazcucnghjpnmzq4qtyj6o25upntmmst6abyugpom4jrs3p@mly5h7s7owl3>
-References: <20240201155532.49707-1-brgl@bgdev.pl>
- <20240201155532.49707-3-brgl@bgdev.pl>
- <5lirm5mnf7yqbripue5nyqu6ej54sx4rtmgmyqjrqanabsriyp@2pjiv5xbmxpk>
- <CAMRc=Mcq8a7T06DaX9nirfHOXPs+Bh51rKgO3FksxKH+Hph2FA@mail.gmail.com>
+	s=arc-20240116; t=1706892264; c=relaxed/simple;
+	bh=7W2wfru9NH8Buvh0gA0uwlam6d6COq6W/BYDoJV4ZGw=;
+	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
+	 In-Reply-To:Content-Type; b=Jp6tca8ysYFBMpSAuJixbIc8hcXNO2vZgl78rCdW2bxGRcesczyNRS6S1RyJ+TOYEdmZf1Xndl8IvxKWusDgZmSW1ABQYEZTQR6geUwP7gjVDpToKi0ugZmNK6JAygP5RyDvSeceRfpFdaHJh350pWisciKZpGinA10m1u25yKw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=BUwyuQaB; arc=none smtp.client-ip=198.47.19.142
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
+Received: from fllv0034.itg.ti.com ([10.64.40.246])
+	by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id 412Ghp6u014745;
+	Fri, 2 Feb 2024 10:43:51 -0600
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+	s=ti-com-17Q1; t=1706892231;
+	bh=fLTPqaxy3LnDEc8krX57o5bs9pobCIHmrVXZ2wTqfY8=;
+	h=Date:Subject:To:CC:References:From:In-Reply-To;
+	b=BUwyuQaBEXyFM67SNYiRBytgw6owsKl537I8hO8qUF9IMi7xKoBmN66SpWRQoQz+/
+	 Z+tVwteDQbnXt2Po+5MGaaRB5lC5YMcheXZL2cInznIA3T81zqV/qZZgNS1yWwDkbJ
+	 nUuaJBUIqnRrUxu/QIF1F5ofc4q8+REdca1kpDr8=
+Received: from DLEE115.ent.ti.com (dlee115.ent.ti.com [157.170.170.26])
+	by fllv0034.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 412Ghp3D003880
+	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+	Fri, 2 Feb 2024 10:43:51 -0600
+Received: from DLEE113.ent.ti.com (157.170.170.24) by DLEE115.ent.ti.com
+ (157.170.170.26) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Fri, 2
+ Feb 2024 10:43:50 -0600
+Received: from lelvsmtp6.itg.ti.com (10.180.75.249) by DLEE113.ent.ti.com
+ (157.170.170.24) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
+ Frontend Transport; Fri, 2 Feb 2024 10:43:50 -0600
+Received: from [10.249.135.225] ([10.249.135.225])
+	by lelvsmtp6.itg.ti.com (8.15.2/8.15.2) with ESMTP id 412GhkrW087447;
+	Fri, 2 Feb 2024 10:43:46 -0600
+Message-ID: <58e2d55a-51cd-44ba-80b6-a6eaaf3ac85d@ti.com>
+Date: Fri, 2 Feb 2024 22:13:45 +0530
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <CAMRc=Mcq8a7T06DaX9nirfHOXPs+Bh51rKgO3FksxKH+Hph2FA@mail.gmail.com>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v3 2/3] arm64: dts: ti: k3-am642-evm: add ICSSG1 Ethernet
+ support
+Content-Language: en-US
+To: Roger Quadros <rogerq@kernel.org>, MD Danish Anwar <danishanwar@ti.com>,
+        Vignesh Raghavendra <vigneshr@ti.com>, Nishanth Menon <nm@ti.com>
+CC: Andrew Lunn <andrew@lunn.ch>, Conor Dooley <conor+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Rob Herring
+	<robh+dt@kernel.org>, <linux-kernel@vger.kernel.org>,
+        <devicetree@vger.kernel.org>, <linux-arm-kernel@lists.infradead.org>,
+        Tero
+ Kristo <kristo@kernel.org>, <srk@ti.com>, <r-gunasekaran@ti.com>
+References: <20240122113045.1711818-1-danishanwar@ti.com>
+ <20240122113045.1711818-3-danishanwar@ti.com>
+ <156ae282-3052-45bd-be71-8220d04e73d1@kernel.org>
+From: "Anwar, Md Danish" <a0501179@ti.com>
+In-Reply-To: <156ae282-3052-45bd-be71-8220d04e73d1@kernel.org>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 7bit
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 
-On Fri, Feb 02, 2024 at 02:23:49PM +0100, Bartosz Golaszewski wrote:
-> On Fri, Feb 2, 2024 at 5:34 AM Bjorn Andersson <andersson@kernel.org> wrote:
-> >
+On 2/2/2024 5:17 PM, Roger Quadros wrote:
 > 
-> [snip]
 > 
-> > > +
-> > > +             wlan-enable-gpios = <&tlmm 20 GPIO_ACTIVE_HIGH>;
-> > > +             bt-enable-gpios = <&tlmm 21 GPIO_ACTIVE_HIGH>;
-> > > +
-> > > +             regulators {
-> > > +                     vreg_pmu_rfa_cmn: ldo0 {
-> > > +                             regulator-name = "vreg_pmu_rfa_cmn";
-> > > +                             regulator-min-microvolt = <760000>;
-> > > +                             regulator-max-microvolt = <840000>;
-> >
-> > I'm still not convinced that the PMU has a set of LDOs, and looking at
-> > your implementation you neither register these with the regulator
-> > framework, nor provide any means of controlling the state or voltage of
-> > these "regulators".
-> >
+> On 22/01/2024 13:30, MD Danish Anwar wrote:
+>> ICSSG1 provides dual Gigabit Ethernet support with proper FW loaded.
+>>
+>> The ICSSG1 MII0 (RGMII1) has DP83869 PHY attached to it. The ICSSG1 shares
+>> MII1 (RGMII2) PHY DP83869 with CPSW3g and it's assigned by default to
+>> CPSW3g. The MDIO access to MII1 (RGMII2) PHY DP83869 is controlled by MDIO
+>> bus switch and also assigned to CPSW3g. Therefore the ICSSG1 MII1 (RGMII2)
+>> port is kept disable and ICSSG1 is enabled in single MAC mode by
+>> default.
+>>
+>> Signed-off-by: MD Danish Anwar <danishanwar@ti.com>
+>> ---
+>>  arch/arm64/boot/dts/ti/k3-am642-evm.dts | 102 ++++++++++++++++++++++++
+>>  1 file changed, 102 insertions(+)
+>>
+>> diff --git a/arch/arm64/boot/dts/ti/k3-am642-evm.dts b/arch/arm64/boot/dts/ti/k3-am642-evm.dts
+>> index 8c5651d2cf5d..c08b0223be52 100644
+>> --- a/arch/arm64/boot/dts/ti/k3-am642-evm.dts
+>> +++ b/arch/arm64/boot/dts/ti/k3-am642-evm.dts
+>> @@ -32,6 +32,8 @@ aliases {
+>>  		mmc1 = &sdhci1;
+>>  		ethernet0 = &cpsw_port1;
+>>  		ethernet1 = &cpsw_port2;
+>> +		ethernet2 = &icssg1_emac0;
+>> +		ethernet3 = &icssg1_emac1;
 > 
-> Why are you so fixated on the driver implementation matching the
-> device-tree 1:1? I asked that question before - what does it matter if
-> we use the regulator subsystem or not?
-
-I'm sorry, I must have missed this question. I'm not questioning why the
-DT needs to match the Linux implementation, I was really questioning if
-the hardware you describe here existed.
-
-> This is just what HW there is.
-> What we do with that knowledge in C is irrelevant. Yes, I don't use
-> the regulator subsystem because it's unnecessary and would actually
-> get in the way of the power sequencing.
-
-Then describe that in your commit messages.
-
-> But it doesn't change the fact
-> that the regulators *are* there so let's show them.
-> 
-> What isn't there is a "power sequencer device". This was the main
-> concern about Dmitry's implementation before.
-
-I don't agree. The concerns that I saw being raised with Dmitry's
-proposed design was that he used connected the WiFi controller to the
-QCA6391 using power-domains, etc.
-
-> We must not have
-> "bt-pwrseq = <&...>;" -like properties in device-tree because there is
-> no device that this would represent. But there *are* LDO outputs of
-> the PMU which can be modelled and then used in C to retrieve the power
-> sequencer and this is what I'm proposing.
+> If icssg1_emac1 is disabled by default there is no ethernet3 right?
 > 
 
-Performing device-specific power sequences is extremely common, but we
-so far don't have a separate abstraction of this because it's generally
-not an matter external to any given device.
+Yes. By default there isn't ethernet 3. I'll drop this alias from this
+patch.
 
-If we're going to introduce a power sequence framework, it needs to be
-made very clear that it is there to solve the problem that you have
-devices on separate busses that need to share that sequence.
+>>  	};
+>>  
+>>  	memory@80000000 {
+>> @@ -229,6 +231,70 @@ transceiver2: can-phy1 {
+>>  		max-bitrate = <5000000>;
+>>  		standby-gpios = <&exp1 9 GPIO_ACTIVE_HIGH>;
+>>  	};
+>> +
+>> +	icssg1_eth: icssg1-eth {
+>> +		compatible = "ti,am642-icssg-prueth";
+>> +		pinctrl-names = "default";
+>> +		pinctrl-0 = <&icssg1_rgmii1_pins_default>;
+>> +
+> please drop blank line.
+> 
+>> +		sram = <&oc_sram>;
+>> +		ti,prus = <&pru1_0>, <&rtu1_0>, <&tx_pru1_0>, <&pru1_1>, <&rtu1_1>, <&tx_pru1_1>;
+>> +		firmware-name = "ti-pruss/am64x-sr2-pru0-prueth-fw.elf",
+>> +				"ti-pruss/am64x-sr2-rtu0-prueth-fw.elf",
+>> +				"ti-pruss/am64x-sr2-txpru0-prueth-fw.elf",
+>> +				"ti-pruss/am64x-sr2-pru1-prueth-fw.elf",
+>> +				"ti-pruss/am64x-sr2-rtu1-prueth-fw.elf",
+>> +				"ti-pruss/am64x-sr2-txpru1-prueth-fw.elf";
+>> +
+>> +		ti,pruss-gp-mux-sel = <2>,	/* MII mode */
+>> +				      <2>,
+>> +				      <2>,
+>> +				      <2>,	/* MII mode */
+>> +				      <2>,
+>> +				      <2>;
+>> +
+> 
+> please drop blank line.
+> 
+>> +		ti,mii-g-rt = <&icssg1_mii_g_rt>;
+>> +		ti,mii-rt = <&icssg1_mii_rt>;
+>> +		ti,iep = <&icssg1_iep0>,  <&icssg1_iep1>;
+>> +
+> please drop blank line.
+> 
+>> +		interrupt-parent = <&icssg1_intc>;
+>> +		interrupts = <24 0 2>, <25 1 3>;
+>> +		interrupt-names = "tx_ts0", "tx_ts1";
+>> +
+> please drop blank line.
+>
 
-This also implies that for most examples out there where we have a need
-for doing "PCI power sequencing", I don't think we would use the
-power-sequence framework.
+Will drop all the blank lines.
 
-Regards,
-Bjorn
 
-> Bartosz
+>> +		dmas = <&main_pktdma 0xc200 15>, /* egress slice 0 */
+>> +		       <&main_pktdma 0xc201 15>, /* egress slice 0 */
+>> +		       <&main_pktdma 0xc202 15>, /* egress slice 0 */
+>> +		       <&main_pktdma 0xc203 15>, /* egress slice 0 */
+>> +		       <&main_pktdma 0xc204 15>, /* egress slice 1 */
+>> +		       <&main_pktdma 0xc205 15>, /* egress slice 1 */
+>> +		       <&main_pktdma 0xc206 15>, /* egress slice 1 */
+>> +		       <&main_pktdma 0xc207 15>, /* egress slice 1 */
+>> +		       <&main_pktdma 0x4200 15>, /* ingress slice 0 */
+>> +		       <&main_pktdma 0x4201 15>; /* ingress slice 1 */
+>> +		dma-names = "tx0-0", "tx0-1", "tx0-2", "tx0-3",
+>> +			    "tx1-0", "tx1-1", "tx1-2", "tx1-3",
+>> +			    "rx0", "rx1";
+>> +
+>> +		ethernet-ports {
+>> +			#address-cells = <1>;
+>> +			#size-cells = <0>;
+>> +			icssg1_emac0: port@0 {
+>> +				reg = <0>;
+>> +				phy-handle = <&icssg1_phy1>;
+>> +				phy-mode = "rgmii-id";
+>> +				ti,syscon-rgmii-delay = <&main_conf 0x4110>;
+>> +				/* Filled in by bootloader */
+>> +				local-mac-address = [00 00 00 00 00 00];
+>> +			};
+>> +			icssg1_emac1: port@1 {
+>> +				reg = <1>;
+>> +				ti,syscon-rgmii-delay = <&main_conf 0x4114>;
+>> +				/* Filled in by bootloader */
+>> +				local-mac-address = [00 00 00 00 00 00];
+>> +				status = "disabled";
+>> +			};
+>> +		};
+>> +	};
+>>  };
+>>  
+>>  &main_pmx0 {
+>> @@ -383,6 +449,30 @@ ddr_vtt_pins_default: ddr-vtt-default-pins {
+>>  			AM64X_IOPAD(0x0030, PIN_OUTPUT_PULLUP, 7) /* (L18) OSPI0_CSN1.GPIO0_12 */
+>>  		>;
+>>  	};
+>> +
+>> +	icssg1_mdio1_pins_default: icssg1-mdio1-default-pins {
+>> +		pinctrl-single,pins = <
+>> +			AM64X_IOPAD(0x015c, PIN_OUTPUT, 0) /* (Y6) PRG1_MDIO0_MDC */
+>> +			AM64X_IOPAD(0x0158, PIN_INPUT, 0) /* (AA6) PRG1_MDIO0_MDIO */
+>> +		>;
+>> +	};
+>> +
+>> +	icssg1_rgmii1_pins_default: icssg1-rgmii1-default-pins{
+>> +		pinctrl-single,pins = <
+>> +			AM64X_IOPAD(0x00b8, PIN_INPUT, 2) /* (Y7) PRG1_PRU0_GPO0.PRG1_RGMII1_RD0 */
+>> +			AM64X_IOPAD(0x00bc, PIN_INPUT, 2) /* (U8) PRG1_PRU0_GPO1.PRG1_RGMII1_RD1 */
+>> +			AM64X_IOPAD(0x00c0, PIN_INPUT, 2) /* (W8) PRG1_PRU0_GPO2.PRG1_RGMII1_RD2 */
+>> +			AM64X_IOPAD(0x00c4, PIN_INPUT, 2) /* (V8) PRG1_PRU0_GPO3.PRG1_RGMII1_RD3 */
+>> +			AM64X_IOPAD(0x00d0, PIN_INPUT, 2) /* (AA7) PRG1_PRU0_GPO6.PRG1_RGMII1_RXC */
+>> +			AM64X_IOPAD(0x00c8, PIN_INPUT, 2) /* (Y8) PRG1_PRU0_GPO4.PRG1_RGMII1_RX_CTL */
+>> +			AM64X_IOPAD(0x00e4, PIN_INPUT, 2) /* (AA8) PRG1_PRU0_GPO11.PRG1_RGMII1_TD0 */
+>> +			AM64X_IOPAD(0x00e8, PIN_INPUT, 2) /* (U9) PRG1_PRU0_GPO12.PRG1_RGMII1_TD1 */
+>> +			AM64X_IOPAD(0x00ec, PIN_INPUT, 2) /* (W9) PRG1_PRU0_GPO13.PRG1_RGMII1_TD2 */
+>> +			AM64X_IOPAD(0x00f0, PIN_INPUT, 2) /* (AA9) PRG1_PRU0_GPO14.PRG1_RGMII1_TD3 */
+>> +			AM64X_IOPAD(0x00f8, PIN_INPUT, 2) /* (V9) PRG1_PRU0_GPO16.PRG1_RGMII1_TXC */
+>> +			AM64X_IOPAD(0x00f4, PIN_INPUT, 2) /* (Y9) PRG1_PRU0_GPO15.PRG1_RGMII1_TX_CTL */
+>> +		>;
+>> +	};
+>>  };
+>>  
+>>  &main_uart0 {
+>> @@ -731,3 +821,15 @@ &main_mcan1 {
+>>  	pinctrl-0 = <&main_mcan1_pins_default>;
+>>  	phys = <&transceiver2>;
+>>  };
+>> +
+>> +&icssg1_mdio {
+>> +	status = "okay";
+>> +	pinctrl-names = "default";
+>> +	pinctrl-0 = <&icssg1_mdio1_pins_default>;
+>> +
+>> +	icssg1_phy1: ethernet-phy@f {
+>> +		reg = <0xf>;
+>> +		tx-internal-delay-ps = <250>;
+>> +		rx-internal-delay-ps = <2000>;
+>> +	};
+>> +};
 > 
-> > [..]
-> > >
-> > >  &uart6 {
-> > > @@ -1311,17 +1418,16 @@ &uart6 {
-> > >       bluetooth {
-> > >               compatible = "qcom,qca6390-bt";
-> > >
-> > > -             pinctrl-names = "default";
-> > > -             pinctrl-0 = <&bt_en_state>;
-> > > -
-> > > -             enable-gpios = <&tlmm 21 GPIO_ACTIVE_HIGH>;
-> > > -
-> > > -             vddio-supply = <&vreg_s4a_1p8>;
-> > > -             vddpmu-supply = <&vreg_s2f_0p95>;
-> > > -             vddaon-supply = <&vreg_s6a_0p95>;
-> > > -             vddrfa0p9-supply = <&vreg_s2f_0p95>;
-> > > -             vddrfa1p3-supply = <&vreg_s8c_1p3>;
-> > > -             vddrfa1p9-supply = <&vreg_s5a_1p9>;
-> > > +             vddrfacmn-supply = <&vreg_pmu_rfa_cmn>;
-> > > +             vddaon-supply = <&vreg_pmu_aon_0p59>;
-> > > +             vddwlcx-supply = <&vreg_pmu_wlcx_0p8>;
-> > > +             vddwlmx-supply = <&vreg_pmu_wlmx_0p85>;
-> > > +             vddbtcmx-supply = <&vreg_pmu_btcmx_0p85>;
-> > > +             vddrfa0-supply = <&vreg_pmu_rfa_0p8>;
-> > > +             vddrfa1-supply = <&vreg_pmu_rfa_1p2>;
-> > > +             vddrfa2-supply = <&vreg_pmu_rfa_1p7>;
-> > > +             vddpcie0-supply = <&vreg_pmu_pcie_0p9>;
-> > > +             vddpcie1-supply = <&vreg_pmu_pcie_1p8>;
-> >
-> > As I asked before, why does bluetooth suddenly care about PCIe supplies?
-> >
-> 
-> Yes, I forgot to remove it, I'll do it next time.
-> 
-> Bartosz
-> 
-> [snip]
+
+-- 
+Thanks and Regards,
+Md Danish Anwar
 
