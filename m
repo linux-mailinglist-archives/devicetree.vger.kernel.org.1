@@ -1,134 +1,164 @@
-Return-Path: <devicetree+bounces-38011-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-38015-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id EFAED847270
-	for <lists+devicetree@lfdr.de>; Fri,  2 Feb 2024 15:59:30 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 209738472AA
+	for <lists+devicetree@lfdr.de>; Fri,  2 Feb 2024 16:10:02 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 2DEAA1C220BC
-	for <lists+devicetree@lfdr.de>; Fri,  2 Feb 2024 14:59:30 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id C0AC1297CC2
+	for <lists+devicetree@lfdr.de>; Fri,  2 Feb 2024 15:10:00 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D4F0047774;
-	Fri,  2 Feb 2024 14:59:25 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A592C145B1C;
+	Fri,  2 Feb 2024 15:09:54 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="nX2R+xpE"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="ffb9k664"
 X-Original-To: devicetree@vger.kernel.org
-Received: from lelv0142.ext.ti.com (lelv0142.ext.ti.com [198.47.23.249])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DE4307E5;
-	Fri,  2 Feb 2024 14:59:23 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.23.249
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7A74E145338;
+	Fri,  2 Feb 2024 15:09:54 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1706885965; cv=none; b=qgMmQlyIPZZCJub2IaKJu1oD6cwqEQAp+1xdVTbxesPQO4aFCTB1tBP1YALHlGhXCNgD/YVuV7Xx/r+Tb/YgFJL7gEfGjLHfspKaYidXdg0fLS5ZZNfKv0w+JjAWqw6tMUWe5joBtt9VIm7EFFD1iOlsdYHlrJ+760WvTIEq/2Y=
+	t=1706886594; cv=none; b=VulrGEZpWt8wLJg56diB5pCXLL0W6hHsMFIHlFG4Diz3eGxr5BKUr5V9BAFKa4Xb2R5tDg0VpB1OG5B28GySWueChYfI7ysx8JxBq2LeepXP8wlnZDfBMoLU0AT93L3aPGXfOXNbonc83nwJiLxFYaGDoJCeeu9FqOppDSMc5Ug=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1706885965; c=relaxed/simple;
-	bh=060+cBbOS7QVMY0C6mMjot3skN9ZnKXBLMXmiqpiDok=;
-	h=Date:From:To:CC:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=RZsGsS1JSmmrvkmxsLdjqIOgkvuGX3N+ZKMMrVweV10VLUkcBAmJAe5Ehfc7AC2zaQnMF350e899iIQlICkd/8Ad+Ll+HOQvtNE78tMoewWwc11qkdMTbcZV3JE0RtIHS3FJMnfEJgNjrpnlc5ssguKooQv62hXmpCEYmQEzfTs=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=nX2R+xpE; arc=none smtp.client-ip=198.47.23.249
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
-Received: from lelv0265.itg.ti.com ([10.180.67.224])
-	by lelv0142.ext.ti.com (8.15.2/8.15.2) with ESMTP id 412Ex9hh064767;
-	Fri, 2 Feb 2024 08:59:09 -0600
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1706885949;
-	bh=Yal9nzjrFfbUuNcyrhES9wxwnLywzSU7c1qVhaUmbIE=;
-	h=Date:From:To:CC:Subject:References:In-Reply-To;
-	b=nX2R+xpEkHm+LS9R4QjiXvhbE4HdJMNSwwVhZHV9j6rmWl0C9ep8uT2vQL6Z/hAe+
-	 MFyijljs/VkIvMYg/tiNjL1NMd4ZaLPvCUVJ56XtVrVLJn7pDP5oYU8KD+/cV/chdo
-	 xf5+wZ8Qyfy9PySa75zycFd9alNs9tChc+Mx3MK0=
-Received: from DFLE115.ent.ti.com (dfle115.ent.ti.com [10.64.6.36])
-	by lelv0265.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 412Ex92l003347
-	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-	Fri, 2 Feb 2024 08:59:09 -0600
-Received: from DFLE108.ent.ti.com (10.64.6.29) by DFLE115.ent.ti.com
- (10.64.6.36) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Fri, 2
- Feb 2024 08:59:09 -0600
-Received: from lelvsmtp5.itg.ti.com (10.180.75.250) by DFLE108.ent.ti.com
- (10.64.6.29) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
- Frontend Transport; Fri, 2 Feb 2024 08:59:09 -0600
-Received: from localhost (uda0133052.dhcp.ti.com [128.247.81.232])
-	by lelvsmtp5.itg.ti.com (8.15.2/8.15.2) with ESMTP id 412Ex9Vj120052;
-	Fri, 2 Feb 2024 08:59:09 -0600
-Date: Fri, 2 Feb 2024 08:59:09 -0600
-From: Nishanth Menon <nm@ti.com>
-To: Roger Quadros <rogerq@kernel.org>
-CC: Conor Dooley <conor.dooley@microchip.com>,
-        Conor Dooley
-	<conor@kernel.org>, Bin Liu <b-liu@ti.com>,
-        <vigneshr@ti.com>, <afd@ti.com>, <kristo@kernel.org>,
-        <robh+dt@kernel.org>, <krzysztof.kozlowski+dt@linaro.org>,
-        <conor+dt@kernel.org>, <srk@ti.com>, <r-gunasekaran@ti.com>,
-        <linux-arm-kernel@lists.infradead.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>
-Subject: Re: [PATCH v3 4/5] dt-bindings: usb/ti,am62-usb.yaml: Add PHY2
- register space
-Message-ID: <20240202145909.a5hnglswn5xivxaj@ebook>
-References: <20240201120332.4811-5-rogerq@kernel.org>
- <20240201-viewpoint-upload-fb714f650ff5@spud>
- <20240201-violet-chalice-51a73f113e7b@spud>
- <20240201183522.ssj553rwefr2wuqi@iaqt7>
- <20240201-clad-unopposed-ccfdfe53b770@spud>
- <bc3ab60f-539b-41d0-8595-6e0b55f2763d@kernel.org>
- <20240202-unzip-whacky-bb2f151c618b@wendy>
- <dc3c93dc-74d9-4b1c-a771-3ee6f67b5dcc@kernel.org>
- <20240202121828.oo7grngyh2heqdxn@disposal>
- <2dbbcc17-38e9-48b4-a0b1-450350644fb9@kernel.org>
+	s=arc-20240116; t=1706886594; c=relaxed/simple;
+	bh=Bnr7/P2HmLqpYc3QWh+ZHHaLbnuta9Yxr8GeOUaUxI0=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=XJTfs1iOMDFYlrF/rMouD46vG8/jy9v/i7FHnKvuKzHS/rNtz6NRdGnVmKo5usejhcKyd+80HejXwFpuz7YEirN0x83AB9/UF8hR/XGjhatZeNN1zq4Pyj7rgu4DW1R01RQfcLbLei/7o5nrNsYAifKoNw73QM5AcshOpgj2SNc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=ffb9k664; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPS id EE90AC433F1;
+	Fri,  2 Feb 2024 15:09:53 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1706886594;
+	bh=Bnr7/P2HmLqpYc3QWh+ZHHaLbnuta9Yxr8GeOUaUxI0=;
+	h=From:Subject:Date:To:Cc:Reply-To:From;
+	b=ffb9k664ITzPTjNXnmj3iMVDDKIYVWkO5fKiYhKE58UkLnqge7kCsJcCZodiS/yOg
+	 gV9a03PEL3l61HRpZJb2CaQVOI6IfQjkwNROJBcp4/0QjqXhE1wlDV3DFeWd3QjO96
+	 gWCmQTs/4NB3SR6dGTtq7M71QA+9sVGcST2YdVjMVHdHPQUHbw/4lHydgISdRaZOhd
+	 cmrDwTCbV//Rh0WRDfBLMQLR15HI5sZ0A/24V4c8lpzGRASbwN93RK962VVQTN097i
+	 r9PQZ4ax1AOmGcBKzdLCcuqtWWPC7iiYMCqS/wHmlJivhPeNT8izaWwdfTGdWS/Mgo
+	 EBppriNN+Bxdw==
+Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
+	by smtp.lore.kernel.org (Postfix) with ESMTP id DCB96C4828F;
+	Fri,  2 Feb 2024 15:09:53 +0000 (UTC)
+From: Nuno Sa via B4 Relay <devnull+nuno.sa.analog.com@kernel.org>
+Subject: [PATCH v8 0/7] iio: add new backend framework
+Date: Fri, 02 Feb 2024 16:08:31 +0100
+Message-Id: <20240202-iio-backend-v8-0-f65ee8c8203d@analog.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"
-Content-Disposition: inline
-In-Reply-To: <2dbbcc17-38e9-48b4-a0b1-450350644fb9@kernel.org>
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
+X-B4-Tracking: v=1; b=H4sIAG8FvWUC/2XPSwrCMBSF4a1IxkbybuLIfYiDm0c1qI20EpTSv
+ ZsWhQaH58L3wx3REPoYBrTfjKgPOQ4xdWXo7Qa5C3TngKMvGzHCOGXU4BgTtuCuofMYuHcUFDQ
+ gNSri0Yc2vpba8VT2JQ7P1L+XeBbz9dthpOpkgQk2RgdDhbbKsAN0cEvnnUt3NIey/GFBKGU1l
+ gVbHxx4IihY8YfVGtcfZFUw1UZy5bgEIv9ws8KM17iZsW1bxpXVyvAKT9P0AS8x15teAQAA
+To: linux-iio@vger.kernel.org, devicetree@vger.kernel.org
+Cc: Lars-Peter Clausen <lars@metafoo.de>, 
+ Michael Hennerich <Michael.Hennerich@analog.com>, 
+ Jonathan Cameron <jic23@kernel.org>, Rob Herring <robh+dt@kernel.org>, 
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, 
+ Conor Dooley <conor+dt@kernel.org>, Frank Rowand <frowand.list@gmail.com>, 
+ Olivier Moysan <olivier.moysan@foss.st.com>, Rob Herring <robh@kernel.org>
+X-Mailer: b4 0.12.3
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1706886592; l=3554;
+ i=nuno.sa@analog.com; s=20231116; h=from:subject:message-id;
+ bh=Bnr7/P2HmLqpYc3QWh+ZHHaLbnuta9Yxr8GeOUaUxI0=;
+ b=JvBolEcOjR8hYBAZSsl7OK1DM5GEvW3RY/pnGq8Fwpr9lokCogT7PaU7poz9CGf/8U5o5RDPl
+ zI0fcZx75rVDgZmWZJERYtGr2aSzQN1JA36aDraNyVGo37XM2xzE7IL
+X-Developer-Key: i=nuno.sa@analog.com; a=ed25519;
+ pk=3NQwYA013OUYZsmDFBf8rmyyr5iQlxV/9H4/Df83o1E=
+X-Endpoint-Received:
+ by B4 Relay for nuno.sa@analog.com/20231116 with auth_id=100
+X-Original-From: Nuno Sa <nuno.sa@analog.com>
+Reply-To: <nuno.sa@analog.com>
 
-On 15:59-20240202, Roger Quadros wrote:
-> 
-> 
-> On 02/02/2024 14:18, Nishanth Menon wrote:
-> > On 12:13-20240202, Roger Quadros wrote:
-> > [..]
-> >>>>
-> >>>> As DTS and driver will be merged by separate maintainers I thought it
-> >>>> would be easier for maintainers this way.
-> >>>
-> >>> dts and driver might be merged by different people, but dt-bindings and
-> >>> drivers are merged by the same people. This is a bindings patch, not a
-> >>
-> >> If we do that then I get a bunch of dtbs_check warnings
-> >>
-> >> dwc3-usb@f900000: reg: [[0, 261095424, 0, 2048], [0, 261128192, 0, 1024]] is too long
-> > 
-> > Just my 2 cents: If the binding (and driver) change was truly backward
-> > compatible (which it should be - for example: errata can only be
-> > applied if the second property is described), then you want to control
-> > that reg property to add minItems? - thatm I think will allow the dts
-> > change to come in at the next cycle once the binding has been merged.
-> > 
-> 
-> Thanks for the hint.
-> Please drop patches 4 and 5 in case you pick this series.
-> 
-> I'll send patch 4 along with the driver series v2.
-> Patch 5, I'll send after the DT binding has been merged.
+v1:
+ https://lore.kernel.org/linux-iio/20231204144925.4fe9922f@jic23-huawei/T/#m222f5175273b81dbfe40b7f0daffcdc67d6cb8ff
 
-I suggest to resubmit requisite series (with patches +- or what ever)
-specific to appropriate maintainers (I don't typically like folks
-sending driver change along with dts change in a single series without
-indicating to driver maintainer that dts is something they shouldn't
-be picking) and avoid any confusion ;)
+v2:
+ https://lore.kernel.org/r/20231208-dev-iio-backend-v2-0-5450951895e1@analog.com
 
--- 
-Regards,
-Nishanth Menon
-Key (0xDDB5849D1736249D) / Fingerprint: F8A2 8693 54EB 8232 17A3  1A34 DDB5 849D 1736 249D
+v3:
+ https://lore.kernel.org/linux-iio/20231213-dev-iio-backend-v3-0-bb9f12a5c6dc@analog.com/
+
+v4:
+ https://lore.kernel.org/r/20231220-iio-backend-v4-0-998e9148b692@analog.com
+
+v5:
+ https://lore.kernel.org/r/20240112-iio-backend-v5-0-bdecad041ab4@analog.com
+
+v6:
+ https://lore.kernel.org/r/20240119-iio-backend-v6-0-189536c35a05@analog.com
+
+v7
+ https://lore.kernel.org/r/20240123-iio-backend-v7-0-1bff236b8693@analog.com
+
+Changes in v8:
+ - Dropped commit ("of: property: fix typo in io-channels") - applied
+   via DT tree. Also dropped commit
+   ("driver: core: allow modifying device_links flags") - did not made
+   sense.
+ - Patch 7
+  * Do not change the version string format during probe.
+
+Jonathan, the series is based on next-20240202 since it already includes
+the io-channels fix Rob applied in his tree. I guess it should land in rc3 so
+after you rebase, all patches should apply cleanly (if applying them of course
+:)). Let me know if anything fails...
+
+(also dropped the devlink Reviewers from the Cc list as that patch was
+dropped).
+
+Keeping the block diagram  so we don't have to follow links
+to check one of the typical setups.
+
+                                           -------------------------------------------------------
+ ------------------                        | -----------         ------------      -------  FPGA |
+ |     ADC        |------------------------| | AXI ADC |---------| DMA CORE |------| RAM |       |
+ | (Frontend/IIO) | Serial Data (eg: LVDS) | |(backend)|---------|          |------|     |       |
+ |                |------------------------| -----------         ------------      -------       |
+ ------------------                        -------------------------------------------------------
+
+---
+Nuno Sa (6):
+      dt-bindings: adc: ad9467: add new io-backend property
+      dt-bindings: adc: axi-adc: update bindings for backend framework
+      iio: buffer-dmaengine: export buffer alloc and free functions
+      iio: add the IIO backend framework
+      iio: adc: ad9467: convert to backend framework
+      iio: adc: adi-axi-adc: move to backend framework
+
+Olivier Moysan (1):
+      of: property: add device link support for io-backends
+
+ .../devicetree/bindings/iio/adc/adi,ad9467.yaml    |   4 +
+ .../devicetree/bindings/iio/adc/adi,axi-adc.yaml   |   8 +-
+ MAINTAINERS                                        |   8 +
+ drivers/iio/Kconfig                                |   9 +
+ drivers/iio/Makefile                               |   1 +
+ drivers/iio/adc/Kconfig                            |   4 +-
+ drivers/iio/adc/ad9467.c                           | 268 +++++++++-----
+ drivers/iio/adc/adi-axi-adc.c                      | 379 +++++--------------
+ drivers/iio/buffer/industrialio-buffer-dmaengine.c |   8 +-
+ drivers/iio/industrialio-backend.c                 | 412 +++++++++++++++++++++
+ drivers/of/property.c                              |   2 +
+ include/linux/iio/adc/adi-axi-adc.h                |  68 ----
+ include/linux/iio/backend.h                        |  72 ++++
+ include/linux/iio/buffer-dmaengine.h               |   3 +
+ 14 files changed, 793 insertions(+), 453 deletions(-)
+---
+base-commit: 076d56d74f17e625b3d63cf4743b3d7d02180379
+change-id: 20231219-iio-backend-a3dc1a6a7a58
+--
+
+Thanks!
+- Nuno Sá
+
 
