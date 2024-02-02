@@ -1,72 +1,57 @@
-Return-Path: <devicetree+bounces-38126-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-38127-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id E48788479C1
-	for <lists+devicetree@lfdr.de>; Fri,  2 Feb 2024 20:38:15 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1A4C18479D4
+	for <lists+devicetree@lfdr.de>; Fri,  2 Feb 2024 20:43:27 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 25CBB1C22C98
-	for <lists+devicetree@lfdr.de>; Fri,  2 Feb 2024 19:38:15 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 3BEC8B20F6A
+	for <lists+devicetree@lfdr.de>; Fri,  2 Feb 2024 19:43:24 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7C07015E5DF;
-	Fri,  2 Feb 2024 19:38:11 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 11F425A4C2;
+	Fri,  2 Feb 2024 19:43:11 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="ovi+0ekJ"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="ll9QuydX"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5046E15E5D8;
-	Fri,  2 Feb 2024 19:38:11 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DF1DF80600;
+	Fri,  2 Feb 2024 19:43:10 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1706902691; cv=none; b=PIr1JrFHq6opl77RcLlrskmFl7z0zHB94S8+NTN7oh9e4akS9bjd0m7yTfxHL/ZtxM7OfOYMSczNHxWSWt00QIaNW7BUcq/ka1kYDH9fa8ffWBYMd1l4Iw/vUYkh4TPLNgyMQNWeyrI8miBkFK4+xrJJlwOCAyT0BqQQr2E9HCw=
+	t=1706902991; cv=none; b=ACjHIfASOoHFA3yKud2lg+5PnbIeofIMyCJLS9J5EVsIDBLyaaMq29q12lrYyctSyhOqiHPttOXbMG4RG07ChnHHLsMwEGtxd1zT2WUSJevqG2JCHG4DwEv5gbvoDG5uYjGDErTUW7HSWkEcM6+nAGG6VI3+A7r/oZEJ4OZAtbw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1706902691; c=relaxed/simple;
-	bh=cXSewaIhyGydS5Gw01kUhO+TK9P0kL9oR3wsJgkpSXw=;
+	s=arc-20240116; t=1706902991; c=relaxed/simple;
+	bh=cUcFLLlsjk7WbOgGfM+Zedf9W0MOG6p/9qlCVcXVn2g=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=c2+cUy4K12Ry734F4Kqv6SgyGf6pjLe86z8/VXXi9TBps6mBqYYp3HX9Dxz0hk4UMCdLzX1pqDWFd9XnvE2SV/eFZNBRvQuFXffJ7G/bJ8ISo847rG0PgoeDHYCBhX5lBYa+lbZa+98QQWQPKg8Qpx3erxH5bLhX21P7qaUaESs=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=ovi+0ekJ; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 8B896C433C7;
-	Fri,  2 Feb 2024 19:38:10 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=XZ6Fhsp2UaQmBzDSu4Uu+GQoUUUxcUwoIMREd2eRkr0idyxythXOJnK1+51pr3YWh3UfGNrK7cOB3TVw0FJ92j4mr9GdEHk13Js3C1jmbM+qtebC7N5FgiG+flo2RqTE47SVBPcQrj/ZfaQIg5fQFHOPoFGThm2L0vo3aEI631I=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=ll9QuydX; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 3889AC433C7;
+	Fri,  2 Feb 2024 19:43:10 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1706902690;
-	bh=cXSewaIhyGydS5Gw01kUhO+TK9P0kL9oR3wsJgkpSXw=;
+	s=k20201202; t=1706902990;
+	bh=cUcFLLlsjk7WbOgGfM+Zedf9W0MOG6p/9qlCVcXVn2g=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=ovi+0ekJPZurgLg8k360G3rdBWysmMIochoK+bC4Dcn43HvlSf4ueyyed1iL/BIKp
-	 pxEKuGpZMJgyE5VB2iyakVKzVkI2z27TLziSvsZ4MBVpP8XEWYFAY5S0rSaNa7I0UG
-	 SKlElFrz4Z9VulT1xnl556sxrDbnc+j8TwwhaKH4uSReLWdLMGT2fi1fd8C7dP5jrO
-	 rM+V/ev1Bil/ScnFXez9obyL29t300jIRIfkQUgX4ZB9faRUULT7KshaFJKNwYCoHV
-	 JObzf2YabL/I7Jf8mWG8M//XHvb2ipLKSxgKCp88Y6Q7G7+p85bTJwyv93zIvOThvZ
-	 bwDBvEtB+tMRg==
-Date: Fri, 2 Feb 2024 13:38:08 -0600
+	b=ll9QuydXNFX1RbAqrFbL1AGQgoApXwUbnU+TQqCYVfbdT3ZirVzg9pPgfvmDxNrhK
+	 w2h9Td1WUJYJZXkMbQUEX8i7zMscKiNugV/xB7IQDzwkH561aSbTqeUzpoPYL15ljz
+	 zDQ9aUUYW896QV75x7Cb2WkDo75dT6RHMmXkyOd0Brn1fbgIt6Kkgzi0nro8DoVdmY
+	 hdzpnCYFJGdzRRUmrIMMOgSRjLqOVjcNq1oR+0GkfyETwIKWwM7fAg8F2Oja/yZURz
+	 g5K09udZCVNX7xqiW3k2zPajjZZGYstrG/0wM7KcHSauQrOcL/6JNiKBHz0w+pcm8h
+	 r0AqBY1mSlvsA==
+Date: Fri, 2 Feb 2024 13:43:08 -0600
 From: Rob Herring <robh@kernel.org>
-To: Mao Jinlong <quic_jinlmao@quicinc.com>
-Cc: Suzuki K Poulose <suzuki.poulose@arm.com>,
-	Mike Leach <mike.leach@linaro.org>,
-	James Clark <james.clark@arm.com>, Leo Yan <leo.yan@linaro.org>,
-	Alexander Shishkin <alexander.shishkin@linux.intel.com>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Maxime Coquelin <mcoquelin.stm32@gmail.com>,
-	Alexandre Torgue <alexandre.torgue@foss.st.com>,
-	Bjorn Andersson <andersson@kernel.org>,
-	Konrad Dybcio <konrad.dybcio@linaro.org>,
-	Mathieu Poirier <mathieu.poirier@linaro.org>,
-	coresight@lists.linaro.org, linux-arm-kernel@lists.infradead.org,
-	linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-stm32@st-md-mailman.stormreply.com,
-	linux-arm-msm@vger.kernel.org,
-	Tingwei Zhang <quic_tingweiz@quicinc.com>,
-	Yuanfang Zhang <quic_yuanfang@quicinc.com>,
-	Tao Zhang <quic_taozha@quicinc.com>
-Subject: Re: [PATCH v3 2/2] dt-bindings: arm: Add device-name in the
- coresight components
-Message-ID: <20240202193808.GA581322-robh@kernel.org>
-References: <20240131082628.6288-1-quic_jinlmao@quicinc.com>
- <20240131082628.6288-3-quic_jinlmao@quicinc.com>
+To: Lorenzo Bianconi <lorenzo@kernel.org>
+Cc: jic23@kernel.org, linux-iio@vger.kernel.org,
+	lorenzo.bianconi@redhat.com, devicetree@vger.kernel.org,
+	krzysztof.kozlowski+dt@linaro.org
+Subject: Re: [PATCH v3 3/3] dt-bindings: iio: imu: st_lsm6dsx: add
+ asm330lhhxg1
+Message-ID: <20240202194308.GA806128-robh@kernel.org>
+References: <cover.1706692153.git.lorenzo@kernel.org>
+ <93160585e69e4531a981064817ccbb143a6a1f70.1706692153.git.lorenzo@kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -75,85 +60,48 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20240131082628.6288-3-quic_jinlmao@quicinc.com>
+In-Reply-To: <93160585e69e4531a981064817ccbb143a6a1f70.1706692153.git.lorenzo@kernel.org>
 
-On Wed, Jan 31, 2024 at 12:26:26AM -0800, Mao Jinlong wrote:
-> Current name of coresight component's folder consists of prefix of
-> the device and the id in the device list. When run 'ls' command,
-> we can get the register address of the device. Take CTI for example,
-> if we want to set the config for modem CTI, but we can't know which
-> CTI is modem CTI from all current information.
+On Wed, Jan 31, 2024 at 10:11:31AM +0100, Lorenzo Bianconi wrote:
+> Add device bindings for asm330lhhxg1 IMU sensor.
+> The asm330lhhx supports a subset of the features and functionality
+> provided by the lsm6dsr via identical interfaces and so is a
+> suitable fallback compatible.
+
+A subset cannot fallback to a superset.
+
 > 
-> cti_sys0 -> ../../../devices/platform/soc@0/138f0000.cti/cti_sys0
-> cti_sys1 -> ../../../devices/platform/soc@0/13900000.cti/cti_sys1
-> 
-> Add device-name in device tree which can provide a better description
-> of the coresight device. It can provide the info like the system or
-> HW it belongs to.
-> 
-> Signed-off-by: Mao Jinlong <quic_jinlmao@quicinc.com>
+> Signed-off-by: Lorenzo Bianconi <lorenzo@kernel.org>
 > ---
->  .../devicetree/bindings/arm/arm,coresight-catu.yaml         | 6 ++++++
->  .../devicetree/bindings/arm/arm,coresight-cpu-debug.yaml    | 6 ++++++
->  .../devicetree/bindings/arm/arm,coresight-cti.yaml          | 6 ++++++
->  .../devicetree/bindings/arm/arm,coresight-dummy-sink.yaml   | 6 ++++++
->  .../devicetree/bindings/arm/arm,coresight-dummy-source.yaml | 6 ++++++
->  .../bindings/arm/arm,coresight-dynamic-funnel.yaml          | 6 ++++++
->  .../bindings/arm/arm,coresight-dynamic-replicator.yaml      | 6 ++++++
->  .../devicetree/bindings/arm/arm,coresight-etb10.yaml        | 6 ++++++
->  .../devicetree/bindings/arm/arm,coresight-etm.yaml          | 6 ++++++
->  .../bindings/arm/arm,coresight-static-funnel.yaml           | 6 ++++++
->  .../bindings/arm/arm,coresight-static-replicator.yaml       | 6 ++++++
->  .../devicetree/bindings/arm/arm,coresight-stm.yaml          | 6 ++++++
->  .../devicetree/bindings/arm/arm,coresight-tmc.yaml          | 6 ++++++
->  .../devicetree/bindings/arm/arm,coresight-tpiu.yaml         | 6 ++++++
->  .../devicetree/bindings/arm/qcom,coresight-tpda.yaml        | 6 ++++++
->  .../devicetree/bindings/arm/qcom,coresight-tpdm.yaml        | 6 ++++++
-
-Why do you need a name on everything? Funnels and replicators, for 
-example, aren't a source of data, but just connected to things that are. 
-ETM is tightly coupled to a CPU and you have a link to it. You have 
-graph links to show connections. Limit this to where you actually need 
-it. 
-
->  16 files changed, 96 insertions(+)
+>  Documentation/devicetree/bindings/iio/imu/st,lsm6dsx.yaml | 3 +++
+>  1 file changed, 3 insertions(+)
 > 
-> diff --git a/Documentation/devicetree/bindings/arm/arm,coresight-catu.yaml b/Documentation/devicetree/bindings/arm/arm,coresight-catu.yaml
-> index 2bae06eed693..a4d20aad0c70 100644
-> --- a/Documentation/devicetree/bindings/arm/arm,coresight-catu.yaml
-> +++ b/Documentation/devicetree/bindings/arm/arm,coresight-catu.yaml
-> @@ -44,6 +44,12 @@ properties:
->        - const: arm,coresight-catu
->        - const: arm,primecell
+> diff --git a/Documentation/devicetree/bindings/iio/imu/st,lsm6dsx.yaml b/Documentation/devicetree/bindings/iio/imu/st,lsm6dsx.yaml
+> index 28b667a9cb76..316601b2da7a 100644
+> --- a/Documentation/devicetree/bindings/iio/imu/st,lsm6dsx.yaml
+> +++ b/Documentation/devicetree/bindings/iio/imu/st,lsm6dsx.yaml
+> @@ -49,6 +49,9 @@ properties:
+>        - items:
+>            - const: st,asm330lhb
+>            - const: st,asm330lhh
+> +      - items:
+> +          - const: st,asm330lhhxg1
+> +          - const: st,lsm6dsr
+
+Assuming this is correct and the commit msg is wrong, can't this be 
+added to the existing entry?:
+
+items:
+  - enum:
+      - st,asm330lhhx
+      - st,asm330lhhxg1
+  - const: st,lsm6dsr
+
+
 >  
-> +  device-name:
-
-This is too generic of a name. Make is something closer to how it is 
-used or what it is for. Naming sysfs devices is not how it is used. 
-That's just an intermediate step.
-
-> +    $ref: /schemas/types.yaml#/definitions/string
-> +    description:
-> +      Define the name which can describe what kind of HW or system the
-> +      device is for.
-> +
 >    reg:
 >      maxItems: 1
->  
-> diff --git a/Documentation/devicetree/bindings/arm/arm,coresight-cpu-debug.yaml b/Documentation/devicetree/bindings/arm/arm,coresight-cpu-debug.yaml
-> index 0a6bc03ebe00..6094cc9cb834 100644
-> --- a/Documentation/devicetree/bindings/arm/arm,coresight-cpu-debug.yaml
-> +++ b/Documentation/devicetree/bindings/arm/arm,coresight-cpu-debug.yaml
-> @@ -39,6 +39,12 @@ properties:
->        - const: arm,coresight-cpu-debug
->        - const: arm,primecell
->  
-> +  device-name:
-> +    $ref: /schemas/types.yaml#/definitions/string
-
-If you are redefining the type multiple times, there's a problem in the 
-structure of the schemas. Really, that's true for anything duplicated in 
-the kernel.
-
-Rob
+> -- 
+> 2.43.0
+> 
 
