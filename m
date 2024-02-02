@@ -1,61 +1,61 @@
-Return-Path: <devicetree+bounces-38145-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-38146-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id CB4D2847A5D
-	for <lists+devicetree@lfdr.de>; Fri,  2 Feb 2024 21:16:56 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 997C0847A6D
+	for <lists+devicetree@lfdr.de>; Fri,  2 Feb 2024 21:22:06 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 098031C2568E
-	for <lists+devicetree@lfdr.de>; Fri,  2 Feb 2024 20:16:56 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 4E85929071C
+	for <lists+devicetree@lfdr.de>; Fri,  2 Feb 2024 20:22:05 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E33F48063D;
-	Fri,  2 Feb 2024 20:16:49 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 445A881725;
+	Fri,  2 Feb 2024 20:22:01 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="lCWRCC2A"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="vHfONgv5"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B83DB80606;
-	Fri,  2 Feb 2024 20:16:49 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 172DE2FE3F;
+	Fri,  2 Feb 2024 20:22:00 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1706905009; cv=none; b=i27tqPZnfQwnA/BiG3ImV9sGLQpcPTLdgV7bKlSxIUgpfmpEFbGdD9bs7FMn4kMtNEnRHDfMyuiasJJwi7K+CBDMU5vJWzD4rd9tK6hTLJ7kUK7YOV0y0gR+og57H6XIuhCTRlIJHscO/xM1ZhlveiWLRHeuQZq4WEzPNQVWVtA=
+	t=1706905321; cv=none; b=k28n3CRAqCy52eNFOAeGR5Hpu0CZIBKIrPEFVA8p/HcIqWIwJHPdSM1FTMkBZpNSnV9VzzQS4QlTMtu7Z3JzPkAql+XNlg9izmB2gvmI6HahyfPWe7DANInEksuQzMXFt6VEOOMg1ityV+3YvWP5vlO+TzD40lr8CJ7ZmBPUQzA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1706905009; c=relaxed/simple;
-	bh=u9yn+Xn2jWuc4HFEotKuyuzAo4KRtUgUurWyo7k1u0A=;
+	s=arc-20240116; t=1706905321; c=relaxed/simple;
+	bh=+l6xmMtGx88Ja2KwOafyi6g4YZxkCJK5ea96nkAej3M=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=Uh9X15pz/SG61YDstahevd2Nxs9DA1bszLj1LC9ueJCjgyrqR9M5RtbeI2+tYRCrj4W2cgORDOEhWu5qdS8KNJagBJshk48QRLppLg7L38VKp/rJJsEF91/NY/1RbKFe+ojDQt1GQ7/dJ2mTnLBTaH0K23UIYyys2cojbKYbuwU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=lCWRCC2A; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id D2836C433F1;
-	Fri,  2 Feb 2024 20:16:48 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=aT+s1UIoPpPCNjMVvPi+fEHUjcpwH7GRgLheTaenTFz6bbMUduqZIJNyohopXZK+upfbsbbaRPwvIw5dNc6+e8Ry/FFvrrClRS1puWMOiQJUx+TVLz1EyzCyzvXka1WX5fCXa2hAHXPtD7KsVLpSKCR5Z/eOLb0xBG1Pp/sxjbw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=vHfONgv5; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 5C077C43390;
+	Fri,  2 Feb 2024 20:22:00 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1706905009;
-	bh=u9yn+Xn2jWuc4HFEotKuyuzAo4KRtUgUurWyo7k1u0A=;
+	s=k20201202; t=1706905320;
+	bh=+l6xmMtGx88Ja2KwOafyi6g4YZxkCJK5ea96nkAej3M=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=lCWRCC2Afb5/YYmBRFKSo9rzO9PfIGnr4WMvy6VFi2vXgiPB+LYnxMFFJ0LM3DAsn
-	 3k/jCXH2SChtKAG/l1naSQzFldPPVMx0PaFoCu8tCPBO0NNjCwLK8r92Z9BSHPfXmr
-	 5KO8iQd0hFPyYt1rZXZZnVrrjaE0uS8EeE0g9eaaFaS44LVXz2CX2p72JerW3rp96y
-	 LTn1ZygkoD5Y5OXYXP8b3SyDvP2b2b40/PoDBub8IaGKkYoPSidXBDXDx4SdHZ4m0q
-	 iHKI7sylOIsGnsJ+Jl7MLaDIPsYHEGWA629V6qhkVJaEWdOOhNr5pe6od9/LW/WWPZ
-	 lNcszgErg44Jg==
-Date: Fri, 2 Feb 2024 14:16:46 -0600
+	b=vHfONgv5bp3nw/5BQQBxFABlpD4dswpeqWaZ9kdLpNnG25ND9Ibg1qtNTnwxNP0k+
+	 UjTINVQLu3iGG19vu3S5zvxAfpiIqRMZe15H2ktSLwiY3J9M9p/ye/AmVfAGCjHU6G
+	 UDpmWstk/3Yuh+20glbCwJOqYGQuWnxKfUqkfMZo4OR8InE2j1wMTUIqyBWGAxpNRm
+	 UAB1adOXcwtSWxPlKUX2hO6CwPUtlWl/Gs1cHYkAjJEOZw2BPS7sdYN3Zybmwza90b
+	 x7u/uahun+vLqGdLOSdo1F+fNO/EbjeRR+ddEjCQFi3KhyNnoc1/p5679HFl0tdA5o
+	 1cEWNWSfAotMw==
+Date: Fri, 2 Feb 2024 14:21:58 -0600
 From: Rob Herring <robh@kernel.org>
-To: Charles Perry <charles.perry@savoirfairelinux.com>
-Cc: mdf@kernel.org, avandiver@markem-imaje.com, bcody@markem-imaje.com,
-	Wu Hao <hao.wu@intel.com>, Xu Yilun <yilun.xu@intel.com>,
-	Tom Rix <trix@redhat.com>,
+To: Conor Dooley <conor@kernel.org>
+Cc: Guenter Roeck <linux@roeck-us.net>,
+	Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
 	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Michal Simek <michal.simek@amd.com>, linux-fpga@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org
-Subject: Re: [PATCH 0/3] fpga: xilinx-selectmap: add new driver
-Message-ID: <20240202201646.GA903809-robh@kernel.org>
-References: <20240129225602.3832449-1-charles.perry@savoirfairelinux.com>
- <20240131230542.3993409-1-charles.perry@savoirfairelinux.com>
+	Conor Dooley <conor+dt@kernel.org>, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org, Charles Hsu <ythsu0511@gmail.com>,
+	linux-hwmon@vger.kernel.org
+Subject: Re: [PATCH] dt-bindings: trivial-devices: sort entries
+ alphanumerically
+Message-ID: <20240202202158.GA1007609-robh@kernel.org>
+References: <20240201075805.7492-1-krzysztof.kozlowski@linaro.org>
+ <5461a237-1df4-4077-86ef-e9ff6ff17e27@roeck-us.net>
+ <20240201-silliness-unfair-265a0d896377@spud>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -64,37 +64,29 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20240131230542.3993409-1-charles.perry@savoirfairelinux.com>
+In-Reply-To: <20240201-silliness-unfair-265a0d896377@spud>
 
-On Wed, Jan 31, 2024 at 06:05:30PM -0500, Charles Perry wrote:
-> Hello,
+On Thu, Feb 01, 2024 at 06:32:09PM +0000, Conor Dooley wrote:
+> On Thu, Feb 01, 2024 at 05:25:13AM -0800, Guenter Roeck wrote:
+> > On 1/31/24 23:58, Krzysztof Kozlowski wrote:
+> > > Sort entries alphanumerically.  This was a semi manual job with help of:
+> > > 
+> > >    cat Documentation/devicetree/bindings/trivial-devices.yaml | grep '    - ' > old
+> > >    cat old | sort -n > new
+> > >    diff -ubB old new
+> > > 
+> > > Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+> > > 
+> > 
+> > Acked-by: Guenter Roeck <linux@roeck-us.net>
 > 
-> This patchset adds a new driver for the 7 series FPGA's SelectMAP
-> interface.
-> 
-> The SelectMAP interface shares a common GPIO protocol with the SPI
-> interface which is already in the kernel (drivers/fpga/xilinx-spi.c).
-> The approach proposed in this patchset is to refactor xilinx-spi.c into
-> xilinx-core.c which would handle the common GPIO protocol. This is then
-> used to build two drivers, the already existing xilinx-spi.c driver and
-> a newly added xilinx-selectmap.c driver.
-> 
-> The SelectMAP driver proposed only supports 8 bit mode. This is because
-> the 16 and 32 bits mode have limitations with regards to compressed
-> bitstream support as well as introducing endianness considerations.
-> 
-> I'm testing xilinx-selectmap.c on a custom i.MX6 board connected to an
-> Artix 7 FPGA. Flashing a 913K bitstream takes 0.44 seconds.
-> 
-> v2: From Krzysztof Kozlowski review's:
->   * Use more conventional names for gpio DT bindings
->   * fix example in DT bindings
->   * add mc-peripheral-props.yaml to DT bindings
->   * fix various formatting mistakes
->   * Remove all occurences of the "slave" word.
+> z sorts before a, please fix in the whole file.
 
-Please label the series with the version number and don't send new 
-versions as replies to the previous version.
+I don't follow this comment.
 
-Rob
+> 
+> Acked-by: Conor Dooley <conor.dooley@microchip.com>
+> 
+> Thanks,
+> Conor.
 
