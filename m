@@ -1,57 +1,55 @@
-Return-Path: <devicetree+bounces-38127-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-38128-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1A4C18479D4
-	for <lists+devicetree@lfdr.de>; Fri,  2 Feb 2024 20:43:27 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id B4FFA8479D7
+	for <lists+devicetree@lfdr.de>; Fri,  2 Feb 2024 20:43:48 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 3BEC8B20F6A
-	for <lists+devicetree@lfdr.de>; Fri,  2 Feb 2024 19:43:24 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id E810C1C245E8
+	for <lists+devicetree@lfdr.de>; Fri,  2 Feb 2024 19:43:47 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 11F425A4C2;
-	Fri,  2 Feb 2024 19:43:11 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7A4D58061A;
+	Fri,  2 Feb 2024 19:43:36 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="ll9QuydX"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="h0cTufgc"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DF1DF80600;
-	Fri,  2 Feb 2024 19:43:10 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 509CD15E5AC;
+	Fri,  2 Feb 2024 19:43:36 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1706902991; cv=none; b=ACjHIfASOoHFA3yKud2lg+5PnbIeofIMyCJLS9J5EVsIDBLyaaMq29q12lrYyctSyhOqiHPttOXbMG4RG07ChnHHLsMwEGtxd1zT2WUSJevqG2JCHG4DwEv5gbvoDG5uYjGDErTUW7HSWkEcM6+nAGG6VI3+A7r/oZEJ4OZAtbw=
+	t=1706903016; cv=none; b=G3TQDRwXSDPRkr/V6/Ch/WcHH5EDEwzQ5mAz6dmW8gAcKVy1VjDdz5GhMBCYgHmD+c7Y3VYmPJ2eZYYHGhzWpMIxecF4iv2wCHetQ1jKKNBAyr3ApERpyQVWlaW5AvAhe/g6viLRiCVMuXMmjkKyFKmSbsgWy5Fjdw7w0gIfv/I=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1706902991; c=relaxed/simple;
-	bh=cUcFLLlsjk7WbOgGfM+Zedf9W0MOG6p/9qlCVcXVn2g=;
+	s=arc-20240116; t=1706903016; c=relaxed/simple;
+	bh=7AQ1NisE8h7M3azLdVTWRKwE+nDbvKHU5IfF9aqyy2E=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=XZ6Fhsp2UaQmBzDSu4Uu+GQoUUUxcUwoIMREd2eRkr0idyxythXOJnK1+51pr3YWh3UfGNrK7cOB3TVw0FJ92j4mr9GdEHk13Js3C1jmbM+qtebC7N5FgiG+flo2RqTE47SVBPcQrj/ZfaQIg5fQFHOPoFGThm2L0vo3aEI631I=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=ll9QuydX; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 3889AC433C7;
-	Fri,  2 Feb 2024 19:43:10 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=E95wzpBsyH81/ZPZoiXYIXg3q8QS40ZfMbDsuTmcPYJ2s7OAFgGUYb1Al5RM9fgWhg21cSzk2dPjRiQ/yW4HEA2sB1zXWOUHvqypuSI/EAm00U2kSBxnMsNKtsNJgnw86INl8JKZzJ5aZ41kt2cBZemfQ7bgdh+8CakN2hWo7ic=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=h0cTufgc; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id EEF40C43394;
+	Fri,  2 Feb 2024 19:43:35 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1706902990;
-	bh=cUcFLLlsjk7WbOgGfM+Zedf9W0MOG6p/9qlCVcXVn2g=;
+	s=k20201202; t=1706903016;
+	bh=7AQ1NisE8h7M3azLdVTWRKwE+nDbvKHU5IfF9aqyy2E=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=ll9QuydXNFX1RbAqrFbL1AGQgoApXwUbnU+TQqCYVfbdT3ZirVzg9pPgfvmDxNrhK
-	 w2h9Td1WUJYJZXkMbQUEX8i7zMscKiNugV/xB7IQDzwkH561aSbTqeUzpoPYL15ljz
-	 zDQ9aUUYW896QV75x7Cb2WkDo75dT6RHMmXkyOd0Brn1fbgIt6Kkgzi0nro8DoVdmY
-	 hdzpnCYFJGdzRRUmrIMMOgSRjLqOVjcNq1oR+0GkfyETwIKWwM7fAg8F2Oja/yZURz
-	 g5K09udZCVNX7xqiW3k2zPajjZZGYstrG/0wM7KcHSauQrOcL/6JNiKBHz0w+pcm8h
-	 r0AqBY1mSlvsA==
-Date: Fri, 2 Feb 2024 13:43:08 -0600
+	b=h0cTufgc0nQf3PkqeSzM+9KDN4/N94FCSqpmatbPHGn8Ti1SPnRFd1tsvnvaLeOAB
+	 jxVr9eLRkowT2lNhv52Lp5mYKdR/ABpBpZ9YN/ylDn9J134VH5/d284LIwdOy1kUgv
+	 SFyRXXOJJYcvquk2yUVM2hZZpgmMgKQGM+p02b3OBShuayLsFNCDXG97u/ejWf89c0
+	 jW1sPUO5Ji7e/HdkX91JpKmv6XFzDwRL+DIXh2Nahjx65eryoUwHd6D54eVph7pKuT
+	 psojOgGBMUgj7vQQT2pzEV++FxE28XzGZm/mYzvcUWVAypeH6WxUKC3DFRwQ7Th6sp
+	 XIiFp3QlyjeEw==
+Date: Fri, 2 Feb 2024 13:43:34 -0600
 From: Rob Herring <robh@kernel.org>
-To: Lorenzo Bianconi <lorenzo@kernel.org>
-Cc: jic23@kernel.org, linux-iio@vger.kernel.org,
-	lorenzo.bianconi@redhat.com, devicetree@vger.kernel.org,
-	krzysztof.kozlowski+dt@linaro.org
-Subject: Re: [PATCH v3 3/3] dt-bindings: iio: imu: st_lsm6dsx: add
- asm330lhhxg1
-Message-ID: <20240202194308.GA806128-robh@kernel.org>
-References: <cover.1706692153.git.lorenzo@kernel.org>
- <93160585e69e4531a981064817ccbb143a6a1f70.1706692153.git.lorenzo@kernel.org>
+To: Ravi Gunasekaran <r-gunasekaran@ti.com>
+Cc: devicetree@vger.kernel.org, vigneshr@ti.com, robh+dt@kernel.org,
+	nm@ti.com, krzysztof.kozlowski+dt@linaro.org, srk@ti.com,
+	conor+dt@kernel.org, brgl@bgdev.pl, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH] dt-bindings: arm: ti: Update maintainers list
+Message-ID: <170690301354.846180.4796168503995884734.robh@kernel.org>
+References: <20240131092043.28829-1-r-gunasekaran@ti.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -60,48 +58,22 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <93160585e69e4531a981064817ccbb143a6a1f70.1706692153.git.lorenzo@kernel.org>
+In-Reply-To: <20240131092043.28829-1-r-gunasekaran@ti.com>
 
-On Wed, Jan 31, 2024 at 10:11:31AM +0100, Lorenzo Bianconi wrote:
-> Add device bindings for asm330lhhxg1 IMU sensor.
-> The asm330lhhx supports a subset of the features and functionality
-> provided by the lsm6dsr via identical interfaces and so is a
-> suitable fallback compatible.
 
-A subset cannot fallback to a superset.
-
+On Wed, 31 Jan 2024 14:50:43 +0530, Ravi Gunasekaran wrote:
+> Update the list with current maintainer of TI's davinci
+> platforms.
 > 
-> Signed-off-by: Lorenzo Bianconi <lorenzo@kernel.org>
+> Signed-off-by: Ravi Gunasekaran <r-gunasekaran@ti.com>
+> Acked-by: Bartosz Golaszewski <brgl@bgdev.pl>
 > ---
->  Documentation/devicetree/bindings/iio/imu/st,lsm6dsx.yaml | 3 +++
->  1 file changed, 3 insertions(+)
+> Added Acked-by after discussing with Bartosz over mail.
 > 
-> diff --git a/Documentation/devicetree/bindings/iio/imu/st,lsm6dsx.yaml b/Documentation/devicetree/bindings/iio/imu/st,lsm6dsx.yaml
-> index 28b667a9cb76..316601b2da7a 100644
-> --- a/Documentation/devicetree/bindings/iio/imu/st,lsm6dsx.yaml
-> +++ b/Documentation/devicetree/bindings/iio/imu/st,lsm6dsx.yaml
-> @@ -49,6 +49,9 @@ properties:
->        - items:
->            - const: st,asm330lhb
->            - const: st,asm330lhh
-> +      - items:
-> +          - const: st,asm330lhhxg1
-> +          - const: st,lsm6dsr
-
-Assuming this is correct and the commit msg is wrong, can't this be 
-added to the existing entry?:
-
-items:
-  - enum:
-      - st,asm330lhhx
-      - st,asm330lhhxg1
-  - const: st,lsm6dsr
-
-
->  
->    reg:
->      maxItems: 1
-> -- 
-> 2.43.0
+>  Documentation/devicetree/bindings/arm/ti/ti,davinci.yaml | 2 +-
+>  1 file changed, 1 insertion(+), 1 deletion(-)
 > 
+
+Acked-by: Rob Herring <robh@kernel.org>
+
 
