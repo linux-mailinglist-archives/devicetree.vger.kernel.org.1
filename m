@@ -1,220 +1,252 @@
-Return-Path: <devicetree+bounces-38037-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-38038-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 13086847443
-	for <lists+devicetree@lfdr.de>; Fri,  2 Feb 2024 17:11:31 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 79C7D847451
+	for <lists+devicetree@lfdr.de>; Fri,  2 Feb 2024 17:12:28 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 357291C24F40
-	for <lists+devicetree@lfdr.de>; Fri,  2 Feb 2024 16:11:30 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 31A4C29170D
+	for <lists+devicetree@lfdr.de>; Fri,  2 Feb 2024 16:12:27 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id ECB60146913;
-	Fri,  2 Feb 2024 16:08:11 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9027E1482EC;
+	Fri,  2 Feb 2024 16:09:29 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="Ovroj3df"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="G7YvTGd6"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lj1-f171.google.com (mail-lj1-f171.google.com [209.85.208.171])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DB1FD1474CE
-	for <devicetree@vger.kernel.org>; Fri,  2 Feb 2024 16:08:09 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.171
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4F3071474A1;
+	Fri,  2 Feb 2024 16:09:29 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1706890091; cv=none; b=rC4AeFDD8bQe0lxjmRGCJ/R0DaALx1CJgRVw2j0R1sTIIwgJQ2ypSgv6WRYcXOJWvoBfZtTF45wgYx19aaMSMy4DNR5wnnY9B63eSM/i7RVBhc3zhPTkpU7zfzhMZv2uQ3tFxoXgRINcIk1rPYXGL2eB1AmWZFn26Gq6gpFpGEY=
+	t=1706890169; cv=none; b=R2wU+0c9w8JiE89whoLDVEZ87XVxNlNEksb09wpxz7wE43d9DYVCt0FEVTg/FP0TQnYWpf2qMI6Fq10m5lnS4enwXqpLVSq4zl1OYJlq4ofwRThX7SaMl1eYnLGT4/wNyYqED5loEMd4vRqUrtRGVSSJm86w1WtXNnm6+gpsCRE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1706890091; c=relaxed/simple;
-	bh=1Sy1DahY5LhmMgnq6h+UTVpAneW/WiqYKvKoRqACwPU=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=U8VcGLs/oEMHudTQsriTvvqpPr+Oqn1TglgzBHfRNVTWcYhR+vDKe4vjfvoOqSXyRVG/xYv60KcX+L9PHqjnMDM3GDgRTE3HZVhVEBwrJUKhX90DQAe2/uE+NsRod3uuKWxRqIPgWgEaZE5k9JLHVecoVu91WGsYFzQ6kL91SCY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=Ovroj3df; arc=none smtp.client-ip=209.85.208.171
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-lj1-f171.google.com with SMTP id 38308e7fff4ca-2cf206e4d56so28997361fa.3
-        for <devicetree@vger.kernel.org>; Fri, 02 Feb 2024 08:08:09 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1706890088; x=1707494888; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
-         :to:content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=QdOH44GqBNuJv7gNhF+H71j52RbjvAKIOcCjf68RgNE=;
-        b=Ovroj3df70dPtuyRQBmahU5qlBI8SM2xLqy5+or/4w0q1un2pO9WshDLPXEJldH0tv
-         NrlvfJNwXIo4/16XcF21XGQnQcDcTGfbIlmfDGiP8hk/DnKPATlSzr7ChLhy2g711qtJ
-         d1XYNWoB0nmasoA/p916HY8K6E+3e1CbvmkVJLrq3v6PP25m+pJyyJBjk0VVnNXbxOf8
-         aU1gWuqfgbgXYoxnbBgSHzSj1LdwfkmVmE7Ep5a3OqjKC0VtS6wCS0ah9JOsMLihhMc/
-         0sHzW7+2gfDr443MsP/4rJZtMvnrC76CRBY6g/GQMPvQqPD6peRpZm/81fFxEjkoOnsc
-         5Ocw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1706890088; x=1707494888;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
-         :to:content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=QdOH44GqBNuJv7gNhF+H71j52RbjvAKIOcCjf68RgNE=;
-        b=G8SAQUy6lZVzp3z2RODq6WXP42JXMttcSvd+qT8FgplF7oTfK6G/I9lnzwv42cpPx3
-         uJh5GPBoFifTu8iGymSlk+h4uKfIRU6CfEjfMUvNvZL+ZbolVvPmuGi/JkcMQLY/lboO
-         v9TmXCCw+xn72KQGQirc+4COeZYeKl11qAqmezxzdTQGwHINQNFo+FlX87RCovoNI89D
-         eekjxlevdEdRSXdo3yeSndzPPjvfFeGvGo0PQKK6iYqVnyyIeLdI3e571md9Xm7Yud5W
-         HL6jgMgdCWZl44PZ9NyLpGyCNjGaemacxa4jkIMGfF/Ox4bXR+W40FmuYXVKrbgvOaRX
-         2zTA==
-X-Gm-Message-State: AOJu0YxYiJyOPiT2dQNjVwAyAN0w+TzHZZanQOdwjoVq/D2N6K5aYFYJ
-	b6rx6Ci24HYWMfl2QzV3j/qcmkNzbqhPuGGDqen7lYThzar4DxIiVtHJDCvf97E=
-X-Google-Smtp-Source: AGHT+IFejla8/vJpaC+MwBd7ti69FX7y+1E1msZO7F5Sxy6AtRthKMme+rjGfWPCS6a6O60/eRUsfw==
-X-Received: by 2002:a2e:7817:0:b0:2cc:ee90:e565 with SMTP id t23-20020a2e7817000000b002ccee90e565mr3978358ljc.9.1706890087987;
-        Fri, 02 Feb 2024 08:08:07 -0800 (PST)
-X-Forwarded-Encrypted: i=0; AJvYcCXqPx1EgWdIp0lFo8BPwv2/q4cv9bzZXeZ/oyJT3AWNycWfGQEXvl4Ls9weA+6/2Pls2WfzCdZC+3RmSm++Wol4l8sJjZC0e3+dc0vch2PewDnGfg7FbJhA7+q5XJ8NXNWWhkPC5lF44NzD9uhvpohWfJ0taE2FxmByIxtl8DqNF3Xw3/Ai7BYbiwaR1kX9BFPxq/jvvf8IGcs11ThNXN/BXeTcnJt0H6apnER5n4/ERCE7Jzie5Cah9B0ZUb2BdYaDVxovzpBw6dckW6fj9C4sR/LoPX2/U4wfUGmVeQJh97iGZleLlA59+wuWwR9+o+dEwUP9J85yMVtZbKjOQThb96ZR4rjpBI/BKNb1KpO2ybgZoYAsX+Rz+EmhMbPcX41QxSI7jnpHGuILgKzKilKG4u8AIaocwTBc54vLTzTTLGY=
-Received: from [192.168.1.20] ([178.197.222.62])
-        by smtp.gmail.com with ESMTPSA id r3-20020aa7da03000000b0055ef0105f2fsm928458eds.80.2024.02.02.08.08.06
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 02 Feb 2024 08:08:07 -0800 (PST)
-Message-ID: <adfef53c-d64e-4855-ab61-101b6fa419e5@linaro.org>
-Date: Fri, 2 Feb 2024 17:08:05 +0100
+	s=arc-20240116; t=1706890169; c=relaxed/simple;
+	bh=JKjik19irTKxH29Yeweq9zfMl6xdzxEg/mcUMqTql/s=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=GKyFF+Mg7vUQTLzggEEE6HMcS+F2OOsqAZIAMqTi41StXh5tm5/aiQ4NHpFV7WYf3LOcd53ysqpxJK7wVXLZ0xd3q16HRtdSXc+k7mjptRrHsixkE8AYYz/m21jKOWLPR3Fq8OoHPRsEcsMMpShg4OfyVJvJXsKNQM7kjJjx5m4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=G7YvTGd6; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 28503C43390;
+	Fri,  2 Feb 2024 16:09:27 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1706890168;
+	bh=JKjik19irTKxH29Yeweq9zfMl6xdzxEg/mcUMqTql/s=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=G7YvTGd6PqeZiR/6qwBVmTm6pnRj4NRc0t7Fe3yBdyiZueJYfHWnjr/WF33qsQ3NM
+	 9BkYwn4HAtLckhN4p+XA5NePJpResF+HzXgsnwJf6gnOIMUu7LTOypFH6JbL53mXJZ
+	 SSD5BOtTIJgyjm0c56PUA0Ayk/lu9aggST3FmdNxx7J5eEputg3mPURGBbkT0tQAPZ
+	 4CaU2c3foqmWduaXLmEuFxDK0Vif8gqBw0M23ydFLgO6qgSQmMP0iEZTtomVzA8nog
+	 fIun+LiASDvAXFh9yGnQxorH8bK4L9bDiZs+r6Xlgcvcm7nPX9rHVEQjXPwua2SvW2
+	 +mclvUQYrBzNA==
+Date: Fri, 2 Feb 2024 10:09:25 -0600
+From: Bjorn Andersson <andersson@kernel.org>
+To: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+Cc: Bartosz Golaszewski <brgl@bgdev.pl>, 
+	Konrad Dybcio <konrad.dybcio@linaro.org>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Marcel Holtmann <marcel@holtmann.org>, Luiz Augusto von Dentz <luiz.dentz@gmail.com>, 
+	Bjorn Helgaas <bhelgaas@google.com>, Neil Armstrong <neil.armstrong@linaro.org>, 
+	Alex Elder <elder@linaro.org>, Srini Kandagatla <srinivas.kandagatla@linaro.org>, 
+	Greg Kroah-Hartman <gregkh@linuxfoundation.org>, Arnd Bergmann <arnd@arndb.de>, Abel Vesa <abel.vesa@linaro.org>, 
+	Manivannan Sadhasivam <mani@kernel.org>, Lukas Wunner <lukas@wunner.de>, linux-arm-msm@vger.kernel.org, 
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, linux-bluetooth@vger.kernel.org, 
+	linux-pci@vger.kernel.org, Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
+Subject: Re: Re: [RFC 2/9] arm64: dts: qcom: qrb5165-rb5: model the PMU of
+ the QCA6391
+Message-ID: <sdxnybvszlcfrjexc2fuqkozormhsrx6guauvnlozuh5c6poec@kj2wlb4tnbnz>
+References: <20240201155532.49707-1-brgl@bgdev.pl>
+ <20240201155532.49707-3-brgl@bgdev.pl>
+ <5lirm5mnf7yqbripue5nyqu6ej54sx4rtmgmyqjrqanabsriyp@2pjiv5xbmxpk>
+ <CAA8EJpp=gYhx6XKHNzyR5n8i7vg-MJXN5XJp4CPKZMYS5GBHvw@mail.gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2] dt-bindings: media: Add sram-size Property for Wave5
-Content-Language: en-US
-To: Nishanth Menon <nm@ti.com>
-Cc: Brandon Brnich <b-brnich@ti.com>, Nas Chung <nas.chung@chipsnmedia.com>,
- Jackson Lee <jackson.lee@chipsnmedia.com>,
- Mauro Carvalho Chehab <mchehab@kernel.org>, Rob Herring
- <robh+dt@kernel.org>, Krzysztof Kozlowski
- <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>,
- linux-media@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, Vignesh Raghavendra <vigneshr@ti.com>,
- Darren Etheridge <detheridge@ti.com>
-References: <20240201184238.2542695-1-b-brnich@ti.com>
- <1209b7cf-5be2-4107-aa6b-d67a32ea3737@linaro.org>
- <20240202125257.p4astjuxpzr5ltjs@dragster>
- <8091a8cf-c1c0-49b0-b136-1ad0d185aa6a@linaro.org>
- <20240202155813.szxvi7bfp5xh7rvw@babble>
-From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
- xsFNBFVDQq4BEAC6KeLOfFsAvFMBsrCrJ2bCalhPv5+KQF2PS2+iwZI8BpRZoV+Bd5kWvN79
- cFgcqTTuNHjAvxtUG8pQgGTHAObYs6xeYJtjUH0ZX6ndJ33FJYf5V3yXqqjcZ30FgHzJCFUu
- JMp7PSyMPzpUXfU12yfcRYVEMQrmplNZssmYhiTeVicuOOypWugZKVLGNm0IweVCaZ/DJDIH
- gNbpvVwjcKYrx85m9cBVEBUGaQP6AT7qlVCkrf50v8bofSIyVa2xmubbAwwFA1oxoOusjPIE
- J3iadrwpFvsZjF5uHAKS+7wHLoW9hVzOnLbX6ajk5Hf8Pb1m+VH/E8bPBNNYKkfTtypTDUCj
- NYcd27tjnXfG+SDs/EXNUAIRefCyvaRG7oRYF3Ec+2RgQDRnmmjCjoQNbFrJvJkFHlPeHaeS
- BosGY+XWKydnmsfY7SSnjAzLUGAFhLd/XDVpb1Een2XucPpKvt9ORF+48gy12FA5GduRLhQU
- vK4tU7ojoem/G23PcowM1CwPurC8sAVsQb9KmwTGh7rVz3ks3w/zfGBy3+WmLg++C2Wct6nM
- Pd8/6CBVjEWqD06/RjI2AnjIq5fSEH/BIfXXfC68nMp9BZoy3So4ZsbOlBmtAPvMYX6U8VwD
- TNeBxJu5Ex0Izf1NV9CzC3nNaFUYOY8KfN01X5SExAoVTr09ewARAQABzTRLcnp5c3p0b2Yg
- S296bG93c2tpIDxrcnp5c3p0b2Yua296bG93c2tpQGxpbmFyby5vcmc+wsGUBBMBCgA+FiEE
- m9B+DgxR+NWWd7dUG5NDfTtBYpsFAmI+BxMCGwMFCRRfreEFCwkIBwIGFQoJCAsCBBYCAwEC
- HgECF4AACgkQG5NDfTtBYptgbhAAjAGunRoOTduBeC7V6GGOQMYIT5n3OuDSzG1oZyM4kyvO
- XeodvvYv49/ng473E8ZFhXfrre+c1olbr1A8pnz9vKVQs9JGVa6wwr/6ddH7/yvcaCQnHRPK
- mnXyP2BViBlyDWQ71UC3N12YCoHE2cVmfrn4JeyK/gHCvcW3hUW4i5rMd5M5WZAeiJj3rvYh
- v8WMKDJOtZFXxwaYGbvFJNDdvdTHc2x2fGaWwmXMJn2xs1ZyFAeHQvrp49mS6PBQZzcx0XL5
- cU9ZjhzOZDn6Apv45/C/lUJvPc3lo/pr5cmlOvPq1AsP6/xRXsEFX/SdvdxJ8w9KtGaxdJuf
- rpzLQ8Ht+H0lY2On1duYhmro8WglOypHy+TusYrDEry2qDNlc/bApQKtd9uqyDZ+rx8bGxyY
- qBP6bvsQx5YACI4p8R0J43tSqWwJTP/R5oPRQW2O1Ye1DEcdeyzZfifrQz58aoZrVQq+innR
- aDwu8qDB5UgmMQ7cjDSeAQABdghq7pqrA4P8lkA7qTG+aw8Z21OoAyZdUNm8NWJoQy8m4nUP
- gmeeQPRc0vjp5JkYPgTqwf08cluqO6vQuYL2YmwVBIbO7cE7LNGkPDA3RYMu+zPY9UUi/ln5
- dcKuEStFZ5eqVyqVoZ9eu3RTCGIXAHe1NcfcMT9HT0DPp3+ieTxFx6RjY3kYTGLOwU0EVUNc
- NAEQAM2StBhJERQvgPcbCzjokShn0cRA4q2SvCOvOXD+0KapXMRFE+/PZeDyfv4dEKuCqeh0
- hihSHlaxTzg3TcqUu54w2xYskG8Fq5tg3gm4kh1Gvh1LijIXX99ABA8eHxOGmLPRIBkXHqJY
- oHtCvPc6sYKNM9xbp6I4yF56xVLmHGJ61KaWKf5KKWYgA9kfHufbja7qR0c6H79LIsiYqf92
- H1HNq1WlQpu/fh4/XAAaV1axHFt/dY/2kU05tLMj8GjeQDz1fHas7augL4argt4e+jum3Nwt
- yupodQBxncKAUbzwKcDrPqUFmfRbJ7ARw8491xQHZDsP82JRj4cOJX32sBg8nO2N5OsFJOcd
- 5IE9v6qfllkZDAh1Rb1h6DFYq9dcdPAHl4zOj9EHq99/CpyccOh7SrtWDNFFknCmLpowhct9
- 5ZnlavBrDbOV0W47gO33WkXMFI4il4y1+Bv89979rVYn8aBohEgET41SpyQz7fMkcaZU+ok/
- +HYjC/qfDxT7tjKXqBQEscVODaFicsUkjheOD4BfWEcVUqa+XdUEciwG/SgNyxBZepj41oVq
- FPSVE+Ni2tNrW/e16b8mgXNngHSnbsr6pAIXZH3qFW+4TKPMGZ2rZ6zITrMip+12jgw4mGjy
- 5y06JZvA02rZT2k9aa7i9dUUFggaanI09jNGbRA/ABEBAAHCwXwEGAEKACYCGwwWIQSb0H4O
- DFH41ZZ3t1Qbk0N9O0FimwUCYDzvagUJFF+UtgAKCRAbk0N9O0Fim9JzD/0auoGtUu4mgnna
- oEEpQEOjgT7l9TVuO3Qa/SeH+E0m55y5Fjpp6ZToc481za3xAcxK/BtIX5Wn1mQ6+szfrJQ6
- 59y2io437BeuWIRjQniSxHz1kgtFECiV30yHRgOoQlzUea7FgsnuWdstgfWi6LxstswEzxLZ
- Sj1EqpXYZE4uLjh6dW292sO+j4LEqPYr53hyV4I2LPmptPE9Rb9yCTAbSUlzgjiyyjuXhcwM
- qf3lzsm02y7Ooq+ERVKiJzlvLd9tSe4jRx6Z6LMXhB21fa5DGs/tHAcUF35hSJrvMJzPT/+u
- /oVmYDFZkbLlqs2XpWaVCo2jv8+iHxZZ9FL7F6AHFzqEFdqGnJQqmEApiRqH6b4jRBOgJ+cY
- qc+rJggwMQcJL9F+oDm3wX47nr6jIsEB5ZftdybIzpMZ5V9v45lUwmdnMrSzZVgC4jRGXzsU
- EViBQt2CopXtHtYfPAO5nAkIvKSNp3jmGxZw4aTc5xoAZBLo0OV+Ezo71pg3AYvq0a3/oGRG
- KQ06ztUMRrj8eVtpImjsWCd0bDWRaaR4vqhCHvAG9iWXZu4qh3ipie2Y0oSJygcZT7H3UZxq
- fyYKiqEmRuqsvv6dcbblD8ZLkz1EVZL6djImH5zc5x8qpVxlA0A0i23v5QvN00m6G9NFF0Le
- D2GYIS41Kv4Isx2dEFh+/Q==
-In-Reply-To: <20240202155813.szxvi7bfp5xh7rvw@babble>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <CAA8EJpp=gYhx6XKHNzyR5n8i7vg-MJXN5XJp4CPKZMYS5GBHvw@mail.gmail.com>
 
-On 02/02/2024 16:58, Nishanth Menon wrote:
-> On 14:56-20240202, Krzysztof Kozlowski wrote:
->> On 02/02/2024 13:52, Nishanth Menon wrote:
->>> On 11:47-20240202, Krzysztof Kozlowski wrote:
->>>> On 01/02/2024 19:42, Brandon Brnich wrote:
->>>>> Wave521c has capability to use SRAM carveout to store reference data with
->>>>> purpose of reducing memory bandwidth. To properly use this pool, the driver
->>>>> expects to have an sram and sram-size node. Without sram-size node, driver
->>>>> will default value to zero, making sram node irrelevant.
->>>>
->>>> I am sorry, but what driver expects should not be rationale for new
->>>> property. This justification suggests clearly it is not a property for DT.
->>>>
->>>
->>> Yup, the argumentation in the commit message is from the wrong
->>> perspective. bindings are OS agnostic hardware description, and what
->>> driver does with the description is driver's problem.
->>>
->>> I will at least paraphrase my understanding:
->>> In this case, however, the hardware block will limp along with
->>> the usage of DDR (as is the current description), due to the
->>> latencies involved for DDR accesses. However, the hardware block
->>> has capability to use a substantially lower latency SRAM to provide
->>> proper performance and hence for example, deal with higher resolution
->>> data streams. This SRAM is instantiated at SoC level rather than
->>> embedded within the hardware block itself.
->>
->> That sounds like OS policy. Why would different boards with the same
->> component have this set differently? Based on amount of available
->> memory? This, I believe, is runtime configuration because it might
->> depend on user-space you run. Based on purpose (e.g. optimize for
->> decoding or general usage)? Again, run-time because same hardware board
->> can be used for different purposes.
->>
+On Fri, Feb 02, 2024 at 06:59:48AM +0200, Dmitry Baryshkov wrote:
+> On Fri, 2 Feb 2024 at 06:34, Bjorn Andersson <andersson@kernel.org> wrote:
+> >
+> > On Thu, Feb 01, 2024 at 04:55:25PM +0100, Bartosz Golaszewski wrote:
+> > > From: Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
+> > >
+> > > Add a node for the PMU module of the QCA6391 present on the RB5 board.
+> > > Assign its LDO power outputs to the existing Bluetooth module. Add a
+> > > node for the PCIe port to sm8250.dtsi and define the WLAN node on it in
+> > > the board's .dts and also make it consume the power outputs of the PMU.
+> > >
+> > > Signed-off-by: Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
+> > > ---
+> > >  arch/arm64/boot/dts/qcom/qrb5165-rb5.dts | 128 +++++++++++++++++++++--
+> > >  arch/arm64/boot/dts/qcom/sm8250.dtsi     |  10 ++
+> > >  2 files changed, 127 insertions(+), 11 deletions(-)
+> > >
+> > > diff --git a/arch/arm64/boot/dts/qcom/qrb5165-rb5.dts b/arch/arm64/boot/dts/qcom/qrb5165-rb5.dts
+> > > index cd0db4f31d4a..fab5bebafbad 100644
+> > > --- a/arch/arm64/boot/dts/qcom/qrb5165-rb5.dts
+> > > +++ b/arch/arm64/boot/dts/qcom/qrb5165-rb5.dts
+> > > @@ -108,6 +108,87 @@ lt9611_3v3: lt9611-3v3 {
+> > >               regulator-always-on;
+> > >       };
+> > >
+> > > +     qca6390_pmu: pmu@0 {
+> > > +             compatible = "qcom,qca6390-pmu";
+> > > +
+> > > +             pinctrl-names = "default";
+> > > +             pinctrl-0 = <&bt_en_state>, <&wlan_en_state>;
+> > > +
+> > > +             vddaon-supply = <&vreg_s6a_0p95>;
+> > > +             vddpmu-supply = <&vreg_s2f_0p95>;
+> > > +             vddrfa1-supply = <&vreg_s2f_0p95>;
+> > > +             vddrfa2-supply = <&vreg_s8c_1p3>;
+> > > +             vddrfa3-supply = <&vreg_s5a_1p9>;
+> > > +             vddpcie1-supply = <&vreg_s8c_1p3>;
+> > > +             vddpcie2-supply = <&vreg_s5a_1p9>;
+> > > +             vddio-supply = <&vreg_s4a_1p8>;
+> > > +
+> > > +             wlan-enable-gpios = <&tlmm 20 GPIO_ACTIVE_HIGH>;
+> > > +             bt-enable-gpios = <&tlmm 21 GPIO_ACTIVE_HIGH>;
+> > > +
+> > > +             regulators {
+> > > +                     vreg_pmu_rfa_cmn: ldo0 {
+> > > +                             regulator-name = "vreg_pmu_rfa_cmn";
+> > > +                             regulator-min-microvolt = <760000>;
+> > > +                             regulator-max-microvolt = <840000>;
+> >
+> > I'm still not convinced that the PMU has a set of LDOs, and looking at
+> > your implementation you neither register these with the regulator
+> > framework, nor provide any means of controlling the state or voltage of
+> > these "regulators".
 > 
-> Why is this OS policy? It is a hardware capability.
-
-How amount of SRAM size is hardware capability? Each hardware can work
-probably with 1, 2 or 100 pages.
-
-> Traditionally
-> many similar hardware blocks would have allocated local SRAM for
-> worst case inside the hardware block itself and don't need to use
-> DDR in the first place. However, for this hardware block, it has
-> capability to use some part of one of the many SRAM blocks in the SoC,
-> not be shared for some part of the system - so from a hardware
-> description perspective, we will need to call that out as to which
-> SRAM is available for the hardware block.
-
-Just because more than one device wants some memory, does not mean this
-is hardware property. Drivers can ask how much memory available there
-is. OS knows how many users of memory there is, so knows how much to
-allocate for each device.
-
+> Please take a look at the description of VDD08_PMU_RFA_CMN and
+> VDD_PMU_AON_I pins in the spec (80-WL522-1, page 25). I'm not sure if
+> I'm allowed to quote it, so I won't. But the spec clearly describes
+> VDD_PMU_AON_I as 0.95V LDO input and VDD08_PMU_RFA_CMN as 0.8 LDO
+> output generated using that input. I think this proves that the
+> on-chip PMU has actual LDOs.
 > 
-> Why would different boards need this differently? simply because
-> different cameras have different resolution and framerates - and you
-> dont want to pay the worst case sram penalty for all product
-> configuration.
 
-Choice of resolution and framerate is runtime choice or use-case
-dependent, not board level configuration, therefore amount of SRAM size
-to use is as well.
+You're correct, thank you for the pointer and clarification. I now agree
+with you, the PMU consumes what I saw as the chip input supplies, and
+based on WL_EN and BT_EN will provide power on pads, which are then
+externally routed to respective block.
 
+> I must admit, I find this representation very verbose, but on the
+> other hand Bartosz is right, it represents actual hardware.
+
+I agree, this is actual hardware.
+
+> Maybe we
+> can drop some of the properties of corresponding regulator blocks, as
+> we don't actually need them and they are internal properties of the
+> hardware.
 > 
-> Further, Linux is not the only thing that runs on these SoCs.. these are
-> mixed systems with autonomous operations of uC cores who may or maynot
-> (typically not) even need to communicate with MPU to state which part of
-> resource they are hogging (hence the board level definition).
 
-OK that could be the case but I could also say choice of RTOS or any
-other is also board-independent.
+To me this really looks like a fancy "regulator-fixed" with multiple
+inputs, two gpios and multiple outputs.
 
-Best regards,
-Krzysztof
+This would also imply that we don't need to invent the power sequence
+framework to tie WiFi and BT to the PMU's state.
 
+The PMU is a thing, so we can represent that in DeviceTree, it consumes
+M input power rails, and two gpios, it provides N WiFi supplies and O BT
+supplies (with some overlap between N and O). The WiFi node consumes its
+N supplies, the BT node consumes its O supplies.
+
+If any of the N regulators are requested enabled the qca6390-pmu driver
+enables all M input rails, then enables WL_EN. If any of the O BT
+regulators are requested enabled, the driver enables all M input rails,
+then enables BT_EN.
+
+> >
+> > [..]
+> > >
+> > >  &uart6 {
+> > > @@ -1311,17 +1418,16 @@ &uart6 {
+> > >       bluetooth {
+> > >               compatible = "qcom,qca6390-bt";
+> > >
+> > > -             pinctrl-names = "default";
+> > > -             pinctrl-0 = <&bt_en_state>;
+> > > -
+> > > -             enable-gpios = <&tlmm 21 GPIO_ACTIVE_HIGH>;
+> > > -
+> > > -             vddio-supply = <&vreg_s4a_1p8>;
+> > > -             vddpmu-supply = <&vreg_s2f_0p95>;
+> > > -             vddaon-supply = <&vreg_s6a_0p95>;
+> > > -             vddrfa0p9-supply = <&vreg_s2f_0p95>;
+> > > -             vddrfa1p3-supply = <&vreg_s8c_1p3>;
+> > > -             vddrfa1p9-supply = <&vreg_s5a_1p9>;
+> > > +             vddrfacmn-supply = <&vreg_pmu_rfa_cmn>;
+> > > +             vddaon-supply = <&vreg_pmu_aon_0p59>;
+> > > +             vddwlcx-supply = <&vreg_pmu_wlcx_0p8>;
+> > > +             vddwlmx-supply = <&vreg_pmu_wlmx_0p85>;
+> > > +             vddbtcmx-supply = <&vreg_pmu_btcmx_0p85>;
+> > > +             vddrfa0-supply = <&vreg_pmu_rfa_0p8>;
+> > > +             vddrfa1-supply = <&vreg_pmu_rfa_1p2>;
+> > > +             vddrfa2-supply = <&vreg_pmu_rfa_1p7>;
+> > > +             vddpcie0-supply = <&vreg_pmu_pcie_0p9>;
+> > > +             vddpcie1-supply = <&vreg_pmu_pcie_1p8>;
+> >
+> > As I asked before, why does bluetooth suddenly care about PCIe supplies?
+> 
+> Power sequencing in the same spec describes that PCIe voltages should
+> be up even if only BT is being brought up. PMU itself handles
+> distributing voltages according to the actual load needs.
+> 
+
+You're right, the power sequence diagram in the docs do indicate that
+VDD13_PMU_PCIE_I and VDD19_PMU_PCIE_I should be enabled before either
+WL_EN or BT_EN are driven high.
+
+But I don't see anything stating that the output from the PMU
+(VDD09_PMU_PCIE) in turn is fed to the bluetooth block.
+
+Regards,
+Bjorn
+
+> >
+> > Regards,
+> > Bjorn
+> >
+> > >       };
+> > >  };
+> > >
+> > > diff --git a/arch/arm64/boot/dts/qcom/sm8250.dtsi b/arch/arm64/boot/dts/qcom/sm8250.dtsi
+> > > index 4d849e98bf9b..7cd21d4e7278 100644
+> > > --- a/arch/arm64/boot/dts/qcom/sm8250.dtsi
+> > > +++ b/arch/arm64/boot/dts/qcom/sm8250.dtsi
+> > > @@ -2203,6 +2203,16 @@ pcie0: pcie@1c00000 {
+> > >                       dma-coherent;
+> > >
+> > >                       status = "disabled";
+> > > +
+> > > +                     pcieport0: pcie@0 {
+> > > +                             device_type = "pci";
+> > > +                             reg = <0x0 0x0 0x0 0x0 0x0>;
+> > > +                             #address-cells = <3>;
+> > > +                             #size-cells = <2>;
+> > > +                             ranges;
+> > > +
+> > > +                             bus-range = <0x01 0xff>;
+> > > +                     };
+> > >               };
+> > >
+> > >               pcie0_phy: phy@1c06000 {
+> > > --
+> > > 2.40.1
+> > >
+> >
+> 
+> 
+> -- 
+> With best wishes
+> Dmitry
 
