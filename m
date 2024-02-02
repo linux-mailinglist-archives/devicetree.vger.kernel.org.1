@@ -1,184 +1,119 @@
-Return-Path: <devicetree+bounces-38079-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-38080-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 33E17847669
-	for <lists+devicetree@lfdr.de>; Fri,  2 Feb 2024 18:42:57 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3E8FC84767A
+	for <lists+devicetree@lfdr.de>; Fri,  2 Feb 2024 18:45:00 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 9907D1F21E18
-	for <lists+devicetree@lfdr.de>; Fri,  2 Feb 2024 17:42:56 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 1E9F0B296EB
+	for <lists+devicetree@lfdr.de>; Fri,  2 Feb 2024 17:44:38 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5C7F914C58F;
-	Fri,  2 Feb 2024 17:41:46 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B9D5114C599;
+	Fri,  2 Feb 2024 17:43:41 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="Qdj16sLU"
+	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="Ox/DJBfx"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-yw1-f169.google.com (mail-yw1-f169.google.com [209.85.128.169])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 88CDD14AD2E
-	for <devicetree@vger.kernel.org>; Fri,  2 Feb 2024 17:41:44 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.169
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EC17514533A;
+	Fri,  2 Feb 2024 17:43:39 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1706895706; cv=none; b=aXPM/QPHNARxJ32NNc71gAk4PdWV2xZGxo4cZdp/XnIReAWSwlngICUv5saipMJ6oFX2vAsdnP+2Rp5n41C60nhhui3RTprm7oGmjdAEEwjNL7czLeddOdKri3/+THXRyDTSMDTRb+iqnQPrFZtzN1Gb7LVZUYlkH71NFVb5eNM=
+	t=1706895821; cv=none; b=GUJDJZdfmef0BcCuw5BCIG7sed3V/oHeo8tMlQs8Q5cFFafzlAP426HiOhMRAJUSJQUAO1PGhaCYZy+g4N6bOogYsEp4HLSZYFEj90lOYTsFCqEsHF4+lYnZtuJzxuk3IQKyeUq5QsBtmHpSJgRHVgD4DhrozZpAzqnb/KdUQsM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1706895706; c=relaxed/simple;
-	bh=eu87qWyaCqCwnJ2sVE3adNP4GW3OSLM7PQC7Mv20M54=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=uYfvMF1Dg3rlCxCsVlQ03l5pqDmR5iSUQermdcehvrX6dXCaclntIwDEu6hip8x+e45nEe+uPC1vRPQa89Hn3+N1ucj1EX0S+/89LA1NWn0AFMMXiWhwiO43l7WDEuFKSE6ZaSbH9z9NHRUMpaG9qDEz3dsvB8Sn2UuLaqMT4XA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=Qdj16sLU; arc=none smtp.client-ip=209.85.128.169
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-yw1-f169.google.com with SMTP id 00721157ae682-60403c28ff6so26411897b3.1
-        for <devicetree@vger.kernel.org>; Fri, 02 Feb 2024 09:41:44 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1706895703; x=1707500503; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=lxj2OxF2tKrpIUq+UtFX2EYPlsFE5Q6qUnNhW/MIt3w=;
-        b=Qdj16sLU9H9ljl2jwX+fQhhDY5X6JydV/fCOGN55bQ48i1rfSACdGkMq0JYNdjiJfZ
-         yFGiA4KW3TggLF1zmqCOduCfCb21KjTXzJQ/kCNYljgypWP/fGyaROE5WS4Sp611MWqY
-         q+6OKpCd0JBKsL+kTi7ffthXUOEQ6gfkgIiqHp4NuoVymSEMYV3jW1xFNNdooBI6Vs8r
-         HnI43k2yUpR1yWYraRULZPTV2e85cytSjWXSUfqITGrJ75hK7h0Gh8QebGOujOjXEUhM
-         wFZvUUU6lOO2dmEkPQKCelJL0k71LPvtx8cqUx0j3QGh7xlgboXu6vI3xt/6bi2Wfaba
-         3GUg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1706895703; x=1707500503;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=lxj2OxF2tKrpIUq+UtFX2EYPlsFE5Q6qUnNhW/MIt3w=;
-        b=SsE/y72sSvsY5uWE05X+pJbaaEtBwtYxaoFFRHPio+EQJTsQqTeZFhosottYwbeB3G
-         ajs3aHQnI4FUyRBK/L54DH3PrtFr/ssbEEe0mEy3hRufRmiNlGKdqYI2HMkNJyeWqX6P
-         8jSpLmnUEhcAUrD8X6SnOVna1It4osM2Xow5s1N22ut6yf9SrXqt+hEU5dYruQASjzBZ
-         A+bRquOeQkvt6Awi6MZcG/qEbu2hQFJseWXrwvkRSu7/0EGA1AJZhPcOp+dTwVozncFZ
-         K08UEtIOrOCCw5Vf6Fn+wGBS8u7pbwLxZrlapXiXrmAZuxXC5suOPI6vqUWOqmh2Oh3m
-         Ji1w==
-X-Gm-Message-State: AOJu0Yyeseh6nkARKPhktKZd467mtlP/IsKJYguGQyPycBNynz7SSf+o
-	km9H2gZLMAL3FKG/gqG5ylybpJYPYCdc749wkwIquNx4IPK0lahnXJEROcnWHvXkI7My1n4ih0S
-	5SeY9zlnUhx0EEj8bYEzyQb33f/THU4+1vRJbGg==
-X-Google-Smtp-Source: AGHT+IFk5DGrKzY72GiycyDtvkLTtkXrC8wEY0Si65aRZsHdPgrlzM1jRrbOkIKcKHGqdVylJVKAGka3odlCQXOIhNM=
-X-Received: by 2002:a0d:d8d2:0:b0:5ff:53db:6b71 with SMTP id
- a201-20020a0dd8d2000000b005ff53db6b71mr9197451ywe.26.1706895703473; Fri, 02
- Feb 2024 09:41:43 -0800 (PST)
+	s=arc-20240116; t=1706895821; c=relaxed/simple;
+	bh=LLN9y61AoFj7+BGhIcNuEpEgy1jM9vokgbzH/7xzzEM=;
+	h=From:To:CC:Subject:Date:Message-ID:MIME-Version:Content-Type; b=S+xZ++ZaG2HpmUEjDi5QUHCXWMRP/SEGW3lM5XADlauFNhQa0YC9DbKQwG09Hwi9ZOKSaw6VGWMHkkLXEDPRKfUXMoxyM5I5AAoNZdB7Lt/dIgxImw9JyzSTfsmfd6PjxwlWWkHOBnoF2S9Qtmp6gaM+H9EnG8321J0cAF/Q+Bs=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=Ox/DJBfx; arc=none smtp.client-ip=205.220.168.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
+Received: from pps.filterd (m0279865.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.17.1.24/8.17.1.24) with ESMTP id 412GOZ3A012362;
+	Fri, 2 Feb 2024 17:43:34 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
+	from:to:cc:subject:date:message-id:mime-version
+	:content-transfer-encoding:content-type; s=qcppdkim1; bh=w9TDcpG
+	+ViqU0k0LnHjATuGvwzj+eqaumBwSjgdKJyc=; b=Ox/DJBfxa++at7M+Vhk90Qb
+	y/y6BnhhEY/OSBnxjxhoDHIXdqbLbXnjJHSMN97jKXubolDTvtebAZBYDCkh0Ao2
+	w6kR88FuvFihPufCk2c8BhqHsT4tELAL20qD/VOu7w88EwFgNVNuGn2XXdG07xpm
+	MZaGo6iieIodWFOjlTZabcg/DefXvuNCZBuCfgSTWfeZlzwKRdtr7TCLRpJ4W0pk
+	+j5tSVC19Uuk4HmNeov/vXe0kr3bOVnJ9R0TNb5scFrAN5KJfhEmRzWsUl32/0nB
+	77d92Oex1w6SllexGjJb0645aAD6rCxQt5uIsbRZQGqBFcZwF9RzuyuMFr/wcZw=
+	=
+Received: from nalasppmta05.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3w0ptvj0q4-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Fri, 02 Feb 2024 17:43:34 +0000 (GMT)
+Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
+	by NALASPPMTA05.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 412HhX0i001484
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Fri, 2 Feb 2024 17:43:33 GMT
+Received: from jhugo-lnx.qualcomm.com (10.80.80.8) by
+ nalasex01a.na.qualcomm.com (10.47.209.196) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.1118.40; Fri, 2 Feb 2024 09:43:32 -0800
+From: Jeffrey Hugo <quic_jhugo@quicinc.com>
+To: <lgirdwood@gmail.com>, <broonie@kernel.org>, <robh@kernel.org>,
+        <krzysztof.kozlowski+dt@linaro.org>, <conor+dt@kernel.org>,
+        <judyhsiao@chromium.org>, <quic_bjorande@quicinc.com>
+CC: <linux-sound@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-arm-msm@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        Jeffrey Hugo
+	<quic_jhugo@quicinc.com>
+Subject: [PATCH] ASoC: dt-bindings: google,sc7280-herobrine: Drop bouncing @codeaurora
+Date: Fri, 2 Feb 2024 10:43:13 -0700
+Message-ID: <20240202174313.4113670-1-quic_jhugo@quicinc.com>
+X-Mailer: git-send-email 2.34.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <cover.1706802756.git.geert+renesas@glider.be> <ffb1eb1d747dce00b2c09d7af9357cd43284d1c4.1706802756.git.geert+renesas@glider.be>
-In-Reply-To: <ffb1eb1d747dce00b2c09d7af9357cd43284d1c4.1706802756.git.geert+renesas@glider.be>
-From: Linus Walleij <linus.walleij@linaro.org>
-Date: Fri, 2 Feb 2024 18:41:31 +0100
-Message-ID: <CACRpkdaBBFjtgoUhhK8-X28BK=2NCyRS2NiYvVEZFAsQiNZH9g@mail.gmail.com>
-Subject: Re: [PATCH 2/2] regulator: gpio: Correct default GPIO state to LOW
-To: Geert Uytterhoeven <geert+renesas@glider.be>
-Cc: Liam Girdwood <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>, 
-	Rob Herring <robh+dt@kernel.org>, 
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Marek Szyprowski <m.szyprowski@samsung.com>, devicetree@vger.kernel.org, 
-	linux-gpio@vger.kernel.org, linux-kernel@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
+ nalasex01a.na.qualcomm.com (10.47.209.196)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-GUID: x0I-X33R-5sBKvv7YPz6LWqnJl2RaALZ
+X-Proofpoint-ORIG-GUID: x0I-X33R-5sBKvv7YPz6LWqnJl2RaALZ
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.272,Aquarius:18.0.1011,Hydra:6.0.619,FMLib:17.11.176.26
+ definitions=2024-02-02_11,2024-01-31_01,2023-05-22_02
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 lowpriorityscore=0
+ adultscore=0 mlxlogscore=550 priorityscore=1501 malwarescore=0
+ suspectscore=0 phishscore=0 bulkscore=0 spamscore=0 impostorscore=0
+ mlxscore=0 clxscore=1011 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.19.0-2401310000 definitions=main-2402020128
 
-On Thu, Feb 1, 2024 at 4:58=E2=80=AFPM Geert Uytterhoeven
-<geert+renesas@glider.be> wrote:
+The servers for the @codeaurora domain have long been retired and any
+messages sent there bounce.  Srinivasa Rao Mandadapu has left the
+company and there does not appear to be an updated address to suggest,
+so drop Srinivasa as maintainer of the binding.  The binding still
+appears to be maintined as Judy is listed.
 
-> According to the GPIO regulator DT bindings[1], the default GPIO state
-> is LOW.  However, the driver defaults to HIGH.
->
-> Before the conversion to descriptors in commit d6cd33ad71029a3f
-> ("regulator: gpio: Convert to use descriptors"), the default state used
-> by the driver was rather ill-defined, too:
->   - If the "gpio-states" property was missing or empty, the default was
->     low, matching the bindings.
->   - If the "gpio-states" property was present, the default for missing
->     entries was the value of the last present entry.
->
-> Fix this by making the driver adhere to the DT bindings, i.e. default to
-> LOW.
->
-> [1] Documentation/devicetree/bindings/regulator/gpio-regulator.yaml
->
-> Signed-off-by: Geert Uytterhoeven <geert+renesas@glider.be>
+Signed-off-by: Jeffrey Hugo <quic_jhugo@quicinc.com>
+---
+ .../devicetree/bindings/sound/google,sc7280-herobrine.yaml       | 1 -
+ 1 file changed, 1 deletion(-)
 
-It's closer to the spec, but Mark's pick, anyway:
-Acked-by: Linus Walleij <linus.walleij@linaro.org>
+diff --git a/Documentation/devicetree/bindings/sound/google,sc7280-herobrine.yaml b/Documentation/devicetree/bindings/sound/google,sc7280-herobrine.yaml
+index ec4b6e547ca6..cdcd7c6f21eb 100644
+--- a/Documentation/devicetree/bindings/sound/google,sc7280-herobrine.yaml
++++ b/Documentation/devicetree/bindings/sound/google,sc7280-herobrine.yaml
+@@ -7,7 +7,6 @@ $schema: http://devicetree.org/meta-schemas/core.yaml#
+ title: Google SC7280-Herobrine ASoC sound card driver
+ 
+ maintainers:
+-  - Srinivasa Rao Mandadapu <srivasam@codeaurora.org>
+   - Judy Hsiao <judyhsiao@chromium.org>
+ 
+ description:
+-- 
+2.34.1
 
-But on the subject, the bindings say this:
-
-+  gpios-states:
-+    description: |
-+      On operating systems, that don't support reading back gpio values in
-+      output mode (most notably linux), this array provides the state of G=
-PIO
-+      pins set when requesting them from the gpio controller. Systems, tha=
-t are
-+      capable of preserving state when requesting the lines, are free to i=
-gnore
-+      this property.
-
-Actually, Linux can read back the value just fine in output mode,
-so what about just ignoring the property and update the document
-to stop saying that about Linux?
-
-See drivers/gpiolib.c:
-
-static int gpio_chip_get_value(struct gpio_chip *gc, const struct
-gpio_desc *desc)
-{
-        return gc->get ? gc->get(gc, gpio_chip_hwgpio(desc)) : -EIO;
-}
-
-static int gpiod_get_raw_value_commit(const struct gpio_desc *desc)
-{
-        struct gpio_chip *gc;
-        int value;
-
-        gc =3D desc->gdev->chip;
-        value =3D gpio_chip_get_value(gc, desc);
-        value =3D value < 0 ? value : !!value;
-        trace_gpio_value(desc_to_gpio(desc), 1, value);
-        return value;
-}
-
-int gpiod_get_value(const struct gpio_desc *desc)
-{
-        int value;
-
-        VALIDATE_DESC(desc);
-        /* Should be using gpiod_get_value_cansleep() */
-        WARN_ON(desc->gdev->chip->can_sleep);
-
-        value =3D gpiod_get_raw_value_commit(desc);
-        if (value < 0)
-                return value;
-
-        if (test_bit(FLAG_ACTIVE_LOW, &desc->flags))
-                value =3D !value;
-
-        return value;
-}
-
-None of this path excludes lines in output mode...
-
-If individual drivers don't support it, it's either because:
-
-1. The driver is buggy (such as not implementing .get()
-  and should be fixed.
-
-2. The hardware is actually incapable of reading the
-  value in output mode.
-
-3. Reading the value hardware register is bogus when the
-  line is in output mode.
-
-All these are driver issues and have nothing to do with Linux per se.
-
-Yours,
-Linus Walleij
 
