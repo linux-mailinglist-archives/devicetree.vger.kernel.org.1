@@ -1,78 +1,69 @@
-Return-Path: <devicetree+bounces-38161-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-38162-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id F099F847B6F
-	for <lists+devicetree@lfdr.de>; Fri,  2 Feb 2024 22:19:18 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8A38F847B79
+	for <lists+devicetree@lfdr.de>; Fri,  2 Feb 2024 22:24:30 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id A55791F25222
-	for <lists+devicetree@lfdr.de>; Fri,  2 Feb 2024 21:19:18 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 3C0DB28C02A
+	for <lists+devicetree@lfdr.de>; Fri,  2 Feb 2024 21:24:29 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B45FF81745;
-	Fri,  2 Feb 2024 21:19:12 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 738508174D;
+	Fri,  2 Feb 2024 21:24:23 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="nNqU9s23"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="teO9xkwH"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.19])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D63248063C;
-	Fri,  2 Feb 2024 21:19:10 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.175.65.19
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 478C081723;
+	Fri,  2 Feb 2024 21:24:22 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1706908752; cv=none; b=nFAhbTaUrcP3iY3Ek6P/5npNC6d75PcrnsW57BZPZkDY1n8ktlUQa010dr8HsEhi+AEb0N1gVWLLxY9qa3WCjq3Em/dWgd6puhzTbNaUyhIqQ3ti6b7yYi2/z6bjpcdyJgpo1sEcc2PxcBkuCZS5TH+xMbQer9fXq6gF9cmjFOA=
+	t=1706909063; cv=none; b=Xl/H97OixZJI+XjGBdIDj/1rYQNf4KvKLOZY0BZoAvcXfOalCbqb6Jd9kUQhSAbvfSofpJOFQ5sy/+0p0//zGgXADcSUrlqTBtejHCP7tqzXGAFmQ+66oTfVfM9Kp8UY3c+DkTSU4NUd05dL6fejfqnt7JVxfs88mJv7czkjJxE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1706908752; c=relaxed/simple;
-	bh=5ksOdQd8ghM9qXKkEiudkWeCW/Mz361KuBeBg2gzM/4=;
+	s=arc-20240116; t=1706909063; c=relaxed/simple;
+	bh=UZ+yJRgsFPGKwSTDFBg0r03EZWgLZlspYa2WkFy5MiA=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=b9P8XMFVK/LhUBMbqRThuc93AHm1GSLlEGt24sQz4T+7icI+KBJG3f2NpMmXj+EdL2PKZOMQwlYAy4kiIV/xWwZXTSyR527amOZIa4Y9EQeYc0/J+ZjVELw0ln6Sa6riGpnWH9IykjX2rPOTZ+OBsrPds7AbsObGsT7eg3Oo6c8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=nNqU9s23; arc=none smtp.client-ip=198.175.65.19
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1706908751; x=1738444751;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=5ksOdQd8ghM9qXKkEiudkWeCW/Mz361KuBeBg2gzM/4=;
-  b=nNqU9s23ItmdisKaKf6tshjaRnar2k4cqBurHtmJM/PRlsi9PVTpPCy8
-   R4SbTCGeVIvDKX+cC98Kkq5eBE/8Q3dHM1vlWIUGoLAT4ToES0HLvkzLt
-   nQkn3Ymt+qsA62Ar9ieVsFUp8hu7P/G8/nvdBeV94MUcxlGdLQ0GdkwTU
-   cbZgcVxhE9cielIJcmpVB6m2L5SSOC8TCMb8KcBQAAUzu5RnUdsNUPFxs
-   D2LCCsYMb+VfchzPpZMCiHA/dUueB5vvOjOSFc8vbM4rkXNeemTu1J6UM
-   YsCUVhJbrdxGUfMiBKwUJfjJaJ4xnjjnURwZspvH4rLvvIML09pSbpRr5
-   A==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10971"; a="148414"
-X-IronPort-AV: E=Sophos;i="6.05,238,1701158400"; 
-   d="scan'208";a="148414"
-Received: from fmsmga001.fm.intel.com ([10.253.24.23])
-  by orvoesa111.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 02 Feb 2024 13:19:10 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10971"; a="932581866"
-X-IronPort-AV: E=Sophos;i="6.05,238,1701158400"; 
-   d="scan'208";a="932581866"
-Received: from lkp-server02.sh.intel.com (HELO 59f4f4cd5935) ([10.239.97.151])
-  by fmsmga001.fm.intel.com with ESMTP; 02 Feb 2024 13:19:05 -0800
-Received: from kbuild by 59f4f4cd5935 with local (Exim 4.96)
-	(envelope-from <lkp@intel.com>)
-	id 1rW0wB-0004H0-1Q;
-	Fri, 02 Feb 2024 21:19:03 +0000
-Date: Sat, 3 Feb 2024 05:18:51 +0800
-From: kernel test robot <lkp@intel.com>
-To: Frank Li <Frank.Li@nxp.com>, ilpo.jarvinen@linux.intel.com
-Cc: oe-kbuild-all@lists.linux.dev, Frank.Li@nxp.com,
-	alexandre.belloni@bootlin.com, conor.culhane@silvaco.com,
-	devicetree@vger.kernel.org, gregkh@linuxfoundation.org,
-	imx@lists.linux.dev, jirislaby@kernel.org, joe@perches.com,
-	krzysztof.kozlowski+dt@linaro.org, krzysztof.kozlowski@linaro.org,
-	linux-i3c@lists.infradead.org, linux-kernel@vger.kernel.org,
-	linux-serial@vger.kernel.org, miquel.raynal@bootlin.com,
-	robh@kernel.org, zbigniew.lukwinski@linux.intel.com
-Subject: Re: [PATCH v5 1/8] i3c: add target mode support
-Message-ID: <202402030437.GdGCrKeK-lkp@intel.com>
-References: <20240129195321.229867-2-Frank.Li@nxp.com>
+	 Content-Type:Content-Disposition:In-Reply-To; b=goq9bPtHpSphbJUcmyaffnWXk3ljf+3AEMMY5yS/NFlZTLq3rgkR1gY8IF6P8tmM/qKrM8b7ByynHMQxfWyBvUiHA6zcK/U3634HngYj1x3DEakuaNTWAImWW1HHLeIjYd7JiV4V5klkCJvv/oH3qFghWHC/QD9NAdRRkPG+UHg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=teO9xkwH; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 72D71C433C7;
+	Fri,  2 Feb 2024 21:24:22 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1706909062;
+	bh=UZ+yJRgsFPGKwSTDFBg0r03EZWgLZlspYa2WkFy5MiA=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=teO9xkwHltv0T0lPtU2+7uxbSRQZXu6/REzvx0bSQvNw23ajHvQTtRrzcbKgqgcto
+	 Qz5I/ZL8Yae+1FbTMmiWOORN+yWt+6zMVotV2Omv2qFLh02dsTev+gZjT+02Xoj1Pa
+	 55RKD0O1gA/FcygEaO3shOHwz1wmfjact06vT2h7azz/dnW0UEq87+/ijVeqPz8sWU
+	 J1hcDtKIs0hN1bamIt4it/ivIsZN6b5KRfDv4eSuL89IMxiDOg45sxDHcZP8OyQG7M
+	 VB6q6WyV8NOavbjqr1LVh4oqfoz3W5hMd8t5KwIAtsdrnAhkvrW5+H4RC+e+uSeed+
+	 jX/JQcBYko2Xg==
+Date: Fri, 2 Feb 2024 15:24:20 -0600
+From: Rob Herring <robh@kernel.org>
+To: Daniel Golle <daniel@makrotopia.org>
+Cc: Bc-bocun Chen <bc-bocun.chen@mediatek.com>,
+	Steven Liu <steven.liu@mediatek.com>,
+	John Crispin <john@phrozen.org>,
+	Chunfeng Yun <chunfeng.yun@mediatek.com>,
+	Vinod Koul <vkoul@kernel.org>,
+	Kishon Vijay Abraham I <kishon@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Qingfang Deng <dqfext@gmail.com>,
+	SkyLake Huang <SkyLake.Huang@mediatek.com>,
+	Matthias Brugger <matthias.bgg@gmail.com>,
+	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
+	Philipp Zabel <p.zabel@pengutronix.de>,
+	linux-arm-kernel@lists.infradead.org,
+	linux-mediatek@lists.infradead.org, linux-phy@lists.infradead.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	netdev@vger.kernel.org
+Subject: Re: [PATCH 1/2] dt-bindings: phy: mediatek,xfi-tphy: add new bindings
+Message-ID: <20240202212420.GA1561174-robh@kernel.org>
+References: <702afb0c1246d95c90b22e57105304028bdd3083.1706823233.git.daniel@makrotopia.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -81,47 +72,80 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20240129195321.229867-2-Frank.Li@nxp.com>
+In-Reply-To: <702afb0c1246d95c90b22e57105304028bdd3083.1706823233.git.daniel@makrotopia.org>
 
-Hi Frank,
+On Thu, Feb 01, 2024 at 09:52:20PM +0000, Daniel Golle wrote:
+> Add bindings for the MediaTek XFI T-PHY Ethernet SerDes PHY found in the
+> MediaTek MT7988 SoC which can operate at various interfaces modes:
 
-kernel test robot noticed the following build errors:
+This is v4 unless I'm confused[1]. Where's the revision history?
 
-[auto build test ERROR on tty/tty-testing]
-[also build test ERROR on tty/tty-next tty/tty-linus robh/for-next linus/master v6.8-rc2 next-20240202]
-[If your patch is applied to the wrong git tree, kindly drop us a note.
-And when submitting patch, we suggest to use '--base' as documented in
-https://git-scm.com/docs/git-format-patch#_base_tree_information]
+Rob
 
-url:    https://github.com/intel-lab-lkp/linux/commits/Frank-Li/i3c-add-target-mode-support/20240130-035826
-base:   https://git.kernel.org/pub/scm/linux/kernel/git/gregkh/tty.git tty-testing
-patch link:    https://lore.kernel.org/r/20240129195321.229867-2-Frank.Li%40nxp.com
-patch subject: [PATCH v5 1/8] i3c: add target mode support
-config: sh-randconfig-r122-20240202 (https://download.01.org/0day-ci/archive/20240203/202402030437.GdGCrKeK-lkp@intel.com/config)
-compiler: sh4-linux-gcc (GCC) 13.2.0
-reproduce: (https://download.01.org/0day-ci/archive/20240203/202402030437.GdGCrKeK-lkp@intel.com/reproduce)
+[1] https://lore.kernel.org/all/b875f693f6d4367a610a12ef324584f3bf3a1c1c.1702352117.git.daniel@makrotopia.org/
 
-If you fix the issue in a separate patch/commit (i.e. not just a new version of
-the same patch/commit), kindly add following tags
-| Reported-by: kernel test robot <lkp@intel.com>
-| Closes: https://lore.kernel.org/oe-kbuild-all/202402030437.GdGCrKeK-lkp@intel.com/
+> 
+> via USXGMII PCS:
+>  * USXGMII
+>  * 10GBase-R
+>  * 5GBase-R
+> 
+> via LynxI SGMII PCS:
+>  * 2500Base-X
+>  * 1000Base-X
+>  * Cisco SGMII (MAC side)
+> 
+> Signed-off-by: Daniel Golle <daniel@makrotopia.org>
+> ---
+>  .../bindings/phy/mediatek,xfi-tphy.yaml       | 80 +++++++++++++++++++
+>  1 file changed, 80 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/phy/mediatek,xfi-tphy.yaml
+> 
+> diff --git a/Documentation/devicetree/bindings/phy/mediatek,xfi-tphy.yaml b/Documentation/devicetree/bindings/phy/mediatek,xfi-tphy.yaml
+> new file mode 100644
+> index 0000000000000..e897118dcf7e6
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/phy/mediatek,xfi-tphy.yaml
+> @@ -0,0 +1,80 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/phy/mediatek,xfi-tphy.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: MediaTek XFI T-PHY
+> +
+> +maintainers:
+> +  - Daniel Golle <daniel@makrotopia.org>
+> +
+> +description:
+> +  The MediaTek XFI SerDes T-PHY provides the physical SerDes lanes
+> +  used by the (10G/5G) USXGMII PCS and (1G/2.5G) LynxI PCS found in
+> +  MediaTek's 10G-capabale SoCs.
+> +
+> +properties:
+> +  $nodename:
+> +    pattern: "^phy@[0-9a-f]+$"
+> +
+> +  compatible:
+> +    const: mediatek,mt7988-xfi-tphy
+> +
+> +  reg:
+> +    maxItems: 1
+> +
+> +  clocks:
+> +    items:
+> +      - description: XFI PHY clock
+> +      - description: XFI register clock
+> +
+> +  clock-names:
+> +    items:
+> +      - const: xfipll
+> +      - const: topxtal
+> +
+> +  resets:
+> +    items:
+> +      - description: PEXTP reset
 
-All errors (new ones prefixed by >>):
-
-   sh4-linux-ld: drivers/i3c/target.o: in function `i3c_target_ctrl_destroy':
->> target.c:(.text+0x264): undefined reference to `i3c_target_cfs_remove_ctrl_group'
-   sh4-linux-ld: drivers/i3c/target.o: in function `__i3c_target_func_register_driver':
->> target.c:(.text+0x4bc): undefined reference to `i3c_target_cfs_add_func_group'
-   sh4-linux-ld: drivers/i3c/target.o: in function `__i3c_target_ctrl_create':
->> target.c:(.text+0x778): undefined reference to `i3c_target_cfs_add_ctrl_group'
-   sh4-linux-ld: drivers/i3c/target.o: in function `devm_i3c_target_ctrl_release':
-   target.c:(.text+0x7b8): undefined reference to `i3c_target_cfs_remove_ctrl_group'
-   sh4-linux-ld: drivers/media/i2c/tc358746.o: in function `tc358746_probe':
-   tc358746.c:(.text+0x17c4): undefined reference to `devm_clk_hw_register'
-   sh4-linux-ld: tc358746.c:(.text+0x17c8): undefined reference to `devm_of_clk_add_hw_provider'
-   sh4-linux-ld: tc358746.c:(.text+0x17cc): undefined reference to `of_clk_hw_simple_get'
-
--- 
-0-DAY CI Kernel Test Service
-https://github.com/intel/lkp-tests/wiki
+What is PEXTP?
 
