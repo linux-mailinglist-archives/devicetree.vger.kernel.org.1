@@ -1,220 +1,123 @@
-Return-Path: <devicetree+bounces-38083-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-38084-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 95B7984769D
-	for <lists+devicetree@lfdr.de>; Fri,  2 Feb 2024 18:50:03 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0676F8476B1
+	for <lists+devicetree@lfdr.de>; Fri,  2 Feb 2024 18:56:08 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 0AF851F29AB6
-	for <lists+devicetree@lfdr.de>; Fri,  2 Feb 2024 17:50:03 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id B5B752853DD
+	for <lists+devicetree@lfdr.de>; Fri,  2 Feb 2024 17:56:06 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D5F9B14C595;
-	Fri,  2 Feb 2024 17:49:44 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9B89214AD34;
+	Fri,  2 Feb 2024 17:56:02 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="WPJJYvAz"
+	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="sQ25Q8lR"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from fllv0016.ext.ti.com (fllv0016.ext.ti.com [198.47.19.142])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8DCEE148FFF;
-	Fri,  2 Feb 2024 17:49:44 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DE91A14AD16;
+	Fri,  2 Feb 2024 17:56:00 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.19.142
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1706896184; cv=none; b=YDIyMj6GsiKTX8FwYtRTnwXM96mOn5kMPIJJW93iXTK2aZs/z0r3zkxwNMulY6nQuK360wH/JfBAC6PSIZ/NGT5Pimm7fCm246K2+IqhpVgoDWHjJybKQrWzN05KyMCRmsnJ6YdJzsTux8mk7XY18prVk9ps/eGcCZgzpu07pt8=
+	t=1706896562; cv=none; b=D4gFiAnDFFGAKgDM28Sh74yybLxE2zTVOeAfKjjYuyr1f80llAkVVoyWrc78oyWNhNpX3pDfBBPjMca4zdUgEwy0jsVNtSkbEPLuHxnMxzaqfnCYW8eWl/jlBOHsj/RYCz1FSZyFB0r2vtlIDj3BPDSGgRkAnTqpArTiPZbeYQ8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1706896184; c=relaxed/simple;
-	bh=dOC6l/UpwJt+sDh73ImH2SYn2JbGC0ZF3A9tIFxdqtk=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=q8FrLABDuJ2YzIBnCSTfQ0mx/QESP0eyj51NH5pTzUeiN1YQkwsEPIiwpG61oOjj1cpp2nV8hKqSxujoS0EoKhE3I7xeQQYwKDmJYKoY5d77619Du09xr8dgpdx2ekTtJVpmZVmaGY/i2ZW6d2KzcouZuQBeR4ZtW/ScZkcJzSM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=WPJJYvAz; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id CA7E5C433C7;
-	Fri,  2 Feb 2024 17:49:43 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1706896184;
-	bh=dOC6l/UpwJt+sDh73ImH2SYn2JbGC0ZF3A9tIFxdqtk=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=WPJJYvAz83PqbWfJevH/VqATyZyF8CMELM/qsF5iGbGg+7c08RkvpLVnt1A5GE/cF
-	 tcu63FYZn4b7uhLLPzbN+EdUSZoRoygx/1agCdTpP9s/n883bAkiQP8gjBz/mp+kDW
-	 qAUTtz5OnUdUz5st4dAWc5OGoV8IM7DK0KDm2fKGNgkvkbFxVCqblojdOgeVCjK2WT
-	 8TgIKe63Wz1bq6Pwy73SdDw6XnGCRuLJmukJO4LPOLdK/c9MQGRTbs1oxi0ZYlm/v9
-	 h+6C4sTZAkHgIq2mWUe1PiL9Ix6Qz58Sj0f91Fwj4LzNhLlO4dG31aRGnZ1zxuS/WT
-	 KdHH/uaxwI7ag==
-Date: Fri, 2 Feb 2024 11:49:41 -0600
-From: Rob Herring <robh@kernel.org>
-To: Kuninori Morimoto <kuninori.morimoto.gx@renesas.com>
-Cc: Bryan O'Donoghue <bryan.odonoghue@linaro.org>,
-	"Lad,  Prabhakar" <prabhakar.csengg@gmail.com>,
-	=?iso-8859-1?Q?=22Niklas_S=C3=B6derlund=22?= <niklas.soderlund+renesas@ragnatech.se>,
-	=?iso-8859-1?Q?=22Uwe_Kleine-K=C3=B6nig=22?= <u.kleine-koenig@pengutronix.de>,
-	Abhinav Kumar <quic_abhinavk@quicinc.com>,
-	Alexander Shishkin <alexander.shishkin@linux.intel.com>,
-	Alexander Stein <alexander.stein@ew.tq-group.com>,
-	Alexandre Belloni <alexandre.belloni@bootlin.com>,
-	Alexandre Torgue <alexandre.torgue@foss.st.com>,
-	Alexey Brodkin <abrodkin@synopsys.com>,
-	Andrzej Hajda <andrzej.hajda@intel.com>,
-	Andy Gross <agross@kernel.org>,
-	Biju Das <biju.das.jz@bp.renesas.com>,
-	Bjorn Andersson <andersson@kernel.org>,
-	Claudiu Beznea <claudiu.beznea@tuxon.dev>,
-	Daniel Vetter <daniel@ffwll.ch>,
-	Dave Stevenson <dave.stevenson@raspberrypi.com>,
-	David Airlie <airlied@gmail.com>,
-	Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
-	Dmitry Torokhov <dmitry.torokhov@gmail.com>,
-	Emma Anholt <emma@anholt.net>,
-	Eugen Hristev <eugen.hristev@collabora.com>,
-	Florian Fainelli <florian.fainelli@broadcom.com>,
-	Frank Rowand <frowand.list@gmail.com>,
-	Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-	Hans Verkuil <hverkuil-cisco@xs4all.nl>,
-	Helge Deller <deller@gmx.de>,
-	Hugues Fruchet <hugues.fruchet@foss.st.com>,
-	Jacopo Mondi <jacopo+renesas@jmondi.org>,
-	Jacopo Mondi <jacopo@jmondi.org>, James Clark <james.clark@arm.com>,
-	Jaroslav Kysela <perex@perex.cz>,
-	Jonathan Hunter <jonathanh@nvidia.com>,
-	Kevin Hilman <khilman@baylibre.com>,
-	Kieran Bingham <kieran.bingham+renesas@ideasonboard.com>,
-	Kieran Bingham <kieran.bingham@ideasonboard.com>,
-	Konrad Dybcio <konrad.dybcio@linaro.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-	Laurent Pinchart <laurent.pinchart+renesas@ideasonboard.com>,
-	Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
-	Liam Girdwood <lgirdwood@gmail.com>, Liu Ying <victor.liu@nxp.com>,
-	Luca Ceresoli <luca.ceresoli@bootlin.com>,
-	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
-	Marek Vasut <marex@denx.de>, Mark Brown <broonie@kernel.org>,
-	Mauro Carvalho Chehab <mchehab@kernel.org>,
-	Maxime Coquelin <mcoquelin.stm32@gmail.com>,
-	Maxime Ripard <mripard@kernel.org>,
-	Michael Tretter <m.tretter@pengutronix.de>,
-	Michal Simek <michal.simek@amd.com>,
-	Miguel Ojeda <ojeda@kernel.org>,
-	Nathan Chancellor <nathan@kernel.org>,
-	Neil Armstrong <neil.armstrong@linaro.org>,
-	Nick Desaulniers <ndesaulniers@google.com>,
-	Nicolas Ferre <nicolas.ferre@microchip.com>,
-	Philipp Zabel <p.zabel@pengutronix.de>,
-	Philippe Cornu <philippe.cornu@foss.st.com>,
-	Raphael Gallais-Pou <raphael.gallais-pou@foss.st.com>,
-	Rob Clark <robdclark@gmail.com>, Robert Foss <rfoss@kernel.org>,
-	Russell King <linux@armlinux.org.uk>,
-	Sakari Ailus <sakari.ailus@linux.intel.com>,
-	Saravana Kannan <saravanak@google.com>,
-	Sascha Hauer <s.hauer@pengutronix.de>,
-	Shawn Guo <shawnguo@kernel.org>,
-	Sowjanya Komatineni <skomatineni@nvidia.com>,
-	Stefan Agner <stefan@agner.ch>,
-	Suzuki K Poulose <suzuki.poulose@arm.com>,
-	Sylwester Nawrocki <s.nawrocki@samsung.com>,
-	Takashi Iwai <tiwai@suse.com>,
-	Thierry Reding <thierry.reding@gmail.com>,
-	Thomas Zimmermann <tzimmermann@suse.de>,
-	Tim Harvey <tharvey@gateworks.com>,
-	Todor Tomov <todor.too@gmail.com>,
-	Tomi Valkeinen <tomi.valkeinen@ideasonboard.com>,
-	Yannick Fertre <yannick.fertre@foss.st.com>,
-	Alim Akhtar <alim.akhtar@samsung.com>,
-	Fabio Estevam <festevam@gmail.com>,
-	Jacopo Mondi <jacopo.mondi@ideasonboard.com>,
-	Jernej Skrabec <jernej.skrabec@gmail.com>,
-	Jerome Brunet <jbrunet@baylibre.com>,
-	Jessica Zhang <quic_jesszhan@quicinc.com>,
-	Jonas Karlman <jonas@kwiboo.se>, Leo Yan <leo.yan@linaro.org>,
-	Marijn Suijten <marijn.suijten@somainline.org>,
-	Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
-	Mike Leach <mike.leach@linaro.org>, Sam Ravnborg <sam@ravnborg.org>,
-	Sean Paul <sean@poorly.run>, Tom Rix <trix@redhat.com>,
-	coresight@lists.linaro.org, devicetree@vger.kernel.org,
-	dri-devel@lists.freedesktop.org, freedreno@lists.freedesktop.org,
-	linux-amlogic@lists.infradead.org,
-	linux-arm-kernel@lists.infradead.org, linux-arm-msm@vger.kernel.org,
-	linux-fbdev@vger.kernel.org, linux-media@vger.kernel.org,
-	linux-omap@vger.kernel.org, linux-renesas-soc@vger.kernel.org,
-	linux-rpi-kernel@lists.infradead.org,
-	linux-samsung-soc@vger.kernel.org, linux-sound@vger.kernel.org,
-	linux-staging@lists.linux.dev,
-	linux-stm32@st-md-mailman.stormreply.com,
-	linux-tegra@vger.kernel.org, llvm@lists.linux.dev
-Subject: Re: [PATCH v3 05/24] media: i2c: switch to use
- of_graph_get_next_device_endpoint()
-Message-ID: <20240202174941.GA310089-robh@kernel.org>
-References: <87o7d26qla.wl-kuninori.morimoto.gx@renesas.com>
- <87h6iu6qjs.wl-kuninori.morimoto.gx@renesas.com>
+	s=arc-20240116; t=1706896562; c=relaxed/simple;
+	bh=qfwEz8hpHsqgnU+4/WFirpMN2irACdQrIsL+NmunY7U=;
+	h=From:To:CC:Subject:Date:Message-ID:MIME-Version:Content-Type; b=WPIwUDU2h9b1EizJKLm28xiODrjItM/K/Q+Y5nMB2PaMijkL+4bTetzZEd1ZoHSG59a0Ce4VMzXS6QtERMZS43Q3SiM6vSKReHEWk65P9H9Tzyh4foK57oqEKMiWliFZIcG3lI1YOMfGYWfEslNYv47n7IRfIfZvwE4IPwI9G4o=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=sQ25Q8lR; arc=none smtp.client-ip=198.47.19.142
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
+Received: from lelv0265.itg.ti.com ([10.180.67.224])
+	by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id 412HthxX030367;
+	Fri, 2 Feb 2024 11:55:43 -0600
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+	s=ti-com-17Q1; t=1706896543;
+	bh=Vr15aner70yVXaHBFlAcgeLFRPozQNQYOHKtYk6Y8CE=;
+	h=From:To:CC:Subject:Date;
+	b=sQ25Q8lRPE4GkcyDs3KKXlSerUz8PWSTgoyvRF5kMJAmymb2Wd2yy6LhE5iZXbT6n
+	 MH4tL3RLcB0T50dumaRC7L/QvZt7v2kt3z3xYJV878JA4TU8Kave+s2uWaMe466c6n
+	 v7x0dwISaWda/jyfVJMz16t9g6lU6fNJzQTJEdSI=
+Received: from DLEE102.ent.ti.com (dlee102.ent.ti.com [157.170.170.32])
+	by lelv0265.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 412HthTV003944
+	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+	Fri, 2 Feb 2024 11:55:43 -0600
+Received: from DLEE107.ent.ti.com (157.170.170.37) by DLEE102.ent.ti.com
+ (157.170.170.32) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Fri, 2
+ Feb 2024 11:55:43 -0600
+Received: from lelvsmtp5.itg.ti.com (10.180.75.250) by DLEE107.ent.ti.com
+ (157.170.170.37) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
+ Frontend Transport; Fri, 2 Feb 2024 11:55:43 -0600
+Received: from localhost ([10.249.48.175])
+	by lelvsmtp5.itg.ti.com (8.15.2/8.15.2) with ESMTP id 412HtggK114579;
+	Fri, 2 Feb 2024 11:55:42 -0600
+From: Hari Nagalla <hnagalla@ti.com>
+To: <andersson@kernel.org>, <mathieu.poirier@linaro.org>,
+        <p.zabel@pengutronix.de>, <martyn.welch@collabora.com>, <nm@ti.com>,
+        <vigneshr@ti.com>, <kristo@kernel.org>, <robh+dt@kernel.org>,
+        <krzysztof.kozlowski+dt@linaro.org>, <conor+dt@kernel.org>
+CC: <linux-remoteproc@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>, <devicetree@vger.kernel.org>
+Subject: [PATCH v7 0/5] TI K3 M4F support on AM64x and AM62x SoCs
+Date: Fri, 2 Feb 2024 11:55:33 -0600
+Message-ID: <20240202175538.1705-1-hnagalla@ti.com>
+X-Mailer: git-send-email 2.17.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <87h6iu6qjs.wl-kuninori.morimoto.gx@renesas.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 8bit
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 
-On Wed, Jan 31, 2024 at 05:05:27AM +0000, Kuninori Morimoto wrote:
-> of_graph_get_next_endpoint() is now renamed to
-> of_graph_get_next_device_endpoint(). Switch to it.
-> 
-> Signed-off-by: Kuninori Morimoto <kuninori.morimoto.gx@renesas.com>
-> ---
->  drivers/media/i2c/adv7343.c              | 2 +-
->  drivers/media/i2c/adv748x/adv748x-core.c | 2 +-
->  drivers/media/i2c/adv7604.c              | 2 +-
->  drivers/media/i2c/isl7998x.c             | 2 +-
->  drivers/media/i2c/max9286.c              | 2 +-
->  drivers/media/i2c/mt9p031.c              | 2 +-
->  drivers/media/i2c/mt9v032.c              | 2 +-
->  drivers/media/i2c/ov2659.c               | 2 +-
->  drivers/media/i2c/ov5645.c               | 2 +-
->  drivers/media/i2c/ov5647.c               | 2 +-
->  drivers/media/i2c/s5c73m3/s5c73m3-core.c | 2 +-
->  drivers/media/i2c/s5k5baf.c              | 2 +-
->  drivers/media/i2c/tc358743.c             | 2 +-
->  drivers/media/i2c/tda1997x.c             | 2 +-
->  drivers/media/i2c/tvp514x.c              | 2 +-
->  drivers/media/i2c/tvp5150.c              | 4 ++--
->  drivers/media/i2c/tvp7002.c              | 2 +-
->  17 files changed, 18 insertions(+), 18 deletions(-)
-> 
-> diff --git a/drivers/media/i2c/adv7343.c b/drivers/media/i2c/adv7343.c
-> index ff21cd4744d3..7e4eb2f8bf0d 100644
-> --- a/drivers/media/i2c/adv7343.c
-> +++ b/drivers/media/i2c/adv7343.c
-> @@ -403,7 +403,7 @@ adv7343_get_pdata(struct i2c_client *client)
->  	if (!IS_ENABLED(CONFIG_OF) || !client->dev.of_node)
->  		return client->dev.platform_data;
->  
-> -	np = of_graph_get_next_endpoint(client->dev.of_node, NULL);
-> +	np = of_graph_get_next_device_endpoint(client->dev.of_node, NULL);
+The following series introduces K3 M4F remoteproc driver support for
+AM64x and AM62x SoC families. These SoCs have a ARM Cortex M4F core in
+the MCU voltage domain. For safety oriented applications, this core is
+operated independently with out any IPC to other cores on the SoC.
+However, for non safety applications, some customers use it as a remote
+processor and so linux remote proc support is extended to the M4F core.
 
-This is assuming there's just 1 port and 1 endpoint, but let's be 
-specific as the bindings are (first endpoint on port 0):
+See AM64x Technical Reference Manual (SPRUIM2C – SEPTEMBER 2021) for
+further details: https://www.ti.com/lit/pdf/SPRUIM2
 
-of_graph_get_endpoint_by_regs(client->dev.of_node, 0, -1);
+See AM62x Technical Reference Manual (SPRUIV7A – MAY 2022) for
+further details: https://www.ti.com/lit/pdf/SPRUIV7A
 
-Note we could ask for endpoint 0 here, but the bindings generally allow 
-for more than 1.
+kernel build log: https://paste.sr.ht/~hnagalla/be9d1c45e176ea8fa274ab13a3da43a9853fcf7f
+dt-binding-check log: https://paste.sr.ht/~hnagalla/25912c85f6a8c68e3da24053fc060f38024fb8ab 
+kernel boot log: https://paste.sr.ht/~hnagalla/5ba77847343f22b5f9ec2b7aeabc410aaf8cdf45
 
-I imagine most of the other cases here are the same.
+Hari Nagalla (2):
+  dt-bindings: remoteproc: k3-m4f: Add K3 AM64x SoCs
+  arm64: defconfig: Enable TI K3 M4 remote proc driver
 
->  	if (!np)
->  		return NULL;
->  
-> diff --git a/drivers/media/i2c/adv748x/adv748x-core.c b/drivers/media/i2c/adv748x/adv748x-core.c
-> index 3eb6d5e8f082..4e9e4cef8954 100644
-> --- a/drivers/media/i2c/adv748x/adv748x-core.c
-> +++ b/drivers/media/i2c/adv748x/adv748x-core.c
-> @@ -657,7 +657,7 @@ static int adv748x_parse_dt(struct adv748x_state *state)
->  	bool in_found = false;
->  	int ret;
->  
-> -	for_each_endpoint_of_node(state->dev->of_node, ep_np) {
-> +	for_each_device_endpoint_of_node(state->dev->of_node, ep_np) {
+Martyn Welch (3):
+  remoteproc: k3: Move out data structures common with M4 driver
+  remoteproc: k3: Move out functions common with M4 driver
+  remoteproc: k3-m4: Add a remoteproc driver for M4F subsystem
 
-I would skip the rename.
+ .../bindings/remoteproc/ti,k3-m4f-rproc.yaml  |  138 ++
+ arch/arm64/configs/defconfig                  |    1 +
+ drivers/remoteproc/Kconfig                    |   13 +
+ drivers/remoteproc/Makefile                   |    3 +-
+ drivers/remoteproc/ti_k3_common.c             |  583 ++++++++
+ drivers/remoteproc/ti_k3_common.h             |  107 ++
+ drivers/remoteproc/ti_k3_dsp_remoteproc.c     | 1277 +++++------------
+ drivers/remoteproc/ti_k3_m4_remoteproc.c      |  327 +++++
+ 8 files changed, 1539 insertions(+), 910 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/remoteproc/ti,k3-m4f-rproc.yaml
+ create mode 100644 drivers/remoteproc/ti_k3_common.c
+ create mode 100644 drivers/remoteproc/ti_k3_common.h
+ rewrite drivers/remoteproc/ti_k3_dsp_remoteproc.c (67%)
+ create mode 100644 drivers/remoteproc/ti_k3_m4_remoteproc.c
 
-Rob
+-- 
+2.34.1
+
 
