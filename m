@@ -1,60 +1,62 @@
-Return-Path: <devicetree+bounces-38159-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-38160-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id E60BA847B59
-	for <lists+devicetree@lfdr.de>; Fri,  2 Feb 2024 22:10:24 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4E17D847B6A
+	for <lists+devicetree@lfdr.de>; Fri,  2 Feb 2024 22:17:58 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 9FA1628CBD0
-	for <lists+devicetree@lfdr.de>; Fri,  2 Feb 2024 21:10:23 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id F29EA28DF8E
+	for <lists+devicetree@lfdr.de>; Fri,  2 Feb 2024 21:17:56 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 01EBC126F36;
-	Fri,  2 Feb 2024 21:07:03 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6C6A780636;
+	Fri,  2 Feb 2024 21:17:52 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="lbPykI0F"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Yvjzg8v2"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CAC2082C60;
-	Fri,  2 Feb 2024 21:07:02 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2FA2518049;
+	Fri,  2 Feb 2024 21:17:51 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1706908022; cv=none; b=WV0sfvojY6MbjB0XSwBNT93aYa+ED1QWzsatsWoO6ffhk+eLwjVBGy4YI8tX4/KDS4adK+lr5bg4qTGD8YcjQyHOZ1Dx0C/SF0YSu0BNg1PYKWZ/+vKS6FbqmaAAfd5LGIk4flE72SDXtlib7hcL+piCNmz1QDn+Yyef8r/oE/c=
+	t=1706908672; cv=none; b=oUvP8UO8r5qhJmdkuNG0kCd+SMHOzUEIsoAAhwKY90owW0ljocQxrAIYRBsCd+QHYaNriqneTashk+JZdY9ne1VeiSro9/8fuWRq7Gf6geBtl88SizbIwMyRwiNOTT8Oa2niDsui4DmO6f8jxPvhkzHFl/b4uy3g/fEFviFNJ+g=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1706908022; c=relaxed/simple;
-	bh=pOT08KJNuS1sfLS3vZwggchfB5iy1EZEG3QY463HBfk=;
+	s=arc-20240116; t=1706908672; c=relaxed/simple;
+	bh=/VCh0+HPTFG2lAHl8Ir63vVbaWY0czUg4EndhAmsGSQ=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=XRFD6l8jKHkR4mkBzLQY7xjtHVQWcTDSRSZwTlx3dm1yyxV8FmGPFO6drQhMElbgkiZEQuV9WZ4sNa4V5n114BkbYsPH49JedUk8TIgl1qRfZO8RjWqDAyGg9MAWj9tyEyltISdzmZFaCUavhOSuWmjcBsFsWdryTUjCoV9yYrs=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=lbPykI0F; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 2AB44C433F1;
-	Fri,  2 Feb 2024 21:07:02 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=sMJF2dFq6SfyqIbmqDFnncc9ZWvuG/RnyzaJmeuLBXwx2XTX0jXv8aj/qP4bTUEZO2Afj9uYByN3ed/ppxuLEVPZoHNdj45IAdX8oh+oJPWtnBXXXyM/AltjEiBp9Dojuh7BOLL8RCSprx4RCviilOnQJXprme+qYu77GDWHq9Q=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Yvjzg8v2; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 6BB59C433F1;
+	Fri,  2 Feb 2024 21:17:51 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1706908022;
-	bh=pOT08KJNuS1sfLS3vZwggchfB5iy1EZEG3QY463HBfk=;
+	s=k20201202; t=1706908671;
+	bh=/VCh0+HPTFG2lAHl8Ir63vVbaWY0czUg4EndhAmsGSQ=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=lbPykI0FhQTq9PNUjiMoVTYdWNs6UbKW/swId0j174aITvgl3tBPi8qYaffrMpRp8
-	 2TWv85F6hmYtkqHK2DtRq2sDgzXXr8hokdNGKd7c2z4dcsN458XXRF/2mPb0gaRax4
-	 bQsCGq3mnBO1Yq7TPCK5JDfQsjUKd7FDdSvX1kSZqjKLqy965ow9LIQymRYzSfw6nZ
-	 nsjkt/rCCBbwHeCWDeLmAblaBCutOvOe+IO5clMXGIQ027Vm5stwXZ240h+hvqsXkd
-	 0a7aMUYhskZjh2Jc9UFOFbtnjZdt3c3Id8O87s/sxBGpM2WJA3b0WRvUmnh29Xt9N3
-	 PZUPfqyqORNzA==
-Date: Fri, 2 Feb 2024 15:06:59 -0600
+	b=Yvjzg8v2QAYg2UYrB+Vbpmh7MiYTumX0/jy0ou8L09dgeEe2AjOeKOVCL38zLtq2B
+	 3EnMHuQG6hAXgLSwJmtknf63d9V5i8YDh1rpVTeUYLV61yKuBCTvLG3v29pLYY4rV8
+	 1P322vsYsiW3VWtNnWfWTGjTrJMC5ANbMAwJuWvxAlIok42ADCt793YIY9Rkc9FWM1
+	 Coy70l89C4Rk6R5vGd1Uae0XVtfzACT+rF9BkzunQi0BL38hPlS2lFsw1sVmTQNW3I
+	 lcnCjL5AZ6qLnoamq/rh7NtQ+GQ91Erg9DYlSvDHqRKq0zW9fJoHt5VUEd+3kcWvYl
+	 CKI3HeTmiZgZg==
+Date: Fri, 2 Feb 2024 15:17:49 -0600
 From: Rob Herring <robh@kernel.org>
-To: Brandon Brnich <b-brnich@ti.com>
-Cc: Nas Chung <nas.chung@chipsnmedia.com>,
-	Jackson Lee <jackson.lee@chipsnmedia.com>,
-	Mauro Carvalho Chehab <mchehab@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>, linux-media@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	Nishanth Menon <nm@ti.com>, Vignesh Raghavendra <vigneshr@ti.com>,
-	Darren Etheridge <detheridge@ti.com>
-Subject: Re: [PATCH v2] dt-bindings: media: Add sram-size Property for Wave5
-Message-ID: <20240202210659.GA1390727-robh@kernel.org>
-References: <20240201184238.2542695-1-b-brnich@ti.com>
+To: Georgi Djakov <quic_c_gdjako@quicinc.com>
+Cc: krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org, will@kernel.org,
+	robin.murphy@arm.com, joro@8bytes.org, iommu@lists.linux.dev,
+	devicetree@vger.kernel.org, andersson@kernel.org,
+	konrad.dybcio@linaro.org, robdclark@gmail.com,
+	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+	linux-arm-msm@vger.kernel.org, quic_cgoldswo@quicinc.com,
+	quic_sukadev@quicinc.com, quic_pdaly@quicinc.com,
+	quic_sudaraja@quicinc.com, djakov@kernel.org
+Subject: Re: [PATCH v4 01/10] dt-bindings: iommu: Add Translation Buffer Unit
+ bindings
+Message-ID: <20240202211749.GA1467077-robh@kernel.org>
+References: <20240201210529.7728-1-quic_c_gdjako@quicinc.com>
+ <20240201210529.7728-2-quic_c_gdjako@quicinc.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -63,17 +65,54 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20240201184238.2542695-1-b-brnich@ti.com>
+In-Reply-To: <20240201210529.7728-2-quic_c_gdjako@quicinc.com>
 
-On Thu, Feb 01, 2024 at 12:42:38PM -0600, Brandon Brnich wrote:
-> Wave521c has capability to use SRAM carveout to store reference data with
-> purpose of reducing memory bandwidth. To properly use this pool, the driver
-> expects to have an sram and sram-size node. Without sram-size node, driver
-> will default value to zero, making sram node irrelevant.
+On Thu, Feb 01, 2024 at 01:05:20PM -0800, Georgi Djakov wrote:
+> Add common bindings for the TBUs to describe their properties. The
+> TBUs are modelled as child devices of the IOMMU and each of them is
+> described with their compatible, reg and stream-id-range properties.
+> There could be other implementation specific properties to describe
+> any resources like clocks, regulators, power-domains, interconnects
+> that would be needed for TBU operation. Such properties will be
+> documented in a separate vendor-specific TBU schema.
+> 
+> Signed-off-by: Georgi Djakov <quic_c_gdjako@quicinc.com>
+> ---
+>  .../devicetree/bindings/iommu/arm,smmu.yaml   | 14 ++++++++++
+>  .../devicetree/bindings/iommu/tbu-common.yaml | 28 +++++++++++++++++++
+>  2 files changed, 42 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/iommu/tbu-common.yaml
+> 
+> diff --git a/Documentation/devicetree/bindings/iommu/arm,smmu.yaml b/Documentation/devicetree/bindings/iommu/arm,smmu.yaml
+> index a4042ae24770..ba3237023b39 100644
+> --- a/Documentation/devicetree/bindings/iommu/arm,smmu.yaml
+> +++ b/Documentation/devicetree/bindings/iommu/arm,smmu.yaml
+> @@ -235,6 +235,20 @@ properties:
+>        enabled for any given device.
+>      $ref: /schemas/types.yaml#/definitions/phandle
+>  
+> +  '#address-cells':
+> +    enum: [ 1, 2 ]
+> +
+> +  '#size-cells':
+> +    enum: [ 1, 2 ]
+> +
+> +  ranges: true
+> +
+> +patternProperties:
+> +  "^tbu@[0-9a-f]+$":
+> +    description: TBU child nodes
+> +    type: object
+> +    $ref: tbu-common.yaml#
 
-The mmio-sram binding already defines how to carve up shared SRAM.
+       additionalProperties: false
 
-Also, sram-size here is property, not a node.
+
+However, that's going to break with the extra QCom properties. In 
+json-schema, you can't have 2 schemas and extend the properties of 
+their child nodes. The validator doesn't "see" the child node schemas at 
+the same time. You are going to have to move QCom SMMU to its own schema 
+and remove it from arm,smmu.yaml.
 
 Rob
 
