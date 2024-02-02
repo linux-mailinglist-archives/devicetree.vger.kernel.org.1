@@ -1,75 +1,74 @@
-Return-Path: <devicetree+bounces-37865-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-37866-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id E6F9484691D
-	for <lists+devicetree@lfdr.de>; Fri,  2 Feb 2024 08:17:16 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7151D846933
+	for <lists+devicetree@lfdr.de>; Fri,  2 Feb 2024 08:24:52 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 14C591C23E40
-	for <lists+devicetree@lfdr.de>; Fri,  2 Feb 2024 07:17:16 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id DDBA2B21DF0
+	for <lists+devicetree@lfdr.de>; Fri,  2 Feb 2024 07:24:49 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7014217597;
-	Fri,  2 Feb 2024 07:17:15 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5DD5E1799D;
+	Fri,  2 Feb 2024 07:24:44 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="gj89uc2b"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="eCnUVXmH"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ej1-f52.google.com (mail-ej1-f52.google.com [209.85.218.52])
+Received: from mail-lf1-f52.google.com (mail-lf1-f52.google.com [209.85.167.52])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5A2C717BA8
-	for <devicetree@vger.kernel.org>; Fri,  2 Feb 2024 07:17:13 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.52
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 61EEB17998
+	for <devicetree@vger.kernel.org>; Fri,  2 Feb 2024 07:24:42 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.52
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1706858235; cv=none; b=JLlnxGYeTJOVDDeYXIAIiFCUyCdho7Wg6xFECvfxtmlziJX6n+o0DgYnozKa7h6GE73TIlJlkeWZH+YeP1mCzP5azqlncr+MLKIc51I0af35JcQlNwPkKehToyN1HGUFC8OgJuCyqAlQfCXCL7gdzmlZ389cJopmOGVcU3+12/M=
+	t=1706858684; cv=none; b=kCY4HeAObg0gl3FaHsMAr7GEjfFMI88DcUqnpMP4OA7E1hPZmmi3hdHW437aMTFRb34A/lXx5G4tclGqsftJs3HEj5HTUh7MACtnSUP5B+dUkThv0/3ff8ISU0rPffjILRHPFdZhzUuNsTSDO0fTfgbSjPb98Uihy45+q7GzUDA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1706858235; c=relaxed/simple;
-	bh=MlP30iiUF7AbDtIcAQzDUz/4RQblnnFeFWnTQ4VygrI=;
+	s=arc-20240116; t=1706858684; c=relaxed/simple;
+	bh=jq7U+PrO9oxQCqUKYaG3avcDemAN+/LxsoMvgkBnnx0=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=iZb3MJbGOCfTU2CKKdD8MpfS+VAwAe48fPDhTspA+PMEsG8nINIEf5uAMIzlpuUsE75ouR31FbHgvOPV2lLVgU7myAqrdJaAD7fZcDQEsuaftEIv+rm6hCrKpvSWQuIg/maO9/IlkskcYNM101AUDrQGTi8Bwjp/ZHxLh6u3UdQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=gj89uc2b; arc=none smtp.client-ip=209.85.218.52
+	 In-Reply-To:Content-Type; b=W0n/M6W717Tye6ex7Tg35ZVG/qaX5G6RCOkRbOaRQ4aSYKofu2zb9b/dBmAyXb4A58ndgUTdlHpFnkOZYCPo0MbDGSQGwoWG6FhnlBNcaeL3wdMPegotDHfX3TZDiY+I3XH4J96/DsNJ832p+NYr8zS8YcL0y96AW9Z5+NPwOOg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=eCnUVXmH; arc=none smtp.client-ip=209.85.167.52
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-ej1-f52.google.com with SMTP id a640c23a62f3a-a34c5ca2537so252619166b.0
-        for <devicetree@vger.kernel.org>; Thu, 01 Feb 2024 23:17:13 -0800 (PST)
+Received: by mail-lf1-f52.google.com with SMTP id 2adb3069b0e04-5101f2dfdadso2751221e87.2
+        for <devicetree@vger.kernel.org>; Thu, 01 Feb 2024 23:24:42 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1706858231; x=1707463031; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from
-         :content-language:references:cc:to:subject:user-agent:mime-version
-         :date:message-id:from:to:cc:subject:date:message-id:reply-to;
-        bh=RSy8eeTLHLxTS0EEmvDC0Ukq1RLkz6dvGJJ5c6GskD0=;
-        b=gj89uc2bvLyGAxHRE+rhMtdCk7XHOccMzYvXYWA0jFEFhwh1OoFKVtz5QbBtk8vRDN
-         Tm4ZBRQQIz1jj7mgLIWk7c1HFbRd58LxRP1Whsp913KbCivnKOHSjpTMtMWmsBYRkq/I
-         ZVUIlkipJhWax73j6+4LSGABjnn653rDHehndB/O6XDrNzN3BseG3jaLKdpzd2BtE+gL
-         dRDhiBHgUJBYzfyI5onLEFBJvTVyDRvaWXhVBZFSH1R4yvsfoNrw91uMtYy7GxSvZg6q
-         pUL/hpLwcKoCPerUqf37ypkIm7tnHERKA7R2QYOkISLGTWqhsVk4GqoNxMmjZqU81rjz
-         +7Mw==
+        d=linaro.org; s=google; t=1706858680; x=1707463480; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
+         :to:content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=FvWtHDZODSKY0IWZ9Z1fc5ZaZQuHu9ByW0K+Mdamz7g=;
+        b=eCnUVXmHvUdzNTHVhAJe9cq6rRCPFlgrY6o1/bZ5Ub4q/485LMSaEvQpL26+RQkplD
+         /2jxKM371hBhUrShvMjbMcAMd8mdoIeiRgzfT4yHW7Wj9vjePDvKSUOSIXCKvwYpdNEu
+         btchrxvxRFotRJ42nzlUtDHofF17cBIlH8mfDWDYdjsYWDaFfJeWcmr+UJxUZWTrKooN
+         IZyncxB9asiWZzu0jz02o8Us497qxyPEKm1xSegjYmULGGBTeEb1MxKHZ6uSOsMS0dYf
+         h33xH0VIvYcVXtVU4IxACQwt0RS/ja6F33yH1r/CxxgnSHasxmN63/YEO4abC7uSOFau
+         MMDg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1706858231; x=1707463031;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from
-         :content-language:references:cc:to:subject:user-agent:mime-version
-         :date:message-id:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=RSy8eeTLHLxTS0EEmvDC0Ukq1RLkz6dvGJJ5c6GskD0=;
-        b=vfZDT9vKzirUb3M1/p17TV9ae9iKsQxU7uLVMyl5HuEJJxPtGlQeWP26SrLHgkMbDG
-         LtUkh9uJVZYftKsrcaDdC+tIn1RyAk9nx5k7a0dcdHPCHN+alsRBMOmcj+9WLeQipcEL
-         0//Ct76PR23kwWzqNqGNp2RjtezYBEqvLOnHkowsG+Qu80tqCS/kkwAv+JYeYy45uC3j
-         fNFY9Uv0PA1n/Tm+68WtikbyEOGyt8SUm6aI1TubMg+Tudu/aHwigokFcCZNXXcnvQ0p
-         AE9RKawhr3InT8Q3VoSxxdJSI7ec2VEf/v8mMvIfH1+DCCwydwaWd+k9k1+TN6QZBMyf
-         xRIA==
-X-Gm-Message-State: AOJu0Yzj6tVpN0beT+5+7+tA/vMQpafh+cvZh+HJVKmGkzF6D6l4BUPR
-	RAzIsDFO4JFWEnxZPDEgznErjdLvz2Ezlskoxa1OD0WTasCFQ+yJULGI9DYV49o=
-X-Google-Smtp-Source: AGHT+IHWuhdy6LLE1Xo3TlX6nhPhnkiNXNsKPTmcri8k5ArOCoZQ2K/eZboIbPUYbRG7dbUGGLl9bw==
-X-Received: by 2002:a17:906:1f07:b0:a35:34c0:e1bd with SMTP id w7-20020a1709061f0700b00a3534c0e1bdmr824480ejj.67.1706858231462;
-        Thu, 01 Feb 2024 23:17:11 -0800 (PST)
-X-Forwarded-Encrypted: i=0; AJvYcCXcTcXsIBtq81BlVw6d2+yV4wP8EWysPfly8LHIwJzcGQ2SoP6zw/A8v/cqnjp3h5aNZznnFPiBfEGrFxSnFmLEF2LRXm15ZnHqSm1tjUdIYsRPQQvPiMOiZ2yJMqafOtUlB2mkLNEtvkTeVIIAlJEtBkX/C9nDbqHzCfwQDKkQUyYcXXZsvmLbFJ2pgwCN9zIEsjbKqL/FKNGuHYo2Sgp2Ud26aHVcommSkDdeHrCl6bvpQS5wiQ0=
+        d=1e100.net; s=20230601; t=1706858680; x=1707463480;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
+         :to:content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=FvWtHDZODSKY0IWZ9Z1fc5ZaZQuHu9ByW0K+Mdamz7g=;
+        b=jSEf3jVa08lpXONfjEE2KpEo2JR8EidzykfkfYAFgpDECpw/wuXSW3Ua7GDcR28p5F
+         /PpL8X7sk52LeeG/YaaQU9R2jBbYvHEjTWExoBv6Wy5eRkuk2zsmYiX9cjEGhvLGpQJ3
+         s4Fz/dEBzuV115efqaxHDwrPvYskNsB5ELVkJAqPjWvKIOUCN5u5+QPaGJ1reraCNzSj
+         37hI6fbjrWSUHh6ESUKun93qHkGSWw5o+VXaW4Rnq6jrVqPwEi8f7oxEVtuINM+E1hQY
+         00NGS28cm1wYkTTWO1l03StEtiwW7ZZ6urBzml56t819jkvgdgNUhtAc9ngA73MCxXYt
+         Qu+Q==
+X-Gm-Message-State: AOJu0Yz0AytV+F8mxIqSvnKlRl9zKO2oS8piTnUoIfZiQ/3zdnqJ2x0z
+	QnbPL6kHhN+Kw6vk2Pjt19+yXpX7RQ92GGBAGrkGG0aZhi1gqfOCOJbnxpxjSdk=
+X-Google-Smtp-Source: AGHT+IFdeLtEt4dVEu45mlqMDNUCo7biDQRP3f2ZPvP12HD1LdqSbmOVA87EfU4DgZPhPFb5/ewx9w==
+X-Received: by 2002:a05:6512:48cd:b0:511:1e60:8157 with SMTP id er13-20020a05651248cd00b005111e608157mr707378lfb.10.1706858680395;
+        Thu, 01 Feb 2024 23:24:40 -0800 (PST)
+X-Forwarded-Encrypted: i=0; AJvYcCUIqpwLM8bJ/ZGRcSIDgkeZafmfLtLkoOcA19xIzSHsvjPxYcHFC+HIaP5+xoiD5S1y4r8wmvozxHjn98757yI0+3Ztyk3JwDMhmK7eylB9Lnw0AHEOXMrMA3bi7jAz7TkQBFox0W5tpZqUMKjtVbHEhh65FyrvQJmjsOtj5SZxviu+a6TzVOa0WofgLd3wOY7J/7H0ZDr9pM/Md3gPLARjHA4ybrG8WOxilxao+RmZNyg3L6JQTAY=
 Received: from [192.168.1.20] ([178.197.222.62])
-        by smtp.gmail.com with ESMTPSA id hw16-20020a170907a0d000b00a36f0e2f3d8sm575116ejc.7.2024.02.01.23.17.10
+        by smtp.gmail.com with ESMTPSA id n13-20020a05600c3b8d00b0040eee852a3dsm6660620wms.10.2024.02.01.23.24.39
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 01 Feb 2024 23:17:11 -0800 (PST)
-Message-ID: <636c626e-118c-475f-909d-4f6cdbfb07eb@linaro.org>
-Date: Fri, 2 Feb 2024 08:17:09 +0100
+        Thu, 01 Feb 2024 23:24:39 -0800 (PST)
+Message-ID: <9a8819f1-5a28-4ecb-8094-89316366428f@linaro.org>
+Date: Fri, 2 Feb 2024 08:24:38 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -77,8 +76,9 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 3/5] dt-bindings: memory: additional compatible strings
- for Broadcom DPFE
+Subject: Re: [PATCH v2 4/5] memory: brcmstb_dpfe: introduce version-specific
+ compatible strings
+Content-Language: en-US
 To: Markus Mayer <mmayer@broadcom.com>
 Cc: Florian Fainelli <florian.fainelli@broadcom.com>,
  Rob Herring <robh+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>,
@@ -86,10 +86,9 @@ Cc: Florian Fainelli <florian.fainelli@broadcom.com>,
  Device Tree Mailing List <devicetree@vger.kernel.org>,
  Linux Kernel <linux-kernel@vger.kernel.org>
 References: <20240119215231.758844-1-mmayer@broadcom.com>
- <20240119215231.758844-4-mmayer@broadcom.com>
- <f46951b9-36b0-4155-b6ac-3d3f7cc8ef37@linaro.org>
- <CAGt4E5taqv2kgK4ZF6R+otKwrVYiaNNkeCu5Qv7xW8cyBvv3Fw@mail.gmail.com>
-Content-Language: en-US
+ <20240119215231.758844-5-mmayer@broadcom.com>
+ <bc20da6e-bf97-415b-ba78-ae29311ae38f@linaro.org>
+ <CAGt4E5uE1Ms8vJbw2tE7fgcxeE9=vPYsa8y2FsJtQt-7jrjE_Q@mail.gmail.com>
 From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  xsFNBFVDQq4BEAC6KeLOfFsAvFMBsrCrJ2bCalhPv5+KQF2PS2+iwZI8BpRZoV+Bd5kWvN79
@@ -135,147 +134,51 @@ Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  KQ06ztUMRrj8eVtpImjsWCd0bDWRaaR4vqhCHvAG9iWXZu4qh3ipie2Y0oSJygcZT7H3UZxq
  fyYKiqEmRuqsvv6dcbblD8ZLkz1EVZL6djImH5zc5x8qpVxlA0A0i23v5QvN00m6G9NFF0Le
  D2GYIS41Kv4Isx2dEFh+/Q==
-In-Reply-To: <CAGt4E5taqv2kgK4ZF6R+otKwrVYiaNNkeCu5Qv7xW8cyBvv3Fw@mail.gmail.com>
+In-Reply-To: <CAGt4E5uE1Ms8vJbw2tE7fgcxeE9=vPYsa8y2FsJtQt-7jrjE_Q@mail.gmail.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 01/02/2024 23:36, Markus Mayer wrote:
-> On Tue, 23 Jan 2024 at 13:27, Krzysztof Kozlowski
+On 01/02/2024 23:40, Markus Mayer wrote:
+> On Tue, 23 Jan 2024 at 13:28, Krzysztof Kozlowski
 > <krzysztof.kozlowski@linaro.org> wrote:
 >>
 >> On 19/01/2024 22:52, Markus Mayer wrote:
->>> Add versioned compatible strings for Broadcom DPFE. These take the form
->>> brcm,dpfe-cpu-v<N> where <N> is a number from 1 to 4.
->>>
->>> The chip-specific strings have been kept for compatibility purposes
->>> (hardware is in the field). For new chips, the properly versioned
->>> compatible string should be used.
->>>
->>> Signed-off-by: Markus Mayer <mmayer@broadcom.com>
->>> ---
->>>  .../memory-controllers/brcm,dpfe-cpu.yaml     | 21 ++++++++++++++++++-
->>>  1 file changed, 20 insertions(+), 1 deletion(-)
->>>
->>> diff --git a/Documentation/devicetree/bindings/memory-controllers/brcm,dpfe-cpu.yaml b/Documentation/devicetree/bindings/memory-controllers/brcm,dpfe-cpu.yaml
->>> index 3f00bc2fd3ec..42c8160d95d1 100644
->>> --- a/Documentation/devicetree/bindings/memory-controllers/brcm,dpfe-cpu.yaml
->>> +++ b/Documentation/devicetree/bindings/memory-controllers/brcm,dpfe-cpu.yaml
->>> @@ -10,9 +10,28 @@ maintainers:
->>>    - Krzysztof Kozlowski <krzk@kernel.org>
->>>    - Markus Mayer <mmayer@broadcom.com>
->>>
->>> +description: |
->>> +
+>>> Introduce compatible strings brcm,dpfe-cpu-v1 through brcm,dpfe-cpu-v3
+>>> to the Broadcom DPFE driver.
 >>
->> Drop blank line.
+>> Nothing improved here. I think my last comment was pretty clear what I
+>> expect.
 > 
-> Will do.
-> 
->>> +  The DCPU (DDR PHY Front End CPU) interfaces directly with the DDR PHY
->>> +  chip on Broadcom STB SoCs. An API exists for other agents to retrieve
->>> +  or set certain DDR PHY chip parameters by JEDEC.
->>> +
->>> +  Different, incompatible versions of this API have been created over
->>> +  time. The API has changed for the some chips as development progressed
->>> +  and features were added or changed.
->>> +
->>> +  We rely on the boot firmware (which already knows the API version
->>> +  required) to populate Device Tree with the corresponding compatible
->>> +  string.
->>> +
->>>  properties:
->>>    compatible:
->>>      items:
->>> +      - enum:
->>> +          - brcm,dpfe-cpu-v1
->>> +          - brcm,dpfe-cpu-v2
->>> +          - brcm,dpfe-cpu-v3
->>> +          - brcm,dpfe-cpu-v4
->>
->> I don't see my comment resolved - except more unusual order of
->> compatibles - and nothing in commit msg explains my previous concerns.
-> 
-> I am confused. What about ordering them in alphabetically ascending
-> order is unusual?
+> You are correct. Nothing changed here. I did not get the impression
+> that you were asking for changes to the actual driver code.
 
-Order of entire list - you just added everything to the beginning of the
-list. This does not make sense.
+I think my concern was pretty obvious:
+"No, why?"
 
-> 
-> Which concerns, specifically, are you referencing? I promise I am not
+Your commit msg is pointless. Says nothing. It says what you do, but it
+is obvious and redundant. I see what you do from the patch diff.
 
-That you claim here that bcm7271 is both v1, v2, v3 and v4. Nothing in
-the commit msg explains this.
+What your commit msg is supposed to say, is explain why this is needed
+and what problem are you solving.
 
-Nothing from my message here:
-https://lore.kernel.org/all/3fff866f-fbe8-4d23-87f3-275380adf3d4@linaro.org/
-is resolved or addressed.
+This applies to all your commits, to all projects, downstream or
+upstream. Repeating what the diff is doing is trivial and does not help
+people to understand why this commit is there and what is the commit's
+bigger impact.
 
+So after I asked to provide rationale, you send exactly the same commit
+without rationale.
 
-> deliberately ignoring concerns as there would be no point in doing so.
-> I have nothing to gain from it. I am trying to get code accepted into
-> the kernel. I am not trying to "win any battles" or "prove that I can
-> be more stubborn" or anything of that nature. If it is possible to
-> integrate concerns raised by the maintainer, I will gladly do so. And
-> if not, I'd like to find a way that works for both sides.
-> 
-> BTW, I once used to be on the Linaro Landing Team for Broadcom. You'll
-> find some commits from me in the kernel that carry a linaro.org e-mail
-> address. Most are from over a decade ago. Yikes, time flies!
-> 
-> The reason I am mentioning this is to point out that
-> 
-> * I am not new to this.
-> * I am respecting the Open Source community and so is the rest of the team.
-> * We are trying to do the right thing and be "good citizens".
-> * We upstream whatever we can to the relevant project, not just the kernel.
-> * We aren't on some kind of power-trip or unwilling to listen to feedback.
+And this is repeating in this entire patchset. Patch #1 only mentions
+"no actual benefit", but it is discussible. It provides benefit in my
+opinion and nothing in your commit msg gives arguments to support your
+clause. Patch #2 does not need more explanations but it also does not
+make sense in entire series - you want to drop the specific compatibles!
+What's more patch #2 does not make any sense with combination of patch
+#3 and it is not explained in the commit msg.
 
-OK, I see you sent the almost same patch with no improvements in the
-code and in commit msg, so that was the assumption. I made quite clear
-concerns last time and asked several questions.
-
-> 
-> I am not saying this because I think any of the above makes me special
-> or particularly accomplished. However, I do think that some things may
-> need to be clarified as there does seem to be a certain attitude at
-> play here, with certain assumptions, that is far from constructive.
-> Hopefully, this has now been cleared up, and we can move forward with
-> addressing the outstanding concerns regarding our DPFE compatible
-> strings.
-> 
->> I think my final comment was pretty clear yet ignored completely. There
->> was no follow up:
->> https://lore.kernel.org/all/3fff866f-fbe8-4d23-87f3-275380adf3d4@linaro.org/
-> 
-> Unfortunately, it may not be as clear as you think. I did my best to
-> incorporate what I thought you meant. Clearly that didn't work out so
-> well.
-> 
-> So, please clarify in more detail, and maybe showing some examples,
-> what it is you would like to see. For instance, I have no idea what
-> "(e.g. bcm7271 + v1 + generic fallback)" is actually supposed to mean.
-
-This means: List of three compatibles, SoC specific, your versioned one,
-generic compatible used as fallback.
-
-> Is that shorthand for 3 compatible strings (brcm,bcm7271-dpfe-cpu,
-> brcm,dpfe-cpu-v1, brcm,dpfe-cpu). If so, how is that different from
-> what we already had?
-
-If something is unclear in that message, please continue that message.
-There was no further explanation, no further comments on my email, so I
-assume you agree or understand it.
-
-> 
->> so with ignored comments: NAK
-
-Also - missing device prefix in subject:
-
-Please use subject prefixes matching the subsystem. You can get them for
-example with `git log --oneline -- DIRECTORY_OR_FILE` on the directory
-your patch is touching.
-
+Patch #3 also brings zero explanations why you are doing it. From all
+four patches, only one had some sort of explanation - patch #1.
 
 Best regards,
 Krzysztof
