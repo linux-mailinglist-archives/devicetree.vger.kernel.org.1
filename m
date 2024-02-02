@@ -1,90 +1,140 @@
-Return-Path: <devicetree+bounces-37885-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-37886-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 91FBC846A19
-	for <lists+devicetree@lfdr.de>; Fri,  2 Feb 2024 09:03:59 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id D0497846A67
+	for <lists+devicetree@lfdr.de>; Fri,  2 Feb 2024 09:18:02 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id C309F1C299A4
-	for <lists+devicetree@lfdr.de>; Fri,  2 Feb 2024 08:03:58 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 0D6601C221C4
+	for <lists+devicetree@lfdr.de>; Fri,  2 Feb 2024 08:18:02 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id AAC9517C6E;
-	Fri,  2 Feb 2024 08:03:44 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9BE5817C96;
+	Fri,  2 Feb 2024 08:11:16 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from metis.whiteo.stw.pengutronix.de (metis.whiteo.stw.pengutronix.de [185.203.201.7])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-yw1-f176.google.com (mail-yw1-f176.google.com [209.85.128.176])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4495017C74
-	for <devicetree@vger.kernel.org>; Fri,  2 Feb 2024 08:03:41 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.203.201.7
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 10B0047F55;
+	Fri,  2 Feb 2024 08:11:13 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.176
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1706861024; cv=none; b=e6pBD5y8SOLai9e61zzikPTBm2ZsatbMz2sfAC5MtNPtjkVdydMTwYGsOP/awwIoqolej8PN8huEc6Dp26awBcx8ImoIReBm21qQzAWCiMnT+VF+4OH7P7zhpqvSrC5NhzWdPaBa4nZe0yDTV53n0frTyTVM0GvBg5FBx+jSgjk=
+	t=1706861476; cv=none; b=ucUAyLFjpddUrqWXTpH9hPDzz4+Jtgu+8/jQcjzD85fkR6UE2DqIorZRvVu7VzJfV0Nay8J7SGZ/d4Zb7e84oB380o5XKz5gAZw89ObuqeeYqujqPEnmaAl6CR7HYcw9WwE+ssNDyQHLwJgHFpSAa2225+rmbn2BrnrTvYfcjrk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1706861024; c=relaxed/simple;
-	bh=/5I0jzeisO58TwpJV9NIkaSdOuEb7mJd1QjkNcmrsI0=;
-	h=Message-ID:Subject:From:To:Cc:Date:In-Reply-To:References:
-	 Content-Type:MIME-Version; b=NASIn0ykal0Z62I9xNwCgYdnwIY7vT8tHhVoaDTZeaNShGRj2py9jtOOHAUwvVZTpd54X4FqFtC2vaTRwjJgc211qdQRT5jz/zS2qUacp8ygVi6vLvBGolkxwblFTck5KOK0t4dV3Ov0EynFvNtqABEt0vz50OMFDdjCn4zAGjA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de; spf=pass smtp.mailfrom=pengutronix.de; arc=none smtp.client-ip=185.203.201.7
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=pengutronix.de
-Received: from drehscheibe.grey.stw.pengutronix.de ([2a0a:edc0:0:c01:1d::a2])
-	by metis.whiteo.stw.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
-	(Exim 4.92)
-	(envelope-from <p.zabel@pengutronix.de>)
-	id 1rVoWD-0006a5-Iu; Fri, 02 Feb 2024 09:03:25 +0100
-Received: from [2a0a:edc0:0:900:1d::4e] (helo=lupine)
-	by drehscheibe.grey.stw.pengutronix.de with esmtps  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-	(Exim 4.94.2)
-	(envelope-from <p.zabel@pengutronix.de>)
-	id 1rVoWC-0041cJ-Gg; Fri, 02 Feb 2024 09:03:24 +0100
-Received: from pza by lupine with local (Exim 4.96)
-	(envelope-from <p.zabel@pengutronix.de>)
-	id 1rVoWC-0003Le-1S;
-	Fri, 02 Feb 2024 09:03:24 +0100
-Message-ID: <1769b56a52263060feb5d6810b43821bb19172ab.camel@pengutronix.de>
-Subject: Re: [PATCH v3 6/8] watchdog: rzg2l_wdt: Rely on the reset driver
- for doing proper reset
-From: Philipp Zabel <p.zabel@pengutronix.de>
-To: Claudiu <claudiu.beznea@tuxon.dev>, wim@linux-watchdog.org, 
-	linux@roeck-us.net, robh@kernel.org, krzysztof.kozlowski+dt@linaro.org, 
-	conor+dt@kernel.org, geert+renesas@glider.be, magnus.damm@gmail.com, 
-	biju.das.jz@bp.renesas.com
-Cc: linux-watchdog@vger.kernel.org, devicetree@vger.kernel.org, 
- linux-kernel@vger.kernel.org, linux-renesas-soc@vger.kernel.org, Claudiu
- Beznea <claudiu.beznea.uj@bp.renesas.com>
-Date: Fri, 02 Feb 2024 09:03:24 +0100
-In-Reply-To: <20240202075849.3422380-7-claudiu.beznea.uj@bp.renesas.com>
-References: <20240202075849.3422380-1-claudiu.beznea.uj@bp.renesas.com>
-	 <20240202075849.3422380-7-claudiu.beznea.uj@bp.renesas.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-User-Agent: Evolution 3.46.4-2 
+	s=arc-20240116; t=1706861476; c=relaxed/simple;
+	bh=o3wPyRXEPoSF+U7A/RsmBapsWEQBn3I78JpEMkHDxPY=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=a6PjeuzoNwWr76aKwWzOObKoIgzzD38qeWj2m+J5OdSu6kal2HOpEMeonr2sSRYwQd6aVSUR1h0kNaZ1a4LX2ea3RWXJGIIIDNKNKiYsrDufnRQXRUi8bpSMss1xiU4xLlB9oh6t/6E0ZsqFSeeFV3vyeu+cZuGf5w8mN0pnBVg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org; spf=pass smtp.mailfrom=gmail.com; arc=none smtp.client-ip=209.85.128.176
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-yw1-f176.google.com with SMTP id 00721157ae682-6040e7ebf33so4126617b3.0;
+        Fri, 02 Feb 2024 00:11:13 -0800 (PST)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1706861472; x=1707466272;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=Y7OoK/n68hP5aJbuOodgIidDfY/+GTLZ17QcyZGeA8I=;
+        b=WNjoF3ItnQ/pK7SQ+3P28mLJvATSXret2Yr1J4RotqzUlkEOO4ELsiO1wHseaWCHPi
+         uQ4JOClapmdySrK/tT0rK3bUeh6vkbwnlPRheUzSoFRvZxwbGKYiABNLiZSmvMHqb6M3
+         n1MN2ir/gjoE2SS6Vm50Xk2CZlnmQba2do1PhqdT7Z59vghlPnhkS78uPWuCt7WYgIWY
+         FBVuOQHjORoTdpPWwzB+864lVBK8te/aKJhVRHrwk88RDfPiq+t7nD23ZWlhN7bMsibg
+         Kax1O/PhcF3f7XrxcNn4If94xhiTfp+N3hX4EJMwho/4tUQSEj0xeDhBfYVW1bQlV7Tf
+         5P0g==
+X-Gm-Message-State: AOJu0YzTalJ+qThFV9y9H9lIVYKVbDUInAE9gpfmCyRqSQ3HLmZ9kcLi
+	zd9pdutbhwcxh0u+urB/2y05HNV98pkjyUIW28e+fCFcyreTsHtfhkB6lWXNRy4=
+X-Google-Smtp-Source: AGHT+IGa+FAvaaF/PkZN0J/RKo4mtyCQu74u3vuXy4ZmvjsePaqRE7Jl/L2qf7Jmss5gQDr67tXy1Q==
+X-Received: by 2002:a81:4f82:0:b0:5ff:a961:d91c with SMTP id d124-20020a814f82000000b005ffa961d91cmr1185104ywb.1.1706861472604;
+        Fri, 02 Feb 2024 00:11:12 -0800 (PST)
+X-Forwarded-Encrypted: i=0; AJvYcCUiHaMF4Jaj27UNM58du4HOo+4B68M/GvAuRaak/j5L7UP5/ugzK5FwpXguA7HGfLHE4JI+EWyHoOIwhyYwNTSUqE048BX59Kopf2E9/MQH1r54odQwsd5k7JhwCdXtX8xgmZ0AApbA3ZL3SUjNFD0Z7JpJSto/5JzQ7cEU4hJQWMM4nIc=
+Received: from mail-yb1-f174.google.com (mail-yb1-f174.google.com. [209.85.219.174])
+        by smtp.gmail.com with ESMTPSA id cd18-20020a05690c089200b005ff98d9a7b8sm302728ywb.19.2024.02.02.00.11.12
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 02 Feb 2024 00:11:12 -0800 (PST)
+Received: by mail-yb1-f174.google.com with SMTP id 3f1490d57ef6-dc6cbe1ac75so393784276.1;
+        Fri, 02 Feb 2024 00:11:12 -0800 (PST)
+X-Received: by 2002:a05:6902:2489:b0:dc2:23b1:eaef with SMTP id
+ ds9-20020a056902248900b00dc223b1eaefmr1451206ybb.18.1706861472161; Fri, 02
+ Feb 2024 00:11:12 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-SA-Exim-Connect-IP: 2a0a:edc0:0:c01:1d::a2
-X-SA-Exim-Mail-From: p.zabel@pengutronix.de
-X-SA-Exim-Scanned: No (on metis.whiteo.stw.pengutronix.de); SAEximRunCond expanded to false
-X-PTX-Original-Recipient: devicetree@vger.kernel.org
+References: <cover.1706802756.git.geert+renesas@glider.be> <b20aab137058c02ab5af9aaa1280729a02c6ea49.1706802756.git.geert+renesas@glider.be>
+ <20240201221151.GA1562458-robh@kernel.org>
+In-Reply-To: <20240201221151.GA1562458-robh@kernel.org>
+From: Geert Uytterhoeven <geert@linux-m68k.org>
+Date: Fri, 2 Feb 2024 09:11:00 +0100
+X-Gmail-Original-Message-ID: <CAMuHMdWmVs2m3bX=21Ocw8y=8WDJfFy2dami3aC9Kj-4PokDEQ@mail.gmail.com>
+Message-ID: <CAMuHMdWmVs2m3bX=21Ocw8y=8WDJfFy2dami3aC9Kj-4PokDEQ@mail.gmail.com>
+Subject: Re: [PATCH 1/2] regulator: dt-bindings: gpio-regulator: Fix
+ {gpios-,}states limits
+To: Rob Herring <robh@kernel.org>
+Cc: Liam Girdwood <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>, 
+	Linus Walleij <linus.walleij@linaro.org>, 
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Marek Szyprowski <m.szyprowski@samsung.com>, devicetree@vger.kernel.org, 
+	linux-gpio@vger.kernel.org, linux-kernel@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-On Fr, 2024-02-02 at 09:58 +0200, Claudiu wrote:
-> From: Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>
->=20
-> The reset driver has been adapted in commit da235d2fac21
-> ("clk: renesas: rzg2l: Check reset monitor registers") to check the reset
-> monitor bits before declaring reset asserts/de-asserts as
-> successful/failure operations. With that, there is no need to keep the
-> reset workaround for RZ/V2M in place in the watchdog driver.
->=20
-> Signed-off-by: Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>
+Hi Rob,
 
-Reviewed-by: Philipp Zabel <p.zabel@pengutronix.de>
+On Thu, Feb 1, 2024 at 11:11=E2=80=AFPM Rob Herring <robh@kernel.org> wrote=
+:
+> On Thu, Feb 01, 2024 at 04:58:41PM +0100, Geert Uytterhoeven wrote:
+> > make dtbs_check:
+> >
+> >     arch/arm64/boot/dts/renesas/r8a77951-salvator-xs.dtb: regulator-vcc=
+q-sdhi0: Unevaluated properties are not allowed ('gpios-states', 'states' w=
+ere unexpected)
+> >           from schema $id: http://devicetree.org/schemas/regulator/gpio=
+-regulator.yaml#
+>
+> Unevaluated properties warning here is not interesting. If a property
+> fails validation, then it is considered unevaluated. It's that warning
+> which is interesting:
+>
+> arch/arm64/boot/dts/renesas/r8a77951-salvator-xs.dtb: regulator-vccq-sdhi=
+0: gpios-states:0: [1] is too short
+>         from schema $id: http://devicetree.org/schemas/regulator/gpio-reg=
+ulator.yaml#
 
-regards
-Philipp
+Oops (again, I'm afraid my mind is already living at FOSDEM ;-),
+I copy-'n-pasted the wrong message...
+
+> > The number of items in "gpios-states" must match the number of items in
+> > "gpios", so their limits should be identical.
+> >
+> > The number of items in "states" must lie within the range from zero up
+> > to 2^{number of gpios}.
+> >
+> > Signed-off-by: Geert Uytterhoeven <geert+renesas@glider.be>
+> > ---
+> > The second issue did not cause any dtbs_check errors?
+>
+> I'm not seeing 'states' fail, but it looks like you did? Is that the
+> issue you mean? Looks like in the matrix case, we're now setting
+> minItems if unspecified.
+
+No, I did not see states fail, only gpios-states.
+Hence "the second issue did not cause errors".
+
+Gr{oetje,eeting}s,
+
+                        Geert
+
+--=20
+Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k=
+.org
+
+In personal conversations with technical people, I call myself a hacker. Bu=
+t
+when I'm talking to journalists I just say "programmer" or something like t=
+hat.
+                                -- Linus Torvalds
 
