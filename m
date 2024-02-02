@@ -1,205 +1,220 @@
-Return-Path: <devicetree+bounces-38036-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-38037-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 04177847412
-	for <lists+devicetree@lfdr.de>; Fri,  2 Feb 2024 17:06:49 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 13086847443
+	for <lists+devicetree@lfdr.de>; Fri,  2 Feb 2024 17:11:31 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 98676B2C9FA
-	for <lists+devicetree@lfdr.de>; Fri,  2 Feb 2024 16:06:46 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 357291C24F40
+	for <lists+devicetree@lfdr.de>; Fri,  2 Feb 2024 16:11:30 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7238014831D;
-	Fri,  2 Feb 2024 15:59:48 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id ECB60146913;
+	Fri,  2 Feb 2024 16:08:11 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="Ovroj3df"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-oi1-f173.google.com (mail-oi1-f173.google.com [209.85.167.173])
+Received: from mail-lj1-f171.google.com (mail-lj1-f171.google.com [209.85.208.171])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C5E09148308;
-	Fri,  2 Feb 2024 15:59:46 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.173
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DB1FD1474CE
+	for <devicetree@vger.kernel.org>; Fri,  2 Feb 2024 16:08:09 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.171
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1706889588; cv=none; b=u1LRu2bQjeFOtKyYX9+oCK5edlM5rw6URML3Rhy/EY244xfJqBQUj59/UMvG4RNI4jHPIqj3QH5ddaxcUjMDn1H+9tLJn2iChakBu9EugAJQBRlVxjy7UV8rbUC9FyfwrszlQ0dgdEMZy7C+secH6ljlaDJJwrqeeEAiR7daCP4=
+	t=1706890091; cv=none; b=rC4AeFDD8bQe0lxjmRGCJ/R0DaALx1CJgRVw2j0R1sTIIwgJQ2ypSgv6WRYcXOJWvoBfZtTF45wgYx19aaMSMy4DNR5wnnY9B63eSM/i7RVBhc3zhPTkpU7zfzhMZv2uQ3tFxoXgRINcIk1rPYXGL2eB1AmWZFn26Gq6gpFpGEY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1706889588; c=relaxed/simple;
-	bh=7yi/zjSsxVNqTRQbhdO51Oqbn2B4A00QYjxdFqIJ0x0=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=r+hbrwY8ksCo7roGfNISy/6HCiCS5jmK/eS/3ZsLYAsXAWd1LlCZ0NVbG2G5t3b47gfls73CO9Aaq81bIn+FNi0Pdct8hxY+wnjKJc2k7f8yRwS7dS6dxFWYX88p4gZPyMYRBMlYdPCd2HZgIxxJglXy6yfoJWCdjd6fp1357pM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=fail (p=none dis=none) header.from=kernel.org; spf=pass smtp.mailfrom=gmail.com; arc=none smtp.client-ip=209.85.167.173
-Authentication-Results: smtp.subspace.kernel.org; dmarc=fail (p=none dis=none) header.from=kernel.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-oi1-f173.google.com with SMTP id 5614622812f47-3bc21303a35so676500b6e.0;
-        Fri, 02 Feb 2024 07:59:46 -0800 (PST)
+	s=arc-20240116; t=1706890091; c=relaxed/simple;
+	bh=1Sy1DahY5LhmMgnq6h+UTVpAneW/WiqYKvKoRqACwPU=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=U8VcGLs/oEMHudTQsriTvvqpPr+Oqn1TglgzBHfRNVTWcYhR+vDKe4vjfvoOqSXyRVG/xYv60KcX+L9PHqjnMDM3GDgRTE3HZVhVEBwrJUKhX90DQAe2/uE+NsRod3uuKWxRqIPgWgEaZE5k9JLHVecoVu91WGsYFzQ6kL91SCY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=Ovroj3df; arc=none smtp.client-ip=209.85.208.171
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-lj1-f171.google.com with SMTP id 38308e7fff4ca-2cf206e4d56so28997361fa.3
+        for <devicetree@vger.kernel.org>; Fri, 02 Feb 2024 08:08:09 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1706890088; x=1707494888; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
+         :to:content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=QdOH44GqBNuJv7gNhF+H71j52RbjvAKIOcCjf68RgNE=;
+        b=Ovroj3df70dPtuyRQBmahU5qlBI8SM2xLqy5+or/4w0q1un2pO9WshDLPXEJldH0tv
+         NrlvfJNwXIo4/16XcF21XGQnQcDcTGfbIlmfDGiP8hk/DnKPATlSzr7ChLhy2g711qtJ
+         d1XYNWoB0nmasoA/p916HY8K6E+3e1CbvmkVJLrq3v6PP25m+pJyyJBjk0VVnNXbxOf8
+         aU1gWuqfgbgXYoxnbBgSHzSj1LdwfkmVmE7Ep5a3OqjKC0VtS6wCS0ah9JOsMLihhMc/
+         0sHzW7+2gfDr443MsP/4rJZtMvnrC76CRBY6g/GQMPvQqPD6peRpZm/81fFxEjkoOnsc
+         5Ocw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1706889586; x=1707494386;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=auL16LpvoDkFJLLhh00PkECn/QrUMlvnY9JxMZw7mDc=;
-        b=owXCVQa2Ta9GiK6FIIUSXT5dM9/wuYkNoZT3jZ7wp3f8+3S+UR0eDUixDNqvkvZTN9
-         pZVraxhd36/hsqt6XraBjp+ixNrj80EDtLgI6CCyW77Kgei6oxOpZLOddLDOHax/4+Oa
-         Fuq6Tz3JuCoPcZjWlq9T+s6S1kANttPJYqcc2aodFuQEHanAclRus5WUgQgPd4uyxIVY
-         PJGgXFskPn1JiBu9OPZniYcUE/Wb0CD+CxQgULV+OOyCuswS9FghxdJwwa7uNRsAgQvy
-         BqNEnbieMiSBvPuu7EHrnf/hY3JL8I+jg2qh39Rz44U0WghPqTRmvSIWoSlfF66bYjzd
-         Mj5A==
-X-Forwarded-Encrypted: i=0; AJvYcCVCxldZTDy2HG8/RxPzZ69VKJ8srbKatCchwIaANgvEK4+vUJaxamlmmGWC/UiKCenawN2NnNQ+TV/V77pXe0AG8GRhu9gBqV9RgGBvlzJh1+8TTDxEwvCAbS8aZJmj63n4cz+030JxJUNle0iky9CybvezNT0BO+UGUZtI2x/p1Pawtl8=
-X-Gm-Message-State: AOJu0YwjKVlZILGGjupI7c2k9njzmtGzgOzbr72XUL7t70inYE9Xb6KA
-	Vf/KGVSDEl409d9WrqZtMm3tuG3dMP3Cj8UilIQTXZdJxVUvdJM5S4mlVvXU8ip88QDMR80x1jO
-	RO5EupMggJ2SQ3h54ERfMh73l17s=
-X-Google-Smtp-Source: AGHT+IFa9hpjb88gx1bG9zjhuo/116xDCr2ZTPA35bmFzYzkmqNVdEhrrS4FotLAIFnYwWojff5VFDJL+3bCvZI8CPU=
-X-Received: by 2002:a05:6808:2191:b0:3be:1b04:ee82 with SMTP id
- be17-20020a056808219100b003be1b04ee82mr9871977oib.0.1706889585756; Fri, 02
- Feb 2024 07:59:45 -0800 (PST)
+        d=1e100.net; s=20230601; t=1706890088; x=1707494888;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
+         :to:content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=QdOH44GqBNuJv7gNhF+H71j52RbjvAKIOcCjf68RgNE=;
+        b=G8SAQUy6lZVzp3z2RODq6WXP42JXMttcSvd+qT8FgplF7oTfK6G/I9lnzwv42cpPx3
+         uJh5GPBoFifTu8iGymSlk+h4uKfIRU6CfEjfMUvNvZL+ZbolVvPmuGi/JkcMQLY/lboO
+         v9TmXCCw+xn72KQGQirc+4COeZYeKl11qAqmezxzdTQGwHINQNFo+FlX87RCovoNI89D
+         eekjxlevdEdRSXdo3yeSndzPPjvfFeGvGo0PQKK6iYqVnyyIeLdI3e571md9Xm7Yud5W
+         HL6jgMgdCWZl44PZ9NyLpGyCNjGaemacxa4jkIMGfF/Ox4bXR+W40FmuYXVKrbgvOaRX
+         2zTA==
+X-Gm-Message-State: AOJu0YxYiJyOPiT2dQNjVwAyAN0w+TzHZZanQOdwjoVq/D2N6K5aYFYJ
+	b6rx6Ci24HYWMfl2QzV3j/qcmkNzbqhPuGGDqen7lYThzar4DxIiVtHJDCvf97E=
+X-Google-Smtp-Source: AGHT+IFejla8/vJpaC+MwBd7ti69FX7y+1E1msZO7F5Sxy6AtRthKMme+rjGfWPCS6a6O60/eRUsfw==
+X-Received: by 2002:a2e:7817:0:b0:2cc:ee90:e565 with SMTP id t23-20020a2e7817000000b002ccee90e565mr3978358ljc.9.1706890087987;
+        Fri, 02 Feb 2024 08:08:07 -0800 (PST)
+X-Forwarded-Encrypted: i=0; AJvYcCXqPx1EgWdIp0lFo8BPwv2/q4cv9bzZXeZ/oyJT3AWNycWfGQEXvl4Ls9weA+6/2Pls2WfzCdZC+3RmSm++Wol4l8sJjZC0e3+dc0vch2PewDnGfg7FbJhA7+q5XJ8NXNWWhkPC5lF44NzD9uhvpohWfJ0taE2FxmByIxtl8DqNF3Xw3/Ai7BYbiwaR1kX9BFPxq/jvvf8IGcs11ThNXN/BXeTcnJt0H6apnER5n4/ERCE7Jzie5Cah9B0ZUb2BdYaDVxovzpBw6dckW6fj9C4sR/LoPX2/U4wfUGmVeQJh97iGZleLlA59+wuWwR9+o+dEwUP9J85yMVtZbKjOQThb96ZR4rjpBI/BKNb1KpO2ybgZoYAsX+Rz+EmhMbPcX41QxSI7jnpHGuILgKzKilKG4u8AIaocwTBc54vLTzTTLGY=
+Received: from [192.168.1.20] ([178.197.222.62])
+        by smtp.gmail.com with ESMTPSA id r3-20020aa7da03000000b0055ef0105f2fsm928458eds.80.2024.02.02.08.08.06
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 02 Feb 2024 08:08:07 -0800 (PST)
+Message-ID: <adfef53c-d64e-4855-ab61-101b6fa419e5@linaro.org>
+Date: Fri, 2 Feb 2024 17:08:05 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20240202-fix-device-links-overlays-v1-0-f9fd1404c8e2@analog.com> <20240202-fix-device-links-overlays-v1-1-f9fd1404c8e2@analog.com>
-In-Reply-To: <20240202-fix-device-links-overlays-v1-1-f9fd1404c8e2@analog.com>
-From: "Rafael J. Wysocki" <rafael@kernel.org>
-Date: Fri, 2 Feb 2024 16:59:33 +0100
-Message-ID: <CAJZ5v0g5JbstLhCaXcY1kawP8etB5Z4TBuGXHz8_wsrXm3CaQA@mail.gmail.com>
-Subject: Re: [PATCH 1/2] driver: core: add dedicated workqueue for devlink removal
-To: nuno.sa@analog.com
-Cc: Greg Kroah-Hartman <gregkh@linuxfoundation.org>, "Rafael J. Wysocki" <rafael@kernel.org>, 
-	Frank Rowand <frowand.list@gmail.com>, Rob Herring <robh+dt@kernel.org>, 
-	Andy Shevchenko <andriy.shevchenko@linux.intel.com>, Daniel Scally <djrscally@gmail.com>, 
-	Heikki Krogerus <heikki.krogerus@linux.intel.com>, 
-	Sakari Ailus <sakari.ailus@linux.intel.com>, Len Brown <lenb@kernel.org>, 
-	linux-acpi@vger.kernel.org, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v2] dt-bindings: media: Add sram-size Property for Wave5
+Content-Language: en-US
+To: Nishanth Menon <nm@ti.com>
+Cc: Brandon Brnich <b-brnich@ti.com>, Nas Chung <nas.chung@chipsnmedia.com>,
+ Jackson Lee <jackson.lee@chipsnmedia.com>,
+ Mauro Carvalho Chehab <mchehab@kernel.org>, Rob Herring
+ <robh+dt@kernel.org>, Krzysztof Kozlowski
+ <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>,
+ linux-media@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, Vignesh Raghavendra <vigneshr@ti.com>,
+ Darren Etheridge <detheridge@ti.com>
+References: <20240201184238.2542695-1-b-brnich@ti.com>
+ <1209b7cf-5be2-4107-aa6b-d67a32ea3737@linaro.org>
+ <20240202125257.p4astjuxpzr5ltjs@dragster>
+ <8091a8cf-c1c0-49b0-b136-1ad0d185aa6a@linaro.org>
+ <20240202155813.szxvi7bfp5xh7rvw@babble>
+From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
+ 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
+ D2GYIS41Kv4Isx2dEFh+/Q==
+In-Reply-To: <20240202155813.szxvi7bfp5xh7rvw@babble>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
-On Fri, Feb 2, 2024 at 1:18=E2=80=AFPM Nuno Sa via B4 Relay
-<devnull+nuno.sa.analog.com@kernel.org> wrote:
->
-> From: Nuno Sa <nuno.sa@analog.com>
->
-> Let's use a dedicated queue for devlinks since releasing a link happens
-> asynchronously but some code paths, like DT overlays, have some
-> expectations regarding the of_node when being removed (the refcount must
-> be 1). Given how devlinks are released that cannot be assured. Hence, add=
- a
-> dedicated queue so that it's easy to sync against devlinks removal.
+On 02/02/2024 16:58, Nishanth Menon wrote:
+> On 14:56-20240202, Krzysztof Kozlowski wrote:
+>> On 02/02/2024 13:52, Nishanth Menon wrote:
+>>> On 11:47-20240202, Krzysztof Kozlowski wrote:
+>>>> On 01/02/2024 19:42, Brandon Brnich wrote:
+>>>>> Wave521c has capability to use SRAM carveout to store reference data with
+>>>>> purpose of reducing memory bandwidth. To properly use this pool, the driver
+>>>>> expects to have an sram and sram-size node. Without sram-size node, driver
+>>>>> will default value to zero, making sram node irrelevant.
+>>>>
+>>>> I am sorry, but what driver expects should not be rationale for new
+>>>> property. This justification suggests clearly it is not a property for DT.
+>>>>
+>>>
+>>> Yup, the argumentation in the commit message is from the wrong
+>>> perspective. bindings are OS agnostic hardware description, and what
+>>> driver does with the description is driver's problem.
+>>>
+>>> I will at least paraphrase my understanding:
+>>> In this case, however, the hardware block will limp along with
+>>> the usage of DDR (as is the current description), due to the
+>>> latencies involved for DDR accesses. However, the hardware block
+>>> has capability to use a substantially lower latency SRAM to provide
+>>> proper performance and hence for example, deal with higher resolution
+>>> data streams. This SRAM is instantiated at SoC level rather than
+>>> embedded within the hardware block itself.
+>>
+>> That sounds like OS policy. Why would different boards with the same
+>> component have this set differently? Based on amount of available
+>> memory? This, I believe, is runtime configuration because it might
+>> depend on user-space you run. Based on purpose (e.g. optimize for
+>> decoding or general usage)? Again, run-time because same hardware board
+>> can be used for different purposes.
+>>
+> 
+> Why is this OS policy? It is a hardware capability.
 
-Thanks for following my suggestion!
+How amount of SRAM size is hardware capability? Each hardware can work
+probably with 1, 2 or 100 pages.
 
-> While at it, make sure to explicitly include <linux/workqueue.h>.
->
-> Signed-off-by: Nuno Sa <nuno.sa@analog.com>
-> ---
->  drivers/base/core.c    | 33 +++++++++++++++++++++++++++++----
->  include/linux/fwnode.h |  1 +
->  2 files changed, 30 insertions(+), 4 deletions(-)
->
-> diff --git a/drivers/base/core.c b/drivers/base/core.c
-> index 14d46af40f9a..06e7766b5227 100644
-> --- a/drivers/base/core.c
-> +++ b/drivers/base/core.c
-> @@ -31,6 +31,7 @@
->  #include <linux/swiotlb.h>
->  #include <linux/sysfs.h>
->  #include <linux/dma-map-ops.h> /* for dma_default_coherent */
-> +#include <linux/workqueue.h>
->
->  #include "base.h"
->  #include "physical_location.h"
-> @@ -44,6 +45,7 @@ static bool fw_devlink_is_permissive(void);
->  static void __fw_devlink_link_to_consumers(struct device *dev);
->  static bool fw_devlink_drv_reg_done;
->  static bool fw_devlink_best_effort;
-> +static struct workqueue_struct *devlink_release_queue __ro_after_init;
->
->  /**
->   * __fwnode_link_add - Create a link between two fwnode_handles.
-> @@ -235,6 +237,11 @@ static void __fw_devlink_pickup_dangling_consumers(s=
-truct fwnode_handle *fwnode,
->                 __fw_devlink_pickup_dangling_consumers(child, new_sup);
->  }
->
-> +void fwnode_links_flush_queue(void)
-> +{
-> +       flush_workqueue(devlink_release_queue);
-> +}
-> +
->  static DEFINE_MUTEX(device_links_lock);
->  DEFINE_STATIC_SRCU(device_links_srcu);
->
-> @@ -531,9 +538,10 @@ static void devlink_dev_release(struct device *dev)
->          * It may take a while to complete this work because of the SRCU
->          * synchronization in device_link_release_fn() and if the consume=
-r or
->          * supplier devices get deleted when it runs, so put it into the =
-"long"
-> -        * workqueue.
-> +        * devlink workqueue.
-> +        *
->          */
-> -       queue_work(system_long_wq, &link->rm_work);
-> +       queue_work(devlink_release_queue, &link->rm_work);
->  }
->
->  static struct class devlink_class =3D {
-> @@ -636,10 +644,27 @@ static int __init devlink_class_init(void)
->                 return ret;
->
->         ret =3D class_interface_register(&devlink_class_intf);
-> -       if (ret)
-> +       if (ret) {
-> +               class_unregister(&devlink_class);
-> +               return ret;
-> +       }
-> +
-> +       /*
-> +        * Using a dedicated queue for devlinks since releasing a link ha=
-ppens
-> +        * asynchronously but some code paths, like DT overlays, have som=
-e
-> +        * expectations regarding the of_node when being removed (the ref=
-count
-> +        * must be 1). Given how devlinks are released that cannot be ass=
-ured.
-> +        * Hence, add a dedicated queue so that it's easy to sync against
-> +        * devlinks removal.
-> +        */
-> +       devlink_release_queue =3D alloc_workqueue("devlink_release", 0, 0=
-);
-> +       if (!devlink_release_queue) {
-> +               class_interface_unregister(&devlink_class_intf);
->                 class_unregister(&devlink_class);
+> Traditionally
+> many similar hardware blocks would have allocated local SRAM for
+> worst case inside the hardware block itself and don't need to use
+> DDR in the first place. However, for this hardware block, it has
+> capability to use some part of one of the many SRAM blocks in the SoC,
+> not be shared for some part of the system - so from a hardware
+> description perspective, we will need to call that out as to which
+> SRAM is available for the hardware block.
 
-This is a bit drastic.
+Just because more than one device wants some memory, does not mean this
+is hardware property. Drivers can ask how much memory available there
+is. OS knows how many users of memory there is, so knows how much to
+allocate for each device.
 
-I think that device links can still work if devlink_release_queue is
-NULL, just devlink_dev_release() needs to check it and release
-synchronously if it is NULL.
+> 
+> Why would different boards need this differently? simply because
+> different cameras have different resolution and framerates - and you
+> dont want to pay the worst case sram penalty for all product
+> configuration.
 
-Apart from this LGTM.
+Choice of resolution and framerate is runtime choice or use-case
+dependent, not board level configuration, therefore amount of SRAM size
+to use is as well.
 
-> +               return -ENODEV;
-> +       }
->
-> -       return ret;
-> +       return 0;
->  }
->  postcore_initcall(devlink_class_init);
->
-> diff --git a/include/linux/fwnode.h b/include/linux/fwnode.h
-> index 2a72f55d26eb..017b170e9903 100644
-> --- a/include/linux/fwnode.h
-> +++ b/include/linux/fwnode.h
-> @@ -213,5 +213,6 @@ extern bool fw_devlink_is_strict(void);
->  int fwnode_link_add(struct fwnode_handle *con, struct fwnode_handle *sup=
-);
->  void fwnode_links_purge(struct fwnode_handle *fwnode);
->  void fw_devlink_purge_absent_suppliers(struct fwnode_handle *fwnode);
-> +void fwnode_links_flush_queue(void);
->
->  #endif
->
-> --
+> 
+> Further, Linux is not the only thing that runs on these SoCs.. these are
+> mixed systems with autonomous operations of uC cores who may or maynot
+> (typically not) even need to communicate with MPU to state which part of
+> resource they are hogging (hence the board level definition).
+
+OK that could be the case but I could also say choice of RTOS or any
+other is also board-independent.
+
+Best regards,
+Krzysztof
+
 
