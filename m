@@ -1,165 +1,238 @@
-Return-Path: <devicetree+bounces-38177-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-38178-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id EC27F847C4C
-	for <lists+devicetree@lfdr.de>; Fri,  2 Feb 2024 23:28:45 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id D74B7847C5A
+	for <lists+devicetree@lfdr.de>; Fri,  2 Feb 2024 23:35:13 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id E92381C21B05
-	for <lists+devicetree@lfdr.de>; Fri,  2 Feb 2024 22:28:44 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 0067A1C211B1
+	for <lists+devicetree@lfdr.de>; Fri,  2 Feb 2024 22:35:13 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9246385626;
-	Fri,  2 Feb 2024 22:28:41 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id EF3B085943;
+	Fri,  2 Feb 2024 22:35:07 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=nxp.com header.i=@nxp.com header.b="px/MNSOk"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="jF9t6KSP"
 X-Original-To: devicetree@vger.kernel.org
-Received: from EUR04-VI1-obe.outbound.protection.outlook.com (mail-vi1eur04on2058.outbound.protection.outlook.com [40.107.8.58])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 87F068060E;
-	Fri,  2 Feb 2024 22:28:39 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.107.8.58
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1706912921; cv=fail; b=SqYgNjQKZjLCzkCfGr0vOqCCicZGQrwI/CCqHG+4GG86Vw3LzByJyy1sm4CPVz/Rpt5xswz1b5mZO+XDHYKA1CUti30+rUwVr/oKptI9I+M+r3VRa/ZAIe7hog9vJ7p9wRAiBaHZ/NOguBHFwqIngprIIxehlBl2rUFnJYs6Y3Y=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1706912921; c=relaxed/simple;
-	bh=9DuXswhwfG1WFQ/F9cV8cAm0qYnZJhicZJr9WLDPqxc=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:Content-Type:
-	 Content-Disposition:In-Reply-To:MIME-Version; b=pGE1FNW06PoVE4xBz9fabpK0/2EfGLJGhXwcHHBfh+ue1r/qOWulC5hVHGO7hqWTdSc25+e06Ae51JjHBbh9FO+HeWMgQlJJ2hg53LkSaFWLa2//m4+nAOVPUZGb/iHwALU77AaJs3gNyH9CwKCSNSVY1JsIv3qqtsG8+ZsVB5k=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com; spf=pass smtp.mailfrom=nxp.com; dkim=pass (1024-bit key) header.d=nxp.com header.i=@nxp.com header.b=px/MNSOk; arc=fail smtp.client-ip=40.107.8.58
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=nxp.com
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=LjZZ8OkOapOrW0I+FNoK9vWRJyc2jeYJN1MZxAKxjHwi2ATyvkgXhMZKHLLzl/v6WL23uxfBLHcGmWawudyQdD8s5urVgxwuDN5HsQFLhj76SlhHUUij+FK2xcz5IBp0cTyfHfy9vi/K5djgwXZDBfc8c9SqW3IlljiT7zUqaX+6EGcyqsRATTUw86WGRdCc9Qb+8T9zvD6NlNMytIp22dyabA7iuI3ghdfdI7zoTmEvZLoIAaXOidPalBTRU9HA19cN5ZLImQMSZSnsSAs3ut/A09auxuFUx6uLJvueGeqeptx/XujCa5W90GXzJ62j2mwdHSAlA2b1LjkpFevzEA==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=wHCXIc/KQJoPsJCuWRAMtN461mRFkX4g59TouOMoiv0=;
- b=X7O2A4y0hULn+Qn2BjglBOzGg95uS4Y9zpKnjORZct6XSxT61k+0jBlOxLDQGLQfUcUliuoiSQQGJUXCsuuvoZA6T2lba/LMwWZaoriuRbirYUnb75ToGsIwMLpPXOF2rOoXsMMHyBJ6Oo88KocrgdrXyatjZn7Wu7vILWxF/NXKpC8EZZ1FDMybhZu6b+lk/CgjC1y1DihPRhwaNJrIpbR7grgwxgKE/6TrhHyoBCZZxGNscL4gcWqcwb7TqbQwBM7kdKFJKio3rckd7WMh4q3zm/J1RXZUqz67GhxXlm0MAwKkh5x0rAqbroOJxLx/JTcIKO7AJyOyCzB1Cd9AWw==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
- header.d=nxp.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector2;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=wHCXIc/KQJoPsJCuWRAMtN461mRFkX4g59TouOMoiv0=;
- b=px/MNSOkTAv60kInLKDoJnEC3JURumWuYIKOghT5SXMBVCSQWa+aiuj/axfQKjkjQSh2QBM+aizySJ0LF/E2BxcSGO04k+R19gHNtM2XqBOilViD4pw6m9yGezYE3iY4BbOOwfUlMm4Ak7H0CV4HNKbSZMp2PgeGCcdStMUgwzY=
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=nxp.com;
-Received: from PAXPR04MB9642.eurprd04.prod.outlook.com (2603:10a6:102:240::14)
- by DB9PR04MB8377.eurprd04.prod.outlook.com (2603:10a6:10:25c::5) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7249.31; Fri, 2 Feb
- 2024 22:28:36 +0000
-Received: from PAXPR04MB9642.eurprd04.prod.outlook.com
- ([fe80::c8b4:5648:8948:e85c]) by PAXPR04MB9642.eurprd04.prod.outlook.com
- ([fe80::c8b4:5648:8948:e85c%3]) with mapi id 15.20.7249.027; Fri, 2 Feb 2024
- 22:28:36 +0000
-Date: Fri, 2 Feb 2024 17:28:26 -0500
-From: Frank Li <Frank.li@nxp.com>
-To: Jakub Kicinski <kuba@kernel.org>
-Cc: Ulf Hansson <ulf.hansson@linaro.org>, Rob Herring <robh+dt@kernel.org>,
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BFBA685954;
+	Fri,  2 Feb 2024 22:35:07 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1706913307; cv=none; b=MbRcELY9HCoe7uDMebox6qQtbajU7bhjDQoQ55eLZtcI7pg7cRAFa4y9dKnP7VDimPYcqG84OaoMzjo4OVY6QpKrKGed3axCZy9hT1RCkju5KP0pH52gx7nxFuhSohYv+fIwC9qzmZE2Du2RFYSHAliBWtevQ9aWXv/sRaQl7CM=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1706913307; c=relaxed/simple;
+	bh=piSJZV9wP11DN45leIZQLdOe8OAXQLdIK19f/zlcWl4=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=TN1aigFomZkzZid/f7CBN4XuU+yESioe87Tye4a+zppZL96W+3qcqzOdHk4AWTAchAyy5sWDAOo7YVD1b/4y0EWB3AgThYmGteyA0dNnzOExA9zIsR4MCd2gzar7KJm1pL27EC0vUk4CADF/3Bg5VolF0FaPlcZVIVBJXKBMOKk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=jF9t6KSP; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 0F1EAC433F1;
+	Fri,  2 Feb 2024 22:35:06 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1706913307;
+	bh=piSJZV9wP11DN45leIZQLdOe8OAXQLdIK19f/zlcWl4=;
+	h=From:To:Cc:Subject:Date:From;
+	b=jF9t6KSPmMvMVh1V9fW20wY/mwPs4yjcFfPG1BffzLlhv/w0/nHcX8v58Y9ztZIrp
+	 GFxS/7N/aEfGij7jg5zy9l84eu1gVAQloefohZhnUJFwD42M0wUo0VLR696txWpT3i
+	 xx5F9BEQhAhSFZfNd5rFVhKc4N5Lx1ZTvcwnZilOE+IMb/38zUI2e7BhFtT6cnKr/U
+	 qzcFm9BvFUxtTcY40dym3jov6+J6WwrVbzNhrxJ1NxU6sdHOnxvv21RBF/Q1BmFERS
+	 g0LGxkyuwnHERO1Y8rq1Al8K9KqHXzs/iQEh6WzC+G4ThXeKXZkBJiBElPyhFYbw4G
+	 uKTDgsm1Ozqkw==
+From: Rob Herring <robh@kernel.org>
+To: Linus Walleij <linus.walleij@linaro.org>,
 	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>,
-	Sascha Hauer <s.hauer@pengutronix.de>,
-	Pengutronix Kernel Team <kernel@pengutronix.de>,
-	Fabio Estevam <festevam@gmail.com>,
-	NXP Linux Team <linux-imx@nxp.com>, Wei Fang <wei.fang@nxp.com>,
-	Shenwei Wang <shenwei.wang@nxp.com>,
-	Clark Wang <xiaoning.wang@nxp.com>,
-	"David S. Miller" <davem@davemloft.net>,
-	Eric Dumazet <edumazet@google.com>, Paolo Abeni <pabeni@redhat.com>,
-	linux-mmc@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-	netdev@vger.kernel.org, imx@lists.linux.dev
-Subject: Re: [PATCH v2 0/4] Add 8qm SMMU information
-Message-ID: <Zb1sijexWGLG5gcH@lizhi-Precision-Tower-5810>
-References: <20240201-8qm_smmu-v2-0-3d12a80201a3@nxp.com>
- <20240202110511.135d26b7@kernel.org>
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20240202110511.135d26b7@kernel.org>
-X-ClientProxiedBy: SJ0PR03CA0347.namprd03.prod.outlook.com
- (2603:10b6:a03:39c::22) To PAXPR04MB9642.eurprd04.prod.outlook.com
- (2603:10a6:102:240::14)
+	Conor Dooley <conor+dt@kernel.org>,
+	Thierry Reding <thierry.reding@gmail.com>,
+	Jonathan Hunter <jonathanh@nvidia.com>
+Cc: linux-gpio@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	linux-tegra@vger.kernel.org,
+	linux-kernel@vger.kernel.org
+Subject: [PATCH] dt-bindings: pinctrl: nvidia,tegra234-pinmux: Restructure common schema
+Date: Fri,  2 Feb 2024 16:34:53 -0600
+Message-ID: <20240202223454.1667383-1-robh@kernel.org>
+X-Mailer: git-send-email 2.43.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: PAXPR04MB9642:EE_|DB9PR04MB8377:EE_
-X-MS-Office365-Filtering-Correlation-Id: 23d2a845-7bc1-4d49-257b-08dc243e4c27
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info:
-	zRT1Eg2DsesQLPu/AgNvYUKECE2uPMmlWkJI2Xyo87ncEi9DMCETq+GGIkpPRtnW/4eFUGJSDF8MqmjzBL4pm7ryT3CopZqeOvCaZ2fkJGzFkxl7zjv6ORm1TvKfN5HCYo5NJRbmB52ASes062pmtTZGNlmCbDtPP37o72bniYyw5E7SD22ppKsuD9bPMo57sUiQzOVy76HMEPNdq5blnJ2CbWjcep6/33gEzc0U3vc/yNanoEdk+e4pkz2o1WYmGXT7JVw6/FAfvGCAwTjcwuIYe88mYL79cnWYMoEEFPwgZRcKBg6Jt5K0iMu9T7z1+DgxqfRVvVgrvrOwQafNZCaN724TL4+agOvFKc+1luXOrK9mkzSzXTv7a3EhmI2+txLyq6wF6gJRnGOTgpt2p4AYdcs4JIfoy3WZCjqtG4clSEnbhdKw2I1p94FS2J/6oGp6UX9GIboWc+3+yQQ+llC5ASkSbyVWIKbiDDY/ppRwdS/bVdxWIkOJc46Y/NtuRorKURGDvthBUNApuqaj7H8ePNQ9nakPJSu7FTBGrD2B9eR1eUYaKICCljCuiu6NKqVa0tS5ixtR2APCKsdIRIoNDdSajhAJmbfCeroW8pvBy8ygdCSLI01bTfOIEEkc
-X-Forefront-Antispam-Report:
-	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:PAXPR04MB9642.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230031)(7916004)(376002)(346002)(366004)(396003)(39860400002)(136003)(230922051799003)(230273577357003)(186009)(64100799003)(1800799012)(451199024)(38350700005)(52116002)(6506007)(478600001)(4744005)(7416002)(38100700002)(66476007)(6916009)(54906003)(316002)(8676002)(4326008)(8936002)(66556008)(66946007)(5660300002)(2906002)(83380400001)(86362001)(26005)(33716001)(9686003)(6512007)(6486002)(6666004)(41300700001);DIR:OUT;SFP:1101;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0:
-	=?us-ascii?Q?fvbjC1RQbAOfy13o2ZMs8RPa6pzHGrWZvcnsER/gCgnHXZIEnAyNDd8Bmkz3?=
- =?us-ascii?Q?gyn2zshTqUZ+NvRS+Y/tjV+5/9N78oNiJvAD5m9qs2LZBJUsGdIC6dMPUTmB?=
- =?us-ascii?Q?enpIGeWq+c9SReTaDH2DcllDBv1YDiadFtZbcHKA0y1jf4zwJKi0w36oD1MG?=
- =?us-ascii?Q?HBcBXi6Kt3LiuomKF/XobCkNAgCoutLpcBrXy7VU33cUnXzZkBl02vP5eizx?=
- =?us-ascii?Q?+ID0EXA6+lT4D7ENbXlR9yllhBSUA3NwylRLIrXMyTsL5lslgw15WARrdflg?=
- =?us-ascii?Q?TSGFR+tnJk4Un6fPLf5vsk024nCs+uDQVdmZnCTjKhyWvKLKvyfNVd0fh3pS?=
- =?us-ascii?Q?F3erhBPEh7AfpVbvnoGax0/SNaEfIXusUqKgvwtkNUHIPK7+YCv56VDFDZn3?=
- =?us-ascii?Q?QpnLCz79xQW34/x55zn9A5FPuxLEHnolrcXOAtY5agqVRQQQA52mcoPrdZO/?=
- =?us-ascii?Q?kiRw9IFma/5QqyU85C703KNfo8qD8Ihh/R+xF20T8gWbtN8ZThaUMCv7VJ+d?=
- =?us-ascii?Q?C0fpYTX1v44S56BGF3PpjsmnYfdURm+jCw1It5bf97iQyXEYqoBSP3x+jDR7?=
- =?us-ascii?Q?E/3xCXRxBP1Gq99wAHHt8OVFO6kA/nEku0YFa75K8hym6uMOLFklqB/Z0jjT?=
- =?us-ascii?Q?5U2GySfaORl7aTqITIgmgv/BxYPqYuMX2AbUK1OiUBLsT5XjM2bYB2GKwwhg?=
- =?us-ascii?Q?aWBCvrIghecMhNFAWlYYf2IrNqbG258qV9p+bnC6Fnj5b5IiFHYQPnyaB94T?=
- =?us-ascii?Q?nRSA473wC9U09j2/RomXF0nUAIsrGtSPsDaQ829vfFycRx7A0c1fue8fFet6?=
- =?us-ascii?Q?LCdmtbn9o/gkq5OMOP+Au0Rqt1Qw1SbZYV9O9bcaudiLO4FTS85Hzt69YwAg?=
- =?us-ascii?Q?MjDguxxMER19Ki1bKN7HQIWp44pyiIwOO4cv1nZEVeHW99lz3t4UjDCC5jEG?=
- =?us-ascii?Q?R71kVQA6wAiSgf6z99T0SOfD1MyP/0uROb4V/gKGoC6RP/1N+mNZKByjn0Ex?=
- =?us-ascii?Q?PS20lLbgdP4tDXMywjYp0jE9WvkyUHQnEaGYghBKaQD+QZszR8f0U1pSPzgl?=
- =?us-ascii?Q?P1PyuAxT0RNtZqR8vTknrfb+2EN6nzl49T2xwhbo3nzgxBNVHdzLy2iZKEfR?=
- =?us-ascii?Q?TsdxCVCOe+z5x5aE/pmjqu/Rb7TLVUouPZEqpO8nY//zCCqE887Uv7A7gcpx?=
- =?us-ascii?Q?rQOyZnv5OHXC5dGYEnmvzfP/3yAE8DST0U0j5d2AE7Jo23oaEq+8pmtCRyHS?=
- =?us-ascii?Q?ANYTiYhmbR17VjVpnJJdhZuNryNpSfYBmtpyJZhYytGMPbMZaP4dxXY9IWD9?=
- =?us-ascii?Q?ZEfAo3SMXrLCenuD6FMrhpB3BAn1mI5JajizOggPBg5ZIISl6K64J76P9vXt?=
- =?us-ascii?Q?cUQJrGkmo8PKCwR3Jpubd3Bc3aNIchagipNi6xWFeauSuYpR65hdggXjQGky?=
- =?us-ascii?Q?HIEznfqOQhJgBgHPAMkU/7ZaYcA50Yh1GVd+KdHvrU/lCTqxaDe+ab5jKzmZ?=
- =?us-ascii?Q?M0KMiZP2zcp1x6GdHMQM9CWqAZijl2rwF64jGD48w52OUwhdliTq2kNGInsR?=
- =?us-ascii?Q?W3SoZZ8JqdAUHrJTOUpdYXiTeoUBHml2LyVAw7xz?=
-X-OriginatorOrg: nxp.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 23d2a845-7bc1-4d49-257b-08dc243e4c27
-X-MS-Exchange-CrossTenant-AuthSource: PAXPR04MB9642.eurprd04.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 02 Feb 2024 22:28:36.5148
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: lKMhgkZB8/3nw+OVdEmJLAyocOYvqP0GO92hpZw8IUpngnl/R0DYs7mr2LO79scj7z3H2sRM/PBpA1ERbpvY2A==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DB9PR04MB8377
+Content-Transfer-Encoding: 8bit
 
-On Fri, Feb 02, 2024 at 11:05:11AM -0800, Jakub Kicinski wrote:
-> On Thu, 01 Feb 2024 15:22:40 -0500 Frank Li wrote:
-> >       dt-bindings: mmc: fsl-imx-esdhc: add iommus property
-> >       dt-bindings: net: fec: add iommus property
-> >       arm64: dts: imx8qm: add smmu node
-> >       arm64: dts: imx8qm: add smmu stream id information
-> > 
-> >  .../devicetree/bindings/mmc/fsl-imx-esdhc.yaml     |  3 ++
-> >  Documentation/devicetree/bindings/net/fsl,fec.yaml |  3 ++
-> >  arch/arm64/boot/dts/freescale/imx8qm-ss-conn.dtsi  |  6 ++++
-> >  arch/arm64/boot/dts/freescale/imx8qm.dtsi          | 41 ++++++++++++++++++++++
-> 
-> Any preference on whether all these go via a platform tree,
-> or should we pick up the net patch to netdev? I guess taking
-> the DTB via netdev would be the usual way to handle this?
+The structure of the NVIDIA Tegra234 common pinmux schema doesn't work
+for restricting properties because a child node schema can't be extended
+with additional properties from another schema defining the same child
+node. The 2 child node schemas are evaluated independently as the
+schemas are not recursively combined in any way.
 
-Supposed dt-bindings go through netdev tree.
+As the common schema is almost all the child node schema anyways, just
+remove the parent node from the common schema. Then add 'reg' and adjust
+the $ref's in the users of the common schema.
 
-without dt-bindings, just DTB_CHECK warning. No strict dependence
-relationship between dt-bindings doc and dts file. 
+Signed-off-by: Rob Herring <robh@kernel.org>
+---
+ .../pinctrl/nvidia,tegra234-pinmux-aon.yaml   |  7 +-
+ .../nvidia,tegra234-pinmux-common.yaml        | 84 ++++++++-----------
+ .../pinctrl/nvidia,tegra234-pinmux.yaml       |  7 +-
+ 3 files changed, 45 insertions(+), 53 deletions(-)
 
-Frank
+diff --git a/Documentation/devicetree/bindings/pinctrl/nvidia,tegra234-pinmux-aon.yaml b/Documentation/devicetree/bindings/pinctrl/nvidia,tegra234-pinmux-aon.yaml
+index f3deda9f7127..db8224dfba2c 100644
+--- a/Documentation/devicetree/bindings/pinctrl/nvidia,tegra234-pinmux-aon.yaml
++++ b/Documentation/devicetree/bindings/pinctrl/nvidia,tegra234-pinmux-aon.yaml
+@@ -10,18 +10,21 @@ maintainers:
+   - Thierry Reding <thierry.reding@gmail.com>
+   - Jon Hunter <jonathanh@nvidia.com>
+ 
+-$ref: nvidia,tegra234-pinmux-common.yaml
+-
+ properties:
+   compatible:
+     const: nvidia,tegra234-pinmux-aon
+ 
++  reg:
++    maxItems: 1
++
+ patternProperties:
+   "^pinmux(-[a-z0-9-]+)?$":
+     type: object
+ 
+     # pin groups
+     additionalProperties:
++      $ref: nvidia,tegra234-pinmux-common.yaml
++
+       properties:
+         nvidia,pins:
+           items:
+diff --git a/Documentation/devicetree/bindings/pinctrl/nvidia,tegra234-pinmux-common.yaml b/Documentation/devicetree/bindings/pinctrl/nvidia,tegra234-pinmux-common.yaml
+index 4f9de78085e5..8cf9e4c915ff 100644
+--- a/Documentation/devicetree/bindings/pinctrl/nvidia,tegra234-pinmux-common.yaml
++++ b/Documentation/devicetree/bindings/pinctrl/nvidia,tegra234-pinmux-common.yaml
+@@ -10,57 +10,43 @@ maintainers:
+   - Thierry Reding <thierry.reding@gmail.com>
+   - Jon Hunter <jonathanh@nvidia.com>
+ 
+-properties:
+-  reg:
+-    items:
+-      - description: pinmux registers
+-
+-patternProperties:
+-  "^pinmux(-[a-z0-9-]+)?$":
+-    type: object
+-
+-    # pin groups
+-    additionalProperties:
+-      $ref: nvidia,tegra-pinmux-common.yaml
+-      # We would typically use unevaluatedProperties here but that has the
+-      # downside that all the properties in the common bindings become valid
+-      # for all chip generations. In this case, however, we want the per-SoC
+-      # bindings to be able to override which of the common properties are
+-      # allowed, since not all pinmux generations support the same sets of
+-      # properties. This way, the common bindings define the format of the
+-      # properties but the per-SoC bindings define which of them apply to a
+-      # given chip.
+-      additionalProperties: false
+-      properties:
+-        nvidia,function:
+-          enum: [ gp, uartc, i2c8, spi2, i2c2, can1, can0, rsvd0, eth0, eth2,
+-                  eth1, dp, eth3, i2c4, i2c7, i2c9, eqos, pe2, pe1, pe0, pe3,
+-                  pe4, pe5, pe6, pe7, pe8, pe9, pe10, qspi0, qspi1, qpsi,
+-                  sdmmc1, sce, soc, gpio, hdmi, ufs0, spi3, spi1, uartb, uarte,
+-                  usb, extperiph2, extperiph1, i2c3, vi0, i2c5, uarta, uartd,
+-                  i2c1, i2s4, i2s6, aud, spi5, touch, uartj, rsvd1, wdt, tsc,
+-                  dmic3, led, vi0_alt, i2s5, nv, extperiph3, extperiph4, spi4,
+-                  ccla, i2s1, i2s2, i2s3, i2s8, rsvd2, dmic5, dca, displayb,
+-                  displaya, vi1, dcb, dmic1, dmic4, i2s7, dmic2, dspk0, rsvd3,
+-                  tsc_alt, istctrl, vi1_alt, dspk1, igpu ]
++$ref: nvidia,tegra-pinmux-common.yaml
+ 
+-        # out of the common properties, only these are allowed for Tegra234
+-        nvidia,pins: true
+-        nvidia,pull: true
+-        nvidia,tristate: true
+-        nvidia,schmitt: true
+-        nvidia,enable-input: true
+-        nvidia,open-drain: true
+-        nvidia,lock: true
+-        nvidia,drive-type: true
+-        nvidia,io-hv: true
+-
+-      required:
+-        - nvidia,pins
++properties:
++  nvidia,function:
++    enum: [ gp, uartc, i2c8, spi2, i2c2, can1, can0, rsvd0, eth0, eth2,
++            eth1, dp, eth3, i2c4, i2c7, i2c9, eqos, pe2, pe1, pe0, pe3,
++            pe4, pe5, pe6, pe7, pe8, pe9, pe10, qspi0, qspi1, qpsi,
++            sdmmc1, sce, soc, gpio, hdmi, ufs0, spi3, spi1, uartb, uarte,
++            usb, extperiph2, extperiph1, i2c3, vi0, i2c5, uarta, uartd,
++            i2c1, i2s4, i2s6, aud, spi5, touch, uartj, rsvd1, wdt, tsc,
++            dmic3, led, vi0_alt, i2s5, nv, extperiph3, extperiph4, spi4,
++            ccla, i2s1, i2s2, i2s3, i2s8, rsvd2, dmic5, dca, displayb,
++            displaya, vi1, dcb, dmic1, dmic4, i2s7, dmic2, dspk0, rsvd3,
++            tsc_alt, istctrl, vi1_alt, dspk1, igpu ]
++
++  # out of the common properties, only these are allowed for Tegra234
++  nvidia,pins: true
++  nvidia,pull: true
++  nvidia,tristate: true
++  nvidia,schmitt: true
++  nvidia,enable-input: true
++  nvidia,open-drain: true
++  nvidia,lock: true
++  nvidia,drive-type: true
++  nvidia,io-hv: true
+ 
+ required:
+-  - compatible
+-  - reg
++  - nvidia,pins
++
++# We would typically use unevaluatedProperties here but that has the
++# downside that all the properties in the common bindings become valid
++# for all chip generations. In this case, however, we want the per-SoC
++# bindings to be able to override which of the common properties are
++# allowed, since not all pinmux generations support the same sets of
++# properties. This way, the common bindings define the format of the
++# properties but the per-SoC bindings define which of them apply to a
++# given chip.
++additionalProperties: false
+ 
+-additionalProperties: true
+ ...
+diff --git a/Documentation/devicetree/bindings/pinctrl/nvidia,tegra234-pinmux.yaml b/Documentation/devicetree/bindings/pinctrl/nvidia,tegra234-pinmux.yaml
+index 17b865ecfcda..f5a3a881dec4 100644
+--- a/Documentation/devicetree/bindings/pinctrl/nvidia,tegra234-pinmux.yaml
++++ b/Documentation/devicetree/bindings/pinctrl/nvidia,tegra234-pinmux.yaml
+@@ -10,18 +10,21 @@ maintainers:
+   - Thierry Reding <thierry.reding@gmail.com>
+   - Jon Hunter <jonathanh@nvidia.com>
+ 
+-$ref: nvidia,tegra234-pinmux-common.yaml
+-
+ properties:
+   compatible:
+     const: nvidia,tegra234-pinmux
+ 
++  reg:
++    maxItems: 1
++
+ patternProperties:
+   "^pinmux(-[a-z0-9-]+)?$":
+     type: object
+ 
+     # pin groups
+     additionalProperties:
++      $ref: nvidia,tegra234-pinmux-common.yaml
++
+       properties:
+         nvidia,pins:
+           items:
+-- 
+2.43.0
+
 
