@@ -1,261 +1,169 @@
-Return-Path: <devicetree+bounces-37830-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-37833-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 34F6F84660B
-	for <lists+devicetree@lfdr.de>; Fri,  2 Feb 2024 03:53:05 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 493F8846629
+	for <lists+devicetree@lfdr.de>; Fri,  2 Feb 2024 03:59:43 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id DECBB28BAEA
-	for <lists+devicetree@lfdr.de>; Fri,  2 Feb 2024 02:53:03 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id F15A71F259C3
+	for <lists+devicetree@lfdr.de>; Fri,  2 Feb 2024 02:59:42 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9D0ECC8C3;
-	Fri,  2 Feb 2024 02:52:54 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9FC92B659;
+	Fri,  2 Feb 2024 02:59:22 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=alliedtelesis.co.nz header.i=@alliedtelesis.co.nz header.b="0OAi9XV8"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="sC+1NFyp"
 X-Original-To: devicetree@vger.kernel.org
-Received: from gate2.alliedtelesis.co.nz (gate2.alliedtelesis.co.nz [202.36.163.20])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 06E7CE57C
-	for <devicetree@vger.kernel.org>; Fri,  2 Feb 2024 02:52:50 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=202.36.163.20
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5EA02E56D;
+	Fri,  2 Feb 2024 02:59:22 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1706842374; cv=none; b=qp9GpoRoBqxxoTKusOdLykXxv8/bK2pATdrZGbgKT4yd1Pk6dT/ZCSB7b26DXlhAxbxMkQr8viJ0VHZ+Sz0W775laHyR4FNe88rl69l+QPW/FOes4/hOA2LEoyjKQkdvx3B156yzq2GIfxr+q4jS4wpzuFPHvfBQHmDmeWq6/mk=
+	t=1706842762; cv=none; b=GehGN/wLRdd/tB3GmdiPpsOIaAHjlN4Aic7lw2pYW+kSiOQil4ZQMY44rv2GyLDz3RV/wrEJpi/3xkN8g78kOuQGK+tJC1cFevpH5KykmmH2A4Ld5L5o3gAcHqeyMEHI3Vh3me4ZdMRW6AGXvEu6gf7DjQSR9vv3vcRk4RDI2Qs=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1706842374; c=relaxed/simple;
-	bh=QqjuENTdk7eOyEsK4MLG1kNiU0NEVI5RtJWR5DtykL4=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=VWyUAzvK+Kojo3+vC4V1wBIEcCz5C2KjIMZmu9wCAKvDwyz9tE1IW87QKGlY4ZlPEaekmNcXNnPxTnk0kvo+G5XAUzI0RL/5gp58I7E5tzK9Y8jDs3V/zVAyZl1liuNPIuyjLpy6NvJklftBMKLTAThKlzMtlrqN/Arly2IN7tY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=alliedtelesis.co.nz; spf=pass smtp.mailfrom=alliedtelesis.co.nz; dkim=pass (2048-bit key) header.d=alliedtelesis.co.nz header.i=@alliedtelesis.co.nz header.b=0OAi9XV8; arc=none smtp.client-ip=202.36.163.20
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=alliedtelesis.co.nz
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=alliedtelesis.co.nz
-Received: from svr-chch-seg1.atlnz.lc (mmarshal3.atlnz.lc [10.32.18.43])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
-	(Client did not present a certificate)
-	by gate2.alliedtelesis.co.nz (Postfix) with ESMTPS id AFE1D2C05EE;
-	Fri,  2 Feb 2024 15:52:48 +1300 (NZDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=alliedtelesis.co.nz;
-	s=mail181024; t=1706842368;
-	bh=jigWZVExlHT68HTKXoH+elk5GMoflcfVL+zYx+L5+Uc=;
-	h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-	b=0OAi9XV8WJ8GqQ5q3kPCGC8YNJLnPcCfP1iaa4hrQKoX+8nw4jp+xoO+uLa9vgyef
-	 i7CesjfqWjXcV+RAWkr+dH42M8eQp9H4rZupP+PjRcHEdwqJS97giSo0hcKEzjNrwo
-	 y9CABIoqsBJN60SkcO9taDLIudn3WBRBmnY+tpflp1XvBhBPnSjW5BJ1pgFARj4eG4
-	 MbtSm6Wrl3933mCjpks3KAKGlkgbb+nj+WqOnREgKsir2y2Zk1QW6BRP1m2PJbKbKu
-	 LWO4K4EtWXVMkKtbXFtfks8LyN6tJP6DWZKTfW3Sl4nvSR+cFtYcHOqlz4SrRoXTCz
-	 gVjbAV2OBsRJw==
-Received: from pat.atlnz.lc (Not Verified[10.32.16.33]) by svr-chch-seg1.atlnz.lc with Trustwave SEG (v8,2,6,11305)
-	id <B65bc59000002>; Fri, 02 Feb 2024 15:52:48 +1300
-Received: from chrisp-dl.ws.atlnz.lc (chrisp-dl.ws.atlnz.lc [10.33.22.30])
-	by pat.atlnz.lc (Postfix) with ESMTP id 697AB13EDA9;
-	Fri,  2 Feb 2024 15:52:48 +1300 (NZDT)
-Received: by chrisp-dl.ws.atlnz.lc (Postfix, from userid 1030)
-	id 5F37A280EB7; Fri,  2 Feb 2024 15:52:48 +1300 (NZDT)
-From: Chris Packham <chris.packham@alliedtelesis.co.nz>
-To: alexandre.belloni@bootlin.com,
-	robh+dt@kernel.org,
-	krzysztof.kozlowski+dt@linaro.org,
-	conor+dt@kernel.org,
-	jdelvare@suse.com,
-	linux@roeck-us.net,
-	antoniu.miclaus@analog.com,
-	noname.nuno@gmail.com
-Cc: linux-rtc@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	linux-hwmon@vger.kernel.org,
-	Ibrahim Tilki <Ibrahim.Tilki@analog.com>,
-	Zeynep Arslanbenzer <Zeynep.Arslanbenzer@analog.com>,
-	Chris Packham <chris.packham@alliedtelesis.co.nz>
-Subject: [PATCH v6 2/2] dt-bindings: rtc: add max313xx RTCs
-Date: Fri,  2 Feb 2024 15:52:41 +1300
-Message-ID: <20240202025241.834283-3-chris.packham@alliedtelesis.co.nz>
-X-Mailer: git-send-email 2.43.0
-In-Reply-To: <20240202025241.834283-1-chris.packham@alliedtelesis.co.nz>
-References: <20240202025241.834283-1-chris.packham@alliedtelesis.co.nz>
+	s=arc-20240116; t=1706842762; c=relaxed/simple;
+	bh=r+SvB9zLGCJWcQpfU6TkqIBEDh5OyZdXwt12sASYJsE=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=dSWwUvo/P82UUKAACqfA9tpg5oJCBxEE55kjOjXj9qAgsD7SXKvCKZt/R+vTlG3A9JmdV1yPAi0pX9fRIvHFGeRqvTeqXqOo+DhJ0Ib4B2P50vXp3+WGIcT2Yhjp25dIE5LI3/QoiWPHMSc0WHVY2+YGeb3Trqu8kVryMjFnrug=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=sC+1NFyp; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 3D387C433C7;
+	Fri,  2 Feb 2024 02:59:20 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1706842761;
+	bh=r+SvB9zLGCJWcQpfU6TkqIBEDh5OyZdXwt12sASYJsE=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=sC+1NFypNfxuFBEhWIbnU8IRj9MaBq/uUm+ma3F4l7JIWq9z5VS4/4a8GOX+KyCDg
+	 8+ZaI2eUJnh81vL3qdRrh7lh/Cvgf7OyTOBVZ7by+sjZ+raxykejfcb67QeO9Ym0Wn
+	 edY3kWWKi/6WmtZJJ5JtOqAkQkAQCSXeGArYIdJP3hVBpmrW2P4mGsEM4oDrYGyqE9
+	 jgDOIRVHrI93PvE21HBfzBj8fl+BxOoItaSf/Pj8CFkxlpd4jf6cYmk8iV8G+zGIVQ
+	 CEtxelvPpoMi+SOqRKGaoNN/jgqwhh9GW+oMQ9XyZyBiEjNRswGZgpdyVnfBmm4cc5
+	 hkoPR2kKyI36A==
+Date: Thu, 1 Feb 2024 20:59:18 -0600
+From: Bjorn Andersson <andersson@kernel.org>
+To: Bartosz Golaszewski <brgl@bgdev.pl>
+Cc: Konrad Dybcio <konrad.dybcio@linaro.org>, 
+	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, 
+	Conor Dooley <conor+dt@kernel.org>, Marcel Holtmann <marcel@holtmann.org>, 
+	Luiz Augusto von Dentz <luiz.dentz@gmail.com>, Bjorn Helgaas <bhelgaas@google.com>, 
+	Neil Armstrong <neil.armstrong@linaro.org>, Alex Elder <elder@linaro.org>, 
+	Srini Kandagatla <srinivas.kandagatla@linaro.org>, Greg Kroah-Hartman <gregkh@linuxfoundation.org>, 
+	Arnd Bergmann <arnd@arndb.de>, Abel Vesa <abel.vesa@linaro.org>, 
+	Manivannan Sadhasivam <mani@kernel.org>, Lukas Wunner <lukas@wunner.de>, linux-arm-msm@vger.kernel.org, 
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, linux-bluetooth@vger.kernel.org, 
+	linux-pci@vger.kernel.org, Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
+Subject: Re: [RFC 6/9] PCI: create platform devices for child OF nodes of the
+ port node
+Message-ID: <4epbzsmxj2gfvjcufclfw7vnamr6hyeickrbyakibdtubwnefs@lkyt7mth43nq>
+References: <20240201155532.49707-1-brgl@bgdev.pl>
+ <20240201155532.49707-7-brgl@bgdev.pl>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
-X-SEG-SpamProfiler-Analysis: v=2.3 cv=LZFCFQXi c=1 sm=1 tr=0 a=KLBiSEs5mFS1a/PbTCJxuA==:117 a=k7vzHIieQBIA:10 a=gAnH3GRIAAAA:8 a=gEfo2CItAAAA:8 a=8-29ehldHqSqZt1QG5QA:9 a=oVHKYsEdi7-vN-J5QA_j:22 a=sptkURWiP4Gy88Gu7hUp:22
-X-SEG-SpamProfiler-Score: 0
-x-atlnz-ls: pat
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20240201155532.49707-7-brgl@bgdev.pl>
 
-From: Ibrahim Tilki <Ibrahim.Tilki@analog.com>
+On Thu, Feb 01, 2024 at 04:55:29PM +0100, Bartosz Golaszewski wrote:
+> From: Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
+> 
+> In order to introduce PCI power-sequencing,
 
-Devicetree binding documentation for Analog Devices MAX313XX RTCs
+Please provide a proper problem description.
 
-Signed-off-by: Ibrahim Tilki <Ibrahim.Tilki@analog.com>
-Signed-off-by: Zeynep Arslanbenzer <Zeynep.Arslanbenzer@analog.com>
-Signed-off-by: Chris Packham <chris.packham@alliedtelesis.co.nz>
----
- .../devicetree/bindings/rtc/adi,max313xx.yaml | 145 ++++++++++++++++++
- 1 file changed, 145 insertions(+)
- create mode 100644 Documentation/devicetree/bindings/rtc/adi,max313xx.ya=
-ml
+> we need to create platform
 
-diff --git a/Documentation/devicetree/bindings/rtc/adi,max313xx.yaml b/Do=
-cumentation/devicetree/bindings/rtc/adi,max313xx.yaml
-new file mode 100644
-index 000000000000..ccfb0cbfb045
---- /dev/null
-+++ b/Documentation/devicetree/bindings/rtc/adi,max313xx.yaml
-@@ -0,0 +1,145 @@
-+# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
-+# Copyright 2022 Analog Devices Inc.
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/rtc/adi,max313xx.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: Analog Devices MAX313XX series I2C RTCs
-+
-+maintainers:
-+  - Chris Packham <chris.packham@alliedtelesis.co.nz>
-+
-+description: Analog Devices MAX313XX series I2C RTCs.
-+
-+properties:
-+  compatible:
-+    enum:
-+      - adi,max31328
-+      - adi,max31329
-+      - adi,max31331
-+      - adi,max31334
-+      - adi,max31341
-+      - adi,max31342
-+      - adi,max31343
-+
-+  reg:
-+    description: I2C address of the RTC
-+    items:
-+      - enum: [0x68, 0x69]
-+
-+  interrupts:
-+    description:
-+      Alarm1 interrupt line of the RTC. Some of the RTCs have two interr=
-upt
-+      lines and alarm1 interrupt muxing depends on the clockin/clockout
-+      configuration.
-+    maxItems: 1
-+
-+  "#clock-cells":
-+    description:
-+      RTC can be used as a clock source through its clock output pin whe=
-n
-+      supplied.
-+    const: 0
-+
-+  clocks:
-+    description:
-+      RTC uses this clock for clock input when supplied. Clock has to pr=
-ovide
-+      one of these four frequencies - 1Hz, 50Hz, 60Hz or 32.768kHz.
-+    maxItems: 1
-+
-+  adi,tc-diode:
-+    description:
-+      Select the diode configuration for the trickle charger.
-+      schottky - Schottky diode in series.
-+      standard+schottky - standard diode + Schottky diode in series.
-+    enum: [schottky, standard+schottky]
-+
-+  trickle-resistor-ohms:
-+    description: Selected resistor for trickle charger.
-+    enum: [3000, 6000, 11000]
-+
-+required:
-+  - compatible
-+  - reg
-+
-+allOf:
-+  - $ref: rtc.yaml#
-+  - if:
-+      properties:
-+        compatible:
-+          contains:
-+            enum:
-+              - adi,max31328
-+              - adi,max31342
-+
-+    then:
-+      properties:
-+        aux-voltage-chargeable: false
-+        trickle-resistor-ohms: false
-+
-+  - if:
-+      properties:
-+        compatible:
-+          contains:
-+            enum:
-+              - adi,max31328
-+              - adi,max31331
-+              - adi,max31334
-+              - adi,max31343
-+
-+    then:
-+      properties:
-+        clocks: false
-+
-+  - if:
-+      properties:
-+        compatible:
-+          contains:
-+            enum:
-+              - adi,max31341
-+              - adi,max31342
-+
-+    then:
-+      properties:
-+        reg:
-+          items:
-+            - const: 0x69
-+
-+    else:
-+      properties:
-+        reg:
-+          items:
-+            - const: 0x68
-+
-+unevaluatedProperties: false
-+
-+examples:
-+  - |
-+    #include <dt-bindings/interrupt-controller/irq.h>
-+    i2c {
-+        #address-cells =3D <1>;
-+        #size-cells =3D <0>;
-+
-+        rtc@68 {
-+            reg =3D <0x68>;
-+            compatible =3D "adi,max31329";
-+            clocks =3D <&clkin>;
-+            interrupt-parent =3D <&gpio>;
-+            interrupts =3D <26 IRQ_TYPE_EDGE_FALLING>;
-+            aux-voltage-chargeable =3D <1>;
-+            trickle-resistor-ohms =3D <6000>;
-+            adi,tc-diode =3D "schottky";
-+        };
-+    };
-+  - |
-+    #include <dt-bindings/interrupt-controller/irq.h>
-+    i2c {
-+        #address-cells =3D <1>;
-+        #size-cells =3D <0>;
-+
-+        rtc@68 {
-+            reg =3D <0x68>;
-+            compatible =3D "adi,max31331";
-+            #clock-cells =3D <0>;
-+        };
-+    };
---=20
-2.43.0
+And properly express why this is a "need".
 
+> devices for child nodes of the port node. They will get matched against
+> the pwrseq drivers
+
+That's not what happens in your code, the child nodes of the bridge node
+in DeviceTree will match against arbitrary platform_drivers.
+
+I also would like this commit message to express that the job of the
+matched device is to:
+
+1) power up said device, followed by triggering a scan on the parent PCI
+bus during it's probe function.
+
+2)  power down said device, during its remove function.
+
+> (if one exists) and then the actual PCI device will
+> reuse the node once it's detected on the bus.
+
+I think the "reuse" deserves to be clarified as there will be both a pci
+and a platform device associated with the same of_node.
+
+> 
+> Signed-off-by: Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
+> ---
+>  drivers/pci/bus.c    | 9 ++++++++-
+>  drivers/pci/remove.c | 2 ++
+>  2 files changed, 10 insertions(+), 1 deletion(-)
+> 
+> diff --git a/drivers/pci/bus.c b/drivers/pci/bus.c
+> index 826b5016a101..17ab41094c4e 100644
+> --- a/drivers/pci/bus.c
+> +++ b/drivers/pci/bus.c
+> @@ -12,6 +12,7 @@
+>  #include <linux/errno.h>
+>  #include <linux/ioport.h>
+>  #include <linux/of.h>
+> +#include <linux/of_platform.h>
+>  #include <linux/proc_fs.h>
+>  #include <linux/slab.h>
+>  
+> @@ -342,8 +343,14 @@ void pci_bus_add_device(struct pci_dev *dev)
+>  	 */
+>  	pcibios_bus_add_device(dev);
+>  	pci_fixup_device(pci_fixup_final, dev);
+> -	if (pci_is_bridge(dev))
+> +	if (pci_is_bridge(dev)) {
+>  		of_pci_make_dev_node(dev);
+> +		retval = of_platform_populate(dev->dev.of_node, NULL, NULL,
+> +					      &dev->dev);
+
+I'm not familiar enough with the ins and outs of the PCI code. Can you
+confirm that there are no problems with this (possibly) calling
+pci_rescan_bus() before the bridge device is fully initialized below?
+
+Regards,
+Bjorn
+
+> +		if (retval)
+> +			pci_err(dev, "failed to populate child OF nodes (%d)\n",
+> +				retval);
+> +	}
+>  	pci_create_sysfs_dev_files(dev);
+>  	pci_proc_attach_device(dev);
+>  	pci_bridge_d3_update(dev);
+> diff --git a/drivers/pci/remove.c b/drivers/pci/remove.c
+> index d749ea8250d6..fc9db2805888 100644
+> --- a/drivers/pci/remove.c
+> +++ b/drivers/pci/remove.c
+> @@ -1,6 +1,7 @@
+>  // SPDX-License-Identifier: GPL-2.0
+>  #include <linux/pci.h>
+>  #include <linux/module.h>
+> +#include <linux/of_platform.h>
+>  #include "pci.h"
+>  
+>  static void pci_free_resources(struct pci_dev *dev)
+> @@ -22,6 +23,7 @@ static void pci_stop_dev(struct pci_dev *dev)
+>  		device_release_driver(&dev->dev);
+>  		pci_proc_detach_device(dev);
+>  		pci_remove_sysfs_dev_files(dev);
+> +		of_platform_depopulate(&dev->dev);
+>  		of_pci_remove_node(dev);
+>  
+>  		pci_dev_assign_added(dev, false);
+> -- 
+> 2.40.1
+> 
 
