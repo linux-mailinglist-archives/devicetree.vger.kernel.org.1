@@ -1,74 +1,74 @@
-Return-Path: <devicetree+bounces-37945-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-37946-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1C871846EC9
-	for <lists+devicetree@lfdr.de>; Fri,  2 Feb 2024 12:20:10 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id A4213846EA7
+	for <lists+devicetree@lfdr.de>; Fri,  2 Feb 2024 12:07:27 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id E3874B2943E
-	for <lists+devicetree@lfdr.de>; Fri,  2 Feb 2024 11:05:00 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 55C322862D5
+	for <lists+devicetree@lfdr.de>; Fri,  2 Feb 2024 11:07:26 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 195B21755A;
-	Fri,  2 Feb 2024 11:04:57 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B69A87995B;
+	Fri,  2 Feb 2024 11:07:12 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="a3of72C0"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="SpXH16jT"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f50.google.com (mail-wm1-f50.google.com [209.85.128.50])
+Received: from mail-ed1-f51.google.com (mail-ed1-f51.google.com [209.85.208.51])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2B30F4BA94
-	for <devicetree@vger.kernel.org>; Fri,  2 Feb 2024 11:04:54 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.50
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D5A2D13D4EE
+	for <devicetree@vger.kernel.org>; Fri,  2 Feb 2024 11:07:10 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.51
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1706871897; cv=none; b=n1BlsLEMmnREH7cjyOHBHAEHpnQO8hXdaovCceu2143KFIwhCCHeBiKmLA4cld/H+GW6UvzfG0aEj5pFenmqqyIfjiMLxjqoWyPAqSoX4Ulgx6gnRFEA6Ur+IPnlMKq2b3ySkrTFfYchzBElThwNKpo+9iPpppaL70NNMtr+2/g=
+	t=1706872032; cv=none; b=SRyRl7xNFHc0WQpLAjQXW8xXEVj+UnZWSOkqZzy9vMAs+fhx1OREFpS7XCpBBAFtBKktXX9+6l887Nx1H6Z2PNsEtkNIUA/IN7wlC+tIvnbu23wE/J7Kp9ItnGPe0w9DpEsYvDHtc6Luq2SMoNYFpCOF4CUPICwFh9EWxfyEY/4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1706871897; c=relaxed/simple;
-	bh=mLRRrP4/SaUv4Kk76CLKURcna0dez3SVClEe1tEfQ/w=;
+	s=arc-20240116; t=1706872032; c=relaxed/simple;
+	bh=LejB3ccJWTExN9bpLvElMGTr7pRQEVT+0jJIcnZKV2c=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=MRSqxbwk5gh1F+OpMW7UeC7IhxAn0MLplsh2R51O9em4wqNzH/d3R9ORAQ+r4XMaspyLW3o6udKWofTfkSruwZ+u7rliobgy1qlxN1wisQfbZM3W7FVKTY3Botje5saR2k0cTwRNqvebTCyVavcz4aw52Wzaz2UAP6d8CWdc5Y4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=a3of72C0; arc=none smtp.client-ip=209.85.128.50
+	 In-Reply-To:Content-Type; b=RLv9ADqWXtdUiyl/bWEgij/U2hV4HydxpRR1bANSG72VhO/jIpEi9Jcq7MKsfSToN4dGoFslSc74LRHCzEnvbbfzE62xeU9SQhgDnSJBEu0e9Mz8yVXn7iRDNuaPS2kiQc9kUOzFvWuAqLGvfxMo+wckWRkDqUysDRd5hlDgi5A=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=SpXH16jT; arc=none smtp.client-ip=209.85.208.51
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-wm1-f50.google.com with SMTP id 5b1f17b1804b1-40ef6da20feso3653955e9.0
-        for <devicetree@vger.kernel.org>; Fri, 02 Feb 2024 03:04:54 -0800 (PST)
+Received: by mail-ed1-f51.google.com with SMTP id 4fb4d7f45d1cf-558f523c072so2917193a12.2
+        for <devicetree@vger.kernel.org>; Fri, 02 Feb 2024 03:07:10 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1706871893; x=1707476693; darn=vger.kernel.org;
+        d=linaro.org; s=google; t=1706872029; x=1707476829; darn=vger.kernel.org;
         h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
          :to:content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=5rgiwB/8HBdonmwtrNMsNg5DVvgM9WZyl9v3OJ7a2qg=;
-        b=a3of72C0MUx93qxu+/E7euYj/UWgved/7Ejwsb5Lf+R3k0T5i462oaOQnaAVYc6OSq
-         l+ZCTBWtOL9rXoM9A70B8TRJB7V9+jRAOaCG0FDxcyX3TLHd74LOaMTCwOE0sjDBIw/n
-         6iEtM7Iyj1wlXNoQ/f8kCUjRYrkK8KLyaamWkZpjUUPrb/q4rXFbDtzNSe9MLQgJX4QJ
-         Bln1Uu9S7t+x8EUlTIwidE28rQY+prLRJeYP0xXf3b7EQdNGZ5GUEz18oFK7QEXX+l8L
-         WDY94bQfj7AWAwYZUNlZlqtVbede/Hg2LE+6oXnxKq9JNh/buRzaB12TmOf0Fcz6IUSk
-         klbg==
+        bh=l6Kq2nOy4Vcr8k38qRtcVbkqWPpQJBUVq348AmwKe6Q=;
+        b=SpXH16jT0P1iDlhTQxUJbbZfifnJQmvAeF+DK8b8OdnVJAA4kSbZY9FIDOOpNO3SSR
+         Ev+oWE5Z3EQ0+lqhhSqaVbk2SXyAdm8I0L7oHbX7e04PGcgdK/rAgpIZpmvgbUwSUmEx
+         ygB2I8BY0AZOJHAwWB1b0dKMznSU4pXWX8q+HDGFHJOv4UshozdWpl2bvGLjto3ObNfZ
+         Z9iRq8CAHwJIXiMB1QICTFXhTFv0q8RTQt6Z5rckSotdujMGs/TGLT5ME6CWj+yUUGCB
+         nGFHDN1f9UhB+YkfphPBEspAUfiU4Sq0iBaTqQ/NJN8NQWfTiAnwiV/GAaNpopRDEUfw
+         aSbQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1706871893; x=1707476693;
+        d=1e100.net; s=20230601; t=1706872029; x=1707476829;
         h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
          :to:content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=5rgiwB/8HBdonmwtrNMsNg5DVvgM9WZyl9v3OJ7a2qg=;
-        b=w6oLyJRvVAl9guRKQx4u73ljGKte8GQa+ts5luCt2zSaLz1z/js+q++AgzbmTKxfFI
-         mx0qBGP3Jd3MLQYLHgbBZplUyn/hyfIQiRlHN6s86pzlJiXbS2x/l+EeTwn+/tPktcLc
-         0M5tdi5G4AjJl2rDDCioFmYSmFuq9kJN9SlUJdxOUWujs03lydkmc4Y9OqCtJuSc0Toi
-         GC4qI2BifVJK+qK1uORDBCPFAZuOOEisrAQqnNs91/MVB65QD3faeARjDa3TjMriKuAG
-         7FfFxzRyvVFOx5EkgrdfmdGoh/wRCmE7cxzQcBiL+rdtDyRmG08k47X+aSxicx74lSKt
-         1FjA==
-X-Gm-Message-State: AOJu0Yw49NTfwUW8KTur6rHPt3zUa381Jnk0EyKCPdJrVZSMXQ84RrqJ
-	OrJSPrmBL86ogHF7Kc1A8qmrNnraXA+WNyY20jzFpO4oGFc14cDs2rOh1yTd1c0=
-X-Google-Smtp-Source: AGHT+IEnSUCsn/X74Nuno4eB4In308s0CVHDcBAgmZYx9IXDdA/JpzOX+wtxpeBH0aOgDRIuzbkrEQ==
-X-Received: by 2002:a05:600c:190a:b0:40e:70f5:a9a3 with SMTP id j10-20020a05600c190a00b0040e70f5a9a3mr1465686wmq.5.1706871893377;
-        Fri, 02 Feb 2024 03:04:53 -0800 (PST)
-X-Forwarded-Encrypted: i=0; AJvYcCWYGVQH8IDJO01MhA5n4f7ydfKEHIAT2URqX9ZButGbmjnElgUscBOwaj3eilfV+0guStL23IgJdpkk5M4zjr0geQ39KeE9cN3CfqypjaBtUIgBzR+QDp6mkW+fWBlwTtDaEbIrmO/LIS/sk4Foy9wPZFAE+m8S+ra+qqtOSf38nunrxiWee5oETbW2F4gf167YSMzNqltOE4nv1bl/ugMqDK2Mm69mKzureU/M2Io7lcWYTmuAhKr30V5snUu8PFSRX5sbdqLwZ3a3aNxKHhfXHYOOHoHgJ2f1OKm6vESPzfRGHTNnZWe5L67+mCLUOY3R0z0NZ+846PzHAiP2OUioU9qXKbrofcgW1oFre7PMhoZxGU93z9M4zUOk/OeEWpB/iAqBBb2SwRcoLOde8nDOXhcUiMQN6J2YcD7itnmr0U71yJ9whaI8Ymn3vz3K87xLtS/vOxnXuccE5T4oi5o1Np6POcQqvZlXSEdWcH+Fywk1
+        bh=l6Kq2nOy4Vcr8k38qRtcVbkqWPpQJBUVq348AmwKe6Q=;
+        b=N+bN/K3+O9KA4RyGSnDw4uF/xvXDsg2iyBPGxBsUhuXgfSDQPJ17dO6aFUzXS0SgHj
+         e5ST9nsGixEqxb9DgaOo5kGKioLcgcvWQax3T4hSbcJEyw/+YImIFAzDWv/BTIx6iBzf
+         Qdwg5Ml8vMscIJvJM9Z8ng1aKOLw7/UPzf0Sr1D/NyPD1uOe9vjZqNllcvOUFL3/7CKk
+         gsz8lLKeMrMmyDcdRtiP1rK8h9Tue/r1OKF7MYErffL0dqle+sOqTDs91a2ESz0rY2wN
+         dmPLP4KILL8ED7doYLnzR1wLXgqV2xcWeTlD+QhvJnERvn9vfYtwZy3hHwueZUBxOMUX
+         fuaw==
+X-Gm-Message-State: AOJu0YyOsf87KMmRAZiCRaLdCDwqFQiGh0V2yeYLIPc52ZsF0xQFH7TF
+	0HA0gon8F47dN36sIiw9Z2xx/oTk3rMdioYERkgeQXcxWa8+kLYya5KNtHW4IkM=
+X-Google-Smtp-Source: AGHT+IEst/TsjvVAOU/vVVt1OPgkSvqsx9Y8wEYTKYDbYgoqmGZi0fjunuVwsS7Izpu+ufZC6SS5ag==
+X-Received: by 2002:a05:6402:3588:b0:55f:11cf:ee53 with SMTP id y8-20020a056402358800b0055f11cfee53mr8070163edc.31.1706872028974;
+        Fri, 02 Feb 2024 03:07:08 -0800 (PST)
+X-Forwarded-Encrypted: i=0; AJvYcCVoyD1ldgjH2feNIenbeNK2twyFwG+4qSx1Fkqu4/h8a0SXLmAzpqSVYsLxN3Vr0Q7NB3T1xrvSRsRys1nc05/AnmSYZWAcx9QR7WgTeIvVR+yBMdWAaAt+9dIe7d3uBL9YB8NYkGjQldWoyCKpAamKa2daAEvEmQl7lq/NdrgwMoCHIfR+79cUUek7ZMUnYqpi8sog9DZH1XNfW5wgOzyHGOhPhSxnCdUqyy4Nd40Qn8t1HaxyIUrFfxoftghTfohWuUahfm8tQLTmBGaMDFdFVxJRoTt09hxGwmcNRvWzohKVMTM3/0BQI4KBfLMmXFsp04iJc6Hbtkt94yThhELnDsDlaQdIg2oD/xLMH0Pms3I94azVtoVtVngUsqmJtFqYcsZOBpQynWri1pNGbqKNxYvpENCwq+RTvNy0tWrOS6E3soMS56fcngjoG9hGoc/g4G9kQxJKxyQfg9MXc8+TM8CTzz32urxaFUMi3LMjuDrF
 Received: from [192.168.1.20] ([178.197.222.62])
-        by smtp.gmail.com with ESMTPSA id eo9-20020a05600c82c900b0040e5945307esm2261978wmb.40.2024.02.02.03.04.51
+        by smtp.gmail.com with ESMTPSA id fe9-20020a056402390900b0055d312732dbsm706500edb.5.2024.02.02.03.07.07
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 02 Feb 2024 03:04:52 -0800 (PST)
-Message-ID: <f62289f2-0f37-4e27-bc27-ab6d70dcc898@linaro.org>
-Date: Fri, 2 Feb 2024 12:04:51 +0100
+        Fri, 02 Feb 2024 03:07:08 -0800 (PST)
+Message-ID: <bcd733ab-ea9e-4ef0-a521-8e6c2023479f@linaro.org>
+Date: Fri, 2 Feb 2024 12:07:06 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -202,21 +202,19 @@ On 02/02/2024 10:10, Xu Yang wrote:
 > The driver will get the clock by clock-name, then the order should not
 > matter. However, these three clock-names should be present at the same
 > time. I should use enum then.
-> 
->>
->> Plus I will repeat myself from your v4. I don't think this is helping,
->> because the file will soon grow to umnanageable chunk. I prefer to fix
->> it at beginning, before we reach snps-schema level of complexities.
->>
->> Please define common schema, reference in this file and move IMX to own
->> file.
-> 
-> I'm not that familiar with dt-bindings architecture. If I define a common
-> schema, then should I create imx, qcom, nvidia and other dt-binding files
-> too? 
 
-No, the rest you can leave here. Someone, maybe me, will move them some
-time. The point is to move at least IMX to its own file.
+Forgot to answer to this.
+
+Which driver? U-boot? OpenBSD? The one in my custom Linux kernel fork
+(open-source and published on github)? Did you check all of them?
+
+The order should be strict (or "fixed" as in non-flexible), unless there
+is some reason against. If one driver does not care about order, is not
+the reason.
+
+This comment applies to all bindings so to all your future
+contributions. I really keep repeating it...
+
 
 Best regards,
 Krzysztof
