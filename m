@@ -1,60 +1,59 @@
-Return-Path: <devicetree+bounces-38045-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-38046-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8DFE884749E
-	for <lists+devicetree@lfdr.de>; Fri,  2 Feb 2024 17:24:23 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4E2028474B2
+	for <lists+devicetree@lfdr.de>; Fri,  2 Feb 2024 17:29:27 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 429991F22F7C
-	for <lists+devicetree@lfdr.de>; Fri,  2 Feb 2024 16:24:23 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id CAF5D289097
+	for <lists+devicetree@lfdr.de>; Fri,  2 Feb 2024 16:29:25 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5A6901474A1;
-	Fri,  2 Feb 2024 16:24:18 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 609E01482F0;
+	Fri,  2 Feb 2024 16:29:13 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Rr4y2Q11"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="M7Moz6Ig"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 33C6F145356;
-	Fri,  2 Feb 2024 16:24:17 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2F5991474CD;
+	Fri,  2 Feb 2024 16:29:12 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1706891058; cv=none; b=t4CURAYt52/VVN/27H5czvJbI12gvlAMeOVk6LJtfyKCDP++l15iHo9tDNjJWKijPI8HZq3rnwDbVO0RihHneqymsxh3iyL/hxvKB85wKoEWgfQEi2QI52s4X5eCNw36OyE+N+g72iu0zL9/9CoVy9k4yY+iEj86vHDqvKqw2v4=
+	t=1706891353; cv=none; b=vC8SzVOjKtpLcTWUq7fkVhIQLuFqVNrW9rs/4CcfGPmfJHW7KKi1JrXGagCZTv3wa6pUYDiRHWNVH+9UhQriBmaeBnd8evlRZ66lpdxjRGi5o2U3WmVZmzvNAzdEVe4uqHvH5ffI5dQ/xPGuzBruM1+y3O/4b0BwezlCt8xzBmM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1706891058; c=relaxed/simple;
-	bh=nf1dgIwaXauoxmAsRA//GzUzQl0CfZAGGsi0S4FzkvM=;
+	s=arc-20240116; t=1706891353; c=relaxed/simple;
+	bh=98G9IePCbTbTJ4HmAf42k76x+JQnzIskPUOU0VvWz28=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=NN4QTq+OFxeCGh/zOxuwcsJtVLJ8UdQKxoWbjK9lEVnXL3xuCWyO3VlGAuag5ARvwXAjOzrPdrR9RQjAdk0UdQftdPPkpWQgj4HaZlS5MGuD9BmCTec/iC4eS720UMnIRUs5uNcbxREcR7HLCS3VgblBuDSnnEVS/yf8ugu0VAs=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Rr4y2Q11; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id B5DD8C433C7;
-	Fri,  2 Feb 2024 16:24:15 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=smGhfozGGrrUTwZ8/kfBx6+jKwhOj74M7RpED1pOOZKNmf41HmuR349FUtw8FkO+FBlLqcpLuOqBdWdAIKqreEV5YeFt1Zu0PRsTdVRI0X7xnS0jctRdemq8Eo5aLpD06wKqGokJsdDGdXcuUS4smGxwONYa9iD9bwXAHT9iZIA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=M7Moz6Ig; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id D03C7C433C7;
+	Fri,  2 Feb 2024 16:29:10 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1706891057;
-	bh=nf1dgIwaXauoxmAsRA//GzUzQl0CfZAGGsi0S4FzkvM=;
+	s=k20201202; t=1706891352;
+	bh=98G9IePCbTbTJ4HmAf42k76x+JQnzIskPUOU0VvWz28=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=Rr4y2Q11L9RwT8FjB0w/nagDTfTZiK483vQYqXr5WwkPDH7uNTlsMxQqlXnfTVEgz
-	 DpcAkkSbr7J4tKmqqs78L6n4aceggFNGh991i60akq32dkGZigDafAjqDMGQGXkd+n
-	 fDSk1KPWGJfl4m/5cowpIl8vStyrvN3W/DsVPYFhxLFOebVgo+VKf07ZBCzIqoZlqt
-	 y7ECYFpSnvIu6OlqjJP/8wif5xMzWhsTKcv0fo/wPAHSxu92XPYIJHDsstFQm+KMrp
-	 DQmC7Ovzp1F/qZIi0DPJBYgd25qzcDIsbH888juk5W0TvfXfAzOXjWsWFejocBCt1F
-	 +IhuRox8t6Bhg==
-Date: Fri, 2 Feb 2024 16:24:13 +0000
+	b=M7Moz6IgEOutVwCFEPAm5gxKiPRgnp5oc6njZVdKPcjQjp/sZ1i3Sx6KFelNiB8Xd
+	 4YGBtSRUtYOymd1sRgHFOsTxyKJJIOle0Qu3KmQJg46UGlKTWlnEDviR54EPZA+hOu
+	 V8lmgINzJMmNgjV/kr8djOVT2pS0Knb8NzDoFWbtzqg0xFjFOxa4+FU/kJadRrpMx6
+	 gWIK/tPJSlriDfsaUviWheAAJnD+JzJwC946v8175fQZkqtAVsFbhYNJUZl8UVcXsU
+	 XD7wkZprKYE8ENabFM+UVnJpxl1wBc5F6n+jGIxeKYRx6J5Fo04+IDePKr7tyW6QTq
+	 wLFkYvqbqee5g==
+Date: Fri, 2 Feb 2024 16:29:08 +0000
 From: Conor Dooley <conor@kernel.org>
-To: Naresh Solanki <naresh.solanki@9elements.com>
-Cc: Lee Jones <lee@kernel.org>, Rob Herring <robh+dt@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+To: Mike Looijmans <mike.looijmans@topic.nl>
+Cc: devicetree@vger.kernel.org, linux-iio@vger.kernel.org,
 	Conor Dooley <conor+dt@kernel.org>,
-	Patrick Rudolph <patrick.rudolph@9elements.com>,
-	mazziesaccount@gmail.com, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org
-Subject: Re: [PATCH] dt-bindings: mfd: Add regulator-compatible property
-Message-ID: <20240202-carbon-jumbo-0a577c19b62f@spud>
-References: <20240126114614.1424592-1-naresh.solanki@9elements.com>
- <20240126-deflate-ashy-158a91efb25a@spud>
- <CABqG17g+wQ5brngLDYObV+t2y+CEf+85rzqTSYTcmS5jckWZRg@mail.gmail.com>
+	Jonathan Cameron <jic23@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Lars-Peter Clausen <lars@metafoo.de>,
+	Rob Herring <robh+dt@kernel.org>, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v2 1/2] dt-bindings: iio: adc: ti-ads1298: Add bindings
+Message-ID: <20240202-lilly-dart-0968dbcc6b17@spud>
+References: <1b153bce-a66a-45ee-a5c6-963ea6fb1c82.949ef384-8293-46b8-903f-40a477c056ae.50455eb1-2ccc-4e6a-b8ed-0c142743ae03@emailsignatures365.codetwo.com>
+ <20240202105901.925875-1-mike.looijmans@topic.nl>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -62,124 +61,163 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: multipart/signed; micalg=pgp-sha256;
-	protocol="application/pgp-signature"; boundary="OGS3hiZ1Wh3iWLl3"
+	protocol="application/pgp-signature"; boundary="8aKFfDyEDP8k0FDZ"
 Content-Disposition: inline
-In-Reply-To: <CABqG17g+wQ5brngLDYObV+t2y+CEf+85rzqTSYTcmS5jckWZRg@mail.gmail.com>
+In-Reply-To: <20240202105901.925875-1-mike.looijmans@topic.nl>
 
 
---OGS3hiZ1Wh3iWLl3
+--8aKFfDyEDP8k0FDZ
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
 Content-Transfer-Encoding: quoted-printable
 
-On Fri, Feb 02, 2024 at 05:27:10PM +0530, Naresh Solanki wrote:
-> Hi Conor,
+On Fri, Feb 02, 2024 at 11:59:00AM +0100, Mike Looijmans wrote:
+> Bindings for the TI ADS1298 medical ADC. This device is
+> typically used for ECG and similar measurements. Supports data
+> acquisition at configurable scale and sampling frequency.
 >=20
->=20
-> On Fri, 26 Jan 2024 at 21:50, Conor Dooley <conor@kernel.org> wrote:
-> >
-> > On Fri, Jan 26, 2024 at 05:16:14PM +0530, Naresh Solanki wrote:
-> > > Add regulator-compatible property.
-> >
-> > Why? I can see that this is what you did, but there's no justification
-> > for it.
-> >
-> > grepping for this property, the first thing I see is:
-> > rg "regulator-compatible"
-> > drivers/regulator/of_regulator.c
-> > 389: * based on either the deprecated property regulator-compatible if =
-present,
-> > 428:                                    "regulator-compatible", NULL);
-> > 486:            name =3D of_get_property(child, "regulator-compatible",=
- NULL);
-> >
-> >
-> > The property is deprecated, so you'll need twice as good a justification
-> > for adding it!
-> Yes this is deprecated property. I missed noticing that earlier.
-> Will remove this dependency. Thanks for pointing that out.
+> The device has so many options for connecting stuff, at this
+> point the bindings aren't nearly complete but partial bindings
+> are better than no bindings at all.
 
-What do you mean "remove this dependency"? If you remove this there is
-nothing useful left in the patch.
+I'm inclined to agree, particularly given your comments on v1.
+Reviewed-by: Conor Dooley <conor.dooley@microchip.com>
 
-Confused,
+Cheers,
 Conor.
 
 >=20
-> Regards,
-> Naresh
-> >
-> > > Also update example.
-> > >
-> > > TEST=3DRun below command & make sure there is no error
-> > > make DT_CHECKER_FLAGS=3D-m dt_binding_check
-> >
-> > Same comment here as my other mail.
-> >
-> > Thanks,
-> > Conor.
-> >
-> > >
-> > > Signed-off-by: Naresh Solanki <naresh.solanki@9elements.com>
-> > > ---
-> > >  Documentation/devicetree/bindings/mfd/maxim,max5970.yaml | 9 +++++++=
-++
-> > >  1 file changed, 9 insertions(+)
-> > >
-> > > diff --git a/Documentation/devicetree/bindings/mfd/maxim,max5970.yaml=
- b/Documentation/devicetree/bindings/mfd/maxim,max5970.yaml
-> > > index 0da5cae3852e..75175098cbc2 100644
-> > > --- a/Documentation/devicetree/bindings/mfd/maxim,max5970.yaml
-> > > +++ b/Documentation/devicetree/bindings/mfd/maxim,max5970.yaml
-> > > @@ -74,6 +74,9 @@ properties:
-> > >              description: |
-> > >                The value of current sense resistor in microohms.
-> > >
-> > > +          regulator-compatible:
-> > > +            pattern: "^SW[0-1]$"
-> > > +
-> > >          required:
-> > >            - shunt-resistor-micro-ohms
-> > >
-> > > @@ -111,6 +114,8 @@ examples:
-> > >
-> > >              regulators {
-> > >                  sw0_ref_0: sw0 {
-> > > +                    regulator-compatible =3D "SW0";
-> > > +                    regulator-name =3D "p5v";
-> > >                      shunt-resistor-micro-ohms =3D <12000>;
-> > >                  };
-> > >              };
-> > > @@ -145,9 +150,13 @@ examples:
-> > >
-> > >              regulators {
-> > >                  sw0_ref_1: sw0 {
-> > > +                    regulator-compatible =3D "SW0";
-> > > +                    regulator-name =3D "p5v_aux";
-> > >                      shunt-resistor-micro-ohms =3D <12000>;
-> > >                  };
-> > >                  sw1_ref_1: sw1 {
-> > > +                    regulator-compatible =3D "SW1";
-> > > +                    regulator-name =3D "p3v3_aux";
-> > >                      shunt-resistor-micro-ohms =3D <10000>;
-> > >                  };
-> > >              };
-> > >
-> > > base-commit: ecb1b8288dc7ccbdcb3b9df005fa1c0e0c0388a7
-> > > --
-> > > 2.42.0
-> > >
+> Signed-off-by: Mike Looijmans <mike.looijmans@topic.nl>
+>=20
+> ---
+>=20
+> Changes in v2:
+> Remove "clk" name
+> Add datasheet and "incomplete" note
+>=20
+>  .../bindings/iio/adc/ti,ads1298.yaml          | 80 +++++++++++++++++++
+>  1 file changed, 80 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/iio/adc/ti,ads1298.=
+yaml
+>=20
+> diff --git a/Documentation/devicetree/bindings/iio/adc/ti,ads1298.yaml b/=
+Documentation/devicetree/bindings/iio/adc/ti,ads1298.yaml
+> new file mode 100644
+> index 000000000000..bf5a43a81d59
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/iio/adc/ti,ads1298.yaml
+> @@ -0,0 +1,80 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/iio/adc/ti,ads1298.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: Texas Instruments' ads1298 medical ADC chips
+> +
+> +description: |
+> +  Datasheet at: https://www.ti.com/product/ADS1298
+> +  Bindings for this chip aren't complete.
+> +
+> +maintainers:
+> +  - Mike Looijmans <mike.looijmans@topic.nl>
+> +
+> +properties:
+> +  compatible:
+> +    enum:
+> +      - ti,ads1298
+> +
+> +  reg:
+> +    maxItems: 1
+> +
+> +  spi-cpha: true
+> +
+> +  reset-gpios:
+> +    maxItems: 1
+> +
+> +  avdd-supply:
+> +    description:
+> +      Analog power supply, voltage between AVDD and AVSS. When providing=
+ a
+> +      symmetric +/- 2.5V, the regulator should report 5V.
+> +
+> +  vref-supply:
+> +    description:
+> +      Optional reference voltage. If omitted, internal reference is used,
+> +      which is 2.4V when analog supply is below 4.4V, 4V otherwise.
+> +
+> +  clocks:
+> +    description: Optional 2.048 MHz external source clock on CLK pin
+> +    maxItems: 1
+> +
+> +  interrupts:
+> +    description: Interrupt on DRDY pin, triggers on falling edge
+> +    maxItems: 1
+> +
+> +  label: true
+> +
+> +required:
+> +  - compatible
+> +  - reg
+> +  - avdd-supply
+> +  - interrupts
+> +
+> +allOf:
+> +  - $ref: /schemas/spi/spi-peripheral-props.yaml#
+> +
+> +unevaluatedProperties: false
+> +
+> +examples:
+> +  - |
+> +    #include <dt-bindings/gpio/gpio.h>
+> +    #include <dt-bindings/interrupt-controller/irq.h>
+> +    spi {
+> +        #address-cells =3D <1>;
+> +        #size-cells =3D <0>;
+> +
+> +        adc@1 {
+> +          reg =3D <1>;
+> +          compatible =3D "ti,ads1298";
+> +          label =3D "ads1298-1-ecg";
+> +          avdd-supply =3D <&reg_iso_5v_a>;
+> +          clocks =3D <&clk_ads1298>;
+> +          interrupt-parent =3D <&gpio0>;
+> +          interrupts =3D <78 IRQ_TYPE_EDGE_FALLING>;
+> +          spi-max-frequency =3D <20000000>;
+> +          spi-cpha;
+> +        };
+> +    };
+> +...
+> --=20
+> 2.34.1
+>=20
+>=20
+> Met vriendelijke groet / kind regards,
+>=20
+> Mike Looijmans
+> System Expert
+>=20
+>=20
+> TOPIC Embedded Products B.V.
+> Materiaalweg 4, 5681 RJ Best
+> The Netherlands
+>=20
+> T: +31 (0) 499 33 69 69
+> E: mike.looijmans@topic.nl
+> W: www.topic.nl
+>=20
+> Please consider the environment before printing this e-mail
 
---OGS3hiZ1Wh3iWLl3
+--8aKFfDyEDP8k0FDZ
 Content-Type: application/pgp-signature; name="signature.asc"
 
 -----BEGIN PGP SIGNATURE-----
 
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZb0XLQAKCRB4tDGHoIJi
-0t4fAP4p2F8BI/5T3p/OhE42EZgDqs1Mj5cPA7gfcqNWa2dYHgD9HIwbLyGmWwQi
-EhgTB422mCYY4MX1rS8e9zsaXD2lPg0=
-=DZBo
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZb0YVAAKCRB4tDGHoIJi
+0pgiAQDLmXCoilJP7jFxL0Q/yEzCgj/cMi+2Y6Z1OdtihVJ2xAEArqU2Y3pjTG6i
+QDgq4HpsV4D2j70ezmHDJ6mL15ipZAU=
+=ntYu
 -----END PGP SIGNATURE-----
 
---OGS3hiZ1Wh3iWLl3--
+--8aKFfDyEDP8k0FDZ--
 
