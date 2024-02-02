@@ -1,118 +1,135 @@
-Return-Path: <devicetree+bounces-37987-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-37990-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id A3EF7847128
-	for <lists+devicetree@lfdr.de>; Fri,  2 Feb 2024 14:29:52 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 13F2E847146
+	for <lists+devicetree@lfdr.de>; Fri,  2 Feb 2024 14:37:44 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 5FE342851AD
-	for <lists+devicetree@lfdr.de>; Fri,  2 Feb 2024 13:29:51 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 0DFF8B248BF
+	for <lists+devicetree@lfdr.de>; Fri,  2 Feb 2024 13:37:41 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D84AA46452;
-	Fri,  2 Feb 2024 13:29:46 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id CE18146B83;
+	Fri,  2 Feb 2024 13:37:19 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="IezIkzd0"
+	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="Eq7Sz2Fz"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A7ED54643A;
-	Fri,  2 Feb 2024 13:29:45 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3ABD31E4A6;
+	Fri,  2 Feb 2024 13:37:18 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1706880586; cv=none; b=BwvgTz6z/D7vNGC8NjoGcH9u91PyKCxoTU9BMlgLohDkBu4TJKBckwmDJQWZNjmcHdkzWBG29IDZs89Ir+IA60vyHD6NaBlR98DB5mrRV3u2MEl81Uz3FHpt39V3GWTs7VQlyU23/O7P1h5rZATYu7qSCAtcI/UhjGjZ53JpU+Y=
+	t=1706881039; cv=none; b=Oa+Xo8bcA+8wSMTYXRrI4sjrCfz64pQ3aF7N1AegeVn1dt62pW1NkbZ4mynrKPjOq6kfX/rDt5+WanaXhW63NjiQ9NbJe6RbxbjBSsNdDDeUm+8X76ELmqQ9jXglgKN0Ja9YZXt/SyCZW8Vx1Lim29ERVlmAPKRI7hHnBEruXSA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1706880586; c=relaxed/simple;
-	bh=emWHbtbKmHt44W1EEZpZpoNIQ47i7QfIYpdTdG9/FUA=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=mNs1m1BhFO2AyGYbfE6ZARxI2K7b8yXitZaDgaOUmJCivnVAV92p3qndFckbcfRvihSNaoBTR9taV2I4L1JILFQ6AnmDg+4v9PmAfcLWQ90fjjGxiGUpvRMgsyao46d5Df184LFv89/+Va8FEH5I5tFz3tXkNtDrjIaaj6LcbbQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=IezIkzd0; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 13CEEC433F1;
-	Fri,  2 Feb 2024 13:29:42 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1706880585;
-	bh=emWHbtbKmHt44W1EEZpZpoNIQ47i7QfIYpdTdG9/FUA=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=IezIkzd0Uc+tG7hy/lyHyY7q+70ph0LArTYnWrdSZB/soOCU74p82GOqyzzZ3IspI
-	 P9kuaKt8RC9Pmg8Ga9ETLt8LtAXwxTp8lvwbQPVD15lHJp20ymArkNM3epDmSVwG5P
-	 D8xnQLyCodAAy5pXpS8pLk8Rh4IZw9yydGpfDQ00ot6PbMwatR7pccRGdEUiYYeoHV
-	 XbN7wXgQyj1tc4eejDh7ZHC4KRQEbT21umWIvKAmMqBnjm07DU7hjTGh2E+rtIJ+yl
-	 PRQTsvj264iIPI0o4IWVce/N3prRs8Hw5dSaYZZ2NldH24jwjFpzhjKVQIDupQU8RD
-	 rgwg88YkFkmmg==
-Date: Fri, 2 Feb 2024 13:29:40 +0000
-From: Lee Jones <lee@kernel.org>
-To: Karel Balej <karelb@gimli.ms.mff.cuni.cz>,
-	Linus Walleij <linus.walleij@linaro.org>
-Cc: Karel Balej <balejk@matfyz.cz>,
-	Dmitry Torokhov <dmitry.torokhov@gmail.com>,
-	Rob Herring <robh+dt@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>, linux-input@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	Duje =?utf-8?Q?Mihanovi=C4=87?= <duje.mihanovic@skole.hr>,
-	~postmarketos/upstreaming@lists.sr.ht, phone-devel@vger.kernel.org
-Subject: Re: [RFC PATCH 2/5] mfd: add 88pm88x driver
-Message-ID: <20240202132940.GG1379817@google.com>
-References: <20231217131838.7569-1-karelb@gimli.ms.mff.cuni.cz>
- <20231217131838.7569-3-karelb@gimli.ms.mff.cuni.cz>
- <20240125122634.GE74950@google.com>
- <CYQ8MEQRJELE.2GB9316NZA998@gimli.ms.mff.cuni.cz>
- <20240131110311.GI8551@google.com>
- <CYTURHOW0WMR.2UMOT0D1GFZ2W@gimli.ms.mff.cuni.cz>
- <20240202124550.GE1379817@google.com>
- <CYULY1BYVCYK.1EGSBSVNRSTLQ@gimli.ms.mff.cuni.cz>
+	s=arc-20240116; t=1706881039; c=relaxed/simple;
+	bh=zPr0j07wzlxYUc4wbPkXJJM/g853nHeIX7XjpjWIotE=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=XlrBhLmlJ3eLMnysPV8GefoNvwra3mRSoGmC1HuXfwAFYQSJ+gMCXRPnNQmQJMRIpPuPNeVPSy+8dtSqAYkyk8dwZuEuqkFZzWxhGky3ygq58mqctHVENgoz+wcDuOgvLUDLLHiPV2sdM0/4yWwiTcfwoKZhR+BKZBHaTFp3vxk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=qualcomm.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=Eq7Sz2Fz; arc=none smtp.client-ip=205.220.168.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=qualcomm.com
+Received: from pps.filterd (m0279866.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.17.1.24/8.17.1.24) with ESMTP id 412C0eYG028446;
+	Fri, 2 Feb 2024 13:37:15 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
+	from:to:cc:subject:date:message-id:mime-version
+	:content-transfer-encoding; s=qcppdkim1; bh=JyxZZ6KysSj3z8pO1U55
+	+GkfvnayjzIgpnHVsrTRDkE=; b=Eq7Sz2Fz6Eqcwo+7IXCsL/cQAcZttSRj9aUq
+	1V4WVRtK6+oFAJBlWOYq4hzww4pryj5L7YQ0EMozeSnJlgyz737Ftiq21f3aqZ1g
+	tSvmyAviyl1BblMhX6jwlpitiw7dj2Y6LGxoj9r6a9P/Jcvb0OCbpKs2RY6AD+Jc
+	eEBVaAbvl+c6wi4dy6Eqh8WoTT34O83MkX0ZdkPdMQW6Baqp46llWw8Ki2UQ0Exb
+	IJ5lpamdoX88oOuqcBa6oLCjSIXO1EylIcK5ClIcrj1K6KU/VxmipPoyzk3Phklq
+	wsDrzYdGHlbSaDnVf7BZNz1glsU8Epfj1n26CAASftOZHVAg9A==
+Received: from apblrppmta02.qualcomm.com (blr-bdr-fw-01_GlobalNAT_AllZones-Outside.qualcomm.com [103.229.18.19])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3w1019r68g-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Fri, 02 Feb 2024 13:37:14 +0000 (GMT)
+Received: from pps.filterd (APBLRPPMTA02.qualcomm.com [127.0.0.1])
+	by APBLRPPMTA02.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTP id 412DajZf017958;
+	Fri, 2 Feb 2024 13:36:45 GMT
+Received: from pps.reinject (localhost [127.0.0.1])
+	by APBLRPPMTA02.qualcomm.com (PPS) with ESMTPS id 3vvtwm3wsv-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NO);
+	Fri, 02 Feb 2024 13:36:45 +0000
+Received: from APBLRPPMTA02.qualcomm.com (APBLRPPMTA02.qualcomm.com [127.0.0.1])
+	by pps.reinject (8.17.1.5/8.17.1.5) with ESMTP id 412Daj5G017935;
+	Fri, 2 Feb 2024 13:36:45 GMT
+Received: from hu-maiyas-hyd.qualcomm.com (hu-wasimn-hyd.qualcomm.com [10.147.242.220])
+	by APBLRPPMTA02.qualcomm.com (PPS) with ESMTP id 412Dajbr017929;
+	Fri, 02 Feb 2024 13:36:45 +0000
+Received: by hu-maiyas-hyd.qualcomm.com (Postfix, from userid 3944840)
+	id CB09D500945; Fri,  2 Feb 2024 19:06:43 +0530 (+0530)
+From: Wasim Nazir <quic_wasimn@quicinc.com>
+To: andersson@kernel.org, konrad.dybcio@linaro.org, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org
+Cc: linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, kernel@quicinc.com,
+        Wasim Nazir <quic_wasimn@quicinc.com>
+Subject: [PATCH 0/3] arm64: qcom: add support for QCS8550 RB5gen2 HDK board
+Date: Fri,  2 Feb 2024 19:06:35 +0530
+Message-ID: <20240202133638.4720-1-quic_wasimn@quicinc.com>
+X-Mailer: git-send-email 2.43.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <CYULY1BYVCYK.1EGSBSVNRSTLQ@gimli.ms.mff.cuni.cz>
+X-QCInternal: smtphost
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-ORIG-GUID: eOtz-nuEMX6Ll-BXgjVS8fwM2kgjSl_3
+X-Proofpoint-GUID: eOtz-nuEMX6Ll-BXgjVS8fwM2kgjSl_3
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.272,Aquarius:18.0.1011,Hydra:6.0.619,FMLib:17.11.176.26
+ definitions=2024-02-02_08,2024-01-31_01,2023-05-22_02
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 malwarescore=0
+ lowpriorityscore=0 bulkscore=0 mlxscore=0 suspectscore=0
+ priorityscore=1501 spamscore=0 mlxlogscore=544 clxscore=1015 adultscore=0
+ phishscore=0 impostorscore=0 classifier=spam adjust=0 reason=mlx
+ scancount=1 engine=8.19.0-2401310000 definitions=main-2402020100
 
-Linus,
+RB5gen2-HDK is Thundercomm's development platform used for IOT solutions.
+It is based on Rb5gen2-SOM which is using QCOM's QCS8550 SoC.
 
-On Fri, 02 Feb 2024, Karel Balej wrote:
+On-board components:
+- Qualcomm QCS8550 SoC
+- LPDDR5, 12 GiB
+- UFS3.1, 128 GiB
+- USB3.1
 
-> Lee Jones, 2024-02-02T12:45:50+00:00:
-> > On Thu, 01 Feb 2024, Karel Balej wrote:
-> >
-> > > Lee Jones, 2024-01-31T11:03:11+00:00:
-> > > > On Sun, 28 Jan 2024, Karel Balej wrote:
-> > > > > > > +	/* GPIO1: DVC, GPIO0: input */
-> > > > > > > +	REG_SEQ0(PM88X_REG_GPIO_CTRL1, 0x40),
+On-board PMICs:
+- PM8550VS
+- PM8550VE
+- PM8550
+- PM8550BH
+- PMK8550
+- PMR735D
+- PM8010
 
-Do we have a precedent for drivers setting up their own pins like this?
+This series depends on [1].
 
-> > > > > > Shouldn't you set these up using Pintrl?
-> > > > > 
-> > > > > You mean to add a new MFD cell for the pins and write the respective
-> > > > > driver? The downstream implementation has no such thing so I'm not sure
-> > > > > if I would be able to do that from scratch.
-> > > >
-> > > > This is not a Pinctrl driver.
-> > > >
-> > > > Isn't there a generic API you can use?
-> > > 
-> > > I'm sorry, I don't think I understand what you mean.
-> >
-> > Perhaps I misunderstand the code.  It looks like this regmap patch hack
-> > is configuring pins and a bunch of other things.  Would that be a
-> > correct assessment?
-> 
-> Yes, that sounds correct.
-> 
-> > If so, where do we draw the line here?  Do we accept a 1000 line driver
-> > which configures a large SoC with a bunch of bespoke register writes?
-> 
-> I understand, I just don't know what you mean by "a generic API". I'm
-> also not clear on whether what you have in mind is simply adding a
-> dedicated driver for the pins as a new subdevice of this MFD.
+[1]: https://lore.kernel.org/all/20240119100621.11788-1-quic_tengfan@quicinc.com/
 
--- 
-Lee Jones [李琼斯]
+
+Wasim Nazir (3):
+  dt-bindings: arm: qcom: Document rb5gen2-hdk board
+  arm64: dts: qcom: Add initial support for rb5gen2 SOM
+  arm64: dts: qcom: Add initial support for rb5gen2 HDK board
+
+ .../devicetree/bindings/arm/qcom.yaml         |   9 +
+ arch/arm64/boot/dts/qcom/Makefile             |   1 +
+ .../boot/dts/qcom/qcs8550-rb5gen2-hdk.dts     | 136 ++++++
+ arch/arm64/boot/dts/qcom/qcs8550-rb5gen2.dtsi | 438 ++++++++++++++++++
+ 4 files changed, 584 insertions(+)
+ create mode 100644 arch/arm64/boot/dts/qcom/qcs8550-rb5gen2-hdk.dts
+ create mode 100644 arch/arm64/boot/dts/qcom/qcs8550-rb5gen2.dtsi
+
+--
+2.43.0
+
 
