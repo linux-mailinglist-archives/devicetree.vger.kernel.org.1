@@ -1,161 +1,134 @@
-Return-Path: <devicetree+bounces-38010-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-38011-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8EAE484726D
-	for <lists+devicetree@lfdr.de>; Fri,  2 Feb 2024 15:58:27 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id EFAED847270
+	for <lists+devicetree@lfdr.de>; Fri,  2 Feb 2024 15:59:30 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id B34221C23E05
-	for <lists+devicetree@lfdr.de>; Fri,  2 Feb 2024 14:58:26 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 2DEAA1C220BC
+	for <lists+devicetree@lfdr.de>; Fri,  2 Feb 2024 14:59:30 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2C5661468FD;
-	Fri,  2 Feb 2024 14:57:50 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D4F0047774;
+	Fri,  2 Feb 2024 14:59:25 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="aoRVmQhy"
+	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="nX2R+xpE"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ej1-f48.google.com (mail-ej1-f48.google.com [209.85.218.48])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from lelv0142.ext.ti.com (lelv0142.ext.ti.com [198.47.23.249])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 02BBF145B21
-	for <devicetree@vger.kernel.org>; Fri,  2 Feb 2024 14:57:47 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.48
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DE4307E5;
+	Fri,  2 Feb 2024 14:59:23 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.23.249
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1706885870; cv=none; b=PM0FOqC+ULxYdkHAC0WJtg1BgLY+/4DvxGRwwKum2wQCxaY3Ltg25gy+GGmYD/i72ei3xx9qEkbcw9UYRt1UNc240L6n9ydQ1BNqDuQtlB9yZmGWYsziEMs9pkQcU536cSpU3XCPVLTofY9OqgzGfZvYklPJPnAv9peeWgemuos=
+	t=1706885965; cv=none; b=qgMmQlyIPZZCJub2IaKJu1oD6cwqEQAp+1xdVTbxesPQO4aFCTB1tBP1YALHlGhXCNgD/YVuV7Xx/r+Tb/YgFJL7gEfGjLHfspKaYidXdg0fLS5ZZNfKv0w+JjAWqw6tMUWe5joBtt9VIm7EFFD1iOlsdYHlrJ+760WvTIEq/2Y=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1706885870; c=relaxed/simple;
-	bh=4BFXoEKq0dKkvxzn8sylQVAACo62MxLym87l7SMkOww=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=Wui5QEBKqsOGFxwPLg1c5qKE6u1TH/zLKN5FVm1X+6DFdIY9b9Dg9WrsDhOxf4dpgWZ5XDthRcKX/ru2j13L6/fapxFfbDrrwLMp8erPy/ab+07pOvocDLH7qnOpZ5KKkU5m9ui6YWdNjcVt+DlGLzQgjTlqhqDLYvqr0pRTsgg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=aoRVmQhy; arc=none smtp.client-ip=209.85.218.48
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-ej1-f48.google.com with SMTP id a640c23a62f3a-a26ed1e05c7so322071066b.2
-        for <devicetree@vger.kernel.org>; Fri, 02 Feb 2024 06:57:47 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1706885866; x=1707490666; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=nxb698xf8QkMydB4z0YB9c3r/9JegaMn6kB+mk5+8LA=;
-        b=aoRVmQhy57u2UqB1WRcXzrhm+2dZAjt/Zyr/l/g8PwNwu4sQISqanlmAQ0/kyxhlzW
-         8ZrevEzcMbRV4r05DsSuefSvgFCNXCuNS3wq/gJHS5S1rQMx35+hOr7rT2ktyaJLHzMt
-         8bHQb1MqXMlca0uMc/G+0kRJhfxw1ANae4KOShorL4Mtxo6LMlWBpzBazaLEGbgsdalG
-         I4GMjf4WGFC3bU+afGC4l5AQ8IXzwrOIYWk6nSevI1cylepN0UJaT+Wn0bShRV33oybz
-         xmhfssv42tynCu28soahyStY3ojhS5dGauAE9mWIocNKn3NGNuuAozGT906pqKjcO10t
-         lqFA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1706885866; x=1707490666;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=nxb698xf8QkMydB4z0YB9c3r/9JegaMn6kB+mk5+8LA=;
-        b=rFlfYojEY0s2VW1G2fgUEKqONntjOhxJdoZL6zI871JKZ/skOSuItEBu4lZXPUrWuU
-         fVzl6b2rs1XBu9GEnTpJtDaC2Eayyz0oMFqcvEstsC4NUMhXPCRSKt24B9WwGxP75nIK
-         m359DbbdGt2FAwP9l0qfjrbyRryZ6Q9pN6zbv75G86PN4uNLvbOT+3Rw8SLLJiFBBqWm
-         ybwG7cVvp3kDRTIlckgLS0b0vX88+dIk/LUXbcRF+p6YkZmDaUBVrP7SvXZdfLSwQEyZ
-         20QR1D8BbgTLrtufb51NU2vCCU008RvDPy/T9IJVtDz+MhfvGDta6Xx+FMnbPpD2eoL0
-         RWiQ==
-X-Gm-Message-State: AOJu0YyB99HOamgrvibPYNL880oOw7GICJsmCSApX4ZK06UAqmqlbfj+
-	39GXaEzVkcWVxyu2GX/y6kwb8WwUZUHb+6cQ5CzRvgS8JO3uorY2JlR9F96qa8w=
-X-Google-Smtp-Source: AGHT+IEq5+ecus9eptHUpdICSkpu0fVKudtg5PpRU+RWCPogFNs8q/6X9DnhhUg2PfG3cuiVlChiOg==
-X-Received: by 2002:a17:906:30c3:b0:a37:7fd:9a1e with SMTP id b3-20020a17090630c300b00a3707fd9a1emr1331738ejb.1.1706885866301;
-        Fri, 02 Feb 2024 06:57:46 -0800 (PST)
-X-Forwarded-Encrypted: i=0; AJvYcCXrgol+/K1m0i+gOh3V1PPaImHM0PUK7M2r5Dhk8DlbpenPP7J3oMx0Nu4z1Jcs9BMeM2nQPP9g8rKwaLyJxpSaW8BMRXW9G2cT9pZiqYa2kM2u8/fyuzQUC3HDW+SeAuGR8pyG0ALCT5h3XKnM9HLMfR5cCakEeuHs4glq5BGPJyIkWw23UPoxZFPIomrq0AqPtjjo3zGb4cT/Ooy4sWrfQmnp8+QkqA1eg8pknfWgaPMI+Cku8uOOmxVGY6DwVjxGS5aUsg8cHCsGUjJ6QlN3trlh035+uQK1peWwRYMKfC/719FJwj6ah0p3cWDp7hB+RU1z2wq0zIjCeSyoUc+wtlJ0Egcn+YON3VY/7m5u5m1+LegS6yZ1+/5V5txyyQpwwioOPjwESPuc7rcH+b91kgI7P5Eua1ZqrBuyktP28MUhpYO39r5RMb6kMwvegotd4a9BHVTP1UUgzTFzR/3xIuRtWcEGB6jDdS3F6qqkZz5ikEFLHly7CU2lY+2b7zGdusclQ/jk42rXZ6+jwzzBR9Ao0EhC9b5IozdHuH33wPvM6IRRw7gfCj4UKCQX4UPmOOXXfelfeIDyhR1Yumga9mB5PTE40iL5rRxnsyKVYKhDWIOst2adexrp/clU6H/VPwaIM3E0AUTpSBIXGZmj7x3U6ay4Rd3Li2p4UmlJhnRIQEBSAbRHmgJkw8luLlGRaHc9JVD1OQ==
-Received: from gpeter-l.lan (host-92-21-139-67.as13285.net. [92.21.139.67])
-        by smtp.gmail.com with ESMTPSA id t8-20020a17090616c800b00a36c60180aesm957200ejd.60.2024.02.02.06.57.44
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 02 Feb 2024 06:57:45 -0800 (PST)
-From: Peter Griffin <peter.griffin@linaro.org>
-To: arnd@arndb.de,
-	krzysztof.kozlowski@linaro.org,
-	linux@roeck-us.net,
-	wim@linux-watchdog.org,
-	alim.akhtar@samsung.com,
-	jaewon02.kim@samsung.com,
-	semen.protsenko@linaro.org
-Cc: kernel-team@android.com,
-	peter.griffin@linaro.org,
-	alexey.klimov@linaro.org,
-	tudor.ambarus@linaro.org,
-	andre.draszik@linaro.org,
-	saravanak@google.com,
-	willmcvicker@google.com,
-	linux-fsd@tesla.com,
-	linux-watchdog@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	linux-samsung-soc@vger.kernel.org
-Subject: [PATCH v3 2/2] watchdog: s3c2410_wdt: use exynos_get_pmu_regmap_by_phandle() for PMU regs
-Date: Fri,  2 Feb 2024 14:57:31 +0000
-Message-ID: <20240202145731.4082033-3-peter.griffin@linaro.org>
-X-Mailer: git-send-email 2.43.0.594.gd9cf4e227d-goog
-In-Reply-To: <20240202145731.4082033-1-peter.griffin@linaro.org>
-References: <20240202145731.4082033-1-peter.griffin@linaro.org>
+	s=arc-20240116; t=1706885965; c=relaxed/simple;
+	bh=060+cBbOS7QVMY0C6mMjot3skN9ZnKXBLMXmiqpiDok=;
+	h=Date:From:To:CC:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=RZsGsS1JSmmrvkmxsLdjqIOgkvuGX3N+ZKMMrVweV10VLUkcBAmJAe5Ehfc7AC2zaQnMF350e899iIQlICkd/8Ad+Ll+HOQvtNE78tMoewWwc11qkdMTbcZV3JE0RtIHS3FJMnfEJgNjrpnlc5ssguKooQv62hXmpCEYmQEzfTs=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=nX2R+xpE; arc=none smtp.client-ip=198.47.23.249
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
+Received: from lelv0265.itg.ti.com ([10.180.67.224])
+	by lelv0142.ext.ti.com (8.15.2/8.15.2) with ESMTP id 412Ex9hh064767;
+	Fri, 2 Feb 2024 08:59:09 -0600
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+	s=ti-com-17Q1; t=1706885949;
+	bh=Yal9nzjrFfbUuNcyrhES9wxwnLywzSU7c1qVhaUmbIE=;
+	h=Date:From:To:CC:Subject:References:In-Reply-To;
+	b=nX2R+xpEkHm+LS9R4QjiXvhbE4HdJMNSwwVhZHV9j6rmWl0C9ep8uT2vQL6Z/hAe+
+	 MFyijljs/VkIvMYg/tiNjL1NMd4ZaLPvCUVJ56XtVrVLJn7pDP5oYU8KD+/cV/chdo
+	 xf5+wZ8Qyfy9PySa75zycFd9alNs9tChc+Mx3MK0=
+Received: from DFLE115.ent.ti.com (dfle115.ent.ti.com [10.64.6.36])
+	by lelv0265.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 412Ex92l003347
+	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+	Fri, 2 Feb 2024 08:59:09 -0600
+Received: from DFLE108.ent.ti.com (10.64.6.29) by DFLE115.ent.ti.com
+ (10.64.6.36) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Fri, 2
+ Feb 2024 08:59:09 -0600
+Received: from lelvsmtp5.itg.ti.com (10.180.75.250) by DFLE108.ent.ti.com
+ (10.64.6.29) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
+ Frontend Transport; Fri, 2 Feb 2024 08:59:09 -0600
+Received: from localhost (uda0133052.dhcp.ti.com [128.247.81.232])
+	by lelvsmtp5.itg.ti.com (8.15.2/8.15.2) with ESMTP id 412Ex9Vj120052;
+	Fri, 2 Feb 2024 08:59:09 -0600
+Date: Fri, 2 Feb 2024 08:59:09 -0600
+From: Nishanth Menon <nm@ti.com>
+To: Roger Quadros <rogerq@kernel.org>
+CC: Conor Dooley <conor.dooley@microchip.com>,
+        Conor Dooley
+	<conor@kernel.org>, Bin Liu <b-liu@ti.com>,
+        <vigneshr@ti.com>, <afd@ti.com>, <kristo@kernel.org>,
+        <robh+dt@kernel.org>, <krzysztof.kozlowski+dt@linaro.org>,
+        <conor+dt@kernel.org>, <srk@ti.com>, <r-gunasekaran@ti.com>,
+        <linux-arm-kernel@lists.infradead.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>
+Subject: Re: [PATCH v3 4/5] dt-bindings: usb/ti,am62-usb.yaml: Add PHY2
+ register space
+Message-ID: <20240202145909.a5hnglswn5xivxaj@ebook>
+References: <20240201120332.4811-5-rogerq@kernel.org>
+ <20240201-viewpoint-upload-fb714f650ff5@spud>
+ <20240201-violet-chalice-51a73f113e7b@spud>
+ <20240201183522.ssj553rwefr2wuqi@iaqt7>
+ <20240201-clad-unopposed-ccfdfe53b770@spud>
+ <bc3ab60f-539b-41d0-8595-6e0b55f2763d@kernel.org>
+ <20240202-unzip-whacky-bb2f151c618b@wendy>
+ <dc3c93dc-74d9-4b1c-a771-3ee6f67b5dcc@kernel.org>
+ <20240202121828.oo7grngyh2heqdxn@disposal>
+ <2dbbcc17-38e9-48b4-a0b1-450350644fb9@kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset="us-ascii"
+Content-Disposition: inline
+In-Reply-To: <2dbbcc17-38e9-48b4-a0b1-450350644fb9@kernel.org>
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 
-Obtain the PMU regmap using the new API added to exynos-pmu driver rather
-than syscon_regmap_lookup_by_phandle(). As this driver no longer depends
-on mfd syscon remove that header and Kconfig dependency.
+On 15:59-20240202, Roger Quadros wrote:
+> 
+> 
+> On 02/02/2024 14:18, Nishanth Menon wrote:
+> > On 12:13-20240202, Roger Quadros wrote:
+> > [..]
+> >>>>
+> >>>> As DTS and driver will be merged by separate maintainers I thought it
+> >>>> would be easier for maintainers this way.
+> >>>
+> >>> dts and driver might be merged by different people, but dt-bindings and
+> >>> drivers are merged by the same people. This is a bindings patch, not a
+> >>
+> >> If we do that then I get a bunch of dtbs_check warnings
+> >>
+> >> dwc3-usb@f900000: reg: [[0, 261095424, 0, 2048], [0, 261128192, 0, 1024]] is too long
+> > 
+> > Just my 2 cents: If the binding (and driver) change was truly backward
+> > compatible (which it should be - for example: errata can only be
+> > applied if the second property is described), then you want to control
+> > that reg property to add minItems? - thatm I think will allow the dts
+> > change to come in at the next cycle once the binding has been merged.
+> > 
+> 
+> Thanks for the hint.
+> Please drop patches 4 and 5 in case you pick this series.
+> 
+> I'll send patch 4 along with the driver series v2.
+> Patch 5, I'll send after the DT binding has been merged.
 
-Reviewed-by: Sam Protsenko <semen.protsenko@linaro.org>
-Signed-off-by: Peter Griffin <peter.griffin@linaro.org>
----
- drivers/watchdog/Kconfig       | 1 -
- drivers/watchdog/s3c2410_wdt.c | 8 ++++----
- 2 files changed, 4 insertions(+), 5 deletions(-)
+I suggest to resubmit requisite series (with patches +- or what ever)
+specific to appropriate maintainers (I don't typically like folks
+sending driver change along with dts change in a single series without
+indicating to driver maintainer that dts is something they shouldn't
+be picking) and avoid any confusion ;)
 
-diff --git a/drivers/watchdog/Kconfig b/drivers/watchdog/Kconfig
-index 7d22051b15a2..d78fe7137799 100644
---- a/drivers/watchdog/Kconfig
-+++ b/drivers/watchdog/Kconfig
-@@ -512,7 +512,6 @@ config S3C2410_WATCHDOG
- 	tristate "S3C6410/S5Pv210/Exynos Watchdog"
- 	depends on ARCH_S3C64XX || ARCH_S5PV210 || ARCH_EXYNOS || COMPILE_TEST
- 	select WATCHDOG_CORE
--	select MFD_SYSCON if ARCH_EXYNOS
- 	help
- 	  Watchdog timer block in the Samsung S3C64xx, S5Pv210 and Exynos
- 	  SoCs. This will reboot the system when the timer expires with
-diff --git a/drivers/watchdog/s3c2410_wdt.c b/drivers/watchdog/s3c2410_wdt.c
-index 349d30462c8c..686cf544d0ae 100644
---- a/drivers/watchdog/s3c2410_wdt.c
-+++ b/drivers/watchdog/s3c2410_wdt.c
-@@ -24,9 +24,9 @@
- #include <linux/slab.h>
- #include <linux/err.h>
- #include <linux/of.h>
--#include <linux/mfd/syscon.h>
- #include <linux/regmap.h>
- #include <linux/delay.h>
-+#include <linux/soc/samsung/exynos-pmu.h>
- 
- #define S3C2410_WTCON		0x00
- #define S3C2410_WTDAT		0x04
-@@ -699,11 +699,11 @@ static int s3c2410wdt_probe(struct platform_device *pdev)
- 		return ret;
- 
- 	if (wdt->drv_data->quirks & QUIRKS_HAVE_PMUREG) {
--		wdt->pmureg = syscon_regmap_lookup_by_phandle(dev->of_node,
--						"samsung,syscon-phandle");
-+		wdt->pmureg = exynos_get_pmu_regmap_by_phandle(dev->of_node,
-+						 "samsung,syscon-phandle");
- 		if (IS_ERR(wdt->pmureg))
- 			return dev_err_probe(dev, PTR_ERR(wdt->pmureg),
--					     "syscon regmap lookup failed.\n");
-+					     "PMU regmap lookup failed.\n");
- 	}
- 
- 	wdt_irq = platform_get_irq(pdev, 0);
 -- 
-2.43.0.594.gd9cf4e227d-goog
-
+Regards,
+Nishanth Menon
+Key (0xDDB5849D1736249D) / Fingerprint: F8A2 8693 54EB 8232 17A3  1A34 DDB5 849D 1736 249D
 
