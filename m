@@ -1,83 +1,60 @@
-Return-Path: <devicetree+bounces-38158-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-38159-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6E2D5847ADC
-	for <lists+devicetree@lfdr.de>; Fri,  2 Feb 2024 21:59:18 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id E60BA847B59
+	for <lists+devicetree@lfdr.de>; Fri,  2 Feb 2024 22:10:24 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 1DF86283A3A
-	for <lists+devicetree@lfdr.de>; Fri,  2 Feb 2024 20:59:17 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 9FA1628CBD0
+	for <lists+devicetree@lfdr.de>; Fri,  2 Feb 2024 21:10:23 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 59F827CF3F;
-	Fri,  2 Feb 2024 20:59:12 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 01EBC126F36;
+	Fri,  2 Feb 2024 21:07:03 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="IGJllm8m"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="lbPykI0F"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.16])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 428097A723;
-	Fri,  2 Feb 2024 20:59:10 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=192.198.163.16
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CAC2082C60;
+	Fri,  2 Feb 2024 21:07:02 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1706907552; cv=none; b=sOEvBrJS3si5mBUcvXkBNLH0SUHDRms7UhqRtswQ9HGDFReXbDP2H4OYqflBU2mxDWZx7AbZBBDYYIm9e6TpkBmbLkPB89VNkRlJUiGQVMng5qG1ZRFOEudEzBgmAU5MIuLnJLwHPGShDPk/g3bi992tx6bsa13Sn3rfs1pz3rk=
+	t=1706908022; cv=none; b=WV0sfvojY6MbjB0XSwBNT93aYa+ED1QWzsatsWoO6ffhk+eLwjVBGy4YI8tX4/KDS4adK+lr5bg4qTGD8YcjQyHOZ1Dx0C/SF0YSu0BNg1PYKWZ/+vKS6FbqmaAAfd5LGIk4flE72SDXtlib7hcL+piCNmz1QDn+Yyef8r/oE/c=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1706907552; c=relaxed/simple;
-	bh=T1SmPiaekiTqw+dUGeKjsiOONvZZYtkQjwGugxBhr98=;
+	s=arc-20240116; t=1706908022; c=relaxed/simple;
+	bh=pOT08KJNuS1sfLS3vZwggchfB5iy1EZEG3QY463HBfk=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=rgYhbilp8PzgoGMNZ+eBYifTiJOMuB/P3GrSSTLlnM1af8CQn/7n72HgarimosaZtN+ybXRKBWD2XVkKhFFGjIbvifB2WaFxSE6TYn3VUq04Px58dyuSv1CknjGMaH+mpARjDpACGlT37Ni9405JFPhx/Fv86qByKsiEkwsxDiM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=IGJllm8m; arc=none smtp.client-ip=192.198.163.16
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1706907550; x=1738443550;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=T1SmPiaekiTqw+dUGeKjsiOONvZZYtkQjwGugxBhr98=;
-  b=IGJllm8mbzV39eSHMpIEUln/Sg73uM/6H98RCt0UJl48UJ4ew/rNc29s
-   ejXDR5bn/zHfAOiIVFMo+6ymZq0XUVXq28WdUnQiKX1SBT3y+FWAnY2Bd
-   TSrXbc7LsxV0aTqu8WT5kZuZ+BMlOpUDQ9yNW7uX2Bhat424Xw7l26T3g
-   RbgLAVXu2tRH0WJ0faEM86+7w3FYAfZZH5J/F6HXqdEf+b8LwyhXo8qMT
-   9Rk5DASRh7LdCf9q5ut1wHkdH0YhEZmZe3NzCL7zPFeMeH11oDqx4QhuZ
-   /619jzdLLvNZU8FmcZuwIr2l62LSHP9Lj3dSTVqj4dVGbHvbcXlyp2Qda
-   Q==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10971"; a="462859"
-X-IronPort-AV: E=Sophos;i="6.05,238,1701158400"; 
-   d="scan'208";a="462859"
-Received: from fmviesa009.fm.intel.com ([10.60.135.149])
-  by fmvoesa110.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 02 Feb 2024 12:59:09 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.05,238,1701158400"; 
-   d="scan'208";a="157606"
-Received: from lkp-server02.sh.intel.com (HELO 59f4f4cd5935) ([10.239.97.151])
-  by fmviesa009.fm.intel.com with ESMTP; 02 Feb 2024 12:59:05 -0800
-Received: from kbuild by 59f4f4cd5935 with local (Exim 4.96)
-	(envelope-from <lkp@intel.com>)
-	id 1rW0co-0004G6-34;
-	Fri, 02 Feb 2024 20:59:02 +0000
-Date: Sat, 3 Feb 2024 04:58:24 +0800
-From: kernel test robot <lkp@intel.com>
-To: Kamel Bouhara <kamel.bouhara@bootlin.com>,
-	Dmitry Torokhov <dmitry.torokhov@gmail.com>,
-	Rob Herring <robh+dt@kernel.org>,
-	Krzysztof Kozlowski <krzk@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Henrik Rydberg <rydberg@bitmath.org>, linux-input@vger.kernel.org,
-	linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-	Marco Felsch <m.felsch@pengutronix.de>,
-	Jeff LaBundy <jeff@labundy.com>
-Cc: oe-kbuild-all@lists.linux.dev, catalin.popescu@leica-geosystems.com,
-	mark.satterthwaite@touchnetix.com,
-	Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
-	Gregory Clement <gregory.clement@bootlin.com>,
-	bsp-development.geo@leica-geosystems.com,
-	Kamel Bouhara <kamel.bouhara@bootlin.com>
-Subject: Re: [PATCH v7 3/3] Input: Add TouchNetix axiom i2c touchscreen driver
-Message-ID: <202402030433.2vfAa4qt-lkp@intel.com>
-References: <20240131141158.3350344-4-kamel.bouhara@bootlin.com>
+	 Content-Type:Content-Disposition:In-Reply-To; b=XRFD6l8jKHkR4mkBzLQY7xjtHVQWcTDSRSZwTlx3dm1yyxV8FmGPFO6drQhMElbgkiZEQuV9WZ4sNa4V5n114BkbYsPH49JedUk8TIgl1qRfZO8RjWqDAyGg9MAWj9tyEyltISdzmZFaCUavhOSuWmjcBsFsWdryTUjCoV9yYrs=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=lbPykI0F; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 2AB44C433F1;
+	Fri,  2 Feb 2024 21:07:02 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1706908022;
+	bh=pOT08KJNuS1sfLS3vZwggchfB5iy1EZEG3QY463HBfk=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=lbPykI0FhQTq9PNUjiMoVTYdWNs6UbKW/swId0j174aITvgl3tBPi8qYaffrMpRp8
+	 2TWv85F6hmYtkqHK2DtRq2sDgzXXr8hokdNGKd7c2z4dcsN458XXRF/2mPb0gaRax4
+	 bQsCGq3mnBO1Yq7TPCK5JDfQsjUKd7FDdSvX1kSZqjKLqy965ow9LIQymRYzSfw6nZ
+	 nsjkt/rCCBbwHeCWDeLmAblaBCutOvOe+IO5clMXGIQ027Vm5stwXZ240h+hvqsXkd
+	 0a7aMUYhskZjh2Jc9UFOFbtnjZdt3c3Id8O87s/sxBGpM2WJA3b0WRvUmnh29Xt9N3
+	 PZUPfqyqORNzA==
+Date: Fri, 2 Feb 2024 15:06:59 -0600
+From: Rob Herring <robh@kernel.org>
+To: Brandon Brnich <b-brnich@ti.com>
+Cc: Nas Chung <nas.chung@chipsnmedia.com>,
+	Jackson Lee <jackson.lee@chipsnmedia.com>,
+	Mauro Carvalho Chehab <mchehab@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>, linux-media@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	Nishanth Menon <nm@ti.com>, Vignesh Raghavendra <vigneshr@ti.com>,
+	Darren Etheridge <detheridge@ti.com>
+Subject: Re: [PATCH v2] dt-bindings: media: Add sram-size Property for Wave5
+Message-ID: <20240202210659.GA1390727-robh@kernel.org>
+References: <20240201184238.2542695-1-b-brnich@ti.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -86,74 +63,17 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20240131141158.3350344-4-kamel.bouhara@bootlin.com>
+In-Reply-To: <20240201184238.2542695-1-b-brnich@ti.com>
 
-Hi Kamel,
+On Thu, Feb 01, 2024 at 12:42:38PM -0600, Brandon Brnich wrote:
+> Wave521c has capability to use SRAM carveout to store reference data with
+> purpose of reducing memory bandwidth. To properly use this pool, the driver
+> expects to have an sram and sram-size node. Without sram-size node, driver
+> will default value to zero, making sram node irrelevant.
 
-kernel test robot noticed the following build warnings:
+The mmio-sram binding already defines how to carve up shared SRAM.
 
-[auto build test WARNING on dtor-input/next]
-[also build test WARNING on dtor-input/for-linus robh/for-next krzk-dt/for-next linus/master v6.8-rc2 next-20240202]
-[If your patch is applied to the wrong git tree, kindly drop us a note.
-And when submitting patch, we suggest to use '--base' as documented in
-https://git-scm.com/docs/git-format-patch#_base_tree_information]
+Also, sram-size here is property, not a node.
 
-url:    https://github.com/intel-lab-lkp/linux/commits/Kamel-Bouhara/dt-bindings-vendor-prefixes-Add-TouchNetix-AS/20240131-221925
-base:   https://git.kernel.org/pub/scm/linux/kernel/git/dtor/input.git next
-patch link:    https://lore.kernel.org/r/20240131141158.3350344-4-kamel.bouhara%40bootlin.com
-patch subject: [PATCH v7 3/3] Input: Add TouchNetix axiom i2c touchscreen driver
-config: s390-randconfig-r131-20240201 (https://download.01.org/0day-ci/archive/20240203/202402030433.2vfAa4qt-lkp@intel.com/config)
-compiler: clang version 19.0.0git (https://github.com/llvm/llvm-project fdac7d0b6f74f919d319b31a0680c77f66732586)
-reproduce: (https://download.01.org/0day-ci/archive/20240203/202402030433.2vfAa4qt-lkp@intel.com/reproduce)
-
-If you fix the issue in a separate patch/commit (i.e. not just a new version of
-the same patch/commit), kindly add following tags
-| Reported-by: kernel test robot <lkp@intel.com>
-| Closes: https://lore.kernel.org/oe-kbuild-all/202402030433.2vfAa4qt-lkp@intel.com/
-
-sparse warnings: (new ones prefixed by >>)
->> drivers/input/touchscreen/touchnetix_axiom.c:181:18: sparse: sparse: incorrect type in assignment (different base types) @@     expected restricted __le32 [usertype] preamble @@     got unsigned int @@
-   drivers/input/touchscreen/touchnetix_axiom.c:181:18: sparse:     expected restricted __le32 [usertype] preamble
-   drivers/input/touchscreen/touchnetix_axiom.c:181:18: sparse:     got unsigned int
->> drivers/input/touchscreen/touchnetix_axiom.c:183:40: sparse: sparse: incorrect type in argument 2 (different base types) @@     expected unsigned int reg @@     got restricted __le32 [usertype] preamble @@
-   drivers/input/touchscreen/touchnetix_axiom.c:183:40: sparse:     expected unsigned int reg
-   drivers/input/touchscreen/touchnetix_axiom.c:183:40: sparse:     got restricted __le32 [usertype] preamble
-
-vim +181 drivers/input/touchscreen/touchnetix_axiom.c
-
-   171	
-   172	static int axiom_read(struct axiom_data *ts, u8 usage, u8 page, void *buf, u16 len)
-   173	{
-   174		struct axiom_cmd_header cmd_header;
-   175		__le32 preamble;
-   176		int ret;
-   177	
-   178		cmd_header.target_address = cpu_to_le16(axiom_usage_to_target_address(ts, usage, page, 0));
-   179		cmd_header.length = cpu_to_le16(len | AXIOM_CMD_HEADER_READ_MASK);
-   180	
- > 181		preamble = get_unaligned_le32((u8 *)&cmd_header);
-   182	
- > 183		ret = regmap_write(ts->regmap, preamble, 0);
-   184		if (ret) {
-   185			dev_err(ts->dev, "failed to write preamble, error %d\n", ret);
-   186			return ret;
-   187		}
-   188	
-   189		ret = regmap_raw_read(ts->regmap, 0, buf, len);
-   190		if (ret) {
-   191			dev_err(ts->dev, "failed to read target address %04x, error %d\n",
-   192				cmd_header.target_address, ret);
-   193			return ret;
-   194		}
-   195	
-   196		/* Wait device's DMA operations */
-   197		usleep_range(AXIOM_DMA_OPS_DELAY_USEC, AXIOM_DMA_OPS_DELAY_USEC + 50);
-   198	
-   199		return 0;
-   200	}
-   201	
-
--- 
-0-DAY CI Kernel Test Service
-https://github.com/intel/lkp-tests/wiki
+Rob
 
