@@ -1,74 +1,48 @@
-Return-Path: <devicetree+bounces-37972-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-37973-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2DD58847038
-	for <lists+devicetree@lfdr.de>; Fri,  2 Feb 2024 13:24:57 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 456FC847043
+	for <lists+devicetree@lfdr.de>; Fri,  2 Feb 2024 13:27:03 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id D8FDD287B78
-	for <lists+devicetree@lfdr.de>; Fri,  2 Feb 2024 12:24:55 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id EC3532874AB
+	for <lists+devicetree@lfdr.de>; Fri,  2 Feb 2024 12:27:01 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 51EF81420CB;
-	Fri,  2 Feb 2024 12:24:54 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 387E31420CB;
+	Fri,  2 Feb 2024 12:26:55 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="cPKHFn83"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="ssxs/DgC"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ed1-f44.google.com (mail-ed1-f44.google.com [209.85.208.44])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EF493144608
-	for <devicetree@vger.kernel.org>; Fri,  2 Feb 2024 12:24:35 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.44
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 101B71420B3;
+	Fri,  2 Feb 2024 12:26:54 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1706876691; cv=none; b=tu5saDcKWjlhUoOWZ0BUoeXpT2R7QZjtL0L6+n9hdvOqrQjYXFmFVLntktv70DtI9L1wAbBwuhfipkz0k01zYpz3W9Apasl5VAZIkADHYgBdHVuZS6dqyQ1IizwEnm2FBAfhzBNCdLy8W1bYPUEcvp36B4NoSWwTxZfTJPMOktk=
+	t=1706876815; cv=none; b=YcFL9iGo2+nlZpf8fXjdNV5s7QNq6SviYJDf5/YxHbCVyAT2xmTWGm4WxO6FeBaG3aR3mVbjp8hJe5NaJMIImYe1y4ICjq727JpHhk9PO6pN7yKuzFUFB99NN0xB1ymDrceYmQUs7qoJMHTSJ27G5PEFxGQW3wpYwqjvY5HRK/8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1706876691; c=relaxed/simple;
-	bh=rltGmC1GHB8pdd1yW+POUFfym+S/IIvIXoyJRo+7+sw=;
+	s=arc-20240116; t=1706876815; c=relaxed/simple;
+	bh=Yr91y1sl+AZxI4SuUVjCcbmkgsvJB+zoJDpg89Sajz8=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=nbeQLKLft1raFvS/nnwCtOR5qiq1MQOEUW926pp983KMIspELwDuAZYk+uMOxMajjZC1/zQNTqfN8uqJag5viuLE/he/kspvO5Qsz0WGw32Ahij0aw0snrz7sd6ttxGSf7KPx5buxzMsfKc9Jrm4CffV4PZTAN/jViMqeEaePXU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=cPKHFn83; arc=none smtp.client-ip=209.85.208.44
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-ed1-f44.google.com with SMTP id 4fb4d7f45d1cf-55ef0465507so2490783a12.3
-        for <devicetree@vger.kernel.org>; Fri, 02 Feb 2024 04:24:34 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1706876671; x=1707481471; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
-         :to:content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=ErGgrSjGcI1gfiIfMa2tifZML8/zJN+4ELwCxdeBffA=;
-        b=cPKHFn83x6JoLbdgILZ/b/1+Ge1gumiHtVdzIzdSgWcSTVHR+eR4SOELsH07FLAKrf
-         Q1EozdmQKun6Q5f18ja/rfws13f90otNgXHKfhZBAyB6kWxObr9p1QlI2QxCHmkSFvBx
-         z+IPeu5MyYcFaSNKDRJK6a7lw3o1GltxFPYrn6uilqtzkOdItNNEQWFrZEjo/goskupZ
-         aw53H0cnyDiHXsO3/njK2rhMkOqXSvB3535jUYR7SpuhENBctnH6iaJnTJPt5X1bXhnn
-         aUjtUHux6cA+u1tCTci7AYsv0HWCQkbqAdW5GescuQByLiHK7/jzsedNxxa362+F6qNE
-         sJ1w==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1706876671; x=1707481471;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
-         :to:content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=ErGgrSjGcI1gfiIfMa2tifZML8/zJN+4ELwCxdeBffA=;
-        b=TAqfn/K3URJn26en55gbwL2GOQGippgSXwAF1R5oEelXIK/H4yMeSrb+JGucZnHZsc
-         sL12az5hUPWU10leoexpQYgVdm3k0RWXM+HvfEoi2oH3vf/V77D13geXSJztWgO5+mvO
-         7A5hbK0PLQiVhnh8JkC9wharjlAfBn4AUBLasSKgPthAB2NEndgnKxCmYVPzQfKzTDLV
-         YrJD/iH9BbeVb+g53R0+Ct3S6Ub9jmvfqFn7P7kQpELi0chDzwgKeImnKpuhxo5/giAY
-         CcVSsLbQWWXa6+iHH5o3vtnpZiBpzmqzwaOPLfH2iDOx7Hk1sglBQ7EXEeibfEQqKcxM
-         Upmw==
-X-Gm-Message-State: AOJu0Yy6juibvnWv6/InTHfPx9Z2c1GhFm2FRoTvOf6H4nBTU1I76Jqu
-	Ecba55Y7Y7tIAtYTYoz65KJ1b9nBrrH3l9XcHf2XuSL60R1JPmqKCAvbHicT7ps=
-X-Google-Smtp-Source: AGHT+IGkUAivELBKUH7eZ/XPBhC8V0yYnbHnxA7mCyMe/gt8hkKH+p4N2XGi6/SzjrhLKvKC57Rd6Q==
-X-Received: by 2002:a05:6402:26d2:b0:55f:abe7:8f33 with SMTP id x18-20020a05640226d200b0055fabe78f33mr4543587edd.15.1706876671523;
-        Fri, 02 Feb 2024 04:24:31 -0800 (PST)
-X-Forwarded-Encrypted: i=0; AJvYcCWdx9assdmm8xe6VJIsT8YpCdl7tYAOCJB2bElJ6YSelvW8KflQI6WeEdM8GIIGXhgZ5cifxW42wdCItGSWQr4y/j0zBRw18GYWEM1lyZGvzUzBPCIKsL17QTECRXsTIMfRmT2mP5+6CHd1dUKuhF5tcrwi2l59C4MUcNAQhsQQowHGHAksweeR/ykaHJi3HBuUpgBQd5V5zt3MIPK+f9YPAqwm3lIgplv9+RN+eiFIfgr8+TemaqBhmXnHshlyoqfdT2h4TZJWFIRF
-Received: from [192.168.159.104] (037008245233.garwolin.vectranet.pl. [37.8.245.233])
-        by smtp.gmail.com with ESMTPSA id x24-20020aa7d398000000b0055fb4b16f29sm765018edq.21.2024.02.02.04.24.29
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 02 Feb 2024 04:24:31 -0800 (PST)
-Message-ID: <5713ba6c-9fbe-4b25-bdf9-e7a572baad6a@linaro.org>
-Date: Fri, 2 Feb 2024 13:24:28 +0100
+	 In-Reply-To:Content-Type; b=l9O1k9CggweEAO+Ef7XoLMWhLUN2UI/oqy5Vd1pyctEbCa3cVKTWneOktHrFYxxWertqXKzvTQ8d91/hxEj+TZkJ+jKduvKwe3s3cT8wvIh+n/y/TKAoDm8eKZQFgFT2L3jcUdPXVPtWGjI2/Zv5/wN3YLJ1JEkMHWePTKOSUgE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=ssxs/DgC; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 77C6EC433C7;
+	Fri,  2 Feb 2024 12:26:51 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1706876814;
+	bh=Yr91y1sl+AZxI4SuUVjCcbmkgsvJB+zoJDpg89Sajz8=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=ssxs/DgChuaHkVqAb2EoRhoZ0kX5GAoFEjTJibPTW6Q002ua79EcOAzF4UEn/gpOA
+	 NTfECGbxNOtBa2SzuAZ8jPq/0MXBv//i3Kz2MGx6/nEcDJwtiN/TUuFkliP3S1WYvR
+	 U2Cg0xCGxIV4VeIUg/kp+kgsrEWHZ0XwzBp5MeMkkzuQbPbmBbg82UwcYxj7/305N8
+	 DavGUm+kPiOTnsLt71U9ppwZlxLL0oClbHNYtXLPsprVk06ZTfsOQNzEroJo8Hjb50
+	 iJYvZjI3ME4SRCf3SIeJwdSbSxJvkVS5m2w74tlcSVYfmjv03sxIinni9EDRGt6OCn
+	 B5ppYl9lOFDpg==
+Message-ID: <33e62844-a148-4374-aba8-481dc7799e15@kernel.org>
+Date: Fri, 2 Feb 2024 14:26:48 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -76,88 +50,202 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH] arm64: dts: qcom: sm8650: Use GIC-ITS for PCIe0 and PCIe1
+Subject: Re: [PATCH v3 3/3] arm64: dts: ti: k3-am642-evm: add overlay for
+ icssg1 2nd port
 Content-Language: en-US
-To: neil.armstrong@linaro.org, Bjorn Andersson <andersson@kernel.org>,
- Rob Herring <robh+dt@kernel.org>,
+To: MD Danish Anwar <danishanwar@ti.com>,
+ Vignesh Raghavendra <vigneshr@ti.com>, Nishanth Menon <nm@ti.com>
+Cc: Andrew Lunn <andrew@lunn.ch>, Conor Dooley <conor+dt@kernel.org>,
  Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Conor Dooley <conor+dt@kernel.org>
-Cc: linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org
-References: <20240125-topic-sm8650-upstream-pcie-its-v1-1-cb506deeb43e@linaro.org>
- <0cf69024-a3e6-4be2-89ce-017ae521721d@linaro.org>
- <6f89dd4f-aae5-4221-9a0a-bebbef862229@linaro.org>
-From: Konrad Dybcio <konrad.dybcio@linaro.org>
-Autocrypt: addr=konrad.dybcio@linaro.org; keydata=
- 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
- izWDgYvmBE8=
-In-Reply-To: <6f89dd4f-aae5-4221-9a0a-bebbef862229@linaro.org>
+ Rob Herring <robh+dt@kernel.org>, linux-kernel@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ Tero Kristo <kristo@kernel.org>, srk@ti.com, r-gunasekaran@ti.com
+References: <20240122113045.1711818-1-danishanwar@ti.com>
+ <20240122113045.1711818-4-danishanwar@ti.com>
+From: Roger Quadros <rogerq@kernel.org>
+In-Reply-To: <20240122113045.1711818-4-danishanwar@ti.com>
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+Content-Transfer-Encoding: 7bit
 
-On 2.02.2024 09:03, Neil Armstrong wrote:
-> On 01/02/2024 20:59, Konrad Dybcio wrote:
->> On 25.01.2024 17:55, Neil Armstrong wrote:
->>> Both PCIe0 and PCIe1 controllers are capable of signalling the MSIs
->>> received from endpoint devices to the CPU using GIC-ITS MSI controller.
->>> Add support for it.
->>>
->>> The GIC-ITS MSI implementation provides an advantage over internal MSI
->>> implementation using Locality-specific Peripheral Interrupts (LPI) that
->>> would allow MSIs to be targeted for each CPU core.
->>>
->>> Like SM8450 & SM8550, the IDs are swapped, but works fine on PCIe0 and PCIe1.
->>>
->>> WiFi PCIe Device on SM8650-QRD using GIC-ITS:
->>> 159:          0          0          0          0          0          0          0          0   ITS-MSI   0 Edge      PCIe PME, aerdrv
->>> 167:          0          4          0          0          0          0          0          0   ITS-MSI 524288 Edge      bhi
->>> 168:          0          0          4          0          0          0          0          0   ITS-MSI 524289 Edge      mhi
->>> 169:          0          0          0         34          0          0          0          0   ITS-MSI 524290 Edge      mhi
->>> 170:          0          0          0          0          3          0          0          0   ITS-MSI 524291 Edge      ce0
->>> 171:          0          0          0          0          0          2          0          0   ITS-MSI 524292 Edge      ce1
->>> 172:          0          0          0          0          0          0        806          0   ITS-MSI 524293 Edge      ce2
->>> 173:          0          0          0          0          0          0          0         76   ITS-MSI 524294 Edge      ce3
->>> 174:          0          0          0          0          0          0          0          0   ITS-MSI 524295 Edge      ce5
->>> 175:          0         13          0          0          0          0          0          0   ITS-MSI 524296 Edge      DP_EXT_IRQ
->>> 176:          0          0          0          0          0          0          0          0   ITS-MSI 524297 Edge      DP_EXT_IRQ
->>
->> Is it by chance that this one never fired?
+
+
+On 22/01/2024 13:30, MD Danish Anwar wrote:
+> The am642-evm doesn't allow to enable 2 x CPSW3g ports and 2 x ICSSG1 ports
+> all together, so base k3-am642-evm.dts enables by default 2 x CPSW3g ports
+> and 1 x ICSSG1 ports, but it also possible to support 1 x CPSW3g ports and
+> 2 x ICSSG1 ports configuration.
+
+"it is also possible"
+
+OK so there can only be 3 ethernet ports on this board. There is no "ethernet3" alias.
+
 > 
-> Yeah I only associated to an SSID and did a simple iperf, not enough to trigger all MSIs
+> This patch adds overlay to support 1 x CPSW3g ports and 2 x ICSSG1 ports
+> configuration:
+> - Add label name 'mdio_mux_1' for 'mdio-mux-1' node so that the node
+>   'mdio-mux-1' can be disabled in the overlay using the label name.
+> - disable 2nd CPSW3g port
+> - update CPSW3g pinmuxes to not use RGMII2
+> - disable mdio-mux-1 and define mdio-mux-2 to route ICSSG1 MDIO to the
+>   shared DP83869 PHY
+> - add and enable ICSSG1 RGMII2 pinmuxes
+> - enable ICSSG1 MII1 port
+> 
+> Signed-off-by: MD Danish Anwar <danishanwar@ti.com>
+> ---
+>  arch/arm64/boot/dts/ti/Makefile               |  5 ++
+>  .../dts/ti/k3-am642-evm-icssg1-dualemac.dtso  | 75 +++++++++++++++++++
+>  arch/arm64/boot/dts/ti/k3-am642-evm.dts       |  2 +-
+>  3 files changed, 81 insertions(+), 1 deletion(-)
+>  create mode 100644 arch/arm64/boot/dts/ti/k3-am642-evm-icssg1-dualemac.dtso
+> 
+> diff --git a/arch/arm64/boot/dts/ti/Makefile b/arch/arm64/boot/dts/ti/Makefile
+> index 52c1dc910308..320b2fae5730 100644
+> --- a/arch/arm64/boot/dts/ti/Makefile
+> +++ b/arch/arm64/boot/dts/ti/Makefile
+> @@ -43,6 +43,7 @@ dtb-$(CONFIG_ARCH_K3) += k3-am642-sk.dtb
+>  dtb-$(CONFIG_ARCH_K3) += k3-am642-tqma64xxl-mbax4xxl.dtb
+>  dtb-$(CONFIG_ARCH_K3) += k3-am64-tqma64xxl-mbax4xxl-sdcard.dtbo
+>  dtb-$(CONFIG_ARCH_K3) += k3-am64-tqma64xxl-mbax4xxl-wlan.dtbo
+> +dtb-$(CONFIG_ARCH_K3) += k3-am642-evm-icssg1-dualemac.dtbo
+>  
+>  # Boards with AM65x SoC
+>  k3-am654-gp-evm-dtbs := k3-am654-base-board.dtb k3-am654-base-board-rocktech-rk101-panel.dtbo
+> @@ -105,6 +106,8 @@ k3-am642-tqma64xxl-mbax4xxl-sdcard-dtbs := \
+>  	k3-am642-tqma64xxl-mbax4xxl.dtb k3-am64-tqma64xxl-mbax4xxl-sdcard.dtbo
+>  k3-am642-tqma64xxl-mbax4xxl-wlan-dtbs := \
+>  	k3-am642-tqma64xxl-mbax4xxl.dtb k3-am64-tqma64xxl-mbax4xxl-wlan.dtbo
+> +k3-am642-evm-icssg1-dualemac-dtbs := \
+> +	k3-am642-evm.dtb k3-am642-evm-icssg1-dualemac.dtbo
+>  k3-j721e-evm-pcie0-ep-dtbs := k3-j721e-common-proc-board.dtb \
+>  	k3-j721e-evm-pcie0-ep.dtbo
+>  k3-j721s2-evm-pcie1-ep-dtbs := k3-j721s2-common-proc-board.dtb \
+> @@ -120,6 +123,7 @@ dtb- += k3-am625-beagleplay-csi2-ov5640.dtb \
+>  	k3-am62a7-sk-csi2-ov5640.dtb \
+>  	k3-am642-tqma64xxl-mbax4xxl-sdcard.dtb \
+>  	k3-am642-tqma64xxl-mbax4xxl-wlan.dtb \
+> +	k3-am642-evm-icssg1-dualemac.dtb \
+>  	k3-j721e-evm-pcie0-ep.dtb \
+>  	k3-j721s2-evm-pcie1-ep.dtb
+>  
+> @@ -129,6 +133,7 @@ DTC_FLAGS_k3-am625-sk += -@
+>  DTC_FLAGS_k3-am62-lp-sk += -@
+>  DTC_FLAGS_k3-am62a7-sk += -@
+>  DTC_FLAGS_k3-am642-tqma64xxl-mbax4xxl += -@
+> +DTC_FLAGS_k3-am642-evm += -@
+>  DTC_FLAGS_k3-am6548-iot2050-advanced-m2 += -@
+>  DTC_FLAGS_k3-j721e-common-proc-board += -@
+>  DTC_FLAGS_k3-j721s2-common-proc-board += -@
+> diff --git a/arch/arm64/boot/dts/ti/k3-am642-evm-icssg1-dualemac.dtso b/arch/arm64/boot/dts/ti/k3-am642-evm-icssg1-dualemac.dtso
+> new file mode 100644
+> index 000000000000..b2b1a6252e73
+> --- /dev/null
+> +++ b/arch/arm64/boot/dts/ti/k3-am642-evm-icssg1-dualemac.dtso
+> @@ -0,0 +1,75 @@
+> +// SPDX-License-Identifier: GPL-2.0
 
-Reviewed-by: Konrad Dybcio <konrad.dybcio@linaro.org>
+Don't you need to use updated licensing header like in the series [1]
 
-Konrad
+[1] https://lore.kernel.org/all/20240110140903.4090946-1-nm@ti.com/
+
+> +/**
+> + * DT overlay for enabling 2nd ICSSG1 port on AM642 EVM
+> + *
+> + * Copyright (C) 2023 Texas Instruments Incorporated - https://www.ti.com/
+> + */
+> +
+> +/dts-v1/;
+> +/plugin/;
+> +
+> +#include <dt-bindings/gpio/gpio.h>
+> +#include "k3-pinctrl.h"
+> +
+> +&{/} {
+
+You need to fixup alias for ethernet1 to icssg1_emac1?
+
+> +	mdio-mux-2 {
+
+this should be mdio-mux@0 ?
+
+> +		compatible = "mdio-mux-multiplexer";
+> +		mux-controls = <&mdio_mux>;
+> +		mdio-parent-bus = <&icssg1_mdio>;
+> +		#address-cells = <1>;
+> +		#size-cells = <0>;
+> +
+> +		mdio@0 {
+> +			reg = <0x0>;
+> +			#address-cells = <1>;
+> +			#size-cells = <0>;
+> +
+> +			icssg1_phy2: ethernet-phy@3 {
+> +				reg = <3>;
+> +				tx-internal-delay-ps = <250>;
+> +				rx-internal-delay-ps = <2000>;
+> +			};
+> +		};
+> +	};
+> +};
+> +
+> +&main_pmx0 {
+> +	icssg1_rgmii2_pins_default: icssg1-rgmii2-default-pins {
+> +		pinctrl-single,pins = <
+> +			AM64X_IOPAD(0x0108, PIN_INPUT, 2) /* (W11) PRG1_PRU1_GPO0.RGMII2_RD0 */
+> +			AM64X_IOPAD(0x010c, PIN_INPUT, 2) /* (V11) PRG1_PRU1_GPO1.RGMII2_RD1 */
+> +			AM64X_IOPAD(0x0110, PIN_INPUT, 2) /* (AA12) PRG1_PRU1_GPO2.RGMII2_RD2 */
+> +			AM64X_IOPAD(0x0114, PIN_INPUT, 2) /* (Y12) PRG1_PRU1_GPO3.RGMII2_RD3 */
+> +			AM64X_IOPAD(0x0120, PIN_INPUT, 2) /* (U11) PRG1_PRU1_GPO6.RGMII2_RXC */
+> +			AM64X_IOPAD(0x0118, PIN_INPUT, 2) /* (W12) PRG1_PRU1_GPO4.RGMII2_RX_CTL */
+> +			AM64X_IOPAD(0x0134, PIN_OUTPUT, 2) /* (AA10) PRG1_PRU1_GPO11.RGMII2_TD0 */
+> +			AM64X_IOPAD(0x0138, PIN_OUTPUT, 2) /* (V10) PRG1_PRU1_GPO12.RGMII2_TD1 */
+> +			AM64X_IOPAD(0x013c, PIN_OUTPUT, 2) /* (U10) PRG1_PRU1_GPO13.RGMII2_TD2 */
+> +			AM64X_IOPAD(0x0140, PIN_OUTPUT, 2) /* (AA11) PRG1_PRU1_GPO14.RGMII2_TD3 */
+> +			AM64X_IOPAD(0x0148, PIN_OUTPUT, 2) /* (Y10) PRG1_PRU1_GPO16.RGMII2_TXC */
+> +			AM64X_IOPAD(0x0144, PIN_OUTPUT, 2) /* (Y11) PRG1_PRU1_GPO15.RGMII2_TX_CTL */
+> +		>;
+> +	};
+> +};
+> +
+> +&cpsw3g {
+> +	pinctrl-0 = <&rgmii1_pins_default>;
+> +};
+> +
+> +&cpsw_port2 {
+> +	status = "disabled";
+> +};
+> +
+> +&mdio_mux_1 {
+> +	status = "disabled";
+> +};
+> +
+> +&icssg1_eth {
+> +	pinctrl-0 = <&icssg1_rgmii1_pins_default>, <&icssg1_rgmii2_pins_default>;
+> +};
+> +
+> +&icssg1_emac1 {
+> +	status = "okay";
+> +	phy-handle = <&icssg1_phy2>;
+> +	phy-mode = "rgmii-id";
+> +};
+> diff --git a/arch/arm64/boot/dts/ti/k3-am642-evm.dts b/arch/arm64/boot/dts/ti/k3-am642-evm.dts
+> index c08b0223be52..6ae43c12419f 100644
+> --- a/arch/arm64/boot/dts/ti/k3-am642-evm.dts
+> +++ b/arch/arm64/boot/dts/ti/k3-am642-evm.dts
+> @@ -200,7 +200,7 @@ mdio_mux: mux-controller {
+>  		mux-gpios = <&exp1 12 GPIO_ACTIVE_HIGH>;
+>  	};
+>  
+> -	mdio-mux-1 {
+> +	mdio_mux_1: mdio-mux-1 {
+
+mdio_mux_1: mdio-mux@1
+
+>  		compatible = "mdio-mux-multiplexer";
+>  		mux-controls = <&mdio_mux>;
+>  		mdio-parent-bus = <&cpsw3g_mdio>;
+
+-- 
+cheers,
+-roger
 
