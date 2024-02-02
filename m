@@ -1,74 +1,74 @@
-Return-Path: <devicetree+bounces-37971-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-37972-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2C56B847026
-	for <lists+devicetree@lfdr.de>; Fri,  2 Feb 2024 13:21:58 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2DD58847038
+	for <lists+devicetree@lfdr.de>; Fri,  2 Feb 2024 13:24:57 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 87A9DB26777
-	for <lists+devicetree@lfdr.de>; Fri,  2 Feb 2024 12:21:55 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id D8FDD287B78
+	for <lists+devicetree@lfdr.de>; Fri,  2 Feb 2024 12:24:55 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B0C6D141984;
-	Fri,  2 Feb 2024 12:20:42 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 51EF81420CB;
+	Fri,  2 Feb 2024 12:24:54 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="DXYOI+0D"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="cPKHFn83"
 X-Original-To: devicetree@vger.kernel.org
 Received: from mail-ed1-f44.google.com (mail-ed1-f44.google.com [209.85.208.44])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 39B4B140787
-	for <devicetree@vger.kernel.org>; Fri,  2 Feb 2024 12:20:40 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EF493144608
+	for <devicetree@vger.kernel.org>; Fri,  2 Feb 2024 12:24:35 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.44
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1706876442; cv=none; b=FpME9vWQCeuMZFgAABLA1x178D2cZmC6+evJRZCA3vS65EHilPQCCx4uYLGjYvyL2B5l/bb6gyVUiZS+fb9Ctn8GEu4/ZXZ4GK8JUGo8yXczJVOiPCGzTD5sdVq/nznTk8+o4J/R4Vjf14UfbvYk20jxlfyoYXBKAJZvgDlEtSQ=
+	t=1706876691; cv=none; b=tu5saDcKWjlhUoOWZ0BUoeXpT2R7QZjtL0L6+n9hdvOqrQjYXFmFVLntktv70DtI9L1wAbBwuhfipkz0k01zYpz3W9Apasl5VAZIkADHYgBdHVuZS6dqyQ1IizwEnm2FBAfhzBNCdLy8W1bYPUEcvp36B4NoSWwTxZfTJPMOktk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1706876442; c=relaxed/simple;
-	bh=9YZopy2TeHxgP0yzQOepMLgIqTR9PKUUU3JWfTdcnPQ=;
+	s=arc-20240116; t=1706876691; c=relaxed/simple;
+	bh=rltGmC1GHB8pdd1yW+POUFfym+S/IIvIXoyJRo+7+sw=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=VeRMAfe7UbqKY1j/gyaVZFjTsUSR1J16fyWfrD3M1PGbEKI/s1b+tlKFf4q0+rPeqwmD/RkFTh2fxW1axVeFNM3RnyxJr2evO3DV+V+e4Jq63KCtBdmFCJGaDACicUK0G4RlteiHDkwX8Ud9FhQOyboAaDQFYah9Gq4Ex79fgnI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=DXYOI+0D; arc=none smtp.client-ip=209.85.208.44
+	 In-Reply-To:Content-Type; b=nbeQLKLft1raFvS/nnwCtOR5qiq1MQOEUW926pp983KMIspELwDuAZYk+uMOxMajjZC1/zQNTqfN8uqJag5viuLE/he/kspvO5Qsz0WGw32Ahij0aw0snrz7sd6ttxGSf7KPx5buxzMsfKc9Jrm4CffV4PZTAN/jViMqeEaePXU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=cPKHFn83; arc=none smtp.client-ip=209.85.208.44
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-ed1-f44.google.com with SMTP id 4fb4d7f45d1cf-55ad2a47b7aso2787101a12.3
-        for <devicetree@vger.kernel.org>; Fri, 02 Feb 2024 04:20:39 -0800 (PST)
+Received: by mail-ed1-f44.google.com with SMTP id 4fb4d7f45d1cf-55ef0465507so2490783a12.3
+        for <devicetree@vger.kernel.org>; Fri, 02 Feb 2024 04:24:34 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1706876438; x=1707481238; darn=vger.kernel.org;
+        d=linaro.org; s=google; t=1706876671; x=1707481471; darn=vger.kernel.org;
         h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
          :to:content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=JEhP/kvo7+H18lNfoFAvBKQU0xRqI+1E+89VLjha/LM=;
-        b=DXYOI+0DtyivwCwv748yuNyE6v5ouygyQUVod8y4XFjv3wHF40AStY6xY2axOY8FdA
-         u4KqjfDxJYodVieQDXmBTWA+KZw/2HKg3uDN9XLRP9HRXwCk7OeboksbsyOKp9yQYahg
-         rc+cUQO6Vls0Vke1tf0sVCqwanYOxSaQSfPGIymPPparts2bBAan4E1MFzFfgRYu+TIw
-         6fttIMZG6c7ZJOLQWRatOHE4921tYv6iVE6svSa/RHmbXp4VckT6oqF1Y2zV/6sFWgR9
-         yEwZqew4k8V3oPDNys8SjG87pMhjpiZeNui5eZ+bWJHr3+WhKMbQMZIaesLUB6AKHFbr
-         CqGQ==
+        bh=ErGgrSjGcI1gfiIfMa2tifZML8/zJN+4ELwCxdeBffA=;
+        b=cPKHFn83x6JoLbdgILZ/b/1+Ge1gumiHtVdzIzdSgWcSTVHR+eR4SOELsH07FLAKrf
+         Q1EozdmQKun6Q5f18ja/rfws13f90otNgXHKfhZBAyB6kWxObr9p1QlI2QxCHmkSFvBx
+         z+IPeu5MyYcFaSNKDRJK6a7lw3o1GltxFPYrn6uilqtzkOdItNNEQWFrZEjo/goskupZ
+         aw53H0cnyDiHXsO3/njK2rhMkOqXSvB3535jUYR7SpuhENBctnH6iaJnTJPt5X1bXhnn
+         aUjtUHux6cA+u1tCTci7AYsv0HWCQkbqAdW5GescuQByLiHK7/jzsedNxxa362+F6qNE
+         sJ1w==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1706876438; x=1707481238;
+        d=1e100.net; s=20230601; t=1706876671; x=1707481471;
         h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
          :to:content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=JEhP/kvo7+H18lNfoFAvBKQU0xRqI+1E+89VLjha/LM=;
-        b=QNlyESUc+5p5GdWlrlXj1D06+xIYbGQYunjS5TLnDeNt2naWAVbv9+a0J487irQQo6
-         5BejYLn+5RElz2l4E2WaD75Ofm7uvO6NQwFUAj6vnaZ8kwmr3f0PBikGRMsf1Ixj8rwJ
-         Rh9H4SfKr6DPPG/c9qZwvL9JwDPnYRkwRZ5Hg1Yqpjb32v5pPPtyELiP4L4IrzHKVvTW
-         Xp2ViTiKdDO31QbFsPN480JLqKLT3T3mBfjxYzc8R55jz3ygR3+XuZFfPMB0wd+3IFxs
-         lOhN17wIgsmZzyemPKe8wjs9J79HWqLRjxZLD7TuWh99+GetZj9oiewnfc5NemHg1zP/
-         WScA==
-X-Gm-Message-State: AOJu0YzhhJylNvkJWyiBeFih13L4BaNKxfNQsdkKQ0eVXCJuNvYogpNX
-	9f2J7uxp3yzVD6n+tL9dE5hqzD4IxP1DrgPFYxLOASE3PT3TMqhTOzfZDqscamE=
-X-Google-Smtp-Source: AGHT+IHEwghXMkMYvzhrYxzhjMV5XxasDfqebbFISQpYq3RlsI6QkgJUrVfM3rugUa15VEj18xzWqA==
-X-Received: by 2002:a05:6402:33d6:b0:55f:eb11:8937 with SMTP id a22-20020a05640233d600b0055feb118937mr1116681edc.33.1706876438268;
-        Fri, 02 Feb 2024 04:20:38 -0800 (PST)
-X-Forwarded-Encrypted: i=0; AJvYcCUJ6CB6Kd/kBE2Og35lVxEEr7zhoybwpRuUZxuZrNZb6PCSVMO9J6jrihRsKrEf+yTKDKKIKv8jHcNnEfRZxsw+oQfXamBlKp4bJjgEOoRvdWcsSx0mStzcmemh0cLGQC2sBeHAeUnP9a+V0QkUQUhIXmq6OAAgQT7kZaZZDvgPQIGpBtjc77ZKZlLoEPaGY4SYoQJj9kcy0Z74BN1yDaAOVqx2VTno4UdFz2sMDJAs8j6BvabP6inxjXYhqgO4BvT3sn8TO6SLAD0nRcIuEacV+SUO9qu4uYwIpTuXNJKL7PDoYD45CKXDkFGmSWAYBe0riRz5W1XdzaXOpfDw13RzFP+A3FfNwJt0FA5j/24e8BPpNZuZFbu3T35yvOtRSkwb0vaxMeZtpg==
+        bh=ErGgrSjGcI1gfiIfMa2tifZML8/zJN+4ELwCxdeBffA=;
+        b=TAqfn/K3URJn26en55gbwL2GOQGippgSXwAF1R5oEelXIK/H4yMeSrb+JGucZnHZsc
+         sL12az5hUPWU10leoexpQYgVdm3k0RWXM+HvfEoi2oH3vf/V77D13geXSJztWgO5+mvO
+         7A5hbK0PLQiVhnh8JkC9wharjlAfBn4AUBLasSKgPthAB2NEndgnKxCmYVPzQfKzTDLV
+         YrJD/iH9BbeVb+g53R0+Ct3S6Ub9jmvfqFn7P7kQpELi0chDzwgKeImnKpuhxo5/giAY
+         CcVSsLbQWWXa6+iHH5o3vtnpZiBpzmqzwaOPLfH2iDOx7Hk1sglBQ7EXEeibfEQqKcxM
+         Upmw==
+X-Gm-Message-State: AOJu0Yy6juibvnWv6/InTHfPx9Z2c1GhFm2FRoTvOf6H4nBTU1I76Jqu
+	Ecba55Y7Y7tIAtYTYoz65KJ1b9nBrrH3l9XcHf2XuSL60R1JPmqKCAvbHicT7ps=
+X-Google-Smtp-Source: AGHT+IGkUAivELBKUH7eZ/XPBhC8V0yYnbHnxA7mCyMe/gt8hkKH+p4N2XGi6/SzjrhLKvKC57Rd6Q==
+X-Received: by 2002:a05:6402:26d2:b0:55f:abe7:8f33 with SMTP id x18-20020a05640226d200b0055fabe78f33mr4543587edd.15.1706876671523;
+        Fri, 02 Feb 2024 04:24:31 -0800 (PST)
+X-Forwarded-Encrypted: i=0; AJvYcCWdx9assdmm8xe6VJIsT8YpCdl7tYAOCJB2bElJ6YSelvW8KflQI6WeEdM8GIIGXhgZ5cifxW42wdCItGSWQr4y/j0zBRw18GYWEM1lyZGvzUzBPCIKsL17QTECRXsTIMfRmT2mP5+6CHd1dUKuhF5tcrwi2l59C4MUcNAQhsQQowHGHAksweeR/ykaHJi3HBuUpgBQd5V5zt3MIPK+f9YPAqwm3lIgplv9+RN+eiFIfgr8+TemaqBhmXnHshlyoqfdT2h4TZJWFIRF
 Received: from [192.168.159.104] (037008245233.garwolin.vectranet.pl. [37.8.245.233])
-        by smtp.gmail.com with ESMTPSA id c16-20020aa7c990000000b0055ef1d4fcb5sm751602edt.9.2024.02.02.04.20.36
+        by smtp.gmail.com with ESMTPSA id x24-20020aa7d398000000b0055fb4b16f29sm765018edq.21.2024.02.02.04.24.29
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 02 Feb 2024 04:20:37 -0800 (PST)
-Message-ID: <7527574c-8faa-4ccb-9387-8563f75be3ab@linaro.org>
-Date: Fri, 2 Feb 2024 13:20:36 +0100
+        Fri, 02 Feb 2024 04:24:31 -0800 (PST)
+Message-ID: <5713ba6c-9fbe-4b25-bdf9-e7a572baad6a@linaro.org>
+Date: Fri, 2 Feb 2024 13:24:28 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -76,19 +76,17 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH RFC 2/2] arm64: dts: qcom: msm8953: Add GPU
+Subject: Re: [PATCH] arm64: dts: qcom: sm8650: Use GIC-ITS for PCIe0 and PCIe1
 Content-Language: en-US
-To: Luca Weiss <luca@z3ntu.xyz>, ~postmarketos/upstreaming@lists.sr.ht,
- phone-devel@vger.kernel.org, Bjorn Andersson <andersson@kernel.org>,
+To: neil.armstrong@linaro.org, Bjorn Andersson <andersson@kernel.org>,
  Rob Herring <robh+dt@kernel.org>,
  Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Conor Dooley <conor+dt@kernel.org>, Vladimir Lypak <vladimir.lypak@gmail.com>
+ Conor Dooley <conor+dt@kernel.org>
 Cc: linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
  linux-kernel@vger.kernel.org
-References: <20240125-msm8953-gpu-v1-0-f6493a5951f3@z3ntu.xyz>
- <20240125-msm8953-gpu-v1-2-f6493a5951f3@z3ntu.xyz>
- <c58c5897-b3f0-4449-a5b1-df10b117733c@linaro.org>
- <4539846.LvFx2qVVIh@z3ntu.xyz>
+References: <20240125-topic-sm8650-upstream-pcie-its-v1-1-cb506deeb43e@linaro.org>
+ <0cf69024-a3e6-4be2-89ce-017ae521721d@linaro.org>
+ <6f89dd4f-aae5-4221-9a0a-bebbef862229@linaro.org>
 From: Konrad Dybcio <konrad.dybcio@linaro.org>
 Autocrypt: addr=konrad.dybcio@linaro.org; keydata=
  xsFNBF9ALYUBEADWAhxdTBWrwAgDQQzc1O/bJ5O7b6cXYxwbBd9xKP7MICh5YA0DcCjJSOum
@@ -125,98 +123,39 @@ Autocrypt: addr=konrad.dybcio@linaro.org; keydata=
  bGqMHex48FVZhexNPYOd58EY9/7mL5u0sJmo+jTeb4JBgIbFPJCFyng4HwbniWgQJZ1WqaUC
  nas9J77uICis2WH7N8Bs9jy0wQYezNzqS+FxoNXmDQg2jetX8en4bO2Di7Pmx0jXA4TOb9TM
  izWDgYvmBE8=
-In-Reply-To: <4539846.LvFx2qVVIh@z3ntu.xyz>
+In-Reply-To: <6f89dd4f-aae5-4221-9a0a-bebbef862229@linaro.org>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
 
-On 27.01.2024 18:32, Luca Weiss wrote:
-> On Freitag, 26. Jänner 2024 00:50:43 CET Konrad Dybcio wrote:
->> On 1/25/24 22:56, Luca Weiss wrote:
->>> From: Vladimir Lypak <vladimir.lypak@gmail.com>
+On 2.02.2024 09:03, Neil Armstrong wrote:
+> On 01/02/2024 20:59, Konrad Dybcio wrote:
+>> On 25.01.2024 17:55, Neil Armstrong wrote:
+>>> Both PCIe0 and PCIe1 controllers are capable of signalling the MSIs
+>>> received from endpoint devices to the CPU using GIC-ITS MSI controller.
+>>> Add support for it.
 >>>
->>> Add the GPU node for the Adreno 506 found on this family of SoCs. The
->>> clock speeds are a bit different per SoC variant, SDM450 maxes out at
->>> 600MHz while MSM8953 (= SDM625) goes up to 650MHz and SDM632 goes up to
->>> 725MHz.
+>>> The GIC-ITS MSI implementation provides an advantage over internal MSI
+>>> implementation using Locality-specific Peripheral Interrupts (LPI) that
+>>> would allow MSIs to be targeted for each CPU core.
 >>>
->>> To achieve this, create a new sdm450.dtsi to hold the 600MHz OPP and
->>> use the new dtsi for sdm450-motorola-ali.
+>>> Like SM8450 & SM8550, the IDs are swapped, but works fine on PCIe0 and PCIe1.
 >>>
->>> Signed-off-by: Vladimir Lypak <vladimir.lypak@gmail.com>
->>> Co-developed-by: Luca Weiss <luca@z3ntu.xyz>
->>> Signed-off-by: Luca Weiss <luca@z3ntu.xyz>
->>> ---
->>>
->>>   arch/arm64/boot/dts/qcom/msm8953.dtsi            | 115
->>>   +++++++++++++++++++++++
->>>   arch/arm64/boot/dts/qcom/sdm450-motorola-ali.dts |   2 +-
->>>   arch/arm64/boot/dts/qcom/sdm450.dtsi             |  14 +++
->>>   arch/arm64/boot/dts/qcom/sdm632.dtsi             |   8 ++
->>>   4 files changed, 138 insertions(+), 1 deletion(-)
->>>
->>> diff --git a/arch/arm64/boot/dts/qcom/msm8953.dtsi
->>> b/arch/arm64/boot/dts/qcom/msm8953.dtsi index 91d083871ab0..1fe0c0c4fd15
->>> 100644
->>> --- a/arch/arm64/boot/dts/qcom/msm8953.dtsi
->>> +++ b/arch/arm64/boot/dts/qcom/msm8953.dtsi
->>> @@ -1046,6 +1046,94 @@ mdss_dsi1_phy: phy@1a96400 {
->>>
->>>   			};
->>>   		
->>>   		};
->>>
->>> +		gpu: gpu@1c00000 {
->>> +			compatible = "qcom,adreno-506.0", "qcom,adreno";
->>> +			reg = <0x01c00000 0x40000>;
->>> +			reg-names = "kgsl_3d0_reg_memory";
->>> +			interrupts = <GIC_SPI 33 IRQ_TYPE_LEVEL_HIGH>;
->>> +
->>> +			clocks = <&gcc GCC_OXILI_GFX3D_CLK>,
->>> +				 <&gcc GCC_OXILI_AHB_CLK>,
->>> +				 <&gcc GCC_BIMC_GFX_CLK>,
->>> +				 <&gcc GCC_BIMC_GPU_CLK>,
->>> +				 <&gcc GCC_OXILI_TIMER_CLK>,
->>> +				 <&gcc GCC_OXILI_AON_CLK>;
->>> +			clock-names = "core",
->>> +				      "iface",
->>> +				      "mem_iface",
->>> +				      "alt_mem_iface",
->>> +				      "rbbmtimer",
->>> +				      "alwayson";
->>> +			power-domains = <&gcc OXILI_GX_GDSC>;
->>> +
->>> +			iommus = <&gpu_iommu 0>;
->>> +			operating-points-v2 = <&gpu_opp_table>;
->>> +
->>> +			#cooling-cells = <2>;
->>> +
->>> +			status = "disabled";
->>> +
->>> +			zap-shader {
->>> +				memory-region = <&zap_shader_region>;
->>> +			};
->>> +
->>> +			gpu_opp_table: opp-table {
->>> +				compatible = "operating-points-v2";
->>> +
->>> +				opp-19200000 {
->>> +					opp-hz = /bits/ 64 <19200000>;
->>> +					opp-supported-hw = <0xff>;
->>> +					required-opps = <&rpmpd_opp_min_svs>;
->>> +				};
+>>> WiFi PCIe Device on SM8650-QRD using GIC-ITS:
+>>> 159:          0          0          0          0          0          0          0          0   ITS-MSI   0 Edge      PCIe PME, aerdrv
+>>> 167:          0          4          0          0          0          0          0          0   ITS-MSI 524288 Edge      bhi
+>>> 168:          0          0          4          0          0          0          0          0   ITS-MSI 524289 Edge      mhi
+>>> 169:          0          0          0         34          0          0          0          0   ITS-MSI 524290 Edge      mhi
+>>> 170:          0          0          0          0          3          0          0          0   ITS-MSI 524291 Edge      ce0
+>>> 171:          0          0          0          0          0          2          0          0   ITS-MSI 524292 Edge      ce1
+>>> 172:          0          0          0          0          0          0        806          0   ITS-MSI 524293 Edge      ce2
+>>> 173:          0          0          0          0          0          0          0         76   ITS-MSI 524294 Edge      ce3
+>>> 174:          0          0          0          0          0          0          0          0   ITS-MSI 524295 Edge      ce5
+>>> 175:          0         13          0          0          0          0          0          0   ITS-MSI 524296 Edge      DP_EXT_IRQ
+>>> 176:          0          0          0          0          0          0          0          0   ITS-MSI 524297 Edge      DP_EXT_IRQ
 >>
->> If you remove all OPPs but this one, can the GPU still spit out pixels?
+>> Is it by chance that this one never fired?
 > 
-> Yep, phosh is starting and is rendering at a few fps.
-> 
-> fairphone-fp3:~$ cat /sys/devices/platform/soc@0/1c00000.gpu/devfreq/1c00000.gpu/min_freq
-> 19200000
-> fairphone-fp3:~$ cat /sys/devices/platform/soc@0/1c00000.gpu/devfreq/1c00000.gpu/max_freq 
-> 19200000
-> fairphone-fp3:~$ cat /sys/devices/platform/soc@0/1c00000.gpu/devfreq/1c00000.gpu/cur_freq 
-> 19200000
-
-Interesting..
+> Yeah I only associated to an SSID and did a simple iperf, not enough to trigger all MSIs
 
 Reviewed-by: Konrad Dybcio <konrad.dybcio@linaro.org>
 
