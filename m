@@ -1,685 +1,223 @@
-Return-Path: <devicetree+bounces-38018-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-38020-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id D01B08472B2
-	for <lists+devicetree@lfdr.de>; Fri,  2 Feb 2024 16:10:10 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 20A168472B9
+	for <lists+devicetree@lfdr.de>; Fri,  2 Feb 2024 16:11:55 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 44F171F22657
-	for <lists+devicetree@lfdr.de>; Fri,  2 Feb 2024 15:10:10 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 6E1661F24B17
+	for <lists+devicetree@lfdr.de>; Fri,  2 Feb 2024 15:11:54 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0B20614533E;
-	Fri,  2 Feb 2024 15:09:55 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id EE813145B2D;
+	Fri,  2 Feb 2024 15:11:47 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="pXZq6Upu"
+	dkim=pass (1024-bit key) header.d=nxp.com header.i=@nxp.com header.b="oWwXrMMj"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from EUR04-VI1-obe.outbound.protection.outlook.com (mail-vi1eur04on2078.outbound.protection.outlook.com [40.107.8.78])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B1A69145B21;
-	Fri,  2 Feb 2024 15:09:54 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1706886594; cv=none; b=Vtr1dc5GIEpiEGmYdHEqO7AzHfT3KvIWUq8dmqOjG+tJnKITkEaXESwhovHZ8feC9c7XDhQLBLCzeonKAEt7F0YtX6kHA5o3rKWYcH6PuynD0UeduGc75LOH07apUOOmQT2pLqM2DnU54obeMb3b43e/DxMlU6Z6hXcldxx/YvM=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1706886594; c=relaxed/simple;
-	bh=t+RoCWyH+DEKoXGWlPs+tiD18h1voxVW9B8YQgKQHWU=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=Xbug6SS6epzp2tjdoYDtR3vr9kk+uGros93BzA5MeP5C4gE/HPw8wczVPihhcyBumgF69wFmYj2lrJJbfNXSvgCpLM0DS9os7Xu3qqkltuyWlrAwKqjz1pwY7PQ0iJzk0B3l6GmwasqtBANUhV1W1hwnfXTtfcNsdNwWCb14Uts=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=pXZq6Upu; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPS id 47F2DC4166C;
-	Fri,  2 Feb 2024 15:09:54 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1706886594;
-	bh=t+RoCWyH+DEKoXGWlPs+tiD18h1voxVW9B8YQgKQHWU=;
-	h=From:Date:Subject:References:In-Reply-To:To:Cc:Reply-To:From;
-	b=pXZq6Upu5wOfJSQ8ZyJeY+xsGReN6YyDjT+XFeiWMvJEqRwYDZFjUZKFU9V8bq5Ix
-	 1ysQs0rXP1GQ0/NcQ/EUeXlWLzlUlq0rrhw1fEaNjUGUh+QE5ClOtakNR0bT0mBRTN
-	 /spMMWFUBsYpfq0vh68hYnEd7Nq28Jz2SeVb3Gm5NP/fejzhx5LqzO375UNrmeli2q
-	 ME3RF0suRwUYhYm/BtJq8POmGis3xOmhxcLf/QjCP4HzGw3EJ6uKaAOtcMeFLe1czk
-	 YpPpdSxSXK9mC/cDMTuQ96jjmO2iDAGJKU+M1ZhR5um3polxCqBPUU6o9oKeJRMOKh
-	 948XSTXy/q6Ew==
-Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 33CCDC48298;
-	Fri,  2 Feb 2024 15:09:54 +0000 (UTC)
-From: Nuno Sa via B4 Relay <devnull+nuno.sa.analog.com@kernel.org>
-Date: Fri, 02 Feb 2024 16:08:38 +0100
-Subject: [PATCH v8 7/7] iio: adc: adi-axi-adc: move to backend framework
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 01B0A145B05;
+	Fri,  2 Feb 2024 15:11:44 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.107.8.78
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1706886707; cv=fail; b=uP3JUU6IaPLxAghXuxUVPG49yoNYrVb5iKDVjVqfECvW+AJYICuwYd1AAI5Ye0JOIA90qbuyvwyS63LTsUqlRDP/o1nfMpoSY/Icz1jUnUpSS/zTIf05vpWaT0pCpz1imyx52mwx5TDN7RXkWLUSyYlU0my5amm4yYN9wS6a7xQ=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1706886707; c=relaxed/simple;
+	bh=PhkaShGQv0tjX1Hrp4irVjeSaK7DIs/gW/2xe61cDNg=;
+	h=From:Subject:Date:Message-Id:Content-Type:To:Cc:MIME-Version; b=M4/EhdIGyOMYLVJRqcBwj5GYUq5vEdETEyU+PJLMzkMPtEdqG+dp3TuqLCAgyNSuumb1bYgbq+SJVRhdvwgQgOPjrrLQFfTq3CLzVBpyq0ryxGB0oHFHkoOhv7oAGlknBlTikXOZpU79UeS6BNYVZsll3eN7lMHFoaSi23+7FSI=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com; spf=pass smtp.mailfrom=nxp.com; dkim=pass (1024-bit key) header.d=nxp.com header.i=@nxp.com header.b=oWwXrMMj; arc=fail smtp.client-ip=40.107.8.78
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=nxp.com
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=Db1uDqnPAx0MphV30rLS/g/FPHj/sP53zQ2ECQrtjD/OV4Xmx54D7Ve6c1iB2fzlBm+BbRgolyGcNYmsRs5MiTgdJSCTYHF1lwTcnoz6IGwiyUk5PvEwAtLvos2bljcU2Lbspp5Y6o89CvXp+x5OApc+wvjWtvA+UJ+3Pfg3Al7lzod/qHgqaIythlonbVTFf34ASsmdxodVoMgVb6Q+TnyK/IJHYQw3VPE2uDj2+xXN2xe6Tpsx7LvU53CdGpI5SvtV9CtKxLbpd2NcDtuDL6Ku2VMomRCZr4I/aSHYs3uVOxpZsqRmmzEkQkBo7zoarofXKHEfiR+wtk7ysHVVZA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=hcMJqhqrvgs/or1vlLoiBdD1wpfiify/EKnhvVMAQyk=;
+ b=RuQyobkT1dRqTR/MUifanhdNVcTK9dA1eD4svDaBlIAcPPhHe6YXcPNXPnulxeN9NvNGA2MYvqoiqSsYFLBX70KZE8XWP78hEDT0wzasw85/c6WpUKYOHF7xrlosWrkuyJz/XApA9pGKTYerF00QctiDTEExRUiHiS7Sg8RzCew/+AWPKOUSGE6JK5bN8KeTCnr1USN2isdYYDRubFoEa1TOvQxAY2yzRfaGth6oZvGxJ4CbFcDuQDWJE987BNnKJknSDgIV2VlxpGFzU+4Qm8lp9jH9jjUc63fE07fmFQ2FLEGofaDEFRSqditcxHkxG9oFVxwoMMCMWWV7P9zSYA==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
+ header.d=nxp.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector2;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=hcMJqhqrvgs/or1vlLoiBdD1wpfiify/EKnhvVMAQyk=;
+ b=oWwXrMMjoPB0lRBGtsAutqyLWoDrJ/GJT9JQ3QD3mrIu60ifhxmOzX/OZGP5KaUFZW/M9DMYl/NofWw7JB0pPt1D6d6gWgkAT5+0pBX+7WSfUNoqZ2420LKmSW3DTP8oUKD51uzpaJXj7dvWA+xJzASWHHQG95oL2p6lE/+8FNE=
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=nxp.com;
+Received: from PAXPR04MB9642.eurprd04.prod.outlook.com (2603:10a6:102:240::14)
+ by PAXPR04MB8425.eurprd04.prod.outlook.com (2603:10a6:102:1c7::16) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7249.30; Fri, 2 Feb
+ 2024 15:11:40 +0000
+Received: from PAXPR04MB9642.eurprd04.prod.outlook.com
+ ([fe80::c8b4:5648:8948:e85c]) by PAXPR04MB9642.eurprd04.prod.outlook.com
+ ([fe80::c8b4:5648:8948:e85c%3]) with mapi id 15.20.7249.027; Fri, 2 Feb 2024
+ 15:11:40 +0000
+From: Frank Li <Frank.Li@nxp.com>
+Subject: [PATCH v3 0/6] PCI: dwc: Add common pme_turn_off message by using
+ outbound iATU
+Date: Fri, 02 Feb 2024 10:11:22 -0500
+Message-Id: <20240202-pme_msg-v3-0-ff2af57a02ad@nxp.com>
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIABoGvWUC/2WMyw6CMBBFf8XM2prpAAVd+R/GGOwM0AWPtKbBE
+ P7dwoaFy3Nzz1kgiHcS4HZawEt0wY1Dgux8AtvVQyvKcWIgpBx1hmrq5dWHVjETV1rkWlUG0nv
+ y0rh5Lz2eiTsXPqP/7uGot/W/EbVCxQW9sWYubGnvwzxd7NjDVoh0WIT6sChZpjQlFtSIqfPDW
+ tf1B4sSiOTSAAAA
+To: Bjorn Helgaas <bhelgaas@google.com>, Jingoo Han <jingoohan1@gmail.com>, 
+ Gustavo Pimentel <gustavo.pimentel@synopsys.com>, 
+ Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>, 
+ Lorenzo Pieralisi <lpieralisi@kernel.org>, 
+ =?utf-8?q?Krzysztof_Wilczy=C5=84ski?= <kw@linux.com>, 
+ Rob Herring <robh@kernel.org>, 
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, 
+ Conor Dooley <conor+dt@kernel.org>, imx@lists.linux.dev
+Cc: linux-pci@vger.kernel.org, linux-kernel@vger.kernel.org, 
+ devicetree@vger.kernel.org, Frank Li <Frank.Li@nxp.com>, 
+ Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>, 
+ Serge Semin <fancer.lancer@gmail.com>
+X-Mailer: b4 0.13-dev-c87ef
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1706886696; l=3148;
+ i=Frank.Li@nxp.com; s=20240130; h=from:subject:message-id;
+ bh=PhkaShGQv0tjX1Hrp4irVjeSaK7DIs/gW/2xe61cDNg=;
+ b=jvA30hK/8MizNuX5NMoRbQKMpts80gbE5t/LrXKIN+TwsTcykxXgGTc7xEXr0h3EFJrnpumky
+ VNZ1HsvBd2RC7gtT10+LrrYkGASNfWPPWcsHDnE2zthEeoUrZsK0kzu
+X-Developer-Key: i=Frank.Li@nxp.com; a=ed25519;
+ pk=I0L1sDUfPxpAkRvPKy7MdauTuSENRq+DnA+G4qcS94Q=
+X-ClientProxiedBy: SJ0PR03CA0138.namprd03.prod.outlook.com
+ (2603:10b6:a03:33c::23) To PAXPR04MB9642.eurprd04.prod.outlook.com
+ (2603:10a6:102:240::14)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20240202-iio-backend-v8-7-f65ee8c8203d@analog.com>
-References: <20240202-iio-backend-v8-0-f65ee8c8203d@analog.com>
-In-Reply-To: <20240202-iio-backend-v8-0-f65ee8c8203d@analog.com>
-To: linux-iio@vger.kernel.org, devicetree@vger.kernel.org
-Cc: Lars-Peter Clausen <lars@metafoo.de>, 
- Michael Hennerich <Michael.Hennerich@analog.com>, 
- Jonathan Cameron <jic23@kernel.org>, Rob Herring <robh+dt@kernel.org>, 
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, 
- Conor Dooley <conor+dt@kernel.org>, Frank Rowand <frowand.list@gmail.com>, 
- Olivier Moysan <olivier.moysan@foss.st.com>
-X-Mailer: b4 0.12.3
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1706886592; l=18276;
- i=nuno.sa@analog.com; s=20231116; h=from:subject:message-id;
- bh=OvKdLLLzDXWq+/HNJ7245d/OCAJgTz1rtCazHK231jw=;
- b=rgWYbw/i1Rgbp/Mjg3Xy0DiVd1SuZ0ZD8IQyFDBV87mm8jEo7G6OKtpw64et9jAklXCSbcQGK
- MI3L00Ry7pACwgKIbvrGmURWHhgkjqQQwHk7oKrY7PZcSQGcwAa9GfO
-X-Developer-Key: i=nuno.sa@analog.com; a=ed25519;
- pk=3NQwYA013OUYZsmDFBf8rmyyr5iQlxV/9H4/Df83o1E=
-X-Endpoint-Received:
- by B4 Relay for nuno.sa@analog.com/20231116 with auth_id=100
-X-Original-From: Nuno Sa <nuno.sa@analog.com>
-Reply-To: <nuno.sa@analog.com>
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: PAXPR04MB9642:EE_|PAXPR04MB8425:EE_
+X-MS-Office365-Filtering-Correlation-Id: b551f54e-bc9c-4bb4-db65-08dc24014239
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info:
+	FWO2cCnEa79hQG3/F0CC9a93TmRPt2bDoqHx5+fAVW14jmMIbt9fwBYNc4m0Djzx6mLFAoGhUI9bIMPhStw47pEibzouBE/sp86fJo960j0stw9f098i1Ad9xpnTpS0nbKOvimqUrW3/upfVU9yiqdmRMR5IKoKndYh5iODCy1gjt2a6EhOTexLivlOU+HxKqpSObMQuNUx/DJ5W2Fq7xvDk9Lo7U+Zz4/iAsFH0jU1urL9Xpc42Q9URkX/zWlb1/kcn+Ze7yXYW+Ktwo2qojbdf9c5hPe4XphBh/bDw+WEm9Y5iehbg5M3hEOyCLa9vXosQbBPMzJtA6G3UO34OS+Ua6reLueWFBs5QYHuxF4PgRdawrZnZGxS9IxLxhJsFPc4u9Ues1Ur2oJNjec0ZUtIyzD45KvPbXQb6cvPsiVVGJRmKahWlb3VuiQ3liYVj+u2+Z1flYbyUkanFKR7FTY03Nv5rXVrxqjcppfcrps6C0kdLskm2QkGUEVyEN8BPBglYcGHE7Zjwi3qLuCDCCGoC9Zmih8/CNS9+NYVrhkNjQ0Hh5gwMOzx/+va/OBz41qCV4yzLAbK17CL6fgejLv1k4wlIKhF1fdPY6zV/ckWj7N6UoKLg0ihfo3KABY/X
+X-Forefront-Antispam-Report:
+	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:PAXPR04MB9642.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230031)(39860400002)(376002)(136003)(346002)(366004)(396003)(230922051799003)(1800799012)(451199024)(64100799003)(186009)(2906002)(478600001)(7416002)(5660300002)(15650500001)(83380400001)(921011)(38350700005)(4326008)(36756003)(66946007)(8936002)(8676002)(54906003)(316002)(66476007)(966005)(86362001)(6506007)(6486002)(52116002)(6512007)(6666004)(41300700001)(26005)(2616005)(66556008)(38100700002)(110136005);DIR:OUT;SFP:1101;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0:
+	=?utf-8?B?bG81U2Naa2F6UC9Xd1hvZ01GMHpWUDEvcG5SZnl0MDlDVG85Tld1OTNUUHBx?=
+ =?utf-8?B?WFpHVjMrYkdqRlhGb3pQRzUzTzcvRjFhbzhKZVZ5dy9NaDVkaE0xbkFaN3lR?=
+ =?utf-8?B?TlVNNzdQRkRNWCtqaGZHaXlhNXVTcGU2dXAyS2tacWtWRTRDcHBJY3Q3Z0sw?=
+ =?utf-8?B?Rk9JaGtTdUtXd1dtL0IwR1FPYTVyanNCQm5YNkZVbGlWOTNUWU1NV3VmcmF2?=
+ =?utf-8?B?cndOUmx6MGZUMjZOR1c1RWx3aFA2SnVnOE1kZ0hHN2xBeVplclcyelNEakNG?=
+ =?utf-8?B?TXFLYVhFNFpSZmNyRTM4MisxRm5tblZpbkF2MmI1MzF6cys0UDlMOWNtN1NF?=
+ =?utf-8?B?c24ydDBBV25WR3dmdlE5ZHpvdWRCT1dqZXlKM0V6ZFNwRHVDMWxnT1ZtVTNZ?=
+ =?utf-8?B?ZkJWRy9pb0loNDY0cnh4b0hqaWVNOWhiSmwwWC9lZ3JPTC8wOWdBajRMNEVs?=
+ =?utf-8?B?VHYvMFFnL0lCUzZpUGgrQkM1QlJQRmZKaEhYWUVBYW1vZnNZNjJhbFhybDJk?=
+ =?utf-8?B?bzk5cFVpRVdFYTc5UHNrZHRNaWtJMjlQUmY0Rkt4UHRKV1IyQXRmUmZ0RlNM?=
+ =?utf-8?B?bnVSZDhFalNkZmFkcldwYTZpR3IxRmFoYmptNUI3Skd6cHA2NjVmZFFHWmZF?=
+ =?utf-8?B?WnEzUUVEYUpCcWxRZ1d5NXVjcWsrTXo5eFR5dUdlOFVvNG9kMUpuYzJTdDlx?=
+ =?utf-8?B?S085VVFjT0lZVVdtSjVXcFNnWFRKRlpwZDdqSGFJdDkrWCtvYnl2TUpmVUI0?=
+ =?utf-8?B?djlab2YxU2ZlWTh6MkkrL2dkZ3paSnIybmN2UXVVZXgxemw2Z1FMRjFnNVRo?=
+ =?utf-8?B?U2tENmxsNGIrK000bWd0b21mSzdPNDlXa3Vha0JxSDhEbDYxNldBeWtsSGRD?=
+ =?utf-8?B?ajBnZDNyMEZDenRCZ3drb0R6WlU2SEd0L3NaWU9GVU9mWmgvb2xpK1dyYWha?=
+ =?utf-8?B?Z3Y3SDRGaU5UN3BwVXZmbUVkTGdNeDU4NkVZbmhIWk5vVjRkb2JuNFY1TUdM?=
+ =?utf-8?B?S2lKUnFKUG4yRnY3R3pZNHkvZUJPd1h2aG04Wjc3aitOM0VjUXhUWGJOZ2RS?=
+ =?utf-8?B?UVZlQ0lDUU5NSCthSEE2MU90aU01MkUzYWsvUnVhY2ROcHJRVlVqZ3NuRW15?=
+ =?utf-8?B?Yis2c25BVm5zTUZpYjZQMDFWZlkvN0RxUTh3cHFpR3ArSzF3cTM1dTNLUlRP?=
+ =?utf-8?B?TG9UdHEwVWN5ZWdsblRVTUpZWWhJWXFmT2lMWnk5a0VwT0VQeGt2K2tvNk1l?=
+ =?utf-8?B?bmZ1a2YyOWJpTzF6TVhYN29ESHorYVRhd0Z6NHpDNmNRYXNvVG0ycHdqL2Jw?=
+ =?utf-8?B?aENyOTFmSzNaTHJ1Q01seldaL3JsTlZFNXU0SGhQdnJHQ2ZML2hNdXFXVUJ0?=
+ =?utf-8?B?WmJVZitrMVMzN3I0MTQ1cGQwbFVDYUFQbnpGL0VpcjdCYkZPZ3d3MnI1OHRn?=
+ =?utf-8?B?RjBxWXdmU1pmWW9wTDA1RHV5OG5uaUVVaFJ0ZG9sZTZwM2RYTEZ6K0dCSUY2?=
+ =?utf-8?B?T1U1UHJuOWFhUW02WmZHcmdjaitrT1pUaEJLbUtZSHBHNjdhNHo3aHpOYXVT?=
+ =?utf-8?B?cGxkVWEvZmVVQ0FaKzJTb2pnbzhSMFZyTXFKR0JUbDZQQzA0MWF1SFJPVFNy?=
+ =?utf-8?B?MG1zeTQyWWNQYVVldWp6WjQ1Um9HOGNmS1I0c3FqQ2dtUENDelBRbzBER0lC?=
+ =?utf-8?B?bUVwYTZSVmpSczVETmNhQkprNTc2d3Z6Z25JLzBPMjg4U05uK2dVcWRLSWI4?=
+ =?utf-8?B?bEJiQjJybEY2dzJldEJkckFJR0l6YjgxdGZYL3A0MUlrMjB0cHRVZ1piSGpn?=
+ =?utf-8?B?RkYwbmF0cFZkTGJoT3RsMGZKcm9acWRneTg2S1NQZk1BVlluSzF3M01ZRUlx?=
+ =?utf-8?B?UVBaSHJqMERkNUQ3MFRFaDdTUjRwUGdXZXU2ZFc1N0pPVWRiMWY1VDhNYVgz?=
+ =?utf-8?B?QVFqSFN6aHNaclFsdlVkYWZRSDdKWUtZMXZXUEVOcFU2L3lOSkhwS0ZYUU5X?=
+ =?utf-8?B?Snd2Wi9OK2IzRGJuQWsrY1BIbmpHVS9DMEN3NFJRZktwQWJhd1lsNldiTnh0?=
+ =?utf-8?B?MWI0Y3hCbFVjRzdLSGFEdU9VL0N3Q1dscU0yU290ckw4N2dPNWlWaGlqNXZG?=
+ =?utf-8?Q?5PkDgEg4IZPvCxkmVIohO+gn2?=
+X-OriginatorOrg: nxp.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: b551f54e-bc9c-4bb4-db65-08dc24014239
+X-MS-Exchange-CrossTenant-AuthSource: PAXPR04MB9642.eurprd04.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 02 Feb 2024 15:11:40.5722
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: HC8SPo/bFlUFui73CpGFiqkpVBYdB5HCge/ONf2/f3S6KEWgRCDtMbiM0kTVIomNlYWHYkRzd1ImSZ0n8UYREQ==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: PAXPR04MB8425
 
-From: Nuno Sa <nuno.sa@analog.com>
+Involve an new and common mathod to send pme_turn_off() message. Previously
+pme_turn_off() implement by platform related special register to trigge    
+it.                                                                        
+                                                                           
+But Yoshihiro give good idea by using iATU to send out message. Previously 
+Yoshihiro provide patches to raise INTx message by dummy write to outbound 
+iATU.                                                                      
+                                                                           
+Use similar mathod to send out pme_turn_off message.                       
+                                                                           
+Previous two patches is picked from Yoshihiro' big patch serialise.        
+ PCI: dwc: Change arguments of dw_pcie_prog_outbound_atu()                 
+ PCI: Add INTx Mechanism Messages macros                                   
+                                                                           
+PCI: Add PME_TURN_OFF message macro                                        
+dt-bindings: PCI: dwc: Add 'msg" register region, Add "msg" region to use  
+to map PCI msg.                                                            
+                                                                           
+PCI: dwc: Add common pme_turn_off message method                           
+Using common pme_turn_off() message if platform have not define their.
 
-Move to the IIO backend framework. Devices supported by adi-axi-adc now
-register themselves as backend devices.
-
-Signed-off-by: Nuno Sa <nuno.sa@analog.com>
+Signed-off-by: Frank Li <Frank.Li@nxp.com>
 ---
- drivers/iio/adc/Kconfig             |   2 +-
- drivers/iio/adc/adi-axi-adc.c       | 378 +++++++++---------------------------
- include/linux/iio/adc/adi-axi-adc.h |  68 -------
- 3 files changed, 92 insertions(+), 356 deletions(-)
+Changes in v3:
+- fix 'MSG"
+- Add pcie spec ref in head file
+- using function name dw_pci_pme_turn_off()
+- Using PCIE_ prefix macro
+- Link to v2: https://lore.kernel.org/r/20240201-pme_msg-v2-0-6767052fe6a4@nxp.com
 
-diff --git a/drivers/iio/adc/Kconfig b/drivers/iio/adc/Kconfig
-index 61736dc21d2a..977832d797e1 100644
---- a/drivers/iio/adc/Kconfig
-+++ b/drivers/iio/adc/Kconfig
-@@ -325,7 +325,7 @@ config ADI_AXI_ADC
- 	select IIO_BUFFER_HW_CONSUMER
- 	select IIO_BUFFER_DMAENGINE
- 	select REGMAP_MMIO
--	depends on OF
-+	select IIO_BACKEND
- 	help
- 	  Say yes here to build support for Analog Devices Generic
- 	  AXI ADC IP core. The IP core is used for interfacing with
-diff --git a/drivers/iio/adc/adi-axi-adc.c b/drivers/iio/adc/adi-axi-adc.c
-index 0f21d1d98b9f..cb28b25e97a4 100644
---- a/drivers/iio/adc/adi-axi-adc.c
-+++ b/drivers/iio/adc/adi-axi-adc.c
-@@ -8,6 +8,7 @@
- 
- #include <linux/bitfield.h>
- #include <linux/clk.h>
-+#include <linux/err.h>
- #include <linux/io.h>
- #include <linux/delay.h>
- #include <linux/module.h>
-@@ -17,13 +18,11 @@
- #include <linux/regmap.h>
- #include <linux/slab.h>
- 
--#include <linux/iio/iio.h>
--#include <linux/iio/sysfs.h>
--#include <linux/iio/buffer.h>
--#include <linux/iio/buffer-dmaengine.h>
--
- #include <linux/fpga/adi-axi-common.h>
--#include <linux/iio/adc/adi-axi-adc.h>
-+#include <linux/iio/backend.h>
-+#include <linux/iio/buffer-dmaengine.h>
-+#include <linux/iio/buffer.h>
-+#include <linux/iio/iio.h>
- 
- /*
-  * Register definitions:
-@@ -44,6 +43,7 @@
- #define   ADI_AXI_REG_CHAN_CTRL_PN_SEL_OWR	BIT(10)
- #define   ADI_AXI_REG_CHAN_CTRL_IQCOR_EN	BIT(9)
- #define   ADI_AXI_REG_CHAN_CTRL_DCFILT_EN	BIT(8)
-+#define   ADI_AXI_REG_CHAN_CTRL_FMT_MASK	GENMASK(6, 4)
- #define   ADI_AXI_REG_CHAN_CTRL_FMT_SIGNEXT	BIT(6)
- #define   ADI_AXI_REG_CHAN_CTRL_FMT_TYPE	BIT(5)
- #define   ADI_AXI_REG_CHAN_CTRL_FMT_EN		BIT(4)
-@@ -55,286 +55,100 @@
- 	 ADI_AXI_REG_CHAN_CTRL_FMT_EN |		\
- 	 ADI_AXI_REG_CHAN_CTRL_ENABLE)
- 
--struct adi_axi_adc_core_info {
--	unsigned int				version;
--};
--
- struct adi_axi_adc_state {
--	struct mutex				lock;
--
--	struct adi_axi_adc_client		*client;
- 	struct regmap				*regmap;
--};
--
--struct adi_axi_adc_client {
--	struct list_head			entry;
--	struct adi_axi_adc_conv			conv;
--	struct adi_axi_adc_state		*state;
- 	struct device				*dev;
--	const struct adi_axi_adc_core_info	*info;
- };
- 
--static LIST_HEAD(registered_clients);
--static DEFINE_MUTEX(registered_clients_lock);
--
--static struct adi_axi_adc_client *conv_to_client(struct adi_axi_adc_conv *conv)
--{
--	return container_of(conv, struct adi_axi_adc_client, conv);
--}
--
--void *adi_axi_adc_conv_priv(struct adi_axi_adc_conv *conv)
--{
--	struct adi_axi_adc_client *cl = conv_to_client(conv);
--
--	return (char *)cl + ALIGN(sizeof(struct adi_axi_adc_client),
--				  IIO_DMA_MINALIGN);
--}
--EXPORT_SYMBOL_NS_GPL(adi_axi_adc_conv_priv, IIO_ADI_AXI);
--
--static int adi_axi_adc_config_dma_buffer(struct device *dev,
--					 struct iio_dev *indio_dev)
--{
--	const char *dma_name;
--
--	if (!device_property_present(dev, "dmas"))
--		return 0;
--
--	if (device_property_read_string(dev, "dma-names", &dma_name))
--		dma_name = "rx";
--
--	return devm_iio_dmaengine_buffer_setup(indio_dev->dev.parent,
--					       indio_dev, dma_name);
--}
--
--static int adi_axi_adc_read_raw(struct iio_dev *indio_dev,
--				struct iio_chan_spec const *chan,
--				int *val, int *val2, long mask)
--{
--	struct adi_axi_adc_state *st = iio_priv(indio_dev);
--	struct adi_axi_adc_conv *conv = &st->client->conv;
--
--	if (!conv->read_raw)
--		return -EOPNOTSUPP;
--
--	return conv->read_raw(conv, chan, val, val2, mask);
--}
--
--static int adi_axi_adc_write_raw(struct iio_dev *indio_dev,
--				 struct iio_chan_spec const *chan,
--				 int val, int val2, long mask)
--{
--	struct adi_axi_adc_state *st = iio_priv(indio_dev);
--	struct adi_axi_adc_conv *conv = &st->client->conv;
--
--	if (!conv->write_raw)
--		return -EOPNOTSUPP;
--
--	return conv->write_raw(conv, chan, val, val2, mask);
--}
--
--static int adi_axi_adc_read_avail(struct iio_dev *indio_dev,
--				  struct iio_chan_spec const *chan,
--				  const int **vals, int *type, int *length,
--				  long mask)
-+static int axi_adc_enable(struct iio_backend *back)
- {
--	struct adi_axi_adc_state *st = iio_priv(indio_dev);
--	struct adi_axi_adc_conv *conv = &st->client->conv;
--
--	if (!conv->read_avail)
--		return -EOPNOTSUPP;
--
--	return conv->read_avail(conv, chan, vals, type, length, mask);
--}
--
--static int adi_axi_adc_update_scan_mode(struct iio_dev *indio_dev,
--					const unsigned long *scan_mask)
--{
--	struct adi_axi_adc_state *st = iio_priv(indio_dev);
--	struct adi_axi_adc_conv *conv = &st->client->conv;
--	unsigned int i;
-+	struct adi_axi_adc_state *st = iio_backend_get_priv(back);
- 	int ret;
- 
--	for (i = 0; i < conv->chip_info->num_channels; i++) {
--		if (test_bit(i, scan_mask))
--			ret = regmap_set_bits(st->regmap,
--					      ADI_AXI_REG_CHAN_CTRL(i),
--					      ADI_AXI_REG_CHAN_CTRL_ENABLE);
--		else
--			ret = regmap_clear_bits(st->regmap,
--						ADI_AXI_REG_CHAN_CTRL(i),
--						ADI_AXI_REG_CHAN_CTRL_ENABLE);
--		if (ret)
--			return ret;
--	}
-+	ret = regmap_set_bits(st->regmap, ADI_AXI_REG_RSTN,
-+			      ADI_AXI_REG_RSTN_MMCM_RSTN);
-+	if (ret)
-+		return ret;
- 
--	return 0;
-+	fsleep(10);
-+	return regmap_set_bits(st->regmap, ADI_AXI_REG_RSTN,
-+			       ADI_AXI_REG_RSTN_RSTN | ADI_AXI_REG_RSTN_MMCM_RSTN);
- }
- 
--static struct adi_axi_adc_conv *adi_axi_adc_conv_register(struct device *dev,
--							  size_t sizeof_priv)
-+static void axi_adc_disable(struct iio_backend *back)
- {
--	struct adi_axi_adc_client *cl;
--	size_t alloc_size;
--
--	alloc_size = ALIGN(sizeof(struct adi_axi_adc_client), IIO_DMA_MINALIGN);
--	if (sizeof_priv)
--		alloc_size += ALIGN(sizeof_priv, IIO_DMA_MINALIGN);
-+	struct adi_axi_adc_state *st = iio_backend_get_priv(back);
- 
--	cl = kzalloc(alloc_size, GFP_KERNEL);
--	if (!cl)
--		return ERR_PTR(-ENOMEM);
--
--	mutex_lock(&registered_clients_lock);
--
--	cl->dev = get_device(dev);
--
--	list_add_tail(&cl->entry, &registered_clients);
--
--	mutex_unlock(&registered_clients_lock);
--
--	return &cl->conv;
-+	regmap_write(st->regmap, ADI_AXI_REG_RSTN, 0);
- }
- 
--static void adi_axi_adc_conv_unregister(struct adi_axi_adc_conv *conv)
-+static int axi_adc_data_format_set(struct iio_backend *back, unsigned int chan,
-+				   const struct iio_backend_data_fmt *data)
- {
--	struct adi_axi_adc_client *cl = conv_to_client(conv);
--
--	mutex_lock(&registered_clients_lock);
-+	struct adi_axi_adc_state *st = iio_backend_get_priv(back);
-+	u32 val;
- 
--	list_del(&cl->entry);
--	put_device(cl->dev);
-+	if (!data->enable)
-+		return regmap_clear_bits(st->regmap,
-+					 ADI_AXI_REG_CHAN_CTRL(chan),
-+					 ADI_AXI_REG_CHAN_CTRL_FMT_EN);
- 
--	mutex_unlock(&registered_clients_lock);
-+	val = FIELD_PREP(ADI_AXI_REG_CHAN_CTRL_FMT_EN, true);
-+	if (data->sign_extend)
-+		val |= FIELD_PREP(ADI_AXI_REG_CHAN_CTRL_FMT_SIGNEXT, true);
-+	if (data->type == IIO_BACKEND_OFFSET_BINARY)
-+		val |= FIELD_PREP(ADI_AXI_REG_CHAN_CTRL_FMT_TYPE, true);
- 
--	kfree(cl);
-+	return regmap_update_bits(st->regmap, ADI_AXI_REG_CHAN_CTRL(chan),
-+				  ADI_AXI_REG_CHAN_CTRL_FMT_MASK, val);
- }
- 
--static void devm_adi_axi_adc_conv_release(void *conv)
-+static int axi_adc_chan_enable(struct iio_backend *back, unsigned int chan)
- {
--	adi_axi_adc_conv_unregister(conv);
--}
--
--struct adi_axi_adc_conv *devm_adi_axi_adc_conv_register(struct device *dev,
--							size_t sizeof_priv)
--{
--	struct adi_axi_adc_conv *conv;
--	int ret;
--
--	conv = adi_axi_adc_conv_register(dev, sizeof_priv);
--	if (IS_ERR(conv))
--		return conv;
--
--	ret = devm_add_action_or_reset(dev, devm_adi_axi_adc_conv_release,
--				       conv);
--	if (ret)
--		return ERR_PTR(ret);
-+	struct adi_axi_adc_state *st = iio_backend_get_priv(back);
- 
--	return conv;
-+	return regmap_set_bits(st->regmap, ADI_AXI_REG_CHAN_CTRL(chan),
-+			       ADI_AXI_REG_CHAN_CTRL_ENABLE);
- }
--EXPORT_SYMBOL_NS_GPL(devm_adi_axi_adc_conv_register, IIO_ADI_AXI);
--
--static const struct iio_info adi_axi_adc_info = {
--	.read_raw = &adi_axi_adc_read_raw,
--	.write_raw = &adi_axi_adc_write_raw,
--	.update_scan_mode = &adi_axi_adc_update_scan_mode,
--	.read_avail = &adi_axi_adc_read_avail,
--};
- 
--static const struct adi_axi_adc_core_info adi_axi_adc_10_0_a_info = {
--	.version = ADI_AXI_PCORE_VER(10, 0, 'a'),
--};
--
--static struct adi_axi_adc_client *adi_axi_adc_attach_client(struct device *dev)
-+static int axi_adc_chan_disable(struct iio_backend *back, unsigned int chan)
- {
--	const struct adi_axi_adc_core_info *info;
--	struct adi_axi_adc_client *cl;
--	struct device_node *cln;
--
--	info = of_device_get_match_data(dev);
--	if (!info)
--		return ERR_PTR(-ENODEV);
--
--	cln = of_parse_phandle(dev->of_node, "adi,adc-dev", 0);
--	if (!cln) {
--		dev_err(dev, "No 'adi,adc-dev' node defined\n");
--		return ERR_PTR(-ENODEV);
--	}
--
--	mutex_lock(&registered_clients_lock);
-+	struct adi_axi_adc_state *st = iio_backend_get_priv(back);
- 
--	list_for_each_entry(cl, &registered_clients, entry) {
--		if (!cl->dev)
--			continue;
--
--		if (cl->dev->of_node != cln)
--			continue;
--
--		if (!try_module_get(cl->dev->driver->owner)) {
--			mutex_unlock(&registered_clients_lock);
--			of_node_put(cln);
--			return ERR_PTR(-ENODEV);
--		}
--
--		get_device(cl->dev);
--		cl->info = info;
--		mutex_unlock(&registered_clients_lock);
--		of_node_put(cln);
--		return cl;
--	}
--
--	mutex_unlock(&registered_clients_lock);
--	of_node_put(cln);
--
--	return ERR_PTR(-EPROBE_DEFER);
-+	return regmap_clear_bits(st->regmap, ADI_AXI_REG_CHAN_CTRL(chan),
-+				 ADI_AXI_REG_CHAN_CTRL_ENABLE);
- }
- 
--static int adi_axi_adc_setup_channels(struct device *dev,
--				      struct adi_axi_adc_state *st)
-+static struct iio_buffer *axi_adc_request_buffer(struct iio_backend *back,
-+						 struct iio_dev *indio_dev)
- {
--	struct adi_axi_adc_conv *conv = &st->client->conv;
--	int i, ret;
-+	struct adi_axi_adc_state *st = iio_backend_get_priv(back);
-+	struct iio_buffer *buffer;
-+	const char *dma_name;
-+	int ret;
- 
--	if (conv->preenable_setup) {
--		ret = conv->preenable_setup(conv);
--		if (ret)
--			return ret;
--	}
-+	if (device_property_read_string(st->dev, "dma-names", &dma_name))
-+		dma_name = "rx";
- 
--	for (i = 0; i < conv->chip_info->num_channels; i++) {
--		ret = regmap_write(st->regmap, ADI_AXI_REG_CHAN_CTRL(i),
--				   ADI_AXI_REG_CHAN_CTRL_DEFAULTS);
--		if (ret)
--			return ret;
-+	buffer = iio_dmaengine_buffer_alloc(st->dev, dma_name);
-+	if (IS_ERR(buffer)) {
-+		dev_err(st->dev, "Could not get DMA buffer, %ld\n",
-+			PTR_ERR(buffer));
-+		return ERR_CAST(buffer);
- 	}
- 
--	return 0;
--}
--
--static int axi_adc_reset(struct adi_axi_adc_state *st)
--{
--	int ret;
--
--	ret = regmap_write(st->regmap, ADI_AXI_REG_RSTN, 0);
--	if (ret)
--		return ret;
--
--	mdelay(10);
--	ret = regmap_write(st->regmap, ADI_AXI_REG_RSTN,
--			   ADI_AXI_REG_RSTN_MMCM_RSTN);
-+	indio_dev->modes |= INDIO_BUFFER_HARDWARE;
-+	ret = iio_device_attach_buffer(indio_dev, buffer);
- 	if (ret)
--		return ret;
-+		return ERR_PTR(ret);
- 
--	mdelay(10);
--	return regmap_write(st->regmap, ADI_AXI_REG_RSTN,
--			    ADI_AXI_REG_RSTN_RSTN | ADI_AXI_REG_RSTN_MMCM_RSTN);
-+	return buffer;
- }
- 
--static void adi_axi_adc_cleanup(void *data)
-+static void axi_adc_free_buffer(struct iio_backend *back,
-+				struct iio_buffer *buffer)
- {
--	struct adi_axi_adc_client *cl = data;
--
--	put_device(cl->dev);
--	module_put(cl->dev->driver->owner);
-+	iio_dmaengine_buffer_free(buffer);
- }
- 
- static const struct regmap_config axi_adc_regmap_config = {
-@@ -344,45 +158,46 @@ static const struct regmap_config axi_adc_regmap_config = {
- 	.max_register = 0x0800,
- };
- 
-+static const struct iio_backend_ops adi_axi_adc_generic = {
-+	.enable = axi_adc_enable,
-+	.disable = axi_adc_disable,
-+	.data_format_set = axi_adc_data_format_set,
-+	.chan_enable = axi_adc_chan_enable,
-+	.chan_disable = axi_adc_chan_disable,
-+	.request_buffer = axi_adc_request_buffer,
-+	.free_buffer = axi_adc_free_buffer,
-+};
-+
- static int adi_axi_adc_probe(struct platform_device *pdev)
- {
--	struct adi_axi_adc_conv *conv;
--	struct iio_dev *indio_dev;
--	struct adi_axi_adc_client *cl;
- 	struct adi_axi_adc_state *st;
- 	void __iomem *base;
--	unsigned int ver;
-+	unsigned int ver, *expected_ver;
- 	int ret;
- 
--	cl = adi_axi_adc_attach_client(&pdev->dev);
--	if (IS_ERR(cl))
--		return PTR_ERR(cl);
--
--	ret = devm_add_action_or_reset(&pdev->dev, adi_axi_adc_cleanup, cl);
--	if (ret)
--		return ret;
--
--	indio_dev = devm_iio_device_alloc(&pdev->dev, sizeof(*st));
--	if (indio_dev == NULL)
-+	st = devm_kzalloc(&pdev->dev, sizeof(*st), GFP_KERNEL);
-+	if (!st)
- 		return -ENOMEM;
- 
--	st = iio_priv(indio_dev);
--	st->client = cl;
--	cl->state = st;
--	mutex_init(&st->lock);
--
- 	base = devm_platform_ioremap_resource(pdev, 0);
- 	if (IS_ERR(base))
- 		return PTR_ERR(base);
- 
-+	st->dev = &pdev->dev;
- 	st->regmap = devm_regmap_init_mmio(&pdev->dev, base,
- 					   &axi_adc_regmap_config);
- 	if (IS_ERR(st->regmap))
- 		return PTR_ERR(st->regmap);
- 
--	conv = &st->client->conv;
-+	expected_ver = (unsigned int *)device_get_match_data(&pdev->dev);
-+	if (!expected_ver)
-+		return -ENODEV;
- 
--	ret = axi_adc_reset(st);
-+	/*
-+	 * Force disable the core. Up to the frontend to enable us. And we can
-+	 * still read/write registers...
-+	 */
-+	ret = regmap_write(st->regmap, ADI_AXI_REG_RSTN, 0);
- 	if (ret)
- 		return ret;
- 
-@@ -390,33 +205,19 @@ static int adi_axi_adc_probe(struct platform_device *pdev)
- 	if (ret)
- 		return ret;
- 
--	if (cl->info->version > ver) {
-+	if (*expected_ver > ver) {
- 		dev_err(&pdev->dev,
- 			"IP core version is too old. Expected %d.%.2d.%c, Reported %d.%.2d.%c\n",
--			ADI_AXI_PCORE_VER_MAJOR(cl->info->version),
--			ADI_AXI_PCORE_VER_MINOR(cl->info->version),
--			ADI_AXI_PCORE_VER_PATCH(cl->info->version),
-+			ADI_AXI_PCORE_VER_MAJOR(*expected_ver),
-+			ADI_AXI_PCORE_VER_MINOR(*expected_ver),
-+			ADI_AXI_PCORE_VER_PATCH(*expected_ver),
- 			ADI_AXI_PCORE_VER_MAJOR(ver),
- 			ADI_AXI_PCORE_VER_MINOR(ver),
- 			ADI_AXI_PCORE_VER_PATCH(ver));
- 		return -ENODEV;
- 	}
- 
--	indio_dev->info = &adi_axi_adc_info;
--	indio_dev->name = "adi-axi-adc";
--	indio_dev->modes = INDIO_DIRECT_MODE;
--	indio_dev->num_channels = conv->chip_info->num_channels;
--	indio_dev->channels = conv->chip_info->channels;
--
--	ret = adi_axi_adc_config_dma_buffer(&pdev->dev, indio_dev);
--	if (ret)
--		return ret;
--
--	ret = adi_axi_adc_setup_channels(&pdev->dev, st);
--	if (ret)
--		return ret;
--
--	ret = devm_iio_device_register(&pdev->dev, indio_dev);
-+	ret = devm_iio_backend_register(&pdev->dev, &adi_axi_adc_generic, st);
- 	if (ret)
- 		return ret;
- 
-@@ -428,6 +229,8 @@ static int adi_axi_adc_probe(struct platform_device *pdev)
- 	return 0;
- }
- 
-+static unsigned int adi_axi_adc_10_0_a_info = ADI_AXI_PCORE_VER(10, 0, 'a');
-+
- /* Match table for of_platform binding */
- static const struct of_device_id adi_axi_adc_of_match[] = {
- 	{ .compatible = "adi,axi-adc-10.0.a", .data = &adi_axi_adc_10_0_a_info },
-@@ -448,3 +251,4 @@ MODULE_AUTHOR("Michael Hennerich <michael.hennerich@analog.com>");
- MODULE_DESCRIPTION("Analog Devices Generic AXI ADC IP core driver");
- MODULE_LICENSE("GPL v2");
- MODULE_IMPORT_NS(IIO_DMAENGINE_BUFFER);
-+MODULE_IMPORT_NS(IIO_BACKEND);
-diff --git a/include/linux/iio/adc/adi-axi-adc.h b/include/linux/iio/adc/adi-axi-adc.h
-deleted file mode 100644
-index b7904992d561..000000000000
---- a/include/linux/iio/adc/adi-axi-adc.h
-+++ /dev/null
-@@ -1,68 +0,0 @@
--/* SPDX-License-Identifier: GPL-2.0 */
--/*
-- * Analog Devices Generic AXI ADC IP core driver/library
-- * Link: https://wiki.analog.com/resources/fpga/docs/axi_adc_ip
-- *
-- * Copyright 2012-2020 Analog Devices Inc.
-- */
--#ifndef __ADI_AXI_ADC_H__
--#define __ADI_AXI_ADC_H__
--
--struct device;
--struct iio_chan_spec;
--
--/**
-- * struct adi_axi_adc_chip_info - Chip specific information
-- * @name		Chip name
-- * @id			Chip ID (usually product ID)
-- * @channels		Channel specifications of type @struct iio_chan_spec
-- * @num_channels	Number of @channels
-- * @scale_table		Supported scales by the chip; tuples of 2 ints
-- * @num_scales		Number of scales in the table
-- * @max_rate		Maximum sampling rate supported by the device
-- */
--struct adi_axi_adc_chip_info {
--	const char			*name;
--	unsigned int			id;
--
--	const struct iio_chan_spec	*channels;
--	unsigned int			num_channels;
--
--	const unsigned int		(*scale_table)[2];
--	int				num_scales;
--
--	unsigned long			max_rate;
--};
--
--/**
-- * struct adi_axi_adc_conv - data of the ADC attached to the AXI ADC
-- * @chip_info		chip info details for the client ADC
-- * @preenable_setup	op to run in the client before enabling the AXI ADC
-- * @reg_access		IIO debugfs_reg_access hook for the client ADC
-- * @read_raw		IIO read_raw hook for the client ADC
-- * @write_raw		IIO write_raw hook for the client ADC
-- * @read_avail		IIO read_avail hook for the client ADC
-- */
--struct adi_axi_adc_conv {
--	const struct adi_axi_adc_chip_info		*chip_info;
--
--	int (*preenable_setup)(struct adi_axi_adc_conv *conv);
--	int (*reg_access)(struct adi_axi_adc_conv *conv, unsigned int reg,
--			  unsigned int writeval, unsigned int *readval);
--	int (*read_raw)(struct adi_axi_adc_conv *conv,
--			struct iio_chan_spec const *chan,
--			int *val, int *val2, long mask);
--	int (*write_raw)(struct adi_axi_adc_conv *conv,
--			 struct iio_chan_spec const *chan,
--			 int val, int val2, long mask);
--	int (*read_avail)(struct adi_axi_adc_conv *conv,
--			  struct iio_chan_spec const *chan,
--			  const int **val, int *type, int *length, long mask);
--};
--
--struct adi_axi_adc_conv *devm_adi_axi_adc_conv_register(struct device *dev,
--							size_t sizeof_priv);
--
--void *adi_axi_adc_conv_priv(struct adi_axi_adc_conv *conv);
--
--#endif
+Changes in v2:
+  - Add my sign off at PCI: dwc: Add outbound MSG TLPs support
+  - Add Bjorn review tag at  Add INTx Mechanism Messages macros
+  - using PME_Turn_Off match PCIe spec
+  - ref to pcie spec v6.1
+  - using section number.
 
+- Link to v1: https://lore.kernel.org/r/20240130-pme_msg-v1-0-d52b0add5c7c@nxp.com
+
+---
+Frank Li (3):
+      PCI: Add PCIE_MSG_CODE_PME_TURN_OFF message macro
+      dt-bindings: PCI: dwc: Add 'msg' register region
+      PCI: dwc: Add common send PME_Turn_Off message method
+
+Yoshihiro Shimoda (3):
+      PCI: Add INTx Mechanism Messages macros
+      PCI: dwc: Consolidate args of dw_pcie_prog_outbound_atu() into a structure
+      PCI: dwc: Add outbound MSG TLPs support
+
+ .../devicetree/bindings/pci/snps,dw-pcie.yaml      |   4 +
+ drivers/pci/controller/dwc/pcie-designware-ep.c    |  21 +++--
+ drivers/pci/controller/dwc/pcie-designware-host.c  | 104 +++++++++++++++++----
+ drivers/pci/controller/dwc/pcie-designware.c       |  62 ++++++------
+ drivers/pci/controller/dwc/pcie-designware.h       |  22 ++++-
+ drivers/pci/pci.h                                  |  20 ++++
+ 6 files changed, 169 insertions(+), 64 deletions(-)
+---
+base-commit: e08fc59eee9991afa467d406d684d46d543299a9
+change-id: 20240130-pme_msg-dd2d81ee9886
+
+Best regards,
 -- 
-2.43.0
+Frank Li <Frank.Li@nxp.com>
 
 
