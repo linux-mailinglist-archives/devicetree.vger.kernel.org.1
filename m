@@ -1,136 +1,170 @@
-Return-Path: <devicetree+bounces-37962-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-37963-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 27F78846F95
-	for <lists+devicetree@lfdr.de>; Fri,  2 Feb 2024 12:56:18 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1D260846F9B
+	for <lists+devicetree@lfdr.de>; Fri,  2 Feb 2024 12:57:27 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id AB45DB23620
-	for <lists+devicetree@lfdr.de>; Fri,  2 Feb 2024 11:56:15 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id CD8FC285A07
+	for <lists+devicetree@lfdr.de>; Fri,  2 Feb 2024 11:57:25 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 33D0613E202;
-	Fri,  2 Feb 2024 11:55:56 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4077C13E200;
+	Fri,  2 Feb 2024 11:57:23 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="DgA7bZ9+"
+	dkim=pass (2048-bit key) header.d=9elements.com header.i=@9elements.com header.b="X8rgu6I2"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-yw1-f176.google.com (mail-yw1-f176.google.com [209.85.128.176])
+Received: from mail-pj1-f54.google.com (mail-pj1-f54.google.com [209.85.216.54])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5FB7A13D51E
-	for <devicetree@vger.kernel.org>; Fri,  2 Feb 2024 11:55:54 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.176
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AB4A013D51E
+	for <devicetree@vger.kernel.org>; Fri,  2 Feb 2024 11:57:21 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.216.54
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1706874956; cv=none; b=TtvZCai9UxV7GQ8y1YnxOkNp4ywa/yyKAZvY4e6nAdwW0wa7UzI0Jh1RnE9/y91nUn64vLZAlFjENCPhfZl75Pg+Dvw8HKkFULlH/zU9Et/TRAXbDbFzu8ZS48SaenxNQixVYd2TuVVfVT44BJGU5qZnpYgnpShzuV3fpteaa/I=
+	t=1706875043; cv=none; b=Ym74CG7cFs8i0HuPh4y5ETWlFfWc0HoedBIA2uzhfAPIKG9SX+5yY08NxlzPaEW/OKkbpP3gPZLBFFK7wLRqHdiGvRWR2ligVTubyCsRwKqTfH4tp9oKyPkYGZTM1GY8Jj+go1GH1KMYgjU2turBPMs3IwIlOiIqVAqGf5Ic14U=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1706874956; c=relaxed/simple;
-	bh=g91Q0ZpDjmQ4/6xXzFZi11gjzFbr5zR/z5qLZgpaD6g=;
+	s=arc-20240116; t=1706875043; c=relaxed/simple;
+	bh=A0ZTZ5Fv5G06cPe13glChI/Tnu7WN5JP9QQMn76pliI=;
 	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=Le6QVuACOz39iR5W877awaNbfCu3sjSMNQ7szHSH3D6LOi54fwKfqY9IuQAp8FHuqhq1zWmfBnCXtCcSQE41X6EF5Fpp8ZA1yJsgThgWM7n6Xf5mCQjHmmI1bX7bJSUFQEAD/b/uxbyWE2xasNRQBFSKvrHgW7+MwPTd2tb2A6E=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=DgA7bZ9+; arc=none smtp.client-ip=209.85.128.176
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-yw1-f176.google.com with SMTP id 00721157ae682-60425a9a3d1so10806277b3.0
-        for <devicetree@vger.kernel.org>; Fri, 02 Feb 2024 03:55:54 -0800 (PST)
+	 To:Cc:Content-Type; b=oeZ0Eu6j1UDLXmCemEbiK+jU0Qi3zqkjCDsT0SYOTrfX0D07t0w0HlMTlHuDiK4wbMLxMDKCBru4z3MpwIGcg9HUnmfs+E6L8zsoGGmshGK0IBEnzA4p1Pp1OwtwR6rOFEWcrGvS+oWNqiPYKtVJwBADoE09bvtBoLBN6bxpYko=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=9elements.com; spf=pass smtp.mailfrom=9elements.com; dkim=pass (2048-bit key) header.d=9elements.com header.i=@9elements.com header.b=X8rgu6I2; arc=none smtp.client-ip=209.85.216.54
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=9elements.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=9elements.com
+Received: by mail-pj1-f54.google.com with SMTP id 98e67ed59e1d1-2909978624eso1222976a91.1
+        for <devicetree@vger.kernel.org>; Fri, 02 Feb 2024 03:57:21 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1706874953; x=1707479753; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=bLJvGiCen2KRi2n5m7Ep7wuSVWa623lasZLXabxFxdA=;
-        b=DgA7bZ9+xyW61kBeWa6Nwpx0WwrcLY0tt9doj6GydTZvVPFLZ7ZhxtUAe3FCyI4HuW
-         2QGmFJdDZ8owu9KkoIuRQ63bNU4aLIuzQfo6dcnBRJ0xapyt4guRIh/Skve99IRNCAPG
-         xohzdeYWNIapan4q7Pu6c3cDAGV6tDxSq0iWHXbGn0U7ci4EWv/d39BWZr39S0VMYZWO
-         rnRqGMH40tGH1c2aeYBd/tougpYfIH/DYdvSnbQIEXqZ2vaL5dTSbNsYMf+33OdKwGIK
-         yf40pKqKCPmjZe1UwET5MZSFCq8TKdl8H7WuhKwh3OZWmClFVeu+NZ7ob1FCvAdVGUk3
-         Z+cQ==
+        d=9elements.com; s=google; t=1706875041; x=1707479841; darn=vger.kernel.org;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=6q90R/XkiuMdf0PYdVgoTLd07p+VuylRmuCDSu77XgU=;
+        b=X8rgu6I2x+TiCDHjsmIjWzvCziOj/zvYdCb3MXYsBSK+l4mW0w2SJAZflb9u+yZMz9
+         b3BFO+4e9L4DlWacrOzpWtUWcQBlDCsHf7yJYIaOP/Uk2KS32k5irlFYQvBl9IyLIylJ
+         KHRj5wm31U57fiQje6GuFVWCz4MW4d9CD8IoviKZcF/vs/gu3YzUWZxfmNMub3SR54fD
+         xRcN/NU8EDPAImOpuAmHq7c5W3Yhkx/ZuRn1ljiY5Lb522YYs1JOh1cwLFdjvu6X8Jcz
+         +BvQlTtt4lChJHiDFL/d82eQD+jD0YtTclg9yMXY7WOoPikVWXNXkUuu0geC28pEj7Fv
+         VgZQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1706874953; x=1707479753;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=bLJvGiCen2KRi2n5m7Ep7wuSVWa623lasZLXabxFxdA=;
-        b=tHhBJE5mTKRVxISaQGWO2zXUi15iGb9HTkO3GRQm70rw/je/Acppbfiba/Spp52FiW
-         a/6g0arxUp7EZPSunVrkf3nXZhcW4hqB0UlFvueEEe/ncoBdozBkrBJZce9Vsb8NP79X
-         rfpoSad3k3S/i/yBW89/j6Kgjhcm3PyBmMVxSMXgOQ/53VF3XSZ1eUrAtf7FpbCo18tN
-         Cxfe/GeR6KBdHzYA1gCyBuJj9BYFCS4q1W8mN4DvCpxw731VORM8WIyHa8HWa/pkQ0Jq
-         R8QxqFGHeg2yIaBMWYpqBOO+AubMdprvmGMAVxDmjEA3PH4Csn9JHWGrRMqBz5ZmNBu8
-         wl3A==
-X-Gm-Message-State: AOJu0Yzkz5vVNBSvwJKsoigyXRhAsb8GnSLv0fXudQJjZQ+gDlvgXTT3
-	y7uGmr/tTsjASWlcKGQ8f94hj7ndV0s1thF15K0m2lF892CbQnSG+FkJl7ceaueHJAdJsV5EiI3
-	dXdJeJsPkKsBJvTx484YAklZIhdZp+MtwPoO6rg==
-X-Google-Smtp-Source: AGHT+IGuG87J1tpRztpBCjH78cb2e+f8F3ZKLbi/Mfd0sjd5znLbq3M8sHVCtkIXi/YM1R2Qz/IsLAZiyThdiNwKfqU=
-X-Received: by 2002:a0d:db93:0:b0:5fc:1349:87b8 with SMTP id
- d141-20020a0ddb93000000b005fc134987b8mr8758213ywe.43.1706874953312; Fri, 02
- Feb 2024 03:55:53 -0800 (PST)
+        d=1e100.net; s=20230601; t=1706875041; x=1707479841;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=6q90R/XkiuMdf0PYdVgoTLd07p+VuylRmuCDSu77XgU=;
+        b=mnafwpoYyCgp1klZm5Qj8GBB7Jxko3XWI76XY7Aq8sHxhu6C/Tf5Hp6q8TXbHQay+X
+         AUyreXIhaT29HSgGmD11nduu8SIJvgw3tOEQ34mqPhK95phKbaKd1MbLajMtjDy6zMFW
+         NEaPKk7GO00hN90WBpTp1NMzB/jtVpoQhDKOQ8g5BrWaq0PGMFS0IWwfLeODw0olCNMC
+         u14mN+jbUdxshxPMCT310hRPCLxNZ1d4/zFZT7bVbfgZh4+h9fYW+Gpm8JZgba01RchW
+         U8TD5RvSiSxpbsPvPs+cfvZ9X17xHuW+269q8gjhyUo1O8WGMKkMxJv9Tl30NoNnixtI
+         d0gQ==
+X-Gm-Message-State: AOJu0Yytk0HI2niIY8ldxy7GwDYACHHbQo1Qz8EcwGtLKVcUbI4zMbG+
+	joRCch+ZUNHtpjkb1mPmV5xe1tO97qANDz8HyATFpYXPbZbEU3dmfyfNo4OObFRSOM2YQGbaQmW
+	GusTtUP1YhjWOXGkBQpqjxreGNh3Q1fBTdGk37A==
+X-Google-Smtp-Source: AGHT+IEbDrDTf5KsggBbKRPlPzzC4UhkmWtVLLNeKmwNZxMrMKnrQRKTVpvRk9YlsXq8IW+uCo6xqsYixuoSOu9NnxQ=
+X-Received: by 2002:a17:90a:c250:b0:296:1cb5:c26a with SMTP id
+ d16-20020a17090ac25000b002961cb5c26amr4366751pjx.6.1706875040985; Fri, 02 Feb
+ 2024 03:57:20 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20240106223951.387067-1-aford173@gmail.com> <20240106223951.387067-2-aford173@gmail.com>
- <CAPDyKFpx_Xo6Y5yGfuMiV8w3kR2hL6f8t31pKC=91-wEperqjA@mail.gmail.com> <CAHCN7xLqKTAcVpsBYXmzdvSefOnXdXzzrGie7mxkzeJLFKu+Rw@mail.gmail.com>
-In-Reply-To: <CAHCN7xLqKTAcVpsBYXmzdvSefOnXdXzzrGie7mxkzeJLFKu+Rw@mail.gmail.com>
-From: Ulf Hansson <ulf.hansson@linaro.org>
-Date: Fri, 2 Feb 2024 12:55:17 +0100
-Message-ID: <CAPDyKFr9q4mio8cVsZ66PQuvLC_zpxTT_E-QUDRy1Df09DcdtA@mail.gmail.com>
-Subject: Re: [PATCH 2/3] pmdomain: imx8mp-blk-ctrl: imx8mp_blk: Add fdcc clock
- to hdmimix domain
-To: Adam Ford <aford173@gmail.com>
-Cc: linux-pm@vger.kernel.org, Sandor Yu <Sandor.yu@nxp.com>, 
-	Jacky Bai <ping.bai@nxp.com>, Rob Herring <robh+dt@kernel.org>, 
+References: <20240126114614.1424592-1-naresh.solanki@9elements.com> <20240126-deflate-ashy-158a91efb25a@spud>
+In-Reply-To: <20240126-deflate-ashy-158a91efb25a@spud>
+From: Naresh Solanki <naresh.solanki@9elements.com>
+Date: Fri, 2 Feb 2024 17:27:10 +0530
+Message-ID: <CABqG17g+wQ5brngLDYObV+t2y+CEf+85rzqTSYTcmS5jckWZRg@mail.gmail.com>
+Subject: Re: [PATCH] dt-bindings: mfd: Add regulator-compatible property
+To: Conor Dooley <conor@kernel.org>
+Cc: Lee Jones <lee@kernel.org>, Rob Herring <robh+dt@kernel.org>, 
 	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Shawn Guo <shawnguo@kernel.org>, Sascha Hauer <s.hauer@pengutronix.de>, 
-	Pengutronix Kernel Team <kernel@pengutronix.de>, Fabio Estevam <festevam@gmail.com>, 
-	NXP Linux Team <linux-imx@nxp.com>, Lucas Stach <l.stach@pengutronix.de>, devicetree@vger.kernel.org, 
-	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
+	Patrick Rudolph <patrick.rudolph@9elements.com>, mazziesaccount@gmail.com, 
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
 Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
 
-On Fri, 2 Feb 2024 at 01:17, Adam Ford <aford173@gmail.com> wrote:
+Hi Conor,
+
+
+On Fri, 26 Jan 2024 at 21:50, Conor Dooley <conor@kernel.org> wrote:
 >
-> On Thu, Feb 1, 2024 at 4:33=E2=80=AFPM Ulf Hansson <ulf.hansson@linaro.or=
-g> wrote:
-> >
-> > On Sat, 6 Jan 2024 at 23:40, Adam Ford <aford173@gmail.com> wrote:
-> > >
-> > > According to i.MX8MP RM and HDMI ADD, the fdcc clock is part of
-> > > hdmi rx verification IP that should not enable for HDMI TX.
-> > > But actually if the clock is disabled before HDMI/LCDIF probe,
-> > > LCDIF will not get pixel clock from HDMI PHY and print the error
-> > > logs:
-> > >
-> > > [CRTC:39:crtc-2] vblank wait timed out
-> > > WARNING: CPU: 2 PID: 9 at drivers/gpu/drm/drm_atomic_helper.c:1634 dr=
-m_atomic_helper_wait_for_vblanks.part.0+0x23c/0x260
-> > >
-> > > Add fdcc clock to LCDIF and HDMI TX power domains to fix the issue.
-> > >
-> > > Signed-off-by: Sandor Yu <Sandor.yu@nxp.com>
-> > > Reviewed-by: Jacky Bai <ping.bai@nxp.com>
-> > > Signed-off-by: Adam Ford <aford173@gmail.com>
-> >
-> > Just to let you know, this looks good to me and it seems like the NXP
-> > people like this too. What I am waiting for is an ack on the DT patch,
-> > then I am ready to queue this up.
+> On Fri, Jan 26, 2024 at 05:16:14PM +0530, Naresh Solanki wrote:
+> > Add regulator-compatible property.
 >
-> What about the bindings?  I'm assuming that Shawn would take the DT
-> through his IMX tree, but I am not sure if I need to resubmit the
-> bindings with a different commit message.
+> Why? I can see that this is what you did, but there's no justification
+> for it.
+>
+> grepping for this property, the first thing I see is:
+> rg "regulator-compatible"
+> drivers/regulator/of_regulator.c
+> 389: * based on either the deprecated property regulator-compatible if present,
+> 428:                                    "regulator-compatible", NULL);
+> 486:            name = of_get_property(child, "regulator-compatible", NULL);
+>
+>
+> The property is deprecated, so you'll need twice as good a justification
+> for adding it!
+Yes this is deprecated property. I missed noticing that earlier.
+Will remove this dependency. Thanks for pointing that out.
 
-I am usually trying to help with patch1 and patch2 for pmdomain
-related changes - and I am sharing new/updated DT bindings on an
-immutable "dt" branch. Then Shawn can pull in that branch and apply
-patch3 to his tree.
-
-So, I need an ack on patch1 from some of the DT maintainers to go
-ahead. Unless you want to manage this entirely through Shawn's tree,
-that works too. Just let me know.
-
-[...]
-
-Kind regards
-Uffe
+Regards,
+Naresh
+>
+> > Also update example.
+> >
+> > TEST=Run below command & make sure there is no error
+> > make DT_CHECKER_FLAGS=-m dt_binding_check
+>
+> Same comment here as my other mail.
+>
+> Thanks,
+> Conor.
+>
+> >
+> > Signed-off-by: Naresh Solanki <naresh.solanki@9elements.com>
+> > ---
+> >  Documentation/devicetree/bindings/mfd/maxim,max5970.yaml | 9 +++++++++
+> >  1 file changed, 9 insertions(+)
+> >
+> > diff --git a/Documentation/devicetree/bindings/mfd/maxim,max5970.yaml b/Documentation/devicetree/bindings/mfd/maxim,max5970.yaml
+> > index 0da5cae3852e..75175098cbc2 100644
+> > --- a/Documentation/devicetree/bindings/mfd/maxim,max5970.yaml
+> > +++ b/Documentation/devicetree/bindings/mfd/maxim,max5970.yaml
+> > @@ -74,6 +74,9 @@ properties:
+> >              description: |
+> >                The value of current sense resistor in microohms.
+> >
+> > +          regulator-compatible:
+> > +            pattern: "^SW[0-1]$"
+> > +
+> >          required:
+> >            - shunt-resistor-micro-ohms
+> >
+> > @@ -111,6 +114,8 @@ examples:
+> >
+> >              regulators {
+> >                  sw0_ref_0: sw0 {
+> > +                    regulator-compatible = "SW0";
+> > +                    regulator-name = "p5v";
+> >                      shunt-resistor-micro-ohms = <12000>;
+> >                  };
+> >              };
+> > @@ -145,9 +150,13 @@ examples:
+> >
+> >              regulators {
+> >                  sw0_ref_1: sw0 {
+> > +                    regulator-compatible = "SW0";
+> > +                    regulator-name = "p5v_aux";
+> >                      shunt-resistor-micro-ohms = <12000>;
+> >                  };
+> >                  sw1_ref_1: sw1 {
+> > +                    regulator-compatible = "SW1";
+> > +                    regulator-name = "p3v3_aux";
+> >                      shunt-resistor-micro-ohms = <10000>;
+> >                  };
+> >              };
+> >
+> > base-commit: ecb1b8288dc7ccbdcb3b9df005fa1c0e0c0388a7
+> > --
+> > 2.42.0
+> >
 
