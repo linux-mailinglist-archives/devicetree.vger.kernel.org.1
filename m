@@ -1,110 +1,122 @@
-Return-Path: <devicetree+bounces-37915-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-37916-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id CC150846C38
-	for <lists+devicetree@lfdr.de>; Fri,  2 Feb 2024 10:37:52 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 12F83846C45
+	for <lists+devicetree@lfdr.de>; Fri,  2 Feb 2024 10:39:30 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 80F3E286BEA
-	for <lists+devicetree@lfdr.de>; Fri,  2 Feb 2024 09:37:51 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 9247A1F22E8A
+	for <lists+devicetree@lfdr.de>; Fri,  2 Feb 2024 09:39:29 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D911777F32;
-	Fri,  2 Feb 2024 09:37:02 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id EC40569D39;
+	Fri,  2 Feb 2024 09:39:25 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="gCnPmSGT"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="SPRpDt2b"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wm1-f53.google.com (mail-wm1-f53.google.com [209.85.128.53])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B01762628B;
-	Fri,  2 Feb 2024 09:37:02 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1B7C277642;
+	Fri,  2 Feb 2024 09:39:23 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.53
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1706866622; cv=none; b=foNJaoeKfPHqWGFpr9DeIvUmlTdMi02m2FXhD+p0Px2pq74ANMJzJ3kKLeCZLA3LcG1P1MCssOcpvvBIywYahkqBfdvnA0wl7LiCH7ZcDhZ+IUKczsSDRvJ8TwBC9Uzdia7dcIgWAWz8wcUAUX4cdt4zibsVJP6rZsNq7BohzLg=
+	t=1706866765; cv=none; b=mYKdlIh6EQvOnh48vUO8HR4lkdaa/5TgT1MJb3j4tDiYH/KMhXfQfoHEPVeG7PvqMswV3UuLdepRBnvRB5E13O2Q+WiSpqtswNNH1wBYPbuL0N5b61xNrpSKvVj8giiKDzwrFxku70Qy4nSpXa2quQPNAzUz1NJOAV0H25qFIhM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1706866622; c=relaxed/simple;
-	bh=Why0zHMkeFsSyoZEGZoXgy2Y9D41NUYSpKgaun+woa0=;
-	h=Message-ID:Date:MIME-Version:Subject:To:References:From:
-	 In-Reply-To:Content-Type; b=OPcDyFzuNgm6XqK54dVw+eVRZEACUOXml+9Zr0JQNOr1QrozlPysZqfiA3apqsbX3qHNDxvhDBcZ2QOFKC2/YsHQla5cK4OZzueHpJK0xQkN7BRGkku3L8ULTqsavGDPYIQLHzQsdlK0Tgb21ImiaObNkKU6UKgIXHadITnbR0w=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=gCnPmSGT; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 2032DC433F1;
-	Fri,  2 Feb 2024 09:36:58 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1706866622;
-	bh=Why0zHMkeFsSyoZEGZoXgy2Y9D41NUYSpKgaun+woa0=;
-	h=Date:Subject:To:References:From:In-Reply-To:From;
-	b=gCnPmSGTi0ow2ZYJ2vJzTcR0GzjiMFR0VJ1A5EiIThFHJGC+Y5GTcK6IGNdl2QJql
-	 IheNYyNUxGYq8cbzn0tceVRgxlAHW3QVw7Y/klWjIcCcEOj5ipFj1u6SfoLXyRzVFd
-	 Lhyf4ew9B/xLvkbvyoLgC4S3cIUTuRkoLqcYEFNdJ5lgPfUJ59oiKDEQTSJSGsafbW
-	 J5dI8JVFtjXdR9i5io03e3uUacrbAo5Nc/Wfa9+zrNg2p5bBexP0nDzY7O8Nxo2SHm
-	 KA0vWJSOJxkBBGFLRXvCi7Oqu3ELdG0ZfdPX/ECZGZxVjo4cANgqqtjOIuYHDTfMO3
-	 pC/GlpyuZVqTA==
-Message-ID: <bc3ab60f-539b-41d0-8595-6e0b55f2763d@kernel.org>
-Date: Fri, 2 Feb 2024 11:36:55 +0200
+	s=arc-20240116; t=1706866765; c=relaxed/simple;
+	bh=i6VzPQcmaHZz+lcT8P1hT/YUY2f63rXFfOJiBuDetT4=;
+	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version; b=c6dIWIThCqO0hPEimP2g0j6E3KWnUY1yxsPuPsqOnz+IrmFBceT8LfjvtHI7NODghXjpaeqhNE2bEbJfKlBDgoP+pi8nusjfYW9HgALiQ6H+wQ08ZBy1nR1Z6V15jVPyg5HA2l3B9TN7Ic3SwMGSDI6an1J1eOaDU+A7qDyA6Dw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=SPRpDt2b; arc=none smtp.client-ip=209.85.128.53
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-wm1-f53.google.com with SMTP id 5b1f17b1804b1-40fc654a56dso3737405e9.3;
+        Fri, 02 Feb 2024 01:39:23 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1706866762; x=1707471562; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=Q4GGWELPS9iWSYGrtv1b7XMN4fN8IDBU9iRWYuxavx4=;
+        b=SPRpDt2b0GiYd1qFajfvYEgDxgThrt+9sn/DoWWu45VjK0wLJdXIWxfSHZeYI4H+g4
+         fUjEUThmkkNfsW7lsiCUFtwFBo3tqgx2NqJQckKzfLzXBw1pOVTWq5z26cnwDV69BwrM
+         f/+1AF+VcygwAG7RrvWXnq6JPrHfy4k+5OcD6pobQqOUsQ8ugTvbf8WzBXW0VTWDdkG4
+         Ch5bvEHDQJ2GDGEz4fd3GCVubCrAFW71IPRnPhorDZexIrkfFCxv3JO1YYmVDUi0R+Bs
+         OTXSEFnolNyZ4gw69MYra5HgpgiQW1EA2bHZv6fc7tbuatJTl+P2quTvb4+ukJw6VqXO
+         ZNMQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1706866762; x=1707471562;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=Q4GGWELPS9iWSYGrtv1b7XMN4fN8IDBU9iRWYuxavx4=;
+        b=J1Z78RTg2UdsnM5qR6PvONOvUqYcQ4YGVCQSoOb4oAbOdMToH6epBGnsME10dqUkeQ
+         78R/yu3Bn4lFgFkm+maaNtGAvQwXvYcS1ewHqYOrahMemias+oJBfR+nnueyDmBSgtTs
+         cRkpdJGxFsLrNnC+A64zs0QT+5ZsnpwRYNgzDf+VrfsSqPsvAWhYPXkMRzIQcK7Xrwca
+         RHTuI9giPGTJC42yXD7H/Ny+rFena5+5lWhXr1DY/eG88HQwf4Nbt9NrCy7O03/rpXL9
+         SVftysLmU0C3yz4fBcH4cKHf50MdvjTQRMmW1X/YQkFQ2t5ltj8tEuxdc2npviTh7C4r
+         8OIg==
+X-Gm-Message-State: AOJu0Yx3uZAhHL1p76ls9hXlymQP2wrOXvIRUScYQM8qaXqclLzslwEg
+	byrryXe2XpIcp9JCo/13fHIp8Gm8HHPmEECcJz5fQPfwVNAAOrwt
+X-Google-Smtp-Source: AGHT+IHNr2h/8blidDKe6nUWzOdZhzdSWxNhMSkJDWY2u3jEMaBPIAO2blmRLKGvxbpg9FeldoKfaw==
+X-Received: by 2002:a05:600c:511e:b0:40e:b93c:940f with SMTP id o30-20020a05600c511e00b0040eb93c940fmr1071810wms.28.1706866762070;
+        Fri, 02 Feb 2024 01:39:22 -0800 (PST)
+X-Forwarded-Encrypted: i=0; AJvYcCUUDg5EKFQ6lKeH9tifuLilUYhCj+nfQEiF++RwxrqZX1gmgZ3PdfwsfFlXLyW/qT66RfC1faoHZr5iti+ILaEnAdwZqkcBRuwcAQulhGelTDo8gDkcAiKNLLBzxtIvR7O0yvQmg8YMGQIBE7LHkYOMX/Kp5HgfZSlvm/8760AC2vo67DHZHfwL/wOIA/6cjyxnkirnXb9cQlQinMzIvS+S52+Z1j0oMGDyCpS4zHNni1qDziqtv1oicd5FoleHyTHoV39sG2E/waRq4k2PohF69lYzR0/wfNlSNg5L0FUFuKiRxeTahzx1QckDULcSRwxBBVdfftPZTlbEt3h++AwsaSqIzQPjYHsg/zKvQgaZjMkOt69K2BF/GhFxnt5Zl0KQVyIV/zgDMtHdrptrwzEfR2A8maw69+EKGxGiY42hTyYsuRZ4oL8tqXLLKXg/bAJ8WXNeswlezOJBvJ+0EqV1JAKWCtyBsK+IoiA6k+M=
+Received: from prasmi.home ([2a00:23c8:2500:a01:a994:230a:9969:dbf7])
+        by smtp.gmail.com with ESMTPSA id bg10-20020a05600c3c8a00b0040fbdf77ca3sm3827530wmb.42.2024.02.02.01.39.21
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 02 Feb 2024 01:39:21 -0800 (PST)
+From: Prabhakar <prabhakar.csengg@gmail.com>
+X-Google-Original-From: Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+To: Thomas Gleixner <tglx@linutronix.de>,
+	Rob Herring <robh+dt@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Geert Uytterhoeven <geert+renesas@glider.be>,
+	Magnus Damm <magnus.damm@gmail.com>
+Cc: devicetree@vger.kernel.org,
+	linux-renesas-soc@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	Prabhakar <prabhakar.csengg@gmail.com>,
+	Biju Das <biju.das.jz@bp.renesas.com>,
+	Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>,
+	Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+Subject: [PATCH 0/3] Renesas RZ/G2L family and RZ/G3S add missing IRQC interrupts
+Date: Fri,  2 Feb 2024 09:39:04 +0000
+Message-Id: <20240202093907.9465-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
+X-Mailer: git-send-email 2.34.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v3 4/5] dt-bindings: usb/ti,am62-usb.yaml: Add PHY2
- register space
-To: Conor Dooley <conor@kernel.org>, Bin Liu <b-liu@ti.com>, nm@ti.com,
- vigneshr@ti.com, afd@ti.com, kristo@kernel.org, robh+dt@kernel.org,
- krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org, srk@ti.com,
- r-gunasekaran@ti.com, linux-arm-kernel@lists.infradead.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-References: <20240201120332.4811-1-rogerq@kernel.org>
- <20240201120332.4811-5-rogerq@kernel.org>
- <20240201-viewpoint-upload-fb714f650ff5@spud>
- <20240201-violet-chalice-51a73f113e7b@spud>
- <20240201183522.ssj553rwefr2wuqi@iaqt7>
- <20240201-clad-unopposed-ccfdfe53b770@spud>
-Content-Language: en-US
-From: Roger Quadros <rogerq@kernel.org>
-In-Reply-To: <20240201-clad-unopposed-ccfdfe53b770@spud>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
 
+From: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
 
+Hi All,
 
-On 01/02/2024 21:13, Conor Dooley wrote:
-> On Thu, Feb 01, 2024 at 12:35:22PM -0600, Bin Liu wrote:
->> On Thu, Feb 01, 2024 at 06:18:05PM +0000, Conor Dooley wrote:
->>> On Thu, Feb 01, 2024 at 06:15:20PM +0000, Conor Dooley wrote:
->>>> On Thu, Feb 01, 2024 at 02:03:31PM +0200, Roger Quadros wrote:
->>>>> So far this was not required but due to the newly identified
->>>>> Errata i2409 [1] we need to poke this register space.
->>>>>
->>>>> [1] https://www.ti.com/lit/er/sprz487d/sprz487d.pdf
->>>>>
->>>>> Signed-off-by: Roger Quadros <rogerq@kernel.org>
->>>>
->>>> Acked-by: Conor Dooley <conor.dooley@microchip.com>
->>>
->>> Actually, where is the user for this that actually pokes the register
->>> space?
+This patch series aims to add the missing bus-error and eccram error
+interrupts for RZ/G2L family and RZ/G3S SoC.
 
-https://lore.kernel.org/all/20240201121220.5523-5-rogerq@kernel.org/
+Cheers,
+Prabhakar
 
->>> You're adding another register region, so I went to check how you were
->>> handling that in drivers, but there's no driver patch.
->>
->> See Roger's another patch set 'Add workaround for Errata i2409' posted
->> on 16th.
-> 
-> This patch should be with that series, not with these dts patches.
-> 
+Lad Prabhakar (3):
+  dt-bindings: interrupt-controller: renesas,rzg2l-irqc: Update
+    interrupts
+  arm64: dts: renesas: rz-g2l-family: Add missing interrupts from IRQC
+    IP block
+  arm64: dts: renesas: r9a08g045: Add missing interrupts of IRQC node
 
-Why not? There should be no dependency between DTS and driver implementation.
-
-As DTS and driver will be merged by separate maintainers I thought it
-would be easier for maintainers this way.
+ .../renesas,rzg2l-irqc.yaml                   | 44 +++++++++++++++----
+ arch/arm64/boot/dts/renesas/r9a07g043u.dtsi   | 12 ++++-
+ arch/arm64/boot/dts/renesas/r9a07g044.dtsi    | 22 +++++++++-
+ arch/arm64/boot/dts/renesas/r9a07g054.dtsi    | 22 +++++++++-
+ arch/arm64/boot/dts/renesas/r9a08g045.dtsi    |  8 +++-
+ 5 files changed, 93 insertions(+), 15 deletions(-)
 
 -- 
-cheers,
--roger
+2.34.1
+
 
