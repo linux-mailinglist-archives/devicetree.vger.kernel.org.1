@@ -1,62 +1,78 @@
-Return-Path: <devicetree+bounces-38160-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-38161-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4E17D847B6A
-	for <lists+devicetree@lfdr.de>; Fri,  2 Feb 2024 22:17:58 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id F099F847B6F
+	for <lists+devicetree@lfdr.de>; Fri,  2 Feb 2024 22:19:18 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id F29EA28DF8E
-	for <lists+devicetree@lfdr.de>; Fri,  2 Feb 2024 21:17:56 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id A55791F25222
+	for <lists+devicetree@lfdr.de>; Fri,  2 Feb 2024 21:19:18 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6C6A780636;
-	Fri,  2 Feb 2024 21:17:52 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B45FF81745;
+	Fri,  2 Feb 2024 21:19:12 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Yvjzg8v2"
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="nNqU9s23"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2FA2518049;
-	Fri,  2 Feb 2024 21:17:51 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D63248063C;
+	Fri,  2 Feb 2024 21:19:10 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.175.65.19
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1706908672; cv=none; b=oUvP8UO8r5qhJmdkuNG0kCd+SMHOzUEIsoAAhwKY90owW0ljocQxrAIYRBsCd+QHYaNriqneTashk+JZdY9ne1VeiSro9/8fuWRq7Gf6geBtl88SizbIwMyRwiNOTT8Oa2niDsui4DmO6f8jxPvhkzHFl/b4uy3g/fEFviFNJ+g=
+	t=1706908752; cv=none; b=nFAhbTaUrcP3iY3Ek6P/5npNC6d75PcrnsW57BZPZkDY1n8ktlUQa010dr8HsEhi+AEb0N1gVWLLxY9qa3WCjq3Em/dWgd6puhzTbNaUyhIqQ3ti6b7yYi2/z6bjpcdyJgpo1sEcc2PxcBkuCZS5TH+xMbQer9fXq6gF9cmjFOA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1706908672; c=relaxed/simple;
-	bh=/VCh0+HPTFG2lAHl8Ir63vVbaWY0czUg4EndhAmsGSQ=;
+	s=arc-20240116; t=1706908752; c=relaxed/simple;
+	bh=5ksOdQd8ghM9qXKkEiudkWeCW/Mz361KuBeBg2gzM/4=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=sMJF2dFq6SfyqIbmqDFnncc9ZWvuG/RnyzaJmeuLBXwx2XTX0jXv8aj/qP4bTUEZO2Afj9uYByN3ed/ppxuLEVPZoHNdj45IAdX8oh+oJPWtnBXXXyM/AltjEiBp9Dojuh7BOLL8RCSprx4RCviilOnQJXprme+qYu77GDWHq9Q=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Yvjzg8v2; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 6BB59C433F1;
-	Fri,  2 Feb 2024 21:17:51 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1706908671;
-	bh=/VCh0+HPTFG2lAHl8Ir63vVbaWY0czUg4EndhAmsGSQ=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=Yvjzg8v2QAYg2UYrB+Vbpmh7MiYTumX0/jy0ou8L09dgeEe2AjOeKOVCL38zLtq2B
-	 3EnMHuQG6hAXgLSwJmtknf63d9V5i8YDh1rpVTeUYLV61yKuBCTvLG3v29pLYY4rV8
-	 1P322vsYsiW3VWtNnWfWTGjTrJMC5ANbMAwJuWvxAlIok42ADCt793YIY9Rkc9FWM1
-	 Coy70l89C4Rk6R5vGd1Uae0XVtfzACT+rF9BkzunQi0BL38hPlS2lFsw1sVmTQNW3I
-	 lcnCjL5AZ6qLnoamq/rh7NtQ+GQ91Erg9DYlSvDHqRKq0zW9fJoHt5VUEd+3kcWvYl
-	 CKI3HeTmiZgZg==
-Date: Fri, 2 Feb 2024 15:17:49 -0600
-From: Rob Herring <robh@kernel.org>
-To: Georgi Djakov <quic_c_gdjako@quicinc.com>
-Cc: krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org, will@kernel.org,
-	robin.murphy@arm.com, joro@8bytes.org, iommu@lists.linux.dev,
-	devicetree@vger.kernel.org, andersson@kernel.org,
-	konrad.dybcio@linaro.org, robdclark@gmail.com,
-	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-	linux-arm-msm@vger.kernel.org, quic_cgoldswo@quicinc.com,
-	quic_sukadev@quicinc.com, quic_pdaly@quicinc.com,
-	quic_sudaraja@quicinc.com, djakov@kernel.org
-Subject: Re: [PATCH v4 01/10] dt-bindings: iommu: Add Translation Buffer Unit
- bindings
-Message-ID: <20240202211749.GA1467077-robh@kernel.org>
-References: <20240201210529.7728-1-quic_c_gdjako@quicinc.com>
- <20240201210529.7728-2-quic_c_gdjako@quicinc.com>
+	 Content-Type:Content-Disposition:In-Reply-To; b=b9P8XMFVK/LhUBMbqRThuc93AHm1GSLlEGt24sQz4T+7icI+KBJG3f2NpMmXj+EdL2PKZOMQwlYAy4kiIV/xWwZXTSyR527amOZIa4Y9EQeYc0/J+ZjVELw0ln6Sa6riGpnWH9IykjX2rPOTZ+OBsrPds7AbsObGsT7eg3Oo6c8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=nNqU9s23; arc=none smtp.client-ip=198.175.65.19
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1706908751; x=1738444751;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=5ksOdQd8ghM9qXKkEiudkWeCW/Mz361KuBeBg2gzM/4=;
+  b=nNqU9s23ItmdisKaKf6tshjaRnar2k4cqBurHtmJM/PRlsi9PVTpPCy8
+   R4SbTCGeVIvDKX+cC98Kkq5eBE/8Q3dHM1vlWIUGoLAT4ToES0HLvkzLt
+   nQkn3Ymt+qsA62Ar9ieVsFUp8hu7P/G8/nvdBeV94MUcxlGdLQ0GdkwTU
+   cbZgcVxhE9cielIJcmpVB6m2L5SSOC8TCMb8KcBQAAUzu5RnUdsNUPFxs
+   D2LCCsYMb+VfchzPpZMCiHA/dUueB5vvOjOSFc8vbM4rkXNeemTu1J6UM
+   YsCUVhJbrdxGUfMiBKwUJfjJaJ4xnjjnURwZspvH4rLvvIML09pSbpRr5
+   A==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10971"; a="148414"
+X-IronPort-AV: E=Sophos;i="6.05,238,1701158400"; 
+   d="scan'208";a="148414"
+Received: from fmsmga001.fm.intel.com ([10.253.24.23])
+  by orvoesa111.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 02 Feb 2024 13:19:10 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=McAfee;i="6600,9927,10971"; a="932581866"
+X-IronPort-AV: E=Sophos;i="6.05,238,1701158400"; 
+   d="scan'208";a="932581866"
+Received: from lkp-server02.sh.intel.com (HELO 59f4f4cd5935) ([10.239.97.151])
+  by fmsmga001.fm.intel.com with ESMTP; 02 Feb 2024 13:19:05 -0800
+Received: from kbuild by 59f4f4cd5935 with local (Exim 4.96)
+	(envelope-from <lkp@intel.com>)
+	id 1rW0wB-0004H0-1Q;
+	Fri, 02 Feb 2024 21:19:03 +0000
+Date: Sat, 3 Feb 2024 05:18:51 +0800
+From: kernel test robot <lkp@intel.com>
+To: Frank Li <Frank.Li@nxp.com>, ilpo.jarvinen@linux.intel.com
+Cc: oe-kbuild-all@lists.linux.dev, Frank.Li@nxp.com,
+	alexandre.belloni@bootlin.com, conor.culhane@silvaco.com,
+	devicetree@vger.kernel.org, gregkh@linuxfoundation.org,
+	imx@lists.linux.dev, jirislaby@kernel.org, joe@perches.com,
+	krzysztof.kozlowski+dt@linaro.org, krzysztof.kozlowski@linaro.org,
+	linux-i3c@lists.infradead.org, linux-kernel@vger.kernel.org,
+	linux-serial@vger.kernel.org, miquel.raynal@bootlin.com,
+	robh@kernel.org, zbigniew.lukwinski@linux.intel.com
+Subject: Re: [PATCH v5 1/8] i3c: add target mode support
+Message-ID: <202402030437.GdGCrKeK-lkp@intel.com>
+References: <20240129195321.229867-2-Frank.Li@nxp.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -65,54 +81,47 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20240201210529.7728-2-quic_c_gdjako@quicinc.com>
+In-Reply-To: <20240129195321.229867-2-Frank.Li@nxp.com>
 
-On Thu, Feb 01, 2024 at 01:05:20PM -0800, Georgi Djakov wrote:
-> Add common bindings for the TBUs to describe their properties. The
-> TBUs are modelled as child devices of the IOMMU and each of them is
-> described with their compatible, reg and stream-id-range properties.
-> There could be other implementation specific properties to describe
-> any resources like clocks, regulators, power-domains, interconnects
-> that would be needed for TBU operation. Such properties will be
-> documented in a separate vendor-specific TBU schema.
-> 
-> Signed-off-by: Georgi Djakov <quic_c_gdjako@quicinc.com>
-> ---
->  .../devicetree/bindings/iommu/arm,smmu.yaml   | 14 ++++++++++
->  .../devicetree/bindings/iommu/tbu-common.yaml | 28 +++++++++++++++++++
->  2 files changed, 42 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/iommu/tbu-common.yaml
-> 
-> diff --git a/Documentation/devicetree/bindings/iommu/arm,smmu.yaml b/Documentation/devicetree/bindings/iommu/arm,smmu.yaml
-> index a4042ae24770..ba3237023b39 100644
-> --- a/Documentation/devicetree/bindings/iommu/arm,smmu.yaml
-> +++ b/Documentation/devicetree/bindings/iommu/arm,smmu.yaml
-> @@ -235,6 +235,20 @@ properties:
->        enabled for any given device.
->      $ref: /schemas/types.yaml#/definitions/phandle
->  
-> +  '#address-cells':
-> +    enum: [ 1, 2 ]
-> +
-> +  '#size-cells':
-> +    enum: [ 1, 2 ]
-> +
-> +  ranges: true
-> +
-> +patternProperties:
-> +  "^tbu@[0-9a-f]+$":
-> +    description: TBU child nodes
-> +    type: object
-> +    $ref: tbu-common.yaml#
+Hi Frank,
 
-       additionalProperties: false
+kernel test robot noticed the following build errors:
 
+[auto build test ERROR on tty/tty-testing]
+[also build test ERROR on tty/tty-next tty/tty-linus robh/for-next linus/master v6.8-rc2 next-20240202]
+[If your patch is applied to the wrong git tree, kindly drop us a note.
+And when submitting patch, we suggest to use '--base' as documented in
+https://git-scm.com/docs/git-format-patch#_base_tree_information]
 
-However, that's going to break with the extra QCom properties. In 
-json-schema, you can't have 2 schemas and extend the properties of 
-their child nodes. The validator doesn't "see" the child node schemas at 
-the same time. You are going to have to move QCom SMMU to its own schema 
-and remove it from arm,smmu.yaml.
+url:    https://github.com/intel-lab-lkp/linux/commits/Frank-Li/i3c-add-target-mode-support/20240130-035826
+base:   https://git.kernel.org/pub/scm/linux/kernel/git/gregkh/tty.git tty-testing
+patch link:    https://lore.kernel.org/r/20240129195321.229867-2-Frank.Li%40nxp.com
+patch subject: [PATCH v5 1/8] i3c: add target mode support
+config: sh-randconfig-r122-20240202 (https://download.01.org/0day-ci/archive/20240203/202402030437.GdGCrKeK-lkp@intel.com/config)
+compiler: sh4-linux-gcc (GCC) 13.2.0
+reproduce: (https://download.01.org/0day-ci/archive/20240203/202402030437.GdGCrKeK-lkp@intel.com/reproduce)
 
-Rob
+If you fix the issue in a separate patch/commit (i.e. not just a new version of
+the same patch/commit), kindly add following tags
+| Reported-by: kernel test robot <lkp@intel.com>
+| Closes: https://lore.kernel.org/oe-kbuild-all/202402030437.GdGCrKeK-lkp@intel.com/
+
+All errors (new ones prefixed by >>):
+
+   sh4-linux-ld: drivers/i3c/target.o: in function `i3c_target_ctrl_destroy':
+>> target.c:(.text+0x264): undefined reference to `i3c_target_cfs_remove_ctrl_group'
+   sh4-linux-ld: drivers/i3c/target.o: in function `__i3c_target_func_register_driver':
+>> target.c:(.text+0x4bc): undefined reference to `i3c_target_cfs_add_func_group'
+   sh4-linux-ld: drivers/i3c/target.o: in function `__i3c_target_ctrl_create':
+>> target.c:(.text+0x778): undefined reference to `i3c_target_cfs_add_ctrl_group'
+   sh4-linux-ld: drivers/i3c/target.o: in function `devm_i3c_target_ctrl_release':
+   target.c:(.text+0x7b8): undefined reference to `i3c_target_cfs_remove_ctrl_group'
+   sh4-linux-ld: drivers/media/i2c/tc358746.o: in function `tc358746_probe':
+   tc358746.c:(.text+0x17c4): undefined reference to `devm_clk_hw_register'
+   sh4-linux-ld: tc358746.c:(.text+0x17c8): undefined reference to `devm_of_clk_add_hw_provider'
+   sh4-linux-ld: tc358746.c:(.text+0x17cc): undefined reference to `of_clk_hw_simple_get'
+
+-- 
+0-DAY CI Kernel Test Service
+https://github.com/intel/lkp-tests/wiki
 
