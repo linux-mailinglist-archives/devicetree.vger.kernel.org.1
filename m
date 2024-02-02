@@ -1,255 +1,172 @@
-Return-Path: <devicetree+bounces-38199-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-38200-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3532C847E03
-	for <lists+devicetree@lfdr.de>; Sat,  3 Feb 2024 02:01:28 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 755AE847E57
+	for <lists+devicetree@lfdr.de>; Sat,  3 Feb 2024 03:21:05 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 5C16FB228ED
-	for <lists+devicetree@lfdr.de>; Sat,  3 Feb 2024 01:01:25 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 9AA111C20F6A
+	for <lists+devicetree@lfdr.de>; Sat,  3 Feb 2024 02:21:04 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7598C80B;
-	Sat,  3 Feb 2024 01:01:19 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A0FB723DE;
+	Sat,  3 Feb 2024 02:21:01 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=nxp.com header.i=@nxp.com header.b="hLP+NBkD"
+	dkim=pass (1024-bit key) header.d=samsung.com header.i=@samsung.com header.b="CjL1dJsd"
 X-Original-To: devicetree@vger.kernel.org
-Received: from EUR04-HE1-obe.outbound.protection.outlook.com (mail-he1eur04on2049.outbound.protection.outlook.com [40.107.7.49])
+Received: from mailout2.samsung.com (mailout2.samsung.com [203.254.224.25])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 77BD310E6;
-	Sat,  3 Feb 2024 01:01:16 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.107.7.49
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1706922079; cv=fail; b=B8lP7B3BgIZDAnTjsmDrM3anpnznH4DpdXJ+lwxPz1CSBgYLKP5NAVmOySrFBOtbvEgQ691Ezh60OXBSrgE1fOyGydvzEM88yxvAAI8hiinqgwFmIeOt0VwExceA1Ezs3Cc7XoVWP/1AyR4b8+GlznUjPpPGFnxzrKXyI9okFwA=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1706922079; c=relaxed/simple;
-	bh=YlZ4CL/EHNH6OuO68tyuzzD9eCjFovXogcfuNNNVrL0=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:Content-Type:
-	 Content-Disposition:In-Reply-To:MIME-Version; b=LMuxNvpcdIJeU65zA+LujmJA6LkJS3ybf7iPFtMyN0n2ZAU04pQ7tB0SQBLrhn2hRTEY0vyG3pgYwX6Nz9lLhoqkNVFXRiJAOPENejt9EQw9nOtcjhogtskShgl9nQq5PHP4CGU323UMYEzMi8zuYWu7J1R0AlKj0Qfwl68aFuU=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com; spf=pass smtp.mailfrom=nxp.com; dkim=pass (1024-bit key) header.d=nxp.com header.i=@nxp.com header.b=hLP+NBkD; arc=fail smtp.client-ip=40.107.7.49
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=nxp.com
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=WOZjMtoSsnyWxKHbBq4b81Ea8Qpn0fD9+2mEjErGJWqzEHYdOyrjpOdflAxwr3y616HQsIdAEQEDjrq59zEywh6HTK7xj1cOCIgJgEHbh26dB7bKO+tKDS4OrmFQ/wbGCLgMlvETE6WjZLoL8qKwX5KF27ynw5kAgOdratekIBFgoP98HkcXVL+Of8szge2Zk7wBbXONhTwbcjK5Gfl1qJD/Hrf+FsjGL7GFVJkJxJedI3Cy8zJ02VSCW3sjMBmbT+SZXcs8aComtCJ+vbbZyU8b9luZFkJw1c1q++BKuCzJe8K3tZ4aduth/as1mXdnYP7timMr2KPLoyZ2FtQ8Mg==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=D2x7qCQQufb53CvI2fg83Lz/BQ2+FhrWDKcI9pC4YZ4=;
- b=eeNJXJmR86z6LU9lgMbxzB8WF6xp6iZL+AhmuwGPXQYiBv5bV7xPhVe0mhHAyBfYlebNTI+EipifvqMmHKVI38cugaf4YlkMPnGWXH7ak56ZbSY8tBmAtLTedvwb82haNuLOGUB8TpqaoqzP61zWPGpxg/Y70gZ4341loruELU70FJ5dcTW3MsQPFBgyRlor5YxdqylO/eDCyIoXREuB0Wlm/I1fC6MI/MbQc2v6oYU2hdWIfbEFCuP4YNBe7xR7DyZZAuQrpTtr6ckzOMeqUJArsLyOB9hpKid5hjLNJHwK6fTJcvkA7vXcqhujOfFUbeeuPgVyF6nK1+hqyWV6XA==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
- header.d=nxp.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector2;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=D2x7qCQQufb53CvI2fg83Lz/BQ2+FhrWDKcI9pC4YZ4=;
- b=hLP+NBkDVo+RFXYJPdE6pI+QYxMM0CerqnB01oJmQzwZfZSefq7zv4rXxquCvtdP1vOCyl9zMb7UHIAC3QdkdrR7ibC+ZPTAJDJnrvXMRUty1EKPMRZM1q56i5q81/Bn0kBj8Lml9OirpTbKA60S9hfO+u+beYo9YlwGvOYZRkk=
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=nxp.com;
-Received: from PAXPR04MB9642.eurprd04.prod.outlook.com (2603:10a6:102:240::14)
- by PAXPR04MB9350.eurprd04.prod.outlook.com (2603:10a6:102:2b7::10) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7249.26; Sat, 3 Feb
- 2024 01:01:13 +0000
-Received: from PAXPR04MB9642.eurprd04.prod.outlook.com
- ([fe80::c8b4:5648:8948:e85c]) by PAXPR04MB9642.eurprd04.prod.outlook.com
- ([fe80::c8b4:5648:8948:e85c%3]) with mapi id 15.20.7249.027; Sat, 3 Feb 2024
- 01:01:12 +0000
-Date: Fri, 2 Feb 2024 20:01:05 -0500
-From: Frank Li <Frank.li@nxp.com>
-To: Bjorn Helgaas <helgaas@kernel.org>
-Cc: Rob Herring <robh+dt@kernel.org>, manivannan.sadhasivam@linaro.org,
-	bhelgaas@google.com, conor+dt@kernel.org,
-	devicetree@vger.kernel.org, festevam@gmail.com,
-	hongxing.zhu@nxp.com, imx@lists.linux.dev, kernel@pengutronix.de,
-	krzysztof.kozlowski+dt@linaro.org, krzysztof.kozlowski@linaro.org,
-	kw@linux.com, l.stach@pengutronix.de,
-	linux-arm-kernel@lists.infradead.org, linux-imx@nxp.com,
-	linux-kernel@vger.kernel.org, linux-pci@vger.kernel.org,
-	lpieralisi@kernel.org, s.hauer@pengutronix.de, shawnguo@kernel.org
-Subject: Re: [PATCH v9 05/16] PCI: imx6: Using "linux,pci-domain" as slot ID
-Message-ID: <Zb2QUTenlj3kEeE/@lizhi-Precision-Tower-5810>
-References: <Zb1rD4WK5D0ckKos@lizhi-Precision-Tower-5810>
- <20240202225116.GA732628@bhelgaas>
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20240202225116.GA732628@bhelgaas>
-X-ClientProxiedBy: SA9PR13CA0012.namprd13.prod.outlook.com
- (2603:10b6:806:21::17) To PAXPR04MB9642.eurprd04.prod.outlook.com
- (2603:10a6:102:240::14)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8E9A863DD
+	for <devicetree@vger.kernel.org>; Sat,  3 Feb 2024 02:20:58 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=203.254.224.25
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1706926861; cv=none; b=ZAE8iDeOQ5rIf8mi+Oe5fnhjajUPR+xIv6j6LkWQezfMr52x3lTXMRGLSRsehDvh0FuX8CnRVfT0LoCACpGNOeunJGkTBQoapPr4lnWRhJa6TN24TIBKfopV7BilH9S1ILe/C4xjLAwAuQV4niOmZK4uKcuAiiDLL/+jR78oSWg=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1706926861; c=relaxed/simple;
+	bh=wPUk1BPhWZU4IVetHCywU4mKyGrBFvnVln1QytgmoUQ=;
+	h=From:To:Cc:Subject:Date:Message-Id:Content-Type:References; b=bsn59vgsigoU8GYTswn09obT27V8ykwhp74rJieSZHUd2Xwvhycxe8RK3TK75I+HHA8FhHwIxVBR3NLznTqKVs7DctA6DHQGs+XfWDXfOKkVpdKOkFFS/FeIvl8Sw7drunqNaFkh6DyTYbrGIsRwvwoOKCKhCNz/mAyQX6LUkkc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=samsung.com; spf=pass smtp.mailfrom=samsung.com; dkim=pass (1024-bit key) header.d=samsung.com header.i=@samsung.com header.b=CjL1dJsd; arc=none smtp.client-ip=203.254.224.25
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=samsung.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=samsung.com
+Received: from epcas5p3.samsung.com (unknown [182.195.41.41])
+	by mailout2.samsung.com (KnoxPortal) with ESMTP id 20240203022056epoutp02fe894f5fe0a304c123f4b70e8359b303~wOO6daQvj0256702567epoutp02T
+	for <devicetree@vger.kernel.org>; Sat,  3 Feb 2024 02:20:56 +0000 (GMT)
+DKIM-Filter: OpenDKIM Filter v2.11.0 mailout2.samsung.com 20240203022056epoutp02fe894f5fe0a304c123f4b70e8359b303~wOO6daQvj0256702567epoutp02T
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=samsung.com;
+	s=mail20170921; t=1706926856;
+	bh=VKWOrraSGT+Gzd2NQjMMwCtPcf85H8O4/u9KpUJECSg=;
+	h=From:To:Cc:Subject:Date:References:From;
+	b=CjL1dJsdRZ3NKEh8TMsCUnpw5c+vgfe1igpulgJSZOzhK8FIPoCu/az9UGCmUkuxm
+	 9HA3mc0FKdhRM3uFexhl8jl9Y8U1toKJP/FPBgtDYfTtDCobK6+58kqM07uP683jGi
+	 kCB+ku1mu0jbdXIzXU7Z/H5keyRqlo8CqL9xq+AA=
+Received: from epsnrtp1.localdomain (unknown [182.195.42.162]) by
+	epcas5p2.samsung.com (KnoxPortal) with ESMTP id
+	20240203022055epcas5p2ff1cb017c7ea0a608c725fc0a6238787~wOO6CSq8Q0473604736epcas5p2q;
+	Sat,  3 Feb 2024 02:20:55 +0000 (GMT)
+Received: from epsmgec5p1-new.samsung.com (unknown [182.195.38.177]) by
+	epsnrtp1.localdomain (Postfix) with ESMTP id 4TRbwQ1dWPz4x9Ps; Sat,  3 Feb
+	2024 02:20:54 +0000 (GMT)
+Received: from epcas5p2.samsung.com ( [182.195.41.40]) by
+	epsmgec5p1-new.samsung.com (Symantec Messaging Gateway) with SMTP id
+	5A.A2.19369.603ADB56; Sat,  3 Feb 2024 11:20:54 +0900 (KST)
+Received: from epsmtrp2.samsung.com (unknown [182.195.40.14]) by
+	epcas5p1.samsung.com (KnoxPortal) with ESMTPA id
+	20240202212456epcas5p15589813cd79526e9d0c444082e2f0e51~wKMe2a4fu2319923199epcas5p1c;
+	Fri,  2 Feb 2024 21:24:56 +0000 (GMT)
+Received: from epsmgmcp1.samsung.com (unknown [182.195.42.82]) by
+	epsmtrp2.samsung.com (KnoxPortal) with ESMTP id
+	20240202212456epsmtrp225338eb9a31b5ce02096033e4d2a6fea~wKMe1srJ10549205492epsmtrp2Z;
+	Fri,  2 Feb 2024 21:24:56 +0000 (GMT)
+X-AuditID: b6c32a50-9e1ff70000004ba9-2e-65bda3061007
+Received: from epsmtip1.samsung.com ( [182.195.34.30]) by
+	epsmgmcp1.samsung.com (Symantec Messaging Gateway) with SMTP id
+	0B.43.18939.8AD5DB56; Sat,  3 Feb 2024 06:24:56 +0900 (KST)
+Received: from cheetah.sa.corp.samsungelectronics.net (unknown
+	[107.109.115.53]) by epsmtip1.samsung.com (KnoxPortal) with ESMTPA id
+	20240202212455epsmtip1c148fc79a26232a10e5b2b1a89409868~wKMdBvRWu2776927769epsmtip1C;
+	Fri,  2 Feb 2024 21:24:54 +0000 (GMT)
+From: Tamseel Shams <m.shams@samsung.com>
+To: alim.akhtar@samsung.com, linux-fsd@tesla.com, robh+dt@kernel.org,
+	krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
+	gregkh@linuxfoundation.org, jirislaby@kernel.org
+Cc: linux-arm-kernel@lists.infradead.org, linux-samsung-soc@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	linux-serial@vger.kernel.org, Tamseel Shams <m.shams@samsung.com>
+Subject: [PATCH 1/2] serial: samsung: honor fifosize from dts at first
+Date: Sat,  3 Feb 2024 02:54:47 +0530
+Message-Id: <20240202212448.74840-1-m.shams@samsung.com>
+X-Mailer: git-send-email 2.17.1
+X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFvrBKsWRmVeSWpSXmKPExsWy7bCmhi7b4r2pBs3XOC0ezNvGZrFm7zkm
+	i/lHzrFaNC9ez2bxbq6MRd+Lh8wWmx5fY7V4+Crc4vKuOWwWM87vY7I4s7iX3eJu62J2i9a9
+	R9gdeD02repk87hzbQ+bx/65a9g9Ni+p9+jbsorR41/TXHaPz5vkAtijsm0yUhNTUosUUvOS
+	81My89JtlbyD453jTc0MDHUNLS3MlRTyEnNTbZVcfAJ03TJzgG5VUihLzCkFCgUkFhcr6dvZ
+	FOWXlqQqZOQXl9gqpRak5BSYFOgVJ+YWl+al6+WlllgZGhgYmQIVJmRnzNtkVLCIp+LF7LQG
+	xq1cXYycHBICJhKtN66xdTFycQgJ7GGUWHP3MyOE84lR4t+eOcxwzs1bU1m7GDnAWhr2B0HE
+	dzJK/O/bxAThtDJJbJ68kw2kiE1AU+L4eW6QuIjAJkaJaVPfgk1iFjjDKHGhYz0zyHJhATeJ
+	/rnLwGwWAVWJ30/3sILYvAIWEhO3nWCEOFBeYvWGA2DNEgL32CV2r+9ghUi4SCxYc58ZwhaW
+	eHV8CzuELSXx+d1eNgg7XWLuw14mCLtAYtmu71A19hIHrsxhAbmUGejS9bv0IcKyElNPrQMr
+	Zxbgk+j9/QSqlVdixzwYW1Hi/+5+qDHiEu9WTIE6x0PiwA8IW0ggVmLjwXOsExhlZyFsWMDI
+	uIpRKrWgODc9Ndm0wFA3L7UcHlHJ+bmbGMFJUCtgB+PqDX/1DjEycTAeYpTgYFYS4Z0gvDdV
+	iDclsbIqtSg/vqg0J7X4EKMpMNAmMkuJJucD03BeSbyhiaWBiZmZmYmlsZmhkjjv69a5KUIC
+	6YklqdmpqQWpRTB9TBycUg1M4b2+Bixhfya/2F8lOyfRcFXgPunXLDeMjeQf5p7WvHrqXPkE
+	SbfmK5PXb9m3z0RW7GFP5JmtAX72T1YH1zC5iJ6+/32B1eXp+6vu+51+PE9BWGLvlyUPbkYv
+	UL7z8KWC2FEd19T85R2d1exGh1hEmbz27fprUOPp9XLHK9dpQpf8py3lD/y83+PId/uo8uac
+	BKdYh8f1peF3Nu5ZevaT3gOGj5JcTS+D7jtMf5hyn+ePUSj3DhWDoj5TkRk6G6Rmi7xZFDmP
+	9fWEczYR8xSDeKf92l66OknbfuZvq0WLZom6nLrfmf/L/o1k1d/wXe0x5VN/fUpLlGXQNOHW
+	TZrgFrBiyeIYV/umzH7LFv0mJZbijERDLeai4kQAzgomOgsEAAA=
+X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFprHLMWRmVeSWpSXmKPExsWy7bCSnO6K2L2pBo3TzSwezNvGZrFm7zkm
+	i/lHzrFaNC9ez2bxbq6MRd+Lh8wWmx5fY7V4+Crc4vKuOWwWM87vY7I4s7iX3eJu62J2i9a9
+	R9gdeD02repk87hzbQ+bx/65a9g9Ni+p9+jbsorR41/TXHaPz5vkAtijuGxSUnMyy1KL9O0S
+	uDLmbTIqWMRT8WJ2WgPjVq4uRg4OCQETiYb9QV2MXBxCAtsZJR4tfcvWxcgJFBeXmPZrPyOE
+	LSyx8t9zdoiiZiaJP3vvsIA0swloShw/zw0SFxHYxShx/1gbK4jDLHCJUeL1x5+sIN3CAm4S
+	/XOXMYPYLAKqEr+f7gGL8wpYSEzcdgJqg7zE6g0HmCcw8ixgZFjFKJpaUJybnptcYKhXnJhb
+	XJqXrpecn7uJERyEWkE7GJet/6t3iJGJg/EQowQHs5II7wThvalCvCmJlVWpRfnxRaU5qcWH
+	GKU5WJTEeZVzOlOEBNITS1KzU1MLUotgskwcnFINTAWuN32+SZ32a78qvrytWafj5ZyN/H6+
+	D+Q+cVo9+KbYOFW8ya27QL+nLju/Szi3+Ninuwr3ij/lJzucKemd/7XE+9zMBUqrC3j9ymoK
+	Z9pM8/39zHyDQtNdz/4rMhk3PeUf5wsYmOYd+CYbXvKbd33Kby+27t1a1w9uCIme4nPsv3/p
+	OdYQHZWMf8vOv/cV9fo+daFAq0RZzIdHt4+Ueuof/PGfeb7dGUf55YdS7f13185KY5WbttDw
+	TrG/e1zISqUzsyoT7y912z/Zuu5g+oILl1deSjlx+XD7/xs8fRWL+VuuartvmmT/NNq6UW/m
+	Zr1vDV0m7+/Yizh/qFYLcl63T5Sz7NXEwEcsR3yClViKMxINtZiLihMBVCpzwLECAAA=
+X-CMS-MailID: 20240202212456epcas5p15589813cd79526e9d0c444082e2f0e51
+X-Msg-Generator: CA
+Content-Type: text/plain; charset="utf-8"
+X-Sendblock-Type: REQ_APPROVE
+CMS-TYPE: 105P
+DLP-Filter: Pass
+X-CFilter-Loop: Reflected
+X-CMS-RootMailID: 20240202212456epcas5p15589813cd79526e9d0c444082e2f0e51
+References: <CGME20240202212456epcas5p15589813cd79526e9d0c444082e2f0e51@epcas5p1.samsung.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: PAXPR04MB9642:EE_|PAXPR04MB9350:EE_
-X-MS-Office365-Filtering-Correlation-Id: 716db753-3329-4f8e-01a8-08dc24539dc9
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info:
-	MpMclEeLpxINyddfSmX3K3xPgnlFm1ys64PQfSh0C4a+N/UfdUp4ygMvRInUdVB4blOeNwED4eXlP4hOyCpo+gBOpQvuVsf3QnK1kWAIF6vAp4yLogl30nVBNFUN/ME4YILiyZ45IGMSd7wI86BZY9ovV0RUyusWsU5TxfxF2JKin/pKdMJcHmBi2eDj/Sar9KXB17BD6mVPO80trnTFh5dc8fbCgQfa1hCMvHYsskFd0pV6zgduMSclwL5a6FlJUrTdzZDtLT4/NJjYkIEkYMMCIGF7RgVvUetzy4He19/FtOxdE6Y9oZHNtzH+0WyzRwXZVbrr/MaXpXJ64Iz84v4xgOAB9H7MWPnnxkDu0WUEke7E/Ce/l7fLi/G+mpiPK8AF6zs/5lDj4pVYmUQIEZOV0aSVQ4LyBl8QgXgKc4ULMK9bRTxmiQa0a5QbAk4mFgxz4OOJHiulVU9L2hhPndceXzdV6CHyw0Osh8Mnm8cI6+7WrraFEh3zUxtzy7qeiGa20S2zA8P9y4KqQMlX3R+fKTXBVd+PqS8WQ2OiAMkwR/gPJb91C6MZIspVbDtbzlfMqTrOoW1W9ity2Zfs6wNJShGydDcVOMOlqb0IguE=
-X-Forefront-Antispam-Report:
-	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:PAXPR04MB9642.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230031)(7916004)(346002)(366004)(39860400002)(396003)(376002)(136003)(230922051799003)(186009)(1800799012)(451199024)(64100799003)(83380400001)(9686003)(6512007)(26005)(7416002)(41300700001)(5660300002)(6666004)(52116002)(38100700002)(6506007)(966005)(8676002)(8936002)(4326008)(478600001)(316002)(6486002)(38350700005)(6916009)(86362001)(66556008)(66946007)(66476007)(33716001)(2906002);DIR:OUT;SFP:1101;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0:
-	=?us-ascii?Q?WCpOIx0sbK6OuvKyNiEtdXsne0traF0FuElHqIFidf6GDA/QZnwWDSS2ES0T?=
- =?us-ascii?Q?8pvJWTH3iF7eQNSg3Vkb6y4ax60+zwjBulpzSvnl5kfbwRStlVsG4XueFkt4?=
- =?us-ascii?Q?uepNhi6gyChhuhUNYDYbKmT9eEPsM8c6OuiL/V6W1k5UqUkzAzTtxi/Q1h/y?=
- =?us-ascii?Q?1vqrKjQaJAA5Njc3zhlbblAbfZIQwLMUJOqk/X4xMQmMvu6S6GI1alY3DiOI?=
- =?us-ascii?Q?fI27Ja2cRHtQJvY16KKoM2rXROhNy7WMGCkAq0GiMB99DJ0iVPMPsuxmKTGz?=
- =?us-ascii?Q?RjpLlf87OOPm/tk/z+Yej7VmrSbm/McuDBwRJuhh9+f/UappZEhBC444toJa?=
- =?us-ascii?Q?mYsaWGF4if8FzvGPkYU7mr08eMPoKLkr4drj0GpppV2kNLhi3ziE+/PO3Rwg?=
- =?us-ascii?Q?zQdGabnnV0+AcXiVcC8r/ojCjg+kLCiVtzSDS3LHkKgytJSvpLeLvqQ8v0ep?=
- =?us-ascii?Q?3wV1nP1Fi3D9EK40XfQqZA6i8TXtsBrpUyvrnM1yRhK7nGoFRNyysC7pE0+C?=
- =?us-ascii?Q?0LOnyKGp2YNvMocjzRq+mzRYz/5rYiEfpnwjwc+usQKAeYVzxEXZSFIQlxMK?=
- =?us-ascii?Q?XTwVe2XcTyJNzFfHLFTc7tlI3xE/jY8G2dZUMUSW+iOV9x8Eua2wYFZU9GKp?=
- =?us-ascii?Q?vkGuj+BYat6pOm4MbLCWoe8Y6Kc7ckSOC/Dd5BEd0+uPYAeD3lmx4D2Urxsq?=
- =?us-ascii?Q?QSZ42Fkyn9nwkwLg8ySrvu8ebL0/nMJEYdEPHVkgQ/kOt0wA5V2YyiPJ41mb?=
- =?us-ascii?Q?wfTrCYgQmIWya0BcvC46yDHAF8NNa/DX4PKMIziyxEe775PdaD66Nr//2bPV?=
- =?us-ascii?Q?wIfJjLlb8ConMiMPfgCo6HwMHDNNQrLD4be5YrMCCQ/Vb0KOgTHdIaXMxS1h?=
- =?us-ascii?Q?gielOZuQPTgnfPtdeAH/1AV3WoXko8oI2rLKeNgDfWgf9YPpRV3ahPDVfXXq?=
- =?us-ascii?Q?64hoAmniOEWnNxyzvOTNuv4+267r2KiYuRgvASnu4Yfm3/G0d7sWCfwIqRlN?=
- =?us-ascii?Q?h6xo262ZLEv8qBem57t0k6SBybmx+VnSAcJdT8pqwoW+mN9R4USUoYJ6LBPW?=
- =?us-ascii?Q?yC8lt4DyOuuSnERioIyVVkdGk+2zbnhfW+IzVEX65rgchvNvUOm4GBeoPkA6?=
- =?us-ascii?Q?1TbfTRKyqKLO1dE7rta21Asc4DgO8h+Vb+Q7AbxaFRN6PlqTec8QX62Q6gBu?=
- =?us-ascii?Q?Ge9LaRCOhRm9JTG23LKplPTgh08qt7IX2SxpHQs4LSTD+nEO+95Fv+DZEG00?=
- =?us-ascii?Q?9ABTX1P2pAVc38GLpoutWo7FjZPM6jrEwP2usFVg2ArCkpDWgS76o7JhG75l?=
- =?us-ascii?Q?FOdvOVxloq2NpbrZ9/cm5suTRTlzCjHaLHicfFbsX7GcDZSota9ftJu80ob2?=
- =?us-ascii?Q?cY5h/XPI2jAopUWilDe5A0ZOr/eTXbHqSiTHOsHgsVJxxDv1Tt4WakRviL+c?=
- =?us-ascii?Q?ULVKEfJVkBy/6yRFCDz7HcJfTgPaycevdF996jDCZBRbTBtrk71uwEXaOx3N?=
- =?us-ascii?Q?kmVQIyIAjCMr/wCXiVGXJKDzWapt5x44rSconT8yBS0oiAtJLNPAvEt7lGOr?=
- =?us-ascii?Q?FvachEZkG/NAKEwX6uDKOt2NIAeOQdGo4SQBvRiA?=
-X-OriginatorOrg: nxp.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 716db753-3329-4f8e-01a8-08dc24539dc9
-X-MS-Exchange-CrossTenant-AuthSource: PAXPR04MB9642.eurprd04.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 03 Feb 2024 01:01:12.9007
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: 29t9YhYD8OD4HwL1HL12KIK42/Fk2z0ewQO+2xmUueJHpVDk5ItIZ/oD8tl7wANmCXaF5i/SpRBF6VCXrANaoA==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: PAXPR04MB9350
 
-On Fri, Feb 02, 2024 at 04:51:16PM -0600, Bjorn Helgaas wrote:
-> [Rob to to: line]
-> 
-> On Fri, Feb 02, 2024 at 05:22:07PM -0500, Frank Li wrote:
-> > On Fri, Feb 02, 2024 at 03:54:31PM -0600, Bjorn Helgaas wrote:
-> > > On Fri, Jan 19, 2024 at 12:11:11PM -0500, Frank Li wrote:
-> > > > Avoid use get slot id by compared with register physical address. If there
-> > > > are more than 2 slots, compared logic will become complex.
-> > > > 
-> > > > "linux,pci-domain" already exist at dts since commit:
-> > > > 	commit (c0b70f05c87f3b arm64: dts: imx8mq: use_dt_domains for pci node).
-> > > > 
-> > > > So it is safe to remove compare basic address code:
-> > > > 	...
-> > > > 	if (dbi_base->start == IMX8MQ_PCIE2_BASE_ADDR)
-> > > > 		imx6_pcie->controller_id = 1;
-> > > > 	...
-> > > 
-> > > I have no idea what this is telling me.  I guess you don't want to use
-> > > IMX8MQ_PCIE2_BASE_ADDR to decide something?  That much sounds good:
-> > > the *address* of some MMIO space doesn't tell us anything about the
-> > > function of that space.
-> > 
-> > You are right. If there are more than two controller. The check logic
-> > will be extremely complex.
-> > 
-> > There are some discussin at below thread about linux,pci-domain
-> > https://lore.kernel.org/imx/20231206165953.GA717921@bhelgaas/
-> 
-> My response here was too low level, just about trivial syntactic and
-> style issues.  I should have seen the larger issue at the time; sorry
-> about that.
-> 
-> > https://lore.kernel.org/imx/20231217175158.GF6748@thinkpad/
-> 
-> That's a good response from Mani, but again not relevant to my point.
-> 
-> My point here is that "compatible" should tell the driver how to
-> operate the device, i.e., the driver knows what registers are present
-> and how they work.
-> 
-> If you have two variant devices that both implement a register that
-> can be used to distinguish them, a single "compatible" string might be
-> enough because the driver can use that register to tell the
-> difference.
-> 
-> If the driver can't tell the difference by looking at the hardware
-> itself, I think you need a separate "compatible" string for it.  Of
-> course I'm far from a DT expert, so please correct this if necessary,
-> Rob, et al.
-> 
-> > > I expect the "compatible" string to tell the driver what the
-> > > programming model of the device is.
-> > > 
-> > > > +	/* Using linux,pci-domain as PCI slot id */
-> > > > +	imx6_pcie->controller_id = of_get_pci_domain_nr(node);
-> > > > +	/*
-> > > > +	 * If there are no "linux,pci-domain" property specified in DT, then assume only one
-> > > > +	 * controller is available.
-> > > > +	 */
-> > > > +	if (imx6_pcie->controller_id == -EINVAL)
-> > > > +		imx6_pcie->controller_id = 0;
-> > > > +	else if (imx6_pcie->controller_id < 0)
-> > > > +		return dev_err_probe(dev, imx6_pcie->controller_id,
-> > > > +				     "linux,pci-domain have wrong value\n");
-> > > 
-> > > Maybe I'm missing something here.  It looks like this driver uses
-> > > controller_id to distinguish between hardware variants or maybe
-> > > between two Root Ports (slots?) in the same SoC?
-> > 
-> > Yes!
-> > 
-> > >   imx6_pcie_grp_offset
-> > >     return imx6_pcie->controller_id == 1 ? IOMUXC_GPR16 : IOMUXC_GPR14;
-> > > 
-> > >   imx6_pcie_configure_type
-> > >     id = imx6_pcie->controller_id
-> > >     if (!drvdata->mode_mask[id])         # <-- looks unsafe
-> > 
-> > I can add safe check here.
-> > 
-> > >       id = 0;
-> > >     regmap_update_bits(drvdata->mode_off[id], ...)
-> > > 
-> > > (This "mode_mask[id]" looks like it will reference garbage if the DT
-> > > supplies "linux,pci-domain = <2>".  A bogus DT shouldn't be able to
-> > > cause a driver to misbehave like that.)
-> > 
-> > Suppose I can use dt-bind doc to force to 0,1 and safe check here.
-> 
-> Nope.  The driver must protect itself from garbage in the DT.
-> 
-> > > That doesn't seem related to "linux,pci-domain" at all.
-> > 
-> > I added comments about
-> > /* Using linux,pci-domain as PCI slot id */
-> 
-> That doesn't make it related :)
+Currently for platforms which passes UART fifosize from DT gets
+override by local driver structure "s3c24xx_serial_drv_data",
+which is not indentded. Change the code to honor fifosize from
+device tree at first.
 
-Okay, linux,pci-domain is not good method for this. Anyways, previous
-implement is wrong.
+Signed-off-by: Tamseel Shams <m.shams@samsung.com>
+---
+ drivers/tty/serial/samsung_tty.c | 14 ++++++++------
+ 1 file changed, 8 insertions(+), 6 deletions(-)
 
-Let me skip it and think a better method to fix this problem later.
+diff --git a/drivers/tty/serial/samsung_tty.c b/drivers/tty/serial/samsung_tty.c
+index 71d17d804fda..e4c4c9f4f9b0 100644
+--- a/drivers/tty/serial/samsung_tty.c
++++ b/drivers/tty/serial/samsung_tty.c
+@@ -1990,8 +1990,7 @@ static int s3c24xx_serial_probe(struct platform_device *pdev)
+ 	}
+ 
+ 	if (np) {
+-		of_property_read_u32(np,
+-			"samsung,uart-fifosize", &ourport->port.fifosize);
++		ret = of_property_read_u32(np, "samsung,uart-fifosize", &ourport->port.fifosize);
+ 
+ 		if (of_property_read_u32(np, "reg-io-width", &prop) == 0) {
+ 			switch (prop) {
+@@ -2009,10 +2008,13 @@ static int s3c24xx_serial_probe(struct platform_device *pdev)
+ 		}
+ 	}
+ 
+-	if (ourport->drv_data->fifosize[index])
+-		ourport->port.fifosize = ourport->drv_data->fifosize[index];
+-	else if (ourport->info->fifosize)
+-		ourport->port.fifosize = ourport->info->fifosize;
++	if (ret) {
++		if (ourport->drv_data->fifosize[index])
++			ourport->port.fifosize = ourport->drv_data->fifosize[index];
++		else if (ourport->info->fifosize)
++			ourport->port.fifosize = ourport->info->fifosize;
++	}
++
+ 	ourport->port.has_sysrq = IS_ENABLED(CONFIG_SERIAL_SAMSUNG_CONSOLE);
+ 
+ 	/*
+-- 
+2.17.1
 
-Frank 
-> 
-> > We may add new property about controller-id, but there already have common
-> > one "linux,pci-domain", which value in upstreamed dts exactly match our
-> > expection, I also found other platform use it as slot id in kernel tree.
-> > 
-> > Any way, we can continue discuss the better solution here. But I hope
-> > it was not block whole 16 patches. we can skip this one firstly.
-> > 
-> > I still have more than 10 clean up patches my local tree.
-> > 
-> > > 
-> > > Bjorn
 
