@@ -1,140 +1,177 @@
-Return-Path: <devicetree+bounces-37937-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-37938-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id E3E0B846E0C
-	for <lists+devicetree@lfdr.de>; Fri,  2 Feb 2024 11:33:25 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id D1DE2846E26
+	for <lists+devicetree@lfdr.de>; Fri,  2 Feb 2024 11:43:25 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 1A1971C225C0
-	for <lists+devicetree@lfdr.de>; Fri,  2 Feb 2024 10:33:25 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 993CAB22583
+	for <lists+devicetree@lfdr.de>; Fri,  2 Feb 2024 10:43:21 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 34710131E21;
-	Fri,  2 Feb 2024 10:33:23 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1BE3F13BEB8;
+	Fri,  2 Feb 2024 10:43:16 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=rivosinc-com.20230601.gappssmtp.com header.i=@rivosinc-com.20230601.gappssmtp.com header.b="negZTzXR"
+	dkim=pass (2048-bit key) header.d=9elements.com header.i=@9elements.com header.b="cF9R312n"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pl1-f182.google.com (mail-pl1-f182.google.com [209.85.214.182])
+Received: from mail-pg1-f171.google.com (mail-pg1-f171.google.com [209.85.215.171])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A4870131747
-	for <devicetree@vger.kernel.org>; Fri,  2 Feb 2024 10:33:21 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.182
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2FC6313BE92
+	for <devicetree@vger.kernel.org>; Fri,  2 Feb 2024 10:43:12 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.215.171
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1706870003; cv=none; b=LhKROBoR78RCc+5TyItC167ysIhFVvJ+TujVoAKjxSzR6Jl93y29Alc2N+QWJx9JBzPXc4TjKrNvAMmBrys7k/6PLCYIdOJXGfANr64IcQF8XHa5VufDPnPduvV2iQDUQgHGSdlpa3zdZpPbvoHN0cCWk0CxnJrZuXkJC7iwqzI=
+	t=1706870596; cv=none; b=o7vDH1ajHYnN+SMYUC5pHPxsuYMEyJO17DGUKA5RcRHx3MtgxI+vc7pxaL6V+19pjQUs504doRFjNWy+aZT0xg6D3lqA3WynlxYqM0xkDuyIoz/eRszVU2utGk2993brH1R10ZI9goNTAvwg9QTr9bcroArl4oqHp65DCAD9XtU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1706870003; c=relaxed/simple;
-	bh=DMMt/shyGWqcD+ib28kiLpaMXR+euETZG735wBIYD+c=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=flSI9D27SN6qlPzxdnGGM2YlJ8ZaTAApeaT8Vln+mTUikN5pkSPdTkc2fAevbUz/hkxSXb5hW1fJqBBmFxjyk/gesT7s0Gwa4y2A1RnefyPDWFpVhG20BqEc1QoG0P9w84wp8fHZB7iDaKis/pO5IRQDc9IJsALRKlk06oVS/FI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=rivosinc.com; spf=pass smtp.mailfrom=rivosinc.com; dkim=pass (2048-bit key) header.d=rivosinc-com.20230601.gappssmtp.com header.i=@rivosinc-com.20230601.gappssmtp.com header.b=negZTzXR; arc=none smtp.client-ip=209.85.214.182
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=rivosinc.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=rivosinc.com
-Received: by mail-pl1-f182.google.com with SMTP id d9443c01a7336-1d722740622so3449575ad.0
-        for <devicetree@vger.kernel.org>; Fri, 02 Feb 2024 02:33:21 -0800 (PST)
+	s=arc-20240116; t=1706870596; c=relaxed/simple;
+	bh=n/TBT6eeeVIdmYf9KcgVa0+DUc21Gug7LVdv0WrTFr0=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=P85Fr/2Rin/jFXKdyKTVoeZ5a0JqTZKP9gVv1nSpX/0Bu6R2WrMfyZJqG0Kus6Be3BfRibtkhpzl+3EYDpGSCwRvSGcXE8X91kFzmTL3ryjGgiUdJ5FKQiUL7JMNGMvVu2CpNEVe93PzEAJ79gUMZAdU9bGRCfJeXiA5CefymUw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=9elements.com; spf=pass smtp.mailfrom=9elements.com; dkim=pass (2048-bit key) header.d=9elements.com header.i=@9elements.com header.b=cF9R312n; arc=none smtp.client-ip=209.85.215.171
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=9elements.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=9elements.com
+Received: by mail-pg1-f171.google.com with SMTP id 41be03b00d2f7-5cddfe0cb64so1551235a12.0
+        for <devicetree@vger.kernel.org>; Fri, 02 Feb 2024 02:43:12 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=rivosinc-com.20230601.gappssmtp.com; s=20230601; t=1706870001; x=1707474801; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=T8iHE479YVvdQnvL1fZ7V63tnI2/lAPeZVx8YhIJp00=;
-        b=negZTzXRrjRf79V0Fa9wwXTO+vGf1SvuWwD9EL7YSCEc3Vi7mh40+Vt/R9kmVFnh+O
-         quYQE8upbtGWkVftruWEetnbd9P2I2NmZBPx5MviTLeDVLNzeVoiCvRW5+MqgGLhIYes
-         nnoKS8t+fdAyY4I4rbYfhgUyphZByzl+mob3zoBJDNd57Atl9pK0moK1A3C28nhW//4U
-         CbJPl3mNUsM5MhZq8qfGD2/0dixngpqh0ZDlumdOfaVzWIBZSGtZRwSQVXVdR9heJuYd
-         nL4AckRHPNbhK5eLeFg2qr8hh32MDK9ZijtdlDR5HKjeNgf4RD338n6jgD4WDJBWe3PX
-         oWiw==
+        d=9elements.com; s=google; t=1706870592; x=1707475392; darn=vger.kernel.org;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=awBS6iTmTY/pPBdOIloYqmySk/iEEgDule0WFnqfXEo=;
+        b=cF9R312nMkbSdJwsenGn9iW4KO0Abj70zi0vtG5I1l3d16I0WklBG+1gtLNRJJ1Fnx
+         WkhCw7Ylkkxx+8bhEqGeFTo3LNfwOcTn+wq/1XXsW44gyne6vPn/IsUPFAI32IIP1jeY
+         z6BpeDLiw/aBLx0bYVK0odonXG5cD3OMFdA71AwWnioOCAcEwKLlQMGo97tNarFbYvnl
+         cNJc3pqLBu5K9S3KmH6CujXS1dOrtsyNq96dG/MUUkdU7eRvs9JhKHGq+WTq36uUG/7r
+         pd6qIoTltdmPWdYRHQEsZvzIYx6j96DkxV0la1KhjFLs84R+pt84npxvCw7B15ZplTCn
+         2rlA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1706870001; x=1707474801;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=T8iHE479YVvdQnvL1fZ7V63tnI2/lAPeZVx8YhIJp00=;
-        b=bdMr7o6NVKJ9qdPEeAjh2ZTCahy3QzbNoS8pC52b0dyU0QyNuQvYK+0LPJMGwWaKhz
-         +jlVlfxU1jBvZiOa/1fFSXOYyTz32nitXsAtAz6sMqZn3v7kpRBPSrJcVsRP4kt8Y2yw
-         tV93zDQfUW9GaZ0775K1GMxiz0v5nAD5sYaDdGBCxhgwX/GujPiBgwdhm6c8XEY+j3AI
-         sxWvmUmRiTERX3dyv6U4I4eQMq/2xz+WtkxnZ67ywzillVQTGiPxhBh+x+JHlwmU0LsA
-         jmpTVjl9tcH7C3nF70xQagMiTVROhODvJvKejGVN/6BM8mq41BDIhqZ8UhBv0JVMJbPq
-         QBvg==
-X-Gm-Message-State: AOJu0YxTuRKpmz1H3l0THj9vb/Np2b444CgeHvtLP+do0SUI0wb5UIhb
-	6jxWf6Qb0ZGPOR3M9kvU7V0Manp/ZzUsO8GKhd558u4In2VXCmJ5DBuYQRPTqhc=
-X-Google-Smtp-Source: AGHT+IF6Vbai2YBU7cb51y8R4IB03FxPQx+BBkX/tfJTtHIPiA0XBZiwJtgRNHGa4tUQp7qa7GJeHQ==
-X-Received: by 2002:a05:6a20:7486:b0:19c:9c10:fa27 with SMTP id p6-20020a056a20748600b0019c9c10fa27mr5462240pzd.4.1706870000941;
-        Fri, 02 Feb 2024 02:33:20 -0800 (PST)
-X-Forwarded-Encrypted: i=0; AJvYcCUE4ny+RfqFrQN3ryErdIfcptjtiUDXiAnUOdO8oSK4hhFsFYWe37sJfIbcmbdh+n9iSFjmgJOylcGTuWgAnnJg8Ck/toMJwjx3Ha9RnlqV0ti/2dFnQVZ4XXCGAStK0s2Bkkj1LHDNHM6CSubetnEajPBYkxC9xYe/G2BeVKyhgcaF6HhrN9qRhNvnyt5NjRqcXjz3sZdsydpAemlP78SDJi21qiUfnV29zoyoqabPyCl2nt0H0NYH35uo6WJrrCjbLgTKxjk6x1J6HbmZpTnQEPVhPZmKYb1gqK2wJKCZc4D+XUbi0NdKaStXWC6Vu4NHC+Hz4pUUyObRAR3LxOueT3GnzfZoxQOZZGec1yObxzzYUR8awfMF6wo67wFXPDV6hG5v/4uxm0ip6MUS7ITWAjHGGRMBU2GPGgj2yov3Ln5fyYNe98r7y1G06yaZnA6A0ow5DAu4sxD2sZn2YJVJmrMLRIQCuGgI+YsviiAkLZ4MGpbDyMQZfXjvqhKzSoaG3+OaLdOeywYmOwTtFwAxgHgh8APY6t9bD7HG4EoJLE/rjmHWih00OTsF9hVw6ayr/q6SEo2XzVwHOt20RQ==
-Received: from ?IPV6:2a01:e0a:999:a3a0:6d51:959f:bb28:92? ([2a01:e0a:999:a3a0:6d51:959f:bb28:92])
-        by smtp.gmail.com with ESMTPSA id mj10-20020a17090b368a00b002963e682f6fsm1111059pjb.57.2024.02.02.02.33.10
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 02 Feb 2024 02:33:20 -0800 (PST)
-Message-ID: <f2e5fdbf-971c-4f73-af07-3c3a04bd0069@rivosinc.com>
-Date: Fri, 2 Feb 2024 11:33:05 +0100
+        d=1e100.net; s=20230601; t=1706870592; x=1707475392;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=awBS6iTmTY/pPBdOIloYqmySk/iEEgDule0WFnqfXEo=;
+        b=a3R2LpRLGYIowmspKDfCdaeW6Z2sTlMT77Xn0HGIus+uy2KQcKSv32sWy6f7ZK287u
+         RuSbeZ8pGlKEvjVjyW8RP4GOK3ycmPnjD0PIzMmsqFUYBJoM8IHjWYEhzkehUtsf3n0/
+         rXDutJUbsCLs0ohTDbiA2sZgQldXJA+FhUuy45jd/EyIVtw2S1gBhWUJPAYngHZTWBTh
+         Ed6j2gWTglaqD/QTZQDwMOdidhL2kbnDdeh4YgY4E++gWn/RTYO7V/iw2Ip9fEeUCcqC
+         FBZ2tT6U0F2UIOyCoaOc/cn33Dhvkr1cL66s008uggJTj2q6Cn0b1BkBgEfZbLbJyrb3
+         R97Q==
+X-Gm-Message-State: AOJu0YznrsWSsH+eamC0SqLLIyIYHC2/JfgifKqUlfsJErHZzeI6R4U7
+	Llks3OKa8frm5aGp9YJa+cPml7/xtXuviY03IvadlMsa2HlxKjyvQColuw6sHQYkWTmx0IprSxb
+	IIB8/mK+Ap2NEsCQxlrwnmNohThsfJ6mRxQU/MA==
+X-Google-Smtp-Source: AGHT+IGuiheUv23/PDxBQSBrhF8MxuJjiXvLTEQiL5VtSmukfKdGGWgNGBz5VJI7SY4IaW6Yp26vgwj+2R69veWTwrc=
+X-Received: by 2002:a05:6a21:195:b0:19e:3161:2c97 with SMTP id
+ le21-20020a056a21019500b0019e31612c97mr5830984pzb.10.1706870592435; Fri, 02
+ Feb 2024 02:43:12 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v12 22/25] irqchip: Add RISC-V advanced PLIC driver for
- direct-mode
-Content-Language: en-US
-To: Anup Patel <apatel@ventanamicro.com>
-Cc: Palmer Dabbelt <palmer@dabbelt.com>,
- Paul Walmsley <paul.walmsley@sifive.com>,
- Thomas Gleixner <tglx@linutronix.de>, Rob Herring <robh+dt@kernel.org>,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Frank Rowand <frowand.list@gmail.com>, Conor Dooley <conor+dt@kernel.org>,
- devicetree@vger.kernel.org, Saravana Kannan <saravanak@google.com>,
- Marc Zyngier <maz@kernel.org>, Anup Patel <anup@brainfault.org>,
- linux-kernel@vger.kernel.org, =?UTF-8?B?QmrDtnJuIFTDtnBlbA==?=
- <bjorn@kernel.org>, Atish Patra <atishp@atishpatra.org>,
- linux-riscv@lists.infradead.org, linux-arm-kernel@lists.infradead.org,
- Andrew Jones <ajones@ventanamicro.com>
-References: <20240127161753.114685-1-apatel@ventanamicro.com>
- <20240127161753.114685-23-apatel@ventanamicro.com>
- <eed1ee03-923b-41e8-b99a-accc1278da6b@rivosinc.com>
- <CAK9=C2U5_Ho0XUvEXRgASDKrGaVvPX68+UV2+=Z4k=cUaM3=6A@mail.gmail.com>
-From: =?UTF-8?B?Q2zDqW1lbnQgTMOpZ2Vy?= <cleger@rivosinc.com>
-In-Reply-To: <CAK9=C2U5_Ho0XUvEXRgASDKrGaVvPX68+UV2+=Z4k=cUaM3=6A@mail.gmail.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+References: <20240130115651.457800-1-naresh.solanki@9elements.com>
+ <1c855a34-8a0d-491e-bfd2-24635b41c86f@linaro.org> <20240131163516.000043df@Huawei.com>
+ <20240131-stylized-defile-d8fe346ab197@spud>
+In-Reply-To: <20240131-stylized-defile-d8fe346ab197@spud>
+From: Naresh Solanki <naresh.solanki@9elements.com>
+Date: Fri, 2 Feb 2024 16:13:02 +0530
+Message-ID: <CABqG17iNxfKFNqydkgo6gL8ZmaZ_bqm=pG8kNEhzx_h2eaGuhQ@mail.gmail.com>
+Subject: Re: [PATCH v3] dt-bindings: iio: afe: voltage-divider: Add io-channel-cells
+To: Conor Dooley <conor@kernel.org>
+Cc: Jonathan Cameron <Jonathan.Cameron@huawei.com>, 
+	Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>, Peter Rosin <peda@axentia.se>, 
+	Jonathan Cameron <jic23@kernel.org>, Lars-Peter Clausen <lars@metafoo.de>, Rob Herring <robh+dt@kernel.org>, 
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, 
+	mazziesaccount@gmail.com, linux-iio@vger.kernel.org, 
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Content-Type: multipart/mixed; boundary="0000000000005725be061063c7db"
+
+--0000000000005725be061063c7db
+Content-Type: text/plain; charset="UTF-8"
+
+Hi,
 
 
+On Wed, 31 Jan 2024 at 22:24, Conor Dooley <conor@kernel.org> wrote:
+>
+> On Wed, Jan 31, 2024 at 04:35:16PM +0000, Jonathan Cameron wrote:
+> > On Wed, 31 Jan 2024 09:29:59 +0100
+> > Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org> wrote:
+> >
+> > > On 30/01/2024 12:56, Naresh Solanki wrote:
+> > > > voltage-divider is always an iio consumer at the same time it is
+> > > > optionally an iio provider.
+> > > > Hence add #io-channel-cells
+> > > > Also update example.
+> > > >
+> > >
+> > > Fix
+> > > wrapping
+> > > and
+> > > proper
+> > > sentences. Each sentence finishes with full stop.
+Sure
+> > >
+> > > ...
+> > > >    output-ohms:
+> > > >      description:
+> > > >        Resistance Rout over which the output voltage is measured. See full-ohms.
+> > > > @@ -75,12 +82,17 @@ examples:
+> > > >              spi-max-frequency = <1000000>;
+> > > >          };
+> > > >      };
+> > > > -    sysv {
+> > > > +    p12v_vd: sysv {
+> > >
+> > > No, drop label.
+Sure
+> > >
+> > > >          compatible = "voltage-divider";
+> > > >          io-channels = <&maxadc 1>;
+> > > > +        #io-channel-cells = <1>;
+> > > >
+> > > >          /* Scale the system voltage by 22/222 to fit the ADC range. */
+> > > >          output-ohms = <22>;
+> > > >          full-ohms = <222>; /* 200 + 22 */
+> > > >      };
+> > > > +    iio-hwmon {
+> > > > +        compatible = "iio-hwmon";
+> > > > +        io-channels = <&p12v_vd 0>;
+> > >
+> > > The same question as for v2. Drop unrelated example.
+Sure
+> >
+> > Conor requested an example of the device acting as a consumer and a provider.
+> > Might have meant in the patch description?
+> >
+> > Conor?
+>
+> I wanted it in the property description to help with understanding when
+> to use it. I don't think the extra example nodes actually help you
+> understand what it is doing, only how to write one yourself once you
+> know you need it.
+I'm not sure if I get it right but what I understood is that a
+voltage-divider can
+also be a provider to other devices & hence the property.
+Also do you want me to put a complete example of it in description ?
 
-On 02/02/2024 11:30, Anup Patel wrote:
->>> +int aplic_setup_priv(struct aplic_priv *priv, struct device *dev,
->>> +                  void __iomem *regs)
->>> +{
->>> +     struct of_phandle_args parent;
->>> +     int rc;
->>> +
->>> +     /*
->>> +      * Currently, only OF fwnode is supported so extend this
->>> +      * function for ACPI support.
->>> +      */
->>> +     if (!is_of_node(dev->fwnode))
->>> +             return -EINVAL;
->>> +
->>> +     /* Save device pointer and register base */
->>> +     priv->dev = dev;
->>> +     priv->regs = regs;
->>> +
->>> +     /* Find out number of interrupt sources */
->>> +     rc = of_property_read_u32(to_of_node(dev->fwnode),
->>> +                                          "riscv,num-sources",
->>> +                                          &priv->nr_irqs);
->>
->> Use device_property_read_u32() which works for both ACPI and OF.
-> 
-> In the previous versions, we did try to unify property reading for
-> both ACPI and OF but MarcZ suggested to keep th ACPI and
-> OF probe paths totally separate hence we use OF APIs over
-> here because we should reach here only for OF probing.
+Regards,
+Naresh
+>
+> Thanks,
+> Conor.
 
-Ok, indeed it makes sense. Discard that comment then !
+--0000000000005725be061063c7db
+Content-Type: text/plain; charset="US-ASCII"; name="signature.asc"
+Content-Disposition: attachment; filename="signature.asc"
+Content-Transfer-Encoding: base64
+Content-ID: <18d695f183061a8e03b2>
+X-Attachment-Id: 18d695f183061a8e03b2
 
-Thanks,
-
-Clément
+LS0tLS1CRUdJTiBQR1AgU0lHTkFUVVJFLS0tLS0NCg0KaUhVRUFCWUlBQjBXSVFSaDI0NkVHcS84
+UkxoRGpPMTR0REdIb0lKaTBnVUNaYnA3VVFBS0NSQjR0REdIb0lKaQ0KMHFVS0FQMFd3NDh5OFZw
+bDBBSzBvanEwR1RGeitwbnIrdldGZXRLNlY4ZmJTeVEwWXdFQWcrc2IwZTVFWHR0eA0KWWM1d3FV
+Nk9HK2FsaSt6MkNOQy9PcDRrZEF5UE1BRT0NCj1pM2JYDQotLS0tLUVORCBQR1AgU0lHTkFUVVJF
+LS0tLS0NCg==
+--0000000000005725be061063c7db--
 
