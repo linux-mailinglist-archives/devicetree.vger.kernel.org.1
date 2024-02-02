@@ -1,118 +1,123 @@
-Return-Path: <devicetree+bounces-37976-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-37977-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 190FF8470AA
-	for <lists+devicetree@lfdr.de>; Fri,  2 Feb 2024 13:53:31 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id D70298470B4
+	for <lists+devicetree@lfdr.de>; Fri,  2 Feb 2024 13:55:58 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 58BACB28876
-	for <lists+devicetree@lfdr.de>; Fri,  2 Feb 2024 12:53:28 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 106251C2198E
+	for <lists+devicetree@lfdr.de>; Fri,  2 Feb 2024 12:55:58 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D61F33D6D;
-	Fri,  2 Feb 2024 12:53:08 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id CC39A1FDC;
+	Fri,  2 Feb 2024 12:55:50 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="FaSRF19T"
+	dkim=pass (1024-bit key) header.d=gimli.ms.mff.cuni.cz header.i=@gimli.ms.mff.cuni.cz header.b="edLqh18U"
 X-Original-To: devicetree@vger.kernel.org
-Received: from lelv0143.ext.ti.com (lelv0143.ext.ti.com [198.47.23.248])
+Received: from nikam.ms.mff.cuni.cz (nikam.ms.mff.cuni.cz [195.113.20.16])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1462C187F;
-	Fri,  2 Feb 2024 12:53:06 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.23.248
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A39FB15D2;
+	Fri,  2 Feb 2024 12:55:45 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=195.113.20.16
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1706878388; cv=none; b=m4VVdhRaK6vf31vYPYVW0ci/iKiPSWFOUBoTo94kPie4jBCt6CaWpoBZhIdACvvfYUf85peYYX1DE562ZrqdDRpyA53mNsmX/xJzoyF7pwN4mzwX+fnGl3KCXfm0ZhGHtVicYQezMFu4F45IBEUUsen0z/WVTgfICfgxjt129mg=
+	t=1706878550; cv=none; b=O7yqRAsWIy2Ir8hKvbuTOpND5ZEZGkdscm4YWSCR9OV+jIT2+EmXtzPfgtNcwyOexWSUG2C4bbaBwiAA1+rwK8ngAJTnDJXQlNtx1cECX+DVjlT7C4KXFyaafAwpDtqqYDsXbTp8tgw6niF8eRmKHG6Sh03Md/K/AgJbsaakUS0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1706878388; c=relaxed/simple;
-	bh=aI6tdoMPLKlxeu03PJwY+6PTUmy8/t1n/2qpRcDuYbY=;
-	h=Date:From:To:CC:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=rhs8lQzpvaDoQzYfdiyOohHZaTeO9/yg7/0x+nNoo8kBA4utz1SMvpIwRDUclUx39pXnW6LOLkBs2AGWB+5H/UF9wpHtLeOKp6t8yVmiGOI2eOnD3Pu+RJhnCFZ8r3CSA0rLqf0khQPNuevHmHq8bI6pG7XPWq26lj5DsaW3h4M=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=FaSRF19T; arc=none smtp.client-ip=198.47.23.248
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
-Received: from lelv0266.itg.ti.com ([10.180.67.225])
-	by lelv0143.ext.ti.com (8.15.2/8.15.2) with ESMTP id 412CqwUO085110;
-	Fri, 2 Feb 2024 06:52:58 -0600
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1706878378;
-	bh=NT2KkZYcchRC7YCcmd8jd30rJ0gLMf93hNnBIQa0it4=;
-	h=Date:From:To:CC:Subject:References:In-Reply-To;
-	b=FaSRF19TRdwnHT6XWwPncK4IBMLtU3SNUZk4gAsvTl576KBa25FrQGIFT7ebY5uaS
-	 vgD2gZ34pfBZcU+GAxht+hdAACl/6FBVDP5gzoOHOfXpLNl9UWaJlYAjhDVN7BOtaw
-	 00MbkdNGc1MeMUdKq1nFElywhz5h8UFgfA7nHJk4=
-Received: from DFLE110.ent.ti.com (dfle110.ent.ti.com [10.64.6.31])
-	by lelv0266.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 412CqwvE047001
-	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-	Fri, 2 Feb 2024 06:52:58 -0600
-Received: from DFLE113.ent.ti.com (10.64.6.34) by DFLE110.ent.ti.com
- (10.64.6.31) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Fri, 2
- Feb 2024 06:52:57 -0600
-Received: from lelvsmtp6.itg.ti.com (10.180.75.249) by DFLE113.ent.ti.com
- (10.64.6.34) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
- Frontend Transport; Fri, 2 Feb 2024 06:52:57 -0600
-Received: from localhost (uda0133052.dhcp.ti.com [128.247.81.232])
-	by lelvsmtp6.itg.ti.com (8.15.2/8.15.2) with ESMTP id 412CqvPA009693;
-	Fri, 2 Feb 2024 06:52:57 -0600
-Date: Fri, 2 Feb 2024 06:52:57 -0600
-From: Nishanth Menon <nm@ti.com>
-To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-CC: Brandon Brnich <b-brnich@ti.com>, Nas Chung <nas.chung@chipsnmedia.com>,
-        Jackson Lee <jackson.lee@chipsnmedia.com>,
-        Mauro Carvalho Chehab
-	<mchehab@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski
-	<krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>, <linux-media@vger.kernel.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        Vignesh Raghavendra <vigneshr@ti.com>,
-        Darren
- Etheridge <detheridge@ti.com>
-Subject: Re: [PATCH v2] dt-bindings: media: Add sram-size Property for Wave5
-Message-ID: <20240202125257.p4astjuxpzr5ltjs@dragster>
-References: <20240201184238.2542695-1-b-brnich@ti.com>
- <1209b7cf-5be2-4107-aa6b-d67a32ea3737@linaro.org>
+	s=arc-20240116; t=1706878550; c=relaxed/simple;
+	bh=+TmtUtIfmZcdIbEuOgcCdi2sK+bzSVptb/iPlbxGHIg=;
+	h=Mime-Version:Content-Type:Date:Message-Id:Cc:Subject:To:From:
+	 References:In-Reply-To; b=RL+QXAiPE2QKx1ZWmw8ThmWuKjmugkCeR7/uS+6bfRMFeQz+3SDlcMJZms5ap/TNyEO3f3HCpcExs+4+GMmwFPjNX5+/G7d2TWpF98gp1aQkRbgOgWdlq0pm41Cx+yzV4Tz+ctx+iSyvd483IeOx016NrMCEn8y8kbTrbUyCFWA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gimli.ms.mff.cuni.cz; spf=pass smtp.mailfrom=gimli.ms.mff.cuni.cz; dkim=pass (1024-bit key) header.d=gimli.ms.mff.cuni.cz header.i=@gimli.ms.mff.cuni.cz header.b=edLqh18U; arc=none smtp.client-ip=195.113.20.16
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gimli.ms.mff.cuni.cz
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gimli.ms.mff.cuni.cz
+Received: from gimli.ms.mff.cuni.cz (gimli.ms.mff.cuni.cz [195.113.20.176])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange X25519 server-signature RSA-PSS (2048 bits))
+	(No client certificate requested)
+	by nikam.ms.mff.cuni.cz (Postfix) with ESMTPS id C0E8B283DA8;
+	Fri,  2 Feb 2024 13:55:42 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gimli.ms.mff.cuni.cz;
+	s=gen1; t=1706878542;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references;
+	bh=Vk6ebVfUP0DK1H8nYjPQE8hIkEuSNdLAy6sElffR3ok=;
+	b=edLqh18Utjzl1LdX29V+5A3Xpy1mu+zS9Cjr0I7nC5D7VZkcP8c/Po1Aw4c6/EQT9UqRQK
+	5EK3JQp5RLXKt7ZZbsdacOYx9ft6eu7X9yjIJtXn9lBVa9NigZxKwWEkj+zvnZ0kKd4gap
+	e7k007zRwHiSQD8Ybnib+aMzJuMR9zU=
+Received: from localhost (internet5.mraknet.com [185.200.108.250])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange ECDHE (prime256v1) server-signature RSA-PSS (2048 bits) server-digest SHA256)
+	(Client did not present a certificate)
+	(Authenticated sender: karelb)
+	by gimli.ms.mff.cuni.cz (Postfix) with ESMTPSA id 93ED14516B2;
+	Fri,  2 Feb 2024 13:55:42 +0100 (CET)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-MIME-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"
-Content-Disposition: inline
-In-Reply-To: <1209b7cf-5be2-4107-aa6b-d67a32ea3737@linaro.org>
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+Mime-Version: 1.0
+Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=UTF-8
+Date: Fri, 02 Feb 2024 13:55:42 +0100
+Message-Id: <CYULY1BYVCYK.1EGSBSVNRSTLQ@gimli.ms.mff.cuni.cz>
+Cc: "Karel Balej" <balejk@matfyz.cz>, "Dmitry Torokhov"
+ <dmitry.torokhov@gmail.com>, "Rob Herring" <robh+dt@kernel.org>, "Krzysztof
+ Kozlowski" <krzysztof.kozlowski+dt@linaro.org>, "Conor Dooley"
+ <conor+dt@kernel.org>, <linux-input@vger.kernel.org>,
+ <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+ =?utf-8?q?Duje_Mihanovi=C4=87?= <duje.mihanovic@skole.hr>,
+ <~postmarketos/upstreaming@lists.sr.ht>, <phone-devel@vger.kernel.org>
+Subject: Re: [RFC PATCH 2/5] mfd: add 88pm88x driver
+To: "Lee Jones" <lee@kernel.org>
+From: "Karel Balej" <karelb@gimli.ms.mff.cuni.cz>
+References: <20231217131838.7569-1-karelb@gimli.ms.mff.cuni.cz>
+ <20231217131838.7569-3-karelb@gimli.ms.mff.cuni.cz>
+ <20240125122634.GE74950@google.com>
+ <CYQ8MEQRJELE.2GB9316NZA998@gimli.ms.mff.cuni.cz>
+ <20240131110311.GI8551@google.com>
+ <CYTURHOW0WMR.2UMOT0D1GFZ2W@gimli.ms.mff.cuni.cz>
+ <20240202124550.GE1379817@google.com>
+In-Reply-To: <20240202124550.GE1379817@google.com>
 
-On 11:47-20240202, Krzysztof Kozlowski wrote:
-> On 01/02/2024 19:42, Brandon Brnich wrote:
-> > Wave521c has capability to use SRAM carveout to store reference data with
-> > purpose of reducing memory bandwidth. To properly use this pool, the driver
-> > expects to have an sram and sram-size node. Without sram-size node, driver
-> > will default value to zero, making sram node irrelevant.
-> 
-> I am sorry, but what driver expects should not be rationale for new
-> property. This justification suggests clearly it is not a property for DT.
-> 
+Lee Jones, 2024-02-02T12:45:50+00:00:
+> On Thu, 01 Feb 2024, Karel Balej wrote:
+>
+> > Lee Jones, 2024-01-31T11:03:11+00:00:
+> > > On Sun, 28 Jan 2024, Karel Balej wrote:
+> > > > > > +	/* GPIO1: DVC, GPIO0: input */
+> > > > > > +	REG_SEQ0(PM88X_REG_GPIO_CTRL1, 0x40),
+> > > > >
+> > > > > Shouldn't you set these up using Pintrl?
+> > > >=20
+> > > > You mean to add a new MFD cell for the pins and write the respectiv=
+e
+> > > > driver? The downstream implementation has no such thing so I'm not =
+sure
+> > > > if I would be able to do that from scratch.
+> > >
+> > > This is not a Pinctrl driver.
+> > >
+> > > Isn't there a generic API you can use?
+> >=20
+> > I'm sorry, I don't think I understand what you mean.
+>
+> Perhaps I misunderstand the code.  It looks like this regmap patch hack
+> is configuring pins and a bunch of other things.  Would that be a
+> correct assessment?
 
-Yup, the argumentation in the commit message is from the wrong
-perspective. bindings are OS agnostic hardware description, and what
-driver does with the description is driver's problem.
+Yes, that sounds correct.
 
-I will at least paraphrase my understanding:
-In this case, however, the hardware block will limp along with
-the usage of DDR (as is the current description), due to the
-latencies involved for DDR accesses. However, the hardware block
-has capability to use a substantially lower latency SRAM to provide
-proper performance and hence for example, deal with higher resolution
-data streams. This SRAM is instantiated at SoC level rather than
-embedded within the hardware block itself.
+> If so, where do we draw the line here?  Do we accept a 1000 line driver
+> which configures a large SoC with a bunch of bespoke register writes?
 
+I understand, I just don't know what you mean by "a generic API". I'm
+also not clear on whether what you have in mind is simply adding a
+dedicated driver for the pins as a new subdevice of this MFD.
 
--- 
-Regards,
-Nishanth Menon
-Key (0xDDB5849D1736249D) / Fingerprint: F8A2 8693 54EB 8232 17A3  1A34 DDB5 849D 1736 249D
+Thanks,
+K. B.
 
