@@ -1,136 +1,146 @@
-Return-Path: <devicetree+bounces-37981-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-37982-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 92F278470EC
-	for <lists+devicetree@lfdr.de>; Fri,  2 Feb 2024 14:15:25 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9AC32847100
+	for <lists+devicetree@lfdr.de>; Fri,  2 Feb 2024 14:20:10 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 50E452911F2
-	for <lists+devicetree@lfdr.de>; Fri,  2 Feb 2024 13:15:24 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 4F5C51F2A9AF
+	for <lists+devicetree@lfdr.de>; Fri,  2 Feb 2024 13:20:10 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A05281773D;
-	Fri,  2 Feb 2024 13:15:21 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 95C1046535;
+	Fri,  2 Feb 2024 13:19:55 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="geWclKoX"
+	dkim=pass (2048-bit key) header.d=gadgetoid.com header.i=@gadgetoid.com header.b="k5uByrvI"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pf1-f179.google.com (mail-pf1-f179.google.com [209.85.210.179])
+Received: from mail-oa1-f52.google.com (mail-oa1-f52.google.com [209.85.160.52])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1712B3D6D;
-	Fri,  2 Feb 2024 13:15:19 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.179
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B5771405FB
+	for <devicetree@vger.kernel.org>; Fri,  2 Feb 2024 13:19:52 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.160.52
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1706879721; cv=none; b=ClahJW0keFAbhMJBAVNey26AKzQ3IOIlFpWm+yXXoDRL9nj9/5mc4mtPd4whWsWQKmaDueNue3tbZj5QdumDdr6iQC3Nrq0FE4gFb9FVJDyAhO4xV2SW52U0WiR2tt/QvlTwldyzN4QQHGEcLl9JoBeL6enzR+6Js+/ooaWIcME=
+	t=1706879995; cv=none; b=WY1+ez0JRIGAjrhukxLexJXRWlPMG7/XYqll22WncjsPhIh5lUT2g7NjDEEQZ8dEWPvcrvtJE9b15Ruzph99gn3lTpTynN8WIAsp3Bpn0WnJZbkv6St0JvzgK9W4iv2Thbi2b0+op0wI064RlKxp52cH8H+2Fd0LFZX9TKqw+ds=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1706879721; c=relaxed/simple;
-	bh=be3/+gNfitjwgXTusfVYHe12ReY8nX0GAxGrQl7h+64=;
+	s=arc-20240116; t=1706879995; c=relaxed/simple;
+	bh=QzU2+6bJBCYf8775kUvnTYfKeQz7MvZNZSUSH6prFBo=;
 	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=by7mJswOxdYmndbTICCkSz6S1hm/z+Wik9aMS5cbedk6YTMReWb5BR7Zl29ADDTjLBN40GlAlB51p5SVGsi9p3YoAZBwnk6T4jQMxdu7EP+SNDGVu1ZEQ2zw2SsWPd0HjDC1tj85uBHCrAT5uXPlHkPD+TNpa+RVtHvYhqv5lgQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=geWclKoX; arc=none smtp.client-ip=209.85.210.179
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-pf1-f179.google.com with SMTP id d2e1a72fcca58-6dddf4fc85dso1631189b3a.0;
-        Fri, 02 Feb 2024 05:15:19 -0800 (PST)
+	 To:Cc:Content-Type; b=r6CkKmQGHbNl7h+sB6TfJz/0PwTneidJxeF9wMWp9K98Cqo5mkLsvr7hUmePRPwQ+Ki6uhhLKKHPt0UWsBuLWzyM5AymkDMwL9gGmWuWFutntE9R/6FvdfmBprSL2zlAVY/t/ZrnbcEtO0PYAVXkpV58JIuliE66zYz3Gj6tldM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=gadgetoid.com; spf=pass smtp.mailfrom=gadgetoid.com; dkim=pass (2048-bit key) header.d=gadgetoid.com header.i=@gadgetoid.com header.b=k5uByrvI; arc=none smtp.client-ip=209.85.160.52
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=gadgetoid.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gadgetoid.com
+Received: by mail-oa1-f52.google.com with SMTP id 586e51a60fabf-214def5da12so1207381fac.2
+        for <devicetree@vger.kernel.org>; Fri, 02 Feb 2024 05:19:52 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1706879719; x=1707484519; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=yWWxDbFc1s0H43msZb3R2yZAbYlHwiF4o6Dt1xNyb5c=;
-        b=geWclKoXwLe4nagQFX0fjJxPTkNetGQrdTqciHFIIT6LlwMgeFCMj3QXPwYjeGjqRb
-         aCbKetaY3ZJpsYP+p73CtBx4k9r+Ab2YFp796nIJf9j9CkMY5/a3d0oTVrJLrPV58LNK
-         mfd7RTb/TTsta37s4yDRk1jBXe4F5d7Dvs+F/2I9ZJStcCVpOkbWeC6QGirjTxqwyo8Q
-         pvQDva+FXni8KLZuuyIy5sbTLMpKxenWYZezB4vKPS9qzBNSRe+77sVmX5bwd/iHbE0i
-         9lMkmDZaop+UAfdpv7CwawrlTYXBBbdZ2N65urYAPbgRy5SW4KRXyhprr1dkr8wHoWUR
-         rDqA==
+        d=gadgetoid.com; s=google; t=1706879992; x=1707484792; darn=vger.kernel.org;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=eQf5PfHC5tQoN+jcMOZd64SAvn2hq+16QHj88c38TUc=;
+        b=k5uByrvI8QoFvcxH64ek8vvsU9vApiMOPFPtTrK1MZz98nT1wS1O68LtQvQNJX+MYG
+         g3SWz3GbPKrslPfRNkQVEL2yVzhw3fKzDRVpFGs1lQ21MmoGNr7vQh6KP4DWCNniL7AK
+         88jMHPI4c+cnz+hAr1Z8awlu8lA+Deww9HywAYq4zXmRf3FL12eX7f2C8SI1UkMTuKdG
+         Y+M0Z0tSp4Vgxq+FyezXQljtALPvbUHBmynY+a78LGO3C1MKF2wfcj0gmh76AGFll4ng
+         xaZFl4hpLvum3CZi8zoOXGvD7LKAyiunK5CRLr5iRnRPvXw0LPc9LD6GGktGHiTuL5qj
+         N0tg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1706879719; x=1707484519;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=yWWxDbFc1s0H43msZb3R2yZAbYlHwiF4o6Dt1xNyb5c=;
-        b=Fit7EKOIl0g0sqW7e94EF7HEWmSLtH/T32Vlkk/c1q2Y5TTj9deYPjB5aBmzrii1V8
-         t8KUD+A8wATbYBItStpmXcGYoJngpjNgsbPMALXt1TCaimIum8r5/MN7PJwxl/v4vix8
-         /zL1Z3zWT81wfDA6jKRITRnFLYIw2gnFUCXVxxebbsJK1YHNmpO3iQrNtb36vFCwxuaw
-         sPBOXyuriNB8ddbA1eqjtrV5cHkFz/rlbNFDZpKIpy/jpYzW3lUDcCqEKszPM1p8F2sO
-         GiE13/lzwZofGUujPXnAfmH9L3k6f4RH1d2lEPAr4bA/yB0HyQIhPu0ZcA3FD5r/7jGF
-         Z0xw==
-X-Gm-Message-State: AOJu0Yx1k37tgU4Uo01YEdgadLkWpiJVrEJplo46cntXcuzcj0U279r1
-	ARk5h4PIYVNAInjRP6fyjg46psQFS/YSOHoBpJPK8Cl3xu/eb3/MXDQbk/8vYZWvBqFrnC6vFHA
-	Kxm4umXvJqC6L57eHRVea616+BtA=
-X-Google-Smtp-Source: AGHT+IEEv/kGQPLAUBTIrzRoVfYRzZUzQ0pExjTA1QXrHHzOYJs3MVy1uMEAGhNsUBAO1SU8mvJcclAlTx41fWfFVN0=
-X-Received: by 2002:a05:6a20:3149:b0:19c:9c77:853c with SMTP id
- 9-20020a056a20314900b0019c9c77853cmr1606806pzk.33.1706879718762; Fri, 02 Feb
- 2024 05:15:18 -0800 (PST)
+        d=1e100.net; s=20230601; t=1706879992; x=1707484792;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=eQf5PfHC5tQoN+jcMOZd64SAvn2hq+16QHj88c38TUc=;
+        b=IBFgNGunEPYyHqpZyIrpqH7lGq4KVgN95C6JScLHYuGhoOX43i+4kO1M6DDdH9/cDK
+         QcNY88e3P3ZCvgJKtxNn92w400kt2WdnM5X+5FPBkGb9V2ZdXOXe2UWR19fDKRBK7K7i
+         rh6cXqeLtYf5bl0wYwNrH/Km8b+Tbvr47XMNmElhVMwzkVeEVtrXGjt/TOFXRrDYpII+
+         WqlgySmYGHjEMD706hikSs3ZmYCrzofEBNfB0t1SXwzA4IFYGJb7VzuXlKrZ4m/UtYKM
+         SbQS3h+c+aLnoz+iuGvUU4AgmvjrjI4qR0UgI+2LAv2bY76OY6Crx7RfKnTEgRUga06B
+         saIA==
+X-Gm-Message-State: AOJu0YxO/p7AmQYudm2Ei78HxKCRtTAQq3BuolHOMTX5ay2vF/iHozwf
+	bKtr9sQOky1fUdN1nVFCugcq0rPBwRBeqad3kbXjZBfov9kalc79tfN2aaH3AVzXNoY9LXIseXm
+	7UE0kl/Pc3Egp0dVnkHoaIMel0LkFlBwmcj5g8w==
+X-Google-Smtp-Source: AGHT+IGj71Z6qTMXGLYc4dHSH4zFF7fZQYjeArgxrtyh7tp+4FcyBUw5qhhSYcLNsE1HzllPHBbZkh217Ks170E8QOI=
+X-Received: by 2002:a05:6870:1684:b0:218:4626:93cc with SMTP id
+ j4-20020a056870168400b00218462693ccmr1980169oae.34.1706879991771; Fri, 02 Feb
+ 2024 05:19:51 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20240106221907.325127-1-aford173@gmail.com> <20240106221907.325127-2-aford173@gmail.com>
- <20240202122036.7aa66d9d@booty>
-In-Reply-To: <20240202122036.7aa66d9d@booty>
-From: Adam Ford <aford173@gmail.com>
-Date: Fri, 2 Feb 2024 07:15:07 -0600
-Message-ID: <CAHCN7x+Fyy76_Qo0757fx3bjg5RWUHU=NQHJu+WenSi9PQrwOg@mail.gmail.com>
-Subject: Re: [PATCH V2 2/2] phy: freescale: add Samsung HDMI PHY
-To: Luca Ceresoli <luca.ceresoli@bootlin.com>
-Cc: dri-devel@lists.freedesktop.org, 
-	Kishon Vijay Abraham I <kishon@kernel.org>, devicetree@vger.kernel.org, 
-	Conor Dooley <conor+dt@kernel.org>, Fabio Estevam <festevam@gmail.com>, 
-	Pengutronix Kernel Team <kernel@pengutronix.de>, Shawn Guo <shawnguo@kernel.org>, 
-	Sascha Hauer <s.hauer@pengutronix.de>, linux-kernel@vger.kernel.org, 
-	Vinod Koul <vkoul@kernel.org>, Rob Herring <robh+dt@kernel.org>, 
-	NXP Linux Team <linux-imx@nxp.com>, Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, 
-	linux-phy@lists.infradead.org, linux-arm-kernel@lists.infradead.org
+References: <20240128163630.104725-1-wahrenst@gmx.net>
+In-Reply-To: <20240128163630.104725-1-wahrenst@gmx.net>
+From: Phil Howard <phil@gadgetoid.com>
+Date: Fri, 2 Feb 2024 13:19:40 +0000
+Message-ID: <CA+kSVo88y7n9dyo57fgjybC9=1b_dgTPA3u-_kUH9X_79HF4tA@mail.gmail.com>
+Subject: Re: [PATCH V3 0/2] pwm: Add GPIO PWM driver
+To: Stefan Wahren <wahrenst@gmx.net>
+Cc: =?UTF-8?Q?Uwe_Kleine=2DK=C3=B6nig?= <u.kleine-koenig@pengutronix.de>, 
+	Rob Herring <robh+dt@kernel.org>, 
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, 
+	andy.shevchenko@gmail.com, Angelo Compagnucci <angelo.compagnucci@gmail.com>, 
+	Linus Walleij <linus.walleij@linaro.org>, linux-pwm@vger.kernel.org, 
+	devicetree@vger.kernel.org, linux-gpio@vger.kernel.org
 Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
 
-On Fri, Feb 2, 2024 at 5:20=E2=80=AFAM Luca Ceresoli <luca.ceresoli@bootlin=
-.com> wrote:
+On Sun, 28 Jan 2024 at 16:37, Stefan Wahren <wahrenst@gmx.net> wrote:
 >
-> Hello Adam,
+> Add a software PWM which toggles a GPIO from a high-resolution timer.
 >
-> On Sat,  6 Jan 2024 16:19:05 -0600
-> Adam Ford <aford173@gmail.com> wrote:
->
-> > From: Lucas Stach <l.stach@pengutronix.de>
-> >
-> > This adds the driver for the Samsung HDMI PHY found on the
-> > i.MX8MP SoC.
-> >
-> > Signed-off-by: Lucas Stach <l.stach@pengutronix.de>
-> > Signed-off-by: Adam Ford <aford173@gmail.com>
->
-> I had already tested the v2 from Lucas, however I also tested this
-> version which works as well, on v6.8-rc1, custom hardware based on the
-> Avnet i.MX8MP SMARC SoM.
->
-> Tested-by: Luca Ceresoli <luca.ceresoli@bootlin.com>
->
-Thanks for testing.
+> Recent discussions in the Raspberry Pi community revealt that a lot
+> of users still use MMIO userspace tools for GPIO access. One argument
+> for this approach is the lack of a GPIO PWM kernel driver. So this
+> series tries to fill this gap.
 
-> Generally speaking, as there are several small patch series around which
-> together implement HDMI on iMX8MP and similar, I think it would be much
-> easier fore reviewing and testing if they were grouped into a unique
-> series.
+*Thank you* for picking this up. I've been stuck down by covid but am aiming
+to build and test this on a Pi 5 (with a gpio chip over PCIe) to see if it runs-
+though I am fully expecting a PIO solution (using the Pi 5s RP1) to handle
+PWM in this case, and hope to rely upon this gpio-pwm module for previous
+iterations.
 
-That will happen for my next attempt to push this series.  It was a
-headache for me to gather them all.  I have a github repo setup with
-my latest edits here if you're interested:
-
-https://github.com/aford173/linux/tree/for-6.9-imx8mp-hdmi
-
-
-adam
 >
-> Luca
+> This continues the work of Vincent Whitchurch [1], which is easier
+> to read and more consequent by rejecting sleeping GPIOs than Nicola's
+> approach [2].
+>
+> The work has been tested on a Raspberry Pi 3 B+ and a cheap logic
+> analyzer.
+>
+> V3:
+>  - rebase on top of v6.8-pwm-next
+>  - cherry-pick improvements from Nicola's series
+>  - try to address Uwe's, Linus' and Andy's comments
+>  - try to avoid GPIO glitches during probe
+>  - fix pwm_gpio_remove()
+>  - some code clean up's and comments
+>
+> V2:
+>  - Rename gpio to gpios in binding
+>  - Calculate next expiry from expected current expiry rather than "now"
+>  - Only change configuration after current period ends
+>  - Implement get_state()
+>  - Add error message for probe failures
+>  - Stop PWM before unregister
+>
+> [1] - https://lore.kernel.org/all/20200915135445.al75xmjxudj2rgcp@axis.com/T/
+> [2] - https://lore.kernel.org/all/20201205214353.xapax46tt5snzd2v@einstein.dilieto.eu/
+>
+> Nicola Di Lieto (1):
+>   dt-bindings: pwm: Add pwm-gpio
+>
+> Vincent Whitchurch (1):
+>   pwm: Add GPIO PWM driver
+>
+>  .../devicetree/bindings/pwm/pwm-gpio.yaml     |  42 ++++
+>  drivers/pwm/Kconfig                           |  11 +
+>  drivers/pwm/Makefile                          |   1 +
+>  drivers/pwm/pwm-gpio.c                        | 221 ++++++++++++++++++
+>  4 files changed, 275 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/pwm/pwm-gpio.yaml
+>  create mode 100644 drivers/pwm/pwm-gpio.c
 >
 > --
-> Luca Ceresoli, Bootlin
-> Embedded Linux and Kernel engineering
-> https://bootlin.com
+> 2.34.1
+>
 
