@@ -1,288 +1,147 @@
-Return-Path: <devicetree+bounces-37930-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-37931-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id E9F21846D71
-	for <lists+devicetree@lfdr.de>; Fri,  2 Feb 2024 11:12:47 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 23A1B846D78
+	for <lists+devicetree@lfdr.de>; Fri,  2 Feb 2024 11:13:35 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id A1FC2291D02
-	for <lists+devicetree@lfdr.de>; Fri,  2 Feb 2024 10:12:46 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 481FD1C236AF
+	for <lists+devicetree@lfdr.de>; Fri,  2 Feb 2024 10:13:34 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C98B57428C;
-	Fri,  2 Feb 2024 10:12:42 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B3F6277F2F;
+	Fri,  2 Feb 2024 10:13:29 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="SVmgtTMp"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="fPW3WRRK"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A288A7C08E;
-	Fri,  2 Feb 2024 10:12:42 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8C5CB5B688;
+	Fri,  2 Feb 2024 10:13:29 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1706868762; cv=none; b=hnsVNDl8O134fxmlAJjQm9qvIFqRRRq1zlgebpdG+jX0XkwtAikbHwP1Turv+3Qp5IoBXjcYThqLh8bZLjpyZxO7ZTqUocdwnu0H/XIwB6m/k6I7c1CVFXgtTrd39LqSsBi0+l8JuyxjwV/MANrN9w4Qx0B13KvB7snZIpiOgfM=
+	t=1706868809; cv=none; b=Ur8UKAIHrFK05JIQQ9afdjFvjIUymEiiSwojlz2c+6l47znk0UNPRt0AgvMdpw1O+I9R6qqcM+kg+lGvXlA/3O6IyfExfLnUNKc/QfNC2uqXiaQH7pRwWqz5ldwkJ1QvG5544wapYR01L5LOb+nOjeoQyoNScz5xNgfCx9PUEF8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1706868762; c=relaxed/simple;
-	bh=5anGoLnHT2P3W17BB0Cn9oKUr5SH97J4Uj9F8qaqNCw=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=Rep3TJmz5J2PZT+3pIkpW46rEo6PHUqwjZGztzH+5ynynX1r2dhUwwomYqTqFUx59krI9ouR7xxhP3aykfE1Qz4whzf1EAo+Hw0apWWuc7Ga8fAfICU5VDRSyDU30nJvd+2JmO6y5cI75U1lYtbVrRoclv27wsLDkXgXPSVwlus=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=SVmgtTMp; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 8FAF7C433C7;
-	Fri,  2 Feb 2024 10:12:41 +0000 (UTC)
+	s=arc-20240116; t=1706868809; c=relaxed/simple;
+	bh=CGbUJZWnQ+T87B7ahoNtsvaLKfL68r5YfknAmE8rR+g=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=dvOUsyD3kDfcaM0+Q193QiRyPKTPljXw6UUW9uxeseecdjgETZpr8vu2NVvSfyp/QWcz4AGpwYMCe+vxwBH5H4hL9M8xXHRfdcQlbj8fT5uS3uwv5+V+i7MOQaAcjFoRq8UDKKvZnrpvM7qSPvfDqriVbKrov2o5LZIkFHiPMyY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=fPW3WRRK; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id A5D2EC433F1;
+	Fri,  2 Feb 2024 10:13:25 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1706868762;
-	bh=5anGoLnHT2P3W17BB0Cn9oKUr5SH97J4Uj9F8qaqNCw=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=SVmgtTMpWP2VJSuve4PJkUz9Tn0a82UPzdpsfyEJ2sEDP5x9r90VucdFGuUoQghk7
-	 J/GHxLTY0tNTlt2WWY5juN+yqtWqM47WldExdwbB0InrFDQO3sj58c9H75Dj0B+glc
-	 3IxZ2UE++2/aEufS6cjLzxiEGEMC96KYvN7zDT8K7qOAEEvQowB8GxCDyrawB1gDqJ
-	 fK6AcFeD01UPDc+0N9quLkRNXSvb8GnXq2Q7afUzAgoVnENjQcRcR0W4lWKyUHxZhX
-	 Luj6q5xkBP41E4YX/lSjTx8Cxwc3cRmhSQytyCOKXhaHkaSPq2Bxqi55irbsw+Ywvl
-	 ro+dgsJ7m92MQ==
-Date: Fri, 2 Feb 2024 11:12:39 +0100
-From: Maxime Ripard <mripard@kernel.org>
-To: Abhinav Kumar <quic_abhinavk@quicinc.com>
-Cc: Jani Nikula <jani.nikula@linux.intel.com>, 
-	Jessica Zhang <quic_jesszhan@quicinc.com>, Neil Armstrong <neil.armstrong@linaro.org>, 
-	Thomas Zimmermann <tzimmermann@suse.de>, Sam Ravnborg <sam@ravnborg.org>, dri-devel@lists.freedesktop.org, 
-	linux-kernel@vger.kernel.org, Daniel Vetter <daniel@ffwll.ch>, 
-	David Airlie <airlied@gmail.com>, Dmitry Baryshkov <dmitry.baryshkov@linaro.org>, 
-	Rob Clark <robdclark@gmail.com>, Rob Herring <robh+dt@kernel.org>, 
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, 
-	"open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" <devicetree@vger.kernel.org>
-Subject: Re: Re: [PATCH RFC 0/4] Support for Simulated Panels
-Message-ID: <qbyx3h7pallkvjufetr4vsu2wa5lub2hh3z2vr3q4mzwqk25vx@l63qmwsoi3vu>
-References: <20240116-jz-test-sim-panel-v1-0-f9511f46c9c7@quicinc.com>
- <x6wi5xnihnbpqsujjfjfw3ft6njncruta5l3xa44pds5oxmdkw@mmvv4bciy65s>
- <87cyu0qn81.fsf@intel.com>
- <e1f10583-1d5b-fdac-24bf-098a0ba06241@quicinc.com>
- <hhmbghooegclx3jbsx2neryligk3mj77lq7gns5xegags5ltoz@acdu6hssqwlw>
- <99705d73-abcf-6d41-3d50-757e706cf1fc@quicinc.com>
+	s=k20201202; t=1706868809;
+	bh=CGbUJZWnQ+T87B7ahoNtsvaLKfL68r5YfknAmE8rR+g=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=fPW3WRRKbohdbgUijGU9q9wIU5k5Ls6pi4PVqWZH0Rj/xvZRzxuw2cXz2G00MehkD
+	 BkwkRxho+yQg2ppcrx6PxVegT7A/UemJ0vNXU3AhlppqfSZcD8DFMoW6IBXqExKmdQ
+	 s0QljsxXtZcnh1x+zgPbvJhvdU9IcuUeqv0NXDViZsQPrlIINAA0kgn/eKgC5+Y54z
+	 sybtxGkC0ZEVJhqvZgvVXL+XcEDRRuNq0CCjVZaQOQ3VXxzfZ1B/9TrtWqaIghW4He
+	 zmKg53vHMW7C9FDL56mkkNQg+4ZlbH5Du6L0rWymRmjzyT2VmrUlc8ruvCNdiJZDD1
+	 NE2B0Ip0PpUSg==
+Message-ID: <dc3c93dc-74d9-4b1c-a771-3ee6f67b5dcc@kernel.org>
+Date: Fri, 2 Feb 2024 12:13:22 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="tvqtf4mwmxl4db6g"
-Content-Disposition: inline
-In-Reply-To: <99705d73-abcf-6d41-3d50-757e706cf1fc@quicinc.com>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v3 4/5] dt-bindings: usb/ti,am62-usb.yaml: Add PHY2
+ register space
+Content-Language: en-US
+To: Conor Dooley <conor.dooley@microchip.com>
+Cc: Conor Dooley <conor@kernel.org>, Bin Liu <b-liu@ti.com>, nm@ti.com,
+ vigneshr@ti.com, afd@ti.com, kristo@kernel.org, robh+dt@kernel.org,
+ krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org, srk@ti.com,
+ r-gunasekaran@ti.com, linux-arm-kernel@lists.infradead.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+References: <20240201120332.4811-1-rogerq@kernel.org>
+ <20240201120332.4811-5-rogerq@kernel.org>
+ <20240201-viewpoint-upload-fb714f650ff5@spud>
+ <20240201-violet-chalice-51a73f113e7b@spud>
+ <20240201183522.ssj553rwefr2wuqi@iaqt7>
+ <20240201-clad-unopposed-ccfdfe53b770@spud>
+ <bc3ab60f-539b-41d0-8595-6e0b55f2763d@kernel.org>
+ <20240202-unzip-whacky-bb2f151c618b@wendy>
+From: Roger Quadros <rogerq@kernel.org>
+In-Reply-To: <20240202-unzip-whacky-bb2f151c618b@wendy>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
 
---tvqtf4mwmxl4db6g
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
 
-On Mon, Jan 29, 2024 at 11:05:12AM -0800, Abhinav Kumar wrote:
-> <adding device tree maintainers to comment>
->=20
-> Hi Maxime
->=20
-> On 1/26/2024 4:45 AM, Maxime Ripard wrote:
-> > On Wed, Jan 17, 2024 at 09:36:20AM -0800, Abhinav Kumar wrote:
-> > > Hi Jani and Maxime
-> > >=20
-> > > On 1/17/2024 2:16 AM, Jani Nikula wrote:
-> > > > On Wed, 17 Jan 2024, Maxime Ripard <mripard@kernel.org> wrote:
-> > > > > Hi,
-> > > > >=20
-> > > > > On Tue, Jan 16, 2024 at 02:22:03PM -0800, Jessica Zhang wrote:
-> > > > > > This series introduces a simulated MIPI DSI panel.
-> > > > > >=20
-> > > > > > Currently, the only way to validate DSI connectors is with a ph=
-ysical
-> > > > > > panel. Since obtaining physical panels for all possible DSI con=
-figurations
-> > > > > > is logistically infeasible, introduce a way for DSI drivers to =
-simulate a
-> > > > > > panel.
-> > > > > >=20
-> > > > > > This will be helpful in catching DSI misconfiguration bugs and =
-catching
-> > > > > > performance issues for high FPS panels that might not be easily
-> > > > > > obtainable.
-> > > > > >=20
-> > > > > > For now, the simulated panel driver only supports setting custo=
-mized
-> > > > > > modes via the panel_simlation.mode modparam. Eventually, we wou=
-ld like
-> > > > > > to add more customizations (such as configuring DSC, dual DSI, =
-etc.).
-> > > > >=20
-> > > > > I think that it's more complicated than it needs to be.
-> > > >=20
-> > > > Both too complicated and not complicated enough! :p
-> > >=20
-> > > The end goal is to have a framework to be able to validate the display
-> > > pipeline with MIPI panels of any resolution , DSC/non-DSC, different =
-MIPI
-> > > flags etc.
-> > >=20
-> > > Historically, QC has been having an in-house framework to validate the
-> > > panels in a simulated way as its logistically not possible to procure=
- every
-> > > panel from every vendor. This has been working pretty well but its not
-> > > upstream yet. So we would like to work with the community to work on =
-a model
-> > > which works for everyone and this RFC was initiated with that in mind.
-> >=20
-> > I think the goal was pretty clear. My point was more that there's no
-> > reason it should be driver specific, and having a second path for it
-> > doesn't really exert the actual panel path in the driver. I think a
-> > separate driver would be better.
-> >=20
->=20
-> We can make this generic. That would be great actually. One option could =
-be
-> to move the modparam we have within the msm to the drm_of.c so that
-> drm_of_find_panel_or_bridge shall return the sim panel if the modparam is
-> passed to select a sim panel.
->=20
-> So if we make this a compile time decision whether to use real panel or s=
-im
-> panel and just enable the appropriate config, we dont need the modparam a=
-nd
-> we can implement some policy in the drm_of to first check if sim panel is
-> available and if not try the real panel then everything will just happen
-> under-the-hood. But we thought that a modparam based switching might be
-> convenient if users dont want to recompile the code to switch but will ne=
-ed
-> to compile both the panels.
+On 02/02/2024 11:53, Conor Dooley wrote:
+> On Fri, Feb 02, 2024 at 11:36:55AM +0200, Roger Quadros wrote:
+>>
+>>
+>> On 01/02/2024 21:13, Conor Dooley wrote:
+>>> On Thu, Feb 01, 2024 at 12:35:22PM -0600, Bin Liu wrote:
+>>>> On Thu, Feb 01, 2024 at 06:18:05PM +0000, Conor Dooley wrote:
+>>>>> On Thu, Feb 01, 2024 at 06:15:20PM +0000, Conor Dooley wrote:
+>>>>>> On Thu, Feb 01, 2024 at 02:03:31PM +0200, Roger Quadros wrote:
+>>>>>>> So far this was not required but due to the newly identified
+>>>>>>> Errata i2409 [1] we need to poke this register space.
+>>>>>>>
+>>>>>>> [1] https://www.ti.com/lit/er/sprz487d/sprz487d.pdf
+>>>>>>>
+>>>>>>> Signed-off-by: Roger Quadros <rogerq@kernel.org>
+>>>>>>
+>>>>>> Acked-by: Conor Dooley <conor.dooley@microchip.com>
+>>>>>
+>>>>> Actually, where is the user for this that actually pokes the register
+>>>>> space?
+>>
+>> https://lore.kernel.org/all/20240201121220.5523-5-rogerq@kernel.org/
+>>
+>>>>> You're adding another register region, so I went to check how you were
+>>>>> handling that in drivers, but there's no driver patch.
+>>>>
+>>>> See Roger's another patch set 'Add workaround for Errata i2409' posted
+>>>> on 16th.
+>>>
+>>> This patch should be with that series, not with these dts patches.
+>>>
+>>
+>> Why not? There should be no dependency between DTS and driver implementation.
+>>
+>> As DTS and driver will be merged by separate maintainers I thought it
+>> would be easier for maintainers this way.
+> 
+> dts and driver might be merged by different people, but dt-bindings and
+> drivers are merged by the same people. This is a bindings patch, not a
 
-I agree that a module parameter to select the simulated panel looks like
-the best option compared to a compile time option.
+If we do that then I get a bunch of dtbs_check warnings
 
-> > > There is simulation infrastructure in place in upstream for HDMI/DP i=
-n the
-> > > form of chamelium based testing in IGT but no such fwk exists for DSI
-> > > displays.
-> > >=20
-> > > Different MIPI panels and resolutions test out not only the DSI contr=
-oller
-> > > but the entire display pipeline as based on resolution, compression a=
-nd MIPI
-> > > mode flags different parts of the pipeline can get exercised.
-> > >=20
-> > > > > Why do we need to support (and switch to) both the actual and
-> > > > > "simulated" panel?
-> > > > >=20
-> > >=20
-> > > As per my discussion on IRC with the panel/bridge maintainers and DT
-> > > maintainers, a simulation panel does not qualify for its own devicetr=
-ee as
-> > > its not a real hardware so we needed to come up with a way to have a =
-module
-> > > which can be attached to the encoder without its own bindings and
-> > > devicetree. Thats what led to this RFC.
-> >=20
-> > I still think it's worth trying, there's plenty of virtual drivers in
-> > the DT already. But even then, DT policies shouldn't dictate general
-> > framework design decisions: we have other ways to probe panels than
-> > using the DT (by loading overlays, registering devices by hand, etc.). I
-> > still think it would be a good idea to try though.
-> >=20
->=20
-> DT option would be great if accepted and will nicely solve the scalability
-> issue of this as it desperately needs one.
->=20
-> I have absolutely no concerns and would be glad if it will be accepted.
->=20
-> Can the DT maintainers please comment if having a device tree for a
-> simulation panel would work OR be considered because of the scalability of
-> the number of panels which can be tried as Maxime wrote.
->=20
-> > > > > Wouldn't it be simpler if we had a vkms-like panel that we could =
-either
-> > > > > configure from DT or from debugfs that would just be registered t=
-he
-> > > > > usual way and would be the only panel we register?
-> > > >=20
-> > >=20
-> > > No, we need to have validate actual hardware pipeline with the simula=
-ted
-> > > panel. With vkms, actual display pipeline will not be validated. With
-> > > incorrect display pipeline misconfigurations arising from different p=
-anel
-> > > combinations, this can easily be caught with any existing IGT CRC tes=
-ting.
-> > > In addition, all performance related bugs can also be easily caught by
-> > > simulating high resolution displays.
-> >=20
-> > That's not what I meant. What I meant was that something like a
-> > user-configurable, generic, panel driver would be a good idea. Just like
-> > vkms (with the debugfs patches) is for a full blown KMS device.
-> >=20
->=20
-> Let me respond for both this question and the one below from you/Jani.
->=20
-> Certainly having user-configurable information is a goal here. The end-go=
-al
-> is to make everything there in the existing panels such as below like I
-> wrote:
->=20
-> 1) Display resolution with timings (drm_display_mode)
-> 2) Compression/non-compression
-> 3) Command mode/Video mode
-> 4) MIPI mode flags
-> 5) DCS commands for panel enable/disable and other panel sequences
-> 6) Power-up/Power-down sequence for the panel
->=20
-> But, we also have to see what all is feasible today from the DRM fwk
-> standpoint. There are some limitations about what is boot-time configurab=
-le
-> using bootparams and what is runtime configurable (across a modeset) using
-> debugfs.
->
-> 1) Today, everything part of struct mipi_dsi_device needs to be available=
- at
-> boot time from what I can see as we need that while calling
-> mipi_dsi_attach(). So for that we went with boot-params.
->=20
-> 2) For the list of modes, we can move this to a debugfs like
-> "populate_modes" which the client using a sim panel can call before picki=
-ng
-> a mode and triggering a commit.
->=20
-> But we need to have some default mode and configuration.
->=20
-> This is where I am not totally sure of. On HDMI/DP sinks, we usually go w=
-ith
-> a default of 640x480 as that one is guaranteed to be supported across sin=
-ks.
->=20
-> For MIPI displays, we will have to agree on some default configuration th=
-en.
->=20
-> So, we can certainly add debugfs to make the runtime params but we need to
-> start with some default during boot-up and move the others to debugfs.
->=20
-> With vkms, can you pls point us to the debugfs patches you are referring =
-to?
-> With the current vkms, very little is available which is debugfs
-> configurable (overlay, writeback and cursor support).
->=20
-> Ofcourse, all these concerns go away if DT option gets accepted.
+dwc3-usb@f900000: reg: [[0, 261095424, 0, 2048], [0, 261128192, 0, 1024]] is too long
 
-Not entirely, no. You won't be able to express the command sequences
-properly through the DT for example, so we would need some kind of
-interface like that anyway.
+> dts patch. Look at what get_maintainer says for this file:
+> 	Greg Kroah-Hartman <gregkh@linuxfoundation.org> (supporter:USB SUBSYSTEM)
+> 	Rob Herring <robh+dt@kernel.org> (maintainer:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS)
+> 	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org> (maintainer:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS)
+> 	Conor Dooley <conor+dt@kernel.org> (maintainer:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS)
+> 	Aswath Govindraju <a-govindraju@ti.com> (in file)
+> 	linux-usb@vger.kernel.org (open list:USB SUBSYSTEM)
+> 	devicetree@vger.kernel.org (open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS)
+> 	linux-kernel@vger.kernel.org (open list)
+> Greg and linux-usb are on there, but you have not CCed them.
 
-Maxime
+My bad. Will be more careful next time.
 
---tvqtf4mwmxl4db6g
-Content-Type: application/pgp-signature; name="signature.asc"
+> 
+> Being with the driver also allows bindings maintainers to check that you
+> don't break backwards compatibility. It also prevents me having to ask
+> for the driver patch, then be given just a subject line that I have to
+> go and look up myself!
+> 
 
------BEGIN PGP SIGNATURE-----
+Sorry about that. It took a bit longer but I did point you directly to the
+patch on lore.kernel.org.
 
-iHUEABYKAB0WIQRcEzekXsqa64kGDp7j7w1vZxhRxQUCZbzAFgAKCRDj7w1vZxhR
-xTCYAPwI20H7PMvAPATSHOSbKbox6djl/Xz7bzwuF6pzi4WFTAEA7+1yYXqBrMyY
-HGNlXJqb9JdvhI2lGxznwisFHL2eaQQ=
-=7Hi4
------END PGP SIGNATURE-----
-
---tvqtf4mwmxl4db6g--
+-- 
+cheers,
+-roger
 
