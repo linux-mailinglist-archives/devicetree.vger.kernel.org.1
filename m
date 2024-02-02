@@ -1,153 +1,136 @@
-Return-Path: <devicetree+bounces-37980-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-37981-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8B1598470D8
-	for <lists+devicetree@lfdr.de>; Fri,  2 Feb 2024 14:09:13 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 92F278470EC
+	for <lists+devicetree@lfdr.de>; Fri,  2 Feb 2024 14:15:25 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 337EA290674
-	for <lists+devicetree@lfdr.de>; Fri,  2 Feb 2024 13:09:12 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 50E452911F2
+	for <lists+devicetree@lfdr.de>; Fri,  2 Feb 2024 13:15:24 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1DD4B4684;
-	Fri,  2 Feb 2024 13:09:08 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A05281773D;
+	Fri,  2 Feb 2024 13:15:21 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=microchip.com header.i=@microchip.com header.b="jy0ECwWN"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="geWclKoX"
 X-Original-To: devicetree@vger.kernel.org
-Received: from esa.microchip.iphmx.com (esa.microchip.iphmx.com [68.232.154.123])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-pf1-f179.google.com (mail-pf1-f179.google.com [209.85.210.179])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 90A8446A1;
-	Fri,  2 Feb 2024 13:09:05 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=68.232.154.123
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1712B3D6D;
+	Fri,  2 Feb 2024 13:15:19 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.179
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1706879348; cv=none; b=mE21/MIFprdPMXHoBlfYz4LwJzfyp/mA+gVD8L3M+P2yThyHK/p2dC2Do6T8tfSojTuLv+fHusvG4vbyS8HKgarQdQ5vUi6ZPjfwc5hNJi8fB8jJO2W1qziu1qgmk4wUlcXZVT0/IDoW1xc3XVCFZth2qxNRRKee0RvNVuOvwpY=
+	t=1706879721; cv=none; b=ClahJW0keFAbhMJBAVNey26AKzQ3IOIlFpWm+yXXoDRL9nj9/5mc4mtPd4whWsWQKmaDueNue3tbZj5QdumDdr6iQC3Nrq0FE4gFb9FVJDyAhO4xV2SW52U0WiR2tt/QvlTwldyzN4QQHGEcLl9JoBeL6enzR+6Js+/ooaWIcME=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1706879348; c=relaxed/simple;
-	bh=rQIYUc5pp3Rz7/dcNH7XPkmrEi1ITVoDRHNWKXuedXo=;
-	h=Date:From:To:CC:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=Eph7InxdcQKOlkzOVMkqUQFPR5UhefP/D3ycbgHM3zDocb50y+5hkwAwk9740gVc+nWM+0cP5nYX5Elta/g39cHip0egVW0C0nxGcqzTKPgZbB6/lJXKrR5bYRZ9GkInkZ6zC1YnL9nz8Yp0i7acBVwU5zchL8rj/9R8Y8MQkqs=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=microchip.com; spf=pass smtp.mailfrom=microchip.com; dkim=pass (2048-bit key) header.d=microchip.com header.i=@microchip.com header.b=jy0ECwWN; arc=none smtp.client-ip=68.232.154.123
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=microchip.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=microchip.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
-  t=1706879346; x=1738415346;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=rQIYUc5pp3Rz7/dcNH7XPkmrEi1ITVoDRHNWKXuedXo=;
-  b=jy0ECwWNdkA3ZIhLRXIkCY8Cvu2s4zBdNZBCBs/aESvmf4EfA34a/9kT
-   6GjNU/y9kgFFhP3CDQZbq/1gE0liF999BWSxleSXD+iw/4+z8K+pzea7i
-   vxrUP+7CXcnM5YEnc2Vk7xXCggLVhtPg/zFqhq0uUzFywOnVj5ZBVuxvb
-   LsjAYyE69q1Fql74V9l3NX3YPSZ2Inp8aYmQqO7NwR4o9nZpuwu6NqCS3
-   98Dq+H0KK/2A66d9kdl5Ic3rhMjecvb4OMWLplJSZdJCAyOOTBQhiWlzY
-   z8fUVgcCcUXXla1GLJMKYTAVk5eqrHnPOeIjMVa+tKt2RARqthqYxX7kh
-   w==;
-X-CSE-ConnectionGUID: YxDka9K6S3205y8iAzi+Sg==
-X-CSE-MsgGUID: 2jAMHJV2RTq2Vh02+X84cw==
-X-IronPort-AV: E=Sophos;i="6.05,238,1701154800"; 
-   d="asc'?scan'208";a="16183861"
-X-Amp-Result: UNKNOWN
-X-Amp-Original-Verdict: FILE UNKNOWN
-Received: from unknown (HELO email.microchip.com) ([170.129.1.10])
-  by esa2.microchip.iphmx.com with ESMTP/TLS/ECDHE-RSA-AES128-GCM-SHA256; 02 Feb 2024 06:09:03 -0700
-Received: from chn-vm-ex01.mchp-main.com (10.10.85.143) by
- chn-vm-ex03.mchp-main.com (10.10.85.151) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.35; Fri, 2 Feb 2024 06:08:32 -0700
-Received: from wendy (10.10.85.11) by chn-vm-ex01.mchp-main.com (10.10.85.143)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.35 via Frontend
- Transport; Fri, 2 Feb 2024 06:08:30 -0700
-Date: Fri, 2 Feb 2024 13:07:51 +0000
-From: Conor Dooley <conor.dooley@microchip.com>
-To: Peter Rosin <peda@axentia.se>
-CC: Naresh Solanki <naresh.solanki@9elements.com>, Conor Dooley
-	<conor@kernel.org>, Jonathan Cameron <Jonathan.Cameron@huawei.com>, Krzysztof
- Kozlowski <krzysztof.kozlowski@linaro.org>, Jonathan Cameron
-	<jic23@kernel.org>, Lars-Peter Clausen <lars@metafoo.de>, Rob Herring
-	<robh+dt@kernel.org>, Krzysztof Kozlowski
-	<krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>,
-	<mazziesaccount@gmail.com>, <linux-iio@vger.kernel.org>,
-	<devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>
-Subject: Re: [PATCH v3] dt-bindings: iio: afe: voltage-divider: Add
- io-channel-cells
-Message-ID: <20240202-shone-footwork-b247b1ae8e06@wendy>
-References: <20240130115651.457800-1-naresh.solanki@9elements.com>
- <1c855a34-8a0d-491e-bfd2-24635b41c86f@linaro.org>
- <20240131163516.000043df@Huawei.com>
- <20240131-stylized-defile-d8fe346ab197@spud>
- <CABqG17iNxfKFNqydkgo6gL8ZmaZ_bqm=pG8kNEhzx_h2eaGuhQ@mail.gmail.com>
- <e8b30740-379c-9ab0-6bd7-d4726f822381@axentia.se>
+	s=arc-20240116; t=1706879721; c=relaxed/simple;
+	bh=be3/+gNfitjwgXTusfVYHe12ReY8nX0GAxGrQl7h+64=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=by7mJswOxdYmndbTICCkSz6S1hm/z+Wik9aMS5cbedk6YTMReWb5BR7Zl29ADDTjLBN40GlAlB51p5SVGsi9p3YoAZBwnk6T4jQMxdu7EP+SNDGVu1ZEQ2zw2SsWPd0HjDC1tj85uBHCrAT5uXPlHkPD+TNpa+RVtHvYhqv5lgQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=geWclKoX; arc=none smtp.client-ip=209.85.210.179
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-pf1-f179.google.com with SMTP id d2e1a72fcca58-6dddf4fc85dso1631189b3a.0;
+        Fri, 02 Feb 2024 05:15:19 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1706879719; x=1707484519; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=yWWxDbFc1s0H43msZb3R2yZAbYlHwiF4o6Dt1xNyb5c=;
+        b=geWclKoXwLe4nagQFX0fjJxPTkNetGQrdTqciHFIIT6LlwMgeFCMj3QXPwYjeGjqRb
+         aCbKetaY3ZJpsYP+p73CtBx4k9r+Ab2YFp796nIJf9j9CkMY5/a3d0oTVrJLrPV58LNK
+         mfd7RTb/TTsta37s4yDRk1jBXe4F5d7Dvs+F/2I9ZJStcCVpOkbWeC6QGirjTxqwyo8Q
+         pvQDva+FXni8KLZuuyIy5sbTLMpKxenWYZezB4vKPS9qzBNSRe+77sVmX5bwd/iHbE0i
+         9lMkmDZaop+UAfdpv7CwawrlTYXBBbdZ2N65urYAPbgRy5SW4KRXyhprr1dkr8wHoWUR
+         rDqA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1706879719; x=1707484519;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=yWWxDbFc1s0H43msZb3R2yZAbYlHwiF4o6Dt1xNyb5c=;
+        b=Fit7EKOIl0g0sqW7e94EF7HEWmSLtH/T32Vlkk/c1q2Y5TTj9deYPjB5aBmzrii1V8
+         t8KUD+A8wATbYBItStpmXcGYoJngpjNgsbPMALXt1TCaimIum8r5/MN7PJwxl/v4vix8
+         /zL1Z3zWT81wfDA6jKRITRnFLYIw2gnFUCXVxxebbsJK1YHNmpO3iQrNtb36vFCwxuaw
+         sPBOXyuriNB8ddbA1eqjtrV5cHkFz/rlbNFDZpKIpy/jpYzW3lUDcCqEKszPM1p8F2sO
+         GiE13/lzwZofGUujPXnAfmH9L3k6f4RH1d2lEPAr4bA/yB0HyQIhPu0ZcA3FD5r/7jGF
+         Z0xw==
+X-Gm-Message-State: AOJu0Yx1k37tgU4Uo01YEdgadLkWpiJVrEJplo46cntXcuzcj0U279r1
+	ARk5h4PIYVNAInjRP6fyjg46psQFS/YSOHoBpJPK8Cl3xu/eb3/MXDQbk/8vYZWvBqFrnC6vFHA
+	Kxm4umXvJqC6L57eHRVea616+BtA=
+X-Google-Smtp-Source: AGHT+IEEv/kGQPLAUBTIrzRoVfYRzZUzQ0pExjTA1QXrHHzOYJs3MVy1uMEAGhNsUBAO1SU8mvJcclAlTx41fWfFVN0=
+X-Received: by 2002:a05:6a20:3149:b0:19c:9c77:853c with SMTP id
+ 9-20020a056a20314900b0019c9c77853cmr1606806pzk.33.1706879718762; Fri, 02 Feb
+ 2024 05:15:18 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-	protocol="application/pgp-signature"; boundary="usQcF2wOq7nJ/0DO"
-Content-Disposition: inline
-In-Reply-To: <e8b30740-379c-9ab0-6bd7-d4726f822381@axentia.se>
-
---usQcF2wOq7nJ/0DO
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
+References: <20240106221907.325127-1-aford173@gmail.com> <20240106221907.325127-2-aford173@gmail.com>
+ <20240202122036.7aa66d9d@booty>
+In-Reply-To: <20240202122036.7aa66d9d@booty>
+From: Adam Ford <aford173@gmail.com>
+Date: Fri, 2 Feb 2024 07:15:07 -0600
+Message-ID: <CAHCN7x+Fyy76_Qo0757fx3bjg5RWUHU=NQHJu+WenSi9PQrwOg@mail.gmail.com>
+Subject: Re: [PATCH V2 2/2] phy: freescale: add Samsung HDMI PHY
+To: Luca Ceresoli <luca.ceresoli@bootlin.com>
+Cc: dri-devel@lists.freedesktop.org, 
+	Kishon Vijay Abraham I <kishon@kernel.org>, devicetree@vger.kernel.org, 
+	Conor Dooley <conor+dt@kernel.org>, Fabio Estevam <festevam@gmail.com>, 
+	Pengutronix Kernel Team <kernel@pengutronix.de>, Shawn Guo <shawnguo@kernel.org>, 
+	Sascha Hauer <s.hauer@pengutronix.de>, linux-kernel@vger.kernel.org, 
+	Vinod Koul <vkoul@kernel.org>, Rob Herring <robh+dt@kernel.org>, 
+	NXP Linux Team <linux-imx@nxp.com>, Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, 
+	linux-phy@lists.infradead.org, linux-arm-kernel@lists.infradead.org
+Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-On Fri, Feb 02, 2024 at 12:49:26PM +0100, Peter Rosin wrote:
-> 2024-02-02 at 11:43, Naresh Solanki wrote:
-> > On Wed, 31 Jan 2024 at 22:24, Conor Dooley <conor@kernel.org> wrote:
-> >> On Wed, Jan 31, 2024 at 04:35:16PM +0000, Jonathan Cameron wrote:
-> >>> On Wed, 31 Jan 2024 09:29:59 +0100
-> >>> Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org> wrote:
-> >>>> On 30/01/2024 12:56, Naresh Solanki wrote:
-> >>> Conor requested an example of the device acting as a consumer and a p=
-rovider.
-> >>> Might have meant in the patch description?
-> >>>
-> >>> Conor?
-> >>
-> >> I wanted it in the property description to help with understanding when
-> >> to use it. I don't think the extra example nodes actually help you
-> >> understand what it is doing, only how to write one yourself once you
-> >> know you need it.
+On Fri, Feb 2, 2024 at 5:20=E2=80=AFAM Luca Ceresoli <luca.ceresoli@bootlin=
+.com> wrote:
+>
+> Hello Adam,
+>
+> On Sat,  6 Jan 2024 16:19:05 -0600
+> Adam Ford <aford173@gmail.com> wrote:
+>
+> > From: Lucas Stach <l.stach@pengutronix.de>
 > >
-> > I'm not sure if I get it right but what I understood is that a
-> > voltage-divider can
-> > also be a provider to other devices & hence the property.
-> > Also do you want me to put a complete example of it in description ?
->=20
-> My understanding is the requested example in the description should not
-> be exactly /how/ to hook up the voltage-divider as a provider, but
-> instead have some words about why it is interesting to do so at all. And
-> those words would also make it clear that is even possible. The latter
-> is something which, to be honest, is perhaps not all that obvious. It
-> has always been totally obvious to me of course, sorry for not being
-> clearer when I wrote the binding...
+> > This adds the driver for the Samsung HDMI PHY found on the
+> > i.MX8MP SoC.
+> >
+> > Signed-off-by: Lucas Stach <l.stach@pengutronix.de>
+> > Signed-off-by: Adam Ford <aford173@gmail.com>
+>
+> I had already tested the v2 from Lucas, however I also tested this
+> version which works as well, on v6.8-rc1, custom hardware based on the
+> Avnet i.MX8MP SMARC SoM.
+>
+> Tested-by: Luca Ceresoli <luca.ceresoli@bootlin.com>
+>
+Thanks for testing.
 
-Yeah, you're right about what I was looking for Peter.
+> Generally speaking, as there are several small patch series around which
+> together implement HDMI on iMX8MP and similar, I think it would be much
+> easier fore reviewing and testing if they were grouped into a unique
+> series.
 
-In my original request, which I think I already linked to in this
-thread, I said that I would like an example like the one that Peter had
-used to explain to me the scenario in which someone would want to use
-this feature:
-https://lore.kernel.org/all/536971eb-51f0-40e5-d025-7c4c1d683d49@axentia.se/
+That will happen for my next attempt to push this series.  It was a
+headache for me to gather them all.  I have a github repo setup with
+my latest edits here if you're interested:
 
-Cheers,
-Conor.
+https://github.com/aford173/linux/tree/for-6.9-imx8mp-hdmi
 
---usQcF2wOq7nJ/0DO
-Content-Type: application/pgp-signature; name="signature.asc"
 
------BEGIN PGP SIGNATURE-----
-
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZbzpJwAKCRB4tDGHoIJi
-0uBFAQDd15cD8MlFITgRCGGrILqvQfUUTBlUwpZKIBO44nEglwEA4kyJoMeP6ch6
-GVduioubFuEAahb5xAJrtGAOnY/jjgU=
-=yUBY
------END PGP SIGNATURE-----
-
---usQcF2wOq7nJ/0DO--
+adam
+>
+> Luca
+>
+> --
+> Luca Ceresoli, Bootlin
+> Embedded Linux and Kernel engineering
+> https://bootlin.com
 
