@@ -1,147 +1,234 @@
-Return-Path: <devicetree+bounces-37955-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-37956-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6AA63846F2B
-	for <lists+devicetree@lfdr.de>; Fri,  2 Feb 2024 12:40:57 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id C4B12846F5A
+	for <lists+devicetree@lfdr.de>; Fri,  2 Feb 2024 12:47:14 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 2113C289A31
-	for <lists+devicetree@lfdr.de>; Fri,  2 Feb 2024 11:40:56 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id CFC8F1C22F14
+	for <lists+devicetree@lfdr.de>; Fri,  2 Feb 2024 11:47:13 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id ED23414198B;
-	Fri,  2 Feb 2024 11:39:25 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id DF04813BEB6;
+	Fri,  2 Feb 2024 11:47:11 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=amd.com header.i=@amd.com header.b="NS7Chs2L"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="AOIGgx8m"
 X-Original-To: devicetree@vger.kernel.org
-Received: from NAM11-CO1-obe.outbound.protection.outlook.com (mail-co1nam11on2044.outbound.protection.outlook.com [40.107.220.44])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 49960140797;
-	Fri,  2 Feb 2024 11:39:23 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.107.220.44
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1706873965; cv=fail; b=Y8EF5iqzT6PAuJ2KwGn/+NJ7Td2MHjpOgpuAgGfxQMZwOdYTKbZb7RWrjgs12LZjpdeW1fqm25ummTmlnVT8gO/yojw2KNPD4Cl/5wyVYHzaqUMwhDvIzzAjhZoCxuoLT1ebKnfoZMjxBWpP7zU+x6Szo4c4lWl7yGzNGSbv2AM=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1706873965; c=relaxed/simple;
-	bh=WFGcpeS7ktarcaNtMAN7aQNrUMbtH+5LShTUeF86Kaw=;
-	h=From:To:CC:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=PKGoZ0ACvjAYOsRNblflP63LSW40Sm/COECxJ2SCAdDZgzAUw+IK8z6T9J1OBZcqEQSGSbCtsAfF9IVIVR03F1e651hpoN8jqyj+MfJdvsXgF2Jnl0PugBoEvpncIh4EXQdx32bQXRDMNxs/9Snk+oapbINj3Fp5DWquRxr4FI4=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=amd.com; spf=fail smtp.mailfrom=amd.com; dkim=pass (1024-bit key) header.d=amd.com header.i=@amd.com header.b=NS7Chs2L; arc=fail smtp.client-ip=40.107.220.44
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=amd.com
-Authentication-Results: smtp.subspace.kernel.org; spf=fail smtp.mailfrom=amd.com
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=cP9WYoFlFWTSl7wNdPrzZ/bovf17q8AxU2tKzcPy5jAsKCQ6+81/W5sHijNWIch6sC0SdkQ6IX0dxawhFsSJ/SZLdu7OpaKgESnZJICcvTFQU0NB8CAohs3DPhSklRhLChzpw0TwRaXE9EDp89L5tXu2m8js223yUEpeYWHqHqTsCU9cJkICdSK3Z8wOeLWZhlVuXuXnAXqOGTRJnWSi5VQwbNRz3Gd+SOhwLFjleDaSzTN9C1++fsVIpoLGhGxVVALHjcB3ekzD2DAKIk7+CJ/6eRXzPYErIqSxjzLQJUPeiWA/lVcbzgRgn8GSqxScrkjKaYjRKCe3JvA3hctJlQ==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=FZz7eupGvLzz7ZD/jQ9T923lPBviWonhFPdvhDFGwpU=;
- b=XYHm5YGqLunShVtMizqSDd5uFjneGxFeiskAEx3pBjvUZQVraJeZkMWG4pWkLa7ErqB3NGC+JNr2OOjgCyQm7Hp4qk9AueUx+LET0M5TDacAZkSaTSfWjgAHZjD/cqwrEzbx021490n0aWFPrVmYKk2kmFq+RVJmifUeLNMnxdEnGFse+CLXk4XA0OE2JhkNjpoDbx+sp56fRSq0XNuCdDfTMXjjRix8g3ZGdl2wnXVfWqTGVEt+Gefdy51zlyJt254V68qj4EPkFCt0MHhl5hWiLw2RKhbUaso1BfzWzzcqhbcPr80TohzBkA/W+fG+y3YKFJBbZ5y3YLOW1CVZbw==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
- 165.204.84.17) smtp.rcpttodomain=linaro.org smtp.mailfrom=amd.com; dmarc=pass
- (p=quarantine sp=quarantine pct=100) action=none header.from=amd.com;
- dkim=none (message not signed); arc=none (0)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=FZz7eupGvLzz7ZD/jQ9T923lPBviWonhFPdvhDFGwpU=;
- b=NS7Chs2Lu3oMJ0GosBwMWKISogArgTucVWPClpHB+X2hjgbcDBxj3C6pwF0i9s1Om3WdmyrKNMwdYe7PqGNyPqS4TgVS5CiwYv7+IV1m7mYUebyaNoC8T9VMd0563sNdtEYqRaerVLO0AQ0DiAW7RLQRFI8Sh/1y0m5dh4JgxrA=
-Received: from CYZPR05CA0012.namprd05.prod.outlook.com (2603:10b6:930:89::22)
- by MN2PR12MB4287.namprd12.prod.outlook.com (2603:10b6:208:1dd::11) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7249.22; Fri, 2 Feb
- 2024 11:39:21 +0000
-Received: from CY4PEPF0000E9D2.namprd03.prod.outlook.com
- (2603:10b6:930:89:cafe::86) by CYZPR05CA0012.outlook.office365.com
- (2603:10b6:930:89::22) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7270.14 via Frontend
- Transport; Fri, 2 Feb 2024 11:39:21 +0000
-X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
- smtp.mailfrom=amd.com; dkim=none (message not signed)
- header.d=none;dmarc=pass action=none header.from=amd.com;
-Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
- 165.204.84.17 as permitted sender) receiver=protection.outlook.com;
- client-ip=165.204.84.17; helo=SATLEXMB03.amd.com; pr=C
-Received: from SATLEXMB03.amd.com (165.204.84.17) by
- CY4PEPF0000E9D2.mail.protection.outlook.com (10.167.241.145) with Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.20.7249.19 via Frontend Transport; Fri, 2 Feb 2024 11:39:21 +0000
-Received: from SATLEXMB04.amd.com (10.181.40.145) by SATLEXMB03.amd.com
- (10.181.40.144) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.34; Fri, 2 Feb
- 2024 05:39:20 -0600
-Received: from xhdbharathm40.xilinx.com (10.180.168.240) by SATLEXMB04.amd.com
- (10.181.40.145) with Microsoft SMTP Server id 15.1.2507.34 via Frontend
- Transport; Fri, 2 Feb 2024 05:39:18 -0600
-From: Praveen Teja Kundanala <praveen.teja.kundanala@amd.com>
-To: <srinivas.kandagatla@linaro.org>, <michal.simek@amd.com>,
-	<kalyani.akula@amd.com>, <praveen.teja.kundanala@amd.com>,
-	<devicetree@vger.kernel.org>, <linux-arm-kernel@lists.infradead.org>
-CC: <linux-kernel@vger.kernel.org>
-Subject: [PATCH V4 4/4] MAINTAINERS: Add maintainers for ZynqMP NVMEM driver
-Date: Fri, 2 Feb 2024 17:08:43 +0530
-Message-ID: <20240202113843.17999-5-praveen.teja.kundanala@amd.com>
-X-Mailer: git-send-email 2.38.1
-In-Reply-To: <20240202113843.17999-1-praveen.teja.kundanala@amd.com>
-References: <20240202113843.17999-1-praveen.teja.kundanala@amd.com>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B5B637764F;
+	Fri,  2 Feb 2024 11:47:11 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1706874431; cv=none; b=p3KUx5R8AL3NUUUUuZTUeZ/zsaum9cuW9bimCFGw9NFuQnOzzHXH/L1z2tjZm1N1y7LqjOTiKZkGvLHLzJ4e0mfmQtltiR1imjQCSl3JEz4gXuSX4qf+5WsOzDYKi7rZDjPjZVm775uGnD3A2XIU3r0jcN+ieEZF3yh+tTkt67s=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1706874431; c=relaxed/simple;
+	bh=5aee8md31YYvRm8ia/w6IhVpzs9e6c/VYaFcXsIS9EM=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=JFuk2psGlTIfNLW3K7TiFKL8SIWuzYBDVYpfYJfT87U3ZJ+ByvSqLBbiJ8PPQaeFlHOTJd1CmxT5uzyAY4qhRWwuBHNx9soz/hBH0t3kxLl6P8yXufm0uE+lbql5HJ2byUeL0iw5+Rt2XilJwVuC5tfP2E7UZk50gA/C2P7g0h0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=AOIGgx8m; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 1AE84C43390;
+	Fri,  2 Feb 2024 11:47:07 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1706874431;
+	bh=5aee8md31YYvRm8ia/w6IhVpzs9e6c/VYaFcXsIS9EM=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=AOIGgx8m0Hj4MMbtnum18r2ctgRwL4HRAA8ZW9hrxfQnRq57COz+jZdsAvs2rXcjo
+	 /utapPEOZBnxxpS8IBW92YPoBPrMVsHwX/ujtMdDNrikFkR1FTmhP0Qr54YD1yZ9XU
+	 vpFMig+tJrnzgrLxqKFyuiqR7jbrjWF8TXBRawIjyJEDN+b+earaqE5AkqVWEvf9NN
+	 qX/AoTsir3oiJioVy/sfmQfOm4EEqpedLsxHkar0a0CWiPAbZDg/kq5ZJhnOnTfhuy
+	 DYPOHf95uFSY/4WYWfCUAaN/TUJdRp65RHhKh5qwZa0ouDwxKQg1o0s+WVEqMLJ8r5
+	 1cHOvQP+54I8w==
+Message-ID: <156ae282-3052-45bd-be71-8220d04e73d1@kernel.org>
+Date: Fri, 2 Feb 2024 13:47:05 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-EOPAttributedMessage: 0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: CY4PEPF0000E9D2:EE_|MN2PR12MB4287:EE_
-X-MS-Office365-Filtering-Correlation-Id: a33eb591-8cf6-4ab3-7296-08dc23e3993b
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info:
-	h3zovQj89Vnf/0+pA/BLM8oPxrMIxJCfhMRGItPNVGoHWzWkz4vlWz09b3UbIPki4L2KM0194c9HNHqYF6ShXzFCnh1rzmn9zNg5qB4xJjFo1HPltdkiUHyAg83OyEWDKvrwfuvt5rV/NDUWsHcSNfeDrPV11mz8JD6q61/ld01HcVu1xv6UTBU/SvBOz+ztKFbJ2QbAd24bUcrwCoqYPnbdFL7L+oP7RDTsOQUPn8K5EZyEF3KMP8OI8kP8Ndy+fchg4yS+kuru5USCvATmrFocF36ZNDeRWUq8ty05/xnsSKj07nENEDaybuugGBLr15y6b8y9LvY/sNcslvug0YMsgfwLCgZiKJKj4Ht5x0GKQccRbYTxisSpNn++YoaNseeAt6t1XoSorRVA4++uxfy/R5pLr8lqw4kYjS5g9G8mH6D9EuoHWG/S41qd2e7EON224w59BKXbEEPsBaxvmdIyY14OYlBYgaJZeVoK3ldxVj0i8pz+jKWAZUjFozKwIkn6gNFKSfOpZD09Q9vQdpEPzyWBGaKcfdk00hEvQEbYvEnpj4rsYtVSWp/fRmKzpCdyWisq/ivEmE4UUChYKJEsh0iq+3P1yMuo/cAKFN26NnFkmrKO5HlvDlGUdJX2isogSJz/E8jMBjULcMBlx/AhnGudx0ZDt8uKZflCPrsCks0DA88I0mC3M6rTm1CDO61sqcLJv3XaUP37uZ1MrXHAkb5aLD4uqsZHCMdlqTiADtW4liEeuXlj82SaVUgDPVm1qWXe1yRaXnEH/BRrvg==
-X-Forefront-Antispam-Report:
-	CIP:165.204.84.17;CTRY:US;LANG:en;SCL:1;SRV:;IPV:CAL;SFV:NSPM;H:SATLEXMB03.amd.com;PTR:InfoDomainNonexistent;CAT:NONE;SFS:(13230031)(4636009)(39860400002)(346002)(396003)(136003)(376002)(230922051799003)(64100799003)(451199024)(82310400011)(186009)(1800799012)(46966006)(40470700004)(36840700001)(1076003)(426003)(336012)(2616005)(40460700003)(40480700001)(316002)(41300700001)(26005)(36756003)(478600001)(356005)(6666004)(82740400003)(47076005)(81166007)(36860700001)(103116003)(2906002)(86362001)(8936002)(70586007)(70206006)(8676002)(110136005)(4744005)(5660300002)(4326008)(36900700001);DIR:OUT;SFP:1101;
-X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 02 Feb 2024 11:39:21.4188
- (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: a33eb591-8cf6-4ab3-7296-08dc23e3993b
-X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
-X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d;Ip=[165.204.84.17];Helo=[SATLEXMB03.amd.com]
-X-MS-Exchange-CrossTenant-AuthSource:
-	CY4PEPF0000E9D2.namprd03.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Anonymous
-X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: MN2PR12MB4287
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v3 2/3] arm64: dts: ti: k3-am642-evm: add ICSSG1 Ethernet
+ support
+Content-Language: en-US
+To: MD Danish Anwar <danishanwar@ti.com>,
+ Vignesh Raghavendra <vigneshr@ti.com>, Nishanth Menon <nm@ti.com>
+Cc: Andrew Lunn <andrew@lunn.ch>, Conor Dooley <conor+dt@kernel.org>,
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+ Rob Herring <robh+dt@kernel.org>, linux-kernel@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ Tero Kristo <kristo@kernel.org>, srk@ti.com, r-gunasekaran@ti.com
+References: <20240122113045.1711818-1-danishanwar@ti.com>
+ <20240122113045.1711818-3-danishanwar@ti.com>
+From: Roger Quadros <rogerq@kernel.org>
+In-Reply-To: <20240122113045.1711818-3-danishanwar@ti.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
-Add maintainers for ZynqMP NVMEM driver and driver document.
 
-Signed-off-by: Praveen Teja Kundanala <praveen.teja.kundanala@amd.com>
----
- MAINTAINERS | 8 ++++++++
- 1 file changed, 8 insertions(+)
 
-diff --git a/MAINTAINERS b/MAINTAINERS
-index 8d1052fa6a69..b3103e03015e 100644
---- a/MAINTAINERS
-+++ b/MAINTAINERS
-@@ -24233,6 +24233,14 @@ M:	Harsha <harsha.harsha@amd.com>
- S:	Maintained
- F:	drivers/crypto/xilinx/zynqmp-sha.c
- 
-+XILINX ZYNQMP NVMEM DRIVER
-+M:	Praveen Teja Kundanala <praveen.teja.kundanala@amd.com>
-+M:	Kalyani Akula <kalyani.akula@amd.com>
-+R:	Michal Simek <michal.simek@amd.com>
-+S:	Maintained
-+F:	Documentation/devicetree/bindings/nvmem/xlnx,zynqmp-nvmem.yaml
-+F:	drivers/nvmem/zynqmp_nvmem.c
-+
- XILLYBUS DRIVER
- M:	Eli Billauer <eli.billauer@gmail.com>
- L:	linux-kernel@vger.kernel.org
+On 22/01/2024 13:30, MD Danish Anwar wrote:
+> ICSSG1 provides dual Gigabit Ethernet support with proper FW loaded.
+> 
+> The ICSSG1 MII0 (RGMII1) has DP83869 PHY attached to it. The ICSSG1 shares
+> MII1 (RGMII2) PHY DP83869 with CPSW3g and it's assigned by default to
+> CPSW3g. The MDIO access to MII1 (RGMII2) PHY DP83869 is controlled by MDIO
+> bus switch and also assigned to CPSW3g. Therefore the ICSSG1 MII1 (RGMII2)
+> port is kept disable and ICSSG1 is enabled in single MAC mode by
+> default.
+> 
+> Signed-off-by: MD Danish Anwar <danishanwar@ti.com>
+> ---
+>  arch/arm64/boot/dts/ti/k3-am642-evm.dts | 102 ++++++++++++++++++++++++
+>  1 file changed, 102 insertions(+)
+> 
+> diff --git a/arch/arm64/boot/dts/ti/k3-am642-evm.dts b/arch/arm64/boot/dts/ti/k3-am642-evm.dts
+> index 8c5651d2cf5d..c08b0223be52 100644
+> --- a/arch/arm64/boot/dts/ti/k3-am642-evm.dts
+> +++ b/arch/arm64/boot/dts/ti/k3-am642-evm.dts
+> @@ -32,6 +32,8 @@ aliases {
+>  		mmc1 = &sdhci1;
+>  		ethernet0 = &cpsw_port1;
+>  		ethernet1 = &cpsw_port2;
+> +		ethernet2 = &icssg1_emac0;
+> +		ethernet3 = &icssg1_emac1;
+
+If icssg1_emac1 is disabled by default there is no ethernet3 right?
+
+>  	};
+>  
+>  	memory@80000000 {
+> @@ -229,6 +231,70 @@ transceiver2: can-phy1 {
+>  		max-bitrate = <5000000>;
+>  		standby-gpios = <&exp1 9 GPIO_ACTIVE_HIGH>;
+>  	};
+> +
+> +	icssg1_eth: icssg1-eth {
+> +		compatible = "ti,am642-icssg-prueth";
+> +		pinctrl-names = "default";
+> +		pinctrl-0 = <&icssg1_rgmii1_pins_default>;
+> +
+please drop blank line.
+
+> +		sram = <&oc_sram>;
+> +		ti,prus = <&pru1_0>, <&rtu1_0>, <&tx_pru1_0>, <&pru1_1>, <&rtu1_1>, <&tx_pru1_1>;
+> +		firmware-name = "ti-pruss/am64x-sr2-pru0-prueth-fw.elf",
+> +				"ti-pruss/am64x-sr2-rtu0-prueth-fw.elf",
+> +				"ti-pruss/am64x-sr2-txpru0-prueth-fw.elf",
+> +				"ti-pruss/am64x-sr2-pru1-prueth-fw.elf",
+> +				"ti-pruss/am64x-sr2-rtu1-prueth-fw.elf",
+> +				"ti-pruss/am64x-sr2-txpru1-prueth-fw.elf";
+> +
+> +		ti,pruss-gp-mux-sel = <2>,	/* MII mode */
+> +				      <2>,
+> +				      <2>,
+> +				      <2>,	/* MII mode */
+> +				      <2>,
+> +				      <2>;
+> +
+
+please drop blank line.
+
+> +		ti,mii-g-rt = <&icssg1_mii_g_rt>;
+> +		ti,mii-rt = <&icssg1_mii_rt>;
+> +		ti,iep = <&icssg1_iep0>,  <&icssg1_iep1>;
+> +
+please drop blank line.
+
+> +		interrupt-parent = <&icssg1_intc>;
+> +		interrupts = <24 0 2>, <25 1 3>;
+> +		interrupt-names = "tx_ts0", "tx_ts1";
+> +
+please drop blank line.
+
+> +		dmas = <&main_pktdma 0xc200 15>, /* egress slice 0 */
+> +		       <&main_pktdma 0xc201 15>, /* egress slice 0 */
+> +		       <&main_pktdma 0xc202 15>, /* egress slice 0 */
+> +		       <&main_pktdma 0xc203 15>, /* egress slice 0 */
+> +		       <&main_pktdma 0xc204 15>, /* egress slice 1 */
+> +		       <&main_pktdma 0xc205 15>, /* egress slice 1 */
+> +		       <&main_pktdma 0xc206 15>, /* egress slice 1 */
+> +		       <&main_pktdma 0xc207 15>, /* egress slice 1 */
+> +		       <&main_pktdma 0x4200 15>, /* ingress slice 0 */
+> +		       <&main_pktdma 0x4201 15>; /* ingress slice 1 */
+> +		dma-names = "tx0-0", "tx0-1", "tx0-2", "tx0-3",
+> +			    "tx1-0", "tx1-1", "tx1-2", "tx1-3",
+> +			    "rx0", "rx1";
+> +
+> +		ethernet-ports {
+> +			#address-cells = <1>;
+> +			#size-cells = <0>;
+> +			icssg1_emac0: port@0 {
+> +				reg = <0>;
+> +				phy-handle = <&icssg1_phy1>;
+> +				phy-mode = "rgmii-id";
+> +				ti,syscon-rgmii-delay = <&main_conf 0x4110>;
+> +				/* Filled in by bootloader */
+> +				local-mac-address = [00 00 00 00 00 00];
+> +			};
+> +			icssg1_emac1: port@1 {
+> +				reg = <1>;
+> +				ti,syscon-rgmii-delay = <&main_conf 0x4114>;
+> +				/* Filled in by bootloader */
+> +				local-mac-address = [00 00 00 00 00 00];
+> +				status = "disabled";
+> +			};
+> +		};
+> +	};
+>  };
+>  
+>  &main_pmx0 {
+> @@ -383,6 +449,30 @@ ddr_vtt_pins_default: ddr-vtt-default-pins {
+>  			AM64X_IOPAD(0x0030, PIN_OUTPUT_PULLUP, 7) /* (L18) OSPI0_CSN1.GPIO0_12 */
+>  		>;
+>  	};
+> +
+> +	icssg1_mdio1_pins_default: icssg1-mdio1-default-pins {
+> +		pinctrl-single,pins = <
+> +			AM64X_IOPAD(0x015c, PIN_OUTPUT, 0) /* (Y6) PRG1_MDIO0_MDC */
+> +			AM64X_IOPAD(0x0158, PIN_INPUT, 0) /* (AA6) PRG1_MDIO0_MDIO */
+> +		>;
+> +	};
+> +
+> +	icssg1_rgmii1_pins_default: icssg1-rgmii1-default-pins{
+> +		pinctrl-single,pins = <
+> +			AM64X_IOPAD(0x00b8, PIN_INPUT, 2) /* (Y7) PRG1_PRU0_GPO0.PRG1_RGMII1_RD0 */
+> +			AM64X_IOPAD(0x00bc, PIN_INPUT, 2) /* (U8) PRG1_PRU0_GPO1.PRG1_RGMII1_RD1 */
+> +			AM64X_IOPAD(0x00c0, PIN_INPUT, 2) /* (W8) PRG1_PRU0_GPO2.PRG1_RGMII1_RD2 */
+> +			AM64X_IOPAD(0x00c4, PIN_INPUT, 2) /* (V8) PRG1_PRU0_GPO3.PRG1_RGMII1_RD3 */
+> +			AM64X_IOPAD(0x00d0, PIN_INPUT, 2) /* (AA7) PRG1_PRU0_GPO6.PRG1_RGMII1_RXC */
+> +			AM64X_IOPAD(0x00c8, PIN_INPUT, 2) /* (Y8) PRG1_PRU0_GPO4.PRG1_RGMII1_RX_CTL */
+> +			AM64X_IOPAD(0x00e4, PIN_INPUT, 2) /* (AA8) PRG1_PRU0_GPO11.PRG1_RGMII1_TD0 */
+> +			AM64X_IOPAD(0x00e8, PIN_INPUT, 2) /* (U9) PRG1_PRU0_GPO12.PRG1_RGMII1_TD1 */
+> +			AM64X_IOPAD(0x00ec, PIN_INPUT, 2) /* (W9) PRG1_PRU0_GPO13.PRG1_RGMII1_TD2 */
+> +			AM64X_IOPAD(0x00f0, PIN_INPUT, 2) /* (AA9) PRG1_PRU0_GPO14.PRG1_RGMII1_TD3 */
+> +			AM64X_IOPAD(0x00f8, PIN_INPUT, 2) /* (V9) PRG1_PRU0_GPO16.PRG1_RGMII1_TXC */
+> +			AM64X_IOPAD(0x00f4, PIN_INPUT, 2) /* (Y9) PRG1_PRU0_GPO15.PRG1_RGMII1_TX_CTL */
+> +		>;
+> +	};
+>  };
+>  
+>  &main_uart0 {
+> @@ -731,3 +821,15 @@ &main_mcan1 {
+>  	pinctrl-0 = <&main_mcan1_pins_default>;
+>  	phys = <&transceiver2>;
+>  };
+> +
+> +&icssg1_mdio {
+> +	status = "okay";
+> +	pinctrl-names = "default";
+> +	pinctrl-0 = <&icssg1_mdio1_pins_default>;
+> +
+> +	icssg1_phy1: ethernet-phy@f {
+> +		reg = <0xf>;
+> +		tx-internal-delay-ps = <250>;
+> +		rx-internal-delay-ps = <2000>;
+> +	};
+> +};
+
 -- 
-2.37.6
-
+cheers,
+-roger
 
