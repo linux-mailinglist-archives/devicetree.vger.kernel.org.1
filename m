@@ -1,184 +1,127 @@
-Return-Path: <devicetree+bounces-37840-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-37841-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id E3B658466FF
-	for <lists+devicetree@lfdr.de>; Fri,  2 Feb 2024 05:34:41 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 77DAD846712
+	for <lists+devicetree@lfdr.de>; Fri,  2 Feb 2024 05:47:13 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 7F4121F24203
-	for <lists+devicetree@lfdr.de>; Fri,  2 Feb 2024 04:34:41 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 2695628B5DF
+	for <lists+devicetree@lfdr.de>; Fri,  2 Feb 2024 04:47:12 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 802F9D2F5;
-	Fri,  2 Feb 2024 04:34:35 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 77B46EAFE;
+	Fri,  2 Feb 2024 04:47:08 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="mvkWrecU"
+	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="g6KMnx3r"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from lelv0142.ext.ti.com (lelv0142.ext.ti.com [198.47.23.249])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4711BEAF2;
-	Fri,  2 Feb 2024 04:34:34 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BA4E3F9C2;
+	Fri,  2 Feb 2024 04:47:06 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.23.249
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1706848475; cv=none; b=jDivbTPgzA/TjRldERgvIVjf0qeU/2oY84IEKyMBPmHKHlGz0/rFnYG/PQ8ktxVd1K9EM+aUEM0L43Vq8dHOm11hhe6TyXcRyTw7MRADe37zc4ThJardCjP6oMrg4m4FfejWjabUOIeKNlS39546X1gfwQ8Ewb7Olp9HbNwV9Ko=
+	t=1706849228; cv=none; b=Pk6dqa0o3FMWkBTZR6kPE09S8RVHpj+68kkycU99PJL0glw/MCPJAbEVO3Dv8AGulyhR9AoAr9eIwC0wke1GJGZwWANl7NbsDK5PebrZddyIPitqDoRVPwnYXH/OZQGtM+amQBjA1I375hydWnmD5DO397yBfaGyEcRZ4z0kF8s=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1706848475; c=relaxed/simple;
-	bh=satbLNeZz+QWwEIu5LrwtxRMwFvB1z9KyJTB07xtAgw=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=KTCMZNF4g/GW1mL/ViQaPu3bwKsJYUPPIPJSdVxALRAQbwLal8fWcMMi0FcloT8k8mhDr7QNljzJqK7S8fXQRVY/l8iqsJJ5qAYkIxqcu5vvURcwawEaQoTSGK7f9KKRJ7WGdd0j1uHniRzrE8rIuLc+p3fILr5b9soZYE/cJ1o=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=mvkWrecU; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id EAECDC433F1;
-	Fri,  2 Feb 2024 04:34:32 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1706848474;
-	bh=satbLNeZz+QWwEIu5LrwtxRMwFvB1z9KyJTB07xtAgw=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=mvkWrecULFI83GjFioZwqm5vQ1TbPIlFqnepDB4YbeJudyH6HH4//FFf42DN2DhqN
-	 E16V9EUtLRMVBl8NOkxZ81MzljTO1myTN++gHrA1u/ncJQrrsTYai2Z0yN6loVzx8R
-	 YzaOEtjrFjoeKvD3Rod1kVYDB42d8hn/qXdHKcxiLjZMIxYFvBl9PrvvUTdKgKX3yS
-	 F/R/Vm0ED29YaHpwNvHFN6YmiDuZZkzg4e5SmbaTR/6JhSB25QiEmCuzGLbJXjl+1b
-	 3mZeuzrQYKvxGZJ+kxcMOGSdaDud/tKKepoSxycP+b+IEMVxgwfjZThKoOxSCOdE3V
-	 OLmt+gdb4LgNQ==
-Date: Thu, 1 Feb 2024 22:34:30 -0600
-From: Bjorn Andersson <andersson@kernel.org>
-To: Bartosz Golaszewski <brgl@bgdev.pl>
-Cc: Konrad Dybcio <konrad.dybcio@linaro.org>, 
-	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, 
-	Conor Dooley <conor+dt@kernel.org>, Marcel Holtmann <marcel@holtmann.org>, 
-	Luiz Augusto von Dentz <luiz.dentz@gmail.com>, Bjorn Helgaas <bhelgaas@google.com>, 
-	Neil Armstrong <neil.armstrong@linaro.org>, Alex Elder <elder@linaro.org>, 
-	Srini Kandagatla <srinivas.kandagatla@linaro.org>, Greg Kroah-Hartman <gregkh@linuxfoundation.org>, 
-	Arnd Bergmann <arnd@arndb.de>, Abel Vesa <abel.vesa@linaro.org>, 
-	Manivannan Sadhasivam <mani@kernel.org>, Lukas Wunner <lukas@wunner.de>, linux-arm-msm@vger.kernel.org, 
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, linux-bluetooth@vger.kernel.org, 
-	linux-pci@vger.kernel.org, Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
-Subject: Re: [RFC 2/9] arm64: dts: qcom: qrb5165-rb5: model the PMU of the
- QCA6391
-Message-ID: <5lirm5mnf7yqbripue5nyqu6ej54sx4rtmgmyqjrqanabsriyp@2pjiv5xbmxpk>
-References: <20240201155532.49707-1-brgl@bgdev.pl>
- <20240201155532.49707-3-brgl@bgdev.pl>
+	s=arc-20240116; t=1706849228; c=relaxed/simple;
+	bh=dei4K8k4kNfv576PhUhrj/GhXC6CUdHZN4Fh4jZHoJs=;
+	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
+	 In-Reply-To:Content-Type; b=nobNXRVr3JZhHAz6V7TqIcTZhs2LvomHx4GaYOzAFl36pKlS1IIPeYKLsW+KXFsWnGi3f3BeebVoPviN462T3Bntog5kQQ4qjEJMLAnjxnkg+ZLVgwRatItkfvtQiKptqIQXp/ZU4UiWAyPe++daKOpFuenDFcx9qdKXc3fLp5k=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=g6KMnx3r; arc=none smtp.client-ip=198.47.23.249
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
+Received: from lelv0266.itg.ti.com ([10.180.67.225])
+	by lelv0142.ext.ti.com (8.15.2/8.15.2) with ESMTP id 4124krXj031984;
+	Thu, 1 Feb 2024 22:46:53 -0600
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+	s=ti-com-17Q1; t=1706849213;
+	bh=jMtRVbuJJdTxBL8yEu4xKG6l6qNorypjS6u56YNKPZI=;
+	h=Date:Subject:To:CC:References:From:In-Reply-To;
+	b=g6KMnx3rdpT2Oy5KK4Krp5jwovZo5fDOXGD6weeCy/dOrJG3ySm0PTtN7CHpbzJ2F
+	 CZYgCKsY04ODFcoEMRDkt7dxSkUC0IJ34a3kiCG1cDbWoRmX/DxvJQzk3Fb3XZD/4T
+	 yluOa4llYPQKlXyUDSC1yfQgB4YGpobUDNoo/FB8=
+Received: from DFLE111.ent.ti.com (dfle111.ent.ti.com [10.64.6.32])
+	by lelv0266.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 4124krnK055687
+	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+	Thu, 1 Feb 2024 22:46:53 -0600
+Received: from DFLE105.ent.ti.com (10.64.6.26) by DFLE111.ent.ti.com
+ (10.64.6.32) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Thu, 1
+ Feb 2024 22:46:53 -0600
+Received: from lelvsmtp5.itg.ti.com (10.180.75.250) by DFLE105.ent.ti.com
+ (10.64.6.26) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
+ Frontend Transport; Thu, 1 Feb 2024 22:46:53 -0600
+Received: from [10.249.129.226] ([10.249.129.226])
+	by lelvsmtp5.itg.ti.com (8.15.2/8.15.2) with ESMTP id 4124kmXa054104;
+	Thu, 1 Feb 2024 22:46:49 -0600
+Message-ID: <d40671cc-6e5d-461c-a1cf-3482a545042c@ti.com>
+Date: Fri, 2 Feb 2024 10:16:47 +0530
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20240201155532.49707-3-brgl@bgdev.pl>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v3 0/3] Add AM64x ICSSG Ethernet support
+To: MD Danish Anwar <danishanwar@ti.com>,
+        Vignesh Raghavendra
+	<vigneshr@ti.com>, Nishanth Menon <nm@ti.com>
+CC: Andrew Lunn <andrew@lunn.ch>, Conor Dooley <conor+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Rob Herring
+	<robh+dt@kernel.org>, <linux-kernel@vger.kernel.org>,
+        <devicetree@vger.kernel.org>, <linux-arm-kernel@lists.infradead.org>,
+        Tero
+ Kristo <kristo@kernel.org>, <srk@ti.com>,
+        Roger Quadros <rogerq@kernel.org>
+References: <20240122113045.1711818-1-danishanwar@ti.com>
+Content-Language: en-US
+From: Ravi Gunasekaran <r-gunasekaran@ti.com>
+In-Reply-To: <20240122113045.1711818-1-danishanwar@ti.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 7bit
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 
-On Thu, Feb 01, 2024 at 04:55:25PM +0100, Bartosz Golaszewski wrote:
-> From: Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
-> 
-> Add a node for the PMU module of the QCA6391 present on the RB5 board.
-> Assign its LDO power outputs to the existing Bluetooth module. Add a
-> node for the PCIe port to sm8250.dtsi and define the WLAN node on it in
-> the board's .dts and also make it consume the power outputs of the PMU.
-> 
-> Signed-off-by: Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
-> ---
->  arch/arm64/boot/dts/qcom/qrb5165-rb5.dts | 128 +++++++++++++++++++++--
->  arch/arm64/boot/dts/qcom/sm8250.dtsi     |  10 ++
->  2 files changed, 127 insertions(+), 11 deletions(-)
-> 
-> diff --git a/arch/arm64/boot/dts/qcom/qrb5165-rb5.dts b/arch/arm64/boot/dts/qcom/qrb5165-rb5.dts
-> index cd0db4f31d4a..fab5bebafbad 100644
-> --- a/arch/arm64/boot/dts/qcom/qrb5165-rb5.dts
-> +++ b/arch/arm64/boot/dts/qcom/qrb5165-rb5.dts
-> @@ -108,6 +108,87 @@ lt9611_3v3: lt9611-3v3 {
->  		regulator-always-on;
->  	};
->  
-> +	qca6390_pmu: pmu@0 {
-> +		compatible = "qcom,qca6390-pmu";
-> +
-> +		pinctrl-names = "default";
-> +		pinctrl-0 = <&bt_en_state>, <&wlan_en_state>;
-> +
-> +		vddaon-supply = <&vreg_s6a_0p95>;
-> +		vddpmu-supply = <&vreg_s2f_0p95>;
-> +		vddrfa1-supply = <&vreg_s2f_0p95>;
-> +		vddrfa2-supply = <&vreg_s8c_1p3>;
-> +		vddrfa3-supply = <&vreg_s5a_1p9>;
-> +		vddpcie1-supply = <&vreg_s8c_1p3>;
-> +		vddpcie2-supply = <&vreg_s5a_1p9>;
-> +		vddio-supply = <&vreg_s4a_1p8>;
-> +
-> +		wlan-enable-gpios = <&tlmm 20 GPIO_ACTIVE_HIGH>;
-> +		bt-enable-gpios = <&tlmm 21 GPIO_ACTIVE_HIGH>;
-> +
-> +		regulators {
-> +			vreg_pmu_rfa_cmn: ldo0 {
-> +				regulator-name = "vreg_pmu_rfa_cmn";
-> +				regulator-min-microvolt = <760000>;
-> +				regulator-max-microvolt = <840000>;
 
-I'm still not convinced that the PMU has a set of LDOs, and looking at
-your implementation you neither register these with the regulator
-framework, nor provide any means of controlling the state or voltage of
-these "regulators".
 
-[..]
->  
->  &uart6 {
-> @@ -1311,17 +1418,16 @@ &uart6 {
->  	bluetooth {
->  		compatible = "qcom,qca6390-bt";
->  
-> -		pinctrl-names = "default";
-> -		pinctrl-0 = <&bt_en_state>;
-> -
-> -		enable-gpios = <&tlmm 21 GPIO_ACTIVE_HIGH>;
-> -
-> -		vddio-supply = <&vreg_s4a_1p8>;
-> -		vddpmu-supply = <&vreg_s2f_0p95>;
-> -		vddaon-supply = <&vreg_s6a_0p95>;
-> -		vddrfa0p9-supply = <&vreg_s2f_0p95>;
-> -		vddrfa1p3-supply = <&vreg_s8c_1p3>;
-> -		vddrfa1p9-supply = <&vreg_s5a_1p9>;
-> +		vddrfacmn-supply = <&vreg_pmu_rfa_cmn>;
-> +		vddaon-supply = <&vreg_pmu_aon_0p59>;
-> +		vddwlcx-supply = <&vreg_pmu_wlcx_0p8>;
-> +		vddwlmx-supply = <&vreg_pmu_wlmx_0p85>;
-> +		vddbtcmx-supply = <&vreg_pmu_btcmx_0p85>;
-> +		vddrfa0-supply = <&vreg_pmu_rfa_0p8>;
-> +		vddrfa1-supply = <&vreg_pmu_rfa_1p2>;
-> +		vddrfa2-supply = <&vreg_pmu_rfa_1p7>;
-> +		vddpcie0-supply = <&vreg_pmu_pcie_0p9>;
-> +		vddpcie1-supply = <&vreg_pmu_pcie_1p8>;
+On 1/22/2024 5:00 PM, MD Danish Anwar wrote:
+> Hi All,
+>
+> This series adds support for ICSSG ethernet on AM64x. 
+> This series is based on the latest next-20231211 linux-next.
+>
+> AM64x EVM has three ethernet ports. One is dedicated to CPSW and one is
+> dedicated to ICSSG1. The remaining port is muxed between CPSW and ICSSG1
+> ICSSG1 ports. The ICSSG1 node is added in the k3-am642-evm.dts. By default
+> the muxed port is used by CPSW so 2nd ICSSG1 port is disabled in the
+> k3-am642-evm.dts. But overlay k3-am642-evm-icssg1-dualemac.dtso can be
+> applied to use muxed port as ICSSG1.
+>
+> This is the v3 of the series [v1].
+>
+> Changes from v2 to v3:
+> *) No functional changes.
+> *) Rebased on latest linux-next (next-20240122) after 6.8-rc1.
+>
+> Changes from v1 to v2:
+> *) Fixed aliases section in k3-am642-evm.dts
+> *) Fixed firmware-names in k3-am642-evm.dts
+> *) Changed icssg1_phy1 to ethernet-phy@f from ethernet-phy@0 as suggested
+>    by Andrew L.
+> *) Changed makefile to handle overlays using CONFIG_OF_ALL_DTBS as
+>    suggested by Nishant and Andrew Davis.
+> *) Fixed aliases section in k3-am642-evm-icssg1-dualemac.dtso
+> *) Fixed pinctrl in k3-am642-evm-icssg1-dualemac.dtso
+> *) Updated commit message of patch 3/3 of the series to warn about adding
+>    label name to 'mdio-mux-1' node.
+>
+> [v1] https://lore.kernel.org/all/20231207081917.340167-1-danishanwar@ti.com/
+> [v2] https://lore.kernel.org/all/20231212165832.3933335-1-danishanwar@ti.com/
+>
 
-As I asked before, why does bluetooth suddenly care about PCIe supplies?
-
-Regards,
-Bjorn
-
->  	};
->  };
->  
-> diff --git a/arch/arm64/boot/dts/qcom/sm8250.dtsi b/arch/arm64/boot/dts/qcom/sm8250.dtsi
-> index 4d849e98bf9b..7cd21d4e7278 100644
-> --- a/arch/arm64/boot/dts/qcom/sm8250.dtsi
-> +++ b/arch/arm64/boot/dts/qcom/sm8250.dtsi
-> @@ -2203,6 +2203,16 @@ pcie0: pcie@1c00000 {
->  			dma-coherent;
->  
->  			status = "disabled";
-> +
-> +			pcieport0: pcie@0 {
-> +				device_type = "pci";
-> +				reg = <0x0 0x0 0x0 0x0 0x0>;
-> +				#address-cells = <3>;
-> +				#size-cells = <2>;
-> +				ranges;
-> +
-> +				bus-range = <0x01 0xff>;
-> +			};
->  		};
->  
->  		pcie0_phy: phy@1c06000 {
-> -- 
-> 2.40.1
-> 
+For the series,
+Reviewed-by: Ravi Gunasekaran <r-gunasekaran@ti.com>
 
