@@ -1,163 +1,121 @@
-Return-Path: <devicetree+bounces-37964-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-37965-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7C1C6846FEE
-	for <lists+devicetree@lfdr.de>; Fri,  2 Feb 2024 13:12:58 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 02C87847009
+	for <lists+devicetree@lfdr.de>; Fri,  2 Feb 2024 13:18:27 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id AE1EB1C2611E
-	for <lists+devicetree@lfdr.de>; Fri,  2 Feb 2024 12:12:57 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id B2547289B72
+	for <lists+devicetree@lfdr.de>; Fri,  2 Feb 2024 12:18:25 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A43A313F009;
-	Fri,  2 Feb 2024 12:12:49 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5D19F140779;
+	Fri,  2 Feb 2024 12:18:22 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Zg2XxAik"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Sz7xU9rj"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 722DF13E233;
-	Fri,  2 Feb 2024 12:12:49 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 33DDB13F01B;
+	Fri,  2 Feb 2024 12:18:22 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1706875969; cv=none; b=pKuV1Js+XwokNojqzbr2pjARVDjjedPZCnpWgnU/2RQX5KNiMxQN+cjcrq9cQg/baDElNbMOUCPw1g8NwABW+HGNid2/XnISlKiTZCfLiArioKmyrT0T9ckl1dYNwWNUitKjcddMdTuayPow2GVNg8gCO/OfXorkp4rBbda0nFU=
+	t=1706876302; cv=none; b=S7hEAf5v1bYA3gmzAOHm0jkU0bTaVW1CMTcvAh0P7Oh1Aqd+4gipg/eXlqBLgelG+UzFpzr2Bn/Ym7rXvtUMJmp3sgNKA/XtjLJmmpwIzIhjCRddzMnMxCfc2z6DqjlImYWCk4gw3gpo0FNdd/p9dOKfoBQt4/O6cUT6ayQTTbQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1706875969; c=relaxed/simple;
-	bh=oBl1UUByToZvedSOfHD5+3blOO9P8Zfy2wDweeCcE6w=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=Ol9rx5vs6oCNiquJwonapivsbCQVaZKemGhkqnpzzpjGHS9cj1H0FwkWT6LkAvkvZFxfahdaXsrYVmgej6fmBDe/YDMavPDVdYQOo72Z8yx+9Qi8Abts0lFo3JkJyVDxyNSS5S1TXE+QWxEsLpivsihbCLFEsnrqXxRFLvZ1v20=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Zg2XxAik; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 39283C433C7;
-	Fri,  2 Feb 2024 12:12:44 +0000 (UTC)
+	s=arc-20240116; t=1706876302; c=relaxed/simple;
+	bh=qaZRRanp9ZLnLiYxNViu6c8e7LEdLYpVq+TyVdfsOAc=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=XQSm6yiLTM9kuXE/nDqxVQutbdGtDPOauQS9HMK3vSiD2o7KLBbt5RoiV8pyKHMWeyNIcrZDh7j44IlPQ6h2J7wkN2Z+BHZKU3k4adtYmTk0NxrWLbVL2oHXQoSrIvBYocKHmTDJurlck5wVdzepngHBR+ThGFTdSjuijruc/rQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Sz7xU9rj; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPS id D27E4C433C7;
+	Fri,  2 Feb 2024 12:18:21 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1706875969;
-	bh=oBl1UUByToZvedSOfHD5+3blOO9P8Zfy2wDweeCcE6w=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=Zg2XxAikieEuRmr7UqhoU1xvBkC/IXu5I2XpZhA8Otveb340BCQGdiQgakxTCMgGV
-	 V/PIYfoGCGjbVHi9S1mUT2HKfdOBjl3YhRI5f80Pe2J60bglkmBq7EKtEmC+0wylUH
-	 z4HeMwCUSjcrgmyXPRXTc+ac0Nyf00X4+cfAtlO2eycDw4+WYA7XLjsRc2wPdF+11B
-	 I8JWkACTO/PBLi4aVdQOuX3XVXcLVy1w/p4anoB7CSwh8GmeMH9Jb1NOvFTb+qAtvO
-	 F/yg8sXh7DohmRYv5B1YmCvB/ot/7A4O+CNmszvIjkRCkK/KRaU3AWICvmWxR4t1kY
-	 mbFViCGKqql6g==
-Date: Fri, 2 Feb 2024 13:12:41 +0100
-From: Lorenzo Pieralisi <lpieralisi@kernel.org>
-To: Frank Li <Frank.Li@nxp.com>
-Cc: manivannan.sadhasivam@linaro.org, bhelgaas@google.com,
-	conor+dt@kernel.org, devicetree@vger.kernel.org, festevam@gmail.com,
-	helgaas@kernel.org, hongxing.zhu@nxp.com, imx@lists.linux.dev,
-	kernel@pengutronix.de, krzysztof.kozlowski+dt@linaro.org,
-	krzysztof.kozlowski@linaro.org, kw@linux.com,
-	l.stach@pengutronix.de, linux-arm-kernel@lists.infradead.org,
-	linux-imx@nxp.com, linux-kernel@vger.kernel.org,
-	linux-pci@vger.kernel.org, robh@kernel.org, s.hauer@pengutronix.de,
-	shawnguo@kernel.org
-Subject: Re: [PATCH v9 05/16] PCI: imx6: Using "linux,pci-domain" as slot ID
-Message-ID: <ZbzcOarorCS1MPRc@lpieralisi>
-References: <20240119171122.3057511-1-Frank.Li@nxp.com>
- <20240119171122.3057511-6-Frank.Li@nxp.com>
+	s=k20201202; t=1706876301;
+	bh=qaZRRanp9ZLnLiYxNViu6c8e7LEdLYpVq+TyVdfsOAc=;
+	h=From:Subject:Date:To:Cc:Reply-To:From;
+	b=Sz7xU9rjroP6ZEAh5LrlNan9JvTaMDY6mest18yANrItXNekEwbgjA1X0AxzKNX3R
+	 k5xxG9KiXrBu3JXTlHqC5+aaa7gxPXbcU47z3CgG/2Ie4j6O8uZ3+QkRUJUCCwwSQF
+	 ygRgvk2RSbo0K8CyutQq+S+Zm9K12n/2b8MUBzgW4wuJVlJUsqdKCjG/+qqc68xWtz
+	 nmFkU76t0vBZLE0TTXeyM3t873a4nIyw4FdxowlRIFmuzN5+n2n536Exww3HPyavUd
+	 5B12/sbY/0T2kg2PnOZf7ojXtpLGcC6nL7pmloj+Gb2ogSpS7bEzd4wHGVuSkNhWn/
+	 qjiICRquqolcA==
+Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
+	by smtp.lore.kernel.org (Postfix) with ESMTP id C176CC4828E;
+	Fri,  2 Feb 2024 12:18:21 +0000 (UTC)
+From: Nuno Sa via B4 Relay <devnull+nuno.sa.analog.com@kernel.org>
+Subject: [PATCH 0/2] fix DT overlays when device links are released
+Date: Fri, 02 Feb 2024 13:18:15 +0100
+Message-Id: <20240202-fix-device-links-overlays-v1-0-f9fd1404c8e2@analog.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20240119171122.3057511-6-Frank.Li@nxp.com>
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
+X-B4-Tracking: v=1; b=H4sIAIfdvGUC/42NQQ6CMBBFr0Jm7Zi2IAmuvIdhMZQBJmJrWtNIS
+ O9u5QQu38//7+8QOQhHuFY7BE4SxbsC+lSBXcjNjDIWBqNMo7SpcZIPjqVoGVdxj4g+cVhpi3h
+ pjGFV16S6Acr+FbiUD/e9L7xIfPuwHVdJ/9J/rEmjxo6bqSVLNLT2Ro5WP5+tf0Kfc/4CNYu1E
+ cMAAAA=
+To: Greg Kroah-Hartman <gregkh@linuxfoundation.org>, 
+ "Rafael J. Wysocki" <rafael@kernel.org>, 
+ Frank Rowand <frowand.list@gmail.com>, Rob Herring <robh+dt@kernel.org>, 
+ Andy Shevchenko <andriy.shevchenko@linux.intel.com>, 
+ Daniel Scally <djrscally@gmail.com>, 
+ Heikki Krogerus <heikki.krogerus@linux.intel.com>, 
+ Sakari Ailus <sakari.ailus@linux.intel.com>, Len Brown <lenb@kernel.org>
+Cc: linux-acpi@vger.kernel.org, devicetree@vger.kernel.org, 
+ linux-kernel@vger.kernel.org
+X-Mailer: b4 0.12.3
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1706876300; l=1394;
+ i=nuno.sa@analog.com; s=20231116; h=from:subject:message-id;
+ bh=qaZRRanp9ZLnLiYxNViu6c8e7LEdLYpVq+TyVdfsOAc=;
+ b=lX31h/u07E3I6PjCqxD/6Q1IoZFzkQvco9yw5skg5t6FgawTdPYE3Bogp/xhHn/ZUmz2IzLRS
+ WyTeA9lP/pfAxNLs/sQJKmuG7cI2P5gfIxzD0gA2Lw1SdjpUjE0XLwO
+X-Developer-Key: i=nuno.sa@analog.com; a=ed25519;
+ pk=3NQwYA013OUYZsmDFBf8rmyyr5iQlxV/9H4/Df83o1E=
+X-Endpoint-Received:
+ by B4 Relay for nuno.sa@analog.com/20231116 with auth_id=100
+X-Original-From: Nuno Sa <nuno.sa@analog.com>
+Reply-To: <nuno.sa@analog.com>
 
-"PCI: imx6: Use "linux,pci-domain" as slot ID"
+Link to RFC:
+ * https://lore.kernel.org/lkml/20240123-fix-device-links-overlays-v1-1-9e4f6acaab6c@analog.com/
 
-On Fri, Jan 19, 2024 at 12:11:11PM -0500, Frank Li wrote:
-> Avoid use get slot id by compared with register physical address. If there
-> are more than 2 slots, compared logic will become complex.
-> 
-> "linux,pci-domain" already exist at dts since commit:
-> 	commit (c0b70f05c87f3b arm64: dts: imx8mq: use_dt_domains for pci node).
-> 
-> So it is safe to remove compare basic address code:
-> 	...
-> 	if (dbi_base->start == IMX8MQ_PCIE2_BASE_ADDR)
-> 		imx6_pcie->controller_id = 1;
+Changes since RFC:
+ * Use a dedicated workqueue to remove devlinks;
+ * Flush the devlink workqueue before checking the of_node refcount
+   value.
 
-No it is not unless you magically update all firmware out
-there in the field.
+The following series is the result of the discussion I had with Rafael.
+To sum up the fundamental issue, device links drop their refcounts
+asynchronously and that means that the of_node refcount associated with
+the device will also be dropped asynchronously. Now, in
+__of_changeset_entry_destroy(), the assumption is that the node refcount
+must be 1 and that cannot be guaranteed given the above.
 
-> 	...
-> 
-> Reviewed-by: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
-> Signed-off-by: Frank Li <Frank.Li@nxp.com>
-> ---
-> 
-> Notes:
->     Change from v7 to v8
->     - fixed comments
->     - Added Manivannan Sadhasivam's review tag
->     Change from v5 to v7
->     - none
->     Change from v3 to v4
->     - remove compare basic address logic
->     Change from v2 to v3
->     - none
->     Change from v1 to v2
->     - fix of_get_pci_domain_nr return value check logic
-> 
->  drivers/pci/controller/dwc/pci-imx6.c | 20 ++++++++++++--------
->  1 file changed, 12 insertions(+), 8 deletions(-)
-> 
-> diff --git a/drivers/pci/controller/dwc/pci-imx6.c b/drivers/pci/controller/dwc/pci-imx6.c
-> index eda6bc6ef80ee..773411d20329f 100644
-> --- a/drivers/pci/controller/dwc/pci-imx6.c
-> +++ b/drivers/pci/controller/dwc/pci-imx6.c
-> @@ -33,6 +33,7 @@
->  #include <linux/pm_domain.h>
->  #include <linux/pm_runtime.h>
->  
-> +#include "../../pci.h"
->  #include "pcie-designware.h"
->  
->  #define IMX8MQ_GPR_PCIE_REF_USE_PAD		BIT(9)
-> @@ -40,7 +41,6 @@
->  #define IMX8MQ_GPR_PCIE_CLK_REQ_OVERRIDE	BIT(11)
->  #define IMX8MQ_GPR_PCIE_VREG_BYPASS		BIT(12)
->  #define IMX8MQ_GPR12_PCIE2_CTRL_DEVICE_TYPE	GENMASK(11, 8)
-> -#define IMX8MQ_PCIE2_BASE_ADDR			0x33c00000
->  
->  #define to_imx6_pcie(x)	dev_get_drvdata((x)->dev)
->  
-> @@ -1279,13 +1279,17 @@ static int imx6_pcie_probe(struct platform_device *pdev)
->  					     "Failed to get PCIEPHY reset control\n");
->  	}
->  
-> -	switch (imx6_pcie->drvdata->variant) {
-> -	case IMX7D:
-> -		if (dbi_base->start == IMX8MQ_PCIE2_BASE_ADDR)
-> -			imx6_pcie->controller_id = 1;
-> -	default:
-> -		break;
-> -	}
-> +	/* Using linux,pci-domain as PCI slot id */
-> +	imx6_pcie->controller_id = of_get_pci_domain_nr(node);
-> +	/*
-> +	 * If there are no "linux,pci-domain" property specified in DT, then assume only one
-> +	 * controller is available.
-> +	 */
-> +	if (imx6_pcie->controller_id == -EINVAL)
-> +		imx6_pcie->controller_id = 0;
+I'm pasting again the link of the first time I exposed the issue where
+one can see the resulps (big splat) of failing DT assumption:
 
-See above, this breaks compatibility with old DTs (and -EINVAL is not
-the only error code you should handle).
+https://lore.kernel.org/linux-devicetree/20230511151047.1779841-1-nuno.sa@analog.com/
 
-Lorenzo
+---
+Nuno Sa (2):
+      driver: core: add dedicated workqueue for devlink removal
+      of: dynamic: flush devlinks workqueue before destroying the changeset
 
-> +	else if (imx6_pcie->controller_id < 0)
-> +		return dev_err_probe(dev, imx6_pcie->controller_id,
-> +				     "linux,pci-domain have wrong value\n");
->  
->  	/* Grab turnoff reset */
->  	imx6_pcie->turnoff_reset = devm_reset_control_get_optional_exclusive(dev, "turnoff");
-> -- 
-> 2.34.1
-> 
+ drivers/base/core.c    | 33 +++++++++++++++++++++++++++++----
+ drivers/of/dynamic.c   |  8 ++++++++
+ include/linux/fwnode.h |  1 +
+ 3 files changed, 38 insertions(+), 4 deletions(-)
+---
+base-commit: 6613476e225e090cc9aad49be7fa504e290dd33d
+change-id: 20240123-fix-device-links-overlays-5422e033a09b
+--
+
+Thanks!
+- Nuno Sá
+
 
