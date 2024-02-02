@@ -1,118 +1,80 @@
-Return-Path: <devicetree+bounces-37949-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-37950-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id AEB85846EE2
-	for <lists+devicetree@lfdr.de>; Fri,  2 Feb 2024 12:27:52 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8ACB5846F16
+	for <lists+devicetree@lfdr.de>; Fri,  2 Feb 2024 12:38:30 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 6AC0628631E
-	for <lists+devicetree@lfdr.de>; Fri,  2 Feb 2024 11:27:51 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id E1B23B21B76
+	for <lists+devicetree@lfdr.de>; Fri,  2 Feb 2024 11:38:27 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5FC7A13D4ED;
-	Fri,  2 Feb 2024 11:27:46 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 46BAB137C41;
+	Fri,  2 Feb 2024 11:38:03 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="V+t8zMK9"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="WhSeQjr3"
 X-Original-To: devicetree@vger.kernel.org
-Received: from relay5-d.mail.gandi.net (relay5-d.mail.gandi.net [217.70.183.197])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0575283CDF;
-	Fri,  2 Feb 2024 11:27:43 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.70.183.197
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1E32A79DB8;
+	Fri,  2 Feb 2024 11:38:02 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1706873266; cv=none; b=Glu3Up8VSpVquZc/JfT+ac3ziwssFf7oy4OtGpAPZdOIGEi2GyJdCyF9vjxcC1TWifs+uGBw79me9X9sZ0F020wRPk68nQ9CKucjuFUwbRwxuTI6RaKJPOD+T454O7nkFs9qCGvmd+SHizKf6Rdav+V4hU4JeLlF3Ct6e9OZ3kc=
+	t=1706873883; cv=none; b=rwV0w816rRFE5i+eadzcdd1SFSCfrP9xfjJqJujR1e3qafTobBx+eOL6eOoh6jkL7VqfQ+Jf+MrbJ/JAp6Xzkc6etu/KJJAKrAXFNPZg8Ne22/1KarUxE8Wel5l9H5Ub5OoSinze2p2WBHesJ+wZq4DtXYYxQIF+MAbckfgMe0U=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1706873266; c=relaxed/simple;
-	bh=DjZR+x2AJlobZlRmeg7f3hep16VPLXZQx9SSAKPUDkc=;
-	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=iuHAg1Xd2aeJD23+w190H1a/9z9iDvXRsa9SifOBylTnpPCAORFSctvNvgVd/bx286YdEvx2jv2gkVg41NERJQoOy52OSLQ7ENBuDDQ0gyKZ7zzBRPkMyOHf9NU9uERXJkxY+t1xpFgTl6nGKWhJvV9st6+uUP9ESl+Tx8ZnBis=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=V+t8zMK9; arc=none smtp.client-ip=217.70.183.197
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
-Received: by mail.gandi.net (Postfix) with ESMTPSA id 3A1871C0010;
-	Fri,  2 Feb 2024 11:27:39 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
-	t=1706873262;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=3vbhRXgt30hzZKewtZ8Axp/TleoIkIaqCjSqmkD/kB0=;
-	b=V+t8zMK9ldZOp91+++bCUBkRP0gxDLTsku7L7mfPyqijvPRvdWPE9dw8bAZwK0Gld16NC7
-	mbxtb8QiigimSVukX0Y9yXu2q6/dgRQoCxk/P3SP+tZP8Q2VcqpGfPcWD/b4sIcEds1rVZ
-	/lX1fr4j44Bl/nGbyb2QY/6Czr6qQkz58z4dZ9Vc5vh4AXbDQySpDF5+zaZJZwNMLqzpMe
-	5naY+T673vdw1sIJe6Q36f9KRU/iKEUN0E6Y8cOTBjyNj47IsWsY8Ugrd3/zWYunM4cFZk
-	oapX5dqoarPjNkiFVM2MNDTmoEY5n8NIL26JPm3irfgm9RuaMSqLBVXi4pbEBQ==
-Date: Fri, 2 Feb 2024 12:27:37 +0100
-From: Luca Ceresoli <luca.ceresoli@bootlin.com>
-To: Adam Ford <aford173@gmail.com>
-Cc: dri-devel@lists.freedesktop.org, Jernej Skrabec
- <jernej.skrabec@gmail.com>, Andrzej Hajda <andrzej.hajda@intel.com>,
- Laurent Pinchart <Laurent.pinchart@ideasonboard.com>, Krzysztof Kozlowski
- <krzysztof.kozlowski+dt@linaro.org>, Fabio Estevam <festevam@gmail.com>,
- Richard Leitner <richard.leitner@skidata.com>, Marek Vasut <marex@denx.de>,
- Robert Foss <rfoss@kernel.org>, Frieder Schrempf
- <frieder.schrempf@kontron.de>, NXP Linux Team <linux-imx@nxp.com>,
- devicetree@vger.kernel.org, Conor Dooley <conor+dt@kernel.org>, Thomas
- Zimmermann <tzimmermann@suse.de>, Jonas Karlman <jonas@kwiboo.se>, Liu Ying
- <victor.liu@nxp.com>, Sascha Hauer <s.hauer@pengutronix.de>, Maxime Ripard
- <mripard@kernel.org>, Rob Herring <robh+dt@kernel.org>,
- linux-arm-kernel@lists.infradead.org, Neil Armstrong
- <neil.armstrong@linaro.org>, linux-kernel@vger.kernel.org, Pengutronix
- Kernel Team <kernel@pengutronix.de>, Shawn Guo <shawnguo@kernel.org>
-Subject: Re: [PATCH V7 2/2] drm/bridge: imx: add driver for HDMI TX Parallel
- Video Interface
-Message-ID: <20240202122738.7dde2801@booty>
-In-Reply-To: <20240106215146.147922-2-aford173@gmail.com>
-References: <20240106215146.147922-1-aford173@gmail.com>
-	<20240106215146.147922-2-aford173@gmail.com>
-Organization: Bootlin
-X-Mailer: Claws Mail 4.0.0 (GTK+ 3.24.33; x86_64-pc-linux-gnu)
+	s=arc-20240116; t=1706873883; c=relaxed/simple;
+	bh=p5lXBrTHJqQYc6rYWZj48xlKqjP4sLrBohNcmDgpqvg=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=Q4KcWzPmKzDdEdEHnBHtyWXs9y9vKLdaXWRhkdzfDpHfXrgRMskJlVWeC6DRoc4OjhrWu4gFUX8fVNv+j/yH+tFikTTDjzTRzXzqQaTxbvqFiwvl2wfV48YT4eY8H63doFidKK0GsZ1MhBcZ7muImGH2DegzfheyPSMMxCdWF68=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=WhSeQjr3; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id BC355C433F1;
+	Fri,  2 Feb 2024 11:37:59 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1706873882;
+	bh=p5lXBrTHJqQYc6rYWZj48xlKqjP4sLrBohNcmDgpqvg=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=WhSeQjr3l/GbnCW9pTnVmhXQjQfBKb9n+fzZSjXV3RJXg0fFVMZAr9bR06bZ0bFAa
+	 5G1tAArTjA0PcO3TQAKYElQCTLEQ8Jdy/DfcVfEqa/curg80oW/vpxvft7UjDExF/I
+	 +MoyMvv3iAI6kh5o6ebkn8RQzA15nXJtLqr1jx9tiGyXo/M5SSjoCEqCZykmhUtV84
+	 BaCbM9pfOIEzJVycbI3OMBAuyecMuewd3Zn+MajENWJ1ijydu0wTZzp55G304skt8T
+	 KKWTofvYQ8Asnfq6lLZQ+nLCQrWBklX2Eg3U7SsB+EZiLsnfxsTVKBT4OWUV0pHT3s
+	 N9LkvVBv9cstg==
+Message-ID: <fb8ea6c6-609a-4a0d-ae7b-06b8500bd978@kernel.org>
+Date: Fri, 2 Feb 2024 13:37:56 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v4 2/5] phy: cadence-torrent: Add PCIe(100MHz) +
+ USXGMII(156.25MHz) multilink configuration
+Content-Language: en-US
+To: Swapnil Jakhade <sjakhade@cadence.com>, vkoul@kernel.org,
+ kishon@kernel.org, robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
+ conor+dt@kernel.org, linux-phy@lists.infradead.org,
+ linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
+Cc: mparab@cadence.com, s-vadapalli@ti.com
+References: <20240104133013.2911035-1-sjakhade@cadence.com>
+ <20240104133013.2911035-3-sjakhade@cadence.com>
+From: Roger Quadros <rogerq@kernel.org>
+In-Reply-To: <20240104133013.2911035-3-sjakhade@cadence.com>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
-X-GND-Sasl: luca.ceresoli@bootlin.com
 
-On Sat,  6 Jan 2024 15:51:45 -0600
-Adam Ford <aford173@gmail.com> wrote:
 
-> From: Lucas Stach <l.stach@pengutronix.de>
+
+On 04/01/2024 15:30, Swapnil Jakhade wrote:
+> Torrent PHY can have separate input reference clocks for PLL0 and PLL1.
+> Add support for dual reference clock multilink configurations.
 > 
-> This IP block is found in the HDMI subsystem of the i.MX8MP SoC. It has a
-> full timing generator and can switch between different video sources. On
-> the i.MX8MP however the only supported source is the LCDIF. The block
-> just needs to be powered up and told about the polarity of the video
-> sync signals to act in bypass mode.
+> Add register sequences for PCIe(100MHz) + USXGMII(156.25MHz) multilink
+> configuration. PCIe uses PLL0 and USXGMII uses PLL1.
 > 
-> Signed-off-by: Lucas Stach <l.stach@pengutronix.de>
-> Reviewed-by: Luca Ceresoli <luca.ceresoli@bootlin.com> (v2)
-> Tested-by: Marek Vasut <marex@denx.de> (v1)
-> Tested-by: Luca Ceresoli <luca.ceresoli@bootlin.com> (v2)
-> Tested-by: Richard Leitner <richard.leitner@skidata.com> (v2)
-> Tested-by: Frieder Schrempf <frieder.schrempf@kontron.de> (v2)
-> Reviewed-by: Laurent Pinchart <laurent.pinchart@ideasonboard.com> (v3)
-> Reviewed-by: Luca Ceresoli <luca.ceresoli@bootlin.com>
-> Tested-by: Luca Ceresoli <luca.ceresoli@bootlin.com>
-> Tested-by: Fabio Estevam <festevam@gmail.com>
-> Signed-off-by: Adam Ford <aford173@gmail.com>
+> Signed-off-by: Swapnil Jakhade <sjakhade@cadence.com>
 
-On v6.8-rc1, custom hardware based on the Avnet i.MX8MP SMARC SoM.
-
-Tested-by: Luca Ceresoli <luca.ceresoli@bootlin.com>
-
-I think you can remove the Tested-by I sent for previous versions.
-
-Luca
-
--- 
-Luca Ceresoli, Bootlin
-Embedded Linux and Kernel engineering
-https://bootlin.com
+Reviewed-by: Roger Quadros <rogerq@kernel.org>
 
