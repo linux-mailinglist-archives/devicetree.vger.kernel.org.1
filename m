@@ -1,59 +1,89 @@
-Return-Path: <devicetree+bounces-38125-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-38124-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8F0A18479AA
-	for <lists+devicetree@lfdr.de>; Fri,  2 Feb 2024 20:29:38 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id A63DF847997
+	for <lists+devicetree@lfdr.de>; Fri,  2 Feb 2024 20:23:43 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 1924EB21639
-	for <lists+devicetree@lfdr.de>; Fri,  2 Feb 2024 19:29:36 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 58276284E8C
+	for <lists+devicetree@lfdr.de>; Fri,  2 Feb 2024 19:23:42 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3E31A15E5DA;
-	Fri,  2 Feb 2024 19:29:31 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 07E3515E5B9;
+	Fri,  2 Feb 2024 19:23:38 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="GVRXBMyR"
 X-Original-To: devicetree@vger.kernel.org
-Received: from bmailout1.hostsharing.net (bmailout1.hostsharing.net [83.223.95.100])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-ej1-f47.google.com (mail-ej1-f47.google.com [209.85.218.47])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E639515E5C5;
-	Fri,  2 Feb 2024 19:29:28 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=83.223.95.100
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 40C1E5A4C2;
+	Fri,  2 Feb 2024 19:23:35 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.47
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1706902171; cv=none; b=TaB/J9gm5EZXfTIgo1FnHeUqeOzX2T8ekBcvPxkYQYvhUgosIiCcPDHJ09v5CJj7aR7QVvJV/+3ma3KHoEfePqLRpGYcc8O80RMWJXc7GLyMdk3TMPL8u84XiN2XLiLjg8iStGMGfkgm33aXr9/AwtDIN8vUfOJ6HZu7RAzqiMA=
+	t=1706901817; cv=none; b=dGtR64I+dhYGKeJKb6cfmzlpWpcQARPYnfoTpmi8NIoeEF14Fg0cnvcBGaCYRxuZJOhMlm9pmRMB6V3pcvEC4FSGKXPhVgg2lkf0N567VnCEAm2K5K5omTVC9uF+z1qx8M1XrBIkDcL3jELWnrQ/oXkohc40gb3QX+QksOQ+03o=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1706902171; c=relaxed/simple;
-	bh=OSLx8ZGHgNRq/oilqETzpjFY24Zt3C6hbKYIPHxjhUw=;
+	s=arc-20240116; t=1706901817; c=relaxed/simple;
+	bh=S3MaPMOXDa4+e1cpiJeiJbySrhFJC1lc7gKR4d8V+8Y=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=TQTVRzu3LLr+qh1xqaV2se69GNbevlmMYHkO7CTIqW9OSDoZYLHm9+X7ys1ZWjuyT9BPf9/F5bEuXo17tPfK/2TQpQV/xoshNvFgTziKlwFcpMuhIUCasFFeBI6iReOX1k4dBCa4EchlcnD3lMZhRb6Jsnld75JLfMLyyyY6g3Q=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=wunner.de; spf=none smtp.mailfrom=h08.hostsharing.net; arc=none smtp.client-ip=83.223.95.100
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=wunner.de
-Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=h08.hostsharing.net
-Received: from h08.hostsharing.net (h08.hostsharing.net [83.223.95.28])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256
-	 client-signature RSA-PSS (4096 bits) client-digest SHA256)
-	(Client CN "*.hostsharing.net", Issuer "RapidSSL TLS RSA CA G1" (verified OK))
-	by bmailout1.hostsharing.net (Postfix) with ESMTPS id 5D9DD3000C980;
-	Fri,  2 Feb 2024 20:20:48 +0100 (CET)
-Received: by h08.hostsharing.net (Postfix, from userid 100393)
-	id 4DDF8406333; Fri,  2 Feb 2024 20:20:48 +0100 (CET)
-Date: Fri, 2 Feb 2024 20:20:48 +0100
-From: Lukas Wunner <lukas@wunner.de>
-To: Sasha Levin <sashal@kernel.org>
-Cc: linux-kernel@vger.kernel.org, stable@vger.kernel.org,
-	Patrick Williams <patrick@stwcx.xyz>,
-	Tao Ren <rentao.bupt@gmail.com>,
-	Bruno Thomsen <bruno.thomsen@gmail.com>, robh+dt@kernel.org,
-	krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
-	joel@jms.id.au, shawnguo@kernel.org, bcousson@baylibre.com,
-	tony@atomide.com, devicetree@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org, linux-aspeed@lists.ozlabs.org,
-	linux-omap@vger.kernel.org
-Subject: Re: [PATCH AUTOSEL 6.7 20/23] ARM: dts: Fix TPM schema violations
-Message-ID: <20240202192048.GA22666@wunner.de>
-References: <20240202183926.540467-1-sashal@kernel.org>
- <20240202183926.540467-20-sashal@kernel.org>
+	 Content-Type:Content-Disposition:In-Reply-To; b=uIGuYYhI8sKE3/3hkQaso6XVAaQMRVSy+chiSOA71lmt8beS9Tame1ZXhT4qtYJQlX8eswv+A54bvVfek/EYI01Oa+OLqMI7IJAPqEoJ5cXOyCbCkQZT4NH4AwT6AkUT4yjNBrHpR2tAd6q52XmnQmCdvJJ/YI6xG/J4BolhsZQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=GVRXBMyR; arc=none smtp.client-ip=209.85.218.47
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-ej1-f47.google.com with SMTP id a640c23a62f3a-a2d7e2e7fe0so222337266b.1;
+        Fri, 02 Feb 2024 11:23:35 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1706901814; x=1707506614; darn=vger.kernel.org;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=izs8l7kyWJ3Hvvu35DwQqBwFXYQSHquPAv2Y4TTIhWI=;
+        b=GVRXBMyRfB5pxf7n5w4mCRwG8QHq8SYfxR08SjtPJYAoRUQjVzou/7OAaIWezMtxCU
+         qDv4URl/+Bx3JhKMA2AqmvBnPO4cFXHBao7nMogDKufJwdRyJkqUT+mVSxPpNMB7O/wP
+         /qew8ln79/dwICB6DkmKdd7C3VXiuG9suirpyaDm4lDx/bQIVhUDAGIiBAHDc1UaPnjc
+         OlKaRiwku3H8Tuy1yKOdPPLO3zVEYwc4ObVjQd+ja5oI6Q9V3ogEoAqQY5+xFtjNy5YY
+         NiO24O8IOBI/xma7qbtsnhW+M2kT6na3ewVy85zgkOtppLmLiXm5C3kbQavEDOuRK0Ok
+         fsRA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1706901814; x=1707506614;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=izs8l7kyWJ3Hvvu35DwQqBwFXYQSHquPAv2Y4TTIhWI=;
+        b=gc3dHnI42vho9lfXjKcjAQW/qkEEpFv53J0J+taMEF/U4gXFt9HLAl9HNh/I+zq7XD
+         KZMG0POeqBs7GKVUrQLWWW8/JdMiPj1cMHlW1aLVm9HU/jmcWApIwEHBQvVu4yG1hBte
+         zYCfHFPft4DXHOjNit+fBn2bxo0ENjYRXR6Ap4s4qMSdLLuoIFP+ZpzUzUtDuYqWoLV7
+         pHEHnavt5OlbEY9RGUoF09SBzyTDnzefXuDBm5naU+8OiElgjpk+2BLXzDOho/n61pXc
+         dFcofMTVLtbdJbP70aCbKUKABPh3F9mVhSb6ec9alqWrG+dzGjww7QcmNEFdYkwOx8Gb
+         aviA==
+X-Gm-Message-State: AOJu0Yx9HJmzIJpGTZOl/A+EMJ7WV86ggaD+XpITRoMFaw4PgadtfU8i
+	EmI95d2JSP+ycgJ9CyRl/WTr0P6ErTo+G2e/LsfW0claKcMChrNd
+X-Google-Smtp-Source: AGHT+IFVsEsYcXxM9nZP0Ig9KYpNTyk/btVKfMLQ/vV4CvXETCy9qQTpJMzeol4ysl+TBRO5oX3gYw==
+X-Received: by 2002:a17:906:3093:b0:a36:dfa5:69c with SMTP id 19-20020a170906309300b00a36dfa5069cmr2332310ejv.14.1706901814108;
+        Fri, 02 Feb 2024 11:23:34 -0800 (PST)
+X-Forwarded-Encrypted: i=0; AJvYcCWcQIleUmzagk3MM3dXQ7foXv5CU6GWw4QLfrAlMH2YEguKWU800J0SVjQqR48CINe0XrU1DFLagD7Es9y5ZstIsZsGsOOf22v1qKOhdpa/Xout6nV2Rc65yMYNFy8NiX1G090LAmnehoVjUfn/gvkUjsSwnuVdgOe4bqT4qRAWP3FYzcGuiGIdMapZd+yh/9Mx4o9uTBlijfM58bfspSrwLh7rQwLhhHquTSxJNiMjmASOW2cppGNxji3uEW8DlWAbHzl/GZuD2zr1C4f+sxzIMNB1wCsNx/UPz19T6hZFLKYWEQUwxBVQwWKICBGTABauLtoAWuBfQ9xbUYiXIY4uM+TNNZw/PadX5EcTMl/a584NkNFiIRzpCuZ6yv0=
+Received: from cjw-notebook (2a02-8388-0502-f480-6c32-186a-368b-d6a9.cable.dynamic.v6.surfer.at. [2a02:8388:502:f480:6c32:186a:368b:d6a9])
+        by smtp.gmail.com with ESMTPSA id rf14-20020a1709076a0e00b00a371c568978sm649584ejc.150.2024.02.02.11.23.32
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 02 Feb 2024 11:23:33 -0800 (PST)
+Date: Fri, 2 Feb 2024 20:23:30 +0100
+From: Christoph Winklhofer <cj.winklhofer@gmail.com>
+To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Cc: Krzysztof Kozlowski <krzk@kernel.org>, Rob Herring <robh+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>, Rob Herring <robh@kernel.org>,
+	Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+	Jiri Slaby <jirislaby@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Jonathan Corbet <corbet@lwn.net>, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org, linux-serial@vger.kernel.org,
+	linux-doc@vger.kernel.org
+Subject: Re: [PATCH v5 3/3] w1: add UART w1 bus driver
+Message-ID: <Zb1BMswaaZTXzaFJ@cjw-notebook>
+References: <20240126-w1-uart-v5-0-1d82bfdc2ae9@gmail.com>
+ <20240126-w1-uart-v5-3-1d82bfdc2ae9@gmail.com>
+ <092a9986-5ebb-483d-9911-37a93d7cb2dd@kernel.org>
+ <ZbtIPo--1hfzNmho@cjw-notebook>
+ <94075be0-b91c-4147-86b1-582b124e71a0@linaro.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -62,38 +92,100 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20240202183926.540467-20-sashal@kernel.org>
-User-Agent: Mutt/1.10.1 (2018-07-13)
+In-Reply-To: <94075be0-b91c-4147-86b1-582b124e71a0@linaro.org>
 
-Hi Sasha,
-
-On Fri, Feb 02, 2024 at 01:39:16PM -0500, Sasha Levin wrote:
-> [ Upstream commit 8412c47d68436b9f9a260039a4a773daa6824925 ]
+On Thu, Feb 01, 2024 at 10:35:32AM +0100, Krzysztof Kozlowski wrote:
+> On 01/02/2024 08:29, Christoph Winklhofer wrote:
+> >>> +
+> >>> +static void w1_uart_remove(struct serdev_device *serdev)
+> >>> +{
+> >>> +	struct w1_uart_device *w1dev = serdev_device_get_drvdata(serdev);
+> >>> +
+> >>> +	mutex_lock(&w1dev->mutex);
+> >>> +
+> >>> +	w1_remove_master_device(&w1dev->bus);
+> >>> +
+> >>> +	mutex_unlock(&w1dev->mutex);
+> >>
+> >> This is still suspicious. You do not have serdev_device_close and you
+> >> want to protect from concurrent access but it looks insufficient.
+> >>
+> >> This code assumes that:
+> >>
+> >> w1_uart_remove()
+> >>   <-- here concurrent read/write might start
+> >>   mutex_lock()
+> >>   w1_remove_master_device()
+> >>   mutex_unlock()
+> >>   <-- now w1_uart_serdev_tx_rx() or w1_uart_serdev_receive_buf() can be
+> >> executed, but device is removed. So what's the point of the mutex here?
+> >>
+> >> What exactly is protected by the mutex? So far it looks like only some
+> >> contents of w1dev, but it does not matter, because it that memory is
+> >> still valid at this point.
+> >>
+> >> After describing what is protected we can think whether it is really
+> >> protected...
+> >>
+> >>
+> >>>
+> >>
+> >> Best regards,
+> >> Krzysztof
+> >>
+> > 
+> > Yes, it is still suspicious, sorry..
+> > 
+> > After w1_uart_remove, serdev is closed and w1dev is released. Therefore
+> > the w1-callback (w1_uart_serdev_tx_rx) must be finished before returning
 > 
-> Since commit 26c9d152ebf3 ("dt-bindings: tpm: Consolidate TCG TIS
-> bindings"), several issues are reported by "make dtbs_check" for ARM
-> devicetrees:
-
-You've auto-selected this commit for backporting to v6.6 and v6.7
-stable kernels, but it's only really needed for v6.8 to avoid
-issues reported by "make dtbs_check".
-
-So IMO this commit can be dropped from the v6.6 and v6.7 patch queues.
-
-Thanks,
-
-Lukas
-
-> The nodename needs to be "tpm@0" rather than "tpmdev@0" and the
-> compatible property needs to contain the chip's name in addition to the
-> generic "tcg,tpm_tis-spi" or "tcg,tpm-tis-i2c":
+> I did not even go to end of w1_uart_remove(). In my code above, that
+> thread is still in w1_uart_remove(), just after unlocking mutex.
 > 
->   tpmdev@0: $nodename:0: 'tpmdev@0' does not match '^tpm(@[0-9a-f]+)?$'
->         from schema $id: http://devicetree.org/schemas/tpm/tcg,tpm_tis-spi.yaml#
+
+Ok, I looked more closely at the underlying w1-code and think it is
+sufficient to only call w1_remove_master_device() in w1_uart_remove.
+This function waits until all slaves have finished their work, so
+w1_uart_serdev_tx_rx finished too. The lock is not required.
+
+Hence, I will use the mutex only to protected concurrent access of
+serdev and w1-callbacks (for rx_byte and rx_err).
+
+> > from w1_uart_remove. That was the intention with the lock and trylock.
 > 
->   tpm@2e: compatible: 'oneOf' conditional failed, one must be fixed:
->         ['tcg,tpm-tis-i2c'] is too short
->         from schema $id: http://devicetree.org/schemas/tpm/tcg,tpm-tis-i2c.yaml#
+> Then it does not look really protected. To be honest, w1-gpio and other
+> drivers also might have a race here. You can test it by adding long
+> sleeps in read/write paths and then trying to unbind device. Maybe this
+> should be fixed everywhere, but this mutex here brings more questions.
 > 
-> Fix these schema violations.
+
+I added a delay, unbind takes longer but works without problems when its
+done during a temperature read.
+
+IMO also the other drivers should be fine. From w1_int.c: The w1_master
+is ref-counted and released when it is unused (2). In w1_slave_detach
+(1), the slaves decrement this count, perform specific clean up (in
+remove_slave) and remove sysfs entries.
+
+w1_int.c:
+
+void __w1_remove_master_device(struct w1_master *dev)
+...
+	list_for_each_entry_safe(sl, sln, &dev->slist, w1_slave_entry) {
+		mutex_unlock(&dev->list_mutex);
+		w1_slave_detach(sl); 		(1)
+...
+	while (atomic_read(&dev->refcnt)) { 	(2)
+...	
+	}
+...
+	w1_free_dev(dev);
+
+For example w1_therm waits in remove_slave until its w1-operations are
+done. The other slave-drivers (e.g. w1_ds2405.c) use w1-operations in
+their sysfs-callback and I suppose that sysfs-removal waits until the
+sysfs-read is finished.
+
+Kind regards,
+Christoph
 
