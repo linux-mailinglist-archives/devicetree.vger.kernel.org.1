@@ -1,583 +1,216 @@
-Return-Path: <devicetree+bounces-38077-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-38078-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id C208584763F
-	for <lists+devicetree@lfdr.de>; Fri,  2 Feb 2024 18:36:16 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 25C3D84764E
+	for <lists+devicetree@lfdr.de>; Fri,  2 Feb 2024 18:38:40 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id E67E41C21DD5
-	for <lists+devicetree@lfdr.de>; Fri,  2 Feb 2024 17:36:15 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 495861C20D77
+	for <lists+devicetree@lfdr.de>; Fri,  2 Feb 2024 17:38:39 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1002814AD2D;
-	Fri,  2 Feb 2024 17:35:57 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0AAF114900B;
+	Fri,  2 Feb 2024 17:38:36 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="kn60Xern"
+	dkim=pass (1024-bit key) header.d=broadcom.com header.i=@broadcom.com header.b="Q9BSD9Wl"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pl1-f176.google.com (mail-pl1-f176.google.com [209.85.214.176])
+Received: from mail-ot1-f52.google.com (mail-ot1-f52.google.com [209.85.210.52])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 20D7014AD0E
-	for <devicetree@vger.kernel.org>; Fri,  2 Feb 2024 17:35:53 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.176
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 421A3168B9
+	for <devicetree@vger.kernel.org>; Fri,  2 Feb 2024 17:38:34 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.52
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1706895357; cv=none; b=TrMkQJAF5MQHbTRoDb4/UxegwsMwapwwlvol4Kb2RrgHZZBjMXUtkGet+zAwqItElj6YooTctSa0ZYznrRaLdYBQjf2XB0d0SbutWvAFQwT9fdJqqtocr1ROUoIoVIlT0Jw14qJhgPvH1ri0v9usHhJ8Aj/MKoGE1inVsTv6XW4=
+	t=1706895515; cv=none; b=cRQy/I4a65VhSvlrW+R6B7A/LpbpBFOKOdJxXkb/CNLyBfd2kHuWW2YRyXcbcS/fO44P0JqYhlANqTdfDUrkoP6yEvtqWQRNJ+zQ5kSuwBej+kxWJe/GjQVX1PXsGi+lFl5Ehv7/LjR86F8GWiB5y7rcoYj52+bRZRhinHAya/o=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1706895357; c=relaxed/simple;
-	bh=I+woOImkyJZzczt7iw8KJEFtdYXMANmHmXPgzPa6daM=;
+	s=arc-20240116; t=1706895515; c=relaxed/simple;
+	bh=gMeOk0DboN31GDue6zdH+v5hNgTHVHTQCD4yZisGAvU=;
 	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=Nhbo3bxwXQJLUIh/nbw9WEhsSZIwHiRWf6j+yRK72hvegiARI4hv49RQpmBtZTsLEugmXfpiJtdZt81hxneRm5VZwC3orsFg9PWc/6gmaGiTj3DdmK4r6+n3j/EROj+L6t7SMBQL8BbIfz0vqeG9qM0PqQYLZKO3Vu6GlAuBENk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=kn60Xern; arc=none smtp.client-ip=209.85.214.176
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-pl1-f176.google.com with SMTP id d9443c01a7336-1d7232dcb3eso18052495ad.2
-        for <devicetree@vger.kernel.org>; Fri, 02 Feb 2024 09:35:53 -0800 (PST)
+	 To:Cc:Content-Type; b=fLzp1Hv/sNVoA2tvdqj5TsTU0Z1qjlQGXt2mTjXbV+9Or7jXYmuRjozWyYUr4MqbBt5PRBedW+viV3HniD2uTJHt95Cit0iG9JLc5uJKJpTiBZSBF64RbcvlHI1zNeMgSB8jvxyWOatNpkkvZLXSNKpeO6Yv0SbgEge9PGtRslQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=broadcom.com; spf=fail smtp.mailfrom=broadcom.com; dkim=pass (1024-bit key) header.d=broadcom.com header.i=@broadcom.com header.b=Q9BSD9Wl; arc=none smtp.client-ip=209.85.210.52
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=broadcom.com
+Authentication-Results: smtp.subspace.kernel.org; spf=fail smtp.mailfrom=broadcom.com
+Received: by mail-ot1-f52.google.com with SMTP id 46e09a7af769-6e1226b30ffso1238295a34.0
+        for <devicetree@vger.kernel.org>; Fri, 02 Feb 2024 09:38:34 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1706895353; x=1707500153; darn=vger.kernel.org;
+        d=broadcom.com; s=google; t=1706895513; x=1707500313; darn=vger.kernel.org;
         h=content-transfer-encoding:cc:to:subject:message-id:date:from
          :in-reply-to:references:mime-version:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=hK6Yd7+9aej+GmdV9oJUyM6c5777FS7g6eogrpdRUjM=;
-        b=kn60XernSky5MHMjrTOYaAzJPoyz5C9pUeSQO6B9IfmarxbMoSdDGi5MvjdAH1IAZH
-         eApD8fR0/MaTXIoq1Q+z+SsICwo7KEnREwNXv0lPbpwICPWrws16m2ecD4l/Oyg72hzu
-         tNHgjslB5lbR0sCCSozRLBkpRMQjTNe0T7u6Vk+elnw9uyWbeh3vozFVl2/4s/PTu+jV
-         AfgVah9zWvsjAPRMb4g6Dz8BsyRbl7BucvNhNiVyoPhZ+2eiNxTtobhYKxgmnhskd2s9
-         EX/SP777/IaaSOh0BCsWtFuzM+NmakcAdQtbS9UXhrJ9Iw6t+hSwrbjDEFemXMl0fa3a
-         Bjhw==
+        bh=125qZY7mbLGPBHcNyXp+a5vrMM3WFpV/QF8Lkc7h738=;
+        b=Q9BSD9Wl9Jswx3XmYq7pdvUcrLEXj5EBmgzEIpQ7bFaX21fC4rKG2fjCAP0pRQN7vA
+         6qMJt9kUTfex00A8MkfqwE7Uv2rfwepnOubsvPZNbE2egIX2ZR/ccdPH+FuMnSYpNDv1
+         2hbpS/NgjP6um3gJngYC425eAhOn4gm9EPRk4=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1706895353; x=1707500153;
+        d=1e100.net; s=20230601; t=1706895513; x=1707500313;
         h=content-transfer-encoding:cc:to:subject:message-id:date:from
          :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=hK6Yd7+9aej+GmdV9oJUyM6c5777FS7g6eogrpdRUjM=;
-        b=PBnGyJ2CGjIRsJ4MK3LSob6/pZXDdvMpNQniGdn90D2EzuBVe/0hMS3G/W0ieKVGcs
-         gUxy6g7581P8wsuY4zZStNj/Up9UuhGv9VVNx8vd6nxvN/HxhW4m7BGPlvmgllxxFkLa
-         JYQk9ODDd+0Q9YJ/JZc99hU9EaFF5xW5i1Kr6JsSDpQPSbIiQVOpPuVbh3KsI2ENApJN
-         gZkG5P5PGrhIJnBiPBA461fyqgaSrXPFbIaIhMEAbAAe1urLwyzTT7WPLnStMmCox0Mc
-         jYwR8sjuDTYbvBtS/I3yNrbBaj6doIj7AJ7VF/81L8etB/cpqQztuQyDnNrPHgfKafiq
-         Ty5w==
-X-Gm-Message-State: AOJu0YwvzJEYm6NKhw9vLxRga/QYi0Rnb9af2PcudAhB+e+gxOOO8ezE
-	YeiHyvZ66fXOrCwl/8VvupZzQCMV/O6LfBRYXcYg4B435lafiCrdwPcYGNVN0sfls7rEQdx456G
-	m2zHCKD5Hcg6e5CwYPRQ+HKHUS3WlG48fn+uRgA==
-X-Google-Smtp-Source: AGHT+IEPVbcCK8Jp7uvL6z/ZhgK0zv0c4KplkZxjR02V2RvIEdK/SKXLq6QsKDcDUF9OKVI6toUVpoRX+fAchBErxOI=
-X-Received: by 2002:a05:6a20:3b1d:b0:199:37ce:2370 with SMTP id
- c29-20020a056a203b1d00b0019937ce2370mr2427310pzh.23.1706895353302; Fri, 02
- Feb 2024 09:35:53 -0800 (PST)
+        bh=125qZY7mbLGPBHcNyXp+a5vrMM3WFpV/QF8Lkc7h738=;
+        b=CCSy4Nt4umzLovAvxNFuJ5jyp5jVxYhEYonsRZzu0XEc0hLCThhtua1HnVrLNgYEi9
+         iWG1/4daVl1rFuFwVa+sBikKO0sHwcMybADwZY6Rm8mVq0w+U3ut4XFsx8x+/vnQBqkY
+         CpWkg8GqXekFshdHxgkJBgKe1HFHLdC3e/R2iWmAeLWkJ14O9ZYXWyYhI71SbW1dPyrv
+         OOGkKutJ3UfV59VWuHLqEThoVHCPyHMY8LQ/ZRNilnBCCu2317pIij62+jT1Pis8DP5o
+         +t7yAxfNKiLEIKsfglOrlr9hiZk0Bkp1eJn5cNn4JawPpAirHgpy067oIm4I8pbn8Cyq
+         qwSA==
+X-Gm-Message-State: AOJu0Yw5bBSE8un54ImseoMGuOD78XKCqHOyGRpuyro8+PwwzJdf1yZ2
+	AzPrgZelyqPUknx2KJCO5/WrAMX+Y5/kwgJxWe3HhURxoXxYhet3LMc2bgFeWTcaGGlBZLD0SPP
+	HeCvk4GzCIlqKCAKZWO5CRUaII6ahz+7XHVqE
+X-Google-Smtp-Source: AGHT+IFniiMmH77EyZiBHuEXf2cZWEQZFRYaIyi8fG4PrGFygt00mq7TaxqEzdxTBCEidE5sBJMD0NwhS1a+m73QRHo=
+X-Received: by 2002:a05:6830:d8:b0:6e1:11be:2221 with SMTP id
+ x24-20020a05683000d800b006e111be2221mr8322590oto.3.1706895513159; Fri, 02 Feb
+ 2024 09:38:33 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20240202145731.4082033-1-peter.griffin@linaro.org> <20240202145731.4082033-2-peter.griffin@linaro.org>
-In-Reply-To: <20240202145731.4082033-2-peter.griffin@linaro.org>
-From: Sam Protsenko <semen.protsenko@linaro.org>
-Date: Fri, 2 Feb 2024 11:35:42 -0600
-Message-ID: <CAPLW+4=Cm36Q311Y7mCGgm+3fe5NNNc5XhNSMkbigTG2BVCTpA@mail.gmail.com>
-Subject: Re: [PATCH v3 1/2] soc: samsung: exynos-pmu: Add regmap support for
- SoCs that protect PMU regs
-To: Peter Griffin <peter.griffin@linaro.org>
-Cc: arnd@arndb.de, krzysztof.kozlowski@linaro.org, linux@roeck-us.net, 
-	wim@linux-watchdog.org, alim.akhtar@samsung.com, jaewon02.kim@samsung.com, 
-	kernel-team@android.com, alexey.klimov@linaro.org, tudor.ambarus@linaro.org, 
-	andre.draszik@linaro.org, saravanak@google.com, willmcvicker@google.com, 
-	linux-fsd@tesla.com, linux-watchdog@vger.kernel.org, 
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
-	linux-arm-kernel@lists.infradead.org, linux-samsung-soc@vger.kernel.org
+References: <20240124030458.98408-1-dregan@broadcom.com> <20240124030458.98408-11-dregan@broadcom.com>
+ <20240124184027.712b1e47@xps-13> <CAA_RMS42FaiN+Za1iY12o0YUANH9rJarBTBa=9jNn8x6_g-Fng@mail.gmail.com>
+ <20240126071913.699c3795@xps-13> <CAA_RMS5gX88v_Qt1csgSL_ffMNsqo2G8B164EB_Hg=hXd620eg@mail.gmail.com>
+ <20240129115228.06dc2292@xps-13> <2a3edcf5-7afc-410c-a402-3d8cd3feb1da@broadcom.com>
+ <20240130120155.3cb6feed@xps-13> <CAA_RMS577vw=QWN9_NHfmWqt+_cDG22tA01aU019CPNjAgHqJQ@mail.gmail.com>
+ <20240130195504.506fb446@xps-13> <bcd9f8a5-7dab-42e6-b860-8a56ebb51cb6@broadcom.com>
+ <20240201092558.5499ee6a@xps-13>
+In-Reply-To: <20240201092558.5499ee6a@xps-13>
+From: David Regan <dregan@broadcom.com>
+Date: Fri, 2 Feb 2024 09:38:22 -0800
+Message-ID: <CAA_RMS4V=RBzQCxSDbKgqNbnZz+ca-XThyoowMHuFga3jRyUSw@mail.gmail.com>
+Subject: Re: [PATCH v3 10/10] mtd: rawnand: brcmnand: allow for on-die ecc
+To: Miquel Raynal <miquel.raynal@bootlin.com>
+Cc: William Zhang <william.zhang@broadcom.com>, David Regan <dregan@broadcom.com>, dregan@mail.com, 
+	Richard Weinberger <richard@nod.at>, Vignesh Raghavendra <vigneshr@ti.com>, robh+dt@kernel.org, 
+	krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org, 
+	computersforpeace@gmail.com, kdasu.kdev@gmail.com, 
+	linux-mtd@lists.infradead.org, devicetree@vger.kernel.org, 
+	Linux Kernel Mailing List <linux-kernel@vger.kernel.org>, Joel Peshkin <joel.peshkin@broadcom.com>, 
+	Tomer Yacoby <tomer.yacoby@broadcom.com>, Dan Beygelman <dan.beygelman@broadcom.com>, 
+	Anand Gore <anand.gore@broadcom.com>, Kursad Oney <kursad.oney@broadcom.com>, 
+	Florian Fainelli <florian.fainelli@broadcom.com>, rafal@milecki.pl, 
+	bcm-kernel-feedback-list@broadcom.com, andre.przywara@arm.com, 
+	baruch@tkos.co.il, linux-arm-kernel@lists.infradead.org, 
+	Dan Carpenter <dan.carpenter@linaro.org>
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-On Fri, Feb 2, 2024 at 8:57=E2=80=AFAM Peter Griffin <peter.griffin@linaro.=
-org> wrote:
+Hi Miqu=C3=A8l,
+
+On Thu, Feb 1, 2024 at 12:26=E2=80=AFAM Miquel Raynal <miquel.raynal@bootli=
+n.com> wrote:
 >
-> Some Exynos based SoCs like Tensor gs101 protect the PMU registers for
-> security hardening reasons so that they are only write accessible in el3
-> via an SMC call.
+> Hi William,
 >
-> As most Exynos drivers that need to write PMU registers currently obtain =
-a
-> regmap via syscon (phys, pinctrl, watchdog). Support for the above usecas=
-e
-> is implemented in this driver using a custom regmap similar to syscon to
-> handle the SMC call. Platforms that don't secure PMU registers, get a mmi=
-o
-> regmap like before. As regmaps abstract out the underlying register acces=
-s
-> changes to the leaf drivers are minimal.
+> > >>>>>>>> This is a double check to turn on/off our hardware ECC.
+> > >>>>>>>
+> > >>>>>>> I expect the engine to be always disabled. Enable it only when =
+you
+> > >>>>>>> need (may require an additional patch before this one).
+> > >>>>>>
+> > >>>>>> We are already turning on the ECC enable at this point,
+> > >>>>>> this is just adding the option to turn it off if the NAND chip
+> > >>>>>> itself will be doing the ECC instead of our controller.
+> > >>>>>
+> > >>>>> Sorry if I have not been clear.
+> > >>>>>
+> > >>>>> This sequence:
+> > >>>>> - init
+> > >>>>> - enable hw ECC engine
+> > >>>>> Is broken.
+> > >>>>>   >>>> ECC engine is not enabled for all the cases. Here we only =
+intended to enable it for the nand chip that is set to use NAND_ECC_ENGINE_=
+TYPE_ON_HOST. The logic here should better change to:
+> > >>>> if (chip->ecc.engine_type =3D=3D NAND_ECC_ENGINE_TYPE_ON_HOST)
+> > >>>>       brcmnand_set_ecc_enabled(host, 1);
+> > >>>> else
+> > >>>>       brcmnand_set_ecc_enabled(host, 0);
+> > >>>>   >>>>> It *cannot* work as any operation going through exec_op no=
+w may
+> > >>>>> perform page reads which should be unmodified by the ECC engine. =
+You > driver *must* follow the following sequence:
+> > >>>>> - init and disable (or keep disabled) the hw ECC engine
+> > >>>>> - when you perform a page operation with correction you need to
+> > >>>>>      - enable the engine
+> > >>>>>      - perform the operation
+> > >>>>>      - disable the engine
+> > >>>>> Maybe I am missing something here but are you saying the exec_op =
+can have different ecc type for page read/write at run time on the same nan=
+d chip? I don't see the op instr structure has the ecc type field and thoug=
+ht it is only bind to the nand chip and won't change at run time. So looks =
+to me the init time setting to the engine based on ecc.engine_type should b=
+e sufficient.
+> > >>>>
+> > >>>> What you described here can work for the hw.ecc read path (ecc.rea=
+d_page =3D brcmnand_read_page) which always assumes ecc is enabled. Althoug=
+h it is probably not too bad with these two extra operation, it would be be=
+tter if we don't have to add anything as our current code does. For the brc=
+mnand_read_page_raw,  we currently disable the engine and then re-enable it=
+(but we need to fix it to only enable it with hw ecc engine type).  So it i=
+s just opposite of you logic but works the same with no impact on the most =
+performance critical path.
+> > >>>
+> > >>> This is not "my" logic, this is the "core's" logic. I am saying: yo=
+ur
+> > >>> approach is broken because that is not how the API is supposed to w=
+ork,
+> > >>> but it mostly works in the standard case.
+> > >>
+> > >> In the interest of minimizing register writes, would it be acceptabl=
+e to
+> > >> enable/disable ECC at the beginning of a standard
+> > >> path transfer but not, after the transfer, turn off the ECC? This sh=
+ould not
+> > >> affect other standard path operations nor affect the exec_op path as=
+ those
+> > >> are low level transfers which our ECC engine would not touch and the=
+ NAND
+> > >> device driver should be responsible for turning on/off its own ECC.
+> > >
+> > > Do you have legitimate concerns about this register write taking way
+> > > more time than I could expect? Because compared to the transfer of a
+> > > NAND page + tR/tPROG it should not be noticeable. I don't see how you
+> > > could even measure such impact actually, unless the register write do=
+es
+> > > way more than usual. I'm fine with the above idea if you show me it h=
+as
+> > > an interest.
+> > >
+> > Dave did the mtd_speed test and we can see we get consistently ~35KB/s =
+slower with the extra enable and disable ecc engine calls in ecc read page =
+path.
+> >
+> > With the change:
+> > [   28.148355] mtd_speedtest:   page read speed is 9857 KiB/s
+> > [   31.754258] mtd_speedtest: 2 page read speed is 9865 KiB/s
+> > Without the change
+> > [   56.444735] mtd_speedtest:   page read speed is 9892 KiB/s
+> > [   60.042262] mtd_speedtest: 2 page read speed is 9897 KiB/s
 >
-> A new API exynos_get_pmu_regmap_by_phandle() is provided for leaf drivers
-> that currently use syscon_regmap_lookup_by_phandle(). This also handles
-> deferred probing.
+> I believe if you repeat this 10 times you'll get totally different
+> results. I don't think this test on a non RT machine is precise enough
+> so that a unique 35kiB difference can be interpreted as being
+> significant.
 >
-> Signed-off-by: Peter Griffin <peter.griffin@linaro.org>
-> ---
-> Changes since v2
->  - Add select REGMAP to Kconfig
->  - Add constant for SET/CLEAR bits
->  - Replace kerneldoc with one line comment
->  - Fix kerneldoc for EXPORT_SYMBOL_GPL funcs
->  - remove superflous extern keyword
->  - dev_err_probe() on probe error
->  - shorten regmcfg name
->  - no compatibles inside probe, use match data
->  - don't mix declarations with/without initializations
->  - tensor_sec_reg_read() use mmio to avoid access restrictions
->  - Collect up Reviewed-by
->  - const for regmap_config structs
-> ---
->  drivers/soc/samsung/Kconfig            |   1 +
->  drivers/soc/samsung/exynos-pmu.c       | 233 ++++++++++++++++++++++++-
->  drivers/soc/samsung/exynos-pmu.h       |   1 +
->  include/linux/soc/samsung/exynos-pmu.h |  11 +-
->  4 files changed, 241 insertions(+), 5 deletions(-)
+> > Although it is only less than 1% drop, it is still something. I underst=
+and the procedure you laid out above is the preferred way but with our driv=
+er fully control the chip ecc read/write page, ecc read_raw/write_raw page =
+function and exec_op path, I don't see where it may not work.
 >
-> diff --git a/drivers/soc/samsung/Kconfig b/drivers/soc/samsung/Kconfig
-> index 27ec99af77e3..1a5dfdc978dc 100644
-> --- a/drivers/soc/samsung/Kconfig
-> +++ b/drivers/soc/samsung/Kconfig
-> @@ -42,6 +42,7 @@ config EXYNOS_PMU
->         depends on ARCH_EXYNOS || ((ARM || ARM64) && COMPILE_TEST)
->         select EXYNOS_PMU_ARM_DRIVERS if ARM && ARCH_EXYNOS
->         select MFD_CORE
-> +       select REGMAP_MMIO
+> I just told you, the exec_op path runs with ECC enabled. I don't know
+> how this controller works. Now if you don't care and are 100% sure this
+> is working and future proof, just keep it like this.
+
+Thank you for all your help, it appears this will need further rework
+and testing. Since it's not critical to this series I will most likely
+pull this patch and take all your good information to prepare for
+a future update.
+
 >
->  # There is no need to enable these drivers for ARMv8
->  config EXYNOS_PMU_ARM_DRIVERS
-> diff --git a/drivers/soc/samsung/exynos-pmu.c b/drivers/soc/samsung/exyno=
-s-pmu.c
-> index 250537d7cfd6..adf3549370d6 100644
-> --- a/drivers/soc/samsung/exynos-pmu.c
-> +++ b/drivers/soc/samsung/exynos-pmu.c
-> @@ -5,6 +5,7 @@
->  //
->  // Exynos - CPU PMU(Power Management Unit) support
->
-> +#include <linux/arm-smccc.h>
->  #include <linux/of.h>
->  #include <linux/of_address.h>
->  #include <linux/mfd/core.h>
-> @@ -12,19 +13,130 @@
->  #include <linux/of_platform.h>
->  #include <linux/platform_device.h>
->  #include <linux/delay.h>
-> +#include <linux/regmap.h>
->
->  #include <linux/soc/samsung/exynos-regs-pmu.h>
->  #include <linux/soc/samsung/exynos-pmu.h>
->
->  #include "exynos-pmu.h"
->
-> +#define PMUALIVE_MASK GENMASK(14, 0)
+> Cheers,
+> Miqu=C3=A8l
 
-Are you sure it's not GENMASK(13, 0)? Because SET_BITS has bit #14
-set, which overlaps with bit #14 from PMUALIVE_MASK, when being added
-in tensor_set_bit_atomic().
+Thanks!
 
-This also can be aligned with below definitions.
-
-> +#define SET_BITS       0xc000
-> +#define CLEAR_BITS     0x8000
-
-All 3 above values seem to be gs101 specific. At least I can't find
-any similar atomic registers in Exynos850 TRM, in PMU block. So I'd
-suggest also adding TENSOR_ prefix to those to make it clear and to
-prevent possible naming conflicts in future.
-
-Also, not sure if it makes things better, but FWIW:
-
-    #define CLEAR_BITS     BIT(15)
-    #define SET_BITS       (BIT(15) | BIT(14))
-
-Just to show that those two bits don't overlap with PMUALIVE_MASK (if
-it can be fixed to 13:0), and show their relation. If I understand
-correctly what's going on anyway.
-
-> +
-> +#define TENSOR_SMC_PMU_SEC_REG         0x82000504
-> +#define TENSOR_PMUREG_READ             0
-> +#define TENSOR_PMUREG_WRITE            1
-> +#define TENSOR_PMUREG_RMW              2
-> +
->  struct exynos_pmu_context {
->         struct device *dev;
->         const struct exynos_pmu_data *pmu_data;
-> +       struct regmap *pmureg;
->  };
->
->  void __iomem *pmu_base_addr;
->  static struct exynos_pmu_context *pmu_context;
-> +static struct platform_driver exynos_pmu_driver;
-
-Just an idea: maybe add a comment saying it's a forward declaration,
-and the variable is assigned below, as it might be confusing. Not sure
-if it's worth it though.
-
-> +
-> +/*
-> + * Tensor SoCs are configured so that PMU_ALIVE registers can only be wr=
-itten
-> + * from EL3, but are still read accessible. As Linux needs to write some=
- of
-> + * these registers, the following functions are provided and exposed via
-> + * regmap.
-> + *
-> + * Note: This SMC interface is known to be implemented on gs101 and deri=
-vative
-> + * SoCs.
-> + */
-> +
-> +/* Write to a protected PMU register. */
-> +static int tensor_sec_reg_write(void *base, unsigned int reg, unsigned i=
-nt val)
-> +{
-> +       struct arm_smccc_res res;
-> +       unsigned long pmu_base =3D (unsigned long)base;
-> +
-> +       arm_smccc_smc(TENSOR_SMC_PMU_SEC_REG, pmu_base + reg,
-> +                     TENSOR_PMUREG_WRITE, val, 0, 0, 0, 0, &res);
-> +
-> +       /* returns -EINVAL if access isn't allowed or 0 */
-> +       if (res.a0)
-> +               pr_warn("%s(): SMC failed: %d\n", __func__, (int)res.a0);
-> +
-> +       return (int)res.a0;
-> +}
-> +
-> +/* Read/Modify/Write a protected PMU register. */
-> +static int tensor_sec_reg_rmw(void *base, unsigned int reg,
-> +                             unsigned int mask, unsigned int val)
-> +{
-> +       struct arm_smccc_res res;
-> +       unsigned long pmu_base =3D (unsigned long)base;
-> +
-> +       arm_smccc_smc(TENSOR_SMC_PMU_SEC_REG, pmu_base + reg,
-> +                     TENSOR_PMUREG_RMW, mask, val, 0, 0, 0, &res);
-> +
-> +       /* returns -EINVAL if access isn't allowed or 0*/
-> +       if (res.a0)
-> +               pr_warn("%s(): SMC failed: %d\n", __func__, (int)res.a0);
-> +
-> +       return (int)res.a0;
-> +}
-> +
-> +/*
-> + * Read a protected PMU register. All PMU registers can be read by Linux=
-.
-> + * Note: The SMC read register is not used, as only registers that can b=
-e
-> + * written are readable via SMC.
-> + */
-> +static int tensor_sec_reg_read(void *base, unsigned int reg, unsigned in=
-t *val)
-> +{
-> +       *val =3D pmu_raw_readl(reg);
-> +       return 0;
-> +}
-> +
-> +/*
-> + * For SoCs that have set/clear bit hardware this function can be used w=
-hen
-> + * the PMU register will be accessed by multiple masters.
-> + *
-> + * For example, to set bits 13:8 in PMU reg offset 0x3e80
-> + * tensor_set_bit_atomic(0x3e80, 0x3f00, 0x3f00);
-> + *
-> + * To clear bits 13:8 in PMU offset 0x3e80
-> + * tensor_set_bit_atomic(0x3e80, 0x0, 0x3f00);
-> + */
-> +static inline int tensor_set_bit_atomic(void *ctx, unsigned int offset,
-
-set_bit -> set_bits?
-
-> +                                       u32 val, u32 mask)
-> +{
-> +       int ret;
-> +       unsigned int i;
-> +
-> +       for (i =3D 0; i < 32; i++) {
-> +               if (mask & BIT(i)) {
-
-Maybe replace it with:
-
-    if (!(mask & BIT(i)))
-        continue;
-
-to reduce the indentation level?
-
-> +                       if (val & BIT(i))
-> +                               offset |=3D SET_BITS;
-> +                       else
-> +                               offset |=3D CLEAR_BITS;
-
-What if someone calls this functions like this:
-
-    tensor_set_bit_atomic(0x3e80, 0x100, 0x3f00);
-
-which means "set bit #8, and clear bits 13:9). But because the offset
-variable will hold SET_BITS set during bit #8 handling, bits 13:9 are
-also going to be set, effectively making that call act like
-tensor_set_bit_atomic(0x3e80, 0x3f00, 0x3f00) instead. So I'd add
-something like:
-
-    offset &=3D ~SET_BITS;
-
-before doing |=3D operations.
-
-> +
-> +                       ret =3D tensor_sec_reg_write(ctx, offset, i);
-> +                       if (ret)
-> +                               goto out;
-
-Maybe remove "out" and just do return ret here?
-
-> +               }
-> +       }
-> +out:
-> +       return ret;
-> +}
-> +
-> +static int tensor_sec_update_bits(void *ctx, unsigned int reg,
-> +                                 unsigned int mask, unsigned int val)
-> +{
-> +       /*
-> +        * Use atomic operations for PMU_ALIVE registers (offset 0~0x3FFF=
-)
-> +        * as the target registers can be accessed by multiple masters.
-> +        */
-> +       if (reg > PMUALIVE_MASK)
-> +               return tensor_sec_reg_rmw(ctx, reg, mask, val);
-> +
-> +       return tensor_set_bit_atomic(ctx, reg, val, mask);
-> +}
->
->  void pmu_raw_writel(u32 val, u32 offset)
->  {
-> @@ -75,11 +187,41 @@ void exynos_sys_powerdown_conf(enum sys_powerdown mo=
-de)
->  #define exynos_pmu_data_arm_ptr(data)  NULL
->  #endif
->
-> +static const struct regmap_config regmap_smccfg =3D {
-> +       .name =3D "pmu_regs",
-> +       .reg_bits =3D 32,
-> +       .reg_stride =3D 4,
-> +       .val_bits =3D 32,
-> +       .fast_io =3D true,
-> +       .use_single_read =3D true,
-> +       .use_single_write =3D true,
-> +       .reg_read =3D tensor_sec_reg_read,
-> +       .reg_write =3D tensor_sec_reg_write,
-> +       .reg_update_bits =3D tensor_sec_update_bits,
-> +};
-> +
-> +static const struct regmap_config regmap_mmiocfg =3D {
-> +       .name =3D "pmu_regs",
-> +       .reg_bits =3D 32,
-> +       .reg_stride =3D 4,
-> +       .val_bits =3D 32,
-> +       .fast_io =3D true,
-> +       .use_single_read =3D true,
-> +       .use_single_write =3D true,
-> +};
-> +
-> +static const struct exynos_pmu_data gs101_pmu_data =3D {
-> +       .pmu_secure =3D true
-> +};
-> +
->  /*
->   * PMU platform driver and devicetree bindings.
->   */
->  static const struct of_device_id exynos_pmu_of_device_ids[] =3D {
->         {
-> +               .compatible =3D "google,gs101-pmu",
-> +               .data =3D &gs101_pmu_data,
-> +       }, {
->                 .compatible =3D "samsung,exynos3250-pmu",
->                 .data =3D exynos_pmu_data_arm_ptr(exynos3250_pmu_data),
->         }, {
-> @@ -113,19 +255,73 @@ static const struct mfd_cell exynos_pmu_devs[] =3D =
-{
->         { .name =3D "exynos-clkout", },
->  };
->
-> +/**
-> + * exynos_get_pmu_regmap() - Obtain pmureg regmap
-> + *
-> + * Find the pmureg regmap previously configured in probe() and return re=
-gmap
-> + * pointer.
-> + *
-> + * Return: A pointer to regmap if found or ERR_PTR error value.
-> + */
->  struct regmap *exynos_get_pmu_regmap(void)
->  {
->         struct device_node *np =3D of_find_matching_node(NULL,
->                                                       exynos_pmu_of_devic=
-e_ids);
->         if (np)
-> -               return syscon_node_to_regmap(np);
-> +               return exynos_get_pmu_regmap_by_phandle(np, NULL);
->         return ERR_PTR(-ENODEV);
->  }
->  EXPORT_SYMBOL_GPL(exynos_get_pmu_regmap);
->
-> +/**
-> + * exynos_get_pmu_regmap_by_phandle() - Obtain pmureg regmap via phandle
-> + * @np: Pointer to device's Device Tree node
-> + * @property: Device Tree property name which references the pmu
-> + *
-> + * Find the pmureg regmap previously configured in probe() and return re=
-gmap
-> + * pointer.
-> + *
-> + * Return: A pointer to regmap if found or ERR_PTR error value.
-> + */
-> +struct regmap *exynos_get_pmu_regmap_by_phandle(struct device_node *np,
-> +                                               const char *property)
-> +{
-> +       struct device *dev;
-> +       struct exynos_pmu_context *ctx;
-> +       struct device_node *pmu_np;
-> +
-> +       if (property)
-> +               pmu_np =3D of_parse_phandle(np, property, 0);
-> +       else
-> +               pmu_np =3D np;
-> +
-> +       if (!pmu_np)
-> +               return ERR_PTR(-ENODEV);
-> +
-> +       /*
-> +        * Determine if exynos-pmu device has probed and therefore regmap
-> +        * has been created and can be returned to the caller. Otherwise =
-we
-> +        * return -EPROBE_DEFER.
-> +        */
-> +       dev =3D driver_find_device_by_of_node(&exynos_pmu_driver.driver,
-> +                                           (void *)pmu_np);
-> +
-> +       of_node_put(pmu_np);
-> +       if (!dev)
-> +               return ERR_PTR(-EPROBE_DEFER);
-> +
-> +       ctx =3D dev_get_drvdata(dev);
-> +
-> +       return ctx->pmureg;
-> +}
-> +EXPORT_SYMBOL_GPL(exynos_get_pmu_regmap_by_phandle);
-> +
->  static int exynos_pmu_probe(struct platform_device *pdev)
->  {
->         struct device *dev =3D &pdev->dev;
-> +       struct regmap_config pmu_regmcfg;
-> +       struct regmap *regmap;
-> +       struct resource *res;
->         int ret;
->
->         pmu_base_addr =3D devm_platform_ioremap_resource(pdev, 0);
-> @@ -133,13 +329,42 @@ static int exynos_pmu_probe(struct platform_device =
-*pdev)
->                 return PTR_ERR(pmu_base_addr);
->
->         pmu_context =3D devm_kzalloc(&pdev->dev,
-> -                       sizeof(struct exynos_pmu_context),
-> -                       GFP_KERNEL);
-> +                                  sizeof(struct exynos_pmu_context),
-> +                                  GFP_KERNEL);
->         if (!pmu_context)
->                 return -ENOMEM;
-> -       pmu_context->dev =3D dev;
-> +
-> +       res =3D platform_get_resource(pdev, IORESOURCE_MEM, 0);
-> +       if (!res)
-> +               return -ENODEV;
-> +
->         pmu_context->pmu_data =3D of_device_get_match_data(dev);
->
-> +       /* For SoCs that secure PMU register writes use custom regmap */
-> +       if (pmu_context->pmu_data && pmu_context->pmu_data->pmu_secure) {
-> +               pmu_regmcfg =3D regmap_smccfg;
-> +               pmu_regmcfg.max_register =3D resource_size(res) -
-> +                                          pmu_regmcfg.reg_stride;
-> +               /* Need physical address for SMC call */
-> +               regmap =3D devm_regmap_init(dev, NULL,
-> +                                         (void *)(uintptr_t)res->start,
-> +                                         &pmu_regmcfg);
-> +       } else {
-> +               /* all other SoCs use a MMIO regmap */
-
-Suggest starting with a capital letter, for consistency with previous comme=
-nts.
-
-> +               pmu_regmcfg =3D regmap_mmiocfg;
-> +               pmu_regmcfg.max_register =3D resource_size(res) -
-> +                                          pmu_regmcfg.reg_stride;
-> +               regmap =3D devm_regmap_init_mmio(dev, pmu_base_addr,
-> +                                              &pmu_regmcfg);
-> +       }
-> +
-> +       if (IS_ERR(regmap))
-> +               dev_err_probe(&pdev->dev, PTR_ERR(regmap),
-> +                             "regmap init failed\n");
-
-Why not "return dev_err_probe()"? Is it ok to continue with no regmap creat=
-ed?
-
-> +
-> +       pmu_context->pmureg =3D regmap;
-> +       pmu_context->dev =3D dev;
-> +
->         if (pmu_context->pmu_data && pmu_context->pmu_data->pmu_init)
->                 pmu_context->pmu_data->pmu_init();
->
-> diff --git a/drivers/soc/samsung/exynos-pmu.h b/drivers/soc/samsung/exyno=
-s-pmu.h
-> index 1c652ffd79b4..0a49a2c9a08e 100644
-> --- a/drivers/soc/samsung/exynos-pmu.h
-> +++ b/drivers/soc/samsung/exynos-pmu.h
-> @@ -21,6 +21,7 @@ struct exynos_pmu_conf {
->  struct exynos_pmu_data {
->         const struct exynos_pmu_conf *pmu_config;
->         const struct exynos_pmu_conf *pmu_config_extra;
-> +       bool pmu_secure;
->
->         void (*pmu_init)(void);
->         void (*powerdown_conf)(enum sys_powerdown);
-> diff --git a/include/linux/soc/samsung/exynos-pmu.h b/include/linux/soc/s=
-amsung/exynos-pmu.h
-> index a4f5516cc956..406ed73614fd 100644
-> --- a/include/linux/soc/samsung/exynos-pmu.h
-> +++ b/include/linux/soc/samsung/exynos-pmu.h
-> @@ -20,12 +20,21 @@ enum sys_powerdown {
->
->  extern void exynos_sys_powerdown_conf(enum sys_powerdown mode);
->  #ifdef CONFIG_EXYNOS_PMU
-> -extern struct regmap *exynos_get_pmu_regmap(void);
-> +struct regmap *exynos_get_pmu_regmap(void);
-> +
-
-Usually empty line delimeter is not needed in cases like that.
-
-> +struct regmap *exynos_get_pmu_regmap_by_phandle(struct device_node *np,
-> +                                               const char *property);
->  #else
->  static inline struct regmap *exynos_get_pmu_regmap(void)
->  {
->         return ERR_PTR(-ENODEV);
->  }
-> +
-> +static inline struct regmap *exynos_get_pmu_regmap_by_phandle(struct dev=
-ice_node *np,
-> +                                                             const char =
-*property)
-> +{
-> +       return ERR_PTR(-ENODEV);
-> +}
->  #endif
->
->  #endif /* __LINUX_SOC_EXYNOS_PMU_H */
-> --
-> 2.43.0.594.gd9cf4e227d-goog
->
+-Dave
 
