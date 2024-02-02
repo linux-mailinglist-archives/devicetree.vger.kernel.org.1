@@ -1,167 +1,190 @@
-Return-Path: <devicetree+bounces-37900-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-37901-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 561FB846B97
-	for <lists+devicetree@lfdr.de>; Fri,  2 Feb 2024 10:12:01 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 88494846BE2
+	for <lists+devicetree@lfdr.de>; Fri,  2 Feb 2024 10:25:51 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 7F7951C20BD4
-	for <lists+devicetree@lfdr.de>; Fri,  2 Feb 2024 09:12:00 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 3F86628DDC5
+	for <lists+devicetree@lfdr.de>; Fri,  2 Feb 2024 09:25:50 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8EF25768F2;
-	Fri,  2 Feb 2024 09:11:56 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id DE32877654;
+	Fri,  2 Feb 2024 09:22:45 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=bgdev-pl.20230601.gappssmtp.com header.i=@bgdev-pl.20230601.gappssmtp.com header.b="qNRU3N07"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="GSTBiw+I"
 X-Original-To: devicetree@vger.kernel.org
 Received: from mail-vk1-f180.google.com (mail-vk1-f180.google.com [209.85.221.180])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0D28876023
-	for <devicetree@vger.kernel.org>; Fri,  2 Feb 2024 09:11:54 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3674C62A1E;
+	Fri,  2 Feb 2024 09:22:44 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.180
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1706865116; cv=none; b=fgiAoPWbGdjRem9SFmNYjbf/P6xME6aF2w9vOcgEfYZNXT3bbjUlNrJLnn4oJJ1n4KW/EwoV/hTWRhRFnt+CtiuvtkBGaSD4exAnkEBWzUyS7zjPrx678GXQPTlHPeabf2E+HsmuR2UK9NAT7GZBT/SE8WHkbAnEIvuJ6Berzzk=
+	t=1706865765; cv=none; b=Va283zABr7fEJOkYk29UNuvK/B6QQP5EIEyVsbgmqhZfDq2WcVEWuvsiUb7uGxh/MCpAVDf8l4g81x0cPzNaMbPTXhZtB+shM3rSf6UqJVxPYjOZW39C1d5a9fvRNvj0PXIfs9a05zKq5vvJs7N7fPIa7rTVGiikiU8EtlIvEZU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1706865116; c=relaxed/simple;
-	bh=qSQ+bNWGVvEkBLVF3tPN3A8E/f85Onwr28touQiCfuI=;
+	s=arc-20240116; t=1706865765; c=relaxed/simple;
+	bh=S2a9qNEwS7sTsIZ0RAYlZnP0NXuNasUwurvY1xgsoI8=;
 	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=UyvUPu0+c+B3coUVIccDMYfA7/iRC8EKik725g3FbIt8OyMMt4Lsjn7vo6F2LqAlKMsN9qZNmtBTUWKHmUiIZMi/x52slLZAUO7vDLSzOF6xBsxHp+ZfV5iZYJtWCLktFdUWp2lgdAeyiwlnL49i1vtoNZ/QJCmVzc7E98RQ4jY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=bgdev.pl; spf=none smtp.mailfrom=bgdev.pl; dkim=pass (2048-bit key) header.d=bgdev-pl.20230601.gappssmtp.com header.i=@bgdev-pl.20230601.gappssmtp.com header.b=qNRU3N07; arc=none smtp.client-ip=209.85.221.180
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=bgdev.pl
-Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=bgdev.pl
-Received: by mail-vk1-f180.google.com with SMTP id 71dfb90a1353d-4bdc96cfe21so616659e0c.0
-        for <devicetree@vger.kernel.org>; Fri, 02 Feb 2024 01:11:54 -0800 (PST)
+	 To:Cc:Content-Type; b=NmP025qSbIHLG04hjlFUd++F0Qd2VhrO46n/G5WkIGBfHwuRVHLkdvSpuI02SAXN3fMAq8ylarvC0Auc6VQ3/60cZYbdgBMsdbzbnX7aSh3Tvkzl9lMaDHMLPj6v4qEsTEhyj5cnKiQjFQ2zdhsitHFeNQ5vrvFd82DhnKb57BI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=GSTBiw+I; arc=none smtp.client-ip=209.85.221.180
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-vk1-f180.google.com with SMTP id 71dfb90a1353d-4c0100e2d58so99342e0c.1;
+        Fri, 02 Feb 2024 01:22:43 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=bgdev-pl.20230601.gappssmtp.com; s=20230601; t=1706865114; x=1707469914; darn=vger.kernel.org;
+        d=gmail.com; s=20230601; t=1706865763; x=1707470563; darn=vger.kernel.org;
         h=content-transfer-encoding:cc:to:subject:message-id:date:from
          :in-reply-to:references:mime-version:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=dROtYGaO3nv6BoiEV+4GwfEN1YhQwW+mG4GWEhZs0oA=;
-        b=qNRU3N076BYgXMqQkhQfddl/4NkZpFFDsaGGcK/ix+mUG4MmsVnU6ljd0/G1aU3QZV
-         vsUplKmLQoESXc7xnRItWYEhMCSABpYrV+8tocoaP69e+gu96Rxp16X8FTBDxB/N49/x
-         COQ5ubbFbPjplDIIMXuCsNFyzrClbvZTTDbIatKPAE7itYTM0Xq9jC8ar4BBmlPgbExy
-         AYxUvkafBj4fWrv0I/3pmhj2GIKvDaeIQD0YDdNT9DJD2qoaLAzQsX5If4Ra8rkhkUN8
-         Py0FpZWIJzIDK9hH87DzjFBuC9fX3mQGcPqARQ1YptqnGtLXRjEoWiOZpMtQC7tEoWzI
-         Y7gw==
+        bh=HTowy/uYen+bsPWi2mCFz7Xlk53z/GMzvNwuHivQ8rg=;
+        b=GSTBiw+IIQ0ZOB5UWQaqCmjn52hGr1vcJjNn+vqdeJfF8aZALvyCldJD8Vyl3FYxqQ
+         LPOvNk63fiiyCkwKdRMQR1escE7gbUj7RxMIvTbCYhUZvc4Q8RgemSCWlgo8qEQ5YitJ
+         m3K1mf57dwYyohHwtNJYG45TucHgsdfSMjdjOm4mlKvWPqr5EKi7VEPm9yQ1iH4ezFaU
+         BIxBokODYvBuiOjm8kZ/dDyAIiFk/oDq440lOjLAbHY0hNbkoTlcE13I7KLiRZblxXNa
+         S2/1R9dlLoGstSJvpjGOK7f4s5T98cQcOK8Syzb7hp3dAy1fwvVWDnCQuRp24ABkYbjL
+         WRvw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1706865114; x=1707469914;
+        d=1e100.net; s=20230601; t=1706865763; x=1707470563;
         h=content-transfer-encoding:cc:to:subject:message-id:date:from
          :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=dROtYGaO3nv6BoiEV+4GwfEN1YhQwW+mG4GWEhZs0oA=;
-        b=gs6Q1EAE9cWq8462dV88kGSA3WKLHvItwWKn7F6/U3WadWvDfQ2uR5yWWVgjqagRJk
-         PaKJ/DQxDPdMuIZAjAzW/RpPlD1xm50g5WQ9mXhewNKsIFxvLr6dc/II9ZW1VqeWyAfS
-         JTu6ooiLuocha5GVqnT3FH/jqhx4nR7JeoN4xpi7hTEDaw1ZxM496Z01qfCbg6vRUB6X
-         QGHbLaDv67mxjY6Gycqv2Bd3cLeb32gFqsboPiWB859GQeEWjm5rp8xQAtadReL24GI0
-         PtpoigDV7aoK28DSXgV/9zMUjpaRxCfXmR3fa2i5iBhssS0lQOOUk/nXNaql3QURYA8z
-         muUg==
-X-Gm-Message-State: AOJu0Yz5aPyS4tMFRP839fjQXf3TCRDyRzaezrjTE2bqTfw7vgR5a0bn
-	3Hzn7/tqkLZPa/XM1UXUABALKvagLacoQ8w10KBkEL0IbFReWMWNMQtt838gjLBomN9HEV6Q3OI
-	M07ramHUtl06vx9iK/uO/0OtgySLk57QCJzJBgQ==
-X-Google-Smtp-Source: AGHT+IEggfox9TaYYkDnQjtRUkVx/JuLWurtpykmnrQAcWjFZM0K4sMwZm4WFlzv0kMWZ4fdz5ytS7lu2Zk7UijDVzk=
-X-Received: by 2002:a05:6122:4a06:b0:4c0:79e:6653 with SMTP id
- ez6-20020a0561224a0600b004c0079e6653mr3051788vkb.0.1706865113872; Fri, 02 Feb
- 2024 01:11:53 -0800 (PST)
+        bh=HTowy/uYen+bsPWi2mCFz7Xlk53z/GMzvNwuHivQ8rg=;
+        b=txDIMsPCLoV3sExNKlACPe1f4+OIgbJ4PEoD1KrX5Y9XeyIk9KDusWugvi1PpjkNGr
+         dl+GfLeKbzyFRWPyJ+4Q2J203M2QlmA3k7/XgjPHJqO+IKnmAK8WP+4PTX5n2ZhaOcrp
+         77aMYaAZ1iUB6pbRDtLf0vUm+inAuBhyaIP2QFyYm2mH5CjUOJbMXxHovzjsuI6R0aZZ
+         i+MSiKRrOUFxxUeNpJnQNozbdqyG7Jn5OQ03nR30Tp3QtNCNkyHqRZwgYSgyI4wNpx4f
+         dHXW2/0zJhwPuOA+p+uv/899wjBOgL2sok6FEf7CkVXDq79HXkj9o/c6G6MU9YnhuPGw
+         OemA==
+X-Gm-Message-State: AOJu0Yw/aeMLcPCw7Qj5Lh8Uk7EpyzgcgCMH6lATtRd5sG5hPi1yltSk
+	AbdyKjyGWCQRzu2ZCPEO9+P3BWeh0xA3iEbWMQywEYBF02H0pQTfFiV+9eYZXM1ND4U9lmWbaPK
+	J18nPN8KiEowq6npCyBfpcwFX7nlBfbRkyhU=
+X-Google-Smtp-Source: AGHT+IGJy4900r9IV66NBG3FMIrVGWh/BXiOJfbjfVz+Rjqi+YFKJ7X+ayy4EkCTsjxxktkPNaYZZiUrMvEslj1kFmw=
+X-Received: by 2002:a05:6122:720:b0:4c0:d8c:66d7 with SMTP id
+ 32-20020a056122072000b004c00d8c66d7mr1064101vki.4.1706865762938; Fri, 02 Feb
+ 2024 01:22:42 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20240201155532.49707-1-brgl@bgdev.pl> <20240201155532.49707-9-brgl@bgdev.pl>
- <7tbhdkqpl4iuaxmc73pje2nbbkarxxpgmabc7j4q26d2rhzrv5@ltu6niel5eb4>
-In-Reply-To: <7tbhdkqpl4iuaxmc73pje2nbbkarxxpgmabc7j4q26d2rhzrv5@ltu6niel5eb4>
-From: Bartosz Golaszewski <brgl@bgdev.pl>
-Date: Fri, 2 Feb 2024 10:11:42 +0100
-Message-ID: <CAMRc=Md1oTrVMjZRH+Ux3JJKYeficKMYh+8V7ZA=Xz_X1hNd1g@mail.gmail.com>
-Subject: Re: [RFC 8/9] PCI/pwrctl: add PCI power control core code
-To: Bjorn Andersson <andersson@kernel.org>
-Cc: Konrad Dybcio <konrad.dybcio@linaro.org>, Rob Herring <robh@kernel.org>, 
+References: <20240129151618.90922-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
+ <20240129151618.90922-2-prabhakar.mahadev-lad.rj@bp.renesas.com> <20240129-magical-unclaimed-e725e2491ccb@spud>
+In-Reply-To: <20240129-magical-unclaimed-e725e2491ccb@spud>
+From: "Lad, Prabhakar" <prabhakar.csengg@gmail.com>
+Date: Fri, 2 Feb 2024 09:22:06 +0000
+Message-ID: <CA+V-a8vQdT+Rav9SNUTE7iFP2xWh+dJ=ZnQRhBpXaQDHOfVEdQ@mail.gmail.com>
+Subject: Re: [PATCH 1/5] dt-bindings: interrupt-controller:
+ renesas,rzg2l-irqc: Document RZ/Five SoC
+To: Conor Dooley <conor@kernel.org>
+Cc: Thomas Gleixner <tglx@linutronix.de>, Geert Uytterhoeven <geert+renesas@glider.be>, 
+	Rob Herring <robh+dt@kernel.org>, 
 	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Marcel Holtmann <marcel@holtmann.org>, Luiz Augusto von Dentz <luiz.dentz@gmail.com>, 
-	Bjorn Helgaas <bhelgaas@google.com>, Neil Armstrong <neil.armstrong@linaro.org>, 
-	Alex Elder <elder@linaro.org>, Srini Kandagatla <srinivas.kandagatla@linaro.org>, 
-	Greg Kroah-Hartman <gregkh@linuxfoundation.org>, Arnd Bergmann <arnd@arndb.de>, 
-	Abel Vesa <abel.vesa@linaro.org>, Manivannan Sadhasivam <mani@kernel.org>, Lukas Wunner <lukas@wunner.de>, 
-	linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org, linux-bluetooth@vger.kernel.org, 
-	linux-pci@vger.kernel.org, 
-	Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
+	Magnus Damm <magnus.damm@gmail.com>, linux-renesas-soc@vger.kernel.org, 
+	devicetree@vger.kernel.org, linux-riscv@lists.infradead.org, 
+	linux-kernel@vger.kernel.org, Biju Das <biju.das.jz@bp.renesas.com>, 
+	Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>, 
+	Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-On Fri, Feb 2, 2024 at 4:53=E2=80=AFAM Bjorn Andersson <andersson@kernel.or=
-g> wrote:
->
+Hi Conor,
 
-[snip]
+Thank you for the review.
 
-> > +
-> > +static int pci_pwrctl_notify(struct notifier_block *nb, unsigned long =
-action,
-> > +                          void *data)
-> > +{
-> > +     struct pci_pwrctl *pwrctl =3D container_of(nb, struct pci_pwrctl,=
- nb);
-> > +     struct device *dev =3D data;
-> > +
-> > +     if (dev_fwnode(dev) !=3D dev_fwnode(pwrctl->dev))
-> > +             return NOTIFY_DONE;
-> > +
-> > +     switch (action) {
-> > +     case BUS_NOTIFY_ADD_DEVICE:
-> > +             device_set_of_node_from_dev(dev, pwrctl->dev);
+On Mon, Jan 29, 2024 at 5:30=E2=80=AFPM Conor Dooley <conor@kernel.org> wro=
+te:
 >
-> What happens if the bootloader left the power on, and the
-> of_platform_populate() got probe deferred because the pwrseq wasn't
-> ready, so this happens after pci_set_of_node() has been called?
+> On Mon, Jan 29, 2024 at 03:16:14PM +0000, Prabhakar wrote:
+> > From: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+> >
+> > Document RZ/Five (R9A07G043F) IRQC bindings. The IRQC block on RZ/Five =
+SoC
+> > is almost identical to one found on the RZ/G2L SoC with below differenc=
+es,
+> > * Additional BUS error interrupt
+> > * Additional ECCRAM error interrupt
+> > * Has additional mask control registers for NMI/IRQ/TINT
+> >
+> > Hence new compatible string "renesas,r9a07g043f-irqc" is added for RZ/F=
+ive
+> > SoC.
+> >
+> > Signed-off-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+> > ---
+> >  .../renesas,rzg2l-irqc.yaml                   | 27 +++++++++++++++++++
+> >  1 file changed, 27 insertions(+)
+> >
+> > diff --git a/Documentation/devicetree/bindings/interrupt-controller/ren=
+esas,rzg2l-irqc.yaml b/Documentation/devicetree/bindings/interrupt-controll=
+er/renesas,rzg2l-irqc.yaml
+> > index d3b5aec0a3f7..3abc01e48934 100644
+> > --- a/Documentation/devicetree/bindings/interrupt-controller/renesas,rz=
+g2l-irqc.yaml
+> > +++ b/Documentation/devicetree/bindings/interrupt-controller/renesas,rz=
+g2l-irqc.yaml
+> > @@ -23,6 +23,7 @@ properties:
+> >    compatible:
+> >      items:
+> >        - enum:
+> > +          - renesas,r9a07g043f-irqc   # RZ/Five
+> >            - renesas,r9a07g043u-irqc   # RZ/G2UL
+> >            - renesas,r9a07g044-irqc    # RZ/G2{L,LC}
+> >            - renesas,r9a07g054-irqc    # RZ/V2L
+> > @@ -88,6 +89,12 @@ properties:
+> >        - description: GPIO interrupt, TINT30
+> >        - description: GPIO interrupt, TINT31
+> >        - description: Bus error interrupt
+> > +      - description: ECCRAM0 TIE1 interrupt
+> > +      - description: ECCRAM0 TIE2 interrupt
+> > +      - description: ECCRAM0 overflow interrupt
+> > +      - description: ECCRAM1 TIE1 interrupt
+> > +      - description: ECCRAM1 TIE2 interrupt
+> > +      - description: ECCRAM1 overflow interrupt
+> >
+> >    interrupt-names:
+> >      minItems: 41
+> > @@ -134,6 +141,12 @@ properties:
+> >        - const: tint30
+> >        - const: tint31
+> >        - const: bus-err
+> > +      - const: eccram0-tie1
+> > +      - const: eccram0-tie2
+> > +      - const: eccram0-ovf
+> > +      - const: eccram1-tie1
+> > +      - const: eccram1-tie2
+> > +      - const: eccram1-ovf
 >
-> (I think dev->of_node will be put, then get and then node_reused
-> assigned...but I'm not entirely sure)
+> I think the restrictions already in the file become incorrect with this
+> patch:
+>   - if:
+>       properties:
+>         compatible:
+>           contains:
+>             enum:
+>               - renesas,r9a07g043u-irqc
+>               - renesas,r9a08g045-irqc
+>     then:
+>       properties:
+>         interrupts:
+>           minItems: 42
+>         interrupt-names:
+>           minItems: 42
+>       required:
+>         - interrupt-names
+>
+> This used to require all 42 interrupts for the two compatibles here
+> and at least the first 41 otherwise. Now you've increased the number of
+> interrupts to 48 thereby removing the upper limits on the existing
+> devices.
+>
+> Given the commit message, I figure that providing 48 interrupts for
+> (at least some of) those devices would be incorrect?
+>
+Agreed, I will fix this in the next version.
 
-That's exactly what will happen and the end result will be the same.
-
->
-> > +             break;
-> > +     case BUS_NOTIFY_BOUND_DRIVER:
-> > +             pwrctl->link =3D device_link_add(dev, pwrctl->dev,
-> > +                                            DL_FLAG_AUTOREMOVE_CONSUME=
-R);
-> > +             if (!pwrctl->link)
-> > +                     dev_err(pwrctl->dev, "Failed to add device link\n=
-");
-> > +             break;
-> > +     case BUS_NOTIFY_UNBOUND_DRIVER:
-> > +             device_link_del(pwrctl->link);
->
-> This might however become a NULL-pointer dereference, if dev was bound
-> to its driver before the pci_pwrctl_notify() was registered for the
-> pwrctl and then the PCI device is unbound.
->
-> This would also happen if device_link_add() failed when the PCI device
-> was bound...
->
-
-Yes, I'll address it.
-
-> > +             break;
-> > +     }
-> > +
-> > +     return NOTIFY_DONE;
-> > +}
-> > +
-> > +int pci_pwrctl_device_enable(struct pci_pwrctl *pwrctl)
->
-> This function doesn't really "enable the device", looking at the example
-> driver it's rather "device_enabled" than "device_enable"...
->
-
-I was also thinking about pci_pwrctl_device_ready() or
-pci_pwrctl_device_prepared().
-
-Bart
-
-[snip!]
+Cheers,
+Prabhakar
 
