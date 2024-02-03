@@ -1,59 +1,61 @@
-Return-Path: <devicetree+bounces-38268-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-38269-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 51A3C84856F
-	for <lists+devicetree@lfdr.de>; Sat,  3 Feb 2024 13:02:22 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9B72184863D
+	for <lists+devicetree@lfdr.de>; Sat,  3 Feb 2024 13:44:36 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 82C701C21599
-	for <lists+devicetree@lfdr.de>; Sat,  3 Feb 2024 12:02:21 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 2D525B20D33
+	for <lists+devicetree@lfdr.de>; Sat,  3 Feb 2024 12:44:34 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B28EE5DF01;
-	Sat,  3 Feb 2024 12:02:20 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A4CE11374;
+	Sat,  3 Feb 2024 12:38:01 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="knE8k120"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="LOQSSMyP"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 410715D911;
-	Sat,  3 Feb 2024 12:02:19 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 73834384;
+	Sat,  3 Feb 2024 12:38:01 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1706961740; cv=none; b=FPF5yxxGsiEu3qTPImP60MPzPEqBIaYlzEKkQLWLeM8w3fVUgFQqIFwIJ1+lErlV/Pb0uTDDKBD7RtEacwh2KHm+g6DfV0vm36q+4BAz/9IC1yejFQM4pO56ZefjO1Ep03BmgQOIoh5Lmr7tGlkL6gzHDhBe/X5JhcktR4K1NVE=
+	t=1706963881; cv=none; b=gBz4h7YdtUzPz6JWF+J3M23sYv96JUUqGBtCAxYn9Zn/BjXi8yB2h+fjqdHkGHESBro+kwwxqnRMfc/uVGRWUp+hwFi0kKzvuYqOAzTY3xFqG3sOOzSZ0cOUnC/SDWfEYtBhQQHKbjCuPPsQKrgon3Lk3FSWg3llajZeGPMTWBg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1706961740; c=relaxed/simple;
-	bh=amSLVYPBB36yYTqYB7NEfH9Md+g6aY8Bhknq0DhdMic=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=dPYA+BZq29BX72+QDxDpDH2Hsy4YdEV8ClcaaBNv2zUy9uCe5YlhRkZssFlHjd3Csk/+fmGQ5qF1BMe/d5SqgQHXO0wzsDGehJqLl+gIJmeb8cZIn8FXE6OAbHMoqdNmBW14K3umnsrQGMTpZwR/nBISQDgaroS+G6SdCrzEkU8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=knE8k120; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 16E99C433F1;
-	Sat,  3 Feb 2024 12:02:18 +0000 (UTC)
+	s=arc-20240116; t=1706963881; c=relaxed/simple;
+	bh=Ry8SP/OpV6N0TsgPYkBd/xIsbggogFR8RhqfHiLkaC0=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=CkRgqHXoTLPimUsRdhIJ3g3X5yiCvUg8OBSvBhUkaHlhRXvgd21aGpYoaNuLOhrQIGHpqVBsDZdb5+WwkB3vYDy9Dpq6o68LmO2l3bnCa9nE/uk9cSFpj0B48t7V2CVAtR3gRg1JmybsZyKfN1GDTsxgplO2f+HwMe+Gh/OfzpM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=LOQSSMyP; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 8CCE3C43390;
+	Sat,  3 Feb 2024 12:37:58 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1706961739;
-	bh=amSLVYPBB36yYTqYB7NEfH9Md+g6aY8Bhknq0DhdMic=;
-	h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-	b=knE8k120hdqARPGoQToKPU+0f39qvGGdQLSVOtl/sMuy2VCpwyHi56bPit+TRk4Fe
-	 VMBxwzIT0TEHr+nwjgar0oWeb4iIpNVLAbDcoORq5xY8IYI9HV2gOtcxylJqe1DuqB
-	 q4uxDuosXx7PIClbUSF3ME+vBc9c9/nTniD89c1C+FdWiXXMzFPNZez1fenIJglOl1
-	 M53KIxssjn5q+zSIVrwaAdhd2zxTcptBCFjInoobGN/7+5NqEYvTDMBG1G4lldG9EF
-	 XQwcT5eA+1HfhG0y7oCE91A4g94Bxlh+8ZS1AjRRJDo+HeHtWPB7cXlYwBLcrR0t0C
-	 wwfgWdYT6cWVg==
-From: Lorenzo Bianconi <lorenzo@kernel.org>
-To: jic23@kernel.org
-Cc: linux-iio@vger.kernel.org,
-	lorenzo.bianconi@redhat.com,
-	devicetree@vger.kernel.org,
-	krzysztof.kozlowski+dt@linaro.org,
-	robh@kernel.org
-Subject: [PATCH v4 3/3] dt-bindings: iio: imu: st_lsm6dsx: add asm330lhhxg1
-Date: Sat,  3 Feb 2024 13:01:38 +0100
-Message-ID: <942452ec9626bc1166501cec0fa88c369e28ec6f.1706961432.git.lorenzo@kernel.org>
+	s=k20201202; t=1706963880;
+	bh=Ry8SP/OpV6N0TsgPYkBd/xIsbggogFR8RhqfHiLkaC0=;
+	h=From:To:Cc:Subject:Date:From;
+	b=LOQSSMyPReMCQHK9FEk70qVJLRqmoOVAcCMtTqsUCwJoY68Bkmc4zOqHZLzZbQw7p
+	 aC1MVB3u4Mwu38xuVJTkaEkpzx+0Jo5ybsGIX4ZBOzCf7UTI+USUk6vkprfm3+THnl
+	 0JlhBZYlz9fgpUfE8d7DSCMYBYt313uFW6fe1pxcQ375X83P9iBgaS51JiRkSWvYdE
+	 LsgP215md0KkMYZaF2FZNIgeLXprzjtuBXVsD9QKUZE6Dt+M9kOQ0tVOW/EgpB0LQN
+	 QaV4RHpdHzS/SZbcRVS3yNuPrfLJRPW/qS3ATNOFumgAlNJjXfJs3GAF97ACCLmZo/
+	 WkNXAg/acfkcQ==
+From: Jisheng Zhang <jszhang@kernel.org>
+To: Rob Herring <robh+dt@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Chen-Yu Tsai <wens@csie.org>,
+	Jernej Skrabec <jernej.skrabec@gmail.com>,
+	Samuel Holland <samuel@sholland.org>,
+	Andre Przywara <andre.przywara@arm.com>
+Cc: devicetree@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	linux-sunxi@lists.linux.dev,
+	linux-kernel@vger.kernel.org
+Subject: [PATCH v2 0/2] arm64: dts: allwinner: h618: Add Sipeed Longan SoM 3H and Pi 3H board
+Date: Sat,  3 Feb 2024 20:24:59 +0800
+Message-ID: <20240203122502.1259-1-jszhang@kernel.org>
 X-Mailer: git-send-email 2.43.0
-In-Reply-To: <cover.1706961432.git.lorenzo@kernel.org>
-References: <cover.1706961432.git.lorenzo@kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -62,31 +64,49 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 
-Add device bindings for asm330lhhxg1 IMU sensor.
-The lsm6dsr supports the features and functionality provided by
-the asm330lhhxg1 via identical interfaces and so is a suitable
-fallback compatible.
+Add Sipeed Longan SoM 3H and Longan Pi 3H board support.
 
-Signed-off-by: Lorenzo Bianconi <lorenzo@kernel.org>
----
- Documentation/devicetree/bindings/iio/imu/st,lsm6dsx.yaml | 4 +++-
- 1 file changed, 3 insertions(+), 1 deletion(-)
+The Sipeed Longan SoM 3H is a system on module based on the Allwinner
+H618 SoC. The SoM features:
 
-diff --git a/Documentation/devicetree/bindings/iio/imu/st,lsm6dsx.yaml b/Documentation/devicetree/bindings/iio/imu/st,lsm6dsx.yaml
-index 28b667a9cb76..c48a96d17f51 100644
---- a/Documentation/devicetree/bindings/iio/imu/st,lsm6dsx.yaml
-+++ b/Documentation/devicetree/bindings/iio/imu/st,lsm6dsx.yaml
-@@ -35,7 +35,9 @@ properties:
-           - st,lsm6dsv
-           - st,lsm6dso16is
-       - items:
--          - const: st,asm330lhhx
-+          - enum:
-+              - st,asm330lhhx
-+              - st,asm330lhhxg1
-           - const: st,lsm6dsr
-       - items:
-           - const: st,lsm6dstx
+- Four ARM Cortex-A53 cores, Mali-G31 MP2 GPU
+- 2/4 GiB LPDDR4 DRAM SoMs
+- AXP313a PMIC
+- eMMC
+
+The Sipeed Longan PI 3H is a development board based on the above SoM.
+The board features:
+- Longan SoM 3H
+- Raspberry-Pi-1 compatible GPIO header
+- 2 USB 2.0 host port
+- 1 USB 2.0 type C port (power supply + OTG)
+- MicroSD slot
+- 1Gbps Ethernet port (via RTL8211 PHY)
+- HDMI port
+- WiFi/BT chip
+
+Since v1:
+  - Use const rather than enum for "sipeed,longan-pi-3h" dt-binding
+  - remove dts-v1, model and compatible from SoM dtsi
+  - add interrupt related properties to axp313 dt node
+  - use "vcc-1v8-pll" and "vcc-3v3-io" as regulator name
+  - add dt node for board's discrete 5V->3.3V regulator and use it for
+    eth\tfcard 3.3v supply
+  - add usb2_vbus-supply property
+
+Jisheng Zhang (2):
+  dt-bindings: arm: sunxi: Add Sipeed Longan Module 3H and Longan Pi 3H
+  arm64: dts: allwinner: h616: Add Sipeed Longan SoM 3H and Pi 3H board
+    support
+
+ .../devicetree/bindings/arm/sunxi.yaml        |   6 +
+ arch/arm64/boot/dts/allwinner/Makefile        |   1 +
+ .../sun50i-h618-longan-module-3h.dtsi         |  77 ++++++++++
+ .../dts/allwinner/sun50i-h618-longanpi-3h.dts | 143 ++++++++++++++++++
+ 4 files changed, 227 insertions(+)
+ create mode 100644 arch/arm64/boot/dts/allwinner/sun50i-h618-longan-module-3h.dtsi
+ create mode 100644 arch/arm64/boot/dts/allwinner/sun50i-h618-longanpi-3h.dts
+
 -- 
 2.43.0
 
