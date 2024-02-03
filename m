@@ -1,131 +1,100 @@
-Return-Path: <devicetree+bounces-38278-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-38279-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 785B88486AD
-	for <lists+devicetree@lfdr.de>; Sat,  3 Feb 2024 15:21:50 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 428768486BE
+	for <lists+devicetree@lfdr.de>; Sat,  3 Feb 2024 15:40:52 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id D40B6285F2E
-	for <lists+devicetree@lfdr.de>; Sat,  3 Feb 2024 14:21:48 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id CFA54B23EDE
+	for <lists+devicetree@lfdr.de>; Sat,  3 Feb 2024 14:40:49 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B958A5DF16;
-	Sat,  3 Feb 2024 14:21:38 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E5D422E622;
+	Sat,  3 Feb 2024 14:40:24 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="NyGQ7ZOE"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="LJBU77nZ"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.17])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 13D655DF18;
-	Sat,  3 Feb 2024 14:21:36 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.175.65.17
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B3A545F55C;
+	Sat,  3 Feb 2024 14:40:24 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1706970098; cv=none; b=ZmOCXVVJrQIkwnu7SAAHpY2aFz8Bra6BztfOIeX2zJi5NIF9LsTf7F+yofpnDQzuyyWFxHVOHG2gvMvO3X/HRidFuXWZVElM1AYtNc/WlLDLZY7A3z9zD7iN/NnXEmldebxqoEkPpTxxlmrXP24z1hg9QkP/yjzRFLd9qyXNuBA=
+	t=1706971224; cv=none; b=dMRiCoGZPndT5QDrxLY2unjD/iZ2bErgut8/sDf7uYwL2NIXusZcdZZGzvXtXsHUyrpo7CUoYgsKCI4V7klHnMW94wVAm14wvdQir9jlG3YppXyJnk08qC4x7cMKFftynssL1C7WO6UTZkybUAbVfb1tGIpyG4Gq4SpOmvRCj1c=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1706970098; c=relaxed/simple;
-	bh=iKJsA8qrv4b0XlTNT8h8NVU8w8Bmbd2G3WGljcs7ppQ=;
+	s=arc-20240116; t=1706971224; c=relaxed/simple;
+	bh=xIJTVzS/n/XFvKvdBeGCg3VKssfj+QPFUDJK7lYmlKQ=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=Q2RpEceocSq4NJ7/4HDi2SIaTkJ2MHZO7NcDR2tEFqZLZASrKHLEEoVcwxTpVBbVVZYV+0duMBc8PuIL+Nv2ZN3cQV13mGTRJQHfbJxFrPeAm4acHrUlsE9gyCHCcfUYcvXQEKck5MYCy+2/N5xR8yFs0QttC6J0760GeZIBWeU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=NyGQ7ZOE; arc=none smtp.client-ip=198.175.65.17
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1706970097; x=1738506097;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=iKJsA8qrv4b0XlTNT8h8NVU8w8Bmbd2G3WGljcs7ppQ=;
-  b=NyGQ7ZOERf61SOSJBHZsksGW1H5qeRpHAfbo2uga7RYwWAvAsYpk83QJ
-   6StWZaTz4GNOWYIH9sN+Hc57ylHOA/P9E47aLfiUWSL8UFTZOzHaNiCa4
-   qkCxhnd3TFJEamojdtLH7JBXaLsd9XfApE7e3/EnNZ05R/rdST1PhVmqa
-   rh4sl7j12A1GYA+Iw3nSyVUcmhp80dCKqmSOp+UcebJ3YPaQ/zC8nw1nR
-   9fY75ObTf3F1njZVdwjjn561L+Bzfz2DMlFsMBxZCxgdtHxmQigesqHXH
-   PApP+wWDrZ5At9ytd21Q7SsaYYBVJ4o+267n6/FqOBJA1iJOxk6lGc5Bl
-   w==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10973"; a="474803"
-X-IronPort-AV: E=Sophos;i="6.05,240,1701158400"; 
-   d="scan'208";a="474803"
-Received: from fmsmga001.fm.intel.com ([10.253.24.23])
-  by orvoesa109.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 03 Feb 2024 06:21:37 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10973"; a="932751511"
-X-IronPort-AV: E=Sophos;i="6.05,240,1701158400"; 
-   d="scan'208";a="932751511"
-Received: from lkp-server02.sh.intel.com (HELO 59f4f4cd5935) ([10.239.97.151])
-  by fmsmga001.fm.intel.com with ESMTP; 03 Feb 2024 06:21:31 -0800
-Received: from kbuild by 59f4f4cd5935 with local (Exim 4.96)
-	(envelope-from <lkp@intel.com>)
-	id 1rWGtd-00059K-24;
-	Sat, 03 Feb 2024 14:21:29 +0000
-Date: Sat, 3 Feb 2024 22:20:41 +0800
-From: kernel test robot <lkp@intel.com>
-To: Dharma Balasubiramani <dharma.b@microchip.com>,
-	manikandan.m@microchip.com, andrzej.hajda@intel.com,
-	neil.armstrong@linaro.org, rfoss@kernel.org,
-	Laurent.pinchart@ideasonboard.com, jonas@kwiboo.se,
-	jernej.skrabec@gmail.com, airlied@gmail.com, daniel@ffwll.ch,
-	maarten.lankhorst@linux.intel.com, mripard@kernel.org,
-	tzimmermann@suse.de, robh+dt@kernel.org,
-	krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
-	dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
+	 Content-Type:Content-Disposition:In-Reply-To; b=cTuqJF+tqY8aPGKQmeAoK1hlynbNVIiQoJSMIzy6TpKig0X+KQaSuJBuOnPxSzKbzQHUSBFDDnm2V7WcKFPAYJWrwD4STBHcP+Bcf1weey2tumktEs5a54pE0BDzj9zecT1nEtbsLzSuUNeKvBrfDL+J9CjGmtf6DMJ366BBHXs=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=LJBU77nZ; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id BAA8CC433C7;
+	Sat,  3 Feb 2024 14:40:21 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1706971224;
+	bh=xIJTVzS/n/XFvKvdBeGCg3VKssfj+QPFUDJK7lYmlKQ=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=LJBU77nZWHXaaRbu94s+cXcM13wRLadEKIEj0kmapL4E9fysxnQeS8AEkDHlRlwrm
+	 fhM4ikclrTZH4c8tTYMSsJZD0plvSZShss/HWgeoj+DZ+G7Psq+xr9v9jTlZk+cN10
+	 BLraLWRTrTceSbFnxAxCO5d6WIvnpTZi1JayaLwCFZvSeY4uTx/N4377jJqbHwTr3i
+	 SCt43KtnM01QdjlIXwaM+287SVQX5ktCC0LKJ2T7wfAfgM278OJuqgpwOWfB5Gukat
+	 HTM3EQfK2I81YJjUPl7co9/5FhJXllp6xB8fB8Dffa3/a2nuBdgrY0xR19i2VzUQLD
+	 JtUyrjcdiIaKw==
+Date: Sat, 3 Feb 2024 14:40:19 +0000
+From: Conor Dooley <conor@kernel.org>
+To: Jisheng Zhang <jszhang@kernel.org>
+Cc: Rob Herring <robh+dt@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>, Chen-Yu Tsai <wens@csie.org>,
+	Jernej Skrabec <jernej.skrabec@gmail.com>,
+	Samuel Holland <samuel@sholland.org>,
+	Andre Przywara <andre.przywara@arm.com>, devicetree@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org, linux-sunxi@lists.linux.dev,
 	linux-kernel@vger.kernel.org
-Cc: oe-kbuild-all@lists.linux.dev, linux4microchip@microchip.com
-Subject: Re: [PATCH 2/3] drm/bridge: add lvds controller support for sam9x7
-Message-ID: <202402032248.6puqAuzM-lkp@intel.com>
-References: <20240122082947.21645-3-dharma.b@microchip.com>
+Subject: Re: [PATCH v2 1/2] dt-bindings: arm: sunxi: Add Sipeed Longan Module
+ 3H and Longan Pi 3H
+Message-ID: <20240203-bullfrog-dropout-ce76e339b379@spud>
+References: <20240203122502.1259-1-jszhang@kernel.org>
+ <20240203122502.1259-2-jszhang@kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+Content-Type: multipart/signed; micalg=pgp-sha256;
+	protocol="application/pgp-signature"; boundary="OOwGp4su/O+4QrkP"
+Content-Disposition: inline
+In-Reply-To: <20240203122502.1259-2-jszhang@kernel.org>
+
+
+--OOwGp4su/O+4QrkP
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20240122082947.21645-3-dharma.b@microchip.com>
+Content-Transfer-Encoding: quoted-printable
 
-Hi Dharma,
+On Sat, Feb 03, 2024 at 08:25:00PM +0800, Jisheng Zhang wrote:
+> Add name & compatible for the Sipeed Longan Module 3H and Longan PI 3H
+> board.
+>=20
+> Signed-off-by: Jisheng Zhang <jszhang@kernel.org>
 
-kernel test robot noticed the following build warnings:
+Acked-by: Conor Dooley <conor.dooley@microchip.com>
 
-[auto build test WARNING on drm-misc/drm-misc-next]
-[also build test WARNING on linus/master v6.8-rc2 next-20240202]
-[If your patch is applied to the wrong git tree, kindly drop us a note.
-And when submitting patch, we suggest to use '--base' as documented in
-https://git-scm.com/docs/git-format-patch#_base_tree_information]
+Thanks,
+Conor.
 
-url:    https://github.com/intel-lab-lkp/linux/commits/Dharma-Balasubiramani/dt-bindings-display-bridge-add-sam9x7-lvds-compatible/20240122-163209
-base:   git://anongit.freedesktop.org/drm/drm-misc drm-misc-next
-patch link:    https://lore.kernel.org/r/20240122082947.21645-3-dharma.b%40microchip.com
-patch subject: [PATCH 2/3] drm/bridge: add lvds controller support for sam9x7
-config: arm-randconfig-r112-20240203 (https://download.01.org/0day-ci/archive/20240203/202402032248.6puqAuzM-lkp@intel.com/config)
-compiler: arm-linux-gnueabi-gcc (GCC) 13.2.0
-reproduce: (https://download.01.org/0day-ci/archive/20240203/202402032248.6puqAuzM-lkp@intel.com/reproduce)
+--OOwGp4su/O+4QrkP
+Content-Type: application/pgp-signature; name="signature.asc"
 
-If you fix the issue in a separate patch/commit (i.e. not just a new version of
-the same patch/commit), kindly add following tags
-| Reported-by: kernel test robot <lkp@intel.com>
-| Closes: https://lore.kernel.org/oe-kbuild-all/202402032248.6puqAuzM-lkp@intel.com/
+-----BEGIN PGP SIGNATURE-----
 
-sparse warnings: (new ones prefixed by >>)
->> drivers/gpu/drm/bridge/microchip-lvds.c:236:24: sparse: sparse: symbol 'mchp_lvds_driver' was not declared. Should it be static?
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZb5QUwAKCRB4tDGHoIJi
+0pjaAPoDC/P7o8CtrI0Zo2MOdIQ1EprLUP+j0nRYAXBw1JtYfAEAv2QN22X785iW
+d3rma/7lycAmZFKI1jkBmBaVgArFUwM=
+=N3R8
+-----END PGP SIGNATURE-----
 
-vim +/mchp_lvds_driver +236 drivers/gpu/drm/bridge/microchip-lvds.c
-
-   235	
- > 236	struct platform_driver mchp_lvds_driver = {
-   237		.probe = mchp_lvds_probe,
-   238		.remove = mchp_lvds_remove,
-   239		.driver = {
-   240			   .name = "microchip-lvds",
-   241			   .of_match_table = mchp_lvds_dt_ids,
-   242		},
-   243	};
-   244	module_platform_driver(mchp_lvds_driver);
-   245	
-
--- 
-0-DAY CI Kernel Test Service
-https://github.com/intel/lkp-tests/wiki
+--OOwGp4su/O+4QrkP--
 
