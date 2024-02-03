@@ -1,108 +1,129 @@
-Return-Path: <devicetree+bounces-38275-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-38276-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id DC08E84868F
-	for <lists+devicetree@lfdr.de>; Sat,  3 Feb 2024 14:43:56 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0AFDB8486A4
+	for <lists+devicetree@lfdr.de>; Sat,  3 Feb 2024 15:13:35 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 785B4285245
-	for <lists+devicetree@lfdr.de>; Sat,  3 Feb 2024 13:43:55 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id D1FC5285A47
+	for <lists+devicetree@lfdr.de>; Sat,  3 Feb 2024 14:13:31 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id EF5185C91F;
-	Sat,  3 Feb 2024 13:43:52 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7A5EF5D72F;
+	Sat,  3 Feb 2024 14:13:29 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="xplTRPv5"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="E5hAbzT3"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-yb1-f174.google.com (mail-yb1-f174.google.com [209.85.219.174])
+Received: from mail-ot1-f51.google.com (mail-ot1-f51.google.com [209.85.210.51])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 520D95C916
-	for <devicetree@vger.kernel.org>; Sat,  3 Feb 2024 13:43:51 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.219.174
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id ED97D5D90E
+	for <devicetree@vger.kernel.org>; Sat,  3 Feb 2024 14:13:27 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.51
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1706967832; cv=none; b=Q00gceQswDy0AsF5tfLZhNJLU/LxilaBc3TxjdiDP2xruRxA4G2kPwqHumVPxegZn/n0I+LMyjEDWiuidEZIBb1PB/WFYG4WbhLggB1gMe4X6Gcq8gapxppH7UTsWUJ59VM4XRymvAUkOXMGmFDFgF/YabGpx5ynxAvuAPn3I4s=
+	t=1706969609; cv=none; b=reyXaGxwOGG2IbtdDBC0jrXpJgjrj+YpnSG05aR4NGYDJ1+mBwKnY7Coa0pwIGJhQzSWfAUuvWJThO7JQ9ye6Qk5HX21CLJP4x4CtO8/Lcfl6o05KsAtYtsLCme59k/TLmBicktCupaFy1hddgL+QpvkhWQBS+ela04I+IOQ8OU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1706967832; c=relaxed/simple;
-	bh=bB5NkbMpLI0HMjQqKghAYbfh6kYTOIzuHFhSgRTqF8A=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=NhrInhAU9aoxoYBwDs3d7vk4OmA59hiOqKUosiNQcDSoW11oh4JaRprpwBZUNm2mIl0Xa6UhZUwTxwSPrPZsATotTYLjLSGa7QXSvsPFf67MmVbQ7hIjLZe88h+hsnLWJYng/pJjEu9kXcEI1GbEdqnOnDHpQeWFMFlF3acw09U=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=xplTRPv5; arc=none smtp.client-ip=209.85.219.174
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-yb1-f174.google.com with SMTP id 3f1490d57ef6-dc6cbe1ac75so1273459276.1
-        for <devicetree@vger.kernel.org>; Sat, 03 Feb 2024 05:43:51 -0800 (PST)
+	s=arc-20240116; t=1706969609; c=relaxed/simple;
+	bh=Tj+1yBYW8vqJcOXcyOXy2O0kZLmV7ZC+CsTSk3Xaq1A=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=MRjL9P29eq2x8DLOWmbfXp0Cun8RoTo5wTLyIHXhB8whvJyT23oUP532FH2+A0rFhve1RA1gz/ktR8TcYpXPFOYvnIrNcSQr803B1YZ8k3TFBWg/SQJayVAEUdlmii8wSvMeApL8O+z1GHXhiWdsVw85VhaMZbNXC0+Qe+Aoq+Y=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=E5hAbzT3; arc=none smtp.client-ip=209.85.210.51
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-ot1-f51.google.com with SMTP id 46e09a7af769-6e141ee9c14so1528500a34.3
+        for <devicetree@vger.kernel.org>; Sat, 03 Feb 2024 06:13:27 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1706967830; x=1707572630; darn=vger.kernel.org;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=Moz+VNtFoELbtekbvE4gjgVQwcWCMsMt8Pxrs1cix0U=;
-        b=xplTRPv57H9fHe6LnBMdCcERI3feAeaCo41jCCrPg2eze8Eoo/PsbSvOdrsZpmlfY3
-         F63PSW/SscYt8VhqjI5IC0AMtxjwfzVTQRsoA4CsGy90zZvnTkoOEXKzYiSu5PelOtit
-         I0ZZZtn8mSerCtIxjUgAAwVoH6W5Mim1nBZU2zhb1LK9usflDnx7GL2ks6Eq2SUoytcx
-         6DpChByqZsBdtiaiQRRAbOgjHQIcc1E/DmI7Qv7EDS6Vv/WZ5/mEpXJ6iTvrHDI+Xoau
-         3IO560cECUFt7IqWZeVC56fM14trVlNTdnVqgkEDPuOjj3sBL/8HZjQeL9jIKroEBRJP
-         AmUg==
+        d=gmail.com; s=20230601; t=1706969607; x=1707574407; darn=vger.kernel.org;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=mREU3Rb75lZQjv9jELjEn4pXCHSQe0l93Q5KUUdwF08=;
+        b=E5hAbzT3nng8nPOIZ9SwQzGasuItQa2HBsEbaJCN6LiRrqd+mXoXajNlyojn+31C5M
+         PuQTjZtwMbwzWHWuYWEmZ5OzdanfTvsj9vNm6xW0A6r//974zZutSMUDRP34Mds4Qa6A
+         +PootBom197Ju+TO5sKxxoFmRa0ngpO1Sc9hG03g1msUYZQZS8+n8zq3eIpaiVDxSPLT
+         yHNzzU4RJMGDOwv1N8yO5dC7Z08oPSoMaApi6vwttwn+Z7w1vv5OHDq0EzrDF9FB8ByQ
+         EdAZ7lnO1ngMZobcbR2nU2lNav4wj55UplV2m7wMALEcU6HpztxTJWaTNLG0a2ziAMik
+         j+Wg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1706967830; x=1707572630;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=Moz+VNtFoELbtekbvE4gjgVQwcWCMsMt8Pxrs1cix0U=;
-        b=p2Y3CpXM0JB1ckIaL1YHnyfBHg+nT+bT8JOECdRPGuDYGaWG0FH9FlJYy5xPfOIQPF
-         vNcxIUrnqD3OUOER9WIsTGFlxggfqaERS/ehHCZJcLkmPFtm9fczr8m3HH12nbAF7mRX
-         iFtyAtHV8I1FVdc/ZYKqnEsmntLMi9MfQNSfy2DefTVjkv8R4wX75tW88B5f/wQB6jQQ
-         aiBJhqwpzkDU4HBFybNt0enZqHVhZRf3V+bb1WVdUMRWmJuerzyT2m/jBRjKuapUmVOw
-         Yi+8pz8c0gG/c0hXuw1xv2oA4awfQtQvVrYOKjLNkUCDCdyZN0erUzjRKhvL12aD6sLE
-         iOVQ==
-X-Gm-Message-State: AOJu0YzbNmyk7MnlB4MfDmIz0uGyxne41VnpAFk8zHppqGxbj4GLm+qD
-	MzwCopXiBQh4wHrj/JdTth4TrntWJ/mTRYDzeCqvCrlh6Y0r8cyMTfRXySm3OHWzWHBjxqZOSQJ
-	R1mglnoOwPic9KHvw2IWakXVz0yOQSdWAGKxRVw==
-X-Google-Smtp-Source: AGHT+IHC1Kjcdw2ForbRnh30ds48ubtWrAYlVUrU2czhMHf7NwzSUklUGHHrewM+CW4nYQ+906Zj9TjWidJCAslfPqs=
-X-Received: by 2002:a05:6902:dc9:b0:dc2:a46:3d29 with SMTP id
- de9-20020a0569020dc900b00dc20a463d29mr987960ybb.9.1706967830271; Sat, 03 Feb
- 2024 05:43:50 -0800 (PST)
+        d=1e100.net; s=20230601; t=1706969607; x=1707574407;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=mREU3Rb75lZQjv9jELjEn4pXCHSQe0l93Q5KUUdwF08=;
+        b=jtwkRt8ZVco1rkDlb2yNaruhc9ruRGYMwJpaoprRgIuxGmsxpuFO8CUeU/oQHaf4sw
+         6LWhF/VxxH34cgxZMEAymX5mrDZND25M+lgTIG3UKdqvlOXwcD2RGsKPI1Li5YnYPdHT
+         OET6JGd5L9yQ1m0j0GY/fKcE7+KiUjd6zBp3ZnFrR7S49TSv8Bb/99Fo6duNQtG7xLff
+         DXyDVr+2A2j+1FacbjpNMf8yiBaDjRSmVXbJrgr+NsPyoMnQrBNukPFCgE4o7UOGsHGV
+         Oi5wF2ASmYrteBI7uQLu2FnTy1//B/J8B5i0eE1PUNx1JCDUReZ/0pCTQLhVQMiEfd4J
+         EJ2w==
+X-Gm-Message-State: AOJu0YxhnOJwAenSlZO3m9wH9r1zgiBPn4DU1smrAuFfBjPLsh2GX19X
+	SInXZSEX5Tq3O+4YzncCGlqkJerDBfMcqH1YnZv6Hi65iDAImRpV
+X-Google-Smtp-Source: AGHT+IGXn6xqNtunU3gy45qLprY4Cj5N/FcTiJWbzwY8u7OYXZSh9k2eT6kHRZxjMUH5Gs5uttAEaA==
+X-Received: by 2002:a05:6358:703:b0:178:b0c9:118f with SMTP id e3-20020a056358070300b00178b0c9118fmr12518705rwj.26.1706969606721;
+        Sat, 03 Feb 2024 06:13:26 -0800 (PST)
+X-Forwarded-Encrypted: i=0; AJvYcCUoPQeF/A94TlNeNTaQsT9zDWWFnhnm8VBVX/ld1kqt4kpVAha/ndr6K/YQsR44eW2UXOQqBs8R02GiGceAvJapTyCgawTUZvSBXh2SEa66q4Fr23/S2K+/NeoMS1NYSIj1T3P6yM1HRKrlgbPwQLHgFnVxzizzM/4uEXVct2wafMnFC0p1FWbOLtSESyW6aB19UOx/scX4SndmXHMo4lYe5G8L+/lrss0vmEh6cywbr9T1QPml15ryNDuG1/strF7tyu9Bu9u9ef5OjviZa0sCLMM118KpyC6D2YWOzNil9IPgfqg0d5St9SNBI1yYC1duTPhDr3x7SHC7Gqw/qHUtLaSxECslfNAYikJolPz6LktMFYy2dAiSd1GzxL+tsvPSs9Q66S/QVgT0
+Received: from dragon (45.78.63.125.16clouds.com. [45.78.63.125])
+        by smtp.gmail.com with ESMTPSA id x23-20020a056a00271700b006dddd3e31a8sm3444836pfv.219.2024.02.03.06.13.22
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Sat, 03 Feb 2024 06:13:25 -0800 (PST)
+Date: Sat, 3 Feb 2024 22:13:18 +0800
+From: Shawn Guo <shawn.gsc@gmail.com>
+To: Alexander Stein <alexander.stein@ew.tq-group.com>
+Cc: Rob Herring <robh+dt@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>,
+	Sascha Hauer <s.hauer@pengutronix.de>,
+	Fabio Estevam <festevam@gmail.com>,
+	Pengutronix Kernel Team <kernel@pengutronix.de>,
+	NXP Linux Team <linux-imx@nxp.com>, linux@ew.tq-group.com,
+	devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org
+Subject: Re: [PATCH 00/23] TQMa7x/MBa7x DT fixes
+Message-ID: <20240203044123.GG463595@dragon>
+References: <20231218125459.2769733-1-alexander.stein@ew.tq-group.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <eqepewdgp5k3ajusf3hk7nazi2eli2w6wgxlbjroldwyobzh3d@aewtie2d3ora> <20240203070008.15206-1-amadeus@jmu.edu.cn>
-In-Reply-To: <20240203070008.15206-1-amadeus@jmu.edu.cn>
-From: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-Date: Sat, 3 Feb 2024 14:43:39 +0100
-Message-ID: <CAA8EJppdG--2=pC=WjaK0HH3NDrh_HXLNmk8AMMMfCLvbtxpEw@mail.gmail.com>
-Subject: Re: [PATCH v3 2/2] arm64: dts: qcom: ipq6018: enable sdhci node
-To: Chukun Pan <amadeus@jmu.edu.cn>
-Cc: andersson@kernel.org, conor+dt@kernel.org, devicetree@vger.kernel.org, 
-	konrad.dybcio@linaro.org, krzysztof.kozlowski+dt@linaro.org, 
-	linux-arm-msm@vger.kernel.org, linux-kernel@vger.kernel.org, 
-	robh+dt@kernel.org
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20231218125459.2769733-1-alexander.stein@ew.tq-group.com>
 
-On Sat, 3 Feb 2024 at 08:00, Chukun Pan <amadeus@jmu.edu.cn> wrote:
->
-> Hi, Bjorn
-> > That sounds good, but do we have any one of those boards that should
-> > reference &ipq6018_l2? Could make plug it into the sdhci node on some
-> > board?
->
-> Actually I have an ipq6010 sdcard device with pmic, which needs to
-> reference ipq6018_l2. Also on the downstream qsdk kernel, the sdhc
-> node writes 'vqmmc-supply = <&ipq6018_l2>;' by default.
->
-> > Essentially, why is it needed upstream, when there are no user?
->
-> Most ipq60xx devices have pmic chips, including some ipq6000 devices,
-> while another ipq6000 devices do not have the pmic chips. So it does not
-> mean there are no users but the supply is board specific. Maybe we should
-> move the mp5496 node outside of ipq6018.dtsi.
+On Mon, Dec 18, 2023 at 01:54:36PM +0100, Alexander Stein wrote:
+> Hi,
+> 
+> this series fixes several issues on TQMa7x DT files in various aspects.
+> Probably most notabe one is disabling PCIe due to missing support for internal
+> PHY refclock.
+> 
+> Best regards,
+> Alexander
+> 
+> Alexander Stein (23):
+>   ARM: dts: imx7-tqma7/mba7: convert fsl,pins to uint32-matrix
+>   ARM: dts: imx7[d]-mba7: Move ethernet PHY reset into PHY node
+>   ARM: dts: imx7[d]-mba7: disable USB OC on USB host and USB OTG2
+>   ARM: dts: imx7[d]-mba7: disable PCIe interface
+>   ARM: dts: imx7[d]-mba7: hog Mini PCIe signals
+>   ARM: dts: imx7-mba7: Mark gpio-buttons as wakeup-source
+>   ARM: dts: imx7-mba7: Enable SNVS power key
+>   ARM: dts: imx7-mba7: Add RTC aliases
+>   ARM: dts: imx7-mba7: Add SPI1_SS0 as chip select 3
+>   ARM: dts: imx7-tqma7: Add i2c bus recovery
+>   ARM: dts: imx7-mba7: Add i2c bus recovery
+>   ARM: dts: imx7-tqma7: fix EEPROM compatible for SE97BTP
+>   ARM: dts: imx7-mba7: Fix iomuxc node names
+>   ARM: dts: imx7-tqma7: Fix iomuxc node names
+>   ARM: dts: imx7-mba7: restrict usdhc interface modes
+>   ARM: dts: imx7-tqma7: restrict usdhc interface modes
+>   ARM: dts: imx7-tqma7: remove superfluous status property
+>   ARM: dts: imx7-tqma7: mark system data eeprom as read-only
+>   ARM: dts: imx7-tqma7: rename node for SE97BTP
+>   ARM: dts: imx7d-mba7: Remove USB OTG related properties on USB node
+>   ARM: dts: imx7-tqma7: Add missing vcc supply to i2c eeproms
+>   ARM: dts: imx7-mba7: Add missing vcc supply to i2c devices
+>   ARM: dts: imx7-tqma7: Fix PMIC v33 rail voltage range
 
-Yes, please. In the end, mp5496 is not a part of the SoC.
-
--- 
-With best wishes
-Dmitry
+Applied all, thanks!
 
