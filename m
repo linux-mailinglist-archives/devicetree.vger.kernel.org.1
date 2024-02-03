@@ -1,85 +1,87 @@
-Return-Path: <devicetree+bounces-38276-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-38277-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0AFDB8486A4
-	for <lists+devicetree@lfdr.de>; Sat,  3 Feb 2024 15:13:35 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id A73508486A7
+	for <lists+devicetree@lfdr.de>; Sat,  3 Feb 2024 15:15:17 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id D1FC5285A47
-	for <lists+devicetree@lfdr.de>; Sat,  3 Feb 2024 14:13:31 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id D9DA41C210C6
+	for <lists+devicetree@lfdr.de>; Sat,  3 Feb 2024 14:15:16 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7A5EF5D72F;
-	Sat,  3 Feb 2024 14:13:29 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2B6515DF10;
+	Sat,  3 Feb 2024 14:15:14 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="E5hAbzT3"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="BYGI+Vlw"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ot1-f51.google.com (mail-ot1-f51.google.com [209.85.210.51])
+Received: from mail-pf1-f176.google.com (mail-pf1-f176.google.com [209.85.210.176])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id ED97D5D90E
-	for <devicetree@vger.kernel.org>; Sat,  3 Feb 2024 14:13:27 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.51
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C2D5B5D8F4
+	for <devicetree@vger.kernel.org>; Sat,  3 Feb 2024 14:15:12 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.176
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1706969609; cv=none; b=reyXaGxwOGG2IbtdDBC0jrXpJgjrj+YpnSG05aR4NGYDJ1+mBwKnY7Coa0pwIGJhQzSWfAUuvWJThO7JQ9ye6Qk5HX21CLJP4x4CtO8/Lcfl6o05KsAtYtsLCme59k/TLmBicktCupaFy1hddgL+QpvkhWQBS+ela04I+IOQ8OU=
+	t=1706969714; cv=none; b=RtNKgUx1kCDSWWKZdFJsgcKGlJzP+NInr8Tz82LMZIgkuDMgaY5mQH7DeehgNBmCcgJx8P9qPprnmIeEWfoq1W9Wg3l1DMP50UQpFMjjRBMtzvZqjz1kLUSF4ymDvWm0DJvy46gyZj38kp3MqAfP2DdNRozv43jMtiElAZLxQ+Q=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1706969609; c=relaxed/simple;
-	bh=Tj+1yBYW8vqJcOXcyOXy2O0kZLmV7ZC+CsTSk3Xaq1A=;
+	s=arc-20240116; t=1706969714; c=relaxed/simple;
+	bh=H5ZwK0jhYE1mtsYyIGOSXC3sCpA0AB014TNeJfwYiBk=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=MRjL9P29eq2x8DLOWmbfXp0Cun8RoTo5wTLyIHXhB8whvJyT23oUP532FH2+A0rFhve1RA1gz/ktR8TcYpXPFOYvnIrNcSQr803B1YZ8k3TFBWg/SQJayVAEUdlmii8wSvMeApL8O+z1GHXhiWdsVw85VhaMZbNXC0+Qe+Aoq+Y=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=E5hAbzT3; arc=none smtp.client-ip=209.85.210.51
+	 Content-Type:Content-Disposition:In-Reply-To; b=LUo94Z3/hYdzVf0gUViXANWpksNU0sBft/yMsRddl5IEruQ0NLQi1ELsnQir3sSh5s/MV446sUultZRzQZGSx2RNUu3IVtE2f5mCS82uQY6l/ZcA+788IeYpeJRtConJ6/bRF1quLN8u1Pq24oujEpod5W+OcZ0//e+XBom/Jqw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=BYGI+Vlw; arc=none smtp.client-ip=209.85.210.176
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-ot1-f51.google.com with SMTP id 46e09a7af769-6e141ee9c14so1528500a34.3
-        for <devicetree@vger.kernel.org>; Sat, 03 Feb 2024 06:13:27 -0800 (PST)
+Received: by mail-pf1-f176.google.com with SMTP id d2e1a72fcca58-6da9c834646so2370929b3a.3
+        for <devicetree@vger.kernel.org>; Sat, 03 Feb 2024 06:15:12 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1706969607; x=1707574407; darn=vger.kernel.org;
+        d=gmail.com; s=20230601; t=1706969712; x=1707574512; darn=vger.kernel.org;
         h=in-reply-to:content-disposition:mime-version:references:message-id
          :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=mREU3Rb75lZQjv9jELjEn4pXCHSQe0l93Q5KUUdwF08=;
-        b=E5hAbzT3nng8nPOIZ9SwQzGasuItQa2HBsEbaJCN6LiRrqd+mXoXajNlyojn+31C5M
-         PuQTjZtwMbwzWHWuYWEmZ5OzdanfTvsj9vNm6xW0A6r//974zZutSMUDRP34Mds4Qa6A
-         +PootBom197Ju+TO5sKxxoFmRa0ngpO1Sc9hG03g1msUYZQZS8+n8zq3eIpaiVDxSPLT
-         yHNzzU4RJMGDOwv1N8yO5dC7Z08oPSoMaApi6vwttwn+Z7w1vv5OHDq0EzrDF9FB8ByQ
-         EdAZ7lnO1ngMZobcbR2nU2lNav4wj55UplV2m7wMALEcU6HpztxTJWaTNLG0a2ziAMik
-         j+Wg==
+        bh=bw42H79cE+U6ywMpCs1nKE+K584CAj9MEAMy3JeNl90=;
+        b=BYGI+VlwJtX1qT5RTgm61OWJipJN8dHO4zRCySzjbEzJFXS8CrQaCo5a59NWNo9PLv
+         gnQ2VAi4wk+m2staFzZuidTP2oz9Dn/q7Ct4FLYpkLK67pT7EBX6M1OYlnt8D5x4gKVQ
+         7E4yLAPzctJr9xGkxFH1H+eQcDNFHUUoumLssp84kethOEAuRyK0nPQQ6RKCkEr8ZBaJ
+         SUS3DcBMibL9Lp1WjJe3Yrz+8XL2EzD+M/2ZVwpR29m+lOZGv2xPOEZFEvMNmOnYMhPy
+         W1DcxNh01iLu58+Eikm6V1lTvm6imtKc/jxEx/6Q4ezfHGoQuUx6KY6xOiE+cPzm6MV1
+         Z2XA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1706969607; x=1707574407;
+        d=1e100.net; s=20230601; t=1706969712; x=1707574512;
         h=in-reply-to:content-disposition:mime-version:references:message-id
          :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=mREU3Rb75lZQjv9jELjEn4pXCHSQe0l93Q5KUUdwF08=;
-        b=jtwkRt8ZVco1rkDlb2yNaruhc9ruRGYMwJpaoprRgIuxGmsxpuFO8CUeU/oQHaf4sw
-         6LWhF/VxxH34cgxZMEAymX5mrDZND25M+lgTIG3UKdqvlOXwcD2RGsKPI1Li5YnYPdHT
-         OET6JGd5L9yQ1m0j0GY/fKcE7+KiUjd6zBp3ZnFrR7S49TSv8Bb/99Fo6duNQtG7xLff
-         DXyDVr+2A2j+1FacbjpNMf8yiBaDjRSmVXbJrgr+NsPyoMnQrBNukPFCgE4o7UOGsHGV
-         Oi5wF2ASmYrteBI7uQLu2FnTy1//B/J8B5i0eE1PUNx1JCDUReZ/0pCTQLhVQMiEfd4J
-         EJ2w==
-X-Gm-Message-State: AOJu0YxhnOJwAenSlZO3m9wH9r1zgiBPn4DU1smrAuFfBjPLsh2GX19X
-	SInXZSEX5Tq3O+4YzncCGlqkJerDBfMcqH1YnZv6Hi65iDAImRpV
-X-Google-Smtp-Source: AGHT+IGXn6xqNtunU3gy45qLprY4Cj5N/FcTiJWbzwY8u7OYXZSh9k2eT6kHRZxjMUH5Gs5uttAEaA==
-X-Received: by 2002:a05:6358:703:b0:178:b0c9:118f with SMTP id e3-20020a056358070300b00178b0c9118fmr12518705rwj.26.1706969606721;
-        Sat, 03 Feb 2024 06:13:26 -0800 (PST)
-X-Forwarded-Encrypted: i=0; AJvYcCUoPQeF/A94TlNeNTaQsT9zDWWFnhnm8VBVX/ld1kqt4kpVAha/ndr6K/YQsR44eW2UXOQqBs8R02GiGceAvJapTyCgawTUZvSBXh2SEa66q4Fr23/S2K+/NeoMS1NYSIj1T3P6yM1HRKrlgbPwQLHgFnVxzizzM/4uEXVct2wafMnFC0p1FWbOLtSESyW6aB19UOx/scX4SndmXHMo4lYe5G8L+/lrss0vmEh6cywbr9T1QPml15ryNDuG1/strF7tyu9Bu9u9ef5OjviZa0sCLMM118KpyC6D2YWOzNil9IPgfqg0d5St9SNBI1yYC1duTPhDr3x7SHC7Gqw/qHUtLaSxECslfNAYikJolPz6LktMFYy2dAiSd1GzxL+tsvPSs9Q66S/QVgT0
+        bh=bw42H79cE+U6ywMpCs1nKE+K584CAj9MEAMy3JeNl90=;
+        b=aK0MI2sFGEnEW4rrmUPVPeaJnJKF0x56d6K5FlkFI2YnooGRjvWp3/zUxnYXNu1viR
+         Rbcj9VelMpTeOlzP54NotfKXjoFyv1/KWgE//IwKUkc/P1Ce+j2mscIJBHTtYbxExNgz
+         x0vdpLRX9BiW9XREZfjt7ZWqOi94ecw9RrRwbRkzTa36fOufqTq20A4ndptIrcE/PRBh
+         31s6Jkldz1wJqynWH39ifUzSwFUfCE3jrsmD1GYXhi5rYEcN3FlbcSPtv+ItfqE45lc5
+         9wuSzC1arWhhxhMS/8K+2DJ6JOCKWNRHhXpSAP4QwjQkW2e8N59Kv/b+irzYWymVSwl6
+         RTTw==
+X-Gm-Message-State: AOJu0YxQr3CS2/EvwUK32tHzeNftT9kKRapxOk0KmKG5FUvkWBPd+bp7
+	AV9Hx6Vl4V1OCmsWmtX4fNswchliM1qJbwXhJiX9giKWAP6nm+WF
+X-Google-Smtp-Source: AGHT+IFPqWbk2GRCX/47Eb2vR2sJKwqpvb3/TIjAgt0xS2mIr5Po4pv2s2wi08OkrP43ZGzti8tBRA==
+X-Received: by 2002:a05:6a00:1b52:b0:6df:b941:f599 with SMTP id o18-20020a056a001b5200b006dfb941f599mr5348409pfv.33.1706969712044;
+        Sat, 03 Feb 2024 06:15:12 -0800 (PST)
+X-Forwarded-Encrypted: i=0; AJvYcCWhV1/NiWc6swS0DJFlB9clI/lKV0JDos2bl2QEhHhTzJmYwgu/f89H+wDw9NVifPwkK7kLFNFJPA8TW2XulcCZDXMvkLnPcaf3XhXH+GMQQvrDL2bbXEubycF37viF6zyFMG7/+y1+5nvGPWKOOUT/Cu2v3IuwBdNFlQpAAJnMco+0CicgzymuGVymWHyodVXpObNm0VYXMKGlo33zFWvhYmsom5P9LxDIOFntKQ5OaDQeBfrvT1h3KIzO0nVKwE/6yVSFnuoleJG9CtxNj4uY7gMKR9df2I+jLKGREaJCEOH81uz2Exj5WOI86CFL6WJG8ytlA4/x8RYjj3/eVUdpVQ==
 Received: from dragon (45.78.63.125.16clouds.com. [45.78.63.125])
-        by smtp.gmail.com with ESMTPSA id x23-20020a056a00271700b006dddd3e31a8sm3444836pfv.219.2024.02.03.06.13.22
+        by smtp.gmail.com with ESMTPSA id k11-20020aa79d0b000000b006dde36aaae7sm3411050pfp.64.2024.02.03.06.15.08
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sat, 03 Feb 2024 06:13:25 -0800 (PST)
-Date: Sat, 3 Feb 2024 22:13:18 +0800
+        Sat, 03 Feb 2024 06:15:11 -0800 (PST)
+Date: Sat, 3 Feb 2024 22:15:04 +0800
 From: Shawn Guo <shawn.gsc@gmail.com>
-To: Alexander Stein <alexander.stein@ew.tq-group.com>
-Cc: Rob Herring <robh+dt@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>,
-	Sascha Hauer <s.hauer@pengutronix.de>,
+To: Marek Vasut <marex@denx.de>
+Cc: linux-arm-kernel@lists.infradead.org,
+	Conor Dooley <conor+dt@kernel.org>,
 	Fabio Estevam <festevam@gmail.com>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	NXP Linux Team <linux-imx@nxp.com>,
 	Pengutronix Kernel Team <kernel@pengutronix.de>,
-	NXP Linux Team <linux-imx@nxp.com>, linux@ew.tq-group.com,
-	devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org
-Subject: Re: [PATCH 00/23] TQMa7x/MBa7x DT fixes
-Message-ID: <20240203044123.GG463595@dragon>
-References: <20231218125459.2769733-1-alexander.stein@ew.tq-group.com>
+	Rob Herring <robh+dt@kernel.org>,
+	Sascha Hauer <s.hauer@pengutronix.de>,
+	Shawn Guo <shawnguo@kernel.org>, devicetree@vger.kernel.org
+Subject: Re: [PATCH] arm64: dts: imx8mp: Disable UART4 by default on Data
+ Modul i.MX8M Plus eDM SBC
+Message-ID: <20240203141504.GH463595@dragon>
+References: <20231220000345.42593-1-marex@denx.de>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -88,42 +90,17 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20231218125459.2769733-1-alexander.stein@ew.tq-group.com>
+In-Reply-To: <20231220000345.42593-1-marex@denx.de>
 
-On Mon, Dec 18, 2023 at 01:54:36PM +0100, Alexander Stein wrote:
-> Hi,
+On Wed, Dec 20, 2023 at 01:02:42AM +0100, Marek Vasut wrote:
+> UART4 is used as CM7 coprocessor debug UART and may not be accessible from
+> Linux in case it is protected by RDC. The RDC protection is set up by the
+> platform firmware. UART4 is not used on this platform by Linux. Disable
+> UART4 by default to prevent boot hangs, which occur when the RDC protection
+> is in place.
 > 
-> this series fixes several issues on TQMa7x DT files in various aspects.
-> Probably most notabe one is disabling PCIe due to missing support for internal
-> PHY refclock.
-> 
-> Best regards,
-> Alexander
-> 
-> Alexander Stein (23):
->   ARM: dts: imx7-tqma7/mba7: convert fsl,pins to uint32-matrix
->   ARM: dts: imx7[d]-mba7: Move ethernet PHY reset into PHY node
->   ARM: dts: imx7[d]-mba7: disable USB OC on USB host and USB OTG2
->   ARM: dts: imx7[d]-mba7: disable PCIe interface
->   ARM: dts: imx7[d]-mba7: hog Mini PCIe signals
->   ARM: dts: imx7-mba7: Mark gpio-buttons as wakeup-source
->   ARM: dts: imx7-mba7: Enable SNVS power key
->   ARM: dts: imx7-mba7: Add RTC aliases
->   ARM: dts: imx7-mba7: Add SPI1_SS0 as chip select 3
->   ARM: dts: imx7-tqma7: Add i2c bus recovery
->   ARM: dts: imx7-mba7: Add i2c bus recovery
->   ARM: dts: imx7-tqma7: fix EEPROM compatible for SE97BTP
->   ARM: dts: imx7-mba7: Fix iomuxc node names
->   ARM: dts: imx7-tqma7: Fix iomuxc node names
->   ARM: dts: imx7-mba7: restrict usdhc interface modes
->   ARM: dts: imx7-tqma7: restrict usdhc interface modes
->   ARM: dts: imx7-tqma7: remove superfluous status property
->   ARM: dts: imx7-tqma7: mark system data eeprom as read-only
->   ARM: dts: imx7-tqma7: rename node for SE97BTP
->   ARM: dts: imx7d-mba7: Remove USB OTG related properties on USB node
->   ARM: dts: imx7-tqma7: Add missing vcc supply to i2c eeproms
->   ARM: dts: imx7-mba7: Add missing vcc supply to i2c devices
->   ARM: dts: imx7-tqma7: Fix PMIC v33 rail voltage range
+> Fixes: 562d222f23f0 ("arm64: dts: imx8mp: Add support for Data Modul i.MX8M Plus eDM SBC")
+> Signed-off-by: Marek Vasut <marex@denx.de>
 
-Applied all, thanks!
+Applied, thanks!
 
