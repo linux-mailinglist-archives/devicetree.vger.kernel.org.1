@@ -1,341 +1,129 @@
-Return-Path: <devicetree+bounces-38290-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-38291-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2A2B5848728
-	for <lists+devicetree@lfdr.de>; Sat,  3 Feb 2024 16:38:36 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4B5C2848768
+	for <lists+devicetree@lfdr.de>; Sat,  3 Feb 2024 17:25:43 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 99698B24DC9
-	for <lists+devicetree@lfdr.de>; Sat,  3 Feb 2024 15:38:33 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 93A3C2844BA
+	for <lists+devicetree@lfdr.de>; Sat,  3 Feb 2024 16:25:41 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3F1A85F840;
-	Sat,  3 Feb 2024 15:38:14 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 47E8A5F56E;
+	Sat,  3 Feb 2024 16:25:36 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=tuxon.dev header.i=@tuxon.dev header.b="oKox4yi2"
+	dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b="2lLAyxbH"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ej1-f43.google.com (mail-ej1-f43.google.com [209.85.218.43])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from vps0.lunn.ch (vps0.lunn.ch [156.67.10.101])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E9FAE5F556
-	for <devicetree@vger.kernel.org>; Sat,  3 Feb 2024 15:38:10 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.43
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 755CF58206;
+	Sat,  3 Feb 2024 16:25:34 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=156.67.10.101
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1706974694; cv=none; b=H92vUuiFOB9Z/uAMIM7wzIaASbP2y3RuaQIum0muxcp1+qbcPym4M/RnnyuLaSohWhF4AqK97T3kWxYd4UGVfWxdoEa7K8Dehkd6OtCWa9bS2VnwSHhZ8jLyvwQv985bgzF8cGwoLYtpewaa6aqg4Ls7j0QNOPrx3qQXH6mQOJA=
+	t=1706977536; cv=none; b=mBEaenqDutFcjHq6+krDJKnkeH73pq6nzQcUIfI/Cu3HqbISwyfzGsq49Tv/6zcRRQhZy/Z0/stcuoQt9q900MEXQ+C8l/qBfXS0sClys3xfXhIqXcANKyE0LeTBepl7cXiWTXsNgEQfHK960Z53WkvrPmTiQmjKscXqCQfiZbc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1706974694; c=relaxed/simple;
-	bh=WE5JPaidD90vkrcbaJ/CmqpRuf7diE03gScNIwMVnJE=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=TEc//BvEZRzsCg3oUIYHDLGS5Q0pD1NCwsu7aWbDCVz5m0KYjAcLQfThfB0WmslU0xD6hVPU3ly8SDmD/3yTRKHPr9MPYIkVbwO5GoetqyCmQOKeoDYoxOVh9HnUlLvUcenafC29q25Y8Uk/63iKP9EpmammFvtdPMPlKd+Czmw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=tuxon.dev; spf=pass smtp.mailfrom=tuxon.dev; dkim=pass (2048-bit key) header.d=tuxon.dev header.i=@tuxon.dev header.b=oKox4yi2; arc=none smtp.client-ip=209.85.218.43
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=tuxon.dev
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=tuxon.dev
-Received: by mail-ej1-f43.google.com with SMTP id a640c23a62f3a-a2a17f3217aso417220666b.2
-        for <devicetree@vger.kernel.org>; Sat, 03 Feb 2024 07:38:10 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=tuxon.dev; s=google; t=1706974689; x=1707579489; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:content-language:from
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=RmXjMBjV3eTaj62ESkW/1VAxnakFokM6wo7z2vsUgqY=;
-        b=oKox4yi2sRpw0zGrYW1SQOFt3ya4Jnn/bljpwSC2IzQMOnoCjEodu4/kwNwtzH7C3k
-         0/3bkY6ay43m9TzluQCzn622O8g4boRWIeyyb9aMplCRmi0K6x/CJTovgvnSyUVxSx5i
-         WFcCXS2vxiUJPKIqsgi399i5o0zvw5LU1Y4VkFVayfqrQ6RBvZNsqUk2wdhgfi0XrBK3
-         qtt1CFCYruMi8z94/lzvjJylAlBZ9d1J6ehT7og5nFAnT0lKos2Y7FSbu9LOSectNeET
-         FtIOR/n6Plvc+YIjId96pHHmgUP5UKwcOJjgzw6ksYq5A4Vxc2g96iWhT7Y0jW3mk/xU
-         fF/Q==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1706974689; x=1707579489;
-        h=content-transfer-encoding:in-reply-to:content-language:from
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=RmXjMBjV3eTaj62ESkW/1VAxnakFokM6wo7z2vsUgqY=;
-        b=iBb/XMGnOSnrd4TX0f1vn5ianRJssv4gkaQinCtdd8aMdT3cYMZhl89Y4SopTKnPPL
-         WBzBRnCHfpP0Ag6rqyht9rLGLMf+WeRedSRvQ73ntwKcY+l5liqq7eMxng4D6JqMKOAY
-         K3H6J7EbaPzQRAkVdaHnvpb8zWxf5r3QIY9jClGCdAEQCrUeBPPTBFBFMJc4Xxj6HTva
-         75zI4ld0uPILesFO/YnMg5RDs+1rc/T2uYXbAfVp5aVDP5ULIRc70sTH5eXFhGBZ0UYa
-         2I5jjnntVRaPLpemEPp1Vf9TRTu9KAqrysqXkmymuP7RMurpgfh0ZgL5yMy0OvLrlUNG
-         wF+w==
-X-Gm-Message-State: AOJu0YwKxLCev5abuvSMKT9w8bpHf/LI01NJCnWX9VEXvAe2pWfOKT7x
-	M/rbGMiXqo/PB6fRW56kkCQMkOugKQVD73sEoxGd+mh9wCdqlhg6gEZHZivJqU4=
-X-Google-Smtp-Source: AGHT+IFNsO28izVMP8pIS0uG/LTzycePakrpu0Nmlo+q5mN4gBIZ/jC5Ghz64jzcjiQtB+fYbWyG8g==
-X-Received: by 2002:a17:907:7711:b0:a36:f672:6e8d with SMTP id kw17-20020a170907771100b00a36f6726e8dmr3066161ejc.5.1706974688909;
-        Sat, 03 Feb 2024 07:38:08 -0800 (PST)
-X-Forwarded-Encrypted: i=0; AJvYcCUfVQxw844Uzd7Z5KW53j+B/daUt7M/Mad0Ah/Jvk/f1EmL3BagGqdp2FdXMImT0pHVTVNSbuRKoT+JWOBhjOdGy4lYKvD5gL5M/dLKMiFF/a9OGulB8FAep1YEtp87poQbI4ncOYXBYtZDgoRRl/sdJACL8C9TtJdPoq/tewpeVZg8lk4koEvNaUOJw93u2WOTHHw5dTkhTmrhmgRUzfK1lj9MIpFJ68oWgzKU11r5Lom1doavGiYR6pNW619iC1FekY97TI4jxFSlcPa8aezkRR3wdwEy8VB23an6Xt2BBgeOInWOD6Xi3/lTSNOrRuyZl/7R64YtM9mBK1GgrEXu8F2aG3ET7P+brD9HqEYBEBYYzNxzx62fbwYDkm4jIKZBajHIXdaiPY0ev1jl1y1L3UvVd5sakf8xTpZ4bk7Tnfl7ffZToe2D0i+PTR4TprjTKY/zJV29EQM0vLBQ
-Received: from [192.168.50.4] ([82.78.167.154])
-        by smtp.gmail.com with ESMTPSA id ty24-20020a170907c71800b00a372a739731sm1322794ejc.45.2024.02.03.07.38.07
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sat, 03 Feb 2024 07:38:08 -0800 (PST)
-Message-ID: <d8c48839-8b22-47ad-b270-e96a1ad1adee@tuxon.dev>
-Date: Sat, 3 Feb 2024 17:38:06 +0200
+	s=arc-20240116; t=1706977536; c=relaxed/simple;
+	bh=vWy0Zx39e4wmgFNDFPUH6HFaDxM9TNK1v6d9d2+MVE0=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=dlMx3mv+n0P9ghj0uJ9TXo7pctnIbWNtwgRBGuQpYs4f0wGmNBymofL2rvMMqBRXGXVjR4sqy8va/EG+0/VclaVPX/p/piPCgqLwYpU1jWNVbs780+Wk4RBZRjufcOITKWZAx9x0vbRW86h8WLYQZ3PIiJQUH1iux/+Dlb7m7+8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch; spf=pass smtp.mailfrom=lunn.ch; dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b=2lLAyxbH; arc=none smtp.client-ip=156.67.10.101
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=lunn.ch
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
+	s=20171124; h=In-Reply-To:Content-Disposition:Content-Type:MIME-Version:
+	References:Message-ID:Subject:Cc:To:From:Date:From:Sender:Reply-To:Subject:
+	Date:Message-ID:To:Cc:MIME-Version:Content-Type:Content-Transfer-Encoding:
+	Content-ID:Content-Description:Content-Disposition:In-Reply-To:References;
+	bh=4djEjuQQh7CJm2rcKQ3SV1fnshnuP3wO2z85v1DRISU=; b=2lLAyxbH+7u/rQ2fN8is/U0PSy
+	zy9m9wMMdFiIMIaQYnPZd1qcz7HhGAraK1eO2zuCDS66BBJsDS5jHUCoPXwqe6IkhA3OnGmmNzN/d
+	nFFk4s63sIR1BliZKt808FdHcKr4D4OQiZKa5EA1M2/GsSvFYljoJMTVquL0dqDAgGGs=;
+Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
+	(envelope-from <andrew@lunn.ch>)
+	id 1rWIpX-006udA-V2; Sat, 03 Feb 2024 17:25:23 +0100
+Date: Sat, 3 Feb 2024 17:25:23 +0100
+From: Andrew Lunn <andrew@lunn.ch>
+To: Christian Marangi <ansuelsmth@gmail.com>
+Cc: "David S. Miller" <davem@davemloft.net>,
+	Eric Dumazet <edumazet@google.com>,
+	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
+	Rob Herring <robh+dt@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Bjorn Andersson <andersson@kernel.org>,
+	Konrad Dybcio <konrad.dybcio@linaro.org>,
+	Heiner Kallweit <hkallweit1@gmail.com>,
+	Russell King <linux@armlinux.org.uk>,
+	Frank Rowand <frowand.list@gmail.com>,
+	Robert Marko <robert.marko@sartura.hr>, netdev@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	linux-arm-msm@vger.kernel.org
+Subject: Re: [net-next PATCH v5 7/9] net: phy: qcom: add support for QCA807x
+ PHY Family
+Message-ID: <c3447c2b-4b43-4c09-b89e-d6a44971b923@lunn.ch>
+References: <20240201151747.7524-1-ansuelsmth@gmail.com>
+ <20240201151747.7524-8-ansuelsmth@gmail.com>
+ <a530f40c-b8fd-4da1-b4df-f80ab05f0394@lunn.ch>
+ <65bd29f9.050a0220.a175d.3d5f@mx.google.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH net-next 1/3] net: macb: queue tie-off or disable during
- WOL suspend
-To: Vineeth Karumanchi <vineeth.karumanchi@amd.com>,
- nicolas.ferre@microchip.com, davem@davemloft.net, edumazet@google.com,
- kuba@kernel.org, pabeni@redhat.com, robh+dt@kernel.org,
- krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org, linux@armlinux.org.uk
-Cc: netdev@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, git@amd.com
-References: <20240130104845.3995341-1-vineeth.karumanchi@amd.com>
- <20240130104845.3995341-2-vineeth.karumanchi@amd.com>
-From: claudiu beznea <claudiu.beznea@tuxon.dev>
-Content-Language: en-US
-In-Reply-To: <20240130104845.3995341-2-vineeth.karumanchi@amd.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <65bd29f9.050a0220.a175d.3d5f@mx.google.com>
 
-Hi, Vineeth,
-
-On 30.01.2024 12:48, Vineeth Karumanchi wrote:
-> When GEM is used as a wake device, it is not mandatory for the RX DMA
-> to be active. The RX engine in IP only needs to receive and identify
-> a wake packet through an interrupt. The wake packet is of no further
-> significance; hence, it is not required to be copied into memory.
-> By disabling RX DMA during suspend, we can avoid unnecessary DMA
-> processing of any incoming traffic.
+On Fri, Feb 02, 2024 at 06:44:22PM +0100, Christian Marangi wrote:
+> On Fri, Feb 02, 2024 at 02:35:11AM +0100, Andrew Lunn wrote:
+> > > +static int qca807x_read_fiber_status(struct phy_device *phydev)
+> > > +{
+> > > +	int ss, err, lpa, old_link = phydev->link;
+> > > +
+> > > +	/* Update the link, but return if there was an error */
+> > > +	err = genphy_update_link(phydev);
+> > > +	if (err)
+> > > +		return err;
+> > > +
+> > > +	/* why bother the PHY if nothing can have changed */
+> > > +	if (phydev->autoneg == AUTONEG_ENABLE && old_link && phydev->link)
+> > > +		return 0;
+> > > +
+> > > +	phydev->speed = SPEED_UNKNOWN;
+> > > +	phydev->duplex = DUPLEX_UNKNOWN;
+> > > +	phydev->pause = 0;
+> > > +	phydev->asym_pause = 0;
+> > > +
+> > > +	if (phydev->autoneg == AUTONEG_ENABLE && phydev->autoneg_complete) {
+> > > +		lpa = phy_read(phydev, MII_LPA);
+> > > +		if (lpa < 0)
+> > > +			return lpa;
+> > > +
+> > > +		linkmode_mod_bit(ETHTOOL_LINK_MODE_Autoneg_BIT,
+> > > +				 phydev->lp_advertising, lpa & LPA_LPACK);
+> > > +		linkmode_mod_bit(ETHTOOL_LINK_MODE_1000baseX_Full_BIT,
+> > > +				 phydev->lp_advertising, lpa & LPA_1000XFULL);
+> > > +		linkmode_mod_bit(ETHTOOL_LINK_MODE_Pause_BIT,
+> > > +				 phydev->lp_advertising, lpa & LPA_1000XPAUSE);
+> > > +		linkmode_mod_bit(ETHTOOL_LINK_MODE_Asym_Pause_BIT,
+> > > +				 phydev->lp_advertising,
+> > > +				 lpa & LPA_1000XPAUSE_ASYM);
+> > > +
+> > > +		phy_resolve_aneg_linkmode(phydev);
+> > > +	}
+> > 
+> > This looks a lot like genphy_c37_read_status(). Can it be used?
+> >
 > 
-> During suspend, perform either of the below operations:
-> 
-> tie-off/dummy descriptor: Disable unused queues by connecting
-> them to a looped descriptor chain without free slots.
-> 
-> queue disable: The newer IP version allows disabling individual queues.
+> Yes but I had to expand genphy_c37_read_status. Hope it will be OK.
 
-I would add a dash line for each of these 2 items for better understanding.
-E.g.:
+You can expand it, but please keep to what is defined within 802.3. We
+don't want any vendor extensions in this common code. Vendor things
+should be kept in the vendor driver. So you can call
+genphy_c37_read_status() and then do any vendor specific fixups
+needed.
 
-- tie-off/dummy descriptior: ...
-- queue disable: ...
-
-> 
-> Co-developed-by: Harini Katakam <harini.katakam@amd.com>
-> Signed-off-by: Harini Katakam <harini.katakam@amd.com>
-> Signed-off-by: Vineeth Karumanchi <vineeth.karumanchi@amd.com>
-> ---
->  drivers/net/ethernet/cadence/macb.h      |  7 +++
->  drivers/net/ethernet/cadence/macb_main.c | 58 +++++++++++++++++++++++-
->  2 files changed, 64 insertions(+), 1 deletion(-)
-> 
-> diff --git a/drivers/net/ethernet/cadence/macb.h b/drivers/net/ethernet/cadence/macb.h
-> index aa5700ac9c00..f68ff163aa18 100644
-> --- a/drivers/net/ethernet/cadence/macb.h
-> +++ b/drivers/net/ethernet/cadence/macb.h
-> @@ -645,6 +645,9 @@
->  #define GEM_T2OFST_OFFSET			0 /* offset value */
->  #define GEM_T2OFST_SIZE				7
->  
-> +/* Bitfields in queue pointer registers */
-> +#define GEM_RBQP_DISABLE    BIT(0)
-
-You have spaces after macro name. However the approach in this driver is to
-define bit offset and lenght and use {MACB,GEM}_BIT() macros (see the above
-bitfield definitions).
-
-> +
->  /* Offset for screener type 2 compare values (T2CMPOFST).
->   * Note the offset is applied after the specified point,
->   * e.g. GEM_T2COMPOFST_ETYPE denotes the EtherType field, so an offset
-> @@ -737,6 +740,7 @@
->  #define MACB_CAPS_HIGH_SPEED			0x02000000
->  #define MACB_CAPS_CLK_HW_CHG			0x04000000
->  #define MACB_CAPS_MACB_IS_EMAC			0x08000000
-> +#define MACB_CAPS_QUEUE_DISABLE			0x00002000
-
-Can you keep this sorted by value with the rest of the caps?
-
->  #define MACB_CAPS_FIFO_MODE			0x10000000
->  #define MACB_CAPS_GIGABIT_MODE_AVAILABLE	0x20000000
->  #define MACB_CAPS_SG_DISABLED			0x40000000
-> @@ -1254,6 +1258,7 @@ struct macb {
->  	u32	(*macb_reg_readl)(struct macb *bp, int offset);
->  	void	(*macb_reg_writel)(struct macb *bp, int offset, u32 value);
->  
-> +	struct macb_dma_desc	*rx_ring_tieoff;
-
-Keep this ^
-
->  	size_t			rx_buffer_size;
->  
->  	unsigned int		rx_ring_size;
-> @@ -1276,6 +1281,8 @@ struct macb {
->  		struct gem_stats	gem;
->  	}			hw_stats;
->  
-> +	dma_addr_t		rx_ring_tieoff_dma;
-
-And this ^ toghether.
-
-> +
->  	struct macb_or_gem_ops	macbgem_ops;
->  
->  	struct mii_bus		*mii_bus;
-> diff --git a/drivers/net/ethernet/cadence/macb_main.c b/drivers/net/ethernet/cadence/macb_main.c
-> index 898debfd4db3..47cbea58e6c3 100644
-> --- a/drivers/net/ethernet/cadence/macb_main.c
-> +++ b/drivers/net/ethernet/cadence/macb_main.c
-> @@ -2479,6 +2479,12 @@ static void macb_free_consistent(struct macb *bp)
->  
->  	bp->macbgem_ops.mog_free_rx_buffers(bp);
->  
-> +	if (bp->rx_ring_tieoff) {
-> +		dma_free_coherent(&bp->pdev->dev, macb_dma_desc_get_size(bp),
-> +				  bp->rx_ring_tieoff, bp->rx_ring_tieoff_dma);
-> +		bp->rx_ring_tieoff = NULL;
-> +	}
-> +
-
-Keep the reverse order of operation as oposed to macb_alloc_consistent,
-thus move this before bp->macbgem_ops.mog_free_rx_buffers();
-
->  	for (q = 0, queue = bp->queues; q < bp->num_queues; ++q, ++queue) {
->  		kfree(queue->tx_skb);
->  		queue->tx_skb = NULL;
-> @@ -2568,6 +2574,16 @@ static int macb_alloc_consistent(struct macb *bp)
->  	if (bp->macbgem_ops.mog_alloc_rx_buffers(bp))
->  		goto out_err;
->  
-> +	/* Required for tie off descriptor for PM cases */
-> +	if (!(bp->caps & MACB_CAPS_QUEUE_DISABLE)) {
-> +		bp->rx_ring_tieoff = dma_alloc_coherent(&bp->pdev->dev,
-> +							macb_dma_desc_get_size(bp),
-> +							&bp->rx_ring_tieoff_dma,
-> +							GFP_KERNEL);
-> +		if (!bp->rx_ring_tieoff)
-> +			goto out_err;
-
-You also need to free the previously allocated rx buffers.
-
-> +	}
-> +
->  	return 0;
->  
->  out_err:
-> @@ -2575,6 +2591,16 @@ static int macb_alloc_consistent(struct macb *bp)
->  	return -ENOMEM;
->  }
->  
-> +static void macb_init_tieoff(struct macb *bp)
-> +{
-> +	struct macb_dma_desc *d = bp->rx_ring_tieoff;
-
-s/d/desc to cope with the rest of descriptor usage in this file.
-
-Add this here:
-
-	if (bp->caps & MACB_CAPS_QUEUE_DISABLE)
-		return;
-
-to avoid checking it in different places where this function is called.
-
-> +	/* Setup a wrapping descriptor with no free slots
-> +	 * (WRAP and USED) to tie off/disable unused RX queues.
-> +	 */
-> +	macb_set_addr(bp, d, MACB_BIT(RX_WRAP) | MACB_BIT(RX_USED));
-> +	d->ctrl = 0;
-> +}
-> +
->  static void gem_init_rings(struct macb *bp)
->  {
->  	struct macb_queue *queue;
-> @@ -2598,6 +2624,8 @@ static void gem_init_rings(struct macb *bp)
->  		gem_rx_refill(queue);
->  	}
->  
-> +	if (!(bp->caps & MACB_CAPS_QUEUE_DISABLE))
-> +		macb_init_tieoff(bp);
->  }
->  
->  static void macb_init_rings(struct macb *bp)
-> @@ -2615,6 +2643,8 @@ static void macb_init_rings(struct macb *bp)
->  	bp->queues[0].tx_head = 0;
->  	bp->queues[0].tx_tail = 0;
->  	desc->ctrl |= MACB_BIT(TX_WRAP);
-> +
-> +	macb_init_tieoff(bp);
->  }
->  
->  static void macb_reset_hw(struct macb *bp)
-> @@ -4917,7 +4947,8 @@ static const struct macb_config sama7g5_emac_config = {
->  
->  static const struct macb_config versal_config = {
->  	.caps = MACB_CAPS_GIGABIT_MODE_AVAILABLE | MACB_CAPS_JUMBO |
-> -		MACB_CAPS_GEM_HAS_PTP | MACB_CAPS_BD_RD_PREFETCH | MACB_CAPS_NEED_TSUCLK,
-> +		MACB_CAPS_GEM_HAS_PTP | MACB_CAPS_BD_RD_PREFETCH |
-> +		MACB_CAPS_QUEUE_DISABLE | MACB_CAPS_NEED_TSUCLK,
-
-This should go in a different patch.
-
->  	.dma_burst_length = 16,
->  	.clk_init = macb_clk_init,
->  	.init = init_reset_optional,
-> @@ -5214,6 +5245,7 @@ static int __maybe_unused macb_suspend(struct device *dev)
->  	struct macb_queue *queue;
->  	unsigned long flags;
->  	unsigned int q;
-> +	u32 ctrlmask;
-
-val/tmp should be enough for this as you are, anyway, re-using it in the
-next patch for different purpose.
-
->  	int err;
->  
->  	if (!device_may_wakeup(&bp->dev->dev))
-> @@ -5224,6 +5256,30 @@ static int __maybe_unused macb_suspend(struct device *dev)
->  
->  	if (bp->wol & MACB_WOL_ENABLED) {
->  		spin_lock_irqsave(&bp->lock, flags);
-> +
-> +		/* Disable Tx and Rx engines before  disabling the queues,
-> +		 * this is mandatory as per the IP spec sheet
-> +		 */
-> +		ctrlmask = macb_readl(bp, NCR);
-> +		ctrlmask &= ~(MACB_BIT(TE) | MACB_BIT(RE));
-
-You can remove this
-> +		macb_writel(bp, NCR, ctrlmask);
-
-And add this:
-macb_writel(bp, NCR, ctrlmask & ~(MACB_BIT(TE) | MACB_BIT(RE));
-
-> +		for (q = 0, queue = bp->queues; q < bp->num_queues;
-> +		     ++q, ++queue) {
-> +			/* Disable RX queues */
-
-Operation in this for loop could be moved in the the above IRQ disable
-loop. Have you tried it? are there any issues with it?
-
-> +			if (bp->caps & MACB_CAPS_QUEUE_DISABLE) {
-> +				queue_writel(queue, RBQP, GEM_RBQP_DISABLE);
-> +			} else {
-> +				/* Tie off RX queues */
-> +				queue_writel(queue, RBQP,
-> +					     lower_32_bits(bp->rx_ring_tieoff_dma));
-
-I think this should be guarded by:
-#ifdef CONFIG_ARCH_DMA_ADDR_T_64BIT
-> +				queue_writel(queue, RBQPH,
-> +					     upper_32_bits(bp->rx_ring_tieoff_dma));
-> +			}
-> +		}
-> +		/* Enable Receive engine */
-> +		ctrlmask = macb_readl(bp, NCR);
-
-Is this needed?
-
-> +		ctrlmask |= MACB_BIT(RE);
-> +		macb_writel(bp, NCR, ctrlmask);
-
-These could be merged
-
->  		/* Flush all status bits */
->  		macb_writel(bp, TSR, -1);
->  		macb_writel(bp, RSR, -1);
+      Andrew
 
