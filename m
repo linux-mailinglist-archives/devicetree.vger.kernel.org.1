@@ -1,125 +1,143 @@
-Return-Path: <devicetree+bounces-38288-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-38289-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 172C6848703
-	for <lists+devicetree@lfdr.de>; Sat,  3 Feb 2024 16:13:18 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 63C4484871B
+	for <lists+devicetree@lfdr.de>; Sat,  3 Feb 2024 16:28:39 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id B6452284887
-	for <lists+devicetree@lfdr.de>; Sat,  3 Feb 2024 15:13:16 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 0673FB22040
+	for <lists+devicetree@lfdr.de>; Sat,  3 Feb 2024 15:28:37 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 18EB65F474;
-	Sat,  3 Feb 2024 15:13:12 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A87795F47B;
+	Sat,  3 Feb 2024 15:28:32 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="iKLifrvG"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="Gpf+gTlZ"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pf1-f182.google.com (mail-pf1-f182.google.com [209.85.210.182])
+Received: from mail-oo1-f44.google.com (mail-oo1-f44.google.com [209.85.161.44])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8EECB5EE93;
-	Sat,  3 Feb 2024 15:13:10 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.182
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 26A3E58206;
+	Sat,  3 Feb 2024 15:28:30 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.161.44
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1706973192; cv=none; b=StIN976ZCmuzqSeL9D2Tl9RRJQMFUIQbdNJViRLRduHbXZYMAjUpybp7Dci6k5CylSkBqOWX95XigSctQYk0TSz0yf2On/GDYjMGgoBpEpWLiJNbQdfQ1quRY4IsVqMyH65/xHpEaAZAm9RCMk/vI0KQraIpYwZ0Th4ZWQ257YU=
+	t=1706974112; cv=none; b=jleVlb0C+ggGiyKLgKjE2HXn8I6agN0N/Im0MbkDLPPAFg+FX16vtUzrXH1F68PEfMly/mz3s97tqtb40kVzMnGaXq6Mbw3lAOotw2QEIB90hf2AGRylCCIPMHmLFr5PufJY6Dt/W3Kpax0/lQpPFw1GKxUIEpARasK4fwdbIjk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1706973192; c=relaxed/simple;
-	bh=JL+PSRmvVzKSLfAoJ77lkRIiOVNvdMZicj1Fohwv15Q=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=PDAzVSl5I0b5fIJQxnHVakDfVw/7SBjAQqKVtTeSGLfhbYTy3e7CmxXS985LwvhUQ/Gd5KhBDTLUcecCm1D2w91iEQiiXK/O1HURq2+rie7oufCsDvo6f55IApNfF6gyDjDU6StwbdjnN9A5/X9JtZAarAwvqjmtrYh78iVq5nA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=roeck-us.net; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=iKLifrvG; arc=none smtp.client-ip=209.85.210.182
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=roeck-us.net
+	s=arc-20240116; t=1706974112; c=relaxed/simple;
+	bh=Z1eBrxNxqM/kyYRT6w23i+affJIwdsPZx5ypg5FDsec=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=nlne+D0dJYCwOi4FKUZHhFyWivLv9Z1t3Wdu0wPKdPxwFRQnTPpuxM4adUy+zx27b5sVBsC2fUgASQ6VLb9TeIZPwgbHvLCUL0bfqVV2/6bgNXO+lrSfXqA+cC9yFl6KnaS1nLyy5hvrRn8vKqtKcWGCGV+BBWcICvMCZbWXigo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=Gpf+gTlZ; arc=none smtp.client-ip=209.85.161.44
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-pf1-f182.google.com with SMTP id d2e1a72fcca58-6ddc0c02593so2218488b3a.3;
-        Sat, 03 Feb 2024 07:13:10 -0800 (PST)
+Received: by mail-oo1-f44.google.com with SMTP id 006d021491bc7-59a910a1265so1674666eaf.1;
+        Sat, 03 Feb 2024 07:28:30 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1706973190; x=1707577990; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:sender:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=xN9WkJF6hYDK+c2hghOyEcly1TR1Vl/4IjxK+gN4NfY=;
-        b=iKLifrvG1R8gJKfxMY3GybZae1WvWo+ir4mzrpA8Zzz5riK8/FAV+giD/nKT/cqfan
-         3RlSXFT0nH2Hm1JIC6zhqaQHCSdlyfMMft/zuP/b7SV6Ms17hcXfwLydJ8XFunq9kMEg
-         Mp4BrN9kFDALCblRYIbtcLckABx0wq7y7CSVNn+t61WPtNBR+/XZj/sfinwoPWjfk99j
-         umFAd4qAA0kf89UF2aZ5VXh27qAAsKYlaqn+YQIJYd0yIRU6BaKJHKdZlZIBqNTHMxyt
-         DdhEgxvmOx5WEdd4r3YkYrB+TPDIDj4sMETk54955O49stLZE+/4/v9x3P5pJSPeAH58
-         nvvg==
+        d=gmail.com; s=20230601; t=1706974110; x=1707578910; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=W4MXHNjW+3TW74SFPNk16h7YsfWAXkb7kmdm8q7xjLc=;
+        b=Gpf+gTlZq+lHFN2kD8I1N1CM1jAasNjhBWBFHDHFSMn7pt7K/UmrTQ7ynH864ETLaw
+         cICoT+Yf1udM6eR9eNSGdBR/mX+3GSjDXrCi0LAPMkLHQI1mv+0agfyS3IIknOYOpjjA
+         ZHJsuFom2EGDcGCyqUsNQrcWQa4VJ8w+bVfkITiXdnHzxgp2HxOa5HmlfKQ760OajEpx
+         DvvZrcYN/Zm53BKeHQsBSQhmy1DbObT9tcRvtRfFBPC4q5qqTpgUT0Tuda9XdZjt3uxw
+         jlCy8cGoxi+EOYey3z/E3HYds4d+Eq7XAnWRkQy5kghYapXgOLN5VWU1pDKjy2K4qgRd
+         ACzw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1706973190; x=1707577990;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:sender:x-gm-message-state:from:to:cc
+        d=1e100.net; s=20230601; t=1706974110; x=1707578910;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=xN9WkJF6hYDK+c2hghOyEcly1TR1Vl/4IjxK+gN4NfY=;
-        b=THR/HdlGa4RzDLSKkzeHnZrukJ4e/MgBvRxBiWLyXrJ6oNfukrsogPZIBeLzk51o00
-         HHbczgA20AyJJPmgQXslg/qmZZaDGNvx54oDIk5pMzYJdIEKz2SyLWhxHvvp3upyOLYV
-         IQF25sqW4ZfTsq/Sxpqshqqzm9K3gPuyFoApJYK2EDUTO5AYd/EZr4yzXRMvHgfwknqv
-         CmyKU6VOa2xVNu8QAszLlfQJ42bEziwKlx+oKgFz4tILElTKpT4zbM2N6IK/js3pLmRY
-         9GFiPgZ/r3dpRVQvA8L3O/JXQJG64qbW6I76BuogIo1g+3jlGZ/8yyJ3TFIimw/ydcma
-         yKTQ==
-X-Gm-Message-State: AOJu0YxHYU9b9cizGRXfHFP2wAN8t++SIlbyUxjyOdM9VhpG5XrrqTz3
-	iSPS1hDsXehkw/1V85PxeL2ezKrhd0usaMciYUOMIJygUR6xJrlM
-X-Google-Smtp-Source: AGHT+IGzclwUEWMRrB7qUW7wMZUYvN4KbDaWuMK5T/g9+YsyjQ0OdD5a6sVLWIN+82c2yQmSgWYBeQ==
-X-Received: by 2002:a05:6a00:1407:b0:6df:f634:4f83 with SMTP id l7-20020a056a00140700b006dff6344f83mr6028980pfu.2.1706973189541;
-        Sat, 03 Feb 2024 07:13:09 -0800 (PST)
-X-Forwarded-Encrypted: i=0; AJvYcCUqYJZtF0397o79UzP467rq+EAXWG13ZCkuGdHXaZvG71bKhtaZ87yr7V3NXIZ4NLnCp5BZJCtLrJoXZAvzCQja+f1KOfybqtNT3eANB/oh3C1NGHWrKwehgCcO1ZoJWFzCG8l9NENaMXsUitkqyCf+tBUR8DPmy0MzKRMF+fceGoyC07gWeQIC/+j8+A9AY2PUVsF/oR5RJG2OiYXEtUeAn9txBrXtmxbbctnYemk8oyh5Ds1FoopUbq8VbebCQlvPAMdoP1SL+8aMgJzY4bn8Y906L7Ln31LNTfXN32Y/7cLg/RtQN54lUDUCa59F9HSRZWMxOvy/E5NQf9HvxxK8wFMxgvAksmEkf59tqFRV3Z2NYW+G73xa3vhzLN3x8wMHUy36RY81K4pEVeHwaPF2m3jCz70uno3P3cGWYzD7w6WbTsfyh5+Y4k1QcnWMyTsaTp214+GkWDcqFV0LYvNpHTpn028grAIXbj05NYX5kjklvxeBjCPgndBnHoKVcRCDnnRqSzIUu51mTEdzgvI1Q2nZjBdDxkTvpNq07AsalOaiJ1/HqSt0PGeI1zEQOfauB6xDTFgRiBP1M4kuWN+uKOY4VEfi4oA22jZ4Cmb+NicUk9EJt4J85246qjNKaH1aRLitgP0sJQ4VlP8CuzyKJtZ91RcILRYmL1NxX7ZW0w0nuBUyRqKtYA==
-Received: from server.roeck-us.net ([2600:1700:e321:62f0:329c:23ff:fee3:9d7c])
-        by smtp.gmail.com with ESMTPSA id b129-20020a62cf87000000b006dfe45dfdb4sm3671627pfg.74.2024.02.03.07.13.08
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sat, 03 Feb 2024 07:13:09 -0800 (PST)
-Sender: Guenter Roeck <groeck7@gmail.com>
-Date: Sat, 3 Feb 2024 07:13:08 -0800
-From: Guenter Roeck <linux@roeck-us.net>
-To: Billy Tsai <billy_tsai@aspeedtech.com>
-Cc: jdelvare@suse.com, robh+dt@kernel.org,
-	krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
-	joel@jms.id.au, andrew@codeconstruct.com.au, corbet@lwn.net,
-	u.kleine-koenig@pengutronix.de, p.zabel@pengutronix.de,
-	naresh.solanki@9elements.com, linux-hwmon@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-	linux-aspeed@lists.ozlabs.org, linux-kernel@vger.kernel.org,
-	linux-doc@vger.kernel.org, linux-pwm@vger.kernel.org,
-	BMC-SW@aspeedtech.com, patrick@stwcx.xyz
-Subject: Re: [PATCH v13 1/3] dt-bindings: hwmon: fan: Add fan binding to
- schema
-Message-ID: <e1b1c69f-a2ff-4fa5-80a6-3ff0a3de6ce6@roeck-us.net>
-References: <20240124060705.1342461-1-billy_tsai@aspeedtech.com>
- <20240124060705.1342461-2-billy_tsai@aspeedtech.com>
+        bh=W4MXHNjW+3TW74SFPNk16h7YsfWAXkb7kmdm8q7xjLc=;
+        b=vzHQdlT3zQwcSt/pmuIXExcP5rG1EkCUBcfmpv4Vh3Lzb7GXVdgz2V19ArQsqz60S1
+         /yjr3wgPHH6KinQfeJbqFUI7G/2xAdvlxPeZ4lxlwS1pG52aYpi4wdgbUofbLeL1mO9m
+         zEN2/encOYOM9wsjQ4h32/IGvVb6Q+5+CImqmjU1qgA0JOqJxgEFfNCquigAGBfS0NWA
+         qXXwvBQys+6JknuHeZdR4s8FDDgyyoCF9r3E3glNrk5Q8d296I3/G41+ZGf6g7N+bV0u
+         UX1EcRm8m4NujPyfba/fPjpJ/zfgkr+Bl2XNSKB3kmyqGJiax63nXkMmwMoSsfsJMpJ+
+         sR6w==
+X-Gm-Message-State: AOJu0YzoFuXI/GyjqYY3yokgbXieWisFOu6Z1GGJnS4S+V9K1E78xDWY
+	wjzoTyPW+td7S5Rg6QyPFUswWGocDLC5wCnd1uQND7b51H0OrWzrDiEmBUKjk13UzgbhZqpqABO
+	5SSIgnZ82Qf7oTcjnMhP9cy37zd0=
+X-Google-Smtp-Source: AGHT+IGejb+39506xYRD04If91RNf9v3LcAXOuCrzLQson7SehNnWvNWTnkJYS0utZcAT5pi3N6ieKNhEj937IpriAY=
+X-Received: by 2002:a05:6358:340f:b0:176:40fb:cf3a with SMTP id
+ h15-20020a056358340f00b0017640fbcf3amr10746219rwd.14.1706974109996; Sat, 03
+ Feb 2024 07:28:29 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20240124060705.1342461-2-billy_tsai@aspeedtech.com>
+References: <20240202093907.9465-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
+ <20240202093907.9465-2-prabhakar.mahadev-lad.rj@bp.renesas.com> <20240202-explain-harsh-b5d81cb5f59a@spud>
+In-Reply-To: <20240202-explain-harsh-b5d81cb5f59a@spud>
+From: "Lad, Prabhakar" <prabhakar.csengg@gmail.com>
+Date: Sat, 3 Feb 2024 15:27:52 +0000
+Message-ID: <CA+V-a8u--97k82xUdCnCRqo7cj+JAkmzAgcZqnD2neSGvtgznQ@mail.gmail.com>
+Subject: Re: [PATCH 1/3] dt-bindings: interrupt-controller:
+ renesas,rzg2l-irqc: Update interrupts
+To: Conor Dooley <conor@kernel.org>
+Cc: Thomas Gleixner <tglx@linutronix.de>, Rob Herring <robh+dt@kernel.org>, 
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Geert Uytterhoeven <geert+renesas@glider.be>, Magnus Damm <magnus.damm@gmail.com>, 
+	devicetree@vger.kernel.org, linux-renesas-soc@vger.kernel.org, 
+	linux-kernel@vger.kernel.org, Biju Das <biju.das.jz@bp.renesas.com>, 
+	Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>, 
+	Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-On Wed, Jan 24, 2024 at 02:07:03PM +0800, Billy Tsai wrote:
-> From: Naresh Solanki <naresh.solanki@9elements.com>
-> 
-> Add common fan properties bindings to a schema.
-> 
-> Bindings for fan controllers can reference the common schema for the
-> fan
-> 
-> child nodes:
-> 
->   patternProperties:
->     "^fan@[0-2]":
->       type: object
->       $ref: fan-common.yaml#
->       unevaluatedProperties: false
-> 
-> Signed-off-by: Naresh Solanki <naresh.solanki@9elements.com>
-> Signed-off-by: Billy Tsai <billy_tsai@aspeedtech.com>
+Hi Conor,
 
-v12 of this patch got a Reviewed-by: tag from Rob.
-The tag is gone in this version, presumably meaning that there
-was a substantial change.
+Thank you for the review.
 
-I don't normally do this, but I downloaded v12 and v13 and did not
-find a single change. Why did you drop Rob's Reviewed-by: tag ?
+On Fri, Feb 2, 2024 at 5:07=E2=80=AFPM Conor Dooley <conor@kernel.org> wrot=
+e:
+>
+> On Fri, Feb 02, 2024 at 09:39:05AM +0000, Prabhakar wrote:
+> > From: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+> >
+> > RZ/{G2L, G2LC}, RZ/G2UL, RZ/V2L and RZ/G3S SoCs have ECCRAM0/1 interrup=
+ts,
+> > reflect the same in the DT binding doc.
+>
+> Renesas' naming scheme really does not help here, but using the
+> shorthands in the commit message when the diff uses the long form names
+> is not the easiest thing to follow. (:
+>
+Sure I'll elabore the SoCs according to the binding doc so that it's more c=
+lear.
+> >
+> > RZ/G3S SoC has ECCRAM0/1 interrupts combined into single interrupts so
+> > we just use the below to represent them:
+> > - ec7tie1-0
+> > - ec7tie2-0
+> > - ec7tiovf-0
+>
+> I think this information would be good in the itemised description,
+> since that claims these interrupt are only for ECCRAM0.
+>
+Sure 'll update as below:
 
-Guenter
++      - const: ec7tie1-0   # For RZ/G3S SoC ECCRAM0/1 interrupts combined
++      - const: ec7tie2-0   # For RZ/G3S SoC ECCRAM0/1 interrupts combined
++      - const: ec7tiovf-0  # For RZ/G3S SoC ECCRAM0/1 interrupts combined
+
+>
+> > Additionally mark 'interrupt-names' property as required for all the So=
+Cs
+> > and update the example node in the binding doc.
+>
+> Why? You've not given a reason for doing this, so it just seems
+> gratuitous.
+>
+Previous assumption was just the RZ/G2UL and RZ/G3S had the bus-err
+and eccram error interrupts, but where as in actual all the above SoCs
+have this interrupt so making interrupt-names as required so we can
+parse them based on names.
+
+Cheers,
+Prabhakar
 
