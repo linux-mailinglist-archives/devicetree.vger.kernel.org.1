@@ -1,170 +1,108 @@
-Return-Path: <devicetree+bounces-38274-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-38275-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id D5964848652
-	for <lists+devicetree@lfdr.de>; Sat,  3 Feb 2024 13:50:04 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id DC08E84868F
+	for <lists+devicetree@lfdr.de>; Sat,  3 Feb 2024 14:43:56 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 0E83B1C208E1
-	for <lists+devicetree@lfdr.de>; Sat,  3 Feb 2024 12:50:04 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 785B4285245
+	for <lists+devicetree@lfdr.de>; Sat,  3 Feb 2024 13:43:55 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 423E3F4E3;
-	Sat,  3 Feb 2024 12:49:41 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id EF5185C91F;
+	Sat,  3 Feb 2024 13:43:52 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="WRQov7XJ"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="xplTRPv5"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-yb1-f174.google.com (mail-yb1-f174.google.com [209.85.219.174])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 129AC1AAD7;
-	Sat,  3 Feb 2024 12:49:40 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 520D95C916
+	for <devicetree@vger.kernel.org>; Sat,  3 Feb 2024 13:43:51 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.219.174
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1706964581; cv=none; b=Us9n6GOTFWiUsWDxbAPS9hpS+MACJrXwDp+BvhqQEr6mS22YrW4VpvgJf5LGk5tx6E98k2XYI614ORA9zdVEaNg/F9ozp3LJxy89I15yBEDl2wDhgehfcI1KqsmauufLszG29a0oyxGIo0pRmysEnxnlpDOLfXKm+LCemqt4yjU=
+	t=1706967832; cv=none; b=Q00gceQswDy0AsF5tfLZhNJLU/LxilaBc3TxjdiDP2xruRxA4G2kPwqHumVPxegZn/n0I+LMyjEDWiuidEZIBb1PB/WFYG4WbhLggB1gMe4X6Gcq8gapxppH7UTsWUJ59VM4XRymvAUkOXMGmFDFgF/YabGpx5ynxAvuAPn3I4s=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1706964581; c=relaxed/simple;
-	bh=6kjbl1g7BDMcRDmouRbEqBe7/mwlwpaki1999XL76Ro=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=JevQEGyQ8yTlWUvNw1Qw+OC1lmgJXglSST+SgWJFoC8zxEFHLbjWj5veTZ/f/g/hGdgtq8F+kLc1AT1dmNezTq/zfRYvwbNjh+LL89L7ij5j2DcZCbuzAjdPfXcANxZtXu1pa0oBHiZRYyaFdJz5kQ82G4GF1ihb0QdR+5nrEkw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=WRQov7XJ; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 5A4C6C433F1;
-	Sat,  3 Feb 2024 12:49:38 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1706964580;
-	bh=6kjbl1g7BDMcRDmouRbEqBe7/mwlwpaki1999XL76Ro=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=WRQov7XJJaoO1pTdZYIANiPOhqu5OfpbYQjaxkhAssDFUdcEjK//Ayr0Zd3hgYElJ
-	 E4ran6/wk6VBGQnJZ58/uxbecM/YNLTY4daybqrZSKEoc0qC4rO0i0Voo5lQLwv9ro
-	 AGuCeNSOeXXIvVekI9F5PlxO+C960yMlWjx0syW6xnugsNM4rQsXpx/lwg6yZv3ard
-	 VA2n4uJAM3k0BM8LR/MG6baw5UBjdokk74RUVqot5cUL3pjpK6vqJQ4Sh1i+m9yL9n
-	 AuOGSF5lYGlt2hOeQEQ7k8FPcw11zKPk8U49UEyDpZuW8Sy+o9iuKDWskJl4Cms/Fh
-	 OnSQY66IPnyuQ==
-Date: Sat, 3 Feb 2024 20:36:42 +0800
-From: Jisheng Zhang <jszhang@kernel.org>
-To: Jernej =?utf-8?Q?=C5=A0krabec?= <jernej.skrabec@gmail.com>
-Cc: Rob Herring <robh+dt@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>, Chen-Yu Tsai <wens@csie.org>,
-	Samuel Holland <samuel@sholland.org>,
-	Andre Przywara <andre.przywara@arm.com>,
-	Icenowy Zheng <uwu@icenowy.me>, devicetree@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org, linux-sunxi@lists.linux.dev,
-	linux-kernel@vger.kernel.org
-Subject: Re: [PATCH 2/2] arm64: dts: allwinner: h616: Add Sipeed Longan SoM
- 3H and Pi 3H board support
-Message-ID: <Zb4zWsfzgJkZa2KQ@xhacker>
-References: <20231228145647.1470-1-jszhang@kernel.org>
- <20231228145647.1470-3-jszhang@kernel.org>
- <2589997.Lt9SDvczpP@jernej-laptop>
+	s=arc-20240116; t=1706967832; c=relaxed/simple;
+	bh=bB5NkbMpLI0HMjQqKghAYbfh6kYTOIzuHFhSgRTqF8A=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=NhrInhAU9aoxoYBwDs3d7vk4OmA59hiOqKUosiNQcDSoW11oh4JaRprpwBZUNm2mIl0Xa6UhZUwTxwSPrPZsATotTYLjLSGa7QXSvsPFf67MmVbQ7hIjLZe88h+hsnLWJYng/pJjEu9kXcEI1GbEdqnOnDHpQeWFMFlF3acw09U=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=xplTRPv5; arc=none smtp.client-ip=209.85.219.174
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-yb1-f174.google.com with SMTP id 3f1490d57ef6-dc6cbe1ac75so1273459276.1
+        for <devicetree@vger.kernel.org>; Sat, 03 Feb 2024 05:43:51 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1706967830; x=1707572630; darn=vger.kernel.org;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=Moz+VNtFoELbtekbvE4gjgVQwcWCMsMt8Pxrs1cix0U=;
+        b=xplTRPv57H9fHe6LnBMdCcERI3feAeaCo41jCCrPg2eze8Eoo/PsbSvOdrsZpmlfY3
+         F63PSW/SscYt8VhqjI5IC0AMtxjwfzVTQRsoA4CsGy90zZvnTkoOEXKzYiSu5PelOtit
+         I0ZZZtn8mSerCtIxjUgAAwVoH6W5Mim1nBZU2zhb1LK9usflDnx7GL2ks6Eq2SUoytcx
+         6DpChByqZsBdtiaiQRRAbOgjHQIcc1E/DmI7Qv7EDS6Vv/WZ5/mEpXJ6iTvrHDI+Xoau
+         3IO560cECUFt7IqWZeVC56fM14trVlNTdnVqgkEDPuOjj3sBL/8HZjQeL9jIKroEBRJP
+         AmUg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1706967830; x=1707572630;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=Moz+VNtFoELbtekbvE4gjgVQwcWCMsMt8Pxrs1cix0U=;
+        b=p2Y3CpXM0JB1ckIaL1YHnyfBHg+nT+bT8JOECdRPGuDYGaWG0FH9FlJYy5xPfOIQPF
+         vNcxIUrnqD3OUOER9WIsTGFlxggfqaERS/ehHCZJcLkmPFtm9fczr8m3HH12nbAF7mRX
+         iFtyAtHV8I1FVdc/ZYKqnEsmntLMi9MfQNSfy2DefTVjkv8R4wX75tW88B5f/wQB6jQQ
+         aiBJhqwpzkDU4HBFybNt0enZqHVhZRf3V+bb1WVdUMRWmJuerzyT2m/jBRjKuapUmVOw
+         Yi+8pz8c0gG/c0hXuw1xv2oA4awfQtQvVrYOKjLNkUCDCdyZN0erUzjRKhvL12aD6sLE
+         iOVQ==
+X-Gm-Message-State: AOJu0YzbNmyk7MnlB4MfDmIz0uGyxne41VnpAFk8zHppqGxbj4GLm+qD
+	MzwCopXiBQh4wHrj/JdTth4TrntWJ/mTRYDzeCqvCrlh6Y0r8cyMTfRXySm3OHWzWHBjxqZOSQJ
+	R1mglnoOwPic9KHvw2IWakXVz0yOQSdWAGKxRVw==
+X-Google-Smtp-Source: AGHT+IHC1Kjcdw2ForbRnh30ds48ubtWrAYlVUrU2czhMHf7NwzSUklUGHHrewM+CW4nYQ+906Zj9TjWidJCAslfPqs=
+X-Received: by 2002:a05:6902:dc9:b0:dc2:a46:3d29 with SMTP id
+ de9-20020a0569020dc900b00dc20a463d29mr987960ybb.9.1706967830271; Sat, 03 Feb
+ 2024 05:43:50 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <2589997.Lt9SDvczpP@jernej-laptop>
+References: <eqepewdgp5k3ajusf3hk7nazi2eli2w6wgxlbjroldwyobzh3d@aewtie2d3ora> <20240203070008.15206-1-amadeus@jmu.edu.cn>
+In-Reply-To: <20240203070008.15206-1-amadeus@jmu.edu.cn>
+From: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+Date: Sat, 3 Feb 2024 14:43:39 +0100
+Message-ID: <CAA8EJppdG--2=pC=WjaK0HH3NDrh_HXLNmk8AMMMfCLvbtxpEw@mail.gmail.com>
+Subject: Re: [PATCH v3 2/2] arm64: dts: qcom: ipq6018: enable sdhci node
+To: Chukun Pan <amadeus@jmu.edu.cn>
+Cc: andersson@kernel.org, conor+dt@kernel.org, devicetree@vger.kernel.org, 
+	konrad.dybcio@linaro.org, krzysztof.kozlowski+dt@linaro.org, 
+	linux-arm-msm@vger.kernel.org, linux-kernel@vger.kernel.org, 
+	robh+dt@kernel.org
+Content-Type: text/plain; charset="UTF-8"
 
-On Tue, Jan 09, 2024 at 09:37:03PM +0100, Jernej Škrabec wrote:
-> Hi Jisheng,
+On Sat, 3 Feb 2024 at 08:00, Chukun Pan <amadeus@jmu.edu.cn> wrote:
+>
+> Hi, Bjorn
+> > That sounds good, but do we have any one of those boards that should
+> > reference &ipq6018_l2? Could make plug it into the sdhci node on some
+> > board?
+>
+> Actually I have an ipq6010 sdcard device with pmic, which needs to
+> reference ipq6018_l2. Also on the downstream qsdk kernel, the sdhc
+> node writes 'vqmmc-supply = <&ipq6018_l2>;' by default.
+>
+> > Essentially, why is it needed upstream, when there are no user?
+>
+> Most ipq60xx devices have pmic chips, including some ipq6000 devices,
+> while another ipq6000 devices do not have the pmic chips. So it does not
+> mean there are no users but the supply is board specific. Maybe we should
+> move the mp5496 node outside of ipq6018.dtsi.
 
-Hi Jernej,
+Yes, please. In the end, mp5496 is not a part of the SoC.
 
-> 
-> Andre gave you thorough review already, so just one additional comment
-> below.
-> 
-> Dne četrtek, 28. december 2023 ob 15:56:47 CET je Jisheng Zhang napisal(a):
-> > The Sipeed Longan SoM 3H is a system on module based on the Allwinner
-> > H618 SoC. The SoM features:
-> > 
-> > - Four ARM Cortex-A53 cores, Mali-G31 MP2 GPU
-> > - 2/4 GiB LPDDR4 DRAM SoMs
-> > - AXP313a PMIC
-> > - eMMC
-> > 
-> > The Sipeed Longan PI 3H is a development board based on the above SoM.
-> > The board features:
-> > - Longan SoM 3H
-> > - Raspberry-Pi-1 compatible GPIO header
-> > - 2 USB 2.0 host port
-> > - 1 USB 2.0 type C port (power supply + OTG)
-> > - MicroSD slot
-> > - 1Gbps Ethernet port (via RTL8211 PHY)
-> > - HDMI port
-> > - WiFi/BT chip
-> > 
-> > Add the devicetree file describing the currently supported features,
-> > namely PMIC, LEDs, UART, SD card, eMMC, USB and Ethernet.
-> > 
-> > Signed-off-by: Jisheng Zhang <jszhang@kernel.org>
-> > ---
-> >  arch/arm64/boot/dts/allwinner/Makefile        |   1 +
-> >  .../sun50i-h618-longan-module-3h.dtsi         |  82 +++++++++++
-> >  .../dts/allwinner/sun50i-h618-longanpi-3h.dts | 133 ++++++++++++++++++
-> >  3 files changed, 216 insertions(+)
-> >  create mode 100644 arch/arm64/boot/dts/allwinner/sun50i-h618-longan-module-3h.dtsi
-> >  create mode 100644 arch/arm64/boot/dts/allwinner/sun50i-h618-longanpi-3h.dts
-> > 
-> > diff --git a/arch/arm64/boot/dts/allwinner/Makefile b/arch/arm64/boot/dts/allwinner/Makefile
-> > index 3aca6787a167..00db504a9b8c 100644
-> > --- a/arch/arm64/boot/dts/allwinner/Makefile
-> > +++ b/arch/arm64/boot/dts/allwinner/Makefile
-> > @@ -42,4 +42,5 @@ dtb-$(CONFIG_ARCH_SUNXI) += sun50i-h616-bigtreetech-cb1-manta.dtb
-> >  dtb-$(CONFIG_ARCH_SUNXI) += sun50i-h616-bigtreetech-pi.dtb
-> >  dtb-$(CONFIG_ARCH_SUNXI) += sun50i-h616-orangepi-zero2.dtb
-> >  dtb-$(CONFIG_ARCH_SUNXI) += sun50i-h616-x96-mate.dtb
-> > +dtb-$(CONFIG_ARCH_SUNXI) += sun50i-h618-longanpi-3h.dtb
-> >  dtb-$(CONFIG_ARCH_SUNXI) += sun50i-h618-orangepi-zero3.dtb
-> > diff --git a/arch/arm64/boot/dts/allwinner/sun50i-h618-longan-module-3h.dtsi b/arch/arm64/boot/dts/allwinner/sun50i-h618-longan-module-3h.dtsi
-> > new file mode 100644
-> > index 000000000000..88a7d287b73c
-> > --- /dev/null
-> > +++ b/arch/arm64/boot/dts/allwinner/sun50i-h618-longan-module-3h.dtsi
-> > @@ -0,0 +1,82 @@
-> > +// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
-> > +/*
-> > + * Copyright (C) Jisheng Zhang <jszhang@kernel.org>
-> > + */
-> > +
-> > +/dts-v1/;
-> > +
-> > +#include "sun50i-h616.dtsi"
-> > +
-> > +/ {
-> > +	model = "Sipeed Longan Module 3H";
-> > +	compatible = "sipeed,longan-module-3h", "allwinner,sun50i-h618";
-> > +};
-> > +
-> > +&mmc2 {
-> > +	pinctrl-names = "default";
-> > +	pinctrl-0 = <&mmc2_pins>;
-> > +	vmmc-supply = <&reg_dldo1>;
-> > +	vqmmc-supply = <&reg_aldo1>;
-> > +	bus-width = <8>;
-> > +	non-removable;
-> > +	cap-mmc-hw-reset;
-> > +	mmc-ddr-1_8v;
-> 
-> I think above is superfluous if hs200 is also defined.
-
-I read the mmc code again, IMHO, mmc-ddr-1_8v and mmc-hs200-1_8v
-are for different caps, the former is for MMC_CAP_1_8V_DDR and
-the later is for MMC_CAP2_HS200_1_8V_SDR, I must admit that
-mmc-hs200-1_8v does imply mmc-ddr-1_8v in normal host controllers
-but they are different, and I found other dts files also contain
-both, so I kept this as is in v2.
-
-Thanks
-
-> 
-> > +	mmc-hs200-1_8v;
-> > +	status = "okay";
-> > +};
-> > +
- 
+-- 
+With best wishes
+Dmitry
 
