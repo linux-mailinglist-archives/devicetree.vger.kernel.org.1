@@ -1,224 +1,182 @@
-Return-Path: <devicetree+bounces-38282-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-38283-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id E745C8486DA
-	for <lists+devicetree@lfdr.de>; Sat,  3 Feb 2024 15:55:00 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5072A8486F0
+	for <lists+devicetree@lfdr.de>; Sat,  3 Feb 2024 16:06:06 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 9B26A285672
-	for <lists+devicetree@lfdr.de>; Sat,  3 Feb 2024 14:54:59 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id D0D931F250FE
+	for <lists+devicetree@lfdr.de>; Sat,  3 Feb 2024 15:06:05 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B3AB35DF34;
-	Sat,  3 Feb 2024 14:54:54 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9CE715F474;
+	Sat,  3 Feb 2024 15:05:57 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="tLVmp8Zx"
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="Yjg+4kYz"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f43.google.com (mail-wm1-f43.google.com [209.85.128.43])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.16])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C82375EE93
-	for <devicetree@vger.kernel.org>; Sat,  3 Feb 2024 14:54:52 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.43
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C52AB5EE64;
+	Sat,  3 Feb 2024 15:05:55 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=192.198.163.16
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1706972094; cv=none; b=cukhopy6MavprrxzvC62KNttC5mR8rKCXjlQZSdFyzBwKvdeoRlRUULpK9X26mh8Fsik1o1p3/od7+BQBReBQx1yodi/8zvwXbJaOUPDMv7FwJ58PNnFHtG49vnqql/MgJysWkcFHSwpOMdJQDXoRgysnUgfEFniqw8PCj9eAt4=
+	t=1706972757; cv=none; b=N+edxHYjAdnWId5t9aMTOkDyEsPkEntXx9twbE5Cispou2FZ4yScrfijBjhFHIUH7NhLJCpK0U8RTDGK8+ztOH+EjsDFE/aTOtq7N5fvhBAHAC0/E2F2j2NNwlwZt009wHCdKYQ3BgG/7daMjvRAIZBJJVMFDByhXKw2WTAIfU4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1706972094; c=relaxed/simple;
-	bh=9Yrtb6dNl6HImYgM5t9N6vy88uzxettAlCzyHo53KP0=;
-	h=Message-ID:Date:MIME-Version:From:Subject:To:Cc:References:
-	 In-Reply-To:Content-Type; b=SwWrmeorpirGfkGiDmIxSv2JFxnNLe/nhxWXomC/hhJ3yjjscrUN1u8jA6tu84aNuPZ+lvXCyEUogGF5FtIMCrivP/UewulW7eWCvg+K6eZtVkwF99UKFLQN+njziLLCla6LGBMS9UlXH2cmJfKaJAxF8MLFXakYcy9Gq22hL88=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=tLVmp8Zx; arc=none smtp.client-ip=209.85.128.43
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-wm1-f43.google.com with SMTP id 5b1f17b1804b1-40e80046264so25500625e9.0
-        for <devicetree@vger.kernel.org>; Sat, 03 Feb 2024 06:54:52 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1706972091; x=1707576891; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:organization:autocrypt
-         :references:cc:to:content-language:subject:reply-to:from:user-agent
-         :mime-version:date:message-id:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=l9tkqvlJI491obbTK4oQ1wFNxZfPVsleOITChHyLKBE=;
-        b=tLVmp8ZxSGjm157qdDIMkEjGF5T3j0KL7Hmc9sC25PB2y7R/+8mMBTuu0Iy02OcZxN
-         0TENG3gnDj5H68koYcKL4IWFJOUAytBIY6G0+NS5t0be906W8JATjmNUuMqrLRMETbFT
-         nR7mmAupATpjX4yNlFZsoAw2t6DUdFcnOQzW4nN3OH+GPA87p6QeXUBlcWyt/DKVw/nG
-         Aeq9iICSWMxD34ifz9+nO67MtUZfwZ2Slk0iYNcUmPF2Z56wu60L0T7ybVRR6cxOntwd
-         1j4rVlbtNDXmz/Tp9BenDhb/cYcYvDBXtli3+ToimCPtE19HnZeb2ZxG7YeTuGOkm89q
-         NYow==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1706972091; x=1707576891;
-        h=content-transfer-encoding:in-reply-to:organization:autocrypt
-         :references:cc:to:content-language:subject:reply-to:from:user-agent
-         :mime-version:date:message-id:x-gm-message-state:from:to:cc:subject
-         :date:message-id:reply-to;
-        bh=l9tkqvlJI491obbTK4oQ1wFNxZfPVsleOITChHyLKBE=;
-        b=tVDS0Twy1T7vgmx6UZ5uSsY+sGuFzHxsDoWu0nutJ9t/eSEAWXs5EiePHA/Tdao3vc
-         Hp5KpYsiwhDhtYr/MaCUM9xa/vWr6/Y7AIL6BRJ3RJLI/iHvTk3/h5NH7tDC3Zo5lfoX
-         oOiVMI5vQBbrnw+M7SR0ssco+rUBGe5TN3pc+JPBwbRLOzsXUjkx/5vTmDPBidgmj3MI
-         7H2PC9s6Ef4s85sOsWG5o7zTzGWbJPLxqVOj0FIW8+JZqIwRPhzRiTyRnP+QkF0lUFRU
-         LsXOXWmGfnR+xVWau5ngcRf9eVscWwT+s+yr5kW0sy9OQ31v2YOOp/OTzRi/fPbjytMc
-         lV7g==
-X-Gm-Message-State: AOJu0YyGWECCZZE7a9ZEPQf6PAcK27JEpbk1Qz3NWtnYy6kwXAiCrjsx
-	XfEh+oX0bGLpS+zxeo1uGlX3ZO60A1SgEI/SVEaKLTN746zzs0/vZSnHUkdRg9Y=
-X-Google-Smtp-Source: AGHT+IHXAkBEU+4phuk0x9RIgoQbb/RVBPp7glE19zxapjl1x1NoB1M1sSuHmDXgk0zB4Aiuntw8jQ==
-X-Received: by 2002:a5d:4d10:0:b0:33a:fdc3:a61c with SMTP id z16-20020a5d4d10000000b0033afdc3a61cmr3548775wrt.31.1706972090927;
-        Sat, 03 Feb 2024 06:54:50 -0800 (PST)
-X-Forwarded-Encrypted: i=0; AJvYcCVRCzHtAxcuO8mrR+BHEE9m2OUgtXZvH24s2X8wVEUHdg3dAJKrtQBscD0H9UBYB7EQTgfgy8gxbJjpr8clQA5C7Mm6+M7aL2StC2EeuzuRMH3KTyk3Nj1Fxjq5KHqIaIQTUqkbVXrIthqr/naK88+8SIZYQJw0LAhy10KuS88w9UTyIypyCOsLxwYBT9P8CDha26LwfKrhX+Qu/t1kfO2yIOcC2Qj+SYc7hPx1nmC8wB3ehPpE7dis7hP3LxrJmjFhf5zletxBIsljJ3rzSQSiMrstw9Fxn+C+ZrkShRhPhmENeGTq5g==
-Received: from ?IPV6:2001:67c:1810:f055:5044:617a:60fb:ed01? ([2001:67c:1810:f055:5044:617a:60fb:ed01])
-        by smtp.gmail.com with ESMTPSA id n7-20020a5d6b87000000b0033b0d2ba3a1sm4210200wrx.63.2024.02.03.06.54.49
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sat, 03 Feb 2024 06:54:50 -0800 (PST)
-Message-ID: <74968e8f-1a14-4044-933d-528af39e61b7@linaro.org>
-Date: Sat, 3 Feb 2024 15:54:48 +0100
+	s=arc-20240116; t=1706972757; c=relaxed/simple;
+	bh=ELEZEWWk9NQcZeuQTjNOf8Xawd967PBWJKiK7K14SIs=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=i8wrQeAJQKyhumsfjmfrmKzs0TdB61NZZdzPDKoJHHdMK5BV6pHCjefFPtW2ySy0E3vNWO6pX4eAFD9K8vIvdQtm+/+N0bre2Feb7Th9miO/Vvz3XJRk7FYRLicts89gUMwcbFQ7Fl2gdoYtV158gPhVh6V9PBi+Fa+1wuYJhDM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=Yjg+4kYz; arc=none smtp.client-ip=192.198.163.16
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1706972756; x=1738508756;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:content-transfer-encoding:in-reply-to;
+  bh=ELEZEWWk9NQcZeuQTjNOf8Xawd967PBWJKiK7K14SIs=;
+  b=Yjg+4kYzLsfG50Rw8QHWAZ/+qtKuOQdyrYDzb9hgERXpaud3OCJk/ijl
+   7IjI5BVb90e41xIUI1zpF1R23atfv0Fx4OMRmObArVNVyu7EduqW+5WD6
+   smrYrn6McwoUXV14/zN2xKpxcz/iMyzLcJK56ji9HhW26hoskb7JaoBZf
+   5UtRdTOVE78sFpimli9gfrfZhXWWLqPf3hlqKJMr8114+bxohv0TkAeIy
+   OG7wuR0HY/vW4OSyILh5nCnGf8EnzDRFJ/N+ou455WuIbVhjuBTFwjfeR
+   fAvFJbAXe+mWRXTbpIwEYykc6DyQQ8u0Rcm2eizEk+yj/NwpaVEhxjfkf
+   Q==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10973"; a="555422"
+X-IronPort-AV: E=Sophos;i="6.05,240,1701158400"; 
+   d="scan'208";a="555422"
+Received: from fmviesa002.fm.intel.com ([10.60.135.142])
+  by fmvoesa110.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 03 Feb 2024 07:05:54 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.05,240,1701158400"; 
+   d="scan'208";a="23607836"
+Received: from lkp-server02.sh.intel.com (HELO 59f4f4cd5935) ([10.239.97.151])
+  by fmviesa002.fm.intel.com with ESMTP; 03 Feb 2024 07:05:47 -0800
+Received: from kbuild by 59f4f4cd5935 with local (Exim 4.96)
+	(envelope-from <lkp@intel.com>)
+	id 1rWHaS-0005DA-0N;
+	Sat, 03 Feb 2024 15:05:44 +0000
+Date: Sat, 3 Feb 2024 23:04:47 +0800
+From: kernel test robot <lkp@intel.com>
+To: Aleksandr Shubin <privatesub2@gmail.com>, linux-kernel@vger.kernel.org
+Cc: llvm@lists.linux.dev, oe-kbuild-all@lists.linux.dev,
+	Aleksandr Shubin <privatesub2@gmail.com>,
+	Brandon Cheo Fusi <fusibrandon13@gmail.com>,
+	Uwe =?iso-8859-1?Q?Kleine-K=F6nig?= <u.kleine-koenig@pengutronix.de>,
+	Rob Herring <robh+dt@kernel.org>,
+	Krzysztof Kozlowski <krzk@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>, Chen-Yu Tsai <wens@csie.org>,
+	Jernej Skrabec <jernej.skrabec@gmail.com>,
+	Samuel Holland <samuel@sholland.org>,
+	Paul Walmsley <paul.walmsley@sifive.com>,
+	Palmer Dabbelt <palmer@dabbelt.com>,
+	Albert Ou <aou@eecs.berkeley.edu>,
+	Philipp Zabel <p.zabel@pengutronix.de>,
+	Cristian Ciocaltea <cristian.ciocaltea@collabora.com>,
+	John Watts <contact@jookia.org>,
+	Marc Kleine-Budde <mkl@pengutronix.de>,
+	Maksim Kiselev <bigunclemax@gmail.com>, linux-pwm@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+	linux-sunxi@lists.linux.dev, linux-riscv@lists.infradead.org
+Subject: Re: [PATCH v8 2/3] pwm: Add Allwinner's D1/T113-S3/R329 SoCs PWM
+ support
+Message-ID: <202402032222.BiIrD3g4-lkp@intel.com>
+References: <20240131125920.2879433-3-privatesub2@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-From: Neil Armstrong <neil.armstrong@linaro.org>
-Reply-To: neil.armstrong@linaro.org
-Subject: Re: [PATCH v2] arm64: dts: qcom: sm8550: Switch UFS from opp-table-hz
- to opp-v2
-Content-Language: en-US, fr
-To: Konrad Dybcio <konrad.dybcio@linaro.org>,
- Bjorn Andersson <andersson@kernel.org>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Conor Dooley <conor+dt@kernel.org>
-Cc: Marijn Suijten <marijn.suijten@somainline.org>,
- linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org
-References: <20240203-topic-8550_ufs_oppv2-v2-1-b0bef2a73e6c@linaro.org>
-Autocrypt: addr=neil.armstrong@linaro.org; keydata=
- xsBNBE1ZBs8BCAD78xVLsXPwV/2qQx2FaO/7mhWL0Qodw8UcQJnkrWmgTFRobtTWxuRx8WWP
- GTjuhvbleoQ5Cxjr+v+1ARGCH46MxFP5DwauzPekwJUD5QKZlaw/bURTLmS2id5wWi3lqVH4
- BVF2WzvGyyeV1o4RTCYDnZ9VLLylJ9bneEaIs/7cjCEbipGGFlfIML3sfqnIvMAxIMZrvcl9
- qPV2k+KQ7q+aXavU5W+yLNn7QtXUB530Zlk/d2ETgzQ5FLYYnUDAaRl+8JUTjc0CNOTpCeik
- 80TZcE6f8M76Xa6yU8VcNko94Ck7iB4vj70q76P/J7kt98hklrr85/3NU3oti3nrIHmHABEB
- AAHNKk5laWwgQXJtc3Ryb25nIDxuZWlsLmFybXN0cm9uZ0BsaW5hcm8ub3JnPsLAkQQTAQoA
- OwIbIwULCQgHAwUVCgkICwUWAgMBAAIeAQIXgBYhBInsPQWERiF0UPIoSBaat7Gkz/iuBQJk
- Q5wSAhkBAAoJEBaat7Gkz/iuyhMIANiD94qDtUTJRfEW6GwXmtKWwl/mvqQtaTtZID2dos04
- YqBbshiJbejgVJjy+HODcNUIKBB3PSLaln4ltdsV73SBcwUNdzebfKspAQunCM22Mn6FBIxQ
- GizsMLcP/0FX4en9NaKGfK6ZdKK6kN1GR9YffMJd2P08EO8mHowmSRe/ExAODhAs9W7XXExw
- UNCY4pVJyRPpEhv373vvff60bHxc1k/FF9WaPscMt7hlkbFLUs85kHtQAmr8pV5Hy9ezsSRa
- GzJmiVclkPc2BY592IGBXRDQ38urXeM4nfhhvqA50b/nAEXc6FzqgXqDkEIwR66/Gbp0t3+r
- yQzpKRyQif3OwE0ETVkGzwEIALyKDN/OGURaHBVzwjgYq+ZtifvekdrSNl8TIDH8g1xicBYp
- QTbPn6bbSZbdvfeQPNCcD4/EhXZuhQXMcoJsQQQnO4vwVULmPGgtGf8PVc7dxKOeta+qUh6+
- SRh3vIcAUFHDT3f/Zdspz+e2E0hPV2hiSvICLk11qO6cyJE13zeNFoeY3ggrKY+IzbFomIZY
- 4yG6xI99NIPEVE9lNBXBKIlewIyVlkOaYvJWSV+p5gdJXOvScNN1epm5YHmf9aE2ZjnqZGoM
- Mtsyw18YoX9BqMFInxqYQQ3j/HpVgTSvmo5ea5qQDDUaCsaTf8UeDcwYOtgI8iL4oHcsGtUX
- oUk33HEAEQEAAcLAXwQYAQIACQUCTVkGzwIbDAAKCRAWmrexpM/4rrXiB/sGbkQ6itMrAIfn
- M7IbRuiSZS1unlySUVYu3SD6YBYnNi3G5EpbwfBNuT3H8//rVvtOFK4OD8cRYkxXRQmTvqa3
- 3eDIHu/zr1HMKErm+2SD6PO9umRef8V82o2oaCLvf4WeIssFjwB0b6a12opuRP7yo3E3gTCS
- KmbUuLv1CtxKQF+fUV1cVaTPMyT25Od+RC1K+iOR0F54oUJvJeq7fUzbn/KdlhA8XPGzwGRy
- 4zcsPWvwnXgfe5tk680fEKZVwOZKIEuJC3v+/yZpQzDvGYJvbyix0lHnrCzq43WefRHI5XTT
- QbM0WUIBIcGmq38+OgUsMYu4NzLu7uZFAcmp6h8g
-Organization: Linaro Developer Services
-In-Reply-To: <20240203-topic-8550_ufs_oppv2-v2-1-b0bef2a73e6c@linaro.org>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20240131125920.2879433-3-privatesub2@gmail.com>
 
-On 03/02/2024 01:10, Konrad Dybcio wrote:
-> Now that the non-legacy form of OPP is supported within the UFS driver,
-> go ahead and switch to it, adding support for more intermediate freq/power
-> states.
-> 
-> Signed-off-by: Konrad Dybcio <konrad.dybcio@linaro.org>
-> ---
-> Extracted out of:
-> https://lore.kernel.org/linux-arm-msm/15d2bd66-29f3-435b-8494-d82ec4036413@linaro.org/#t
-> 
-> Changes since v1:
-> - Set the reference clock rate to 0 in opp entries, it doesn't support
->    ratesetting anyway. Confirmed UFS still works.
-> ---
->   arch/arm64/boot/dts/qcom/sm8550.dtsi | 50 +++++++++++++++++++++++++++++-------
->   1 file changed, 41 insertions(+), 9 deletions(-)
-> 
-> diff --git a/arch/arm64/boot/dts/qcom/sm8550.dtsi b/arch/arm64/boot/dts/qcom/sm8550.dtsi
-> index c89d8f3dad21..144e20edf237 100644
-> --- a/arch/arm64/boot/dts/qcom/sm8550.dtsi
-> +++ b/arch/arm64/boot/dts/qcom/sm8550.dtsi
-> @@ -1966,6 +1966,7 @@ ufs_mem_hc: ufs@1d84000 {
->   			iommus = <&apps_smmu 0x60 0x0>;
->   			dma-coherent;
->   
-> +			operating-points-v2 = <&ufs_opp_table>;
->   			interconnects = <&aggre1_noc MASTER_UFS_MEM 0 &mc_virt SLAVE_EBI1 0>,
->   					<&gem_noc MASTER_APPSS_PROC 0 &config_noc SLAVE_UFS_MEM_CFG 0>;
->   
-> @@ -1986,18 +1987,49 @@ ufs_mem_hc: ufs@1d84000 {
->   				 <&gcc GCC_UFS_PHY_TX_SYMBOL_0_CLK>,
->   				 <&gcc GCC_UFS_PHY_RX_SYMBOL_0_CLK>,
->   				 <&gcc GCC_UFS_PHY_RX_SYMBOL_1_CLK>;
-> -			freq-table-hz =
-> -				<75000000 300000000>,
-> -				<0 0>,
-> -				<0 0>,
-> -				<75000000 300000000>,
-> -				<100000000 403000000>,
-> -				<0 0>,
-> -				<0 0>,
-> -				<0 0>;
->   			qcom,ice = <&ice>;
->   
->   			status = "disabled";
-> +
-> +			ufs_opp_table: opp-table {
-> +				compatible = "operating-points-v2";
-> +
-> +				opp-75000000 {
-> +					opp-hz = /bits/ 64 <75000000>,
-> +						 /bits/ 64 <0>,
-> +						 /bits/ 64 <0>,
-> +						 /bits/ 64 <75000000>,
-> +						 /bits/ 64 <0>,
-> +						 /bits/ 64 <0>,
-> +						 /bits/ 64 <0>,
-> +						 /bits/ 64 <0>;
-> +					required-opps = <&rpmhpd_opp_low_svs>;
-> +				};
-> +
-> +				opp-150000000 {
-> +					opp-hz = /bits/ 64 <150000000>,
-> +						 /bits/ 64 <0>,
-> +						 /bits/ 64 <0>,
-> +						 /bits/ 64 <150000000>,
-> +						 /bits/ 64 <0>,
-> +						 /bits/ 64 <0>,
-> +						 /bits/ 64 <0>,
-> +						 /bits/ 64 <0>;
-> +					required-opps = <&rpmhpd_opp_svs>;
-> +				};
-> +
-> +				opp-300000000 {
-> +					opp-hz = /bits/ 64 <300000000>,
-> +						 /bits/ 64 <0>,
-> +						 /bits/ 64 <0>,
-> +						 /bits/ 64 <300000000>,
-> +						 /bits/ 64 <0>,
-> +						 /bits/ 64 <0>,
-> +						 /bits/ 64 <0>,
-> +						 /bits/ 64 <0>;
-> +					required-opps = <&rpmhpd_opp_nom>;
-> +				};
-> +			};
->   		};
->   
->   		ice: crypto@1d88000 {
-> 
-> ---
-> base-commit: 076d56d74f17e625b3d63cf4743b3d7d02180379
-> change-id: 20240203-topic-8550_ufs_oppv2-bb88d63a4c58
-> 
-> Best regards,
+Hi Aleksandr,
 
-Looks fine:
-Reviewed-by: Neil Armstrong <neil.armstrong@linaro.org>
+kernel test robot noticed the following build warnings:
 
-Let me have a test run with it first before applying.
+[auto build test WARNING on robh/for-next]
+[also build test WARNING on sunxi/sunxi/for-next linus/master v6.8-rc2 next-20240202]
+[If your patch is applied to the wrong git tree, kindly drop us a note.
+And when submitting patch, we suggest to use '--base' as documented in
+https://git-scm.com/docs/git-format-patch#_base_tree_information]
 
-Neil
+url:    https://github.com/intel-lab-lkp/linux/commits/Aleksandr-Shubin/dt-bindings-pwm-Add-binding-for-Allwinner-D1-T113-S3-R329-PWM-controller/20240131-210313
+base:   https://git.kernel.org/pub/scm/linux/kernel/git/robh/linux.git for-next
+patch link:    https://lore.kernel.org/r/20240131125920.2879433-3-privatesub2%40gmail.com
+patch subject: [PATCH v8 2/3] pwm: Add Allwinner's D1/T113-S3/R329 SoCs PWM support
+config: x86_64-allyesconfig (https://download.01.org/0day-ci/archive/20240203/202402032222.BiIrD3g4-lkp@intel.com/config)
+compiler: clang version 17.0.6 (https://github.com/llvm/llvm-project 6009708b4367171ccdbf4b5905cb6a803753fe18)
+reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20240203/202402032222.BiIrD3g4-lkp@intel.com/reproduce)
+
+If you fix the issue in a separate patch/commit (i.e. not just a new version of
+the same patch/commit), kindly add following tags
+| Reported-by: kernel test robot <lkp@intel.com>
+| Closes: https://lore.kernel.org/oe-kbuild-all/202402032222.BiIrD3g4-lkp@intel.com/
+
+All warnings (new ones prefixed by >>):
+
+>> drivers/pwm/pwm-sun20i.c:47: warning: This comment starts with '/**', but isn't a kernel-doc comment. Refer Documentation/doc-guide/kernel-doc.rst
+    * SUN20I_PWM_MAGIC is used to quickly compute the values of the clock dividers
+
+
+vim +47 drivers/pwm/pwm-sun20i.c
+
+    45	
+    46	/**
+  > 47	 * SUN20I_PWM_MAGIC is used to quickly compute the values of the clock dividers
+    48	 * div_m (SUN20I_PWM_CLK_CFG_DIV_M) & prescale_k (SUN20I_PWM_CTL_PRESCAL_K)
+    49	 * without using a loop. These dividers limit the # of cycles in a period
+    50	 * to SUN20I_PWM_PCNTR_SIZE by applying a scaling factor of
+    51	 * 1/(div_m * (prescale_k + 1)) to the clock source.
+    52	 *
+    53	 * SUN20I_PWM_MAGIC is derived by solving for div_m and prescale_k
+    54	 * such that for a given requested period,
+    55	 *
+    56	 * i) div_m is minimized for any prescale_k ≤ SUN20I_PWM_CTL_PRESCAL_K_MAX,
+    57	 * ii) prescale_k is minimized.
+    58	 *
+    59	 * The derivation proceeds as follows, with val = # of cycles for reqested
+    60	 * period:
+    61	 *
+    62	 * for a given value of div_m we want the smallest prescale_k such that
+    63	 *
+    64	 * (val >> div_m) // (prescale_k + 1) ≤ 65536 (SUN20I_PWM_PCNTR_SIZE)
+    65	 *
+    66	 * This is equivalent to:
+    67	 *
+    68	 * (val >> div_m) ≤ 65536 * (prescale_k + 1) + prescale_k
+    69	 * ⟺ (val >> div_m) ≤ 65537 * prescale_k + 65536
+    70	 * ⟺ (val >> div_m) - 65536 ≤ 65537 * prescale_k
+    71	 * ⟺ ((val >> div_m) - 65536) / 65537 ≤ prescale_k
+    72	 *
+    73	 * As prescale_k is integer, this becomes
+    74	 *
+    75	 * ((val >> div_m) - 65536) // 65537 ≤ prescale_k
+    76	 *
+    77	 * And is minimized at
+    78	 *
+    79	 * ((val >> div_m) - 65536) // 65537
+    80	 *
+    81	 * Now we pick the smallest div_m that satifies prescale_k ≤ 255
+    82	 * (i.e SUN20I_PWM_CTL_PRESCAL_K_MAX),
+    83	 *
+    84	 * ((val >> div_m) - 65536) // 65537 ≤ 255
+    85	 * ⟺ (val >> div_m) - 65536 ≤ 255 * 65537 + 65536
+    86	 * ⟺ val >> div_m ≤ 255 * 65537 + 2 * 65536
+    87	 * ⟺ val >> div_m < (255 * 65537 + 2 * 65536 + 1)
+    88	 * ⟺ div_m = fls((val) / (255 * 65537 + 2 * 65536 + 1))
+    89	 *
+    90	 * Suggested by Uwe Kleine-König
+    91	 */
+    92	#define SUN20I_PWM_MAGIC			(255 * 65537 + 2 * 65536 + 1)
+    93	
+
+-- 
+0-DAY CI Kernel Test Service
+https://github.com/intel/lkp-tests/wiki
 
