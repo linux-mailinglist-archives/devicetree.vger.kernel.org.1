@@ -1,104 +1,197 @@
-Return-Path: <devicetree+bounces-38191-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-38192-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id C2A9F847DB6
-	for <lists+devicetree@lfdr.de>; Sat,  3 Feb 2024 01:23:26 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id B6898847DC6
+	for <lists+devicetree@lfdr.de>; Sat,  3 Feb 2024 01:29:07 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 5D5F51F25296
-	for <lists+devicetree@lfdr.de>; Sat,  3 Feb 2024 00:23:26 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id C43401C20B97
+	for <lists+devicetree@lfdr.de>; Sat,  3 Feb 2024 00:29:06 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5959864B;
-	Sat,  3 Feb 2024 00:23:21 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0C922643;
+	Sat,  3 Feb 2024 00:29:04 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="WwmKniui"
+	dkim=pass (1024-bit key) header.d=broadcom.com header.i=@broadcom.com header.b="nVoSGtgI"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from relay.smtp-ext.broadcom.com (unknown [192.19.166.231])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2AE7B62B;
-	Sat,  3 Feb 2024 00:23:20 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3BD2D622;
+	Sat,  3 Feb 2024 00:29:01 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=192.19.166.231
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1706919801; cv=none; b=qikwyx1iKS9tu3teiDdQC3cOqxni/FQzdEAHdTK4J9kvwTyrd95Nx7RLVkgNYRahq24qMLcRGhmB/52eesf+Sqa4jNRGavDTczOM7F93GmnjXeQbdD+gEyAkivSUkn0GfJ7nP8QkV1vSk/+AdWkhe1xpYt6mP4sWmzdV4e6AYhg=
+	t=1706920143; cv=none; b=USxwAAgScTkOrZCfYXj19w31kmdc189iZbH2KcWOzjwNHuL+DhcpfJtixd2fiQTEEjPHOnR2cRqouIL6YSG/jkF22NWeCNE3wc6mmrInPpXxcqOUGvb2GOyvWldbE9WS6Fkmge3w3grUq8CAKwL8a4jd3il2W29YA+JzcdzdEjw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1706919801; c=relaxed/simple;
-	bh=b8KssQNXLzHMBGmTyMPMXV3/qG8R2A/3skS26ZNZNWQ=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=hR6TfYCzyGxMbm6SIIo0/rEZ6cQC//6QDgqD3xddrvbwM6vC9SUNMrDos3v5Ob/W4x/BdAL3+NhlicL4RXyKYFJbvVoz74zJnLycPnGOa/tmxiR/4zcklU66hSlux2T/hotdVUODX4pnxC67NStfgE7YDMrxy5NAbarG9HV9cr4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=WwmKniui; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 7CEA1C433C7;
-	Sat,  3 Feb 2024 00:23:18 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1706919800;
-	bh=b8KssQNXLzHMBGmTyMPMXV3/qG8R2A/3skS26ZNZNWQ=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=WwmKniuixk8bh08MN/NnNODNAQwttP0ItoRyQ8SPwep76zKTUptkaEblID5IEIpRq
-	 1Qn+kWnHIok+q/udSQ1ds5sgSzV2pVR+UfpQZyuLLwmn2BSuOEaszG296DSNSogNHQ
-	 69UYZalTd59d1C54G5jKBNlbdx5/4PqmW6iSz3dnVzyMJspFwrIS0U8quClqI/NTvq
-	 7RnQQO9z0xp2P7NU4JlcUQfAPGdJjov5J2bfhcatHljhTiB1Xd1j0UXyw7meF0rL8r
-	 4yy8rgKzTion2JvLm6xxNMjqgnqCHuWLgBgTJEWVQCkY3XvCsEuhAPzec9sT+5nFpv
-	 aEBy62xT3VnNA==
-Date: Sat, 3 Feb 2024 00:23:15 +0000
-From: Mark Brown <broonie@kernel.org>
-To: Linus Walleij <linus.walleij@linaro.org>
-Cc: Geert Uytterhoeven <geert+renesas@glider.be>,
-	Liam Girdwood <lgirdwood@gmail.com>,
+	s=arc-20240116; t=1706920143; c=relaxed/simple;
+	bh=6IQ2jaFQHup3JsKNrVAd3gd6vlUrscEJfijinF/hldk=;
+	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version; b=j/jOnqCRUJdjOdqTGrp9OZHXrwG20HR3jedV1EPh3BO7v9FcAl77T2i7jvmGHaDhLnk5I8qoeebsJAgSba/6xFJg8rbmG75kE2xUjCoB+SULbMGjV7aNeGA2eBI2g7/xo63nWmrB2/K82QCAJAmD2JyWGnmZhjwS5Gg98LH57HA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=broadcom.com; spf=fail smtp.mailfrom=broadcom.com; dkim=pass (1024-bit key) header.d=broadcom.com header.i=@broadcom.com header.b=nVoSGtgI; arc=none smtp.client-ip=192.19.166.231
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=broadcom.com
+Authentication-Results: smtp.subspace.kernel.org; spf=fail smtp.mailfrom=broadcom.com
+Received: from mail-lvn-it-01.lvn.broadcom.net (mail-lvn-it-01.lvn.broadcom.net [10.36.132.253])
+	by relay.smtp-ext.broadcom.com (Postfix) with ESMTP id 4E384C001668;
+	Fri,  2 Feb 2024 16:28:55 -0800 (PST)
+DKIM-Filter: OpenDKIM Filter v2.11.0 relay.smtp-ext.broadcom.com 4E384C001668
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=broadcom.com;
+	s=dkimrelay; t=1706920135;
+	bh=6IQ2jaFQHup3JsKNrVAd3gd6vlUrscEJfijinF/hldk=;
+	h=From:To:Cc:Subject:Date:From;
+	b=nVoSGtgI+VGLYpVsku7u3qKIEEu4jKfcDFkG2JnJsn4rlXIIN5mS1AfXg8E8LcarT
+	 Q/0Df0cBhKderf+SST47yI3qWo1UUUtqD5TILU0ZZ31pgGC4Tju4NJCRKOCSjWWc0V
+	 IHcwbKjELiKVZxpvTXPlpbQrFaEoB2G3AbhtaSzk=
+Received: from bcacpedev-irv-3.lvn.broadcom.net (bcacpedev-irv-3.lvn.broadcom.net [10.173.232.202])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+	(No client certificate requested)
+	by mail-lvn-it-01.lvn.broadcom.net (Postfix) with ESMTPSA id C3D4A18041CAC4;
+	Fri,  2 Feb 2024 16:28:53 -0800 (PST)
+From: William Zhang <william.zhang@broadcom.com>
+To: Linux MTD List <linux-mtd@lists.infradead.org>,
+	Linux ARM List <linux-arm-kernel@lists.infradead.org>,
+	Broadcom Kernel List <bcm-kernel-feedback-list@broadcom.com>
+Cc: f.fainelli@gmail.com,
+	kursad.oney@broadcom.com,
+	joel.peshkin@broadcom.com,
+	anand.gore@broadcom.com,
+	dregan@mail.com,
+	kamal.dasu@broadcom.com,
+	tomer.yacoby@broadcom.com,
+	dan.beygelman@broadcom.com,
+	William Zhang <william.zhang@broadcom.com>,
+	Andre Przywara <andre.przywara@arm.com>,
 	Rob Herring <robh+dt@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Kamal Dasu <kdasu.kdev@gmail.com>,
 	Conor Dooley <conor+dt@kernel.org>,
-	Marek Szyprowski <m.szyprowski@samsung.com>,
-	devicetree@vger.kernel.org, linux-gpio@vger.kernel.org,
-	linux-kernel@vger.kernel.org
-Subject: Re: [PATCH 2/2] regulator: gpio: Correct default GPIO state to LOW
-Message-ID: <d41b0858-df3f-4002-8a51-aaf91bf3a659@sirena.org.uk>
-References: <cover.1706802756.git.geert+renesas@glider.be>
- <ffb1eb1d747dce00b2c09d7af9357cd43284d1c4.1706802756.git.geert+renesas@glider.be>
- <CACRpkdaBBFjtgoUhhK8-X28BK=2NCyRS2NiYvVEZFAsQiNZH9g@mail.gmail.com>
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Miquel Raynal <miquel.raynal@bootlin.com>,
+	=?UTF-8?q?Rafa=C5=82=20Mi=C5=82ecki?= <rafal@milecki.pl>,
+	Shawn Guo <shawnguo@kernel.org>,
+	David Regan <dregan@broadcom.com>,
+	devicetree@vger.kernel.org,
+	Alexandre TORGUE <alexandre.torgue@st.com>,
+	Vignesh Raghavendra <vigneshr@ti.com>,
+	Brian Norris <computersforpeace@gmail.com>,
+	Florian Fainelli <florian.fainelli@broadcom.com>,
+	linux-kernel@vger.kernel.org,
+	Richard Weinberger <richard@nod.at>
+Subject: [PATCH v4 00/12] dt-bindings: mtd: brcmnand: Updates for bcmbca SoCs
+Date: Fri,  2 Feb 2024 16:28:21 -0800
+Message-Id: <20240203002834.171462-1-william.zhang@broadcom.com>
+X-Mailer: git-send-email 2.37.3
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="2EgFFNCMuwbml2pZ"
-Content-Disposition: inline
-In-Reply-To: <CACRpkdaBBFjtgoUhhK8-X28BK=2NCyRS2NiYvVEZFAsQiNZH9g@mail.gmail.com>
-X-Cookie: Do not write in this space.
+Content-Transfer-Encoding: 8bit
 
+This patch series is an update from the previous version [1] after
+exex_op support and fixes (patch 1 to 4 from the previous version.)
 
---2EgFFNCMuwbml2pZ
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
+It updates all the BCMBCA SoC to support the nand controller and add
+functions to handle BCMBCA specific needs on ECC and Write Protection
+usage. The device tree document is also updated accordingly with the new
+properties needed by the driver.
 
-On Fri, Feb 02, 2024 at 06:41:31PM +0100, Linus Walleij wrote:
+In addition there is a bug fix for exec_op helper functions and log
+level adjustment on uncorrectable ECC error.
 
-> Actually, Linux can read back the value just fine in output mode,
-> so what about just ignoring the property and update the document
-> to stop saying that about Linux?
+[1] https://lore.kernel.org/lkml/20230606231252.94838-1-william.zhang@broadcom.com/
 
-IIRC that was there because historically the gpiolib documentation
-said that this was unsupported (though the code never actually prevented
-you trying I think?) and will have made it's way through the DT
-conversion and refactoring of the bindings.
+Changes in v4:
+- Split the yaml changes into three patches.
+- Move the WP pin property to a new patch and change it to boolean type.
+- Move ecc strap property to a new patch and remove some non-binding 
+related text from the description
+- Add a new patch for bcm4908 based router board dts update
+- Move the board related dts setting from SoC dtsi to board dts
+- Update the comments for ecc setting selection
+- Use the new brcm,wp-not-connected property based on the dts binding
+change
+- Fix the commit id in the fixes tag
+- Revert the log level change for correctable ecc error
 
---2EgFFNCMuwbml2pZ
-Content-Type: application/pgp-signature; name="signature.asc"
+Changes in v3:
+- Update brcm,nand-use-wp description
+- Revert the description change to BCM63168 SoC-specific NAND controller
+- Updated bcmbca_read_data_bus comment
 
------BEGIN PGP SIGNATURE-----
+Changes in v2:
+- Revert the new compatible string nand-bcmbca
+- Drop the BCM63168 compatible fix to avoid any potential ABI
+Incompatibility issue
+- Simplify the explanation for brcm,nand-use-wp
+- Keep the interrupt name requirement when interrupt number is specified
+- Add nand controller node label for 4908 so it is consistent with other
+SoC's and can be referenced by board dts file
+- Drop the is_param argument to the read data bus function now that we
+have the exec_op API to read the parameter page and ONFI data
+- Minor cosmetic fixes
+- Added patches 8, 9, 10 to patch series
 
-iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAmW9h3IACgkQJNaLcl1U
-h9DVSAf/XLpZpBYIwHBurSvut6oftYbp411UvUPiYVsMb1MMG6BadJLXhlGfPO1N
-0rx2+TRF2IjA8uHgzw5CfXECPeZnjHPmFwj110WeK1I07ebrCTuNovqC0i/ky2js
-AMfWy6XciHj1Vn5z0IqDI07pgcpagoxsilBRU4BAnwOvy4A7otwNBspGskZ2gRVa
-ZZsaCtJspRnOtX6jAq9k1skq9NPSNeaP9z5CL836X7sWm5kU2e5yHemDXSUhXgqg
-7fHC7W0z9qL3H8Z4vYvNF2JRrlvz6tcvH2bA7Z6avjgI2+jA+deidPyA7GQtrBOP
-aLp7elwWSC151/175uT03pJOhx+Edw==
-=LfY8
------END PGP SIGNATURE-----
+David Regan (2):
+  mtd: rawnand: brcmnand: exec_op helper functions return type fixes
+  mtd: rawnand: brcmnand: update log level messages
 
---2EgFFNCMuwbml2pZ--
+William Zhang (10):
+  dt-bindings: mtd: brcmnand: Updates for bcmbca SoCs
+  dt-bindings: mtd: brcmnand: Add WP pin connection property
+  dt-bindings: mtd: brcmnand: Add ecc strap property
+  ARM: dts: broadcom: bcmbca: Add NAND controller node
+  arm64: dts: broadcom: bcmbca: Add NAND controller node
+  arm64: dts: broadcom: bcmbca: Update router boards
+  mtd: rawnand: brcmnand: Rename bcm63138 nand driver
+  mtd: rawnand: brcmnand: Add BCMBCA read data bus interface
+  mtd: rawnand: brcmnand: Add support for getting ecc setting from strap
+  mtd: rawnand: brcmnand: Support write protection setting from dts
+
+ .../bindings/mtd/brcm,brcmnand.yaml           |  29 +++-
+ arch/arm/boot/dts/broadcom/bcm47622.dtsi      |  14 ++
+ arch/arm/boot/dts/broadcom/bcm63138.dtsi      |   7 +-
+ arch/arm/boot/dts/broadcom/bcm63148.dtsi      |  14 ++
+ arch/arm/boot/dts/broadcom/bcm63178.dtsi      |  14 ++
+ arch/arm/boot/dts/broadcom/bcm6756.dtsi       |  14 ++
+ arch/arm/boot/dts/broadcom/bcm6846.dtsi       |  14 ++
+ arch/arm/boot/dts/broadcom/bcm6855.dtsi       |  14 ++
+ arch/arm/boot/dts/broadcom/bcm6878.dtsi       |  14 ++
+ arch/arm/boot/dts/broadcom/bcm947622.dts      |  10 ++
+ arch/arm/boot/dts/broadcom/bcm963138.dts      |  10 ++
+ arch/arm/boot/dts/broadcom/bcm963138dvt.dts   |  14 +-
+ arch/arm/boot/dts/broadcom/bcm963148.dts      |  10 ++
+ arch/arm/boot/dts/broadcom/bcm963178.dts      |  10 ++
+ arch/arm/boot/dts/broadcom/bcm96756.dts       |  10 ++
+ arch/arm/boot/dts/broadcom/bcm96846.dts       |  10 ++
+ arch/arm/boot/dts/broadcom/bcm96855.dts       |  10 ++
+ arch/arm/boot/dts/broadcom/bcm96878.dts       |  10 ++
+ .../bcmbca/bcm4906-netgear-r8000p.dts         |   5 +
+ .../bcmbca/bcm4906-tplink-archer-c2300-v1.dts |   5 +
+ .../bcmbca/bcm4908-asus-gt-ac5300.dts         |   6 +-
+ .../boot/dts/broadcom/bcmbca/bcm4908.dtsi     |   4 +-
+ .../boot/dts/broadcom/bcmbca/bcm4912.dtsi     |  14 ++
+ .../boot/dts/broadcom/bcmbca/bcm63146.dtsi    |  14 ++
+ .../boot/dts/broadcom/bcmbca/bcm63158.dtsi    |  14 ++
+ .../boot/dts/broadcom/bcmbca/bcm6813.dtsi     |  14 ++
+ .../boot/dts/broadcom/bcmbca/bcm6856.dtsi     |  14 ++
+ .../boot/dts/broadcom/bcmbca/bcm6858.dtsi     |  14 ++
+ .../boot/dts/broadcom/bcmbca/bcm94908.dts     |  10 ++
+ .../boot/dts/broadcom/bcmbca/bcm94912.dts     |  10 ++
+ .../boot/dts/broadcom/bcmbca/bcm963146.dts    |  10 ++
+ .../boot/dts/broadcom/bcmbca/bcm963158.dts    |  10 ++
+ .../boot/dts/broadcom/bcmbca/bcm96813.dts     |  10 ++
+ .../boot/dts/broadcom/bcmbca/bcm96856.dts     |  10 ++
+ .../boot/dts/broadcom/bcmbca/bcm96858.dts     |  10 ++
+ drivers/mtd/nand/raw/brcmnand/Makefile        |   2 +-
+ drivers/mtd/nand/raw/brcmnand/bcm63138_nand.c |  99 --------------
+ drivers/mtd/nand/raw/brcmnand/bcmbca_nand.c   | 126 ++++++++++++++++++
+ drivers/mtd/nand/raw/brcmnand/brcmnand.c      | 126 +++++++++++++++---
+ drivers/mtd/nand/raw/brcmnand/brcmnand.h      |   2 +
+ 40 files changed, 623 insertions(+), 134 deletions(-)
+ delete mode 100644 drivers/mtd/nand/raw/brcmnand/bcm63138_nand.c
+ create mode 100644 drivers/mtd/nand/raw/brcmnand/bcmbca_nand.c
+
+-- 
+2.37.3
+
 
