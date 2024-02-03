@@ -1,236 +1,135 @@
-Return-Path: <devicetree+bounces-38263-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-38264-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id CD788848429
-	for <lists+devicetree@lfdr.de>; Sat,  3 Feb 2024 08:08:35 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 03461848561
+	for <lists+devicetree@lfdr.de>; Sat,  3 Feb 2024 12:59:52 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 38925B23B17
-	for <lists+devicetree@lfdr.de>; Sat,  3 Feb 2024 07:08:33 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 36C081C217F8
+	for <lists+devicetree@lfdr.de>; Sat,  3 Feb 2024 11:59:51 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 648214C3D6;
-	Sat,  3 Feb 2024 07:08:29 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E26005D72C;
+	Sat,  3 Feb 2024 11:59:49 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="Btrmv4XQ"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="N0n7obS9"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.55.52.88])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0B4964B5C1;
-	Sat,  3 Feb 2024 07:08:25 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=192.55.52.88
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B030C4F610;
+	Sat,  3 Feb 2024 11:59:49 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1706944109; cv=none; b=Kqiq7uNZzBBL7j17q+nlL/NF8Q6Z4AumTi9fv3RkgZVs5vDVmT61UM5y9b/PR3mg3caNILvF3XShGym/rmP0i7F1662/4SgOSXYeVKupYqRai0w84e2fOtF/KmeDcUAqwZOeT08o5tYGdZ7tf7b3ZvNlDu5cgLshmLRZzwQM5zU=
+	t=1706961589; cv=none; b=pcZB96OHyf5IhbCQeqe7WOJ4fn9pxsbODqmlAb2cIQhP4kaOfKARdJh9eT6b/ZlQoAb6kfJbR2eeqxguuwUFPMtx0AvD3wHqjZ57w5Dlew99Bdq9GsE7KzsFJZRUgy0PZXv28bCvExhnEdTgRr7x829kbzpe7tNxbr/DZ9+h5ZQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1706944109; c=relaxed/simple;
-	bh=QikV9LjfXCKhq110UZUbqz0FYd57gjfWzqI2NfGAlhI=;
+	s=arc-20240116; t=1706961589; c=relaxed/simple;
+	bh=OxA6S6WclVuoMy1OROr9Sblvm8p6FUS0Tg9+lExPXrE=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=ZrX0fUbDGmv5cLaa7/18hGLAdEKkha/Hxyw9GL0I1ANxsXyTIn3w6RL5OXnNQDT/4HiOGvDD8Bv2URxk9U+coyFzDyWj4igeNhg6m5yhfkZ+c420col8asGsSDNVKP4QQ5/x58U+GsnpSKuf5YjSX4ni7taGnd0t10xtNdAHpnk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=Btrmv4XQ; arc=none smtp.client-ip=192.55.52.88
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1706944106; x=1738480106;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=QikV9LjfXCKhq110UZUbqz0FYd57gjfWzqI2NfGAlhI=;
-  b=Btrmv4XQaDWLQ1LaQKxFQYKUAJK1rpYAA+Fe1Vd/wtvkNpj2J1I395b5
-   diIdn6UzpLT02lDUtWH2jZI/wjMZtvl1bEo1qds2NgQM7L0yZBNHQkV5x
-   nMepge98CnsZ8+CQwc70WPRr/WMSK+bh+QUlBDlsBE6yqCvWpbfw4d05/
-   URJjDA3waYt3wBBV866FWYVA1/Lo1uQv7XpmUCoxOS68ttnae3Lc5eVFX
-   G3TSyuBeJ2jZ6FWBqSMX94F0CklWKD92pE3DpQb6rmUy8qrsa7U4+JH+C
-   HN68Iwvg61L9T4as1ciIutfoxRFXa8UTMOkX6UOab75yTCxZm+vJFDBC+
-   w==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10971"; a="435436787"
-X-IronPort-AV: E=Sophos;i="6.05,240,1701158400"; 
-   d="scan'208";a="435436787"
-Received: from fmviesa010.fm.intel.com ([10.60.135.150])
-  by fmsmga101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 02 Feb 2024 23:08:25 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.05,240,1701158400"; 
-   d="scan'208";a="278653"
-Received: from lkp-server02.sh.intel.com (HELO 59f4f4cd5935) ([10.239.97.151])
-  by fmviesa010.fm.intel.com with ESMTP; 02 Feb 2024 23:08:22 -0800
-Received: from kbuild by 59f4f4cd5935 with local (Exim 4.96)
-	(envelope-from <lkp@intel.com>)
-	id 1rWA8R-0004j8-1p;
-	Sat, 03 Feb 2024 07:08:19 +0000
-Date: Sat, 3 Feb 2024 15:07:45 +0800
-From: kernel test robot <lkp@intel.com>
-To: Chris Packham <chris.packham@alliedtelesis.co.nz>,
-	alexandre.belloni@bootlin.com, robh+dt@kernel.org,
-	krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
-	jdelvare@suse.com, linux@roeck-us.net, antoniu.miclaus@analog.com,
-	noname.nuno@gmail.com
-Cc: oe-kbuild-all@lists.linux.dev, linux-rtc@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	linux-hwmon@vger.kernel.org,
-	Ibrahim Tilki <Ibrahim.Tilki@analog.com>,
-	Zeynep Arslanbenzer <Zeynep.Arslanbenzer@analog.com>,
-	Chris Packham <chris.packham@alliedtelesis.co.nz>
-Subject: Re: [PATCH v6 1/2] drivers: rtc: add max313xx series rtc driver
-Message-ID: <202402031414.zapkL312-lkp@intel.com>
-References: <20240202025241.834283-2-chris.packham@alliedtelesis.co.nz>
+	 Content-Type:Content-Disposition:In-Reply-To; b=AaQ5mEDR5klWEQI8AO00sVYxZVIjmqJJ4KHYY4nNadD/FFKUWxB0MlmsBc9NN0IVMZMesr/JtJMOe93XKlvatIp7JUa4kcdRrD0vJ6M1ApMHo3+u8bOHBciv/vrd/cD4acJ60QfCyNZ8tuO3A71OwxN/zElCbpzt4Q2hZdSCqXw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=N0n7obS9; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id C038EC433C7;
+	Sat,  3 Feb 2024 11:59:48 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1706961589;
+	bh=OxA6S6WclVuoMy1OROr9Sblvm8p6FUS0Tg9+lExPXrE=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=N0n7obS9dPo1pGEHApNT1Bi8RyUCHYf8phRlwW9nuwnoS77i6kod4SOMsHPBoMSVm
+	 C6AiLFPsRN2hEqJYIIdqwZN+PSDbYQLPXbafWXzbutfoG5MaP9ePnu58jlMBYY/yW8
+	 lUDXGTZ8+qBBlaPybbK4KREm/fUQaxj/CJpHAkdljGFlkX3CIfUNKzBsaqjW7pa4EI
+	 ka7hh9C2p8K6sD4/6lVn+ovDoePEU4nrLVvL+IT5MR5KLpfz5sVF7hm9iEoftWhdiV
+	 VQloa1LxyoxHZMTZiptvJA3m34ubKeR+uxGc/dKSEUGttl46J6X9OAwg+maAFIoG3L
+	 2RKQR3OaDQZAw==
+Date: Sat, 3 Feb 2024 12:59:45 +0100
+From: Lorenzo Bianconi <lorenzo@kernel.org>
+To: Rob Herring <robh@kernel.org>
+Cc: jic23@kernel.org, linux-iio@vger.kernel.org,
+	lorenzo.bianconi@redhat.com, devicetree@vger.kernel.org,
+	krzysztof.kozlowski+dt@linaro.org
+Subject: Re: [PATCH v3 3/3] dt-bindings: iio: imu: st_lsm6dsx: add
+ asm330lhhxg1
+Message-ID: <Zb4qsbvz-BREqayL@lore-desk>
+References: <cover.1706692153.git.lorenzo@kernel.org>
+ <93160585e69e4531a981064817ccbb143a6a1f70.1706692153.git.lorenzo@kernel.org>
+ <20240202194308.GA806128-robh@kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+Content-Type: multipart/signed; micalg=pgp-sha512;
+	protocol="application/pgp-signature"; boundary="z17nX3BzMYKP3zxm"
+Content-Disposition: inline
+In-Reply-To: <20240202194308.GA806128-robh@kernel.org>
+
+
+--z17nX3BzMYKP3zxm
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20240202025241.834283-2-chris.packham@alliedtelesis.co.nz>
+Content-Transfer-Encoding: quoted-printable
 
-Hi Chris,
+> On Wed, Jan 31, 2024 at 10:11:31AM +0100, Lorenzo Bianconi wrote:
+> > Add device bindings for asm330lhhxg1 IMU sensor.
+> > The asm330lhhx supports a subset of the features and functionality
+> > provided by the lsm6dsr via identical interfaces and so is a
+> > suitable fallback compatible.
+>=20
+> A subset cannot fallback to a superset.
+>=20
+> >=20
+> > Signed-off-by: Lorenzo Bianconi <lorenzo@kernel.org>
+> > ---
+> >  Documentation/devicetree/bindings/iio/imu/st,lsm6dsx.yaml | 3 +++
+> >  1 file changed, 3 insertions(+)
+> >=20
+> > diff --git a/Documentation/devicetree/bindings/iio/imu/st,lsm6dsx.yaml =
+b/Documentation/devicetree/bindings/iio/imu/st,lsm6dsx.yaml
+> > index 28b667a9cb76..316601b2da7a 100644
+> > --- a/Documentation/devicetree/bindings/iio/imu/st,lsm6dsx.yaml
+> > +++ b/Documentation/devicetree/bindings/iio/imu/st,lsm6dsx.yaml
+> > @@ -49,6 +49,9 @@ properties:
+> >        - items:
+> >            - const: st,asm330lhb
+> >            - const: st,asm330lhh
+> > +      - items:
+> > +          - const: st,asm330lhhxg1
+> > +          - const: st,lsm6dsr
+>=20
+> Assuming this is correct and the commit msg is wrong, can't this be=20
+> added to the existing entry?:
+>=20
+> items:
+>   - enum:
+>       - st,asm330lhhx
+>       - st,asm330lhhxg1
+>   - const: st,lsm6dsr
 
-kernel test robot noticed the following build warnings:
+ack, I will fix it in v4.
 
-[auto build test WARNING on abelloni/rtc-next]
-[also build test WARNING on robh/for-next linus/master v6.8-rc2 next-20240202]
-[If your patch is applied to the wrong git tree, kindly drop us a note.
-And when submitting patch, we suggest to use '--base' as documented in
-https://git-scm.com/docs/git-format-patch#_base_tree_information]
+Regards,
+Lorenzo
 
-url:    https://github.com/intel-lab-lkp/linux/commits/Chris-Packham/drivers-rtc-add-max313xx-series-rtc-driver/20240202-105538
-base:   https://git.kernel.org/pub/scm/linux/kernel/git/abelloni/linux.git rtc-next
-patch link:    https://lore.kernel.org/r/20240202025241.834283-2-chris.packham%40alliedtelesis.co.nz
-patch subject: [PATCH v6 1/2] drivers: rtc: add max313xx series rtc driver
-config: i386-randconfig-063-20240203 (https://download.01.org/0day-ci/archive/20240203/202402031414.zapkL312-lkp@intel.com/config)
-compiler: clang version 17.0.6 (https://github.com/llvm/llvm-project 6009708b4367171ccdbf4b5905cb6a803753fe18)
-reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20240203/202402031414.zapkL312-lkp@intel.com/reproduce)
+>=20
+>=20
+> > =20
+> >    reg:
+> >      maxItems: 1
+> > --=20
+> > 2.43.0
+> >=20
 
-If you fix the issue in a separate patch/commit (i.e. not just a new version of
-the same patch/commit), kindly add following tags
-| Reported-by: kernel test robot <lkp@intel.com>
-| Closes: https://lore.kernel.org/oe-kbuild-all/202402031414.zapkL312-lkp@intel.com/
+--z17nX3BzMYKP3zxm
+Content-Type: application/pgp-signature; name="signature.asc"
 
-sparse warnings: (new ones prefixed by >>)
->> drivers/rtc/rtc-max313xx.c:546:21: sparse: sparse: symbol 'max313xx_nvmem_cfg' was not declared. Should it be static?
->> drivers/rtc/rtc-max313xx.c:656:22: sparse: sparse: symbol 'max313xx_clk_init' was not declared. Should it be static?
+-----BEGIN PGP SIGNATURE-----
 
-vim +/max313xx_nvmem_cfg +546 drivers/rtc/rtc-max313xx.c
+iHUEABYKAB0WIQTquNwa3Txd3rGGn7Y6cBh0uS2trAUCZb4qsQAKCRA6cBh0uS2t
+rASsAQDkEexTPcDxOuQlX0hEXx5rWCsJW+oafotbi3lS9tFGigD/XkeUGrWuiuuj
+5Pz8pvhhEzf7IrZdUe+oG/hVOCJ/wQY=
+=2PAe
+-----END PGP SIGNATURE-----
 
-   545	
- > 546	struct nvmem_config max313xx_nvmem_cfg = {
-   547		.reg_read = max313xx_nvmem_reg_read,
-   548		.reg_write = max313xx_nvmem_reg_write,
-   549		.word_size = 8,
-   550	};
-   551	
-   552	static unsigned long max313xx_clkout_recalc_rate(struct clk_hw *hw,
-   553							 unsigned long parent_rate)
-   554	{
-   555		struct max313xx *rtc = clk_hw_to_max313xx(hw);
-   556		const struct clkout_cfg *clkout = rtc->chip->clkout;
-   557		unsigned int freq_mask;
-   558		unsigned int reg;
-   559		int ret;
-   560	
-   561		ret = regmap_read(rtc->regmap, clkout->reg, &reg);
-   562		if (ret)
-   563			return 0;
-   564	
-   565		freq_mask = __roundup_pow_of_two(clkout->freq_size) - 1;
-   566	
-   567		return clkout->freq_avail[(reg >> clkout->freq_pos) & freq_mask];
-   568	}
-   569	
-   570	static long max313xx_clkout_round_rate(struct clk_hw *hw, unsigned long rate,
-   571					       unsigned long *prate)
-   572	{
-   573		struct max313xx *rtc = clk_hw_to_max313xx(hw);
-   574		struct clkout_cfg *clkout = rtc->chip->clkout;
-   575		int index;
-   576	
-   577		index = find_closest(rate, clkout->freq_avail, clkout->freq_size);
-   578		return clkout->freq_avail[index];
-   579	}
-   580	
-   581	static int max313xx_clkout_set_rate(struct clk_hw *hw, unsigned long rate,
-   582					    unsigned long parent_rate)
-   583	{
-   584		struct max313xx *rtc = clk_hw_to_max313xx(hw);
-   585		struct clkout_cfg *clkout = rtc->chip->clkout;
-   586		unsigned int freq_mask;
-   587		int index;
-   588	
-   589		index = find_closest(rate, clkout->freq_avail, clkout->freq_size);
-   590		freq_mask = __roundup_pow_of_two(clkout->freq_size) - 1;
-   591	
-   592		return regmap_update_bits(rtc->regmap, clkout->reg,
-   593					  freq_mask << clkout->freq_pos,
-   594					  index << clkout->freq_pos);
-   595	}
-   596	
-   597	static int max313xx_clkout_enable(struct clk_hw *hw)
-   598	{
-   599		struct max313xx *rtc = clk_hw_to_max313xx(hw);
-   600		struct clkout_cfg *clkout = rtc->chip->clkout;
-   601	
-   602		if (clkout->en_invert)
-   603			return regmap_clear_bits(rtc->regmap, clkout->reg,
-   604						 clkout->en_bit);
-   605	
-   606		return regmap_set_bits(rtc->regmap, clkout->reg,  clkout->en_bit);
-   607	}
-   608	
-   609	static void max313xx_clkout_disable(struct clk_hw *hw)
-   610	{
-   611		struct max313xx *rtc = clk_hw_to_max313xx(hw);
-   612		struct clkout_cfg *clkout = rtc->chip->clkout;
-   613	
-   614		switch (rtc->id) {
-   615		case ID_MAX31331:
-   616		case ID_MAX31334:
-   617			if (rtc->irq > 0) {
-   618				dev_err(rtc->rtc->dev.parent,
-   619					"clkout cannot be disabled when IRQ is requested");
-   620				return;
-   621			}
-   622			break;
-   623		default:
-   624			break;
-   625		}
-   626	
-   627		if (clkout->en_invert)
-   628			regmap_set_bits(rtc->regmap, clkout->reg, clkout->en_bit);
-   629		else
-   630			regmap_clear_bits(rtc->regmap, clkout->reg,  clkout->en_bit);
-   631	}
-   632	
-   633	static int max313xx_clkout_is_enabled(struct clk_hw *hw)
-   634	{
-   635		struct max313xx *rtc = clk_hw_to_max313xx(hw);
-   636		struct clkout_cfg *clkout = rtc->chip->clkout;
-   637		unsigned int reg;
-   638		int ret;
-   639	
-   640		ret = regmap_read(rtc->regmap, clkout->reg, &reg);
-   641		if (ret)
-   642			return ret;
-   643	
-   644		return !!(reg & clkout->en_bit) ^ clkout->en_invert;
-   645	}
-   646	
-   647	static const struct clk_ops max313xx_clkout_ops = {
-   648		.recalc_rate = max313xx_clkout_recalc_rate,
-   649		.round_rate = max313xx_clkout_round_rate,
-   650		.set_rate = max313xx_clkout_set_rate,
-   651		.enable = max313xx_clkout_enable,
-   652		.disable = max313xx_clkout_disable,
-   653		.is_enabled = max313xx_clkout_is_enabled,
-   654	};
-   655	
- > 656	struct clk_init_data max313xx_clk_init = {
-   657		.name = "max313xx-clkout",
-   658		.ops = &max313xx_clkout_ops,
-   659	};
-   660	
-
--- 
-0-DAY CI Kernel Test Service
-https://github.com/intel/lkp-tests/wiki
+--z17nX3BzMYKP3zxm--
 
