@@ -1,161 +1,112 @@
-Return-Path: <devicetree+bounces-38313-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-38314-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 711168487DA
-	for <lists+devicetree@lfdr.de>; Sat,  3 Feb 2024 18:13:55 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id EC9428487E7
+	for <lists+devicetree@lfdr.de>; Sat,  3 Feb 2024 18:30:51 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 2CB0D283733
-	for <lists+devicetree@lfdr.de>; Sat,  3 Feb 2024 17:13:54 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 2AE1A1C21A0A
+	for <lists+devicetree@lfdr.de>; Sat,  3 Feb 2024 17:30:51 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 457D35F56A;
-	Sat,  3 Feb 2024 17:13:49 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5B7DA5FB8D;
+	Sat,  3 Feb 2024 17:30:47 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=wanadoo.fr header.i=@wanadoo.fr header.b="kCMx8q0m"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="T31wnoaO"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.smtpout.orange.fr (smtp-19.smtpout.orange.fr [80.12.242.19])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 12DFE5F864;
-	Sat,  3 Feb 2024 17:13:43 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=80.12.242.19
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+	(No client certificate requested)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 294D65FB8F;
+	Sat,  3 Feb 2024 17:30:46 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1706980429; cv=none; b=L/oYtWRkKIUTSNgz1Yy2W5sjNDr6yVPeSFt01excAgGWcr1pdwYJYTsxdadgDn3iomcS08jW/HxU8qS+VDlngeqZYIUahxc3Dr0YAMwJJ54JoPq+LkjND5v145QImHxQVLXZgD6tKhOk/lpSi0kseiwXXAElmn0+xUD7VnhcmJI=
+	t=1706981447; cv=none; b=G5GpH1x05RwVk0pDn0iIRF5cmIrue3jsNPiQofk7dRB2IzNOzTUBo9UnyltReRZELjPx+epDyeEbvWDPrFKS2M7u0xjShpEjP+JiaAmc9nSzTqSXGLcI1PqTDa+Ti0a2I71JlAkBb1u9GTHaEu2zm9jlTk+fd4Wr6yKz+7yLB0k=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1706980429; c=relaxed/simple;
-	bh=IGm2jTqgqGhtGWxCRpNVRFap1O7T144tLi9Mbfa9Kp0=;
-	h=Message-ID:Date:MIME-Version:Subject:References:From:To:Cc:
-	 In-Reply-To:Content-Type; b=fgOIotwqwAXEL3t0c+9ONH/DSXpiF08Cc9aUl73+Rcc1L+EsdoQuLEWZGEuMmCTLoOyc30hTfi3T1yDbLnfvX1LoiojTuTQP46HzvIyBBa27KFr5qvha8GIS6Ncsh3ZquUlU19f8D7WPMM+iG7pf4FbHyJM0fMk3wuNWoCY9Jm8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=wanadoo.fr; spf=pass smtp.mailfrom=wanadoo.fr; dkim=pass (2048-bit key) header.d=wanadoo.fr header.i=@wanadoo.fr header.b=kCMx8q0m; arc=none smtp.client-ip=80.12.242.19
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=wanadoo.fr
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=wanadoo.fr
-Received: from [192.168.1.18] ([92.140.202.140])
-	by smtp.orange.fr with ESMTPA
-	id WJZ5r8EMLWeJzWJZ5r3AWG; Sat, 03 Feb 2024 18:12:36 +0100
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=wanadoo.fr;
-	s=t20230301; t=1706980356;
-	bh=ay6OCUA7f665DqUoUex+m2wntbywTqOyj8cITOvN8KA=;
-	h=Date:Subject:References:From:To:Cc:In-Reply-To;
-	b=kCMx8q0mDjuLPqDx/7+dWEIEE7lW8OT9Y5QLRj4N5/t8G2hNphXtndT49IBqx1acW
-	 XB+W2IBQY0HrTHcD5EhobF1wPMfpI5ZKbl4vBUo4wTeyUQRjEtIXheQezSoNeuvpSO
-	 TucK/VPKWZh8z6kE3lYW6uOMQSo8EdGvDWV7TsRtlKAXEkK92cZBTO1sXJ8zqrEEoA
-	 AKDsDrT4e3NBeKtrkkJb84bS1sX98TV3yEQIqZ4LrYqX+lA+jn4JKbV+oYgH37wx7V
-	 dweJuDy+gPkmydNUCqD4D0C8h/lnLBT14lniu84QJVTfnHOVnNZbswo3O9rC4SpFOc
-	 LI1vxqSTSFK+Q==
-X-ME-Helo: [192.168.1.18]
-X-ME-Auth: Y2hyaXN0b3BoZS5qYWlsbGV0QHdhbmFkb28uZnI=
-X-ME-Date: Sat, 03 Feb 2024 18:12:36 +0100
-X-ME-IP: 92.140.202.140
-Message-ID: <9dd39fe9-9e9d-4093-b914-13006ac99792@wanadoo.fr>
-Date: Sat, 3 Feb 2024 18:12:27 +0100
+	s=arc-20240116; t=1706981447; c=relaxed/simple;
+	bh=ou+kBgutYSrLBVD6sr6Vyu+60zB00EZ0LjojpJgcob8=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=JK+P57Z3WMxO5frRJ7Ol8SrlwjiaP5BPywnD3og7zS+kfd0yrRdgstxApYh/lUR3aPbX0Qj/qYGHm8gn2lofvft6GtV9by/zyb42LzWHP0sbnvnXKuYBT2YJELXVDhY75g+BUkPSaX/6JkXKYVeMClt+zCw/ZLBvJqbkdK4fIjw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=T31wnoaO; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 257B7C433F1;
+	Sat,  3 Feb 2024 17:30:45 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1706981446;
+	bh=ou+kBgutYSrLBVD6sr6Vyu+60zB00EZ0LjojpJgcob8=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=T31wnoaOSC7cvZW+8uQ6gh4BkLTfvgnH7x1nSIqKl4IMD5hfUJA2zZUAI7X5CO3+3
+	 +RGObfb0ihuPflxiPAZZuSqDVDUAXGYcRkML6JhYY8OHe5HMG2PilgvMnkdFjZl1BA
+	 HO4Ca8kKKCAR+/ZMYNw5rTiUOo0xEBYVavQbm/EC0peDqvWW01jEDLmhmIQqZAKhAb
+	 Peh45szNjkpDw6p43Z74OkZt8B3+qrtVkZGhOWBSTCFmwYljg8ZoJnpuxACuZL+irO
+	 PRu1ZG6rdHyKFHA0mWaG+PVc2FA5NslmvQClIBFY7S+PmL9R604KKRm9t5DauW1XG/
+	 4C3QpTMdFtRdg==
+Date: Sat, 3 Feb 2024 18:30:42 +0100
+From: Wolfram Sang <wsa@kernel.org>
+To: Geert Uytterhoeven <geert+renesas@glider.be>
+Cc: Linus Walleij <linus.walleij@linaro.org>,
+	Bartosz Golaszewski <brgl@bgdev.pl>,
+	Rob Herring <robh+dt@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>, linux-gpio@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-renesas-soc@vger.kernel.org
+Subject: Re: [PATCH] dt-bindings: gpio: renesas,rcar-gpio: Add r8a779h0
+ support
+Message-ID: <Zb54QisWCB56LNRD@shikoro>
+Mail-Followup-To: Wolfram Sang <wsa@kernel.org>,
+	Geert Uytterhoeven <geert+renesas@glider.be>,
+	Linus Walleij <linus.walleij@linaro.org>,
+	Bartosz Golaszewski <brgl@bgdev.pl>,
+	Rob Herring <robh+dt@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>, linux-gpio@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-renesas-soc@vger.kernel.org
+References: <c5681eb5d28641d9b51ac2066b56b52d23defd85.1706789728.git.geert+renesas@glider.be>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH V8 02/12] phy: freescale: add Samsung HDMI PHY
-Content-Language: en-MW
-References: <20240203165307.7806-1-aford173@gmail.com>
- <20240203165307.7806-3-aford173@gmail.com>
-From: Christophe JAILLET <christophe.jaillet@wanadoo.fr>
-To: aford173@gmail.com
-Cc: Laurent.pinchart@ideasonboard.com, airlied@gmail.com,
- alexander.stein@ew.tq-group.com, andrzej.hajda@intel.com,
- catalin.marinas@arm.com, conor+dt@kernel.org, daniel@ffwll.ch,
- devicetree@vger.kernel.org, dri-devel@lists.freedesktop.org,
- festevam@gmail.com, frieder.schrempf@kontron.de, jernej.skrabec@gmail.com,
- jonas@kwiboo.se, kernel@pengutronix.de, kishon@kernel.org,
- krzysztof.kozlowski+dt@linaro.org, l.stach@pengutronix.de,
- linux-arm-kernel@lists.infradead.org, linux-imx@nxp.com,
- linux-kernel@vger.kernel.org, linux-phy@lists.infradead.org,
- linux-pm@vger.kernel.org, maarten.lankhorst@linux.intel.com, marex@denx.de,
- mripard@kernel.org, neil.armstrong@linaro.org, p.zabel@pengutronix.de,
- rfoss@kernel.org, robh+dt@kernel.org, s.hauer@pengutronix.de,
- shawnguo@kernel.org, tzimmermann@suse.de, ulf.hansson@linaro.org,
- victor.liu@nxp.com, vkoul@kernel.org, will@kernel.org
-In-Reply-To: <20240203165307.7806-3-aford173@gmail.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
+Content-Type: multipart/signed; micalg=pgp-sha512;
+	protocol="application/pgp-signature"; boundary="xbsE6o4m/P51t7De"
+Content-Disposition: inline
+In-Reply-To: <c5681eb5d28641d9b51ac2066b56b52d23defd85.1706789728.git.geert+renesas@glider.be>
 
-Le 03/02/2024 à 17:52, Adam Ford a écrit :
-> From: Lucas Stach <l.stach-bIcnvbaLZ9MEGnE8C9+IrQ@public.gmane.org>
-> 
-> This adds the driver for the Samsung HDMI PHY found on the
-> i.MX8MP SoC.
-> 
-> Signed-off-by: Lucas Stach <l.stach-bIcnvbaLZ9MEGnE8C9+IrQ@public.gmane.org>
-> Signed-off-by: Adam Ford <aford173-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
-> Tested-by: Alexander Stein <alexander.stein-W3o+9BuWjQaZox4op4iWzw@public.gmane.org>
-> ---
 
-...
+--xbsE6o4m/P51t7De
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-> +static int fsl_samsung_hdmi_phy_probe(struct platform_device *pdev)
-> +{
-> +	struct fsl_samsung_hdmi_phy *phy;
-> +	int ret;
-> +
-> +	phy = devm_kzalloc(&pdev->dev, sizeof(*phy), GFP_KERNEL);
-> +	if (!phy)
-> +		return -ENOMEM;
-> +
-> +	platform_set_drvdata(pdev, phy);
-> +	phy->dev = &pdev->dev;
-> +
-> +	phy->regs = devm_platform_ioremap_resource(pdev, 0);
-> +	if (IS_ERR(phy->regs))
-> +		return PTR_ERR(phy->regs);
-> +
-> +	phy->apbclk = devm_clk_get(phy->dev, "apb");
-> +	if (IS_ERR(phy->apbclk))
-> +		return dev_err_probe(phy->dev, PTR_ERR(phy->apbclk),
-> +				     "failed to get apb clk\n");
-> +
-> +	phy->refclk = devm_clk_get(phy->dev, "ref");
-> +	if (IS_ERR(phy->refclk))
-> +		return dev_err_probe(phy->dev, PTR_ERR(phy->refclk),
-> +				     "failed to get ref clk\n");
-> +
-> +	ret = clk_prepare_enable(phy->apbclk);
-> +	if (ret) {
-> +		dev_err(phy->dev, "failed to enable apbclk\n");
-> +		return ret;
-> +	}
-> +
-> +	pm_runtime_get_noresume(phy->dev);
-> +	pm_runtime_set_active(phy->dev);
-> +	pm_runtime_enable(phy->dev);
-> +
-> +	ret = phy_clk_register(phy);
-> +	if (ret) {
-> +		dev_err(&pdev->dev, "register clk failed\n");
-> +		goto register_clk_failed;
-> +	}
-> +
-> +	pm_runtime_put(phy->dev);
-> +
-> +	return 0;
-> +
-> +register_clk_failed:
-> +	clk_disable_unprepare(phy->apbclk);
-> +
-> +	return ret;
-> +}
-> +
-> +static int fsl_samsung_hdmi_phy_remove(struct platform_device *pdev)
-> +{
-> +	of_clk_del_provider(pdev->dev.of_node);
+On Thu, Feb 01, 2024 at 01:16:33PM +0100, Geert Uytterhoeven wrote:
+> Document support for GPIO controller blocks in the Renesas R-Car V4M
+> (R8A779H0) SoC.
+>=20
+> Signed-off-by: Geert Uytterhoeven <geert+renesas@glider.be>
 
-A clk_disable_unprepare(phy->apbclk) call seems to be missing here.
-Or maybe devm_clk_get_enabled() should be used for 'apbclk'?
+Reviewed-by: Wolfram Sang <wsa+renesas@sang-engineering.com>
 
-CJ
 
-> +
-> +	return 0;
-> +}
+--xbsE6o4m/P51t7De
+Content-Type: application/pgp-signature; name="signature.asc"
 
-...
+-----BEGIN PGP SIGNATURE-----
+
+iQIzBAABCgAdFiEEOZGx6rniZ1Gk92RdFA3kzBSgKbYFAmW+eD8ACgkQFA3kzBSg
+KbabfA//aBYKIHPDMV3lQmOQ7L4Ng2QZH9dnIHvFMtDfLQF9+1d7XVatWFDDr1SB
+0Zw/4Aw3bcx8MyiQNAo3QQ2vhrue5BhgF/J0O0ifAfobWvew+9kSIR6bnW9BDVzJ
+0cnognLilExPiNt7Q3/fKDFxgBsqSgODaxlXggqKCf3UwYqea2bPMEtqL6q0jr+J
+9ag4x4lmCqEfhV14nS1tXB7owxa4EWbiCJauT9+5DM9iN0xGS+5YhIxO8B1fbLa1
+QUuSXW6Jdb3W1fxW8FFV1Ph1ULYMYPfirmzAtdu9wZ8Xoz+nHzrefmNiQkYDjg6L
+5kJ7P5VjfH3q/BhZkBc6SeCje1oFMARKVMxlbZvEhAN1MTdrsSlW/fyyxJnDXh8W
+7GgijpCjKw1m7P+PllOZXY/jJiIqlgp6jgpoYIDzbtWV6XvoWpq+Wg/Ytkhk3OTY
+evCO08orUFUU2sRaMFH9MIok1dxRl6/zp0PnMM4SAcrtfOXe3BZRlSzmfkzdl7Eo
+j0E8yfLAvcktS+Jbgv2hMD+MZjGK3eSrE5dZ40QiYMuerxy1YuSFw7toSkw/THzD
+fSx2mCF/6zwWh96+7Cdepe3tPeIsDDuo9Vv7PlMs2r++cEvMxVHxeou7qGYwOlym
+UV6ieEF0a/2+w3NiuOPsdPSAjHuEh1SqWyY9cM6oUAmt0jp01Bg=
+=eC81
+-----END PGP SIGNATURE-----
+
+--xbsE6o4m/P51t7De--
 
