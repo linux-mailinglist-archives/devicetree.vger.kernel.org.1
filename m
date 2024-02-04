@@ -1,186 +1,112 @@
-Return-Path: <devicetree+bounces-38412-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-38413-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 852D1848EBF
-	for <lists+devicetree@lfdr.de>; Sun,  4 Feb 2024 15:59:52 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1E893848EE2
+	for <lists+devicetree@lfdr.de>; Sun,  4 Feb 2024 16:22:37 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 88DCF1C2170E
-	for <lists+devicetree@lfdr.de>; Sun,  4 Feb 2024 14:59:51 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 3AE491C21F01
+	for <lists+devicetree@lfdr.de>; Sun,  4 Feb 2024 15:22:36 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id EC91321340;
-	Sun,  4 Feb 2024 14:59:46 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 530A3225CB;
+	Sun,  4 Feb 2024 15:22:30 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="G5lDo4MO"
+	dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b="qfAUkoX5"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from vps0.lunn.ch (vps0.lunn.ch [156.67.10.101])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C050D224E0;
-	Sun,  4 Feb 2024 14:59:46 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5A07C225AA;
+	Sun,  4 Feb 2024 15:22:28 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=156.67.10.101
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1707058786; cv=none; b=Na+e80rLHyzDWGtS99OxFtzkZsHnuHTt3WHq5TwJ9pQEYcQ8mVXyH2XfVP97pDLwI2z5leZ6BhJ0PfOZ4J8+sJq8tEiobqpTbVNbh5zI6i+//55PuI0UWwjBMbsamYwLExCTTJEGmJ72druXPv0Gd86g+waDa7V3mqYa4PybeIQ=
+	t=1707060150; cv=none; b=CfZSCp4SRzEgKz0BxEX7afQsIPR62VYxaCv0xGFBe8BtpCwMCzMit4mor1LP0jJ2E0yksHKlXYlcHZIUb+518tFUYA9fVanMmFyNnAv59snkoQrHVJvF6864AkE5QnSc0k1IxYZjIYipruUWIgF1rYR74g6R3lANIbUPIypntjQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1707058786; c=relaxed/simple;
-	bh=iKV57ZwJnSgcOvpyOr8+0mwFjZveEEhVFBe7Z9YnJOM=;
-	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=T8+N1e5oDyxQeqQbTFLqwWfaVu0nMYL3ddd5twiiYs+EAPqz+YLe7xw8NZqj7MuL2s4SmelCYqeqsuBzZCkoCx0RcPVvsvND7xgOiDg1+pTbVOIxDsbYcC1bUgi96OpMyZQlxH6rI7gbT9cz/zEgLNk4ahBK0MuzAiOUlD4Fmpc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=G5lDo4MO; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 08A24C433C7;
-	Sun,  4 Feb 2024 14:59:42 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1707058786;
-	bh=iKV57ZwJnSgcOvpyOr8+0mwFjZveEEhVFBe7Z9YnJOM=;
-	h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
-	b=G5lDo4MO/TZ33GjTE7IfDWvATCumGX/HTQiULjpNNlj2PwfhWTl1FZqzzOafY+1r0
-	 5wmNpFpoyziUm78Lq3TF9rjecHaeAZ/WNvE0qumdOoSmy05YRK5En2XsbR9pKkQqHV
-	 x6qg0dpHKFsRWbJHt3qyuYMMnv4AVBRm37JEtcBjvOY1Yc2YXCTFRVNNJy+6IcOd32
-	 zcBVLNCw7zPmztBM+j9IxuHUTcscvAF0V+8A8xmYj1e9v8TOVeLVfWKlZZ2jAWWCht
-	 o2D/2wGbRFs8qRwPPQgY5vuoLTtLv8Ag0Lb1BocplAj4gsC41j6LxSFANnu4wxITqx
-	 ieMyQDqYOeWBg==
-Date: Sun, 4 Feb 2024 14:59:33 +0000
-From: Jonathan Cameron <jic23@kernel.org>
-To: Nuno Sa via B4 Relay <devnull+nuno.sa.analog.com@kernel.org>
-Cc: <nuno.sa@analog.com>, linux-iio@vger.kernel.org,
- devicetree@vger.kernel.org, Lars-Peter Clausen <lars@metafoo.de>, Michael
- Hennerich <Michael.Hennerich@analog.com>, Rob Herring <robh+dt@kernel.org>,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley
- <conor+dt@kernel.org>, Frank Rowand <frowand.list@gmail.com>, Olivier
- Moysan <olivier.moysan@foss.st.com>, Rob Herring <robh@kernel.org>
-Subject: Re: [PATCH v8 0/7] iio: add new backend framework
-Message-ID: <20240204145933.6f29538c@jic23-huawei>
-In-Reply-To: <20240202-iio-backend-v8-0-f65ee8c8203d@analog.com>
-References: <20240202-iio-backend-v8-0-f65ee8c8203d@analog.com>
-X-Mailer: Claws Mail 4.2.0 (GTK 3.24.41; x86_64-pc-linux-gnu)
+	s=arc-20240116; t=1707060150; c=relaxed/simple;
+	bh=HdEPymNokVINCHkSEa5LvnInxWnhWuDC0WVzzVWsEk8=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=E2Ivk0PNrxYM5TVZBqlqe7s3gtpbRyu4PjZ2nc/Z8KYM6yELp1p6DFU0qh5PVFwhdOrbUil07uYildJoP6Dbxws1sNqrss52ONS8GAyTUp3fMO/XX+G06YInLXatBlM08V9PlyDibzGjBMb0gCQE0/7cAqjJnxJSIgL75OpXXro=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch; spf=pass smtp.mailfrom=lunn.ch; dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b=qfAUkoX5; arc=none smtp.client-ip=156.67.10.101
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=lunn.ch
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
+	s=20171124; h=In-Reply-To:Content-Disposition:Content-Type:MIME-Version:
+	References:Message-ID:Subject:Cc:To:From:Date:From:Sender:Reply-To:Subject:
+	Date:Message-ID:To:Cc:MIME-Version:Content-Type:Content-Transfer-Encoding:
+	Content-ID:Content-Description:Content-Disposition:In-Reply-To:References;
+	bh=Nevq5mgSlVT/I2RCsRjjpab+WWwVDBjfunWL49iu92I=; b=qfAUkoX5Nn/s46SQ+3G23exnMe
+	jIEsEzz6WSdE+V58VpbzM5cVDDquV5M8O4HPyNrl3O6kiSLToZDXaGD6J+Tz1/+aidUF9pzILNwfK
+	4gdPqwfMgZmhBNM4QpFt6OSTizGoF/xWyejFIPKY14WMc9sHCxX0adLIfdht5SrZm1Gg=;
+Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
+	(envelope-from <andrew@lunn.ch>)
+	id 1rWeJt-006xv7-0q; Sun, 04 Feb 2024 16:22:09 +0100
+Date: Sun, 4 Feb 2024 16:22:09 +0100
+From: Andrew Lunn <andrew@lunn.ch>
+To: Jie Luo <quic_luoj@quicinc.com>
+Cc: Christian Marangi <ansuelsmth@gmail.com>,
+	Andy Gross <agross@kernel.org>,
+	Bjorn Andersson <andersson@kernel.org>,
+	Konrad Dybcio <konrad.dybcio@linaro.org>,
+	"David S. Miller" <davem@davemloft.net>,
+	Eric Dumazet <edumazet@google.com>,
+	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
+	Rob Herring <robh+dt@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Heiner Kallweit <hkallweit1@gmail.com>,
+	Russell King <linux@armlinux.org.uk>,
+	Robert Marko <robert.marko@sartura.hr>,
+	linux-arm-msm@vger.kernel.org, netdev@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [net-next PATCH v2 2/3] net: mdio: ipq4019: add support for
+ clock-frequency property
+Message-ID: <4cd01d93-7b6d-4766-8337-c4dc09aeedc2@lunn.ch>
+References: <20240130003546.1546-1-ansuelsmth@gmail.com>
+ <20240130003546.1546-3-ansuelsmth@gmail.com>
+ <7d86388d-15f5-4e72-b99f-aee3b47a5232@quicinc.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <7d86388d-15f5-4e72-b99f-aee3b47a5232@quicinc.com>
 
-On Fri, 02 Feb 2024 16:08:31 +0100
-Nuno Sa via B4 Relay <devnull+nuno.sa.analog.com@kernel.org> wrote:
+On Sun, Feb 04, 2024 at 05:59:10PM +0800, Jie Luo wrote:
+> 
+> 
+> On 1/30/2024 8:35 AM, Christian Marangi wrote:
+> > +
+> > +	/* If div is /256 assume nobody have set this value and
+> > +	 * try to find one MDC rate that is close the 802.3 spec of
+> > +	 * 2.5MHz
+> > +	 */
+> > +	for (div = 256; div >= 8; div /= 2) {
+> > +		/* Stop as soon as we found a divider that
+> > +		 * reached the closest value to 2.5MHz
+> > +		 */
+> > +		if (DIV_ROUND_UP(ahb_rate, div) > 2500000)
+> > +			break;
+> 
+> Hi Christian,
+> Sorry for the delayed review.
+> 
+> The MDIO hardware block supports higher frequency 6.25M and 12.5M,
+> Would you remove this 2.5MHZ limitation? On the IPQ platform, we
+> normally use 6.25MHZ.
 
-> v1:
->  https://lore.kernel.org/linux-iio/20231204144925.4fe9922f@jic23-huawei/T=
-/#m222f5175273b81dbfe40b7f0daffcdc67d6cb8ff
->=20
-> v2:
->  https://lore.kernel.org/r/20231208-dev-iio-backend-v2-0-5450951895e1@ana=
-log.com
->=20
-> v3:
->  https://lore.kernel.org/linux-iio/20231213-dev-iio-backend-v3-0-bb9f12a5=
-c6dc@analog.com/
->=20
-> v4:
->  https://lore.kernel.org/r/20231220-iio-backend-v4-0-998e9148b692@analog.=
-com
->=20
-> v5:
->  https://lore.kernel.org/r/20240112-iio-backend-v5-0-bdecad041ab4@analog.=
-com
->=20
-> v6:
->  https://lore.kernel.org/r/20240119-iio-backend-v6-0-189536c35a05@analog.=
-com
->=20
-> v7
->  https://lore.kernel.org/r/20240123-iio-backend-v7-0-1bff236b8693@analog.=
-com
->=20
-> Changes in v8:
->  - Dropped commit ("of: property: fix typo in io-channels") - applied
->    via DT tree. Also dropped commit
->    ("driver: core: allow modifying device_links flags") - did not made
->    sense.
->  - Patch 7
->   * Do not change the version string format during probe.
->=20
-> Jonathan, the series is based on next-20240202 since it already includes
-> the io-channels fix Rob applied in his tree. I guess it should land in rc=
-3 so
-> after you rebase, all patches should apply cleanly (if applying them of c=
-ourse
-> :)). Let me know if anything fails...
+802.3 says the clock has a maximum of 2.5MHz. So this code is correct.
 
-Given that merge (between my tree and Rob's) is about as trivial as they co=
-me
-I'll take the series now (rather than delaying) and rely on Stephen (for ne=
-xt)
-and Greg (once I send a pull request) to deal with it.
+It is however O.K. to go faster, but since that breaks the standard,
+you need each board to indicate it knows all the devices on the bus do
+support higher speeds and its O.K. to break the standard. You indicate
+this by using the DT property in its .dts file. For an MDIO bus which
+is totally internal, you could however put the DT property in the SoC
+.dtsi file.
 
-It's the sort of merge that makes Linus grumpy if people rebase to avoid it!
-
-On that note, applied with those tweaks to the broken binding patch.
-
-Initially pushed out as testing to see if 0-day moans at us a lot about any=
-thing.
-
-Jonathan
-
->=20
-> (also dropped the devlink Reviewers from the Cc list as that patch was
-> dropped).
->=20
-> Keeping the block diagram  so we don't have to follow links
-> to check one of the typical setups.
->=20
->                                            ------------------------------=
--------------------------
->  ------------------                        | -----------         --------=
-----      -------  FPGA |
->  |     ADC        |------------------------| | AXI ADC |---------| DMA CO=
-RE |------| RAM |       |
->  | (Frontend/IIO) | Serial Data (eg: LVDS) | |(backend)|---------|       =
-   |------|     |       |
->  |                |------------------------| -----------         --------=
-----      -------       |
->  ------------------                        ------------------------------=
--------------------------
->=20
-> ---
-> Nuno Sa (6):
->       dt-bindings: adc: ad9467: add new io-backend property
->       dt-bindings: adc: axi-adc: update bindings for backend framework
->       iio: buffer-dmaengine: export buffer alloc and free functions
->       iio: add the IIO backend framework
->       iio: adc: ad9467: convert to backend framework
->       iio: adc: adi-axi-adc: move to backend framework
->=20
-> Olivier Moysan (1):
->       of: property: add device link support for io-backends
->=20
->  .../devicetree/bindings/iio/adc/adi,ad9467.yaml    |   4 +
->  .../devicetree/bindings/iio/adc/adi,axi-adc.yaml   |   8 +-
->  MAINTAINERS                                        |   8 +
->  drivers/iio/Kconfig                                |   9 +
->  drivers/iio/Makefile                               |   1 +
->  drivers/iio/adc/Kconfig                            |   4 +-
->  drivers/iio/adc/ad9467.c                           | 268 +++++++++-----
->  drivers/iio/adc/adi-axi-adc.c                      | 379 +++++----------=
-----
->  drivers/iio/buffer/industrialio-buffer-dmaengine.c |   8 +-
->  drivers/iio/industrialio-backend.c                 | 412 +++++++++++++++=
-++++++
->  drivers/of/property.c                              |   2 +
->  include/linux/iio/adc/adi-axi-adc.h                |  68 ----
->  include/linux/iio/backend.h                        |  72 ++++
->  include/linux/iio/buffer-dmaengine.h               |   3 +
->  14 files changed, 793 insertions(+), 453 deletions(-)
-> ---
-> base-commit: 076d56d74f17e625b3d63cf4743b3d7d02180379
-> change-id: 20231219-iio-backend-a3dc1a6a7a58
-> --
->=20
-> Thanks!
-> - Nuno S=C3=A1
->=20
-
+      Andrew
 
