@@ -1,236 +1,115 @@
-Return-Path: <devicetree+bounces-38429-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-38426-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 26534849040
-	for <lists+devicetree@lfdr.de>; Sun,  4 Feb 2024 21:02:29 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id A5CF184900A
+	for <lists+devicetree@lfdr.de>; Sun,  4 Feb 2024 20:19:05 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id C42BA281E29
-	for <lists+devicetree@lfdr.de>; Sun,  4 Feb 2024 20:02:27 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id AD37A1C2181C
+	for <lists+devicetree@lfdr.de>; Sun,  4 Feb 2024 19:19:04 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 10181250EC;
-	Sun,  4 Feb 2024 20:02:24 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B4BA224A08;
+	Sun,  4 Feb 2024 19:19:00 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=rock-chips.com header.i=@rock-chips.com header.b="hXSuCVq2"
+	dkim=pass (2048-bit key) header.d=bgdev-pl.20230601.gappssmtp.com header.i=@bgdev-pl.20230601.gappssmtp.com header.b="OoyrtVtH"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-m17207.xmail.ntesmail.com (mail-m17207.xmail.ntesmail.com [45.195.17.207])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-io1-f48.google.com (mail-io1-f48.google.com [209.85.166.48])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A3FF62555B;
-	Sun,  4 Feb 2024 20:02:17 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=45.195.17.207
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3ED3D24B2B
+	for <devicetree@vger.kernel.org>; Sun,  4 Feb 2024 19:18:59 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.166.48
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1707076944; cv=none; b=rAlXUSxvIqD/F9RXr1jbDSzpzEgkqj9CQ3/vZccbC8CJukXf0t6ScxmNZpfCszP+oApef7svqt0SnUNVlD8XJoI6SjjE2q8qEN0vKyS1YXpmUFDSlhAgPlUuB2OzqGd3S5D1eTQ/cyeGwca6qK5/5ZDWqQM8CiG1OjWwuZGPQxo=
+	t=1707074340; cv=none; b=tAAxzhGU8Cws1wDvYUaOjX5LwTfvXNxYvwh5zn3UOpWxQA4xkPl48QMzym5JrkxcdWCpwN+ImJa98Vke0r+TcvRyf2hy27gaMmOviqmTluus8jjNpARGq1JcqgFACKYlaIyUZcMyo6b2jC97dIgJ2IwLi8rcRQGJCzwOyvqgIAw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1707076944; c=relaxed/simple;
-	bh=Hx5T6jiL5JDohIoeQQYX6s2r6lgspe5rrFcW3TlWnfE=;
-	h=Message-ID:Date:MIME-Version:From:Subject:To:Cc:References:
-	 In-Reply-To:Content-Type; b=DfjeNEZ85qwxP8Gkg4BbT40V3MzOEVDTsJ8RZHdYwkdTMZm1jdXiYbXhWUnzjSMHuDq1ksKR2YiaM+vze8oK+1bGElp8Bcfl6MlTvkcRq6T9Lcj2ZCSRzbcRML9hePv5jkFtDxx97TBN4B2hmPoezy7XAAYBM5CzL9f2/CN4gv4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=rock-chips.com; spf=pass smtp.mailfrom=rock-chips.com; dkim=pass (1024-bit key) header.d=rock-chips.com header.i=@rock-chips.com header.b=hXSuCVq2; arc=none smtp.client-ip=45.195.17.207
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=rock-chips.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=rock-chips.com
-DKIM-Signature: a=rsa-sha256;
-	b=hXSuCVq2LKTILSa4M3DYwHpUWtWrO2+lc94QcnrtRZhcYoiQ0+fwbTvSFL9OmF9EPfgXfnX+W9L1zUOG6jfj3kTKGktV1278LF6y/U0KRXCUIvuhpQ898iSg0Q4t76QTcPM+nS2hLT1rhPLoKv4ufoIHlJNOSb3e7E14H06gAYc=;
-	c=relaxed/relaxed; s=default; d=rock-chips.com; v=1;
-	bh=JNfM+7oms0dEDMBQD4/1F/HmMJB11Kg5/MrVVOISNs8=;
-	h=date:mime-version:subject:message-id:from;
-Received: from [172.16.12.93] (unknown [58.22.7.114])
-	by smtp.qiye.163.com (Hmail) with ESMTPA id A32209001BC;
-	Sun,  4 Feb 2024 17:56:34 +0800 (CST)
-Message-ID: <546543ec-7817-4422-8717-82aaf46f2a3b@rock-chips.com>
-Date: Sun, 4 Feb 2024 17:56:34 +0800
+	s=arc-20240116; t=1707074340; c=relaxed/simple;
+	bh=U7fuHKCS7P0gibNRuhCi/+lWNbl//hi+bf2tD9GrdHo=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=uEO5j7K2ghBGEyF+3R/Ioj4x4Q3/BkTgPEQfDCz3DShE5KGXRaazWCnWJmBTA4F0CLd+W8XymOLQ/k7dlqimRZwmDSG1tM2W6+ONP9ODzc9lMagxlEcLXJFxXpkyDmGtAft/2OSExJca6494PT6y4FeTjwhZn67Et8E7gsRdFto=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=bgdev.pl; spf=none smtp.mailfrom=bgdev.pl; dkim=pass (2048-bit key) header.d=bgdev-pl.20230601.gappssmtp.com header.i=@bgdev-pl.20230601.gappssmtp.com header.b=OoyrtVtH; arc=none smtp.client-ip=209.85.166.48
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=bgdev.pl
+Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=bgdev.pl
+Received: by mail-io1-f48.google.com with SMTP id ca18e2360f4ac-7bc32b0fdadso168819939f.2
+        for <devicetree@vger.kernel.org>; Sun, 04 Feb 2024 11:18:59 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=bgdev-pl.20230601.gappssmtp.com; s=20230601; t=1707074338; x=1707679138; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=U7fuHKCS7P0gibNRuhCi/+lWNbl//hi+bf2tD9GrdHo=;
+        b=OoyrtVtHrVGc2XeI/zv7GteSD0rgrVV7Zm1CKj+zBeRYXCnoqxy4GZvG395QtuC7/X
+         g1/T27YUxx0t8Ua3E8lghdv0Hd+69QaWAjOePCbSxo6Uppk0DsuFN2WI+6C2EO9px4PN
+         eyrsYFqKPl74A5ktS2WvogEmKlMkugznf7jQRyk755BFPktvr1ce6GLWv7od0EipZ3DN
+         xe/SB0vHCxS3oOL7qSr+Xmvaqr4KdWqEdSr6wOIzbnHcEcwoQwSLiY/flcOa+1wVnson
+         DIjdM5C9cNypkvbwtSS6bhNuYixH+PmkQcR7VKsGPayjha7oFSwu6RmTNRoqj4IOj2Er
+         in0g==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1707074338; x=1707679138;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=U7fuHKCS7P0gibNRuhCi/+lWNbl//hi+bf2tD9GrdHo=;
+        b=tvxz7sLUNZEf5Mem6wBdcB4ncy7kbp9NDsxRmWiR05HeIEfDIgvtld5Bw8lkgfGx27
+         S3ig04dGvQLg/B0tp43/927MiFyBL7oDMpHHkkc2I5FPJE5sNk7BxtE3NYDViojOiE6f
+         cKE+JVgBqhnkHj6sGR6+8DXWdcVmlxRMql1Lih29mA1Vi/jAUQTQCwNcHtNlxKSOFDFP
+         vJ0mCGw8Z1y49saqbMdHTbMzKG09U6PePZ9weWr7sl8H6U2xQSQgK0QEHIuONO1EjR5K
+         uMtjLoMc0FVCJMYYn7P0nRJuV2faabJE19268lCF5I3S0dN6B0RYwrdXVO2YIFzb2uOW
+         hBlg==
+X-Gm-Message-State: AOJu0YzOkcaaTgF8cKfPfjkbzrveWg0grmbs8J4aX1Zc+jCT3OHic/KD
+	0CKbnvZOflP28wMIfIbEDuzuOYqtHH3mUTvmfbXBt6+QEbZTq1G1EnQziNDIVkIYaxkan/f2Jz4
+	Y8u1/kDB1juUsWvyvaxOAsPHJbdm7GM7BQPNFTzzesQIamVch
+X-Google-Smtp-Source: AGHT+IG030GFNoRO+D9HsQtpRkpxOEHuKCB6i5c74CD190x3V48aR41aB7RFrMKEewt7N4ui/ox4/rbyj64984Kw2d8=
+X-Received: by 2002:a05:6e02:2184:b0:363:bf96:560 with SMTP id
+ j4-20020a056e02218400b00363bf960560mr4301345ila.15.1707074338436; Sun, 04 Feb
+ 2024 11:18:58 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-From: Kever Yang <kever.yang@rock-chips.com>
-Subject: Re: [PATCH] arm64: dts: rockchip: rk3588: remove redundant cd-gpios
- in sdmmc node
-To: =?UTF-8?Q?Heiko_St=C3=BCbner?= <heiko@sntech.de>,
- Ondrej Jirman <megi@xff.cz>
-Cc: linux-rockchip@lists.infradead.org,
- Christopher Obbard <chris.obbard@collabora.com>,
- Conor Dooley <conor+dt@kernel.org>,
- Cristian Ciocaltea <cristian.ciocaltea@collabora.com>,
- Dragan Simic <dsimic@manjaro.org>, FUKAUMI Naoki <naoki@radxa.com>,
- Jagan Teki <jagan@edgeble.ai>, John Clark <inindev@gmail.com>,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Rob Herring <robh+dt@kernel.org>,
- Sebastian Reichel <sebastian.reichel@collabora.com>,
- Shreeya Patel <shreeya.patel@collabora.com>,
- =?UTF-8?B?VGFtw6FzIFN6xbFjcw==?= <tszucs@protonmail.ch>,
- devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- linux-kernel@vger.kernel.org, quentin.schulz@theobroma-systems.com
-References: <20240201034621.1970279-1-kever.yang@rock-chips.com>
- <4514845.zXnORWrf4K@diego>
-Content-Language: en-US
-In-Reply-To: <4514845.zXnORWrf4K@diego>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
-X-HM-Spam-Status: e1kfGhgUHx5ZQUpXWQgPGg8OCBgUHx5ZQUlOS1dZFg8aDwILHllBWSg2Ly
-	tZV1koWUFDSUNOT01LS0k3V1ktWUFJV1kPCRoVCBIfWUFZGhpDSVZJTE8ZS08ZT0xLH09VEwETFh
-	oSFyQUDg9ZV1kYEgtZQVlOQ1VJSVVMVUpKT1lXWRYaDxIVHRRZQVlPS0hVSk1PSUxOVUpLS1VKQk
-	tLWQY+
-X-HM-Tid: 0a8d738c5eb003a9kunma32209001bc
-X-HM-MType: 1
-X-HM-Sender-Digest: e1kMHhlZQR0aFwgeV1kSHx4VD1lBWUc6NiI6Ezo4TzMIDz42LwlPTi4M
-	Hy8KCR5VSlVKTEtMS09LTkJNSkxDVTMWGhIXVRAeDR4JVQIaFRw7CRQYEFYYExILCFUYFBZFWVdZ
-	EgtZQVlOQ1VJSVVMVUpKT1lXWQgBWUFDSUpPNwY+
+References: <20240201155532.49707-1-brgl@bgdev.pl> <20240201155532.49707-2-brgl@bgdev.pl>
+ <CAL_JsqKq8AngeC7ohsbYB0w70uALD+PX-df53cswTDUY-Rrdgw@mail.gmail.com>
+In-Reply-To: <CAL_JsqKq8AngeC7ohsbYB0w70uALD+PX-df53cswTDUY-Rrdgw@mail.gmail.com>
+From: Bartosz Golaszewski <brgl@bgdev.pl>
+Date: Sun, 4 Feb 2024 20:18:47 +0100
+Message-ID: <CAMRc=MdxgETs-Zx3Njao3msmE3T+DeKkPc0YMD3CvVW-Lj2qoQ@mail.gmail.com>
+Subject: Re: [RFC 1/9] of: provide a cleanup helper for OF nodes
+To: Rob Herring <robh@kernel.org>
+Cc: Bjorn Andersson <andersson@kernel.org>, Konrad Dybcio <konrad.dybcio@linaro.org>, 
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Marcel Holtmann <marcel@holtmann.org>, Luiz Augusto von Dentz <luiz.dentz@gmail.com>, 
+	Bjorn Helgaas <bhelgaas@google.com>, Neil Armstrong <neil.armstrong@linaro.org>, 
+	Alex Elder <elder@linaro.org>, Srini Kandagatla <srinivas.kandagatla@linaro.org>, 
+	Greg Kroah-Hartman <gregkh@linuxfoundation.org>, Arnd Bergmann <arnd@arndb.de>, 
+	Abel Vesa <abel.vesa@linaro.org>, Manivannan Sadhasivam <mani@kernel.org>, Lukas Wunner <lukas@wunner.de>, 
+	linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org, linux-bluetooth@vger.kernel.org, 
+	linux-pci@vger.kernel.org, 
+	Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-Hi Heiko,
-
-On 2024/2/1 16:41, Heiko Stübner wrote:
-> Hi Kever,
+On Thu, Feb 1, 2024 at 11:18=E2=80=AFPM Rob Herring <robh@kernel.org> wrote=
+:
 >
-> Am Donnerstag, 1. Februar 2024, 04:46:21 CET schrieb Kever Yang:
->> The sdmmc node already have a "&sdmmc_det" for pinctrl which switch the
->> GPIO0A4 to sdmmc detect function, no need to define a separate "cd-gpios".
-> just to make sure, did you test this on actual hardware?
-> Because there might be differences in behaviour.
-
-We use this feature in vendor kernel for many boards.
-
-For mainline support, there are 15 rk3588/rk3588 boards available, and 
-10 of them
-
-enable sdmmc node in dts, and 4 boards define "cd-gpios" while the 
-hardware do use GPIO0A4,
-
-and 1 board(rk3588-jaguar) using "broken-cd", and the other 5 boards are 
-using default "&sdmmc_det"
-
-  with the same hardware design.
-
-If the hardware is using GPIO0A4(SDMMC_DET function IO) for sdmmc 
-detect, then no need to define "cd-gpios";
-
-if the hardware is not using GPIO0A4 for sdmmc detect, then the 
-"cd-gpios" or "broken-cd" is needed.
-
-So this patch is to sync up to use the "&sdmmc_det" when the IO is using 
-the one has SDMMC_DET function.
-
->> RK3588 has force_jtage feature which is enable JTAG function via sdmmc
->> pins automatically when there is no SD card insert, this feature will
->> need the GPIO0A4 works in sdmmc_det function like other mmc signal instead
->> of GPIO function, or else the force_jtag can not auto be disabled when
->> SD card insert.
-> We disable the jtag switching by default [0] ;-) .
-> And there are very good reasons for it too:
-
-I know you have disable the force_jtag by default, and I didn't want to 
-change this.
-
-As you have said we may need to enable it for debug, we suppose to only 
-have to revert
-
-the disable force_jtag patch and then it works without affect the 
-default sdmmc function.
-
-The sdmmc function is broken if we enable force_jtag for debug, and this 
-patch can fix it.
-
-> (1) JTAG is very much a debug feature, that the normal user will not need.
-> Especially not in a finished product. If a developer is debugging _that_
-> deep and needs jtag, they can enable it in their debug build.
+> On Thu, Feb 1, 2024 at 9:55=E2=80=AFAM Bartosz Golaszewski <brgl@bgdev.pl=
+> wrote:
+> >
+> > From: Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
+> >
+> > Allow to use __free() to automatically put references to OF nodes.
 >
+> Jonathan has already been working on this[1].
 >
-> (2) Randomly enabling features that may compromise security.
-> Why go through all the hoops of doing things like secure boot, signed
-> images and everything, just to have the kernel then export direct access
-> to the hardware on sd-card pins. If one wants to expose JTAG somewhere
-> this should be conscious choice and devs should not need to fork their
-> kernel just to shut down unwanted security-critical functionality.
+> Rob
 >
->
-> (3) It affects board layouts _not following_ the standard layout.
-> Nobody is forcing board-designers to use Rockchip's desired pin
-> for card-detection. Some designer may just select a different pin
-> or a board could go without card-detect at all - see rk3588-jaguar.
+> [1] https://lore.kernel.org/all/20240128160542.178315-1-jic23@kernel.org/
 
-You are right, "cd-gpios" and "broken-cd" are available for boards have 
-different design,
+Thanks, I will watch this but for now I'll have to stick to carrying
+it in my series until it gets upstream.
 
-and this patch is for the boards with SDMMC_DET(GPIO0A4) as sdmmc 
-detect, they should go to
-
-the default "&sdmmc_det" in sdmmc node.
-
-
-Thanks,
-
-- Kever
-
-> These are both valid use-cases that need to be supported.
->
->
-> Heiko
->
->
-> [0]https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/commit/?id=6f6878ec6faf16a5f36761c93da6ea9cf09adb33
->
->
->> ---
->>
->>   arch/arm64/boot/dts/rockchip/rk3588-orangepi-5-plus.dts | 1 -
->>   arch/arm64/boot/dts/rockchip/rk3588-quartzpro64.dts     | 1 -
->>   arch/arm64/boot/dts/rockchip/rk3588-rock-5b.dts         | 1 -
->>   arch/arm64/boot/dts/rockchip/rk3588s-rock-5a.dts        | 1 -
->>   4 files changed, 4 deletions(-)
->>
->> diff --git a/arch/arm64/boot/dts/rockchip/rk3588-orangepi-5-plus.dts b/arch/arm64/boot/dts/rockchip/rk3588-orangepi-5-plus.dts
->> index 3e660ff6cd5ff..1b606ea5b6cf2 100644
->> --- a/arch/arm64/boot/dts/rockchip/rk3588-orangepi-5-plus.dts
->> +++ b/arch/arm64/boot/dts/rockchip/rk3588-orangepi-5-plus.dts
->> @@ -444,7 +444,6 @@ &sdhci {
->>   &sdmmc {
->>   	bus-width = <4>;
->>   	cap-sd-highspeed;
->> -	cd-gpios = <&gpio0 RK_PA4 GPIO_ACTIVE_LOW>;
->>   	disable-wp;
->>   	max-frequency = <150000000>;
->>   	no-sdio;
->> diff --git a/arch/arm64/boot/dts/rockchip/rk3588-quartzpro64.dts b/arch/arm64/boot/dts/rockchip/rk3588-quartzpro64.dts
->> index 87a0abf95f7d4..67414d72e2b6e 100644
->> --- a/arch/arm64/boot/dts/rockchip/rk3588-quartzpro64.dts
->> +++ b/arch/arm64/boot/dts/rockchip/rk3588-quartzpro64.dts
->> @@ -429,7 +429,6 @@ &sdhci {
->>   &sdmmc {
->>   	bus-width = <4>;
->>   	cap-sd-highspeed;
->> -	cd-gpios = <&gpio0 RK_PA4 GPIO_ACTIVE_LOW>;
->>   	disable-wp;
->>   	max-frequency = <150000000>;
->>   	no-sdio;
->> diff --git a/arch/arm64/boot/dts/rockchip/rk3588-rock-5b.dts b/arch/arm64/boot/dts/rockchip/rk3588-rock-5b.dts
->> index a0e303c3a1dc6..25a82008e4f76 100644
->> --- a/arch/arm64/boot/dts/rockchip/rk3588-rock-5b.dts
->> +++ b/arch/arm64/boot/dts/rockchip/rk3588-rock-5b.dts
->> @@ -371,7 +371,6 @@ &sdmmc {
->>   	bus-width = <4>;
->>   	cap-mmc-highspeed;
->>   	cap-sd-highspeed;
->> -	cd-gpios = <&gpio0 RK_PA4 GPIO_ACTIVE_LOW>;
->>   	disable-wp;
->>   	sd-uhs-sdr104;
->>   	vmmc-supply = <&vcc_3v3_s3>;
->> diff --git a/arch/arm64/boot/dts/rockchip/rk3588s-rock-5a.dts b/arch/arm64/boot/dts/rockchip/rk3588s-rock-5a.dts
->> index 2002fd0221fa3..00afb90d4eb10 100644
->> --- a/arch/arm64/boot/dts/rockchip/rk3588s-rock-5a.dts
->> +++ b/arch/arm64/boot/dts/rockchip/rk3588s-rock-5a.dts
->> @@ -366,7 +366,6 @@ &sdmmc {
->>   	bus-width = <4>;
->>   	cap-mmc-highspeed;
->>   	cap-sd-highspeed;
->> -	cd-gpios = <&gpio0 RK_PA4 GPIO_ACTIVE_LOW>;
->>   	disable-wp;
->>   	max-frequency = <150000000>;
->>   	no-sdio;
->>
->
+Bart
 
