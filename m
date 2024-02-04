@@ -1,183 +1,219 @@
-Return-Path: <devicetree+bounces-38404-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-38405-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0FFE1848E28
-	for <lists+devicetree@lfdr.de>; Sun,  4 Feb 2024 14:41:56 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7ADBC848E35
+	for <lists+devicetree@lfdr.de>; Sun,  4 Feb 2024 14:51:07 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 7CAE31F21843
-	for <lists+devicetree@lfdr.de>; Sun,  4 Feb 2024 13:41:55 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 3B7B81C20DF7
+	for <lists+devicetree@lfdr.de>; Sun,  4 Feb 2024 13:51:06 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 640E6224D8;
-	Sun,  4 Feb 2024 13:41:11 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C4251224ED;
+	Sun,  4 Feb 2024 13:51:02 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="dd4dy9di"
+	dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b="WFXe4dUJ"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [213.167.242.64])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3617624A0D;
-	Sun,  4 Feb 2024 13:41:10 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6D54F224EA;
+	Sun,  4 Feb 2024 13:50:58 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=213.167.242.64
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1707054071; cv=none; b=o+vZ7Z2lcNQEMJ3asKye/pcuGnjJY4+5bQ+SG403u3/Kmb6vE9yYLpnS2XbfLXEmqS8V1akL2/L0xvdcoRRxhb8eSWQ62vU7mT2oztmbOJsfdr08zokQrPyegZqck9ue1GQx2n5190UH4e5+J/OS93I6H1hMZQ9QTJXgK2MHTiE=
+	t=1707054662; cv=none; b=snWAN0UIx3mjdmNWBFrKgOo2Wr3Y2ucKT+c5+NqhZV9ensNTUWCkKL89JkIlactwajnjvUjv9AIjCzUrEdKsCx93oxuSSxJsQ3bNGV3HG4Y7eDP+yXBDvAXsZOTofi1a7YOjHQUobSJpd7fMYO3sH+x/9keB/m2/zI5d+wqm3oA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1707054071; c=relaxed/simple;
-	bh=QQi+L54IHlqVrO+b4uCPKhTLx6aVmrEehR+ugW8qGDg=;
-	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=SN2oRF/wwlFkHQfajDAFYFKsxvC5IRPg+MUUNmdfgAY+daK/Icp1NyvG/F2Lgk/9DP7ERQYYEi/D0IEqeJVf45ygdzHAlLQ5N6XLBcN5WWeGmfgUUBcu80XjQoCS8HmFhXdqH6jjWstqnoLRL9XIbjx35KnnDtJQDKul+VW3VXo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=dd4dy9di; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id C70F6C433F1;
-	Sun,  4 Feb 2024 13:41:06 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1707054070;
-	bh=QQi+L54IHlqVrO+b4uCPKhTLx6aVmrEehR+ugW8qGDg=;
-	h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
-	b=dd4dy9diFtUypiMGrjx6IBME6EqrSvcgT+HcV2VE5xyN8S+ZMWziwfFbrP9DBaiJ4
-	 krvwPlFIPg11U/hrxH9BGzFpDVy9O+fmuzvpVNChWCw/43ye+zh9Quqq5n1/d3fXm2
-	 0ORaKQvD44PziYuccW0YWQjIUA1iutQ3brgh/txSLIa/KZlt5ew8LyUrgSowvs/5gZ
-	 2x+LBTmhRtAm2H76m5cq5sOVhKW/zuivwTQnN+4yibhXN3SeAA5irOmEVLXneQohN6
-	 HJLorwkertRv+gKLvmh/mSjCM4AhIOgPA6nMEw8iprQwoerazg+C8VZQeYTHnmv0Oe
-	 q2ZCkdmQ1OwRQ==
-Date: Sun, 4 Feb 2024 13:40:56 +0000
-From: Jonathan Cameron <jic23@kernel.org>
-To: Subhajit Ghosh <subhajit.ghosh@tweaklogic.com>
-Cc: Lars-Peter Clausen <lars@metafoo.de>, Rob Herring <robh+dt@kernel.org>,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley
- <conor+dt@kernel.org>, Matti Vaittinen <mazziesaccount@gmail.com>, Andy
- Shevchenko <andriy.shevchenko@linux.intel.com>, Marek Vasut
- <marex@denx.de>, Anshul Dalal <anshulusr@gmail.com>, Javier Carrasco
- <javier.carrasco.cruz@gmail.com>, Matt Ranostay <matt@ranostay.sg>, Stefan
- Windfeldt-Prytz <stefan.windfeldt-prytz@axis.com>,
- linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v5 3/3] iio: light: Add support for APDS9306 Light
- Sensor
-Message-ID: <20240204134056.5dc64e8b@jic23-huawei>
-In-Reply-To: <fd404067-bc24-449c-94b4-f59a54c3f532@tweaklogic.com>
-References: <20240121051735.32246-1-subhajit.ghosh@tweaklogic.com>
-	<20240121051735.32246-4-subhajit.ghosh@tweaklogic.com>
-	<20240121152332.6b15666a@jic23-huawei>
-	<757a18b7-94f4-4d72-9917-5d8b1cd677f6@tweaklogic.com>
-	<fd404067-bc24-449c-94b4-f59a54c3f532@tweaklogic.com>
-X-Mailer: Claws Mail 4.2.0 (GTK 3.24.41; x86_64-pc-linux-gnu)
+	s=arc-20240116; t=1707054662; c=relaxed/simple;
+	bh=4/u6c8A7HPqivSqSRYin51hS3p0zUCCOPF4PXCVBzYY=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=uLiyQBk7ybijItT0mXRFi1Gs0bUI/v7w42qp3BZOwY/U5OMYiyQdEUi2Lwb62fX+PCkF7s6TLw6NAkPeDx0BzMZxsErpyfL+CEDBkQwY6LjMQ3qy1UyybC85y1I81VkUj1OyaRkehKu8m+mtl7YQHQOpnsxmsK0X2nTqhHTzMAg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ideasonboard.com; spf=pass smtp.mailfrom=ideasonboard.com; dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b=WFXe4dUJ; arc=none smtp.client-ip=213.167.242.64
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ideasonboard.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ideasonboard.com
+Received: from pendragon.ideasonboard.com (unknown [151.216.142.210])
+	by perceval.ideasonboard.com (Postfix) with ESMTPSA id E9F6C720;
+	Sun,  4 Feb 2024 14:49:33 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
+	s=mail; t=1707054574;
+	bh=4/u6c8A7HPqivSqSRYin51hS3p0zUCCOPF4PXCVBzYY=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=WFXe4dUJuMzaOEeLaWAsJL0smy/yif2Tw2PnsZJwJZ0fYQAKJsFHBBLkxOO8SOxAJ
+	 FLUVjjt/qc56Z5GGKRLMPL2MEeq/6pHs41aZU6UJx1idAkEaqURxI8C8Nweik+Ssb4
+	 3N2pN5Ch1jqlWKbR+g87QY5aTUTVAvPlY2I3AvMA=
+Date: Sun, 4 Feb 2024 15:50:56 +0200
+From: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+To: Zhi Mao <zhi.mao@mediatek.com>
+Cc: mchehab@kernel.org, robh+dt@kernel.org,
+	krzysztof.kozlowski+dt@linaro.org, sakari.ailus@linux.intel.com,
+	shengnan.wang@mediatek.com, yaya.chang@mediatek.com,
+	10572168@qq.com, Project_Global_Chrome_Upstream_Group@mediatek.com,
+	yunkec@chromium.org, conor+dt@kernel.org, matthias.bgg@gmail.com,
+	angelogioacchino.delregno@collabora.com,
+	jacopo.mondi@ideasonboard.com, hverkuil-cisco@xs4all.nl,
+	heiko@sntech.de, jernej.skrabec@gmail.com, macromorgan@hotmail.com,
+	linus.walleij@linaro.org, hdegoede@redhat.com,
+	tomi.valkeinen@ideasonboard.com, gerald.loacker@wolfvision.net,
+	andy.shevchenko@gmail.com, bingbu.cao@intel.com,
+	dan.scally@ideasonboard.com, linux-media@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	linux-mediatek@lists.infradead.org,
+	Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Subject: Re: [PATCH v4 1/2] media: dt-bindings: i2c: add GalaxyCore GC08A3
+ image sensor
+Message-ID: <20240204135056.GA6804@pendragon.ideasonboard.com>
+References: <20240204061538.2105-1-zhi.mao@mediatek.com>
+ <20240204061538.2105-2-zhi.mao@mediatek.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+In-Reply-To: <20240204061538.2105-2-zhi.mao@mediatek.com>
 
-On Sun, 4 Feb 2024 21:53:55 +1030
-Subhajit Ghosh <subhajit.ghosh@tweaklogic.com> wrote:
+Hi Zhi,
 
-> Hi Jonathan,
-> >> =20
-> >>> +
-> >>> +static struct iio_event_spec apds9306_event_spec_als[] =3D {
-> >>> +=C2=A0=C2=A0=C2=A0 {
-> >>> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 .type =3D IIO_EV_TYPE_THR=
-ESH,
-> >>> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 .dir =3D IIO_EV_DIR_RISIN=
-G,
-> >>> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 .mask_shared_by_all =3D B=
-IT(IIO_EV_INFO_VALUE),
-> >>> +=C2=A0=C2=A0=C2=A0 }, {
-> >>> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 .type =3D IIO_EV_TYPE_THR=
-ESH,
-> >>> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 .dir =3D IIO_EV_DIR_FALLI=
-NG,
-> >>> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 .mask_shared_by_all =3D B=
-IT(IIO_EV_INFO_VALUE),
-> >>> +=C2=A0=C2=A0=C2=A0 }, {
-> >>> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 .type =3D IIO_EV_TYPE_THR=
-ESH,
-> >>> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 .mask_shared_by_all =3D B=
-IT(IIO_EV_INFO_PERIOD),
-> >>> +=C2=A0=C2=A0=C2=A0 }, {
-> >>> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 .type =3D IIO_EV_TYPE_THR=
-ESH_ADAPTIVE,
-> >>> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 .mask_shared_by_all =3D B=
-IT(IIO_EV_INFO_VALUE) |
-> >>> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 B=
-IT(IIO_EV_INFO_ENABLE),
-> >>> +=C2=A0=C2=A0=C2=A0 }, {
-> >>> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 .mask_separate =3D BIT(II=
-O_EV_INFO_ENABLE), =20
-> >>
-> >> What's the intent of this final entry?
-> >> The type will default to IIO_EV_TYPE_THRESH anyway but if that
-> >> the intent you should specify it.=C2=A0=C2=A0 There isn't an 'obvious'
-> >> default for type in the same way there sort of is for dir
-> >> (as it's either direction). =20
-> > Understood, let me experiment and see the ABI difference, if any and ge=
-t back to you.
-> >  =20
-> This device has two channels - ALS and CLEAR. One interrupt enable option=
- and
-> one Channel selection option (Clear or ALS). According to our previous di=
-scussions:
-> https://lore.kernel.org/all/20230415183543.6d5e3392@jic23-huawei/
-> the event_spec was updated to have two interrupt enable attributes - one =
-for CLEAR and
-> one for ALS. (Intensity channel and Illuminance channel)
->=20
-> If I remove the final entry I am getting only one enable option (intensit=
-y channel):
-> /sys/bus/iio/devices/iio:device0/
-> |-- events
-> |   |-- in_intensity_clear_thresh_either_en
-> |   |-- thresh_adaptive_either_en
-> |   |-- thresh_adaptive_either_value
-> |   |-- thresh_adaptive_either_values_available
-> |   |-- thresh_either_period
-> |   |-- thresh_either_period_available
-> |   |-- thresh_falling_value
-> |   `-- thresh_rising_value
->=20
-> The last entry gives be the following event attributes, enable attributes=
- for both
-> intensity and illuminance channels:
-> /sys/bus/iio/devices/iio:device0/
-> |-- events
-> |   |-- in_illuminance_thresh_either_en
-> |   |-- in_intensity_clear_thresh_either_en
-> |   |-- thresh_adaptive_either_en
-> |   |-- thresh_adaptive_either_value
-> |   |-- thresh_adaptive_either_values_available
-> |   |-- thresh_either_period
-> |   |-- thresh_either_period_available
-> |   |-- thresh_falling_value
-> |   `-- thresh_rising_value
->=20
-> Please let me know if this sounds ok to you.
-Looks like coincidence of enum values being 0.
-It's really
-{
-	.type =3D IIO_EV_TYPE_THRESH, /* Value 0 */
-	.dir =3D IIO_EV_DIR_EITHER, /* value 0 */
-	.mask_separate =3D BIT(IIO_EV_INFO_ENABLE),
+Thank you for the patch.
 
-Dropping 'defaults' for these things is fine if they are the obvious default
-or other parameters mean they aren't used, but that isn't the case here so
-please be explicit for all the values that are used.
+On Sun, Feb 04, 2024 at 02:15:37PM +0800, Zhi Mao wrote:
+> Add YAML device tree binding for GC08A3 CMOS image sensor,
+> and the relevant MAINTAINERS entries.
+> 
+> Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+> Signed-off-by: Zhi Mao <zhi.mao@mediatek.com>
 
-You can put this final mask a few lines earlier as the other fields match
-anyway.
-	{
-=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 	.type =3D IIO_EV_TYPE_THRESH,
-		.dir =3D IIO_EV_DIR_EITHER,
-=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 	.mask_shared_by_all =3D BIT(IIO=
-_EV_INFO_PERIOD),
-		.mask_separate =3D BIT(IIO_EV_INFO_ENABLE),
-	},..
+Reviewed-by: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
 
->=20
-> Regards,
-> Subhajit Ghosh
+> ---
+>  .../bindings/media/i2c/galaxycore,gc08a3.yaml | 112 ++++++++++++++++++
+>  1 file changed, 112 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/media/i2c/galaxycore,gc08a3.yaml
+> 
+> diff --git a/Documentation/devicetree/bindings/media/i2c/galaxycore,gc08a3.yaml b/Documentation/devicetree/bindings/media/i2c/galaxycore,gc08a3.yaml
+> new file mode 100644
+> index 000000000000..8c09e8c121e5
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/media/i2c/galaxycore,gc08a3.yaml
+> @@ -0,0 +1,112 @@
+> +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
+> +# Copyright (c) 2023 MediaTek Inc.
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/media/i2c/galaxycore,gc08a3.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: GalaxyCore gc08a3 1/4" 8M Pixel MIPI CSI-2 sensor
+> +
+> +maintainers:
+> +  - Zhi Mao <zhi.mao@mediatek.com>
+> +
+> +description:
+> +  The gc08a3 is a raw image sensor with an MIPI CSI-2 image data
+> +  interface and CCI (I2C compatible) control bus. The output format
+> +  is raw Bayer.
+> +
+> +properties:
+> +  compatible:
+> +    const: galaxycore,gc08a3
+> +
+> +  reg:
+> +    maxItems: 1
+> +
+> +  clocks:
+> +    maxItems: 1
+> +
+> +  dovdd-supply: true
+> +
+> +  avdd-supply: true
+> +
+> +  dvdd-supply: true
+> +
+> +  reset-gpios:
+> +    description: Reference to the GPIO connected to the RESETB pin.
+> +    maxItems: 1
+> +
+> +  port:
+> +    $ref: /schemas/graph.yaml#/$defs/port-base
+> +    additionalProperties: false
+> +    description:
+> +      Output port node, single endpoint describing the CSI-2 transmitter.
+> +
+> +    properties:
+> +      endpoint:
+> +        $ref: /schemas/media/video-interfaces.yaml#
+> +        unevaluatedProperties: false
+> +
+> +        properties:
+> +          data-lanes:
+> +            oneOf:
+> +              - items:
+> +                  - const: 1
+> +                  - const: 2
+> +                  - const: 3
+> +                  - const: 4
+> +              - items:
+> +                  - const: 1
+> +                  - const: 2
+> +
+> +          link-frequencies: true
+> +
+> +        required:
+> +          - data-lanes
+> +          - link-frequencies
+> +
+> +    required:
+> +      - endpoint
+> +
+> +required:
+> +  - compatible
+> +  - reg
+> +  - clocks
+> +  - dovdd-supply
+> +  - avdd-supply
+> +  - dvdd-supply
+> +  - reset-gpios
+> +  - port
+> +
+> +additionalProperties: false
+> +
+> +examples:
+> +  - |
+> +    #include <dt-bindings/gpio/gpio.h>
+> +
+> +    i2c {
+> +        #address-cells = <1>;
+> +        #size-cells = <0>;
+> +
+> +        sensor@31 {
+> +            compatible = "galaxycore,gc08a3";
+> +            reg = <0x31>;
+> +
+> +            clocks = <&gc08a3_clk>;
+> +
+> +            reset-gpios = <&pio 19 GPIO_ACTIVE_HIGH>;
+> +
+> +            avdd-supply = <&gc08a3_avdd>;
+> +            dovdd-supply = <&gc08a3_dovdd>;
+> +            dvdd-supply = <&gc08a3_dvdd>;
+> +
+> +            port {
+> +                sensor_out: endpoint {
+> +                    data-lanes = <1 2 3 4>;
+> +                    link-frequencies = /bits/ 64 <336000000 207000000>;
+> +                    remote-endpoint = <&seninf_csi_port_0_in>;
+> +                };
+> +            };
+> +        };
+> +    };
+> +
+> +...
 
+-- 
+Regards,
+
+Laurent Pinchart
 
