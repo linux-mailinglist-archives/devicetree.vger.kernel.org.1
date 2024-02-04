@@ -1,63 +1,60 @@
-Return-Path: <devicetree+bounces-38415-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-38416-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4AAB8848F07
-	for <lists+devicetree@lfdr.de>; Sun,  4 Feb 2024 16:54:43 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id A5671848F19
+	for <lists+devicetree@lfdr.de>; Sun,  4 Feb 2024 17:02:02 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id A0388283100
-	for <lists+devicetree@lfdr.de>; Sun,  4 Feb 2024 15:54:41 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 01B7EB21C3C
+	for <lists+devicetree@lfdr.de>; Sun,  4 Feb 2024 16:02:00 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id BA2D8225D2;
-	Sun,  4 Feb 2024 15:54:38 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4FD8922618;
+	Sun,  4 Feb 2024 16:01:53 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Kr2o/PQt"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Sh22fkNF"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8E920224FB;
-	Sun,  4 Feb 2024 15:54:38 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2A5F022615;
+	Sun,  4 Feb 2024 16:01:52 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1707062078; cv=none; b=T0Z5ZoDtnSPUijSVd+SjHqe9H+qzsVqojOd3uhDo0h14fnN+SptVbIZHRystboq3Vs7xTJjhMEPj+tFd5BHY6GkJaQmof7hyh8J9IFM4poVkt8rQL/UlsIQzpiKItAE4+7WYGbT/ZOtF+Dlyl9xhcLZQ6cLL/Grkc7+hJkBxngI=
+	t=1707062513; cv=none; b=Iivpoi6b8Kynpu02TBw6P8lxyxGeAfYyUDoiDrQhpLYqck9CLq5Odvpilq+5CTVbMSh86mZV8XRBC+KOCsoi4zgmMdLIe5nZ97hc9QI3onfyLIm5HszH4n6XfY/13V5jM3VRchD3xr4KVYU3loevN4a/PsUfGcOEwWW/FMMRJKQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1707062078; c=relaxed/simple;
-	bh=YKFk0fhw1yKmiLgnS6+duQR/LC6Nzpfu5Y1k0cwgcx0=;
+	s=arc-20240116; t=1707062513; c=relaxed/simple;
+	bh=5bs6AIj/VbQlAyffESBFSqyzlHKuzqTWKMvrD6Vd2bw=;
 	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=kp1OD8nkVjztFLYcKYKusrKzLHpplrqeuYlvy8QNkYQg8Z90e45dGe/7wOoCO0NUQQRC8Dk7g0vgKp8HEeTAciaFQh87QHKSUJbqo5JiaNuTaxrgHav0NtMgjOsvbUuTCQg/wNfkT4w8yPBttbOsbxr6PL86/1ckchDmN8hNc9M=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Kr2o/PQt; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 8F468C433F1;
-	Sun,  4 Feb 2024 15:54:34 +0000 (UTC)
+	 MIME-Version:Content-Type; b=YzQVv0vS+Jda5zPZPRTaGhacLkTKUjHAfltSQ+5/aWrdy8pVB+uEvNupkr7hUSlqGPZhk0f0KxijJqPWTmC2Bv2ZQw4eYlYPvhq/zoQ3GHnbIegYCEL8mJMCdodPZhn/KElZRfkB0UTeNHmMmfKToqQk74yL6T/NzFAVfV/vmwo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Sh22fkNF; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id ED6EEC433C7;
+	Sun,  4 Feb 2024 16:01:47 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1707062078;
-	bh=YKFk0fhw1yKmiLgnS6+duQR/LC6Nzpfu5Y1k0cwgcx0=;
+	s=k20201202; t=1707062512;
+	bh=5bs6AIj/VbQlAyffESBFSqyzlHKuzqTWKMvrD6Vd2bw=;
 	h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
-	b=Kr2o/PQtO+6cKZ+/I+Z5dnrgYRXvoUE54ciPpbZEiH5dw9Ucfw4iX1rBKeGL05c1G
-	 twyQiP3ESA7m5FGOzApClwNbMIaLRShn7UP9J+NTaRSmYFFRcqd1c4f43hhiEqflP9
-	 PF0NEC3CR8g59QTWiuEGmEeLwrfDwX89MH+nlzak/BTrZcZsD0JKpIOydupNU6hIHQ
-	 Ztew9WJYhNjcA6+BYxDkJkBP5EirA7lOlFCFURgr2fENY4HDWB9N2YSw5gEpoSprE/
-	 qyrn0WKwNYEfVRswhBUV5ndUDqqZmw5Upn0CguluGQFUUwqD1dibZVCIU2zuJgn8Tw
-	 BOafPnxYnUcHQ==
-Date: Sun, 4 Feb 2024 15:54:22 +0000
+	b=Sh22fkNF+lTGtEZI1VmP+a3zhI/PU6jBoGdbDCXKzsgMbyAhXQV1ehaeJXggx2xD4
+	 ZJpLmLhICCmYM6FcNQ3WSoUOxrVQdOv0aU4SuIa6zF4rIMQMnbN3srGgcTpIogJMoR
+	 gBhfhudeLftTTFmy+ZtoEX4lRaequaO8VIERVBykSKOeHsMzdg51dXmsgk3ljYrcEV
+	 2JbGX74eJoCIp+TWXlXvMHdfglQLWhtM2vjMhl3/W7M7pZn/tUQ6Zz2VT3BZojOXf9
+	 C0BFrIyZxgtwCtpSYXrLqkVhuROP6HrfuICwChORtAnbYe+02Rfn8pxA0i6odG/16+
+	 IfHAPE/MaOgng==
+Date: Sun, 4 Feb 2024 16:01:36 +0000
 From: Jonathan Cameron <jic23@kernel.org>
-To: Mike Looijmans <mike.looijmans@topic.nl>
-Cc: devicetree@vger.kernel.org, linux-iio@vger.kernel.org, Andy Shevchenko
- <andriy.shevchenko@linux.intel.com>, Lars-Peter Clausen <lars@metafoo.de>,
- Liam Beguin <liambeguin@gmail.com>, Liam Girdwood <lgirdwood@gmail.com>,
- Maksim Kiselev <bigunclemax@gmail.com>, Marcus Folkesson
- <marcus.folkesson@gmail.com>, Marius Cristea
- <marius.cristea@microchip.com>, Mark Brown <broonie@kernel.org>, Niklas
- Schnelle <schnelle@linux.ibm.com>, Okan Sahin <okan.sahin@analog.com>,
- linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v2 2/2] iio: adc: ti-ads1298: Add driver
-Message-ID: <20240204155422.5ae03e4c@jic23-huawei>
-In-Reply-To: <20240202105901.925875-2-mike.looijmans@topic.nl>
-References: <20240202105901.925875-1-mike.looijmans@topic.nl>
-	<1b153bce-a66a-45ee-a5c6-963ea6fb1c82.949ef384-8293-46b8-903f-40a477c056ae.6274d473-fd3f-439a-bf61-89eea8028afa@emailsignatures365.codetwo.com>
-	<20240202105901.925875-2-mike.looijmans@topic.nl>
+To: Nuno Sa via B4 Relay <devnull+nuno.sa.analog.com@kernel.org>
+Cc: <nuno.sa@analog.com>, linux-iio@vger.kernel.org,
+ devicetree@vger.kernel.org, Lars-Peter Clausen <lars@metafoo.de>, Michael
+ Hennerich <Michael.Hennerich@analog.com>, Rob Herring <robh+dt@kernel.org>,
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley
+ <conor+dt@kernel.org>, Frank Rowand <frowand.list@gmail.com>, Olivier
+ Moysan <olivier.moysan@foss.st.com>, Rob Herring <robh@kernel.org>
+Subject: Re: [PATCH v8 0/7] iio: add new backend framework
+Message-ID: <20240204160136.0faa3125@jic23-huawei>
+In-Reply-To: <20240204145933.6f29538c@jic23-huawei>
+References: <20240202-iio-backend-v8-0-f65ee8c8203d@analog.com>
+	<20240204145933.6f29538c@jic23-huawei>
 X-Mailer: Claws Mail 4.2.0 (GTK 3.24.41; x86_64-pc-linux-gnu)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
@@ -65,200 +62,136 @@ List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
 
-On Fri, 2 Feb 2024 11:59:01 +0100
-Mike Looijmans <mike.looijmans@topic.nl> wrote:
+On Sun, 4 Feb 2024 14:59:33 +0000
+Jonathan Cameron <jic23@kernel.org> wrote:
 
-> Skeleton driver for the TI ADS1298 medical ADC. This device is
-> typically used for ECG and similar measurements. Supports data
-> acquisition at configurable scale and sampling frequency.
-> 
-> Signed-off-by: Mike Looijmans <mike.looijmans@topic.nl>
-> 
-Hi Mike,
+> On Fri, 02 Feb 2024 16:08:31 +0100
+> Nuno Sa via B4 Relay <devnull+nuno.sa.analog.com@kernel.org> wrote:
+>=20
+> > v1:
+> >  https://lore.kernel.org/linux-iio/20231204144925.4fe9922f@jic23-huawei=
+/T/#m222f5175273b81dbfe40b7f0daffcdc67d6cb8ff
+> >=20
+> > v2:
+> >  https://lore.kernel.org/r/20231208-dev-iio-backend-v2-0-5450951895e1@a=
+nalog.com
+> >=20
+> > v3:
+> >  https://lore.kernel.org/linux-iio/20231213-dev-iio-backend-v3-0-bb9f12=
+a5c6dc@analog.com/
+> >=20
+> > v4:
+> >  https://lore.kernel.org/r/20231220-iio-backend-v4-0-998e9148b692@analo=
+g.com
+> >=20
+> > v5:
+> >  https://lore.kernel.org/r/20240112-iio-backend-v5-0-bdecad041ab4@analo=
+g.com
+> >=20
+> > v6:
+> >  https://lore.kernel.org/r/20240119-iio-backend-v6-0-189536c35a05@analo=
+g.com
+> >=20
+> > v7
+> >  https://lore.kernel.org/r/20240123-iio-backend-v7-0-1bff236b8693@analo=
+g.com
+> >=20
+> > Changes in v8:
+> >  - Dropped commit ("of: property: fix typo in io-channels") - applied
+> >    via DT tree. Also dropped commit
+> >    ("driver: core: allow modifying device_links flags") - did not made
+> >    sense.
+> >  - Patch 7
+> >   * Do not change the version string format during probe.
+> >=20
+> > Jonathan, the series is based on next-20240202 since it already includes
+> > the io-channels fix Rob applied in his tree. I guess it should land in =
+rc3 so
+> > after you rebase, all patches should apply cleanly (if applying them of=
+ course
+> > :)). Let me know if anything fails... =20
+>=20
+> Given that merge (between my tree and Rob's) is about as trivial as they =
+come
+> I'll take the series now (rather than delaying) and rely on Stephen (for =
+next)
+> and Greg (once I send a pull request) to deal with it.
+>=20
+> It's the sort of merge that makes Linus grumpy if people rebase to avoid =
+it!
+>=20
+> On that note, applied with those tweaks to the broken binding patch.
+>=20
+> Initially pushed out as testing to see if 0-day moans at us a lot about a=
+nything.
+Dropped again as comments in from Andy crossed with this.
 
-A few minor things I'd missed before.
+Jonathan
 
-I'm still interested in why more standard interrupt handling isn't
-good enough here (see reply to v1 thread) but if we can't get to the bottom
-of that (or do figure it out and we can't fix it) then this doesn't look
-too bad so I'll accept the complex handling.
-
-J
-
-> diff --git a/drivers/iio/adc/ti-ads1298.c b/drivers/iio/adc/ti-ads1298.c
-> new file mode 100644
-> index 000000000000..539598b9f3fa
-> --- /dev/null
-> +++ b/drivers/iio/adc/ti-ads1298.c
-> @@ -0,0 +1,769 @@
-
-> +
-> +#include <linux/iio/iio.h>
-> +#include <linux/iio/buffer.h>
-> +#include <linux/iio/kfifo_buf.h>
-> +#include <linux/iio/sysfs.h>
-
-I don't see any custom ABI, so shouldn't need this.
-
-> +
-> +#include <asm/unaligned.h>
-> +
-
-
-
-> +static int ads1298_reg_read(void *context, unsigned int reg, unsigned int *val)
-> +{
-> +	struct ads1298_private *priv = context;
-> +	struct spi_transfer reg_read_xfer = {
-> +		.tx_buf = priv->cmd_buffer,
-> +		.rx_buf = priv->cmd_buffer,
-> +		.len = 3,
-> +		.speed_hz = ADS1298_SPI_BUS_SPEED_SLOW,
-> +		.delay = {
-> +			.value = 2,
-> +			.unit = SPI_DELAY_UNIT_USECS,
-> +		},
-> +	};
-> +	int ret;
-> +
-> +	priv->cmd_buffer[0] = ADS1298_CMD_RREG | reg;
-> +	priv->cmd_buffer[1] = 0x0;
-
-Why mix of hex and decimal? Doesn't matter but looks odd
-
-
-> +	priv->cmd_buffer[2] = 0;
-> +
-> +	ret = spi_sync_transfer(priv->spi, &reg_read_xfer, 1);
-> +	if (ret)
-> +		return ret;
-> +
-> +	*val = priv->cmd_buffer[2];
-> +
-> +	return 0;
-> +}
-
-> +
-> +/* Called from SPI completion interrupt handler */
-> +static void ads1298_rdata_complete(void *context)
-> +{
-> +	struct iio_dev *indio_dev = context;
-> +	struct ads1298_private *priv = iio_priv(indio_dev);
-> +	int scan_index;
-> +	u32 *bounce = priv->bounce_buffer;
-> +
-> +	if (!iio_buffer_enabled(indio_dev)) {
-
-Good to add a comment here on why this can't race as we are holding
-the device in direct mode until after the completion.
-
-iio_buffer_enabled() checks tend to expose races so I prefer people
-to explicitly say why there isn't one.
-
-
-
-> +		/* Happens when running in single transfer mode */
-> +		ads1298_rdata_unmark_busy(priv);
-> +		complete(&priv->completion);
-> +		return;
-> +	}
-> +
-> +	/* Demux the channel data into our bounce buffer */
-> +	for_each_set_bit(scan_index, indio_dev->active_scan_mask,
-> +			 indio_dev->masklength) {
-> +		const struct iio_chan_spec *scan_chan =
-> +					&indio_dev->channels[scan_index];
-> +		const u8 *data = priv->rx_buffer + scan_chan->address;
-> +
-> +		*bounce++ = get_unaligned_be24(data);
-> +	}
-> +
-> +	/* rx_buffer can be overwritten from this point on */
-> +	ads1298_rdata_release_busy_or_restart(priv);
-> +
-> +	iio_push_to_buffers(indio_dev, priv->bounce_buffer);
-> +}
-
-> +
-> +static const char *ads1298_family_name(unsigned int id)
-> +{
-> +	switch (id & ADS1298_MASK_ID_FAMILY) {
-> +	case ADS1298_ID_FAMILY_ADS129X:
-> +		return "ADS129x";
-> +	case ADS1298_ID_FAMILY_ADS129XR:
-> +		return "ADS129xR";
-> +	default:
-> +		return "(unknown)";
-> +	}
-> +}
-> +
-> +static int ads1298_init(struct ads1298_private *priv)
-> +{
-> +	struct device *dev = &priv->spi->dev;
-> +	int ret;
-> +	unsigned int val;
-> +
-> +	/* Device initializes into RDATAC mode, which we don't want. */
-> +	ret = ads1298_write_cmd(priv, ADS1298_CMD_SDATAC);
-> +	if (ret)
-> +		return ret;
-> +
-> +	ret = regmap_read(priv->regmap, ADS1298_REG_ID, &val);
-> +	if (ret)
-> +		return ret;
-> +
-> +	dev_info(dev, "Found %s, %u channels\n", ads1298_family_name(val),
-> +		 4 + 2 * (val & ADS1298_MASK_ID_CHANNELS));
-Noise for the log that is easy to figure out anyway (assuming successful
-probe) Make that dev_dbg()
-
-> +
-> +	/* Enable internal test signal, double amplitude, double frequency */
-> +	ret = regmap_write(priv->regmap, ADS1298_REG_CONFIG2,
-> +		ADS1298_MASK_CONFIG2_RESERVED |
-> +		ADS1298_MASK_CONFIG2_INT_TEST |
-> +		ADS1298_MASK_CONFIG2_TEST_AMP |
-> +		ADS1298_MASK_CONFIG2_TEST_FREQ_FAST);
-
-Unless lines are very long, parameters should align just after (
-
-
-> +	if (ret)
-> +		return ret;
-> +
-> +	val = ADS1298_MASK_CONFIG3_RESERVED; /* Must write 1 always */
-> +	if (!priv->reg_vref) {
-> +		/* Enable internal reference */
-> +		val |= ADS1298_MASK_CONFIG3_PWR_REFBUF;
-> +		/* Use 4V VREF when power supply is at least 4.4V */
-> +		if (regulator_get_voltage(priv->reg_avdd) >= 4400000)
-> +			val |= ADS1298_MASK_CONFIG3_VREF_4V;
-> +	}
-> +	return regmap_write(priv->regmap, ADS1298_REG_CONFIG3, val);
-> +}
-> +
-> +static int ads1298_probe(struct spi_device *spi)
-> +{
-
-...
-
-> +	ret = devm_request_irq(dev, spi->irq, &ads1298_interrupt,
-> +			       IRQF_TRIGGER_FALLING, indio_dev->name,
-I missed this before (and we've gotten it wrong a bunch of times in the past
-so plenty of bad examples to copy that we can't fix without possible
-regressions) but we generally now leave irq direction to the firmware description.
-People have an annoying habit of putting not gates and similar in the path
-to interrupt pins.  Fine to have the binding state the expected form though
-(as you do).  So basically not flags here.
-
-I'm still curious to understand more of where the delays that lead to
-needing to do this complex handling came from, but I guess it's not too bad
-if we can't get to the bottom of that so I'll take the driver anyway
-(after a little more time on list for others to review!)
-
-> +			       indio_dev);
+>=20
+> Jonathan
+>=20
+> >=20
+> > (also dropped the devlink Reviewers from the Cc list as that patch was
+> > dropped).
+> >=20
+> > Keeping the block diagram  so we don't have to follow links
+> > to check one of the typical setups.
+> >=20
+> >                                            ----------------------------=
+---------------------------
+> >  ------------------                        | -----------         ------=
+------      -------  FPGA |
+> >  |     ADC        |------------------------| | AXI ADC |---------| DMA =
+CORE |------| RAM |       |
+> >  | (Frontend/IIO) | Serial Data (eg: LVDS) | |(backend)|---------|     =
+     |------|     |       |
+> >  |                |------------------------| -----------         ------=
+------      -------       |
+> >  ------------------                        ----------------------------=
+---------------------------
+> >=20
+> > ---
+> > Nuno Sa (6):
+> >       dt-bindings: adc: ad9467: add new io-backend property
+> >       dt-bindings: adc: axi-adc: update bindings for backend framework
+> >       iio: buffer-dmaengine: export buffer alloc and free functions
+> >       iio: add the IIO backend framework
+> >       iio: adc: ad9467: convert to backend framework
+> >       iio: adc: adi-axi-adc: move to backend framework
+> >=20
+> > Olivier Moysan (1):
+> >       of: property: add device link support for io-backends
+> >=20
+> >  .../devicetree/bindings/iio/adc/adi,ad9467.yaml    |   4 +
+> >  .../devicetree/bindings/iio/adc/adi,axi-adc.yaml   |   8 +-
+> >  MAINTAINERS                                        |   8 +
+> >  drivers/iio/Kconfig                                |   9 +
+> >  drivers/iio/Makefile                               |   1 +
+> >  drivers/iio/adc/Kconfig                            |   4 +-
+> >  drivers/iio/adc/ad9467.c                           | 268 +++++++++-----
+> >  drivers/iio/adc/adi-axi-adc.c                      | 379 +++++--------=
+------
+> >  drivers/iio/buffer/industrialio-buffer-dmaengine.c |   8 +-
+> >  drivers/iio/industrialio-backend.c                 | 412 +++++++++++++=
+++++++++
+> >  drivers/of/property.c                              |   2 +
+> >  include/linux/iio/adc/adi-axi-adc.h                |  68 ----
+> >  include/linux/iio/backend.h                        |  72 ++++
+> >  include/linux/iio/buffer-dmaengine.h               |   3 +
+> >  14 files changed, 793 insertions(+), 453 deletions(-)
+> > ---
+> > base-commit: 076d56d74f17e625b3d63cf4743b3d7d02180379
+> > change-id: 20231219-iio-backend-a3dc1a6a7a58
+> > --
+> >=20
+> > Thanks!
+> > - Nuno S=C3=A1
+> >  =20
+>=20
+>=20
 
 
