@@ -1,394 +1,281 @@
-Return-Path: <devicetree+bounces-38340-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-38342-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id D9283848B0C
-	for <lists+devicetree@lfdr.de>; Sun,  4 Feb 2024 05:42:28 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 75CBF848B37
+	for <lists+devicetree@lfdr.de>; Sun,  4 Feb 2024 06:31:42 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 0A34E1C219B2
-	for <lists+devicetree@lfdr.de>; Sun,  4 Feb 2024 04:42:28 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 19BB7B22A9D
+	for <lists+devicetree@lfdr.de>; Sun,  4 Feb 2024 05:31:40 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C6CF54409;
-	Sun,  4 Feb 2024 04:41:57 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 65D827494;
+	Sun,  4 Feb 2024 05:31:31 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="klRRWt1b"
+	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="WgBf0S77"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-io1-f44.google.com (mail-io1-f44.google.com [209.85.166.44])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 022528C01;
-	Sun,  4 Feb 2024 04:41:55 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.166.44
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 849696FBD;
+	Sun,  4 Feb 2024 05:31:29 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1707021717; cv=none; b=JrVfQ2E1PwV2ON7FM34wo4i2YEP4AoBwZm7zsex82jFNbKX1CR7S1mW3MX+RWOthKXNrn8mzwwTqq3xL94ABgNDzMO6/uQ9ZSNd0liIWxmaS6h/9GUbDF64K696wX7rBcPmA5zSg0GAwOm9NQnM3o3GWxii28Mt7E+arXBj7rP0=
+	t=1707024691; cv=none; b=GSUriE8zRpzu9mx6Uh2gH9Midd6H3Vsfg2TUDrHXJ9FRUcqKub2biaRf/Arv+DjiFbdSBBrL5JlbFrRPvDnj7yGcV4IugPRNO9yg9J5wgzfVB/sedu56bmrpfeV4ur3DSfMZhbXzg5sQSsnpfQkfCk8+7GJgCq+3jhnKwtfPXSI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1707021717; c=relaxed/simple;
-	bh=aH0Hq69qTFO9G+gVEopYTuCzG7xKtDisAqk3HBcwXXc=;
-	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
-	 MIME-Version; b=iPrcVt1rOfCwSa1LQJupNt2gb1Q9KOyxb+Th+vZvJZq41uPl7a7GsdxdMv6Fr+V3V07KUwcVAGgcjAMqiq1Uks7ojj1Lk1TQvGjnRTKtESXoTSuHwTnGdi/1s09nE1BTy8bfrvGZgOAUvmld0ZEkFM0grWs+90IVZuxr2RdjMVc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=klRRWt1b; arc=none smtp.client-ip=209.85.166.44
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-io1-f44.google.com with SMTP id ca18e2360f4ac-7bc332d3a8cso186055039f.2;
-        Sat, 03 Feb 2024 20:41:55 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1707021715; x=1707626515; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=IFP99fff3r5mwjujhUJyQkBzJ87OUfg244De9Pja3tU=;
-        b=klRRWt1bsG3PUJerOG7MvbeychIc7vKmYy76kNWbSOgs5aJCIaD4k86hR3bJekhXOB
-         mx8mnpXoQzkEv4859BAIUVKVgEJF62Qnhf4xGclEpanfipIuULJzyb5trRJA4RbbDa1a
-         tgB4QsoewKnAK/URleT194V0KQf6+/HA2qNSOXVeDoW90SffN5C2evCEPcseX/onHRBu
-         ha07U5urcIzC9dg8dmx7i40yvoPU03rsU+F6mrh8qMiRJyn4OvtSa7gb2kQb4f/jKaev
-         cnfslpyX3VZ0s45/EDvjwgaiJQco0XFGhhdQxzNEtvENge6i6urXTncGCcoxgzbaI5CO
-         ggjg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1707021715; x=1707626515;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=IFP99fff3r5mwjujhUJyQkBzJ87OUfg244De9Pja3tU=;
-        b=cSwaUPOUhlnJiiTOLviMKIeBiU58uWOm+upz+U4TqAgUsQ583ouio0PV5ubr5RHDK3
-         K7GxlZwlLC+9Og6SXubC9n74wizMWtz0jzS81NvFny62Q4qG2MfttmBe407fZyEtkoLY
-         mg1ff+nGalNE1iqtpgU21fKSZ4HcFLEjNYwUGklgN7Cot0oAV0G+dCzQkmD7+A0HHYIP
-         YPU5x8wQQ8gh6drRvjB5a5pjHn9AJFS9hmkiIcPmupmfy5O13OBejlFltvPYvRsW99eh
-         njaZ33g7/N4WgbA5iNST5Lp6azew9xZ1GonlVp+PO4ZRXG3bhFi7X+p7ghctZibdKczH
-         OhNA==
-X-Gm-Message-State: AOJu0Yw3liRAJi2tIHEX/bBDQt/UKd2tyiCNzcKud0Z1WojzJ+35blTB
-	CqbKBf6JGSKFny/xZeNB3znEGNmHZJTV+BR0uz3DlefvScogQcVH
-X-Google-Smtp-Source: AGHT+IHOTkIXJmJkqKTdzoxW4ijltI+jedvkng8VSEpQVS88ut4bN0Sb1L9A80WHtgsurCpdr+RJSw==
-X-Received: by 2002:a92:cc47:0:b0:363:b93d:8b31 with SMTP id t7-20020a92cc47000000b00363b93d8b31mr5392364ilq.10.1707021714279;
-        Sat, 03 Feb 2024 20:41:54 -0800 (PST)
-X-Forwarded-Encrypted: i=0; AJvYcCXzy/rdQo5uYrtak5KS/hAS1+/MSIm4eODmQvdglCrI8Eh725Zx0wIZOvHYGP+UIrLaey0974dsBivkNv2zNYuROiqfqjLmfZm301Yz7jl187PQTkbzowBwM1Lz7+2Ios4R+2SlDI6f8MSzAIfy2pgI7X7Xowi0FsRx1tr6yxAj7kgXAYOLEaTn5mfHkmdRWAIyHYLy6UUheLUsTs2B82bgmmonEIctehqXekmQ1PoVNE0+7A6WKB6HMEeupG0nBY5YEF1WWkMFMIFSgS3xWXqR5bBbgDn7UmBRbmBhdpccaxW7EygGu+hGSWzy8kOp8IfMYRuadVhCf5PGF6TCH07FrIE9k5yEcbXdBX8iKnkB0krQ5zvBbpt2FD9XHBy9bzDIz1UJ5oP1nrp+3i8e+Ca2pBQDELYdCVDE0xI0
-Received: from localhost ([46.3.240.106])
-        by smtp.gmail.com with ESMTPSA id x4-20020a1709029a4400b001d7726c4a40sm3875552plv.277.2024.02.03.20.41.53
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sat, 03 Feb 2024 20:41:53 -0800 (PST)
-From: Jingbao Qiu <qiujingbao.dlmu@gmail.com>
-To: alexandre.belloni@bootlin.com,
-	robh+dt@kernel.org,
-	krzysztof.kozlowski+dt@linaro.org,
-	conor+dt@kernel.org,
-	paul.walmsley@sifive.com,
-	palmer@dabbelt.com,
-	aou@eecs.berkeley.edu
-Cc: linux-rtc@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	dlan@gentoo.org,
-	inochiama@outlook.com,
-	Jingbao Qiu <qiujingbao.dlmu@gmail.com>
-Subject: [PATCH v8 2/2] rtc: sophgo: add rtc support for Sophgo CV1800 SoC
-Date: Sun,  4 Feb 2024 12:41:43 +0800
-Message-Id: <20240204044143.415915-3-qiujingbao.dlmu@gmail.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20240204044143.415915-1-qiujingbao.dlmu@gmail.com>
-References: <20240204044143.415915-1-qiujingbao.dlmu@gmail.com>
+	s=arc-20240116; t=1707024691; c=relaxed/simple;
+	bh=6U+8IRbqFICNTC/jcWD9NvlE987Nzn0qYDmUSUgoVmk=;
+	h=From:To:CC:Subject:Date:Message-ID:MIME-Version:Content-Type; b=ecmuGWnq7aj7TvRR6VWAZiuILe5tPNChNFLS3GeiQ12p+PdnGRCKSgmL0++PKjNXsm3u4cHDhfXDERBc2REv8lK0DJgGJ9zN9f3xzXrO6SaOVv15cIBKQLLteh1GBCCTnkalizRo/lBN0CbHh55yu5SLa6ZmndCpcxWy0bFUQ04=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=WgBf0S77; arc=none smtp.client-ip=205.220.180.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
+Received: from pps.filterd (m0279869.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.17.1.24/8.17.1.24) with ESMTP id 4145SVLb028063;
+	Sun, 4 Feb 2024 05:31:14 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
+	from:to:cc:subject:date:message-id:mime-version:content-type
+	:content-transfer-encoding; s=qcppdkim1; bh=bjWwX5s1RouBD1JRpaOQ
+	JIEjqXnWIn4ZvWQptlM+GOo=; b=WgBf0S77HWIk5H8HGGLkFiXR1miOaAshJxRT
+	z/CSuTkDyQ3eGy0HoTY/Z2FLgNb7PW+g48bkEQEvPFMwGGxaaGeSuoA7pSEn9cnp
+	CrBNJ3b7YV+Gs1bJEPG78axs8OqpgFZ5qJ2fZVp+dyFbpwVbCibI/Cvu+hZWJG4U
+	SeHGdS1hTr/a6IQbOkn3me8/MGmDcaOJFG5waCMU6IqLh8j9gyGivXlrSk5+dcoM
+	NDEKVWCFsEfbXsmF4viqpfAFoPxUKLzE6BuHhDUZNHGQe63509F2g22zfpOuV7GH
+	+XCWHOQLgzczmIJv0ThW4grmLeF92ZlE3VGO5XRjJAYnlg1cYA==
+Received: from nalasppmta03.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3w1ey51aps-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Sun, 04 Feb 2024 05:31:13 +0000 (GMT)
+Received: from nalasex01c.na.qualcomm.com (nalasex01c.na.qualcomm.com [10.47.97.35])
+	by NALASPPMTA03.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 4145VCgN003757
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Sun, 4 Feb 2024 05:31:12 GMT
+Received: from taozha-gv.qualcomm.com (10.80.80.8) by
+ nalasex01c.na.qualcomm.com (10.47.97.35) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.1118.40; Sat, 3 Feb 2024 21:31:07 -0800
+From: Tao Zhang <quic_taozha@quicinc.com>
+To: Mathieu Poirier <mathieu.poirier@linaro.org>,
+        Suzuki K Poulose
+	<suzuki.poulose@arm.com>,
+        Alexander Shishkin
+	<alexander.shishkin@linux.intel.com>,
+        Konrad Dybcio <konradybcio@gmail.com>,
+        Mike Leach <mike.leach@linaro.org>, Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
+CC: Tao Zhang <quic_taozha@quicinc.com>,
+        Jinlong Mao
+	<quic_jinlmao@quicinc.com>, Leo Yan <leo.yan@linaro.org>,
+        Greg Kroah-Hartman
+	<gregkh@linuxfoundation.org>,
+        <coresight@lists.linaro.org>, <linux-arm-kernel@lists.infradead.org>,
+        <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        Tingwei Zhang <quic_tingweiz@quicinc.com>,
+        Yuanfang Zhang <quic_yuanfang@quicinc.com>,
+        Trilok Soni
+	<quic_tsoni@quicinc.com>,
+        Song Chai <quic_songchai@quicinc.com>, <linux-arm-msm@vger.kernel.org>,
+        <andersson@kernel.org>
+Subject: [PATCH v7 00/10] Add support to configure TPDM CMB subunit
+Date: Sun, 4 Feb 2024 13:30:31 +0800
+Message-ID: <1707024641-22460-1-git-send-email-quic_taozha@quicinc.com>
+X-Mailer: git-send-email 2.7.4
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: 8bit
+X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
+ nalasex01c.na.qualcomm.com (10.47.97.35)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-GUID: mJLeGGJyoUPdn-CFLBcsOdsHVXI_q7rg
+X-Proofpoint-ORIG-GUID: mJLeGGJyoUPdn-CFLBcsOdsHVXI_q7rg
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.272,Aquarius:18.0.1011,Hydra:6.0.619,FMLib:17.11.176.26
+ definitions=2024-02-04_02,2024-01-31_01,2023-05-22_02
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 lowpriorityscore=0
+ spamscore=0 clxscore=1015 priorityscore=1501 suspectscore=0 adultscore=0
+ mlxlogscore=999 malwarescore=0 mlxscore=0 bulkscore=0 impostorscore=0
+ phishscore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.19.0-2401310000 definitions=main-2402040039
 
-Implement the RTC driver for CV1800, which able to provide time alarm.
+Introduction of TPDM CMB(Continuous Multi Bit) subunit
+CMB subunit is responsible for creating a dataset element, and is also
+optionally responsible for packing it to fit multiple elements on a
+single ATB transfer if possible in the configuration. The TPDM Core
+Datapath requests timestamps be stored by the TPDA and then delivering
+ATB sized data (depending on ATB width and element size, this could
+be smaller or larger than a dataset element) to the ATB Mast FSM.
+The CMB makes trace elements in two modes. In ‘continuous’ mode, every
+valid data cycle creates an element. In ‘trace on change’ mode, when
+valid data changes on the bus, a trace element is created. In
+continuous mode, all cycles where this condition is true create trace
+elements. In trace on change mode, a data element is only when the
+previously sampled input is different from the current sampled input.
 
-Signed-off-by: Jingbao Qiu <qiujingbao.dlmu@gmail.com>
----
- drivers/rtc/Kconfig      |  10 ++
- drivers/rtc/Makefile     |   1 +
- drivers/rtc/rtc-cv1800.c | 244 +++++++++++++++++++++++++++++++++++++++
- 3 files changed, 255 insertions(+)
- create mode 100644 drivers/rtc/rtc-cv1800.c
+The CMB subunit must be configured prior to enablement. This series
+adds support for TPDM to configure the configure CMB subunit.
 
-diff --git a/drivers/rtc/Kconfig b/drivers/rtc/Kconfig
-index e37a4341f442..3c6ed45a3b03 100644
---- a/drivers/rtc/Kconfig
-+++ b/drivers/rtc/Kconfig
-@@ -1128,6 +1128,16 @@ config RTC_DRV_DS2404
- 	  This driver can also be built as a module. If so, the module
- 	  will be called rtc-ds2404.
- 
-+config RTC_DRV_CV1800
-+	tristate "Sophgo CV1800 RTC"
-+	depends on ARCH_SOPHGO || COMPILE_TEST
-+	help
-+	  If you say yes here you get support the RTC driver
-+	  for Sophgo CV1800 chip.
-+
-+	  This driver can also be built as a module.If so, the
-+	  module will be called rtc-cv1800.
-+
- config RTC_DRV_DA9052
- 	tristate "Dialog DA9052/DA9053 RTC"
- 	depends on PMIC_DA9052
-diff --git a/drivers/rtc/Makefile b/drivers/rtc/Makefile
-index 6efff381c484..4efdd2d1e963 100644
---- a/drivers/rtc/Makefile
-+++ b/drivers/rtc/Makefile
-@@ -42,6 +42,7 @@ obj-$(CONFIG_RTC_DRV_CADENCE)	+= rtc-cadence.o
- obj-$(CONFIG_RTC_DRV_CMOS)	+= rtc-cmos.o
- obj-$(CONFIG_RTC_DRV_CPCAP)	+= rtc-cpcap.o
- obj-$(CONFIG_RTC_DRV_CROS_EC)	+= rtc-cros-ec.o
-+obj-$(CONFIG_RTC_DRV_CV1800)	+= rtc-cv1800.o
- obj-$(CONFIG_RTC_DRV_DA9052)	+= rtc-da9052.o
- obj-$(CONFIG_RTC_DRV_DA9055)	+= rtc-da9055.o
- obj-$(CONFIG_RTC_DRV_DA9063)	+= rtc-da9063.o
-diff --git a/drivers/rtc/rtc-cv1800.c b/drivers/rtc/rtc-cv1800.c
-new file mode 100644
-index 000000000000..60a7192659f5
---- /dev/null
-+++ b/drivers/rtc/rtc-cv1800.c
-@@ -0,0 +1,244 @@
-+// SPDX-License-Identifier: GPL-2.0-only
-+/*
-+ * rtc-cv1800.c: RTC driver for Sophgo cv1800 RTC
-+ *
-+ * Author: Jingbao Qiu <qiujingbao.dlmu@gmail.com>
-+ */
-+
-+#include <linux/clk.h>
-+#include <linux/irq.h>
-+#include <linux/kernel.h>
-+#include <linux/module.h>
-+#include <linux/of.h>
-+#include <linux/platform_device.h>
-+#include <linux/regmap.h>
-+#include <linux/rtc.h>
-+
-+#define CTRL                   0x08
-+#define ANA_CALIB              0x1000
-+#define SEC_PULSE_GEN          0x1004
-+#define ALARM_TIME             0x1008
-+#define ALARM_ENABLE           0x100C
-+#define SET_SEC_CNTR_VAL       0x1010
-+#define SET_SEC_CNTR_TRIG      0x1014
-+#define SEC_CNTR_VAL           0x1018
-+#define APB_RDATA_SEL          0x103C
-+#define POR_DB_MAGIC_KEY       0x1068
-+#define EN_PWR_WAKEUP          0x10BC
-+
-+/*
-+ * When in VDDBKUP domain, this MACRO register
-+ * does not power down
-+ */
-+#define MACRO_DA_CLEAR_ALL     0x1480
-+#define MACRO_DA_SOC_READY     0x148C
-+#define MACRO_RO_T             0x14A8
-+#define MACRO_RG_SET_T         0x1498
-+
-+#define CTRL_MODE_MASK         BIT(10)
-+#define CTRL_MODE_OSC32K       0x00UL
-+#define CTRL_MODE_XTAL32K      BIT(0)
-+#define REG_ENABLE_FUN         BIT(0)
-+#define REG_DISABLE_FUN        0x00UL
-+#define ALARM_ENABLE_MASK      BIT(0)
-+#define SET_SEC_CNTR_VAL_INIT  (BIT(28) || BIT(29))
-+#define SEC_PULSE_SEL_INNER    BIT(31)
-+#define SEC_PULSE_GEN_SEL_MASK GENMASK(30, 0)
-+#define CALIB_SEL_FTUNE_MASK   GENMASK(30, 0)
-+#define CALIB_SEL_FTUNE_INNER  0x00UL
-+
-+struct cv1800_rtc_priv {
-+	struct rtc_device *rtc_dev;
-+	struct regmap *rtc_map;
-+	struct clk *clk;
-+	int irq;
-+};
-+
-+static const struct regmap_config cv1800_rtc_regmap_config = {
-+	.reg_bits = 32,
-+	.val_bits = 32,
-+	.reg_stride = 4,
-+};
-+
-+static int cv1800_rtc_alarm_irq_enable(struct device *dev, unsigned int enabled)
-+{
-+	struct cv1800_rtc_priv *info = dev_get_drvdata(dev);
-+
-+	regmap_write(info->rtc_map, ALARM_ENABLE, enabled);
-+
-+	return 0;
-+}
-+
-+static int cv1800_rtc_set_alarm(struct device *dev, struct rtc_wkalrm *alrm)
-+{
-+	struct cv1800_rtc_priv *info = dev_get_drvdata(dev);
-+	unsigned long alarm_time;
-+
-+	alarm_time = rtc_tm_to_time64(&alrm->time);
-+
-+	cv1800_rtc_alarm_irq_enable(dev, REG_DISABLE_FUN);
-+
-+	regmap_write(info->rtc_map, ALARM_TIME, alarm_time);
-+
-+	cv1800_rtc_alarm_irq_enable(dev, alrm->enabled);
-+
-+	return 0;
-+}
-+
-+static int cv1800_rtc_read_alarm(struct device *dev, struct rtc_wkalrm *alarm)
-+{
-+	struct cv1800_rtc_priv *info = dev_get_drvdata(dev);
-+	u32 enabled;
-+	u32 time;
-+
-+	regmap_read(info->rtc_map, ALARM_ENABLE, &enabled);
-+
-+	alarm->enabled = enabled & ALARM_ENABLE_MASK;
-+
-+	regmap_read(info->rtc_map, ALARM_TIME, &time);
-+
-+	rtc_time64_to_tm(time, &alarm->time);
-+
-+	return 0;
-+}
-+
-+static void rtc_enable_sec_counter(struct cv1800_rtc_priv *info)
-+{
-+	u32 sec_ro_t;
-+	u32 sec;
-+
-+	/* select inner sec pulse */
-+	regmap_update_bits(info->rtc_map, SEC_PULSE_GEN,
-+			   (u32)(~SEC_PULSE_GEN_SEL_MASK),
-+			   (u32)(~SEC_PULSE_SEL_INNER));
-+
-+	regmap_update_bits(info->rtc_map, ANA_CALIB,
-+			   (u32)(~CALIB_SEL_FTUNE_MASK),
-+			   CALIB_SEL_FTUNE_INNER);
-+
-+	sec = SET_SEC_CNTR_VAL_INIT;
-+
-+	/* load from MACRO register */
-+	regmap_read(info->rtc_map, MACRO_RO_T, &sec_ro_t);
-+	if (sec_ro_t > (SET_SEC_CNTR_VAL_INIT))
-+		sec = sec_ro_t;
-+
-+	regmap_write(info->rtc_map, SET_SEC_CNTR_VAL, sec);
-+	regmap_write(info->rtc_map, SET_SEC_CNTR_TRIG, REG_ENABLE_FUN);
-+}
-+
-+static int cv1800_rtc_read_time(struct device *dev, struct rtc_time *tm)
-+{
-+	struct cv1800_rtc_priv *info = dev_get_drvdata(dev);
-+	u32 sec;
-+
-+	regmap_read(info->rtc_map, SEC_CNTR_VAL, &sec);
-+
-+	rtc_time64_to_tm(sec, tm);
-+
-+	return 0;
-+}
-+
-+static int cv1800_rtc_set_time(struct device *dev, struct rtc_time *tm)
-+{
-+	struct cv1800_rtc_priv *info = dev_get_drvdata(dev);
-+	unsigned long sec;
-+
-+	sec = rtc_tm_to_time64(tm);
-+
-+	regmap_write(info->rtc_map, SET_SEC_CNTR_VAL, sec);
-+	regmap_write(info->rtc_map, SET_SEC_CNTR_TRIG, REG_ENABLE_FUN);
-+
-+	regmap_write(info->rtc_map, MACRO_RG_SET_T, sec);
-+
-+	return 0;
-+}
-+
-+static irqreturn_t cv1800_rtc_irq_handler(int irq, void *dev_id)
-+{
-+	struct rtc_device *rtc = dev_id;
-+
-+	rtc_update_irq(rtc, 1, RTC_IRQF | RTC_AF);
-+
-+	return IRQ_HANDLED;
-+}
-+
-+static const struct rtc_class_ops cv1800_rtc_ops = {
-+	.read_time = cv1800_rtc_read_time,
-+	.set_time = cv1800_rtc_set_time,
-+	.read_alarm = cv1800_rtc_read_alarm,
-+	.set_alarm = cv1800_rtc_set_alarm,
-+	.alarm_irq_enable = cv1800_rtc_alarm_irq_enable,
-+};
-+
-+static int cv1800_rtc_probe(struct platform_device *pdev)
-+{
-+	struct cv1800_rtc_priv *rtc;
-+	u32 ctrl_val;
-+	void __iomem *base;
-+	int ret;
-+
-+	rtc = devm_kzalloc(&pdev->dev, sizeof(*rtc), GFP_KERNEL);
-+	if (!rtc)
-+		return -ENOMEM;
-+
-+	base = devm_platform_ioremap_resource(pdev, 0);
-+	if (IS_ERR(base))
-+		return PTR_ERR(base);
-+
-+	rtc->rtc_map = devm_regmap_init_mmio(&pdev->dev, base,
-+					     &cv1800_rtc_regmap_config);
-+	if (IS_ERR(rtc->rtc_map))
-+		return PTR_ERR(rtc->rtc_map);
-+
-+	rtc->irq = platform_get_irq(pdev, 0);
-+	if (rtc->irq < 0)
-+		return rtc->irq;
-+
-+	ret = devm_request_irq(&pdev->dev, rtc->irq, cv1800_rtc_irq_handler,
-+			       IRQF_TRIGGER_HIGH, "alarm", &pdev->dev);
-+	if (ret)
-+		return dev_err_probe(&pdev->dev, ret,
-+				     "cannot register interrupt handler\n");
-+
-+	rtc->clk = devm_clk_get_enabled(&pdev->dev, NULL);
-+	if (IS_ERR(rtc->clk))
-+		return dev_err_probe(&pdev->dev, PTR_ERR(rtc->clk),
-+				     "clk not found\n");
-+
-+	rtc->rtc_dev = devm_rtc_allocate_device(&pdev->dev);
-+	if (IS_ERR(rtc->rtc_dev))
-+		return PTR_ERR(rtc->rtc_dev);
-+
-+	platform_set_drvdata(pdev, rtc);
-+
-+	rtc->rtc_dev->ops = &cv1800_rtc_ops;
-+	rtc->rtc_dev->range_max = U32_MAX;
-+
-+	regmap_read(rtc->rtc_map, CTRL, &ctrl_val);
-+	ctrl_val &= CTRL_MODE_MASK;
-+
-+	if (ctrl_val == CTRL_MODE_OSC32K)
-+		rtc_enable_sec_counter(rtc);
-+
-+	return devm_rtc_register_device(rtc->rtc_dev);
-+}
-+
-+static const struct of_device_id cv1800_dt_ids[] = {
-+	{ .compatible = "sophgo,cv1800-rtc" },
-+	{ /* sentinel */ },
-+};
-+MODULE_DEVICE_TABLE(of, cv1800_dt_ids);
-+
-+static struct platform_driver cv1800_rtc_driver = {
-+	.driver = {
-+		.name = "sophgo-cv1800-rtc",
-+		.of_match_table = cv1800_dt_ids,
-+	},
-+	.probe = cv1800_rtc_probe,
-+};
-+
-+module_platform_driver(cv1800_rtc_driver);
-+MODULE_AUTHOR("Jingbao Qiu");
-+MODULE_DESCRIPTION("Sophgo cv1800 RTC Driver");
-+MODULE_LICENSE("GPL");
+Once this series patches are applied properly, the new tpdm nodes for
+should be observed at the tpdm path /sys/bus/coresight/devices/tpdm*
+which supports CMB subunit.
+e.g.
+root@qemuarm64:/sys/devices/platform/soc@0/684c000.tpdm/tpdm0# ls -l
+-rw-r--r--    1 root     root          4096 Jan  1 00:00 cmb_mode
+drwxr-xr-x    2 root     root             0 Jan  1 00:00 cmb_msr
+drwxr-xr-x    2 root     root             0 Jan  1 00:00 cmb_patt
+drwxr-xr-x    2 root     root             0 Jan  1 00:00 cmb_trig_patt
+-rw-r--r--    1 root     root          4096 Jan  1 00:00 cmb_trig_ts
+-rw-r--r--    1 root     root          4096 Jan  1 00:00 cmb_ts_all
+drwxr-xr-x    2 root     root             0 Jan  1 00:00 connections
+drwxr-xr-x    2 root     root             0 Jan  1 00:00 dsb_edge
+drwxr-xr-x    2 root     root             0 Jan  1 00:00 dsb_msr
+drwxr-xr-x    2 root     root             0 Jan  1 00:00 dsb_patt
+drwxr-xr-x    2 root     root             0 Jan  1 00:00 dsb_trig_patt
+-rw-r--r--    1 root     root          4096 Jan  1 00:00 enable_source
+--w-------    1 root     root          4096 Jan  1 00:00 integration_test
+drwxr-xr-x    2 root     root             0 Ja?  1 00:00 power
+--w-------    1 root     root          4096 Jan  1 00:00 reset_dataset
+lrwxrwxrwx    1 root     root             0 Apr  5  2021 subsystem -> ../../../../../bus/coresight
+-rw-r--r--    1 root     root          4096 Apr  5  2021 uevent
+-r--r--r--    1 root     root          4096 Jan  1 00:00 waiting_for_supplier
+
+We can use the commands are similar to the below to configure the
+TPDMs which support CMB subunit. Enable coresight sink first.
+echo 1 > /sys/bus/coresight/devices/tmc_etf0/enable_sink
+echo 1 > /sys/bus/coresight/devices/tpdm0/reset_dataset
+echo 1 > /sys/bus/coresight/devices/tpdm0/cmb_mode
+echo 1 > /sys/bus/coresight/devices/tpdm0/cmb_patt/enable_ts
+echo 0xFFFFFFFF > /sys/bus/coresight/devices/tpdm0/cmb_patt/tpmr0
+echo 0 > /sys/bus/coresight/devices/tpdm0/cmb_trig_ts
+echo 0xFFFFFFFF > /sys/bus/coresight/devices/tpdm0/cmb_trig_patt/xpr1
+echo 1 > /sys/bus/coresight/devices/tpdm0/enable_source
+
+codelinaro link:
+https://git.codelinaro.org/clo/linux-kernel/coresight/-/commits/tpdm-cmb-v7
+
+Changes in V7:
+1. Rename "tpdm_clear_element_size" to "tpda_clear_element_size" in
+the patch#5.
+-- Suzuki K Poulose
+2. Remove the stale comments in "tpda_enable_port".
+-- Suzuki K Poulose
+
+Changes in V6:
+1. Clear all the relevant fields before setting them in the function
+"tpda_set_element_size". In patch#5.
+-- Suzuki K Poulose
+
+2. Leave a space after/before '/*' & '*/'. In patch#7 #8.
+-- Suzuki K Poulose
+
+Changes in V5:
+1. Return directly to refine the process of "tpdm_enable_dsb" and
+"tpdm_disable_dsb" if the TPDM does not support DSB dataset.
+-- Suzuki K Poulose
+2. Change the new property name from "qcom,cmb-element-size" to
+"qcom,cmb-element-bits". And update the property name to the new
+tpdm example which supports the CMB dataset.
+-- Krzysztof
+3. Drop unnecessary () around the drvdata member access in patch#5.
+-- Suzuki K Poulose
+4. Replace the error code "-EEXIST" with the port number in detecting
+multiple TPDMs on one input port. In patch#5.
+-- Suzuki K Poulose
+5. Due to the modification of the new property name, the searched
+property name was changed from "qcom,cmb-element-size" to
+"qcom,cmb-element-bits". In patch#5.
+6. Replace the judgement "tpdm_has_cmb_dataset(drvdata)" with
+"drvdata->cmb" in the function "tpdm_reset_datasets". In patch#6.
+-- Suzuki K Poulose
+7. Drop unnecessary () around kstrtoul() in the function
+"cmb_mode_store". In patch#6.
+-- Suzuki K Poulose
+8. Update the date and the kernel version in the Document.
+-- Suzuki K Poulose
+9. Initialize the return value to "-EINVAL" and remove the unnecessary
+code in the function "enable_ts_show". In patch#8.
+-- Suzuki K Poulose
+10. Replace spin lock/unlock with guard(spinlock). In patch#8.
+-- Suzuki K Poulose
+11. Drop _rw from the macro "tpdm_patt_enable_ts_rw". In patch#8.
+-- Suzuki K Poulose
+
+Changes in V4:
+1. Replace spin lock/unlock to avoid forgetting to unlock when the
+function exits.
+-- Suzuki K Poulose
+2. Move the helper "tpdm_has_dsb_dataset" to the header file.
+-- Suzuki K Poulose
+3. Fix the incorrect property of the sample in the documents.
+-- James Clark
+4. Clear the dsb/cmb element size directly in the clear helper.
+-- Suzuki K Poulose
+5. Correct the comment of "tpdm_read_element_size".
+-- Suzuki K Poulose
+6. Call the helper "tpdm_has_dsb/cmb_dataset" in TPDA driver to
+check what dataset the TPDM supports.
+-- Suzuki K Poulose
+7. Refine the dsb/cmb dataset support check in enable/disable functions.
+-- Suzuki K Poulose
+8. Get rid of redundant code in function "set_cmb_tier".
+-- Suzuki K Poulose
+9. Since one SysFs file should follow "one value", use "dev_ext_attribute"
+to instead of the previous "enable_ts" Sysfs file approach.
+-- Suzuki K Poulose
+10. Change the kernel version to 6.9 for the MSR related SysFs file.
+-- James Clark
+11. Refine the function "tpdm_simple_dataset_store".
+-- Suzuki K Poulose
+
+Changes in V3:
+1. Add 8-bit support to the description in the TPDM devicetree document.
+-- Rob Herring
+2. Change how the result is produced in "tpdm_read_element_size".
+-- James Clark
+3. Calling "tpdm_clear_element_size" at the beginning of
+"tpda_enable_port".
+-- James Clark
+4. Use "dsb_esize" and "cmb_esize" to determine whether multiple TPDMs
+are detected on a TPDA input port in "tpda_get_element_size".
+-- James Clark
+5. Modify the judgment logic in "tpda_enable_port".
+-- James Clark
+6. Add more description of "cmb_mode" to TPDM SysFS document.
+-- James Clark
+
+Changes in V2:
+1. Optimizate and modify this patch series based on the patch series
+"Add support to configure TPDM CMB subunit".
+2. Modify the functions that read the element size of DSB/CMB in TPDA driver.
+
+Tao Zhang (10):
+  coresight-tpdm: Optimize the store function of tpdm simple dataset
+  coresight-tpdm: Optimize the useage of tpdm_has_dsb_dataset
+  dt-bindings: arm: qcom,coresight-tpdm: Add support for CMB element
+    size
+  coresight-tpdm: Add CMB dataset support
+  coresight-tpda: Add support to configure CMB element
+  coresight-tpdm: Add support to configure CMB
+  coresight-tpdm: Add pattern registers support for CMB
+  coresight-tpdm: Add timestamp control register support for the CMB
+  dt-bindings: arm: qcom,coresight-tpdm: Add support for TPDM CMB MSR
+    register
+  coresight-tpdm: Add msr register support for CMB
+
+ .../testing/sysfs-bus-coresight-devices-tpdm  |  87 ++++
+ .../bindings/arm/qcom,coresight-tpdm.yaml     |  35 ++
+ drivers/hwtracing/coresight/coresight-tpda.c  | 130 ++---
+ drivers/hwtracing/coresight/coresight-tpda.h  |   6 +
+ drivers/hwtracing/coresight/coresight-tpdm.c  | 455 ++++++++++++++++--
+ drivers/hwtracing/coresight/coresight-tpdm.h  | 113 +++++
+ 6 files changed, 729 insertions(+), 97 deletions(-)
+
 -- 
-2.25.1
+2.17.1
 
 
