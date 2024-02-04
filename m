@@ -1,158 +1,135 @@
-Return-Path: <devicetree+bounces-38409-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-38410-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id D45DF848EA9
-	for <lists+devicetree@lfdr.de>; Sun,  4 Feb 2024 15:52:03 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 85184848EB7
+	for <lists+devicetree@lfdr.de>; Sun,  4 Feb 2024 15:54:34 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 552F21F20F9E
-	for <lists+devicetree@lfdr.de>; Sun,  4 Feb 2024 14:52:03 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 248041F228BC
+	for <lists+devicetree@lfdr.de>; Sun,  4 Feb 2024 14:54:34 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B901A1DDD7;
-	Sun,  4 Feb 2024 14:51:48 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8F9931DDD7;
+	Sun,  4 Feb 2024 14:54:27 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="XP14ST3U"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="cJOVU5Em"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-pf1-f169.google.com (mail-pf1-f169.google.com [209.85.210.169])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 90457225B2;
-	Sun,  4 Feb 2024 14:51:48 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 116502261D;
+	Sun,  4 Feb 2024 14:54:25 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.169
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1707058308; cv=none; b=HWmbOnAXPc7GzjoD5YVHd0BL85qifCO7MM1JLT0SCSApVPq/itpVGBeR3QpM/lkinAdaUgxDDg45X5PW400q72QwBSXoQJtfcqjimOcE733W6GRR59V0ePXRwzsPR9IM4K9b0GDu+z4XHSvLXhAwwPksu5DMMgbCgK6WR5SAlYI=
+	t=1707058467; cv=none; b=kJUZ57qpr1p8UOyn3tp7hrhX+zmDkDFeHDmuGi1BJVF7QcxjcuTQUdReMiOYaa0MBpSuyy1sYzTPd1Z4kmJdSPA7j2f4nrZMICRVO28YO9ooL6fLrRvuGNerJFiHz39VkQU3yUan3eQPcKjv76FJ+BkFtch2axctUsvfEfazm4w=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1707058308; c=relaxed/simple;
-	bh=t7S814SNeE45gOd2eWDw4/P9axTxP7rO4LkRrzU7hY8=;
-	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=koQnQALWkm6Fcax1j/4WB5hkPmSscVBTGtNoXWP0johdI+T5cqsDo2+wE5V3SKF05Y686Ycx+ZVx8GmUe4qPiS1tZRaoeGX8ttPW6Kf9wAVixup/elhnqpCaNnZmeAhiBgFMt2Nh3AKeFQ7e18C0nY2PVwzkNE/yoQM2Uy2xckE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=XP14ST3U; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id A94D8C433C7;
-	Sun,  4 Feb 2024 14:51:44 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1707058308;
-	bh=t7S814SNeE45gOd2eWDw4/P9axTxP7rO4LkRrzU7hY8=;
-	h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
-	b=XP14ST3U1QZZpvRPiffvep4J3ayGvcU9tcW0mVwT+1WQYz/ivGNlQarHVauXqS66Z
-	 T+Kffh9IL5MHVqfZTmMENYcTmPPNFktKecTHZeD1ux9FrBlqvgfXeIUcyw6vTc66NV
-	 hIbb068tXjXlbp5h83kHO54LPs6MrA2SDaSDtQbd5GjBCALbLG6nc3AM5dGi6WVScn
-	 +hVF1jhO7hgd0jyp94LocR+XHBm2g/VuhKvZewnKMyv9l6YXZpRjqsTmjnQ6i+jTZM
-	 zcC+7tgsRgwUdou4VE8nv5OBI5sw9BwEHguUvOcGQt4tpY//AmKf6+lqYFqescGahz
-	 2ydY1f+lZn93w==
-Date: Sun, 4 Feb 2024 14:51:33 +0000
-From: Jonathan Cameron <jic23@kernel.org>
-To: "Sa, Nuno" <Nuno.Sa@analog.com>
-Cc: David Lechner <dlechner@baylibre.com>, "linux-iio@vger.kernel.org"
- <linux-iio@vger.kernel.org>, "devicetree@vger.kernel.org"
- <devicetree@vger.kernel.org>, Lars-Peter Clausen <lars@metafoo.de>,
- "Hennerich, Michael" <Michael.Hennerich@analog.com>, Rob Herring
- <robh+dt@kernel.org>, Krzysztof Kozlowski
- <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>,
- Frank Rowand <frowand.list@gmail.com>, Olivier Moysan
- <olivier.moysan@foss.st.com>, Rob Herring <robh@kernel.org>
-Subject: Re: [PATCH v8 2/7] dt-bindings: adc: axi-adc: update bindings for
- backend framework
-Message-ID: <20240204145133.07cd8399@jic23-huawei>
-In-Reply-To: <SJ0PR03MB677855546629FA8352AC2D4E99402@SJ0PR03MB6778.namprd03.prod.outlook.com>
-References: <20240202-iio-backend-v8-0-f65ee8c8203d@analog.com>
-	<20240202-iio-backend-v8-2-f65ee8c8203d@analog.com>
-	<CAMknhBHx7U7goWMgygwOA0cpJoPfmCD=8gKZNoBvqcb0ptK0yw@mail.gmail.com>
-	<SJ0PR03MB677855546629FA8352AC2D4E99402@SJ0PR03MB6778.namprd03.prod.outlook.com>
-X-Mailer: Claws Mail 4.2.0 (GTK 3.24.41; x86_64-pc-linux-gnu)
+	s=arc-20240116; t=1707058467; c=relaxed/simple;
+	bh=19VaFyH1wAwIJFBUEbUWhHCYP3fU7IyWnh+H1mYPIWs=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=nnGWqrGKwImPzvBMNftUq9DS2wZu1CqCnY/Dv7D2C8xi+1TEk4iXE+YZLGW1Wh0/1pa0JIMMp7Yx3jtEMpqc5dpxPBweS6Q9OmF60LE5Bvlj4aIqBnuh9CfAsxY1BDzKoUoteQLEc0dHqzvKOWXBL/0Zx0oHi9WLmXpX9lk0p8E=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=cJOVU5Em; arc=none smtp.client-ip=209.85.210.169
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-pf1-f169.google.com with SMTP id d2e1a72fcca58-6da6b0eb2d4so2311267b3a.1;
+        Sun, 04 Feb 2024 06:54:25 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1707058465; x=1707663265; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=pgWoWhZI6Jt4ifeI2jAQa8yY6PW0nUJE61HeVZboEZ8=;
+        b=cJOVU5Em0HNZchKkKYtWSNYca01+4q41IqyEdjZ12wYc8rXDW08VKqv8g/yiwqYj22
+         P1n5Vmg4Url7EZQr5Quyx+WcJTpjVbIk07l1Q/9ISAWglivlUqK2CD9Ias5j/enEOw7c
+         LKo9nKCvwY8VO91pMGPH3eK+r3oFOzLXDBWziCOrpH/L2iTq8hsoKKtSgb/Khpu4orpo
+         UE+eINHSEII4eJdsOiMft3Us55HOj4uAUyl5IueIAyJ6m7U8oBNVvHZIYgn8hqO0Mr9b
+         HHvtzOCpHKDHnz3UX+J+LjJTzUhQGFE5oxI2aAHuOYpqVaRw9GsUwZosvyrYs9KedZe8
+         k4WQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1707058465; x=1707663265;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=pgWoWhZI6Jt4ifeI2jAQa8yY6PW0nUJE61HeVZboEZ8=;
+        b=ZasI8PNVJwkjkTNI2NN11JFVz6Oh70yLImwjN/3RAJ5zCTOmS1iTlDJ1PWtOwXfBOb
+         RtvZ3JGaPX3lvUSuDK/kVnLyYXo28R4YbTvykeNeyjZM0eukjexX8RmuCNq5OaoSoDMF
+         Tbqab/48Xv8/CZcmQClHW/DEiezgH6X/DUWK0EfX+84onen/shOpUalr2U5/FNKhupPu
+         fPJWjCwoqAelRIq2D4u3iNGgKNKTViF+Qn6BfWthrvRuPHl2maCvybXJgPUjJa9Nnyyq
+         WINghI9I1WfP6gnluIaQJTmkoKoaXeg+hFN0/BQMd1lKEl6QHSOA9apNdZGKfE7nJlmO
+         /wpw==
+X-Gm-Message-State: AOJu0YyNOUaORfnUp3ovqnDByCdOVsqqEleenvS2TL5jyRgYTCWm9xZd
+	yioY3JmXMAxdDabPX3S5gdH3vO/Ve+roMU0ehM53RpKDKZSDRrTyMOdvVHiN0EYbmAgvJxoDkVI
+	dTnh9yuNMiVzSR6kVkvxOOszvSDg=
+X-Google-Smtp-Source: AGHT+IGSX8kX5MA8ZbTQDoQMsW8S27tIoZz4dXskIGi/iCXvA3jGKdesaVZqnt2TBMScGsd6VoU8nD7JHy3LffXnc2s=
+X-Received: by 2002:a62:ce86:0:b0:6e0:3769:eb92 with SMTP id
+ y128-20020a62ce86000000b006e03769eb92mr1260042pfg.25.1707058465268; Sun, 04
+ Feb 2024 06:54:25 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
+References: <20240203165307.7806-1-aford173@gmail.com> <20240203165307.7806-7-aford173@gmail.com>
+ <20240204120033.GA4656@francesco-nb>
+In-Reply-To: <20240204120033.GA4656@francesco-nb>
+From: Adam Ford <aford173@gmail.com>
+Date: Sun, 4 Feb 2024 08:54:13 -0600
+Message-ID: <CAHCN7xKGMNpiTxy_7vMKd+rSsS6aya7N+duVVwFNKnpG0M0gBQ@mail.gmail.com>
+Subject: Re: [PATCH V8 06/12] arm64: dts: imx8mp: add HDMI irqsteer
+To: Francesco Dolcini <francesco@dolcini.it>
+Cc: linux-arm-kernel@lists.infradead.org, marex@denx.de, 
+	alexander.stein@ew.tq-group.com, frieder.schrempf@kontron.de, 
+	Lucas Stach <l.stach@pengutronix.de>, Andrzej Hajda <andrzej.hajda@intel.com>, 
+	Neil Armstrong <neil.armstrong@linaro.org>, Robert Foss <rfoss@kernel.org>, 
+	Laurent Pinchart <Laurent.pinchart@ideasonboard.com>, Jonas Karlman <jonas@kwiboo.se>, 
+	Jernej Skrabec <jernej.skrabec@gmail.com>, 
+	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, Maxime Ripard <mripard@kernel.org>, 
+	Thomas Zimmermann <tzimmermann@suse.de>, David Airlie <airlied@gmail.com>, Daniel Vetter <daniel@ffwll.ch>, 
+	Rob Herring <robh+dt@kernel.org>, 
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Shawn Guo <shawnguo@kernel.org>, Sascha Hauer <s.hauer@pengutronix.de>, 
+	Pengutronix Kernel Team <kernel@pengutronix.de>, Fabio Estevam <festevam@gmail.com>, 
+	NXP Linux Team <linux-imx@nxp.com>, Philipp Zabel <p.zabel@pengutronix.de>, 
+	Vinod Koul <vkoul@kernel.org>, Kishon Vijay Abraham I <kishon@kernel.org>, 
+	Catalin Marinas <catalin.marinas@arm.com>, Will Deacon <will@kernel.org>, Liu Ying <victor.liu@nxp.com>, 
+	Ulf Hansson <ulf.hansson@linaro.org>, dri-devel@lists.freedesktop.org, 
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+	linux-phy@lists.infradead.org, linux-pm@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-On Sun, 4 Feb 2024 07:30:05 +0000
-"Sa, Nuno" <Nuno.Sa@analog.com> wrote:
+On Sun, Feb 4, 2024 at 6:00=E2=80=AFAM Francesco Dolcini <francesco@dolcini=
+.it> wrote:
+>
+> On Sat, Feb 03, 2024 at 10:52:46AM -0600, Adam Ford wrote:
+> > From: Lucas Stach <l.stach@pengutronix.de>
+> >
+> > The HDMI irqsteer is a secondary interrupt controller within the HDMI
+> > subsystem that maps all HDMI peripheral IRQs into a single upstream
+> > IRQ line.
+> >
+> > Signed-off-by: Lucas Stach <l.stach@pengutronix.de>
+>
+> This is missing your signed-off-by, and in other patches of this series
 
-> > -----Original Message-----
-> > From: David Lechner <dlechner@baylibre.com>
-> > Sent: Friday, February 2, 2024 10:38 PM
-> > To: Sa, Nuno <Nuno.Sa@analog.com>
-> > Cc: linux-iio@vger.kernel.org; devicetree@vger.kernel.org; Lars-Peter C=
-lausen
-> > <lars@metafoo.de>; Hennerich, Michael <Michael.Hennerich@analog.com>;
-> > Jonathan Cameron <jic23@kernel.org>; Rob Herring <robh+dt@kernel.org>;
-> > Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>; Conor Dooley
-> > <conor+dt@kernel.org>; Frank Rowand <frowand.list@gmail.com>; Olivier
-> > Moysan <olivier.moysan@foss.st.com>; Rob Herring <robh@kernel.org>
-> > Subject: Re: [PATCH v8 2/7] dt-bindings: adc: axi-adc: update bindings =
-for backend
-> > framework
-> >=20
-> >=20
-> > On Fri, Feb 2, 2024 at 9:10=E2=80=AFAM Nuno Sa via B4 Relay
-> > <devnull+nuno.sa.analog.com@kernel.org> wrote: =20
-> > >
-> > > From: Nuno Sa <nuno.sa@analog.com>
-> > >
-> > > 'adi,adc-dev' is now deprecated and must not be used anymore. Hence,
-> > > also remove it from being required.
-> > >
-> > > The reason why it's being deprecated is because the axi-adc CORE is n=
-ow
-> > > an IIO service provider hardware (IIO backends) for consumers to make=
- use
-> > > of. Before, the logic with 'adi,adc-dev' was the opposite (it was kind
-> > > of consumer referencing other nodes/devices) and that proved to be wr=
-ong
-> > > and to not scale.
-> > >
-> > > Now, IIO consumers of this hardware are expected to reference it usin=
-g the
-> > > io-backends property. Hence, the new '#io-backend-cells' is being add=
-ed
-> > > so the device is easily identified as a provider.
-> > >
-> > > Reviewed-by: Rob Herring <robh@kernel.org>
-> > > Signed-off-by: Nuno Sa <nuno.sa@analog.com>
-> > > ---
-> > >  Documentation/devicetree/bindings/iio/adc/adi,axi-adc.yaml | 8 +++++=
----
-> > >  1 file changed, 5 insertions(+), 3 deletions(-)
-> > >
-> > > diff --git a/Documentation/devicetree/bindings/iio/adc/adi,axi-adc.ya=
-ml =20
-> > b/Documentation/devicetree/bindings/iio/adc/adi,axi-adc.yaml =20
-> > > index 9996dd93f84b..add10b22dcac 100644
-> > > --- a/Documentation/devicetree/bindings/iio/adc/adi,axi-adc.yaml
-> > > +++ b/Documentation/devicetree/bindings/iio/adc/adi,axi-adc.yaml
-> > > @@ -39,12 +39,15 @@ properties:
-> > >      $ref: /schemas/types.yaml#/definitions/phandle
-> > >      description:
-> > >        A reference to a the actual ADC to which this FPGA ADC interfa=
-ces to.
-> > > +    deprecated: true
-> > > +
-> > > +  '#io-backends-cells' =20
-> >=20
-> > Still missing the : here. =20
->=20
-> Ahh crap!! I was so blindly assuming the error report was because the pro=
-perty could
-> still be missing in the core schemas that I did not even paid attention. =
-Thanks for this!
->=20
-> But worst, the property is not even correct. #io-backends-cells -> #io-ba=
-ckend-cells
-> Both here and in the example.
->=20
-> Jonathan, sorry about this... Let me know if this is something you can fi=
-x or if you
-> want me to spin another version.
-I've tried to fix it up.  Please check the testing branch to see if I messe=
-d it up.
+Opps.  I thought I caught all those.
 
->=20
-> - Nuno S=C3=A1
->=20
+> your signed-off-by is not the last, as it should be.
+>
+> Please have a look and fix this and the other instances.
+>
 
+OK.  I have some work to do on some other portions, so I'll clean up that t=
+oo.
+
+adam
+> Thanks for this work!
+
+Thanks for the feedback.
+
+adam
+>
+> Francesco
+>
 
