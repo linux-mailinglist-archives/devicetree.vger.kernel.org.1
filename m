@@ -1,82 +1,90 @@
-Return-Path: <devicetree+bounces-38396-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-38394-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 42EDB848D39
-	for <lists+devicetree@lfdr.de>; Sun,  4 Feb 2024 12:49:59 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id C35AF848D1B
+	for <lists+devicetree@lfdr.de>; Sun,  4 Feb 2024 12:21:39 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id F228E282629
-	for <lists+devicetree@lfdr.de>; Sun,  4 Feb 2024 11:49:57 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 776101F2118F
+	for <lists+devicetree@lfdr.de>; Sun,  4 Feb 2024 11:21:39 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4087D21A0A;
-	Sun,  4 Feb 2024 11:49:55 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id EFAAC219F6;
+	Sun,  4 Feb 2024 11:21:34 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (1024-bit key) header.d=riseup.net header.i=@riseup.net header.b="o2N7X+iU"
 X-Original-To: devicetree@vger.kernel.org
-Received: from gloria.sntech.de (gloria.sntech.de [185.11.138.130])
+Received: from mx1.riseup.net (mx1.riseup.net [198.252.153.129])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 10F19219FF;
-	Sun,  4 Feb 2024 11:49:51 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.11.138.130
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5B7E721A0B;
+	Sun,  4 Feb 2024 11:21:33 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.252.153.129
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1707047395; cv=none; b=S4M7rmFWwV1UJB7ErnnNBoCRrKyyLxuzCoxV1kTJxkoMzW2RQ/arKznXS+Pf9flSg9I8mebjm3qgB6o+HzS0LPAPVICuaqOraB58u76STsthNcpzu3zA9AfPmDv0iTgfz2eQo+HSIZabyG+Wo2u9JOD70CMPYTPS8VyjWEq4mvA=
+	t=1707045694; cv=none; b=c3EopjpOf00xbsGgkxCVDN5Sm+VENujFuTFAqnOoyBPIf2cpmEOvRVYvqFugsJ9nyoOy8LQLBaSNE9mRDYkAOgGYLpLXxn7XobRSbcfuLkvWvGKQjVYaq/WWLStSAIiW6AcbwdgXLaXqrrO375LHy2pD1ATADh0MYPQdqnry+OE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1707047395; c=relaxed/simple;
-	bh=vEE7Ab99Zk7NDxu4UXzR/KXDRTMnKym+OK+9C9h/mZw=;
-	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=So5RkGDXJ3W84PFRhIWlCrSvJyM761fIME2VNd7Jxtdzghj0OWavPVr1NHBxW//cyCRfi87Bh11cJEVQDW11mTd3Yo78KcuuORr5OtGfpJkT5mUO0XZHg7l7LoQbeSg5Z7B87dfj5o1+pXm2t7oT2oCl/MKT8wcS7PAI9J2DDlA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=sntech.de; spf=pass smtp.mailfrom=sntech.de; arc=none smtp.client-ip=185.11.138.130
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=sntech.de
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=sntech.de
-Received: from [185.175.219.2] (helo=phil.fosdem.net)
-	by gloria.sntech.de with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-	(Exim 4.94.2)
-	(envelope-from <heiko@sntech.de>)
-	id 1rWaUq-00051V-So; Sun, 04 Feb 2024 12:17:12 +0100
-From: Heiko Stuebner <heiko@sntech.de>
-To: Rob Herring <robh+dt@kernel.org>,
-	=?UTF-8?q?Uwe=20Kleine-K=C3=B6nig?= <u.kleine-koenig@pengutronix.de>
-Cc: Heiko Stuebner <heiko@sntech.de>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	linux-pwm@vger.kernel.org,
-	linux-rockchip@lists.infradead.org,
-	kernel@pengutronix.de,
-	linux-arm-kernel@lists.infradead.org,
-	devicetree@vger.kernel.org
-Subject: Re: [PATCH] ARM: dts: rockchip: Drop interrupts property from pwm-rockchip nodes
-Date: Sun,  4 Feb 2024 12:17:09 +0100
-Message-Id: <170704542195.2517832.659994399742833718.b4-ty@sntech.de>
-X-Mailer: git-send-email 2.39.2
-In-Reply-To: <20240129113205.2453029-2-u.kleine-koenig@pengutronix.de>
-References: <20240129113205.2453029-2-u.kleine-koenig@pengutronix.de>
+	s=arc-20240116; t=1707045694; c=relaxed/simple;
+	bh=Vb3YmF683066tIPoSuDUcl9qbopdPekEaMtsmpdpHsE=;
+	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=oR5brHRq+P+7XpuerD4ccO674Pf+zgDoIvjGgpDM3ZGneIAszZ5DK33hWUImB536DSXwzOkWO+O1SbqrLb0um66mA7z3UV25NF2esqnBl/V61VRyAy/ltNLoMQklT+dyKPTr+o83sLPFP81/maBn2Nu5tmOipBxIzDhQT1+plb8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=riseup.net; spf=pass smtp.mailfrom=riseup.net; dkim=pass (1024-bit key) header.d=riseup.net header.i=@riseup.net header.b=o2N7X+iU; arc=none smtp.client-ip=198.252.153.129
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=riseup.net
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=riseup.net
+Received: from fews01-sea.riseup.net (fews01-sea-pn.riseup.net [10.0.1.109])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
+	(No client certificate requested)
+	by mx1.riseup.net (Postfix) with ESMTPS id 4TSRsf07MjzDqQx;
+	Sun,  4 Feb 2024 11:21:25 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=riseup.net; s=squak;
+	t=1707045686; bh=Vb3YmF683066tIPoSuDUcl9qbopdPekEaMtsmpdpHsE=;
+	h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
+	b=o2N7X+iU499azt0/4WdoUiz0OneM3eANP3GSZW+PdMWUoM2dOgJwJCj1s6GCufrJc
+	 tsOtvmRttNDhWvnaUYxXePrE5iH2J/KF/cpRSdYm7VlhOD+TayX6g8ccu8bCuH+mme
+	 JR+Fhl08DP2R0PCAIM39iBJHAcQ/NuZZHWiSUlpE=
+X-Riseup-User-ID: F3B69E510B5B8F6ACC69F1E225E5734AF332A64007D9BE214E89A2D8B174F445
+Received: from [127.0.0.1] (localhost [127.0.0.1])
+	 by fews01-sea.riseup.net (Postfix) with ESMTPSA id 4TSRsV2pvdzJntZ;
+	Sun,  4 Feb 2024 11:21:18 +0000 (UTC)
+From: Dang Huynh <danct12@riseup.net>
+To: Neil Armstrong <neil.armstrong@linaro.org>,
+ Jessica Zhang <quic_jesszhan@quicinc.com>, Sam Ravnborg <sam@ravnborg.org>,
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>,
+ David Airlie <airlied@gmail.com>, Daniel Vetter <daniel@ffwll.ch>,
+ Rob Herring <robh+dt@kernel.org>,
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+ Conor Dooley <conor+dt@kernel.org>, Heiko Stuebner <heiko@sntech.de>,
+ Sandy Huang <hjc@rock-chips.com>, Mark Yao <markyao0591@gmail.com>,
+ Diederik de Haas <didi.debian@cknow.org>,
+ Segfault <awarnecke002@hotmail.com>, Arnaud Ferraris <aferraris@debian.org>,
+ Ondrej Jirman <megi@xff.cz>, Manuel Traut <manut@mecka.net>
+Cc: dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ linux-rockchip@lists.infradead.org, Manuel Traut <manut@mecka.net>
+Subject:
+ Re: [PATCH v4 4/4] arm64: dts: rockchip: Add devicetree for Pine64 PineTab2
+Date: Sun, 04 Feb 2024 11:21:05 +0000
+Message-ID: <2724385.mvXUDI8C0e@melttower>
+In-Reply-To: <20240127-pinetab2-v4-4-37aab1c39194@mecka.net>
+References:
+ <20240127-pinetab2-v4-0-37aab1c39194@mecka.net>
+ <20240127-pinetab2-v4-4-37aab1c39194@mecka.net>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
+Content-Transfer-Encoding: 7Bit
+Content-Type: text/plain; charset="us-ascii"
 
-On Mon, 29 Jan 2024 12:32:02 +0100, Uwe Kleine-König wrote:
-> The binding doesn't define interrupts and adding such a definition was
-> refused because it's unclear how they should ever be used and the
-> relevant registers are outside the PWM range. So drop them fixing
-> several dtbs_check warnings like:
-> 
-> 	arch/arm/boot/dts/rockchip/rv1108-elgin-r1.dtb: pwm@10280030: 'interrupts' does not match any of the regexes: 'pinctrl-[0-9]+'
-> 	from schema $id: http://devicetree.org/schemas/pwm/pwm-rockchip.yaml#
-> 
-> [...]
+Tested-by: Dang Huynh <danct12@riseup.net>
 
-Applied, thanks!
+On Saturday, January 27, 2024 9:48:45 AM UTC Manuel Traut wrote:
+> This includes support for both the v0.1 units that were sent to developers
+> and the v2.0 units from production.
 
-[1/1] ARM: dts: rockchip: Drop interrupts property from pwm-rockchip nodes
-      commit: f98643d8daf3443e3b414a82d0cb3d745f8c8bbc
 
-Best regards,
--- 
-Heiko Stuebner <heiko@sntech.de>
 
