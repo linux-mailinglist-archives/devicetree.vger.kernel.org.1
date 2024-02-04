@@ -1,31 +1,31 @@
-Return-Path: <devicetree+bounces-38393-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-38396-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 91A99848D0E
-	for <lists+devicetree@lfdr.de>; Sun,  4 Feb 2024 12:17:55 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 42EDB848D39
+	for <lists+devicetree@lfdr.de>; Sun,  4 Feb 2024 12:49:59 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 15D24B21973
-	for <lists+devicetree@lfdr.de>; Sun,  4 Feb 2024 11:17:53 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id F228E282629
+	for <lists+devicetree@lfdr.de>; Sun,  4 Feb 2024 11:49:57 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A52B72137E;
-	Sun,  4 Feb 2024 11:17:47 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4087D21A0A;
+	Sun,  4 Feb 2024 11:49:55 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from gloria.sntech.de (gloria.sntech.de [185.11.138.130])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D1D3421A0B;
-	Sun,  4 Feb 2024 11:17:44 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 10F19219FF;
+	Sun,  4 Feb 2024 11:49:51 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.11.138.130
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1707045467; cv=none; b=lIRH7AgceuvgES17MM9IiywvXHJDyFBi5PpL9FXLBftn3ODDD9urPqE+puYRyEVXcEnJ4v9R/KbapZ7RpIM9nUAzBcxOKTSl2qLJNkVNwL+LRstZdoSduv8MFuMcA9nm8c4LFkqq8EkUm6zhNKNeaZ2exS/lTHBxyidx7O/ifro=
+	t=1707047395; cv=none; b=S4M7rmFWwV1UJB7ErnnNBoCRrKyyLxuzCoxV1kTJxkoMzW2RQ/arKznXS+Pf9flSg9I8mebjm3qgB6o+HzS0LPAPVICuaqOraB58u76STsthNcpzu3zA9AfPmDv0iTgfz2eQo+HSIZabyG+Wo2u9JOD70CMPYTPS8VyjWEq4mvA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1707045467; c=relaxed/simple;
-	bh=HLi6qiYI3ScE3SqyEmd+G0EqimCKMkgSKEPxljgFyRs=;
+	s=arc-20240116; t=1707047395; c=relaxed/simple;
+	bh=vEE7Ab99Zk7NDxu4UXzR/KXDRTMnKym+OK+9C9h/mZw=;
 	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=C4yPJDk+QgZDHr/DF+ywYrvvQ1+NAWLaddTCqwm7Rfd6wKrO3nYq3iaoJG/gjDUy5PbqO6+BmTy3ldxzx/wbxBp4rwaOKrtlzDZ6Sn3xNrSyiRk/0fL70o47PNEuuUAUMXfiOIyzh5CiWLefUBlIOtssa6wTpTqyfD3t0fyOi+c=
+	 MIME-Version:Content-Type; b=So5RkGDXJ3W84PFRhIWlCrSvJyM761fIME2VNd7Jxtdzghj0OWavPVr1NHBxW//cyCRfi87Bh11cJEVQDW11mTd3Yo78KcuuORr5OtGfpJkT5mUO0XZHg7l7LoQbeSg5Z7B87dfj5o1+pXm2t7oT2oCl/MKT8wcS7PAI9J2DDlA=
 ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=sntech.de; spf=pass smtp.mailfrom=sntech.de; arc=none smtp.client-ip=185.11.138.130
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=sntech.de
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=sntech.de
@@ -33,40 +33,24 @@ Received: from [185.175.219.2] (helo=phil.fosdem.net)
 	by gloria.sntech.de with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
 	(Exim 4.94.2)
 	(envelope-from <heiko@sntech.de>)
-	id 1rWaUq-00051V-9E; Sun, 04 Feb 2024 12:17:12 +0100
+	id 1rWaUq-00051V-So; Sun, 04 Feb 2024 12:17:12 +0100
 From: Heiko Stuebner <heiko@sntech.de>
-To: Mark Yao <markyao0591@gmail.com>,
-	Sam Ravnborg <sam@ravnborg.org>,
-	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
-	David Airlie <airlied@gmail.com>,
-	Diederik de Haas <didi.debian@cknow.org>,
-	Ondrej Jirman <megi@xff.cz>,
-	Maxime Ripard <mripard@kernel.org>,
-	Segfault <awarnecke002@hotmail.com>,
-	Rob Herring <robh+dt@kernel.org>,
-	Daniel Vetter <daniel@ffwll.ch>,
-	Manuel Traut <manut@mecka.net>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Thomas Zimmermann <tzimmermann@suse.de>,
-	Jessica Zhang <quic_jesszhan@quicinc.com>,
-	Sandy Huang <hjc@rock-chips.com>,
-	Neil Armstrong <neil.armstrong@linaro.org>,
-	Arnaud Ferraris <aferraris@debian.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Danct12 <danct12@riseup.net>
+To: Rob Herring <robh+dt@kernel.org>,
+	=?UTF-8?q?Uwe=20Kleine-K=C3=B6nig?= <u.kleine-koenig@pengutronix.de>
 Cc: Heiko Stuebner <heiko@sntech.de>,
-	linux-kernel@vger.kernel.org,
-	dri-devel@lists.freedesktop.org,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	linux-pwm@vger.kernel.org,
 	linux-rockchip@lists.infradead.org,
-	Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+	kernel@pengutronix.de,
 	linux-arm-kernel@lists.infradead.org,
 	devicetree@vger.kernel.org
-Subject: Re: (subset) [PATCH v4 0/4] arm64: rockchip: Pine64 PineTab2 support
-Date: Sun,  4 Feb 2024 12:17:08 +0100
-Message-Id: <170704542194.2517832.14847139781169519437.b4-ty@sntech.de>
+Subject: Re: [PATCH] ARM: dts: rockchip: Drop interrupts property from pwm-rockchip nodes
+Date: Sun,  4 Feb 2024 12:17:09 +0100
+Message-Id: <170704542195.2517832.659994399742833718.b4-ty@sntech.de>
 X-Mailer: git-send-email 2.39.2
-In-Reply-To: <20240127-pinetab2-v4-0-37aab1c39194@mecka.net>
-References: <20240127-pinetab2-v4-0-37aab1c39194@mecka.net>
+In-Reply-To: <20240129113205.2453029-2-u.kleine-koenig@pengutronix.de>
+References: <20240129113205.2453029-2-u.kleine-koenig@pengutronix.de>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -76,25 +60,21 @@ MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 8bit
 
-On Sat, 27 Jan 2024 10:48:41 +0100, Manuel Traut wrote:
-> This adds support for the BOE TH101MB31IG002 LCD Panel used in PineTab2 [1] and
-> PineTab-V [2] as well as the devictrees for the PineTab2 v0.1 and v2.0.
+On Mon, 29 Jan 2024 12:32:02 +0100, Uwe Kleine-König wrote:
+> The binding doesn't define interrupts and adding such a definition was
+> refused because it's unclear how they should ever be used and the
+> relevant registers are outside the PWM range. So drop them fixing
+> several dtbs_check warnings like:
 > 
-> The BOE LCD Panel patch was retrieved from [3]. The function-name prefix has
-> been adapted and the LCD init section was simplified.
-> 
-> The PineTab2 devicetree patch was retrieved from [4]. Some renaming was needed
-> to pass the dtb-checks, the brightness-levels are specified as range and steps
-> instead of a list of values.
+> 	arch/arm/boot/dts/rockchip/rv1108-elgin-r1.dtb: pwm@10280030: 'interrupts' does not match any of the regexes: 'pinctrl-[0-9]+'
+> 	from schema $id: http://devicetree.org/schemas/pwm/pwm-rockchip.yaml#
 > 
 > [...]
 
 Applied, thanks!
 
-[3/4] dt-bindings: arm64: rockchip: Add Pine64 PineTab2
-      commit: 6a0a5a2a71b3e3c4ae1ee0b34a496cbf2d980832
-[4/4] arm64: dts: rockchip: Add devicetree for Pine64 PineTab2
-      commit: 1b7e19448f8fbeee23111795f67a003431c40b27
+[1/1] ARM: dts: rockchip: Drop interrupts property from pwm-rockchip nodes
+      commit: f98643d8daf3443e3b414a82d0cb3d745f8c8bbc
 
 Best regards,
 -- 
