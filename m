@@ -1,115 +1,177 @@
-Return-Path: <devicetree+bounces-38426-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-38427-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id A5CF184900A
-	for <lists+devicetree@lfdr.de>; Sun,  4 Feb 2024 20:19:05 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0E624849011
+	for <lists+devicetree@lfdr.de>; Sun,  4 Feb 2024 20:21:29 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id AD37A1C2181C
-	for <lists+devicetree@lfdr.de>; Sun,  4 Feb 2024 19:19:04 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id B98D52845C4
+	for <lists+devicetree@lfdr.de>; Sun,  4 Feb 2024 19:21:27 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B4BA224A08;
-	Sun,  4 Feb 2024 19:19:00 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4D5C624B23;
+	Sun,  4 Feb 2024 19:21:27 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=bgdev-pl.20230601.gappssmtp.com header.i=@bgdev-pl.20230601.gappssmtp.com header.b="OoyrtVtH"
+	dkim=pass (2048-bit key) header.d=gadgetoid.com header.i=@gadgetoid.com header.b="doY3/JH/"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-io1-f48.google.com (mail-io1-f48.google.com [209.85.166.48])
+Received: from mail-ot1-f54.google.com (mail-ot1-f54.google.com [209.85.210.54])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3ED3D24B2B
-	for <devicetree@vger.kernel.org>; Sun,  4 Feb 2024 19:18:59 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.166.48
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8A5EC24B52
+	for <devicetree@vger.kernel.org>; Sun,  4 Feb 2024 19:21:25 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.54
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1707074340; cv=none; b=tAAxzhGU8Cws1wDvYUaOjX5LwTfvXNxYvwh5zn3UOpWxQA4xkPl48QMzym5JrkxcdWCpwN+ImJa98Vke0r+TcvRyf2hy27gaMmOviqmTluus8jjNpARGq1JcqgFACKYlaIyUZcMyo6b2jC97dIgJ2IwLi8rcRQGJCzwOyvqgIAw=
+	t=1707074487; cv=none; b=ami7UlHD7HRN8RRU59wWWT/whtYFUcoWgDiQqsF6haO9orv2TKTQesf8SWTidz/U8Si2PXl83Y5gCuiAGbnHsQ1IzNQt6fRetl8nQZNCiAO6gjrMhrDZlbFIq2AMka9KeBF1KmNANukl2EdCBxqdPCcpdLokLpb9Quw7Tfuxh/4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1707074340; c=relaxed/simple;
-	bh=U7fuHKCS7P0gibNRuhCi/+lWNbl//hi+bf2tD9GrdHo=;
+	s=arc-20240116; t=1707074487; c=relaxed/simple;
+	bh=+2qQZPvzRM1Ccx5r01txcVMOu3HC/uAEKJdeEjLsMc8=;
 	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=uEO5j7K2ghBGEyF+3R/Ioj4x4Q3/BkTgPEQfDCz3DShE5KGXRaazWCnWJmBTA4F0CLd+W8XymOLQ/k7dlqimRZwmDSG1tM2W6+ONP9ODzc9lMagxlEcLXJFxXpkyDmGtAft/2OSExJca6494PT6y4FeTjwhZn67Et8E7gsRdFto=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=bgdev.pl; spf=none smtp.mailfrom=bgdev.pl; dkim=pass (2048-bit key) header.d=bgdev-pl.20230601.gappssmtp.com header.i=@bgdev-pl.20230601.gappssmtp.com header.b=OoyrtVtH; arc=none smtp.client-ip=209.85.166.48
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=bgdev.pl
-Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=bgdev.pl
-Received: by mail-io1-f48.google.com with SMTP id ca18e2360f4ac-7bc32b0fdadso168819939f.2
-        for <devicetree@vger.kernel.org>; Sun, 04 Feb 2024 11:18:59 -0800 (PST)
+	 To:Cc:Content-Type; b=DRlPefb554VVBNVt/vQSnsdHtZGmmskxmsDESWrZ/qKclqOkjwhaZKerS7dj3NHVmA6hwFqr/iFGpzSYZQYVJNvCB6JTDdQVfneN7SJwQy0learoJd0omg1C9BCQRvnke758VMJ3TAvP6aCtBP5tBHuJjJMJS9H44WvyK7JWVJ0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=gadgetoid.com; spf=pass smtp.mailfrom=gadgetoid.com; dkim=pass (2048-bit key) header.d=gadgetoid.com header.i=@gadgetoid.com header.b=doY3/JH/; arc=none smtp.client-ip=209.85.210.54
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=gadgetoid.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gadgetoid.com
+Received: by mail-ot1-f54.google.com with SMTP id 46e09a7af769-6e0f43074edso2178017a34.1
+        for <devicetree@vger.kernel.org>; Sun, 04 Feb 2024 11:21:25 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=bgdev-pl.20230601.gappssmtp.com; s=20230601; t=1707074338; x=1707679138; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=U7fuHKCS7P0gibNRuhCi/+lWNbl//hi+bf2tD9GrdHo=;
-        b=OoyrtVtHrVGc2XeI/zv7GteSD0rgrVV7Zm1CKj+zBeRYXCnoqxy4GZvG395QtuC7/X
-         g1/T27YUxx0t8Ua3E8lghdv0Hd+69QaWAjOePCbSxo6Uppk0DsuFN2WI+6C2EO9px4PN
-         eyrsYFqKPl74A5ktS2WvogEmKlMkugznf7jQRyk755BFPktvr1ce6GLWv7od0EipZ3DN
-         xe/SB0vHCxS3oOL7qSr+Xmvaqr4KdWqEdSr6wOIzbnHcEcwoQwSLiY/flcOa+1wVnson
-         DIjdM5C9cNypkvbwtSS6bhNuYixH+PmkQcR7VKsGPayjha7oFSwu6RmTNRoqj4IOj2Er
-         in0g==
+        d=gadgetoid.com; s=google; t=1707074484; x=1707679284; darn=vger.kernel.org;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=60/XrcYt04qCiCxE5F6uQ90YiYyMDDuz2RU+MkOhiCs=;
+        b=doY3/JH/VGFNSDKGTNfFcNEZh3cJJ6s63wiBE933toOgBGzXn8lFi5GQk6lYLjzK/9
+         MkY8EacNtkiVVvQCJJeDkYzJ/hCKUS7qaX6wBU5qwxcvUlvSgCleLp5dgUKgDIl0wNqv
+         7i1zSY+tp0iDXIr6OYjecUmASdxxpifpA6OOmXavBGpADD/qMhbz/xLaEjptR23mMmOn
+         NQl1fErK9+Begcd3FJY16CF4UekDxlR4IcXMMRJFG5rRT1KoQ+C22aksjyqbYxRDLFHm
+         qGFaf6ML8uNnMIvILGGol6UBBmz/jg1KiONCxpUU7ryPTa8nQRLZqi3RK5t4rMfvR2uy
+         EGtA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1707074338; x=1707679138;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=U7fuHKCS7P0gibNRuhCi/+lWNbl//hi+bf2tD9GrdHo=;
-        b=tvxz7sLUNZEf5Mem6wBdcB4ncy7kbp9NDsxRmWiR05HeIEfDIgvtld5Bw8lkgfGx27
-         S3ig04dGvQLg/B0tp43/927MiFyBL7oDMpHHkkc2I5FPJE5sNk7BxtE3NYDViojOiE6f
-         cKE+JVgBqhnkHj6sGR6+8DXWdcVmlxRMql1Lih29mA1Vi/jAUQTQCwNcHtNlxKSOFDFP
-         vJ0mCGw8Z1y49saqbMdHTbMzKG09U6PePZ9weWr7sl8H6U2xQSQgK0QEHIuONO1EjR5K
-         uMtjLoMc0FVCJMYYn7P0nRJuV2faabJE19268lCF5I3S0dN6B0RYwrdXVO2YIFzb2uOW
-         hBlg==
-X-Gm-Message-State: AOJu0YzOkcaaTgF8cKfPfjkbzrveWg0grmbs8J4aX1Zc+jCT3OHic/KD
-	0CKbnvZOflP28wMIfIbEDuzuOYqtHH3mUTvmfbXBt6+QEbZTq1G1EnQziNDIVkIYaxkan/f2Jz4
-	Y8u1/kDB1juUsWvyvaxOAsPHJbdm7GM7BQPNFTzzesQIamVch
-X-Google-Smtp-Source: AGHT+IG030GFNoRO+D9HsQtpRkpxOEHuKCB6i5c74CD190x3V48aR41aB7RFrMKEewt7N4ui/ox4/rbyj64984Kw2d8=
-X-Received: by 2002:a05:6e02:2184:b0:363:bf96:560 with SMTP id
- j4-20020a056e02218400b00363bf960560mr4301345ila.15.1707074338436; Sun, 04 Feb
- 2024 11:18:58 -0800 (PST)
+        d=1e100.net; s=20230601; t=1707074484; x=1707679284;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=60/XrcYt04qCiCxE5F6uQ90YiYyMDDuz2RU+MkOhiCs=;
+        b=loh7s/1icr/Mw97OYEsqo6Ff4tswFlZTWvpbf4GiaZmH3qCeFdJY4/NBFUOyph6GTO
+         Xmiar9vlETupnlAN9JDNCOdhKt8CC6l5AzCJPwGpSj/n762/jF2lJZjrsBDmbj3vT6Fm
+         k7qC4ozLy//zm6lhVkwB7LdXTWoldEcIgFqN1tQO4HO8cmhUWN20PdcClBxMbudftVxi
+         DxDnLVGW3HZHJjHiWktir2mr8d6S+Padig2EZXoJFTEksuvdjMxs9YZs9gAPhYScijDx
+         lP16wyMRiRscwE8CQ34CXTWEGNIeO8cQZlg8+0DRqMhfuWlqKrAWde4U9bbijQW9Oajb
+         xlJA==
+X-Gm-Message-State: AOJu0Yzv0e0q1Xf7/RB3FqeB2cjlhcrwZ/G8wpHsbiHFXWz0N5crvr3V
+	BSUZye2aejELhXGT+tIqEf8nCX+roVoAgqaC80VSz1pCeqBfWYMJ5MqAh4W/wMQKzzPPVT86Vc5
+	qeG8jY9OLKcMdbkFZlHwIAeO8Zt9s5xfYU6ezIw==
+X-Google-Smtp-Source: AGHT+IG3Z18gYOA2RjAesz6ekRd1LlfvoBIJH/qHhBB5ERUf3SeHSwhd6yPwjdb6xlORyUSXjQpvxZGKoTMcLcOe6QE=
+X-Received: by 2002:a05:6870:10d6:b0:218:d5a6:e14 with SMTP id
+ 22-20020a05687010d600b00218d5a60e14mr4466262oar.46.1707074484492; Sun, 04 Feb
+ 2024 11:21:24 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20240201155532.49707-1-brgl@bgdev.pl> <20240201155532.49707-2-brgl@bgdev.pl>
- <CAL_JsqKq8AngeC7ohsbYB0w70uALD+PX-df53cswTDUY-Rrdgw@mail.gmail.com>
-In-Reply-To: <CAL_JsqKq8AngeC7ohsbYB0w70uALD+PX-df53cswTDUY-Rrdgw@mail.gmail.com>
-From: Bartosz Golaszewski <brgl@bgdev.pl>
-Date: Sun, 4 Feb 2024 20:18:47 +0100
-Message-ID: <CAMRc=MdxgETs-Zx3Njao3msmE3T+DeKkPc0YMD3CvVW-Lj2qoQ@mail.gmail.com>
-Subject: Re: [RFC 1/9] of: provide a cleanup helper for OF nodes
-To: Rob Herring <robh@kernel.org>
-Cc: Bjorn Andersson <andersson@kernel.org>, Konrad Dybcio <konrad.dybcio@linaro.org>, 
+References: <20240128163630.104725-1-wahrenst@gmx.net> <CA+kSVo88y7n9dyo57fgjybC9=1b_dgTPA3u-_kUH9X_79HF4tA@mail.gmail.com>
+ <384a6c41-f29c-4adc-96a2-f72a44d1c718@gmx.net>
+In-Reply-To: <384a6c41-f29c-4adc-96a2-f72a44d1c718@gmx.net>
+From: Phil Howard <phil@gadgetoid.com>
+Date: Sun, 4 Feb 2024 19:21:13 +0000
+Message-ID: <CA+kSVo9V_CFdP0tahZ78zbfHPaKMSb8sh_3jc2dQZv0NkXnjvQ@mail.gmail.com>
+Subject: Re: [PATCH V3 0/2] pwm: Add GPIO PWM driver
+To: Stefan Wahren <wahrenst@gmx.net>
+Cc: =?UTF-8?Q?Uwe_Kleine=2DK=C3=B6nig?= <u.kleine-koenig@pengutronix.de>, 
+	Rob Herring <robh+dt@kernel.org>, 
 	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Marcel Holtmann <marcel@holtmann.org>, Luiz Augusto von Dentz <luiz.dentz@gmail.com>, 
-	Bjorn Helgaas <bhelgaas@google.com>, Neil Armstrong <neil.armstrong@linaro.org>, 
-	Alex Elder <elder@linaro.org>, Srini Kandagatla <srinivas.kandagatla@linaro.org>, 
-	Greg Kroah-Hartman <gregkh@linuxfoundation.org>, Arnd Bergmann <arnd@arndb.de>, 
-	Abel Vesa <abel.vesa@linaro.org>, Manivannan Sadhasivam <mani@kernel.org>, Lukas Wunner <lukas@wunner.de>, 
-	linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org, linux-bluetooth@vger.kernel.org, 
-	linux-pci@vger.kernel.org, 
-	Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
+	andy.shevchenko@gmail.com, Angelo Compagnucci <angelo.compagnucci@gmail.com>, 
+	Linus Walleij <linus.walleij@linaro.org>, linux-pwm@vger.kernel.org, 
+	devicetree@vger.kernel.org, linux-gpio@vger.kernel.org
 Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
 
-On Thu, Feb 1, 2024 at 11:18=E2=80=AFPM Rob Herring <robh@kernel.org> wrote=
-:
+On Fri, 2 Feb 2024 at 20:13, Stefan Wahren <wahrenst@gmx.net> wrote:
 >
-> On Thu, Feb 1, 2024 at 9:55=E2=80=AFAM Bartosz Golaszewski <brgl@bgdev.pl=
-> wrote:
+> Hi Phil,
+>
+> Am 02.02.24 um 14:19 schrieb Phil Howard:
+> > On Sun, 28 Jan 2024 at 16:37, Stefan Wahren <wahrenst@gmx.net> wrote:
+> >> Add a software PWM which toggles a GPIO from a high-resolution timer.
+> >>
+> >> Recent discussions in the Raspberry Pi community revealt that a lot
+> >> of users still use MMIO userspace tools for GPIO access. One argument
+> >> for this approach is the lack of a GPIO PWM kernel driver. So this
+> >> series tries to fill this gap.
+> > *Thank you* for picking this up. I've been stuck down by covid but am aiming
+> > to build and test this on a Pi 5 (with a gpio chip over PCIe) to see if it runs-
+> > though I am fully expecting a PIO solution (using the Pi 5s RP1) to handle
+> > PWM in this case, and hope to rely upon this gpio-pwm module for previous
+> > iterations.
+> i hope you are doing well.
+>
+> There will be small functional changes in V4. Since this series based on
+> Linux 6.8 and there is no RPi 5 mainline support, you will need to apply
+> it on top of rpi-6.8.y.
+
+I've got as far as applying the patches and building myself a 6.8.y kernel,
+just dragging the ol' brain kicking and screaming into dts world again.
+
+>
+> Should i wait for your test results (no pressure) before sending V4?
+
+Don't wait on my account- (no really, it's chaos here)- send away!
+
 > >
-> > From: Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
-> >
-> > Allow to use __free() to automatically put references to OF nodes.
+> >> This continues the work of Vincent Whitchurch [1], which is easier
+> >> to read and more consequent by rejecting sleeping GPIOs than Nicola's
+> >> approach [2].
+> >>
+> >> The work has been tested on a Raspberry Pi 3 B+ and a cheap logic
+> >> analyzer.
+> >>
+> >> V3:
+> >>   - rebase on top of v6.8-pwm-next
+> >>   - cherry-pick improvements from Nicola's series
+> >>   - try to address Uwe's, Linus' and Andy's comments
+> >>   - try to avoid GPIO glitches during probe
+> >>   - fix pwm_gpio_remove()
+> >>   - some code clean up's and comments
+> >>
+> >> V2:
+> >>   - Rename gpio to gpios in binding
+> >>   - Calculate next expiry from expected current expiry rather than "now"
+> >>   - Only change configuration after current period ends
+> >>   - Implement get_state()
+> >>   - Add error message for probe failures
+> >>   - Stop PWM before unregister
+> >>
+> >> [1] - https://lore.kernel.org/all/20200915135445.al75xmjxudj2rgcp@axis.com/T/
+> >> [2] - https://lore.kernel.org/all/20201205214353.xapax46tt5snzd2v@einstein.dilieto.eu/
+> >>
+> >> Nicola Di Lieto (1):
+> >>    dt-bindings: pwm: Add pwm-gpio
+> >>
+> >> Vincent Whitchurch (1):
+> >>    pwm: Add GPIO PWM driver
+> >>
+> >>   .../devicetree/bindings/pwm/pwm-gpio.yaml     |  42 ++++
+> >>   drivers/pwm/Kconfig                           |  11 +
+> >>   drivers/pwm/Makefile                          |   1 +
+> >>   drivers/pwm/pwm-gpio.c                        | 221 ++++++++++++++++++
+> >>   4 files changed, 275 insertions(+)
+> >>   create mode 100644 Documentation/devicetree/bindings/pwm/pwm-gpio.yaml
+> >>   create mode 100644 drivers/pwm/pwm-gpio.c
+> >>
+> >> --
+> >> 2.34.1
+> >>
 >
-> Jonathan has already been working on this[1].
->
-> Rob
->
-> [1] https://lore.kernel.org/all/20240128160542.178315-1-jic23@kernel.org/
 
-Thanks, I will watch this but for now I'll have to stick to carrying
-it in my series until it gets upstream.
 
-Bart
+-- 
+Philip Howard
+Technology & Lifestyle Writer
+gadgetoid.com
+
+Gadgetoid gadg-et-oid [gaj-it-oid]
+
+                                     -adjective
+
+1. having the characteristics or form of a gadget; resembling a
+mechanical contrivance or device.
 
