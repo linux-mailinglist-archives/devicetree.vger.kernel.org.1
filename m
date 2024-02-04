@@ -1,120 +1,117 @@
-Return-Path: <devicetree+bounces-38367-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-38368-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 15401848C58
-	for <lists+devicetree@lfdr.de>; Sun,  4 Feb 2024 10:04:06 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 08AF7848C63
+	for <lists+devicetree@lfdr.de>; Sun,  4 Feb 2024 10:16:24 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 46D771C21073
-	for <lists+devicetree@lfdr.de>; Sun,  4 Feb 2024 09:04:05 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id B6F5B281154
+	for <lists+devicetree@lfdr.de>; Sun,  4 Feb 2024 09:16:22 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2B45914284;
-	Sun,  4 Feb 2024 09:04:02 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id DBE40171AD;
+	Sun,  4 Feb 2024 09:16:19 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="pgjn5A/A"
+	dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b="fOSmEHyn"
 X-Original-To: devicetree@vger.kernel.org
-Received: from fllv0016.ext.ti.com (fllv0016.ext.ti.com [198.47.19.142])
+Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [213.167.242.64])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 32C32171A4;
-	Sun,  4 Feb 2024 09:03:59 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.19.142
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 11BAC16429
+	for <devicetree@vger.kernel.org>; Sun,  4 Feb 2024 09:16:17 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=213.167.242.64
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1707037442; cv=none; b=uDb/phw0mBUrM+qMjksUJ3ESjaHaiolaKxlQeSeTtvubA47XlEyHz+rURPOo1eTr3BkYAecTdSLQx3WoMiaxwYkxKkLkzfafpWMQ61w1NgCHfNdvJBXAkh77AiZd40WO+QShkr7kr0cXgtiXqqzwCzRhK2CdppENtEB//vRc8Cw=
+	t=1707038179; cv=none; b=cnNhT4X0NcqEnLdkjHTR789+z8sZNSKYWrIXhtzVQXywCujw097lGdmeJy+MN3T4qgsqVrN5hkalCItzLJ7/pN+PwbxKyQHVYSWWnlJGfj94Ut1RQ+h+nRkKLQxumuXgWH1/SFcNyfFqEAhCf3yyJt21/BCTt4pmwHm/4IFdJlU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1707037442; c=relaxed/simple;
-	bh=jF0w1R3K6lY6TNEDoBHEPF68k8xKzvT4f6kJeXJ6fbE=;
-	h=From:To:CC:Subject:Date:Message-ID:MIME-Version:Content-Type; b=Ux38d4C4dFb9J2bDhEtf0xE6M5U3QoYHLQARBpMTp5BRQ3IJulW0X6TBcTc3r4lMJIoGLcHzM5UOoOO5Z0bmvK5kbp5vbUp34NCJ98OvU4fwGqdagkI29N4semdo301XI7R62ddHfqrcrQfilDUQ9BJHdDy4Igk4cu+bRhwdpj4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=pgjn5A/A; arc=none smtp.client-ip=198.47.19.142
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
-Received: from fllv0035.itg.ti.com ([10.64.41.0])
-	by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id 41493eVh075412;
-	Sun, 4 Feb 2024 03:03:40 -0600
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1707037420;
-	bh=d7UPPrPOD40sPgSNdfcsyxepCid0SjSq84tpHp7IiJ8=;
-	h=From:To:CC:Subject:Date;
-	b=pgjn5A/AtQAEpw7f0PqQtCKLLwKjl/gHnRwDqsYnNm7lw+oO0W0WTgu6SlreuFudL
-	 5rTPeA3nEGELzQbYOOkiBrQTDoDiOjceq9D8bHl5scB5EXX2rX/X7EN3VF+f3U5FMs
-	 nwA6TCxOY47Sp95auTeFk/0H4Nidw+E3kwbTfows=
-Received: from DLEE107.ent.ti.com (dlee107.ent.ti.com [157.170.170.37])
-	by fllv0035.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 41493eXV005601
-	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-	Sun, 4 Feb 2024 03:03:40 -0600
-Received: from DLEE105.ent.ti.com (157.170.170.35) by DLEE107.ent.ti.com
- (157.170.170.37) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Sun, 4
- Feb 2024 03:03:40 -0600
-Received: from lelvsmtp6.itg.ti.com (10.180.75.249) by DLEE105.ent.ti.com
- (157.170.170.35) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
- Frontend Transport; Sun, 4 Feb 2024 03:03:40 -0600
-Received: from uda0492258.dhcp.ti.com (uda0492258.dhcp.ti.com [172.24.227.9])
-	by lelvsmtp6.itg.ti.com (8.15.2/8.15.2) with ESMTP id 41493a97125185;
-	Sun, 4 Feb 2024 03:03:37 -0600
-From: Siddharth Vadapalli <s-vadapalli@ti.com>
-To: <lee@kernel.org>, <robh+dt@kernel.org>,
-        <krzysztof.kozlowski+dt@linaro.org>, <conor+dt@kernel.org>
-CC: <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>, <afd@ti.com>, <srk@ti.com>,
-        <s-vadapalli@ti.com>
-Subject: [PATCH v2] dt-bindings: mfd: syscon: Add ti,j784s4-pcie-ctrl compatible
-Date: Sun, 4 Feb 2024 14:33:36 +0530
-Message-ID: <20240204090336.3209063-1-s-vadapalli@ti.com>
-X-Mailer: git-send-email 2.34.1
+	s=arc-20240116; t=1707038179; c=relaxed/simple;
+	bh=82X0NI12O7oeVqXArgsDcMS1UdpxOkYE1FbmQgedXJY=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=qr+50vjoYMSGyINR9KmKAh5g2QJND/ypaXhBPgijBosqDWhw+jdlNZEZAVpMCuD3O5poG2P6K5NyMRmJgf3T853dD7YYsQA6iWFmRZU5Ot7ehjZtQpI2yvymbueGN0Ma3cRv2v7QngFdDPHTFsC3eraJh0JwOd813jHU9nostwE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ideasonboard.com; spf=pass smtp.mailfrom=ideasonboard.com; dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b=fOSmEHyn; arc=none smtp.client-ip=213.167.242.64
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ideasonboard.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ideasonboard.com
+Received: from pendragon.ideasonboard.com (unknown [109.128.141.99])
+	by perceval.ideasonboard.com (Postfix) with ESMTPSA id 4F4B86F2;
+	Sun,  4 Feb 2024 10:14:54 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
+	s=mail; t=1707038094;
+	bh=82X0NI12O7oeVqXArgsDcMS1UdpxOkYE1FbmQgedXJY=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=fOSmEHyn0LpoPrtzUPG9Th/n0knuj2beFi0pXXSLK2HHqA/vnK3b8D/uGuXcSZWOC
+	 L2xJAyhAe2UA4aeqWUCEgclR320JjeWiJsgxsy9O5PYvtACLWudGqZfyb8MamHMICq
+	 vIUlmITf0gKNUPZovcKxUD3Oxi+7qy1GYjdquJkM=
+Date: Sun, 4 Feb 2024 11:16:16 +0200
+From: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+To: Kuninori Morimoto <kuninori.morimoto.gx@renesas.com>
+Cc: Frank Rowand <frowand.list@gmail.com>, Rob Herring <robh+dt@kernel.org>,
+	devicetree@vger.kernel.org,
+	Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
+	Luca Ceresoli <luca.ceresoli@bootlin.com>,
+	Sakari Ailus <sakari.ailus@iki.fi>
+Subject: Re: [PATCH 1/2] of: property: add missing kerneldoc for
+ of_graph_get_endpoint_count()
+Message-ID: <20240204091616.GH3094@pendragon.ideasonboard.com>
+References: <87il37s8fz.wl-kuninori.morimoto.gx@renesas.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+In-Reply-To: <87il37s8fz.wl-kuninori.morimoto.gx@renesas.com>
 
-The PCIE_CTRL registers within the CTRL_MMR space of TI's J784S4 SoC
-are used to configure the link speed, lane count and mode of operation
-of the respective PCIe instance. Add compatible for allowing the PCIe
-driver to obtain a regmap for the PCIE_CTRL register within the System
-Controller device-tree node in order to configure the PCIe instance
-accordingly.
+Hello Morimoto-san,
 
-The Technical Reference Manual for J784S4 SoC with details of the
-PCIE_CTRL registers is available at: https://www.ti.com/lit/zip/spruj52
+Thank you for the patch.
 
-Signed-off-by: Siddharth Vadapalli <s-vadapalli@ti.com>
----
-Hello,
+On Fri, Feb 02, 2024 at 06:10:08AM +0000, Kuninori Morimoto wrote:
+> of_graph_get_endpoint_count() doesn't have kerneldoc. Add it.
+> 
+> Signed-off-by: Kuninori Morimoto <kuninori.morimoto.gx@renesas.com>
+> ---
+>  drivers/of/property.c | 6 ++++++
+>  1 file changed, 6 insertions(+)
+> 
+> diff --git a/drivers/of/property.c b/drivers/of/property.c
+> index afdaefbd03f6..4e879faa1710 100644
+> --- a/drivers/of/property.c
+> +++ b/drivers/of/property.c
+> @@ -811,6 +811,12 @@ struct device_node *of_graph_get_remote_port(const struct device_node *node)
+>  }
+>  EXPORT_SYMBOL(of_graph_get_remote_port);
+>  
+> +/**
+> + * of_graph_get_endpoint_count() - get count of endpoint
 
-This patch is based on linux-next tagged next-20240202.
-v1:
-https://lore.kernel.org/r/20240131112342.1300893-1-s-vadapalli@ti.com/
-Changes since v1:
-- Changed compatible to be SoC specific.
-- Updated commit message to be SoC specific.
+s/endpoint/endpoints/
 
-Regards,
-Siddharth.
+or, possibly better,
 
- Documentation/devicetree/bindings/mfd/syscon.yaml | 1 +
- 1 file changed, 1 insertion(+)
+ * of_graph_get_endpoint_count() - get the number of endpoints in a device node
 
-diff --git a/Documentation/devicetree/bindings/mfd/syscon.yaml b/Documentation/devicetree/bindings/mfd/syscon.yaml
-index 084b5c2a2a3c..2376b612f94e 100644
---- a/Documentation/devicetree/bindings/mfd/syscon.yaml
-+++ b/Documentation/devicetree/bindings/mfd/syscon.yaml
-@@ -73,6 +73,7 @@ properties:
-               - rockchip,rv1126-qos
-               - starfive,jh7100-sysmain
-               - ti,am654-dss-oldi-io-ctrl
-+              - ti,j784s4-pcie-ctrl
- 
-           - const: syscon
- 
+> + * @np: pointer to the parent device node
+
+Let's use the same parameter description as for the
+for_each_endpoint_of_node() macro, for consistency:
+
+ * @parent: parent device node containing ports and endpoints
+
+With these small changes,
+
+Reviewed-by: Laurent Pinchart <laurent.pinchart+renesas@ideasonboard.com>
+
+> + *
+> + * Return: count of endpoint of this device node
+> + */
+>  int of_graph_get_endpoint_count(const struct device_node *np)
+>  {
+>  	struct device_node *endpoint;
+
 -- 
-2.34.1
+Regards,
 
+Laurent Pinchart
 
