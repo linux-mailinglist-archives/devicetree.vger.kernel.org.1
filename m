@@ -1,135 +1,117 @@
-Return-Path: <devicetree+bounces-38380-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-38381-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 72D8A848CA0
-	for <lists+devicetree@lfdr.de>; Sun,  4 Feb 2024 10:59:43 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4721A848CAA
+	for <lists+devicetree@lfdr.de>; Sun,  4 Feb 2024 11:11:15 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 304A51F22400
-	for <lists+devicetree@lfdr.de>; Sun,  4 Feb 2024 09:59:43 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 45587B21D3C
+	for <lists+devicetree@lfdr.de>; Sun,  4 Feb 2024 10:11:12 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5ACA81AADF;
-	Sun,  4 Feb 2024 09:59:37 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="n7CYokBT"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C11711B59A;
+	Sun,  4 Feb 2024 10:11:10 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8B80B1B582;
-	Sun,  4 Feb 2024 09:59:35 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
+Received: from foss.arm.com (foss.arm.com [217.140.110.172])
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7F66B1B59C
+	for <devicetree@vger.kernel.org>; Sun,  4 Feb 2024 10:11:07 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.140.110.172
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1707040777; cv=none; b=Acp1xXLc7tQeIliDw4UgPVupYFJBB/aG7Ug0x3CRGI2cvwiE3jaynmJ2woxE++z5ov9BfZrS3ndnFaU6o8+Vqmb/10H7nbQJPzxaM5mQ0dNgZbUDm6EZ66axrfm+pyiSFhc4FerN5gtbnwNTKFwMv8FtXfJrCmwGEup2Rg8vQck=
+	t=1707041470; cv=none; b=sxFG2ayLc41LeUmh8wUr+tWe6SISqmWZMDr1kgAgnA8K86AqpnhWfLMl7uQp/siLdlohKCGBkQkbb+dzpPEhfc0MPda5leyfy9tAaVLf5jJIXcPA+dij+XEfKfaO/vroh7hQPpfR9R37STTn4/Iy71peX3Foj6y1q5MOl6jEblA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1707040777; c=relaxed/simple;
-	bh=PREsO0fDn5ks0m6BkKrklGoIT157BD8L8D9Y5xRwnpY=;
-	h=Message-ID:Date:MIME-Version:Subject:To:References:From:
-	 In-Reply-To:Content-Type; b=MWzBEiGH0RmmWiIded/rhGwpMFE4QYERGwntuTFdXv6EOcN1hLWHtVAvBVXrxVN0LN9zI38oRbWRwwrCbhTlPCYzN77tTIYQ5gPCGdzfNnrpL/JCKPHpL9akAIVH2k/RmyNfxesIA/es2WYsN5xw7ebXd2Rub9fAsufvI8l/4cs=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=n7CYokBT; arc=none smtp.client-ip=205.220.180.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
-Received: from pps.filterd (m0279868.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.17.1.24/8.17.1.24) with ESMTP id 4149uIou002651;
-	Sun, 4 Feb 2024 09:59:18 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
-	message-id:date:mime-version:subject:to:references:from
-	:in-reply-to:content-type:content-transfer-encoding; s=
-	qcppdkim1; bh=tmDZogz+xOwkuZlnDnPxKEWbHLw0ooZZybvU2YEDlg4=; b=n7
-	CYokBTfMrYx4h15SvgxU1+rjFXTj0wKVA5iHN/WJrRwbFb5fsdwXaE7FsNsTNs1V
-	g0bLdn/kKc1BWOIOErg8rI3sxXIJLlURYehbCwGep3jh4YaY4VNi2WYtI9kG2TGd
-	l74c3qopTODCq1RigzKhY5+2haGrYJaNepipdQJFMZcj9jbO8N72Oxj0UfwfuCPE
-	ld/7jAXddPXJtVRMNVTgNFpa2kN2oHHh6N8ZOA8WFSWPzNZkDoK6ChbdLCUcz+s2
-	/UNb2elfl/KXKjeXk3SPxYVg/7IBFrQqFeeB+LPzU2arXwUJI5sWn1b2q5Ar5GxI
-	4kOrEVIyjuB5uJ5cJtZA==
-Received: from nalasppmta02.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3w1f40sjd8-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Sun, 04 Feb 2024 09:59:18 +0000 (GMT)
-Received: from nalasex01c.na.qualcomm.com (nalasex01c.na.qualcomm.com [10.47.97.35])
-	by NALASPPMTA02.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 4149xHnA020742
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Sun, 4 Feb 2024 09:59:17 GMT
-Received: from [10.253.73.69] (10.80.80.8) by nalasex01c.na.qualcomm.com
- (10.47.97.35) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1118.40; Sun, 4 Feb
- 2024 01:59:12 -0800
-Message-ID: <7d86388d-15f5-4e72-b99f-aee3b47a5232@quicinc.com>
-Date: Sun, 4 Feb 2024 17:59:10 +0800
+	s=arc-20240116; t=1707041470; c=relaxed/simple;
+	bh=W/7h9ojC69Bs5mBW6yAlmhJb3ygp8u+JdwKJN7IWVvQ=;
+	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version; b=riZXMBzOLbwMTGaHd8UhyQ5dp/hj/8rxtAYS3QxfNQPjSADJm/vmh/7jAmlRjbhUFXl+7ZMUXHaVIt2Cej+vHfwafNAwTQi/VpizwNFFJaqea+/iWf27pwih8/A0kgYc8GGwd+jtqFvam9XN36nyfIs9ba9HMmJ80AEUA6uaiGM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com; spf=pass smtp.mailfrom=arm.com; arc=none smtp.client-ip=217.140.110.172
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=arm.com
+Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
+	by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id D385B1FB;
+	Sun,  4 Feb 2024 02:11:48 -0800 (PST)
+Received: from e110479.fosdem.net (unknown [172.31.20.19])
+	by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 7A8C63F762;
+	Sun,  4 Feb 2024 02:11:04 -0800 (PST)
+From: Andre Przywara <andre.przywara@arm.com>
+To: Jernej Skrabec <jernej.skrabec@gmail.com>,
+	Chen-Yu Tsai <wens@csie.org>,
+	Samuel Holland <samuel@sholland.org>,
+	Rob Herring <robh+dt@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>
+Cc: linux-sunxi@lists.linux.dev,
+	devicetree@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	Icenowy Zheng <uwu@icenowy.me>
+Subject: [PATCH v2 0/2] arm64: dts: allwinner: Add BananaPi M4 Berry
+Date: Sun,  4 Feb 2024 11:10:52 +0100
+Message-Id: <20240204101054.152012-1-andre.przywara@arm.com>
+X-Mailer: git-send-email 2.25.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [net-next PATCH v2 2/3] net: mdio: ipq4019: add support for
- clock-frequency property
-Content-Language: en-US
-To: Christian Marangi <ansuelsmth@gmail.com>, Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio
-	<konrad.dybcio@linaro.org>,
-        "David S. Miller" <davem@davemloft.net>,
-        Eric
- Dumazet <edumazet@google.com>, Jakub Kicinski <kuba@kernel.org>,
-        Paolo Abeni
-	<pabeni@redhat.com>, Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski
-	<krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>, Andrew Lunn <andrew@lunn.ch>,
-        Heiner Kallweit <hkallweit1@gmail.com>,
-        Russell
- King <linux@armlinux.org.uk>,
-        Robert Marko <robert.marko@sartura.hr>,
-        <linux-arm-msm@vger.kernel.org>, <netdev@vger.kernel.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>
-References: <20240130003546.1546-1-ansuelsmth@gmail.com>
- <20240130003546.1546-3-ansuelsmth@gmail.com>
-From: Jie Luo <quic_luoj@quicinc.com>
-In-Reply-To: <20240130003546.1546-3-ansuelsmth@gmail.com>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
- nalasex01c.na.qualcomm.com (10.47.97.35)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-ORIG-GUID: RA8x5ZYS1QVVacm8q5u3nrlWgkvWcodj
-X-Proofpoint-GUID: RA8x5ZYS1QVVacm8q5u3nrlWgkvWcodj
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.272,Aquarius:18.0.1011,Hydra:6.0.619,FMLib:17.11.176.26
- definitions=2024-02-04_08,2024-01-31_01,2023-05-22_02
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 malwarescore=0 bulkscore=0
- phishscore=0 lowpriorityscore=0 spamscore=0 adultscore=0
- priorityscore=1501 impostorscore=0 suspectscore=0 mlxlogscore=999
- clxscore=1015 mlxscore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.19.0-2401310000 definitions=main-2402040076
+Content-Transfer-Encoding: 8bit
 
+Minor update of the series, addressing the comments from Jernej and
+Krzysztof (thanks for the review!), for a changelog see below.
+==============================================
 
+The BananaPi M4 Berry is a development board with the Allwinner H618
+SoC. It comes with 2GB DRAM and 8GB eMMC flash, with the usual suspects
+like HDMI, SD card, GPIO headers. There are four USB ports connected
+via an on-board hub chip, and a Gigabit Ethernet socket. Also there is
+a USB WiFi chip soldered on the board.
+More details: https://linux-sunxi.org/Sinovoip_Banana_Pi_M4_Berry
 
-On 1/30/2024 8:35 AM, Christian Marangi wrote:
-> +
-> +	/* If div is /256 assume nobody have set this value and
-> +	 * try to find one MDC rate that is close the 802.3 spec of
-> +	 * 2.5MHz
-> +	 */
-> +	for (div = 256; div >= 8; div /= 2) {
-> +		/* Stop as soon as we found a divider that
-> +		 * reached the closest value to 2.5MHz
-> +		 */
-> +		if (DIV_ROUND_UP(ahb_rate, div) > 2500000)
-> +			break;
+I don't have this board, so this is a "call for testing".
+One thing to consider:
+- The USB WiFi chip has a CHIP_EN pin, which can turn the chip off.
+  It is pulled up by a resistor, so works out of the box, but is also
+  connected to a GPIO (PC2), so the chip can be disabled or reset via
+  this pin. Since this is a USB device, we don't have a DT node to
+  announce this pin. Any ideas how this should be handled? At the moment
+  I ignore it, but it could also be modelled as a USB VBUS regulator for
+  USB port 1, to which it is connected.
 
-Hi Christian,
-Sorry for the delayed review.
+When testing this, please have a look at:
+- Does the eMMC work in HS200 mode? The vendor DT described that as a
+  3.3V controlled eMMC only, but clearly the schematic uses 1.8V, which
+  allows faster transfer modes. "hdparm -t" should suffice for a quick
+  test.
+- Do USB full-speed (aka USB v1.1) peripherals like keyboard or mouse
+  work on the USB ports? I disabled the OHCI node, since the hub should
+  not need this, but it would be good to double check.
+- Similarly the USB WiFi chip probably doesn't need USB 1.1 modes, so
+  please check this still works.
 
-The MDIO hardware block supports higher frequency 6.25M and 12.5M,
-Would you remove this 2.5MHZ limitation? On the IPQ platform, we
-normally use 6.25MHZ.
-> +
-> +		priv->mdc_rate = DIV_ROUND_UP(ahb_rate, div);
-> +	}
->   }
+Apart from the missing audio and video support (which are due to missing
+bindings for the H616/H618 SoC), most of the peripherals are supported.
+
+Patch 1/2 adds the board compatible string to the bindings, patch 2/2
+adds the actual .dts file.
+
+Please have a look!
+
+Changelog v1 .. v2:
+- rename 5V regulator node
+- rename switch node
+- remove unused USB2 port
+- Add ACK on patch 1
+
+Andre Przywara (2):
+  dt-bindings: arm: sunxi: document BananaPi M4 Berry board name
+  arm64: dts: allwinner: h618: add BananaPi M4 Berry board
+
+ .../devicetree/bindings/arm/sunxi.yaml        |   5 +
+ arch/arm64/boot/dts/allwinner/Makefile        |   1 +
+ .../sun50i-h618-bananapi-m4-berry.dts         | 223 ++++++++++++++++++
+ 3 files changed, 229 insertions(+)
+ create mode 100644 arch/arm64/boot/dts/allwinner/sun50i-h618-bananapi-m4-berry.dts
+
+-- 
+2.25.1
+
 
