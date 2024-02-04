@@ -1,115 +1,115 @@
-Return-Path: <devicetree+bounces-38435-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-38436-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1AFE0849123
-	for <lists+devicetree@lfdr.de>; Sun,  4 Feb 2024 23:50:33 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id A99E884917B
+	for <lists+devicetree@lfdr.de>; Mon,  5 Feb 2024 00:16:55 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 4D9F91C20DC3
-	for <lists+devicetree@lfdr.de>; Sun,  4 Feb 2024 22:50:32 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 344081F21D05
+	for <lists+devicetree@lfdr.de>; Sun,  4 Feb 2024 23:16:55 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8A05279D8;
-	Sun,  4 Feb 2024 22:50:28 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D6FF7BA50;
+	Sun,  4 Feb 2024 23:16:48 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="URzBlsfz"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="beGsTce/"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-oo1-f53.google.com (mail-oo1-f53.google.com [209.85.161.53])
+Received: from mail-lj1-f180.google.com (mail-lj1-f180.google.com [209.85.208.180])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D256AB674
-	for <devicetree@vger.kernel.org>; Sun,  4 Feb 2024 22:50:26 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.161.53
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 22CD679D8;
+	Sun,  4 Feb 2024 23:16:46 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.180
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1707087028; cv=none; b=Y7SQD7xd6uwQTC5xFaJYtx1iGkkn0zKzscK9gZ0HNOpgO5EbAyX7QKrJnvJk3XYqexLXpQSd6+ejQSSe1bXCk5/ju71Ospy7qNEFUF92GTOLw+5BmfibJy1DrPV6wsRST64FCY8OJWpOGECOrLyMJHCNcxVU5ceEnns/dkyHwaE=
+	t=1707088608; cv=none; b=gS/vStz3u9F8NClnaynFVdeSon1008L4IntG5hezjNQzNPP2vRHcs+wvdV5ehiFBhstygJXLB1Ha4NNkbq358vuMhh3qUbnaC8Q3z0uYzqhxD+BNhxwcvoz7qJe5DdLGxN6uNjajYUBY3tULgELhUrLYnk4CEzc9wFh9M9dr7pI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1707087028; c=relaxed/simple;
-	bh=LJGslSdmd1vgdLi8XbXgKYfizKVevhSbT6nn84foCCY=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=m/K+T/DwG7p1sjSy8bpZ0ODBw8bkz/PwSYInu7YSBsElT426y5mAY+hXqexenJGu6Mb01OZFsW8D87/HUbQKuEyhqTV/JReFQeAG2Sr1n+e1TcbVpV4XfWUJ3j3JMV9pDTx/claFBsiGx6KnxqqJ2SEOhqh5YtLRQsy6kEEl6tc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=URzBlsfz; arc=none smtp.client-ip=209.85.161.53
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-oo1-f53.google.com with SMTP id 006d021491bc7-59a8ecbadf7so1696471eaf.0
-        for <devicetree@vger.kernel.org>; Sun, 04 Feb 2024 14:50:26 -0800 (PST)
+	s=arc-20240116; t=1707088608; c=relaxed/simple;
+	bh=C9z1oCM0aoZrRkDJxd7jDlrFsjg7dFGVjJSKnwS/2Uw=;
+	h=Message-ID:Date:MIME-Version:From:Subject:To:Cc:Content-Type; b=KwnJrfDxd9JxYNaKomA/Y8aH2rJ9J8LIUSHQE03yG5B2LjcCYQS7Eu49SeDW/+Vu0PEhYfopjNnmRQ+kFqEQk9FvGstjQXcDofWO/W32i7k7wL/H16cf5O5iJQwpIdmS7Bg4BmozlQkFruRwqqxZBN1hBviiLP0p1uhVJE0bikk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=beGsTce/; arc=none smtp.client-ip=209.85.208.180
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-lj1-f180.google.com with SMTP id 38308e7fff4ca-2d09bdddfc9so13957761fa.2;
+        Sun, 04 Feb 2024 15:16:46 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1707087026; x=1707691826; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
+        d=gmail.com; s=20230601; t=1707088605; x=1707693405; darn=vger.kernel.org;
+        h=content-transfer-encoding:content-language:cc:to:subject:from
+         :user-agent:mime-version:date:message-id:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=ND/xQNEJtsaXAuXL9B27wA9Puu1cUx+17iEo4moNYwM=;
-        b=URzBlsfzLH1mxdhlr3/fR+IqcsEm4bDn0Q6G57lrsdeKxO/LiSTrijmNl6MdhdLgw3
-         AH3zBo9cQdoAJM1aqMQSUl6cvw40JHL7CbO0kgdHHPQcNfgAGMJlrvoYgntzyAdYeF9V
-         AHsnGqQnaNXDjArXCyF9CvCkN7dAjnD4aRtm4BsUjT5VHGgXNiISbkE2gCw6Un4MZQHr
-         kusQmdwvNOY9gt5AEr2zkwyc8OPvBdhOTEAgh8O0MoRqhDgfT18qlQ/cFDh9ZMoQrskU
-         8O4m01JocdKXwoVT1IUubdv4OxK8z8v9vk2l0OXVFIQVX5WK+o9glot0rz5W1FeAG4Fe
-         LMWA==
+        bh=Y5VGuwU7sRb6X3OaRcDA234b6ozpGj7s2IWLXVXNdas=;
+        b=beGsTce/qlJnfFzNAt4j/VwFqIwKn1pGe//e3OpWzY9uNmYkUzWH940T4O/C6K5fE2
+         TUL0udvDcb2w93NTuB6ofsiw1mj8y4w9M1KzjeXpoaUvb1pKYmYGM6Nm9eKcGz5xmqEq
+         dDqyWAlkyyGct8rnE0rCafe3c3uBMod2CvfeC4dgDIGjI7q1w2cjmngedzmxTAPuRf17
+         oANk64Mj4Ig0hfIfGOi977d5DYgmGnBNZZLGfyNiku1u+6g3c4ehy+yERV0d0v7uCowe
+         jKNsmAvq1gELOH64XV/erQvdnTdbiv+o9eCTTyHRKcSU7u7ORqs37vXpp+/eDLTQq2D8
+         EVdg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1707087026; x=1707691826;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=ND/xQNEJtsaXAuXL9B27wA9Puu1cUx+17iEo4moNYwM=;
-        b=QrVJ5dzum6aPednp5Yz3q6AWhFE2d5dMZvP038A5cALc/Sse1HROST2z+LfXvCvfoH
-         S6ffiGPxEE9a/HYYA2xaO+A57O8nK9Wh6KV/UKhYyRXZba01fB4y1kkiinIP1+dymlNH
-         g8TQCbpOsmcOVcv6Ig6nE6jwkTAcXBPeG9MOK4eBCykGs4CvqKUq/od5Q7UeExYegWZ/
-         ZKC0e26wRVnCVAB/XXI+YNRx26pWlJSnfnl5WZEyqsYo2bDgnN9fF1+XVQZLbaht8A1C
-         luREV6a3MENdORb7TCl/+RU0AICLvWFxn75J91Q2HeY0tIDIv+ehu72q4ndon/dMnj3W
-         YI3w==
-X-Gm-Message-State: AOJu0YxzYFfXGvIhA3IxbMbS2k83VClu2HhFSi+dQH8cICG1nUxCJ62e
-	jnGP9lCpcVyRv+A5WCFasF+z7rIdPom+UGXBsrHvwAoKaPZ+l1qjo04+NgTwteBDUmmN68KCoKE
-	RP8gR9vk1BGquNVv+q5IfBvcSYwgZnXY7qvnJNg==
-X-Google-Smtp-Source: AGHT+IHzIaj7GCH/uxo3t/1i9DwbTH8xWDIC0mPBG2Zfzu0hBnmg6qiP53I/nXOtUScVQmuBFPUMoezjef9rHhKj+do=
-X-Received: by 2002:a05:6358:b017:b0:176:a0ad:131b with SMTP id
- l23-20020a056358b01700b00176a0ad131bmr17245569rwn.16.1707087025901; Sun, 04
- Feb 2024 14:50:25 -0800 (PST)
+        d=1e100.net; s=20230601; t=1707088605; x=1707693405;
+        h=content-transfer-encoding:content-language:cc:to:subject:from
+         :user-agent:mime-version:date:message-id:x-gm-message-state:from:to
+         :cc:subject:date:message-id:reply-to;
+        bh=Y5VGuwU7sRb6X3OaRcDA234b6ozpGj7s2IWLXVXNdas=;
+        b=LMsGt68Ceygt44euu5/QByTVu14kDl7xlWABlHa0g+GmUBSkqOKURjYFNziAp6GXj4
+         easO0SHbclWR3kIX5kJFsaV11EccUELcgBscIJ14sGoIun8Ab7q5jiv46J6bq8jcVVjR
+         Q+QfqL0SntxedtMXCFhYTWFKHsEFYkcRote0Ht/PZgnNlPbfOT6I7RsE05qYZDFXYrnF
+         AmyS1x7zkRzMxGYrBTaOkeGsIRBdWPaswKW0Q9EjuGAc99upAUsGUY4FYRilhEkm1CIn
+         cLkgHYXZH0TVCMblXVoRie2WjVJZxI05+lSxMb9Pioe1STVZ3atDywjjxZMnbF47nFdA
+         GUnw==
+X-Gm-Message-State: AOJu0Yz65Ny0glNcKdqSdAdDx/46DKCjHWCd4sc1URqfdsZrTn7q9Mx6
+	DSiacaNNqVbNgR6Bu+kCwdrl8Ay/WPfbs6yhkG8J429CXdhS2LCafF4jZ/Xd
+X-Google-Smtp-Source: AGHT+IGuXT9bYE9gMIH7LN//FJs3Z0wankWaxPRTI9OA2HPcm1HgjgSW6SbdfyCYKAsb0V5zFMcl9Q==
+X-Received: by 2002:a05:6512:481e:b0:511:495b:f83d with SMTP id eo30-20020a056512481e00b00511495bf83dmr2311389lfb.38.1707088604840;
+        Sun, 04 Feb 2024 15:16:44 -0800 (PST)
+X-Forwarded-Encrypted: i=0; AJvYcCWy4xJNlOKG8NbSFb7Ic0yPYvabi8Skm5y+9UnF0KSKE0YUXDNHcSkgSNIx5u5LMJlr8MiocdZ095wRYCBsd8p7C2nG6iK+wQUrsM+dtWU/UkP/szJN0P7UF7ICBJ36ZTa8e24kY5EpnXoW5OiU1A2jhBVms1wj0I2nLmXt2nH85BX58zvAZIzrwWt/k1OTpVBIWwOMxgxDjoxvP3DUBV4Q2kHEB4wt/Ei1rmEP4MZVvgGBNaiWzcH/H4zvBLa1//oFx6DvTrgiOVYx+dge69iHpHUE7xjP8e0fMY+wWpSDneaI83HJWGbDZj0=
+Received: from [192.168.2.1] (81-204-249-205.fixed.kpn.net. [81.204.249.205])
+        by smtp.gmail.com with ESMTPSA id vb9-20020a170907d04900b00a36814670cbsm3624216ejc.62.2024.02.04.15.16.43
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Sun, 04 Feb 2024 15:16:44 -0800 (PST)
+Message-ID: <5551846d-62cd-4b72-94f4-07541e726c37@gmail.com>
+Date: Mon, 5 Feb 2024 00:16:43 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20240204220851.4783-1-wahrenst@gmx.net> <20240204220851.4783-3-wahrenst@gmx.net>
-In-Reply-To: <20240204220851.4783-3-wahrenst@gmx.net>
-From: Linus Walleij <linus.walleij@linaro.org>
-Date: Sun, 4 Feb 2024 23:50:15 +0100
-Message-ID: <CACRpkda7w2eQrttvP2EfFeu62ZDnEAMCjN58At+v9Z-3_WtL3Q@mail.gmail.com>
-Subject: Re: [PATCH V4 2/2] pwm: Add GPIO PWM driver
-To: Stefan Wahren <wahrenst@gmx.net>
-Cc: =?UTF-8?Q?Uwe_Kleine=2DK=C3=B6nig?= <u.kleine-koenig@pengutronix.de>, 
-	Rob Herring <robh+dt@kernel.org>, 
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, 
-	andy.shevchenko@gmail.com, Angelo Compagnucci <angelo.compagnucci@gmail.com>, 
-	Philip Howard <phil@gadgetoid.com>, Sean Young <sean@mess.org>, linux-pwm@vger.kernel.org, 
-	devicetree@vger.kernel.org, linux-gpio@vger.kernel.org, 
-	Vincent Whitchurch <vincent.whitchurch@axis.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+User-Agent: Mozilla Thunderbird
+From: Johan Jonker <jbx6244@gmail.com>
+Subject: [PATCH v1] arm64: dts: rockchip: rk3328: Drop interrupts property
+ from pwm-rockchip nodes
+To: heiko@sntech.de
+Cc: robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
+ conor+dt@kernel.org, devicetree@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, linux-rockchip@lists.infradead.org,
+ linux-kernel@vger.kernel.org
+Content-Language: en-US
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
-On Sun, Feb 4, 2024 at 11:09=E2=80=AFPM Stefan Wahren <wahrenst@gmx.net> wr=
-ote:
+The binding doesn't define interrupts and adding such a definition was
+refused because it's unclear how they should ever be used and the
+relevant registers are outside the PWM range. So drop them fixing
+several dtbs_check warnings.
 
-> From: Vincent Whitchurch <vincent.whitchurch@axis.com>
->
-> Add a software PWM which toggles a GPIO from a high-resolution timer.
->
-> This will naturally not be as accurate or as efficient as a hardware
-> PWM, but it is useful in some cases.  I have for example used it for
-> evaluating LED brightness handling (via leds-pwm) on a board where the
-> LED was just hooked up to a GPIO, and for a simple verification of the
-> timer frequency on another platform.
->
-> Since high-resolution timers are used, sleeping gpio chips are not
-> supported and are rejected in the probe function.
->
-> Signed-off-by: Vincent Whitchurch <vincent.whitchurch@axis.com>
-> Co-developed-by: Stefan Wahren <wahrenst@gmx.net>
-> Signed-off-by: Stefan Wahren <wahrenst@gmx.net>
+Signed-off-by: Johan Jonker <jbx6244@gmail.com>
+---
+ arch/arm64/boot/dts/rockchip/rk3328.dtsi | 1 -
+ 1 file changed, 1 deletion(-)
 
-This sure looks good to me!
-Reviewed-by: Linus Walleij <linus.walleij@linaro.org>
+diff --git a/arch/arm64/boot/dts/rockchip/rk3328.dtsi b/arch/arm64/boot/dts/rockchip/rk3328.dtsi
+index a73234b11ff1..b6f045069ee2 100644
+--- a/arch/arm64/boot/dts/rockchip/rk3328.dtsi
++++ b/arch/arm64/boot/dts/rockchip/rk3328.dtsi
+@@ -488,7 +488,6 @@ pwm2: pwm@ff1b0020 {
+ 	pwm3: pwm@ff1b0030 {
+ 		compatible = "rockchip,rk3328-pwm";
+ 		reg = <0x0 0xff1b0030 0x0 0x10>;
+-		interrupts = <GIC_SPI 50 IRQ_TYPE_LEVEL_HIGH>;
+ 		clocks = <&cru SCLK_PWM>, <&cru PCLK_PWM>;
+ 		clock-names = "pwm", "pclk";
+ 		pinctrl-names = "default";
+--
+2.39.2
 
-Yours,
-Linus Walleij
 
