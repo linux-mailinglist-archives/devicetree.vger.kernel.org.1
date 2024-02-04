@@ -1,135 +1,109 @@
-Return-Path: <devicetree+bounces-38410-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-38411-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 85184848EB7
-	for <lists+devicetree@lfdr.de>; Sun,  4 Feb 2024 15:54:34 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 05BCF848EBA
+	for <lists+devicetree@lfdr.de>; Sun,  4 Feb 2024 15:55:35 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 248041F228BC
-	for <lists+devicetree@lfdr.de>; Sun,  4 Feb 2024 14:54:34 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 97E751F21B2C
+	for <lists+devicetree@lfdr.de>; Sun,  4 Feb 2024 14:55:34 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8F9931DDD7;
-	Sun,  4 Feb 2024 14:54:27 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4A45D1EA8F;
+	Sun,  4 Feb 2024 14:55:30 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="cJOVU5Em"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="ewvmkLrE"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pf1-f169.google.com (mail-pf1-f169.google.com [209.85.210.169])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 116502261D;
-	Sun,  4 Feb 2024 14:54:25 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.169
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 20FE8224E3;
+	Sun,  4 Feb 2024 14:55:29 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1707058467; cv=none; b=kJUZ57qpr1p8UOyn3tp7hrhX+zmDkDFeHDmuGi1BJVF7QcxjcuTQUdReMiOYaa0MBpSuyy1sYzTPd1Z4kmJdSPA7j2f4nrZMICRVO28YO9ooL6fLrRvuGNerJFiHz39VkQU3yUan3eQPcKjv76FJ+BkFtch2axctUsvfEfazm4w=
+	t=1707058530; cv=none; b=ikHLPfuHLcZlOQ8pCXAf9+6Q7EXMk7epkZXSL1mFSSHTSu8YDAKoYNcCJpHyk7v26v0Juwm25ez2p2NNM/EICNvZ8qYuxhPE99YnjfbM4W5u1Hhg2ms5hKK2W+jkGB3HlyBv+tSnCD11cZDl9QViGbpuCcqsRyMeo4C6J+OKcxk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1707058467; c=relaxed/simple;
-	bh=19VaFyH1wAwIJFBUEbUWhHCYP3fU7IyWnh+H1mYPIWs=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=nnGWqrGKwImPzvBMNftUq9DS2wZu1CqCnY/Dv7D2C8xi+1TEk4iXE+YZLGW1Wh0/1pa0JIMMp7Yx3jtEMpqc5dpxPBweS6Q9OmF60LE5Bvlj4aIqBnuh9CfAsxY1BDzKoUoteQLEc0dHqzvKOWXBL/0Zx0oHi9WLmXpX9lk0p8E=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=cJOVU5Em; arc=none smtp.client-ip=209.85.210.169
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-pf1-f169.google.com with SMTP id d2e1a72fcca58-6da6b0eb2d4so2311267b3a.1;
-        Sun, 04 Feb 2024 06:54:25 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1707058465; x=1707663265; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=pgWoWhZI6Jt4ifeI2jAQa8yY6PW0nUJE61HeVZboEZ8=;
-        b=cJOVU5Em0HNZchKkKYtWSNYca01+4q41IqyEdjZ12wYc8rXDW08VKqv8g/yiwqYj22
-         P1n5Vmg4Url7EZQr5Quyx+WcJTpjVbIk07l1Q/9ISAWglivlUqK2CD9Ias5j/enEOw7c
-         LKo9nKCvwY8VO91pMGPH3eK+r3oFOzLXDBWziCOrpH/L2iTq8hsoKKtSgb/Khpu4orpo
-         UE+eINHSEII4eJdsOiMft3Us55HOj4uAUyl5IueIAyJ6m7U8oBNVvHZIYgn8hqO0Mr9b
-         HHvtzOCpHKDHnz3UX+J+LjJTzUhQGFE5oxI2aAHuOYpqVaRw9GsUwZosvyrYs9KedZe8
-         k4WQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1707058465; x=1707663265;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=pgWoWhZI6Jt4ifeI2jAQa8yY6PW0nUJE61HeVZboEZ8=;
-        b=ZasI8PNVJwkjkTNI2NN11JFVz6Oh70yLImwjN/3RAJ5zCTOmS1iTlDJ1PWtOwXfBOb
-         RtvZ3JGaPX3lvUSuDK/kVnLyYXo28R4YbTvykeNeyjZM0eukjexX8RmuCNq5OaoSoDMF
-         Tbqab/48Xv8/CZcmQClHW/DEiezgH6X/DUWK0EfX+84onen/shOpUalr2U5/FNKhupPu
-         fPJWjCwoqAelRIq2D4u3iNGgKNKTViF+Qn6BfWthrvRuPHl2maCvybXJgPUjJa9Nnyyq
-         WINghI9I1WfP6gnluIaQJTmkoKoaXeg+hFN0/BQMd1lKEl6QHSOA9apNdZGKfE7nJlmO
-         /wpw==
-X-Gm-Message-State: AOJu0YyNOUaORfnUp3ovqnDByCdOVsqqEleenvS2TL5jyRgYTCWm9xZd
-	yioY3JmXMAxdDabPX3S5gdH3vO/Ve+roMU0ehM53RpKDKZSDRrTyMOdvVHiN0EYbmAgvJxoDkVI
-	dTnh9yuNMiVzSR6kVkvxOOszvSDg=
-X-Google-Smtp-Source: AGHT+IGSX8kX5MA8ZbTQDoQMsW8S27tIoZz4dXskIGi/iCXvA3jGKdesaVZqnt2TBMScGsd6VoU8nD7JHy3LffXnc2s=
-X-Received: by 2002:a62:ce86:0:b0:6e0:3769:eb92 with SMTP id
- y128-20020a62ce86000000b006e03769eb92mr1260042pfg.25.1707058465268; Sun, 04
- Feb 2024 06:54:25 -0800 (PST)
+	s=arc-20240116; t=1707058530; c=relaxed/simple;
+	bh=OyV94v0393IG0/OU7LwhjrP51QUNc86Jl0gaqeKPyok=;
+	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=iCwfM6m5LMHEOEZDs3JDKyWDB86t63k+Do+wfUiSn1ZzXgbxCd4LsyeGGpHUvgVqZhhgFPI0SnEsLZJ7b132IcXd4t5iiyhjHQufcMgVfbFf7boreDK1tFK/Glcqd63J1+U6JdeZ4vAi1K8rtoTWTa6opbAc1qZeaI7zxVCMdzE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=ewvmkLrE; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 2446BC433F1;
+	Sun,  4 Feb 2024 14:55:26 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1707058529;
+	bh=OyV94v0393IG0/OU7LwhjrP51QUNc86Jl0gaqeKPyok=;
+	h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
+	b=ewvmkLrEhw+YaT8n8F4wJbFy2pb3aPK69y+xHG1s32ySXdCGNg/Lu6WohM3IeOoWv
+	 NAY63hcRApyVLw8gc6LEQQVONXNPyRL22hw5ttS3bs0lt6IJAO7Wf5jXMhG+wYlUFD
+	 VlFuGivHTKcj4v3J51gyuu0naMdNYlDpj48/VY4fjtFLrB9YSYdz6LcaMZPI66kRhM
+	 rRmQGRtnqGYxkMEIdNN1rXZ7OSsD2gu5Sqerz+E9oISv5F7hCX4f2AFCg9UFpR9nd/
+	 /jsGOZYqoIig0E48z1u8CfZurZ+IsCGUqa8Yu6v8kYgf6Y3D1rbCposH+Vp1ebXgdG
+	 40MulsEJ7FXjw==
+Date: Sun, 4 Feb 2024 14:55:17 +0000
+From: Jonathan Cameron <jic23@kernel.org>
+To: Nuno Sa via B4 Relay <devnull+nuno.sa.analog.com@kernel.org>
+Cc: <nuno.sa@analog.com>, linux-iio@vger.kernel.org,
+ devicetree@vger.kernel.org, Lars-Peter Clausen <lars@metafoo.de>, Michael
+ Hennerich <Michael.Hennerich@analog.com>, Rob Herring <robh+dt@kernel.org>,
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley
+ <conor+dt@kernel.org>, Frank Rowand <frowand.list@gmail.com>, Olivier
+ Moysan <olivier.moysan@foss.st.com>, Rob Herring <robh@kernel.org>
+Subject: Re: [PATCH v8 3/7] of: property: add device link support for
+ io-backends
+Message-ID: <20240204145517.325eba4b@jic23-huawei>
+In-Reply-To: <20240202-iio-backend-v8-3-f65ee8c8203d@analog.com>
+References: <20240202-iio-backend-v8-0-f65ee8c8203d@analog.com>
+	<20240202-iio-backend-v8-3-f65ee8c8203d@analog.com>
+X-Mailer: Claws Mail 4.2.0 (GTK 3.24.41; x86_64-pc-linux-gnu)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20240203165307.7806-1-aford173@gmail.com> <20240203165307.7806-7-aford173@gmail.com>
- <20240204120033.GA4656@francesco-nb>
-In-Reply-To: <20240204120033.GA4656@francesco-nb>
-From: Adam Ford <aford173@gmail.com>
-Date: Sun, 4 Feb 2024 08:54:13 -0600
-Message-ID: <CAHCN7xKGMNpiTxy_7vMKd+rSsS6aya7N+duVVwFNKnpG0M0gBQ@mail.gmail.com>
-Subject: Re: [PATCH V8 06/12] arm64: dts: imx8mp: add HDMI irqsteer
-To: Francesco Dolcini <francesco@dolcini.it>
-Cc: linux-arm-kernel@lists.infradead.org, marex@denx.de, 
-	alexander.stein@ew.tq-group.com, frieder.schrempf@kontron.de, 
-	Lucas Stach <l.stach@pengutronix.de>, Andrzej Hajda <andrzej.hajda@intel.com>, 
-	Neil Armstrong <neil.armstrong@linaro.org>, Robert Foss <rfoss@kernel.org>, 
-	Laurent Pinchart <Laurent.pinchart@ideasonboard.com>, Jonas Karlman <jonas@kwiboo.se>, 
-	Jernej Skrabec <jernej.skrabec@gmail.com>, 
-	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, Maxime Ripard <mripard@kernel.org>, 
-	Thomas Zimmermann <tzimmermann@suse.de>, David Airlie <airlied@gmail.com>, Daniel Vetter <daniel@ffwll.ch>, 
-	Rob Herring <robh+dt@kernel.org>, 
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Shawn Guo <shawnguo@kernel.org>, Sascha Hauer <s.hauer@pengutronix.de>, 
-	Pengutronix Kernel Team <kernel@pengutronix.de>, Fabio Estevam <festevam@gmail.com>, 
-	NXP Linux Team <linux-imx@nxp.com>, Philipp Zabel <p.zabel@pengutronix.de>, 
-	Vinod Koul <vkoul@kernel.org>, Kishon Vijay Abraham I <kishon@kernel.org>, 
-	Catalin Marinas <catalin.marinas@arm.com>, Will Deacon <will@kernel.org>, Liu Ying <victor.liu@nxp.com>, 
-	Ulf Hansson <ulf.hansson@linaro.org>, dri-devel@lists.freedesktop.org, 
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
-	linux-phy@lists.infradead.org, linux-pm@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=US-ASCII
+Content-Transfer-Encoding: 7bit
 
-On Sun, Feb 4, 2024 at 6:00=E2=80=AFAM Francesco Dolcini <francesco@dolcini=
-.it> wrote:
->
-> On Sat, Feb 03, 2024 at 10:52:46AM -0600, Adam Ford wrote:
-> > From: Lucas Stach <l.stach@pengutronix.de>
-> >
-> > The HDMI irqsteer is a secondary interrupt controller within the HDMI
-> > subsystem that maps all HDMI peripheral IRQs into a single upstream
-> > IRQ line.
-> >
-> > Signed-off-by: Lucas Stach <l.stach@pengutronix.de>
->
-> This is missing your signed-off-by, and in other patches of this series
+On Fri, 02 Feb 2024 16:08:34 +0100
+Nuno Sa via B4 Relay <devnull+nuno.sa.analog.com@kernel.org> wrote:
 
-Opps.  I thought I caught all those.
+> From: Olivier Moysan <olivier.moysan@foss.st.com>
+> 
+> Add support for creating device links out of more DT properties.
+> 
+> Signed-off-by: Olivier Moysan <olivier.moysan@foss.st.com>
+> Acked-by: Rob Herring <robh@kernel.org>
+> Signed-off-by: Nuno Sa <nuno.sa@analog.com>
+Given the fix is working it's way through a different tree, this
+may get a little messy in the short term.  I've manually applied
+it to my tree for now.
 
-> your signed-off-by is not the last, as it should be.
->
-> Please have a look and fix this and the other instances.
->
+> ---
+>  drivers/of/property.c | 2 ++
+>  1 file changed, 2 insertions(+)
+> 
+> diff --git a/drivers/of/property.c b/drivers/of/property.c
+> index caa3e54aae13..0e91a5f4d0cb 100644
+> --- a/drivers/of/property.c
+> +++ b/drivers/of/property.c
+> @@ -1245,6 +1245,7 @@ DEFINE_SIMPLE_PROP(interconnects, "interconnects", "#interconnect-cells")
+>  DEFINE_SIMPLE_PROP(iommus, "iommus", "#iommu-cells")
+>  DEFINE_SIMPLE_PROP(mboxes, "mboxes", "#mbox-cells")
+>  DEFINE_SIMPLE_PROP(io_channels, "io-channels", "#io-channel-cells")
+> +DEFINE_SIMPLE_PROP(io_backends, "io-backends", "#io-backend-cells")
+>  DEFINE_SIMPLE_PROP(interrupt_parent, "interrupt-parent", NULL)
+>  DEFINE_SIMPLE_PROP(dmas, "dmas", "#dma-cells")
+>  DEFINE_SIMPLE_PROP(power_domains, "power-domains", "#power-domain-cells")
+> @@ -1335,6 +1336,7 @@ static const struct supplier_bindings of_supplier_bindings[] = {
+>  	{ .parse_prop = parse_iommu_maps, .optional = true, },
+>  	{ .parse_prop = parse_mboxes, },
+>  	{ .parse_prop = parse_io_channels, },
+> +	{ .parse_prop = parse_io_backends, },
+>  	{ .parse_prop = parse_interrupt_parent, },
+>  	{ .parse_prop = parse_dmas, .optional = true, },
+>  	{ .parse_prop = parse_power_domains, },
+> 
 
-OK.  I have some work to do on some other portions, so I'll clean up that t=
-oo.
-
-adam
-> Thanks for this work!
-
-Thanks for the feedback.
-
-adam
->
-> Francesco
->
 
