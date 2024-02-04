@@ -1,37 +1,38 @@
-Return-Path: <devicetree+bounces-38376-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-38377-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 19162848C8C
-	for <lists+devicetree@lfdr.de>; Sun,  4 Feb 2024 10:44:22 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5D144848C8D
+	for <lists+devicetree@lfdr.de>; Sun,  4 Feb 2024 10:44:24 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id C0FA21F22291
-	for <lists+devicetree@lfdr.de>; Sun,  4 Feb 2024 09:44:21 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 9056B1C20777
+	for <lists+devicetree@lfdr.de>; Sun,  4 Feb 2024 09:44:23 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 588A518E1D;
-	Sun,  4 Feb 2024 09:44:18 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 072A818E3A;
+	Sun,  4 Feb 2024 09:44:23 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from foss.arm.com (foss.arm.com [217.140.110.172])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6926E18E1F
-	for <devicetree@vger.kernel.org>; Sun,  4 Feb 2024 09:44:15 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 07AE018E2E
+	for <devicetree@vger.kernel.org>; Sun,  4 Feb 2024 09:44:19 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.140.110.172
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1707039858; cv=none; b=SVS91MWD13DxjCN+d2eSpT3Q3SbhYroQ9e74EEm4cVDE+KaLF+/oJtYXHlMTDJD9oDXmxwkiYYmRyZNkiXRE2HaMncA3xhQG4Ooj5fLmbS1MCsqlQzuf6M9wPafqHuLSWWuvgeTCdm1X2j4cEtLVzFSTQ0gtBJLaDQ0xvarRFoM=
+	t=1707039862; cv=none; b=BH1NP7WCiDHBHvC4XZW7xprEpkxps2uYaW8B/TcNzQfAAu0T6ULE7QW2nPahC81j7OcRZwbEJ41i5AQ0hZMKMAY14nsWgV9/lAZV2rMvRxIqei1Jf7QN5yOwntbwglIXZOC8ZDs+d+VqXvP6SREPVo1dEJu+kT9jUDzrpb59ddg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1707039858; c=relaxed/simple;
-	bh=L4cRRzejhErml6uEQ4WXYU66jFIs7k47XTvxMEaIuTo=;
-	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version; b=jD08KqQcSkn/ZUqDSGDIxhRvIl0SRIe1/ntinskCozbAi6ksQt4YcZH5i13FX7D1kxSFFASL73XVgZ/uXjyktdLUDWa7OItf3nVrPe9K15P5rAFMfgPCE2vZmGm9HkthzLmwFWA24pyEDEDQ9nwIj/DH2QB61XwIg1SPZPCdYL8=
+	s=arc-20240116; t=1707039862; c=relaxed/simple;
+	bh=SzIk5uOwPqCcEa3otgEgu+zY4KWuvVCHpUZUkQTHmUI=;
+	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
+	 MIME-Version; b=qNY4rF4TvkzDOyzVa3f1boOR42w2KD1Vnvc8ExVzQcHpsmmhNmtKVCOkvuPOlpsLJIV+Bc2C80etizWhG0EiB9jqHnrSaf/h5CKLD0p1QbaxzBZvvdkcTKPtucEFLYoG5Ks+rA60HYWS+V6HYHttOt9XDUDEdLcUDzG0ZOQ7S74=
 ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com; spf=pass smtp.mailfrom=arm.com; arc=none smtp.client-ip=217.140.110.172
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=arm.com
 Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
-	by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id D78511FB;
-	Sun,  4 Feb 2024 01:44:56 -0800 (PST)
+	by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 75253113E;
+	Sun,  4 Feb 2024 01:45:01 -0800 (PST)
 Received: from e110479.fosdem.net (unknown [172.31.20.19])
-	by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 2643D3F738;
-	Sun,  4 Feb 2024 01:44:11 -0800 (PST)
+	by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 104553F738;
+	Sun,  4 Feb 2024 01:44:15 -0800 (PST)
 From: Andre Przywara <andre.przywara@arm.com>
 To: Jernej Skrabec <jernej.skrabec@gmail.com>,
 	Chen-Yu Tsai <wens@csie.org>,
@@ -43,10 +44,12 @@ Cc: linux-sunxi@lists.linux.dev,
 	devicetree@vger.kernel.org,
 	linux-arm-kernel@lists.infradead.org,
 	Nick Alilovic <nickalilovic@gmail.com>
-Subject: [PATCH 0/3] arm64: dts: allwinner: Add Remix Mini PC support
-Date: Sun,  4 Feb 2024 10:44:01 +0100
-Message-Id: <20240204094404.149776-1-andre.przywara@arm.com>
+Subject: [PATCH 1/3] dt-bindings: vendor-prefixes: add Jide
+Date: Sun,  4 Feb 2024 10:44:02 +0100
+Message-Id: <20240204094404.149776-2-andre.przywara@arm.com>
 X-Mailer: git-send-email 2.25.1
+In-Reply-To: <20240204094404.149776-1-andre.przywara@arm.com>
+References: <20240204094404.149776-1-andre.przywara@arm.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -55,35 +58,27 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 
-These are the DT support patches for the Jide Remix Mini PC, a now
-somewhat dated Mini-PC, once shipped with some kind of desktop Android OS.
-It sports an Allwinner H64 SoC, which is basically the same as the
-venerable A64.
-To make it stick out of the crowd, the SoC has "secure boot" enabled,
-which just means it needs a different (signed) boot code package, already
-supported by mainline U-Boot. Fortunately there is no public key burned
-into the SoC, so any key can be used: the U-Boot build system will just
-make one up.
-Apart from Ethernet (blocked by the AC200 PHY) everything should work,
-including WiFi and Bluetooth.
+Jide tech once create the Remix OS Android system, and shipped it on
+some custom hardware. Add their name to the bindings.
 
-Please have a look!
+Signed-off-by: Andre Przywara <andre.przywara@arm.com>
+---
+ Documentation/devicetree/bindings/vendor-prefixes.yaml | 2 ++
+ 1 file changed, 2 insertions(+)
 
-Cheers,
-Andre
-
-Andre Przywara (3):
-  dt-bindings: vendor-prefixes: add Jide
-  dt-bindings: arm: sunxi: document Remix Mini PC name
-  arm64: dts: allwinner: Add Jide Remix Mini PC support
-
- .../devicetree/bindings/arm/sunxi.yaml        |   6 +
- .../devicetree/bindings/vendor-prefixes.yaml  |   2 +
- arch/arm64/boot/dts/allwinner/Makefile        |   1 +
- .../allwinner/sun50i-h64-remix-mini-pc.dts    | 357 ++++++++++++++++++
- 4 files changed, 366 insertions(+)
- create mode 100644 arch/arm64/boot/dts/allwinner/sun50i-h64-remix-mini-pc.dts
-
+diff --git a/Documentation/devicetree/bindings/vendor-prefixes.yaml b/Documentation/devicetree/bindings/vendor-prefixes.yaml
+index 1a0dc04f1db4..dfb834a9279f 100644
+--- a/Documentation/devicetree/bindings/vendor-prefixes.yaml
++++ b/Documentation/devicetree/bindings/vendor-prefixes.yaml
+@@ -719,6 +719,8 @@ patternProperties:
+     description: JetHome (IP Sokolov P.A.)
+   "^jianda,.*":
+     description: Jiandangjing Technology Co., Ltd.
++  "^jide,.*":
++    description: Jide Tech
+   "^joz,.*":
+     description: JOZ BV
+   "^kam,.*":
 -- 
 2.25.1
 
