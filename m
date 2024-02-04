@@ -1,38 +1,38 @@
-Return-Path: <devicetree+bounces-38375-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-38374-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 28E4E848C7D
-	for <lists+devicetree@lfdr.de>; Sun,  4 Feb 2024 10:33:22 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 34C38848C7E
+	for <lists+devicetree@lfdr.de>; Sun,  4 Feb 2024 10:33:23 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id D106D2823E5
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id C6E20B21F76
 	for <lists+devicetree@lfdr.de>; Sun,  4 Feb 2024 09:33:20 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E885618C28;
-	Sun,  4 Feb 2024 09:33:16 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D6C5D18AF4;
+	Sun,  4 Feb 2024 09:33:14 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from foss.arm.com (foss.arm.com [217.140.110.172])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 49DB918B02
-	for <devicetree@vger.kernel.org>; Sun,  4 Feb 2024 09:33:15 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0964018E06
+	for <devicetree@vger.kernel.org>; Sun,  4 Feb 2024 09:33:12 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.140.110.172
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1707039196; cv=none; b=AySugxi65O075IOKeEKZnjzD9iTxiGueLYlZ/cmcYDN14MRUzdkyr5p88zxq2h/l7JK+4oPwZUPHQvMBZvz/7h7+0WMl6A4VENtQzSWJdANYHL/nqI8WRHxH4VNC/MoffbyIzoen5pKHqVv5vU40b1fH4ip0jXvhc6J7syCYLuM=
+	t=1707039194; cv=none; b=hgbZMEQ597eTxN17oVfRFRfcYrXbOh3QHBWmy4P/4p14bHb0v32T1bR74WMns3ALwHVP9jkBYMhpSRQYCb6HX87Jj/5m8IAP9hlI03qv9/BeRi8HcRGEekG7C0SD15loSflYwYTFaTgl404DaQk33a2K9E12Hu1uXIFHqBVug6A=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1707039196; c=relaxed/simple;
-	bh=YYVhGRbWCtwXW7nZftJeupAIB/Gnlz1wWaOArvguRhQ=;
+	s=arc-20240116; t=1707039194; c=relaxed/simple;
+	bh=+BGZ3f/1JDK+HMAeBLUm/2ID9Bp5DnPK9JpR1FqymRE=;
 	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
-	 MIME-Version; b=Yi+f0p5KtJWYc7cNXDFG23V4DD0tFwlcLpVf7VyTPCpzuoW2LG8+wK07bJH0FZb5kJHooltSZyFGsRFREMnMnsRBvRFKeyNzOFOg4CKgRnqY9FBnLNRhdtFDRVSuKy/CPcQ6Q2kwTM261A64Afs+Nj2L1d2evd2WtTriF20ri2c=
+	 MIME-Version; b=sIDUEO0EIh9nkyVOvJt2LutkuuHZumv5uDckvVMV1OnfZuyecU6nuyR6bXI8assj9VLjoQC9fD6EVTcJFClW96k6P1VK7Mjhng2CrcLDOw3kP0jKXjHhdNJDd0pcyOQWn9bna3lHIsy7+ua4S6bnxUlpaYjAWbzK5zBMffkaKcw=
 ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com; spf=pass smtp.mailfrom=arm.com; arc=none smtp.client-ip=217.140.110.172
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=arm.com
 Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
-	by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id D876CDA7;
-	Sun,  4 Feb 2024 01:33:50 -0800 (PST)
+	by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 88BFE113E;
+	Sun,  4 Feb 2024 01:33:54 -0800 (PST)
 Received: from e110479.fosdem.net (unknown [172.31.20.19])
-	by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 8DACA3F738;
-	Sun,  4 Feb 2024 01:33:05 -0800 (PST)
+	by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 7B8153F738;
+	Sun,  4 Feb 2024 01:33:09 -0800 (PST)
 From: Andre Przywara <andre.przywara@arm.com>
 To: Jernej Skrabec <jernej.skrabec@gmail.com>,
 	Chen-Yu Tsai <wens@csie.org>,
@@ -44,9 +44,9 @@ Cc: linux-sunxi@lists.linux.dev,
 	devicetree@vger.kernel.org,
 	linux-arm-kernel@lists.infradead.org,
 	Nick Alilovic <nickalilovic@gmail.com>
-Subject: [PATCH 1/2] arm64: dts: allwinner: h616: Add 32K fanout pin
-Date: Sun,  4 Feb 2024 10:32:54 +0100
-Message-Id: <20240204093255.148972-2-andre.przywara@arm.com>
+Subject: [PATCH 2/2] arm64: dts: allwinner: Transpeed 8K618-T: add WiFi nodes
+Date: Sun,  4 Feb 2024 10:32:55 +0100
+Message-Id: <20240204093255.148972-3-andre.przywara@arm.com>
 X-Mailer: git-send-email 2.25.1
 In-Reply-To: <20240204093255.148972-1-andre.przywara@arm.com>
 References: <20240204093255.148972-1-andre.przywara@arm.com>
@@ -58,32 +58,67 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 
-On some boards the designers saved on a 32KHz crystal for some external
-chips, so the SoC has to help out, with providing a 32 KHz clock signal.
+In contrast to other devices using Allwinner SoCs, the Transpeed 8K618-T
+TV box uses a mainline supported WiFi chip: it's a Broadcom 4335
+compatible, packaged by a company called Murata.
+It works nicely with the Linux driver, when providing the respective
+firmware files.
 
-Add a pinctrl group node to allow DT nodes to reference this fanout signal.
+Add the required DT nodes to let the kernel find the SDIO device.
 
 Signed-off-by: Andre Przywara <andre.przywara@arm.com>
 ---
- arch/arm64/boot/dts/allwinner/sun50i-h616.dtsi | 5 +++++
- 1 file changed, 5 insertions(+)
+ .../sun50i-h618-transpeed-8k618-t.dts         | 23 +++++++++++++++++++
+ 1 file changed, 23 insertions(+)
 
-diff --git a/arch/arm64/boot/dts/allwinner/sun50i-h616.dtsi b/arch/arm64/boot/dts/allwinner/sun50i-h616.dtsi
-index d549d277d972..107256eeedc3 100644
---- a/arch/arm64/boot/dts/allwinner/sun50i-h616.dtsi
-+++ b/arch/arm64/boot/dts/allwinner/sun50i-h616.dtsi
-@@ -256,6 +256,11 @@ uart1_rts_cts_pins: uart1-rts-cts-pins {
- 				pins = "PG8", "PG9";
- 				function = "uart1";
- 			};
-+
-+			x32clk_fanout_pin: x32clk-fanout-pin {
-+				pins = "PG10";
-+				function = "clock";
-+			};
- 		};
+diff --git a/arch/arm64/boot/dts/allwinner/sun50i-h618-transpeed-8k618-t.dts b/arch/arm64/boot/dts/allwinner/sun50i-h618-transpeed-8k618-t.dts
+index 8ea1fd41aeba..7ec4098e707b 100644
+--- a/arch/arm64/boot/dts/allwinner/sun50i-h618-transpeed-8k618-t.dts
++++ b/arch/arm64/boot/dts/allwinner/sun50i-h618-transpeed-8k618-t.dts
+@@ -16,6 +16,7 @@ / {
  
- 		gic: interrupt-controller@3021000 {
+ 	aliases {
+ 		serial0 = &uart0;
++		ethernet1 = &sdio_wifi;
+ 	};
+ 
+ 	chosen {
+@@ -39,6 +40,15 @@ reg_vcc3v3: vcc3v3 {
+ 		regulator-max-microvolt = <3300000>;
+ 		regulator-always-on;
+ 	};
++
++	wifi_pwrseq: wifi_pwrseq {
++		compatible = "mmc-pwrseq-simple";
++		clocks = <&rtc CLK_OSC32K_FANOUT>;
++		clock-names = "ext_clock";
++		pinctrl-0 = <&x32clk_fanout_pin>;
++		pinctrl-names = "default";
++		reset-gpios = <&pio 6 18 GPIO_ACTIVE_LOW>; /* PG18 */
++	};
+ };
+ 
+ &ehci0 {
+@@ -60,6 +70,19 @@ &mmc0 {
+ 	status = "okay";
+ };
+ 
++&mmc1 {
++	vmmc-supply = <&reg_dldo1>;
++	vqmmc-supply = <&reg_aldo1>;
++	mmc-pwrseq = <&wifi_pwrseq>;
++	bus-width = <4>;
++	non-removable;
++	status = "okay";
++
++	sdio_wifi: wifi@1 {
++		reg = <1>;
++	};
++};
++
+ &mmc2 {
+ 	vmmc-supply = <&reg_dldo1>;
+ 	vqmmc-supply = <&reg_aldo1>;
 -- 
 2.25.1
 
