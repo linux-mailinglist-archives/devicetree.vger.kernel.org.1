@@ -1,140 +1,236 @@
-Return-Path: <devicetree+bounces-38425-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-38429-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id AB456848FFD
-	for <lists+devicetree@lfdr.de>; Sun,  4 Feb 2024 19:59:19 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 26534849040
+	for <lists+devicetree@lfdr.de>; Sun,  4 Feb 2024 21:02:29 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 3D79A2835D7
-	for <lists+devicetree@lfdr.de>; Sun,  4 Feb 2024 18:59:18 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id C42BA281E29
+	for <lists+devicetree@lfdr.de>; Sun,  4 Feb 2024 20:02:27 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0F61224B2B;
-	Sun,  4 Feb 2024 18:59:14 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 10181250EC;
+	Sun,  4 Feb 2024 20:02:24 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="TcLobck9"
+	dkim=pass (1024-bit key) header.d=rock-chips.com header.i=@rock-chips.com header.b="hXSuCVq2"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-oo1-f46.google.com (mail-oo1-f46.google.com [209.85.161.46])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mail-m17207.xmail.ntesmail.com (mail-m17207.xmail.ntesmail.com [45.195.17.207])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 68F6924A1D
-	for <devicetree@vger.kernel.org>; Sun,  4 Feb 2024 18:59:12 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.161.46
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A3FF62555B;
+	Sun,  4 Feb 2024 20:02:17 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=45.195.17.207
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1707073153; cv=none; b=DoG2njE82KksT8ObYQOFAunejGZBu/RKf0xchf43rK8mup92hS++4WNuUzQvhheY34Ydr7HeOhHpsTvwyF5Ur2gPwtA1Hi/jhLBbnMH31yg9P/T8FTE5Sn9TOvRncqvrI7cBE1Q2HT9vXaPwdfDLJMw0DhEhMa/QB7+aaGg2SOY=
+	t=1707076944; cv=none; b=rAlXUSxvIqD/F9RXr1jbDSzpzEgkqj9CQ3/vZccbC8CJukXf0t6ScxmNZpfCszP+oApef7svqt0SnUNVlD8XJoI6SjjE2q8qEN0vKyS1YXpmUFDSlhAgPlUuB2OzqGd3S5D1eTQ/cyeGwca6qK5/5ZDWqQM8CiG1OjWwuZGPQxo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1707073153; c=relaxed/simple;
-	bh=ThwihqpEmkYEH6ts2ZleGCKVjv2HQKJYQcUmGXzJeKU=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=rpLeQnMvc3sfo2OSqzuQBrqJpKBvGZW+zM+n8Qa89SWuH331f1F6puZFhQYSQM74RF0zI3C40Amf9OE4JDFDL1dbaN+23V5QdHBM4rLX7MolFJgw/m47IDSyN+nRmkBAcmxiQiS9VaIEpTCkJtO4QQE3ij8gX2kPHrm/XD6xzPM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=TcLobck9; arc=none smtp.client-ip=209.85.161.46
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-oo1-f46.google.com with SMTP id 006d021491bc7-598699c0f1eso2662020eaf.2
-        for <devicetree@vger.kernel.org>; Sun, 04 Feb 2024 10:59:12 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1707073151; x=1707677951; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=ThwihqpEmkYEH6ts2ZleGCKVjv2HQKJYQcUmGXzJeKU=;
-        b=TcLobck9QO/BvL2gm5h3mjwqRpAcvsmJjYvzB3ui89q8mfqyjR52mOTr8ZKRAWM2Gm
-         Rr4eOfRZU/O72Iyy7HYhlvQIQJQydpIa+63hfkVz0Cjs0NFNkbgYCRzcepGark2tdyvh
-         544jwxfia2h8svJ7DRT3gD91jyJmePhMeLrADdooEXfNKqEvMza5JtgXnt5ONdK6+FQ4
-         z7rAHQWNKm+FoYlR5r6Q3AanTssXeErJKMEiB5Ygc6/vUu/1d137LtVgWGzLVncs2NSi
-         p2R6fQeD37cDQHHsvu4iqgCCVH4+Xf1r53mG8ZkRbU1pmft1QWMwG4Rt53WaFxKxxvMo
-         3odg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1707073151; x=1707677951;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=ThwihqpEmkYEH6ts2ZleGCKVjv2HQKJYQcUmGXzJeKU=;
-        b=ulbbXEXswp7rUCmMw4aaUZyTuaIJ4+5WZV3VafoTRy8BD5Z7M2lH8Twkqy1VBrk5ox
-         Ex+yY32Ow16jMuTtFs+B4QPpZR5oUs7oM/3JU9vR7eGBQsfueP7Tp9Tmd2ZeSKrKPLyc
-         UCWr5ik7aPIuqXV808EogKNmHcTgNpThHmvUZzc49D1xTpUAtFEUDjcj0V5zcw1Oby46
-         LfGwJL68bZhN/fc7iqaNW2jSckNNQR4cBheUn2bcrsan/eiJMEBwK2GZm+UH3ul6AC/G
-         3zFrWD3n95LPpDCVcNeAvL0c2LC/uUzm86urDsY/jCKkq3XM6XAaLCGaTmcNglcExd6V
-         s3tQ==
-X-Gm-Message-State: AOJu0YzlGVJzNe30U3b9pdqPaNqmdAeTbKpTdKw++t4xrjNMeb/LkAGZ
-	EOd2P9sVzy/I6yRdWe1goZQtFcGD0Lvkylm086nL5i5oSsW8JivYJLJM19oKmzETnsBC6ZvolGD
-	98HG/x0mAwtBe3heNvafPJzpsRGUy+8q17apMjQ==
-X-Google-Smtp-Source: AGHT+IHZPu7JOhnW+WabPixZNvtP59ved/O5akA186CvDVtY1vrwCCE7jLzI4JXeMQbjH+avQ17YQs5oJxkTJaAnVyY=
-X-Received: by 2002:a05:6358:721:b0:178:8cc8:4c7b with SMTP id
- e33-20020a056358072100b001788cc84c7bmr10710494rwj.24.1707073151246; Sun, 04
- Feb 2024 10:59:11 -0800 (PST)
+	s=arc-20240116; t=1707076944; c=relaxed/simple;
+	bh=Hx5T6jiL5JDohIoeQQYX6s2r6lgspe5rrFcW3TlWnfE=;
+	h=Message-ID:Date:MIME-Version:From:Subject:To:Cc:References:
+	 In-Reply-To:Content-Type; b=DfjeNEZ85qwxP8Gkg4BbT40V3MzOEVDTsJ8RZHdYwkdTMZm1jdXiYbXhWUnzjSMHuDq1ksKR2YiaM+vze8oK+1bGElp8Bcfl6MlTvkcRq6T9Lcj2ZCSRzbcRML9hePv5jkFtDxx97TBN4B2hmPoezy7XAAYBM5CzL9f2/CN4gv4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=rock-chips.com; spf=pass smtp.mailfrom=rock-chips.com; dkim=pass (1024-bit key) header.d=rock-chips.com header.i=@rock-chips.com header.b=hXSuCVq2; arc=none smtp.client-ip=45.195.17.207
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=rock-chips.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=rock-chips.com
+DKIM-Signature: a=rsa-sha256;
+	b=hXSuCVq2LKTILSa4M3DYwHpUWtWrO2+lc94QcnrtRZhcYoiQ0+fwbTvSFL9OmF9EPfgXfnX+W9L1zUOG6jfj3kTKGktV1278LF6y/U0KRXCUIvuhpQ898iSg0Q4t76QTcPM+nS2hLT1rhPLoKv4ufoIHlJNOSb3e7E14H06gAYc=;
+	c=relaxed/relaxed; s=default; d=rock-chips.com; v=1;
+	bh=JNfM+7oms0dEDMBQD4/1F/HmMJB11Kg5/MrVVOISNs8=;
+	h=date:mime-version:subject:message-id:from;
+Received: from [172.16.12.93] (unknown [58.22.7.114])
+	by smtp.qiye.163.com (Hmail) with ESMTPA id A32209001BC;
+	Sun,  4 Feb 2024 17:56:34 +0800 (CST)
+Message-ID: <546543ec-7817-4422-8717-82aaf46f2a3b@rock-chips.com>
+Date: Sun, 4 Feb 2024 17:56:34 +0800
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20240121-pinctrl-scmi-v3-0-8d94ba79dca8@nxp.com>
- <f88d07ef-83b2-4d14-976a-6dbbd71e036f@oss.nxp.com> <CACRpkdYV=qYQ9qDUWYTLDAV1niay30gYH5S=zjfi31GpeY5o-A@mail.gmail.com>
- <DU0PR04MB9417A9074C5DC49AE689E65288432@DU0PR04MB9417.eurprd04.prod.outlook.com>
- <Zbt-QkWhz5d9P-v6@pluto> <DU0PR04MB9417CA6CF089B264112C32A088402@DU0PR04MB9417.eurprd04.prod.outlook.com>
-In-Reply-To: <DU0PR04MB9417CA6CF089B264112C32A088402@DU0PR04MB9417.eurprd04.prod.outlook.com>
-From: Linus Walleij <linus.walleij@linaro.org>
-Date: Sun, 4 Feb 2024 19:58:59 +0100
-Message-ID: <CACRpkdYCrbNB8wu4rO3Yx0qomxR3kTt0P7YH7kc2HPCbrgt=tg@mail.gmail.com>
-Subject: Re: [PATCH v3 0/6] firmware: arm_scmi: Add SCMI v3.2 pincontrol
- protocol basic support
-To: Peng Fan <peng.fan@nxp.com>
-Cc: Cristian Marussi <cristian.marussi@arm.com>, Sudeep Holla <sudeep.holla@arm.com>, 
-	"Peng Fan (OSS)" <peng.fan@oss.nxp.com>, 
-	"souvik.chakravarty@arm.com" <Souvik.Chakravarty@arm.com>, Rob Herring <robh+dt@kernel.org>, 
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Oleksii Moisieiev <oleksii_moisieiev@epam.com>, Shawn Guo <shawnguo@kernel.org>, 
-	Sascha Hauer <s.hauer@pengutronix.de>, Pengutronix Kernel Team <kernel@pengutronix.de>, 
-	Fabio Estevam <festevam@gmail.com>, dl-linux-imx <linux-imx@nxp.com>, 
-	"linux-arm-kernel@lists.infradead.org" <linux-arm-kernel@lists.infradead.org>, 
-	"linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>, 
-	"devicetree@vger.kernel.org" <devicetree@vger.kernel.org>, 
-	"linux-gpio@vger.kernel.org" <linux-gpio@vger.kernel.org>, AKASHI Takahiro <takahiro.akashi@linaro.org>, 
-	Rob Herring <robh@kernel.org>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+User-Agent: Mozilla Thunderbird
+From: Kever Yang <kever.yang@rock-chips.com>
+Subject: Re: [PATCH] arm64: dts: rockchip: rk3588: remove redundant cd-gpios
+ in sdmmc node
+To: =?UTF-8?Q?Heiko_St=C3=BCbner?= <heiko@sntech.de>,
+ Ondrej Jirman <megi@xff.cz>
+Cc: linux-rockchip@lists.infradead.org,
+ Christopher Obbard <chris.obbard@collabora.com>,
+ Conor Dooley <conor+dt@kernel.org>,
+ Cristian Ciocaltea <cristian.ciocaltea@collabora.com>,
+ Dragan Simic <dsimic@manjaro.org>, FUKAUMI Naoki <naoki@radxa.com>,
+ Jagan Teki <jagan@edgeble.ai>, John Clark <inindev@gmail.com>,
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+ Rob Herring <robh+dt@kernel.org>,
+ Sebastian Reichel <sebastian.reichel@collabora.com>,
+ Shreeya Patel <shreeya.patel@collabora.com>,
+ =?UTF-8?B?VGFtw6FzIFN6xbFjcw==?= <tszucs@protonmail.ch>,
+ devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ linux-kernel@vger.kernel.org, quentin.schulz@theobroma-systems.com
+References: <20240201034621.1970279-1-kever.yang@rock-chips.com>
+ <4514845.zXnORWrf4K@diego>
+Content-Language: en-US
+In-Reply-To: <4514845.zXnORWrf4K@diego>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
+X-HM-Spam-Status: e1kfGhgUHx5ZQUpXWQgPGg8OCBgUHx5ZQUlOS1dZFg8aDwILHllBWSg2Ly
+	tZV1koWUFDSUNOT01LS0k3V1ktWUFJV1kPCRoVCBIfWUFZGhpDSVZJTE8ZS08ZT0xLH09VEwETFh
+	oSFyQUDg9ZV1kYEgtZQVlOQ1VJSVVMVUpKT1lXWRYaDxIVHRRZQVlPS0hVSk1PSUxOVUpLS1VKQk
+	tLWQY+
+X-HM-Tid: 0a8d738c5eb003a9kunma32209001bc
+X-HM-MType: 1
+X-HM-Sender-Digest: e1kMHhlZQR0aFwgeV1kSHx4VD1lBWUc6NiI6Ezo4TzMIDz42LwlPTi4M
+	Hy8KCR5VSlVKTEtMS09LTkJNSkxDVTMWGhIXVRAeDR4JVQIaFRw7CRQYEFYYExILCFUYFBZFWVdZ
+	EgtZQVlOQ1VJSVVMVUpKT1lXWQgBWUFDSUpPNwY+
 
-On Sun, Feb 4, 2024 at 10:29=E2=80=AFAM Peng Fan <peng.fan@nxp.com> wrote:
+Hi Heiko,
 
-> Using generic pinconf means the firmware needs exporting groups/functions=
-/pins
-> and etc, the firmware design will be complicated and code size enlarged.
+On 2024/2/1 16:41, Heiko Stübner wrote:
+> Hi Kever,
+>
+> Am Donnerstag, 1. Februar 2024, 04:46:21 CET schrieb Kever Yang:
+>> The sdmmc node already have a "&sdmmc_det" for pinctrl which switch the
+>> GPIO0A4 to sdmmc detect function, no need to define a separate "cd-gpios".
+> just to make sure, did you test this on actual hardware?
+> Because there might be differences in behaviour.
 
-This is very much to the core of the problem isn't it?
+We use this feature in vendor kernel for many boards.
 
-So the argument is to save code effort and size in the firmware.
+For mainline support, there are 15 rk3588/rk3588 boards available, and 
+10 of them
 
-This reflects some of the reasoning behind the device tree bindings
-that encode "magic numbers" in the DT nodes to mux and configure
-pins. Often the argument is that it saves space and effort.
+enable sdmmc node in dts, and 4 boards define "cd-gpios" while the 
+hardware do use GPIO0A4,
 
-When the i.MX driver was first discussed it used the standard scheme actual=
-ly.
-Look at i.MX 53 for example:
-https://lore.kernel.org/linux-kernel/1322999384-7886-2-git-send-email-b2939=
-6@freescale.com/
+and 1 board(rk3588-jaguar) using "broken-cd", and the other 5 boards are 
+using default "&sdmmc_det"
 
-Groups and functions! As strings!
+  with the same hardware design.
 
-Then the DT bindings were discussed back and forth between Dong
-Aisheng (the original driver author), Sasha Hauer and Shawn Guo
-before arriving at the fsl,pins scheme.
+If the hardware is using GPIO0A4(SDMMC_DET function IO) for sdmmc 
+detect, then no need to define "cd-gpios";
 
-Back in the day I was pretty much clueless about device tree and
-relied on others to review the bindings, which ended up like this:
-Documentation/devicetree/bindings/pinctrl/fsl,imx-pinctrl.txt
+if the hardware is not using GPIO0A4 for sdmmc detect, then the 
+"cd-gpios" or "broken-cd" is needed.
 
-This was in 2011/2012 so many things were not considered. It is
-clear that this scheme with a number of integers that get poked into
-registers is convenient for some DT authors, also pinctrl-single uses
-this as well as I think Mediatek and maybe a few others.
+So this patch is to sync up to use the "&sdmmc_det" when the IO is using 
+the one has SDMMC_DET function.
 
-Over the years I have come to regret it a bit, I think insisting on
-groups and functions as strings is better for abstraction. And the point
-of firmware is to abstract things so they work the same on all systems.
+>> RK3588 has force_jtage feature which is enable JTAG function via sdmmc
+>> pins automatically when there is no SD card insert, this feature will
+>> need the GPIO0A4 works in sdmmc_det function like other mmc signal instead
+>> of GPIO function, or else the force_jtag can not auto be disabled when
+>> SD card insert.
+> We disable the jtag switching by default [0] ;-) .
+> And there are very good reasons for it too:
 
-Yours,
-Linus Walleij
+I know you have disable the force_jtag by default, and I didn't want to 
+change this.
+
+As you have said we may need to enable it for debug, we suppose to only 
+have to revert
+
+the disable force_jtag patch and then it works without affect the 
+default sdmmc function.
+
+The sdmmc function is broken if we enable force_jtag for debug, and this 
+patch can fix it.
+
+> (1) JTAG is very much a debug feature, that the normal user will not need.
+> Especially not in a finished product. If a developer is debugging _that_
+> deep and needs jtag, they can enable it in their debug build.
+>
+>
+> (2) Randomly enabling features that may compromise security.
+> Why go through all the hoops of doing things like secure boot, signed
+> images and everything, just to have the kernel then export direct access
+> to the hardware on sd-card pins. If one wants to expose JTAG somewhere
+> this should be conscious choice and devs should not need to fork their
+> kernel just to shut down unwanted security-critical functionality.
+>
+>
+> (3) It affects board layouts _not following_ the standard layout.
+> Nobody is forcing board-designers to use Rockchip's desired pin
+> for card-detection. Some designer may just select a different pin
+> or a board could go without card-detect at all - see rk3588-jaguar.
+
+You are right, "cd-gpios" and "broken-cd" are available for boards have 
+different design,
+
+and this patch is for the boards with SDMMC_DET(GPIO0A4) as sdmmc 
+detect, they should go to
+
+the default "&sdmmc_det" in sdmmc node.
+
+
+Thanks,
+
+- Kever
+
+> These are both valid use-cases that need to be supported.
+>
+>
+> Heiko
+>
+>
+> [0]https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/commit/?id=6f6878ec6faf16a5f36761c93da6ea9cf09adb33
+>
+>
+>> ---
+>>
+>>   arch/arm64/boot/dts/rockchip/rk3588-orangepi-5-plus.dts | 1 -
+>>   arch/arm64/boot/dts/rockchip/rk3588-quartzpro64.dts     | 1 -
+>>   arch/arm64/boot/dts/rockchip/rk3588-rock-5b.dts         | 1 -
+>>   arch/arm64/boot/dts/rockchip/rk3588s-rock-5a.dts        | 1 -
+>>   4 files changed, 4 deletions(-)
+>>
+>> diff --git a/arch/arm64/boot/dts/rockchip/rk3588-orangepi-5-plus.dts b/arch/arm64/boot/dts/rockchip/rk3588-orangepi-5-plus.dts
+>> index 3e660ff6cd5ff..1b606ea5b6cf2 100644
+>> --- a/arch/arm64/boot/dts/rockchip/rk3588-orangepi-5-plus.dts
+>> +++ b/arch/arm64/boot/dts/rockchip/rk3588-orangepi-5-plus.dts
+>> @@ -444,7 +444,6 @@ &sdhci {
+>>   &sdmmc {
+>>   	bus-width = <4>;
+>>   	cap-sd-highspeed;
+>> -	cd-gpios = <&gpio0 RK_PA4 GPIO_ACTIVE_LOW>;
+>>   	disable-wp;
+>>   	max-frequency = <150000000>;
+>>   	no-sdio;
+>> diff --git a/arch/arm64/boot/dts/rockchip/rk3588-quartzpro64.dts b/arch/arm64/boot/dts/rockchip/rk3588-quartzpro64.dts
+>> index 87a0abf95f7d4..67414d72e2b6e 100644
+>> --- a/arch/arm64/boot/dts/rockchip/rk3588-quartzpro64.dts
+>> +++ b/arch/arm64/boot/dts/rockchip/rk3588-quartzpro64.dts
+>> @@ -429,7 +429,6 @@ &sdhci {
+>>   &sdmmc {
+>>   	bus-width = <4>;
+>>   	cap-sd-highspeed;
+>> -	cd-gpios = <&gpio0 RK_PA4 GPIO_ACTIVE_LOW>;
+>>   	disable-wp;
+>>   	max-frequency = <150000000>;
+>>   	no-sdio;
+>> diff --git a/arch/arm64/boot/dts/rockchip/rk3588-rock-5b.dts b/arch/arm64/boot/dts/rockchip/rk3588-rock-5b.dts
+>> index a0e303c3a1dc6..25a82008e4f76 100644
+>> --- a/arch/arm64/boot/dts/rockchip/rk3588-rock-5b.dts
+>> +++ b/arch/arm64/boot/dts/rockchip/rk3588-rock-5b.dts
+>> @@ -371,7 +371,6 @@ &sdmmc {
+>>   	bus-width = <4>;
+>>   	cap-mmc-highspeed;
+>>   	cap-sd-highspeed;
+>> -	cd-gpios = <&gpio0 RK_PA4 GPIO_ACTIVE_LOW>;
+>>   	disable-wp;
+>>   	sd-uhs-sdr104;
+>>   	vmmc-supply = <&vcc_3v3_s3>;
+>> diff --git a/arch/arm64/boot/dts/rockchip/rk3588s-rock-5a.dts b/arch/arm64/boot/dts/rockchip/rk3588s-rock-5a.dts
+>> index 2002fd0221fa3..00afb90d4eb10 100644
+>> --- a/arch/arm64/boot/dts/rockchip/rk3588s-rock-5a.dts
+>> +++ b/arch/arm64/boot/dts/rockchip/rk3588s-rock-5a.dts
+>> @@ -366,7 +366,6 @@ &sdmmc {
+>>   	bus-width = <4>;
+>>   	cap-mmc-highspeed;
+>>   	cap-sd-highspeed;
+>> -	cd-gpios = <&gpio0 RK_PA4 GPIO_ACTIVE_LOW>;
+>>   	disable-wp;
+>>   	max-frequency = <150000000>;
+>>   	no-sdio;
+>>
+>
 
