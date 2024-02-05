@@ -1,74 +1,75 @@
-Return-Path: <devicetree+bounces-38496-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-38500-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 63F97849505
-	for <lists+devicetree@lfdr.de>; Mon,  5 Feb 2024 09:04:37 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 516AC849511
+	for <lists+devicetree@lfdr.de>; Mon,  5 Feb 2024 09:08:12 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id E07F21F23B97
-	for <lists+devicetree@lfdr.de>; Mon,  5 Feb 2024 08:04:36 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 763C51C203A3
+	for <lists+devicetree@lfdr.de>; Mon,  5 Feb 2024 08:08:11 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id BEA2911199;
-	Mon,  5 Feb 2024 08:04:17 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B1F0611184;
+	Mon,  5 Feb 2024 08:08:07 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="ajHR7gKq"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="A3kRcd1K"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ej1-f45.google.com (mail-ej1-f45.google.com [209.85.218.45])
+Received: from mail-ed1-f45.google.com (mail-ed1-f45.google.com [209.85.208.45])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DF1FA11193
-	for <devicetree@vger.kernel.org>; Mon,  5 Feb 2024 08:04:15 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.45
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C302A10A2E
+	for <devicetree@vger.kernel.org>; Mon,  5 Feb 2024 08:08:05 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.45
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1707120257; cv=none; b=XCMe6OQZTkjTgUv4hxQMcMmQZbw8gXgTv25/DIX/sQ5ROKN91dm+7fe8XpxXhapjON2/i/WN3tPEfOuoojswNXWViY4LxVkRSypwJOXDK95d8ifqzf38HYQSEnkN0vitXMnGDNTKiGjxAg5txoaSrn066gxBrxfd6lbWSFGA/ZU=
+	t=1707120487; cv=none; b=eR6efCQGHPPU6dX38A6UgW3JVM/XnrsRuMn5VtRt2kwoXwvBTOEqHFLjME5/cBFt1wwu453i0FexJ3DupuKuqd9Y4pX+qxDN55rbyQdM01zIIvwqoJlx97nxYV9fXrIn4xTyMQ6ZX0fJQE18hD86wN0uBSuqImH0kZsytRErbk0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1707120257; c=relaxed/simple;
-	bh=TrE/p3ttE3stmZdiihuuez4I8ZtTs4vsKSjS4QC8bbA=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=RSa2GuPD5E33jQ9qVX3CPs6Xb30eujAlXy5v2HyStHqbQ9dQFIgalcQnkFyp3C9SYxR/uXadNFuYvYoH/f73El8FtTmZbO8fdW6dy1b2K7tRstmHCF1+MY+uzC2PxjpG9wPOGHpwJfDBks/l8pD3JU/LSJZfxdgVdROxsrdm/Z8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=ajHR7gKq; arc=none smtp.client-ip=209.85.218.45
+	s=arc-20240116; t=1707120487; c=relaxed/simple;
+	bh=bWM+0D1lTtcuG1JP4lEahFhZoqCkvK/+qMR0LGWCa8E=;
+	h=Message-ID:Date:MIME-Version:Subject:To:References:From:
+	 In-Reply-To:Content-Type; b=OIASteIvg78BkRRivxzLZkLy7g0/HyBDipeDigEh/khEoVkF9WP+BchnBfsu9uWU5hPo1bUJwmN3fWYT4tmF5QnGyuIBaZkJjI+IuRhSVyeeI1Vzlg/Lifm1lRmYpgIJWY2e9rwax+VTGM9TnbJihTyLco43svbKQtfNYBh4SWU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=A3kRcd1K; arc=none smtp.client-ip=209.85.208.45
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-ej1-f45.google.com with SMTP id a640c23a62f3a-a2d7e2e7fe0so523214966b.1
-        for <devicetree@vger.kernel.org>; Mon, 05 Feb 2024 00:04:15 -0800 (PST)
+Received: by mail-ed1-f45.google.com with SMTP id 4fb4d7f45d1cf-55f279dca99so5844906a12.3
+        for <devicetree@vger.kernel.org>; Mon, 05 Feb 2024 00:08:05 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1707120254; x=1707725054; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
-         :to:content-language:subject:user-agent:mime-version:date:message-id
+        d=linaro.org; s=google; t=1707120484; x=1707725284; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:to
+         :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=Ly53AiJS3SoOsXrI7rwMSWndr6ZfowNIwWczf0zRPgE=;
-        b=ajHR7gKqw7Cuv9SrcI9H8/UsB6/Q4xcDabTUkBAxFG19RJAzsFQACJ8varAJKAIToy
-         QP1V6ROBeXLqz2BWeIVc7yiXIauMIk31Tc5tT6VomJil44ZsaxZNtOsButyN+qNAbIiw
-         43gFHNuus28ZFamTN6xc9k6ZIOpz0jforAmXed7YbWgNgFMA517WoJuHms+NTXQJIewQ
-         rmfe7DV6vGILd1CWsA8zfVG5B4kIjsZMX8MvmYsuloMgeR0iHHWWLCv/uJbQfgXiRIOC
-         m/d3Z4+3zLFnOocvx188btnvwlkSfqW7V+ZJE29yRnInyGFLE1JijaIAYiwe4cmcrGnM
-         KUsA==
+        bh=kTVDJ7kokpaWFwqAappHoDtn4ysbGjAW3398RVhJk3M=;
+        b=A3kRcd1Kz6eEANiCQpa63nNfjCTEl7PZapUjUO9YxCZoJcIsLUbr4nFD8G2Z+zq0m6
+         0Ed3zfb9b11Wd+8jro7UZKKLje4rlRVQLP0JB93eB/zHyVke9Ueb52Pp2eKnlrgdbH01
+         zL1AZWWHsFhky8PdSxS5Dr9gtA7jVsnWDuE9l6Pat6Bbgk/zGayDZRmrN//80flKktrp
+         1DJlMvrqNEbGUiOmg+3dYBrEtLzhX1HElB8h/QzVTFqo3zt+WGQvnCcH0kyfMyGOjDbG
+         jEDugXNdTDXOnXMqtxFdgOwHDwG+CcAoTn9YbcPiUsaNiAZTCvLSL2wZqhLERU+jsqGo
+         xUBw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1707120254; x=1707725054;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
-         :to:content-language:subject:user-agent:mime-version:date:message-id
+        d=1e100.net; s=20230601; t=1707120484; x=1707725284;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:to
+         :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=Ly53AiJS3SoOsXrI7rwMSWndr6ZfowNIwWczf0zRPgE=;
-        b=IvcZ5298sCJ+ZmWETIvgDWFWVQB9KxeTlmM1SlB7iAbA/MMr5JfJzD7PfoLVORBse4
-         bF+Dbw53b6sJiVpZh9FwaZLHCGoyF7XnaurjYqXm/KC6U0gtCW66UaM8i7udFOiY8ygz
-         +NYk9SaH0tW+FshX2uLJskOYVIHUvL/j+dW/+8q0Qv8Q6i+BojeEry534rInSQWoz0eQ
-         ga3tEHkM3AOEpnaBH8ap5B4M/AcgahKKSRE/WjEKyOxV3y1ZoZlHI/RTqxsgMqsbgik3
-         UCA57pt+zTgDhR8evJZXn8bL772gHH0mhEPtvqSuDWLESiYAj25NMm0jcyh+wwHZGPgO
-         xZsA==
-X-Gm-Message-State: AOJu0YxhpwZBB5vV8nPZb6sQxb/3wL8fgbkCfnf3EFlbkMb8CzheBYRt
-	j7JibfQTwlUT2mB4SEWNq/NxmLdz3pWVt0b4xupy0v2QdryjMFSqeDXAvEIzpDU=
-X-Google-Smtp-Source: AGHT+IFSigaVXMIkg070FfzpRmT4ZkCo0EOQNsSqGCQz0cCkYGX3PBTgbtEWdEXoN3W/UXXniPCYoA==
-X-Received: by 2002:a17:906:d294:b0:a31:818c:ffe0 with SMTP id ay20-20020a170906d29400b00a31818cffe0mr5072466ejb.19.1707120254210;
-        Mon, 05 Feb 2024 00:04:14 -0800 (PST)
-X-Forwarded-Encrypted: i=0; AJvYcCW/uUJodGhb9aEg7ZFXJMNzZn2x8furlJgVBImMlXUIqNGaA46B1mD23WUP4c+bIEHKdeHXcybt6izRMILO/QNHXMV5oYxgAEkUp409PRVNmr45D40PpwOHV2NueuWwvSSrWx+6i2Fv4hfn8QOnskaRIqVn18Rr8rKlISQjuZiT5jsgu5Kj5DBeDJ61iUv5u7nsGzpdFFqVRyUeH2+egNrh9/imqtrnU7cxRyBL3FuDLk/6gRmymNmZ1hiEwo6zKr01UmNdorZz7r5RZ6UAmgUdSLPP3wZaHkcftRCiO2l/BFPy55qHrUOhhnGcm8alWWSJl/bDNi0bV+W8VIF7ZltOviqfiKl3j5BpIcPWaHzSgpeVnEiF
+        bh=kTVDJ7kokpaWFwqAappHoDtn4ysbGjAW3398RVhJk3M=;
+        b=XtqoPex/YX0u5sARrSkPiy/cbkOL5i7l55I6Ua72r5T6fHrPsx/yMSFwIi5DFyBjTk
+         c50vGLxHkr0MerKUTzEftTjcz4Qk00if0frSkLKYMB+oY1k7UZPP5oV2FErJYO3PjI+N
+         yg94g6gUL6G3zxgxAq95r52RnWm0fCplZ4Qu5VnAifqbwAgwXSJ5y22t5uZEgS51Rx9Z
+         DamwjXSVe9tAY3E09fA4jMJGgqAHlfuqd/515aLufMbYUu1LYVxC0/8kiCoKpKCb0tGE
+         GVDwsaERq/8lav/xYUH7wxnd6As0PiUyL7RtzWepCcuz3nJP0Id9nILjL/yJzZlldc9M
+         HuCA==
+X-Gm-Message-State: AOJu0YweoLUS7B+RhBqayPYwIK3w+TM44MNwePalC0VvlXEFR441eQV1
+	NQmBNsOZJW4hrpoC/OXgNpMnM6sIw5Eqo9Q/bdIG8+p6G12P5dh3jaKdrGIhzfMKfJJvJMwqCCi
+	xAhg=
+X-Google-Smtp-Source: AGHT+IEdX1mmPyWx1Qh9N4TPEN74j3i7d2iQbKVGHYEWh/rr/lD4xHYSjuyP0Dk4I1GuaispotiJfA==
+X-Received: by 2002:a05:6402:1647:b0:55f:e147:2524 with SMTP id s7-20020a056402164700b0055fe1472524mr4127840edx.38.1707120484024;
+        Mon, 05 Feb 2024 00:08:04 -0800 (PST)
+X-Forwarded-Encrypted: i=0; AJvYcCWQ8VURNcFDgOTc8qvBT9g8xs8vufQCAvYX806+iJF1Uuk6pxkIgP+RUT4mTwW9l3YOp6WBKBdFsgj4bv+sBr6vIsLuf8scMrN08HVyP9vGbNoB6SeoziAEdPg7g9qFWCjn9BBmAuEFqrERFsoeG39+xUXxezPhAUhe2kPwJVgn0O8GAgqBLfG3SqmvS/ehDDQtDCPX2cp5HFfOZGXvFBWwDNld+9/cKFGfqc856ZdC7fNsk1KW4YR9gh2wXQ0aUb4JrGw+BsTcdtRxHN4NBcV5Gyoxa98XrV815EO8wW8H5Dso7e2ikeJJJekd24iEXUs7eacqdovIFmFXWjIBICUQm73zlKDpg/+ym+DYmAbrJcvSKYmVNAd6lR2OFDJwovY+b+qkZDmHzO7RmQA5f42+7Xr6uNx6HZn8APXfHziQSCBNqjtgIngEGDV1TeE1/+/wW5RNjFJvuQzbiqvz1zG+RjVZrGizqywlCpLN8vq/lOC1FqXiVENEG4mAmgToG5EttnlsrfpnFqeCBGKpjqRSi/3uJ/f2bT4eXZj6cSl3Edzr+k1s8CFbDOEecsPPUqoAuxChCnOHVnR9AEOSLgPSrKVrYgR/+B8xx2wPOm/5EyfxmMw/9DzyqtPOZCaV3DIhyyDIWZk2QaIQtQ1tv/XGZtNqF2ZsUbbqj8RyYpwtYTSbMKj5Ox2xB5crHwppdLDZP8TS7dqolv9JthtQps/74YcBaHsQzoQgxWPCswRoDqQeBgcThe0IxZzUtQ==
 Received: from [192.168.1.20] ([178.197.222.62])
-        by smtp.gmail.com with ESMTPSA id kq8-20020a170906abc800b00a30cd599285sm4004822ejb.223.2024.02.05.00.04.12
+        by smtp.gmail.com with ESMTPSA id u2-20020aa7d882000000b0055ffe74e39dsm3052782edq.85.2024.02.05.00.08.01
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 05 Feb 2024 00:04:13 -0800 (PST)
-Message-ID: <04fa81b1-e47e-4cf9-8e59-3a1777a13879@linaro.org>
-Date: Mon, 5 Feb 2024 09:04:12 +0100
+        Mon, 05 Feb 2024 00:08:03 -0800 (PST)
+Message-ID: <d6f787e6-a243-410f-ac6e-c57ea5309838@linaro.org>
+Date: Mon, 5 Feb 2024 09:08:00 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -76,17 +77,35 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v4 3/6] soc: qcom: socinfo: add SoC Info support for
- QCM8550 and QCS8550 platform
+Subject: Re: [PATCH 1/2] dt-bindings: phy: mediatek,xfi-tphy: add new bindings
 Content-Language: en-US
-To: Tengfei Fan <quic_tengfan@quicinc.com>, andersson@kernel.org,
- konrad.dybcio@linaro.org, robh+dt@kernel.org,
- krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
- dmitry.baryshkov@linaro.org
-Cc: linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, kernel@quicinc.com
-References: <20240119100621.11788-1-quic_tengfan@quicinc.com>
- <20240119100621.11788-4-quic_tengfan@quicinc.com>
+To: =?UTF-8?B?Q2h1bmZlbmcgWXVuICjkupHmmKXls7Ap?= <Chunfeng.Yun@mediatek.com>,
+ "netdev@vger.kernel.org" <netdev@vger.kernel.org>,
+ "linux-mediatek@lists.infradead.org" <linux-mediatek@lists.infradead.org>,
+ "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+ =?UTF-8?B?U2t5TGFrZSBIdWFuZyAo6buD5ZWf5r6kKQ==?=
+ <SkyLake.Huang@mediatek.com>, "kishon@kernel.org" <kishon@kernel.org>,
+ "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+ "john@phrozen.org" <john@phrozen.org>,
+ "p.zabel@pengutronix.de" <p.zabel@pengutronix.de>,
+ "conor+dt@kernel.org" <conor+dt@kernel.org>,
+ "robh@kernel.org" <robh@kernel.org>,
+ =?UTF-8?B?QmMtYm9jdW4gQ2hlbiAo6Zmz5p+P5p2RKQ==?=
+ <bc-bocun.chen@mediatek.com>,
+ "linux-arm-kernel@lists.infradead.org"
+ <linux-arm-kernel@lists.infradead.org>,
+ =?UTF-8?B?U3RldmVuIExpdSAo5YqJ5Lq66LGqKQ==?= <steven.liu@mediatek.com>,
+ "vkoul@kernel.org" <vkoul@kernel.org>,
+ "matthias.bgg@gmail.com" <matthias.bgg@gmail.com>,
+ "krzysztof.kozlowski+dt@linaro.org" <krzysztof.kozlowski+dt@linaro.org>,
+ "daniel@makrotopia.org" <daniel@makrotopia.org>,
+ "linux-phy@lists.infradead.org" <linux-phy@lists.infradead.org>,
+ "dqfext@gmail.com" <dqfext@gmail.com>,
+ "angelogioacchino.delregno@collabora.com"
+ <angelogioacchino.delregno@collabora.com>
+References: <702afb0c1246d95c90b22e57105304028bdd3083.1706823233.git.daniel@makrotopia.org>
+ <adf20671-2f1d-43ea-8584-df0c0b095865@linaro.org>
+ <031944545677573672000aee8f97149e56c15f83.camel@mediatek.com>
 From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  xsFNBFVDQq4BEAC6KeLOfFsAvFMBsrCrJ2bCalhPv5+KQF2PS2+iwZI8BpRZoV+Bd5kWvN79
@@ -132,19 +151,86 @@ Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  KQ06ztUMRrj8eVtpImjsWCd0bDWRaaR4vqhCHvAG9iWXZu4qh3ipie2Y0oSJygcZT7H3UZxq
  fyYKiqEmRuqsvv6dcbblD8ZLkz1EVZL6djImH5zc5x8qpVxlA0A0i23v5QvN00m6G9NFF0Le
  D2GYIS41Kv4Isx2dEFh+/Q==
-In-Reply-To: <20240119100621.11788-4-quic_tengfan@quicinc.com>
+In-Reply-To: <031944545677573672000aee8f97149e56c15f83.camel@mediatek.com>
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
 
-On 19/01/2024 11:06, Tengfei Fan wrote:
-> Add SoC Info support for QCM8550 and QCS8550 platform.
+On 04/02/2024 07:17, Chunfeng Yun (云春峰) wrote:
+> On Fri, 2024-02-02 at 09:21 +0100, Krzysztof Kozlowski wrote:
+>>  	 
+>> External email : Please do not click links or open attachments until
+>> you have verified the sender or the content.
+>>  On 01/02/2024 22:52, Daniel Golle wrote:
+>>> Add bindings for the MediaTek XFI T-PHY Ethernet SerDes PHY found
+>> in the
+>>> MediaTek MT7988 SoC which can operate at various interfaces modes:
+>>>
+>>> via USXGMII PCS:
+>>>  * USXGMII
+>>>  * 10GBase-R
+>>>  * 5GBase-R
+>>>
+>>> via LynxI SGMII PCS:
+>>>  * 2500Base-X
+>>>  * 1000Base-X
+>>>  * Cisco SGMII (MAC side)
+>>>
+>>> Signed-off-by: Daniel Golle <daniel@makrotopia.org>
+>>> ---
+>>>  .../bindings/phy/mediatek,xfi-tphy.yaml       | 80
+>> +++++++++++++++++++
+>>>  1 file changed, 80 insertions(+)
+>>>  create mode 100644
+>> Documentation/devicetree/bindings/phy/mediatek,xfi-tphy.yaml
+>>>
+>>> diff --git a/Documentation/devicetree/bindings/phy/mediatek,xfi-
+>> tphy.yaml b/Documentation/devicetree/bindings/phy/mediatek,xfi-
+>> tphy.yaml
+>>> new file mode 100644
+>>> index 0000000000000..e897118dcf7e6
+>>> --- /dev/null
+>>> +++ b/Documentation/devicetree/bindings/phy/mediatek,xfi-tphy.yaml
+>>> @@ -0,0 +1,80 @@
+>>> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+>>> +%YAML 1.2
+>>> +---
+>>> +$id: http://devicetree.org/schemas/phy/mediatek,xfi-tphy.yaml#
+>>
+>> Please use compatible as filename. Your binding says only one is
+>> possible (const, not enum), so there is no reasoning for different
+>> filename.
+>>
+>>> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+>>> +
+>>> +title: MediaTek XFI T-PHY
+>>> +
+>>> +maintainers:
+>>> +  - Daniel Golle <daniel@makrotopia.org>
+>>> +
+>>> +description:
+>>> +  The MediaTek XFI SerDes T-PHY provides the physical SerDes lanes
+>>> +  used by the (10G/5G) USXGMII PCS and (1G/2.5G) LynxI PCS found
+>> in
+>>> +  MediaTek's 10G-capabale SoCs.
+>>> +
+>>> +properties:
+>>> +  $nodename:
+>>> +    pattern: "^phy@[0-9a-f]+$"
+>>
+>> No need for nodename in individual bindings file.
+>>
+>>> +
+>>> +  compatible:
+>>> +    const: mediatek,mt7988-xfi-tphy
+> Add a generic compatible "mediatek,xfi-tphy"?
 > 
-> Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-> Signed-off-by: Tengfei Fan <quic_tengfan@quicinc.com>
+> Other socs also use this phy but not upstream.
 
-NAK.
+Are they here? No... They will use this one as fallback. Stop insisting
+on some generic fallbacks just because you do not like using other SoCs
+as fallbacks.
 
-Drop my tag.
+You ignored other comments, so I understand you agree with them 100%.
 
 Best regards,
 Krzysztof
