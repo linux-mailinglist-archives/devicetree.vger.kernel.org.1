@@ -1,138 +1,167 @@
-Return-Path: <devicetree+bounces-38643-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-38644-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9BC77849D71
-	for <lists+devicetree@lfdr.de>; Mon,  5 Feb 2024 15:55:47 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 22AA0849D9D
+	for <lists+devicetree@lfdr.de>; Mon,  5 Feb 2024 16:01:08 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 2DC57B21707
-	for <lists+devicetree@lfdr.de>; Mon,  5 Feb 2024 14:55:45 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 8BBA91F24AE7
+	for <lists+devicetree@lfdr.de>; Mon,  5 Feb 2024 15:01:07 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5C34B2C684;
-	Mon,  5 Feb 2024 14:55:39 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8CE2A2C1B6;
+	Mon,  5 Feb 2024 15:00:24 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="ijtDirDU"
+	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="Lf3Rbl7P"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-qv1-f42.google.com (mail-qv1-f42.google.com [209.85.219.42])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from relay3-d.mail.gandi.net (relay3-d.mail.gandi.net [217.70.183.195])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F2CD52C1A9
-	for <devicetree@vger.kernel.org>; Mon,  5 Feb 2024 14:55:36 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.219.42
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 714E32C69F;
+	Mon,  5 Feb 2024 15:00:22 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.70.183.195
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1707144939; cv=none; b=sBcJEqq2WjZ7GJDk1b3R7CvOULoWcV5Xk4wHA73kYvszvRmvZJljydz3LtGGAT386Oirf98ofxRZ4O6ADEF0vAQAiFPIUaMKOA5HQlBnkC/r8Yb07KW54YiBkdsr3EZTIx9xsIRoT98a56zkdrrsPYZA1yP3mxz5oA97NT9AiF0=
+	t=1707145224; cv=none; b=QhbOyXFwfaA0baIMrZ/P8qUrtCRvyGaHSvEItqTNh2PnlMAPn6lpR+Dzs8XPRRUNRz1nuNQD11tkKTovBwntxW+kgl1BdyFUjMcm5eAswdAtne/R7WrYOpLTc1yBLnVBJZRsws7vloCM/JRLMZRJ01Y1qFygpbqxqRZ8xsr6sVI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1707144939; c=relaxed/simple;
-	bh=prtwngRjSPswBsLKpAV13nwxdPeqSc9QYwUzmebLdkY=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=nYPgZEBnYdv0JXQnNBL2z7QKUaVEYNSQwFerPe1B3z+9CMuc8yjmz8NGiTjHs2mZnsZgJNgewtS1ag3iyUBSpEZOSY6QJzYFJZo5HZY6QjAATFKom+g0ky+nbY0akdHGizOchCf6gDbeNdYT9eZ7fSIfY7ExNAM1NYQHiO/tOZw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=ijtDirDU; arc=none smtp.client-ip=209.85.219.42
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-qv1-f42.google.com with SMTP id 6a1803df08f44-68c8d3c445fso9259556d6.1
-        for <devicetree@vger.kernel.org>; Mon, 05 Feb 2024 06:55:36 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1707144936; x=1707749736; darn=vger.kernel.org;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=CV8zCL+Bkb52zUIjr4j2G2uqbzJyX+oUu0mInR3Ynbs=;
-        b=ijtDirDUfgy9jKEZXCEtluOntzfHq1Fii6PLOAcwoxSe+c/+O2NF6JCoJYX+6DzY/m
-         lpxeFnnmgvNkjhYlGIWSLpasaOC73ThyklLpbdjruW3f6WuMsXD0BVw2BBfMoS4a1JQ+
-         oY5PO1n/Voqwm0NUoLk9u2rxreUGDxtIlxQ+TtzI6bzqC+/Qy9NuwUsLGYw44fDs/gPT
-         ypf5cmV7d0buEHB6ZHKNoq7P8vTH3YUexwyUeR6WjG4moT2D0kGksW48K3yjYfnlKZrV
-         H0QBTi6b/UaRV5EdIi0d7Z5GcS04CGisUWMyIMuPAXKaL5hGdZNnoZ2K/rxr8+CXHisY
-         OHwg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1707144936; x=1707749736;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=CV8zCL+Bkb52zUIjr4j2G2uqbzJyX+oUu0mInR3Ynbs=;
-        b=OvNOHlWkPMZ6eOOOegbnjT+3T0LOXtqIf4aU+x8V5czg7jmSIMP3qh74jq/Z36Cn1X
-         A0xIJJt5XsN/S83MCFQ+dG9Dn6IGCx6Z4/Q5sNLrwD78bHotLcPHhL+9MzTYKcsmUKDB
-         rRsk9opgWY0lhxiiG8K+DDWYjZImcq6wZedOHM8H/VyaNZ5r1K2sS5Yh/HdX798U35+F
-         CttuEw9cbfkO8O6UpPYZg1ktMhMDCwT8yEPMTripTpqc8TCNkrX6xG0zhRlfv97SPMoL
-         uNGxLRG0u6lrY7Pgzs/oH6sY6MMMzmmY1ddb6FPqh9DQXer9swk+xYwpAii12JSUwHYD
-         TuRA==
-X-Gm-Message-State: AOJu0YxLMeVOp7Vf0QXEoembWy+inPYmG4ld0aiYjZ6yPjr/1bLZa5nk
-	/IZfb5vUeO90qwWTcyS2o/Npi/7GSm7Nnh/64qo5PZUCwnmMLd5uOgqQOQCBCkipZyqBvvcHGOd
-	28R7eDECO007IwbCsZPvWiF9nVKTz6S5Tf44GYQ==
-X-Google-Smtp-Source: AGHT+IEGp95NgA3KvvkrXtsGjbN9gYfgN+bbfNs43Bva/sB71VU1nC4hj1ROtBypVVcdI/bxwL8OmPrLT5ov+2vR+ac=
-X-Received: by 2002:a05:6214:daf:b0:685:6715:9693 with SMTP id
- h15-20020a0562140daf00b0068567159693mr8173405qvh.8.1707144935887; Mon, 05 Feb
- 2024 06:55:35 -0800 (PST)
+	s=arc-20240116; t=1707145224; c=relaxed/simple;
+	bh=ve1L7CJmm2ZDVFsiashWwCWlGeakd6/4ipF1GmNi4hg=;
+	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=VxXr1vYX9zLf2os1JLl4e1LVHyys4VkNOr9BL6UuecrgSlCMnHCwsjZMCQj0ndrL6R7Zo4KXVsCZB+yfcCqiG9Cc+rVLJPCYk8u7Ki9yZb1UNaM0tY00gHvjlXLYsgogfFznbeTt6aluz2JDF/VqjIqmkxVmN0BjJzqllZxNL5w=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=Lf3Rbl7P; arc=none smtp.client-ip=217.70.183.195
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
+Received: by mail.gandi.net (Postfix) with ESMTPSA id 678FA60017;
+	Mon,  5 Feb 2024 15:00:12 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
+	t=1707145218;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references;
+	bh=1WPodUhe/h+mqC6ZYnqckKI3xdNBGby9JuWEoJjCPXA=;
+	b=Lf3Rbl7PyJ+xoxB5TMoTgADhXfAF+j3HyBn3Fd54N2T0hcnu2H+XNimSgEoJ28iOJNa52i
+	BP8f8r3mm8ivXD5O95q2aUQ9MddM6hq/7yNLrGENLJoZrAcqFAKAES98soOM5Sp8k1VvrD
+	XccJAMcJ7NF+HtHUfXTjbCrwiquhg+AuVDYOxhSeImQzbUu6wxERIW+YrevxKh8hCjWPdM
+	HxFJ2dI4G7z1LjLd/f6IveA0Cv0WMEAstuJsFR4TXWVbYjh1vP0bAimJdX5Y3n7+lriAjN
+	VxlcFjpralO/VadvUCI2Sv9VnSm+op07LZyouk71uEbrA6jGV/MEIiw+0p5yUQ==
+Date: Mon, 5 Feb 2024 16:00:11 +0100
+From: Miquel Raynal <miquel.raynal@bootlin.com>
+To: Michael Pratt <mcpratt@pm.me>
+Cc: devicetree@vger.kernel.org, gregkh@linuxfoundation.org,
+ linux-kernel@vger.kernel.org, linux-mtd@lists.infradead.org,
+ saravanak@google.com, abel.vesa@linaro.org,
+ alexander.stein@ew.tq-group.com, andriy.shevchenko@linux.intel.com,
+ bigunclemax@gmail.com, brgl@bgdev.pl, colin.foster@in-advantage.com,
+ djrscally@gmail.com, dmitry.baryshkov@linaro.org, festevam@gmail.com,
+ fido_max@inbox.ru, frowand.list@gmail.com, geert@linux-m68k.org,
+ heikki.krogerus@linux.intel.com, kernel@pengutronix.de,
+ linus.walleij@linaro.org, linux@roeck-us.net, luca.weiss@fairphone.com,
+ magnus.damm@gmail.com, martin.kepplinger@puri.sm, rafal@milecki.pl,
+ ansuelsmth@gmail.com, richard@nod.at, sakari.ailus@linux.intel.com,
+ sudeep.holla@arm.com, tglx@linutronix.de, tony@atomide.com,
+ vigneshr@ti.com, dianders@chromium.org, jpb@kernel.org, rafael@kernel.org
+Subject: Re: [PATCH v1 2/4] driver core: fw_devlink: Link to supplier
+ ancestor if no device
+Message-ID: <20240205160011.42d1cf80@xps-13>
+In-Reply-To: <20240123014517.5787-3-mcpratt@pm.me>
+References: <20240123014517.5787-1-mcpratt@pm.me>
+ <20240123014517.5787-3-mcpratt@pm.me>
+Organization: Bootlin
+X-Mailer: Claws Mail 4.0.0 (GTK+ 3.24.33; x86_64-pc-linux-gnu)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20240201172224.574238-1-alexey.klimov@linaro.org> <20240201172224.574238-3-alexey.klimov@linaro.org>
-In-Reply-To: <20240201172224.574238-3-alexey.klimov@linaro.org>
-From: Peter Griffin <peter.griffin@linaro.org>
-Date: Mon, 5 Feb 2024 14:55:24 +0000
-Message-ID: <CADrjBPrEL-4DqMX-MnzTO7f3=gWnwrWrDSuXCOt0ugkhDUNV=g@mail.gmail.com>
-Subject: Re: [PATCH 3/4] soc: samsung: exynos-chipid: add Google Tensor gs101
- SoC support
-To: Alexey Klimov <alexey.klimov@linaro.org>
-Cc: krzysztof.kozlowski@linaro.org, alim.akhtar@samsung.com, 
-	linux-samsung-soc@vger.kernel.org, semen.protsenko@linaro.org, 
-	robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org, 
-	devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
-	linux-kernel@vger.kernel.org, klimov.linux@gmail.com, kernel-team@android.com, 
-	tudor.ambarus@linaro.org, andre.draszik@linaro.org, saravanak@google.com, 
-	willmcvicker@google.com, arnd@arndb.de
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+X-GND-Sasl: miquel.raynal@bootlin.com
 
-On Thu, 1 Feb 2024 at 17:22, Alexey Klimov <alexey.klimov@linaro.org> wrote:
->
-> Add GS101 information to soc_ids table and related entries to other
-> places. This SoC product id is "0x09845000".
->
-> Signed-off-by: Alexey Klimov <alexey.klimov@linaro.org>
-> ---
+Hi Michael,
 
-Reviewed-by: Peter Griffin <peter.griffin@linaro.org>
+First, I want to say, this is a great job as fw_devlinks in mtd and
+nvmem are really not easy to handle. I am willing to help, despite my
+very light understanding of what the core actually does with these
+flags.
 
+mcpratt@pm.me wrote on Tue, 23 Jan 2024 01:46:40 +0000:
 
+> Driver core currently supports linking to the next parent fwnode,
+> but is not yet handling cases where that parent
+> is also a firmware child node not representing a real device,
+> which can lead to an indefinite deferred probe in some cases.
+> In this case, the fwnode that should actually be linked to
+> is multiple ancestors up which presents a challenge where
+> it is unknown how many ancestors up the node that
+> represents the real probing device is. This makes the usage of
+> fwnode_get_next_parent_dev() insufficient because the real device's
+> fwnode may or may not be an ancestor of the next parent fwnode as well.
+>=20
+> Introduce flag FWNODE_FLAG_PARENT_IS_DEV
+> in order to mark child firmware nodes of a device
+> as having a parent device that can probe.
+>=20
+> Allow fwnode link creation to the original supplier fwnode's ancestors
+> when the original supplier fwnode and any fwnodes in between are flagged
+> as FWNODE_FLAG_NOT_DEVICE and/or FWNODE_FLAG_PARENT_IS_DEV
+> with a new function __fwnode_link_add_parents() which then creates
+> the fwnode link to a real device that provides the supplier's function.
+>=20
+> This depends on other functions to label a supplier fwnode
+> as not a real device, which must be done before the fwnode links
+> are created, and if after that, relevant links to the supplier
+> would have to be deleted and have links recreated, otherwise,
+> the fwnode link would be dropped before the device link is attempted
+> or a fwnode link would not be able to become a device link at all,
+> because they were created before these fwnode flags can have any effect.
+>=20
+> It also depends on the supplier device to actually probe first
+> in order to have the fwnode flags in place to know for certain
+> which fwnodes are non-probing child nodes
+> of the fwnode for the supplier device.
+>=20
+> The use case of function __fw_devlink_pickup_dangling_consumers()
+> is designed so that the parameters are always a supplier fwnode
+> and one of it's parent fwnodes, so it is safer to assume and more specific
+> that the flag PARENT_IS_DEV should be added there, rather than
+> declaring the original supplier fwnode as NOT_DEVICE at that point.
+> Because this function is called when the real supplier device probes
+> and recursively calls itself for all child nodes of the device's fwnode,
+> set the new flag here in order to let it propagate down
+> to all descendant nodes, thereby providing the info needed later
+> in order to link to the proper fwnode representing the supplier device.
+>=20
+> If a fwnode is flagged as FWNODE_FLAG_NOT_DEVICE
+> by the time a device link is to be made with it,
+> but not flagged as FWNODE_FLAG_PARENT_IS_DEV,
+> the link is dropped, otherwise the device link
+> is still made with the original supplier fwnode.
+> Theoretically, we can also handle linking to an ancestor
+> of the supplier fwnode when forming device links, but there
+> are still cases where the necessary fwnode flags are still missing
+> because the real supplier device did not probe yet.
 
->  drivers/soc/samsung/exynos-chipid.c | 11 +++++++++++
->  1 file changed, 11 insertions(+)
->
-> diff --git a/drivers/soc/samsung/exynos-chipid.c b/drivers/soc/samsung/exynos-chipid.c
-> index b1118d37779e..7fee6094db12 100644
-> --- a/drivers/soc/samsung/exynos-chipid.c
-> +++ b/drivers/soc/samsung/exynos-chipid.c
-> @@ -60,6 +60,8 @@ static const struct exynos_soc_id {
->         { "EXYNOS850", 0xE3830000 },
->         { "EXYNOSAUTOV9", 0xAAA80000 },
->         { "EXYNOSAUTOV920", 0x0A920000 },
-> +       /* Compatible with: google,gs101-chipid */
-> +       { "GS101", 0x09845000 },
->  };
->
->  static const char *product_id_to_soc_id(unsigned int product_id)
-> @@ -178,8 +180,17 @@ static const struct exynos_chipid_variant exynos850_chipid_drv_data = {
->         .sub_rev_shift  = 16,
->  };
->
-> +static const struct exynos_chipid_variant gs101_chipid_drv_data = {
-> +       .rev_reg        = 0x10,
-> +       .main_rev_shift = 0,
-> +       .sub_rev_shift  = 16,
-> +};
-> +
->  static const struct of_device_id exynos_chipid_of_device_ids[] = {
->         {
-> +               .compatible     = "google,gs101-chipid",
-> +               .data           = &gs101_chipid_drv_data,
-> +       }, {
->                 .compatible     = "samsung,exynos4210-chipid",
->                 .data           = &exynos4210_chipid_drv_data,
->         }, {
-> --
-> 2.43.0
->
+I am not sure I follow this. In the following case, I would expect any
+dependency towards node-c to be made against node-a. But the above
+paragraph seems to tell otherwise: that the the link would be dropped
+(and thus, not enforced) because recursively searching for a parent
+that would be a device could be endless? It feels wrong, so I probably
+mis
+
+node-a {
+	# IS DEV
+	node-b {
+		# PARENT IS DEV
+		node-c {
+			# PARENT IS DEV
+		};
+	};
+};
+
+Besides that, the commit feels like a good idea.
+
+Thanks,
+Miqu=C3=A8l
 
