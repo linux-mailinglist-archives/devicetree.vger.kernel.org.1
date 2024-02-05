@@ -1,115 +1,118 @@
-Return-Path: <devicetree+bounces-38677-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-38679-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 92E0B849E8A
-	for <lists+devicetree@lfdr.de>; Mon,  5 Feb 2024 16:38:42 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 50649849EA7
+	for <lists+devicetree@lfdr.de>; Mon,  5 Feb 2024 16:44:46 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 2F5771F21514
-	for <lists+devicetree@lfdr.de>; Mon,  5 Feb 2024 15:38:42 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id F19DC1F22743
+	for <lists+devicetree@lfdr.de>; Mon,  5 Feb 2024 15:44:45 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E4A4F482DF;
-	Mon,  5 Feb 2024 15:35:22 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 744AE2D627;
+	Mon,  5 Feb 2024 15:44:40 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="OGseCoHX"
+	dkim=pass (1024-bit key) header.d=lucaweiss.eu header.i=@lucaweiss.eu header.b="i52nyp2o"
 X-Original-To: devicetree@vger.kernel.org
-Received: from relay1-d.mail.gandi.net (relay1-d.mail.gandi.net [217.70.183.193])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from ahti.lucaweiss.eu (ahti.lucaweiss.eu [128.199.32.197])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4C1224776A;
-	Mon,  5 Feb 2024 15:35:19 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.70.183.193
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C92292D604;
+	Mon,  5 Feb 2024 15:44:37 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=128.199.32.197
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1707147322; cv=none; b=b/51aLa/UF5EHNtBtZ8ZG7gOyDVWSe/nWW3iWCHgW7ccQi4hXQdSyGYY0Pn5OFuIhHlDQNSInjligKFwbyoBOlrbALrXbXNunCRgWjEVCeO3GhhLDER5ElJVVl8Yzgoj/BaRpgsH+wNkoR5jZ8crJdWOVrcbnbnV52khHDHgCGw=
+	t=1707147880; cv=none; b=uINoCPMXGwybeEe6lpjWH+lEOJ5qn7TmMx4OSZa8rdfiWRFeCHZSJ4BUL47RhJUr8Z+cDvXGJ3weozmmM5SvwVWSV0yBdh3nH5ErsG33QvztZ9ZwOFl3S4Rcr0cStP9GZu/M5ioRSYQBuJYjTg40aet2/S3VGvNvDlkIYOrq4Dc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1707147322; c=relaxed/simple;
-	bh=ykTFCWhmo1CcFg+mieS6pNHkMkwN4QV8FPxwm0fymFY=;
+	s=arc-20240116; t=1707147880; c=relaxed/simple;
+	bh=GRlnTe6Fw96ydt22/PNfp8vrwOitENJTGLEASD5fWMY=;
 	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=my+0rfMCOmUBH8ExKVV/pp6xR+zsVuAoKV11dtJ4ioAthsJVX8KrIQjyX6AFveBG8dmT/mxHiakDN15etUCxxLZTmk5HcDToq5t8D98LVei+dWyEoDKzRwo6R9K3ITU1Zl0glY5GHZmpTBjA/GuXYUCQurgeMbmjkgevmNhTWVk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=OGseCoHX; arc=none smtp.client-ip=217.70.183.193
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
-Received: by mail.gandi.net (Postfix) with ESMTPSA id 3F7E324000A;
-	Mon,  5 Feb 2024 15:35:18 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
-	t=1707147318;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=+yETsBPXWcWY3g53aJQJ3Y4mu+dfHGI3TLEovxztjpk=;
-	b=OGseCoHXU7uAnYuj4c/bj3Biua+cEz5wOWQ7XibIBreFCCcA5YUUVTrHgbZaX09uN6A5NR
-	gf4lfkrilalFQ3vhH1UkrS6bb3j7NshwjnHmVrv2y99UKiEW0kNWQhGy7upfzAoBHm6Rj/
-	AFSxagdD47EM/lPeWsDMkPD0r2yGHNXnPcdDbVibZvPHixEcjL2VCJZqTatKFPcriK0voj
-	I0i3kvfPtTLKWfeggARX57S2MuDMlCF76wSbk4f4NvZyIdPnvJSWQVahUji5/iLkqX9DsR
-	17AgnDsPOG2lU/aicPvFYKBJ2nBbBlJD7SNB+hSPssrQ21LMEiAlUDYqIhyHuw==
-From: Gregory CLEMENT <gregory.clement@bootlin.com>
-To: Paul Burton <paulburton@kernel.org>,
-	Thomas Bogendoerfer <tsbogend@alpha.franken.de>,
-	linux-mips@vger.kernel.org,
-	Jiaxun Yang <jiaxun.yang@flygoat.com>,
-	Rob Herring <robh+dt@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org
-Cc: Vladimir  Kondratiev <vladimir.kondratiev@mobileye.com>,
-	Tawfik Bayouk <tawfik.bayouk@mobileye.com>,
-	Alexandre Belloni <alexandre.belloni@bootlin.com>,
-	=?UTF-8?q?Th=C3=A9o=20Lebrun?= <theo.lebrun@bootlin.com>,
-	Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
-	Gregory CLEMENT <gregory.clement@bootlin.com>
-Subject: [PATCH v7 14/14] MAINTAINERS: Add entry for Mobileye MIPS SoCs
-Date: Mon,  5 Feb 2024 16:35:00 +0100
-Message-ID: <20240205153503.574468-15-gregory.clement@bootlin.com>
-X-Mailer: git-send-email 2.43.0
-In-Reply-To: <20240205153503.574468-1-gregory.clement@bootlin.com>
-References: <20240205153503.574468-1-gregory.clement@bootlin.com>
+	 MIME-Version:Content-Type; b=aCQEDPSBdV2RtGvXnO2INjoIWw6a0YWwMqBTt36FTKQu7+y/ORoP6SnV4tkqDeC3PbyYyj+zyTsw9Na5VjJ+Ha+YLsh80v1Hodi5i5MQAEcssAB4J1O6na1Tx3WiYCgJm1GH6LfLyu1OTrMTHUJrnQtyvB5WFwy2hFmknLSoys4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=lucaweiss.eu; spf=pass smtp.mailfrom=lucaweiss.eu; dkim=pass (1024-bit key) header.d=lucaweiss.eu header.i=@lucaweiss.eu header.b=i52nyp2o; arc=none smtp.client-ip=128.199.32.197
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=lucaweiss.eu
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=lucaweiss.eu
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=lucaweiss.eu; s=s1;
+	t=1707147869; bh=GRlnTe6Fw96ydt22/PNfp8vrwOitENJTGLEASD5fWMY=;
+	h=From:To:Cc:Subject:Date:In-Reply-To:References;
+	b=i52nyp2oPqNPHVd7Sh8KAgr+lK0MfGtOi7XIReN3aGrRXSJL1k95E7v2s3qKUTM1K
+	 OP0TqvgV9BR0Zm2nbq+M1xfuCOkNraeOViH9HUBygsPl1vwqH9fISB06ACTeYMuvo/
+	 uqhklh+5kgS3HHIBtMBpjKaTSf99cTykd/37p7yU=
+From: Luca Weiss <luca@lucaweiss.eu>
+To: Luca Weiss <luca.weiss@fairphone.com>,
+ ~postmarketos/upstreaming@lists.sr.ht
+Cc: Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+ linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ linux-arm-msm@vger.kernel.org, Conor Dooley <conor+dt@kernel.org>,
+ phone-devel@vger.kernel.org, Lee Jones <lee@kernel.org>,
+ Konrad Dybcio <konrad.dybcio@linaro.org>,
+ Bjorn Andersson <andersson@kernel.org>, Will Deacon <will@kernel.org>,
+ ~postmarketos/upstreaming@lists.sr.ht, Stephen Boyd <sboyd@kernel.org>,
+ devicetree@vger.kernel.org, Catalin Marinas <catalin.marinas@arm.com>,
+ Rob Herring <robh@kernel.org>
+Subject:
+ Re: [PATCH 1/3] dt-bindings: mfd: qcom,spmi-pmic: Add pbs to SPMI device
+ types
+Date: Mon, 05 Feb 2024 16:44:27 +0100
+Message-ID: <5017384.GXAFRqVoOG@z3ntu.xyz>
+In-Reply-To: <170714066275.3239944.3114776132620071326.robh@kernel.org>
+References:
+ <20240205-pmi632-ppg-v1-0-e236c95a2099@fairphone.com>
+ <20240205-pmi632-ppg-v1-1-e236c95a2099@fairphone.com>
+ <170714066275.3239944.3114776132620071326.robh@kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
-X-GND-Sasl: gregory.clement@bootlin.com
+Content-Transfer-Encoding: 7Bit
+Content-Type: text/plain; charset="us-ascii"
 
-Add Vlad, Théo and myself as co-maintainers for the Mobileye MIPS
-SoCs.
+On Montag, 5. Februar 2024 14:46:45 CET Rob Herring wrote:
+> On Mon, 05 Feb 2024 10:51:38 +0100, Luca Weiss wrote:
+> > Add the PBS (Programmable Boot Sequencer) to the list of devices.
+> > 
+> > Signed-off-by: Luca Weiss <luca.weiss@fairphone.com>
+> > ---
+> > 
+> >  Documentation/devicetree/bindings/mfd/qcom,spmi-pmic.yaml | 4 ++++
+> >  1 file changed, 4 insertions(+)
+> 
+> My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
+> on your patch (DT_CHECKER_FLAGS is new in v5.13):
+> 
+> yamllint warnings/errors:
+> 
+> dtschema/dtc warnings/errors:
+> /builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/mfd/
+> qcom,spmi-pmic.yaml: Error in referenced schema matching $id:
+> http://devicetree.org/schemas/soc/qcom/qcom,pbs.yaml
 
-Signed-off-by: Vladimir Kondratiev <vladimir.kondratiev@mobileye.com>
-Signed-off-by: Théo Lebrun <theo.lebrun@bootlin.com>
-Signed-off-by: Gregory CLEMENT <gregory.clement@bootlin.com>
----
- MAINTAINERS | 12 ++++++++++++
- 1 file changed, 12 insertions(+)
+These patches have been merged into linux-next recently, so should get into 
+the next release.
 
-diff --git a/MAINTAINERS b/MAINTAINERS
-index b3444c8c6512e..b18f328ee8ee7 100644
---- a/MAINTAINERS
-+++ b/MAINTAINERS
-@@ -14546,6 +14546,18 @@ W:	https://linuxtv.org
- Q:	http://patchwork.linuxtv.org/project/linux-media/list/
- F:	drivers/media/dvb-frontends/mn88473*
- 
-+MOBILEYE MIPS SOCS
-+M:	Vladimir Kondratiev <vladimir.kondratiev@mobileye.com>
-+M:	Gregory CLEMENT <gregory.clement@bootlin.com>
-+M:	Théo Lebrun <theo.lebrun@bootlin.com>
-+L:	linux-mips@vger.kernel.org
-+S:	Maintained
-+F:	Documentation/devicetree/bindings/mips/mobileye.yaml
-+F:	arch/mips/boot/dts/mobileye/
-+F:	arch/mips/configs/eyeq5_defconfig
-+F:	arch/mips/mobileye/board-epm5.its.S
-+F:	include/dt-bindings/soc/mobileye,eyeq5.h
-+
- MODULE SUPPORT
- M:	Luis Chamberlain <mcgrof@kernel.org>
- L:	linux-modules@vger.kernel.org
--- 
-2.43.0
+> 
+> doc reference errors (make refcheckdocs):
+> 
+> See
+> https://patchwork.ozlabs.org/project/devicetree-bindings/patch/20240205-pmi
+> 632-ppg-v1-1-e236c95a2099@fairphone.com
+> 
+> The base for the series is generally the latest rc1. A different dependency
+> should be noted in *this* patch.
+> 
+> If you already ran 'make dt_binding_check' and didn't see the above
+> error(s), then make sure 'yamllint' is installed and dt-schema is up to
+> date:
+> 
+> pip3 install dtschema --upgrade
+> 
+> Please check and re-submit after running the above command yourself. Note
+> that DT_SCHEMA_FILES can be set to your schema file to speed up checking
+> your schema. However, it must be unset to test all examples with your
+> schema.
+
+
+
 
 
