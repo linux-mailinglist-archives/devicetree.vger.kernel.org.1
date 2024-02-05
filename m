@@ -1,173 +1,202 @@
-Return-Path: <devicetree+bounces-38516-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-38556-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 38EDC8495C3
-	for <lists+devicetree@lfdr.de>; Mon,  5 Feb 2024 10:01:29 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 988448497D1
+	for <lists+devicetree@lfdr.de>; Mon,  5 Feb 2024 11:32:07 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 5CC641C20AC4
-	for <lists+devicetree@lfdr.de>; Mon,  5 Feb 2024 09:01:28 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id BCE4F1C22D32
+	for <lists+devicetree@lfdr.de>; Mon,  5 Feb 2024 10:32:06 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6EB0E11C84;
-	Mon,  5 Feb 2024 09:01:14 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A91B2175A5;
+	Mon,  5 Feb 2024 10:31:51 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="FdKnnOnG"
+	dkim=pass (1024-bit key) header.d=samsung.com header.i=@samsung.com header.b="qfPdkHZZ"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.55.52.88])
+Received: from mailout1.samsung.com (mailout1.samsung.com [203.254.224.24])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E1B9D125BC;
-	Mon,  5 Feb 2024 09:01:11 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=192.55.52.88
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9CF5117586
+	for <devicetree@vger.kernel.org>; Mon,  5 Feb 2024 10:31:49 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=203.254.224.24
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1707123674; cv=none; b=EwbM/oX0G691LsOpVQ3oDA0AqP1hVpbzPmkzNvTlXiHkSBdVyMPDrYSKM5Yn/ULl7jHVwC/bkBsJZUsC2JNHP6TO5fOp8Q8P1k9t3ZvJ7TU02WiBEVvv5f0/GrxCAjTRfx8GKDEvoOdtx7jRsTHo72Dv5EryOK1LPFrIu9RhU/8=
+	t=1707129111; cv=none; b=Fn6DNR2Ztynq3bHHd1ziwzvVdAkxXPMqX3Z94HO17+p+8qXc9A2+CmnseDVkdjfXprpLA5Ji7dVchLzAj/qSM150YYp9hpZsB+ZlqxjgtcQYncCx+HDn2+S0c6LS6UasxVjWyIDB8hLLtUKpOs6rDRzxF/t/Z4K8ARIHI+zXiHc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1707123674; c=relaxed/simple;
-	bh=MtCVmkyd73igsHfqhm9GVwH5JT8L8I7oiOceUhAzTic=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=s6NfbmA0+ZRwO8Qma/ijtP0UFKqsrmFGw1wBVbV1fjPt23VmwwZRr92qHwiImtTcgZDbLMXKXl7qXsyQpqgUlKET3b7RCiD1+Wl43tEK1dDItMLw7hhczekq9ZXxOTNKRaXutz4y831fWhZh4zv4HILkK97cBuL51SPX85iB3qw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com; spf=none smtp.mailfrom=linux.intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=FdKnnOnG; arc=none smtp.client-ip=192.55.52.88
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com
-Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=linux.intel.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1707123672; x=1738659672;
-  h=message-id:date:mime-version:subject:to:cc:references:
-   from:in-reply-to:content-transfer-encoding;
-  bh=MtCVmkyd73igsHfqhm9GVwH5JT8L8I7oiOceUhAzTic=;
-  b=FdKnnOnGi7I6RLoz9/EUW4nBr2skpAaowep/Wh5vu1v1KVslKXs9vuZy
-   8pGLCL5+bRcIt35a9JJ3ccHMB8qxfxIw3V42e8TyLD5dkTvwGEj1vs33b
-   WHAcfXqznxiZAzZU2cyJ2AkDu5pjNgsIwTdmU//X6Xe2av3hAaruFu1E3
-   x/AvHp6aYzr1Isaz8/Egl/SVyo9+UjiOdW2BBigMFGrzcLqRLvBd/e44t
-   fNRxWbIqlhcVMr2Wv/phUQ7/xdMJftcG6z0MLBM+tP2AGT/h64C22HZoo
-   eXMUFnOcx9xLO3y7t354Z8i0bCv1j/jdww0zl2sW8omTWQyXbxo+b5H20
-   A==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10974"; a="435614850"
-X-IronPort-AV: E=Sophos;i="6.05,242,1701158400"; 
-   d="scan'208";a="435614850"
-Received: from fmsmga001.fm.intel.com ([10.253.24.23])
-  by fmsmga101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 05 Feb 2024 01:01:10 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10974"; a="933099575"
-X-IronPort-AV: E=Sophos;i="6.05,242,1701158400"; 
-   d="scan'208";a="933099575"
-Received: from aslawinx-mobl.ger.corp.intel.com (HELO [10.94.8.107]) ([10.94.8.107])
-  by fmsmga001-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 05 Feb 2024 01:01:05 -0800
-Message-ID: <aaa76d7a-4299-4e1c-83f1-cbbea763927f@linux.intel.com>
-Date: Mon, 5 Feb 2024 10:01:03 +0100
+	s=arc-20240116; t=1707129111; c=relaxed/simple;
+	bh=MS0o4bB4CsYHBqFsqplsg3dmAMiwQPtwGQfxK1b7HeY=;
+	h=From:To:Cc:In-Reply-To:Subject:Date:Message-ID:MIME-Version:
+	 Content-Type:References; b=MQktPcBwWYDQboWPP8hU4Ha6U+lJRM3lKvNaaHtkDzAW/IvCzdxhu17uGMeBPu6akE5OWGrQwD4L0YIL5Oyp8jxe+l/62UghC6+thNxXJI6QtRvrKjEfIgjqxbYg/acsqCzfjJWjYijPvBuTXPc6MG8Lj8jSslHyAtNteEonXMM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=samsung.com; spf=pass smtp.mailfrom=samsung.com; dkim=pass (1024-bit key) header.d=samsung.com header.i=@samsung.com header.b=qfPdkHZZ; arc=none smtp.client-ip=203.254.224.24
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=samsung.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=samsung.com
+Received: from epcas5p1.samsung.com (unknown [182.195.41.39])
+	by mailout1.samsung.com (KnoxPortal) with ESMTP id 20240205103142epoutp01c58b7de5fb680212b266030a7d30df96~w8N_xCPu60950909509epoutp011
+	for <devicetree@vger.kernel.org>; Mon,  5 Feb 2024 10:31:42 +0000 (GMT)
+DKIM-Filter: OpenDKIM Filter v2.11.0 mailout1.samsung.com 20240205103142epoutp01c58b7de5fb680212b266030a7d30df96~w8N_xCPu60950909509epoutp011
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=samsung.com;
+	s=mail20170921; t=1707129102;
+	bh=ThRoMmfiYoM24Fp+fJLEawYDXh7ivnt6G8khMvmeQkE=;
+	h=From:To:Cc:In-Reply-To:Subject:Date:References:From;
+	b=qfPdkHZZAGaBlcXYXEaWyds4jR58anlODDrN1TWTmeWbLEJMPaCkSQeEaM6eEic1I
+	 lNrEgkQo7jMqHNw9cO3mopzI5u91Y/xxywmKqDl7sX1R4X04Rxkyh+F+B+ZicrPBLO
+	 ckisJeiNEX7P66sbkAj/X1ovhLEAugj3gykKcMj0=
+Received: from epsnrtp3.localdomain (unknown [182.195.42.164]) by
+	epcas5p2.samsung.com (KnoxPortal) with ESMTP id
+	20240205103141epcas5p2c3365024bcd0597248233122ead0a40a~w8N_RuH-R2557825578epcas5p2W;
+	Mon,  5 Feb 2024 10:31:41 +0000 (GMT)
+Received: from epsmgec5p1-new.samsung.com (unknown [182.195.38.180]) by
+	epsnrtp3.localdomain (Postfix) with ESMTP id 4TT2jm0NHpz4x9Pr; Mon,  5 Feb
+	2024 10:31:40 +0000 (GMT)
+Received: from epcas5p2.samsung.com ( [182.195.41.40]) by
+	epsmgec5p1-new.samsung.com (Symantec Messaging Gateway) with SMTP id
+	86.08.19369.B09B0C56; Mon,  5 Feb 2024 19:31:39 +0900 (KST)
+Received: from epsmtrp2.samsung.com (unknown [182.195.40.14]) by
+	epcas5p2.samsung.com (KnoxPortal) with ESMTPA id
+	20240205081157epcas5p21f5ba2b907d8b3875234886be6290bda~w6T95omHX0475404754epcas5p2_;
+	Mon,  5 Feb 2024 08:11:57 +0000 (GMT)
+Received: from epsmgms1p2new.samsung.com (unknown [182.195.42.42]) by
+	epsmtrp2.samsung.com (KnoxPortal) with ESMTP id
+	20240205081157epsmtrp2628a371872ef3ef1c741990e70fbbcaf~w6T94xzex1746517465epsmtrp2w;
+	Mon,  5 Feb 2024 08:11:57 +0000 (GMT)
+X-AuditID: b6c32a50-c99ff70000004ba9-d2-65c0b90b3b90
+Received: from epsmtip2.samsung.com ( [182.195.34.31]) by
+	epsmgms1p2new.samsung.com (Symantec Messaging Gateway) with SMTP id
+	DA.C4.08817.D4890C56; Mon,  5 Feb 2024 17:11:57 +0900 (KST)
+Received: from FDSFTE048 (unknown [107.116.189.46]) by epsmtip2.samsung.com
+	(KnoxPortal) with ESMTPA id
+	20240205081155epsmtip2260adc9144a0bf0f6939162c39d8c638~w6T8D59AY2177221772epsmtip2Q;
+	Mon,  5 Feb 2024 08:11:55 +0000 (GMT)
+From: "Tamseel Shams" <m.shams@samsung.com>
+To: "'Krzysztof Kozlowski'" <krzysztof.kozlowski@linaro.org>,
+	<alim.akhtar@samsung.com>, <linux-fsd@tesla.com>, <robh+dt@kernel.org>,
+	<krzysztof.kozlowski+dt@linaro.org>, <conor+dt@kernel.org>,
+	<gregkh@linuxfoundation.org>, <jirislaby@kernel.org>
+Cc: <linux-arm-kernel@lists.infradead.org>,
+	<linux-samsung-soc@vger.kernel.org>, <devicetree@vger.kernel.org>,
+	<linux-kernel@vger.kernel.org>, <linux-serial@vger.kernel.org>
+In-Reply-To: <bd253c6d-999c-4ba6-a80d-c7e077d1261a@linaro.org>
+Subject: RE: [PATCH 1/2] serial: samsung: honor fifosize from dts at first
+Date: Mon, 5 Feb 2024 13:41:54 +0530
+Message-ID: <0b2201da580a$fcb94b10$f62be130$@samsung.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v13 50/53] ALSA: usb-audio: Allow for rediscovery of
- connected USB SND devices
-Content-Language: en-US
-To: Wesley Cheng <quic_wcheng@quicinc.com>, srinivas.kandagatla@linaro.org,
- mathias.nyman@intel.com, perex@perex.cz, conor+dt@kernel.org,
- corbet@lwn.net, lgirdwood@gmail.com, andersson@kernel.org,
- krzysztof.kozlowski+dt@linaro.org, gregkh@linuxfoundation.org,
- Thinh.Nguyen@synopsys.com, broonie@kernel.org, bgoswami@quicinc.com,
- tiwai@suse.com, robh+dt@kernel.org, konrad.dybcio@linaro.org
-Cc: linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
- linux-sound@vger.kernel.org, linux-usb@vger.kernel.org,
- linux-arm-msm@vger.kernel.org, linux-doc@vger.kernel.org,
- alsa-devel@alsa-project.org
-References: <20240203023645.31105-1-quic_wcheng@quicinc.com>
- <20240203023645.31105-51-quic_wcheng@quicinc.com>
-From: =?UTF-8?Q?Amadeusz_S=C5=82awi=C5=84ski?=
- <amadeuszx.slawinski@linux.intel.com>
-In-Reply-To: <20240203023645.31105-51-quic_wcheng@quicinc.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
+X-Mailer: Microsoft Outlook 16.0
+Content-Language: en-in
+Thread-Index: AQKjNt2jyU8K8pSm5ip8/e5tj0DOhQL1DmltAaJhYTSvROveMA==
+X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFjrMJsWRmVeSWpSXmKPExsWy7bCmhi73zgOpBps+W1s8mLeNzWLN3nNM
+	FvOPnGO1aF68ns3i3VwZi74XD5kt9r7eym6x6fE1VouHr8ItLu+aw2Yx4/w+Joszi3vZLVr3
+	HmF34PXYtKqTzePOtT1sHvvnrmH32Lyk3qNvyypGj39Nc9k9Pm+SC2CPyrbJSE1MSS1SSM1L
+	zk/JzEu3VfIOjneONzUzMNQ1tLQwV1LIS8xNtVVy8QnQdcvMAbpVSaEsMacUKBSQWFyspG9n
+	U5RfWpKqkJFfXGKrlFqQklNgUqBXnJhbXJqXrpeXWmJlaGBgZApUmJCdcfvuN7aCbsGKq5d6
+	WBoYZ/F1MXJwSAiYSHzfwNHFyMUhJLCHUWLj5ZMsEM4nRom5c7ugnG+MEut7epm6GDnBOnbf
+	X8QGkdjLKPFh8w1WCOcFo8Th/RfZQarYBLQl3u06ywSSEBH4wygxq+8jO4jDLLCRUeL44V42
+	kCpOATuJ0z0HWUBsYQEviV0XtoJ1swioSJxd+oURxOYVsJToa7vIBGELSpyc+QSsnllAXmL7
+	2znMEDcpSPx8uowVIi4ucfRnD1hcRMBJYuf0D2CLJQTOcEi8OfmDDaLBReLJpHaoZmGJV8e3
+	sEPYUhKf3+2FqkmXmPsQ5ukCiWW7vkPV2EscuDKHBRR8zAKaEut36UOEZSWmnlrHBHEDn0Tv
+	7ydQrbwSO+bB2IoS/3f3Q40Rl3i3YgrrBEalWUhem4XktVlI3pmFsG0BI8sqRqnUguLc9NRk
+	0wJD3bzUcnicJ+fnbmIEp2atgB2Mqzf81TvEyMTBeIhRgoNZSYRXfN2BVCHelMTKqtSi/Pii
+	0pzU4kOMpsAAn8gsJZqcD8wOeSXxhiaWBiZmZmYmlsZmhkrivK9b56YICaQnlqRmp6YWpBbB
+	9DFxcEo1MK1cM8kv0nKH5pWQXI4pzFs2O3kntWd7eUwovhjBZcOzc9KO7Ik6Xy7+CNJt/sHU
+	6x1U9+7oj3XPJ1VPrBDUlaxpYmqLkhXSPsX6/skSEybTHP3I7a5B348l1HN4NO4rnRI5o+aU
+	2pVpRk7s11+9rrA2LeJWlv18xk5M+XHnpYVXhM+uKzrVuls3MKbuxkdTs0m7+KI4LeY7ZwpU
+	PwrSy803elOnZ2J1dZf/okx2v1mzj35sMzddPtlKcet5TZ1vTv0Le9y1+Bbp8a3JbnhtMun7
+	FFutA6qqnLnrZ06rDkt52bYm6d49lzrWe+J+KnxFDXEZE2M0tA0bHnuERBltNeaxWdCYM5Pj
+	f6t1pbcSS3FGoqEWc1FxIgB397sGVgQAAA==
+X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFlrFIsWRmVeSWpSXmKPExsWy7bCSvK7vjAOpBksfyFk8mLeNzWLN3nNM
+	FvOPnGO1aF68ns3i3VwZi74XD5kt9r7eym6x6fE1VouHr8ItLu+aw2Yx4/w+Joszi3vZLVr3
+	HmF34PXYtKqTzePOtT1sHvvnrmH32Lyk3qNvyypGj39Nc9k9Pm+SC2CP4rJJSc3JLEst0rdL
+	4Mq4ffcbW0G3YMXVSz0sDYyz+LoYOTkkBEwkdt9fxNbFyMUhJLCbUWLz828sEAlxiWm/9jNC
+	2MISK/89Z4coesYose7PNVaQBJuAtsS7XWeZQBIiAi1MEk+PrQPrYBbYyihxc1sxRMceRonG
+	jltMIAlOATuJ0z0HwVYIC3hJ7LqwlR3EZhFQkTi79AtYM6+ApURf20UmCFtQ4uTMJywQQ7Ul
+	eh+2Qi2Ql9j+dg4zxHkKEj+fLmOFiItLHP3ZAxYXEXCS2Dn9A/sERuFZSEbNQjJqFpJRs5C0
+	L2BkWcUomVpQnJueW2xYYJSXWq5XnJhbXJqXrpecn7uJERydWlo7GPes+qB3iJGJg/EQowQH
+	s5II7wThvalCvCmJlVWpRfnxRaU5qcWHGKU5WJTEeb+97k0REkhPLEnNTk0tSC2CyTJxcEo1
+	MFnxTng8xXlZ441w02ObEyScDz1/cW6eUDq345k7ry7FqnwL5S5hEzM5sue9a/vk5BNtPj0T
+	p6Q/Ms35PG0DS6isb79nW7m6QITnuuS5PnuSvswy/mi3yqTO5O3Mrx+FfaJEfh1/nR5yfKfv
+	AwGfxtMFb/+avX6c1X+Y7/uv42wOdx8/UTobJrnt2f8sgb1Ba9SvcTW1ZsbX1y8WPaPVNyPI
+	VXfCpHzz/ukXA2WivvAWyPdf9dtldKD1g2h7Vcxt7bmXbh57czG34rRl0IZip18+v8oum+58
+	/lSzSoFXS+Vbo5j1149p16X///ytEc100EasIbRnztxGxfMvYyQ3i3U+b3fYm6y6pUPI9k21
+	iRJLcUaioRZzUXEiAL3av2E9AwAA
+X-CMS-MailID: 20240205081157epcas5p21f5ba2b907d8b3875234886be6290bda
+X-Msg-Generator: CA
+Content-Type: text/plain; charset="utf-8"
+X-Sendblock-Type: REQ_APPROVE
+CMS-TYPE: 105P
+DLP-Filter: Pass
+X-CFilter-Loop: Reflected
+X-CMS-RootMailID: 20240202212456epcas5p15589813cd79526e9d0c444082e2f0e51
+References: <CGME20240202212456epcas5p15589813cd79526e9d0c444082e2f0e51@epcas5p1.samsung.com>
+	<20240202212448.74840-1-m.shams@samsung.com>
+	<bd253c6d-999c-4ba6-a80d-c7e077d1261a@linaro.org>
 
-On 2/3/2024 3:36 AM, Wesley Cheng wrote:
-> In case of notifying SND platform drivers of connection events, some of
-> these use cases, such as offloading, require an ASoC USB backend device to
-> be initialized before the events can be handled.  If the USB backend device
-> has not yet been probed, this leads to missing initial USB audio device
-> connection events.
-> 
-> Expose an API that traverses the usb_chip array for connected devices, and
-> to call the respective connection callback registered to the SND platform
-> driver.
-> 
-> Signed-off-by: Wesley Cheng <quic_wcheng@quicinc.com>
-> ---
->   sound/usb/card.c                  | 19 +++++++++++++++++++
->   sound/usb/card.h                  |  2 ++
->   sound/usb/qcom/qc_audio_offload.c |  2 ++
->   3 files changed, 23 insertions(+)
-> 
-> diff --git a/sound/usb/card.c b/sound/usb/card.c
-> index 11b827b7a2a5..995b2df676ab 100644
-> --- a/sound/usb/card.c
-> +++ b/sound/usb/card.c
-> @@ -202,6 +202,25 @@ struct snd_usb_stream *snd_usb_find_suppported_substream(int card_idx,
->   }
->   EXPORT_SYMBOL_GPL(snd_usb_find_suppported_substream);
->   
-> +/*
-> + * in case the platform driver was not ready at the time of USB SND
-> + * device connect, expose an API to discover all connected USB devices
-> + * so it can populate any dependent resources/structures.
-> + */
-> +void snd_usb_rediscover_devices(void)
-> +{
-> +	int i;
-> +
-> +	mutex_lock(&register_mutex);
-> +	for (i = 0; i < SNDRV_CARDS; i++) {
-> +		if (usb_chip[i])
-> +			if (platform_ops && platform_ops->connect_cb)
-> +				platform_ops->connect_cb(usb_chip[i]);
 
-if inside if, it can just be && or maybe move callback check before 
-mutex lock and just return early if it is not present?
 
-> +	}
-> +	mutex_unlock(&register_mutex);
-> +}
-> +EXPORT_SYMBOL_GPL(snd_usb_rediscover_devices);
-> +
->   /*
->    * disconnect streams
->    * called from usb_audio_disconnect()
-> diff --git a/sound/usb/card.h b/sound/usb/card.h
-> index 6d59995440c3..3a0d68f453a1 100644
-> --- a/sound/usb/card.h
-> +++ b/sound/usb/card.h
-> @@ -222,11 +222,13 @@ int snd_usb_unregister_platform_ops(void);
->   #if IS_ENABLED(CONFIG_SND_USB_AUDIO)
->   struct snd_usb_stream *snd_usb_find_suppported_substream(int card_idx,
->   			struct snd_pcm_hw_params *params, int direction);
-> +void snd_usb_rediscover_devices(void);
->   #else
->   static struct snd_usb_stream *snd_usb_find_suppported_substream(int card_idx,
->   			struct snd_pcm_hw_params *params, int direction)
->   {
->   	return NULL;
->   }
-> +static void snd_usb_rediscover_devices(void) { }
->   #endif /* IS_ENABLED(CONFIG_SND_USB_AUDIO) */
->   #endif /* __USBAUDIO_CARD_H */
-> diff --git a/sound/usb/qcom/qc_audio_offload.c b/sound/usb/qcom/qc_audio_offload.c
-> index 08af82ec22ad..9b0f98600e58 100644
-> --- a/sound/usb/qcom/qc_audio_offload.c
-> +++ b/sound/usb/qcom/qc_audio_offload.c
-> @@ -1867,6 +1867,8 @@ static int __init qc_usb_audio_offload_init(void)
->   	if (ret < 0)
->   		goto release_qmi;
->   
-> +	snd_usb_rediscover_devices();
-> +
->   	return 0;
->   
->   release_qmi:
+> -----Original Message-----
+> From: Krzysztof Kozlowski [mailto:krzysztof.kozlowski@linaro.org]
+> Sent: 05 February 2024 13:10
+> To: Tamseel Shams <m.shams@samsung.com>; alim.akhtar@samsung.com;
+> linux-fsd@tesla.com; robh+dt@kernel.org;
+> krzysztof.kozlowski+dt@linaro.org; conor+dt@kernel.org;
+> gregkh@linuxfoundation.org; jirislaby@kernel.org
+> Cc: linux-arm-kernel@lists.infradead.org; linux-samsung-
+> soc@vger.kernel.org; devicetree@vger.kernel.org; linux-
+> kernel@vger.kernel.org; linux-serial@vger.kernel.org
+> Subject: Re: [PATCH 1/2] serial: samsung: honor fifosize from dts at first
 > 
+> On 02/02/2024 22:24, Tamseel Shams wrote:
+> > Currently for platforms which passes UART fifosize from DT gets
+> > override by local driver structure "s3c24xx_serial_drv_data", which is
+> > not indentded. Change the code to honor fifosize from device tree at
+> > first.
+> >
+> > Signed-off-by: Tamseel Shams <m.shams@samsung.com>
+> > ---
+> >  drivers/tty/serial/samsung_tty.c | 14 ++++++++------
+> >  1 file changed, 8 insertions(+), 6 deletions(-)
+> >
+> > diff --git a/drivers/tty/serial/samsung_tty.c
+> > b/drivers/tty/serial/samsung_tty.c
+> > index 71d17d804fda..e4c4c9f4f9b0 100644
+> > --- a/drivers/tty/serial/samsung_tty.c
+> > +++ b/drivers/tty/serial/samsung_tty.c
+> > @@ -1990,8 +1990,7 @@ static int s3c24xx_serial_probe(struct
+> platform_device *pdev)
+> >  	}
+> >
+> >  	if (np) {
+> > -		of_property_read_u32(np,
+> > -			"samsung,uart-fifosize", &ourport->port.fifosize);
+> > +		ret = of_property_read_u32(np, "samsung,uart-fifosize",
+> > +&ourport->port.fifosize);
+> >
+> >  		if (of_property_read_u32(np, "reg-io-width", &prop) == 0) {
+> >  			switch (prop) {
+> > @@ -2009,10 +2008,13 @@ static int s3c24xx_serial_probe(struct
+> platform_device *pdev)
+> >  		}
+> >  	}
+> >
+> > -	if (ourport->drv_data->fifosize[index])
+> > -		ourport->port.fifosize = ourport->drv_data->fifosize[index];
+> > -	else if (ourport->info->fifosize)
+> > -		ourport->port.fifosize = ourport->info->fifosize;
+> 
+> I think ret is not initialized here.
+> 
+> 
+Thanks for review. Will fix it in the version.
+
+
+Thanks & Regards
+Tamseel Shams 
+
+
 
 
