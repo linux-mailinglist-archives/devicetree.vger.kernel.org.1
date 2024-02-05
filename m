@@ -1,147 +1,213 @@
-Return-Path: <devicetree+bounces-38708-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-38709-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 87108849F53
-	for <lists+devicetree@lfdr.de>; Mon,  5 Feb 2024 17:16:29 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 787CF849F81
+	for <lists+devicetree@lfdr.de>; Mon,  5 Feb 2024 17:31:39 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 246431F2397F
-	for <lists+devicetree@lfdr.de>; Mon,  5 Feb 2024 16:16:29 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id DD5171F23EB7
+	for <lists+devicetree@lfdr.de>; Mon,  5 Feb 2024 16:31:38 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5E87E328AC;
-	Mon,  5 Feb 2024 16:15:59 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1613B25745;
+	Mon,  5 Feb 2024 16:31:31 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="BcxbQzlO"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="nhDNuqvZ"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pg1-f174.google.com (mail-pg1-f174.google.com [209.85.215.174])
+Received: from mail-wm1-f47.google.com (mail-wm1-f47.google.com [209.85.128.47])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B4CF43FE3F;
-	Mon,  5 Feb 2024 16:15:57 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.215.174
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5DF3E3FE4F
+	for <devicetree@vger.kernel.org>; Mon,  5 Feb 2024 16:31:28 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.47
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1707149759; cv=none; b=DkMITMDgXLIwyZWy3Sn3wHWL4C0VCe9r024BDVeK9AOWgJT8QwkNdr46t21T1zXmeToWPuGQQJE53nnPcNDJEzSk8mSkp+rIpCl9JBTP/s/9DARGp1lzh03d8WlSeKfMZPLIX1GzQQkOfAVqKmI7rtHPfMFF/Q/lt/VSEtF1Rsc=
+	t=1707150691; cv=none; b=gsXXi63vcg6aR7oCjGQQx0Q4HLd+plDZMB40wkg2J8Uv9qmLei9jHOv2JdzUcx6dN7dl/vHxYQAnp6dNC6XWz5KgqgDPfxhcdCRt2T17pRghal0pQzmfs7iSZk9Z5bhBNW/R/sCmFESQKg9UD3xamn+yFMC8PnMJYUXcU2wTx8s=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1707149759; c=relaxed/simple;
-	bh=kkx/O/ujIQXkPPA0V7iuXOHL13tL22TQ34te1h449oE=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=o+bRdvuD47UQ7jywUy2p9/INpQAG16Ixth+27uxwBtr60Q7TpdqkVsSfZoGaTXpnLPN37+1cg9DDaFVMk0rEPw9XpWDZeuU7WXjZc5nNQr4EzRxg21tHQMeJ4hWZsjTx65+VJf6I2VtO0K0Hrje65yiYZDJTUvryyhi/cKnmyCA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=roeck-us.net; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=BcxbQzlO; arc=none smtp.client-ip=209.85.215.174
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=roeck-us.net
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-pg1-f174.google.com with SMTP id 41be03b00d2f7-5ce9555d42eso4029470a12.2;
-        Mon, 05 Feb 2024 08:15:57 -0800 (PST)
+	s=arc-20240116; t=1707150691; c=relaxed/simple;
+	bh=ZZsbEv/1D0ZyP4euZdUeoiAk7r963SzotEo4LThOh+U=;
+	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version; b=d9eIPejZD8lL4gs8+XvfCwUrDJLeVcDHNTym0uurRjLHPqB49M8SGOZfoeHzFl9vr1+F0DKQvNTldGbVL/hwtp2rmZOvrJzAAqJHE4yWTDA0Dk91Ozajf0rMlzKYB2myE+WL6SD+kzchxUOghJkzQKdWWMIbS20ehqogz1lnRwU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=nhDNuqvZ; arc=none smtp.client-ip=209.85.128.47
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-wm1-f47.google.com with SMTP id 5b1f17b1804b1-40fd72f721dso13542305e9.0
+        for <devicetree@vger.kernel.org>; Mon, 05 Feb 2024 08:31:28 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1707149757; x=1707754557; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:sender:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=4hm4IF6mqVqlMzi3KUMsQtKLW8cec8PhPsOxYQ6v9eU=;
-        b=BcxbQzlOuwORyZzeaDEvYR6SGmWCq4MGn7eVLaKhdlscbS37GOX87zCAVN839Wg3ZE
-         WPm7x6lJrLKV0638vG7m2gzdRZrOGekYxo+QSTALhvWKPx+38klbytR2Q8T9RZZlwwE4
-         vKpaxFKQukxYIUWBBV/d9+eltrJUK+LRm1qq1JKfOiwOkVLKsIYwneBpwZI8kX04aIRh
-         EDSnUJu9EAppUz4AYyinHxd3k5vePVFq4WecXfOymASdJGvI3xE9+YYDBwWJTK15RZD3
-         DT0mDeoHAzG2JO5h74qew7agnqiiP+6sANOpCIR2n++SQXwnlNAEeAlAApLIpkhkxcmz
-         4Jkg==
+        d=linaro.org; s=google; t=1707150686; x=1707755486; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=2mmVlSbLzbn2cV2V2PAlQSgzcyVZHi2ZF25snwbWCZc=;
+        b=nhDNuqvZeWQZb2PNWgNNLxiIkUeJih5i+jwaJ+ttKlrx/IvYkZysrI6PxC4PByj9ga
+         LO1L9LgUGOZuPOXUBhw+D66P+TBcdXn3egY66xYyfPey+bf9T52w4LX9SxRKWm96ecoV
+         KyGCpg9+ft8LjX4upqJI/uSZRgEBBkv6k32oGSCa52D0lRZK+7KZ7KDwkRYx4BZ4Tv0l
+         Nf8C0/UVB2H6OQDPbMIxCLBvytLu/VHAD2HQeIamnT1Vj5zWHYQapWwdClA/z3nlO3n3
+         3qmBXAnM5LfM47lp0/0Bi0rVUtFOndHw1a2sxxsoQG8VIBbhNeYeQ3G54gngmj5+xnFm
+         83Pg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1707149757; x=1707754557;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:sender:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=4hm4IF6mqVqlMzi3KUMsQtKLW8cec8PhPsOxYQ6v9eU=;
-        b=WGkfpJUjjFeGV4yU9KspyK0apZD9LztPYOgfFhsWP+jTp7tfTawTvckjE3LQ1z9d74
-         X4ryG7752fhdGD4u0OlRgSMX86M2WpDzeeNCRZjVOa53DaHmuzdm5djZ6lpcosg3hEaL
-         dMaC7AfOBwsUwyTC1VUw103VrbX+7QIIIMf/NFf3aDesTZxMlPKdEuc/YgGpvwVilSvd
-         3zszHu/NMBrHGr/CWhzqPIasQCqkZq4KJg74nGTZJz7YgZ9xbCjM0sAyYylvjWSSQzBN
-         uf4EoHCu/HVJJG5ZYLAr5qbWKv00NW9NVdGO5/DQxG/IwvJ60wwpxG+yZnpXZ4ULxuy8
-         0EIA==
-X-Gm-Message-State: AOJu0YxMZiRFuTYNHMH/YI1VnCD0dmXJoqs6K0IHF1kBmeR40zM8wwLn
-	2d0ijH1RfsT4OMhdaa6A0ZqSvoCNkDb6WwufR72Gxs7ZLYut/PEP
-X-Google-Smtp-Source: AGHT+IHeHL0iimBfLevm7FbGyFS3nqf4qM44mMmNhiREIu5/zZShcYDA58urQx4CPF50PmPBxg1cig==
-X-Received: by 2002:a05:6a20:da85:b0:19e:4f07:16c3 with SMTP id iy5-20020a056a20da8500b0019e4f0716c3mr11159367pzb.55.1707149756917;
-        Mon, 05 Feb 2024 08:15:56 -0800 (PST)
-X-Forwarded-Encrypted: i=0; AJvYcCXxCoYH6MagcfW/VnubibOm2HpVOJWXyp6tZz0oMCzJHzPCn9+wp03cUGNYwwFSHKW21iCO+jFuGQgE+R4TDIjVyOESeoxWuGrb4fN62X0x5hvQBBSr6fSnABV3pXkIsDJYPStbK8/37vLUcYQx3Qig3icxsgOR1KEaB+G61DSkQRYaI1PZGq6tWFZZ+a7rpAAQIg5/d2Y2qvcFfxMVn19osurq1Eaxf/B+RqF3+T+4uMDDnHKdJGX6/+GVwNFYQaDKf4rxdlAs3ioH6G16eIIfPiBozcCpd1zNYuNx0OXWafaTeOMjQKrY7LI+Lw3Nsda563t4CvGudCNYNc6z6gbNEUM2a5IkRI5jJ+MuqAgySA9hLbl3xLbgzI3z0J+rDHk3Iy7WGPYDJed+2Sd/QC+rEJOmLnGc5E5HDC7JjFhwQpjOWbZibjF6OCT+cbo3rODwS8hU9AcfZlVbRHwdrX+4pv28Cp+A3YbT/O6KMTG7u9HYqzV1TpayyOGhruaUSAeJ0jgigSiYIewhOjXtX7sEXxVEyHL+7lX5QF8ZnxoFS0F+taOKM2vkSz4LWl3tbvkU76/DP+mRkugtDOGVzCHEdVl1Bbgx7lcQiNUfncNWXGOerSnnzZcDOPDRhDRVgv7UcS+l+ojR4NnVB5dwB18qCA1UYMJtczmNBgDVj7UStvHXq2Uhc0x6z16a4VVK7gZs9ACsX0BOXHaj3Rs2/vX6vJM29DFi+lrMqgaK+LgK7RDv2lja26M7uv07rY4Q2P8iMO+aH1IHrXCNHhJlySmwnsW0gWUF4qc=
-Received: from server.roeck-us.net ([2600:1700:e321:62f0:329c:23ff:fee3:9d7c])
-        by smtp.gmail.com with ESMTPSA id by35-20020a056a0205a300b005cf5bf78b74sm120948pgb.17.2024.02.05.08.15.56
+        d=1e100.net; s=20230601; t=1707150686; x=1707755486;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=2mmVlSbLzbn2cV2V2PAlQSgzcyVZHi2ZF25snwbWCZc=;
+        b=D8K65ubYCjJXKHyMLLbnn8yKsnAgMkgqGdcURkLYuHelpccZvfSMra1ZyBhQax4baE
+         Hppq0DhJ8DQKLGdLL4a3BexKFu7eMO8iZjjohdEvMPIVdi47PFpL9ZH7Tru5eukPVbov
+         M1Wjymq8jCwM4jdoctxmpSoOtR5b+NqePqpWhUbE8oKql6mQCY/zXHL/VTUGWZ83EPzL
+         IJxM5AAwU/3/EfE3QMMjd3KISEAnqZLJWDrdpbxK4l1ZNH1a61wD0EIOeuO1g3mDzPdT
+         hWhmsmgMBqfoicPta5n1K69U1aihYAhL44FjzQcniq+lYgIJI/A4EpCtVT+wL2pMnN/t
+         2jyg==
+X-Gm-Message-State: AOJu0YxTbcDFflONrKz9PNkh6sqApUxvZrobb27+vlkhfqDroyVPtuUg
+	4hDpBsOYYmyIp9EN0ib3A37O8+veMzvKwEha2b79q4VoLt8P0IXCFpIFBWzOdYw=
+X-Google-Smtp-Source: AGHT+IHcgEDhpRHufFOfIzR3TF/r4pymEoTiZdyAKrASgnslqnqkgafBRgGBD93gn4gG46EdlplpMQ==
+X-Received: by 2002:a05:600c:474a:b0:40f:b8e7:ad51 with SMTP id w10-20020a05600c474a00b0040fb8e7ad51mr243391wmo.31.1707150686641;
+        Mon, 05 Feb 2024 08:31:26 -0800 (PST)
+X-Forwarded-Encrypted: i=0; AJvYcCVU1Nn87lYzSBZIPKkkwJKjWuEWXZZivo1BmQx0+xQVU2KR/DPgWgYAGqJY77Y/ppeBuAQk1BBUqLv6K9Y6I0YAwL4/uR1kZHn1Lb46uSeJYIJTzlRZWPZ2P+y405r54RErKBo8DFuh+Mn8YQE08JgqOwBd5sVMc1dWu2tUJGg31LdPytZHimUwX67T1zJwU3SWr7jkxKJlNFcJWnKtXu3u2IQY86eK+cMEaw1tR5uwUiW5FfiFIE8NhHYwwpYPff35U8CREaVTlA7n
+Received: from krzk-bin.. ([178.197.222.62])
+        by smtp.gmail.com with ESMTPSA id r11-20020a05600c458b00b0040fdb244485sm303337wmo.40.2024.02.05.08.31.25
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 05 Feb 2024 08:15:56 -0800 (PST)
-Sender: Guenter Roeck <groeck7@gmail.com>
-Date: Mon, 5 Feb 2024 08:15:54 -0800
-From: Guenter Roeck <linux@roeck-us.net>
-To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Cc: Cosmo Chou <chou.cosmo@gmail.com>, robh+dt@kernel.org,
-	krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
-	jdelvare@suse.com, corbet@lwn.net, broonie@kernel.org,
-	naresh.solanki@9elements.com, vincent@vtremblay.dev,
-	patrick.rudolph@9elements.com, luca.ceresoli@bootlin.com,
-	bhelgaas@google.com, festevam@denx.de,
-	alexander.stein@ew.tq-group.com, heiko@sntech.de,
-	jernej.skrabec@gmail.com, macromorgan@hotmail.com,
-	forbidden405@foxmail.com, sre@kernel.org, linus.walleij@linaro.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	linux-hwmon@vger.kernel.org, linux-doc@vger.kernel.org,
-	cosmo.chou@quantatw.com
-Subject: Re: [PATCH v5 1/1] hwmon: Add driver for Astera Labs PT5161L retimer
-Message-ID: <b932533c-d1fe-46bb-8187-b0560861e982@roeck-us.net>
-References: <20240205152013.3833940-1-chou.cosmo@gmail.com>
- <20240205152013.3833940-2-chou.cosmo@gmail.com>
- <99a1a309-41d6-448f-b622-b62dbabb2c52@linaro.org>
+        Mon, 05 Feb 2024 08:31:26 -0800 (PST)
+From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+To: Bjorn Andersson <andersson@kernel.org>,
+	Konrad Dybcio <konrad.dybcio@linaro.org>,
+	Rob Herring <robh+dt@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	linux-arm-msm@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org
+Cc: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Subject: [PATCH] arm64: dts: qcom: sc8180x: describe all PCI MSI interrupts
+Date: Mon,  5 Feb 2024 17:31:23 +0100
+Message-Id: <20240205163123.81842-1-krzysztof.kozlowski@linaro.org>
+X-Mailer: git-send-email 2.34.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <99a1a309-41d6-448f-b622-b62dbabb2c52@linaro.org>
+Content-Transfer-Encoding: 8bit
 
-On Mon, Feb 05, 2024 at 04:26:08PM +0100, Krzysztof Kozlowski wrote:
-> On 05/02/2024 16:20, Cosmo Chou wrote:
-> > This driver implements support for temperature monitoring of Astera Labs
-> > PT5161L series PCIe retimer chips.
-> > 
-> > This driver implementation originates from the CSDK available at
-> > Link: https://github.com/facebook/openbmc/tree/helium/common/recipes-lib/retimer-v2.14
-> > The communication protocol utilized is based on the I2C/SMBus standard.
-> > 
-> > Signed-off-by: Cosmo Chou <chou.cosmo@gmail.com>
-> > ---
-[ ... ]
+Each group of MSI interrupts is mapped to the separate host interrupt.
+Describe each of interrupts in the device tree for PCIe hosts.  This
+also corrects PCIe1 and PCIe2 first MSI interrupt.
 
-> > +
-> > +static int __init pt5161l_init(void)
-> > +{
-> > +	pt5161l_debugfs_dir = debugfs_create_dir("pt5161l", NULL);
-> 
-> Drivers don't need initcalls. For sure any debugfs should not be handled
-> here but in probe.
-> 
+Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
-Lots of hwmon drivers have init functions, for basic chip detection of
-Super-I/O chips (example: drivers/hwmon/nct6775-platform.c) and to create
-a parent debugfs subdirectory for the driver. The probe function then adds
-subdirecties per chip instantiation. Example for pmbus, in
-drivers/hwmon/pmbus/pmbus_core.c:
+---
 
-static int __init pmbus_core_init(void)
-{
-        pmbus_debugfs_dir = debugfs_create_dir("pmbus", NULL);
-        if (IS_ERR(pmbus_debugfs_dir))
-                pmbus_debugfs_dir = NULL;
+Not tested on HW.
 
-        return 0;
-}
+Binding changes:
+https://lore.kernel.org/all/20240205-dt-bindings-pci-qcom-split-continued-v1-0-c333cab5eeea@linaro.org/
+---
+ arch/arm64/boot/dts/qcom/sc8180x.dtsi | 72 ++++++++++++++++++++++++---
+ 1 file changed, 64 insertions(+), 8 deletions(-)
 
-static void __exit pmbus_core_exit(void)
-{
-        debugfs_remove_recursive(pmbus_debugfs_dir);
-}
+diff --git a/arch/arm64/boot/dts/qcom/sc8180x.dtsi b/arch/arm64/boot/dts/qcom/sc8180x.dtsi
+index 0430d99091e3..c999cd2ec6df 100644
+--- a/arch/arm64/boot/dts/qcom/sc8180x.dtsi
++++ b/arch/arm64/boot/dts/qcom/sc8180x.dtsi
+@@ -1708,8 +1708,22 @@ pcie0: pcie@1c00000 {
+ 			ranges = <0x01000000 0x0 0x60200000 0x0 0x60200000 0x0 0x100000>,
+ 				 <0x02000000 0x0 0x60300000 0x0 0x60300000 0x0 0x3d00000>;
+ 
+-			interrupts = <GIC_SPI 141 IRQ_TYPE_LEVEL_HIGH>;
+-			interrupt-names = "msi";
++			interrupts = <GIC_SPI 141 IRQ_TYPE_LEVEL_HIGH>,
++				     <GIC_SPI 142 IRQ_TYPE_LEVEL_HIGH>,
++				     <GIC_SPI 143 IRQ_TYPE_LEVEL_HIGH>,
++				     <GIC_SPI 144 IRQ_TYPE_LEVEL_HIGH>,
++				     <GIC_SPI 145 IRQ_TYPE_LEVEL_HIGH>,
++				     <GIC_SPI 146 IRQ_TYPE_LEVEL_HIGH>,
++				     <GIC_SPI 147 IRQ_TYPE_LEVEL_HIGH>,
++				     <GIC_SPI 148 IRQ_TYPE_LEVEL_HIGH>;
++			interrupt-names = "msi0",
++					  "msi1",
++					  "msi2",
++					  "msi3",
++					  "msi4",
++					  "msi5",
++					  "msi6",
++					  "msi7";
+ 			#interrupt-cells = <1>;
+ 			interrupt-map-mask = <0 0 0 0x7>;
+ 			interrupt-map = <0 0 0 1 &intc 0 149 IRQ_TYPE_LEVEL_HIGH>, /* int_a */
+@@ -1805,8 +1819,22 @@ pcie3: pcie@1c08000 {
+ 			ranges = <0x01000000 0x0 0x40200000 0x0 0x40200000 0x0 0x100000>,
+ 				 <0x02000000 0x0 0x40300000 0x0 0x40300000 0x0 0x1fd00000>;
+ 
+-			interrupts = <GIC_SPI 307 IRQ_TYPE_LEVEL_HIGH>;
+-			interrupt-names = "msi";
++			interrupts = <GIC_SPI 307 IRQ_TYPE_LEVEL_HIGH>,
++				     <GIC_SPI 308 IRQ_TYPE_LEVEL_HIGH>,
++				     <GIC_SPI 309 IRQ_TYPE_LEVEL_HIGH>,
++				     <GIC_SPI 312 IRQ_TYPE_LEVEL_HIGH>,
++				     <GIC_SPI 313 IRQ_TYPE_LEVEL_HIGH>,
++				     <GIC_SPI 314 IRQ_TYPE_LEVEL_HIGH>,
++				     <GIC_SPI 374 IRQ_TYPE_LEVEL_HIGH>,
++				     <GIC_SPI 375 IRQ_TYPE_LEVEL_HIGH>;
++			interrupt-names = "msi0",
++					  "msi1",
++					  "msi2",
++					  "msi3",
++					  "msi4",
++					  "msi5",
++					  "msi6",
++					  "msi7";
+ 			#interrupt-cells = <1>;
+ 			interrupt-map-mask = <0 0 0 0x7>;
+ 			interrupt-map = <0 0 0 1 &intc 0 434 IRQ_TYPE_LEVEL_HIGH>, /* int_a */
+@@ -1903,8 +1931,22 @@ pcie1: pcie@1c10000 {
+ 			ranges = <0x01000000 0x0 0x68200000 0x0 0x68200000 0x0 0x100000>,
+ 				 <0x02000000 0x0 0x68300000 0x0 0x68300000 0x0 0x3d00000>;
+ 
+-			interrupts = <GIC_SPI 755 IRQ_TYPE_LEVEL_HIGH>;
+-			interrupt-names = "msi";
++			interrupts = <GIC_SPI 756 IRQ_TYPE_LEVEL_HIGH>,
++				     <GIC_SPI 755 IRQ_TYPE_LEVEL_HIGH>,
++				     <GIC_SPI 754 IRQ_TYPE_LEVEL_HIGH>,
++				     <GIC_SPI 753 IRQ_TYPE_LEVEL_HIGH>,
++				     <GIC_SPI 752 IRQ_TYPE_LEVEL_HIGH>,
++				     <GIC_SPI 751 IRQ_TYPE_LEVEL_HIGH>,
++				     <GIC_SPI 750 IRQ_TYPE_LEVEL_HIGH>,
++				     <GIC_SPI 749 IRQ_TYPE_LEVEL_HIGH>;
++			interrupt-names = "msi0",
++					  "msi1",
++					  "msi2",
++					  "msi3",
++					  "msi4",
++					  "msi5",
++					  "msi6",
++					  "msi7";
+ 			#interrupt-cells = <1>;
+ 			interrupt-map-mask = <0 0 0 0x7>;
+ 			interrupt-map = <0 0 0 1 &intc 0 747 IRQ_TYPE_LEVEL_HIGH>, /* int_a */
+@@ -2001,8 +2043,22 @@ pcie2: pcie@1c18000 {
+ 			ranges = <0x01000000 0x0 0x70200000 0x0 0x70200000 0x0 0x100000>,
+ 				 <0x02000000 0x0 0x70300000 0x0 0x70300000 0x0 0x3d00000>;
+ 
+-			interrupts = <GIC_SPI 671 IRQ_TYPE_LEVEL_HIGH>;
+-			interrupt-names = "msi";
++			interrupts = <GIC_SPI 672 IRQ_TYPE_LEVEL_HIGH>,
++				     <GIC_SPI 671 IRQ_TYPE_LEVEL_HIGH>,
++				     <GIC_SPI 670 IRQ_TYPE_LEVEL_HIGH>,
++				     <GIC_SPI 669 IRQ_TYPE_LEVEL_HIGH>,
++				     <GIC_SPI 668 IRQ_TYPE_LEVEL_HIGH>,
++				     <GIC_SPI 667 IRQ_TYPE_LEVEL_HIGH>,
++				     <GIC_SPI 666 IRQ_TYPE_LEVEL_HIGH>,
++				     <GIC_SPI 665 IRQ_TYPE_LEVEL_HIGH>;
++			interrupt-names = "msi0",
++					  "msi1",
++					  "msi2",
++					  "msi3",
++					  "msi4",
++					  "msi5",
++					  "msi6",
++					  "msi7";
+ 			#interrupt-cells = <1>;
+ 			interrupt-map-mask = <0 0 0 0x7>;
+ 			interrupt-map = <0 0 0 1 &intc 0 663 IRQ_TYPE_LEVEL_HIGH>, /* int_a */
+-- 
+2.34.1
 
-Are you saying this is all wrong ? What alternative would you suggest ?
-
-Thanks,
-Guenter
 
