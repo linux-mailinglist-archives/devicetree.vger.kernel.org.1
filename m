@@ -1,528 +1,354 @@
-Return-Path: <devicetree+bounces-38797-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-38798-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id A10C984A201
-	for <lists+devicetree@lfdr.de>; Mon,  5 Feb 2024 19:20:39 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5660B84A204
+	for <lists+devicetree@lfdr.de>; Mon,  5 Feb 2024 19:23:21 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 589DF2853DA
-	for <lists+devicetree@lfdr.de>; Mon,  5 Feb 2024 18:20:38 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id BF8411F23FFD
+	for <lists+devicetree@lfdr.de>; Mon,  5 Feb 2024 18:23:20 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 06969481BF;
-	Mon,  5 Feb 2024 18:20:30 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7779447F7B;
+	Mon,  5 Feb 2024 18:23:14 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="IsHDl29t"
+	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="JbYbP1uD"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wr1-f54.google.com (mail-wr1-f54.google.com [209.85.221.54])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E4AF947F7C
-	for <devicetree@vger.kernel.org>; Mon,  5 Feb 2024 18:20:27 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.54
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8535247F67;
+	Mon,  5 Feb 2024 18:23:12 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1707157229; cv=none; b=Hayfdij0k7axVVxkbGKLMEwVAb9VpDJJY+QFDy44AiMbiIIh+2X72DvD6MxePbHttBLgMb2i8R9D+o4OztFyo5ZqPQ5WokppLq6cGgDb+ve8wVJ9/J8xXZdnZ0POyBVsPPUdu3p1MNJ7wlTfDGslIMw9vfMFtkQJeGt9BWsanG8=
+	t=1707157394; cv=none; b=GN48K6Who8R9hXVnbrW1sEaJorPHhAnW4c3ROsv4pJ0TkB0xOMv2dGsQt+RPv/rPxsAZ5iCKcmm8TvEueJYmQcKmDmvjKghm0mOsQ+HiM888HvwFPnMCgGFBU9ni5qH3UdqvCA2fvVmYeFu1a2o7uhscG+HymSehgsBCB0rcvT4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1707157229; c=relaxed/simple;
-	bh=27DTfQWOWo+WN4QsBhsd/VH5DgNn9hGpY6TtVrq/q2Y=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=pDVR6chDjHJ0WvEmUEnNCwb9yNATS7H0+3nLTXv3SCyNPmLSzWo5XoZlD3bT4W/2ltAJaoUN3VPYweIADv9BEruI3YenD8k39bZGR/2r0tJ0YX82xPg1k3P0P8ug6u20DnZLY0TUrVpOi4G5S5fPMWwg/7MgY7tDdsu0nq2X8Tg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=IsHDl29t; arc=none smtp.client-ip=209.85.221.54
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-wr1-f54.google.com with SMTP id ffacd0b85a97d-33b4437e132so152378f8f.2
-        for <devicetree@vger.kernel.org>; Mon, 05 Feb 2024 10:20:27 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1707157226; x=1707762026; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=wDaMto9AgVUOhIc9xou59hHctT3KVbNxCfT1U4jYVww=;
-        b=IsHDl29tpiRXMUdfd/ARzvucZnh7lu7mSBbfj/oyzH7e0zo/6eDzVlYo8z+CklgBxt
-         C/gFzTb6ZANXrp+0/IpcNjYVPFSol5gmktZuUS8n+FOkgYzDWQpBMqXwWzmvMq62YeII
-         zTLxZ2atrVS1Q9AmR671ra8WA8hEV0ua51mvmIfo7bxzdLbTqQuhvn8qybi/Kz+Ukd9x
-         WK1A2pd4k4WccVCI/7Gd0hrhxz3p8p8H27AWa/mRUXnok8ywnwZKI3kWHAX4mSF4UGhY
-         l+xXAUteTgcRBSH1JLyQBWrbf0XTzeS9JKoVmsnfbqFs1Mh4hS//iNjxkLdKkfhRq/Et
-         dj+w==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1707157226; x=1707762026;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=wDaMto9AgVUOhIc9xou59hHctT3KVbNxCfT1U4jYVww=;
-        b=FkiF2oeiHY4IUeLYGdcnshs3pVfk1FUinPo5a5OYgMSThREUdJl3UmXbAFF1vuLPEq
-         YrEljb3UB4ycuInvh31IzewGfSmMT0jvZJEYJqX7ovODROAE5rWqIvvDPsYJdpkFUzbr
-         d8XuXI1/USwjEqEBnHs5qyhcZnMvq8ovtnyYlVCqIn2FP3sAymqwRa1lbSso7JSAEVr9
-         ovq0cXxReMyI5oXw84NXWqWW4ymlrVKynooYdEIEzM2hJrmLET3Zyl+qu5gBR/LOwkdx
-         qcl1Z9HUgfa4kjEc3cD3i58IZGInQYL5x6fE7TVpVc4UBzy92ZXmu5Hjp6zmkLS03Cul
-         PvuQ==
-X-Gm-Message-State: AOJu0Yx/0CiX5lVlr9ix+ALNNt7tYkDWKPYy3IUK8rxGCM2onj2QJvZs
-	ry2cV1f3uJTBoxJmnd74Qhd/8V7LAgXwDaL99wPcfgCnwhnq7Dk3
-X-Google-Smtp-Source: AGHT+IHqlecHvpa4azmwxGOdmBoAoJtWGFX60kFQ6ZFm6Yn10csIJL7HFATZNo7/6C9DERRLwGKmZw==
-X-Received: by 2002:a5d:5089:0:b0:33a:ed85:f232 with SMTP id a9-20020a5d5089000000b0033aed85f232mr189023wrt.56.1707157226023;
-        Mon, 05 Feb 2024 10:20:26 -0800 (PST)
-X-Forwarded-Encrypted: i=0; AJvYcCU356WRKo+dw5FpSmBHk8VEtt3zpqXra/3je0UBI3+fhYEsa7vyZqfkwjDerlW9tIQttzNqQ60HCtbIJ4KYE1BkSzSviDlls6pP8Y5RqTKs0uTp2iF1U/waOpTt57KxStDelSXhWTd+mZYa5UivQRaVyeN71BjZvuvjDdXCYB2caD1qLqOqW4/8i2Jm2aUMiokb7uR7Fg5MaKfH8xkb4JzpT+1AUbXHV/dGk5MztgN7U+xKjs3tdOzvbG7zCA8UauaWBxHxv5S6lmb9ivXNak7VPYH8nHeRtdIXMXt+EzouzlEuz8/D1MI7nx2lFux65zK2MKMbhoMKYDinkgq6aenNqg==
-Received: from jernej-laptop.localnet (82-149-13-182.dynamic.telemach.net. [82.149.13.182])
-        by smtp.gmail.com with ESMTPSA id v17-20020a05600c471100b0040d8ff79fd8sm604834wmo.7.2024.02.05.10.20.25
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 05 Feb 2024 10:20:25 -0800 (PST)
-From: Jernej =?utf-8?B?xaBrcmFiZWM=?= <jernej.skrabec@gmail.com>
-To: Chen-Yu Tsai <wens@csie.org>, Samuel Holland <samuel@sholland.org>,
- Rob Herring <robh+dt@kernel.org>,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Conor Dooley <conor+dt@kernel.org>, Andre Przywara <andre.przywara@arm.com>
-Cc: linux-sunxi@lists.linux.dev, devicetree@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, Nick Alilovic <nickalilovic@gmail.com>
-Subject: Re: [PATCH 3/3] arm64: dts: allwinner: Add Jide Remix Mini PC support
-Date: Mon, 05 Feb 2024 19:20:24 +0100
-Message-ID: <3788758.kQq0lBPeGt@jernej-laptop>
-In-Reply-To: <3280179.44csPzL39Z@jernej-laptop>
-References:
- <20240204094404.149776-1-andre.przywara@arm.com>
- <20240204094404.149776-4-andre.przywara@arm.com>
- <3280179.44csPzL39Z@jernej-laptop>
+	s=arc-20240116; t=1707157394; c=relaxed/simple;
+	bh=1IgCSO5fXyYE52DwV0JuqU9+gtibNXoj553nuIL0a9s=;
+	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
+	 In-Reply-To:Content-Type; b=owJNRoO1p9eh0bqZXQ1CRK85ifXtO2+xo9+GBcrTKmTrDVYJ8ojPtnX3+Bx6LKq9GNv1gEzmDBUcBCidC275YiK9tdGW3w7ZGYfLl2+TB8eYubuMa3yKZFbTJX5JmfmF8Z0nSfBW01Hy3LR6MblaY9k7p0DNqNStncmWQAaUGvQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=JbYbP1uD; arc=none smtp.client-ip=205.220.180.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
+Received: from pps.filterd (m0279873.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.17.1.24/8.17.1.24) with ESMTP id 415Ewfgf003365;
+	Mon, 5 Feb 2024 18:22:58 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
+	message-id:date:mime-version:subject:to:cc:references:from
+	:in-reply-to:content-type:content-transfer-encoding; s=
+	qcppdkim1; bh=FEn4SqIgrbfDB+gxpOj0QgyMAFS+cW09sobFdzZvM4g=; b=Jb
+	YbP1uDZQ/RCyIG6DYaWUDR8t73v3ASMjqvOxa9ZLDEWIud5cw4IczXHWxpReXDG2
+	Ap0kXoniwrMuJaPCVrbg4zW8+HANM17Ffox00vs4L7MxNGD+hDKqthLUDfFSvFL7
+	PWGEZ9ceKLq2q/5VpmtdU99mXqFqumraMDCBsfl0jIzXiSLqhNfLK7V6rJDI02ej
+	7tGgYQeE3Jl/36K4QVvoxSncddnSUHuHXmVq8jdmNrPJmhckvMwkV/k/NCb8gNpT
+	Bt4f5ghuRG+b/oXhCHoj75NZR9kjdSOrBhK4OThkGlym700MYK6pSxowezSqhKTC
+	G5JozyAF1sPQtBi7dUAQ==
+Received: from nalasppmta01.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3w31wnrg9n-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Mon, 05 Feb 2024 18:22:58 +0000 (GMT)
+Received: from nalasex01b.na.qualcomm.com (nalasex01b.na.qualcomm.com [10.47.209.197])
+	by NALASPPMTA01.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 415IMvCr008012
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Mon, 5 Feb 2024 18:22:57 GMT
+Received: from [10.216.24.76] (10.80.80.8) by nalasex01b.na.qualcomm.com
+ (10.47.209.197) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1118.40; Mon, 5 Feb
+ 2024 10:22:46 -0800
+Message-ID: <4b6a8b75-8fc1-4888-a76a-f14a67521359@quicinc.com>
+Date: Mon, 5 Feb 2024 23:52:42 +0530
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
-Content-Type: text/plain; charset="UTF-8"
-
-Dne ponedeljek, 05. februar 2024 ob 19:12:45 CET je Jernej =C5=A0krabec nap=
-isal(a):
-> Hi Andre!
->=20
-> Dne nedelja, 04. februar 2024 ob 10:44:04 CET je Andre Przywara napisal(a=
-):
-> > The Remix Mini PC is a "mini computer" using the Allwinner H64 SoC,
-> > which appears to be just a relabelled A64. It was launched in 2015 by
-> > the now defunct company Jide, and shipped with a desktop optimised
-> > version of Android. It features
-> > 	- Allwinner H64 Soc (4 * Arm Cortex-A53 cores)
-> > 	- 1 or 2 GB DRAM
-> > 	- 8 or 16 GB eMMC flash
-> > 	- 100 MBit Ethernet port (using an X-Powers AC200 PHY)
-> > 	- RTL8723BS WiFi & Bluetooth chip
-> > 	- HDMI port
-> > 	- two USB 2.0 ports
-> > 	- 3.5mm AV port
-> > 	- microSD card slot
-> >=20
-> > The devicetree covers most peripherals, though there is no agreed
-> > binding for the PHY chip yet, so this is left out.
-> >=20
-> > Signed-off-by: Andre Przywara <andre.przywara@arm.com>
-> > ---
-> >  arch/arm64/boot/dts/allwinner/Makefile        |   1 +
-> >  .../allwinner/sun50i-h64-remix-mini-pc.dts    | 357 ++++++++++++++++++
-> >  2 files changed, 358 insertions(+)
-> >  create mode 100644 arch/arm64/boot/dts/allwinner/sun50i-h64-remix-mini=
-=2Dpc.dts
-> >=20
-> > diff --git a/arch/arm64/boot/dts/allwinner/Makefile b/arch/arm64/boot/d=
-ts/allwinner/Makefile
-> > index 91d505b385de..2db3b15ad09f 100644
-> > --- a/arch/arm64/boot/dts/allwinner/Makefile
-> > +++ b/arch/arm64/boot/dts/allwinner/Makefile
-> > @@ -16,6 +16,7 @@ dtb-$(CONFIG_ARCH_SUNXI) +=3D sun50i-a64-pinetab.dtb
-> >  dtb-$(CONFIG_ARCH_SUNXI) +=3D sun50i-a64-pinetab-early-adopter.dtb
-> >  dtb-$(CONFIG_ARCH_SUNXI) +=3D sun50i-a64-sopine-baseboard.dtb
-> >  dtb-$(CONFIG_ARCH_SUNXI) +=3D sun50i-a64-teres-i.dtb
-> > +dtb-$(CONFIG_ARCH_SUNXI) +=3D sun50i-h64-remix-mini-pc.dtb
-> >  dtb-$(CONFIG_ARCH_SUNXI) +=3D sun50i-a100-allwinner-perf1.dtb
-> >  dtb-$(CONFIG_ARCH_SUNXI) +=3D sun50i-h5-bananapi-m2-plus.dtb
-> >  dtb-$(CONFIG_ARCH_SUNXI) +=3D sun50i-h5-bananapi-m2-plus-v1.2.dtb
-> > diff --git a/arch/arm64/boot/dts/allwinner/sun50i-h64-remix-mini-pc.dts=
- b/arch/arm64/boot/dts/allwinner/sun50i-h64-remix-mini-pc.dts
-> > new file mode 100644
-> > index 000000000000..537923a541a8
-> > --- /dev/null
-> > +++ b/arch/arm64/boot/dts/allwinner/sun50i-h64-remix-mini-pc.dts
-> > @@ -0,0 +1,357 @@
-> > +// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
-> > +// Copyright (c) 2018 ARM Ltd.
->=20
-> Shouldn't be 2024?
->=20
-> > +
-> > +/dts-v1/;
-> > +
-> > +#include "sun50i-a64.dtsi"
-> > +#include "sun50i-a64-cpu-opp.dtsi"
-> > +
-> > +#include <dt-bindings/gpio/gpio.h>
-> > +
-> > +/ {
-> > +	model =3D "Remix Mini PC";
-> > +	compatible =3D "jide,remix-mini-pc", "allwinner,sun50i-h64",
-> > +		     "allwinner,sun50i-a64";
-> > +
-> > +	aliases {
-> > +		ethernet1 =3D &rtl8723bs;
-> > +		serial0 =3D &uart0;
-> > +	};
-> > +
-> > +	chosen {
-> > +		stdout-path =3D "serial0:115200n8";
-> > +	};
-> > +
-> > +	hdmi-connector {
-> > +		compatible =3D "hdmi-connector";
-> > +		type =3D "a";
-> > +
-> > +		port {
-> > +			hdmi_con_in: endpoint {
-> > +				remote-endpoint =3D <&hdmi_out_con>;
-> > +			};
-> > +		};
-> > +	};
-> > +
-> > +	reg_vcc5v: regulator-5v {
-> > +		/* board wide 5V supply directly from the DC input */
-> > +		compatible =3D "regulator-fixed";
-> > +		regulator-name =3D "vcc-5v";
-> > +		regulator-min-microvolt =3D <5000000>;
-> > +		regulator-max-microvolt =3D <5000000>;
-> > +		regulator-always-on;
-> > +	};
-> > +
-> > +	wifi_pwrseq: wifi_pwrseq {
-> > +		compatible =3D "mmc-pwrseq-simple";
-> > +		pinctrl-names =3D "default";
-> > +		reset-gpios =3D <&r_pio 0 2 GPIO_ACTIVE_LOW>; /* PL2 */
-> > +		post-power-on-delay-ms =3D <200>;
-> > +	};
-> > +};
-> > +
-> > +&codec {
-> > +	status =3D "okay";
-> > +};
-> > +
-> > +&codec_analog {
-> > +	cpvdd-supply =3D <&reg_eldo1>;
-> > +	status =3D "okay";
-> > +};
-> > +
-> > +&cpu0 {
-> > +	cpu-supply =3D <&reg_dcdc2>;
-> > +};
-> > +
-> > +&cpu1 {
-> > +	cpu-supply =3D <&reg_dcdc2>;
-> > +};
-> > +
-> > +&cpu2 {
-> > +	cpu-supply =3D <&reg_dcdc2>;
-> > +};
-> > +
-> > +&cpu3 {
-> > +	cpu-supply =3D <&reg_dcdc2>;
-> > +};
-> > +
-> > +&dai {
-> > +	status =3D "okay";
-> > +};
-> > +
-> > +&de {
-> > +	status =3D "okay";
-> > +};
-> > +
-> > +&ehci0 {
-> > +	status =3D "okay";
-> > +};
-> > +
-> > +&ehci1 {
-> > +	status =3D "okay";
-> > +};
-> > +
-> > +&hdmi {
-> > +	hvcc-supply =3D <&reg_dldo1>;
-> > +	status =3D "okay";
-> > +};
-> > +
-> > +&hdmi_out {
-> > +	hdmi_out_con: endpoint {
-> > +		remote-endpoint =3D <&hdmi_con_in>;
-> > +	};
-> > +};
-> > +
-> > +/* Connects to the AC200 chip */
-> > +&i2c0 {
-> > +	pinctrl-names =3D "default";
-> > +	pinctrl-0 =3D <&i2c0_pins>;
-> > +	status =3D "okay";
-> > +};
-> > +
-> > +&i2c0_pins {
-> > +	bias-pull-up;
-> > +};
-> > +
-> > +&mmc0 {
-> > +	pinctrl-names =3D "default";
-> > +	pinctrl-0 =3D <&mmc0_pins>;
-> > +	vmmc-supply =3D <&reg_dcdc1>;
-> > +	cd-gpios =3D <&pio 5 6 GPIO_ACTIVE_LOW>;
-> > +	disable-wp;
-> > +	bus-width =3D <4>;
-> > +	status =3D "okay";
-> > +};
-> > +
-> > +&mmc1 {
-> > +	pinctrl-names =3D "default";
-> > +	pinctrl-0 =3D <&mmc1_pins>;
-> > +	vmmc-supply =3D <&reg_aldo1>;
-> > +	vqmmc-supply =3D <&reg_dldo4>;
-> > +	mmc-pwrseq =3D <&wifi_pwrseq>;
-> > +	bus-width =3D <4>;
-> > +	non-removable;
-> > +	status =3D "okay";
-> > +
-> > +	rtl8723bs: wifi@1 {
-> > +		reg =3D <1>;
-> > +		interrupt-parent =3D <&r_pio>;
-> > +		interrupts =3D <0 3 IRQ_TYPE_LEVEL_LOW>; /* PL3 */
-> > +		interrupt-names =3D "host-wake";
-> > +	};
->=20
-> Node without compatible doesn't help. Please remove it.
->=20
-> > +};
-> > +
-> > +&mmc2 {
-> > +	pinctrl-names =3D "default";
-> > +	pinctrl-0 =3D <&mmc2_pins>, <&mmc2_ds_pin>;
-> > +	vmmc-supply =3D <&reg_dcdc1>;
-> > +	vqmmc-supply =3D <&reg_eldo1>;
-> > +	bus-width =3D <8>;
-> > +	non-removable;
-> > +	mmc-ddr-1_8v;
-> > +	mmc-hs200-1_8v;
->=20
-> Aren't these speed modes enabled by default?
-
-Sorry, mmc-hs200-1_8v is ok, but mmc-ddr-1_8v should be
-removed.
-
-Best regards,
-Jernej
-
-> > +	cap-mmc-hw-reset;
-> > +	status =3D "okay";
-> > +};
-> > +
-> > +&ohci0 {
-> > +	status =3D "okay";
-> > +};
-> > +
-> > +&ohci1 {
-> > +	status =3D "okay";
-> > +};
-> > +
-> > +&pio {
-> > +	vcc-pb-supply =3D <&reg_dcdc1>;
-> > +	vcc-pc-supply =3D <&reg_dcdc1>;
-> > +	vcc-pd-supply =3D <&reg_dcdc1>;
-> > +	vcc-pe-supply =3D <&reg_dcdc1>;
-> > +	vcc-pf-supply =3D <&reg_dcdc1>;
-> > +	vcc-pg-supply =3D <&reg_dldo4>;
-> > +	vcc-ph-supply =3D <&reg_dcdc1>;
-> > +};
-> > +
-> > +&r_ir {
-> > +	status =3D "okay";
-> > +};
-> > +
-> > +&r_pio {
-> > +	/*
-> > +	 * We cannot add that supply for now since it would create a circular
-> > +	 * dependency between pinctrl, the regulator and the RSB Bus.
-> > +	 *
-> > +	 * vcc-pl-supply =3D <&reg_aldo2>;
-> > +	 */
-> > +};
-> > +
-> > +&r_rsb {
-> > +	status =3D "okay";
-> > +
-> > +	axp803: pmic@3a3 {
-> > +		compatible =3D "x-powers,axp803";
-> > +		reg =3D <0x3a3>;
-> > +		interrupt-parent =3D <&r_intc>;
-> > +		interrupts =3D <GIC_SPI 0 IRQ_TYPE_LEVEL_LOW>;
-> > +		x-powers,drive-vbus-en;
-> > +
-> > +		vin1-supply =3D <&reg_vcc5v>;
-> > +		vin2-supply =3D <&reg_vcc5v>;
-> > +		vin3-supply =3D <&reg_vcc5v>;
-> > +		vin5-supply =3D <&reg_vcc5v>;
-> > +		vin6-supply =3D <&reg_vcc5v>;
-> > +		aldoin-supply =3D <&reg_vcc5v>;
-> > +		dldoin-supply =3D <&reg_vcc5v>;
-> > +		eldoin-supply =3D <&reg_vcc5v>;
-> > +		fldoin-supply =3D <&reg_vcc5v>;
-> > +		drivevbus-supply =3D <&reg_vcc5v>;
-> > +		ips-supply =3D <&reg_vcc5v>;
-> > +
-> > +		status =3D "okay";
-> > +	};
-> > +};
-> > +
-> > +#include "axp803.dtsi"
-> > +
-> > +&ac_power_supply {
-> > +	status =3D "okay";
-> > +};
-> > +
-> > +&reg_dcdc1 {
-> > +	regulator-always-on;
-> > +	regulator-min-microvolt =3D <3300000>;
-> > +	regulator-max-microvolt =3D <3300000>;
-> > +	regulator-name =3D "vcc-3v3";
-> > +};
-> > +
-> > +&reg_dcdc2 {
-> > +	regulator-always-on;
-> > +	regulator-min-microvolt =3D <1040000>;
-> > +	regulator-max-microvolt =3D <1300000>;
-> > +	regulator-name =3D "vdd-cpux";
-> > +};
-> > +
-> > +/* DCDC3 is polyphased with DCDC2 */
-> > +
-> > +&reg_dcdc5 {
-> > +	regulator-always-on;
-> > +	regulator-min-microvolt =3D <1500000>;
-> > +	regulator-max-microvolt =3D <1500000>;
-> > +	regulator-name =3D "vcc-dram";
-> > +};
-> > +
-> > +/* Deviates from the reset default of 1.1V. */
-> > +&reg_dcdc6 {
-> > +	regulator-always-on;
-> > +	regulator-min-microvolt =3D <1200000>;
-> > +	regulator-max-microvolt =3D <1200000>;
-> > +	regulator-name =3D "vdd-sys";
-> > +};
-> > +
-> > +&reg_aldo1 {
-> > +	regulator-min-microvolt =3D <3300000>;
-> > +	regulator-max-microvolt =3D <3300000>;
-> > +	regulator-name =3D "vcc-wifi";
-> > +};
-> > +
-> > +&reg_aldo2 {
-> > +	/* Specifying R_PIO consumer would create circular dependency. */
-> > +	regulator-always-on;
-> > +	regulator-min-microvolt =3D <3300000>;
-> > +	regulator-max-microvolt =3D <3300000>;
-> > +	regulator-name =3D "vcc-pl";
-> > +};
-> > +
-> > +&reg_aldo3 {
-> > +	regulator-always-on;
-> > +	regulator-min-microvolt =3D <3000000>;
-> > +	regulator-max-microvolt =3D <3000000>;
-> > +	regulator-name =3D "vcc-pll-avcc";
-> > +};
-> > +
-> > +/* AC200 power supply */
-> > +&reg_dldo1 {
-> > +	regulator-always-on;
-> > +	regulator-min-microvolt =3D <3300000>;
-> > +	regulator-max-microvolt =3D <3300000>;
-> > +	regulator-name =3D "vcc-ave-33";
-> > +};
-> > +
-> > +&reg_dldo4 {
-> > +	regulator-min-microvolt =3D <3300000>;
-> > +	regulator-max-microvolt =3D <3300000>;
-> > +	regulator-name =3D "vcc-wifi-io";
-> > +};
-> > +
-> > +&reg_drivevbus {
-> > +	regulator-name =3D "usb0-vbus";
-> > +	status =3D "okay";
-> > +};
-> > +
-> > +&reg_eldo1 {
-> > +	regulator-always-on;
-> > +	regulator-min-microvolt =3D <1800000>;
-> > +	regulator-max-microvolt =3D <1800000>;
-> > +	regulator-name =3D "vcc-cpvdd-dram-emmc";
-> > +};
-> > +
-> > +/* Supplies the arisc management core, needed by TF-A to power off cor=
-es. */
-> > +&reg_fldo2 {
-> > +	regulator-always-on;
-> > +	regulator-min-microvolt =3D <1100000>;
-> > +	regulator-max-microvolt =3D <1100000>;
-> > +	regulator-name =3D "vdd-cpus";
-> > +};
-> > +
-> > +&reg_rtc_ldo {
-> > +	regulator-name =3D "vcc-rtc";
-> > +};
-> > +
-> > +&simplefb_hdmi {
-> > +	vcc-hdmi-supply =3D <&reg_dcdc1>;
-> > +};
-> > +
-> > +&sound {
-> > +	simple-audio-card,aux-devs =3D <&codec_analog>;
-> > +	simple-audio-card,widgets =3D "Microphone", "Microphone Jack",
-> > +				    "Headphone", "Headphone Jack";
-> > +	simple-audio-card,routing =3D
-> > +			"Left DAC", "DACL",
-> > +			"Right DAC", "DACR",
-> > +			"Headphone Jack", "HP",
-> > +			"ADCL", "Left ADC",
-> > +			"ADCR", "Right ADC",
-> > +			"MIC2", "Microphone Jack";
-> > +	status =3D "okay";
-> > +};
-> > +
-> > +/* On the (unpopulated) UART pads. */
-> > +&uart0 {
-> > +	pinctrl-names =3D "default";
-> > +	pinctrl-0 =3D <&uart0_pb_pins>;
-> > +	status =3D "okay";
-> > +};
-> > +
-> > +&uart1 {
-> > +	pinctrl-names =3D "default";
-> > +	pinctrl-0 =3D <&uart1_pins>, <&uart1_rts_cts_pins>;
-> > +	uart-has-rtscts;
-> > +	status =3D "okay";
-> > +
-> > +	bluetooth {
-> > +		compatible =3D "realtek,rtl8723bs-bt";
-> > +		enable-gpios =3D <&r_pio 0 4 GPIO_ACTIVE_HIGH>; /* PL4 */
-> > +		max-speed =3D <1500000>;
-> > +	};
-> > +};
-> > +
-> > +&usb_otg {
-> > +	dr_mode =3D "host";
-> > +	status =3D "okay";
-> > +};
-> > +
-> > +&usbphy {
-> > +	usb0_vbus-supply =3D <&reg_drivevbus>;
-> > +	usb1_vbus-supply =3D <&reg_drivevbus>;
-> > +	status =3D "okay";
-> > +};
-> >=20
->=20
->=20
->=20
->=20
->=20
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v4 04/15] soc: qcom: ice: add hwkm support in ice
+Content-Language: en-US
+To: Gaurav Kashyap <quic_gaurkash@quicinc.com>,
+        <linux-arm-msm@vger.kernel.org>, <linux-scsi@vger.kernel.org>,
+        <andersson@kernel.org>, <ebiggers@google.com>,
+        <neil.armstrong@linaro.org>, <srinivas.kandagatla@linaro.org>,
+        <krzysztof.kozlowski+dt@linaro.org>, <conor+dt@kernel.org>,
+        <robh+dt@kernel.org>
+CC: <linux-kernel@vger.kernel.org>, <linux-mmc@vger.kernel.org>,
+        <kernel@quicinc.com>, <linux-crypto@vger.kernel.org>,
+        <devicetree@vger.kernel.org>, <quic_nguyenb@quicinc.com>,
+        <bartosz.golaszewski@linaro.org>, <konrad.dybcio@linaro.org>,
+        <ulf.hansson@linaro.org>, <jejb@linux.ibm.com>,
+        <martin.petersen@oracle.com>, <mani@kernel.org>, <davem@davemloft.net>,
+        <herbert@gondor.apana.org.au>
+References: <20240127232436.2632187-1-quic_gaurkash@quicinc.com>
+ <20240127232436.2632187-5-quic_gaurkash@quicinc.com>
+From: Om Prakash Singh <quic_omprsing@quicinc.com>
+In-Reply-To: <20240127232436.2632187-5-quic_gaurkash@quicinc.com>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 7bit
+X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
+ nalasex01b.na.qualcomm.com (10.47.209.197)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-ORIG-GUID: 8lmM3iHwCc0-NJVlJAzJ6nzEtdMg0vFR
+X-Proofpoint-GUID: 8lmM3iHwCc0-NJVlJAzJ6nzEtdMg0vFR
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.272,Aquarius:18.0.1011,Hydra:6.0.619,FMLib:17.11.176.26
+ definitions=2024-02-05_12,2024-01-31_01,2023-05-22_02
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 priorityscore=1501
+ adultscore=0 phishscore=0 mlxlogscore=999 spamscore=0 lowpriorityscore=0
+ impostorscore=0 bulkscore=0 clxscore=1015 malwarescore=0 suspectscore=0
+ mlxscore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.19.0-2401310000 definitions=main-2402050138
 
 
 
-
+On 1/28/2024 4:44 AM, Gaurav Kashyap wrote:
+> Qualcomm's ICE (Inline Crypto Engine) contains a proprietary
+> key management hardware called Hardware Key Manager (HWKM).
+> This patch integrates HWKM support in ICE when it is
+> available. HWKM primarily provides hardware wrapped key support
+> where the ICE (storage) keys are not available in software and
+> protected in hardware.
+> 
+> When HWKM software support is not fully available (from Trustzone),
+> there can be a scenario where the ICE hardware supports HWKM, but
+> it cannot be used for wrapped keys. In this case, standard keys have
+> to be used without using HWKM. Hence, providing a toggle controlled
+> by a devicetree entry to use HWKM or not.
+> 
+> Signed-off-by: Gaurav Kashyap <quic_gaurkash@quicinc.com>
+> Tested-by: Neil Armstrong <neil.armstrong@linaro.org>
+> ---
+>   drivers/soc/qcom/ice.c | 126 ++++++++++++++++++++++++++++++++++++++++-
+>   include/soc/qcom/ice.h |   1 +
+>   2 files changed, 124 insertions(+), 3 deletions(-)
+> 
+> diff --git a/drivers/soc/qcom/ice.c b/drivers/soc/qcom/ice.c
+> index 6f941d32fffb..c718e8153b23 100644
+> --- a/drivers/soc/qcom/ice.c
+> +++ b/drivers/soc/qcom/ice.c
+> @@ -26,6 +26,20 @@
+>   #define QCOM_ICE_REG_FUSE_SETTING		0x0010
+>   #define QCOM_ICE_REG_BIST_STATUS		0x0070
+>   #define QCOM_ICE_REG_ADVANCED_CONTROL		0x1000
+> +#define QCOM_ICE_REG_CONTROL			0x0
+> +/* QCOM ICE HWKM registers */
+> +#define QCOM_ICE_REG_HWKM_TZ_KM_CTL			0x1000
+> +#define QCOM_ICE_REG_HWKM_TZ_KM_STATUS			0x1004
+> +#define QCOM_ICE_REG_HWKM_BANK0_BANKN_IRQ_STATUS	0x2008
+> +#define QCOM_ICE_REG_HWKM_BANK0_BBAC_0			0x5000
+> +#define QCOM_ICE_REG_HWKM_BANK0_BBAC_1			0x5004
+> +#define QCOM_ICE_REG_HWKM_BANK0_BBAC_2			0x5008
+> +#define QCOM_ICE_REG_HWKM_BANK0_BBAC_3			0x500C
+> +#define QCOM_ICE_REG_HWKM_BANK0_BBAC_4			0x5010
+> +
+> +/* QCOM ICE HWKM BIST vals */
+> +#define QCOM_ICE_HWKM_BIST_DONE_V1_VAL		0x14007
+> +#define QCOM_ICE_HWKM_BIST_DONE_V2_VAL		0x287
+>   
+>   /* BIST ("built-in self-test") status flags */
+>   #define QCOM_ICE_BIST_STATUS_MASK		GENMASK(31, 28)
+> @@ -34,6 +48,9 @@
+>   #define QCOM_ICE_FORCE_HW_KEY0_SETTING_MASK	0x2
+>   #define QCOM_ICE_FORCE_HW_KEY1_SETTING_MASK	0x4
+>   
+> +#define QCOM_ICE_HWKM_REG_OFFSET	0x8000
+> +#define HWKM_OFFSET(reg)		((reg) + QCOM_ICE_HWKM_REG_OFFSET)
+> +
+>   #define qcom_ice_writel(engine, val, reg)	\
+>   	writel((val), (engine)->base + (reg))
+>   
+> @@ -46,6 +63,9 @@ struct qcom_ice {
+>   	struct device_link *link;
+>   
+>   	struct clk *core_clk;
+> +	u8 hwkm_version;
+> +	bool use_hwkm;
+> +	bool hwkm_init_complete;
+>   };
+>   
+>   static bool qcom_ice_check_supported(struct qcom_ice *ice)
+> @@ -63,8 +83,21 @@ static bool qcom_ice_check_supported(struct qcom_ice *ice)
+>   		return false;
+>   	}
+>   
+> -	dev_info(dev, "Found QC Inline Crypto Engine (ICE) v%d.%d.%d\n",
+> -		 major, minor, step);
+> +	if (major >= 4 || (major == 3 && minor == 2 && step >= 1))
+> +		ice->hwkm_version = 2;
+> +	else if (major == 3 && minor == 2)
+> +		ice->hwkm_version = 1;
+> +	else
+> +		ice->hwkm_version = 0;
+> +
+> +	if (ice->hwkm_version == 0)
+> +		ice->use_hwkm = false;
+> +
+> +	dev_info(dev, "Found QC Inline Crypto Engine (ICE) v%d.%d.%d, HWKM v%d\n",
+> +		 major, minor, step, ice->hwkm_version);
+> +
+> +	if (!ice->use_hwkm)
+> +		dev_info(dev, "QC ICE HWKM (Hardware Key Manager) not used/supported");
+>   
+>   	/* If fuses are blown, ICE might not work in the standard way. */
+>   	regval = qcom_ice_readl(ice, QCOM_ICE_REG_FUSE_SETTING);
+> @@ -113,10 +146,14 @@ static void qcom_ice_optimization_enable(struct qcom_ice *ice)
+>    * fails, so we needn't do it in software too, and (c) properly testing
+>    * storage encryption requires testing the full storage stack anyway,
+>    * and not relying on hardware-level self-tests.
+> + *
+> + * However, we still care about if HWKM BIST failed (when supported) as
+> + * important functionality would fail later, so disable hwkm on failure.
+>    */
+>   static int qcom_ice_wait_bist_status(struct qcom_ice *ice)
+>   {
+>   	u32 regval;
+> +	u32 bist_done_reg;
+>   	int err;
+>   
+>   	err = readl_poll_timeout(ice->base + QCOM_ICE_REG_BIST_STATUS,
+> @@ -125,15 +162,85 @@ static int qcom_ice_wait_bist_status(struct qcom_ice *ice)
+>   	if (err)
+>   		dev_err(ice->dev, "Timed out waiting for ICE self-test to complete\n");
+>   
+> +	if (ice->use_hwkm) {
+> +		bist_done_reg = (ice->hwkm_version == 1) ?
+> +				 QCOM_ICE_HWKM_BIST_DONE_V1_VAL :
+> +				 QCOM_ICE_HWKM_BIST_DONE_V2_VAL;
+> +		if (qcom_ice_readl(ice,
+> +				   HWKM_OFFSET(QCOM_ICE_REG_HWKM_TZ_KM_STATUS)) !=
+> +				   bist_done_reg) {
+> +			dev_err(ice->dev, "HWKM BIST error\n");
+err is not upsated to capture this failure.
+> +			ice->use_hwkm = false;
+> +		}
+> +	}
+>   	return err;
+>   }
+>   
+> +static void qcom_ice_enable_standard_mode(struct qcom_ice *ice)
+> +{
+> +	u32 val = 0;
+> +
+> +	/*
+> +	 * When ICE is in standard (hwkm) mode, it supports HW wrapped
+> +	 * keys, and when it is in legacy mode, it only supports standard
+> +	 * (non HW wrapped) keys.
+> +	 *
+> +	 * Put ICE in standard mode, ICE defaults to legacy mode.
+> +	 * Legacy mode - ICE HWKM slave not supported.
+> +	 * Standard mode - ICE HWKM slave supported.
+> +	 *
+> +	 * Depending on the version of HWKM, it is controlled by different
+> +	 * registers in ICE.
+> +	 */
+> +	if (ice->hwkm_version >= 2) {
+> +		val = qcom_ice_readl(ice, QCOM_ICE_REG_CONTROL);
+> +		val = val & 0xFFFFFFFE;
+do not use constant "0xFFFFFFFE". Better to define bits that are being set.
+> +		qcom_ice_writel(ice, val, QCOM_ICE_REG_CONTROL);
+> +	} else {
+> +		qcom_ice_writel(ice, 0x7, HWKM_OFFSET(QCOM_ICE_REG_HWKM_TZ_KM_CTL));
+do not use constant "0x7". Better to define bits that are being set.
+> +	}
+> +}
+> +
+> +static void qcom_ice_hwkm_init(struct qcom_ice *ice)
+> +{
+> +	/* Disable CRC checks. This HWKM feature is not used. */
+> +	qcom_ice_writel(ice, 0x6,
+> +			HWKM_OFFSET(QCOM_ICE_REG_HWKM_TZ_KM_CTL));
+> +
+> +	/*
+> +	 * Give register bank of the HWKM slave access to read and modify
+> +	 * the keyslots in ICE HWKM slave. Without this, trustzone will not
+> +	 * be able to program keys into ICE.
+> +	 */
+> +	qcom_ice_writel(ice, 0xFFFFFFFF, HWKM_OFFSET(QCOM_ICE_REG_HWKM_BANK0_BBAC_0));
+> +	qcom_ice_writel(ice, 0xFFFFFFFF, HWKM_OFFSET(QCOM_ICE_REG_HWKM_BANK0_BBAC_1));
+> +	qcom_ice_writel(ice, 0xFFFFFFFF, HWKM_OFFSET(QCOM_ICE_REG_HWKM_BANK0_BBAC_2));
+> +	qcom_ice_writel(ice, 0xFFFFFFFF, HWKM_OFFSET(QCOM_ICE_REG_HWKM_BANK0_BBAC_3));
+> +	qcom_ice_writel(ice, 0xFFFFFFFF, HWKM_OFFSET(QCOM_ICE_REG_HWKM_BANK0_BBAC_4));
+> +
+> +	/* Clear HWKM response FIFO before doing anything */
+> +	qcom_ice_writel(ice, 0x8, HWKM_OFFSET(QCOM_ICE_REG_HWKM_BANK0_BANKN_IRQ_STATUS));
+Do not use constant "0x8". Please define bits that are being set.
+> +	ice->hwkm_init_complete = true;
+> +}
+> +
+>   int qcom_ice_enable(struct qcom_ice *ice)
+>   {
+> +	int err;
+> +
+>   	qcom_ice_low_power_mode_enable(ice);
+>   	qcom_ice_optimization_enable(ice);
+>   
+> -	return qcom_ice_wait_bist_status(ice);
+> +	if (ice->use_hwkm)
+> +		qcom_ice_enable_standard_mode(ice);
+> +
+> +	err = qcom_ice_wait_bist_status(ice);
+> +	if (err)
+> +		return err;
+> +
+> +	if (ice->use_hwkm)
+> +		qcom_ice_hwkm_init(ice);
+> +
+> +	return err;
+>   }
+>   EXPORT_SYMBOL_GPL(qcom_ice_enable);
+>   
+> @@ -149,6 +256,10 @@ int qcom_ice_resume(struct qcom_ice *ice)
+>   		return err;
+>   	}
+>   
+> +	if (ice->use_hwkm) {
+> +		qcom_ice_enable_standard_mode(ice);
+> +		qcom_ice_hwkm_init(ice);
+> +	}
+>   	return qcom_ice_wait_bist_status(ice);
+>   }
+>   EXPORT_SYMBOL_GPL(qcom_ice_resume);
+> @@ -156,6 +267,7 @@ EXPORT_SYMBOL_GPL(qcom_ice_resume);
+>   int qcom_ice_suspend(struct qcom_ice *ice)
+>   {
+>   	clk_disable_unprepare(ice->core_clk);
+> +	ice->hwkm_init_complete = false;
+>   
+>   	return 0;
+>   }
+> @@ -205,6 +317,12 @@ int qcom_ice_evict_key(struct qcom_ice *ice, int slot)
+>   }
+>   EXPORT_SYMBOL_GPL(qcom_ice_evict_key);
+>   
+> +bool qcom_ice_hwkm_supported(struct qcom_ice *ice)
+> +{
+> +	return ice->use_hwkm;
+> +}
+> +EXPORT_SYMBOL_GPL(qcom_ice_hwkm_supported);
+> +
+>   static struct qcom_ice *qcom_ice_create(struct device *dev,
+>   					void __iomem *base)
+>   {
+> @@ -239,6 +357,8 @@ static struct qcom_ice *qcom_ice_create(struct device *dev,
+>   		engine->core_clk = devm_clk_get_enabled(dev, NULL);
+>   	if (IS_ERR(engine->core_clk))
+>   		return ERR_CAST(engine->core_clk);
+> +	engine->use_hwkm = of_property_read_bool(dev->of_node,
+> +						 "qcom,ice-use-hwkm");
+>   
+>   	if (!qcom_ice_check_supported(engine))
+>   		return ERR_PTR(-EOPNOTSUPP);
+> diff --git a/include/soc/qcom/ice.h b/include/soc/qcom/ice.h
+> index 9dd835dba2a7..1f52e82e3e1c 100644
+> --- a/include/soc/qcom/ice.h
+> +++ b/include/soc/qcom/ice.h
+> @@ -34,5 +34,6 @@ int qcom_ice_program_key(struct qcom_ice *ice,
+>   			 const struct blk_crypto_key *bkey,
+>   			 u8 data_unit_size, int slot);
+>   int qcom_ice_evict_key(struct qcom_ice *ice, int slot);
+> +bool qcom_ice_hwkm_supported(struct qcom_ice *ice);
+>   struct qcom_ice *of_qcom_ice_get(struct device *dev);
+>   #endif /* __QCOM_ICE_H__ */
 
