@@ -1,74 +1,74 @@
-Return-Path: <devicetree+bounces-38479-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-38480-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2E0DC8494A6
-	for <lists+devicetree@lfdr.de>; Mon,  5 Feb 2024 08:40:36 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0A0758494AB
+	for <lists+devicetree@lfdr.de>; Mon,  5 Feb 2024 08:41:36 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 536971C23D6F
-	for <lists+devicetree@lfdr.de>; Mon,  5 Feb 2024 07:40:35 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 6DFBD1F24DD1
+	for <lists+devicetree@lfdr.de>; Mon,  5 Feb 2024 07:41:35 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8385110A0F;
-	Mon,  5 Feb 2024 07:40:30 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9701010A2A;
+	Mon,  5 Feb 2024 07:41:28 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="OB6hrEeJ"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="OJykxiLA"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ej1-f54.google.com (mail-ej1-f54.google.com [209.85.218.54])
+Received: from mail-ed1-f54.google.com (mail-ed1-f54.google.com [209.85.208.54])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A4C6610A13
-	for <devicetree@vger.kernel.org>; Mon,  5 Feb 2024 07:40:28 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.54
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DCD02DDBD
+	for <devicetree@vger.kernel.org>; Mon,  5 Feb 2024 07:41:25 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.54
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1707118830; cv=none; b=juSBEoqACNwt2Wla2UIcivr+YvtBu3CvuweHP4+Sqmyu3FOd7r5BpCl+Hn55pazXuryH8sSBEOkkv3briDRpq7+48xscJa/7o7zzuCp16HD8Yc6l1qZ5YW5geo0tDqF1AB0gxLlpzlSIETS6+pNXCoBQBNV5706S02iUwSxu/hg=
+	t=1707118888; cv=none; b=a0Gnh1YwlVWLtDWgB0cyVWIg6NqlSE9/d0f96a0q1Z/h6gk7yksK9OQOHso+shwWyOWNNelGZ55loRllNyKo55l35zDtO9tqiUmSOUVSDHul3b+zz5PTwr8naJz4KVLl+w8awxQSd9NbcA3gnRADnz9owz47GFqdC6BuTKenzKg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1707118830; c=relaxed/simple;
-	bh=nchm5OkmdUiGHfGrvQjwb7fWah4XvwZHrPlRwY4bvrQ=;
+	s=arc-20240116; t=1707118888; c=relaxed/simple;
+	bh=m3s8CvOnRVDd4A/sHox9BjffimSzPmxuvHxo7w6XeF4=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=rrB6kjUJTAvUM+L14x/10Wdz2KakN4GOb8mWEp1vGIYlfH3mh2hFU8x6Wqq5Saf3qFHMmVwUjg4p/5vWQpmL9sSjEzyli36H4RJTazLJMbsTeU7lThMHgt/5VRnlxWFCPiP07JwWciqbkljGd4/KRFZcp1CTE94DVuhwp7H901A=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=OB6hrEeJ; arc=none smtp.client-ip=209.85.218.54
+	 In-Reply-To:Content-Type; b=KxRW+IN3pqQcMcealTB6BwiwBaEEvE6n2kvipZbXBGqQEttHLj2T7flJsnYGavTzarc1eYsRv88G1HRlBPSU/Qawv9VF/AhEkm4q9bderPO5VHXkfDLfS4uWC/U8GcFQbWb+nVXFidgE7PMNTo4In3WZnXlFSsFUoYd2ECk8wz8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=OJykxiLA; arc=none smtp.client-ip=209.85.208.54
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-ej1-f54.google.com with SMTP id a640c23a62f3a-a3122b70439so532091066b.3
-        for <devicetree@vger.kernel.org>; Sun, 04 Feb 2024 23:40:28 -0800 (PST)
+Received: by mail-ed1-f54.google.com with SMTP id 4fb4d7f45d1cf-56001b47285so2632600a12.1
+        for <devicetree@vger.kernel.org>; Sun, 04 Feb 2024 23:41:25 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1707118827; x=1707723627; darn=vger.kernel.org;
+        d=linaro.org; s=google; t=1707118884; x=1707723684; darn=vger.kernel.org;
         h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
          :to:content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=GthxkzbELfg5v97NX2sB3ey9m+gwXsiTo/60XeoocpE=;
-        b=OB6hrEeJET8N45CQjanxSCjJOmaBnw7Fgs/eyHg8I9Zkv0QKwwz4nocTiIgUnEJwVh
-         khF1LK5vWe4jPENgRJ+WzuxyW1oosMoodebidlXLUXwiQNwOX7VpmnOSg2+nRzUt52qS
-         fbzYuNk3i3LkHbqRFG2iq7VCrkdiQMcZZyXEFsxR5NHjn4K8Oauf30AuKwILoAgyZGTX
-         tLBs5gk/t1GMV3ITcNzE4iVi3Za4nTtScko0Et7vzZ2YXfjZvCE8j80nwDo0ETYyas5C
-         9Q5ZSFXjNeFYxzBV+WgFV4FDFSwisDSy03/kJFBB/cigdDQN572Wbm2SbhMsvL76o+Uk
-         k8+w==
+        bh=DlKQQZ10mTGzXpOpSYWOXKuFRQr7h89RLpabq7fR/IM=;
+        b=OJykxiLA7rwtHbDP8N4ieHRTPaJgBsenL+rxy0/Q+GJuMDKxEXND5A8wsVwuLN3ztK
+         9i23hNULMKykHgEZwgzMCIOULEMmtLOkPkd2l9EOFza6k/KKUR9VJ1BCeU6N3WLoyUGn
+         aHZLQfxiPzu8N4jEwGGZ+d4AViCpSf0RhWjZspC6fUQgBNnD4YzVZmKOYNLJ9XB07Drm
+         uvcwA3HQGncXJmVgdF4wlDc/c03mGA942qhpPhZxafe2v9N08uaovP7WTBosVV99hPZk
+         6KnTCLf9mGWihgT8cvAieStMLp59YNY5WVacKPbgBB7GOCDDlTbZtn96NxvaD/5GeCqq
+         xLaw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1707118827; x=1707723627;
+        d=1e100.net; s=20230601; t=1707118884; x=1707723684;
         h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
          :to:content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=GthxkzbELfg5v97NX2sB3ey9m+gwXsiTo/60XeoocpE=;
-        b=HKjRlgQ8GB5GnO86ots5XPgGYIq/8DgfLeftDnj2xk7ARABdBC6Bpi0xwokOlYykrS
-         d/5vGT6tWfGJRO9Uy4AEYujgr9usJZnuOnmo6CFoGADL4S2Lo5mPXa7VD/8fl7phopqU
-         0xxnaPTXv0+HeU9EdqoJTR8Xseghbra/wSjWteM8g9T0gTkjnftJX9/mfCjmciIkKxMp
-         wljtWES7KWGV5Hzqzab1m5+IyahMCHlzecEVFCSUxjgYkyOtJcgJtEjGxlxl9ZQ246QR
-         fHroA7dUP4XO9sUruIqkfoN0LVmksvgPo3DI/2rkMxNz/IWufCc1G9I7PlFuu1hXAwUC
-         0aPw==
-X-Gm-Message-State: AOJu0YzsOONQHVYDVsQjQhTEO903ysusRCdoGLrQ+W/6xI5z4hCF5aCl
-	NrgC0IphYRl9eD4zM+Jw3PNiM/0TxY6fiUAebqcczRIm2NTLZO3cVSZziKHiTW8=
-X-Google-Smtp-Source: AGHT+IFBW2mMfC/A1uOX5nC+Ja2o9B3szYgbN9OHzQtLcKELeq7AyNv0o/iynMN6HAKwJtmqYL40OQ==
-X-Received: by 2002:a17:906:2f08:b0:a35:9a1a:620c with SMTP id v8-20020a1709062f0800b00a359a1a620cmr9676819eji.45.1707118826844;
-        Sun, 04 Feb 2024 23:40:26 -0800 (PST)
-X-Forwarded-Encrypted: i=0; AJvYcCUOAA/YniSLTzuLbO5mHwMc17/oIj0pikzJTY6iOFDaHaiSHlzPgUHeCAG9X01y/IQw7/3+k9jflcGmEngDH7kTaz2+GdJCTosxRhm0iWi+nXQEUAtkRX0P47/1KyVsMEO0Hs62/EWfUZZxVl6CycLc4Qwl6NcaIdc0IoyzbPQIYXuU5vb0Oxvx0GNk0Q6Pn7kYh84wlnXXjaw8mYZfLZYCtminqpTLZqQlhwEqBIiZjYRrynVZsKXB7ewk+RJKFxHChl9p+65IwkfgNQZLRhSgNH6oCui7FoVG9h3BdTg7roaKSe14iS09NnnquvK+BjL7tcMeaa9m7yDWGDwbXQqmz/uuD8JrbBiG7x1zduH14pkLmhHCAZI3tX0MJA2jwTFtCuV+ygQxGaFMq2f83WZ0+0fWTF/qahmAg5yF5HGMVK1/XLmGT1L41f5D81b9ndSDrYRueg==
+        bh=DlKQQZ10mTGzXpOpSYWOXKuFRQr7h89RLpabq7fR/IM=;
+        b=wlGV0Wf2MhHjWwQvjstzsgxsvgri4t0MOtGnqHviHKu4FuEW0zSwTgR/LEoUc2BO3J
+         IrV0YBOZX8/psH5ezUOTIdxRinciKzaM+FK+T/QJ8cz3I3pk5I9UrRtyjPhEZ0iE7/g/
+         Ia1nz/WDNwR6SC4Kxb+bS/CQ8/yy3bPfGNyyhqpss8KbzGyTioQQ+W6zkM0ZLCFYXR8p
+         zEks7S/Nf36ydBHM3QLVnlBwJD4QU3w3klHsSvjsYeNLGWU8uwLZqKFcnpLhHiKa2xkn
+         Z6APEGOSWJXQoAYGFOXUnh6DQ7Zf91OX8zSYrtJJwUQRLTe9/KtZIeXFUd2dZathJTpl
+         iaig==
+X-Gm-Message-State: AOJu0Yw/zBo6FzU0VHqXuoRezEDt6B+EfICyLGEVD8RAcpGQJjmm6G3h
+	/qAzcdDRUUsDK4bVOOoE9V23XcwFeqUMkSkPSXvq+RzRceJ2B1xcHoxy/A/8M1I=
+X-Google-Smtp-Source: AGHT+IFsfLx61Hv2XlhZphvnONlM8hwvn6dKB4tEqBvk1rMW54gPE504ItAlIkcTvdvpM9IYn7urvA==
+X-Received: by 2002:a17:907:100b:b0:a37:c159:60a8 with SMTP id ox11-20020a170907100b00b00a37c15960a8mr1111425ejb.29.1707118884053;
+        Sun, 04 Feb 2024 23:41:24 -0800 (PST)
+X-Forwarded-Encrypted: i=0; AJvYcCX9xSUpxkOD0tREL0sDBvK0ofJvUWVdN/yAYCSI1I87SYMvYZE69rRJFj1VmKFIV9VYcMOwV9AEAogK10oX8K9AKs4DXyHt+eSU5LMZi6VXd6+aopUB4VEraJ6PZcX+S/jJdCirdHylovgfnsYO5E3HaFzcGJ3cS+y9rJ8nwZvIk4EEmZlIJZlhbfmndivjSFb5odduKI4SJLabcgnTcUevqgBXYroil7V6IGRy0jKZopPV3BmyHqRkg1TxnYnAOM1SOLysaGQPm+Izs/3Aj7EABPHt/zhtfAGOs68XSRCn0hkTS1/shxD7ofOvo801fkadh6RA1N/tcHY5j1AwoVy5xdJEdUb2ym4u3xnXOl6fMX2y0U3xphR+A6tzKsRLr4cjK/nZTUb/2QaIQR2iZ6GAaB0pLZLUNT9qPqYQcExkH8H+7Nup+s3jku0+jEDvyl2X/rCYBQ==
 Received: from [192.168.1.20] ([178.197.222.62])
-        by smtp.gmail.com with ESMTPSA id st1-20020a170907c08100b00a35aaa70875sm4017567ejc.42.2024.02.04.23.40.25
+        by smtp.gmail.com with ESMTPSA id st1-20020a170907c08100b00a35aaa70875sm4017567ejc.42.2024.02.04.23.41.22
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sun, 04 Feb 2024 23:40:26 -0800 (PST)
-Message-ID: <bd253c6d-999c-4ba6-a80d-c7e077d1261a@linaro.org>
-Date: Mon, 5 Feb 2024 08:40:24 +0100
+        Sun, 04 Feb 2024 23:41:23 -0800 (PST)
+Message-ID: <6980c4d5-78a2-4c14-b21e-a5ed1e4d5675@linaro.org>
+Date: Mon, 5 Feb 2024 08:41:22 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -76,7 +76,7 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 1/2] serial: samsung: honor fifosize from dts at first
+Subject: Re: [PATCH 2/2] arm64: dts: fsd: Add fifosize for UART in Device Tree
 Content-Language: en-US
 To: Tamseel Shams <m.shams@samsung.com>, alim.akhtar@samsung.com,
  linux-fsd@tesla.com, robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
@@ -84,8 +84,9 @@ To: Tamseel Shams <m.shams@samsung.com>, alim.akhtar@samsung.com,
 Cc: linux-arm-kernel@lists.infradead.org, linux-samsung-soc@vger.kernel.org,
  devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
  linux-serial@vger.kernel.org
-References: <CGME20240202212456epcas5p15589813cd79526e9d0c444082e2f0e51@epcas5p1.samsung.com>
- <20240202212448.74840-1-m.shams@samsung.com>
+References: <20240202212448.74840-1-m.shams@samsung.com>
+ <CGME20240202212459epcas5p2e1703c35ebe9302ac5b2f3d3fcd853c0@epcas5p2.samsung.com>
+ <20240202212448.74840-2-m.shams@samsung.com>
 From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  xsFNBFVDQq4BEAC6KeLOfFsAvFMBsrCrJ2bCalhPv5+KQF2PS2+iwZI8BpRZoV+Bd5kWvN79
@@ -131,47 +132,23 @@ Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  KQ06ztUMRrj8eVtpImjsWCd0bDWRaaR4vqhCHvAG9iWXZu4qh3ipie2Y0oSJygcZT7H3UZxq
  fyYKiqEmRuqsvv6dcbblD8ZLkz1EVZL6djImH5zc5x8qpVxlA0A0i23v5QvN00m6G9NFF0Le
  D2GYIS41Kv4Isx2dEFh+/Q==
-In-Reply-To: <20240202212448.74840-1-m.shams@samsung.com>
+In-Reply-To: <20240202212448.74840-2-m.shams@samsung.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
 On 02/02/2024 22:24, Tamseel Shams wrote:
-> Currently for platforms which passes UART fifosize from DT gets
-> override by local driver structure "s3c24xx_serial_drv_data",
-> which is not indentded. Change the code to honor fifosize from
-> device tree at first.
+> UART in FSD SoC has fifosize of 64 bytes.
+> Set fifosize as 64 bytes for UART from Device Tree.
 > 
 > Signed-off-by: Tamseel Shams <m.shams@samsung.com>
 > ---
->  drivers/tty/serial/samsung_tty.c | 14 ++++++++------
->  1 file changed, 8 insertions(+), 6 deletions(-)
-> 
-> diff --git a/drivers/tty/serial/samsung_tty.c b/drivers/tty/serial/samsung_tty.c
-> index 71d17d804fda..e4c4c9f4f9b0 100644
-> --- a/drivers/tty/serial/samsung_tty.c
-> +++ b/drivers/tty/serial/samsung_tty.c
-> @@ -1990,8 +1990,7 @@ static int s3c24xx_serial_probe(struct platform_device *pdev)
->  	}
->  
->  	if (np) {
-> -		of_property_read_u32(np,
-> -			"samsung,uart-fifosize", &ourport->port.fifosize);
-> +		ret = of_property_read_u32(np, "samsung,uart-fifosize", &ourport->port.fifosize);
->  
->  		if (of_property_read_u32(np, "reg-io-width", &prop) == 0) {
->  			switch (prop) {
-> @@ -2009,10 +2008,13 @@ static int s3c24xx_serial_probe(struct platform_device *pdev)
->  		}
->  	}
->  
-> -	if (ourport->drv_data->fifosize[index])
-> -		ourport->port.fifosize = ourport->drv_data->fifosize[index];
-> -	else if (ourport->info->fifosize)
-> -		ourport->port.fifosize = ourport->info->fifosize;
+>  arch/arm64/boot/dts/tesla/fsd.dtsi | 2 ++
 
-I think ret is not initialized here.
+Please split SoC changes from patches sent to serial, so it will be easy
+to apply for Greg and others.
 
-
+Unless you want to say that there is dependency, but there cannot be
+such - it would be a NAK.
 
 Best regards,
 Krzysztof
