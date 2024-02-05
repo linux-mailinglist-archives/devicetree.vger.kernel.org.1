@@ -1,55 +1,54 @@
-Return-Path: <devicetree+bounces-38612-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-38613-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 825BB849BB6
-	for <lists+devicetree@lfdr.de>; Mon,  5 Feb 2024 14:26:53 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 232D9849BD6
+	for <lists+devicetree@lfdr.de>; Mon,  5 Feb 2024 14:32:56 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id B4FE51C21105
-	for <lists+devicetree@lfdr.de>; Mon,  5 Feb 2024 13:26:52 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id D44452860D8
+	for <lists+devicetree@lfdr.de>; Mon,  5 Feb 2024 13:32:54 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 49F061C695;
-	Mon,  5 Feb 2024 13:26:47 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 62E5C1CD0B;
+	Mon,  5 Feb 2024 13:32:52 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="RvR2Io/m"
+	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="ZI6aDvze"
 X-Original-To: devicetree@vger.kernel.org
 Received: from relay9-d.mail.gandi.net (relay9-d.mail.gandi.net [217.70.183.199])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 93FA51CD05;
-	Mon,  5 Feb 2024 13:26:43 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 13F081CD1C;
+	Mon,  5 Feb 2024 13:32:49 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.70.183.199
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1707139607; cv=none; b=gSKQQzUmXktLQSwsu9IJAso0W/BWqUetxQCKjSCLII2C1lIcMr0+ZgP0hf6XEHbHAev2YsGEGw/f/zqKV3Oj7vGgmQk5eDW++y7nTAmcnBEuDbNLDM+FZYZakfS4lpNAMBw0Bb8teBLh6QznnVHbSwCCpf6NLd+O2Da1Ey7ATlk=
+	t=1707139972; cv=none; b=d430USeu6lis8gAfnfcCap38mCjECnB2kg6s39F3Jf9ao3GXPzJgGJrpFUTIk2K8gsHPqF4eZnqMSfajDciCKqJS0Oa7T3CSYJra9f3rwAF+Gpy51WKP3zjDbQ8rtOcr0HObR0TCNqFqdfrBVzyn9uCw5N4BY0zwkj3oWzn1ASM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1707139607; c=relaxed/simple;
-	bh=oWPwmRLnCaYF8YZEOMfP6FByoUIRBfdx2gAukBKsmAM=;
+	s=arc-20240116; t=1707139972; c=relaxed/simple;
+	bh=HWm28kdbG2bw3TeeNcZwzfshOWPZDIfup7xJaZlsBu0=;
 	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=lAm/nZhuye2UL8G7PhCKM3aKDWsOjPniB0LYfmiWzaiA4gZfd/8vxZayh1mBKZMzVOszwN/tOqfkrsTrsra27pHin6/gjCqJ6CoSSH7IBEE8YTwOJZoAoHiIrCaoioMDqWwftG12xx7iipsUIdd9G+t2va73BPCRWfa3dDhrUNo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=RvR2Io/m; arc=none smtp.client-ip=217.70.183.199
+	 MIME-Version:Content-Type; b=VupoDGEIivzT+bMweedRPGK3Wgc0Iy7jNB7EB71LyTAAs2q/PS+Kw9pS8/WpzVIr4CoGu9p/Ltnz7bDUaZFxNQlfXLZ+qXKsXj3CPJQlz7V1o5OfD6Xh2qNnFyFT6d4JzuVCsDqNSN7bHQOSj99HBcotakDu5BjSWmd3ADCXkWc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=ZI6aDvze; arc=none smtp.client-ip=217.70.183.199
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
-Received: by mail.gandi.net (Postfix) with ESMTPSA id 8ED9BFF811;
-	Mon,  5 Feb 2024 13:26:40 +0000 (UTC)
+Received: by mail.gandi.net (Postfix) with ESMTPSA id 2D384FF809;
+	Mon,  5 Feb 2024 13:32:47 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
-	t=1707139601;
+	t=1707139968;
 	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
 	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
 	 content-transfer-encoding:content-transfer-encoding:
 	 in-reply-to:in-reply-to:references:references;
-	bh=1mJeoLvrMZja6m+m7EbjiMgme3HRnrMEAgds1gESvyI=;
-	b=RvR2Io/mFkUOlAI951aA+ed3sDSo1QIzzLxgeg0nB/mmNg96VV9t7LmbyH4flPNVGPrQrl
-	3yAOAfohYN73qbkQVkSIlvkX5rv7EHi/Ncn49HOyoHRmJlaI/ozEK/XXngzEMDgTal7tzv
-	xKNua8XrpGFgv2/cPgjguRAUmp+tAEcSZTaBd9b5dWh5cHdLOEdm+wm1KtXMEKcJvhSKX9
-	TYkAf+D2gHR6opO2wQRE3jSSSktakW48XTIG8d/w5oKiT/nhbjWuA9o0tG59OtVcvnM1Su
-	nyP8KpAYL2bKeNsfrlpZxOwricqsAtPWAtO/ujLgEb8B6SIdICgYrebKM+3TCg==
-Date: Mon, 5 Feb 2024 14:26:39 +0100
+	bh=koe9bjcAN33voyRHmbaxK/dVbeKGFFFrjtmLDWOmCww=;
+	b=ZI6aDvzem4bJwwgbG1O4FDdd8g4QYZqNsTqWtLPfd0LebqWxmQSUeW8/mJhuLLZNaf+Fix
+	snlRDLbbL531U8mYjvQfHaqAXpNavizDZc7xVtsebKqelDzOqHb+cQQv/9nLneGJBtMDNR
+	IquYlZzG3mIULBGlcU5LqwKz0UYZk9Lv1zouCXJdAqYp/G5Pm2r2nTERY8JZngMI0bCF1j
+	WRRcqpMOiRhleJ3KR9/P3NUPNqGDj2liA4aKj3O11Im7RFfYusR6XsWp+Zz1fqhd5R1dGr
+	gnzOWZmYAhU3c5qS5Wbo+SpZWuPUb+YWozNE0hzcgKvQo04BoauF4oLYBjHDbQ==
+Date: Mon, 5 Feb 2024 14:32:46 +0100
 From: Miquel Raynal <miquel.raynal@bootlin.com>
-To: Conor Dooley <conor@kernel.org>
-Cc: William Zhang <william.zhang@broadcom.com>, Linux MTD List
- <linux-mtd@lists.infradead.org>, Linux ARM List
+To: William Zhang <william.zhang@broadcom.com>
+Cc: Linux MTD List <linux-mtd@lists.infradead.org>, Linux ARM List
  <linux-arm-kernel@lists.infradead.org>, Broadcom Kernel List
  <bcm-kernel-feedback-list@broadcom.com>, f.fainelli@gmail.com,
  kursad.oney@broadcom.com, joel.peshkin@broadcom.com,
@@ -60,13 +59,12 @@ Cc: William Zhang <william.zhang@broadcom.com>, Linux MTD List
  Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Vignesh Raghavendra
  <vigneshr@ti.com>, Richard Weinberger <richard@nod.at>, Kamal Dasu
  <kdasu.kdev@gmail.com>, Rob Herring <robh+dt@kernel.org>
-Subject: Re: [PATCH v4 03/12] dt-bindings: mtd: brcmnand: Add ecc strap
- property
-Message-ID: <20240205142639.5d7c70f0@xps-13>
-In-Reply-To: <20240203-expenses-tarmac-c564bc7ae34f@spud>
+Subject: Re: [PATCH v4 02/12] dt-bindings: mtd: brcmnand: Add WP pin
+ connection property
+Message-ID: <20240205143246.52ee97ec@xps-13>
+In-Reply-To: <20240203002834.171462-3-william.zhang@broadcom.com>
 References: <20240203002834.171462-1-william.zhang@broadcom.com>
-	<20240203002834.171462-4-william.zhang@broadcom.com>
-	<20240203-expenses-tarmac-c564bc7ae34f@spud>
+	<20240203002834.171462-3-william.zhang@broadcom.com>
 Organization: Bootlin
 X-Mailer: Claws Mail 4.0.0 (GTK+ 3.24.33; x86_64-pc-linux-gnu)
 Precedence: bulk
@@ -79,66 +77,53 @@ Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: quoted-printable
 X-GND-Sasl: miquel.raynal@bootlin.com
 
-Hi,
+Hi William,
 
-conor@kernel.org wrote on Sat, 3 Feb 2024 14:49:50 +0000:
+william.zhang@broadcom.com wrote on Fri,  2 Feb 2024 16:28:23 -0800:
 
-> On Fri, Feb 02, 2024 at 04:28:24PM -0800, William Zhang wrote:
-> > Add brcm,nand-ecc-use-strap to get ecc and spare area size settings from
-> > board boot strap for broadband board designs because they do not specify
-> > ecc setting in dts but rather using the strap setting.
-> >=20
-> > Signed-off-by: William Zhang <william.zhang@broadcom.com>
-> >=20
-> > ---
-> >=20
-> > Changes in v4:
-> > - Move ecc strap property to this separate patch and remove some
-> > non-binding related text from the description
-> >=20
-> > Changes in v3: None
-> > Changes in v2: None
-> >=20
-> >  Documentation/devicetree/bindings/mtd/brcm,brcmnand.yaml | 8 ++++++++
-> >  1 file changed, 8 insertions(+)
-> >=20
-> > diff --git a/Documentation/devicetree/bindings/mtd/brcm,brcmnand.yaml b=
-/Documentation/devicetree/bindings/mtd/brcm,brcmnand.yaml
-> > index d0168d55c73e..2599d902ec3a 100644
-> > --- a/Documentation/devicetree/bindings/mtd/brcm,brcmnand.yaml
-> > +++ b/Documentation/devicetree/bindings/mtd/brcm,brcmnand.yaml
-> > @@ -147,6 +147,14 @@ patternProperties:
-> >            layout.
-> >          $ref: /schemas/types.yaml#/definitions/uint32
-> > =20
-> > +      brcm,nand-ecc-use-strap:
-> > +        description:
-> > +          This flag indicates the ecc strength and spare area size sho=
-uld
-> > +          be retrieved from the SoC NAND boot strap setting instead of
-> > +          nand-ecc-strength and brcm,nand-oob-sector-size or auto dete=
-ction. =20
+> Add brcm,wp-not-connected property to have an option for disabling this
+> feature on broadband board design that does not connect WP pin.
 >=20
-> I'm still on the fence about this being overly prescriptive about the
-> operating systems behaviour. I think it would be good to say why the
-> strap values are better than those explicitly provided in DT rather than
-> just saying "these strap values should be used".
+> Signed-off-by: William Zhang <william.zhang@broadcom.com>
+>=20
+> ---
+>=20
+> Changes in v4:
+> - Move the WP pin property to this separate patch and change it to
+> boolean type.
+>=20
+> Changes in v3: None
+> Changes in v2: None
+>=20
+>  Documentation/devicetree/bindings/mtd/brcm,brcmnand.yaml | 8 ++++++++
+>  1 file changed, 8 insertions(+)
+>=20
+> diff --git a/Documentation/devicetree/bindings/mtd/brcm,brcmnand.yaml b/D=
+ocumentation/devicetree/bindings/mtd/brcm,brcmnand.yaml
+> index e54ca08a798a..d0168d55c73e 100644
+> --- a/Documentation/devicetree/bindings/mtd/brcm,brcmnand.yaml
+> +++ b/Documentation/devicetree/bindings/mtd/brcm,brcmnand.yaml
+> @@ -113,6 +113,14 @@ properties:
+>        earlier versions of this core that include WP
+>      type: boolean
+> =20
+> +  brcm,wp-not-connected:
+> +    description:
+> +      Use this property when board design does not connect controller's
+> +      NAND_WPb pin to NAND chip's WP_L pin and disable the write
+> +      protection feature. By default, controller assumes the pin is
+> +      connected and feature is used.
 
-I don't know if there is a point is saying why they would be better, as
-they are not. It is a -questionable- design choice. However I would
-just get rid of any mention to other properties. Just say one should
-expect the strap value to be read and applied by the system when this
-property is present.
+I would rephrase slightly. What about:
 
-> > +          This is commonly used by the BCMBCA SoC board design.
-> > +        $ref: /schemas/types.yaml#/definitions/flag
-> > +
-> >      unevaluatedProperties: false
-> > =20
-> >  allOf:
-> > --=20
-> > 2.37.3
-> >  =20
+	 WP pin is not physically wired to the NAND chip. Write
+	 protection feature cannot be used.
+=20
+> +    $ref: /schemas/types.yaml#/definitions/flag
+> +
+>  patternProperties:
+>    "^nand@[a-f0-9]$":
+>      type: object
 
 
 Thanks,
