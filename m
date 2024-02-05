@@ -1,59 +1,58 @@
-Return-Path: <devicetree+bounces-38833-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-38834-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id DC50B84A77E
-	for <lists+devicetree@lfdr.de>; Mon,  5 Feb 2024 22:34:44 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id BCC7584A788
+	for <lists+devicetree@lfdr.de>; Mon,  5 Feb 2024 22:35:52 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 1AD821C27270
-	for <lists+devicetree@lfdr.de>; Mon,  5 Feb 2024 21:34:44 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 683111F2A961
+	for <lists+devicetree@lfdr.de>; Mon,  5 Feb 2024 21:35:52 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E9E6B83CB1;
-	Mon,  5 Feb 2024 19:53:12 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id F07D685946;
+	Mon,  5 Feb 2024 19:53:43 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Rrn59OmE"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="MboMtAGW"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C6FCC83A16
-	for <devicetree@vger.kernel.org>; Mon,  5 Feb 2024 19:53:12 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C440E85951;
+	Mon,  5 Feb 2024 19:53:43 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1707162792; cv=none; b=FuFQwhNIm2EaD6wln/5gpzAwNQm/m6yLifxyDh4fq3hzxPkfewQCXUS9/9BEG/RekmnYYhz7TsK00LU9TUiu7uOC/cvCOD3Ar3kUIw5HrIzbPNUWj5p6NXiKnblg8JT9Cyic8QLM1EdU5v9TMMfDqOgN/Ntbt/uYGxcrCoSqDNw=
+	t=1707162823; cv=none; b=SqboGGJjRxMw7YAzF2KDQQHC1GqsV7yz7bUbdf7EiR1pgxu1OC6djNEM37uogb/a1boKWJNhXU/8yofXgovU1cH04gtw+gOpRCPssgqBppengCLouKCWwLKdSOOtBWpuOdWQ0NSW6d00SoE+X9xE2o5B9oOWEaKuR8VDwdce3fg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1707162792; c=relaxed/simple;
-	bh=PpUPiVnEXdmUsjOzdsBU9UiaqAq6+hnUCBfgsvoCOGY=;
+	s=arc-20240116; t=1707162823; c=relaxed/simple;
+	bh=ZdS7A06ZAYPJAg5tr2pB7UMvTfB9G021Vu1QVwqFmxk=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=RkpEzGxG/DTjDv31o1w9VgjZ2HdH670NNGOW/a7wsj/DmgUKOiDRbH6S9LdekKFUVwF4UbW+0RYBcGcKuhtHG7HIpiyQucEqHVz/PbBhg3AIQotN4M4G/W2tW+n5TCYHqtXdh02xKXk4GEg1Fe5UsH1Fiz3A6J6wOZ7UmgDljRg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Rrn59OmE; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id D49B1C433C7;
-	Mon,  5 Feb 2024 19:53:10 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=BsYy8JFvggCHj4LYROR21fYrG2P4XwSD8007B0Ee7ps2cXm5e9oajgyyoQiQU/3E93UTwpMJ/YG+rM+xn0t4Z70zbnaQHMT+mTMQSozFl6i0gHgbBD5ikOOcO1LBzbAH/NunP8n92muIwvk5ppp3MoFr7LCrwLynHvmQb5kmudk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=MboMtAGW; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id E4A86C433C7;
+	Mon,  5 Feb 2024 19:53:42 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1707162792;
-	bh=PpUPiVnEXdmUsjOzdsBU9UiaqAq6+hnUCBfgsvoCOGY=;
+	s=k20201202; t=1707162823;
+	bh=ZdS7A06ZAYPJAg5tr2pB7UMvTfB9G021Vu1QVwqFmxk=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=Rrn59OmEpwVr9iu9XAu0qhLBTbtBd+CogR3u+UITYUD5a8j/JsBnmcs4Hs3O10K3C
-	 VZ2dlx5AzxIn7v2fB3OaLZ/jtkP+ncwRS0t+B/xFKMqztUcjaR+J3D+n84mpR2BOd5
-	 MIubGjZiQsdvwLd2oQNbV0Bp0kvUlNubz4CiypRJ1ZoymSgODxaLIct7+3UutlIwLF
-	 0qk3lev7VszAWemK0Az1hbQTztF+4LRZM4r2f8slIwX/ZJeAqkBJjfIJ+sGcfd8P7S
-	 2mfZ1KPrG/SSqP74AXMgR1lM871FeOgfQa304eUOh9Hs4+Tvg/wpKMlZ5ZSAf6Twjk
-	 +xgkd6IT9g+zA==
-Date: Mon, 5 Feb 2024 19:53:08 +0000
+	b=MboMtAGW1BYihuNuJ7xz1HCFVA8bzrMgU1Zl9u4H/FX9imwkoY+7yRW7ygTDTtKYb
+	 9IgdN0EhX1IlhnR2qoHBXrZ96ao3ij7AGFt5KyCr7hF/px5nV3g5BnWp7FkM/Xo1Gj
+	 nXVhewEN7R/MiLWaRGiQB1D2CFkL/jgmkRSKKlwSCXGzhxKM7C9Xn5/3wVsfIRJszz
+	 aMzXxmD1eX0DigfnCu98+PIyQrvxsvXLIDgvDFEjCuzAcEGMr86PCxoolFkoI84wr0
+	 8keLahIDtVrLAQFOYaHLrH4UyuGi4fddkCDCQR6kor8XZKZQdGtlTZh8uz9fmIgsk7
+	 SotrXb4WO4KpQ==
+Date: Mon, 5 Feb 2024 19:53:40 +0000
 From: Rob Herring <robh@kernel.org>
-To: Kuninori Morimoto <kuninori.morimoto.gx@renesas.com>
-Cc: Sakari Ailus <sakari.ailus@iki.fi>, Rob Herring <robh+dt@kernel.org>,
-	Luca Ceresoli <luca.ceresoli@bootlin.com>,
-	Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
-	Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
-	Frank Rowand <frowand.list@gmail.com>, devicetree@vger.kernel.org
-Subject: Re: [PATCH v2 2/2] of: property: use unsigned int return on
- of_graph_get_endpoint_count()
-Message-ID: <170716278697.269358.14656767113913578348.robh@kernel.org>
-References: <87sf27cw0g.wl-kuninori.morimoto.gx@renesas.com>
- <87plxbcvzb.wl-kuninori.morimoto.gx@renesas.com>
+To: Hari Prasath Gujulan Elango <Hari.PrasathGE@microchip.com>
+Cc: nicolas.ferre@microchip.com, robh+dt@kernel.org, dlemoal@kernel.org,
+	alexandre.belloni@bootlin.com, linux-arm-kernel@lists.infradead.org,
+	claudiu.beznea@tuxon.dev, linux-ide@vger.kernel.org,
+	krzysztof.kozlowski+dt@linaro.org, linux-kernel@vger.kernel.org,
+	conor+dt@kernel.org, devicetree@vger.kernel.org, cassel@kernel.org
+Subject: Re: [PATCH] dt-bindings: ata: atmel: remove at91 compact flash
+ documentation
+Message-ID: <170716281814.270322.2449852122042883860.robh@kernel.org>
+References: <20240205105201.81060-1-Hari.PrasathGE@microchip.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -62,22 +61,20 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <87plxbcvzb.wl-kuninori.morimoto.gx@renesas.com>
+In-Reply-To: <20240205105201.81060-1-Hari.PrasathGE@microchip.com>
 
 
-On Mon, 05 Feb 2024 05:37:28 +0000, Kuninori Morimoto wrote:
-> Because of of_graph_get_endpoint_count() doesn't report error,
-> just return count of endpoint, the return type should be unsigned.
-> Tidyup it.
+On Mon, 05 Feb 2024 16:22:01 +0530, Hari Prasath Gujulan Elango wrote:
+> The compatible "at91rm9200-cf" is not used by any driver,hence remove the
+> corresponding documentation.
 > 
-> Signed-off-by: Kuninori Morimoto <kuninori.morimoto.gx@renesas.com>
-> Reviewed-by: Laurent Pinchart <laurent.pinchart+renesas@ideasonboard.com>
+> Signed-off-by: Hari Prasath Gujulan Elango <Hari.PrasathGE@microchip.com>
 > ---
->  drivers/of/property.c    | 4 ++--
->  include/linux/of_graph.h | 4 ++--
->  2 files changed, 4 insertions(+), 4 deletions(-)
+>  .../devicetree/bindings/ata/atmel-at91_cf.txt | 19 -------------------
+>  1 file changed, 19 deletions(-)
+>  delete mode 100644 Documentation/devicetree/bindings/ata/atmel-at91_cf.txt
 > 
 
-Applied, thanks!
+Acked-by: Rob Herring <robh@kernel.org>
 
 
