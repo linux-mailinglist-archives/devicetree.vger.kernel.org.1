@@ -1,138 +1,116 @@
-Return-Path: <devicetree+bounces-38633-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-38634-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id DBF11849D19
-	for <lists+devicetree@lfdr.de>; Mon,  5 Feb 2024 15:32:15 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id AF390849D31
+	for <lists+devicetree@lfdr.de>; Mon,  5 Feb 2024 15:39:16 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 972EB2811D7
-	for <lists+devicetree@lfdr.de>; Mon,  5 Feb 2024 14:32:14 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 988C3B271E5
+	for <lists+devicetree@lfdr.de>; Mon,  5 Feb 2024 14:36:07 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 229F42AF18;
-	Mon,  5 Feb 2024 14:32:10 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 935E72C690;
+	Mon,  5 Feb 2024 14:35:51 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="DguGEhfh"
+	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="UP0EPS4B"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lf1-f48.google.com (mail-lf1-f48.google.com [209.85.167.48])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from fllv0016.ext.ti.com (fllv0016.ext.ti.com [198.47.19.142])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 598CC1F602;
-	Mon,  5 Feb 2024 14:32:08 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.48
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CF56E2C1AF;
+	Mon,  5 Feb 2024 14:35:49 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.19.142
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1707143530; cv=none; b=E87seTCp4Ld6EjL8hN8vF6xCaNlyjesVRFWQ2gqcL+XDBnvFC1QGiTjjPm7fubcL26NcZA+g+srd1Hk2IyN88hR1Aa8DLtkuhexNoDyCSJqtFEljJllTfWNEeZK0AFd1b1m5BTJNNZU9TU6eX1vCpH38l7yEXi87pCMPWdHIIQ8=
+	t=1707143751; cv=none; b=Ze7E+e1Uvh+6coSQglUUTiRC8AM5oz0haqRSZGJmkYKl7muX1tbN6Kr+ZGEZYbPKFJV2O9EFvO6xbevxfsQFcryRFzMKSm8Lh/mpPcnuTNqbM04YoDcJNwCnYE91vytiPnFgbn3fky4XnYFkrhi1LBYHnEOHeGj1xqaVYo3C3gE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1707143530; c=relaxed/simple;
-	bh=aq2Ahj8o6guk3NeDyYxvkEpgJfVVNXFcxeqlZGg2Tjs=;
-	h=Message-ID:Subject:From:To:Cc:Date:In-Reply-To:References:
-	 Content-Type:MIME-Version; b=RuXNHPNApaNUnAWWyE3DbOHZbHXoQTh97Ptlt57qMTTC5jYoWJWYIEQgMJ7YT/dgQKY3fkpUaWHvS8TatlWPoz9kQa5LB6W2eM9TJtgZaySFsvk9qEZDhMoR4KzDHYi/80fQTOEHI9H4xTzO5726SirRiDarufdDNK4vZEZKASA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=DguGEhfh; arc=none smtp.client-ip=209.85.167.48
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-lf1-f48.google.com with SMTP id 2adb3069b0e04-511538be947so756905e87.3;
-        Mon, 05 Feb 2024 06:32:08 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1707143526; x=1707748326; darn=vger.kernel.org;
-        h=mime-version:user-agent:content-transfer-encoding:references
-         :in-reply-to:date:cc:to:from:subject:message-id:from:to:cc:subject
-         :date:message-id:reply-to;
-        bh=aq2Ahj8o6guk3NeDyYxvkEpgJfVVNXFcxeqlZGg2Tjs=;
-        b=DguGEhfhNZiU+Cgw8eFd/+kj9QIYnVq1M5PJoFl7H6sufb+HMISKYUU7Ax7RxoulnB
-         1An0XeQmw2ZyMvlA9YMQZdLkSLETNFtETUqdlgF/1WmJ6fVoleYEiWGhMtXsdRlYqrhD
-         2GfX2rrOetIlX9bivaLc7Z2oKGMnQHOGSWECkO7rUDkH+hZXOx2rxpFofbMXPLlbvzH8
-         ekUUcyxiOXq0mH1pmPpvpAm6a2rIH261gEKRBBsnd1FPVQg2ELJzmZ7xSJdTiV+3UD/G
-         g5qrCtDAzW6YhgK5XDy8lHzVnd/dvBzstfdZV1QPgCmapeDPEvZ3P/HQoGPA/QY2vjSU
-         Xnjg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1707143526; x=1707748326;
-        h=mime-version:user-agent:content-transfer-encoding:references
-         :in-reply-to:date:cc:to:from:subject:message-id:x-gm-message-state
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=aq2Ahj8o6guk3NeDyYxvkEpgJfVVNXFcxeqlZGg2Tjs=;
-        b=r3aGfXAIR4tmycThLWIxm6ft0mOIKnwvtn6ZVYTOSuFvXO+1YflssDNBCIvNx0KAdR
-         N9mMVqOU4BOHqXNPFxyGq/GKwRyS7D2vMTOQjPFc+9hBUVzyjmw7fKwJwtQcgNj4/ORv
-         krjfbMFIBH8FDXEm8tcwKbKugkZiENBX2IRaBcW4HXx1VRk+5VSjoxu8QCoQWtcV4a2l
-         SNkGg006CgtalVRVSwflxTw/WnWv7hrmBR1iFgUam7KJiK9Csv62lOKAFVA3dUorOTkU
-         FzIQGqdULxUJk2uQlPwOjTpBIXPdckD879+KHGMqiQWCq2n7A4A7ChUMWekt7SQpohy9
-         UHag==
-X-Gm-Message-State: AOJu0Yxv8o4YDf+99RNeQxEcc1S7G3YphUl3d5T55PRQDEQRxsoQ9Uge
-	UEk4M/bcRKPunPqZ3eByVkCtcDF2WlnzD9H67tTI2n/VKKWXQncT
-X-Google-Smtp-Source: AGHT+IGOFxLMMGfTYawVAKjkwNalqGesYkIVBKX1p9mzhohT3vL5VDcd/7MNG121tkuWp3H/O9ecvA==
-X-Received: by 2002:ac2:505c:0:b0:511:4684:2719 with SMTP id a28-20020ac2505c000000b0051146842719mr3729738lfm.34.1707143525949;
-        Mon, 05 Feb 2024 06:32:05 -0800 (PST)
-X-Forwarded-Encrypted: i=0; AJvYcCXemqaaq2BVyn/jK5oeSqt8QgXdqQDufwHZcd2H6yipgTsNFhHHSxsceU2tybFd+R1TF+dfIwk377+ihPANl4HW35aeP+qDNtUFv6wSuXq5opD8gtDEMJnb7T4+EB9NKYC6LF9dYs0FsUN3lsHrhn8EB9Jd/R+fqfK4AO9zacS8J/3jsD+ZM2ssq9un+77/1pPFxzFF3dMIBQOu94TWqhlcxqqaTfsLbJP7D7/nq/l57sLgzmq7x2mp0MUMIXwP7rG+Ri1mOVWdN7iJHIzrwo1YBUorraz2s3m1Ocvgw1mIynoTnhg7o/zQ/4G2UwWV9tnWDCNr86iVBo8tmp5KEflq77wBPCFrNes7lzCOGdqvwYD6IZjO9PsT8x7Ckyc8DxLBBobFDp6zg2YLJLmlA4NVSRl4lPKkumQypP6X
-Received: from ?IPv6:2001:a61:3456:4e01:6ae:b55a:bd1d:57fc? ([2001:a61:3456:4e01:6ae:b55a:bd1d:57fc])
-        by smtp.gmail.com with ESMTPSA id v11-20020a05600c470b00b0040fdd7cbc8dsm1749050wmo.47.2024.02.05.06.32.05
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 05 Feb 2024 06:32:05 -0800 (PST)
-Message-ID: <31f7c989e9ee1eae49976466543f7192865775ff.camel@gmail.com>
-Subject: Re: [PATCH v2 1/2] driver: core: add dedicated workqueue for
- devlink removal
-From: Nuno =?ISO-8859-1?Q?S=E1?= <noname.nuno@gmail.com>
-To: Andy Shevchenko <andriy.shevchenko@linux.intel.com>, nuno.sa@analog.com
-Cc: Greg Kroah-Hartman <gregkh@linuxfoundation.org>, "Rafael J. Wysocki"
- <rafael@kernel.org>, Frank Rowand <frowand.list@gmail.com>, Rob Herring
- <robh+dt@kernel.org>, Daniel Scally <djrscally@gmail.com>, Heikki Krogerus
- <heikki.krogerus@linux.intel.com>, Sakari Ailus
- <sakari.ailus@linux.intel.com>,  Len Brown <lenb@kernel.org>,
- linux-acpi@vger.kernel.org, devicetree@vger.kernel.org, 
- linux-kernel@vger.kernel.org
-Date: Mon, 05 Feb 2024 15:32:04 +0100
-In-Reply-To: <ZcDV9epWJf_oTCMK@smile.fi.intel.com>
-References: 
-	<20240205-fix-device-links-overlays-v2-0-5344f8c79d57@analog.com>
-	 <20240205-fix-device-links-overlays-v2-1-5344f8c79d57@analog.com>
-	 <ZcDV9epWJf_oTCMK@smile.fi.intel.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-User-Agent: Evolution 3.50.3 (3.50.3-1.fc39) 
+	s=arc-20240116; t=1707143751; c=relaxed/simple;
+	bh=VftlQV/0Nz85qEFGVCEfbLKWEzmB59s/VkZg4x/j3xA=;
+	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
+	 In-Reply-To:Content-Type; b=HbxRkO+o5/qhU1wXbfwmgxIMF372RdMEHjroI1KKqlcKCAIymSzlzBeqnAnxb+/YomCfOF6xpGv+p5XcmI3FKxhynVBnnMjsPi6AS7hNp9T7uPWlj9mWf09ToI8IGBGbd55O9+0jelDSD7Wy8OFqV0qgqzjmG9rQl6NZOxo86as=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=UP0EPS4B; arc=none smtp.client-ip=198.47.19.142
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
+Received: from fllv0034.itg.ti.com ([10.64.40.246])
+	by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id 415EZXBQ055004;
+	Mon, 5 Feb 2024 08:35:33 -0600
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+	s=ti-com-17Q1; t=1707143733;
+	bh=xwgxhraPwsNiLY+gig+/w1kE47Cnd1dvjtVmfSWQiro=;
+	h=Date:Subject:To:CC:References:From:In-Reply-To;
+	b=UP0EPS4BcD9ePs1z/3PUVle9Ti0xd08fKUonSkq2W/4q4GApym58zrwIdG9hxoEBb
+	 qqsEdSW9TfFpGCi24ikEhQ7u0Zrd8kD7YxD7exGw6YDkXFeAFJ4I6XOdYhhi7Kl58+
+	 pDFQZkOUyDzi0LvJ0Ok0y4vnst9Nd8NyFFDSxXr4=
+Received: from DFLE102.ent.ti.com (dfle102.ent.ti.com [10.64.6.23])
+	by fllv0034.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 415EZXpO122232
+	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+	Mon, 5 Feb 2024 08:35:33 -0600
+Received: from DFLE103.ent.ti.com (10.64.6.24) by DFLE102.ent.ti.com
+ (10.64.6.23) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Mon, 5
+ Feb 2024 08:35:33 -0600
+Received: from lelvsmtp6.itg.ti.com (10.180.75.249) by DFLE103.ent.ti.com
+ (10.64.6.24) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
+ Frontend Transport; Mon, 5 Feb 2024 08:35:32 -0600
+Received: from [172.24.227.94] (uda0132425.dhcp.ti.com [172.24.227.94])
+	by lelvsmtp6.itg.ti.com (8.15.2/8.15.2) with ESMTP id 415EZT4B093484;
+	Mon, 5 Feb 2024 08:35:29 -0600
+Message-ID: <ffeb1902-332c-445b-a16a-7fc293cad2eb@ti.com>
+Date: Mon, 5 Feb 2024 20:05:28 +0530
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 0/3] Add PCIe DT support for TI's J784S4 SoC
+To: Siddharth Vadapalli <s-vadapalli@ti.com>, <nm@ti.com>, <kristo@kernel.org>,
+        <robh+dt@kernel.org>, <krzysztof.kozlowski+dt@linaro.org>,
+        <conor+dt@kernel.org>
+CC: <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>, <u-kumar1@ti.com>,
+        <srk@ti.com>
+References: <20240129114749.1197579-1-s-vadapalli@ti.com>
+Content-Language: en-US
+From: Vignesh Raghavendra <vigneshr@ti.com>
+In-Reply-To: <20240129114749.1197579-1-s-vadapalli@ti.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 7bit
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 
-On Mon, 2024-02-05 at 14:35 +0200, Andy Shevchenko wrote:
-> On Mon, Feb 05, 2024 at 01:09:32PM +0100, Nuno Sa via B4 Relay wrote:
-> > From: Nuno Sa <nuno.sa@analog.com>
-> >=20
-> > Let's use a dedicated queue for devlinks since releasing a link happens
-> > asynchronously but some code paths, like DT overlays, have some
-> > expectations regarding the of_node when being removed (the refcount mus=
-t
-> > be 1). Given how devlinks are released that cannot be assured. Hence, a=
-dd a
-> > dedicated queue so that it's easy to sync against devlinks removal.
-> >=20
-> > While at it, make sure to explicitly include <linux/workqueue.h>.
->=20
-> ...
->=20
-> > +++ b/include/linux/fwnode.h
-> > @@ -213,5 +213,6 @@ extern bool fw_devlink_is_strict(void);
-> > =C2=A0int fwnode_link_add(struct fwnode_handle *con, struct fwnode_hand=
-le *sup);
-> > =C2=A0void fwnode_links_purge(struct fwnode_handle *fwnode);
-> > =C2=A0void fw_devlink_purge_absent_suppliers(struct fwnode_handle *fwno=
-de);
-> > +void fwnode_links_flush_queue(void);
->=20
-> I am not sure if you have seen my comment against v1.
->=20
 
-I did received it like 30min ago...
 
-> I find the namespace a bit messy for devlinks. And to me seems the best p=
-lace
-> for this line is to be before fwnode_links_purge().
->=20
+On 29/01/24 17:17, Siddharth Vadapalli wrote:
+> Hello,
+> 
+> TI's J784S4 SoC has two Gen3 x4 Lane PCIe Controllers. This series adds
+> the necessary device-tree support to enable both PCIe instances in Root
+> Complex mode of operation by default. The device-tree overlay to enable
+> both instances in Endpoint mode of operation is also present in this
+> series.
+> 
+> **NOTE**
+> This series depends on:
+> 1. https://patchwork.kernel.org/project/linux-arm-kernel/patch/20240124122936.816142-1-s-vadapalli@ti.com/
+>    for adding the Device ID in the bindings for J784S4 SoC.
+> 
+> 2. https://patchwork.kernel.org/project/linux-arm-kernel/patch/20240129104958.1139787-1-s-vadapalli@ti.com/
+>    for enabling support for configuring the PCIe mode of operation,
+>    number of lanes and link speed when the System Controller node
+>    in the device-tree is modelled as a "simple-bus" which happens to
+>    be the case for J784S4 SoC:
+>    https://github.com/torvalds/linux/blob/master/arch/arm64/boot/dts/ti/k3-j784s4-main.dtsi#L45
+> 
+> 3. https://patchwork.kernel.org/project/linux-arm-kernel/patch/20240125100501.4137977-2-c-vankar@ti.com/
+>    for fixing the "serdes_ln_ctrl" node in order to ensure that the PCIe
+>    lanes are mapped correctly to the corresponding Serdes Lanes.
 
-TBH, I'm not really keen on sending a v3 just for that (unless I'm asked ot=
-herwise).
-But If I have (still missing DT guys feedback), I'll do as you suggested.
+Sorry, too many dependencies for me to keep track of. I am ignoring  the
+ series, please resubmit once dependencies are resolved.
 
-- Nuno S=C3=A1
+-- 
+Regards
+Vignesh
 
