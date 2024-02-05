@@ -1,211 +1,168 @@
-Return-Path: <devicetree+bounces-38770-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-38733-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2364584A111
-	for <lists+devicetree@lfdr.de>; Mon,  5 Feb 2024 18:39:58 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id CB7F384A04F
+	for <lists+devicetree@lfdr.de>; Mon,  5 Feb 2024 18:11:38 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 9F4471F230FD
-	for <lists+devicetree@lfdr.de>; Mon,  5 Feb 2024 17:39:57 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 095661C219D8
+	for <lists+devicetree@lfdr.de>; Mon,  5 Feb 2024 17:11:38 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E58AF45952;
-	Mon,  5 Feb 2024 17:39:27 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 891A24121B;
+	Mon,  5 Feb 2024 17:11:28 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=plexus.com header.i=@plexus.com header.b="GSXAYWaA"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="AQo/MQzH"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0a-0046e701.pphosted.com (mx0a-0046e701.pphosted.com [67.231.149.93])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B3A1445035;
-	Mon,  5 Feb 2024 17:39:25 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=67.231.149.93
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5BF713FB14;
+	Mon,  5 Feb 2024 17:11:28 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1707154767; cv=none; b=HB7+hZ2s6JliuWwKLP4ZPAGxjD5BtceAogpjIZvs0aZjAfoqiGipfaFdcZbTte3WAExMs0WCJsrX7x0UASDkl8jWR6sra832zFIC7u36GYDucF+mbxLXL7/TWCMxJB3IyiNS4NFM/Uob9Csemb906sSPZTzbp0dETCDTP3XKPL4=
+	t=1707153088; cv=none; b=P68A57aOwtWGQsvylwgMOt5jVumkRoWBYh8ZDZA7anX+Ay1Oo0I/yBiHJocV5lh4g55p82LL61nt6/ClrRyo7/Bd4VovAWiNc/r5igwouuzctv44EeXdXUEk6JEDQ36yOhgUUwN29krNIMtPyoWezkYt6u0u72z5usGQJQU4Ypw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1707154767; c=relaxed/simple;
-	bh=J1Ty7HT+EcPsN48eKGCq00T/+JXCPX8XZZHVey7nC8o=;
-	h=From:To:CC:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=HLwTjwzdhIC6mCC0ugPCAKayE6OhM45KSswtyxGZA5dGS20kS7I/KkahLqih7jIHMNkYi4COfs1DBxQpP1QG45r0VJiHNx5FgRdTUlOh5jQAyp/WRpVDlw0XYMtq+pMCWO0Ym6SXgwIgA2WXaUSpdEyyN9U5aWcwiY6NXX7i2UU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=plexus.com; spf=pass smtp.mailfrom=plexus.com; dkim=pass (2048-bit key) header.d=plexus.com header.i=@plexus.com header.b=GSXAYWaA; arc=none smtp.client-ip=67.231.149.93
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=plexus.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=plexus.com
-Received: from pps.filterd (m0341554.ppops.net [127.0.0.1])
-	by mx0a-0046e701.pphosted.com (8.17.1.24/8.17.1.24) with ESMTP id 415942dD006589;
-	Mon, 5 Feb 2024 11:10:33 -0600
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=plexus.com; h=
-	from:to:cc:subject:date:message-id:in-reply-to:references
-	:mime-version:content-transfer-encoding:content-type; s=pps1;
-	 bh=zmCLHNxG2Yjs2btIT/AyYeLs9CECTuFCT2Y40q2eIWw=; b=GSXAYWaAErdc
-	F0HGg34mPpL8TiGYK54USTDc0EMThtTi2wviAAKp1zAKLGlWl/ZccxTx8PGxXL4l
-	ntwYMdGUciWT5WuWKhL+Fru/Wayu8HKBphw6C82ZwjHGide7swMzkaPo6uERudHt
-	sPf3JdT3ZKJ3OImEyMyOMIfrEj88Qb7Ni+ZG5oQxZzZ8S2gI3+KniwS4xp1RU3q3
-	k0vkDhEFv0HbJ+lZghDQMfZ2VrRG18Wybe8QykcbRWvqofN68VJCWtGBehMB71Ti
-	gsppZelOkXzLiC/fSzlJ6jDz6pMDwt9BA7XFY83zYm3wpNEHMLuYtleT4bVGirBl
-	gO+Y/KWWKw==
-Received: from dcc-mail-mx-002.na.plexus.com (outbound.plexus.com [64.215.193.254])
-	by mx0a-0046e701.pphosted.com (PPS) with ESMTPS id 3w2vqg148j-3
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT);
-	Mon, 05 Feb 2024 11:10:32 -0600 (CST)
-Received: from dcc-mail-mx-001.na.plexus.com (10.249.48.15) by
- Dcc-mail-mx-002.na.plexus.com (10.249.48.16) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.35; Mon, 5 Feb 2024 17:10:31 +0000
-Received: from LNDCL34533.neenah.na.plexus.com (10.255.48.203) by
- dcc-mail-mx-001.na.plexus.com (10.249.48.15) with Microsoft SMTP Server id
- 15.1.2507.35 via Frontend Transport; Mon, 5 Feb 2024 17:10:31 +0000
-From: Danny Kaehn <danny.kaehn@plexus.com>
-To: <robh+dt@kernel.org>, <krzysztof.kozlowski+dt@linaro.org>,
-        <andriy.shevchenko@linux.intel.com>, <bentiss@kernel.org>
-CC: <jikos@kernel.org>, <bartosz.golaszewski@linaro.org>,
-        <niyas.sait@linaro.org>, <dmitry.torokhov@gmail.com>,
-        <devicetree@vger.kernel.org>, <linux-input@vger.kernel.org>,
-        <ethan.twardy@plexus.com>, Danny Kaehn <danny.kaehn@plexus.com>
-Subject: [PATCH v10 3/3] HID: cp2112: Fwnode Support
-Date: Mon, 5 Feb 2024 11:09:22 -0600
-Message-ID: <20240205170920.93499-4-danny.kaehn@plexus.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20240205170920.93499-1-danny.kaehn@plexus.com>
-References: <20240205170920.93499-1-danny.kaehn@plexus.com>
+	s=arc-20240116; t=1707153088; c=relaxed/simple;
+	bh=xkNsqaF4QqQI9IylasZgW4zPIt2p4Sbxb4KlMbNWs6I=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=Q86o/EhMqYRTkbXjLu4DVnVgGsbWBl88DAzWcUS0XgB7lEPYzybejZ70Rt30ZjlXGMGKObPUugQkuh/diaaM41PEMa99sV2YLaEurNh0IsM/4Y8KAF0w3afardw+9g5VYdIFUNGsyx8P/hCzZpOp0J2f9SJ56RXMxI0qslEiCxQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=AQo/MQzH; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 10180C433C7;
+	Mon,  5 Feb 2024 17:11:24 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1707153087;
+	bh=xkNsqaF4QqQI9IylasZgW4zPIt2p4Sbxb4KlMbNWs6I=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=AQo/MQzHt66cRQdouAnYcBrYhyVjlxZ4sDqniOwVsAQ7oTJhre+QB3tFbKOn+/uE4
+	 TsL862+3/4mdbkCd4b/rpnVwL6OSEpQ52/ve1NY9liOP85JlfUbSQHP7QU/KLZv+4w
+	 So6BzdbPYUVjdezJ/bRw/d2pBPokD08uHgbd1GiDmeGbwgalIs72b26elLdtvFQEgS
+	 5vUHhNDrueZw0tUFde9lip1UnCL1SK5plfqQ9rk8QVMgyIFrDr70IsF5ne7uQUvdfk
+	 ZMCNuHj9nZwbmh4vjdTIHO6k6UCEw2Ey5VhhI+PS9pFx1c375TwPOF8q0F+UfgMYzO
+	 ru2KgiE+m0eXg==
+Date: Mon, 5 Feb 2024 17:11:22 +0000
+From: Conor Dooley <conor@kernel.org>
+To: Naresh Solanki <naresh.solanki@9elements.com>
+Cc: Conor Dooley <conor.dooley@microchip.com>,
+	Peter Rosin <peda@axentia.se>,
+	Jonathan Cameron <Jonathan.Cameron@huawei.com>,
+	Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+	Jonathan Cameron <jic23@kernel.org>,
+	Lars-Peter Clausen <lars@metafoo.de>,
+	Rob Herring <robh+dt@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>, mazziesaccount@gmail.com,
+	linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v3] dt-bindings: iio: afe: voltage-divider: Add
+ io-channel-cells
+Message-ID: <20240205-grudge-abrasion-d20b0c202d67@spud>
+References: <20240130115651.457800-1-naresh.solanki@9elements.com>
+ <1c855a34-8a0d-491e-bfd2-24635b41c86f@linaro.org>
+ <20240131163516.000043df@Huawei.com>
+ <20240131-stylized-defile-d8fe346ab197@spud>
+ <CABqG17iNxfKFNqydkgo6gL8ZmaZ_bqm=pG8kNEhzx_h2eaGuhQ@mail.gmail.com>
+ <e8b30740-379c-9ab0-6bd7-d4726f822381@axentia.se>
+ <20240202-shone-footwork-b247b1ae8e06@wendy>
+ <CABqG17hRF3HaqfvXkT2go2S00JTRqCzremg1Nh=cSEUbcO_2pw@mail.gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-Proofpoint-GUID: OedAvNDX2QasoI_qyuG8ppnWFyQ9otif
-X-Proofpoint-ORIG-GUID: OedAvNDX2QasoI_qyuG8ppnWFyQ9otif
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.272,Aquarius:18.0.1011,Hydra:6.0.619,FMLib:17.11.176.26
- definitions=2024-02-05_11,2024-01-31_01,2023-05-22_02
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 phishscore=0 bulkscore=0
- mlxlogscore=999 adultscore=0 mlxscore=0 suspectscore=0 lowpriorityscore=0
- clxscore=1015 priorityscore=1501 spamscore=0 malwarescore=0
- impostorscore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.19.0-2401310000 definitions=main-2402050130
+Content-Type: multipart/signed; micalg=pgp-sha256;
+	protocol="application/pgp-signature"; boundary="Y1VVmDQJUPxVz3DC"
+Content-Disposition: inline
+In-Reply-To: <CABqG17hRF3HaqfvXkT2go2S00JTRqCzremg1Nh=cSEUbcO_2pw@mail.gmail.com>
 
-Support describing the CP2112's I2C and GPIO interfaces in firmware.
 
-I2C and GPIO child nodes can either be children with names "i2c" and
-"gpio", or, for ACPI, device nodes with _ADR Zero and One,
-respectively.
+--Y1VVmDQJUPxVz3DC
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-Additionally, support configuring the I2C bus speed from the
-clock-frequency device property.
+On Mon, Feb 05, 2024 at 07:24:07PM +0530, Naresh Solanki wrote:
+> Hi Conor, Peter,
+>=20
+> On Fri, 2 Feb 2024 at 18:39, Conor Dooley <conor.dooley@microchip.com> wr=
+ote:
+> >
+> > On Fri, Feb 02, 2024 at 12:49:26PM +0100, Peter Rosin wrote:
+> > > 2024-02-02 at 11:43, Naresh Solanki wrote:
+> > > > On Wed, 31 Jan 2024 at 22:24, Conor Dooley <conor@kernel.org> wrote:
+> > > >> On Wed, Jan 31, 2024 at 04:35:16PM +0000, Jonathan Cameron wrote:
+> > > >>> On Wed, 31 Jan 2024 09:29:59 +0100
+> > > >>> Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org> wrote:
+> > > >>>> On 30/01/2024 12:56, Naresh Solanki wrote:
+> > > >>> Conor requested an example of the device acting as a consumer and=
+ a provider.
+> > > >>> Might have meant in the patch description?
+> > > >>>
+> > > >>> Conor?
+> > > >>
+> > > >> I wanted it in the property description to help with understanding=
+ when
+> > > >> to use it. I don't think the extra example nodes actually help you
+> > > >> understand what it is doing, only how to write one yourself once y=
+ou
+> > > >> know you need it.
+> > > >
+> > > > I'm not sure if I get it right but what I understood is that a
+> > > > voltage-divider can
+> > > > also be a provider to other devices & hence the property.
+> > > > Also do you want me to put a complete example of it in description ?
+> > >
+> > > My understanding is the requested example in the description should n=
+ot
+> > > be exactly /how/ to hook up the voltage-divider as a provider, but
+> > > instead have some words about why it is interesting to do so at all. =
+And
+> > > those words would also make it clear that is even possible. The latter
+> > > is something which, to be honest, is perhaps not all that obvious. It
+> > > has always been totally obvious to me of course, sorry for not being
+> > > clearer when I wrote the binding...
+> >
+> > Yeah, you're right about what I was looking for Peter.
+> >
+> > In my original request, which I think I already linked to in this
+> > thread, I said that I would like an example like the one that Peter had
+> > used to explain to me the scenario in which someone would want to use
+> > this feature:
+> > https://lore.kernel.org/all/536971eb-51f0-40e5-d025-7c4c1d683d49@axenti=
+a.se/
+> ok. Based on my understanding, I'll update the property description
+> with an example.
+>=20
+> description:
+> In addition to consuming the measurement services of a voltage output
+> channel the voltage divider can act as a provider of measurement
+> services to other devices.
 
-Signed-off-by: Danny Kaehn <danny.kaehn@plexus.com>
----
+> This is particularly useful in scenarios wherein,
+> ADC has analog frontend such as voltage divider then consuming its raw
+> value isn't interesting.
 
-Modeled this version based on Andy's email [1], but made the following
-primary changes:
-1. Use enum instead of #defines at Benjamin's request
-2. Change if() else on checking name existence to allow a fwnode to
-have a name that doesn't match to still be checked for its ACPI address
-(since fwnode_get_name() _does_ still return a name for ACPI nodes)
-3. Continue gracefully / silently if matching fwnodes fails
+This sentence is structured pretty weirdly, it's missing articles and
+prepositions, but you have the right idea here, thanks.
 
-ACPI compatibility re-tested in QEMU as per conversations in v8.
 
-NOTE: now that I'm not using device_get_named_child_node(), I am no longer
-being left with a fwnode reference. I am not entirely sure if I
-_need_ one for how I am using the handles, so I have left out the calls
-to fwnode_handle_get() and fwnode_hand_put() for now. Plese correct me if
-this is a situation where a reference should be held until the driver
-is removed. Note that this has been present since v9, but I intended to
-include this comment on that patch.
+> It is desired to get real voltage before
+> voltage divider.
 
-[1] https://lore.kernel.org/all/ZBhYXwjPeRiZwxMT@smile.fi.intel.com/
 
- drivers/hid/hid-cp2112.c | 50 ++++++++++++++++++++++++++++++++++++++++
- 1 file changed, 50 insertions(+)
 
-diff --git a/drivers/hid/hid-cp2112.c b/drivers/hid/hid-cp2112.c
-index 20a0d1315d90..2ec0e5b95845 100644
---- a/drivers/hid/hid-cp2112.c
-+++ b/drivers/hid/hid-cp2112.c
-@@ -27,6 +27,25 @@
- #include <linux/usb/ch9.h>
- #include "hid-ids.h"
- 
-+/**
-+ * enum cp2112_child_acpi_cell_addrs - Child ACPI addresses for CP2112 sub-functions
-+ * @CP2112_I2C_ADR: Address for I2C node
-+ * @CP2112_GPIO_ADR: Address for GPIO node
-+ */
-+enum cp2112_child_acpi_cell_addrs {
-+	CP2112_I2C_ADR = 0,
-+	CP2112_GPIO_ADR = 1,
-+};
-+
-+/**
-+ * CP2112 Fwnode child names.
-+ * CP2112 sub-functions can be described by named fwnode children or by ACPI _ADR
-+ */
-+static const char * const cp2112_cell_names[] = {
-+	[CP2112_I2C_ADR]	= "i2c",
-+	[CP2112_GPIO_ADR]	= "gpio",
-+};
-+
- #define CP2112_REPORT_MAX_LENGTH		64
- #define CP2112_GPIO_CONFIG_LENGTH		5
- #define CP2112_GPIO_GET_LENGTH			2
-@@ -1195,7 +1214,11 @@ static int cp2112_probe(struct hid_device *hdev, const struct hid_device_id *id)
- 	struct cp2112_device *dev;
- 	u8 buf[3];
- 	struct cp2112_smbus_config_report config;
-+	struct fwnode_handle *child;
- 	struct gpio_irq_chip *girq;
-+	struct i2c_timings timings;
-+	const char *name;
-+	u32 addr;
- 	int ret;
- 
- 	dev = devm_kzalloc(&hdev->dev, sizeof(*dev), GFP_KERNEL);
-@@ -1209,6 +1232,30 @@ static int cp2112_probe(struct hid_device *hdev, const struct hid_device_id *id)
- 
- 	mutex_init(&dev->lock);
- 
-+	device_for_each_child_node(&hdev->dev, child) {
-+		name = fwnode_get_name(child);
-+		if (name) {
-+			ret = match_string(cp2112_cell_names,
-+							ARRAY_SIZE(cp2112_cell_names), name);
-+			if (ret >= 0)
-+				addr = ret;
-+		}
-+		if (!name || ret < 0)
-+			ret = acpi_get_local_address(ACPI_HANDLE_FWNODE(child), &addr);
-+
-+		if (ret < 0)
-+			continue;
-+
-+		switch (addr) {
-+		case CP2112_I2C_ADR:
-+			device_set_node(&dev->adap.dev, child);
-+			break;
-+		case CP2112_GPIO_ADR:
-+			dev->gc.fwnode = child;
-+			break;
-+		}
-+	}
-+
- 	ret = hid_parse(hdev);
- 	if (ret) {
- 		hid_err(hdev, "parse failed\n");
-@@ -1254,6 +1301,9 @@ static int cp2112_probe(struct hid_device *hdev, const struct hid_device_id *id)
- 		goto err_power_normal;
- 	}
- 
-+	i2c_parse_fw_timings(&dev->adap.dev, &timings, true);
-+
-+	config.clock_speed = cpu_to_be32(timings.bus_freq_hz);
- 	config.retry_time = cpu_to_be16(1);
- 
- 	ret = cp2112_hid_output(hdev, (u8 *)&config, sizeof(config),
--- 
-2.25.1
+--Y1VVmDQJUPxVz3DC
+Content-Type: application/pgp-signature; name="signature.asc"
 
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZcEWugAKCRB4tDGHoIJi
+0hR7AP908arHTIG2+4rd+yfEy8RybMPrJr/un2iYCVbYLcb5+wD+LT+7PZ8kMDb1
+SyS7W+TUBWeNHP+dnmZ+w1YX2iMQmQ0=
+=3jOw
+-----END PGP SIGNATURE-----
+
+--Y1VVmDQJUPxVz3DC--
 
