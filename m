@@ -1,173 +1,125 @@
-Return-Path: <devicetree+bounces-38747-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-38748-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 69D0684A0B4
-	for <lists+devicetree@lfdr.de>; Mon,  5 Feb 2024 18:28:49 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9F8D384A0C0
+	for <lists+devicetree@lfdr.de>; Mon,  5 Feb 2024 18:30:09 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 25A1E2825DB
-	for <lists+devicetree@lfdr.de>; Mon,  5 Feb 2024 17:28:48 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id D18D71C220D6
+	for <lists+devicetree@lfdr.de>; Mon,  5 Feb 2024 17:30:08 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id AC83A4121B;
-	Mon,  5 Feb 2024 17:28:43 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5FA254594A;
+	Mon,  5 Feb 2024 17:29:26 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="jGGHfDpI"
 X-Original-To: devicetree@vger.kernel.org
-Received: from pidgin.makrotopia.org (pidgin.makrotopia.org [185.142.180.65])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-yw1-f176.google.com (mail-yw1-f176.google.com [209.85.128.176])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C3A2344C66;
-	Mon,  5 Feb 2024 17:28:41 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.142.180.65
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BCCCC47F6E
+	for <devicetree@vger.kernel.org>; Mon,  5 Feb 2024 17:29:24 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.176
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1707154123; cv=none; b=tgpnQJy07VmxnZscr0jp13G761I6M0jVBQhDm8xedOZzWFXEehGWPRYYOmxouF05mcx44e8zFxSpySok9dMjxHGBpepkqNvLe4s1aRkF8kifn29OwBK+bXPLt1DOK6xQzaTcKgmEcX73c/M/dmyN+KqPfBTx8kN4/9NiSny+fL8=
+	t=1707154166; cv=none; b=mRstlFCScOGvgFgZYp3xfS3w5IigiBA3BjmsXL8fLdxQfmLltdvknOI2GjP/Jjfw7RiC5DNDNjk5NnJ+sovzDb1IC+xwK6e/MaS9QNmViLiWCQn60WoUqIkVG7wA7jaV/CKqbZIdFmfDoiTtylWVGzRveYY4xSC1iKp+20iKLAI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1707154123; c=relaxed/simple;
-	bh=mlrjZuog6v94ZLezXrGvG5aQ50FyFFhxMe3KiPzrb6E=;
-	h=Date:From:To:Subject:Message-ID:MIME-Version:Content-Type:
-	 Content-Disposition; b=TkyceT6JVwJt52RUdRen0lujjKb6fwrgIvqg5suOke5gZ+crkiVqGDYRfjIckgVgYV8B42iXmaiMzYDOHsgv3g1HS1wJC9EHZ9egAlkWYnG/Zgotivr2LdzNwkOhCzUxhy1cLNdCM5kaEnIiB/iYFbUuPn25KZifF+KievzHgPg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=makrotopia.org; spf=pass smtp.mailfrom=makrotopia.org; arc=none smtp.client-ip=185.142.180.65
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=makrotopia.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=makrotopia.org
-Received: from local
-	by pidgin.makrotopia.org with esmtpsa (TLS1.3:TLS_AES_256_GCM_SHA384:256)
-	 (Exim 4.96.2)
-	(envelope-from <daniel@makrotopia.org>)
-	id 1rX2lZ-0000ND-05;
-	Mon, 05 Feb 2024 17:28:21 +0000
-Date: Mon, 5 Feb 2024 17:28:17 +0000
-From: Daniel Golle <daniel@makrotopia.org>
-To: Chunfeng Yun <chunfeng.yun@mediatek.com>, Vinod Koul <vkoul@kernel.org>,
-	Kishon Vijay Abraham I <kishon@kernel.org>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Matthias Brugger <matthias.bgg@gmail.com>,
-	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
-	Daniel Golle <daniel@makrotopia.org>,
-	Qingfang Deng <dqfext@gmail.com>,
-	SkyLake Huang <SkyLake.Huang@mediatek.com>,
-	Philipp Zabel <p.zabel@pengutronix.de>,
-	linux-arm-kernel@lists.infradead.org,
-	linux-mediatek@lists.infradead.org, linux-phy@lists.infradead.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	netdev@vger.kernel.org
-Subject: [PATCH v2 1/2] dt-bindings: phy: mediatek,mt7988-xfi-tphy: add new
- bindings
-Message-ID: <3251ac3db1a739e0c18ded0a824edae981c1e2df.1707153425.git.daniel@makrotopia.org>
+	s=arc-20240116; t=1707154166; c=relaxed/simple;
+	bh=O4lFQwozpj8qAdWZazPZDdbBDVBBZtmrxmGiue5/8bI=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=J4KX3WzWx04NfloyEWATVwRe8Y4BZdVx36NnJzSLNpkxaTBVfrdu+jjVPAZpazDZBnadDTQcJR0crUjjCO8lXjYlXEngjlpDrDY9msZj8gQy9C/YcHTcsJMExZxpk/9KqMvxVb6lxV9ev+l/3G9QFMn9II7l10L9vz+YiVh3AG0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=jGGHfDpI; arc=none smtp.client-ip=209.85.128.176
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-yw1-f176.google.com with SMTP id 00721157ae682-6040d9e52b9so43724427b3.0
+        for <devicetree@vger.kernel.org>; Mon, 05 Feb 2024 09:29:24 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1707154164; x=1707758964; darn=vger.kernel.org;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=Ki2OMFRAxrlw+OBGxKHQKH7ycmBBVTQveh0bKzrpyb4=;
+        b=jGGHfDpIPKXwA/1gASJ6A3aLKhMqWOXGRuAxd5Ev85vpeBNRlZbVvfon9O/ZKBRzW1
+         0AAuxW+Ju+KNclgXBz+l6OfyzKGHvodtGPnjurVAgvnPAihz57JrJQbV35bNpS7MGlZy
+         DU1wapqW66LrNbbFqzHSoQR5iX4oxUjlgE5YUPVo0wfvPX1VOIpDQyy+NZjEUQu1xsJl
+         Z9YtCnfeIilxPcpOCzFREOFh/zkXUZr31o38EelOudaJ/fPfeegbvWxOgUZMrQM6dQFU
+         Mn0K1ZnUzuk22T1BSqtSJrqBm1r2CnBFFk7Sw2Bw75HkpZdOvi5eh7tpTh5pD6465AFR
+         1w/Q==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1707154164; x=1707758964;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=Ki2OMFRAxrlw+OBGxKHQKH7ycmBBVTQveh0bKzrpyb4=;
+        b=LiaorRXwyWo0BL09+dPVg0jrh7WGg7cP6OfeKSwvuPvAfrQCiOui1bevagC/ofUqHY
+         QZMJrSqeGFavdh6DRgVe5GzyeuMKzELB4tinOFrRHhmT1tCdz4q+E7DWysQxnHcJ6v5l
+         o8479uoU1Kl62vfMdFfcZdro3Rs7z73RftootkWvqCePavA2X/7nCfeIbV8RPvtwQAtT
+         FbEGaM8SpCWE8Z/GvSAhYe+NTmZmtXTI//NI3MT2GwNG1H0NMCldwj9jGeaq1CxAybvZ
+         pCybhUDOWjschYogKamPwxWXtC5OYm9I09CVZAGxCm/PFz+KwYqrIYPnGhohcadx+UoQ
+         vTog==
+X-Gm-Message-State: AOJu0YwnNocrfxEGNLge3FfI2ayOJqwmfeNwq2M6fWckkIBufHw/5n7e
+	tcDifdo0q8UiStw4TViWuVTtVu8Yi5peMO0HEX3nbLgCKY8FRH8bIS3hYoV8SV9+lmpStfYROBk
+	RuXYDv2RceQuHsNVBx3tNESXzoE8xWNIcrG6Y2Q==
+X-Google-Smtp-Source: AGHT+IHJ0bSwgVgKi9CF80Bt1Cco6PZ9KNY0zznjDRrM1zGPsHC4Y3lV/AsXifZpn4hO8tJQZqwqC2/GIdcA4wM2N6Q=
+X-Received: by 2002:a0d:dbc5:0:b0:602:cf62:6590 with SMTP id
+ d188-20020a0ddbc5000000b00602cf626590mr151874ywe.34.1707154163772; Mon, 05
+ Feb 2024 09:29:23 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
+References: <20240201-8qm_smmu-v2-0-3d12a80201a3@nxp.com> <20240201-8qm_smmu-v2-1-3d12a80201a3@nxp.com>
+In-Reply-To: <20240201-8qm_smmu-v2-1-3d12a80201a3@nxp.com>
+From: Ulf Hansson <ulf.hansson@linaro.org>
+Date: Mon, 5 Feb 2024 18:28:47 +0100
+Message-ID: <CAPDyKFqyQxo+SSYb_+Nf3zcPcmhzCJSp69gJ15qexbuD_mJ=Yg@mail.gmail.com>
+Subject: Re: [PATCH v2 1/4] dt-bindings: mmc: fsl-imx-esdhc: add iommus property
+To: Frank Li <Frank.Li@nxp.com>
+Cc: Rob Herring <robh+dt@kernel.org>, 
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Shawn Guo <shawnguo@kernel.org>, Sascha Hauer <s.hauer@pengutronix.de>, 
+	Pengutronix Kernel Team <kernel@pengutronix.de>, Fabio Estevam <festevam@gmail.com>, 
+	NXP Linux Team <linux-imx@nxp.com>, Wei Fang <wei.fang@nxp.com>, 
+	Shenwei Wang <shenwei.wang@nxp.com>, Clark Wang <xiaoning.wang@nxp.com>, 
+	"David S. Miller" <davem@davemloft.net>, Eric Dumazet <edumazet@google.com>, 
+	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>, linux-mmc@vger.kernel.org, 
+	devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
+	linux-kernel@vger.kernel.org, netdev@vger.kernel.org, imx@lists.linux.dev
+Content-Type: text/plain; charset="UTF-8"
 
-Add bindings for the MediaTek XFI Ethernet SerDes T-PHY found in the
-MediaTek MT7988 SoC which can operate at various interfaces modes:
+On Thu, 1 Feb 2024 at 21:23, Frank Li <Frank.Li@nxp.com> wrote:
+>
+> iMX95 and iMX8QM have smmu. Add property "iommus".
+>
+> Signed-off-by: Frank Li <Frank.Li@nxp.com>
 
-via USXGMII PCS:
- * USXGMII
- * 10GBase-R
- * 5GBase-R
+Applied for next, thanks!
 
-via LynxI SGMII PCS:
- * 2500Base-X
- * 1000Base-X
- * Cisco SGMII (MAC side)
+Kind regards
+Uffe
 
-Signed-off-by: Daniel Golle <daniel@makrotopia.org>
----
-v2: unify filename and compatible as requested
 
- .../phy/mediatek,mt7988-xfi-tphy.yaml         | 77 +++++++++++++++++++
- 1 file changed, 77 insertions(+)
- create mode 100644 Documentation/devicetree/bindings/phy/mediatek,mt7988-xfi-tphy.yaml
-
-diff --git a/Documentation/devicetree/bindings/phy/mediatek,mt7988-xfi-tphy.yaml b/Documentation/devicetree/bindings/phy/mediatek,mt7988-xfi-tphy.yaml
-new file mode 100644
-index 0000000000000..e897118dcf7e6
---- /dev/null
-+++ b/Documentation/devicetree/bindings/phy/mediatek,mt7988-xfi-tphy.yaml
-@@ -0,0 +1,77 @@
-+# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/phy/mediatek,mt7988-xfi-tphy.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: MediaTek XFI T-PHY
-+
-+maintainers:
-+  - Daniel Golle <daniel@makrotopia.org>
-+
-+description:
-+  The MediaTek XFI SerDes T-PHY provides the physical SerDes lanes
-+  used by the (10G/5G) USXGMII PCS and (1G/2.5G) LynxI PCS found in
-+  MediaTek's 10G-capabale MT7988 SoC.
-+
-+properties:
-+  compatible:
-+    const: mediatek,mt7988-xfi-tphy
-+
-+  reg:
-+    maxItems: 1
-+
-+  clocks:
-+    items:
-+      - description: XFI PHY clock
-+      - description: XFI register clock
-+
-+  clock-names:
-+    items:
-+      - const: xfipll
-+      - const: topxtal
-+
-+  resets:
-+    items:
-+      - description: PEXTP reset
-+
-+  mediatek,usxgmii-performance-errata:
-+    $ref: /schemas/types.yaml#/definitions/flag
-+    description:
-+      One instance of the T-PHY on MT7988 suffers from a performance
-+      problem in 10GBase-R mode which needs a work-around in the driver.
-+      The work-around is enabled using this flag.
-+
-+  "#phy-cells":
-+    const: 0
-+
-+required:
-+  - compatible
-+  - reg
-+  - clocks
-+  - clock-names
-+  - resets
-+  - "#phy-cells"
-+
-+additionalProperties: false
-+
-+examples:
-+  - |
-+    #include <dt-bindings/clock/mediatek,mt7988-clk.h>
-+    soc {
-+      #address-cells = <2>;
-+      #size-cells = <2>;
-+
-+      phy@11f20000 {
-+        compatible = "mediatek,mt7988-xfi-tphy";
-+        reg = <0 0x11f20000 0 0x10000>;
-+        clocks = <&xfi_pll CLK_XFIPLL_PLL_EN>,
-+                 <&topckgen CLK_TOP_XFI_PHY_0_XTAL_SEL>;
-+        clock-names = "xfipll", "topxtal";
-+        resets = <&watchdog 14>;
-+        mediatek,usxgmii-performance-errata;
-+        #phy-cells = <0>;
-+      };
-+    };
-+
-+...
--- 
-2.43.0
+> ---
+>  Documentation/devicetree/bindings/mmc/fsl-imx-esdhc.yaml | 3 +++
+>  1 file changed, 3 insertions(+)
+>
+> diff --git a/Documentation/devicetree/bindings/mmc/fsl-imx-esdhc.yaml b/Documentation/devicetree/bindings/mmc/fsl-imx-esdhc.yaml
+> index 82eb7a24c8578..0d8ed9d055ffe 100644
+> --- a/Documentation/devicetree/bindings/mmc/fsl-imx-esdhc.yaml
+> +++ b/Documentation/devicetree/bindings/mmc/fsl-imx-esdhc.yaml
+> @@ -162,6 +162,9 @@ properties:
+>        - const: ahb
+>        - const: per
+>
+> +  iommus:
+> +    maxItems: 1
+> +
+>    power-domains:
+>      maxItems: 1
+>
+>
+> --
+> 2.34.1
+>
 
