@@ -1,111 +1,136 @@
-Return-Path: <devicetree+bounces-38646-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-38647-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id A0E61849DB8
-	for <lists+devicetree@lfdr.de>; Mon,  5 Feb 2024 16:11:43 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 94FD5849DCA
+	for <lists+devicetree@lfdr.de>; Mon,  5 Feb 2024 16:15:14 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id D2C3E1C223C8
-	for <lists+devicetree@lfdr.de>; Mon,  5 Feb 2024 15:11:42 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id C6AF01C2240B
+	for <lists+devicetree@lfdr.de>; Mon,  5 Feb 2024 15:15:13 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D18522C6B6;
-	Mon,  5 Feb 2024 15:11:38 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0FFF62C691;
+	Mon,  5 Feb 2024 15:15:10 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="LRqzQoMw"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="cTcEakOv"
 X-Original-To: devicetree@vger.kernel.org
-Received: from relay3-d.mail.gandi.net (relay3-d.mail.gandi.net [217.70.183.195])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-qv1-f42.google.com (mail-qv1-f42.google.com [209.85.219.42])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 775772C6B7;
-	Mon,  5 Feb 2024 15:11:34 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.70.183.195
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 66DA02D604
+	for <devicetree@vger.kernel.org>; Mon,  5 Feb 2024 15:15:08 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.219.42
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1707145898; cv=none; b=Rik3nXkPaYh1U5PfVqiKw0Tj/nqDOKMGV00TOdAb2UepGwk1yMQvEpvm+CqHz2jMwXapB4kHK2y7IbUZrLI8kbwV7Gvw7ZhIMgLwP5fNKcQVprsRG3UTWl/6l0ZyHtf1poimMLcIOT5zSybo/wsenc3qQRh4vUmtFTM5aY+BfEc=
+	t=1707146110; cv=none; b=W/aQ1Zcg4g1OftQ3KJZO2MjlMTFs5tHHnFxL20NzlNnfKsX4Iz/cfdS5QZI84NHAceSww+mzkEU3ZFEzMpAQrXo/8D1EhOSpXe+FxvTjlww9Mpa/sFH1wTGAJswKsdoRPcjAGQLtiocFhB2WYxzZnJfuHrsMyjKA0sAfVyP3Iwg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1707145898; c=relaxed/simple;
-	bh=or1mC3Cf+BGWdRGGha8GQZG8rLMB4ONTBBAhWbyuCyU=;
-	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=K358rN8E1d2cn0DuINjIvhJj9L2bMnh34Uj7i5RdGyE+sabc2f4yQ193fHbVmLAJLk8ZpV+FO1RF35iuQNeB9dJId9q6oFohF7qy7fVUT3xPf8u35b7vXkJ3UwnyciaOHxRIH5Ec6ZPDU2weRFKPnAcvEMr56shWz7LxlTmq9Q8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=LRqzQoMw; arc=none smtp.client-ip=217.70.183.195
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
-Received: by mail.gandi.net (Postfix) with ESMTPSA id 0264C60004;
-	Mon,  5 Feb 2024 15:11:29 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
-	t=1707145892;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=or1mC3Cf+BGWdRGGha8GQZG8rLMB4ONTBBAhWbyuCyU=;
-	b=LRqzQoMwi0LqJMn0BW7k9Q1PJnJOdm0smu8g8xANoGjCCjB4wSIO9lrD0rzsjkaW0mL4he
-	Rrh0x+s78SdEpCrUOfDzXTvS1f6SvnfCoKy6cpXrqkgORMC60KGC8oQ1K76cy0nv1FDwcp
-	nJx3hC9Du2oCn4qyDqL9IOYfRslZRh38kJ0tNH1hC+EQYpRSvOKhAk4FO7CF+hpyQrYvEb
-	YbCVk0glppCgwpO3sEVsbCh8IjonYY2p4WiLvOZ88SQJT9z8waw/Yl/Z8eelCF+F1Wl6Eu
-	i1X+9h5/XoETw2OMXInCqaxmaw2GU59MhKQcwdPb2dzKyldyOCRgcInWBTRmwQ==
-Date: Mon, 5 Feb 2024 16:11:29 +0100
-From: Miquel Raynal <miquel.raynal@bootlin.com>
-To: Michael Pratt <mcpratt@pm.me>
-Cc: devicetree@vger.kernel.org, gregkh@linuxfoundation.org,
- linux-kernel@vger.kernel.org, linux-mtd@lists.infradead.org,
- saravanak@google.com, abel.vesa@linaro.org,
- alexander.stein@ew.tq-group.com, andriy.shevchenko@linux.intel.com,
- bigunclemax@gmail.com, brgl@bgdev.pl, colin.foster@in-advantage.com,
- djrscally@gmail.com, dmitry.baryshkov@linaro.org, festevam@gmail.com,
- fido_max@inbox.ru, frowand.list@gmail.com, geert@linux-m68k.org,
- heikki.krogerus@linux.intel.com, kernel@pengutronix.de,
- linus.walleij@linaro.org, linux@roeck-us.net, luca.weiss@fairphone.com,
- magnus.damm@gmail.com, martin.kepplinger@puri.sm, rafal@milecki.pl,
- ansuelsmth@gmail.com, richard@nod.at, sakari.ailus@linux.intel.com,
- sudeep.holla@arm.com, tglx@linutronix.de, tony@atomide.com,
- vigneshr@ti.com, dianders@chromium.org, jpb@kernel.org, rafael@kernel.org
-Subject: Re: [PATCH v1 4/4] mtd: mtdpart: Allow fwnode links to NVMEM
- compatible fwnodes
-Message-ID: <20240205161129.1889a943@xps-13>
-In-Reply-To: <20240123014517.5787-5-mcpratt@pm.me>
-References: <20240123014517.5787-1-mcpratt@pm.me>
-	<20240123014517.5787-5-mcpratt@pm.me>
-Organization: Bootlin
-X-Mailer: Claws Mail 4.0.0 (GTK+ 3.24.33; x86_64-pc-linux-gnu)
+	s=arc-20240116; t=1707146110; c=relaxed/simple;
+	bh=Au4LVORN6H/onQsw+fO8tyJyMuEiQJy3CYj6SC/W5Y0=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=FS5w4ji2h0bE0HeKB7BDqbI/ctm6eNeVjSTxEllVrAgmapoFjLIojAO7MHiF38/5m/5URc0djkqx7iLyv8X6QW2RfBBUMdyxr8tFOafqeBi9MEQ5Iz4W0KHNSWhb94csa0lTCzhKzmmAVwRPy36W/BHLTV0PCIAKDNBjAFCnrCo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=cTcEakOv; arc=none smtp.client-ip=209.85.219.42
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-qv1-f42.google.com with SMTP id 6a1803df08f44-68c3a14c6e7so21462386d6.1
+        for <devicetree@vger.kernel.org>; Mon, 05 Feb 2024 07:15:08 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1707146107; x=1707750907; darn=vger.kernel.org;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=SagLyPv+tU2JHwW9rPzTIveX03STHYINvfEVvGHvYDk=;
+        b=cTcEakOvQDZ7Mb5rKzpRotRkW6lTnJPLC/HW10XK9Nmy6AFWqh1Fb0JdgZEy2Of1g4
+         7ZUdgCd5Rmth3kJKy7On97jxTISm0N97fqiXWXr7jLd7UoL3JOmXJB/3a5HXM54TK/BY
+         jyuUjYmpC3HjNHnmzzIT6fDqD/NXICO+amY8kk4rSyF87+nP+e69eVqPyu4wa3rW/9v5
+         cKLSptdaZmUkSM9ygOZjqu0zvAO0h9t+x8D184iOSVRO9OJ2QGirK1OgXW1OPB8XNi8A
+         x2X23FXQAHRSfMUIrHmDbpyye9F/AEAQ9neAYswZA7E1Ws7OwL/R4pDz21aVt7Cube3P
+         osCA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1707146107; x=1707750907;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=SagLyPv+tU2JHwW9rPzTIveX03STHYINvfEVvGHvYDk=;
+        b=X+l71y4icpy0W5jBcDe4gcXd9wc/bKUwDVcfRXOtGzVig6+n+nBCmOE7lziurT0LZG
+         0mtjdkoSMW015mY+knHj/J6SNH74NJ4d5udgQcQyOST09eHktKl5lRzTIQ0+s0OmhmgX
+         MXNzMC+FarpbR6zDteLakhUwy6Wqi+TfU1eFFkprNUDyrRLNkd2Ln2o4b0LJNv70vOYG
+         Fr4BxspC/5C+S8FCryXUvrb/RLWFmFOXIxv2P0hrkiOFcWDWdMmmbE03o+MsFAY9mExi
+         Gx/oVObvHWU6M9TnZ5hHoexwwfwOY71GsDW/RGwokxanMC3OKp5pRbf0otyiDJkQad3Z
+         D3xQ==
+X-Gm-Message-State: AOJu0Yy8tA61Urlq6N8FacySaV6mP2qFnVLshe8Nrm7N3oVoNRnCubBc
+	DVlUd6eFKHZNLmUn8BPhmsNKeogZ9jd4Z3NSawwQkygrx5qmu2vAeNKA1MZgBYeuc8LJwXv5th7
+	cJ/4ZtcMO9ceKlDLNmrCx23IkygCA9NLxHUjOuQ==
+X-Google-Smtp-Source: AGHT+IEJiCZJgCddiVpWsHVt/Z+aTDGcg5cltCSOe6qZPrQ2iyQVush+5469m4nHWe2ATfO1pbwocsEiLH2smm+MZUI=
+X-Received: by 2002:a0c:dd04:0:b0:68c:67ad:93cb with SMTP id
+ u4-20020a0cdd04000000b0068c67ad93cbmr6650169qvk.37.1707146107317; Mon, 05 Feb
+ 2024 07:15:07 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: quoted-printable
-X-GND-Sasl: miquel.raynal@bootlin.com
+References: <20240201172224.574238-1-alexey.klimov@linaro.org> <20240201172224.574238-4-alexey.klimov@linaro.org>
+In-Reply-To: <20240201172224.574238-4-alexey.klimov@linaro.org>
+From: Peter Griffin <peter.griffin@linaro.org>
+Date: Mon, 5 Feb 2024 15:14:55 +0000
+Message-ID: <CADrjBPpWXHhRhid77=utZuaQVzw8aaXUV_EKwwn0=rp7-Jt+NQ@mail.gmail.com>
+Subject: Re: [PATCH 4/4] soc: samsung: exynos-chipid: fix revision calculation
+ for gs101
+To: Alexey Klimov <alexey.klimov@linaro.org>
+Cc: krzysztof.kozlowski@linaro.org, alim.akhtar@samsung.com, 
+	linux-samsung-soc@vger.kernel.org, semen.protsenko@linaro.org, 
+	robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org, 
+	devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
+	linux-kernel@vger.kernel.org, klimov.linux@gmail.com, kernel-team@android.com, 
+	tudor.ambarus@linaro.org, andre.draszik@linaro.org, saravanak@google.com, 
+	willmcvicker@google.com, arnd@arndb.de
+Content-Type: text/plain; charset="UTF-8"
 
-Hi Michael,
+Hi Alexey,
 
-mcpratt@pm.me wrote on Tue, 23 Jan 2024 01:47:21 +0000:
+On Thu, 1 Feb 2024 at 17:22, Alexey Klimov <alexey.klimov@linaro.org> wrote:
+>
+> The main revision for gs101 SoC is not reported in the CHIPID_REV
+> register. The gs101 Product ID and revisions registers have a behaviour
+> split between old Exynos SoCs and new SoCs. The sub-revision is
+> reported in CHIPID_REV register in [19:16] bits but main revision
+> is still present in Product ID [7:0].
+>
+> To construct soc_info->revision correctly for gs101 the main_rev
+> should not be reset from a value read from CHIPID_REV.
+>
 
-> This reverts commit fb42378dcc7f247df56f0ecddfdae85487495fbc
-> ("mtd: mtdpart: Don't create platform device that'll never probe").
->=20
-> That commit is a manual named exception in order to avoid fw_devlink links
-> to an "nvmem-cells" compatible node which is a descendant of the fwnode
-> that represents the real supplier device that probes.
->=20
-> The commit does not work for newer cases, like the "fixed-layout"
+I think it would also be worth adding in the commit message how the
+main_rev and sub_rev relate to the a0, b0, b1 reported by the
+bootloader.
 
-Do you have plans for it? Because it is the modern description that is
-now expected, so I don't feel convinced by all this work (which is
-nevertheless considerable) if fixed-layouts are still broken?
+> Signed-off-by: Alexey Klimov <alexey.klimov@linaro.org>
+> ---
+>  drivers/soc/samsung/exynos-chipid.c       | 20 ++++++++++++++++----
+>  include/linux/soc/samsung/exynos-chipid.h |  1 +
+>  2 files changed, 17 insertions(+), 4 deletions(-)
+>
+> diff --git a/drivers/soc/samsung/exynos-chipid.c b/drivers/soc/samsung/exynos-chipid.c
+> index 7fee6094db12..3b952ffd8cf7 100644
+> --- a/drivers/soc/samsung/exynos-chipid.c
+> +++ b/drivers/soc/samsung/exynos-chipid.c
+> @@ -87,14 +87,26 @@ static int exynos_chipid_get_chipid_info(struct regmap *regmap,
+>         soc_info->product_id = val & EXYNOS_MASK;
+>
+>         if (data->rev_reg != EXYNOS_CHIPID_REG_PRO_ID) {
+> -               ret = regmap_read(regmap, data->rev_reg, &val);
+> +               unsigned int val2;
+> +
+> +               ret = regmap_read(regmap, data->rev_reg, &val2);
+>                 if (ret < 0)
+>                         return ret;
+> +
+> +               if (data->main_rev_shift == 0)
+> +                       main_rev = (val >> data->main_rev_shift)
+> +                                  & EXYNOS_REV_PART_MASK_GS101;
 
-> compatible nodes, but instead of adding another compatible string,
-> remove this workaround as it is no longer needed after
-> the previous few commits which handle the situation in a generic way
-> for all supplier nodes that are a child or further descendant fwnode
-> of a parent device that can probe, including when the consumer device
-> has a probe attempt before the supplier device, by using an existing
-> incorrect fwnode or device link to recreate the correct one.
->=20
-> Signed-off-by: Michael Pratt <mcpratt@pm.me>
+Looks like it can be simplified to
+main_rev = val & EXYNOS_REV_PART_MASK_GS101;
 
-Thanks,
-Miqu=C3=A8l
+Peter
 
