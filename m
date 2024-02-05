@@ -1,145 +1,288 @@
-Return-Path: <devicetree+bounces-38552-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-38553-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id CAA89849759
-	for <lists+devicetree@lfdr.de>; Mon,  5 Feb 2024 11:07:32 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 573B184975F
+	for <lists+devicetree@lfdr.de>; Mon,  5 Feb 2024 11:09:32 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id F2BD2B2A009
-	for <lists+devicetree@lfdr.de>; Mon,  5 Feb 2024 10:02:55 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id D5DBE1F217C6
+	for <lists+devicetree@lfdr.de>; Mon,  5 Feb 2024 10:09:31 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 62E5013FF8;
-	Mon,  5 Feb 2024 10:02:25 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="FaNrco/V"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1426814A8E;
+	Mon,  5 Feb 2024 10:09:15 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f42.google.com (mail-wm1-f42.google.com [209.85.128.42])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from metis.whiteo.stw.pengutronix.de (metis.whiteo.stw.pengutronix.de [185.203.201.7])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 960829455;
-	Mon,  5 Feb 2024 10:02:23 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.42
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 78E9613FF6
+	for <devicetree@vger.kernel.org>; Mon,  5 Feb 2024 10:09:12 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.203.201.7
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1707127345; cv=none; b=gqdMbI/maj6BJi5mFPPg18zPWUVxG7Yg+0ypVa6hIFeKrCaG2+E4/lU/xYMwY6+ox1MsIP7QqaqeQ6syYPuBn+ff3A0ulwGjhaTxneERYVkhFYlfOPBi18KUwPqHtxmqRowq1rVw/mLTQxdLKVr1WIRzhdHcAsqLAeg2vwqNI74=
+	t=1707127755; cv=none; b=uILo1PnA6QcY1kwwnAaAwDjvAiA3NqYcqzFdorA9QKcTwDPy+1aAtOTMoxyRthM3x3vNki6MK+fPkSHz9pFYaLJn8nACEiQEa3dX7n0mNZbvXPzGt0lSXC/gnDk2hSI053MHJo8f45uCI3JQbkdpuOUAXD68jlSPki9Qw0eXmvc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1707127345; c=relaxed/simple;
-	bh=IsHe1eXNyLbiL9eOw49HOBHN7tXZzpCngzNkOFT5Xq4=;
-	h=Message-ID:Subject:From:To:Cc:Date:In-Reply-To:References:
-	 Content-Type:MIME-Version; b=P2tEh//aWmC+45SppdAn/hzgd6k7orZ41OtJUuG8sTlBw3hJN8zNkqFDjO9c680D94+3/IYICah0dIK52gUA7sjv8ILXeObreXyKEWR5/CRiBhFY6hOaKtpHNpsCvEPpHGWeDUbvNopBxZkk+Zz8qUigc33fs5Hc1JNi0Zt8knI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=FaNrco/V; arc=none smtp.client-ip=209.85.128.42
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-wm1-f42.google.com with SMTP id 5b1f17b1804b1-40fdd65a9cfso3042185e9.3;
-        Mon, 05 Feb 2024 02:02:23 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1707127342; x=1707732142; darn=vger.kernel.org;
-        h=mime-version:user-agent:content-transfer-encoding:references
-         :in-reply-to:date:cc:to:from:subject:message-id:from:to:cc:subject
-         :date:message-id:reply-to;
-        bh=IsHe1eXNyLbiL9eOw49HOBHN7tXZzpCngzNkOFT5Xq4=;
-        b=FaNrco/VwIEIQMPbsg9zc05MDCVqwQjXw83V47Pp34Hm/nLjAYo0EBxE6bR8NBY1ex
-         MU/PeYow9hBSTfsDnA57j1Fqpnf+cKjlNBrA7Cd6CVqg9wysVz2PqGcQ+/bf4qYtkBOD
-         nz96LhT8hIMydLDdbT1Xx2XoHiymDtg85XHm7yEw40egbNvWfIzoh4pLwVm0c1Q6AG9R
-         NVYpMfliMg1OB4UuohWeKGF4sviI1giSVOriA0GgCcmUuqk9hlvhHd6Xw3OAtXx2XEPk
-         foDQ1p8XtVuW+8liUDB4h73/9V1WBzrWTGHkuVEOFb7CmbMRcKcqD5ji5QNklAI/lM9P
-         8KCg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1707127342; x=1707732142;
-        h=mime-version:user-agent:content-transfer-encoding:references
-         :in-reply-to:date:cc:to:from:subject:message-id:x-gm-message-state
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=IsHe1eXNyLbiL9eOw49HOBHN7tXZzpCngzNkOFT5Xq4=;
-        b=wShcNwHLDVOjPAw8YydgIpwKZcM5aNRxLKJhhgmWstp3auPNCrcIkju8DhSByMUdEc
-         pSViiasMJ7P91ZDIb4RTQEj4JM5nNZTQieNOUQkJDWA8wtpS8lntPo/PofkEs5l2YvYL
-         vxm4Mwa4+dvHM9HufC3624D3o+gRA/aPzThDXPXjCyNXTTLFfjkCIhMOXMUGIG6dmCGL
-         wRTnzQCGXtRtoD8kFSnZbQVS0PWBANA1ETLBWzQyXc0yk2g8aVZfy4PFDxXuDqMA68pe
-         dv/ql5zbYrzWYKExEULHbsZBnoh5NaIA4gIz9qpK1V3H61D3Tjhbd5GriTf3fcRnIB2j
-         f5cQ==
-X-Gm-Message-State: AOJu0Yx2QPZv+UUTWCjUXPeRaZKM5Dl/T9IPlK6dH1zyJJASbDRzjOvc
-	4ufFmBOeoJUgbDGlr58NSbKF9Rb3mQ9ZyjY58CEGMElvkAM5dHYO
-X-Google-Smtp-Source: AGHT+IEHp+ogu5TfZMdotux+9McGowVxpFpNHYMI+P1V4lMQ2DSRJ11+/0oza0XPsb4Hq68RV3AWdQ==
-X-Received: by 2002:a05:600c:4508:b0:40f:ddac:86f8 with SMTP id t8-20020a05600c450800b0040fddac86f8mr635624wmo.35.1707127341616;
-        Mon, 05 Feb 2024 02:02:21 -0800 (PST)
-X-Forwarded-Encrypted: i=0; AJvYcCXkVhkTH8oGp9wNxhOGJSNsnWyy1WhYJxdlF804eFTr5vLmMYkL4hSmfV5IXk0sqSgDx5O4ILHi0HD0IZkr6QmAujBwsUeCUrQn9+Xi9mpQl2M5hgeM8rkLBObboV7nUoqDPBQ1wH4h/HFZETlpYb4BQ0NPbUFUgLYRr886NoCn649YnkNW1+2DnV3b25EWvww73mVRaP0OIJtPLWKz6wbT8xzoZFVUfpLYgMmsLyXqx0DqrtW8msHy6EjqNSuzcEHctx+KoXiSLMsi0tHBc6bzUJQf7saQcLgebAiREF/V2Tze2QoVyBZJ8lI+skub/WFpL5bp4AWnSv9OBpNkc8tNYuWO8nlrnCjCDk8S9RrW9N/6S/Y5g9LB5O1SXs0rWA==
-Received: from ?IPv6:2001:a61:3456:4e01:6ae:b55a:bd1d:57fc? ([2001:a61:3456:4e01:6ae:b55a:bd1d:57fc])
-        by smtp.gmail.com with ESMTPSA id f9-20020a05600c4e8900b0040f035bebfcsm8066127wmq.12.2024.02.05.02.02.21
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 05 Feb 2024 02:02:21 -0800 (PST)
-Message-ID: <50e29a95f5a620179f19056fd7948da5e093d980.camel@gmail.com>
-Subject: Re: [PATCH v8 5/7] iio: add the IIO backend framework
-From: Nuno =?ISO-8859-1?Q?S=E1?= <noname.nuno@gmail.com>
-To: andy.shevchenko@gmail.com, Nuno Sa <nuno.sa@analog.com>
-Cc: linux-iio@vger.kernel.org, devicetree@vger.kernel.org, Lars-Peter
- Clausen <lars@metafoo.de>, Michael Hennerich
- <Michael.Hennerich@analog.com>,  Jonathan Cameron <jic23@kernel.org>, Rob
- Herring <robh+dt@kernel.org>, Krzysztof Kozlowski
- <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, 
- Frank Rowand <frowand.list@gmail.com>, Olivier Moysan
- <olivier.moysan@foss.st.com>
-Date: Mon, 05 Feb 2024 11:02:20 +0100
-In-Reply-To: <Zb-yr0u_a9-vE86t@surfacebook.localdomain>
-References: <20240202-iio-backend-v8-0-f65ee8c8203d@analog.com>
-	 <20240202-iio-backend-v8-5-f65ee8c8203d@analog.com>
-	 <Zb-yr0u_a9-vE86t@surfacebook.localdomain>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-User-Agent: Evolution 3.50.3 (3.50.3-1.fc39) 
+	s=arc-20240116; t=1707127755; c=relaxed/simple;
+	bh=F99UGl7ngh1/kkSUhb2J1OjOelX2kbZxbOegzofmhzI=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=MQ4PwO9vFysAEzdV1lfggB2K7iODfBMFj8hm2CtaTOhEjZF4dQo6y4Y65Ww9DKqQDx2hfw0YEN8d1KuL8EvhTx1+7U77+IfanU2S7GbiCDuCcsskONLyz65+vbpoqlJyOMhF+KPPGOmjdirzsJbXCB95axQC3GV/XzMAl/eRyNY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de; spf=pass smtp.mailfrom=pengutronix.de; arc=none smtp.client-ip=185.203.201.7
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=pengutronix.de
+Received: from drehscheibe.grey.stw.pengutronix.de ([2a0a:edc0:0:c01:1d::a2])
+	by metis.whiteo.stw.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
+	(Exim 4.92)
+	(envelope-from <ukl@pengutronix.de>)
+	id 1rWvuQ-00048b-NM; Mon, 05 Feb 2024 11:09:02 +0100
+Received: from [2a0a:edc0:0:900:1d::77] (helo=ptz.office.stw.pengutronix.de)
+	by drehscheibe.grey.stw.pengutronix.de with esmtps  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+	(Exim 4.94.2)
+	(envelope-from <ukl@pengutronix.de>)
+	id 1rWvuP-004bvy-SF; Mon, 05 Feb 2024 11:09:01 +0100
+Received: from ukl by ptz.office.stw.pengutronix.de with local (Exim 4.96)
+	(envelope-from <ukl@pengutronix.de>)
+	id 1rWvuP-00FNpw-2S;
+	Mon, 05 Feb 2024 11:09:01 +0100
+Date: Mon, 5 Feb 2024 11:09:01 +0100
+From: Uwe =?utf-8?Q?Kleine-K=C3=B6nig?= <u.kleine-koenig@pengutronix.de>
+To: Stefan Wahren <wahrenst@gmx.net>
+Cc: Rob Herring <robh+dt@kernel.org>, 
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, andy.shevchenko@gmail.com, 
+	Angelo Compagnucci <angelo.compagnucci@gmail.com>, Philip Howard <phil@gadgetoid.com>, Sean Young <sean@mess.org>, 
+	Linus Walleij <linus.walleij@linaro.org>, linux-pwm@vger.kernel.org, devicetree@vger.kernel.org, 
+	linux-gpio@vger.kernel.org, Vincent Whitchurch <vincent.whitchurch@axis.com>
+Subject: Re: [PATCH V4 2/2] pwm: Add GPIO PWM driver
+Message-ID: <b3bh4srxjc5s5yrceugn2bry4j7srvuyyc2zc7uorynn3esbbq@xtpfu3xnsi3q>
+References: <20240204220851.4783-1-wahrenst@gmx.net>
+ <20240204220851.4783-3-wahrenst@gmx.net>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-
-On Sun, 2024-02-04 at 17:52 +0200, andy.shevchenko@gmail.com wrote:
-> Fri, Feb 02, 2024 at 04:08:36PM +0100, Nuno Sa kirjoitti:
-> > This is a Framework to handle complex IIO aggregate devices.
-> >=20
-> > The typical architecture is to have one device as the frontend device w=
-hich
-> > can be "linked" against one or multiple backend devices. All the IIO an=
-d
-> > userspace interface is expected to be registers/managed by the frontend
-> > device which will callback into the backends when needed (to get/set
-> > some configuration that it does not directly control).
-> >=20
-> > The basic framework interface is pretty simple:
-> > =C2=A0- Backends should register themselves with @devm_iio_backend_regi=
-ster()
-> > =C2=A0- Frontend devices should get backends with @devm_iio_backend_get=
-()
->=20
-> ...
->=20
-> > + * Copyright (C) 2023 Analog Devices Inc.
->=20
-> 2024 as well?
->=20
-> ...
->=20
-> > +#include <linux/cleanup.h>
-> > +#include <linux/device.h>
-> > +#include <linux/err.h>
-> > +#include <linux/list.h>
-> > +#include <linux/module.h>
-> > +#include <linux/mutex.h>
-> > +#include <linux/property.h>
-> > +#include <linux/slab.h>
->=20
-> Missing types.h and maybe more. (E.g., IIRC linux/err.h doesn't cover
-> linux/errno.h for Linux internal error codes, >=3D 512.)
-
-Just sanity checking... EOPNOTSUPP is define in [1] but I don't really thin=
-k we
-should be including that directly (don't see anyone doing it at least)? I g=
-uess I
-should include <linux/errno.h>, right?
-
-[1]: https://elixir.bootlin.com/linux/v5.0.21/source/include/uapi/asm-gener=
-ic/errno.h#L78
+Content-Type: multipart/signed; micalg=pgp-sha512;
+	protocol="application/pgp-signature"; boundary="qooobwxuyeu4bcau"
+Content-Disposition: inline
+In-Reply-To: <20240204220851.4783-3-wahrenst@gmx.net>
+X-SA-Exim-Connect-IP: 2a0a:edc0:0:c01:1d::a2
+X-SA-Exim-Mail-From: ukl@pengutronix.de
+X-SA-Exim-Scanned: No (on metis.whiteo.stw.pengutronix.de); SAEximRunCond expanded to false
+X-PTX-Original-Recipient: devicetree@vger.kernel.org
 
 
-- Nuno S=C3=A1
+--qooobwxuyeu4bcau
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
+
+Hello,
+
+On Sun, Feb 04, 2024 at 11:08:51PM +0100, Stefan Wahren wrote:
+> +static enum hrtimer_restart pwm_gpio_timer(struct hrtimer *gpio_timer)
+> +{
+> +	struct pwm_gpio *gpwm =3D container_of(gpio_timer, struct pwm_gpio,
+> +					     gpio_timer);
+> +	unsigned long next_toggle;
+> +	unsigned long flags;
+> +	bool new_level;
+> +
+> +	spin_lock_irqsave(&gpwm->lock, flags);
+> +
+> +	/* Apply new state at end of current period */
+> +	if (!gpwm->level && gpwm->changing) {
+> +		gpwm->changing =3D false;
+> +		gpwm->state =3D gpwm->next_state;
+> +		new_level =3D !!gpwm->state.duty_cycle;
+> +	} else {
+> +		new_level =3D !gpwm->level;
+> +	}
+> +
+> +	next_toggle =3D pwm_gpio_toggle(gpwm, new_level);
+> +	if (next_toggle) {
+> +		hrtimer_forward(gpio_timer, hrtimer_get_expires(gpio_timer),
+> +				ns_to_ktime(next_toggle));
+
+How does this work in relation to hrtimer_resolution? If the resolution
+is (say) 300 and next_toggle is 2000. Does the trigger trigger at
+hrtimer_get_expires(...) + 1800, or at ... + 2100?
+
+If you assume we have period =3D 6000 and duty_cycle =3D 2000, the delta to
+forward the driver alternates between 1800 and 3900 (if rounding down)
+or between 2100 and 4200 if rounding up. Both is not optimal.
+
+Ideally you'd round down the active phase (i.e. pick 1800) and for the
+inactive phase you'd use rounddown(period) - rounddown(duty_cycle) which
+gives 4200 here. Does this make sense?
+
+> +	}
+> +
+> +	spin_unlock_irqrestore(&gpwm->lock, flags);
+> +
+> +	return next_toggle ? HRTIMER_RESTART : HRTIMER_NORESTART;
+> +}
+> +
+> +static int pwm_gpio_apply(struct pwm_chip *chip, struct pwm_device *pwm,
+> +			  const struct pwm_state *state)
+> +{
+> +	struct pwm_gpio *gpwm =3D container_of(chip, struct pwm_gpio, chip);
+> +	bool invert =3D state->polarity =3D=3D PWM_POLARITY_INVERSED;
+> +	unsigned long flags;
+> +
+> +	if (state->duty_cycle && state->duty_cycle < hrtimer_resolution)
+> +		return -EINVAL;
+> +
+> +	if (state->duty_cycle !=3D state->period &&
+> +	    (state->period - state->duty_cycle < hrtimer_resolution))
+> +		return -EINVAL;
+
+If you assume that hrtimer_resolution =3D 300 again, you don't want to
+refuse
+
+	.duty_cycle =3D 200
+	.period =3D 200
+
+do you? I think you want:
+
+	mininterval =3D min(state->duty_cycle, state->period - state->duty_cycle);
+	if (mininterval && mininterval < hrtimer_resolution)
+		return -EINVAL;
+
+to catch both cases in a single check.
+
+> +	if (!state->enabled) {
+> +		hrtimer_cancel(&gpwm->gpio_timer);
+> +	} else if (!gpwm->running) {
+> +		/*
+> +		 * This just enables the output, but pwm_gpio_toggle()
+> +		 * really starts the duty cycle.
+> +		 */
+> +		int ret =3D gpiod_direction_output(gpwm->gpio, invert);
+> +
+> +		if (ret)
+> +			return ret;
+> +	}
+> +
+> +	spin_lock_irqsave(&gpwm->lock, flags);
+> +
+> +	if (!state->enabled) {
+> +		gpwm->state =3D *state;
+> +		gpwm->running =3D false;
+> +		gpwm->changing =3D false;
+> +
+> +		gpiod_set_value(gpwm->gpio, invert);
+> +	} else if (gpwm->running) {
+> +		gpwm->next_state =3D *state;
+> +		gpwm->changing =3D true;
+> +	} else {
+> +		unsigned long next_toggle;
+> +
+> +		gpwm->state =3D *state;
+> +		gpwm->changing =3D false;
+> +
+> +		next_toggle =3D pwm_gpio_toggle(gpwm, !!state->duty_cycle);
+> +		if (next_toggle) {
+> +			hrtimer_start(&gpwm->gpio_timer, next_toggle,
+> +				      HRTIMER_MODE_REL);
+> +		}
+
+The curly braces can be dropped here and in a few more locations.
+
+> +	}
+> +
+> +	spin_unlock_irqrestore(&gpwm->lock, flags);
+> +
+> +	return 0;
+> +}
+> +
+> +static int pwm_gpio_get_state(struct pwm_chip *chip, struct pwm_device *=
+pwm,
+> +			       struct pwm_state *state)
+> +{
+> +	struct pwm_gpio *gpwm =3D container_of(chip, struct pwm_gpio, chip);
+> +	unsigned long flags;
+> +
+> +	spin_lock_irqsave(&gpwm->lock, flags);
+> +
+> +	if (gpwm->changing)
+> +		*state =3D gpwm->next_state;
+> +	else
+> +		*state =3D gpwm->state;
+> +
+> +	spin_unlock_irqrestore(&gpwm->lock, flags);
+> +
+> +	return 0;
+> +}
+> +
+> +static const struct pwm_ops pwm_gpio_ops =3D {
+> +	.apply =3D pwm_gpio_apply,
+> +	.get_state =3D pwm_gpio_get_state,
+> +};
+> +
+> +static int pwm_gpio_probe(struct platform_device *pdev)
+> +{
+> +	struct device *dev =3D &pdev->dev;
+> +	struct pwm_gpio *gpwm;
+> +	int ret;
+> +
+> +	gpwm =3D devm_kzalloc(dev, sizeof(*gpwm), GFP_KERNEL);
+> +	if (!gpwm)
+> +		return -ENOMEM;
+> +
+> +	spin_lock_init(&gpwm->lock);
+> +
+> +	gpwm->gpio =3D devm_gpiod_get(dev, NULL, GPIOD_ASIS);
+> +	if (IS_ERR(gpwm->gpio)) {
+> +		return dev_err_probe(dev, PTR_ERR(gpwm->gpio),
+> +				     "could not get gpio\n");
+> +	}
+> +
+> +	if (gpiod_cansleep(gpwm->gpio)) {
+> +		return dev_err_probe(dev, -EINVAL,
+> +				     "sleeping GPIO %d not supported\n",
+> +				     desc_to_gpio(gpwm->gpio));
+> +	}
+
+Is it still state of the art to add gpio numbers to error messages?
+
+> +	gpwm->chip.dev =3D dev;
+> +	gpwm->chip.ops =3D &pwm_gpio_ops;
+> +	gpwm->chip.npwm =3D 1;
+> +	gpwm->chip.atomic =3D true;
+> +
+> +	hrtimer_init(&gpwm->gpio_timer, CLOCK_MONOTONIC, HRTIMER_MODE_REL);
+> +	gpwm->gpio_timer.function =3D pwm_gpio_timer;
+> +
+> +	ret =3D pwmchip_add(&gpwm->chip);
+> +	if (ret < 0)
+> +		return dev_err_probe(dev, ret, "could not add pwmchip\n");
+> +
+> +	platform_set_drvdata(pdev, gpwm);
+> +
+> +	return 0;
+> +}
+
+Best regards
+Uwe
+
+--=20
+Pengutronix e.K.                           | Uwe Kleine-K=F6nig            |
+Industrial Linux Solutions                 | https://www.pengutronix.de/ |
+
+--qooobwxuyeu4bcau
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQEzBAABCgAdFiEEP4GsaTp6HlmJrf7Tj4D7WH0S/k4FAmXAs7wACgkQj4D7WH0S
+/k6Eewf/fbsfLpDgN48u2SB5wYgDBrzE1wtKr7rJngfjIaVD+Oczp1o09UdS39z7
+q3RnhAYJG5vMFNMkovAyi6nViQ0GERkX7ALcFAfTwC0B5w2uAnwL9P1u+5ONu3kW
+FhKGnpXghg3bVLGNVgTdCOhog0Vajj/XeozbPUBLP05POs+7FVzg21/VYoVqzmCj
+2ppNmbq8pyOVKez4HY1xzLNXb7NormhiCT02FcpxhR+f+rViAYSe4+7ueAzzwkft
+O3vBrLnI16Pt4FbX7xtoaKBk71P+RkGjxcUzpd8ARz0OmF8TadO6dFkI3iK7xlZy
+58kfCBe7AAI/Q7nrIMLiK+YqZ3wTIw==
+=SeeU
+-----END PGP SIGNATURE-----
+
+--qooobwxuyeu4bcau--
 
