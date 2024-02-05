@@ -1,152 +1,304 @@
-Return-Path: <devicetree+bounces-38454-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-38452-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 06373849353
-	for <lists+devicetree@lfdr.de>; Mon,  5 Feb 2024 06:28:20 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id E7BE7849335
+	for <lists+devicetree@lfdr.de>; Mon,  5 Feb 2024 06:13:56 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 2A6931C222D2
-	for <lists+devicetree@lfdr.de>; Mon,  5 Feb 2024 05:28:19 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 182DB1C212E5
+	for <lists+devicetree@lfdr.de>; Mon,  5 Feb 2024 05:13:56 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B95C179D8;
-	Mon,  5 Feb 2024 05:28:14 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=samsung.com header.i=@samsung.com header.b="sT4XcYnR"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 97C53B645;
+	Mon,  5 Feb 2024 05:13:51 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mailout3.samsung.com (mailout3.samsung.com [203.254.224.33])
+Received: from IND01-MAX-obe.outbound.protection.outlook.com (mail-maxind01on2136.outbound.protection.outlook.com [40.107.222.136])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A6AA7B654
-	for <devicetree@vger.kernel.org>; Mon,  5 Feb 2024 05:28:11 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=203.254.224.33
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1707110894; cv=none; b=IuQc2BIDT9TORvbhlX8v9FGVm8uXlAxX6FnR9b9IgJfeCfCiy5pw2UEkdRJXd+szVzJ0FOg6y9+o7gHzAp/JJJCNi4LXdC4V6gYBo32JXyOVMijc2rgT4ZCOpr1NmIn5P5uQCkrYIqk7hRMXrYkIPsahBhr7Y/NtGiBi5d9rE/k=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1707110894; c=relaxed/simple;
-	bh=KGVIQ7R3XaeYio8DCZDb8cibagzCabv2lV8TzCs3KFA=;
-	h=From:To:Cc:Subject:Date:Message-Id:Content-Type:References; b=cAGE2SY06kxToK4TE0pZsuaqbWOm/5uR/ksyG/V/YuIbDblui2oY1rSe5LtTbnX7lJD8L8j1OJZ4eAOG7Mg2PQVsbWSeGTCLiX1PAIfr4QrSXlDDp+/X96fE1plA+E/iz9X+R//hfk7AwWdMoBVWHsRZrFhbqKjROttg/feF4AY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=samsung.com; spf=pass smtp.mailfrom=samsung.com; dkim=pass (1024-bit key) header.d=samsung.com header.i=@samsung.com header.b=sT4XcYnR; arc=none smtp.client-ip=203.254.224.33
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=samsung.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=samsung.com
-Received: from epcas5p1.samsung.com (unknown [182.195.41.39])
-	by mailout3.samsung.com (KnoxPortal) with ESMTP id 20240205052804epoutp032d8228c0eaf6a988ca119cf9c039c98f~w4E3waSX53160531605epoutp03f
-	for <devicetree@vger.kernel.org>; Mon,  5 Feb 2024 05:28:04 +0000 (GMT)
-DKIM-Filter: OpenDKIM Filter v2.11.0 mailout3.samsung.com 20240205052804epoutp032d8228c0eaf6a988ca119cf9c039c98f~w4E3waSX53160531605epoutp03f
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=samsung.com;
-	s=mail20170921; t=1707110884;
-	bh=MEXPbxT6P7PtY/XAgzobsSoAFcpyfbHJUxz+fcXZugY=;
-	h=From:To:Cc:Subject:Date:References:From;
-	b=sT4XcYnRqTv6T8QOSkyy0jVIa+gdyIMtVGEndwJoGDlTpzQoDSDu//LtkjTgQt3Su
-	 FbXqeB2bbG/Kft7zZ3ODa9EfkNOlnpWZfdmgu1gVdyYufZfMhv635gojfTaDjaHgel
-	 aXIDPgtI2PWl8dOT7IyNJbH2mHnRg3lrOrUG6Eik=
-Received: from epsnrtp1.localdomain (unknown [182.195.42.162]) by
-	epcas5p1.samsung.com (KnoxPortal) with ESMTP id
-	20240205052803epcas5p181a5a112b167e7296158fd6e2796483f~w4E3TnOqt1696816968epcas5p1W;
-	Mon,  5 Feb 2024 05:28:03 +0000 (GMT)
-Received: from epsmgec5p1new.samsung.com (unknown [182.195.38.175]) by
-	epsnrtp1.localdomain (Postfix) with ESMTP id 4TSvzP6bZgz4x9QK; Mon,  5 Feb
-	2024 05:28:01 +0000 (GMT)
-Received: from epcas5p3.samsung.com ( [182.195.41.41]) by
-	epsmgec5p1new.samsung.com (Symantec Messaging Gateway) with SMTP id
-	92.9B.08567.1E170C56; Mon,  5 Feb 2024 14:28:01 +0900 (KST)
-Received: from epsmtrp1.samsung.com (unknown [182.195.40.13]) by
-	epcas5p3.samsung.com (KnoxPortal) with ESMTPA id
-	20240131070746epcas5p39bf60e36d7d5cea5937cd6f87352ea67~vXNgKvXZw1167111671epcas5p3X;
-	Wed, 31 Jan 2024 07:07:46 +0000 (GMT)
-Received: from epsmgmcp1.samsung.com (unknown [182.195.42.82]) by
-	epsmtrp1.samsung.com (KnoxPortal) with ESMTP id
-	20240131070746epsmtrp1ce29d4373d2b26044cb2638fd8556af0~vXNgJWnpf0816808168epsmtrp15;
-	Wed, 31 Jan 2024 07:07:46 +0000 (GMT)
-X-AuditID: b6c32a44-3abff70000002177-6d-65c071e18a24
-Received: from epsmtip2.samsung.com ( [182.195.34.31]) by
-	epsmgmcp1.samsung.com (Symantec Messaging Gateway) with SMTP id
-	1E.4F.18939.2C1F9B56; Wed, 31 Jan 2024 16:07:46 +0900 (KST)
-Received: from cheetah.sa.corp.samsungelectronics.net (unknown
-	[107.109.115.53]) by epsmtip2.samsung.com (KnoxPortal) with ESMTPA id
-	20240131070744epsmtip2acf436d44ed1e6404aba10c2fc626e2f~vXNeAs9tW2159821598epsmtip2D;
-	Wed, 31 Jan 2024 07:07:44 +0000 (GMT)
-From: Aakarsh Jain <aakarsh.jain@samsung.com>
-To: linux-arm-kernel@lists.infradead.org, linux-media@vger.kernel.org,
-	linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
-Cc: m.szyprowski@samsung.com, andrzej.hajda@intel.com, mchehab@kernel.org,
-	hverkuil-cisco@xs4all.nl, krzysztof.kozlowski+dt@linaro.org,
-	robh+dt@kernel.org, conor+dt@kernel.org, linux-samsung-soc@vger.kernel.org,
-	gost.dev@samsung.com, alim.akhtar@samsung.com, pankaj.dubey@samsung.com,
-	aakarsh.jain@samsung.com
-Subject: [PATCH] MAINTAINERS: Add entry for Samsung MFC DT Schema
-Date: Wed, 31 Jan 2024 12:37:41 +0530
-Message-Id: <20240131070741.3558-1-aakarsh.jain@samsung.com>
-X-Mailer: git-send-email 2.17.1
-X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFmpnk+LIzCtJLcpLzFFi42LZdlhTU/dh4YFUg8M3jS2e7pjJavFg3jY2
-	i/uLP7NYrNl7jsli/pFzrBY3D+xksrg48y6LRd+Lh8wWmx5fY7W4vGsOm0XPhq2sFjPO72Oy
-	WHvkLrvFsk1/mCwWbf3CbtG69wi7g4DH4j0vmTw2repk87hzbQ+bx+Yl9R59W1YxenzeJOdx
-	6utn9gD2qGybjNTElNQihdS85PyUzLx0WyXv4HjneFMzA0NdQ0sLcyWFvMTcVFslF58AXbfM
-	HKDjlRTKEnNKgUIBicXFSvp2NkX5pSWpChn5xSW2SqkFKTkFJgV6xYm5xaV56Xp5qSVWhgYG
-	RqZAhQnZGY1vP7IUfGWpWPv7N0sD4wyWLkZODgkBE4n1cz6xdzFycQgJ7GaUONr9mgkkISTw
-	iVHiyw5BOLv1qTNMw4tLSxghGnYySqz4tJAFwmllktiwdxKQw8HBJqArcXZ7DkiDiEAjo8Tj
-	jhKQGmaBvUwSe552g60WFnCUuDpzDhuIzSKgKnHv4U12EJtXwEaia/4Zdoht8hKrNxxgBmmW
-	EPjLLtGwcToTyAIJAReJ7tdSEDXCEq+Ob4Gql5J42d8GZSdLPF70khnCzpFYv2cK1Mv2Egeu
-	zAG7k1lAU2L9Ln2IsKzE1FPrwJ5nFuCT6P39hAkiziuxYx6MrSYx584PVghbRuLw6qWMELaH
-	xNy7nWyQwIqVWL96OfMERtlZCBsWMDKuYpRMLSjOTU9NNi0wzEsth0dTcn7uJkZwitRy2cF4
-	Y/4/vUOMTByMhxglOJiVRHgnCO9NFeJNSaysSi3Kjy8qzUktPsRoCgyyicxSosn5wCSdVxJv
-	aGJpYGJmZmZiaWxmqCTO+7p1boqQQHpiSWp2ampBahFMHxMHp1QDU+vcO/V19qeuf2uzvH1T
-	eLE94741ajenbPauu6TteUn97G5Jo/tby+tVX53y274gfFnA6sc7nwTfmjp1+Yzv3FeCHum0
-	p+80nFtkfsd35z/O/X8Xznx+J1hO65wm39Zpe5Juv/VbverrOcMFniyJjrlntunM9/UTLjQ8
-	qxX/UFVbm02L18SyNuSd5QOziLa8Ir09j53lN2//zy+vvKrGmdckmOuIlnUap+C2h/0XWnb6
-	Tp/jv9b8/Ky/VbN/HlO5cyzggFD9Qq7/RnEnH6tHSW30bLwUkFBbWL7ePiJZY/dzkW0xWUFv
-	/h9iDX1vGZoVrn8uKvSXgfF6f4lLhanSllwdamarRS2axZfZPPjrrsRSnJFoqMVcVJwIAA0k
-	078aBAAA
-X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFtrELMWRmVeSWpSXmKPExsWy7bCSvO6hjztTDdYu0LR4umMmq8WDedvY
-	LO4v/sxisWbvOSaL+UfOsVrcPLCTyeLizLssFn0vHjJbbHp8jdXi8q45bBY9G7ayWsw4v4/J
-	Yu2Ru+wWyzb9YbJYtPULu0Xr3iPsDgIei/e8ZPLYtKqTzePOtT1sHpuX1Hv0bVnF6PF5k5zH
-	qa+f2QPYo7hsUlJzMstSi/TtErgyGt9+ZCn4ylKx9vdvlgbGGSxdjJwcEgImEi8uLWHsYuTi
-	EBLYziixf/YyqISMxP+2Y+wQtrDEyn/P2SGKmpkkmpZ3MXcxcnCwCehKnN2eAxIXEWhllLi+
-	spMJxGEWOM0k8WXHE2aQbmEBR4mrM+ewgdgsAqoS9x7eBJvKK2Aj0TX/DNQGeYnVGw4wT2Dk
-	WcDIsIpRNLWgODc9N7nAUK84Mbe4NC9dLzk/dxMjOFi1gnYwLlv/V+8QIxMH4yFGCQ5mJRHe
-	lXI7U4V4UxIrq1KL8uOLSnNSiw8xSnOwKInzKud0pggJpCeWpGanphakFsFkmTg4pRqYNiby
-	b34T87B62l0/l6AlWfIn7n/9x3NkxtPjTe9aMlgUIsKC21TuftSrzJ37wS1En8NWySTxrPu+
-	Y6rX+tVmu4WdmLH8s/TeBTv3/7dfVroqWutrYqRQ6Nmaj/26rwtOl3nVfLdv2mw+ZQvv5y8V
-	hStYHj7eLChd3bncQtlxpUNTbdEWTqWWRQtZv4lO1+Bna7/EMe+Q/oX59Z1rVZsnXmPi5L01
-	S+RsfpnSmck5P78yth3f45692P3JnxmzFBi4d18KWpmhLMIe9Oyx1PQltfXcD3avDbK/sYqH
-	ZWW92W1zffaumNV3RAq8LHNufbkpsj1i22TXKcmalw7qlj/5nT01sXFW/amo5J1lPTd2K7EU
-	ZyQaajEXFScCAJAMf8fFAgAA
-X-CMS-MailID: 20240131070746epcas5p39bf60e36d7d5cea5937cd6f87352ea67
-X-Msg-Generator: CA
-Content-Type: text/plain; charset="utf-8"
-X-Sendblock-Type: REQ_APPROVE
-CMS-TYPE: 105P
-DLP-Filter: Pass
-X-CFilter-Loop: Reflected
-X-CMS-RootMailID: 20240131070746epcas5p39bf60e36d7d5cea5937cd6f87352ea67
-References: <CGME20240131070746epcas5p39bf60e36d7d5cea5937cd6f87352ea67@epcas5p3.samsung.com>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4E36CB65D;
+	Mon,  5 Feb 2024 05:13:48 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.107.222.136
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1707110031; cv=fail; b=LhYSum4+zQvOL78H4VSxqFfg+FFF8NAh+ifZ0oZ7u5wD7NxSRQ4kgtWf3u3j4rb6sz7FzMD0vQZoj78qDVZR3T8V7w1YLQhyp/Br+ZSkR+adDZ/7Iv+oHP481zqiDAk8GZqHdT70xLZNa4blo61EFizMtUfudlNI9n5sswUtjRA=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1707110031; c=relaxed/simple;
+	bh=oHK5nQriiB6h9xMedAEPg4pqI0JWQ8qWWsiADuTWufg=;
+	h=From:To:Cc:Subject:Date:Message-Id:Content-Type:MIME-Version; b=PhBaHn58tySdnRvO+NEKTUdv8ADLQS76MWSkBt6haC8vhgAPew8CSZvDhAXG4VwRr+FaxI69+tcGQWif41yAkyHabwyPND2aHJxxr/4cs7B0lu80KktTw7p/c2yaYa52fk+nvyWEPQrVYP51zhRwd8y1dek5FJkdFh6hi9rBZdE=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=siliconsignals.io; spf=pass smtp.mailfrom=siliconsignals.io; arc=fail smtp.client-ip=40.107.222.136
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=siliconsignals.io
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=siliconsignals.io
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=Dk5bNu4oNJ3gVJwJNBwAuYcZDv/TbGmkJoleX8NNQg5OM0ZXQlpZtDBBefxrjCsdoRnz/yzAxRH5X9r+BJBdqcoyxqR3sx2H34CAqdb6BiQNNl+mABs0TGa6niSqyMwCVcmFXv4hLMbWNhbRlOc6jJ55xvDRFX1dfM9xLQYHHy0quHy5n6P8BGLNeuDq8BVWd/O9ouORWldNOZLlSlg8YYEwXfyIhK06irn60lq0PWnxkiI4TJvV/t/eqRP+O4ivnpeS1b8po5nfXIfi7kV0X+WNanD6q9WCd/CTQCGP/szo8kS6SQ5hQ4YwBMBeDICrfYLQtEV3fU0pGS4YIqsuJw==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=ck/RK1k8Lt2fShut1w+cKgVzxJDNr/D1Kx+TZP8kdbQ=;
+ b=UjW39Q56VmXHuVKg9NDY9HHYDsrAvNKkO8Ptngzi4V4WyVdu1E5fJh4bX+8p0YnDWl7Fe6JR9nktnh5jOXT6COA1NnUgcHIudMVOF5eNJMlFLaBnuHsTK85mjKUz2rURqvJZ/zC4nxsEDTLWCjKC8HvG2VfDFCseEXwNIOe6Gt85zpK+UoaVXNBFv812mnxV9A9Hy8/i0KARp9veWIugfo6iVS/OU5EREDmAs9CTvL7c+oWCz7eMpxXmiYz4rUDVwrCq+uoOMy7enryKuAJJq9IFuzOeRrfTL/q2WD3Srmg3LLawNnVUlHPw3npeYxWLF+QGUS4PskoMjNAfRdvKkA==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=siliconsignals.io; dmarc=pass action=none
+ header.from=siliconsignals.io; dkim=pass header.d=siliconsignals.io; arc=none
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=siliconsignals.io;
+Received: from MAZPR01MB6957.INDPRD01.PROD.OUTLOOK.COM (2603:1096:a01:42::6)
+ by PN0PR01MB5496.INDPRD01.PROD.OUTLOOK.COM (2603:1096:c01:63::8) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7249.34; Mon, 5 Feb
+ 2024 05:13:45 +0000
+Received: from MAZPR01MB6957.INDPRD01.PROD.OUTLOOK.COM
+ ([fe80::72b4:8a64:2d93:7cc0]) by MAZPR01MB6957.INDPRD01.PROD.OUTLOOK.COM
+ ([fe80::72b4:8a64:2d93:7cc0%4]) with mapi id 15.20.7249.032; Mon, 5 Feb 2024
+ 05:13:45 +0000
+From: Bhavin Sharma <bhavin.sharma@siliconsignals.io>
+To: sre@kernel.org,
+	robh+dt@kernel.org,
+	krzysztof.kozlowski+dt@linaro.org,
+	conor+dt@kernel.org
+Cc: Bhavin Sharma <bhavin.sharma@siliconsignals.io>,
+	Hardevsinh Palaniya <hardevsinh.palaniya@siliconsignals.io>,
+	linux-pm@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org
+Subject: [PATCH v3 1/2] power: supply: Add STC3117 fuel gauge unit driver
+Date: Mon,  5 Feb 2024 10:43:17 +0530
+Message-Id: <20240205051321.4079933-1-bhavin.sharma@siliconsignals.io>
+X-Mailer: git-send-email 2.25.1
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-ClientProxiedBy: PN3PR01CA0085.INDPRD01.PROD.OUTLOOK.COM
+ (2603:1096:c01:9a::21) To MAZPR01MB6957.INDPRD01.PROD.OUTLOOK.COM
+ (2603:1096:a01:42::6)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
+MIME-Version: 1.0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: MAZPR01MB6957:EE_|PN0PR01MB5496:EE_
+X-MS-Office365-Filtering-Correlation-Id: 2cbc2cfc-6bd0-45aa-5918-08dc26093a4c
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info:
+	OMA7eKlJac7me31QHuo3KZmDVzQUXHXDNlFUZif8xMiCTjD2fJ8xm0Zx4VKJsY+tfmLYf6QnaA9nUBmcQc+KNaLaAjjlu5772uLJsJJSvtT8f5ABUk6bUIvLQt8J/EZQnGiwVtlOncqF1QLR50lHSC4W1gKMzS7O59oz53VJiU/6tkysAyBNYGQczAwc6rDfjm+r4HuRPyxfZFNgT1fnDA4N5sxN4isECBlpQ4c274wAfZNN9jrZGh1M+IZQ78oM7mYAW4mgbOFLqXrkrJUFqD3DcKcu4y6Na/Q46tpDrU/EdHSy8qc9A0y3CgYI07R2t31BhkdG2+Uor48nteLKJ0coyyXHS7k3TkKFG5o2p9EPiFmDM1rBJMT9zKlJl8RvgCjOfpCLOVldv0m+gbWpzIOcgj3mpUhN7bxnl5sCp6A1ykmUWRtt7rszQsHzQyq9ncPLxvTVp66GA9BAPx5mTHERA6qgP3rZzVlbqdo/7qsx0hlUBdsPYtIjKl6ik/+CS+rz8v3/126nWcB0LTJYBBeAfm71kfjSN8VQythpFZgQly4AnJCN8Rr5erU/c+PM9nA7M3ahIXR+MvcDcPA/jBmFkKsFBov0Hj5OQv39VMclH6db280eHU/JhqpfkyuP
+X-Forefront-Antispam-Report:
+	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:MAZPR01MB6957.INDPRD01.PROD.OUTLOOK.COM;PTR:;CAT:NONE;SFS:(13230031)(396003)(376002)(136003)(346002)(39830400003)(366004)(230273577357003)(230922051799003)(451199024)(64100799003)(186009)(1800799012)(41300700001)(36756003)(38350700005)(2906002)(66476007)(6486002)(66946007)(2616005)(1076003)(52116002)(6512007)(6506007)(6666004)(478600001)(86362001)(44832011)(83380400001)(5660300002)(54906003)(26005)(316002)(8936002)(4326008)(66556008)(38100700002)(8676002);DIR:OUT;SFP:1102;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0:
+	=?us-ascii?Q?XNXAeYlWuMZwJ9PTHA6mppcJFPtpzhpJAsFUqn3Nza3XyPUoxuypCTUVUkv6?=
+ =?us-ascii?Q?RIfZKEkQ677fSgNIdo9gpymB7/IyYaAMrDBi2ZeYnTlxVJBzBoyGzyku4ww0?=
+ =?us-ascii?Q?mYidgxvpqsQEEgSjzMNzWYd9qTZl6j9Uld8Q+MgxWNeQzBpzFVIu5sTqXVVe?=
+ =?us-ascii?Q?gQnZwKBqixtjrrytK4Zq3Q7WdOchRwr8KyuT6hJQVW152gmWBoGEEJPEUyKC?=
+ =?us-ascii?Q?lp0eY1jRLTprNAgpF99idOxxML6LxB7uzRcnenI6Ux6uLqMY6ExWAYgW+Cnl?=
+ =?us-ascii?Q?l/LtjPKYux7ejxoIatkWlj5F9iRGlakwXZkZukS8UaHH/t+wluqSH8WLXBGO?=
+ =?us-ascii?Q?YUPxtUnTC4OHWFFjHNvcaCoh3yOmTjQRoO4nagQ/+5tmZHeoJvONhLJPv4S7?=
+ =?us-ascii?Q?zPOm5Wvv6RwkE0SOC/eZmkElnm5SRTDqh4Rhou5aL5OyaQ1R3gHOILBx73r5?=
+ =?us-ascii?Q?0xsO4bmBeulvRWHbcsmPV98gV4KjwHDhfz+tZ/19H3ttajy38t4gk8urQYmc?=
+ =?us-ascii?Q?jnJU/kXrhQwKRwfm+pjahWD8gvyoEuh52CFhxAfV8sdH/xq/aT/45RDGnH7d?=
+ =?us-ascii?Q?oY03e73ejpCGwaAQAUZucLoNCG2CczeDQkzvRlVMqptYaYVK6W/19TjryOfB?=
+ =?us-ascii?Q?t35P2Xfu0bJIy7Y+IU161vCuvixJCn3w7MMBXXzHU/w45z+H5VwYg+HiFHK7?=
+ =?us-ascii?Q?HIjL2JoX31w0zEYK/mQaArQMaEZ+S32DTVW7D8qopHFg3B2DCuMgqgVA+U/j?=
+ =?us-ascii?Q?MwcGmt0fVHfpEkyuOM1unS3ah8bXiJSeiaqr4DEzkJQrbZ5RlPMjqxWssh3K?=
+ =?us-ascii?Q?EHbgwIbktxOulsCcA2udzdL0R4sFPJBSTwkvdALprXW2knKJKl11TbLBti0l?=
+ =?us-ascii?Q?NXpQmAs/VC5JNE7+YWtWoUinU8oXHEt/rKhlubwodQarEyHQfx4+636VuIbX?=
+ =?us-ascii?Q?Z03foA+PaAST4fdZy11COfPmyqv/KlQES3Sbe5OosqiVX1MNr0xQ7Iw9U/hv?=
+ =?us-ascii?Q?xz3Th+WF3hFoKHdhHnN0H5n+lKNZ8Ea4VHEvXLV0Q7zQI8rrLQtevb72hQhh?=
+ =?us-ascii?Q?OMJ8YDMoYOGD+JKMpDnyHFy0CEQmDl0Mi9HD300NFJtp/vnt+cPm+ColULcQ?=
+ =?us-ascii?Q?gQi4EaWWaJIwaXMgG31mvjDPp9TMgqRkV6X5EU07wd9Ko220gaEuikDkySYx?=
+ =?us-ascii?Q?4jdD2TV7E3YQJQyKvblvlthYJ8GW1YSSJANwy4UZXJvb4N0S03vl2TJDqDZv?=
+ =?us-ascii?Q?aHV2H8xNzvO+6f7CPQDtsbGbxXhzIKkDrD3y9C1pzZibflW1JMHg4Gj9Ejck?=
+ =?us-ascii?Q?/7nh4HexCiW0ZCa+1bb8kjQMGV+ZHE/qakOYn4KDsJqjzfkekjuiBrgA3al5?=
+ =?us-ascii?Q?qsHFJc23wXIdgpsLzVAteoDIOWXl3ouW4J21b6E+rhjOOG8AmTFVW0MkuASQ?=
+ =?us-ascii?Q?CCphoriDXDfy1BodcyGNjOYDUSWR0YoU/BDxg8+jKoEwnlFpotLEsmTQQdjt?=
+ =?us-ascii?Q?kWz3rNuvCh+MjDwAFtyvnb9v55vLKT4w+ofd6Hh5uFYIPEc1n6ggh8Wj1Bkq?=
+ =?us-ascii?Q?eXBcqaf67taQ5M/i3MG12vnExE5WwNBjLpAiwsPENIA5D0zg6eYotaJmlqUz?=
+ =?us-ascii?Q?Ys/2EFqQZayoLqw9s6BZnxI=3D?=
+X-OriginatorOrg: siliconsignals.io
+X-MS-Exchange-CrossTenant-Network-Message-Id: 2cbc2cfc-6bd0-45aa-5918-08dc26093a4c
+X-MS-Exchange-CrossTenant-AuthSource: MAZPR01MB6957.INDPRD01.PROD.OUTLOOK.COM
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 05 Feb 2024 05:13:45.5511
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 7ec5089e-a433-4bd1-a638-82ee62e21d37
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: b9aINSWVua3UTKxaMfQzCAjnxFwVJIipyYl8RxMTJUTFN6xUbIDDnMYeu3NwIFF3pne8iIbtYPfZZs/xeyY1VIUXSjZxZiqr/CYaUmFEy4A=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: PN0PR01MB5496
 
-Add device tree schema entry for Samsung MFC.
+Adding minimal support for stc3117 fuel gauge driver
+to read battery voltage level
 
-Signed-off-by: Aakarsh Jain <aakarsh.jain@samsung.com>
+Signed-off-by: Bhavin Sharma <bhavin.sharma@siliconsignals.io>
 ---
- MAINTAINERS | 1 +
- 1 file changed, 1 insertion(+)
+Changelogs :
 
-diff --git a/MAINTAINERS b/MAINTAINERS
-index 32a47aa6aa76..55e9b0ae185b 100644
---- a/MAINTAINERS
-+++ b/MAINTAINERS
-@@ -2752,6 +2752,7 @@ M:	Andrzej Hajda <andrzej.hajda@intel.com>
- L:	linux-arm-kernel@lists.infradead.org (moderated for non-subscribers)
- L:	linux-media@vger.kernel.org
- S:	Maintained
-+F:	Documentation/devicetree/bindings/media/samsung,s5p-mfc.yaml
- F:	drivers/media/platform/samsung/s5p-mfc/
+v2 -> v3
+- Resolved kernel test robot build warnings
+- Aligned included header files in alphabetical order
+- Removed unused header files
+- Removed unnecessary blank lines
+- Aligned all the macros in alphabetical order
+- Changed macro LSB_VALUE to VOLTAGE_LSB_VALUE
+- Dropped function prototypes and arranged the code accordingly
+- Used macros instead of static numbers for array declaration
+- Removed redundant code
+- Replaced 'power_supply_register' with 'devm_power_supply_register' and 'pr_err' with 'dev_err'
+- Removed global variables
+
+v1 -> v2
+- No change
+---
+ drivers/power/supply/Kconfig              |   7 ++
+ drivers/power/supply/Makefile             |   1 +
+ drivers/power/supply/stc3117_fuel_gauge.c | 107 ++++++++++++++++++++++
+ 3 files changed, 115 insertions(+)
+ create mode 100644 drivers/power/supply/stc3117_fuel_gauge.c
+
+diff --git a/drivers/power/supply/Kconfig b/drivers/power/supply/Kconfig
+index f21cb05815ec..e2e3af4bcd5f 100644
+--- a/drivers/power/supply/Kconfig
++++ b/drivers/power/supply/Kconfig
+@@ -875,6 +875,13 @@ config FUEL_GAUGE_SC27XX
+ 	  Say Y here to enable support for fuel gauge with SC27XX
+ 	  PMIC chips.
  
- ARM/SOCFPGA ARCHITECTURE
++config FUEL_GAUGE_STC3117
++        tristate "STMicroelectronics STC3117 fuel gauge driver"
++        depends on I2C
++        help
++          Say Y here to enable support for fuel gauge with STC3117
++          PMIC chips.
++
+ config CHARGER_UCS1002
+ 	tristate "Microchip UCS1002 USB Port Power Controller"
+ 	depends on I2C
+diff --git a/drivers/power/supply/Makefile b/drivers/power/supply/Makefile
+index 58b567278034..be8961661bd1 100644
+--- a/drivers/power/supply/Makefile
++++ b/drivers/power/supply/Makefile
+@@ -104,6 +104,7 @@ obj-$(CONFIG_CHARGER_CROS_USBPD)	+= cros_usbpd-charger.o
+ obj-$(CONFIG_CHARGER_CROS_PCHG)	+= cros_peripheral_charger.o
+ obj-$(CONFIG_CHARGER_SC2731)	+= sc2731_charger.o
+ obj-$(CONFIG_FUEL_GAUGE_SC27XX)	+= sc27xx_fuel_gauge.o
++obj-$(CONFIG_FUEL_GAUGE_STC3117)        += stc3117_fuel_gauge.o
+ obj-$(CONFIG_CHARGER_UCS1002)	+= ucs1002_power.o
+ obj-$(CONFIG_CHARGER_BD99954)	+= bd99954-charger.o
+ obj-$(CONFIG_CHARGER_WILCO)	+= wilco-charger.o
+diff --git a/drivers/power/supply/stc3117_fuel_gauge.c b/drivers/power/supply/stc3117_fuel_gauge.c
+new file mode 100644
+index 000000000000..29eb00b44e21
+--- /dev/null
++++ b/drivers/power/supply/stc3117_fuel_gauge.c
+@@ -0,0 +1,107 @@
++// SPDX-License-Identifier: GPL-2.0-only
++/*
++ * stc3117_fuel_gauge.c - STMicroelectronics STC3117 Fuel Gauge Driver
++ *
++ * Copyright (c) 2024 Silicon Signals Pvt Ltd.
++ * Author:      Bhavin Sharma <bhavin.sharma@siliconsignals.io>
++ *              Hardevsinh Palaniya <hardevsinh.palaniya@siliconsignals.com>
++ */
++
++#include <linux/i2c.h>
++#include <linux/power_supply.h>
++
++#define VOLTAGE_DATA_SIZE	2		// in bytes
++#define VOLTAGE_LSB_VALUE	2200		// in micro-volts
++#define VOLTAGE_REG_ADDR	0x08
++#define VOLTAGE_REG_ADDR_SIZE	1		// in bytes
++
++static int stc3117_get_batt_volt(const struct i2c_client *stc_client)
++{
++	int ret, volt = 0;
++	char i2c_tx = VOLTAGE_REG_ADDR, i2c_rx[VOLTAGE_DATA_SIZE] = {0};
++
++	ret = i2c_master_send(stc_client, &i2c_tx, VOLTAGE_REG_ADDR_SIZE);
++	if (ret < 0)
++		return ret;
++
++	ret = i2c_master_recv(stc_client, i2c_rx, VOLTAGE_DATA_SIZE);
++	if (ret < 0)
++		return ret;
++
++	volt = (i2c_rx[1] << 8) + i2c_rx[0];
++	volt *= VOLTAGE_LSB_VALUE;
++
++	return volt;
++}
++
++static int stc3117_get_property(struct power_supply *psy,
++	enum power_supply_property psp, union power_supply_propval *val)
++{
++	struct i2c_client *client = to_i2c_client(psy->dev.parent);
++
++	switch (psp) {
++	case POWER_SUPPLY_PROP_VOLTAGE_NOW:
++		val->intval = stc3117_get_batt_volt(client);
++		break;
++	default:
++		return -EINVAL;
++	}
++	return 0;
++}
++
++static enum power_supply_property stc3117_battery_props[] = {
++	POWER_SUPPLY_PROP_VOLTAGE_NOW,
++};
++
++static const struct power_supply_desc stc3117_battery_desc = {
++	.name = "stc3117-battery",
++	.type = POWER_SUPPLY_TYPE_BATTERY,
++	.get_property = stc3117_get_property,
++	.properties = stc3117_battery_props,
++	.num_properties = ARRAY_SIZE(stc3117_battery_props),
++};
++
++static int stc3117_probe(struct i2c_client *client)
++{
++	struct power_supply_config psy_cfg = {};
++	struct device *dev;
++	struct power_supply *stc_sply;
++
++	dev = &client->dev;
++
++	psy_cfg.of_node = dev->of_node;
++
++	stc_sply = devm_power_supply_register(dev, &stc3117_battery_desc, &psy_cfg);
++	if (IS_ERR(stc_sply))
++		dev_err(dev, "failed to register battery\n");
++
++	return 0;
++}
++
++static const struct i2c_device_id stc3117_id[] = {
++	{"stc3117", 0},
++	{},
++};
++MODULE_DEVICE_TABLE(i2c, stc3117_id);
++
++static const struct of_device_id stc3117_of_match[] = {
++	{ .compatible = "st,stc3117" },
++	{},
++};
++MODULE_DEVICE_TABLE(of, stc3117_of_match);
++
++static struct i2c_driver stc3117_i2c_driver = {
++	.driver = {
++		.name = "stc3117_i2c_driver",
++		.of_match_table = stc3117_of_match,
++	},
++	.probe = stc3117_probe,
++	.id_table = stc3117_id,
++};
++
++module_i2c_driver(stc3117_i2c_driver);
++
++MODULE_LICENSE("GPL");
++MODULE_AUTHOR("Bhavin Sharma <bhavin.sharma@siliconsignals.io>");
++MODULE_AUTHOR("Hardevsinh Palaniya <hardevsinh.palaniya@siliconsignals.io>");
++MODULE_DESCRIPTION("STC3117 Fuel Gauge Driver");
 -- 
-2.17.1
+2.25.1
 
 
