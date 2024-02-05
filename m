@@ -1,239 +1,348 @@
-Return-Path: <devicetree+bounces-38510-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-38511-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0902684958E
-	for <lists+devicetree@lfdr.de>; Mon,  5 Feb 2024 09:40:14 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0E90B849597
+	for <lists+devicetree@lfdr.de>; Mon,  5 Feb 2024 09:44:55 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id B3A9D287350
-	for <lists+devicetree@lfdr.de>; Mon,  5 Feb 2024 08:40:12 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 3E6A9B220CD
+	for <lists+devicetree@lfdr.de>; Mon,  5 Feb 2024 08:44:52 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A06F833C7;
-	Mon,  5 Feb 2024 08:40:06 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 652BA11705;
+	Mon,  5 Feb 2024 08:44:39 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="O5mNz/L1"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="GaBP6wHK"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lj1-f172.google.com (mail-lj1-f172.google.com [209.85.208.172])
+Received: from mail-wm1-f42.google.com (mail-wm1-f42.google.com [209.85.128.42])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A795212B74
-	for <devicetree@vger.kernel.org>; Mon,  5 Feb 2024 08:40:04 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.172
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7AFCC111A2;
+	Mon,  5 Feb 2024 08:44:37 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.42
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1707122406; cv=none; b=jDtbqyFkYr9rxe/KalBPNPc7/FRhQisVhEmhueusTabtPSlFl/tWjres0i1sqrleyY+ijn3r0L9Fz35MvElCtGbH967qm+o66oo4FZbDbsN8p9zeJeJyurg9kynbYFUONYPqx5jy/d58k2NyifihL2wDMm/0yAGaE5C8CxSCPBM=
+	t=1707122679; cv=none; b=c/+1YjSRAQDOWFlPjZuXl0Bpow15NuEofvPX5mFBOa6B0XLfdGV+Ps8Ukrz8iVKsDDA7XZAu2szHhoXi24CXtHTd/DkR0EkemtF9JQjM5zsqLB6fwe0ViAvxIU7AFNovqLj338jWS+p9WfVMF2tnJ9o9UkN5QedRE52OATOdNQA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1707122406; c=relaxed/simple;
-	bh=wpp/TUj6twPhR8eQks9mP3XVtJqAe58Io4jhmP85SgI=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=oRfWllf9LNt55wSFvLY/OnjyOfcLPcecNGLTrwfUZu1qNkfYjDBPSdfXPJie+k72oo7iU9gqEkeC+7K49KvgDdaao9ITWI/w9uJUOL8UbdrFqRiTSPhX5dEN6IUJkS9NJYiulpgyI6XIZDm6v1o0LKu8H6PikBNlyorlliPX9FE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=O5mNz/L1; arc=none smtp.client-ip=209.85.208.172
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-lj1-f172.google.com with SMTP id 38308e7fff4ca-2d08d34ce3dso24050691fa.0
-        for <devicetree@vger.kernel.org>; Mon, 05 Feb 2024 00:40:04 -0800 (PST)
+	s=arc-20240116; t=1707122679; c=relaxed/simple;
+	bh=0acNVRvEL+4cX9aUrDUK2bMmT2Fun2Rqh5ryQH9BdGE=;
+	h=Message-ID:Subject:From:To:Cc:Date:In-Reply-To:References:
+	 Content-Type:MIME-Version; b=Vo7awN0tzfh0irqYD2S5lUNyBbjOOzk6V104hKDY6SCDslnO8c/tW/MXF63H4vj4MNxJDflcQJ/RZLkcDyR5Sy3V9AqPrcYXVP/Mge2sSy2urDLLAx45xd7VA9Mv3/SRYkFM1NsaCQYchHXD5GYJnrhOBg6D1g1712dffYK91/4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=GaBP6wHK; arc=none smtp.client-ip=209.85.128.42
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-wm1-f42.google.com with SMTP id 5b1f17b1804b1-40fb3b5893eso34102495e9.0;
+        Mon, 05 Feb 2024 00:44:37 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1707122403; x=1707727203; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
-         :to:content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=OCecjuEuZTL+9EIdIHfh/9h9vAfTHL1wm39kflQDAdI=;
-        b=O5mNz/L1PaRg4zU69QMQAZejf25stiAX0YkIcrHTmXkZX35KI/f69LrCWkbxWp11JN
-         Gl/ZDKYiUpnMQ6QNmPy+cj6uaVlI5jH10sNmFjvU4ZxEHWWLygsvbW0YUOd0/d0wBHgI
-         AgHDpdL3uZLT26xHEqQpFIZS8pE3bWE1yyNXQI5lBbUZVhpmAdCHdEWeNVz/tHMS01Qy
-         QmP3xw6cArpr3N2vXRV2Nd1VTS4v8Yi3qRYGrTEwehXYWFTIlnyD+gxNBcv8xrCQbZ8V
-         f+QMJrLP7TZClXHiuiONuT0Ocnuapbiu4OpFAGWkoW9Spwv7GOdbg8w12wXWIwYCp9nB
-         ngXQ==
+        d=gmail.com; s=20230601; t=1707122675; x=1707727475; darn=vger.kernel.org;
+        h=mime-version:user-agent:content-transfer-encoding:references
+         :in-reply-to:date:cc:to:from:subject:message-id:from:to:cc:subject
+         :date:message-id:reply-to;
+        bh=5GWVRIre/A4VgFXhKfqdegG0tissbji1iue8FfAYEzA=;
+        b=GaBP6wHKJEDU4F6IIi87bJG0MOdcOf+CWTtBvaflyAUE5KX/8gRwgST26wJGlpHgQX
+         QV666bPztvXuKNeoThJ3OABrKa1xa8rWqWcB00G0xAM0jScflSPGvehd6RdRYsm6ebh7
+         vNcov345c/I4BYJHWrPJm4+LxNnf8KKnM3e1DmLH/KG0WgUd5yf2b2ja7q0r7xDJ3jm1
+         M/z2ztOuJrt6wLToruxhNFMeS2j6NIHUfjiZf9f7smtMKuNGkaTFXT53g7NTOGJPAJ5E
+         zk/GPJ0NbtWXm7qu8Ku34ZxKxxcHWP2oZTUpR1OYMtQYi+KeV5d+9ZWYnDXmnWU+sM7H
+         FRPQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1707122403; x=1707727203;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
-         :to:content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=OCecjuEuZTL+9EIdIHfh/9h9vAfTHL1wm39kflQDAdI=;
-        b=S6Eh5O7+g0v/05zNEA3fpT93/KiZSlUiAk/N1yFBjBOo7nqkqQ9nttXphot/kDwKQ+
-         sMGuX89lHL5LgFmq3t24HeClP3r9EVCzulKMbYvHyMQwWJMS4jzHg9QMRLyMrRZd+M+z
-         ZMK8VtNHiFdYHZvrE3ohQzOOO8b3IcdM81RM1g1TyMJ6LW5jhWIDN6+eazCR2+YFKG01
-         3bnMFYPNfOQgV5XrqRQSnADi7PI/J+gwbI1DLwjgWlOZGsqojz/0KiVH6ZBHukuTzILY
-         qr+DmUaPoRTnjMi0Rex9ad9QJ0VxRJM6YBqGxKrOL7IAtctKuNWBng8I1WQ+5VITioAs
-         BLgg==
-X-Gm-Message-State: AOJu0YwHJ0vPrJyoLbK5qO0f/9LnaJNicqQsmMq0NtC1epeZyD9VdNWh
-	Py6EO5PO42uJ17OmqG/V/dFk5+ka9w3qts3uzaaE/uAD/xzkHvGRsMwMIm+houE=
-X-Google-Smtp-Source: AGHT+IHvIkLmoKMtoeG4prp2Xi4x4BoKH7EU1u7QssGMe36kEVMchFOfNJil5oAv3Pfurkqm/kl5Jg==
-X-Received: by 2002:a2e:9081:0:b0:2d0:643c:c2aa with SMTP id l1-20020a2e9081000000b002d0643cc2aamr5818509ljg.20.1707122402317;
-        Mon, 05 Feb 2024 00:40:02 -0800 (PST)
-X-Forwarded-Encrypted: i=0; AJvYcCUKYtPIYBB27cxssLG0IVAZV5Hkfa5To2UebO23HFtPMTpXje9BP36zgBNpg1NQI/Too0K923iQFG+6mTWV9aowzkJZiZAGWU4STMA4B05WzuyiJgXyQBANyssIT/T40y9wfvjxDSNrVSco8EYLGcoM9OBxyOs9X/+vv9Sdomv92y2ss3/xgm2G7w3aj0iLt4+VmX/uNRsmEPZEZBgTCCLZbTjBpDzqvLF4Z2Y9FtxOjq5AaZvzpugqWeTquoU9bYv4sCQKPtgEN00VW7ACxGJjtOArjBrZ4dCUpWLTzyXK2jIZZQLospFAmXNemARYVgn6hfQDmrKY88i9M/2c+McOvPpgak6VwOnHwfqMF3qq54u7Dl+s3u85dCAFYqE+X6PnOmCYkBjr1cApDliMhe/rQTKNOuvz+LfFJOwqHeUwZkxPBfp0dt3/zgatGRiSSsasmbnv3TAe/vlKG7IlBqnpqcI1sGi789Gy4qPWKfmQB3TuYN2X
-Received: from [192.168.1.20] ([178.197.222.62])
-        by smtp.gmail.com with ESMTPSA id eo15-20020a056402530f00b00560651808a6sm864844edb.67.2024.02.05.00.40.00
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 05 Feb 2024 00:40:01 -0800 (PST)
-Message-ID: <abe2930b-8fd0-4fa7-8abe-a036525a21ce@linaro.org>
-Date: Mon, 5 Feb 2024 09:39:59 +0100
+        d=1e100.net; s=20230601; t=1707122675; x=1707727475;
+        h=mime-version:user-agent:content-transfer-encoding:references
+         :in-reply-to:date:cc:to:from:subject:message-id:x-gm-message-state
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=5GWVRIre/A4VgFXhKfqdegG0tissbji1iue8FfAYEzA=;
+        b=l0VlrTe3V/iY2o0WHV0dxMwqa2wmUH0pHZYhgG/34W6xyn8fkQ9cY8vj0VznVTUJAk
+         LIIIC88EByGlTkqGm23Pby5Hgs5k71/ESob1S2Pbb6V5Sid2lK1cxGC3kuP9VANv5eIe
+         LzRtixzWt9UUsbMz8b1hi8FhFnx8fYRCA0rHqtC3jCCm73PNtOMuU68GGpmVHAExgc4M
+         BfBn4jI/1loRZrXOuN9IuaBFTlbMxgkbZt7KxRonEede7TJ2sNPeHfMzqhX/8yAsSV4e
+         L24QFGY8ESTSDz9Gp7S2uiMx+Z2tq/fKe7RZCRta4ucikuftN89Z9I44yRN7KAHqLtwP
+         d5oA==
+X-Gm-Message-State: AOJu0YyApW10hDhOplFHFuDEigH+pONodbjRBtiBP0AvKfe1pBdeUHu9
+	prH5tWJVbFusQ3APp6A9wJk5zB+XHrQXkFcDHsFvn2HArIeWf3aZBMmo/cRrURHEUg==
+X-Google-Smtp-Source: AGHT+IH3uXv6DR4Vo1dx4tzR5HMDWyQ61KAPStNXz+Y7nwfawmDxhHNQoTDGOpjwVmm2s6gzWjFJVg==
+X-Received: by 2002:a05:600c:a3a5:b0:40e:fbb3:f67c with SMTP id hn37-20020a05600ca3a500b0040efbb3f67cmr4221704wmb.38.1707122675149;
+        Mon, 05 Feb 2024 00:44:35 -0800 (PST)
+X-Forwarded-Encrypted: i=0; AJvYcCXBSdDn6CXccNcOjl0Q5LDGeUAG8WUNMM5IxfU0+GKZzpMGNxpBSlECbQJP0ZQLgv4ZnH1+2hlRycCawLrjGVygnfxrN8Dc36N0mGbv0KsLKFGC/X9wOM6AxyE290VFg1W+noLk4k+jq6b/uXqLFLAS+q1rt9CS23DKG8Q9gzVmU+XEZNNWmMg1MFAA4EY1giUqmli8g4MpMJzq2IErvqv/L6eG0PM+ctSxa690w/uBrcNADYU91AkBC9/nE6xr7p/ifWoATrZOvTpNbEPM1zuh+jc9f5Y8M1p+LEoX8sZiH2/58L36RKN7oRaqBw4ePztEZYcbiW48i4zoaZCq6LcZ66iW3k+UAW2mNErYUXja/w6ge6JWI2bHbuMvpGBxvA==
+Received: from ?IPv6:2001:a61:3456:4e01:6ae:b55a:bd1d:57fc? ([2001:a61:3456:4e01:6ae:b55a:bd1d:57fc])
+        by smtp.gmail.com with ESMTPSA id bg19-20020a05600c3c9300b0040fdc86c763sm1347835wmb.18.2024.02.05.00.44.34
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 05 Feb 2024 00:44:34 -0800 (PST)
+Message-ID: <3c2be790cabb066dd7c8b5bf5e7d3f277e3d77cb.camel@gmail.com>
+Subject: Re: [PATCH v8 5/7] iio: add the IIO backend framework
+From: Nuno =?ISO-8859-1?Q?S=E1?= <noname.nuno@gmail.com>
+To: andy.shevchenko@gmail.com, Nuno Sa <nuno.sa@analog.com>
+Cc: linux-iio@vger.kernel.org, devicetree@vger.kernel.org, Lars-Peter
+ Clausen <lars@metafoo.de>, Michael Hennerich
+ <Michael.Hennerich@analog.com>,  Jonathan Cameron <jic23@kernel.org>, Rob
+ Herring <robh+dt@kernel.org>, Krzysztof Kozlowski
+ <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, 
+ Frank Rowand <frowand.list@gmail.com>, Olivier Moysan
+ <olivier.moysan@foss.st.com>
+Date: Mon, 05 Feb 2024 09:44:34 +0100
+In-Reply-To: <Zb-yr0u_a9-vE86t@surfacebook.localdomain>
+References: <20240202-iio-backend-v8-0-f65ee8c8203d@analog.com>
+	 <20240202-iio-backend-v8-5-f65ee8c8203d@analog.com>
+	 <Zb-yr0u_a9-vE86t@surfacebook.localdomain>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+User-Agent: Evolution 3.50.3 (3.50.3-1.fc39) 
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 1/2] dt: bindings: leds: Add NCP5623 multi-LED Controller
-Content-Language: en-US
-To: Abdel Alkuor <alkuor@gmail.com>, Pavel Machek <pavel@ucw.cz>,
- Lee Jones <lee@kernel.org>, Rob Herring <robh+dt@kernel.org>,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Conor Dooley <conor+dt@kernel.org>,
- Jean-Jacques Hiblot <jjhiblot@traphandler.com>,
- Jacek Anaszewski <jacek.anaszewski@gmail.com>,
- Alice Chen <alice_chen@richtek.com>, ChiaEn Wu <chiaen_wu@richtek.com>,
- ChiYuan Huang <cy_huang@richtek.com>, =?UTF-8?Q?Andr=C3=A9_Apitzsch?=
- <git@apitzsch.eu>, Lukas Bulwahn <lukas.bulwahn@gmail.com>
-Cc: linux-kernel@vger.kernel.org, linux-leds@vger.kernel.org,
- devicetree@vger.kernel.org
-References: <20240203175910.301099-1-alkuor@gmail.com>
-From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
- 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
- D2GYIS41Kv4Isx2dEFh+/Q==
-In-Reply-To: <20240203175910.301099-1-alkuor@gmail.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
 
-On 03/02/2024 18:58, Abdel Alkuor wrote:
-> NCP5623 is DC-DC multi-LED controller which can be used for
-> RGB illumination or backlight LCD display. NCP5623
-> provides 94% peak efficiency.
+On Sun, 2024-02-04 at 17:52 +0200, andy.shevchenko@gmail.com wrote:
+> Fri, Feb 02, 2024 at 04:08:36PM +0100, Nuno Sa kirjoitti:
+> > This is a Framework to handle complex IIO aggregate devices.
+> >=20
+> > The typical architecture is to have one device as the frontend device w=
+hich
+> > can be "linked" against one or multiple backend devices. All the IIO an=
+d
+> > userspace interface is expected to be registers/managed by the frontend
+> > device which will callback into the backends when needed (to get/set
+> > some configuration that it does not directly control).
+> >=20
+> > The basic framework interface is pretty simple:
+> > =C2=A0- Backends should register themselves with @devm_iio_backend_regi=
+ster()
+> > =C2=A0- Frontend devices should get backends with @devm_iio_backend_get=
+()
+>=20
+> ...
+>=20
+> > + * Copyright (C) 2023 Analog Devices Inc.
+>=20
+> 2024 as well?
 
-Drop marketing.
+Yep.
 
-Please use subject prefixes matching the subsystem. You can get them for
-example with `git log --oneline -- DIRECTORY_OR_FILE` on the directory
-your patch is touching.
+>=20
+> ...
+>=20
+> > +#include <linux/cleanup.h>
+> > +#include <linux/device.h>
+> > +#include <linux/err.h>
+> > +#include <linux/list.h>
+> > +#include <linux/module.h>
+> > +#include <linux/mutex.h>
+> > +#include <linux/property.h>
+> > +#include <linux/slab.h>
+>=20
+> Missing types.h and maybe more. (E.g., IIRC linux/err.h doesn't cover
+> linux/errno.h for Linux internal error codes, >=3D 512.)
 
-It's dt-bindings.
+ack..
 
-> 
-> Signed-off-by: Abdel Alkuor <alkuor@gmail.com>
-> ---
->  .../bindings/leds/onnn,ncp5623.yaml           | 98 +++++++++++++++++++
->  1 file changed, 98 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/leds/onnn,ncp5623.yaml
-> 
-> diff --git a/Documentation/devicetree/bindings/leds/onnn,ncp5623.yaml b/Documentation/devicetree/bindings/leds/onnn,ncp5623.yaml
-> new file mode 100644
-> index 000000000000..696bc7d8c8f9
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/leds/onnn,ncp5623.yaml
-> @@ -0,0 +1,98 @@
-> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/leds/onnn,ncp5623.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: ON Semiconductor NCP5623 multi-LED Driver
-> +
-> +maintainers:
-> +  - Abdel Alkuor <alkuor@gmail.com>
-> +
-> +description: |
+>=20
+> ...
+>=20
+> > +int devm_iio_backend_request_buffer(struct device *dev,
+> > +				=C2=A0=C2=A0=C2=A0 struct iio_backend *back,
+> > +				=C2=A0=C2=A0=C2=A0 struct iio_dev *indio_dev)
+> > +{
+> > +	struct iio_backend_buffer_pair *pair;
+> > +	struct iio_buffer *buffer;
+> > +
+> > +	buffer =3D iio_backend_ptr_op_call(back, request_buffer, indio_dev);
+> > +	if (IS_ERR(buffer))
+> > +		return PTR_ERR(buffer);
+> > +
+> > +	pair =3D devm_kzalloc(dev, sizeof(*pair), GFP_KERNEL);
+> > +	if (!pair)
+> > +		return -ENOMEM;
+>=20
+> Shouldn't we try memory allocation first? Otherwise seems to me like free=
+ing
+> buffer is missed here.
 
-Do not need '|' unless you need to preserve formatting.
+Oh that's right. Good catch!
 
-> +  NCP5623 Triple Output I2C Controlled LED Driver.
-> +  https://www.onsemi.com/pdf/datasheet/ncp5623-d.pdf
-> +
-> +properties:
-> +  compatible:
-> +    enum:
-> +      - onnn,ncp5623
-> +
-> +  reg:
-> +    enum:
+>=20
+> > +	/* weak reference should be all what we need */
+> > +	pair->back =3D back;
+> > +	pair->buffer =3D buffer;
+> > +
+> > +	return devm_add_action_or_reset(dev, iio_backend_free_buffer, pair);
+> > +}
+>=20
+> ...
+>=20
+> > +static int __devm_iio_backend_get(struct device *dev, struct iio_backe=
+nd *back)
+> > +{
+> > +	struct device_link *link;
+> > +	int ret;
+> > +
+> > +	/*
+> > +	 * Make sure the provider cannot be unloaded before the consumer modu=
+le.
+> > +	 * Note that device_links would still guarantee that nothing is
+> > +	 * accessible (and breaks) but this makes it explicit that the consum=
+er
+> > +	 * module must be also unloaded.
+> > +	 */
+> > +	if (!try_module_get(back->owner)) {
+> > +		pr_err("%s: Cannot get module reference\n", dev_name(dev));
+>=20
+> NIH dev_err(). If you want the prefix, define dev_fmt() (or how is it cal=
+led?)
+> as well.
 
-Instead "const", or just maxItems: 1
+Hmm, initially I was using dev() stuff but then it felt we could easily get
+unconsistent. We have two devices (supplier and consumer) and I guess we ca=
+n easily
+start to be unconsistent in which device we use as argument so I just went =
+with pr_.=C2=A0
 
+I would say if the call is done by the supplier we use that one, if it's th=
+e
+consumer, then the consumer. I can do that but again, not sure if it's the =
+best thing
+long run.
 
-> +      - 0x38
-> +
-> +  multi-led:
-> +    type: object
-> +    $ref: leds-class-multicolor.yaml#
-> +    unevaluatedProperties: false
-> +
-> +    properties:
-> +      "#address-cells":
-> +        const: 1
-> +
-> +      "#size-cells":
-> +        const: 0
-> +
-> +    patternProperties:
-> +      "^led@[0-2]$":
-> +        type: object
-> +        $ref: common.yaml#
-> +        unevaluatedProperties: false
-> +
-> +        properties:
-> +          reg:
-> +            description: Index of the LED.
+>=20
+> > +		return -ENODEV;
+> > +	}
+> > +
+> > +	ret =3D devm_add_action_or_reset(dev, iio_backend_release, back);
+> > +	if (ret)
+> > +		return ret;
+> > +
+> > +	link =3D device_link_add(dev, back->dev, DL_FLAG_AUTOREMOVE_CONSUMER)=
+;
+> > +	if (!link) {
+> > +		pr_err("%s: Could not link to supplier(%s)\n", dev_name(dev),
+> > +		=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 dev_name(back->dev));
+>=20
+> Ditto.
+>=20
+> > +		return -EINVAL;
+> > +	}
+> > +
+> > +	pr_debug("%s: Found backend(%s) device\n", dev_name(dev),
+> > +		 dev_name(back->dev));
+>=20
+> Ditto (dev_dbg() here).
+>=20
+> > +	return 0;
+> > +}
+>=20
+> ...
+>=20
+> > +struct iio_backend *devm_iio_backend_get(struct device *dev, const cha=
+r *name)
+>=20
+> Same comments regarding pr_*() vs. dev_*().
+>=20
+> > +	struct fwnode_handle *fwnode;
+> > +	struct iio_backend *back;
+>=20
+> > +	int index =3D 0, ret;
+>=20
+> Wouldn't be better to have it done differently and actually using int is =
+not
+> okay strictly speaking? It's unsigned in your case.
 
-Drop description, it is obvious.
+Well, I think you're being a bit pedantic... I do cover the index < 0. But =
+no strong
+opinion, so I'll do as you suggest and don't wast your (and my) time with t=
+his :)
 
-> +            minimum: 0
-> +            maximum: 2
-> +
-> +        required:
-> +          - reg
-> +          - color
-> +
-> +    required:
-> +      - "#address-cells"
-> +      - "#size-cells"
+>=20
+> 	unsigned int index;
+> 	int ret;
+>=20
+>=20
+> > +	if (name) {
+> > +		index =3D device_property_match_string(dev, "io-backends-names",
+> > +						=C2=A0=C2=A0=C2=A0=C2=A0 name);
+> > +		if (index < 0)
+> > +			return ERR_PTR(index);
+> > +	}
+>=20
+> 	if (name) {
+> 		ret =3D device_property_match_string(dev, "io-backends-names",
+> name);
 
+But in the end, nice you mentioned this because it caught my attention for =
+a bug!
+io-backends-names > io-backend-names.
 
+> 		if (ret < 0)
+> 			return ERR_PTR(ret);
+> 		index =3D ret;
+> 	} else {
+> 		index =3D 0;
+> 	}
+>=20
+> > +	fwnode =3D fwnode_find_reference(dev_fwnode(dev), "io-backends", inde=
+x);
+> > +	if (IS_ERR(fwnode)) {
+> > +		/* not an error if optional */
+> > +		pr_debug("%s: Cannot get Firmware reference\n", dev_name(dev));
+> > +		return ERR_CAST(fwnode);
+> > +	}
+> > +
+> > +	guard(mutex)(&iio_back_lock);
+> > +	list_for_each_entry(back, &iio_back_list, entry) {
+> > +		if (!device_match_fwnode(back->dev, fwnode))
+> > +			continue;
+> > +
+> > +		fwnode_handle_put(fwnode);
+> > +		ret =3D __devm_iio_backend_get(dev, back);
+> > +		if (ret)
+> > +			return ERR_PTR(ret);
+> > +
+> > +		return back;
+> > +	}
+> > +
+> > +	fwnode_handle_put(fwnode);
+> > +	return ERR_PTR(-EPROBE_DEFER);
+> > +}
+>=20
+> ...
+>=20
+> > +static void iio_backend_unregister(void *arg)
+> > +{
+> > +	struct iio_backend *back =3D arg;
+>=20
+> No guard() here, why?
 
-Best regards,
-Krzysztof
+Because you're not really gaining much in using it in here. There's no earl=
+y return
+path or goto in here. As I say below, you can argue about consistency but m=
+eh...
+
+>=20
+> > +	mutex_lock(&iio_back_lock);
+> > +	list_del(&back->entry);
+> > +	mutex_unlock(&iio_back_lock);
+> > +}
+>=20
+> > +int devm_iio_backend_register(struct device *dev,
+> > +			=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 const struct iio_backend_ops *ops, v=
+oid *priv)
+>=20
+> Use dev_err() et al.
+>=20
+> ...
+>=20
+> > +	mutex_lock(&iio_back_lock);
+> > +	list_add(&back->entry, &iio_back_list);
+> > +	mutex_unlock(&iio_back_lock);
+>=20
+> scoped_guard()?
+>=20
+
+Don't really see the point. In the end we'll even have the same LOC.
+
+But yeah, the only reason I could think off is consistency but OTOH I think=
+ it makes
+sense to use these were it makes sense.
+
+- Nuno S=C3=A1
 
 
