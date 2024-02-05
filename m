@@ -1,193 +1,100 @@
-Return-Path: <devicetree+bounces-38472-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-38473-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 285B3849441
-	for <lists+devicetree@lfdr.de>; Mon,  5 Feb 2024 08:16:33 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 99A9384944F
+	for <lists+devicetree@lfdr.de>; Mon,  5 Feb 2024 08:19:30 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id CC0D61F243FA
-	for <lists+devicetree@lfdr.de>; Mon,  5 Feb 2024 07:16:32 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id CCEA11C23285
+	for <lists+devicetree@lfdr.de>; Mon,  5 Feb 2024 07:19:29 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 35D2FC148;
-	Mon,  5 Feb 2024 07:16:27 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A6580107B6;
+	Mon,  5 Feb 2024 07:19:02 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmx.net header.i=wahrenst@gmx.net header.b="UR3yZbFA"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="QWLJ9THn"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mout.gmx.net (mout.gmx.net [212.227.17.22])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-pl1-f175.google.com (mail-pl1-f175.google.com [209.85.214.175])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 98491C153;
-	Mon,  5 Feb 2024 07:16:24 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=212.227.17.22
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4553F1118D;
+	Mon,  5 Feb 2024 07:19:01 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.175
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1707117387; cv=none; b=RSZY9bTK+qr3CtOE7M/AYCkopP/uchWyB15qUb1u4awBSgZTrBPSQDe+JWMMOQSipypZPgcBNmJJewPFbbP7VMKNnv1pXoG4BK1/Q+E3XezauhcVsKdzJHaaH0NREh/+itOS3WH33/eyteFT+UePdN4NwAxwAcqgXVJmri8yNkc=
+	t=1707117542; cv=none; b=uO0HdgRluuIIyMVdVQ3gh4+w68x5nX9pyk7enjoeAyLqbi18V2hzjfn/8BkWy/qeDBWUL88prz6pzL5sjxJ5DC4cIgfAj3ch6xlVgEL8PK2xFuwp1tE20Sa2m6haSi4/g4etBfQc9gakroueyn0xBEahI3OSCvNzU2AdIc18dtU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1707117387; c=relaxed/simple;
-	bh=LzczV6ttlx1uBbAa9GF6DEJ9VQqoG5A1V8orZVOJ78c=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=Ek17LS6GFEkaklEe9afqHyHdBsxAyDXL9KutvuKksqH0aKxML7y7LtmY3w7sUE1cIBtLrR8vJaqezUJPuEuWohoxtw/QEwwJByfyYTT4Y16Cr4NtB0WZwJDVp5ROi4Ci2phJv/+1rhOTmxXmmQn9vdTAPsjxZAWj+WyklVBbwd0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=gmx.net; spf=pass smtp.mailfrom=gmx.net; dkim=pass (2048-bit key) header.d=gmx.net header.i=wahrenst@gmx.net header.b=UR3yZbFA; arc=none smtp.client-ip=212.227.17.22
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=gmx.net
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmx.net
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=gmx.net;
-	s=s31663417; t=1707117371; x=1707722171; i=wahrenst@gmx.net;
-	bh=LzczV6ttlx1uBbAa9GF6DEJ9VQqoG5A1V8orZVOJ78c=;
-	h=X-UI-Sender-Class:Date:Subject:To:Cc:References:From:
-	 In-Reply-To;
-	b=UR3yZbFAoLyj4i40Gh7S8janFp6f0kq7BTZ/0RB59eiyvkEIFFFSW3E/OnMtokg+
-	 ///oq5dD4bHOAKQsVy/G3xKj5o4bxE5/v+WmlkaIyWSEK9xcQOgsb9wWpLy3quwUB
-	 5Z7l7pMhbXMdmFsxJo8m3iuizXKx/imRHSzCTvTJJ8V7xXUJ8qdNIpFlMKCGvtqTy
-	 KOmopHngUG1QoURStFpNW+AH+qOcIy/EHw3o4ZhZk3Lsupu8QOpdjvfRh32I0Qaqc
-	 bPlC7LC1KAOZwyr8pT/RweOVfXW5qbi6HSKxSuPEcF0ZumkEEnPPvVWFaIvNRGaWT
-	 Im/wWNOvX7t5BoDvCA==
-X-UI-Sender-Class: 724b4f7f-cbec-4199-ad4e-598c01a50d3a
-Received: from [192.168.1.167] ([37.4.248.43]) by mail.gmx.net (mrgmx105
- [212.227.17.168]) with ESMTPSA (Nemesis) id 1Mlw3X-1r7D5t4C2N-00iz5j; Mon, 05
- Feb 2024 08:16:11 +0100
-Message-ID: <182bf1bb-cc90-4fe8-a226-1cfd5c10e41f@gmx.net>
-Date: Mon, 5 Feb 2024 08:16:09 +0100
+	s=arc-20240116; t=1707117542; c=relaxed/simple;
+	bh=6Q9FAuK999aVUWr++MZ8IARkp2Q2Bxgj4j4ZB6Vd88U=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=UmSbV9+uexPDeHl57Z5PoexsCydjVyvlgCL1OPZ2b9W1RBrqKPkhtOhFyyPOyn6VehQWIQXTUJsEqyofrj+JFm/SC59M1kfnPcO7BW8mfGI1W8ZUXp02W6nVlUraGXvvmeY6i5JQm9XEwlGq4lmAyAs48GL7Uxi8OvSUzE9aTtQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=QWLJ9THn; arc=none smtp.client-ip=209.85.214.175
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-pl1-f175.google.com with SMTP id d9443c01a7336-1d918008b99so30098895ad.3;
+        Sun, 04 Feb 2024 23:19:01 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1707117540; x=1707722340; darn=vger.kernel.org;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=tRc4akgOpOwlwT4cBYDrRpwQQ9jaqVcrSCEEImQCS8g=;
+        b=QWLJ9THn/Psdfg7vBpJK4KGIZGl4aX7u+swIJn9kOBHq5H2m/WYcTLmYzcr1cute51
+         QnKfEUorKcb3U3DLE3q7fghB/Oo640zycR1AHy96ZzuTtwy+EXTYQ8GZOaOhE8JEY8vq
+         RE9dj642FadZZ9y/DAtzUzSP04d4p6xaReayICkwVAJR3cJGvsFb6hU8AC6bm5xsakmP
+         /s24Rf/5znmr0+N/+ZVHTSFOiy80si15vP83YAVQwxHN5h4lai10diOIwkzdmHjYdTIa
+         pAF8NOd5xnKDMGDZ3UUtBqu8LKZAIIorzEzWef1rb6NphDPpHLn3t550q/sUmMYANU2m
+         iffw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1707117540; x=1707722340;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=tRc4akgOpOwlwT4cBYDrRpwQQ9jaqVcrSCEEImQCS8g=;
+        b=wawQ74KThJzmzV/3XMi3u/tUzD1Fn9W4nY/Knocp1KadiVe8MaEIovKBp2lC/9obqw
+         kdBO1RGK0zy8SeIyrgTrC69CKPkyBIbkCThe1ro4k9hEdOIwC6URNDo6BymkP5e1IPtW
+         4xQEPdJIfsw4Y4wg2DJb1wDtjBFAFsXVHsmIsFtuc4onjgDDZR/DoTCoNZAJLCsNFZUY
+         unekv4QzEmC1k3pzu8B6723H/2WfcF6HosPBLewDevk3bWCOL9t+BuQQOAxzW1tyrZaX
+         2gWjEA396caZgVgKXupkzI0WAPANHXPVrCOzCuZZqkQLN61vdgOkkQhEQlISgei/iFxA
+         sKAQ==
+X-Gm-Message-State: AOJu0YyDvw5KIDyhmV6V9neFC3VtZGB7kzmAknbXHlOz2zCOkxdeNJv5
+	XVrsqM+CpviCQ4wJ0UUdSyiCGPmZvnEO2lD6gk0Az0dlClowV3cW
+X-Google-Smtp-Source: AGHT+IETgI5m/w2xEtVGSLzqssRG/OmseyYM3n6OJtf1nctDX4OSzOdeAPC90KEo3Pn2QYRpinYKlg==
+X-Received: by 2002:a17:902:eb92:b0:1d9:7046:fbcd with SMTP id q18-20020a170902eb9200b001d97046fbcdmr8040808plg.3.1707117540558;
+        Sun, 04 Feb 2024 23:19:00 -0800 (PST)
+X-Forwarded-Encrypted: i=0; AJvYcCWS3PZGLLU/LDrL7hZG9semER1/jng5pvV9UYNyq81NsZGDHZ6bWOzpl9ohUV5psMYts9qgKQseBXNgcd2pKPO2n2BFfL2bMelzGzUCKpTzs70MBOfJf6CyWFTWOWpzIE7LxlX/gN9vkGrkYvrQ2ETIazvueeFyd6yBRXMF8TXzdm4Fc0WeWGYJLHHw7rJpGthOZQELYEFlDhtDWLaan+ysfvsFwFVr07lZiT4wOgrNzznr5g02JLHwUxVQkPSMYRmVuHH8zfHie8YahbYT+jGucDU+vVpgXNH6zkshn3owEghuNSfHlXVYwKLLgdX+k6liSgQHEgkT3LxA6jBPRlptr21hCJ9sHgEp0P4tSGTlMkRj/R9xN75SxTScSEjRANkEOgv3MTY+ZM1N4ZcsR+xGgLwFZhFau7fyl0VXopHxdSSXmE0u5OvYEKX0SCjVh2B4TZV+l1mr
+Received: from t480 (144.34.186.27.16clouds.com. [144.34.186.27])
+        by smtp.gmail.com with ESMTPSA id v3-20020a170902b7c300b001d99530e3eesm2960693plz.282.2024.02.04.23.18.52
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Sun, 04 Feb 2024 23:18:59 -0800 (PST)
+Date: Mon, 5 Feb 2024 15:18:54 +0800
+From: Shawn Guo <shawn.gsc@gmail.com>
+To: Mathieu Othacehe <othacehe@gnu.org>
+Cc: Rob Herring <robh+dt@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>,
+	Sascha Hauer <s.hauer@pengutronix.de>,
+	Pengutronix Kernel Team <kernel@pengutronix.de>,
+	Fabio Estevam <festevam@gmail.com>,
+	NXP Linux Team <linux-imx@nxp.com>, Li Yang <leoyang.li@nxp.com>,
+	Stefan Wahren <wahrenst@gmx.net>, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org
+Subject: Re: [PATCH v7 0/2] Add Variscite VAR-SOM-MX93 support
+Message-ID: <ZcCL3vG2JwDkU8Aq@t480>
+References: <20240108110241.8555-1-othacehe@gnu.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH V4 2/2] pwm: Add GPIO PWM driver
-Content-Language: en-US
-To: Dhruva Gole <d-gole@ti.com>
-Cc: =?UTF-8?Q?Uwe_Kleine-K=C3=B6nig?= <u.kleine-koenig@pengutronix.de>,
- Rob Herring <robh+dt@kernel.org>,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Conor Dooley <conor+dt@kernel.org>, andy.shevchenko@gmail.com,
- Angelo Compagnucci <angelo.compagnucci@gmail.com>,
- Philip Howard <phil@gadgetoid.com>, Sean Young <sean@mess.org>,
- Linus Walleij <linus.walleij@linaro.org>, linux-pwm@vger.kernel.org,
- devicetree@vger.kernel.org, linux-gpio@vger.kernel.org
-References: <20240204220851.4783-1-wahrenst@gmx.net>
- <20240204220851.4783-3-wahrenst@gmx.net>
- <20240205061129.gdwzmpuxrzxj5cov@dhruva>
-From: Stefan Wahren <wahrenst@gmx.net>
-In-Reply-To: <20240205061129.gdwzmpuxrzxj5cov@dhruva>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: quoted-printable
-X-Provags-ID: V03:K1:7TrENmu4IOvu/3zEJyrB0jqd6OSDq3O3QR9sA16rV+sENiR3fwY
- y3isJB9IW9bIhZosKH/TtjgAVzeWQJmAGuac0fd5EKuQwlLFby3yDT6v2LvZAMLTyBjNPJF
- tMz/nIuvFuugprneAHkRyGdElW+66/cs5iRiK0UbxM4f/pJTF3H/y9MBsiJhYvcYGtDnzLy
- JP2pzc7id7W+IC3cPgv8A==
-X-Spam-Flag: NO
-UI-OutboundReport: notjunk:1;M01:P0:W2f8Ei940Vo=;xh1GJNUpTpDslOEbDaXw5OWUMc6
- /D3tfsJhYN2KO1x5s0alq8NTdvzyyMkELu1GEqTGvKcYV1eaDpEa88CeZ2/bEHACRSasoIb6P
- 2FAWdQ1pzGT3M5Ao9xGmXqRUh92wFFA8ZVQj1oQ6olVhxSIDciwvOHg1knKJoVuPhnbqhKDiF
- +cVEyj3oy3dMKxq8iId7KhopTjbQEJPs3Kiktj4NrNSBrM6uF5v/tgWJhvCuVZimVG7ntzYsn
- 9fcG6+rlCSrHOTpquUCK28txknOwyGFaOgWgSlshn5udnVr/K98v5qx13aS2qIJLh8tRWQNAx
- JbkkWjxrG5F13XboBxcE1RY/EqAqfhVyW9VH35FHYHIbOH7RA41RN3m52HsP2U/HrSvrdN8qG
- Y2188iYFA8pbLS+V8FUok6daEnUrOgF2hah7+19idle3KHYOFzk0Pon3PW4ZGGORyr7YH42kX
- VX7gV8+nEOk2652sauNpunbkKK8pQ72i3D9IGjONWFSTzwj5cuDYL9eVxTaZz5zwZWYnxkhzz
- fbNKjPUj8PovL6u+htmm3lzvq1Eq1nE41ErO3uoLH0eEAXqMT4vv3g80EQfTFtsl9x/FUOkvE
- vM+7R2et+zN2GXHbqkHWnDu41A9Zb0GCmE69iEZcXLNCjJwqSvB6KCJ0/7SqeJrHjX8fcgs3c
- 9y9Gqm/GpkXYWKB57zbov7ZWGcwHVO22uguDoq1eNXDRkErRpfXJgpNtOfQpEERo7GhBLOJ9S
- skEjCbcqnUwGiddRNMwqX0Gw8aK9ngioroPbtG8ykuLrOWtOBUdDAAjkCljJGqhlpFWQhqJZk
- lDPeB2T8JibfRAm5jaEUe9d7FJQZxJn50HI+5tTMPZ3gc=
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20240108110241.8555-1-othacehe@gnu.org>
 
-Hi Dhruva,
+On Mon, Jan 08, 2024 at 12:02:39PM +0100, Mathieu Othacehe wrote:
+> Mathieu Othacehe (2):
+>   dt-bindings: arm: fsl: Add VAR-SOM-MX93 with Symphony
+>   arm64: dts: imx93-var-som: Add Variscite VAR-SOM-MX93
 
-[drop Vincent's address because it bounces]
-
-Am 05.02.24 um 07:11 schrieb Dhruva Gole:
-> On Feb 04, 2024 at 23:08:51 +0100, Stefan Wahren wrote:
->> From: Vincent Whitchurch <vincent.whitchurch@axis.com>
->>
->> Add a software PWM which toggles a GPIO from a high-resolution timer.
->>
->> This will naturally not be as accurate or as efficient as a hardware
->> PWM, but it is useful in some cases.  I have for example used it for
->> evaluating LED brightness handling (via leds-pwm) on a board where the
->> LED was just hooked up to a GPIO, and for a simple verification of the
->> timer frequency on another platform.
->>
->> Since high-resolution timers are used, sleeping gpio chips are not
->> supported and are rejected in the probe function.
->>
->> Signed-off-by: Vincent Whitchurch <vincent.whitchurch@axis.com>
->> Co-developed-by: Stefan Wahren <wahrenst@gmx.net>
->> Signed-off-by: Stefan Wahren <wahrenst@gmx.net>
->> ---
->>   drivers/pwm/Kconfig    |  11 ++
->>   drivers/pwm/Makefile   |   1 +
->>   drivers/pwm/pwm-gpio.c | 228 ++++++++++++++++++++++++++++++++++++++++=
-+
->>   3 files changed, 240 insertions(+)
->>   create mode 100644 drivers/pwm/pwm-gpio.c
->>
->> diff --git a/drivers/pwm/Kconfig b/drivers/pwm/Kconfig
->> index 4b956d661755..7cfda2cde130 100644
->> --- a/drivers/pwm/Kconfig
->> +++ b/drivers/pwm/Kconfig
->> @@ -227,6 +227,17 @@ config PWM_FSL_FTM
->>   	  To compile this driver as a module, choose M here: the module
->>   	  will be called pwm-fsl-ftm.
->>
->> +config PWM_GPIO
->> +	tristate "GPIO PWM support"
->> +	depends on GPIOLIB
->> +	depends on HIGH_RES_TIMERS
->> +	help
->> +	  Generic PWM framework driver for a software PWM toggling a GPIO pin
->>> a software PWM
-> Nit: remove the "a", as it's not required.
-thanks will fix this.
->
->> +	  from kernel high-resolution timers.
->> +
->> +	  To compile this driver as a module, choose M here: the module
->> +	  will be called pwm-gpio.
->> +
-> [..snip..]
->> +
->> +static int pwm_gpio_get_state(struct pwm_chip *chip, struct pwm_device=
- *pwm,
->> +			       struct pwm_state *state)
->> +{
->> +	struct pwm_gpio *gpwm =3D container_of(chip, struct pwm_gpio, chip);
->> +	unsigned long flags;
->> +
->> +	spin_lock_irqsave(&gpwm->lock, flags);
->> +
->> +	if (gpwm->changing)
->> +		*state =3D gpwm->next_state;
->> +	else
->> +		*state =3D gpwm->state;
->> +
->> +	spin_unlock_irqrestore(&gpwm->lock, flags);
->> +
->> +	return 0;
->> +}
->> +
->> +static const struct pwm_ops pwm_gpio_ops =3D {
->> +	.apply =3D pwm_gpio_apply,
-> Kinda looks like this is setting state? Can we be consistent with the
-> naming then, like pwm_gpio_set_state?
-The pwm_op is called apply, so the expected suffix would be _apply like
-all the other PWM driver does.
-
-grep ".apply =3D" drivers/pwm/*
-drivers/pwm/pwm-ab8500.c:=C2=A0=C2=A0=C2=A0 .apply =3D ab8500_pwm_apply,
-drivers/pwm/pwm-apple.c:=C2=A0=C2=A0=C2=A0 .apply =3D apple_pwm_apply,
-drivers/pwm/pwm-atmel.c:=C2=A0=C2=A0=C2=A0 .apply =3D atmel_pwm_apply,
-...
-
-> This will help those contributing to the driver or referring to it to
-> understand better what each function is doing exactly.
-Using ...set_state here would confuse all the experienced kernel developer=
-.
->
->> +	.get_state =3D pwm_gpio_get_state,
->> +};
-> Otherwise, driver looks good to me,
-> Reviewed-by: Dhruva Gole <d-gole@ti.com>
->
-
+Applied both, thanks!
 
