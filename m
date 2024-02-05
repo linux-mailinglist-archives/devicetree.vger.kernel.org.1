@@ -1,306 +1,268 @@
-Return-Path: <devicetree+bounces-38734-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-38735-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1115084A052
-	for <lists+devicetree@lfdr.de>; Mon,  5 Feb 2024 18:11:59 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id AEF4884A05A
+	for <lists+devicetree@lfdr.de>; Mon,  5 Feb 2024 18:13:12 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 8374C1F23183
-	for <lists+devicetree@lfdr.de>; Mon,  5 Feb 2024 17:11:58 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id D41D81C20F8E
+	for <lists+devicetree@lfdr.de>; Mon,  5 Feb 2024 17:13:11 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8917E40BE3;
-	Mon,  5 Feb 2024 17:11:51 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="fehtOmAd"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0A69E405FF;
+	Mon,  5 Feb 2024 17:13:10 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pg1-f180.google.com (mail-pg1-f180.google.com [209.85.215.180])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from metis.whiteo.stw.pengutronix.de (metis.whiteo.stw.pengutronix.de [185.203.201.7])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2EE6A3A1CF;
-	Mon,  5 Feb 2024 17:11:48 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.215.180
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 313A13B19D
+	for <devicetree@vger.kernel.org>; Mon,  5 Feb 2024 17:13:08 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.203.201.7
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1707153111; cv=none; b=ETO1qnmZPkyDH21SisU4GaKvd7kqhHykpU1U70sJWfVDbHg3cWTxd6fxMIi6h36JnKJosZFdwG5rmJ3NzBbST/0xRyr7EzbaPq88v/O2rH4X21zr42+T64tJs+cFnTiwtNBhb3wz9RA2GxXu/DuqPtwKxgzlPuicr3rIh5khAEI=
+	t=1707153189; cv=none; b=pfFJrymQdaTmRr099SOXgziDyMa6g+QFICCW8SHwI5jsSx4OVemmZLswa5HUJrjssu/HwPQq/Gm9wj16Yspdo6gGUPhTBw3faPm89xYFT/slJ9XHrpIy6r5hWLLzxiZrXUXsk6FiIiUW60/XxzFNx+hz0O4vUY6zxn6iLVtlEDM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1707153111; c=relaxed/simple;
-	bh=Awte8akpLUNHQe0faNphLZYfif31G1qy7XsQIjEMlxA=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=pBzPXC+kFWKJk+xBLpTf/tBQ3DtWkLitXHMg9/RH1zRI7RR/Y3ShNtMA0s2pHUKm0Rtfr/vdzpR/0saC6VJF65h6EZEz8SVH9WqA1Xi0TyWUYd1XKe3rAyuQk+WZCYYEqhDNFt8Rg5xdW93VahmUPzkKURBOpVWglASW75t0H3w=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=roeck-us.net; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=fehtOmAd; arc=none smtp.client-ip=209.85.215.180
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=roeck-us.net
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-pg1-f180.google.com with SMTP id 41be03b00d2f7-5dbd519bde6so3839673a12.1;
-        Mon, 05 Feb 2024 09:11:48 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1707153108; x=1707757908; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
-         :to:content-language:subject:user-agent:mime-version:date:message-id
-         :sender:from:to:cc:subject:date:message-id:reply-to;
-        bh=8emTOhOdFKSiQd0VegyBxbgGNUkK/uhZR5gAmWtAzco=;
-        b=fehtOmAdfMoxhaXRk9j39VLmHtU1HY12tRtBPwOIxNeGhLPSbenw0/vByyQ4ZFvRrY
-         yAtlsq0oq8iQemvr/uU6EgtobueeR/llswTbUK7p1O/Cg84WpNsywDTn35bSMoP3/PJj
-         ua6oE9Mgr/1ePK6ZhX9EnEm3SG+cfjRvaD7bTOxRiD8flLXYq9lL1gVNpULyJEVtYw5m
-         0+AhEuPaXEvviaPzc1E6QfrydfVVbfEXdTy48hGZbARBVPoyFPSKStx+vOuvBHFUw/HM
-         htb8tCad/xNVwrJyM9wAjOcK0KU5MYN+qNDFXPR1Nm49gjpafefVVeRJh+usTgW4rXpD
-         669g==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1707153108; x=1707757908;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
-         :to:content-language:subject:user-agent:mime-version:date:message-id
-         :sender:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=8emTOhOdFKSiQd0VegyBxbgGNUkK/uhZR5gAmWtAzco=;
-        b=jktN0Hw5DC9Tz9/jwV32smq115iDIgqLV2XSs/qpRcti7Qg3QosFkZ3lv9/W6eVwru
-         paU2x/wWG65B0JQa4g8v0uqFaLPD3VC5JR/KblXivRfSwbtsfKaI4Tatgwg8kGloi5zE
-         +Xd/sB5AtQIoT3B2rVNhWhCXqBMcAGpwm7IES+1/kDEdEiL0BDtVSJ0JWX7ccZf/PrjK
-         Xf8y/do7bDG1czvmkUmrekHRFGSrdTvMqqc9noGbXRYjFc1s5NrT46grdTwlzt5H8Jts
-         DR3R4f5NZ41rSzQlv0N/D5oK0mYQbEaH2h2OMdEObVhDxw/SNJZNuY6tGcS8ZaJzuAcR
-         M5FA==
-X-Gm-Message-State: AOJu0YxKQualCLXuvoNG5OGeVu6tUi2pQ7bZgjj4aVIsQPRDFLvt97fJ
-	YER50udZ6SUsLu67t/ODPe5sWW/3YpqAZpe32IB/i4p1cReHrgBo
-X-Google-Smtp-Source: AGHT+IGLp8gfCwEdCqyBNU57ZNsmuHsUosy+Eo5ZK7DGob8NUOLE5/AdYQNqDjm8AjTWFKrqPbm6ZA==
-X-Received: by 2002:a05:6a20:4ba4:b0:19e:4f91:42b2 with SMTP id fu36-20020a056a204ba400b0019e4f9142b2mr110114pzb.18.1707153108388;
-        Mon, 05 Feb 2024 09:11:48 -0800 (PST)
-X-Forwarded-Encrypted: i=0; AJvYcCWfUWuSZj+Z3wSHsVWQ5uujFFqi5BBw31Zvlqnmgq9K9L1ZF+KREFh6fxywZHt7jICMz1idgEffzt0/PmOPMlAjE+d3T2KWHPGUL5UNlXGjB1WjXA67PNZjzYZ3sFL/7jZvpISCBGqlMm8QtISjGH4130yns1GCr/YREMDBfc1GklcZBwVWhyTcnVP4d5ki+Xu1ap1NxmjGxlMk+Hoy8R6TpoZEJaByxefFLDTToB0B6N+400eJgcX8hUeFUz9vCRkClr9YBhH1bm70TuFcU2+7AtN7rOd1QBSGSVwYRS0FdNvw1tTrqCvMIZwpnmZ20pWoYMhedAxQ7n1rh+czWtY15fATDhZ4Jn5cCJ4Lpyodb2BVDd+jYl6EYFc=
-Received: from ?IPV6:2600:1700:e321:62f0:329c:23ff:fee3:9d7c? ([2600:1700:e321:62f0:329c:23ff:fee3:9d7c])
-        by smtp.gmail.com with ESMTPSA id f10-20020a056a001aca00b006e02eb7fb05sm69298pfv.160.2024.02.05.09.11.46
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 05 Feb 2024 09:11:47 -0800 (PST)
-Sender: Guenter Roeck <groeck7@gmail.com>
-Message-ID: <8cffdf64-d0ee-4e20-8c43-d3010ddf9839@roeck-us.net>
-Date: Mon, 5 Feb 2024 09:11:46 -0800
+	s=arc-20240116; t=1707153189; c=relaxed/simple;
+	bh=ugsDgIcUCN7RPWklCUAkE7F5/9C0LWY8puF0bhL/KPU=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=rueqmSgmApPsQGPFSIYJCdvzKu87BcPnVWu0teljTgSMPrWqvoj2PUMB+CER3jSMiXrO4mAsmIZQURYujctZK+57zo7GPZnspcIbWg1RlLhmt4OdpHByQlMaoLBEOzXp0+hIHsGOKaATzA4gsevDYVnA1yiaT9yVFY89mYffaTM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de; spf=pass smtp.mailfrom=pengutronix.de; arc=none smtp.client-ip=185.203.201.7
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=pengutronix.de
+Received: from drehscheibe.grey.stw.pengutronix.de ([2a0a:edc0:0:c01:1d::a2])
+	by metis.whiteo.stw.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
+	(Exim 4.92)
+	(envelope-from <ukl@pengutronix.de>)
+	id 1rX2Wj-00075w-38; Mon, 05 Feb 2024 18:13:01 +0100
+Received: from [2a0a:edc0:0:900:1d::77] (helo=ptz.office.stw.pengutronix.de)
+	by drehscheibe.grey.stw.pengutronix.de with esmtps  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+	(Exim 4.94.2)
+	(envelope-from <ukl@pengutronix.de>)
+	id 1rX2Wi-004fmO-Ak; Mon, 05 Feb 2024 18:13:00 +0100
+Received: from ukl by ptz.office.stw.pengutronix.de with local (Exim 4.96)
+	(envelope-from <ukl@pengutronix.de>)
+	id 1rX2Wi-00Fix4-0l;
+	Mon, 05 Feb 2024 18:13:00 +0100
+Date: Mon, 5 Feb 2024 18:12:59 +0100
+From: Uwe =?utf-8?Q?Kleine-K=C3=B6nig?= <u.kleine-koenig@pengutronix.de>
+To: Jerome Brunet <jbrunet@baylibre.com>
+Cc: Thierry Reding <thierry.reding@gmail.com>, 
+	Neil Armstrong <neil.armstrong@linaro.org>, Rob Herring <robh+dt@kernel.org>, 
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Kevin Hilman <khilman@baylibre.com>, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+	linux-amlogic@lists.infradead.org, linux-pwm@vger.kernel.org, JunYi Zhao <junyi.zhao@amlogic.com>
+Subject: Re: [PATCH v4 4/6] pwm: meson: use device data to carry information
+ around
+Message-ID: <pqnl66xnct5lqua36iasqws4kowhqtn6vkq7fml76pomcnatj4@q66n3siflgoc>
+References: <20231222111658.832167-1-jbrunet@baylibre.com>
+ <20231222111658.832167-5-jbrunet@baylibre.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 4/4] usb: typec: tcpci: add support to set connector
- orientation
-Content-Language: en-US
-To: Marco Felsch <m.felsch@pengutronix.de>,
- "Dr. David Alan Gilbert" <linux@treblig.org>
-Cc: gregkh@linuxfoundation.org, robh+dt@kernel.org,
- krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
- heikki.krogerus@linux.intel.com, linux-usb@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- kernel@pengutronix.de
-References: <20240205164316.805408-1-m.felsch@pengutronix.de>
- <20240205164316.805408-5-m.felsch@pengutronix.de>
- <ZcESKqRTsGNZMMX1@gallifrey> <20240205165420.kyujim2takwswzmw@pengutronix.de>
-From: Guenter Roeck <linux@roeck-us.net>
-Autocrypt: addr=linux@roeck-us.net; keydata=
- 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
- mDW4+i+XlNFUPUYMrIKi9joBhu18ssf5i5Q=
-In-Reply-To: <20240205165420.kyujim2takwswzmw@pengutronix.de>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+Content-Type: multipart/signed; micalg=pgp-sha512;
+	protocol="application/pgp-signature"; boundary="voyfq7wqr4wfqjna"
+Content-Disposition: inline
+In-Reply-To: <20231222111658.832167-5-jbrunet@baylibre.com>
+X-SA-Exim-Connect-IP: 2a0a:edc0:0:c01:1d::a2
+X-SA-Exim-Mail-From: ukl@pengutronix.de
+X-SA-Exim-Scanned: No (on metis.whiteo.stw.pengutronix.de); SAEximRunCond expanded to false
+X-PTX-Original-Recipient: devicetree@vger.kernel.org
 
-On 2/5/24 08:54, Marco Felsch wrote:
-> Hi David,
-> 
-> On 24-02-05, Dr. David Alan Gilbert wrote:
->> * Marco Felsch (m.felsch@pengutronix.de) wrote:
->>> This add the support to set the optional connector orientation bit which
->>> is part of the optional CONFIG_STANDARD_OUTPUT register 0x18 [1]. This
->>> allows system designers to connect the tcpc orientation pin directly to
->>> the 2:1 ss-mux.
->>>
->>> [1] https://www.usb.org/sites/default/files/documents/usb-port_controller_specification_rev2.0_v1.0_0.pdf
->>>
->>> Signed-off-by: Marco Felsch <m.felsch@pengutronix.de>
->>> ---
->>>   drivers/usb/typec/tcpm/tcpci.c | 43 ++++++++++++++++++++++++++++++++++
->>>   include/linux/usb/tcpci.h      |  8 +++++++
->>>   2 files changed, 51 insertions(+)
->>>
->>> diff --git a/drivers/usb/typec/tcpm/tcpci.c b/drivers/usb/typec/tcpm/tcpci.c
->>> index 7118551827f6..7ce9d4923bc7 100644
->>> --- a/drivers/usb/typec/tcpm/tcpci.c
->>> +++ b/drivers/usb/typec/tcpm/tcpci.c
->>> @@ -67,6 +67,18 @@ static int tcpci_write16(struct tcpci *tcpci, unsigned int reg, u16 val)
->>>   	return regmap_raw_write(tcpci->regmap, reg, &val, sizeof(u16));
->>>   }
->>>   
->>> +static bool tcpci_check_std_output_cap(struct regmap *regmap, u8 mask)
->>> +{
->>> +	unsigned int reg;
->>> +	int ret;
->>> +
->>> +	ret = regmap_read(regmap, TCPC_STD_OUTPUT_CAP, &reg);
->>> +	if (ret < 0)
->>> +		return ret;
->>> +
->>> +	return (reg & mask) == mask;
->>> +}
->>> +
->>>   static int tcpci_set_cc(struct tcpc_dev *tcpc, enum typec_cc_status cc)
->>>   {
->>>   	struct tcpci *tcpci = tcpc_to_tcpci(tcpc);
->>> @@ -301,6 +313,27 @@ static int tcpci_set_polarity(struct tcpc_dev *tcpc,
->>>   			   TCPC_TCPC_CTRL_ORIENTATION : 0);
->>>   }
->>>   
->>> +static int tcpci_set_orientation(struct tcpc_dev *tcpc,
->>> +				 enum typec_orientation orientation)
->>> +{
->>> +	struct tcpci *tcpci = tcpc_to_tcpci(tcpc);
->>> +	unsigned int reg;
->>> +
->>> +	switch (orientation) {
->>> +	case TYPEC_ORIENTATION_NONE:
->>> +		/* We can't put a single output into high impedance */
->>
->> Is that intended to be a fallthrough? If so I guess it needs
->> marking as such with a
->>                  fallthrough;
-> 
-> You need to add it if there is code in between. Since there is no code,
-> just this comment, it shouldn't be necessary.
-> 
 
-Still, I think it would be desirable here to clarify that this
-is not a lost return but intentionally sets
-TCPC_CONFIG_STD_OUTPUT_ORIENTATION_NORMAL.
+--voyfq7wqr4wfqjna
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-Guenter
+On Fri, Dec 22, 2023 at 12:16:52PM +0100, Jerome Brunet wrote:
+> Use struct device data to carry the information data around, instead
+> of embedded the pwm structure in it and using container_of()
+>=20
+> Doing so works just as well and makes it a little easier to add setup
+> callback depending on the DT compatible.
+>=20
+> Signed-off-by: Jerome Brunet <jbrunet@baylibre.com>
+> ---
+>  drivers/pwm/pwm-meson.c | 39 +++++++++++++++++++++++----------------
+>  1 file changed, 23 insertions(+), 16 deletions(-)
+>=20
+> diff --git a/drivers/pwm/pwm-meson.c b/drivers/pwm/pwm-meson.c
+> index ef50c337f444..15c44185d784 100644
+> --- a/drivers/pwm/pwm-meson.c
+> +++ b/drivers/pwm/pwm-meson.c
+> @@ -101,7 +101,6 @@ struct meson_pwm_data {
+>  };
+> =20
+>  struct meson_pwm {
+> -	struct pwm_chip chip;
+>  	const struct meson_pwm_data *data;
+>  	struct meson_pwm_channel channels[MESON_NUM_PWMS];
+>  	void __iomem *base;
+> @@ -114,7 +113,7 @@ struct meson_pwm {
+> =20
+>  static inline struct meson_pwm *to_meson_pwm(struct pwm_chip *chip)
+>  {
+> -	return container_of(chip, struct meson_pwm, chip);
+> +	return dev_get_drvdata(chip->dev);
+>  }
+> =20
+>  static int meson_pwm_request(struct pwm_chip *chip, struct pwm_device *p=
+wm)
+> @@ -146,6 +145,7 @@ static int meson_pwm_calc(struct meson_pwm *meson, st=
+ruct pwm_device *pwm,
+>  			  const struct pwm_state *state)
+>  {
+>  	struct meson_pwm_channel *channel =3D &meson->channels[pwm->hwpwm];
+> +	struct device *dev =3D pwm->chip->dev;
+>  	unsigned int cnt, duty_cnt;
+>  	unsigned long fin_freq;
+>  	u64 duty, period, freq;
+> @@ -168,19 +168,19 @@ static int meson_pwm_calc(struct meson_pwm *meson, =
+struct pwm_device *pwm,
+> =20
+>  	fin_freq =3D clk_round_rate(channel->clk, freq);
+>  	if (fin_freq =3D=3D 0) {
+> -		dev_err(meson->chip.dev, "invalid source clock frequency\n");
+> +		dev_err(dev, "invalid source clock frequency\n");
+>  		return -EINVAL;
+>  	}
+> =20
+> -	dev_dbg(meson->chip.dev, "fin_freq: %lu Hz\n", fin_freq);
+> +	dev_dbg(dev, "fin_freq: %lu Hz\n", fin_freq);
+> =20
+>  	cnt =3D div_u64(fin_freq * period, NSEC_PER_SEC);
+>  	if (cnt > 0xffff) {
+> -		dev_err(meson->chip.dev, "unable to get period cnt\n");
+> +		dev_err(dev, "unable to get period cnt\n");
+>  		return -EINVAL;
+>  	}
+> =20
+> -	dev_dbg(meson->chip.dev, "period=3D%llu cnt=3D%u\n", period, cnt);
+> +	dev_dbg(dev, "period=3D%llu cnt=3D%u\n", period, cnt);
+> =20
+>  	if (duty =3D=3D period) {
+>  		channel->hi =3D cnt;
+> @@ -191,7 +191,7 @@ static int meson_pwm_calc(struct meson_pwm *meson, st=
+ruct pwm_device *pwm,
+>  	} else {
+>  		duty_cnt =3D div_u64(fin_freq * duty, NSEC_PER_SEC);
+> =20
+> -		dev_dbg(meson->chip.dev, "duty=3D%llu duty_cnt=3D%u\n", duty, duty_cnt=
+);
+> +		dev_dbg(dev, "duty=3D%llu duty_cnt=3D%u\n", duty, duty_cnt);
+> =20
+>  		channel->hi =3D duty_cnt;
+>  		channel->lo =3D cnt - duty_cnt;
+> @@ -214,7 +214,7 @@ static void meson_pwm_enable(struct meson_pwm *meson,=
+ struct pwm_device *pwm)
+> =20
+>  	err =3D clk_set_rate(channel->clk, channel->rate);
+>  	if (err)
+> -		dev_err(meson->chip.dev, "setting clock rate failed\n");
+> +		dev_err(pwm->chip->dev, "setting clock rate failed\n");
+> =20
+>  	spin_lock_irqsave(&meson->lock, flags);
+> =20
+> @@ -425,10 +425,10 @@ static const struct of_device_id meson_pwm_matches[=
+] =3D {
+>  };
+>  MODULE_DEVICE_TABLE(of, meson_pwm_matches);
+> =20
+> -static int meson_pwm_init_channels(struct meson_pwm *meson)
+> +static int meson_pwm_init_channels(struct device *dev)
+>  {
+>  	struct clk_parent_data mux_parent_data[MESON_NUM_MUX_PARENTS] =3D {};
+> -	struct device *dev =3D meson->chip.dev;
+> +	struct meson_pwm *meson =3D dev_get_drvdata(dev);
+>  	unsigned int i;
+>  	char name[255];
+>  	int err;
+> @@ -438,7 +438,7 @@ static int meson_pwm_init_channels(struct meson_pwm *=
+meson)
+>  		mux_parent_data[i].name =3D meson->data->parent_names[i];
+>  	}
+> =20
+> -	for (i =3D 0; i < meson->chip.npwm; i++) {
+> +	for (i =3D 0; i < MESON_NUM_PWMS; i++) {
+>  		struct meson_pwm_channel *channel =3D &meson->channels[i];
+>  		struct clk_parent_data div_parent =3D {}, gate_parent =3D {};
+>  		struct clk_init_data init =3D {};
+> @@ -519,28 +519,35 @@ static int meson_pwm_init_channels(struct meson_pwm=
+ *meson)
+>  static int meson_pwm_probe(struct platform_device *pdev)
+>  {
+>  	struct meson_pwm *meson;
+> +	struct pwm_chip *chip;
+>  	int err;
+> =20
+> +	chip =3D devm_kzalloc(&pdev->dev, sizeof(*chip), GFP_KERNEL);
+> +	if (!chip)
+> +		return -ENOMEM;
+> +
+>  	meson =3D devm_kzalloc(&pdev->dev, sizeof(*meson), GFP_KERNEL);
+>  	if (!meson)
+>  		return -ENOMEM;
+> =20
+> +	platform_set_drvdata(pdev, meson);
+> +
+>  	meson->base =3D devm_platform_ioremap_resource(pdev, 0);
+>  	if (IS_ERR(meson->base))
+>  		return PTR_ERR(meson->base);
+> =20
+>  	spin_lock_init(&meson->lock);
+> -	meson->chip.dev =3D &pdev->dev;
+> -	meson->chip.ops =3D &meson_pwm_ops;
+> -	meson->chip.npwm =3D MESON_NUM_PWMS;
+> +	chip->dev =3D &pdev->dev;
+> +	chip->ops =3D &meson_pwm_ops;
+> +	chip->npwm =3D MESON_NUM_PWMS;
+> =20
+>  	meson->data =3D of_device_get_match_data(&pdev->dev);
+> =20
+> -	err =3D meson_pwm_init_channels(meson);
+> +	err =3D meson_pwm_init_channels(&pdev->dev);
+>  	if (err < 0)
+>  		return err;
+> =20
+> -	err =3D devm_pwmchip_add(&pdev->dev, &meson->chip);
+> +	err =3D devm_pwmchip_add(&pdev->dev, chip);
+>  	if (err < 0)
+>  		return dev_err_probe(&pdev->dev, err,
+>  				     "failed to register PWM chip\n");
 
-> Regards,
->    Marco
-> 
->>
->> Dave
->>
->>> +	case TYPEC_ORIENTATION_NORMAL:
->>> +		reg = TCPC_CONFIG_STD_OUTPUT_ORIENTATION_NORMAL;
->>> +		break;
->>> +	case TYPEC_ORIENTATION_REVERSE:
->>> +		reg = TCPC_CONFIG_STD_OUTPUT_ORIENTATION_FLIPPED;
->>> +		break;
->>> +	}
->>> +
->>> +	return regmap_update_bits(tcpci->regmap, TCPC_CONFIG_STD_OUTPUT,
->>> +				  TCPC_CONFIG_STD_OUTPUT_ORIENTATION_MASK, reg);
->>> +}
->>> +
->>>   static void tcpci_set_partner_usb_comm_capable(struct tcpc_dev *tcpc, bool capable)
->>>   {
->>>   	struct tcpci *tcpci = tcpc_to_tcpci(tcpc);
->>> @@ -808,6 +841,9 @@ struct tcpci *tcpci_register_port(struct device *dev, struct tcpci_data *data)
->>>   	if (tcpci->data->vbus_vsafe0v)
->>>   		tcpci->tcpc.is_vbus_vsafe0v = tcpci_is_vbus_vsafe0v;
->>>   
->>> +	if (tcpci->data->set_orientation)
->>> +		tcpci->tcpc.set_orientation = tcpci_set_orientation;
->>> +
->>>   	err = tcpci_parse_config(tcpci);
->>>   	if (err < 0)
->>>   		return ERR_PTR(err);
->>> @@ -851,6 +887,13 @@ static int tcpci_probe(struct i2c_client *client)
->>>   	if (err < 0)
->>>   		return err;
->>>   
->>> +	err = tcpci_check_std_output_cap(chip->data.regmap,
->>> +					 TCPC_STD_OUTPUT_CAP_ORIENTATION);
->>> +	if (err < 0)
->>> +		return err;
->>> +
->>> +	chip->data.set_orientation = err;
->>> +
->>>   	chip->tcpci = tcpci_register_port(&client->dev, &chip->data);
->>>   	if (IS_ERR(chip->tcpci))
->>>   		return PTR_ERR(chip->tcpci);
->>> diff --git a/include/linux/usb/tcpci.h b/include/linux/usb/tcpci.h
->>> index 467e8045e9f8..f2bfb4250366 100644
->>> --- a/include/linux/usb/tcpci.h
->>> +++ b/include/linux/usb/tcpci.h
->>> @@ -47,6 +47,9 @@
->>>   #define TCPC_SINK_FAST_ROLE_SWAP	BIT(0)
->>>   
->>>   #define TCPC_CONFIG_STD_OUTPUT		0x18
->>> +#define TCPC_CONFIG_STD_OUTPUT_ORIENTATION_MASK		BIT(0)
->>> +#define TCPC_CONFIG_STD_OUTPUT_ORIENTATION_NORMAL	0
->>> +#define TCPC_CONFIG_STD_OUTPUT_ORIENTATION_FLIPPED	1
->>>   
->>>   #define TCPC_TCPC_CTRL			0x19
->>>   #define TCPC_TCPC_CTRL_ORIENTATION	BIT(0)
->>> @@ -127,6 +130,7 @@
->>>   #define TCPC_DEV_CAP_2			0x26
->>>   #define TCPC_STD_INPUT_CAP		0x28
->>>   #define TCPC_STD_OUTPUT_CAP		0x29
->>> +#define TCPC_STD_OUTPUT_CAP_ORIENTATION	BIT(0)
->>>   
->>>   #define TCPC_MSG_HDR_INFO		0x2e
->>>   #define TCPC_MSG_HDR_INFO_DATA_ROLE	BIT(3)
->>> @@ -198,12 +202,16 @@ struct tcpci;
->>>    *		Chip level drivers are expected to check for contaminant and call
->>>    *		tcpm_clean_port when the port is clean to put the port back into
->>>    *		toggling state.
->>> + * @set_orientation:
->>> + *		Optional; Enable setting the connector orientation
->>> + *		CONFIG_STANDARD_OUTPUT (0x18) bit0.
->>>    */
->>>   struct tcpci_data {
->>>   	struct regmap *regmap;
->>>   	unsigned char TX_BUF_BYTE_x_hidden:1;
->>>   	unsigned char auto_discharge_disconnect:1;
->>>   	unsigned char vbus_vsafe0v:1;
->>> +	unsigned char set_orientation:1;
->>>   
->>>   	int (*init)(struct tcpci *tcpci, struct tcpci_data *data);
->>>   	int (*set_vconn)(struct tcpci *tcpci, struct tcpci_data *data,
->>> -- 
->>> 2.39.2
->>>
->>>
->> -- 
->>   -----Open up your eyes, open up your mind, open up your code -------
->> / Dr. David Alan Gilbert    |       Running GNU/Linux       | Happy  \
->> \        dave @ treblig.org |                               | In Hex /
->>   \ _________________________|_____ http://www.treblig.org   |_______/
->>
+Parts of this change overlap with plans I have for this driver. I
+reworked the series a bit now, also affecting the meson driver, the
+previous submission is available at https://lore.kernel.org/linux-pwm/bf6f7=
+c6253041f60ee8f35b5c9c9e8d595332fb0.1706182805.git.u.kleine-koenig@pengutro=
+nix.de
 
+I don't see the nice benefit of this patch yet, but I assume this will
+become clearer when I check the next patch.
+
+Best regards
+Uwe
+
+--=20
+Pengutronix e.K.                           | Uwe Kleine-K=F6nig            |
+Industrial Linux Solutions                 | https://www.pengutronix.de/ |
+
+--voyfq7wqr4wfqjna
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQEzBAABCgAdFiEEP4GsaTp6HlmJrf7Tj4D7WH0S/k4FAmXBFxoACgkQj4D7WH0S
+/k72nQf+IGMFjJhnAxpe5W/SenQ9OKMDvDdK3NQZJzAbpesp+8IZOGQZRm2A+Sfi
+Gc6jnojrIEatsUjka7OYSAEeROGlXSGAyr8MPQrJ/I0F8S/vTVitzuEjWE3NfF0+
+964qrl7BXu3pZGuDbYp8/9TtW4jAzwM7xvbEpXiNvQACJwuup1L2oFtUEywgi1Fp
+bGcfi7aj8Uwwnyfn71liHDz4mAvBJU/Qeigy0V9tERQATdWeGfyq9Vy6NH9k82e8
+ARl2sPj/XSAhN7pF8uVmGUPNfsSmsedgtFwQjGlRBE9aEn4skUO15n28/8upecgT
+NMrB9pZckysIa5kQ5qMJxQXePtayJQ==
+=2Fbw
+-----END PGP SIGNATURE-----
+
+--voyfq7wqr4wfqjna--
 
