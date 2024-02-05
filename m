@@ -1,121 +1,141 @@
-Return-Path: <devicetree+bounces-38819-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-38820-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 610D584A6C2
-	for <lists+devicetree@lfdr.de>; Mon,  5 Feb 2024 22:14:41 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5E18184A6C8
+	for <lists+devicetree@lfdr.de>; Mon,  5 Feb 2024 22:15:19 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 522F71C26712
-	for <lists+devicetree@lfdr.de>; Mon,  5 Feb 2024 21:14:40 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 083411F28C41
+	for <lists+devicetree@lfdr.de>; Mon,  5 Feb 2024 21:15:19 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7686253E15;
-	Mon,  5 Feb 2024 19:18:45 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 29ECC56450;
+	Mon,  5 Feb 2024 19:19:05 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="ZdYVf65x"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="nd5zm0nc"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ej1-f49.google.com (mail-ej1-f49.google.com [209.85.218.49])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BCE6B53E0E;
-	Mon,  5 Feb 2024 19:18:43 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.49
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C008D55E6E;
+	Mon,  5 Feb 2024 19:19:04 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1707160725; cv=none; b=Aod1rkJ42yqxYKVrd0V/XxcmAO1tEJh9O+enQwpGUSWHgrmiaoTVTwfcezcffhhgh9LchHo0ilK2jmdV+zOBObzOjIsrdi7gGA2grUmhVIaH79c3/Bzq3HIFeKeUZCL2ngJkVH7zcreAU45Ynnmi2hz3d/QzDAyXPoRZ781+mpk=
+	t=1707160744; cv=none; b=PUpboPS6PN8NzhqjO2ea3n36OHcGC2hkYO3/6gX7Uv8P/bvZ3+iZyB3Q+rP4ahiza76UqL34IkuV9fkPXrtRkcLV3cTQ+OvF/bsdErngQSAqo5h+t6q0A0DIJgSLUOgAgR42Bg/A3Kie5Z4XptMrFofte4Z/BSBGgOl1atRCz9A=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1707160725; c=relaxed/simple;
-	bh=wSWjtqqjivUoa0CG3qdFK79yHE097JXhev5z205E/nc=;
-	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version:Content-Type; b=QYEy8x182B4aS34aRzWAkwgd6WfKjnx3TFfl2afUyHNJeK3jqEYNowN8RgV/NF12Nc4sqE4f/HI1DgJs8WhQhJDhE4igoNpJNcFECNoKMhoKw0z0AV0MD3Y+nP9p5wl+2kEnJn6mKZxLzPY62N6+RfuTtjzJ3jtBs0v4jed8VBM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=ZdYVf65x; arc=none smtp.client-ip=209.85.218.49
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-ej1-f49.google.com with SMTP id a640c23a62f3a-a2f22bfb4e6so641352966b.0;
-        Mon, 05 Feb 2024 11:18:43 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1707160722; x=1707765522; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=xt2AM3jB+7aIDuoutfkr3xbhDhpMe4Sp5icdbuMaEx0=;
-        b=ZdYVf65xNyEsfG38OMGHlTYNeXWCyKuVvC7S3r3PLKnry6QA8Ui/qCJwscEko2X1Ug
-         ogAxn8mRcCTgk2alC6OT6PbbZBvNLCx0txbJCgEg8OXG+cFWeRvETB/50cxDan0SLwGq
-         YMZPYPWIcU9tjq18pGtABnRMbIQF8JeTCBb7N9e8wTsdbWHqWwWK8v8PciA7BFh7N6b/
-         OFc+KC3/F0SljTz8XYeyvdBLfFmVq/n0rE+NNEQm3I7vyWZ8CGE3H/8Ej6B04cFOzwCf
-         1qZLde7qZ4ictDcf2dW5iQmuSKlU6PCO2f+SvEl/7N4p25eokBJLmmWE1ObWoDFUgyu9
-         NZmQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1707160722; x=1707765522;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=xt2AM3jB+7aIDuoutfkr3xbhDhpMe4Sp5icdbuMaEx0=;
-        b=nNOe3CO51LBCnsvBnmuKVCbFmHV92cgLjS6YVWU5TBD1dgcfZGvY7Wj7Jfx+WmA8OL
-         1r+8Y4bFswwdpOjhnfRcTkrpK7jnXv+FisilwFu7bG0eR9kvL4MDhJQb9lkqCtYRtiZM
-         UScyp8+Kfn84lTJz0nL5iDMOeYX2HnaTT0S0I84g/+WgwGFj/ubiYDQkxXSpPbktgnRk
-         /qj8giS6q8w906SOpbuiUUxIQr3Y1JPBHxWGoPLANc1LlzAz4hG3ui2bpiFQFJxvUOOj
-         JFgiWTwTtZfv0a5VOXS08rhrQTEaXACIu9babh3CxN5v/lCM9HSPtaokE7ZQwCNkJwtU
-         DswQ==
-X-Gm-Message-State: AOJu0YwWILUBwcqOlKGkeievA96gLbsCHsMTZNCTdajB+4hkJ2Pnxedt
-	jqpOnlDEwqGFk+3umHJjgI24/a4ieiE0s7t1boId2yZkXZO/azU=
-X-Google-Smtp-Source: AGHT+IG4wF8iaEnBHgtHjpUifdLRNA1cVilx4dlEMFlUS0xgA9xF8vq3w8GfGaDNY5tECLSmiWgXEQ==
-X-Received: by 2002:a17:906:a450:b0:a37:2cc5:eb5 with SMTP id cb16-20020a170906a45000b00a372cc50eb5mr275749ejb.37.1707160721668;
-        Mon, 05 Feb 2024 11:18:41 -0800 (PST)
-X-Forwarded-Encrypted: i=0; AJvYcCX+srCUJepnmGBfhQh3VwmvC4c3f+qcHLeahjCT5GqVb5uFPtVfcY3FU3IRTBCSrUf6AuiGjLjg9qG4Z0FolYncj8zbA5gevI4qNo6ESjgTM3CnIlMwzzkzHvkO2Z/gNE7+ig43kUh9OEakDIy4vFa4Rc7/qai0twLVGRZwN+2dG6Vk3wlnDxUxGMjj79iQmupjMrCIA8zmL/YUdax4eCg3rFENqZc0AxnR/6128who6sMYpc0dvitVvI+P4Io3ZuGZmQKdhXXVlewGSJq4Gj0/PZmhXintnfsuasqSpk7c876OD573L1nMHemMqKF8BlkGYG8F4URIXKSIcTh7QnvqJruUfVLIGJWSTxJ2XTRN0o0IGKpiMxtJvCTAkvuzEEDNS56+j9FZES3tiakcImRJRl56UWc/3g9QbYNX+9KlQGpvudMH3jYmoIywzHFStsG5TH2klszsi+njBgtHrcS3YcY3g6f9qNEbvgIoYyafN9YMEW2EzsVi8hZ57IERtWHryIAhRz2MkAHsNeJeXVQlwQ==
-Received: from frutis-latitude7490.lan (public-gprs393011.centertel.pl. [37.47.166.116])
-        by smtp.googlemail.com with ESMTPSA id cw9-20020a170907160900b00a36f9941d6dsm157049ejd.112.2024.02.05.11.18.39
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 05 Feb 2024 11:18:41 -0800 (PST)
-From: =?UTF-8?q?Pawe=C5=82=20Owoc?= <frut3k7@gmail.com>
-To: Rob Herring <robh+dt@kernel.org>
-Cc: =?UTF-8?q?Pawe=C5=82=20Owoc?= <frut3k7@gmail.com>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Guenter Roeck <linux@roeck-us.net>,
-	Naresh Solanki <Naresh.Solanki@9elements.com>,
-	Patrick Rudolph <patrick.rudolph@9elements.com>,
-	Peter Yin <peteryin.openbmc@gmail.com>,
-	Bjorn Helgaas <bhelgaas@google.com>,
-	Michal Simek <michal.simek@amd.com>,
-	Lakshmi Yadlapati <lakshmiy@us.ibm.com>,
-	Lukas Wunner <lukas@wunner.de>,
-	Alexander Stein <alexander.stein@ew.tq-group.com>,
-	Fabio Estevam <festevam@denx.de>,
-	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org
-Subject: [PATCH 2/2] dt-bindings: trivial-devices: Add qca,spidev
-Date: Mon,  5 Feb 2024 20:18:24 +0100
-Message-ID: <20240205191828.998783-1-frut3k7@gmail.com>
-X-Mailer: git-send-email 2.43.0
+	s=arc-20240116; t=1707160744; c=relaxed/simple;
+	bh=rZHGOctIsEvjRWCOq7z4zGR9cZjW17vqL6xAeBZUzJU=;
+	h=Message-ID:Content-Type:MIME-Version:In-Reply-To:References:
+	 Subject:From:Cc:To:Date; b=Q3UyX6um92rmo8BfBFlQ4GH845BU/Jks/kPLydeL5twa1oUNF1kjCzCCDDm/tobpJ9A42d7T/gOAP2+AnLtko/99AypQs2ZPRHextpUQT8gIHY3bkfimHj7au7hHoIypVKnQ2f5tVSpXE6Y0+Q4VwM3DMc+bppl4ux6z96yx/Mc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=nd5zm0nc; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 142AAC43394;
+	Mon,  5 Feb 2024 19:19:04 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1707160744;
+	bh=rZHGOctIsEvjRWCOq7z4zGR9cZjW17vqL6xAeBZUzJU=;
+	h=In-Reply-To:References:Subject:From:Cc:To:Date:From;
+	b=nd5zm0ncAhhGDHhu3rHoIDRrAqaTNw8VDmNRyF7/k2rLZw9pL2g1qLgkpjzHrbpuQ
+	 4SUNIrj1K57a0eufKX4WDaOJYd2LqTN0drTYV7eX2+ZohOganiub6bAHoD/0Z/4rfO
+	 NSxCZWMAqL+Jy4Ex8mh3c61U/hO+jFPZ6OEYrFIeh23wOvqhU82B8FrJDdBpk8Olsx
+	 hujarPDCw/rDZp8FFWaHI222EDYGzFFC2kkFlyU9+awEUrMos5miE9hlMxBcZtlbBM
+	 0TyUyQ+2l4P7bNKwrQF3wHuWDlJrPGsZtY5cfSAZRd3+TID5mWIq+GvelggU4mXlPr
+	 nM9bn8GEhF6pw==
+Message-ID: <89892ecd6b1b043db58258705c32b02b.sboyd@kernel.org>
+Content-Type: text/plain; charset="utf-8"
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+Content-Transfer-Encoding: quoted-printable
+In-Reply-To: <CABVgOS=A8BQ6HHpBKFqg-N10ckk2XYavaS-MPXvZ0wenrVm=1g@mail.gmail.com>
+References: <20240202195909.3458162-1-sboyd@kernel.org> <20240202195909.3458162-8-sboyd@kernel.org> <CABVgOS=A8BQ6HHpBKFqg-N10ckk2XYavaS-MPXvZ0wenrVm=1g@mail.gmail.com>
+Subject: Re: [PATCH v3 7/7] of: Add KUnit test to confirm DTB is loaded
+From: Stephen Boyd <sboyd@kernel.org>
+Cc: Rob Herring <robh+dt@kernel.org>, linux-kernel@vger.kernel.org, patches@lists.linux.dev, linux-um@lists.infradead.org, linux-arm-kernel@lists.infradead.org, kunit-dev@googlegroups.com, linux-kselftest@vger.kernel.org, devicetree@vger.kernel.org, Frank Rowand <frowand.list@gmail.com>, Brendan Higgins <brendan.higgins@linux.dev>
+To: David Gow <davidgow@google.com>
+Date: Mon, 05 Feb 2024 11:19:01 -0800
+User-Agent: alot/0.10
 
-Add Qualcomm QCA4024 to trivial devices.
+Quoting David Gow (2024-02-02 20:10:17)
+> On Sat, 3 Feb 2024 at 03:59, Stephen Boyd <sboyd@kernel.org> wrote:
+> >
+> > Add a KUnit test that confirms a DTB has been loaded, i.e. there is a
+> > root node, and that the of_have_populated_dt() API works properly.
+> >
+> > Cc: Rob Herring <robh+dt@kernel.org>
+> > Cc: Frank Rowand <frowand.list@gmail.com>
+> > Cc: David Gow <davidgow@google.com>
+> > Cc: Brendan Higgins <brendan.higgins@linux.dev>
+> > Signed-off-by: Stephen Boyd <sboyd@kernel.org>
+> > ---
+>=20
+> This looks pretty good to me test-wise, though it still fails on m68k.
+> (Everything else I tried it on works, though I've definitely not tried
+> _every_ architecture.)
+>=20
+> aarch64: PASSED
+> i386: PASSED
+> x86_64: PASSED
+> x86_64 KASAN: PASSED
+> powerpc64: PASSED
+> UML: PASSED
+> UML LLVM: PASSED
+> m68k: FAILED
+> > $ qemu-system-m68k -nodefaults -m 1024 -kernel .kunit-all-m68k/vmlinux =
+-append 'kunit.enable=3D1 console=3Dhvc0 kunit_shutdown=3Dreboot' -no-reboo=
+t -nographic -serial stdio -machine virt
+> > [11:55:05] =3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D dtb (2 subtests) =3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D
+> > [11:55:05] # dtb_root_node_found_by_path: EXPECTATION FAILED at drivers=
+/of/of_test.c:18
+> > [11:55:05] Expected np is not null, but is
+> > [11:55:05] [FAILED] dtb_root_node_found_by_path
+> > [11:55:05] # dtb_root_node_populates_of_root: EXPECTATION FAILED at dri=
+vers/of/of_test.c:28
+> > [11:55:05] Expected of_root is not null, but is
+> > [11:55:05] [FAILED] dtb_root_node_populates_of_root
+> > [11:55:05]     # module: of_test
+> > [11:55:05] # dtb: pass:0 fail:2 skip:0 total:2
+> > [11:55:05] # Totals: pass:0 fail:2 skip:0 total:2
+> > [11:55:05] =3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D [FAILED] dtb =3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D
 
-Signed-off-by: Paweł Owoc <frut3k7@gmail.com>
----
- Documentation/devicetree/bindings/trivial-devices.yaml | 2 ++
- 1 file changed, 2 insertions(+)
+Ah yeah I forgot to mention that. m68k fails because it doesn't call the
+unflatten_(and_copy)?_device_tree() function, so we don't populate a
+root node on that architecture. One solution would be to make CONFIG_OF
+unavailable on m68k. Or we have to make sure DT works on any
+architecture. Rob, what do you prefer here?
 
-diff --git a/Documentation/devicetree/bindings/trivial-devices.yaml b/Documentation/devicetree/bindings/trivial-devices.yaml
-index 79dcd92c4a43..50efbdf2a735 100644
---- a/Documentation/devicetree/bindings/trivial-devices.yaml
-+++ b/Documentation/devicetree/bindings/trivial-devices.yaml
-@@ -309,6 +309,8 @@ properties:
-           - plx,pex8648
-             # Pulsedlight LIDAR range-finding sensor
-           - pulsedlight,lidar-lite-v2
-+            # Qualcomm QCA4024 Multi-mode Bluetooth and 802.15.4 SoC
-+          - qca,spidev
-             # Renesas HS3001 Temperature and Relative Humidity Sensors
-           - renesas,hs3001
-             # Renesas ISL29501 time-of-flight sensor
--- 
-2.43.0
+>=20
+>=20
+> My only other question is about the test names: the mix of 'of' and
+> 'dtb' can be a bit confusing. As is, we have:
+> kconfig name: OF_KUNIT_TEST
+> module name: of_test
+> suite name: dtb
+> test names: all start with dtb_
+>=20
+> Given KUnit only really deals with the suite/test names directly, it's
+> not trivial to see that 'dtb.dtb_*' is controlled by OF_KUNIT_TEST and
+> in of_test if built as a module. (This is getting a bit easier now
+> that we have the 'module' attribute in the output, but still.)
+>=20
+> Would 'of_dtb' work as a suite name if it's important to keep both
+> 'of' and 'dtb'?
 
+Sure, I can add of_ prefix to the tests.
+
+>=20
+> In general, though, this test looks good to me. Particularly if m68k
+> can be fixed.
+>=20
+> Reviewed-by: David Gow <davidgow@google.com>
+>=20
+
+Thanks!
 
