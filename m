@@ -1,63 +1,63 @@
-Return-Path: <devicetree+bounces-38848-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-38849-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id ACE7484A8CE
-	for <lists+devicetree@lfdr.de>; Mon,  5 Feb 2024 23:12:27 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id C2CE684A96D
+	for <lists+devicetree@lfdr.de>; Mon,  5 Feb 2024 23:38:20 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 317011F2F8A6
-	for <lists+devicetree@lfdr.de>; Mon,  5 Feb 2024 22:12:27 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 7789B2946FC
+	for <lists+devicetree@lfdr.de>; Mon,  5 Feb 2024 22:38:19 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E95CC1DDFC;
-	Mon,  5 Feb 2024 21:53:06 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1F73D1AB81D;
+	Mon,  5 Feb 2024 22:36:42 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="ZbPz6v7D"
+	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="XeI9ind0"
 X-Original-To: devicetree@vger.kernel.org
 Received: from fllv0016.ext.ti.com (fllv0016.ext.ti.com [198.47.19.142])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1C5F21EA7D;
-	Mon,  5 Feb 2024 21:53:04 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3433C50247;
+	Mon,  5 Feb 2024 22:36:39 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.19.142
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1707169986; cv=none; b=CX0bu4ITBn5yE+cBTAkRmM/Squ3dLEFBwY0H5+MJ9BUMQgXAilwr9/g3+QP6dr1rvLSObv7TIDeLuJvha3HmNcxX70KkllWPKSTlQuxRJIx7HskFXVnJlwWopUPQhX5HtGhk3IfnKaiVynheIL+egdRUtyKTBUOazm/mVpA8myE=
+	t=1707172602; cv=none; b=E+ldIubf285g4ShxUCFt5xSw4XITsaz9js2KDcMBFaP5RYAe/yXrjHD+eqBqZ2x3fBtSd2MxPXbIMGj3UjgIzjBVJlxUxHygkY2LvqXIjddpRLgCXqUdkausd+DEtq345s/bKJbrXKabLpkV5GnbwAXpbppkko4f7Zf8HYk58cU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1707169986; c=relaxed/simple;
-	bh=PNopHqJ7BsKVIDJVHx0hCpN6klK/RINUZrRYUaJJg1U=;
+	s=arc-20240116; t=1707172602; c=relaxed/simple;
+	bh=tt7ozugdM0+nMv6MLhQrhy63+d+jvTrAnf3Hou+YSu4=;
 	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
-	 In-Reply-To:Content-Type; b=NKdv76r76yOTW4E7tHdUxHceur2zHrsHlW8fR4nfvu4NKJATyXIkO6Uvg1fuVPltsJIRSC5vq3E3FcNM+o+i5gdkhNbfL/a1QLMjotq8kAX+FlXyMHP2DBxxq7p2XEyYgkfpVInTj2NVJiYbT4nlBVteq6SzGuVS/5hKixULjRw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=ZbPz6v7D; arc=none smtp.client-ip=198.47.19.142
+	 In-Reply-To:Content-Type; b=Rhh2lQsgZPDgqljjhZz2uJ8ssGIKf4gvevH48/HeBGK4HYGVhuij5ZHx6O+6UGUnH/cIKMN8hNkbRZ8A8mcYTdT6hmBreT62V50i+Ld1W4I3z9yY/wzYqxRHkdw9YuxoHpHhdZO93Y4GO8aXSaB6hooA5XxjyjAs8Ehgs05/JhA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=XeI9ind0; arc=none smtp.client-ip=198.47.19.142
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
-Received: from fllv0034.itg.ti.com ([10.64.40.246])
-	by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id 415LqtVi049477;
-	Mon, 5 Feb 2024 15:52:55 -0600
+Received: from fllv0035.itg.ti.com ([10.64.41.0])
+	by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id 415MaQYR061025;
+	Mon, 5 Feb 2024 16:36:26 -0600
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1707169975;
-	bh=01gEcfbuvE/0tYmOwUOr4jJrPonp7KaFK31nM2E1vKk=;
+	s=ti-com-17Q1; t=1707172586;
+	bh=qJCEWE0JGQJP1FhB7y01Gf6VQtSHeOWrpmw57LMJrPU=;
 	h=Date:Subject:To:CC:References:From:In-Reply-To;
-	b=ZbPz6v7DRM9EiRH2MrErSnoj9FRCj7xd01s1WeW33zHLm353hdrCsflL5ngwW1Q/a
-	 6NZk4ueUiJgHFTIpQVDBEdqGQer4Y/+FZpst8GFQwxtbMs3P4qUVLTK3AU8zuXO8Hh
-	 FsBvY/wFIB1HwSBVs05TvqqbWAJzGtebKrRHtIzk=
-Received: from DLEE108.ent.ti.com (dlee108.ent.ti.com [157.170.170.38])
-	by fllv0034.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 415Lqt33070036
+	b=XeI9ind0BD/rDe8Zx7wsCxvZxB7cKP0ST7guT1Mwllw7ELqjJ4nRYgLxatGJmt1ym
+	 KbJ+BBsBuI1dko2o1tJm2r62EO6w1gikxBr2CnBp+M8Vl5PYinRsx+lg3OI3DaVpTL
+	 unzb7IPXWABiki0hcXW5df7X3dIaGkMJ8RzfKxyU=
+Received: from DFLE102.ent.ti.com (dfle102.ent.ti.com [10.64.6.23])
+	by fllv0035.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 415MaQG1012735
 	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-	Mon, 5 Feb 2024 15:52:55 -0600
-Received: from DLEE115.ent.ti.com (157.170.170.26) by DLEE108.ent.ti.com
- (157.170.170.38) with Microsoft SMTP Server (version=TLS1_2,
+	Mon, 5 Feb 2024 16:36:26 -0600
+Received: from DFLE112.ent.ti.com (10.64.6.33) by DFLE102.ent.ti.com
+ (10.64.6.23) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Mon, 5
- Feb 2024 15:52:55 -0600
-Received: from lelvsmtp6.itg.ti.com (10.180.75.249) by DLEE115.ent.ti.com
- (157.170.170.26) with Microsoft SMTP Server (version=TLS1_2,
+ Feb 2024 16:36:25 -0600
+Received: from lelvsmtp6.itg.ti.com (10.180.75.249) by DFLE112.ent.ti.com
+ (10.64.6.33) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
- Frontend Transport; Mon, 5 Feb 2024 15:52:55 -0600
+ Frontend Transport; Mon, 5 Feb 2024 16:36:25 -0600
 Received: from [10.249.42.149] ([10.249.42.149])
-	by lelvsmtp6.itg.ti.com (8.15.2/8.15.2) with ESMTP id 415LqsL6087347;
-	Mon, 5 Feb 2024 15:52:54 -0600
-Message-ID: <b98a3cb1-ad0d-4f7e-872e-b6381e57ec4a@ti.com>
-Date: Mon, 5 Feb 2024 15:52:54 -0600
+	by lelvsmtp6.itg.ti.com (8.15.2/8.15.2) with ESMTP id 415MaPFw020777;
+	Mon, 5 Feb 2024 16:36:25 -0600
+Message-ID: <e0f604e0-f7e1-4ef3-8370-fc9f9213170d@ti.com>
+Date: Mon, 5 Feb 2024 16:36:25 -0600
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -65,162 +65,174 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v4 1/3] media: dt-bindings: Add Imagination E5010 JPEG
- Encoder
+Subject: Re: [PATCH v7 2/5] remoteproc: k3: Move out data structures common
+ with M4 driver
 Content-Language: en-US
-To: Devarsh Thakkar <devarsht@ti.com>, <mchehab@kernel.org>,
-        <robh+dt@kernel.org>, <krzysztof.kozlowski+dt@linaro.org>,
-        <conor+dt@kernel.org>, <hverkuil-cisco@xs4all.nl>,
-        <linux-media@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>
-CC: <laurent.pinchart@ideasonboard.com>, <praneeth@ti.com>, <nm@ti.com>,
-        <vigneshr@ti.com>, <a-bhatia1@ti.com>, <j-luthra@ti.com>,
-        <b-brnich@ti.com>, <detheridge@ti.com>, <p-mantena@ti.com>,
-        <vijayp@ti.com>, <andrzej.p@collabora.com>, <nicolas@ndufresne.ca>
-References: <20240205114239.924697-1-devarsht@ti.com>
- <20240205114239.924697-2-devarsht@ti.com>
+To: Hari Nagalla <hnagalla@ti.com>, <andersson@kernel.org>,
+        <mathieu.poirier@linaro.org>, <p.zabel@pengutronix.de>,
+        <martyn.welch@collabora.com>, <nm@ti.com>, <vigneshr@ti.com>,
+        <kristo@kernel.org>, <robh+dt@kernel.org>,
+        <krzysztof.kozlowski+dt@linaro.org>, <conor+dt@kernel.org>
+CC: <linux-remoteproc@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>, <devicetree@vger.kernel.org>
+References: <20240202175538.1705-1-hnagalla@ti.com>
+ <20240202175538.1705-3-hnagalla@ti.com>
 From: Andrew Davis <afd@ti.com>
-In-Reply-To: <20240205114239.924697-2-devarsht@ti.com>
+In-Reply-To: <20240202175538.1705-3-hnagalla@ti.com>
 Content-Type: text/plain; charset="UTF-8"; format=flowed
 Content-Transfer-Encoding: 7bit
 X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 
-On 2/5/24 5:42 AM, Devarsh Thakkar wrote:
-> Add dt-bindings for Imagination E5010 JPEG Encoder [1] which is implemented
-> as stateful V4L2 M2M driver.
+On 2/2/24 11:55 AM, Hari Nagalla wrote:
+> From: Martyn Welch <martyn.welch@collabora.com>
 > 
-> The device supports baseline encoding with two different quantization
-> tables and compression ratio as demanded.
+> We will be adding the M4F driver which shares a lot of commonality
+> with the DSP driver. Common data structures are introduced here.
 > 
-> Minimum resolution supported is 64x64 and Maximum resolution supported is
-> 8192x8192.
-> 
-> [1]:  AM62A TRM (Section 7.6 is for JPEG Encoder)
-> Link: https://www.ti.com/lit/pdf/spruj16
-> 
-> Co-developed-by: David Huang <d-huang@ti.com>
-> Signed-off-by: David Huang <d-huang@ti.com>
-> Signed-off-by: Devarsh Thakkar <devarsht@ti.com>
+> Signed-off-by: Martyn Welch <martyn.welch@collabora.com>
+> Signed-off-by: Hari Nagalla <hnagalla@ti.com>
 > ---
-> V2: No change
-> V3:
-> - Add vendor specific compatible
-> - Update reg names
-> - Update clocks to 1
-> - Fix dts example with proper naming
-> V4:
->   - Use ti-specific compatible ti,am62a-jpeg-enc as secondary one
->   - Update commit message and title
->   - Remove clock-names as only single clock
+> Changes since v5:
+>   - Created a separate patch for data structures to ease review
 > 
-> Link to previous commit:
-> https://lore.kernel.org/all/20230816152210.4080779-2-devarsht@ti.com/
-> ---
->   .../bindings/media/img,e5010-jpeg-enc.yaml    | 75 +++++++++++++++++++
->   MAINTAINERS                                   |  5 ++
->   2 files changed, 80 insertions(+)
->   create mode 100644 Documentation/devicetree/bindings/media/img,e5010-jpeg-enc.yaml
+> Changes since v6:
+>   - Reworded 'split' to 'move' as the common data structures between
+>     DSP and M4 remote rpoc drivers are moved into common driver.
 > 
-> diff --git a/Documentation/devicetree/bindings/media/img,e5010-jpeg-enc.yaml b/Documentation/devicetree/bindings/media/img,e5010-jpeg-enc.yaml
-> new file mode 100644
-> index 000000000000..085020cb9e61
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/media/img,e5010-jpeg-enc.yaml
-> @@ -0,0 +1,75 @@
-> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/media/img,e5010-jpeg-enc.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: Imagination E5010 JPEG Encoder
-> +
-> +maintainers:
-> +  - Devarsh Thakkar <devarsht@ti.com>
-> +
-> +description: |
-> +  The E5010 is a JPEG encoder from Imagination Technologies implemented on
-> +  TI's AM62A SoC. It is capable of real time encoding of YUV420 and YUV422
-> +  inputs to JPEG and M-JPEG. It supports baseline JPEG Encoding up to
-> +  8Kx8K resolution.
-> +
-> +properties:
-> +  compatible:
-> +    oneOf:
-> +      - items:
-> +          - const: ti,am62a-jpeg-enc
-> +          - const: img,e5010-jpeg-enc
-> +      - const: img,e5010-jpeg-enc
-> +
-> +  reg:
-> +    items:
-> +      - description: The E5010 core register region
-> +      - description: The E5010 mmu register region
-> +
-> +  reg-names:
-> +    items:
-> +      - const: core
-> +      - const: mmu
-> +
-> +  power-domains:
-> +    maxItems: 1
-> +
-> +  resets:
-> +    maxItems: 1
 
-"resets" seems unused.
+Is this a joke? In v6 Krzysztof commented the following:
+
+> Where is the split? I see only addition here.
+> 
+> Where is the usage of this header? This is basically dead code. Don't
+> add dead code, but instead actually move the structures here! Move is
+> cut and paste, not just paste.
+
+Instead of changing the patch in any way to address this comment you
+just replaced the word 'split' to 'move' in the commit subject.. Maybe
+no one will notice this is all still dead code since you didn't say the
+word 'split' anymore..
 
 Andrew
 
+> link to v6:
+> https://lore.kernel.org/all/20230913111644.29889-3-hnagalla@ti.com/
+> 
+>   drivers/remoteproc/ti_k3_common.h | 107 ++++++++++++++++++++++++++++++
+>   1 file changed, 107 insertions(+)
+>   create mode 100644 drivers/remoteproc/ti_k3_common.h
+> 
+> diff --git a/drivers/remoteproc/ti_k3_common.h b/drivers/remoteproc/ti_k3_common.h
+> new file mode 100644
+> index 000000000000..f1bab83dd0fc
+> --- /dev/null
+> +++ b/drivers/remoteproc/ti_k3_common.h
+> @@ -0,0 +1,107 @@
+> +/* SPDX-License-Identifier: GPL-2.0-only */
+> +/*
+> + * TI K3 Remote Processor(s) driver common code
+> + *
+> + * Refactored from ti_k3_dsp_remoteproc.c.
+> + *
+> + * ti_k3_dsp_remoteproc.c:
+> + * Copyright (C) 2018-2022 Texas Instruments Incorporated - https://www.ti.com/
+> + *	Suman Anna <s-anna@ti.com>
+> + */
 > +
-> +  clocks:
-> +    maxItems: 1
+> +#ifndef REMOTEPROC_TI_K3_COMMON_H
+> +#define REMOTEPROC_TI_K3_COMMON_H
 > +
-> +  interrupts:
-> +    maxItems: 1
+> +#define KEYSTONE_RPROC_LOCAL_ADDRESS_MASK	(SZ_16M - 1)
 > +
-> +required:
-> +  - compatible
-> +  - reg
-> +  - reg-names
-> +  - interrupts
-> +  - clocks
+> +/**
+> + * struct k3_rproc_mem - internal memory structure
+> + * @cpu_addr: MPU virtual address of the memory region
+> + * @bus_addr: Bus address used to access the memory region
+> + * @dev_addr: Device address of the memory region from remote processor view
+> + * @size: Size of the memory region
+> + */
+> +struct k3_rproc_mem {
+> +	void __iomem *cpu_addr;
+> +	phys_addr_t bus_addr;
+> +	u32 dev_addr;
+> +	size_t size;
+> +};
 > +
-> +additionalProperties: false
+> +/**
+> + * struct k3_rproc_mem_data - memory definitions for a remote processor
+> + * @name: name for this memory entry
+> + * @dev_addr: device address for the memory entry
+> + */
+> +struct k3_rproc_mem_data {
+> +	const char *name;
+> +	const u32 dev_addr;
+> +};
 > +
-> +examples:
-> +  - |
-> +    #include <dt-bindings/soc/ti,sci_pm_domain.h>
-> +    #include <dt-bindings/interrupt-controller/arm-gic.h>
-> +    #include <dt-bindings/interrupt-controller/irq.h>
+> +/**
+> + * struct k3_rproc_dev_data - device data structure for a remote processor
+> + * @mems: pointer to memory definitions for a remote processor
+> + * @num_mems: number of memory regions in @mems
+> + * @boot_align_addr: boot vector address alignment granularity
+> + * @uses_lreset: flag to denote the need for local reset management
+> + */
+> +struct k3_rproc_dev_data {
+> +	const struct k3_rproc_mem_data *mems;
+> +	u32 num_mems;
+> +	u32 boot_align_addr;
+> +	bool uses_lreset;
+> +};
 > +
-> +    soc {
-> +      #address-cells = <2>;
-> +      #size-cells = <2>;
-> +      jpeg-encoder@fd20000 {
-> +          compatible = "img,e5010-jpeg-enc";
-> +          reg = <0x00 0xfd20000 0x00 0x100>,
-> +                <0x00 0xfd20200 0x00 0x200>;
-> +          reg-names = "core", "mmu";
-> +          clocks = <&k3_clks 201 0>;
-> +          power-domains = <&k3_pds 201 TI_SCI_PD_EXCLUSIVE>;
-> +          interrupts = <GIC_SPI 98 IRQ_TYPE_LEVEL_HIGH>;
-> +      };
-> +    };
-> diff --git a/MAINTAINERS b/MAINTAINERS
-> index 8999497011a2..d0f8c46d3ce9 100644
-> --- a/MAINTAINERS
-> +++ b/MAINTAINERS
-> @@ -10461,6 +10461,11 @@ S:	Maintained
->   F:	Documentation/devicetree/bindings/auxdisplay/img,ascii-lcd.yaml
->   F:	drivers/auxdisplay/img-ascii-lcd.c
->   
-> +IMGTEC JPEG ENCODER DRIVER
-> +M:	Devarsh Thakkar <devarsht@ti.com>
-> +S:	Supported
-> +F:	Documentation/devicetree/bindings/media/img,e5010-jpeg-enc.yaml
+> +/**
+> + * struct k3_rproc - k3 remote processor driver structure
+> + * @dev: cached device pointer
+> + * @rproc: remoteproc device handle
+> + * @mem: internal memory regions data
+> + * @num_mems: number of internal memory regions
+> + * @rmem: reserved memory regions data
+> + * @num_rmems: number of reserved memory regions
+> + * @reset: reset control handle
+> + * @data: pointer to device data
+> + * @tsp: TI-SCI processor control handle
+> + * @ti_sci: TI-SCI handle
+> + * @ti_sci_id: TI-SCI device identifier
+> + * @mbox: mailbox channel handle
+> + * @client: mailbox client to request the mailbox channel
+> + */
+> +struct k3_rproc {
+> +	struct device *dev;
+> +	struct rproc *rproc;
+> +	struct k3_rproc_mem *mem;
+> +	int num_mems;
+> +	struct k3_rproc_mem *sram;
+> +	int num_sram;
+> +	struct k3_rproc_mem *rmem;
+> +	int num_rmems;
+> +	struct reset_control *reset;
+> +	const struct k3_rproc_dev_data *data;
+> +	struct ti_sci_proc *tsp;
+> +	const struct ti_sci_handle *ti_sci;
+> +	u32 ti_sci_id;
+> +	struct mbox_chan *mbox;
+> +	struct mbox_client client;
+> +};
 > +
->   IMGTEC IR DECODER DRIVER
->   S:	Orphan
->   F:	drivers/media/rc/img-ir/
+> +void k3_rproc_kick(struct rproc *rproc, int vqid);
+> +int k3_rproc_reset(struct k3_rproc *kproc);
+> +int k3_rproc_release(struct k3_rproc *kproc);
+> +int k3_rproc_request_mbox(struct rproc *rproc);
+> +int k3_rproc_prepare(struct rproc *rproc);
+> +int k3_rproc_unprepare(struct rproc *rproc);
+> +struct resource_table *k3_get_loaded_rsc_table(struct rproc *rproc,
+> +					       size_t *rsc_table_sz);
+> +void *k3_rproc_da_to_va(struct rproc *rproc, u64 da, size_t len,
+> +			bool *is_iomem);
+> +int k3_rproc_of_get_memories(struct platform_device *pdev,
+> +			     struct k3_rproc *kproc);
+> +int k3_rproc_of_get_sram_memories(struct platform_device *pdev,
+> +			     struct k3_rproc *kproc);
+> +int k3_reserved_mem_init(struct k3_rproc *kproc);
+> +void k3_reserved_mem_exit(struct k3_rproc *kproc);
+> +struct ti_sci_proc *k3_rproc_of_get_tsp(struct device *dev,
+> +					const struct ti_sci_handle *sci);
+> +#endif /* REMOTEPROC_TI_K3_COMMON_H */
 
