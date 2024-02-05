@@ -1,132 +1,132 @@
-Return-Path: <devicetree+bounces-38537-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-38541-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5852B84966A
-	for <lists+devicetree@lfdr.de>; Mon,  5 Feb 2024 10:26:52 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 45F838496AB
+	for <lists+devicetree@lfdr.de>; Mon,  5 Feb 2024 10:37:20 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id EB3691F2017B
-	for <lists+devicetree@lfdr.de>; Mon,  5 Feb 2024 09:26:51 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id D903A1F23241
+	for <lists+devicetree@lfdr.de>; Mon,  5 Feb 2024 09:37:19 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E97B412B6A;
-	Mon,  5 Feb 2024 09:26:47 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E110817BB5;
+	Mon,  5 Feb 2024 09:34:41 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b="foU6YdKK"
+	dkim=pass (2048-bit key) header.d=foss.st.com header.i=@foss.st.com header.b="ELAybzml"
 X-Original-To: devicetree@vger.kernel.org
-Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [213.167.242.64])
+Received: from mx07-00178001.pphosted.com (mx07-00178001.pphosted.com [185.132.182.106])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CEDDE125B7;
-	Mon,  5 Feb 2024 09:26:45 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=213.167.242.64
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E1A2F17582;
+	Mon,  5 Feb 2024 09:34:39 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.132.182.106
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1707125207; cv=none; b=Y5ijBQmsL1Pps1NbBsW3Czt1lPidAp/reOjEYWiLSuKm7VsDqLlWF84oGdSXvN2iS0KItth9YWXWuA94VmT9RfLaj1s0FH+vaT9TBls3KYsopm9gqauIedhxHUePIDOi8NgB6m1GFwU5P+KY1VC2beuf4FWSUTncv0JOZ7XjTuo=
+	t=1707125681; cv=none; b=GtQuPqx+YEkRrH4JOsWCaWY7ht8ndhY2IPle8qu88nvl3v5tAUmtX3OCWolToj+bNMd8QAr90lOpT+5plvPqtvlPWUU0CgO/hZSIGjtO01bo5XSnUQSR8spEEJlxEPwqXQFIcn6OjtczRFncd8bWARQp9S5WU+pJgGwyjZ/Gkp8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1707125207; c=relaxed/simple;
-	bh=rHMp+3HUl38fXd92yWtNbr68AI7/ldR3UAk7XKf8c/k=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=FSsN+8shkbb90uiwqQksoNQKcHnB9bEPCGP3iWH8CjFz4BG2Ip2d9AK+XYykYAxw5cpmXxY0W2rYKLXO46Y/fAtmWl8uU2h/kQpz4YNWbS2g1A4P3n0+6Fp+YWZ2BNU2bcq6al4SLsNwE0bPhaLphSwK9AKL5OnnioeEU4HAWnI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ideasonboard.com; spf=pass smtp.mailfrom=ideasonboard.com; dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b=foU6YdKK; arc=none smtp.client-ip=213.167.242.64
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ideasonboard.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ideasonboard.com
-Received: from pendragon.ideasonboard.com (99.141-128-109.adsl-dyn.isp.belgacom.be [109.128.141.99])
-	by perceval.ideasonboard.com (Postfix) with ESMTPSA id DC5A4268;
-	Mon,  5 Feb 2024 10:25:20 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
-	s=mail; t=1707125120;
-	bh=rHMp+3HUl38fXd92yWtNbr68AI7/ldR3UAk7XKf8c/k=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=foU6YdKKlM9CYYob1znc8ZbHPp9AotBroDPzPQoXy+b/czrpSr2+sCa6G+Ae/kfVB
-	 25qzq1p6Da4NtDQRhfuNtUSKEzqrSE5R9H5IWOWjoTkOmLgq8fFGITxV+PjOybBUQL
-	 lYZr6XhiRpmFvuU+yPl8n7b2fWnhBNp6lHkspcAE=
-Date: Mon, 5 Feb 2024 11:26:44 +0200
-From: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-To: Kuninori Morimoto <kuninori.morimoto.gx@renesas.com>
-Cc: Sakari Ailus <sakari.ailus@iki.fi>,
-	Tomi Valkeinen <tomi.valkeinen@ideasonboard.com>,
-	Uwe =?utf-8?B?S2xlaW5lLUvDg8K2bmln?= <u.kleine-koenig@pengutronix.de>,
-	Daniel Vetter <daniel@ffwll.ch>, David Airlie <airlied@gmail.com>,
-	Frank Rowand <frowand.list@gmail.com>, Helge Deller <deller@gmx.de>,
-	Jaroslav Kysela <perex@perex.cz>,
-	Liam Girdwood <lgirdwood@gmail.com>,
-	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
-	Mark Brown <broonie@kernel.org>,
-	Mauro Carvalho Chehab <mchehab@kernel.org>,
-	Maxime Ripard <mripard@kernel.org>,
-	Michal Simek <michal.simek@amd.com>,
-	Rob Herring <robh+dt@kernel.org>,
-	Saravana Kannan <saravanak@google.com>,
-	Takashi Iwai <tiwai@suse.com>,
-	Thomas Zimmermann <tzimmermann@suse.de>,
-	alsa-devel@alsa-project.org, devicetree@vger.kernel.org,
-	linux-fbdev@vger.kernel.org, linux-media@vger.kernel.org,
-	linux-sound@vger.kernel.org
-Subject: Re: [PATCH v2 00/13] of: property: add port base loop
-Message-ID: <20240205092644.GK6804@pendragon.ideasonboard.com>
-References: <87fryhklhb.wl-kuninori.morimoto.gx@renesas.com>
- <20240129122736.GC8131@pendragon.ideasonboard.com>
- <ZbeoPBvGJlaJco_J@valkosipuli.retiisi.eu>
- <87zfwnirps.wl-kuninori.morimoto.gx@renesas.com>
- <Zbil22dm9x2ZudJC@valkosipuli.retiisi.eu>
- <582ede29-2df7-4f01-a03b-da59d9f56d74@ideasonboard.com>
- <Zbin6Pg6oNp0cTNO@valkosipuli.retiisi.eu>
- <87ttmu76co.wl-kuninori.morimoto.gx@renesas.com>
- <ZbtiAJklkLaXWY20@valkosipuli.retiisi.eu>
- <87ttmncw9f.wl-kuninori.morimoto.gx@renesas.com>
+	s=arc-20240116; t=1707125681; c=relaxed/simple;
+	bh=3oGCy5voRlN85Whw6ttPtaf7dpukqP5pCVoAcNGsgCY=;
+	h=From:Date:Subject:MIME-Version:Content-Type:Message-ID:References:
+	 In-Reply-To:To:CC; b=qMz2ll8qro5HoTF32Z6+liPkwcR7XQbY7rbpdczkTMvNSoi0ysEISdhBRy3hdQRlTLAsIDUNMguaCBcfpwB6x2xWlbtxzszBsJ2HhlEa9NWB9PlRXDo1+P/u/4YfOs6MJ/YH1mqRBB1MSlA45jX6577KCQz8GhgsGwEIxfUgWqg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=foss.st.com; spf=pass smtp.mailfrom=foss.st.com; dkim=pass (2048-bit key) header.d=foss.st.com header.i=@foss.st.com header.b=ELAybzml; arc=none smtp.client-ip=185.132.182.106
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=foss.st.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=foss.st.com
+Received: from pps.filterd (m0288072.ppops.net [127.0.0.1])
+	by mx07-00178001.pphosted.com (8.17.1.24/8.17.1.24) with ESMTP id 4158Jfau017463;
+	Mon, 5 Feb 2024 10:34:18 +0100
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=foss.st.com; h=
+	from:date:subject:mime-version:content-type
+	:content-transfer-encoding:message-id:references:in-reply-to:to
+	:cc; s=selector1; bh=yRD+45wPol9C5Oo/j6x0XsNhrnxr5qZGHo18uofpfm4
+	=; b=ELAybzmlTlHzCV4JWfGPhoA6fEeBBz5dIQ2Qzty0alFer7RAu2+HQvN9K4T
+	DeD5EAOGeCHcAeCSM10LwE8F610ihmtaGFKqHj6ETrmNJpbiVPwBGmJyqqii04kn
+	AklFnqOKgJtQg8n3opcJ0xLRD9AkK+71IMztqcA/kMmUVaOKX7FBqIyDEIkB3Cln
+	1AjFtO1yRGLn3oQ3e4LRQZtz8T1YzqoP/n3gp0+DYlQiwQ0DvcmsgbQ4LJj9ifAD
+	LpcAC5Tmorl0I2Rkcqj2DP9rdC2j1Ya8kxLHo1HpESw9tHLXvT84mS8K05iUyBAF
+	U7fVuw/1fGCxm4h6Zi12oIS00Pw==
+Received: from beta.dmz-eu.st.com (beta.dmz-eu.st.com [164.129.1.35])
+	by mx07-00178001.pphosted.com (PPS) with ESMTPS id 3w1eyp656b-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Mon, 05 Feb 2024 10:34:18 +0100 (CET)
+Received: from euls16034.sgp.st.com (euls16034.sgp.st.com [10.75.44.20])
+	by beta.dmz-eu.st.com (STMicroelectronics) with ESMTP id 4D7F810003B;
+	Mon,  5 Feb 2024 10:34:17 +0100 (CET)
+Received: from Webmail-eu.st.com (shfdag1node2.st.com [10.75.129.70])
+	by euls16034.sgp.st.com (STMicroelectronics) with ESMTP id 425C72AC0F0;
+	Mon,  5 Feb 2024 10:34:17 +0100 (CET)
+Received: from localhost (10.252.18.216) by SHFDAG1NODE2.st.com (10.75.129.70)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.27; Mon, 5 Feb
+ 2024 10:34:14 +0100
+From: Raphael Gallais-Pou <raphael.gallais-pou@foss.st.com>
+Date: Mon, 5 Feb 2024 10:26:50 +0100
+Subject: [PATCH 5/5] drm/panel: simple: push blanking limit on RK32FN48H
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-In-Reply-To: <87ttmncw9f.wl-kuninori.morimoto.gx@renesas.com>
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+Message-ID: <20240205-ltdc_mp13-v1-5-116d43ebba75@foss.st.com>
+References: <20240205-ltdc_mp13-v1-0-116d43ebba75@foss.st.com>
+In-Reply-To: <20240205-ltdc_mp13-v1-0-116d43ebba75@foss.st.com>
+To: Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski
+	<krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Maxime Coquelin <mcoquelin.stm32@gmail.com>,
+        Alexandre Torgue
+	<alexandre.torgue@foss.st.com>,
+        Neil Armstrong <neil.armstrong@linaro.org>,
+        Jessica Zhang <quic_jesszhan@quicinc.com>,
+        Sam Ravnborg <sam@ravnborg.org>,
+        Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+        Maxime Ripard
+	<mripard@kernel.org>,
+        Thomas Zimmermann <tzimmermann@suse.de>,
+        David Airlie
+	<airlied@gmail.com>, Daniel Vetter <daniel@ffwll.ch>
+CC: <devicetree@vger.kernel.org>, <linux-stm32@st-md-mailman.stormreply.com>,
+        <linux-arm-kernel@lists.infradead.org>, <linux-kernel@vger.kernel.org>,
+        <dri-devel@lists.freedesktop.org>,
+        Raphael Gallais-Pou
+	<raphael.gallais-pou@foss.st.com>
+X-Mailer: b4 0.12.4
+X-ClientProxiedBy: SHFCAS1NODE2.st.com (10.75.129.73) To SHFDAG1NODE2.st.com
+ (10.75.129.70)
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.272,Aquarius:18.0.1011,Hydra:6.0.619,FMLib:17.11.176.26
+ definitions=2024-02-05_04,2024-01-31_01,2023-05-22_02
 
-Hello Morimoto-san,
+Push horizontal front porch and vertical back porch blanking limit.
+This allows to get a 60 fps sharp.
 
-On Mon, Feb 05, 2024 at 05:31:25AM +0000, Kuninori Morimoto wrote:
-> 
-> Hi Sakari
-> 
-> > > Thank you for your suggestion.
-> > > But I'm not familiar with fwnode, and it seems we still need of_*,
-> > > I will keep current style (= non fwnode) in v3
-> > 
-> > The fwnode API should be kept in sync with the OF (and other firmware
-> > specific) API. Merging your set in its current form would leave fwnode API
-> > impaired. Therefore I'd very much prefer to see this set add similar fwnode
-> > APIs, too.
-> 
-> I will keep current fwnode API behavior, but I can't test it.
+Signed-off-by: Raphael Gallais-Pou <raphael.gallais-pou@foss.st.com>
+---
+ drivers/gpu/drm/panel/panel-simple.c | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
 
-The fwnode API is an abstraction layer on top of the OF or ACPI APIs,
-and allows drivers to work on both without needing to support OF and
-ACPI explicitly and separately. You should be able to convert the
-drivers you're using to the fwnode API, and it should work exactly the
-same as when using the OF-specific functions. That will give you a way
-to test the API.
-
-For instance, if you look at the drivers/media/platform/rcar_drif.c
-driver, you will see
-
-        if (!fwnode_property_read_u32(fwnode, "sync-active", &val))
-
-which, on OF platforms, is equivalent to
-
-        if (!of_property_read_u32(np, "sync-active", &val))
-
-This particular driver will never be used on an ACPI-based system, but
-drivers are still encouraged to use the fwnode API. 
-
-> Now, I'm separating the patch-set into small stages.
-> There is no problem for a while, but I think I will ask you to test it in the
-> final stage.
+diff --git a/drivers/gpu/drm/panel/panel-simple.c b/drivers/gpu/drm/panel/panel-simple.c
+index 7b286382ffb4..10b361d603be 100644
+--- a/drivers/gpu/drm/panel/panel-simple.c
++++ b/drivers/gpu/drm/panel/panel-simple.c
+@@ -3516,10 +3516,10 @@ static const struct display_timing rocktech_rk043fn48h_timing = {
+ 	.pixelclock = { 6000000, 9000000, 12000000 },
+ 	.hactive = { 480, 480, 480 },
+ 	.hback_porch = { 8, 43, 43 },
+-	.hfront_porch = { 2, 8, 8 },
++	.hfront_porch = { 2, 8, 10 },
+ 	.hsync_len = { 1, 1, 1 },
+ 	.vactive = { 272, 272, 272 },
+-	.vback_porch = { 2, 12, 12 },
++	.vback_porch = { 2, 12, 26 },
+ 	.vfront_porch = { 1, 4, 4 },
+ 	.vsync_len = { 1, 10, 10 },
+ 	.flags = DISPLAY_FLAGS_VSYNC_LOW | DISPLAY_FLAGS_HSYNC_LOW |
 
 -- 
-Regards,
+2.25.1
 
-Laurent Pinchart
 
