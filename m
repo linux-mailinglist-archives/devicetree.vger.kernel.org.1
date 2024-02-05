@@ -1,101 +1,208 @@
-Return-Path: <devicetree+bounces-38475-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-38476-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 17EFC84947B
-	for <lists+devicetree@lfdr.de>; Mon,  5 Feb 2024 08:25:54 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4708A84947D
+	for <lists+devicetree@lfdr.de>; Mon,  5 Feb 2024 08:26:44 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 7BE021F2668E
-	for <lists+devicetree@lfdr.de>; Mon,  5 Feb 2024 07:25:53 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id F077628724F
+	for <lists+devicetree@lfdr.de>; Mon,  5 Feb 2024 07:26:42 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8E2A4C2FE;
-	Mon,  5 Feb 2024 07:25:49 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id DD99E1118D;
+	Mon,  5 Feb 2024 07:26:25 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="CqUvF1k2"
+	dkim=pass (2048-bit key) header.d=tq-group.com header.i=@tq-group.com header.b="nR6YSYm4"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pl1-f169.google.com (mail-pl1-f169.google.com [209.85.214.169])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mx1.tq-group.com (mx1.tq-group.com [93.104.207.81])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2AB42D26D
-	for <devicetree@vger.kernel.org>; Mon,  5 Feb 2024 07:25:47 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.169
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 37BD810A09;
+	Mon,  5 Feb 2024 07:26:20 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=93.104.207.81
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1707117949; cv=none; b=Xx8MtH1ACFp1H8ITvHw6e9JZfyHXt+5xhYRx+tLpe+5gsRJ5e9nOMfXxns7PbqQBtoB07dUBATrU/KJuWgjYa9ErWnnAkZfSRV6H5A1YJRE8pwJDGa9LHPLHo0vEw3oeRS/rSO/IZL9Ed0isI9nfAzyJwq43og4jyArVOu8qE/k=
+	t=1707117985; cv=none; b=eqxmIvKSQ7n6rpElnLZFdabP3GBjmGtPSyj9PtJehX1iV+2rn6Xes/hyR0/N/ih5s/Cn2dNahKR8R9MQqSJWXKWRXmCGQ4R8ZpKJEloyb3/AK3jzPp6A4RZ0w3Exzvlku7IeTm3x5YBtzfEJDTEWGwC4G4tJZY+Hf9q2H6CS3fQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1707117949; c=relaxed/simple;
-	bh=zV5pMxqm0rgL1u3K4Vrjp5L4hG224rz06OLpNEs5ZA4=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=li3Q1Xey4ETw3nU60Ft/hdlCLP8lpD/Vwhcn0p3CyTEHASuKmE54iDokMMiSPkdlYMJ20ebvAhBff+XGerql/6sttJT94Gsd11i4XhSiyVIjU0PgChlzMDqcZmACvuCXGneveVBxUeSErWN1QHs80WWMnhnCOKCUV/R/uFiQDVU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=CqUvF1k2; arc=none smtp.client-ip=209.85.214.169
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-pl1-f169.google.com with SMTP id d9443c01a7336-1d944e8f367so31693495ad.0
-        for <devicetree@vger.kernel.org>; Sun, 04 Feb 2024 23:25:47 -0800 (PST)
+	s=arc-20240116; t=1707117985; c=relaxed/simple;
+	bh=Q+fwbhbMlKHhMitPR4R0nMk4ON6qTL2AQj8+Stati4c=;
+	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=HROMNQATNi/4zgY1iP2AHunN7v4yHKHyNRHWbqO8r3SoSoDS5wMju6C2xnpsxWQ6uxGPgConHNZxSn7A++WtwoBhNPLe2WnkgSWMjegJiv3uzZmsGS4lOnAYIRKNA4tpOiWsWXBdFMCOfQ+2AYDh043IVNTzJf6dO6qoWk2fw4w=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ew.tq-group.com; spf=pass smtp.mailfrom=ew.tq-group.com; dkim=pass (2048-bit key) header.d=tq-group.com header.i=@tq-group.com header.b=nR6YSYm4; arc=none smtp.client-ip=93.104.207.81
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ew.tq-group.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ew.tq-group.com
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1707117947; x=1707722747; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=Xpp2tvFEphZ4HUeN00osCoQoRRUmsBUXc6s1+B23Jqc=;
-        b=CqUvF1k2bAHr8gT2DaRKz7KvC6Xv6Pc3UbYOmNEnx/Icktn8foHlH8bzyGrUZ94KWn
-         DYB0G2x2Wygbtdh1mFuU9Dyb3NDazpL5XnGQlOi+A6GP/tfRFYpRSKppLMdtXMKKT0dd
-         C9oU+MGwKEGCk9iLqdCamhl/zGdGahqRw/5kGNU4wW8maq5+M4KoMGB5qfyqJbGKrMAl
-         gu75DtPUWOZa4kDzCgg48Rz9MY0Pa5NGitB2JFjDsfJ6SP9hCz2eq0GhDXXNgGzqVYnH
-         otUzHiHc2SZreV9VaBB4P9ysCf4H8FIIaePyWxTSOCIIyBuk9mvlUiW9PJnjKIei4aQo
-         m9Zw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1707117947; x=1707722747;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=Xpp2tvFEphZ4HUeN00osCoQoRRUmsBUXc6s1+B23Jqc=;
-        b=YZA+N7uuYvlcgmhYUE9l+4pWS1COzSXap/WREs3DR1aR5tpi+HBPcb+c/h+KIDfKPl
-         NC9I0DmTWuNsmA89l4JUYI7vmOHb/JrbQgeKfv5r94E1qq4tHVBCBcqzkQqf1sZf3z2G
-         xA0UDFW2a3hynFczF72NVLM4gh49BpukSdQO0tFo6iDByR7rqdN3iLfAIuzFVfBxtgXp
-         qYQv8yeWBcLeJug5rV6DOS08qbN08dUesLf93z5pPQ/HJOB3OGcFt4UaQrhPPmEr/hx/
-         v1s7MpYyzMJCUonoj+Cyg1hwv1fA+6lPwveiW4B7ZSOiKUg8k5pQzK+9tOBwFzHaEFZW
-         Glxg==
-X-Gm-Message-State: AOJu0YwfIyhGO/EwlqZrVhI2J/72IZ204+B9yBffnHyxHIUsl6qDTM2g
-	UCRUMKmiuG27SXztr3RLtYbyX90KFtJnYQKlC7Q32ID1pWiloa+U
-X-Google-Smtp-Source: AGHT+IFO4V+zuL8EcoD8g5g9K5ytfxfNqllxhpSScc2vdbd7MkOe24Kldywnxq3zoWldCzlHovD98w==
-X-Received: by 2002:a17:902:8f85:b0:1d9:4d3f:cbf8 with SMTP id z5-20020a1709028f8500b001d94d3fcbf8mr11057987plo.22.1707117947449;
-        Sun, 04 Feb 2024 23:25:47 -0800 (PST)
-X-Forwarded-Encrypted: i=0; AJvYcCVpxflhYeaq4C6DQIcPawyxyKrY0NX9kYOE57ySOTZfox/mT31DC+ZKJH0Xd0CaGKMxV7qyrbHIqY0lC9/HrVf5FmkBedeDUVPYHakSYuctZS231JV23BD3glTTwVz1hPauz2aL4b1jRg+bDNxfk3AEmlFgspyvW9aOobUSSOMY+yZUCotT+DCmA0/ner6ttRtu0WCdLFRDr561i/yLS+fB6eE4xXoAZ/8Ywi3pP3I5Rl2lew8MXqnxLUgmmTg+bgnV5zTsUYLqWOYzaKc+w94xeCR0uaiBex/6njstBp1HNJRPCw9FhNuaX+utoXCNqyjdCIt7CCUsEf+Mg9FmjlVngLHlqzKy+CArbAp92Vh4Wd9Grw==
-Received: from t480 (144.34.186.27.16clouds.com. [144.34.186.27])
-        by smtp.gmail.com with ESMTPSA id j3-20020a170902f24300b001d714a1530bsm5650320plc.176.2024.02.04.23.25.41
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sun, 04 Feb 2024 23:25:46 -0800 (PST)
-Date: Mon, 5 Feb 2024 15:25:42 +0800
-From: Shawn Guo <shawn.gsc@gmail.com>
-To: Alexander Stein <alexander.stein@ew.tq-group.com>
-Cc: Rob Herring <robh+dt@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>,
-	Sascha Hauer <s.hauer@pengutronix.de>,
-	Fabio Estevam <festevam@gmail.com>,
-	Pengutronix Kernel Team <kernel@pengutronix.de>,
-	NXP Linux Team <linux-imx@nxp.com>, devicetree@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org
-Subject: Re: [PATCH 1/1] ARM: dts: imx6ul: Add missing #thermal-sensor-cells
- to tempmon
-Message-ID: <ZcCNdrQPb10i4rl2@t480>
-References: <20240110081059.414156-1-alexander.stein@ew.tq-group.com>
+  d=tq-group.com; i=@tq-group.com; q=dns/txt; s=key1;
+  t=1707117982; x=1738653982;
+  h=from:to:cc:subject:date:message-id:in-reply-to:
+   references:mime-version:content-transfer-encoding;
+  bh=hE8uVdU3UQ72lERu+ClYubt3YSUrQtm3/4DPzSloaCY=;
+  b=nR6YSYm4s0JDmo0/U/NIscL9OHt1oZROgtYTq3Rm9hhPNKDztlsg9e51
+   +8XKqFIKiR04Bt+cPejvHgiYl/fRmrfPSysRjVCWQbRg+WXNNPuU/CD0H
+   Scey+RzESsVoPGGHtGd7DSKvz2LJlWQYfJ/+dGKiaOQyGroKTf03ohHmE
+   WW5LV8k/Th8RTAq8whwdcRIHcoX7FNBunpUtwSV/ETFbZDS/mqsokX2xS
+   TlVjoCD9fPM7JxtWzTYTUGmyuwz4+KAui80wEFI6WoBM1s6MFAYUp4iaq
+   XEoE9jpkc7SZGvqxTomBSf3waeENrulrj8Ii/Y/OpoROQzxobLxsoHLcQ
+   A==;
+X-IronPort-AV: E=Sophos;i="6.05,242,1701126000"; 
+   d="scan'208";a="35238211"
+Received: from vtuxmail01.tq-net.de ([10.115.0.20])
+  by mx1.tq-group.com with ESMTP; 05 Feb 2024 08:26:12 +0100
+Received: from steina-w.localnet (steina-w.tq-net.de [10.123.53.25])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
+	(No client certificate requested)
+	by vtuxmail01.tq-net.de (Postfix) with ESMTPSA id DF27C280075;
+	Mon,  5 Feb 2024 08:26:11 +0100 (CET)
+From: Alexander Stein <alexander.stein@ew.tq-group.com>
+To: linux-arm-kernel@lists.infradead.org, Adam Ford <aford173@gmail.com>
+Cc: marex@denx.de, frieder.schrempf@kontron.de, Lucas Stach <l.stach@pengutronix.de>, Adam Ford <aford173@gmail.com>, Andrzej Hajda <andrzej.hajda@intel.com>, Neil Armstrong <neil.armstrong@linaro.org>, Robert Foss <rfoss@kernel.org>, Laurent Pinchart <Laurent.pinchart@ideasonboard.com>, Jonas Karlman <jonas@kwiboo.se>, Jernej Skrabec <jernej.skrabec@gmail.com>, David Airlie <airlied@gmail.com>, Daniel Vetter <daniel@ffwll.ch>, Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>, Rob Herring <robh+dt@kernel.org>, Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>, Sascha Hauer <s.hauer@pengutronix.de>, Pengutronix Kernel Team <kernel@pengutronix.de>, Fabio Estevam <festevam@gmail.com>, NXP Linux Team <linux-imx@nxp.com>, Philipp Zabel <p.zabel@pengutronix.de>, Vinod Koul <vkoul@kernel.org>, Kishon Vijay Abraham I <kishon@kernel.org>,
+  Catalin Marinas <catalin.marinas@arm.com>, Will Deacon <will@kernel.org>, Liu Ying <victor.liu@nxp.com>, Ulf Hansson <ulf.hansson@linaro.org>, dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, linux-phy@lists.infradead.org, linux-pm@vger.kernel.org
+Subject: Re: [PATCH V8 05/12] arm64: dts: imx8mp: add HDMI power-domains
+Date: Mon, 05 Feb 2024 08:26:12 +0100
+Message-ID: <1880028.tdWV9SEqCh@steina-w>
+Organization: TQ-Systems GmbH
+In-Reply-To: <20240203165307.7806-6-aford173@gmail.com>
+References: <20240203165307.7806-1-aford173@gmail.com> <20240203165307.7806-6-aford173@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20240110081059.414156-1-alexander.stein@ew.tq-group.com>
+Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset="iso-8859-1"
 
-On Wed, Jan 10, 2024 at 09:10:59AM +0100, Alexander Stein wrote:
-> Fixes the dtbs_check warning:
->   tempmon: '#thermal-sensor-cells' is a required property
-> 
-> Signed-off-by: Alexander Stein <alexander.stein@ew.tq-group.com>
+Hi Adam,
 
-Applied, thanks!
+thanks for working on this.
+
+Am Samstag, 3. Februar 2024, 17:52:45 CET schrieb Adam Ford:
+> From: Lucas Stach <l.stach@pengutronix.de>
+>=20
+> This adds the PGC and HDMI blk-ctrl nodes providing power control for
+> HDMI subsystem peripherals.
+>=20
+> Signed-off-by: Adam Ford <aford173@gmail.com>
+> Signed-off-by: Lucas Stach <l.stach@pengutronix.de>
+> ---
+> V2:  Add missing power-domains hdcp and hrv
+> ---
+>  arch/arm64/boot/dts/freescale/imx8mp.dtsi | 38 +++++++++++++++++++++++
+>  1 file changed, 38 insertions(+)
+>=20
+> diff --git a/arch/arm64/boot/dts/freescale/imx8mp.dtsi
+> b/arch/arm64/boot/dts/freescale/imx8mp.dtsi index
+> 76c73daf546b..5c54073de615 100644
+> --- a/arch/arm64/boot/dts/freescale/imx8mp.dtsi
+> +++ b/arch/arm64/boot/dts/freescale/imx8mp.dtsi
+> @@ -836,6 +836,23 @@ pgc_mediamix: power-domain@10 {
+>  							 <&clk=20
+IMX8MP_CLK_MEDIA_APB_ROOT>;
+>  					};
+>=20
+> +					pgc_hdmimix: power-
+domains@14 {
+
+As per Documentation/devicetree/bindings/power/fsl,imx-gpcv2.yaml the node=
+=20
+should be called power-domain@.
+
+> +						#power-domain-
+cells =3D <0>;
+> +						reg =3D=20
+<IMX8MP_POWER_DOMAIN_HDMIMIX>;
+> +						clocks =3D <&clk=20
+IMX8MP_CLK_HDMI_ROOT>,
+> +							 <&clk=20
+IMX8MP_CLK_HDMI_APB>;
+> +						assigned-clocks =3D=20
+<&clk IMX8MP_CLK_HDMI_AXI>,
+> +							=09
+  <&clk IMX8MP_CLK_HDMI_APB>;
+> +						assigned-clock-
+parents =3D <&clk IMX8MP_SYS_PLL2_500M>,
+> +							=09
+	 <&clk IMX8MP_SYS_PLL1_133M>;
+> +						assigned-clock-
+rates =3D <500000000>, <133000000>;
+> +					};
+> +
+> +					pgc_hdmi_phy: power-
+domains@15 {
+
+As per Documentation/devicetree/bindings/power/fsl,imx-gpcv2.yaml the node=
+=20
+should be called power-domain@.
+
+> +						#power-domain-
+cells =3D <0>;
+> +						reg =3D=20
+<IMX8MP_POWER_DOMAIN_HDMI_PHY>;
+> +					};
+> +
+>  					pgc_mipi_phy2: power-
+domain@16 {
+>  						#power-domain-
+cells =3D <0>;
+>  						reg =3D=20
+<IMX8MP_POWER_DOMAIN_MIPI_PHY2>;
+> @@ -1361,6 +1378,27 @@ eqos: ethernet@30bf0000 {
+>  				intf_mode =3D <&gpr 0x4>;
+>  				status =3D "disabled";
+>  			};
+> +
+> +			hdmi_blk_ctrl: blk-ctrl@32fc0000 {
+> +				compatible =3D "fsl,imx8mp-hdmi-blk-
+ctrl", "syscon";
+> +				reg =3D <0x32fc0000 0x23c>;
+> +				clocks =3D <&clk IMX8MP_CLK_HDMI_APB>,
+> +					 <&clk=20
+IMX8MP_CLK_HDMI_ROOT>,
+> +					 <&clk=20
+IMX8MP_CLK_HDMI_REF_266M>,
+> +					 <&clk IMX8MP_CLK_HDMI_24M>,
+> +					 <&clk=20
+IMX8MP_CLK_HDMI_FDCC_TST>;
+> +				clock-names =3D "apb", "axi",=20
+"ref_266m", "ref_24m", "fdcc";
+> +				power-domains =3D <&pgc_hdmimix>,=20
+<&pgc_hdmimix>,
+> +						<&pgc_hdmimix>,=20
+<&pgc_hdmimix>,
+> +						<&pgc_hdmimix>,=20
+<&pgc_hdmimix>,
+> +						<&pgc_hdmimix>,=20
+<&pgc_hdmi_phy>,
+> +						<&pgc_hdmimix>,=20
+<&pgc_hdmimix>;
+> +				power-domain-names =3D "bus",=20
+"irqsteer", "lcdif",
+> +						     "pai", "pvi",=20
+"trng",
+> +						     "hdmi-tx",=20
+"hdmi-tx-phy",
+> +						     "hdcp",=20
+"hrv";
+> +				#power-domain-cells =3D <1>;
+> +			};
+>  		};
+>=20
+
+According to RM this block is part of AIPS4, so it should be below=20
+hsio_blk_ctrl.
+
+Best regards,
+Alexander
+
+>  		aips5: bus@30c00000 {
+
+
+=2D-=20
+TQ-Systems GmbH | M=FChlstra=DFe 2, Gut Delling | 82229 Seefeld, Germany
+Amtsgericht M=FCnchen, HRB 105018
+Gesch=E4ftsf=FChrer: Detlef Schneider, R=FCdiger Stahl, Stefan Schneider
+http://www.tq-group.com/
+
+
 
