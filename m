@@ -1,254 +1,144 @@
-Return-Path: <devicetree+bounces-38519-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-38522-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3941E8495FC
-	for <lists+devicetree@lfdr.de>; Mon,  5 Feb 2024 10:09:16 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 033E4849603
+	for <lists+devicetree@lfdr.de>; Mon,  5 Feb 2024 10:09:58 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id B4ACE1F217D7
-	for <lists+devicetree@lfdr.de>; Mon,  5 Feb 2024 09:09:15 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 35BF71C23B0B
+	for <lists+devicetree@lfdr.de>; Mon,  5 Feb 2024 09:09:57 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C4DEF12B69;
-	Mon,  5 Feb 2024 09:06:11 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D4D1D134AC;
+	Mon,  5 Feb 2024 09:07:45 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="t1zJ1HHA"
+	dkim=pass (2048-bit key) header.d=foss.st.com header.i=@foss.st.com header.b="pHJU0bzM"
 X-Original-To: devicetree@vger.kernel.org
-Received: from fllv0015.ext.ti.com (fllv0015.ext.ti.com [198.47.19.141])
+Received: from mx07-00178001.pphosted.com (mx07-00178001.pphosted.com [185.132.182.106])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DB2E7134BD;
-	Mon,  5 Feb 2024 09:06:09 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.19.141
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1066013FF6;
+	Mon,  5 Feb 2024 09:07:42 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.132.182.106
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1707123971; cv=none; b=eIAEewtFWLOri/POiz6v09DRCdyNIUS4l+Per2W2zw3tQCK9qKNPCFnjSGWHVZdJL3ctK/4vJZNfVGLkAOG7Kc99APrmJQbpOA0Y2lG26s2frw9LlAgzuE432XyPDEsw4Zv/6c1bxJaQLovHWWo5PdIMkoirMHozaF5UEsReRDY=
+	t=1707124065; cv=none; b=k/x2lF7tn1jwrEinz8mDZ3CNlMdaEj14sp1sU60Rv+n/TTCjld4+IvGxzyv72drTku+Wz12XV4OXS75kZDsS9ZbJssvnszQstwzNt/rHjVbDkt424e17FWntfujdMiYQajS6aMvY8IkcEtqs7lRPoGEodOnJDYBl01b1E6IFwwo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1707123971; c=relaxed/simple;
-	bh=m4yAS05F2hPOQeoaBg/yMbo1c9dD+9BGN0QiIM3aGys=;
-	h=From:To:CC:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=W2FioXbf7kKPpYDMLZw+UAS1QmtrmsJ4BrE/0GeSd6S3g0l2Q9VU3oHdiW/FxyRRpBN+B03quC0pcdQJ6qV0rwJBzwt+iZaUN8SRIPScd5RGG61CVO1c6Qpo5JIYvl6poWQDrwMFqmp1ISrEsFg5emt2f86SejaLVE9OW9e4tew=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=t1zJ1HHA; arc=none smtp.client-ip=198.47.19.141
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
-Received: from fllv0034.itg.ti.com ([10.64.40.246])
-	by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id 41595t5Y075701;
-	Mon, 5 Feb 2024 03:05:55 -0600
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1707123955;
-	bh=65G/oP3OKBkjm3MHvEPpuHLL85400HhGUG6h3yWo2ME=;
-	h=From:To:CC:Subject:Date:In-Reply-To:References;
-	b=t1zJ1HHAcMmL2u5X070/qoLa67JGUMaspZBk9fUkE398tyVr16Z4R7Jw0xMePtHGm
-	 mWR/H7gsh8hSvfWOLk5wbTd2nUJx60NnuDsd8/JWic+fGN3U8nuogUl0m/Wp1EqLwb
-	 +oTWowIQbTGa1LfXwB4kCmWlg4vuWlHFU7D2sFss=
-Received: from DLEE101.ent.ti.com (dlee101.ent.ti.com [157.170.170.31])
-	by fllv0034.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 41595tLj024149
-	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-	Mon, 5 Feb 2024 03:05:55 -0600
-Received: from DLEE113.ent.ti.com (157.170.170.24) by DLEE101.ent.ti.com
- (157.170.170.31) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Mon, 5
- Feb 2024 03:05:55 -0600
-Received: from lelvsmtp6.itg.ti.com (10.180.75.249) by DLEE113.ent.ti.com
- (157.170.170.24) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
- Frontend Transport; Mon, 5 Feb 2024 03:05:55 -0600
-Received: from fllv0122.itg.ti.com (fllv0122.itg.ti.com [10.247.120.72])
-	by lelvsmtp6.itg.ti.com (8.15.2/8.15.2) with ESMTP id 41595tor009569;
-	Mon, 5 Feb 2024 03:05:55 -0600
-Received: from localhost (danish-tpc.dhcp.ti.com [10.24.69.25])
-	by fllv0122.itg.ti.com (8.14.7/8.14.7) with ESMTP id 41595srQ032292;
-	Mon, 5 Feb 2024 03:05:55 -0600
-From: MD Danish Anwar <danishanwar@ti.com>
-To: Vignesh Raghavendra <vigneshr@ti.com>, Nishanth Menon <nm@ti.com>
-CC: Andrew Lunn <andrew@lunn.ch>, Conor Dooley <conor+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Rob Herring
-	<robh+dt@kernel.org>, <linux-kernel@vger.kernel.org>,
-        <devicetree@vger.kernel.org>, <linux-arm-kernel@lists.infradead.org>,
-        Tero
- Kristo <kristo@kernel.org>, <srk@ti.com>, <r-gunasekaran@ti.com>,
-        Roger
- Quadros <rogerq@kernel.org>,
-        MD Danish Anwar <danishanwar@ti.com>
-Subject: [PATCH v4 3/3] arm64: dts: ti: k3-am642-evm: add overlay for icssg1 2nd port
-Date: Mon, 5 Feb 2024 14:35:46 +0530
-Message-ID: <20240205090546.4000446-4-danishanwar@ti.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20240205090546.4000446-1-danishanwar@ti.com>
-References: <20240205090546.4000446-1-danishanwar@ti.com>
+	s=arc-20240116; t=1707124065; c=relaxed/simple;
+	bh=2YOgEhUuIiFlumin8VJBIXXNijzaaPtmrugZb2N6EAI=;
+	h=From:Subject:Date:Message-ID:MIME-Version:Content-Type:To:CC; b=f4vtvR172OczwZVIHEDAXmJptPpyEwlEhm5/HHNeMbxQZGqNmbXcwkQcdSerOsra/4/g8pmctuJoOokbhIdNpHBUTIOsETT2dpu9uRX1FM62Z60R2qGqQW7kU/+MFHRHbXcLWDaJ4AsX7pemEU2yguNbmkz6sqcsNPtImZvn110=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=foss.st.com; spf=pass smtp.mailfrom=foss.st.com; dkim=pass (2048-bit key) header.d=foss.st.com header.i=@foss.st.com header.b=pHJU0bzM; arc=none smtp.client-ip=185.132.182.106
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=foss.st.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=foss.st.com
+Received: from pps.filterd (m0369458.ppops.net [127.0.0.1])
+	by mx07-00178001.pphosted.com (8.17.1.24/8.17.1.24) with ESMTP id 4158VeDh018518;
+	Mon, 5 Feb 2024 10:06:56 +0100
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=foss.st.com; h=
+	from:subject:date:message-id:mime-version:content-type
+	:content-transfer-encoding:to:cc; s=selector1; bh=sMEmC6otyn/JS8
+	9YH7EOakS0M/i0zjOfH7/upYXFobg=; b=pHJU0bzMcAXda2/8o8U41N6EOwyULk
+	tHAEygcfyajowutolIYU4HxHGqhHd1zRT7NU6J7z6jnZvE6MjIfITxHr6AaWy6qg
+	Ln+N4A7s/FT3anQ15F+h+BC7e42qg0/gtmWGNtNldWLFOL4c7dfr91Wp3IqE+e0B
+	pTOOLPpzPGsqnOjxetNRZKGFK/m0NBnQQ/pfLn0c53ecYPyk8R/+bRM6OTqWt+PN
+	bPesodH9y2Ky4Rgf6jSnE31oy8fJS0bmVacHKrS2F1MfOSNoJZDxHFCTG+QbAI7s
+	VQALcWhyHDTTaDqaaX53N5DzbuwFKtDVvYDXqHChXuB7/4QHjy6N3A6g==
+Received: from beta.dmz-eu.st.com (beta.dmz-eu.st.com [164.129.1.35])
+	by mx07-00178001.pphosted.com (PPS) with ESMTPS id 3w1yx3utu4-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Mon, 05 Feb 2024 10:06:56 +0100 (CET)
+Received: from euls16034.sgp.st.com (euls16034.sgp.st.com [10.75.44.20])
+	by beta.dmz-eu.st.com (STMicroelectronics) with ESMTP id CAE1C10005C;
+	Mon,  5 Feb 2024 10:06:53 +0100 (CET)
+Received: from Webmail-eu.st.com (shfdag1node2.st.com [10.75.129.70])
+	by euls16034.sgp.st.com (STMicroelectronics) with ESMTP id BFC6729E60B;
+	Mon,  5 Feb 2024 10:06:53 +0100 (CET)
+Received: from localhost (10.252.18.216) by SHFDAG1NODE2.st.com (10.75.129.70)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.27; Mon, 5 Feb
+ 2024 10:06:52 +0100
+From: Raphael Gallais-Pou <raphael.gallais-pou@foss.st.com>
+Subject: [PATCH 0/5] Add display support for stm32mp135f-dk board
+Date: Mon, 5 Feb 2024 10:06:50 +0100
+Message-ID: <20240205-ltdc_mp13-v1-0-072d24bf1b36@foss.st.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIACqlwGUC/6tWKk4tykwtVrJSqFYqSi3LLM7MzwNyDHUUlJIzE
+ vPSU3UzU4B8JSMDIxMDQyMT3ZySlOT43AJDY12jNAuzRHMLIxMjk2QloPqCotS0zAqwWdGxtbU
+ AwNP4cVsAAAA=
+To: Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski
+	<krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Maxime Coquelin <mcoquelin.stm32@gmail.com>,
+        Alexandre Torgue
+	<alexandre.torgue@foss.st.com>,
+        Neil Armstrong <neil.armstrong@linaro.org>,
+        Jessica Zhang <quic_jesszhan@quicinc.com>,
+        Sam Ravnborg <sam@ravnborg.org>,
+        Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+        Maxime Ripard
+	<mripard@kernel.org>,
+        Thomas Zimmermann <tzimmermann@suse.de>,
+        David Airlie
+	<airlied@gmail.com>, Daniel Vetter <daniel@ffwll.ch>
+CC: <devicetree@vger.kernel.org>, <linux-stm32@st-md-mailman.stormreply.com>,
+        <linux-arm-kernel@lists.infradead.org>, <linux-kernel@vger.kernel.org>,
+        <dri-devel@lists.freedesktop.org>,
+        Raphael Gallais-Pou
+	<raphael.gallais-pou@foss.st.com>,
+        Yannick Fertre
+	<yannick.fertre@foss.st.com>
+X-Mailer: b4 0.12.4
+X-ClientProxiedBy: SHFCAS1NODE2.st.com (10.75.129.73) To SHFDAG1NODE2.st.com
+ (10.75.129.70)
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.272,Aquarius:18.0.1011,Hydra:6.0.619,FMLib:17.11.176.26
+ definitions=2024-02-05_04,2024-01-31_01,2023-05-22_02
 
-The am642-evm doesn't allow to enable 2 x CPSW3g ports and 2 x ICSSG1 ports
-all together, so base k3-am642-evm.dts enables by default 2 x CPSW3g ports
-and 1 x ICSSG1 ports, but it is also possible to support 1 x CPSW3g ports
-and 2 x ICSSG1 ports configuration.
+This serie aims to enable display support for the stm32mp135f-dk board
 
-This patch adds overlay to support 1 x CPSW3g ports and 2 x ICSSG1 ports
-configuration:
-- Renames 'mdio-mux-1' node to 'mdio-mux@1'
-- Add label name 'mdio_mux_1' for 'mdio-mux@1' node so that the node
-  'mdio-mux@1' can be disabled in the overlay using the label name.
-- disable 2nd CPSW3g port
-- update CPSW3g pinmuxes to not use RGMII2
-- disable mdio-mux-1 and define mdio-mux-2 to route ICSSG1 MDIO to the
-  shared DP83869 PHY
-- add and enable ICSSG1 RGMII2 pinmuxes
-- enable ICSSG1 MII1 port
+Those are only patches of the device-tree since the driver support has
+already been added [1].
 
-Signed-off-by: MD Danish Anwar <danishanwar@ti.com>
-Reviewed-by: Ravi Gunasekaran <r-gunasekaran@ti.com>
+It respectivelly:
+	- adds support for the display controller on stm32mp135
+	- adds pinctrl for the display controller
+	- enables panel, backlight and display controller on
+	  stm32mp135f-dk
+
+Finally it fixes the flags on the panel default mode in the
+'panel-simple' driver, allowing to override the default mode by one
+described in the device tree, and push further the blanking limit on the
+panel.
+
+[1] commit 1726cee3d053 ("drm/stm: ltdc: support of new hardware version")
+
+Signed-off-by: Raphael Gallais-Pou <raphael.gallais-pou@foss.st.com>
 ---
- arch/arm64/boot/dts/ti/Makefile               |  5 ++
- .../dts/ti/k3-am642-evm-icssg1-dualemac.dtso  | 79 +++++++++++++++++++
- arch/arm64/boot/dts/ti/k3-am642-evm.dts       |  2 +-
- 3 files changed, 85 insertions(+), 1 deletion(-)
- create mode 100644 arch/arm64/boot/dts/ti/k3-am642-evm-icssg1-dualemac.dtso
+Raphael Gallais-Pou (5):
+      ARM: dts: stm32: add LTDC support for STM32MP13x SoC family
+      ARM: dts: stm32: add LTDC pinctrl on STM32MP13x SoC family
+      ARM: dts: stm32: enable display support on stm32mp135f-dk board
+      drm/panel: simple: fix flags on RK043FN48H
+      drm/panel: simple: push blanking limit on RK32FN48H
 
-diff --git a/arch/arm64/boot/dts/ti/Makefile b/arch/arm64/boot/dts/ti/Makefile
-index 52c1dc910308..320b2fae5730 100644
---- a/arch/arm64/boot/dts/ti/Makefile
-+++ b/arch/arm64/boot/dts/ti/Makefile
-@@ -43,6 +43,7 @@ dtb-$(CONFIG_ARCH_K3) += k3-am642-sk.dtb
- dtb-$(CONFIG_ARCH_K3) += k3-am642-tqma64xxl-mbax4xxl.dtb
- dtb-$(CONFIG_ARCH_K3) += k3-am64-tqma64xxl-mbax4xxl-sdcard.dtbo
- dtb-$(CONFIG_ARCH_K3) += k3-am64-tqma64xxl-mbax4xxl-wlan.dtbo
-+dtb-$(CONFIG_ARCH_K3) += k3-am642-evm-icssg1-dualemac.dtbo
- 
- # Boards with AM65x SoC
- k3-am654-gp-evm-dtbs := k3-am654-base-board.dtb k3-am654-base-board-rocktech-rk101-panel.dtbo
-@@ -105,6 +106,8 @@ k3-am642-tqma64xxl-mbax4xxl-sdcard-dtbs := \
- 	k3-am642-tqma64xxl-mbax4xxl.dtb k3-am64-tqma64xxl-mbax4xxl-sdcard.dtbo
- k3-am642-tqma64xxl-mbax4xxl-wlan-dtbs := \
- 	k3-am642-tqma64xxl-mbax4xxl.dtb k3-am64-tqma64xxl-mbax4xxl-wlan.dtbo
-+k3-am642-evm-icssg1-dualemac-dtbs := \
-+	k3-am642-evm.dtb k3-am642-evm-icssg1-dualemac.dtbo
- k3-j721e-evm-pcie0-ep-dtbs := k3-j721e-common-proc-board.dtb \
- 	k3-j721e-evm-pcie0-ep.dtbo
- k3-j721s2-evm-pcie1-ep-dtbs := k3-j721s2-common-proc-board.dtb \
-@@ -120,6 +123,7 @@ dtb- += k3-am625-beagleplay-csi2-ov5640.dtb \
- 	k3-am62a7-sk-csi2-ov5640.dtb \
- 	k3-am642-tqma64xxl-mbax4xxl-sdcard.dtb \
- 	k3-am642-tqma64xxl-mbax4xxl-wlan.dtb \
-+	k3-am642-evm-icssg1-dualemac.dtb \
- 	k3-j721e-evm-pcie0-ep.dtb \
- 	k3-j721s2-evm-pcie1-ep.dtb
- 
-@@ -129,6 +133,7 @@ DTC_FLAGS_k3-am625-sk += -@
- DTC_FLAGS_k3-am62-lp-sk += -@
- DTC_FLAGS_k3-am62a7-sk += -@
- DTC_FLAGS_k3-am642-tqma64xxl-mbax4xxl += -@
-+DTC_FLAGS_k3-am642-evm += -@
- DTC_FLAGS_k3-am6548-iot2050-advanced-m2 += -@
- DTC_FLAGS_k3-j721e-common-proc-board += -@
- DTC_FLAGS_k3-j721s2-common-proc-board += -@
-diff --git a/arch/arm64/boot/dts/ti/k3-am642-evm-icssg1-dualemac.dtso b/arch/arm64/boot/dts/ti/k3-am642-evm-icssg1-dualemac.dtso
-new file mode 100644
-index 000000000000..f653a8eb820e
---- /dev/null
-+++ b/arch/arm64/boot/dts/ti/k3-am642-evm-icssg1-dualemac.dtso
-@@ -0,0 +1,79 @@
-+// SPDX-License-Identifier: GPL-2.0-only OR MIT
-+/**
-+ * DT overlay for enabling 2nd ICSSG1 port on AM642 EVM
-+ *
-+ * Copyright (C) 2020-2024 Texas Instruments Incorporated - https://www.ti.com/
-+ */
-+
-+/dts-v1/;
-+/plugin/;
-+
-+#include <dt-bindings/gpio/gpio.h>
-+#include "k3-pinctrl.h"
-+
-+&{/} {
-+	aliases {
-+		ethernet1 = "/icssg1-eth/ethernet-ports/port@1";
-+	};
-+
-+	mdio-mux@0 {
-+		compatible = "mdio-mux-multiplexer";
-+		mux-controls = <&mdio_mux>;
-+		mdio-parent-bus = <&icssg1_mdio>;
-+		#address-cells = <1>;
-+		#size-cells = <0>;
-+
-+		mdio@0 {
-+			reg = <0x0>;
-+			#address-cells = <1>;
-+			#size-cells = <0>;
-+
-+			icssg1_phy2: ethernet-phy@3 {
-+				reg = <3>;
-+				tx-internal-delay-ps = <250>;
-+				rx-internal-delay-ps = <2000>;
-+			};
-+		};
-+	};
-+};
-+
-+&main_pmx0 {
-+	icssg1_rgmii2_pins_default: icssg1-rgmii2-default-pins {
-+		pinctrl-single,pins = <
-+			AM64X_IOPAD(0x0108, PIN_INPUT, 2) /* (W11) PRG1_PRU1_GPO0.RGMII2_RD0 */
-+			AM64X_IOPAD(0x010c, PIN_INPUT, 2) /* (V11) PRG1_PRU1_GPO1.RGMII2_RD1 */
-+			AM64X_IOPAD(0x0110, PIN_INPUT, 2) /* (AA12) PRG1_PRU1_GPO2.RGMII2_RD2 */
-+			AM64X_IOPAD(0x0114, PIN_INPUT, 2) /* (Y12) PRG1_PRU1_GPO3.RGMII2_RD3 */
-+			AM64X_IOPAD(0x0120, PIN_INPUT, 2) /* (U11) PRG1_PRU1_GPO6.RGMII2_RXC */
-+			AM64X_IOPAD(0x0118, PIN_INPUT, 2) /* (W12) PRG1_PRU1_GPO4.RGMII2_RX_CTL */
-+			AM64X_IOPAD(0x0134, PIN_OUTPUT, 2) /* (AA10) PRG1_PRU1_GPO11.RGMII2_TD0 */
-+			AM64X_IOPAD(0x0138, PIN_OUTPUT, 2) /* (V10) PRG1_PRU1_GPO12.RGMII2_TD1 */
-+			AM64X_IOPAD(0x013c, PIN_OUTPUT, 2) /* (U10) PRG1_PRU1_GPO13.RGMII2_TD2 */
-+			AM64X_IOPAD(0x0140, PIN_OUTPUT, 2) /* (AA11) PRG1_PRU1_GPO14.RGMII2_TD3 */
-+			AM64X_IOPAD(0x0148, PIN_OUTPUT, 2) /* (Y10) PRG1_PRU1_GPO16.RGMII2_TXC */
-+			AM64X_IOPAD(0x0144, PIN_OUTPUT, 2) /* (Y11) PRG1_PRU1_GPO15.RGMII2_TX_CTL */
-+		>;
-+	};
-+};
-+
-+&cpsw3g {
-+	pinctrl-0 = <&rgmii1_pins_default>;
-+};
-+
-+&cpsw_port2 {
-+	status = "disabled";
-+};
-+
-+&mdio_mux_1 {
-+	status = "disabled";
-+};
-+
-+&icssg1_eth {
-+	pinctrl-0 = <&icssg1_rgmii1_pins_default>, <&icssg1_rgmii2_pins_default>;
-+};
-+
-+&icssg1_emac1 {
-+	status = "okay";
-+	phy-handle = <&icssg1_phy2>;
-+	phy-mode = "rgmii-id";
-+};
-diff --git a/arch/arm64/boot/dts/ti/k3-am642-evm.dts b/arch/arm64/boot/dts/ti/k3-am642-evm.dts
-index 6b97e447c486..35ed5b5aab63 100644
---- a/arch/arm64/boot/dts/ti/k3-am642-evm.dts
-+++ b/arch/arm64/boot/dts/ti/k3-am642-evm.dts
-@@ -199,7 +199,7 @@ mdio_mux: mux-controller {
- 		mux-gpios = <&exp1 12 GPIO_ACTIVE_HIGH>;
- 	};
- 
--	mdio-mux-1 {
-+	mdio_mux_1: mdio-mux@1 {
- 		compatible = "mdio-mux-multiplexer";
- 		mux-controls = <&mdio_mux>;
- 		mdio-parent-bus = <&cpsw3g_mdio>;
+ arch/arm/boot/dts/st/stm32mp13-pinctrl.dtsi | 57 +++++++++++++++++++++++++++++
+ arch/arm/boot/dts/st/stm32mp135.dtsi        | 11 ++++++
+ arch/arm/boot/dts/st/stm32mp135f-dk.dts     | 55 ++++++++++++++++++++++++++++
+ drivers/gpu/drm/panel/panel-simple.c        |  7 ++--
+ 4 files changed, 127 insertions(+), 3 deletions(-)
+---
+base-commit: 6613476e225e090cc9aad49be7fa504e290dd33d
+change-id: 20240124-ltdc_mp13-2f86a782424c
+
+Best regards,
 -- 
-2.34.1
+Raphael Gallais-Pou <raphael.gallais-pou@foss.st.com>
 
 
