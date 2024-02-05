@@ -1,160 +1,111 @@
-Return-Path: <devicetree+bounces-38487-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-38491-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3731F8494F1
-	for <lists+devicetree@lfdr.de>; Mon,  5 Feb 2024 09:00:08 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 210F78494F8
+	for <lists+devicetree@lfdr.de>; Mon,  5 Feb 2024 09:02:01 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 666491C20B33
-	for <lists+devicetree@lfdr.de>; Mon,  5 Feb 2024 08:00:07 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id D2835281CB2
+	for <lists+devicetree@lfdr.de>; Mon,  5 Feb 2024 08:01:59 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9DFC210799;
-	Mon,  5 Feb 2024 08:00:02 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A87CF10A39;
+	Mon,  5 Feb 2024 08:01:43 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="e0qntcNY"
+	dkim=pass (2048-bit key) header.d=microchip.com header.i=@microchip.com header.b="RObLZ/qU"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ej1-f52.google.com (mail-ej1-f52.google.com [209.85.218.52])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from esa.microchip.iphmx.com (esa.microchip.iphmx.com [68.232.153.233])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D48C211185
-	for <devicetree@vger.kernel.org>; Mon,  5 Feb 2024 08:00:00 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.52
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CB6BC10A34;
+	Mon,  5 Feb 2024 08:01:41 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=68.232.153.233
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1707120002; cv=none; b=ZNxms5OI95sXcvIDalBRHQMi3WPWnGgVpkuoR/j7OH1MHafxe6I55vV0BLijtlPv7pgdcCfwzlpFklbocPHSOlv/Bg2DCYkkpoYmt6yW1L7Jbww+NtBkWcMOPIFZg8kB1DO4EQS6tUmDUeN3CWs+5OZDpZqk/qIJJzhF3RZy4AM=
+	t=1707120103; cv=none; b=iFqwjdb5aDVzbuYKULEOaqgRZ7F3eckYgiOFb7hG1bwoDqQxjukKe53xfXHcFe1L7t3Ppt6hV1hhpzlmykH2yYV2nneALrvNzmV/Qivi0aMZDL78PEURj4aDbzuO8WClbYhRCAkyNFVHviiMqK5D3RfnKCNgHYLxdwkDOXS4ct8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1707120002; c=relaxed/simple;
-	bh=vA+jSCoZU+VqBlVp4U8wGurEoV22jXLUxLuUXor72P0=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=U4ycd0ciRFuGM12O+x6Vnry7rEKkmmDlrGENW3o8FPdngIIselNoaYjY/ycKWvdaHTSAEpOdhxJbb4jT8YhcHUqqO19W8ZQvKPraEYR2+O+tKoN6YHAgcR4Xv//MVbbQZwyDDFgQ1iOimjh0w/SrHk6BPhxvnAnAX59ZDfjLXjc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=e0qntcNY; arc=none smtp.client-ip=209.85.218.52
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-ej1-f52.google.com with SMTP id a640c23a62f3a-a372a3773a5so213442266b.3
-        for <devicetree@vger.kernel.org>; Mon, 05 Feb 2024 00:00:00 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1707119999; x=1707724799; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
-         :to:content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=SBmvdFZpGE6Z8DAOOutPANi96CHpIUPy6LfT77RAAyI=;
-        b=e0qntcNY+RpxhwVOepPwOF5lcenDrOwVxRt9Tu4mYoU5AGSyjJlbGJsc+YddTixknK
-         BToAxtuu/cStZAMuoFpM4Z3yFcde9DlIJp/OHzt4LBqrg+Mvj+GeMd7Zo8q37xP1ChDp
-         P38dPA3lICfOSMQ0nQASJLgVYyUAF5gI8vDSJkUbe7hG1F2w8vsztB29mKW2DSRTtni2
-         mey9fsCx1KTbns1BwiBi+Hch00djE1CcU/BYGRfyh0BUSoakaRmt+uOJDD+adQz3YNlo
-         8NiK2vjPaK3kO8WIHu4UVL6VXxwbS3Zvso7I0u+1OT6xRCqUtdPiGmNpCgkzMuSg/PEs
-         UcNA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1707119999; x=1707724799;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
-         :to:content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=SBmvdFZpGE6Z8DAOOutPANi96CHpIUPy6LfT77RAAyI=;
-        b=s3voIyyg24f6Y4N/6CtgvsroVQFyZtUg3wr6uLjUAfV5AS5FeuEqeCFPVyURb0hWnm
-         7dogcxbVfLmjb5Jpvth1vd6Kr1jUJMpwWM/45p6D6GZ+RrSeuiSmPSTcnJvDvv47BSHM
-         EnIj6/V4Db9y0SPjEFLVODGD/60P9BdsU2CWGfgR/P95BMGXI/JT/Ob6xQ1z4kqErhrz
-         7Nku9SimurTC6DyssbFDJnwMLwuv2SxVCsVJckexxpnSWaI7I47UEB/hhWJwv1+uccP1
-         RgicHht8grTyQ2xXaRy5ZnBn+VVKKug/B3Qn/BjNKeI/mfuuKUnrWEfh5GxiGBHZnlbe
-         ebhg==
-X-Gm-Message-State: AOJu0YyAT9XeTUBGyzQQgnuGbqAPxr1Po6lpb/tu+IcIdwlS5kTRcFI7
-	N8/JoHgPm0bpXkH8qwsxoObOZxgaZFRTR94XHRYEJvPpXzDcZFv57kSQGHJjcSo=
-X-Google-Smtp-Source: AGHT+IElREor+vq3eUoYH25GchFaKL3DDV7+AJarfuPfJIPGC46f5L1GJ8JnXdri8kuqTiDplA+TTg==
-X-Received: by 2002:a17:906:c450:b0:a27:5446:27d9 with SMTP id ck16-20020a170906c45000b00a27544627d9mr6141337ejb.5.1707119999038;
-        Sun, 04 Feb 2024 23:59:59 -0800 (PST)
-X-Forwarded-Encrypted: i=0; AJvYcCXIOrm0TMFKLUgnJ6e8OW7224oBeQoOoq4PNDa7y4VVjUr1PI7PC7jicflMZlm+ZMGTS6IXPD6oRrDUDrIyw0dc+9Vv4KQsZSm3Tyoq1yVoQ5sNKOcN/FbSI9lfVYwpOCm+foq5umsKxBd+G/kwzN03IWeVB4QEYnaxbbXfHeO5UCjLNh+CGj9C2CdEDqRjmfMelNG8wuKFxy1C876KXAgxDK/v6o0whqrPu7hoCo6aT1Dy8FBeO0u1yt2ucWkP/vvbivrO6VrIw+gAIsM8xEBpXk+lLlg=
-Received: from [192.168.1.20] ([178.197.222.62])
-        by smtp.gmail.com with ESMTPSA id h8-20020a1709063b4800b00a369b47996esm4023517ejf.80.2024.02.04.23.59.57
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sun, 04 Feb 2024 23:59:58 -0800 (PST)
-Message-ID: <c9420b57-5ac4-41f0-a68f-0b8aff3d0a3b@linaro.org>
-Date: Mon, 5 Feb 2024 08:59:56 +0100
+	s=arc-20240116; t=1707120103; c=relaxed/simple;
+	bh=dCiQEjZoGmS16QNi8n3ozD6UbwOROTNyLBweriIMicY=;
+	h=From:To:CC:Subject:Date:Message-ID:MIME-Version:Content-Type; b=s2qWMq+BVx+JsbymsTgNOEpL7r9EKm5IJaB//bZgVlI9DPnVa9Vgpy5aK78+92NtFIgcdNFgQy4a9xfH7LNJAkeTzD254QnHZt3giuYHg6XQMXXkC0ZcR4dhOnrPQGmIMZyfI/s6IqemROBcWZOIRVX93piT6oOZXUxcPC5lYpM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=microchip.com; spf=pass smtp.mailfrom=microchip.com; dkim=pass (2048-bit key) header.d=microchip.com header.i=@microchip.com header.b=RObLZ/qU; arc=none smtp.client-ip=68.232.153.233
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=microchip.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=microchip.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
+  t=1707120102; x=1738656102;
+  h=from:to:cc:subject:date:message-id:mime-version:
+   content-transfer-encoding;
+  bh=dCiQEjZoGmS16QNi8n3ozD6UbwOROTNyLBweriIMicY=;
+  b=RObLZ/qUfoA+Q8RIbQjt1fatz/LRfVnNGpsTSIY3lM+IVWA91Cz4veLO
+   xqGP9AjUP1cGktH0ko8y9BHCeULtNmAUl6hmRckg0ukWUK6CccoEv+Fir
+   SOXmEX8AjzqHlGSGR7zO+PAjUdc8YZrGGFUFx3FTBYD76FDtbWaxpZF6l
+   kgq8lE6NIZvOAyEykEKoI1b7hA9TaKVpbfmRu+Chz8kN6kyfVIs6cMBeT
+   8xdT6dw5K/XKTcEHPemJC9WvEOyUE7jdu028xfcCCua1rXvGm5GSNhUI6
+   5Zc9gC69BgS4VeoeQCIXSTMMCPx5HAKbQR0nsOlX7Omuxiu+OSQ5G5JsK
+   Q==;
+X-CSE-ConnectionGUID: 1JwZkZwXTgeqgwiZYsse8Q==
+X-CSE-MsgGUID: c+ObYE+uSCWH8hIRClp1+w==
+X-IronPort-AV: E=Sophos;i="6.05,242,1701154800"; 
+   d="scan'208";a="15756771"
+X-Amp-Result: SKIPPED(no attachment in message)
+Received: from unknown (HELO email.microchip.com) ([170.129.1.10])
+  by esa3.microchip.iphmx.com with ESMTP/TLS/ECDHE-RSA-AES128-GCM-SHA256; 05 Feb 2024 01:00:35 -0700
+Received: from chn-vm-ex03.mchp-main.com (10.10.85.151) by
+ chn-vm-ex01.mchp-main.com (10.10.85.143) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.35; Mon, 5 Feb 2024 01:00:32 -0700
+Received: from virtualbox.microchip.com (10.10.85.11) by
+ chn-vm-ex03.mchp-main.com (10.10.85.151) with Microsoft SMTP Server id
+ 15.1.2507.35 via Frontend Transport; Mon, 5 Feb 2024 01:00:30 -0700
+From: Mihai Sain <mihai.sain@microchip.com>
+To: <claudiu.beznea@tuxon.dev>, <robh+dt@kernel.org>,
+	<krzysztof.kozlowski+dt@linaro.org>, <conor+dt@kernel.org>,
+	<nicolas.ferre@microchip.com>, <alexandre.belloni@bootlin.com>,
+	<devicetree@vger.kernel.org>, <linux-arm-kernel@lists.infradead.org>,
+	<linux-kernel@vger.kernel.org>
+CC: Mihai Sain <mihai.sain@microchip.com>
+Subject: [PATCH v2 0/8] Add power-supply properties for sdmmc nodes on Microchip boards
+Date: Mon, 5 Feb 2024 10:00:18 +0200
+Message-ID: <20240205080027.4565-1-mihai.sain@microchip.com>
+X-Mailer: git-send-email 2.43.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH] dt-bindings: arm: qcom: drop the superfluous device
- compatibility schema
-Content-Language: en-US
-To: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
- Bjorn Andersson <andersson@kernel.org>,
- Konrad Dybcio <konrad.dybcio@linaro.org>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Conor Dooley <conor+dt@kernel.org>, Stephen Boyd <sboyd@kernel.org>
-Cc: linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org
-References: <20240204-qcom-drop-compat-v1-1-69d6cd92aa0e@linaro.org>
-From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
- xsFNBFVDQq4BEAC6KeLOfFsAvFMBsrCrJ2bCalhPv5+KQF2PS2+iwZI8BpRZoV+Bd5kWvN79
- cFgcqTTuNHjAvxtUG8pQgGTHAObYs6xeYJtjUH0ZX6ndJ33FJYf5V3yXqqjcZ30FgHzJCFUu
- JMp7PSyMPzpUXfU12yfcRYVEMQrmplNZssmYhiTeVicuOOypWugZKVLGNm0IweVCaZ/DJDIH
- gNbpvVwjcKYrx85m9cBVEBUGaQP6AT7qlVCkrf50v8bofSIyVa2xmubbAwwFA1oxoOusjPIE
- J3iadrwpFvsZjF5uHAKS+7wHLoW9hVzOnLbX6ajk5Hf8Pb1m+VH/E8bPBNNYKkfTtypTDUCj
- NYcd27tjnXfG+SDs/EXNUAIRefCyvaRG7oRYF3Ec+2RgQDRnmmjCjoQNbFrJvJkFHlPeHaeS
- BosGY+XWKydnmsfY7SSnjAzLUGAFhLd/XDVpb1Een2XucPpKvt9ORF+48gy12FA5GduRLhQU
- vK4tU7ojoem/G23PcowM1CwPurC8sAVsQb9KmwTGh7rVz3ks3w/zfGBy3+WmLg++C2Wct6nM
- Pd8/6CBVjEWqD06/RjI2AnjIq5fSEH/BIfXXfC68nMp9BZoy3So4ZsbOlBmtAPvMYX6U8VwD
- TNeBxJu5Ex0Izf1NV9CzC3nNaFUYOY8KfN01X5SExAoVTr09ewARAQABzTRLcnp5c3p0b2Yg
- S296bG93c2tpIDxrcnp5c3p0b2Yua296bG93c2tpQGxpbmFyby5vcmc+wsGUBBMBCgA+FiEE
- m9B+DgxR+NWWd7dUG5NDfTtBYpsFAmI+BxMCGwMFCRRfreEFCwkIBwIGFQoJCAsCBBYCAwEC
- HgECF4AACgkQG5NDfTtBYptgbhAAjAGunRoOTduBeC7V6GGOQMYIT5n3OuDSzG1oZyM4kyvO
- XeodvvYv49/ng473E8ZFhXfrre+c1olbr1A8pnz9vKVQs9JGVa6wwr/6ddH7/yvcaCQnHRPK
- mnXyP2BViBlyDWQ71UC3N12YCoHE2cVmfrn4JeyK/gHCvcW3hUW4i5rMd5M5WZAeiJj3rvYh
- v8WMKDJOtZFXxwaYGbvFJNDdvdTHc2x2fGaWwmXMJn2xs1ZyFAeHQvrp49mS6PBQZzcx0XL5
- cU9ZjhzOZDn6Apv45/C/lUJvPc3lo/pr5cmlOvPq1AsP6/xRXsEFX/SdvdxJ8w9KtGaxdJuf
- rpzLQ8Ht+H0lY2On1duYhmro8WglOypHy+TusYrDEry2qDNlc/bApQKtd9uqyDZ+rx8bGxyY
- qBP6bvsQx5YACI4p8R0J43tSqWwJTP/R5oPRQW2O1Ye1DEcdeyzZfifrQz58aoZrVQq+innR
- aDwu8qDB5UgmMQ7cjDSeAQABdghq7pqrA4P8lkA7qTG+aw8Z21OoAyZdUNm8NWJoQy8m4nUP
- gmeeQPRc0vjp5JkYPgTqwf08cluqO6vQuYL2YmwVBIbO7cE7LNGkPDA3RYMu+zPY9UUi/ln5
- dcKuEStFZ5eqVyqVoZ9eu3RTCGIXAHe1NcfcMT9HT0DPp3+ieTxFx6RjY3kYTGLOwU0EVUNc
- NAEQAM2StBhJERQvgPcbCzjokShn0cRA4q2SvCOvOXD+0KapXMRFE+/PZeDyfv4dEKuCqeh0
- hihSHlaxTzg3TcqUu54w2xYskG8Fq5tg3gm4kh1Gvh1LijIXX99ABA8eHxOGmLPRIBkXHqJY
- oHtCvPc6sYKNM9xbp6I4yF56xVLmHGJ61KaWKf5KKWYgA9kfHufbja7qR0c6H79LIsiYqf92
- H1HNq1WlQpu/fh4/XAAaV1axHFt/dY/2kU05tLMj8GjeQDz1fHas7augL4argt4e+jum3Nwt
- yupodQBxncKAUbzwKcDrPqUFmfRbJ7ARw8491xQHZDsP82JRj4cOJX32sBg8nO2N5OsFJOcd
- 5IE9v6qfllkZDAh1Rb1h6DFYq9dcdPAHl4zOj9EHq99/CpyccOh7SrtWDNFFknCmLpowhct9
- 5ZnlavBrDbOV0W47gO33WkXMFI4il4y1+Bv89979rVYn8aBohEgET41SpyQz7fMkcaZU+ok/
- +HYjC/qfDxT7tjKXqBQEscVODaFicsUkjheOD4BfWEcVUqa+XdUEciwG/SgNyxBZepj41oVq
- FPSVE+Ni2tNrW/e16b8mgXNngHSnbsr6pAIXZH3qFW+4TKPMGZ2rZ6zITrMip+12jgw4mGjy
- 5y06JZvA02rZT2k9aa7i9dUUFggaanI09jNGbRA/ABEBAAHCwXwEGAEKACYCGwwWIQSb0H4O
- DFH41ZZ3t1Qbk0N9O0FimwUCYDzvagUJFF+UtgAKCRAbk0N9O0Fim9JzD/0auoGtUu4mgnna
- oEEpQEOjgT7l9TVuO3Qa/SeH+E0m55y5Fjpp6ZToc481za3xAcxK/BtIX5Wn1mQ6+szfrJQ6
- 59y2io437BeuWIRjQniSxHz1kgtFECiV30yHRgOoQlzUea7FgsnuWdstgfWi6LxstswEzxLZ
- Sj1EqpXYZE4uLjh6dW292sO+j4LEqPYr53hyV4I2LPmptPE9Rb9yCTAbSUlzgjiyyjuXhcwM
- qf3lzsm02y7Ooq+ERVKiJzlvLd9tSe4jRx6Z6LMXhB21fa5DGs/tHAcUF35hSJrvMJzPT/+u
- /oVmYDFZkbLlqs2XpWaVCo2jv8+iHxZZ9FL7F6AHFzqEFdqGnJQqmEApiRqH6b4jRBOgJ+cY
- qc+rJggwMQcJL9F+oDm3wX47nr6jIsEB5ZftdybIzpMZ5V9v45lUwmdnMrSzZVgC4jRGXzsU
- EViBQt2CopXtHtYfPAO5nAkIvKSNp3jmGxZw4aTc5xoAZBLo0OV+Ezo71pg3AYvq0a3/oGRG
- KQ06ztUMRrj8eVtpImjsWCd0bDWRaaR4vqhCHvAG9iWXZu4qh3ipie2Y0oSJygcZT7H3UZxq
- fyYKiqEmRuqsvv6dcbblD8ZLkz1EVZL6djImH5zc5x8qpVxlA0A0i23v5QvN00m6G9NFF0Le
- D2GYIS41Kv4Isx2dEFh+/Q==
-In-Reply-To: <20240204-qcom-drop-compat-v1-1-69d6cd92aa0e@linaro.org>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
 
-On 04/02/2024 17:56, Dmitry Baryshkov wrote:
-> The idea impressed in the commit b32e592d3c28 ("devicetree: bindings:
-> Document qcom board compatible format") never got actually adopted. As
-> can be seen from the existing board DT files, no device actually used
-> the PMIC / foundry / version parts of the compatible string. Drop this
-> compatibility string description to avoid possible confusion and keep
-> just the generic terms and the SoC list.
-> 
-> Fixes: b32e592d3c28 ("devicetree: bindings: Document qcom board compatible format")
-> Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-> ---
->  Documentation/devicetree/bindings/arm/qcom.yaml | 51 +++----------------------
->  1 file changed, 5 insertions(+), 46 deletions(-)
-> 
+This patch series adds power-supply properties for sdmmc nodes on Microchip boards.
 
-Maybe not necessarily fix, but anyway:
+Changes in v2:
+--------------
 
-Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+* Update the commit description for each board.
+* The goal is to keep the vqmmc at 3V3 in order to use the sd high-speed mode.
 
-Best regards,
-Krzysztof
+Mihai Sain (8):
+  ARM: dts: microchip: sam9x60_curiosity: Add power-supply properties for sdmmc nodes
+  ARM: dts: microchip: sam9x60ek: Add power-supply properties for sdmmc nodes
+  ARM: dts: microchip: sama5d27_som1_ek: Add power-supply properties for sdmmc nodes
+  ARM: dts: microchip: sama5d27_wlsom1: Add power-supply property for sdmmc1 node
+  ARM: dts: microchip: sama5d27_wlsom1_ek: Add power-supply property for sdmmc0 node
+  ARM: dts: microchip: sama5d29_curiosity: Add power-supply properties for sdmmc nodes
+  ARM: dts: microchip: sama5d2_icp: Add power-supply property for sdmmc0 node
+  ARM: dts: microchip: sama5d2_xplained: Add power-supply property for sdmmc0 node
+
+ arch/arm/boot/dts/microchip/at91-sam9x60_curiosity.dts  | 4 ++++
+ arch/arm/boot/dts/microchip/at91-sam9x60ek.dts          | 4 ++++
+ arch/arm/boot/dts/microchip/at91-sama5d27_som1_ek.dts   | 4 ++++
+ arch/arm/boot/dts/microchip/at91-sama5d27_wlsom1.dtsi   | 2 ++
+ arch/arm/boot/dts/microchip/at91-sama5d27_wlsom1_ek.dts | 2 ++
+ arch/arm/boot/dts/microchip/at91-sama5d29_curiosity.dts | 4 ++++
+ arch/arm/boot/dts/microchip/at91-sama5d2_icp.dts        | 2 ++
+ arch/arm/boot/dts/microchip/at91-sama5d2_xplained.dts   | 2 ++
+ 8 files changed, 24 insertions(+)
+
+-- 
+2.43.0
 
 
