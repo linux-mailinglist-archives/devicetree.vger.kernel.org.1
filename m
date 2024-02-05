@@ -1,74 +1,74 @@
-Return-Path: <devicetree+bounces-38482-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-38483-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 506608494C3
-	for <lists+devicetree@lfdr.de>; Mon,  5 Feb 2024 08:48:45 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 506248494D9
+	for <lists+devicetree@lfdr.de>; Mon,  5 Feb 2024 08:50:47 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id CD0661F210F6
-	for <lists+devicetree@lfdr.de>; Mon,  5 Feb 2024 07:48:44 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 757BF1C21342
+	for <lists+devicetree@lfdr.de>; Mon,  5 Feb 2024 07:50:46 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2BB34107B6;
-	Mon,  5 Feb 2024 07:48:38 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1AB3F10A11;
+	Mon,  5 Feb 2024 07:50:43 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="m1uurVXk"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="kFebaLoi"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ej1-f46.google.com (mail-ej1-f46.google.com [209.85.218.46])
+Received: from mail-ed1-f54.google.com (mail-ed1-f54.google.com [209.85.208.54])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4D25910A17
-	for <devicetree@vger.kernel.org>; Mon,  5 Feb 2024 07:48:36 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.46
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 34BA210A2A
+	for <devicetree@vger.kernel.org>; Mon,  5 Feb 2024 07:50:40 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.54
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1707119318; cv=none; b=Py60bdiTu9LT0TNYJd5JsSX7J63VtBcbX4YB1Oz+dh2kiBWeH9aFqodobbe48X28Ght7fVXZXl/zuk5Lpngcln4ZsBoYrNqPctxQYZbEL9qXm0P0f5ID27cobpCvZq3BE1S6kjLS7cKZunyQ88qnlvs3D45ZqRrZf2LVvxIGyZ4=
+	t=1707119443; cv=none; b=PinDuXeVYipS/gJHL/EwNnJY6oNBZ1XYL2VLUgCGjkplLdNLHpoeILW5z5B0mFPP1a1XgJ/hH1dNGTQ7OyoQHP1AoM684BkQ1DcvcJCVFZc9FZj1tizYR/Jj8BGhgcXSPZA/VO6tI+CqvPeGWTW2dHiEmei2oAcEbt8s3AM2lVY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1707119318; c=relaxed/simple;
-	bh=wMUoCmHVAaDGpBDtO1mN7scySuWqd627SunQSIwMcXY=;
+	s=arc-20240116; t=1707119443; c=relaxed/simple;
+	bh=lwSrMmOjwPC91lnSiVSA3srT2ZRIN0dI4FdceHGIDQg=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=L77c6lA7NCeU0XB09V/EbxrS7QrcWGImr9XFHTIsWygcrG1alaQ4qxKExBDSBrAWKqxDuXjmRc3XZBI2K8TIiXp96Wc1D5XiZfjn8iCM0L9GbmgNmQcG04uti3HZc4hhzukQkOcMs4lcSDvdiqeh5r39lbESKa6tuBBeaJg+0Wg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=m1uurVXk; arc=none smtp.client-ip=209.85.218.46
+	 In-Reply-To:Content-Type; b=Gta6EZdBUyz+hD1+CwmnKaLRLsJQ5+zWc1Rgmn1bejzwxgSl7El4xRj9eWhOQvnMcYn7vwkCfhiY0fgugc5d1OfZLuA6NpS5tzDw2CWrVAcSwMzK+6Fd5YK3WxKqgx0KZgUicsa5afk1kKv0B/CR+XJXqrGSdaGWrX9uOcLmiVk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=kFebaLoi; arc=none smtp.client-ip=209.85.208.54
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-ej1-f46.google.com with SMTP id a640c23a62f3a-a370e63835cso296093666b.1
-        for <devicetree@vger.kernel.org>; Sun, 04 Feb 2024 23:48:35 -0800 (PST)
+Received: by mail-ed1-f54.google.com with SMTP id 4fb4d7f45d1cf-55cca88b6a5so4792419a12.1
+        for <devicetree@vger.kernel.org>; Sun, 04 Feb 2024 23:50:40 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1707119314; x=1707724114; darn=vger.kernel.org;
+        d=linaro.org; s=google; t=1707119439; x=1707724239; darn=vger.kernel.org;
         h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
          :to:content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=IxXfXM8mBHOyPEEJE6Y3LTPjVALjmp0awibe0Ro3Iyc=;
-        b=m1uurVXkPLPoyxDEyeq2lqPPg/t1zwpHiPOKO/ETi5VPlQrrqDgigbLBWphrdGA6ye
-         Hd7P0UkUzovjmgACPlbaQrFJYORZwMt1RdK8dnCCk9tgY9vS/8i/I3ZLC3jjiknNG6tQ
-         USEIzTCCK1G7dtO3rOTXUaVEEJI3FLBMcEAUsPMxNorANp2Q59zJlD2vQ9RklTdNI5tg
-         E+OAweGgVe2A6TKXpua00yjvlpAuQQhc2dGTnOmNXlWStXu0+lCJaE3g+DqwpIhSoVPc
-         Isw+1yTP9EWIgzPX8aRtbD0xPoSBGaOLbXuAHO8619terh6v3Z6dxusa6RAq1gkTjgN2
-         j2ww==
+        bh=zDNzB6806s+YPd0B8ZwsEbQr+QuziTaXidB2+L8zPzI=;
+        b=kFebaLoiJr4Oql3y01DbMbVqtGkU+9pjA9yM0+ZvYdzXHrhx3TzD0xnJskATmMdi2K
+         8iRVkOkjEVzBFDQW6MFMfGCjjFQBCHYhAdIqDPmabtulXLcXnHLY8x9gr4ZJ7d9mHol2
+         D9j2rYTwoBB8SQBlPQzX6SHGxmqbNw/SJACLXyyu5NiXhnk1V7ZlFzIg+an99CgXYDT4
+         YvU11EClMg8SP+U7edKIt/4d9+2sOp4zZGm1/xdx9oUezSaKpaMcyu4VbQq+XFWLL5mg
+         OFXO21cOPCt+Ye5rKrwM5zjBG84TMEgqFtSnxPt4nN9MA67GWavx1v5+CBPKl+eKQeOf
+         vJ3g==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1707119314; x=1707724114;
+        d=1e100.net; s=20230601; t=1707119439; x=1707724239;
         h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
          :to:content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=IxXfXM8mBHOyPEEJE6Y3LTPjVALjmp0awibe0Ro3Iyc=;
-        b=ctvUZVx4BaouOWFYYHQLfZzKsbXVCj0A/OEPzRy99nOTzt/vhbqVwQctFKfZMwQPfd
-         gQrQfVN4awD7DCNqrpKpcAzpIN7HPEfwAukI1R9kI20IZ1lVvY1JC6A+pRPsPnaW12jU
-         MPrC7Rfz1J9UmIaiT4/xOmVXW+h2PGb6ZjjsBH/vLqaDpckaV34CvuRdszcmZE+fC45P
-         D0YLF9a46WIWDREpDym0KuzUJPWhjU7ezU5RvWe7O4ctMIbir0jYRv2sIxI7cHyuc+2G
-         ERTNkrcNj4G22WU0RJp4XuQyKpZ1Jfn3MCU3S1E02Pk6mUdJoKh4EjyES5Glw7FVduc4
-         W2zQ==
-X-Gm-Message-State: AOJu0YxwHAVwwX2CQYCdGs7/MtUF9sUxwBhK+aW6M3wzf09CML7boI/A
-	ugeow4v4Kf0irGv5NhedCrbImOTnJDbw4UubM237wU7DaOxWk55ZzY0usnFwoaM=
-X-Google-Smtp-Source: AGHT+IGlBUMGQI5I4F6oHplktugB49kdqMcBdbQmnt8gsyL4F/vKpp0sd9GKbghrIKZLdKcwMXCLNQ==
-X-Received: by 2002:a17:906:32d5:b0:a37:1639:b879 with SMTP id k21-20020a17090632d500b00a371639b879mr4766336ejk.3.1707119314386;
-        Sun, 04 Feb 2024 23:48:34 -0800 (PST)
-X-Forwarded-Encrypted: i=0; AJvYcCWWBCluFlbbwGHrl442Xwlx1yqDnaZzEr22oL8y1OVaRZNMFQgMqQI209VodyjP3vpBTYk3tH78bz1wDBT6cUG+itE2SP0iGmjgyxOqyQWLivENqe2sFapmEvzoepyOxew4TTAhIIGXgAmrhWiczA8srPU7RewYYgsmtssapjzpu/B1O++2/uOaFhhEUR6FPyajVMWo85hLc8THrtE32zqSL/PTBF+riUH1iCMbZJ4Bh+3rndoOzwxQesH4FTIjM+KtrX1fT/d81g3AFQ5H5ojisiFvY+srJfYgVVHDn5M=
+        bh=zDNzB6806s+YPd0B8ZwsEbQr+QuziTaXidB2+L8zPzI=;
+        b=em/OTvYBXZSkFIoWDWffsvXl+g4j7MXZ2tQ/FJY4LQaO425o7ifgEyfMM/NO1H4x/J
+         lm4yXhwDPeOrMjJ4Z2Jsv5/nRfOm8Zv9cExhmo43Z/9uOOQEeo9OPwjWOCa46v/FltGk
+         cmT699rzk1jokNBOtGFXOSXMNMFaTFX7Z7tHW9IdGbjiM7GD39jIHoiZQVRRa+F59WMB
+         79gFOf/UmzIIuxNIM7VkQYk0h3tyhyv6nj2eoj8a9qLNLFMKCu3Kry4wzM53oSQXThJl
+         sSsPnNktsWmCzk+La+XqaAA2FzNk6HrQ0VmHxZ06a4tcdfi0gHpQzyAU2Fku8LHcKEQD
+         r4hw==
+X-Gm-Message-State: AOJu0YxSxrN/UKHxJ2ix9pxLwTMDBa3EDTibMzfQEGAoJMRAaRjDh62j
+	wiL8FLDu0cJfi5ZFIOZSjSPRhyc5Vd9gteW/seJ8J/yt6jMw1r2rIPxXV8hUVnM=
+X-Google-Smtp-Source: AGHT+IETFUwkrooLbqPV1xj26+22aHKZj+7oPOQZOa0xZ6l0cwfd4wsfFx3gdDkOduyP4fg+r5H+9Q==
+X-Received: by 2002:aa7:d58b:0:b0:55f:832f:97da with SMTP id r11-20020aa7d58b000000b0055f832f97damr4288530edq.23.1707119439428;
+        Sun, 04 Feb 2024 23:50:39 -0800 (PST)
+X-Forwarded-Encrypted: i=0; AJvYcCWGrFjitMKrsjm8vRNScZq1+w9A4UpzIq5DZK7ZRYUP1G2fwkiu3jyzQ8KN0tKdo99VGydvxDaBSfX3+SDvcTlmBvT7skZsZZIB2YzIvx661cRVB45QEidyRrDup1o2YQ5YIa+SOL9H40i7n5jvGRH7ExSEVrt8JuX3P5AEjMf7sIpAUpxAdQMl8qYMwuJPfbB9U8BYDTJR4Tj2kUKqUzIAWYiJRxFe/ZkVBIhpiqD99fcrxMwCCbcESgsjNLarfc0xwb3YF7iArL4c73bWgsYnNVo89+AFyJ+eY/OJn4Q5YjcgSNSOQ2jffFM7ckVRcWE/WbP7UJxNciDc5TcH91D+DnCtr0EvQ0mlqyTFdEd0wdGrizM/7kf+gZ6lkhFo9hcSSk/vTtLCSIfemoXb2vPHXZ1HjFqwspK0+yO41dtipRJr1mQ8g43ItcxlxeuR/A62nksvy5FXQfcAk1ONzJkGEDjjKsdDWc+R9LIc//g7EJv3
 Received: from [192.168.1.20] ([178.197.222.62])
-        by smtp.gmail.com with ESMTPSA id vw4-20020a170907a70400b00a353d1a19a9sm4001879ejc.191.2024.02.04.23.48.32
+        by smtp.gmail.com with ESMTPSA id i23-20020a056402055700b0055fba4996d9sm3610777edx.71.2024.02.04.23.50.36
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sun, 04 Feb 2024 23:48:33 -0800 (PST)
-Message-ID: <e7ac77fe-b722-4b88-911c-c8300776370e@linaro.org>
-Date: Mon, 5 Feb 2024 08:48:31 +0100
+        Sun, 04 Feb 2024 23:50:38 -0800 (PST)
+Message-ID: <454616d4-19f6-408c-ba12-fa48cc04bce6@linaro.org>
+Date: Mon, 5 Feb 2024 08:50:36 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -76,15 +76,29 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v3 2/2] dt-bindings: power: supply: st,stc3117
+Subject: Re: [EXT] Re: [PATCH v5 4/8] dt-bindings: usb: ci-hdrc-usb2: add
+ restrictions for reg, interrupts, clock and clock-names properties
 Content-Language: en-US
-To: Bhavin Sharma <bhavin.sharma@siliconsignals.io>, sre@kernel.org,
- robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org
-Cc: Hardevsinh Palaniya <hardevsinh.palaniya@siliconsignals.io>,
- linux-pm@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org
-References: <20240205051321.4079933-1-bhavin.sharma@siliconsignals.io>
- <20240205051321.4079933-2-bhavin.sharma@siliconsignals.io>
+To: Xu Yang <xu.yang_2@nxp.com>,
+ "gregkh@linuxfoundation.org" <gregkh@linuxfoundation.org>,
+ "robh+dt@kernel.org" <robh+dt@kernel.org>,
+ "krzysztof.kozlowski+dt@linaro.org" <krzysztof.kozlowski+dt@linaro.org>,
+ "conor+dt@kernel.org" <conor+dt@kernel.org>,
+ "shawnguo@kernel.org" <shawnguo@kernel.org>,
+ "s.hauer@pengutronix.de" <s.hauer@pengutronix.de>,
+ "kernel@pengutronix.de" <kernel@pengutronix.de>,
+ "festevam@gmail.com" <festevam@gmail.com>,
+ "peter.chen@kernel.org" <peter.chen@kernel.org>
+Cc: dl-linux-imx <linux-imx@nxp.com>, Jun Li <jun.li@nxp.com>,
+ "linux-usb@vger.kernel.org" <linux-usb@vger.kernel.org>,
+ "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+ "linux-arm-kernel@lists.infradead.org" <linux-arm-kernel@lists.infradead.org>
+References: <20240131114324.3722428-1-xu.yang_2@nxp.com>
+ <20240131114324.3722428-4-xu.yang_2@nxp.com>
+ <a0134089-a283-488b-8d7f-3f59dd938b60@linaro.org>
+ <DU2PR04MB88221602EB986D2C2A5BBF8D8C422@DU2PR04MB8822.eurprd04.prod.outlook.com>
+ <bcd733ab-ea9e-4ef0-a521-8e6c2023479f@linaro.org>
+ <DU2PR04MB88221841F66A22B5A5DE47258C402@DU2PR04MB8822.eurprd04.prod.outlook.com>
 From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  xsFNBFVDQq4BEAC6KeLOfFsAvFMBsrCrJ2bCalhPv5+KQF2PS2+iwZI8BpRZoV+Bd5kWvN79
@@ -130,112 +144,80 @@ Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  KQ06ztUMRrj8eVtpImjsWCd0bDWRaaR4vqhCHvAG9iWXZu4qh3ipie2Y0oSJygcZT7H3UZxq
  fyYKiqEmRuqsvv6dcbblD8ZLkz1EVZL6djImH5zc5x8qpVxlA0A0i23v5QvN00m6G9NFF0Le
  D2GYIS41Kv4Isx2dEFh+/Q==
-In-Reply-To: <20240205051321.4079933-2-bhavin.sharma@siliconsignals.io>
+In-Reply-To: <DU2PR04MB88221841F66A22B5A5DE47258C402@DU2PR04MB8822.eurprd04.prod.outlook.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 05/02/2024 06:13, Bhavin Sharma wrote:
-> Signed-off-by: Bhavin Sharma <bhavin.sharma@siliconsignals.io>
-
-You cannot have empty commits.
-
-Subject: It's empty? What happened there?
-
-> ---
-> Changelogs :
+On 04/02/2024 07:56, Xu Yang wrote:
 > 
-> v2 -> v3
-> - Resolved DTC warnings and errors
-> - Formatted the changelogs
-> - Added monitored battery properties
-> - Replaced 'additionalProperties' with 'unevaluatedProperties'
-> - Replaced '&i2c6' with 'i2c'
+>>
+>> On 02/02/2024 10:10, Xu Yang wrote:
+>>> Hi Krzysztof,
+>>>
+>>>>
+>>>> On 31/01/2024 12:43, Xu Yang wrote:
+>>>>> Change reg, interrupts, clock and clock-names as common properties and add
+>>>>> restrictions on them for different compatibles.
+>>>>>
+>>>>> Signed-off-by: Xu Yang <xu.yang_2@nxp.com>
+>>>>>
+>>>>> ---
+>>>>> Changes in v4:
+>>>>>  - new patch since v3's discussion
+>>>>>  - split the reg, interrupts, clock and clock-names properties into
+>>>>>    common part and device-specific
+>>>>> Changes in v5:
+>>>>>  - keep common property unchanged
+>>>>>  - make if-then more readable
+>>>>>  - remove non imx part
+>>>>> ---
+>>>>>  .../devicetree/bindings/usb/ci-hdrc-usb2.yaml | 118 ++++++++++++++++++
+>>>>>  1 file changed, 118 insertions(+)
+>>>>>
+>>>>> diff --git a/Documentation/devicetree/bindings/usb/ci-hdrc-usb2.yaml b/Documentation/devicetree/bindings/usb/ci-
+>>>> hdrc-usb2.yaml
+>>>>> index 3b56e0edb1c6..6ad3582051b8 100644
+>>>>> --- a/Documentation/devicetree/bindings/usb/ci-hdrc-usb2.yaml
+>>>>> +++ b/Documentation/devicetree/bindings/usb/ci-hdrc-usb2.yaml
+>>>>> @@ -412,6 +412,124 @@ allOf:
+>>>>>          samsung,picophy-pre-emp-curr-control: false
+>>>>>          samsung,picophy-dc-vol-level-adjust: false
+>>>>>
+>>>>> +  - if:
+>>>>> +      properties:
+>>>>> +        compatible:
+>>>>> +          const: fsl,imx27-usb
+>>>>> +    then:
+>>>>> +      properties:
+>>>>> +        clocks:
+>>>>> +          minItems: 3
+>>>>> +          maxItems: 3
+>>>>> +        clock-names:
+>>>>> +          minItems: 3
+>>>>> +          maxItems: 3
+>>>>> +          items:
+>>>>> +            anyOf:
+>>>>> +              - const: ipg
+>>>>> +              - const: ahb
+>>>>> +              - const: per
+>>>>
+>>>> This would be just: enum: [ipg, ahb, per], but in both cases I question
+>>>> why the order should be flexible? Nothing in commit msg explains it.
+>>>
+>>> The driver will get the clock by clock-name, then the order should not
+>>> matter. However, these three clock-names should be present at the same
+>>> time. I should use enum then.
+>>
+>> Forgot to answer to this.
+>>
+>> Which driver? U-boot? OpenBSD? The one in my custom Linux kernel fork
+>> (open-source and published on github)? Did you check all of them?
 > 
-> v1 -> v2
-> - String value is redundantly quoted with any quotes (quoted-strings)
-> - Found character '\t' that cannot start any token
-> ---
+> I mean below driver in linux kernel tree.
+> https://git.kernel.org/pub/scm/linux/kernel/git/stable/linux-stable-rc.git/tree/drivers/usb/chipidea/ci_hdrc_imx.c?h=linux-6.1.y#n191
 
-Please run scripts/checkpatch.pl and fix reported warnings. Some
-warnings can be ignored, but the code here looks like it needs a fix.
-Feel free to get in touch if the warning is not clear.
-
->  .../bindings/power/supply/st,stc3117.yaml     | 49 +++++++++++++++++++
->  1 file changed, 49 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/power/supply/st,stc3117.yaml
-> 
-> diff --git a/Documentation/devicetree/bindings/power/supply/st,stc3117.yaml b/Documentation/devicetree/bindings/power/supply/st,stc3117.yaml
-> new file mode 100644
-> index 000000000000..9ab0b0d6b30e
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/power/supply/st,stc3117.yaml
-> @@ -0,0 +1,49 @@
-> +# SPDX-License-Identifier: GPL-2.0-only
-
-Dual license, just like checkpatch asks.
-
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/power/supply/st,stc3117.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: STMicroelectronics STC3117 Fuel Gauge Unit Power Supply
-> +
-> +maintainers:
-> +  - Bhavin Sharma <bhavin.sharma@siliconsignals.io>
-> +  - Hardevsinh Palaniya <hardevsinh.palaniya@siliconsignals.io>
-> +
-> +allOf:
-> +  - $ref: power-supply.yaml#
-> +
-> +properties:
-> +  compatible:
-> +    enum:
-> +      - st,stc3117
-> +
-> +  reg:
-> +    maxItems: 1
-
-Are you going to answer my questions or just ignore them?
-
-> +
-> +required:
-> +  - compatible
-> +  - reg
-> +
-> +unevaluatedProperties: false
-> +
-> +examples:
-> +  - |
-> +    bat: battery {
-
-Drop node
-
-
-> +       compatible = "simple-battery";
-> +       device-chemistry = "lithium-ion-polymer";
-> +       energy-full-design-microwatt-hours = <16800000>;
-> +       charge-full-design-microamp-hours = <4000000>;
-> +       voltage-min-design-microvolt = <3000000>;
-> +    };
-> +
-> +    i2c {
-> +      #address-cells = <1>;
-> +      #size-cells = <0>;
-> +
-> +      stc3117@70 {
-
-Still wrong name.
-
-This is a friendly reminder during the review process.
-
-It seems my or other reviewer's previous comments were not fully
-addressed. Maybe the feedback got lost between the quotes, maybe you
-just forgot to apply it. Please go back to the previous discussion and
-either implement all requested changes or keep discussing them.
-
-Thank you.
-
+What about others? How about driver in other upstream projects? My
+comment should make you think...
 
 Best regards,
 Krzysztof
