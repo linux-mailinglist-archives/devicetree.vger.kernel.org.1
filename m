@@ -1,443 +1,121 @@
-Return-Path: <devicetree+bounces-38588-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-38589-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 489CE849969
-	for <lists+devicetree@lfdr.de>; Mon,  5 Feb 2024 13:00:24 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 62FD084996D
+	for <lists+devicetree@lfdr.de>; Mon,  5 Feb 2024 13:00:57 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 6DB7B1C219EB
-	for <lists+devicetree@lfdr.de>; Mon,  5 Feb 2024 12:00:23 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 16E171F23351
+	for <lists+devicetree@lfdr.de>; Mon,  5 Feb 2024 12:00:57 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6935C1BDD9;
-	Mon,  5 Feb 2024 11:58:35 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 78B51199B8;
+	Mon,  5 Feb 2024 11:59:03 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="Rfe1SEWm"
+	dkim=pass (2048-bit key) header.d=gmx.net header.i=wahrenst@gmx.net header.b="VX2X4zNz"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+Received: from mout.gmx.net (mout.gmx.net [212.227.17.21])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B7FA41BDC8;
-	Mon,  5 Feb 2024 11:58:33 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EF8EF199B0;
+	Mon,  5 Feb 2024 11:59:00 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=212.227.17.21
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1707134315; cv=none; b=P310+sPB+re/uAm5RBxp1D9ziF4wTc9qi/7VX2NggUwEagYbErQiZg4O5l7REGPBZRmO4BmrZDCajD3p/nTMVzboG49fRLdt2KsOXHa5M0vDypaDdoFUfyuAn1noZckC6QuahW6zpfV+CH5SU4TtgZ+owF7jxMbdcSgF7LYDpI4=
+	t=1707134343; cv=none; b=AbqIAEfYrzOMhBecIhyHrKGlf7NIVUVVt1FHxyS+e6DnczFFYWt6jbCCD6MDB6rg8T9j0nmNYgD1ldbLdKWK8ykoeuYOGkyP4ODx22fXKHM9iXZYBg8IdBn2NVZmF2nPFdCGeYIorkePBZmejwM0G0IwU/ZYaMDMBZQlFcQ6Q+w=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1707134315; c=relaxed/simple;
-	bh=zCFZmf2j+7MGfm6uqzvaBJVfFjxFmdzrIoBfE+UERx4=;
-	h=From:To:CC:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=Dz55AMOShZ1RdHmzxXwevcbiIEhldRcbKOMoleDLmpKsVodG104fcez58Xah+8wCNyVBKsKVHH1K6dE6bfXWA4o/jnObu2p1cTAr2t+l92+Eqsj/YM2GGmO9VJZkuBIl7F3WDFVS+pC/4VG2BnPB5+dwAediVeyW0fcz8cMfRLU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=Rfe1SEWm; arc=none smtp.client-ip=205.220.168.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
-Received: from pps.filterd (m0279863.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.17.1.24/8.17.1.24) with ESMTP id 4158ZdEC018608;
-	Mon, 5 Feb 2024 11:58:30 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
-	from:to:cc:subject:date:message-id:in-reply-to:references
-	:mime-version:content-transfer-encoding:content-type; s=
-	qcppdkim1; bh=LGTYi/lFNzH57tNmNu6F2qURF6crRB7qXZDfx7rIm8E=; b=Rf
-	e1SEWmIhxJ1UBajdA5TlCTBFw0G7vVO0cFa9IydfszpmscMP3pYtpLC3ouPcCOYq
-	JB+0ZV3k7dzfPeZ9uF1HyivhNqrqtjDeYFRuYqPTWq7+6JZYAswKqlyyDdrEOS8y
-	OlFcjoqPbDVMgsIQvli7RyJ5L96LzPqjIalIgvfaHKq7s0BhFejweEnZT5Xcp7C4
-	vRmL1IDJV182G29W9G7VjCm9CYAQ+b4coqJLHKmmhol/nVnfxpYrO5zNbhCrdjoB
-	LOL0FD/pNsAy+L20VSRlRxQ2MQvG0xfDhi6NkUVhrpSKx5jC/d0YlE57wTqXyIkd
-	BpUWVwQQD03flLw9SVaQ==
-Received: from nalasppmta01.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3w2t840juk-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Mon, 05 Feb 2024 11:58:29 +0000 (GMT)
-Received: from nalasex01b.na.qualcomm.com (nalasex01b.na.qualcomm.com [10.47.209.197])
-	by NALASPPMTA01.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 415BwTvr007296
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Mon, 5 Feb 2024 11:58:29 GMT
-Received: from jingyw-gv.qualcomm.com (10.80.80.8) by
- nalasex01b.na.qualcomm.com (10.47.209.197) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.1118.40; Mon, 5 Feb 2024 03:58:23 -0800
-From: Jingyi Wang <quic_jingyw@quicinc.com>
-To: <linux-arm-msm@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>, <andersson@kernel.org>,
-        <konrad.dybcio@linaro.org>, <robh@kernel.org>,
-        <krzysztof.kozlowski+dt@linaro.org>, <conor+dt@kernel.org>
-CC: <quic_jingyw@quicinc.com>, <kernel@quicinc.com>,
-        Tingwei Zhang
-	<quic_tingweiz@quicinc.com>
-Subject: [RFC PATCH 6/6] arm64: dts: qcom: add AIM500 AIoT
-Date: Mon, 5 Feb 2024 19:57:21 +0800
-Message-ID: <20240205115721.1195336-7-quic_jingyw@quicinc.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20240205115721.1195336-1-quic_jingyw@quicinc.com>
-References: <20240205115721.1195336-1-quic_jingyw@quicinc.com>
+	s=arc-20240116; t=1707134343; c=relaxed/simple;
+	bh=f/UbavRhjoaVvbmskvWAMvejHYVscy5mA/b9KLY3Y7s=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=pRKnFqbU/70K2NhXbgoB0ItDR6VG8cg/mwomJVx8sPYPrljyI44PbdItH5Y7nVGlw9IQNy69/Q7NQ+mf6iEpzgOruQnqqV1e3bgPokazFNOGPX5mYrXSy8Nu1+zyY5gPpOzjMPzzR+QiU4fofiQB8TnmmndfHdzU3uNYoGx9kS4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=gmx.net; spf=pass smtp.mailfrom=gmx.net; dkim=pass (2048-bit key) header.d=gmx.net header.i=wahrenst@gmx.net header.b=VX2X4zNz; arc=none smtp.client-ip=212.227.17.21
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=gmx.net
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmx.net
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=gmx.net;
+	s=s31663417; t=1707134331; x=1707739131; i=wahrenst@gmx.net;
+	bh=f/UbavRhjoaVvbmskvWAMvejHYVscy5mA/b9KLY3Y7s=;
+	h=X-UI-Sender-Class:Date:Subject:To:Cc:References:From:
+	 In-Reply-To;
+	b=VX2X4zNzxjHACElSe6clchMA+vG4hC3DJomR17PKChv5zesf/E2nN7hOxMoNM71h
+	 cK2RGgISnI/LncBapSJ26pB4r6Hxq2qPBUV/dc7DiCuH4/xgTd56iWpTpugmvtLaP
+	 vyJyMcsVFaJBqd03o9zZf1mixtS6cyn0Tz4dk7fY9sfjL2ImUVNPOdONg9kUiQsAw
+	 fh6qV/E7QFRUcJPKwnqOkm+MhFt5QeJq09bmzIpXh/tPH80wjOQTeY37KsC1JMbit
+	 hvWGDQhThY9StaT4++c/ZcybZk3aq7PW/XEv7qlU3AUCSBFcVKTaWSGfCuCbCjf4o
+	 TGtSyQoC5/slVuVXZQ==
+X-UI-Sender-Class: 724b4f7f-cbec-4199-ad4e-598c01a50d3a
+Received: from [192.168.1.167] ([37.4.248.43]) by mail.gmx.net (mrgmx104
+ [212.227.17.168]) with ESMTPSA (Nemesis) id 1Mi2O1-1r2JhK28tl-00e8vu; Mon, 05
+ Feb 2024 12:58:51 +0100
+Message-ID: <e92b9ff8-5486-47bc-828e-c19a7a251d4b@gmx.net>
+Date: Mon, 5 Feb 2024 12:58:50 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
- nalasex01b.na.qualcomm.com (10.47.209.197)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-ORIG-GUID: syKLjqNDpWbNj35-ricH1xavl45Gpcw3
-X-Proofpoint-GUID: syKLjqNDpWbNj35-ricH1xavl45Gpcw3
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.272,Aquarius:18.0.1011,Hydra:6.0.619,FMLib:17.11.176.26
- definitions=2024-02-05_06,2024-01-31_01,2023-05-22_02
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 adultscore=0
- priorityscore=1501 phishscore=0 spamscore=0 lowpriorityscore=0
- clxscore=1015 mlxlogscore=999 bulkscore=0 malwarescore=0 impostorscore=0
- suspectscore=0 mlxscore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.19.0-2401310000 definitions=main-2402050091
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH V4 1/2] dt-bindings: pwm: Add pwm-gpio
+Content-Language: en-US
+To: =?UTF-8?Q?Uwe_Kleine-K=C3=B6nig?= <u.kleine-koenig@pengutronix.de>
+Cc: Rob Herring <robh+dt@kernel.org>,
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+ Conor Dooley <conor+dt@kernel.org>, andy.shevchenko@gmail.com,
+ Angelo Compagnucci <angelo.compagnucci@gmail.com>,
+ Philip Howard <phil@gadgetoid.com>, Sean Young <sean@mess.org>,
+ Linus Walleij <linus.walleij@linaro.org>, linux-pwm@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-gpio@vger.kernel.org,
+ Nicola Di Lieto <nicola.dilieto@gmail.com>
+References: <20240204220851.4783-1-wahrenst@gmx.net>
+ <20240204220851.4783-2-wahrenst@gmx.net>
+ <zxzck6nm2xxakobwj4mk4x3vrz76c7dmlwgplhhunuzr25oeok@lc3kngblfmnz>
+From: Stefan Wahren <wahrenst@gmx.net>
+In-Reply-To: <zxzck6nm2xxakobwj4mk4x3vrz76c7dmlwgplhhunuzr25oeok@lc3kngblfmnz>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: quoted-printable
+X-Provags-ID: V03:K1:IFddr63wFDUAJh89cO1UJ213DGxFVUXLhZqHmgs7pMwEiyuqhYf
+ WtbY/dNldTz5gEHQg49JlJBh3DlcDp7v9dRdd4h7UiPIEyuvl47a+uZhdL4Ngm3VegbxzsJ
+ 0Re0gV37SiOnSLj5o6pW5KxpL6nTLurNb/2a1+nkJ549HQSvf9BPUlpqDTcMz+Py/pMnst0
+ ytP7Z9N4vg4FfO+Jltmsg==
+X-Spam-Flag: NO
+UI-OutboundReport: notjunk:1;M01:P0:QYLDAQqhya8=;lR/yaYFQgc5bUxt7YOQURUH3wTh
+ ScAGBARXwgIJgFPgYCH8vXPePAifhy0/S3j5zqiObM5eIVfmkgbes6GE0I+PFxiX23hpCSh5i
+ Ees0Plhyxg9KknZG4QZdVYoXYp/Q0AKrcy8eGxww6JVXAP4GMANwxwcRA30m64U/3IHBHQ/yo
+ eHmVKcb40ztiBq60tJzl3nDeEoNHSIum2foRMxAHm8d0JyWnX2iN2JmTkTl5O/mJTOcynS2+Y
+ fCA9/WELgekZmXmNfMbpBB/1qtPrT6D47XO+VEKwa20GY+BwziLWjxrvadmHWobQ1JPzNebIX
+ ZmhZF+ty9/X/rsl1FS9Rv2+PVIS0Q+NBC/0TajYlF1dcMP483VcaqJ4XGb2LJseAM5NLDG55B
+ Uar2U6lrmur45ix5VS+N0xkJXrCoKodgkNTuc8i5UY7W3+onodhwtT5hUKGUzv0wPGnN8XF28
+ XBXMKlzjWHY98sviB+lbH5LF5nu7zUlHDV/1W0RIcUbqQBIeFlcrfO6ghiWUcdyT+6OHwjINw
+ lRlLJQRwGp99ftl1GEaXX/oqUzqVuOoJNbf1s+5FxuM8B6CypfJo247X4kcGsUk159j3l6dmu
+ Az/tZG8+Gn38PD9h8qD5VF4y/COlM1HHfMzDNZwrTsubtwPiCvMr3d5tPyfHsL3PwC86nmE5+
+ 8AsWg/em0n/7DhI6hIingUTaWu0gvyp+gIegJUble2+VNM3z75iQL7hCeOozBhEHPGLIteVW5
+ LKN04YReRAbMe82Hu38bO2F300pdnJSNh9Em1OFX0LbRx8AL2YjywGiVzHVYsWrVi9sF2Co+2
+ +z0hoZwi/8gZHSTT7BJTeGZggr8Fv3I/Icvs99hM6bKXw=
 
-Add AIM500 AIoT DTS along with usb, regulators, serial and PCIe
-found in this board. AIM500 AIoT is mounted onto Qualcomm AIoT
-carrier board to support verification, evaluation and development.
+Hi Uwe,
 
-Co-developed-by: Tingwei Zhang <quic_tingweiz@quicinc.com>
-Signed-off-by: Tingwei Zhang <quic_tingweiz@quicinc.com>
-Signed-off-by: Jingyi Wang <quic_jingyw@quicinc.com>
----
- arch/arm64/boot/dts/qcom/Makefile             |   1 +
- .../boot/dts/qcom/sm8650p-aim500-aiot.dts     | 314 ++++++++++++++++++
- 2 files changed, 315 insertions(+)
- create mode 100644 arch/arm64/boot/dts/qcom/sm8650p-aim500-aiot.dts
+Am 05.02.24 um 10:15 schrieb Uwe Kleine-K=C3=B6nig:
+> Hello,
+>
+> On Sun, Feb 04, 2024 at 11:08:50PM +0100, Stefan Wahren wrote:
+>> +  "#pwm-cells":
+>> +    const: 3
+>> +
+>> +  gpios:
+>> +    description:
+>> +      GPIO to be modulated
+>> +    maxItems: 1
+> Given that we have 3 PWM cells (so there is an u32 that specifies the
+> pwm_chip's line number) it would be obvious to allow several GPIOs. But
+> I guess we can extend this easily if and when the need arises.
+yes this is a limitation in order to keep it simple.
 
-diff --git a/arch/arm64/boot/dts/qcom/Makefile b/arch/arm64/boot/dts/qcom/Makefile
-index f7c5662213e4..ce3744d7586f 100644
---- a/arch/arm64/boot/dts/qcom/Makefile
-+++ b/arch/arm64/boot/dts/qcom/Makefile
-@@ -239,5 +239,6 @@ dtb-$(CONFIG_ARCH_QCOM)	+= sm8550-mtp.dtb
- dtb-$(CONFIG_ARCH_QCOM)	+= sm8550-qrd.dtb
- dtb-$(CONFIG_ARCH_QCOM)	+= sm8650-mtp.dtb
- dtb-$(CONFIG_ARCH_QCOM)	+= sm8650-qrd.dtb
-+dtb-$(CONFIG_ARCH_QCOM)	+= sm8650p-aim500-aiot.dtb
- dtb-$(CONFIG_ARCH_QCOM)	+= x1e80100-crd.dtb
- dtb-$(CONFIG_ARCH_QCOM)	+= x1e80100-qcp.dtb
-diff --git a/arch/arm64/boot/dts/qcom/sm8650p-aim500-aiot.dts b/arch/arm64/boot/dts/qcom/sm8650p-aim500-aiot.dts
-new file mode 100644
-index 000000000000..a76b62abb9e0
---- /dev/null
-+++ b/arch/arm64/boot/dts/qcom/sm8650p-aim500-aiot.dts
-@@ -0,0 +1,314 @@
-+// SPDX-License-Identifier: BSD-3-Clause
-+/*
-+ * Copyright (c) 2024, Qualcomm Innovation Center, Inc. All rights reserved.
-+ */
-+
-+/dts-v1/;
-+
-+#include <dt-bindings/leds/common.h>
-+#include "sm8650p-aim500.dtsi"
-+#include "pm8010.dtsi"
-+#include "pmr735d_a.dtsi"
-+
-+/ {
-+	model = "Qualcomm Technologies, Inc. AIM500 AIOT";
-+	compatible = "qcom,sm8650p-aim500-aiot", "qcom,sm8650p-aim500", "qcom,sm8650p",
-+		     "qcom,sm8650";
-+
-+	aliases {
-+		serial0 = &uart15;
-+	};
-+
-+	chosen {
-+		stdout-path = "serial0:115200n8";
-+	};
-+
-+	gpio-keys {
-+		compatible = "gpio-keys";
-+
-+		pinctrl-0 = <&volume_up_n>;
-+		pinctrl-names = "default";
-+
-+		key-volume-up {
-+			label = "Volume Up";
-+			linux,code = <KEY_VOLUMEUP>;
-+			gpios = <&pm8550_gpios 6 GPIO_ACTIVE_LOW>;
-+			debounce-interval = <15>;
-+			linux,can-disable;
-+			wakeup-source;
-+		};
-+	};
-+
-+	pmic-glink {
-+		compatible = "qcom,sm8650-pmic-glink",
-+			     "qcom,sm8550-pmic-glink",
-+			     "qcom,pmic-glink";
-+		#address-cells = <1>;
-+		#size-cells = <0>;
-+		orientation-gpios = <&tlmm 29 GPIO_ACTIVE_HIGH>;
-+
-+		connector@0 {
-+			compatible = "usb-c-connector";
-+			reg = <0>;
-+
-+			power-role = "dual";
-+			data-role = "dual";
-+
-+			ports {
-+				#address-cells = <1>;
-+				#size-cells = <0>;
-+
-+				port@0 {
-+					reg = <0>;
-+
-+					pmic_glink_hs_in: endpoint {
-+						remote-endpoint = <&usb_1_dwc3_hs>;
-+					};
-+				};
-+
-+				port@1 {
-+					reg = <1>;
-+
-+					pmic_glink_ss_in: endpoint {
-+						remote-endpoint = <&usb_1_dwc3_ss>;
-+					};
-+				};
-+			};
-+		};
-+	};
-+};
-+
-+&dispcc {
-+	status = "okay";
-+};
-+
-+&gpi_dma1 {
-+	status = "okay";
-+};
-+
-+&pcie_1_phy_aux_clk {
-+	clock-frequency = <1000>;
-+};
-+
-+&pcie0 {
-+	perst-gpios = <&tlmm 94 GPIO_ACTIVE_LOW>;
-+	wake-gpios = <&tlmm 96 GPIO_ACTIVE_HIGH>;
-+
-+	pinctrl-0 = <&pcie0_default_state>;
-+	pinctrl-names = "default";
-+
-+	status = "okay";
-+};
-+
-+&pcie0_phy {
-+	vdda-phy-supply = <&vreg_l1i_0p88>;
-+	vdda-pll-supply = <&vreg_l3i_1p2>;
-+
-+	status = "okay";
-+};
-+
-+&pm8550_flash {
-+	status = "okay";
-+
-+	led-0 {
-+		function = LED_FUNCTION_FLASH;
-+		color = <LED_COLOR_ID_YELLOW>;
-+		flash-max-microamp = <2000000>;
-+		flash-max-timeout-us = <1280000>;
-+		function-enumerator = <0>;
-+		led-sources = <1>, <4>;
-+		led-max-microamp = <500000>;
-+	};
-+
-+	led-1 {
-+		function = LED_FUNCTION_FLASH;
-+		color = <LED_COLOR_ID_WHITE>;
-+		flash-max-microamp = <2000000>;
-+		flash-max-timeout-us = <1280000>;
-+		function-enumerator = <1>;
-+		led-sources = <2>, <3>;
-+		led-max-microamp = <500000>;
-+	};
-+};
-+
-+&pm8550_gpios {
-+	volume_up_n: volume-up-n-state {
-+		pins = "gpio6";
-+		function = "normal";
-+		power-source = <1>;
-+		bias-pull-up;
-+		input-enable;
-+	};
-+};
-+
-+&pm8550_pwm {
-+	status = "okay";
-+
-+	multi-led {
-+		color = <LED_COLOR_ID_RGB>;
-+		function = LED_FUNCTION_STATUS;
-+
-+		#address-cells = <1>;
-+		#size-cells = <0>;
-+
-+		led@1 {
-+			reg = <1>;
-+			color = <LED_COLOR_ID_RED>;
-+		};
-+
-+		led@2 {
-+			reg = <2>;
-+			color = <LED_COLOR_ID_GREEN>;
-+		};
-+
-+		led@3 {
-+			reg = <3>;
-+			color = <LED_COLOR_ID_BLUE>;
-+		};
-+	};
-+};
-+
-+&pm8550b_eusb2_repeater {
-+	vdd18-supply = <&vreg_l15b_1p8>;
-+	vdd3-supply = <&vreg_l5b_3p1>;
-+};
-+
-+&pmk8550_rtc {
-+	status = "okay";
-+};
-+
-+&pon_pwrkey {
-+	status = "okay";
-+};
-+
-+&pon_resin {
-+	linux,code = <KEY_VOLUMEDOWN>;
-+
-+	status = "okay";
-+};
-+
-+&qupv3_id_0 {
-+	status = "okay";
-+};
-+
-+&remoteproc_adsp {
-+	firmware-name = "qcom/sm8650/adsp.mbn",
-+			"qcom/sm8650/adsp_dtb.mbn";
-+
-+	status = "okay";
-+};
-+
-+&remoteproc_cdsp {
-+	firmware-name = "qcom/sm8650/cdsp.mbn",
-+			"qcom/sm8650/cdsp_dtb.mbn";
-+
-+	status = "okay";
-+};
-+
-+&sleep_clk {
-+	clock-frequency = <32000>;
-+};
-+
-+&tlmm {
-+	gpio-reserved-ranges = <32 8>;
-+
-+	sde_dsi_active: sde-dsi-active-state {
-+		pins = "gpio133";
-+		function = "gpio";
-+		drive-strength = <8>;
-+		bias-disable;
-+	};
-+
-+	sde_dsi_suspend: sde-dsi-suspend-state {
-+		pins = "gpio133";
-+		function = "gpio";
-+		drive-strength = <2>;
-+		bias-pull-down;
-+	};
-+
-+	sde_te_active: sde-te-active-state {
-+		pins = "gpio86";
-+		function = "mdp_vsync";
-+		drive-strength = <2>;
-+		bias-pull-down;
-+	};
-+
-+	sde_te_suspend: sde-te-suspend-state {
-+		pins = "gpio86";
-+		function = "mdp_vsync";
-+		drive-strength = <2>;
-+		bias-pull-down;
-+	};
-+
-+	ts_irq: ts-irq-state {
-+		pins = "gpio161";
-+		function = "gpio";
-+		drive-strength = <8>;
-+		bias-pull-up;
-+		output-disable;
-+	};
-+
-+	ts_reset: ts-reset-state {
-+		pins = "gpio162";
-+		function = "gpio";
-+		drive-strength = <8>;
-+		bias-pull-up;
-+	};
-+};
-+
-+&uart15 {
-+	status = "okay";
-+};
-+
-+/*
-+ * DPAUX -> WCD9395 -> USB_SBU -> USB-C
-+ * eUSB2 DP/DM -> PM85550HS -> eUSB2 DP/DM -> WCD9395 -> USB-C
-+ * USB SS -> NB7VPQ904MMUTWG -> USB-C
-+ */
-+
-+&usb_1 {
-+	status = "okay";
-+};
-+
-+&usb_1_dwc3 {
-+	dr_mode = "otg";
-+	usb-role-switch;
-+};
-+
-+&usb_1_dwc3_hs {
-+	remote-endpoint = <&pmic_glink_hs_in>;
-+};
-+
-+&usb_1_dwc3_ss {
-+	remote-endpoint = <&pmic_glink_ss_in>;
-+};
-+
-+&usb_1_hsphy {
-+	vdd-supply = <&vreg_l1i_0p88>;
-+	vdda12-supply = <&vreg_l3i_1p2>;
-+
-+	phys = <&pm8550b_eusb2_repeater>;
-+
-+	status = "okay";
-+};
-+
-+&usb_dp_qmpphy {
-+	vdda-phy-supply = <&vreg_l3i_1p2>;
-+	vdda-pll-supply = <&vreg_l3g_0p91>;
-+
-+	status = "okay";
-+};
-+
-+&vph_pwr {
-+	compatible = "regulator-fixed";
-+	regulator-name = "vph_pwr";
-+	regulator-min-microvolt = <3700000>;
-+	regulator-max-microvolt = <3700000>;
-+
-+	regulator-always-on;
-+	regulator-boot-on;
-+};
-+
-+&xo_board {
-+	clock-frequency = <76800000>;
-+};
--- 
-2.25.1
+Regards
+>
+> Otherwise I'm happy with this patch.
+>
+> Best regards
+> Uwe
+>
 
 
