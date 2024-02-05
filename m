@@ -1,246 +1,127 @@
-Return-Path: <devicetree+bounces-38503-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-38504-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id F0101849534
-	for <lists+devicetree@lfdr.de>; Mon,  5 Feb 2024 09:17:50 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id C0C2B84953F
+	for <lists+devicetree@lfdr.de>; Mon,  5 Feb 2024 09:20:49 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id A6C60281954
-	for <lists+devicetree@lfdr.de>; Mon,  5 Feb 2024 08:17:49 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 5DB461F2491F
+	for <lists+devicetree@lfdr.de>; Mon,  5 Feb 2024 08:20:49 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7107B11193;
-	Mon,  5 Feb 2024 08:17:45 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 089611173D;
+	Mon,  5 Feb 2024 08:20:35 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="M26sS6Pi"
 X-Original-To: devicetree@vger.kernel.org
-Received: from metis.whiteo.stw.pengutronix.de (metis.whiteo.stw.pengutronix.de [185.203.201.7])
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.13])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 98C6411198
-	for <devicetree@vger.kernel.org>; Mon,  5 Feb 2024 08:17:42 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.203.201.7
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 12FDE11185;
+	Mon,  5 Feb 2024 08:20:32 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.175.65.13
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1707121065; cv=none; b=M2qzBFuUNTo2mVPwo5wmJX/6meSVgHiKhKgqtTR2fWtm32q8IA9aZKS7Jh4WPzAtVz+vcyHvmh+VxM4HJ1WSrkjkWaQrhjI5SnqopnUSvxmuCWegHW1dgzqL1lsL9oF+TBJjAF4PqV2335dmviIP+GB/oQt8FNCgkDq96hqA1Lc=
+	t=1707121234; cv=none; b=Vm0c0AMVylIlSDtR1iwmxSqCelGrXdGpwooB5j2FAUWDmaep3kV5Mr5U37p8cbN9M2tor22tw/akOLuKi+1Dwlk481X5BElvKhTnzUi93dl2P2hh26cDq3+PhPP6a+Kp05HHfBxLm424rlSXYI4m7+HEC2/0crQmGfcSjF5a9+k=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1707121065; c=relaxed/simple;
-	bh=YjeiwppDWI6EHvWJrkK1PZ10LNL/Yvg58nfPPxTUDZo=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=PoKwNEHJ3NygJfKo0+hrw1N/qkJCkyCB2xVnU7MgfhtLZfLU6nf+PaGtR9JsUHy4hi2MMgnMkX3IANktCfF2OTwN/0+8cmCOMB47aF2cqMDPl4PWTy1fkIYwWYvYI3HU33jxAeNbB/bpR99hvSOtOEl/VXsjTSfB2qfcZs1OOr0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de; spf=pass smtp.mailfrom=pengutronix.de; arc=none smtp.client-ip=185.203.201.7
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=pengutronix.de
-Received: from drehscheibe.grey.stw.pengutronix.de ([2a0a:edc0:0:c01:1d::a2])
-	by metis.whiteo.stw.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
-	(Exim 4.92)
-	(envelope-from <mfe@pengutronix.de>)
-	id 1rWuAM-0004z9-Gn; Mon, 05 Feb 2024 09:17:22 +0100
-Received: from [2a0a:edc0:2:b01:1d::c5] (helo=pty.whiteo.stw.pengutronix.de)
-	by drehscheibe.grey.stw.pengutronix.de with esmtps  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-	(Exim 4.94.2)
-	(envelope-from <mfe@pengutronix.de>)
-	id 1rWuAJ-004at0-OU; Mon, 05 Feb 2024 09:17:19 +0100
-Received: from mfe by pty.whiteo.stw.pengutronix.de with local (Exim 4.96)
-	(envelope-from <mfe@pengutronix.de>)
-	id 1rWuAJ-00Cft2-23;
-	Mon, 05 Feb 2024 09:17:19 +0100
-Date: Mon, 5 Feb 2024 09:17:19 +0100
-From: Marco Felsch <m.felsch@pengutronix.de>
-To: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-Cc: Adam Ford <aford173@gmail.com>, Ulf Hansson <ulf.hansson@linaro.org>,
-	Andrzej Hajda <andrzej.hajda@intel.com>, devicetree@vger.kernel.org,
-	alexander.stein@ew.tq-group.com,
-	Catalin Marinas <catalin.marinas@arm.com>,
-	dri-devel@lists.freedesktop.org, frieder.schrempf@kontron.de,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	linux-phy@lists.infradead.org, David Airlie <airlied@gmail.com>,
-	marex@denx.de, Robert Foss <rfoss@kernel.org>,
-	Fabio Estevam <festevam@gmail.com>, linux-pm@vger.kernel.org,
-	Jernej Skrabec <jernej.skrabec@gmail.com>,
-	NXP Linux Team <linux-imx@nxp.com>,
-	Philipp Zabel <p.zabel@pengutronix.de>,
-	Kishon Vijay Abraham I <kishon@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Thomas Zimmermann <tzimmermann@suse.de>,
-	Will Deacon <will@kernel.org>, Jonas Karlman <jonas@kwiboo.se>,
-	Liu Ying <victor.liu@nxp.com>,
-	Sascha Hauer <s.hauer@pengutronix.de>,
-	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
-	Maxime Ripard <mripard@kernel.org>,
-	Rob Herring <robh+dt@kernel.org>,
-	Pengutronix Kernel Team <kernel@pengutronix.de>,
-	linux-arm-kernel@lists.infradead.org,
-	Neil Armstrong <neil.armstrong@linaro.org>,
-	linux-kernel@vger.kernel.org, Vinod Koul <vkoul@kernel.org>,
-	Daniel Vetter <daniel@ffwll.ch>,
-	Lucas Stach <l.stach@pengutronix.de>,
-	Shawn Guo <shawnguo@kernel.org>,
-	Laurent Pinchart <Laurent.pinchart@ideasonboard.com>
-Subject: Re: [PATCH V8 02/12] phy: freescale: add Samsung HDMI PHY
-Message-ID: <20240205081719.z2uqa4dwn5ucsymv@pengutronix.de>
-References: <20240203165307.7806-1-aford173@gmail.com>
- <20240203165307.7806-3-aford173@gmail.com>
- <CAA8EJpo4omXogg48urEMzxQ+CA7DNTSf66pA6hoO8wpmtn_-MQ@mail.gmail.com>
+	s=arc-20240116; t=1707121234; c=relaxed/simple;
+	bh=p7VIl6MhCIqATnPphkUNjx22KAhNDEK+6bbzQyPLhPQ=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=eqjuflvAarAdrPCkHHiZZg3LDFH7gFf8Q4lboiOikXmJzpR0aREtxBKsR6ROUis57v7GXUNbICzfiPQgYdMlBGDYaZzGORAWuIwSsw1mmXIMDR/Tc4Fk9F3iBU41qnGOvrWAPCacdT3ou6jB8utYW/3DpOu8PWpocoim72MF8MQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com; spf=none smtp.mailfrom=linux.intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=M26sS6Pi; arc=none smtp.client-ip=198.175.65.13
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com
+Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=linux.intel.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1707121234; x=1738657234;
+  h=message-id:date:mime-version:subject:to:cc:references:
+   from:in-reply-to:content-transfer-encoding;
+  bh=p7VIl6MhCIqATnPphkUNjx22KAhNDEK+6bbzQyPLhPQ=;
+  b=M26sS6PiLtaeWB9+F4n6nNXW2tIfN9gF3OHGZyMocr1nk3NHQhzj24Vl
+   phdvCu38+8yEXhE5JVtLQ5JI+5TGRQgM6QaDNRa9nFJlKkn0eVFfyXPpB
+   N6AMhhEFAVPSPqe9zNYfgOmAhFL+HairrUZQCPAjTpqY97Sq9bLPX+324
+   wokcQGQfbYTgrdVy34X+oknBJX4IfjFBGg3YkAjkgNH3P8COciKb3m8rl
+   ShzBq1WKQJZbPBMIenUjDnh0pR8pp+u9XPKuUQ88u0umDoMrq/qlsYiHn
+   x5ST5cb64kYMD+hTB92wHHm6PG9dXOyWnEMIH5QLW1q4gdH4sfx6EKx7X
+   g==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10974"; a="11566172"
+X-IronPort-AV: E=Sophos;i="6.05,242,1701158400"; 
+   d="scan'208";a="11566172"
+Received: from orviesa004.jf.intel.com ([10.64.159.144])
+  by orvoesa105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 05 Feb 2024 00:20:29 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.05,242,1701158400"; 
+   d="scan'208";a="5401061"
+Received: from aslawinx-mobl.ger.corp.intel.com (HELO [10.94.8.107]) ([10.94.8.107])
+  by orviesa004-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 05 Feb 2024 00:20:23 -0800
+Message-ID: <2abb6c0b-ea66-4649-b205-bafe49340aee@linux.intel.com>
+Date: Mon, 5 Feb 2024 09:20:20 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <CAA8EJpo4omXogg48urEMzxQ+CA7DNTSf66pA6hoO8wpmtn_-MQ@mail.gmail.com>
-X-SA-Exim-Connect-IP: 2a0a:edc0:0:c01:1d::a2
-X-SA-Exim-Mail-From: mfe@pengutronix.de
-X-SA-Exim-Scanned: No (on metis.whiteo.stw.pengutronix.de); SAEximRunCond expanded to false
-X-PTX-Original-Recipient: devicetree@vger.kernel.org
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v13 20/53] ASoC: Add SOC USB APIs for adding an USB
+ backend
+Content-Language: en-US
+To: Wesley Cheng <quic_wcheng@quicinc.com>, srinivas.kandagatla@linaro.org,
+ mathias.nyman@intel.com, perex@perex.cz, conor+dt@kernel.org,
+ corbet@lwn.net, lgirdwood@gmail.com, andersson@kernel.org,
+ krzysztof.kozlowski+dt@linaro.org, gregkh@linuxfoundation.org,
+ Thinh.Nguyen@synopsys.com, broonie@kernel.org, bgoswami@quicinc.com,
+ tiwai@suse.com, robh+dt@kernel.org, konrad.dybcio@linaro.org
+Cc: linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-sound@vger.kernel.org, linux-usb@vger.kernel.org,
+ linux-arm-msm@vger.kernel.org, linux-doc@vger.kernel.org,
+ alsa-devel@alsa-project.org
+References: <20240203023645.31105-1-quic_wcheng@quicinc.com>
+ <20240203023645.31105-21-quic_wcheng@quicinc.com>
+From: =?UTF-8?Q?Amadeusz_S=C5=82awi=C5=84ski?=
+ <amadeuszx.slawinski@linux.intel.com>
+In-Reply-To: <20240203023645.31105-21-quic_wcheng@quicinc.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
 
-On 24-02-04, Dmitry Baryshkov wrote:
-> On Sat, 3 Feb 2024 at 17:53, Adam Ford <aford173@gmail.com> wrote:
-> >
-> > From: Lucas Stach <l.stach@pengutronix.de>
-> >
-> > This adds the driver for the Samsung HDMI PHY found on the
-> > i.MX8MP SoC.
-> >
-> > Signed-off-by: Lucas Stach <l.stach@pengutronix.de>
-> > Signed-off-by: Adam Ford <aford173@gmail.com>
-> > Tested-by: Alexander Stein <alexander.stein@ew.tq-group.com>
-> > ---
-> > V4:  Make lookup table hex values lower case.
-> >
-> > V3:  Re-order the Makefile to keep it alphabetical
-> >      Remove unused defines
-> >
-> > V2:  Fixed some whitespace found from checkpatch
-> >      Change error handling when enabling apbclk to use dev_err_probe
-> >      Rebase on Linux-Next
-> >
-> >      I (Adam) tried to help move this along, so I took Lucas' patch and
-> >      attempted to apply fixes based on feedback.  I don't have
-> >      all the history, so apologies for that.
-> > ---
-> >  drivers/phy/freescale/Kconfig                |    6 +
-> >  drivers/phy/freescale/Makefile               |    1 +
-> >  drivers/phy/freescale/phy-fsl-samsung-hdmi.c | 1075 ++++++++++++++++++
-> >  3 files changed, 1082 insertions(+)
-> >  create mode 100644 drivers/phy/freescale/phy-fsl-samsung-hdmi.c
-> >
-> > diff --git a/drivers/phy/freescale/Kconfig b/drivers/phy/freescale/Kconfig
-> > index 853958fb2c06..5c2b73042dfc 100644
-> > --- a/drivers/phy/freescale/Kconfig
-> > +++ b/drivers/phy/freescale/Kconfig
-> > @@ -35,6 +35,12 @@ config PHY_FSL_IMX8M_PCIE
-> >           Enable this to add support for the PCIE PHY as found on
-> >           i.MX8M family of SOCs.
-> >
-> > +config PHY_FSL_SAMSUNG_HDMI_PHY
-> > +       tristate "Samsung HDMI PHY support"
-> > +       depends on OF && HAS_IOMEM
-> > +       help
-> > +         Enable this to add support for the Samsung HDMI PHY in i.MX8MP.
-> > +
-> >  endif
-> >
-> >  config PHY_FSL_LYNX_28G
-> > diff --git a/drivers/phy/freescale/Makefile b/drivers/phy/freescale/Makefile
-> > index cedb328bc4d2..79e5f16d3ce8 100644
-> > --- a/drivers/phy/freescale/Makefile
-> > +++ b/drivers/phy/freescale/Makefile
-> > @@ -4,3 +4,4 @@ obj-$(CONFIG_PHY_MIXEL_LVDS_PHY)        += phy-fsl-imx8qm-lvds-phy.o
-> >  obj-$(CONFIG_PHY_MIXEL_MIPI_DPHY)      += phy-fsl-imx8-mipi-dphy.o
-> >  obj-$(CONFIG_PHY_FSL_IMX8M_PCIE)       += phy-fsl-imx8m-pcie.o
-> >  obj-$(CONFIG_PHY_FSL_LYNX_28G)         += phy-fsl-lynx-28g.o
-> > +obj-$(CONFIG_PHY_FSL_SAMSUNG_HDMI_PHY)  += phy-fsl-samsung-hdmi.o
-> > diff --git a/drivers/phy/freescale/phy-fsl-samsung-hdmi.c b/drivers/phy/freescale/phy-fsl-samsung-hdmi.c
-> > new file mode 100644
-> > index 000000000000..bf0e2299d00f
-> > --- /dev/null
-> > +++ b/drivers/phy/freescale/phy-fsl-samsung-hdmi.c
-> > @@ -0,0 +1,1075 @@
-> > +// SPDX-License-Identifier: GPL-2.0+
-> > +/*
-> > + * Copyright 2020 NXP
-> > + * Copyright 2022 Pengutronix, Lucas Stach <kernel@pengutronix.de>
-> > + */
-> > +
-> > +#include <linux/clk-provider.h>
-> > +#include <linux/clk.h>
-> > +#include <linux/delay.h>
-> > +#include <linux/io.h>
-> > +#include <linux/iopoll.h>
-> > +#include <linux/module.h>
-> > +#include <linux/of_device.h>
-> > +#include <linux/of.h>
-> > +#include <linux/platform_device.h>
-> > +#include <linux/pm_runtime.h>
-> > +
-> > +#define PHY_REG_33             0x84
-> > +#define  REG33_MODE_SET_DONE   BIT(7)
-> > +#define  REG33_FIX_DA          BIT(1)
-> > +
-> > +#define PHY_REG_34             0x88
-> > +#define  REG34_PHY_READY       BIT(7)
-> > +#define  REG34_PLL_LOCK                BIT(6)
-> > +#define  REG34_PHY_CLK_READY   BIT(5)
-> > +
-> > +
-> > +#define PHY_PLL_REGS_NUM 48
-> > +
-> > +struct phy_config {
-> > +       u32     clk_rate;
-> > +       u8 regs[PHY_PLL_REGS_NUM];
-> > +};
-> > +
-> > +const struct phy_config phy_pll_cfg[] = {
-> > +       {       22250000, {
-> > +                       0x00, 0xd1, 0x4b, 0xf1, 0x89, 0x88, 0x80, 0x40,
-> > +                       0x4f, 0x30, 0x33, 0x65, 0x00, 0x15, 0x25, 0x80,
-> > +                       0x6c, 0xf2, 0x67, 0x00, 0x10, 0x8f, 0x30, 0x32,
-> > +                       0x60, 0x8f, 0x00, 0x00, 0x08, 0x00, 0x00, 0x00,
-> > +                       0x00, 0x80, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-> > +                       0x00, 0xe0, 0x83, 0x0f, 0x3e, 0xf8, 0x00, 0x00,
-> > +               },
-> > +       }, {
-> > +               23750000, {
-> > +                       0x00, 0xd1, 0x50, 0xf1, 0x86, 0x85, 0x80, 0x40,
-> > +                       0x4f, 0x30, 0x33, 0x65, 0x00, 0x03, 0x25, 0x80,
-> > +                       0x6c, 0xf2, 0x67, 0x00, 0x10, 0x8f, 0x30, 0x32,
-> > +                       0x60, 0x8f, 0x00, 0x00, 0x08, 0x00, 0x00, 0x00,
-> > +                       0x00, 0x80, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-> > +                       0x00, 0xe0, 0x83, 0x0f, 0x3e, 0xf8, 0x00, 0x00,
-> > +               },
+On 2/3/2024 3:36 AM, Wesley Cheng wrote:
+> Some platforms may have support for offloading USB audio devices to a
+> dedicated audio DSP.  Introduce a set of APIs that allow for management of
+> USB sound card and PCM devices enumerated by the USB SND class driver.
+> This allows for the ASoC components to be aware of what USB devices are
+> available for offloading.
 > 
-> Generally I see that these entries contain a high level of duplication.
-> Could you please extract the common part and a rate-dependent part.
-> Next, it would be best if instead of writing the register values via
-> the rate LUT, the driver could calculate those values.
-> This allows us to support other HDMI modes if the need arises at some point.
+> Signed-off-by: Wesley Cheng <quic_wcheng@quicinc.com>
+> ---
 
-Hi Adam,
+...
 
-can you please have a look at: https://lore.kernel.org/all/4830698.GXAFRqVoOG@steina-w/
+> +
+> +/**
+> + * snd_soc_usb_add_port() - Add a USB backend port
+> + * @dev: USB backend device
+> + * @priv: private data
+> + * @connection_cb: connection status callback
+> + *
+> + * Register a USB backend device to the SND USB SOC framework.  Memory is
+> + * allocated as part of the USB backend device.
+> + *
+> + */
+> +int snd_soc_usb_add_port(struct snd_soc_usb *usb)
+> +{
+> +
+> +
 
-there we have fixed this already. Not sure which version you picked for
-your work.
+Cosmetic, but why is there white space between start of function and 
+body of function?
 
-Regards,
-  Marco
+> +	mutex_lock(&ctx_mutex);
+> +	list_add_tail(&usb->list, &usb_ctx_list);
+> +	mutex_unlock(&ctx_mutex);
+> +
+> +	return 0;
+> +}
+> +EXPORT_SYMBOL_GPL(snd_soc_usb_add_port);
+> +
 
-> 
-> > +       }, {
-> > +               24000000, {
-> > +                       0x00, 0xd1, 0x50, 0xf0, 0x00, 0x00, 0x80, 0x00,
-> > +                       0x4f, 0x30, 0x33, 0x65, 0x00, 0x01, 0x25, 0x80,
-> > +                       0x6c, 0xf2, 0x67, 0x00, 0x10, 0x8f, 0x30, 0x32,
-> > +                       0x60, 0x8f, 0x00, 0x00, 0x08, 0x00, 0x00, 0x00,
-> > +                       0x00, 0x80, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-> > +                       0x00, 0xe0, 0x83, 0x0f, 0x3e, 0xf8, 0x00, 0x00,
-> > +               },
-> 
-> 
-> -- 
-> With best wishes
-> Dmitry
-> 
-> 
 
