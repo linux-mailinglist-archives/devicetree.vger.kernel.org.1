@@ -1,258 +1,179 @@
-Return-Path: <devicetree+bounces-38478-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-38479-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id BBD4E84948C
-	for <lists+devicetree@lfdr.de>; Mon,  5 Feb 2024 08:30:02 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2E0DC8494A6
+	for <lists+devicetree@lfdr.de>; Mon,  5 Feb 2024 08:40:36 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 40E501F26B29
-	for <lists+devicetree@lfdr.de>; Mon,  5 Feb 2024 07:30:02 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 536971C23D6F
+	for <lists+devicetree@lfdr.de>; Mon,  5 Feb 2024 07:40:35 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C1F87D524;
-	Mon,  5 Feb 2024 07:29:56 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8385110A0F;
+	Mon,  5 Feb 2024 07:40:30 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=tq-group.com header.i=@tq-group.com header.b="ez0BbGCl"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="OB6hrEeJ"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx1.tq-group.com (mx1.tq-group.com [93.104.207.81])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-ej1-f54.google.com (mail-ej1-f54.google.com [209.85.218.54])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3DD0411705;
-	Mon,  5 Feb 2024 07:29:52 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=93.104.207.81
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A4C6610A13
+	for <devicetree@vger.kernel.org>; Mon,  5 Feb 2024 07:40:28 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.54
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1707118196; cv=none; b=D1bnaN8dnXd2nabydae58+/rbZYgGzimPuzbZqQQAeS48e8vhLBMpVXG5ddEJqVfbhd8QqEMhfGd07WFqeO20D9PTYnzpFSyJ+pvCF0llioFYDdrGLIYDB23dnIFdW4B7Udc+8p8YjTa+/qBT3t5Ki/hNICKPrkCX+F7lbO1LfI=
+	t=1707118830; cv=none; b=juSBEoqACNwt2Wla2UIcivr+YvtBu3CvuweHP4+Sqmyu3FOd7r5BpCl+Hn55pazXuryH8sSBEOkkv3briDRpq7+48xscJa/7o7zzuCp16HD8Yc6l1qZ5YW5geo0tDqF1AB0gxLlpzlSIETS6+pNXCoBQBNV5706S02iUwSxu/hg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1707118196; c=relaxed/simple;
-	bh=IZhvgO+aMRZPJo3UKnzKhTXhsS/DTCtJV35t4nGc0Qs=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=pwkqkZ7nYuwfiqKNtGV3k1AJLt9I3Rmbi7CPE9lYhXV8p7yn5LRD/XPDjTEKA7/Hw6B9dykqbDE/Qi2XqFqarH8j+hgpoKUeEqTVY1Hbma1jwBePFZzB4tZebg58k3ocSOAHRXOC9hwyPbeR4rZKAEqUGyQKX+tt4FW/9D5F+iU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ew.tq-group.com; spf=pass smtp.mailfrom=ew.tq-group.com; dkim=pass (2048-bit key) header.d=tq-group.com header.i=@tq-group.com header.b=ez0BbGCl; arc=none smtp.client-ip=93.104.207.81
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ew.tq-group.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ew.tq-group.com
+	s=arc-20240116; t=1707118830; c=relaxed/simple;
+	bh=nchm5OkmdUiGHfGrvQjwb7fWah4XvwZHrPlRwY4bvrQ=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=rrB6kjUJTAvUM+L14x/10Wdz2KakN4GOb8mWEp1vGIYlfH3mh2hFU8x6Wqq5Saf3qFHMmVwUjg4p/5vWQpmL9sSjEzyli36H4RJTazLJMbsTeU7lThMHgt/5VRnlxWFCPiP07JwWciqbkljGd4/KRFZcp1CTE94DVuhwp7H901A=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=OB6hrEeJ; arc=none smtp.client-ip=209.85.218.54
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-ej1-f54.google.com with SMTP id a640c23a62f3a-a3122b70439so532091066b.3
+        for <devicetree@vger.kernel.org>; Sun, 04 Feb 2024 23:40:28 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-  d=tq-group.com; i=@tq-group.com; q=dns/txt; s=key1;
-  t=1707118193; x=1738654193;
-  h=from:to:cc:subject:date:message-id:in-reply-to:
-   references:mime-version:content-transfer-encoding;
-  bh=qZcmn/OIlR5Udu+W3cVR16fsRHqzu2hvYW43r3YLp2A=;
-  b=ez0BbGCll9Pen/7SdqNedzo81X3zfnt1bSR84I9noy31uo+1nBBgZCn4
-   /mK0cd4alngDlhceZRSF4X1DFnHNVYomrVtn57EiJ4qYQmmoirx99d5ja
-   3Fhqc7d414JUqcdx9EMAhwe5kewkdQC8KCoUa53cLRBTW7G1YDy2TOgNU
-   nxGwOZur9u23XT0tAmgfZ2Yf/Gr/sYDYZ1CkV3d5/InPVaBNHx9y+UDoD
-   jMLJKFHb7w73RgjQQ1tBBKtCo320OFXG1sJV6uwInHPQdwDbkdzOWadql
-   vCVjImLGxy02yFRGxUqa2LwOYTr6DRRCVGNaw+NFVi7kiI8PmanejFpqa
-   A==;
-X-IronPort-AV: E=Sophos;i="6.05,242,1701126000"; 
-   d="scan'208";a="35238305"
-Received: from vtuxmail01.tq-net.de ([10.115.0.20])
-  by mx1.tq-group.com with ESMTP; 05 Feb 2024 08:29:50 +0100
-Received: from steina-w.localnet (steina-w.tq-net.de [10.123.53.25])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
-	(No client certificate requested)
-	by vtuxmail01.tq-net.de (Postfix) with ESMTPSA id 013B7280075;
-	Mon,  5 Feb 2024 08:29:49 +0100 (CET)
-From: Alexander Stein <alexander.stein@ew.tq-group.com>
-To: linux-arm-kernel@lists.infradead.org, Adam Ford <aford173@gmail.com>
-Cc: marex@denx.de, frieder.schrempf@kontron.de, Lucas Stach <l.stach@pengutronix.de>, Adam Ford <aford173@gmail.com>, Andrzej Hajda <andrzej.hajda@intel.com>, Neil Armstrong <neil.armstrong@linaro.org>, Robert Foss <rfoss@kernel.org>, Laurent Pinchart <Laurent.pinchart@ideasonboard.com>, Jonas Karlman <jonas@kwiboo.se>, Jernej Skrabec <jernej.skrabec@gmail.com>, David Airlie <airlied@gmail.com>, Daniel Vetter <daniel@ffwll.ch>, Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>, Rob Herring <robh+dt@kernel.org>, Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>, Sascha Hauer <s.hauer@pengutronix.de>, Pengutronix Kernel Team <kernel@pengutronix.de>, Fabio Estevam <festevam@gmail.com>, NXP Linux Team <linux-imx@nxp.com>, Philipp Zabel <p.zabel@pengutronix.de>, Vinod Koul <vkoul@kernel.org>, Kishon Vijay Abraham I <kishon@kernel.org>,
-  Catalin Marinas <catalin.marinas@arm.com>, Will Deacon <will@kernel.org>, Liu Ying <victor.liu@nxp.com>, Ulf Hansson <ulf.hansson@linaro.org>, dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, linux-phy@lists.infradead.org, linux-pm@vger.kernel.org
-Subject: Re: [PATCH V8 11/12] arm64: dts: imx8mp: add HDMI display pipeline
-Date: Mon, 05 Feb 2024 08:29:50 +0100
-Message-ID: <2924284.e9J7NaK4W3@steina-w>
-Organization: TQ-Systems GmbH
-In-Reply-To: <20240203165307.7806-12-aford173@gmail.com>
-References: <20240203165307.7806-1-aford173@gmail.com> <20240203165307.7806-12-aford173@gmail.com>
+        d=linaro.org; s=google; t=1707118827; x=1707723627; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
+         :to:content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=GthxkzbELfg5v97NX2sB3ey9m+gwXsiTo/60XeoocpE=;
+        b=OB6hrEeJET8N45CQjanxSCjJOmaBnw7Fgs/eyHg8I9Zkv0QKwwz4nocTiIgUnEJwVh
+         khF1LK5vWe4jPENgRJ+WzuxyW1oosMoodebidlXLUXwiQNwOX7VpmnOSg2+nRzUt52qS
+         fbzYuNk3i3LkHbqRFG2iq7VCrkdiQMcZZyXEFsxR5NHjn4K8Oauf30AuKwILoAgyZGTX
+         tLBs5gk/t1GMV3ITcNzE4iVi3Za4nTtScko0Et7vzZ2YXfjZvCE8j80nwDo0ETYyas5C
+         9Q5ZSFXjNeFYxzBV+WgFV4FDFSwisDSy03/kJFBB/cigdDQN572Wbm2SbhMsvL76o+Uk
+         k8+w==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1707118827; x=1707723627;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
+         :to:content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=GthxkzbELfg5v97NX2sB3ey9m+gwXsiTo/60XeoocpE=;
+        b=HKjRlgQ8GB5GnO86ots5XPgGYIq/8DgfLeftDnj2xk7ARABdBC6Bpi0xwokOlYykrS
+         d/5vGT6tWfGJRO9Uy4AEYujgr9usJZnuOnmo6CFoGADL4S2Lo5mPXa7VD/8fl7phopqU
+         0xxnaPTXv0+HeU9EdqoJTR8Xseghbra/wSjWteM8g9T0gTkjnftJX9/mfCjmciIkKxMp
+         wljtWES7KWGV5Hzqzab1m5+IyahMCHlzecEVFCSUxjgYkyOtJcgJtEjGxlxl9ZQ246QR
+         fHroA7dUP4XO9sUruIqkfoN0LVmksvgPo3DI/2rkMxNz/IWufCc1G9I7PlFuu1hXAwUC
+         0aPw==
+X-Gm-Message-State: AOJu0YzsOONQHVYDVsQjQhTEO903ysusRCdoGLrQ+W/6xI5z4hCF5aCl
+	NrgC0IphYRl9eD4zM+Jw3PNiM/0TxY6fiUAebqcczRIm2NTLZO3cVSZziKHiTW8=
+X-Google-Smtp-Source: AGHT+IFBW2mMfC/A1uOX5nC+Ja2o9B3szYgbN9OHzQtLcKELeq7AyNv0o/iynMN6HAKwJtmqYL40OQ==
+X-Received: by 2002:a17:906:2f08:b0:a35:9a1a:620c with SMTP id v8-20020a1709062f0800b00a359a1a620cmr9676819eji.45.1707118826844;
+        Sun, 04 Feb 2024 23:40:26 -0800 (PST)
+X-Forwarded-Encrypted: i=0; AJvYcCUOAA/YniSLTzuLbO5mHwMc17/oIj0pikzJTY6iOFDaHaiSHlzPgUHeCAG9X01y/IQw7/3+k9jflcGmEngDH7kTaz2+GdJCTosxRhm0iWi+nXQEUAtkRX0P47/1KyVsMEO0Hs62/EWfUZZxVl6CycLc4Qwl6NcaIdc0IoyzbPQIYXuU5vb0Oxvx0GNk0Q6Pn7kYh84wlnXXjaw8mYZfLZYCtminqpTLZqQlhwEqBIiZjYRrynVZsKXB7ewk+RJKFxHChl9p+65IwkfgNQZLRhSgNH6oCui7FoVG9h3BdTg7roaKSe14iS09NnnquvK+BjL7tcMeaa9m7yDWGDwbXQqmz/uuD8JrbBiG7x1zduH14pkLmhHCAZI3tX0MJA2jwTFtCuV+ygQxGaFMq2f83WZ0+0fWTF/qahmAg5yF5HGMVK1/XLmGT1L41f5D81b9ndSDrYRueg==
+Received: from [192.168.1.20] ([178.197.222.62])
+        by smtp.gmail.com with ESMTPSA id st1-20020a170907c08100b00a35aaa70875sm4017567ejc.42.2024.02.04.23.40.25
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Sun, 04 Feb 2024 23:40:26 -0800 (PST)
+Message-ID: <bd253c6d-999c-4ba6-a80d-c7e077d1261a@linaro.org>
+Date: Mon, 5 Feb 2024 08:40:24 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
-Content-Type: text/plain; charset="iso-8859-1"
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 1/2] serial: samsung: honor fifosize from dts at first
+Content-Language: en-US
+To: Tamseel Shams <m.shams@samsung.com>, alim.akhtar@samsung.com,
+ linux-fsd@tesla.com, robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
+ conor+dt@kernel.org, gregkh@linuxfoundation.org, jirislaby@kernel.org
+Cc: linux-arm-kernel@lists.infradead.org, linux-samsung-soc@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ linux-serial@vger.kernel.org
+References: <CGME20240202212456epcas5p15589813cd79526e9d0c444082e2f0e51@epcas5p1.samsung.com>
+ <20240202212448.74840-1-m.shams@samsung.com>
+From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
+ 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
+ D2GYIS41Kv4Isx2dEFh+/Q==
+In-Reply-To: <20240202212448.74840-1-m.shams@samsung.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
-Hi Adam,
-
-thanks for working on this.
-
-Am Samstag, 3. Februar 2024, 17:52:51 CET schrieb Adam Ford:
-> From: Lucas Stach <l.stach@pengutronix.de>
->=20
-> This adds the DT nodes for all the peripherals that make up the
-> HDMI display pipeline.
->=20
-> Signed-off-by: Lucas Stach <l.stach@pengutronix.de>
-> Signed-off-by: Adam Ford <aford173@gmail.com>
->=20
+On 02/02/2024 22:24, Tamseel Shams wrote:
+> Currently for platforms which passes UART fifosize from DT gets
+> override by local driver structure "s3c24xx_serial_drv_data",
+> which is not indentded. Change the code to honor fifosize from
+> device tree at first.
+> 
+> Signed-off-by: Tamseel Shams <m.shams@samsung.com>
 > ---
-> V2:  I took this from Lucas' original submission with the following:
->      Removed extra clock from HDMI-TX since it is now part of the
->      power domain
->      Added interrupt-parent to PVI
->      Changed the name of the HDMI tranmitter to fsl,imx8mp-hdmi-tx
->      Added ports to HDMI-tx
-> ---
->  arch/arm64/boot/dts/freescale/imx8mp.dtsi | 94 +++++++++++++++++++++++
->  1 file changed, 94 insertions(+)
->=20
-> diff --git a/arch/arm64/boot/dts/freescale/imx8mp.dtsi
-> b/arch/arm64/boot/dts/freescale/imx8mp.dtsi index
-> 5e51a766f3d9..e84b4f40e570 100644
-> --- a/arch/arm64/boot/dts/freescale/imx8mp.dtsi
-> +++ b/arch/arm64/boot/dts/freescale/imx8mp.dtsi
-> @@ -1412,6 +1412,100 @@ irqsteer_hdmi: interrupt-controller@32fc2000 {
->  				clock-names =3D "ipg";
->  				power-domains =3D <&hdmi_blk_ctrl=20
-IMX8MP_HDMIBLK_PD_IRQSTEER>;
->  			};
-> +
-> +			hdmi_pvi: display-bridge@32fc4000 {
-> +				compatible =3D "fsl,imx8mp-hdmi-pvi";
-> +				reg =3D <0x32fc4000 0x40>;
-> +				interrupt-parent =3D <&irqsteer_hdmi>;
-> +				interrupts =3D <12 IRQ_TYPE_LEVEL_HIGH>;
+>  drivers/tty/serial/samsung_tty.c | 14 ++++++++------
+>  1 file changed, 8 insertions(+), 6 deletions(-)
+> 
+> diff --git a/drivers/tty/serial/samsung_tty.c b/drivers/tty/serial/samsung_tty.c
+> index 71d17d804fda..e4c4c9f4f9b0 100644
+> --- a/drivers/tty/serial/samsung_tty.c
+> +++ b/drivers/tty/serial/samsung_tty.c
+> @@ -1990,8 +1990,7 @@ static int s3c24xx_serial_probe(struct platform_device *pdev)
+>  	}
+>  
+>  	if (np) {
+> -		of_property_read_u32(np,
+> -			"samsung,uart-fifosize", &ourport->port.fifosize);
+> +		ret = of_property_read_u32(np, "samsung,uart-fifosize", &ourport->port.fifosize);
+>  
+>  		if (of_property_read_u32(np, "reg-io-width", &prop) == 0) {
+>  			switch (prop) {
+> @@ -2009,10 +2008,13 @@ static int s3c24xx_serial_probe(struct platform_device *pdev)
+>  		}
+>  	}
+>  
+> -	if (ourport->drv_data->fifosize[index])
+> -		ourport->port.fifosize = ourport->drv_data->fifosize[index];
+> -	else if (ourport->info->fifosize)
+> -		ourport->port.fifosize = ourport->info->fifosize;
 
-irqsteer_hdmi has #interrupt-cells =3D <1>, so IRQ flags should be removed.=
-=20
-dtbs_check also warns about this.
+I think ret is not initialized here.
 
-> +				power-domains =3D <&hdmi_blk_ctrl=20
-IMX8MP_HDMIBLK_PD_PVI>;
-> +
-> +				ports {
-> +					#address-cells =3D <1>;
-> +					#size-cells =3D <0>;
-> +
-> +					port@0 {
-> +						reg =3D <0>;
-> +						pvi_from_lcdif3:=20
-endpoint {
-> +							remote-
-endpoint =3D <&lcdif3_to_pvi>;
-> +						};
-> +					};
-> +
-> +					port@1 {
-> +						reg =3D <1>;
-> +						pvi_to_hdmi_tx:=20
-endpoint {
-> +							remote-
-endpoint =3D <&hdmi_tx_from_pvi>;
-> +						};
-> +					};
-> +				};
-> +			};
-> +
-> +			lcdif3: display-controller@32fc6000 {
-> +				compatible =3D "fsl,imx8mp-lcdif";
-> +				reg =3D <0x32fc6000 0x238>;
-> +				interrupts =3D <8 IRQ_TYPE_LEVEL_HIGH>;
 
-irqsteer_hdmi has #interrupt-cells =3D <1>, so IRQ flags should be removed.=
-=20
-dtbs_check also warns about this.
-
-> +				interrupt-parent =3D <&irqsteer_hdmi>;
-> +				clocks =3D <&hdmi_tx_phy>,
-> +					 <&clk IMX8MP_CLK_HDMI_APB>,
-> +					 <&clk=20
-IMX8MP_CLK_HDMI_ROOT>;
-> +				clock-names =3D "pix", "axi",=20
-"disp_axi";
-> +				power-domains =3D <&hdmi_blk_ctrl=20
-IMX8MP_HDMIBLK_PD_LCDIF>;
-> +
-> +				port {
-> +					lcdif3_to_pvi: endpoint {
-> +						remote-endpoint =3D=20
-<&pvi_from_lcdif3>;
-> +					};
-> +				};
-> +			};
-> +
-> +			hdmi_tx: hdmi@32fd8000 {
-> +				compatible =3D "fsl,imx8mp-hdmi-tx";
-> +				reg =3D <0x32fd8000 0x7eff>;
-> +				interrupts =3D <0 IRQ_TYPE_LEVEL_HIGH>;
-
-irqsteer_hdmi has #interrupt-cells =3D <1>, so IRQ flags should be removed.=
-=20
-dtbs_check also warns about this.
-
-> +				interrupt-parent =3D <&irqsteer_hdmi>;
-> +				clocks =3D <&clk IMX8MP_CLK_HDMI_APB>,
-> +					 <&clk=20
-IMX8MP_CLK_HDMI_REF_266M>,
-> +					 <&clk IMX8MP_CLK_32K>,
-> +					 <&hdmi_tx_phy>;
-> +				clock-names =3D "iahb", "isfr", "cec",=20
-"pix";
-> +				assigned-clocks =3D <&clk=20
-IMX8MP_CLK_HDMI_REF_266M>;
-> +				assigned-clock-parents =3D <&clk=20
-IMX8MP_SYS_PLL1_266M>;
-> +				power-domains =3D <&hdmi_blk_ctrl=20
-IMX8MP_HDMIBLK_PD_HDMI_TX>;
-> +				reg-io-width =3D <1>;
-> +				status =3D "disabled";
-> +
-> +				ports {
-> +					#address-cells =3D <1>;
-> +					#size-cells =3D <0>;
-> +
-> +					port@0 {
-> +						reg =3D <0>;
-> +
-> +						hdmi_tx_from_pvi:=20
-endpoint {
-> +							remote-
-endpoint =3D <&pvi_to_hdmi_tx>;
-> +						};
-> +					};
-> +
-> +					port@1 {
-> +						reg =3D <1>;
-> +						/* Point endpoint=20
-to the HDMI connector */
-> +					};
-> +				};
-> +			};
-> +
-> +			hdmi_tx_phy: phy@32fdff00 {
-> +				compatible =3D "fsl,imx8mp-hdmi-phy";
-> +				reg =3D <0x32fdff00 0x100>;
-> +				clocks =3D <&clk IMX8MP_CLK_HDMI_APB>,
-> +					 <&clk IMX8MP_CLK_HDMI_24M>;
-> +				clock-names =3D "apb", "ref";
-> +				assigned-clocks =3D <&clk=20
-IMX8MP_CLK_HDMI_24M>;
-> +				assigned-clock-parents =3D <&clk=20
-IMX8MP_CLK_24M>;
-> +				power-domains =3D <&hdmi_blk_ctrl=20
-IMX8MP_HDMIBLK_PD_HDMI_TX_PHY>;
-> +				#clock-cells =3D <0>;
-> +				#phy-cells =3D <0>;
-> +				status =3D "disabled";
-> +			};
-
-According to RM these blocks are part of AIPS4, so it should be below=20
-hsio_blk_ctrl.
 
 Best regards,
-Alexander
-
->  		};
->=20
->  		aips5: bus@30c00000 {
-
-
-=2D-=20
-TQ-Systems GmbH | M=FChlstra=DFe 2, Gut Delling | 82229 Seefeld, Germany
-Amtsgericht M=FCnchen, HRB 105018
-Gesch=E4ftsf=FChrer: Detlef Schneider, R=FCdiger Stahl, Stefan Schneider
-http://www.tq-group.com/
-
+Krzysztof
 
 
