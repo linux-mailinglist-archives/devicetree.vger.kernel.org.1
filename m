@@ -1,198 +1,106 @@
-Return-Path: <devicetree+bounces-38615-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-38616-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1D7CC849C08
-	for <lists+devicetree@lfdr.de>; Mon,  5 Feb 2024 14:38:46 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 552A4849C24
+	for <lists+devicetree@lfdr.de>; Mon,  5 Feb 2024 14:46:55 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 4BB0B1C23782
-	for <lists+devicetree@lfdr.de>; Mon,  5 Feb 2024 13:38:45 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 6F9C11C23E77
+	for <lists+devicetree@lfdr.de>; Mon,  5 Feb 2024 13:46:54 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B46C61D6AE;
-	Mon,  5 Feb 2024 13:37:59 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C73E4208CF;
+	Mon,  5 Feb 2024 13:46:48 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="U4pNDrHt"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-oi1-f181.google.com (mail-oi1-f181.google.com [209.85.167.181])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1846C28E02;
-	Mon,  5 Feb 2024 13:37:57 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.181
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 96E6220DCB;
+	Mon,  5 Feb 2024 13:46:48 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1707140279; cv=none; b=bSyUlZJtD1r/xwfaUgAibIk7aiqPQuh5KCN0FnNWAFD9UUKC729jeTrugazrbTU+qafx4LljW9PK27FR82W5/2Nsdh+DemFdTZ9NLaQPRtAHYk+qPqIwujNMptp0EEW2/GgheCJcmtjQ+CalL3+J9R8MxXh3BIHfcnDjYtoCfWU=
+	t=1707140808; cv=none; b=oivV638KXHGTKkFfB0DtQ8gm0IzfTyrvouXAmxGZ3hZnOxnak1CKYoar2XT/Va5QTmli+DOueQ5oTiHUdOrEfTvisDwySsWl20wdnFKGhGNNbGOly54L7hpTTeU+9qj0dkbdzM00H06iIx6IzzsLzJ6tEKIY6RiT5+185xwp8SM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1707140279; c=relaxed/simple;
-	bh=bjy2cTKIG5MIwS71BFpPmwz9u0IgB3fRcGxLN2GaGCE=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=tO8eAjPOqLzSm5ZLypVt/GIUHK6G235+yGm8LBT5lgsSL570XkylSi9s7D5hbK4gtYXzztv5SJZxV/d8Vdph1LzKf2V7PauI/KLn0wQOEPseZrsPYLlYvzx77p6p1zAri1ZBNj+4VMoLLpU4VSFqVNDgt1pG7T7kYSn0Y3F8w8s=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=fail (p=none dis=none) header.from=kernel.org; spf=pass smtp.mailfrom=gmail.com; arc=none smtp.client-ip=209.85.167.181
-Authentication-Results: smtp.subspace.kernel.org; dmarc=fail (p=none dis=none) header.from=kernel.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-oi1-f181.google.com with SMTP id 5614622812f47-3bc21303a35so1562726b6e.0;
-        Mon, 05 Feb 2024 05:37:57 -0800 (PST)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1707140277; x=1707745077;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=WHzeDjcpRLRmLjdC/W3BzMsilNLy88EgDleTTO6CSOU=;
-        b=NGjZ4J13VqHB717T4OW+9SQ6SW4LJUjYqBwrjCVf1YzWXFqwHO0egS3nj1nPho5mPf
-         LWxfczXr6c2bx6vb/74ivlSABd1bEibJ8atOxL9tUj7LmTCgUf+Y8cW5csavWwh88EK+
-         oaySxPLi/i18vFen2h/cfJ5DgWj7xDMP3zalwmWWvDYek4lDvPEUGMzpHHYyAcmIj7o8
-         C7H6PsAudaF2nnoJmvdHu3d8O7l/wlEw0W7QPdlmhmwZZD+9cFxbJAM8JWNq7HOSsiGc
-         dMzY7/g98WGef3fxJ8Hy0qlIfTMhs8Kqy/7Yhcpv8kRXF253+4MuFVcL8y+HFZiGymdM
-         ypyQ==
-X-Forwarded-Encrypted: i=0; AJvYcCWk7T9nWH445sSNlVwWhDCNcci7/W1WXNkpSOadc31geN9d7CJ4CDv7xBQsIjhJTQLZ8BWUy0Jm3j3crOyBsqIZr6ksZs9mmHkCpo2OkwMl9Wi0eELmKKY9+AINJkSW8lvScChAFcFhF/e7cFiz5yv8qAfRWi1e3njxPgLXli1I2UV87XI=
-X-Gm-Message-State: AOJu0YwiO32fwTnIiX4P6KVNz2qkMKrRI4FzcKFjVwvhbO1BRedxvWAq
-	2TzMuCxjcpW98zoe4s88zMShTvb34EnKknSUVfIQOufqik8tOdjpGjM9lFpTcKzjkwi06/bghBB
-	x9QQIGsfOTdPEus/V8P8OfP040jg=
-X-Google-Smtp-Source: AGHT+IHtvU5AWKH2/sbbZ4kcP66v4YuviTYjq8anzvhlvzNs6vRyDKtMqAmd/SnDra/TKGp99EHkhtHNQbVrdqac57w=
-X-Received: by 2002:a05:6870:598:b0:218:c0c1:a091 with SMTP id
- m24-20020a056870059800b00218c0c1a091mr16246651oap.2.1707140277106; Mon, 05
- Feb 2024 05:37:57 -0800 (PST)
+	s=arc-20240116; t=1707140808; c=relaxed/simple;
+	bh=xZKAosXWiPWEA9EOczuud1mbvfI3IhqZUQtdG3FwbPY=;
+	h=Date:Content-Type:MIME-Version:From:To:Cc:In-Reply-To:References:
+	 Message-Id:Subject; b=I4PKTl9Uw0O5Ruu9OScBiw/o+aEybAXxDxsh8qgGSIf82IRtpzc3h00Gy9+2YZMmhDNB7II4wZPZn3aI7yBeqah4J/7ctu8P8BpuVLRFSIZNbaK2NaOFxQh3NvOIlTyXgF86MiuqSiAPgLUaWai03FhMbZ4sSNhhPAGbHZsxK0s=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=U4pNDrHt; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 6718CC433F1;
+	Mon,  5 Feb 2024 13:46:47 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1707140808;
+	bh=xZKAosXWiPWEA9EOczuud1mbvfI3IhqZUQtdG3FwbPY=;
+	h=Date:From:To:Cc:In-Reply-To:References:Subject:From;
+	b=U4pNDrHtO8FE/d65h3/afExT+LeMzX0lLiXPDwlRWsULdbWsEJMKuYC2CUjnDkzDa
+	 2mIDy6I0Hahhaad8i1jv6qDcPyOJCI9rpGEFZbLHXzVktJvsKKjyRxiEY6A5B5ZMjP
+	 PQGp4kgct03hXZw5iQR00daLjN278ggEOEINaRXg24BzewbAJifiq0cfeO08pgy9f3
+	 o60Z8gHe/6mChhMeh+5sthTmCAAdSHrlsg40caGeEj6u7VSqoB8Df5r73nkRSxiEcm
+	 74Qk8oQlQTmqB3lMvXdtjk+ggGwAiqeh56VzJvO4U6xadSH9820+tz0Hu5yynxl8zP
+	 qVexeZv5WQjjg==
+Date: Mon, 05 Feb 2024 13:46:45 +0000
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20240205-fix-device-links-overlays-v2-0-5344f8c79d57@analog.com> <20240205-fix-device-links-overlays-v2-1-5344f8c79d57@analog.com>
-In-Reply-To: <20240205-fix-device-links-overlays-v2-1-5344f8c79d57@analog.com>
-From: "Rafael J. Wysocki" <rafael@kernel.org>
-Date: Mon, 5 Feb 2024 14:37:46 +0100
-Message-ID: <CAJZ5v0hNtTg+tJZSP_tZUrxQcYa9fp7LZXNG3bGVEbxX1W1Eqg@mail.gmail.com>
-Subject: Re: [PATCH v2 1/2] driver: core: add dedicated workqueue for devlink removal
-To: nuno.sa@analog.com
-Cc: Greg Kroah-Hartman <gregkh@linuxfoundation.org>, "Rafael J. Wysocki" <rafael@kernel.org>, 
-	Frank Rowand <frowand.list@gmail.com>, Rob Herring <robh+dt@kernel.org>, 
-	Andy Shevchenko <andriy.shevchenko@linux.intel.com>, Daniel Scally <djrscally@gmail.com>, 
-	Heikki Krogerus <heikki.krogerus@linux.intel.com>, 
-	Sakari Ailus <sakari.ailus@linux.intel.com>, Len Brown <lenb@kernel.org>, 
-	linux-acpi@vger.kernel.org, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+From: Rob Herring <robh@kernel.org>
+To: Luca Weiss <luca.weiss@fairphone.com>
+Cc: Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, 
+ linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
+ linux-arm-msm@vger.kernel.org, Conor Dooley <conor+dt@kernel.org>, 
+ phone-devel@vger.kernel.org, Lee Jones <lee@kernel.org>, 
+ Konrad Dybcio <konrad.dybcio@linaro.org>, 
+ Bjorn Andersson <andersson@kernel.org>, Will Deacon <will@kernel.org>, 
+ ~postmarketos/upstreaming@lists.sr.ht, Stephen Boyd <sboyd@kernel.org>, 
+ devicetree@vger.kernel.org, Catalin Marinas <catalin.marinas@arm.com>
+In-Reply-To: <20240205-pmi632-ppg-v1-1-e236c95a2099@fairphone.com>
+References: <20240205-pmi632-ppg-v1-0-e236c95a2099@fairphone.com>
+ <20240205-pmi632-ppg-v1-1-e236c95a2099@fairphone.com>
+Message-Id: <170714066275.3239944.3114776132620071326.robh@kernel.org>
+Subject: Re: [PATCH 1/3] dt-bindings: mfd: qcom,spmi-pmic: Add pbs to SPMI
+ device types
 
-On Mon, Feb 5, 2024 at 1:09=E2=80=AFPM Nuno Sa via B4 Relay
-<devnull+nuno.sa.analog.com@kernel.org> wrote:
->
-> From: Nuno Sa <nuno.sa@analog.com>
->
-> Let's use a dedicated queue for devlinks since releasing a link happens
-> asynchronously but some code paths, like DT overlays, have some
-> expectations regarding the of_node when being removed (the refcount must
-> be 1). Given how devlinks are released that cannot be assured. Hence, add=
- a
-> dedicated queue so that it's easy to sync against devlinks removal.
->
-> While at it, make sure to explicitly include <linux/workqueue.h>.
->
-> Signed-off-by: Nuno Sa <nuno.sa@analog.com>
 
-Reviewed-by: Rafael J. Wysocki <rafael@kernel.org>
-
+On Mon, 05 Feb 2024 10:51:38 +0100, Luca Weiss wrote:
+> Add the PBS (Programmable Boot Sequencer) to the list of devices.
+> 
+> Signed-off-by: Luca Weiss <luca.weiss@fairphone.com>
 > ---
->  drivers/base/core.c    | 32 ++++++++++++++++++++++++++++----
->  include/linux/fwnode.h |  1 +
->  2 files changed, 29 insertions(+), 4 deletions(-)
->
-> diff --git a/drivers/base/core.c b/drivers/base/core.c
-> index 14d46af40f9a..4bb9c10489ed 100644
-> --- a/drivers/base/core.c
-> +++ b/drivers/base/core.c
-> @@ -31,6 +31,7 @@
->  #include <linux/swiotlb.h>
->  #include <linux/sysfs.h>
->  #include <linux/dma-map-ops.h> /* for dma_default_coherent */
-> +#include <linux/workqueue.h>
->
->  #include "base.h"
->  #include "physical_location.h"
-> @@ -44,6 +45,7 @@ static bool fw_devlink_is_permissive(void);
->  static void __fw_devlink_link_to_consumers(struct device *dev);
->  static bool fw_devlink_drv_reg_done;
->  static bool fw_devlink_best_effort;
-> +static struct workqueue_struct *devlink_release_queue __ro_after_init;
->
->  /**
->   * __fwnode_link_add - Create a link between two fwnode_handles.
-> @@ -235,6 +237,12 @@ static void __fw_devlink_pickup_dangling_consumers(s=
-truct fwnode_handle *fwnode,
->                 __fw_devlink_pickup_dangling_consumers(child, new_sup);
->  }
->
-> +void fwnode_links_flush_queue(void)
-> +{
-> +       if (devlink_release_queue)
-> +               flush_workqueue(devlink_release_queue);
-> +}
-> +
->  static DEFINE_MUTEX(device_links_lock);
->  DEFINE_STATIC_SRCU(device_links_srcu);
->
-> @@ -531,9 +539,13 @@ static void devlink_dev_release(struct device *dev)
->          * It may take a while to complete this work because of the SRCU
->          * synchronization in device_link_release_fn() and if the consume=
-r or
->          * supplier devices get deleted when it runs, so put it into the =
-"long"
-> -        * workqueue.
-> +        * devlink workqueue (in case we could allocate one).
-> +        *
->          */
-> -       queue_work(system_long_wq, &link->rm_work);
-> +       if (devlink_release_queue)
-> +               queue_work(devlink_release_queue, &link->rm_work);
-> +       else
-> +               device_link_release_fn(&link->rm_work);
->  }
->
->  static struct class devlink_class =3D {
-> @@ -636,10 +648,22 @@ static int __init devlink_class_init(void)
->                 return ret;
->
->         ret =3D class_interface_register(&devlink_class_intf);
-> -       if (ret)
-> +       if (ret) {
->                 class_unregister(&devlink_class);
-> +               return ret;
-> +       }
->
-> -       return ret;
-> +       /*
-> +        * Using a dedicated queue for devlinks since releasing a link ha=
-ppens
-> +        * asynchronously but some code paths, like DT overlays, have som=
-e
-> +        * expectations regarding the of_node when being removed (the ref=
-count
-> +        * must be 1). Given how devlinks are released that cannot be ass=
-ured.
-> +        * Hence, add a dedicated queue so that it's easy to sync against
-> +        * devlinks removal.
-> +        */
-> +       devlink_release_queue =3D alloc_workqueue("devlink_release", 0, 0=
-);
-> +
-> +       return 0;
->  }
->  postcore_initcall(devlink_class_init);
->
-> diff --git a/include/linux/fwnode.h b/include/linux/fwnode.h
-> index 2a72f55d26eb..017b170e9903 100644
-> --- a/include/linux/fwnode.h
-> +++ b/include/linux/fwnode.h
-> @@ -213,5 +213,6 @@ extern bool fw_devlink_is_strict(void);
->  int fwnode_link_add(struct fwnode_handle *con, struct fwnode_handle *sup=
-);
->  void fwnode_links_purge(struct fwnode_handle *fwnode);
->  void fw_devlink_purge_absent_suppliers(struct fwnode_handle *fwnode);
-> +void fwnode_links_flush_queue(void);
->
->  #endif
->
-> --
-> 2.43.0
->
+>  Documentation/devicetree/bindings/mfd/qcom,spmi-pmic.yaml | 4 ++++
+>  1 file changed, 4 insertions(+)
+> 
+
+My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
+on your patch (DT_CHECKER_FLAGS is new in v5.13):
+
+yamllint warnings/errors:
+
+dtschema/dtc warnings/errors:
+/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/mfd/qcom,spmi-pmic.yaml:
+Error in referenced schema matching $id: http://devicetree.org/schemas/soc/qcom/qcom,pbs.yaml
+
+doc reference errors (make refcheckdocs):
+
+See https://patchwork.ozlabs.org/project/devicetree-bindings/patch/20240205-pmi632-ppg-v1-1-e236c95a2099@fairphone.com
+
+The base for the series is generally the latest rc1. A different dependency
+should be noted in *this* patch.
+
+If you already ran 'make dt_binding_check' and didn't see the above
+error(s), then make sure 'yamllint' is installed and dt-schema is up to
+date:
+
+pip3 install dtschema --upgrade
+
+Please check and re-submit after running the above command yourself. Note
+that DT_SCHEMA_FILES can be set to your schema file to speed up checking
+your schema. However, it must be unset to test all examples with your schema.
+
 
