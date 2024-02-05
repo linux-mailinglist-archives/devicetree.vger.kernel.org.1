@@ -1,124 +1,188 @@
-Return-Path: <devicetree+bounces-38594-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-38595-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0AE3F8499EE
-	for <lists+devicetree@lfdr.de>; Mon,  5 Feb 2024 13:19:28 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 16CAB8499EC
+	for <lists+devicetree@lfdr.de>; Mon,  5 Feb 2024 13:19:09 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 25843B2096A
-	for <lists+devicetree@lfdr.de>; Mon,  5 Feb 2024 12:18:28 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 70944B22687
+	for <lists+devicetree@lfdr.de>; Mon,  5 Feb 2024 12:18:56 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5B1611AADA;
-	Mon,  5 Feb 2024 12:16:49 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id CA90F18EAB;
+	Mon,  5 Feb 2024 12:18:02 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="VilCHDqt"
+	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="BnEbuHmr"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-qv1-f43.google.com (mail-qv1-f43.google.com [209.85.219.43])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from relay1-d.mail.gandi.net (relay1-d.mail.gandi.net [217.70.183.193])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 876771B7FC
-	for <devicetree@vger.kernel.org>; Mon,  5 Feb 2024 12:16:47 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.219.43
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 61CBB1BF3C;
+	Mon,  5 Feb 2024 12:17:58 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.70.183.193
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1707135409; cv=none; b=n+w2M9YW/evHkpcULMveMhttxkoskJ5jW1CW2ERsrTY0fU6j309nzgjPb7l/gE1hx/iMZNuwUz2Dg1EV7dPZCdw40+z/0se2nzkO4GuaG8kbAHtzuGUQ7f79n8lYdxzEt/hYrFbcEEzyYYJLJsA9YG3QzWCbmwH6RCqPFUUqHC8=
+	t=1707135482; cv=none; b=E86eSZ7LI+sSy33KVJRhTECibBsrEMVleJv2Bo/JKH0WMEacUtn64CrxQaPfaWM4z+NyWpufIyxSlrIA+JQiexS5vAyTJ0S1M4ZPfWQVUAIB+OrvA9RaW7kMdiQ2jII8Ct7nGi+IUs5ZtEPxfPxlLqNqeZsPjn5SdUsMvIg6VjQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1707135409; c=relaxed/simple;
-	bh=tsXtjL3jKFMB+WSk0JpzVAP7MGhXmM9+c92lwZxU+TI=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=p9njA2ra54UHG5wQkjqcXOPTWn60wAO3WBc1T/7meUIZiB+2OL1UsqPjbvvReZ8WyU59YUuF5Bv6UyNhpszEUOo2CUuks9LND4vXhoSaKv9q4JOq6RFWlQTZz3etqZzD38EoP9/3U9dZKhgFfK46gLM1Jv1yFGeUizqx981Til8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=VilCHDqt; arc=none smtp.client-ip=209.85.219.43
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-qv1-f43.google.com with SMTP id 6a1803df08f44-68c8d3c445fso8771586d6.1
-        for <devicetree@vger.kernel.org>; Mon, 05 Feb 2024 04:16:47 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1707135406; x=1707740206; darn=vger.kernel.org;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=sKcJxDs2U0CIXHnJF8C0W50g0s8I45Q1IJyWjWMP9gw=;
-        b=VilCHDqta/dyZUPZ0b+rGNL2YWAW84uoPbkWa8oJ00IO6idt6tALD+c1LnL0utRC2x
-         GewSye1Md71pxk1wBTyh7Waoh1HpUDOqEHD2s2U4Eo2BrxhStMqRAZsGMUZHnME7uJF9
-         ijlDZE1RxLg+gdj0NtDNnk6DGJB9jOuRd/h+k79Kppg6SLgXmyPOKGxivxpSeIClJUmb
-         enbirnT4Q3oWUtZR6zpNhWnwCJddpW/LGzLA+7ckUeOU/5YYliGVCXVtNb0L7vugsasU
-         NyJgBkonN6yeYEmC+BIFgpOLo21OUqOZuw16ZnIF9ccA56giG0mTL4sM/Xd94sAxTkT8
-         NoxQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1707135406; x=1707740206;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=sKcJxDs2U0CIXHnJF8C0W50g0s8I45Q1IJyWjWMP9gw=;
-        b=cwTQXHz9eOVjHVllcx/g3iWHo4AOqs9asLKMSWldcQdhXOBnmwTO69KPzLcARvgDqj
-         Pewswc5ahVO2u5KTkZVw9t1hMgoE8AY117HUP8KxHbyCzUuEdSS+7eKLhBrfBssLhyL4
-         1Rov5M1sQVA5FQbLRm79ILBCjZAMrmJfLZSCVsj6C2g0JnFIhvMUW5rYEa6It9Kr1P4j
-         KV21ukprjiyYyCztxAFVCqiEqvZWx8yn92WS5d9QBm7Uw5PyaKwqrneDie+twP8Bry/k
-         wTnqfOc4XK4nooZoluUUihaGlwFEaO8A8u4t4jGNLqI6583Q+WHjgVoK3FPxVoD2QTps
-         +9dA==
-X-Gm-Message-State: AOJu0YwBBv53iISCmQbfEsezzyVBKyWUiTG0/Wm159+2/9u2Tgp1Czq6
-	hEe0CD3hGVewNtnnPoZ8/gXGr6wsgOzhWT1EJMV0i5zkpJ4/5h6aopqQ7ilwbHNjP9v+NfrOn7o
-	jYVVkG81WEVBETWbp05X3x1F8OR2YwK0PPpEgFQ==
-X-Google-Smtp-Source: AGHT+IEH+Cx3grIh4RFwuym81P8SCvqndy7OV48SZ4DoGUqzDfRuEgpFnLJzR0P8Lq8xfGiMsEUmLLlpG0IRRPH8hdM=
-X-Received: by 2002:a05:6214:410e:b0:68c:89e2:66a0 with SMTP id
- kc14-20020a056214410e00b0068c89e266a0mr7904983qvb.39.1707135406395; Mon, 05
- Feb 2024 04:16:46 -0800 (PST)
+	s=arc-20240116; t=1707135482; c=relaxed/simple;
+	bh=pY7XHYnoI+4w+LAAZtriOctiu2kUF5CNl3eTZWfJumg=;
+	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=c8z4qGbJquWb/aOLj9uL14CKDBAM8GfT6uKCUR3nhsznV3o27z63cMbMJr6ckIiHHHajjDk6cm4NkWemkfDW5DJ1CrguDU0nT83b0/dlYSDEaMdeYLhY/3xpe1OO6o+PHIz9xez0kqTVYczmBDuWxURynvKZF4muYeW19MVPtUM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=BnEbuHmr; arc=none smtp.client-ip=217.70.183.193
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
+Received: by mail.gandi.net (Postfix) with ESMTPSA id 52612240002;
+	Mon,  5 Feb 2024 12:17:56 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
+	t=1707135477;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references;
+	bh=y+evZiLiKD7b5CexFbHLoJ/nJKE/+uE1gXiR+q3+Wjw=;
+	b=BnEbuHmrgDWYV4Zwx4pHhHb3Ef7KcMKvOrrZ3+iq0AlT6UzxQe6TSa5R+imYuJy+U2bXIU
+	a+QR5CQQc6wC3mNcshL90wOLjj9XtlN/9ES/waKZElJwZmkMK3wbSyFpi0iF3RFaYeI0c7
+	3qHtNNtiOVMvIfRHQFVm8m+A378FLmy2D7C/hVAIujzXfWkJaojaMCzCMATuwLF4bGvxHF
+	3tcSOVVUN47ZwjomCKVhHj4/GtFvlbgMzOh7AT+jic5X2ZO7o52QWvFjOlSmH5PXhhjp/Q
+	Urp2dzCUeAdb4lpNuvf5W6ncJCEARN691Mmkn8ydX0tWH4RVvG1sQ4szSJBLtQ==
+Date: Mon, 5 Feb 2024 13:17:55 +0100
+From: Miquel Raynal <miquel.raynal@bootlin.com>
+To: Simon Glass <sjg@chromium.org>
+Cc: Rob Herring <robh@kernel.org>, devicetree@vger.kernel.org,
+ linux-mtd@lists.infradead.org, Tom Rini <trini@konsulko.com>, Michael Walle
+ <mwalle@kernel.org>, U-Boot Mailing List <u-boot@lists.denx.de>, Conor
+ Dooley <conor+dt@kernel.org>, Krzysztof Kozlowski
+ <krzysztof.kozlowski+dt@linaro.org>, Pratyush Yadav <ptyadav@amazon.de>,
+ =?UTF-8?B?UmFmYcWCIE1pxYJlY2tp?= <rafal@milecki.pl>, Richard Weinberger
+ <richard@nod.at>, Vignesh Raghavendra <vigneshr@ti.com>,
+ linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v6 1/3] dt-bindings: mtd: partitions: Add binman
+ compatible
+Message-ID: <20240205131755.3462084f@xps-13>
+In-Reply-To: <CAFLszTi+8ygXOidnhxj7sdJwc6X5i+++QvnUyfe-kde5eSts_w@mail.gmail.com>
+References: <20231116172859.393744-1-sjg@chromium.org>
+	<20231208150042.GA1278773-robh@kernel.org>
+	<CAPnjgZ2i4gvgiUeHPOfHuOdBooV4e=QQEq6iMo0JbDwOS6dCwA@mail.gmail.com>
+	<CAL_Jsq+xMZ8yz4H9D59uCSyX4h5W+4ruGF++=wVA=msXz+Y01A@mail.gmail.com>
+	<CAPnjgZ1uW8T6woXSqFUNm301=W3zBYOrADREkrz=DuwSW87qZg@mail.gmail.com>
+	<20231214172702.GA617226-robh@kernel.org>
+	<CAPnjgZ2oJSGPO91Y_aLbe+v250WFrND4n3T0mOvhERYidVu=eQ@mail.gmail.com>
+	<CAFLszTizRRVbRO6_ygE2X-Lp5dENWSc4uMGL5GPJAFGAbRdCyQ@mail.gmail.com>
+	<CAL_Jsq+j7_KZtQ2ENq9+vsw0LOZF=spu293_G=AxOmBM+m_f-g@mail.gmail.com>
+	<CAFLszTimaFw9sf=JKvQXG4fS6V_2T=2n+pfvYLCiuG1o+7cHPA@mail.gmail.com>
+	<20240205085056.44278f2c@xps-13>
+	<CAFLszTi+8ygXOidnhxj7sdJwc6X5i+++QvnUyfe-kde5eSts_w@mail.gmail.com>
+Organization: Bootlin
+X-Mailer: Claws Mail 4.0.0 (GTK+ 3.24.33; x86_64-pc-linux-gnu)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20240201172224.574238-1-alexey.klimov@linaro.org>
-In-Reply-To: <20240201172224.574238-1-alexey.klimov@linaro.org>
-From: Peter Griffin <peter.griffin@linaro.org>
-Date: Mon, 5 Feb 2024 12:16:35 +0000
-Message-ID: <CADrjBPpm1LrZNxd+uA_xrBp7_vojCnKKEeyQ5ambcBE=snPJOg@mail.gmail.com>
-Subject: Re: [PATCH 1/4] dt-bindings: hwinfo: samsung,exynos-chipid: add
- gs101-chipid compatible
-To: Alexey Klimov <alexey.klimov@linaro.org>
-Cc: krzysztof.kozlowski@linaro.org, alim.akhtar@samsung.com, 
-	linux-samsung-soc@vger.kernel.org, semen.protsenko@linaro.org, 
-	robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org, 
-	devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
-	linux-kernel@vger.kernel.org, klimov.linux@gmail.com, kernel-team@android.com, 
-	tudor.ambarus@linaro.org, andre.draszik@linaro.org, saravanak@google.com, 
-	willmcvicker@google.com, arnd@arndb.de
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+X-GND-Sasl: miquel.raynal@bootlin.com
 
-Hi Alexey,
+Hi Simon,
 
-On Thu, 1 Feb 2024 at 17:22, Alexey Klimov <alexey.klimov@linaro.org> wrote:
->
-> Add "google,gs101-chipid" compatible string to binding document.
->
-> Signed-off-by: Alexey Klimov <alexey.klimov@linaro.org>
-> ---
+> > > > > > > > > > > > +description: |
+> > > > > > > > > > > > +  The binman node provides a layout for firmware, =
+used when packaging firmware
+> > > > > > > > > > > > +  from multiple projects. It is based on fixed-par=
+titions, with some
+> > > > > > > > > > > > +  extensions, but uses 'compatible' to indicate th=
+e contents of the node, to
+> > > > > > > > > > > > +  avoid perturbing or confusing existing installat=
+ions which use 'label' for a
+> > > > > > > > > > > > +  particular purpose.
+> > > > > > > > > > > > +
+> > > > > > > > > > > > +  Binman supports properties used as inputs to the=
+ firmware-packaging process,
+> > > > > > > > > > > > +  such as those which control alignment of partiti=
+ons. This binding addresses
+> > > > > > > > > > > > +  these 'input' properties. For example, it is com=
+mon for the 'reg' property
+> > > > > > > > > > > > +  (an 'output' property) to be set by Binman, base=
+d on the alignment requested
+> > > > > > > > > > > > +  in the input.
+> > > > > > > > > > > > +
+> > > > > > > > > > > > +  Once processing is complete, input properties ha=
+ve mostly served their
+> > > > > > > > > > > > +  purpose, at least until the firmware is repacked=
+ later, e.g. due to a
+> > > > > > > > > > > > +  firmware update. The 'fixed-partitions' binding =
+should provide enough
+> > > > > > > > > > > > +  information to read the firmware at runtime, inc=
+luding decompression if
+> > > > > > > > > > > > +  needed. =20
+> > > > > > > > > > >
+> > > > > > > > > > > How is this going to work exactly? binman reads these=
+ nodes and then
+> > > > > > > > > > > writes out 'fixed-partitions' nodes. But then you've =
+lost the binman
+> > > > > > > > > > > specifc parts needed for repacking. =20
+> > > > > > > > > >
+> > > > > > > > > > No, they are the same node. I do want the extra informa=
+tion to stick
+> > > > > > > > > > around. So long as it is compatible with fixed-partitio=
+n as well, this
+> > > > > > > > > > should work OK. =20
+> > > > > > > > >
+> > > > > > > > > How can it be both? The partitions node compatible can be=
+ either
+> > > > > > > > > 'fixed-partitions' or 'binman'. =20
+> > > > > > > >
+> > > > > > > > Can we not allow it to be both? I have tried to adjust thin=
+gs in
+> > > > > > > > response to feedback but perhaps the feedback was leading m=
+e down the
+> > > > > > > > wrong path? =20
+> > > > > > >
+> > > > > > > Sure, but then the schema has to and that means extending
+> > > > > > > fixed-partitions. =20
+> > > > > >
+> > > > > > Can we cross that bridge later? There might be resistance to it=
+. I'm
+> > > > > > not sure. For now, perhaps just a binman compatible works well =
+enough
+> > > > > > to make progress. =20
+> > > > >
+> > > > > Is there any way to make progress on this? I would like to have
+> > > > > software which doesn't understand the binman compatible to at lea=
+st be
+> > > > > able to understand the fixed-partition compatible. Is that accept=
+able? =20
+> > > >
+> > > > There's only 2 ways that it can work. Either binman writes out
+> > > > fixed-partition nodes dropping/replacing anything only defined for
+> > > > binman or fixed-partition is extended to include what binman needs.=
+ =20
+> > >
+> > > OK, then I suppose the best way is to add a new binman compatible, as
+> > > is done with this v6 series. People then need to choose it instead of
+> > > fixed-partition. =20
+> >
+> > I'm sorry this is not at all what Rob suggested, or did I totally
+> > misunderstand his answer?
+> >
+> > In both cases the solution is to generate a "fixed-partition" node. Now
+> > up to you to decide whether binman should adapt the output to the
+> > current schema, or if the current schema should be extended to
+> > understand all binman's output.
+> >
+> > At least that is my understanding and also what I kind of agree with. =
+=20
+>=20
+> I do want to binman schema to include all the features of Binman.
+>=20
+> So are you saying that there should not be a 'binman'  schema, but I
+> should just add all the binman properties to the fixed-partition
+> schema?
 
-Thanks for your contribution.
-Reviewed-by: Peter Griffin <peter.griffin@linaro.org>
+This is my current understanding, yes. But acknowledgment from Rob is
+also welcome.
 
-
-
-
-
-
->  .../devicetree/bindings/hwinfo/samsung,exynos-chipid.yaml        | 1 +
->  1 file changed, 1 insertion(+)
->
-> diff --git a/Documentation/devicetree/bindings/hwinfo/samsung,exynos-chipid.yaml b/Documentation/devicetree/bindings/hwinfo/samsung,exynos-chipid.yaml
-> index 780ccb5ee9b4..b1d933808b6c 100644
-> --- a/Documentation/devicetree/bindings/hwinfo/samsung,exynos-chipid.yaml
-> +++ b/Documentation/devicetree/bindings/hwinfo/samsung,exynos-chipid.yaml
-> @@ -13,6 +13,7 @@ properties:
->    compatible:
->      oneOf:
->        - enum:
-> +          - google,gs101-chipid
->            - samsung,exynos4210-chipid
->            - samsung,exynos850-chipid
->        - items:
-> --
-> 2.43.0
->
+Thanks,
+Miqu=C3=A8l
 
