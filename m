@@ -1,194 +1,111 @@
-Return-Path: <devicetree+bounces-38645-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-38646-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1B1E2849DAA
-	for <lists+devicetree@lfdr.de>; Mon,  5 Feb 2024 16:05:12 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id A0E61849DB8
+	for <lists+devicetree@lfdr.de>; Mon,  5 Feb 2024 16:11:43 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id C39081F22579
-	for <lists+devicetree@lfdr.de>; Mon,  5 Feb 2024 15:05:11 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id D2C3E1C223C8
+	for <lists+devicetree@lfdr.de>; Mon,  5 Feb 2024 15:11:42 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0A04C2C68C;
-	Mon,  5 Feb 2024 15:05:06 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D18522C6B6;
+	Mon,  5 Feb 2024 15:11:38 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="EmqBH4uM"
+	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="LRqzQoMw"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from relay3-d.mail.gandi.net (relay3-d.mail.gandi.net [217.70.183.195])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D284C2C848;
-	Mon,  5 Feb 2024 15:05:05 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 775772C6B7;
+	Mon,  5 Feb 2024 15:11:34 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.70.183.195
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1707145505; cv=none; b=s/X0UKP6h24xxyULZt5GeotqNCwG3+rU2DX3zovsTIPVRJWXyiBvGD/4sFRqXPiUEKBHjxkBvu1U0JONVyXOLdQRaFAiEUCN/YEK+WWULfov+Zf2oYkU9yK7f3ougbnp+Zmfo0BktMi+BavCKFcp4B272CzzJIcDhAPd7J42qYg=
+	t=1707145898; cv=none; b=Rik3nXkPaYh1U5PfVqiKw0Tj/nqDOKMGV00TOdAb2UepGwk1yMQvEpvm+CqHz2jMwXapB4kHK2y7IbUZrLI8kbwV7Gvw7ZhIMgLwP5fNKcQVprsRG3UTWl/6l0ZyHtf1poimMLcIOT5zSybo/wsenc3qQRh4vUmtFTM5aY+BfEc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1707145505; c=relaxed/simple;
-	bh=Yfk/4+9czy4PCreT5ugg9ESrBcCZP7CYrSDkqcGFwJQ=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=X2x4AhYQ0j3KGL+RrSJF3nylu+4VmseY48EUkSXUc52Csl1r6UOectgSZMAQ2C2/Xer8VNSKoJMjcitE+c4OnbJcIZzzVxf5+LXRm9HZYk7XDS85RZn7Edzq0/Q+ZRItYaGGqDK6cU26v5kKWgKdhG0Sout97d8hG20lD4Dqvdw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=EmqBH4uM; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 178D5C433C7;
-	Mon,  5 Feb 2024 15:05:05 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1707145505;
-	bh=Yfk/4+9czy4PCreT5ugg9ESrBcCZP7CYrSDkqcGFwJQ=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=EmqBH4uM3l0y4S8L/czVQGJzlHiBpNTnZ6i8odDonDEDNBBLlWz8vxea17SptzhIX
-	 BZkqhHIvNIIX89nGFysge/VSytT4gmEjTOsk8U9OxSj9vdMOmt637BsV85TfjxzCjD
-	 zQS3OcXGg+Ps1pkpjZdyitTGjyeGNvJJdmLADxB2sLcUqypoEHAyFv9wTIAWovrvXn
-	 nhs7Bku0G+ZYk9W4x8hNhrKfumASXnwLGEUVc0IqxCPEF8B3wuBHE5DI5Ws3HjgPu1
-	 2tCqFS8MXiBWX1u25XletqA9Q51p3HKziPE7kc/e4qF8hL68HYnmeWzqJl8OD3IGQN
-	 tQUsZAzVbLgcw==
-Date: Mon, 5 Feb 2024 15:05:02 +0000
-From: Mark Brown <broonie@kernel.org>
-To: Shenghao Ding <shenghao-ding@ti.com>
-Cc: conor+dt@kernel.org, krzysztof.kozlowski@linaro.org,
-	devicetree@vger.kernel.org, robh+dt@kernel.org,
-	andriy.shevchenko@linux.intel.com, linux-sound@vger.kernel.org,
-	liam.r.girdwood@intel.com, lgirdwood@gmail.com,
-	linux-kernel@vger.kernel.org, kevin-lu@ti.com, baojun.xu@ti.com,
-	v-po@ti.com, navada@ti.com, perex@perex.cz, j-mcpherson@ti.com,
-	pierre-louis.bossart@linux.intel.com, 13916275206@139.com,
-	mohit.chawla@ti.com, soyer@irl.hu, jkhuang3@ti.com, tiwai@suse.de,
-	pdjuandi@ti.com, manisha.agrawal@ti.com, s-hari@ti.com,
-	aviel@ti.com, hnagalla@ti.com, praneeth@ti.com
-Subject: Re: [PATCH v3 1/4] ASoc: PCM6240: Create PCM6240 Family driver code
-Message-ID: <ZcD5HjnxSJkQ6QYT@finisterre.sirena.org.uk>
-References: <20240203030504.1724-1-shenghao-ding@ti.com>
+	s=arc-20240116; t=1707145898; c=relaxed/simple;
+	bh=or1mC3Cf+BGWdRGGha8GQZG8rLMB4ONTBBAhWbyuCyU=;
+	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=K358rN8E1d2cn0DuINjIvhJj9L2bMnh34Uj7i5RdGyE+sabc2f4yQ193fHbVmLAJLk8ZpV+FO1RF35iuQNeB9dJId9q6oFohF7qy7fVUT3xPf8u35b7vXkJ3UwnyciaOHxRIH5Ec6ZPDU2weRFKPnAcvEMr56shWz7LxlTmq9Q8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=LRqzQoMw; arc=none smtp.client-ip=217.70.183.195
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
+Received: by mail.gandi.net (Postfix) with ESMTPSA id 0264C60004;
+	Mon,  5 Feb 2024 15:11:29 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
+	t=1707145892;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references;
+	bh=or1mC3Cf+BGWdRGGha8GQZG8rLMB4ONTBBAhWbyuCyU=;
+	b=LRqzQoMwi0LqJMn0BW7k9Q1PJnJOdm0smu8g8xANoGjCCjB4wSIO9lrD0rzsjkaW0mL4he
+	Rrh0x+s78SdEpCrUOfDzXTvS1f6SvnfCoKy6cpXrqkgORMC60KGC8oQ1K76cy0nv1FDwcp
+	nJx3hC9Du2oCn4qyDqL9IOYfRslZRh38kJ0tNH1hC+EQYpRSvOKhAk4FO7CF+hpyQrYvEb
+	YbCVk0glppCgwpO3sEVsbCh8IjonYY2p4WiLvOZ88SQJT9z8waw/Yl/Z8eelCF+F1Wl6Eu
+	i1X+9h5/XoETw2OMXInCqaxmaw2GU59MhKQcwdPb2dzKyldyOCRgcInWBTRmwQ==
+Date: Mon, 5 Feb 2024 16:11:29 +0100
+From: Miquel Raynal <miquel.raynal@bootlin.com>
+To: Michael Pratt <mcpratt@pm.me>
+Cc: devicetree@vger.kernel.org, gregkh@linuxfoundation.org,
+ linux-kernel@vger.kernel.org, linux-mtd@lists.infradead.org,
+ saravanak@google.com, abel.vesa@linaro.org,
+ alexander.stein@ew.tq-group.com, andriy.shevchenko@linux.intel.com,
+ bigunclemax@gmail.com, brgl@bgdev.pl, colin.foster@in-advantage.com,
+ djrscally@gmail.com, dmitry.baryshkov@linaro.org, festevam@gmail.com,
+ fido_max@inbox.ru, frowand.list@gmail.com, geert@linux-m68k.org,
+ heikki.krogerus@linux.intel.com, kernel@pengutronix.de,
+ linus.walleij@linaro.org, linux@roeck-us.net, luca.weiss@fairphone.com,
+ magnus.damm@gmail.com, martin.kepplinger@puri.sm, rafal@milecki.pl,
+ ansuelsmth@gmail.com, richard@nod.at, sakari.ailus@linux.intel.com,
+ sudeep.holla@arm.com, tglx@linutronix.de, tony@atomide.com,
+ vigneshr@ti.com, dianders@chromium.org, jpb@kernel.org, rafael@kernel.org
+Subject: Re: [PATCH v1 4/4] mtd: mtdpart: Allow fwnode links to NVMEM
+ compatible fwnodes
+Message-ID: <20240205161129.1889a943@xps-13>
+In-Reply-To: <20240123014517.5787-5-mcpratt@pm.me>
+References: <20240123014517.5787-1-mcpratt@pm.me>
+	<20240123014517.5787-5-mcpratt@pm.me>
+Organization: Bootlin
+X-Mailer: Claws Mail 4.0.0 (GTK+ 3.24.33; x86_64-pc-linux-gnu)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="GVpQNZhUL4tDuEAO"
-Content-Disposition: inline
-In-Reply-To: <20240203030504.1724-1-shenghao-ding@ti.com>
-X-Cookie: You might have mail.
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+X-GND-Sasl: miquel.raynal@bootlin.com
 
+Hi Michael,
 
---GVpQNZhUL4tDuEAO
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
+mcpratt@pm.me wrote on Tue, 23 Jan 2024 01:47:21 +0000:
 
-On Sat, Feb 03, 2024 at 11:04:59AM +0800, Shenghao Ding wrote:
+> This reverts commit fb42378dcc7f247df56f0ecddfdae85487495fbc
+> ("mtd: mtdpart: Don't create platform device that'll never probe").
+>=20
+> That commit is a manual named exception in order to avoid fw_devlink links
+> to an "nvmem-cells" compatible node which is a descendant of the fwnode
+> that represents the real supplier device that probes.
+>=20
+> The commit does not work for newer cases, like the "fixed-layout"
 
-> +static int pcmdev_dev_update_bits(struct pcmdevice_priv *pcm_dev,
-> +	unsigned int dev_no, unsigned int reg, unsigned int mask,
-> +	unsigned int value)
-> +{
-> +	struct regmap *map = pcm_dev->regmap;
-> +	int ret;
-> +
-> +	if (dev_no >= pcm_dev->ndev) {
-> +		dev_err(pcm_dev->dev, "%s, no such channel(%d)\n", __func__,
-> +			dev_no);
-> +		return -EINVAL;
-> +	}
-> +
-> +	ret = pcmdev_change_dev(pcm_dev, dev_no);
-> +	if (ret < 0) {
-> +		dev_err(pcm_dev->dev, "%s, E=%d\n", __func__, ret);
-> +		return ret;
-> +	}
-> +
-> +	ret = regmap_update_bits(map, reg, mask, value);
-> +	if (ret < 0)
-> +		dev_err(pcm_dev->dev, "update_bits ERROR, E=%d\n",
-> +			ret);
-> +
-> +	return ret;
-> +}
+Do you have plans for it? Because it is the modern description that is
+now expected, so I don't feel convinced by all this work (which is
+nevertheless considerable) if fixed-layouts are still broken?
 
-retmap_update_bits() will return 0 on a successful write...
+> compatible nodes, but instead of adding another compatible string,
+> remove this workaround as it is no longer needed after
+> the previous few commits which handle the situation in a generic way
+> for all supplier nodes that are a child or further descendant fwnode
+> of a parent device that can probe, including when the consumer device
+> has a probe attempt before the supplier device, by using an existing
+> incorrect fwnode or device link to recreate the correct one.
+>=20
+> Signed-off-by: Michael Pratt <mcpratt@pm.me>
 
-> +static int pcmdev_put_volsw(struct snd_kcontrol *kcontrol,
-> +	struct snd_ctl_elem_value *ucontrol, int vol_ctrl_type)
-> +{
-
-> +	err = pcmdev_dev_update_bits(pcm_dev, dev_no, reg, val_mask, val);
-> +	if (err)
-> +		dev_err(pcm_dev->dev, "%s:update_bits, ERROR, E=%d\n",
-> +			__func__, err);
-> +
-> +	mutex_unlock(&pcm_dev->codec_lock);
-> +	return err;
-
-...so this and other controls will return 0 when the value changes,
-brekaing event generation.  Please use the mixer-test kselftest to check
-for this and other issues.
-
-> +static int pcmdevice_codec_probe(struct snd_soc_component *codec)
-> +{
-
-> +	/* device-name[defined in pcmdevice_i2c_id]-i2c-bus_id[0,1,...,N]-
-> +	 * sum[1,2,...,4]dev-reg.bin stores the firmware including register
-> +	 * setting and params for different filters inside chips, it must be
-> +	 * copied into firmware folder. The same types of pcmdevices sitting
-> +	 * on the same i2c bus will be aggregated as one single codec,
-> +	 * all of them share the same bin file.
-> +	 */
-> +	scnprintf(pcm_dev->regbin_name, PCMDEVICE_REGBIN_FILENAME_LEN,
-> +		"%s-i2c-%d-%udev-reg.bin", pcm_dev->dev_name, adap->nr,
-> +		pcm_dev->ndev);
-> +
-> +	ret = request_firmware_nowait(THIS_MODULE, FW_ACTION_UEVENT,
-> +		pcm_dev->regbin_name, pcm_dev->dev, GFP_KERNEL, pcm_dev,
-> +		pcmdev_regbin_ready);
-> +	if (ret) {
-> +		dev_err(pcm_dev->dev, "load %s error = %d\n",
-> +			pcm_dev->regbin_name, ret);
-> +		goto out;
-> +	}
-
-This does still seem like it'd be better placed in the main probe()
-function with the component registration happening once firmware is
-ready so...
-
-> +static int pcmdevice_startup(struct snd_pcm_substream *substream,
-> +	struct snd_soc_dai *dai)
-> +{
-> +	struct snd_soc_component *codec = dai->component;
-> +	struct pcmdevice_priv *pcm_priv = snd_soc_component_get_drvdata(codec);
-> +
-> +	if (pcm_priv->fw_state != PCMDEVICE_FW_LOAD_OK) {
-> +		dev_err(pcm_priv->dev, "DSP bin file not loaded\n");
-> +		return -EBUSY;
-> +	}
-> +
-> +	return 0;
-> +}
-
-...issues like this can be avoided.  The device is fundamentally reliant
-on the firmware being there AFAICT.
-
-> +
-> +		} else
-> +			dev_err(pcm_dev->dev, "%s: GPIO %d request error\n",
-> +				__func__, pcm_dev->irq_info.gpio);
-> +	} else
-> +		dev_err(pcm_dev->dev, "Looking up irq-gpio failed %d\n",
-> +			pcm_dev->irq_info.gpio);
-
-If one side of the if/else has a braces both should.
-
---GVpQNZhUL4tDuEAO
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAmXA+QYACgkQJNaLcl1U
-h9Baxwf/UwNBAiiC4ati9dw7ukq1Tllnshu6jV0qXya/RRLvUIki4AsbMjqg/W3V
-Qc3e6dtcKLCBYGDxcNqpJRQDCwTjbusYvWvF5ZcXrPoLDVSVeInIctkUALopLlFs
-1T2UY86bZ/ikv/4NJI/qc6r04ibK+cEa1TTjfA1j/GWEtzKBE4AU6qMhwN2BnRm2
-ADElVSM3dbrkM5hC9N+/kef+gc+wc3kfVPuYu/w1UyHLIDb7vIsQ47DKp+VJabvJ
-t6eLFIEu1B+9US29BUEmcrVkK2zA7czWxiD8YpOjX6mMA9X0aPkFfBiV3TNpmECB
-qMPlBr4F3cDcGCioXrh0JkW/badInA==
-=BXQw
------END PGP SIGNATURE-----
-
---GVpQNZhUL4tDuEAO--
+Thanks,
+Miqu=C3=A8l
 
