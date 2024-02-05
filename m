@@ -1,216 +1,196 @@
-Return-Path: <devicetree+bounces-38619-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-38617-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 800D8849C50
-	for <lists+devicetree@lfdr.de>; Mon,  5 Feb 2024 14:55:18 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 929C3849C3E
+	for <lists+devicetree@lfdr.de>; Mon,  5 Feb 2024 14:52:48 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id D437FB24B46
-	for <lists+devicetree@lfdr.de>; Mon,  5 Feb 2024 13:55:15 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 7C14CB2351A
+	for <lists+devicetree@lfdr.de>; Mon,  5 Feb 2024 13:52:45 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D1C8B210E6;
-	Mon,  5 Feb 2024 13:54:38 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="h9KzbfW7"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id CB48C210E6;
+	Mon,  5 Feb 2024 13:52:39 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-yw1-f177.google.com (mail-yw1-f177.google.com [209.85.128.177])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
-	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0C3A521370
-	for <devicetree@vger.kernel.org>; Mon,  5 Feb 2024 13:54:36 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.177
+Received: from foss.arm.com (foss.arm.com [217.140.110.172])
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A257922EF0;
+	Mon,  5 Feb 2024 13:52:36 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.140.110.172
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1707141278; cv=none; b=Eqx2sl1ONZPk3z9w2vmDv6/hG47XkQWx9QE/ajH2rGz7iEP3BrEvJQuAS9q25yGZFvtUEe1UsnxZERoqxeoO/Q3AUOGhc/3J1fWECGJIkh4DhBwv5pQ7FCVI0Xu8YK+Me7HXQgKYiJxFN8oEbbW047kTxGxnGgZHlPXsVBR01Fg=
+	t=1707141159; cv=none; b=hcQKAHiXRCQaCca56wMT382rCKd3dk7HOZsJah0QfqmnkKuUebLj4PFUnf64hNw5hUO08MdnXCcSJrwxxhCVYsHgLme3dx7efh7RKqVLgaObbKx3Ugi2c0/LeAgX82HpT5ztFVGxLeVQ5IjuvkwbmS1Tzm7TnKcutwtpW1BdCjI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1707141278; c=relaxed/simple;
-	bh=JOKHiC6XDnMvCFB+2urHL6ouF/Z2o4GIp6viWvkNhSI=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=Hj7/HiVf40QFxQ9E7Pva1BUZUJ/BnAc6peUQcLYBvGuswSkYzeHw123KErMV5IBeS5q4JXNYDtom8UPHWEGNKX2BroNr6k7jyE8W/kR9Mcih6+VcUuYh7a21BI/wr3HRAnzNJ4vtnyzlXKLktwUWd8yOQ8etkB0YjKjA5lW/a7A=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=h9KzbfW7; arc=none smtp.client-ip=209.85.128.177
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-yw1-f177.google.com with SMTP id 00721157ae682-5edfcba97e3so43987957b3.2
-        for <devicetree@vger.kernel.org>; Mon, 05 Feb 2024 05:54:36 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1707141276; x=1707746076; darn=vger.kernel.org;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=JtBlYOtJ0skwp1KJO8a8C9zsixZtlwcwqIpjM6PlYiA=;
-        b=h9KzbfW7qoLb5hf3wQ3d5oH7YofrK+B97T664pc2di3yzcZBAYmHgMFmdrug82WEXo
-         1XZDvkTcHXS+RNuxwNeGhTlvLhWGc/XLOlf3BtDR0q+diJm++igKejzBoKKSK62pnoFK
-         Gl/WWh5rBuWoDa056ugOy/L/ENdEUTxsX182lwL6SJe5GShP+Y6cq1FUOfYGPKWNcjtO
-         9WVBpnwyKGKj/8fAtpY0Gw4m1cPaY5eKSumfwk4LUoiebMNqSeiRV/QoOy47cc/0RhaO
-         9jGdqNQcgCPWuF9uXt1evt2NfVchMjzKnYsCW+rKVnJ+aLzKcEVAcyo8aR0WesndseZA
-         hn9w==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1707141276; x=1707746076;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=JtBlYOtJ0skwp1KJO8a8C9zsixZtlwcwqIpjM6PlYiA=;
-        b=ZuOllvKTbwEV6Tg+g8c0Ce/xL1jOtd9u2GivosmA4Xl6WCkynjYE1X1VAa0Sum4iUj
-         RrkrSSxLMkynSf9v7x7tMc4XxMjaFz+oRZPCNESWcJORwfVLJwOBYeIHreoP6ykq/Ncv
-         mHrN45ZlRBOum6F194mKRr/BdP52R7xsZJxEtvW5F8emON4t6iCDT/n3ONQeraP5APeI
-         CHZR6TBqCzHi3pjId64aF4v4RwA+lqW3qQ8fcIVf/PGX5kPo62Y+9TvQOMbDPaObTUqH
-         DR3MekFL34jz3lSUuSO3ShkBy2/gXe06iLHX19GhWZml+LljUm54tC0TY8M1Wl2Dn49Z
-         jySg==
-X-Gm-Message-State: AOJu0YwouhKQQs1Ekaxc2CiC82aqLiyGGHZI9PW4ITTgJf8/ZF7908E9
-	KpYkJ8+xRDrmcJDsX5TpJg+7gPs4hdUpICneHFzCRgp7U44dWPdhza1NHC6YGEWdMTdJaoItVyA
-	LMCTAPPxzE/ZCwyqc1sbQN1sBPc3vx15IbX44gg==
-X-Google-Smtp-Source: AGHT+IGpSzTyt8vbbIqitI5GoUk9JT4XUNcvQrbvqDpIn3MhWnis9GRwj8SDab9bFdb0JISqVskwSvWUEcLPq8Pt5Zo=
-X-Received: by 2002:a81:a18a:0:b0:5fb:c044:f087 with SMTP id
- y132-20020a81a18a000000b005fbc044f087mr9614980ywg.35.1707141275864; Mon, 05
- Feb 2024 05:54:35 -0800 (PST)
+	s=arc-20240116; t=1707141159; c=relaxed/simple;
+	bh=RIlH3Kpx0z44ko9l4/g3YofT/tlmNnchxQwVaNfQBxQ=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=rC9nqdxk66qfISpOOGkOHWT8yrzxyVKeHFala4fmTO9Kiil9sa2ynbMcIcYdR038SY3NVDTBVtCo9csPAraL03rnYDcsXOf2XKiX04P9dgo+6YBQScZ2fFsk7Xkk9zx5OmtczM6Vtpu+BpHtdFzM4XCubLbVUTbmBt5j6+7p8gM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com; spf=pass smtp.mailfrom=arm.com; arc=none smtp.client-ip=217.140.110.172
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=arm.com
+Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
+	by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 724901FB;
+	Mon,  5 Feb 2024 05:53:18 -0800 (PST)
+Received: from pluto (unknown [172.31.20.19])
+	by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 75A3F3F5A1;
+	Mon,  5 Feb 2024 05:52:31 -0800 (PST)
+Date: Mon, 5 Feb 2024 13:52:27 +0000
+From: Cristian Marussi <cristian.marussi@arm.com>
+To: Peng Fan <peng.fan@nxp.com>
+Cc: Sudeep Holla <sudeep.holla@arm.com>,
+	Linus Walleij <linus.walleij@linaro.org>,
+	"Peng Fan (OSS)" <peng.fan@oss.nxp.com>,
+	"souvik.chakravarty@arm.com" <Souvik.Chakravarty@arm.com>,
+	Rob Herring <robh+dt@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Oleksii Moisieiev <oleksii_moisieiev@epam.com>,
+	Shawn Guo <shawnguo@kernel.org>,
+	Sascha Hauer <s.hauer@pengutronix.de>,
+	Pengutronix Kernel Team <kernel@pengutronix.de>,
+	Fabio Estevam <festevam@gmail.com>,
+	dl-linux-imx <linux-imx@nxp.com>,
+	"linux-arm-kernel@lists.infradead.org" <linux-arm-kernel@lists.infradead.org>,
+	"linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+	"devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+	"linux-gpio@vger.kernel.org" <linux-gpio@vger.kernel.org>,
+	AKASHI Takahiro <takahiro.akashi@linaro.org>,
+	Rob Herring <robh@kernel.org>
+Subject: Re: [PATCH v3 0/6] firmware: arm_scmi: Add SCMI v3.2 pincontrol
+ protocol basic support
+Message-ID: <ZcDoG6FTiNgChQJF@pluto>
+References: <20240121-pinctrl-scmi-v3-0-8d94ba79dca8@nxp.com>
+ <f88d07ef-83b2-4d14-976a-6dbbd71e036f@oss.nxp.com>
+ <CACRpkdYV=qYQ9qDUWYTLDAV1niay30gYH5S=zjfi31GpeY5o-A@mail.gmail.com>
+ <DU0PR04MB9417A9074C5DC49AE689E65288432@DU0PR04MB9417.eurprd04.prod.outlook.com>
+ <Zbt-QkWhz5d9P-v6@pluto>
+ <DU0PR04MB9417CA6CF089B264112C32A088402@DU0PR04MB9417.eurprd04.prod.outlook.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20240119100621.11788-1-quic_tengfan@quicinc.com>
- <20240119100621.11788-2-quic_tengfan@quicinc.com> <CAA8EJprpMjK03rKPK6wgfVuDvBikYsKZjMc0Wusa1BxFOBnXhQ@mail.gmail.com>
- <86672501-206a-49ed-8af7-2b6c332c1697@quicinc.com>
-In-Reply-To: <86672501-206a-49ed-8af7-2b6c332c1697@quicinc.com>
-From: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-Date: Mon, 5 Feb 2024 15:48:36 +0200
-Message-ID: <CAA8EJppkDDACV_sLxFW4EqKQLHfo4ivSLwa_jCde8JpeH4YfzA@mail.gmail.com>
-Subject: Re: [PATCH v4 1/6] dt-bindings: arm: qcom: Document QCM8550, QCS8550
- SoC and board
-To: Tengfei Fan <quic_tengfan@quicinc.com>
-Cc: andersson@kernel.org, konrad.dybcio@linaro.org, robh+dt@kernel.org, 
-	krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org, 
-	linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org, kernel@quicinc.com
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <DU0PR04MB9417CA6CF089B264112C32A088402@DU0PR04MB9417.eurprd04.prod.outlook.com>
 
-On Mon, 5 Feb 2024 at 12:21, Tengfei Fan <quic_tengfan@quicinc.com> wrote:
->
->
->
-> On 2/5/2024 12:29 AM, Dmitry Baryshkov wrote:
-> > On Fri, 19 Jan 2024 at 11:07, Tengfei Fan <quic_tengfan@quicinc.com> wrote:
-> >>
-> >> Document QCM8550, QCS8550 SoC and the AIM300 AIoT board bindings.
-> >> QCS8550 and QCM8550 processor combines powerful computing, extreme edge
-> >> AI processing, Wi-Fi 7, and robust video and graphics for a wide range
-> >> of use cases for the Internet of Things (IoT). QCS8550 is a QCS version
-> >> for QCM8550. Modem RF only in QCM8550 but not in QCS8550.
-> >> AIM300 Series is a highly optimized family of modules designed to
-> >> support AIoT applications. The module is mounted onto Qualcomm AIoT
-> >> carrier board to support verification, evaluation and development. It
-> >> integrates QCS8550 SoC, UFS and PMIC chip etc.
-> >> AIM stands for Artificial Intelligence Module. AIoT stands for AI IoT.
-> >>
-> >> Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-> >> Signed-off-by: Tengfei Fan <quic_tengfan@quicinc.com>
-> >> ---
-> >>   Documentation/devicetree/bindings/arm/qcom.yaml | 11 +++++++++++
-> >>   1 file changed, 11 insertions(+)
-> >>
-> >> diff --git a/Documentation/devicetree/bindings/arm/qcom.yaml b/Documentation/devicetree/bindings/arm/qcom.yaml
-> >> index 1a5fb889a444..9cee874a8eae 100644
-> >> --- a/Documentation/devicetree/bindings/arm/qcom.yaml
-> >> +++ b/Documentation/devicetree/bindings/arm/qcom.yaml
-> >> @@ -49,8 +49,10 @@ description: |
-> >>           msm8996
-> >>           msm8998
-> >>           qcs404
-> >> +        qcs8550
-> >>           qcm2290
-> >>           qcm6490
-> >> +        qcm8550
-> >
-> > Drop
->
-> we want to introduce qcm8550 here.
+On Sun, Feb 04, 2024 at 09:29:25AM +0000, Peng Fan wrote:
+> > Subject: Re: [PATCH v3 0/6] firmware: arm_scmi: Add SCMI v3.2 pincontrol
+> > protocol basic support
+> > 
+> > On Thu, Feb 01, 2024 at 07:14:17AM +0000, Peng Fan wrote:
+> > > > Subject: Re: [PATCH v3 0/6] firmware: arm_scmi: Add SCMI v3.2
+> > > > pincontrol protocol basic support
+> > > >
+> > 
+> > Hi Peng,
+> > 
+> > > > On Mon, Jan 29, 2024 at 1:37 PM Peng Fan <peng.fan@oss.nxp.com>
+> > wrote:
+> > > >
+> > > > > And for i.MX95 OEM extenstion, do you have any suggestions?
+> > > > > I have two points:
+> > > > > 1. use vendor compatible. This would also benefit when supporting
+> > > > > vendor protocol.
+> > > > > 2. Introduce a property saying supporting-generic-pinconf
+> > > > >
+> > > > > How do you think?
+> > > >
+> > > > While I don't know how OEM extensions to SCMI were designed, the pin
+> > > > control subsystem has the philosophy that extensions are for minor
+> > > > fringe stuff, such as a pin config option that no other silicon is
+> > > > using and thus have no use for anyone else. Well that is actually
+> > > > all the custom extensions we have.
+> > > > (This notion is even carried over to SCMI pinctrl.)
+> > > >
+> > > > The i.MX95 OEM extension is really odd to me, it looks like a
+> > > > reimplementation of the core aspects of SCMI pin control, and looks
+> > > > much more like the old i.MX drivers than like the SCMI driver.
+> > >
+> > > i.MX SCMI pin protocol conf settings follows non-SCMI pin conf settings.
+> > >
+> > 
+> > It is not just a matter of using custom SCMI OEM types, it is the whole
+> > layout/definitions of the i.MX pin/groups/funcs DT bindings that deviates
+> > from the generic DT bindings layout as handled and expected by the Linux
+> > Pinctrl subsystem (AFAIU), while the SCMI Pinctrl driver as it stands in this
+> > series, was conceived, designed and implemented originally by Oleksii to just
+> > use the generic existing Pinctrl DT bindings; as a consequence, in your i.MX
+> > extensions, you had to add a dedicated i.MX DT parser to interpret the
+> > protocol@19 DT snippet in a completely different way, to try to stick your
+> > custom solution on top of the generic one.
+> 
+> The two links shows the drop of i.MX generic pinconf
+> https://patchwork.ozlabs.org/project/linux-gpio/patch/1541149669-10857-7-git-send-email-aisheng.dong@nxp.com/
+> https://lore.kernel.org/all/20230302072132.1051590-1-linux@rasmusvillemoes.dk/
+> 
+> For non-scmi platforms, the generic pinconf was supported
+> for i.MX7ULP for a while, and then dropped in the end per i.MX maintainers
+> and agreed by Linus.
+> 
+> For i.MX95 SCMI platforms, the firmware design is simple and use similar
+> programming model to simplify firmware design.
+> 
+> Using generic pinconf means the firmware needs exporting groups/functions/pins
+> and etc, the firmware design will be complicated and code size enlarged.
+> 
 
-What for. It either had to be introduced beforehand, or it should be
-introduced when one adds support for an actual qcm8550 device.
+Understood.
 
-> qcm8550.dtsi has been introduced and qcs8550-aim300.dtsi include
-> qcm8550.dtsi directly.
+> I have no better ideas without introducing a compatible for dt map hook.
+> 
+> Build exclusive is not acceptable for distro support.
+> 
+
+Indeed, and I understand that, but in any case it wont be required for
+both the generic pinconf and the IMX way to coexist and live together on
+the same system/platform at runtime, right ?
+
+So, I was thinking as an alternative, while still building all
+(generic+IMX) in defconfig, wouldn't be possible to detect at runtime in the
+pinctrl-scmi probe() which is the type of binding used in the DT (i.e.
+generic VS imx), before registering with the core Pinctrl subsystem, and so
+act accordingly parsing and providing different callbacks based on that ?
+
+I mean, without any compatible addition, just looking up the protocol@19
+node content @probe and switch to iMX callbacks if the fsl,pins binding
+is found ?
+
+Not sure is this is totally viable, nor clean or that it is not less horrific
+from the Pinctrl_subsystem/DT point of view for Linus ... just an idea to think
+about or discard.
+
+> So the last options is i.MX95 switch back to VENDOR protocol ID saying
+> 0x82. But this means to exports functions of pinctrl-scmi.c and reused
+> by pinctrl-scmi-imx.c.  If you agree, I will ask firmware developer
+> switch back to a new SCMI ID, and I will use new ID for i.mx pinctrl
+> driver.
+> 
+
+I dont think there is really any chance to upstream a vendor protocol that
+is a bare copy of a standard protocol just to workaround this...and if
+this is going to be the end-result you can just keep your current 2
+small 'IMX custom-compatible' patches downstream.
+
+> But in the end I would think when more SCMI vendor protocols
+> comes in, saying vendor A and vendor B both use ID 0x81,
+> both use 0x81 as RTC functions, same issue will come back.
 >
-> qcs8550 is a QCS version for qcm8550. qcs8550 is a sub-series of
-> qcm8550. qcm8550 will be a firmware release series from qualcomm.
 
-All three names refer to the different kinds of the same platform. The
-base chip name is sm8550, so it is the last one. Other than that,
-there is no need to include any SoC compatibles other than the actual
-SoC name. See existing qrb devices for an inspiration.
+This wont be a problem once the RFC[1] I posted last week is in...unless
+someone objects, you will have to identify your vendor protocol module
+at build time ALSO with the vendor/sub_vendor ID string exposed by your fw...
+...so each vendor will effectively have the full vendor protocol space
+number at their disposal.
 
->
-> here is the qcm8550/qcs8550 detailed spec:
-> https://docs.qualcomm.com/bundle/publicresource/87-61717-1_REV_A_Qualcomm_QCS8550_QCM8550_Processors_Product_Brief.pdf
->
-> here is the sm8550 detailed spec:
-> https://docs.qualcomm.com/bundle/publicresource/87-71408-1_REV_C_Snapdragon_8_gen_3_Mobile_Platform_Product_Brief.pdf
+Indeed this week, I hope to review your series about custom protocols
+and the qualcomm ones and ask both for feedback on [1] and then to
+rework those series on some non-RFC similar to 1 that I will post
+afterwards.
 
-Can you please summarise the _actual_ difference between qcm8550,
-qcs8550 and sm8550? Are they fully soft compatible? Soft compatible
-except the modem? Pin compatible?
+Thanks,
+Cristian
 
->
-> >
-> >>           qdu1000
-> >>           qrb2210
-> >>           qrb4210
-> >> @@ -93,6 +95,7 @@ description: |
-> >>     The 'board' element must be one of the following strings:
-> >>
-> >>           adp
-> >> +        aim300-aiot
-> >
-> > We probably need to drop this list, it doesn't surve its purposes.
->
-> I am a little confused, do you expect to just remove this "aim300-aiot"
-> or do you want to introduce a new patch and remove the whole list?
-
-If you were following the list, you would have seen the patch
-reworking the bindings.
-
->
-> >
-> >>           cdp
-> >>           dragonboard
-> >>           idp
-> >> @@ -904,6 +907,14 @@ properties:
-> >>             - const: qcom,qcs404-evb
-> >>             - const: qcom,qcs404
-> >>
-> >> +      - items:
-> >> +          - enum:
-> >> +              - qcom,qcs8550-aim300-aiot
-> >> +          - const: qcom,qcs8550-aim300
-> >> +          - const: qcom,qcs8550
-> >> +          - const: qcom,qcm8550
-> >
-> > In the review comments for v3 you have been asked to add qcom,sm8550.
-> > But not the qcom,qcm8550. I don't think that there is any need to
-> > mention qcm8550 here.
->
-> qcm8550 and sm8550 are different, they have different firmware release.
->
-> AIM300 AIoT board depend on qcs8550, qcs8550 is a QCS version for
-> qcm8550. Modem RF only in qcm8550 but not in qcs8550.
-
-There are no 'dependecies' here. The thing is about declaring compatibility.
-In my opinion, the qcm8550 is an unnecesary part of the equation. You
-declare compatibility with the board itself,  with the SoM, with the
-actual SoC and with the base of the series. Anybody caring for the
-difference between QCM, QCS and SM will have to check for both
-qcom,qcs8550 and qcom,qcm8550 anyway, as there are differences on the
-modem side.
-
-> >> +          - const: qcom,sm8550
-> >> +
-> >>         - items:
-> >>             - enum:
-> >>                 - qcom,sa8155p-adp
-> >> --
-
--- 
-With best wishes
-Dmitry
+[1]: https://lore.kernel.org/linux-arm-kernel/20240122122437.546621-1-cristian.marussi@arm.com/
 
