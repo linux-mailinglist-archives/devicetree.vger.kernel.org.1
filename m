@@ -1,188 +1,305 @@
-Return-Path: <devicetree+bounces-38595-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-38596-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 16CAB8499EC
-	for <lists+devicetree@lfdr.de>; Mon,  5 Feb 2024 13:19:09 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id BA057849A02
+	for <lists+devicetree@lfdr.de>; Mon,  5 Feb 2024 13:22:00 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 70944B22687
-	for <lists+devicetree@lfdr.de>; Mon,  5 Feb 2024 12:18:56 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 404881F29470
+	for <lists+devicetree@lfdr.de>; Mon,  5 Feb 2024 12:22:00 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id CA90F18EAB;
-	Mon,  5 Feb 2024 12:18:02 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id CEA3C1B967;
+	Mon,  5 Feb 2024 12:21:57 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="BnEbuHmr"
+	dkim=pass (2048-bit key) header.d=gmx.net header.i=wahrenst@gmx.net header.b="KLjB/MFW"
 X-Original-To: devicetree@vger.kernel.org
-Received: from relay1-d.mail.gandi.net (relay1-d.mail.gandi.net [217.70.183.193])
+Received: from mout.gmx.net (mout.gmx.net [212.227.17.20])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 61CBB1BF3C;
-	Mon,  5 Feb 2024 12:17:58 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.70.183.193
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3AB731B95C;
+	Mon,  5 Feb 2024 12:21:54 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=212.227.17.20
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1707135482; cv=none; b=E86eSZ7LI+sSy33KVJRhTECibBsrEMVleJv2Bo/JKH0WMEacUtn64CrxQaPfaWM4z+NyWpufIyxSlrIA+JQiexS5vAyTJ0S1M4ZPfWQVUAIB+OrvA9RaW7kMdiQ2jII8Ct7nGi+IUs5ZtEPxfPxlLqNqeZsPjn5SdUsMvIg6VjQ=
+	t=1707135717; cv=none; b=AzKSNaB3wl/VKh6Ig13frQPFcyTbsACzyyhVUTn4Z81KYBTTUUgfmenPL6QY0Yu5j9k+1PWRziTdUECcXJmPpFhi/9nEen/hn6F/4ijob30QnAeAiu3YZ/pivESgbmMQ4X4RE5XDbzTS1is934LUEC4UHMXB8SuwhqZNywU6OSI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1707135482; c=relaxed/simple;
-	bh=pY7XHYnoI+4w+LAAZtriOctiu2kUF5CNl3eTZWfJumg=;
-	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=c8z4qGbJquWb/aOLj9uL14CKDBAM8GfT6uKCUR3nhsznV3o27z63cMbMJr6ckIiHHHajjDk6cm4NkWemkfDW5DJ1CrguDU0nT83b0/dlYSDEaMdeYLhY/3xpe1OO6o+PHIz9xez0kqTVYczmBDuWxURynvKZF4muYeW19MVPtUM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=BnEbuHmr; arc=none smtp.client-ip=217.70.183.193
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
-Received: by mail.gandi.net (Postfix) with ESMTPSA id 52612240002;
-	Mon,  5 Feb 2024 12:17:56 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
-	t=1707135477;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=y+evZiLiKD7b5CexFbHLoJ/nJKE/+uE1gXiR+q3+Wjw=;
-	b=BnEbuHmrgDWYV4Zwx4pHhHb3Ef7KcMKvOrrZ3+iq0AlT6UzxQe6TSa5R+imYuJy+U2bXIU
-	a+QR5CQQc6wC3mNcshL90wOLjj9XtlN/9ES/waKZElJwZmkMK3wbSyFpi0iF3RFaYeI0c7
-	3qHtNNtiOVMvIfRHQFVm8m+A378FLmy2D7C/hVAIujzXfWkJaojaMCzCMATuwLF4bGvxHF
-	3tcSOVVUN47ZwjomCKVhHj4/GtFvlbgMzOh7AT+jic5X2ZO7o52QWvFjOlSmH5PXhhjp/Q
-	Urp2dzCUeAdb4lpNuvf5W6ncJCEARN691Mmkn8ydX0tWH4RVvG1sQ4szSJBLtQ==
-Date: Mon, 5 Feb 2024 13:17:55 +0100
-From: Miquel Raynal <miquel.raynal@bootlin.com>
-To: Simon Glass <sjg@chromium.org>
-Cc: Rob Herring <robh@kernel.org>, devicetree@vger.kernel.org,
- linux-mtd@lists.infradead.org, Tom Rini <trini@konsulko.com>, Michael Walle
- <mwalle@kernel.org>, U-Boot Mailing List <u-boot@lists.denx.de>, Conor
- Dooley <conor+dt@kernel.org>, Krzysztof Kozlowski
- <krzysztof.kozlowski+dt@linaro.org>, Pratyush Yadav <ptyadav@amazon.de>,
- =?UTF-8?B?UmFmYcWCIE1pxYJlY2tp?= <rafal@milecki.pl>, Richard Weinberger
- <richard@nod.at>, Vignesh Raghavendra <vigneshr@ti.com>,
- linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v6 1/3] dt-bindings: mtd: partitions: Add binman
- compatible
-Message-ID: <20240205131755.3462084f@xps-13>
-In-Reply-To: <CAFLszTi+8ygXOidnhxj7sdJwc6X5i+++QvnUyfe-kde5eSts_w@mail.gmail.com>
-References: <20231116172859.393744-1-sjg@chromium.org>
-	<20231208150042.GA1278773-robh@kernel.org>
-	<CAPnjgZ2i4gvgiUeHPOfHuOdBooV4e=QQEq6iMo0JbDwOS6dCwA@mail.gmail.com>
-	<CAL_Jsq+xMZ8yz4H9D59uCSyX4h5W+4ruGF++=wVA=msXz+Y01A@mail.gmail.com>
-	<CAPnjgZ1uW8T6woXSqFUNm301=W3zBYOrADREkrz=DuwSW87qZg@mail.gmail.com>
-	<20231214172702.GA617226-robh@kernel.org>
-	<CAPnjgZ2oJSGPO91Y_aLbe+v250WFrND4n3T0mOvhERYidVu=eQ@mail.gmail.com>
-	<CAFLszTizRRVbRO6_ygE2X-Lp5dENWSc4uMGL5GPJAFGAbRdCyQ@mail.gmail.com>
-	<CAL_Jsq+j7_KZtQ2ENq9+vsw0LOZF=spu293_G=AxOmBM+m_f-g@mail.gmail.com>
-	<CAFLszTimaFw9sf=JKvQXG4fS6V_2T=2n+pfvYLCiuG1o+7cHPA@mail.gmail.com>
-	<20240205085056.44278f2c@xps-13>
-	<CAFLszTi+8ygXOidnhxj7sdJwc6X5i+++QvnUyfe-kde5eSts_w@mail.gmail.com>
-Organization: Bootlin
-X-Mailer: Claws Mail 4.0.0 (GTK+ 3.24.33; x86_64-pc-linux-gnu)
+	s=arc-20240116; t=1707135717; c=relaxed/simple;
+	bh=4+L+wNFmeBIceFORKmB6j1KUwbZpGuVuGSnVbLyj5eU=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=L9gIptMiwAJ/HD/v46Jqf8bEXl9+/8h0ibsRzrWdFfCgNGgGzI+4uIkVTfa+J5GlhaogK0Z7MThCHSL8f0nmR1hVIwN0FUn92acevh2mSDKJjVFUJEIQk147H7ehJvYRX84w9SqXWKAzJWc+VMpPUapMLg82PzsRBGuPBG2aLK0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=gmx.net; spf=pass smtp.mailfrom=gmx.net; dkim=pass (2048-bit key) header.d=gmx.net header.i=wahrenst@gmx.net header.b=KLjB/MFW; arc=none smtp.client-ip=212.227.17.20
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=gmx.net
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmx.net
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=gmx.net;
+	s=s31663417; t=1707135699; x=1707740499; i=wahrenst@gmx.net;
+	bh=4+L+wNFmeBIceFORKmB6j1KUwbZpGuVuGSnVbLyj5eU=;
+	h=X-UI-Sender-Class:Date:Subject:To:Cc:References:From:
+	 In-Reply-To;
+	b=KLjB/MFWD+I6f9HuIUN31VPvyJTdBJdNgQSpGnRa690xTLb5tV1C456rN0c6uOK5
+	 9Zdi6aBIpnDfEwQEP5l+X66Nq2rTQvf2NvAmjd5RLwU2YmWHBwPfYb9pg1scF+yul
+	 /AU3INydkNjSxLgbFx9Z3UIV8kYp24ZmzRXE3Ko02iF0SQ5520dUBBvgKB+oIkHDK
+	 sIYCRof/eUR4CFTyGpasz8uaYXyrUdEEdBZjL4dw3D/Xq2Tw5tWAwiNOlBLIov4E2
+	 mC7kwFxSseIb4TfC1pTFDorh0x1g9YYs3rmuji5/koxONY91T/cFQJsjkeN2oTn8g
+	 fNeg47N6gFvUi4DMNw==
+X-UI-Sender-Class: 724b4f7f-cbec-4199-ad4e-598c01a50d3a
+Received: from [192.168.1.167] ([37.4.248.43]) by mail.gmx.net (mrgmx104
+ [212.227.17.168]) with ESMTPSA (Nemesis) id 1MIwz4-1rI3Sb2518-00KO37; Mon, 05
+ Feb 2024 13:21:39 +0100
+Message-ID: <06e166f0-b6ac-4ffd-b194-a2ba0031605f@gmx.net>
+Date: Mon, 5 Feb 2024 13:21:36 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH V4 2/2] pwm: Add GPIO PWM driver
+Content-Language: en-US
+To: =?UTF-8?Q?Uwe_Kleine-K=C3=B6nig?= <u.kleine-koenig@pengutronix.de>
+Cc: Rob Herring <robh+dt@kernel.org>,
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+ Conor Dooley <conor+dt@kernel.org>, andy.shevchenko@gmail.com,
+ Angelo Compagnucci <angelo.compagnucci@gmail.com>,
+ Philip Howard <phil@gadgetoid.com>, Sean Young <sean@mess.org>,
+ Linus Walleij <linus.walleij@linaro.org>, linux-pwm@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-gpio@vger.kernel.org,
+ Vincent Whitchurch <vincent.whitchurch@axis.com>
+References: <20240204220851.4783-1-wahrenst@gmx.net>
+ <20240204220851.4783-3-wahrenst@gmx.net>
+ <b3bh4srxjc5s5yrceugn2bry4j7srvuyyc2zc7uorynn3esbbq@xtpfu3xnsi3q>
+From: Stefan Wahren <wahrenst@gmx.net>
+In-Reply-To: <b3bh4srxjc5s5yrceugn2bry4j7srvuyyc2zc7uorynn3esbbq@xtpfu3xnsi3q>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: quoted-printable
-X-GND-Sasl: miquel.raynal@bootlin.com
+X-Provags-ID: V03:K1:K5kix2xLmiOuuljpWVQ4ZlNETG7gXkwoYSRA1ekmuhi5BGJqNqX
+ smW5BgQ7ZHZOTfvr4AMm2ET7eMox1tsMgXHOuZNmytNMQ+G7IABaOFJ3tqoMhhvkvlTA4c+
+ e5vSJXqzjtHWy+NsL/9oD9cj8Yov96eSVYNX/0deUQGXQYBGenecZQRVcU+uDjTKCovij0q
+ HGTS5CsYCLsGaw1A9VAsw==
+X-Spam-Flag: NO
+UI-OutboundReport: notjunk:1;M01:P0:HOvm5Kv5JUY=;ZHarOy1rGIDmsPqxHhmTCmybMQT
+ vQ8K2IAgbAJWtTxK4jyuFXjo8PNc99Vh1/TQqBltctaQbRQzRpkY6BjqUquxcmVOIOLcFo8cl
+ zAzHcdZsUwAa/qcWYG0bx5N7QYmE2EkCttRFoG8WGWvCcFNMFRYtf5UxX4DeJRQCM0KwhAT+s
+ WX1kUKUUyfUmXRA2Naib5mgJsZzgmIUbl1M88fITKigwUpjmuRucSQIF/zlgRPRmcO8Xv6QTH
+ zeTlsVUUoM6MsuqGq9SmX3Cm33MSfM3Pi9+BptpGU642XjpTj4Ftfi3fTjsQy9GrfkFJuaeXy
+ +9Zol1YQtWEDj16jezpwfGuSK6BcvUztbZEpAqiMfSygkGvHespBIO1TltWwFeQupu1/QjduH
+ /tKrIBiMGYon3tp+7fgAEAJj62Lzhhj+pwGidZk7A3mE3mpxpNkpMRn/2kynCHveaDdNYjOTD
+ bZj40U8IuT12yET8LwilNBqn3EJfYYSk2Uut+4W0tofFvyQoj0PehKRS9QFWs3StW3RS5F3/N
+ iyNWn3ykgIFzxRnn29wLpYATFQhNdKslQe0SNSEsd8Y75q2noWcuW9YLARTPPWzSH7UIterWW
+ BOIjy5qogvwnB1CrKP2wn3IvwmyIVb2bym00awjdB6Sp93giymGZ+AcHKucOJrKk4L+kcgS95
+ T3MYtiGZ+j7hY/DFowUZLVdK3gSTTzNxBiaeJ9h+67MrRJgwSQ6OKx8UyYQJ+fMmnw7a31wkZ
+ TPvdWHMQxZ2ycS2eSrWbmcvUZr46bLuiIO3523S8chqIuPAlmfZ8NsaL3m+nhRk4tVkuZ019e
+ zsYAkKV1KvoZjzyqf8XXlud+ZmjUj/ek0VOmDn1/95zH0=
 
-Hi Simon,
+Hi Uwe,
 
-> > > > > > > > > > > > +description: |
-> > > > > > > > > > > > +  The binman node provides a layout for firmware, =
-used when packaging firmware
-> > > > > > > > > > > > +  from multiple projects. It is based on fixed-par=
-titions, with some
-> > > > > > > > > > > > +  extensions, but uses 'compatible' to indicate th=
-e contents of the node, to
-> > > > > > > > > > > > +  avoid perturbing or confusing existing installat=
-ions which use 'label' for a
-> > > > > > > > > > > > +  particular purpose.
-> > > > > > > > > > > > +
-> > > > > > > > > > > > +  Binman supports properties used as inputs to the=
- firmware-packaging process,
-> > > > > > > > > > > > +  such as those which control alignment of partiti=
-ons. This binding addresses
-> > > > > > > > > > > > +  these 'input' properties. For example, it is com=
-mon for the 'reg' property
-> > > > > > > > > > > > +  (an 'output' property) to be set by Binman, base=
-d on the alignment requested
-> > > > > > > > > > > > +  in the input.
-> > > > > > > > > > > > +
-> > > > > > > > > > > > +  Once processing is complete, input properties ha=
-ve mostly served their
-> > > > > > > > > > > > +  purpose, at least until the firmware is repacked=
- later, e.g. due to a
-> > > > > > > > > > > > +  firmware update. The 'fixed-partitions' binding =
-should provide enough
-> > > > > > > > > > > > +  information to read the firmware at runtime, inc=
-luding decompression if
-> > > > > > > > > > > > +  needed. =20
-> > > > > > > > > > >
-> > > > > > > > > > > How is this going to work exactly? binman reads these=
- nodes and then
-> > > > > > > > > > > writes out 'fixed-partitions' nodes. But then you've =
-lost the binman
-> > > > > > > > > > > specifc parts needed for repacking. =20
-> > > > > > > > > >
-> > > > > > > > > > No, they are the same node. I do want the extra informa=
-tion to stick
-> > > > > > > > > > around. So long as it is compatible with fixed-partitio=
-n as well, this
-> > > > > > > > > > should work OK. =20
-> > > > > > > > >
-> > > > > > > > > How can it be both? The partitions node compatible can be=
- either
-> > > > > > > > > 'fixed-partitions' or 'binman'. =20
-> > > > > > > >
-> > > > > > > > Can we not allow it to be both? I have tried to adjust thin=
-gs in
-> > > > > > > > response to feedback but perhaps the feedback was leading m=
-e down the
-> > > > > > > > wrong path? =20
-> > > > > > >
-> > > > > > > Sure, but then the schema has to and that means extending
-> > > > > > > fixed-partitions. =20
-> > > > > >
-> > > > > > Can we cross that bridge later? There might be resistance to it=
-. I'm
-> > > > > > not sure. For now, perhaps just a binman compatible works well =
-enough
-> > > > > > to make progress. =20
-> > > > >
-> > > > > Is there any way to make progress on this? I would like to have
-> > > > > software which doesn't understand the binman compatible to at lea=
-st be
-> > > > > able to understand the fixed-partition compatible. Is that accept=
-able? =20
-> > > >
-> > > > There's only 2 ways that it can work. Either binman writes out
-> > > > fixed-partition nodes dropping/replacing anything only defined for
-> > > > binman or fixed-partition is extended to include what binman needs.=
- =20
-> > >
-> > > OK, then I suppose the best way is to add a new binman compatible, as
-> > > is done with this v6 series. People then need to choose it instead of
-> > > fixed-partition. =20
-> >
-> > I'm sorry this is not at all what Rob suggested, or did I totally
-> > misunderstand his answer?
-> >
-> > In both cases the solution is to generate a "fixed-partition" node. Now
-> > up to you to decide whether binman should adapt the output to the
-> > current schema, or if the current schema should be extended to
-> > understand all binman's output.
-> >
-> > At least that is my understanding and also what I kind of agree with. =
-=20
->=20
-> I do want to binman schema to include all the features of Binman.
->=20
-> So are you saying that there should not be a 'binman'  schema, but I
-> should just add all the binman properties to the fixed-partition
-> schema?
+Am 05.02.24 um 11:09 schrieb Uwe Kleine-K=C3=B6nig:
+> Hello,
+>
+> On Sun, Feb 04, 2024 at 11:08:51PM +0100, Stefan Wahren wrote:
+>> +static enum hrtimer_restart pwm_gpio_timer(struct hrtimer *gpio_timer)
+>> +{
+>> +	struct pwm_gpio *gpwm =3D container_of(gpio_timer, struct pwm_gpio,
+>> +					     gpio_timer);
+>> +	unsigned long next_toggle;
+>> +	unsigned long flags;
+>> +	bool new_level;
+>> +
+>> +	spin_lock_irqsave(&gpwm->lock, flags);
+>> +
+>> +	/* Apply new state at end of current period */
+>> +	if (!gpwm->level && gpwm->changing) {
+>> +		gpwm->changing =3D false;
+>> +		gpwm->state =3D gpwm->next_state;
+>> +		new_level =3D !!gpwm->state.duty_cycle;
+>> +	} else {
+>> +		new_level =3D !gpwm->level;
+>> +	}
+>> +
+>> +	next_toggle =3D pwm_gpio_toggle(gpwm, new_level);
+>> +	if (next_toggle) {
+>> +		hrtimer_forward(gpio_timer, hrtimer_get_expires(gpio_timer),
+>> +				ns_to_ktime(next_toggle));
+> How does this work in relation to hrtimer_resolution? If the resolution
+> is (say) 300 and next_toggle is 2000. Does the trigger trigger at
+> hrtimer_get_expires(...) + 1800, or at ... + 2100?
+>
+> If you assume we have period =3D 6000 and duty_cycle =3D 2000, the delta=
+ to
+> forward the driver alternates between 1800 and 3900 (if rounding down)
+> or between 2100 and 4200 if rounding up. Both is not optimal.
+>
+> Ideally you'd round down the active phase (i.e. pick 1800) and for the
+> inactive phase you'd use rounddown(period) - rounddown(duty_cycle) which
+> gives 4200 here. Does this make sense?
+oh dear, looks like a can of worms. I will look into it. Btw according
+to multi_v7_defconfig the hrtimer_resolution on the Pi is 1 ns.
 
-This is my current understanding, yes. But acknowledgment from Rob is
-also welcome.
+Does it make sense to log the hrtimer_resolution e.g. at probe?
+>
+>> +	}
+>> +
+>> +	spin_unlock_irqrestore(&gpwm->lock, flags);
+>> +
+>> +	return next_toggle ? HRTIMER_RESTART : HRTIMER_NORESTART;
+>> +}
+>> +
+>> +static int pwm_gpio_apply(struct pwm_chip *chip, struct pwm_device *pw=
+m,
+>> +			  const struct pwm_state *state)
+>> +{
+>> +	struct pwm_gpio *gpwm =3D container_of(chip, struct pwm_gpio, chip);
+>> +	bool invert =3D state->polarity =3D=3D PWM_POLARITY_INVERSED;
+>> +	unsigned long flags;
+>> +
+>> +	if (state->duty_cycle && state->duty_cycle < hrtimer_resolution)
+>> +		return -EINVAL;
+>> +
+>> +	if (state->duty_cycle !=3D state->period &&
+>> +	    (state->period - state->duty_cycle < hrtimer_resolution))
+>> +		return -EINVAL;
+> If you assume that hrtimer_resolution =3D 300 again, you don't want to
+> refuse
+>
+> 	.duty_cycle =3D 200
+> 	.period =3D 200
+>
+> do you?
+Actually i had rejected it. Yes, this specific corner case does work
+with such a resolution. But if the user want a steady level, the user
+would use a plain GPIO not a PWM. As soon the duty cycle get lower this
+would be rejected and as a user i would be confused.
 
-Thanks,
-Miqu=C3=A8l
+Another issue here, is that we don't have a good interface to tell the
+limitations.
+> I think you want:
+>
+> 	mininterval =3D min(state->duty_cycle, state->period - state->duty_cycl=
+e);
+> 	if (mininterval && mininterval < hrtimer_resolution)
+> 		return -EINVAL;
+>
+> to catch both cases in a single check.
+>
+>> +	if (!state->enabled) {
+>> +		hrtimer_cancel(&gpwm->gpio_timer);
+>> +	} else if (!gpwm->running) {
+>> +		/*
+>> +		 * This just enables the output, but pwm_gpio_toggle()
+>> +		 * really starts the duty cycle.
+>> +		 */
+>> +		int ret =3D gpiod_direction_output(gpwm->gpio, invert);
+>> +
+>> +		if (ret)
+>> +			return ret;
+>> +	}
+>> +
+>> +	spin_lock_irqsave(&gpwm->lock, flags);
+>> +
+>> +	if (!state->enabled) {
+>> +		gpwm->state =3D *state;
+>> +		gpwm->running =3D false;
+>> +		gpwm->changing =3D false;
+>> +
+>> +		gpiod_set_value(gpwm->gpio, invert);
+>> +	} else if (gpwm->running) {
+>> +		gpwm->next_state =3D *state;
+>> +		gpwm->changing =3D true;
+>> +	} else {
+>> +		unsigned long next_toggle;
+>> +
+>> +		gpwm->state =3D *state;
+>> +		gpwm->changing =3D false;
+>> +
+>> +		next_toggle =3D pwm_gpio_toggle(gpwm, !!state->duty_cycle);
+>> +		if (next_toggle) {
+>> +			hrtimer_start(&gpwm->gpio_timer, next_toggle,
+>> +				      HRTIMER_MODE_REL);
+>> +		}
+> The curly braces can be dropped here and in a few more locations.
+>
+>> +	}
+>> +
+>> +	spin_unlock_irqrestore(&gpwm->lock, flags);
+>> +
+>> +	return 0;
+>> +}
+>> +
+>> +static int pwm_gpio_get_state(struct pwm_chip *chip, struct pwm_device=
+ *pwm,
+>> +			       struct pwm_state *state)
+>> +{
+>> +	struct pwm_gpio *gpwm =3D container_of(chip, struct pwm_gpio, chip);
+>> +	unsigned long flags;
+>> +
+>> +	spin_lock_irqsave(&gpwm->lock, flags);
+>> +
+>> +	if (gpwm->changing)
+>> +		*state =3D gpwm->next_state;
+>> +	else
+>> +		*state =3D gpwm->state;
+>> +
+>> +	spin_unlock_irqrestore(&gpwm->lock, flags);
+>> +
+>> +	return 0;
+>> +}
+>> +
+>> +static const struct pwm_ops pwm_gpio_ops =3D {
+>> +	.apply =3D pwm_gpio_apply,
+>> +	.get_state =3D pwm_gpio_get_state,
+>> +};
+>> +
+>> +static int pwm_gpio_probe(struct platform_device *pdev)
+>> +{
+>> +	struct device *dev =3D &pdev->dev;
+>> +	struct pwm_gpio *gpwm;
+>> +	int ret;
+>> +
+>> +	gpwm =3D devm_kzalloc(dev, sizeof(*gpwm), GFP_KERNEL);
+>> +	if (!gpwm)
+>> +		return -ENOMEM;
+>> +
+>> +	spin_lock_init(&gpwm->lock);
+>> +
+>> +	gpwm->gpio =3D devm_gpiod_get(dev, NULL, GPIOD_ASIS);
+>> +	if (IS_ERR(gpwm->gpio)) {
+>> +		return dev_err_probe(dev, PTR_ERR(gpwm->gpio),
+>> +				     "could not get gpio\n");
+>> +	}
+>> +
+>> +	if (gpiod_cansleep(gpwm->gpio)) {
+>> +		return dev_err_probe(dev, -EINVAL,
+>> +				     "sleeping GPIO %d not supported\n",
+>> +				     desc_to_gpio(gpwm->gpio));
+>> +	}
+> Is it still state of the art to add gpio numbers to error messages?
+I was unsure how to handle this user-friendly. Just simply logging
+"sleeping GPIO not supported" doesn't provide a reference on the
+affected GPIO. GPIO names are optional, so maybe empty.
+
+I'm open to suggestions :-)
+
+Best regards
+>
+>> +	gpwm->chip.dev =3D dev;
+>> +	gpwm->chip.ops =3D &pwm_gpio_ops;
+>> +	gpwm->chip.npwm =3D 1;
+>> +	gpwm->chip.atomic =3D true;
+>> +
+>> +	hrtimer_init(&gpwm->gpio_timer, CLOCK_MONOTONIC, HRTIMER_MODE_REL);
+>> +	gpwm->gpio_timer.function =3D pwm_gpio_timer;
+>> +
+>> +	ret =3D pwmchip_add(&gpwm->chip);
+>> +	if (ret < 0)
+>> +		return dev_err_probe(dev, ret, "could not add pwmchip\n");
+>> +
+>> +	platform_set_drvdata(pdev, gpwm);
+>> +
+>> +	return 0;
+>> +}
+> Best regards
+> Uwe
+>
+
 
