@@ -1,375 +1,204 @@
-Return-Path: <devicetree+bounces-38705-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-38706-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 18B48849F29
-	for <lists+devicetree@lfdr.de>; Mon,  5 Feb 2024 17:02:09 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3EB51849F34
+	for <lists+devicetree@lfdr.de>; Mon,  5 Feb 2024 17:03:42 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 3E0351C23C27
-	for <lists+devicetree@lfdr.de>; Mon,  5 Feb 2024 16:02:08 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id A86C31F239D4
+	for <lists+devicetree@lfdr.de>; Mon,  5 Feb 2024 16:03:41 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0D46F405DE;
-	Mon,  5 Feb 2024 15:58:19 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B4F4E39FFA;
+	Mon,  5 Feb 2024 16:02:05 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="iwaEo2so"
+	dkim=pass (1024-bit key) header.d=xff.cz header.i=@xff.cz header.b="NpsUEChh"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f46.google.com (mail-wm1-f46.google.com [209.85.128.46])
+Received: from vps.xff.cz (vps.xff.cz [195.181.215.36])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AFE9035EF1
-	for <devicetree@vger.kernel.org>; Mon,  5 Feb 2024 15:58:16 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.46
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8B57A32C9C;
+	Mon,  5 Feb 2024 16:02:03 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=195.181.215.36
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1707148698; cv=none; b=BmBaka6lLtrYzmnzH2s3TUCWN+4fYM1Q3F7wdqEgSxjbKwLdqg+EAUT17Ch6pk5iueoU5Qp5EYPcpY/AAQWPzU9BhHef+tqXbvOCiEU4F43ZMtQm5xllxFGpaH7WG2YDfLkW1VFiwEd/3sNubWPtxgH24kRsrCEWpbT7yf36Hx4=
+	t=1707148925; cv=none; b=mlyInoWtauKi0MJlvVgAgPbzDqpGnkNqvqMQqa0KH4NCw0DG29uCK0F5HC4cj10d44eXKDiIAB46qTsGlItjW2u74oDuAvf9cJAp+pn7fECKvSArFrco/PsbS0Y9t1aCgNCTUibsm1RQ7OEINVIqVwX26pssWlhPJ+i929tH2fg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1707148698; c=relaxed/simple;
-	bh=nHHToYVe7UDazNBh0UHL8RPPmFaMG4R39iXsV4seckA=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=bmiSUgxEIuZCMB6D74MnbSO6MojuAHj3ia+rQj4UEXrObsT7nbYc3HZWFqNqq3tMrqaVzsNlc9qiXMZ9aVdZMgYjmYDwWSGmb58ELrazmkYwpqTtbOeTrndbxjrkzzgX+TMpIVf6UqUoDk360AYWmAdfn/4MkfjMswQ0FtbvxKE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=iwaEo2so; arc=none smtp.client-ip=209.85.128.46
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-wm1-f46.google.com with SMTP id 5b1f17b1804b1-40fd72f7125so12893675e9.1
-        for <devicetree@vger.kernel.org>; Mon, 05 Feb 2024 07:58:16 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1707148695; x=1707753495; darn=vger.kernel.org;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=xd67LVywORJcC5ZhK9PLnVObuzsV4zR/OauMaIQMMEo=;
-        b=iwaEo2so8fktDghhwOOackrRRZenyMhSbKxaSSTUeLczTjzYzuKBZD3gLbXao+4KcT
-         OaZmA6RNgI7dhCQauh5zIvtNrzYejLlHqr45/UKzmhZ+XdCTqpXDfor5SMfghzv7/31d
-         cFEMEQKKJZyct20UEo4UK6g77od7mumrv43A8G7MaDhaUxR28LhyRR6mwRF+qIaGAY/j
-         67jAyzoaTbU9OfL+dq/bSeP3eQYViB0ue8UsR0ettmuDrufVcjQb9NRulANQ0uT8JHGO
-         RZOi1Lem1UVpnkT3JI4lIA4JtcUg0Zb7Fh5ansEoI4DVNztD9aeX6varXJoHZItn5FEx
-         YPsQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1707148695; x=1707753495;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=xd67LVywORJcC5ZhK9PLnVObuzsV4zR/OauMaIQMMEo=;
-        b=jX2TWVRIdyQ53MgDDhwHRGqIGJHGrNYwPOZcYpR7DR715cx3+N/2tQSIwtUY2FUHBK
-         oF9rZS4A9w2p2/D23RHROkrESIQhN/qepCL2g9MDigiNaiuFisyF/IiklSa1yYTGvyTP
-         R+x2hR4fAPICCaNaRflluIsALwqxm66lqYxk9zmbA3rGTIeL8vLNuMNukuR61dvS67rc
-         EYUu2Q1CoEOAyoTRmg9H5xvU5TB2g9iqo82OMkb27ZpIuRu2D0PDbNSG7UC36wIPPqtU
-         kSQD0K7rVZngkB5t45dW/kG2UPgkM566XYLQgRR6CZ35QTBkiE6DwO9gvnOGvTTfo3kO
-         R59g==
-X-Gm-Message-State: AOJu0Yyg49dF0nWeR/Wr6bL1T1Q7hsr036kqouSe2m9tcQ58GnaKQMVY
-	ak0TKqACWr93n/ou5jUnItKN3hbSLrt42n1wbG63HMnXnh+EeUR9ja6Pr53N7+E=
-X-Google-Smtp-Source: AGHT+IGDuVQQtVJ5jNm79dOhLXCyGQIYaviUdG02y+lpA+4WPODAzqez7/K4R8u8hsGwhq3RP16IfA==
-X-Received: by 2002:a05:600c:4f95:b0:40e:f3ee:5622 with SMTP id n21-20020a05600c4f9500b0040ef3ee5622mr159015wmq.11.1707148694950;
-        Mon, 05 Feb 2024 07:58:14 -0800 (PST)
-X-Forwarded-Encrypted: i=0; AJvYcCUifZdu33C96BZpe+tFkmI0RVRx8WLvi5A3F44DdITKPd/iaG8hGd5vgBDF2lReQskUo+KWjbvgj3/er0VN5uh6xacfHxCAaatUeCJpFkA2rSUBYbUlCnsuEzk1Rmo5EbUffpwLj9xNOL/fFSffGNqaNOqwaOE2ZyC6d+2lNaWOiEi+CcOKXY+CFLObalsRfe7nMczF3bokRhx8VU/N+MzWnTXlQmLB6YTsi2UAMeGma4fGlpx51MuzCa7MFa7xjDFAn4wSqWgRgSa1dhVmOsuWqOrtW5O+WQegJKtv3CVVC4tQGsh8qqC4JNazMNwVqBc+S/eb5sEKTBgf6sBD3TALzd/kG8FCgQCiK6uL6zKicepma+8vluUqnVWPz5DiQ96YAIiQYHNbrp0eFDAoA5BQna99fBCUFtmxZcPdwU+wRc/Ng4jBvUKwiQtdJP+5VbiAdpRQ
-Received: from [127.0.1.1] ([178.197.222.62])
-        by smtp.gmail.com with ESMTPSA id fc11-20020a05600c524b00b0040fddae917bsm243714wmb.9.2024.02.05.07.58.13
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 05 Feb 2024 07:58:14 -0800 (PST)
-From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Date: Mon, 05 Feb 2024 16:58:03 +0100
-Subject: [PATCH 3/3] dt-bindings: PCI: qcom,pcie-sa8775p: move SA8775p to
- dedicated schema
+	s=arc-20240116; t=1707148925; c=relaxed/simple;
+	bh=GZ/QrUYoWHJZzCpyI+a8pGcqG7MuwYWLC0kpCm+GmS8=;
+	h=Date:From:To:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=ZvAOSc98qqiREGc7DWiIHbT4GwzZE7k2vJRFNWt5ano0c30csu16v4Nr2ErpnU5X+RLfQJW5vKmEm65Qmo5UXCqO/NBZNrT/444YGtDtLTPR3gGiHwJFXcdyKKG+uAqYXVXy2HsJTCCColScrRPBTFPgUvTRc64v/3QkrgF0wys=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=xff.cz; spf=pass smtp.mailfrom=xff.cz; dkim=pass (1024-bit key) header.d=xff.cz header.i=@xff.cz header.b=NpsUEChh; arc=none smtp.client-ip=195.181.215.36
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=xff.cz
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=xff.cz
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=xff.cz; s=mail;
+	t=1707148921; bh=GZ/QrUYoWHJZzCpyI+a8pGcqG7MuwYWLC0kpCm+GmS8=;
+	h=Date:From:To:Subject:X-My-GPG-KeyId:References:From;
+	b=NpsUEChhU9gd0quVquwhz9BL0um6DVapV5Mpz54Q+Os7uRpbtYhVgr75LFVW2Bjyb
+	 ije6tg/et7yVyZFkIjdB8luezZ7HJjEFWin1TfEiHXvuoYIvbxuAwxvrUcajFG3REK
+	 oUWXa9jHrNJByezx0xWEofG1Q7rMawy675GqnhhA=
+Date: Mon, 5 Feb 2024 17:02:00 +0100
+From: =?utf-8?Q?Ond=C5=99ej?= Jirman <megi@xff.cz>
+To: Frank Oltmanns <frank@oltmanns.dev>, 
+	Michael Turquette <mturquette@baylibre.com>, Stephen Boyd <sboyd@kernel.org>, Chen-Yu Tsai <wens@csie.org>, 
+	Jernej Skrabec <jernej.skrabec@gmail.com>, Samuel Holland <samuel@sholland.org>, 
+	Guido =?utf-8?Q?G=C3=BCnther?= <agx@sigxcpu.org>, Purism Kernel Team <kernel@puri.sm>, 
+	Neil Armstrong <neil.armstrong@linaro.org>, Jessica Zhang <quic_jesszhan@quicinc.com>, 
+	Sam Ravnborg <sam@ravnborg.org>, Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, 
+	Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>, 
+	David Airlie <airlied@gmail.com>, Daniel Vetter <daniel@ffwll.ch>, 
+	Rob Herring <robh+dt@kernel.org>, Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, 
+	Conor Dooley <conor+dt@kernel.org>, linux-clk@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
+	linux-sunxi@lists.linux.dev, linux-kernel@vger.kernel.org, dri-devel@lists.freedesktop.org, 
+	devicetree@vger.kernel.org
+Subject: Re: [PATCH v2 0/6] Pinephone video out fixes (flipping between two
+ frames)
+Message-ID: <bgyyemyi4shj3spo6qy4icvk56nrp5sihnzqurnozqdyktwugc@ikurx4ojoxpi>
+Mail-Followup-To: =?utf-8?Q?Ond=C5=99ej?= Jirman <megi@xff.cz>, 
+	Frank Oltmanns <frank@oltmanns.dev>, Michael Turquette <mturquette@baylibre.com>, 
+	Stephen Boyd <sboyd@kernel.org>, Chen-Yu Tsai <wens@csie.org>, 
+	Jernej Skrabec <jernej.skrabec@gmail.com>, Samuel Holland <samuel@sholland.org>, 
+	Guido =?utf-8?Q?G=C3=BCnther?= <agx@sigxcpu.org>, Purism Kernel Team <kernel@puri.sm>, 
+	Neil Armstrong <neil.armstrong@linaro.org>, Jessica Zhang <quic_jesszhan@quicinc.com>, 
+	Sam Ravnborg <sam@ravnborg.org>, Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, 
+	Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>, 
+	David Airlie <airlied@gmail.com>, Daniel Vetter <daniel@ffwll.ch>, 
+	Rob Herring <robh+dt@kernel.org>, Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, 
+	Conor Dooley <conor+dt@kernel.org>, linux-clk@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
+	linux-sunxi@lists.linux.dev, linux-kernel@vger.kernel.org, dri-devel@lists.freedesktop.org, 
+	devicetree@vger.kernel.org
+X-My-GPG-KeyId: EBFBDDE11FB918D44D1F56C1F9F0A873BE9777ED
+ <https://xff.cz/key.txt>
+References: <20240205-pinephone-pll-fixes-v2-0-96a46a2d8c9b@oltmanns.dev>
+ <jzl3mlzk4j7qvgcedvipgale5nhinznefodrnaehwsqfnseiwc@7zzlxd4dpueh>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20240205-dt-bindings-pci-qcom-split-continued-v1-3-c333cab5eeea@linaro.org>
-References: <20240205-dt-bindings-pci-qcom-split-continued-v1-0-c333cab5eeea@linaro.org>
-In-Reply-To: <20240205-dt-bindings-pci-qcom-split-continued-v1-0-c333cab5eeea@linaro.org>
-To: Bjorn Andersson <andersson@kernel.org>, 
- Konrad Dybcio <konrad.dybcio@linaro.org>, 
- Lorenzo Pieralisi <lpieralisi@kernel.org>, 
- =?utf-8?q?Krzysztof_Wilczy=C5=84ski?= <kw@linux.com>, 
- Bjorn Helgaas <bhelgaas@google.com>, 
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, 
- Rob Herring <robh+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
- Manivannan Sadhasivam <mani@kernel.org>
-Cc: linux-arm-msm@vger.kernel.org, linux-pci@vger.kernel.org, 
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
- Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-X-Mailer: b4 0.12.4
-X-Developer-Signature: v=1; a=openpgp-sha256; l=8285;
- i=krzysztof.kozlowski@linaro.org; h=from:subject:message-id;
- bh=nHHToYVe7UDazNBh0UHL8RPPmFaMG4R39iXsV4seckA=;
- b=owEBbQKS/ZANAwAKAcE3ZuaGi4PXAcsmYgBlwQWQihmErBYS9Z1zBNfPnFt5Mj/4JqB8FNs7S
- NqBE/B2J62JAjMEAAEKAB0WIQTd0mIoPREbIztuuKjBN2bmhouD1wUCZcEFkAAKCRDBN2bmhouD
- 1y9zD/4+gr5chQPKMCgooZvd9ON2IXvsoTcYxo87MjsY9CatpIp4y9kssx6OnMi49aTovszNuF9
- OdrxzOTbARSen2NDepjmk5ZlefA+aRPM2T1GttmSG3wCXvUfGBuk9bVGm7vbNogj+rCeqcJctPD
- roli2D4VdF2aTOkXRuI29B9BaXxKFLjTWCvrz9UiN6hzFN9cNMttdtP4wUtL7NCC4NuNwxudroT
- CRat/ggqfVK1hnVqXvlDOxdTwnHh3sqL6ygwsoCF0/136qm0XVw16HJNQ1MpfPLjVUpZvstBqKH
- gMwnIBVBAdBVfYoqYSkLwa/hlcll/j6yI4+fp3uR7bCWQc3nntcNStMOdQN+mYubrJfLsXRws2T
- gHStI5QlCNFxcN/rxS30fcdF/SucdmRObP0OcKayleatThRZfSwUePFwAliHB9W6nsWnzWcZzmV
- CM3KKSWRJf5p2gr4+ibdW8xtYUqm03z1zAZS55VuC3gsXbrcADNfh8WRrZsOc3qLPa7syc8+vgx
- yzN4LiEhwPSACougxUrDc2C/NDxybWCnckcEWu1LuOsXMjDcO79GhbS9sMjgPYAeGGEmvWhgxCP
- ttjRJZi8ArsfMvQeUpGzPCls2KuMjKHCOCj8HitFQIrEazQBHYI8bBigVHyuBlrcvYrNYpv8sPV
- Sw3P1Ie1B4kwvFg==
-X-Developer-Key: i=krzysztof.kozlowski@linaro.org; a=openpgp;
- fpr=9BD07E0E0C51F8D59677B7541B93437D3B41629B
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <jzl3mlzk4j7qvgcedvipgale5nhinznefodrnaehwsqfnseiwc@7zzlxd4dpueh>
 
-Move SA8775p PCIe devices from qcom,pcie.yaml binding to a dedicated file
-to make reviewing easier.
+On Mon, Feb 05, 2024 at 04:54:07PM +0100, Ondřej Jirman wrote:
+> On Mon, Feb 05, 2024 at 04:22:23PM +0100, Frank Oltmanns wrote:
+> > On some pinephones the video output sometimes freezes (flips between two
+> > frames) [1]. It seems to be that the reason for this behaviour is that
+> > PLL-MIPI, PLL-GPU and GPU are operating outside their limits.
+> > 
+> > In this patch series I propose the followin changes:
+> >   1. sunxi-ng: Adhere to the following constraints given in the
+> >      Allwinner A64 Manual regarding PLL-MIPI:
+> >       * M/N <= 3
+> >       * (PLL_VIDEO0)/M >= 24MHz
+> >       * 500MHz <= clockrate <= 1400MHz
+> > 
+> >   2. Choose a higher clock rate for the ST7703 based XDB599 panel, so
+> >      that the panel function well with the Allwinner A64 SOC. PLL-MIPI
+> >      must run between 500 MHz and 1.4 GHz. As PLL-MIPI runs at 6 times
+> >      the panel's clock rate, we need the panel's clock to be at least
+> >      83.333 MHz.
+> > 
+> >   3. Increase the minimum frequency in the A64 DTS OPPs from 120 MHz to
+> >      192 MHz. This further reduces the issue.
+> > 
+> > Unfortunately, with these patches the issue [1] is not completely gone,
+> > but becomes less likely.
+> > 
+> > Note, that when pinning the GPU to 432 MHz the issue completely
+> > disappears for me. I've searched the BSP and could not find any
+> > indication that supports the idea of having the three OPPs. The only
+> > frequency I found in the BPSs for A64 is 432 MHz, that has also proven
+> > stable for me. So, while increasing the minimum frequency to 192 MHz
+> > reduces the issue, should we maybe instead set the GPU to a fixed 432
+> > MHz instead?
+> 
+> Per A64 User Manual 1.1 page 81:
+> 
+> (9). Clock output of PLL_GPU can be used for GPU;and dynamic frequency scaling is not supported;
 
-This creates equivalent schema file, except:
- - Missing required compatible which is actually redundant.
- - Expecting eight MSI interrupts, instead of only one, which was
-   incomplete hardware description.
+You may be able to elegantly work around this by pinning PLL_GPU to a certain
+frequency (assing it in DT and then don't decalre gpu clock as
+CLK_SET_RATE_PARENT). Say 432 MHz for PLL and then do the scaling via GPU_CLK_REG
+N divider between 432MHz and 216MHz and maybe 108MHz if that brings any gains.
 
-Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
----
- .../devicetree/bindings/pci/qcom,pcie-sa8775p.yaml | 166 +++++++++++++++++++++
- .../devicetree/bindings/pci/qcom,pcie.yaml         |  38 -----
- 2 files changed, 166 insertions(+), 38 deletions(-)
+Then you can perhaps sidestep all these potential issues with PLL_GPU and
+lack of DVFS support decalred in the manual.
 
-diff --git a/Documentation/devicetree/bindings/pci/qcom,pcie-sa8775p.yaml b/Documentation/devicetree/bindings/pci/qcom,pcie-sa8775p.yaml
-new file mode 100644
-index 000000000000..efde49d1bef8
---- /dev/null
-+++ b/Documentation/devicetree/bindings/pci/qcom,pcie-sa8775p.yaml
-@@ -0,0 +1,166 @@
-+# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/pci/qcom,pcie-sa8775p.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: Qualcomm SA8775p PCI Express Root Complex
-+
-+maintainers:
-+  - Bjorn Andersson <andersson@kernel.org>
-+  - Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
-+
-+description:
-+  Qualcomm SA8775p SoC PCIe root complex controller is based on the Synopsys
-+  DesignWare PCIe IP.
-+
-+properties:
-+  compatible:
-+    const: qcom,pcie-sa8775p
-+
-+  reg:
-+    minItems: 6
-+    maxItems: 6
-+
-+  reg-names:
-+    items:
-+      - const: parf # Qualcomm specific registers
-+      - const: dbi # DesignWare PCIe registers
-+      - const: elbi # External local bus interface registers
-+      - const: atu # ATU address space
-+      - const: config # PCIe configuration space
-+      - const: mhi # MHI registers
-+
-+  clocks:
-+    minItems: 5
-+    maxItems: 5
-+
-+  clock-names:
-+    items:
-+      - const: aux # Auxiliary clock
-+      - const: cfg # Configuration clock
-+      - const: bus_master # Master AXI clock
-+      - const: bus_slave # Slave AXI clock
-+      - const: slave_q2a # Slave Q2A clock
-+
-+  interrupts:
-+    minItems: 8
-+    maxItems: 8
-+
-+  interrupt-names:
-+    items:
-+      - const: msi0
-+      - const: msi1
-+      - const: msi2
-+      - const: msi3
-+      - const: msi4
-+      - const: msi5
-+      - const: msi6
-+      - const: msi7
-+
-+  resets:
-+    maxItems: 1
-+
-+  reset-names:
-+    items:
-+      - const: pci
-+
-+required:
-+  - interconnects
-+  - interconnect-names
-+
-+allOf:
-+  - $ref: qcom,pcie-common.yaml#
-+
-+unevaluatedProperties: false
-+
-+examples:
-+  - |
-+    #include <dt-bindings/clock/qcom,sa8775p-gcc.h>
-+    #include <dt-bindings/clock/qcom,rpmh.h>
-+    #include <dt-bindings/gpio/gpio.h>
-+    #include <dt-bindings/interrupt-controller/arm-gic.h>
-+    #include <dt-bindings/interconnect/qcom,sa8775p-rpmh.h>
-+
-+    soc {
-+        #address-cells = <2>;
-+        #size-cells = <2>;
-+
-+        pcie@1c00000 {
-+            compatible = "qcom,pcie-sa8775p";
-+            reg = <0x0 0x01c00000 0x0 0x3000>,
-+                  <0x0 0x40000000 0x0 0xf20>,
-+                  <0x0 0x40000f20 0x0 0xa8>,
-+                  <0x0 0x40001000 0x0 0x4000>,
-+                  <0x0 0x40100000 0x0 0x100000>,
-+                  <0x0 0x01c03000 0x0 0x1000>;
-+            reg-names = "parf", "dbi", "elbi", "atu", "config", "mhi";
-+            ranges = <0x01000000 0x0 0x00000000 0x0 0x40200000 0x0 0x100000>,
-+                     <0x02000000 0x0 0x40300000 0x0 0x40300000 0x0 0x1fd00000>;
-+
-+            bus-range = <0x00 0xff>;
-+            device_type = "pci";
-+            linux,pci-domain = <0>;
-+            num-lanes = <2>;
-+
-+            #address-cells = <3>;
-+            #size-cells = <2>;
-+
-+            assigned-clocks = <&gcc GCC_PCIE_0_AUX_CLK>;
-+            assigned-clock-rates = <19200000>;
-+
-+            clocks = <&gcc GCC_PCIE_0_AUX_CLK>,
-+                     <&gcc GCC_PCIE_0_CFG_AHB_CLK>,
-+                     <&gcc GCC_PCIE_0_MSTR_AXI_CLK>,
-+                     <&gcc GCC_PCIE_0_SLV_AXI_CLK>,
-+                     <&gcc GCC_PCIE_0_SLV_Q2A_AXI_CLK>;
-+            clock-names = "aux",
-+                          "cfg",
-+                          "bus_master",
-+                          "bus_slave",
-+                          "slave_q2a";
-+
-+            dma-coherent;
-+
-+            interrupts = <GIC_SPI 307 IRQ_TYPE_LEVEL_HIGH>,
-+                         <GIC_SPI 308 IRQ_TYPE_LEVEL_HIGH>,
-+                         <GIC_SPI 309 IRQ_TYPE_LEVEL_HIGH>,
-+                         <GIC_SPI 312 IRQ_TYPE_LEVEL_HIGH>,
-+                         <GIC_SPI 313 IRQ_TYPE_LEVEL_HIGH>,
-+                         <GIC_SPI 314 IRQ_TYPE_LEVEL_HIGH>,
-+                         <GIC_SPI 374 IRQ_TYPE_LEVEL_HIGH>,
-+                         <GIC_SPI 375 IRQ_TYPE_LEVEL_HIGH>;
-+            interrupt-names = "msi0",
-+                              "msi1",
-+                              "msi2",
-+                              "msi3",
-+                              "msi4",
-+                              "msi5",
-+                              "msi6",
-+                              "msi7";
-+            #interrupt-cells = <1>;
-+            interrupt-map-mask = <0 0 0 0x7>;
-+            interrupt-map = <0 0 0 1 &intc GIC_SPI 434 IRQ_TYPE_LEVEL_HIGH>,
-+                            <0 0 0 2 &intc GIC_SPI 435 IRQ_TYPE_LEVEL_HIGH>,
-+                            <0 0 0 3 &intc GIC_SPI 438 IRQ_TYPE_LEVEL_HIGH>,
-+                            <0 0 0 4 &intc GIC_SPI 439 IRQ_TYPE_LEVEL_HIGH>;
-+
-+            interconnects = <&pcie_anoc MASTER_PCIE_0 0 &mc_virt SLAVE_EBI1 0>,
-+                            <&gem_noc MASTER_APPSS_PROC 0 &config_noc SLAVE_PCIE_0 0>;
-+            interconnect-names = "pcie-mem", "cpu-pcie";
-+
-+            iommu-map = <0x0 &pcie_smmu 0x0000 0x1>,
-+                        <0x100 &pcie_smmu 0x0001 0x1>;
-+
-+            phys = <&pcie0_phy>;
-+            phy-names = "pciephy";
-+
-+            power-domains = <&gcc PCIE_0_GDSC>;
-+
-+            resets = <&gcc GCC_PCIE_0_BCR>;
-+            reset-names = "pci";
-+
-+            perst-gpios = <&tlmm 2 GPIO_ACTIVE_LOW>;
-+            wake-gpios = <&tlmm 0 GPIO_ACTIVE_HIGH>;
-+        };
-+    };
-diff --git a/Documentation/devicetree/bindings/pci/qcom,pcie.yaml b/Documentation/devicetree/bindings/pci/qcom,pcie.yaml
-index 6c50d887ad5f..aedd23a71c70 100644
---- a/Documentation/devicetree/bindings/pci/qcom,pcie.yaml
-+++ b/Documentation/devicetree/bindings/pci/qcom,pcie.yaml
-@@ -28,7 +28,6 @@ properties:
-           - qcom,pcie-ipq8074-gen3
-           - qcom,pcie-msm8996
-           - qcom,pcie-qcs404
--          - qcom,pcie-sa8775p
-           - qcom,pcie-sdm845
-           - qcom,pcie-sdx55
-       - items:
-@@ -200,7 +199,6 @@ allOf:
-         compatible:
-           contains:
-             enum:
--              - qcom,pcie-sa8775p
-               - qcom,pcie-sdx55
-     then:
-       properties:
-@@ -495,41 +493,6 @@ allOf:
-           items:
-             - const: pci # PCIe core reset
- 
--  - if:
--      properties:
--        compatible:
--          contains:
--            enum:
--              - qcom,pcie-sa8775p
--    then:
--      properties:
--        clocks:
--          minItems: 5
--          maxItems: 5
--        clock-names:
--          items:
--            - const: aux # Auxiliary clock
--            - const: cfg # Configuration clock
--            - const: bus_master # Master AXI clock
--            - const: bus_slave # Slave AXI clock
--            - const: slave_q2a # Slave Q2A clock
--        resets:
--          maxItems: 1
--        reset-names:
--          items:
--            - const: pci # PCIe core reset
--
--  - if:
--      properties:
--        compatible:
--          contains:
--            enum:
--              - qcom,pcie-sa8775p
--    then:
--      required:
--        - interconnects
--        - interconnect-names
--
-   - if:
-       not:
-         properties:
-@@ -565,7 +528,6 @@ allOf:
-           contains:
-             enum:
-               - qcom,pcie-msm8996
--              - qcom,pcie-sa8775p
-               - qcom,pcie-sdm845
-     then:
-       oneOf:
+regards,
+	o.
 
--- 
-2.34.1
-
+> Also sunxi-ng clk driver does apply NM factors at once to PLL_GPU clock,
+> which can cause sudden frequency increase beyond intended output frequency,
+> because division is applied immediately while multiplication is reflected
+> slowly.
+> 
+> Eg. if you're changing divider from 7 to 1, you can get a sudden 7x output
+> frequency spike, before PLL VCO manages to lower the frequency through N clk
+> divider feedback loop and lock on again. This can mess up whatever's connected
+> to the output quite badly.
+> 
+> You'd have to put logging on kernel writes to PLL_GPU register to see what
+> is written in there and if divider is lowered significantly on some GPU
+> devfreq frequency transitions.
+> 
+> It's also unclear what happens when FRAC_CLK_OUT or PLL_MODE_SEL changes.
+> Maybe not much because M is supposed to be set to 1, but you still need to
+> care when enabling fractional mode, and setting M to 1 because that's exactly
+> the bad scenario if M was previously higher than 1.
+> 
+> It's tricky.
+> 
+> Having GPU module clock gated during PLL config changes may help! You can
+> do that without locking yourself out, unlike with the CPU PLL.
+> 
+> There's a gate enable bit for it at GPU_CLK_REG.SCLK_GATING. (page 122)
+> 
+> Kind regards,
+> 	o.
+> 
+> > I very much appreciate your feedback!
+> > 
+> > [1] https://gitlab.com/postmarketOS/pmaports/-/issues/805
+> > 
+> > Signed-off-by: Frank Oltmanns <frank@oltmanns.dev>
+> > ---
+> > Changes in v2:
+> > - dts: Increase minimum GPU frequency to 192 MHz.
+> > - nkm and a64: Add minimum and maximum rate for PLL-MIPI.
+> > - nkm: Use the same approach for skipping invalid rates in
+> >   ccu_nkm_find_best() as in ccu_nkm_find_best_with_parent_adj().
+> > - nkm: Improve names for ratio struct members and hence get rid of
+> >   describing comments.
+> > - nkm and a64: Correct description in the commit messages: M/N <= 3
+> > - Remove patches for nm as they were not needed.
+> > - st7703: Rework the commit message to cover more background for the
+> >   change.
+> > - Link to v1: https://lore.kernel.org/r/20231218-pinephone-pll-fixes-v1-0-e238b6ed6dc1@oltmanns.dev
+> > 
+> > ---
+> > Frank Oltmanns (6):
+> >       clk: sunxi-ng: nkm: Support constraints on m/n ratio and parent rate
+> >       clk: sunxi-ng: a64: Add constraints on PLL-MIPI's n/m ratio and parent rate
+> >       clk: sunxi-ng: nkm: Support minimum and maximum rate
+> >       clk: sunxi-ng: a64: Set minimum and maximum rate for PLL-MIPI
+> >       drm/panel: st7703: Drive XBD599 panel at higher clock rate
+> >       arm64: dts: allwinner: a64: Fix minimum GPU OPP rate
+> > 
+> >  arch/arm64/boot/dts/allwinner/sun50i-a64.dtsi |  4 ++--
+> >  drivers/clk/sunxi-ng/ccu-sun50i-a64.c         | 14 +++++++----
+> >  drivers/clk/sunxi-ng/ccu_nkm.c                | 34 +++++++++++++++++++++++++++
+> >  drivers/clk/sunxi-ng/ccu_nkm.h                |  4 ++++
+> >  drivers/gpu/drm/panel/panel-sitronix-st7703.c | 14 +++++------
+> >  5 files changed, 56 insertions(+), 14 deletions(-)
+> > ---
+> > base-commit: 059c53e877ca6e723e10490c27c1487a63e66efe
+> > change-id: 20231218-pinephone-pll-fixes-0ccdfde273e4
+> > 
+> > Best regards,
+> > -- 
+> > Frank Oltmanns <frank@oltmanns.dev>
+> > 
 
