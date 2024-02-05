@@ -1,157 +1,152 @@
-Return-Path: <devicetree+bounces-38558-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-38525-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 247448497D9
-	for <lists+devicetree@lfdr.de>; Mon,  5 Feb 2024 11:32:46 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id A06AB84960C
+	for <lists+devicetree@lfdr.de>; Mon,  5 Feb 2024 10:10:27 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 496D61C2295D
-	for <lists+devicetree@lfdr.de>; Mon,  5 Feb 2024 10:32:45 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 413CDB21B19
+	for <lists+devicetree@lfdr.de>; Mon,  5 Feb 2024 09:10:25 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id BC30F1401D;
-	Mon,  5 Feb 2024 10:32:19 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 40B8614A99;
+	Mon,  5 Feb 2024 09:07:47 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=samsung.com header.i=@samsung.com header.b="HMRYX5pd"
+	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="YaF51rik"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mailout4.samsung.com (mailout4.samsung.com [203.254.224.34])
+Received: from fllv0015.ext.ti.com (fllv0015.ext.ti.com [198.47.19.141])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id ED0F4179A7
-	for <devicetree@vger.kernel.org>; Mon,  5 Feb 2024 10:32:17 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=203.254.224.34
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5FB8D125B8;
+	Mon,  5 Feb 2024 09:07:45 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.19.141
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1707129139; cv=none; b=FSUnBf0iy3f28tWJ0Hn4CuyuX55N4C/LOkqn7HDyLDp07BjPV5134vvU8dOAQSfMUuLOvDxF4LP25KaUXMwzc/lWquJmoF15e/fibSLtoRyD5mNrKglGQZm00Eg9QkG2uCu3VhKa345Tq7DUNDtauhg90SF6Z3vYUGunnud3ras=
+	t=1707124067; cv=none; b=qmI6cqzqmzYJKvPZwa4TgLqCLrRCa6FOx77LJPaZT+sQdxM53ecvcjP2+vIHDsXQ7zGmtkfnJYk5oThR6DdU3SQm3o33Se41kczJDX7Id1TYxw42Endqlh/j20a7bPlYa5AD3wx20DZ99MW+mzf/s7NDKX/FtqiKNbb+uOCwS3Y=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1707129139; c=relaxed/simple;
-	bh=MFOE+nUaSwDTYdIw9JQlFvPuda2tfFqnXYWlhZRBQXc=;
-	h=From:To:Cc:Subject:Date:Message-Id:Content-Type:References; b=TNYBoahZK/Q1BO9YUu8+7smqBZ9191x4zljPQMO0KGoWOh3myiZ9gJlL4Kt4GmV2ae+RIM6La7ExZUyVP7TeRy0p1ycvO3DHA5wLjRF5Cer5Yr1B2m4ljvWuMLvgkeK+d/eyChQU1sfOLH9WIIfM04o1N8a79X3C3wSfkldH7Ck=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=samsung.com; spf=pass smtp.mailfrom=samsung.com; dkim=pass (1024-bit key) header.d=samsung.com header.i=@samsung.com header.b=HMRYX5pd; arc=none smtp.client-ip=203.254.224.34
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=samsung.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=samsung.com
-Received: from epcas5p3.samsung.com (unknown [182.195.41.41])
-	by mailout4.samsung.com (KnoxPortal) with ESMTP id 20240205103216epoutp040f306316838ab9395567cdd589ac6145~w8OeVQeWA2189521895epoutp04I
-	for <devicetree@vger.kernel.org>; Mon,  5 Feb 2024 10:32:16 +0000 (GMT)
-DKIM-Filter: OpenDKIM Filter v2.11.0 mailout4.samsung.com 20240205103216epoutp040f306316838ab9395567cdd589ac6145~w8OeVQeWA2189521895epoutp04I
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=samsung.com;
-	s=mail20170921; t=1707129136;
-	bh=rTfeTZ1ggn+RSJzom8PUIzN6CDAju1vOdXUC/7MJkyo=;
-	h=From:To:Cc:Subject:Date:References:From;
-	b=HMRYX5pdwH8IpHuy9SxI15wo75ZVsGXkYXTDa+vUksylHbMYGooYViChaxBmyvhZP
-	 UMttth/AzIGoj9cUyrUN4ynrLbbmA864r6LHlY9v4gd8kxGdIWbBeXr6dFFEyxpyfk
-	 eX5B3SAYN7ZO9UztYfBNeHRuqXkcDtHNLqdegtqw=
-Received: from epsnrtp3.localdomain (unknown [182.195.42.164]) by
-	epcas5p2.samsung.com (KnoxPortal) with ESMTP id
-	20240205103215epcas5p25b3cebc15ff98c8ef461994fdb5193aa~w8OeEttbK0949909499epcas5p25;
-	Mon,  5 Feb 2024 10:32:15 +0000 (GMT)
-Received: from epsmges5p1new.samsung.com (unknown [182.195.38.182]) by
-	epsnrtp3.localdomain (Postfix) with ESMTP id 4TT2kQ1cvxz4x9Px; Mon,  5 Feb
-	2024 10:32:14 +0000 (GMT)
-Received: from epcas5p4.samsung.com ( [182.195.41.42]) by
-	epsmges5p1new.samsung.com (Symantec Messaging Gateway) with SMTP id
-	2B.25.09634.E29B0C56; Mon,  5 Feb 2024 19:32:14 +0900 (KST)
-Received: from epsmtrp1.samsung.com (unknown [182.195.40.13]) by
-	epcas5p1.samsung.com (KnoxPortal) with ESMTPA id
-	20240205082631epcas5p170b45d20431bfe0b9410caf470216e92~w6groBMcR1289912899epcas5p1X;
-	Mon,  5 Feb 2024 08:26:31 +0000 (GMT)
-Received: from epsmgmc1p1new.samsung.com (unknown [182.195.42.40]) by
-	epsmtrp1.samsung.com (KnoxPortal) with ESMTP id
-	20240205082631epsmtrp19edb53b67162d04dbd76a9e66613707b~w6grm3anV2306123061epsmtrp1U;
-	Mon,  5 Feb 2024 08:26:31 +0000 (GMT)
-X-AuditID: b6c32a49-eebff700000025a2-b6-65c0b92e133c
-Received: from epsmtip1.samsung.com ( [182.195.34.30]) by
-	epsmgmc1p1new.samsung.com (Symantec Messaging Gateway) with SMTP id
-	95.79.07368.7BB90C56; Mon,  5 Feb 2024 17:26:31 +0900 (KST)
-Received: from cheetah.sa.corp.samsungelectronics.net (unknown
-	[107.109.115.53]) by epsmtip1.samsung.com (KnoxPortal) with ESMTPA id
-	20240205082629epsmtip160ca2a4b599a9d600f44baffbcea11da~w6gqK6xcr2432124321epsmtip1S;
-	Mon,  5 Feb 2024 08:26:29 +0000 (GMT)
-From: Tamseel Shams <m.shams@samsung.com>
-To: alim.akhtar@samsung.com, linux-fsd@tesla.com, robh+dt@kernel.org,
-	krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org
-Cc: linux-arm-kernel@lists.infradead.org, linux-samsung-soc@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, Tamseel Shams
-	<m.shams@samsung.com>
-Subject: [PATCH v2] arm64: dts: fsd: Add fifosize for UART in Device Tree
-Date: Mon,  5 Feb 2024 13:56:25 +0530
-Message-Id: <20240205082625.39259-1-m.shams@samsung.com>
-X-Mailer: git-send-email 2.17.1
-X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFnrCKsWRmVeSWpSXmKPExsWy7bCmlq7ezgOpBk+2sFo8mLeNzWLN3nNM
-	FvOPnGO16HvxkNli0+NrrBYPX4VbXN41h81ixvl9TBZ3WxezW7TuPcLuwOWxaVUnm8eda3vY
-	PDYvqffo27KK0eNf01x2j8+b5ALYorJtMlITU1KLFFLzkvNTMvPSbZW8g+Od403NDAx1DS0t
-	zJUU8hJzU22VXHwCdN0yc4AOU1IoS8wpBQoFJBYXK+nb2RTll5akKmTkF5fYKqUWpOQUmBTo
-	FSfmFpfmpevlpZZYGRoYGJkCFSZkZ5xfdpCtoJe9omnzLZYGxjusXYycHBICJhL7d+xg7mLk
-	4hAS2M0o0XDsBRuE84lR4tqrlVCZb4wS577dZoRpOX+5gxUisZdR4tW/2ewgCSGBViaJBdOD
-	uhg5ONgENCWOn+cGCYsI1En0bjkBNpVZYB2jxN+1C1hAEsICnhI/D30Bs1kEVCV29ixmB+nl
-	FbCQmPlbBGKXvMTqDQfAjpAQOMUucWPaT6i7XSRWfFrJDmELS7w6vgXKlpJ42d8GZadLzH3Y
-	ywRhF0gs2/UdKm4vceDKHBaQXcxAd67fpQ8RlpWYemodWDmzAJ9E7+8nUK28EjvmwdiKEv93
-	90ONEZd4t2IK1DkeEtf/vmODBEOsxMIb21kmMMrOQtiwgJFxFaNkakFxbnpqsWmBYV5qOTye
-	kvNzNzGCk5uW5w7Guw8+6B1iZOJgPMQowcGsJMJrtuNAqhBvSmJlVWpRfnxRaU5q8SFGU2CQ
-	TWSWEk3OB6bXvJJ4QxNLAxMzMzMTS2MzQyVx3tetc1OEBNITS1KzU1MLUotg+pg4OKUamPI2
-	rFF0P+sfl7xBf5Kd1e99s+efy1HhO3U+VpM/SOrCxKuVqUd7HMut/JmXXtm6quj820Pp7z9+
-	VBNcn9LJyn7TLI7nT57kUo3nwW53L58zv9ndJ/3jc9DTrm+tMbXhd8yer+Qo6jgoEPntQpFc
-	f3b9q6VuPHvm5s/+eblifWRv38KJs9dN27Zl7XHVIPV27/L4km92kxtN303fPXfvoSzxhsv6
-	OuHWX5aUdtUlFvxe1n7Y41pGi43CDre+G/F+67VzZl5Yaxjo0RtlIaUnIXpSeukF283dRtlC
-	3gUv1EUeyllf38e5IvPoBYUwqQUdDvP/vlj75sffRezSlzdfdz22++BLx1cLDex1ir8/llFi
-	Kc5INNRiLipOBADV1hCF9wMAAA==
-X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFprALMWRmVeSWpSXmKPExsWy7bCSnO722QdSDVq/8Vs8mLeNzWLN3nNM
-	FvOPnGO16HvxkNli0+NrrBYPX4VbXN41h81ixvl9TBZ3WxezW7TuPcLuwOWxaVUnm8eda3vY
-	PDYvqffo27KK0eNf01x2j8+b5ALYorhsUlJzMstSi/TtErgyzi87yFbQy17RtPkWSwPjHdYu
-	Rk4OCQETifOXO4BsLg4hgd2MEqeOzWeCSIhLTPu1nxHCFpZY+e85O0RRM5PEvxWPmLsYOTjY
-	BDQljp/nBomLCLQwSqy+fgKsmVlgE6PEg/1cILawgKfEz0NfWEBsFgFViZ09i9lBenkFLCRm
-	/haBmC8vsXrDAeYJjDwLGBlWMUqmFhTnpucmGxYY5qWW6xUn5haX5qXrJefnbmIEB5qWxg7G
-	e/P/6R1iZOJgPMQowcGsJMI7QXhvqhBvSmJlVWpRfnxRaU5q8SFGaQ4WJXFewxmzU4QE0hNL
-	UrNTUwtSi2CyTBycUg1M4ozBsy9tNVx2esrm/qQ44VQl38122Y0+vcaPfZunTerz9QtzUxRQ
-	/KasnhKYKR491elo2qVb9YuDlHk+pPSXTP3M73vrrNL0Q1anG83cp6xPyGeyzjl6zGPXoo0K
-	kj/bJ1n7nKg1szc9zGn3viG634uhMXp50UyDM8WzfpVkv/66qvfMj9QQW+MwrosXP3kq/f6t
-	tnD+yYSp7OeNVuguYvrD9CXy6IyNLlp25/8fk99YdzK8P2dv/J0JGY8+r+Pf1b+E5e6vx4KH
-	BfOcevq6Oqv4c3e8ag81XLloEW+bsfPJM0sO33QI2SARVS52kfXj54y6ogmb/FSdlDI4t+ey
-	1my/fG3b47zWM/s+y7EqsRRnJBpqMRcVJwIA8yP2u6MCAAA=
-X-CMS-MailID: 20240205082631epcas5p170b45d20431bfe0b9410caf470216e92
-X-Msg-Generator: CA
-Content-Type: text/plain; charset="utf-8"
-X-Sendblock-Type: REQ_APPROVE
-CMS-TYPE: 105P
-DLP-Filter: Pass
-X-CFilter-Loop: Reflected
-X-CMS-RootMailID: 20240205082631epcas5p170b45d20431bfe0b9410caf470216e92
-References: <CGME20240205082631epcas5p170b45d20431bfe0b9410caf470216e92@epcas5p1.samsung.com>
+	s=arc-20240116; t=1707124067; c=relaxed/simple;
+	bh=OYWfKIZZbNVvNdUGeXPzqCrger3e70yeWu9jt5ZwRbY=;
+	h=From:To:CC:Subject:Date:Message-ID:MIME-Version:Content-Type; b=eVDKAiUqe9e4+v7fWPwjdBgdmbHwOqxdRHXtzSSiKpQ6MAvQ1TkSR5zPO0wv2XB2vHxrrlif05PkAtEVo8SPUFBCwaSswWuLEbFFADYYW97ZfadHm3arKTPGB/gGCz87fmx4zUUGhS+/375g4padh7bWKnkqKagGCgM1+Cg14zc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=YaF51rik; arc=none smtp.client-ip=198.47.19.141
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
+Received: from lelv0266.itg.ti.com ([10.180.67.225])
+	by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id 41595nLk075683;
+	Mon, 5 Feb 2024 03:05:49 -0600
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+	s=ti-com-17Q1; t=1707123949;
+	bh=jEerUnjT73P4OnEdJfNUUf24fkGk3mF2BgO5V6SKjwE=;
+	h=From:To:CC:Subject:Date;
+	b=YaF51rik1O/Zu93T4Jft/HFeMLWUbnKT5SxFy7LrYzy0rVNdtjKDZDT+v57B9qxVx
+	 ILktmALQP0dIOnvJhkPOBGKldGeWp/dF3IuvmYuorzezbRPKYrbmVO1FNcInnUc7IN
+	 s5AxT38TqOsxB8mPE6TXIGaGskbJzFQjsFQTjgE4=
+Received: from DFLE111.ent.ti.com (dfle111.ent.ti.com [10.64.6.32])
+	by lelv0266.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 41595nNU029214
+	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+	Mon, 5 Feb 2024 03:05:49 -0600
+Received: from DFLE103.ent.ti.com (10.64.6.24) by DFLE111.ent.ti.com
+ (10.64.6.32) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Mon, 5
+ Feb 2024 03:05:49 -0600
+Received: from lelvsmtp5.itg.ti.com (10.180.75.250) by DFLE103.ent.ti.com
+ (10.64.6.24) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
+ Frontend Transport; Mon, 5 Feb 2024 03:05:49 -0600
+Received: from fllv0122.itg.ti.com (fllv0122.itg.ti.com [10.247.120.72])
+	by lelvsmtp5.itg.ti.com (8.15.2/8.15.2) with ESMTP id 41595nVN010124;
+	Mon, 5 Feb 2024 03:05:49 -0600
+Received: from localhost (danish-tpc.dhcp.ti.com [10.24.69.25])
+	by fllv0122.itg.ti.com (8.14.7/8.14.7) with ESMTP id 41595mCt032276;
+	Mon, 5 Feb 2024 03:05:49 -0600
+From: MD Danish Anwar <danishanwar@ti.com>
+To: Vignesh Raghavendra <vigneshr@ti.com>, Nishanth Menon <nm@ti.com>
+CC: Andrew Lunn <andrew@lunn.ch>, Conor Dooley <conor+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Rob Herring
+	<robh+dt@kernel.org>, <linux-kernel@vger.kernel.org>,
+        <devicetree@vger.kernel.org>, <linux-arm-kernel@lists.infradead.org>,
+        Tero
+ Kristo <kristo@kernel.org>, <srk@ti.com>, <r-gunasekaran@ti.com>,
+        Roger
+ Quadros <rogerq@kernel.org>,
+        MD Danish Anwar <danishanwar@ti.com>
+Subject: [PATCH v4 0/3] Add AM64x ICSSG Ethernet support
+Date: Mon, 5 Feb 2024 14:35:43 +0530
+Message-ID: <20240205090546.4000446-1-danishanwar@ti.com>
+X-Mailer: git-send-email 2.34.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
+MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 
-UART in FSD SoC has fifosize of 64 bytes.
-Set fifosize as 64 bytes for UART from Device Tree.
+Hi All,
 
-Signed-off-by: Tamseel Shams <m.shams@samsung.com>
----
- arch/arm64/boot/dts/tesla/fsd.dtsi | 2 ++
- 1 file changed, 2 insertions(+)
+This series adds support for ICSSG ethernet on AM64x. 
+This series is based on the latest next-20240205 linux-next.
 
-diff --git a/arch/arm64/boot/dts/tesla/fsd.dtsi b/arch/arm64/boot/dts/tesla/fsd.dtsi
-index aaffb50b8b60..047a83cee603 100644
---- a/arch/arm64/boot/dts/tesla/fsd.dtsi
-+++ b/arch/arm64/boot/dts/tesla/fsd.dtsi
-@@ -601,6 +601,7 @@
- 			clocks = <&clock_peric PERIC_PCLK_UART0>,
- 				 <&clock_peric PERIC_SCLK_UART0>;
- 			clock-names = "uart", "clk_uart_baud0";
-+			samsung,uart-fifosize = <64>;
- 			status = "disabled";
- 		};
- 
-@@ -613,6 +614,7 @@
- 			clocks = <&clock_peric PERIC_PCLK_UART1>,
- 				 <&clock_peric PERIC_SCLK_UART1>;
- 			clock-names = "uart", "clk_uart_baud0";
-+			samsung,uart-fifosize = <64>;
- 			status = "disabled";
- 		};
- 
+AM64x EVM has three ethernet ports. One is dedicated to CPSW and one is
+dedicated to ICSSG1. The remaining port is muxed between CPSW and ICSSG1
+ICSSG1 ports. The ICSSG1 node is added in the k3-am642-evm.dts. By default
+the muxed port is used by CPSW so 2nd ICSSG1 port is disabled in the
+k3-am642-evm.dts. But overlay k3-am642-evm-icssg1-dualemac.dtso can be
+applied to use muxed port as ICSSG1.
+
+This is the v4 of the series [v1].
+
+Changes from v3 to v4:
+*) Dropped ethernet3 alias from k3-am642-evm.dts as suggested by Roger.
+*) Dropped extra blank lines from k3-am642-evm.dts.
+*) Updated commit message of patch 3/3
+*) Updated licensing header in k3-am642-evm-icssg1-dualemac.dtso.
+*) Fixed up alias for ethernet1 to icssg1_emac1 in
+   k3-am642-evm-icssg1-dualemac.dtso as suggested by Roger.
+*) Renamed 'mdio-mux-1' and 'mdio-mux-2' to 'mdio-mux@1' and 'mdio-mux@0'
+   respectively as suggested by Roger.
+
+Changes from v2 to v3:
+*) No functional changes.
+*) Rebased on latest linux-next (next-20240122) after 6.8-rc1.
+
+Changes from v1 to v2:
+*) Fixed aliases section in k3-am642-evm.dts
+*) Fixed firmware-names in k3-am642-evm.dts
+*) Changed icssg1_phy1 to ethernet-phy@f from ethernet-phy@0 as suggested
+   by Andrew L.
+*) Changed makefile to handle overlays using CONFIG_OF_ALL_DTBS as
+   suggested by Nishant and Andrew Davis.
+*) Fixed aliases section in k3-am642-evm-icssg1-dualemac.dtso
+*) Fixed pinctrl in k3-am642-evm-icssg1-dualemac.dtso
+*) Updated commit message of patch 3/3 of the series to warn about adding
+   label name to 'mdio-mux-1' node.
+
+[v1] https://lore.kernel.org/all/20231207081917.340167-1-danishanwar@ti.com/
+[v2] https://lore.kernel.org/all/20231212165832.3933335-1-danishanwar@ti.com/
+[v3] https://lore.kernel.org/all/20240122113045.1711818-1-danishanwar@ti.com/
+
+Thanks and Regards,
+MD Danish Anwar
+
+MD Danish Anwar (2):
+  arm64: dts: ti: k3-am642-evm: add ICSSG1 Ethernet support
+  arm64: dts: ti: k3-am642-evm: add overlay for icssg1 2nd port
+
+Suman Anna (1):
+  arm64: dts: ti: k3-am64-main: Add ICSSG IEP nodes
+
+ arch/arm64/boot/dts/ti/Makefile               |  5 +
+ arch/arm64/boot/dts/ti/k3-am64-main.dtsi      | 24 +++++
+ .../dts/ti/k3-am642-evm-icssg1-dualemac.dtso  | 79 +++++++++++++++
+ arch/arm64/boot/dts/ti/k3-am642-evm.dts       | 99 ++++++++++++++++++-
+ 4 files changed, 206 insertions(+), 1 deletion(-)
+ create mode 100644 arch/arm64/boot/dts/ti/k3-am642-evm-icssg1-dualemac.dtso
+
+base-commit: 23e11d0318521e8693459b0e4d23aec614b3b68b
 -- 
-2.17.1
+2.34.1
 
 
