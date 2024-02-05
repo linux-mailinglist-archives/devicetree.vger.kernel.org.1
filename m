@@ -1,119 +1,101 @@
-Return-Path: <devicetree+bounces-38529-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-38530-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 40E2F84962A
-	for <lists+devicetree@lfdr.de>; Mon,  5 Feb 2024 10:16:21 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2CA2784962C
+	for <lists+devicetree@lfdr.de>; Mon,  5 Feb 2024 10:16:28 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id D1CFD1F2340C
-	for <lists+devicetree@lfdr.de>; Mon,  5 Feb 2024 09:16:20 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id DDCA0281CD0
+	for <lists+devicetree@lfdr.de>; Mon,  5 Feb 2024 09:16:26 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2A45C11CBD;
-	Mon,  5 Feb 2024 09:16:08 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3257C125B6;
+	Mon,  5 Feb 2024 09:16:24 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="cYccV1Q7"
 X-Original-To: devicetree@vger.kernel.org
-Received: from metis.whiteo.stw.pengutronix.de (metis.whiteo.stw.pengutronix.de [185.203.201.7])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-pj1-f42.google.com (mail-pj1-f42.google.com [209.85.216.42])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2BDA412E50
-	for <devicetree@vger.kernel.org>; Mon,  5 Feb 2024 09:16:06 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.203.201.7
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C0266125A4
+	for <devicetree@vger.kernel.org>; Mon,  5 Feb 2024 09:16:22 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.216.42
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1707124568; cv=none; b=kfC+4RDTNF/IONZ+9NEHKmrGAWs1kX4bXG0Ry8TlIPo1kD8Bj5FFYQzoprzLsqVe13+Tr2ImqIYh3kisO7jrQ2p3j+a7gd+I1xMGb1cQJtbyfBxTRa61TljlfvJRFdodFpFd1Saos8v0CtThDun6uDJB/gha48ul02rrXDDCBUQ=
+	t=1707124584; cv=none; b=HWg5ptAEse/zaoET+6kFMn9quRl+X6P9fefXvZ2rvPqbm+9J8rboqudn47Yv7tZ1p9g8VzAK8AbDuEluTZpUVK0zm8iXXiB6zBBsK6aXegu5OKwh2Mq7UbWLArBH6h0nbn4ylxbQgzaXsdod2mD+MJUnFP5RfytKcES1sdk4c3E=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1707124568; c=relaxed/simple;
-	bh=IxpHtcbA09VFc1PalsDZWPfLzIghz12+9ze3N8X96gQ=;
+	s=arc-20240116; t=1707124584; c=relaxed/simple;
+	bh=ccOIJyW+UqECakUavq42sVHjwRu3LvVECYTtFWgQ6+s=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=gvNkzIiCQxbRybBnofNl4QwD1trl/IuJxtb/9xW13LXdXlAWWpXT0wDzBy+Qzv+xE7bBbXVNOa6YmfdNcWqO48czTY2zczct+VdwCZy+0sViGX6stBSWFuJODyGVniNlWbx8bRJhqmOZ/9r2VbUs8wMsre1PK7uACDfZOjoW+vE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de; spf=pass smtp.mailfrom=pengutronix.de; arc=none smtp.client-ip=185.203.201.7
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=pengutronix.de
-Received: from drehscheibe.grey.stw.pengutronix.de ([2a0a:edc0:0:c01:1d::a2])
-	by metis.whiteo.stw.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
-	(Exim 4.92)
-	(envelope-from <ukl@pengutronix.de>)
-	id 1rWv55-0000Xx-Af; Mon, 05 Feb 2024 10:15:59 +0100
-Received: from [2a0a:edc0:0:900:1d::77] (helo=ptz.office.stw.pengutronix.de)
-	by drehscheibe.grey.stw.pengutronix.de with esmtps  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-	(Exim 4.94.2)
-	(envelope-from <ukl@pengutronix.de>)
-	id 1rWv54-004bOw-G4; Mon, 05 Feb 2024 10:15:58 +0100
-Received: from ukl by ptz.office.stw.pengutronix.de with local (Exim 4.96)
-	(envelope-from <ukl@pengutronix.de>)
-	id 1rWv54-00FKq6-1H;
-	Mon, 05 Feb 2024 10:15:58 +0100
-Date: Mon, 5 Feb 2024 10:15:58 +0100
-From: Uwe =?utf-8?Q?Kleine-K=C3=B6nig?= <u.kleine-koenig@pengutronix.de>
-To: Stefan Wahren <wahrenst@gmx.net>
-Cc: Rob Herring <robh+dt@kernel.org>, 
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, andy.shevchenko@gmail.com, 
-	Angelo Compagnucci <angelo.compagnucci@gmail.com>, Philip Howard <phil@gadgetoid.com>, Sean Young <sean@mess.org>, 
-	Linus Walleij <linus.walleij@linaro.org>, linux-pwm@vger.kernel.org, devicetree@vger.kernel.org, 
-	linux-gpio@vger.kernel.org, Nicola Di Lieto <nicola.dilieto@gmail.com>
-Subject: Re: [PATCH V4 1/2] dt-bindings: pwm: Add pwm-gpio
-Message-ID: <zxzck6nm2xxakobwj4mk4x3vrz76c7dmlwgplhhunuzr25oeok@lc3kngblfmnz>
-References: <20240204220851.4783-1-wahrenst@gmx.net>
- <20240204220851.4783-2-wahrenst@gmx.net>
+	 Content-Type:Content-Disposition:In-Reply-To; b=TqP3+EBysa6pOCHw2HFL095iLLJBbBZDbsqkr1KONfuMWRyx/le4I2AsX+66wJK0HtZIi4N1gzsCivbBqyyLIlFwYaT+LHxci/sbi93bWPAej8SATbfM/YE/KjkSctu6kjvA+DJxJFy+j7oQoevMjQy48A+t8ZqkulxAHQh8ixw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=cYccV1Q7; arc=none smtp.client-ip=209.85.216.42
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-pj1-f42.google.com with SMTP id 98e67ed59e1d1-295f3bf41d5so1991278a91.0
+        for <devicetree@vger.kernel.org>; Mon, 05 Feb 2024 01:16:22 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1707124582; x=1707729382; darn=vger.kernel.org;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=OVKyR6fj6byPHapQbBvZk5FovYxGlYmrKS37BOm50PU=;
+        b=cYccV1Q7w7m1huvEMRl7wVR3j2Ck/IWv8ttIsnxH7htYCGybtAbufmIYHKBI0PyzO+
+         1mttLNMfMVTP9z9NXDcnm0Jly9UjW+g1V2icueCIkCCc4SV4ATCBmt+7RwKDU/O/r05S
+         64aOaaYwZ7ujLXtYb9ihpAeSSFRF4VIMj1o9b9ECf3ZdmFLebMLWa1bQ/RTA8RUiutmU
+         hRWPdHxQm70D45LA5t9dpce5pZujKcvYVpSV+AkT1KVRFvXnyBslOIixjay2qtlGsZ0O
+         DxLbYM2hrMqzCigK0ubXuVj7bUv7tjZl4wzon+r12mRX0Kwe17BEo7KvhKQ5g8Q0kM7s
+         2jkQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1707124582; x=1707729382;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=OVKyR6fj6byPHapQbBvZk5FovYxGlYmrKS37BOm50PU=;
+        b=uObZCIOziGDcMJWUXBVLCRqv5IGrXJYfXt6sqF6xxRBiGrIXuANVa7C00WhISX5AxA
+         U47D34sBlqG/Fh/1zL5NQ9C1I5BkrwU1DjvaaCbgzcuXizLcrGCMILym3BVO3fxwko8t
+         AIhDyhWNCJyfhpSAoBh9eFNA7VOMdjvruq4SgSt8bKP++jPxZ2VQKLzZWUt+71knaKvc
+         H8tWstUW/TVMyq7OFROrbF+iZbIvIPUNNlu+HXWI0sFgZtnRkUqmNIRCwrLb9HSnYVfE
+         XWrPlRnSUMld2PbBHIT4Elvw0b8EAx3qLAIJEjo+4Cd2vF7Czu/EhKLObZ9TdQ5tW7Qb
+         pG/g==
+X-Forwarded-Encrypted: i=1; AJvYcCUeENsMTtbPBoBDYCdNBLyG1b0NpyIXq62wigamadn+mqybswlOSzkdMWYssmfvxsEc+pqHh7td0Qskq6loPW/1WgKEDxuiJijL+Q==
+X-Gm-Message-State: AOJu0Yz0/bPziQ2QGYIjK3mLtmDAaIPO4G4g8bmDYE6/yph0zpcaUxjn
+	epYtIpnx0HQJyHCBdj02hGkLgrKVqXrReIyyShcjD1iB0ntn57I6
+X-Google-Smtp-Source: AGHT+IHLJake6BnNl6paJ4Jaju1x84v1mJdzqiLGgyzLazM/Klg0gUC5ji3iVzKWm5thi3GLMhnCQw==
+X-Received: by 2002:a17:90a:6b47:b0:290:28f8:f5a7 with SMTP id x7-20020a17090a6b4700b0029028f8f5a7mr7674183pjl.12.1707124581930;
+        Mon, 05 Feb 2024 01:16:21 -0800 (PST)
+X-Forwarded-Encrypted: i=0; AJvYcCW4H2A8kVE8PTWxQc0RrKa7Xdm8YMWb8MxM8l8cXPGmFo7l3kh28PyrpjBIV1WwrVv+LfAq8g71dWkaU07CSF65PkZepjQ2DZLXuSVQ6GLSeD65wigYVy1j/c/UW6watWdMStMom8yP1vN4EH+0EX2v7uiryMtjJnJocv8Vvx5d+t7knD7MeS13euDtBbBH1aePMeWMQhl+DUlhciuguawjgkIm37m2GPQx+doiMSoDzIb/q83pNVeampvcbYVnqNN9R76EP9vEIlLLhEkFMOIbf40QT1y3FY9PJO2HQUpuBr+wg8zJG39BXCuA3xnUo+5rGbnnLf1YJU0IZq2ZCohU4TazBsNx8UgOCwJAmD7aH242m/UkQyFf+d0f9fgYATjYVWreFucdtU2Z
+Received: from t480 (89.208.247.201.16clouds.com. [89.208.247.201])
+        by smtp.gmail.com with ESMTPSA id v5-20020a17090a898500b00295fac343cfsm4759490pjn.8.2024.02.05.01.16.15
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 05 Feb 2024 01:16:21 -0800 (PST)
+Date: Mon, 5 Feb 2024 17:16:17 +0800
+From: Shawn Guo <shawn.gsc@gmail.com>
+To: Alexander Stein <alexander.stein@ew.tq-group.com>
+Cc: Rob Herring <robh+dt@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>,
+	Sascha Hauer <s.hauer@pengutronix.de>,
+	Fabio Estevam <festevam@gmail.com>,
+	Pengutronix Kernel Team <kernel@pengutronix.de>,
+	NXP Linux Team <linux-imx@nxp.com>, linux@ew.tq-group.com,
+	devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org
+Subject: Re: [PATCH 1/1] arm64: dts: tqma8mpql: fix audio codec iov-supply
+Message-ID: <ZcCnYd6mLr3uH1fF@t480>
+References: <20240110090849.463270-1-alexander.stein@ew.tq-group.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="rcnd4re5dzypugcp"
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20240204220851.4783-2-wahrenst@gmx.net>
-X-SA-Exim-Connect-IP: 2a0a:edc0:0:c01:1d::a2
-X-SA-Exim-Mail-From: ukl@pengutronix.de
-X-SA-Exim-Scanned: No (on metis.whiteo.stw.pengutronix.de); SAEximRunCond expanded to false
-X-PTX-Original-Recipient: devicetree@vger.kernel.org
+In-Reply-To: <20240110090849.463270-1-alexander.stein@ew.tq-group.com>
 
+On Wed, Jan 10, 2024 at 10:08:49AM +0100, Alexander Stein wrote:
+> IOVDD is supplied by 1.8V, fix the referenced regulator.
+> 
+> Fixes: d8f9d8126582d ("arm64: dts: imx8mp: Add analog audio output on i.MX8MP TQMa8MPxL/MBa8MPxL")
+> Signed-off-by: Alexander Stein <alexander.stein@ew.tq-group.com>
 
---rcnd4re5dzypugcp
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
-
-Hello,
-
-On Sun, Feb 04, 2024 at 11:08:50PM +0100, Stefan Wahren wrote:
-> +  "#pwm-cells":
-> +    const: 3
-> +
-> +  gpios:
-> +    description:
-> +      GPIO to be modulated
-> +    maxItems: 1
-
-Given that we have 3 PWM cells (so there is an u32 that specifies the
-pwm_chip's line number) it would be obvious to allow several GPIOs. But
-I guess we can extend this easily if and when the need arises.
-
-Otherwise I'm happy with this patch.
-
-Best regards
-Uwe
-
---=20
-Pengutronix e.K.                           | Uwe Kleine-K=F6nig            |
-Industrial Linux Solutions                 | https://www.pengutronix.de/ |
-
---rcnd4re5dzypugcp
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQEzBAABCgAdFiEEP4GsaTp6HlmJrf7Tj4D7WH0S/k4FAmXAp00ACgkQj4D7WH0S
-/k6piAf9GadB2hhVdUycy5/DYs9wGmQnpDOpBQfyxEnYkOX+lh2U3Z4SoL7PO0rB
-AJmVKKFsnzbIjscQCtGJS38ymvhsMnho01i/pXeeI2OHc18EgFmZHcQoXzRvrgoT
-FprH3YeXdkWuSiWBZVr45QF1exy6ODtPJfiWq1lsZZC0gtNg3egB9q3GLvOb8Fic
-QWkCHgeJbDKovhW3HbPAQCIWdMDDz2qYSVCbJgzVfDl3KaaALV1+weLb5WtsetTT
-PDv5ia1jakS7GrDaTb+yIUzbmvsztIxTo20L9IIRrIibdHeE2qVc3OGZAK5nBT+L
-sBYFySX+iIncfMiybdiBbE+HoXPCJw==
-=exGd
------END PGP SIGNATURE-----
-
---rcnd4re5dzypugcp--
+Applied, thanks!
 
