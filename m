@@ -1,130 +1,129 @@
-Return-Path: <devicetree+bounces-38635-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-38636-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 92B1F849D29
-	for <lists+devicetree@lfdr.de>; Mon,  5 Feb 2024 15:37:04 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 01E84849D45
+	for <lists+devicetree@lfdr.de>; Mon,  5 Feb 2024 15:44:49 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id C5ABD1C21871
-	for <lists+devicetree@lfdr.de>; Mon,  5 Feb 2024 14:37:03 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id AD1F5284905
+	for <lists+devicetree@lfdr.de>; Mon,  5 Feb 2024 14:44:47 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 883B72BB1F;
-	Mon,  5 Feb 2024 14:37:02 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C9C002C1A8;
+	Mon,  5 Feb 2024 14:44:41 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="MYTE7d5+"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="nWHy6oq6"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-qv1-f48.google.com (mail-qv1-f48.google.com [209.85.219.48])
+Received: from mail-wm1-f52.google.com (mail-wm1-f52.google.com [209.85.128.52])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D8A5D2C197
-	for <devicetree@vger.kernel.org>; Mon,  5 Feb 2024 14:37:00 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.219.48
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0B5302C1A3;
+	Mon,  5 Feb 2024 14:44:39 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.52
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1707143822; cv=none; b=EmrYXAtXA5SYDLt/YPDz849S9nKYDUf05182bVUXLTgPcVmMy7WyKU1QSN8v+YUdG75fqx/UBXQzJ7NJI/SvRDmUhpvkeYqfYladxUisYw7oalJHZUrgBMRz3QFYPPOkxlK/QoyzpZPFajN9epHdgQqrW9puNeJkmHAtu8Pf4iA=
+	t=1707144281; cv=none; b=dbaetZ4UUlPpp9HKlJ/jlgW3vz6m9F3FIeydbkfySJHreoYaK18oQVsOKz4PNZgqY1ddqfVXFApnksImKkNdb6yG7t+ZWGXJXfZJ4CYUaftNErgCrg8B6YLgei89QnAL/weQlj9ONAt+Cj+ZP8DXLgLktGlhokpv4/ZNSj1WY98=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1707143822; c=relaxed/simple;
-	bh=gdFpGlX+7Px6n5MNmfG0p+jDiu1XQ8hKoha8bMMknYA=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=iLqiaFF39feZenILV9qq5k+ITAm6mbp87yxDjpsqKxuQUub0Ujv1ykXruZLvOK5u3uN4YUQPLWFA3qE0gRFQ/0LEon1Cy030agpCSrPi/q0GfZOZ+IMmDptaRhe8ri/0OV19cX/o/rie1tVkb6Oh3NoAqmx6w5Ko/LRKoJdGSbU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=MYTE7d5+; arc=none smtp.client-ip=209.85.219.48
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-qv1-f48.google.com with SMTP id 6a1803df08f44-68c820a25a0so15600476d6.2
-        for <devicetree@vger.kernel.org>; Mon, 05 Feb 2024 06:37:00 -0800 (PST)
+	s=arc-20240116; t=1707144281; c=relaxed/simple;
+	bh=7LvILnsBadNWbwYwwiQrMvYOk3+TYCx4iAkhkxCKqks=;
+	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version; b=PsLVXRUu2kWwncraYv9bSXbchXzNxQWvAHnOEquOyRDhnL1pzVIK1tEU24lrWaUBTAeQJ05d0Ny7aoBgG/d/wUaSYwjAeGylutzCIXpXi1WopkbdGgB4zGi+l2uqU3na+8MACYAlCypeqYSFry/nfyrpCOLTidrOreOkI3XyaE8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=nWHy6oq6; arc=none smtp.client-ip=209.85.128.52
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-wm1-f52.google.com with SMTP id 5b1f17b1804b1-40f033c2e30so40749835e9.0;
+        Mon, 05 Feb 2024 06:44:39 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1707143819; x=1707748619; darn=vger.kernel.org;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=UYfEQ1FBGk7gyXSY+6RlLA4Hxjr0NcQe/J33L96nVSM=;
-        b=MYTE7d5+EESsNmvM0nie8wjTF9YO4gVqJG83HjOJzOhQ+I+lcIghSSGyncBn6HgnVb
-         GAMjuJY4zh2U/wVgFKoP2QofNom+OCWMTorV0eN/4T+/H4FWFHjuPaiDSDnKsB+r3hlj
-         1sUXOFSCrhm7oUPsjtDCiCuKq4thCnUGBRTikNsLm9vzvAMzuCMOipKXhI1y8Qw16I4N
-         0cn0+IGtS5TkiFCPMVV5jeV7/qU7KkpHYmsLpYu9DIDSb5JaLcAJDPXNQCKRzm2OKWfd
-         II958VSlxDEc+l774DXW99sKbAH/4Kv3LXli+igtXeQT3WhBDvnHHjVs/Tpby+ZLSskZ
-         EcwA==
+        d=gmail.com; s=20230601; t=1707144278; x=1707749078; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=ES+CplXItxCRq+EKXaIwvxyC7cNppFHRUYEO12KjReU=;
+        b=nWHy6oq6B4d7JQl+CFKU6KwusM9P9Ka5XqKFL1CPmTcx3Tz6G9J0awmmKDIeNgBFRD
+         0CHGL5MnXx5Ozchjr3Z0hEf73HJuRlxqTodUrnqTj2yHwUqzciKu4WfM79JciThEEB/r
+         EdAncgcrw3Kdbr7iUmCXxZEVLWoW2NqT4w3G+794nlLHlcLxlWuJ8oJrn6UPk1a9Ykmj
+         613nbQkISVrXfMjxG8B82nshKh0VJC9/ablafx5CDGJ2RdXr4P5r0tGS83oyELuUkHy9
+         j0cvfHtJlvAUoB34DeEWd6AD613uc3knTebQoUyZXw5+rZbVueSdTIg+/6bK4HoLb/qc
+         wKpA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1707143819; x=1707748619;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+        d=1e100.net; s=20230601; t=1707144278; x=1707749078;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=UYfEQ1FBGk7gyXSY+6RlLA4Hxjr0NcQe/J33L96nVSM=;
-        b=t0XiUV7Jiz9LWHPCbQE7P/5UrryTZORvHEPJ33LPKLDLnjr6kb2Ns+rIgri5Rknk9D
-         XNDIqOfjVO+lbXaKpqK3B37bccqdjPGqiTIjXjU1Nlpm6VU/9cKr1+jw7tLn381kgk7f
-         pW6wVWNs//yg/zGaEsHtBg1Y/Vx4LSwC/yog4kc9jmPNSZEkJR08n73XrFOhuPOGOt6y
-         +V4K5c1GvYGr1Ea2iNtA/fz1CerFskCaHnLy9oFKt+sCm18WyTWzYvc5lrww9VL3ERz2
-         LpQqAbkGul5/+m43Yzg76hxrUiEOPzEPNZtZijylqL99ZquOfzIFnWqHSL4mzfYbFhQO
-         rjOg==
-X-Gm-Message-State: AOJu0Yz7SeFiZTM2dU3/UiZe/yfVoFG2fE0juTxp71HAqFcXaTK4253f
-	EC4lnYGwASuKgRnvriWBjpk55NyFj4Z3P1j+JckIIxZT9Zm/MtAKVOYZD6vyuQAQ/PskKlTTdmT
-	kKBwePFubrosZsDJ0Xw5dxwg5wUpFtp+KQ6a+Gg==
-X-Google-Smtp-Source: AGHT+IFYNibrrGaBgxOJ18X6jY6UAgMXPYhubetCq1dtOjdD26HHAmiNvIRN2xTRGDThOEXkeugdD8R3CbwDYGPIubg=
-X-Received: by 2002:a05:6214:f23:b0:68c:48f5:31da with SMTP id
- iw3-20020a0562140f2300b0068c48f531damr10597994qvb.34.1707143819702; Mon, 05
- Feb 2024 06:36:59 -0800 (PST)
+        bh=ES+CplXItxCRq+EKXaIwvxyC7cNppFHRUYEO12KjReU=;
+        b=lIQDvgIlA0v5AUC1sKpuSMLkoK/N7/uvQJHuBRZyi2ENnLRNFdzmqWlnqvxGDnNe3u
+         e3qFsZ1E6JIDFr2VrAgJ3XcfCqSUsMmt9v+EGPr/7K8XKywdnAqJtAmcEJFYEz/vSgVZ
+         /wLKzRco2crMy5Ft0YnPCswZY+wQ7m9PphARzE2uVq6wUA3gH1Qx3cghqHn2TWvGaiD6
+         M2KRe15/PRBPsRd3CMDyUvmI6XZq2r8AlByD822c1+x9NG+9iQ3LCMFvWWNUkX0BoJO4
+         NSKZDcHIw4fD8b4lUJg0CfODTInEMNRf97IQDrL17qicKnnp2emJuTL6wtoMuSb5Pegx
+         /rLQ==
+X-Gm-Message-State: AOJu0YxUFH3wJtw1+n3yhlDoz1vE5ov3gtkARpGvQcpDEnlR+Q2nCxCj
+	c7MMZ2QJaYzd51441y4geAOcaMe6KI5MDggdj1DqW06xk86TJoSE
+X-Google-Smtp-Source: AGHT+IGwJ+URmBdaiBiOhlVIBJid7KKOXpt5YkXD51CKGFtakYBmyVrBzZGnoL/vc7UvPc9wip43dw==
+X-Received: by 2002:a05:600c:444a:b0:40f:ddb6:a63b with SMTP id v10-20020a05600c444a00b0040fddb6a63bmr1271528wmn.24.1707144277953;
+        Mon, 05 Feb 2024 06:44:37 -0800 (PST)
+X-Forwarded-Encrypted: i=0; AJvYcCUq+udfCWhKtCitNhTXCc4sd2iNfcAkZSLZlu97q9ZfnAv93pPzwPPh54dyVuwX5DfApBK+e5V37qBnwBAyHhFc7QTf/7tMW/knV3wz0n/jQiLGhtlZbMiYOmJ7GH3/OAyr/JYgVqyrC1H3RakSxJoYj0y3yHNvtCTsTYqJ0QVoTx9o5fx/w1/+jZKVsluOoUMpnckAaD9sfsN/J1xSM96fC+gSxjAMvTJSQ5RhNhtdx3hcj8ZtAPWU9tuNXDWICVY8vEr5cpZhdK0AyV9OOIe7dt21GzxCkCkcATgjrpfA40thuC1HoVHp/n5Yt7wiZLaInX2CVHABJ+8fgbqRCGqLhTLjiQsOE6CdhhXx2sn2u9Kaul6Q4/wmELvqpaZfG9/Oc+7fktsakVKquy2SaF/PjaJo72AJm6ylcYmfXWvZ8icaGZP19NkJQD4ze7gbVbtndf11TstczFFfZB1IKFMxohBufOxFzlU0V4i4bOM=
+Received: from prasmi.home ([2a00:23c8:2500:a01:8f3c:6ff8:96c9:c9f0])
+        by smtp.gmail.com with ESMTPSA id u7-20020a05600c19c700b0040fdf2832desm70272wmq.12.2024.02.05.06.44.37
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 05 Feb 2024 06:44:37 -0800 (PST)
+From: Prabhakar <prabhakar.csengg@gmail.com>
+X-Google-Original-From: Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+To: Thomas Gleixner <tglx@linutronix.de>,
+	Rob Herring <robh+dt@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Geert Uytterhoeven <geert+renesas@glider.be>,
+	Magnus Damm <magnus.damm@gmail.com>
+Cc: devicetree@vger.kernel.org,
+	linux-renesas-soc@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	Prabhakar <prabhakar.csengg@gmail.com>,
+	Biju Das <biju.das.jz@bp.renesas.com>,
+	Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>,
+	Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+Subject: [PATCH v2 0/3] Renesas RZ/G2L family and RZ/G3S add missing IRQC interrupts
+Date: Mon,  5 Feb 2024 14:44:18 +0000
+Message-Id: <20240205144421.51195-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
+X-Mailer: git-send-email 2.34.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20240201172224.574238-1-alexey.klimov@linaro.org> <20240201172224.574238-2-alexey.klimov@linaro.org>
-In-Reply-To: <20240201172224.574238-2-alexey.klimov@linaro.org>
-From: Peter Griffin <peter.griffin@linaro.org>
-Date: Mon, 5 Feb 2024 14:36:48 +0000
-Message-ID: <CADrjBPpqHx1uoVZCYDX51kW+JdOr_-+4oryOjXcUMFkmLGTBLw@mail.gmail.com>
-Subject: Re: [PATCH 2/4] arm64: dts: exynos: gs101: add chipid node
-To: Alexey Klimov <alexey.klimov@linaro.org>
-Cc: krzysztof.kozlowski@linaro.org, alim.akhtar@samsung.com, 
-	linux-samsung-soc@vger.kernel.org, semen.protsenko@linaro.org, 
-	robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org, 
-	devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
-	linux-kernel@vger.kernel.org, klimov.linux@gmail.com, kernel-team@android.com, 
-	tudor.ambarus@linaro.org, andre.draszik@linaro.org, saravanak@google.com, 
-	willmcvicker@google.com, arnd@arndb.de
-Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 8bit
 
-Hi Alexey & Krysztof,
+From: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
 
-On Thu, 1 Feb 2024 at 17:22, Alexey Klimov <alexey.klimov@linaro.org> wrote:
->
-> Signed-off-by: Alexey Klimov <alexey.klimov@linaro.org>
-> ---
->  arch/arm64/boot/dts/exynos/google/gs101.dtsi | 5 +++++
->  1 file changed, 5 insertions(+)
->
-> diff --git a/arch/arm64/boot/dts/exynos/google/gs101.dtsi b/arch/arm64/boot/dts/exynos/google/gs101.dtsi
-> index d838e3a7af6e..156fec2575bc 100644
-> --- a/arch/arm64/boot/dts/exynos/google/gs101.dtsi
-> +++ b/arch/arm64/boot/dts/exynos/google/gs101.dtsi
-> @@ -283,6 +283,11 @@ soc: soc@0 {
->                 #size-cells = <1>;
->                 ranges = <0x0 0x0 0x0 0x40000000>;
->
-> +               chipid@10000000 {
-> +                       compatible = "google,gs101-chipid";
-> +                       reg = <0x10000000 0xd000>;
-> +               };
-> +
+Hi All,
 
-I was wondering about the 0xd000 size here, as most upstream platforms
-use a chipid size of 0x100 or 0x24. I see the downstream gs101 kernel
-also uses 0xd000. Looking a bit more, that is because gs-chipid.c also
-has support for dumping other areas of the OTP SFR bank like asv table
-(offset 0x9000) hpm_asv (offset 0xa000) and hw_tune (0xc000).
+This patch series aims to add the missing bus-error and eccram error
+interrupts for RZ/G2L family and RZ/G3S SoC.
 
-I checked Exynos850 and that also has ASV tables at those same offsets
-above, but it currently uses a chipid size of 0x100 upstream.
-Exynos-asv.c driver is part of exynos-chipid.c upstream so it seems
-reasonable to have the increased size including those SFR registers.
-Currently exynos-asv.c driver only supports Exynos5422 upstream.
+v1 -> v2
+- Updated commit descriptions
+- Fixed review comments pointed by Conor
 
-@Krzysztof - From a process PoV what is the best/correct thing to do
-here? Have the increased size in DT that includes ASV parts of the OTP
-bank from the get-go?
+v1:
+- https://patchwork.kernel.org/project/linux-renesas-soc/cover/20240202093907.9465-1-prabhakar.mahadev-lad.rj@bp.renesas.com/
 
-Thanks,
+Cheers,
+Prabhakar
 
-Peter.
+Lad Prabhakar (3):
+  dt-bindings: interrupt-controller: renesas,rzg2l-irqc: Update
+    interrupts
+  arm64: dts: renesas: rz-g2l-family: Add missing interrupts from IRQC
+    IP block
+  arm64: dts: renesas: r9a08g045: Add missing interrupts of IRQC node
+
+ .../renesas,rzg2l-irqc.yaml                   | 44 +++++++++++++++----
+ arch/arm64/boot/dts/renesas/r9a07g043u.dtsi   | 12 ++++-
+ arch/arm64/boot/dts/renesas/r9a07g044.dtsi    | 22 +++++++++-
+ arch/arm64/boot/dts/renesas/r9a07g054.dtsi    | 22 +++++++++-
+ arch/arm64/boot/dts/renesas/r9a08g045.dtsi    |  8 +++-
+ 5 files changed, 93 insertions(+), 15 deletions(-)
+
+-- 
+2.34.1
+
 
