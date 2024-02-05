@@ -1,136 +1,155 @@
-Return-Path: <devicetree+bounces-38647-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-38648-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 94FD5849DCA
-	for <lists+devicetree@lfdr.de>; Mon,  5 Feb 2024 16:15:14 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id EE3D8849DD9
+	for <lists+devicetree@lfdr.de>; Mon,  5 Feb 2024 16:21:03 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id C6AF01C2240B
-	for <lists+devicetree@lfdr.de>; Mon,  5 Feb 2024 15:15:13 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 91D54B221DB
+	for <lists+devicetree@lfdr.de>; Mon,  5 Feb 2024 15:21:01 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0FFF62C691;
-	Mon,  5 Feb 2024 15:15:10 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9FE642D608;
+	Mon,  5 Feb 2024 15:20:39 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="cTcEakOv"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="W2VWjqL0"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-qv1-f42.google.com (mail-qv1-f42.google.com [209.85.219.42])
+Received: from mail-pl1-f175.google.com (mail-pl1-f175.google.com [209.85.214.175])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 66DA02D604
-	for <devicetree@vger.kernel.org>; Mon,  5 Feb 2024 15:15:08 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.219.42
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 26E282D043;
+	Mon,  5 Feb 2024 15:20:37 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.175
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1707146110; cv=none; b=W/aQ1Zcg4g1OftQ3KJZO2MjlMTFs5tHHnFxL20NzlNnfKsX4Iz/cfdS5QZI84NHAceSww+mzkEU3ZFEzMpAQrXo/8D1EhOSpXe+FxvTjlww9Mpa/sFH1wTGAJswKsdoRPcjAGQLtiocFhB2WYxzZnJfuHrsMyjKA0sAfVyP3Iwg=
+	t=1707146439; cv=none; b=oAkKpDVMNjvPNtNxcw1vtH5sSoyeSfZ9VO3jad8PBL6MAnts8XDu/ARLkSngP503eGImsGOOpPKu2kKseZx4LcN8QMyQmFGckv9B34Oa8uYhz9WPcgFDaRXEjir+7iuQ4aNhygrJTb5gKiLhGOxq9bv2nn+sRyF4iUT4KD1c1VE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1707146110; c=relaxed/simple;
-	bh=Au4LVORN6H/onQsw+fO8tyJyMuEiQJy3CYj6SC/W5Y0=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=FS5w4ji2h0bE0HeKB7BDqbI/ctm6eNeVjSTxEllVrAgmapoFjLIojAO7MHiF38/5m/5URc0djkqx7iLyv8X6QW2RfBBUMdyxr8tFOafqeBi9MEQ5Iz4W0KHNSWhb94csa0lTCzhKzmmAVwRPy36W/BHLTV0PCIAKDNBjAFCnrCo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=cTcEakOv; arc=none smtp.client-ip=209.85.219.42
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-qv1-f42.google.com with SMTP id 6a1803df08f44-68c3a14c6e7so21462386d6.1
-        for <devicetree@vger.kernel.org>; Mon, 05 Feb 2024 07:15:08 -0800 (PST)
+	s=arc-20240116; t=1707146439; c=relaxed/simple;
+	bh=GGePl5eiEEdPNRh0+sAveAROhsr1GXVAVnMj8eHt2vg=;
+	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version; b=PpEgxheu7iEryG4U2sgAy1nEPYzlBIjgv9psKREYHfSOWwHBVakfVvEkHcVfbGNo+PR9Jbind61vNLlG8A7IWlymLfNMqi3kjg2eXVg4vo3IBRRj+5gJPqV0uzz2TsFjMWzrFdiJtjC3o6VrIJ571U0y8OJ3Bt6Mp2lZi+RK61U=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=W2VWjqL0; arc=none smtp.client-ip=209.85.214.175
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-pl1-f175.google.com with SMTP id d9443c01a7336-1d953fa3286so31654045ad.2;
+        Mon, 05 Feb 2024 07:20:37 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1707146107; x=1707750907; darn=vger.kernel.org;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=SagLyPv+tU2JHwW9rPzTIveX03STHYINvfEVvGHvYDk=;
-        b=cTcEakOvQDZ7Mb5rKzpRotRkW6lTnJPLC/HW10XK9Nmy6AFWqh1Fb0JdgZEy2Of1g4
-         7ZUdgCd5Rmth3kJKy7On97jxTISm0N97fqiXWXr7jLd7UoL3JOmXJB/3a5HXM54TK/BY
-         jyuUjYmpC3HjNHnmzzIT6fDqD/NXICO+amY8kk4rSyF87+nP+e69eVqPyu4wa3rW/9v5
-         cKLSptdaZmUkSM9ygOZjqu0zvAO0h9t+x8D184iOSVRO9OJ2QGirK1OgXW1OPB8XNi8A
-         x2X23FXQAHRSfMUIrHmDbpyye9F/AEAQ9neAYswZA7E1Ws7OwL/R4pDz21aVt7Cube3P
-         osCA==
+        d=gmail.com; s=20230601; t=1707146437; x=1707751237; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=giwgZ4wcf6FmR6qMTFI58iXdRxoX8Uci/OXHw4NZoHQ=;
+        b=W2VWjqL0JIzc04Fr41o0uVYOEoN8cWBFr5PGCo78LTJVRKoO2/TgBSu634jgbhU3BN
+         w8sk3mFJJY7P4gdD9LWSMn0EopZDmqmNf0avb/4R9wHKGT6IR1eWJ4bvNvKgpdjXMohQ
+         vLzH8v921YlQZx1pwIcIQy2VPGNZlPckvq2jnXSnSgn/nKrA3LNSbHp2dF5tZvUjbmcz
+         nN9E5N29mUOAQyJJc8lnMMwr0rkOs4om1CkoWTUeb9TZc8ffP9GS94/LaKs1LyLM3d/l
+         ckD/pi5czQ8BiKbaGsxksIqAcI7e9/czqDQr2ey2nuLkl4WDkshrt1uenRcUGXis10J7
+         yw0A==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1707146107; x=1707750907;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+        d=1e100.net; s=20230601; t=1707146437; x=1707751237;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=SagLyPv+tU2JHwW9rPzTIveX03STHYINvfEVvGHvYDk=;
-        b=X+l71y4icpy0W5jBcDe4gcXd9wc/bKUwDVcfRXOtGzVig6+n+nBCmOE7lziurT0LZG
-         0mtjdkoSMW015mY+knHj/J6SNH74NJ4d5udgQcQyOST09eHktKl5lRzTIQ0+s0OmhmgX
-         MXNzMC+FarpbR6zDteLakhUwy6Wqi+TfU1eFFkprNUDyrRLNkd2Ln2o4b0LJNv70vOYG
-         Fr4BxspC/5C+S8FCryXUvrb/RLWFmFOXIxv2P0hrkiOFcWDWdMmmbE03o+MsFAY9mExi
-         Gx/oVObvHWU6M9TnZ5hHoexwwfwOY71GsDW/RGwokxanMC3OKp5pRbf0otyiDJkQad3Z
-         D3xQ==
-X-Gm-Message-State: AOJu0Yy8tA61Urlq6N8FacySaV6mP2qFnVLshe8Nrm7N3oVoNRnCubBc
-	DVlUd6eFKHZNLmUn8BPhmsNKeogZ9jd4Z3NSawwQkygrx5qmu2vAeNKA1MZgBYeuc8LJwXv5th7
-	cJ/4ZtcMO9ceKlDLNmrCx23IkygCA9NLxHUjOuQ==
-X-Google-Smtp-Source: AGHT+IEJiCZJgCddiVpWsHVt/Z+aTDGcg5cltCSOe6qZPrQ2iyQVush+5469m4nHWe2ATfO1pbwocsEiLH2smm+MZUI=
-X-Received: by 2002:a0c:dd04:0:b0:68c:67ad:93cb with SMTP id
- u4-20020a0cdd04000000b0068c67ad93cbmr6650169qvk.37.1707146107317; Mon, 05 Feb
- 2024 07:15:07 -0800 (PST)
+        bh=giwgZ4wcf6FmR6qMTFI58iXdRxoX8Uci/OXHw4NZoHQ=;
+        b=KUtWnzucjYbBx9aOxr81n3Gjn1tFUYOyr61JscUl/eYgbtrZ0U0aihwAnc6VbtmwdU
+         2VLNLZRCVoqEUIn60IAg7N91soc1EFCpZXJHPY5sSGEhoihGC0MKt8E2Lb7oSDgFuLgT
+         igBwjc6Eot0CbI+9ECbuSLRggmtvodvSuTVAb61Pu64R9omzQ9Wv4oXtrWZgKB2BvSQQ
+         wcO3IAH2x+kXvA07sxzxJXt1PDPLytud5E9sFlGIxtfFD4colHas/7E8C8wBhF6/fk3M
+         M860ndbfzqbA5ndaCz4VBj4GrPycRA/vvzYJa41EBLPR+udV46xY+9IqRKDuT0bm85/k
+         r3BQ==
+X-Gm-Message-State: AOJu0YwbwUWUXdzLd5xdFJkmj11hc+pmj6dyg1ljj8ZKOeZl6Ol5NtUo
+	fYnCnaVFzR/YHZM0LFoL0E74NKbpczuksGj6qE4mkOVc/FfTVcbE
+X-Google-Smtp-Source: AGHT+IEGDYq4EfYGE4WQ4F8P9Y0pgjjFCa9OC7ZnaM6cBq6r0ynZIrWRaWacoH1ZFzR7YC4l0OPhEg==
+X-Received: by 2002:a17:903:2452:b0:1d9:af94:9f3d with SMTP id l18-20020a170903245200b001d9af949f3dmr4584960pls.28.1707146437351;
+        Mon, 05 Feb 2024 07:20:37 -0800 (PST)
+X-Forwarded-Encrypted: i=0; AJvYcCVVS1ti89jiT+X2JZbru4oYtoPXaIhsjbjD6tD25wyERqoX7j2hmQYsr9b7lRt4x7Z1wmVaSCiLCgfjHZxgzdVOjH1/JLISqxgz3VjBzg1mpsFQkLy1m/njZTEN7YkP+QFH+vt37Us0awOIhEtXXEgJtWZmYxrlAEMJrew2LHFdTd7VN0tNpi6XtPM5gdDgIjcLtOmtQojCdjCgKnxRQqQDYTBBF2NQeJ1QC+EKbaDudVtlGm96Ah7sOfzPveX46nyNzu2mz5Jpz8oTFGTi+4aTqdDdQi/1HASqctE1bV29qLl7OzxP5vmog1BlBRwy+tqQ+c9iNpvcFH38Cp1YUKxkLG+noQW1Gerg4es/i1RcyZGZuc7x8WVsiDrL4cMWcMri+1znqJ3tpag7K/RxbmIwAKAvfATwwfP0hHjCNoRAHxtESSZ49XEdpNXhgUmOpJrZFC+OiUS/jukXlOr+J2DiOnvtKCnSxLWfV56g2FBx8AOewnM9MDVuwWlPbxOGnXTM+e9I5jlUg0d7stWUFU+j6dZ7dVsmsl0+w9iCy1DvS2y5WTfGU7Tmt4annA7LtWpenBWggENppwj/vn+qJrz3wJWMvrP6r6rJngKtJTglgOub9zRyFcfu4JzkJ+f4k2P6CgnrvzWYesEv6MjMjYnfICpzZsYKRRWpi14hzWjcpfIWL9EOYPo0+r6GwhhJh2PAI4RxebuUmnPWnTD5UrTdgutacjZefthZ9JPRhzTjJcQx4xWtRaZSJmVXDhsDwF/J+EXETnROz/siE1Fq3Wh4PcGbiMag8sdt38vi5TuBoaS3cNTDNWtsubiOq8V3m091LbJcvw==
+Received: from cosmo-ubuntu-2204.dhcpserver.bu9bmc.local (1-34-21-66.hinet-ip.hinet.net. [1.34.21.66])
+        by smtp.gmail.com with ESMTPSA id k21-20020a170902f29500b001d94a3f3987sm6444393plc.184.2024.02.05.07.20.32
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 05 Feb 2024 07:20:36 -0800 (PST)
+From: Cosmo Chou <chou.cosmo@gmail.com>
+To: linux@roeck-us.net,
+	robh+dt@kernel.org,
+	krzysztof.kozlowski+dt@linaro.org,
+	conor+dt@kernel.org,
+	jdelvare@suse.com,
+	corbet@lwn.net,
+	broonie@kernel.org,
+	naresh.solanki@9elements.com,
+	vincent@vtremblay.dev,
+	patrick.rudolph@9elements.com,
+	luca.ceresoli@bootlin.com,
+	bhelgaas@google.com,
+	festevam@denx.de,
+	alexander.stein@ew.tq-group.com,
+	heiko@sntech.de,
+	jernej.skrabec@gmail.com,
+	macromorgan@hotmail.com,
+	forbidden405@foxmail.com,
+	sre@kernel.org,
+	linus.walleij@linaro.org
+Cc: devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	linux-hwmon@vger.kernel.org,
+	linux-doc@vger.kernel.org,
+	chou.cosmo@gmail.com,
+	cosmo.chou@quantatw.com
+Subject: [PATCH v5 0/1] hwmon: Add driver for Astera Labs PT5161L retimer
+Date: Mon,  5 Feb 2024 23:20:12 +0800
+Message-Id: <20240205152013.3833940-1-chou.cosmo@gmail.com>
+X-Mailer: git-send-email 2.34.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20240201172224.574238-1-alexey.klimov@linaro.org> <20240201172224.574238-4-alexey.klimov@linaro.org>
-In-Reply-To: <20240201172224.574238-4-alexey.klimov@linaro.org>
-From: Peter Griffin <peter.griffin@linaro.org>
-Date: Mon, 5 Feb 2024 15:14:55 +0000
-Message-ID: <CADrjBPpWXHhRhid77=utZuaQVzw8aaXUV_EKwwn0=rp7-Jt+NQ@mail.gmail.com>
-Subject: Re: [PATCH 4/4] soc: samsung: exynos-chipid: fix revision calculation
- for gs101
-To: Alexey Klimov <alexey.klimov@linaro.org>
-Cc: krzysztof.kozlowski@linaro.org, alim.akhtar@samsung.com, 
-	linux-samsung-soc@vger.kernel.org, semen.protsenko@linaro.org, 
-	robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org, 
-	devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
-	linux-kernel@vger.kernel.org, klimov.linux@gmail.com, kernel-team@android.com, 
-	tudor.ambarus@linaro.org, andre.draszik@linaro.org, saravanak@google.com, 
-	willmcvicker@google.com, arnd@arndb.de
-Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 8bit
 
-Hi Alexey,
+This driver implements support for temperature monitoring of Astera Labs
+PT5161L series PCIe retimer chips.
 
-On Thu, 1 Feb 2024 at 17:22, Alexey Klimov <alexey.klimov@linaro.org> wrote:
->
-> The main revision for gs101 SoC is not reported in the CHIPID_REV
-> register. The gs101 Product ID and revisions registers have a behaviour
-> split between old Exynos SoCs and new SoCs. The sub-revision is
-> reported in CHIPID_REV register in [19:16] bits but main revision
-> is still present in Product ID [7:0].
->
-> To construct soc_info->revision correctly for gs101 the main_rev
-> should not be reset from a value read from CHIPID_REV.
->
+LINK: [v1] https://lore.kernel.org/all/20231205074723.3546295-1-chou.cosmo@gmail.com/
 
-I think it would also be worth adding in the commit message how the
-main_rev and sub_rev relate to the a0, b0, b1 reported by the
-bootloader.
+v5:
+  - Fix warning and check messages of 'checkpatch --strict'
+  - Without resubmitting the applied patches
 
-> Signed-off-by: Alexey Klimov <alexey.klimov@linaro.org>
-> ---
->  drivers/soc/samsung/exynos-chipid.c       | 20 ++++++++++++++++----
->  include/linux/soc/samsung/exynos-chipid.h |  1 +
->  2 files changed, 17 insertions(+), 4 deletions(-)
->
-> diff --git a/drivers/soc/samsung/exynos-chipid.c b/drivers/soc/samsung/exynos-chipid.c
-> index 7fee6094db12..3b952ffd8cf7 100644
-> --- a/drivers/soc/samsung/exynos-chipid.c
-> +++ b/drivers/soc/samsung/exynos-chipid.c
-> @@ -87,14 +87,26 @@ static int exynos_chipid_get_chipid_info(struct regmap *regmap,
->         soc_info->product_id = val & EXYNOS_MASK;
->
->         if (data->rev_reg != EXYNOS_CHIPID_REG_PRO_ID) {
-> -               ret = regmap_read(regmap, data->rev_reg, &val);
-> +               unsigned int val2;
-> +
-> +               ret = regmap_read(regmap, data->rev_reg, &val2);
->                 if (ret < 0)
->                         return ret;
-> +
-> +               if (data->main_rev_shift == 0)
-> +                       main_rev = (val >> data->main_rev_shift)
-> +                                  & EXYNOS_REV_PART_MASK_GS101;
+v4:
+  - Rebased
 
-Looks like it can be simplified to
-main_rev = val & EXYNOS_REV_PART_MASK_GS101;
+v3:
+  - Revise pt5161l.rst
+  - Revise the style of comments
+  - Remove unused pec_enable
+  - Add back safe access wide registers
+  - fix build warning
 
-Peter
+v2:
+  - Add "asteralabs,pt5161l" to trivial-devices.yaml
+  - Change naming PT516XX/pt516xx to PT5161L/pt5161l
+  - Separated debugfs files for health status
+  - Revise the style of comments
+  - Remove unused defines
+  - Remove including unused header files
+  - Remove unnecessary debugging messages
+  - Revise the data parsing for a big-endian system
+  - Use read_block_data instead of accessing wide registers
+  - Remove the debugfs files when the device is unloaded
+  - Add acpi_match_table
+
+Cosmo Chou (1):
+  hwmon: Add driver for Astera Labs PT5161L retimer
+
+ Documentation/hwmon/index.rst   |   1 +
+ Documentation/hwmon/pt5161l.rst |  42 ++
+ MAINTAINERS                     |   7 +
+ drivers/hwmon/Kconfig           |  10 +
+ drivers/hwmon/Makefile          |   1 +
+ drivers/hwmon/pt5161l.c         | 673 ++++++++++++++++++++++++++++++++
+ 6 files changed, 734 insertions(+)
+ create mode 100644 Documentation/hwmon/pt5161l.rst
+ create mode 100644 drivers/hwmon/pt5161l.c
+
+-- 
+2.34.1
+
 
