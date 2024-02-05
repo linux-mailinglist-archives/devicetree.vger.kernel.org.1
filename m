@@ -1,203 +1,150 @@
-Return-Path: <devicetree+bounces-38606-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-38607-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1696D849B61
-	for <lists+devicetree@lfdr.de>; Mon,  5 Feb 2024 14:07:13 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 495B8849B66
+	for <lists+devicetree@lfdr.de>; Mon,  5 Feb 2024 14:08:44 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id ADE1D282CAE
-	for <lists+devicetree@lfdr.de>; Mon,  5 Feb 2024 13:07:11 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 0006F282F98
+	for <lists+devicetree@lfdr.de>; Mon,  5 Feb 2024 13:08:42 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D1E671CA83;
-	Mon,  5 Feb 2024 13:07:06 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D49C31C6A3;
+	Mon,  5 Feb 2024 13:08:37 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gadgetoid.com header.i=@gadgetoid.com header.b="Mpr+Iz8i"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="m4AFG/B8"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-oa1-f43.google.com (mail-oa1-f43.google.com [209.85.160.43])
+Received: from mail-wm1-f50.google.com (mail-wm1-f50.google.com [209.85.128.50])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 857471C6A1
-	for <devicetree@vger.kernel.org>; Mon,  5 Feb 2024 13:07:04 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.160.43
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 156D11C6B8
+	for <devicetree@vger.kernel.org>; Mon,  5 Feb 2024 13:08:35 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.50
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1707138426; cv=none; b=A1Y4Z0AfTVxgn3hfXnScC4qWIO/FIKV3ZpfJFKF+ci5uSPQc0KZPktKNYcUItu7/Djn2kBwaEFUoDBSVJomeHjdnoBlI76h19g4s0GQcOKVb9qbM7wCD4s67JWlK5F0okFTpcI2obn4U23Tjsr5E9rtqLeKdZtFt7NSTA3JBUFQ=
+	t=1707138517; cv=none; b=U71ebJX5/ZInoR7yfGYSfm6Eupa19lI/fbFQ3dVroxMV66WJjR2/ntRzZSgNSCFmQVkUCXAS0yKouT8mFezhGlVcZUgVnQ9BNOFzYrZ1SnYvWIsAwsfNuhwGSlO4K7sBmQKURtZ5FsQdP/7O4Hi88xf6xtla0nJOL/UQOrsZc6A=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1707138426; c=relaxed/simple;
-	bh=kj5oXDdWjTX/J2ZGVZugOLeI+cfkVNHXrF6PII9SThQ=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=JZ3If+i9a7/eSjscRGvvWG8mERwmAoFyqFP8YGznHZ9seHz/NGD+WfGCa4mMuU6iHjrJBW274DIiEHyx1DG+RsbuHmHiMY7g9+Mbl4oTG8P0MdxnP6XJ5yni89jbYw6i21zx0/nx2hUjCe36F77cfw2REqpwuAjCREODcFemEQs=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=gadgetoid.com; spf=pass smtp.mailfrom=gadgetoid.com; dkim=pass (2048-bit key) header.d=gadgetoid.com header.i=@gadgetoid.com header.b=Mpr+Iz8i; arc=none smtp.client-ip=209.85.160.43
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=gadgetoid.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gadgetoid.com
-Received: by mail-oa1-f43.google.com with SMTP id 586e51a60fabf-214def5da12so2799098fac.2
-        for <devicetree@vger.kernel.org>; Mon, 05 Feb 2024 05:07:04 -0800 (PST)
+	s=arc-20240116; t=1707138517; c=relaxed/simple;
+	bh=JUqJjH28yOcMxLMNI+oGMHZIH3ZKlHk3VuNnrxWF6Uw=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=W7VrWb89GZpvbI8vIi1B0winWjXSygS5+2PffPOQI21lIVl5NM+NUmRIiSOqfbA2w3sfC/zDmNmXtlsaiuAZLlWT/YS44bGgMq9WCz5jRTU9XQUvrARRPhXGK1kZTAvvfuqLOwvHNrBn7UKZ4rzI05O95jbULWwk5E7IBbEiDvE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=m4AFG/B8; arc=none smtp.client-ip=209.85.128.50
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-wm1-f50.google.com with SMTP id 5b1f17b1804b1-40fb63c40c0so39139155e9.2
+        for <devicetree@vger.kernel.org>; Mon, 05 Feb 2024 05:08:35 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gadgetoid.com; s=google; t=1707138423; x=1707743223; darn=vger.kernel.org;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=/H6eARlBWgKgxV/ZtkOc9y1qYb/Y56hfRsMXOxNcheU=;
-        b=Mpr+Iz8iYt2JTcrECblDgwGzxRM/97ZbKOYfTuSoMczTssLdfAoY5d5+NXRHJiwzJS
-         ALDr+XKGPy1usxkQYk+8ZknrD63RnPUhEJNaKWTsuplggcLoLcyXKIzGaR886qPy1b5n
-         yaz4Nm66FO9rF+SEOUH3KVkSmB+jNq+rsxutHJiMafsEVe5E/50LOIBLgNjj2hA9PGXg
-         NscfF1YjL0rRdZQ8Q7I/2DNESTplO3+7JDcTUPyODvVDeLRy36QNhuXkAaiXENrX8yUe
-         LCtpNtoCrO7kMvWYlT6rj+unRupfa56rSyMb3Osiu4sP5Q3vC6sIcsnBs/Mb0ZNrPDxF
-         ZEhQ==
+        d=linaro.org; s=google; t=1707138514; x=1707743314; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from
+         :content-language:references:cc:to:subject:user-agent:mime-version
+         :date:message-id:from:to:cc:subject:date:message-id:reply-to;
+        bh=JUqJjH28yOcMxLMNI+oGMHZIH3ZKlHk3VuNnrxWF6Uw=;
+        b=m4AFG/B8h4gsqquqTcVaefTknxpFtZT6hRDq0Yd5D+VgBbhEaUibAGNPh4XlJwFx/l
+         DUiFpBrIjdppgTW/zM+ikU6Wa7N2ItkaFA3QYKl9X5aG+kiLo/goH/tjDDPdNTCVXz5t
+         Z1TpF1e6qOqYzrQIM7lrADTYPpEDnJjDyc2HXR0T3id95cKhy5nE4WmeMKytxOnTFvDz
+         zF+RbjrU4wdIbAOu4yLcJkrIRE4Q6XJ5boB8xf8VpBnik2tLp+ciTY4AXjiyqJGSt5vd
+         DbXblex9ItrOlnnAI8Cos73rCHZ5BnPyUAi6mkwag47eV+xIjzXOlDFK5hiNnRD/rQsP
+         gHpA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1707138423; x=1707743223;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=/H6eARlBWgKgxV/ZtkOc9y1qYb/Y56hfRsMXOxNcheU=;
-        b=eujUdwrMMyzWx2zOFFcTYobgxwZfvy820QGBq/xydoUzgauZEmYQVhh9Ud2G51/YN2
-         ZuwezzIjcfsSRhkUL/9G1flvN7n7p046GfS3Is0Wtm2WY5mPoG4f6ke37tnqbPOXdk5y
-         A9aQ/b2IA/sCGrPDEgMmp1COchWgLHXjYEHlI42PH2UOl9dETDlqkxveFzpYtizPpFW1
-         wvKz7UFSpdHTA/ETvhSxswS0xGkJWgLdSpyVF5o0yQMF4v8ohKxdDbhgjVVebJ77l4Kw
-         jq+aikzxlghQ2zLEeNZwoaLpQMGq+lKljAPUV9EOJUzdjzCwjNcXziubde55tQGH+3KJ
-         B+Iw==
-X-Gm-Message-State: AOJu0YzI3t+Zko8gXCNtlD6rFzNNmVHphMRK9TNALmSPwQXFoue5szzS
-	QCir5FXuyQYWxT+EuBAo0BSx/PT+t/CyF9nvabPeEuMtgMCfyXym79fPHSnEMAweKaF9QJCN7BZ
-	i8IS4XPgD37iCEnXI8DONCZg8GWUVZTxXL/kU/D+yydqSBW4NGTIXmaNo
-X-Google-Smtp-Source: AGHT+IEkLUyHqWKv2xv0DJNMzx+vpkU/sDWa1HHvcZpPuDo8gMGn7LtGIjCfwIBzlaTQ07qaKwCePUQsKpKsT6jKaFk=
-X-Received: by 2002:a05:6870:1b1b:b0:214:c98e:40bd with SMTP id
- hl27-20020a0568701b1b00b00214c98e40bdmr9221509oab.14.1707138423282; Mon, 05
- Feb 2024 05:07:03 -0800 (PST)
+        d=1e100.net; s=20230601; t=1707138514; x=1707743314;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from
+         :content-language:references:cc:to:subject:user-agent:mime-version
+         :date:message-id:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=JUqJjH28yOcMxLMNI+oGMHZIH3ZKlHk3VuNnrxWF6Uw=;
+        b=ElBrPDP9fFbNvxJLCHX1dyT5mAaV1OJX9k6fdqBRj6hhvbAjUFNgjJDD3kEKJWcnQl
+         eAR5IjBc1BEiGg3lAaEvt5VERDLqb9QTKNxQE5ZeJnjKcQJATY0nmLANMbdxVoLk4zKz
+         Qp/g2KktZrMc8We5WHfr0hF+M+I6LVqMsLyJ8t218QhBALzB3MRR6wL1p0ms3Au00xAG
+         ySDr4iHiryVHSKK6QpByYM+3FiyUwX2NU8U1DdkeIJnimhdnQ6tZ3SFyugD3UV9lYURe
+         CX8WNi0ssLz+qmll3wb6qLaWcq7bJodwvJreSnjSdW66DPqp3LcqFOHrIyuwnAWonwLi
+         BD2g==
+X-Gm-Message-State: AOJu0YybkHdexvDXRJ6gTAvbS6dKUCK+AEeqYyqphBdsYaIHfq2sUHEG
+	05WUlLps9IGamI3A7aI8bWwYpXbnCe5DcEEg2T5vMPnoY3V2GZmEQKD91rb2hsM=
+X-Google-Smtp-Source: AGHT+IGmSTNv1NLD4ThyEXavgzPIU3udI55fVjJ4cKaivDzxzfYUr51Ry2wYiCKX2sZ2Yne/Ifpp6w==
+X-Received: by 2002:a05:600c:5250:b0:40f:dd79:b758 with SMTP id fc16-20020a05600c525000b0040fdd79b758mr1069261wmb.40.1707138514267;
+        Mon, 05 Feb 2024 05:08:34 -0800 (PST)
+X-Forwarded-Encrypted: i=0; AJvYcCXTydsik0wGIRv1JR9uqlCVCHV3kppJ565jer+6TxSMFiB4IDcto1Ty87l7ISA/ZXi7TEPeJZf+KHXfUgc4aL6sZcwIpEvo+nGEmFGHHqLAShKyTFgQd7rbvvH+IXD4isAyCf6SoQfRvRkmH/gqd+rE0OaOvXrNqQLdwneBITZrxEcS4PprZo3Xqznw6aT51RHLMHpdWlNEZebJ1hGeT1vwg6Y8stjkTLDAZpK4RINu8VHDXhgMich+EdG3f5tlZLlznAjkoxVc0f+i4H/Mtu4xk6XHLq0RhI//FGe3EDPhEcgKuA==
+Received: from [192.168.1.20] ([178.197.222.62])
+        by smtp.gmail.com with ESMTPSA id ay2-20020a05600c1e0200b0040fdb17e66csm3289160wmb.4.2024.02.05.05.08.33
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 05 Feb 2024 05:08:33 -0800 (PST)
+Message-ID: <8714b420-58b9-4d5b-a489-31670c8d325f@linaro.org>
+Date: Mon, 5 Feb 2024 14:08:31 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20240204220851.4783-1-wahrenst@gmx.net>
-In-Reply-To: <20240204220851.4783-1-wahrenst@gmx.net>
-From: Phil Howard <phil@gadgetoid.com>
-Date: Mon, 5 Feb 2024 13:06:52 +0000
-Message-ID: <CA+kSVo_skHAiw0smezZYKEXs4eu2uZy=XwQMfbq4dZmEfcpwEA@mail.gmail.com>
-Subject: Re: [PATCH V4 0/2] pwm: Add GPIO PWM driver
-To: Stefan Wahren <wahrenst@gmx.net>
-Cc: =?UTF-8?Q?Uwe_Kleine=2DK=C3=B6nig?= <u.kleine-koenig@pengutronix.de>, 
-	Rob Herring <robh+dt@kernel.org>, 
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, 
-	andy.shevchenko@gmail.com, Angelo Compagnucci <angelo.compagnucci@gmail.com>, 
-	Sean Young <sean@mess.org>, Linus Walleij <linus.walleij@linaro.org>, linux-pwm@vger.kernel.org, 
-	devicetree@vger.kernel.org, linux-gpio@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH] dt-bindings: mfd: Update pattern property case
+To: Naresh Solanki <naresh.solanki@9elements.com>, Lee Jones
+ <lee@kernel.org>, Rob Herring <robh+dt@kernel.org>,
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+ Conor Dooley <conor+dt@kernel.org>,
+ Patrick Rudolph <patrick.rudolph@9elements.com>
+Cc: mazziesaccount@gmail.com, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org
+References: <20240205110244.676779-1-naresh.solanki@9elements.com>
+Content-Language: en-US
+From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
+ 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
+ D2GYIS41Kv4Isx2dEFh+/Q==
+In-Reply-To: <20240205110244.676779-1-naresh.solanki@9elements.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
-On Sun, 4 Feb 2024 at 22:09, Stefan Wahren <wahrenst@gmx.net> wrote:
->
-> Add a software PWM which toggles a GPIO from a high-resolution timer.
->
-> Recent discussions in the Raspberry Pi community revealt that a lot
-> of users still use MMIO userspace tools for GPIO access. One argument
-> for this approach is the lack of a GPIO PWM kernel driver. So this
-> series tries to fill this gap.
->
-> This continues the work of Vincent Whitchurch [1], which is easier
-> to read and more consequent by rejecting sleeping GPIOs than Nicola's
-> approach [2].
->
-> The work has been tested on a Raspberry Pi 3 B+ and a cheap logic
-> analyzer.
+On 05/02/2024 12:02, Naresh Solanki wrote:
+> Driver expects regulator child node in upper case.
+> Hence align with the same.
 
-Tested on a Pi 5 with a Rigol scope. I have not done any comparative
-testing to the contemporary methods of GPIO on a Pi (they're probably
-not great) but it looks good at a glance.
+Did the driver have DT support before? I think no, so why aligning that
+way? I would argue that driver should be aligned with bindings, the
+moment you add DT for the first time.
 
-There is jitter, as you might expect, though I would expect this to be much
-better than the userspace soft PWM we're used to.
+Best regards,
+Krzysztof
 
-Mostly for Pi users who happen to be watching this unfold-
-
-PWM on the Pi 5 is achieved via the PCIe bus to the RP1 peripheral and
-IO controller on a Pi 5 so it's possible to saturate the PCIe bus and have
-A Bad Day. I think ~200KHz is about the practical limit here, if I try and push
-to 400KHz things start to get dicy. The faster you go, the more proportional
-impact jitter will have on the resulting signal.
-
-My optimistic first try in the MHz range booted me off SSH and required a
-power cycle so I'm not even sure what went wrong. Less of an issue for
-on-chip GPIO controllers ala <= Pi 4.
-
-Here's my very naive overlay -
-
-// Definitions for w1-gpio module (without external pullup)
-/dts-v1/;
-/plugin/;
-
-/ {
-    compatible = "brcm,bcm2835";
-    fragment@0 {
-        target-path = "/";
-        __overlay__ {
-            pwm_gpio: pwm_gpio@0 {
-                compatible = "pwm-gpio";
-                pinctrl-names = "default";
-                pinctrl-0 = <&pwm_gpio_pins>;
-                gpios = <&gpio 4 0>;
-                status = "okay";
-            };
-        };
-    };
-
-    fragment@1 {
-        target = <&gpio>;
-        __overlay__ {
-            pwm_gpio_pins: pwm_gpio_pins@0 {
-                brcm,pins = <4>;
-                brcm,function = <1>; // out
-                brcm,pull = <0>; // off
-            };
-        };
-    };
-};
-
->
-> V4:
->  - address DT bindings comments from Conor Dooley
->  - drop unnecessary MODULE_ALIAS() as suggested by Krzysztof Kozlowski
->  - add range checks to apply which consider the hrtimer resolution
->    (idea comes from Sean Young)
->  - mark driver as atomic as suggested by Sean Young
->
-> V3:
->  - rebase on top of v6.8-pwm-next
->  - cherry-pick improvements from Nicola's series
->  - try to address Uwe's, Linus' and Andy's comments
->  - try to avoid GPIO glitches during probe
->  - fix pwm_gpio_remove()
->  - some code clean up's and comments
->
-> V2:
->  - Rename gpio to gpios in binding
->  - Calculate next expiry from expected current expiry rather than "now"
->  - Only change configuration after current period ends
->  - Implement get_state()
->  - Add error message for probe failures
->  - Stop PWM before unregister
->
-> [1] - https://lore.kernel.org/all/20200915135445.al75xmjxudj2rgcp@axis.com/T/
-> [2] - https://lore.kernel.org/all/20201205214353.xapax46tt5snzd2v@einstein.dilieto.eu/
->
-> Nicola Di Lieto (1):
->   dt-bindings: pwm: Add pwm-gpio
->
-> Vincent Whitchurch (1):
->   pwm: Add GPIO PWM driver
->
->  .../devicetree/bindings/pwm/pwm-gpio.yaml     |  42 ++++
->  drivers/pwm/Kconfig                           |  11 +
->  drivers/pwm/Makefile                          |   1 +
->  drivers/pwm/pwm-gpio.c                        | 228 ++++++++++++++++++
->  4 files changed, 282 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/pwm/pwm-gpio.yaml
->  create mode 100644 drivers/pwm/pwm-gpio.c
->
-> --
-> 2.34.1
->
-
-
--- 
-Philip Howard
 
