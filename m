@@ -1,131 +1,119 @@
-Return-Path: <devicetree+bounces-38528-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-38529-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 84066849627
-	for <lists+devicetree@lfdr.de>; Mon,  5 Feb 2024 10:16:04 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 40E2F84962A
+	for <lists+devicetree@lfdr.de>; Mon,  5 Feb 2024 10:16:21 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 1AB591F21720
-	for <lists+devicetree@lfdr.de>; Mon,  5 Feb 2024 09:16:04 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id D1CFD1F2340C
+	for <lists+devicetree@lfdr.de>; Mon,  5 Feb 2024 09:16:20 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 90375125A1;
-	Mon,  5 Feb 2024 09:15:51 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="Mb9wg81F"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2A45C11CBD;
+	Mon,  5 Feb 2024 09:16:08 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+Received: from metis.whiteo.stw.pengutronix.de (metis.whiteo.stw.pengutronix.de [185.203.201.7])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E10C912B61;
-	Mon,  5 Feb 2024 09:15:49 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2BDA412E50
+	for <devicetree@vger.kernel.org>; Mon,  5 Feb 2024 09:16:06 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.203.201.7
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1707124551; cv=none; b=u4p45cYQwYCsszOlptIzr4/j1Jkcf09PMfatBGkS36SKJfTFkifnrbxsJ33qKpm5OFD3+SXtQBQ3LeIpL7AyIr1MmyTJu5g7SQxSTyJcgm10MM+Xfi6vz9D68IL4DmVM2neEDhd7Z4kGqmOsvTZKRmg0yJkzGKi+s+6X91akpPc=
+	t=1707124568; cv=none; b=kfC+4RDTNF/IONZ+9NEHKmrGAWs1kX4bXG0Ry8TlIPo1kD8Bj5FFYQzoprzLsqVe13+Tr2ImqIYh3kisO7jrQ2p3j+a7gd+I1xMGb1cQJtbyfBxTRa61TljlfvJRFdodFpFd1Saos8v0CtThDun6uDJB/gha48ul02rrXDDCBUQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1707124551; c=relaxed/simple;
-	bh=TQFovvxDwF/q+H5X9EDqxuH2V4Iz/9IqPKJbhU1v3A8=;
-	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
-	 In-Reply-To:Content-Type; b=kfldenUTm8nRQd6o/Pb67Id00rnbkJtJ6lku1sBES3Il51LauSfkFNF6SyTjDOqkhdVF1U6ofSAcND3sorrpX13pPZty0yxJPXD/EYYV9fa+1XsHIvNVa0ARpoGg3WOt5dAgOs0HhkA28gNYHqlo7IUVlgUPbL1amUhe16bjxTk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=Mb9wg81F; arc=none smtp.client-ip=205.220.180.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
-Received: from pps.filterd (m0279872.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.17.1.24/8.17.1.24) with ESMTP id 4158a5Pe023612;
-	Mon, 5 Feb 2024 09:15:33 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
-	message-id:date:mime-version:subject:to:cc:references:from
-	:in-reply-to:content-type:content-transfer-encoding; s=
-	qcppdkim1; bh=yngiMajARrIPzVmPcAVgzjYlEwIV23piF1sjvZnmHsI=; b=Mb
-	9wg81F4K40k548EozbwnbXGjvZuZzpSt9OmYqWC5zbV5zKHELsz68XVYdyhP454y
-	8gzcO0lAEXJKsymVJv5jZm/B5uDhDPDf/08Irtg1XGGDFqrxMuFuLz8WK/5WZy77
-	mxHrvaEcudwTnsXAn7FIpaOqDL5uDAzIIfJ8msbUNNw50DXbwuF4zWUQK39FcKNN
-	FOaVo3DC7GgZCwEyoxtBdyN0uBuIaZYtager1V9N+ocKo5SjMYVAjDnrOtCxLVk+
-	BxyLkjyoipYm1EwpEFPXnbKkFoRLRFlRiNj+c8PlsgSzXQZKr9NGWZNkwK3ZYT03
-	z6SnCjBPg3Wi/5hQhkeQ==
-Received: from nalasppmta02.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3w2v7282yr-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Mon, 05 Feb 2024 09:15:33 +0000 (GMT)
-Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
-	by NALASPPMTA02.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 4159FW71029043
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Mon, 5 Feb 2024 09:15:32 GMT
-Received: from [10.239.132.204] (10.80.80.8) by nalasex01a.na.qualcomm.com
- (10.47.209.196) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1118.40; Mon, 5 Feb
- 2024 01:15:27 -0800
-Message-ID: <3ba45513-8112-4527-8314-88a8db29d201@quicinc.com>
-Date: Mon, 5 Feb 2024 17:15:24 +0800
+	s=arc-20240116; t=1707124568; c=relaxed/simple;
+	bh=IxpHtcbA09VFc1PalsDZWPfLzIghz12+9ze3N8X96gQ=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=gvNkzIiCQxbRybBnofNl4QwD1trl/IuJxtb/9xW13LXdXlAWWpXT0wDzBy+Qzv+xE7bBbXVNOa6YmfdNcWqO48czTY2zczct+VdwCZy+0sViGX6stBSWFuJODyGVniNlWbx8bRJhqmOZ/9r2VbUs8wMsre1PK7uACDfZOjoW+vE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de; spf=pass smtp.mailfrom=pengutronix.de; arc=none smtp.client-ip=185.203.201.7
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=pengutronix.de
+Received: from drehscheibe.grey.stw.pengutronix.de ([2a0a:edc0:0:c01:1d::a2])
+	by metis.whiteo.stw.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
+	(Exim 4.92)
+	(envelope-from <ukl@pengutronix.de>)
+	id 1rWv55-0000Xx-Af; Mon, 05 Feb 2024 10:15:59 +0100
+Received: from [2a0a:edc0:0:900:1d::77] (helo=ptz.office.stw.pengutronix.de)
+	by drehscheibe.grey.stw.pengutronix.de with esmtps  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+	(Exim 4.94.2)
+	(envelope-from <ukl@pengutronix.de>)
+	id 1rWv54-004bOw-G4; Mon, 05 Feb 2024 10:15:58 +0100
+Received: from ukl by ptz.office.stw.pengutronix.de with local (Exim 4.96)
+	(envelope-from <ukl@pengutronix.de>)
+	id 1rWv54-00FKq6-1H;
+	Mon, 05 Feb 2024 10:15:58 +0100
+Date: Mon, 5 Feb 2024 10:15:58 +0100
+From: Uwe =?utf-8?Q?Kleine-K=C3=B6nig?= <u.kleine-koenig@pengutronix.de>
+To: Stefan Wahren <wahrenst@gmx.net>
+Cc: Rob Herring <robh+dt@kernel.org>, 
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, andy.shevchenko@gmail.com, 
+	Angelo Compagnucci <angelo.compagnucci@gmail.com>, Philip Howard <phil@gadgetoid.com>, Sean Young <sean@mess.org>, 
+	Linus Walleij <linus.walleij@linaro.org>, linux-pwm@vger.kernel.org, devicetree@vger.kernel.org, 
+	linux-gpio@vger.kernel.org, Nicola Di Lieto <nicola.dilieto@gmail.com>
+Subject: Re: [PATCH V4 1/2] dt-bindings: pwm: Add pwm-gpio
+Message-ID: <zxzck6nm2xxakobwj4mk4x3vrz76c7dmlwgplhhunuzr25oeok@lc3kngblfmnz>
+References: <20240204220851.4783-1-wahrenst@gmx.net>
+ <20240204220851.4783-2-wahrenst@gmx.net>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v4 1/6] dt-bindings: arm: qcom: Document QCM8550, QCS8550
- SoC and board
-To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        <andersson@kernel.org>, <konrad.dybcio@linaro.org>,
-        <robh+dt@kernel.org>, <krzysztof.kozlowski+dt@linaro.org>,
-        <conor+dt@kernel.org>, <dmitry.baryshkov@linaro.org>
-CC: <linux-arm-msm@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>, <kernel@quicinc.com>
-References: <20240119100621.11788-1-quic_tengfan@quicinc.com>
- <20240119100621.11788-2-quic_tengfan@quicinc.com>
- <4179cecd-66dc-49c3-9564-0321bf614d99@linaro.org>
-From: Tengfei Fan <quic_tengfan@quicinc.com>
-In-Reply-To: <4179cecd-66dc-49c3-9564-0321bf614d99@linaro.org>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
- nalasex01a.na.qualcomm.com (10.47.209.196)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-GUID: I_FBDNWj8Wo3DvL1XdNueXPWg4lsdx5v
-X-Proofpoint-ORIG-GUID: I_FBDNWj8Wo3DvL1XdNueXPWg4lsdx5v
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.272,Aquarius:18.0.1011,Hydra:6.0.619,FMLib:17.11.176.26
- definitions=2024-02-05_04,2024-01-31_01,2023-05-22_02
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 malwarescore=0
- lowpriorityscore=0 impostorscore=0 phishscore=0 clxscore=1015 spamscore=0
- mlxscore=0 priorityscore=1501 bulkscore=0 suspectscore=0 mlxlogscore=438
- adultscore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.19.0-2401310000 definitions=main-2402050069
+Content-Type: multipart/signed; micalg=pgp-sha512;
+	protocol="application/pgp-signature"; boundary="rcnd4re5dzypugcp"
+Content-Disposition: inline
+In-Reply-To: <20240204220851.4783-2-wahrenst@gmx.net>
+X-SA-Exim-Connect-IP: 2a0a:edc0:0:c01:1d::a2
+X-SA-Exim-Mail-From: ukl@pengutronix.de
+X-SA-Exim-Scanned: No (on metis.whiteo.stw.pengutronix.de); SAEximRunCond expanded to false
+X-PTX-Original-Recipient: devicetree@vger.kernel.org
 
 
+--rcnd4re5dzypugcp
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-On 2/5/2024 4:03 PM, Krzysztof Kozlowski wrote:
-> On 19/01/2024 11:06, Tengfei Fan wrote:
->> Document QCM8550, QCS8550 SoC and the AIM300 AIoT board bindings.
->> QCS8550 and QCM8550 processor combines powerful computing, extreme edge
->> AI processing, Wi-Fi 7, and robust video and graphics for a wide range
->> of use cases for the Internet of Things (IoT). QCS8550 is a QCS version
->> for QCM8550. Modem RF only in QCM8550 but not in QCS8550.
->> AIM300 Series is a highly optimized family of modules designed to
->> support AIoT applications. The module is mounted onto Qualcomm AIoT
->> carrier board to support verification, evaluation and development. It
->> integrates QCS8550 SoC, UFS and PMIC chip etc.
->> AIM stands for Artificial Intelligence Module. AIoT stands for AI IoT.
->>
->> Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
->> Signed-off-by: Tengfei Fan <quic_tengfan@quicinc.com>
-> 
-> To be clear, because you keep ignoring my comments:
-> 
-> NAK
-> 
-> Best regards,
-> Krzysztof
-> 
+Hello,
 
-Yes, I will drop your "Reviewed-by" tag, I had some misunderstand for 
-your related comments in V3 patch series.
+On Sun, Feb 04, 2024 at 11:08:50PM +0100, Stefan Wahren wrote:
+> +  "#pwm-cells":
+> +    const: 3
+> +
+> +  gpios:
+> +    description:
+> +      GPIO to be modulated
+> +    maxItems: 1
 
+Given that we have 3 PWM cells (so there is an u32 that specifies the
+pwm_chip's line number) it would be obvious to allow several GPIOs. But
+I guess we can extend this easily if and when the need arises.
 
--- 
-Thx and BRs,
-Tengfei Fan
+Otherwise I'm happy with this patch.
+
+Best regards
+Uwe
+
+--=20
+Pengutronix e.K.                           | Uwe Kleine-K=F6nig            |
+Industrial Linux Solutions                 | https://www.pengutronix.de/ |
+
+--rcnd4re5dzypugcp
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQEzBAABCgAdFiEEP4GsaTp6HlmJrf7Tj4D7WH0S/k4FAmXAp00ACgkQj4D7WH0S
+/k6piAf9GadB2hhVdUycy5/DYs9wGmQnpDOpBQfyxEnYkOX+lh2U3Z4SoL7PO0rB
+AJmVKKFsnzbIjscQCtGJS38ymvhsMnho01i/pXeeI2OHc18EgFmZHcQoXzRvrgoT
+FprH3YeXdkWuSiWBZVr45QF1exy6ODtPJfiWq1lsZZC0gtNg3egB9q3GLvOb8Fic
+QWkCHgeJbDKovhW3HbPAQCIWdMDDz2qYSVCbJgzVfDl3KaaALV1+weLb5WtsetTT
+PDv5ia1jakS7GrDaTb+yIUzbmvsztIxTo20L9IIRrIibdHeE2qVc3OGZAK5nBT+L
+sBYFySX+iIncfMiybdiBbE+HoXPCJw==
+=exGd
+-----END PGP SIGNATURE-----
+
+--rcnd4re5dzypugcp--
 
