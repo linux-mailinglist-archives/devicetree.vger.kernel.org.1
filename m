@@ -1,299 +1,203 @@
-Return-Path: <devicetree+bounces-38605-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-38606-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 43FD2849B42
-	for <lists+devicetree@lfdr.de>; Mon,  5 Feb 2024 14:00:59 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 1696D849B61
+	for <lists+devicetree@lfdr.de>; Mon,  5 Feb 2024 14:07:13 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id EF47328232C
-	for <lists+devicetree@lfdr.de>; Mon,  5 Feb 2024 13:00:57 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id ADE1D282CAE
+	for <lists+devicetree@lfdr.de>; Mon,  5 Feb 2024 13:07:11 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id F34651CABD;
-	Mon,  5 Feb 2024 12:57:38 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D1E671CA83;
+	Mon,  5 Feb 2024 13:07:06 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="IOjVBIoH"
+	dkim=pass (2048-bit key) header.d=gadgetoid.com header.i=@gadgetoid.com header.b="Mpr+Iz8i"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-oa1-f43.google.com (mail-oa1-f43.google.com [209.85.160.43])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C9BDD374F5;
-	Mon,  5 Feb 2024 12:57:38 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 857471C6A1
+	for <devicetree@vger.kernel.org>; Mon,  5 Feb 2024 13:07:04 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.160.43
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1707137858; cv=none; b=HpdmIIXcgr4rGOruJB1KbnT9s/yUM2H1K/dVxUoRm3RpkN+YBGMKrVKraP069PL7foYcXZzwMYGEd60mFOsZYyUCaYh+C2atoUsFDAJ91e5UfvYd20+u6E5cZ1Iwd0uu9EYfWE50XN1pn6TbPlljprPnP+r5NCo5fbyxunbJWB0=
+	t=1707138426; cv=none; b=A1Y4Z0AfTVxgn3hfXnScC4qWIO/FIKV3ZpfJFKF+ci5uSPQc0KZPktKNYcUItu7/Djn2kBwaEFUoDBSVJomeHjdnoBlI76h19g4s0GQcOKVb9qbM7wCD4s67JWlK5F0okFTpcI2obn4U23Tjsr5E9rtqLeKdZtFt7NSTA3JBUFQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1707137858; c=relaxed/simple;
-	bh=YolstgZ7FETr/+h+nZ2BoeSb6w804AxRjccahDzTyGc=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=d/HL57PO5ijLl81IXHNwQ4GofejIi8p88Q8db/7PY9go3sDOfRVsrfoiXtyg0XWap0NcmtP+rBEZcfN6peN20+9S+OO2EAE818EgCxorMZU+o1+MFcX1lBR+hCghFAXnNF/oNQwSVekqiwIS1I64V+LvSzPP7uaecGKX1+KGRBo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=IOjVBIoH; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 3424BC433C7;
-	Mon,  5 Feb 2024 12:57:35 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1707137858;
-	bh=YolstgZ7FETr/+h+nZ2BoeSb6w804AxRjccahDzTyGc=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=IOjVBIoHpnddCF8V3HeEaFBrN9ue2/kk7GiCXhFYNF/TH8/fOrK0/omj6MMr/Jh9t
-	 PhFIELKmB4u9zmTj8i6adjRkeGCALHzL+xO+/ZdtvejNruxrr4PrSunIWCBaJlQQsz
-	 x5ugUEicAsnrMLy7/EUicG9P5xyt5NsCOsjMTBO3easWRIztiu2j3VTbj5tVsWtpdl
-	 t7i+dyf5ErVAre0yejZYURVWy6Io4BvqUtBzDVNxQOMGN5xbmve76tne9Y4smfOkQj
-	 odLom88C3ylUYuV9yN3nl4zZkT6f6kvUi4brpzX9DdbBJ4D9FZ9t9f1xY1YjTBYY0q
-	 S2Fq4o721l2Lw==
-Message-ID: <6c5e2ca5-9b47-4a08-817c-e4bb1d10032f@kernel.org>
-Date: Mon, 5 Feb 2024 14:57:32 +0200
+	s=arc-20240116; t=1707138426; c=relaxed/simple;
+	bh=kj5oXDdWjTX/J2ZGVZugOLeI+cfkVNHXrF6PII9SThQ=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=JZ3If+i9a7/eSjscRGvvWG8mERwmAoFyqFP8YGznHZ9seHz/NGD+WfGCa4mMuU6iHjrJBW274DIiEHyx1DG+RsbuHmHiMY7g9+Mbl4oTG8P0MdxnP6XJ5yni89jbYw6i21zx0/nx2hUjCe36F77cfw2REqpwuAjCREODcFemEQs=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=gadgetoid.com; spf=pass smtp.mailfrom=gadgetoid.com; dkim=pass (2048-bit key) header.d=gadgetoid.com header.i=@gadgetoid.com header.b=Mpr+Iz8i; arc=none smtp.client-ip=209.85.160.43
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=gadgetoid.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gadgetoid.com
+Received: by mail-oa1-f43.google.com with SMTP id 586e51a60fabf-214def5da12so2799098fac.2
+        for <devicetree@vger.kernel.org>; Mon, 05 Feb 2024 05:07:04 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gadgetoid.com; s=google; t=1707138423; x=1707743223; darn=vger.kernel.org;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=/H6eARlBWgKgxV/ZtkOc9y1qYb/Y56hfRsMXOxNcheU=;
+        b=Mpr+Iz8iYt2JTcrECblDgwGzxRM/97ZbKOYfTuSoMczTssLdfAoY5d5+NXRHJiwzJS
+         ALDr+XKGPy1usxkQYk+8ZknrD63RnPUhEJNaKWTsuplggcLoLcyXKIzGaR886qPy1b5n
+         yaz4Nm66FO9rF+SEOUH3KVkSmB+jNq+rsxutHJiMafsEVe5E/50LOIBLgNjj2hA9PGXg
+         NscfF1YjL0rRdZQ8Q7I/2DNESTplO3+7JDcTUPyODvVDeLRy36QNhuXkAaiXENrX8yUe
+         LCtpNtoCrO7kMvWYlT6rj+unRupfa56rSyMb3Osiu4sP5Q3vC6sIcsnBs/Mb0ZNrPDxF
+         ZEhQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1707138423; x=1707743223;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=/H6eARlBWgKgxV/ZtkOc9y1qYb/Y56hfRsMXOxNcheU=;
+        b=eujUdwrMMyzWx2zOFFcTYobgxwZfvy820QGBq/xydoUzgauZEmYQVhh9Ud2G51/YN2
+         ZuwezzIjcfsSRhkUL/9G1flvN7n7p046GfS3Is0Wtm2WY5mPoG4f6ke37tnqbPOXdk5y
+         A9aQ/b2IA/sCGrPDEgMmp1COchWgLHXjYEHlI42PH2UOl9dETDlqkxveFzpYtizPpFW1
+         wvKz7UFSpdHTA/ETvhSxswS0xGkJWgLdSpyVF5o0yQMF4v8ohKxdDbhgjVVebJ77l4Kw
+         jq+aikzxlghQ2zLEeNZwoaLpQMGq+lKljAPUV9EOJUzdjzCwjNcXziubde55tQGH+3KJ
+         B+Iw==
+X-Gm-Message-State: AOJu0YzI3t+Zko8gXCNtlD6rFzNNmVHphMRK9TNALmSPwQXFoue5szzS
+	QCir5FXuyQYWxT+EuBAo0BSx/PT+t/CyF9nvabPeEuMtgMCfyXym79fPHSnEMAweKaF9QJCN7BZ
+	i8IS4XPgD37iCEnXI8DONCZg8GWUVZTxXL/kU/D+yydqSBW4NGTIXmaNo
+X-Google-Smtp-Source: AGHT+IEkLUyHqWKv2xv0DJNMzx+vpkU/sDWa1HHvcZpPuDo8gMGn7LtGIjCfwIBzlaTQ07qaKwCePUQsKpKsT6jKaFk=
+X-Received: by 2002:a05:6870:1b1b:b0:214:c98e:40bd with SMTP id
+ hl27-20020a0568701b1b00b00214c98e40bdmr9221509oab.14.1707138423282; Mon, 05
+ Feb 2024 05:07:03 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v3 3/3] arm64: dts: ti: k3-am642-evm: add overlay for
- icssg1 2nd port
-Content-Language: en-US
-To: "Anwar, Md Danish" <a0501179@ti.com>, MD Danish Anwar
- <danishanwar@ti.com>, Vignesh Raghavendra <vigneshr@ti.com>,
- Nishanth Menon <nm@ti.com>
-Cc: Andrew Lunn <andrew@lunn.ch>, Conor Dooley <conor+dt@kernel.org>,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Rob Herring <robh+dt@kernel.org>, linux-kernel@vger.kernel.org,
- devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- Tero Kristo <kristo@kernel.org>, srk@ti.com, r-gunasekaran@ti.com
-References: <20240122113045.1711818-1-danishanwar@ti.com>
- <20240122113045.1711818-4-danishanwar@ti.com>
- <33e62844-a148-4374-aba8-481dc7799e15@kernel.org>
- <17d1cfd0-2962-4857-af1d-7f2126b37abf@ti.com>
-From: Roger Quadros <rogerq@kernel.org>
-In-Reply-To: <17d1cfd0-2962-4857-af1d-7f2126b37abf@ti.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+References: <20240204220851.4783-1-wahrenst@gmx.net>
+In-Reply-To: <20240204220851.4783-1-wahrenst@gmx.net>
+From: Phil Howard <phil@gadgetoid.com>
+Date: Mon, 5 Feb 2024 13:06:52 +0000
+Message-ID: <CA+kSVo_skHAiw0smezZYKEXs4eu2uZy=XwQMfbq4dZmEfcpwEA@mail.gmail.com>
+Subject: Re: [PATCH V4 0/2] pwm: Add GPIO PWM driver
+To: Stefan Wahren <wahrenst@gmx.net>
+Cc: =?UTF-8?Q?Uwe_Kleine=2DK=C3=B6nig?= <u.kleine-koenig@pengutronix.de>, 
+	Rob Herring <robh+dt@kernel.org>, 
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, 
+	andy.shevchenko@gmail.com, Angelo Compagnucci <angelo.compagnucci@gmail.com>, 
+	Sean Young <sean@mess.org>, Linus Walleij <linus.walleij@linaro.org>, linux-pwm@vger.kernel.org, 
+	devicetree@vger.kernel.org, linux-gpio@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
 
+On Sun, 4 Feb 2024 at 22:09, Stefan Wahren <wahrenst@gmx.net> wrote:
+>
+> Add a software PWM which toggles a GPIO from a high-resolution timer.
+>
+> Recent discussions in the Raspberry Pi community revealt that a lot
+> of users still use MMIO userspace tools for GPIO access. One argument
+> for this approach is the lack of a GPIO PWM kernel driver. So this
+> series tries to fill this gap.
+>
+> This continues the work of Vincent Whitchurch [1], which is easier
+> to read and more consequent by rejecting sleeping GPIOs than Nicola's
+> approach [2].
+>
+> The work has been tested on a Raspberry Pi 3 B+ and a cheap logic
+> analyzer.
 
+Tested on a Pi 5 with a Rigol scope. I have not done any comparative
+testing to the contemporary methods of GPIO on a Pi (they're probably
+not great) but it looks good at a glance.
 
-On 02/02/2024 18:50, Anwar, Md Danish wrote:
-> On 2/2/2024 5:56 PM, Roger Quadros wrote:
->>
->>
->> On 22/01/2024 13:30, MD Danish Anwar wrote:
->>> The am642-evm doesn't allow to enable 2 x CPSW3g ports and 2 x ICSSG1 ports
->>> all together, so base k3-am642-evm.dts enables by default 2 x CPSW3g ports
->>> and 1 x ICSSG1 ports, but it also possible to support 1 x CPSW3g ports and
->>> 2 x ICSSG1 ports configuration.
->>
->> "it is also possible"
->>
->> OK so there can only be 3 ethernet ports on this board. There is no "ethernet3" alias.
->>
-> 
-> Yes maximum there can be 3 ports only. By default 2 are cpsw and 1 icssg
-> but this parch introduces overlay to change the muxed port into icssg.
-> 
-> By default,
-> 	ethernet0 = &cpsw_port1;
-> 	ethernet1 = &cpsw_port2;
-> 	ethernet2 = &icssg1_emac0;
-> 
-> When this overlay is applied, it should be something like this,
-> 	ethernet0 = &cpsw_port1;
-> 	ethernet1 = &icssg1_emac0;
-> 	ethernet2 = &icssg1_emac1;
-> 
-> Let me know if this looks ok to you. I will modify the alias accordingly.
+There is jitter, as you might expect, though I would expect this to be much
+better than the userspace soft PWM we're used to.
 
-ethernet0 is ok
+Mostly for Pi users who happen to be watching this unfold-
 
-As per schematics: icssg1_emac0 is fixed to J21A port. so I'd call this ethernet1
+PWM on the Pi 5 is achieved via the PCIe bus to the RP1 peripheral and
+IO controller on a Pi 5 so it's possible to saturate the PCIe bus and have
+A Bad Day. I think ~200KHz is about the practical limit here, if I try and push
+to 400KHz things start to get dicy. The faster you go, the more proportional
+impact jitter will have on the resulting signal.
 
-J21B port can be switched between cpsw_port2 and icssg1_emac1. so I'd call this ethernet2
+My optimistic first try in the MHz range booted me off SSH and required a
+power cycle so I'm not even sure what went wrong. Less of an issue for
+on-chip GPIO controllers ala <= Pi 4.
 
-This way ethernet1 definition is fixed regardless and you are only switching ethernet2
-definition.
+Here's my very naive overlay -
 
-> 
->>>
->>> This patch adds overlay to support 1 x CPSW3g ports and 2 x ICSSG1 ports
->>> configuration:
->>> - Add label name 'mdio_mux_1' for 'mdio-mux-1' node so that the node
->>>   'mdio-mux-1' can be disabled in the overlay using the label name.
->>> - disable 2nd CPSW3g port
->>> - update CPSW3g pinmuxes to not use RGMII2
->>> - disable mdio-mux-1 and define mdio-mux-2 to route ICSSG1 MDIO to the
->>>   shared DP83869 PHY
->>> - add and enable ICSSG1 RGMII2 pinmuxes
->>> - enable ICSSG1 MII1 port
->>>
->>> Signed-off-by: MD Danish Anwar <danishanwar@ti.com>
->>> ---
->>>  arch/arm64/boot/dts/ti/Makefile               |  5 ++
->>>  .../dts/ti/k3-am642-evm-icssg1-dualemac.dtso  | 75 +++++++++++++++++++
->>>  arch/arm64/boot/dts/ti/k3-am642-evm.dts       |  2 +-
->>>  3 files changed, 81 insertions(+), 1 deletion(-)
->>>  create mode 100644 arch/arm64/boot/dts/ti/k3-am642-evm-icssg1-dualemac.dtso
->>>
->>> diff --git a/arch/arm64/boot/dts/ti/Makefile b/arch/arm64/boot/dts/ti/Makefile
->>> index 52c1dc910308..320b2fae5730 100644
->>> --- a/arch/arm64/boot/dts/ti/Makefile
->>> +++ b/arch/arm64/boot/dts/ti/Makefile
->>> @@ -43,6 +43,7 @@ dtb-$(CONFIG_ARCH_K3) += k3-am642-sk.dtb
->>>  dtb-$(CONFIG_ARCH_K3) += k3-am642-tqma64xxl-mbax4xxl.dtb
->>>  dtb-$(CONFIG_ARCH_K3) += k3-am64-tqma64xxl-mbax4xxl-sdcard.dtbo
->>>  dtb-$(CONFIG_ARCH_K3) += k3-am64-tqma64xxl-mbax4xxl-wlan.dtbo
->>> +dtb-$(CONFIG_ARCH_K3) += k3-am642-evm-icssg1-dualemac.dtbo
->>>  
->>>  # Boards with AM65x SoC
->>>  k3-am654-gp-evm-dtbs := k3-am654-base-board.dtb k3-am654-base-board-rocktech-rk101-panel.dtbo
->>> @@ -105,6 +106,8 @@ k3-am642-tqma64xxl-mbax4xxl-sdcard-dtbs := \
->>>  	k3-am642-tqma64xxl-mbax4xxl.dtb k3-am64-tqma64xxl-mbax4xxl-sdcard.dtbo
->>>  k3-am642-tqma64xxl-mbax4xxl-wlan-dtbs := \
->>>  	k3-am642-tqma64xxl-mbax4xxl.dtb k3-am64-tqma64xxl-mbax4xxl-wlan.dtbo
->>> +k3-am642-evm-icssg1-dualemac-dtbs := \
->>> +	k3-am642-evm.dtb k3-am642-evm-icssg1-dualemac.dtbo
->>>  k3-j721e-evm-pcie0-ep-dtbs := k3-j721e-common-proc-board.dtb \
->>>  	k3-j721e-evm-pcie0-ep.dtbo
->>>  k3-j721s2-evm-pcie1-ep-dtbs := k3-j721s2-common-proc-board.dtb \
->>> @@ -120,6 +123,7 @@ dtb- += k3-am625-beagleplay-csi2-ov5640.dtb \
->>>  	k3-am62a7-sk-csi2-ov5640.dtb \
->>>  	k3-am642-tqma64xxl-mbax4xxl-sdcard.dtb \
->>>  	k3-am642-tqma64xxl-mbax4xxl-wlan.dtb \
->>> +	k3-am642-evm-icssg1-dualemac.dtb \
->>>  	k3-j721e-evm-pcie0-ep.dtb \
->>>  	k3-j721s2-evm-pcie1-ep.dtb
->>>  
->>> @@ -129,6 +133,7 @@ DTC_FLAGS_k3-am625-sk += -@
->>>  DTC_FLAGS_k3-am62-lp-sk += -@
->>>  DTC_FLAGS_k3-am62a7-sk += -@
->>>  DTC_FLAGS_k3-am642-tqma64xxl-mbax4xxl += -@
->>> +DTC_FLAGS_k3-am642-evm += -@
->>>  DTC_FLAGS_k3-am6548-iot2050-advanced-m2 += -@
->>>  DTC_FLAGS_k3-j721e-common-proc-board += -@
->>>  DTC_FLAGS_k3-j721s2-common-proc-board += -@
->>> diff --git a/arch/arm64/boot/dts/ti/k3-am642-evm-icssg1-dualemac.dtso b/arch/arm64/boot/dts/ti/k3-am642-evm-icssg1-dualemac.dtso
->>> new file mode 100644
->>> index 000000000000..b2b1a6252e73
->>> --- /dev/null
->>> +++ b/arch/arm64/boot/dts/ti/k3-am642-evm-icssg1-dualemac.dtso
->>> @@ -0,0 +1,75 @@
->>> +// SPDX-License-Identifier: GPL-2.0
->>
->> Don't you need to use updated licensing header like in the series [1]
->>
->> [1] https://lore.kernel.org/all/20240110140903.4090946-1-nm@ti.com/
->>
-> 
-> Sure. I will update the header.
-> 
->>> +/**
->>> + * DT overlay for enabling 2nd ICSSG1 port on AM642 EVM
->>> + *
->>> + * Copyright (C) 2023 Texas Instruments Incorporated - https://www.ti.com/
->>> + */
->>> +
->>> +/dts-v1/;
->>> +/plugin/;
->>> +
->>> +#include <dt-bindings/gpio/gpio.h>
->>> +#include "k3-pinctrl.h"
->>> +
->>> +&{/} {
->>
->> You need to fixup alias for ethernet1 to icssg1_emac1?
->>
-> 
-> Yes I will update the aliases accordingly.
-> 
->>> +	mdio-mux-2 {
->>
->> this should be mdio-mux@0 ?
->>
-> 
-> The main mux in evm dts is defined as mdio-mux-1 so I was following the
-> same. I will change this to mdio-mux@0
-> 
->>> +		compatible = "mdio-mux-multiplexer";
->>> +		mux-controls = <&mdio_mux>;
->>> +		mdio-parent-bus = <&icssg1_mdio>;
->>> +		#address-cells = <1>;
->>> +		#size-cells = <0>;
->>> +
->>> +		mdio@0 {
->>> +			reg = <0x0>;
->>> +			#address-cells = <1>;
->>> +			#size-cells = <0>;
->>> +
->>> +			icssg1_phy2: ethernet-phy@3 {
->>> +				reg = <3>;
->>> +				tx-internal-delay-ps = <250>;
->>> +				rx-internal-delay-ps = <2000>;
->>> +			};
->>> +		};
->>> +	};
->>> +};
->>> +
->>> +&main_pmx0 {
->>> +	icssg1_rgmii2_pins_default: icssg1-rgmii2-default-pins {
->>> +		pinctrl-single,pins = <
->>> +			AM64X_IOPAD(0x0108, PIN_INPUT, 2) /* (W11) PRG1_PRU1_GPO0.RGMII2_RD0 */
->>> +			AM64X_IOPAD(0x010c, PIN_INPUT, 2) /* (V11) PRG1_PRU1_GPO1.RGMII2_RD1 */
->>> +			AM64X_IOPAD(0x0110, PIN_INPUT, 2) /* (AA12) PRG1_PRU1_GPO2.RGMII2_RD2 */
->>> +			AM64X_IOPAD(0x0114, PIN_INPUT, 2) /* (Y12) PRG1_PRU1_GPO3.RGMII2_RD3 */
->>> +			AM64X_IOPAD(0x0120, PIN_INPUT, 2) /* (U11) PRG1_PRU1_GPO6.RGMII2_RXC */
->>> +			AM64X_IOPAD(0x0118, PIN_INPUT, 2) /* (W12) PRG1_PRU1_GPO4.RGMII2_RX_CTL */
->>> +			AM64X_IOPAD(0x0134, PIN_OUTPUT, 2) /* (AA10) PRG1_PRU1_GPO11.RGMII2_TD0 */
->>> +			AM64X_IOPAD(0x0138, PIN_OUTPUT, 2) /* (V10) PRG1_PRU1_GPO12.RGMII2_TD1 */
->>> +			AM64X_IOPAD(0x013c, PIN_OUTPUT, 2) /* (U10) PRG1_PRU1_GPO13.RGMII2_TD2 */
->>> +			AM64X_IOPAD(0x0140, PIN_OUTPUT, 2) /* (AA11) PRG1_PRU1_GPO14.RGMII2_TD3 */
->>> +			AM64X_IOPAD(0x0148, PIN_OUTPUT, 2) /* (Y10) PRG1_PRU1_GPO16.RGMII2_TXC */
->>> +			AM64X_IOPAD(0x0144, PIN_OUTPUT, 2) /* (Y11) PRG1_PRU1_GPO15.RGMII2_TX_CTL */
->>> +		>;
->>> +	};
->>> +};
->>> +
->>> +&cpsw3g {
->>> +	pinctrl-0 = <&rgmii1_pins_default>;
->>> +};
->>> +
->>> +&cpsw_port2 {
->>> +	status = "disabled";
->>> +};
->>> +
->>> +&mdio_mux_1 {
->>> +	status = "disabled";
->>> +};
->>> +
->>> +&icssg1_eth {
->>> +	pinctrl-0 = <&icssg1_rgmii1_pins_default>, <&icssg1_rgmii2_pins_default>;
->>> +};
->>> +
->>> +&icssg1_emac1 {
->>> +	status = "okay";
->>> +	phy-handle = <&icssg1_phy2>;
->>> +	phy-mode = "rgmii-id";
->>> +};
->>> diff --git a/arch/arm64/boot/dts/ti/k3-am642-evm.dts b/arch/arm64/boot/dts/ti/k3-am642-evm.dts
->>> index c08b0223be52..6ae43c12419f 100644
->>> --- a/arch/arm64/boot/dts/ti/k3-am642-evm.dts
->>> +++ b/arch/arm64/boot/dts/ti/k3-am642-evm.dts
->>> @@ -200,7 +200,7 @@ mdio_mux: mux-controller {
->>>  		mux-gpios = <&exp1 12 GPIO_ACTIVE_HIGH>;
->>>  	};
->>>  
->>> -	mdio-mux-1 {
->>> +	mdio_mux_1: mdio-mux-1 {
->>
->> mdio_mux_1: mdio-mux@1
->>
-> 
-> Sure. I will update this.
-> 
->>>  		compatible = "mdio-mux-multiplexer";
->>>  		mux-controls = <&mdio_mux>;
->>>  		mdio-parent-bus = <&cpsw3g_mdio>;
->>
-> 
+// Definitions for w1-gpio module (without external pullup)
+/dts-v1/;
+/plugin/;
+
+/ {
+    compatible = "brcm,bcm2835";
+    fragment@0 {
+        target-path = "/";
+        __overlay__ {
+            pwm_gpio: pwm_gpio@0 {
+                compatible = "pwm-gpio";
+                pinctrl-names = "default";
+                pinctrl-0 = <&pwm_gpio_pins>;
+                gpios = <&gpio 4 0>;
+                status = "okay";
+            };
+        };
+    };
+
+    fragment@1 {
+        target = <&gpio>;
+        __overlay__ {
+            pwm_gpio_pins: pwm_gpio_pins@0 {
+                brcm,pins = <4>;
+                brcm,function = <1>; // out
+                brcm,pull = <0>; // off
+            };
+        };
+    };
+};
+
+>
+> V4:
+>  - address DT bindings comments from Conor Dooley
+>  - drop unnecessary MODULE_ALIAS() as suggested by Krzysztof Kozlowski
+>  - add range checks to apply which consider the hrtimer resolution
+>    (idea comes from Sean Young)
+>  - mark driver as atomic as suggested by Sean Young
+>
+> V3:
+>  - rebase on top of v6.8-pwm-next
+>  - cherry-pick improvements from Nicola's series
+>  - try to address Uwe's, Linus' and Andy's comments
+>  - try to avoid GPIO glitches during probe
+>  - fix pwm_gpio_remove()
+>  - some code clean up's and comments
+>
+> V2:
+>  - Rename gpio to gpios in binding
+>  - Calculate next expiry from expected current expiry rather than "now"
+>  - Only change configuration after current period ends
+>  - Implement get_state()
+>  - Add error message for probe failures
+>  - Stop PWM before unregister
+>
+> [1] - https://lore.kernel.org/all/20200915135445.al75xmjxudj2rgcp@axis.com/T/
+> [2] - https://lore.kernel.org/all/20201205214353.xapax46tt5snzd2v@einstein.dilieto.eu/
+>
+> Nicola Di Lieto (1):
+>   dt-bindings: pwm: Add pwm-gpio
+>
+> Vincent Whitchurch (1):
+>   pwm: Add GPIO PWM driver
+>
+>  .../devicetree/bindings/pwm/pwm-gpio.yaml     |  42 ++++
+>  drivers/pwm/Kconfig                           |  11 +
+>  drivers/pwm/Makefile                          |   1 +
+>  drivers/pwm/pwm-gpio.c                        | 228 ++++++++++++++++++
+>  4 files changed, 282 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/pwm/pwm-gpio.yaml
+>  create mode 100644 drivers/pwm/pwm-gpio.c
+>
+> --
+> 2.34.1
+>
+
 
 -- 
-cheers,
--roger
+Philip Howard
 
