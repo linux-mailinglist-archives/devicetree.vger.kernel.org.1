@@ -1,196 +1,149 @@
-Return-Path: <devicetree+bounces-38617-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-38618-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 929C3849C3E
-	for <lists+devicetree@lfdr.de>; Mon,  5 Feb 2024 14:52:48 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id A5D5C849C49
+	for <lists+devicetree@lfdr.de>; Mon,  5 Feb 2024 14:54:42 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 7C14CB2351A
-	for <lists+devicetree@lfdr.de>; Mon,  5 Feb 2024 13:52:45 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 362F31F2565D
+	for <lists+devicetree@lfdr.de>; Mon,  5 Feb 2024 13:54:42 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id CB48C210E6;
-	Mon,  5 Feb 2024 13:52:39 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 20CC222EED;
+	Mon,  5 Feb 2024 13:54:21 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=9elements.com header.i=@9elements.com header.b="gHFgRWye"
 X-Original-To: devicetree@vger.kernel.org
-Received: from foss.arm.com (foss.arm.com [217.140.110.172])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A257922EF0;
-	Mon,  5 Feb 2024 13:52:36 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.140.110.172
+Received: from mail-pf1-f170.google.com (mail-pf1-f170.google.com [209.85.210.170])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+	(No client certificate requested)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7057324A19
+	for <devicetree@vger.kernel.org>; Mon,  5 Feb 2024 13:54:19 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.170
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1707141159; cv=none; b=hcQKAHiXRCQaCca56wMT382rCKd3dk7HOZsJah0QfqmnkKuUebLj4PFUnf64hNw5hUO08MdnXCcSJrwxxhCVYsHgLme3dx7efh7RKqVLgaObbKx3Ugi2c0/LeAgX82HpT5ztFVGxLeVQ5IjuvkwbmS1Tzm7TnKcutwtpW1BdCjI=
+	t=1707141261; cv=none; b=p7dPJG0Q+4K2x8WL9TwIHmSN+tz7JWZ0r6GpkMsuDrKLbvgHwETdAP2tdxdlXpnSDliY1W1U9+Z0sOKmpBNCvkephyyzJDh597ddlQoBaOFW9KBMeiJz5exqbZWMMwdf3zFCuI9CxaTEUdqSq2vBLizCbXuiIu/6unyQufTAlms=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1707141159; c=relaxed/simple;
-	bh=RIlH3Kpx0z44ko9l4/g3YofT/tlmNnchxQwVaNfQBxQ=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=rC9nqdxk66qfISpOOGkOHWT8yrzxyVKeHFala4fmTO9Kiil9sa2ynbMcIcYdR038SY3NVDTBVtCo9csPAraL03rnYDcsXOf2XKiX04P9dgo+6YBQScZ2fFsk7Xkk9zx5OmtczM6Vtpu+BpHtdFzM4XCubLbVUTbmBt5j6+7p8gM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com; spf=pass smtp.mailfrom=arm.com; arc=none smtp.client-ip=217.140.110.172
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=arm.com
-Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
-	by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 724901FB;
-	Mon,  5 Feb 2024 05:53:18 -0800 (PST)
-Received: from pluto (unknown [172.31.20.19])
-	by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 75A3F3F5A1;
-	Mon,  5 Feb 2024 05:52:31 -0800 (PST)
-Date: Mon, 5 Feb 2024 13:52:27 +0000
-From: Cristian Marussi <cristian.marussi@arm.com>
-To: Peng Fan <peng.fan@nxp.com>
-Cc: Sudeep Holla <sudeep.holla@arm.com>,
-	Linus Walleij <linus.walleij@linaro.org>,
-	"Peng Fan (OSS)" <peng.fan@oss.nxp.com>,
-	"souvik.chakravarty@arm.com" <Souvik.Chakravarty@arm.com>,
-	Rob Herring <robh+dt@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Oleksii Moisieiev <oleksii_moisieiev@epam.com>,
-	Shawn Guo <shawnguo@kernel.org>,
-	Sascha Hauer <s.hauer@pengutronix.de>,
-	Pengutronix Kernel Team <kernel@pengutronix.de>,
-	Fabio Estevam <festevam@gmail.com>,
-	dl-linux-imx <linux-imx@nxp.com>,
-	"linux-arm-kernel@lists.infradead.org" <linux-arm-kernel@lists.infradead.org>,
-	"linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-	"devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-	"linux-gpio@vger.kernel.org" <linux-gpio@vger.kernel.org>,
-	AKASHI Takahiro <takahiro.akashi@linaro.org>,
-	Rob Herring <robh@kernel.org>
-Subject: Re: [PATCH v3 0/6] firmware: arm_scmi: Add SCMI v3.2 pincontrol
- protocol basic support
-Message-ID: <ZcDoG6FTiNgChQJF@pluto>
-References: <20240121-pinctrl-scmi-v3-0-8d94ba79dca8@nxp.com>
- <f88d07ef-83b2-4d14-976a-6dbbd71e036f@oss.nxp.com>
- <CACRpkdYV=qYQ9qDUWYTLDAV1niay30gYH5S=zjfi31GpeY5o-A@mail.gmail.com>
- <DU0PR04MB9417A9074C5DC49AE689E65288432@DU0PR04MB9417.eurprd04.prod.outlook.com>
- <Zbt-QkWhz5d9P-v6@pluto>
- <DU0PR04MB9417CA6CF089B264112C32A088402@DU0PR04MB9417.eurprd04.prod.outlook.com>
+	s=arc-20240116; t=1707141261; c=relaxed/simple;
+	bh=60XiMDUamNAnqnUGjVQMDh2YXc3ev9EeJ6VE8oK53ZU=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=juhCXWBuaZgqnPWVs8cPC1l37xy/5kJFkBDtaxf1YIRQhJpPW+tmz8HicK2GbUEedzqquJyhtRNEVHgRSqqU2gfrl3wABtBC8Xnc2TAECdmrjvhirYhHkbDkvIfsz8luB1fBnB24ttHimlLW5ZMuivQe9QoXOyoUCX68PphoLbo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=9elements.com; spf=pass smtp.mailfrom=9elements.com; dkim=pass (2048-bit key) header.d=9elements.com header.i=@9elements.com header.b=gHFgRWye; arc=none smtp.client-ip=209.85.210.170
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=9elements.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=9elements.com
+Received: by mail-pf1-f170.google.com with SMTP id d2e1a72fcca58-6e0518c83c6so158927b3a.0
+        for <devicetree@vger.kernel.org>; Mon, 05 Feb 2024 05:54:19 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=9elements.com; s=google; t=1707141258; x=1707746058; darn=vger.kernel.org;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=60XiMDUamNAnqnUGjVQMDh2YXc3ev9EeJ6VE8oK53ZU=;
+        b=gHFgRWyefiGJdb3rE14Z9t6QiN6oGyjFRJcjqFd1Oq5uAilUmTk3FqAVL64LJhtGrx
+         gTBtD5mEbWbvb4lxwJCG5FcrSdAGX5JtGbYoyrmOiYS8fS6Tugn9pyEuiA/2zueQHG8R
+         +HhprdaOZ6nw4r+BIL4Q3SX1jaSkvhP84ZOIOKJbEe30ydn5/4aB2knlOwkioTpHk/Q2
+         3gIg7nFjvztw78NS9DnAVdfw6JS/E/l7u4EiRRKXKslJ6HsEtuhiyx2Fl9+OpwACOOTF
+         ewljQGKAq6pQg4RI9C2NwQL/4IOlIWUzH1T3DnwMeZnKsSG8b+DJ2RChCjXtAZ7xuAYt
+         +0ow==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1707141258; x=1707746058;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=60XiMDUamNAnqnUGjVQMDh2YXc3ev9EeJ6VE8oK53ZU=;
+        b=g49YPyQsZMuClcEjnz0ZR29+MpFwWk0o6MBCVz6fj5PUfPepXWIgdZKyxsx7PTlzUZ
+         9yU+2ze13lcINGn9dDITq3n9OEQ2EYmM3w2nYVGRK2O1CaiMJelKhqIziBOQYFllw35f
+         SB7rQWpPLGOAYPR+iPKwF1g2yOCXUb2pYSS5qFI9XwRnBNw0lCoJdFo7wumVQs3VeoVX
+         0awwPF2keHFp7vMGzWPuYLQKPgWJJNN+KKecxGN+4cRnsqlCPWCmC+OcoUlaMSGQ80h9
+         rCVNVPEJhtsXPn6ZRpmnfe0KITr7+57krKCwTUesO6IUh9SgOIiprPyF4YQUV10P/Z/Y
+         ud0g==
+X-Gm-Message-State: AOJu0Yx0Fg2HB7c8sfT2+HCDLXCI/nr9/TRy/VDCRUygAQwfmcfSNCOt
+	oxcAfQrtu8QyGon+RaiqxxEcs3di+h7uycJLj7wjbakTpu8BBrnZxpiAmDVIGjd01c8XkPgdf9y
+	riYOEugGvhTvMiMSXIWYLaWxHp58jUAY3lOb9iA==
+X-Google-Smtp-Source: AGHT+IEfkfneWUa0GmKSKTznA6PtPhljkrBH3LEZoOS1GeNH/T7S1yjDWKAMSjUOodRoNeWFiKJVJivskI9V8MomWvs=
+X-Received: by 2002:aa7:810e:0:b0:6dd:a086:1e0f with SMTP id
+ b14-20020aa7810e000000b006dda0861e0fmr7484503pfi.32.1707141258643; Mon, 05
+ Feb 2024 05:54:18 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <DU0PR04MB9417CA6CF089B264112C32A088402@DU0PR04MB9417.eurprd04.prod.outlook.com>
+References: <20240130115651.457800-1-naresh.solanki@9elements.com>
+ <1c855a34-8a0d-491e-bfd2-24635b41c86f@linaro.org> <20240131163516.000043df@Huawei.com>
+ <20240131-stylized-defile-d8fe346ab197@spud> <CABqG17iNxfKFNqydkgo6gL8ZmaZ_bqm=pG8kNEhzx_h2eaGuhQ@mail.gmail.com>
+ <e8b30740-379c-9ab0-6bd7-d4726f822381@axentia.se> <20240202-shone-footwork-b247b1ae8e06@wendy>
+In-Reply-To: <20240202-shone-footwork-b247b1ae8e06@wendy>
+From: Naresh Solanki <naresh.solanki@9elements.com>
+Date: Mon, 5 Feb 2024 19:24:07 +0530
+Message-ID: <CABqG17hRF3HaqfvXkT2go2S00JTRqCzremg1Nh=cSEUbcO_2pw@mail.gmail.com>
+Subject: Re: [PATCH v3] dt-bindings: iio: afe: voltage-divider: Add io-channel-cells
+To: Conor Dooley <conor.dooley@microchip.com>
+Cc: Peter Rosin <peda@axentia.se>, Conor Dooley <conor@kernel.org>, 
+	Jonathan Cameron <Jonathan.Cameron@huawei.com>, 
+	Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>, Jonathan Cameron <jic23@kernel.org>, 
+	Lars-Peter Clausen <lars@metafoo.de>, Rob Herring <robh+dt@kernel.org>, 
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, 
+	mazziesaccount@gmail.com, linux-iio@vger.kernel.org, 
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
 
-On Sun, Feb 04, 2024 at 09:29:25AM +0000, Peng Fan wrote:
-> > Subject: Re: [PATCH v3 0/6] firmware: arm_scmi: Add SCMI v3.2 pincontrol
-> > protocol basic support
-> > 
-> > On Thu, Feb 01, 2024 at 07:14:17AM +0000, Peng Fan wrote:
-> > > > Subject: Re: [PATCH v3 0/6] firmware: arm_scmi: Add SCMI v3.2
-> > > > pincontrol protocol basic support
-> > > >
-> > 
-> > Hi Peng,
-> > 
-> > > > On Mon, Jan 29, 2024 at 1:37 PM Peng Fan <peng.fan@oss.nxp.com>
-> > wrote:
-> > > >
-> > > > > And for i.MX95 OEM extenstion, do you have any suggestions?
-> > > > > I have two points:
-> > > > > 1. use vendor compatible. This would also benefit when supporting
-> > > > > vendor protocol.
-> > > > > 2. Introduce a property saying supporting-generic-pinconf
-> > > > >
-> > > > > How do you think?
-> > > >
-> > > > While I don't know how OEM extensions to SCMI were designed, the pin
-> > > > control subsystem has the philosophy that extensions are for minor
-> > > > fringe stuff, such as a pin config option that no other silicon is
-> > > > using and thus have no use for anyone else. Well that is actually
-> > > > all the custom extensions we have.
-> > > > (This notion is even carried over to SCMI pinctrl.)
-> > > >
-> > > > The i.MX95 OEM extension is really odd to me, it looks like a
-> > > > reimplementation of the core aspects of SCMI pin control, and looks
-> > > > much more like the old i.MX drivers than like the SCMI driver.
-> > >
-> > > i.MX SCMI pin protocol conf settings follows non-SCMI pin conf settings.
-> > >
-> > 
-> > It is not just a matter of using custom SCMI OEM types, it is the whole
-> > layout/definitions of the i.MX pin/groups/funcs DT bindings that deviates
-> > from the generic DT bindings layout as handled and expected by the Linux
-> > Pinctrl subsystem (AFAIU), while the SCMI Pinctrl driver as it stands in this
-> > series, was conceived, designed and implemented originally by Oleksii to just
-> > use the generic existing Pinctrl DT bindings; as a consequence, in your i.MX
-> > extensions, you had to add a dedicated i.MX DT parser to interpret the
-> > protocol@19 DT snippet in a completely different way, to try to stick your
-> > custom solution on top of the generic one.
-> 
-> The two links shows the drop of i.MX generic pinconf
-> https://patchwork.ozlabs.org/project/linux-gpio/patch/1541149669-10857-7-git-send-email-aisheng.dong@nxp.com/
-> https://lore.kernel.org/all/20230302072132.1051590-1-linux@rasmusvillemoes.dk/
-> 
-> For non-scmi platforms, the generic pinconf was supported
-> for i.MX7ULP for a while, and then dropped in the end per i.MX maintainers
-> and agreed by Linus.
-> 
-> For i.MX95 SCMI platforms, the firmware design is simple and use similar
-> programming model to simplify firmware design.
-> 
-> Using generic pinconf means the firmware needs exporting groups/functions/pins
-> and etc, the firmware design will be complicated and code size enlarged.
-> 
+Hi Conor, Peter,
 
-Understood.
-
-> I have no better ideas without introducing a compatible for dt map hook.
-> 
-> Build exclusive is not acceptable for distro support.
-> 
-
-Indeed, and I understand that, but in any case it wont be required for
-both the generic pinconf and the IMX way to coexist and live together on
-the same system/platform at runtime, right ?
-
-So, I was thinking as an alternative, while still building all
-(generic+IMX) in defconfig, wouldn't be possible to detect at runtime in the
-pinctrl-scmi probe() which is the type of binding used in the DT (i.e.
-generic VS imx), before registering with the core Pinctrl subsystem, and so
-act accordingly parsing and providing different callbacks based on that ?
-
-I mean, without any compatible addition, just looking up the protocol@19
-node content @probe and switch to iMX callbacks if the fsl,pins binding
-is found ?
-
-Not sure is this is totally viable, nor clean or that it is not less horrific
-from the Pinctrl_subsystem/DT point of view for Linus ... just an idea to think
-about or discard.
-
-> So the last options is i.MX95 switch back to VENDOR protocol ID saying
-> 0x82. But this means to exports functions of pinctrl-scmi.c and reused
-> by pinctrl-scmi-imx.c.  If you agree, I will ask firmware developer
-> switch back to a new SCMI ID, and I will use new ID for i.mx pinctrl
-> driver.
-> 
-
-I dont think there is really any chance to upstream a vendor protocol that
-is a bare copy of a standard protocol just to workaround this...and if
-this is going to be the end-result you can just keep your current 2
-small 'IMX custom-compatible' patches downstream.
-
-> But in the end I would think when more SCMI vendor protocols
-> comes in, saying vendor A and vendor B both use ID 0x81,
-> both use 0x81 as RTC functions, same issue will come back.
+On Fri, 2 Feb 2024 at 18:39, Conor Dooley <conor.dooley@microchip.com> wrote:
 >
+> On Fri, Feb 02, 2024 at 12:49:26PM +0100, Peter Rosin wrote:
+> > 2024-02-02 at 11:43, Naresh Solanki wrote:
+> > > On Wed, 31 Jan 2024 at 22:24, Conor Dooley <conor@kernel.org> wrote:
+> > >> On Wed, Jan 31, 2024 at 04:35:16PM +0000, Jonathan Cameron wrote:
+> > >>> On Wed, 31 Jan 2024 09:29:59 +0100
+> > >>> Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org> wrote:
+> > >>>> On 30/01/2024 12:56, Naresh Solanki wrote:
+> > >>> Conor requested an example of the device acting as a consumer and a provider.
+> > >>> Might have meant in the patch description?
+> > >>>
+> > >>> Conor?
+> > >>
+> > >> I wanted it in the property description to help with understanding when
+> > >> to use it. I don't think the extra example nodes actually help you
+> > >> understand what it is doing, only how to write one yourself once you
+> > >> know you need it.
+> > >
+> > > I'm not sure if I get it right but what I understood is that a
+> > > voltage-divider can
+> > > also be a provider to other devices & hence the property.
+> > > Also do you want me to put a complete example of it in description ?
+> >
+> > My understanding is the requested example in the description should not
+> > be exactly /how/ to hook up the voltage-divider as a provider, but
+> > instead have some words about why it is interesting to do so at all. And
+> > those words would also make it clear that is even possible. The latter
+> > is something which, to be honest, is perhaps not all that obvious. It
+> > has always been totally obvious to me of course, sorry for not being
+> > clearer when I wrote the binding...
+>
+> Yeah, you're right about what I was looking for Peter.
+>
+> In my original request, which I think I already linked to in this
+> thread, I said that I would like an example like the one that Peter had
+> used to explain to me the scenario in which someone would want to use
+> this feature:
+> https://lore.kernel.org/all/536971eb-51f0-40e5-d025-7c4c1d683d49@axentia.se/
+ok. Based on my understanding, I'll update the property description
+with an example.
 
-This wont be a problem once the RFC[1] I posted last week is in...unless
-someone objects, you will have to identify your vendor protocol module
-at build time ALSO with the vendor/sub_vendor ID string exposed by your fw...
-...so each vendor will effectively have the full vendor protocol space
-number at their disposal.
+description:
+In addition to consuming the measurement services of a voltage output
+channel the voltage divider can act as a provider of measurement
+services to other devices. This is particularly useful in scenarios wherein,
+ADC has analog frontend such as voltage divider then consuming its raw
+value isn't interesting. It is desired to get real voltage before
+voltage divider.
 
-Indeed this week, I hope to review your series about custom protocols
-and the qualcomm ones and ask both for feedback on [1] and then to
-rework those series on some non-RFC similar to 1 that I will post
-afterwards.
+Regards,
+Naresh
 
-Thanks,
-Cristian
-
-[1]: https://lore.kernel.org/linux-arm-kernel/20240122122437.546621-1-cristian.marussi@arm.com/
+>
+> Cheers,
+> Conor.
 
