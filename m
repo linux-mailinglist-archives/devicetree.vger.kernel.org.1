@@ -1,62 +1,151 @@
-Return-Path: <devicetree+bounces-38729-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-38730-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 002C8849FF9
-	for <lists+devicetree@lfdr.de>; Mon,  5 Feb 2024 17:54:44 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 67A9384A000
+	for <lists+devicetree@lfdr.de>; Mon,  5 Feb 2024 17:55:36 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id E67F41C22148
-	for <lists+devicetree@lfdr.de>; Mon,  5 Feb 2024 16:54:43 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id C0A97281782
+	for <lists+devicetree@lfdr.de>; Mon,  5 Feb 2024 16:55:34 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 970D93D3AE;
-	Mon,  5 Feb 2024 16:54:39 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 273413FE5F;
+	Mon,  5 Feb 2024 16:55:22 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="V4NzN+xx"
 X-Original-To: devicetree@vger.kernel.org
-Received: from metis.whiteo.stw.pengutronix.de (metis.whiteo.stw.pengutronix.de [185.203.201.7])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5BC8F3A1C3
-	for <devicetree@vger.kernel.org>; Mon,  5 Feb 2024 16:54:37 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.203.201.7
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C865D3FE54;
+	Mon,  5 Feb 2024 16:55:21 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1707152079; cv=none; b=ayFoX+yvczY6D48V+fmnv8PAUgaBEUNQc2iT8S+ERSUFb7UP9orlkN3JRgv0El2uH+ZN2mh8jlNYUxuDDc4A8OoIhXsh8RRdk8WBlO1HjUK/aF04Sc12/ERMbAqJH21MFkZWFLYbwuKLflY9/d4ZFIxwjb+fPK6ZOFSJh+sApTU=
+	t=1707152122; cv=none; b=nIMEgsST0yfmnalMi2G0NQCrAdkqN1UyigsmawSr9F331/XItNXtgIvzNIfeK6CxPW4seSVRnb9EWKL0bvDw/+SxiT5vQrEMbN+B2oAl/V1kbXLlNPQ1K3hoLpaGxaD2WTf8tyYVRdCiLnaoPF3v/5Yv0WS+D3yjAf+NB00CaCg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1707152079; c=relaxed/simple;
-	bh=BWXxK3OVzSaVZgaONJgEu306zcgQvTxMmuYO+qcxMbs=;
+	s=arc-20240116; t=1707152122; c=relaxed/simple;
+	bh=sVWDGae8We/GTqGu3KZXsI4ao8GOXiioemxExEsLxqU=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=nbaGNmLjbc9FV0Q0u9airZMPpceJfT4cuXhSblRzZczk8gh/NvHgTrINy8NcwLOluaEg6FgQiumYZuGjInYmZWheqR8zDr1Ir+J4pIgY2p3ZP/82ZkMFvr0Z2Gk48LCuKioRMf7x5zSO4+B/vtHiq3SKWcaZKYmb7RnDn9e27vo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de; spf=pass smtp.mailfrom=pengutronix.de; arc=none smtp.client-ip=185.203.201.7
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=pengutronix.de
-Received: from drehscheibe.grey.stw.pengutronix.de ([2a0a:edc0:0:c01:1d::a2])
-	by metis.whiteo.stw.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
-	(Exim 4.92)
-	(envelope-from <mfe@pengutronix.de>)
-	id 1rX2Ef-0005Ok-NW; Mon, 05 Feb 2024 17:54:21 +0100
-Received: from [2a0a:edc0:2:b01:1d::c5] (helo=pty.whiteo.stw.pengutronix.de)
-	by drehscheibe.grey.stw.pengutronix.de with esmtps  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-	(Exim 4.94.2)
-	(envelope-from <mfe@pengutronix.de>)
-	id 1rX2Ee-004fPC-QL; Mon, 05 Feb 2024 17:54:20 +0100
-Received: from mfe by pty.whiteo.stw.pengutronix.de with local (Exim 4.96)
-	(envelope-from <mfe@pengutronix.de>)
-	id 1rX2Ee-00Cp1S-2K;
-	Mon, 05 Feb 2024 17:54:20 +0100
-Date: Mon, 5 Feb 2024 17:54:20 +0100
-From: Marco Felsch <m.felsch@pengutronix.de>
-To: "Dr. David Alan Gilbert" <linux@treblig.org>
-Cc: gregkh@linuxfoundation.org, robh+dt@kernel.org,
-	krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
-	linux@roeck-us.net, heikki.krogerus@linux.intel.com,
-	linux-usb@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org, kernel@pengutronix.de
-Subject: Re: [PATCH 4/4] usb: typec: tcpci: add support to set connector
- orientation
-Message-ID: <20240205165420.kyujim2takwswzmw@pengutronix.de>
-References: <20240205164316.805408-1-m.felsch@pengutronix.de>
- <20240205164316.805408-5-m.felsch@pengutronix.de>
- <ZcESKqRTsGNZMMX1@gallifrey>
+	 Content-Type:Content-Disposition:In-Reply-To; b=AhhDLcpWtO+goVeU9SsbuIwSaKsrpYvvA8BswlZSaf5Nqb/gGJh7O4ky9lutcZYsaeJsLhY7NtaiyDVnrY4jKFBs4YSNnTk+mN1h1z3G+StxvG43zgHmFb8ViC3yxSE9XhyxA0LMIX6u/p3Mrj6n2PpMi7sLsUCTjp170VDg9i0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=V4NzN+xx; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 1FFCAC433B1;
+	Mon,  5 Feb 2024 16:55:20 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1707152121;
+	bh=sVWDGae8We/GTqGu3KZXsI4ao8GOXiioemxExEsLxqU=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=V4NzN+xxV2kwpgpmvzwCZPjJxe0p8svapOJGajeWjpEEriWr006tLpAtpBBcG14NI
+	 l7fHkZZTCCS2aZun+9xT18fkoZ/FMtKy9LlDCrv1uFwhHjeK2n19B4nBN7o649VSjD
+	 kYGKpO0o3BwY+Ahh0TeOWYCXz8+otRo3yXnErLJRN29uNdXJLWcsE4UEYU9xBrYL0Y
+	 5EBIyjafRZpDVbbOWCUrKL9UVViaDMskAXZEUX2zUclSY3mEzo3VIqcDhKNa3FKHrK
+	 rehOGq4a9IDtDYOiom3YhLrNbFEjmM7KUgyXugv+FwASEWfoMD6zmOeVRIwz7AMYR2
+	 3iJTbqU63Gc+A==
+Date: Mon, 5 Feb 2024 16:55:17 +0000
+From: Rob Herring <robh@kernel.org>
+To: Kuninori Morimoto <kuninori.morimoto.gx@renesas.com>
+Cc: Bryan O'Donoghue <bryan.odonoghue@linaro.org>,
+	"Lad,  Prabhakar" <prabhakar.csengg@gmail.com>,
+	=?iso-8859-1?Q?=22Niklas_S=C3=B6derlund=22?= <niklas.soderlund+renesas@ragnatech.se>,
+	=?iso-8859-1?Q?=22Uwe_Kleine-K=C3=B6nig=22?= <u.kleine-koenig@pengutronix.de>,
+	Abhinav Kumar <quic_abhinavk@quicinc.com>,
+	Alexander Shishkin <alexander.shishkin@linux.intel.com>,
+	Alexander Stein <alexander.stein@ew.tq-group.com>,
+	Alexandre Belloni <alexandre.belloni@bootlin.com>,
+	Alexandre Torgue <alexandre.torgue@foss.st.com>,
+	Alexey Brodkin <abrodkin@synopsys.com>,
+	Andrzej Hajda <andrzej.hajda@intel.com>,
+	Andy Gross <agross@kernel.org>,
+	Biju Das <biju.das.jz@bp.renesas.com>,
+	Bjorn Andersson <andersson@kernel.org>,
+	Claudiu Beznea <claudiu.beznea@tuxon.dev>,
+	Daniel Vetter <daniel@ffwll.ch>,
+	Dave Stevenson <dave.stevenson@raspberrypi.com>,
+	David Airlie <airlied@gmail.com>,
+	Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
+	Dmitry Torokhov <dmitry.torokhov@gmail.com>,
+	Emma Anholt <emma@anholt.net>,
+	Eugen Hristev <eugen.hristev@collabora.com>,
+	Florian Fainelli <florian.fainelli@broadcom.com>,
+	Frank Rowand <frowand.list@gmail.com>,
+	Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+	Hans Verkuil <hverkuil-cisco@xs4all.nl>,
+	Helge Deller <deller@gmx.de>,
+	Hugues Fruchet <hugues.fruchet@foss.st.com>,
+	Jacopo Mondi <jacopo+renesas@jmondi.org>,
+	Jacopo Mondi <jacopo@jmondi.org>, James Clark <james.clark@arm.com>,
+	Jaroslav Kysela <perex@perex.cz>,
+	Jonathan Hunter <jonathanh@nvidia.com>,
+	Kevin Hilman <khilman@baylibre.com>,
+	Kieran Bingham <kieran.bingham+renesas@ideasonboard.com>,
+	Kieran Bingham <kieran.bingham@ideasonboard.com>,
+	Konrad Dybcio <konrad.dybcio@linaro.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+	Laurent Pinchart <laurent.pinchart+renesas@ideasonboard.com>,
+	Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
+	Liam Girdwood <lgirdwood@gmail.com>, Liu Ying <victor.liu@nxp.com>,
+	Luca Ceresoli <luca.ceresoli@bootlin.com>,
+	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+	Marek Vasut <marex@denx.de>, Mark Brown <broonie@kernel.org>,
+	Mauro Carvalho Chehab <mchehab@kernel.org>,
+	Maxime Coquelin <mcoquelin.stm32@gmail.com>,
+	Maxime Ripard <mripard@kernel.org>,
+	Michael Tretter <m.tretter@pengutronix.de>,
+	Michal Simek <michal.simek@amd.com>,
+	Miguel Ojeda <ojeda@kernel.org>,
+	Nathan Chancellor <nathan@kernel.org>,
+	Neil Armstrong <neil.armstrong@linaro.org>,
+	Nick Desaulniers <ndesaulniers@google.com>,
+	Nicolas Ferre <nicolas.ferre@microchip.com>,
+	Philipp Zabel <p.zabel@pengutronix.de>,
+	Philippe Cornu <philippe.cornu@foss.st.com>,
+	Raphael Gallais-Pou <raphael.gallais-pou@foss.st.com>,
+	Rob Clark <robdclark@gmail.com>, Robert Foss <rfoss@kernel.org>,
+	Russell King <linux@armlinux.org.uk>,
+	Sakari Ailus <sakari.ailus@linux.intel.com>,
+	Saravana Kannan <saravanak@google.com>,
+	Sascha Hauer <s.hauer@pengutronix.de>,
+	Shawn Guo <shawnguo@kernel.org>,
+	Sowjanya Komatineni <skomatineni@nvidia.com>,
+	Stefan Agner <stefan@agner.ch>,
+	Suzuki K Poulose <suzuki.poulose@arm.com>,
+	Sylwester Nawrocki <s.nawrocki@samsung.com>,
+	Takashi Iwai <tiwai@suse.com>,
+	Thierry Reding <thierry.reding@gmail.com>,
+	Thomas Zimmermann <tzimmermann@suse.de>,
+	Tim Harvey <tharvey@gateworks.com>,
+	Todor Tomov <todor.too@gmail.com>,
+	Tomi Valkeinen <tomi.valkeinen@ideasonboard.com>,
+	Yannick Fertre <yannick.fertre@foss.st.com>,
+	Alim Akhtar <alim.akhtar@samsung.com>,
+	Fabio Estevam <festevam@gmail.com>,
+	Jacopo Mondi <jacopo.mondi@ideasonboard.com>,
+	Jernej Skrabec <jernej.skrabec@gmail.com>,
+	Jerome Brunet <jbrunet@baylibre.com>,
+	Jessica Zhang <quic_jesszhan@quicinc.com>,
+	Jonas Karlman <jonas@kwiboo.se>, Leo Yan <leo.yan@linaro.org>,
+	Marijn Suijten <marijn.suijten@somainline.org>,
+	Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
+	Mike Leach <mike.leach@linaro.org>, Sam Ravnborg <sam@ravnborg.org>,
+	Sean Paul <sean@poorly.run>, Tom Rix <trix@redhat.com>,
+	coresight@lists.linaro.org, devicetree@vger.kernel.org,
+	dri-devel@lists.freedesktop.org, freedreno@lists.freedesktop.org,
+	linux-amlogic@lists.infradead.org,
+	linux-arm-kernel@lists.infradead.org, linux-arm-msm@vger.kernel.org,
+	linux-fbdev@vger.kernel.org, linux-media@vger.kernel.org,
+	linux-omap@vger.kernel.org, linux-renesas-soc@vger.kernel.org,
+	linux-rpi-kernel@lists.infradead.org,
+	linux-samsung-soc@vger.kernel.org, linux-sound@vger.kernel.org,
+	linux-staging@lists.linux.dev,
+	linux-stm32@st-md-mailman.stormreply.com,
+	linux-tegra@vger.kernel.org, llvm@lists.linux.dev
+Subject: Re: [PATCH v3 05/24] media: i2c: switch to use
+ of_graph_get_next_device_endpoint()
+Message-ID: <20240205165517.GA3486840-robh@kernel.org>
+References: <87o7d26qla.wl-kuninori.morimoto.gx@renesas.com>
+ <87h6iu6qjs.wl-kuninori.morimoto.gx@renesas.com>
+ <20240202174941.GA310089-robh@kernel.org>
+ <875xz3n6ag.wl-kuninori.morimoto.gx@renesas.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -65,165 +154,38 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <ZcESKqRTsGNZMMX1@gallifrey>
-X-SA-Exim-Connect-IP: 2a0a:edc0:0:c01:1d::a2
-X-SA-Exim-Mail-From: mfe@pengutronix.de
-X-SA-Exim-Scanned: No (on metis.whiteo.stw.pengutronix.de); SAEximRunCond expanded to false
-X-PTX-Original-Recipient: devicetree@vger.kernel.org
+In-Reply-To: <875xz3n6ag.wl-kuninori.morimoto.gx@renesas.com>
 
-Hi David,
-
-On 24-02-05, Dr. David Alan Gilbert wrote:
-> * Marco Felsch (m.felsch@pengutronix.de) wrote:
-> > This add the support to set the optional connector orientation bit which
-> > is part of the optional CONFIG_STANDARD_OUTPUT register 0x18 [1]. This
-> > allows system designers to connect the tcpc orientation pin directly to
-> > the 2:1 ss-mux.
-> > 
-> > [1] https://www.usb.org/sites/default/files/documents/usb-port_controller_specification_rev2.0_v1.0_0.pdf
-> > 
-> > Signed-off-by: Marco Felsch <m.felsch@pengutronix.de>
-> > ---
-> >  drivers/usb/typec/tcpm/tcpci.c | 43 ++++++++++++++++++++++++++++++++++
-> >  include/linux/usb/tcpci.h      |  8 +++++++
-> >  2 files changed, 51 insertions(+)
-> > 
-> > diff --git a/drivers/usb/typec/tcpm/tcpci.c b/drivers/usb/typec/tcpm/tcpci.c
-> > index 7118551827f6..7ce9d4923bc7 100644
-> > --- a/drivers/usb/typec/tcpm/tcpci.c
-> > +++ b/drivers/usb/typec/tcpm/tcpci.c
-> > @@ -67,6 +67,18 @@ static int tcpci_write16(struct tcpci *tcpci, unsigned int reg, u16 val)
-> >  	return regmap_raw_write(tcpci->regmap, reg, &val, sizeof(u16));
-> >  }
-> >  
-> > +static bool tcpci_check_std_output_cap(struct regmap *regmap, u8 mask)
-> > +{
-> > +	unsigned int reg;
-> > +	int ret;
-> > +
-> > +	ret = regmap_read(regmap, TCPC_STD_OUTPUT_CAP, &reg);
-> > +	if (ret < 0)
-> > +		return ret;
-> > +
-> > +	return (reg & mask) == mask;
-> > +}
-> > +
-> >  static int tcpci_set_cc(struct tcpc_dev *tcpc, enum typec_cc_status cc)
-> >  {
-> >  	struct tcpci *tcpci = tcpc_to_tcpci(tcpc);
-> > @@ -301,6 +313,27 @@ static int tcpci_set_polarity(struct tcpc_dev *tcpc,
-> >  			   TCPC_TCPC_CTRL_ORIENTATION : 0);
-> >  }
-> >  
-> > +static int tcpci_set_orientation(struct tcpc_dev *tcpc,
-> > +				 enum typec_orientation orientation)
-> > +{
-> > +	struct tcpci *tcpci = tcpc_to_tcpci(tcpc);
-> > +	unsigned int reg;
-> > +
-> > +	switch (orientation) {
-> > +	case TYPEC_ORIENTATION_NONE:
-> > +		/* We can't put a single output into high impedance */
+On Sun, Feb 04, 2024 at 11:44:39PM +0000, Kuninori Morimoto wrote:
 > 
-> Is that intended to be a fallthrough? If so I guess it needs
-> marking as such with a
->                 fallthrough;
-
-You need to add it if there is code in between. Since there is no code,
-just this comment, it shouldn't be necessary.
-
-Regards,
-  Marco
-
+> Hi Rob
 > 
-> Dave
-> 
-> > +	case TYPEC_ORIENTATION_NORMAL:
-> > +		reg = TCPC_CONFIG_STD_OUTPUT_ORIENTATION_NORMAL;
-> > +		break;
-> > +	case TYPEC_ORIENTATION_REVERSE:
-> > +		reg = TCPC_CONFIG_STD_OUTPUT_ORIENTATION_FLIPPED;
-> > +		break;
-> > +	}
-> > +
-> > +	return regmap_update_bits(tcpci->regmap, TCPC_CONFIG_STD_OUTPUT,
-> > +				  TCPC_CONFIG_STD_OUTPUT_ORIENTATION_MASK, reg);
-> > +}
-> > +
-> >  static void tcpci_set_partner_usb_comm_capable(struct tcpc_dev *tcpc, bool capable)
-> >  {
-> >  	struct tcpci *tcpci = tcpc_to_tcpci(tcpc);
-> > @@ -808,6 +841,9 @@ struct tcpci *tcpci_register_port(struct device *dev, struct tcpci_data *data)
-> >  	if (tcpci->data->vbus_vsafe0v)
-> >  		tcpci->tcpc.is_vbus_vsafe0v = tcpci_is_vbus_vsafe0v;
-> >  
-> > +	if (tcpci->data->set_orientation)
-> > +		tcpci->tcpc.set_orientation = tcpci_set_orientation;
-> > +
-> >  	err = tcpci_parse_config(tcpci);
-> >  	if (err < 0)
-> >  		return ERR_PTR(err);
-> > @@ -851,6 +887,13 @@ static int tcpci_probe(struct i2c_client *client)
-> >  	if (err < 0)
-> >  		return err;
-> >  
-> > +	err = tcpci_check_std_output_cap(chip->data.regmap,
-> > +					 TCPC_STD_OUTPUT_CAP_ORIENTATION);
-> > +	if (err < 0)
-> > +		return err;
-> > +
-> > +	chip->data.set_orientation = err;
-> > +
-> >  	chip->tcpci = tcpci_register_port(&client->dev, &chip->data);
-> >  	if (IS_ERR(chip->tcpci))
-> >  		return PTR_ERR(chip->tcpci);
-> > diff --git a/include/linux/usb/tcpci.h b/include/linux/usb/tcpci.h
-> > index 467e8045e9f8..f2bfb4250366 100644
-> > --- a/include/linux/usb/tcpci.h
-> > +++ b/include/linux/usb/tcpci.h
-> > @@ -47,6 +47,9 @@
-> >  #define TCPC_SINK_FAST_ROLE_SWAP	BIT(0)
-> >  
-> >  #define TCPC_CONFIG_STD_OUTPUT		0x18
-> > +#define TCPC_CONFIG_STD_OUTPUT_ORIENTATION_MASK		BIT(0)
-> > +#define TCPC_CONFIG_STD_OUTPUT_ORIENTATION_NORMAL	0
-> > +#define TCPC_CONFIG_STD_OUTPUT_ORIENTATION_FLIPPED	1
-> >  
-> >  #define TCPC_TCPC_CTRL			0x19
-> >  #define TCPC_TCPC_CTRL_ORIENTATION	BIT(0)
-> > @@ -127,6 +130,7 @@
-> >  #define TCPC_DEV_CAP_2			0x26
-> >  #define TCPC_STD_INPUT_CAP		0x28
-> >  #define TCPC_STD_OUTPUT_CAP		0x29
-> > +#define TCPC_STD_OUTPUT_CAP_ORIENTATION	BIT(0)
-> >  
-> >  #define TCPC_MSG_HDR_INFO		0x2e
-> >  #define TCPC_MSG_HDR_INFO_DATA_ROLE	BIT(3)
-> > @@ -198,12 +202,16 @@ struct tcpci;
-> >   *		Chip level drivers are expected to check for contaminant and call
-> >   *		tcpm_clean_port when the port is clean to put the port back into
-> >   *		toggling state.
-> > + * @set_orientation:
-> > + *		Optional; Enable setting the connector orientation
-> > + *		CONFIG_STANDARD_OUTPUT (0x18) bit0.
-> >   */
-> >  struct tcpci_data {
-> >  	struct regmap *regmap;
-> >  	unsigned char TX_BUF_BYTE_x_hidden:1;
-> >  	unsigned char auto_discharge_disconnect:1;
-> >  	unsigned char vbus_vsafe0v:1;
-> > +	unsigned char set_orientation:1;
-> >  
-> >  	int (*init)(struct tcpci *tcpci, struct tcpci_data *data);
-> >  	int (*set_vconn)(struct tcpci *tcpci, struct tcpci_data *data,
-> > -- 
-> > 2.39.2
+> > This is assuming there's just 1 port and 1 endpoint, but let's be 
+> > specific as the bindings are (first endpoint on port 0):
 > > 
+> > of_graph_get_endpoint_by_regs(client->dev.of_node, 0, -1);
 > > 
-> -- 
->  -----Open up your eyes, open up your mind, open up your code -------   
-> / Dr. David Alan Gilbert    |       Running GNU/Linux       | Happy  \ 
-> \        dave @ treblig.org |                               | In Hex /
->  \ _________________________|_____ http://www.treblig.org   |_______/
+> > Note we could ask for endpoint 0 here, but the bindings generally allow 
+> > for more than 1.
+> > 
+> > I imagine most of the other cases here are the same.
 > 
+> I will do it on new patch-set
+> 
+> > > -	for_each_endpoint_of_node(state->dev->of_node, ep_np) {
+> > > +	for_each_device_endpoint_of_node(state->dev->of_node, ep_np) {
+> > 
+> > I would skip the rename.
+> 
+> It is needed to avoid confuse, because new function will add
+> another endpoint loop.
+> 
+> see
+> https://lore.kernel.org/r/20240131100701.754a95ee@booty
+
+I've read the threads already and think you should skip the rename. Just 
+put 'port' in the name of the new one. That and taking a port number 
+param should be enough distinction.
+
+Rob
 
