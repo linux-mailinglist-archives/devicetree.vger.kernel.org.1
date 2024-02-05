@@ -1,132 +1,125 @@
-Return-Path: <devicetree+bounces-38601-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-38602-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id E5D7C849A7D
-	for <lists+devicetree@lfdr.de>; Mon,  5 Feb 2024 13:38:18 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 58333849B20
+	for <lists+devicetree@lfdr.de>; Mon,  5 Feb 2024 13:57:06 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 247021C20F64
-	for <lists+devicetree@lfdr.de>; Mon,  5 Feb 2024 12:38:18 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 8B5AF1C21303
+	for <lists+devicetree@lfdr.de>; Mon,  5 Feb 2024 12:57:05 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id BBC851BC57;
-	Mon,  5 Feb 2024 12:36:28 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C14941CD1D;
+	Mon,  5 Feb 2024 12:51:21 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="XQOtvsZf"
+	dkim=pass (2048-bit key) header.d=microchip.com header.i=@microchip.com header.b="NY2nAND6"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.10])
+Received: from esa.microchip.iphmx.com (esa.microchip.iphmx.com [68.232.153.233])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DF51D2C84C;
-	Mon,  5 Feb 2024 12:36:26 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=192.198.163.10
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8A6633EA9C;
+	Mon,  5 Feb 2024 12:51:19 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=68.232.153.233
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1707136588; cv=none; b=GURVY4eUpirlt/Y7+FNHqBZ3WMcoOPeARr623sJiWk/2jDVkZx5OZrilMRqjfitXxwoBZxLTvEojfZwueVenKCiniZNZYR4FksHuG0mNDE5+tSn/F6m3edcDFKpKoqHvlNW7IEZU/wMxkhS+AmgPWmmT8vK/ozyCHjbbvkgYeVU=
+	t=1707137481; cv=none; b=E8PUY8frrf/ndNNhIf4pRAcb1s4kWPyltrHSyqo6yv2dePjmPgXToWFoqEb1HkoZ7cWckkeG3GXPmIYYvvFotNIfW0u1/4WXPsHTiycOE6of3dDzdJI2O6xhFywZ6I2qJ3At4/OKNWHppV5WBmA7Ut2aoRS7xmqdctdoqCamF/w=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1707136588; c=relaxed/simple;
-	bh=dA7t09iSTZBR9qJHJtb0Kd3uzZQ9x94EEo0iVVGv9CQ=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=aWuGtPGnwibQUUK6WDkLlyfoyq7tlHM1wPFpEVg46tdsIgBRqMFvtjEdVu8aJ36jf493dW23A0uy+9FCZSWAdMimnAe7iASNuqRIPFrsuS9MYnPfSY+ec7Rm3+KCR/24Ap0HXwec20kydL0+NPBL8aTa1aGTXpx0KXQv56krh+E=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com; spf=none smtp.mailfrom=linux.intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=XQOtvsZf; arc=none smtp.client-ip=192.198.163.10
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com
-Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=linux.intel.com
+	s=arc-20240116; t=1707137481; c=relaxed/simple;
+	bh=kzC+y21TP7jfpyjHZghz3kIfpx76cEBRO1F6nDVMDFw=;
+	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
+	 In-Reply-To:Content-Type; b=el+r5S1NfpNPwCTT66pX/MqFOLULOVTd3lUc1Y1nuydhjPfkSHhULjxSk1/m6kfMzkwxH1sXaKqgz87F07jZQlW+CSscwXT5Sn21NAp1BOC0GR2Wa1MzqCC1Pd8XDtAnn/VIwM4t0/yGnyABRpMcYBQMZ5/rd47joOSpJ2KXep0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=microchip.com; spf=pass smtp.mailfrom=microchip.com; dkim=pass (2048-bit key) header.d=microchip.com header.i=@microchip.com header.b=NY2nAND6; arc=none smtp.client-ip=68.232.153.233
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=microchip.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=microchip.com
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1707136587; x=1738672587;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=dA7t09iSTZBR9qJHJtb0Kd3uzZQ9x94EEo0iVVGv9CQ=;
-  b=XQOtvsZfDcCHaNEEwcjg/9ht4M9H7yys5U5r8WW/hm2/anlNXoUQDZh1
-   fP2PisfvwxkWkuItOgIkfW3YqSLL6L1kCIV/qvZ8ibJDrYnVdGBJjCg0O
-   AOheK7vUSxLwBviprztBpcFPTC+bixqO+yIBHsqKwXeJW83+rnXicBBrV
-   7K5a3TqNL0zXtsvU7QLIix6xgsNgEW7vvDFHoLPiPvuCobDpVj/ZXDsxZ
-   BLrTYr+7qQzmZ7HX106RFn97MIb+B9oLqHcjn1J70On1HbggfMsjKPrg+
-   aXIZt4OBjST9znbWIKbfMW435rYenLHVE3dCb3L/de/kx3Vsq2O39zMUt
+  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
+  t=1707137479; x=1738673479;
+  h=message-id:date:mime-version:subject:to:cc:references:
+   from:in-reply-to:content-transfer-encoding;
+  bh=kzC+y21TP7jfpyjHZghz3kIfpx76cEBRO1F6nDVMDFw=;
+  b=NY2nAND6PPDieg/TwmVSXkvmievUdeyPkxuhg32poajyeXUb7zgGZCkc
+   JfiRLuyqWMSwLXl6P6zUwKZ/it3lFm2MN6yfEM5wofxgpUZ2IIKHCJ2oC
+   hTpfZ4jM/EJ237UmBo5lslzWFA6ieJ4UbCRYE+4xL30WDgb4N2i6SyK0t
+   zy0hBOlKgGMBNHgVTCr4bYLj/EQ42I2jjw1rfJq52XI2KUY9Um8YSNXLM
+   Ts/wQXaTTF56CZEmujOcURgLr/SaM2wyq7LI1905Qf7e6Os5yqo+zlLMV
+   rQK5wy381DzBMbH+wY/zFcQmXPb4mrGjR2WZEZaRI4N/Z//hd/VeVMmpk
    g==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10974"; a="11883184"
-X-IronPort-AV: E=Sophos;i="6.05,245,1701158400"; 
-   d="scan'208";a="11883184"
-Received: from fmsmga002.fm.intel.com ([10.253.24.26])
-  by fmvoesa104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 05 Feb 2024 04:36:26 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10974"; a="909285570"
-X-IronPort-AV: E=Sophos;i="6.05,245,1701158400"; 
-   d="scan'208";a="909285570"
-Received: from smile.fi.intel.com ([10.237.72.54])
-  by fmsmga002.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 05 Feb 2024 04:36:23 -0800
-Received: from andy by smile.fi.intel.com with local (Exim 4.97)
-	(envelope-from <andriy.shevchenko@linux.intel.com>)
-	id 1rWyCy-0000000248J-0zC9;
-	Mon, 05 Feb 2024 14:36:20 +0200
-Date: Mon, 5 Feb 2024 14:36:19 +0200
-From: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
-To: nuno.sa@analog.com
-Cc: Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-	"Rafael J. Wysocki" <rafael@kernel.org>,
-	Frank Rowand <frowand.list@gmail.com>,
-	Rob Herring <robh+dt@kernel.org>,
-	Daniel Scally <djrscally@gmail.com>,
-	Heikki Krogerus <heikki.krogerus@linux.intel.com>,
-	Sakari Ailus <sakari.ailus@linux.intel.com>,
-	Len Brown <lenb@kernel.org>, linux-acpi@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v2 2/2] of: dynamic: flush devlinks workqueue before
- destroying the changeset
-Message-ID: <ZcDWQ52BGix3ocUC@smile.fi.intel.com>
-References: <20240205-fix-device-links-overlays-v2-0-5344f8c79d57@analog.com>
- <20240205-fix-device-links-overlays-v2-2-5344f8c79d57@analog.com>
+X-CSE-ConnectionGUID: 9VixgTOORmy9tv6DYqUlyA==
+X-CSE-MsgGUID: f2hqAhSKRXS31XIQDqqNVg==
+X-IronPort-AV: E=Sophos;i="6.05,245,1701154800"; 
+   d="scan'208";a="17127398"
+X-Amp-Result: SKIPPED(no attachment in message)
+Received: from unknown (HELO email.microchip.com) ([170.129.1.10])
+  by esa1.microchip.iphmx.com with ESMTP/TLS/ECDHE-RSA-AES128-GCM-SHA256; 05 Feb 2024 05:51:18 -0700
+Received: from chn-vm-ex02.mchp-main.com (10.10.85.144) by
+ chn-vm-ex01.mchp-main.com (10.10.85.143) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.35; Mon, 5 Feb 2024 05:50:56 -0700
+Received: from [10.159.245.205] (10.10.85.11) by chn-vm-ex02.mchp-main.com
+ (10.10.85.144) with Microsoft SMTP Server id 15.1.2507.35 via Frontend
+ Transport; Mon, 5 Feb 2024 05:50:53 -0700
+Message-ID: <399c1ecd-c4fb-481f-b95a-afd71fb2d4fa@microchip.com>
+Date: Mon, 5 Feb 2024 13:50:01 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20240205-fix-device-links-overlays-v2-2-5344f8c79d57@analog.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH] dt-bindings: ata: atmel: remove at91 compact flash
+ documentation
+To: Hari Prasath Gujulan Elango <Hari.PrasathGE@microchip.com>,
+	<dlemoal@kernel.org>, <cassel@kernel.org>, <robh+dt@kernel.org>,
+	<krzysztof.kozlowski+dt@linaro.org>, <conor+dt@kernel.org>
+CC: <alexandre.belloni@bootlin.com>, <claudiu.beznea@tuxon.dev>,
+	<linux-ide@vger.kernel.org>, <devicetree@vger.kernel.org>,
+	<linux-arm-kernel@lists.infradead.org>, <linux-kernel@vger.kernel.org>
+References: <20240205105201.81060-1-Hari.PrasathGE@microchip.com>
+Content-Language: en-US, fr-FR
+From: Nicolas Ferre <nicolas.ferre@microchip.com>
+Organization: microchip
+In-Reply-To: <20240205105201.81060-1-Hari.PrasathGE@microchip.com>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 7bit
 
-On Mon, Feb 05, 2024 at 01:09:33PM +0100, Nuno Sa via B4 Relay wrote:
-> From: Nuno Sa <nuno.sa@analog.com>
+On 05/02/2024 at 11:52, Hari Prasath G E - I63539 wrote:
+> The compatible "at91rm9200-cf" is not used by any driver,hence remove the
+> corresponding documentation.
 > 
-> Device links will drop their supplier + consumer refcounts
-> asynchronously. That means that the refcount of the of_node attached to
-> these devices will also be dropped asynchronously and so we cannot
-> guarantee the DT overlay assumption that the of_node refcount must be 1 in
-> __of_changeset_entry_destroy().
+> Signed-off-by: Hari Prasath Gujulan Elango <Hari.PrasathGE@microchip.com>
+
+Acked-by: Nicolas Ferre <nicolas.ferre@microchip.com>
+
+> ---
+>   .../devicetree/bindings/ata/atmel-at91_cf.txt | 19 -------------------
+>   1 file changed, 19 deletions(-)
+>   delete mode 100644 Documentation/devicetree/bindings/ata/atmel-at91_cf.txt
 > 
-> Given the above, call the new fwnode_links_flush_queue() helper to flush
-> the devlink workqueue so we can be sure that all links are dropped before
-> doing the proper checks.
-
-Have you seen my comments against v1?
-
-> +++ b/drivers/of/dynamic.c
-> @@ -14,6 +14,7 @@
->  #include <linux/slab.h>
->  #include <linux/string.h>
->  #include <linux/proc_fs.h>
-> +#include <linux/fwnode.h>
-
-Try to squeeze this to make it ordered (with given context it may go before
-linux/s* ones, but maybe you may find a better spot).
-
-...
-
-> +	/*
-> +	 * device links drop their device references (and hence their of_node
-
-Device links...
-
-> +	 * references) asynchronously on a dedicated workqueue. Hence we need
-> +	 * to flush it to make sure everything is done before doing the below
-> +	 * checks.
-> +	 */
-
--- 
-With Best Regards,
-Andy Shevchenko
-
+> diff --git a/Documentation/devicetree/bindings/ata/atmel-at91_cf.txt b/Documentation/devicetree/bindings/ata/atmel-at91_cf.txt
+> deleted file mode 100644
+> index c1d22b3ae134..000000000000
+> --- a/Documentation/devicetree/bindings/ata/atmel-at91_cf.txt
+> +++ /dev/null
+> @@ -1,19 +0,0 @@
+> -Atmel AT91RM9200 CompactFlash
+> -
+> -Required properties:
+> -- compatible : "atmel,at91rm9200-cf".
+> -- reg : should specify localbus address and size used.
+> -- gpios : specifies the gpio pins to control the CF device. Detect
+> -  and reset gpio's are mandatory while irq and vcc gpio's are
+> -  optional and may be set to 0 if not present.
+> -
+> -Example:
+> -compact-flash@50000000 {
+> -	compatible = "atmel,at91rm9200-cf";
+> -	reg = <0x50000000 0x30000000>;
+> -	gpios = <&pioC 13 0	/* irq */
+> -		 &pioC 15 0 	/* detect */
+> -		 0		/* vcc */
+> -		 &pioC  5 0	/* reset */
+> -		>;
+> -};
 
 
