@@ -1,112 +1,101 @@
-Return-Path: <devicetree+bounces-38662-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-38663-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id C3A18849E2F
-	for <lists+devicetree@lfdr.de>; Mon,  5 Feb 2024 16:32:24 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id D06B1849E57
+	for <lists+devicetree@lfdr.de>; Mon,  5 Feb 2024 16:34:32 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 6350A1F26AFB
-	for <lists+devicetree@lfdr.de>; Mon,  5 Feb 2024 15:32:24 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 6CA3E1F20F9E
+	for <lists+devicetree@lfdr.de>; Mon,  5 Feb 2024 15:34:32 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1BA732D606;
-	Mon,  5 Feb 2024 15:32:19 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 211202E635;
+	Mon,  5 Feb 2024 15:33:18 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="jRp1Ufoy"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="r8eReduE"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E11E32CCBA;
-	Mon,  5 Feb 2024 15:32:18 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DEC0344C64;
+	Mon,  5 Feb 2024 15:33:17 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1707147139; cv=none; b=OZznlzDMAmmtP2C4h7nROcVE/Cysyn+VJNWf0Y+a4Q/gMhX32daqjt6ssy+FvtrBonXElkdKbabkpxIg5faqDHfncpmP6KnZ2tbwDHBU2bKbq1gXjqLkAN5GCgnTEGwg10JqPKW2pS7UITFh8NLvADEZiSM3y+O/8YqiuFaoZdw=
+	t=1707147198; cv=none; b=iTTt3kanBHdtUHL4LVqYWOc0R4pBNlyUkwsLH+heP5MXKCn0smujHnCLBya8A3W91d8OXHfzLTQnALHvgWMraS8V4dtUmS//Tu0IfmZcmEHn2d3kJt31uXMgkn1NN1BmzXIDqIJrOpESP7/6W9OGbSGXktOSYn/drDpLwUsM8UI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1707147139; c=relaxed/simple;
-	bh=VyryEeFktouoPtBlGjASqjjuFJfIz/FqEICD23Ug1nI=;
+	s=arc-20240116; t=1707147198; c=relaxed/simple;
+	bh=gCOn8lMXqIZY6GPLwFd8/YtzqKXfBD7yFS+3U2224/g=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=p9DsslKvlejGY7enRHJ3fXA1nr+Xchztu1s2EVCf2XJ0w5N/x8qJNZFa76EuXVdJDVU2XvcoxoOhJ0lzLG6wG2ta0GYPx7pwo1F/e+qaRzBUfzwXXOdzitNVZe+wZ+WNA9GneFPla+4RPUyYIynLsE6jUYsGcj9PoBADQVrereg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=jRp1Ufoy; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id C0646C433F1;
-	Mon,  5 Feb 2024 15:32:17 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=U22xDIwmaJEx5devJoxis2Gczgdkg/A28hMctsG7UCPrrcE0lDp9I1nSvzbtwgUvozhD6ABum6I6kRYW1520yDS+OCQ54PlftyaY6jqs0fSBCMKF+QDok4V5qGLFaNHDPnG2Qv0iZ/mYrYETA5cmWr9NTGNsrQwzZJCA4t+U56I=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=r8eReduE; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 5D3C7C43143;
+	Mon,  5 Feb 2024 15:33:16 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1707147138;
-	bh=VyryEeFktouoPtBlGjASqjjuFJfIz/FqEICD23Ug1nI=;
+	s=k20201202; t=1707147197;
+	bh=gCOn8lMXqIZY6GPLwFd8/YtzqKXfBD7yFS+3U2224/g=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=jRp1UfoySFcHnU8OKUHbSECBQs4H+bbZMGQIQ5Qp/RLOcVjMM3wMWxH2lSZdp7OMS
-	 xY+IVFAPDeAEgj9qwEy8f57YjbpXm/KhTVhLIAzdtxZ9a8qOqoDCaKmjf2EVAKX+DY
-	 wZ3rC0+Ti7DbPTJK70IdoIRelIdtFGsWW1rfHUlqPuLYzIj5WRPlSUfx0Q8/MnUwxV
-	 xv7fNGjSAfF96j8rSf1y77C1rhBOTL44owiAwTj4SZmWDa3DP9IIIu4u7h3hSHdpJv
-	 DQozGislNB1Os2a4IQ8fMW5njlUrE5bmgp7QFAQpFycl8Ab7c0sEW63M21dRbCurwf
-	 zfX85Onv8dQIA==
-Date: Mon, 5 Feb 2024 15:32:14 +0000
-From: Mark Brown <broonie@kernel.org>
-To: Mike Looijmans <mike.looijmans@topic.nl>
-Cc: Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
-	devicetree@vger.kernel.org, linux-iio@vger.kernel.org,
-	Jonathan Cameron <jic23@kernel.org>,
-	Lars-Peter Clausen <lars@metafoo.de>,
-	Liam Beguin <liambeguin@gmail.com>,
-	Liam Girdwood <lgirdwood@gmail.com>,
-	Maksim Kiselev <bigunclemax@gmail.com>,
-	Marcus Folkesson <marcus.folkesson@gmail.com>,
-	Marius Cristea <marius.cristea@microchip.com>,
-	Niklas Schnelle <schnelle@linux.ibm.com>,
-	Okan Sahin <okan.sahin@analog.com>, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v2 2/2] iio: adc: ti-ads1298: Add driver
-Message-ID: <ZcD/fnVVLdR2TFr1@finisterre.sirena.org.uk>
-References: <ZcDo6QvoE_e5s_f1@smile.fi.intel.com>
- <7d7ea4e4-fcae-4966-b194-e1d328751b6b@topic.nl>
+	b=r8eReduEZ+f6KXaR/+jcK39d1YjPp5n+Z8VFfRDNq995dvPbGCVE6/6PdS3nJv0M5
+	 HJrObsU2g/betHwRD6q78rBNyCyc86XOtPMmo5JQy2be8t7EZF/uH2S0A5A4ESbvF4
+	 1Qw0ft7VGLyacKZdwEDLYkGQo6whN61bl7v64Jw6h81R169cgXZwZFfIs8nNc1o1xG
+	 H1nugkQvSYf5tkBObyybrEuHf6IuYJMzMhUtOCeezr+FDx0X98dq/sQBRJFebXjRIu
+	 rulgkgXaYDMam9qYx457W+IYEkJ9bkcPWjLtZCI1i1S9JqXcAvxIiLX1hUYbaOCrLL
+	 XAUT0P/DgeaYg==
+Date: Mon, 5 Feb 2024 09:33:14 -0600
+From: Bjorn Andersson <andersson@kernel.org>
+To: Anjelique Melendez <quic_amelende@quicinc.com>
+Cc: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>, lee@kernel.org, 
+	robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org, 
+	agross@kernel.org, konrad.dybcio@linaro.org, linux-leds@vger.kernel.org, 
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, linux-arm-msm@vger.kernel.org, 
+	linux-pwm@vger.kernel.org
+Subject: Re: Re: [PATCH 1/2] dt-bindings: soc: qcom: Add qcom,pbs bindings
+Message-ID: <jnn5hxa5nj26ocmdectpg5dq6cxrcd5d22x3kffhd4jc7i4nh6@fqgxlcwgj5th>
+References: <20240201204421.16992-2-quic_amelende@quicinc.com>
+ <20240201204421.16992-4-quic_amelende@quicinc.com>
+ <1de7cfbc-3507-459f-842e-c9349b2f05ac@linaro.org>
+ <4a9b6d7b-70ab-cd18-770c-37993b0ccc63@quicinc.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="FV/jdPwiWoSPXR4m"
-Content-Disposition: inline
-In-Reply-To: <7d7ea4e4-fcae-4966-b194-e1d328751b6b@topic.nl>
-X-Cookie: You might have mail.
-
-
---FV/jdPwiWoSPXR4m
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
+In-Reply-To: <4a9b6d7b-70ab-cd18-770c-37993b0ccc63@quicinc.com>
 
-On Mon, Feb 05, 2024 at 04:25:19PM +0100, Mike Looijmans wrote:
-> On 05-02-2024 14:55, Andy Shevchenko wrote:
+On Fri, Feb 02, 2024 at 09:49:21AM -0800, Anjelique Melendez wrote:
+> 
+> 
+> On 2/1/2024 11:29 PM, Krzysztof Kozlowski wrote:
+> > On 01/02/2024 21:44, Anjelique Melendez wrote:
+> >> Add binding for the Qualcomm Programmable Boot Sequencer device.
+> >>
+> >> Signed-off-by: Anjelique Melendez <quic_amelende@quicinc.com>
+> >> Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+> > 
+> > How is it possible? This is v1, not a resend, and I never give review
+> > tags not in public.
+> > 
+> > Best regards,
+> > Krzysztof
+> > 
+> Sorry for the confusion, this patch was originally in this series:
+> https://lore.kernel.org/all/20231221185838.28440-2-quic_amelende@quicinc.com/,
+> where you gave your reviewed by tag in v3:
+> https://lore.kernel.org/all/102328fa-5699-4731-d639-079bce8863a5@linaro.org/.
+> This was separated into a new series since half of the original
+> patches were already applied. I mentioned this in the cover
+> letter but in future should I keep version the same as the original
+> series?
+> 
 
-> > > > +	.cache_type = REGCACHE_RBTREE,
+Marking the patch(es) v9 makes it clear that they have been on the list
+already. This would be true either if you rebased v8 (and git dropped
+the applied patches from your series), or if you resubmitted some patch
+on it's own.
 
-> > Why not MAPPLE TREE?
-
-> Reading the description this driver isn't a good candidate - the map isn't
-> sparse and the hardware can do bulk read/write (though the driver doesn't
-> use it).
-
-If your driver is a good candidate for rbtree it's a good candidate for
-maple tree.  There are very few specialist cases where there's an
-advantage to sticking with rbtree.  The maple cache has no meaningful
-overhead compared to rbtree for non-sparse regmaps and will generate
-bulk writes just fine.
-
---FV/jdPwiWoSPXR4m
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAmXA/30ACgkQJNaLcl1U
-h9ApSwf+OwSOaTAWvNTxBwn5cVSksk9dF5DFAZBL5mKj9G4dZWY4eJ5VbtBKncbX
-WbsBVkA5dJRmRmwl5hgSBsw0KnnZ624s4JDOXfQ3Aic1Q1n7eFY5RbE02Ba+nk95
-ob+9fsminr/iwZphEJFOO9Xb2B8LXWZAuJ66Y66UaIFm++9eD+tLDbjFOcsFu3Du
-6ZAUt230YdQA8jTu+ZwFRtp3Qb1830MJTx7wsmGEmII/e7j22I5rW0YXkjS81MDj
-LiNGSP5BcuwcIJE/NqYZbO2c3Mx6WKogIeu/7Lktb/Hbjjptne7wSLG10KbaY2By
-mIPP+d/Frr5LsVbR6NLv8CtVMbok2Q==
-=vGvm
------END PGP SIGNATURE-----
-
---FV/jdPwiWoSPXR4m--
+Regards,
+Bjorn
 
