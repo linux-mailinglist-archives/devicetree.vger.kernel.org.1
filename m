@@ -1,238 +1,103 @@
-Return-Path: <devicetree+bounces-38500-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-38501-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 516AC849511
-	for <lists+devicetree@lfdr.de>; Mon,  5 Feb 2024 09:08:12 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 53562849517
+	for <lists+devicetree@lfdr.de>; Mon,  5 Feb 2024 09:09:56 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 763C51C203A3
-	for <lists+devicetree@lfdr.de>; Mon,  5 Feb 2024 08:08:11 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 840BA1C20CAD
+	for <lists+devicetree@lfdr.de>; Mon,  5 Feb 2024 08:09:55 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B1F0611184;
-	Mon,  5 Feb 2024 08:08:07 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A6A0E11197;
+	Mon,  5 Feb 2024 08:09:50 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="A3kRcd1K"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="GTiLfbGJ"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ed1-f45.google.com (mail-ed1-f45.google.com [209.85.208.45])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C302A10A2E
-	for <devicetree@vger.kernel.org>; Mon,  5 Feb 2024 08:08:05 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.45
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7A3DA11185;
+	Mon,  5 Feb 2024 08:09:50 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1707120487; cv=none; b=eR6efCQGHPPU6dX38A6UgW3JVM/XnrsRuMn5VtRt2kwoXwvBTOEqHFLjME5/cBFt1wwu453i0FexJ3DupuKuqd9Y4pX+qxDN55rbyQdM01zIIvwqoJlx97nxYV9fXrIn4xTyMQ6ZX0fJQE18hD86wN0uBSuqImH0kZsytRErbk0=
+	t=1707120590; cv=none; b=r9FAy7cf6a1hltxMuCtYDzDeorDu6IS6aLpVWYygdqMTaBMIO3I+dEpCA4dnq9E29vyhvXkLvYuZlCeJuUEu+NOURD2X2rvfWw54sN7CZ8HSN0jahqFSbMcz3neojoO6jSFbewvesYwyXxl22GCq5L+LUGmeckuWjBxseD9Osko=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1707120487; c=relaxed/simple;
-	bh=bWM+0D1lTtcuG1JP4lEahFhZoqCkvK/+qMR0LGWCa8E=;
-	h=Message-ID:Date:MIME-Version:Subject:To:References:From:
-	 In-Reply-To:Content-Type; b=OIASteIvg78BkRRivxzLZkLy7g0/HyBDipeDigEh/khEoVkF9WP+BchnBfsu9uWU5hPo1bUJwmN3fWYT4tmF5QnGyuIBaZkJjI+IuRhSVyeeI1Vzlg/Lifm1lRmYpgIJWY2e9rwax+VTGM9TnbJihTyLco43svbKQtfNYBh4SWU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=A3kRcd1K; arc=none smtp.client-ip=209.85.208.45
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-ed1-f45.google.com with SMTP id 4fb4d7f45d1cf-55f279dca99so5844906a12.3
-        for <devicetree@vger.kernel.org>; Mon, 05 Feb 2024 00:08:05 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1707120484; x=1707725284; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=kTVDJ7kokpaWFwqAappHoDtn4ysbGjAW3398RVhJk3M=;
-        b=A3kRcd1Kz6eEANiCQpa63nNfjCTEl7PZapUjUO9YxCZoJcIsLUbr4nFD8G2Z+zq0m6
-         0Ed3zfb9b11Wd+8jro7UZKKLje4rlRVQLP0JB93eB/zHyVke9Ueb52Pp2eKnlrgdbH01
-         zL1AZWWHsFhky8PdSxS5Dr9gtA7jVsnWDuE9l6Pat6Bbgk/zGayDZRmrN//80flKktrp
-         1DJlMvrqNEbGUiOmg+3dYBrEtLzhX1HElB8h/QzVTFqo3zt+WGQvnCcH0kyfMyGOjDbG
-         jEDugXNdTDXOnXMqtxFdgOwHDwG+CcAoTn9YbcPiUsaNiAZTCvLSL2wZqhLERU+jsqGo
-         xUBw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1707120484; x=1707725284;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=kTVDJ7kokpaWFwqAappHoDtn4ysbGjAW3398RVhJk3M=;
-        b=XtqoPex/YX0u5sARrSkPiy/cbkOL5i7l55I6Ua72r5T6fHrPsx/yMSFwIi5DFyBjTk
-         c50vGLxHkr0MerKUTzEftTjcz4Qk00if0frSkLKYMB+oY1k7UZPP5oV2FErJYO3PjI+N
-         yg94g6gUL6G3zxgxAq95r52RnWm0fCplZ4Qu5VnAifqbwAgwXSJ5y22t5uZEgS51Rx9Z
-         DamwjXSVe9tAY3E09fA4jMJGgqAHlfuqd/515aLufMbYUu1LYVxC0/8kiCoKpKCb0tGE
-         GVDwsaERq/8lav/xYUH7wxnd6As0PiUyL7RtzWepCcuz3nJP0Id9nILjL/yJzZlldc9M
-         HuCA==
-X-Gm-Message-State: AOJu0YweoLUS7B+RhBqayPYwIK3w+TM44MNwePalC0VvlXEFR441eQV1
-	NQmBNsOZJW4hrpoC/OXgNpMnM6sIw5Eqo9Q/bdIG8+p6G12P5dh3jaKdrGIhzfMKfJJvJMwqCCi
-	xAhg=
-X-Google-Smtp-Source: AGHT+IEdX1mmPyWx1Qh9N4TPEN74j3i7d2iQbKVGHYEWh/rr/lD4xHYSjuyP0Dk4I1GuaispotiJfA==
-X-Received: by 2002:a05:6402:1647:b0:55f:e147:2524 with SMTP id s7-20020a056402164700b0055fe1472524mr4127840edx.38.1707120484024;
-        Mon, 05 Feb 2024 00:08:04 -0800 (PST)
-X-Forwarded-Encrypted: i=0; AJvYcCWQ8VURNcFDgOTc8qvBT9g8xs8vufQCAvYX806+iJF1Uuk6pxkIgP+RUT4mTwW9l3YOp6WBKBdFsgj4bv+sBr6vIsLuf8scMrN08HVyP9vGbNoB6SeoziAEdPg7g9qFWCjn9BBmAuEFqrERFsoeG39+xUXxezPhAUhe2kPwJVgn0O8GAgqBLfG3SqmvS/ehDDQtDCPX2cp5HFfOZGXvFBWwDNld+9/cKFGfqc856ZdC7fNsk1KW4YR9gh2wXQ0aUb4JrGw+BsTcdtRxHN4NBcV5Gyoxa98XrV815EO8wW8H5Dso7e2ikeJJJekd24iEXUs7eacqdovIFmFXWjIBICUQm73zlKDpg/+ym+DYmAbrJcvSKYmVNAd6lR2OFDJwovY+b+qkZDmHzO7RmQA5f42+7Xr6uNx6HZn8APXfHziQSCBNqjtgIngEGDV1TeE1/+/wW5RNjFJvuQzbiqvz1zG+RjVZrGizqywlCpLN8vq/lOC1FqXiVENEG4mAmgToG5EttnlsrfpnFqeCBGKpjqRSi/3uJ/f2bT4eXZj6cSl3Edzr+k1s8CFbDOEecsPPUqoAuxChCnOHVnR9AEOSLgPSrKVrYgR/+B8xx2wPOm/5EyfxmMw/9DzyqtPOZCaV3DIhyyDIWZk2QaIQtQ1tv/XGZtNqF2ZsUbbqj8RyYpwtYTSbMKj5Ox2xB5crHwppdLDZP8TS7dqolv9JthtQps/74YcBaHsQzoQgxWPCswRoDqQeBgcThe0IxZzUtQ==
-Received: from [192.168.1.20] ([178.197.222.62])
-        by smtp.gmail.com with ESMTPSA id u2-20020aa7d882000000b0055ffe74e39dsm3052782edq.85.2024.02.05.00.08.01
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 05 Feb 2024 00:08:03 -0800 (PST)
-Message-ID: <d6f787e6-a243-410f-ac6e-c57ea5309838@linaro.org>
-Date: Mon, 5 Feb 2024 09:08:00 +0100
+	s=arc-20240116; t=1707120590; c=relaxed/simple;
+	bh=tjnc9TCmrK1oUMDhylwqt1frva0l2latksdf20OLonI=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=JwnpcobIKXrytyhdeyBeSksnNpeTsm6fgiCWmGnzLw2mYJJPCg1RqBQsB/AurewtIQ7Pp5ZC3dy6CuT6D92ZiFeg4AWm/CEXQJlJ9VgjrOTkiXmhVicLzBjJWu+wQZ4HgtjCSflzZysMy5p2R1dk6BBYEqy+MokYhULDRZaDWgk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=GTiLfbGJ; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 01ECAC433C7;
+	Mon,  5 Feb 2024 08:09:50 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1707120590;
+	bh=tjnc9TCmrK1oUMDhylwqt1frva0l2latksdf20OLonI=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=GTiLfbGJRMd1+e0OKid4AWN6lQY8CEaTyYUIznZQoQ/HwaI7A7XJEM/UCkwSljBGe
+	 GJZPHPVCVSep1ftzfS43KB32fr3Y8bhTqOS/GZbBEtOKsj6oP1QZLr6duyWXbfu+m+
+	 6L7TZ8rLMU7gkilZZPK87QTu2YNqMJ1t0g9Su5bDfXYpPdux2warMTCkKQyMFwdMpQ
+	 iVc+FV69wwiCLUbpXfl3RacrD44tFfD4/SSelZ944Iy0yaiL63wEooW5R7F1AarK28
+	 X4fZoZbpek3tZWnrJIlfFdS5A6fcrSmRbAVzVZ1pOghwRPrx7TfyVDG1pK4gz/W3tj
+	 CC3IJSIMrlEKA==
+Received: from johan by xi.lan with local (Exim 4.97.1)
+	(envelope-from <johan@kernel.org>)
+	id 1rWu38-000000000W5-0y2L;
+	Mon, 05 Feb 2024 09:09:54 +0100
+Date: Mon, 5 Feb 2024 09:09:54 +0100
+From: Johan Hovold <johan@kernel.org>
+To: Steev Klimaszewski <steev@kali.org>
+Cc: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+	Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
+	Bjorn Andersson <andersson@kernel.org>,
+	Konrad Dybcio <konrad.dybcio@linaro.org>,
+	Rob Herring <robh+dt@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>, linux-arm-msm@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH] arm64: dts: qcom: sc8280xp-x13s: correct analogue
+ microphone route
+Message-ID: <ZcCX0hDGrWqRXr9R@hovoldconsulting.com>
+References: <20240125154531.417098-1-krzysztof.kozlowski@linaro.org>
+ <c34dd7ca-01b5-4424-a8ec-a525b8d722a3@linaro.org>
+ <5497d428-cdc1-4057-afda-6861d2e3860a@linaro.org>
+ <e9b6f790-831c-4df6-b16c-8d7a2f8ddc26@linaro.org>
+ <CAKXuJqjDM3P4wOKz3CaAB9DUyemqQ6ks=FPnfL7OsHnnyoyn=A@mail.gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 1/2] dt-bindings: phy: mediatek,xfi-tphy: add new bindings
-Content-Language: en-US
-To: =?UTF-8?B?Q2h1bmZlbmcgWXVuICjkupHmmKXls7Ap?= <Chunfeng.Yun@mediatek.com>,
- "netdev@vger.kernel.org" <netdev@vger.kernel.org>,
- "linux-mediatek@lists.infradead.org" <linux-mediatek@lists.infradead.org>,
- "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
- =?UTF-8?B?U2t5TGFrZSBIdWFuZyAo6buD5ZWf5r6kKQ==?=
- <SkyLake.Huang@mediatek.com>, "kishon@kernel.org" <kishon@kernel.org>,
- "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
- "john@phrozen.org" <john@phrozen.org>,
- "p.zabel@pengutronix.de" <p.zabel@pengutronix.de>,
- "conor+dt@kernel.org" <conor+dt@kernel.org>,
- "robh@kernel.org" <robh@kernel.org>,
- =?UTF-8?B?QmMtYm9jdW4gQ2hlbiAo6Zmz5p+P5p2RKQ==?=
- <bc-bocun.chen@mediatek.com>,
- "linux-arm-kernel@lists.infradead.org"
- <linux-arm-kernel@lists.infradead.org>,
- =?UTF-8?B?U3RldmVuIExpdSAo5YqJ5Lq66LGqKQ==?= <steven.liu@mediatek.com>,
- "vkoul@kernel.org" <vkoul@kernel.org>,
- "matthias.bgg@gmail.com" <matthias.bgg@gmail.com>,
- "krzysztof.kozlowski+dt@linaro.org" <krzysztof.kozlowski+dt@linaro.org>,
- "daniel@makrotopia.org" <daniel@makrotopia.org>,
- "linux-phy@lists.infradead.org" <linux-phy@lists.infradead.org>,
- "dqfext@gmail.com" <dqfext@gmail.com>,
- "angelogioacchino.delregno@collabora.com"
- <angelogioacchino.delregno@collabora.com>
-References: <702afb0c1246d95c90b22e57105304028bdd3083.1706823233.git.daniel@makrotopia.org>
- <adf20671-2f1d-43ea-8584-df0c0b095865@linaro.org>
- <031944545677573672000aee8f97149e56c15f83.camel@mediatek.com>
-From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
- 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
- D2GYIS41Kv4Isx2dEFh+/Q==
-In-Reply-To: <031944545677573672000aee8f97149e56c15f83.camel@mediatek.com>
-Content-Type: text/plain; charset=UTF-8
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
+In-Reply-To: <CAKXuJqjDM3P4wOKz3CaAB9DUyemqQ6ks=FPnfL7OsHnnyoyn=A@mail.gmail.com>
 
-On 04/02/2024 07:17, Chunfeng Yun (云春峰) wrote:
-> On Fri, 2024-02-02 at 09:21 +0100, Krzysztof Kozlowski wrote:
->>  	 
->> External email : Please do not click links or open attachments until
->> you have verified the sender or the content.
->>  On 01/02/2024 22:52, Daniel Golle wrote:
->>> Add bindings for the MediaTek XFI T-PHY Ethernet SerDes PHY found
->> in the
->>> MediaTek MT7988 SoC which can operate at various interfaces modes:
->>>
->>> via USXGMII PCS:
->>>  * USXGMII
->>>  * 10GBase-R
->>>  * 5GBase-R
->>>
->>> via LynxI SGMII PCS:
->>>  * 2500Base-X
->>>  * 1000Base-X
->>>  * Cisco SGMII (MAC side)
->>>
->>> Signed-off-by: Daniel Golle <daniel@makrotopia.org>
->>> ---
->>>  .../bindings/phy/mediatek,xfi-tphy.yaml       | 80
->> +++++++++++++++++++
->>>  1 file changed, 80 insertions(+)
->>>  create mode 100644
->> Documentation/devicetree/bindings/phy/mediatek,xfi-tphy.yaml
->>>
->>> diff --git a/Documentation/devicetree/bindings/phy/mediatek,xfi-
->> tphy.yaml b/Documentation/devicetree/bindings/phy/mediatek,xfi-
->> tphy.yaml
->>> new file mode 100644
->>> index 0000000000000..e897118dcf7e6
->>> --- /dev/null
->>> +++ b/Documentation/devicetree/bindings/phy/mediatek,xfi-tphy.yaml
->>> @@ -0,0 +1,80 @@
->>> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
->>> +%YAML 1.2
->>> +---
->>> +$id: http://devicetree.org/schemas/phy/mediatek,xfi-tphy.yaml#
->>
->> Please use compatible as filename. Your binding says only one is
->> possible (const, not enum), so there is no reasoning for different
->> filename.
->>
->>> +$schema: http://devicetree.org/meta-schemas/core.yaml#
->>> +
->>> +title: MediaTek XFI T-PHY
->>> +
->>> +maintainers:
->>> +  - Daniel Golle <daniel@makrotopia.org>
->>> +
->>> +description:
->>> +  The MediaTek XFI SerDes T-PHY provides the physical SerDes lanes
->>> +  used by the (10G/5G) USXGMII PCS and (1G/2.5G) LynxI PCS found
->> in
->>> +  MediaTek's 10G-capabale SoCs.
->>> +
->>> +properties:
->>> +  $nodename:
->>> +    pattern: "^phy@[0-9a-f]+$"
->>
->> No need for nodename in individual bindings file.
->>
->>> +
->>> +  compatible:
->>> +    const: mediatek,mt7988-xfi-tphy
-> Add a generic compatible "mediatek,xfi-tphy"?
-> 
-> Other socs also use this phy but not upstream.
+On Sun, Feb 04, 2024 at 11:30:54PM -0600, Steev Klimaszewski wrote:
+> On Mon, Jan 29, 2024 at 8:27 AM Krzysztof Kozlowski
+> <krzysztof.kozlowski@linaro.org> wrote:
 
-Are they here? No... They will use this one as fallback. Stop insisting
-on some generic fallbacks just because you do not like using other SoCs
-as fallbacks.
+> > so I will go with that approach. Please ignore this DTS patch. I will
+> > send ASoC changes which won't affect sc8280xp.
 
-You ignored other comments, so I understand you agree with them 100%.
+> I somehow missed that patchset or conversation; As an owner of an
+> X13s, which is sc8280xp, I can say, neither pre-dts patch, nor post,
+> seem to do much good.  When I attempt to do a voice chat in armcord,
+> the responses I get to how I sound when using the mic on the X13s
+> itself range from "You sound like hot trash" to "You sound like a
+> robot with hiccups".
 
-Best regards,
-Krzysztof
+That's a separate issue entirely. Both the digital and analog microphone
+(jack) is working on the X13s as long as you use pulseaudio.
 
+As I've mentioned before, there are problems with both playback and
+capture when you use pipewire however ("robot with hiccups" one could
+indeed describe it as).
+
+That suggests a more general problem with the Qualcomm audio drivers,
+but that has nothing to do with the audio routing.
+
+Johan
 
