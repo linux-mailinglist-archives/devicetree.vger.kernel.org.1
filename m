@@ -1,154 +1,134 @@
-Return-Path: <devicetree+bounces-39004-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-39005-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7828D84B22B
-	for <lists+devicetree@lfdr.de>; Tue,  6 Feb 2024 11:13:06 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 15C4884B230
+	for <lists+devicetree@lfdr.de>; Tue,  6 Feb 2024 11:13:48 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 2E5512875C1
-	for <lists+devicetree@lfdr.de>; Tue,  6 Feb 2024 10:13:05 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 497DE1C23D3D
+	for <lists+devicetree@lfdr.de>; Tue,  6 Feb 2024 10:13:47 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 592B612E1DE;
-	Tue,  6 Feb 2024 10:12:46 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 05F1412DDB3;
+	Tue,  6 Feb 2024 10:13:10 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="p+JzJVH1"
+	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="BI/CKhos"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-qv1-f52.google.com (mail-qv1-f52.google.com [209.85.219.52])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from relay2-d.mail.gandi.net (relay2-d.mail.gandi.net [217.70.183.194])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3494612DDB5
-	for <devicetree@vger.kernel.org>; Tue,  6 Feb 2024 10:12:43 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.219.52
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CCBE012EBF3;
+	Tue,  6 Feb 2024 10:13:06 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.70.183.194
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1707214366; cv=none; b=ETRfe4SZ/W/iglhwtLMmDhtcYLJcn9JCpKBi93bibMlI6529P8W5O/pkGy4ElN+ZIDwBwBIXz0Whf71KrsLYq+DmaKWapL62hZ+BF4fqMLfgIBPO5FQfRAuhxrqksTRKbGQ27ZF1afiu9knk6PDLGh9RfyKEQhvljcKagslusoU=
+	t=1707214389; cv=none; b=Al/mBOcCrFtcRO2Yn7ankCcVyKa2M2cnA3TFRcTxgRn462QAJLEFKEefUylzoPopF85WLe59wpo3MQRYSer72UIMvh8amDZ89dq3cJ7ksVPqHnF4QRz1Ao3YJOoKonRHWsrhsIeU4yZtKCUiGBQGJ2H+j8/SR3EYYaBOQEdjFNA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1707214366; c=relaxed/simple;
-	bh=Av25SvJY+VoNb8IAXb8ten2tW6yMRrOZ0ZoYKecDGM4=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=F4GnI6ChuBHaCvfr8t1WugJn25vyKI8Ig92C+GpjwIjRNehby6FrpNDug97XmWaj+z3ivqI+YRj46rtHEYvlJozSHmNfEvySPuFxTCI5sDNVbs1mJdOZicRph4E9/KQtjOQhK7e3PUCkiR4nFf9/e2Yq1BweOf+wo55KyNToVx4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=p+JzJVH1; arc=none smtp.client-ip=209.85.219.52
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-qv1-f52.google.com with SMTP id 6a1803df08f44-68c495ba558so3859056d6.3
-        for <devicetree@vger.kernel.org>; Tue, 06 Feb 2024 02:12:42 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1707214362; x=1707819162; darn=vger.kernel.org;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=RtzBJx6wCZPpOqlih50m+fMwaDQ7Jnq2Nn6LSXNODY0=;
-        b=p+JzJVH1MM/61FUBQqjrKL7WO2ltkZzIAQZoZWOfibzETc1Q1OQlaxFvqGWVYnKblf
-         7X+aURNckWXmKKQBqwDR7zLPHjrlo8sssVZJmJoCzWa9U0RxwC46LM5dl4VAluWz0KeB
-         OVx642kKk1rEKYlsx0up7aDaJ2hdOhk8Cf0u6wkljugoTzocPCm29Yier56EIv7qaito
-         qwcA6Sc6LCwa+183PN6/FmgCMGwHQxxZ/4lyRj3g1Necr57zVzCpoGSevwIAFN4qyPhQ
-         /M0RXhuzckxpp7MA9tpVO5q9M+A0GjuZ25aoz42JhIoIBY3AYYxdPQ89KkBi+Mq0ldaC
-         HLqw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1707214362; x=1707819162;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=RtzBJx6wCZPpOqlih50m+fMwaDQ7Jnq2Nn6LSXNODY0=;
-        b=TmGIoLb/Z+sJ/1CrgQQ/KoN9IuhyEfBnKBWaxul+ly/U28Pi5WGZUouS3gln/B33rU
-         cx992XRxANZJnmmaNLgdqrz8ymCK0C+yEDO6fO7bSPgYd7KDS+u/gd4TrmI6laus5f03
-         HlyHlbgBC1DQTb4DOs5mwCch6Ste5/Nwv1P7AboJVvXpn5jhB7AttrECukU3u4PSg1Ps
-         v6ZJaM0gL3cM+VgPuUCLT49TupFgl13OOvoQH0ZA3/8dRzZeOsnb/c3xP1sgoceieJSt
-         S2069h2Uvlg8KsQtCrxRlI4MeMcagWJfDUXtmotAJ6+on4UVJdHjEp2kkriUEMl/4VpB
-         8RPg==
-X-Gm-Message-State: AOJu0YxrxGphe62UhRjmUg56rvTvTx+jMevLopdeNv6DiceqYgbWuKRG
-	7y8Y1r399fOWy16scMqZw35clCSbxmfjFEArV0tucvgg6xVQMYwlx2w6zasJM4NxOn3PQa4EmQ3
-	AZwRtGl9rrY3N/WRZ/d5wYiwqh8UeS1u25gUTmw==
-X-Google-Smtp-Source: AGHT+IGMnZCoArTwWYltdog0J5CuS3/WLyIEtaUP+2kn+xaLD0CqS4Ik67E9lGPDKQvE0SR3tqrIbbn5FwyITbeWlxE=
-X-Received: by 2002:a05:6214:4107:b0:681:7ba3:3649 with SMTP id
- kc7-20020a056214410700b006817ba33649mr1703512qvb.63.1707214362070; Tue, 06
- Feb 2024 02:12:42 -0800 (PST)
+	s=arc-20240116; t=1707214389; c=relaxed/simple;
+	bh=kqMo2mkEaV1uSbwgI1g5KgAxopmIWmq8uQN0eHbaI8w=;
+	h=Mime-Version:Content-Type:Date:Message-Id:From:Subject:Cc:To:
+	 References:In-Reply-To; b=omxOCiFTQqLL+VCokffkhp7Bpjt4JK15xVtflO4y2NOh27xOMYWYAyIkV0gHX1OHexoP3B2UofriRAWVvFwxF0MtBbcAzPW7o8efE0fnHinEsH9T1+4rscg92C4Gob2+HstwALKZ9lHXkIbwFV06nQcVtXQ/u6B3x9y0aRAWGWQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=BI/CKhos; arc=none smtp.client-ip=217.70.183.194
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
+Received: by mail.gandi.net (Postfix) with ESMTPSA id A5B5D40013;
+	Tue,  6 Feb 2024 10:13:03 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
+	t=1707214384;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references;
+	bh=wYHYy9wM/XJWCBvUKP+eSh79QSZHlIijB5K8Zu/UezQ=;
+	b=BI/CKhosTgEXVhWpl9iV4qjDtB08F2u86pXekaGVKk/DX5TY/qjmViVpsZYKTnUacdHRFs
+	V0b227hFwI1b/xXybq7zJnTda5BsN83Rg6VZHfj8VyQn4rNaxTsih/FclM6YwQlSjQsXuJ
+	3Jcwn8nQiqonmxlq3sDevEAxVf9g9Zh32F0DK4XSB13EyXJWLL0KmC+/G4LoQswtO6DWeS
+	PReLv+IivCNS0ImjtBh2p0rK6N1p4ifPfpNLmFuTIMaT/T+JzACQa03UrMcp+R271jlBc5
+	wSXx2Vt+8kDG2YeULq2yKE6jO+pMeRPIBUfBOefZWFYTbOEvJIHBESvKeREZ4g==
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-MIME-Version: 1.0
-References: <20240206085238.1208256-1-tudor.ambarus@linaro.org> <20240206085238.1208256-5-tudor.ambarus@linaro.org>
-In-Reply-To: <20240206085238.1208256-5-tudor.ambarus@linaro.org>
-From: Peter Griffin <peter.griffin@linaro.org>
-Date: Tue, 6 Feb 2024 10:12:30 +0000
-Message-ID: <CADrjBPqaE9Mmbr+zkHOAadr3aLSu3GMjS4nPPd4VZY4s2DTznA@mail.gmail.com>
-Subject: Re: [PATCH 4/4] spi: s3c64xx: add support for google,gs101-spi
-To: Tudor Ambarus <tudor.ambarus@linaro.org>
-Cc: broonie@kernel.org, andi.shyti@kernel.org, semen.protsenko@linaro.org, 
-	krzysztof.kozlowski@linaro.org, alim.akhtar@samsung.com, 
-	linux-spi@vger.kernel.org, linux-samsung-soc@vger.kernel.org, 
-	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org, 
-	andre.draszik@linaro.org, kernel-team@android.com, willmcvicker@google.com, 
-	robh+dt@kernel.org, conor+dt@kernel.org, devicetree@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
+Mime-Version: 1.0
+Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=UTF-8
+Date: Tue, 06 Feb 2024 11:13:03 +0100
+Message-Id: <CYXWZOJ7KLIC.27XVZMBQASH9O@bootlin.com>
+From: =?utf-8?q?Th=C3=A9o_Lebrun?= <theo.lebrun@bootlin.com>
+Subject: Re: [PATCH v4 04/18] dt-bindings: clock: mobileye,eyeq5-clk: add
+ bindings
+Cc: "Vladimir Kondratiev" <vladimir.kondratiev@mobileye.com>,
+ <linux-mips@vger.kernel.org>, <linux-clk@vger.kernel.org>,
+ <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>, "Thomas
+ Petazzoni" <thomas.petazzoni@bootlin.com>, "Tawfik Bayouk"
+ <tawfik.bayouk@mobileye.com>, <linux-gpio@vger.kernel.org>
+To: "Krzysztof Kozlowski" <krzysztof.kozlowski@linaro.org>, "Gregory
+ CLEMENT" <gregory.clement@bootlin.com>, "Michael Turquette"
+ <mturquette@baylibre.com>, "Stephen Boyd" <sboyd@kernel.org>, "Rob Herring"
+ <robh+dt@kernel.org>, "Krzysztof Kozlowski"
+ <krzysztof.kozlowski+dt@linaro.org>, "Conor Dooley" <conor+dt@kernel.org>,
+ "Thomas Bogendoerfer" <tsbogend@alpha.franken.de>, "Linus Walleij"
+ <linus.walleij@linaro.org>, =?utf-8?q?Rafa=C5=82_Mi=C5=82ecki?=
+ <rafal@milecki.pl>, "Philipp Zabel" <p.zabel@pengutronix.de>
+X-Mailer: aerc 0.15.2
+References: <20240131-mbly-clk-v4-0-bcd00510d6a0@bootlin.com>
+ <20240131-mbly-clk-v4-4-bcd00510d6a0@bootlin.com>
+ <f6e5b748-17c4-4de1-be42-f79155be21cb@linaro.org>
+ <CYTOEGEI34JQ.36CF09LNJFQHS@bootlin.com>
+ <4e9ce766-602f-4b75-8c25-48da4d22051e@linaro.org>
+In-Reply-To: <4e9ce766-602f-4b75-8c25-48da4d22051e@linaro.org>
+X-GND-Sasl: theo.lebrun@bootlin.com
 
-Hi Tudor,
+Hello,
 
-On Tue, 6 Feb 2024 at 08:52, Tudor Ambarus <tudor.ambarus@linaro.org> wrote:
+On Thu Feb 1, 2024 at 12:00 PM CET, Krzysztof Kozlowski wrote:
+> On 01/02/2024 11:38, Th=C3=A9o Lebrun wrote:
+> > Hello,
+> >=20
+> > On Thu Feb 1, 2024 at 9:58 AM CET, Krzysztof Kozlowski wrote:
+> >> On 31/01/2024 17:26, Th=C3=A9o Lebrun wrote:
+> >>> Add DT schema bindings for the EyeQ5 clock controller driver.
+> >>>
+> >>> Signed-off-by: Th=C3=A9o Lebrun <theo.lebrun@bootlin.com>
+> >>> ---
+> >>
+> >> No changelog, tags ignored, I scrolled through first two pages of cove=
+r
+> >> letter and also no changelog.
+> >=20
+> > In this case we fit into the "If a tag was not added on purpose". Sorry
+> > the changelog was not explicit enough. In my mind it fits into the
+> > first bullet point of the cover letter changelog:
+> >=20
+> >> - Have the three drivers access MMIO directly rather than through the
+> >>   syscon & regmap.
 >
-> Add support for GS101 SPI. GS101 integrates 16 SPI nodes, all with 64
-> bytes FIFOs. GS101 allows just 32 bit register accesses, otherwise a
-> Serror Interrupt is raised. Do the write reg accesses in 32 bits.
+> ... which I might not even connect to binding patches. I see only one
+> entry regarding bindings in your changelog, so I find it not much
+> informative.
 >
-> Signed-off-by: Tudor Ambarus <tudor.ambarus@linaro.org>
-> ---
+> For the future, please state that you ignore tags for given reason.
+>
+> >=20
+> > That change means important changes to the dt-bindings to adapt to this
+> > new behavior. In particular we now have reg and reg-names properties
+> > that got added and made required.
+> >=20
+> > I wanted to have your review on that and did not want to tag the patch
+> > as already reviewed.
+>
+> Makes sense, but how can I know it? Other people often ignore the tags,
+> so safe assumption is that it happened here as well.
 
-The patch ordering seems a bit off with this series..I believe it should be
-1) dt-bindings patch (docs first)
-2) Add the use_32bit_io flag / functionality
-3) gs101 support (this patch) that uses the use_32bit_io functionality
+I'm prepping a new revision. Should I be taking your previous
+Reviewed-By tags in? You sent them for the previous revision, do the
+changes in this V4 look good to you?
 
-Peter.
+Thanks Krzysztof,
 
->  drivers/spi/spi-s3c64xx.c | 18 +++++++++++++++++-
->  1 file changed, 17 insertions(+), 1 deletion(-)
->
-> diff --git a/drivers/spi/spi-s3c64xx.c b/drivers/spi/spi-s3c64xx.c
-> index cb45ad615f3d..9ad0d513fb30 100644
-> --- a/drivers/spi/spi-s3c64xx.c
-> +++ b/drivers/spi/spi-s3c64xx.c
-> @@ -19,7 +19,7 @@
->  #include <linux/spi/spi.h>
->  #include <linux/types.h>
->
-> -#define MAX_SPI_PORTS          12
-> +#define MAX_SPI_PORTS          16
->  #define S3C64XX_SPI_QUIRK_CS_AUTO      (1 << 1)
->  #define AUTOSUSPEND_TIMEOUT    2000
->
-> @@ -1538,6 +1538,19 @@ static const struct s3c64xx_spi_port_config fsd_spi_port_config = {
->         .quirks         = S3C64XX_SPI_QUIRK_CS_AUTO,
->  };
->
-> +static const struct s3c64xx_spi_port_config gs101_spi_port_config = {
-> +       .fifo_lvl_mask  = { 0x7f, 0x7f, 0x7f, 0x7f, 0x7f, 0x7f, 0x7f, 0x7f,
-> +                           0x7f, 0x7f, 0x7f, 0x7f, 0x7f, 0x7f, 0x7f, 0x7f},
-> +       .rx_lvl_offset  = 15,
-> +       .tx_st_done     = 25,
-> +       .clk_div        = 4,
-> +       .high_speed     = true,
-> +       .clk_from_cmu   = true,
-> +       .has_loopback   = true,
-> +       .use_32bit_io   = true,
-> +       .quirks         = S3C64XX_SPI_QUIRK_CS_AUTO,
-> +};
-> +
->  static const struct platform_device_id s3c64xx_spi_driver_ids[] = {
->         {
->                 .name           = "s3c2443-spi",
-> @@ -1550,6 +1563,9 @@ static const struct platform_device_id s3c64xx_spi_driver_ids[] = {
->  };
->
->  static const struct of_device_id s3c64xx_spi_dt_match[] = {
-> +       { .compatible = "google,gs101-spi",
-> +                       .data = &gs101_spi_port_config,
-> +       },
->         { .compatible = "samsung,s3c2443-spi",
->                         .data = &s3c2443_spi_port_config,
->         },
-> --
-> 2.43.0.594.gd9cf4e227d-goog
->
+--
+Th=C3=A9o Lebrun, Bootlin
+Embedded Linux and Kernel engineering
+https://bootlin.com
 
