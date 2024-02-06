@@ -1,132 +1,77 @@
-Return-Path: <devicetree+bounces-39026-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-39027-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 708D584B2DA
-	for <lists+devicetree@lfdr.de>; Tue,  6 Feb 2024 11:55:56 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id E64D184B2E9
+	for <lists+devicetree@lfdr.de>; Tue,  6 Feb 2024 11:58:19 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id EC183B2392D
-	for <lists+devicetree@lfdr.de>; Tue,  6 Feb 2024 10:55:53 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id A32C028353B
+	for <lists+devicetree@lfdr.de>; Tue,  6 Feb 2024 10:58:18 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C143C1EA7A;
-	Tue,  6 Feb 2024 10:55:14 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 22CAD5B1EA;
+	Tue,  6 Feb 2024 10:57:56 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=9elements.com header.i=@9elements.com header.b="TqyPjeFP"
+	dkim=pass (1024-bit key) header.d=yeah.net header.i=@yeah.net header.b="bdOP8/s2"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ed1-f41.google.com (mail-ed1-f41.google.com [209.85.208.41])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
-	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DDE2A1EA72
-	for <devicetree@vger.kernel.org>; Tue,  6 Feb 2024 10:55:12 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.41
+Received: from mail-177132.yeah.net (mail-177132.yeah.net [123.58.177.132])
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3977C537FA;
+	Tue,  6 Feb 2024 10:57:53 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=123.58.177.132
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1707216914; cv=none; b=b3/S3dLhsPe3454ECRFm/w6ogGEx+lNPNdud2PvHtRfYyh1DX+tIe9dntdOOHIFZLsPpSmYlXtu1WCW7bTfWjr9jnOvP/nqhMlNSjFhvrPacvRt82CBDAt7o9dYQ/rBjv8kY+JWVkbzk5OUxusSbqCyNHRpgm8BfjyAK3BF3Yhs=
+	t=1707217076; cv=none; b=CThFdIUSj3i5rH3voKNVDZ7f0WbtQ7cho+eB/9+ZPxCaqQdtOMspOyIJhizsEfsfQ0hy1C7YxkuBScNxGNWxP4Nowr1sjjl1uPx72bSwfhHd7ze9OZE+fsirruPsRDx6UqRjnogBbK6R8zjIMlAi39ric+PF5IV9U3X0LWnvkQw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1707216914; c=relaxed/simple;
-	bh=aU3cUFcF/+qA6c/U4GCnJpmTtXdJ/4c+yLFoO5y/rN4=;
-	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=gsOmdgJ57E8Y55KSBtojFHr8IMUyWRyFGIzF9s6eJ7eTVgVm0ur0iz+Sd9XVzyXVVxVl0F6V7wWTFn7Wjs0++6nKURNdGtl0McA9QwklsXXA2sDQS2IoJCKcMIt1mRCjKt2QSTNA8+HpjD62pvNHjGFiaBJ+UG5l14BKKBa0lII=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=9elements.com; spf=pass smtp.mailfrom=9elements.com; dkim=pass (2048-bit key) header.d=9elements.com header.i=@9elements.com header.b=TqyPjeFP; arc=none smtp.client-ip=209.85.208.41
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=9elements.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=9elements.com
-Received: by mail-ed1-f41.google.com with SMTP id 4fb4d7f45d1cf-5600d950442so855402a12.1
-        for <devicetree@vger.kernel.org>; Tue, 06 Feb 2024 02:55:12 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=9elements.com; s=google; t=1707216911; x=1707821711; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=Ug0YsfnX3VGECMAmiImMvOD5o629AgP4WulAYnK+czY=;
-        b=TqyPjeFPyjiJgrgot2/qkkLFNMdlnE76uHPT0KybbI8IhdWtk+Px+0hXZ5X01csVV2
-         rscahdAa9VZmeWoPmWXx0i3KTXcmYJfUubxXgjkDWiZ2k9KMh1Vo6EokU0G7GLBvYy5X
-         +vpglFZQsaM5hvo+5x0MM1h+wzU4lLlm6bAJRq/mbvn/rQjRODgDyrABZpvSLpU7JmUM
-         hX6jtOSoJOgaWRlFyhMQyvqC3kGc1v6aPFh3FKB4po2t8sl71QQ2FkL8FqKhyBVM356u
-         gK+btpk7JIxu7RRmr2hafGeFge9L0qc4jUu9RxTPvVjGQK8OCBzSs7XVdNZGetYd0qBt
-         IVmA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1707216911; x=1707821711;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=Ug0YsfnX3VGECMAmiImMvOD5o629AgP4WulAYnK+czY=;
-        b=jq/hjpYmT1gUqlxyA/3G/IOvicT9Vmz0T1RMGweru2xXLursPsj0UY+UASVyOxObdQ
-         PigVTyn9btqab9y4jaZ98bIFwgATyyraSvwT71C31/36w6YFimoiWnFxg/iGd2vh3JZ+
-         PATOFneWkWFLRh81QK95bRfc8imA0rfTkw6vdHXiv1M3ECUsvs/KKJOQv9Q3/3ger0/t
-         OFtJRDblJKcAuftsKkMscXX2u9clsUaD7k5SLGiS/NJ6MJKPxWObDXZy10YgSP2RIIhM
-         r0gGerA+XAFSxoshYa2yHQ6DEm8ZnYaCN0sEQCS1I1Q7phsXg2EjrOh7MoDvy202mYme
-         PsnA==
-X-Gm-Message-State: AOJu0Yw8djnx70niMHdMcWfvivNgKoKolTbGlcScWfa+5sbjxN2KtGgL
-	DYfxFZcCHpLR/VzxHvljG0MR97bD7SZTCA8wvFY7CC1tzaEhV+n1DcrtPdqBtr4=
-X-Google-Smtp-Source: AGHT+IFjAK6xGybwYfWgmNQTCA1Ip56LWjbj6wr4mOaUdW+/3YHGkzhQ1x0ynFDGZRJfEJqJRZZcBA==
-X-Received: by 2002:a17:906:5651:b0:a37:e3ea:634a with SMTP id v17-20020a170906565100b00a37e3ea634amr1768503ejr.40.1707216910887;
-        Tue, 06 Feb 2024 02:55:10 -0800 (PST)
-X-Forwarded-Encrypted: i=0; AJvYcCWErRgo/bZa592qqqOQWx3DByL19PW/1WplR9Kb6WY/ShnP7PQtWeobq4ljTtn1zYNA9F8Xx1wzOX8yvF9afGtqb9GmOwv9UsMbaKxO9DqObd+zVgNcJBAqaHRhu97I5ez56/7Z9j+YrrUN+THTfYIyh5UpQ4rwIufEnezplXsEeIbiVB8rASb+2szZDkUCSOFcqzKDATRNloDRhA+TQyqZ3dYxHrA5ccvKifft2+WOV/1FXheds/hE1orzKaWdifAz1Z6X76gTAQA6NDDMuLjQFupRjNbB63rhOJjNRv8aUPeK5wMv/rb/+sqHTyopwIWB5K1MSzBMGHlFoDUGoj9k5QTq/mzVqTI2yGb+nNR78w==
-Received: from stroh80.sec.9e.network (ip-078-094-000-051.um19.pools.vodafone-ip.de. [78.94.0.51])
-        by smtp.gmail.com with ESMTPSA id un2-20020a170907cb8200b00a30cd599285sm993438ejc.223.2024.02.06.02.55.09
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 06 Feb 2024 02:55:10 -0800 (PST)
-From: Naresh Solanki <naresh.solanki@9elements.com>
-To: Peter Rosin <peda@axentia.se>,
-	Jonathan Cameron <jic23@kernel.org>,
-	Lars-Peter Clausen <lars@metafoo.de>,
-	Rob Herring <robh+dt@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>
-Cc: mazziesaccount@gmail.com,
-	Naresh Solanki <naresh.solanki@9elements.com>,
-	linux-iio@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org
-Subject: [PATCH v4] dt-bindings: iio: afe: voltage-divider: Add io-channel-cells
-Date: Tue,  6 Feb 2024 16:25:01 +0530
-Message-ID: <20240206105502.648255-1-naresh.solanki@9elements.com>
-X-Mailer: git-send-email 2.42.0
+	s=arc-20240116; t=1707217076; c=relaxed/simple;
+	bh=9mE0Q4jvlw8CR8FY459hojqXRI2e6y25B6T57rt5+gA=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=P+67rpQR70GOGRUSpcS0rSg8LFfd4nqqhTdfMp1y++AMGIaTcJIvFoSWPX9knbAghsn0fdorNDKNH6uBHfRE7G/oXjZpxN5uUvvvB+EQZ1+35ipKlaUmS+mPy95KJsZdzXci924By1cmo04s5kIlF9BrLD12Rlg6e6xRsEp2Gz8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=yeah.net; spf=pass smtp.mailfrom=yeah.net; dkim=pass (1024-bit key) header.d=yeah.net header.i=@yeah.net header.b=bdOP8/s2; arc=none smtp.client-ip=123.58.177.132
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=yeah.net
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=yeah.net
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=yeah.net;
+	s=s110527; h=Date:From:Subject:Message-ID:MIME-Version:
+	Content-Type; bh=8IsNQsKHtVb71ghYcVFDX4vmLW28dBIyYiAv6/NlwF0=;
+	b=bdOP8/s22of9m0BqzRC7Lu4gHR2E72YmGX4ZtYejmk9/Tkkllf2wVw72x0DpV1
+	WD9Lm/QfUwg3CKljgxS2KWZGl1osqejzaMOhZSOOACFgDlWii9Tq+vS7Tek6iEb8
+	vOobR/370HlWdCRqCD4rYlWfnhvBsD2S2fEL+BrYuD/GA=
+Received: from dragon (unknown [183.213.196.254])
+	by smtp2 (Coremail) with SMTP id C1UQrADHrwWAEMJlZ3ACAw--.34782S3;
+	Tue, 06 Feb 2024 18:57:05 +0800 (CST)
+Date: Tue, 6 Feb 2024 18:57:03 +0800
+From: Shawn Guo <shawnguo2@yeah.net>
+To: Shengjiu Wang <shengjiu.wang@nxp.com>
+Cc: robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
+	conor+dt@kernel.org, shawnguo@kernel.org, s.hauer@pengutronix.de,
+	kernel@pengutronix.de, festevam@gmail.com, linux-imx@nxp.com,
+	devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+	linux-kernel@vger.kernel.org, shengjiu.wang@gmail.com
+Subject: Re: [PATCH v2 1/2] arm64: dts: imx8mm-evk: Add PDM micphone sound
+ card support
+Message-ID: <ZcIQf6qvoDIYj+6v@dragon>
+References: <1707098664-23265-1-git-send-email-shengjiu.wang@nxp.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <1707098664-23265-1-git-send-email-shengjiu.wang@nxp.com>
+X-CM-TRANSID:C1UQrADHrwWAEMJlZ3ACAw--.34782S3
+X-Coremail-Antispam: 1Uf129KBjDUn29KB7ZKAUJUUUUU529EdanIXcx71UUUUU7v73
+	VFW2AGmfu7bjvjm3AaLaJ3UbIYCTnIWIevJa73UjIFyTuYvjxU-bAwUUUUU
+X-CM-SenderInfo: pvkd40hjxrjqh1hdxhhqhw/1tbiDwF8ZVnxccIVEAAAsJ
 
-Enable the voltage divider to both receive and provide measurement
-services by adding #io-channel-cells.
+On Mon, Feb 05, 2024 at 10:04:23AM +0800, Shengjiu Wang wrote:
+> Add PDM micphone sound card support, configure the pinmux.
+> 
+> This sound card supports recording sound from PDM micphone
+> and convert the PDM format data to PCM data.
+> 
+> Signed-off-by: Shengjiu Wang <shengjiu.wang@nxp.com>
 
-This is especially valuable in scenarios where an ADC has an analog
-frontend, like a voltage divider, and obtaining its raw value isn't
-interesting. It is desired to get the real voltage before the voltage
-divider.
-
-Signed-off-by: Naresh Solanki <naresh.solanki@9elements.com>
----
- .../devicetree/bindings/iio/afe/voltage-divider.yaml  | 11 +++++++++++
- 1 file changed, 11 insertions(+)
-
-diff --git a/Documentation/devicetree/bindings/iio/afe/voltage-divider.yaml b/Documentation/devicetree/bindings/iio/afe/voltage-divider.yaml
-index dddf97b50549..fd3c511e1beb 100644
---- a/Documentation/devicetree/bindings/iio/afe/voltage-divider.yaml
-+++ b/Documentation/devicetree/bindings/iio/afe/voltage-divider.yaml
-@@ -39,6 +39,17 @@ properties:
-     description: |
-       Channel node of a voltage io-channel.
- 
-+  '#io-channel-cells':
-+    description:
-+      In addition to consuming the measurement services of a voltage
-+      output channel, the voltage divider can act as a provider of
-+      measurement services to other devices. This is particularly
-+      useful in scenarios wherein an ADC has an analog frontend,
-+      such as a voltage divider, and then consuming its raw value
-+      isn't interesting. It is desired to get the real voltage
-+      before the voltage divider.
-+    const: 1
-+
-   output-ohms:
-     description:
-       Resistance Rout over which the output voltage is measured. See full-ohms.
-
-base-commit: 99bd3cb0d12e85d5114425353552121ec8f93adc
--- 
-2.42.0
+Applied both, thanks!
 
 
