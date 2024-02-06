@@ -1,114 +1,218 @@
-Return-Path: <devicetree+bounces-38982-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-38983-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id BA56684B0D0
-	for <lists+devicetree@lfdr.de>; Tue,  6 Feb 2024 10:13:06 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3033384B113
+	for <lists+devicetree@lfdr.de>; Tue,  6 Feb 2024 10:24:25 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 4DD07281FEB
-	for <lists+devicetree@lfdr.de>; Tue,  6 Feb 2024 09:13:05 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 546ED1C235FE
+	for <lists+devicetree@lfdr.de>; Tue,  6 Feb 2024 09:24:24 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 776A612A159;
-	Tue,  6 Feb 2024 09:13:02 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B378612D142;
+	Tue,  6 Feb 2024 09:23:49 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b="z8LU45MF"
+	dkim=pass (1024-bit key) header.d=mistralsolutions.com header.i=@mistralsolutions.com header.b="ZU44W1Mt"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ed1-f41.google.com (mail-ed1-f41.google.com [209.85.208.41])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from egress-ip43b.ess.de.barracuda.com (egress-ip43b.ess.de.barracuda.com [18.185.115.247])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B8B935B687
-	for <devicetree@vger.kernel.org>; Tue,  6 Feb 2024 09:12:59 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.41
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5CE6E83CCC
+	for <devicetree@vger.kernel.org>; Tue,  6 Feb 2024 09:23:46 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=18.185.115.247
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1707210782; cv=none; b=EwX1kwPkBwk9fpBp+1qF5DkkZ4VttNiPfrQAQbI6R1h5yL407goWb5u8Bwz9qePetMjXYDP93apxjOgECZd4KRbFcvIGY6N/Ds2c5Vg/AnYDKSvGp+Cb5yVgAFrGP6TPbZkq3KrxinG/GsWT/cx01IoAqAIIGef13vlGRQ8H9MI=
+	t=1707211429; cv=none; b=YQUAVi5r3Ug7GwAymJEekRa85vELXZJymbhE0UdRXrsoEKZW03n8+PbjGRYLs5M6oxn8zMa0hNJwdafHWExcXz8TqDfYvyUyt+94xOjOTG5E6qJqFN7JWskcvqmjzD8mU8RQLer7jb6gquwHiVM00aBBy14wlTi3BSI32dnRELo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1707210782; c=relaxed/simple;
-	bh=pzCq4kCr7BpFqs4M3wKLke6/IVRyjwON6wWOnX1UWdg=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=CA/lZERk1X4YYvGrVia6bVVbSyaN0qdHqeJ3F1nEkgXvupy3sBI04IUiqGMWjxVs5oSD82X6ell42B5V98pEVxXqp+sDXk+OOS4kF3Nm5Tf1Wf+umpFBGmIXkqGTWJ4WnnoPmxndGQB0ULMwerGxtW/k/rDTYg8T4hQh185weF0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com; spf=pass smtp.mailfrom=baylibre.com; dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b=z8LU45MF; arc=none smtp.client-ip=209.85.208.41
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=baylibre.com
-Received: by mail-ed1-f41.google.com with SMTP id 4fb4d7f45d1cf-55fc7f63639so6218656a12.1
-        for <devicetree@vger.kernel.org>; Tue, 06 Feb 2024 01:12:59 -0800 (PST)
+	s=arc-20240116; t=1707211429; c=relaxed/simple;
+	bh=fNc/6Pc9VCl6HzTg3CC6Gpd9Gmf49+v9PFWelq2ov3o=;
+	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version; b=eilOmV9M3ZXQblKypQ0guKAf5R+QEY9DS5aJrt9q2WJC+SPsYNEzUNc3T9CVLGd+VeyMuEZ4IIUoCqTqd/RD1PuLsdQJPmr3sM0eFLL1YmYchLJtlQ7eJmDtnocU73k7iwlLCnEMelPmEGh5WXXCvW0OY1xDgCOCVtl1FAKZNCU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=mistralsolutions.com; spf=pass smtp.mailfrom=mistralsolutions.com; dkim=pass (1024-bit key) header.d=mistralsolutions.com header.i=@mistralsolutions.com header.b=ZU44W1Mt; arc=none smtp.client-ip=18.185.115.247
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=mistralsolutions.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=mistralsolutions.com
+Received: from mail-pf1-f198.google.com (mail-pf1-f198.google.com [209.85.210.198]) by mx-outbound17-0.eu-central-1b.ess.aws.cudaops.com (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NO); Tue, 06 Feb 2024 09:23:44 +0000
+Received: by mail-pf1-f198.google.com with SMTP id d2e1a72fcca58-6e04e1ac09fso1313624b3a.0
+        for <devicetree@vger.kernel.org>; Tue, 06 Feb 2024 01:23:44 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1707210778; x=1707815578; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=GmlhoN9VyMxqeNOOnGTOAmJzMI9K2t+a54JLGmht/ZQ=;
-        b=z8LU45MFL/X2+yPl/U/mjWlvVwF5Zkg9fdDTQ9BS4HP64QIVLzXp1XWO5uGdRgEags
-         ONFLbklYt95mpUlwNH0JTCLA29ggal/j3CqnPsIp0xMQXj7uY42Q0dIUKxe+ZVuBe+rz
-         6YN01YExMqCIXaDlYjnbNH9icfvRKFHl7dDY4W8YuvS+INyqQn8Q2VJ4nu8ufHSY+fia
-         qXY64Ru0hyIeJXyYhnCkT4EUwzvMdArAYPKls6SBXiWaFT9JFSbQb2IhODP1BBGPQzzP
-         qTOwiVcj4zNwfzO8g70mErrL2Vr2McEiAji3a4LzFvpMlbLoxEXDhb3XCp9opwKTCwV8
-         Oc7A==
+        d=mistralsolutions.com; s=google; t=1707211423; x=1707816223; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=eLR7NoGZT/8JoUn3Uf2bBEtjROgQUHEqybAlPKSbqdg=;
+        b=ZU44W1Mt+zyJxqZKk4YNoVqTSHeOexTnP4N1NVwCdEK9qfs4GMREaBACsPtNfm1uZl
+         HTvByBthE7Fdwisu1ogiBkU9JpMHXKsll3VuEQSMDt3Bn/ppvh00nPhJGH3aiML26+J6
+         fL3Auijksv/pc5DB0c6YHauCe09zMrc/xaaCg=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1707210778; x=1707815578;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=GmlhoN9VyMxqeNOOnGTOAmJzMI9K2t+a54JLGmht/ZQ=;
-        b=m2ekB5AAcBGeawcm1/Qbd2ddjq9flfzScNtd6Yu1tBGd4SN6ubCzgslBNqRb9kdnPo
-         tfRVBxeOIJ+qhC7u9kBfKhYJgotFMpLtftMh2+hau3E8DIoH/mlgOxzPt005cbTewdTb
-         7ckXsUMbZK7sDFgKYYD6+TY4Gi4yJxe+OdEtO7nPKrN9R4iSpr1JrDXXsSGUwoGwxbAd
-         hx67Zo0rn0em8RjIn1te6k7xzam9KmnyOPTugcAbVvBqrbIcVJDTe0daiUQCvjPv6iBc
-         REWfcbD2az1hlqFU/bI/DVDO1SxQjAc66QoQDR2CqeC3kjHaAMFrip7KOPrkv6HGlUMv
-         uaEg==
-X-Gm-Message-State: AOJu0YzDVL+mK46dhoOaroHEfdLC+Cn1snYx8QJSmLfkqJ4JA/rflzqb
-	fFPPMvOXKPieSPexiSB6ynWvxLIegz71ZsYMGdLXkUzTPItW5hUW2UiCkzM2wXI=
-X-Google-Smtp-Source: AGHT+IH2MblfrLitxaeQa/RIyDFOY04h7vsJHFwwAJZePOlonmkLuXoDRpZovbMVGAMkXXjBzu+CCA==
-X-Received: by 2002:aa7:d902:0:b0:560:9277:80e5 with SMTP id a2-20020aa7d902000000b00560927780e5mr1220499edr.21.1707210777956;
-        Tue, 06 Feb 2024 01:12:57 -0800 (PST)
-X-Forwarded-Encrypted: i=0; AJvYcCXxALzPvjGBvcFb1vLdySyAB+NrFD6F7LM/hf9/jL6L5GMTho3+cKiscWM7g5AIuySvhLK405ot5RWFD1aY13GErCSAcSpc9/L8zjBC/pBq9P18aRMs3cMI+BBvt6EQ9P1ePHbjFyWuRhvYt3S+mxvFwFSzrnm/kmN0ntt/meUqHnyp+sruAfSWyRmPwaNdU5Bp6jgfmbwnkCboq6E494xRUoCL1KUoGljjhpMwLTyBSFzfy3rZ8he3Ppay0l+2AoHA1li9xfSOcFvKzezW41mtC+p6Q2fT0y4QI9fn2cci0VXhQXSo7rL0ysNH7eXnWe/wci5SILr6+5jH3JMVHxPYAuU1YQw=
-Received: from blmsp ([2001:4091:a246:821e:6f3b:6b50:4762:8343])
-        by smtp.gmail.com with ESMTPSA id b8-20020a0564021f0800b0056012fe9d4fsm821287edb.76.2024.02.06.01.12.56
+        d=1e100.net; s=20230601; t=1707211423; x=1707816223;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=eLR7NoGZT/8JoUn3Uf2bBEtjROgQUHEqybAlPKSbqdg=;
+        b=H/rG8DdkK+qLLTQtYfBdsQbm7OB4ovIAMyWB4JQry7lwkWmrVQsmurMP6yLlUEeDju
+         QIcd/410ExkcUYcoGjeFe7XYXL/2fNqp8lJlFrUiI3ffuSFTkBZ/4jO2QhOpQPSSAI8F
+         jhgXrJSehazEajPrIttqLKzhCqZp7Nu3Hfqxb6zFrcQnQzNJdhYyCnnAwGMLQa0Yep7r
+         BlUkScG1wwF1UweAX/hudCWftsJVVX6hwgNIJKRKpcIbXBBS/vFgL5Py1V9YLurPurdP
+         S/X5Pg+jFCo3u4V8ditdESmVJVgiQ/9uU1/3cFCF4PvuOtFQVNVvsRMcwHVWo0Nhs+vY
+         /vZA==
+X-Gm-Message-State: AOJu0YzHZ4/ZpwFwAMqFURWs8e1DOGJwcdIzL+NGUOt+lmYSVazc9pSi
+	p2emmvT9dJrimLRuKc0lwhlBJe0W0cnUdWKoNyfBFWADvyDMPhr0EUEGDH+miHwdw/rGgsh9xop
+	1NXyLdW9ms2y0kRfBW1McduyxjHUyRoQXA7WC4mSqPTXMEjCi2+Z8ay77EguLuXrjlOvA464ekx
+	0Pbs8PNsHW71z3cZFNWw==
+X-Received: by 2002:a62:848f:0:b0:6db:af73:bd9a with SMTP id k137-20020a62848f000000b006dbaf73bd9amr1893463pfd.30.1707211423448;
+        Tue, 06 Feb 2024 01:23:43 -0800 (PST)
+X-Google-Smtp-Source: AGHT+IFpjJ8JIkBbiCYh/1qtrayoW/kvTX3LsBtoOAHAQjf2+/lJfvTCTsNhJJjr93Q/PI+WMd8Obw==
+X-Received: by 2002:a62:848f:0:b0:6db:af73:bd9a with SMTP id k137-20020a62848f000000b006dbaf73bd9amr1893457pfd.30.1707211423126;
+        Tue, 06 Feb 2024 01:23:43 -0800 (PST)
+X-Forwarded-Encrypted: i=0; AJvYcCVV3qv16AOmIuv8F63Xrt+qOqHB1NfMJVkhmtqINylET7rEXFiGG6MMhF8oNStus33yzsttnb/T1TvE6qHWM0rQ3Co+dYbKU4dBHv1XcBSJyZC8v7FYxJoU4zcXpBhzMeeoavZ8RnDwwTZf5F+I3u542zohU/wQ/nOW2V9I87QeiWPDVe84tIP0+X6AQSSmSkyBgKJfVn8ve1dt7BnbfFpN
+Received: from LAP568U.mistral.in ([106.51.69.35])
+        by smtp.gmail.com with ESMTPSA id w20-20020aa78594000000b006e02da39dbcsm1418493pfn.10.2024.02.06.01.23.39
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 06 Feb 2024 01:12:57 -0800 (PST)
-Date: Tue, 6 Feb 2024 10:12:56 +0100
-From: Markus Schneider-Pargmann <msp@baylibre.com>
-To: Tony Lindgren <tony@atomide.com>
-Cc: Nishanth Menon <nm@ti.com>, Vignesh Raghavendra <vigneshr@ti.com>, 
-	Tero Kristo <kristo@kernel.org>, Rob Herring <robh+dt@kernel.org>, 
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, Dhruva Gole <d-gole@ti.com>, 
-	Kevin Hilman <khilman@baylibre.com>, linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org
-Subject: Re: [PATCH v4 1/1] arm64: dts: ti: k3-am62-wakeup: Configure ti-sysc
- for wkup_uart0
-Message-ID: <wl7atq35kwgd3lgscp2sygjulrheukjfjcia3nl6f5326ot35i@jey76kt25sz7>
-References: <20231219072503.12427-1-tony@atomide.com>
- <q54c4f3l2ddvnnwzigz2hebru27nhevf4oij6g2nqv6yyijigr@nuvwukfwpsjh>
- <20240126082006.GT5185@atomide.com>
+        Tue, 06 Feb 2024 01:23:42 -0800 (PST)
+From: Sinthu Raja <sinthu.raja@mistralsolutions.com>
+X-Google-Original-From: Sinthu Raja <sinthu.raja@ti.com>
+To: Nishanth Menon <nm@ti.com>,
+	Tero Kristo <kristo@kernel.org>,
+	Vignesh Raghavendra <vigneshr@ti.com>
+Cc: linux-arm-kernel@lists.infradead.org,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	Sinthu Raja <sinthu.raja@ti.com>
+Subject: [PATCH] arm64: dts: ti: k3-am68-sk-som: Add support for OSPI flash
+Date: Tue,  6 Feb 2024 14:53:34 +0530
+Message-Id: <20240206092334.30307-1-sinthu.raja@ti.com>
+X-Mailer: git-send-email 2.36.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-In-Reply-To: <20240126082006.GT5185@atomide.com>
+Content-Transfer-Encoding: 8bit
+X-BESS-ID: 1707211424-304352-12432-6013-1
+X-BESS-VER: 2019.1_20240206.0113
+X-BESS-Apparent-Source-IP: 209.85.210.198
+X-BESS-Parts: H4sIAAAAAAACA4uuVkqtKFGyUirNy1bSUcovVrIyNjA2AbIygIKpSckWaclJho
+	ZGxmZJxoZmiZYmhsnmiYkpBqlJFmlmRkq1sQBce/OXQQAAAA==
+X-BESS-Outbound-Spam-Score: 0.00
+X-BESS-Outbound-Spam-Report: Code version 3.2, rules version 3.2.2.254018 [from 
+	cloudscan10-54.eu-central-1a.ess.aws.cudaops.com]
+	Rule breakdown below
+	 pts rule name              description
+	---- ---------------------- --------------------------------
+	0.00 BSF_BESS_OUTBOUND      META: BESS Outbound 
+	0.00 BSF_SC0_MISMATCH_TO    META: Envelope rcpt doesn't match header 
+X-BESS-Outbound-Spam-Status: SCORE=0.00 using account:ESS91090 scores of KILL_LEVEL=7.0 tests=BSF_BESS_OUTBOUND, BSF_SC0_MISMATCH_TO
+X-BESS-BRTS-Status:1
 
-Hi Tony,
+From: Sinthu Raja <sinthu.raja@ti.com>
 
-On Fri, Jan 26, 2024 at 10:20:06AM +0200, Tony Lindgren wrote:
-> * Markus Schneider-Pargmann <msp@baylibre.com> [240124 13:55]:
-> > I tested this patch on am62-lp-sk and required this additional property:
-> > 
-> >   ti,no-reset-on-init;
-> > 
-> > I am not sure at the moment why a reset doesn't work. But with the given
-> > property (so without reset) the wakeup on wkup_uart0 works as expected.
-> 
-> OK. This might be some firmware related difference. Care to describe what
-> goes wrong so that can be added to the patch description?
+AM68 SK has an OSPI NOR flash on its SOM connected to OSPI0 instance.
+Enable support for the same. Also, describe the OSPI flash partition
+information through the device tree, according to the offsets in the
+bootloader.
 
-I tested this patch on sk-am62-lp on the upstream kernel and on the
-latest ti-sdk 6.1 kernel. With the ti-sdk 6.1 kernel I get mbox timeouts
-if the driver resets the ti-sysc. If it doesn't reset it, everything
-works on ti-sdk 6.1 as expected as well including wakeup from the
-wkup_uart0.
+Signed-off-by: Sinthu Raja <sinthu.raja@ti.com>
+---
+ arch/arm64/boot/dts/ti/k3-am68-sk-som.dtsi | 79 ++++++++++++++++++++++
+ 1 file changed, 79 insertions(+)
 
-Best,
-Markus
+diff --git a/arch/arm64/boot/dts/ti/k3-am68-sk-som.dtsi b/arch/arm64/boot/dts/ti/k3-am68-sk-som.dtsi
+index 20861a0a46b0..84011d5e1b3b 100644
+--- a/arch/arm64/boot/dts/ti/k3-am68-sk-som.dtsi
++++ b/arch/arm64/boot/dts/ti/k3-am68-sk-som.dtsi
+@@ -130,6 +130,25 @@ rtos_ipc_memory_region: ipc-memories@a8000000 {
+ 	};
+ };
+ 
++&wkup_pmx0 {
++	mcu_fss0_ospi0_pins_default: mcu-fss0-ospi0-pins-default {
++		pinctrl-single,pins = <
++			J721S2_WKUP_IOPAD(0x000, PIN_OUTPUT, 0) /* (D19) MCU_OSPI0_CLK */
++			J721S2_WKUP_IOPAD(0x02c, PIN_OUTPUT, 0) /* (F15) MCU_OSPI0_CSn0 */
++			J721S2_WKUP_IOPAD(0x00c, PIN_INPUT, 0) /* (C19) MCU_OSPI0_D0 */
++			J721S2_WKUP_IOPAD(0x010, PIN_INPUT, 0) /* (F16) MCU_OSPI0_D1 */
++			J721S2_WKUP_IOPAD(0x014, PIN_INPUT, 0) /* (G15) MCU_OSPI0_D2 */
++			J721S2_WKUP_IOPAD(0x018, PIN_INPUT, 0) /* (F18) MCU_OSPI0_D3 */
++			J721S2_WKUP_IOPAD(0x01c, PIN_INPUT, 0) /* (E19) MCU_OSPI0_D4 */
++			J721S2_WKUP_IOPAD(0x020, PIN_INPUT, 0) /* (G19) MCU_OSPI0_D5 */
++			J721S2_WKUP_IOPAD(0x024, PIN_INPUT, 0) /* (F19) MCU_OSPI0_D6 */
++			J721S2_WKUP_IOPAD(0x028, PIN_INPUT, 0) /* (F20) MCU_OSPI0_D7 */
++			J721S2_WKUP_IOPAD(0x008, PIN_INPUT, 0) /* (E18) MCU_OSPI0_DQS */
++			J721S2_WKUP_IOPAD(0x004, PIN_INPUT, 0) /* (E20) MCU_OSPI0_LBCLKO */
++		>;
++	};
++};
++
+ &wkup_pmx2 {
+ 	wkup_i2c0_pins_default: wkup-i2c0-default-pins {
+ 		pinctrl-single,pins = <
+@@ -152,6 +171,66 @@ eeprom@51 {
+ 	};
+ };
+ 
++&ospi0 {
++	status = "okay";
++	pinctrl-names = "default";
++	pinctrl-0 = <&mcu_fss0_ospi0_pins_default>;
++
++	flash@0 {
++		compatible = "jedec,spi-nor";
++		reg = <0x0>;
++		spi-tx-bus-width = <8>;
++		spi-rx-bus-width = <8>;
++		spi-max-frequency = <25000000>;
++		cdns,tshsl-ns = <60>;
++		cdns,tsd2d-ns = <60>;
++		cdns,tchsh-ns = <60>;
++		cdns,tslch-ns = <60>;
++		cdns,read-delay = <4>;
++
++		partitions {
++			compatible = "fixed-partitions";
++			#address-cells = <1>;
++			#size-cells = <1>;
++
++			partition@0 {
++				label = "ospi.tiboot3";
++				reg = <0x0 0x80000>;
++			};
++
++			partition@80000 {
++				label = "ospi.tispl";
++				reg = <0x80000 0x200000>;
++			};
++
++			partition@280000 {
++				label = "ospi.u-boot";
++				reg = <0x280000 0x400000>;
++			};
++
++			partition@680000 {
++				label = "ospi.env";
++				reg = <0x680000 0x40000>;
++			};
++
++			partition@6c0000 {
++				label = "ospi.env.backup";
++				reg = <0x6c0000 0x40000>;
++			};
++
++			partition@800000 {
++				label = "ospi.rootfs";
++				reg = <0x800000 0x37c0000>;
++			};
++
++			partition@3fc0000 {
++				label = "ospi.phypattern";
++				reg = <0x3fc0000 0x40000>;
++			};
++		};
++	};
++};
++
+ &mailbox0_cluster0 {
+ 	status = "okay";
+ 	interrupts = <436>;
+-- 
+2.36.1
+
 
