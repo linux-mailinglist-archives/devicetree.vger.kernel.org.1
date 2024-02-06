@@ -1,111 +1,135 @@
-Return-Path: <devicetree+bounces-39069-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-39071-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id E06DA84B481
-	for <lists+devicetree@lfdr.de>; Tue,  6 Feb 2024 13:08:54 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id B3FF484B49B
+	for <lists+devicetree@lfdr.de>; Tue,  6 Feb 2024 13:12:59 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 9CFAA283944
-	for <lists+devicetree@lfdr.de>; Tue,  6 Feb 2024 12:08:53 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id E73911C23E45
+	for <lists+devicetree@lfdr.de>; Tue,  6 Feb 2024 12:12:58 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B6F1A13328E;
-	Tue,  6 Feb 2024 12:04:09 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id BCCD8132C0D;
+	Tue,  6 Feb 2024 12:08:35 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=microchip.com header.i=@microchip.com header.b="NdWmnjNW"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="G6EyGV+l"
 X-Original-To: devicetree@vger.kernel.org
-Received: from esa.microchip.iphmx.com (esa.microchip.iphmx.com [68.232.153.233])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-yb1-f181.google.com (mail-yb1-f181.google.com [209.85.219.181])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 152DD132C15;
-	Tue,  6 Feb 2024 12:04:08 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=68.232.153.233
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BA66F132494
+	for <devicetree@vger.kernel.org>; Tue,  6 Feb 2024 12:08:32 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.219.181
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1707221049; cv=none; b=cpaau7KReZROtRFgxmxE0P15WAeB57zrMYQRuk3/MML5Ya/mEhI+gwrvFUwucQdY2PRio2g70ulO+ve9Ecr3sKf8GK5xK7382XLAG/zucnSA/Tta5EJqwDzXJSzKknDIm7bujomMgG/nlZ0AEd30VpaRigJa9ithatQ2M0oMiRc=
+	t=1707221315; cv=none; b=ayuCajnoYmMbms65iHONHRr50bWs4rHKeb8l8XiFeZcpZVr0eUiS0XfzgWqRhPsenD0lkojrpurA2+5VSbYcFmeAXPOu/9GgB2ZWaAMsNnHPOsIRILPuw4RuP0/CJS/hoTaiYn0mE+8C4EtNFwFLaRYn4nPnuc9UOya9ER6VwlY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1707221049; c=relaxed/simple;
-	bh=q5AQrYWB5lwDHhGNPklEX9DOip1NJmdov5PmWLB1Rm4=;
-	h=From:To:CC:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=badzPTVTtnySBdxB8/PTJN7G2vWT5GHz97xT9s4zjtH5bXkYA6mYCX4GQKuwV4UbcCcsjazjPfHWvOzgqAnKPp9yc2Jj+kD1n+UUkzUnF6AiZcg1+LpHyQ4504JuAUgt7NLRKTU59vDxyjnAcuv5li4qfpJ4H+pC1GuOCkyo/JM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=microchip.com; spf=pass smtp.mailfrom=microchip.com; dkim=pass (2048-bit key) header.d=microchip.com header.i=@microchip.com header.b=NdWmnjNW; arc=none smtp.client-ip=68.232.153.233
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=microchip.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=microchip.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
-  t=1707221047; x=1738757047;
-  h=from:to:cc:subject:date:message-id:in-reply-to:
-   references:mime-version:content-transfer-encoding;
-  bh=q5AQrYWB5lwDHhGNPklEX9DOip1NJmdov5PmWLB1Rm4=;
-  b=NdWmnjNWOcEqLI766G5BC87BxFkxC4Akqw7Og+R4f2XlYNIUUpSmWDzo
-   uSdcPhm4iXj4Hi4gvMzSkCRwG6eokrHKH6o0WEkZqLPmhLvKP+hYy+1Hf
-   JnsnoIQ9T340M0k51cimPykOEB01b+6bpjLH4RsfKZzS76Uyxek7Pqhm1
-   KNR/qlR/Aa6DuV8JgRJGpeYC+qxTs0YiKl/q07dVz76GIIxE9lINZuCWv
-   hV4CAT0KQ/eXoM9trgfcancVP0qJC1C/wZg9yI26ml5bFU02BZjEiI+VD
-   ogWrFjOVjoTppBllxzF2qjnmByGLuV1RNwwCqSPvpsExha12p4Z0Kzv1D
-   Q==;
-X-CSE-ConnectionGUID: /iuDP2QxSliEsbGRCUpaQw==
-X-CSE-MsgGUID: uLKTaMpvRyWh4wCyip561Q==
-X-IronPort-AV: E=Sophos;i="6.05,247,1701154800"; 
-   d="scan'208";a="17200246"
-X-Amp-Result: SKIPPED(no attachment in message)
-Received: from unknown (HELO email.microchip.com) ([170.129.1.10])
-  by esa1.microchip.iphmx.com with ESMTP/TLS/ECDHE-RSA-AES128-GCM-SHA256; 06 Feb 2024 05:03:59 -0700
-Received: from chn-vm-ex02.mchp-main.com (10.10.87.72) by
- chn-vm-ex02.mchp-main.com (10.10.87.72) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.35; Tue, 6 Feb 2024 05:03:51 -0700
-Received: from virtualbox.microchip.com (10.10.85.11) by
- chn-vm-ex02.mchp-main.com (10.10.85.144) with Microsoft SMTP Server id
- 15.1.2507.35 via Frontend Transport; Tue, 6 Feb 2024 05:03:48 -0700
-From: Mihai Sain <mihai.sain@microchip.com>
-To: <claudiu.beznea@tuxon.dev>, <robh+dt@kernel.org>,
-	<krzysztof.kozlowski+dt@linaro.org>, <conor+dt@kernel.org>,
-	<nicolas.ferre@microchip.com>, <alexandre.belloni@bootlin.com>,
-	<devicetree@vger.kernel.org>, <linux-arm-kernel@lists.infradead.org>,
-	<linux-kernel@vger.kernel.org>
-CC: Mihai Sain <mihai.sain@microchip.com>
-Subject: [PATCH v3 8/8] ARM: dts: microchip: sama5d2_xplained: Add power-supply property for sdmmc0 node
-Date: Tue, 6 Feb 2024 14:03:22 +0200
-Message-ID: <20240206120322.88907-9-mihai.sain@microchip.com>
-X-Mailer: git-send-email 2.43.0
-In-Reply-To: <20240206120322.88907-1-mihai.sain@microchip.com>
-References: <20240206120322.88907-1-mihai.sain@microchip.com>
+	s=arc-20240116; t=1707221315; c=relaxed/simple;
+	bh=4Vu5+qjHqnLiD6M7Jx0MYJ1t1IIXbkexS1k3JHNLYrE=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=StPZlYPpB3V1ZcHflXLc2pDV/Gm0UINTkImUTQ6LAD/5fCH2UiZPtOTPXZJYFZC46hz5W4mRWYiYfpbhD+W7j0R5fZ9t2hP9XOPLpBb8heK5rlIH+ToE8bcv4UMz9ZQWpvhL3rJh5KxEXa9crWQvJzzITLbT5AuDCcyQoh0bFQc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=G6EyGV+l; arc=none smtp.client-ip=209.85.219.181
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-yb1-f181.google.com with SMTP id 3f1490d57ef6-dc23bf7e5aaso5335353276.0
+        for <devicetree@vger.kernel.org>; Tue, 06 Feb 2024 04:08:32 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1707221311; x=1707826111; darn=vger.kernel.org;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=D+xvbQgPMNIqZPpU5Yxz0zVKVlrqGRam+oSS93XuAZg=;
+        b=G6EyGV+lrk2qG3c+xFFT4QmZe2kZkL9L2k5sSJU/PrFBr4GnBNIk0arxVEwPb3GoWi
+         Qrikzt0jttBL6H6PZ/MMc83caJB6fJOFPzDt9Q3bRLxPFU0dSuR4p1QWpnuuHtMP1t32
+         RiCAtdfrahm4lAChEB1aX7PYoV9lGe6IGkINfaOcaQyiZNRNlJA0H2JUP9H9k4Is31XJ
+         18DzKyk5pHouBFEY+VmINipp86Iw2fG0s9YsqAEFFww1328ZzXOVdnvY8E5Qz6huyw20
+         p1PeCOf6VS625ax1b/MkGH5MUZ+XFMw6/bViWxMZy9MzlzlWanANBY2VW/QGAf3YkKC9
+         VBXQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1707221311; x=1707826111;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=D+xvbQgPMNIqZPpU5Yxz0zVKVlrqGRam+oSS93XuAZg=;
+        b=grPJNBqxtAheYdSbIA2K4PDXvAOIDPOUbsIhI7s7OzHfcjjEPtk+9Ajib2Aa7nP2yq
+         ol9mFLqE8AoPu+gtaNr9fY8P3QKDnxCbejRMcjG7udTgurhZez3RyLFk9F/dvwdN04yj
+         lucOktB1mVhHEMDnT+AzSZHH4ikaK1CHC4D1bUOIKf3HyQTrGBdGM2/ydYPeylyigxZY
+         wChc+p4obrcyngO8PR4vekbfjyjDAO35/PWypxLabtu7oCjE+du3dD+FK9shF4epTbGH
+         nVc9nTVW3rfXZeAtLD2Gp0hxtYHwstbDezXF31fWYkxE8amS+g3n7Y7U7KS3ohz8WnJC
+         VG3A==
+X-Gm-Message-State: AOJu0YzBN6Oa5EJoGu81rZtVkweiSlGImO1qxrRJQ98datEW3rf3XosN
+	fIGFOZCmmGwzLPqnLOQChQmoNFs5KyWs2YQTduJjkh69bVpgo3BCX4XS7tTFyG1VXS0WfoGyDB2
+	ZJZpVrQYWB5mKqt3Mp3SSdr27UC2ndSqM6RoeDQ==
+X-Google-Smtp-Source: AGHT+IHm/LzSZOY6wELij8ZqF6KUJKp53jlruo64Z12qH3QsvW0iqh2+ij7pZZDRD7Tg0EAkEehe8Eq/Q5Xya9Gok24=
+X-Received: by 2002:a25:6984:0:b0:dc2:3c3b:fa3e with SMTP id
+ e126-20020a256984000000b00dc23c3bfa3emr1424003ybc.31.1707221311472; Tue, 06
+ Feb 2024 04:08:31 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
+References: <20240206113145.31096-1-quic_jkona@quicinc.com> <20240206113145.31096-5-quic_jkona@quicinc.com>
+In-Reply-To: <20240206113145.31096-5-quic_jkona@quicinc.com>
+From: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+Date: Tue, 6 Feb 2024 14:08:20 +0200
+Message-ID: <CAA8EJpp7p35UECE7QfE-At+=xpa253=De+ZZNnaPSO9GqXCnrg@mail.gmail.com>
+Subject: Re: [PATCH 4/5] clk: qcom: camcc-sm8650: Add camera clock controller
+ driver for SM8650
+To: Jagadeesh Kona <quic_jkona@quicinc.com>
+Cc: Bjorn Andersson <andersson@kernel.org>, Konrad Dybcio <konrad.dybcio@linaro.org>, 
+	Michael Turquette <mturquette@baylibre.com>, Stephen Boyd <sboyd@kernel.org>, 
+	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, 
+	Conor Dooley <conor+dt@kernel.org>, Vladimir Zapolskiy <vladimir.zapolskiy@linaro.org>, 
+	Taniya Das <quic_tdas@quicinc.com>, linux-arm-msm@vger.kernel.org, 
+	linux-clk@vger.kernel.org, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org, Imran Shaik <quic_imrashai@quicinc.com>, 
+	Ajit Pandey <quic_ajipan@quicinc.com>
+Content-Type: text/plain; charset="UTF-8"
 
-The sdmmc0 controller is powered from 3.3V regulator.
-Add vmmc-supply and vqmmc-supply properties to sdmmc0 node.
-The sdmmc controller from SAMA5D2 MPU has support for
-IO voltage signaling/switching required by the UHS sd-card.
-In order to avoid the issues from the tuning procedure required by
-the UHS cards, keep the vqmmc at 3V3 to use the sd high-speed mode.
+On Tue, 6 Feb 2024 at 13:41, Jagadeesh Kona <quic_jkona@quicinc.com> wrote:
+>
+> Add support for the camera clock controller for camera clients to be
+> able to request for camcc clocks on SM8650 platform.
+>
+> Signed-off-by: Jagadeesh Kona <quic_jkona@quicinc.com>
+> ---
+>  drivers/clk/qcom/Kconfig        |    8 +
+>  drivers/clk/qcom/Makefile       |    1 +
+>  drivers/clk/qcom/camcc-sm8650.c | 3601 +++++++++++++++++++++++++++++++
+>  3 files changed, 3610 insertions(+)
+>  create mode 100644 drivers/clk/qcom/camcc-sm8650.c
+[
+[skipped]
 
-Signed-off-by: Mihai Sain <mihai.sain@microchip.com>
----
- arch/arm/boot/dts/microchip/at91-sama5d2_xplained.dts | 2 ++
- 1 file changed, 2 insertions(+)
+> +static int __init cam_cc_sm8650_init(void)
+> +{
+> +       return platform_driver_register(&cam_cc_sm8650_driver);
+> +}
+> +subsys_initcall(cam_cc_sm8650_init);
 
-diff --git a/arch/arm/boot/dts/microchip/at91-sama5d2_xplained.dts b/arch/arm/boot/dts/microchip/at91-sama5d2_xplained.dts
-index 6680031387e8..9b7e56790a5a 100644
---- a/arch/arm/boot/dts/microchip/at91-sama5d2_xplained.dts
-+++ b/arch/arm/boot/dts/microchip/at91-sama5d2_xplained.dts
-@@ -67,6 +67,8 @@ sdmmc0: sdio-host@a0000000 {
- 			pinctrl-0 = <&pinctrl_sdmmc0_default>;
- 			non-removable;
- 			mmc-ddr-3_3v;
-+			vmmc-supply = <&vdd_3v3_reg>;
-+			vqmmc-supply = <&vdd_3v3_reg>;
- 			status = "okay";
- 		};
- 
+We have been here for the patch series for camcc-sm8550. Upstream
+reviewers expect that you don't repeat the same mistakes over and over
+again.
+
+Please use module_platform_driver().
+
+> +
+> +static void __exit cam_cc_sm8650_exit(void)
+> +{
+> +       platform_driver_unregister(&cam_cc_sm8650_driver);
+> +}
+> +module_exit(cam_cc_sm8650_exit);
+> +
+> +MODULE_DESCRIPTION("QTI CAMCC SM8650 Driver");
+> +MODULE_LICENSE("GPL");
+> --
+> 2.43.0
+>
+>
+
+
 -- 
-2.43.0
-
+With best wishes
+Dmitry
 
