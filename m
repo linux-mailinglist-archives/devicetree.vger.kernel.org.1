@@ -1,190 +1,153 @@
-Return-Path: <devicetree+bounces-39042-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-39046-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4E78E84B3FC
-	for <lists+devicetree@lfdr.de>; Tue,  6 Feb 2024 12:54:51 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 64ECE84B417
+	for <lists+devicetree@lfdr.de>; Tue,  6 Feb 2024 13:00:19 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id AC89A1F22AB6
-	for <lists+devicetree@lfdr.de>; Tue,  6 Feb 2024 11:54:50 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 00E0A1F253FE
+	for <lists+devicetree@lfdr.de>; Tue,  6 Feb 2024 12:00:19 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id DCA85131743;
-	Tue,  6 Feb 2024 11:34:09 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 96A01132461;
+	Tue,  6 Feb 2024 11:45:10 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=foss.st.com header.i=@foss.st.com header.b="XV4FOSJS"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="UExSV2Xy"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx07-00178001.pphosted.com (mx07-00178001.pphosted.com [185.132.182.106])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wr1-f48.google.com (mail-wr1-f48.google.com [209.85.221.48])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9F1AE134CC0;
-	Tue,  6 Feb 2024 11:34:07 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.132.182.106
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E7C52131E5A
+	for <devicetree@vger.kernel.org>; Tue,  6 Feb 2024 11:45:08 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.48
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1707219249; cv=none; b=OjS9MzvwqOjn2pp/6byjpWKsPAmoyu6dm/LcOedHfB/UXJlAB61zSCDDz5KuENPVVsWsLpnaVO4e25FZrJAXgnQvTNH/dPw0O1rQviQOr/CIGXlhvPVDezz8A1PwoPROVXo+sRVLXg79eIeZjl32hF2HHkED728jqn2OL14s3aI=
+	t=1707219910; cv=none; b=euO6Bq5Pasib0TVyUtS5SQ3tDwexSrT4XZp3PuEeZd1aQVCAjVIZ3vFLq4buM6vZuHRkofB4r+gxKknvSV7VMAoSDvYni//JqpHUVtaQo7wqobMYKwy+kd2/4QooF0JEi4NP0b0LuJB+RWaJ1lP+TjfHWAYj96oVSuvwH1E6Ldw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1707219249; c=relaxed/simple;
-	bh=iKYO2rG3BTMKt5WCaCdwZY//PQVAlVNZ1d+5MI+Gots=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-ID:References:
-	 In-Reply-To:To:CC; b=nNcySv5VvANYZwX8jRMWKkVh6/yuVCtIZyastDsejHbdzNNPrf1bSlnO9UeR5GfK8dgjo9E/tMuN9JkqbFB1ffVr9kR5RhHqcUJHzjdDIKVLUEvk3QcvPXP9/9LbnbJY8sxCcw7fZ6pGQdgpQMzDaYJ2Ld55RLNKPO86yobwi5s=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=foss.st.com; spf=pass smtp.mailfrom=foss.st.com; dkim=pass (2048-bit key) header.d=foss.st.com header.i=@foss.st.com header.b=XV4FOSJS; arc=none smtp.client-ip=185.132.182.106
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=foss.st.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=foss.st.com
-Received: from pps.filterd (m0241204.ppops.net [127.0.0.1])
-	by mx07-00178001.pphosted.com (8.17.1.24/8.17.1.24) with ESMTP id 4169DVsF003834;
-	Tue, 6 Feb 2024 12:33:21 +0100
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=foss.st.com; h=
-	from:date:subject:mime-version:content-type
-	:content-transfer-encoding:message-id:references:in-reply-to:to
-	:cc; s=selector1; bh=DnsKquutEGOQewPoi6J/BDbXg1mh4kqRqxYNbt4LG2M
-	=; b=XV4FOSJSfZnWum0RQAYV7/5WuOrVgo2wwcKtAjAqyBf/AgHS9CWDt/tUlCB
-	Xvbncqy0uqPaCmwxwjj0I1kfpeG4bifTcrEau5FG05sRD9vwbv4zC3YigHIiYdPA
-	QSq0j1QkV1Mx0xpL0mSGq/63FKErSe1iQc+wSechpbYNPcXf3r//DRr40G2ncByi
-	DfG+ZdwVzwlS65Qbg4O27FFbfR04OLDsp25G2fwJK6jKR/5QhLkBogXhf7onivCI
-	Wf6eh9+oyQ4Na346QIKz7Lu5oRaj4GtTZcmW9kJcHmE74P7LdR2QiJAVs9GvCSUZ
-	UD2j/g8R06eop1DTl9HHhtDF0aw==
-Received: from beta.dmz-eu.st.com (beta.dmz-eu.st.com [164.129.1.35])
-	by mx07-00178001.pphosted.com (PPS) with ESMTPS id 3w1ewp33mm-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Tue, 06 Feb 2024 12:33:21 +0100 (CET)
-Received: from euls16034.sgp.st.com (euls16034.sgp.st.com [10.75.44.20])
-	by beta.dmz-eu.st.com (STMicroelectronics) with ESMTP id 76D5310005A;
-	Tue,  6 Feb 2024 12:33:20 +0100 (CET)
-Received: from Webmail-eu.st.com (shfdag1node2.st.com [10.75.129.70])
-	by euls16034.sgp.st.com (STMicroelectronics) with ESMTP id 6AD3F23C6B7;
-	Tue,  6 Feb 2024 12:33:20 +0100 (CET)
-Received: from localhost (10.129.178.155) by SHFDAG1NODE2.st.com
- (10.75.129.70) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.27; Tue, 6 Feb
- 2024 12:33:20 +0100
-From: Raphael Gallais-Pou <raphael.gallais-pou@foss.st.com>
-Date: Tue, 6 Feb 2024 12:33:18 +0100
-Subject: [PATCH v4 3/3] drm/stm: ltdc: add lvds pixel clock
+	s=arc-20240116; t=1707219910; c=relaxed/simple;
+	bh=d+ylVW+J+cuB9BD5JYjwM9kSniO4Uju3oH075g5dkas=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=EVZWYxoXKOEF28leG0c+T9NQrEo6UqDMutczbhANRVvG82pu4hVuvk8h4Ch83DqqG2xMmqBA116hHyLdUe9zPLvPjLBn0cdEe2I6OoY5kKPY7brssulCIEwMApfhEpYJhFGWlkcf0txd9ypYnry1hXBGD1fphJi/YtISCIrbHrw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=UExSV2Xy; arc=none smtp.client-ip=209.85.221.48
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-wr1-f48.google.com with SMTP id ffacd0b85a97d-337cc8e72f5so4100364f8f.1
+        for <devicetree@vger.kernel.org>; Tue, 06 Feb 2024 03:45:08 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1707219907; x=1707824707; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
+         :to:content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=1gXYg6u5jc5P6zIqrkCEpI3TsgTHCAuPv259VdSvaeo=;
+        b=UExSV2Xym4isWlDz39UZqUwTNBsQgZqUfPAooK+0pnGov/nLR4MwsiNXiEZaYPRLIs
+         EEzLGwTBeXUv3Ff/+/2R4n9iJj10AdogXZT336iyNMG8zopXEFgEZsn+E8wa42yr+guO
+         xPeZ28s9tN1gbXvEyt+5PNDBVbsNLycivvlxmwZ25IlHPA89dOemXsTfTVW8xrbzs/G2
+         0VdEm5gSTG3jHaTSgWpmNFX1Kw8+xxiRAPKrQH4OfbkY0yIy1xzUu9mE12Ke1Q0kx53x
+         99XF8I8XEJlJzzusdOAFfGCpEOes1+7m5NpcdZ3BqJm2f8V+d2jRVgmPySw+pms8YcQy
+         Ee6w==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1707219907; x=1707824707;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
+         :to:content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=1gXYg6u5jc5P6zIqrkCEpI3TsgTHCAuPv259VdSvaeo=;
+        b=cYrWESkGEgEGwAqNccZsVyu71XGw4ugV8jMXjBlr4iCyRCE+M1TCYV/3sBpo1AFm4u
+         eVV+kqCvasRXtQ7vYH3A+DRCgulEsJBKtnqBxM86N8cgw2VdlkHx+Aht2maFUFTmAWQZ
+         T79aDJ4k/R8gH6eZ7gyVnZ3LWOLvqNMrouDcFHu5kFuws+Ubfg8OdBZFmOHZcvRQhCEA
+         I10Aae4bS4Xh0Ferx/uA/MJ1ART0Wm37PCg+FmYLY9WCiIc0I+GFKgmlzBSskVj8YcnS
+         F+KW1t/uHPUxyOuRBdxgSh41wlg4JYcfcltB1PXjFs9WuYMu4F4h4DiCKMQ/683FotlV
+         lO4g==
+X-Gm-Message-State: AOJu0YxRWSv84GMQ6fO+00HCgRXXQEIe8HHvCXk4R2syiPmGamciZPwk
+	Ur8yt1mxqE5r8iyPdkdG9iQO7zCgX1oTF8YAhcQwwiC3U0i1e+etpvw7yS17jP8=
+X-Google-Smtp-Source: AGHT+IFrqpS39ZfwEo1c0DDcIWWNKa2E7Xl3S9BMue7A0DeU5a4cQSQLM8F5xXFfjyk4iEqRoc9HRw==
+X-Received: by 2002:a5d:4f8b:0:b0:33a:fdb6:b1df with SMTP id d11-20020a5d4f8b000000b0033afdb6b1dfmr1229975wru.19.1707219907201;
+        Tue, 06 Feb 2024 03:45:07 -0800 (PST)
+X-Forwarded-Encrypted: i=0; AJvYcCV6OyM5qraKwMoqBa9ZB5nr4LIJg0cAAODX53nyJGSZX5bVqLtF6kgWQHCBHv7MS9ZDkx5t7SvtvnryqUjS54CtkQJXCFEsM/Qyylgu/cxPWD1opqx0+DtgKN+VIfWJ12byNYPTEXqV3mw1gwe1U3H6mtUUiIobM9u/8d/jOwjwovBBcYzoAgN5PWJHNxXsUjgSl1IdMgkpnq9m4Ux4zLGxPp7rUbO+UX2grzyuGE8+4X545qhqHuRF86xGEFWqbZ578+xcgo1QB+PxCiLEslem6RNznQRHWWpIHokrQRCrPy3XqDq36ugVS5vdG1a8qq8dSVs05JoetCBETttoHA7e9XhjuYb4JxDn
+Received: from [192.168.1.20] ([178.197.222.62])
+        by smtp.gmail.com with ESMTPSA id y8-20020adffa48000000b0033af670213dsm1869512wrr.110.2024.02.06.03.45.05
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 06 Feb 2024 03:45:06 -0800 (PST)
+Message-ID: <e54d08ec-ffc5-4b24-b790-1962ee21c087@linaro.org>
+Date: Tue, 6 Feb 2024 12:45:04 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v4] dt-bindings: pinctrl: cy8c95x0: Update
+ gpio-reserved-ranges
+Content-Language: en-US
+To: Naresh Solanki <naresh.solanki@9elements.com>,
+ Linus Walleij <linus.walleij@linaro.org>, Rob Herring <robh+dt@kernel.org>,
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+ Conor Dooley <conor+dt@kernel.org>,
+ Patrick Rudolph <patrick.rudolph@9elements.com>
+Cc: mazziesaccount@gmail.com, linux-gpio@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+References: <20240206112501.715042-1-naresh.solanki@9elements.com>
+From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
+ 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
+ D2GYIS41Kv4Isx2dEFh+/Q==
+In-Reply-To: <20240206112501.715042-1-naresh.solanki@9elements.com>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
-Message-ID: <20240206-lvds-v4-3-98d5f9af399d@foss.st.com>
-References: <20240206-lvds-v4-0-98d5f9af399d@foss.st.com>
-In-Reply-To: <20240206-lvds-v4-0-98d5f9af399d@foss.st.com>
-To: David Airlie <airlied@gmail.com>, Daniel Vetter <daniel@ffwll.ch>,
-        Maarten
- Lankhorst <maarten.lankhorst@linux.intel.com>,
-        Maxime Ripard
-	<mripard@kernel.org>,
-        Thomas Zimmermann <tzimmermann@suse.de>,
-        Rob Herring
-	<robh+dt@kernel.org>,
-        Krzysztof Kozlowski
-	<krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Maxime Coquelin <mcoquelin.stm32@gmail.com>,
-        Alexandre Torgue
-	<alexandre.torgue@foss.st.com>,
-        Yannick Fertre <yannick.fertre@foss.st.com>,
-        Philippe Cornu <philippe.cornu@foss.st.com>,
-        Philipp Zabel
-	<p.zabel@pengutronix.de>
-CC: <dri-devel@lists.freedesktop.org>, <devicetree@vger.kernel.org>,
-        <linux-stm32@st-md-mailman.stormreply.com>,
-        <linux-arm-kernel@lists.infradead.org>, <linux-kernel@vger.kernel.org>,
-        Raphael Gallais-Pou <raphael.gallais-pou@foss.st.com>
-X-Mailer: b4 0.12.4
-X-ClientProxiedBy: EQNCAS1NODE4.st.com (10.75.129.82) To SHFDAG1NODE2.st.com
- (10.75.129.70)
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.272,Aquarius:18.0.1011,Hydra:6.0.619,FMLib:17.11.176.26
- definitions=2024-02-06_04,2024-01-31_01,2023-05-22_02
 
-The STM32MP25x display subsystem presents a mux which feeds the loopback
-pixel clock of the current bridge in use into the LTDC. This mux is only
-accessible through sysconfig registers which is not yet available in the
-STM32MP25x common clock framework.
+On 06/02/2024 12:25, Naresh Solanki wrote:
+> Update maxItems to 60 for gpio-reserved-ranges to allow multiple gpio
+> reserved ranges.
+> Add input-enable property to allow configuring a pin as input.
+> Also update example.
+> 
+> Signed-off-by: Naresh Solanki <naresh.solanki@9elements.com>
+> ---
 
-While waiting for a complete update of the clock framework, this would
-allow to use the LVDS.
+Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
-Signed-off-by: Raphael Gallais-Pou <raphael.gallais-pou@foss.st.com>
-Signed-off-by: Yannick Fertre <yannick.fertre@foss.st.com>
----
-Changes in v2:
-	- Fixed my address
-	- Fixed smatch warning
----
- drivers/gpu/drm/stm/ltdc.c | 19 +++++++++++++++++++
- drivers/gpu/drm/stm/ltdc.h |  1 +
- 2 files changed, 20 insertions(+)
-
-diff --git a/drivers/gpu/drm/stm/ltdc.c b/drivers/gpu/drm/stm/ltdc.c
-index 5576fdae4962..23011a8913bd 100644
---- a/drivers/gpu/drm/stm/ltdc.c
-+++ b/drivers/gpu/drm/stm/ltdc.c
-@@ -838,6 +838,12 @@ ltdc_crtc_mode_valid(struct drm_crtc *crtc,
- 	int target_max = target + CLK_TOLERANCE_HZ;
- 	int result;
- 
-+	if (ldev->lvds_clk) {
-+		result = clk_round_rate(ldev->lvds_clk, target);
-+		DRM_DEBUG_DRIVER("lvds pixclk rate target %d, available %d\n",
-+				 target, result);
-+	}
-+
- 	result = clk_round_rate(ldev->pixel_clk, target);
- 
- 	DRM_DEBUG_DRIVER("clk rate target %d, available %d\n", target, result);
-@@ -1896,6 +1902,8 @@ void ltdc_suspend(struct drm_device *ddev)
- 
- 	DRM_DEBUG_DRIVER("\n");
- 	clk_disable_unprepare(ldev->pixel_clk);
-+	if (ldev->lvds_clk)
-+		clk_disable_unprepare(ldev->lvds_clk);
- }
- 
- int ltdc_resume(struct drm_device *ddev)
-@@ -1910,6 +1918,13 @@ int ltdc_resume(struct drm_device *ddev)
- 		DRM_ERROR("failed to enable pixel clock (%d)\n", ret);
- 		return ret;
- 	}
-+	if (ldev->lvds_clk) {
-+		if (clk_prepare_enable(ldev->lvds_clk)) {
-+			clk_disable_unprepare(ldev->pixel_clk);
-+			DRM_ERROR("Unable to prepare lvds clock\n");
-+			return -ENODEV;
-+		}
-+	}
- 
- 	return 0;
- }
-@@ -1981,6 +1996,10 @@ int ltdc_load(struct drm_device *ddev)
- 		}
- 	}
- 
-+	ldev->lvds_clk = devm_clk_get(dev, "lvds");
-+	if (IS_ERR(ldev->lvds_clk))
-+		ldev->lvds_clk = NULL;
-+
- 	rstc = devm_reset_control_get_exclusive(dev, NULL);
- 
- 	mutex_init(&ldev->err_lock);
-diff --git a/drivers/gpu/drm/stm/ltdc.h b/drivers/gpu/drm/stm/ltdc.h
-index 9d488043ffdb..4a60ce5b610c 100644
---- a/drivers/gpu/drm/stm/ltdc.h
-+++ b/drivers/gpu/drm/stm/ltdc.h
-@@ -44,6 +44,7 @@ struct ltdc_device {
- 	void __iomem *regs;
- 	struct regmap *regmap;
- 	struct clk *pixel_clk;	/* lcd pixel clock */
-+	struct clk *lvds_clk;	/* lvds pixel clock */
- 	struct mutex err_lock;	/* protecting error_status */
- 	struct ltdc_caps caps;
- 	u32 irq_status;
-
--- 
-2.25.1
+Best regards,
+Krzysztof
 
 
