@@ -1,139 +1,124 @@
-Return-Path: <devicetree+bounces-39267-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-39268-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3724F84BE35
-	for <lists+devicetree@lfdr.de>; Tue,  6 Feb 2024 20:41:45 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id F02CE84BE4A
+	for <lists+devicetree@lfdr.de>; Tue,  6 Feb 2024 20:48:08 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id C83862829FA
-	for <lists+devicetree@lfdr.de>; Tue,  6 Feb 2024 19:41:43 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 81621286547
+	for <lists+devicetree@lfdr.de>; Tue,  6 Feb 2024 19:48:07 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id EEBAF1756B;
-	Tue,  6 Feb 2024 19:41:37 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 938711759C;
+	Tue,  6 Feb 2024 19:48:03 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="pQxpupbN"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="F1cJ0JrH"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-ej1-f54.google.com (mail-ej1-f54.google.com [209.85.218.54])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 473A1175B4;
-	Tue,  6 Feb 2024 19:41:35 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DD1F617730;
+	Tue,  6 Feb 2024 19:48:01 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.54
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1707248497; cv=none; b=LRj3U6+t1PkKHt8oXig27WnUHzh0eBuEDVmR6qWbQTLZQUXc1ndrDeYfU6YkO6M6iYTdsRX5GfCZPkCNud/7jUfPEhT5lzdFABKgtJYOaJErkHyYoVSd7Ui4HnroLtdfI2P9fxGfXGDPRvlK++81HdAZ4RydaIE1HwhO7R73kQw=
+	t=1707248883; cv=none; b=jdoyyWsbiG925wABolGb6ZZSpw5jbyt8JkiFWUJwyeR+ySBluEkiqmFMklvznR4xSS6yIXniwMys7UIJRNJzIHdwvQCrGtQQ2qlbEs0njiRbDvX50eDKtZUzhQkdsaYQmAE74uOVcYjo9Lr6Qda6+wubBuN7J+VXtzdOwglMBZs=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1707248497; c=relaxed/simple;
-	bh=itMo3TvBls5igRp570SC5K5V0EE/4TF5MkwczexECuo=;
-	h=Message-ID:Date:MIME-Version:From:Subject:To:CC:References:
-	 In-Reply-To:Content-Type; b=NKXBhjXpofkXj0f+S6X+1vscTCysHd134bQdtfDGTjuLT3M5TnmSeXzGRQYJ1IZCJ3lIYkiPCh86dN5iJyJHItYDhTyOHWZRGLj0U5OFHlWhgY03htwOh1ZB2QALkcDcHoepu9Dr/gVncaZjs2ctjIS39lGDq+MaYdLRT+va/Js=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=pQxpupbN; arc=none smtp.client-ip=205.220.168.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
-Received: from pps.filterd (m0279864.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.17.1.24/8.17.1.24) with ESMTP id 416J7S1K026356;
-	Tue, 6 Feb 2024 19:41:32 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
-	message-id:date:mime-version:from:subject:to:cc:references
-	:in-reply-to:content-type:content-transfer-encoding; s=
-	qcppdkim1; bh=6tEK7V+08Z8w77m62FJ5hHvDRAv+bfYut60ANhTlWPs=; b=pQ
-	xpupbNv77apvMPq6Ex2s3Frww3VswaeFj8nSyGiqOOKh5VCkX1dB1HqdOIyEi1FG
-	ezdF52cYL/x7gdzjC5c044YqmHnn1PTVrSN1e0s+CK8eIIRa0xwQ1BtswICzt5Te
-	yNp42readMjKOhql5BxbCV/t9pCGKA50uKkM9b16xMagBtZ6LQbFwkSli5IkalK5
-	+2uQiELJ7ZBgMDxP4LZHotOROvarjMr9xQkxfq4iaOz940+uA9eeq0js4H8kzsLv
-	qJnX+d1Z2mUI3OxCUmGDR9ULaHBB87z5nOOniqUucpuDD/iJW1QL585TB6Bq3VG8
-	mZbGQUDRi0Q2vsmLAUNQ==
-Received: from nalasppmta02.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3w3apjj4ds-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Tue, 06 Feb 2024 19:41:32 +0000 (GMT)
-Received: from nalasex01c.na.qualcomm.com (nalasex01c.na.qualcomm.com [10.47.97.35])
-	by NALASPPMTA02.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 416JfW5x015795
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Tue, 6 Feb 2024 19:41:32 GMT
-Received: from [10.110.41.143] (10.80.80.8) by nalasex01c.na.qualcomm.com
- (10.47.97.35) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1118.40; Tue, 6 Feb
- 2024 11:41:29 -0800
-Message-ID: <ab88f10f-d752-4c6a-b0e5-d8b05af99c28@quicinc.com>
-Date: Tue, 6 Feb 2024 11:41:24 -0800
+	s=arc-20240116; t=1707248883; c=relaxed/simple;
+	bh=f8momyWthQvHXshHKFaZKW4+PsSEkHD5atm8D7vlgiY=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=DDHPezhwPrOPYSEmcD7g1S5DevEBbt/9rhPcpATVImkX1ITU7ivZh8reIK5SedgiYA6qxArSNKOU2YFrTw1iX5ZfNPz2bYgt4HPphzAmoIl2u33Q7KxysdtEG4QdLH6iTkslm/U9hdH5aiCCkGW1/pa3jGm9ZmMzj/Zh4n8UFyw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=F1cJ0JrH; arc=none smtp.client-ip=209.85.218.54
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-ej1-f54.google.com with SMTP id a640c23a62f3a-a38271c0bd5so133190966b.0;
+        Tue, 06 Feb 2024 11:48:01 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1707248880; x=1707853680; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=1inhWZLgkqsIZoNuob5TJaNdpYv+jmAPLQY9dtW8I+4=;
+        b=F1cJ0JrHmWQxgSi7sGEMY/rSFw9grlM9PDIkU+Z6iZMwZhNEb2KCqQkEDa3f2aqD5q
+         XD+9mhntouu8ZcUBToOd6k6xJzfartCPAvtdzumIINR7V221+QGQTpUgVz3Ah7bFAqyn
+         FH3P4ZjTSXfn+chga+vvAeV8WeBoEiKe4vWJm/S9/KIHOuLhY1wZY168MMLDGTLXyNTD
+         bQjxZJuW1JmBbSYpKmUkFjFiRXf4Ta7ix65Je06ac7lcjoNDBlHlyTWKLpODMKhm1fc3
+         PN1KiEqIUcTeFD1P4X1J8wpUrtbUoVwGRlk4Bx/Is3kq9SokDFN2TWLMCMmZgLdcHcjr
+         8h7g==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1707248880; x=1707853680;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=1inhWZLgkqsIZoNuob5TJaNdpYv+jmAPLQY9dtW8I+4=;
+        b=WOTeAwK7WKAqDuc8L7Q+SXQjO6kIeSud09LXik9e11dKvF+fwY55O4XU24kodxqStC
+         Fe8FZsWOfsnMXTKloGGvWc7g5JDIbYHHWSDGJSRReamJK1eegcmU+/kxO8gZXFCci4G9
+         Yj5sy/+ukJ2al/RG5c7Gmh4BMfrWu2oWm0TB/sKktbe1+fsIiQPGi60EgYfnKfeXzaMZ
+         MrVno+yO2kI6vdakUvbnNuVsyWDaTspiKa96LDEHt70y2IvnUcrbsXEO+ZzRAITFv8i/
+         2tJkQGqzw1YUZg50frWSs6BWvubDC8mM7GtJmjseGx7WzirkfOs/cqZHtSgXMZUVuVq2
+         YASw==
+X-Gm-Message-State: AOJu0Yx2ISPV+l6hIggjREWdJoQTOVnxHNcBtzqoXYx/pMlk5XdY19rC
+	5CQteW8RJl6wYsdBGaR5AAYFoZ1iyylrgFZqQb5gYhQlAONI6ZMy
+X-Google-Smtp-Source: AGHT+IEJecEmIFbXNvKyaNthn4NmtrIZF6dG87jffosPBfxOiObTqJmO8nUyoxn2j7A2p3NYhqJQqg==
+X-Received: by 2002:a17:907:7711:b0:a38:259c:1335 with SMTP id kw17-20020a170907771100b00a38259c1335mr1787968ejc.44.1707248879789;
+        Tue, 06 Feb 2024 11:47:59 -0800 (PST)
+X-Forwarded-Encrypted: i=0; AJvYcCWs/eCwG/eDszW1BhqsR3kKejgUHwF6IjMLRdu6nSVd0+TKoNkLZsrEGrdus3W1fk2PIclI3RkUJNb4JAALOiPFWw8UwJWtSjv6f5OjXI61tBvUSpHBaYUgjvop8JERQ2AsXNgHF4M0kPaNt1wH6zq+CrIwyMp7nFXxw8rvYV6xRsOE9itQIfgr/syU0MHmb8+fNH1JmD7XawlaCwob7EzEcOYQ+I4CKO/mwYcQVpeL0tLvdYcDiNnkCkx1PB7cezbfiFBi4c/4qVu5ScSLjELiTUV4jFEJGD5h6Gs6OmoxXI2JuSbkAFr8hC4tj6SKk0pG934s5PftTRGNVraBqaZyi0HVcE3KeskADZdDPt7xbGqb2RDFqko8x9Nm9bSz6fefRMVz3gtQc0rh07cL6MKOdspRSyjSu+OEU/RHOKIiR3qC02IRjoWImgjSAV32VMrlaLNJGfMzLwQZARt9zFWOflX0UVgKtQhjUUuIL/tCbFQnIFl0Dr9M/tKDhn4vEZAtGy9LI1kW2UaD/yrnNa6tZI0Na7OiMVJJKBsIysK9LXveRNzfS2Hpdaktl0xf/rkDrUV8x9gfSqKelmYdDHMvOypi
+Received: from corebook.localdomain (2001-1c00-020d-1300-1b1c-4449-176a-89ea.cable.dynamic.v6.ziggo.nl. [2001:1c00:20d:1300:1b1c:4449:176a:89ea])
+        by smtp.gmail.com with ESMTPSA id ps7-20020a170906bf4700b00a379be71a84sm1476767ejb.219.2024.02.06.11.47.58
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 06 Feb 2024 11:47:59 -0800 (PST)
+From: Eric Woudstra <ericwouds@gmail.com>
+To: "David S. Miller" <davem@davemloft.net>,
+	Eric Dumazet <edumazet@google.com>,
+	Jakub Kicinski <kuba@kernel.org>,
+	Paolo Abeni <pabeni@redhat.com>,
+	Rob Herring <robh+dt@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Andrew Lunn <andrew@lunn.ch>,
+	Heiner Kallweit <hkallweit1@gmail.com>,
+	Russell King <linux@armlinux.org.uk>,
+	Matthias Brugger <matthias.bgg@gmail.com>,
+	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
+	"Frank Wunderlich" <frank-w@public-files.de>,
+	Daniel Golle <daniel@makrotopia.org>,
+	Lucien Jheng  <lucien.jheng@airoha.com>,
+	Zhi-Jun You <hujy652@protonmail.com>
+Cc: netdev@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	Eric Woudstra <ericwouds@gmail.com>
+Subject: [PATCH net-next 0/2] Add en8811h phy driver and devicetree binding doc
+Date: Tue,  6 Feb 2024 20:47:49 +0100
+Message-ID: <20240206194751.1901802-1-ericwouds@gmail.com>
+X-Mailer: git-send-email 2.42.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-From: Unnathi Chalicheemala <quic_uchalich@quicinc.com>
-Subject: Re: [PATCH v2 0/5] LLCC: Support for Broadcast_AND region
-To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        Bjorn Andersson
-	<andersson@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@linaro.org>,
-        Rob Herring
-	<robh+dt@kernel.org>,
-        Krzysztof Kozlowski
-	<krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>
-CC: <linux-arm-msm@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>, <kernel@quicinc.com>
-References: <cover.1707202761.git.quic_uchalich@quicinc.com>
- <be9d964b-7900-4fef-9268-67ef404cd611@linaro.org>
-Content-Language: en-US
-In-Reply-To: <be9d964b-7900-4fef-9268-67ef404cd611@linaro.org>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
- nalasex01c.na.qualcomm.com (10.47.97.35)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-ORIG-GUID: vsrVVJT6tKe7oxPrj3DmAQLxnnjlH0mV
-X-Proofpoint-GUID: vsrVVJT6tKe7oxPrj3DmAQLxnnjlH0mV
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.272,Aquarius:18.0.1011,Hydra:6.0.619,FMLib:17.11.176.26
- definitions=2024-02-06_12,2024-01-31_01,2023-05-22_02
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 mlxlogscore=302 mlxscore=0
- phishscore=0 priorityscore=1501 bulkscore=0 suspectscore=0 adultscore=0
- clxscore=1015 lowpriorityscore=0 spamscore=0 impostorscore=0
- malwarescore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.19.0-2401310000 definitions=main-2402060136
+Content-Transfer-Encoding: 8bit
 
-On 2/6/2024 12:34 AM, Krzysztof Kozlowski wrote:
-> On 06/02/2024 08:15, Unnathi Chalicheemala wrote:
->> This series adds:
->> 1. Device tree register mapping for Broadcast_AND region in SM8450,
->> SM8550, SM8650.
->> 2. LLCC driver updates to reflect addition of Broadcast_AND regmap.
->>
->> To support CSR programming, a broadcast interface is used to program all
->> channels in a single command. Until SM8450 there was only one broadcast
->> region (Broadcast_OR) used to broadcast write and check for status bit
->> 0. From SM8450 onwards another broadcast region (Broadcast_AND) has been
->> added which checks for status bit 1.
->>
->> This series updates the device trees from SM8450 onwards to have a
->> mapping to this Broadcast_AND region. It also updates the llcc_drv_data
->> structure with a regmap for Broadcast_AND region and corrects the
->> broadcast region used to check for status bit 1.
->>
->> Merging strategy
->> ----------------
->>
->> All patches should be merged due to LLCC DeviceTree/driver dependency.
-> 
-> Dependency? Sorry, there cannot be a dependency between DTS and driver.
-> Please fix your patchset.
-> 
+Add the Airoha EN8811H 2.5 Gigabit PHY.
 
-This is the suggested merge strategy. But I have updated the driver in v2
-to ensure that applying the driver patch alone will work with existing DTs.
-Sorry for being unclear; "should" does make it sound like there is a hard
-dependency. 
+The phy supports 100/1000/2500 Mbps with auto negotiation only.
 
-> 
-> 
-> Best regards,
-> Krzysztof
-> 
+The driver uses two firmware files, for which updated versions are added to
+linux-firmware already.
+
+This patch series adds the driver and the devicetree binding documentation.
+
+Eric Woudstra (2):
+  dt-bindings: net: airoha,en8811h: Add en8811h serdes polarity
+  net: phy: air_en8811h: Add the Airoha EN8811H PHY driver
+
+ .../bindings/net/airoha,en8811h.yaml          |   44 +
+ drivers/net/phy/Kconfig                       |    5 +
+ drivers/net/phy/Makefile                      |    1 +
+ drivers/net/phy/air_en8811h.c                 | 1006 +++++++++++++++++
+ 4 files changed, 1056 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/net/airoha,en8811h.yaml
+ create mode 100644 drivers/net/phy/air_en8811h.c
+
+-- 
+2.42.1
+
 
