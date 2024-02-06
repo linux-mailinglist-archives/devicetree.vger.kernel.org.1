@@ -1,228 +1,229 @@
-Return-Path: <devicetree+bounces-39107-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-39108-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5E18F84B6CF
-	for <lists+devicetree@lfdr.de>; Tue,  6 Feb 2024 14:45:47 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id EC5A184B6E1
+	for <lists+devicetree@lfdr.de>; Tue,  6 Feb 2024 14:51:11 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 704B81C239D8
-	for <lists+devicetree@lfdr.de>; Tue,  6 Feb 2024 13:45:46 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id A2EA5288BD0
+	for <lists+devicetree@lfdr.de>; Tue,  6 Feb 2024 13:51:10 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 120BE131E29;
-	Tue,  6 Feb 2024 13:43:28 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 524C1131749;
+	Tue,  6 Feb 2024 13:51:03 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=amazon.com header.i=@amazon.com header.b="Xs8zQ64+"
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="CMdm1TN0"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp-fw-80009.amazon.com (smtp-fw-80009.amazon.com [99.78.197.220])
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.16])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 172A2131743;
-	Tue,  6 Feb 2024 13:43:25 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=99.78.197.220
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A9A60130E5E;
+	Tue,  6 Feb 2024 13:51:01 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=192.198.163.16
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1707227008; cv=none; b=XGthMrMK/w/5NHsbg09s+3sea1o4XszTMm8aHD9Ufki2wWL03y4KVPePEDqrGLu9QfUBGqobFvHrSnjx/RX7XezBe90EfGYAOcgbXkNQqLYs5Wabwcn7Ql/vlAVxpUy2m2ptXycD/IAVanMkZqSK5uLJT2+pCV/Yo2HIpnZhYU8=
+	t=1707227463; cv=none; b=VOEF6MDykm1PpzqlMthK5+/cGKiHMIGeC/r8Nqf4Gci8cklrlwPBv4sZez9CGpat0b7mD3YOmoYkd3VDya6Tt5M8VBFYs528S1TQFPHVTyKvokH4GnMfjj1Vw7Am8v/4HclAGnpr2roHaUVhhcqXnq6FlJfKOBm3j7T6gh7sioM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1707227008; c=relaxed/simple;
-	bh=3PVinF+1/FzQadTueb/6gaePwQtYz50Y+ULO5KVmGA4=;
-	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
-	 In-Reply-To:Content-Type; b=CNdGq01FF2AJ+S8rmblm4XpmKdqyTdK6d+fj6hiRFyWx5nEGDEcssY/RUZ8H3J+5SuWBXi9TFJ508M6Prd06Lr3bsN1S4EaIOMx3OzmpV4WOVGzzSVtC46m3r2PS+oW3PaNEKTim0AF4zbRnvF9+46PmaDOZBM985fUr11IYHIk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=amazon.com; spf=pass smtp.mailfrom=amazon.de; dkim=pass (1024-bit key) header.d=amazon.com header.i=@amazon.com header.b=Xs8zQ64+; arc=none smtp.client-ip=99.78.197.220
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=amazon.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=amazon.de
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-  d=amazon.com; i=@amazon.com; q=dns/txt; s=amazon201209;
-  t=1707227006; x=1738763006;
-  h=message-id:date:mime-version:subject:to:cc:references:
-   from:in-reply-to:content-transfer-encoding;
-  bh=3PVinF+1/FzQadTueb/6gaePwQtYz50Y+ULO5KVmGA4=;
-  b=Xs8zQ64+yPMOjSR6JlJDOtPU4uDw/JuU+RjD4ml5lQani0ypFmdFSTFT
-   vXebqVH5+nlC8EdTRB3cTFd7eBPWP/EEyPBlpz7SsnyK9njxbSnYuiGum
-   Tk0eEH1f6Ad9jeh1Ir35mjdvl7VnfaooO1bo/CcV+XI1lE1jJl1cPACDl
-   4=;
-X-IronPort-AV: E=Sophos;i="6.05,247,1701129600"; 
-   d="scan'208";a="64055192"
-Received: from pdx4-co-svc-p1-lb2-vlan2.amazon.com (HELO smtpout.prod.us-west-2.prod.farcaster.email.amazon.dev) ([10.25.36.210])
-  by smtp-border-fw-80009.pdx80.corp.amazon.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 06 Feb 2024 13:43:24 +0000
-Received: from EX19MTAUWB001.ant.amazon.com [10.0.7.35:48152]
- by smtpin.naws.us-west-2.prod.farcaster.email.amazon.dev [10.0.4.177:2525] with esmtp (Farcaster)
- id 28ed5207-8056-4dc0-b7b9-869e672b3acd; Tue, 6 Feb 2024 13:43:23 +0000 (UTC)
-X-Farcaster-Flow-ID: 28ed5207-8056-4dc0-b7b9-869e672b3acd
-Received: from EX19D020UWC004.ant.amazon.com (10.13.138.149) by
- EX19MTAUWB001.ant.amazon.com (10.250.64.248) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.1118.40; Tue, 6 Feb 2024 13:43:23 +0000
-Received: from [0.0.0.0] (10.253.83.51) by EX19D020UWC004.ant.amazon.com
- (10.13.138.149) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1118.40; Tue, 6 Feb
- 2024 13:43:17 +0000
-Message-ID: <c7157097-4727-4360-80a0-20e7d8015e13@amazon.com>
-Date: Tue, 6 Feb 2024 14:43:15 +0100
+	s=arc-20240116; t=1707227463; c=relaxed/simple;
+	bh=40318rXtRK8bMlqY1+g0mB2+CszJHFdZCwiUpgUGL6Y=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=itmliTmvtjBAwZQ18ipWNnHbiEaQjqyBHDLg5j8FMWL8waeTgPDJqrYmZPhzi6yG8JYy/QeITF5RNST1IOj/56rU8xQT5zHeNzMQ8d195JrC+W9FIm66KtvW6EmH960HYcTJhqvhQ/fmsemM56tj+JtqBdpnZD0r3XCBf62HT3s=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com; spf=none smtp.mailfrom=linux.intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=CMdm1TN0; arc=none smtp.client-ip=192.198.163.16
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com
+Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=linux.intel.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1707227462; x=1738763462;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:content-transfer-encoding:in-reply-to;
+  bh=40318rXtRK8bMlqY1+g0mB2+CszJHFdZCwiUpgUGL6Y=;
+  b=CMdm1TN0RK9fcsUSI1yNL5KCcS7uV1Ly3vF0krifkr9rpg+WKsQ87B3L
+   W74p8/BN0Bsf35AxClOsdOWB0Jf6+eSYyo0g1aF+SV2YNdQzJapQhwloO
+   GNbiWKJl9p/yqpgWue41CoOlCE7897pxXD0OMZhOt6nbZPRAQCy+cfa/b
+   P6EaZOACVrCuSoApXZNeTaGTvdMxl79f4d0JF+i5vzxBDWSARawQ+W1JX
+   2hyYiGrSNEBv0kqOCzoBbNa4otaw6H3OJnX9zaW1LMT1JmJ+dQjVvhh1S
+   UixoiSR67HkLeLzGTbWKDRN7DQnce6C3skQtBUMKpQecUywWK7IDdWJ+V
+   w==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10975"; a="1017395"
+X-IronPort-AV: E=Sophos;i="6.05,247,1701158400"; 
+   d="scan'208";a="1017395"
+Received: from fmsmga002.fm.intel.com ([10.253.24.26])
+  by fmvoesa110.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 06 Feb 2024 05:51:01 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=McAfee;i="6600,9927,10975"; a="909641034"
+X-IronPort-AV: E=Sophos;i="6.05,247,1701158400"; 
+   d="scan'208";a="909641034"
+Received: from smile.fi.intel.com ([10.237.72.54])
+  by fmsmga002.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 06 Feb 2024 05:50:57 -0800
+Received: from andy by smile.fi.intel.com with local (Exim 4.97)
+	(envelope-from <andriy.shevchenko@linux.intel.com>)
+	id 1rXLqg-00000002M0b-34Uz;
+	Tue, 06 Feb 2024 15:50:54 +0200
+Date: Tue, 6 Feb 2024 15:50:54 +0200
+From: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
+To: Mike Looijmans <mike.looijmans@topic.nl>
+Cc: devicetree@vger.kernel.org, linux-iio@vger.kernel.org,
+	Jonathan Cameron <jic23@kernel.org>,
+	Lars-Peter Clausen <lars@metafoo.de>,
+	Liam Beguin <liambeguin@gmail.com>,
+	Liam Girdwood <lgirdwood@gmail.com>,
+	Maksim Kiselev <bigunclemax@gmail.com>,
+	Marcus Folkesson <marcus.folkesson@gmail.com>,
+	Marius Cristea <marius.cristea@microchip.com>,
+	Mark Brown <broonie@kernel.org>,
+	Niklas Schnelle <schnelle@linux.ibm.com>,
+	Okan Sahin <okan.sahin@analog.com>, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v3 2/2] iio: adc: ti-ads1298: Add driver
+Message-ID: <ZcI5PoWojKRrdpVl@smile.fi.intel.com>
+References: <20240206065818.2016910-1-mike.looijmans@topic.nl>
+ <1b153bce-a66a-45ee-a5c6-963ea6fb1c82.949ef384-8293-46b8-903f-40a477c056ae.fd628a1a-a926-426e-a239-bfd8c9858b94@emailsignatures365.codetwo.com>
+ <20240206065818.2016910-2-mike.looijmans@topic.nl>
+ <ZcIsuiuisQjTIxJv@smile.fi.intel.com>
+ <4c6654f5-2d9e-4c1b-a5de-7bdeacf5e99f@topic.nl>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v3 00/17] kexec: Allow preservation of ftrace buffers
-Content-Language: en-US
-To: Oleksij Rempel <o.rempel@pengutronix.de>
-CC: <linux-kernel@vger.kernel.org>, <linux-trace-kernel@vger.kernel.org>,
-	<linux-mm@kvack.org>, <devicetree@vger.kernel.org>,
-	<linux-arm-kernel@lists.infradead.org>, <kexec@lists.infradead.org>,
-	<linux-doc@vger.kernel.org>, <x86@kernel.org>, Eric Biederman
-	<ebiederm@xmission.com>, "H . Peter Anvin" <hpa@zytor.com>, Andy Lutomirski
-	<luto@kernel.org>, Peter Zijlstra <peterz@infradead.org>, Steven Rostedt
-	<rostedt@goodmis.org>, Andrew Morton <akpm@linux-foundation.org>, "Mark
- Rutland" <mark.rutland@arm.com>, Tom Lendacky <thomas.lendacky@amd.com>,
-	Ashish Kalra <ashish.kalra@amd.com>, James Gowans <jgowans@amazon.com>,
-	Stanislav Kinsburskii <skinsburskii@linux.microsoft.com>, <arnd@arndb.de>,
-	<pbonzini@redhat.com>, <madvenka@linux.microsoft.com>, Anthony Yznaga
-	<anthony.yznaga@oracle.com>, Usama Arif <usama.arif@bytedance.com>, "David
- Woodhouse" <dwmw@amazon.co.uk>, Benjamin Herrenschmidt
-	<benh@kernel.crashing.org>, Rob Herring <robh+dt@kernel.org>, "Krzysztof
- Kozlowski" <krzk@kernel.org>
-References: <20240117144704.602-1-graf@amazon.com>
- <ZcHrIJ7lxpbkm5sc@pengutronix.de>
-From: Alexander Graf <graf@amazon.com>
-In-Reply-To: <ZcHrIJ7lxpbkm5sc@pengutronix.de>
-X-ClientProxiedBy: EX19D044UWB004.ant.amazon.com (10.13.139.134) To
- EX19D020UWC004.ant.amazon.com (10.13.138.149)
-Content-Type: text/plain; charset="utf-8"; format="flowed"
-Content-Transfer-Encoding: base64
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <4c6654f5-2d9e-4c1b-a5de-7bdeacf5e99f@topic.nl>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
 
-SGV5IE9sZWtzaWohCgpPbiAwNi4wMi4yNCAwOToxNywgT2xla3NpaiBSZW1wZWwgd3JvdGU6Cj4g
-SGkgQWxleGFuZGVyLAo+Cj4gTmljZSB3b3JrIQo+Cj4gT24gV2VkLCBKYW4gMTcsIDIwMjQgYXQg
-MDI6NDY6NDdQTSArMDAwMCwgQWxleGFuZGVyIEdyYWYgd3JvdGU6Cj4+IEtleGVjIHRvZGF5IGNv
-bnNpZGVycyBpdHNlbGYgcHVyZWx5IGEgYm9vdCBsb2FkZXI6IFdoZW4gd2UgZW50ZXIgdGhlIG5l
-dwo+PiBrZXJuZWwsIGFueSBzdGF0ZSB0aGUgcHJldmlvdXMga2VybmVsIGxlZnQgYmVoaW5kIGlz
-IGlycmVsZXZhbnQgYW5kIHRoZQo+PiBuZXcga2VybmVsIHJlaW5pdGlhbGl6ZXMgdGhlIHN5c3Rl
-bS4KPj4KPj4gSG93ZXZlciwgdGhlcmUgYXJlIHVzZSBjYXNlcyB3aGVyZSB0aGlzIG1vZGUgb2Yg
-b3BlcmF0aW9uIGlzIG5vdCB3aGF0IHdlCj4+IGFjdHVhbGx5IHdhbnQuIEluIHZpcnR1YWxpemF0
-aW9uIGhvc3RzIGZvciBleGFtcGxlLCB3ZSB3YW50IHRvIHVzZSBrZXhlYwo+PiB0byB1cGRhdGUg
-dGhlIGhvc3Qga2VybmVsIHdoaWxlIHZpcnR1YWwgbWFjaGluZSBtZW1vcnkgc3RheXMgdW50b3Vj
-aGVkLgo+PiBXaGVuIHdlIGFkZCBkZXZpY2UgYXNzaWdubWVudCB0byB0aGUgbWl4LCB3ZSBhbHNv
-IG5lZWQgdG8gZW5zdXJlIHRoYXQKPj4gSU9NTVUgYW5kIFZGSU8gc3RhdGVzIGFyZSB1bnRvdWNo
-ZWQuIElmIHdlIGFkZCBQQ0llIHBlZXIgdG8gcGVlciBETUEsIHdlCj4+IG5lZWQgdG8gZG8gdGhl
-IHNhbWUgZm9yIHRoZSBQQ0kgc3Vic3lzdGVtLiBJZiB3ZSB3YW50IHRvIGtleGVjIHdoaWxlIGFu
-Cj4+IFNFVi1TTlAgZW5hYmxlZCB2aXJ0dWFsIG1hY2hpbmUgaXMgcnVubmluZywgd2UgbmVlZCB0
-byBwcmVzZXJ2ZSB0aGUgVk0KPj4gY29udGV4dCBwYWdlcyBhbmQgcGh5c2ljYWwgbWVtb3J5LiBT
-ZWUgSmFtZXMnIGFuZCBteSBMaW51eCBQbHVtYmVycwo+PiBDb25mZXJlbmNlIDIwMjMgcHJlc2Vu
-dGF0aW9uIGZvciBkZXRhaWxzOgo+Pgo+PiAgICBodHRwczovL2xwYy5ldmVudHMvZXZlbnQvMTcv
-Y29udHJpYnV0aW9ucy8xNDg1Lwo+Pgo+PiBUbyBzdGFydCB1cyBvbiB0aGUgam91cm5leSB0byBz
-dXBwb3J0IGFsbCB0aGUgdXNlIGNhc2VzIGFib3ZlLCB0aGlzCj4+IHBhdGNoIGltcGxlbWVudHMg
-YmFzaWMgaW5mcmFzdHJ1Y3R1cmUgdG8gYWxsb3cgaGFuZCBvdmVyIG9mIGtlcm5lbCBzdGF0ZQo+
-PiBhY3Jvc3Mga2V4ZWMgKEtleGVjIEhhbmRPdmVyLCBha2EgS0hPKS4gQXMgZXhhbXBsZSB0YXJn
-ZXQsIHdlIHVzZSBmdHJhY2U6Cj4+IFdpdGggdGhpcyBwYXRjaCBzZXQgYXBwbGllZCwgeW91IGNh
-biByZWFkIGZ0cmFjZSByZWNvcmRzIGZyb20gdGhlCj4+IHByZS1rZXhlYyBlbnZpcm9ubWVudCBp
-biB5b3VyIHBvc3Qta2V4ZWMgb25lLiBUaGlzIGNyZWF0ZXMgYSB2ZXJ5IHBvd2VyZnVsCj4+IGRl
-YnVnZ2luZyBhbmQgcGVyZm9ybWFuY2UgYW5hbHlzaXMgdG9vbCBmb3Iga2V4ZWMuIEl0J3MgYWxz
-byBzbGlnaHRseQo+PiBlYXNpZXIgdG8gcmVhc29uIGFib3V0IHRoYW4gZnVsbCBibG93biBWRklP
-IHN0YXRlIHByZXNlcnZhdGlvbi4KPj4KPj4gPT0gQWx0ZXJuYXRpdmVzID09Cj4+Cj4+IFRoZXJl
-IGFyZSBhbHRlcm5hdGl2ZSBhcHByb2FjaGVzIHRvIChwYXJ0cyBvZikgdGhlIHByb2JsZW1zIGFi
-b3ZlOgo+Pgo+PiAgICAqIE1lbW9yeSBQb29scyBbMV0gLSBwcmVhbGxvY2F0ZWQgcGVyc2lzdGVu
-dCBtZW1vcnkgcmVnaW9uICsgYWxsb2NhdG9yCj4+ICAgICogUFJNRU0gWzJdIC0gcmVzaXphYmxl
-IHBlcnNpc3RlbnQgbWVtb3J5IHJlZ2lvbnMgd2l0aCBmaXhlZCBtZXRhZGF0YQo+PiAgICAgICAg
-ICAgICAgICAgIHBvaW50ZXIgb24gdGhlIGtlcm5lbCBjb21tYW5kIGxpbmUgKyBhbGxvY2F0b3IK
-Pj4gICAgKiBQa2VybmZzIFszXSAtIHByZWFsbG9jYXRlZCBmaWxlIHN5c3RlbSBmb3IgaW4ta2Vy
-bmVsIGRhdGEgd2l0aCBmaXhlZAo+PiAgICAgICAgICAgICAgICAgICAgYWRkcmVzcyBsb2NhdGlv
-biBvbiB0aGUga2VybmVsIGNvbW1hbmQgbGluZQo+PiAgICAqIFBLUkFNIFs0XSAtIGhhbmRvdmVy
-IG9mIHVzZXIgc3BhY2UgcGFnZXMgdXNpbmcgYSBmaXhlZCBtZXRhZGF0YSBwYWdlCj4+ICAgICAg
-ICAgICAgICAgICAgc3BlY2lmaWVkIHZpYSBjb21tYW5kIGxpbmUKPj4KPj4gQWxsIG9mIHRoZSBh
-cHByb2FjaGVzIGFib3ZlIGZ1bmRhbWVudGFsbHkgaGF2ZSB0aGUgc2FtZSBwcm9ibGVtOiBUaGV5
-Cj4+IHJlcXVpcmUgdGhlIGFkbWluaXN0cmF0b3IgdG8gZXhwbGljaXRseSBjYXJ2ZSBvdXQgYSBw
-aHlzaWNhbCBtZW1vcnkKPj4gbG9jYXRpb24gYmVjYXVzZSB0aGV5IGhhdmUgbm8gbWVjaGFuaXNt
-IG91dHNpZGUgb2YgdGhlIGtlcm5lbCBjb21tYW5kCj4+IGxpbmUgdG8gcGFzcyBkYXRhIChpbmNs
-dWRpbmcgbWVtb3J5IHJlc2VydmF0aW9ucykgYmV0d2VlbiBrZXhlYydpbmcKPj4ga2VybmVscy4K
-Pj4KPj4gS0hPIHByb3ZpZGVzIHRoYXQgYmFzZSBmb3VuZGF0aW9uLiBXZSB3aWxsIGRldGVybWlu
-ZSBsYXRlciB3aGV0aGVyIHdlCj4+IHN0aWxsIG5lZWQgYW55IG9mIHRoZSBhcHByb2FjaGVzIGFi
-b3ZlIGZvciBmYXN0IGJ1bGsgbWVtb3J5IGhhbmRvdmVyIG9mIGZvcgo+PiBleGFtcGxlIElPTU1V
-IHBhZ2UgdGFibGVzLiBCdXQgSU1ITyB0aGV5IHdvdWxkIGFsbCBiZSB1c2VycyBvZiBLSE8sIHdp
-dGgKPj4gS0hPIHByb3ZpZGluZyB0aGUgZm91bmRhdGlvbmFsIHByaW1pdGl2ZSB0byBwYXNzIG1l
-dGFkYXRhIGFuZCBidWxrIG1lbW9yeQo+PiByZXNlcnZhdGlvbnMgYXMgd2VsbCBhcyBwcm92aWRl
-IGVhc3kgdmVyc2lvbmluZyBmb3IgZGF0YS4KPj4KPj4gPT0gT3ZlcnZpZXcgPT0KPj4KPj4gV2Ug
-aW50cm9kdWNlIGEgbWV0YWRhdGEgZmlsZSB0aGF0IHRoZSBrZXJuZWxzIHBhc3MgYmV0d2VlbiBl
-YWNoIG90aGVyLiBIb3cKPj4gdGhleSBwYXNzIGl0IGlzIGFyY2hpdGVjdHVyZSBzcGVjaWZpYy4g
-VGhlIGZpbGUncyBmb3JtYXQgaXMgYSBGbGF0dGVuZWQKPj4gRGV2aWNlIFRyZWUgKGZkdCkgd2hp
-Y2ggaGFzIGEgZ2VuZXJhdG9yIGFuZCBwYXJzZXIgYWxyZWFkeSBpbmNsdWRlZCBpbgo+PiBMaW51
-eC4gV2hlbiB0aGUgcm9vdCB1c2VyIGVuYWJsZXMgS0hPIHRocm91Z2ggL3N5cy9rZXJuZWwva2hv
-L2FjdGl2ZSwgdGhlCj4+IGtlcm5lbCBpbnZva2VzIGNhbGxiYWNrcyB0byBldmVyeSBkcml2ZXIg
-dGhhdCBzdXBwb3J0cyBLSE8gdG8gc2VyaWFsaXplCj4+IGl0cyBzdGF0ZS4gV2hlbiB0aGUgYWN0
-dWFsIGtleGVjIGhhcHBlbnMsIHRoZSBmZHQgaXMgcGFydCBvZiB0aGUgaW1hZ2UKPj4gc2V0IHRo
-YXQgd2UgYm9vdCBpbnRvLiBJbiBhZGRpdGlvbiwgd2Uga2VlcCBhICJzY3JhdGNoIHJlZ2lvbiIg
-YXZhaWxhYmxlCj4+IGZvciBrZXhlYzogQSBwaHlzaWNhbGx5IGNvbnRpZ3VvdXMgbWVtb3J5IHJl
-Z2lvbiB0aGF0IGlzIGd1YXJhbnRlZWQgdG8KPj4gbm90IGhhdmUgYW55IG1lbW9yeSB0aGF0IEtI
-TyB3b3VsZCBwcmVzZXJ2ZS4gIFRoZSBuZXcga2VybmVsIGJvb3RzdHJhcHMKPj4gaXRzZWxmIHVz
-aW5nIHRoZSBzY3JhdGNoIHJlZ2lvbiBhbmQgc2V0cyBhbGwgaGFuZGVkIG92ZXIgbWVtb3J5IGFz
-IGluIHVzZS4KPj4gV2hlbiBkcml2ZXJzIGluaXRpYWxpemUgdGhhdCBzdXBwb3J0IEtITywgdGhl
-eSBpbnRyb3NwZWN0IHRoZSBmZHQgYW5kCj4+IHJlY292ZXIgdGhlaXIgc3RhdGUgZnJvbSBpdC4g
-VGhpcyBpbmNsdWRlcyBtZW1vcnkgcmVzZXJ2YXRpb25zLCB3aGVyZSB0aGUKPj4gZHJpdmVyIGNh
-biBlaXRoZXIgZGlzY2FyZCBvciBjbGFpbSByZXNlcnZhdGlvbnMuCj4+Cj4+ID09IExpbWl0YXRp
-b25zID09Cj4+Cj4+IEkgY3VycmVudGx5IG9ubHkgaW1wbGVtZW50ZWQgZmlsZSBiYXNlZCBrZXhl
-Yy4gVGhlIGtlcm5lbCBpbnRlcmZhY2VzCj4+IGluIHRoZSBwYXRjaCBzZXQgYXJlIGFscmVhZHkg
-aW4gcGxhY2UgdG8gc3VwcG9ydCB1c2VyIHNwYWNlIGtleGVjIGFzIHdlbGwsCj4+IGJ1dCBJIGhh
-dmUgbm90IGltcGxlbWVudGVkIGl0IHlldCBpbnNpZGUga2V4ZWMgdG9vbHMuCj4+Cj4+ID09IEhv
-dyB0byBVc2UgPT0KPj4KPj4gVG8gdXNlIHRoZSBjb2RlLCBwbGVhc2UgYm9vdCB0aGUga2VybmVs
-IHdpdGggdGhlICJraG9fc2NyYXRjaD0iIGNvbW1hbmQKPj4gbGluZSBwYXJhbWV0ZXIgc2V0OiAi
-a2hvX3NjcmF0Y2g9NTEyTSIuIEtITyByZXF1aXJlcyBhIHNjcmF0Y2ggcmVnaW9uLgo+Pgo+PiBN
-YWtlIHN1cmUgdG8gZmlsbCBmdHJhY2Ugd2l0aCBjb250ZW50cyB0aGF0IHlvdSB3YW50IHRvIG9i
-c2VydmUgYWZ0ZXIKPj4ga2V4ZWMuICBUaGVuLCBiZWZvcmUgeW91IGludm9rZSBmaWxlIGJhc2Vk
-ICJrZXhlYyAtbCIsIGFjdGl2YXRlIEtITzoKPj4KPj4gICAgIyBlY2hvIDEgPiAvc3lzL2tlcm5l
-bC9raG8vYWN0aXZlCj4+ICAgICMga2V4ZWMgLWwgSW1hZ2UgLS1pbml0cmQ9aW5pdHJkIC1zCj4+
-ICAgICMga2V4ZWMgLWUKPj4KPj4gVGhlIG5ldyBrZXJuZWwgd2lsbCBib290IHVwIGFuZCBjb250
-YWluIHRoZSBwcmV2aW91cyBrZXJuZWwncyB0cmFjZQo+PiBidWZmZXJzIGluIC9zeXMva2VybmVs
-L2RlYnVnL3RyYWNpbmcvdHJhY2UuCj4gQXNzdW1pbmc6Cj4gLSB3ZSB3b250IHRvIHN0YXJ0IHRy
-YWNpbmcgYXMgZWFybHkgYXMgcG9zc2libGUsIGJlZm9yZSByb290ZnMKPiAgICBvciBpbml0cmQg
-d291bGQgYmUgYWJsZSB0byBjb25maWd1cmUgaXQuCj4gLSB0cmFjZXMgYXJlIHN0b3JlZCBvbiBh
-IGRpZmZlcmVudCBkZXZpY2UsIG5vdCBSQU0uIEZvciBleGFtcGxlIE5WTUVNLgo+IC0gTG9jYXRp
-b24gb2YgTlZNRU0gaXMgZGlmZmVyZW50IGZvciBkaWZmZXJlbnQgYm9hcmQgdHlwZXMsIGJ1dAo+
-ICAgIGJvb3Rsb2FkZXIgaXMgYWJsZSB0byBnaXZlIHRoZSByaWdodCBjb25maWd1cmF0aW9uIHRv
-IHRoZSBrZXJuZWwuCgoKTGV0IG1lIHRyeSB0byByZWFsbHkgdW5kZXJzdGFuZCB3aGF0IHlvdSdy
-ZSB0cmFjaW5nIGhlcmUuIEFyZSB3ZSB0YWxraW5nIAphYm91dCBleHBvc2luZyBib290IGxvYWRl
-ciB0cmFjZXMgaW50byBMaW51eCBbMV0/IEluIHRoYXQgY2FzZSwgSSB0aGluayAKYSBtZWNoYW5p
-c20gbGlrZSBbMl0gaXMgd2hhdCB5b3UncmUgbG9va2luZyBmb3IuCgpPciBkbyB5b3Ugd2FudCB0
-byB0cmFuc2ZlciBnZW51aW5lIExpbnV4IGZ0cmFjZSB0cmFjZXM/IEluIHRoYXQgY2FzZSwgCndo
-eSB3b3VsZCB5b3Ugd2FudCB0byBzdG9yZSB0aGVtIG91dHNpZGUgb2YgUkFNPwoKCj4KPiBXaGF0
-IHdvdWxkIGJlIHRoZSBiZXN0LCBhY2NlcHRhYmxlIGZvciBtYWlubGluZSwgd2F5IHRvIHByb3Zp
-ZGUgdGhpcwo+IGtpbmQgb2YgY29uZmlndXJhdGlvbj8gQXQgbGVhc3QgcGFydCBvZiB0aGlzIGlu
-Zm9ybWF0aW9uIGRvIG5vdAo+IGRlc2NyaWJlcyBkZXZpY2VzIG9yIGRldmljZSBzdGF0ZXMsIHRo
-aXMgd291bGQgbm90IGZpdCBpbiB0byBkZXZpY2V0cmVlCj4gdW5pdmVyc2UuIEFtb3VudCBvZiBw
-b3NzaWJsZSBpbmZvcm1hdGlvbiB3b3VsZCBub3QgZml0IGluIHRvIGJvb3Rjb25maWcKPiB0b28u
-CgoKV2UgaGF2ZSBwcmVjZWRlbmNlIGZvciBjb25maWd1cmF0aW9uIGluIGRldmljZSB0cmVlOiBZ
-b3UgY2FuIHVzZSBkZXZpY2UgCnRyZWUgdG8gZGVzY3JpYmUgcGFydGl0aW9ucyBvbiBhIE5BTkQg
-ZGV2aWNlLCB5b3UgY2FuIHVzZSBpdCB0byBzcGVjaWZ5IApNQUMgYWRkcmVzcyBvdmVycmlkZXMg
-b2YgZGV2aWNlcyBhdHRhY2hlZCB0byBVU0IsIGV0YyBldGMuIEF0IHRoZSBlbmQgb2YgCnRoZSBk
-YXkgd2hlbiBwZW9wbGUgc2F5IHRoZXkgZG9uJ3Qgd2FudCBjb25maWd1cmF0aW9uIGluIGRldmlj
-ZSB0cmVlLCAKd2hhdCB0aGV5IG1lYW4gaXMgdGhhdCBkZXZpY2UgdHJlZSBzaG91bGQgYmUgYSBo
-YW5kIG92ZXIgZGF0YSBzdHJ1Y3R1cmUgCmZyb20gZmlybXdhcmUgdG8ga2VybmVsLCBub3QgZnJv
-bSBPUyBpbnRlZ3JhdG9yIHRvIGtlcm5lbCA6KS4gSWYgeW91ciAKZmlybXdhcmUgaXMgdGhlIHBs
-YWNlIHRoYXQga25vd3MgYWJvdXQgb2Zmc2V0cyBhbmQgeW91IG5lZWQgdG8gcGFzcyAKdGhvc2Ug
-b2Zmc2V0cywgSU1ITyBEVCBpcyBhIGdvb2QgZml0LgoKCj4gT3RoZXIgbW9yZSBvciBsZXNzIG92
-ZXJsYXBwaW5nIHVzZSBjYXNlIEkgaGF2ZSBpbiBtaW5kIGlzIGEgbmV0Ym9vdGFibGUKPiBlbWJl
-ZGRlZCBzeXN0ZW0gd2l0aCBhIHJlcXVpcmVtZW50IHRvIGJvb3QgYXMgZmFzdCBhcyBwb3NzaWJs
-ZS4gU2luY2UKPiBib290bG9hZGVyIGFscmVhZHkgZXN0YWJsaXNoZWQgYSBsaW5rIGFuZCBnb3Qg
-YWxsIG5lZWRlZCBpcAo+IGNvbmZpZ3VyYXRpb24sIGl0IHdvdWxkIGJlIGFibGUgdG8gaGFuZCBv
-dmVyIGV0aGVyZW50IGNvbnRyb2xsZXIgYW5kIGlwCj4gY29uZmlndXJhdGlvbiBzdGF0ZXMuIFdp
-bGxlIGJlIHRoZSBLSE8gdGhlIHdheSB0byBnbyBmb3IgdGhpcyB1c2UgY2FzZT8KCgpUaGF0J3Mg
-YW4gaW50ZXJlc3Rpbmcgb25lIHRvby4gSSB3b3VsZCBsZWFuIHRvd2FyZHMgInRyeSB3aXRoIG5v
-cm1hbCAKZGV2aWNlIHRyZWUgZmlyc3QiIGhlcmUgYXMgd2VsbC4gSXQncyBhZ2FpbiBhIHZlcnkg
-Y2xlYXIgY2FzZSBvZiAKImZpcm13YXJlIHdhbnRzIHRvIHRlbGwgT1MgYWJvdXQgdGhpbmdzIGl0
-IGtub3dzLCBidXQgdGhlIE9TIGRvZXNuJ3QgCmtub3ciIHRvIG1lLiBUaGF0IG1lYW5zIGRldmlj
-ZSB0cmVlIHNob3VsZCBiZSBmaW5lIHRvIGRlc2NyaWJlIGl0LgoKCkFsZXgKClsxXSBodHRwczov
-L3d3dy55b3V0dWJlLmNvbS93YXRjaD92PVJhRm01RmZ6RmFNIC8gCmh0dHBzOi8vZWRrMi5ncm91
-cHMuaW8vZy9kZXZlbC90b3BpYy85MTM2ODkwNApbMl0gCmh0dHBzOi8vZ2l0aHViLmNvbS9hZ3Jh
-Zi9saW51eC9jb21taXQvYjFmZTBjMjk2ZWM5MjNlOWIxZjU0NDg2MmIwZWI5MzY1YThkYTdjYgoK
-Pgo+IFJlZ2FyZHMsCj4gT2xla3Npago+IC0tCj4gUGVuZ3V0cm9uaXggZS5LLiAgICAgICAgICAg
-ICAgICAgICAgICAgICAgIHwgICAgICAgICAgICAgICAgICAgICAgICAgICAgIHwKPiBTdGV1ZXJ3
-YWxkZXIgU3RyLiAyMSAgICAgICAgICAgICAgICAgICAgICAgfCBodHRwOi8vd3d3LnBlbmd1dHJv
-bml4LmRlLyAgfAo+IDMxMTM3IEhpbGRlc2hlaW0sIEdlcm1hbnkgICAgICAgICAgICAgICAgICB8
-IFBob25lOiArNDktNTEyMS0yMDY5MTctMCAgICB8Cj4gQW10c2dlcmljaHQgSGlsZGVzaGVpbSwg
-SFJBIDI2ODYgICAgICAgICAgIHwgRmF4OiAgICs0OS01MTIxLTIwNjkxNy01NTU1IHwKCgoKQW1h
-em9uIERldmVsb3BtZW50IENlbnRlciBHZXJtYW55IEdtYkgKS3JhdXNlbnN0ci4gMzgKMTAxMTcg
-QmVybGluCkdlc2NoYWVmdHNmdWVocnVuZzogQ2hyaXN0aWFuIFNjaGxhZWdlciwgSm9uYXRoYW4g
-V2Vpc3MKRWluZ2V0cmFnZW4gYW0gQW10c2dlcmljaHQgQ2hhcmxvdHRlbmJ1cmcgdW50ZXIgSFJC
-IDE0OTE3MyBCClNpdHo6IEJlcmxpbgpVc3QtSUQ6IERFIDI4OSAyMzcgODc5CgoK
+On Tue, Feb 06, 2024 at 02:33:47PM +0100, Mike Looijmans wrote:
+> On 06-02-2024 13:57, Andy Shevchenko wrote:
+> > On Tue, Feb 06, 2024 at 07:58:18AM +0100, Mike Looijmans wrote:
+
+...
+
+> > > +	factor = (rate >> ADS1298_SHIFT_DR_HR) / val;
+> > > +	if (factor >= 128)
+> > I just realized that this comparison is probably better in a form
+> > 
+> > 	if (factor >= ADS1298_MASK_CONFIG1_HR)
+> > 
+> > as it points out why this is a special case in comparison to 'if (factor)'
+> > below. What do you think?
+> 
+> The "HR" bit sets the device to high-res mode (which apparently doubles the
+> internal sample rate).
+> 
+> But "128" could be written as "1 << ADS1298_SHIFT_DR_LP" which is the max
+> oversampling factor.
+
+Use BIT(..._DR_LP) and we are done here.
+
+...
+
+> > > +	wasbusy = --priv->rdata_xfer_busy;
+> > Why preincrement? How would it be different from postincrement?
+> 
+> Maybe better write this as:
+> 
+> --priv->rdata_xfer_busy;
+> 
+> wasbusy = priv->rdata_xfer_busy;
+> 
+> I want the value after decrementing it.
+
+Yes, looks more obvious.
+
+> > > +	if (wasbusy) {
+> > To me more robust code would look like
+> > 
+> > 	if (wasbusy < 1)
+> > 		return;
+> > 	...
+> > 	if (wasbusy > 1)
+> > 		...
+> 
+> wasbusy could have been unsigned.
+> 
+> This code will only ever execute with rdata_xfer_busy > 0 (or the SPI driver
+> called our completion callback without us calling spi_async first)
+
+You never know what may go wrong in the future :-) That said, I prefer robust
+code against non-robust.
+
+...
+
+> > > +	wasbusy = priv->rdata_xfer_busy++;
+> > So, it starts from negative?
+> > 
+> > > +	/* When no SPI transfer in transit, start one now */
+> > > +	if (!wasbusy)
+> > To be compatible with above perhaps
+> > 
+> > 	if (wasbusy < 1)
+> > 
+> > also makes it more robust (all negative numbers will be considered the same.
+> > 
+> > > +		spi_async(priv->spi, &priv->rdata_msg);
+> 
+> The "rdata_xfer_busy" starts at 0.
+> 
+> Increments when a DRDY occurs.
+> 
+> Decrements when SPI completion is reported.
+> 
+> So the meaning of "rdata_xfer_busy" is:
+> 
+> 0 = Waiting for DRDY interrupt
+> 
+> 1 = SPI transfer in progress
+> 
+> 2 = DRDY occured during SPI transfer, should start another on completion
+> 
+> >2 = Multiple DRDY during SPI transfer, overflow, we lost rdata_xfer_busy -
+> 2 samples
+
+
+Maybe another good comment is needed here as well?
+
+...
+
+> > > +	dev_dbg(dev, "Found %s, %u channels\n", ads1298_family_name(val),
+> > > +		(unsigned int)(4 + 2 * (val & ADS1298_MASK_ID_CHANNELS)));
+> > Castings in printf() is a big red flag usually (it's rarely we need them).
+> > Why is it here?
+> 
+> Compiler complains that the expression is "unsigned long". Probably because
+>  of ADS1298_MASK_ID_CHANNELS being so.
+
+So, use the unsigned long specifier and drop casting.
+
+...
+
+> > > +	if (reset_gpio) {
+> > > +		/* Minimum reset pulsewidth is 2 clock cycles */
+> > > +		udelay(ADS1298_CLOCKS_TO_USECS(2));
+> > > +		gpiod_set_value(reset_gpio, 0);
+> > I would rewrite it as
+> > 
+> > 		/* Minimum reset pulsewidth is 2 clock cycles */
+> > 		gpiod_set_value(reset_gpio, 1);
+> > 		udelay(ADS1298_CLOCKS_TO_USECS(2));
+> > 		gpiod_set_value(reset_gpio, 0);
+> > 
+> > to be sure we have a reset done correctly, and the comment will make more
+> > sense.
+> 
+> If used, the reset must be asserted *before* the voltages and clocks are
+> activated. This would obfuscate that, and add a redundant call to set_value.
+
+Then perhaps you want reset framework to be used instead?
+
+Dunno, but this comment seems confusing in a way that you somewhere asserted it
+and it's not obvious where and here is the delay out of a blue. Perhaps you may
+extend the comment?
+
+> I did forget to use "cansleep" here, will add that.
+
+-- 
+With Best Regards,
+Andy Shevchenko
+
 
 
