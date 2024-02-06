@@ -1,98 +1,142 @@
-Return-Path: <devicetree+bounces-39274-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-39275-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3143984BF13
-	for <lists+devicetree@lfdr.de>; Tue,  6 Feb 2024 22:12:51 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id B094884BF2E
+	for <lists+devicetree@lfdr.de>; Tue,  6 Feb 2024 22:28:25 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id B4A23B25BA3
-	for <lists+devicetree@lfdr.de>; Tue,  6 Feb 2024 21:12:48 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id D11D4288DE2
+	for <lists+devicetree@lfdr.de>; Tue,  6 Feb 2024 21:28:23 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 913DB1B94A;
-	Tue,  6 Feb 2024 21:12:44 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 136B61B951;
+	Tue,  6 Feb 2024 21:28:19 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="WcOizr7B"
+	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="TBgXOWI/"
 X-Original-To: devicetree@vger.kernel.org
-Received: from relay5-d.mail.gandi.net (relay5-d.mail.gandi.net [217.70.183.197])
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4E93F1B947;
-	Tue,  6 Feb 2024 21:12:40 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.70.183.197
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4D4821B81F;
+	Tue,  6 Feb 2024 21:28:16 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1707253964; cv=none; b=S8rmdeynlsJSXEiVSBfn9Jp2RXSHzQO1Z+yttshpuNYmP1LUzpfXh7RuiB1ajmrV0jCGSaeYMnMmk45ClDVrozb2ElBJo9zbjB9U4oskT26u01hnm4sNhIlwXHPwLOBw7SllqzcoNX7fooqDzpXXAf9FM18uD7WJmVXlUzXcjQ8=
+	t=1707254899; cv=none; b=Ad2G/Aphv7LlVji/Sn9Or0geWkk3mE2cGUUULEhhZh0mrqEFVAHo/0IGWPsErvfUabUp/Xgkq/7Fb3XflvHFAeEP9uJQlc1KdVaZybime5cYTtIaA0B22DzotRCaWRjBRE3QV2Oehb4GZ8unmM2T02XDCgDv8SIUD/Qr+IygeGM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1707253964; c=relaxed/simple;
-	bh=FPuvvimZTpaY25Gs4EyvjPMeN6Ad+s68r//oKWLrE98=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=WZHSCptCEOevTYFedKr985Ysm3RnIVpJy6eBE93DEUk+Zi9FWijwhAx6DiWy2772PD4qEXd/jk99vkSISlz4f25iSu1iNXGdeSVTcF+C5pie8DxmgQeUUHjGKT5hWnx2QByPYJ/Hh5v4p7xL6GKovN87UV8vsa+8TIGwlIyw8ys=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=WcOizr7B; arc=none smtp.client-ip=217.70.183.197
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
-Received: by mail.gandi.net (Postfix) with ESMTPSA id 5541A1C0002;
-	Tue,  6 Feb 2024 21:12:37 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
-	t=1707253959;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 in-reply-to:in-reply-to:references:references;
-	bh=pH4z4UKwceDQ2f9zFX4FLpXxDjaZqCXvUUyn1++Jaag=;
-	b=WcOizr7B6r3RSJEO2d4RUKr8qOpQnPtM3BbM8ZhVPH0bboCmQaVP35Ve06Vet6+OG7hOpz
-	DEM9gWKljSJ65UWpjFy/CRK6Y0ZoRrfnjopM2Bam2GMga0j+WF2hEvXcKbBjNkU493sCjY
-	yGV8L8LEzdKab7yy4M9K4B+YvjOGew3l1c3s+VOOtHBW3THZOOeNxpn3a+ZvOGqYPBLMcU
-	f+qK8tkvXYqC9w2L5czXDVbt3vyiHM4mbQYfT044Z1+cEz+SxZ32GG7zpIaspd0qIpL0+s
-	Yef6Zw59Rozepg5kjU989wQmbdR4W0267nMMDFVUyG3IF8XjxISSP1FAVizJzg==
-Date: Tue, 6 Feb 2024 22:12:37 +0100
-From: Alexandre Belloni <alexandre.belloni@bootlin.com>
-To: Chris Packham <Chris.Packham@alliedtelesis.co.nz>
-Cc: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-	"robh+dt@kernel.org" <robh+dt@kernel.org>,
-	"krzysztof.kozlowski+dt@linaro.org" <krzysztof.kozlowski+dt@linaro.org>,
-	"conor+dt@kernel.org" <conor+dt@kernel.org>,
-	"jdelvare@suse.com" <jdelvare@suse.com>,
-	"linux@roeck-us.net" <linux@roeck-us.net>,
-	"antoniu.miclaus@analog.com" <antoniu.miclaus@analog.com>,
-	"noname.nuno@gmail.com" <noname.nuno@gmail.com>,
-	"linux-rtc@vger.kernel.org" <linux-rtc@vger.kernel.org>,
-	"devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-	"linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-	"linux-hwmon@vger.kernel.org" <linux-hwmon@vger.kernel.org>,
-	Ibrahim Tilki <Ibrahim.Tilki@analog.com>,
-	Zeynep Arslanbenzer <Zeynep.Arslanbenzer@analog.com>
-Subject: Re: [PATCH v6 2/2] dt-bindings: rtc: add max313xx RTCs
-Message-ID: <20240206211237d9192660@mail.local>
-References: <20240202025241.834283-1-chris.packham@alliedtelesis.co.nz>
- <20240202025241.834283-3-chris.packham@alliedtelesis.co.nz>
- <aecd80a3-a017-405f-b77d-6deda67ef704@linaro.org>
- <5d4b7fa1-5cc2-4a4a-8fa4-d2c7a8d070b7@alliedtelesis.co.nz>
+	s=arc-20240116; t=1707254899; c=relaxed/simple;
+	bh=7Pm8fH+QR8eYSwznrNxCN5gHgcDM4ULOqVSCbRSf0Jo=;
+	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version; b=sl8Rx1812SBka3eRPPLK7g/c4wsy1fk3EdPbX1TL5JsYnzIdEAbstEvCLlEpRuWiKUG0lCSFkgWvJaD1xUs+tlNWx0JTkPIz74i6FF2ufvatpNKPWHEyiVqTMb9rH0hutdtAyU4XIdx70CAdJVzE8kchv6ge05lga9/zmD7B6nM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=qualcomm.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=TBgXOWI/; arc=none smtp.client-ip=205.220.180.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=qualcomm.com
+Received: from pps.filterd (m0279872.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.17.1.24/8.17.1.24) with ESMTP id 416J147h023727;
+	Tue, 6 Feb 2024 21:28:03 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
+	from:to:cc:subject:date:message-id:mime-version
+	:content-transfer-encoding; s=qcppdkim1; bh=hEoSiQdSIeE/Z9h6sh8I
+	iBbAA21LDJu25KZcrFHfcvo=; b=TBgXOWI/p8bpIG6bIIoqSlFsYmKfnbG6dlyY
+	m1TdeD6wz4IWtl3vEA9zT04+StO+A+FDvgYegTSIhTVXxnjjdB+B3eI4Qf5Y0uDZ
+	DtT7p1e5LOClGCfCtfywukuBL6OMJlAIPxWI0aroeXCRjK1/x15XlmMpBkjG9cJU
+	wkwqqjkiUXoLXYvA3QsuVXjNzw/jh03Upr4Fk42Vzzhd3LVOwINTnzeFb0EegZuK
+	tiWRQpep002lUHi9q1eRj3YvdbTdAIpZMmZZq2d37sIR72qsxEwLccNkOULG2HfH
+	SEQJ21Hp5cCQcbJ8spUXI3gfsTmi2q5DX4A9hX+ebCaH/mepvw==
+Received: from nalasppmta03.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3w3hsesjav-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Tue, 06 Feb 2024 21:28:03 +0000 (GMT)
+Received: from pps.filterd (NALASPPMTA03.qualcomm.com [127.0.0.1])
+	by NALASPPMTA03.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTP id 416LN76W006027;
+	Tue, 6 Feb 2024 21:27:35 GMT
+Received: from pps.reinject (localhost [127.0.0.1])
+	by NALASPPMTA03.qualcomm.com (PPS) with ESMTPS id 3w1ejm0rw8-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Tue, 06 Feb 2024 21:27:35 +0000
+Received: from NALASPPMTA03.qualcomm.com (NALASPPMTA03.qualcomm.com [127.0.0.1])
+	by pps.reinject (8.17.1.5/8.17.1.5) with ESMTP id 416LRYTD010370;
+	Tue, 6 Feb 2024 21:27:34 GMT
+Received: from hu-devc-lv-u20-a-new.qualcomm.com (hu-abchauha-lv.qualcomm.com [10.81.25.35])
+	by NALASPPMTA03.qualcomm.com (PPS) with ESMTPS id 416LRY0u010367
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Tue, 06 Feb 2024 21:27:34 +0000
+Received: by hu-devc-lv-u20-a-new.qualcomm.com (Postfix, from userid 214165)
+	id 266132207A; Tue,  6 Feb 2024 13:27:34 -0800 (PST)
+From: Abhishek Chauhan <quic_abchauha@quicinc.com>
+To: Vinod Koul <vkoul@kernel.org>, Bhupesh Sharma <bhupesh.sharma@linaro.org>,
+        Andy Gross <agross@kernel.org>, Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@linaro.org>,
+        "David S. Miller" <davem@davemloft.net>,
+        Eric Dumazet <edumazet@google.com>, Jakub Kicinski <kuba@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Alexandre Torgue <alexandre.torgue@foss.st.com>,
+        Jose Abreu <joabreu@synopsys.com>,
+        Maxime Coquelin <mcoquelin.stm32@gmail.com>, netdev@vger.kernel.org,
+        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-stm32@st-md-mailman.stormreply.com,
+        Prasad Sodagudi <psodagud@quicinc.com>,
+        Andrew Halaney <ahalaney@redhat.com>, Rob Herring <robh@kernel.org>
+Cc: kernel@quicinc.com
+Subject: [PATCH v1] TSO and TBS cannot co-exist. TBS requires special descriptor to be allocated at bootup. Initialising Tx queues at probe to support TSO and TBS can help in allocating those resources at bootup.
+Date: Tue,  6 Feb 2024 13:27:34 -0800
+Message-Id: <20240206212734.1209920-1-quic_abchauha@quicinc.com>
+X-Mailer: git-send-email 2.25.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <5d4b7fa1-5cc2-4a4a-8fa4-d2c7a8d070b7@alliedtelesis.co.nz>
-X-GND-Sasl: alexandre.belloni@bootlin.com
+Content-Transfer-Encoding: 8bit
+X-QCInternal: smtphost
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-ORIG-GUID: lfZlG20eE5DXVv3KFTogqAoLNjZneWf9
+X-Proofpoint-GUID: lfZlG20eE5DXVv3KFTogqAoLNjZneWf9
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.272,Aquarius:18.0.1011,Hydra:6.0.619,FMLib:17.11.176.26
+ definitions=2024-02-06_14,2024-01-31_01,2023-05-22_02
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 adultscore=0
+ lowpriorityscore=0 mlxlogscore=646 mlxscore=0 impostorscore=0 bulkscore=0
+ phishscore=0 clxscore=1011 spamscore=0 priorityscore=1501 malwarescore=0
+ suspectscore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.19.0-2401310000 definitions=main-2402060150
 
-On 06/02/2024 20:19:20+0000, Chris Packham wrote:
-> That is an incredibly good point. The max31335 binding covers one specific chip. This binding covers more and with that there are a few more properties that the max31335 on it's own doesn't have (e.g. the clock consumer, the ability to have different i2c addresses). Binding wise I could probably roll all of the max31335 into this max313xx binding.
-> 
-> Driver wise things are a bit trickier. I've only got access to one of
-> the variants so I am hoping to leverage the work Ibrahim had already
-> done. I could attempt to incorporate max31335 support into the
-> max313xx driver but I wouldn't really be able to test it properly and
-> there is a reasonably high chance of regressing something.
+TX queues with TBS can support etf qdisc hw offload.
 
-But I won't take a separate driver. Everything would be better if Analog
-was sharing the datasheets...
+Signed-off-by: Abhishek Chauhan <quic_abchauha@quicinc.com>
+---
+ drivers/net/ethernet/stmicro/stmmac/dwmac-qcom-ethqos.c | 6 +++++-
+ 1 file changed, 5 insertions(+), 1 deletion(-)
 
-
+diff --git a/drivers/net/ethernet/stmicro/stmmac/dwmac-qcom-ethqos.c b/drivers/net/ethernet/stmicro/stmmac/dwmac-qcom-ethqos.c
+index 31631e3f89d0..d2f9b8f6c027 100644
+--- a/drivers/net/ethernet/stmicro/stmmac/dwmac-qcom-ethqos.c
++++ b/drivers/net/ethernet/stmicro/stmmac/dwmac-qcom-ethqos.c
+@@ -728,7 +728,7 @@ static int qcom_ethqos_probe(struct platform_device *pdev)
+ 	struct stmmac_resources stmmac_res;
+ 	struct device *dev = &pdev->dev;
+ 	struct qcom_ethqos *ethqos;
+-	int ret;
++	int ret, i;
+ 
+ 	ret = stmmac_get_platform_resources(pdev, &stmmac_res);
+ 	if (ret)
+@@ -822,6 +822,10 @@ static int qcom_ethqos_probe(struct platform_device *pdev)
+ 		plat_dat->serdes_powerdown  = qcom_ethqos_serdes_powerdown;
+ 	}
+ 
++	/*Enable TSO on queue0 and enable TBS on rest of the queues*/
++	for (i = 1; i < plat_dat->tx_queues_to_use; i++)
++		plat_dat->tx_queues_cfg[i].tbs_en = 1;
++
+ 	return devm_stmmac_pltfr_probe(pdev, plat_dat, &stmmac_res);
+ }
+ 
 -- 
-Alexandre Belloni, co-owner and COO, Bootlin
-Embedded Linux and Kernel engineering
-https://bootlin.com
+2.25.1
+
 
