@@ -1,213 +1,199 @@
-Return-Path: <devicetree+bounces-39287-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-39288-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 17C3084C0B8
-	for <lists+devicetree@lfdr.de>; Wed,  7 Feb 2024 00:15:45 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4E2E084C0C8
+	for <lists+devicetree@lfdr.de>; Wed,  7 Feb 2024 00:20:16 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 7D3F41F253F5
-	for <lists+devicetree@lfdr.de>; Tue,  6 Feb 2024 23:15:44 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 059EB283958
+	for <lists+devicetree@lfdr.de>; Tue,  6 Feb 2024 23:20:15 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 91D8B1C6A8;
-	Tue,  6 Feb 2024 23:15:39 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A8CCA1CD25;
+	Tue,  6 Feb 2024 23:20:06 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=nxp.com header.i=@nxp.com header.b="rG3HuoVC"
+	dkim=pass (2048-bit key) header.d=fairphone.com header.i=@fairphone.com header.b="vHnXIfK6"
 X-Original-To: devicetree@vger.kernel.org
-Received: from EUR05-VI1-obe.outbound.protection.outlook.com (mail-vi1eur05on2067.outbound.protection.outlook.com [40.107.21.67])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wr1-f41.google.com (mail-wr1-f41.google.com [209.85.221.41])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 87FD71C69E;
-	Tue,  6 Feb 2024 23:15:37 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.107.21.67
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1707261339; cv=fail; b=izgVLfySh6tt/2SpbtOGwgkTHZmJwGmc7NngD+xSea/PJ2B1Mk5ImTgKZmAA9XUZtUjorm8MEM/iAF3URz+2ouTV5AY/PuLeo9m93qVTWQxHVMYPr7M4CSqWLBuyI6kAXW4Px4QKjJX8AeZokdUUHYubyA2n7c1kwQO+fcfPUNw=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1707261339; c=relaxed/simple;
-	bh=ekdZtquM5ZvkaTP42Nr1xIUNCdxJritmhLrvLhC5gvI=;
-	h=From:To:Cc:Subject:Date:Message-Id:Content-Type:MIME-Version; b=fm2oAvVMaMOSErG7bV2aabcjIPsOpZoEgq4nOJGdgJvE+nJ+B1Qns8ASicximw4WAd5THD/AHYld0/zT8fi0j9y8UU8TzW/B5u6PVsi54sDrgeMK7L+GPMCZwRiBcLFv9tDIEir+93QWfh8gGtW9x6axUp1Eqo9AqPtlUF+J+TU=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com; spf=pass smtp.mailfrom=nxp.com; dkim=pass (1024-bit key) header.d=nxp.com header.i=@nxp.com header.b=rG3HuoVC; arc=fail smtp.client-ip=40.107.21.67
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=nxp.com
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=cAolQ2qTP5J37bndKtkIW2UQbcS/s0A/ftBmllUaTOJCoICmLNnR0XojuD/ehEWembORS+gy4iDu2Z59W8MwaTi1vMD79GAvvNIU3HmGAAUx6v3f/tRH+vEfHGxoRBeFrN4LR9HkdW0an/Ar6cNZN2myC/0lYufi6CNV3KVpdivYvGUmr00udfwxtwePRSu0OKnUCactI91JOdXdV1YmV0qHCeVMbRvaKRTwLuhTd675RqOZ+0ZtIneTY8N7CZFME/A+eTgzdWzU0Umnvg99VKPjOb74fmj0o5YBojBRiCfbAQWtOGZ1WzMUXR7PbkpydLrYkkB27qACT4b5qc47OA==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=FqyQHHISHEqH1KQUqGOijkZx83gPcuKZ+HpLzFTm020=;
- b=MO6fLEjZrf3aKCiIupAZRhS8DYWVgHQCcFsUNhHcMFwookPvaIvV0oh9uvLFHbqTRIfJO95hCqMioNccgbybQjVHQE/bvpmYfQgFP/wuRgWzW0Gahxfzx2nW1W3KdRwbWszEPVu4m33Lq/QcyYXOUVDPT1TZpyKEnW17QnZ89EKUSp9d3VPQUumCHxLmpS6sgbm7NbkePT4ZZC8R3mVBWBTl9AU0r4y3YjCRlGY2LKdXyMG8mKbFsNwpxbuyLV1tzJQmCUjmOPh3rAUiOO4Ka1AjokRseEm4uI8lRohECM+y+ydORdwaSSB6G2LxiTszNHZ6KocGWsg1wzgCB9RgBA==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
- header.d=nxp.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector2;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=FqyQHHISHEqH1KQUqGOijkZx83gPcuKZ+HpLzFTm020=;
- b=rG3HuoVCHspLlGB+0OF5N/Jct/3kCyMhEMqwHqBMjVwfEDpj1GiHDZyBTAdBpCJAgmsF53zNHop40qcbduqMEVjaFEzTXOF6H28PnWo4/EhB/583rVj3KW+zItggKvjASpmhB9Ve1/bVbIRn5qQwax4L5F0KYjbpQbOpRY09gnQ=
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=nxp.com;
-Received: from PAXPR04MB9642.eurprd04.prod.outlook.com (2603:10a6:102:240::14)
- by PAXPR04MB8406.eurprd04.prod.outlook.com (2603:10a6:102:1c4::10) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7249.36; Tue, 6 Feb
- 2024 23:15:34 +0000
-Received: from PAXPR04MB9642.eurprd04.prod.outlook.com
- ([fe80::c8b4:5648:8948:e85c]) by PAXPR04MB9642.eurprd04.prod.outlook.com
- ([fe80::c8b4:5648:8948:e85c%3]) with mapi id 15.20.7249.035; Tue, 6 Feb 2024
- 23:15:34 +0000
-From: Frank Li <Frank.Li@nxp.com>
-To: Shawn Guo <shawnguo@kernel.org>,
-	Li Yang <leoyang.li@nxp.com>,
-	Rob Herring <robh+dt@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	linux-arm-kernel@lists.infradead.org (moderated list:ARM/FREESCALE LAYERSCAPE ARM ARCHITECTURE),
-	devicetree@vger.kernel.org (open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS),
-	linux-kernel@vger.kernel.org (open list)
-Cc: imx@lists.linux.dev
-Subject: [PATCH 1/1] arm64: dts: lx2160a: Fix DTS for full PL011 UART
-Date: Tue,  6 Feb 2024 18:15:21 -0500
-Message-Id: <20240206231521.3600089-1-Frank.Li@nxp.com>
-X-Mailer: git-send-email 2.34.1
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-ClientProxiedBy: BY5PR16CA0015.namprd16.prod.outlook.com
- (2603:10b6:a03:1a0::28) To PAXPR04MB9642.eurprd04.prod.outlook.com
- (2603:10a6:102:240::14)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 597D01CF98
+	for <devicetree@vger.kernel.org>; Tue,  6 Feb 2024 23:20:03 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.41
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1707261606; cv=none; b=FZn+QNM2rsiUz930ybzfeqTUj+3FxvYgHMe/+X7S7Rt8h5eYv/4KkBLgXUKY72SsOpGZyJ70hcwjaGHyJw+XrGB9UaaVXCKe5Et8Nkq2OO7hdoJlN43R+8Zmq+ZyoIsRWfg/LSLP8a0qd8j1YVDB/dPcQ18eVSU6DGsgMykd6uU=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1707261606; c=relaxed/simple;
+	bh=m+y3HMZaCJPRB55/Kjusqw16ffP7mgbzzM/LpvoQeJI=;
+	h=Mime-Version:Content-Type:Date:Message-Id:Cc:Subject:From:To:
+	 References:In-Reply-To; b=mlWaaxkQYnoUTD3qvEQBDPNMd7ksFB7kLUnZ93RN6PKbZuuID117ZfUc8LlLPtJz+nP46MoNBxTyfzzLanIcdbLBcTB6KGforp//wY042N5yNLHy183/iJNlftRXcJLZmn27vjJatMFoCcA58o2kDVCIlGamlKDZmQ4GBqZpYYg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=fairphone.com; spf=pass smtp.mailfrom=fairphone.com; dkim=pass (2048-bit key) header.d=fairphone.com header.i=@fairphone.com header.b=vHnXIfK6; arc=none smtp.client-ip=209.85.221.41
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=fairphone.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=fairphone.com
+Received: by mail-wr1-f41.google.com with SMTP id ffacd0b85a97d-33b130f605eso31743f8f.1
+        for <devicetree@vger.kernel.org>; Tue, 06 Feb 2024 15:20:03 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=fairphone.com; s=fair; t=1707261601; x=1707866401; darn=vger.kernel.org;
+        h=in-reply-to:references:to:from:subject:cc:message-id:date
+         :content-transfer-encoding:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=m+y3HMZaCJPRB55/Kjusqw16ffP7mgbzzM/LpvoQeJI=;
+        b=vHnXIfK6P4iQ7iPcy+7IpycNZg7dLVdr0ew0To/mKZBzYuGjPsjKCUEpM5YD1sjgHt
+         /RaG8dTJRUf0etD/2x0Q/14QP1+Tp1+isboMEHWZb3569PInWqye9GqaQVvIluNb2rPo
+         XmcPlxXAIBrDieI24RiDbCwsq96O76a+0uq/FMn0XfTBpxHXgX2b4DOsloCHlWJTYITB
+         iQyvXcUd7CWX1sqlf8c1J9lmRmdvTrENpPvE5lGUYjKr4D2iXquFOEeDm0Nd2Gxl9MiT
+         Ynh55NqzjegdY+oOGTKIQ576noGsom5wCjCvn81Th2Z6HUvgZ1wjnWCwSgZGmVj72Npk
+         3Tvw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1707261601; x=1707866401;
+        h=in-reply-to:references:to:from:subject:cc:message-id:date
+         :content-transfer-encoding:mime-version:x-gm-message-state:from:to
+         :cc:subject:date:message-id:reply-to;
+        bh=m+y3HMZaCJPRB55/Kjusqw16ffP7mgbzzM/LpvoQeJI=;
+        b=QUWK9bXW6NqZcul/DzUY1/yLAprM7IWMb2MT+s1zZ9p2RasXbNr/tr9kBQZzn4Wdlm
+         BqhjMgNcwnZuEI/g6ZrbIIibxp8fAxBao2ZwrVqfDChtqZOcLYX2w4Iv4THYAXoVsuR3
+         2YmHojjNobWZMmIpXJpcBBvjehU2U8uPfVENJ4xzYgL7OHgzd46jojpDYvUP8bBMg8N3
+         wj/1TlOnRomTOO4QAGOUyHoFBFBw5aRXILJDNrGyPEORb2jKoBXVGaJ3PZyooPIxF2jS
+         7ErlgI+jXu6oH83biTxkfWV0VvFc50D0YYKl9hrpEbEkVl6ZnedwoSV0OdSup/XRCiTX
+         3Tfw==
+X-Gm-Message-State: AOJu0YwGUKzk3K+/IY84+GgOiMcbYIPWwAd5Trq0UkEn0B7/5IgcMR6t
+	RPfUEQk9QuME+Ib0Y0uLUpO4qWWgnV+rRW3phGL14ECFMf+Ao6RkqRSF0VLvsQg=
+X-Google-Smtp-Source: AGHT+IENEbuIMFynxRe+Wi8NPp/CqyeM5LxIUwCMDFcU8gLj2jdJ1ytLAYX5dqEHv+2zydbn5noB1w==
+X-Received: by 2002:a5d:598a:0:b0:33b:47cf:323b with SMTP id n10-20020a5d598a000000b0033b47cf323bmr2925394wri.9.1707261601525;
+        Tue, 06 Feb 2024 15:20:01 -0800 (PST)
+X-Forwarded-Encrypted: i=1; AJvYcCW349EHlkXDDbsZmbwaYsfxA2vIENiEKgFzpRZaaftD9z0CCD4Zj8CiKAkYwXT1IoZ/auwb1D3EOpPzDwkAwWoyEta0RG4Pgjj3v7Vq9gGhdJHj2CCAsKFymL3j0xZwEb84+sfzsCauHMExyFe5W0jyk94yJE9x+Ia/8xAcXJHc6qyzQ9XDzt0nj1DzUSfX9gs8F4RZmnPVGJ4PL3/s7JL4PR2aRSDawhmX52F86ewDGMsKzJyzY+0YIb2KURSNWnZw7jj1DOdi1okWBR9gISm6SY64ScpgvRBqiykC07EP5W+fxDCxZGCTdGNxz5oz+Q5FtE7hjKnHsTZBePmi1fN7Q1OpzI9tHngZ6BROJos4ITKTf/51HOCGzqTyIjSzhD5U8cnmYsXAlfRImTy5Q61h6Duxwf8ujHtcvpCyLfxyH3x0c2mI+3MQEftZd4nSgFAz0GrUG+mrYyZRch2IIc6cVaPyqX1tOQmDt9WlLY8nvJTDDBzcmagBoR5xgYAdQkPhb2jNrzdtNVb5w7LzgLAee7sTGO62aJANQW9TxJ/Czejd1nsKzhNelRV1
+Received: from localhost ([2a02:a03f:6aef:6800:2f37:ce90:b91c:e85a])
+        by smtp.gmail.com with ESMTPSA id s17-20020a5d4ed1000000b0033b17880eacsm94734wrv.56.2024.02.06.15.20.00
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 06 Feb 2024 15:20:01 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: PAXPR04MB9642:EE_|PAXPR04MB8406:EE_
-X-MS-Office365-Filtering-Correlation-Id: af78b347-99ae-45df-0ff1-08dc2769852a
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info:
-	4g9oXJpZYezdwSL+N4jquQwJni5aJxQ0ODNJJJnZk1wBUr5DYKWqUjawpnZ+LJj73Q2W2rLzREblWUUkPibUvGqyRXttXUCYX26yP7ddtE0g1hdUGc9ByljAFOTyTO5cXrSaN1euLKR3bEsMLNOXS6lzfR7k0Q7THn6/yV+dNGxd2OTytTsOe/6F4Tscvw3+JJxwJvaSwjXJBGJxux1NNIyb4etePKBEbnn5kHP+aSFTee6E+XMhjjmyFONHkeiOZr2k1m2XqEK6uGYyIoPtX6JMA4yHQZ0kJ8hmfOcgrdMvW9X8+tsSrdeZEEUt3CRLHl5VIhlQylyyd8+aN+fErlFn7ykMr6eWhn1aGd6qyq+gqcI800Xuv+gVQTsbre2gm/939b7gEepAgJpBTXeQPaOo724Ez2VJNzoCUWfdhGyd0q0UkZFkpGx2P1LyyFwxy0kZsesja91zdPwvClnobiDa4RCkCDatp/PhMeG58PoOBeLFxmR6lVYVLDkt7XIoB25FRkWeSSD/m/Fqz5f1K86Cv61krHKTqoqsjRLpt+s9KeV2eqt3WzIoMag5qc5I7TgNvhgs7TMpVgebFWjDnp5ZC1eD0dqTyOEHvj5tLCJ64FZ+RUFRg0zrJr3NKd4h
-X-Forefront-Antispam-Report:
-	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:PAXPR04MB9642.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230031)(366004)(39860400002)(396003)(376002)(136003)(346002)(230922051799003)(451199024)(1800799012)(64100799003)(186009)(41300700001)(86362001)(8936002)(4326008)(8676002)(478600001)(36756003)(2616005)(6486002)(6506007)(52116002)(6512007)(6666004)(5660300002)(1076003)(110136005)(26005)(66556008)(66946007)(66476007)(316002)(38350700005)(2906002)(83380400001)(38100700002);DIR:OUT;SFP:1101;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0:
-	=?us-ascii?Q?b/E58oGz1cwpbePPt7zSxEoY73pe7eHhD4V8uI6C17jP9gLVZ3CZo/KlFrEb?=
- =?us-ascii?Q?vz/O/6GTIjqVFyjOqupX3nR0piEbqe4seTrbnszUsdOKzghGnkb9oy35sAM6?=
- =?us-ascii?Q?nLrBQueNJIAlRKN3vvW0My9CRvGPtswdW+s+3FqcNasDHO482M6/fXNcHt9r?=
- =?us-ascii?Q?zg4AXhqxjZSWEyPmI8A3uW6GuSh3JFR/I/QOcnRCt7zkPkl8KY7mnjE5wm5I?=
- =?us-ascii?Q?l9Bl8RQcFseqa4owKgMxlEiTBF4Bm1irEs1P8ku4nhb2KyaD68tJIcawFdsu?=
- =?us-ascii?Q?Q2NQbG0lr+MRN5oyHwYobv3NIWOelmsa/AJ0hSrxIDHgRnEkfT6i3WqAYksX?=
- =?us-ascii?Q?Ybnd207AkII57omqtFfY2td11MPgcmzihB33UfU0fFfHYtHt5BaH/EgSeyP8?=
- =?us-ascii?Q?7bZDQxgtxz1d63ATc7TgRE2L6MlP4SEjjNpeQlsURt0g9P1ESoV2HsAMjxhN?=
- =?us-ascii?Q?O2SbTVa6jXgNXoZExc9CIpBmM3VZ5Rb9UPsbgUqIaWsOyr2uYbj+67kwLzP6?=
- =?us-ascii?Q?jxjardNZiAeRUTvrmPdwOyK0EngqQCkjU3omOikUBEYR4g9XtaySfvi4qyoh?=
- =?us-ascii?Q?caaI2LCtjpdVEERDKnh9ZpVEiaPPOnXdbTl0YV+k37ZBAoPY3q6SXvyJCIWQ?=
- =?us-ascii?Q?9RNMBQa3Mazr9HEkbVv4gPKqOdyLR6cdw8akDn/J1DygNIsINSbAbjg3mzLT?=
- =?us-ascii?Q?bRPFYpJgE/g3BPhsS0iuKLCzYMFEf4L0V8drhphy3pm3hrQkqOt1Ce1KmgmZ?=
- =?us-ascii?Q?6W37wUJOK0erZa/Wp3469Mjh4eiyzHRymVSWsnYVJZu+Vbs8RAC1z85RtKaD?=
- =?us-ascii?Q?a3dtQmJdfSI3dZ5S4ivGTVv5YMlUFAJYBp+RNKg5+txpnPtk4w7oFpcbHaoz?=
- =?us-ascii?Q?zkZyX7kFYwE/v56uGOP75n2h03MeY7tbipccTvuLN0mP1BlgvNQuRH9eDdZk?=
- =?us-ascii?Q?nDMucdAmHK/Hxg8Sc65GmdiC/S8Ad6Xn02R8NT5yGTao+5hvsHaLhhvEvCH3?=
- =?us-ascii?Q?7A7pVZH1VYG1c/dxJgdndjFyOuSpAfZRqyxA4A+Y9QuRsumyjowYNgObql1c?=
- =?us-ascii?Q?EOfyJ/8aWqefnx1xRJe/mKa25MNeH0BigIbxxtsi2OgisrHPbNIWldheNAzi?=
- =?us-ascii?Q?JAuT2CBRQk+cRJvUkXpU9GII2q9h/h/wsXZl439Mi2aytWmh/z8bOzTK3XbF?=
- =?us-ascii?Q?o49L2sADRyLglsmEf+v45SXeBRGFm7ZquaMyr93ulA0Y7HDZY1KPo+6xWKzQ?=
- =?us-ascii?Q?VdbpWyt4EuDDszhj81EyCw2xsAt4Oel93hqsvABcvMRcDCF4oY6MmlfKuJJa?=
- =?us-ascii?Q?Rk/EuhRitp2rQittj3EjcPMnOK5lmYwfJDvQESjI2mWLXqhq2PUVInuUQWrw?=
- =?us-ascii?Q?dChT6yr0DDab7w7FDEFV2vj+13PTR+4CpTLkRn75zHslIFfpQdXy9eVtOn8C?=
- =?us-ascii?Q?qqeSbSdS7mgyGdOkBE91IkGuLEQpRfEJ20kv0rVrFM8Xqx1qc4hjfrFTtYOg?=
- =?us-ascii?Q?ztfbOaltCDMrbkqW2Xnup9wv00fx1f2QgAeXXL+70gbPC9Bl5WvrNJXusdP+?=
- =?us-ascii?Q?+tW+BUI/yCvPghZEw/khDD8PiJtqiVD5zuvUjIYs?=
-X-OriginatorOrg: nxp.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: af78b347-99ae-45df-0ff1-08dc2769852a
-X-MS-Exchange-CrossTenant-AuthSource: PAXPR04MB9642.eurprd04.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 06 Feb 2024 23:15:34.0498
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: T9uQJXBu8Xo5PwEwdK1DBWsKp4Z6utoU5vQEnOn/Vl5dWhGZT+7tDgifvD0HQ8ealR4TMsHKkNkHAjY3KxkyaQ==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: PAXPR04MB8406
+Mime-Version: 1.0
+Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=UTF-8
+Date: Wed, 07 Feb 2024 00:20:00 +0100
+Message-Id: <CYYDQ7RF0HB7.G7R6KHP1Z42U@fairphone.com>
+Cc: "Konrad Dybcio" <konrad.dybcio@linaro.org>, "Dmitry Baryshkov"
+ <dmitry.baryshkov@linaro.org>, "Bjorn Andersson" <andersson@kernel.org>,
+ "Rob Herring" <robh+dt@kernel.org>, "Krzysztof Kozlowski"
+ <krzysztof.kozlowski+dt@linaro.org>, "Conor Dooley" <conor+dt@kernel.org>,
+ "Heikki Krogerus" <heikki.krogerus@linux.intel.com>,
+ <cros-qcom-dts-watchers@chromium.org>,
+ <~postmarketos/upstreaming@lists.sr.ht>, <phone-devel@vger.kernel.org>,
+ <linux-arm-msm@vger.kernel.org>, <devicetree@vger.kernel.org>,
+ <linux-kernel@vger.kernel.org>, <linux-usb@vger.kernel.org>
+Subject: Re: [PATCH 0/3] Fairphone 5 PMIC-GLINK support (USB-C, charger,
+ fuel gauge)
+From: "Luca Weiss" <luca.weiss@fairphone.com>
+To: "Greg Kroah-Hartman" <gregkh@linuxfoundation.org>
+X-Mailer: aerc 0.15.2
+References: <20231220-fp5-pmic-glink-v1-0-2a1f8e3c661c@fairphone.com>
+ <8d042095-1e09-45cc-9762-909fe8d663a9@linaro.org>
+ <CXTU5MLN0YDS.29PPV8KZF8G9R@fairphone.com>
+ <CAA8EJpoD3x=kVLu4x2yLtAqCp=wmGSU4ssq5Oj_SD5VQ=GyAYQ@mail.gmail.com>
+ <d2007240-2779-4881-8e9d-1c4f5daa55e5@linaro.org>
+ <CXU22OZNAH2H.24YIQWBA4KE3C@fairphone.com>
+ <2024010227-darn-litmus-4ddf@gregkh>
+ <CY49JOEDOEZX.1KNYT91GHL3MX@fairphone.com>
+ <2024010205-placidly-expire-221c@gregkh>
+In-Reply-To: <2024010205-placidly-expire-221c@gregkh>
 
-From: Heinz Wrobel <Heinz.Wrobel@nxp.com>
+On Tue Jan 2, 2024 at 2:53 PM CET, Greg Kroah-Hartman wrote:
+> On Tue, Jan 02, 2024 at 02:43:24PM +0100, Luca Weiss wrote:
+> > On Tue Jan 2, 2024 at 2:36 PM CET, Greg Kroah-Hartman wrote:
+> > > On Thu, Dec 21, 2023 at 02:45:26PM +0100, Luca Weiss wrote:
+> > > > On Thu Dec 21, 2023 at 1:53 PM CET, Konrad Dybcio wrote:
+> > > > > On 21.12.2023 11:34, Dmitry Baryshkov wrote:
+> > > > > > On Thu, 21 Dec 2023 at 09:33, Luca Weiss <luca.weiss@fairphone.=
+com> wrote:
+> > > > > >>
+> > > > > >> On Wed Dec 20, 2023 at 1:32 PM CET, Konrad Dybcio wrote:
+> > > > > >>> On 20.12.2023 11:02, Luca Weiss wrote:
+> > > > > >>>> This series adds all the necessary bits to enable USB-C role=
+ switching,
+> > > > > >>>> charger and fuel gauge (all via pmic-glink) on Fairphone 5.
+> > > > > >>>>
+> > > > > >>>> One thing that could be made different is the pmic-glink com=
+patible.
+> > > > > >>>> I've chosen to use qcm6490 compatible for it and not sc7280 =
+since
+> > > > > >>>> there's plenty of firmware variety on sc7280-based platforms=
+ and they
+> > > > > >>>> might require different quirks in the future, so limit this =
+PDOS quirk
+> > > > > >>>> to just qcm6490 for now.
+> > > > > >>>>
+> > > > > >>>> If someone thinks it should be qcom,sc7280-pmic-glink, pleas=
+e let me
+> > > > > >>>> know :)
+> > > > > >>> IMO it's best to continue using the "base soc" (which just so=
+ happened
+> > > > > >>> to fall onto sc7280 this time around) for all compatibles, un=
+less the
+> > > > > >>> derivatives actually had changes
+> > > > > >>
+> > > > > >> Hi Konrad,
+> > > > > >>
+> > > > > >> I think at some point I asked Dmitry what he thought and he me=
+ntioned
+> > > > > >> qcm6490. Even found the message again:
+> > > > > >>
+> > > > > >>> well, since it is a firmware thing, you might want to emphasi=
+se that.
+> > > > > >>> So from my POV qcm6490 makes more sense
+> > > > > >>
+> > > > > >> But yeah since it's likely that sc7280 firmware behaves the sa=
+me as
+> > > > > >> qcm6490 firmware it's probably okay to use sc7280 compatible, =
+worst case
+> > > > > >> we change it later :) I'll send a v2 with those changes.
+> > > > > >=20
+> > > > > > Worst case we end up with sc7280 which has yet another slightly
+> > > > > > different UCSI / PMIC GLINK implementation, but the compatible =
+string
+> > > > > > is already taken.
+> > > > > > I still suppose that this should be a qcm6490-related string.
+> > > > > Right, let's keep qcm then
+> > > >=20
+> > > > Ack from my side also. Thanks for the feedback!
+> > >
+> > > This doesn't apply to my tree, where should it be going through?
+> >=20
+> > As far as I can see the dependency for the driver commit 1d103d6af241
+> > ("usb: typec: ucsi: fix UCSI on buggy Qualcomm devices") was applied to
+> > Bjorn's qcom tree, so 2/3 should also go there then.
+> >=20
+> > Patch 3/3 (arm64 dts) definitely also Bjorn's qcom tree.
+> >=20
+> > So that leaves patch 1/3 which Bjorn can probably pick up as well but
+> > looking at git log you also picked up some for that file in the past,
+> > dunno.
+>
+> Ok, for any remaining ones that want to be merged before 6.8-rc1 is out,
+> feel free to add my:
+>
+> Acked-by: Greg Kroah-Hartman <gregkh@linuxfoundation.org>
+>
+> If they don't get picked up by 6.8-rc1, feel free to rebase and send it
+> for me to take through my tree.
 
-The prior configuration was an SBSA UART that can't be configured or
-modified, or even enabled if it isn't the boot console. With properly
-defined clocks, the PL011 configuration can be used.
+Hi Greg,
 
-Signed-off-by: Heinz Wrobel <Heinz.Wrobel@nxp.com>
-Signed-off-by: Li Yang <leoyang.li@nxp.com>
-Signed-off-by: Frank Li <Frank.Li@nxp.com>
----
- .../arm64/boot/dts/freescale/fsl-lx2160a.dtsi | 32 ++++++++++++++-----
- 1 file changed, 24 insertions(+), 8 deletions(-)
+This applies cleanly on -next as of next-20240206 still.
 
-diff --git a/arch/arm64/boot/dts/freescale/fsl-lx2160a.dtsi b/arch/arm64/boot/dts/freescale/fsl-lx2160a.dtsi
-index 6640b49670ae5..e665c629e1a1f 100644
---- a/arch/arm64/boot/dts/freescale/fsl-lx2160a.dtsi
-+++ b/arch/arm64/boot/dts/freescale/fsl-lx2160a.dtsi
-@@ -949,34 +949,50 @@ QORIQ_CLK_PLL_DIV(8)>,
- 		};
- 
- 		uart0: serial@21c0000 {
--			compatible = "arm,sbsa-uart","arm,pl011";
-+			compatible = "arm,pl011", "arm,primecell";
-+			clocks = <&clockgen QORIQ_CLK_PLATFORM_PLL
-+					    QORIQ_CLK_PLL_DIV(8)>,
-+				 <&clockgen QORIQ_CLK_PLATFORM_PLL
-+					    QORIQ_CLK_PLL_DIV(8)>;
-+			clock-names = "uartclk", "apb_pclk";
- 			reg = <0x0 0x21c0000 0x0 0x1000>;
- 			interrupts = <GIC_SPI 32 IRQ_TYPE_LEVEL_HIGH>;
--			current-speed = <115200>;
- 			status = "disabled";
- 		};
- 
- 		uart1: serial@21d0000 {
--			compatible = "arm,sbsa-uart","arm,pl011";
-+			compatible = "arm,pl011", "arm,primecell";
-+			clocks = <&clockgen QORIQ_CLK_PLATFORM_PLL
-+					    QORIQ_CLK_PLL_DIV(8)>,
-+				 <&clockgen QORIQ_CLK_PLATFORM_PLL
-+					    QORIQ_CLK_PLL_DIV(8)>;
-+			clock-names = "uartclk", "apb_pclk";
- 			reg = <0x0 0x21d0000 0x0 0x1000>;
- 			interrupts = <GIC_SPI 33 IRQ_TYPE_LEVEL_HIGH>;
--			current-speed = <115200>;
- 			status = "disabled";
- 		};
- 
- 		uart2: serial@21e0000 {
--			compatible = "arm,sbsa-uart","arm,pl011";
-+			compatible = "arm,pl011", "arm,primecell";
-+			clocks = <&clockgen QORIQ_CLK_PLATFORM_PLL
-+					    QORIQ_CLK_PLL_DIV(8)>,
-+				 <&clockgen QORIQ_CLK_PLATFORM_PLL
-+					    QORIQ_CLK_PLL_DIV(8)>;
-+			clock-names = "uartclk", "apb_pclk";
- 			reg = <0x0 0x21e0000 0x0 0x1000>;
- 			interrupts = <GIC_SPI 72 IRQ_TYPE_LEVEL_HIGH>;
--			current-speed = <115200>;
- 			status = "disabled";
- 		};
- 
- 		uart3: serial@21f0000 {
--			compatible = "arm,sbsa-uart","arm,pl011";
-+			compatible = "arm,pl011", "arm,primecell";
-+			clocks = <&clockgen QORIQ_CLK_PLATFORM_PLL
-+					    QORIQ_CLK_PLL_DIV(8)>,
-+				 <&clockgen QORIQ_CLK_PLATFORM_PLL
-+					    QORIQ_CLK_PLL_DIV(8)>;
-+			clock-names = "uartclk", "apb_pclk";
- 			reg = <0x0 0x21f0000 0x0 0x1000>;
- 			interrupts = <GIC_SPI 73 IRQ_TYPE_LEVEL_HIGH>;
--			current-speed = <115200>;
- 			status = "disabled";
- 		};
- 
--- 
-2.34.1
+Could you please pick it up for v6.9? I can also send a v2 with only
+the two remaining patches (dts was applied to qcom by Bjorn already).
+
+Regards
+Luca
+
+>
+> thanks,
+>
+> greg k-h
 
 
