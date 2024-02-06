@@ -1,208 +1,147 @@
-Return-Path: <devicetree+bounces-39199-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-39200-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id A6C9884BBBB
-	for <lists+devicetree@lfdr.de>; Tue,  6 Feb 2024 18:20:09 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0127384BBBC
+	for <lists+devicetree@lfdr.de>; Tue,  6 Feb 2024 18:20:38 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id C5FD61C22470
-	for <lists+devicetree@lfdr.de>; Tue,  6 Feb 2024 17:20:08 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 94F1C1F259D1
+	for <lists+devicetree@lfdr.de>; Tue,  6 Feb 2024 17:20:37 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0B7B84C6B;
-	Tue,  6 Feb 2024 17:20:08 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5BF456FB1;
+	Tue,  6 Feb 2024 17:20:33 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="IMwU3Yl7"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="iRO9Oygv"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f44.google.com (mail-wm1-f44.google.com [209.85.128.44])
+Received: from mail-pj1-f43.google.com (mail-pj1-f43.google.com [209.85.216.43])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3F4E5B67D
-	for <devicetree@vger.kernel.org>; Tue,  6 Feb 2024 17:20:06 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.44
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D9E5F6FAF;
+	Tue,  6 Feb 2024 17:20:31 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.216.43
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1707240007; cv=none; b=W1znf9UOAIu+fY6A8CJ+q+Sjcqqs/oXVtu+YACzzBRlBtbxwkEGrYAY85hWGbKBg/H+kjsEUHJALK+Q8UJHLuvZj66B90+WnAFCdaao446bkrGflS+wsOWAWCBIEJigeW72Ke1uPCCiJf4pvnccyVUJXtkfUqiyGf9BTsVsIuIk=
+	t=1707240033; cv=none; b=hmrzY81Hu/xGygW2rnmUit6+GKXRWOZZ43wADxsS5zurX3F0mqmSyzhlcNS1tdzMDYZ8vamTNQCq6oLdnZ2sP9kIWxT98Gd2fMdeg63kXRPc43rKwAIvpNkzndKqodesZt+VTAs3xvQTnfaN7DcUfZr9Qz0CL+zA4FF/0h2bdUg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1707240007; c=relaxed/simple;
-	bh=7Uyi6yIcqYod+P2IwnXJG34WTDFw9Tx9oJBgJr18hjs=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=tC9A/9eJBIdoc/FDgbzi8qKeoARU1GnCiAcFhhJx83c5pbDbOT9yE4iSerno+TnznUjEh00XAckdZt7oXjCs5Y4L8QtCR5/m05GUnzJGI0DN6PUuTJSMunYLYguZ2J/WtkaBKhezT8GtmOcjE+thTlXIz9f30UKaByAIMGolCKg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=IMwU3Yl7; arc=none smtp.client-ip=209.85.128.44
+	s=arc-20240116; t=1707240033; c=relaxed/simple;
+	bh=48zwX4cdRuvFsDRvDb1OTWbijEmDQqwVQ9OKmCBLNqs=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=EHXTJnAIjvEd4ZyYSVdF7ZrOS5ojlG/NjDOCVDczddzZmVLrNd9v5dK7QFOPZj4Ha9ipBEXhTyoWOOuWQ8z5avc9yaghIUMDWGGrVOpThuNw9zzZepT1nlL6rCcNRCYDCkCukIGomVMXy8HCewgmC5Xg9o2UsHr3cyLQcKbCuLM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=iRO9Oygv; arc=none smtp.client-ip=209.85.216.43
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-wm1-f44.google.com with SMTP id 5b1f17b1804b1-40fb3b5893eso47706545e9.0
-        for <devicetree@vger.kernel.org>; Tue, 06 Feb 2024 09:20:06 -0800 (PST)
+Received: by mail-pj1-f43.google.com with SMTP id 98e67ed59e1d1-295c67ab2ccso4420847a91.1;
+        Tue, 06 Feb 2024 09:20:31 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1707240004; x=1707844804; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
+        d=gmail.com; s=20230601; t=1707240031; x=1707844831; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=yO24H5owtgENtATBfciwVl5rPLofQnR2KLvl+C2r6QE=;
-        b=IMwU3Yl7MTyTV4WrEvh8AgxX6WEifmW7f9bDhHmuLOzlIrzzJ0pWUlIPZ5NVzyYFzt
-         15DdUtvUk81hkePA1Zfs9cQi6uByXi/P3yCdiY5F6o249LGNvOW2sQS0ZTJvY+tK5d3y
-         ak0EaHSkl0wGw/CG4N6H2Jshuz+icrdGJM8yFNL6OMNDH/9jEbAYTj4XSkX7VKvGCH1w
-         t6zdgpoynSiRCU0S3eOrVXdlF6SwJ4TMETwYMfYsfwD02mnVTOnwiCcyc7az5ZsDgJ3o
-         hvCrM8dPIyHNzYzcce+9WzKRqcLvirfFMmzJ8zq2xclUcjCNDf3tbTNAQyAo6aDN2mgO
-         2CYg==
+        bh=FEpDIST9h9yaifs/R99eDIKxr1oKIOjzVlU8EGHsrRE=;
+        b=iRO9OygvfUmP0MVmTSXOMyFMiMoSYx8u9fao8DJK4rtljnIWvokWiotfIcOrf3+21/
+         CbtFwE4FwnmE58GJhz9OM/Rx3ZussX3pyFUInNC8KFNqLpMXtJ3pJ5aIWd1kSv33eIwC
+         l+vnepCUxLcHE8Ywa9ENigumLs/oHEYiAkdxivPLVjYljRDVBXDPgcHfULekU48ULQih
+         1Y7562AF+D0/DOybp0SDnU4GtoFyGA+KUtkFAqSWYCLDd689QOUdvmAMtNANtiJSbyZY
+         UizttDIkEw2TnyEGGr0FQCLR6f2YrUitztAH7fa80euivIfUeJ9UMyAfvOgN+JYAHPyT
+         iwrQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1707240004; x=1707844804;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
+        d=1e100.net; s=20230601; t=1707240031; x=1707844831;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=yO24H5owtgENtATBfciwVl5rPLofQnR2KLvl+C2r6QE=;
-        b=qBqHGMy1HIECiwHO8DteiKCJG/XKQYjfds3/aGXaFXdkxIb0OzXBGqW+QIdl6QVW0Z
-         +c2PQcMyXiV1iBtILqMYbpHnHBWUVJNOywN6JOZ5h9INt6N3tnXwkF9jGkOOFovz1n+H
-         HrYl7TkKJfceDfyVK2f5PMkwPuqyYiKKsY2Tc0X72w6AKoKzdzrd5/6NrH537lPIJTJ+
-         riopznvy40rk4adYVIWuUt/OqD9712Xgt58L0aobF4eTyIvzbhBYdFR3ycWR2Jm3VSBH
-         LN9RpfsuYhn8tU6zqnR26ze/FJBm7CDZcTFMtatQXqcy0PgHc5hQTTRYj9ZA1djJDTVS
-         ERCQ==
-X-Gm-Message-State: AOJu0YyRLbvlTYbAzkvND0DO1WnawOUM/VXdArN6GiQbRrcJnZgyi/w9
-	bG0NCMRDXmNS5p0k0Sa7cj7cbwBKbUDD9LJ2b05JATcALBb8bL8r
-X-Google-Smtp-Source: AGHT+IHHmMUhSlVvsX0qqYDcPjOJhJxkHXsVNPCQ/GNEu7A+7qNZ7Hm4q8JJ/+wls+PtXWv82UyMQA==
-X-Received: by 2002:a05:600c:5490:b0:40f:ba0b:16b3 with SMTP id iv16-20020a05600c549000b0040fba0b16b3mr2871453wmb.2.1707240004287;
-        Tue, 06 Feb 2024 09:20:04 -0800 (PST)
-X-Forwarded-Encrypted: i=1; AJvYcCUcaP06J19h0rK5CYaD7cMopWN7XslSGg6Kl5BkbdLdIMITucEL4xJJOj7hhoy4R7Tkxk9bCzuRO1BxAJ+xXFILyKj+w1yo4kFKPhMvo/+KjVBxqIA8wi/CiKEohgj+2HSbNLXlqufdFq4RpUK/OdylDJB/0gG+xThrV4V08e905AkMhFd71N3P8EVgPsIQrZWk7jhBJFmPHTsVcOHDRa2oUEjQL/sIiUK7OnPgm3oYdWcNvgkr995v8MDoJZgbZaqTjGM000g9Dm0hUR56wIRSnsC2Bh7qZHmyZ0m1KXmLkKFwxF+wEiJAMljsISev9d/i6gqTowenOZ3qGg4feVFxvusrHHB6OANk
-Received: from jernej-laptop.localnet (86-58-6-171.dynamic.telemach.net. [86.58.6.171])
-        by smtp.gmail.com with ESMTPSA id v9-20020a05600c470900b0040fe2d3aec4sm2569802wmo.19.2024.02.06.09.20.03
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 06 Feb 2024 09:20:03 -0800 (PST)
-From: Jernej =?utf-8?B?xaBrcmFiZWM=?= <jernej.skrabec@gmail.com>
-To: wens@csie.org
-Cc: Samuel Holland <samuel@sholland.org>, Rob Herring <robh+dt@kernel.org>,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Conor Dooley <conor+dt@kernel.org>, Andre Przywara <andre.przywara@arm.com>,
- linux-sunxi@lists.linux.dev, devicetree@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, Nick Alilovic <nickalilovic@gmail.com>
-Subject:
- Re: [PATCH 2/2] arm64: dts: allwinner: Transpeed 8K618-T: add WiFi nodes
-Date: Tue, 06 Feb 2024 18:20:02 +0100
-Message-ID: <2717857.mvXUDI8C0e@jernej-laptop>
-In-Reply-To:
- <CAGb2v66=s-k5xNtL9N_Tyzzk92u_32Hk_+V+rFVYne3=fnMjdA@mail.gmail.com>
-References:
- <20240204093255.148972-1-andre.przywara@arm.com>
- <8371906.NyiUUSuA9g@jernej-laptop>
- <CAGb2v66=s-k5xNtL9N_Tyzzk92u_32Hk_+V+rFVYne3=fnMjdA@mail.gmail.com>
+        bh=FEpDIST9h9yaifs/R99eDIKxr1oKIOjzVlU8EGHsrRE=;
+        b=t3h8sFX72nmx/2rZ0neXfIR67zkCXQpg0TEbqcxslOtkInUpDBpJDxEW6UmIQeaJBV
+         XOMuzSe0Ss9LW67j0Rts5uSwSdzaxIry37PDDgPTheIPM0XVoPGpS2s7b74BsV7kf2YT
+         s/pUVIhGHkl+8/MuFKJ2LaJIYU9ge03zjnPf68Wb7WhMzyZWkPo6dyhSAupWz/6zjCx2
+         exqDbkKzlwf51kxoQmq6HMZLYCQsflGwwExVzXPbLBvf4Uusrbp0cx2lQtCSlYn0SYNQ
+         v6VUKxAqVrg2u0ktVXrx2oSZCn/d0qam37puOMDZXaUC0C32f3x5iD0jvSTJMLyUpkcN
+         xrBA==
+X-Gm-Message-State: AOJu0Yx3lIRaS359UOcPizjvbllQpRlEJH+WaARO5Oau4EcNHKZ3SUfL
+	AZZCvnvfvKHvgWDzCaFTC5txsB+sH1PAvVt2OPhJVlj9cK6dxnfUAaZkOfIIG/0Ot9ydBPGgdbC
+	tcTZdYaJEjOs3hSaDLiK8ZPhQGA==
+X-Google-Smtp-Source: AGHT+IEoplUefw7rvL8SQ+8RghCz5pebfVVsAA3lYam19JsCz3fVFmbC2KV6T5Wm+c0EM0HDyQ/JDPj7eO1TcHLgugE=
+X-Received: by 2002:a17:90b:4c85:b0:296:2057:28c with SMTP id
+ my5-20020a17090b4c8500b002962057028cmr175786pjb.31.1707240031006; Tue, 06 Feb
+ 2024 09:20:31 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
+References: <20240205191828.998783-1-frut3k7@gmail.com> <fb9767e0-c5a8-448f-b3f7-e6f81ef008e6@linaro.org>
+ <CAKEyCaAXqhzMbTQL8WhLze39cey_DuE-LYOrK+oitD=NiZMuTQ@mail.gmail.com>
+ <7e2d927b-ce84-4939-8d0f-adfad2a3ef70@linaro.org> <CAKEyCaBADYxbU3XkJYv3WkZpJZ93nvfg+Zg2bvaViHCg47=9zw@mail.gmail.com>
+ <70cdc60e-2f6c-49ca-914a-e28be4ac3714@linaro.org>
+In-Reply-To: <70cdc60e-2f6c-49ca-914a-e28be4ac3714@linaro.org>
+From: frut3k7 <frut3k7@gmail.com>
+Date: Tue, 6 Feb 2024 18:20:19 +0100
+Message-ID: <CAKEyCaBgrrUWCCnGOvYSP2ZvZDp+shTE3yOCCMcy_DD7xRaAjQ@mail.gmail.com>
+Subject: Re: [PATCH 2/2] dt-bindings: trivial-devices: Add qca,spidev
+To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Cc: Rob Herring <robh+dt@kernel.org>, 
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Guenter Roeck <linux@roeck-us.net>, Naresh Solanki <Naresh.Solanki@9elements.com>, 
+	Patrick Rudolph <patrick.rudolph@9elements.com>, Peter Yin <peteryin.openbmc@gmail.com>, 
+	Bjorn Helgaas <bhelgaas@google.com>, Michal Simek <michal.simek@amd.com>, 
+	Lakshmi Yadlapati <lakshmiy@us.ibm.com>, Lukas Wunner <lukas@wunner.de>, 
+	Alexander Stein <alexander.stein@ew.tq-group.com>, Fabio Estevam <festevam@denx.de>, 
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
 Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-Dne torek, 06. februar 2024 ob 02:03:21 CET je Chen-Yu Tsai napisal(a):
-> On Tue, Feb 6, 2024 at 2:26=E2=80=AFAM Jernej =C5=A0krabec <jernej.skrabe=
-c@gmail.com> wrote:
-> >
-> > Dne nedelja, 04. februar 2024 ob 10:32:55 CET je Andre Przywara napisal=
-(a):
-> > > In contrast to other devices using Allwinner SoCs, the Transpeed 8K61=
-8-T
-> > > TV box uses a mainline supported WiFi chip: it's a Broadcom 4335
-> > > compatible, packaged by a company called Murata.
-> > > It works nicely with the Linux driver, when providing the respective
-> > > firmware files.
-> > >
-> > > Add the required DT nodes to let the kernel find the SDIO device.
-> >
-> > Can you reword message in a way to omit Linux?
->=20
-> Probably reword it to say "add nodes so that custom MAC addresses can be
-> associated with it"?
->=20
-> > >
-> > > Signed-off-by: Andre Przywara <andre.przywara@arm.com>
-> > > ---
-> > >  .../sun50i-h618-transpeed-8k618-t.dts         | 23 +++++++++++++++++=
-++
-> > >  1 file changed, 23 insertions(+)
-> > >
-> > > diff --git a/arch/arm64/boot/dts/allwinner/sun50i-h618-transpeed-8k61=
-8-t.dts b/arch/arm64/boot/dts/allwinner/sun50i-h618-transpeed-8k618-t.dts
-> > > index 8ea1fd41aeba..7ec4098e707b 100644
-> > > --- a/arch/arm64/boot/dts/allwinner/sun50i-h618-transpeed-8k618-t.dts
-> > > +++ b/arch/arm64/boot/dts/allwinner/sun50i-h618-transpeed-8k618-t.dts
-> > > @@ -16,6 +16,7 @@ / {
-> > >
-> > >       aliases {
-> > >               serial0 =3D &uart0;
-> > > +             ethernet1 =3D &sdio_wifi;
-> > >       };
-> > >
-> > >       chosen {
-> > > @@ -39,6 +40,15 @@ reg_vcc3v3: vcc3v3 {
-> > >               regulator-max-microvolt =3D <3300000>;
-> > >               regulator-always-on;
-> > >       };
-> > > +
-> > > +     wifi_pwrseq: wifi_pwrseq {
-> > > +             compatible =3D "mmc-pwrseq-simple";
-> > > +             clocks =3D <&rtc CLK_OSC32K_FANOUT>;
-> > > +             clock-names =3D "ext_clock";
-> > > +             pinctrl-0 =3D <&x32clk_fanout_pin>;
-> > > +             pinctrl-names =3D "default";
-> > > +             reset-gpios =3D <&pio 6 18 GPIO_ACTIVE_LOW>; /* PG18 */
-> > > +     };
-> > >  };
-> > >
-> > >  &ehci0 {
-> > > @@ -60,6 +70,19 @@ &mmc0 {
-> > >       status =3D "okay";
-> > >  };
-> > >
-> > > +&mmc1 {
-> > > +     vmmc-supply =3D <&reg_dldo1>;
-> > > +     vqmmc-supply =3D <&reg_aldo1>;
-> > > +     mmc-pwrseq =3D <&wifi_pwrseq>;
-> > > +     bus-width =3D <4>;
-> > > +     non-removable;
-> > > +     status =3D "okay";
-> > > +
-> > > +     sdio_wifi: wifi@1 {
-> > > +             reg =3D <1>;
-> > > +     };
-> >
-> > I don't think this node and alias are useful in any way. SDIO scan will=
- find
-> > device regardless and potential mac property set up by bootloader will =
-be
-> > ignored anyway.
->=20
-> If a node with the matching function number is found, the MMC core will
-> associate the node with the SDIO function device before calling the probe
-> function. It has worked correctly for quite some time.
-
-Ah, I didn't know. Ok then, Andre, just update commit message and it's good
-to go.
-
-Best regards,
-Jernej
-
->=20
-> If the driver isn't taking the MAC address given in the DT, then that's
-> a driver issue.
->=20
-> ChenYu
->=20
-> > Best regards,
-> > Jernej
-> >
-> > > +};
-> > > +
-> > >  &mmc2 {
-> > >       vmmc-supply =3D <&reg_dldo1>;
-> > >       vqmmc-supply =3D <&reg_aldo1>;
-> > >
-> >
-> >
-> >
-> >
->=20
-
-
-
-
+On Tue, Feb 6, 2024 at 5:53=E2=80=AFPM Krzysztof Kozlowski
+<krzysztof.kozlowski@linaro.org> wrote:
+>
+> On 06/02/2024 17:34, frut3k7 wrote:
+> >>>>> diff --git a/Documentation/devicetree/bindings/trivial-devices.yaml=
+ b/Documentation/devicetree/bindings/trivial-devices.yaml
+> >>>>> index 79dcd92c4a43..50efbdf2a735 100644
+> >>>>> --- a/Documentation/devicetree/bindings/trivial-devices.yaml
+> >>>>> +++ b/Documentation/devicetree/bindings/trivial-devices.yaml
+> >>>>> @@ -309,6 +309,8 @@ properties:
+> >>>>>            - plx,pex8648
+> >>>>>              # Pulsedlight LIDAR range-finding sensor
+> >>>>>            - pulsedlight,lidar-lite-v2
+> >>>>> +            # Qualcomm QCA4024 Multi-mode Bluetooth and 802.15.4 S=
+oC
+> >>>>> +          - qca,spidev
+> >>>>
+> >>>> There is no such hardware as spidev and you even mentioned it is cal=
+led
+> >>>> QCA4024, not spidev. Please don't use that name but a real name.
+> >>>>
+> >>> The compatibility will be changed to "qca4024" and a new patch versio=
+n
+> >>> will be prepared.
+> >>
+> >> That would be ok except:
+> >>
+> >>>
+> >>>> Also, I have doubts that Bluetooth is a trivial device. Such devices
+> >>>> need supplies, have reset/powerdown GPIOs.
+> >>
+> >> this is not resolved. Bluetooth chips are not trivial devices. This on=
+e
+> >> particular exposes several interfaces to the host, needs a clock and
+> >> power supply.
+> >>
+> > Device is used over QUP4 SPI controller inside of IPQ8074:
+> > https://lore.kernel.org/all/20231123121324.1046164-1-robimarko@gmail.co=
+m/
+> > I'm not sure if these pin settings should be upstreamed as they are
+> > specific to this platform:
+> > https://github.com/openwrt/openwrt/pull/14051/files#diff-ed3fbf0226fbdc=
+76c9c160f2f2b9e988120df472480b9861abe7a46796558115R81-R111
+>
+> Why do you think qca4024 is specific to this platform? Judging by
+> Qualcomm website: it is not.
+>
+Unfortunately, I do not have access to the documentation for this SoC.
+Currently, even after adding support, communication with the SoC is
+not possible. QAPI (Qualcomm API) support is missing.
+> Best regards,
+> Krzysztof
+>
 
