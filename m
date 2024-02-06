@@ -1,286 +1,114 @@
-Return-Path: <devicetree+bounces-38981-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-38982-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 91F2984B0A7
-	for <lists+devicetree@lfdr.de>; Tue,  6 Feb 2024 10:04:02 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id BA56684B0D0
+	for <lists+devicetree@lfdr.de>; Tue,  6 Feb 2024 10:13:06 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id B3D791C2272D
-	for <lists+devicetree@lfdr.de>; Tue,  6 Feb 2024 09:04:01 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 4DD07281FEB
+	for <lists+devicetree@lfdr.de>; Tue,  6 Feb 2024 09:13:05 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A35ED12DDA9;
-	Tue,  6 Feb 2024 09:01:09 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 776A612A159;
+	Tue,  6 Feb 2024 09:13:02 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="JHrPMfKb"
+	dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b="z8LU45MF"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f54.google.com (mail-wm1-f54.google.com [209.85.128.54])
+Received: from mail-ed1-f41.google.com (mail-ed1-f41.google.com [209.85.208.41])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AAB8012DDA8
-	for <devicetree@vger.kernel.org>; Tue,  6 Feb 2024 09:01:07 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.54
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B8B935B687
+	for <devicetree@vger.kernel.org>; Tue,  6 Feb 2024 09:12:59 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.41
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1707210069; cv=none; b=JF31zQr7IlLhIcNShFBFusM5wxq6BQL0qnZvTLE0AeqLFCyq7A8ebLubRfiU2sh1sJxdm/QNV9DDdysdcTrEYPEeXH9wYB1rdb/wo7SEVBZIwCnbnZANQZ8Y9o7AlgkW5tKROD/NxeYqjxn/sQpPDmwxfmV3fcSsL+P3MVYB0MQ=
+	t=1707210782; cv=none; b=EwX1kwPkBwk9fpBp+1qF5DkkZ4VttNiPfrQAQbI6R1h5yL407goWb5u8Bwz9qePetMjXYDP93apxjOgECZd4KRbFcvIGY6N/Ds2c5Vg/AnYDKSvGp+Cb5yVgAFrGP6TPbZkq3KrxinG/GsWT/cx01IoAqAIIGef13vlGRQ8H9MI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1707210069; c=relaxed/simple;
-	bh=Obp3+iU0NYx3LVy2xs6Xipc0ORb8bkb/WXC4pfh6d94=;
-	h=Message-ID:Date:MIME-Version:From:Subject:To:Cc:References:
-	 In-Reply-To:Content-Type; b=VLy64EvS5Kg7BCPiFhaM3zhuiWwzPpDePTOyV5HrjrAccNMn2hDRTKzkYF24f7pF9tgZY8S9fJLnv+47rpUm5S+qnMrmPMgg2qqKI3J4lOvB/99ZoWSRTCvTdhJoxkzapdC2g9NB0y+VgoJEEvH09uOqC7WyTwuwdoFs3cp39AU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=JHrPMfKb; arc=none smtp.client-ip=209.85.128.54
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-wm1-f54.google.com with SMTP id 5b1f17b1804b1-40ef3f351d2so1639195e9.1
-        for <devicetree@vger.kernel.org>; Tue, 06 Feb 2024 01:01:07 -0800 (PST)
+	s=arc-20240116; t=1707210782; c=relaxed/simple;
+	bh=pzCq4kCr7BpFqs4M3wKLke6/IVRyjwON6wWOnX1UWdg=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=CA/lZERk1X4YYvGrVia6bVVbSyaN0qdHqeJ3F1nEkgXvupy3sBI04IUiqGMWjxVs5oSD82X6ell42B5V98pEVxXqp+sDXk+OOS4kF3Nm5Tf1Wf+umpFBGmIXkqGTWJ4WnnoPmxndGQB0ULMwerGxtW/k/rDTYg8T4hQh185weF0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com; spf=pass smtp.mailfrom=baylibre.com; dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b=z8LU45MF; arc=none smtp.client-ip=209.85.208.41
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=baylibre.com
+Received: by mail-ed1-f41.google.com with SMTP id 4fb4d7f45d1cf-55fc7f63639so6218656a12.1
+        for <devicetree@vger.kernel.org>; Tue, 06 Feb 2024 01:12:59 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1707210066; x=1707814866; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:organization:autocrypt
-         :references:cc:to:content-language:subject:reply-to:from:user-agent
-         :mime-version:date:message-id:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=/dIUJgwnOyWSt0uclCiKcW3R3F0dsn7PgLN2KshxQ3w=;
-        b=JHrPMfKb2dlWty49NwFfInXA2WSqwz8R1tFuHZhvcXFEO264JM87ucrOyU3cpZhodA
-         xlwtyJ4a7dTMFJhDWQYum9ho644ju6dY4WQ7nSQ2qlWfwaX+tJmEYIetqe/YU0EuR79I
-         k4I1ql5nCjjdBtRzFr8nhAXKqgFiN4y0GIFKwMTOCH4pXHOVPfiyNIOJxA/NA7coRH2d
-         2d8A3070ribOqbNd1BXxI+5+4gBWXAKlCmJftTKHxnEQRnBEC6rkdByGXkE7n7dZIEcW
-         wYXCexvhD6E9DhrlJuonRDFHZgY+ZwCepBzqWORfJaVM2FNZTLAUI+KcK8fpsm5PTyWX
-         o5LQ==
+        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1707210778; x=1707815578; darn=vger.kernel.org;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=GmlhoN9VyMxqeNOOnGTOAmJzMI9K2t+a54JLGmht/ZQ=;
+        b=z8LU45MFL/X2+yPl/U/mjWlvVwF5Zkg9fdDTQ9BS4HP64QIVLzXp1XWO5uGdRgEags
+         ONFLbklYt95mpUlwNH0JTCLA29ggal/j3CqnPsIp0xMQXj7uY42Q0dIUKxe+ZVuBe+rz
+         6YN01YExMqCIXaDlYjnbNH9icfvRKFHl7dDY4W8YuvS+INyqQn8Q2VJ4nu8ufHSY+fia
+         qXY64Ru0hyIeJXyYhnCkT4EUwzvMdArAYPKls6SBXiWaFT9JFSbQb2IhODP1BBGPQzzP
+         qTOwiVcj4zNwfzO8g70mErrL2Vr2McEiAji3a4LzFvpMlbLoxEXDhb3XCp9opwKTCwV8
+         Oc7A==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1707210066; x=1707814866;
-        h=content-transfer-encoding:in-reply-to:organization:autocrypt
-         :references:cc:to:content-language:subject:reply-to:from:user-agent
-         :mime-version:date:message-id:x-gm-message-state:from:to:cc:subject
-         :date:message-id:reply-to;
-        bh=/dIUJgwnOyWSt0uclCiKcW3R3F0dsn7PgLN2KshxQ3w=;
-        b=uEgRlw118wofquZl+7VQJajxmGQ7f4RaU76Zj0CVsuVH6bEx4nXi9p71U5C+lbAhCe
-         UG9BGYClXWzWsAaxSnQH2H5Tka3hGydwVZvNfluKB2r5VYySt953ehcVyHNjph9LcIUh
-         l2y0caT9KxTGB4Y2KEPzebI6BLTGCstkS9Da5KUOab6QruATtGnKM1BMXCs3Uisqsob7
-         XMi2hGnHrC9IxBPdayz1mHu2eHSJpc7hH6jwmiEY7mHzt/Q4TBBgt36o1svMIUL2+aky
-         FR87pvJruswJIAa3ScyVPhkHqWjf7V3tmsymPJxs4APvEu4Jive0JyXN7aVF6XfYVD/H
-         8GhQ==
-X-Gm-Message-State: AOJu0Yzh+V8SIk9OT2SBY2v72dH5oM1DdpWwoC3ij0c799zshcTmM+wP
-	m2lxcJ25Q3Q9gQHs/pZ18tymc/xiFFTVcxqD9d7jb/YDmD51Z+pzI0QHpDVBPqs=
-X-Google-Smtp-Source: AGHT+IGmZv5/ZwUXLZBEWIQriNR+L/Vqpbg2i5djqRd6e6lnmwcyprtpMUMQPA9dZ/hJiHJIQ4x8pQ==
-X-Received: by 2002:a05:600c:4f4d:b0:40f:de25:f9a9 with SMTP id m13-20020a05600c4f4d00b0040fde25f9a9mr2756501wmq.15.1707210065859;
-        Tue, 06 Feb 2024 01:01:05 -0800 (PST)
-X-Forwarded-Encrypted: i=1; AJvYcCUP7hpkPQs7XkJMZeboQiQzxcsHpLY+gTBGwCFcvYyYWfB1HXTUMUjZdT3sGA+YwRK7KRZctuePJz8Q8x2E3sy9jf8g8SJfnPfmR5ySJuTCvMoHytOefwnpgh7w5Nve4WKMDPFPRTlzJKB2Z8csbiobrmPe6PTNitRlQLIxmwYxAtGjhySX3d7Y3qATn9a8aYUHt5mkAVmXK3S4Idxell0Hmp+ujPMOTWQlMGSeyX/DIG3rB7OWBNatXmD0tQHIYVN9R83Wfeu4bzR/osbHPvCXCEFitQ+kMlGccXMXb0/6PU+h/Pab5rUGJr6w4vdNkgxaP8M1n43VOFxpBdTjbUArN5G31siq/HVwVlf3wudQLgxMV4tBZ02MSD+z4V7ELMmqHFQqfkka
-Received: from ?IPV6:2a01:e0a:982:cbb0:ba23:8574:fa8:28dd? ([2a01:e0a:982:cbb0:ba23:8574:fa8:28dd])
-        by smtp.gmail.com with ESMTPSA id g14-20020a05600c4ece00b0040fe4b733f4sm930244wmq.26.2024.02.06.01.01.04
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 06 Feb 2024 01:01:05 -0800 (PST)
-Message-ID: <451adbff-c2b7-4141-990d-73cf869b752f@linaro.org>
-Date: Tue, 6 Feb 2024 10:01:04 +0100
+        d=1e100.net; s=20230601; t=1707210778; x=1707815578;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=GmlhoN9VyMxqeNOOnGTOAmJzMI9K2t+a54JLGmht/ZQ=;
+        b=m2ekB5AAcBGeawcm1/Qbd2ddjq9flfzScNtd6Yu1tBGd4SN6ubCzgslBNqRb9kdnPo
+         tfRVBxeOIJ+qhC7u9kBfKhYJgotFMpLtftMh2+hau3E8DIoH/mlgOxzPt005cbTewdTb
+         7ckXsUMbZK7sDFgKYYD6+TY4Gi4yJxe+OdEtO7nPKrN9R4iSpr1JrDXXsSGUwoGwxbAd
+         hx67Zo0rn0em8RjIn1te6k7xzam9KmnyOPTugcAbVvBqrbIcVJDTe0daiUQCvjPv6iBc
+         REWfcbD2az1hlqFU/bI/DVDO1SxQjAc66QoQDR2CqeC3kjHaAMFrip7KOPrkv6HGlUMv
+         uaEg==
+X-Gm-Message-State: AOJu0YzDVL+mK46dhoOaroHEfdLC+Cn1snYx8QJSmLfkqJ4JA/rflzqb
+	fFPPMvOXKPieSPexiSB6ynWvxLIegz71ZsYMGdLXkUzTPItW5hUW2UiCkzM2wXI=
+X-Google-Smtp-Source: AGHT+IH2MblfrLitxaeQa/RIyDFOY04h7vsJHFwwAJZePOlonmkLuXoDRpZovbMVGAMkXXjBzu+CCA==
+X-Received: by 2002:aa7:d902:0:b0:560:9277:80e5 with SMTP id a2-20020aa7d902000000b00560927780e5mr1220499edr.21.1707210777956;
+        Tue, 06 Feb 2024 01:12:57 -0800 (PST)
+X-Forwarded-Encrypted: i=0; AJvYcCXxALzPvjGBvcFb1vLdySyAB+NrFD6F7LM/hf9/jL6L5GMTho3+cKiscWM7g5AIuySvhLK405ot5RWFD1aY13GErCSAcSpc9/L8zjBC/pBq9P18aRMs3cMI+BBvt6EQ9P1ePHbjFyWuRhvYt3S+mxvFwFSzrnm/kmN0ntt/meUqHnyp+sruAfSWyRmPwaNdU5Bp6jgfmbwnkCboq6E494xRUoCL1KUoGljjhpMwLTyBSFzfy3rZ8he3Ppay0l+2AoHA1li9xfSOcFvKzezW41mtC+p6Q2fT0y4QI9fn2cci0VXhQXSo7rL0ysNH7eXnWe/wci5SILr6+5jH3JMVHxPYAuU1YQw=
+Received: from blmsp ([2001:4091:a246:821e:6f3b:6b50:4762:8343])
+        by smtp.gmail.com with ESMTPSA id b8-20020a0564021f0800b0056012fe9d4fsm821287edb.76.2024.02.06.01.12.56
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 06 Feb 2024 01:12:57 -0800 (PST)
+Date: Tue, 6 Feb 2024 10:12:56 +0100
+From: Markus Schneider-Pargmann <msp@baylibre.com>
+To: Tony Lindgren <tony@atomide.com>
+Cc: Nishanth Menon <nm@ti.com>, Vignesh Raghavendra <vigneshr@ti.com>, 
+	Tero Kristo <kristo@kernel.org>, Rob Herring <robh+dt@kernel.org>, 
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, Dhruva Gole <d-gole@ti.com>, 
+	Kevin Hilman <khilman@baylibre.com>, linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org
+Subject: Re: [PATCH v4 1/1] arm64: dts: ti: k3-am62-wakeup: Configure ti-sysc
+ for wkup_uart0
+Message-ID: <wl7atq35kwgd3lgscp2sygjulrheukjfjcia3nl6f5326ot35i@jey76kt25sz7>
+References: <20231219072503.12427-1-tony@atomide.com>
+ <q54c4f3l2ddvnnwzigz2hebru27nhevf4oij6g2nqv6yyijigr@nuvwukfwpsjh>
+ <20240126082006.GT5185@atomide.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-From: Neil Armstrong <neil.armstrong@linaro.org>
-Reply-To: neil.armstrong@linaro.org
-Subject: Re: [PATCHv1 5/5] arm64: dts: amlogic: Add cache information to the
- Amlogic A7 SoC
-Content-Language: en-US, fr
-To: Anand Moon <linux.amoon@gmail.com>, Kevin Hilman <khilman@baylibre.com>,
- Jerome Brunet <jbrunet@baylibre.com>,
- Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
- Rob Herring <robh+dt@kernel.org>,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Conor Dooley <conor+dt@kernel.org>
-Cc: linux-arm-kernel@lists.infradead.org, linux-amlogic@lists.infradead.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-References: <20240205171930.968-1-linux.amoon@gmail.com>
- <20240205171930.968-6-linux.amoon@gmail.com>
-Autocrypt: addr=neil.armstrong@linaro.org; keydata=
- xsBNBE1ZBs8BCAD78xVLsXPwV/2qQx2FaO/7mhWL0Qodw8UcQJnkrWmgTFRobtTWxuRx8WWP
- GTjuhvbleoQ5Cxjr+v+1ARGCH46MxFP5DwauzPekwJUD5QKZlaw/bURTLmS2id5wWi3lqVH4
- BVF2WzvGyyeV1o4RTCYDnZ9VLLylJ9bneEaIs/7cjCEbipGGFlfIML3sfqnIvMAxIMZrvcl9
- qPV2k+KQ7q+aXavU5W+yLNn7QtXUB530Zlk/d2ETgzQ5FLYYnUDAaRl+8JUTjc0CNOTpCeik
- 80TZcE6f8M76Xa6yU8VcNko94Ck7iB4vj70q76P/J7kt98hklrr85/3NU3oti3nrIHmHABEB
- AAHNKk5laWwgQXJtc3Ryb25nIDxuZWlsLmFybXN0cm9uZ0BsaW5hcm8ub3JnPsLAkQQTAQoA
- OwIbIwULCQgHAwUVCgkICwUWAgMBAAIeAQIXgBYhBInsPQWERiF0UPIoSBaat7Gkz/iuBQJk
- Q5wSAhkBAAoJEBaat7Gkz/iuyhMIANiD94qDtUTJRfEW6GwXmtKWwl/mvqQtaTtZID2dos04
- YqBbshiJbejgVJjy+HODcNUIKBB3PSLaln4ltdsV73SBcwUNdzebfKspAQunCM22Mn6FBIxQ
- GizsMLcP/0FX4en9NaKGfK6ZdKK6kN1GR9YffMJd2P08EO8mHowmSRe/ExAODhAs9W7XXExw
- UNCY4pVJyRPpEhv373vvff60bHxc1k/FF9WaPscMt7hlkbFLUs85kHtQAmr8pV5Hy9ezsSRa
- GzJmiVclkPc2BY592IGBXRDQ38urXeM4nfhhvqA50b/nAEXc6FzqgXqDkEIwR66/Gbp0t3+r
- yQzpKRyQif3OwE0ETVkGzwEIALyKDN/OGURaHBVzwjgYq+ZtifvekdrSNl8TIDH8g1xicBYp
- QTbPn6bbSZbdvfeQPNCcD4/EhXZuhQXMcoJsQQQnO4vwVULmPGgtGf8PVc7dxKOeta+qUh6+
- SRh3vIcAUFHDT3f/Zdspz+e2E0hPV2hiSvICLk11qO6cyJE13zeNFoeY3ggrKY+IzbFomIZY
- 4yG6xI99NIPEVE9lNBXBKIlewIyVlkOaYvJWSV+p5gdJXOvScNN1epm5YHmf9aE2ZjnqZGoM
- Mtsyw18YoX9BqMFInxqYQQ3j/HpVgTSvmo5ea5qQDDUaCsaTf8UeDcwYOtgI8iL4oHcsGtUX
- oUk33HEAEQEAAcLAXwQYAQIACQUCTVkGzwIbDAAKCRAWmrexpM/4rrXiB/sGbkQ6itMrAIfn
- M7IbRuiSZS1unlySUVYu3SD6YBYnNi3G5EpbwfBNuT3H8//rVvtOFK4OD8cRYkxXRQmTvqa3
- 3eDIHu/zr1HMKErm+2SD6PO9umRef8V82o2oaCLvf4WeIssFjwB0b6a12opuRP7yo3E3gTCS
- KmbUuLv1CtxKQF+fUV1cVaTPMyT25Od+RC1K+iOR0F54oUJvJeq7fUzbn/KdlhA8XPGzwGRy
- 4zcsPWvwnXgfe5tk680fEKZVwOZKIEuJC3v+/yZpQzDvGYJvbyix0lHnrCzq43WefRHI5XTT
- QbM0WUIBIcGmq38+OgUsMYu4NzLu7uZFAcmp6h8g
-Organization: Linaro Developer Services
-In-Reply-To: <20240205171930.968-6-linux.amoon@gmail.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+In-Reply-To: <20240126082006.GT5185@atomide.com>
 
-On 05/02/2024 18:19, Anand Moon wrote:
-> As per A311D datasheet add missing cache information to the Amlogic A7 SoC.
+Hi Tony,
+
+On Fri, Jan 26, 2024 at 10:20:06AM +0200, Tony Lindgren wrote:
+> * Markus Schneider-Pargmann <msp@baylibre.com> [240124 13:55]:
+> > I tested this patch on am62-lp-sk and required this additional property:
+> > 
+> >   ti,no-reset-on-init;
+> > 
+> > I am not sure at the moment why a reset doesn't work. But with the given
+> > property (so without reset) the wakeup on wkup_uart0 works as expected.
 > 
-> - Each Cortex-A53 core has 32 KB of instruction cache and
-> 	32 KB of L1 data cache available.
-> - Each Cortex-A73 core has 64 KB of L1 instruction cache and
-> 	64 KB of L1 data cache available.
-> - The little (A53) cluster has 512 KB of unified L2 cache available.
-> - The big (A73) cluster has 1 MB of unified L2 cache available.
+> OK. This might be some firmware related difference. Care to describe what
+> goes wrong so that can be added to the patch description?
 
-Where did you get those numbers ? I can't find them.
+I tested this patch on sk-am62-lp on the upstream kernel and on the
+latest ti-sdk 6.1 kernel. With the ti-sdk 6.1 kernel I get mbox timeouts
+if the driver resets the ti-sysc. If it doesn't reset it, everything
+works on ti-sdk 6.1 as expected as well including wakeup from the
+wkup_uart0.
 
-Neil
-
-> 
-> To improve system performance.
-> 
-> Signed-off-by: Anand Moon <linux.amoon@gmail.com>
-> ---
-> [0] https://dl.khadas.com/products/vim4/datasheet/a311d2_quick_reference_manual_v0.6.pdf
-> [1] https://en.wikipedia.org/wiki/ARM_Cortex-A73
-> [2] https://en.wikipedia.org/wiki/ARM_Cortex-A53
-> ---
->   arch/arm64/boot/dts/amlogic/amlogic-t7.dtsi | 74 +++++++++++++++++++++
->   1 file changed, 74 insertions(+)
-> 
-> diff --git a/arch/arm64/boot/dts/amlogic/amlogic-t7.dtsi b/arch/arm64/boot/dts/amlogic/amlogic-t7.dtsi
-> index a03c7667d2b6..72dedc40f460 100644
-> --- a/arch/arm64/boot/dts/amlogic/amlogic-t7.dtsi
-> +++ b/arch/arm64/boot/dts/amlogic/amlogic-t7.dtsi
-> @@ -52,6 +52,13 @@ cpu100: cpu@100 {
->   			compatible = "arm,cortex-a53";
->   			reg = <0x0 0x100>;
->   			enable-method = "psci";
-> +			d-cache-line-size = <32>;
-> +			d-cache-size = <0x8000>;
-> +			d-cache-sets = <32>;
-> +			i-cache-line-size = <32>;
-> +			i-cache-size = <0x8000>;
-> +			i-cache-sets = <32>;
-> +			next-level-cache = <&l2_cache_l>;
->   		};
->   
->   		cpu101: cpu@101{
-> @@ -59,6 +66,13 @@ cpu101: cpu@101{
->   			compatible = "arm,cortex-a53";
->   			reg = <0x0 0x101>;
->   			enable-method = "psci";
-> +			d-cache-line-size = <32>;
-> +			d-cache-size = <0x8000>;
-> +			d-cache-sets = <32>;
-> +			i-cache-line-size = <32>;
-> +			i-cache-size = <0x8000>;
-> +			i-cache-sets = <32>;
-> +			next-level-cache = <&l2_cache_l>;
->   		};
->   
->   		cpu102: cpu@102 {
-> @@ -66,6 +80,13 @@ cpu102: cpu@102 {
->   			compatible = "arm,cortex-a53";
->   			reg = <0x0 0x102>;
->   			enable-method = "psci";
-> +			d-cache-line-size = <32>;
-> +			d-cache-size = <0x8000>;
-> +			d-cache-sets = <32>;
-> +			i-cache-line-size = <32>;
-> +			i-cache-size = <0x8000>;
-> +			i-cache-sets = <32>;
-> +			next-level-cache = <&l2_cache_l>;
->   		};
->   
->   		cpu103: cpu@103 {
-> @@ -73,6 +94,13 @@ cpu103: cpu@103 {
->   			compatible = "arm,cortex-a53";
->   			reg = <0x0 0x103>;
->   			enable-method = "psci";
-> +			d-cache-line-size = <32>;
-> +			d-cache-size = <0x8000>;
-> +			d-cache-sets = <32>;
-> +			i-cache-line-size = <32>;
-> +			i-cache-size = <0x8000>;
-> +			i-cache-sets = <32>;
-> +			next-level-cache = <&l2_cache_l>;
->   		};
->   
->   		cpu0: cpu@0 {
-> @@ -80,6 +108,13 @@ cpu0: cpu@0 {
->   			compatible = "arm,cortex-a73";
->   			reg = <0x0 0x0>;
->   			enable-method = "psci";
-> +			d-cache-line-size = <64>;
-> +			d-cache-size = <0x10000>;
-> +			d-cache-sets = <64>;
-> +			i-cache-line-size = <64>;
-> +			i-cache-size = <0x10000>;
-> +			i-cache-sets = <64>;
-> +			next-level-cache = <&l2_cache_b>;
->   		};
->   
->   		cpu1: cpu@1 {
-> @@ -87,6 +122,13 @@ cpu1: cpu@1 {
->   			compatible = "arm,cortex-a73";
->   			reg = <0x0 0x1>;
->   			enable-method = "psci";
-> +			d-cache-line-size = <64>;
-> +			d-cache-size = <0x10000>;
-> +			d-cache-sets = <64>;
-> +			i-cache-line-size = <64>;
-> +			i-cache-size = <0x10000>;
-> +			i-cache-sets = <64>;
-> +			next-level-cache = <&l2_cache_b>;
->   		};
->   
->   		cpu2: cpu@2 {
-> @@ -94,6 +136,13 @@ cpu2: cpu@2 {
->   			compatible = "arm,cortex-a73";
->   			reg = <0x0 0x2>;
->   			enable-method = "psci";
-> +			d-cache-line-size = <64>;
-> +			d-cache-size = <0x10000>;
-> +			d-cache-sets = <64>;
-> +			i-cache-line-size = <64>;
-> +			i-cache-size = <0x10000>;
-> +			i-cache-sets = <64>;
-> +			next-level-cache = <&l2_cache_b>;
->   		};
->   
->   		cpu3: cpu@3 {
-> @@ -101,6 +150,31 @@ cpu3: cpu@3 {
->   			compatible = "arm,cortex-a73";
->   			reg = <0x0 0x3>;
->   			enable-method = "psci";
-> +			d-cache-line-size = <64>;
-> +			d-cache-size = <0x10000>;
-> +			d-cache-sets = <64>;
-> +			i-cache-line-size = <64>;
-> +			i-cache-size = <0x10000>;
-> +			i-cache-sets = <64>;
-> +			next-level-cache = <&l2_cache_b>;
-> +		};
-> +
-> +		l2_cache_l: l2-cache-cluster0 {
-> +			compatible = "cache";
-> +			cache-level = <2>;
-> +			cache-unified;
-> +			cache-size = <0x80000>;
-> +			cache-line-size = <64>;
-> +			cache-sets = <512>;
-> +		};
-> +
-> +		l2_cache_b: l2-cache-cluster1 {
-> +			compatible = "cache";
-> +			cache-level = <2>;
-> +			cache-unified;
-> +			cache-size = <0x100000>;
-> +			cache-line-size = <64>;
-> +			cache-sets = <1024>;
->   		};
->   	};
->   
-
+Best,
+Markus
 
