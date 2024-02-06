@@ -1,142 +1,210 @@
-Return-Path: <devicetree+bounces-38947-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-38948-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id E5B4984AF60
-	for <lists+devicetree@lfdr.de>; Tue,  6 Feb 2024 08:54:32 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id C7A7A84AF68
+	for <lists+devicetree@lfdr.de>; Tue,  6 Feb 2024 08:55:29 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 227421C23D4F
-	for <lists+devicetree@lfdr.de>; Tue,  6 Feb 2024 07:54:32 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id EBD981C22F13
+	for <lists+devicetree@lfdr.de>; Tue,  6 Feb 2024 07:55:28 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2189912C55E;
-	Tue,  6 Feb 2024 07:52:27 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id DDD6E12B148;
+	Tue,  6 Feb 2024 07:53:40 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=tuxon.dev header.i=@tuxon.dev header.b="PCGSyNaK"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="Bf6WmOk8"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f48.google.com (mail-wm1-f48.google.com [209.85.128.48])
+Received: from mail-wm1-f50.google.com (mail-wm1-f50.google.com [209.85.128.50])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2FAE312D15F
-	for <devicetree@vger.kernel.org>; Tue,  6 Feb 2024 07:52:24 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.48
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0FC7E39AD5;
+	Tue,  6 Feb 2024 07:53:38 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.50
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1707205947; cv=none; b=By0dqLFVxpll394It9/PXEZo+Q9e0NXpjS6BLr5mG16i+UIWDtYHMf4AEmFfLmPb0IXqY9c6CCaaHsrj7DvAFj5yOuKrtHgOsqqAPp5Iy706HEJCUeqWu1cI97J1sIn9pAOagln1a687i7C9vheMCyPMl5U8SCHgBKIFCMMdbhU=
+	t=1707206020; cv=none; b=aa2ZUj2AqdSF5JaljPqlQLpEDm1FTczLmMvzo0ZuXi5RsmBlShm+xBO/SWLw5ZeoM4M1ej79+mltJGcOd3pw97c1oNKr8TsYsO3CamqznkgB7clhWVQKX1lI3vOdhX+VB6PRDSImtNP9+8SSVvQbZ/jVJaQTUPkjHCnrZ8t1xm0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1707205947; c=relaxed/simple;
-	bh=vR/061UDD5TR2oXq7LH1zZoAUat7cIdF/cOUx86FGVA=;
-	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
-	 MIME-Version; b=px9DNyek0hiJvxWrvTpMc7ap1OfTCI8+7E17pw7v2ZsaXSNlpIodc1m9qGAvrgYRFGYo5xwp/Bo6OR2ooGTa2rwhgRFjw09pgdv4UwHwOq6svwLO8osuC3MF3jOt0wI4PyRJP9dZBxdd05q4nHU3LZSedf1Rr36HaF+GXOHOtdE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=tuxon.dev; spf=pass smtp.mailfrom=tuxon.dev; dkim=pass (2048-bit key) header.d=tuxon.dev header.i=@tuxon.dev header.b=PCGSyNaK; arc=none smtp.client-ip=209.85.128.48
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=tuxon.dev
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=tuxon.dev
-Received: by mail-wm1-f48.google.com with SMTP id 5b1f17b1804b1-40fdb18ffc7so16614215e9.1
-        for <devicetree@vger.kernel.org>; Mon, 05 Feb 2024 23:52:24 -0800 (PST)
+	s=arc-20240116; t=1707206020; c=relaxed/simple;
+	bh=jz2+5YFHxsUaP9YhKbytE2vv1d82tUYGMWDtEarsyBg=;
+	h=Content-Type:Mime-Version:Subject:From:In-Reply-To:Date:Cc:
+	 Message-Id:References:To; b=OzyPssqPo/w54214R4YDfnirzYpc7hKF0j46WMbXzGRLR1llLCMadf/YFeroE4+HU9aupk+3pjNsrIhJpZF9xeELzwrB91r8/wLE/F0a8s/oedF/lHNMkGhXuHcnvuE+DorvW2Hp9+uxvQBf8dGNo2qWw5eLYOYibPTiyuEacQ0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=Bf6WmOk8; arc=none smtp.client-ip=209.85.128.50
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-wm1-f50.google.com with SMTP id 5b1f17b1804b1-40fe59b22dbso1243555e9.3;
+        Mon, 05 Feb 2024 23:53:38 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=tuxon.dev; s=google; t=1707205943; x=1707810743; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
+        d=gmail.com; s=20230601; t=1707206017; x=1707810817; darn=vger.kernel.org;
+        h=to:references:message-id:content-transfer-encoding:cc:date
+         :in-reply-to:from:subject:mime-version:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=Nslo2KqQ/crFqeERQmjq+RimgA4EmUsTWWhunmms0IA=;
-        b=PCGSyNaKpUdTBV44ZY8r19owFJGHQLPyEeECUal6K3csajvkOmHc1MrAPlCQtKijjH
-         qtcDgNmt4Vr4Je1DEyR9RK3xrosIn5z0eYf2XiIMOMhgyweFresF5XtPSo1y1an0nP3q
-         k0iyrZfQlZsxL7lXQ5ogmh561ukWXn4W+uKVin/QLHyfMOAGYn+I66GOaYI9EU9Zyy4/
-         HNQS+I9OHCoFbAfAVQImEcIRZidlBSlCm5tAATMXEdn1jt82xTxQ54aih+l27Aklq3cM
-         a9G+K3vqWCrY+Wre+6C5M/rS3U6b/J59ku1aZDdiSP6gTQTSwombUEbBgGqTB4Okx90T
-         5DFQ==
+        bh=zfkBm1RhD0fBqif8h7QjuzJWyO2tJjvDMiDZcwNsAPg=;
+        b=Bf6WmOk8nKvmg/lh/mdSCfazUqcsLx85LCEmJOJZAS1veBDJrkbd68DhmsHEiRwwCG
+         9sXcjGcFrdVvmcQWzLq+vXi46UHncQ3+beBENCmeW2H/4nFJ+EV5YgwyOJB4OnQbIdDq
+         7CKVH2HjvQyaFwHk7C1sy9q0rexcx0wfD+Qnzp6yOY8vLmfGd6bS8Y74LAJc8btuz6+N
+         PYkE65+6PBCsCB6yoDwizmPVPlenF6R/hgeG1P6tUUUGuGedgD4bv7nrt+QSLOpmC4kD
+         qyb7OPLUKxcifyb1U8pJ14m/YLH6sG97p5Y9c8qxav88OyfVH1lSfkwNyUDF0lmiJwFI
+         vISg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1707205943; x=1707810743;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
+        d=1e100.net; s=20230601; t=1707206017; x=1707810817;
+        h=to:references:message-id:content-transfer-encoding:cc:date
+         :in-reply-to:from:subject:mime-version:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=Nslo2KqQ/crFqeERQmjq+RimgA4EmUsTWWhunmms0IA=;
-        b=DCIVI+nESSCesafAJETR4o5oT4SdEWz8YQ0O5zxBQEfKg1M4Sipy0eFxad3kosifLW
-         l/nzomkDbAAftMl2eMvty8a6mLaoplWsTj3hlkaIu5tvQ1th4ei+haUdipKFsTKXrYNN
-         CsOOwwqNe5H64cKkbAG3klOeIX0i4Z2Rx4UwOfTD3DgUPBcD9W9C4e7tPYJGGRmB0oHT
-         K5QPpjkFV/aGbtwLhpbQENd5cRPgQIx0FeCXvFfoN/tziOT5HMjsen1pCVXhy/d8QNpW
-         m3bAgCrU1eR/AYXjgzcG/CU/wNKkk9O3noeNuh7BEicTGtWg6NE77bV9UevOa5NoJQmp
-         V0Ow==
-X-Gm-Message-State: AOJu0Yy4r8ZDgK+0OFzR+H7Me/O/Sp29ZYq5gYLjUgoNWIX8L1cJLDtu
-	l7dIRza931NStIz9RtkjKCaNX8YkL4aUUEUeSkeJMNHBjpkAd6y3uJyrxpSPG9o=
-X-Google-Smtp-Source: AGHT+IH0DcABr6gfcMRuxGn3CUTdqmHBzNB66l7a8pXOCpsFRKIZ5TZrhJVEsEPoXJfelqK22/1wSA==
-X-Received: by 2002:a05:600c:a39c:b0:40f:b283:bb00 with SMTP id hn28-20020a05600ca39c00b0040fb283bb00mr905382wmb.18.1707205943227;
-        Mon, 05 Feb 2024 23:52:23 -0800 (PST)
-X-Forwarded-Encrypted: i=1; AJvYcCUByh8gVDOXfKSjUHDj4WM2iwjOaOi+9J3toa0ywjhR3II4dU3o9/xJri/AmIRviLmjV78QUbbf/HvcU649LBSZdQPKGCk64WxZQD16KXO1YSke2CvHYlX8q1WajPTf1CSR9+uyHq8rJXbkCXCNVl5g4JAErCysyVMxGFiORo5GkNF97ejKsuyNeDv41fvIp5RXaQjIR7aG7BDz3gegTI6uGe6hAWpM2ihYg/kmQudwmFVpwpqLZEjuB9e7ncXiS61MKrDvm7vTwwvkulylQX2AgAkpAlTk2+7xyrQJBnH4lP5pxiAp/hf88OF0HyafUY/uFY2RVujXTtukqZqlgkhY4z5H+X7OhkHjoFyp+Jks+ItdvRkf2OJLMGUPmZintxSbTCbUQi77MZfYSVH2SRPSls5a9lbovCxxo+Hq23ipc/yvd30oTCROiomILHQXVqgh3K0iDTl/g51gT5QLNDDCGOKB0mz5Ik44D9P0o6/BvkRxZupdukyY/ipnR+TItJcxCLfcZ4DcAfVaoy58d6XzqhsJG2yttuR1zAOSFA94+5aAdUM=
-Received: from claudiu-X670E-Pro-RS.. ([82.78.167.154])
-        by smtp.gmail.com with ESMTPSA id j32-20020a05600c1c2000b0040fbad272f6sm1106843wms.46.2024.02.05.23.52.21
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 05 Feb 2024 23:52:22 -0800 (PST)
-From: Claudiu <claudiu.beznea@tuxon.dev>
-X-Google-Original-From: Claudiu <claudiu.beznea.uj@bp.renesas.com>
-To: wim@linux-watchdog.org,
-	linux@roeck-us.net,
-	robh@kernel.org,
-	krzysztof.kozlowski+dt@linaro.org,
-	conor+dt@kernel.org,
-	p.zabel@pengutronix.de,
-	geert+renesas@glider.be,
-	magnus.damm@gmail.com,
-	biju.das.jz@bp.renesas.com
-Cc: linux-watchdog@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	linux-renesas-soc@vger.kernel.org,
-	claudiu.beznea@tuxon.dev,
-	Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>,
-	Conor Dooley <conor.dooley@microchip.com>
-Subject: [PATCH v4 9/9] dt-bindings: watchdog: renesas,wdt: Document RZ/G3S support
-Date: Tue,  6 Feb 2024 09:51:49 +0200
-Message-Id: <20240206075149.864996-10-claudiu.beznea.uj@bp.renesas.com>
-X-Mailer: git-send-email 2.39.2
-In-Reply-To: <20240206075149.864996-1-claudiu.beznea.uj@bp.renesas.com>
-References: <20240206075149.864996-1-claudiu.beznea.uj@bp.renesas.com>
+        bh=zfkBm1RhD0fBqif8h7QjuzJWyO2tJjvDMiDZcwNsAPg=;
+        b=ig00w6NefTSAD8bKtGlVYRa5LpHMR+i1f21uwNDGYpZeqjZumxaiCHCp6ani17pG9r
+         N1QIPwNlaWUk/hnP3tCdtifrsr6V6AfoC8JM9YpCppLPd+v8WzmA7zHovuy6nh7vrcXI
+         qjDHZf9KPRjjTs+Igkk6o6gnH5uZOMj1t1qIVB1JgZscYEYKxdSa5twpa4QDRuL+su1o
+         uX2qYM8qievOeBoaToLqahetIrDXGNFrtwDLGC85hbYk4pKzmFdpSTQrY2C0WKwCkSAT
+         HFfq4QFw0BsNwY8FkYOF8dzY2OJMzC3toB9FvU2lV5AnPZGsvpt6VZn98hIxshQ8LhEF
+         ojZw==
+X-Gm-Message-State: AOJu0YzCutsayyfoPVgDSSGDxhbA3rcNveC2XQcEAV+qvj4sTDpfklLl
+	NojMu3C3y56YJMTVPPrCZqu5PiDflnti6F6tqh8pKiIjSiQFm2dN
+X-Google-Smtp-Source: AGHT+IEkxytFY/M7v//MYcmidm4cgYusdjWKs3q86A1TUXUqt3jP1s6OjJY1u1rglqfVV597ka2Dzg==
+X-Received: by 2002:a05:600c:511a:b0:40f:dd91:2d06 with SMTP id o26-20020a05600c511a00b0040fdd912d06mr1483545wms.32.1707206016988;
+        Mon, 05 Feb 2024 23:53:36 -0800 (PST)
+X-Forwarded-Encrypted: i=0; AJvYcCUCzbly27GvMKMmnHbmpUcxQJNeYbM47wEtSHLWabBiurZKyKWh49Lz4iBP4jbXue+rmAlQwV/GUKAZVhSZYzoNp/PSnkviJ5DZIhCznLX+ZqBW5kL3E58zGL4IhmL2cjYNXFOEbOnvVpAuTfWZhZ8vcYtsQLeO1eDr3zWM66TVUdfc5P7MS1R+MpUnxjlIxGLzU7uy289P73Xeo/WSW2L38L/r+cJ92XOfzD2cWga6qtZFC4JTyCgEn0+5cIMy+P9SWvxzYE/GYA95GjjXrrRG8Tp08gxzZg3dtLiJzGQa+6GJKpXPcs+hcMMXQzm4xEyAfUsJiMF3Q7uTIT8OdpVVNlawYaJImFVJ66cb4E2hypzDnq5yZ0NePmDdlkNmtKfB5mWagTYqwV0eYePM2EnBh8Rk0j6CX8W360MJ5ic7spXAFvsjGh4XVbCAYkKph5VoFAf+bf14DtFpXAGGb0qrMN4FSKw=
+Received: from smtpclient.apple ([167.99.200.149])
+        by smtp.gmail.com with ESMTPSA id n29-20020a05600c3b9d00b0040ef2e7041esm1093717wms.6.2024.02.05.23.53.34
+        (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
+        Mon, 05 Feb 2024 23:53:36 -0800 (PST)
+Content-Type: text/plain;
+	charset=utf-8
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Mime-Version: 1.0 (Mac OS X Mail 16.0 \(3774.400.31\))
+Subject: Re: [PATCHv1 3/5] arm64: dts: amlogic: Add cache information to the
+ Amlogic G12A SoCS
+From: Christian Hewitt <christianshewitt@gmail.com>
+In-Reply-To: <4248e19e-5f2f-4e4f-a869-a0fec81b16bd@lexina.in>
+Date: Tue, 6 Feb 2024 11:53:22 +0400
+Cc: Rob Herring <robh+dt@kernel.org>,
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+ Conor Dooley <conor+dt@kernel.org>,
+ Neil Armstrong <neil.armstrong@linaro.org>,
+ Kevin Hilman <khilman@baylibre.com>,
+ Jerome Brunet <jbrunet@baylibre.com>,
+ Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
+ devicetree <devicetree@vger.kernel.org>,
+ linux-arm-kernel@lists.infradead.org,
+ AML <linux-amlogic@lists.infradead.org>,
+ LKML <linux-kernel@vger.kernel.org>,
+ Viacheslav <adeep@lexina.in>
+Content-Transfer-Encoding: quoted-printable
+Message-Id: <E850AF1E-BF7E-45F7-8AF0-68B548166094@gmail.com>
+References: <20240205171930.968-1-linux.amoon@gmail.com>
+ <20240205171930.968-4-linux.amoon@gmail.com>
+ <4248e19e-5f2f-4e4f-a869-a0fec81b16bd@lexina.in>
+To: Anand Moon <linux.amoon@gmail.com>
+X-Mailer: Apple Mail (2.3774.400.31)
 
-From: Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>
+> On 6 Feb 2024, at 11:48=E2=80=AFam, Viacheslav <adeep@lexina.in> =
+wrote:
+>=20
+> You missed the AXG family with the Cortex-A53 CPU. The datasheet does =
+not provide information on cache sizes. Given that the A113X/A113D are =
+equipped with the Arm Cortex-A53 processor, it is assumed they use the =
+same cache size as the S905/S905X/S905X2 models.
 
-Document the support for the watchdog IP available on RZ/G3S SoC. The
-watchdog IP available on RZ/G3S SoC is identical to the one found on
-RZ/G2L SoC.
+GXM is also missing, and also using A53 cores.
 
-Signed-off-by: Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>
-Acked-by: Conor Dooley <conor.dooley@microchip.com>
-Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
----
+Christian
 
-Changes in v4:
-- none
+> 05/02/2024 20.19, Anand Moon wrote:
+>> As per the S905X2 datasheet add missing cache information to the =
+Amlogic
+>> G12A SoC.
+>> - Each Cortex-A53 core has 32KB of L1 instruction cache available and
+>> 32KB of L1 data cache available.
+>> - Along with 512KB Unified L2 cache.
+>> To improve system performance.
+>> Signed-off-by: Anand Moon <linux.amoon@gmail.com>
+>> ---
+>> No public dataheet available, since S905X2 support Arm Cortex-A53 cpu
+>> nence used the same cache size as S905 and S905X.
+>> ---
+>>  arch/arm64/boot/dts/amlogic/meson-g12a.dtsi | 27 =
++++++++++++++++++++++
+>>  1 file changed, 27 insertions(+)
+>> diff --git a/arch/arm64/boot/dts/amlogic/meson-g12a.dtsi =
+b/arch/arm64/boot/dts/amlogic/meson-g12a.dtsi
+>> index 543e70669df5..6e1e3a3f5f18 100644
+>> --- a/arch/arm64/boot/dts/amlogic/meson-g12a.dtsi
+>> +++ b/arch/arm64/boot/dts/amlogic/meson-g12a.dtsi
+>> @@ -17,6 +17,12 @@ cpu0: cpu@0 {
+>>   compatible =3D "arm,cortex-a53";
+>>   reg =3D <0x0 0x0>;
+>>   enable-method =3D "psci";
+>> + d-cache-line-size =3D <32>;
+>> + d-cache-size =3D <0x8000>;
+>> + d-cache-sets =3D <32>;
+>> + i-cache-line-size =3D <32>;
+>> + i-cache-size =3D <0x8000>;
+>> + i-cache-sets =3D <32>;
+>>   next-level-cache =3D <&l2>;
+>>   #cooling-cells =3D <2>;
+>>   };
+>> @@ -26,6 +32,12 @@ cpu1: cpu@1 {
+>>   compatible =3D "arm,cortex-a53";
+>>   reg =3D <0x0 0x1>;
+>>   enable-method =3D "psci";
+>> + d-cache-line-size =3D <32>;
+>> + d-cache-size =3D <0x8000>;
+>> + d-cache-sets =3D <32>;
+>> + i-cache-line-size =3D <32>;
+>> + i-cache-size =3D <0x8000>;
+>> + i-cache-sets =3D <32>;
+>>   next-level-cache =3D <&l2>;
+>>   #cooling-cells =3D <2>;
+>>   };
+>> @@ -35,6 +47,12 @@ cpu2: cpu@2 {
+>>   compatible =3D "arm,cortex-a53";
+>>   reg =3D <0x0 0x2>;
+>>   enable-method =3D "psci";
+>> + d-cache-line-size =3D <32>;
+>> + d-cache-size =3D <0x8000>;
+>> + d-cache-sets =3D <32>;
+>> + i-cache-line-size =3D <32>;
+>> + i-cache-size =3D <0x8000>;
+>> + i-cache-sets =3D <32>;
+>>   next-level-cache =3D <&l2>;
+>>   #cooling-cells =3D <2>;
+>>   };
+>> @@ -44,6 +62,12 @@ cpu3: cpu@3 {
+>>   compatible =3D "arm,cortex-a53";
+>>   reg =3D <0x0 0x3>;
+>>   enable-method =3D "psci";
+>> + d-cache-line-size =3D <32>;
+>> + d-cache-size =3D <0x8000>;
+>> + d-cache-sets =3D <32>;
+>> + i-cache-line-size =3D <32>;
+>> + i-cache-size =3D <0x8000>;
+>> + i-cache-sets =3D <32>;
+>>   next-level-cache =3D <&l2>;
+>>   #cooling-cells =3D <2>;
+>>   };
+>> @@ -52,6 +76,9 @@ l2: l2-cache0 {
+>>   compatible =3D "cache";
+>>   cache-level =3D <2>;
+>>   cache-unified;
+>> + cache-size =3D <0x7d000>; /* L2. 512 KB */
+>> + cache-line-size =3D <64>;
+>> + cache-sets =3D <512>;
+>>   };
+>>   };
+>> =20
+>=20
+>=20
+> Best regards,
+> --
+> Viacheslav Bocharov <adeep@lexina.in>
+>=20
+> _______________________________________________
+> linux-amlogic mailing list
+> linux-amlogic@lists.infradead.org
+> http://lists.infradead.org/mailman/listinfo/linux-amlogic
 
-Changes in v3:
-- re-arranged the tags as my b4 am/shazam placed previously the
-  Ab, Rb tags before the author's Sob
-
-Changes in v2:
-- collected tags
-- s/G2UL/G2L in patch description
-
- Documentation/devicetree/bindings/watchdog/renesas,wdt.yaml | 1 +
- 1 file changed, 1 insertion(+)
-
-diff --git a/Documentation/devicetree/bindings/watchdog/renesas,wdt.yaml b/Documentation/devicetree/bindings/watchdog/renesas,wdt.yaml
-index 951a7d54135a..220763838df0 100644
---- a/Documentation/devicetree/bindings/watchdog/renesas,wdt.yaml
-+++ b/Documentation/devicetree/bindings/watchdog/renesas,wdt.yaml
-@@ -29,6 +29,7 @@ properties:
-               - renesas,r9a07g043-wdt    # RZ/G2UL and RZ/Five
-               - renesas,r9a07g044-wdt    # RZ/G2{L,LC}
-               - renesas,r9a07g054-wdt    # RZ/V2L
-+              - renesas,r9a08g045-wdt    # RZ/G3S
-           - const: renesas,rzg2l-wdt
- 
-       - items:
--- 
-2.39.2
 
 
