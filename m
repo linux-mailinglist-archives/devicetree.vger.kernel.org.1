@@ -1,254 +1,183 @@
-Return-Path: <devicetree+bounces-39152-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-39154-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 93E7084B8FE
-	for <lists+devicetree@lfdr.de>; Tue,  6 Feb 2024 16:13:03 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2511984B8C6
+	for <lists+devicetree@lfdr.de>; Tue,  6 Feb 2024 16:05:32 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 5988CB248CB
-	for <lists+devicetree@lfdr.de>; Tue,  6 Feb 2024 15:02:03 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id C9E6928CF9B
+	for <lists+devicetree@lfdr.de>; Tue,  6 Feb 2024 15:05:30 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id AF688132C25;
-	Tue,  6 Feb 2024 15:01:55 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D7C72133287;
+	Tue,  6 Feb 2024 15:05:22 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="S7F2hSZX"
+	dkim=pass (1024-bit key) header.d=wolfvision.net header.i=@wolfvision.net header.b="viI+jqxa"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wr1-f43.google.com (mail-wr1-f43.google.com [209.85.221.43])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from EUR02-AM0-obe.outbound.protection.outlook.com (mail-am0eur02on2126.outbound.protection.outlook.com [40.107.247.126])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C1B90111BD
-	for <devicetree@vger.kernel.org>; Tue,  6 Feb 2024 15:01:53 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.43
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1707231715; cv=none; b=cbENS+K0FBIzEwHcjNg/RYwC3HgldY9Bh28Blz9YKkuJihQXgTpSVvVjtZuY8bpJYgP+SWnj5GT4u7A2kbThRbkAvIhL96lwzdsuGoOH13o1W/suxYTK/ObvWjT41axiLgy8hlMmA2xoCoZA33Agc9wFKlUoKq7ET1QCcp1PzqY=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1707231715; c=relaxed/simple;
-	bh=TYC/0PN7dyAQUY7ANrlgVR8E3zVgjVs4FVpdLSKg4Fw=;
-	h=Message-ID:Date:MIME-Version:From:Subject:To:Cc:References:
-	 In-Reply-To:Content-Type; b=lgzfAVW/Dpfx5scICG4bP2Ww5r+vTIzp3nwvh6Gay7vjVMUSKgUmbMS/YT+vlybhNnnnhmrybtvNFKyjq0WwH2qYZDBjzQMNGoN92XVQGvzpt4drFW658jsi+N2ftjpSE6VF7aW3TL1hBEb2+B3fAtVOUBftqgxuBPJSFk/7Onc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=S7F2hSZX; arc=none smtp.client-ip=209.85.221.43
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-wr1-f43.google.com with SMTP id ffacd0b85a97d-33b29b5ea86so2293505f8f.1
-        for <devicetree@vger.kernel.org>; Tue, 06 Feb 2024 07:01:53 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1707231712; x=1707836512; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:organization:autocrypt
-         :references:cc:to:content-language:subject:reply-to:from:user-agent
-         :mime-version:date:message-id:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=H5VTIWx1HaIAdr3e5cTrSgnK2i49qOmVvjnmS+SpRKA=;
-        b=S7F2hSZXkWG0ak747z5VQVVCgFitDWGdLktoyiUaDQDeeCzd/wN5ZyIhdHAyvOf806
-         Wim4O0v2Bbs0LC0nbE5qw82BcwGcStsu/agnzfe8hDSWX/X+VgnMga4d3re0g2Gdx5qy
-         tRqULoVaB7RVF5FCfV/J53uxUqoGQEi3klBoe4aPJEQaqXgokpjVHZY7arKSNUCRDbQq
-         EX+FyE9kYF1kzd1YMx5ijPii0/jhvFkT8UPbscRAPVZXMwskVsCsHeDMeOQaT14196WB
-         qbPSneqRg4+xnYjxhrMkum3U2UWjFjknPYBXFCY6OiP1UWwTvZBxO8mLXh8h84XQKzEZ
-         Bpwg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1707231712; x=1707836512;
-        h=content-transfer-encoding:in-reply-to:organization:autocrypt
-         :references:cc:to:content-language:subject:reply-to:from:user-agent
-         :mime-version:date:message-id:x-gm-message-state:from:to:cc:subject
-         :date:message-id:reply-to;
-        bh=H5VTIWx1HaIAdr3e5cTrSgnK2i49qOmVvjnmS+SpRKA=;
-        b=NVuFkLDog6L5M55ZnTUy44Ad+bDQqxIRGUTYINLMqydYtwhk88FKAQACjE0HZxwJ/6
-         mpRl8jWAKetUBgw+SoNOY/TReJMYQZFTRAGxLvJOSn6YHGZ+6WDbk8Da85/+uQ6ll29Z
-         Xk4clbXTCQv2paCYEXWaHcc5VG/0Tt5Yha6ofpZbkjSN8chI7QSLPfhkw+ePev1/duaL
-         LQvRTjonuZn30tlZcbALlwMGkTNklNLu3ymAwFTEl10GM2RDk3tEa+3LnE8SNayNdaat
-         UXsU1orFvetuH2FK+2GzNd0gLxULFvKgwRC/s58czE5AD4q9+aMBnvRzTbaWxIT+caqE
-         uyXQ==
-X-Gm-Message-State: AOJu0YypoxXbiR/SisHHjS7+FZ/WpPL0Iu3P613eYZehCueIiDZnDXgF
-	05sQFpZmZxlsR14jtMwGB8u6dxd/HUX6W2vewy6qJnsUEAgk+TL3fHSBsx0Eob4=
-X-Google-Smtp-Source: AGHT+IETvRFjRnjFOO4bDtGypgquP7hdk6Jo9QAd2g9J8IXkg01MrNN5rH2llh9JQnyDKGXtLdZ2/Q==
-X-Received: by 2002:a05:6000:81:b0:33b:4ac8:b99c with SMTP id m1-20020a056000008100b0033b4ac8b99cmr411104wrx.1.1707231708961;
-        Tue, 06 Feb 2024 07:01:48 -0800 (PST)
-X-Forwarded-Encrypted: i=0; AJvYcCVUkdMHZCCNuOykxelokr3qQYi4y0Ie66lNO1Ifb0g92zYIagZRERVeeum+2FedcVbW56Gd56106bwKOu1EJj+DAOSdHYWn1cRiDXzshHmgqOYgLEP+euBmc05nxD/jUAJHC2kvJMIWwRnT1EgW99LSySBmDhxF/gzyYj6sqDloFr9LhzEXHMxcPbUVqU8vmBKJWKP6OhpkKTUuzSdRT6PARSpshprzzK/cysYJOVyclrPsNKZF1Idpcz79I7TDEDRuFxX5+SBw9laKDi1xnG7x1b9X4B58Aqyct/qOcVsc0iBItWBsB8BFU3tQSus0W6Lo2ATEuzvX+1HTQwnNCuQblBKAVQJRMAqnrQ6wZjA38R/4xCOhOt/gNTL1SUP+yz547X7fQUJsLkY9j0wNR1UBdOx13km3A4tZ
-Received: from ?IPV6:2a01:e0a:982:cbb0:ba23:8574:fa8:28dd? ([2a01:e0a:982:cbb0:ba23:8574:fa8:28dd])
-        by smtp.gmail.com with ESMTPSA id t6-20020a5d5346000000b0033b15fdad42sm2319994wrv.34.2024.02.06.07.01.48
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 06 Feb 2024 07:01:48 -0800 (PST)
-Message-ID: <f87069a4-042c-467a-94fb-0b65bfa4758d@linaro.org>
-Date: Tue, 6 Feb 2024 16:01:45 +0100
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D705B1E866;
+	Tue,  6 Feb 2024 15:05:20 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.107.247.126
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1707231922; cv=fail; b=r4dS7vrAl4iEstm3vj8E6NRc+GAuMgV2Vy9BcpEby3mpoBhFgT1uQKEzyzApJ2pAeazDecm2dL23dVsKLzbzMbGQKPhLPEAUzLStzm6BvrWsVpPJ+sL2vusLiZQJJzye7zOpOO8m0Gp20Og1dj7Egn/aZzWZJa4Oa2NMD7YZb2s=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1707231922; c=relaxed/simple;
+	bh=MjOcOqjJtXJNTK/OFnHYxslAQhtd4J23yj7J7cHcYh0=;
+	h=Message-ID:Date:Subject:To:Cc:References:From:In-Reply-To:
+	 Content-Type:MIME-Version; b=rkk7DvkXn+u/UReo9Qts05YPz+qrsH00u3QueN46/j7bggLDTT8nO01GMqquJX5oClWWC6wRQf3GLrAQLEuV7e0KXPPXK5szVJo7JFVFUvXopXiTIDgofIaZtOtcUKEdFOfVdzEU/OzUB2+62f3m2oqYfr+A7JcKNDeM5U7mFCs=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=wolfvision.net; spf=pass smtp.mailfrom=wolfvision.net; dkim=pass (1024-bit key) header.d=wolfvision.net header.i=@wolfvision.net header.b=viI+jqxa; arc=fail smtp.client-ip=40.107.247.126
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=wolfvision.net
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=wolfvision.net
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=AhFxCRrfLhnKKMgXeSB35kZNLbM7nzqLA/4NgHtkY97Qv9p9lDGNxAciB+3WA7WiR2yE9ftctwf5cMHoqNUWhlDuhWyNCHwfPezd7Ak+8pe0A+KrXHYrVvOzlBIdkOzfkjy0dVDuDYUHadVRca8uhQirysmiQ7gNONKBJ/uB0eV4ft0I4zD2+ajxWY+9TN0U34mkiaLiji2rimE5DVRnK2C3QoI0dDuFtCTaaOnqq7tWcdtmYnQzsEcOom2Cuz9penjmiONR1QgrJ86KAmuWEzqniOB8sI6A8BYzbYClu4hSj2WXQP73HreCnFYEa0VyR6QrxteL/YA1FGYT57Dhew==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=Yq3gYyZWWMSoTsck3ZUhPidu2DAsOs8HPVZnwvMBSsU=;
+ b=T3q21Okw1kQBDRdQ8NvFyynum4hrpgZUHoiqcv1ojMifRC5rtGAd51KXRyVe0a0139iskVHD2TG9DznXAf1o/jR9jvjl01XoFPkzd8iW27fbdUjgNJRu8wDGBxkUP9A9KnOv6PidXkzZSrYtX9xw1lqCWeHjeJytSpwIP5kcgEmF9dn/Lx0CA2CfnYwKgkO8ZkDsMTwg5wwb6xhXxO4IL0aS0NY1YVQZo3rq1APEFD+WE/E4uSOCVhPu00WGzqYa2edbFAqbVUxWsNPkOcBePY9ajyBEr0moYn7o+TG5ct6QmRJEg47BugHNM3dyJs8u75XBpGksOllknF4F6Gzb5g==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=wolfvision.net; dmarc=pass action=none
+ header.from=wolfvision.net; dkim=pass header.d=wolfvision.net; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=wolfvision.net;
+ s=selector2;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=Yq3gYyZWWMSoTsck3ZUhPidu2DAsOs8HPVZnwvMBSsU=;
+ b=viI+jqxaWc6vSj1lDi+scQKkl9ImbTyA+dY4lGJ6c+0EZmXGUsrqf9CZlN6PrOPr8e5F/hBg1cMpd3ZiTuC+4hl+OuYr8dbEZzR+JsAYafBDusIc+TZXYhCcqPdIpa0zcIFsD140nqr6nvE3LCOE06GO0O6c8xERSGGgvMFOMXo=
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=wolfvision.net;
+Received: from VE1PR08MB4974.eurprd08.prod.outlook.com (2603:10a6:803:111::15)
+ by PA6PR08MB10443.eurprd08.prod.outlook.com (2603:10a6:102:3cf::11) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7249.36; Tue, 6 Feb
+ 2024 15:05:17 +0000
+Received: from VE1PR08MB4974.eurprd08.prod.outlook.com
+ ([fe80::c8ee:9414:a0c6:42ab]) by VE1PR08MB4974.eurprd08.prod.outlook.com
+ ([fe80::c8ee:9414:a0c6:42ab%7]) with mapi id 15.20.7249.035; Tue, 6 Feb 2024
+ 15:05:17 +0000
+Message-ID: <7b472cb2-6658-446a-ae47-411d08798cca@wolfvision.net>
+Date: Tue, 6 Feb 2024 16:05:15 +0100
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v3 6/7] ASoC: dt-bindings: xmos,xvf3500: add XMOS XVF3500
+ voice processor
+To: Mark Brown <broonie@kernel.org>
+Cc: Liam Girdwood <lgirdwood@gmail.com>, Rob Herring <robh+dt@kernel.org>,
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+ Conor Dooley <conor+dt@kernel.org>, Matthias Kaehlcke <mka@chromium.org>,
+ Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+ linux-sound@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, linux-usb@vger.kernel.org
+References: <20240206-onboard_xvf3500-v3-0-f85b04116688@wolfvision.net>
+ <20240206-onboard_xvf3500-v3-6-f85b04116688@wolfvision.net>
+ <ZcJDFi+iIQOWzgYw@finisterre.sirena.org.uk>
+Content-Language: en-US
+From: Javier Carrasco <javier.carrasco@wolfvision.net>
+In-Reply-To: <ZcJDFi+iIQOWzgYw@finisterre.sirena.org.uk>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-ClientProxiedBy: VI1PR06CA0192.eurprd06.prod.outlook.com
+ (2603:10a6:803:c8::49) To VE1PR08MB4974.eurprd08.prod.outlook.com
+ (2603:10a6:803:111::15)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-From: neil.armstrong@linaro.org
-Reply-To: neil.armstrong@linaro.org
-Subject: Re: [PATCHv1 4/5] arm64: dts: amlogic: Add cache information to the
- Amlogic S922X SoC
-Content-Language: en-US, fr
-To: Anand Moon <linux.amoon@gmail.com>
-Cc: Rob Herring <robh+dt@kernel.org>,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Conor Dooley <conor+dt@kernel.org>, Kevin Hilman <khilman@baylibre.com>,
- Jerome Brunet <jbrunet@baylibre.com>,
- Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
- devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org
-References: <20240205171930.968-1-linux.amoon@gmail.com>
- <20240205171930.968-5-linux.amoon@gmail.com>
- <cf47b82c-6307-475b-af3a-eab7f09715f0@linaro.org>
- <CANAwSgTOpDmZGR33veBWrzr75=xEZ-28iu=GeCzqa0ZPXxDchw@mail.gmail.com>
-Autocrypt: addr=neil.armstrong@linaro.org; keydata=
- xsBNBE1ZBs8BCAD78xVLsXPwV/2qQx2FaO/7mhWL0Qodw8UcQJnkrWmgTFRobtTWxuRx8WWP
- GTjuhvbleoQ5Cxjr+v+1ARGCH46MxFP5DwauzPekwJUD5QKZlaw/bURTLmS2id5wWi3lqVH4
- BVF2WzvGyyeV1o4RTCYDnZ9VLLylJ9bneEaIs/7cjCEbipGGFlfIML3sfqnIvMAxIMZrvcl9
- qPV2k+KQ7q+aXavU5W+yLNn7QtXUB530Zlk/d2ETgzQ5FLYYnUDAaRl+8JUTjc0CNOTpCeik
- 80TZcE6f8M76Xa6yU8VcNko94Ck7iB4vj70q76P/J7kt98hklrr85/3NU3oti3nrIHmHABEB
- AAHNKk5laWwgQXJtc3Ryb25nIDxuZWlsLmFybXN0cm9uZ0BsaW5hcm8ub3JnPsLAkQQTAQoA
- OwIbIwULCQgHAwUVCgkICwUWAgMBAAIeAQIXgBYhBInsPQWERiF0UPIoSBaat7Gkz/iuBQJk
- Q5wSAhkBAAoJEBaat7Gkz/iuyhMIANiD94qDtUTJRfEW6GwXmtKWwl/mvqQtaTtZID2dos04
- YqBbshiJbejgVJjy+HODcNUIKBB3PSLaln4ltdsV73SBcwUNdzebfKspAQunCM22Mn6FBIxQ
- GizsMLcP/0FX4en9NaKGfK6ZdKK6kN1GR9YffMJd2P08EO8mHowmSRe/ExAODhAs9W7XXExw
- UNCY4pVJyRPpEhv373vvff60bHxc1k/FF9WaPscMt7hlkbFLUs85kHtQAmr8pV5Hy9ezsSRa
- GzJmiVclkPc2BY592IGBXRDQ38urXeM4nfhhvqA50b/nAEXc6FzqgXqDkEIwR66/Gbp0t3+r
- yQzpKRyQif3OwE0ETVkGzwEIALyKDN/OGURaHBVzwjgYq+ZtifvekdrSNl8TIDH8g1xicBYp
- QTbPn6bbSZbdvfeQPNCcD4/EhXZuhQXMcoJsQQQnO4vwVULmPGgtGf8PVc7dxKOeta+qUh6+
- SRh3vIcAUFHDT3f/Zdspz+e2E0hPV2hiSvICLk11qO6cyJE13zeNFoeY3ggrKY+IzbFomIZY
- 4yG6xI99NIPEVE9lNBXBKIlewIyVlkOaYvJWSV+p5gdJXOvScNN1epm5YHmf9aE2ZjnqZGoM
- Mtsyw18YoX9BqMFInxqYQQ3j/HpVgTSvmo5ea5qQDDUaCsaTf8UeDcwYOtgI8iL4oHcsGtUX
- oUk33HEAEQEAAcLAXwQYAQIACQUCTVkGzwIbDAAKCRAWmrexpM/4rrXiB/sGbkQ6itMrAIfn
- M7IbRuiSZS1unlySUVYu3SD6YBYnNi3G5EpbwfBNuT3H8//rVvtOFK4OD8cRYkxXRQmTvqa3
- 3eDIHu/zr1HMKErm+2SD6PO9umRef8V82o2oaCLvf4WeIssFjwB0b6a12opuRP7yo3E3gTCS
- KmbUuLv1CtxKQF+fUV1cVaTPMyT25Od+RC1K+iOR0F54oUJvJeq7fUzbn/KdlhA8XPGzwGRy
- 4zcsPWvwnXgfe5tk680fEKZVwOZKIEuJC3v+/yZpQzDvGYJvbyix0lHnrCzq43WefRHI5XTT
- QbM0WUIBIcGmq38+OgUsMYu4NzLu7uZFAcmp6h8g
-Organization: Linaro Developer Services
-In-Reply-To: <CANAwSgTOpDmZGR33veBWrzr75=xEZ-28iu=GeCzqa0ZPXxDchw@mail.gmail.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: VE1PR08MB4974:EE_|PA6PR08MB10443:EE_
+X-MS-Office365-Filtering-Correlation-Id: 8216a4c3-a3a1-431d-93fa-08dc27250780
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info:
+	07sIu1XxU1Mhi8LlGDsA+ryMeo+Ik10mh8d00DcAMvat7rQv/rEMdwIUD7+5QwNdHQiMLDUuiHHXaqmAbR80MoVyEQXbSfQzh9EGBIOxoq+OQhSDGC8zZtTDIpH5LoleOW2OvsMXMgB/8vdFfxHKxZZVGMvGBB7plWwranaIXEqqUXk/HedO7tbeEvHAfyCb0nOq7tJOvLUFdUfovbt+4VXhlv2SvUt9MizwM3OhcZW4dLI8dDcBOE3vp4JAa2/b58TevRAkcpVALbmohZkV7/gOtUzCvsczzGvJbAbBk4xlhN6NCrjQW3l0vEusD7uKMuwLS41oOVZcOkjrTPKeI/Y5I4Om0Z7O79pIV5ZSD1YmxYcLviYCt2sPKh/WhlmsoflJ0RFUcQwmewoEvYdh8kxsU6HJfzyFMCfC+FA1wvwOcyNwW9Ru+Dh2cyZIYp7syM3NsaVTeQ9SMOk7Ucg2v4pMin5XjC7w/JBzNkExj9YHeNx5vezG6kH+U6Dqpi62DXgfJgov+5tWRRbUziHZbxugMqiX00NGDsKyddn5IR8jOthNNrR+IveiTBNB1MM7bfRckS9XJxoUxgoeqqFlW2bzJjvJughVvHx7iwmt+v20wgS8ox5M6ejswp57+e8lfsXy07ukDC4a+XDr6742LQ==
+X-Forefront-Antispam-Report:
+	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:VE1PR08MB4974.eurprd08.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230031)(39850400004)(366004)(136003)(376002)(396003)(346002)(230922051799003)(186009)(451199024)(64100799003)(1800799012)(41300700001)(66476007)(66946007)(54906003)(66556008)(4326008)(8676002)(44832011)(8936002)(316002)(6916009)(31686004)(26005)(86362001)(5660300002)(38100700002)(7416002)(2906002)(36756003)(6506007)(478600001)(6486002)(2616005)(53546011)(6512007)(31696002)(45980500001)(43740500002);DIR:OUT;SFP:1102;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0:
+	=?utf-8?B?VERoWUpzcUp6SStBcjRCQmRFL0MvdXRxcWxhcC82VFM3V2FMUVBDZTNLQnZ6?=
+ =?utf-8?B?VDNlMEFlbWhzc0tac0ppVUtCdGhRbkNyZEZoN2U1MGhYRVBmZVhydmhGQ0Jn?=
+ =?utf-8?B?aGxFWUJyQjhVOWp6T1FZdXZrZmFsRnVTUUVrQWNnRGU4WE9lc0U3eW1RcjVz?=
+ =?utf-8?B?UGR4UjJzcGN4eGw4Z1J1UEFDTFh5UFJROFpGRmlScVU3WDF1V0REQS9DM0RI?=
+ =?utf-8?B?QnlzaXJrMTVQUlh1T2x2ZXBMRHk3dmFnMXRFdllPQ2xhTkFOZlNtMnFuS29F?=
+ =?utf-8?B?VEdoSHhnVkUrdmpvRDZoSyt1VzBCVEV1bGx6WjZyd2VwRXBoNmFSZVFHYUhO?=
+ =?utf-8?B?WXNwNDFPdm5NZ2R3Q3BUM08rRFFHSFNqMXhDbkVQeUM1dWRka052am92UVJV?=
+ =?utf-8?B?c1E3UVhNTytKeTlydlArYldRTTlyMmdMVXNKN2hHU0gwYWlDekJJUUI2S1Yr?=
+ =?utf-8?B?YTJaNVU1elY1TEQ2OHdOYmNhNUd0b1k2YW9pWWtQMFVQY1dUZSt3eGluSFRn?=
+ =?utf-8?B?RkFHVnIwYzBXRy9YMTBxVU9nRC96RHFiQWg3cEdmWHNRL3FnREhjMkRFRC81?=
+ =?utf-8?B?UFJFVVlCZGw4S21nVmswZllHVWpLR1pFNW1XVzJ3TFFVR1paTXpBc092RkxY?=
+ =?utf-8?B?dG9BQitEbzhIMkRnVzI3dzUrREdDT3Z0cnZzajNOY3R6ZHkyOENpdUI4Z0ZZ?=
+ =?utf-8?B?YVlnRzVFaEt5cElYMHZwWGpOdk1SODZpT0FSakQ2U3Q5Vi9Sd3UrbEJOUVg2?=
+ =?utf-8?B?dllXYjlXM1Y0ejQ4Y1M5U1czU1FMNGZncHRBdEZweEw4bnFoVHZZeTBpMm1J?=
+ =?utf-8?B?UzIzSTZDejJObUpaRDkzR3BMbkNrdVJWZlVQNUM2eFFoc0ErWjlOWGNVZGti?=
+ =?utf-8?B?YkZnSUo0aVR4VVRzSFVpSFo5c1NxeVFXb09vRlJFa1lNVThkOE1HQVR3MHZC?=
+ =?utf-8?B?UjU0NnVGM0lkK3VWbERDa0tRL2ROL1ZJYmcyOVRyQkdXTDZRU1V2Z0xRZ3Jh?=
+ =?utf-8?B?Z29hblhHcjN6TFlRS3JzNjJwUFppV29wVzdQUVIzYmoydm9hNE9CUFRYVGJB?=
+ =?utf-8?B?MXhoOFI3SHZyNmZPT21JMGtvcEhFTVVYOVJXNDN1dTI5S3FRbDFSSmd6ckRB?=
+ =?utf-8?B?Rnl5Y3h1UytnQ2FrcmtzQmtiU3F5WFduT1hHenQvcGwyS1FwZnVUR25XUTdT?=
+ =?utf-8?B?N0czM0tNTVJuSDZlMTFURndtdHVmcVowVXBtMURoS1UrUm5telo2Y1lxZGx2?=
+ =?utf-8?B?eDNqUDh4YU9JOXFacEJ0QTZFdEZuVWxndXg1YTVlc3JXWUFxdUZZenlKYnhV?=
+ =?utf-8?B?RklKMmRvU3pTVnlIRHE0UDhvaXpDYUozaWJZbVNZUGNGazNPSmZKOEg0Nzdy?=
+ =?utf-8?B?cE5PYjNKdjlRc1VjL3d0UFViQ0JQbi80VG5BYjZkd1VXZHVYK2QvaGZtd2NQ?=
+ =?utf-8?B?dWo3UTVPUWJoTkVLYWVoV0dxTlZkbVBFSWcyL295ejlQUE1lZ0wzSFdKMjha?=
+ =?utf-8?B?NFNEeVZkU3grVW9NcWNyNjNDWHh4dU90OC9kYWN2Ri9FcXU5NFB2YWFjTWxT?=
+ =?utf-8?B?dGFIY1BicCt1QTZOL0ZubjNUTzMvQ012K1JPOXRTVVIwTi80UXlRVGNYZUZW?=
+ =?utf-8?B?aHRCSC9VbHpDK3I3VjRWc2JkVWZSNHNSQ3hMVXJBK0hiL3dtRmlyMmJDM3I4?=
+ =?utf-8?B?MlVySVkydDYzbXJCemlkbVN1T3F4WGZjZTlMRE5IL3ZEVDVTYkYwWjZGanV1?=
+ =?utf-8?B?Z1d4Y2VhQm1xU1VHdVpaWVQ5OGNlK1F3ZXNsMnZGU3Z1ZkhLbTBDb3IweURq?=
+ =?utf-8?B?MnJBQTlKQnI2Z2RDV1ZNa1RTbjA5TnRiN0R6K1pvN0R3bTJGQ2dLaDM2MWE1?=
+ =?utf-8?B?WEREN3VnNklreFFCNS8xQmEvVGN5TU1GSzlmN3FjblJRTHo5bnFsTGhXOWtp?=
+ =?utf-8?B?eU1qa082c3ZJTlVhQVUxaE1Fc3JKZFFNcFRqWUZOZDNLQ0pDekxCWWZtU1Np?=
+ =?utf-8?B?N1dTYW1QWkY2SmJQWk5JQTQ2VG83RHFYWm84R3lML0thd3gyOVdNS1JYcVY0?=
+ =?utf-8?B?U2NsV0tEUTJFbkkrZi8xT0I2aVkwYzQ5ZStiOVB5RVhOY0RRQnF6VEFZZGVQ?=
+ =?utf-8?B?QzNpZFJ2VkpxR0piS0NxcDAzMzJqSVlSd20wN0tOd1JQUDcvQ2dZK29vYmRD?=
+ =?utf-8?Q?RlHANYBQNmXo+i/kkwYTI10=3D?=
+X-OriginatorOrg: wolfvision.net
+X-MS-Exchange-CrossTenant-Network-Message-Id: 8216a4c3-a3a1-431d-93fa-08dc27250780
+X-MS-Exchange-CrossTenant-AuthSource: VE1PR08MB4974.eurprd08.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 06 Feb 2024 15:05:17.4151
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: e94ec9da-9183-471e-83b3-51baa8eb804f
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: tW7Gy416mRZWfTQiNTqkU9lyeGS7JchMzpIsxsH8Al0tV1bu0vRnYV1ZO3JXkOqrfQ3e8C4Y68JHHSee+wCjQKqlG3v1pzDU7JkYwkvQCsQ=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: PA6PR08MB10443
 
-On 06/02/2024 11:15, Anand Moon wrote:
-> Hi Neil,
+On 06.02.24 15:32, Mark Brown wrote:
+> On Tue, Feb 06, 2024 at 02:59:34PM +0100, Javier Carrasco wrote:
 > 
-> On Tue, 6 Feb 2024 at 14:30, Neil Armstrong <neil.armstrong@linaro.org> wrote:
->>
->> On 05/02/2024 18:19, Anand Moon wrote:
->>> As per S922X datasheet add missing cache information to the Amlogic
->>> S922X SoC.
->>>
->>> - Each Cortex-A53 core has 32 KB of instruction cache and
->>>        32 KB of L1 data cache available.
->>> - Each Cortex-A73 core has 64 KB of L1 instruction cache and
->>>        64 KB of L1 data cache available.
->>> - The little (A53) cluster has 512 KB of unified L2 cache available.
->>> - The big (A73) cluster has 1 MB of unified L2 cache available.
->>
->> Datasheet says:
->> The quad core Cortex™-A73 processor is paired with A53 processor in a big.Little configuration, with each
->> core has L1 instruction and data chaches, together with a single shared L2 unified cache with A53
->>
-> Ok,
+>> The XMOS XVF3500 VocalFusion Voice Processor[1] is a low-latency, 32-bit
+>> multicore controller for voice processing.
 > 
-> Since all the Cortex™-A73 and Cortex™-A53 share some improvements in
-> the architecture with some improvements in cache features
-> hence I update the changes accordingly.
-> Also, I checked this in the ARM documentation earlier on this.
+> Acked-by: Mark Brown <broonie@kernel.org>
+> 
+> though...
+> 
+>> +  vdd-supply:
+>> +    description:
+>> +      Regulator for the 1V0 supply.
+>> +
+>> +  vdd2-supply:
+>> +    description:
+>> +      Regulator for the 3V3 supply.
+> 
+> ...it's a bit weird that the supplies are named like this, usually
+> there'd be some sort of meaningful name (even if it's just VDD_1V0 and
+> VDD_3V3 or something).  Are you sure these are the actual names?
 
-I don't understand, Amlogic states it's a shared L2 cache, but you trust
-the ARM documentation instead ???
+The names in the datasheet are vdd for the 1V0 supply and vddio for the
+3V3 supply. I named the latter vdd2 instead because this device does not
+have its own driver and instead it uses the onboard_usb_hub generic
+driver, where the supplies are named vdd and vdd2.
 
-> 
->> And there's no indication of the L1 or L2 cache sizes.
-> 
-> What I feel is in general all the Cortex™-A73 and Cortex™-A53 supports
-> L1 and L2 cache size since it is part of the core features.
-> but I opted for these size values from a Wikipedia article.
-> 
-> On my Odroid N2+, I observe the following.
-> 
-> I have also done some testing on the stress-ng to verify this.
+Those are the names used for devm_regulator_bulk_get(). Is that not the
+right way to match them?
 
-
-Ok I don't feel confident adding numbers that comes out of thin air,
-and even more since they are only shared to userspace.
-
-I think we should only add the numbers which are 100% sure
-
-> 
-> alarm@archl-on2:~$ lscpu
-> Architecture:           aarch64
->    CPU op-mode(s):       32-bit, 64-bit
->    Byte Order:           Little Endian
-> CPU(s):                 6
->    On-line CPU(s) list:  0-5
-> Vendor ID:              ARM
->    Model name:           Cortex-A53
->      Model:              4
->      Thread(s) per core: 1
->      Core(s) per socket: 2
->      Socket(s):          1
->      Stepping:           r0p4
->      CPU(s) scaling MHz: 100%
->      CPU max MHz:        1800.0000
->      CPU min MHz:        1000.0000
->      BogoMIPS:           48.00
->      Flags:              fp asimd evtstrm aes pmull sha1 sha2 crc32 cpuid
->    Model name:           Cortex-A73
->      Model:              2
->      Thread(s) per core: 1
->      Core(s) per socket: 4
->      Socket(s):          1
->      Stepping:           r0p2
->      CPU(s) scaling MHz: 63%
->      CPU max MHz:        2208.0000
->      CPU min MHz:        1000.0000
->      BogoMIPS:           48.00
->      Flags:              fp asimd evtstrm aes pmull sha1 sha2 crc32 cpuid
-> Caches (sum of all):
->    L1d:                  320 KiB (6 instances)
->    L1i:                  320 KiB (6 instances)
->    L2:                   1.5 MiB (2 instances)
-> NUMA:
->    NUMA node(s):         1
->    NUMA node0 CPU(s):    0-5
-> Vulnerabilities:
->    Gather data sampling: Not affected
->    Itlb multihit:        Not affected
->    L1tf:                 Not affected
->    Mds:                  Not affected
->    Meltdown:             Not affected
->    Mmio stale data:      Not affected
->    Retbleed:             Not affected
->    Spec rstack overflow: Not affected
->    Spec store bypass:    Vulnerable
->    Spectre v1:           Mitigation; __user pointer sanitization
->    Spectre v2:           Vulnerable
->    Srbds:                Not affected
->    Tsx async abort:      Not affected
-> alarm@archl-on2:~$
-> 
-> alarm@archl-on2:~$ lstopo-no-graphics
-> Machine (3659MB total)
->    Package L#0
->      NUMANode L#0 (P#0 3659MB)
->      L2 L#0 (512KB)
->        L1d L#0 (32KB) + L1i L#0 (32KB) + Core L#0 + PU L#0 (P#0)
->        L1d L#1 (32KB) + L1i L#1 (32KB) + Core L#1 + PU L#1 (P#1)
->      L2 L#1 (1024KB)
->        L1d L#2 (64KB) + L1i L#2 (64KB) + Core L#2 + PU L#2 (P#2)
->        L1d L#3 (64KB) + L1i L#3 (64KB) + Core L#3 + PU L#3 (P#3)
->        L1d L#4 (64KB) + L1i L#4 (64KB) + Core L#4 + PU L#4 (P#4)
->        L1d L#5 (64KB) + L1i L#5 (64KB) + Core L#5 + PU L#5 (P#5)
->    Block "mmcblk1boot0"
->    Block "mmcblk1boot1"
->    Block "mmcblk1"
->    Net "eth0"
-
-This looks pretty, but let's keep exporting verified data.
-
-> 
->   >
->> Neil
->>
-> 
-> Thanks
-> -Anand
+Thank you and best regards,
+Javier Carrasco
 
 
