@@ -1,179 +1,154 @@
-Return-Path: <devicetree+bounces-38937-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-38938-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8612684AF36
-	for <lists+devicetree@lfdr.de>; Tue,  6 Feb 2024 08:50:48 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 776DF84AF3B
+	for <lists+devicetree@lfdr.de>; Tue,  6 Feb 2024 08:52:17 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id B881E1C225B9
-	for <lists+devicetree@lfdr.de>; Tue,  6 Feb 2024 07:50:47 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id A4C591C226DC
+	for <lists+devicetree@lfdr.de>; Tue,  6 Feb 2024 07:52:16 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0A00912AACD;
-	Tue,  6 Feb 2024 07:50:34 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3DC8A12A17F;
+	Tue,  6 Feb 2024 07:52:10 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=tq-group.com header.i=@tq-group.com header.b="VSiCfY9o"
+	dkim=pass (2048-bit key) header.d=tuxon.dev header.i=@tuxon.dev header.b="P6FwqO1m"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx1.tq-group.com (mx1.tq-group.com [93.104.207.81])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wm1-f43.google.com (mail-wm1-f43.google.com [209.85.128.43])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 04EED129A8B
-	for <devicetree@vger.kernel.org>; Tue,  6 Feb 2024 07:50:29 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=93.104.207.81
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 103EF129A6A
+	for <devicetree@vger.kernel.org>; Tue,  6 Feb 2024 07:52:06 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.43
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1707205833; cv=none; b=CbVBEDKUO3SBxCI7g5LmxHusfi/kjyEzUjXj4xXVcOWNoURrkIw8Pmy/WgAM5aE1GmPMcWFLpq0ppDI1MiFiwcX83+r/QHw4xccG4g7V5ttfZ56BXmyCvH0jewmCFd/nNPIk844JP8HEzMFYj/jH517QNVa51p0VKUDLT4TzrJ8=
+	t=1707205930; cv=none; b=Ps9mCOwv70fCakyJ/juhlRvHzjbOKV5Rmi9bp0Pg6405jKsS3zCU/MoXL+CJAOQEULxQqw7ZDmpkZCkB0lZPDh4vpTNLkMLKEXQcAZBLLCoCNcyBHsDkA3eVfKpVtxEV1356yxT0ncaWKHZNIADz8dGPwyb3VMZe8ztgKajZ1fo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1707205833; c=relaxed/simple;
-	bh=JCBcUNoMdIHWN3uJmLxl2pq9VOZCktY9kB7skKbg65M=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=OAIeScc8m6XA1vQFgfFqZz740H3mSt2JHUw+LBOPtGBruDl0JY/s7HX2i1yirqa5s+GKDYUGpb4ZS5txa7XyPoQGT51nYVSTKXTiKW98jf45G5uYyUf2oqi/23c7g2Fspr9VL/Hv6r11ELWo1xMwaWbej3UdRa/N+kL3EOjW9KQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ew.tq-group.com; spf=pass smtp.mailfrom=ew.tq-group.com; dkim=pass (2048-bit key) header.d=tq-group.com header.i=@tq-group.com header.b=VSiCfY9o; arc=none smtp.client-ip=93.104.207.81
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ew.tq-group.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ew.tq-group.com
+	s=arc-20240116; t=1707205930; c=relaxed/simple;
+	bh=DvQ1sczGGkq58WRMl4pSS1bo4UgCsyILWKb+zlEciuE=;
+	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version; b=O4ANRc628Ta9QDbkb58vi+msmeLr4k159joM6jcFTrB+W6XvLeszNlRSpFnitjijRZu92SPs1ejU2Wls0C66hfrsfnkRWNtWInmbWI4PZDiL279Df1JAt46ILervxiu0QD9mtCdpmxAOuGGfFuGaRN0hFVjDihCRzVaHnNy7wPI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=tuxon.dev; spf=pass smtp.mailfrom=tuxon.dev; dkim=pass (2048-bit key) header.d=tuxon.dev header.i=@tuxon.dev header.b=P6FwqO1m; arc=none smtp.client-ip=209.85.128.43
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=tuxon.dev
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=tuxon.dev
+Received: by mail-wm1-f43.google.com with SMTP id 5b1f17b1804b1-40fe6c66c3fso1327705e9.2
+        for <devicetree@vger.kernel.org>; Mon, 05 Feb 2024 23:52:06 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-  d=tq-group.com; i=@tq-group.com; q=dns/txt; s=key1;
-  t=1707205830; x=1738741830;
-  h=from:to:cc:subject:date:message-id:in-reply-to:
-   references:mime-version:content-transfer-encoding;
-  bh=zxC+ukvDyW/Jeowql3c1BGxhU5Td/3VxaPsWNrzQwkE=;
-  b=VSiCfY9oXDr3EwUFujLf0OFMsIt1KW6h+Sang+GyzkW82wEVGGEyjjgZ
-   lDugvi/nhRQIqQmaR7OSOqOSm/fe4TOW5qX5YPyJKSUnPhEPcBeiv3Vj9
-   U9/SPPk5RS6kiLVHWpNe1BzcNwESOgfN7wkqb+cC+uEsgp2Si30p5Iw0O
-   gzw+8nleP58X9AsVKwCf2++LWoIOjkuHuFx/HpZ95RCQR8Gv0KiZVzlW+
-   a4E2FbMpzJMRK7jFn7EeRPeXJqExpzExt/DZL021ZbTMpFw+rdu3YwDCo
-   eHU7N7Qh8MD5clhERYInuL9UTaMXYQcZdknqmv0OaP4Yu3AVLzhb3DfBC
-   A==;
-X-IronPort-AV: E=Sophos;i="6.05,246,1701126000"; 
-   d="scan'208";a="35261519"
-Received: from vtuxmail01.tq-net.de ([10.115.0.20])
-  by mx1.tq-group.com with ESMTP; 06 Feb 2024 08:50:21 +0100
-Received: from steina-w.localnet (steina-w.tq-net.de [10.123.53.25])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
-	(No client certificate requested)
-	by vtuxmail01.tq-net.de (Postfix) with ESMTPSA id A9C02280075;
-	Tue,  6 Feb 2024 08:50:21 +0100 (CET)
-From: Alexander Stein <alexander.stein@ew.tq-group.com>
-To: Frank Li <Frank.li@nxp.com>
-Cc: Rob Herring <robh+dt@kernel.org>, Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>, Sascha Hauer <s.hauer@pengutronix.de>, Fabio Estevam <festevam@gmail.com>, Pengutronix Kernel Team <kernel@pengutronix.de>, NXP Linux Team <linux-imx@nxp.com>, devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org
-Subject: Re: [PATCH 2/2] arm64: dts: imx8: Fix lpuart DMA channel order
-Date: Tue, 06 Feb 2024 08:50:22 +0100
-Message-ID: <3282920.44csPzL39Z@steina-w>
-Organization: TQ-Systems GmbH
-In-Reply-To: <ZbfdsY8MkQrIzOqG@lizhi-Precision-Tower-5810>
-References: <20231219123439.3359318-1-alexander.stein@ew.tq-group.com> <20231219123439.3359318-2-alexander.stein@ew.tq-group.com> <ZbfdsY8MkQrIzOqG@lizhi-Precision-Tower-5810>
+        d=tuxon.dev; s=google; t=1707205925; x=1707810725; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=MHuChVkazsHDYwoy1Hiy5LrN1UJx2gkrfgcOs8CBKxg=;
+        b=P6FwqO1m83t6SlCpU0NE0+0lL0G9SD7h+ZBtar6c6PcLzApfzDa+63zqsaf0X2uZL9
+         k1gOxeEsYNG865piNeHynDiDba5KNxBaPQ66E3ebOTv02Ip3R3JHVDZjffc5YT6Ts4UP
+         ZBI8Fau3kM/R/jy053pIswMPNzI0KJIsjop2+iX6d/klu0ye6P5VWYSSQ7KmPYslwn6s
+         ySxTp0AWykIkX64SN2rAWoMydHkURZsK6/PK0uXI3Gb6OofrEUVyGw1q7+K7hZlYRdtg
+         q0gwFbOl2qYfpkicUMwUYJ4EA6lQRk/VLBmm6Ci6qVQ0olArw4oa9U2w7oaHvLPoU/pK
+         3PIw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1707205925; x=1707810725;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=MHuChVkazsHDYwoy1Hiy5LrN1UJx2gkrfgcOs8CBKxg=;
+        b=KvMd/gdMKVAN8ZK81fWJXtEX8IZxHVWph/+Llv/x2q29y99Vz6ndyYfp3T1snnj6cx
+         FFVXqGfiqlMAMSKW6BHhzGoUu6wdy10KNbZxdKSktgdCdXmL9yXpuEaaZrsgQ+6XypVC
+         w4ayHJYi7L7SAcWQXO8sxzzcJzAUGDOXGGKn2IZhpVhJWwvA4gEmRPchUn0QgHul2bKZ
+         PquMZ48YcfB/sFoURgdbNqnP1Od+KGL2bI40KTLxnGOAZQN+XCvPgeQf/rwNZ6ymgfk+
+         pacCl77sX9rBsEHstt+D7mIGtxgetL6B5w4TsL93TqL0oM4j99kn6Vpnh9mdXeT58RGH
+         lESg==
+X-Gm-Message-State: AOJu0YwRZxCez1RESweNNJaKAXoy++xWqkt3xKdVBiamDnaVXHhCcBZ/
+	0VwG6kf36e4syuPB8qQFaE96gqDNadiMwnDfU/RlOJxbEqclDT5ZWtvmAHPZ2hQ=
+X-Google-Smtp-Source: AGHT+IHkTXFrAUVvFQmRS87Vo7k03jBuvWrSJ3la9Ggb18yamLROH8wNS/71LyA42VjbljzzLiQaNw==
+X-Received: by 2002:a05:600c:4f08:b0:40f:d598:bdbb with SMTP id l8-20020a05600c4f0800b0040fd598bdbbmr942878wmq.11.1707205925116;
+        Mon, 05 Feb 2024 23:52:05 -0800 (PST)
+X-Forwarded-Encrypted: i=1; AJvYcCXQd0XxgUfTQHr182zR99QllPWjQ5Lf478awjZTn68xLCZ2fyFS5zErrMkcf5cMjymRAJD5oKqf4J5olT0zg/tjc4quJ5RT5xvdbMvSjRKS+v9+4cuyD8WjpjQRnKX1RLyTx4uLNgjIx5OlELUApnlwDFK9A1AbmOm4J56pSn2RQaBFia0vOVdMKdcCccPhg3G3XLnZX8g0LQ3966IN8HUOhJpuRPuYwhYbO5kbR1JpGmoFJZHDvkVANXR/NWWVZPzf92+UEpLGwJ5BD2qtUpOI8VN1Q/bP1Ns5EJFl3BJQwdDiNMRKCNlNM5EZoGyjy6mxBsuSbc/6ImSDYd5rBBV+l24yKFIVbcs0fyywUPAP/Se4shtx6kCL0pQevllBTawtwF++pthb+m/nYA1kMcskb8eoXVg5ur8ndu3OV1x73eM09YuzbmkuZiNp4LLlgdKMmbVakVHabqKLIEokMv6Uup/mCAOknyUAf3UsbyN1jooRbZZY6Tbf4n8tl0jN2qWIub4zHjaiZA==
+Received: from claudiu-X670E-Pro-RS.. ([82.78.167.154])
+        by smtp.gmail.com with ESMTPSA id j32-20020a05600c1c2000b0040fbad272f6sm1106843wms.46.2024.02.05.23.52.03
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 05 Feb 2024 23:52:04 -0800 (PST)
+From: Claudiu <claudiu.beznea@tuxon.dev>
+X-Google-Original-From: Claudiu <claudiu.beznea.uj@bp.renesas.com>
+To: wim@linux-watchdog.org,
+	linux@roeck-us.net,
+	robh@kernel.org,
+	krzysztof.kozlowski+dt@linaro.org,
+	conor+dt@kernel.org,
+	p.zabel@pengutronix.de,
+	geert+renesas@glider.be,
+	magnus.damm@gmail.com,
+	biju.das.jz@bp.renesas.com
+Cc: linux-watchdog@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	linux-renesas-soc@vger.kernel.org,
+	claudiu.beznea@tuxon.dev,
+	Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>
+Subject: [PATCH v4 0/9] watchdog: rzg2l_wdt: Add support for RZ/G3S
+Date: Tue,  6 Feb 2024 09:51:40 +0200
+Message-Id: <20240206075149.864996-1-claudiu.beznea.uj@bp.renesas.com>
+X-Mailer: git-send-email 2.39.2
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
-Content-Type: text/plain; charset="iso-8859-1"
+Content-Transfer-Encoding: 8bit
+
+From: Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>
 
 Hi,
 
-Am Montag, 29. Januar 2024, 18:17:37 CET schrieb Frank Li:
-> On Tue, Dec 19, 2023 at 01:34:39PM +0100, Alexander Stein wrote:
-> > Bindings say DMA channels are in order Rx, Tx. Adjust the DT nodes
-> > accordingly.
-> >=20
-> > Signed-off-by: Alexander Stein <alexander.stein@ew.tq-group.com>
-> > ---
-> >=20
-> >  arch/arm64/boot/dts/freescale/imx8-ss-dma.dtsi | 16 ++++++++--------
-> >  1 file changed, 8 insertions(+), 8 deletions(-)
-> >=20
-> > diff --git a/arch/arm64/boot/dts/freescale/imx8-ss-dma.dtsi
-> > b/arch/arm64/boot/dts/freescale/imx8-ss-dma.dtsi index
-> > a180893ac81e..0f48796e32b2 100644
-> > --- a/arch/arm64/boot/dts/freescale/imx8-ss-dma.dtsi
-> > +++ b/arch/arm64/boot/dts/freescale/imx8-ss-dma.dtsi
-> > @@ -93,8 +93,8 @@ lpuart0: serial@5a060000 {
-> >=20
-> >  		assigned-clocks =3D <&clk IMX_SC_R_UART_0=20
-IMX_SC_PM_CLK_PER>;
-> >  		assigned-clock-rates =3D <80000000>;
-> >  		power-domains =3D <&pd IMX_SC_R_UART_0>;
-> >=20
-> > -		dma-names =3D "tx","rx";
-> > -		dmas =3D <&edma2 9 0 0>, <&edma2 8 0 1>;
-> > +		dma-names =3D "rx", "tx";
-> > +		dmas =3D <&edma2 8 0 0>, <&edma2 9 0 1>;
->=20
-> edma device bind header file already merged.
-> Please include <dt-binding/dma/fsl-edma.h>
->=20
-> Change "1" to "FSL_EDMA_RX".
+Series adds watchdog support for Renesas RZ/G3S (R9A08G045) SoC.
 
-Thanks, I was not aware of that change. Meanwhile I noticed in my patch the=
-=20
-flags were not switched as well.
+Patches do the following:
+- patch 1/9 makes the driver depend on ARCH_RZG2L || ARCH_R9A09G011
+- patch 2/9 makes the driver depend on PM
+- patches 3-7/9 adds fixes and cleanups for the watchdog driver
+- patch 8/9 adds suspend to RAM to the watchdog driver (to be used by
+  RZ/G3S)
+- patch 9/9 documents the RZ/G3S support
 
-Best regards,
-Alexander
+Thank you,
+Claudiu Beznea
 
-> Frank
->=20
-> >  		status =3D "disabled";
-> >  =09
-> >  	};
-> >=20
-> > @@ -107,8 +107,8 @@ lpuart1: serial@5a070000 {
-> >=20
-> >  		assigned-clocks =3D <&clk IMX_SC_R_UART_1=20
-IMX_SC_PM_CLK_PER>;
-> >  		assigned-clock-rates =3D <80000000>;
-> >  		power-domains =3D <&pd IMX_SC_R_UART_1>;
-> >=20
-> > -		dma-names =3D "tx","rx";
-> > -		dmas =3D <&edma2 11 0 0>, <&edma2 10 0 1>;
-> > +		dma-names =3D "rx", "tx";
-> > +		dmas =3D <&edma2 10 0 0>, <&edma2 11 0 1>;
-> >=20
-> >  		status =3D "disabled";
-> >  =09
-> >  	};
-> >=20
-> > @@ -121,8 +121,8 @@ lpuart2: serial@5a080000 {
-> >=20
-> >  		assigned-clocks =3D <&clk IMX_SC_R_UART_2=20
-IMX_SC_PM_CLK_PER>;
-> >  		assigned-clock-rates =3D <80000000>;
-> >  		power-domains =3D <&pd IMX_SC_R_UART_2>;
-> >=20
-> > -		dma-names =3D "tx","rx";
-> > -		dmas =3D <&edma2 13 0 0>, <&edma2 12 0 1>;
-> > +		dma-names =3D "rx", "tx";
-> > +		dmas =3D <&edma2 12 0 0>, <&edma2 13 0 1>;
-> >=20
-> >  		status =3D "disabled";
-> >  =09
-> >  	};
-> >=20
-> > @@ -135,8 +135,8 @@ lpuart3: serial@5a090000 {
-> >=20
-> >  		assigned-clocks =3D <&clk IMX_SC_R_UART_3=20
-IMX_SC_PM_CLK_PER>;
-> >  		assigned-clock-rates =3D <80000000>;
-> >  		power-domains =3D <&pd IMX_SC_R_UART_3>;
-> >=20
-> > -		dma-names =3D "tx","rx";
-> > -		dmas =3D <&edma2 15 0 0>, <&edma2 14 0 1>;
-> > +		dma-names =3D "rx", "tx";
-> > +		dmas =3D <&edma2 14 0 0>, <&edma2 15 0 1>;
-> >=20
-> >  		status =3D "disabled";
-> >  =09
-> >  	};
+Changes in v4:
+- added patch "watchdog: rzg2l_wdt: Restrict the driver to ARCH_RZG2L and
+  ARCH_R9A09G011"
+- collected tags
 
+Changes in v3:
+- make driver depend on PM not select it
+- drop patches already accepted (patches 1, 10, 11 from v2)
+- re-arranged the tags in patch 8/8 as they were messed by b4 am/shazam
 
-=2D-=20
-TQ-Systems GmbH | M=FChlstra=DFe 2, Gut Delling | 82229 Seefeld, Germany
-Amtsgericht M=FCnchen, HRB 105018
-Gesch=E4ftsf=FChrer: Detlef Schneider, R=FCdiger Stahl, Stefan Schneider
-http://www.tq-group.com/
+Changes in v2:
+- added patch "watchdog: rzg2l_wdt: Select PM"
+- propagate the return status of rzg2l_wdt_start() to it's callers
+  in patch "watchdog: rzg2l_wdt: Use pm_runtime_resume_and_get()" 
+- propagate the return status of rzg2l_wdt_stop() to it's callers
+  in patch "watchdog: rzg2l_wdt: Check return status of pm_runtime_put()" 
+- removed pm_ptr() from patch "watchdog: rzg2l_wdt: Add suspend/resume support"
+- s/G2UL/G2L in patch "dt-bindings: watchdog: renesas,wdt: Document RZ/G3S support"
+- collected tags
 
+Claudiu Beznea (9):
+  watchdog: rzg2l_wdt: Restrict the driver to ARCH_RZG2L and
+    ARCH_R9A09G011
+  watchdog: rzg2l_wdt: Make the driver depend on PM
+  watchdog: rzg2l_wdt: Use pm_runtime_resume_and_get()
+  watchdog: rzg2l_wdt: Check return status of pm_runtime_put()
+  watchdog: rzg2l_wdt: Remove reset de-assert on probe/stop
+  watchdog: rzg2l_wdt: Remove comparison with zero
+  watchdog: rzg2l_wdt: Rely on the reset driver for doing proper reset
+  watchdog: rzg2l_wdt: Add suspend/resume support
+  dt-bindings: watchdog: renesas,wdt: Document RZ/G3S support
+
+ .../bindings/watchdog/renesas,wdt.yaml        |   1 +
+ drivers/watchdog/Kconfig                      |   2 +-
+ drivers/watchdog/rzg2l_wdt.c                  | 111 ++++++++++--------
+ 3 files changed, 63 insertions(+), 51 deletions(-)
+
+-- 
+2.39.2
 
 
