@@ -1,110 +1,218 @@
-Return-Path: <devicetree+bounces-38911-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-38912-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0C92784AE6B
-	for <lists+devicetree@lfdr.de>; Tue,  6 Feb 2024 07:33:40 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id E302084AE75
+	for <lists+devicetree@lfdr.de>; Tue,  6 Feb 2024 07:44:54 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id BD23C286DB1
-	for <lists+devicetree@lfdr.de>; Tue,  6 Feb 2024 06:33:38 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 13BDE1C22B4A
+	for <lists+devicetree@lfdr.de>; Tue,  6 Feb 2024 06:44:54 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 933F1127B6B;
-	Tue,  6 Feb 2024 06:33:34 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 31EAB12836D;
+	Tue,  6 Feb 2024 06:44:49 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=tuxon.dev header.i=@tuxon.dev header.b="olrzNDEN"
+	dkim=pass (2048-bit key) header.d=microchip.com header.i=@microchip.com header.b="QW0XFVx0"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lf1-f51.google.com (mail-lf1-f51.google.com [209.85.167.51])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from esa.microchip.iphmx.com (esa.microchip.iphmx.com [68.232.153.233])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 545F6127B6E
-	for <devicetree@vger.kernel.org>; Tue,  6 Feb 2024 06:33:31 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.51
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D7EAB74E03;
+	Tue,  6 Feb 2024 06:44:46 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=68.232.153.233
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1707201214; cv=none; b=czcUiqJotIZ9t/1KsfrR9HzPiqCe0Arur6p6xhT5CO+khvbmk+udp2xiQjeXWVxL6Knq0qO+7pZCLbo0PL1xvMPN9pY2XSAVHshaANOSlGR4pIAQgKl3++Y+dPmk2qq8zOnDDPAiHXcRlmW7DHZRQWE2+rh5a8cvjfbtW1dU/Fg=
+	t=1707201889; cv=none; b=WukSVx9l/AKtS9hkbPgglbtOFXWjhmkz/rCt/sDsr292Ivuvmj6hSorHE2sAkSAcsI6pApW6d4AvegnKI+jwJ3d+qP5pdpVkzdAwdRuInNh1qZp3pnYXdkbg0Ofxf44jc8F7DVTXPalDz7isw+Q3HRHBQnXFQB8WMwmP+2uAGPs=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1707201214; c=relaxed/simple;
-	bh=yEfS68ZaG11FmPJw+YIL+y1X6E2ocoDjkTZJbnh5Og4=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=UajX4kYeEcGllmsgqE3s5i8SeOcjFvqNpta6G93QqFtbK1+ei6qll29KMjLEWZnGITPSzHq2yboroVA7MrZUTjOkxxmzBBirsc8Q+7finyynYH3G1qjTjyYtoEtEeRM/SSCyt/nPtY2NAUhDhHpjywZCmoTCzhTxDcuMEgezXDk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=tuxon.dev; spf=pass smtp.mailfrom=tuxon.dev; dkim=pass (2048-bit key) header.d=tuxon.dev header.i=@tuxon.dev header.b=olrzNDEN; arc=none smtp.client-ip=209.85.167.51
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=tuxon.dev
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=tuxon.dev
-Received: by mail-lf1-f51.google.com with SMTP id 2adb3069b0e04-5115fcef9e9so161669e87.3
-        for <devicetree@vger.kernel.org>; Mon, 05 Feb 2024 22:33:31 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=tuxon.dev; s=google; t=1707201209; x=1707806009; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=MUfk5AFliSEaJHYEe90eS5Tk2E72Nu1M00RsyVShQXI=;
-        b=olrzNDENxOv1DZtQJyAVFEMUnDk1AMPMBVQ6tRpqAeqtaTWTrRnCfhvjV1PQ2T5r3w
-         Ui3TIwH3jEHzloTvTi9ZIVBfCuyPQq49nBbSrItFHfp2j+mqcGR4ONpnqkLoFliA9a1h
-         jyRmDyKix1CS2DeRhJcO801ktZTdv/H4hwnBS61LkG/ZfI3+DoMTTEn7BCEoKJhJsgar
-         7OSnvrq2nsPMx1Vfxye5XLiAFYJxzSrFLzIbqz2mhcOBYhsPrOVjZTu7Tpum5JHCz7za
-         yYy/GSjfVgd6s7AKJYjcR0x4x/x5OGRcPtSf8fOZi+m/xXcWqHx859kJNA6n5Elw/Dnt
-         BS6A==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1707201209; x=1707806009;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=MUfk5AFliSEaJHYEe90eS5Tk2E72Nu1M00RsyVShQXI=;
-        b=pZ9sU8WcF72NY6i90MRdFInTU9O5nAKHFXSLlXQPTj2IfgmTyg1S7vuQpwAxsc8J8P
-         FzE42v/C6lK7rBKuOjQ+11d+pnR9S+SU79lahFm54SeB+1k3OZIZeABwJoOZCNuwU0ox
-         r64xvcAe2L6EDcG6qsVrIjrn1Ve8cUf4x9Kchs17IVzhpYnhVnXkMbuaSOcy3rQ01TL+
-         cowlTcWxwh/J6hbgv39L0ZCQ4hHjagDUD5MTVxiWffGAHFHTQ6syuiTl92wA7DBicdSc
-         xR7vxfGcgqBO+aDIn32TC6rKaq+xSgtyPyzPQk3ZTfvmx9OpnpYeWvj5NcDRQGZVYnJD
-         /cFw==
-X-Gm-Message-State: AOJu0Yz15GXFwFU/R/159sQ33XDK021HiB2fkrtltny+6clLKD7L3+AK
-	ddrWvJNiWEbsGyJ4gRHKDgS1K3F954nc2yx7h34+G814cYmHBj3on+6qD6cPb3I=
-X-Google-Smtp-Source: AGHT+IFKp8f8zNec2Qzx0+JhNeYQQlf1tX6HAi3rCWpvR1s5SLbNmmUokSmb+/DzonZwYuUaVlMyyw==
-X-Received: by 2002:a05:6512:517:b0:511:51f6:4760 with SMTP id o23-20020a056512051700b0051151f64760mr1190585lfb.4.1707201209252;
-        Mon, 05 Feb 2024 22:33:29 -0800 (PST)
-X-Forwarded-Encrypted: i=0; AJvYcCUyCPJKxoB3l3DmSSjs3jxLG0ERJh5ObZcnDGbSvty3aSE33M+l4vpKUHlqR0UZHXzYvJFTTqJMDQFJNFWSoN87M7wqMDD+QFPXEJL64wV/vhoGCSFB0m1yrdGeUuvMNKi1cHx8bp98stI325VIuoXHnslv/bySZpgxuZCKsOMlvXgRXMb3MwRaOYZg+T/McT5lvolAFsyPYRkiKJ6BL4sDEO1hVa9/gyVFbHoses7KtOC14z0MaFhwEtCB9ejZxCHAlatI6tsu0fxzo93BbtSG7XqRjlqaxaYnXe4G6ZKsRf4n/fRqpDyFy/vXcYhh0wLSwDySlJRYlKr83qrXJbSJjJUoh/Md/lDHAcSxFDf9ERwTYCZmqNc5vxQxbjGkJTcSUK/a/CoAJCxRAIzov/+wlAn2gfyq4VZxSUT64vE7D4wuSobZgfa8mohZTpOP3T2RMSeHn8oBVw==
-Received: from [192.168.50.4] ([82.78.167.154])
-        by smtp.gmail.com with ESMTPSA id a5-20020a05600c348500b0040d8ff79fd8sm863218wmq.7.2024.02.05.22.33.27
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 05 Feb 2024 22:33:28 -0800 (PST)
-Message-ID: <c2427050-9d96-4f2b-b6b3-1f3605df77d5@tuxon.dev>
-Date: Tue, 6 Feb 2024 08:33:27 +0200
+	s=arc-20240116; t=1707201889; c=relaxed/simple;
+	bh=6NTsi8MTHhKSU1zdGgcR2NazjNxpJ4OkB7k2y0vpsVc=;
+	h=From:To:CC:Subject:Date:Message-ID:MIME-Version:Content-Type; b=Um/SOg5awqsqq+yAT21qfAy+vWHDQMNZVmbQ4K1zmYM5k64PucXoMdsOQXnD2eo+0fSQz/MYDeS9z+1W5BLMQECuY0RRnoccXde2vI2jI/0VJZH1vb8b46xqUNV5h690ulvUY6ceQiwPW/TlCIR7mIfVczP6Kgef7CuJvrWn5c4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=microchip.com; spf=pass smtp.mailfrom=microchip.com; dkim=pass (2048-bit key) header.d=microchip.com header.i=@microchip.com header.b=QW0XFVx0; arc=none smtp.client-ip=68.232.153.233
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=microchip.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=microchip.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
+  t=1707201887; x=1738737887;
+  h=from:to:cc:subject:date:message-id:mime-version:
+   content-transfer-encoding;
+  bh=6NTsi8MTHhKSU1zdGgcR2NazjNxpJ4OkB7k2y0vpsVc=;
+  b=QW0XFVx0W4bIgxRyjfqq+pFfEuYe3xkNBsylx+bukq8ijz1jYcK2i7w0
+   zls27XP7hxNrS78lLTpMY6SFpeOkNY4txX+J9LHpNvSuHSCfB1VgxveoR
+   Nq6z+Fh1U1JUYeLP4zLdfZZDSr/Z/ipJGYOD5tjLV4WiEJJf/vET3Q7/1
+   NKZxz4ffTR9iOZ06aM69rRM8oETJ9JkMbss7mZMDGxhK2pHHhYeXeT+ev
+   wATix8nzKjbCS0Oz9LmVmjA4X8PVGBPRFAmiQlgcM4qS6WK1HmJVc791/
+   +QczhlXcTWtv9iS2Wauj5fI2GV4txOZ9hlBiQ8QdEA/zgPAo7NWoHoa7x
+   A==;
+X-CSE-ConnectionGUID: 5cKW/z4QQq6KFQyHa1Y4Bg==
+X-CSE-MsgGUID: xRRXybZ8QuS7vPMPAREMRA==
+X-IronPort-AV: E=Sophos;i="6.05,246,1701154800"; 
+   d="scan'208";a="15812734"
+X-Amp-Result: SKIPPED(no attachment in message)
+Received: from unknown (HELO email.microchip.com) ([170.129.1.10])
+  by esa3.microchip.iphmx.com with ESMTP/TLS/ECDHE-RSA-AES128-GCM-SHA256; 05 Feb 2024 23:44:45 -0700
+Received: from chn-vm-ex01.mchp-main.com (10.10.85.143) by
+ chn-vm-ex04.mchp-main.com (10.10.85.152) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.35; Mon, 5 Feb 2024 23:44:29 -0700
+Received: from che-lt-i70843lx.microchip.com (10.10.85.11) by
+ chn-vm-ex01.mchp-main.com (10.10.85.143) with Microsoft SMTP Server id
+ 15.1.2507.35 via Frontend Transport; Mon, 5 Feb 2024 23:44:23 -0700
+From: Dharma Balasubiramani <dharma.b@microchip.com>
+To: <claudiu.beznea@tuxon.dev>, <lgirdwood@gmail.com>, <broonie@kernel.org>,
+	<robh+dt@kernel.org>, <krzysztof.kozlowski+dt@linaro.org>,
+	<conor+dt@kernel.org>, <nicolas.ferre@microchip.com>,
+	<alexandre.belloni@bootlin.com>, <dharma.b@microchip.com>,
+	<alsa-devel@alsa-project.org>, <linux-sound@vger.kernel.org>,
+	<devicetree@vger.kernel.org>, <linux-arm-kernel@lists.infradead.org>,
+	<linux-kernel@vger.kernel.org>
+CC: <hari.prasathge@microchip.com>
+Subject: [linux][PATCH] ASoC: dt-bindings: atmel,sam9x5-wm8731: Convert to json-schema
+Date: Tue, 6 Feb 2024 12:14:18 +0530
+Message-ID: <20240206064418.237377-1-dharma.b@microchip.com>
+X-Mailer: git-send-email 2.25.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v1 0/2] ARM: dts: at91: gardena-smart-gateway: Use DMA for
- serial ports
-Content-Language: en-US
-To: ezra@easyb.ch, Alexandre Belloni <alexandre.belloni@bootlin.com>,
- Conor Dooley <conor+dt@kernel.org>,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Nicolas Ferre <nicolas.ferre@microchip.com>, Rob Herring
- <robh+dt@kernel.org>, linux-arm-kernel@lists.infradead.org
-Cc: Reto Schneider <reto.schneider@husqvarnagroup.com>,
- Michael Zimmermann <michael.zimmermann@grandcentrix.net>,
- devicetree@vger.kernel.org, Ezra Buehler <ezra.buehler@husqvarnagroup.com>
-References: <20240102161839.702625-1-ezra.buehler@husqvarna.com>
-From: claudiu beznea <claudiu.beznea@tuxon.dev>
-In-Reply-To: <20240102161839.702625-1-ezra.buehler@husqvarna.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
 
+Convert atmel sam9x5-wm8731-audio devicetree binding to json-schema.
 
+Signed-off-by: Dharma Balasubiramani <dharma.b@microchip.com>
+---
+ .../sound/atmel,sam9x5-wm8731-audio.yaml      | 76 +++++++++++++++++++
+ .../sound/atmel-sam9x5-wm8731-audio.txt       | 35 ---------
+ 2 files changed, 76 insertions(+), 35 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/sound/atmel,sam9x5-wm8731-audio.yaml
+ delete mode 100644 Documentation/devicetree/bindings/sound/atmel-sam9x5-wm8731-audio.txt
 
-On 02.01.2024 18:18, ezra@easyb.ch wrote:
-> From: Ezra Buehler <ezra.buehler@husqvarnagroup.com>
-> 
-> On our AT91SAM9G25-based GARDENA smart Gateway we have been experiencing
-> various problems which we were able to trace back to unreliable UART
-> communication. Enabling DMA for the serial ports resolved these issues.
-> 
-> Ezra Buehler (2):
->   ARM: dts: at91: at91sam9x5ek: Use DMA for DBGU serial port
->   ARM: dts: at91: gardena-smart-gateway: Use DMA for USART3
+diff --git a/Documentation/devicetree/bindings/sound/atmel,sam9x5-wm8731-audio.yaml b/Documentation/devicetree/bindings/sound/atmel,sam9x5-wm8731-audio.yaml
+new file mode 100644
+index 000000000000..33717b728f63
+--- /dev/null
++++ b/Documentation/devicetree/bindings/sound/atmel,sam9x5-wm8731-audio.yaml
+@@ -0,0 +1,76 @@
++# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/sound/atmel,sam9x5-wm8731-audio.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
++
++title: Atmel at91sam9x5ek wm8731 audio complex
++
++maintainers:
++  - Dharma Balasubiramani <dharma.b@microchip.com>
++
++description:
++  The audio complex configuration for Atmel at91sam9x5ek with WM8731 audio codec.
++
++properties:
++  compatible:
++    const: atmel,sam9x5-wm8731-audio
++
++  atmel,model:
++    $ref: /schemas/types.yaml#/definitions/string
++    description: The user-visible name of this sound complex.
++
++  atmel,ssc-controller:
++    $ref: /schemas/types.yaml#/definitions/phandle
++    description: The phandle of the SSC controller.
++
++  atmel,audio-codec:
++    $ref: /schemas/types.yaml#/definitions/phandle
++    description: The phandle of the WM8731 audio codec.
++
++  atmel,audio-routing:
++    description:
++      A list of the connections between audio components. Each entry is a pair
++      of strings, the first being the connection's sink, the second being the
++      connection's source.
++    $ref: /schemas/types.yaml#/definitions/non-unique-string-array
++    items:
++      enum:
++        # Board Connectors
++        - Headphone Jack
++        - Line In Jack
++
++        # CODEC Pins
++        - LOUT
++        - ROUT
++        - LHPOUT
++        - RHPOUT
++        - LLINEIN
++        - RLINEIN
++        - MICIN
++
++required:
++  - compatible
++  - atmel,model
++  - atmel,ssc-controller
++  - atmel,audio-codec
++  - atmel,audio-routing
++
++additionalProperties: false
++
++examples:
++  - |
++    sound {
++        compatible = "atmel,sam9x5-wm8731-audio";
++
++        atmel,model = "wm8731 @ AT91SAM9X5EK";
++
++        atmel,audio-routing =
++                "Headphone Jack", "RHPOUT",
++                "Headphone Jack", "LHPOUT",
++                "LLINEIN", "Line In Jack",
++                "RLINEIN", "Line In Jack";
++
++        atmel,ssc-controller = <&ssc0>;
++        atmel,audio-codec = <&wm8731>;
++    };
+diff --git a/Documentation/devicetree/bindings/sound/atmel-sam9x5-wm8731-audio.txt b/Documentation/devicetree/bindings/sound/atmel-sam9x5-wm8731-audio.txt
+deleted file mode 100644
+index 8facbce53db8..000000000000
+--- a/Documentation/devicetree/bindings/sound/atmel-sam9x5-wm8731-audio.txt
++++ /dev/null
+@@ -1,35 +0,0 @@
+-* Atmel at91sam9x5ek wm8731 audio complex
+-
+-Required properties:
+-  - compatible: "atmel,sam9x5-wm8731-audio"
+-  - atmel,model: The user-visible name of this sound complex.
+-  - atmel,ssc-controller: The phandle of the SSC controller
+-  - atmel,audio-codec: The phandle of the WM8731 audio codec
+-  - atmel,audio-routing: A list of the connections between audio components.
+-    Each entry is a pair of strings, the first being the connection's sink,
+-    the second being the connection's source.
+-
+-Available audio endpoints for the audio-routing table:
+-
+-Board connectors:
+- * Headphone Jack
+- * Line In Jack
+-
+-wm8731 pins:
+-cf Documentation/devicetree/bindings/sound/wlf,wm8731.yaml
+-
+-Example:
+-sound {
+-	compatible = "atmel,sam9x5-wm8731-audio";
+-
+-	atmel,model = "wm8731 @ AT91SAM9X5EK";
+-
+-	atmel,audio-routing =
+-		"Headphone Jack", "RHPOUT",
+-		"Headphone Jack", "LHPOUT",
+-		"LLINEIN", "Line In Jack",
+-		"RLINEIN", "Line In Jack";
+-
+-	atmel,ssc-controller = <&ssc0>;
+-	atmel,audio-codec = <&wm8731>;
+-};
+-- 
+2.25.1
 
-Applied to at91-dt, thank you!
 
