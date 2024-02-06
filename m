@@ -1,164 +1,113 @@
-Return-Path: <devicetree+bounces-39059-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-39060-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id B555684B45A
-	for <lists+devicetree@lfdr.de>; Tue,  6 Feb 2024 13:06:25 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 054AD84B45F
+	for <lists+devicetree@lfdr.de>; Tue,  6 Feb 2024 13:06:45 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id D9F5A1C218D4
-	for <lists+devicetree@lfdr.de>; Tue,  6 Feb 2024 12:06:24 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 380081C2134E
+	for <lists+devicetree@lfdr.de>; Tue,  6 Feb 2024 12:06:44 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 264FC12F592;
-	Tue,  6 Feb 2024 11:59:50 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B6BA312FF90;
+	Tue,  6 Feb 2024 12:00:30 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="GtTxLIMz"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="uUwKGVVY"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-yw1-f172.google.com (mail-yw1-f172.google.com [209.85.128.172])
+Received: from mail-qv1-f42.google.com (mail-qv1-f42.google.com [209.85.219.42])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D860E12F381
-	for <devicetree@vger.kernel.org>; Tue,  6 Feb 2024 11:59:47 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.172
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0ECBC12FB33
+	for <devicetree@vger.kernel.org>; Tue,  6 Feb 2024 12:00:28 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.219.42
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1707220790; cv=none; b=QCQHb2Z5OJ9WAaJU1uO19lWA7XSv8wsO2LSB1jrnH/IttYf7A0han7MyZyRaJdy//U4aabwiToQPzc2+OY2a8U6i2ALUdV08v3Q8q4fKv/E3EwqhnpKqq90RqOrRmXzYOz75iePRG1oDh+VS8XJ3oUyZOGzVO62gvMbGe+LBimQ=
+	t=1707220830; cv=none; b=hiYU3WD1XllGQeHhce72dvZ5Ky+/0Ft+L01RUU3ysjnJjvJT0ldWxppBbiKncKhH86J8AngZi2TVJfUWqJKn/T8xHisHJ5ZKcgCtNV8GJjECwFHu+p2r7ardsi583z+mPEzhS+zaIsl4Kp0PCRxNUIXmEdljmPRju+mm9kfDeKA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1707220790; c=relaxed/simple;
-	bh=EtsT4PQhPQG5JWztb0+mi4R2d7ka72NiRj+QIgwDG5g=;
+	s=arc-20240116; t=1707220830; c=relaxed/simple;
+	bh=zHzTftf7qljyFyamE3gPK65Zs/n2+lrZ0S7UePOD9lA=;
 	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=nmL5Kr3YNFxW6fN/pOhILLcI6nAwRPLmdZXdC47Vy5GCNQnJBvkMe1SqZpzKjw+kjjxdGgXWyxirhsV/OPUdQmShG2/0LvX7ZF9fWBWLKsKT/vc7qyKQTH13p3+Fn6mG8hnRWBcKPTo/w55wYSqg75eF7Y0XVF9MRtmDctjDj18=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=GtTxLIMz; arc=none smtp.client-ip=209.85.128.172
+	 To:Cc:Content-Type; b=fQp4xFCYXLS/A5xCW/zn/9rRJESqdAvjuAr1t3N559dtb4FJY20Fy71heFFWinblLY2k/3f0bfG6b+SF7v87orBhZIa2vL7l/xoIkMqObhV1erYPGk08lAde0RTcwj/MmP4Clsn6N6QmGB17NPhJgRZOqpsp2eYCFoHLjWptK1w=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=uUwKGVVY; arc=none smtp.client-ip=209.85.219.42
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-yw1-f172.google.com with SMTP id 00721157ae682-6040d33380cso56606217b3.1
-        for <devicetree@vger.kernel.org>; Tue, 06 Feb 2024 03:59:47 -0800 (PST)
+Received: by mail-qv1-f42.google.com with SMTP id 6a1803df08f44-68c431c6c91so24147806d6.0
+        for <devicetree@vger.kernel.org>; Tue, 06 Feb 2024 04:00:28 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1707220787; x=1707825587; darn=vger.kernel.org;
+        d=linaro.org; s=google; t=1707220828; x=1707825628; darn=vger.kernel.org;
         h=cc:to:subject:message-id:date:from:in-reply-to:references
          :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=CNhycZjEYpR/VohePuZrM34Prmw23zgM6uVQKrTP5kw=;
-        b=GtTxLIMzLdlaDjq/Bw5H46F0QD6Zysg6LeAx7+TINdOecjHhufuiBCKu3WYEAEL1tS
-         nbkE8nZT83JydFmCmwha0ZT3mKKDxDs2fYVBjlaHbbomFJc/QPbZjoKMd5Zra4gl72+K
-         +sTlNTtcj9sHUnkMFgwXqw+zaPRrx6/nSWpp54I5LwKF3pbvnAIXEeWfdIusrOX/777U
-         8WnOa1J0b3dZO4NhnqUbdaIwRPNEHsVpM6CEtfXrlI9zizyxVOxIriBnS4irdjrIpPc2
-         bpgaqOy+ZSO7+KY2pHW0112AITamvma9DRzckOjtpq1Ig3BxB/ywNJWx/1AkeXNu1HDH
-         qEqQ==
+        bh=VYcLq+0GybZqiLelEzr2Y9hS+F3sRASXDSVWvTM+L0U=;
+        b=uUwKGVVYrBChUZfjOXBJuiPNkZpMJAMaHB5s+riSgawFAx5YgeSAV9bxi008vjymw7
+         SY1ueT+NftJoBeHY1kAT/yhKQz+BvVgmVgwdIYTtIHbhjbUwnEOrDepawx27cbWJDXpX
+         N1fk+QmH4cAfVv+1H+hVzcaPvMl5ss/iW+pAf9DT2d0yjTF3Fs5MHSNJyIC4tbvN3EFc
+         qGs6sCr6xLv0H5S35KDImW5YH+mReEXAfT9U3OrJqH0PXMDuhuwnu/wSrZGhpWoFw60M
+         FnaCLZYX/qrue2rzWRE4fimr6Gry+btpmQWq9+vvviZsATA/kUVOlcs34hg5cAizECw1
+         JXfQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1707220787; x=1707825587;
+        d=1e100.net; s=20230601; t=1707220828; x=1707825628;
         h=cc:to:subject:message-id:date:from:in-reply-to:references
          :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=CNhycZjEYpR/VohePuZrM34Prmw23zgM6uVQKrTP5kw=;
-        b=fc/7bGC3cw3H4Bv0NEALRYT5cRJq36SY6TEXV7hE/xaF8PfbEKuL2jzCU335S3XNvw
-         0BB1SF6rWRL4OxoOAIytewqdOjQ4zl33OmH7oXCQcb3JP66vXBOWCYeDGc3KYhDRiP+O
-         daxfaoGB5Ze4W+k49g+rpRHr1RSFaA7uFUZGXwCO1h55pyzAm60M5HgBCEusHW9uv060
-         SwpQwOE+RpDrWwA6axgCrA60aG4RGgxzxc7NRdy+rh/Tv3lrCbvThkLgvAECN7RdiAGY
-         IoMBvUpuTIFyJIs+8aTWrAgtj1q5PKQT7Ea1Uy1nOlO3kFf7wVh75BxJQvi2RtD21vy3
-         eK3w==
-X-Gm-Message-State: AOJu0YwgC3OAqseWCJ2LsCSYuiY7C0gPBuUOU+1u/1/PHHlEGjaYrGlt
-	1i72KWTVKkZHfvwarhxJgajhmV6CKXbdoMfDtGTFBAttm5pzGixnbTsKnsAM5oBZKJiT5ho9weN
-	/Mm9jn+RdvKyxuP+BkW6G4NPFMRvF+IZ4k9FLGA==
-X-Google-Smtp-Source: AGHT+IGp4zSfVN0bhdWn/BNXPVm1N0DQtGd+SBJSrjS/zOeOsHkJO47hbNHRq2jlyZogmxAAIrtYFkDNTHHiPQLWpKw=
-X-Received: by 2002:a81:b3c7:0:b0:603:bc00:b469 with SMTP id
- r190-20020a81b3c7000000b00603bc00b469mr1635531ywh.11.1707220786825; Tue, 06
- Feb 2024 03:59:46 -0800 (PST)
+        bh=VYcLq+0GybZqiLelEzr2Y9hS+F3sRASXDSVWvTM+L0U=;
+        b=WHx2ZdLZkUY1gPkM2VcsNk3RskWELIfN2PQL/5X/YKfFzZWYEqKcC5t4eQ5W3H0hqU
+         zO9QV3POfry8xQIeQ45Np7E8+QDdnAYAAwAj+bEu37sW3/jtls/PDzluij7NwZlBm/XS
+         HHAG/C+7j2wrfnGFV9nSNq9kdwjRmoHRQqLAIDCkP8AULhe8e0eYg+AJOej92opByXv1
+         AA8/huh+lG+xSLKp4rUqIKf3k3PmhZCr/G0qt3P7bxabET3EKfwR5mjbgTXwJT7TfrTF
+         UT7kLgYiUwO5pL5JnLv95YSHQwEdHN7RwLLN3jn6kgvflomeL/ILbt1V2OF6PjC+tedR
+         +H0w==
+X-Gm-Message-State: AOJu0Yxv4vgDhpE7x9ViB6uVZJVFFC3Y4AaiRYtXGnvza8W9sa6svojD
+	0miJMBNcjxyb/8niZjXX05C0NLKLnVemDirQ+382EUrt5XZELUbHinmRfzL34tOyG12ALDnlIjY
+	0DBUIhAtMUmOAyQpwM1KnZofHm8eJ3GG0lJm4MA==
+X-Google-Smtp-Source: AGHT+IFV+oUSkiUAp29uvJltm9vvmt4Me3yZxlKDNCTv1Gn65ralsDCsUWdPBGzl8Rj9xoJuSnBOEhj1ISiTbwxIvxQ=
+X-Received: by 2002:a05:6214:27e1:b0:68c:91be:68ea with SMTP id
+ jt1-20020a05621427e100b0068c91be68eamr2250014qvb.38.1707220827979; Tue, 06
+ Feb 2024 04:00:27 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20240127232436.2632187-1-quic_gaurkash@quicinc.com> <20240127232436.2632187-4-quic_gaurkash@quicinc.com>
-In-Reply-To: <20240127232436.2632187-4-quic_gaurkash@quicinc.com>
-From: Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
-Date: Tue, 6 Feb 2024 12:59:36 +0100
-Message-ID: <CACMJSetM_JQ+1bTEszc4EtaUwb2iKkbg3WFWVTsXa14KD_VKCA@mail.gmail.com>
-Subject: Re: [PATCH v4 03/15] qcom_scm: scm call for create, prepare and
- import keys
-To: Gaurav Kashyap <quic_gaurkash@quicinc.com>
-Cc: linux-arm-msm@vger.kernel.org, linux-scsi@vger.kernel.org, 
-	andersson@kernel.org, ebiggers@google.com, neil.armstrong@linaro.org, 
-	srinivas.kandagatla@linaro.org, krzysztof.kozlowski+dt@linaro.org, 
-	conor+dt@kernel.org, robh+dt@kernel.org, linux-kernel@vger.kernel.org, 
-	linux-mmc@vger.kernel.org, kernel@quicinc.com, linux-crypto@vger.kernel.org, 
-	devicetree@vger.kernel.org, quic_omprsing@quicinc.com, 
-	quic_nguyenb@quicinc.com, konrad.dybcio@linaro.org, ulf.hansson@linaro.org, 
-	jejb@linux.ibm.com, martin.petersen@oracle.com, mani@kernel.org, 
-	davem@davemloft.net, herbert@gondor.apana.org.au
+References: <20240206085238.1208256-1-tudor.ambarus@linaro.org>
+ <20240206085238.1208256-5-tudor.ambarus@linaro.org> <CADrjBPqaE9Mmbr+zkHOAadr3aLSu3GMjS4nPPd4VZY4s2DTznA@mail.gmail.com>
+ <ZcISMLoB2ytoQs/0@finisterre.sirena.org.uk> <833b96e5-348f-4c5c-b157-c57c9a67e0f2@linaro.org>
+In-Reply-To: <833b96e5-348f-4c5c-b157-c57c9a67e0f2@linaro.org>
+From: Peter Griffin <peter.griffin@linaro.org>
+Date: Tue, 6 Feb 2024 12:00:16 +0000
+Message-ID: <CADrjBPpF_RdB5fe9udOgxLKmdb7D0Gux+n0XxUtneuAawSjoaA@mail.gmail.com>
+Subject: Re: [PATCH 4/4] spi: s3c64xx: add support for google,gs101-spi
+To: Tudor Ambarus <tudor.ambarus@linaro.org>
+Cc: Mark Brown <broonie@kernel.org>, andi.shyti@kernel.org, semen.protsenko@linaro.org, 
+	krzysztof.kozlowski@linaro.org, alim.akhtar@samsung.com, 
+	linux-spi@vger.kernel.org, linux-samsung-soc@vger.kernel.org, 
+	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org, 
+	andre.draszik@linaro.org, kernel-team@android.com, willmcvicker@google.com, 
+	robh+dt@kernel.org, conor+dt@kernel.org, devicetree@vger.kernel.org
 Content-Type: text/plain; charset="UTF-8"
 
-On Sun, 28 Jan 2024 at 00:26, Gaurav Kashyap <quic_gaurkash@quicinc.com> wrote:
+On Tue, 6 Feb 2024 at 11:19, Tudor Ambarus <tudor.ambarus@linaro.org> wrote:
 >
-> Storage encryption has two IOCTLs for creating, importing
-> and preparing keys for encryption. For wrapped keys, these
-> IOCTLs need to interface with Qualcomm's Trustzone, which
-> require these SCM calls.
 >
-> generate_key: This is used to generate and return a longterm
->               wrapped key. Trustzone achieves this by generating
->               a key and then wrapping it using hwkm, returning
->               a wrapped keyblob.
-> import_key:   The functionality is similar to generate, but here,
->               a raw key is imported into hwkm and a longterm wrapped
->               keyblob is returned.
-> prepare_key:  The longterm wrapped key from import or generate
->               is made further secure by rewrapping it with a per-boot
->               ephemeral wrapped key before installing it to the linux
->               kernel for programming to ICE.
 >
-> Signed-off-by: Gaurav Kashyap <quic_gaurkash@quicinc.com>
-> Tested-by: Neil Armstrong <neil.armstrong@linaro.org>
-> ---
->  drivers/firmware/qcom/qcom_scm.c       | 182 +++++++++++++++++++++++++
->  drivers/firmware/qcom/qcom_scm.h       |   3 +
->  include/linux/firmware/qcom/qcom_scm.h |   5 +
->  3 files changed, 190 insertions(+)
+> On 2/6/24 11:04, Mark Brown wrote:
+> > On Tue, Feb 06, 2024 at 10:12:30AM +0000, Peter Griffin wrote:
+> >
+> >> The patch ordering seems a bit off with this series..I believe it should be
+> >> 1) dt-bindings patch (docs first)
+> >> 2) Add the use_32bit_io flag / functionality
+> >> 3) gs101 support (this patch) that uses the use_32bit_io functionality
+> >
+> > That's the ordering the series has?  There's a random cleanup patch
+> > tacked on the front but that really ought to be separate anyway.
 >
-> diff --git a/drivers/firmware/qcom/qcom_scm.c b/drivers/firmware/qcom/qcom_scm.c
-> index 4882f8a36453..20dbab765c8e 100644
-> --- a/drivers/firmware/qcom/qcom_scm.c
-> +++ b/drivers/firmware/qcom/qcom_scm.c
-> @@ -1285,6 +1285,188 @@ int qcom_scm_derive_sw_secret(const u8 *wkey, size_t wkey_size,
->  }
->  EXPORT_SYMBOL_GPL(qcom_scm_derive_sw_secret);
+> I put the include <linux/types.h> patch first because I considered it a
+> fix (driver is using u32) and because I need types.h in patch 3/4. Fixes
+> first, then bindings, then driver.
 >
-> +/**
-> + * qcom_scm_generate_ice_key() - Generate a wrapped key for encryption.
-> + * @lt_key: the wrapped key returned after key generation
-> + * @lt_key_size: size of the wrapped key to be returned.
-> + *
-> + * Qualcomm wrapped keys need to be generated in a trusted environment.
-> + * A generate key IOCTL call is used to achieve this. These are longterm
-> + * in nature as they need to be generated and wrapped only once per
-> + * requirement.
-> + *
-> + * Adds support for the create key IOCTL to interface
-> + * with the secure environment to generate and return a wrapped key..
-> + *
-> + * Return: longterm key size on success; -errno on failure.
-> + */
-> +int qcom_scm_generate_ice_key(u8 *lt_key, size_t lt_key_size)
-> +{
-> +       struct qcom_scm_desc desc = {
-> +               .svc = QCOM_SCM_SVC_ES,
-> +               .cmd =  QCOM_SCM_ES_GENERATE_ICE_KEY,
-> +               .arginfo = QCOM_SCM_ARGS(2, QCOM_SCM_RW, QCOM_SCM_VAL),
-> +               .args[1] = lt_key_size,
-> +               .owner = ARM_SMCCC_OWNER_SIP,
-> +       };
-> +
-> +       void *lt_key_buf;
-> +       int ret;
-> +
-> +       lt_key_buf = qcom_tzmem_alloc(__scm->mempool, lt_key_size, GFP_KERNEL);
+> Was I wrong?
 
-Please use __free(qcom_tzmem) everywhere in this series. You can take
-a look at the calls I converted in the series adding this allocator.
-It's really useful - especially if the buffer is surely freed within
-the same scope.
-
-Bart
-
-[snip]
+No my mistake, sorry for the noise. Gmail showed this driver change as
+the first patch after the cover letter but the subject was hidden so
+it wasn't obvious it was [4/4]
 
