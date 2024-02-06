@@ -1,248 +1,210 @@
-Return-Path: <devicetree+bounces-38915-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-38925-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 230DC84AE92
-	for <lists+devicetree@lfdr.de>; Tue,  6 Feb 2024 08:02:58 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9D78284AEFB
+	for <lists+devicetree@lfdr.de>; Tue,  6 Feb 2024 08:30:29 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 6260CB21985
-	for <lists+devicetree@lfdr.de>; Tue,  6 Feb 2024 07:02:55 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id E0E55B22F71
+	for <lists+devicetree@lfdr.de>; Tue,  6 Feb 2024 07:30:26 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 21D3383CC8;
-	Tue,  6 Feb 2024 07:02:51 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="KifxuWXd"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8CC12128818;
+	Tue,  6 Feb 2024 07:30:21 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pl1-f175.google.com (mail-pl1-f175.google.com [209.85.214.175])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from CHN02-BJS-obe.outbound.protection.partner.outlook.cn (mail-bjschn02on2091.outbound.protection.partner.outlook.cn [139.219.17.91])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 80DD4128802
-	for <devicetree@vger.kernel.org>; Tue,  6 Feb 2024 07:02:49 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.175
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1707202971; cv=none; b=ECFXuEs5tLHtUFkyMI1A4T+Ft6awGtArSH9d+haMBTZRpszmXHMBH3HmB+T+RKjTB8Adg7MTly5e1ub5WfSskcCDD7EoAsIKwky+rL/s45quMVEsd4nMPI16wMp3YIs5SmXJpGCf6qOHTwclM3exUJWmzf6CakRHGwM41a3KKw8=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1707202971; c=relaxed/simple;
-	bh=DCc8b8q/WzBjCnHKQKca5APfY8M3M1aLXBF0WtGEBwQ=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=CmTSo0LcxA7SlsB61aE2klogDY40MzUphFkkkNIrSw6fgK0ovWgmxL3yl7GmoRyl5rRdBHqUwUsx8TnLvZI99WHHMxq9AsqyQ2VGd9+3f4tUF9Zllxe6rBfISEMnYcRPoidtziRA1U3+ThdTiooEPrNyQ0C2KBufEWp5KO9L24U=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=KifxuWXd; arc=none smtp.client-ip=209.85.214.175
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-pl1-f175.google.com with SMTP id d9443c01a7336-1d8ef977f1eso39961485ad.0
-        for <devicetree@vger.kernel.org>; Mon, 05 Feb 2024 23:02:49 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1707202969; x=1707807769; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=vayU1hILRcb1eUwFrsJvE8/gSAPnkBJkvUMLq6o6GsA=;
-        b=KifxuWXdZxS9WVtpv46JjEpIoRxaORIvjafILC1w4GXxvNDCF1/jovDP0jxNech5E6
-         CQlRaObANHwfMcgo2QDVn6XarqjCeUPkYaIYFUrJbs2jm9wOJb7CEc8j9HHyDE9MDK71
-         rLKn09mLCusdo+OKyNk4RxGc+q8yApLzJMZrk9hsVdBZyBj8yZluKnYPJNDRS62QNQh0
-         2X89i83FBBNCEF3NdVkd7J8zsYGgFxtxqZqGO14Adr8WItDDgYF+xlacFOU0kETuRZkC
-         evTfadNmeDx1Ii9Wx4TV1+jM3yF/uEi6IIw2N3rvZDcMW1lOnbbINnWGPfxiNookg6CB
-         qNmQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1707202969; x=1707807769;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=vayU1hILRcb1eUwFrsJvE8/gSAPnkBJkvUMLq6o6GsA=;
-        b=axPw98VzO6SDIOg3GUWYWOfJiVvsile1GWBKw3KORG+sf7xMiPHI2PdEiSGQSV93Yh
-         84RJN0D54z6s/M5pwimq9U1XtCok5qL3O1S3YFbtaLPPSlQHgh6wQM+2WEeoVUxsB6zm
-         kgIisIS+LbF6EF8Z5+dXxGT/om7o46UEYp5Fe+1rewwJH1qv3WNLkn20JVhvcHLxddgN
-         SLJy5j1qcBX4qIg+6MeuofYYQd+9ITu0zcgk0a97OL8B/3XLb3JzJlIBjt/XxNyflx/C
-         SijI/mZ7UGF2KW3EiwP8L4n3Su09/DqR2+4/6W1FdDOfH1XVjL13XX9GNBccFZuCt8eR
-         1RVw==
-X-Gm-Message-State: AOJu0YxRn6eq53a2gt7W6v5gb5ngI4jRc4198w2zkJSfljh8z38SxOil
-	IcQpnF85JtYN+ynrY5eUiuCtCdSQhruNYALrObdm0Nt/zn7pdKPU
-X-Google-Smtp-Source: AGHT+IFP+BKEsAtEU3i+y0ZkUB0ljFuu1/6DiPNVLIGiyFqSHrD7JGOLSpeWPHxbrOgfieEfRTanXQ==
-X-Received: by 2002:a17:902:cec8:b0:1d7:88de:cff1 with SMTP id d8-20020a170902cec800b001d788decff1mr868787plg.53.1707202968694;
-        Mon, 05 Feb 2024 23:02:48 -0800 (PST)
-X-Forwarded-Encrypted: i=0; AJvYcCVpp0M5Kwn9Z+OpZBU3HxxP9oV6zweJs6WhUvseH5GhObCAfTOC4tA67KdrljTW9k2RHOWnfH/l8c5QZkArrwEHhT1TMCkbHTKivHI4UniHZlSCwr4J4vz9lelgdxLQc7CjlmE+liK4ugbfhPYu6dI3kWx89tF4HMK2Os/igwEc50EGjhswStS8vmUUj7mN36cjRkQKsPigaBXiJPtyWQA8csZhtl6dQMnaaVCKNMJtZs1xy1FbCyDSePBp36+19aIgX7VxjyWJCmWFdlPQcZXTOkn+M81/sO7XVedPvja5X3Q1Ay+sUqao8BEX50PVWJGZRCxmGXRg3cqvGNganyFZmQ==
-Received: from dragon (144.34.186.27.16clouds.com. [144.34.186.27])
-        by smtp.gmail.com with ESMTPSA id iy15-20020a170903130f00b001d92db44c9bsm1082394plb.17.2024.02.05.23.02.41
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 05 Feb 2024 23:02:47 -0800 (PST)
-Date: Tue, 6 Feb 2024 15:02:35 +0800
-From: Shawn Guo <shawn.gsc@gmail.com>
-To: Marek Vasut <marex@denx.de>
-Cc: linux-arm-kernel@lists.infradead.org,
-	Conor Dooley <conor+dt@kernel.org>,
-	Fabio Estevam <festevam@gmail.com>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	NXP Linux Team <linux-imx@nxp.com>,
-	Pengutronix Kernel Team <kernel@pengutronix.de>,
-	Rob Herring <robh+dt@kernel.org>,
-	Sascha Hauer <s.hauer@pengutronix.de>,
-	Shawn Guo <shawnguo@kernel.org>, devicetree@vger.kernel.org
-Subject: Re: [PATCH] arm64: dts: imx8mp: Enable SAI audio on Data Modul
- i.MX8M Plus eDM SBC
-Message-ID: <ZcHZizwC3KdNUytg@dragon>
-References: <20240122144359.169899-1-marex@denx.de>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 03F571D68A;
+	Tue,  6 Feb 2024 07:30:16 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=139.219.17.91
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1707204621; cv=fail; b=inYnjP4hYPfjADCLLNnq+Ih7hzL5ZjCOL4/zlmTafbNchvpIbB/I3sIhNPPJd2GgzrDw9cHY/42WDpK4bjfcvzmW2cxZC1mXwGB5vFS0t+1Qos+nqsf/6UwdBgqqaTuSonYxtYZjiaqKSWnpjB0W619PZe/fOZVIvfkNQSPo59I=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1707204621; c=relaxed/simple;
+	bh=4In/F4Z3XHMORRh4YYgIoGKrAoWh57E+Qh8wS21b7WU=;
+	h=From:To:Cc:Subject:Date:Message-Id:Content-Type:MIME-Version; b=E1tZpAuvCmXuuNSBOCWQyCVhPr1mSdOmzKyFnN9Rpmc3Jm05+Djd6aXz8YgvwhJUtFziZ0gvG2xfVGs9gcXXVGcumFJqycLSL3WGwNs2dsQQOKoYXDnywWwdg3hjNFq9WMCWOdnjs7V6DFplYdaRWO5WN9AqE8Px0Hu4jxNZsDc=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=starfivetech.com; spf=pass smtp.mailfrom=starfivetech.com; arc=fail smtp.client-ip=139.219.17.91
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=starfivetech.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=starfivetech.com
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=j980TdmEM7JcsAB+aDcEmoaymXYiKtzZZkT9OXzm1EfkdycxJb2Zg5k/J8cZIVNlHQx20ZR6GHiEHr0Z+XqNiZpJOem8TUo3Wae0fXw73gtWXOuwmZPW+F6r7v6mBGjQ6SZT5AV4sYKgR6d+QkINoGV6MEPeQtapMWCoXV3YC1Wifd9Y1N0aIhkairho8dB81M/kMO8pIJWa0i4C0X7mO+iloUZNxIS+f7QnIlCTLW1uX+0TFnprnJ6NiWAKoLUHT5sFQ3w5AhcjqHIYohmYCZ+HmyIA2JDruGygXAtQ55qh3LCh/JSmD3vN/ZwFCp+7IzB+AhRTEpWqg6uJMcwNMw==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=pi/0Q8/kpiYChiyc0vAH0QkOcBjl8DJjq9rbHKlytRU=;
+ b=NMQ3zkGHEORAEzGDckIjRQE7ontWnNFxVA09bWHtNcPg4kMwjVNEwrqFLcCOg+rv/MVDSyjC3b57akULUXaGM6xxudwa74UF0GYAIPg2DqfucNRVOBupX8wtf9ZEgnTHV6DoUGWxIlq3VN5+B7AqHrDetifJjYcq4XxRXBWXf/lyf8EXPZ3cf+No4fgEp46drJ9yLLsmVVMoUbFsf1FRAoyU4TSSzAHLiL9v2vkYI/n5A/tiCObxmh9gXN4iQIbY6VtAoK+EaxH7dI7em6mVPix6qhVcZ+eKXfoV9o2ZIzpEtIoSu3TdAgBaEPaeQ640mrWjnyBStG5NVjf7ECjw8w==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=starfivetech.com; dmarc=pass action=none
+ header.from=starfivetech.com; dkim=pass header.d=starfivetech.com; arc=none
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=starfivetech.com;
+Received: from NT0PR01MB1070.CHNPR01.prod.partner.outlook.cn
+ (2406:e500:c510:3::6) by NT0PR01MB0974.CHNPR01.prod.partner.outlook.cn
+ (2406:e500:c510:7::12) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7249.19; Tue, 6 Feb
+ 2024 06:57:26 +0000
+Received: from NT0PR01MB1070.CHNPR01.prod.partner.outlook.cn
+ ([fe80::57c1:eb9d:c4e0:71af]) by
+ NT0PR01MB1070.CHNPR01.prod.partner.outlook.cn ([fe80::57c1:eb9d:c4e0:71af%4])
+ with mapi id 15.20.7249.017; Tue, 6 Feb 2024 06:57:26 +0000
+From: Shengyang Chen <shengyang.chen@starfivetech.com>
+To: devicetree@vger.kernel.org,
+	dri-devel@lists.freedesktop.org
+Cc: andrzej.hajda@intel.com,
+	neil.armstrong@linaro.org,
+	rfoss@kernel.org,
+	Laurent.pinchart@ideasonboard.com,
+	jonas@kwiboo.se,
+	jernej.skrabec@gmail.com,
+	maarten.lankhorst@linux.intel.com,
+	mripard@kernel.org,
+	tzimmermann@suse.de,
+	airlied@gmail.com,
+	daniel@ffwll.ch,
+	robh+dt@kernel.org,
+	krzysztof.kozlowski+dt@linaro.org,
+	conor+dt@kernel.org,
+	p.zabel@pengutronix.de,
+	tomi.valkeinen@ideasonboard.com,
+	r-ravikumar@ti.com,
+	aford173@gmail.com,
+	agx@sigxcpu.org,
+	rdunlap@infradead.org,
+	u.kleine-koenig@pengutronix.de,
+	sam@ravnborg.org,
+	bbrezillon@kernel.org,
+	changhuang.liang@starfivetech.com,
+	keith.zhao@starfivetech.com,
+	shengyang.chen@starfivetech.com,
+	jack.zhu@starfivetech.com,
+	linux-kernel@vger.kernel.org
+Subject: [PATCH v3 0/2] Add StarFive JH7110 SoC DSI support
+Date: Tue,  6 Feb 2024 14:57:07 +0800
+Message-Id: <20240206065709.108684-1-shengyang.chen@starfivetech.com>
+X-Mailer: git-send-email 2.17.1
+Content-Type: text/plain
+X-ClientProxiedBy: SHXPR01CA0014.CHNPR01.prod.partner.outlook.cn
+ (2406:e500:c311:1b::23) To NT0PR01MB1070.CHNPR01.prod.partner.outlook.cn
+ (2406:e500:c510:3::6)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20240122144359.169899-1-marex@denx.de>
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: NT0PR01MB1070:EE_|NT0PR01MB0974:EE_
+X-MS-Office365-Filtering-Correlation-Id: b1ba55f8-f6ac-420e-2b86-08dc26e0e0ca
+X-MS-Exchange-SenderADCheck: 1
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info:
+	MUILdAxMK4gAuyBbdyiHt5Yowjji3Brv9ivGsSohf5uU9u9ZHPlQZrdNNvsy+q36uLWD376jWhl05rbAkboDnY2BLGiz3GWK8cZpHlROwD0NUNz6OG/aLL+tES3oooDxJP6n0R/8PLNUrntbtGKupv1ceG/BQx4AFUMpvd9R6XJJnEfTjg9Q2jIEuoz52kKd+q1JVvEgK63Npaemqjy1VQb2PDZrhP1AtnBG6UoQHDN2WBI8s8PrslpxO/1xPhUl0OH9i/NTEt0lLojoK6MnM0CC3br1ytl4/9FRU5Dfub97QPSQJyix81JxpdKDElE5X03dDfEvqtCBRlt3ewrD5JHK9mZlUukmlmoI0cgXL2MBVAZ4yp+jpz6fOJejf9PGeDqUdf5A92XQlxS0OQRRT7EfsHWwaWa86saapxkjywWFPpsRkcMIBc4CgPv2Fc7YZUCQfCJWEGgLmCi8bBpgEuoawMAl7rJiKStlxg5nVag+Ukhg4OEMZqXLSPQYyzXUenykOhCTDXlRLzDmE+vZHtwLH+JSriRJOEmc1X7B6dMWXe9xemrlSkXOzhezYXps
+X-Forefront-Antispam-Report:
+	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:NT0PR01MB1070.CHNPR01.prod.partner.outlook.cn;PTR:;CAT:NONE;SFS:(13230031)(346002)(136003)(396003)(366004)(39830400003)(230922051799003)(186009)(64100799003)(451199024)(1800799012)(40160700002)(41300700001)(83380400001)(66946007)(6666004)(8676002)(7416002)(2906002)(8936002)(5660300002)(4326008)(44832011)(40180700001)(86362001)(38350700005)(66556008)(38100700002)(66476007)(36756003)(41320700001)(508600001)(966005)(52116002)(2616005)(1076003)(26005);DIR:OUT;SFP:1102;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0:
+	=?us-ascii?Q?/CHkyqGqg1pwCzDuQsDabxCH/LVY3SAhLrkjOazhqD3ZVer/0EYrv/K3N0Dw?=
+ =?us-ascii?Q?/iTLZ0G5/J/vyFyBFHVnXFBypsix63NRVi2T91btS4A6T9WzjX86HGb98L2a?=
+ =?us-ascii?Q?mGMK3I31EAJtYYAmbIcI9Nvz7POWiWcfBp9Z1Qx4gddn23swZIn3k6DDvLHv?=
+ =?us-ascii?Q?T05tVBXCUNEsdwiPU6xTv/QBSwA+TXg3mfxa8ra6m80slbI1lK/Gi5qIJTOr?=
+ =?us-ascii?Q?S6yO1AhZra27N8vGkjY3k4xvaZ7bTpieXtkIYPR1XQ/pcFkwFMb870WLG8Si?=
+ =?us-ascii?Q?Glpgwa5h0ztefjiTthlzrUiHEkhuhuEZjH6MFH0kwvjOKyGW66w1U/aT9a1f?=
+ =?us-ascii?Q?B1wGTduefTpDQ1LVssqawMKWxyGlvTRzRFFyF/KridcoodIESZDFTb8wPMd8?=
+ =?us-ascii?Q?fuDbWG4QYNpad8EKUqM6jPz2QufKsV+q3/IctJa/xqEKtTjVHU3YiFHlH75E?=
+ =?us-ascii?Q?SVvg+ejnUCu/w2ED3qnP8MQRd7VUZSLYwykMLtOFaXbSdXxQt7wNLS7WN9pP?=
+ =?us-ascii?Q?jAmapXe4buiPFP9n+h6llsAO3sDkEPmnjhCTY3aUSCZOr7Mb6fBWACsDT2h6?=
+ =?us-ascii?Q?cuDi0RjCzwr7+lCBH+m/N8gEnnXVTg5qWjMTUHoAdmV6CRnwW1PPXwi46suo?=
+ =?us-ascii?Q?BIoXQsueJt+pILgs7dGUKwxz9SQhzFNMF+C24euJ+NUX6EQ/AlQDUaXDb8uW?=
+ =?us-ascii?Q?SRLRj9zC1xedfCkeijwyYrYFvbriqZdA0plwj+ADhqXIqr/dKAkNkm1yNx6G?=
+ =?us-ascii?Q?x+Dk4dZTeA+ezwfl7kFq01EmKoa6b5oYP0U7kudelKtZ02BQwkuYNbbmzUp3?=
+ =?us-ascii?Q?TYoVdxPKJTvBdzlCCSdWRA5BU1KToW1JsizSTegh2dAXXxTI0+I1JZlwWzpF?=
+ =?us-ascii?Q?JZYSpmMbD0TFEacIk4vZh3K+ZX5o8Te0vURacvkfE5TPxLOgHP20VgddgJQ5?=
+ =?us-ascii?Q?+aVLe3HSU3yaK2bYHxEfI4Kwj7FmAm0uqoVKuNDjrYiAricBZ9Br7HewovDQ?=
+ =?us-ascii?Q?jpNsDt+bxko+8gquWIURfER2PjENPy0OVcrb9HHfcEIq+yPL4jnS9asOanUJ?=
+ =?us-ascii?Q?ocHFpZu3UnxWjeslSQFPnr2xcrTCl/SdENKX+WXlrfL02ydz2x9GIfNXf/13?=
+ =?us-ascii?Q?JMlPe8tzWSLqBRKxieXhfVyEAqXC65D7/p7TOYcOfLSUtg+EkYdoMhCAvNly?=
+ =?us-ascii?Q?DtycD/9Eqay3/ExlFyq25ay8bxZeDUElI5DgnwGfSHJI+WhpR4C3uzVlfobR?=
+ =?us-ascii?Q?vywm8LfsgJFwxsNBAf6fWyEGKklkQrRkU6kuk8D6NU6hSeMTUc3fZ2MuZBSP?=
+ =?us-ascii?Q?hjkQRARvPZgqIcqEDpNGH08rpv+2t0RIN77CCJqyJZPoNXZVnDylKUdU0Ct7?=
+ =?us-ascii?Q?BkO8KLmPxDGIlTfW+5BRYvK1zEVRnQwhijgtsdKQz6rWo4e6M++1ORgLBhFV?=
+ =?us-ascii?Q?+USwuAwwESsf0Q+26pkcTK2V6GPUcc2os64OqxcGx7aFaTtBvH06yoZNZ6HA?=
+ =?us-ascii?Q?F5BfLBmqpa+EpBaliqlmXZwsWkHtwXd51+WoO0bFFBFjnzLY6Wl8qjM+qHfx?=
+ =?us-ascii?Q?mpZeriM9fIcixeqaiH0iEfz62CBA6nnMG66Z/ckd8ZEmRylaifcqUiEwrde4?=
+ =?us-ascii?Q?QF5cCNrTodQUVO+FllSJO1k=3D?=
+X-OriginatorOrg: starfivetech.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: b1ba55f8-f6ac-420e-2b86-08dc26e0e0ca
+X-MS-Exchange-CrossTenant-AuthSource: NT0PR01MB1070.CHNPR01.prod.partner.outlook.cn
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 06 Feb 2024 06:57:26.6869
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 06fe3fa3-1221-43d3-861b-5a4ee687a85c
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: MmmiblDbE8iGqMvWNL2+YqjZzvpxXSjRl4hbDwOkQLB1FKwz5xSwJrmenwM1UtvV/6zQKQDz54SYjsRKmCqjO8jfcv59Q7RAkMA4LV2oSkQ=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: NT0PR01MB0974
 
-On Mon, Jan 22, 2024 at 03:43:51PM +0100, Marek Vasut wrote:
-> Add SAI I2S and audio bindings to Data Modul i.MX8M Plus eDM SBC.
-> 
-> The SGTL5000 is attached to SAI3, however the SGTL5000 codec MCLK
-> must be supplied even if the SAI3 is not in use and is controlled
-> separately by the codec. The MCLK is also used to drive the codec
-> I2C block, so without MCLK, I2C access to the codec would not be
-> possible.
-> 
-> To provide such flexible MCLK control, use PWM4 with period 1 and
-> duty cycle 50% as 12 MHz clock source, as there is no direct way
-> to route MX8MP CCM clock to the MCLK pin. Use codec as bitclock
-> and frame clock master, so that the SGTL5000 PLL can be used to
-> generate derived clock.
-> 
-> Signed-off-by: Marek Vasut <marex@denx.de>
-> ---
-> Cc: Conor Dooley <conor+dt@kernel.org>
-> Cc: Fabio Estevam <festevam@gmail.com>
-> Cc: Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-> Cc: NXP Linux Team <linux-imx@nxp.com>
-> Cc: Pengutronix Kernel Team <kernel@pengutronix.de>
-> Cc: Rob Herring <robh+dt@kernel.org>
-> Cc: Sascha Hauer <s.hauer@pengutronix.de>
-> Cc: Shawn Guo <shawnguo@kernel.org>
-> Cc: devicetree@vger.kernel.org
-> Cc: linux-arm-kernel@lists.infradead.org
-> ---
->  .../freescale/imx8mp-data-modul-edm-sbc.dts   | 64 ++++++++++++++++++-
->  1 file changed, 63 insertions(+), 1 deletion(-)
-> 
-> diff --git a/arch/arm64/boot/dts/freescale/imx8mp-data-modul-edm-sbc.dts b/arch/arm64/boot/dts/freescale/imx8mp-data-modul-edm-sbc.dts
-> index 5828c9d7821de..433b2c9468f89 100644
-> --- a/arch/arm64/boot/dts/freescale/imx8mp-data-modul-edm-sbc.dts
-> +++ b/arch/arm64/boot/dts/freescale/imx8mp-data-modul-edm-sbc.dts
-> @@ -45,6 +45,19 @@ clk_xtal25: clock-xtal25 {
->  		clock-frequency = <25000000>;
->  	};
->  
-> +	clk_pwm4: clock-pwm4 {
-> +		compatible = "pwm-clock";
-> +		#clock-cells = <0>;
-> +		clock-frequency = <12000000>;
-> +		clock-output-names = "codec-pwm4";
-> +		/*
-> +		 * 1 / 83 ns ~= 12 MHz , but since the PWM input clock is 24 MHz
-> +		 * and the calculated PWM period is 1 and duty cycle is 50%, the
-> +		 * result is exactly 12 MHz, which is fine for SGTL5000 MCLK.
-> +		 */
-> +		pwms = <&pwm4 0 83 0>;
-> +	};
-> +
->  	panel: panel {
->  		/* Compatible string is filled in by panel board DT Overlay. */
->  		backlight = <&backlight>;
-> @@ -82,6 +95,24 @@ reg_usdhc2_vmmc: regulator-usdhc2-vmmc {
->  		vin-supply = <&buck4>;
->  	};
->  
-> +	sound {
-> +		compatible = "simple-audio-card";
-> +		simple-audio-card,name = "SGTL5000-Card";
-> +		simple-audio-card,format = "i2s";
-> +		simple-audio-card,bitclock-master = <&codec_dai>;
-> +		simple-audio-card,frame-master = <&codec_dai>;
-> +		simple-audio-card,widgets = "Headphone", "Headphone Jack";
-> +		simple-audio-card,routing = "Headphone Jack", "HP_OUT";
-> +
-> +		cpu_dai: simple-audio-card,cpu {
-> +			sound-dai = <&sai3>;
-> +		};
-> +
-> +		codec_dai: simple-audio-card,codec {
-> +			sound-dai = <&sgtl5000>;
-> +		};
-> +	};
-> +
->  	watchdog { /* TPS3813 */
->  		compatible = "linux,wdt-gpio";
->  		pinctrl-names = "default";
-> @@ -288,6 +319,15 @@ &i2c1 {
->  	sda-gpios = <&gpio5 15 (GPIO_ACTIVE_HIGH | GPIO_OPEN_DRAIN)>;
->  	status = "okay";
->  
-> +	sgtl5000: codec@a {
+This series is the series that attempts to support
+the CDNS DSI driver used to converts DPI to DSI.
+CDNS DSI is embedded in StarFive JH7110 SoC.
+The series has been tested on the VisionFive 2 board.
 
-audio-codec
 
-> +		#sound-dai-cells = <0>;
-> +		clocks = <&clk_pwm4>;
-> +		compatible = "fsl,sgtl5000";
-> +		reg = <0x0a>;
+change since v2:
+- Rebased on tag v6.8-rc3.
 
-Could you follow the "Order of Properties in Device Node" recommendation
-from Documentation/devicetree/bindings/dts-coding-style.rst?
+patch 1:
+- Modify commit message and patch subject
+- Change 'starfve,jh7110-dsi' to 'starfive,jh7110-dsi'
+- Add constraints for reset-names and clock names
+- Add resets, reset-names attribute
+- Correct reset and clock names
 
-Shawn
+patch 2:
+- Modify commit message and patch subject
+- Drop useless MAINTAINERS modification
+- Change callback name from 'update' to 'mode_fixup'
+- Optimize the mode_fixup function.
+- Change devm_reset_control_get() to devm_reset_control_get_exclusive()
+- Correct reset and clock names
 
-> +		VDDA-supply = <&buck4>;
-> +		VDDIO-supply = <&buck4>;
-> +	};
-> +
->  	usb-hub@2c {
->  		compatible = "microchip,usb2514bi";
->  		reg = <0x2c>;
-> @@ -436,6 +476,23 @@ &pwm1 {
->  	status = "disabled";
->  };
->  
-> +&pwm4 {
-> +	pinctrl-names = "default";
-> +	pinctrl-0 = <&pinctrl_pwm4>;
-> +	status = "okay";
-> +};
-> +
-> +&sai3 {
-> +	#clock-cells = <0>;
-> +	#sound-dai-cells = <0>;
-> +	pinctrl-names = "default";
-> +	pinctrl-0 = <&pinctrl_sai3>;
-> +	assigned-clocks = <&clk IMX8MP_CLK_SAI3>;
-> +	assigned-clock-parents = <&clk IMX8MP_AUDIO_PLL1_OUT>;
-> +	assigned-clock-rates = <12288000>;
-> +	status = "okay";
-> +};
-> +
->  /* SD slot */
->  &usdhc2 {
->  	pinctrl-names = "default", "state_100mhz", "state_200mhz";
-> @@ -785,6 +842,12 @@ MX8MP_IOMUXC_GPIO1_IO03__GPIO1_IO03		0x40000090
->  		>;
->  	};
->  
-> +	pinctrl_pwm4: pwm4-grp {
-> +		fsl,pins = <
-> +			MX8MP_IOMUXC_SAI3_MCLK__PWM4_OUT		0xd6
-> +		>;
-> +	};
-> +
->  	pinctrl_rtc: rtc-grp {
->  		fsl,pins = <
->  			/* RTC_IRQ# */
-> @@ -816,7 +879,6 @@ pinctrl_sai3: sai3-grp {
->  			MX8MP_IOMUXC_SAI3_TXFS__AUDIOMIX_SAI3_TX_SYNC	0xd6
->  			MX8MP_IOMUXC_SAI3_TXD__AUDIOMIX_SAI3_TX_DATA00	0xd6
->  			MX8MP_IOMUXC_SAI3_TXC__AUDIOMIX_SAI3_TX_BCLK	0xd6
-> -			MX8MP_IOMUXC_SAI3_MCLK__AUDIOMIX_SAI3_MCLK	0xd6
->  			MX8MP_IOMUXC_SAI3_RXD__AUDIOMIX_SAI3_RX_DATA00	0xd6
->  		>;
->  	};
-> -- 
-> 2.43.0
-> 
+v2: https://patchwork.kernel.org/project/dri-devel/cover/20240109072516.24328-1-shengyang.chen@starfivetech.com/
+
+
+
+changes since v1:
+- Rebased on tag v6.7.
+
+patch 1:
+- Changed the 'starfive,cdns-dsi' to 'starfve,jh7110-dsi'.
+- Changed the compatible enum alphabetical order.
+- Restrict other variants.
+- Drop 'dsi_' prefix.
+
+patch 2:
+- Optimize the calculation process.
+- Drop useless definition.
+
+v1: https://patchwork.kernel.org/project/dri-devel/cover/20231127113436.57361-1-shengyang.chen@starfivetech.com/
+
+Keith Zhao (2):
+  dt-bindings: display: bridge: cdns: Add display bridge support for dsi
+    on StarFive JH7110 SoC
+  drm/bridge: cdns-dsi: Add support for StarFive JH7110 SoC
+
+ .../bindings/display/bridge/cdns,dsi.yaml     |  56 ++++-
+ drivers/gpu/drm/bridge/cadence/Kconfig        |   7 +
+ drivers/gpu/drm/bridge/cadence/Makefile       |   1 +
+ .../gpu/drm/bridge/cadence/cdns-dsi-core.c    |  29 ++-
+ .../gpu/drm/bridge/cadence/cdns-dsi-core.h    |  21 ++
+ .../gpu/drm/bridge/cadence/cdns-dsi-jh7110.c  | 193 ++++++++++++++++++
+ .../gpu/drm/bridge/cadence/cdns-dsi-jh7110.h  |  16 ++
+ 7 files changed, 320 insertions(+), 3 deletions(-)
+ create mode 100644 drivers/gpu/drm/bridge/cadence/cdns-dsi-jh7110.c
+ create mode 100644 drivers/gpu/drm/bridge/cadence/cdns-dsi-jh7110.h
+
+-- 
+2.17.1
+
 
