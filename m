@@ -1,74 +1,74 @@
-Return-Path: <devicetree+bounces-39251-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-39252-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id C668E84BD8C
-	for <lists+devicetree@lfdr.de>; Tue,  6 Feb 2024 19:57:38 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 007D484BD92
+	for <lists+devicetree@lfdr.de>; Tue,  6 Feb 2024 19:58:10 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id EBB251C25321
-	for <lists+devicetree@lfdr.de>; Tue,  6 Feb 2024 18:57:37 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 75ACB1F2956C
+	for <lists+devicetree@lfdr.de>; Tue,  6 Feb 2024 18:58:10 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 58CEBDF5B;
-	Tue,  6 Feb 2024 18:57:30 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4A513134BA;
+	Tue,  6 Feb 2024 18:58:00 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="Eym7ZNKr"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="cnf1RTss"
 X-Original-To: devicetree@vger.kernel.org
 Received: from mail-ej1-f50.google.com (mail-ej1-f50.google.com [209.85.218.50])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8FD3014A90
-	for <devicetree@vger.kernel.org>; Tue,  6 Feb 2024 18:57:27 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7DB5814A81
+	for <devicetree@vger.kernel.org>; Tue,  6 Feb 2024 18:57:58 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.50
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1707245850; cv=none; b=nwemmogI3aZt7sGKzpIljaJc6kdkVVFsQLqJNdWUjS5DhTHYCf4B/z0N1ItxaiN2sDedgExykZLUR3t/OUz2aPLf+XZep+wAzO8ULvv2l3ruArpnSqJlOFHMARWrp3BUOG7ozwpUsfJjwUw9q18v2WiNgnntIojatsEYLLTXrqc=
+	t=1707245880; cv=none; b=EEY5FjfUB6eAHKXcC3UjXC5SmIgDCRLJ6QGc2hs+uFhQ74y9XWDFzAi8X8GdcSOkz8H5rXxYKSCI78W1aD8iiaYnm6sXvzjT4p3okzHvsn0H2QQOFZVX9CPt8nh9cu9IcxqBTT4Rk2ePSF9DO7sFZDVM50xwHBujGx3Th/usMUw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1707245850; c=relaxed/simple;
-	bh=Ob5EZtb+PDU5OlOccIqmHE7thnzkplSG7qztNGIsIAQ=;
+	s=arc-20240116; t=1707245880; c=relaxed/simple;
+	bh=811TtQ+u7lVkK0DFvD7XxzbN/eKD39v1rQxALwhDaOY=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=G84MrQpzfDthComgOdWlhEBVrjaY9jgQFu43UV+Z2q0NzpQAzbm7p8ZdiaiG7YpZxSeY2Q0nsJkTiSN+dLeR2BD7Ue1btI/ybdpmeBv0xddcMN50ZejJr3xkSBt3WJ+4jnto0aGeq2HbH5Rawi2Gxt6szvHXl+yka1m/VjuGRgQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=Eym7ZNKr; arc=none smtp.client-ip=209.85.218.50
+	 In-Reply-To:Content-Type; b=TH73sOBTL6LqKng8OsipNSnkK+0lxVLHvto1oXMUNhgHXxghekZZdovJFWmD50B3HaWXtJfVHcii11dixapqG2CJNksa2xFLtuX6AL7XkfvHA9huZmQIxCQFX8Z0fHC83ovX7hyo+rOkemo1ZH+zkmG6YCX2i0WMyuNcuUBRZhM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=cnf1RTss; arc=none smtp.client-ip=209.85.218.50
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-ej1-f50.google.com with SMTP id a640c23a62f3a-a3832ef7726so105813566b.0
-        for <devicetree@vger.kernel.org>; Tue, 06 Feb 2024 10:57:27 -0800 (PST)
+Received: by mail-ej1-f50.google.com with SMTP id a640c23a62f3a-a3832ef7726so105869666b.0
+        for <devicetree@vger.kernel.org>; Tue, 06 Feb 2024 10:57:58 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1707245846; x=1707850646; darn=vger.kernel.org;
+        d=linaro.org; s=google; t=1707245877; x=1707850677; darn=vger.kernel.org;
         h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
          :to:content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=qyPGCRBtI7HFbt9lmXJgDt5KGX5PP8cKx5Um2UZC7pY=;
-        b=Eym7ZNKr+dWyFLRAHAuX7jy77qPdp3fBA9+X8VRg47u4gh6UHH/J65VT9l9BXZwxXe
-         l+rC/gsYxT1Yt0LiBv3y8+5qn19iYCYuzbjeqRykO0nZCOV4s1J5t1lqkmSR7WbQ81K4
-         qLU+5okS3fgkXOqpDrujJ9gMQlUSoCfTqd7YdSNT0oKpTNrf7/7e1jzhWKt2I4z4R9Is
-         wytd8Ec1TI0poRZCdu1X0nRMuVoKjwVZK70gZ2FH2AFIEoEy6HKb7VJ9Dk+aF5xeTe+u
-         Pf/OpmI6CJOLXd5DO8LkNvtyrxaMqsXRreafRutevh30dLvP8d9doeBvVgw6U6MRJxf/
-         Ujww==
+        bh=Vixop/hbyXnCNa7TQeaAEHJb2bqnpeq800yiSE0X/Pk=;
+        b=cnf1RTsslszJ4schJ4cNngvJR6MMEaX8w5P0zWRhWYmT0m7I8UkYVoTvTgQQB0SAx2
+         KF7QDI87t+Q53ynVFwuCR5eNwxWjuzI2KSYiVeAPznxu47KShwY+VpeUQgVFC1l9lhR/
+         ASf9csptToD38Ytx0k8066jFA4ibZMHu7v+l8uwE2GDDXE9XL++Qgx4FOmfkatzMmJfB
+         7eNtdTDFEZGzMi6c9rNQKVIFnb+x64uf4rtS7ANaft7B8dCJjLXPbESDubYTjx1lEnoL
+         6TxK7g4o5/QYfgJhWKlPyQ1jux0WKwAS8yvX0y49JXTfHzq+7+8Pj1swpuw1oyoYvwvl
+         p8qA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1707245846; x=1707850646;
+        d=1e100.net; s=20230601; t=1707245877; x=1707850677;
         h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
          :to:content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=qyPGCRBtI7HFbt9lmXJgDt5KGX5PP8cKx5Um2UZC7pY=;
-        b=Eftof6LJ9JHD0CFdHJf5EdXwrW9F8KfeUttztnqpZJV94vrorKygWlBM8tq1QiJD5h
-         /ZJAavsUvZaClhQjr4YTKL4XDpW0mAclibVfAEUjhMDOU7cGX1Uwzns0DE22rH1/UCin
-         Eh1tElvwt7I6pSDuUs8unpzCmdhF/4mwqV9XEi8QPHBU1X2UV8ImTetWiZuiHgggx8Pz
-         cBbV4PkaJUub3TRI8dAiFydBHDYzzFv+9Xf7p7i1gREe3Z1Gwg1VZTB0LEmHhruqOewz
-         7AXVyf8gmKfFlGHxAZArHHv5haiStQUSkofSI+qiCmQ7Pd1lh3cynTVMXY0CBJSG65Om
-         dXOQ==
-X-Gm-Message-State: AOJu0YyHIqZAg7xChTZyAZJfOtbQx42dZMyIjK+K2MWvafE7cO2eQ1/6
-	Rw+0iOsrItv/botWIYIRcz1LrJHsO5rFb3KNF4brKs+WAo/G0fg7MHC/bWPUCYY=
-X-Google-Smtp-Source: AGHT+IF9wFj++Zhx1sP0zdupnhYt0kr6SGgE/iEL2yKscqHdWXt6YCaVxoXtPHCpyxv5Yy+eMPFoPQ==
-X-Received: by 2002:a17:907:1048:b0:a36:d1e1:71ec with SMTP id oy8-20020a170907104800b00a36d1e171ecmr2514519ejb.46.1707245845883;
-        Tue, 06 Feb 2024 10:57:25 -0800 (PST)
-X-Forwarded-Encrypted: i=0; AJvYcCUfzY9peHZJmgTYrhEOY5+4VkwBUX4VUWNTZyX3w22AW/5iNcuAhJUNL+l/JBPxDGcawxUq6AP7P5HYDLviZYqDyX2J5SUTog+8UDZ3mHN28uzZywipyPZOSfn37oARKe6CyB+rfBarg2ZNDCMzqHhjycEfD7G8wTEHss1N5s3uJTOOrfZsIlSdEyPu5V+xW+Yf5Prbr4kTEjfLstK57nVDhEW0vAd4XKKSzqGRB9XsDwkyu6PaEkuBtpMTATB+RxSRDzhJKGQB89QIX4zBVCMrPYDFjCO2ZGmucL36wxSMIGDSPh2kcTdn67Mbc5MBhk1k6MymN0Y5HZin8kgJ12fee9zGri7PojKUxNOBIgOUmrt8S3U/qrQOxw9VcY9P0LAGbhGqCcuVS1XWin80o0fasFy9Ak2jumyMmp/TM9acy5XSyH1h8lsjtr8aYihtLnGnFB6+v1i3r3Rv7dmnDngr4WDd8oVlqqXOrlj6BYCk/XXY+sklYSkbzgLV1gpVW+36oZ0b7uphQLqPCOmAFHFSl03a1UXBSpJbgQ==
+        bh=Vixop/hbyXnCNa7TQeaAEHJb2bqnpeq800yiSE0X/Pk=;
+        b=rmvavsnh0/LFyRRhSlFhiaZazsw2LB6tVRGkXWtrmbBn7GIGlDThC1KCUkqzo/WlTX
+         NY0yHVeUdZ6NeYvxof7TGqLQ3AjKQ1eszQBatuaTX5+dpO8dcKl8kIGHLss1QDFKH3OZ
+         xR3zBQLTYB5hdyJp0nLVQuhJsKsC/w2yR5Zs4NReeJTbTTMshzpOk2OQWOWzr92RKvp2
+         ciOEMmA0iGRp8J6fH2jFwe5zHyDQa4CKUXD55V2Mnr/CmyHD7LJCZfIGkcYa9PCnm6ym
+         12p71aBntf3v9rME34AbK3ue3EU9A3uWTqTZpgq4c/dmlYzq7PJLrkofnPylIHBYB/wu
+         sxrQ==
+X-Gm-Message-State: AOJu0YyWPJpkQhpP4M5i7RO0zb//+ouE8Goq5UNwqFddvFAzCbtDBUUc
+	0WmYf31vTH6Y2jjZTSsnRa8Y3LKGHZGVO3FmUibvYdTK7WZT/FGFJM5BM8lr2Kc=
+X-Google-Smtp-Source: AGHT+IEvcTOcw3XZZ2sXTIoiIQ+uxuF8HNW113vbCA1U2OAVcXkOUXxhonx22HNefZoUYmdv+dkOug==
+X-Received: by 2002:a17:907:7673:b0:a36:3345:be88 with SMTP id kk19-20020a170907767300b00a363345be88mr2787197ejc.30.1707245876909;
+        Tue, 06 Feb 2024 10:57:56 -0800 (PST)
+X-Forwarded-Encrypted: i=0; AJvYcCUIFCh9PHZuEUexAjyDgcBWwztla682CM8RVE4eHVTSOxlUxipKg/87DT/meLoDOFvXrF99DcOU74GXTle8jhXpNNdkjgigQF6fIi32Ge67I4C+IF8voyPp1QRljgI61qa6nO2BLpDTwcFxEbj5yn8+NrnHbuzfQLwDGYEHgV63UBIupyF74Qqb8yERdobWlDAtS9lbbbdPVymu22Acpz5g/75ZzNhre1AFkc0ZnHYzi38/aOZ4r7Gp4fV0yxFmgfceUyagwsHZ6+GrrF0eQFdaqsYk55e5sWm35JbfHNOfGmipbHYiuxfySVWqalnikfp+XWgyvWEWDbt8X4n3tU5fMD1F0stSdAftOariSjbcfgPB4LDgydPwPbW9zSLCRDcWgtgZWydFFY+YtmDZqfE26nld56mm+PeRfXggXXVtpRhWbmMjZ9iNn1WZaLYEFuUWd03kPgjCh6KSB7+BtXAc5slUrZssuIvmALoiz/lG2jPGf6qCVr8sTu//zKRIcUQVTnhgg44/liGT47ju+QJnX4wow0Eapt4vRg==
 Received: from [192.168.192.207] (037008245233.garwolin.vectranet.pl. [37.8.245.233])
-        by smtp.gmail.com with ESMTPSA id y16-20020a170906071000b00a371eced193sm1465555ejb.49.2024.02.06.10.57.23
+        by smtp.gmail.com with ESMTPSA id y16-20020a170906071000b00a371eced193sm1465555ejb.49.2024.02.06.10.57.55
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 06 Feb 2024 10:57:25 -0800 (PST)
-Message-ID: <ccadd716-cb4f-409f-8926-afe8a095103f@linaro.org>
-Date: Tue, 6 Feb 2024 19:57:23 +0100
+        Tue, 06 Feb 2024 10:57:56 -0800 (PST)
+Message-ID: <3222c2c0-542d-4584-8283-c679a18315dd@linaro.org>
+Date: Tue, 6 Feb 2024 19:57:55 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -76,8 +76,8 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 1/6] arm64: dts: qcom: pmi8950: Add USB vbus and id
- sensing nodes
+Subject: Re: [PATCH v2 2/6] arm64: dts: qcom: msm8956-loire: Add usb vbus and
+ id extcons to ci-hdrc
 Content-Language: en-US
 To: Marijn Suijten <marijn.suijten@somainline.org>,
  Bjorn Andersson <andersson@kernel.org>, Rob Herring <robh+dt@kernel.org>,
@@ -91,7 +91,7 @@ Cc: ~postmarketos/upstreaming@lists.sr.ht,
  devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
  AngeloGioacchino Del Regno <angelogioacchino.delregno@somainline.org>
 References: <20240121-msm8976-dt-v2-0-7b186a02dc72@somainline.org>
- <20240121-msm8976-dt-v2-1-7b186a02dc72@somainline.org>
+ <20240121-msm8976-dt-v2-2-7b186a02dc72@somainline.org>
 From: Konrad Dybcio <konrad.dybcio@linaro.org>
 Autocrypt: addr=konrad.dybcio@linaro.org; keydata=
  xsFNBF9ALYUBEADWAhxdTBWrwAgDQQzc1O/bJ5O7b6cXYxwbBd9xKP7MICh5YA0DcCjJSOum
@@ -128,20 +128,19 @@ Autocrypt: addr=konrad.dybcio@linaro.org; keydata=
  bGqMHex48FVZhexNPYOd58EY9/7mL5u0sJmo+jTeb4JBgIbFPJCFyng4HwbniWgQJZ1WqaUC
  nas9J77uICis2WH7N8Bs9jy0wQYezNzqS+FxoNXmDQg2jetX8en4bO2Di7Pmx0jXA4TOb9TM
  izWDgYvmBE8=
-In-Reply-To: <20240121-msm8976-dt-v2-1-7b186a02dc72@somainline.org>
+In-Reply-To: <20240121-msm8976-dt-v2-2-7b186a02dc72@somainline.org>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
 On 21.01.2024 23:33, Marijn Suijten wrote:
-> USB sensing is performed on the PMIC, exposed as extcon nodes for use in
-> the relevant USB (otg) driver nodes as the hardware itself is not able
-> to sense USB presence (5V vbus) nor the role (ID pin).
+> ci-hdrc does not have the ability to detect voltage presence (5V vbus)
+> on the USB connector nor the role (via an ID sensing pin), and relies on
+> the PMIC-side charger to provide such information through an extcon
+> driver.
 > 
 > Signed-off-by: Marijn Suijten <marijn.suijten@somainline.org>
 > Reviewed-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@somainline.org>
 > ---
-
-I hope the USB_ID thing won't mess with a possible future charger impl
 
 Reviewed-by: Konrad Dybcio <konrad.dybcio@linaro.org>
 
