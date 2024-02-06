@@ -1,565 +1,222 @@
-Return-Path: <devicetree+bounces-39204-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-39205-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id E9A7884BBD0
-	for <lists+devicetree@lfdr.de>; Tue,  6 Feb 2024 18:27:10 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id BAD7284BBEB
+	for <lists+devicetree@lfdr.de>; Tue,  6 Feb 2024 18:32:24 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 1B0311C22580
-	for <lists+devicetree@lfdr.de>; Tue,  6 Feb 2024 17:27:10 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 163ABB20FC4
+	for <lists+devicetree@lfdr.de>; Tue,  6 Feb 2024 17:32:22 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7CBE0D51D;
-	Tue,  6 Feb 2024 17:26:51 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3DE987484;
+	Tue,  6 Feb 2024 17:32:17 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b="XOeyTAn9"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="XI+qmq7g"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-oa1-f48.google.com (mail-oa1-f48.google.com [209.85.160.48])
+Received: from mail-wm1-f44.google.com (mail-wm1-f44.google.com [209.85.128.44])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 96B2E9473
-	for <devicetree@vger.kernel.org>; Tue,  6 Feb 2024 17:26:48 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.160.48
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6168DDDA5;
+	Tue,  6 Feb 2024 17:32:15 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.44
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1707240411; cv=none; b=U2RQdeH3dGZQKicA8S/8w+bfWu0r2YV6q+ObRfri0vijKgIxRJ4EBct+3IWFKNcv6zgQg1Ez0lbU0Dw3QTX0NSTaQjMC/3o0B+FvNxvAkQujMOvW8MjZ8MYkn0W7CNzxxbivndeTwzI1QLc/au0B6udz9vB9E8XP/DxdR84g8QU=
+	t=1707240737; cv=none; b=VzhbbwD5+qAlwQ/wVQW6iKTdpYgsdP0Y+Gio0jESX/mbGBERAVnWtCSi5za0gK/2OpORu8hSTCWqUdgQU+jfEhby2iQ8YIUoZo/GSf1/IGCUAMAdEFgJcPL7ZuqoO9Bdv+qqfoqsywpNJBRmm+WWjMbt8oo2xoVAjHt0R938Hcs=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1707240411; c=relaxed/simple;
-	bh=XazVMLOJbAM/gRdK8X+BC5+I8+DqhQnRcd7DYAIkeH0=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=m2qm65zl1R85owNbvP4kDXCzPkl5f5kpglnZAzrj2aEx27PJm7Xr2GIAWkGn9DlWkDxyzLi453jEGND/46rJSE1izJbaUTrlJ7LhE6urOWwLsppZ2tAVLpnOpe4wdsWefe/ZtXwHVUuW+qUJST9jgwKWer1kUOx89T/Lg8KIFs0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com; spf=pass smtp.mailfrom=baylibre.com; dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b=XOeyTAn9; arc=none smtp.client-ip=209.85.160.48
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=baylibre.com
-Received: by mail-oa1-f48.google.com with SMTP id 586e51a60fabf-214dbe25f8aso3252047fac.3
-        for <devicetree@vger.kernel.org>; Tue, 06 Feb 2024 09:26:48 -0800 (PST)
+	s=arc-20240116; t=1707240737; c=relaxed/simple;
+	bh=3EeqJRLIoyYWfkrLk4PEQiIIv5w+frMQJAaL/cliLXA=;
+	h=From:To:Subject:Date:Message-ID:MIME-Version; b=PXUnzAKm2iCK5E9iBLk1xeQiasA7tlI/fudQGmxpgQXyHhnx1ffutrvhdTKRfl626PrzhZsAcLM5+JSPhfybFnh6POYGuGJS68jgAjdAKykUEoyHNHLVll/VNSGvMgptotKzVOQJ713ZBRmvNHEACJPdngxtKhz+k5spMPRnSSI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=XI+qmq7g; arc=none smtp.client-ip=209.85.128.44
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-wm1-f44.google.com with SMTP id 5b1f17b1804b1-40fd72f7125so24162135e9.1;
+        Tue, 06 Feb 2024 09:32:15 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1707240407; x=1707845207; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=8g2rdQmtRie8AcqF2+eOMTdU5EzOPlbdREIl+iEY+OE=;
-        b=XOeyTAn9EeoaanKtTiBWfhS5XDR6SzgSEMxwi0EGyd/lgfNI6I0etzXZzolkgerQdp
-         DswXPSBGDoxM12AFCv3VOTNXxAsvYfG7xZ/PhL2fODTV1VOQvARmpgyocETPVVi0CjKl
-         B6TQjFxkHbO0bc0z+NwRq9QbuQhf5Blmu7f3K13BetPI4smQKpqE3frn3l0GCWRBN4No
-         O/bY+UWPlBGZUFXO5u9lvcSZe+TuFp7IDHgWou+I8fv1Q9Cd3DiID8rBv/FU+BqKCPdW
-         WeuTzlmaMh7Qy1a67bkiffrH72qSvUDl+VockJy8Ff3qo7VMCmhJgZvWeFB9H4jd0k6b
-         RojQ==
+        d=gmail.com; s=20230601; t=1707240733; x=1707845533; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:to
+         :from:from:to:cc:subject:date:message-id:reply-to;
+        bh=V70bM6HDNj3Uk2T0tooI4Z/8UV1Jdcvl7ssqvAQfxw8=;
+        b=XI+qmq7gXzwpMY/x2FbD4pqDzDsvTH9yJ67c7NOUAzLhxKFU+flFE/LwMEbdV4XYGr
+         TiLUw3OS+q0jRvuyGfXo0ufHWZREheUu4bRo0qdB6FuywtbIucICE2SjpED0e3DIY/vb
+         90yIkwwLNHNC/pYarPD9+lnAkihIUGe5DZFKvngCsTyW1+k2jhsgsQ/TMPXNRbdaUaur
+         HJvyrEKI9YXWhKmfbcJ3uaDm69Fo231Q83xTTn+irg6JPWCVdPGMFsdmdVSWmhJBTJcm
+         ftjqbWXHN0oi0V4YSt2We4PvOdAcrd9Ow60Y86WoF0dMF3JtCaiozQQbPo7mgiCI2E4W
+         PkRw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1707240407; x=1707845207;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=8g2rdQmtRie8AcqF2+eOMTdU5EzOPlbdREIl+iEY+OE=;
-        b=sInBYSzMyPzlQeDg+XuDCGqD+wKM/umRDVl/yO/0zWitZqwIWWxFiC4H64RQ0TNGmG
-         oqkoVW6iR6jl2xtJ6fBOKC8L/eleryGsQaKtOltgdSuGRYhPxdQQgZW3vRjhAqj3qMqr
-         Tbn2tqn56+ZbnmySXbrom6uV+D8SoN9GB94yyNwornx9bNqnbo/l47PTF+SIJxQsAn7C
-         zJ0Ge9KVfsSwFBqFaMjpBX7YazwmSq85727CMftnFmrrX5U04eDrLB2H1F9tw4l8/N1o
-         1QAabvBeMvb5HIdshMXC51+RvrTWrYls1+dHcTTsxliTViHwrVpvWGTdmmlsImwESOSc
-         9fhQ==
-X-Gm-Message-State: AOJu0YwEI2/M7AHyrHVxD5xz5Wqz/RYYm21o5iBrumaH3E6vRwc0JFA3
-	w1iMzcGpSv0PDx1u5fp2w9c4+pxo6AOVzv2lPzq/0S6SIRyen8aXdjOTZQ1No/Y=
-X-Google-Smtp-Source: AGHT+IFixp22bnaccJNRQo3rWx/lJOX46yadt23imDFI5PRO9exuyLujAYb7hkTWwnGtAZ4dAZAJ7w==
-X-Received: by 2002:a05:6870:c0e:b0:218:f80e:a30b with SMTP id le14-20020a0568700c0e00b00218f80ea30bmr3962702oab.16.1707240407607;
-        Tue, 06 Feb 2024 09:26:47 -0800 (PST)
-X-Forwarded-Encrypted: i=0; AJvYcCVpU7Qgz3FFw52Gd/dutoeA3z4EKBnZC+7llD48XgyvHsu21orxd0Eehc2v4IEcS9ICTWTLORnUzd0ntaj72wjQKX5DX3bBe7fHDfD2Vk27ZKTM0G3H8sg4+um539fx0YuYtFsXDIleFB9Bm3FtNBPmbryphsIKcpZYs/Ml1CrPet4z5/kEBrnzOHLz6aqXyjrBbcy5wDEv1PPLkJjvQt4QciXDCM0Ja8JuBF+5AOm6AMSgefVJC2/vHLZ4SkNHy8QBnJIx4Y3b8R1/hDzgDN4v+wBtbepWjDzjIqvuqUzMu+3SZshcBQO/Cegy1c/lLk9bWdu9whfDFJ7gWYyN0JcpCh/QeOtBvzRrJq7xg5Lqs0luOhaW3TuPAYEk82a76bZL
-Received: from freyr.lechnology.com (ip98-183-112-25.ok.ok.cox.net. [98.183.112.25])
-        by smtp.gmail.com with ESMTPSA id ea9-20020a056870070900b0021998dc2bf1sm510172oab.36.2024.02.06.09.26.46
+        d=1e100.net; s=20230601; t=1707240733; x=1707845533;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:to
+         :from:x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=V70bM6HDNj3Uk2T0tooI4Z/8UV1Jdcvl7ssqvAQfxw8=;
+        b=YsgqQMftibK6alAz86/+MdZd2s058IGPSBAQNmkXFRbiXNZUm4PkEtxicPFb2A/1Ex
+         aPT8rsyrdcWwlopElM0VizLVdgl/h6G/adlJZzuhjfwji/bvGWTsXMkLa9iFUwI+uETx
+         CFDaH2pHlfAKrMidcKj9eILgJrg0LwQ3dkra+/tJJKZrGWATgLxVtZqnLycdGclfTeg0
+         YUa0IXs65VeY6K9oyAt+o+dCHQN5deTR/quia1he/knLIyihTNROxAA46sp7hQT02XSK
+         dkXIXyw++MnpYJwMx2cCKhoKsUW7jaSpiKvyyaXXbhhOGW1SX87sGyB1z8+NybpgnRjN
+         UC4Q==
+X-Gm-Message-State: AOJu0YyMKjE4sbR28bz8zLEWxx9dnh6rtqoQ3ImtrsPTlLNL8eFi+9G8
+	LCe9Mmw6pxym79a4b/t5hZTM0ZrEZ5jL4l/ijWAhJbUp38AdqQmA
+X-Google-Smtp-Source: AGHT+IEMwx8Lk6oiSspl5swxW099g50M8+BAg5/3So1l1AliwRcW/NIn2wnSplLRUrqwLu5d6riV8w==
+X-Received: by 2002:a05:600c:4587:b0:40f:afdd:40a with SMTP id r7-20020a05600c458700b0040fafdd040amr2659546wmo.0.1707240733446;
+        Tue, 06 Feb 2024 09:32:13 -0800 (PST)
+X-Forwarded-Encrypted: i=0; AJvYcCXDvJOZ6skEQke9aWfAmCIifEAZLSqQhoQ3dK/YZASnpDsgHhFARn5wvKyaCeQJ+s8Mpmngwt8lhINKdJVp2vXL5RWBf9nq3H6yCedz2M1lOHr+BpXNnLM+bQu4HUyNT2uepjBM6+N8bvWcNOLPAX5uIYlHo1pCO5umAbDCZ5kgmFiEuq//mg/pqiwkj4QB173eXcTPqItIqKvlQkNljRaq6jYbjfoOk+ORXfdpNNgbPsSZJbhnY1GrWxU++pMYWoKMXEdt2POh/p79eDiCtnqbb6mMvKXaMdpYX8Wq4HpKLa4t8MojZ7sWIIOEazyuYXx2fMDb6So0MzEeZsqmz7rMXrHHKtZRhe5BrMnFsUL4IsOb5L60OchnosgA9vBf8OMT/RKe1LYaOTe7HoJWuNt8TurM9eNRalrhv4KdAZBvQE+47zhzZD/QEqnirqU1Av2NcShSoSh3JH66ljbPsGd1RlVQobeFFzFRVQSX5nkJvaLOOJ36TKVSO3SWcJQAlZi38JtWrmXLfoKTAKadWxrVyDTMxcCJPr87t7xIY/QVjhz7YVbSB81sRjwESZvPJEWzZTqw7BwJmSOOAWe1T6vnru0eDjSUZ+eqDzlat5aZA6dPZ7lBkqFEbQwzb4ZiD6qqj0eQYhuQGmGOkzH2/JmyOCxuMZRK/1l6aBxsvPPEN9X8mX7P8w==
+Received: from localhost.localdomain (93-34-89-13.ip49.fastwebnet.it. [93.34.89.13])
+        by smtp.googlemail.com with ESMTPSA id l14-20020a05600c4f0e00b0040fc56712e8sm2621215wmq.17.2024.02.06.09.31.25
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 06 Feb 2024 09:26:47 -0800 (PST)
-From: David Lechner <dlechner@baylibre.com>
-To: linux-iio@vger.kernel.org
-Cc: David Lechner <dlechner@baylibre.com>,
-	Michael Hennerich <Michael.Hennerich@analog.com>,
-	Jonathan Cameron <jic23@kernel.org>,
+        Tue, 06 Feb 2024 09:31:39 -0800 (PST)
+From: Christian Marangi <ansuelsmth@gmail.com>
+To: "David S. Miller" <davem@davemloft.net>,
+	Eric Dumazet <edumazet@google.com>,
+	Jakub Kicinski <kuba@kernel.org>,
+	Paolo Abeni <pabeni@redhat.com>,
 	Rob Herring <robh+dt@kernel.org>,
 	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
 	Conor Dooley <conor+dt@kernel.org>,
-	=?utf-8?q?Nuno_S=C3=A1?= <nuno.sa@analog.com>,
-	Liam Girdwood <lgirdwood@gmail.com>,
-	Mark Brown <broonie@kernel.org>,
+	Bjorn Andersson <andersson@kernel.org>,
+	Konrad Dybcio <konrad.dybcio@linaro.org>,
+	Andrew Lunn <andrew@lunn.ch>,
+	Heiner Kallweit <hkallweit1@gmail.com>,
+	Russell King <linux@armlinux.org.uk>,
+	Florian Fainelli <florian.fainelli@broadcom.com>,
+	Broadcom internal kernel review list <bcm-kernel-feedback-list@broadcom.com>,
+	Christian Marangi <ansuelsmth@gmail.com>,
+	Robert Marko <robert.marko@sartura.hr>,
+	netdev@vger.kernel.org,
 	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org
-Subject: [PATCH 2/2] iio: adc: ad7944: add driver for AD7944/AD7985/AD7986
-Date: Tue,  6 Feb 2024 11:26:00 -0600
-Message-ID: <20240206-ad7944-mainline-v1-2-bf115fa9474f@baylibre.com>
+	linux-kernel@vger.kernel.org,
+	linux-arm-msm@vger.kernel.org
+Subject: [net-next PATCH v7 00/10] net: phy: Introduce PHY Package concept
+Date: Tue,  6 Feb 2024 18:31:03 +0100
+Message-ID: <20240206173115.7654-1-ansuelsmth@gmail.com>
 X-Mailer: git-send-email 2.43.0
-In-Reply-To: <20240206-ad7944-mainline-v1-0-bf115fa9474f@baylibre.com>
-References: <20240206-ad7944-mainline-v1-0-bf115fa9474f@baylibre.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-X-Mailer: b4 0.12.4
 Content-Transfer-Encoding: 8bit
 
-This adds a driver for the Analog Devices Inc. AD7944, AD7985, and
-AD7986 ADCs. These are a family of pin-compatible ADCs that can sample
-at rates up to 2.5 MSPS.
+Idea of this big series is to introduce the concept of PHY package in DT
+and give PHY drivers a way to derive the base address from DT.
 
-The initial driver adds support for sampling at lower rates using the
-usual IIO triggered buffer and can handle all 3 possible reference
-voltage configurations.
+The concept of PHY package is nothing new and is already a thing in the
+kernel with the API phy_package_join/leave/read/write.
 
-Signed-off-by: David Lechner <dlechner@baylibre.com>
----
- MAINTAINERS              |   1 +
- drivers/iio/adc/Kconfig  |  10 ++
- drivers/iio/adc/Makefile |   1 +
- drivers/iio/adc/ad7944.c | 397 +++++++++++++++++++++++++++++++++++++++++++++++
- 4 files changed, 409 insertions(+)
+What is currently lacking is describing this in DT and better reference
+a base address to calculate offset from.
 
-diff --git a/MAINTAINERS b/MAINTAINERS
-index 4f1e658e1e0d..83d8367595f1 100644
---- a/MAINTAINERS
-+++ b/MAINTAINERS
-@@ -458,6 +458,7 @@ R:	David Lechner <dlechner@baylibre.com>
- S:	Supported
- W:	https://ez.analog.com/linux-software-drivers
- F:	Documentation/devicetree/bindings/iio/adc/adi,ad7944.yaml
-+F:	drivers/iio/adc/ad7944.c
- 
- ADAFRUIT MINI I2C GAMEPAD
- M:	Anshul Dalal <anshulusr@gmail.com>
-diff --git a/drivers/iio/adc/Kconfig b/drivers/iio/adc/Kconfig
-index 59ae1d17b50d..93fbe6f8e306 100644
---- a/drivers/iio/adc/Kconfig
-+++ b/drivers/iio/adc/Kconfig
-@@ -280,6 +280,16 @@ config AD7923
- 	  To compile this driver as a module, choose M here: the
- 	  module will be called ad7923.
- 
-+config AD7944
-+	tristate "Analog Devices AD7944 and similar ADCs driver"
-+	depends on SPI
-+	help
-+	  Say yes here to build support for Analog Devices
-+	  AD7944, AD7985, AD7986 ADCs.
-+
-+	  To compile this driver as a module, choose M here: the
-+	  module will be called ad7944
-+
- config AD7949
- 	tristate "Analog Devices AD7949 and similar ADCs driver"
- 	depends on SPI
-diff --git a/drivers/iio/adc/Makefile b/drivers/iio/adc/Makefile
-index 5a26ab6f1109..52d803b92cd7 100644
---- a/drivers/iio/adc/Makefile
-+++ b/drivers/iio/adc/Makefile
-@@ -29,6 +29,7 @@ obj-$(CONFIG_AD7780) += ad7780.o
- obj-$(CONFIG_AD7791) += ad7791.o
- obj-$(CONFIG_AD7793) += ad7793.o
- obj-$(CONFIG_AD7887) += ad7887.o
-+obj-$(CONFIG_AD7944) += ad7944.o
- obj-$(CONFIG_AD7949) += ad7949.o
- obj-$(CONFIG_AD799X) += ad799x.o
- obj-$(CONFIG_AD9467) += ad9467.o
-diff --git a/drivers/iio/adc/ad7944.c b/drivers/iio/adc/ad7944.c
-new file mode 100644
-index 000000000000..67b525fb8e59
---- /dev/null
-+++ b/drivers/iio/adc/ad7944.c
-@@ -0,0 +1,397 @@
-+// SPDX-License-Identifier: GPL-2.0-only
-+/*
-+ * Analog Devices AD7944/85/86 PulSAR ADC family driver.
-+ *
-+ * Copyright 2024 Analog Devices, Inc.
-+ * Copyright 2024 Baylibre, SAS
-+ */
-+
-+#include <linux/bitfield.h>
-+#include <linux/bitops.h>
-+#include <linux/delay.h>
-+#include <linux/device.h>
-+#include <linux/err.h>
-+#include <linux/gpio/consumer.h>
-+#include <linux/module.h>
-+#include <linux/property.h>
-+#include <linux/regulator/consumer.h>
-+#include <linux/spi/spi.h>
-+
-+#include <linux/iio/iio.h>
-+#include <linux/iio/sysfs.h>
-+#include <linux/iio/trigger_consumer.h>
-+#include <linux/iio/triggered_buffer.h>
-+
-+#define AD7944_INTERNAL_REF_MV		4096
-+
-+struct ad7944_timing_spec {
-+	/* Normal mode minimum CNV pulse width in nanoseconds. */
-+	unsigned int cnv_ns;
-+	/* TURBO mode minimum CNV pulse width in nanoseconds. */
-+	unsigned int turbo_cnv_ns;
-+};
-+
-+struct ad7944_adc {
-+	struct spi_device *spi;
-+	/* Chip-specific timing specifications. */
-+	const struct ad7944_timing_spec *t;
-+	/* GPIO connected to CNV pin. */
-+	struct gpio_desc *cnv;
-+	/* Optional GPIO to enable turbo mode. */
-+	struct gpio_desc *turbo;
-+	/* Indicates TURBO is hard-wired to be always enabled. */
-+	bool always_turbo;
-+	/* Reference voltage (millivolts). */
-+	unsigned int ref_mv;
-+
-+	/*
-+	 * DMA (thus cache coherency maintenance) requires the
-+	 * transfer buffers to live in their own cache lines.
-+	 */
-+	struct {
-+		union {
-+			u16 u16;
-+			u32 u32;
-+		} raw;
-+		u64 timestamp __aligned(8);
-+	 } sample __aligned(IIO_DMA_MINALIGN);
-+};
-+
-+static const struct ad7944_timing_spec ad7944_timing_spec = {
-+	.cnv_ns = 420,
-+	.turbo_cnv_ns = 320,
-+};
-+
-+static const struct ad7944_timing_spec ad7986_timing_spec = {
-+	.cnv_ns = 500,
-+	.turbo_cnv_ns = 400,
-+};
-+
-+struct ad7944_chip_info {
-+	const char *name;
-+	const struct ad7944_timing_spec *t;
-+	const struct iio_chan_spec channels[2];
-+};
-+
-+#define AD7944_DEFINE_CHIP_INFO(_name, _t, _bits, _sign)		\
-+static const struct ad7944_chip_info _name##_chip_info = {		\
-+	.name = #_name,							\
-+	.t = &_t##_timing_spec,						\
-+	.channels = {							\
-+		{							\
-+			.type = IIO_VOLTAGE,				\
-+			.indexed = 1,					\
-+			.differential = 1,				\
-+			.channel = 0,					\
-+			.channel2 = 1,					\
-+			.scan_index = 0,				\
-+			.scan_type.sign = _sign,			\
-+			.scan_type.realbits = _bits,			\
-+			.scan_type.storagebits = _bits > 16 ? 32 : 16,	\
-+			.scan_type.endianness = IIO_CPU,		\
-+			.info_mask_separate = BIT(IIO_CHAN_INFO_RAW)	\
-+					| BIT(IIO_CHAN_INFO_SCALE),	\
-+		},							\
-+		IIO_CHAN_SOFT_TIMESTAMP(1),				\
-+	},								\
-+}
-+
-+AD7944_DEFINE_CHIP_INFO(ad7944, ad7944, 14, 'u');
-+AD7944_DEFINE_CHIP_INFO(ad7985, ad7944, 16, 'u');
-+AD7944_DEFINE_CHIP_INFO(ad7986, ad7986, 18, 's');
-+
-+/**
-+ * ad7944_4_wire_mode_conversion - Perform a 4-wire mode conversion and acquisition
-+ * @adc: The ADC device structure
-+ * @chan: The channel specification
-+ * Return: 0 on success, a negative error code on failure
-+ *
-+ * Upon successful return adc->sample.raw will contain the conversion result.
-+ */
-+static int ad7944_4_wire_mode_conversion(struct ad7944_adc *adc,
-+					 const struct iio_chan_spec *chan)
-+{
-+	unsigned int t_cnv_ns = adc->always_turbo ? adc->t->turbo_cnv_ns
-+						  : adc->t->cnv_ns;
-+	struct spi_transfer xfers[] = {
-+		{
-+			/*
-+			 * NB: can get better performance from some SPI
-+			 * controllers if we use the same bits_per_word
-+			 * in every transfer.
-+			 */
-+			.bits_per_word = chan->scan_type.realbits,
-+			/*
-+			 * CS has to be high for full conversion time to avoid
-+			 * triggering the busy indication.
-+			 */
-+			.cs_off = 1,
-+			.delay = {
-+				.value = t_cnv_ns,
-+				.unit = SPI_DELAY_UNIT_NSECS,
-+			},
-+
-+		},
-+		{
-+			.rx_buf = &adc->sample.raw,
-+			.len = BITS_TO_BYTES(chan->scan_type.storagebits),
-+			.bits_per_word = chan->scan_type.realbits,
-+		},
-+	};
-+	int ret;
-+
-+	/*
-+	 * In 4-wire mode, the CNV line is held high for the entire conversion
-+	 * and acquisition process.
-+	 */
-+	gpiod_set_value_cansleep(adc->cnv, 1);
-+
-+	ret = spi_sync_transfer(adc->spi, xfers, ARRAY_SIZE(xfers));
-+	if (ret)
-+		return ret;
-+
-+	gpiod_set_value_cansleep(adc->cnv, 0);
-+
-+	return 0;
-+}
-+
-+static int ad7944_single_conversion(struct ad7944_adc *adc,
-+				    const struct iio_chan_spec *chan,
-+				    int *val)
-+{
-+	int ret;
-+
-+	ret = ad7944_4_wire_mode_conversion(adc, chan);
-+	if (ret)
-+		return ret;
-+
-+	if (chan->scan_type.storagebits > 16)
-+		*val = adc->sample.raw.u32;
-+	else
-+		*val = adc->sample.raw.u16;
-+
-+	if (chan->scan_type.sign == 's')
-+		*val = sign_extend32(*val, chan->scan_type.realbits - 1);
-+
-+	return IIO_VAL_INT;
-+}
-+
-+static int ad7944_read_raw(struct iio_dev *indio_dev,
-+			   const struct iio_chan_spec *chan,
-+			   int *val, int *val2, long info)
-+{
-+	struct ad7944_adc *adc = iio_priv(indio_dev);
-+	int ret;
-+
-+	switch (info) {
-+	case IIO_CHAN_INFO_RAW:
-+		ret = iio_device_claim_direct_mode(indio_dev);
-+		if (ret)
-+			return ret;
-+
-+		ret = ad7944_single_conversion(adc, chan, val);
-+		iio_device_release_direct_mode(indio_dev);
-+		return ret;
-+
-+	case IIO_CHAN_INFO_SCALE:
-+		switch (chan->type) {
-+		case IIO_VOLTAGE:
-+			*val = adc->ref_mv;
-+			*val2 = chan->scan_type.realbits;
-+
-+			return IIO_VAL_FRACTIONAL_LOG2;
-+		default:
-+			return -EINVAL;
-+		}
-+
-+	default:
-+		return -EINVAL;
-+	}
-+}
-+
-+static const struct iio_info ad7944_iio_info = {
-+	.read_raw = &ad7944_read_raw,
-+};
-+
-+static irqreturn_t ad7944_trigger_handler(int irq, void *p)
-+{
-+	struct iio_poll_func *pf = p;
-+	struct iio_dev *indio_dev = pf->indio_dev;
-+	struct ad7944_adc *adc = iio_priv(indio_dev);
-+	int ret;
-+
-+	ret = ad7944_4_wire_mode_conversion(adc, &indio_dev->channels[0]);
-+	if (ret)
-+		goto out;
-+
-+	iio_push_to_buffers_with_timestamp(indio_dev, &adc->sample.raw,
-+					   indio_dev->scan_timestamp);
-+
-+out:
-+	iio_trigger_notify_done(indio_dev->trig);
-+
-+	return IRQ_HANDLED;
-+}
-+
-+static const char * const ad7944_power_supplies[] = {
-+	"avdd",	"dvdd",	"bvdd", "vio"
-+};
-+
-+static void ad7944_ref_disable(void *ref)
-+{
-+	regulator_disable(ref);
-+}
-+
-+static int ad7944_probe(struct spi_device *spi)
-+{
-+	const struct ad7944_chip_info *chip_info;
-+	struct iio_dev *indio_dev;
-+	struct ad7944_adc *adc;
-+	struct regulator *ref;
-+	const char *str_val;
-+	int ret;
-+
-+	/* adi,spi-mode property defaults to "4-wire" if not present */
-+	if (device_property_read_string(&spi->dev, "adi,spi-mode", &str_val) < 0)
-+		str_val = "4-wire";
-+
-+	if (strcmp(str_val, "4-wire"))
-+		return dev_err_probe(&spi->dev, -EINVAL,
-+				     "only \"4-wire\" mode is currently supported\n");
-+
-+	indio_dev = devm_iio_device_alloc(&spi->dev, sizeof(*adc));
-+	if (!indio_dev)
-+		return -ENOMEM;
-+
-+	adc = iio_priv(indio_dev);
-+	adc->spi = spi;
-+
-+	chip_info = spi_get_device_match_data(spi);
-+	if (!chip_info)
-+		return dev_err_probe(&spi->dev, -EINVAL, "no chip info\n");
-+
-+	adc->t = chip_info->t;
-+
-+	/*
-+	 * Some chips use unusual word sizes, so check now instead of waiting
-+	 * for the first xfer.
-+	 */
-+	if (!spi_is_bpw_supported(spi, chip_info->channels[0].scan_type.realbits))
-+		return dev_err_probe(&spi->dev, -EINVAL,
-+				"SPI host does not support %d bits per word\n",
-+				chip_info->channels[0].scan_type.realbits);
-+
-+	ret = devm_regulator_bulk_get_enable(&spi->dev,
-+					     ARRAY_SIZE(ad7944_power_supplies),
-+					     ad7944_power_supplies);
-+	if (ret)
-+		return dev_err_probe(&spi->dev, ret,
-+				     "failed to get and enable supplies\n");
-+
-+	/* adi,reference property defaults to "internal" if not present */
-+	if (device_property_read_string(&spi->dev, "adi,reference", &str_val) < 0)
-+		str_val = "internal";
-+
-+	/* sort out what is being used for the reference voltage */
-+	if (strcmp(str_val, "internal") == 0) {
-+		/* internal reference is used */
-+		adc->ref_mv = AD7944_INTERNAL_REF_MV;
-+	} else if (strcmp(str_val, "internal-buffer") == 0) {
-+		/* external 1.2V REFIN and internal buffer is used */
-+		ret = devm_regulator_get_enable_optional(&spi->dev, "refin");
-+		if (ret)
-+			return dev_err_probe(&spi->dev, ret,
-+					"failed to get and enable REFIN supply\n");
-+
-+		adc->ref_mv = AD7944_INTERNAL_REF_MV;
-+	} else if (strcmp(str_val, "external") == 0) {
-+		/* external reference is used */
-+		ref = devm_regulator_get_optional(&spi->dev, "ref");
-+		if (IS_ERR(ref))
-+			return dev_err_probe(&spi->dev, PTR_ERR(ref),
-+					     "failed to get REF supply\n");
-+
-+		ret = regulator_enable(ref);
-+		if (ret)
-+			return dev_err_probe(&spi->dev, ret,
-+					     "failed to enable REF supply\n");
-+
-+		ret = devm_add_action_or_reset(&spi->dev,
-+					       ad7944_ref_disable, ref);
-+		if (ret)
-+			return ret;
-+
-+		ret = regulator_get_voltage(ref);
-+		if (ret < 0)
-+			return dev_err_probe(&spi->dev, ret,
-+					     "failed to get REF voltage\n");
-+
-+		adc->ref_mv = ret / 1000;
-+	} else {
-+		return dev_err_probe(&spi->dev, -EINVAL,
-+				     "invalid adi,reference property: %s\n",
-+				     str_val);
-+	}
-+
-+	adc->cnv = devm_gpiod_get(&spi->dev, "cnv", GPIOD_OUT_LOW);
-+	if (IS_ERR(adc->cnv))
-+		return dev_err_probe(&spi->dev, PTR_ERR(adc->cnv),
-+				     "failed to get CNV GPIO\n");
-+
-+	adc->turbo = devm_gpiod_get_optional(&spi->dev, "turbo", GPIOD_OUT_LOW);
-+	if (IS_ERR(adc->turbo))
-+		return dev_err_probe(&spi->dev, PTR_ERR(adc->turbo),
-+				     "failed to get TURBO GPIO\n");
-+
-+	if (device_property_present(&spi->dev, "adi,always-turbo"))
-+		adc->always_turbo = true;
-+
-+	if (adc->turbo && adc->always_turbo)
-+		return dev_err_probe(&spi->dev, -EINVAL,
-+			"cannot have both turbo-gpios and adi,always-turbo\n");
-+
-+	indio_dev->name = chip_info->name;
-+	indio_dev->modes = INDIO_DIRECT_MODE;
-+	indio_dev->info = &ad7944_iio_info;
-+	indio_dev->channels = chip_info->channels;
-+	indio_dev->num_channels = ARRAY_SIZE(chip_info->channels);
-+
-+	ret = devm_iio_triggered_buffer_setup(&spi->dev, indio_dev,
-+					      iio_pollfunc_store_time,
-+					      ad7944_trigger_handler, NULL);
-+	if (ret)
-+		return ret;
-+
-+	return devm_iio_device_register(&spi->dev, indio_dev);
-+}
-+
-+static const struct of_device_id ad7944_of_match[] = {
-+	{ .compatible = "adi,ad7944", .data = &ad7944_chip_info },
-+	{ .compatible = "adi,ad7985", .data = &ad7985_chip_info },
-+	{ .compatible = "adi,ad7986", .data = &ad7986_chip_info },
-+	{ }
-+};
-+MODULE_DEVICE_TABLE(of, ad7944_of_match);
-+
-+static const struct spi_device_id ad7944_spi_id[] = {
-+	{ "ad7944", (kernel_ulong_t)&ad7944_chip_info },
-+	{ "ad7985", (kernel_ulong_t)&ad7985_chip_info },
-+	{ "ad7986", (kernel_ulong_t)&ad7986_chip_info },
-+	{ }
-+
-+};
-+MODULE_DEVICE_TABLE(spi, ad7944_spi_id);
-+
-+static struct spi_driver ad7944_driver = {
-+	.driver = {
-+		.name = "ad7944",
-+		.of_match_table = ad7944_of_match,
-+	},
-+	.probe = ad7944_probe,
-+	.id_table = ad7944_spi_id,
-+};
-+module_spi_driver(ad7944_driver);
-+
-+MODULE_AUTHOR("David Lechner <dlechner@baylibre.com>");
-+MODULE_DESCRIPTION("Analog Devices AD7944 PulSAR ADC family driver");
-+MODULE_LICENSE("GPL");
+In the scenario of a PHY package where multiple address are used and
+there isn't a way to get the base address of the PHY package from some
+regs, getting the information from DT is the only way.
+
+A possible example to this problem is this:
+
+        ethernet-phy-package@0 {
+            compatible = "qcom,qca8075-package";
+            #address-cells = <1>;
+            #size-cells = <0>;
+
+            reg = <0>;
+            qcom,package-mode = "qsgmii";
+
+            ethernet-phy@1 {
+              reg = <1>;
+            };
+
+            phy4: ethernet-phy@4 {
+              reg = <4>;
+            };
+        };
+
+The mdio parse functions are changed to address for this additional
+special node, the function is changed to simply detect this node and
+search also in this. (we match the node name to be "ethernet-phy-package")
+
+PHY driver can then use introduced helper of_phy_package_join to join the
+PHY to the PHY package and derive the base address from DT.
+
+Changes v7:
+- Rebase on top of net-next
+- Add Reviewed-by tag for DT patch
+- Change tx-driver-strength to tx-drive-strength
+- Drop driver reference in DT
+Changes v6:
+- Back to absolute PHY implementation
+- Correctly drop refcount for node on error condition and on PHY leave
+- Drop DT include patch in favor for 3 boolean vendor property
+- Fix Documentation problem for compatible and missing type and
+  description
+- Drop redundand gpio-controller dependency and description
+- Skip scanphy with invalid PHY Package node and make reg mandatory
+- Rework fiber read status to use more generic function
+- Split qca808x LED generalization patch to permit easier review
+- Correctly return -EINVAL with wrong data passed to vendor property
+- Drop removing LED ops for qca807x PHY driver with gpio-controller
+Changes v5:
+- Rebase on top of net-next
+- Change implementation to base addr + offset in subnode
+- Adapt to all the changes and cleanup done to at803x
+Changes v4:
+- Rework DT implementation
+- Drop of autojoin support and rework to simple helper
+- Rework PHY driver to the new implementation
+- Add compatible for qca807x package
+- Further cleanup patches
+Changes v3:
+- Add back compatible implementation
+- Detach patch that can be handled separately (phy_package_mmd, 
+  phy_package extended)
+- Rework code to new simplified implementation with base addr + offset
+- Improve documentation with additional info and description
+Changes v2:
+- Drop compatible "ethernet-phy-package", use node name prefix matching
+  instead
+- Improve DT example
+- Add reg for ethernet-phy-package
+- Drop phy-mode for ethernet-phy-package
+- Drop patch for generalization of phy-mode
+- Drop global-phy property (handle internally to the PHY driver)
+- Rework OF phy package code and PHY driver to handle base address
+- Fix missing of_node_put
+- Add some missing docs for added variables in struct
+- Move some define from dt-bindings include to PHY driver
+- Handle qsgmii validation in PHY driver
+- Fix wrong include for gpiolib
+- Drop reduntant version.h include
+
+Christian Marangi (9):
+  dt-bindings: net: document ethernet PHY package nodes
+  net: phy: add support for scanning PHY in PHY packages nodes
+  net: phy: add devm/of_phy_package_join helper
+  net: phy: qcom: move more function to shared library
+  dt-bindings: net: Document Qcom QCA807x PHY package
+  net: phy: provide whether link has changed in c37_read_status
+  net: phy: qcom: move common qca808x LED define to shared header
+  net: phy: qcom: generalize some qca808x LED functions
+  net: phy: qca807x: add support for configurable LED
+
+Robert Marko (1):
+  net: phy: qcom: add support for QCA807x PHY Family
+
+ .../bindings/net/ethernet-phy-package.yaml    |  52 ++
+ .../devicetree/bindings/net/qcom,qca807x.yaml | 184 ++++
+ drivers/net/mdio/of_mdio.c                    |  79 +-
+ drivers/net/phy/broadcom.c                    |   3 +-
+ drivers/net/phy/mdio_bus.c                    |  44 +-
+ drivers/net/phy/phy_device.c                  | 107 ++-
+ drivers/net/phy/qcom/Kconfig                  |   8 +
+ drivers/net/phy/qcom/Makefile                 |   1 +
+ drivers/net/phy/qcom/at803x.c                 |  38 +-
+ drivers/net/phy/qcom/qca807x.c                | 849 ++++++++++++++++++
+ drivers/net/phy/qcom/qca808x.c                | 308 +------
+ drivers/net/phy/qcom/qcom-phy-lib.c           | 247 +++++
+ drivers/net/phy/qcom/qcom.h                   | 123 +++
+ include/linux/phy.h                           |   8 +-
+ 14 files changed, 1676 insertions(+), 375 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/net/ethernet-phy-package.yaml
+ create mode 100644 Documentation/devicetree/bindings/net/qcom,qca807x.yaml
+ create mode 100644 drivers/net/phy/qcom/qca807x.c
 
 -- 
 2.43.0
