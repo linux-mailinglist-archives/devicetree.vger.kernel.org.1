@@ -1,152 +1,133 @@
-Return-Path: <devicetree+bounces-39123-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-39124-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9E59D84B78B
-	for <lists+devicetree@lfdr.de>; Tue,  6 Feb 2024 15:13:03 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id CA46A84B79D
+	for <lists+devicetree@lfdr.de>; Tue,  6 Feb 2024 15:19:46 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id C2F4B1C2536A
-	for <lists+devicetree@lfdr.de>; Tue,  6 Feb 2024 14:13:02 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 357782857DD
+	for <lists+devicetree@lfdr.de>; Tue,  6 Feb 2024 14:19:45 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2CD25131E29;
-	Tue,  6 Feb 2024 14:12:56 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D5A81131E55;
+	Tue,  6 Feb 2024 14:19:41 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="DNSe6W9D"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="W38Z4H0q"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f54.google.com (mail-wm1-f54.google.com [209.85.128.54])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4C72A131752
-	for <devicetree@vger.kernel.org>; Tue,  6 Feb 2024 14:12:54 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.54
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9FBFB131E44;
+	Tue,  6 Feb 2024 14:19:41 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1707228776; cv=none; b=g7m/qPpyOr5f4c/F9eyKvxOzmByiX9+19ETHzWlWsh3nllM0I4I4TmjirbX4bfflNBv5v+H2GYsC2JpRbPn4ae3NPRv77wK4rJkQFyWx8pwjx2ZEU8b7VRagmUT9/nsaljKvoCj3oV0XWAAasWmJ3WwRqyV9xcIciMsDss1woXs=
+	t=1707229181; cv=none; b=ndKk16MNrPiw0vLWF4p7w8dXVoq6Js/SH34tPIGwd+xkDk4wT+ygkRSG7+HhA15GvGO6SdiufTQ+8o8dmSHH9ZdctA/RVaKMjNsIumBVyX0lbjDAwr/zSOzhoBI8Mpa/k86vHase6L88cs5fMzWUFRtT32yFs2xr+zF8BYOwoEE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1707228776; c=relaxed/simple;
-	bh=Bsokvn5YWnf3uoqaFnfN9YvfGrwDEWEVf1pfDUZWanA=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=uMd5Q1QYynvwgt66aEfhk+h+M4gtfuypAyZfGn9iRAXPtMEbXcX/q+dVji6M3AAq2Iz2dLfuGJlnVHJe/CcQfvHaRobYg4xfJiwcTgxdlfSKYVOOYONimf0qiCy2SLD+WtttBZR8d319EPgw04wg7ocp4CBzJ7JY3h8pWmhODMU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=DNSe6W9D; arc=none smtp.client-ip=209.85.128.54
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-wm1-f54.google.com with SMTP id 5b1f17b1804b1-40fe2d3d5a9so5491335e9.0
-        for <devicetree@vger.kernel.org>; Tue, 06 Feb 2024 06:12:54 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1707228772; x=1707833572; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
-         :to:content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=f/GUlRf0HmWkHoc7OTDeUe7IIuv9mQx9L8UMYHSrdxA=;
-        b=DNSe6W9DkJoXUkrMGXQJWfqkBeVCot3zQlUpGunagiP2iK54ajiKCb1E2c7+0pX6Q1
-         L9yvzX6BSIDOt+dJlch7MHyeGEpwIQksDJbEzaevakOZNG/cHPPInAhL0m03IwqAZLpk
-         k/TKuoXZQ7+esLkASazKXQKP2zPV2j9tLcP9tvsnB4Pi99+zuklAVewoEqxo34hM+wSE
-         0yutnOuf9rZ8i8tikN0CCSxRhMIOhLrVKjZpY7P2fMFxp9c0QfMqfZ58kA128I7QT96K
-         zaa+Wt3MDZVqYNGAZK8hh8S68pF+va34ZH3YDrEkbVT8v2svL0DJZUt1jooKroyTfJEz
-         /mNQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1707228772; x=1707833572;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
-         :to:content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=f/GUlRf0HmWkHoc7OTDeUe7IIuv9mQx9L8UMYHSrdxA=;
-        b=wtjKwgqtE9txG83MsRQmg3ff7f7sCwaJa234/gyo7mAG3k+MxsUtVnEkieHEbXMghq
-         o+vHm7isPvmAry4RL+OUNf6ebqYGeIjRgO5D+rUH97WkOIDP+J9KDdJMGq0hCNt4MfDb
-         x/OQOOCooLMcBhGKcwxyhJ84uezcxOg13Ot6ohO+YJqRntOJkwQ55KuVX94EoqP00+DU
-         TESrIGanq5kgwS6gUopPcIk67qH/gPpdHf9an8xY/+neaclDG4ksiCNy1udTKN0NN4ON
-         v68eJmL+ZIIKR9HASr/nnS36B/ImuPnMj/mWiymM2Zmrq2Pd3i9ESE2oFwK3pVm4x3q5
-         QwgQ==
-X-Gm-Message-State: AOJu0YxWHdCui+AET7hTZ9OwldaxdoSL1mDThXf4QHJu0mnRWjcGNFOv
-	spy2EEjMn+g6ohDgzEiBV+HQ6/Y6YK6dHG//K67NVUdTmeV06qAelr/MYyMNfGw=
-X-Google-Smtp-Source: AGHT+IHztXKPPEoRWAl5ItxM7oX/l5Dxb1UecXG0cZZ9t15hDEmGoMSNhlYb/7y1oEuc+RYvYgxATw==
-X-Received: by 2002:a05:600c:198f:b0:40f:dd35:9224 with SMTP id t15-20020a05600c198f00b0040fdd359224mr1646897wmq.4.1707228772550;
-        Tue, 06 Feb 2024 06:12:52 -0800 (PST)
-X-Forwarded-Encrypted: i=0; AJvYcCXu+7aOEidgQf+ZljxAaXruBbmXFWN7vR9z/Xj1+EilHtJc4CQHZBO4NYKZVo15M0MdsaG73qvdBsSXXCuGsWReOfWbhkwxwv0xOBJlH/mKUIBwj/sSFVpqgEvX0mrMeKcKBqm1L01vapmGUU6g5fLbgc2XcwMhvdVZA2sXFNP0Ge76dzGNLNTU5jzcA13UlyncTqDZqDUW31pQmqG/IwTgXkVK4tIcd0BWLjaP7ng0xXd3vTiA3Cnto6gLmWSj/4RnUyUsMimpaOmlQhUGT3g8iu3v9tFCekBJairVp/DNC3kUb58BJsOPyrihhB7JEz4Lguiv0jDBbZFSBHPBNeBaO2MgtcUoPY+QVaIAY6TFH5vit/H90wtS5ucV/E2+6qZ/jtiTjdspcMl0jXIPEIWcZDMgLvJn7aJ2A8WdrGJ4UoOKWK5NTYViye/yaKlDPOc6z6betTFmmbqRaE4qW6u83KTS3ByYXgNbAepIWnHzKwPGxRy/QNwU78itobeaEKaSaXQjyWCycUHOb80fFjZSbAkw
-Received: from [192.168.1.20] ([178.197.222.62])
-        by smtp.gmail.com with ESMTPSA id w17-20020a5d6811000000b0033afcc899c1sm2213579wru.13.2024.02.06.06.12.51
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 06 Feb 2024 06:12:52 -0800 (PST)
-Message-ID: <47bbd3e5-d94a-4b7e-afc2-68297f5a79c1@linaro.org>
-Date: Tue, 6 Feb 2024 15:12:50 +0100
+	s=arc-20240116; t=1707229181; c=relaxed/simple;
+	bh=1MnTEbxeUsGA7HMcn2eRPHhXYWih9ZllJehloa4wpsc=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=S52rviG5FewOV0w2x8v3Rpx0LCna1+d58BnHpcVAL3a8sKm5bsu3hdhjDCdFkPzJDImAExN4rvAE1bvvpJcp4fK+PInTayzuBQACEOeoXOV7gvr4a4i3nogcnqWqqF5yD1eK/jbRbyz7VzqEpzWD5qlqH5MVH91MLzQqNk9c3WQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=W38Z4H0q; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 41C92C433C7;
+	Tue,  6 Feb 2024 14:19:37 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1707229181;
+	bh=1MnTEbxeUsGA7HMcn2eRPHhXYWih9ZllJehloa4wpsc=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=W38Z4H0qdYqSxhn84T7haOHArqaXgeHjfaoKy44OX19ZDhSftyULq0r/FMg70Ayyg
+	 e7xwz0dqu7rFdptm5oHyeXQbqIlKCTw2IHPb8ifn0IWhpuVUdjUtd1/vqHYHiskKus
+	 emdg0gItkGetPQPwjMbX3W3fHloS4plorEAOZb4jp8m6WWubTwO7C7KUNEfmuWtWJd
+	 zDY6/0HI6/GQqpBuO8do0WL0/4o+XXYwSsg8BKoJsCU5N+SjQ257MPnim1lXkUHSj8
+	 ZK/ph766zwqJpWxF6v4UD+bEzWaUrTNjU17rOna6yYGAL3WbiXN7oAf1vGxX8Vd7MR
+	 Shtxv60zYzbrg==
+Date: Tue, 6 Feb 2024 14:19:34 +0000
+From: Conor Dooley <conor@kernel.org>
+To: Marc Kleine-Budde <mkl@pengutronix.de>
+Cc: Conor Dooley <conor.dooley@microchip.com>,
+	linux-riscv@lists.infradead.org,
+	Daire McNamara <daire.mcnamara@microchip.com>,
+	Wolfgang Grandegger <wg@grandegger.com>,
+	"David S. Miller" <davem@davemloft.net>,
+	Eric Dumazet <edumazet@google.com>,
+	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
+	Rob Herring <robh+dt@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Paul Walmsley <paul.walmsley@sifive.com>,
+	Palmer Dabbelt <palmer@dabbelt.com>,
+	Albert Ou <aou@eecs.berkeley.edu>,
+	Michael Turquette <mturquette@baylibre.com>,
+	Stephen Boyd <sboyd@kernel.org>, linux-can@vger.kernel.org,
+	netdev@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org, linux-clk@vger.kernel.org
+Subject: Re: [PATCH v2 2/7] dt-bindings: can: mpfs: add missing required clock
+Message-ID: <20240206-parole-cinnamon-2fe369f6ca74@spud>
+References: <20240122-catty-roast-d3625dbb02fe@spud>
+ <20240122-breeder-lying-0d3668d98886@spud>
+ <20240122-surely-crimp-ba4a8c55106d-mkl@pengutronix.de>
+ <20240122-cruelly-dainty-002081f0beb2@spud>
+ <20240122-smokeless-ion-63e4148c22e5-mkl@pengutronix.de>
+ <20240122-uncoated-cherub-a29cba1c0035@spud>
+ <20240122-pogo-reputable-b1d06ae1f1f1-mkl@pengutronix.de>
+ <20240130-narrow-lyricism-8b25baac7bb2@wendy>
+ <20240130-fragrance-disinfect-22cc1911bf48-mkl@pengutronix.de>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [linux][PATCH] ASoC: dt-bindings: atmel,sam9x5-wm8731: Convert to
- json-schema
-Content-Language: en-US
-To: Dharma Balasubiramani <dharma.b@microchip.com>, claudiu.beznea@tuxon.dev,
- lgirdwood@gmail.com, broonie@kernel.org, robh+dt@kernel.org,
- krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
- nicolas.ferre@microchip.com, alexandre.belloni@bootlin.com,
- alsa-devel@alsa-project.org, linux-sound@vger.kernel.org,
- devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- linux-kernel@vger.kernel.org
-Cc: hari.prasathge@microchip.com
-References: <20240206064418.237377-1-dharma.b@microchip.com>
-From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
- 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
- D2GYIS41Kv4Isx2dEFh+/Q==
-In-Reply-To: <20240206064418.237377-1-dharma.b@microchip.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Type: multipart/signed; micalg=pgp-sha256;
+	protocol="application/pgp-signature"; boundary="5oAuP6RxMdm00jg7"
+Content-Disposition: inline
+In-Reply-To: <20240130-fragrance-disinfect-22cc1911bf48-mkl@pengutronix.de>
 
-On 06/02/2024 07:44, Dharma Balasubiramani wrote:
-> Convert atmel sam9x5-wm8731-audio devicetree binding to json-schema.
-> 
-> Signed-off-by: Dharma Balasubiramani <dharma.b@microchip.com>
 
-There is no need to prefix patches with "linux".
+--5oAuP6RxMdm00jg7
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+On Tue, Jan 30, 2024 at 02:01:09PM +0100, Marc Kleine-Budde wrote:
+> On 30.01.2024 12:11:44, Conor Dooley wrote:
+> > On Mon, Jan 22, 2024 at 04:31:32PM +0100, Marc Kleine-Budde wrote:
+> > > On 22.01.2024 14:56:09, Conor Dooley wrote:
+> >=20
+> > > > I think we already had this discussion on v1, where I said that the
+> > > > binding requires the clocks to be in that order, regardless of whet=
+her
+> > > > or not clock-names is provided. You feel more strongly about it tha=
+n I
+> > > > do, so I will add them when I get around to sending a v3.
+> > >=20
+> > > Yes, this discussion sounded very familiar to me, never mind. Keep it=
+ as
+> > > is, and let's get this binding and the CAN driver upstream!
+> >=20
+> > BTW, I didn't see an ack on this nor do I see it in linux-next (yet).
+> > Are you expecting the patch to go with the rest via the clock tree,
+> > via the DT tree or will you be taking it with CAN stuff via netdev?
+> >=20
+> > I can resend this one patch with a netdev appropriate subject prefix
+> > if you like.
+>=20
+> Feel free to take the whole series via the clock tree.
 
-Best regards,
-Krzysztof
+Okay, I've gone and applied all of the binding and driver patches to the
+branch we will send to Stephen. Thanks!
 
+
+
+--5oAuP6RxMdm00jg7
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZcI/9gAKCRB4tDGHoIJi
+0kHUAP0e+rt2LDSpTC952WOfj4vXNDY3wh2XgO1MsZQXw131LQEA1UPbV0N5gf+J
+ALoxbvkmhHo0E10iiUy+SgrU+qL5yAM=
+=rlvY
+-----END PGP SIGNATURE-----
+
+--5oAuP6RxMdm00jg7--
 
