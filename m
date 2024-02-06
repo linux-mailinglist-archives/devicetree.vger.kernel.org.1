@@ -1,220 +1,188 @@
-Return-Path: <devicetree+bounces-39080-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-39082-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 257F984B5C1
-	for <lists+devicetree@lfdr.de>; Tue,  6 Feb 2024 13:58:30 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0818884B5D1
+	for <lists+devicetree@lfdr.de>; Tue,  6 Feb 2024 14:00:59 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 9434B1F25680
-	for <lists+devicetree@lfdr.de>; Tue,  6 Feb 2024 12:58:29 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id B3CC828A7AA
+	for <lists+devicetree@lfdr.de>; Tue,  6 Feb 2024 13:00:57 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4898C130E38;
-	Tue,  6 Feb 2024 12:57:51 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2ECCC12FF99;
+	Tue,  6 Feb 2024 13:00:44 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=suse.de header.i=@suse.de header.b="Vu0o+OOJ";
-	dkim=permerror (0-bit key) header.d=suse.de header.i=@suse.de header.b="so+rAKsH";
-	dkim=pass (1024-bit key) header.d=suse.de header.i=@suse.de header.b="Vu0o+OOJ";
-	dkim=permerror (0-bit key) header.d=suse.de header.i=@suse.de header.b="so+rAKsH"
+	dkim=pass (2048-bit key) header.d=tweaklogic.com header.i=@tweaklogic.com header.b="URZ0pJGF"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp-out1.suse.de (smtp-out1.suse.de [195.135.223.130])
+Received: from mail-pl1-f178.google.com (mail-pl1-f178.google.com [209.85.214.178])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 82B5D12F386;
-	Tue,  6 Feb 2024 12:57:49 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=195.135.223.130
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7C96112F5B7
+	for <devicetree@vger.kernel.org>; Tue,  6 Feb 2024 13:00:42 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.178
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1707224271; cv=none; b=Y8R7QqJTwgNdf+6uh4WU1Pi+pfI8QGtPrw/ciYFN6rsSF1uHsuyQmuGl23hs1RLwWySWpzVXH0vDAjlwK1iLrrZU4WG6wfUVEk/wP2h9opfSVBITnkJkQUByuWod5bYbpzPwwsys67wQ2VJKSSjydi5Vsiwgso/Ih+BKBkIs4AE=
+	t=1707224444; cv=none; b=J9u2bIixL8S85BoKmgODhMbr99OFEheFTfJEkVbLSTUsTQmsNLc9S59dRoMAGkcA+2Hc5RYpBWTYH3t4y5o96KY6U3Sgf+s5ghsVYfj9u6ZSqeFC/BxbE1zpBsvn3bru2+SUdI19e3h1aQuzNBr9H3imDVg+vh4hXt3QA0EFJwE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1707224271; c=relaxed/simple;
-	bh=iL0HRojAzYDaeWoChYZcGEd6ts/epCRxUVQaIOugMFE=;
-	h=Date:Message-ID:From:To:Cc:Subject:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=KFOxX6movHkMkcO8CwNthfGh4Kup1SabrWzCcOaV+tPGXkyKZ7WWC/Lr5p9bHOby8z5nhU6lraFCbq6XRnmA2VXJnH25Mza0GmpM1YFNi08ONDDSXndA4O3U3OgRa/3uJhJJL4Np4TTDLSXsKt7Oe4C8eP8EYcb0fg++X7901oM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=suse.de; spf=pass smtp.mailfrom=suse.de; dkim=pass (1024-bit key) header.d=suse.de header.i=@suse.de header.b=Vu0o+OOJ; dkim=permerror (0-bit key) header.d=suse.de header.i=@suse.de header.b=so+rAKsH; dkim=pass (1024-bit key) header.d=suse.de header.i=@suse.de header.b=Vu0o+OOJ; dkim=permerror (0-bit key) header.d=suse.de header.i=@suse.de header.b=so+rAKsH; arc=none smtp.client-ip=195.135.223.130
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=suse.de
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=suse.de
-Received: from imap1.dmz-prg2.suse.org (imap1.dmz-prg2.suse.org [IPv6:2a07:de40:b281:104:10:150:64:97])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
-	(No client certificate requested)
-	by smtp-out1.suse.de (Postfix) with ESMTPS id 63FFE21F97;
-	Tue,  6 Feb 2024 12:57:47 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=suse.de; s=susede2_rsa;
-	t=1707224267; h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
-	 mime-version:mime-version:content-type:content-type:
-	 in-reply-to:in-reply-to:references:references;
-	bh=hrPdcscD82ZUY6PH9OM5wcI+tI4zDbEnOTR3kzNVpoY=;
-	b=Vu0o+OOJCFymyujwpECX00A2LCtfKTRvohJSFlRp2HCQDi2ASSyoXDk1TRT9PKwu321lSM
-	DQQMpThrEAdi3gZ19WRBx0XyssIohW0LukqZnIfCIJJNNC5o5z/QvL6R32M7/sAqM4cQR1
-	EAoGKcKPoWnRCVoChWgr7HnZqBqnH7E=
-DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=suse.de;
-	s=susede2_ed25519; t=1707224267;
-	h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
-	 mime-version:mime-version:content-type:content-type:
-	 in-reply-to:in-reply-to:references:references;
-	bh=hrPdcscD82ZUY6PH9OM5wcI+tI4zDbEnOTR3kzNVpoY=;
-	b=so+rAKsHbAGYwYUwwIrZetLGZ3KJ5tk2kB6NITrgOAmtmPCU6vhDIr769baVDdI9a+KnWu
-	RA/S6XqmGkLW6GDA==
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=suse.de; s=susede2_rsa;
-	t=1707224267; h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
-	 mime-version:mime-version:content-type:content-type:
-	 in-reply-to:in-reply-to:references:references;
-	bh=hrPdcscD82ZUY6PH9OM5wcI+tI4zDbEnOTR3kzNVpoY=;
-	b=Vu0o+OOJCFymyujwpECX00A2LCtfKTRvohJSFlRp2HCQDi2ASSyoXDk1TRT9PKwu321lSM
-	DQQMpThrEAdi3gZ19WRBx0XyssIohW0LukqZnIfCIJJNNC5o5z/QvL6R32M7/sAqM4cQR1
-	EAoGKcKPoWnRCVoChWgr7HnZqBqnH7E=
-DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=suse.de;
-	s=susede2_ed25519; t=1707224267;
-	h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
-	 mime-version:mime-version:content-type:content-type:
-	 in-reply-to:in-reply-to:references:references;
-	bh=hrPdcscD82ZUY6PH9OM5wcI+tI4zDbEnOTR3kzNVpoY=;
-	b=so+rAKsHbAGYwYUwwIrZetLGZ3KJ5tk2kB6NITrgOAmtmPCU6vhDIr769baVDdI9a+KnWu
-	RA/S6XqmGkLW6GDA==
-Received: from imap1.dmz-prg2.suse.org (localhost [127.0.0.1])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
-	(No client certificate requested)
-	by imap1.dmz-prg2.suse.org (Postfix) with ESMTPS id 1A5CB139D8;
-	Tue,  6 Feb 2024 12:57:47 +0000 (UTC)
-Received: from dovecot-director2.suse.de ([10.150.64.162])
-	by imap1.dmz-prg2.suse.org with ESMTPSA
-	id jP2zBcsswmXfMwAAD6G6ig
-	(envelope-from <tiwai@suse.de>); Tue, 06 Feb 2024 12:57:47 +0000
-Date: Tue, 06 Feb 2024 13:57:46 +0100
-Message-ID: <871q9pwy0l.wl-tiwai@suse.de>
-From: Takashi Iwai <tiwai@suse.de>
-To: Wesley Cheng <quic_wcheng@quicinc.com>
-Cc: <srinivas.kandagatla@linaro.org>,
-	<mathias.nyman@intel.com>,
-	<perex@perex.cz>,
-	<conor+dt@kernel.org>,
-	<corbet@lwn.net>,
-	<lgirdwood@gmail.com>,
-	<andersson@kernel.org>,
-	<krzysztof.kozlowski+dt@linaro.org>,
-	<gregkh@linuxfoundation.org>,
-	<Thinh.Nguyen@synopsys.com>,
-	<broonie@kernel.org>,
-	<bgoswami@quicinc.com>,
-	<tiwai@suse.com>,
-	<robh+dt@kernel.org>,
-	<konrad.dybcio@linaro.org>,
-	<linux-kernel@vger.kernel.org>,
-	<devicetree@vger.kernel.org>,
-	<linux-sound@vger.kernel.org>,
-	<linux-usb@vger.kernel.org>,
-	<linux-arm-msm@vger.kernel.org>,
-	<linux-doc@vger.kernel.org>,
-	<alsa-devel@alsa-project.org>
-Subject: Re: [PATCH v13 48/53] ALSA: usb-audio: mixer: Add USB offloading mixer control
-In-Reply-To: <20240203023645.31105-49-quic_wcheng@quicinc.com>
-References: <20240203023645.31105-1-quic_wcheng@quicinc.com>
-	<20240203023645.31105-49-quic_wcheng@quicinc.com>
-User-Agent: Wanderlust/2.15.9 (Almost Unreal) Emacs/27.2 Mule/6.0
+	s=arc-20240116; t=1707224444; c=relaxed/simple;
+	bh=1w7no4X/TSio5I2R4KQ+HCwjWlHzizWFvphNMRtKGCc=;
+	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version; b=Ybm2Bf5zxVrgxKedrMmeN4monMk0M+FwD3F+/FJmnvJfigM+5DtbVKx3tb6mk1AwildjkNt/EaOX9MYTUwTTvBQGywLM01IzIJCsj30QImKvUvaNA02XD5gZ9aLOELo8yw+ji58lJC/nYAUgEvZhE1xdOCuhfeNhhYZzTGgl08o=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=tweaklogic.com; spf=pass smtp.mailfrom=tweaklogic.com; dkim=pass (2048-bit key) header.d=tweaklogic.com header.i=@tweaklogic.com header.b=URZ0pJGF; arc=none smtp.client-ip=209.85.214.178
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=tweaklogic.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=tweaklogic.com
+Received: by mail-pl1-f178.google.com with SMTP id d9443c01a7336-1d953fa3286so39872515ad.2
+        for <devicetree@vger.kernel.org>; Tue, 06 Feb 2024 05:00:42 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=tweaklogic.com; s=google; t=1707224441; x=1707829241; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=U01nK5h+ngo0dhzMF9UCzZZGiTta1rkOWaOLNJZe/+U=;
+        b=URZ0pJGF/hFWwgeJRAEbkVrnGVTor6eW0gHTYA/YhTDL4ZVK+zcz6tGPvvatZWhtP7
+         Taq90wGC/1BVcqXMO8/inoCv64HzyYRIO6RGLwyuMn9N4ck/976pi01CIBYfYSNSkWFN
+         o3jSuRMVXMehy2L8Kt9vj3Z/a0pDF33oAVLnetbpdzJVzPCapUSN5Uy+fauHMWCO44C3
+         vlxn6uYe4oQ6AwN1jv07D15aLgOeKS65XE+X88efG/FkDOFZBlTpI7xHd5k7ZWWDI5/K
+         ADK07Lm5Ub7rdqnAtjbwTLphqw1rJJ2gM78jLv6/CH5IvuVL1u6WjTvB20Rxp2gGjb02
+         x5gw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1707224441; x=1707829241;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=U01nK5h+ngo0dhzMF9UCzZZGiTta1rkOWaOLNJZe/+U=;
+        b=qqqC3gev9uF7/oanhpvuzWRR9A6w9lgPLthw9YpunaLFGtj6NpbKrizNIkn1+HgIn6
+         Q4x9dG7eMgkgDZQccKx8LTFSg/C9/L+r+GhNKDEww0whyNb8X51dMTrGBVXzdOphgNWe
+         9Te6LDw4DoUHpq4xXSrm6UV75p34+n60aXD8/4kr9R0oSDyJfv0L5aG4tEPrr0hv28t7
+         3wKRW5MpLXJUzxl8jqpm6ijDqSDhLepd9h2NZLqa6g3bviaVUbOBgBm0LW0pf6iFBXAE
+         dsWb4toNha7Hjao/PKfdmVVRH1tbzx2SP6HGf1PSgQOU43yR8uf+s7zSPUgy3wHvrRVa
+         rJNg==
+X-Gm-Message-State: AOJu0YxmHV7w2I/OWGn2SGqDSHunnU1gdBFqnFZ+a79biMDPEbvknmmg
+	BqRelHfPAkD5mO3XXuAn4JNP/sg2PCpwURAaB7j09GvnXTvZycAAdbldB9CaX2w=
+X-Google-Smtp-Source: AGHT+IHFgHjBIvvXH43AzashyL+Nkfw1PtmIh93FS/4fpoAw1KGAydkF2t9AxzBQ48m86erUFiwWQw==
+X-Received: by 2002:a17:902:ec82:b0:1d9:bfde:d635 with SMTP id x2-20020a170902ec8200b001d9bfded635mr1840947plg.18.1707224441315;
+        Tue, 06 Feb 2024 05:00:41 -0800 (PST)
+X-Forwarded-Encrypted: i=0; AJvYcCXOJQHJU9Oz3p9XWjTbHw/WyO+Rlhgcc+2HZgEMyidPNmSn/L8tiuqJqiqBpeLN5vT8Zh52uxfXYcGZubDu6QjGS1zwpTJCcXYfF2t3pxu6Xyx327nNCknP7EnMEGqp2cyK9NGDIl2Oxg+WzTifHJabltoTAPoFuSBWlF//1AZH5/sdJsFdn8nDyRJUMUWoLn5shFzGRbBLKGDfr5CxCOmfUhY4U0318peVENbBs0Oy+PnuXtNxUQDpldM3m5B1ZwjuWA7d+ygCvru11CqiEnLYIjJvtdmvJ+oXttAGI08V/cUbfRPfAjT94aayaAMSF5OKNCNYhY9Yd2k9Fv78MHmUsNjHinlrQTEw0mirbq3tfWRacfgh3S1rnZrTJFVW4LmqXRvGzki+BR+dSEzsP+L/Xy3fjedjFuOq63R/u4Umv0AgqUGssqKenP6G0V9q4xPZc/CQZPpIozmjULmTuEH3Zv905PLeQMSOvJ0ziUwe9Udx2WCFVVd6A6d7l6HWolo2AmWfalabNWNwseAghoZCjYX9hQ==
+Received: from localhost.localdomain ([180.150.113.62])
+        by smtp.gmail.com with ESMTPSA id s1-20020a170902ea0100b001d958f8ab2bsm1782167plg.107.2024.02.06.05.00.33
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 06 Feb 2024 05:00:40 -0800 (PST)
+From: Subhajit Ghosh <subhajit.ghosh@tweaklogic.com>
+To: Jonathan Cameron <jic23@kernel.org>,
+	Lars-Peter Clausen <lars@metafoo.de>,
+	Rob Herring <robh+dt@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Matti Vaittinen <mazziesaccount@gmail.com>,
+	Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
+	Marek Vasut <marex@denx.de>,
+	Anshul Dalal <anshulusr@gmail.com>,
+	Javier Carrasco <javier.carrasco.cruz@gmail.com>
+Cc: Subhajit Ghosh <subhajit.ghosh@tweaklogic.com>,
+	Matt Ranostay <matt@ranostay.sg>,
+	Stefan Windfeldt-Prytz <stefan.windfeldt-prytz@axis.com>,
+	linux-iio@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org
+Subject: [PATCH v6 0/5] Support for Avago APDS9306 Ambient Light Sensor
+Date: Tue,  6 Feb 2024 23:30:12 +1030
+Message-Id: <20240206130017.7839-1-subhajit.ghosh@tweaklogic.com>
+X-Mailer: git-send-email 2.34.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-MIME-Version: 1.0 (generated by SEMI-EPG 1.14.7 - "Harue")
-Content-Type: text/plain; charset=US-ASCII
-X-Spam-Level: 
-Authentication-Results: smtp-out1.suse.de;
-	dkim=pass header.d=suse.de header.s=susede2_rsa header.b=Vu0o+OOJ;
-	dkim=pass header.d=suse.de header.s=susede2_ed25519 header.b=so+rAKsH
-X-Rspamd-Server: rspamd2.dmz-prg2.suse.org
-X-Spamd-Result: default: False [-2.60 / 50.00];
-	 RCVD_VIA_SMTP_AUTH(0.00)[];
-	 SPAMHAUS_XBL(0.00)[2a07:de40:b281:104:10:150:64:97:from];
-	 TO_DN_SOME(0.00)[];
-	 R_RATELIMIT(0.00)[to_ip_from(RLe67txhfobum3fqdb5xx8e3au)];
-	 RCVD_COUNT_THREE(0.00)[3];
-	 DKIM_TRACE(0.00)[suse.de:+];
-	 MX_GOOD(-0.01)[];
-	 NEURAL_HAM_SHORT(-0.20)[-1.000];
-	 FROM_EQ_ENVFROM(0.00)[];
-	 MIME_TRACE(0.00)[0:+];
-	 BAYES_HAM(-0.09)[64.59%];
-	 ARC_NA(0.00)[];
-	 R_DKIM_ALLOW(-0.20)[suse.de:s=susede2_rsa,suse.de:s=susede2_ed25519];
-	 FROM_HAS_DN(0.00)[];
-	 FREEMAIL_ENVRCPT(0.00)[gmail.com];
-	 TO_MATCH_ENVRCPT_ALL(0.00)[];
-	 TAGGED_RCPT(0.00)[dt];
-	 MIME_GOOD(-0.10)[text/plain];
-	 NEURAL_HAM_LONG(-1.00)[-1.000];
-	 DWL_DNSWL_HI(-3.50)[suse.de:dkim];
-	 DKIM_SIGNED(0.00)[suse.de:s=susede2_rsa,suse.de:s=susede2_ed25519];
-	 RCPT_COUNT_TWELVE(0.00)[23];
-	 MID_CONTAINS_FROM(1.00)[];
-	 DBL_BLOCKED_OPENRESOLVER(0.00)[suse.de:dkim,quicinc.com:email];
-	 FUZZY_BLOCKED(0.00)[rspamd.com];
-	 FREEMAIL_CC(0.00)[linaro.org,intel.com,perex.cz,kernel.org,lwn.net,gmail.com,linuxfoundation.org,synopsys.com,quicinc.com,suse.com,vger.kernel.org,alsa-project.org];
-	 RCVD_TLS_ALL(0.00)[];
-	 SUSPICIOUS_RECIPS(1.50)[]
-X-Spam-Score: -2.60
-X-Rspamd-Queue-Id: 63FFE21F97
-X-Spam-Flag: NO
+MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
 
-On Sat, 03 Feb 2024 03:36:40 +0100,
-Wesley Cheng wrote:
-> 
-> In order to allow userspace/applications know about USB offloading status,
-> expose a sound kcontrol that fetches information about which sound card
-> index is associated with the ASoC platform card supporting offloading.  In
-> the USB audio offloading framework, the ASoC BE DAI link is the entity
-> responsible for registering to the SOC USB layer.  SOC USB will expose more
-> details about the current offloading status, which includes the USB sound
-> card and USB PCM device indexes currently being used.
-> 
-> Signed-off-by: Wesley Cheng <quic_wcheng@quicinc.com>
+Support for Avago APDS9306 Ambient Light Sensor.
 
-The concept is understandable, but the control element name ("SNDUSB
-OFFLD playback available") looks non-intrusive and non-conformant.
-Use a bit more understandable name instead.
+Driver support for Avago (Broadcom) APDS9306 Ambient Light Sensor.
+It has two channels - ALS and CLEAR. The ALS (Ambient Light Sensor)
+channel approximates the response of the human-eye providing direct
+read out where the output count is proportional to ambient light levels.
+It is internally temperature compensated and rejects 50Hz and 60Hz flicker
+caused by artificial light sources. Hardware interrupt configuration is
+optional. It is a low power device with 20 bit resolution and has 
+configurable adaptive interrupt mode and interrupt persistence mode.
+The device also features inbuilt hardware gain, multiple integration time
+selection options and sampling frequency selection options.
 
-This provides a card number where the offload driver is bound, and the
-name should indicate something about that.
+This driver also uses the IIO GTS (Gain Time Scale) Helpers Namespace for 
+Scales, Gains and Integration time implementation.
 
-Also, about the implementation:
+Link: https://docs.broadcom.com/doc/AV02-4755EN
 
-> +static int
-> +snd_usb_offload_create_mixer(struct usb_mixer_interface *mixer,
-> +		       const struct snd_kcontrol_new *new_kctl)
-> +{
-> +	struct snd_kcontrol *kctl;
-> +	struct usb_mixer_elem_info *elem;
-> +
-> +	elem = kzalloc(sizeof(struct usb_mixer_elem_info), GFP_KERNEL);
-> +	if (!elem)
-> +		return -ENOMEM;
-> +
-> +	elem->head.mixer = mixer;
-> +	elem->val_type = USB_MIXER_S32;
-> +	elem->control = 0;
-> +	elem->head.id = 0;
-> +	elem->channels = 1;
-> +
-> +	kctl = snd_ctl_new1(new_kctl, elem);
-> +	if (!kctl) {
-> +		kfree(elem);
-> +		return -ENOMEM;
-> +	}
-> +	kctl->private_free = snd_usb_mixer_elem_free;
-> +
-> +	return snd_usb_mixer_add_control(&elem->head, kctl);
+1 directory, 18 files
 
-This control has almost little to do with the standard USB interface,
-and it'll be much simpler if you create a raw control element.
-Pass the bus or the sysdev to private_data, and that's all you need in
-the get callback.
+v5 -> v6:
+ - Changes as per review
+ - Update kernel doc for private data
+ - Change IIO Event Spec definitions
+ - Update guard mutex lock implementation
+ - Add pm_runtime_get()
+ - Update styling
+   Link: https://lore.kernel.org/all/20240204134056.5dc64e8b@jic23-huawei/
+ 
+v5 -> v6 Bindings
+ - Write proper commit messages
+ - Add vdd-supply in a separate commit
+ - Add Interrupt macro in a separate commit
+   Link: https://lore.kernel.org/all/1d0a80a6-dba5-4db8-a7a8-73d4ffe7a37e@linaro.org/
 
-Also, don't forget to set the proper access bits (it's read-only).
+v2 -> v5:
+ - Bumped up the version:
+   RFC->v0->v1->v2->v3 (Earlier scheme)
+   v1->v2->v3->v4->v5 (Scheme after review) (Current scheme)
+   Link: https://lore.kernel.org/all/20231028143631.2545f93e@jic23-huawei/
+
+ - Added separate patch to merge schemas for APDS9300 and APDS9906. Added
+   APDS9306 support on top of that.
+   Link: https://lore.kernel.org/lkml/4e785d2e-d310-4592-a75a-13549938dcef@linaro.org/
+   Link: https://lore.kernel.org/lkml/20231028142944.7e210eb6@jic23-huawei/
+
+ - Removed scale attribute for Intensity channel:
+   Link: https://lore.kernel.org/all/20231204095108.22f89718@jic23-huawei/
+
+ - Dropped caching of hardware gain, repeat rate and integration time and
+   updated code as per earlier reviews.
+   Link: https://lore.kernel.org/lkml/20231028142944.7e210eb6@jic23-huawei/
+
+ - Added descriptive commit messages
+ - Fixed wrongly formatted commit messages
+ - Added changelog in right positions
+
+ - Link to v2: 
+   https://lore.kernel.org/lkml/20231027074545.6055-3-subhajit.ghosh@tweaklogic.com/
+
+v2 -> v5 Bindings:
+ - Removed 'required' for Interrupts and 'oneOf' for compatibility strings
+   as per below reviews:
+   Link: https://lore.kernel.org/lkml/20231028142944.7e210eb6@jic23-huawei/
+   Link: https://lore.kernel.org/lkml/22e9e5e9-d26a-46e9-8986-5062bbfd72ec@linaro.org/
+
+ - Implemented changes as per previous reviews:
+   Link: https://lore.kernel.org/lkml/20231028142944.7e210eb6@jic23-huawei/
+   Link: https://lore.kernel.org/lkml/22e9e5e9-d26a-46e9-8986-5062bbfd72ec@linaro.org/
+
+Subhajit Ghosh (5):
+  dt-bindings: iio: light: Merge APDS9300 and APDS9960 schemas
+  dt-bindings: iio: light: adps9300: Add property vdd-supply
+  dt-bindings: iio: light: adps9300: Update interrupt definitions
+  dt-bindings: iio: light: Avago APDS9306
+  iio: light: Add support for APDS9306 Light Sensor
+
+ .../bindings/iio/light/avago,apds9300.yaml    |   20 +-
+ .../bindings/iio/light/avago,apds9960.yaml    |   44 -
+ drivers/iio/light/Kconfig                     |   12 +
+ drivers/iio/light/Makefile                    |    1 +
+ drivers/iio/light/apds9306.c                  | 1335 +++++++++++++++++
+ 5 files changed, 1363 insertions(+), 49 deletions(-)
+ delete mode 100644 Documentation/devicetree/bindings/iio/light/avago,apds9960.yaml
+ create mode 100644 drivers/iio/light/apds9306.c
 
 
-thanks,
+base-commit: b555d191561a7f89b8d2108dff687d9bc4284e48
+-- 
+2.34.1
 
-Takashi
 
