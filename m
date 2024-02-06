@@ -1,79 +1,87 @@
-Return-Path: <devicetree+bounces-39010-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-39011-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7B73E84B267
-	for <lists+devicetree@lfdr.de>; Tue,  6 Feb 2024 11:21:41 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4AC0984B27B
+	for <lists+devicetree@lfdr.de>; Tue,  6 Feb 2024 11:28:21 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 78C1B1C232FD
-	for <lists+devicetree@lfdr.de>; Tue,  6 Feb 2024 10:21:40 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id A8DC1B26047
+	for <lists+devicetree@lfdr.de>; Tue,  6 Feb 2024 10:28:18 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C23BE12E1D9;
-	Tue,  6 Feb 2024 10:21:35 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 51B4212D761;
+	Tue,  6 Feb 2024 10:28:12 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from gloria.sntech.de (gloria.sntech.de [185.11.138.130])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0748C12D74F;
-	Tue,  6 Feb 2024 10:21:31 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.11.138.130
+Received: from foss.arm.com (foss.arm.com [217.140.110.172])
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 09C0912EBC2
+	for <devicetree@vger.kernel.org>; Tue,  6 Feb 2024 10:28:09 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.140.110.172
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1707214895; cv=none; b=SahXhx6OKdkirOmJHlM/83OAdr19CKsSIaTj6KO716JPZvVyDJbAHfXndjtZhcnCF0c+Rq3ZSzvbLjZ1wSxzeJ71gwOX/1jZjJa+MG6ThMFnuY0WEZuQ8kz3FlUpUnRxANMd+rbm0mXRXV16hGztyfZrsxZIkLQC8+ejJ89p52I=
+	t=1707215292; cv=none; b=s7hmkp/s9vJQmHNym7gMbLzYXliU7tmdIxQkvWNNQjYRddeanB0Cvp/5AWnygMLUli1Ye5TUpPzGFvKjDAqlMj5eKst2MxjnJo/PWLTWBKfNHUCjhKFN1/o9dgU9guwx+aWgUq+3cJkt48VDyPxiIxp/Q+OJ7qGbqbvpxtVit2Q=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1707214895; c=relaxed/simple;
-	bh=pUdDAjDVJJV2diRWVXuf63WBlqfLjwPNZUxYO43XM3k=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=bHRy9Lg8pY9FPlPptLW2Zvon8g38CDN8DKKEHaHzSajl4UWa2yQuY83XRL4too7VANIQ7KuNjKixraw3WQ34GK+FrhxGy+xrSVFF99L+VXVNhA+XvuimR2IF79omNOpH4c2hrnyUcD32st5bGtiFQaNRhMAokkHhqAAMa5TACdw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=sntech.de; spf=pass smtp.mailfrom=sntech.de; arc=none smtp.client-ip=185.11.138.130
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=sntech.de
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=sntech.de
-Received: from i5e861914.versanet.de ([94.134.25.20] helo=diego.localnet)
-	by gloria.sntech.de with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-	(Exim 4.94.2)
-	(envelope-from <heiko@sntech.de>)
-	id 1rXIZn-000845-KL; Tue, 06 Feb 2024 11:21:15 +0100
-From: Heiko =?ISO-8859-1?Q?St=FCbner?= <heiko@sntech.de>
-To: Rob Herring <robh+dt@kernel.org>,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Conor Dooley <conor+dt@kernel.org>, Johan Jonker <jbx6244@gmail.com>,
- Sebastian Reichel <sebastian.reichel@collabora.com>,
- Cristian Ciocaltea <cristian.ciocaltea@collabora.com>,
- Sascha Hauer <s.hauer@pengutronix.de>, Andy Yan <andy.yan@rock-chips.com>,
- Vinod Koul <vkoul@kernel.org>, Kishon Vijay Abraham I <kishon@kernel.org>,
- Philipp Zabel <p.zabel@pengutronix.de>, Algea Cao <algea.cao@rock-chips.com>,
- Cristian Ciocaltea <cristian.ciocaltea@collabora.com>
-Cc: devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org,
- linux-phy@lists.infradead.org, kernel@collabora.com,
- Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Subject:
- Re: [PATCH v2 1/2] dt-bindings: phy: Add Rockchip HDMI/eDP Combo PHY schema
-Date: Tue, 06 Feb 2024 11:21:14 +0100
-Message-ID: <8371238.NyiUUSuA9g@diego>
-In-Reply-To: <20240205-phy-hdptx-v2-1-a7150814c047@collabora.com>
-References:
- <20240205-phy-hdptx-v2-0-a7150814c047@collabora.com>
- <20240205-phy-hdptx-v2-1-a7150814c047@collabora.com>
+	s=arc-20240116; t=1707215292; c=relaxed/simple;
+	bh=KDjKnRgCbMR7V1KIGXqF6X2j+9g35bvToC7zYCbEKqo=;
+	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version; b=ssByMMGLKPuJVEP4YbMtwhLgijo59RbYg6uFiI/fvEl+EHQOKeUEqWHeDh//zUNZbcDsS6sxFPJYBFoKK3ZUnOKgiPTTuxwuepQ9DR8MEBttuJS8KJE6pGRYjrr6WuAsLiti2a6MCy226XTJeDYupjIES7fPS3MlQr8AUzQkM7o=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com; spf=pass smtp.mailfrom=arm.com; arc=none smtp.client-ip=217.140.110.172
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=arm.com
+Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
+	by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id DEAFA1FB;
+	Tue,  6 Feb 2024 02:28:45 -0800 (PST)
+Received: from e121345-lin.cambridge.arm.com (e121345-lin.cambridge.arm.com [10.1.196.40])
+	by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPA id 24DC53F641;
+	Tue,  6 Feb 2024 02:28:02 -0800 (PST)
+From: Robin Murphy <robin.murphy@arm.com>
+To: will@kernel.org
+Cc: mark.rutland@arm.com,
+	linux-arm-kernel@lists.infradead.org,
+	devicetree@vger.kernel.org,
+	suzuki.poulose@arm.com,
+	ilkka@os.amperecomputing.com,
+	bwicaksono@nvidia.com,
+	YWan@nvidia.com,
+	rwiley@nvidia.com
+Subject: [PATCH v3 0/5] perf/arm_cspmu: Add devicetree support
+Date: Tue,  6 Feb 2024 10:27:53 +0000
+Message-Id: <cover.1706718007.git.robin.murphy@arm.com>
+X-Mailer: git-send-email 2.39.2.101.g768bb238c484.dirty
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7Bit
-Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 8bit
 
-Am Montag, 5. Februar 2024, 12:24:24 CET schrieb Cristian Ciocaltea:
-> Add dt-binding schema for the HDMI/eDP Transmitter Combo PHY found on
-> Rockchip RK3588 SoC.
-> 
-> Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-> Signed-off-by: Cristian Ciocaltea <cristian.ciocaltea@collabora.com>
+v2: https://lore.kernel.org/linux-arm-kernel/cover.1702571292.git.robin.murphy@arm.com/
 
-Reviewed-by: Heiko Stuebner <heiko@sntech.de>
+Hi all,
+
+Third time lucky... here's a hopefully-final spin to address the
+functional issues Besar pointed out, and give a little final polish to
+the binding (although I stand firm on teh point of a trivial example
+not being valuable :))
+
+Cheers,
+Robin.
 
 
+Robin Murphy (5):
+  perf/arm_cspmu: Simplify initialisation
+  perf/arm_cspmu: Simplify attribute groups
+  perf/arm_cspmu: Simplify counter reset
+  dt-bindings/perf: Add Arm CoreSight PMU
+  perf/arm_cspmu: Add devicetree support
+
+ .../bindings/perf/arm,coresight-pmu.yaml      |  39 +++++
+ drivers/perf/arm_cspmu/arm_cspmu.c            | 153 ++++++++++--------
+ drivers/perf/arm_cspmu/arm_cspmu.h            |   1 +
+ drivers/perf/arm_cspmu/nvidia_cspmu.c         |   6 -
+ 4 files changed, 126 insertions(+), 73 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/perf/arm,coresight-pmu.yaml
+
+-- 
+2.39.2.101.g768bb238c484.dirty
 
 
