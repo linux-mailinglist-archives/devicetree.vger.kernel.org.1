@@ -1,218 +1,273 @@
-Return-Path: <devicetree+bounces-38912-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-38913-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id E302084AE75
-	for <lists+devicetree@lfdr.de>; Tue,  6 Feb 2024 07:44:54 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id EE5F584AE8A
+	for <lists+devicetree@lfdr.de>; Tue,  6 Feb 2024 07:58:46 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 13BDE1C22B4A
-	for <lists+devicetree@lfdr.de>; Tue,  6 Feb 2024 06:44:54 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 6B33FB23CB5
+	for <lists+devicetree@lfdr.de>; Tue,  6 Feb 2024 06:58:44 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 31EAB12836D;
-	Tue,  6 Feb 2024 06:44:49 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2A4C5128804;
+	Tue,  6 Feb 2024 06:58:40 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=microchip.com header.i=@microchip.com header.b="QW0XFVx0"
+	dkim=pass (2048-bit key) header.d=topic.nl header.i=@topic.nl header.b="cmWnmJNb"
 X-Original-To: devicetree@vger.kernel.org
-Received: from esa.microchip.iphmx.com (esa.microchip.iphmx.com [68.232.153.233])
+Received: from EUR04-DB3-obe.outbound.protection.outlook.com (mail-db3eur04on2096.outbound.protection.outlook.com [40.107.6.96])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D7EAB74E03;
-	Tue,  6 Feb 2024 06:44:46 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=68.232.153.233
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1707201889; cv=none; b=WukSVx9l/AKtS9hkbPgglbtOFXWjhmkz/rCt/sDsr292Ivuvmj6hSorHE2sAkSAcsI6pApW6d4AvegnKI+jwJ3d+qP5pdpVkzdAwdRuInNh1qZp3pnYXdkbg0Ofxf44jc8F7DVTXPalDz7isw+Q3HRHBQnXFQB8WMwmP+2uAGPs=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1707201889; c=relaxed/simple;
-	bh=6NTsi8MTHhKSU1zdGgcR2NazjNxpJ4OkB7k2y0vpsVc=;
-	h=From:To:CC:Subject:Date:Message-ID:MIME-Version:Content-Type; b=Um/SOg5awqsqq+yAT21qfAy+vWHDQMNZVmbQ4K1zmYM5k64PucXoMdsOQXnD2eo+0fSQz/MYDeS9z+1W5BLMQECuY0RRnoccXde2vI2jI/0VJZH1vb8b46xqUNV5h690ulvUY6ceQiwPW/TlCIR7mIfVczP6Kgef7CuJvrWn5c4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=microchip.com; spf=pass smtp.mailfrom=microchip.com; dkim=pass (2048-bit key) header.d=microchip.com header.i=@microchip.com header.b=QW0XFVx0; arc=none smtp.client-ip=68.232.153.233
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=microchip.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=microchip.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
-  t=1707201887; x=1738737887;
-  h=from:to:cc:subject:date:message-id:mime-version:
-   content-transfer-encoding;
-  bh=6NTsi8MTHhKSU1zdGgcR2NazjNxpJ4OkB7k2y0vpsVc=;
-  b=QW0XFVx0W4bIgxRyjfqq+pFfEuYe3xkNBsylx+bukq8ijz1jYcK2i7w0
-   zls27XP7hxNrS78lLTpMY6SFpeOkNY4txX+J9LHpNvSuHSCfB1VgxveoR
-   Nq6z+Fh1U1JUYeLP4zLdfZZDSr/Z/ipJGYOD5tjLV4WiEJJf/vET3Q7/1
-   NKZxz4ffTR9iOZ06aM69rRM8oETJ9JkMbss7mZMDGxhK2pHHhYeXeT+ev
-   wATix8nzKjbCS0Oz9LmVmjA4X8PVGBPRFAmiQlgcM4qS6WK1HmJVc791/
-   +QczhlXcTWtv9iS2Wauj5fI2GV4txOZ9hlBiQ8QdEA/zgPAo7NWoHoa7x
-   A==;
-X-CSE-ConnectionGUID: 5cKW/z4QQq6KFQyHa1Y4Bg==
-X-CSE-MsgGUID: xRRXybZ8QuS7vPMPAREMRA==
-X-IronPort-AV: E=Sophos;i="6.05,246,1701154800"; 
-   d="scan'208";a="15812734"
-X-Amp-Result: SKIPPED(no attachment in message)
-Received: from unknown (HELO email.microchip.com) ([170.129.1.10])
-  by esa3.microchip.iphmx.com with ESMTP/TLS/ECDHE-RSA-AES128-GCM-SHA256; 05 Feb 2024 23:44:45 -0700
-Received: from chn-vm-ex01.mchp-main.com (10.10.85.143) by
- chn-vm-ex04.mchp-main.com (10.10.85.152) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.35; Mon, 5 Feb 2024 23:44:29 -0700
-Received: from che-lt-i70843lx.microchip.com (10.10.85.11) by
- chn-vm-ex01.mchp-main.com (10.10.85.143) with Microsoft SMTP Server id
- 15.1.2507.35 via Frontend Transport; Mon, 5 Feb 2024 23:44:23 -0700
-From: Dharma Balasubiramani <dharma.b@microchip.com>
-To: <claudiu.beznea@tuxon.dev>, <lgirdwood@gmail.com>, <broonie@kernel.org>,
-	<robh+dt@kernel.org>, <krzysztof.kozlowski+dt@linaro.org>,
-	<conor+dt@kernel.org>, <nicolas.ferre@microchip.com>,
-	<alexandre.belloni@bootlin.com>, <dharma.b@microchip.com>,
-	<alsa-devel@alsa-project.org>, <linux-sound@vger.kernel.org>,
-	<devicetree@vger.kernel.org>, <linux-arm-kernel@lists.infradead.org>,
-	<linux-kernel@vger.kernel.org>
-CC: <hari.prasathge@microchip.com>
-Subject: [linux][PATCH] ASoC: dt-bindings: atmel,sam9x5-wm8731: Convert to json-schema
-Date: Tue, 6 Feb 2024 12:14:18 +0530
-Message-ID: <20240206064418.237377-1-dharma.b@microchip.com>
-X-Mailer: git-send-email 2.25.1
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 80AB482897;
+	Tue,  6 Feb 2024 06:58:36 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.107.6.96
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1707202720; cv=fail; b=SvZlkmcAb6O0YDlcZAJ9oHp6sY5j58sij3dIEAZyZzYRXwV6LDVrD0ivHHseIhqqx19F89ACHzOGHycSyr7K2LmI2Ld79Az62SK94fSqJGBIbUWCcFLSGhHdWzQP6K9KYdHyWLymqOM9NXSDAwmbHgBLNgKyCXKgXfBFbw8P/VI=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1707202720; c=relaxed/simple;
+	bh=hvUWXNvGIfjXZ9YEhKWqj0hh61196rXpWIPF1Atimi4=;
+	h=From:To:CC:Subject:Date:Message-ID:Content-Type:MIME-Version:
+	 References; b=dT6V2gvqLUDGnSTaP2BehF1WZug4UJddQYpK6fhfZooMlVSSwyHY5OhCi7es8UIKazJ7SXBYgOUIJ1f9j/8s0hFPqM9WgJrRnmDl7kiIuR9bJAAIolfqMh6O5mxodhcbAU7O5Kzsfc5/mTjy0cstCp5A/xse6qTlq0kKH+AU0B8=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=topic.nl; spf=pass smtp.mailfrom=topic.nl; dkim=pass (2048-bit key) header.d=topic.nl header.i=@topic.nl header.b=cmWnmJNb; arc=fail smtp.client-ip=40.107.6.96
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=topic.nl
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=topic.nl
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=lBQVpwQu15yA/jfVoRH6SDqK5QMgbcHbUsgGz1ATZfJ9SBtxDfewAxkUIiW/Nji4dCU0mcD1spdbeRcAqtUMQIGyR+2/mc2b2cx5yGpXQTqbtdMaXvqX3YVfBeywjvxEzxpVEKBIG/gEi4eZcd0NYHbbvfCYL1R5dKQNejNuwQcIBfZWimCEBztIFVV5WdlmnvtbtSMD8YmPcy//nDcSjDLndQe9MyMEf0rlcIO2AeenbbQJ2F7AoN6mBPOH03llm+9GsHf7Dg8IJPoOtC8zwN3z1fklyH28cNJ7Svoa7yacoVVxdJS2rRvDwV9cl1xizpoWyYAKkEn+PO05m63bgQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=JDbjHSh1/fIvXfuARBVeEiC8XjSZLW0jvU5KYnvO8mY=;
+ b=PwJ3v/7nJqFMBMhQt/DXYZ80LBGaTdy2tlbMwvu+5ppShDHoZBeYhJKZSJPDVIkFy0cVPR3/ySNylP3euFC1jw93tW/9Mdf4FJkJ6sC/TILIXEyDx48mBOJu9VNPPJ8kWILbX/nouxe4iQTi/Fm7Q8Hc9VPyGPtXdAzczUKAwJwDsqnltPbYhVjKavBurvw8RAXiDeIMWb78eYc2XbKmRwQxuwg63cn6TRmusLhZPBdQ7uczc4iAljaGRye8IRyag0cNaWaClQC+/Fzlw5UPlSEqBW5XHfWs4SP5snIR+8tZlPkhNdat5h11DdKB8X7i/gjHrtCqOTYVEAHGyBLdTg==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
+ 20.93.157.195) smtp.rcpttodomain=vger.kernel.org smtp.mailfrom=topic.nl;
+ dmarc=pass (p=none sp=none pct=100) action=none header.from=topic.nl;
+ dkim=none (message not signed); arc=none (0)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=topic.nl; s=selector2;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=JDbjHSh1/fIvXfuARBVeEiC8XjSZLW0jvU5KYnvO8mY=;
+ b=cmWnmJNbYOpaWFMuNvY/IXbMGL8Fbtc/pUv6EH1fDBOafRb4pH/oLju+u0r5OEzXxv2nFT4+OhYx5dBgPu5VIR4gzU7V3vsQG5FSSXJCrmFX1HbojNv+k7qi8lEEuOaoaQ8Wu9IrNsUXFbkYvRekFWJBQA2fI400w8/17BrsTg/C0/DfQM3s5wlheXLyL+lMdCzqog5/rHzfwXKj7YfunS2fk2JIuRm/0THerQGvpbWJ6c90YJNUafWzWmxzJgEuYTMB6sZbOyDH//kV4kpmlVHyoPKjvjLwq6L6AdzReRSl2yXubZ5Wx2V9x8r7fte9Gs+JZwTAxLsJTgofXoEIpw==
+Received: from AS4P191CA0046.EURP191.PROD.OUTLOOK.COM (2603:10a6:20b:657::6)
+ by DBBPR04MB7754.eurprd04.prod.outlook.com (2603:10a6:10:1ee::8) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7249.36; Tue, 6 Feb
+ 2024 06:58:33 +0000
+Received: from AM3PEPF0000A797.eurprd04.prod.outlook.com
+ (2603:10a6:20b:657:cafe::1f) by AS4P191CA0046.outlook.office365.com
+ (2603:10a6:20b:657::6) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7249.36 via Frontend
+ Transport; Tue, 6 Feb 2024 06:58:33 +0000
+X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 20.93.157.195)
+ smtp.mailfrom=topic.nl; dkim=none (message not signed)
+ header.d=none;dmarc=pass action=none header.from=topic.nl;
+Received-SPF: Pass (protection.outlook.com: domain of topic.nl designates
+ 20.93.157.195 as permitted sender) receiver=protection.outlook.com;
+ client-ip=20.93.157.195; helo=westeu11-emailsignatures-cloud.codetwo.com;
+ pr=C
+Received: from westeu11-emailsignatures-cloud.codetwo.com (20.93.157.195) by
+ AM3PEPF0000A797.mail.protection.outlook.com (10.167.16.102) with Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.7249.19 via Frontend Transport; Tue, 6 Feb 2024 06:58:32 +0000
+Received: from EUR05-AM6-obe.outbound.protection.outlook.com (104.47.18.104) by westeu11-emailsignatures-cloud.codetwo.com with CodeTwo SMTP Server (TLS12) via SMTP; Tue, 06 Feb 2024 06:58:32 +0000
+Authentication-Results-Original: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=topic.nl;
+Received: from AS8PR04MB8644.eurprd04.prod.outlook.com (2603:10a6:20b:42b::12)
+ by DBBPR04MB7787.eurprd04.prod.outlook.com (2603:10a6:10:1e3::20) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7249.36; Tue, 6 Feb
+ 2024 06:58:28 +0000
+Received: from AS8PR04MB8644.eurprd04.prod.outlook.com
+ ([fe80::651a:dedd:945a:d1dd]) by AS8PR04MB8644.eurprd04.prod.outlook.com
+ ([fe80::651a:dedd:945a:d1dd%6]) with mapi id 15.20.7249.035; Tue, 6 Feb 2024
+ 06:58:28 +0000
+From: Mike Looijmans <mike.looijmans@topic.nl>
+To: devicetree@vger.kernel.org,
+	linux-iio@vger.kernel.org
+CC: Mike Looijmans <mike.looijmans@topic.nl>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Jonathan Cameron <jic23@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Lars-Peter Clausen <lars@metafoo.de>,
+	Rob Herring <robh+dt@kernel.org>,
+	linux-kernel@vger.kernel.org
+Subject: [PATCH v3 1/2] dt-bindings: iio: adc: ti-ads1298: Add bindings
+Date: Tue, 6 Feb 2024 07:58:17 +0100
+Message-ID: <20240206065818.2016910-1-mike.looijmans@topic.nl>
+X-Mailer: git-send-email 2.34.1
+Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain
+X-ClientProxiedBy: AM0PR05CA0077.eurprd05.prod.outlook.com
+ (2603:10a6:208:136::17) To AS8PR04MB8644.eurprd04.prod.outlook.com
+ (2603:10a6:20b:42b::12)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
+X-MS-TrafficTypeDiagnostic:
+	AS8PR04MB8644:EE_|DBBPR04MB7787:EE_|AM3PEPF0000A797:EE_|DBBPR04MB7754:EE_
+X-MS-Office365-Filtering-Correlation-Id: 3ca01208-57d1-421b-7a16-08dc26e10874
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam-Untrusted: BCL:0;
+X-Microsoft-Antispam-Message-Info-Original:
+ AbO/JB+lGGPMge7YPKbYdH9Cb5wEiQlU7ABnDega3hW3ogBVQmDn72nNqTDGhS/xnbbbgOGK3tK1SrCgcGYSz/jKkirCfiuvPf2cYreT0qXwv6VNcff90KnwBvbpoxhyoOYmcs5mcyGFf4A/I39XdT2e14dDHNBRnYJFgscRJHI0LqoSVexrg5Vzqx7FctBtOiTv8FnEZJkM9UhG7wI4bHAV/6Fo0zvE0dk1fzysKK8BYN/AurXjmyMO8K/3Pcv4IN4PPJWZ1n9V7kxIMrNRzNBGBeaAEDwXoPZg8Db+S3MtpLswpdlXpSMhUzzZqmKU4xaHFI5R3Zwg9OIa/7hwYVVec2EGLI49Lzf9xp30hqi9XAnWr+TJhMm5BzDj83ZcXW1MOaSGVagQzCgSvVCtaoKdsAbHAD41ZoDLIN6I9Gb0cbYJeEPlYgjW6aCF2rPXAV33EdqEaQs5hw6RI3nUdWp9yvAfCUEzHveTAJRzcGaUoM7AIiqEKdJYn89cr/s02txc60PnntWSUg5NVLSZJb/v6hHznkHVWlPJMaEs8isukRpLM3sD8qlWjqpH6LE4ni6se68F18KZvWcwMsG+BYbCPQiC648OtvtD09XCKHo=
+X-Forefront-Antispam-Report-Untrusted:
+ CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:AS8PR04MB8644.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230031)(39840400004)(376002)(396003)(346002)(136003)(366004)(230273577357003)(230922051799003)(1800799012)(451199024)(64100799003)(186009)(38100700002)(83380400001)(2906002)(54906003)(41300700001)(26005)(316002)(66556008)(66946007)(66476007)(86362001)(38350700005)(8936002)(8676002)(4326008)(44832011)(52116002)(2616005)(6512007)(6506007)(1076003)(6666004)(6486002)(966005)(5660300002)(478600001)(36756003);DIR:OUT;SFP:1102;
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DBBPR04MB7787
+X-CodeTwo-MessageID: 0bca6c5f-55d8-4df0-b6fc-753b31b90f66.20240206065832@westeu11-emailsignatures-cloud.codetwo.com
+X-CodeTwoProcessed: true
+References: <1b153bce-a66a-45ee-a5c6-963ea6fb1c82.949ef384-8293-46b8-903f-40a477c056ae.ad72f8ca-a017-42d2-9c07-f17f282264d0@emailsignatures365.codetwo.com>
+X-EOPAttributedMessage: 0
+X-MS-Exchange-Transport-CrossTenantHeadersStripped:
+ AM3PEPF0000A797.eurprd04.prod.outlook.com
+X-MS-PublicTrafficType: Email
+X-MS-Office365-Filtering-Correlation-Id-Prvs:
+	703edf6f-83bf-43e6-c2b4-08dc26e105ae
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info:
+	7d6SypoZPzvZAdqZ50Wazq4dztl7lSJxswlcZcyAP21BSFxVkSM1GybPmBWkAgTAeHPYdwGC9L83vpOZRPhq2pD/AmvbBlgBr7w94AmXsbaJtJvEAEaVqHxtdf2i0w9rRz5C3a/WGVhbuhi00EcuJxVJqG9mioK9eAGc38qCpK5umfta9iaikugUNKzPq1LKPeWE/9j4X1qKmfgaTeDmZ01xlexZFnzyd5CSHOp1Gih2EnS+4b0viT2gGSF+bnqUEF3ByHBtb5yplgVyLrDd3a3po1JAn7+vbc3YjS+UdotH6kXALSUqm6OI5WF03SlIxXSLVtq3URUCVqb/PfW+4ggsK5YflUf8xi3b7sh6wtjW1GkvulePJTf5dfWruujAHXb2surqJLoOvilZEzz/1zUuG+upVqD7KQnXVEtRvq7cNpsImksYPy4iQvQVaurTnYkK79HVAoibB/UbOA4C+4Ef8jw1a8/HdlUqmluAzL7kZb0IdGHrKRXnBl9Dv0+uCy0UWyPT1EhkwZqP+8ivxy/Koec1yaDQbFG6stsiiL1Af/OUudO9gcMDZ4RB05EoZBOOp7uVDk4tw3TKNFBpkxFtUbVC0mOxMghfa/NdPZAE/CgxZViXsUE8nll0WaAnKpe+TWryf+epHbqUo8f77PuO+3j2H24cUz28X5cp84DBma4+Y/o21WGeJlDYV/C6
+X-Forefront-Antispam-Report:
+	CIP:20.93.157.195;CTRY:NL;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:westeu11-emailsignatures-cloud.codetwo.com;PTR:westeu11-emailsignatures-cloud.codetwo.com;CAT:NONE;SFS:(13230031)(4636009)(39840400004)(346002)(376002)(136003)(396003)(230922051799003)(230273577357003)(186009)(1800799012)(451199024)(82310400011)(64100799003)(46966006)(36840700001)(36860700001)(7596003)(7636003)(356005)(83380400001)(2906002)(40480700001)(41300700001)(47076005)(70586007)(26005)(54906003)(70206006)(316002)(336012)(86362001)(8676002)(8936002)(4326008)(44832011)(2616005)(6506007)(6512007)(1076003)(6666004)(966005)(5660300002)(15974865002)(6486002)(36756003)(478600001);DIR:OUT;SFP:1102;
+X-OriginatorOrg: topic.nl
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 06 Feb 2024 06:58:32.8615
+ (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: 3ca01208-57d1-421b-7a16-08dc26e10874
+X-MS-Exchange-CrossTenant-Id: 449607a5-3517-482d-8d16-41dd868cbda3
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=449607a5-3517-482d-8d16-41dd868cbda3;Ip=[20.93.157.195];Helo=[westeu11-emailsignatures-cloud.codetwo.com]
+X-MS-Exchange-CrossTenant-AuthSource:
+	AM3PEPF0000A797.eurprd04.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Anonymous
+X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DBBPR04MB7754
 
-Convert atmel sam9x5-wm8731-audio devicetree binding to json-schema.
+Bindings for the TI ADS1298 medical ADC. This device is
+typically used for ECG and similar measurements. Supports data
+acquisition at configurable scale and sampling frequency.
 
-Signed-off-by: Dharma Balasubiramani <dharma.b@microchip.com>
+The device has so many options for connecting stuff, at this
+point the bindings aren't nearly complete but partial bindings
+are better than no bindings at all.
+
+Signed-off-by: Mike Looijmans <mike.looijmans@topic.nl>
+
 ---
- .../sound/atmel,sam9x5-wm8731-audio.yaml      | 76 +++++++++++++++++++
- .../sound/atmel-sam9x5-wm8731-audio.txt       | 35 ---------
- 2 files changed, 76 insertions(+), 35 deletions(-)
- create mode 100644 Documentation/devicetree/bindings/sound/atmel,sam9x5-wm8731-audio.yaml
- delete mode 100644 Documentation/devicetree/bindings/sound/atmel-sam9x5-wm8731-audio.txt
 
-diff --git a/Documentation/devicetree/bindings/sound/atmel,sam9x5-wm8731-audio.yaml b/Documentation/devicetree/bindings/sound/atmel,sam9x5-wm8731-audio.yaml
+(no changes since v2)
+
+Changes in v2:
+Remove "clk" name
+Add datasheet and "incomplete" note
+
+ .../bindings/iio/adc/ti,ads1298.yaml          | 80 +++++++++++++++++++
+ 1 file changed, 80 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/iio/adc/ti,ads1298.ya=
+ml
+
+diff --git a/Documentation/devicetree/bindings/iio/adc/ti,ads1298.yaml b/Do=
+cumentation/devicetree/bindings/iio/adc/ti,ads1298.yaml
 new file mode 100644
-index 000000000000..33717b728f63
+index 000000000000..bf5a43a81d59
 --- /dev/null
-+++ b/Documentation/devicetree/bindings/sound/atmel,sam9x5-wm8731-audio.yaml
-@@ -0,0 +1,76 @@
-+# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
++++ b/Documentation/devicetree/bindings/iio/adc/ti,ads1298.yaml
+@@ -0,0 +1,80 @@
++# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
 +%YAML 1.2
 +---
-+$id: http://devicetree.org/schemas/sound/atmel,sam9x5-wm8731-audio.yaml#
++$id: http://devicetree.org/schemas/iio/adc/ti,ads1298.yaml#
 +$schema: http://devicetree.org/meta-schemas/core.yaml#
 +
-+title: Atmel at91sam9x5ek wm8731 audio complex
++title: Texas Instruments' ads1298 medical ADC chips
++
++description: |
++  Datasheet at: https://www.ti.com/product/ADS1298
++  Bindings for this chip aren't complete.
 +
 +maintainers:
-+  - Dharma Balasubiramani <dharma.b@microchip.com>
-+
-+description:
-+  The audio complex configuration for Atmel at91sam9x5ek with WM8731 audio codec.
++  - Mike Looijmans <mike.looijmans@topic.nl>
 +
 +properties:
 +  compatible:
-+    const: atmel,sam9x5-wm8731-audio
++    enum:
++      - ti,ads1298
 +
-+  atmel,model:
-+    $ref: /schemas/types.yaml#/definitions/string
-+    description: The user-visible name of this sound complex.
++  reg:
++    maxItems: 1
 +
-+  atmel,ssc-controller:
-+    $ref: /schemas/types.yaml#/definitions/phandle
-+    description: The phandle of the SSC controller.
++  spi-cpha: true
 +
-+  atmel,audio-codec:
-+    $ref: /schemas/types.yaml#/definitions/phandle
-+    description: The phandle of the WM8731 audio codec.
++  reset-gpios:
++    maxItems: 1
 +
-+  atmel,audio-routing:
++  avdd-supply:
 +    description:
-+      A list of the connections between audio components. Each entry is a pair
-+      of strings, the first being the connection's sink, the second being the
-+      connection's source.
-+    $ref: /schemas/types.yaml#/definitions/non-unique-string-array
-+    items:
-+      enum:
-+        # Board Connectors
-+        - Headphone Jack
-+        - Line In Jack
++      Analog power supply, voltage between AVDD and AVSS. When providing a
++      symmetric +/- 2.5V, the regulator should report 5V.
 +
-+        # CODEC Pins
-+        - LOUT
-+        - ROUT
-+        - LHPOUT
-+        - RHPOUT
-+        - LLINEIN
-+        - RLINEIN
-+        - MICIN
++  vref-supply:
++    description:
++      Optional reference voltage. If omitted, internal reference is used,
++      which is 2.4V when analog supply is below 4.4V, 4V otherwise.
++
++  clocks:
++    description: Optional 2.048 MHz external source clock on CLK pin
++    maxItems: 1
++
++  interrupts:
++    description: Interrupt on DRDY pin, triggers on falling edge
++    maxItems: 1
++
++  label: true
 +
 +required:
 +  - compatible
-+  - atmel,model
-+  - atmel,ssc-controller
-+  - atmel,audio-codec
-+  - atmel,audio-routing
++  - reg
++  - avdd-supply
++  - interrupts
 +
-+additionalProperties: false
++allOf:
++  - $ref: /schemas/spi/spi-peripheral-props.yaml#
++
++unevaluatedProperties: false
 +
 +examples:
 +  - |
-+    sound {
-+        compatible = "atmel,sam9x5-wm8731-audio";
++    #include <dt-bindings/gpio/gpio.h>
++    #include <dt-bindings/interrupt-controller/irq.h>
++    spi {
++        #address-cells =3D <1>;
++        #size-cells =3D <0>;
 +
-+        atmel,model = "wm8731 @ AT91SAM9X5EK";
-+
-+        atmel,audio-routing =
-+                "Headphone Jack", "RHPOUT",
-+                "Headphone Jack", "LHPOUT",
-+                "LLINEIN", "Line In Jack",
-+                "RLINEIN", "Line In Jack";
-+
-+        atmel,ssc-controller = <&ssc0>;
-+        atmel,audio-codec = <&wm8731>;
++        adc@1 {
++          reg =3D <1>;
++          compatible =3D "ti,ads1298";
++          label =3D "ads1298-1-ecg";
++          avdd-supply =3D <&reg_iso_5v_a>;
++          clocks =3D <&clk_ads1298>;
++          interrupt-parent =3D <&gpio0>;
++          interrupts =3D <78 IRQ_TYPE_EDGE_FALLING>;
++          spi-max-frequency =3D <20000000>;
++          spi-cpha;
++        };
 +    };
-diff --git a/Documentation/devicetree/bindings/sound/atmel-sam9x5-wm8731-audio.txt b/Documentation/devicetree/bindings/sound/atmel-sam9x5-wm8731-audio.txt
-deleted file mode 100644
-index 8facbce53db8..000000000000
---- a/Documentation/devicetree/bindings/sound/atmel-sam9x5-wm8731-audio.txt
-+++ /dev/null
-@@ -1,35 +0,0 @@
--* Atmel at91sam9x5ek wm8731 audio complex
--
--Required properties:
--  - compatible: "atmel,sam9x5-wm8731-audio"
--  - atmel,model: The user-visible name of this sound complex.
--  - atmel,ssc-controller: The phandle of the SSC controller
--  - atmel,audio-codec: The phandle of the WM8731 audio codec
--  - atmel,audio-routing: A list of the connections between audio components.
--    Each entry is a pair of strings, the first being the connection's sink,
--    the second being the connection's source.
--
--Available audio endpoints for the audio-routing table:
--
--Board connectors:
-- * Headphone Jack
-- * Line In Jack
--
--wm8731 pins:
--cf Documentation/devicetree/bindings/sound/wlf,wm8731.yaml
--
--Example:
--sound {
--	compatible = "atmel,sam9x5-wm8731-audio";
--
--	atmel,model = "wm8731 @ AT91SAM9X5EK";
--
--	atmel,audio-routing =
--		"Headphone Jack", "RHPOUT",
--		"Headphone Jack", "LHPOUT",
--		"LLINEIN", "Line In Jack",
--		"RLINEIN", "Line In Jack";
--
--	atmel,ssc-controller = <&ssc0>;
--	atmel,audio-codec = <&wm8731>;
--};
--- 
-2.25.1
++...
+--=20
+2.34.1
 
+
+Met vriendelijke groet / kind regards,=0A=
+=0A=
+Mike Looijmans=0A=
+System Expert=0A=
+=0A=
+=0A=
+TOPIC Embedded Products B.V.=0A=
+Materiaalweg 4, 5681 RJ Best=0A=
+The Netherlands=0A=
+=0A=
+T: +31 (0) 499 33 69 69=0A=
+E: mike.looijmans@topic.nl=0A=
+W: www.topic.nl=0A=
+=0A=
+Please consider the environment before printing this e-mail=0A=
 
