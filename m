@@ -1,430 +1,593 @@
-Return-Path: <devicetree+bounces-39216-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-39208-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 571C884BC25
-	for <lists+devicetree@lfdr.de>; Tue,  6 Feb 2024 18:36:13 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8469D84BBF8
+	for <lists+devicetree@lfdr.de>; Tue,  6 Feb 2024 18:33:53 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 19B5AB24B8D
-	for <lists+devicetree@lfdr.de>; Tue,  6 Feb 2024 17:36:10 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id A806E1C240C7
+	for <lists+devicetree@lfdr.de>; Tue,  6 Feb 2024 17:33:52 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E52F418054;
-	Tue,  6 Feb 2024 17:33:15 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D8CA97484;
+	Tue,  6 Feb 2024 17:32:58 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="gAa3+ia+"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="YPUh4Iz3"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f47.google.com (mail-wm1-f47.google.com [209.85.128.47])
+Received: from mail-wr1-f45.google.com (mail-wr1-f45.google.com [209.85.221.45])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B9A5B1B286;
-	Tue,  6 Feb 2024 17:33:13 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.47
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7B58A13AEE
+	for <devicetree@vger.kernel.org>; Tue,  6 Feb 2024 17:32:56 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.45
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1707240795; cv=none; b=dGGaHh3TNK82/BgKT1GEh6b0QIB771Bl6HGU/xWmv9EQnmGSM3Y+/5G+T8NCuux7Kf1ghIntB0SWAnesl7vA58Acuf05VNe3WvSvtQAZce+cLNyZZOHZZN4TFoerSQygwGl2FGACY11UaeielyZTyxkA40ey4/E/8NifRGRHdpw=
+	t=1707240778; cv=none; b=gWHCOjdnfKU10zFNKAUXrXuMlnscG+hG93VNC0R8cx64aJV0a0w8i9zjQmNZrlwg9znhpmxvzefj+2TqpcSSkZ/y5T6W83/dc3/zotwosdpoQVreiECasxiMpb5+MoM1iXSi0AztHcCihrEfUKAUEdUQILu9Ukt3Dlkp4Tm9w/0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1707240795; c=relaxed/simple;
-	bh=lVnD2FLt87Y7Be9LDp9rQeARP6jlrGEoL4hF4rwexN8=;
-	h=From:To:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=dycFiU3H4UlMJLlv3YRQ/5ypVan88RRpPByC12PgwVTia+pKqqjGQaLS0Q+hFac6FrteoLk3YLVZ1Un1BUNq205wak2XbJ+oRLV6ysm/ueJ6d7NiH4eIcy8eoUm5Zo+UVuT3naawbLKYh+wq80F/NUmGI97F70DccK4+Gru6Pok=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=gAa3+ia+; arc=none smtp.client-ip=209.85.128.47
+	s=arc-20240116; t=1707240778; c=relaxed/simple;
+	bh=IH6VnHpBGXDFeSXudtfvfdklOg6ktojoUsYKvgUL5bg=;
+	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=okUz0LtoGnAa0+S/PR5RiYGDhOK6xA+xdGgNkxeKDZh3AeG6rP2MdgSLccb5Ln7CNC1FuGSHO/SD+Kk1tt09eE5g4Foy5jX3lIM9qs1jagKP1Q4SvAtwJTY/MLIUE8cqjiA71u1qmodLPwXRUFrarYncy07PXTRJwYiqn8MZ6g8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=YPUh4Iz3; arc=none smtp.client-ip=209.85.221.45
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-wm1-f47.google.com with SMTP id 5b1f17b1804b1-40ff812442aso2814895e9.2;
-        Tue, 06 Feb 2024 09:33:13 -0800 (PST)
+Received: by mail-wr1-f45.google.com with SMTP id ffacd0b85a97d-33b40208735so1471984f8f.3
+        for <devicetree@vger.kernel.org>; Tue, 06 Feb 2024 09:32:56 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1707240792; x=1707845592; darn=vger.kernel.org;
+        d=gmail.com; s=20230601; t=1707240775; x=1707845575; darn=vger.kernel.org;
         h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:to:from:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=2bPb64tk5SB/C0z8w9KrOUZ8DDcTcGxxTiQl9YBAiAg=;
-        b=gAa3+ia+ttcOabJQw2nDPsvioRq/wUBKRlKgh5SnPVIWcsgaK8kdXmey6isqSihXD4
-         znxruIKEbX7rIByBlbqTFSVypb6sLNNMbgb5eXq+4ibo3RiIcKNrx9ltulf7X0kPz1qR
-         07PqEGhO/Dpin8NCQqIYVYjWHwBqP8slursYTQ0ib0V3GJdVaZ+QG14t7dzYS4DS7lZg
-         RBiBFMQ5ag6Fm5ye3GlGrBQ5+M82BBj1d+YGvIVe9vSw+i5V85Di2Ggfo+ZnHz/1XVLY
-         klsK3zIi1vORt/fvDO4yb4GE4rFIK+WHtDQ5xuHh2F95UtAJ+TxUB24uzPU48QnoNK16
-         gsJw==
+         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=ff5/vMkBDQ33uChPeLE0kDKlvZvHvkb6S8CWXiyfmw8=;
+        b=YPUh4Iz3rJF8wbpr1HhDuYFSUCBuSN/Kmhe8xtz7xPbuaP68YOBLSUDSSDD+/5Jj15
+         zPk3CZM8CNpa0OnItc8dx5zPbQ5sl4Uqb+oP5hii+YEAB8qJZrHXgMw7N3r1LxUGdOdM
+         OsAVDe3lUNSWxba5tX53UV3T7HYN9ZbKjM1B729jeKarKfxmcQ+a4M5he5gdmRYDk5lX
+         a8MrmeX+IDio7p+GhPi53yynLi4+/sy9sh/+OCVoY6Z91QJ2tghGp/NdtUUayexta/gu
+         Y0qTJBTRRIjxa4/NvUC0twMOdxM9thC3p+WrGSFbbhxR3/VdgfyCLP2iC/zEjG+nvw6n
+         Urtg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1707240792; x=1707845592;
+        d=1e100.net; s=20230601; t=1707240775; x=1707845575;
         h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:to:from:x-gm-message-state:from:to:cc
+         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=2bPb64tk5SB/C0z8w9KrOUZ8DDcTcGxxTiQl9YBAiAg=;
-        b=qOxG3Wwn3GKi+mKDF2tdXjqgLIUNnEy3nemOfJJizYETaFDV8IU3R+gmavLlr23zcE
-         kmFvSCR60egCYjl4jsNcwmazRIzVyNd9b8yrthLIeF4ab1dTEi5hN9FmRO2FUaa38uo/
-         5kyI85dOKBjnnUn9w/e7avaeNzJUWL4qg1RFKJ8j52kxM/bju++4nmt6l1DwS8RmYvYi
-         sRIPLUqWblBEbSl9FiJH4qtDBKDvXWrxObRo3vGy4syx0DFHZQdIoOGmLB7THnJWLrhc
-         A+D6YPL7aVb1/0l5/A+V2aPdtS5TzRaa5YPdeHvHTiwUbgujxwaRzbdH2nkF8196jGJj
-         akqA==
-X-Gm-Message-State: AOJu0Yw/MDCZMMyRCiUWGjGgNNwOKYhzP++y6ywtbnCg+S02SS0jCIV5
-	lENCZ6qzhIr0Ot2Pik/irxPzTt0GqHHG0687x4JMJiLY/55fbIzWv4i1KsNH
-X-Google-Smtp-Source: AGHT+IEexSRYDqF/6ubZNIvZWgCp7afO8Ihds9Esax5aS9qQU9+0JeD37z6DDagH+eVxNoUH8QDkYA==
-X-Received: by 2002:a05:600c:a3a4:b0:40f:dc50:aea5 with SMTP id hn36-20020a05600ca3a400b0040fdc50aea5mr2139106wmb.22.1707240791890;
-        Tue, 06 Feb 2024 09:33:11 -0800 (PST)
-X-Forwarded-Encrypted: i=0; AJvYcCWgjwEI0YWxlE5wEa5UzzHoRfc14OADrBTi6J5gQtvGeUF7lJ/zNovU6G9wHTFGTG5MQdD/H8RwaJ5ob0gQAVjAr7mpTuUV+LDvASwawQU9VnY08E/BVeWFt6jvRLLDxdhopDMuv+b5YYF9VwdN/+CHNhAGweBloHY5n1WgU+Zy4hxPy9KWNWnXdG9r9172bGKJTamq4xuw/+Dtzp/p5ConyEF5Q1r1QPFvVrgr9c8SqTP0PJkCE3grKFvyCsdJl2iCdpeutSI7n7eZrIGtsY6VFPiP2k7z7oTVgSf2QZXW+wmuzyyJKR0m4uiSrxXNGhNnBZaA1ObziL7IQQpC+k8YdwH+5vrGqF+Bayk7HQ10H0SwWizZgwKVSPw2sAaoMsj2ZxstF7ZEGh2PMhK+H+FAeOyYHDBzFi/DHVw93b5ykJDrU5WZh6+8rl942cCnJ5E2SHCfYs2MGday6NidOYz0N1UOGcuJpvqOhGnF/UhoGT5VqVM9UQU9yqSYe9qJqj7BPmsp4EDWLqUA5jDCs/hME5xb97kjxFLemjb6pznkOcQ0etK+1G8scaskJSPApNLppcL3stPTdQyT2gwzuYudm1q1obTrSomTVjH90MzcQLZIhP5a9E8MUTmaeiox4i+D8tmr2RDChyDmCBDaYCR0msht45GxByivm5rf6B3jw9sO+tTYOg==
-Received: from localhost.localdomain (93-34-89-13.ip49.fastwebnet.it. [93.34.89.13])
-        by smtp.googlemail.com with ESMTPSA id l14-20020a05600c4f0e00b0040fc56712e8sm2621215wmq.17.2024.02.06.09.33.09
+        bh=ff5/vMkBDQ33uChPeLE0kDKlvZvHvkb6S8CWXiyfmw8=;
+        b=Hueun7IC/C/JYMZJX2qoFCFydlM8evxn+7IXdCwKyVlwUidSw/5jNvQyOXu5qeTTil
+         I3gDrI4FTcAkzsxLKMtI6I0Da2MFdBzdN/aeO5IdENYUfla8MmmbgSzBuED64Bc1hl1j
+         ju6RubMXcdnNfs3HNwHdPCSzC7xKFug7XsOYTRwLewwSD0zu2COTPdY1Tcqca0VqfvJu
+         mmgFCeUxez5Vu4O5f44k+xsSWhfDgRIbX7dTvE46vlZhf381D2gNnL6LbR1mRKRTjX8C
+         AOG+ke7DrQm1OpSrQWV+CyZDIKlRrRlQY6MdRoMzBfI9X3p7KRF+T/FALmwuIIuG66kP
+         wrTg==
+X-Gm-Message-State: AOJu0YxWunsLhcNhXE5VyaPXBVMMLiKfWAFhitJFmCDz9U2bRw/tNjMj
+	4qgVAAzci+zIoS4WLF5nTxGiSmRaUIQ9mzVgyjpQwIj+5l180oVf
+X-Google-Smtp-Source: AGHT+IGE22bIu1CoDYfW6i501zFoy1xubIHKLYVLZifrpVaFhMwxEkcmHv9047nYCwXkTdr7zrWTZw==
+X-Received: by 2002:a5d:4e12:0:b0:33b:356c:e95e with SMTP id p18-20020a5d4e12000000b0033b356ce95emr2250025wrt.49.1707240774395;
+        Tue, 06 Feb 2024 09:32:54 -0800 (PST)
+X-Forwarded-Encrypted: i=0; AJvYcCV0Dd9ifj5DcIR7alMf0efvD760pPNgMPjPZ1BTeazCjrBaIcgIuLue7EbvP2iiHF+tSoUjXTQqMLEmNQb9y1qlU2sx/Wuhl6ZbpfB9RjC5YSPvDqMbJNIi8YqmQPYXfqZdW/lRA45kR6iX7ZaTR+EBQAv6mNEWZ56UYZZy181uDXs6ApzdVgqnlw9MPh3ODC40VX/KeIVXi8Yb6rTz1AuHPI/RqOeN4S6TZYhIfTBHTzqApygEWwv6r9yFUXROKoDmur+LkJAg8lptmLcscTXkGDnJfqUWjZQoBSZ+Tm6ogB0Vgblljwzrw3fquXrUQl+E4o69QZ2Mp4i67ams4BxzrQ==
+Received: from jernej-laptop.localnet (86-58-6-171.dynamic.telemach.net. [86.58.6.171])
+        by smtp.gmail.com with ESMTPSA id b16-20020a5d45d0000000b0033b11e91c0bsm2575048wrs.81.2024.02.06.09.32.53
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 06 Feb 2024 09:33:10 -0800 (PST)
-From: Christian Marangi <ansuelsmth@gmail.com>
-To: "David S. Miller" <davem@davemloft.net>,
-	Eric Dumazet <edumazet@google.com>,
-	Jakub Kicinski <kuba@kernel.org>,
-	Paolo Abeni <pabeni@redhat.com>,
-	Rob Herring <robh+dt@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Bjorn Andersson <andersson@kernel.org>,
-	Konrad Dybcio <konrad.dybcio@linaro.org>,
-	Andrew Lunn <andrew@lunn.ch>,
-	Heiner Kallweit <hkallweit1@gmail.com>,
-	Russell King <linux@armlinux.org.uk>,
-	Florian Fainelli <florian.fainelli@broadcom.com>,
-	Broadcom internal kernel review list <bcm-kernel-feedback-list@broadcom.com>,
-	Christian Marangi <ansuelsmth@gmail.com>,
-	Robert Marko <robert.marko@sartura.hr>,
-	netdev@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	linux-arm-msm@vger.kernel.org
-Subject: [net-next PATCH v7 10/10] net: phy: qca807x: add support for configurable LED
-Date: Tue,  6 Feb 2024 18:31:13 +0100
-Message-ID: <20240206173115.7654-11-ansuelsmth@gmail.com>
-X-Mailer: git-send-email 2.43.0
-In-Reply-To: <20240206173115.7654-1-ansuelsmth@gmail.com>
-References: <20240206173115.7654-1-ansuelsmth@gmail.com>
+        Tue, 06 Feb 2024 09:32:54 -0800 (PST)
+From: Jernej =?utf-8?B?xaBrcmFiZWM=?= <jernej.skrabec@gmail.com>
+To: Chen-Yu Tsai <wens@csie.org>, Samuel Holland <samuel@sholland.org>,
+ Rob Herring <robh+dt@kernel.org>,
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+ Conor Dooley <conor+dt@kernel.org>, Andre Przywara <andre.przywara@arm.com>
+Cc: linux-sunxi@lists.linux.dev, devicetree@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, Nick Alilovic <nickalilovic@gmail.com>
+Subject: Re: [PATCH 3/3] arm64: dts: allwinner: Add Jide Remix Mini PC support
+Date: Tue, 06 Feb 2024 18:32:53 +0100
+Message-ID: <4867577.GXAFRqVoOG@jernej-laptop>
+In-Reply-To: <205b3828-6ec2-4670-ac68-a61e5cc0597d@arm.com>
+References:
+ <20240204094404.149776-1-andre.przywara@arm.com>
+ <3788758.kQq0lBPeGt@jernej-laptop>
+ <205b3828-6ec2-4670-ac68-a61e5cc0597d@arm.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset="UTF-8"
 
-QCA8072/5 have up to 2 LEDs attached for PHY.
+Dne torek, 06. februar 2024 ob 01:47:05 CET je Andre Przywara napisal(a):
+> Hi Jernej,
+>=20
+> thanks for having a look!
+>=20
+> On 05/02/2024 19:20, Jernej =C5=A0krabec wrote:
+> > Dne ponedeljek, 05. februar 2024 ob 19:12:45 CET je Jernej =C5=A0krabec=
+ napisal(a):
+> >> Hi Andre!
+> >>
+> >> Dne nedelja, 04. februar 2024 ob 10:44:04 CET je Andre Przywara napisa=
+l(a):
+> >>> The Remix Mini PC is a "mini computer" using the Allwinner H64 SoC,
+> >>> which appears to be just a relabelled A64. It was launched in 2015 by
+> >>> the now defunct company Jide, and shipped with a desktop optimised
+> >>> version of Android. It features
+> >>> 	- Allwinner H64 Soc (4 * Arm Cortex-A53 cores)
+> >>> 	- 1 or 2 GB DRAM
+> >>> 	- 8 or 16 GB eMMC flash
+> >>> 	- 100 MBit Ethernet port (using an X-Powers AC200 PHY)
+> >>> 	- RTL8723BS WiFi & Bluetooth chip
+> >>> 	- HDMI port
+> >>> 	- two USB 2.0 ports
+> >>> 	- 3.5mm AV port
+> >>> 	- microSD card slot
+> >>>
+> >>> The devicetree covers most peripherals, though there is no agreed
+> >>> binding for the PHY chip yet, so this is left out.
+> >>>
+> >>> Signed-off-by: Andre Przywara <andre.przywara@arm.com>
+> >>> ---
+> >>>   arch/arm64/boot/dts/allwinner/Makefile        |   1 +
+> >>>   .../allwinner/sun50i-h64-remix-mini-pc.dts    | 357 +++++++++++++++=
++++
+> >>>   2 files changed, 358 insertions(+)
+> >>>   create mode 100644 arch/arm64/boot/dts/allwinner/sun50i-h64-remix-m=
+ini-pc.dts
+> >>>
+> >>> diff --git a/arch/arm64/boot/dts/allwinner/Makefile b/arch/arm64/boot=
+/dts/allwinner/Makefile
+> >>> index 91d505b385de..2db3b15ad09f 100644
+> >>> --- a/arch/arm64/boot/dts/allwinner/Makefile
+> >>> +++ b/arch/arm64/boot/dts/allwinner/Makefile
+> >>> @@ -16,6 +16,7 @@ dtb-$(CONFIG_ARCH_SUNXI) +=3D sun50i-a64-pinetab.dtb
+> >>>   dtb-$(CONFIG_ARCH_SUNXI) +=3D sun50i-a64-pinetab-early-adopter.dtb
+> >>>   dtb-$(CONFIG_ARCH_SUNXI) +=3D sun50i-a64-sopine-baseboard.dtb
+> >>>   dtb-$(CONFIG_ARCH_SUNXI) +=3D sun50i-a64-teres-i.dtb
+> >>> +dtb-$(CONFIG_ARCH_SUNXI) +=3D sun50i-h64-remix-mini-pc.dtb
+> >>>   dtb-$(CONFIG_ARCH_SUNXI) +=3D sun50i-a100-allwinner-perf1.dtb
+> >>>   dtb-$(CONFIG_ARCH_SUNXI) +=3D sun50i-h5-bananapi-m2-plus.dtb
+> >>>   dtb-$(CONFIG_ARCH_SUNXI) +=3D sun50i-h5-bananapi-m2-plus-v1.2.dtb
+> >>> diff --git a/arch/arm64/boot/dts/allwinner/sun50i-h64-remix-mini-pc.d=
+ts b/arch/arm64/boot/dts/allwinner/sun50i-h64-remix-mini-pc.dts
+> >>> new file mode 100644
+> >>> index 000000000000..537923a541a8
+> >>> --- /dev/null
+> >>> +++ b/arch/arm64/boot/dts/allwinner/sun50i-h64-remix-mini-pc.dts
+> >>> @@ -0,0 +1,357 @@
+> >>> +// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
+> >>> +// Copyright (c) 2018 ARM Ltd.
+> >>
+> >> Shouldn't be 2024?
+>=20
+> Well, that just documents that sad fact that I indeed created this file=20
+> 6 years ago, but just managed now to actually send this. Is there a=20
+> requirement for this being "recent"?
 
-LEDs can be configured to be ON/hw blink or be set to HW control.
+Not really, but it's strange looking. Some might incorrectly assume that it=
+'s
+present in the kernel longer than it really is.
 
-Hw blink mode is set to blink at 4Hz or 250ms.
+>=20
+> >>
+> >>> +
+> >>> +/dts-v1/;
+> >>> +
+> >>> +#include "sun50i-a64.dtsi"
+> >>> +#include "sun50i-a64-cpu-opp.dtsi"
+> >>> +
+> >>> +#include <dt-bindings/gpio/gpio.h>
+> >>> +
+> >>> +/ {
+> >>> +	model =3D "Remix Mini PC";
+> >>> +	compatible =3D "jide,remix-mini-pc", "allwinner,sun50i-h64",
+> >>> +		     "allwinner,sun50i-a64";
+> >>> +
+> >>> +	aliases {
+> >>> +		ethernet1 =3D &rtl8723bs;
+> >>> +		serial0 =3D &uart0;
+> >>> +	};
+> >>> +
+> >>> +	chosen {
+> >>> +		stdout-path =3D "serial0:115200n8";
+> >>> +	};
+> >>> +
+> >>> +	hdmi-connector {
+> >>> +		compatible =3D "hdmi-connector";
+> >>> +		type =3D "a";
+> >>> +
+> >>> +		port {
+> >>> +			hdmi_con_in: endpoint {
+> >>> +				remote-endpoint =3D <&hdmi_out_con>;
+> >>> +			};
+> >>> +		};
+> >>> +	};
+> >>> +
+> >>> +	reg_vcc5v: regulator-5v {
+> >>> +		/* board wide 5V supply directly from the DC input */
+> >>> +		compatible =3D "regulator-fixed";
+> >>> +		regulator-name =3D "vcc-5v";
+> >>> +		regulator-min-microvolt =3D <5000000>;
+> >>> +		regulator-max-microvolt =3D <5000000>;
+> >>> +		regulator-always-on;
+> >>> +	};
+> >>> +
+> >>> +	wifi_pwrseq: wifi_pwrseq {
+> >>> +		compatible =3D "mmc-pwrseq-simple";
+> >>> +		pinctrl-names =3D "default";
+> >>> +		reset-gpios =3D <&r_pio 0 2 GPIO_ACTIVE_LOW>; /* PL2 */
+> >>> +		post-power-on-delay-ms =3D <200>;
+> >>> +	};
+> >>> +};
+> >>> +
+> >>> +&codec {
+> >>> +	status =3D "okay";
+> >>> +};
+> >>> +
+> >>> +&codec_analog {
+> >>> +	cpvdd-supply =3D <&reg_eldo1>;
+> >>> +	status =3D "okay";
+> >>> +};
+> >>> +
+> >>> +&cpu0 {
+> >>> +	cpu-supply =3D <&reg_dcdc2>;
+> >>> +};
+> >>> +
+> >>> +&cpu1 {
+> >>> +	cpu-supply =3D <&reg_dcdc2>;
+> >>> +};
+> >>> +
+> >>> +&cpu2 {
+> >>> +	cpu-supply =3D <&reg_dcdc2>;
+> >>> +};
+> >>> +
+> >>> +&cpu3 {
+> >>> +	cpu-supply =3D <&reg_dcdc2>;
+> >>> +};
+> >>> +
+> >>> +&dai {
+> >>> +	status =3D "okay";
+> >>> +};
+> >>> +
+> >>> +&de {
+> >>> +	status =3D "okay";
+> >>> +};
+> >>> +
+> >>> +&ehci0 {
+> >>> +	status =3D "okay";
+> >>> +};
+> >>> +
+> >>> +&ehci1 {
+> >>> +	status =3D "okay";
+> >>> +};
+> >>> +
+> >>> +&hdmi {
+> >>> +	hvcc-supply =3D <&reg_dldo1>;
+> >>> +	status =3D "okay";
+> >>> +};
+> >>> +
+> >>> +&hdmi_out {
+> >>> +	hdmi_out_con: endpoint {
+> >>> +		remote-endpoint =3D <&hdmi_con_in>;
+> >>> +	};
+> >>> +};
+> >>> +
+> >>> +/* Connects to the AC200 chip */
+> >>> +&i2c0 {
+> >>> +	pinctrl-names =3D "default";
+> >>> +	pinctrl-0 =3D <&i2c0_pins>;
+> >>> +	status =3D "okay";
+> >>> +};
+> >>> +
+> >>> +&i2c0_pins {
+> >>> +	bias-pull-up;
+> >>> +};
+> >>> +
+> >>> +&mmc0 {
+> >>> +	pinctrl-names =3D "default";
+> >>> +	pinctrl-0 =3D <&mmc0_pins>;
+> >>> +	vmmc-supply =3D <&reg_dcdc1>;
+> >>> +	cd-gpios =3D <&pio 5 6 GPIO_ACTIVE_LOW>;
+> >>> +	disable-wp;
+> >>> +	bus-width =3D <4>;
+> >>> +	status =3D "okay";
+> >>> +};
+> >>> +
+> >>> +&mmc1 {
+> >>> +	pinctrl-names =3D "default";
+> >>> +	pinctrl-0 =3D <&mmc1_pins>;
+> >>> +	vmmc-supply =3D <&reg_aldo1>;
+> >>> +	vqmmc-supply =3D <&reg_dldo4>;
+> >>> +	mmc-pwrseq =3D <&wifi_pwrseq>;
+> >>> +	bus-width =3D <4>;
+> >>> +	non-removable;
+> >>> +	status =3D "okay";
+> >>> +
+> >>> +	rtl8723bs: wifi@1 {
+> >>> +		reg =3D <1>;
+> >>> +		interrupt-parent =3D <&r_pio>;
+> >>> +		interrupts =3D <0 3 IRQ_TYPE_LEVEL_LOW>; /* PL3 */
+> >>> +		interrupt-names =3D "host-wake";
+> >>> +	};
+> >>
+> >> Node without compatible doesn't help. Please remove it.
+>=20
+> Huh, but where do I put the the IRQ line then? And every other RTL8723BS=
+=20
+> user seems to do the same?
 
-PHY can support both copper (TP) or fiber (FIBRE) kind and supports
-different HW control modes based on the port type.
+It's good, sorry for the noise.
 
-HW control modes supported for netdev trigger for copper ports are:
-- LINK_10
-- LINK_100
-- LINK_1000
-- TX
-- RX
-- FULL_DUPLEX
-- HALF_DUPLEX
+>=20
+> >>
+> >>> +};
+> >>> +
+> >>> +&mmc2 {
+> >>> +	pinctrl-names =3D "default";
+> >>> +	pinctrl-0 =3D <&mmc2_pins>, <&mmc2_ds_pin>;
+> >>> +	vmmc-supply =3D <&reg_dcdc1>;
+> >>> +	vqmmc-supply =3D <&reg_eldo1>;
+> >>> +	bus-width =3D <8>;
+> >>> +	non-removable;
+> >>> +	mmc-ddr-1_8v;
+> >>> +	mmc-hs200-1_8v;
+> >>
+> >> Aren't these speed modes enabled by default?
+>=20
+> Enabled by who? Our current sunxi-mmc driver? I cannot find anything in=20
+> the binding that suggests that there would be some default settings.
 
-HW control modes supported for netdev trigger for fiber ports are:
-- LINK_100
-- LINK_1000
-- TX
-- RX
-- FULL_DUPLEX
-- HALF_DUPLEX
+Looking at Linux sunxi mmc driver, mmc-ddr-1_8v is enabled by default for
+"new timings" variants except for H5. Anyway...
 
-LED support conflicts with GPIO controller feature and must be disabled
-if gpio-controller is used for the PHY.
+>=20
+> > Sorry, mmc-hs200-1_8v is ok, but mmc-ddr-1_8v should be
+> > removed.
+>=20
+> Mmh, I am confused: I thought after the H5 eMMC mishap we figured that=20
+> all speed modes supported by the eMMC chip should be listed in the DT?
 
-Signed-off-by: Christian Marangi <ansuelsmth@gmail.com>
----
- drivers/net/phy/qcom/qca807x.c | 256 ++++++++++++++++++++++++++++++++-
- 1 file changed, 254 insertions(+), 2 deletions(-)
+I think H5 just has (had?) driver issue. From what I can see, only highest
+supported mode by kernel and chip is specified in all Allwinner DTs.
+mmc-ddr-1_8v is only specified by two recent board addition, where I missed
+it while reviewing.
 
-diff --git a/drivers/net/phy/qcom/qca807x.c b/drivers/net/phy/qcom/qca807x.c
-index 43fc9cddd975..01815f947060 100644
---- a/drivers/net/phy/qcom/qca807x.c
-+++ b/drivers/net/phy/qcom/qca807x.c
-@@ -57,8 +57,18 @@
- #define QCA807X_MMD7_LED_CTRL(x)			(0x8074 + ((x) * 2))
- #define QCA807X_MMD7_LED_FORCE_CTRL(x)			(0x8075 + ((x) * 2))
- 
--#define QCA807X_GPIO_FORCE_EN				BIT(15)
--#define QCA807X_GPIO_FORCE_MODE_MASK			GENMASK(14, 13)
-+/* LED hw control pattern for fiber port */
-+#define QCA807X_LED_FIBER_PATTERN_MASK			GENMASK(11, 1)
-+#define QCA807X_LED_FIBER_TXACT_BLK_EN			BIT(10)
-+#define QCA807X_LED_FIBER_RXACT_BLK_EN			BIT(9)
-+#define QCA807X_LED_FIBER_FDX_ON_EN			BIT(6)
-+#define QCA807X_LED_FIBER_HDX_ON_EN			BIT(5)
-+#define QCA807X_LED_FIBER_1000BX_ON_EN			BIT(2)
-+#define QCA807X_LED_FIBER_100FX_ON_EN			BIT(1)
-+
-+/* Some device repurpose the LED as GPIO out */
-+#define QCA807X_GPIO_FORCE_EN				QCA808X_LED_FORCE_EN
-+#define QCA807X_GPIO_FORCE_MODE_MASK			QCA808X_LED_FORCE_MODE_MASK
- 
- #define QCA807X_FUNCTION_CONTROL			0x10
- #define QCA807X_FC_MDI_CROSSOVER_MODE_MASK		GENMASK(6, 5)
-@@ -121,6 +131,233 @@ static int qca807x_cable_test_start(struct phy_device *phydev)
- 	return 0;
- }
- 
-+static int qca807x_led_parse_netdev(struct phy_device *phydev, unsigned long rules,
-+				    u16 *offload_trigger)
-+{
-+	/* Parsing specific to netdev trigger */
-+	switch (phydev->port) {
-+	case PORT_TP:
-+		if (test_bit(TRIGGER_NETDEV_TX, &rules))
-+			*offload_trigger |= QCA808X_LED_TX_BLINK;
-+		if (test_bit(TRIGGER_NETDEV_RX, &rules))
-+			*offload_trigger |= QCA808X_LED_RX_BLINK;
-+		if (test_bit(TRIGGER_NETDEV_LINK_10, &rules))
-+			*offload_trigger |= QCA808X_LED_SPEED10_ON;
-+		if (test_bit(TRIGGER_NETDEV_LINK_100, &rules))
-+			*offload_trigger |= QCA808X_LED_SPEED100_ON;
-+		if (test_bit(TRIGGER_NETDEV_LINK_1000, &rules))
-+			*offload_trigger |= QCA808X_LED_SPEED1000_ON;
-+		if (test_bit(TRIGGER_NETDEV_HALF_DUPLEX, &rules))
-+			*offload_trigger |= QCA808X_LED_HALF_DUPLEX_ON;
-+		if (test_bit(TRIGGER_NETDEV_FULL_DUPLEX, &rules))
-+			*offload_trigger |= QCA808X_LED_FULL_DUPLEX_ON;
-+		break;
-+	case PORT_FIBRE:
-+		if (test_bit(TRIGGER_NETDEV_TX, &rules))
-+			*offload_trigger |= QCA807X_LED_FIBER_TXACT_BLK_EN;
-+		if (test_bit(TRIGGER_NETDEV_RX, &rules))
-+			*offload_trigger |= QCA807X_LED_FIBER_RXACT_BLK_EN;
-+		if (test_bit(TRIGGER_NETDEV_LINK_100, &rules))
-+			*offload_trigger |= QCA807X_LED_FIBER_100FX_ON_EN;
-+		if (test_bit(TRIGGER_NETDEV_LINK_1000, &rules))
-+			*offload_trigger |= QCA807X_LED_FIBER_1000BX_ON_EN;
-+		if (test_bit(TRIGGER_NETDEV_HALF_DUPLEX, &rules))
-+			*offload_trigger |= QCA807X_LED_FIBER_HDX_ON_EN;
-+		if (test_bit(TRIGGER_NETDEV_FULL_DUPLEX, &rules))
-+			*offload_trigger |= QCA807X_LED_FIBER_FDX_ON_EN;
-+		break;
-+	default:
-+		return -EOPNOTSUPP;
-+	}
-+
-+	if (rules && !*offload_trigger)
-+		return -EOPNOTSUPP;
-+
-+	return 0;
-+}
-+
-+static int qca807x_led_hw_control_enable(struct phy_device *phydev, u8 index)
-+{
-+	u16 reg;
-+
-+	if (index > 1)
-+		return -EINVAL;
-+
-+	reg = QCA807X_MMD7_LED_FORCE_CTRL(index);
-+	return qca808x_led_reg_hw_control_enable(phydev, reg);
-+}
-+
-+static int qca807x_led_hw_is_supported(struct phy_device *phydev, u8 index,
-+				       unsigned long rules)
-+{
-+	u16 offload_trigger = 0;
-+
-+	if (index > 1)
-+		return -EINVAL;
-+
-+	return qca807x_led_parse_netdev(phydev, rules, &offload_trigger);
-+}
-+
-+static int qca807x_led_hw_control_set(struct phy_device *phydev, u8 index,
-+				      unsigned long rules)
-+{
-+	u16 reg, mask, offload_trigger = 0;
-+	int ret;
-+
-+	if (index > 1)
-+		return -EINVAL;
-+
-+	ret = qca807x_led_parse_netdev(phydev, rules, &offload_trigger);
-+	if (ret)
-+		return ret;
-+
-+	ret = qca807x_led_hw_control_enable(phydev, index);
-+	if (ret)
-+		return ret;
-+
-+	switch (phydev->port) {
-+	case PORT_TP:
-+		reg = QCA807X_MMD7_LED_CTRL(index);
-+		mask = QCA808X_LED_PATTERN_MASK;
-+		break;
-+	case PORT_FIBRE:
-+		/* HW control pattern bits are in LED FORCE reg */
-+		reg = QCA807X_MMD7_LED_FORCE_CTRL(index);
-+		mask = QCA807X_LED_FIBER_PATTERN_MASK;
-+		break;
-+	default:
-+		return -EINVAL;
-+	}
-+
-+	return phy_modify_mmd(phydev, MDIO_MMD_AN, reg, mask,
-+			      offload_trigger);
-+}
-+
-+static bool qca807x_led_hw_control_status(struct phy_device *phydev, u8 index)
-+{
-+	u16 reg;
-+
-+	if (index > 1)
-+		return false;
-+
-+	reg = QCA807X_MMD7_LED_FORCE_CTRL(index);
-+	return qca808x_led_reg_hw_control_status(phydev, reg);
-+}
-+
-+static int qca807x_led_hw_control_get(struct phy_device *phydev, u8 index,
-+				      unsigned long *rules)
-+{
-+	u16 reg;
-+	int val;
-+
-+	if (index > 1)
-+		return -EINVAL;
-+
-+	/* Check if we have hw control enabled */
-+	if (qca807x_led_hw_control_status(phydev, index))
-+		return -EINVAL;
-+
-+	/* Parsing specific to netdev trigger */
-+	switch (phydev->port) {
-+	case PORT_TP:
-+		reg = QCA807X_MMD7_LED_CTRL(index);
-+		val = phy_read_mmd(phydev, MDIO_MMD_AN, reg);
-+		if (val & QCA808X_LED_TX_BLINK)
-+			set_bit(TRIGGER_NETDEV_TX, rules);
-+		if (val & QCA808X_LED_RX_BLINK)
-+			set_bit(TRIGGER_NETDEV_RX, rules);
-+		if (val & QCA808X_LED_SPEED10_ON)
-+			set_bit(TRIGGER_NETDEV_LINK_10, rules);
-+		if (val & QCA808X_LED_SPEED100_ON)
-+			set_bit(TRIGGER_NETDEV_LINK_100, rules);
-+		if (val & QCA808X_LED_SPEED1000_ON)
-+			set_bit(TRIGGER_NETDEV_LINK_1000, rules);
-+		if (val & QCA808X_LED_HALF_DUPLEX_ON)
-+			set_bit(TRIGGER_NETDEV_HALF_DUPLEX, rules);
-+		if (val & QCA808X_LED_FULL_DUPLEX_ON)
-+			set_bit(TRIGGER_NETDEV_FULL_DUPLEX, rules);
-+		break;
-+	case PORT_FIBRE:
-+		/* HW control pattern bits are in LED FORCE reg */
-+		reg = QCA807X_MMD7_LED_FORCE_CTRL(index);
-+		val = phy_read_mmd(phydev, MDIO_MMD_AN, reg);
-+		if (val & QCA807X_LED_FIBER_TXACT_BLK_EN)
-+			set_bit(TRIGGER_NETDEV_TX, rules);
-+		if (val & QCA807X_LED_FIBER_RXACT_BLK_EN)
-+			set_bit(TRIGGER_NETDEV_RX, rules);
-+		if (val & QCA807X_LED_FIBER_100FX_ON_EN)
-+			set_bit(TRIGGER_NETDEV_LINK_100, rules);
-+		if (val & QCA807X_LED_FIBER_1000BX_ON_EN)
-+			set_bit(TRIGGER_NETDEV_LINK_1000, rules);
-+		if (val & QCA807X_LED_FIBER_HDX_ON_EN)
-+			set_bit(TRIGGER_NETDEV_HALF_DUPLEX, rules);
-+		if (val & QCA807X_LED_FIBER_FDX_ON_EN)
-+			set_bit(TRIGGER_NETDEV_FULL_DUPLEX, rules);
-+		break;
-+	default:
-+		return -EINVAL;
-+	}
-+
-+	return 0;
-+}
-+
-+static int qca807x_led_hw_control_reset(struct phy_device *phydev, u8 index)
-+{
-+	u16 reg, mask;
-+
-+	if (index > 1)
-+		return -EINVAL;
-+
-+	switch (phydev->port) {
-+	case PORT_TP:
-+		reg = QCA807X_MMD7_LED_CTRL(index);
-+		mask = QCA808X_LED_PATTERN_MASK;
-+		break;
-+	case PORT_FIBRE:
-+		/* HW control pattern bits are in LED FORCE reg */
-+		reg = QCA807X_MMD7_LED_FORCE_CTRL(index);
-+		mask = QCA807X_LED_FIBER_PATTERN_MASK;
-+		break;
-+	default:
-+		return -EINVAL;
-+	}
-+
-+	return phy_clear_bits_mmd(phydev, MDIO_MMD_AN, reg, mask);
-+}
-+
-+static int qca807x_led_brightness_set(struct phy_device *phydev,
-+				      u8 index, enum led_brightness value)
-+{
-+	u16 reg;
-+	int ret;
-+
-+	if (index > 1)
-+		return -EINVAL;
-+
-+	/* If we are setting off the LED reset any hw control rule */
-+	if (!value) {
-+		ret = qca807x_led_hw_control_reset(phydev, index);
-+		if (ret)
-+			return ret;
-+	}
-+
-+	reg = QCA807X_MMD7_LED_FORCE_CTRL(index);
-+	return qca808x_led_reg_brightness_set(phydev, reg, value);
-+}
-+
-+static int qca807x_led_blink_set(struct phy_device *phydev, u8 index,
-+				 unsigned long *delay_on,
-+				 unsigned long *delay_off)
-+{
-+	u16 reg;
-+
-+	if (index > 1)
-+		return -EINVAL;
-+
-+	reg = QCA807X_MMD7_LED_FORCE_CTRL(index);
-+	return qca808x_led_reg_blink_set(phydev, reg, delay_on, delay_off);
-+}
-+
- #ifdef CONFIG_GPIOLIB
- static int qca807x_gpio_get_direction(struct gpio_chip *gc, unsigned int offset)
- {
-@@ -496,6 +733,16 @@ static int qca807x_probe(struct phy_device *phydev)
- 								     "qcom,dac-disable-bias-current-tweak");
- 
- 	if (IS_ENABLED(CONFIG_GPIOLIB)) {
-+		/* Make sure we don't have mixed leds node and gpio-controller
-+		 * to prevent registering leds and having gpio-controller usage
-+		 * conflicting with them.
-+		 */
-+		if (of_find_property(node, "leds", NULL) &&
-+		    of_find_property(node, "gpio-controller", NULL)) {
-+			phydev_err(phydev, "Invalid property detected. LEDs and gpio-controller are mutually exclusive.");
-+			return -EINVAL;
-+		}
-+
- 		/* Do not register a GPIO controller unless flagged for it */
- 		if (of_property_read_bool(node, "gpio-controller")) {
- 			ret = qca807x_gpio(phydev);
-@@ -580,6 +827,11 @@ static struct phy_driver qca807x_drivers[] = {
- 		.suspend	= genphy_suspend,
- 		.cable_test_start	= qca807x_cable_test_start,
- 		.cable_test_get_status	= qca808x_cable_test_get_status,
-+		.led_brightness_set = qca807x_led_brightness_set,
-+		.led_blink_set = qca807x_led_blink_set,
-+		.led_hw_is_supported = qca807x_led_hw_is_supported,
-+		.led_hw_control_set = qca807x_led_hw_control_set,
-+		.led_hw_control_get = qca807x_led_hw_control_get,
- 	},
- };
- module_phy_driver(qca807x_drivers);
--- 
-2.43.0
+> So any driver wouldn't need to make assumptions, and if a particular=20
+> mode shows problems on a board, we just remove that mode from the DT.
+> Actually, thinking about that, I guess I should list HS-400 as well? The=
+=20
+> BSP kernel uses that mode.
+
+Sure, but it also calibrates timing for it. If you'll specify HS400, kernel
+will try to use it, but it won't work.
+
+> Or do you mean to say that in particular DDR (@1.8V) is problematic? I=20
+> cannot test at the moment, but could try later to force that mode.
+
+No, no need.
+
+Best regards,
+Jernej
+
+>=20
+> Cheers,
+> Andre
+>=20
+>=20
+> >>> +	cap-mmc-hw-reset;
+> >>> +	status =3D "okay";
+> >>> +};
+> >>> +
+> >>> +&ohci0 {
+> >>> +	status =3D "okay";
+> >>> +};
+> >>> +
+> >>> +&ohci1 {
+> >>> +	status =3D "okay";
+> >>> +};
+> >>> +
+> >>> +&pio {
+> >>> +	vcc-pb-supply =3D <&reg_dcdc1>;
+> >>> +	vcc-pc-supply =3D <&reg_dcdc1>;
+> >>> +	vcc-pd-supply =3D <&reg_dcdc1>;
+> >>> +	vcc-pe-supply =3D <&reg_dcdc1>;
+> >>> +	vcc-pf-supply =3D <&reg_dcdc1>;
+> >>> +	vcc-pg-supply =3D <&reg_dldo4>;
+> >>> +	vcc-ph-supply =3D <&reg_dcdc1>;
+> >>> +};
+> >>> +
+> >>> +&r_ir {
+> >>> +	status =3D "okay";
+> >>> +};
+> >>> +
+> >>> +&r_pio {
+> >>> +	/*
+> >>> +	 * We cannot add that supply for now since it would create a circul=
+ar
+> >>> +	 * dependency between pinctrl, the regulator and the RSB Bus.
+> >>> +	 *
+> >>> +	 * vcc-pl-supply =3D <&reg_aldo2>;
+> >>> +	 */
+> >>> +};
+> >>> +
+> >>> +&r_rsb {
+> >>> +	status =3D "okay";
+> >>> +
+> >>> +	axp803: pmic@3a3 {
+> >>> +		compatible =3D "x-powers,axp803";
+> >>> +		reg =3D <0x3a3>;
+> >>> +		interrupt-parent =3D <&r_intc>;
+> >>> +		interrupts =3D <GIC_SPI 0 IRQ_TYPE_LEVEL_LOW>;
+> >>> +		x-powers,drive-vbus-en;
+> >>> +
+> >>> +		vin1-supply =3D <&reg_vcc5v>;
+> >>> +		vin2-supply =3D <&reg_vcc5v>;
+> >>> +		vin3-supply =3D <&reg_vcc5v>;
+> >>> +		vin5-supply =3D <&reg_vcc5v>;
+> >>> +		vin6-supply =3D <&reg_vcc5v>;
+> >>> +		aldoin-supply =3D <&reg_vcc5v>;
+> >>> +		dldoin-supply =3D <&reg_vcc5v>;
+> >>> +		eldoin-supply =3D <&reg_vcc5v>;
+> >>> +		fldoin-supply =3D <&reg_vcc5v>;
+> >>> +		drivevbus-supply =3D <&reg_vcc5v>;
+> >>> +		ips-supply =3D <&reg_vcc5v>;
+> >>> +
+> >>> +		status =3D "okay";
+> >>> +	};
+> >>> +};
+> >>> +
+> >>> +#include "axp803.dtsi"
+> >>> +
+> >>> +&ac_power_supply {
+> >>> +	status =3D "okay";
+> >>> +};
+> >>> +
+> >>> +&reg_dcdc1 {
+> >>> +	regulator-always-on;
+> >>> +	regulator-min-microvolt =3D <3300000>;
+> >>> +	regulator-max-microvolt =3D <3300000>;
+> >>> +	regulator-name =3D "vcc-3v3";
+> >>> +};
+> >>> +
+> >>> +&reg_dcdc2 {
+> >>> +	regulator-always-on;
+> >>> +	regulator-min-microvolt =3D <1040000>;
+> >>> +	regulator-max-microvolt =3D <1300000>;
+> >>> +	regulator-name =3D "vdd-cpux";
+> >>> +};
+> >>> +
+> >>> +/* DCDC3 is polyphased with DCDC2 */
+> >>> +
+> >>> +&reg_dcdc5 {
+> >>> +	regulator-always-on;
+> >>> +	regulator-min-microvolt =3D <1500000>;
+> >>> +	regulator-max-microvolt =3D <1500000>;
+> >>> +	regulator-name =3D "vcc-dram";
+> >>> +};
+> >>> +
+> >>> +/* Deviates from the reset default of 1.1V. */
+> >>> +&reg_dcdc6 {
+> >>> +	regulator-always-on;
+> >>> +	regulator-min-microvolt =3D <1200000>;
+> >>> +	regulator-max-microvolt =3D <1200000>;
+> >>> +	regulator-name =3D "vdd-sys";
+> >>> +};
+> >>> +
+> >>> +&reg_aldo1 {
+> >>> +	regulator-min-microvolt =3D <3300000>;
+> >>> +	regulator-max-microvolt =3D <3300000>;
+> >>> +	regulator-name =3D "vcc-wifi";
+> >>> +};
+> >>> +
+> >>> +&reg_aldo2 {
+> >>> +	/* Specifying R_PIO consumer would create circular dependency. */
+> >>> +	regulator-always-on;
+> >>> +	regulator-min-microvolt =3D <3300000>;
+> >>> +	regulator-max-microvolt =3D <3300000>;
+> >>> +	regulator-name =3D "vcc-pl";
+> >>> +};
+> >>> +
+> >>> +&reg_aldo3 {
+> >>> +	regulator-always-on;
+> >>> +	regulator-min-microvolt =3D <3000000>;
+> >>> +	regulator-max-microvolt =3D <3000000>;
+> >>> +	regulator-name =3D "vcc-pll-avcc";
+> >>> +};
+> >>> +
+> >>> +/* AC200 power supply */
+> >>> +&reg_dldo1 {
+> >>> +	regulator-always-on;
+> >>> +	regulator-min-microvolt =3D <3300000>;
+> >>> +	regulator-max-microvolt =3D <3300000>;
+> >>> +	regulator-name =3D "vcc-ave-33";
+> >>> +};
+> >>> +
+> >>> +&reg_dldo4 {
+> >>> +	regulator-min-microvolt =3D <3300000>;
+> >>> +	regulator-max-microvolt =3D <3300000>;
+> >>> +	regulator-name =3D "vcc-wifi-io";
+> >>> +};
+> >>> +
+> >>> +&reg_drivevbus {
+> >>> +	regulator-name =3D "usb0-vbus";
+> >>> +	status =3D "okay";
+> >>> +};
+> >>> +
+> >>> +&reg_eldo1 {
+> >>> +	regulator-always-on;
+> >>> +	regulator-min-microvolt =3D <1800000>;
+> >>> +	regulator-max-microvolt =3D <1800000>;
+> >>> +	regulator-name =3D "vcc-cpvdd-dram-emmc";
+> >>> +};
+> >>> +
+> >>> +/* Supplies the arisc management core, needed by TF-A to power off c=
+ores. */
+> >>> +&reg_fldo2 {
+> >>> +	regulator-always-on;
+> >>> +	regulator-min-microvolt =3D <1100000>;
+> >>> +	regulator-max-microvolt =3D <1100000>;
+> >>> +	regulator-name =3D "vdd-cpus";
+> >>> +};
+> >>> +
+> >>> +&reg_rtc_ldo {
+> >>> +	regulator-name =3D "vcc-rtc";
+> >>> +};
+> >>> +
+> >>> +&simplefb_hdmi {
+> >>> +	vcc-hdmi-supply =3D <&reg_dcdc1>;
+> >>> +};
+> >>> +
+> >>> +&sound {
+> >>> +	simple-audio-card,aux-devs =3D <&codec_analog>;
+> >>> +	simple-audio-card,widgets =3D "Microphone", "Microphone Jack",
+> >>> +				    "Headphone", "Headphone Jack";
+> >>> +	simple-audio-card,routing =3D
+> >>> +			"Left DAC", "DACL",
+> >>> +			"Right DAC", "DACR",
+> >>> +			"Headphone Jack", "HP",
+> >>> +			"ADCL", "Left ADC",
+> >>> +			"ADCR", "Right ADC",
+> >>> +			"MIC2", "Microphone Jack";
+> >>> +	status =3D "okay";
+> >>> +};
+> >>> +
+> >>> +/* On the (unpopulated) UART pads. */
+> >>> +&uart0 {
+> >>> +	pinctrl-names =3D "default";
+> >>> +	pinctrl-0 =3D <&uart0_pb_pins>;
+> >>> +	status =3D "okay";
+> >>> +};
+> >>> +
+> >>> +&uart1 {
+> >>> +	pinctrl-names =3D "default";
+> >>> +	pinctrl-0 =3D <&uart1_pins>, <&uart1_rts_cts_pins>;
+> >>> +	uart-has-rtscts;
+> >>> +	status =3D "okay";
+> >>> +
+> >>> +	bluetooth {
+> >>> +		compatible =3D "realtek,rtl8723bs-bt";
+> >>> +		enable-gpios =3D <&r_pio 0 4 GPIO_ACTIVE_HIGH>; /* PL4 */
+> >>> +		max-speed =3D <1500000>;
+> >>> +	};
+> >>> +};
+> >>> +
+> >>> +&usb_otg {
+> >>> +	dr_mode =3D "host";
+> >>> +	status =3D "okay";
+> >>> +};
+> >>> +
+> >>> +&usbphy {
+> >>> +	usb0_vbus-supply =3D <&reg_drivevbus>;
+> >>> +	usb1_vbus-supply =3D <&reg_drivevbus>;
+> >>> +	status =3D "okay";
+> >>> +};
+> >>>
+> >>
+> >>
+> >>
+> >>
+> >>
+> >=20
+> >=20
+> >=20
+> >=20
+>=20
+
+
+
 
 
