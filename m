@@ -1,74 +1,74 @@
-Return-Path: <devicetree+bounces-39101-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-39103-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7EA2984B679
-	for <lists+devicetree@lfdr.de>; Tue,  6 Feb 2024 14:34:05 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id EC84A84B67E
+	for <lists+devicetree@lfdr.de>; Tue,  6 Feb 2024 14:34:56 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 3ED4928366A
-	for <lists+devicetree@lfdr.de>; Tue,  6 Feb 2024 13:34:04 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id A305B284133
+	for <lists+devicetree@lfdr.de>; Tue,  6 Feb 2024 13:34:55 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3C210130E32;
-	Tue,  6 Feb 2024 13:34:01 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5B3BD130E4A;
+	Tue,  6 Feb 2024 13:34:52 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="QZZozFxA"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="y6KjjYfG"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wr1-f44.google.com (mail-wr1-f44.google.com [209.85.221.44])
+Received: from mail-wr1-f42.google.com (mail-wr1-f42.google.com [209.85.221.42])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 677BA130ADC
-	for <devicetree@vger.kernel.org>; Tue,  6 Feb 2024 13:33:59 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.44
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8A4EF39B
+	for <devicetree@vger.kernel.org>; Tue,  6 Feb 2024 13:34:50 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.42
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1707226441; cv=none; b=Mv9QHycc7+J3vIy6mq32wOK09H8Ci1tkWdNb0D5/wnaZ3ZmAVd4+rNpLvMgy9EUQvdnCs5r51ehBUvT2zV+vbX36ARLgtt3LF/WV5tF35kScsQM/6kUNRhK00ia0Ld/T11IZm0PXzBEkrCcgD0g5VMlZZTFwk4xcX32zs5IgVmY=
+	t=1707226492; cv=none; b=oWSl4UmWMF0ftP8EOZDvMvwE9WBgE6F9J4hj2b/swCqPKL4ksq/vzY6vb/WHrjtNBRmxZAjfj9tq76hDBnI/N+cc0o1MEf5CgOR/ZGQ8wrlE+WA/Djn3WbmoNWp9Po66ze4ZwVKSCLxdlWzU5iI7L2CVHogUizy/I7jo/TeJL7c=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1707226441; c=relaxed/simple;
-	bh=BjaUwiHOw79KdfqCv1a2DUls8eJlmOBjneNsNhUNApw=;
+	s=arc-20240116; t=1707226492; c=relaxed/simple;
+	bh=s9DD1rX84NrjtxuG5MNO+CmxRQQ8HDzZdE/WvxR21dY=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=ANMDpHuEv2PBKRlFT4C9E0deHxHU+2R+S0aUGgPS4c3hzP6PlVrSy9QGViNjlzbw4uSZL7ul9bj3RK74i86F6M2SG7JPGImHIAWH3gwUWAPHHS+4++sGkMoKvOqsj+F7B2IyPfBV0fRZLSxvmW/Nv7lBWJeV2Mt6ghdcPIgXUPU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=QZZozFxA; arc=none smtp.client-ip=209.85.221.44
+	 In-Reply-To:Content-Type; b=OasI7PfzfSuBGTym5s7tnbe6ToiDiVw/FiY4ipO2wzlJ9XSZZg53mRKhAhhoYDADBgMoMrnWcw/CeLKtehhEzzsPaU49JwbT2avQNeigXi2qhZ+v7Q/PKxfF4N6irQQkEJvKszOiU/vDyK3QTF/8Rpf6wQ2DcaMsDNw7VdEcQ5Q=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=y6KjjYfG; arc=none smtp.client-ip=209.85.221.42
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-wr1-f44.google.com with SMTP id ffacd0b85a97d-33b4b121e28so30055f8f.1
-        for <devicetree@vger.kernel.org>; Tue, 06 Feb 2024 05:33:59 -0800 (PST)
+Received: by mail-wr1-f42.google.com with SMTP id ffacd0b85a97d-33b4b121e28so31272f8f.1
+        for <devicetree@vger.kernel.org>; Tue, 06 Feb 2024 05:34:50 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1707226437; x=1707831237; darn=vger.kernel.org;
+        d=linaro.org; s=google; t=1707226489; x=1707831289; darn=vger.kernel.org;
         h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
          :to:content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=Tdzma35Pa3ywWe4Rb4LpWqBdhPwvQwdOCPQBy7x3EGQ=;
-        b=QZZozFxAV/px/7e+0PYizp953AfqjpzBdbX3H0WhTkb7lxMYuuSmJf0NIFPLsmqt/G
-         wCXfRAghfSk+DApFWPLf9+EkwIe9EvdC2y0kx+HFDQBN+T9BxoO8AGDgiLFeYh0lk3eS
-         AyQq8iQUXHkXxpsBTZdECns+iWedejvddyweWS7/Ar6WN+e71fIEmE7F80kDxm2uyulc
-         d6IODYCJxXWXg5qa72A7IU61pSu6uYp16zeKy6RWcQ6UfKZJvdMGn7AfahWmkSOcNI/d
-         YGMb9mWPrikjyqtqrXX5feXVPvrCjEgQahtklfMVBXumw8AInDn3zLpA5OuMi9wETZFK
-         sASg==
+        bh=xj8Na3UX0vIYIzI2QS37+tJp4cgUGyuAXDDb/PDvf4A=;
+        b=y6KjjYfGF62lFVLNK9hVrnTgFz+B7Gb7p83W+cQWYHWILjkNePq//+DQSpuYe+2uqc
+         qw29tDDkdOQPB9Ikiojx1U+DPn0PHAV8NblLPzPP8xPaHaDnjOsdgytSieqJauXH2fWR
+         47S8i6/0EKlax0z//h9kj/I4RZCn1JTYIWzwx+k7YZ0+sHJBAWELiaBeXFbxjq1VOB5+
+         Zl3oNEdcP2aJTFxwzEpANh8TuRlwUW/HKLJHbLHr547uyRz8WLAITmwTFysPzpnYksEl
+         /GQo5Seu862IakxANGb7exf7uongyl4K+pm7ovwUvVEJnv70jTjm4oaHXHvENKXvng1y
+         VcOw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1707226437; x=1707831237;
+        d=1e100.net; s=20230601; t=1707226489; x=1707831289;
         h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
          :to:content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=Tdzma35Pa3ywWe4Rb4LpWqBdhPwvQwdOCPQBy7x3EGQ=;
-        b=Kcd9KFaql4lQftT+czlIimMig0dhaqDTvps0jB4pGx+IjiOZmWPponFB6U9qOOWG2e
-         Rpc8/mnOoK7WOSuSR0PKharJNXF65P66Du5doXtbI7qIT7TScuIOHD661YQ8ezSAmp2g
-         71XGUcLo1JwEfWNXekdqVmjzYMPueHejHOrwRl7dqB8xouemG57Os0dQp+CVCdpn5FMC
-         F0/Xb2vlZA/U0X1TVgwlznBAVbFbigamv+zTnSSyszCM+5syuwEDH57Ic5ui9g4K+4A1
-         9eGF2JxU0JapjDOJ1OWvqilQSjnGkYSnGFcNo5c5qvlQa1YOiU0sSxoCNPLBCfpKkqza
-         DKPg==
-X-Gm-Message-State: AOJu0YwZRZ69awi7ueGO4uJYVFueVmVxmrO+ThWO9RPXw6rtoYmZINc+
-	Vo5GXrUf2d0aNYxN0vpJaXh1fJthsway/Gm4UitzvdQYtxmwfJKOBwIBO+q+4dk=
-X-Google-Smtp-Source: AGHT+IHVSP2STmXg/sww5m1OZF9hlZUqwcKw+51azy5Do8WneQNyG6BhgfmYTRAxTHRmg5llfzAYBg==
-X-Received: by 2002:adf:db4a:0:b0:33b:3c79:9182 with SMTP id f10-20020adfdb4a000000b0033b3c799182mr1303140wrj.3.1707226437562;
-        Tue, 06 Feb 2024 05:33:57 -0800 (PST)
-X-Forwarded-Encrypted: i=0; AJvYcCXFecnjvIsVYExfnnBdGOIrinJp0i2oVTxxwjZx6Yhb0OGwbcbOt1D86vg+sFGPrW0aglgl4bEv4oNdFh/W1ziaVvyeBEZt45O74Jp9PNOzVXz3uZS8IJfXG/+I3gTjCkZ4DA8NEheviB+Bad7f7Cb7huHhZEs/eHD2jS2gtSTZHxTc9sBgl8CTcMiUJPiePO3drqKY/FjF7XNYeeGfW0eiX7eJFYtJO3fqc9Ur8lQfprjmcQTKKynBRZ6F6qIbYZAT4ROVBPuecOgxs7o66gqEPNUBgJvE9xLpgRwMDw4wWxp1rAIal2qvnDUZAICyjd/J9PCWeCI8KfhH7T6dCushWgF3+kxcMiLLBhziXudUZhvsu65QYgFSscNzMKAL
+        bh=xj8Na3UX0vIYIzI2QS37+tJp4cgUGyuAXDDb/PDvf4A=;
+        b=ZMr+qB7dgX7p4y0Icj678cZbm7ZtVvu2rIO9UpwfbV/NaicDmKur9ZKM3WDi+lvbft
+         0JGcms1HPtkDud+2VNSRQzaKF0wFp1JxW6rm4b+bmnwU48LvWnoIshSVBMU8ItnB3p+d
+         v2wyJqKIwAGk+/XoQ9cmTpYdDNrBdm5KnwrvLMdK24EJW4xLJrpH5PR7fFhxOdC4NUdW
+         R6Jar+zTiuGBEbDm30Ol/1uSxIf0S05A9rUlor1OmR8TgnHEjCmJ2BALCmDBuzwYKszc
+         ckRz2QAd5gJ0YQpWtU2nrJM7X2v1qrQ+o/3mcODJzh/EpZOl3tTrG9FlgbTtMHtJMwh6
+         303A==
+X-Gm-Message-State: AOJu0YzK3BfgnuV03Lw76jSQWSARlT3kZAIlGipB/TAj6mwOXOOH95e0
+	sYKvyNE/d53BvGsKAu4zvmAWFVfz3Op91ziHhCmQDf99/+5IpnndRuA13bYGH1o=
+X-Google-Smtp-Source: AGHT+IGmJTiTbaUR6H8z7QVwR0APkZhUrbRzhaOw5JezvYFfZDFut3ned4txJYg4L6R/mZY0xIYc0Q==
+X-Received: by 2002:a5d:69cf:0:b0:33b:14fa:53ea with SMTP id s15-20020a5d69cf000000b0033b14fa53eamr1395932wrw.33.1707226488772;
+        Tue, 06 Feb 2024 05:34:48 -0800 (PST)
+X-Forwarded-Encrypted: i=0; AJvYcCVtODUIcndE3eQN3Zt7ulNm+hdx9sKiAqyVU+cT/FZFM9u2c/XZv8LkJVUz8wQFCGKxw+I5zJJ7xslPcsBW9pmwH6ZzuCR6nihmnnCZ+SvEAR5mdH/13f9Yhy3mXct+XvT+E/s5gC0H69z5FX9FfbXtpH2PwxkNckICkvr/xA5RmSqFSrm3UJmem/zmEe0oABFUVcREmMiFxKW7qbhSyJPPV2FiT8HdnGFWUXJsELl4Zybdb2PYQpVHhBvp9fQ8uhYsoPmgR32poY8zx7bk1wjjeXRLN5obHnMEsExP5P7e9PQlAvDqbqcWekXSbwrU/Y0waNAh4sqVAvV4AW9++Whb+s7izt0LrZ3a/NBcX/3EBRZVFycxHHYKreJfkqbK
 Received: from [192.168.1.20] ([178.197.222.62])
-        by smtp.gmail.com with ESMTPSA id 2-20020a5d47a2000000b0033b3cf1ff09sm2139174wrb.29.2024.02.06.05.33.56
+        by smtp.gmail.com with ESMTPSA id 2-20020a5d47a2000000b0033b3cf1ff09sm2139174wrb.29.2024.02.06.05.34.47
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 06 Feb 2024 05:33:57 -0800 (PST)
-Message-ID: <4a0ebbbf-fa46-4dd0-a488-d61d7eb9c933@linaro.org>
-Date: Tue, 6 Feb 2024 14:33:54 +0100
+        Tue, 06 Feb 2024 05:34:48 -0800 (PST)
+Message-ID: <2ac2da29-f49a-4e72-bbd3-dccbe42c6865@linaro.org>
+Date: Tue, 6 Feb 2024 14:34:47 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -78,10 +78,10 @@ MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
 Subject: Re: [RFC PATCH v1] arm64: dts: amlogic: Add Freebox fbx8am boards
 Content-Language: en-US
-To: neil.armstrong@linaro.org, Marc Gonzalez <mgonzalez@freebox.fr>,
+To: Marc Gonzalez <mgonzalez@freebox.fr>,
  AML <linux-amlogic@lists.infradead.org>, DT <devicetree@vger.kernel.org>
-Cc: Kevin Hilman <khilman@baylibre.com>, Jerome Brunet
- <jbrunet@baylibre.com>,
+Cc: Neil Armstrong <neil.armstrong@linaro.org>,
+ Kevin Hilman <khilman@baylibre.com>, Jerome Brunet <jbrunet@baylibre.com>,
  Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
  Rob Herring <robh+dt@kernel.org>,
  Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
@@ -89,7 +89,7 @@ Cc: Kevin Hilman <khilman@baylibre.com>, Jerome Brunet
  Pierre-Hugues Husson <phhusson@freebox.fr>
 References: <8c865c62-cd80-4c78-9fc5-c85491c037ca@freebox.fr>
  <b69a2132-25c0-4acd-808e-d134f5034e58@linaro.org>
- <59ef3824-13d3-40af-9a3a-9b1ec8add9d3@linaro.org>
+ <64041a5d-a321-4ffe-ba31-bcf0cad63484@freebox.fr>
 From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  xsFNBFVDQq4BEAC6KeLOfFsAvFMBsrCrJ2bCalhPv5+KQF2PS2+iwZI8BpRZoV+Bd5kWvN79
@@ -135,15 +135,15 @@ Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  KQ06ztUMRrj8eVtpImjsWCd0bDWRaaR4vqhCHvAG9iWXZu4qh3ipie2Y0oSJygcZT7H3UZxq
  fyYKiqEmRuqsvv6dcbblD8ZLkz1EVZL6djImH5zc5x8qpVxlA0A0i23v5QvN00m6G9NFF0Le
  D2GYIS41Kv4Isx2dEFh+/Q==
-In-Reply-To: <59ef3824-13d3-40af-9a3a-9b1ec8add9d3@linaro.org>
+In-Reply-To: <64041a5d-a321-4ffe-ba31-bcf0cad63484@freebox.fr>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 06/02/2024 14:30, Neil Armstrong wrote:
-> Hi,
-> 
+On 06/02/2024 14:31, Marc Gonzalez wrote:
 > On 06/02/2024 14:22, Krzysztof Kozlowski wrote:
+> 
 >> On 06/02/2024 14:12, Marc Gonzalez wrote:
+>>
 >>> From: Pierre-Hugues Husson <phhusson@freebox.fr>
 >>>
 >>> The fbx8am boards are based on the Amlogic Meson G12A S905X2 SoC,
@@ -161,9 +161,19 @@ On 06/02/2024 14:30, Neil Armstrong wrote:
 >> warnings can be ignored, but the code here looks like it needs a fix.
 >> Feel free to get in touch if the warning is not clear.
 > 
-> I don't have checkpatch errors, I'm running with `--strict --terse`.
+> Hello Krzysztof,
+> 
+> The only checkpatch warnings are:
+> 
+> WARNING: DT binding docs and includes should be a separate patch. See: Documentation/devicetree/bindings/submitting-patches.rst
+> WARNING: added, moved or deleted file(s), does MAINTAINERS need updating?
+> 
+> This patch is modeled after another patch for a similar board.
+> 
+> Which warning did you think required attention?
 
-I easily see 2 warnings, where one is relevant, with or without --strict.
+The first one, obviously. The second should have never been made a
+warning. :/
 
 Best regards,
 Krzysztof
