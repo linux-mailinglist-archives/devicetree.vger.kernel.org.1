@@ -1,224 +1,174 @@
-Return-Path: <devicetree+bounces-39119-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-39120-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8979E84B744
-	for <lists+devicetree@lfdr.de>; Tue,  6 Feb 2024 15:01:46 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1D4EC84B74E
+	for <lists+devicetree@lfdr.de>; Tue,  6 Feb 2024 15:03:05 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id AD9451C2589B
-	for <lists+devicetree@lfdr.de>; Tue,  6 Feb 2024 14:01:45 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id C801928BF35
+	for <lists+devicetree@lfdr.de>; Tue,  6 Feb 2024 14:03:03 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4596E13398C;
-	Tue,  6 Feb 2024 13:59:56 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1AE7C131E44;
+	Tue,  6 Feb 2024 14:01:18 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=wolfvision.net header.i=@wolfvision.net header.b="cmJrpT3K"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="v5nMCYAT"
 X-Original-To: devicetree@vger.kernel.org
-Received: from EUR05-VI1-obe.outbound.protection.outlook.com (mail-vi1eur05on2133.outbound.protection.outlook.com [40.107.21.133])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wm1-f43.google.com (mail-wm1-f43.google.com [209.85.128.43])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 59F77133405;
-	Tue,  6 Feb 2024 13:59:54 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.107.21.133
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1707227996; cv=fail; b=ucWCSeuQwoF9U/3scQr7wgg2lWB5wOIgY6OGAA+COl8CFqMO4LoBjAnA7h008KOHJ8t+RuwjI3EIRid4iQKfHIiZmxJk9Pv9suv1my1W4nUYGmgv0JXCOB1VHoFIxTgQd69d7etgGXFae2NceeSc/rTXBEmIbCT2UWxQXLf0xmM=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1707227996; c=relaxed/simple;
-	bh=0XgQ/K4MzqybyRm7DXYp/jsZVsLQcFuYkKojVXdRw6s=;
-	h=From:Date:Subject:Content-Type:Message-Id:References:In-Reply-To:
-	 To:Cc:MIME-Version; b=NyP1lSHq0gAGDr2/BOgv7JVrORxnpKVwmZy1CmnXOwkDz5uK+Kut1IRGvjVTm+uP3ogG9Cjgs3cBHEptySsxrwPLV7Tbe+tc95ZBPMH2et6sLFEOiJy2Y688Qc007vhp7oFJ4PphSAJ5NtTLN0cqQj7ygCe3vF9VtYSrGww0Jpw=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=wolfvision.net; spf=pass smtp.mailfrom=wolfvision.net; dkim=pass (1024-bit key) header.d=wolfvision.net header.i=@wolfvision.net header.b=cmJrpT3K; arc=fail smtp.client-ip=40.107.21.133
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=wolfvision.net
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=wolfvision.net
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=n2ZqgO885Jc4oQOcrqdqZM5uByuYNSZq//wPSuY488ZhCSa1AzE8/gQz2IkSTGQiSd5PUREkolWn+ph6kSbJ/D8HhHOv7PfFPKjqblHcXtQGbWLO1bXtp9KkGbB1jXo4RYysBL0+G+FhD3BIgf3kH4m8ByAqgWRumR2O0ZDsIkoTbM7WfkimCk+dI5Je+K4HdlxRxbZdjvWjx5yCJmI58IQMtzdUHT13mgkwSUHuAN+QEhtOSchKEqhRf+Eqi7u355P07JnlvGaFQN/OmhvrdxGdo6h21nj7pmNou1XplRQevkFhdaH83+spD+9VjP7BFCAcRF9G4yqni8EZsZrUZg==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=EmhqXwyiM3008Av7VCk/Z3bwY4A9DhYYbxVxY//yP+o=;
- b=KYKY4lw3NRV1XPbaVK5ehv14jYyokCdYzf247Re5KUNOj9dVdBcyE1KcYv8HkAmuflpE2ZRPHcbAKAPfRdqmRauXLMFdNpW1fX14BXv377BpmYq8CyG9yrDzrPQKE1Zaxv6MyM8b0JRclEiy5ZjcjryHIioIUCQOCzjkSZkKf9/h+cxmH1IgRSkJjwd9+t1vkXXYGeXl2s4NMCSYKjadEbnCCDUyLAvtv7rwAPjGe87W8DIF/3YikqaMpeAhLkhxLNNYB506ZeIgoVaHAb1vF/IEGroMm8nLIY7AOMKTd7JKH7ayueTFQBjO0OFb7NhmKrYnaySzFw/okyXoBrMgnw==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=wolfvision.net; dmarc=pass action=none
- header.from=wolfvision.net; dkim=pass header.d=wolfvision.net; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=wolfvision.net;
- s=selector2;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=EmhqXwyiM3008Av7VCk/Z3bwY4A9DhYYbxVxY//yP+o=;
- b=cmJrpT3KaSJfrpImIFATsHaaMHb/FpB4Ius7wJneOYbdrNK3IHs2dmSUwtmFHBvYsJcQwo59utol1bALRVm4ZEi8Qjr/5PmE3TESLayVDaIar8m4ICwjIi8Tcwh4b4dG1JYqHgnkTeK3uDRNJLrr6REo3ERF8hOOIiapw4C3s5E=
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=wolfvision.net;
-Received: from VE1PR08MB4974.eurprd08.prod.outlook.com (2603:10a6:803:111::15)
- by DB9PR08MB6330.eurprd08.prod.outlook.com (2603:10a6:10:263::9) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7249.36; Tue, 6 Feb
- 2024 13:59:42 +0000
-Received: from VE1PR08MB4974.eurprd08.prod.outlook.com
- ([fe80::c8ee:9414:a0c6:42ab]) by VE1PR08MB4974.eurprd08.prod.outlook.com
- ([fe80::c8ee:9414:a0c6:42ab%7]) with mapi id 15.20.7249.035; Tue, 6 Feb 2024
- 13:59:41 +0000
-From: Javier Carrasco <javier.carrasco@wolfvision.net>
-Date: Tue, 06 Feb 2024 14:59:35 +0100
-Subject: [PATCH v3 7/7] usb: misc: onboard_hub: add support for XMOS
- XVF3500
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20240206-onboard_xvf3500-v3-7-f85b04116688@wolfvision.net>
-References: <20240206-onboard_xvf3500-v3-0-f85b04116688@wolfvision.net>
-In-Reply-To: <20240206-onboard_xvf3500-v3-0-f85b04116688@wolfvision.net>
-To: Liam Girdwood <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>, 
- Rob Herring <robh+dt@kernel.org>, 
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, 
- Conor Dooley <conor+dt@kernel.org>, Matthias Kaehlcke <mka@chromium.org>, 
- Greg Kroah-Hartman <gregkh@linuxfoundation.org>
-Cc: linux-sound@vger.kernel.org, devicetree@vger.kernel.org, 
- linux-kernel@vger.kernel.org, linux-usb@vger.kernel.org, 
- Javier Carrasco <javier.carrasco@wolfvision.net>
-X-Mailer: b4 0.13-dev-0434a
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1707227975; l=2728;
- i=javier.carrasco@wolfvision.net; s=20230509; h=from:subject:message-id;
- bh=0XgQ/K4MzqybyRm7DXYp/jsZVsLQcFuYkKojVXdRw6s=;
- b=wK7XZPQRYTiP9d+VmjjUAQNa5EGoYaS56UOJUZvyBVXHO2lYQ0QOslmUK2Vs0Fy7sFy5TnqYy
- j1g9oXcSjc3CEi0cilRpXFbNp0fhBG7jhVKpZnlUs+FSqgQsKtNOlH/
-X-Developer-Key: i=javier.carrasco@wolfvision.net; a=ed25519;
- pk=tIGJV7M+tCizagNijF0eGMBGcOsPD+0cWGfKjl4h6K8=
-X-ClientProxiedBy: FR5P281CA0038.DEUP281.PROD.OUTLOOK.COM
- (2603:10a6:d10:f3::8) To VE1PR08MB4974.eurprd08.prod.outlook.com
- (2603:10a6:803:111::15)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3ED42131E2B
+	for <devicetree@vger.kernel.org>; Tue,  6 Feb 2024 14:01:16 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.43
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1707228078; cv=none; b=JRYdvSU2NsVon1Hj9SDAfFoMUgUlr+Fk5Qpm63B/W3Swt3Ua9SXvps8CaNXJ18/ZhziSbbfeO03F3cazMvxB7LKgnVtxGYcOYzbHS/TMAiKbr0nd7YEvCkdBUZpOxDYv9g1tN8IrsMPAuPOyENz/v7Nsj6dUz5fQt45p9amoJi8=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1707228078; c=relaxed/simple;
+	bh=T3zt7/wfS1GyNAR2FeIHJh0CQNg05D/s5D+ynTuHKXI=;
+	h=Message-ID:Date:MIME-Version:From:Subject:To:Cc:References:
+	 In-Reply-To:Content-Type; b=gVsevkpe/ghea6Q1EozBn4yVYJcy77mouXAfODh94AIgMVHWbx51seUBx7Szzst5gVQHLRUymuFI8sek/vB9ztUQxdO/mioUOBma6DwJpJrwSq54C57pgRFw5HgcAYF0AgphN1N9PIrl1OUvKo07T24iBPtR94mO7XXInwXg3cw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=v5nMCYAT; arc=none smtp.client-ip=209.85.128.43
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-wm1-f43.google.com with SMTP id 5b1f17b1804b1-40fd2f7ef55so3700425e9.0
+        for <devicetree@vger.kernel.org>; Tue, 06 Feb 2024 06:01:15 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1707228074; x=1707832874; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:organization:autocrypt
+         :references:cc:to:content-language:subject:reply-to:from:user-agent
+         :mime-version:date:message-id:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=6lxn5ppjmm76s05rtpg6sFq3Eh8QtCLp9cOdP6Vy6Ac=;
+        b=v5nMCYATpV5SsKiNBb4CNfQsGMBoXLwyTDffJc+wdBbDY7oEEdDYbsQdBijLN+qTuR
+         cha39oBxi2mJUf3ZZhufV4fzIEfEKPIw7w09FdyjWGo37zUiKHzfUkoRF4VtCe/hxq80
+         meQ0x2sYz4yZy3GsEGSNhXJjWoCD3CzNnLkI6sAx83TJfU8zLYd0m6n6NJGNVAbE5aqS
+         nvv3hFrUN4FpGWkRfuQMUhDJc3fkElMFXyNN2ofp6q3cuoXWgg+714b73sn9KzgQImbB
+         nYfkUw1LXSOlWLQ7qCbCYPgE0JAn3p4v9qpJLhHH/QriY6bGKfcfOhYeGk1FQz5MFejh
+         xeaQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1707228074; x=1707832874;
+        h=content-transfer-encoding:in-reply-to:organization:autocrypt
+         :references:cc:to:content-language:subject:reply-to:from:user-agent
+         :mime-version:date:message-id:x-gm-message-state:from:to:cc:subject
+         :date:message-id:reply-to;
+        bh=6lxn5ppjmm76s05rtpg6sFq3Eh8QtCLp9cOdP6Vy6Ac=;
+        b=oXNOQ0xfH92NI5W5VqwsNUbFDYKu38R/iode8QSzxvIxDYubPHDQBJwIjswS92+6MG
+         xQ8SaV+2Ff4QtQgMFSjoTCPv2Mx1trB9FNVxE98vxCn2TPA/NT+eCi3tU0yRgDRI8ieP
+         t1U5K+wap6K7f+UW6Eu57IgW7v15Amq9R61+fXNCkZt6nd03hq+j76fqpoIzzgGoEIj/
+         M7MguK7k8jKy0NAjvEd7WGtyEJ+KmheQEStZMBxVcB6UeKc3wkikc0FfQjW33GNFSAGc
+         X/wgE0hDLDoXTBpry3WBrfxzYqXQUzt6cmpI+Mje28TLp79eUt9fLS1lvdULDaYXh5s0
+         K+dg==
+X-Gm-Message-State: AOJu0YyC6qBaPnK7WIswBmkvtKyKJuE+2e06pcuqFpvHblRtdFSUvNtL
+	WO3eDsY/oA6Jh0MKt/Bax1UDMK+NjP6x7qjm+fQ11W6IRyyj4cTMeMrmgvRBE8Y=
+X-Google-Smtp-Source: AGHT+IG92N8Wtnm4SjvEdq2MgTbyvlH4SnM0imHATZ/56b/4lcNlO3daG5aRAqQPJuLOvALLDjOz9w==
+X-Received: by 2002:a05:600c:35cc:b0:40f:cb0d:4de6 with SMTP id r12-20020a05600c35cc00b0040fcb0d4de6mr6794859wmq.5.1707228074403;
+        Tue, 06 Feb 2024 06:01:14 -0800 (PST)
+X-Forwarded-Encrypted: i=0; AJvYcCUln28rRQq8eXt/f8B9dHukEv6uWMfzlaiW6MEpbQlOHK979mB2XqleARY4xLrniPud25+xHcCUrhumz1UUfsXqH4YU/csm+z427F2FgPOnM0z7g7ZsTBSQDAgrGc7kwkuXUu+uwMkuXR2z6Sa08acI8iL+hJsSieu3ykk2oZIVUnW/om6Q9P/nE7A3oB3ATs38ThQ9jxBw0OyDiqmPzLmzRw5sv0e19/hqhS4drsNODPnTXvcxxUHGYoZhOf0Fo9MByRcP6/meKYPUPFhMnimDcH0Wh5oRSuNJ4ymYaLU7IGgNqRBw6eZ6TgYmUHTGc6XBFo3VtiNLdedH1HXql40dnSrLBj4Ry7XN4p9+YFdyHQsHNRCnslr5FrgmB5fPfeFB6wYEYp39Jw==
+Received: from ?IPV6:2a01:e0a:982:cbb0:ba23:8574:fa8:28dd? ([2a01:e0a:982:cbb0:ba23:8574:fa8:28dd])
+        by smtp.gmail.com with ESMTPSA id n29-20020a05600c3b9d00b0040ef2e7041esm2187243wms.6.2024.02.06.06.01.13
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 06 Feb 2024 06:01:13 -0800 (PST)
+Message-ID: <9ed9b458-33e6-46e7-8eed-87bf8737da76@linaro.org>
+Date: Tue, 6 Feb 2024 15:01:12 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: VE1PR08MB4974:EE_|DB9PR08MB6330:EE_
-X-MS-Office365-Filtering-Correlation-Id: f0f53379-ab49-47f8-8fe6-08dc271bdda2
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info:
-	YzrGdfQ6GZcuTSJM8Yo+JWm47U/W0KcFTgwwn218j8hRokmQZ+M2zS+AE+bo/PQz1LPy/FN88d4hz1+O7QcVgmUQtttAST5Vz0khnP6aw0iRjmR5C/fqFE63Qgs+k/3u0M5L+ZZDvCCMj4jUnE2vaUoaedIHWsi/eGb5G2281mMWxfipWC0zW5eoVxD3ulndSjOQzU9P4TsOYfq3dNUVdsp7mjj22H+KSjaEVTxdtgggDooauqo8FZTg0w3GCy1I0iuLFMzAUNvjr+KAjlf3yfRFN0q15MuFYqyO5R7lAlLvIUmdfOBcl+eY84VNmjw9C6CK6Y49FBMkcqHbV0Fu8ix3YGIkCuhdEsas1rHio9Ch47/2W3y3fxTSjboLkTf1jy7QvpXOZceO801ScG8ngg09fliBOsXknSOogG12YnsLb4qaH58y8zs/F8n8kFN8y4drZFbdrCl+rbwuaApKceEozzDy9LihkB3TyGqe/nilS3ZV7qDsGceITVOSywHKSyeSTBesJbeVjqnv1On9wLla1BPbdtErWTaWZabd9m8dXwpQx4KbBVJ3KpFxpt8EyHyViLbvQQrzfbnANnCNlJjZkGK9zNDcheSb4jum39c=
-X-Forefront-Antispam-Report:
-	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:VE1PR08MB4974.eurprd08.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230031)(366004)(346002)(39850400004)(396003)(376002)(136003)(230922051799003)(186009)(64100799003)(451199024)(1800799012)(38100700002)(44832011)(26005)(2616005)(6486002)(966005)(107886003)(86362001)(6506007)(6666004)(478600001)(6512007)(52116002)(36756003)(316002)(38350700005)(41300700001)(66946007)(66556008)(66476007)(110136005)(8676002)(4326008)(2906002)(8936002)(5660300002)(7416002);DIR:OUT;SFP:1102;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0:
-	=?utf-8?B?M3l6QzliT0ZTSUpGQlgzRitqbHJtTXIyL2RkWFFpQkI3UmtqZEl0VGdOOEdC?=
- =?utf-8?B?am9Pelo0c3Y2MjF4NklqdmEvWklobStJdmhhZXFkZHlwNHIvVFlyMjdBTkxr?=
- =?utf-8?B?Vml0azVXZWYwa3BRdFB3K1JTZkJyU0lqN2NmMVJHZ01XVm9ZQXdtYXVsNEdi?=
- =?utf-8?B?T3Njc3FxUlUxUGQ2VFA4aFVrK2NQWmhBbGMzaEMvdzQ4ZHExSGZnWXpKSnhI?=
- =?utf-8?B?OS96ZU1GTzEvMmN3WWZYS0xZVTR1ZkNseHdKOHNFakt6T0Z0NjFWd292MnBu?=
- =?utf-8?B?WVB5cVlocm9ITU1RSUVESUQxdzF4N1YxZXkvUXBOVmJNWjZkdDdRRDFId3Zu?=
- =?utf-8?B?UU9GWkZyQU5MUmhiM3o2Z0FtemtVM2tvS1RnRUU0aEN5MWdjQTlHQ2VHYVVU?=
- =?utf-8?B?N0lmN2NFNXpUNW16QVB5Wkhtck9LWkE3T243ZzRxUUgwL0srSUs1VUNQNlVo?=
- =?utf-8?B?ZnBhTVI3VExnT2xaUVBLcmt0Nm1qLzFwZC8zWTV3enVZQ3RTc2xnbG54ZmtJ?=
- =?utf-8?B?VFR3b0R3YUc0RXEwSDNSdlQ2bWE5dTB3YXYvSGE1akdVUzV4VzhjT3JaeGJO?=
- =?utf-8?B?VUgwQ3VMbWhiOWt2dDhMZGh0WkFZaVNjaFpqRWs0ZzhQSUUvMWNMdTVXazhE?=
- =?utf-8?B?WVBJbHVsVS96Zlp2MDdmTE1sSnhQbmVIa2g3K1JxaHYyWjZqdXZVODhTOWVy?=
- =?utf-8?B?cGs0RDRibmM0TkZFMXYzNHY3b1pka094Q254VXY1ZGdNZzdiY2VOMDd5NmJ3?=
- =?utf-8?B?ZGVFVWVlMU8zOS9zUkZneDRGWFVINmRDMzgrdUlyc1gvUnUxWTAxbXVobGs1?=
- =?utf-8?B?bDNKcmlKMlJRSmtZdHoxZjkvck9YTHFBdkZvcERjbkw2TFZRaFk2ZkhKd05h?=
- =?utf-8?B?aldLc2Jia2d4VFlEbkVHUHM5VFhRQ3JCRGVhNGl4K1BzbUhhdVNPKzJBQTI3?=
- =?utf-8?B?UmJzdDdZdklBZ2lwZ3A2bDhaSXhzb1BPaWJ4YVRZbFRJTWhjM1NaSXNEN3dO?=
- =?utf-8?B?L29FRTBMUHUrcnVQM0lvc2FwTUVrM2s3bWhpWVl4aVl6bStMUGhxaWI2L0Fm?=
- =?utf-8?B?NkdxajlvWHR3enM3YTdnc01qbkVnZUJNU1VlSzZQelFRV09BSGoyVUpXNUFW?=
- =?utf-8?B?bGh3QS92R3ZwQWRkZWJtVXEvanUzcXJ0R0NWbUVoSnRNQ0FDMzFHTW0vVUJl?=
- =?utf-8?B?Uld4S2tKcGNteHVlS0Qvellqa0lwaTlUcThmMm91ajBZNm5iTFp2aERBYXZU?=
- =?utf-8?B?aEFGOXl1UUlTVUFqNExKUk92YjVCRVAzYWJXeUZtbXQ0YlJ6R3IrR1BEV0hU?=
- =?utf-8?B?eDh5ZzMrS1pkQ2VLM3NZVjNqTFlDWmd2Q0ZNREpXY3lvWUJETEJ3TUhrOHpJ?=
- =?utf-8?B?R0xrZ0JtWHBQdDdnT1B2RHVSNVVjOWFNVzRqUWR2R1AvU0lvRTJEUVVQczU0?=
- =?utf-8?B?S3dNT2lkSWJRTUhQc3hrVzI1Z0RlRWxqajM4am9GdFdYc095U1laeW5ZS3Nv?=
- =?utf-8?B?TXBKVUZUM1dCSkpLOFBCcXJVNkx5bUc1cDYrWEFhNm5FSFBjWXZobVJzOFBo?=
- =?utf-8?B?b3BPLzh0TDNOMjN3NlpwU2ZuTFp2SXgrUTRmL250dzIyTkZCZ2tLN0JhZHgy?=
- =?utf-8?B?dXRyTEtXcjJIQXpaemRob0lsb1VrNkl5RVhPRXJTMzJhVGQ0NzZoQVpCL0wv?=
- =?utf-8?B?NnVKU2hIR2dQbXVrcHdsN1B6V0hoODVtUnBNQXBaVGlyeC83NDNUVlIxUVJz?=
- =?utf-8?B?ZEtMc2tyYVp6WHU5dEhhYTFJNlRxK2ZNOVdQbmoyWFhocjVMRFExN0k3bkdS?=
- =?utf-8?B?d0xYMkFFSTlRamdzODZ6YWxpbEJheFN6elIyT00vSUdLOEM1SSszZ2Vxb3Yv?=
- =?utf-8?B?aDVqV0M1NXd1eTV4czdPV0tobXhZWHN0ZEV2VElsRjZOZ3VtS3VFbW5mV2ND?=
- =?utf-8?B?SXdHYlhsNW56R3V2YkZMZ0xWUWQ4K2ZCR1ZKdlJhZnlEcm1uM1hNSENUMlpD?=
- =?utf-8?B?MEp0ZkthMFlWUDlHU0xsRFVBRHFya1NPRSttdVZwZC8zUjYraTNHU0IzNzhD?=
- =?utf-8?B?emxod2hCU1ZjMHBpMGtkOFhmcVNIcmg1R1JPelBibXZ0VkhlbktPMHlRV1oy?=
- =?utf-8?B?RmVtSXpKZ2J1WmxoaU1USlc4cFphWjR2VUpoK2EvMmxCT3A0UGF6SFVzdHhx?=
- =?utf-8?Q?BYlBNTg0G5FfvYt8fcX3SE0=3D?=
-X-OriginatorOrg: wolfvision.net
-X-MS-Exchange-CrossTenant-Network-Message-Id: f0f53379-ab49-47f8-8fe6-08dc271bdda2
-X-MS-Exchange-CrossTenant-AuthSource: VE1PR08MB4974.eurprd08.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 06 Feb 2024 13:59:41.7999
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: e94ec9da-9183-471e-83b3-51baa8eb804f
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: fKHLLR+jQ4Rv2/axtJhWbrrLUMpTbYSJaL8AfhvFoG0cuaGWlfAIvSIxVz83ZNHX5V/fEffG6VQsFl5T+KJthHtymCxQxFrYcmdYEMhu6sA=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DB9PR08MB6330
+User-Agent: Mozilla Thunderbird
+From: Neil Armstrong <neil.armstrong@linaro.org>
+Reply-To: neil.armstrong@linaro.org
+Subject: Re: [RFC PATCH v1] arm64: dts: amlogic: Add Freebox fbx8am boards
+Content-Language: en-US, fr
+To: Marc Gonzalez <mgonzalez@freebox.fr>,
+ Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+ AML <linux-amlogic@lists.infradead.org>, DT <devicetree@vger.kernel.org>
+Cc: Kevin Hilman <khilman@baylibre.com>, Jerome Brunet
+ <jbrunet@baylibre.com>,
+ Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
+ Rob Herring <robh+dt@kernel.org>,
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+ Conor Dooley <conor+dt@kernel.org>,
+ Pierre-Hugues Husson <phhusson@freebox.fr>
+References: <8c865c62-cd80-4c78-9fc5-c85491c037ca@freebox.fr>
+ <b69a2132-25c0-4acd-808e-d134f5034e58@linaro.org>
+ <59ef3824-13d3-40af-9a3a-9b1ec8add9d3@linaro.org>
+ <ef146687-688a-4cf9-a11e-4034a50fb6b4@freebox.fr>
+Autocrypt: addr=neil.armstrong@linaro.org; keydata=
+ xsBNBE1ZBs8BCAD78xVLsXPwV/2qQx2FaO/7mhWL0Qodw8UcQJnkrWmgTFRobtTWxuRx8WWP
+ GTjuhvbleoQ5Cxjr+v+1ARGCH46MxFP5DwauzPekwJUD5QKZlaw/bURTLmS2id5wWi3lqVH4
+ BVF2WzvGyyeV1o4RTCYDnZ9VLLylJ9bneEaIs/7cjCEbipGGFlfIML3sfqnIvMAxIMZrvcl9
+ qPV2k+KQ7q+aXavU5W+yLNn7QtXUB530Zlk/d2ETgzQ5FLYYnUDAaRl+8JUTjc0CNOTpCeik
+ 80TZcE6f8M76Xa6yU8VcNko94Ck7iB4vj70q76P/J7kt98hklrr85/3NU3oti3nrIHmHABEB
+ AAHNKk5laWwgQXJtc3Ryb25nIDxuZWlsLmFybXN0cm9uZ0BsaW5hcm8ub3JnPsLAkQQTAQoA
+ OwIbIwULCQgHAwUVCgkICwUWAgMBAAIeAQIXgBYhBInsPQWERiF0UPIoSBaat7Gkz/iuBQJk
+ Q5wSAhkBAAoJEBaat7Gkz/iuyhMIANiD94qDtUTJRfEW6GwXmtKWwl/mvqQtaTtZID2dos04
+ YqBbshiJbejgVJjy+HODcNUIKBB3PSLaln4ltdsV73SBcwUNdzebfKspAQunCM22Mn6FBIxQ
+ GizsMLcP/0FX4en9NaKGfK6ZdKK6kN1GR9YffMJd2P08EO8mHowmSRe/ExAODhAs9W7XXExw
+ UNCY4pVJyRPpEhv373vvff60bHxc1k/FF9WaPscMt7hlkbFLUs85kHtQAmr8pV5Hy9ezsSRa
+ GzJmiVclkPc2BY592IGBXRDQ38urXeM4nfhhvqA50b/nAEXc6FzqgXqDkEIwR66/Gbp0t3+r
+ yQzpKRyQif3OwE0ETVkGzwEIALyKDN/OGURaHBVzwjgYq+ZtifvekdrSNl8TIDH8g1xicBYp
+ QTbPn6bbSZbdvfeQPNCcD4/EhXZuhQXMcoJsQQQnO4vwVULmPGgtGf8PVc7dxKOeta+qUh6+
+ SRh3vIcAUFHDT3f/Zdspz+e2E0hPV2hiSvICLk11qO6cyJE13zeNFoeY3ggrKY+IzbFomIZY
+ 4yG6xI99NIPEVE9lNBXBKIlewIyVlkOaYvJWSV+p5gdJXOvScNN1epm5YHmf9aE2ZjnqZGoM
+ Mtsyw18YoX9BqMFInxqYQQ3j/HpVgTSvmo5ea5qQDDUaCsaTf8UeDcwYOtgI8iL4oHcsGtUX
+ oUk33HEAEQEAAcLAXwQYAQIACQUCTVkGzwIbDAAKCRAWmrexpM/4rrXiB/sGbkQ6itMrAIfn
+ M7IbRuiSZS1unlySUVYu3SD6YBYnNi3G5EpbwfBNuT3H8//rVvtOFK4OD8cRYkxXRQmTvqa3
+ 3eDIHu/zr1HMKErm+2SD6PO9umRef8V82o2oaCLvf4WeIssFjwB0b6a12opuRP7yo3E3gTCS
+ KmbUuLv1CtxKQF+fUV1cVaTPMyT25Od+RC1K+iOR0F54oUJvJeq7fUzbn/KdlhA8XPGzwGRy
+ 4zcsPWvwnXgfe5tk680fEKZVwOZKIEuJC3v+/yZpQzDvGYJvbyix0lHnrCzq43WefRHI5XTT
+ QbM0WUIBIcGmq38+OgUsMYu4NzLu7uZFAcmp6h8g
+Organization: Linaro Developer Services
+In-Reply-To: <ef146687-688a-4cf9-a11e-4034a50fb6b4@freebox.fr>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
 
-The XMOS XVF3500 VocalFusion Voice Processor[1] is a low-latency, 32-bit
-multicore controller for voice processing.
+On 06/02/2024 14:55, Marc Gonzalez wrote:
+> On 06/02/2024 14:30, Neil Armstrong wrote:
+> 
+>> I do have some dtbs_check errors, but those are expected since they are not specific to this patchset.
+> 
+> Wanted to mention those warnings as a follow-up.
+> Are they easy to fix?
 
-This device requires a specific power sequence, which consists of
-enabling the regulators that control the 3V3 and 1V0 device supplies,
-and a reset de-assertion after a delay of at least 100ns. Such power
-sequence is already supported by the onboard_hub driver, and it can be
-reused for non-hub USB devices as well.
+Yes it's only a matter of writing the missing yaml files and fixing the DT when needed.
+I try to do some regular batches of conversion & fixes but I didn't for a few months now.
 
-Once in normal operation, the XVF3500 registers itself as a USB device,
-and it does not require any device-specific operations in the driver.
+In my last conversion patchset (https://lore.kernel.org/all/20230706-b4-amlogic-bindings-convert-take2-v3-0-f63de6f12dcc@linaro.org/), those were still missing:
+  ['amlogic,axg-audio-clkc']
+  ['amlogic,g12a-audio-clkc']
+  ['amlogic,sm1-audio-clkc']
+  ['amlogic,g12a-tohdmitx']
+  ['amlogic,sm1-tohdmitx', 'amlogic,g12a-tohdmitx']
+  ['everest,es7154']
+  ['everest,es7241']
+  ['ti,tas5707']
+  ['linux,spdif-dir']
 
-[1] https://www.xmos.com/xvf3500/
+Neil
 
-Signed-off-by: Javier Carrasco <javier.carrasco@wolfvision.net>
----
- drivers/usb/misc/onboard_usb_dev.c | 2 ++
- drivers/usb/misc/onboard_usb_dev.h | 7 +++++++
- 2 files changed, 9 insertions(+)
-
-diff --git a/drivers/usb/misc/onboard_usb_dev.c b/drivers/usb/misc/onboard_usb_dev.c
-index 3ac21ec38ac0..a5bb68f04d1c 100644
---- a/drivers/usb/misc/onboard_usb_dev.c
-+++ b/drivers/usb/misc/onboard_usb_dev.c
-@@ -386,6 +386,7 @@ static struct platform_driver onboard_dev_driver = {
- #define VENDOR_ID_REALTEK	0x0bda
- #define VENDOR_ID_TI		0x0451
- #define VENDOR_ID_VIA		0x2109
-+#define VENDOR_ID_XMOS		0x20B1
- 
- /*
-  * Returns the onboard_dev platform device that is associated with the USB
-@@ -478,6 +479,7 @@ static const struct usb_device_id onboard_dev_id_table[] = {
- 	{ USB_DEVICE(VENDOR_ID_TI, 0x8142) }, /* TI USB8041 2.0 */
- 	{ USB_DEVICE(VENDOR_ID_VIA, 0x0817) }, /* VIA VL817 3.1 */
- 	{ USB_DEVICE(VENDOR_ID_VIA, 0x2817) }, /* VIA VL817 2.0 */
-+	{ USB_DEVICE(VENDOR_ID_XMOS, 0x0013) }, /* XVF3500 */
- 	{}
- };
- MODULE_DEVICE_TABLE(usb, onboard_dev_id_table);
-diff --git a/drivers/usb/misc/onboard_usb_dev.h b/drivers/usb/misc/onboard_usb_dev.h
-index ebe83e19d818..632481626d30 100644
---- a/drivers/usb/misc/onboard_usb_dev.h
-+++ b/drivers/usb/misc/onboard_usb_dev.h
-@@ -66,6 +66,12 @@ static const struct onboard_dev_pdata vialab_vl817_data = {
- 	.is_hub = true,
- };
- 
-+static const struct onboard_dev_pdata xmos_xvf3500_data = {
-+	.reset_us = 1,
-+	.num_supplies = 2,
-+	.is_hub = false,
-+};
-+
- static const struct of_device_id onboard_dev_match[] = {
- 	{ .compatible = "usb424,2412", .data = &microchip_usb424_data, },
- 	{ .compatible = "usb424,2514", .data = &microchip_usb424_data, },
-@@ -87,6 +93,7 @@ static const struct of_device_id onboard_dev_match[] = {
- 	{ .compatible = "usbbda,5414", .data = &realtek_rts5411_data, },
- 	{ .compatible = "usb2109,817", .data = &vialab_vl817_data, },
- 	{ .compatible = "usb2109,2817", .data = &vialab_vl817_data, },
-+	{ .compatible = "usb20b1,0013", .data = &xmos_xvf3500_data, },
- 	{}
- };
- 
-
--- 
-2.40.1
+> 
+> $ make dtbs_check
+>    LINT    Documentation/devicetree/bindings
+>    CHKDT   Documentation/devicetree/bindings/processed-schema.json
+>    SCHEMA  Documentation/devicetree/bindings/processed-schema.json
+> /home/mgonzalez/linux/Documentation/devicetree/bindings/net/snps,dwmac.yaml: mac-mode: missing type definition
+>    DTC_CHK arch/arm64/boot/dts/amlogic/meson-g12a-sei510.dtb
+> arch/arm64/boot/dts/amlogic/meson-g12a-sei510.dtb: /soc/bus@ff600000/bus@42000/clock-controller@0: failed to match any schema with compatible: ['amlogic,g12a-audio-clkc']
+> arch/arm64/boot/dts/amlogic/meson-g12a-sei510.dtb: /soc/bus@ff600000/bus@42000/audio-controller@744: failed to match any schema with compatible: ['amlogic,g12a-tohdmitx']
+> /home/mgonzalez/linux/arch/arm64/boot/dts/amlogic/meson-g12a-sei510.dtb: sys-ctrl@0: '#address-cells', '#size-cells', 'ranges' do not match any of the regexes: 'pinctrl-[0-9]+'
+> 	from schema $id: http://devicetree.org/schemas/soc/amlogic/amlogic,meson-gx-hhi-sysctrl.yaml#
+> /home/mgonzalez/linux/arch/arm64/boot/dts/amlogic/meson-g12a-sei510.dtb: sound: Unevaluated properties are not allowed ('assigned-clock-parents', 'assigned-clock-rates', 'assigned-clocks' were unexpected)
+> 	from schema $id: http://devicetree.org/schemas/sound/amlogic,axg-sound-card.yaml#
+> /home/mgonzalez/linux/arch/arm64/boot/dts/amlogic/meson-g12a-sei510.dtb: sound: 'anyOf' conditional failed, one must be fixed:
+> 	'clocks' is a required property
+> 	'#clock-cells' is a required property
+> 	from schema $id: http://devicetree.org/schemas/clock/clock.yaml#
+> 
+> 
+> Regards
+> 
 
 
