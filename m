@@ -1,162 +1,193 @@
-Return-Path: <devicetree+bounces-39263-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-39264-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id E229784BDE9
-	for <lists+devicetree@lfdr.de>; Tue,  6 Feb 2024 20:08:40 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 93CFA84BDF7
+	for <lists+devicetree@lfdr.de>; Tue,  6 Feb 2024 20:14:00 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 99FE128CEBD
-	for <lists+devicetree@lfdr.de>; Tue,  6 Feb 2024 19:08:39 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 2D6B61F25FE8
+	for <lists+devicetree@lfdr.de>; Tue,  6 Feb 2024 19:14:00 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5A01C13FF9;
-	Tue,  6 Feb 2024 19:08:33 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5FE0C13FF0;
+	Tue,  6 Feb 2024 19:13:53 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="lABHGyib"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="TUWRdJmm"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lj1-f177.google.com (mail-lj1-f177.google.com [209.85.208.177])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7CE0214A9D
-	for <devicetree@vger.kernel.org>; Tue,  6 Feb 2024 19:08:30 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.177
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 36A131426D;
+	Tue,  6 Feb 2024 19:13:52 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1707246513; cv=none; b=YSr2C3PuZOEShg6JSpvm/hWcGb7Oraubda2hZDJIUXBPQuBJ24lRYBM62Ap+PbqvrvO6DLu2NBdf2gfJzXXkylUZA5LJ2XbC37iPHy8+EHTeGCL4iI3iFmZ/3FxszTBejdpMK4PH82lXMcytfbkCWOESpf44AQ/tZADRuK+7l2I=
+	t=1707246833; cv=none; b=PTYPy6/l3YgrJHpsRIYA0KfYWtIw3T7Wf4wMZjlM//E281OhAQaRV0sI3pGpkWmxhGY98YK3r9jugkXSgWXXWnLghvZDK+n9TSDMpkXJATE1GTggE/ShxW/Edjf7kRY2dti0rq15vnx4cX/PsLGp+qZhrZk1O8JSwTblks2+JcU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1707246513; c=relaxed/simple;
-	bh=UZTJjPcb2MjuJk4X9agIJ4O2gWUdi3IX7M8uOAzP3So=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=KfArEz6AUVZ9Msveqea+Pm03zBSUEGb872H6IgznYNBX2WUdF65P5BLlajBj//w8Cg5uDiJYzVqZI5CFiJ7/TGtXTfEO+WQK9bkt3EfalD5NLHK6GOW+HUt/+uLWRE662V5TYA2T1cLEOgF3fgjBPFkBfX2cD7oTC4xuE0eKpis=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=lABHGyib; arc=none smtp.client-ip=209.85.208.177
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-lj1-f177.google.com with SMTP id 38308e7fff4ca-2d0b4ea773eso25263341fa.0
-        for <devicetree@vger.kernel.org>; Tue, 06 Feb 2024 11:08:30 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1707246509; x=1707851309; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
-         :to:content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=MdMobT+8h7P/ZBNgynDgzGAaw5f0RjP4kU2V9E4+mMM=;
-        b=lABHGyib9M3NYjj7cXYk/RIaG2/zHk4rYrNZMI365x1Ol0zFqBB2OTMlwoDwtqAUv2
-         XgzzOWl48pVuU4xIQNLTTewaagQu3yOSe8h4TJoD/5QrI1j3JSmdc8qyutYO46qtYJ+L
-         LaTWWnyk7MxJklDOu2nr5eGSsabjKt3EuCt+y+ed3Cxjwl/BHypLOB4hxtxkjYgnLIfS
-         kfKp3l4EDVBxV/7mHEbic8dkdZMgUW7Hm8xixANQuDg+bD2Q1BZFLy8rZaOj57NxHjWC
-         TOuM28Wl+pjp3NK4woQ2xBc1OKcb65/RkQ/ct9dbxVt2Iw53dXaFTPSNb4SreSyzZyk+
-         wl0A==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1707246509; x=1707851309;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
-         :to:content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=MdMobT+8h7P/ZBNgynDgzGAaw5f0RjP4kU2V9E4+mMM=;
-        b=kfOGYdNfiDI2R3dz0F8dDb/xBgRSpSk64FkSNZ1syXb5St/Dy83nPf+H/NpP/Abi6F
-         QqZxHNZx3H1CJm9M5pDsDdkGchXCMZefic1UZwrshowM2S/d230Tkt7uHmQCso7vA+nr
-         edH5QZqMjdvC72kgzNA7quI4Ofwf6wIOC/B7KS1GBOPfeb6VLMLQS8qGEWmgKwb4R/8H
-         8z5+mnG5rEoYmsUzA/CiGy38VucnsHr5zcw7r4O18gjEf9qoDLKI+xpaeI/sXs766tgD
-         mhdtlR5vqhZacfv0x1MaVY4pMdmg/9U+Ev5ox11MBHINj0GyZx9dnpit5zlxjOv5tWDk
-         1Cdw==
-X-Gm-Message-State: AOJu0YzFFq1SlR5B+2gScNza+4c6P87Epsae1vSRg7slzxxoVHQnUUDz
-	liILOXa1WavUiRhry3p57jTVk93XaAKABBhDajQO0Ojgbr/8corVO9DohGA74kQ=
-X-Google-Smtp-Source: AGHT+IGJZ+Q4CCq7NP1967q508pkF3nV6233Sdm5IY2dxAmf/nEDmmh8+oenKnnPLSfC9YMB/Rb93g==
-X-Received: by 2002:a05:651c:1713:b0:2d0:9c30:e1af with SMTP id be19-20020a05651c171300b002d09c30e1afmr1936187ljb.53.1707246508808;
-        Tue, 06 Feb 2024 11:08:28 -0800 (PST)
-X-Forwarded-Encrypted: i=0; AJvYcCWwv1KQlgQ/Y+PE04tvRgGVtPexYwA2ALlogWGTpP+H1isFU41OBdCM+51YfUdAwynKJ9cx5y6GQLuuXdl68pQotMwBIzaP63RERBsPE+Jth8pkvqnJtWrcmfZka/loSHbdhaoG07lmJn6ihYkb1paKcC5moSWInVErUjW97QpmX6zDzyP6I71m5RQHgwx5nsqA2oKnfjQpuCB8NC5jldq4aF8oV5qXkzwiEFotOoM4j6Z1FQA7MCdsH7FD13pdTbDOHzUqUoJ5EuWeNtxw2D58TLt8coNS/p+1aCssYP+TNv+WV/xGcmdDWxZTnRLGtbMZD9W9UH1niLzdw6JtwQ9OX45zakNIZK69Eqsxd2naXydi8WPbDfByyAW1fcoKt4inEC92a8KY5nB7VGa2hd1ClPwIYv4339UotBvprXKNhLZ5kTQ18GHkxdfcsPAUHA83+ah7Phc+7ecE9rDN2yNpB7nNXOnAxrkBieaq8WeqTOvxI+09rP6DvseCjKZWq0RkGPYlCJR27VR+vsOo2P+YzchmvmETsm4mU2eNcBIrIdxJ2sMnJYXdSv1Y54WrrPmNN8p2MHKpJxTsV6WdxaOwObab/BaapzqdxQfJU0WZlZW863YCYsvHqSI9HMqeFgMi4QYw8QwmQMy1hoJTXhwUNtx3uBe+96mxE+Jgpu+Mj2AJoRPVBPdl1aKbpKLuOB7byIPK/o/sjniuI2w/dSh8
-Received: from [192.168.192.207] (037008245233.garwolin.vectranet.pl. [37.8.245.233])
-        by smtp.gmail.com with ESMTPSA id q24-20020a056402041800b0055ff68cce5asm1325939edv.27.2024.02.06.11.08.27
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 06 Feb 2024 11:08:28 -0800 (PST)
-Message-ID: <a2f8b2f0-0673-4939-8843-200ccf2c7807@linaro.org>
-Date: Tue, 6 Feb 2024 20:08:26 +0100
+	s=arc-20240116; t=1707246833; c=relaxed/simple;
+	bh=onwe4EzjWJV+cq1TR1U2XS4PSciWcSYm51R+cgATKxY=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=oZYq3KeCV/G5mjbjWvBV5eAMGtWKx1koGgUSG5bF7gP3MvxlyLYhbTDyLn8gwpSQiZqCu5hRfwhSqXaQtcMoiNDWpAGWsz3n3yliURyQilTUWMVUFe4PfOGLfoTMlnBEebzGZfw1SA+gJU4z54WO6HJYMX1qp7emDNpdfZqjtFo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=TUWRdJmm; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id A8D86C433F1;
+	Tue,  6 Feb 2024 19:13:50 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1707246832;
+	bh=onwe4EzjWJV+cq1TR1U2XS4PSciWcSYm51R+cgATKxY=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=TUWRdJmmfYpoyDOvdrd19ja8t7fKgOAj477iqglAG8qNGVb3DNwkiqddTE6igRcX8
+	 Go5y8kCEfPDR4/NHIFaWiBp9SVsbraKYg7m+ki0kwm0q0obx/JveYBH8D2vJMlNX+z
+	 u4rJE5FeiS/UZxtilQApCp21T+0yZVKTy8n3QO9sQuQ3iwl0cVbgx552D6ZnXjOKTL
+	 a9NL9AIftcriyaLGI5Kl5+fZuVTlgi0nGKx1jNAGBDWHYQ7CE0RGWZ+u2lP1kfYFgy
+	 hblUlPwsiBPh3kEcS8XRcjH7NJlyyqnw7TsS5EPZJAkJWnUYPUvoA5OeC3xS65cm54
+	 0jAdstILGEYZg==
+Date: Tue, 6 Feb 2024 19:13:48 +0000
+From: Conor Dooley <conor@kernel.org>
+To: Jisheng Zhang <jszhang@kernel.org>
+Cc: Rob Herring <robh+dt@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Paul Walmsley <paul.walmsley@sifive.com>,
+	Palmer Dabbelt <palmer@dabbelt.com>,
+	Albert Ou <aou@eecs.berkeley.edu>,
+	Emil Renner Berthing <kernel@esmil.dk>,
+	linux-riscv@lists.infradead.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v3 6/6] riscv: dts: starfive: add Milkv Mars board device
+ tree
+Message-ID: <20240206-magma-deem-2c88e45a545a@spud>
+References: <20240131132600.4067-1-jszhang@kernel.org>
+ <20240131132600.4067-7-jszhang@kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 1/8] arm64: dts: qcom: msm8976: Add IOMMU nodes
-Content-Language: en-US
-To: Adam Skladowski <a39.skl@gmail.com>
-Cc: phone-devel@vger.kernel.org, ~postmarketos/upstreaming@lists.sr.ht,
- Rob Clark <robdclark@gmail.com>, Abhinav Kumar <quic_abhinavk@quicinc.com>,
- Dmitry Baryshkov <dmitry.baryshkov@linaro.org>, Sean Paul <sean@poorly.run>,
- Marijn Suijten <marijn.suijten@somainline.org>,
- David Airlie <airlied@gmail.com>, Daniel Vetter <daniel@ffwll.ch>,
- Rob Herring <robh+dt@kernel.org>,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Conor Dooley <conor+dt@kernel.org>, Andy Gross <agross@kernel.org>,
- Bjorn Andersson <andersson@kernel.org>,
- Krishna Manikandan <quic_mkrishn@quicinc.com>,
- linux-arm-msm@vger.kernel.org, dri-devel@lists.freedesktop.org,
- freedreno@lists.freedesktop.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org
-References: <20240121194221.13513-1-a39.skl@gmail.com>
- <20240121194221.13513-2-a39.skl@gmail.com>
-From: Konrad Dybcio <konrad.dybcio@linaro.org>
-Autocrypt: addr=konrad.dybcio@linaro.org; keydata=
- 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
- izWDgYvmBE8=
-In-Reply-To: <20240121194221.13513-2-a39.skl@gmail.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Type: multipart/signed; micalg=pgp-sha256;
+	protocol="application/pgp-signature"; boundary="H4mv7uwP1RXcpRTP"
+Content-Disposition: inline
+In-Reply-To: <20240131132600.4067-7-jszhang@kernel.org>
 
-On 21.01.2024 20:40, Adam Skladowski wrote:
-> Add the nodes describing the apps and gpu iommu and its context banks
-> that are found on msm8976 SoCs.
-> 
-> Signed-off-by: Adam Skladowski <a39.skl@gmail.com>
+
+--H4mv7uwP1RXcpRTP
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
+
+On Wed, Jan 31, 2024 at 09:26:00PM +0800, Jisheng Zhang wrote:
+> The Milkv Mars is a development board based on the Starfive JH7110 SoC.
+> The board features:
+>=20
+> - JH7110 SoC
+> - 1/2/4/8 GiB LPDDR4 DRAM
+> - AXP15060 PMIC
+> - 40 pin GPIO header
+> - 3x USB 3.0 host port
+> - 1x USB 2.0 host port
+> - 1x M.2 E-Key
+> - 1x eMMC slot
+> - 1x MicroSD slot
+> - 1x QSPI Flash
+> - 1x 1Gbps Ethernet port
+> - 1x HDMI port
+> - 1x 2-lane DSI and 1x 4-lane DSI
+> - 1x 2-lane CSI
+>=20
+> Add the devicetree file describing the currently supported features,
+> namely PMIC, UART, I2C, GPIO, SD card, QSPI Flash, eMMC and Ethernet.
+>=20
+> Signed-off-by: Jisheng Zhang <jszhang@kernel.org>
+
+Got a dtbs_check issue in the patchwork CI:
+
+  +arch/riscv/boot/dts/starfive/jh7110-milkv-mars.dtb: gmac1-rgmii-rxin-clo=
+ck: 'clock-frequency' is a required property
+  +	from schema $id: http://devicetree.org/schemas/clock/fixed-clock.yaml#
+  +arch/riscv/boot/dts/starfive/jh7110-milkv-mars.dtb: gmac1-rmii-refin-clo=
+ck: 'clock-frequency' is a required property
+  +	from schema $id: http://devicetree.org/schemas/clock/fixed-clock.yaml#
+
+Can you fix that please? Also, I applied some patches the other day that
+seem to conflict quite a bit with the common board dts patch. Would you
+please do a rebase on top of that please?
+
+Cheers,
+Conor.
+
 > ---
->  arch/arm64/boot/dts/qcom/msm8976.dtsi | 80 +++++++++++++++++++++++++++
->  1 file changed, 80 insertions(+)
-> 
-> diff --git a/arch/arm64/boot/dts/qcom/msm8976.dtsi b/arch/arm64/boot/dts/qcom/msm8976.dtsi
-> index d2bb1ada361a..118174cfd4d3 100644
-> --- a/arch/arm64/boot/dts/qcom/msm8976.dtsi
-> +++ b/arch/arm64/boot/dts/qcom/msm8976.dtsi
-> @@ -808,6 +808,86 @@ tcsr: syscon@1937000 {
->  			reg = <0x01937000 0x30000>;
->  		};
->  
-> +		apps_iommu: iommu@1e20000 {
-> +			compatible = "qcom,msm8976-iommu", "qcom,msm-iommu-v2";
-> +			ranges  = <0 0x01e20000 0x20000>;
+>  arch/riscv/boot/dts/starfive/Makefile         |  1 +
+>  .../boot/dts/starfive/jh7110-milkv-mars.dts   | 35 +++++++++++++++++++
+>  2 files changed, 36 insertions(+)
+>  create mode 100644 arch/riscv/boot/dts/starfive/jh7110-milkv-mars.dts
+>=20
+> diff --git a/arch/riscv/boot/dts/starfive/Makefile b/arch/riscv/boot/dts/=
+starfive/Makefile
+> index 0141504c0f5c..2fa0cd7f31c3 100644
+> --- a/arch/riscv/boot/dts/starfive/Makefile
+> +++ b/arch/riscv/boot/dts/starfive/Makefile
+> @@ -8,5 +8,6 @@ DTC_FLAGS_jh7110-starfive-visionfive-2-v1.3b :=3D -@
+>  dtb-$(CONFIG_ARCH_STARFIVE) +=3D jh7100-beaglev-starlight.dtb
+>  dtb-$(CONFIG_ARCH_STARFIVE) +=3D jh7100-starfive-visionfive-v1.dtb
+> =20
+> +dtb-$(CONFIG_ARCH_STARFIVE) +=3D jh7110-milkv-mars.dtb
+>  dtb-$(CONFIG_ARCH_STARFIVE) +=3D jh7110-starfive-visionfive-2-v1.2a.dtb
+>  dtb-$(CONFIG_ARCH_STARFIVE) +=3D jh7110-starfive-visionfive-2-v1.3b.dtb
+> diff --git a/arch/riscv/boot/dts/starfive/jh7110-milkv-mars.dts b/arch/ri=
+scv/boot/dts/starfive/jh7110-milkv-mars.dts
+> new file mode 100644
+> index 000000000000..de600e799e7d
+> --- /dev/null
+> +++ b/arch/riscv/boot/dts/starfive/jh7110-milkv-mars.dts
+> @@ -0,0 +1,35 @@
+> +// SPDX-License-Identifier: GPL-2.0 OR MIT
+> +/*
+> + * Copyright (C) 2023 Jisheng Zhang <jszhang@kernel.org>
+> + */
+> +
+> +/dts-v1/;
+> +#include "jh7110-visionfive2-mars-common.dtsi"
+> +
+> +/ {
+> +	model =3D "Milk-V Mars";
+> +	compatible =3D "milkv,mars", "starfive,jh7110";
+> +};
+> +
+> +&gmac0 {
+> +	starfive,tx-use-rgmii-clk;
+> +	assigned-clocks =3D <&aoncrg JH7110_AONCLK_GMAC0_TX>;
+> +	assigned-clock-parents =3D <&aoncrg JH7110_AONCLK_GMAC0_RMII_RTX>;
+> +};
+> +
+> +
+> +&phy0 {
+> +	motorcomm,tx-clk-adj-enabled;
+> +	motorcomm,tx-clk-10-inverted;
+> +	motorcomm,tx-clk-100-inverted;
+> +	motorcomm,tx-clk-1000-inverted;
+> +	motorcomm,rx-clk-drv-microamp =3D <3970>;
+> +	motorcomm,rx-data-drv-microamp =3D <2910>;
+> +	rx-internal-delay-ps =3D <1500>;
+> +	tx-internal-delay-ps =3D <1500>;
+> +};
+> +
+> +&mmc1 {
+> +	disable-wp;
+> +	cd-gpios =3D <&sysgpio 41 GPIO_ACTIVE_LOW>;
+> +};
+> --=20
+> 2.43.0
+>=20
 
-So.. there's no 'reg', does devm_platform_ioremap_resource() pick up
-the corresponding reg space?
+--H4mv7uwP1RXcpRTP
+Content-Type: application/pgp-signature; name="signature.asc"
 
-Konrad
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZcKE7AAKCRB4tDGHoIJi
+0ozhAQC7TY7fFtI+7Cw4EcbHg3iXLfPgEJADK1Liq8mObgwtEgD9G0Z1TigpDQda
+rA37daVrT5yyYKio+Rl1uMG5ig+GVA4=
+=5e08
+-----END PGP SIGNATURE-----
+
+--H4mv7uwP1RXcpRTP--
 
