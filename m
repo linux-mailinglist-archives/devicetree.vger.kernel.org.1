@@ -1,62 +1,62 @@
-Return-Path: <devicetree+bounces-39142-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-39143-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 91FAF84B859
-	for <lists+devicetree@lfdr.de>; Tue,  6 Feb 2024 15:50:31 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1140884B878
+	for <lists+devicetree@lfdr.de>; Tue,  6 Feb 2024 15:53:59 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id B56A61C23887
-	for <lists+devicetree@lfdr.de>; Tue,  6 Feb 2024 14:50:30 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id B9B141F2702C
+	for <lists+devicetree@lfdr.de>; Tue,  6 Feb 2024 14:53:58 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id EDBF913248D;
-	Tue,  6 Feb 2024 14:50:24 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=linuxfoundation.org header.i=@linuxfoundation.org header.b="kLFOOydV"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 97203133285;
+	Tue,  6 Feb 2024 14:53:12 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from metis.whiteo.stw.pengutronix.de (metis.whiteo.stw.pengutronix.de [185.203.201.7])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A7ED31E4BE;
-	Tue,  6 Feb 2024 14:50:24 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DAF93131E40
+	for <devicetree@vger.kernel.org>; Tue,  6 Feb 2024 14:53:10 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.203.201.7
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1707231024; cv=none; b=ZLq5JClHXDOvF1O4Phd791iZAht+njlIPCDlOY+ehsD3ylI/X/0mQ+ItgNPZcfvDz7O6mao99iddl8yNnfRrhstupKLT5oFcsOnu1DLu2EauVPobJm14cmodz+2WaJPW27tGZpxGqiYlvfvhSD6ieSF7dcQPdgsT02SAvkZuuWw=
+	t=1707231192; cv=none; b=HG8Qd1QXFdVwEoeiq7MOQJSMuC287UA5IGOnrYVErnBI7iQk0uOHSY85F81A5laDkGnstUoHyB7i+Ek7VZgX7YUs3r8AjDIpuxl/RBLWNgfcItxKZCcF99HXc4EF6ra47cwoIKAo7SwwfnGbh5IXI8Cd1Zy5okr1U2mFwOJcTlg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1707231024; c=relaxed/simple;
-	bh=TRNOZ2E0jVFr1j4Jk3WeOB19Tmkl0WCO11cXpH5xx0c=;
+	s=arc-20240116; t=1707231192; c=relaxed/simple;
+	bh=DJ78Ay1OdNqn9uu5KBT+Cad3akqY44X3HXQr9ywyub4=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=uLehfM0Tm/ri9VGKbGbGne2qY3konLpMXzCtKnFbP9yzWeW0U0FzFJxCWO66irpNJkCcjfDyygqDAwn/qIP+50BiBOmG8pjNAM8SehKqoX9T+a3NaDuqpyaE7Bji0aCzRlMDD5fC6JW6TKxyuWWVGRGTxU0xKrVXzjiyJVE053w=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (1024-bit key) header.d=linuxfoundation.org header.i=@linuxfoundation.org header.b=kLFOOydV; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 742AAC433C7;
-	Tue,  6 Feb 2024 14:50:23 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=linuxfoundation.org;
-	s=korg; t=1707231024;
-	bh=TRNOZ2E0jVFr1j4Jk3WeOB19Tmkl0WCO11cXpH5xx0c=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=kLFOOydVz8hY/tZlvFGGUr5yxRLIh5a3MMj5zIRocdMkLDC1jdALkpy9OA3M9F8lD
-	 uRpBnMXQLY+8ovJ86Mu/N+WBHiVZCawbZRCXM749gkLpVYkyUjNoqP4OZx2B7X+6le
-	 95uqhpXCNWzr+Hy9rLJ6CQwMVmoMMdIisEZbF31o=
-Date: Tue, 6 Feb 2024 14:50:21 +0000
-From: Greg KH <gregkh@linuxfoundation.org>
-To: Takashi Iwai <tiwai@suse.de>
-Cc: Wesley Cheng <quic_wcheng@quicinc.com>, srinivas.kandagatla@linaro.org,
-	mathias.nyman@intel.com, perex@perex.cz, conor+dt@kernel.org,
-	corbet@lwn.net, lgirdwood@gmail.com, andersson@kernel.org,
-	krzysztof.kozlowski+dt@linaro.org, Thinh.Nguyen@synopsys.com,
-	broonie@kernel.org, bgoswami@quicinc.com, tiwai@suse.com,
-	robh+dt@kernel.org, konrad.dybcio@linaro.org,
-	linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-sound@vger.kernel.org, linux-usb@vger.kernel.org,
-	linux-arm-msm@vger.kernel.org, linux-doc@vger.kernel.org,
-	alsa-devel@alsa-project.org
-Subject: Re: [PATCH v13 32/53] ALSA: usb-audio: Check for support for
- requested audio format
-Message-ID: <2024020617-limb-name-f852@gregkh>
-References: <20240203023645.31105-1-quic_wcheng@quicinc.com>
- <20240203023645.31105-33-quic_wcheng@quicinc.com>
- <87wmrhvir7.wl-tiwai@suse.de>
+	 Content-Type:Content-Disposition:In-Reply-To; b=aPg/ZhnLS6BSMeXSsfhUeJ300hwI+IcXYwFiKLY5XU8AEH3JrP0AI4snOeI6x4dFUHRfYhzch6wcSsDjFeAt4wZIT+sekd6nYsEmDfutvvogLJbZyeCmtB7thpM+wGCT1OuJaidA2ADK5mPVFT3IG+YbGcfhNQbNdbTpsu0wIQE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de; spf=pass smtp.mailfrom=pengutronix.de; arc=none smtp.client-ip=185.203.201.7
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=pengutronix.de
+Received: from drehscheibe.grey.stw.pengutronix.de ([2a0a:edc0:0:c01:1d::a2])
+	by metis.whiteo.stw.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
+	(Exim 4.92)
+	(envelope-from <mfe@pengutronix.de>)
+	id 1rXMog-0005Na-Dy; Tue, 06 Feb 2024 15:52:54 +0100
+Received: from [2a0a:edc0:2:b01:1d::c5] (helo=pty.whiteo.stw.pengutronix.de)
+	by drehscheibe.grey.stw.pengutronix.de with esmtps  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+	(Exim 4.94.2)
+	(envelope-from <mfe@pengutronix.de>)
+	id 1rXMof-004qT5-8Q; Tue, 06 Feb 2024 15:52:53 +0100
+Received: from mfe by pty.whiteo.stw.pengutronix.de with local (Exim 4.96)
+	(envelope-from <mfe@pengutronix.de>)
+	id 1rXMof-00EFwL-0R;
+	Tue, 06 Feb 2024 15:52:53 +0100
+Date: Tue, 6 Feb 2024 15:52:53 +0100
+From: Marco Felsch <m.felsch@pengutronix.de>
+To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Cc: gregkh@linuxfoundation.org, robh+dt@kernel.org,
+	krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
+	linux@roeck-us.net, heikki.krogerus@linux.intel.com,
+	linux-usb@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org, kernel@pengutronix.de
+Subject: Re: [PATCH 1/4] dt-bindings: usb: typec-tcpci: add tcpci compatible
+ binding
+Message-ID: <20240206145253.u555h3rvtetv3qaf@pengutronix.de>
+References: <20240205164316.805408-1-m.felsch@pengutronix.de>
+ <20240205164316.805408-2-m.felsch@pengutronix.de>
+ <004dbeb3-f863-416c-a4e4-18739302ae58@linaro.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -65,77 +65,84 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <87wmrhvir7.wl-tiwai@suse.de>
+In-Reply-To: <004dbeb3-f863-416c-a4e4-18739302ae58@linaro.org>
+X-SA-Exim-Connect-IP: 2a0a:edc0:0:c01:1d::a2
+X-SA-Exim-Mail-From: mfe@pengutronix.de
+X-SA-Exim-Scanned: No (on metis.whiteo.stw.pengutronix.de); SAEximRunCond expanded to false
+X-PTX-Original-Recipient: devicetree@vger.kernel.org
 
-On Tue, Feb 06, 2024 at 02:12:44PM +0100, Takashi Iwai wrote:
-> On Sat, 03 Feb 2024 03:36:24 +0100,
-> Wesley Cheng wrote:
+On 24-02-06, Krzysztof Kozlowski wrote:
+> On 05/02/2024 17:43, Marco Felsch wrote:
+> > This binding descripes the generic TCPCI specification [1]. So add the
+> 
+> Typo: describes.
+
+Argh.
+
+> No, this binding describes PTN5110, not generic TCPCI. This is not
+> accurate commit description.
+
+This binding is currently missued if another TCPCI conform chip is used
+which requires no special handling. I could have dropped this commit
+since the 'tcpci' is already present at i2c-device-id level.
+
+> 
+> > generic binding support since which can be used if an different TCPC is
+> > used compatible which is compatible to [1].
+> 
+> Sorry, cannot parse it. Please run it through native speaker, Google
+> grammar check, ChatGPT or some other way.
+
+Argh.. you're right, sorry. I will rephrase it.
+
+> > [1] https://www.usb.org/sites/default/files/documents/usb-port_controller_specification_rev2.0_v1.0_0.pdf
 > > 
-> > Allow for checks on a specific USB audio device to see if a requested PCM
-> > format is supported.  This is needed for support when playback is
-> > initiated by the ASoC USB backend path.
+> > Signed-off-by: Marco Felsch <m.felsch@pengutronix.de>
+> > ---
+> >  Documentation/devicetree/bindings/usb/nxp,ptn5110.yaml | 4 +++-
+> >  1 file changed, 3 insertions(+), 1 deletion(-)
 > > 
-> > Signed-off-by: Wesley Cheng <quic_wcheng@quicinc.com>
+> > diff --git a/Documentation/devicetree/bindings/usb/nxp,ptn5110.yaml b/Documentation/devicetree/bindings/usb/nxp,ptn5110.yaml
+> > index eaedb4cc6b6c..7bd7bbbac9e0 100644
+> > --- a/Documentation/devicetree/bindings/usb/nxp,ptn5110.yaml
+> > +++ b/Documentation/devicetree/bindings/usb/nxp,ptn5110.yaml
+> > @@ -11,7 +11,9 @@ maintainers:
+> >  
+> >  properties:
+> >    compatible:
+> > -    const: nxp,ptn5110
+> > +    enum:
+> > +      - nxp,ptn5110
+> > +      - tcpci
 > 
-> Just cosmetic:
-> 
-> > +struct snd_usb_stream *snd_usb_find_suppported_substream(int card_idx,
-> > +			struct snd_pcm_hw_params *params, int direction)
-> > +{
-> > +	struct snd_usb_audio *chip;
-> > +	struct snd_usb_substream *subs;
-> > +	struct snd_usb_stream *as;
-> > +	const struct audioformat *fmt;
-> > +
-> > +	/*
-> > +	 * Register mutex is held when populating and clearing usb_chip
-> > +	 * array.
-> > +	 */
-> > +	mutex_lock(&register_mutex);
-> > +	chip = usb_chip[card_idx];
-> > +	if (!chip) {
-> > +		mutex_unlock(&register_mutex);
-> > +		return NULL;
-> > +	}
-> > +
-> > +	if (enable[card_idx]) {
-> > +		list_for_each_entry(as, &chip->pcm_list, list) {
-> > +			subs = &as->substream[direction];
-> > +			fmt = snd_usb_find_substream_format(subs, params);
-> > +			if (fmt) {
-> > +				mutex_unlock(&register_mutex);
-> > +				return as;
-> > +			}
-> > +		}
-> > +	}
-> > +	mutex_unlock(&register_mutex);
-> 
-> I prefer having the single lock/unlock call pair, e.g.
-> 
-> 	struct snd_usb_stream *as, *ret;
-> 
-> 	ret = NULL;
-> 	mutex_lock(&register_mutex);
-> 	chip = usb_chip[card_idx];
-> 	if (chip && enable[card_idx]) {
-> 		list_for_each_entry(as, &chip->pcm_list, list) {
-> 			subs = &as->substream[direction];
-> 			if (snd_usb_find_substream_format(subs, params)) {
-> 				ret = as;
-> 				break;
-> 			}
-> 		}
-> 	}
-> 	mutex_unlock(&register_mutex);
-> 	return ret;
-> }
-> 
-> In this case, we shouldn't reuse "as" for the return value since it
-> can be non-NULL after the loop end.
+> I don't think this is correct. First, this is binding for NXP chip, so
+> why generic implementation should be here? I would expect it in its own
+> dedicated binding.
 
-Why not just use guard(mutex) for this, making it all not an issue?
+The nxp,ptn5110 device was the first driver which implements an TCPCI
+conform driver. The driver already support the tcpci binding for i2c-id
+devices as I mentioned above. IMHO this whole binding (file) should be
+converted and the nxp,ptn5110 compatible should be marked as deprecated.
 
-thanks,
+> Second, we rarely want generic compatibles. Care to share more details?
 
-greg k-h
+As said above this particular NXP chip is an TCPCI conform chip. There
+is nothing special about it. There are other vendors like OnSemi (in my
+case) which implement also an TCPCI conform chip. The (Linux) driver
+already binds to the generic tcpci compatible if the i2c-core falls back
+to the i2c-device id. It's even more confusing that the i2c-id supports
+only the generic binding the of-compatible support only the specifc one.
+
+> Are all details expected to follow spec, without need of quirks?
+
+Please see above, I hope this helps.
+
+Regards,
+  Marco
+
+> 
+> Best regards,
+> Krzysztof
+> 
+> 
 
