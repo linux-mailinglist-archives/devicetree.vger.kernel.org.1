@@ -1,201 +1,290 @@
-Return-Path: <devicetree+bounces-38874-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-38875-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3CF9C84ACD4
-	for <lists+devicetree@lfdr.de>; Tue,  6 Feb 2024 04:26:12 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8817F84AD05
+	for <lists+devicetree@lfdr.de>; Tue,  6 Feb 2024 04:39:48 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id A61D91F22CF9
-	for <lists+devicetree@lfdr.de>; Tue,  6 Feb 2024 03:26:11 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id DCBC1B2234C
+	for <lists+devicetree@lfdr.de>; Tue,  6 Feb 2024 03:39:45 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 484F673197;
-	Tue,  6 Feb 2024 03:26:09 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7F155745DB;
+	Tue,  6 Feb 2024 03:39:18 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="VFxLB2C3"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="LshS8m0M"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pg1-f178.google.com (mail-pg1-f178.google.com [209.85.215.178])
+Received: from mail-pj1-f53.google.com (mail-pj1-f53.google.com [209.85.216.53])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9CF156E2B0;
-	Tue,  6 Feb 2024 03:26:07 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.215.178
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B53031EB3A;
+	Tue,  6 Feb 2024 03:39:16 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.216.53
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1707189969; cv=none; b=sQe1BHLI8rrkuI5buQlvXe89Dnm15NZ8MqptzYAnWyla0WXBijPTh8P+UuEKecaae//XfdE+VvAIXS0gc/k/xC1RZrT3AYYxUvwJ3E2JGl7uYquaQVYTKR+nOY5Q/ZSQXYeBpcT2drayZPPgqUXSVtTEvmXlZg8WauvIOi9G0FQ=
+	t=1707190758; cv=none; b=Vc40o8tzzewyrRAd0irqPBy9UlfM9XRvkpCkBDgj+jjmdU5uZ6NdmEtY1t4saXJ56rDvzdleQm0LK5KEPMi7N7AYutmWilH/LlyjL94ULVMtGgVQa7bATd9V2dhUk27AJrQjO3vs+DTFJOFNzEJTI+7e6IQrAcii8J9lCRssEtc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1707189969; c=relaxed/simple;
-	bh=umEb0BhqMX8QgLQWlM++IWcTd98YG6V+w+9Y6bL6Kz8=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=UWeT/jdtyHVGo0YQ6OmOjXa52TT0HTqudqRw05Ppu14bqekAaKbCAkOllp2aSzSbut99YSEgSUkXqhn7nLy1aqhvqUpVuAtUVtonPj7cmcT8KlOY4DWOrntYTqFZGzGNCxaZ1jFhimR2WnzL/esy/+3PmiwJzFglW/1VFc+vdpk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=roeck-us.net; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=VFxLB2C3; arc=none smtp.client-ip=209.85.215.178
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=roeck-us.net
+	s=arc-20240116; t=1707190758; c=relaxed/simple;
+	bh=Eg9z6jEW9p/PugjKdtuVlFec6GWtC4u5Fc10RoOmES4=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=Qc/zmvuSsbFHTWw1bEnZ/qsU/pDlugeOvuRXlJp2qfBjAcN3svWe2l7b2jRf4U+JdohV67wflWMqiRk5mXfVN+Z1blevr/ZmutmC1HjSRiO0ixCcXnJKBTPFunF9KdIjmreU+uJLc/mDXPBJ0kwnBScfs6Ggj288Q08uTjABxUw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=LshS8m0M; arc=none smtp.client-ip=209.85.216.53
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-pg1-f178.google.com with SMTP id 41be03b00d2f7-5dbf7b74402so387736a12.0;
-        Mon, 05 Feb 2024 19:26:07 -0800 (PST)
+Received: by mail-pj1-f53.google.com with SMTP id 98e67ed59e1d1-2906bcae4feso3950234a91.3;
+        Mon, 05 Feb 2024 19:39:16 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1707189967; x=1707794767; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
-         :to:content-language:subject:user-agent:mime-version:date:message-id
-         :sender:from:to:cc:subject:date:message-id:reply-to;
-        bh=XZfzzDXmxicnToftyCXmWq7bV7IDNDJptxpK3iKTrk4=;
-        b=VFxLB2C3auGDmBYnck2VQxQ0zp/pWl61WhynTTrh5CIUGtu9gIr1FWHYU9QuBafYkL
-         hv39wGvaX8oMGrlGUt3tdDD5Khy5Gsup/SwddFk8g+8AwCb+roN3MnYnTEzlbpH4gMgs
-         JGwdTCiGmBWx91IvF996riEB3hBod5vJM8HPk3COk/hM4WgYz+aJ9HYw2MYqZi5dNAoI
-         SKWbwfNgZvlUwoF2+Zo1nbFLCE4IaktVtDCnveNdl7FWvWUHYZ6OHXHF1CR1eLox3vdW
-         hATpv1H8IntFJtAcshCpr4sC2jOytVWf4RwmWp3hisMN6p/j4h18pY4TFmCgLT2pzJPb
-         afXQ==
+        d=gmail.com; s=20230601; t=1707190756; x=1707795556; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=EYjlWLoy2riopH+zlSIcKPkCBJ5S6WcdaC4eCMXtR5k=;
+        b=LshS8m0MHIN/u/1fY2ptq+nTKztGCyRotMOeGwlTbjqwlLBYxRbXfc8/dY5pr+Z7FO
+         F16RFXi3hs6OldQd/ZSlANxPgTh4sMeU+ALAJJHTvKCoKXP3uYeyOhbhOESA4X45kHAx
+         4F6Efm112KxwP4QZHiNfMsR4MtTmb5w+Dyr035c8DVOuHbEvi2g5yUzTFgrHRQPWbyLb
+         09THTKa3be9P6MPgrD/3QFmUjLdB+ZYHDPjHES3KRCKatHVQBZt3mUd0+JpVoEbRHapO
+         JRjaq8us3kGdbcyQDMiD0NaWDrHTQEqvQV09iLmJPUZOrf1rt6tLEhirfRMI9xV1454n
+         H30g==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1707189967; x=1707794767;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
-         :to:content-language:subject:user-agent:mime-version:date:message-id
-         :sender:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=XZfzzDXmxicnToftyCXmWq7bV7IDNDJptxpK3iKTrk4=;
-        b=XFOUX2XE9syaY7qnrbKWhBsxPInlUHNhdfwJWnfRvat0GZqxGdGmiyfRaD80l6EZec
-         jlPLCi724VTQuuuRLKq3W2VXMRk1RWeGjttgxysTymFuzYkLY5YK2B1as93oVCu3Zut/
-         KlM2U6/Pk2n6pCzSGymIdnfGuhcF6yP2YdE8O0fj2VAOUNhu/4btrSHZ239L8ty7mAvl
-         xhMu1H0Kbz99U7CxacmSLDUuWGUE/0cNHIqBrkjOVX+tSAtw0Gq1lY8FB2qG4Q1C1sZq
-         /7iXt0ODFTJ6yGDaY0fbcRluKMPZUKmP0u9N0XUSd3pu0mzGmRY4iwvChhBIexqFtLkI
-         GTRQ==
-X-Gm-Message-State: AOJu0YxbtZte8CMU5LZsN7b6vzta2fqXNtH6tDk0qBAvV+xS8QZkB9Iu
-	MkFuo0bozqNFw4YLwEyh/Z6jwtR+77hapJMD7HZdTQGdx9I3PgmJ
-X-Google-Smtp-Source: AGHT+IEt6oykrf0PDpMVT9qDaE9akvUwe33dM2NY9Sa84AvoA2lfeOaEHLIuX5/yXhRC6aGi+gLocg==
-X-Received: by 2002:a05:6a20:8fa5:b0:19c:9b48:6982 with SMTP id k37-20020a056a208fa500b0019c9b486982mr296790pzj.46.1707189966735;
-        Mon, 05 Feb 2024 19:26:06 -0800 (PST)
-X-Forwarded-Encrypted: i=0; AJvYcCUUpP4a1dvLNnp4PIyWXb8YzcC8C7liV6E8lGOx66DxbyKcVVPnNiMihI+PK5G3zy1qXsHDgG6/ArXcxWIXxqICYhpSasJXxiArNHfGFWmHHyI8wrXuepUCMqfMyOiqyQtzwai1pfJUlVof7ZyzBX9S3zx59hqEmaILLynyM7gGatFUBbdpisNZ/erR9MRNwnkBYiJfBwBb52HmRlhC56GIBdeZI5qEmFNzaWB6uW1adCJW3nVywmB4ErjJObvjj6E3EQ+qacZ1dqhcgx9VbgDTyD9/ff2sHTEH+V/TlvjtVijHu3i9AwL+kJQUZSI1QyIWgcesO8qWsM8oX9d0rXaCF6VFKyzCg5L9vVuel98RSC+sySGJsLoYeu+3gVXh6qGAiIg0mc+/8Cp/72hdnMe/rTY+sj78lUSWQXMV5dlwRZUmt6Z8JFc3wn9KShuSx7iSFNaBDeDH6Aqj83nkaePS4dNIBxw5vXpL1RLZtLy9XRilFFkhQKAoKVeOHpfrx4t+dLeyrlp4GHmqSRuLtDP0lGjyMOlLJbJpeSGUtJYPvnmR4HbwqoFpmSWPuUSITL5gxepdigFOFTEMn/oTfOwk8qJpfZBkgU6z/YFjznf1uFRPFeQV+fwh/xBV9QZUs14TsXvNslgpZ54biUhllHteBlFbUf46phPtdQd/PXXnnxvqXSLnj4ZZlnXl7NTHHm5sfhYrdeifEd04TMr29vmX5Zid+QVw7lAcA7qpgB+fNZSKCgZD3CM2fkC2HiD4gPUWz2jJGakQBQfOhCwQZ7ESEveYhbt2x8A/y+hGTW8qSQ+Neap2xlc=
-Received: from ?IPV6:2600:1700:e321:62f0:329c:23ff:fee3:9d7c? ([2600:1700:e321:62f0:329c:23ff:fee3:9d7c])
-        by smtp.gmail.com with ESMTPSA id b18-20020a170902d51200b001d986ce6893sm636562plg.198.2024.02.05.19.26.04
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 05 Feb 2024 19:26:06 -0800 (PST)
-Sender: Guenter Roeck <groeck7@gmail.com>
-Message-ID: <a05ec2fe-cfe4-48d8-bff4-9f3689c585d3@roeck-us.net>
-Date: Mon, 5 Feb 2024 19:26:04 -0800
+        d=1e100.net; s=20230601; t=1707190756; x=1707795556;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=EYjlWLoy2riopH+zlSIcKPkCBJ5S6WcdaC4eCMXtR5k=;
+        b=veXXWeeqxW5SzW9OJnV1K4VDTVQHBtnNqiktDlwuwPw+PvF7A1BvR3Qb4WdGrRnoyw
+         h9HUA730pyY0MRZFwwz7hnwr/b3tpODiCyLObUgoClSJ3XdF6KmyJJ6bfIPHWkM9xE6i
+         kvk7Y1ZHhWIu51y1vyMcujBOMy/3nEeaWjcuif2nxO5pVInP+kr+e1zjtvBCvef2nPf3
+         WwxxmJYnR3g0dhPl7q8DzNB/VUNadvUO0wjMwYXby80sp+5GLodI9qGyIaDXNsT7IO6B
+         14st3bhANe+WMERhkvgP4c7RZF0FEgCu6/0Q7suHlz7qqp1gm+zM6jAE6utrHckWiWhI
+         EEOA==
+X-Gm-Message-State: AOJu0YyMIzLW8Hy3As6yS1vKhRK6vwrUZ7W6xBmUY5ZN//e2tDTYNjU/
+	07ixyizRaTnDnGCjDEhp4rlHGjdH8WSsyBLVaCWQ/5U724qqlKT2Mi7Us1roVxlhoeb88mBsyxQ
+	c5NtyeGTFNoD6csUHQ+b1vMOHnkc=
+X-Google-Smtp-Source: AGHT+IEi3Qu7s8A5yqq9dadRqq+/DNxO2AVwQ1u94+npiHZDRfNlXaJVAhLSodnyi3Tw6RgQjNl4siYPcAtd7AmA2jQ=
+X-Received: by 2002:a17:90a:f195:b0:296:379b:6739 with SMTP id
+ bv21-20020a17090af19500b00296379b6739mr1208689pjb.48.1707190755465; Mon, 05
+ Feb 2024 19:39:15 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v5 1/1] hwmon: Add driver for Astera Labs PT5161L retimer
-Content-Language: en-US
-To: Cosmo Chou <chou.cosmo@gmail.com>
-Cc: robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
- conor+dt@kernel.org, jdelvare@suse.com, corbet@lwn.net, broonie@kernel.org,
- naresh.solanki@9elements.com, vincent@vtremblay.dev,
- patrick.rudolph@9elements.com, luca.ceresoli@bootlin.com,
- bhelgaas@google.com, festevam@denx.de, alexander.stein@ew.tq-group.com,
- heiko@sntech.de, jernej.skrabec@gmail.com, macromorgan@hotmail.com,
- forbidden405@foxmail.com, sre@kernel.org, linus.walleij@linaro.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- linux-hwmon@vger.kernel.org, linux-doc@vger.kernel.org,
- cosmo.chou@quantatw.com
-References: <20240205152013.3833940-1-chou.cosmo@gmail.com>
- <20240205152013.3833940-2-chou.cosmo@gmail.com>
- <4a504043-e24d-4119-8c5d-107f0d371110@roeck-us.net>
- <CAOeEDysSZEeKt==zyexLE1GhE5ZpeDHS7sDLRfcC=4JgiogLKQ@mail.gmail.com>
-From: Guenter Roeck <linux@roeck-us.net>
-Autocrypt: addr=linux@roeck-us.net; keydata=
- xsFNBE6H1WcBEACu6jIcw5kZ5dGeJ7E7B2uweQR/4FGxH10/H1O1+ApmcQ9i87XdZQiB9cpN
- RYHA7RCEK2dh6dDccykQk3bC90xXMPg+O3R+C/SkwcnUak1UZaeK/SwQbq/t0tkMzYDRxfJ7
- nyFiKxUehbNF3r9qlJgPqONwX5vJy4/GvDHdddSCxV41P/ejsZ8PykxyJs98UWhF54tGRWFl
- 7i1xvaDB9lN5WTLRKSO7wICuLiSz5WZHXMkyF4d+/O5ll7yz/o/JxK5vO/sduYDIlFTvBZDh
- gzaEtNf5tQjsjG4io8E0Yq0ViobLkS2RTNZT8ICq/Jmvl0SpbHRvYwa2DhNsK0YjHFQBB0FX
- IdhdUEzNefcNcYvqigJpdICoP2e4yJSyflHFO4dr0OrdnGLe1Zi/8Xo/2+M1dSSEt196rXaC
- kwu2KgIgmkRBb3cp2vIBBIIowU8W3qC1+w+RdMUrZxKGWJ3juwcgveJlzMpMZNyM1jobSXZ0
- VHGMNJ3MwXlrEFPXaYJgibcg6brM6wGfX/LBvc/haWw4yO24lT5eitm4UBdIy9pKkKmHHh7s
- jfZJkB5fWKVdoCv/omy6UyH6ykLOPFugl+hVL2Prf8xrXuZe1CMS7ID9Lc8FaL1ROIN/W8Vk
- BIsJMaWOhks//7d92Uf3EArDlDShwR2+D+AMon8NULuLBHiEUQARAQABzTJHdWVudGVyIFJv
- ZWNrIChMaW51eCBhY2NvdW50KSA8bGludXhAcm9lY2stdXMubmV0PsLBgQQTAQIAKwIbAwYL
- CQgHAwIGFQgCCQoLBBYCAwECHgECF4ACGQEFAlVcphcFCRmg06EACgkQyx8mb86fmYFg0RAA
- nzXJzuPkLJaOmSIzPAqqnutACchT/meCOgMEpS5oLf6xn5ySZkl23OxuhpMZTVX+49c9pvBx
- hpvl5bCWFu5qC1jC2eWRYU+aZZE4sxMaAGeWenQJsiG9lP8wkfCJP3ockNu0ZXXAXwIbY1O1
- c+l11zQkZw89zNgWgKobKzrDMBFOYtAh0pAInZ9TSn7oA4Ctejouo5wUugmk8MrDtUVXmEA9
- 7f9fgKYSwl/H7dfKKsS1bDOpyJlqhEAH94BHJdK/b1tzwJCFAXFhMlmlbYEk8kWjcxQgDWMu
- GAthQzSuAyhqyZwFcOlMCNbAcTSQawSo3B9yM9mHJne5RrAbVz4TWLnEaX8gA5xK3uCNCeyI
- sqYuzA4OzcMwnnTASvzsGZoYHTFP3DQwf2nzxD6yBGCfwNGIYfS0i8YN8XcBgEcDFMWpOQhT
- Pu3HeztMnF3HXrc0t7e5rDW9zCh3k2PA6D2NV4fews9KDFhLlTfCVzf0PS1dRVVWM+4jVl6l
- HRIAgWp+2/f8dx5vPc4Ycp4IsZN0l1h9uT7qm1KTwz+sSl1zOqKD/BpfGNZfLRRxrXthvvY8
- BltcuZ4+PGFTcRkMytUbMDFMF9Cjd2W9dXD35PEtvj8wnEyzIos8bbgtLrGTv/SYhmPpahJA
- l8hPhYvmAvpOmusUUyB30StsHIU2LLccUPPOwU0ETofVZwEQALlLbQeBDTDbwQYrj0gbx3bq
- 7kpKABxN2MqeuqGr02DpS9883d/t7ontxasXoEz2GTioevvRmllJlPQERVxM8gQoNg22twF7
- pB/zsrIjxkE9heE4wYfN1AyzT+AxgYN6f8hVQ7Nrc9XgZZe+8IkuW/Nf64KzNJXnSH4u6nJM
- J2+Dt274YoFcXR1nG76Q259mKwzbCukKbd6piL+VsT/qBrLhZe9Ivbjq5WMdkQKnP7gYKCAi
- pNVJC4enWfivZsYupMd9qn7Uv/oCZDYoBTdMSBUblaLMwlcjnPpOYK5rfHvC4opxl+P/Vzyz
- 6WC2TLkPtKvYvXmdsI6rnEI4Uucg0Au/Ulg7aqqKhzGPIbVaL+U0Wk82nz6hz+WP2ggTrY1w
- ZlPlRt8WM9w6WfLf2j+PuGklj37m+KvaOEfLsF1v464dSpy1tQVHhhp8LFTxh/6RWkRIR2uF
- I4v3Xu/k5D0LhaZHpQ4C+xKsQxpTGuYh2tnRaRL14YMW1dlI3HfeB2gj7Yc8XdHh9vkpPyuT
- nY/ZsFbnvBtiw7GchKKri2gDhRb2QNNDyBnQn5mRFw7CyuFclAksOdV/sdpQnYlYcRQWOUGY
- HhQ5eqTRZjm9z+qQe/T0HQpmiPTqQcIaG/edgKVTUjITfA7AJMKLQHgp04Vylb+G6jocnQQX
- JqvvP09whbqrABEBAAHCwWUEGAECAA8CGwwFAlVcpi8FCRmg08MACgkQyx8mb86fmYHNRQ/+
- J0OZsBYP4leJvQF8lx9zif+v4ZY/6C9tTcUv/KNAE5leyrD4IKbnV4PnbrVhjq861it/zRQW
- cFpWQszZyWRwNPWUUz7ejmm9lAwPbr8xWT4qMSA43VKQ7ZCeTQJ4TC8kjqtcbw41SjkjrcTG
- wF52zFO4bOWyovVAPncvV9eGA/vtnd3xEZXQiSt91kBSqK28yjxAqK/c3G6i7IX2rg6pzgqh
- hiH3/1qM2M/LSuqAv0Rwrt/k+pZXE+B4Ud42hwmMr0TfhNxG+X7YKvjKC+SjPjqp0CaztQ0H
- nsDLSLElVROxCd9m8CAUuHplgmR3seYCOrT4jriMFBtKNPtj2EE4DNV4s7k0Zy+6iRQ8G8ng
- QjsSqYJx8iAR8JRB7Gm2rQOMv8lSRdjva++GT0VLXtHULdlzg8VjDnFZ3lfz5PWEOeIMk7Rj
- trjv82EZtrhLuLjHRCaG50OOm0hwPSk1J64R8O3HjSLdertmw7eyAYOo4RuWJguYMg5DRnBk
- WkRwrSuCn7UG+qVWZeKEsFKFOkynOs3pVbcbq1pxbhk3TRWCGRU5JolI4ohy/7JV1TVbjiDI
- HP/aVnm6NC8of26P40Pg8EdAhajZnHHjA7FrJXsy3cyIGqvg9os4rNkUWmrCfLLsZDHD8FnU
- mDW4+i+XlNFUPUYMrIKi9joBhu18ssf5i5Q=
-In-Reply-To: <CAOeEDysSZEeKt==zyexLE1GhE5ZpeDHS7sDLRfcC=4JgiogLKQ@mail.gmail.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+References: <20240203165307.7806-1-aford173@gmail.com> <20240203165307.7806-3-aford173@gmail.com>
+ <CAA8EJpo4omXogg48urEMzxQ+CA7DNTSf66pA6hoO8wpmtn_-MQ@mail.gmail.com> <20240205081719.z2uqa4dwn5ucsymv@pengutronix.de>
+In-Reply-To: <20240205081719.z2uqa4dwn5ucsymv@pengutronix.de>
+From: Adam Ford <aford173@gmail.com>
+Date: Mon, 5 Feb 2024 21:39:04 -0600
+Message-ID: <CAHCN7x+9pLZZhypgVh8Q3jAxeM6UKJrPCOdjVoszK3XLTh=gBQ@mail.gmail.com>
+Subject: Re: [PATCH V8 02/12] phy: freescale: add Samsung HDMI PHY
+To: Marco Felsch <m.felsch@pengutronix.de>
+Cc: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>, Ulf Hansson <ulf.hansson@linaro.org>, 
+	Andrzej Hajda <andrzej.hajda@intel.com>, devicetree@vger.kernel.org, 
+	alexander.stein@ew.tq-group.com, Catalin Marinas <catalin.marinas@arm.com>, 
+	dri-devel@lists.freedesktop.org, frieder.schrempf@kontron.de, 
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, linux-phy@lists.infradead.org, 
+	David Airlie <airlied@gmail.com>, marex@denx.de, Robert Foss <rfoss@kernel.org>, 
+	Fabio Estevam <festevam@gmail.com>, linux-pm@vger.kernel.org, 
+	Jernej Skrabec <jernej.skrabec@gmail.com>, NXP Linux Team <linux-imx@nxp.com>, 
+	Philipp Zabel <p.zabel@pengutronix.de>, Kishon Vijay Abraham I <kishon@kernel.org>, 
+	Conor Dooley <conor+dt@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>, Will Deacon <will@kernel.org>, 
+	Jonas Karlman <jonas@kwiboo.se>, Liu Ying <victor.liu@nxp.com>, 
+	Sascha Hauer <s.hauer@pengutronix.de>, 
+	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, Maxime Ripard <mripard@kernel.org>, 
+	Rob Herring <robh+dt@kernel.org>, Pengutronix Kernel Team <kernel@pengutronix.de>, 
+	linux-arm-kernel@lists.infradead.org, 
+	Neil Armstrong <neil.armstrong@linaro.org>, linux-kernel@vger.kernel.org, 
+	Vinod Koul <vkoul@kernel.org>, Daniel Vetter <daniel@ffwll.ch>, Lucas Stach <l.stach@pengutronix.de>, 
+	Shawn Guo <shawnguo@kernel.org>, Laurent Pinchart <Laurent.pinchart@ideasonboard.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-On 2/5/24 19:05, Cosmo Chou wrote:
-> On Tue, Feb 06, 2024 at 3:43 AM +0800, Guenter Roeck wrote:
->>
->> On Mon, Feb 05, 2024 at 11:20:13PM +0800, Cosmo Chou wrote:
->>> This driver implements support for temperature monitoring of Astera Labs
->>> PT5161L series PCIe retimer chips.
->>>
->>> This driver implementation originates from the CSDK available at
->>> Link: https://github.com/facebook/openbmc/tree/helium/common/recipes-lib/retimer-v2.14
->>> The communication protocol utilized is based on the I2C/SMBus standard.
->>>
->>> Signed-off-by: Cosmo Chou <chou.cosmo@gmail.com>
->>> ---
->> [ ... ]
->>
->>> +static ssize_t pt5161l_debugfs_read_fw_ver(struct file *file, char __user *buf,
->>> +                                        size_t count, loff_t *ppos)
->>> +{
->>> +     struct pt5161l_data *data = file->private_data;
->>> +     int ret;
->>> +     char ver[32];
->>> +
->>> +     mutex_lock(&data->lock);
->>> +     ret = pt5161l_fwsts_check(data);
->>> +     mutex_unlock(&data->lock);
->>> +     if (ret)
->>> +             return ret;
->>> +
->>> +     ret = snprintf(ver, sizeof(ver), "%u.%u.%u\n", data->fw_ver.major,
->>> +                    data->fw_ver.minor, data->fw_ver.build);
->>> +     if (ret < 0)
->>> +             return ret;
->>> +
->>
->> You almost got me here ;-). snprintf() never returns a negative error code,
->> so checking for it is not necessary.
->>
-> Oh! You're right.
-> 
->>> +     return simple_read_from_buffer(buf, count, ppos, ver, ret + 1);
->>
->> Number of bytes written plus 1 ? Why ?
-> It's just to include the string terminator '\0'.
-> 
+On Mon, Feb 5, 2024 at 2:17=E2=80=AFAM Marco Felsch <m.felsch@pengutronix.d=
+e> wrote:
+>
+> On 24-02-04, Dmitry Baryshkov wrote:
+> > On Sat, 3 Feb 2024 at 17:53, Adam Ford <aford173@gmail.com> wrote:
+> > >
+> > > From: Lucas Stach <l.stach@pengutronix.de>
+> > >
+> > > This adds the driver for the Samsung HDMI PHY found on the
+> > > i.MX8MP SoC.
+> > >
+> > > Signed-off-by: Lucas Stach <l.stach@pengutronix.de>
+> > > Signed-off-by: Adam Ford <aford173@gmail.com>
+> > > Tested-by: Alexander Stein <alexander.stein@ew.tq-group.com>
+> > > ---
+> > > V4:  Make lookup table hex values lower case.
+> > >
+> > > V3:  Re-order the Makefile to keep it alphabetical
+> > >      Remove unused defines
+> > >
+> > > V2:  Fixed some whitespace found from checkpatch
+> > >      Change error handling when enabling apbclk to use dev_err_probe
+> > >      Rebase on Linux-Next
+> > >
+> > >      I (Adam) tried to help move this along, so I took Lucas' patch a=
+nd
+> > >      attempted to apply fixes based on feedback.  I don't have
+> > >      all the history, so apologies for that.
+> > > ---
+> > >  drivers/phy/freescale/Kconfig                |    6 +
+> > >  drivers/phy/freescale/Makefile               |    1 +
+> > >  drivers/phy/freescale/phy-fsl-samsung-hdmi.c | 1075 ++++++++++++++++=
+++
+> > >  3 files changed, 1082 insertions(+)
+> > >  create mode 100644 drivers/phy/freescale/phy-fsl-samsung-hdmi.c
+> > >
+> > > diff --git a/drivers/phy/freescale/Kconfig b/drivers/phy/freescale/Kc=
+onfig
+> > > index 853958fb2c06..5c2b73042dfc 100644
+> > > --- a/drivers/phy/freescale/Kconfig
+> > > +++ b/drivers/phy/freescale/Kconfig
+> > > @@ -35,6 +35,12 @@ config PHY_FSL_IMX8M_PCIE
+> > >           Enable this to add support for the PCIE PHY as found on
+> > >           i.MX8M family of SOCs.
+> > >
+> > > +config PHY_FSL_SAMSUNG_HDMI_PHY
+> > > +       tristate "Samsung HDMI PHY support"
+> > > +       depends on OF && HAS_IOMEM
+> > > +       help
+> > > +         Enable this to add support for the Samsung HDMI PHY in i.MX=
+8MP.
+> > > +
+> > >  endif
+> > >
+> > >  config PHY_FSL_LYNX_28G
+> > > diff --git a/drivers/phy/freescale/Makefile b/drivers/phy/freescale/M=
+akefile
+> > > index cedb328bc4d2..79e5f16d3ce8 100644
+> > > --- a/drivers/phy/freescale/Makefile
+> > > +++ b/drivers/phy/freescale/Makefile
+> > > @@ -4,3 +4,4 @@ obj-$(CONFIG_PHY_MIXEL_LVDS_PHY)        +=3D phy-fsl-=
+imx8qm-lvds-phy.o
+> > >  obj-$(CONFIG_PHY_MIXEL_MIPI_DPHY)      +=3D phy-fsl-imx8-mipi-dphy.o
+> > >  obj-$(CONFIG_PHY_FSL_IMX8M_PCIE)       +=3D phy-fsl-imx8m-pcie.o
+> > >  obj-$(CONFIG_PHY_FSL_LYNX_28G)         +=3D phy-fsl-lynx-28g.o
+> > > +obj-$(CONFIG_PHY_FSL_SAMSUNG_HDMI_PHY)  +=3D phy-fsl-samsung-hdmi.o
+> > > diff --git a/drivers/phy/freescale/phy-fsl-samsung-hdmi.c b/drivers/p=
+hy/freescale/phy-fsl-samsung-hdmi.c
+> > > new file mode 100644
+> > > index 000000000000..bf0e2299d00f
+> > > --- /dev/null
+> > > +++ b/drivers/phy/freescale/phy-fsl-samsung-hdmi.c
+> > > @@ -0,0 +1,1075 @@
+> > > +// SPDX-License-Identifier: GPL-2.0+
+> > > +/*
+> > > + * Copyright 2020 NXP
+> > > + * Copyright 2022 Pengutronix, Lucas Stach <kernel@pengutronix.de>
+> > > + */
+> > > +
+> > > +#include <linux/clk-provider.h>
+> > > +#include <linux/clk.h>
+> > > +#include <linux/delay.h>
+> > > +#include <linux/io.h>
+> > > +#include <linux/iopoll.h>
+> > > +#include <linux/module.h>
+> > > +#include <linux/of_device.h>
+> > > +#include <linux/of.h>
+> > > +#include <linux/platform_device.h>
+> > > +#include <linux/pm_runtime.h>
+> > > +
+> > > +#define PHY_REG_33             0x84
+> > > +#define  REG33_MODE_SET_DONE   BIT(7)
+> > > +#define  REG33_FIX_DA          BIT(1)
+> > > +
+> > > +#define PHY_REG_34             0x88
+> > > +#define  REG34_PHY_READY       BIT(7)
+> > > +#define  REG34_PLL_LOCK                BIT(6)
+> > > +#define  REG34_PHY_CLK_READY   BIT(5)
+> > > +
+> > > +
+> > > +#define PHY_PLL_REGS_NUM 48
+> > > +
+> > > +struct phy_config {
+> > > +       u32     clk_rate;
+> > > +       u8 regs[PHY_PLL_REGS_NUM];
+> > > +};
+> > > +
+> > > +const struct phy_config phy_pll_cfg[] =3D {
+> > > +       {       22250000, {
+> > > +                       0x00, 0xd1, 0x4b, 0xf1, 0x89, 0x88, 0x80, 0x4=
+0,
+> > > +                       0x4f, 0x30, 0x33, 0x65, 0x00, 0x15, 0x25, 0x8=
+0,
+> > > +                       0x6c, 0xf2, 0x67, 0x00, 0x10, 0x8f, 0x30, 0x3=
+2,
+> > > +                       0x60, 0x8f, 0x00, 0x00, 0x08, 0x00, 0x00, 0x0=
+0,
+> > > +                       0x00, 0x80, 0x00, 0x00, 0x00, 0x00, 0x00, 0x0=
+0,
+> > > +                       0x00, 0xe0, 0x83, 0x0f, 0x3e, 0xf8, 0x00, 0x0=
+0,
+> > > +               },
+> > > +       }, {
+> > > +               23750000, {
+> > > +                       0x00, 0xd1, 0x50, 0xf1, 0x86, 0x85, 0x80, 0x4=
+0,
+> > > +                       0x4f, 0x30, 0x33, 0x65, 0x00, 0x03, 0x25, 0x8=
+0,
+> > > +                       0x6c, 0xf2, 0x67, 0x00, 0x10, 0x8f, 0x30, 0x3=
+2,
+> > > +                       0x60, 0x8f, 0x00, 0x00, 0x08, 0x00, 0x00, 0x0=
+0,
+> > > +                       0x00, 0x80, 0x00, 0x00, 0x00, 0x00, 0x00, 0x0=
+0,
+> > > +                       0x00, 0xe0, 0x83, 0x0f, 0x3e, 0xf8, 0x00, 0x0=
+0,
+> > > +               },
+> >
+> > Generally I see that these entries contain a high level of duplication.
+> > Could you please extract the common part and a rate-dependent part.
+> > Next, it would be best if instead of writing the register values via
+> > the rate LUT, the driver could calculate those values.
+> > This allows us to support other HDMI modes if the need arises at some p=
+oint.
+>
+> Hi Adam,
+>
+> can you please have a look at: https://lore.kernel.org/all/4830698.GXAFRq=
+VoOG@steina-w/
+>
+> there we have fixed this already. Not sure which version you picked for
+> your work.
 
-If that was needed, it would be risky. snprintf() truncates the output
-if the buffer is not large enough. You might want to consider using
-scnprintf() instead. But then I am not sure if that is needed in the first
-place. Almost all code I checked doesn't do that, and it seems to be likely
-that the few drivers who do that are simply wrong. Can you explain why the
-string terminator needs to be added to the output ?
+It must have been an earlier version.  I got the list from Fabio, but
+I might have also gotten it mixed up.  I'll look at this version and
+base my series on it and try to address comments others made.  It'll
+likely take me a few days to catch up.
 
-Thanks,
-Guenter
+thanks for the pointer.
 
+adam
+>
+> Regards,
+>   Marco
+>
+> >
+> > > +       }, {
+> > > +               24000000, {
+> > > +                       0x00, 0xd1, 0x50, 0xf0, 0x00, 0x00, 0x80, 0x0=
+0,
+> > > +                       0x4f, 0x30, 0x33, 0x65, 0x00, 0x01, 0x25, 0x8=
+0,
+> > > +                       0x6c, 0xf2, 0x67, 0x00, 0x10, 0x8f, 0x30, 0x3=
+2,
+> > > +                       0x60, 0x8f, 0x00, 0x00, 0x08, 0x00, 0x00, 0x0=
+0,
+> > > +                       0x00, 0x80, 0x00, 0x00, 0x00, 0x00, 0x00, 0x0=
+0,
+> > > +                       0x00, 0xe0, 0x83, 0x0f, 0x3e, 0xf8, 0x00, 0x0=
+0,
+> > > +               },
+> >
+> >
+> > --
+> > With best wishes
+> > Dmitry
+> >
+> >
 
