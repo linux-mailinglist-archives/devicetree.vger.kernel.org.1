@@ -1,106 +1,181 @@
-Return-Path: <devicetree+bounces-39167-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-39168-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 90BA784B9C2
-	for <lists+devicetree@lfdr.de>; Tue,  6 Feb 2024 16:36:50 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7EF9384BA0B
+	for <lists+devicetree@lfdr.de>; Tue,  6 Feb 2024 16:47:02 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 2FE6D1F2231F
-	for <lists+devicetree@lfdr.de>; Tue,  6 Feb 2024 15:36:50 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 7024AB2C89B
+	for <lists+devicetree@lfdr.de>; Tue,  6 Feb 2024 15:38:50 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 36781133431;
-	Tue,  6 Feb 2024 15:36:40 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6921013341C;
+	Tue,  6 Feb 2024 15:38:45 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="EabWkIzz"
+	dkim=pass (1024-bit key) header.d=wolfvision.net header.i=@wolfvision.net header.b="A0X5EcZY"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from EUR05-DB8-obe.outbound.protection.outlook.com (mail-db8eur05on2131.outbound.protection.outlook.com [40.107.20.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0D37C133417;
-	Tue,  6 Feb 2024 15:36:39 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1707233800; cv=none; b=gtcYDCFEAco0d2OYefk2zlniLiMYC3xyghRZhp5skFnAPM9bqvlWEQm0+sZfjbgvQQ+K8dunHpAHmur4bVJ+4Oc2AqCEFzkeO3zzi83PWSqHtONLp9XXUdwy0oN+3+wZwq/FncSo63hqmUk43GhFCMbjKWXWakRe/M2OePLfrOQ=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1707233800; c=relaxed/simple;
-	bh=j9C+lBswAShvcb5jDe8vo+UB5P1oAGzctN0185Tf1GM=;
-	h=From:To:Cc:Subject:In-Reply-To:References:Date:Message-ID:
-	 MIME-Version:Content-Type; b=ahAAYyZVClZQR0BkD4JcPfY0ZeCm1g8bQvU+XJAUcJOmNnyulTE4T24pSYhgb1jFm/eLAZb/m9cQS0KIQbKuidZNLJNGqAC9d9qs8fEHhIlVWU3ac/l40XAOY3Rlg0RjV1BKqlIyolKy21MtFXiKgqNhs3ihu8u45A3kEaqxGKk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=EabWkIzz; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 46CD6C433C7;
-	Tue,  6 Feb 2024 15:36:39 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1707233799;
-	bh=j9C+lBswAShvcb5jDe8vo+UB5P1oAGzctN0185Tf1GM=;
-	h=From:To:Cc:Subject:In-Reply-To:References:Date:From;
-	b=EabWkIzzJ1ejuCSKuR7Tu4rv3kKcfeaK1x/Y5wysz33fjtha9SzsGdfB7//PYSnHh
-	 xw18kDhot9J49SfviCYLfpQP6ZvmKylpf8eZKnmARq+lUaSci/dOHlOwYeWQy3ERIP
-	 s3Zj+FGKjrIZQ+iHZT+M8Oo59xkiYWMUSYJxGhSWl7USlFdE9kJnPvzSJBxqRHtX+g
-	 OCBwSAbL8Zn4lzePfhwwNYQ0qxM+7NuEkuU4U692NbN+1kHoT0zpxyr1nIRe85oajt
-	 bbLcZhphGWvnBcDvlUxbjau5IQyLpd2S6aNZwjo/0N1aK8oRTVGM3DuGlXPRzTcA1Z
-	 1ajhiD2cdt5dw==
-From: =?utf-8?B?QmrDtnJuIFTDtnBlbA==?= <bjorn@kernel.org>
-To: Anup Patel <apatel@ventanamicro.com>, Palmer Dabbelt
- <palmer@dabbelt.com>, Paul Walmsley <paul.walmsley@sifive.com>, Thomas
- Gleixner <tglx@linutronix.de>, Rob Herring <robh+dt@kernel.org>, Krzysztof
- Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Frank Rowand
- <frowand.list@gmail.com>, Conor Dooley <conor+dt@kernel.org>
-Cc: Anup Patel <apatel@ventanamicro.com>, devicetree@vger.kernel.org,
- Saravana Kannan <saravanak@google.com>, Marc Zyngier <maz@kernel.org>,
- Anup Patel <anup@brainfault.org>, linux-kernel@vger.kernel.org, Atish
- Patra <atishp@atishpatra.org>, linux-riscv@lists.infradead.org,
- linux-arm-kernel@lists.infradead.org, Andrew Jones
- <ajones@ventanamicro.com>
-Subject: Re: [PATCH v12 19/25] irqchip/riscv-imsic: Add device MSI domain
- support for platform devices
-In-Reply-To: <20240127161753.114685-20-apatel@ventanamicro.com>
-References: <20240127161753.114685-1-apatel@ventanamicro.com>
- <20240127161753.114685-20-apatel@ventanamicro.com>
-Date: Tue, 06 Feb 2024 16:36:36 +0100
-Message-ID: <87le7xy58b.fsf@all.your.base.are.belong.to.us>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AD50A13248D;
+	Tue,  6 Feb 2024 15:38:43 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.107.20.131
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1707233925; cv=fail; b=NcBGxvl6yeEvbB0WinIea67l6AL2Y16qYl8fHhxB5EdSBV9RUNk9q/py7XLn10sLalmvIRgcED5AVXQzm8bI6U7dDGRtJqx/LLUj9gU8t4akRahi8Z+qjFf7pzy5pdn+OwMtqp0vfeFJAijrF9r4V4p6hkGNnJarCxUQzL4RFxE=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1707233925; c=relaxed/simple;
+	bh=kxmw3Iifjwi6nPtr26GFMmCb5T+8MjN8o+/fabMOugg=;
+	h=Message-ID:Date:Subject:To:Cc:References:From:In-Reply-To:
+	 Content-Type:MIME-Version; b=htEY70fvzBs84fl7BvbNtofygy++LhIcSHdPJVutGAbTkS8WdqWflwDNtsoSBFT8CqcKPczaUkHEcxQqN8c2xRWjd6TOxTxy15tiURERuPTjOeUoHCzF/bLH4aIhk6Z3ztfA8aTDjbG4SPyK+vgjtON/FQGTm7VZ8bHj3uNNWPI=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=wolfvision.net; spf=pass smtp.mailfrom=wolfvision.net; dkim=pass (1024-bit key) header.d=wolfvision.net header.i=@wolfvision.net header.b=A0X5EcZY; arc=fail smtp.client-ip=40.107.20.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=wolfvision.net
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=wolfvision.net
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=KGVrC9qKG3k5pGk8BBAnwyqCf2kqJKpiHE0dUnVnNdHjLwLxY/2caukXH6K6OWvEgo9j39MzdSQTlbzmcsan0T+x8fWnkhCdFrFqgboh0ZKFKi+wgXo5o5OMG76hu+NukthzTmR3bf/18uYq7MpgDZ4r//vNaIeyKZ+P5zxXNSgrgsafORznGbIQ0cEIxfigV0HJg4GWXtFmJ/1VBTxHuE8Z0yXeWLkVRnn9lH8Tu1rxiEyqNGMwrs0GY0cXUnTE/Qdmj+uOx/uupbrrxTr6AETj7u1WDyJBDc1b7kEm/uEil431kAFPrZNh2dqVr3KNMqVepyw+k50b4XZUfpSbUg==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=6pjWmqYBSPobbz+fuyObfpLqkcPazZBx26kXlbOVOyo=;
+ b=lVwf7/UQWUtKUxpp59//Wzb+HhruOwtMwlAhMYt8Z0dDUqpSihK0DbAel9y60q8F8B8rpfwqDwQvXUAhWQMeQVfr2MiyqyK10kZ/3RGptuIalvt62RjReeINdGUbgrg1okKab677qG4A8ooD393l+IVzNJ9ynT8zZ+/iwMv3GHPJBI7hwhQmbuNQf488mNFfErS6YrI5KCVUYUJiSCSpN+Ewq8JD1rN2h8K2R4TfIfmDTKi1yYeNsl+YycUyn4P0C79QSQu56VR1Ayk36tTifwE1kGx3idJ7csHv6/t9GL68xbDy29jUPMLjJ6CKVebk5zht6wbxWuXlH8RJZe6L7Q==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=wolfvision.net; dmarc=pass action=none
+ header.from=wolfvision.net; dkim=pass header.d=wolfvision.net; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=wolfvision.net;
+ s=selector2;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=6pjWmqYBSPobbz+fuyObfpLqkcPazZBx26kXlbOVOyo=;
+ b=A0X5EcZYfPHd54lAAb/krDFuhigfiXVyc1z4fs0mPH4ZC+5HEtB86qTqP2FUR/fnmKmfgNIqlGo+aeVEJtV04p48I/DOYUwvIedH+wNYGeEN43d9ppgkuWFcdabPmcH2W8FQEkbO/XcCMPY1HWpXIor9JHqegAfMOtHsuNPFFxw=
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=wolfvision.net;
+Received: from VE1PR08MB4974.eurprd08.prod.outlook.com (2603:10a6:803:111::15)
+ by GVXPR08MB10763.eurprd08.prod.outlook.com (2603:10a6:150:15c::9) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7249.36; Tue, 6 Feb
+ 2024 15:38:41 +0000
+Received: from VE1PR08MB4974.eurprd08.prod.outlook.com
+ ([fe80::c8ee:9414:a0c6:42ab]) by VE1PR08MB4974.eurprd08.prod.outlook.com
+ ([fe80::c8ee:9414:a0c6:42ab%7]) with mapi id 15.20.7249.035; Tue, 6 Feb 2024
+ 15:38:41 +0000
+Message-ID: <920c2c18-6cf9-4a88-84a5-eb1208ad1d42@wolfvision.net>
+Date: Tue, 6 Feb 2024 16:38:39 +0100
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v3 6/7] ASoC: dt-bindings: xmos,xvf3500: add XMOS XVF3500
+ voice processor
+Content-Language: en-US
+To: Mark Brown <broonie@kernel.org>
+Cc: Liam Girdwood <lgirdwood@gmail.com>, Rob Herring <robh+dt@kernel.org>,
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+ Conor Dooley <conor+dt@kernel.org>, Matthias Kaehlcke <mka@chromium.org>,
+ Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+ linux-sound@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, linux-usb@vger.kernel.org
+References: <20240206-onboard_xvf3500-v3-0-f85b04116688@wolfvision.net>
+ <20240206-onboard_xvf3500-v3-6-f85b04116688@wolfvision.net>
+ <ZcJDFi+iIQOWzgYw@finisterre.sirena.org.uk>
+ <7b472cb2-6658-446a-ae47-411d08798cca@wolfvision.net>
+ <ZcJR0LrwaS5GAf5h@finisterre.sirena.org.uk>
+From: Javier Carrasco <javier.carrasco@wolfvision.net>
+In-Reply-To: <ZcJR0LrwaS5GAf5h@finisterre.sirena.org.uk>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-ClientProxiedBy: VI1P190CA0037.EURP190.PROD.OUTLOOK.COM
+ (2603:10a6:800:1bb::12) To VE1PR08MB4974.eurprd08.prod.outlook.com
+ (2603:10a6:803:111::15)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: VE1PR08MB4974:EE_|GVXPR08MB10763:EE_
+X-MS-Office365-Filtering-Correlation-Id: 0a27da28-a719-4f30-5b3c-08dc2729b1ba
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info:
+	v8otOjXwT1c5M8174mbfnpZ7ObjkD/bQyCP+yYl/0YsycBBsEdvBJyPX98aeJiGfihlv2NuvG1gnc5ivPRUnG9pcH26RaSxAbpDqNzCY0p9txZ7qCGnPGh+zfIhChDgiPQ4SO6h0g0zDKZimr1egSPv1pEWO/tLhwWJkyqG3drpKXtxjvh1RN4loR9EpM3JPY2J3TlzbaR3iNAp/cZA08GYDO8pqBbQfh6piY9zRVKYhVcb6v9524W0CsfdgEh/r+chd/m/Pi5OJmQ9qZPVlh0IUgzIgUOfrJavGK+gS0DKiFSBpsKlo2XzxOYFWGQ2uDDFvJTHFrgpAv0RAFIasMPmUzsEGg+olMGX07ADrjBLt3o2XiYW1XKFcPuc6uUtbSCHthLNyz/yfJBaNwJtVIt/KPRB2LttBSoAl372XvEDwpUveu2HzWRM33IaXdBDuRowFOJx2ZUVSTFJnNAJsYS9TU65ChHGtIRHzVoS0K63hpb2YyehauTHY5ZAtBPOHIqdkXEh3gXWE7LawewsECAbQLQFAE9M48fIPLmOEGcP4woK9d1REH31/3YUq58i/xSe8ZqmYMotayQA2EwP4P8bcjuFDS9igvsnsQYjooceM9oLq7xdWYmqHmGHS4F7QmT4JCybxuQVauQm/fyYPWQ==
+X-Forefront-Antispam-Report:
+	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:VE1PR08MB4974.eurprd08.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230031)(346002)(136003)(396003)(366004)(376002)(39850400004)(230922051799003)(451199024)(64100799003)(1800799012)(186009)(31686004)(2906002)(83380400001)(38100700002)(66899024)(41300700001)(26005)(6916009)(54906003)(66476007)(66946007)(66556008)(316002)(31696002)(7416002)(86362001)(4326008)(8676002)(8936002)(44832011)(53546011)(2616005)(6506007)(6512007)(5660300002)(36756003)(6486002)(478600001)(43740500002)(45980500001);DIR:OUT;SFP:1102;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0:
+	=?utf-8?B?bnVVcjRMamhXZEIvRUVMOWVMbUgwNnordm42VnhOQ0hsTGZtaEwxNTRwUDAr?=
+ =?utf-8?B?aWRLSmU4OWY1UHh5UGZtZnVjdXZiVllCR3FXZ3FPR1o5bHA0US9CQzRlY3d5?=
+ =?utf-8?B?ZTV4dXIxWmlqVWpIR01FekJaWm42TjhvUURFbmpJRjNRWUNBa0c1c0cwMk5H?=
+ =?utf-8?B?UnIrekFPbkVSWHM3LzJma3d1d0VCaXREbE9WVWFHeEk5MGtSblZCL3pPY2N5?=
+ =?utf-8?B?bEJuVVlRNHpVZzNMcUJxZk5jTkk1YnVPdVRLK3Q5eC9zMHU2V25FdGhScG9G?=
+ =?utf-8?B?Vm9icnA4OVRyLzBVc2MwQ01kSmZZSEwwRmRmcS8wSzhnekJZQ2pFM3krcXVQ?=
+ =?utf-8?B?L042dFRTR3JOTXBXbHVWM3VZQVV1QmdjY0lpTVlLOFBSUXVkYUJ1ek9TU1Vw?=
+ =?utf-8?B?emZPQno2N3d4cVgrWVU4R0VWVmFuQklnV29raHE2RHpMaXlwYnhhWk9jMHR5?=
+ =?utf-8?B?QlVQdG53OXl2ZFhFczVpQ2EwR3lyb3FadzI0UGJDU0RLOFVIM2Y2Y0lnUDJB?=
+ =?utf-8?B?aGI2OGkwUmpwSGdkQm5DaXdUd21LQ3p0Vks3aTJVazRKanoyZ2lBdUJFU0tw?=
+ =?utf-8?B?Ty9ERGNIdXlsK1lpaXlZQUVtN1FHZWd0MVBEay9JTUpzUVd4bmZtMVY5T0M5?=
+ =?utf-8?B?bTlLQTFWOUx1Q0dQZy80ZWRTVHhoVEM4bDlOaDBFdU9mSmJIN0xET3NDYWtW?=
+ =?utf-8?B?OVgvUG5zUnBlTmg4c0UwblJDR3dNY2ZGQk9SQUNwWW9OOEs2L2VtZEg0SzFy?=
+ =?utf-8?B?TjEvVXlxaThPanRqTDJXRGtCSEl5MnpBdkZBWmZlaUs5aFZlMFZFNHg3VEF4?=
+ =?utf-8?B?VlpkNzV5bnhlWGF1Z1d6ay9aTGNiRng2bHJtRUFLQ0p4OEtmY2tFeVAvMUJL?=
+ =?utf-8?B?aXJZQlBucXlIMEl2THNteWgxL2FrVmMvaWdpcENhUTkra2JlQ01rNFlKSWFx?=
+ =?utf-8?B?c09BT2R6QUt4cCtVRW9vN05VY2tGRDc0THJweWh3VjhPOWtPeVEwOEJiZStw?=
+ =?utf-8?B?dkVyRXd5TlF6bkUwYWVMWHBCUk1HVUxac0RUYWpOdkFkc2lBNGNWR2ErQk42?=
+ =?utf-8?B?VUR2aFo2R3Y0VHViQ05FcEptNVdyTFExVFpranVYaHhRUURPSkZGQ1Z0L05k?=
+ =?utf-8?B?R1A5N2EvTGQwVDFkSjhzbi9Tb0ZWT29OUWhIbmtLR1ltcmhJbHBBWVduMjVV?=
+ =?utf-8?B?ay82WWFxbDcyd0xQcUkyYXFmT05Xc2dKT0U2akdKY1p1dkE0YmwxWTZJc0sx?=
+ =?utf-8?B?TDVlRUhDdGhkeGxSdVlQc3R0MERYMzY1SVNRZnhuVXpxQ1J5SVZnNkZiS3Vw?=
+ =?utf-8?B?cmFadlRXMXZZdm9IeTBmLzFjbUpRZHRsbmlvdlNkUG8wTFlLTk9DeFVRbUJz?=
+ =?utf-8?B?V0lIOWNlUlhSeEh1UVRPYUltL1ZmMCt4RmJIMkluNkNIWE4rWlljMUc0bng0?=
+ =?utf-8?B?anZkM3JaTFNwbmgxYldIK2lZaWhhU05HVFNTbHRYem5RYmFjeVFDWE9tS0kv?=
+ =?utf-8?B?WFBaYk1ZcXB0cHJZM1p3MVhZWWNuVFBsRmpzZ01DVmh6blN2SkpWRE1ta1RO?=
+ =?utf-8?B?cWFUK0o0aUFyRzlZYmZXdFhCaHYwTHRtSjVUYlU5MXRTSS9ZQnBGMWdsT291?=
+ =?utf-8?B?cUx6VkcvVzF4elFQNi9kSllQZWdXVUtUelM1b204UXJpNW9MMThZK2F6V2sv?=
+ =?utf-8?B?VkdpVjlGYXF5MUZ6N0d6UThRQSt4aS9hUGduQW5IbXh4dHhaWlBvbjl1OVB5?=
+ =?utf-8?B?enRRTTk0OGg1Mkh1VE1ZQ3p2blowWWN3WFBsNjVZUjRJdnFtZ0M5cnVaSzRp?=
+ =?utf-8?B?VVRGVW9oZFRUQmNNTkJuNmxRakV2a1U1aFU3eTJaRkdKdW5kc3N4SE1idTlr?=
+ =?utf-8?B?K3h4WWdQU0pkazdlcUFwSHJKYVVJd0p6OWtxemgxWUFPS0ZrdVlYNXZoSStq?=
+ =?utf-8?B?d2tKSkRnMkJ1UnpJbDJ3d2wzYzZUM3dGRldKR0RyVjZqNGJkTGk2a2Q1TW5Q?=
+ =?utf-8?B?Y0NiWEZ1Yll1WWJqUTJBSTlqd3VqOGVmclhMZ2VkdFFIcWlYbWFRSnliekRH?=
+ =?utf-8?B?NlJPSW9UVElmektDTlZVeEhRVEtsSHhTTElFcUFxS28yZm9ZNitqK2xJWGNE?=
+ =?utf-8?B?RHlmRG04T01sWVpsNjV0cGo5TGw4aFJ4VWNFaWJETVBLbXN6dTFRUTg1OGx5?=
+ =?utf-8?Q?sdJxkMj6XiydO3u137tq9O8=3D?=
+X-OriginatorOrg: wolfvision.net
+X-MS-Exchange-CrossTenant-Network-Message-Id: 0a27da28-a719-4f30-5b3c-08dc2729b1ba
+X-MS-Exchange-CrossTenant-AuthSource: VE1PR08MB4974.eurprd08.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 06 Feb 2024 15:38:40.9666
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: e94ec9da-9183-471e-83b3-51baa8eb804f
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: 9GSTzWsGcEcH+3go6+lBd9nC4aPDTOmlYe6Ydd4L06oG76/T+uJg7qmv+9cFmO/arAbKYt3chjdmvS7ijf7gvGcQCRQlpW6yOz8fyCIOHM8=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: GVXPR08MB10763
 
-Anup Patel <apatel@ventanamicro.com> writes:
+On 06.02.24 16:35, Mark Brown wrote:
+> On Tue, Feb 06, 2024 at 04:05:15PM +0100, Javier Carrasco wrote:
+> 
+>> The names in the datasheet are vdd for the 1V0 supply and vddio for the
+>> 3V3 supply. I named the latter vdd2 instead because this device does not
+>> have its own driver and instead it uses the onboard_usb_hub generic
+>> driver, where the supplies are named vdd and vdd2.
+> 
+>> Those are the names used for devm_regulator_bulk_get(). Is that not the
+>> right way to match them?
+> 
+> The binding should really use vddio instead of vdd2 but if that's an
+> existing binding then it gets more annoying, probably that existing
+> binding is wrong too since vddio does sound like an entirely plausible
+> standard name for a 3.3V supply. :/  At the very least the binding
+> should document the weird mapping, though ideally the driver would be
+> tought to request names matching the datasheet if the compatible is the
+> one for this device.  Doing the better naming might be too much hassle
+> though.
 
-> The Linux platform MSI support allows per-device MSI domains so let
-> us add a platform irqchip driver for RISC-V IMSIC which provides a
-> base IRQ domain with MSI parent support for platform device domains.
->
-> This driver assumes that the IMSIC state is already initialized by
-> the IMSIC early driver.
->
-> Signed-off-by: Anup Patel <apatel@ventanamicro.com>
+That is in line with my last reply, where the bindings I used as an
+example mention the real names of the supplies as they are defined in
+the datasheet.
 
-[...]
+I can add that for the next version.
 
-> diff --git a/drivers/irqchip/irq-riscv-imsic-platform.c b/drivers/irqchip/irq-riscv-imsic-platform.c
-> new file mode 100644
-> index 000000000000..65791a6b0727
-> --- /dev/null
-> +++ b/drivers/irqchip/irq-riscv-imsic-platform.c
-> @@ -0,0 +1,371 @@
-
-[...]
-
-> +static int imsic_irq_retrigger(struct irq_data *d)
-> +{
-> +	struct imsic_vector *vec = irq_data_get_irq_chip_data(d);
-> +	struct imsic_local_config *local;
-> +
-> +	if (WARN_ON(vec == NULL))
-> +		return -ENOENT;
-> +
-> +	local = per_cpu_ptr(imsic->global.local, vec->cpu);
-> +	writel(vec->local_id, local->msi_va);
-
-Change to writel_relaxed().
+Best regards,
+Javier Carrasco
 
 
