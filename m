@@ -1,122 +1,119 @@
-Return-Path: <devicetree+bounces-39229-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-39231-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id ECE9384BC7D
-	for <lists+devicetree@lfdr.de>; Tue,  6 Feb 2024 18:48:46 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 81DBD84BC85
+	for <lists+devicetree@lfdr.de>; Tue,  6 Feb 2024 18:51:25 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 88AA21F25E7C
-	for <lists+devicetree@lfdr.de>; Tue,  6 Feb 2024 17:48:46 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 3DA7E28638F
+	for <lists+devicetree@lfdr.de>; Tue,  6 Feb 2024 17:51:24 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 493FEC15D;
-	Tue,  6 Feb 2024 17:48:40 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4CDFAD51C;
+	Tue,  6 Feb 2024 17:51:14 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="YA/jIoV0"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="hLVl94zr"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f47.google.com (mail-wm1-f47.google.com [209.85.128.47])
+Received: from mail-ej1-f48.google.com (mail-ej1-f48.google.com [209.85.218.48])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9B19F12E68;
-	Tue,  6 Feb 2024 17:48:38 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.47
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A154312E63;
+	Tue,  6 Feb 2024 17:51:12 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.48
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1707241720; cv=none; b=LVWavspX+H5s40yu3ygFJMiGOkYzYYhj23e7EK7x9Os3+pwzheV4Vo2VD0Bo5dIPq3D270VVow9Ti/IVjq8cCnmsLMMH7VLMyYN+/WVxn0kByFsrwAZj9PKsD3CCfbwsSUbK53xGGysxUQ/7XyGC2D/IcUehltqfJLsElCeSa3M=
+	t=1707241874; cv=none; b=J+UMexu8E/yDJJtyVpdTHXWetUCEnWDdNLIOjVOQbnSaGlq68UdpTT3ZfEM0sqyhSAIiWGPTkbqvdOIshbNSQtZXSKsIQqyLNugI7yJ7GIJe1mv4SBBTIl6vZh3d+/r7ZfL6ZuHz1qA++4JUxE3DRvKfxnguXzPO4r/MS5ehDPg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1707241720; c=relaxed/simple;
-	bh=j0zD9gFLpDaXaJbcOjoS2R/x7tRjwLTTsNmLaeDslac=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=HJxMSYiLb76DIU9iQ6GNQ2iAe+QyQ3eUDYdw7dqUqlo3NywkBtjQFGlLscb4hW7rWGMCs2KxEF6WB07HIpwfSGU2rDUnYAGrbdlOcYV93SpapJfqZ6j1+h8oz+yl7JMFfT53JTpGk4BwZ+quiB640hizKUXXfAzb2GlJTgdN6Qw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=YA/jIoV0; arc=none smtp.client-ip=209.85.128.47
+	s=arc-20240116; t=1707241874; c=relaxed/simple;
+	bh=/XBVrO1xD2Spv47XF1F/7ZHropSIJRZ3ree5L2EXwkc=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=cCz0rgZGoODid+wK5zdRfm34fX755NOKTbdKftXcWKvofgz5UbUACrEKMY1MghvJq3C2xP35nhWTOHlFcHPVirtdiU6iB0NuV5Jh5mXjTWbXHLtsVif+KNo3cUrHxOhtrfHabkEM42Laher+vfBQ69ojsK0xvwT7z4TVgeAZaFw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=hLVl94zr; arc=none smtp.client-ip=209.85.218.48
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-wm1-f47.google.com with SMTP id 5b1f17b1804b1-40ff812442aso2948435e9.2;
-        Tue, 06 Feb 2024 09:48:38 -0800 (PST)
+Received: by mail-ej1-f48.google.com with SMTP id a640c23a62f3a-a36126ee41eso749969166b.2;
+        Tue, 06 Feb 2024 09:51:12 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1707241717; x=1707846517; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
+        d=gmail.com; s=20230601; t=1707241871; x=1707846671; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=BTtEBYn5HMxfoNFDDbyP4zpk1ZUKqPIq9B1e4+8nGHE=;
-        b=YA/jIoV0y4ydO9DFH4xUebNq8Mih4g+ekfeaqLJb0kwWfI4AHqNN3rWR5vxGRwWSwv
-         7SATDT9VQoCj6lK3WRLN5XRWI6Q8pqu5otPLOJDNA0L84qcibEtFZeiHGKg4X+udRV5p
-         P3q5VtsGvXwNW+6HO5KTH0zFGVhRftQG6cjjDCrRMK7jgLr4SmrUfDJkGiwIOZEu8ku0
-         3QaYLfHnr/aSRlaW5q8iy62G6PaXikwRN2SN6qT2KfiAzoVetDy2TXWdNTI9F4U86Ib3
-         iQ+0pmgNW5844P69YcD4HR2iCZWkJi8fHKRKJAgncAW5fQDTM7ftNrQkJxpAl49MrRzj
-         9AkQ==
+        bh=AoVf6e25WbGD+ukic3/asA7LxorBexHJtv+/2483s3g=;
+        b=hLVl94zrEcqRGCnsqnlDkrLSblxX4DGPRu6VTnsxBO+V23erXP7ok/F5vc+d1bYgH3
+         X2uwdZkpbOshM/m5GfhMOMc8x4bGV7xwcZfvjO7kEZV0DJrUNj0GJ7+QYGJRjTLhkwsd
+         AqfAGmsznuHlN+1WwmwpecTL8AFUf/lidKO5VH1e50uiZZXtsMTPknjUyIMINkgB/a26
+         TfpjPt8hi+jf5xDUlV4OJohR5RZx4fiN58HEHGV9R8s+JHdS8vErnqVTVoWcD3H0f8uG
+         S2GSpBBQnbZZZTZJB+pRu/tqFuORfnxWsc1yDAhP1llFe+YA8L96I8Cjoy8XOGhrtBjE
+         b9vQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1707241717; x=1707846517;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
+        d=1e100.net; s=20230601; t=1707241871; x=1707846671;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=BTtEBYn5HMxfoNFDDbyP4zpk1ZUKqPIq9B1e4+8nGHE=;
-        b=G7ZTzijhAA+ska6oBoouhn0A9O6NtblCqpVSuCMJdbvUKwvmRxjXils0QzH7HaW4MD
-         wjnywlCB0fyPBbVzbZHyD2wVPQpIHCdHgxa6QW6ShZafhcE+ZO4TkqheLFevY5HhooHr
-         w/jKZgjOPCQ6agDPiX/agfk+uH7O7EJPFlUytiWpayuhY0Nf8JyTlmLAU66LIuoQLXn9
-         gr9THhaDSw+sKOjWcNCoB0nZfVYhj82MOvcWbKi1opPY5eaBV6OK5FBPXhsuS8zea8YP
-         K6DRwhda6PLdmQ2rMzZKECyYFXEswHl+Tz7E81oqGfKbQj/p6x434OtsHqIhu33TLwMD
-         LGJA==
-X-Gm-Message-State: AOJu0YzgYT1Zo3gnXEocceEXA3Nymm+cWktSm7uXYP2n2SxknvoCveeQ
-	gbYblToDLwxBPdGocRAd/5kBKe/rek+T3tVuPrr6ujeazkzSsNfW
-X-Google-Smtp-Source: AGHT+IGOnCyT6CBuMAN3BVwvf9J0QHYMBB9K1MogSD8lzJNn9y3SV+aiYmuCQulFXmj2KgBEPaPtWg==
-X-Received: by 2002:a05:600c:4f15:b0:40f:e4d6:7ef6 with SMTP id l21-20020a05600c4f1500b0040fe4d67ef6mr1276507wmq.23.1707241716697;
-        Tue, 06 Feb 2024 09:48:36 -0800 (PST)
-X-Forwarded-Encrypted: i=0; AJvYcCWdx42vPGXJ/UEcn9lXXuP+0jw/EUKC2rpCpUtPkQ4Fiwux+9S/V1KU1MI2bX8wdgVppO//VyQkqtrjdMKXi4s6WvbjdAOC1ZZixK8yOt78/+MMj+DnG0sVRYj2LJ3L9dFKYwzmwslBzyYE/43phc247FZXJCzG6dCgU6j3I01lxNQ0lKvah6lLudHCAvafWniUcwv5SNDIfcFvhoV9KLM50G7BuOZtIvPTgi002AHSqaO7RTcMLY9eaxWf2crnQk81B8w7W7tk/N+NMOU9+oHEeVmQxDW0lx5bXSGYjx5NiuXT3WsqLEdNwR2UOxpvoO2MpydAdczy3IPD14PWJStA2BokxP8jpDF0I+kaHCp8bXNYRxyoyIk+cfvtusUoESNzqbNafajLKpGCsXtFiIoj+7rW3B35EBtsJEIh13DaTkN3zSB1vjk3QRl0fKUImNqa3B3A8e0eaJKWfp6C4sDuEP6jDbG7oAu6BYCdnPfhmLfm1q6vgeKQUV86ycihD6JBoRbxD0nFPuel+OBULxMc1+ToOo9nDeIW6Fwv261ehn4nlwUWMh4aN0HTM73B6TRMKeluIrUSVWcnV+O6b2VcSFon4z43UTsF0xhDP5eYEozSy0BeeIseemxTXx9fBx8xqTIXlW+2hcBcCEMikn4uOuFHit98KI/LR8Ier6jDA0aP4HwbIZ2ftD0cpVO2OOjg6sUXsiCV1F1Z+FYAFwgbTXvqsYd7Dwee0EDTro6KPMuwdaFwvvChv9hyke/RjMJk4MpJNAwRPw==
-Received: from jernej-laptop.localnet (86-58-6-171.dynamic.telemach.net. [86.58.6.171])
-        by smtp.gmail.com with ESMTPSA id fc19-20020a05600c525300b0040fcaec04b8sm2676064wmb.22.2024.02.06.09.48.35
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 06 Feb 2024 09:48:36 -0800 (PST)
-From: Jernej =?utf-8?B?xaBrcmFiZWM=?= <jernej.skrabec@gmail.com>
-To: Michael Turquette <mturquette@baylibre.com>,
- Stephen Boyd <sboyd@kernel.org>, Chen-Yu Tsai <wens@csie.org>,
- Samuel Holland <samuel@sholland.org>,
- Guido =?ISO-8859-1?Q?G=FCnther?= <agx@sigxcpu.org>,
- Purism Kernel Team <kernel@puri.sm>, Ondrej Jirman <megi@xff.cz>,
- Neil Armstrong <neil.armstrong@linaro.org>,
- Jessica Zhang <quic_jesszhan@quicinc.com>, Sam Ravnborg <sam@ravnborg.org>,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>,
- David Airlie <airlied@gmail.com>, Daniel Vetter <daniel@ffwll.ch>,
- Rob Herring <robh+dt@kernel.org>,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Conor Dooley <conor+dt@kernel.org>, Frank Oltmanns <frank@oltmanns.dev>
-Cc: linux-clk@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- linux-sunxi@lists.linux.dev, linux-kernel@vger.kernel.org,
- dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
- Frank Oltmanns <frank@oltmanns.dev>
-Subject:
- Re: [PATCH v2 2/6] clk: sunxi-ng: a64: Add constraints on PLL-MIPI's n/m
- ratio and parent rate
-Date: Tue, 06 Feb 2024 18:48:34 +0100
-Message-ID: <2922005.e9J7NaK4W3@jernej-laptop>
-In-Reply-To: <20240205-pinephone-pll-fixes-v2-2-96a46a2d8c9b@oltmanns.dev>
-References:
- <20240205-pinephone-pll-fixes-v2-0-96a46a2d8c9b@oltmanns.dev>
- <20240205-pinephone-pll-fixes-v2-2-96a46a2d8c9b@oltmanns.dev>
+        bh=AoVf6e25WbGD+ukic3/asA7LxorBexHJtv+/2483s3g=;
+        b=sQB0QlVx2PA4rGyiyl9FKB77xzdgp7QSnqVBMN3yLvnvcDwtcwtEXHaKZ6Yt7+xL+F
+         HQNSMH1kTBxaSDC2kR86vqd510s/dx/QidLlGpuEMk07Qx5KnwOYLBh4Q+KFH+PFYMk1
+         +hQHm6zPLoWkVBXD9wdIaNTEFXK9nBoFqFlEc2Z4WEcuvJQnYFZad5Rkmuk8S/ydl01D
+         tdx3kPOqdTUqff+DB4Cd/EbhOTLvVkRDVZ7gL82sj7gMdnT7R6HJT/6NG9/t7cu/2sAB
+         /iVKT1PplijAidZNRvYEM6IjUnDs7iOJm6rhG5GsEHim+KzOCJRsbiMzZi/GSAzc/Uwu
+         QrXw==
+X-Gm-Message-State: AOJu0Yy8JKRGKecNPt774f8YKxYQa8+Zi9UpvyjDHIjsQw6uZIVB0sza
+	W4bzZ6SpG0soGhuhS8us10+Ji8f9aFKIqWom0iF40+6Cpdr/d7qyKZlvh4BnEcomWoaSFCRHYmV
+	W+Wqz2BVxSdgVplkfDLHfqNJoTUw=
+X-Google-Smtp-Source: AGHT+IHnp67a8rSjkSThzushnaauZPdd1+McrQ3DIzSPiTpprltoypThT0uIbWSMCgCQg+Q76faUZcdEZAKjcT0Saqk=
+X-Received: by 2002:a17:906:a184:b0:a37:4c04:a472 with SMTP id
+ s4-20020a170906a18400b00a374c04a472mr2164451ejy.18.1707241870323; Tue, 06 Feb
+ 2024 09:51:10 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7Bit
-Content-Type: text/plain; charset="us-ascii"
+References: <20240206-iio-backend-v9-0-df66d159c000@analog.com>
+ <20240206-iio-backend-v9-6-df66d159c000@analog.com> <CAHp75VeWV0+hqCoUb4YvfObnEAv0AaYJmXgpxJLfve+mBwhkyQ@mail.gmail.com>
+ <CAHp75Ve=Utqb0rtuO9c7xkxqpasFgzj4x4d4mm-CHM=_XJUrrQ@mail.gmail.com> <8d7d33a633f258389adba39930769d577a05cab2.camel@gmail.com>
+In-Reply-To: <8d7d33a633f258389adba39930769d577a05cab2.camel@gmail.com>
+From: Andy Shevchenko <andy.shevchenko@gmail.com>
+Date: Tue, 6 Feb 2024 19:50:33 +0200
+Message-ID: <CAHp75Veb2TWQQzw=8q+u4YiPX7Q5j8216WL=HaqY1eO_JjPj9w@mail.gmail.com>
+Subject: Re: [PATCH v9 6/7] iio: adc: ad9467: convert to backend framework
+To: =?UTF-8?B?TnVubyBTw6E=?= <noname.nuno@gmail.com>
+Cc: nuno.sa@analog.com, linux-iio@vger.kernel.org, devicetree@vger.kernel.org, 
+	Lars-Peter Clausen <lars@metafoo.de>, Michael Hennerich <Michael.Hennerich@analog.com>, 
+	Jonathan Cameron <jic23@kernel.org>, Rob Herring <robh+dt@kernel.org>, 
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Frank Rowand <frowand.list@gmail.com>, Olivier Moysan <olivier.moysan@foss.st.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-Dne ponedeljek, 05. februar 2024 ob 16:22:25 CET je Frank Oltmanns napisal(a):
-> The Allwinner A64 manual lists the following constraints for the
-> PLL-MIPI clock:
->  - M/N <= 3
->  - (PLL_VIDEO0)/M >= 24MHz
-> 
-> Use these constraints.
-> 
-> Signed-off-by: Frank Oltmanns <frank@oltmanns.dev>
+On Tue, Feb 6, 2024 at 6:52=E2=80=AFPM Nuno S=C3=A1 <noname.nuno@gmail.com>=
+ wrote:
+> On Tue, 2024-02-06 at 16:20 +0200, Andy Shevchenko wrote:
+> > On Tue, Feb 6, 2024 at 4:20=E2=80=AFPM Andy Shevchenko
+> > <andy.shevchenko@gmail.com> wrote:
+> > > On Tue, Feb 6, 2024 at 12:08=E2=80=AFPM Nuno Sa via B4 Relay
+> > > <devnull+nuno.sa.analog.com@kernel.org> wrote:
 
-Reviewed-by: Jernej Skrabec <jernej.skrabec@gmail.com>
+...
 
-Best regards,
-Jernej
+> > > > -               .max_rate =3D 250000000UL,
+> > >
+> > > > -               .max_rate =3D 500000000UL,
+> > >
+> > > > -               .max_rate =3D 125000000UL,
+> >
+> > Forget to comment that these might be preliminary converted to use
+> > multipliers from units.h...
+> >
+>
+> Note this is just a conversion and I want to change the least possible. I=
+ can do that
+> in a follow up patch.
 
+Yes, that's the idea.
 
+--=20
+With Best Regards,
+Andy Shevchenko
 
