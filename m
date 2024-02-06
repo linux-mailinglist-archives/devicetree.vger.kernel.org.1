@@ -1,192 +1,196 @@
-Return-Path: <devicetree+bounces-39289-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-39290-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id E3DFE84C0E1
-	for <lists+devicetree@lfdr.de>; Wed,  7 Feb 2024 00:29:48 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5805684C10B
+	for <lists+devicetree@lfdr.de>; Wed,  7 Feb 2024 00:51:26 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 59A9E1F257E1
-	for <lists+devicetree@lfdr.de>; Tue,  6 Feb 2024 23:29:48 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id B5FA31F23F1A
+	for <lists+devicetree@lfdr.de>; Tue,  6 Feb 2024 23:51:25 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E6AB01CD26;
-	Tue,  6 Feb 2024 23:29:39 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id CE48F1CD2A;
+	Tue,  6 Feb 2024 23:51:19 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=redhat.com header.i=@redhat.com header.b="WNl7ytcO"
+	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="L1uqz4TW"
 X-Original-To: devicetree@vger.kernel.org
-Received: from us-smtp-delivery-124.mimecast.com (us-smtp-delivery-124.mimecast.com [170.10.133.124])
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 71B471CD1E
-	for <devicetree@vger.kernel.org>; Tue,  6 Feb 2024 23:29:37 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=170.10.133.124
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 033641CAB7;
+	Tue,  6 Feb 2024 23:51:17 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1707262179; cv=none; b=Sk+jB8hynxYt9Mv5U35H2QqYzPUeoL8is6o7mGVqCP4axg8PNURqdgtz4gu1UiVIDDolviWlGayZxJE4r0UPyE7KJ/53+8lRrZDF1DA5ZtYn8sdIs80nziA9KMd0k+1r3XWMmY7v//BjYSEqZl3/MhXgL3WvGH+f71LBQZ3O7tM=
+	t=1707263479; cv=none; b=T5ILCQSQGXChkPp304bJOUbwz7MBattaJqCQX+VSB6/UXjJ0xkRTAhA2NQF3MCSOl2oNVkzTptJa76jzCEqY7FzK1E0/ebox4uKpQj74FinxoQk5d8cGir9yxmFIHDTisN1vqwU3AwlZ7IJGibIElR76CvB69nGfYGNr/DkS2UI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1707262179; c=relaxed/simple;
-	bh=tqwLPes11lygGwOT+EnjRVwLn4nZH90wJ7US1Neh49A=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=aNLuFDwBiZ5iWE6fw4WohKsJ3m+KTU62DsggTmV6JDanJEdqamYUP0ltJd3/EvrLmfHc83kIC13oK81D2Sgqet/FFg3wzS2h+JCDLThNkXGdxkgfu4fN7sgbV45jq7fETucjGE6Di+Lrop096fGRGoZ86vtcLTCMWWmOTxLE+oo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=redhat.com; spf=pass smtp.mailfrom=redhat.com; dkim=pass (1024-bit key) header.d=redhat.com header.i=@redhat.com header.b=WNl7ytcO; arc=none smtp.client-ip=170.10.133.124
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=redhat.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=redhat.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
-	s=mimecast20190719; t=1707262176;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 in-reply-to:in-reply-to:references:references;
-	bh=kGuKJfCI04HqdOMRiRGUxI5yLSI9wasd/RUKvuSvTE8=;
-	b=WNl7ytcO5ya3UI3YYBV+l5KKHC9z45BgusDZeVTk9hn8d3jzuXYliKsBulIsgEwBDmErD+
-	YcJf7GVKvWG4DdWeIcOgMpA4czD9NyUGlsTO5dO+61AsBl7ePeBImC+EWL/189dstyePhU
-	KOR2b32DYC0jceO2q7soPIpyGBbrYeI=
-Received: from mail-qk1-f199.google.com (mail-qk1-f199.google.com
- [209.85.222.199]) by relay.mimecast.com with ESMTP with STARTTLS
- (version=TLSv1.3, cipher=TLS_AES_256_GCM_SHA384) id
- us-mta-534-fMMXUZh6NVmlfol7DvWAIA-1; Tue, 06 Feb 2024 18:29:35 -0500
-X-MC-Unique: fMMXUZh6NVmlfol7DvWAIA-1
-Received: by mail-qk1-f199.google.com with SMTP id af79cd13be357-7858a1e64c6so191815585a.0
-        for <devicetree@vger.kernel.org>; Tue, 06 Feb 2024 15:29:35 -0800 (PST)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1707262175; x=1707866975;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=kGuKJfCI04HqdOMRiRGUxI5yLSI9wasd/RUKvuSvTE8=;
-        b=qtvDiQt7U/bYqiqAvTyN92D7EqDNZ/21wzK0gRkyZmfWuNYnMfH7k0iiIXBFSBt1aU
-         8vCGYfH/ciWfN0ymSdoEE9bm662riyhSO6CZ+Jcag8vEFw0/fU34WXsnsjD4JgQBhHI+
-         HqaoYtBSe5+f2Oa8fJ4vjptOoJwPEmc5tK4vSqqlCEwP7v0a0e8dgOvSUs30s5l9FgH6
-         aU44dQ0oOy2FdINvgbRxya7pMgQ9IZeUPAmT/eS20fXIEHRfHY9G1Mv2ZOgjqmbgFx4p
-         iTgHOzlQhi+pi9R2JP7Jopkm94JNDsOTFAyy32goGWKfdGiHkm5ShY0UiGXJ5JvLramp
-         05Bg==
-X-Forwarded-Encrypted: i=1; AJvYcCXf40rByt8FqvvsIlGFca1EGJyXMk4ni36731Y07RsqHbIJylir20d3r7Hr1fe1rruaZyS32XZ3yxP6zp0Qa6/zII0B0z6TX00Z+w==
-X-Gm-Message-State: AOJu0YzEADa1wq0e60JNK4Xsm3WS6K512Fxo23EHwt0tVq6sruKI+qWW
-	n5Q4Hv1DP9JJp+5x4a2pCI4Ar0QfuRrCFfKuChhUgWEmgWi0FqqrVWY72RIfiD/eRjwgFAJgDIy
-	RHYmXbdRWNkKd/UP9TJ28kEN2sBB4muEDfGhvIv632HY7OZ0L/Bml1MA1meM=
-X-Received: by 2002:a05:620a:954:b0:783:6943:26d9 with SMTP id w20-20020a05620a095400b00783694326d9mr3538713qkw.72.1707262174742;
-        Tue, 06 Feb 2024 15:29:34 -0800 (PST)
-X-Google-Smtp-Source: AGHT+IGzxDP7R0yen2yo1PCk013ut+Q4BlMwWCQioC3aozlnsOonH4eG8xY5gzlWpshjgLrV00I1Ow==
-X-Received: by 2002:a05:620a:954:b0:783:6943:26d9 with SMTP id w20-20020a05620a095400b00783694326d9mr3538704qkw.72.1707262174447;
-        Tue, 06 Feb 2024 15:29:34 -0800 (PST)
-X-Forwarded-Encrypted: i=0; AJvYcCWn7QpGTl7tuRLSbSHbLtGrThhE2QQZsdD9HxTI/kAsC/lMTLONidoD6JCzM4ob3KPWP151kUMo+jzEzuM+UC8wdgldgzf37xpaeBke52O5TawY5b38PM0mGH3xDU2b6JWiYFdqnSod3g7qxsgqhq9mU5ElK0F+N0/QSvBRu0NOauUzVM/YI3xwAe0GAk8g5IXS6k6mXVmta5VKDZWRNdPl5eNHryvxOfFf2RL3LsIi/GrN8CkwJuzj4tWlzKgeiWQdDiC1lrVe1V7mTd+f0FqAYx8ZMSNj8EYdfyvyfiGXRDJI+JBBIC7h6iKFM3Js0FdA67hhhvAOv3uCfc7PBPZyI/0U22PR6z/HqKjTFVc5vwuVl1L173g0YV21h1qV0wU0fscwC9//3ZVFw34sQ2ZnxH9Ptqtr827WwoHmAygiQTQSuYO/KILvWvDHQdZ1KnVE5LEXsM3tbyXiO5tTaoCjWk0OcDYa5CFSJoFIvBw07fIbb0D5Duw8edAqEPvNa3jGXCJpTwm9BE09RW7sXLnFQUS1NMj9iDeg9x1TjH1gy1LaV4P/20jN6MseX+boOnNIIoHhfBD4IVdNJjVg+7rRHT3ltUwFkaT97uvZfcLAu6mUtC+T9vRpIACKvkkNYGn/6gUyUfl1x6LlErTZZM82rT7yBYgU2Tfp/SvtgzwQN5E5P6f0cQfVqCiwmIG1ZwCLKlXJa62ZfAkqLb+LqoDHAi6Bhqd3APWP4thGNPOIOyAm3csqM9bL
-Received: from fedora ([2600:1700:1ff0:d0e0::37])
-        by smtp.gmail.com with ESMTPSA id d24-20020a05620a167800b00783e1590ebasm1357761qko.82.2024.02.06.15.29.33
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 06 Feb 2024 15:29:34 -0800 (PST)
-Date: Tue, 6 Feb 2024 17:29:31 -0600
-From: Andrew Halaney <ahalaney@redhat.com>
-To: Abhishek Chauhan <quic_abchauha@quicinc.com>
-Cc: Vinod Koul <vkoul@kernel.org>, 
-	Bhupesh Sharma <bhupesh.sharma@linaro.org>, Andy Gross <agross@kernel.org>, 
-	Bjorn Andersson <andersson@kernel.org>, Konrad Dybcio <konrad.dybcio@linaro.org>, 
-	"David S. Miller" <davem@davemloft.net>, Eric Dumazet <edumazet@google.com>, 
-	Jakub Kicinski <kuba@kernel.org>, Rob Herring <robh+dt@kernel.org>, 
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Alexandre Torgue <alexandre.torgue@foss.st.com>, Jose Abreu <joabreu@synopsys.com>, 
-	Maxime Coquelin <mcoquelin.stm32@gmail.com>, netdev@vger.kernel.org, linux-arm-msm@vger.kernel.org, 
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
-	linux-stm32@st-md-mailman.stormreply.com, Prasad Sodagudi <psodagud@quicinc.com>, 
-	Rob Herring <robh@kernel.org>, kernel@quicinc.com
-Subject: Re: [PATCH v1] TSO and TBS cannot co-exist. TBS requires special
- descriptor to be allocated at bootup. Initialising Tx queues at probe to
- support TSO and TBS can help in allocating those resources at bootup.
-Message-ID: <uihm7fwg5s6vqdmkz3poasuukdhuc4ztep7doqxnvhhsbfmfop@iikjtrb4jwoi>
-References: <20240206212734.1209920-1-quic_abchauha@quicinc.com>
+	s=arc-20240116; t=1707263479; c=relaxed/simple;
+	bh=spty8AvkVL9Bt1VeS+W6dnQA391hBnF8pcqsQvgJUq0=;
+	h=From:Date:Subject:MIME-Version:Content-Type:Message-ID:To:CC; b=aIiQGDRXwxvC1kXjjpZ9wfgpBV8cbXM+4smhjDgFa99wElFBBX6mVGhXkjQFLT24Es8GOPjOR8zKpttNQaNvnEE/MJl5pHZdBpQ8I5ENUfuI1sH3Zv/qdqmx6cvWFy9f6bPqp5MGI43G2nufVLIKUXmy/18JM6HQj2r/adDQo0g=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=L1uqz4TW; arc=none smtp.client-ip=205.220.168.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
+Received: from pps.filterd (m0279867.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.17.1.24/8.17.1.24) with ESMTP id 416NRT0b006382;
+	Tue, 6 Feb 2024 23:51:14 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
+	from:date:subject:mime-version:content-type
+	:content-transfer-encoding:message-id:to:cc; s=qcppdkim1; bh=fR3
+	BIanxRqA5hDEquxVPHhJD0+is0HzOqyK/Fw2mmi0=; b=L1uqz4TWBAatMQuSiLP
+	Ki5xbFdjC22Hy3SBjFFj0//UpR44LU5rMESEx6hJU3OdLCsBL8a4uZIAFE58PLzG
+	qcotxwcf3QgVyD3Loyi4C2nmv/DXs8lyF9hAHbVZmIaD/It0Op2vr43TuXS5fcpm
+	ubJYhf+ycnA9gRWrJjkTiZnCN+m/EeyHXOjooummBUez51Lv4xk4fuuXqYpCeGTD
+	ri9vssSmEn2qngwqpk3vC2QWYkCzGBddckwX27nYdntY6rIqgXwfCP9st8o857Kv
+	vxCSRh5rkqCt+scRAdaRgsmgbBFbkEyTs3K+BYU5VFjMrosseXZrzBocxQzMlxlF
+	P8Q==
+Received: from nalasppmta05.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3w3x41r25a-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Tue, 06 Feb 2024 23:51:13 +0000 (GMT)
+Received: from nalasex01c.na.qualcomm.com (nalasex01c.na.qualcomm.com [10.47.97.35])
+	by NALASPPMTA05.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 416NpDrq023574
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Tue, 6 Feb 2024 23:51:13 GMT
+Received: from [169.254.0.1] (10.49.16.6) by nalasex01c.na.qualcomm.com
+ (10.47.97.35) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1118.40; Tue, 6 Feb
+ 2024 15:51:12 -0800
+From: Bjorn Andersson <quic_bjorande@quicinc.com>
+Date: Tue, 6 Feb 2024 15:51:11 -0800
+Subject: [PATCH v3] arm64: dts: qcom: sc8280xp: Introduce additional tsens
+ instances
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20240206212734.1209920-1-quic_abchauha@quicinc.com>
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+Message-ID: <20240206-sc8280xp-tsens2_3-v3-1-4577b3b38ea8@quicinc.com>
+X-B4-Tracking: v=1; b=H4sIAO7FwmUC/33NwQ7CIAyA4VdZOIsBBgQ9+R7GmA2K60E2YZKZZ
+ e8u20kT4/Fv068zSRAREjlWM4mQMWEfStS7itiuCTeg6EoTwYRknBuarBGGTQMdE4QkrjVtlHe
+ HRhqnlSLlbojgcdrM86V0h2ns42t7kfk6/adlTjkFo1sLXHrd+tPjiRaD3dv+TlYviw9D6F+GK
+ IZRTDpuys7Bt7EsyxskRhcg+AAAAA==
+To: Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio
+	<konrad.dybcio@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        "Krzysztof
+ Kozlowski" <krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley
+	<conor+dt@kernel.org>
+CC: <linux-arm-msm@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>, Johan Hovold <johan@kernel.org>,
+        Johan Hovold
+	<johan+linaro@kernel.org>,
+        Bjorn Andersson <quic_bjorande@quicinc.com>
+X-Mailer: b4 0.12.4
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1707263472; l=2593;
+ i=quic_bjorande@quicinc.com; s=20230915; h=from:subject:message-id;
+ bh=spty8AvkVL9Bt1VeS+W6dnQA391hBnF8pcqsQvgJUq0=;
+ b=TEZUDBwEcrj4TLlpziE0tAIdrq+Jr36MrKI4UFTwb3jo+l8TjzauOADPiHYLPVv4MquFDhCrL
+ /k5MQVlaAWDCgF6GLNtTIXSc2/AK8M4Gxgll41+tzbY4S5/gPHtHuwD
+X-Developer-Key: i=quic_bjorande@quicinc.com; a=ed25519;
+ pk=VkhObtljigy9k0ZUIE1Mvr0Y+E1dgBEH9WoLQnUtbIM=
+X-ClientProxiedBy: nalasex01c.na.qualcomm.com (10.47.97.35) To
+ nalasex01c.na.qualcomm.com (10.47.97.35)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-ORIG-GUID: eqdG9L0eJomh6E7HJ-Z6w2sfODcl6LDr
+X-Proofpoint-GUID: eqdG9L0eJomh6E7HJ-Z6w2sfODcl6LDr
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.272,Aquarius:18.0.1011,Hydra:6.0.619,FMLib:17.11.176.26
+ definitions=2024-02-06_15,2024-01-31_01,2023-05-22_02
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 bulkscore=0 impostorscore=0
+ mlxlogscore=679 clxscore=1015 spamscore=0 priorityscore=1501
+ suspectscore=0 adultscore=0 phishscore=0 lowpriorityscore=0 malwarescore=0
+ mlxscore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.19.0-2401310000 definitions=main-2402060169
 
-Hey Abhishek,
+The SC8280XP contains two additional tsens instances, providing among
+other things thermal measurements for the GPU.
 
-Thanks for the patch!
+Add these and a GPU thermal-zone.
 
-This is a new feature for netdev, so the Subject should have "net-next"
-in it: https://docs.kernel.org/process/maintainer-netdev.html#tl-dr
+Reviewed-by: Konrad Dybcio <konrad.dybcio@linaro.org>
+Reviewed-by: Johan Hovold <johan+linaro@kernel.org>
+Signed-off-by: Bjorn Andersson <quic_bjorande@quicinc.com>
+---
+Changes in v3:
+- Sorted tsens nodes by address.
+- Link to v2: https://lore.kernel.org/r/20240126-sc8280xp-tsens2_3-v2-1-8504d18828de@quicinc.com
 
-Another thing, the kernel is very particular about the commit messages.
-I thought checkpatch.pl would complain about the subject line, but
-surprisingly it didn't.
+Changes in v2:
+- Drop TM/SROT comments
+- Remove polling delays, rely on interrupts
+- Link to v1: https://lore.kernel.org/r/20240118-sc8280xp-tsens2_3-v1-1-e86bce14f6bf@quicinc.com
+---
+ arch/arm64/boot/dts/qcom/sc8280xp.dtsi | 37 ++++++++++++++++++++++++++++++++++
+ 1 file changed, 37 insertions(+)
 
-Usually going with a "when in rome" approach is good (i.e. take a look
-at the git log). So here something like:
+diff --git a/arch/arm64/boot/dts/qcom/sc8280xp.dtsi b/arch/arm64/boot/dts/qcom/sc8280xp.dtsi
+index febf28356ff8..38ecf6768b1a 100644
+--- a/arch/arm64/boot/dts/qcom/sc8280xp.dtsi
++++ b/arch/arm64/boot/dts/qcom/sc8280xp.dtsi
+@@ -4011,6 +4011,28 @@ pdc: interrupt-controller@b220000 {
+ 			interrupt-controller;
+ 		};
+ 
++		tsens2: thermal-sensor@c251000 {
++			compatible = "qcom,sc8280xp-tsens", "qcom,tsens-v2";
++			reg = <0 0x0c251000 0 0x1ff>,
++			      <0 0x0c224000 0 0x8>;
++			#qcom,sensors = <11>;
++			interrupts-extended = <&pdc 122 IRQ_TYPE_LEVEL_HIGH>,
++					      <&pdc 124 IRQ_TYPE_LEVEL_HIGH>;
++			interrupt-names = "uplow", "critical";
++			#thermal-sensor-cells = <1>;
++		};
++
++		tsens3: thermal-sensor@c252000 {
++			compatible = "qcom,sc8280xp-tsens", "qcom,tsens-v2";
++			reg = <0 0x0c252000 0 0x1ff>,
++			      <0 0x0c225000 0 0x8>;
++			#qcom,sensors = <5>;
++			interrupts-extended = <&pdc 123 IRQ_TYPE_LEVEL_HIGH>,
++					      <&pdc 125 IRQ_TYPE_LEVEL_HIGH>;
++			interrupt-names = "uplow", "critical";
++			#thermal-sensor-cells = <1>;
++		};
++
+ 		tsens0: thermal-sensor@c263000 {
+ 			compatible = "qcom,sc8280xp-tsens", "qcom,tsens-v2";
+ 			reg = <0 0x0c263000 0 0x1ff>, /* TM */
+@@ -5212,6 +5234,21 @@ cpu-crit {
+ 			};
+ 		};
+ 
++		gpu-thermal {
++			polling-delay-passive = <0>;
++			polling-delay = <0>;
++
++			thermal-sensors = <&tsens2 2>;
++
++			trips {
++				cpu-crit {
++					temperature = <110000>;
++					hysteresis = <1000>;
++					type = "critical";
++				};
++			};
++		};
++
+ 		mem-thermal {
+ 			polling-delay-passive = <250>;
+ 			polling-delay = <1000>;
 
-    "net: stmmac: dwmac-qcom-ethqos: Enable TBS on all queues but 0"
+---
+base-commit: 943b9f0ab2cfbaea148dd6ac279957eb08b96904
+change-id: 20240118-sc8280xp-tsens2_3-a5fd9a48d655
 
-would be better. Its a short one line subject, that has the appropriate
-prefix, etc. You could then embed the information about TSO and TBS
-being exclusive, and maybe explain your reasoning on why this allocation
-of queues (TSO on 0, TBS on the rest) was done.. etc in the body. Maybe even
-pointing to the similar NXP related patch Esben posted recently would be
-smart since your motivation is the same:
-
-    commit 3b12ec8f618ebaccfe43ea4621a6f5fb586edef8
-    Author: Esben Haabendal <esben@geanix.com>
-    Date:   Fri Jan 26 10:10:42 2024 +0100
-
-        net: stmmac: dwmac-imx: set TSO/TBS TX queues default settings
-
-        TSO and TBS cannot coexist. For now we set i.MX Ethernet QOS controller to
-        use the first TX queue with TSO and the rest for TBS.
-
-        TX queues with TBS can support etf qdisc hw offload.
-
-        Signed-off-by: Esben Haabendal <esben@geanix.com>
-        Reviewed-by: Kurt Kanzenbach <kurt@linutronix.de>
-        Reviewed-by: Vadim Fedorenko <vadim.fedorenko@linux.dev>
-        Signed-off-by: Paolo Abeni <pabeni@redhat.com>
-
-i.e. something like (please make it your own):
-
-    In a similar vein to 3b12ec8f618e
-    ("net: stmmac: dwmac-imx: set TSO/TBS TX queues default settings"),
-    let's leave TSO enabled on queue 0 and enable TBS on all other queues.
-    This allows using the etf qdisc with hw offload on the TBS enabled
-    queues.
-
-On Tue, Feb 06, 2024 at 01:27:34PM -0800, Abhishek Chauhan wrote:
-> TX queues with TBS can support etf qdisc hw offload.
-> 
-> Signed-off-by: Abhishek Chauhan <quic_abchauha@quicinc.com>
-> ---
->  drivers/net/ethernet/stmicro/stmmac/dwmac-qcom-ethqos.c | 6 +++++-
->  1 file changed, 5 insertions(+), 1 deletion(-)
-> 
-> diff --git a/drivers/net/ethernet/stmicro/stmmac/dwmac-qcom-ethqos.c b/drivers/net/ethernet/stmicro/stmmac/dwmac-qcom-ethqos.c
-> index 31631e3f89d0..d2f9b8f6c027 100644
-> --- a/drivers/net/ethernet/stmicro/stmmac/dwmac-qcom-ethqos.c
-> +++ b/drivers/net/ethernet/stmicro/stmmac/dwmac-qcom-ethqos.c
-> @@ -728,7 +728,7 @@ static int qcom_ethqos_probe(struct platform_device *pdev)
->  	struct stmmac_resources stmmac_res;
->  	struct device *dev = &pdev->dev;
->  	struct qcom_ethqos *ethqos;
-> -	int ret;
-> +	int ret, i;
->  
->  	ret = stmmac_get_platform_resources(pdev, &stmmac_res);
->  	if (ret)
-> @@ -822,6 +822,10 @@ static int qcom_ethqos_probe(struct platform_device *pdev)
->  		plat_dat->serdes_powerdown  = qcom_ethqos_serdes_powerdown;
->  	}
->  
-> +	/*Enable TSO on queue0 and enable TBS on rest of the queues*/
-
-nitpicky: Please put spaces between the comments
-
-> +	for (i = 1; i < plat_dat->tx_queues_to_use; i++)
-> +		plat_dat->tx_queues_cfg[i].tbs_en = 1;
-> +
->  	return devm_stmmac_pltfr_probe(pdev, plat_dat, &stmmac_res);
->  }
->  
-> -- 
-> 2.25.1
-> 
-> 
+Best regards,
+-- 
+Bjorn Andersson <quic_bjorande@quicinc.com>
 
 
