@@ -1,38 +1,38 @@
-Return-Path: <devicetree+bounces-39012-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-39013-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9FFC084B27A
-	for <lists+devicetree@lfdr.de>; Tue,  6 Feb 2024 11:28:19 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 884FD84B27C
+	for <lists+devicetree@lfdr.de>; Tue,  6 Feb 2024 11:28:21 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id DA7E61C2369D
-	for <lists+devicetree@lfdr.de>; Tue,  6 Feb 2024 10:28:18 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 392F81F24FB3
+	for <lists+devicetree@lfdr.de>; Tue,  6 Feb 2024 10:28:21 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8BC5412E1E6;
-	Tue,  6 Feb 2024 10:28:12 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A507712E1D1;
+	Tue,  6 Feb 2024 10:28:13 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from foss.arm.com (foss.arm.com [217.140.110.172])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7761D12EBC6
-	for <devicetree@vger.kernel.org>; Tue,  6 Feb 2024 10:28:10 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9C4CF12EBC8
+	for <devicetree@vger.kernel.org>; Tue,  6 Feb 2024 10:28:11 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.140.110.172
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1707215292; cv=none; b=FGUrHkkL2k7bx+9MHmJu8iXuBKdxiyjIZAVQOFM3tWBOxngOSHOcrg2GpZQxtm78XM2HsLRiwbk2TFvg37nNzZP4MaR88pU047mxvIQhhUdRdu+84D0ADQyBUvvMx0CuHUjCm8eHrAah+Mt4r3Fk4CJq9Qz2cf0XokNMBvRMBCA=
+	t=1707215293; cv=none; b=pjIcLATOWlafaXpnQk16YK6ofrDPIzGE7R2nZcogARsPIlTpJeB9dCNP/kdCZC46eo6xkATdfE1IYL5SlsqXBdsJiuPvGWaRW7sTjIOwukmPYTpqw3Oae2h2p8smEbfXRFiRfewkY6rWpKy4Ml5HUZB2wLuSiUVTDVrSBU3nOac=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1707215292; c=relaxed/simple;
-	bh=JrGxCMXHRaVgE1hgKwrNQp1KyqgJTPamcOPCPrGUne8=;
+	s=arc-20240116; t=1707215293; c=relaxed/simple;
+	bh=IyQVFo/D94B8v3aPi6JT9iMvH1rHtKMeD+Z3wWwC5ow=;
 	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
-	 MIME-Version; b=EDQfvXMVWAO+ugvdB/OPfGroNIXIEjW3uR+cMHWpYy27q4IzjHN+Y2zm9mDkBeBcA8FuNFZiSFsUeWjGpCpuCWVtiCVgyR4mDlETEYms21pPlIvA4rGhO+GfoPpXR1/Vnkn3ahFHf6vacQOOokzR2axaHbaVCaSEs0it52sJP+o=
+	 MIME-Version; b=uY9kh2dCBZoxaTCzsrq2G5EneQ2vFl8/gaDdb4chmH/hGcyXv76kuNX57qataLFLvCI557sLHcH8FRSbmC8Pg5r+Gc8Vs2iiY2fJ8mD+BNHLRfBIbX9I3pzagNieOVmPlz+GbjSOFymDWi7BKtLEGNcuYbbuQ1Kl0Xs5uZdt8Tc=
 ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com; spf=pass smtp.mailfrom=arm.com; arc=none smtp.client-ip=217.140.110.172
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=arm.com
 Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
-	by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 0AB5ADA7;
-	Tue,  6 Feb 2024 02:28:52 -0800 (PST)
+	by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 6680D12FC;
+	Tue,  6 Feb 2024 02:28:53 -0800 (PST)
 Received: from e121345-lin.cambridge.arm.com (e121345-lin.cambridge.arm.com [10.1.196.40])
-	by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPA id 527DF3F641;
-	Tue,  6 Feb 2024 02:28:08 -0800 (PST)
+	by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPA id AE55D3F641;
+	Tue,  6 Feb 2024 02:28:09 -0800 (PST)
 From: Robin Murphy <robin.murphy@arm.com>
 To: will@kernel.org
 Cc: mark.rutland@arm.com,
@@ -43,9 +43,9 @@ Cc: mark.rutland@arm.com,
 	bwicaksono@nvidia.com,
 	YWan@nvidia.com,
 	rwiley@nvidia.com
-Subject: [PATCH v3 1/5] perf/arm_cspmu: Simplify initialisation
-Date: Tue,  6 Feb 2024 10:27:54 +0000
-Message-Id: <dd39718ee4890fd46a8e443c25303e87ae23f422.1706718007.git.robin.murphy@arm.com>
+Subject: [PATCH v3 2/5] perf/arm_cspmu: Simplify attribute groups
+Date: Tue,  6 Feb 2024 10:27:55 +0000
+Message-Id: <cf12b803114b0815438833fcb2495f20f2007761.1706718007.git.robin.murphy@arm.com>
 X-Mailer: git-send-email 2.39.2.101.g768bb238c484.dirty
 In-Reply-To: <cover.1706718007.git.robin.murphy@arm.com>
 References: <cover.1706718007.git.robin.murphy@arm.com>
@@ -57,123 +57,96 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 
-It's far simpler for implementations to literally override whichever
-default ops they want to, by initialising to the default ops first. This
-saves all the bother of checking what the impl_init_ops call has or
-hasn't touched. Make the same clear distinction for the PMIIDR override
-as well, in case we gain more sources for overriding that in future.
+The attribute group array itself is always the same, so there's no
+need to allocate it separately. Storing it directly in our instance
+data saves memory and gives us one less point of failure.
 
 Reviewed-by: Ilkka Koskinen <ilkka@os.amperecomputing.com>
 Signed-off-by: Robin Murphy <robin.murphy@arm.com>
 ---
- drivers/perf/arm_cspmu/arm_cspmu.c    | 55 +++++++++++----------------
- drivers/perf/arm_cspmu/nvidia_cspmu.c |  6 ---
- 2 files changed, 22 insertions(+), 39 deletions(-)
+ drivers/perf/arm_cspmu/arm_cspmu.c | 26 +++++++++-----------------
+ drivers/perf/arm_cspmu/arm_cspmu.h |  1 +
+ 2 files changed, 10 insertions(+), 17 deletions(-)
 
 diff --git a/drivers/perf/arm_cspmu/arm_cspmu.c b/drivers/perf/arm_cspmu/arm_cspmu.c
-index 50b89b989ce7..7c8a6bd940f4 100644
+index 7c8a6bd940f4..b888473ec71f 100644
 --- a/drivers/perf/arm_cspmu/arm_cspmu.c
 +++ b/drivers/perf/arm_cspmu/arm_cspmu.c
-@@ -100,13 +100,6 @@
- #define ARM_CSPMU_ACTIVE_CPU_MASK		0x0
- #define ARM_CSPMU_ASSOCIATED_CPU_MASK		0x1
- 
--/* Check and use default if implementer doesn't provide attribute callback */
--#define CHECK_DEFAULT_IMPL_OPS(ops, callback)			\
--	do {							\
--		if (!ops->callback)				\
--			ops->callback = arm_cspmu_ ## callback;	\
--	} while (0)
--
- /*
-  * Maximum poll count for reading counter value using high-low-high sequence.
-  */
-@@ -408,21 +401,32 @@ static struct arm_cspmu_impl_match *arm_cspmu_impl_match_get(u32 pmiidr)
- 	return NULL;
+@@ -501,23 +501,16 @@ arm_cspmu_alloc_format_attr_group(struct arm_cspmu *cspmu)
+ 	return format_group;
  }
  
-+#define DEFAULT_IMPL_OP(name)	.name = arm_cspmu_##name
-+
- static int arm_cspmu_init_impl_ops(struct arm_cspmu *cspmu)
+-static struct attribute_group **
+-arm_cspmu_alloc_attr_group(struct arm_cspmu *cspmu)
++static int arm_cspmu_alloc_attr_groups(struct arm_cspmu *cspmu)
  {
- 	int ret = 0;
--	struct arm_cspmu_impl_ops *impl_ops = &cspmu->impl.ops;
- 	struct acpi_apmt_node *apmt_node = arm_cspmu_apmt_node(cspmu->dev);
- 	struct arm_cspmu_impl_match *match;
+-	struct attribute_group **attr_groups = NULL;
+-	struct device *dev = cspmu->dev;
++	const struct attribute_group **attr_groups = cspmu->attr_groups;
+ 	const struct arm_cspmu_impl_ops *impl_ops = &cspmu->impl.ops;
  
--	/*
--	 * Get PMU implementer and product id from APMT node.
--	 * If APMT node doesn't have implementer/product id, try get it
--	 * from PMIIDR.
--	 */
--	cspmu->impl.pmiidr =
--		(apmt_node->impl_id) ? apmt_node->impl_id :
--				       readl(cspmu->base0 + PMIIDR);
-+	/* Start with a default PMU implementation */
-+	cspmu->impl.module = THIS_MODULE;
-+	cspmu->impl.pmiidr = readl(cspmu->base0 + PMIIDR);
-+	cspmu->impl.ops = (struct arm_cspmu_impl_ops) {
-+		DEFAULT_IMPL_OP(get_event_attrs),
-+		DEFAULT_IMPL_OP(get_format_attrs),
-+		DEFAULT_IMPL_OP(get_identifier),
-+		DEFAULT_IMPL_OP(get_name),
-+		DEFAULT_IMPL_OP(is_cycle_counter_event),
-+		DEFAULT_IMPL_OP(event_type),
-+		DEFAULT_IMPL_OP(event_filter),
-+		DEFAULT_IMPL_OP(set_ev_filter),
-+		DEFAULT_IMPL_OP(event_attr_is_visible),
-+	};
-+
-+	/* Firmware may override implementer/product ID from PMIIDR */
-+	if (apmt_node->impl_id)
-+		cspmu->impl.pmiidr = apmt_node->impl_id;
+ 	cspmu->identifier = impl_ops->get_identifier(cspmu);
+ 	cspmu->name = impl_ops->get_name(cspmu);
  
- 	/* Find implementer specific attribute ops. */
- 	match = arm_cspmu_impl_match_get(cspmu->impl.pmiidr);
-@@ -450,24 +454,9 @@ static int arm_cspmu_init_impl_ops(struct arm_cspmu *cspmu)
- 		}
- 
- 		mutex_unlock(&arm_cspmu_lock);
-+	}
- 
--		if (ret)
--			return ret;
--	} else
--		cspmu->impl.module = THIS_MODULE;
+ 	if (!cspmu->identifier || !cspmu->name)
+-		return NULL;
 -
--	/* Use default callbacks if implementer doesn't provide one. */
--	CHECK_DEFAULT_IMPL_OPS(impl_ops, get_event_attrs);
--	CHECK_DEFAULT_IMPL_OPS(impl_ops, get_format_attrs);
--	CHECK_DEFAULT_IMPL_OPS(impl_ops, get_identifier);
--	CHECK_DEFAULT_IMPL_OPS(impl_ops, get_name);
--	CHECK_DEFAULT_IMPL_OPS(impl_ops, is_cycle_counter_event);
--	CHECK_DEFAULT_IMPL_OPS(impl_ops, event_type);
--	CHECK_DEFAULT_IMPL_OPS(impl_ops, event_filter);
--	CHECK_DEFAULT_IMPL_OPS(impl_ops, event_attr_is_visible);
--	CHECK_DEFAULT_IMPL_OPS(impl_ops, set_ev_filter);
--
--	return 0;
-+	return ret;
+-	attr_groups = devm_kcalloc(dev, 5, sizeof(struct attribute_group *),
+-				   GFP_KERNEL);
+-	if (!attr_groups)
+-		return NULL;
++		return -ENOMEM;
+ 
+ 	attr_groups[0] = arm_cspmu_alloc_event_attr_group(cspmu);
+ 	attr_groups[1] = arm_cspmu_alloc_format_attr_group(cspmu);
+@@ -525,9 +518,9 @@ arm_cspmu_alloc_attr_group(struct arm_cspmu *cspmu)
+ 	attr_groups[3] = &arm_cspmu_cpumask_attr_group;
+ 
+ 	if (!attr_groups[0] || !attr_groups[1])
+-		return NULL;
++		return -ENOMEM;
+ 
+-	return attr_groups;
++	return 0;
  }
  
- static struct attribute_group *
-diff --git a/drivers/perf/arm_cspmu/nvidia_cspmu.c b/drivers/perf/arm_cspmu/nvidia_cspmu.c
-index 0382b702f092..5b84b701ad62 100644
---- a/drivers/perf/arm_cspmu/nvidia_cspmu.c
-+++ b/drivers/perf/arm_cspmu/nvidia_cspmu.c
-@@ -388,12 +388,6 @@ static int nv_cspmu_init_ops(struct arm_cspmu *cspmu)
- 	impl_ops->get_format_attrs		= nv_cspmu_get_format_attrs;
- 	impl_ops->get_name			= nv_cspmu_get_name;
+ static inline void arm_cspmu_reset_counters(struct arm_cspmu *cspmu)
+@@ -1164,11 +1157,10 @@ static int arm_cspmu_get_cpus(struct arm_cspmu *cspmu)
+ static int arm_cspmu_register_pmu(struct arm_cspmu *cspmu)
+ {
+ 	int ret, capabilities;
+-	struct attribute_group **attr_groups;
  
--	/* Set others to NULL to use default callback. */
--	impl_ops->event_type			= NULL;
--	impl_ops->event_attr_is_visible		= NULL;
--	impl_ops->get_identifier		= NULL;
--	impl_ops->is_cycle_counter_event	= NULL;
--
- 	return 0;
- }
+-	attr_groups = arm_cspmu_alloc_attr_group(cspmu);
+-	if (!attr_groups)
+-		return -ENOMEM;
++	ret = arm_cspmu_alloc_attr_groups(cspmu);
++	if (ret)
++		return ret;
  
+ 	ret = cpuhp_state_add_instance(arm_cspmu_cpuhp_state,
+ 				       &cspmu->cpuhp_node);
+@@ -1190,7 +1182,7 @@ static int arm_cspmu_register_pmu(struct arm_cspmu *cspmu)
+ 		.start		= arm_cspmu_start,
+ 		.stop		= arm_cspmu_stop,
+ 		.read		= arm_cspmu_read,
+-		.attr_groups	= (const struct attribute_group **)attr_groups,
++		.attr_groups	= cspmu->attr_groups,
+ 		.capabilities	= capabilities,
+ 	};
+ 
+diff --git a/drivers/perf/arm_cspmu/arm_cspmu.h b/drivers/perf/arm_cspmu/arm_cspmu.h
+index 2fe723555a6b..c9163acfe810 100644
+--- a/drivers/perf/arm_cspmu/arm_cspmu.h
++++ b/drivers/perf/arm_cspmu/arm_cspmu.h
+@@ -157,6 +157,7 @@ struct arm_cspmu {
+ 	int cycle_counter_logical_idx;
+ 
+ 	struct arm_cspmu_hw_events hw_events;
++	const struct attribute_group *attr_groups[5];
+ 
+ 	struct arm_cspmu_impl impl;
+ };
 -- 
 2.39.2.101.g768bb238c484.dirty
 
