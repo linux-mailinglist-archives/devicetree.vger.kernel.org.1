@@ -1,356 +1,152 @@
-Return-Path: <devicetree+bounces-39122-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-39123-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 800E484B775
-	for <lists+devicetree@lfdr.de>; Tue,  6 Feb 2024 15:09:41 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 9E59D84B78B
+	for <lists+devicetree@lfdr.de>; Tue,  6 Feb 2024 15:13:03 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id A55BC1C25904
-	for <lists+devicetree@lfdr.de>; Tue,  6 Feb 2024 14:09:40 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id C2F4B1C2536A
+	for <lists+devicetree@lfdr.de>; Tue,  6 Feb 2024 14:13:02 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 01F2C131E4E;
-	Tue,  6 Feb 2024 14:07:48 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2CD25131E29;
+	Tue,  6 Feb 2024 14:12:56 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=linux.dev header.i=@linux.dev header.b="IcAd4Iv/"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="DNSe6W9D"
 X-Original-To: devicetree@vger.kernel.org
-Received: from out-171.mta1.migadu.com (out-171.mta1.migadu.com [95.215.58.171])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wm1-f54.google.com (mail-wm1-f54.google.com [209.85.128.54])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0876C134CC5
-	for <devicetree@vger.kernel.org>; Tue,  6 Feb 2024 14:07:42 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=95.215.58.171
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4C72A131752
+	for <devicetree@vger.kernel.org>; Tue,  6 Feb 2024 14:12:54 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.54
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1707228467; cv=none; b=F1tMvOuG9Q4zXe8oOAslmLJsh/Z+Q/nl7jfzAKQJavRvJOVp+EPRyP8IWJWUaefrJUp/uKTHam516VKDItuaQXQmRc3B0Xux5D7ajf/z/aNOSMFaRHEi2ZwoTtd3VnwsS8QUkTqDDEZ5aTYMW3mzsfpwubvRlwh4thQNqHp/wPE=
+	t=1707228776; cv=none; b=g7m/qPpyOr5f4c/F9eyKvxOzmByiX9+19ETHzWlWsh3nllM0I4I4TmjirbX4bfflNBv5v+H2GYsC2JpRbPn4ae3NPRv77wK4rJkQFyWx8pwjx2ZEU8b7VRagmUT9/nsaljKvoCj3oV0XWAAasWmJ3WwRqyV9xcIciMsDss1woXs=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1707228467; c=relaxed/simple;
-	bh=mVwWWrTDAgwS1pEK3S2+uKoqMrH7DFsvi9QuzAu6wkM=;
+	s=arc-20240116; t=1707228776; c=relaxed/simple;
+	bh=Bsokvn5YWnf3uoqaFnfN9YvfGrwDEWEVf1pfDUZWanA=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=jpjh57NSSz0/BmQcu4qWRnfWi+Y11UWq9yz8z7HOw24G2gd/ytACLALvWPgFbUEP94Du8N4Nclwr90T9LBK4fg91hJgcd330KthmrjlCASWh4YsGLvvRn3hJD6/0yTbojxN20nySIABKyEH7WWn322wmIlwF3npZiPyyFyBWCPU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.dev; spf=pass smtp.mailfrom=linux.dev; dkim=pass (1024-bit key) header.d=linux.dev header.i=@linux.dev header.b=IcAd4Iv/; arc=none smtp.client-ip=95.215.58.171
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.dev
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linux.dev
-Message-ID: <f4ff9d98-a1ae-4214-9740-c6f921d1bc48@linux.dev>
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=linux.dev; s=key1;
-	t=1707228460;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=kQ1uNrQgl7Q6ppJI7ZiOp0IhPwQJqVIgFs5DYq1SlBY=;
-	b=IcAd4Iv/HZ4cSLrn8NbUVcz4NyCZptygJT1QmfoU7zAShjb6RlNpW6z9vHqXg+fwVdiTYp
-	o0JwJIltEuV8fZj7vXnm395Yp8bun24KAEat+Nn/vIjgrZwl3CbJCjGDP5W5Uu0zfZ9wOj
-	x5HkYaq5CGaU0tfvwDhN6n59gASF8E4=
-Date: Tue, 6 Feb 2024 14:07:32 +0000
+	 In-Reply-To:Content-Type; b=uMd5Q1QYynvwgt66aEfhk+h+M4gtfuypAyZfGn9iRAXPtMEbXcX/q+dVji6M3AAq2Iz2dLfuGJlnVHJe/CcQfvHaRobYg4xfJiwcTgxdlfSKYVOOYONimf0qiCy2SLD+WtttBZR8d319EPgw04wg7ocp4CBzJ7JY3h8pWmhODMU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=DNSe6W9D; arc=none smtp.client-ip=209.85.128.54
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-wm1-f54.google.com with SMTP id 5b1f17b1804b1-40fe2d3d5a9so5491335e9.0
+        for <devicetree@vger.kernel.org>; Tue, 06 Feb 2024 06:12:54 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1707228772; x=1707833572; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
+         :to:content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=f/GUlRf0HmWkHoc7OTDeUe7IIuv9mQx9L8UMYHSrdxA=;
+        b=DNSe6W9DkJoXUkrMGXQJWfqkBeVCot3zQlUpGunagiP2iK54ajiKCb1E2c7+0pX6Q1
+         L9yvzX6BSIDOt+dJlch7MHyeGEpwIQksDJbEzaevakOZNG/cHPPInAhL0m03IwqAZLpk
+         k/TKuoXZQ7+esLkASazKXQKP2zPV2j9tLcP9tvsnB4Pi99+zuklAVewoEqxo34hM+wSE
+         0yutnOuf9rZ8i8tikN0CCSxRhMIOhLrVKjZpY7P2fMFxp9c0QfMqfZ58kA128I7QT96K
+         zaa+Wt3MDZVqYNGAZK8hh8S68pF+va34ZH3YDrEkbVT8v2svL0DJZUt1jooKroyTfJEz
+         /mNQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1707228772; x=1707833572;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
+         :to:content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=f/GUlRf0HmWkHoc7OTDeUe7IIuv9mQx9L8UMYHSrdxA=;
+        b=wtjKwgqtE9txG83MsRQmg3ff7f7sCwaJa234/gyo7mAG3k+MxsUtVnEkieHEbXMghq
+         o+vHm7isPvmAry4RL+OUNf6ebqYGeIjRgO5D+rUH97WkOIDP+J9KDdJMGq0hCNt4MfDb
+         x/OQOOCooLMcBhGKcwxyhJ84uezcxOg13Ot6ohO+YJqRntOJkwQ55KuVX94EoqP00+DU
+         TESrIGanq5kgwS6gUopPcIk67qH/gPpdHf9an8xY/+neaclDG4ksiCNy1udTKN0NN4ON
+         v68eJmL+ZIIKR9HASr/nnS36B/ImuPnMj/mWiymM2Zmrq2Pd3i9ESE2oFwK3pVm4x3q5
+         QwgQ==
+X-Gm-Message-State: AOJu0YxWHdCui+AET7hTZ9OwldaxdoSL1mDThXf4QHJu0mnRWjcGNFOv
+	spy2EEjMn+g6ohDgzEiBV+HQ6/Y6YK6dHG//K67NVUdTmeV06qAelr/MYyMNfGw=
+X-Google-Smtp-Source: AGHT+IHztXKPPEoRWAl5ItxM7oX/l5Dxb1UecXG0cZZ9t15hDEmGoMSNhlYb/7y1oEuc+RYvYgxATw==
+X-Received: by 2002:a05:600c:198f:b0:40f:dd35:9224 with SMTP id t15-20020a05600c198f00b0040fdd359224mr1646897wmq.4.1707228772550;
+        Tue, 06 Feb 2024 06:12:52 -0800 (PST)
+X-Forwarded-Encrypted: i=0; AJvYcCXu+7aOEidgQf+ZljxAaXruBbmXFWN7vR9z/Xj1+EilHtJc4CQHZBO4NYKZVo15M0MdsaG73qvdBsSXXCuGsWReOfWbhkwxwv0xOBJlH/mKUIBwj/sSFVpqgEvX0mrMeKcKBqm1L01vapmGUU6g5fLbgc2XcwMhvdVZA2sXFNP0Ge76dzGNLNTU5jzcA13UlyncTqDZqDUW31pQmqG/IwTgXkVK4tIcd0BWLjaP7ng0xXd3vTiA3Cnto6gLmWSj/4RnUyUsMimpaOmlQhUGT3g8iu3v9tFCekBJairVp/DNC3kUb58BJsOPyrihhB7JEz4Lguiv0jDBbZFSBHPBNeBaO2MgtcUoPY+QVaIAY6TFH5vit/H90wtS5ucV/E2+6qZ/jtiTjdspcMl0jXIPEIWcZDMgLvJn7aJ2A8WdrGJ4UoOKWK5NTYViye/yaKlDPOc6z6betTFmmbqRaE4qW6u83KTS3ByYXgNbAepIWnHzKwPGxRy/QNwU78itobeaEKaSaXQjyWCycUHOb80fFjZSbAkw
+Received: from [192.168.1.20] ([178.197.222.62])
+        by smtp.gmail.com with ESMTPSA id w17-20020a5d6811000000b0033afcc899c1sm2213579wru.13.2024.02.06.06.12.51
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 06 Feb 2024 06:12:52 -0800 (PST)
+Message-ID: <47bbd3e5-d94a-4b7e-afc2-68297f5a79c1@linaro.org>
+Date: Tue, 6 Feb 2024 15:12:50 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Subject: Re: [PATCH v3 09/20] drivers: crypto: meson: process more than
- MAXDESCS descriptors
+User-Agent: Mozilla Thunderbird
+Subject: Re: [linux][PATCH] ASoC: dt-bindings: atmel,sam9x5-wm8731: Convert to
+ json-schema
 Content-Language: en-US
-To: Alexey Romanov <avromanov@salutedevices.com>, neil.armstrong@linaro.org,
- clabbe@baylibre.com, herbert@gondor.apana.org.au, davem@davemloft.net,
- robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
- khilman@baylibre.com, jbrunet@baylibre.com,
- martin.blumenstingl@googlemail.com
-Cc: linux-crypto@vger.kernel.org, linux-amlogic@lists.infradead.org,
- linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, kernel@salutedevices.com
-References: <20240205155521.1795552-1-avromanov@salutedevices.com>
- <20240205155521.1795552-10-avromanov@salutedevices.com>
-X-Report-Abuse: Please report any abuse attempt to abuse@migadu.com and include these headers.
-From: Vadim Fedorenko <vadim.fedorenko@linux.dev>
-In-Reply-To: <20240205155521.1795552-10-avromanov@salutedevices.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
+To: Dharma Balasubiramani <dharma.b@microchip.com>, claudiu.beznea@tuxon.dev,
+ lgirdwood@gmail.com, broonie@kernel.org, robh+dt@kernel.org,
+ krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
+ nicolas.ferre@microchip.com, alexandre.belloni@bootlin.com,
+ alsa-devel@alsa-project.org, linux-sound@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ linux-kernel@vger.kernel.org
+Cc: hari.prasathge@microchip.com
+References: <20240206064418.237377-1-dharma.b@microchip.com>
+From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
+ 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
+ D2GYIS41Kv4Isx2dEFh+/Q==
+In-Reply-To: <20240206064418.237377-1-dharma.b@microchip.com>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
-X-Migadu-Flow: FLOW_OUT
 
-On 05/02/2024 15:55, Alexey Romanov wrote:
-> 1. The old alhorithm was not designed to process a large
-> amount of memory, and therefore gave incorrect results.
+On 06/02/2024 07:44, Dharma Balasubiramani wrote:
+> Convert atmel sam9x5-wm8731-audio devicetree binding to json-schema.
 > 
-> 2. Not all Amlogic SoC's use 3 KEY/IV descriptors.
-> Add keyiv descriptors count parameter to platform data.
-> 
-> Signed-off-by: Alexey Romanov <avromanov@salutedevices.com>
-> ---
->   drivers/crypto/amlogic/amlogic-gxl-cipher.c | 443 ++++++++++++--------
->   drivers/crypto/amlogic/amlogic-gxl-core.c   |   1 +
->   drivers/crypto/amlogic/amlogic-gxl.h        |   2 +
->   3 files changed, 281 insertions(+), 165 deletions(-)
-> 
-> diff --git a/drivers/crypto/amlogic/amlogic-gxl-cipher.c b/drivers/crypto/amlogic/amlogic-gxl-cipher.c
-> index c662c4b86e97..9c96e7b65e1e 100644
-> --- a/drivers/crypto/amlogic/amlogic-gxl-cipher.c
-> +++ b/drivers/crypto/amlogic/amlogic-gxl-cipher.c
-> @@ -17,35 +17,41 @@
->   #include <crypto/internal/skcipher.h>
->   #include "amlogic-gxl.h"
->   
+> Signed-off-by: Dharma Balasubiramani <dharma.b@microchip.com>
 
-[.. skip ..]
+There is no need to prefix patches with "linux".
 
-> @@ -84,176 +295,78 @@ static int meson_cipher(struct skcipher_request *areq)
->   	struct meson_dev *mc = op->mc;
->   	struct skcipher_alg *alg = crypto_skcipher_alg(tfm);
->   	struct meson_alg_template *algt;
-> -	int flow = rctx->flow;
-> -	unsigned int todo, eat, len;
-> -	struct scatterlist *src_sg = areq->src;
-> -	struct scatterlist *dst_sg = areq->dst;
-> -	struct meson_desc *desc;
-> -	int nr_sgs, nr_sgd;
-> -	int i, err = 0;
-> -	unsigned int keyivlen, ivsize, offset, tloffset;
-> -	dma_addr_t phykeyiv;
-> -	void *backup_iv = NULL, *bkeyiv;
-> -	u32 v;
-> -
-> -	algt = container_of(alg, struct meson_alg_template, alg.skcipher.base);
-> +	struct cipher_ctx ctx = {
-> +		.areq = areq,
-> +		.src_offset = 0,
-> +		.dst_offset = 0,
-> +		.src_sg = areq->src,
-> +		.dst_sg = areq->dst,
-> +		.cryptlen = areq->cryptlen,
-> +	};
-> +	unsigned int ivsize = crypto_skcipher_ivsize(tfm);
-> +	int err;
->   
-> -	dev_dbg(mc->dev, "%s %s %u %x IV(%u) key=%u flow=%d\n", __func__,
-> +	dev_dbg(mc->dev, "%s %s %u %x IV(%u) key=%u ctx.flow=%d\n", __func__,
->   		crypto_tfm_alg_name(areq->base.tfm),
->   		areq->cryptlen,
->   		rctx->op_dir, crypto_skcipher_ivsize(tfm),
-> -		op->keylen, flow);
-> +		op->keylen, rctx->flow);
-> +
-> +	algt = container_of(alg, struct meson_alg_template, alg.skcipher.base);
->   
->   #ifdef CONFIG_CRYPTO_DEV_AMLOGIC_GXL_DEBUG
->   	algt->stat_req++;
-> -	mc->chanlist[flow].stat_req++;
-> +	mc->chanlist[rctx->flow].stat_req++;
->   #endif
->   
-> -	/*
-> -	 * The hardware expect a list of meson_desc structures.
-> -	 * The 2 first structures store key
-> -	 * The third stores IV
-> -	 */
-> -	bkeyiv = kzalloc(48, GFP_KERNEL | GFP_DMA);
-> -	if (!bkeyiv)
-> +	op->key = kzalloc(48, GFP_KERNEL | GFP_DMA);
-> +	if (!op.key)
->   		return -ENOMEM;
->   
-> -	memcpy(bkeyiv, op->key, op->keylen);
-> -	keyivlen = op->keylen;
-> +	memcpy(op->key, op->key, op->keylen);
+Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
-Apart form invalid if() you try to copy op->key to itself.
-I believe it should be removed, because you initialize ctx.key.addr
-later
-
-> +	ctx.keyiv.len = op->keylen;
-> +	if (ctx.keyiv.len == AES_KEYSIZE_192)
-> +		ctx.keyiv.len = AES_MAX_KEY_SIZE;
->   
-> -	ivsize = crypto_skcipher_ivsize(tfm);
-> -	if (areq->iv && ivsize > 0) {
-> -		if (ivsize > areq->cryptlen) {
-> -			dev_err(mc->dev, "invalid ivsize=%d vs len=%d\n", ivsize, areq->cryptlen);
-> -			err = -EINVAL;
-> -			goto theend;
-> -		}
-> -		memcpy(bkeyiv + 32, areq->iv, ivsize);
-> -		keyivlen = 48;
-> -		if (rctx->op_dir == MESON_DECRYPT) {
-> -			backup_iv = kzalloc(ivsize, GFP_KERNEL);
-> -			if (!backup_iv) {
-> -				err = -ENOMEM;
-> -				goto theend;
-> -			}
-> -			offset = areq->cryptlen - ivsize;
-> -			scatterwalk_map_and_copy(backup_iv, areq->src, offset,
-> -						 ivsize, 0);
-> -		}
-> -	}
-> -	if (keyivlen == AES_KEYSIZE_192)
-> -		keyivlen = AES_MAX_KEY_SIZE;
-> -
-> -	phykeyiv = dma_map_single(mc->dev, bkeyiv, keyivlen,
-> +	ctx.keyiv.addr = dma_map_single(mc->dev, op->key, ctx.keyiv.len,
->   				  DMA_TO_DEVICE);
-> -	err = dma_mapping_error(mc->dev, phykeyiv);
-> +	err = dma_mapping_error(mc->dev, ctx.keyiv.addr);
->   	if (err) {
->   		dev_err(mc->dev, "Cannot DMA MAP KEY IV\n");
->   		goto theend;
->   	}
->   
-> -	tloffset = 0;
-> -	eat = 0;
-> -	i = 0;
-> -	while (keyivlen > eat) {
-> -		desc = &mc->chanlist[flow].tl[tloffset];
-> -		memset(desc, 0, sizeof(struct meson_desc));
-> -		todo = min(keyivlen - eat, 16u);
-> -		desc->t_src = cpu_to_le32(phykeyiv + i * 16);
-> -		desc->t_dst = cpu_to_le32(i * 16);
-> -		v = DESC_MODE_KEY | DESC_OWN | 16;
-> -		desc->t_status = cpu_to_le32(v);
-> -
-> -		eat += todo;
-> -		i++;
-> -		tloffset++;
-> -	}
-> -
-> -	if (areq->src == areq->dst) {
-> -		nr_sgs = dma_map_sg(mc->dev, areq->src, sg_nents(areq->src),
-> -				    DMA_BIDIRECTIONAL);
-> -		if (!nr_sgs) {
-> -			dev_err(mc->dev, "Invalid SG count %d\n", nr_sgs);
-> -			err = -EINVAL;
-> -			goto theend;
-> -		}
-> -		nr_sgd = nr_sgs;
-> -	} else {
-> -		nr_sgs = dma_map_sg(mc->dev, areq->src, sg_nents(areq->src),
-> -				    DMA_TO_DEVICE);
-> -		if (!nr_sgs || nr_sgs > MAXDESC - 3) {
-> -			dev_err(mc->dev, "Invalid SG count %d\n", nr_sgs);
-> -			err = -EINVAL;
-> -			goto theend;
-> -		}
-> -		nr_sgd = dma_map_sg(mc->dev, areq->dst, sg_nents(areq->dst),
-> -				    DMA_FROM_DEVICE);
-> -		if (!nr_sgd || nr_sgd > MAXDESC - 3) {
-> -			dev_err(mc->dev, "Invalid SG count %d\n", nr_sgd);
-> -			err = -EINVAL;
-> -			goto theend;
-> -		}
-> -	}
-> -
-> -	src_sg = areq->src;
-> -	dst_sg = areq->dst;
-> -	len = areq->cryptlen;
-> -	while (src_sg) {
-> -		desc = &mc->chanlist[flow].tl[tloffset];
-> -		memset(desc, 0, sizeof(struct meson_desc));
-> -
-> -		desc->t_src = cpu_to_le32(sg_dma_address(src_sg));
-> -		desc->t_dst = cpu_to_le32(sg_dma_address(dst_sg));
-> -		todo = min(len, sg_dma_len(src_sg));
-> -		v = op->keymode | DESC_OWN | todo | algt->blockmode;
-> -		if (rctx->op_dir)
-> -			v |= DESC_ENCRYPTION;
-> -		len -= todo;
-> -
-> -		if (!sg_next(src_sg))
-> -			v |= DESC_LAST;
-> -		desc->t_status = cpu_to_le32(v);
-> -		tloffset++;
-> -		src_sg = sg_next(src_sg);
-> -		dst_sg = sg_next(dst_sg);
-> -	}
-> +	err = meson_map_scatterlist(areq, mc);
-> +	if (err)
-> +		goto theend;
->   
-> -	reinit_completion(&mc->chanlist[flow].complete);
-> -	meson_dma_start(mc, flow);
-> +	ctx.tloffset = 0;
->   
-> -	err = wait_for_completion_interruptible_timeout(&mc->chanlist[flow].complete,
-> -							msecs_to_jiffies(500));
-> -	if (err == 0) {
-> -		dev_err(mc->dev, "DMA timeout for flow %d\n", flow);
-> -		err = -EINVAL;
-> -	} else if (err < 0) {
-> -		dev_err(mc->dev, "Waiting for DMA completion is failed (%d)\n", err);
-> -	} else {
-> -		/* No error */
-> -		err = 0;
-> -	}
-> +	while (ctx.cryptlen) {
-> +		meson_setup_keyiv_descs(&ctx);
->   
-> -	dma_unmap_single(mc->dev, phykeyiv, keyivlen, DMA_TO_DEVICE);
-> +		if (meson_setup_data_descs(&ctx)) {
-> +			err = meson_kick_hardware(&ctx);
-> +			if (err)
-> +				break;
-> +		}
->   
-> -	if (areq->src == areq->dst) {
-> -		dma_unmap_sg(mc->dev, areq->src, sg_nents(areq->src), DMA_BIDIRECTIONAL);
-> -	} else {
-> -		dma_unmap_sg(mc->dev, areq->src, sg_nents(areq->src), DMA_TO_DEVICE);
-> -		dma_unmap_sg(mc->dev, areq->dst, sg_nents(areq->dst), DMA_FROM_DEVICE);
-> -	}
-> +		if (ctx.src_offset == sg_dma_len(ctx.src_sg)) {
-> +			ctx.src_offset = 0;
-> +			ctx.src_sg = sg_next(ctx.src_sg);
-> +		}
->   
-> -	if (areq->iv && ivsize > 0) {
-> -		if (rctx->op_dir == MESON_DECRYPT) {
-> -			memcpy(areq->iv, backup_iv, ivsize);
-> -		} else {
-> -			scatterwalk_map_and_copy(areq->iv, areq->dst,
-> -						 areq->cryptlen - ivsize,
-> -						 ivsize, 0);
-> +		if (ctx.dst_offset == sg_dma_len(ctx.dst_sg)) {
-> +			ctx.dst_offset = 0;
-> +			ctx.dst_sg = sg_next(ctx.dst_sg);
->   		}
->   	}
-> +
-> +	dma_unmap_single(mc->dev, ctx.keyiv.addr, ctx.keyiv.len, DMA_TO_DEVICE);
-> +	meson_unmap_scatterlist(areq, mc);
-> +
->   theend:
-> -	kfree_sensitive(bkeyiv);
-> -	kfree_sensitive(backup_iv);
-> +	kfree_sensitive(op->key);
->   
->   	return err;
->   }
-> diff --git a/drivers/crypto/amlogic/amlogic-gxl-core.c b/drivers/crypto/amlogic/amlogic-gxl-core.c
-> index 22ff2768b5e5..f93e14f5717d 100644
-> --- a/drivers/crypto/amlogic/amlogic-gxl-core.c
-> +++ b/drivers/crypto/amlogic/amlogic-gxl-core.c
-> @@ -199,6 +199,7 @@ static const struct meson_pdata meson_gxl_pdata = {
->   	.descs_reg = 0x0,
->   	.status_reg = 0x4,
->   	.need_clk = true,
-> +	.setup_desc_cnt = 3,
->   };
->   
->   static const struct of_device_id meson_crypto_of_match_table[] = {
-> diff --git a/drivers/crypto/amlogic/amlogic-gxl.h b/drivers/crypto/amlogic/amlogic-gxl.h
-> index a0d83c82906d..eb2f8cd72b65 100644
-> --- a/drivers/crypto/amlogic/amlogic-gxl.h
-> +++ b/drivers/crypto/amlogic/amlogic-gxl.h
-> @@ -83,11 +83,13 @@ struct meson_flow {
->    * @reg_descs:	offset to descriptors register
->    * @reg_status:	offset to status register
->    * @need_clk:	clock input is needed
-> + * @setup_desc_cnt:	number of setup descriptor to configure.
->    */
->   struct meson_pdata {
->   	u32 descs_reg;
->   	u32 status_reg;
->   	bool need_clk;
-> +	u32 setup_desc_cnt;
->   };
->   
->   /*
+Best regards,
+Krzysztof
 
 
