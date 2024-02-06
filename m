@@ -1,141 +1,113 @@
-Return-Path: <devicetree+bounces-39279-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-39280-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id BDC5C84BFD4
-	for <lists+devicetree@lfdr.de>; Tue,  6 Feb 2024 23:08:07 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6D92184BFEC
+	for <lists+devicetree@lfdr.de>; Tue,  6 Feb 2024 23:17:12 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id F05291C245C2
-	for <lists+devicetree@lfdr.de>; Tue,  6 Feb 2024 22:08:06 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 05F741F23EC3
+	for <lists+devicetree@lfdr.de>; Tue,  6 Feb 2024 22:17:12 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 941971BDDC;
-	Tue,  6 Feb 2024 22:08:04 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6447A1BDDC;
+	Tue,  6 Feb 2024 22:16:57 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="UprBqNNI"
+	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="eDPGFkMh"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f49.google.com (mail-wm1-f49.google.com [209.85.128.49])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from relay6-d.mail.gandi.net (relay6-d.mail.gandi.net [217.70.183.198])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8F7F11BC27
-	for <devicetree@vger.kernel.org>; Tue,  6 Feb 2024 22:08:02 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.49
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1A9851C69D;
+	Tue,  6 Feb 2024 22:16:53 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.70.183.198
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1707257284; cv=none; b=DMbH2AsTM7XhSx0cYtfqyOvPbP4UutZbP0rkZ8aJBLjiU4y/+iVbewXJkX1KS8X9Jhj+5s87Upn2PIt9J2wrZnD/vYB2MxoGU0yesJFZCU7o6oe92vbYChNzhQVtd3TKVY8iQGagRDeFG+kThYzGSl0R2uPwPvH4G9EUL8IF9q4=
+	t=1707257817; cv=none; b=cK3Wftq3L+1OXWRCn17UDFiQj1cJkOIinTrQTbtiwGu8GvDA5LU7A//+MKvLx6X6OCMTeHFce/uJpxMBukDC4HmN47DT4c2owjvbturK+oB9UrxLNjrgsNsVxOn4Q4Ptb7e8AW5sWjhbUIgbA9mYBSmvL4dxqG1GlpFlkQGS75M=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1707257284; c=relaxed/simple;
-	bh=hPRKZZi51+g9WyrFbpjZHxRsBlS9q9w80JuKXIOV1/Q=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=g/WpzztTZ+SgbCkNDxHwUknWQJp4TbUmyHfkgMAPZr5GHgCN/JYIalUaZvnILad/5WNzSuFdOU6Qif7TDRiwlqdbRGtpl4vWaP9wSvWu9OGQRy6IgD+3FgXKYW4t8vendpSTBwEFp+aAWf84fHJFCyfkIp3+UzuloHzypaBhgEI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=UprBqNNI; arc=none smtp.client-ip=209.85.128.49
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-wm1-f49.google.com with SMTP id 5b1f17b1804b1-40fe3244bc6so9793975e9.1
-        for <devicetree@vger.kernel.org>; Tue, 06 Feb 2024 14:08:02 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1707257281; x=1707862081; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=6S7GIcAXLkk0GXMtKnA5dQyOGyD0dPq3C40hd8i8kB4=;
-        b=UprBqNNIfMpNX8jRZNj94XLLOxbfNuywlzWx+oXa/D5HK8chTNAU9QAC5f+qX2WT+H
-         rxMbZfjGvtn+G6s4ji66xxPeh7hvbgLJejxW7ezy7/cIzu3nh4TO0GFljMdbnnsblKDJ
-         vGvxhgcf1ZlHX90tonJJM0eKMEIJ8U9Fxyn7LV+/pdlabA7iDV0B+oGbcxvZVEvZrmEY
-         AbHBnliqzrHZJM89dLofTS1XyChHuAeofsN5+5kgy2qR6RVnyKNUBaarHLIchKzRNREK
-         Ebw0Q/ekK6PDApAd1UFsV7cpJvAio5xoxguD2ireyesuQ11c700xCNeFjJYZSyqTJ/zV
-         +34Q==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1707257281; x=1707862081;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=6S7GIcAXLkk0GXMtKnA5dQyOGyD0dPq3C40hd8i8kB4=;
-        b=R9npHmpjbc0jyq+vcSHf4TwUoPjideduTUHadXZ+y1YSHZ1/aHmUe/0Kb6Ak0nR6jA
-         KShDdRttQBXXVkvt9+QNiSaGNFT09SIQjNCA6MtjAmyRVqSs99W5H50JvAB2PThMpS4g
-         oAFKIDXPXWLnl5R7D3oO/TuqLOi3+GgU6ckm08zFvY77x9f4dvH2vA65h+NeaoyikxUE
-         JPoQ6B0PTQJLd1sotcOcne9G6ODvUo9lnbMAjnfNtIrVDS8PYLOgHuGwWLj5Bylmz90a
-         9WVKgS8HeUtgw7jO3SkcwUTpSisPW5wI1V3Cr299Zm08OJbpgkewGGcTHbBYWHdjIfdt
-         epYw==
-X-Gm-Message-State: AOJu0YwRfRiPkV/cxQNXuJ6CLoyzFy2glKE45zos5Y/JpIq6ohKRVUgk
-	nppoXxla9pdYTI1dBw/XlayrnPZWrmQamPY4+DGgF5QZIEkyk7smhP6/MJdnF2E=
-X-Google-Smtp-Source: AGHT+IE6l3thIi4hpMOqS++/EuJvHVBlAwLuAS3oY/A7a81wn22o6S8uE3i5NJaFbMm2iIgdVEoeZw==
-X-Received: by 2002:a05:600c:1e0c:b0:40f:dd70:14a with SMTP id ay12-20020a05600c1e0c00b0040fdd70014amr3005772wmb.39.1707257280720;
-        Tue, 06 Feb 2024 14:08:00 -0800 (PST)
-X-Forwarded-Encrypted: i=1; AJvYcCWTTC0mvHQlth3Wng+Dt5SWRdYHn0dUHP3OOfpzCbI9TBUb/n5ij1do9/CxVtK9T/8s+MVC/8vKwwC6PzEUulPXLsB2GNazpOlQ9d7FGwfkuwe0MmuWWL7s6viPBkBAm9QFU0NJD3AVSjMQH5RyO1gS3ue6iY/sTx22A/Vla0GB+c76eJHzL/3o6T1T5CyZQgdpX1XbHiDj+ESB4pTjYzKL9ROblfxKs51HN+eCPIDLLMeqy37texL+5RhYnpONLgRdJMNElVWiRmdJy79qwpjuqgDKz3vD3ZzwXDAD1GRxxvJxOkscY+dake8rxlMVRpchRUYsB0wWDvtdqoSzgkbQPuK+y4PZlOmOnmPSD67Eb9th9CX+AKbv2aw6Fg5U
-Received: from [192.168.43.244] ([213.215.212.194])
-        by smtp.googlemail.com with ESMTPSA id s9-20020a05600c45c900b0040fb44a9288sm3226578wmo.48.2024.02.06.14.07.59
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 06 Feb 2024 14:08:00 -0800 (PST)
-Message-ID: <bffe2a23-d3fc-499d-825a-e2fd3c7a9d7f@linaro.org>
-Date: Tue, 6 Feb 2024 22:07:59 +0000
+	s=arc-20240116; t=1707257817; c=relaxed/simple;
+	bh=6e1eWi0XVmAapbmVvkOieE4PlZ6Y5JmX2oQHiJNDA4I=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=TNXRpOloivLAlbUFPIhQy1K7s7E4bgvIXuUuOovTKd6UO1BL9zMx/3xUGNw/eBo/r3bHTKHDRWmQSueJQuyL97kRh0P7h0s60+KBUia12rnl906LazZieGowZxjE+uxNt68j5alUl8O5mBqc3VrO+sjXGRzAVRNe6skWnlAY0sw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=eDPGFkMh; arc=none smtp.client-ip=217.70.183.198
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
+Received: by mail.gandi.net (Postfix) with ESMTPSA id 7922DC0003;
+	Tue,  6 Feb 2024 22:16:44 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
+	t=1707257806;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 in-reply-to:in-reply-to:references:references;
+	bh=CyGTWHQrBLjLWWo2xOLwLlHdJNVmydb/RrvwG6gICsE=;
+	b=eDPGFkMhJtW98eEXH+8tczLIX6hPffiNAVnEoGkDgYDk9vHlaQyi0soDNIiGwJkMgpQLYs
+	rnvxBi8rIQkDR6gv16wy5yqCJsGuGhBoDBah0an0S43gtuGE9aRjhNZK+tCUQVfaUBSgMu
+	94h21on8yVIjkA3CXJUbNEYKRofl/+UwCJr8RXFh271DlCYIRPFv+4urO1WpP0zibi2L1g
+	p5Hg6r3UEk/XtT1TGCSRNMddTgXZoqxoj/bL3Ag13Vp4AzcVCz5ldAcTKmx8Tc0lk92vze
+	QvkXJrSFLzn7/+kNCa2h1IVfGtQ47rOtF3X5UA+GfHgPENq6tHT/Ps8gJe3jgQ==
+Date: Tue, 6 Feb 2024 23:16:44 +0100
+From: Alexandre Belloni <alexandre.belloni@bootlin.com>
+To: Chris Packham <Chris.Packham@alliedtelesis.co.nz>
+Cc: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+	"robh+dt@kernel.org" <robh+dt@kernel.org>,
+	"krzysztof.kozlowski+dt@linaro.org" <krzysztof.kozlowski+dt@linaro.org>,
+	"conor+dt@kernel.org" <conor+dt@kernel.org>,
+	"jdelvare@suse.com" <jdelvare@suse.com>,
+	"linux@roeck-us.net" <linux@roeck-us.net>,
+	"antoniu.miclaus@analog.com" <antoniu.miclaus@analog.com>,
+	"noname.nuno@gmail.com" <noname.nuno@gmail.com>,
+	"linux-rtc@vger.kernel.org" <linux-rtc@vger.kernel.org>,
+	"devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+	"linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+	"linux-hwmon@vger.kernel.org" <linux-hwmon@vger.kernel.org>,
+	Ibrahim Tilki <Ibrahim.Tilki@analog.com>,
+	Zeynep Arslanbenzer <Zeynep.Arslanbenzer@analog.com>
+Subject: Re: [PATCH v6 2/2] dt-bindings: rtc: add max313xx RTCs
+Message-ID: <20240206221644f524816e@mail.local>
+References: <20240202025241.834283-1-chris.packham@alliedtelesis.co.nz>
+ <20240202025241.834283-3-chris.packham@alliedtelesis.co.nz>
+ <aecd80a3-a017-405f-b77d-6deda67ef704@linaro.org>
+ <5d4b7fa1-5cc2-4a4a-8fa4-d2c7a8d070b7@alliedtelesis.co.nz>
+ <20240206211237d9192660@mail.local>
+ <e7a21789-9253-4185-98ed-e335d0167df4@alliedtelesis.co.nz>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 1/4] nvmem: core: Read into buffers larger than data
-Content-Language: en-US
-To: Markus Schneider-Pargmann <msp@baylibre.com>, Nishanth Menon <nm@ti.com>,
- Vignesh Raghavendra <vigneshr@ti.com>, Tero Kristo <kristo@kernel.org>,
- Rob Herring <robh+dt@kernel.org>,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Conor Dooley <conor+dt@kernel.org>, Santosh Shilimkar <ssantosh@kernel.org>
-Cc: Andrew Davis <afd@ti.com>, linux-arm-kernel@lists.infradead.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-References: <20240206143711.2410135-1-msp@baylibre.com>
- <20240206143711.2410135-2-msp@baylibre.com>
-From: Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
-In-Reply-To: <20240206143711.2410135-2-msp@baylibre.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <e7a21789-9253-4185-98ed-e335d0167df4@alliedtelesis.co.nz>
+X-GND-Sasl: alexandre.belloni@bootlin.com
 
-
-
-On 06/02/2024 14:37, Markus Schneider-Pargmann wrote:
-> The actual size that nvmem is using internally on a specific platform
-> with a specific devicetree may not be known in the consumer code. The
-> maximum size may be available at the same time.
+On 06/02/2024 21:41:10+0000, Chris Packham wrote:
 > 
-> Allow the use of larger buffers in nvmem_cell_read_common() by setting
-> buffers that are too large to zero before copying into them.
+> On 7/02/24 10:12, Alexandre Belloni wrote:
+> > On 06/02/2024 20:19:20+0000, Chris Packham wrote:
+> >> That is an incredibly good point. The max31335 binding covers one specific chip. This binding covers more and with that there are a few more properties that the max31335 on it's own doesn't have (e.g. the clock consumer, the ability to have different i2c addresses). Binding wise I could probably roll all of the max31335 into this max313xx binding.
+> >>
+> >> Driver wise things are a bit trickier. I've only got access to one of
+> >> the variants so I am hoping to leverage the work Ibrahim had already
+> >> done. I could attempt to incorporate max31335 support into the
+> >> max313xx driver but I wouldn't really be able to test it properly and
+> >> there is a reasonably high chance of regressing something.
+> > But I won't take a separate driver. Everything would be better if Analog
+> > was sharing the datasheets...
 > 
-Can you explain why can we not use nvmem_cell_read() ?
-
-
-
-there is an other thread to add get_size
-https://www.spinics.net/lists/kernel/msg5075254.html
-
-> Signed-off-by: Markus Schneider-Pargmann <msp@baylibre.com>
-> ---
->   drivers/nvmem/core.c | 6 ++++--
->   1 file changed, 4 insertions(+), 2 deletions(-)
+> The datasheets are pretty accessible so I'd give Analog a pass on that 
+> (they're certainly better than some vendors). I'll include some links on 
+> the next update.
 > 
-> diff --git a/drivers/nvmem/core.c b/drivers/nvmem/core.c
-> index 980123fb4dde..6fa061ede605 100644
-> --- a/drivers/nvmem/core.c
-> +++ b/drivers/nvmem/core.c
-> @@ -1806,12 +1806,14 @@ static int nvmem_cell_read_common(struct device *dev, const char *cell_id,
->   		nvmem_cell_put(cell);
->   		return PTR_ERR(buf);
->   	}
-> -	if (len != count) {
-> +	if (len > count) {
->   		kfree(buf);
->   		nvmem_cell_put(cell);
->   		return -EINVAL;
-> +	} else if (len < count) {
-> +		memset(val + len, 0, count - len);
-no please.. this really does not belong here.
 
---srini
->   	}
-> -	memcpy(val, buf, count);
-> +	memcpy(val, buf, len);
->   	kfree(buf);
->   	nvmem_cell_put(cell);
->   
+The max31335 is not available
+
+> I'll attempt to roll the max31335 into the max313xx driver.
+
+I guess this would be the opposite. Renaming a driver breaks existing
+kernel configurations.
+
+-- 
+Alexandre Belloni, co-owner and COO, Bootlin
+Embedded Linux and Kernel engineering
+https://bootlin.com
 
