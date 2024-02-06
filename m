@@ -1,158 +1,91 @@
-Return-Path: <devicetree+bounces-38958-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-38959-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 74E7384AFCF
-	for <lists+devicetree@lfdr.de>; Tue,  6 Feb 2024 09:18:49 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6CE0E84AFDE
+	for <lists+devicetree@lfdr.de>; Tue,  6 Feb 2024 09:24:36 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 29E68287D59
-	for <lists+devicetree@lfdr.de>; Tue,  6 Feb 2024 08:18:48 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 026881F23F95
+	for <lists+devicetree@lfdr.de>; Tue,  6 Feb 2024 08:24:36 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id BCB5D12B142;
-	Tue,  6 Feb 2024 08:18:04 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id F091012AAD7;
+	Tue,  6 Feb 2024 08:24:30 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="pLA5Ens/"
+	dkim=pass (1024-bit key) header.d=yeah.net header.i=@yeah.net header.b="e0eaNymx"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wr1-f42.google.com (mail-wr1-f42.google.com [209.85.221.42])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
-	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F01D57C099
-	for <devicetree@vger.kernel.org>; Tue,  6 Feb 2024 08:18:02 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.42
+Received: from mail-177132.yeah.net (mail-177132.yeah.net [123.58.177.132])
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A06AC12AAE5;
+	Tue,  6 Feb 2024 08:24:28 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=123.58.177.132
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1707207484; cv=none; b=ZOhzHNj3flSdxw+GM8c+iNfLlmxjz+GJiNlR3P66mKsBWqLJP9d/iS1sp+3wthkkTZeQ6appDH9nz4oRuK6UIrPgYAS3VRP1G44kRJM84Jsdt+rDapvzXGBS29nveK0T8eAXHPZuSYHhJ/fgfu22VqazUQKmZr3dM1rDB+LxjCQ=
+	t=1707207870; cv=none; b=WAB3bGxmesQyq6LCdY3c2OdTHfKWDBpbIVg+0WdTxjVqE6TE4RcPJ9zEwoa4890WGABN+hzYXt9smMJiJTxW5iXz7uEFMo2Q26e6hkvOoWppxS6ac6hmvQY/iXsERHm+feZb6qZdPIdHJG6D7LarUu96TlWVsiad7On+asqVvhw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1707207484; c=relaxed/simple;
-	bh=R69uSibx/lm4G0LccNc4x+Ypc8MXfBEoFVAyT1Kwd3g=;
-	h=Message-ID:Date:MIME-Version:From:Subject:To:Cc:References:
-	 In-Reply-To:Content-Type; b=jh+LM+Yp57282TKVlbXNjSQFKWtmRALXgZx6ZybjDnXjIkBhVoRFVzeC2+pvtWDttjfdsbOxEWt5PUZh7uFvcbxytrezaSHYCZeIJmhCKPjfpIilA9wyUd5DG/I7/kXTKjs0lyFLFyqIxxKcZ/sKnMpJgSjngRkCb8mxTFaf4as=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=pLA5Ens/; arc=none smtp.client-ip=209.85.221.42
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-wr1-f42.google.com with SMTP id ffacd0b85a97d-33b1a51743fso3911127f8f.0
-        for <devicetree@vger.kernel.org>; Tue, 06 Feb 2024 00:18:02 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1707207481; x=1707812281; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:organization:autocrypt
-         :references:cc:to:content-language:subject:reply-to:from:user-agent
-         :mime-version:date:message-id:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=ecxK0OeSx8DU/V9lxqcdeUM2UFGv78q9j2Mxgkb5Lhg=;
-        b=pLA5Ens/yqmPbkXeEdKhETLN/yEYmqj2AKomIiL66GRCOO6hoZAZKG4nc04W9FIuyb
-         8qsOjs0SvWzheUL9UlNTkbs1uRj7nFNg66rPijwumURwd2TK1MySEBOpa5ILXQ8OtJ9h
-         JIcEuC6b2paOnKdhgWP+vh+U1FbdmVwHL+4xLvrV+ObR+7eBLZAf5RHcOmzYb+pzy000
-         ys9yC7DIcHuGPLU8ione82SNIGd3FtbphdBkT0BINb5PUmt6aLeTnPoON/i5bL3i2Vzm
-         wKR9H0W4PjlBXvBGM++6+ikfexU+CP7A4FiEwpOOSdTfb8f1joZwM+wFA22cAvy4/CO8
-         L4SQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1707207481; x=1707812281;
-        h=content-transfer-encoding:in-reply-to:organization:autocrypt
-         :references:cc:to:content-language:subject:reply-to:from:user-agent
-         :mime-version:date:message-id:x-gm-message-state:from:to:cc:subject
-         :date:message-id:reply-to;
-        bh=ecxK0OeSx8DU/V9lxqcdeUM2UFGv78q9j2Mxgkb5Lhg=;
-        b=O5tZYR39/yEGpIPU9j/3Bera/nuYJjY31aLY2wfOYe01tBLMOezdkUbKDDPiQeM4Q3
-         nm5MBaG6bvonafhNaP+i5XTOffTaXF8Kl8L35vwlgAQU6eJmi6dzAgVQQz2SvKPb+mJd
-         5Aqb6+FJKI/eBOhaEQFM7yb3yEMmIIVoEY/TkYtF+FEcat+cZPbvSJLo6xoKM4CPKCN5
-         cdMBbdtw9xDgR9mfnofC+1oBghRx9c1iRUkpoPIRoP8OU2p2tz24QMMFSPqRkPpGfsPW
-         4+EYaWD5GMSkqUxQmK0ptklzb3shdpRxuyx5jaD07E1D7ZixhbMEkINZM6v4nR0cFrKr
-         1P5w==
-X-Gm-Message-State: AOJu0YzaqDzf+pmechHad78JKIkwi8iojhL8ZMtFivf3l79FUWtUqLxo
-	6Mxb1B9VWG8zM21wv/5cei0FlewPlAj5lFCi3KPXTT40ZLUEamYYWuNuZjmEjSM=
-X-Google-Smtp-Source: AGHT+IEpMcoa6cfEkFvIfvzpfuQ8Yx+dGDw/vR+l5ulMZgEDkKNzC9S0nuR1ItidAKgMFW7/sDqpmA==
-X-Received: by 2002:a5d:55c6:0:b0:33b:287d:412c with SMTP id i6-20020a5d55c6000000b0033b287d412cmr598635wrw.43.1707207481106;
-        Tue, 06 Feb 2024 00:18:01 -0800 (PST)
-X-Forwarded-Encrypted: i=0; AJvYcCWHbtH0YjwFLURKvvaj4m5/n5NPHSzvgoPcHOJvao8oQ289AiAyaZ5GlNthURTVrfwvxHGKwF/HByeoEpD+uZMQpctXoCfGsgiAyaEyYsTs6LfLhec/hMJIhdvM8RXPV+7wCwtHd8sZZgDd4GXS1jAHF5aui6uCObLAEYXcNNqdPt7J9g7TkUH/rxmx1DhYLT8uSV/U/hqzSL72p1q/aKrsVnkOXT7g8wHC1X7FkLKguFAX18M/M9Y62UGCDBCXsQaGxayBlRjZfLAfNfKon+27TgHHviOPrgxIyqs4hV+EekHxC8x5no4M0zewRa1C+jist3lT6cKCEGVn8HdYdujWfObaAUDD5wJz5kp/iEP6LSZ3hNfrXrTSlXcpfrrJhCAlqScMB3qMlxsf87phYRMPGVn4dUiydThdQmv21/QTuS03MvLDuTgufP3V8rsjNunlMsRUCF3He1FMwwC/nlBT1ttm5APCq6KNQy/rmWrRgJ4yWZUcGMYD31PLCggD2R2e0dxSEdgKUf40GI/sb4Na0qpZUpQdBMg/YGbf7UwG9Y3JawmduQdwiiNK3mEhXj3M0uJdPc96IrJsckfaO5aTaDfyWrkSqSoA1na0Ff6a0ipo/klDRxmO7jjBMZ0lYw==
-Received: from ?IPV6:2a01:e0a:982:cbb0:ba23:8574:fa8:28dd? ([2a01:e0a:982:cbb0:ba23:8574:fa8:28dd])
-        by smtp.gmail.com with ESMTPSA id n2-20020a5d67c2000000b0033b4335dce5sm1418976wrw.85.2024.02.06.00.17.59
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 06 Feb 2024 00:18:00 -0800 (PST)
-Message-ID: <b78d2ca4-9516-4d7e-9ec0-3fe93894523b@linaro.org>
-Date: Tue, 6 Feb 2024 09:17:59 +0100
+	s=arc-20240116; t=1707207870; c=relaxed/simple;
+	bh=3rTfeK+5Ypr+qRLrvZMhottSRh7ZVqqWADL419UrUqM=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=E8RjZ13d1356ZUVdyIuMasmtIfZ+1VRk5McVbkR0Sw0SjaU5Gl9VZMiX3rSwqJxDUGIJKs3qjUz2yHQtD5I6FVh2RC7LumBm0kGKZeZEDVch9IeuOE7hjaV6Q0wwFcUQC1TpVcr8pTD720WTLIK1Hg1wf6TArD9tWUXvfBDJOJU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=yeah.net; spf=pass smtp.mailfrom=yeah.net; dkim=pass (1024-bit key) header.d=yeah.net header.i=@yeah.net header.b=e0eaNymx; arc=none smtp.client-ip=123.58.177.132
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=yeah.net
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=yeah.net
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=yeah.net;
+	s=s110527; h=Date:From:Subject:Message-ID:MIME-Version:
+	Content-Type; bh=05aE/9eHsUQZ50ME8wmdv/83+oShG2SGhiQl1AxYjJw=;
+	b=e0eaNymxBy7OqSXKnovdNrk6BZCrQSm6Io5Fe7VngtvZHWEzKF/MEJXCD9QhWw
+	CXJ3jVc/HIZ38GjP3jcTckacciXBdUS3AQenftfji6EN+ETZI0zWxGp7xjuxpqST
+	xNm0eadTMrpsUuc0+aJlxY0NJ2nAlDwFVHUoSftF1inPo=
+Received: from dragon (unknown [183.213.196.254])
+	by smtp2 (Coremail) with SMTP id C1UQrAD3HwiB7MFln1EAAw--.34917S3;
+	Tue, 06 Feb 2024 16:23:31 +0800 (CST)
+Date: Tue, 6 Feb 2024 16:23:29 +0800
+From: Shawn Guo <shawnguo2@yeah.net>
+To: Francesco Dolcini <francesco@dolcini.it>
+Cc: Rob Herring <robh+dt@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>,
+	Sascha Hauer <s.hauer@pengutronix.de>,
+	Pengutronix Kernel Team <kernel@pengutronix.de>,
+	Fabio Estevam <festevam@gmail.com>,
+	NXP Linux Team <linux-imx@nxp.com>, Li Yang <leoyang.li@nxp.com>,
+	Francesco Dolcini <francesco.dolcini@toradex.com>,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org
+Subject: Re: [PATCH v1 0/2] arm64: dts: freescale: imx8qm: add apalis eval
+ v1.2 carrier board
+Message-ID: <ZcHsgUoiB0JCp6U0@dragon>
+References: <20240125101457.9873-1-francesco@dolcini.it>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-From: Neil Armstrong <neil.armstrong@linaro.org>
-Reply-To: neil.armstrong@linaro.org
-Subject: Re: [PATCH 4/5] drm/panel: simple: fix flags on RK043FN48H
-Content-Language: en-US, fr
-To: Raphael Gallais-Pou <raphael.gallais-pou@foss.st.com>,
- Rob Herring <robh+dt@kernel.org>,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Conor Dooley <conor+dt@kernel.org>,
- Maxime Coquelin <mcoquelin.stm32@gmail.com>,
- Alexandre Torgue <alexandre.torgue@foss.st.com>,
- Jessica Zhang <quic_jesszhan@quicinc.com>, Sam Ravnborg <sam@ravnborg.org>,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>,
- David Airlie <airlied@gmail.com>, Daniel Vetter <daniel@ffwll.ch>
-Cc: devicetree@vger.kernel.org, linux-stm32@st-md-mailman.stormreply.com,
- linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
- dri-devel@lists.freedesktop.org
-References: <20240205-ltdc_mp13-v1-0-072d24bf1b36@foss.st.com>
- <20240205-ltdc_mp13-v1-4-072d24bf1b36@foss.st.com>
-Autocrypt: addr=neil.armstrong@linaro.org; keydata=
- xsBNBE1ZBs8BCAD78xVLsXPwV/2qQx2FaO/7mhWL0Qodw8UcQJnkrWmgTFRobtTWxuRx8WWP
- GTjuhvbleoQ5Cxjr+v+1ARGCH46MxFP5DwauzPekwJUD5QKZlaw/bURTLmS2id5wWi3lqVH4
- BVF2WzvGyyeV1o4RTCYDnZ9VLLylJ9bneEaIs/7cjCEbipGGFlfIML3sfqnIvMAxIMZrvcl9
- qPV2k+KQ7q+aXavU5W+yLNn7QtXUB530Zlk/d2ETgzQ5FLYYnUDAaRl+8JUTjc0CNOTpCeik
- 80TZcE6f8M76Xa6yU8VcNko94Ck7iB4vj70q76P/J7kt98hklrr85/3NU3oti3nrIHmHABEB
- AAHNKk5laWwgQXJtc3Ryb25nIDxuZWlsLmFybXN0cm9uZ0BsaW5hcm8ub3JnPsLAkQQTAQoA
- OwIbIwULCQgHAwUVCgkICwUWAgMBAAIeAQIXgBYhBInsPQWERiF0UPIoSBaat7Gkz/iuBQJk
- Q5wSAhkBAAoJEBaat7Gkz/iuyhMIANiD94qDtUTJRfEW6GwXmtKWwl/mvqQtaTtZID2dos04
- YqBbshiJbejgVJjy+HODcNUIKBB3PSLaln4ltdsV73SBcwUNdzebfKspAQunCM22Mn6FBIxQ
- GizsMLcP/0FX4en9NaKGfK6ZdKK6kN1GR9YffMJd2P08EO8mHowmSRe/ExAODhAs9W7XXExw
- UNCY4pVJyRPpEhv373vvff60bHxc1k/FF9WaPscMt7hlkbFLUs85kHtQAmr8pV5Hy9ezsSRa
- GzJmiVclkPc2BY592IGBXRDQ38urXeM4nfhhvqA50b/nAEXc6FzqgXqDkEIwR66/Gbp0t3+r
- yQzpKRyQif3OwE0ETVkGzwEIALyKDN/OGURaHBVzwjgYq+ZtifvekdrSNl8TIDH8g1xicBYp
- QTbPn6bbSZbdvfeQPNCcD4/EhXZuhQXMcoJsQQQnO4vwVULmPGgtGf8PVc7dxKOeta+qUh6+
- SRh3vIcAUFHDT3f/Zdspz+e2E0hPV2hiSvICLk11qO6cyJE13zeNFoeY3ggrKY+IzbFomIZY
- 4yG6xI99NIPEVE9lNBXBKIlewIyVlkOaYvJWSV+p5gdJXOvScNN1epm5YHmf9aE2ZjnqZGoM
- Mtsyw18YoX9BqMFInxqYQQ3j/HpVgTSvmo5ea5qQDDUaCsaTf8UeDcwYOtgI8iL4oHcsGtUX
- oUk33HEAEQEAAcLAXwQYAQIACQUCTVkGzwIbDAAKCRAWmrexpM/4rrXiB/sGbkQ6itMrAIfn
- M7IbRuiSZS1unlySUVYu3SD6YBYnNi3G5EpbwfBNuT3H8//rVvtOFK4OD8cRYkxXRQmTvqa3
- 3eDIHu/zr1HMKErm+2SD6PO9umRef8V82o2oaCLvf4WeIssFjwB0b6a12opuRP7yo3E3gTCS
- KmbUuLv1CtxKQF+fUV1cVaTPMyT25Od+RC1K+iOR0F54oUJvJeq7fUzbn/KdlhA8XPGzwGRy
- 4zcsPWvwnXgfe5tk680fEKZVwOZKIEuJC3v+/yZpQzDvGYJvbyix0lHnrCzq43WefRHI5XTT
- QbM0WUIBIcGmq38+OgUsMYu4NzLu7uZFAcmp6h8g
-Organization: Linaro Developer Services
-In-Reply-To: <20240205-ltdc_mp13-v1-4-072d24bf1b36@foss.st.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20240125101457.9873-1-francesco@dolcini.it>
+X-CM-TRANSID:C1UQrAD3HwiB7MFln1EAAw--.34917S3
+X-Coremail-Antispam: 1Uf129KBjvdXoW7JF4kWF1UCrWkKrW7Jr4Utwb_yoW3Crb_uF
+	n5Kr48Gw4DWr15Ga15G34jgrW2g3yrCw1rtw1DW3Z3JFyxJrWqqas5Kr4rZa1rCa13Cw43
+	K3Z5GFn5Jry3ujkaLaAFLSUrUUUUjb8apTn2vfkv8UJUUUU8Yxn0WfASr-VFAUDa7-sFnT
+	9fnUUvcSsGvfC2KfnxnUUI43ZEXa7IU8ZXo7UUUUU==
+X-CM-SenderInfo: pvkd40hjxrjqh1hdxhhqhw/1tbiDQN8ZVszXNjQIgAAsJ
 
-On 05/02/2024 10:06, Raphael Gallais-Pou wrote:
-> DISPLAY_FLAGS_SYNC_POSEDGE is missing in the flags on the default
-> timings. When overriding the default mode with one described in the
-> device tree, the mode does not get acked because of this missing flag.
-> Moreover since the panel is driven by the positive edge it makes sense
-> to add it here.
+On Thu, Jan 25, 2024 at 11:14:55AM +0100, Francesco Dolcini wrote:
+> From: Francesco Dolcini <francesco.dolcini@toradex.com>
 > 
-> Signed-off-by: Raphael Gallais-Pou <raphael.gallais-pou@foss.st.com>
-> ---
->   drivers/gpu/drm/panel/panel-simple.c | 3 ++-
->   1 file changed, 2 insertions(+), 1 deletion(-)
+> This series introduces support for the new Apalis Evaluation Board v1.2
+> for imx8qm-based Toradex SoM. With the introduction of board v1.2, a common
+> board configurations dtsi file and two version-specific dtsi board files were
+> added. Consequently, four possible dts files are generated to support the
+> range of different SoM versions. Additionally, updates have been made to dts
+> freescale/Makefile and arm/fsl.yaml to accommodate the changes.
 > 
-> diff --git a/drivers/gpu/drm/panel/panel-simple.c b/drivers/gpu/drm/panel/panel-simple.c
-> index 2214cb09678c..7b286382ffb4 100644
-> --- a/drivers/gpu/drm/panel/panel-simple.c
-> +++ b/drivers/gpu/drm/panel/panel-simple.c
-> @@ -3523,7 +3523,8 @@ static const struct display_timing rocktech_rk043fn48h_timing = {
->   	.vfront_porch = { 1, 4, 4 },
->   	.vsync_len = { 1, 10, 10 },
->   	.flags = DISPLAY_FLAGS_VSYNC_LOW | DISPLAY_FLAGS_HSYNC_LOW |
-> -		 DISPLAY_FLAGS_DE_HIGH | DISPLAY_FLAGS_PIXDATA_POSEDGE,
-> +		 DISPLAY_FLAGS_DE_HIGH | DISPLAY_FLAGS_PIXDATA_POSEDGE |
-> +		 DISPLAY_FLAGS_SYNC_POSEDGE,
->   };
->   
->   static const struct panel_desc rocktech_rk043fn48h = {
 > 
+> Joao Paulo Goncalves (2):
+>   dt-bindings: arm: fsl: add imx8qm apalis eval v1.2 carrier board
+>   arm64: dts: freescale: imx8qm: add apalis eval v1.2 carrier board
 
-Reviewed-by: Neil Armstrong <neil.armstrong@linaro.org>
+Applied both, thanks!
+
 
