@@ -1,104 +1,150 @@
-Return-Path: <devicetree+bounces-39153-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-39145-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9123A84B8BE
-	for <lists+devicetree@lfdr.de>; Tue,  6 Feb 2024 16:03:42 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4278384B8EA
+	for <lists+devicetree@lfdr.de>; Tue,  6 Feb 2024 16:10:41 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 359321F205A8
-	for <lists+devicetree@lfdr.de>; Tue,  6 Feb 2024 15:03:42 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id ECA64B30398
+	for <lists+devicetree@lfdr.de>; Tue,  6 Feb 2024 14:57:15 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E0696131757;
-	Tue,  6 Feb 2024 15:03:37 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E9FA1133286;
+	Tue,  6 Feb 2024 14:55:09 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="bL3NYNHC"
+	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="mIiycjwX"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pj1-f47.google.com (mail-pj1-f47.google.com [209.85.216.47])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from fllv0015.ext.ti.com (fllv0015.ext.ti.com [198.47.19.141])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 860641E49B
-	for <devicetree@vger.kernel.org>; Tue,  6 Feb 2024 15:03:36 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.216.47
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D317C132C3E;
+	Tue,  6 Feb 2024 14:55:07 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.19.141
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1707231817; cv=none; b=enU76dXwuGdauBPrx6KKgXLa/kL+8gfaMoAALHleMhy3Fh5Uo38byoG5u6+oo/pN2atSZ6rYhUE0yHiON0PPJlodeMK4Xi5EqnxmJ51mwGnqRRjTko+U8MNpE71GWyknYmpqDqLhsaDkQGKaf0xCy10YHENDsA/GTUhHv+NkDn4=
+	t=1707231309; cv=none; b=sgET03IKZcBUebVNjkJHuTiALdihPMw3mhBNPwJ38jlH2oi33+MnlHyb7EJ/sDKd0pfjJyv7+QOP1LAKOvYWP/oI6OXpx3Vy05gvrxB2+SVmepdb9hTB3EAncM3cg5aAaAWe84huf/6bFTT+TsHRwK5ru+ttVt/Z1AYgMXLlxNY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1707231817; c=relaxed/simple;
-	bh=vLrwFhwCNhG2ZEcBghSuuMRxyXsW3BstwVuZwyERgsU=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=jQYUy4Lcxje+KJo2fkDOA300Y28qHNso5zKA8hCf6MYdNIKuPHA3EpMm5/QZc2kPZAu//jvmXVELm7daO7Mt1u1pq0FGMfNXgDz8IhAHiJwGKZAo5physltrBmW+avquOlCueME0ECeqzv/ITbJyTfPkpe0hyOCnr9/h2QGf+w0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=bL3NYNHC; arc=none smtp.client-ip=209.85.216.47
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-pj1-f47.google.com with SMTP id 98e67ed59e1d1-295f339df52so1054439a91.1
-        for <devicetree@vger.kernel.org>; Tue, 06 Feb 2024 07:03:36 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1707231816; x=1707836616; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=vLrwFhwCNhG2ZEcBghSuuMRxyXsW3BstwVuZwyERgsU=;
-        b=bL3NYNHCBYsFPBJOaq7BfqOb2YHu0H7osyFuI3jkoS2qx/7KbOUnSQaXiXyFNdtc3j
-         tzkaEe+1PDu48zjGYGmT+/5m5vTxBa5bLhBeM+gkyMagzkHR0wTgj9AQK1rF/tIRaulS
-         IJQvtvZcBBDe+k8cqp5kDbJcssTYNSBX6JednKjSt1aTfOtLm9S1FV9FOTuZ/XNXFCrh
-         DV0pH59/yPxlOuGVnvZX1dU9EgU7Qs3X2HG2j8eVwEHhSUatq8fCzfNqLcDaV7DtD1FG
-         w/EVLhmrcAahxOXtp5U2acmR6y2HWf3ghNwcISo3rhRSIUtnGWHtMwHD1xDutlE936zo
-         XFWA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1707231816; x=1707836616;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=vLrwFhwCNhG2ZEcBghSuuMRxyXsW3BstwVuZwyERgsU=;
-        b=GTmNMlh07L5nyAzRn+1nwh3NThcKi427q9POt/fjwn1NaYkWKOHy6W/5Do6zRjyo6c
-         VMgsC5YpCVg1fu6Q5OUdrBmp2CL15Zc/Bho4YZ+jIrfSvL/gP+FYLd1TEOAPYv3NacqB
-         NGkJ5AusVwvP2a0+mOZcKzb2A6tezLuOLd8eMFcae96WS+yU6Zg/hUHrVTmRSzRLTcQS
-         izP0XzLVzjh/Ca5htjyJFtRZJPWT0F00zxAZkDY7rCHPGOwPCNBvW0vm/rOB5YYcijrY
-         FCmWV+6C2aahdijr6xpFYi6mGVsZ3Uyq+EjEA8tNnHZn1NhPRG0Lu9yV/uGzac7h//TH
-         N+bA==
-X-Gm-Message-State: AOJu0Yzxa++RryPJWK1yvLEuDzzffcL6H7GPWhZ4w0GTZkrFM8qq2ez4
-	yJkuWXFJ+HXxJi3drZ8VK4W34GBTv8NKqOOYDzvkgWal+xjyvY8/coFBkHY0iCvLj5q6YHuvutC
-	lFX3wZrau30Ajw7Yxhhw40Bt5RxA=
-X-Google-Smtp-Source: AGHT+IGX/rc/VLE8q+tGG9KAAZnTnw4D42wxrSo+A+pg2MUxhg0KWP7PsSFQmvY+fbrAgU+i+wfCLljfsuG1G529Ndw=
-X-Received: by 2002:a17:90b:3b86:b0:296:9811:46e1 with SMTP id
- pc6-20020a17090b3b8600b00296981146e1mr2794083pjb.4.1707231815635; Tue, 06 Feb
- 2024 07:03:35 -0800 (PST)
+	s=arc-20240116; t=1707231309; c=relaxed/simple;
+	bh=j+QFNeS/VO2zFOn+mhfOZ8s4Z3+3GdEFXPxdJoZ9jT0=;
+	h=From:To:CC:Subject:Date:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=AUAqlvx+lN9dxttDjpORaeVk7nnSYTuwY7veElkSi0rRZQbGu7kTNr5R9Y44oHnYu2cDqKI3GyWC3TyJ3aqJ8Swbx8+gBvH1B8tW0ETPCekuPB2xEQieJSTysFQg1UuoRXLZIsLhsQGoOnHsbJ1lPSl+Kt87Y7SOd05nTK7hAac=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=mIiycjwX; arc=none smtp.client-ip=198.47.19.141
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
+Received: from fllv0034.itg.ti.com ([10.64.40.246])
+	by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id 416Esx6J022544;
+	Tue, 6 Feb 2024 08:54:59 -0600
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+	s=ti-com-17Q1; t=1707231299;
+	bh=KxPl/+O74D4htbdgdG6JBwM6O+fMVv+uOVakC/1OfI0=;
+	h=From:To:CC:Subject:Date:In-Reply-To:References;
+	b=mIiycjwXHOcLORQLuuXS0aof7E2uzVw6L3ZQfrj6dMiWPTeJBM57x+eHvs73gLc0k
+	 nExuQ3vIqc+Q1hFKY0hFMwii2lWmVd+OQ1KsGbwWohMINp23mdUTgbfEQl/mdFJc/S
+	 cFSn+rR6xqVqT50saYwTS2qTRbCimIc77lMAd6JA=
+Received: from DLEE107.ent.ti.com (dlee107.ent.ti.com [157.170.170.37])
+	by fllv0034.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 416Esxa9108092
+	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+	Tue, 6 Feb 2024 08:54:59 -0600
+Received: from DLEE113.ent.ti.com (157.170.170.24) by DLEE107.ent.ti.com
+ (157.170.170.37) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Tue, 6
+ Feb 2024 08:54:59 -0600
+Received: from lelvsmtp6.itg.ti.com (10.180.75.249) by DLEE113.ent.ti.com
+ (157.170.170.24) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
+ Frontend Transport; Tue, 6 Feb 2024 08:54:59 -0600
+Received: from uda0132425.dhcp.ti.com (uda0132425.dhcp.ti.com [172.24.227.94])
+	by lelvsmtp6.itg.ti.com (8.15.2/8.15.2) with ESMTP id 416EsvQ8050924;
+	Tue, 6 Feb 2024 08:54:57 -0600
+From: Vignesh Raghavendra <vigneshr@ti.com>
+To: Tero Kristo <kristo@kernel.org>, Nishanth Menon <nm@ti.com>
+CC: Vignesh Raghavendra <vigneshr@ti.com>, <linux-kernel@vger.kernel.org>,
+        <devicetree@vger.kernel.org>, <linux-arm-kernel@lists.infradead.org>
+Subject: Re: [PATCH V2 00/16] arm64: dts: ti: Additional licensing and clarification
+Date: Tue, 6 Feb 2024 20:24:40 +0530
+Message-ID: <170723117278.3216299.12458152939034721597.b4-ty@ti.com>
+X-Mailer: git-send-email 2.43.0
+In-Reply-To: <20240122145539.194512-1-nm@ti.com>
+References: <20240122145539.194512-1-nm@ti.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20240206-imx53-qsb-hdmi-v1-1-e798eb1181c5@linaro.org>
-In-Reply-To: <20240206-imx53-qsb-hdmi-v1-1-e798eb1181c5@linaro.org>
-From: Fabio Estevam <festevam@gmail.com>
-Date: Tue, 6 Feb 2024 12:03:23 -0300
-Message-ID: <CAOMZO5DLYV8Eo=9-W1=tiAE6fva_vgheErFVcBJpmF=FHvSOfg@mail.gmail.com>
-Subject: Re: [PATCH] ARM: dts: imx53: add support for the HDMI expander
-To: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-Cc: Rob Herring <robh+dt@kernel.org>, 
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Shawn Guo <shawnguo@kernel.org>, Sascha Hauer <s.hauer@pengutronix.de>, 
-	Pengutronix Kernel Team <kernel@pengutronix.de>, NXP Linux Team <linux-imx@nxp.com>, devicetree@vger.kernel.org, 
-	linux-arm-kernel@lists.infradead.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 
-Hi Dmitry,
+Hi Nishanth Menon,
 
-On the Subject line: s/imx53/imx53-qsb
+On Mon, 22 Jan 2024 08:55:23 -0600, Nishanth Menon wrote:
+> Thank you all for the detailed acks on various patches on V1,
+> consolidated all of these with V2 and noted some missing acks below.
+> Since it has been 12 days since I posted v1 and v6.8-rc1 is now
+> tagged, looks like a good time to refresh the series.
+> 
+> As part of my 2023 LPC talk[1] about the difficulty in ensuring
+> device tree is same across multiple s/w ecosystems, I mentioned about
+> Licensing, and Rob had indicated that other SoC vendors have MIT
+> license option that allows co-existance with Apache.
+> 
+> [...]
 
-On Tue, Feb 6, 2024 at 10:04=E2=80=AFAM Dmitry Baryshkov
-<dmitry.baryshkov@linaro.org> wrote:
->
-> Add support for the MCIMXHDMICARD epansion card attached to the iMX53
+I have applied the following to branch ti-k3-dts-next on [1].
+Thank you!
 
-s/epansion/expansion
+[01/16] arm64: dts: ti: Use https for urls
+        commit: 01e886c4dfdacc2956d9857a3b5c985ea74e9ddd
+[02/16] arm64: dts: ti: k3-am62a7: Add MIT license along with GPL-2.0
+        commit: 89bd4c373649b81d4255d9c5a3e49d3fd10df708
+[03/16] arm64: dts: ti: k3-am625: Add MIT license along with GPL-2.0
+        commit: 7e614b5394f06c7ff5e9ef570bb1d40af08c6449
+[04/16] arm64: dts: ti: k3-am62p: Add MIT license along with GPL-2.0
+        commit: 20f8173afaac90dd9dca11be4aa602a47776077f
+[05/16] arm64: dts: ti: k3-am64: Add MIT license along with GPL-2.0
+        commit: 6248b20e3203c5f255efe6c330b5c871ca4e8033
+[06/16] arm64: dts: ti: k3-am65: Add MIT license along with GPL-2.0
+        commit: 2822c791af4d98ca469485dacde9ea4f13c905af
+[07/16] arm64: dts: ti: k3-j7200: Add MIT license along with GPL-2.0
+        commit: b87c44dd974e13aab1d0a9a01a5f94f1fe5fd1fb
+[08/16] arm64: dts: ti: k3-j721e: Add MIT license along with GPL-2.0
+        commit: 111f6dac6c08471888da49389f63174f3717bfbd
+[09/16] arm64: dts: ti: k3-j721s2: Add MIT license along with GPL-2.0
+        commit: 25aec8a64a2413f6b16e33ecbc0334bd7075ba49
+[10/16] arm64: dts: ti: k3-j784s4: Add MIT license along with GPL-2.0
+        commit: 33e089bd1e136f1e2c58e6b44455de55f4fe4bae
+[11/16] arm64: dts: ti: k3-pinctrl: Add MIT license along with GPL-2.0
+        commit: 67fdcf08cd76a7d81e64343b2f0730f554245840
+[12/16] arm64: dts: ti: k3-serdes: Add MIT license along with GPL-2.0
+        commit: 3feda6a0cf7d9a82d820032033ae7e600e9dca66
+[13/16] arm64: dts: ti: beagle*: Add MIT license along with GPL-2.0
+        commit: 380f1ffd281b6f33a6e03220921be2750c6fd8ce
+[14/16] arm64: dts: ti: phycore*: Add MIT license along with GPL-2.0
+        commit: 049010c9604f87568ae59ee5ea1b885ece19e6c6
+[15/16] arm64: dts: ti: iot2050*: Clarify GPL-2.0 as GPL-2.0-only
+        commit: c32953cf00a5ab9059483d825f866a528ad80460
+[16/16] arm64: dts: ti: Makefile: Clarify GPL-2.0 as GPL-2.0-only
+        commit: 1e6bbc5185bcd113c8d2f7aa0a02f588a6bdbe5d
 
-> QSB / QSRB platforms. This enables HDMI output on those devices.
->
-> Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+All being well this means that it will be integrated into the linux-next
+tree (usually sometime in the next 24 hours) and sent up the chain during
+the next merge window (or sooner if it is a relevant bug fix), however if
+problems are discovered then the patch may be dropped or reverted.
 
-Reviewed-by: Fabio Estevam <festevam@gmail.com>
+You may get further e-mails resulting from automated or manual testing
+and review of the tree, please engage with people reporting problems and
+send followup patches addressing any issues that are reported if needed.
+
+If any updates are required or you are submitting further changes they
+should be sent as incremental updates against current git, existing
+patches will not be replaced.
+
+Please add any relevant lists and maintainers to the CCs when replying
+to this mail.
+
+[1] https://git.kernel.org/pub/scm/linux/kernel/git/ti/linux.git
+--
+Vignesh
+
 
