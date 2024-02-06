@@ -1,132 +1,243 @@
-Return-Path: <devicetree+bounces-39244-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-39245-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id B1F8384BD11
-	for <lists+devicetree@lfdr.de>; Tue,  6 Feb 2024 19:43:27 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id B6BB684BD4D
+	for <lists+devicetree@lfdr.de>; Tue,  6 Feb 2024 19:48:44 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 3D069B23C77
-	for <lists+devicetree@lfdr.de>; Tue,  6 Feb 2024 18:43:25 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id DBD9B1C247F5
+	for <lists+devicetree@lfdr.de>; Tue,  6 Feb 2024 18:48:43 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A36B712B9C;
-	Tue,  6 Feb 2024 18:43:09 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D3E5713AD9;
+	Tue,  6 Feb 2024 18:44:26 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="YYatzYeT"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="jA7hZxgs"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-pj1-f45.google.com (mail-pj1-f45.google.com [209.85.216.45])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 78FB7DDCF;
-	Tue,  6 Feb 2024 18:43:09 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 37BD1200AD
+	for <devicetree@vger.kernel.org>; Tue,  6 Feb 2024 18:44:25 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.216.45
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1707244989; cv=none; b=Z3aRHfm1lZyonW1y7MPLev6Mmp+ee5QZWPpGqYSDuIhoroCsjvajOHVJFgd/f4dk99HPxFknsSAc48ju05dl1MsiEcInopvA+cAi7FbGaUxtjXfg4bkX8XeeZalDmiL2Ajz0atA/Tuw11DzwH20otnEEy0x+A8aPNs3YyzDKtjM=
+	t=1707245066; cv=none; b=R5W1J5K6ctKHWqz9LFGAX5cIKyPoneekoTd3a4OYMz5GPmuTB1hhOxaDS4UP5YGJlgRGmgJYkoYJcBHlh0QG3bczjFdx1+xeYDtpvAJzRDwwLwAAgOWXSmBKnAYZAuu8kr8hgaW/R2ZuZs6zyBBf09zUEpqbpNHHPxsB6IweWgM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1707244989; c=relaxed/simple;
-	bh=b8iiNmOxD0YSZRAXkjUpo5Bj7K1mUidd9Bi4uo8nVYE=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=ptcgRHgMc4J74WgEtKi7Rl1pehq/N+C/6wdjgSfvGNCdSg00WPt0tzDNlwnNrE8uxzJihs2AU33EctHr98PUVP5wpCeMnNu0TNq6SzHSoB5jOh1UKPSIS6CClAjSReXXMokF1vkkaF6YEntyf9cZSmOh5wVBnPwqOhQFwNqcXzg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=YYatzYeT; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id B1E06C433C7;
-	Tue,  6 Feb 2024 18:43:08 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1707244989;
-	bh=b8iiNmOxD0YSZRAXkjUpo5Bj7K1mUidd9Bi4uo8nVYE=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=YYatzYeTjSOJMl3yYbLE926+PErs/nE/D8+JB+OZLPPymTr2qQp0fE8/NfA1Kkq7p
-	 6B6Ok33LCm9VU/Y/g+tz4MZoDf9IAH2hTq38poE/STBvgOKXRbpeZHlqXGuxlezhhq
-	 3XM6jO0cnIjaXypc2XERjyS3qlEB0rJ17M7o/pGbbm1DaDoPLekeABJUqXaqeQjbD9
-	 Heux0j0VHAvbGpDtWI2dw6gxtvnHzjwp1PcQP69q5zo5nT6lqYLbTTaVbW8G0KCck0
-	 qXPRimIzR8CWO7g+7yTnbO5Q0rCjjd4CvnQsaUmMAm9tKQsAAeqAPpPAWgMSZR7EhG
-	 jwjRU4jop5E3g==
-Date: Tue, 6 Feb 2024 18:43:05 +0000
-From: Rob Herring <robh@kernel.org>
-To: Markus Schneider-Pargmann <msp@baylibre.com>
-Cc: Nishanth Menon <nm@ti.com>, Vignesh Raghavendra <vigneshr@ti.com>,
-	Tero Kristo <kristo@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
-	Santosh Shilimkar <ssantosh@kernel.org>, Andrew Davis <afd@ti.com>,
-	linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org
-Subject: Re: [PATCH 2/4] dt-bindings: hwinfo: ti,k3-socinfo: Add nvmem-cells
-Message-ID: <20240206184305.GA1875492-robh@kernel.org>
-References: <20240206143711.2410135-1-msp@baylibre.com>
- <20240206143711.2410135-3-msp@baylibre.com>
+	s=arc-20240116; t=1707245066; c=relaxed/simple;
+	bh=4VPwghyLKyIokpPsf/9skodjSJIC1F4FYH1tensC6Aw=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=J99cfmRtsAP4QbdMCmqSCAcq4Znqdfv8xs0dRUzXGAiowEMDcA00tWcHiv5dZBarOlixWSJhlqerO8PzYidn0+rNO5Ip5kh3gVP0dov+QiuVJV9gHVIFHq5xvBRoWRpDMei/UURXkXyTfjw2HNxfpXYY50e+G5DF6reIOQhGSxk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=jA7hZxgs; arc=none smtp.client-ip=209.85.216.45
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-pj1-f45.google.com with SMTP id 98e67ed59e1d1-296043e44caso4632737a91.0
+        for <devicetree@vger.kernel.org>; Tue, 06 Feb 2024 10:44:25 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1707245064; x=1707849864; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=+bMG0kuBwMQCEUIv0B0FpnFBvMPqYtZh5SEjjp7Kx7o=;
+        b=jA7hZxgsvJHREu1UlqF8g9sqstb4zrDl4XspKRyUTU4n5oNS1lBes13so62Skm06uW
+         R8bAqWA762CMOXUckoGQNa/q0hDt6kalOIQEFR4r4aYUsxs859KKwtR4ffX9PQCnKv/2
+         gTDWHjgX3XBt8d3erMeSK6W+zmmij9TbsE+aY5+ICrm6U+PjgEhCh9xh/3jnrX//zJ11
+         VxqfauGEXuy8EEcgE8+bE8Wa6N9JI03OomVsShuB43Me/PPEXpeua8BCz9b9AVEnzinK
+         bFt4mTIYGtuL1p0rFRM9zrPNK7gdaFu1XWBpfzYsoq4zhPpeO85VTWpWsbI/lc00KLzv
+         bkww==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1707245064; x=1707849864;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=+bMG0kuBwMQCEUIv0B0FpnFBvMPqYtZh5SEjjp7Kx7o=;
+        b=WDZwcSb0hCUNGXYAhoVM51fylvP1voQfqfCK3q4hGei38lskwQD7B2fLHKtjd4dlt0
+         9577ZVWN9ZfJOzbRHKgJf+rCi10kBggwQrVCQZ/sYony3bzVN8RxkxhjHq9Lo7bIpHR3
+         96BEZhFzyyFGWvMr6SB6c1z4AKpP4Bjgi1vXQPBarH9ns9E1Frk0bVDtBTfcPzT7mAqI
+         KcbLohQ5676q091AARMVXcbh71AKZCz3XdHeTV9O6Xf6DF3Gwa6sRwgr88dBFYzELfJ9
+         O/B+qm/2dNSwrLEIsSYtiWeuLOlh0Lcav7l6TZ2XkDH1+ngqyqpoxtOiAMDIjW8ZtWr6
+         FkYw==
+X-Gm-Message-State: AOJu0YxcjEEKG89Xg6ruLWfl2uhxgHrdzn8l9wazhhecQKZaUdcM9ta1
+	eU6Y22Rxjg61gnVMaM39byyXVGVUKKB0XXHPeBpm6WZPeOgTnPke8cDifA/ppaVZ/+3P8rWbfCQ
+	j0L37yy+o61skzvOD77yr/6+Y3Gj4JhCtOsJDiA==
+X-Google-Smtp-Source: AGHT+IE1M9jGPWeVmzaj4xWfBVBRIZdNjHRf3o+XRIOAWaTnt4AKWsQCW3sG2JWW7haM1Di4pWWbAXjzVZtz44ZpflE=
+X-Received: by 2002:a17:90b:3598:b0:296:235b:20b with SMTP id
+ mm24-20020a17090b359800b00296235b020bmr401263pjb.29.1707245064629; Tue, 06
+ Feb 2024 10:44:24 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20240206143711.2410135-3-msp@baylibre.com>
+References: <20240206085238.1208256-1-tudor.ambarus@linaro.org> <20240206085238.1208256-4-tudor.ambarus@linaro.org>
+In-Reply-To: <20240206085238.1208256-4-tudor.ambarus@linaro.org>
+From: Sam Protsenko <semen.protsenko@linaro.org>
+Date: Tue, 6 Feb 2024 12:44:13 -0600
+Message-ID: <CAPLW+4k+FkuNwsyvWH54gcLz0YFmh8OmvOWt_LdQvELRXMvOTQ@mail.gmail.com>
+Subject: Re: [PATCH 3/4] spi: s3c64xx: add s3c64xx_iowrite{8,16}_32_rep accessors
+To: Tudor Ambarus <tudor.ambarus@linaro.org>
+Cc: broonie@kernel.org, andi.shyti@kernel.org, krzysztof.kozlowski@linaro.org, 
+	alim.akhtar@samsung.com, linux-spi@vger.kernel.org, 
+	linux-samsung-soc@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
+	linux-kernel@vger.kernel.org, andre.draszik@linaro.org, 
+	peter.griffin@linaro.org, kernel-team@android.com, willmcvicker@google.com, 
+	robh+dt@kernel.org, conor+dt@kernel.org, devicetree@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-On Tue, Feb 06, 2024 at 03:37:09PM +0100, Markus Schneider-Pargmann wrote:
-> The information k3-socinfo requires is stored in an efuse area. This
-> area is required by other devices/drivers as well, so using nvmem-cells
-> can be a cleaner way to describe which information are used.
-> 
-> If nvmem-cells are supplied, the address range is not required.
-> Cells chipvariant, chippartno and chipmanufacturer are introduced to
-> cover all required information.
-> 
-> Signed-off-by: Markus Schneider-Pargmann <msp@baylibre.com>
-> Reviewed-by: Andrew Davis <afd@ti.com>
+On Tue, Feb 6, 2024 at 2:52=E2=80=AFAM Tudor Ambarus <tudor.ambarus@linaro.=
+org> wrote:
+>
+> Allow SoCs that require 32 bits register accesses to write data in
+> chunks of 8 or 16 bits. One SoC that requires 32 bit register accesses
+> is the google gs101. The operation is rare, thus open code it in the
+> driver rather than making it generic (through asm-generic/io.h)
+>
+> Signed-off-by: Tudor Ambarus <tudor.ambarus@linaro.org>
 > ---
->  .../bindings/hwinfo/ti,k3-socinfo.yaml        | 23 ++++++++++++++++++-
->  1 file changed, 22 insertions(+), 1 deletion(-)
-> 
-> diff --git a/Documentation/devicetree/bindings/hwinfo/ti,k3-socinfo.yaml b/Documentation/devicetree/bindings/hwinfo/ti,k3-socinfo.yaml
-> index dada28b47ea0..f085b7275b7d 100644
-> --- a/Documentation/devicetree/bindings/hwinfo/ti,k3-socinfo.yaml
-> +++ b/Documentation/devicetree/bindings/hwinfo/ti,k3-socinfo.yaml
-> @@ -26,9 +26,24 @@ properties:
->    reg:
->      maxItems: 1
->  
-> +  nvmem-cells:
-> +    $ref: /schemas/types.yaml#/definitions/phandle-array
-> +
-> +  nvmem-cell-names:
-> +    items:
-> +      - const: chipvariant
-> +      - const: chippartno
-> +      - const: chipmanufacturer
-> +
->  required:
->    - compatible
-> -  - reg
-> +
-> +oneOf:
-> +  - required:
-> +      - reg
-> +  - required:
-> +      - nvmem-cells
-> +      - nvmem-cell-names
->  
->  additionalProperties: false
->  
-> @@ -38,3 +53,9 @@ examples:
->          compatible = "ti,am654-chipid";
->          reg = <0x43000014 0x4>;
->      };
-> +  - |
-> +    chipid: chipid@14 {
-> +        compatible = "ti,am654-chipid";
+>  drivers/spi/spi-s3c64xx.c | 70 +++++++++++++++++++++++++++++++--------
+>  1 file changed, 56 insertions(+), 14 deletions(-)
+>
+> diff --git a/drivers/spi/spi-s3c64xx.c b/drivers/spi/spi-s3c64xx.c
+> index c15ca6a910dc..cb45ad615f3d 100644
+> --- a/drivers/spi/spi-s3c64xx.c
+> +++ b/drivers/spi/spi-s3c64xx.c
+> @@ -142,6 +142,7 @@ struct s3c64xx_spi_dma_data {
+>   *     prescaler unit.
+>   * @clk_ioclk: True if clock is present on this device
+>   * @has_loopback: True if loopback mode can be supported
+> + * @use_32bit_io: True if the SoC allows just 32-bit register accesses.
 
-This isn't compatible if you have a completely different way to access 
-it. 
+A matter of taste, but: just -> only.
 
+>   *
+>   * The Samsung s3c64xx SPI controller are used on various Samsung SoC's =
+but
+>   * differ in some aspects such as the size of the fifo and spi bus clock
+> @@ -158,6 +159,7 @@ struct s3c64xx_spi_port_config {
+>         bool    clk_from_cmu;
+>         bool    clk_ioclk;
+>         bool    has_loopback;
+> +       bool    use_32bit_io;
+>  };
+>
+>  /**
+> @@ -412,6 +414,59 @@ static bool s3c64xx_spi_can_dma(struct spi_controlle=
+r *host,
+>         return false;
+>  }
+>
+> +static void s3c64xx_iowrite8_32_rep(volatile void __iomem *addr,
+> +                                   const void *buffer, unsigned int coun=
+t)
+> +{
+> +       if (count) {
+> +               const u8 *buf =3D buffer;
+> +
+> +               do {
+> +                       __raw_writel(*buf++, addr);
+> +               } while (--count);
+> +       }
 
-> +        nvmem-cells = <&chip_variant>, <&chip_partno>, <&chip_manufacturer>;
-> +        nvmem-cell-names = "chipvariant", "chippartno", "chipmanufacturer";
-> +    };
-> -- 
-> 2.43.0
-> 
+How about:
+
+    while (count--)
+        __raw_writel(*buf++, addr);
+
+This way "if" condition is not needed. The same goes for the function below=
+.
+
+> +}
+> +
+> +static void s3c64xx_iowrite16_32_rep(volatile void __iomem *addr,
+> +                                    const void *buffer, unsigned int cou=
+nt)
+> +{
+> +       if (count) {
+> +               const u16 *buf =3D buffer;
+> +
+> +               do {
+> +                       __raw_writel(*buf++, addr);
+> +               } while (--count);
+> +       }
+> +}
+> +
+> +static void s3c64xx_iowrite_rep(const struct s3c64xx_spi_driver_data *sd=
+d,
+> +                               struct spi_transfer *xfer)
+> +{
+> +       void __iomem *regs =3D sdd->regs;
+
+Suggest declaring aliases here, like this:
+
+    void __iomem *addr =3D sdd->regs + S3C64XX_SPI_TX_DATA;
+    const void *buf =3D xfer->tx_buf;
+    unsigned int len =3D xfer->len;
+
+Using those in the code below makes it more compact and easier to read.
+
+> +
+> +       switch (sdd->cur_bpw) {
+> +       case 32:
+> +               iowrite32_rep(regs + S3C64XX_SPI_TX_DATA,
+> +                             xfer->tx_buf, xfer->len / 4);
+> +               break;
+> +       case 16:
+> +               if (sdd->port_conf->use_32bit_io)
+> +                       s3c64xx_iowrite16_32_rep(regs + S3C64XX_SPI_TX_DA=
+TA,
+> +                                                xfer->tx_buf, xfer->len =
+/ 2);
+> +               else
+> +                       iowrite16_rep(regs + S3C64XX_SPI_TX_DATA,
+> +                                     xfer->tx_buf, xfer->len / 2);
+> +               break;
+> +       default:
+> +               if (sdd->port_conf->use_32bit_io)
+> +                       s3c64xx_iowrite8_32_rep(regs + S3C64XX_SPI_TX_DAT=
+A,
+> +                                               xfer->tx_buf, xfer->len);
+> +               else
+> +                       iowrite8_rep(regs + S3C64XX_SPI_TX_DATA,
+> +                                    xfer->tx_buf, xfer->len);
+> +               break;
+> +       }
+> +}
+> +
+>  static int s3c64xx_enable_datapath(struct s3c64xx_spi_driver_data *sdd,
+>                                     struct spi_transfer *xfer, int dma_mo=
+de)
+>  {
+> @@ -445,20 +500,7 @@ static int s3c64xx_enable_datapath(struct s3c64xx_sp=
+i_driver_data *sdd,
+>                         modecfg |=3D S3C64XX_SPI_MODE_TXDMA_ON;
+>                         ret =3D s3c64xx_prepare_dma(&sdd->tx_dma, &xfer->=
+tx_sg);
+>                 } else {
+> -                       switch (sdd->cur_bpw) {
+> -                       case 32:
+> -                               iowrite32_rep(regs + S3C64XX_SPI_TX_DATA,
+> -                                       xfer->tx_buf, xfer->len / 4);
+> -                               break;
+> -                       case 16:
+> -                               iowrite16_rep(regs + S3C64XX_SPI_TX_DATA,
+> -                                       xfer->tx_buf, xfer->len / 2);
+> -                               break;
+> -                       default:
+> -                               iowrite8_rep(regs + S3C64XX_SPI_TX_DATA,
+> -                                       xfer->tx_buf, xfer->len);
+> -                               break;
+> -                       }
+> +                       s3c64xx_iowrite_rep(sdd, xfer);
+
+This extraction (with no functional change yet) could've been a
+preceding separate patch, preparing things for this rework.
+
+>                 }
+>         }
+>
+> --
+> 2.43.0.594.gd9cf4e227d-goog
+>
 
