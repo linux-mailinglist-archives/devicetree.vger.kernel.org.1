@@ -1,128 +1,117 @@
-Return-Path: <devicetree+bounces-39240-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-39241-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id E7C8484BCEC
-	for <lists+devicetree@lfdr.de>; Tue,  6 Feb 2024 19:29:37 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6692184BCFD
+	for <lists+devicetree@lfdr.de>; Tue,  6 Feb 2024 19:37:06 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 26CC41C2273E
-	for <lists+devicetree@lfdr.de>; Tue,  6 Feb 2024 18:29:37 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id E6795B23B0E
+	for <lists+devicetree@lfdr.de>; Tue,  6 Feb 2024 18:37:03 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2504C11CAF;
-	Tue,  6 Feb 2024 18:29:32 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id BDF04C148;
+	Tue,  6 Feb 2024 18:37:00 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="c7LkG3fX"
+	dkim=pass (2048-bit key) header.d=dolcini.it header.i=@dolcini.it header.b="fVkMdGUL"
 X-Original-To: devicetree@vger.kernel.org
-Received: from lelv0143.ext.ti.com (lelv0143.ext.ti.com [198.47.23.248])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail11.truemail.it (mail11.truemail.it [217.194.8.81])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5A44512E63;
-	Tue,  6 Feb 2024 18:29:30 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.23.248
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B240613AC7;
+	Tue,  6 Feb 2024 18:36:56 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.194.8.81
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1707244172; cv=none; b=J14nj7W3m74J/vSU3dwlIVdStXyxBYMG28l+kfL7tNs1pimyh8PeCiIn/FxBKCBKLW3+J9eEmM0PJURz/2pQZ2ih2nfBBIKoIXkq7IIMKyg6Gp0kiKUSPY0xi8uvasA6hU3Nr8FMYX3UqcSUwOkxQ5s8hMPOLA7CkLptafrvCww=
+	t=1707244620; cv=none; b=ndjcfDzGloTC11g6ft3ZdB7y/vbLLCOKaioXofHGxlQI2Q7wH/vLfSACvT4/8Zbu+1KtcDcX8n7BGgZQ3SWf1BhL/x3+mFoLnMBe2I2X8npW3w5L8TiWCWRsrblFwYSY/Y8LqT4y2N+FLasaNutL3W2eBF7C1CP2U3ewQcW7C24=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1707244172; c=relaxed/simple;
-	bh=PqB7AVu41nfUk/E52ijBFrD3I5saZlijxm0toW1x8/I=;
-	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
-	 In-Reply-To:Content-Type; b=Z1D/kKnC+lyjEuY0Hr0bvzjw48io2xxpEOy2UrkyeXNKSydONhmchE6n7T2401X/GEEMVJNTmAt5Vw6MrPECchV7mJmyS3IbJj2Gg5Hj/gF5RwdUNXJh3ARodQbRyr4zDVQEtescUOQo2obBTjg2EbndF8sr8ZZx44AqVo0ElvM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=c7LkG3fX; arc=none smtp.client-ip=198.47.23.248
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
-Received: from lelv0265.itg.ti.com ([10.180.67.224])
-	by lelv0143.ext.ti.com (8.15.2/8.15.2) with ESMTP id 416ITE18113854;
-	Tue, 6 Feb 2024 12:29:14 -0600
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1707244154;
-	bh=X/wNxrHWR+0ipqHOzo2Z3LxELm/8z/GsUjUq40unZHg=;
-	h=Date:Subject:To:CC:References:From:In-Reply-To;
-	b=c7LkG3fXMnMm42k04ixEMTOsxjIHfUe966J5A4k/mIAoJgoVftbdzg8ZjaewKUhec
-	 wj7crwEthe3J5KdtHfyxt6gYYwbRQevVy4rK0WGLbNlGe5m9i6F5MqnAP2wSfLMYV9
-	 amV8K84Nh3ZigltdT99gtf8kxVyIk1eAAAzPW4ZA=
-Received: from DFLE106.ent.ti.com (dfle106.ent.ti.com [10.64.6.27])
-	by lelv0265.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 416ITEr8016242
-	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-	Tue, 6 Feb 2024 12:29:14 -0600
-Received: from DFLE114.ent.ti.com (10.64.6.35) by DFLE106.ent.ti.com
- (10.64.6.27) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Tue, 6
- Feb 2024 12:29:13 -0600
-Received: from lelvsmtp6.itg.ti.com (10.180.75.249) by DFLE114.ent.ti.com
- (10.64.6.35) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
- Frontend Transport; Tue, 6 Feb 2024 12:29:13 -0600
-Received: from [10.249.42.149] ([10.249.42.149])
-	by lelvsmtp6.itg.ti.com (8.15.2/8.15.2) with ESMTP id 416ITDfn104618;
-	Tue, 6 Feb 2024 12:29:13 -0600
-Message-ID: <65a24f21-4cc6-4843-b838-b1c7020ca45d@ti.com>
-Date: Tue, 6 Feb 2024 12:29:13 -0600
+	s=arc-20240116; t=1707244620; c=relaxed/simple;
+	bh=P+vXSlwDpmhtaUOyJDpWrnf7rOSka48e/3C8lNI4rdo=;
+	h=Date:From:To:CC:Subject:In-Reply-To:References:Message-ID:
+	 MIME-Version:Content-Type; b=lwIXzPD/64wTWSEs7B53QrFDDgBM1ZHwf/Lfu+LR6YXVFaWUe7GpH3Faz4ZE2hrgRdEbZiSbwUy3Mm1yhMoSnHIJiiz+PBzuFcXdaJ5PcHhJsjGEbrAIfqcJjQGqkapuYa/VRbsAzhejVW6HQTBDie6BPEVzOY+P9YQ6tJpQgvw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=dolcini.it; spf=pass smtp.mailfrom=dolcini.it; dkim=pass (2048-bit key) header.d=dolcini.it header.i=@dolcini.it header.b=fVkMdGUL; arc=none smtp.client-ip=217.194.8.81
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=dolcini.it
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=dolcini.it
+Received: from [127.0.0.1] (93-49-2-63.ip317.fastwebnet.it [93.49.2.63])
+	by mail11.truemail.it (Postfix) with ESMTPA id 0A0CF22A99;
+	Tue,  6 Feb 2024 19:36:54 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=dolcini.it;
+	s=default; t=1707244614;
+	bh=am4Gfl/dMYoJTXjOuFfFs7MGZX49MaaHbJnO0r0rWZU=; h=From:To:Subject;
+	b=fVkMdGULQ25Km7zP8Z5L5Jhajz5vUQhbmduI4vjmk+/K+aZg7oSIqWlY5FB3w14eu
+	 ENZfqvlWmW8fhapWcnyKb1dSNvAEb+TzleFf+/hqpy6zoKZc6vfhEZ24q6rKy5PoF8
+	 yKRd/nLi1DubCupbPOocksup04kPFd6vQdGFd552f8EnIKmWXvjvoPjyAWLVv2jhiz
+	 jdDSQgpff71RyKH84qXpYzASDvkVMp33uTbaBVX0ZSrWzor0jiQKOPixnOSFji7SPU
+	 3oFHgjb00bonM068A3pIw8HvqPWu2YAUwENxmdMXlBaKQ4B+XCxNAIhZKWt1Goe2Ur
+	 1xRiDNt1trWjQ==
+Date: Tue, 06 Feb 2024 19:36:53 +0100
+From: Francesco Dolcini <francesco@dolcini.it>
+To: Andrew Davis <afd@ti.com>, Nishanth Menon <nm@ti.com>,
+ Vignesh Raghavendra <vigneshr@ti.com>, Tero Kristo <kristo@kernel.org>,
+ Rob Herring <robh+dt@kernel.org>,
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+ Conor Dooley <conor+dt@kernel.org>
+CC: Francesco Dolcini <francesco.dolcini@toradex.com>,
+ linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v1] arm64: dts: ti: verdin-am62: mallow: add TPM device
+User-Agent: K-9 Mail for Android
+In-Reply-To: <65a24f21-4cc6-4843-b838-b1c7020ca45d@ti.com>
+References: <20240126165136.28543-1-francesco@dolcini.it> <65a24f21-4cc6-4843-b838-b1c7020ca45d@ti.com>
+Message-ID: <26F9C286-606C-40C6-994E-EABDFFCDFDC4@dolcini.it>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v1] arm64: dts: ti: verdin-am62: mallow: add TPM device
-Content-Language: en-US
-To: Francesco Dolcini <francesco@dolcini.it>, Nishanth Menon <nm@ti.com>,
-        Vignesh Raghavendra <vigneshr@ti.com>, Tero Kristo <kristo@kernel.org>,
-        Rob
- Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski
-	<krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>
-CC: Francesco Dolcini <francesco.dolcini@toradex.com>,
-        <linux-arm-kernel@lists.infradead.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>
-References: <20240126165136.28543-1-francesco@dolcini.it>
-From: Andrew Davis <afd@ti.com>
-In-Reply-To: <20240126165136.28543-1-francesco@dolcini.it>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 7bit
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+Content-Type: text/plain;
+ charset=utf-8
+Content-Transfer-Encoding: quoted-printable
 
-On 1/26/24 10:51 AM, Francesco Dolcini wrote:
-> From: Francesco Dolcini <francesco.dolcini@toradex.com>
-> 
-> Add TPM device to Mallow device tree file, the device is connected to
-> the SoC with SPI1/CS1, the same SPI interface is also available on an
-> extension header together with an additional CS0 signal.
-> 
-> Signed-off-by: Francesco Dolcini <francesco.dolcini@toradex.com>
-> ---
->   arch/arm64/boot/dts/ti/k3-am62-verdin-mallow.dtsi | 10 ++++++++++
->   1 file changed, 10 insertions(+)
-> 
-> diff --git a/arch/arm64/boot/dts/ti/k3-am62-verdin-mallow.dtsi b/arch/arm64/boot/dts/ti/k3-am62-verdin-mallow.dtsi
-> index 17b93534f658..77b1beb638ad 100644
-> --- a/arch/arm64/boot/dts/ti/k3-am62-verdin-mallow.dtsi
-> +++ b/arch/arm64/boot/dts/ti/k3-am62-verdin-mallow.dtsi
-> @@ -127,6 +127,16 @@ &main_spi1 {
->   		    <&pinctrl_qspi1_cs2_gpio>;
->   	cs-gpios = <0>, <&main_gpio0 12 GPIO_ACTIVE_LOW>;
->   	status = "okay";
-> +
-> +	tpm@1 {
-> +		compatible = "infineon,slb9670", "tcg,tpm_tis-spi";
-> +		reg = <1>;
-> +		pinctrl-names = "default";
-> +		pinctrl-0 = <&pinctrl_qspi1_dqs_gpio>;
-> +		interrupt-parent = <&main_gpio1>;
-> +		interrupts = <18 IRQ_TYPE_EDGE_FALLING>;
 
-Just a heads-up, the SLB9670 datasheet says this device uses
-an active low interrupt (IRQ_TYPE_LEVEL_LOW). Using TYPE_EDGE
-here can cause missed interrupts if the line stays low for
-multiple interrupts.
 
-Andrew
+Il 6 febbraio 2024 19:29:13 CET, Andrew Davis <afd@ti=2Ecom> ha scritto:
+>On 1/26/24 10:51 AM, Francesco Dolcini wrote:
+>> From: Francesco Dolcini <francesco=2Edolcini@toradex=2Ecom>
+>>=20
+>> Add TPM device to Mallow device tree file, the device is connected to
+>> the SoC with SPI1/CS1, the same SPI interface is also available on an
+>> extension header together with an additional CS0 signal=2E
+>>=20
+>> Signed-off-by: Francesco Dolcini <francesco=2Edolcini@toradex=2Ecom>
+>> ---
+>>   arch/arm64/boot/dts/ti/k3-am62-verdin-mallow=2Edtsi | 10 ++++++++++
+>>   1 file changed, 10 insertions(+)
+>>=20
+>> diff --git a/arch/arm64/boot/dts/ti/k3-am62-verdin-mallow=2Edtsi b/arch=
+/arm64/boot/dts/ti/k3-am62-verdin-mallow=2Edtsi
+>> index 17b93534f658=2E=2E77b1beb638ad 100644
+>> --- a/arch/arm64/boot/dts/ti/k3-am62-verdin-mallow=2Edtsi
+>> +++ b/arch/arm64/boot/dts/ti/k3-am62-verdin-mallow=2Edtsi
+>> @@ -127,6 +127,16 @@ &main_spi1 {
+>>   		    <&pinctrl_qspi1_cs2_gpio>;
+>>   	cs-gpios =3D <0>, <&main_gpio0 12 GPIO_ACTIVE_LOW>;
+>>   	status =3D "okay";
+>> +
+>> +	tpm@1 {
+>> +		compatible =3D "infineon,slb9670", "tcg,tpm_tis-spi";
+>> +		reg =3D <1>;
+>> +		pinctrl-names =3D "default";
+>> +		pinctrl-0 =3D <&pinctrl_qspi1_dqs_gpio>;
+>> +		interrupt-parent =3D <&main_gpio1>;
+>> +		interrupts =3D <18 IRQ_TYPE_EDGE_FALLING>;
+>
+>Just a heads-up, the SLB9670 datasheet says this device uses
+>an active low interrupt (IRQ_TYPE_LEVEL_LOW)=2E Using TYPE_EDGE
+>here can cause missed interrupts if the line stays low for
+>multiple interrupts=2E
 
-> +		spi-max-frequency = <18500000>;
-> +	};
->   };
->   
->   /* Verdin UART_3 */
+
+The driver interrupt handler would need to take care of it, if needed=2E
+
+The SOC does not support level interrupt, so there is no other solution, a=
+m I wrong?
+=20
+Francesco
+
 
