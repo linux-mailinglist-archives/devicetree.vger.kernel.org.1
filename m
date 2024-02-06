@@ -1,216 +1,115 @@
-Return-Path: <devicetree+bounces-39230-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-39232-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8EE6F84BC82
-	for <lists+devicetree@lfdr.de>; Tue,  6 Feb 2024 18:51:11 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id A307F84BC89
+	for <lists+devicetree@lfdr.de>; Tue,  6 Feb 2024 18:52:24 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 955B91C21975
-	for <lists+devicetree@lfdr.de>; Tue,  6 Feb 2024 17:51:10 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 5EEF9285659
+	for <lists+devicetree@lfdr.de>; Tue,  6 Feb 2024 17:52:23 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D0D96D530;
-	Tue,  6 Feb 2024 17:51:07 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B98D8D52F;
+	Tue,  6 Feb 2024 17:52:14 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="CTKX2ZkL"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="nFic7dYK"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wr1-f50.google.com (mail-wr1-f50.google.com [209.85.221.50])
+Received: from mail-lf1-f46.google.com (mail-lf1-f46.google.com [209.85.167.46])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 133DFD529;
-	Tue,  6 Feb 2024 17:51:05 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.50
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 07623134A8;
+	Tue,  6 Feb 2024 17:52:12 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.46
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1707241867; cv=none; b=bYqD2jJxF1kZdY+3tfCo/s3KNgpZaaY6jut5MWRXKKJvZ7k12xMtwFjWWu5b1R4pD3RrOi2AedTSWiNx2WXPJHY2oN7gEuowdQHS1am1icW0FLuBytqt1kkmsCZ+NHlelH7pAq0b5XMmxuSsuNgI6uCWh0FMaOyzoHtzXuVViu4=
+	t=1707241934; cv=none; b=AhjZIHeD0HYqzwpgg1FVNFWdZqVdEEKfoA9+sXLVAfWKW3iEs4vKQZY8iFpiWexNvUFf0P3jTz6M0Cdjxwz+GOAAtvC4PWC+B/B9/Ch4W5RekPL/K6lKFukT1p5/3T2FuXuxlQATXcHBzcUPk9QRX7d8LLBWrcyR6eRZvdRs5JI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1707241867; c=relaxed/simple;
-	bh=IZKb1XetSfArgIDMAWLf0LauVjj5Kgg4kk09DX9ogSA=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=fC1m6W4lq09Mg62kB9/mNk4o2Zwhz7eEH1LR0rh9n0BVm2U7KAGikt60JNgDpVcjXC9bu3BFb1iQ9GgQeLPYFaQnyI3yk2caFuYh5ECmghDF/UdY070WodQx4YCsjo9Hg6WM5X56EM7/eSzUV5yoLtZ60KLOYXLzVJrwlryLuvM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=CTKX2ZkL; arc=none smtp.client-ip=209.85.221.50
+	s=arc-20240116; t=1707241934; c=relaxed/simple;
+	bh=2QzhABsTxWUBevQWOZGnGKdirZ35HE7FBPGc4cptxDw=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=ECc5GIns/mdJY47GyVl81cHOk8zTlu4Mcat+h/9zm2opMpuSLQmywALD5X/NMZNUj4dIgVK3BprbZ9S6WW85c3FnEVODyVDlAF+GiJ1lldmZgBNwNT4PlKWolcIliu8O2F4Hog6AVPdQ4n2mAR8HOTooDqKcyx87+6QJFa1Lhys=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=nFic7dYK; arc=none smtp.client-ip=209.85.167.46
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-wr1-f50.google.com with SMTP id ffacd0b85a97d-3392b045e0aso736931f8f.2;
-        Tue, 06 Feb 2024 09:51:05 -0800 (PST)
+Received: by mail-lf1-f46.google.com with SMTP id 2adb3069b0e04-51032e62171so9547144e87.3;
+        Tue, 06 Feb 2024 09:52:12 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1707241864; x=1707846664; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
+        d=gmail.com; s=20230601; t=1707241931; x=1707846731; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=RyDSK4F15cuDmx/vu6ZGAEnvOFxcasBhnuqvACgOoY8=;
-        b=CTKX2ZkLZ5y7weAgyAx+X45RAO120u4xhWJogiVTu7IHEt3PUH4beXMPqHzn1tHI7l
-         PtTlPdiWid83iHBEMcRMu0ay120NDtnRYWPElPA9Ygr3yjzPZgSpGcJh20FQ+TDe/uaA
-         841eeEwh2S1NxfpMVuwgrSslCd7aUA7a6hHMLFyzW2ZNAUDJ9plx8du8ymd/u9QQgGLZ
-         0U1Q6UbwO084AFjeBlAWAxDDt/ayeblaFv+WJqcUgBK0iXGv8ruyTS9qUSTdQnXU/Wn4
-         ik/VGvvWvxubqNNGOQvVG/BwiUKOpRYGGoou0xqKGE/bQjEY5K55ZV27Fxyvyu+2i0zd
-         IlFg==
+        bh=faYwZb7i+yTIOYFLp3WhvWUDBoYAgBs1yg0oWwe0bd8=;
+        b=nFic7dYK+R27lSszdQdAqngVQX9TCfTlE868k+ruTr7HHHyC1wMmC9vWsBsH5un1GV
+         KExoFfzzEtP0bVa+02mktF/e3JYg4trqcNsv58hkVjcKkAE2LFS3Onb0v2eVt1FaT72/
+         w9+cldNQhvwaQvfbKJrDr9NXBSUWsh4+eZA/BF28DJ49EQh3zGS4jqkonk/ienM9wF9u
+         4B1kvYmg/mjOZLSqH0zB+5H/HOf+OS58pCTHNm8uA3ju/FOccBEFR1XG5qSrvo9K8E0Q
+         zx5wSXcx/qg9CwGib+NpwwECgV3ao97mynqYCoWF1GZtBkDB3ull5zBLr/4W7MDvcyZ9
+         G71Q==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1707241864; x=1707846664;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
+        d=1e100.net; s=20230601; t=1707241931; x=1707846731;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=RyDSK4F15cuDmx/vu6ZGAEnvOFxcasBhnuqvACgOoY8=;
-        b=MOkKASvihBvWpiEaFoYutGVFqTRjU+chhSvltNWvhz2rmm+7U3buReOervn6sOl7kH
-         AI/GgYOPrJImTuc6AtYr3pda7ieb5z/N8z5s9GY58qXo79BywVTn1T02yM7hGhoqUDfk
-         J6hkgLHN3kKYvOqFcS4cf+G3Dr/l35c5nexTNDmxei0oPRfwFhs0Q+Sw7woKn23nDeUC
-         pVAjRSnjp+B672cj+18SWNDnHy5j/luKqdYaALr5PvIFZLBJZDskYWGrX+vkdVtdPtry
-         n44Cy4U+IpJfe41pquTq6y11IK8hEZ8QUlzeLRNu0Zs4Gp95sAesPZw7+a/KjdtPVnXJ
-         xDHw==
-X-Gm-Message-State: AOJu0YzuTCUKDZgmkiSZNkiJvffFloi3O2nEsxDFfXsVhlctO8pcqS+c
-	8JjKiWXVovgX6u5AJVnTQsyllasOjXnC5F/4hoTUb0pScfnZEyFb
-X-Google-Smtp-Source: AGHT+IFFGw8MurJEQRDhd3NrPc7k/aeq09X31PYFeQnZKxSyzmXwRdTODxBIQmNqM5wVALjwXtAHqw==
-X-Received: by 2002:a05:6000:108d:b0:33b:2856:5188 with SMTP id y13-20020a056000108d00b0033b28565188mr2440903wrw.44.1707241864183;
-        Tue, 06 Feb 2024 09:51:04 -0800 (PST)
-X-Forwarded-Encrypted: i=0; AJvYcCVnl+77EHlyL7OjE70j4LZEUM8ybfGzihKXR1fW7X87Lb8QtN/NH2w5BHRaSzjtsOgKSoIXtGS4t4G2jjpQ6fSTVquJjK474xw5tcMreE2+/4zq8GNkR7I+4PuKylb2TaUemBu8BQP7che3uNZh5Y06mYd0CAMqKsnemk02z49VekronMmyA8f6CLLE7d5KTtqwYc6Q7eUOOBwe3rgL/qsmc+DP2wZ+iBdqianq9pVLVdQ1zQm+HDfUj5IvasaTVJtULALl7VDi30cJJjKTVj9GDa2xNanGFQa+hD5zoKLggjJPLh1g/IFHIU9AnQgQK8mNFy1nZAb5mf4aTmNH8Xljyyh2fbOzfQGWE7nRbkcuN90nt2+jcCMRJgjcbftVXgdxEFEW6TJDUR5HK50qp/20EdMikeoENxf8WfXOBoE6dtpnGLsyomGZ5rat1Xym13QtVmVi2WEffS+IRcHJPyaBPzgCfBFlmYqVcnO3QtGxWM7ZpHXohGrN7VFLnEZT34g7ajm2XGbCcrLh6bAoulKDPol4jszQem+JN18eRgFXIxAyVlp5pCb8YBFDMbSLJ3iSl110HAlJE0k/LFnhooj9NkTJ9apVJdXKxbKfMwIyeD6F/m52kaq8PhuhQKP1z8iad1wLx3x4daI6ITF3tsnGgPiJCpw0B8AclUtFNQaXQYA2H1uQmY1PaYyF+7BT8LHG1aaUGT8lm7k5QY0BrmrV8jAipi7pEyIuB4Km30ZBf4LLfh4zb+Y3brtRzdyIoUXXLnGPxmbK5mVnGcVv0MI=
-Received: from jernej-laptop.localnet (86-58-6-171.dynamic.telemach.net. [86.58.6.171])
-        by smtp.gmail.com with ESMTPSA id q11-20020adfab0b000000b0033b2276e71csm2627016wrc.62.2024.02.06.09.51.02
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 06 Feb 2024 09:51:03 -0800 (PST)
-From: Jernej =?utf-8?B?xaBrcmFiZWM=?= <jernej.skrabec@gmail.com>
-To: Frank Oltmanns <frank@oltmanns.dev>
-Cc: Michael Turquette <mturquette@baylibre.com>,
- Stephen Boyd <sboyd@kernel.org>, Chen-Yu Tsai <wens@csie.org>,
- Samuel Holland <samuel@sholland.org>,
- Guido =?ISO-8859-1?Q?G=FCnther?= <agx@sigxcpu.org>,
- Purism Kernel Team <kernel@puri.sm>, Ondrej Jirman <megi@xff.cz>,
- Neil Armstrong <neil.armstrong@linaro.org>,
- Jessica Zhang <quic_jesszhan@quicinc.com>, Sam Ravnborg <sam@ravnborg.org>,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>,
- David Airlie <airlied@gmail.com>, Daniel Vetter <daniel@ffwll.ch>,
- Rob Herring <robh+dt@kernel.org>,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Conor Dooley <conor+dt@kernel.org>, linux-clk@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, linux-sunxi@lists.linux.dev,
- linux-kernel@vger.kernel.org, dri-devel@lists.freedesktop.org,
- devicetree@vger.kernel.org
-Subject:
- Re: [PATCH v2 3/6] clk: sunxi-ng: nkm: Support minimum and maximum rate
-Date: Tue, 06 Feb 2024 18:51:02 +0100
-Message-ID: <3280499.44csPzL39Z@jernej-laptop>
-In-Reply-To: <87eddqzm4j.fsf@oltmanns.dev>
-References:
- <20240205-pinephone-pll-fixes-v2-0-96a46a2d8c9b@oltmanns.dev>
- <4543794.LvFx2qVVIh@jernej-laptop> <87eddqzm4j.fsf@oltmanns.dev>
+        bh=faYwZb7i+yTIOYFLp3WhvWUDBoYAgBs1yg0oWwe0bd8=;
+        b=KM3lzqCqm0gd6Ug86/iDbpoLtl0GDcKXlwY1o8a8Ewbsn+HMA7Z6M9o5/V/nPRQnuC
+         x7SJm9SQwcN/y2MC+kTPtEgv+wq0z/YdLEWaAzenuRDLZt70zlHrDHrX5ThfVxcUdIja
+         oqCJAiufaytcm2H1P1cJzppn3Vrli5X26NzBz6RERhQFdCZilYqmTnqNT086wuwXHEig
+         Tipm96zRZSlL7ubpsmuiYs7Bnnn6eWgXdD97rnntFtNGS7zymz/EQdzBFvx8udFi2EnJ
+         L2ECsUN7myR+ToBMxZgtUbKIUKTlYb4eGyFqphc4LwJh0+Mz7dcGVQDK6bys4LOFCL0N
+         jgOg==
+X-Gm-Message-State: AOJu0YzkB+OO+HnA8RmH7EExVkJuAOytXp4AeyXgyWIPKNiGQs3pLEH2
+	OllMef7ed2M08fqhObYww9iEdBwGqMrld7+PVTeLmCz6BAWFaLXPf0OMFh/KL+LrWdAvlPOyqP8
+	ZqZRzusWI41im9y8bgtvXHfJyCvs=
+X-Google-Smtp-Source: AGHT+IGLTy6TLx4POxhIQbKFUiAsygftq31SCBY8yQnVaF9lAFEaBrv4NI6RPcfIMr/BkWbhtVqz0ABNcXJfCKFyegc=
+X-Received: by 2002:ac2:530a:0:b0:511:61bd:d748 with SMTP id
+ c10-20020ac2530a000000b0051161bdd748mr822543lfh.36.1707241930825; Tue, 06 Feb
+ 2024 09:52:10 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
+References: <20240206-iio-backend-v9-0-df66d159c000@analog.com>
+ <20240206-iio-backend-v9-6-df66d159c000@analog.com> <CAHp75VeWV0+hqCoUb4YvfObnEAv0AaYJmXgpxJLfve+mBwhkyQ@mail.gmail.com>
+ <f6ed72343be50c358db8e7e36d9afa875f788425.camel@gmail.com>
+In-Reply-To: <f6ed72343be50c358db8e7e36d9afa875f788425.camel@gmail.com>
+From: Andy Shevchenko <andy.shevchenko@gmail.com>
+Date: Tue, 6 Feb 2024 19:51:34 +0200
+Message-ID: <CAHp75Vf3vvYHz6pTpAQGEAxV-obWV+0XbhVhaFqYU5JUbtFY8Q@mail.gmail.com>
+Subject: Re: [PATCH v9 6/7] iio: adc: ad9467: convert to backend framework
+To: =?UTF-8?B?TnVubyBTw6E=?= <noname.nuno@gmail.com>
+Cc: nuno.sa@analog.com, linux-iio@vger.kernel.org, devicetree@vger.kernel.org, 
+	Lars-Peter Clausen <lars@metafoo.de>, Michael Hennerich <Michael.Hennerich@analog.com>, 
+	Jonathan Cameron <jic23@kernel.org>, Rob Herring <robh+dt@kernel.org>, 
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Frank Rowand <frowand.list@gmail.com>, Olivier Moysan <olivier.moysan@foss.st.com>
 Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-Dne ponedeljek, 05. februar 2024 ob 21:34:04 CET je Frank Oltmanns napisal(=
-a):
->=20
-> On 2024-02-05 at 18:56:09 +0100, Jernej =C5=A0krabec <jernej.skrabec@gmai=
-l.com> wrote:
-> > Dne ponedeljek, 05. februar 2024 ob 16:22:26 CET je Frank Oltmanns napi=
-sal(a):
-> >> According to the Allwinner User Manual, the Allwinner A64 requires
-> >> PLL-MIPI to run at 500MHz-1.4GHz. Add support for that to ccu_nkm.
-> >>
-> >> Signed-off-by: Frank Oltmanns <frank@oltmanns.dev>
-> >> ---
-> >>  drivers/clk/sunxi-ng/ccu_nkm.c | 13 +++++++++++++
-> >>  drivers/clk/sunxi-ng/ccu_nkm.h |  2 ++
-> >>  2 files changed, 15 insertions(+)
-> >>
-> >> diff --git a/drivers/clk/sunxi-ng/ccu_nkm.c b/drivers/clk/sunxi-ng/ccu=
-_nkm.c
-> >> index 1168d894d636..7d135908d6e0 100644
-> >> --- a/drivers/clk/sunxi-ng/ccu_nkm.c
-> >> +++ b/drivers/clk/sunxi-ng/ccu_nkm.c
-> >> @@ -181,6 +181,12 @@ static unsigned long ccu_nkm_round_rate(struct cc=
-u_mux_internal *mux,
-> >>  	if (nkm->common.features & CCU_FEATURE_FIXED_POSTDIV)
-> >>  		rate *=3D nkm->fixed_post_div;
-> >>
-> >> +	if (nkm->min_rate && rate < nkm->min_rate)
-> >> +		rate =3D nkm->min_rate;
-> >> +
-> >> +	if (nkm->max_rate && rate > nkm->max_rate)
-> >> +		rate =3D nkm->max_rate;
+On Tue, Feb 6, 2024 at 6:51=E2=80=AFPM Nuno S=C3=A1 <noname.nuno@gmail.com>=
+ wrote:
+> On Tue, 2024-02-06 at 16:20 +0200, Andy Shevchenko wrote:
+> > On Tue, Feb 6, 2024 at 12:08=E2=80=AFPM Nuno Sa via B4 Relay
+> > <devnull+nuno.sa.analog.com@kernel.org> wrote:
+
+...
+
+> > > +       st->back =3D devm_iio_backend_get(&st->spi->dev, NULL);
+> > > +       /* If not found, don't error out as we might have legacy DT p=
+roperty */
+> > > +       if (!IS_ERR(st->back))
+> > > +               return 0;
+> > > +       if (PTR_ERR(st->back) !=3D -ENOENT)
+> > > +               return PTR_ERR(st->back);
 > >
-> > Please take a look at ccu_nm_round_rate() code. You need to consider po=
-stdiv
-> > and you can return immediately.
->=20
-> There is a difference here insofar that ccu_nm is always connected to a
-> fixed rate parent (at least that's my understanding). Therefore, in
-> ccu_nm_round_rate() we can be sure that the min or max rate can really
-> be set. In ccu_nkm we don't have that luxury, we actually have to find a
-> rate that is approximately equal to the min and max rate, based on the
-> parent rate. Therefore, we can't return immediately.
+> > This looks hackish...
+>
+> This was suggested by Jonathan so I'm keen in leaving it as-is
 
-Good point.
+I think I proposed how to improve it. Jonathan?
 
->=20
-> Also, I'm not sure what you mean about me needing to consider postdiv.
-> That's what I did. The check is after multiplying with the postdiv. It's
-> the same as in ccu_nm_round_rate() (just minus the immediate return).
-
-Nevermind, this applies only for immediate return.
-
-Best regards,
-Jernej
-
->=20
-> >
-> >> +
-> >>  	if (!clk_hw_can_set_rate_parent(&nkm->common.hw))
-> >>  		rate =3D ccu_nkm_find_best(*parent_rate, rate, &_nkm, &nkm->common);
-> >>  	else
-> >> @@ -220,6 +226,13 @@ static int ccu_nkm_set_rate(struct clk_hw *hw, un=
-signed long rate,
-> >>  	_nkm.min_m =3D 1;
-> >>  	_nkm.max_m =3D nkm->m.max ?: 1 << nkm->m.width;
-> >>
-> >> +
-> >> +	if (nkm->min_rate && rate < nkm->min_rate)
-> >> +		rate =3D nkm->min_rate;
-> >> +
-> >> +	if (nkm->max_rate && rate > nkm->max_rate)
-> >> +		rate =3D nkm->max_rate;
-> >> +
-> >
-> > No need for this, clk subsystem calls round rate before setting actual =
-clock
-> > rate.
->=20
-> I'll remove the checks in V3.
->=20
-> Best regards,
->   Frank
->=20
-> >
-> > Best regards,
-> > Jernej
-> >
-> >>  	ccu_nkm_find_best(parent_rate, rate, &_nkm, &nkm->common);
-> >>
-> >>  	spin_lock_irqsave(nkm->common.lock, flags);
-> >> diff --git a/drivers/clk/sunxi-ng/ccu_nkm.h b/drivers/clk/sunxi-ng/ccu=
-_nkm.h
-> >> index c409212ee40e..358a9df6b6a0 100644
-> >> --- a/drivers/clk/sunxi-ng/ccu_nkm.h
-> >> +++ b/drivers/clk/sunxi-ng/ccu_nkm.h
-> >> @@ -27,6 +27,8 @@ struct ccu_nkm {
-> >>  	struct ccu_mux_internal	mux;
-> >>
-> >>  	unsigned int		fixed_post_div;
-> >> +	unsigned long		min_rate;
-> >> +	unsigned long		max_rate;
-> >>  	unsigned long		max_m_n_ratio;
-> >>  	unsigned long		min_parent_m_ratio;
-> >>
-> >>
-> >>
->=20
-
-
-
-
+--=20
+With Best Regards,
+Andy Shevchenko
 
