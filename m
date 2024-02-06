@@ -1,267 +1,227 @@
-Return-Path: <devicetree+bounces-39226-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-39227-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2084B84BC5F
-	for <lists+devicetree@lfdr.de>; Tue,  6 Feb 2024 18:42:07 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id A65CD84BC6F
+	for <lists+devicetree@lfdr.de>; Tue,  6 Feb 2024 18:44:43 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 893211F211BE
-	for <lists+devicetree@lfdr.de>; Tue,  6 Feb 2024 17:42:06 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id CB13C1C24BF8
+	for <lists+devicetree@lfdr.de>; Tue,  6 Feb 2024 17:44:42 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B6E0912B8B;
-	Tue,  6 Feb 2024 17:40:00 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id BDEF679DD;
+	Tue,  6 Feb 2024 17:44:38 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=brainfault-org.20230601.gappssmtp.com header.i=@brainfault-org.20230601.gappssmtp.com header.b="W7KIvb2M"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="eOGuGqwt"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-il1-f173.google.com (mail-il1-f173.google.com [209.85.166.173])
+Received: from mail-wr1-f48.google.com (mail-wr1-f48.google.com [209.85.221.48])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 74FA91A5BA
-	for <devicetree@vger.kernel.org>; Tue,  6 Feb 2024 17:39:57 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.166.173
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id ECBC1C133;
+	Tue,  6 Feb 2024 17:44:36 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.48
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1707241200; cv=none; b=F8oOEKOTz3KRK4uL3wvoSOsdtH7xyK50HqdZLLa5StyqJJwRA5z8GQxP/5Tc5QKuv4A0DojKs2PPOWiPvszNBEi5i0mg9feKCA3RVrblr9qQnXh2baf2N1oW+zncpsfHcgRU3C8qBhKpM8KDJY0BCqNCV3Zy+y//OZV2QwGBX8E=
+	t=1707241478; cv=none; b=lqPYWkFQVRYbK+KTLGwQf6aLoFP9fy68enwcPO+ilmPMeuKd7gujpOEAWNSH4IRkt7Ss1fBYlvOsiEiBzOM1hg+pz18TlrVPgU8y01B1yivBhWYUUx86xM32v5K/XnHusLnijozwdMJqPPWSd71W8HBcK+bN1jVqLKrLVx3jxLw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1707241200; c=relaxed/simple;
-	bh=muU83VQwgdQrXuKRFa0wK3OfDInPsZQktGHV8MIhSHE=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=KhoED3rLaowcCMi+/N32eALIyz/L0Vr8xzUECLx+2jkporXWKVYrUkzTNWA65q9jRjbGRyE8jfwQtar8tHe5H4azz8zR6QiBabXQWQF3ZPCFq5wNXX6sA7E2GrKsaFCAc49sC0irSoT25TlfKWP4eJ/wHadP1a+q4yg3p/HYik8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=brainfault.org; spf=none smtp.mailfrom=brainfault.org; dkim=pass (2048-bit key) header.d=brainfault-org.20230601.gappssmtp.com header.i=@brainfault-org.20230601.gappssmtp.com header.b=W7KIvb2M; arc=none smtp.client-ip=209.85.166.173
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=brainfault.org
-Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=brainfault.org
-Received: by mail-il1-f173.google.com with SMTP id e9e14a558f8ab-363bafdce59so11423535ab.2
-        for <devicetree@vger.kernel.org>; Tue, 06 Feb 2024 09:39:57 -0800 (PST)
+	s=arc-20240116; t=1707241478; c=relaxed/simple;
+	bh=uQofYe6KozZfY0E7cusw4h+1hkUt1Xu77DatPoBkW24=;
+	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=Z7S0RlA9ib6JDKngsLrK3Nasao77dJ7BVeLVYP5mumu/qumgHTbmtsPYbo4q3sSJ2CMdm5TWYnIcklQJ/n2C/qw9rKoQrGqliLyIWtfzolAdIHwbf4fY3PhrAu0wz0qneE0rA5VkfKVR26bpjoNdcsqQ5IZIGm6/pDJUp2Cnafg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=eOGuGqwt; arc=none smtp.client-ip=209.85.221.48
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-wr1-f48.google.com with SMTP id ffacd0b85a97d-33b1d7f7366so3131027f8f.0;
+        Tue, 06 Feb 2024 09:44:36 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=brainfault-org.20230601.gappssmtp.com; s=20230601; t=1707241196; x=1707845996; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
+        d=gmail.com; s=20230601; t=1707241475; x=1707846275; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=HvfgmunFGFtkyRTL3y0u1hUwzBDb/t5fOC1RyGSPoBE=;
-        b=W7KIvb2M9D0hj3+690bm9XEthiJ/NAVXLi4QrVnoUFk4QsaKkR3dsrOij5E3kRSWrL
-         1wZckZLthNcMBBezvp26twpdtsyopvLAZLsnIOr9mX6tV9CEo98+KfwUjS6JIyyXRgSj
-         ubdRP2lLG97GvDMr1TBZSdTmPphE8RYj+ZmIOWQkR0Fg/qdJv5MU221Z8cGIk+mViCFF
-         in9RHuNm38NhM2VITWUySmm2k7oz14zj68TaeNQ6IWyur8S+pK8pVaYN/lZPSW0+m/uQ
-         udYW66P1QqGta6CMcFJIp28586f/6fygOFApq/kEXRqd8nwBN5LuiYwQJM/J9pzihEqf
-         jksA==
+        bh=9t4eRXqQzvNfu/98QWiAgJdjJHSNxLreUnAsT7Bnw7I=;
+        b=eOGuGqwtQgm25Zcjfrb/z2Tg+skRnkZnreZoXku+Sd4AXE6as34eDoYEMlSuLpZWGo
+         IDLYiVzvOsEwHYuM4rxP/DTik8NZJZsq4D19oZ9a1MYkuueLQISJ2t2MQGK9j8vXPEaN
+         unfugcrGuV3CZAukDXcC/+IPj6LsM4+eY5O/GJIXZmB+UPKin8cUEr7gFJiQAqVC04EB
+         Kf4q27weFOBlO3sVAebVAWGCmEbjAE7lNXNYqDJ+ijqXlhuwYu/ma2OB6SR9oyx4dwoZ
+         TQMlIAcfOqkAvFPvitX18Z7joxxgIA2dK1n568W/DkPv/DfLT8u0geXaRhKCiuylfN80
+         IMEw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1707241196; x=1707845996;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+        d=1e100.net; s=20230601; t=1707241475; x=1707846275;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=HvfgmunFGFtkyRTL3y0u1hUwzBDb/t5fOC1RyGSPoBE=;
-        b=PAYOMGRcQOq0VRXrGAGlb9Ur8Mm/jAV9Y199fGoE2Mc6hqs9pT8+UI8UFt0/LjuYVz
-         V7kMBIh9yIXda6Z1NHYlUEcSQc/cYLVJzhexuR+L3iex8zsYax/WvETYTWyBqvjb/F1F
-         7teckzU+q6OGisf8/4mrWCd0G6S74QRk9X5ephxi0CjIpFgGUmh3Rj9BvgvEEJptjG7Y
-         yWWJw5jhNXcDoh4TCzRO87gTNdKfxkshvRq8cmvyZEev1p7SVKHlKLg7VOlvQjJ6xXaa
-         1qWBWwmEJ8FnLO27mZ+1tIeudKrS7JNFjO0L3qRu7GQU3wMMym24G5AG9i8oE2Lwdx4U
-         eLew==
-X-Gm-Message-State: AOJu0YzWn5p2oWYW9vrzG/onI5v7Y7hqo80c33CTP0EKOm7GP6USQzw0
-	iiuWfzQPt+e+WdnLgjIQhPDIoL1Ium0epNwsuGi6hHUwBwx+7Gez2S6j2kKfg3rlTHMtnRA/oug
-	YVcoYDparl3VqM7N5B+74Aho8k4Ifh5Dv4x0N2g==
-X-Google-Smtp-Source: AGHT+IHPc2cBADHjssHhxrSRF6tDOtzD6+RerOAu4zsdDVok37467SYLbs4n4+eGFMyAky2qmsk1zAWzM0ufxw7kOUw=
-X-Received: by 2002:a92:c64f:0:b0:363:76dd:9d37 with SMTP id
- 15-20020a92c64f000000b0036376dd9d37mr3453665ill.27.1707241196423; Tue, 06 Feb
- 2024 09:39:56 -0800 (PST)
+        bh=9t4eRXqQzvNfu/98QWiAgJdjJHSNxLreUnAsT7Bnw7I=;
+        b=YtP1Z14wTBNNlKu2kALszL6t0OH/FesU8/ornmsRJzfgDlx7uEsXP+O/I0soOdijwq
+         B2QWG+8RaU7y560i0f8UmKC6a35un+czsxJ4qwZLxnfkqUylUIgyn3YhZ9FnxAmI41TB
+         rCL50H74L5I1ffVeKJ9OqIlJyKZEM2Y2Ad1zLLpQVSzv3t2e0vFx5N3sWZo1Z3b9fWGX
+         lFw9aE+p0HZYCBBCkewL/G7dy3oZOXt1DRytVVA3pIOvLM41CVY3eiwkrKpA9jVpNGEU
+         KmLf8/vP39qSU2aXj/1+7ZG5MA2fCIviunxpgN/exOHQRTpnIKD68i9ncOw/YjFnK8ee
+         tiCQ==
+X-Gm-Message-State: AOJu0YwDhhikxI9UYeAIFc/sxaXUfp8Ic8F6AWWJyVFwjr8zYslwKo6D
+	mov/I/Px11CRWNE0mrAreAE9Ld3ffMIit31nCmMWr2TpM35m5mwB
+X-Google-Smtp-Source: AGHT+IF1lpIFhtZgzKWW6d/q831mG+OpyLzRSJ+x7f9PpC4Ax09tVNR/VhUDDcXc/dOAuLQ7nXPoXQ==
+X-Received: by 2002:adf:f551:0:b0:33b:232f:63f7 with SMTP id j17-20020adff551000000b0033b232f63f7mr1878813wrp.31.1707241475073;
+        Tue, 06 Feb 2024 09:44:35 -0800 (PST)
+X-Forwarded-Encrypted: i=0; AJvYcCV2DypM6qI/Z832xi9QRDqWoQqPSTkHy+i8RGjG++zwuixmvADhnUsdCaRHqQHOvmF5uGxzDjlB0z8Wdx0EGu4a6VMYHl/G4S0LwTUm+IoTcISKtm5rSHcdlhUaFO7eTg28wUKXr/wIsq4ZreujpJtefRmwac18lB+XYTOdMpfjGYdz74pvUnJEBewCxOIwm3+KGF5eYpT2h4KN5lRmzfeOzqBkcQKedgEx8A83GYOk/+h5ajdUcqJIVQINPliwFX9FOSDlzH1LqZRWxYPmz/u2X9cI3nJA4kpafVgEU6ecRrkiRPdaHHLr0yPNxRpv0zZjX/nsA/4C02U0QK5jo98esbPEPvGda3cD6cWmhYyKOos0JpLETIclyG/oxE3YDXN75btyjGXuEiKvSyada4xu+ycGnvXnFes3Dp+lVVafA3GDDK0fsbLYrCf6lUXj8Dp6MhqDRAlFRgy7m1VboGHLhheAFH+RHvz1SUQFo+MKg2s75824X5zBU4quACJNj3+n8PsAwDjyRyCnr+C8QTNcrHXLwtrrowqQgOyerem1HCTlXiGRmIIAwuL3yfAfFZq1mh+eyDtiO33faydFVxXEIP7ZM98U+xGCiA0AYTWVAE/0r2HCpUBpA/CT1mSXYecahhcUq4fkxBzdEgYMaX0k+LkEVY6mwg129kyEDpnwolSkS4V4ev8ZXopp2cHTPmhqibJleCdfoHRaZ/V7N9t3ncg3Ek1ot6/EFHpQpRtqnnHe8yQlzJ512hU3fgwXrjTrTaSxRQYbl0DYc4pY4hw=
+Received: from jernej-laptop.localnet (86-58-6-171.dynamic.telemach.net. [86.58.6.171])
+        by smtp.gmail.com with ESMTPSA id k18-20020a5d6292000000b0033b13922263sm2568357wru.60.2024.02.06.09.44.33
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 06 Feb 2024 09:44:34 -0800 (PST)
+From: Jernej =?utf-8?B?xaBrcmFiZWM=?= <jernej.skrabec@gmail.com>
+To: Frank Oltmanns <frank@oltmanns.dev>
+Cc: Michael Turquette <mturquette@baylibre.com>,
+ Stephen Boyd <sboyd@kernel.org>, Chen-Yu Tsai <wens@csie.org>,
+ Samuel Holland <samuel@sholland.org>,
+ Guido =?ISO-8859-1?Q?G=FCnther?= <agx@sigxcpu.org>,
+ Purism Kernel Team <kernel@puri.sm>, Ondrej Jirman <megi@xff.cz>,
+ Neil Armstrong <neil.armstrong@linaro.org>,
+ Jessica Zhang <quic_jesszhan@quicinc.com>, Sam Ravnborg <sam@ravnborg.org>,
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>,
+ David Airlie <airlied@gmail.com>, Daniel Vetter <daniel@ffwll.ch>,
+ Rob Herring <robh+dt@kernel.org>,
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+ Conor Dooley <conor+dt@kernel.org>, linux-clk@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, linux-sunxi@lists.linux.dev,
+ linux-kernel@vger.kernel.org, dri-devel@lists.freedesktop.org,
+ devicetree@vger.kernel.org
+Subject:
+ Re: [PATCH v2 1/6] clk: sunxi-ng: nkm: Support constraints on m/n ratio and
+ parent rate
+Date: Tue, 06 Feb 2024 18:44:33 +0100
+Message-ID: <2172947.irdbgypaU6@jernej-laptop>
+In-Reply-To: <87il32ztp8.fsf@oltmanns.dev>
+References:
+ <20240205-pinephone-pll-fixes-v2-0-96a46a2d8c9b@oltmanns.dev>
+ <2717565.mvXUDI8C0e@jernej-laptop> <87il32ztp8.fsf@oltmanns.dev>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20240127161753.114685-1-apatel@ventanamicro.com> <87h6ily53k.fsf@all.your.base.are.belong.to.us>
-In-Reply-To: <87h6ily53k.fsf@all.your.base.are.belong.to.us>
-From: Anup Patel <anup@brainfault.org>
-Date: Tue, 6 Feb 2024 23:09:44 +0530
-Message-ID: <CAAhSdy2PPjS6++Edh8NkgiBmcovTUjS5oXE2eR5ZwPfAfVA0ng@mail.gmail.com>
-Subject: Re: [PATCH v12 00/25] Linux RISC-V AIA Support
-To: =?UTF-8?B?QmrDtnJuIFTDtnBlbA==?= <bjorn@kernel.org>
-Cc: Anup Patel <apatel@ventanamicro.com>, Palmer Dabbelt <palmer@dabbelt.com>, 
-	Paul Walmsley <paul.walmsley@sifive.com>, Thomas Gleixner <tglx@linutronix.de>, 
-	Rob Herring <robh+dt@kernel.org>, 
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Frank Rowand <frowand.list@gmail.com>, 
-	Conor Dooley <conor+dt@kernel.org>, devicetree@vger.kernel.org, 
-	Saravana Kannan <saravanak@google.com>, Marc Zyngier <maz@kernel.org>, linux-kernel@vger.kernel.org, 
-	Atish Patra <atishp@atishpatra.org>, linux-riscv@lists.infradead.org, 
-	linux-arm-kernel@lists.infradead.org, Andrew Jones <ajones@ventanamicro.com>
-Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset="UTF-8"
 
-On Tue, Feb 6, 2024 at 9:09=E2=80=AFPM Bj=C3=B6rn T=C3=B6pel <bjorn@kernel.=
-org> wrote:
->
-> Hi Anup,
->
-> Anup Patel <apatel@ventanamicro.com> writes:
->
-> > The RISC-V AIA specification is ratified as-per the RISC-V internationa=
-l
-> > process. The latest ratified AIA specifcation can be found at:
-> > https://github.com/riscv/riscv-aia/releases/download/1.0/riscv-interrup=
-ts-1.0.pdf
+Dne ponedeljek, 05. februar 2024 ob 18:50:27 CET je Frank Oltmanns napisal(=
+a):
+> Hi Jernej,
+>=20
+> On 2024-02-05 at 18:45:27 +0100, Jernej =C5=A0krabec <jernej.skrabec@gmai=
+l.com> wrote:
+> > Dne ponedeljek, 05. februar 2024 ob 16:22:24 CET je Frank Oltmanns napi=
+sal(a):
+> >> The Allwinner A64 manual lists the following constraints for the
+> >> PLL-MIPI clock:
+> >>  - M/N <=3D 3
+> >>  - (PLL_VIDEO0)/M >=3D 24MHz
+> >>
+> >> The PLL-MIPI clock is implemented as ccu_nkm. Therefore, add support f=
+or
+> >> these constraints.
+> >>
+> >> Signed-off-by: Frank Oltmanns <frank@oltmanns.dev>
 > >
-> > At a high-level, the AIA specification adds three things:
-> > 1) AIA CSRs
-> >    - Improved local interrupt support
-> > 2) Incoming Message Signaled Interrupt Controller (IMSIC)
-> >    - Per-HART MSI controller
-> >    - Support MSI virtualization
-> >    - Support IPI along with virtualization
-> > 3) Advanced Platform-Level Interrupt Controller (APLIC)
-> >    - Wired interrupt controller
-> >    - In MSI-mode, converts wired interrupt into MSIs (i.e. MSI generato=
-r)
-> >    - In Direct-mode, injects external interrupts directly into HARTs
+> > Haven't we discussed that this patch is unnecessary because same effect=
+ can
+> > be reached by limiting minimum frequency?
+>=20
+> The patch for ccu_nm was unnecessary:
+> https://lore.kernel.org/all/87jzoug2jz.fsf@oltmanns.dev/
+>=20
+> Unfortunately, we still need this one.
+
+Ok, then:
+Reviewed-by: Jernej Skrabec <jernej.skrabec@gmail.com>
+
+Best regards,
+Jernej
+
+>=20
+> Best regards,
+>   Frank
+>=20
 > >
-> > For an overview of the AIA specification, refer the AIA virtualization
-> > talk at KVM Forum 2022:
-> > https://static.sched.com/hosted_files/kvmforum2022/a1/AIA_Virtualizatio=
-n_in_KVM_RISCV_final.pdf
-> > https://www.youtube.com/watch?v=3Dr071dL8Z0yo
->
-> Thank you for continuing to work on this series! I like this
-> direction of the series!
->
-> TL;DR: I think we can get rid of most of the id/householding data
-> structures, except for the irq matrix.
->
-> Most of my comments are more of a design/overview nature, so I'll
-> comment here in the cover letter.
->
-> I took the series for a spin with and it with Alex' ftrace fix it,
-> passes all my tests nicely!
->
-> Now some thoughts/comments (I'm coming from the x86 side of things!):
->
-> id/enable-tracking: There are a lot of different id/enabled tracking
-> with corresponding locks, where there's IMO overlap with what the
-> matrix provides.
+> > Best regards,
+> > Jernej
+> >
+> >> ---
+> >>  drivers/clk/sunxi-ng/ccu_nkm.c | 21 +++++++++++++++++++++
+> >>  drivers/clk/sunxi-ng/ccu_nkm.h |  2 ++
+> >>  2 files changed, 23 insertions(+)
+> >>
+> >> diff --git a/drivers/clk/sunxi-ng/ccu_nkm.c b/drivers/clk/sunxi-ng/ccu=
+_nkm.c
+> >> index 853f84398e2b..1168d894d636 100644
+> >> --- a/drivers/clk/sunxi-ng/ccu_nkm.c
+> >> +++ b/drivers/clk/sunxi-ng/ccu_nkm.c
+> >> @@ -16,6 +16,20 @@ struct _ccu_nkm {
+> >>  	unsigned long	m, min_m, max_m;
+> >>  };
+> >>
+> >> +static bool ccu_nkm_is_valid_rate(struct ccu_common *common, unsigned=
+ long parent,
+> >> +				  unsigned long n, unsigned long m)
+> >> +{
+> >> +	struct ccu_nkm *nkm =3D container_of(common, struct ccu_nkm, common);
+> >> +
+> >> +	if (nkm->max_m_n_ratio && (m > nkm->max_m_n_ratio * n))
+> >> +		return false;
+> >> +
+> >> +	if (nkm->min_parent_m_ratio && (parent < nkm->min_parent_m_ratio * m=
+))
+> >> +		return false;
+> >> +
+> >> +	return true;
+> >> +}
+> >> +
+> >>  static unsigned long ccu_nkm_find_best_with_parent_adj(struct ccu_com=
+mon *common,
+> >>  						       struct clk_hw *parent_hw,
+> >>  						       unsigned long *parent, unsigned long rate,
+> >> @@ -31,6 +45,10 @@ static unsigned long ccu_nkm_find_best_with_parent_=
+adj(struct ccu_common *common
+> >>  				unsigned long tmp_rate, tmp_parent;
+> >>
+> >>  				tmp_parent =3D clk_hw_round_rate(parent_hw, rate * _m / (_n * _k)=
+);
+> >> +
+> >> +				if (!ccu_nkm_is_valid_rate(common, tmp_parent, _n, _m))
+> >> +					continue;
+> >> +
+> >>  				tmp_rate =3D tmp_parent * _n * _k / _m;
+> >>
+> >>  				if (ccu_is_better_rate(common, rate, tmp_rate, best_rate) ||
+> >> @@ -64,6 +82,9 @@ static unsigned long ccu_nkm_find_best(unsigned long=
+ parent, unsigned long rate,
+> >>  	for (_k =3D nkm->min_k; _k <=3D nkm->max_k; _k++) {
+> >>  		for (_n =3D nkm->min_n; _n <=3D nkm->max_n; _n++) {
+> >>  			for (_m =3D nkm->min_m; _m <=3D nkm->max_m; _m++) {
+> >> +				if (!ccu_nkm_is_valid_rate(common, parent, _n, _m))
+> >> +					continue;
+> >> +
+> >>  				unsigned long tmp_rate;
+> >>
+> >>  				tmp_rate =3D parent * _n * _k / _m;
+> >> diff --git a/drivers/clk/sunxi-ng/ccu_nkm.h b/drivers/clk/sunxi-ng/ccu=
+_nkm.h
+> >> index 6601defb3f38..c409212ee40e 100644
+> >> --- a/drivers/clk/sunxi-ng/ccu_nkm.h
+> >> +++ b/drivers/clk/sunxi-ng/ccu_nkm.h
+> >> @@ -27,6 +27,8 @@ struct ccu_nkm {
+> >>  	struct ccu_mux_internal	mux;
+> >>
+> >>  	unsigned int		fixed_post_div;
+> >> +	unsigned long		max_m_n_ratio;
+> >> +	unsigned long		min_parent_m_ratio;
+> >>
+> >>  	struct ccu_common	common;
+> >>  };
+> >>
+> >>
+>=20
 
-The matrix allocator does not track the enabled/disabled state of
-the per-CPU IDs. This is why we have a separate per-CPU
-ids_enabled_bitmap which is also used for remote synchronization
-across CPUs.
 
->
-> Let's start with struct imsic_priv:
->
->    | /* Dummy HW interrupt numbers */
->    | unsigned int nr_hwirqs;
->    | raw_spinlock_t hwirqs_lock;
->    | unsigned long *hwirqs_used_bitmap;
 
-The matrix allocator manages actual IDs for each CPU whereas
-the Linux irq_data expects a fixed hwirq which does not change.
 
-Due to this, we have a dummy hwirq space which is always
-fixed. The only thing that is changed under-the-hood by the
-IMSIC driver is the dummy hwirq to actual HW vector (cpu, id)
-mapping.
-
->
-> These are used to for the domain routing (hwirq -> desc/virq), and not
-> needed. Just use the same id as virq (at allocation time), and get rid
-> of these data structures/corresponding functions. The lookup in the
-> interrupt handler via imsic_local_priv.vectors doesn't care about
-> hwirq. This is what x86 does... The imsic_vector roughly corresponds
-> to apic_chip_data (nit: imsic_vector could have the chip_data suffix
-> as well, at least it would have helped me!)
-
-Yes, imsic_vector corresponds to apic_chip_data in the x86 world.
-
->
-> Moving/affinity changes. The moving of a vector to another CPU
-> currently involves:
->
-> 1. Allocate a new vector from the matrix
-> 2. Disable/enable the corresponding per-cpu ids_enabled_bitmap (nested
->    spinlocks)
-> 3. Trigger two IPIs to apply the bitmap
-> 4. On each CPU target (imsic_local_sync()) loop the bitmap and flip
->    all bits, and potentially rearm
->
-> This seems a bit heavy-weight: Why are you explicitly setting/clearing
-> all the bits in a loop at the local sync?
-
-This can be certainly optimized by introducing another
-ids_dirty_bitmap. I will add this in the next revision.
-
->
-> x86 does it a bit differently (more lazily): The chip_data has
-> prev_{cpu,vector}/move_in_progress fields, and keep both vectors
-> enabled until there's an interrupt on the new vector, and then the old
-> one is cleaned (irq_complete_move()).
->
-> Further; When it's time to remove the old vector, x86 doesn't trigger
-> an IPI on the disabling side, but queues a cleanup job on a per-cpu
-> list and triggers a timeout. So, the per-cpu chip_data (per-cpu
-> "vectors" in your series) can reside in two places during the transit.
-
-We can't avoid IPIs when moving vectors from one CPU to another
-CPU because IMSIC id enable/disable is only possible through
-CSRs. Also, keep in-mind that irq affinity change might be initiated
-on CPU X for some interrupt targeting CPU Y which is then changed
-to target CPU Z.
-
-In the case of x86, they have memory mapped registers which
-allows one CPU to enable/disable the ID of another CPU.
-
->
-> I wonder if this clean up is less intrusive, and you just need to
-> perform what's in the per-list instead of dealing with the
-> ids_enabled_bitmap? Maybe we can even remove that bitmap as well. The
-> chip_data/desc has that information. This would mean that
-> imsic_local_priv() would only have the local vectors (chip_data), and
-> a cleanup list/timer.
->
-> My general comment is that instead of having these global id-tracking
-> structures, use the matrix together with some desc/chip_data local
-> data, which should be sufficient.
-
-The "ids_enabled_bitmap", "dummy hwirqs" and private imsic_vectors
-are required since the matrix allocator only manages allocation of
-per-CPU IDs.
-
->
-> Random thought: Do we need to explicitly disable (csr) the vector,
-> when we're changing the affinity? What if we just leave it enabled,
-> and only when mask/unmask is performed it's actually explicitly masked
-> (writes to the csr)?
-
-We should not leave it enabled because some rough/buggy device
-can inject spurious interrupts using MSI writes to unused enabled
-interrupts.
-
->
-> Missing features (which can be added later):
-> * Reservation mode/activate support (allocate many MSI, but only
->   request/activate a subset)
-
-I did not see any PCIe or platform device requiring this kind of
-reservation. Any examples ?
-
-> * Handle managed interrupts
-
-Any examples of managed interrupts in the RISC-V world ?
-
-> * There might be some irqd flags are missing, which mostly cpuhp care
->   about (e.g. irqd_*_single_target())...
-
-Okay, let me check and update.
-
->
-> Finally; Given that the APLIC requires a lot more patches, depending
-> on how the review process moves on -- maybe the IMSIC side could go as
-> a separate series?
->
-
-The most popular implementation choice across RISC-V platforms
-will be IMSIC + APLIC so both drivers should go together. In fact,
-we need both drivers for the QEMU virt machine as well because
-UART interrupt (and other wired interrupts) on the QEMU virt
-machine goes through APLIC.
-
-Regards,
-Anup
 
