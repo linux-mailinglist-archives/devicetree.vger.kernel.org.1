@@ -1,175 +1,252 @@
-Return-Path: <devicetree+bounces-38865-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-38866-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id ADFF884AC22
-	for <lists+devicetree@lfdr.de>; Tue,  6 Feb 2024 03:21:34 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4790484AC2B
+	for <lists+devicetree@lfdr.de>; Tue,  6 Feb 2024 03:25:28 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 6426C2875C1
-	for <lists+devicetree@lfdr.de>; Tue,  6 Feb 2024 02:21:33 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 6CA3C1C2105F
+	for <lists+devicetree@lfdr.de>; Tue,  6 Feb 2024 02:25:27 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E6DEE57305;
-	Tue,  6 Feb 2024 02:21:20 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 29CE856B73;
+	Tue,  6 Feb 2024 02:25:22 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="WuA5eNF+"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="eulvNua2"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-oi1-f179.google.com (mail-oi1-f179.google.com [209.85.167.179])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B4ADB57300;
-	Tue,  6 Feb 2024 02:21:20 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 84BDA56B65;
+	Tue,  6 Feb 2024 02:25:20 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.179
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1707186080; cv=none; b=myN+R+rmimOxVbaOHf22akHbZ2yP8oVudiKUfJznnSAKlelMcSKLA7pM+XU+l6qaEJmsFVd3RllmsF5sCAH3jCbQ+I9n9OdeuBMwYmjZXIHKbBbbnj9dn07Ac8QKffPUJD049oFUHD9hX3+WsHSd8UGMY3ngkk3DyJTlEnGDrOI=
+	t=1707186322; cv=none; b=NjpaSBlTyKZk3atKIISugFzYMooJdh4aWhiSIeaX2vbtDMISCyzb5cVrls/X1kjs1CCGU2NymfUEHUF5QICqqGXE4lYXV5YQoURnMyKsI/ambGkyIm5FhnfhFd9uHmiSDdbAgtVZ4fJk4DyIP+RLgJOeexR9UrBLfrlLVCgMB34=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1707186080; c=relaxed/simple;
-	bh=YqaP2sUi86aQgnoYv0irulc1gLJ/5wSXYz+6MP0M6Vk=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:To:Cc; b=fHZXT/dD687X9lUGDJkvMyi0MJsIXaKcMXGasC9+nl+JRBdXsC3NGrO+6TopIUJ6WAOlBwfV8zCI6kPqvdqJLaSkW4aMpc4x4TAnp9vJtVYyy1oZ4QWPWzGuIFmNh//akSVfA3X8SGqFagKREy0+qEsNoAbl3+H9zCjvu6AbJoc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=WuA5eNF+; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPS id 238BAC43390;
-	Tue,  6 Feb 2024 02:21:20 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1707186080;
-	bh=YqaP2sUi86aQgnoYv0irulc1gLJ/5wSXYz+6MP0M6Vk=;
-	h=From:Date:Subject:To:Cc:Reply-To:From;
-	b=WuA5eNF+MA7MNN4gz2rYsMCMlD3St9eZXDnan5UzMInnODPVcPsHku+cz4KXqH3kf
-	 TG6xhpbhZ/+0JPRc6UIBI/+qqI/2GT6TMI1V87psbSTb24eE5IiEW5IaBHq+42KsPt
-	 RvFXFB3q02LUtEgvaICWTeRhEGYOmStSi0Cfae3Cqd4IQxOv2t2l6n97BdZI//+ppf
-	 n20KMtS5muxtWZ0jPs3Xo/ToBM6nbyK4FnVXvmdl8+3rIT+n525faGyV/C7Xt9guKs
-	 9jgB8UIQxWj+X/Vs19pxV99k001UH4GlaNtA69VRSqBE+fUF3gm/CDlIfmrwazB+HV
-	 p18OXFBIpeEPQ==
-Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 0B12EC48260;
-	Tue,  6 Feb 2024 02:21:20 +0000 (UTC)
-From: Hui Liu via B4 Relay <devnull+quic_huliu.quicinc.com@kernel.org>
-Date: Tue, 06 Feb 2024 10:21:13 +0800
-Subject: [PATCH] arm64: dts: qcom: qcm6490-idp: Add configurations for
- gpio-keys
+	s=arc-20240116; t=1707186322; c=relaxed/simple;
+	bh=2yKBIlxETrljLtG8bUmHtTTra33h6dhwXZ0T/s0QsmQ=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=qcSjylwcr5BfDfxYu4NojkqZT26p3fI8Xgl29o39RQcCQouBdTHRdL4t8IM8S7bQo2AzoLc8qRTqppF54AeqLNj57f8Fybvn50H4b7V+b/7QDosSsnQTaozm8Huuizw5XI2cN/0OHJ5dnD2icez9ocSpX2jeN40xYTKW6L74jok=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=eulvNua2; arc=none smtp.client-ip=209.85.167.179
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-oi1-f179.google.com with SMTP id 5614622812f47-3bfcbfbfd92so192855b6e.2;
+        Mon, 05 Feb 2024 18:25:20 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1707186319; x=1707791119; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=ri1YQ2hEkTssAKG3opIAud0Ytbj1JVk5Pa/2THbXMCI=;
+        b=eulvNua2W/TazGjHfr5iCCkP5eMGc/mYdI/tLOM7LjOe0a8dcC4YzDfY790JjLuzjC
+         8k8nF3oX9QkD3DBPTD+/xE/qXWKEQOJ65EliXMc/jwyDNZfWfFN+nXeyexw1w01kEnsA
+         gYODTBo8JWVsG5wTQu0NDKbJ5yt8ZI2C6RaGWmqP3OEpElArm0uqmVmnm9kwZVj1hfqJ
+         kAtfJy5D2XL5qGMMfLuaIflc212ZXGpLxfTT2aQ9u7U7sUFTQKWqPxnrLNFdu3EzbDMq
+         yKy9UNQYhza+2APhIGAUE/eHe0rdyFH1VpQhP9CdzzAkJYYAigu4TbeqElsPlragXn4q
+         IUow==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1707186319; x=1707791119;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=ri1YQ2hEkTssAKG3opIAud0Ytbj1JVk5Pa/2THbXMCI=;
+        b=cN/tW8BzNsyKVsMT1D8JKqyQyEqTNivJwKphlmhaEkUnf0uA2QeTRADmJdmYGh54Kx
+         GeOoSAGb/txB3xSWGM+64EhsBxKcqUGDOBgot941GQVT9lsii+NWGZW6B/SFIs4qF/NP
+         73UZZo8RqfEMYo6X4FkNnUAPKqn5LQLRAXqcDEGxTcdJ/+SjKTvLvBe+15UNDFGSrCEJ
+         DO+Puq3H3ymXX9BYuQrHPVf2fBXCN3IJCnuJ5ZtnhPyqpXN7bjd+CheU5NSAlhB5guNJ
+         qS9v2phhwFfp5crk2ZYeSxhy8n6U6EUwGP89LFtk4+XZzWR/L5RRhyUEENXUgkorvvXF
+         4msg==
+X-Gm-Message-State: AOJu0Yybciqbx9EmS8REkdZl5qDEI920uvtN4zJYta3lBANb+C1JNnvW
+	L2bD1MCr8I1GL/3Yh6dxMcoC1Sr4YaiJxz5zIIRtBXgiebqb6rRKVu8Dva9eFoN+H40/HurnwrM
+	XfbRBZ0ctQcg+PawgYWfEE6kuU+c=
+X-Google-Smtp-Source: AGHT+IEVsuie2ylzQj0kySZ8nRKieVfkGo33FysFNzbB3nzkZJlRBk3LZIRL0PZ4oMIKZNDj5ZH6MnaaktdvbHDH3JA=
+X-Received: by 2002:a05:6808:11c8:b0:3be:c4df:6ccf with SMTP id
+ p8-20020a05680811c800b003bec4df6ccfmr1892265oiv.5.1707186319364; Mon, 05 Feb
+ 2024 18:25:19 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20240206-gpio-keys-v1-1-7683799daf8d@quicinc.com>
-X-B4-Tracking: v=1; b=H4sIAJmXwWUC/6tWKk4tykwtVrJSqFYqSi3LLM7MzwNyDHUUlJIzE
- vPSU3UzU4B8JSMDIxMDIwMz3fSCzHzd7NTKYl1DY4ukpBQLUwMjSwsloPqCotS0zAqwWdGxtbU
- AgwS/EVsAAAA=
-To: Bjorn Andersson <andersson@kernel.org>, 
- Konrad Dybcio <konrad.dybcio@linaro.org>, Rob Herring <robh@kernel.org>, 
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, 
- Conor Dooley <conor+dt@kernel.org>
-Cc: linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org, 
- linux-kernel@vger.kernel.org, Hui Liu <quic_huliu@quicinc.com>
-X-Mailer: b4 0.13-dev-83828
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1707186079; l=2004;
- i=quic_huliu@quicinc.com; s=20230823; h=from:subject:message-id;
- bh=lvOnmsAUNOMzpmFklkrkm1uAXyOcYWnM0tUChPIUfy4=;
- b=Mr7rYRZPB2Z85vFiulk2wuzYyyb/Tj0QCPYNqaSSMGR6qa2Wn3Kma7VIyJPvdKMc1oo0w+K3P
- IjPWXhabhOACyXRNwElY+0BUl5XCANQZEbwPARiKNujBkQERcMtKbaT
-X-Developer-Key: i=quic_huliu@quicinc.com; a=ed25519;
- pk=1z+A50UnTuKe/FdQv2c0W3ajDsJOYddwIHo2iivhTTA=
-X-Endpoint-Received:
- by B4 Relay for quic_huliu@quicinc.com/20230823 with auth_id=80
-X-Original-From: Hui Liu <quic_huliu@quicinc.com>
-Reply-To: <quic_huliu@quicinc.com>
+References: <20240203165307.7806-1-aford173@gmail.com> <20240203165307.7806-6-aford173@gmail.com>
+ <1880028.tdWV9SEqCh@steina-w>
+In-Reply-To: <1880028.tdWV9SEqCh@steina-w>
+From: Adam Ford <aford173@gmail.com>
+Date: Mon, 5 Feb 2024 20:25:08 -0600
+Message-ID: <CAHCN7xJZ5m1kZwx_9whx7Bv3B4N8mhB1feZUO4PpcosBXe5R2g@mail.gmail.com>
+Subject: Re: [PATCH V8 05/12] arm64: dts: imx8mp: add HDMI power-domains
+To: Alexander Stein <alexander.stein@ew.tq-group.com>
+Cc: linux-arm-kernel@lists.infradead.org, marex@denx.de, 
+	frieder.schrempf@kontron.de, Lucas Stach <l.stach@pengutronix.de>, 
+	Andrzej Hajda <andrzej.hajda@intel.com>, Neil Armstrong <neil.armstrong@linaro.org>, 
+	Robert Foss <rfoss@kernel.org>, Laurent Pinchart <Laurent.pinchart@ideasonboard.com>, 
+	Jonas Karlman <jonas@kwiboo.se>, Jernej Skrabec <jernej.skrabec@gmail.com>, 
+	David Airlie <airlied@gmail.com>, Daniel Vetter <daniel@ffwll.ch>, 
+	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, Maxime Ripard <mripard@kernel.org>, 
+	Thomas Zimmermann <tzimmermann@suse.de>, Rob Herring <robh+dt@kernel.org>, 
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Shawn Guo <shawnguo@kernel.org>, Sascha Hauer <s.hauer@pengutronix.de>, 
+	Pengutronix Kernel Team <kernel@pengutronix.de>, Fabio Estevam <festevam@gmail.com>, 
+	NXP Linux Team <linux-imx@nxp.com>, Philipp Zabel <p.zabel@pengutronix.de>, 
+	Vinod Koul <vkoul@kernel.org>, Kishon Vijay Abraham I <kishon@kernel.org>, 
+	Catalin Marinas <catalin.marinas@arm.com>, Will Deacon <will@kernel.org>, Liu Ying <victor.liu@nxp.com>, 
+	Ulf Hansson <ulf.hansson@linaro.org>, dri-devel@lists.freedesktop.org, 
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+	linux-phy@lists.infradead.org, linux-pm@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-From: Hui Liu <quic_huliu@quicinc.com>
+On Mon, Feb 5, 2024 at 1:26=E2=80=AFAM Alexander Stein
+<alexander.stein@ew.tq-group.com> wrote:
+>
+> Hi Adam,
+>
+> thanks for working on this.
+>
+> Am Samstag, 3. Februar 2024, 17:52:45 CET schrieb Adam Ford:
+> > From: Lucas Stach <l.stach@pengutronix.de>
+> >
+> > This adds the PGC and HDMI blk-ctrl nodes providing power control for
+> > HDMI subsystem peripherals.
+> >
+> > Signed-off-by: Adam Ford <aford173@gmail.com>
+> > Signed-off-by: Lucas Stach <l.stach@pengutronix.de>
+> > ---
+> > V2:  Add missing power-domains hdcp and hrv
+> > ---
+> >  arch/arm64/boot/dts/freescale/imx8mp.dtsi | 38 +++++++++++++++++++++++
+> >  1 file changed, 38 insertions(+)
+> >
+> > diff --git a/arch/arm64/boot/dts/freescale/imx8mp.dtsi
+> > b/arch/arm64/boot/dts/freescale/imx8mp.dtsi index
+> > 76c73daf546b..5c54073de615 100644
+> > --- a/arch/arm64/boot/dts/freescale/imx8mp.dtsi
+> > +++ b/arch/arm64/boot/dts/freescale/imx8mp.dtsi
+> > @@ -836,6 +836,23 @@ pgc_mediamix: power-domain@10 {
+> >                                                        <&clk
+> IMX8MP_CLK_MEDIA_APB_ROOT>;
+> >                                       };
+> >
+> > +                                     pgc_hdmimix: power-
+> domains@14 {
+>
 
-Add configurations for gpio-keys to enable pon_key and pon_resin
-key.
+Alexander,
 
-Signed-off-by: Hui Liu <quic_huliu@quicinc.com>
----
- arch/arm64/boot/dts/qcom/qcm6490-idp.dts | 43 ++++++++++++++++++++++++++++++++
- 1 file changed, 43 insertions(+)
+Thanks for the feedback.
 
-diff --git a/arch/arm64/boot/dts/qcom/qcm6490-idp.dts b/arch/arm64/boot/dts/qcom/qcm6490-idp.dts
-index acf145d1d97c..4199ebf667af 100644
---- a/arch/arm64/boot/dts/qcom/qcm6490-idp.dts
-+++ b/arch/arm64/boot/dts/qcom/qcm6490-idp.dts
-@@ -9,6 +9,7 @@
- #define PM7250B_SID 8
- #define PM7250B_SID1 9
- 
-+#include <dt-bindings/input/linux-event-codes.h>
- #include <dt-bindings/leds/common.h>
- #include <dt-bindings/regulator/qcom,rpmh-regulator.h>
- #include "sc7280.dtsi"
-@@ -39,6 +40,24 @@ chosen {
- 		stdout-path = "serial0:115200n8";
- 	};
- 
-+	gpio-keys {
-+		compatible = "gpio-keys";
-+		label = "gpio-keys";
-+
-+		pinctrl-names = "default";
-+		pinctrl-0 = <&key_vol_up_default>;
-+
-+		key-volume-up {
-+			label = "volume_up";
-+			gpios = <&pm7325_gpios 6 GPIO_ACTIVE_LOW>;
-+			linux,input-type = <1>;
-+			linux,code = <KEY_VOLUMEUP>;
-+			wakeup-source;
-+			debounce-interval = <15>;
-+			linux,can-disable;
-+		};
-+	};
-+
- 	reserved-memory {
- 		xbl_mem: xbl@80700000 {
- 			reg = <0x0 0x80700000 0x0 0x100000>;
-@@ -421,6 +440,17 @@ vreg_bob_3p296: bob {
- 	};
- };
- 
-+&pm7325_gpios {
-+	key_vol_up_default: key-vol-up-state {
-+		pins = "gpio6";
-+		function = "normal";
-+		input-enable;
-+		bias-pull-up;
-+		power-source = <0>;
-+		qcom,drive-strength = <3>;
-+	};
-+};
-+
- &pm8350c_pwm {
- 	status = "okay";
- 
-@@ -448,6 +478,19 @@ led@3 {
- 	};
- };
- 
-+&pmk8350_pon {
-+	status = "okay";
-+};
-+
-+&pon_pwrkey {
-+	status = "okay";
-+};
-+
-+&pon_resin {
-+	linux,code = <KEY_VOLUMEDOWN>;
-+	status = "okay";
-+};
-+
- &qupv3_id_0 {
- 	status = "okay";
- };
+> As per Documentation/devicetree/bindings/power/fsl,imx-gpcv2.yaml the nod=
+e
+> should be called power-domain@.
+>
+> > +                                             #power-domain-
+> cells =3D <0>;
+> > +                                             reg =3D
+> <IMX8MP_POWER_DOMAIN_HDMIMIX>;
+> > +                                             clocks =3D <&clk
+> IMX8MP_CLK_HDMI_ROOT>,
+> > +                                                      <&clk
+> IMX8MP_CLK_HDMI_APB>;
+> > +                                             assigned-clocks =3D
+> <&clk IMX8MP_CLK_HDMI_AXI>,
+> > +
+>   <&clk IMX8MP_CLK_HDMI_APB>;
+> > +                                             assigned-clock-
+> parents =3D <&clk IMX8MP_SYS_PLL2_500M>,
+> > +
+>          <&clk IMX8MP_SYS_PLL1_133M>;
+> > +                                             assigned-clock-
+> rates =3D <500000000>, <133000000>;
+> > +                                     };
+> > +
+> > +                                     pgc_hdmi_phy: power-
+> domains@15 {
+>
+> As per Documentation/devicetree/bindings/power/fsl,imx-gpcv2.yaml the nod=
+e
+> should be called power-domain@.
 
----
-base-commit: 23e11d0318521e8693459b0e4d23aec614b3b68b
-change-id: 20240206-gpio-keys-138bbd850298
+Whoops.  I totally missed these when I applied them.  I'll have them
+fixed on the next spin.
+>
+> > +                                             #power-domain-
+> cells =3D <0>;
+> > +                                             reg =3D
+> <IMX8MP_POWER_DOMAIN_HDMI_PHY>;
+> > +                                     };
+> > +
+> >                                       pgc_mipi_phy2: power-
+> domain@16 {
+> >                                               #power-domain-
+> cells =3D <0>;
+> >                                               reg =3D
+> <IMX8MP_POWER_DOMAIN_MIPI_PHY2>;
+> > @@ -1361,6 +1378,27 @@ eqos: ethernet@30bf0000 {
+> >                               intf_mode =3D <&gpr 0x4>;
+> >                               status =3D "disabled";
+> >                       };
+> > +
+> > +                     hdmi_blk_ctrl: blk-ctrl@32fc0000 {
+> > +                             compatible =3D "fsl,imx8mp-hdmi-blk-
+> ctrl", "syscon";
+> > +                             reg =3D <0x32fc0000 0x23c>;
+> > +                             clocks =3D <&clk IMX8MP_CLK_HDMI_APB>,
+> > +                                      <&clk
+> IMX8MP_CLK_HDMI_ROOT>,
+> > +                                      <&clk
+> IMX8MP_CLK_HDMI_REF_266M>,
+> > +                                      <&clk IMX8MP_CLK_HDMI_24M>,
+> > +                                      <&clk
+> IMX8MP_CLK_HDMI_FDCC_TST>;
+> > +                             clock-names =3D "apb", "axi",
+> "ref_266m", "ref_24m", "fdcc";
+> > +                             power-domains =3D <&pgc_hdmimix>,
+> <&pgc_hdmimix>,
+> > +                                             <&pgc_hdmimix>,
+> <&pgc_hdmimix>,
+> > +                                             <&pgc_hdmimix>,
+> <&pgc_hdmimix>,
+> > +                                             <&pgc_hdmimix>,
+> <&pgc_hdmi_phy>,
+> > +                                             <&pgc_hdmimix>,
+> <&pgc_hdmimix>;
+> > +                             power-domain-names =3D "bus",
+> "irqsteer", "lcdif",
+> > +                                                  "pai", "pvi",
+> "trng",
+> > +                                                  "hdmi-tx",
+> "hdmi-tx-phy",
+> > +                                                  "hdcp",
+> "hrv";
+> > +                             #power-domain-cells =3D <1>;
+> > +                     };
+> >               };
+> >
+>
+> According to RM this block is part of AIPS4, so it should be below
+> hsio_blk_ctrl.
 
-Best regards,
--- 
-Hui Liu <quic_huliu@quicinc.com>
+This is how it was when I got it, but I should have caught it.  Thanks
+for that.  It looks like the subsequent HDMI, IRQ_steerting, LCDIF and
+PHY ones are also out of place.
 
+adam
+>
+> Best regards,
+> Alexander
+>
+> >               aips5: bus@30c00000 {
+>
+>
+> --
+> TQ-Systems GmbH | M=C3=BChlstra=C3=9Fe 2, Gut Delling | 82229 Seefeld, Ge=
+rmany
+> Amtsgericht M=C3=BCnchen, HRB 105018
+> Gesch=C3=A4ftsf=C3=BChrer: Detlef Schneider, R=C3=BCdiger Stahl, Stefan S=
+chneider
+> http://www.tq-group.com/
+>
+>
 
