@@ -1,121 +1,169 @@
-Return-Path: <devicetree+bounces-39276-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-39277-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5CE7B84BF57
-	for <lists+devicetree@lfdr.de>; Tue,  6 Feb 2024 22:41:22 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 0F0E584BF6F
+	for <lists+devicetree@lfdr.de>; Tue,  6 Feb 2024 22:46:29 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 7A5DE1C2331B
-	for <lists+devicetree@lfdr.de>; Tue,  6 Feb 2024 21:41:21 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 340101C21F3A
+	for <lists+devicetree@lfdr.de>; Tue,  6 Feb 2024 21:46:28 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9366A1BC40;
-	Tue,  6 Feb 2024 21:41:15 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 139AE1B95E;
+	Tue,  6 Feb 2024 21:45:55 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=alliedtelesis.co.nz header.i=@alliedtelesis.co.nz header.b="fBOh7NY6"
+	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="FYLeFB0s"
 X-Original-To: devicetree@vger.kernel.org
-Received: from gate2.alliedtelesis.co.nz (gate2.alliedtelesis.co.nz [202.36.163.20])
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2C1F91B963
-	for <devicetree@vger.kernel.org>; Tue,  6 Feb 2024 21:41:12 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=202.36.163.20
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DC2581CF8D;
+	Tue,  6 Feb 2024 21:45:52 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1707255675; cv=none; b=ffH2aeJFz51nHuUodJZwyGGlYClKZgTYzcaGkxzAAMhLy68Yu8hyXBmMA85ED95B77QySlOudbCZP4HW/9Lu+WRQCaRA5MSKz0jaeSstVVEESqOmEEbUVQx+bja5YH3Il6qMG1uTEtGxdtn4uJgsPzWAVTDfRStnLZcSK24HtX8=
+	t=1707255955; cv=none; b=Em18emBEx/89cpOVXFfVrKiEfgsyLC6955zZAmEM9l1DivDB2Rvqr3zUPEXKRXcJilG5VuBvZow53Hfvmd6Meows7WbLGa4l9pIWuhyhJPvedE67HohP9KgSdtXIlizXIYNEBAKNt1XJT+333ISXbqiAWpJ94A3pjNCO6nuunzg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1707255675; c=relaxed/simple;
-	bh=uOxvRZjWNwkxRtu86aHxJDkAO2BjK7XIqVjXIUgiQ5U=;
-	h=From:To:CC:Subject:Date:Message-ID:References:In-Reply-To:
-	 Content-Type:MIME-Version; b=E3JY3X1MMYbuRnrLDd7huo4FwAq4o57GG2jdo43QwTb/gE3vUpJhj2SZbosG9obpBenbuuQl1+Utkyd79ysyltKS0HoCzu/QLfAtdLpKW8i/0SAl6SdbYAFTB4G0yphpmVmh8+84naYzPVp2waozGayKBWgEI3ymnSkc8+AmCUE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=alliedtelesis.co.nz; spf=pass smtp.mailfrom=alliedtelesis.co.nz; dkim=pass (2048-bit key) header.d=alliedtelesis.co.nz header.i=@alliedtelesis.co.nz header.b=fBOh7NY6; arc=none smtp.client-ip=202.36.163.20
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=alliedtelesis.co.nz
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=alliedtelesis.co.nz
-Received: from svr-chch-seg1.atlnz.lc (mmarshal3.atlnz.lc [10.32.18.43])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
-	(Client did not present a certificate)
-	by gate2.alliedtelesis.co.nz (Postfix) with ESMTPS id D5D3A2C03C7;
-	Wed,  7 Feb 2024 10:41:10 +1300 (NZDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=alliedtelesis.co.nz;
-	s=mail181024; t=1707255670;
-	bh=uOxvRZjWNwkxRtu86aHxJDkAO2BjK7XIqVjXIUgiQ5U=;
-	h=From:To:CC:Subject:Date:References:In-Reply-To:From;
-	b=fBOh7NY6wh98aJpdzy+LHWdjP6dmfZ5yr0nuuoelldx6w/bMSnFJZ52GDGBzcmX0a
-	 TiHx03WrCiqXsnwzY8bXFGAmpArRaSFtuOFZQqnAp+1VFuu3nOjU1sI4jDqopRvaik
-	 zl7K6TlsiGOt8K22WKqARPmHi953M3oEeraJAvH/yZx8MqzMlJss5BwcoB8Muumlz2
-	 DTHU8x856z6X9CJ91EC7cf4FzZq0fu+10kDYhqs6Zj6ZtT6hlEdABfgo1tLYRDun0T
-	 qS9ReWYvplzUJ0KEO/eqti+ppZbuDysrsIX8iC47Ux2NRxaYLkl5L3gte1pBZwqLaj
-	 S/ux18Sx37S/w==
-Received: from svr-chch-ex2.atlnz.lc (Not Verified[2001:df5:b000:bc8::76]) by svr-chch-seg1.atlnz.lc with Trustwave SEG (v8,2,6,11305)
-	id <B65c2a7760001>; Wed, 07 Feb 2024 10:41:10 +1300
-Received: from svr-chch-ex2.atlnz.lc (2001:df5:b000:bc8:f753:6de:11c0:a008) by
- svr-chch-ex2.atlnz.lc (2001:df5:b000:bc8:f753:6de:11c0:a008) with Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.1118.40; Wed, 7 Feb 2024 10:41:10 +1300
-Received: from svr-chch-ex2.atlnz.lc ([fe80::a9eb:c9b7:8b52:9567]) by
- svr-chch-ex2.atlnz.lc ([fe80::a9eb:c9b7:8b52:9567%15]) with mapi id
- 15.02.1118.040; Wed, 7 Feb 2024 10:41:10 +1300
-From: Chris Packham <Chris.Packham@alliedtelesis.co.nz>
-To: Alexandre Belloni <alexandre.belloni@bootlin.com>
-CC: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>, "robh+dt@kernel.org"
-	<robh+dt@kernel.org>, "krzysztof.kozlowski+dt@linaro.org"
-	<krzysztof.kozlowski+dt@linaro.org>, "conor+dt@kernel.org"
-	<conor+dt@kernel.org>, "jdelvare@suse.com" <jdelvare@suse.com>,
-	"linux@roeck-us.net" <linux@roeck-us.net>, "antoniu.miclaus@analog.com"
-	<antoniu.miclaus@analog.com>, "noname.nuno@gmail.com"
-	<noname.nuno@gmail.com>, "linux-rtc@vger.kernel.org"
-	<linux-rtc@vger.kernel.org>, "devicetree@vger.kernel.org"
-	<devicetree@vger.kernel.org>, "linux-kernel@vger.kernel.org"
-	<linux-kernel@vger.kernel.org>, "linux-hwmon@vger.kernel.org"
-	<linux-hwmon@vger.kernel.org>, Ibrahim Tilki <Ibrahim.Tilki@analog.com>,
-	Zeynep Arslanbenzer <Zeynep.Arslanbenzer@analog.com>
-Subject: Re: [PATCH v6 2/2] dt-bindings: rtc: add max313xx RTCs
-Thread-Topic: [PATCH v6 2/2] dt-bindings: rtc: add max313xx RTCs
-Thread-Index: AQHaVYLoSYVIRNhkz0qX+dhUYUZib7D13rcAgAcP3QCAAA7jgIAAB/mA
-Date: Tue, 6 Feb 2024 21:41:10 +0000
-Message-ID: <e7a21789-9253-4185-98ed-e335d0167df4@alliedtelesis.co.nz>
-References: <20240202025241.834283-1-chris.packham@alliedtelesis.co.nz>
- <20240202025241.834283-3-chris.packham@alliedtelesis.co.nz>
- <aecd80a3-a017-405f-b77d-6deda67ef704@linaro.org>
- <5d4b7fa1-5cc2-4a4a-8fa4-d2c7a8d070b7@alliedtelesis.co.nz>
- <20240206211237d9192660@mail.local>
-In-Reply-To: <20240206211237d9192660@mail.local>
-Accept-Language: en-NZ, en-US
-Content-Language: en-US
-X-MS-Has-Attach:
-X-MS-TNEF-Correlator:
-Content-Type: text/plain; charset="utf-8"
-Content-ID: <EE219FA9D6C5E9419656103F92C71157@atlnz.lc>
-Content-Transfer-Encoding: base64
+	s=arc-20240116; t=1707255955; c=relaxed/simple;
+	bh=DSedkawQja0hcKyNYn9zHA2+CGNQ2UnDLpJZ3JJMsiM=;
+	h=Message-ID:Date:MIME-Version:From:Subject:To:CC:References:
+	 In-Reply-To:Content-Type; b=MT4c4NNjyEVjsayLkIXA0Zz4UOSSfa2/GHV/l8kHuHdrD2HbJI6fsGI7IiKiTgVN8TOIN+H8MUtecrqZoJdxLqy404i9131EaKpKxvprfWttmli4AAW0GVrazUhUS2qMT5nMnLCt1WV8TX8KkgT5umhJ+PGR0VGTvyddsjAG26Q=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=FYLeFB0s; arc=none smtp.client-ip=205.220.168.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
+Received: from pps.filterd (m0279867.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.17.1.24/8.17.1.24) with ESMTP id 416LFAgg015907;
+	Tue, 6 Feb 2024 21:45:49 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
+	message-id:date:mime-version:from:subject:to:cc:references
+	:in-reply-to:content-type:content-transfer-encoding; s=
+	qcppdkim1; bh=8orMNZMzQmmxRu6fO+dde4rp0XK+Ix1lzjCBAESpG7k=; b=FY
+	LeFB0s7KsuLRgwJ/fM9f89rN3sSgb5yq+Lu1dLoa617kztJMQhDwZpi8bIgFsfvd
+	lRe+avf52igIq7xI+98tfRKIx/cnnceggtAqrjKa6j2Db5/vNAzznDneN39lEPPS
+	fkukXMJeuavypnbVMg5hUjINPpphjAj/cuW6w3D5QNV5KEs7NHuFyNSeSC/6lOa/
+	lY7HcWHgT3Z15aYvY0QlrgNmR8JaI6iWRwXQQoPhQEDn3qWEouHw78yalrO2ZJSb
+	eX3b5YXoCw4bu95UbU1FsP4uyqwIbfUzEXKvppuCq7N/wB5ci/0yj2jTNTxRLYth
+	vyjPym3o0r1JR51LqmqQ==
+Received: from nalasppmta01.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3w37t5aqmy-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Tue, 06 Feb 2024 21:45:49 +0000 (GMT)
+Received: from nalasex01c.na.qualcomm.com (nalasex01c.na.qualcomm.com [10.47.97.35])
+	by NALASPPMTA01.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 416Ljm1D002193
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Tue, 6 Feb 2024 21:45:48 GMT
+Received: from [10.110.41.143] (10.80.80.8) by nalasex01c.na.qualcomm.com
+ (10.47.97.35) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1118.40; Tue, 6 Feb
+ 2024 13:45:45 -0800
+Message-ID: <2e1e0bea-4407-4ca6-a3c9-07c79232f37b@quicinc.com>
+Date: Tue, 6 Feb 2024 13:45:41 -0800
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-SEG-SpamProfiler-Analysis: v=2.3 cv=LZFCFQXi c=1 sm=1 tr=0 a=Xf/6aR1Nyvzi7BryhOrcLQ==:117 a=xqWC_Br6kY4A:10 a=xpRG_LZ1dNQA:10 a=IkcTkHD0fZMA:10 a=k7vzHIieQBIA:10 a=DibEwSMzcXL41q65tJIA:9 a=QEXdDO2ut3YA:10
-X-SEG-SpamProfiler-Score: 0
+User-Agent: Mozilla Thunderbird
+From: Unnathi Chalicheemala <quic_uchalich@quicinc.com>
+Subject: Re: [PATCH v2 5/5] soc: qcom: llcc: Add regmap for Broadcast_AND
+ region
+To: Konrad Dybcio <konrad.dybcio@linaro.org>,
+        Bjorn Andersson
+	<andersson@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski
+	<krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley <conor+dt@kernel.org>
+CC: <linux-arm-msm@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>, <kernel@quicinc.com>
+References: <cover.1707202761.git.quic_uchalich@quicinc.com>
+ <169277f53affed98ef41e5a7cbf2401fe62716bd.1707202761.git.quic_uchalich@quicinc.com>
+ <1ca4d384-9df4-4c00-a4c9-0c5ff491616e@linaro.org>
+Content-Language: en-US
+In-Reply-To: <1ca4d384-9df4-4c00-a4c9-0c5ff491616e@linaro.org>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 7bit
+X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
+ nalasex01c.na.qualcomm.com (10.47.97.35)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-GUID: QqtsSU5F-xyazswora-CJjeLB9oc-hXP
+X-Proofpoint-ORIG-GUID: QqtsSU5F-xyazswora-CJjeLB9oc-hXP
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.272,Aquarius:18.0.1011,Hydra:6.0.619,FMLib:17.11.176.26
+ definitions=2024-02-06_14,2024-01-31_01,2023-05-22_02
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 priorityscore=1501
+ malwarescore=0 spamscore=0 bulkscore=0 suspectscore=0 impostorscore=0
+ mlxlogscore=809 phishscore=0 clxscore=1015 lowpriorityscore=0 mlxscore=0
+ adultscore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.19.0-2401310000 definitions=main-2402060151
 
-DQpPbiA3LzAyLzI0IDEwOjEyLCBBbGV4YW5kcmUgQmVsbG9uaSB3cm90ZToNCj4gT24gMDYvMDIv
-MjAyNCAyMDoxOToyMCswMDAwLCBDaHJpcyBQYWNraGFtIHdyb3RlOg0KPj4gVGhhdCBpcyBhbiBp
-bmNyZWRpYmx5IGdvb2QgcG9pbnQuIFRoZSBtYXgzMTMzNSBiaW5kaW5nIGNvdmVycyBvbmUgc3Bl
-Y2lmaWMgY2hpcC4gVGhpcyBiaW5kaW5nIGNvdmVycyBtb3JlIGFuZCB3aXRoIHRoYXQgdGhlcmUg
-YXJlIGEgZmV3IG1vcmUgcHJvcGVydGllcyB0aGF0IHRoZSBtYXgzMTMzNSBvbiBpdCdzIG93biBk
-b2Vzbid0IGhhdmUgKGUuZy4gdGhlIGNsb2NrIGNvbnN1bWVyLCB0aGUgYWJpbGl0eSB0byBoYXZl
-IGRpZmZlcmVudCBpMmMgYWRkcmVzc2VzKS4gQmluZGluZyB3aXNlIEkgY291bGQgcHJvYmFibHkg
-cm9sbCBhbGwgb2YgdGhlIG1heDMxMzM1IGludG8gdGhpcyBtYXgzMTN4eCBiaW5kaW5nLg0KPj4N
-Cj4+IERyaXZlciB3aXNlIHRoaW5ncyBhcmUgYSBiaXQgdHJpY2tpZXIuIEkndmUgb25seSBnb3Qg
-YWNjZXNzIHRvIG9uZSBvZg0KPj4gdGhlIHZhcmlhbnRzIHNvIEkgYW0gaG9waW5nIHRvIGxldmVy
-YWdlIHRoZSB3b3JrIElicmFoaW0gaGFkIGFscmVhZHkNCj4+IGRvbmUuIEkgY291bGQgYXR0ZW1w
-dCB0byBpbmNvcnBvcmF0ZSBtYXgzMTMzNSBzdXBwb3J0IGludG8gdGhlDQo+PiBtYXgzMTN4eCBk
-cml2ZXIgYnV0IEkgd291bGRuJ3QgcmVhbGx5IGJlIGFibGUgdG8gdGVzdCBpdCBwcm9wZXJseSBh
-bmQNCj4+IHRoZXJlIGlzIGEgcmVhc29uYWJseSBoaWdoIGNoYW5jZSBvZiByZWdyZXNzaW5nIHNv
-bWV0aGluZy4NCj4gQnV0IEkgd29uJ3QgdGFrZSBhIHNlcGFyYXRlIGRyaXZlci4gRXZlcnl0aGlu
-ZyB3b3VsZCBiZSBiZXR0ZXIgaWYgQW5hbG9nDQo+IHdhcyBzaGFyaW5nIHRoZSBkYXRhc2hlZXRz
-Li4uDQoNClRoZSBkYXRhc2hlZXRzIGFyZSBwcmV0dHkgYWNjZXNzaWJsZSBzbyBJJ2QgZ2l2ZSBB
-bmFsb2cgYSBwYXNzIG9uIHRoYXQgDQoodGhleSdyZSBjZXJ0YWlubHkgYmV0dGVyIHRoYW4gc29t
-ZSB2ZW5kb3JzKS4gSSdsbCBpbmNsdWRlIHNvbWUgbGlua3Mgb24gDQp0aGUgbmV4dCB1cGRhdGUu
-DQoNCkknbGwgYXR0ZW1wdCB0byByb2xsIHRoZSBtYXgzMTMzNSBpbnRvIHRoZSBtYXgzMTN4eCBk
-cml2ZXIuDQo=
+On 2/6/2024 10:42 AM, Konrad Dybcio wrote:
+> On 6.02.2024 08:15, Unnathi Chalicheemala wrote:
+>> Define new regmap structure for Broadcast_AND region and initialize
+>> regmap for Broadcast_AND region when HW block version
+>> is greater than 4.1 for backwards compatibility.
+> 
+> Are they actually separate regions and not a single contiguous one?
+> 
+
+Yes, they are separate regions.
+
+>>
+>> Switch from broadcast_OR to broadcast_AND region for checking
+>> status bit 1 as Broadcast_OR region checks only for bit 0.
+>>
+>> Signed-off-by: Unnathi Chalicheemala <quic_uchalich@quicinc.com>
+>> ---
+>>  drivers/soc/qcom/llcc-qcom.c       | 22 +++++++++++++++++++---
+>>  include/linux/soc/qcom/llcc-qcom.h |  4 +++-
+>>  2 files changed, 22 insertions(+), 4 deletions(-)
+>>
+>> diff --git a/drivers/soc/qcom/llcc-qcom.c b/drivers/soc/qcom/llcc-qcom.c
+>> index 4ca88eaebf06..fbd2542cd4c5 100644
+>> --- a/drivers/soc/qcom/llcc-qcom.c
+>> +++ b/drivers/soc/qcom/llcc-qcom.c
+>> @@ -849,9 +849,14 @@ static int llcc_update_act_ctrl(u32 sid,
+>>  		return ret;
+>>  
+>>  	if (drv_data->version >= LLCC_VERSION_4_1_0_0) {
+>> -		ret = regmap_read_poll_timeout(drv_data->bcast_regmap, status_reg,
+>> -				      slice_status, (slice_status & ACT_COMPLETE),
+>> -				      0, LLCC_STATUS_READ_DELAY);
+>> +		if (!drv_data->bcast_and_regmap)
+>> +			ret = regmap_read_poll_timeout(drv_data->bcast_regmap, status_reg,
+>> +					slice_status, (slice_status & ACT_COMPLETE),
+>> +					0, LLCC_STATUS_READ_DELAY);
+>> +		else
+>> +			ret = regmap_read_poll_timeout(drv_data->bcast_and_regmap, status_reg,
+>> +					slice_status, (slice_status & ACT_COMPLETE),
+>> +					0, LLCC_STATUS_READ_DELAY);
+> 
+> struct regmap *regmap = drv_data->bcast_and_regmap ?: bcast_regmap;
+> 
+> ?
+
+Ack. Will minimize the redundancy.
+
+> 
+>> +	if (drv_data->version >= LLCC_VERSION_4_1_0_0) {
+> 
+> This check is rather redundant.. If there's no such region in hardware,
+> it won't be described, and as such the _get()s will return some sort
+> of an error.
+> 
+
+I see what you're saying.
+
+> Might as well make it a comment that it's intended for >=v4.1 and
+> definitely leave a comment for the next guy that there's a backwards
+> compatibility quirk involved..
+
+Ack.
+Thanks for the review Konrad!
+
+> 
+> Konrad
+> 
 
