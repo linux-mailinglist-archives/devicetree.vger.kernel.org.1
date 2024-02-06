@@ -1,172 +1,129 @@
-Return-Path: <devicetree+bounces-38878-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-38879-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id A6A2A84AD58
-	for <lists+devicetree@lfdr.de>; Tue,  6 Feb 2024 05:16:48 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id B5D9584AD73
+	for <lists+devicetree@lfdr.de>; Tue,  6 Feb 2024 05:30:12 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id CA67F1C23596
-	for <lists+devicetree@lfdr.de>; Tue,  6 Feb 2024 04:16:47 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id AB842B21B54
+	for <lists+devicetree@lfdr.de>; Tue,  6 Feb 2024 04:30:09 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id BA24574E03;
-	Tue,  6 Feb 2024 04:16:38 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 595AB74E01;
+	Tue,  6 Feb 2024 04:30:06 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="bjmVBov9"
+	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="RYcWZi1b"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lj1-f181.google.com (mail-lj1-f181.google.com [209.85.208.181])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from lelv0142.ext.ti.com (lelv0142.ext.ti.com [198.47.23.249])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D381B74E06;
-	Tue,  6 Feb 2024 04:16:36 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.181
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 740A12D052;
+	Tue,  6 Feb 2024 04:30:04 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.23.249
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1707192998; cv=none; b=XvrylBWFfQajwLnSEwRJN/9UzQqpikSnpiyiJuwtUWOAuQCRyoiVLHJT+NkpafixZcKzjBfYrcy9kfVR4Qm+D5jnMkdMpO1LwmluUHvqOHTCBOsrLePJG8NzSN2q+Kjgg2B0bJLM1sAzisrmp1QEYlHyxH1BkX91+w5cMA8EeY4=
+	t=1707193806; cv=none; b=cMj3ZKtCSo0I+gcz4spKMjfR28ot9Yx+m0y46db47foYMPDcXd8P0SSEeeKTRC4wKoxQq9VEGevYcEuk+FXYMMdVJUYYaS5JTfcYj0nKjtkqrEwgIQLELd+oM/ZUxXKH9fCk4UPc9vPguXGzZ0nbLsfd+1hreG4U+oMjmqbIPWk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1707192998; c=relaxed/simple;
-	bh=od3mQFAuJO/2MVEighjBGkYYX6HuvW6cjcvOk3GB1nU=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=qwp2pNvmwvxmABMFfTJgbqAHp+RZvnRt6rSHt6YSBPEqBlzaOFJoEG1FjZeXpcP9jRHgWX7bakmCD9/LE64kk7KC7voM7fIhAcYvBi7yLit7KyeKHcCuvhEkvzPS6YmHoLcPomDzAiy22MVXBVa91VlVcnpboK7RA/bgr4h7sFg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=bjmVBov9; arc=none smtp.client-ip=209.85.208.181
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-lj1-f181.google.com with SMTP id 38308e7fff4ca-2cf5917f049so60550461fa.2;
-        Mon, 05 Feb 2024 20:16:36 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1707192995; x=1707797795; darn=vger.kernel.org;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=k/k/Q/dPHVVGDvexiB+hS+6K0XEQOLpNCbXwWIX1VfY=;
-        b=bjmVBov9fVDf75sXUrYcQKf0UyBSPcv5LKcoP/83JIakW7bc7EXV4M4e1qUcoVK6/f
-         e2tqIKwW60vUv7MBWYYk8oin+yVHHUzrEoydm5Ss9c59r1KO9VrIuXGyD8Db23rIHXeq
-         Orlz0JGmv7bluvrL5LIxL7BX7UPQHKEANddsljs2PhOvDGuuBIJgL0H23lj3JFi+e1vy
-         bjeUfvrhb6MkR3TKGwqGR2uPgbyMxpbAQ9/FzjfE7pz0DjJQgLbkFHGW9kqStjNpa/38
-         CH88bBHMU9QZ/WGa6yTsey0iBP1daJU91RTYLO/3H070L6ruCAihzaCAiPY0JFcsekfF
-         Nqbw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1707192995; x=1707797795;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=k/k/Q/dPHVVGDvexiB+hS+6K0XEQOLpNCbXwWIX1VfY=;
-        b=L3TPKW5ikZnEG70u4QjfUOCJW4xMT7Zzu4MTcUKSBYCoTtiAQBUl27LztgQytPQ1g1
-         bzNVZKmBHxK+YAm1VPqk++eN7oPHaF6fwZZFDCjSMNlFaPB9SvgaCQNGdrvpNLMw0FUj
-         lD2nuEryB7L3rH7Fpluwmz/mwTeNweDBj+rrCyvsF7EvLe8WvZx88pbbdTrEe1bxs1/U
-         Sn0s84xrjHfkokFsHRygJLKqJVN5R0IqqquZRcbJdL3UOrNYIBaeWEfjvPqqEeZ8VuTB
-         twYH0QDf2c2WCMsUuTkW8Etu1L8N7w7y45SkUhy6+api2G7cC2EznPitnslR9k9o8DYD
-         i0yg==
-X-Gm-Message-State: AOJu0YxLdT+2RdPC7q6e/hhki0rtLahZFBoWpkEMDVQt0vGriyhnnwjV
-	geOJwylCu9u7titL9W5KcQhbxf4ev6RnOjEVRjiVCLjpiE5jZfJDSfjLGlSb066tpIHsJ4fSGmU
-	cTWAm0tYnztKXrIBHlLniqC6FLAA=
-X-Google-Smtp-Source: AGHT+IHPBusPewGXiD+vI/fL3BYTjXz/v4f6lkYZjQ3d8ktq42j9FXOCIsTuOvfMim6qFKzvpdOmwI1rnpKJYaORPt0=
-X-Received: by 2002:a2e:b88b:0:b0:2d0:b73d:e0c5 with SMTP id
- r11-20020a2eb88b000000b002d0b73de0c5mr910922ljp.47.1707192994648; Mon, 05 Feb
- 2024 20:16:34 -0800 (PST)
+	s=arc-20240116; t=1707193806; c=relaxed/simple;
+	bh=Zx+YKhvERm1JcAJVLFA4638UBYYXTDFqTFzZieNLA+o=;
+	h=From:To:CC:Subject:Date:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=CO95OmiNzYh28lO1uml00Z8TuPdgeRnKcic2zqprKRjqs3b0eK4fZKMvotO3YPcL46zWCy+F6J6uvri3pclJPe6vdoA2ajR8CeZCiRqrMAUNemytN0FZWnPXSNHN5CfMjyrckLDejuW1otat3CNbymLq6+ZfV3pq3dENbGHTec0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=RYcWZi1b; arc=none smtp.client-ip=198.47.23.249
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
+Received: from fllv0035.itg.ti.com ([10.64.41.0])
+	by lelv0142.ext.ti.com (8.15.2/8.15.2) with ESMTP id 4164Tpsa087778;
+	Mon, 5 Feb 2024 22:29:51 -0600
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+	s=ti-com-17Q1; t=1707193791;
+	bh=A6BXY1U52Np3UNS4Lqr7bF3Hqk1NGFiDx+Tx0WfLMBQ=;
+	h=From:To:CC:Subject:Date:In-Reply-To:References;
+	b=RYcWZi1b2OXhGhucmDVISejzB1s0U6XmkYH8AtGJoIE9YtoXXA2kpZ5CJolRjIK9J
+	 okKyWA2hyFNnqLUeMms9L+rrrEbaM9ng/DJbTj3Svo3yDlqdJwQAxp9CCtvwXJsCgt
+	 YqQEFdKCREAgv3b2kzHRRBsqUWqYmEOpDiYM0II8=
+Received: from DFLE112.ent.ti.com (dfle112.ent.ti.com [10.64.6.33])
+	by fllv0035.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 4164TpaK121051
+	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+	Mon, 5 Feb 2024 22:29:51 -0600
+Received: from DFLE103.ent.ti.com (10.64.6.24) by DFLE112.ent.ti.com
+ (10.64.6.33) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Mon, 5
+ Feb 2024 22:29:51 -0600
+Received: from lelvsmtp5.itg.ti.com (10.180.75.250) by DFLE103.ent.ti.com
+ (10.64.6.24) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
+ Frontend Transport; Mon, 5 Feb 2024 22:29:51 -0600
+Received: from uda0132425.dhcp.ti.com (uda0132425.dhcp.ti.com [172.24.227.94])
+	by lelvsmtp5.itg.ti.com (8.15.2/8.15.2) with ESMTP id 4164TlRM083629;
+	Mon, 5 Feb 2024 22:29:48 -0600
+From: Vignesh Raghavendra <vigneshr@ti.com>
+To: <linux-arm-kernel@lists.infradead.org>,
+        Sjoerd Simons
+	<sjoerd@collabora.com>
+CC: Vignesh Raghavendra <vigneshr@ti.com>, <kernel@collabora.com>,
+        Conor
+ Dooley <conor+dt@kernel.org>,
+        Krzysztof Kozlowski
+	<krzysztof.kozlowski+dt@linaro.org>,
+        Nishanth Menon <nm@ti.com>, Rob Herring
+	<robh+dt@kernel.org>,
+        Tero Kristo <kristo@kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>
+Subject: Re: [PATCH 0/2] Set boot tags for the usb0 port of AM62x SK and Beagleplay
+Date: Tue, 6 Feb 2024 09:59:10 +0530
+Message-ID: <170719349980.2245010.13978940073133357464.b4-ty@ti.com>
+X-Mailer: git-send-email 2.43.0
+In-Reply-To: <20240112091745.1896922-1-sjoerd@collabora.com>
+References: <20240112091745.1896922-1-sjoerd@collabora.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20240205152013.3833940-1-chou.cosmo@gmail.com>
- <20240205152013.3833940-2-chou.cosmo@gmail.com> <4a504043-e24d-4119-8c5d-107f0d371110@roeck-us.net>
- <CAOeEDysSZEeKt==zyexLE1GhE5ZpeDHS7sDLRfcC=4JgiogLKQ@mail.gmail.com>
- <a05ec2fe-cfe4-48d8-bff4-9f3689c585d3@roeck-us.net> <CAOeEDyscobVHaAe+72P2wEiucgWUDX=2H2W5dq0P1q8RB=7tzg@mail.gmail.com>
- <cfc51210-4ef1-4df4-bb57-499316fb18fd@roeck-us.net>
-In-Reply-To: <cfc51210-4ef1-4df4-bb57-499316fb18fd@roeck-us.net>
-From: Cosmo Chou <chou.cosmo@gmail.com>
-Date: Tue, 6 Feb 2024 12:16:23 +0800
-Message-ID: <CAOeEDyvFP1JUAxABc6kx52EX1Q6POTD1EqddYan7pRVVnh_xFw@mail.gmail.com>
-Subject: Re: [PATCH v5 1/1] hwmon: Add driver for Astera Labs PT5161L retimer
-To: Guenter Roeck <linux@roeck-us.net>
-Cc: robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org, 
-	jdelvare@suse.com, corbet@lwn.net, broonie@kernel.org, 
-	naresh.solanki@9elements.com, vincent@vtremblay.dev, 
-	patrick.rudolph@9elements.com, luca.ceresoli@bootlin.com, bhelgaas@google.com, 
-	festevam@denx.de, alexander.stein@ew.tq-group.com, heiko@sntech.de, 
-	jernej.skrabec@gmail.com, macromorgan@hotmail.com, forbidden405@foxmail.com, 
-	sre@kernel.org, linus.walleij@linaro.org, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org, linux-hwmon@vger.kernel.org, 
-	linux-doc@vger.kernel.org, cosmo.chou@quantatw.com
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 
-On Tue, Feb 06, 2024 at 12:02 PM +0800, Guenter Roeck wrote:
->
-> On 2/5/24 19:53, Cosmo Chou wrote:
-> > On Tue, Feb 06, 2024 at 11:26 AM +0800, Guenter Roeck wrote:
-> >>
-> >> On 2/5/24 19:05, Cosmo Chou wrote:
-> >>> On Tue, Feb 06, 2024 at 3:43 AM +0800, Guenter Roeck wrote:
-> >>>>
-> >>>> On Mon, Feb 05, 2024 at 11:20:13PM +0800, Cosmo Chou wrote:
-> >>>>> This driver implements support for temperature monitoring of Astera Labs
-> >>>>> PT5161L series PCIe retimer chips.
-> >>>>>
-> >>>>> This driver implementation originates from the CSDK available at
-> >>>>> Link: https://github.com/facebook/openbmc/tree/helium/common/recipes-lib/retimer-v2.14
-> >>>>> The communication protocol utilized is based on the I2C/SMBus standard.
-> >>>>>
-> >>>>> Signed-off-by: Cosmo Chou <chou.cosmo@gmail.com>
-> >>>>> ---
-> >>>> [ ... ]
-> >>>>
-> >>>>> +static ssize_t pt5161l_debugfs_read_fw_ver(struct file *file, char __user *buf,
-> >>>>> +                                        size_t count, loff_t *ppos)
-> >>>>> +{
-> >>>>> +     struct pt5161l_data *data = file->private_data;
-> >>>>> +     int ret;
-> >>>>> +     char ver[32];
-> >>>>> +
-> >>>>> +     mutex_lock(&data->lock);
-> >>>>> +     ret = pt5161l_fwsts_check(data);
-> >>>>> +     mutex_unlock(&data->lock);
-> >>>>> +     if (ret)
-> >>>>> +             return ret;
-> >>>>> +
-> >>>>> +     ret = snprintf(ver, sizeof(ver), "%u.%u.%u\n", data->fw_ver.major,
-> >>>>> +                    data->fw_ver.minor, data->fw_ver.build);
-> >>>>> +     if (ret < 0)
-> >>>>> +             return ret;
-> >>>>> +
-> >>>>
-> >>>> You almost got me here ;-). snprintf() never returns a negative error code,
-> >>>> so checking for it is not necessary.
-> >>>>
-> >>> Oh! You're right.
-> >>>
-> >>>>> +     return simple_read_from_buffer(buf, count, ppos, ver, ret + 1);
-> >>>>
-> >>>> Number of bytes written plus 1 ? Why ?
-> >>> It's just to include the string terminator '\0'.
-> >>>
-> >>
-> >> If that was needed, it would be risky. snprintf() truncates the output
-> >> if the buffer is not large enough. You might want to consider using
-> >> scnprintf() instead. But then I am not sure if that is needed in the first
-> >> place. Almost all code I checked doesn't do that, and it seems to be likely
-> >> that the few drivers who do that are simply wrong. Can you explain why the
-> >> string terminator needs to be added to the output ?
-> >>
-> >> Thanks,
-> >> Guenter
-> >>
-> > It's just in case someone reads and prints this, but with a dirty
-> > buffer and doesn't handle the terminator.
->
-> That needs a better reason. It is not conceivable that 99% of drivers
-> don't do this but this one would need it for some reason. I am not going
-> to accept this unless you can show that debugfs files are supposed to
-> include a terminating '\0' in the response. This is like claiming that
-> printf() should include a terminating '\0' in the output just in case
-> the output is read by a broken application which needs to see the
-> terminator.
->
-> Guenter
->
-Agree. Users should handle this by themselves. I'll revise it to align
-the behavior.
+Hi Sjoerd Simons,
 
-Thanks
-Cosmo
+On Fri, 12 Jan 2024 10:17:06 +0100, Sjoerd Simons wrote:
+> The AM62x SoC can be booted from the first USB port using DFU. Set the
+> relevant boot tags for both
+> 
+> 
+> Sjoerd Simons (2):
+>   arm64: dts: ti: k3-am625-sk: Add boot phase tags for USB0
+>   arm64: dts: ti: k3-am625-beagleplay: Add boot phase tags for USB0
+> 
+> [...]
+
+I have applied the following to branch ti-k3-dts-next on [1].
+Thank you!
+
+[1/2] arm64: dts: ti: k3-am625-sk: Add boot phase tags for USB0
+      commit: 524c8086a453b8df1002c1ccfa9f99589761fc80
+[2/2] arm64: dts: ti: k3-am625-beagleplay: Add boot phase tags for USB0
+      commit: f7d2844d848f8836e6a7923e3ea426f7be4f38d1
+
+All being well this means that it will be integrated into the linux-next
+tree (usually sometime in the next 24 hours) and sent up the chain during
+the next merge window (or sooner if it is a relevant bug fix), however if
+problems are discovered then the patch may be dropped or reverted.
+
+You may get further e-mails resulting from automated or manual testing
+and review of the tree, please engage with people reporting problems and
+send followup patches addressing any issues that are reported if needed.
+
+If any updates are required or you are submitting further changes they
+should be sent as incremental updates against current git, existing
+patches will not be replaced.
+
+Please add any relevant lists and maintainers to the CCs when replying
+to this mail.
+
+[1] https://git.kernel.org/pub/scm/linux/kernel/git/ti/linux.git
+--
+Vignesh
+
 
