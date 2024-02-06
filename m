@@ -1,214 +1,238 @@
-Return-Path: <devicetree+bounces-39081-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-39088-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5C81384B5CE
-	for <lists+devicetree@lfdr.de>; Tue,  6 Feb 2024 14:00:40 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 69D9684B5EA
+	for <lists+devicetree@lfdr.de>; Tue,  6 Feb 2024 14:04:17 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id BCC2DB24DD6
-	for <lists+devicetree@lfdr.de>; Tue,  6 Feb 2024 13:00:37 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id E523C1F2696A
+	for <lists+devicetree@lfdr.de>; Tue,  6 Feb 2024 13:04:16 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id F092E130ADC;
-	Tue,  6 Feb 2024 13:00:23 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id EA42D12FF9F;
+	Tue,  6 Feb 2024 13:04:14 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=suse.de header.i=@suse.de header.b="W0j0SuN+";
-	dkim=permerror (0-bit key) header.d=suse.de header.i=@suse.de header.b="ANiJc1Kz";
-	dkim=pass (1024-bit key) header.d=suse.de header.i=@suse.de header.b="W0j0SuN+";
-	dkim=permerror (0-bit key) header.d=suse.de header.i=@suse.de header.b="ANiJc1Kz"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="asJM8vNU"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp-out1.suse.de (smtp-out1.suse.de [195.135.223.130])
+Received: from mail-lf1-f48.google.com (mail-lf1-f48.google.com [209.85.167.48])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 25B7612EBD6;
-	Tue,  6 Feb 2024 13:00:21 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=195.135.223.130
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 085C912FF68
+	for <devicetree@vger.kernel.org>; Tue,  6 Feb 2024 13:04:12 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.48
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1707224423; cv=none; b=N4McNfpgt2KrdZdGcp2j3q93JJkwgorKaVDBqtaPCW9CaMcDt0NkgeraTPyN8J3gSZ2a8iVdO0dgm03+l7f8z2ygNEUx3T5zBYwP26gTq9gJPTYfBpHjkPfNcgHXP5xyK58Sj0/ZXesMV0VbUZvfNw82wbYIHNy5ASjMXIMKhgo=
+	t=1707224654; cv=none; b=H6vXi+wryNvSI/DF/qgXSB5/n+wkNwQ6cIuqmqJdryR+wwkaAE+sQ7wy0qdFqPz9karkh5uM43C19kAtWMuDxCP9fl4M3QEIFcPm34ebmX545u6OZB6CDSS7etJJ6wcDF9k8znMDQbgNfLDX9HkKs0vLFeEqryHWQhr8fB4V4/Q=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1707224423; c=relaxed/simple;
-	bh=+aT0rKIS3UKpo4tm29e7syaTdpncuM29O5o+70E1SWo=;
-	h=Date:Message-ID:From:To:Cc:Subject:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=a0xJSVoTdKX/EzcnqyufIEjGVULUz6RopMnGXQHBsh//ig9j3g+mhjO0HhHTEAhOIif4i+q/kyHrW8vftsZmKCHgBYyvNnkteca/iQjo0Ovj8WMObUTjxHslC3YkrasLExsjxfFI0yL/0mvpTLF7naWtzVEPixRw6gioZxecqt4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=suse.de; spf=pass smtp.mailfrom=suse.de; dkim=pass (1024-bit key) header.d=suse.de header.i=@suse.de header.b=W0j0SuN+; dkim=permerror (0-bit key) header.d=suse.de header.i=@suse.de header.b=ANiJc1Kz; dkim=pass (1024-bit key) header.d=suse.de header.i=@suse.de header.b=W0j0SuN+; dkim=permerror (0-bit key) header.d=suse.de header.i=@suse.de header.b=ANiJc1Kz; arc=none smtp.client-ip=195.135.223.130
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=suse.de
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=suse.de
-Received: from imap1.dmz-prg2.suse.org (imap1.dmz-prg2.suse.org [10.150.64.97])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
-	(No client certificate requested)
-	by smtp-out1.suse.de (Postfix) with ESMTPS id 26B5121F97;
-	Tue,  6 Feb 2024 13:00:20 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=suse.de; s=susede2_rsa;
-	t=1707224420; h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
-	 mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=rPhPVGYDJ3fdMIeQrhxnapM7DO5sG2kieq0UlwBxO6I=;
-	b=W0j0SuN+f3pdCTZ/eqYSrkeUibin5cCK5VUQZRbbQeVgIA+GrcC0q0bxzYOH85qV+pF3h8
-	IyzuJDVmuYmw/NQQa8oeMAeSJq4nQ/eO7h2xUs2pbRczfdbWXnC1S1tCBa+/o0ZCXA7p1k
-	pWtJ66CIO5nhWvmAEuF3xYlfB06bPdI=
-DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=suse.de;
-	s=susede2_ed25519; t=1707224420;
-	h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
-	 mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=rPhPVGYDJ3fdMIeQrhxnapM7DO5sG2kieq0UlwBxO6I=;
-	b=ANiJc1Kzkh0E1o6XsSz0NVKALAxAysv6xSiEsoyTnl62fV/+eOoyuwoQx0WVkjwFFwsrc2
-	emMI+XJorrW4yzCA==
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=suse.de; s=susede2_rsa;
-	t=1707224420; h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
-	 mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=rPhPVGYDJ3fdMIeQrhxnapM7DO5sG2kieq0UlwBxO6I=;
-	b=W0j0SuN+f3pdCTZ/eqYSrkeUibin5cCK5VUQZRbbQeVgIA+GrcC0q0bxzYOH85qV+pF3h8
-	IyzuJDVmuYmw/NQQa8oeMAeSJq4nQ/eO7h2xUs2pbRczfdbWXnC1S1tCBa+/o0ZCXA7p1k
-	pWtJ66CIO5nhWvmAEuF3xYlfB06bPdI=
-DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=suse.de;
-	s=susede2_ed25519; t=1707224420;
-	h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
-	 mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=rPhPVGYDJ3fdMIeQrhxnapM7DO5sG2kieq0UlwBxO6I=;
-	b=ANiJc1Kzkh0E1o6XsSz0NVKALAxAysv6xSiEsoyTnl62fV/+eOoyuwoQx0WVkjwFFwsrc2
-	emMI+XJorrW4yzCA==
-Received: from imap1.dmz-prg2.suse.org (localhost [127.0.0.1])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
-	(No client certificate requested)
-	by imap1.dmz-prg2.suse.org (Postfix) with ESMTPS id D30FD132DD;
-	Tue,  6 Feb 2024 13:00:19 +0000 (UTC)
-Received: from dovecot-director2.suse.de ([10.150.64.162])
-	by imap1.dmz-prg2.suse.org with ESMTPSA
-	id OHcAM2MtwmXaNAAAD6G6ig
-	(envelope-from <tiwai@suse.de>); Tue, 06 Feb 2024 13:00:19 +0000
-Date: Tue, 06 Feb 2024 14:00:19 +0100
-Message-ID: <87zfwdvjbw.wl-tiwai@suse.de>
-From: Takashi Iwai <tiwai@suse.de>
-To: Amadeusz =?ISO-8859-2?Q?S=B3awi=F1ski?=
- <amadeuszx.slawinski@linux.intel.com>
-Cc: Wesley Cheng <quic_wcheng@quicinc.com>,
-	srinivas.kandagatla@linaro.org,
-	mathias.nyman@intel.com,
-	perex@perex.cz,
-	conor+dt@kernel.org,
-	corbet@lwn.net,
-	lgirdwood@gmail.com,
-	andersson@kernel.org,
-	krzysztof.kozlowski+dt@linaro.org,
-	gregkh@linuxfoundation.org,
-	Thinh.Nguyen@synopsys.com,
-	broonie@kernel.org,
-	bgoswami@quicinc.com,
-	tiwai@suse.com,
-	robh+dt@kernel.org,
-	konrad.dybcio@linaro.org,
-	linux-kernel@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	linux-sound@vger.kernel.org,
-	linux-usb@vger.kernel.org,
-	linux-arm-msm@vger.kernel.org,
-	linux-doc@vger.kernel.org,
-	alsa-devel@alsa-project.org
-Subject: Re: [PATCH v13 50/53] ALSA: usb-audio: Allow for rediscovery of connected USB SND devices
-In-Reply-To: <aaa76d7a-4299-4e1c-83f1-cbbea763927f@linux.intel.com>
-References: <20240203023645.31105-1-quic_wcheng@quicinc.com>
-	<20240203023645.31105-51-quic_wcheng@quicinc.com>
-	<aaa76d7a-4299-4e1c-83f1-cbbea763927f@linux.intel.com>
-User-Agent: Wanderlust/2.15.9 (Almost Unreal) Emacs/27.2 Mule/6.0
+	s=arc-20240116; t=1707224654; c=relaxed/simple;
+	bh=d26F1G3+gK4hU4HwHo79vFomF/ZbXoVmzImcd2QK4Fo=;
+	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:To:Cc; b=luZfXM0fJHUQbEH3vokjKYVEgQFwajBgsMHRfS4/Xtmv+hjs4QWRWFAZn17m58KYKtHe2rcHiJvfTy5kmMmrSJYvt2dTOs0Vd1pfU6FRT1Qsy0/VaQJoN8i03BbH2EGG7r+wlTXLge8WL/kdYFzvnqI/mtTxzTMzMOuFvnZ1geA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=asJM8vNU; arc=none smtp.client-ip=209.85.167.48
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-lf1-f48.google.com with SMTP id 2adb3069b0e04-511538be947so2075904e87.3
+        for <devicetree@vger.kernel.org>; Tue, 06 Feb 2024 05:04:12 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1707224651; x=1707829451; darn=vger.kernel.org;
+        h=cc:to:message-id:content-transfer-encoding:mime-version:subject
+         :date:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=ih/azNYN+X+a8wjDjZ5vcKW6st8xlCCJWn8HPKXJ4mE=;
+        b=asJM8vNUL2/bLuunlnAvwayOFCXb28LfFE2QyV9CWKDEclQoCxvhvWXtyVd0rIhiXd
+         VYcZeHL3ncSe4sGsQHsFFzMSOOCxrXWHtOi8bSxSPPgHx6fv9XtU3OvURbQ1Gq3cizlf
+         I/bnFZJtpgLnlPd5X+uj7q0pvshZltnJy1T/jU3DkGNcj3Z7b7AP4yyLBWoE7dU4dqqW
+         t4Dwoo4qK778ER0t4SkUZTcokYaKrHUpzLlZgAqIWyPAXqbNeYghdRCPDWVoYc3UXwgu
+         lUtlJYj8FE1iCidaY8OneVxH6AMAFMXGX8OXf8x4lYpiS61TqC8UCBLPMxOBth+XBIWZ
+         qCmw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1707224651; x=1707829451;
+        h=cc:to:message-id:content-transfer-encoding:mime-version:subject
+         :date:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=ih/azNYN+X+a8wjDjZ5vcKW6st8xlCCJWn8HPKXJ4mE=;
+        b=t/PdPUpS1p+ZNwzWBrRffkmjHUwgoNIFTkoxnObsNH11HPU/7X3P9mPXwDKLlJWOll
+         N2VthXVR419jAlQGYkFQBO8oEChXFD/dDyX/RY+nHzvpTf7EQpgfrsO4MHlNxWws0vde
+         goXXjnWMPJUS1Q7o4/Fe7ViOFfhBQJ08g0o5apq/kv9U+pQRDjYonoRsQWYeZUXMXpAW
+         CkJ31D9DLPHkuz/ST5Da75OZ0yBTVQguTf2JzoJrnmccVKvEwnNRNO1KYebq0PkL2Jut
+         nk2gRujWmOXt0zv9PpCr/mvyxuYSKO4GJIBReblnWRes6a5voWRhLp5yVNTXggUNlpJQ
+         4JSA==
+X-Gm-Message-State: AOJu0YyEQqP7t5sp3j75Hi7TcJ0i1t8Fu6OCb9QXtLIkAU5LjQcouMdn
+	w9Lc02iahS0swaw0SX0tATwREmaqRhSuhQYo4Ro3cD5m8oaWsrWkh9nDJmEYt6I=
+X-Google-Smtp-Source: AGHT+IF4u++XJafTG3ufmNo2JxWBxncjo3vXj/9ucYhhg/yty/3xqyAYhWUUKNwLEZn397dfkQ8rdA==
+X-Received: by 2002:ac2:5e30:0:b0:511:1a26:daab with SMTP id o16-20020ac25e30000000b005111a26daabmr1608986lfg.2.1707224650797;
+        Tue, 06 Feb 2024 05:04:10 -0800 (PST)
+X-Forwarded-Encrypted: i=0; AJvYcCXjPFYjR5R9FYssW69gDr2OwTZsYRntQqzBXyk0ESnYx4ahKVaHHPU/IKpUkjIckRgiEC04+QhvN2j/IPGL1z+kmerv6+ZGEpfy2xR8sa5GjHCFLl1E/7h0yvu4sT0jKDIaSOvGZC1K4O2W2k0sc9pJ1bT8NhoCPNkherLUxqqHK7Yu+NZLqNPZsRYgEZk9WB/7mrv6C0I8YUb9A6zE0+/7DhzHHClY0u2tbFtyjO8qAvIvKvVcJ6QZpWoQpuK97D3P2Qu23qQrHM4nzbJ27vPGpYqG/NSZWqFignnmniV78Bd+7/CM+A96CoihV7rnCtW9BNtz7v7q
+Received: from umbar.lan ([192.130.178.91])
+        by smtp.gmail.com with ESMTPSA id b19-20020a056512071300b0051149bfeeddsm237739lfs.84.2024.02.06.05.04.10
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 06 Feb 2024 05:04:10 -0800 (PST)
+From: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+Date: Tue, 06 Feb 2024 15:04:10 +0200
+Subject: [PATCH] ARM: dts: imx53: add support for the HDMI expander
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-MIME-Version: 1.0 (generated by SEMI-EPG 1.14.7 - "Harue")
-Content-Type: text/plain; charset=ISO-8859-2
-Content-Transfer-Encoding: 8bit
-Authentication-Results: smtp-out1.suse.de;
-	none
-X-Spam-Level: *
-X-Spam-Score: 1.20
-X-Spamd-Result: default: False [1.20 / 50.00];
-	 ARC_NA(0.00)[];
-	 RCVD_VIA_SMTP_AUTH(0.00)[];
-	 BAYES_HAM(-0.00)[32.59%];
-	 FROM_HAS_DN(0.00)[];
-	 TO_DN_SOME(0.00)[];
-	 FREEMAIL_ENVRCPT(0.00)[gmail.com];
-	 TO_MATCH_ENVRCPT_ALL(0.00)[];
-	 TAGGED_RCPT(0.00)[dt];
-	 MIME_GOOD(-0.10)[text/plain];
-	 NEURAL_HAM_LONG(-1.00)[-1.000];
-	 RCVD_COUNT_THREE(0.00)[3];
-	 R_RATELIMIT(0.00)[to_ip_from(RLjs3ec4aura4kmsd6wxjjm4hg)];
-	 DKIM_SIGNED(0.00)[suse.de:s=susede2_rsa,suse.de:s=susede2_ed25519];
-	 NEURAL_HAM_SHORT(-0.20)[-1.000];
-	 RCPT_COUNT_TWELVE(0.00)[24];
-	 MID_CONTAINS_FROM(1.00)[];
-	 DBL_BLOCKED_OPENRESOLVER(0.00)[quicinc.com:email];
-	 FUZZY_BLOCKED(0.00)[rspamd.com];
-	 FROM_EQ_ENVFROM(0.00)[];
-	 MIME_TRACE(0.00)[0:+];
-	 FREEMAIL_CC(0.00)[quicinc.com,linaro.org,intel.com,perex.cz,kernel.org,lwn.net,gmail.com,linuxfoundation.org,synopsys.com,suse.com,vger.kernel.org,alsa-project.org];
-	 RCVD_TLS_ALL(0.00)[];
-	 SUSPICIOUS_RECIPS(1.50)[]
-X-Spam-Flag: NO
+MIME-Version: 1.0
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+Message-Id: <20240206-imx53-qsb-hdmi-v1-1-e798eb1181c5@linaro.org>
+X-B4-Tracking: v=1; b=H4sIAEkuwmUC/x3MMQ6AIAxA0auYzjapoAxexTiAVO0gKiSGxHB3i
+ eMb/n8hcRROMDYvRH4kyRkquraBZbdhYxRfDYpUT4oMypEHjXdyuPtD0PbOkFZMpmOo0RV5lfw
+ Pp7mUD4Bj70dgAAAA
+To: Rob Herring <robh+dt@kernel.org>, 
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, 
+ Conor Dooley <conor+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>, 
+ Sascha Hauer <s.hauer@pengutronix.de>, 
+ Pengutronix Kernel Team <kernel@pengutronix.de>, 
+ Fabio Estevam <festevam@gmail.com>, NXP Linux Team <linux-imx@nxp.com>
+Cc: devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org
+X-Mailer: b4 0.12.4
+X-Developer-Signature: v=1; a=openpgp-sha256; l=3240;
+ i=dmitry.baryshkov@linaro.org; h=from:subject:message-id;
+ bh=d26F1G3+gK4hU4HwHo79vFomF/ZbXoVmzImcd2QK4Fo=;
+ b=owEBbQGS/pANAwAKAYs8ij4CKSjVAcsmYgBlwi5KM5Qo3HsucHtX1taRaL0UmlVB/08QvC6ai
+ s/DZ0HUAn2JATMEAAEKAB0WIQRMcISVXLJjVvC4lX+LPIo+Aiko1QUCZcIuSgAKCRCLPIo+Aiko
+ 1chQB/9Xx5FMBzRNC8dw+5/eghddvK3+zBHC7WpCN3Mutm6UenfrFDZoxfTjMuaP+KbVq+ZC2VK
+ HdtS2wlymkrBgn6Wtb04hK8Ph/rk8vwO2zAcEwKIQ3MpjRp4f9himCdwlmmIs0sZgdxT6gmmkEf
+ LtLKOyUYjhUkcVlqCfnoe4r4B2EdLXpOoR87yh1qVglWdUkiDHLBSTsnQC+1zAMKaF3jWZzR8Fz
+ PyZlMcvsJTehrK8CEItfhmJidneyDmRe/TiDdE9vdO/LKfxTis5JwW7v5RtfYjtC06glCk8svlu
+ E9jfPO8zhhMk27L4ZE9HzEpZR+axFp5RDc3WYAtMPEO3Mu5W
+X-Developer-Key: i=dmitry.baryshkov@linaro.org; a=openpgp;
+ fpr=8F88381DD5C873E4AE487DA5199BF1243632046A
 
-On Mon, 05 Feb 2024 10:01:03 +0100,
-Amadeusz S³awiñski wrote:
-> 
-> On 2/3/2024 3:36 AM, Wesley Cheng wrote:
-> > In case of notifying SND platform drivers of connection events, some of
-> > these use cases, such as offloading, require an ASoC USB backend device to
-> > be initialized before the events can be handled.  If the USB backend device
-> > has not yet been probed, this leads to missing initial USB audio device
-> > connection events.
-> > 
-> > Expose an API that traverses the usb_chip array for connected devices, and
-> > to call the respective connection callback registered to the SND platform
-> > driver.
-> > 
-> > Signed-off-by: Wesley Cheng <quic_wcheng@quicinc.com>
-> > ---
-> >   sound/usb/card.c                  | 19 +++++++++++++++++++
-> >   sound/usb/card.h                  |  2 ++
-> >   sound/usb/qcom/qc_audio_offload.c |  2 ++
-> >   3 files changed, 23 insertions(+)
-> > 
-> > diff --git a/sound/usb/card.c b/sound/usb/card.c
-> > index 11b827b7a2a5..995b2df676ab 100644
-> > --- a/sound/usb/card.c
-> > +++ b/sound/usb/card.c
-> > @@ -202,6 +202,25 @@ struct snd_usb_stream *snd_usb_find_suppported_substream(int card_idx,
-> >   }
-> >   EXPORT_SYMBOL_GPL(snd_usb_find_suppported_substream);
-> >   +/*
-> > + * in case the platform driver was not ready at the time of USB SND
-> > + * device connect, expose an API to discover all connected USB devices
-> > + * so it can populate any dependent resources/structures.
-> > + */
-> > +void snd_usb_rediscover_devices(void)
-> > +{
-> > +	int i;
-> > +
-> > +	mutex_lock(&register_mutex);
-> > +	for (i = 0; i < SNDRV_CARDS; i++) {
-> > +		if (usb_chip[i])
-> > +			if (platform_ops && platform_ops->connect_cb)
-> > +				platform_ops->connect_cb(usb_chip[i]);
-> 
-> if inside if, it can just be && or maybe move callback check before
-> mutex lock and just return early if it is not present?
+Add support for the MCIMXHDMICARD epansion card attached to the iMX53
+QSB / QSRB platforms. This enables HDMI output on those devices.
 
-The callback check must be inside mutex; otherwise you'll get a race
-about the platform_ops registration.
+Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+---
+ arch/arm/boot/dts/nxp/imx/Makefile            |  4 ++
+ arch/arm/boot/dts/nxp/imx/imx53-qsb-hdmi.dtso | 87 +++++++++++++++++++++++++++
+ 2 files changed, 91 insertions(+)
 
+diff --git a/arch/arm/boot/dts/nxp/imx/Makefile b/arch/arm/boot/dts/nxp/imx/Makefile
+index a724d1a7a9a0..24654deba303 100644
+--- a/arch/arm/boot/dts/nxp/imx/Makefile
++++ b/arch/arm/boot/dts/nxp/imx/Makefile
+@@ -45,7 +45,9 @@ dtb-$(CONFIG_SOC_IMX53) += \
+ 	imx53-mba53.dtb \
+ 	imx53-ppd.dtb \
+ 	imx53-qsb.dtb \
++	imx53-qsb-hdmi.dtb \
+ 	imx53-qsrb.dtb \
++	imx53-qsrb-hdmi.dtb \
+ 	imx53-sk-imx53.dtb \
+ 	imx53-sk-imx53-atm0700d4-lvds.dtb \
+ 	imx53-sk-imx53-atm0700d4-rgb.dtb \
+@@ -54,6 +56,8 @@ dtb-$(CONFIG_SOC_IMX53) += \
+ 	imx53-tx53-x13x.dtb \
+ 	imx53-usbarmory.dtb \
+ 	imx53-voipac-bsb.dtb
++imx53-qsb-hdmi-dtbs := imx53-qsb.dtb imx53-qsb-hdmi.dtbo
++imx53-qsrb-hdmi-dtbs := imx53-qsrb.dtb imx53-qsb-hdmi.dtbo
+ dtb-$(CONFIG_SOC_IMX6Q) += \
+ 	imx6dl-alti6p.dtb \
+ 	imx6dl-apf6dev.dtb \
+diff --git a/arch/arm/boot/dts/nxp/imx/imx53-qsb-hdmi.dtso b/arch/arm/boot/dts/nxp/imx/imx53-qsb-hdmi.dtso
+new file mode 100644
+index 000000000000..c84e9b052527
+--- /dev/null
++++ b/arch/arm/boot/dts/nxp/imx/imx53-qsb-hdmi.dtso
+@@ -0,0 +1,87 @@
++// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
++/*
++ * DT overlay for MCIMXHDMICARD as used with the iMX53 QSB or QSRB boards
++ */
++
++#include <dt-bindings/interrupt-controller/irq.h>
++#include <dt-bindings/gpio/gpio.h>
++
++/dts-v1/;
++/plugin/;
++
++&{/} {
++	/delete-node/ panel;
++
++	hdmi: connector-hdmi {
++		compatible = "hdmi-connector";
++		label = "hdmi";
++		type = "a";
++
++		port {
++			hdmi_connector_in: endpoint {
++				remote-endpoint = <&sii9022_out>;
++			};
++		};
++	};
++
++	reg_1p2v: regulator-1p2v {
++		compatible = "regulator-fixed";
++		regulator-name = "1P2V";
++		regulator-min-microvolt = <1200000>;
++		regulator-max-microvolt = <1200000>;
++		regulator-always-on;
++		vin-supply = <&reg_3p2v>;
++	};
++};
++
++&display0 {
++	status = "okay";
++};
++
++&display0 {
++	port@1 {
++		display0_out: endpoint {
++			remote-endpoint = <&sii9022_in>;
++		};
++	};
++};
++
++&i2c2 {
++	#address-cells = <1>;
++	#size-cells = <0>;
++
++	sii9022: bridge-hdmi@39 {
++		compatible = "sil,sii9022";
++		reg = <0x39>;
++		reset-gpios = <&gpio5 0 GPIO_ACTIVE_LOW>;
++		interrupts-extended = <&gpio3 31 IRQ_TYPE_LEVEL_LOW>;
++		iovcc-supply = <&reg_3p2v>;
++		#sound-dai-cells = <0>;
++		sil,i2s-data-lanes = <0>;
++
++		ports {
++			#address-cells = <1>;
++			#size-cells = <0>;
++
++			port@0 {
++				reg = <0>;
++
++				sii9022_in: endpoint {
++					remote-endpoint = <&display0_out>;
++				};
++			};
++
++			port@1 {
++				reg = <1>;
++
++				sii9022_out: endpoint {
++					remote-endpoint = <&hdmi_connector_in>;
++				};
++			};
++		};
++	};
++};
++
++&tve {
++	status = "disabled";
++};
 
-thanks,
+---
+base-commit: 0dd3ee31125508cd67f7e7172247f05b7fd1753a
+change-id: 20240206-imx53-qsb-hdmi-a4b6032e061e
 
-Takashi
+Best regards,
+-- 
+Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+
 
