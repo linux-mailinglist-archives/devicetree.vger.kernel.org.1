@@ -1,130 +1,179 @@
-Return-Path: <devicetree+bounces-39071-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-39072-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id B3FF484B49B
-	for <lists+devicetree@lfdr.de>; Tue,  6 Feb 2024 13:12:59 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id A9E4D84B52A
+	for <lists+devicetree@lfdr.de>; Tue,  6 Feb 2024 13:30:29 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id E73911C23E45
-	for <lists+devicetree@lfdr.de>; Tue,  6 Feb 2024 12:12:58 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 6EE23288CD8
+	for <lists+devicetree@lfdr.de>; Tue,  6 Feb 2024 12:30:28 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id BCCD8132C0D;
-	Tue,  6 Feb 2024 12:08:35 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1348C130AF9;
+	Tue,  6 Feb 2024 12:13:25 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="G6EyGV+l"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="FcEM1Okx"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-yb1-f181.google.com (mail-yb1-f181.google.com [209.85.219.181])
+Received: from mail-yw1-f181.google.com (mail-yw1-f181.google.com [209.85.128.181])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BA66F132494
-	for <devicetree@vger.kernel.org>; Tue,  6 Feb 2024 12:08:32 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.219.181
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A07A3130AFC
+	for <devicetree@vger.kernel.org>; Tue,  6 Feb 2024 12:13:22 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.181
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1707221315; cv=none; b=ayuCajnoYmMbms65iHONHRr50bWs4rHKeb8l8XiFeZcpZVr0eUiS0XfzgWqRhPsenD0lkojrpurA2+5VSbYcFmeAXPOu/9GgB2ZWaAMsNnHPOsIRILPuw4RuP0/CJS/hoTaiYn0mE+8C4EtNFwFLaRYn4nPnuc9UOya9ER6VwlY=
+	t=1707221605; cv=none; b=pfZKV73tVcThMHzBYNSx2IuWRJwo7UxIrEYpJNymbNYHfRxp1xF8x7f25kKnVheEphFPLqHHBdoKdpFvJzjBH/SDwMn2AYoz7CCxWt+tYNqyMyzSnPp1gyJpYCmz9wqg3u5lvNAvRiyEUHXS9L/rzcQxwARALbC8pL51QcNZLgY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1707221315; c=relaxed/simple;
-	bh=4Vu5+qjHqnLiD6M7Jx0MYJ1t1IIXbkexS1k3JHNLYrE=;
+	s=arc-20240116; t=1707221605; c=relaxed/simple;
+	bh=kVSEa7MznoMUBu2AWAT4VY/U+2IhwRWGQSLHsHRj5j0=;
 	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=StPZlYPpB3V1ZcHflXLc2pDV/Gm0UINTkImUTQ6LAD/5fCH2UiZPtOTPXZJYFZC46hz5W4mRWYiYfpbhD+W7j0R5fZ9t2hP9XOPLpBb8heK5rlIH+ToE8bcv4UMz9ZQWpvhL3rJh5KxEXa9crWQvJzzITLbT5AuDCcyQoh0bFQc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=G6EyGV+l; arc=none smtp.client-ip=209.85.219.181
+	 To:Cc:Content-Type; b=VU5LkWaxZJgoeFS3CH3R1zjC59+7ohh991HKu4cosx7Wsz5NJFfT2fOUEa7yAFD9Vb7qtBH6RYH+9+97GqZPituZ7qUgYOFs8iLwTOQPCfuovunaVIga+Gn/EWCVsFsbWvdYASyNRTO7HzcJqlAzCPS5/kdQj1kcmcAk3yFdrOU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=FcEM1Okx; arc=none smtp.client-ip=209.85.128.181
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-yb1-f181.google.com with SMTP id 3f1490d57ef6-dc23bf7e5aaso5335353276.0
-        for <devicetree@vger.kernel.org>; Tue, 06 Feb 2024 04:08:32 -0800 (PST)
+Received: by mail-yw1-f181.google.com with SMTP id 00721157ae682-5edfcba97e3so54779587b3.2
+        for <devicetree@vger.kernel.org>; Tue, 06 Feb 2024 04:13:22 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1707221311; x=1707826111; darn=vger.kernel.org;
+        d=linaro.org; s=google; t=1707221601; x=1707826401; darn=vger.kernel.org;
         h=cc:to:subject:message-id:date:from:in-reply-to:references
          :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=D+xvbQgPMNIqZPpU5Yxz0zVKVlrqGRam+oSS93XuAZg=;
-        b=G6EyGV+lrk2qG3c+xFFT4QmZe2kZkL9L2k5sSJU/PrFBr4GnBNIk0arxVEwPb3GoWi
-         Qrikzt0jttBL6H6PZ/MMc83caJB6fJOFPzDt9Q3bRLxPFU0dSuR4p1QWpnuuHtMP1t32
-         RiCAtdfrahm4lAChEB1aX7PYoV9lGe6IGkINfaOcaQyiZNRNlJA0H2JUP9H9k4Is31XJ
-         18DzKyk5pHouBFEY+VmINipp86Iw2fG0s9YsqAEFFww1328ZzXOVdnvY8E5Qz6huyw20
-         p1PeCOf6VS625ax1b/MkGH5MUZ+XFMw6/bViWxMZy9MzlzlWanANBY2VW/QGAf3YkKC9
-         VBXQ==
+        bh=DWZvQfOEZAi4zGBX85k2bSEpbWrY5pCWn77sPDjSgjg=;
+        b=FcEM1OkxPXe7jUa0X5dbasdooGSII6UzdymDSIe28PEPzDGsQ5l02WRs8+fxYqG9Vu
+         6hDaJHbo1DVBq7IUiw6pUdyymKdwe9qedV92hyfG8aWgwM+cBRVawMij2F+jSLjcCJP1
+         B6ZtIWA5xQ65ktskodCWNNCUYTHFFfzlgGdBzXZOeYoGaSKHEF0PFs0n5KjmgFRahn4r
+         tztgBAKTF7vDFqhjJYXceACoEFzQbHjW9rhmd5jZ11+9zqZX1y4dkHgyeZO17XhDcvKC
+         PnHiixg8JsYR1CorAjYfUNff5wBV4Ab+dz7YMF5miZBRWE8x+q86qPe+t5YsDKkzUAyQ
+         eV0g==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1707221311; x=1707826111;
+        d=1e100.net; s=20230601; t=1707221601; x=1707826401;
         h=cc:to:subject:message-id:date:from:in-reply-to:references
          :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=D+xvbQgPMNIqZPpU5Yxz0zVKVlrqGRam+oSS93XuAZg=;
-        b=grPJNBqxtAheYdSbIA2K4PDXvAOIDPOUbsIhI7s7OzHfcjjEPtk+9Ajib2Aa7nP2yq
-         ol9mFLqE8AoPu+gtaNr9fY8P3QKDnxCbejRMcjG7udTgurhZez3RyLFk9F/dvwdN04yj
-         lucOktB1mVhHEMDnT+AzSZHH4ikaK1CHC4D1bUOIKf3HyQTrGBdGM2/ydYPeylyigxZY
-         wChc+p4obrcyngO8PR4vekbfjyjDAO35/PWypxLabtu7oCjE+du3dD+FK9shF4epTbGH
-         nVc9nTVW3rfXZeAtLD2Gp0hxtYHwstbDezXF31fWYkxE8amS+g3n7Y7U7KS3ohz8WnJC
-         VG3A==
-X-Gm-Message-State: AOJu0YzBN6Oa5EJoGu81rZtVkweiSlGImO1qxrRJQ98datEW3rf3XosN
-	fIGFOZCmmGwzLPqnLOQChQmoNFs5KyWs2YQTduJjkh69bVpgo3BCX4XS7tTFyG1VXS0WfoGyDB2
-	ZJZpVrQYWB5mKqt3Mp3SSdr27UC2ndSqM6RoeDQ==
-X-Google-Smtp-Source: AGHT+IHm/LzSZOY6wELij8ZqF6KUJKp53jlruo64Z12qH3QsvW0iqh2+ij7pZZDRD7Tg0EAkEehe8Eq/Q5Xya9Gok24=
-X-Received: by 2002:a25:6984:0:b0:dc2:3c3b:fa3e with SMTP id
- e126-20020a256984000000b00dc23c3bfa3emr1424003ybc.31.1707221311472; Tue, 06
- Feb 2024 04:08:31 -0800 (PST)
+        bh=DWZvQfOEZAi4zGBX85k2bSEpbWrY5pCWn77sPDjSgjg=;
+        b=J8dIonPC0kYbqaBNlKSDlgbbbR4XmsoYpT4VegnlZlOCHMLVKFunkO0xp1K4MHd1AT
+         TP13yYVKlmXAIjx5yLxXuK7OgKtvrLrvQDB1wOVfYRo3bk88f6NLtiEPH6oa0Efxdpnh
+         F6I+yhing2uTjPKTqCibBQtx2YU1dmPk80stBNgnhIQmIwWeJWbt22krAZ25wr17cyJQ
+         EE4ogTUacjMNbOJIBQRf+1JbEoF/lb7/ci7R2khK0JyzdXk9ggALj2eVpDAEhh3BqSqH
+         17F/u85caA1BG28t9vSo5k7Y9b6Ni4xlz15mrMzzeocDZ41iKpn8k3kyCRfdljLwnMDD
+         dUJA==
+X-Gm-Message-State: AOJu0YxjrKlhNZgwSnZUI+5scW60MGNl4FOoSSwk5teExCHLrTvSkPca
+	CJ/AawZk1hTTRKXiTZ6ysaihMHr4Flr5TuTKaS/LrBiW07WpsKmCmdXoa5JniZsx7OXvu6PTMM/
+	nsq3vpzCLVv872+tSyHakc6CPLSjxrwjUr7qYhA==
+X-Google-Smtp-Source: AGHT+IGFOW5KDLRDOGLd3gPgq1+CCiRKnm3K7AZT9XmPnffzdQcYU7PYw5tLG/hItt7BLLAro0o55O1x+/N8tJPYRKw=
+X-Received: by 2002:a81:7e14:0:b0:5ff:82fc:9686 with SMTP id
+ o20-20020a817e14000000b005ff82fc9686mr1383428ywn.3.1707221601625; Tue, 06 Feb
+ 2024 04:13:21 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20240206113145.31096-1-quic_jkona@quicinc.com> <20240206113145.31096-5-quic_jkona@quicinc.com>
-In-Reply-To: <20240206113145.31096-5-quic_jkona@quicinc.com>
+References: <20240206114745.1388491-1-quic_kriskura@quicinc.com> <20240206114745.1388491-3-quic_kriskura@quicinc.com>
+In-Reply-To: <20240206114745.1388491-3-quic_kriskura@quicinc.com>
 From: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-Date: Tue, 6 Feb 2024 14:08:20 +0200
-Message-ID: <CAA8EJpp7p35UECE7QfE-At+=xpa253=De+ZZNnaPSO9GqXCnrg@mail.gmail.com>
-Subject: Re: [PATCH 4/5] clk: qcom: camcc-sm8650: Add camera clock controller
- driver for SM8650
-To: Jagadeesh Kona <quic_jkona@quicinc.com>
-Cc: Bjorn Andersson <andersson@kernel.org>, Konrad Dybcio <konrad.dybcio@linaro.org>, 
-	Michael Turquette <mturquette@baylibre.com>, Stephen Boyd <sboyd@kernel.org>, 
-	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, 
-	Conor Dooley <conor+dt@kernel.org>, Vladimir Zapolskiy <vladimir.zapolskiy@linaro.org>, 
-	Taniya Das <quic_tdas@quicinc.com>, linux-arm-msm@vger.kernel.org, 
-	linux-clk@vger.kernel.org, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org, Imran Shaik <quic_imrashai@quicinc.com>, 
-	Ajit Pandey <quic_ajipan@quicinc.com>
+Date: Tue, 6 Feb 2024 14:13:10 +0200
+Message-ID: <CAA8EJpoed-hu4hPXAcwQxmJAaNRwJ2y5q9qybWaPP8bdMnz_oA@mail.gmail.com>
+Subject: Re: [PATCH 2/3] arm64: dts: qcom: sa8295p: Enable tertiary controller
+ and its 4 USB ports
+To: Krishna Kurapati <quic_kriskura@quicinc.com>
+Cc: Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Rob Herring <robh+dt@kernel.org>, 
+	Bjorn Andersson <andersson@kernel.org>, Konrad Dybcio <konrad.dybcio@linaro.org>, 
+	Conor Dooley <conor+dt@kernel.org>, linux-kernel@vger.kernel.org, 
+	linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org, 
+	quic_ppratap@quicinc.com, quic_jackp@quicinc.com
 Content-Type: text/plain; charset="UTF-8"
 
-On Tue, 6 Feb 2024 at 13:41, Jagadeesh Kona <quic_jkona@quicinc.com> wrote:
+On Tue, 6 Feb 2024 at 14:03, Krishna Kurapati <quic_kriskura@quicinc.com> wrote:
 >
-> Add support for the camera clock controller for camera clients to be
-> able to request for camcc clocks on SM8650 platform.
+> Enable tertiary controller for SA8295P (based on SC8280XP).
+> Add pinctrl support for usb ports to provide VBUS to connected peripherals.
+
+These are not just pinctrl entries. They hide VBUS regulators. Please
+implement them properly as corresponding vbus regulators.
+
 >
-> Signed-off-by: Jagadeesh Kona <quic_jkona@quicinc.com>
+> Signed-off-by: Krishna Kurapati <quic_kriskura@quicinc.com>
 > ---
->  drivers/clk/qcom/Kconfig        |    8 +
->  drivers/clk/qcom/Makefile       |    1 +
->  drivers/clk/qcom/camcc-sm8650.c | 3601 +++++++++++++++++++++++++++++++
->  3 files changed, 3610 insertions(+)
->  create mode 100644 drivers/clk/qcom/camcc-sm8650.c
-[
-[skipped]
-
-> +static int __init cam_cc_sm8650_init(void)
-> +{
-> +       return platform_driver_register(&cam_cc_sm8650_driver);
-> +}
-> +subsys_initcall(cam_cc_sm8650_init);
-
-We have been here for the patch series for camcc-sm8550. Upstream
-reviewers expect that you don't repeat the same mistakes over and over
-again.
-
-Please use module_platform_driver().
-
+>  arch/arm64/boot/dts/qcom/sa8295p-adp.dts | 49 ++++++++++++++++++++++++
+>  1 file changed, 49 insertions(+)
+>
+> diff --git a/arch/arm64/boot/dts/qcom/sa8295p-adp.dts b/arch/arm64/boot/dts/qcom/sa8295p-adp.dts
+> index fd253942e5e5..6da444042f82 100644
+> --- a/arch/arm64/boot/dts/qcom/sa8295p-adp.dts
+> +++ b/arch/arm64/boot/dts/qcom/sa8295p-adp.dts
+> @@ -9,6 +9,7 @@
+>  #include <dt-bindings/gpio/gpio.h>
+>  #include <dt-bindings/regulator/qcom,rpmh-regulator.h>
+>  #include <dt-bindings/spmi/spmi.h>
+> +#include <dt-bindings/pinctrl/qcom,pmic-gpio.h>
+>
+>  #include "sa8540p.dtsi"
+>  #include "sa8540p-pmics.dtsi"
+> @@ -584,6 +585,16 @@ &usb_1_qmpphy {
+>         status = "okay";
+>  };
+>
+> +&usb_2 {
+> +       pinctrl-0 = <&usb2_en>,
+> +                   <&usb3_en>,
+> +                   <&usb4_en>,
+> +                   <&usb5_en>;
+> +       pinctrl-names = "default";
 > +
-> +static void __exit cam_cc_sm8650_exit(void)
-> +{
-> +       platform_driver_unregister(&cam_cc_sm8650_driver);
-> +}
-> +module_exit(cam_cc_sm8650_exit);
+> +       status = "okay";
+> +};
 > +
-> +MODULE_DESCRIPTION("QTI CAMCC SM8650 Driver");
-> +MODULE_LICENSE("GPL");
+>  &usb_2_hsphy0 {
+>         vdda-pll-supply = <&vreg_l5a>;
+>         vdda18-supply = <&vreg_l7g>;
+> @@ -636,6 +647,44 @@ &xo_board_clk {
+>
+>  /* PINCTRL */
+>
+> +&pmm8540c_gpios {
+> +       usb2_en: usb2-en-state {
+> +               pins = "gpio9";
+> +               function = "normal";
+> +               qcom,drive-strength = <PMIC_GPIO_STRENGTH_HIGH>;
+> +               output-high;
+> +               power-source = <0>;
+> +       };
+> +};
+> +
+> +&pmm8540e_gpios {
+> +       usb3_en: usb3-en-state {
+> +               pins = "gpio5";
+> +               function = "normal";
+> +               qcom,drive-strength = <PMIC_GPIO_STRENGTH_HIGH>;
+> +               output-high;
+> +               power-source = <0>;
+> +       };
+> +};
+> +
+> +&pmm8540g_gpios {
+> +       usb4_en: usb4-en-state {
+> +               pins = "gpio5";
+> +               function = "normal";
+> +               qcom,drive-strength = <PMIC_GPIO_STRENGTH_HIGH>;
+> +               output-high;
+> +               power-source = <0>;
+> +       };
+> +
+> +       usb5_en: usb5-en-state {
+> +               pins = "gpio9";
+> +               function = "normal";
+> +               qcom,drive-strength = <PMIC_GPIO_STRENGTH_HIGH>;
+> +               output-high;
+> +               power-source = <0>;
+> +       };
+> +};
+> +
+>  &tlmm {
+>         pcie2a_default: pcie2a-default-state {
+>                 clkreq-n-pins {
 > --
-> 2.43.0
+> 2.34.1
 >
 >
 
