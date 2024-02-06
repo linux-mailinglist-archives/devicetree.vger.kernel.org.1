@@ -1,182 +1,207 @@
-Return-Path: <devicetree+bounces-38901-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-38902-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 36FA784AE07
-	for <lists+devicetree@lfdr.de>; Tue,  6 Feb 2024 06:22:06 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8040A84AE27
+	for <lists+devicetree@lfdr.de>; Tue,  6 Feb 2024 06:50:45 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 5BA7C1C23898
-	for <lists+devicetree@lfdr.de>; Tue,  6 Feb 2024 05:22:05 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id A51A31C23A1E
+	for <lists+devicetree@lfdr.de>; Tue,  6 Feb 2024 05:50:44 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2AF4E81ABD;
-	Tue,  6 Feb 2024 05:19:41 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id EA6B37F467;
+	Tue,  6 Feb 2024 05:50:39 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="G28tMiBQ"
+	dkim=pass (2048-bit key) header.d=Nvidia.com header.i=@Nvidia.com header.b="HITDulDh"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+Received: from NAM11-CO1-obe.outbound.protection.outlook.com (mail-co1nam11on2069.outbound.protection.outlook.com [40.107.220.69])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A278F81AA3;
-	Tue,  6 Feb 2024 05:19:39 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1707196781; cv=none; b=tI6KtVuXag+Gh2fIev8IoNRGA7z7wknx/KAXxzWj0wZcqILL79b+7e1zfkox3ePQ4U1Ro2A0aCfMD1mgQactx2UM2MrFGQv03Cs/oWzsw8epxByFQ2rlLKDUtGqa0D91ffh46WyZ0XVvV3/iRkQuoYBiPySdMCcY9qaMjHz8ypU=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1707196781; c=relaxed/simple;
-	bh=ZWXdXoRoci2I2JY1vAA8SZHj20GPexRSHmRz/CFI7BI=;
-	h=From:To:CC:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=nqdgLN+ejHU8EKuTJOjMfY0q0rHmI/0HiCN/gDwih1k7RKeV9Lpqpamo+ip0gr5XmZpxZZTM31D8OyJYJ8yfXeDGbIAMh1IG1s5fhQuG5kTpVJnBgAlQCNqo/bIYcMPbt5r5i195l7SOrMypvyrPbB3wzX+BcEvUfVSZohibnDg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=G28tMiBQ; arc=none smtp.client-ip=205.220.168.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
-Received: from pps.filterd (m0279865.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.17.1.24/8.17.1.24) with ESMTP id 4163mc8U008538;
-	Tue, 6 Feb 2024 05:19:35 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
-	from:to:cc:subject:date:message-id:in-reply-to:references
-	:mime-version:content-transfer-encoding:content-type; s=
-	qcppdkim1; bh=jR0CDxm9qu95XIEKbUM20OhmF4Uf8b9WqGbgZ5c0X/U=; b=G2
-	8tMiBQxiWmeuehouUYkhsJrsDrtHWmez4eez0uSmsovrA+yGJdbtflqtQYXQ21N8
-	zC8MSFoYZjjBT55PedTkUNvJJ72O9jnEe/cWKJM33XDGoP2dQd8dIwF9Gx71utvv
-	I4LYNm+VJ7Ve+x7x1rSwNtRoa52vxasao7oiDHJPZHyecgOy/kE2qeuQf4rDMX8f
-	uEpSmQVKh7696b1EJqeQ/du1s31hx2dMnkcb52atrJqdggYq5+m27yVf2Pzld8xN
-	FJn3YXxxGgKBWEfZ6X12eEGKTgs22ski0SR5tPJi74jlcSxljRqmoyxFRmTL1PyA
-	j5oX26V6NshW/kFRg9ZA==
-Received: from nalasppmta02.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3w2v25ae8q-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Tue, 06 Feb 2024 05:19:34 +0000 (GMT)
-Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
-	by NALASPPMTA02.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 4165JYtI003589
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Tue, 6 Feb 2024 05:19:34 GMT
-Received: from hu-kriskura-hyd.qualcomm.com (10.80.80.8) by
- nalasex01a.na.qualcomm.com (10.47.209.196) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.1118.40; Mon, 5 Feb 2024 21:19:29 -0800
-From: Krishna Kurapati <quic_kriskura@quicinc.com>
-To: Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Rob Herring
-	<robh+dt@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Wesley Cheng
-	<quic_wcheng@quicinc.com>,
-        Konrad Dybcio <konrad.dybcio@linaro.org>,
-        "Greg
- Kroah-Hartman" <gregkh@linuxfoundation.org>,
-        Conor Dooley
-	<conor+dt@kernel.org>,
-        Thinh Nguyen <Thinh.Nguyen@synopsys.com>,
-        Felipe Balbi
-	<balbi@kernel.org>
-CC: <devicetree@vger.kernel.org>, <linux-arm-msm@vger.kernel.org>,
-        <linux-usb@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <quic_ppratap@quicinc.com>, <quic_jackp@quicinc.com>,
-        Krishna Kurapati
-	<quic_kriskura@quicinc.com>
-Subject: [PATCH v14 9/9] usb: dwc3: qcom: Add multiport suspend/resume support for wrapper
-Date: Tue, 6 Feb 2024 10:48:25 +0530
-Message-ID: <20240206051825.1038685-10-quic_kriskura@quicinc.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20240206051825.1038685-1-quic_kriskura@quicinc.com>
-References: <20240206051825.1038685-1-quic_kriskura@quicinc.com>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4551F77F12;
+	Tue,  6 Feb 2024 05:50:37 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.107.220.69
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1707198639; cv=fail; b=oVMnXsKP1XXwOhG2qYeVOtdCBdFqfe3k67tbWPt6rm68MeiW46HCDTkEpaWXQbMtrBrfRkVgFjKXUtF8M9BrVip+q7QvfOUSKrRKBcRzzvusgpyZz5623hFXxP65ZuUolmTL98mF1ycJA9L+S427isVj8mKDUpSKojblAdj4wEs=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1707198639; c=relaxed/simple;
+	bh=hMPGh2TmVGvYcpcGrKGa0gKbQKzHa16Lmqq+HEPcZ9M=;
+	h=From:To:CC:Subject:Date:Message-ID:References:In-Reply-To:
+	 Content-Type:MIME-Version; b=Tn8DgUNMvz/p62W1G+mfv1KCJy3DM0lZiJAuKqyLcySgBkJUkUZk3vlt1JRefp0R1fPLMXqQFsG66tGvD6rXnqW6rBSA0ExTZj7Y58R+wn1luVx+epJufKTGS0qq3thi/qnnWx5ROt14k1bvqtKZKQabjlybKR5bEDBUuAO8MR8=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=nvidia.com; spf=fail smtp.mailfrom=nvidia.com; dkim=pass (2048-bit key) header.d=Nvidia.com header.i=@Nvidia.com header.b=HITDulDh; arc=fail smtp.client-ip=40.107.220.69
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=nvidia.com
+Authentication-Results: smtp.subspace.kernel.org; spf=fail smtp.mailfrom=nvidia.com
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=VZd4j4iLsgGdKNmOGO1JPQ/KM3TTO2J/oZYPoXitqT25E4XdwyGklxZKVVcRNq78POSwhFe4PhMRVh6zUbCG0pzKsz9DOgou+jr15C2W1OXTLMAqD8WnFOZG8vKcKG8DcVG6X9qtrEM8OFD3kyFGStOvYUXBiGrPjzPPi1xtEsCGB3ouk1C+pK5KB1kBvLKYqO4/Sno/ltuLPlcvJXcXBhHcUdozK8HJZmrylO99jrAocJYa+TxDdOx80MzzdZV0jm60GdH6gBol5Y3G2rsdF0WsRw5rLa3SFPDNfqzhDMYCRWNpB8DCSi0/TtaqEmVkFEA/UfaC/iowQ7qxRQOUPQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=4HmSOA9QXnrOZ31kw3UPynyhq7Y5ryOR5jvMSo+wP60=;
+ b=PiQ2/SLua5d/R2KtdcfExpU1fla59DM3a7/DYjDsQ24aJqQ5LZg+fLCRKiQzMV3yS+UwBnI8EXts970sWNPR7d2Z4aEzbvzprsKeo3xJVeff+DYLkXcywf5sWtHta/lhd/aPFp3OBQMkcAOXujcZIn7dR8Q71S0zM9sqshKq2cTjWAa3OLARI96iM3Wc7WDGXx9q+T7Iad/4x3Z1IrzwXVXauVcql3xX/JK+XyUs2e7B59rhqI/vdb9GvzQKyFNQYBPCQtIvUWPwe1SJ1a+gpPRkFFj/CosFP1seXlAahPjFt9WIzhf3mLYUCqykvP4T8YZmYFKEfpAHSyRO4PFsjw==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=nvidia.com; dmarc=pass action=none header.from=nvidia.com;
+ dkim=pass header.d=nvidia.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=Nvidia.com;
+ s=selector2;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=4HmSOA9QXnrOZ31kw3UPynyhq7Y5ryOR5jvMSo+wP60=;
+ b=HITDulDh5MaziPZNUevgnZh/HMxxMJTHibSFdASeQJyI834AOtabZ0gXeNzBDJ+NSWa+vMbZgA0/vu94oEwpBJIt4s5fviGDp+Xr6h1DU3cHhM3lmE2Re6qvydwCinIDt5CctQLeSBYt5Ws+ZMU0twxPl3A4JLFamHke5lV9+USG6na+AKCTE6RxdqdZbqlJSXGBiPbe/JlroeW6/6l1FyYKm9fzHSCvWLjsWjueQe56LS42lHcekBGt4111iSt3y+4UENAJnoFqpIF9T4kBYzAoPk2mazyySmAIyxUcl0rvzCEH1eQ2/RtVb9qG97o2TPUU03N+eL0M6FGdGNfE8Q==
+Received: from SJ1PR12MB6339.namprd12.prod.outlook.com (2603:10b6:a03:454::10)
+ by BY5PR12MB5511.namprd12.prod.outlook.com (2603:10b6:a03:1d8::13) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7270.17; Tue, 6 Feb
+ 2024 05:50:35 +0000
+Received: from SJ1PR12MB6339.namprd12.prod.outlook.com
+ ([fe80::f013:4a74:215f:1127]) by SJ1PR12MB6339.namprd12.prod.outlook.com
+ ([fe80::f013:4a74:215f:1127%5]) with mapi id 15.20.7270.016; Tue, 6 Feb 2024
+ 05:50:33 +0000
+From: Akhil R <akhilrajeev@nvidia.com>
+To: Herbert Xu <herbert@gondor.apana.org.au>
+CC: "davem@davemloft.net" <davem@davemloft.net>, "robh+dt@kernel.org"
+	<robh+dt@kernel.org>, "krzysztof.kozlowski+dt@linaro.org"
+	<krzysztof.kozlowski+dt@linaro.org>, "conor+dt@kernel.org"
+	<conor+dt@kernel.org>, "thierry.reding@gmail.com" <thierry.reding@gmail.com>,
+	Jonathan Hunter <jonathanh@nvidia.com>, "catalin.marinas@arm.com"
+	<catalin.marinas@arm.com>, "will@kernel.org" <will@kernel.org>, Mikko
+ Perttunen <mperttunen@nvidia.com>, "linux-crypto@vger.kernel.org"
+	<linux-crypto@vger.kernel.org>, "devicetree@vger.kernel.org"
+	<devicetree@vger.kernel.org>, "linux-tegra@vger.kernel.org"
+	<linux-tegra@vger.kernel.org>, "linux-kernel@vger.kernel.org"
+	<linux-kernel@vger.kernel.org>, "krzk@kernel.org" <krzk@kernel.org>
+Subject: RE: [PATCH v4 3/5] crypto: tegra: Add Tegra Security Engine driver
+Thread-Topic: [PATCH v4 3/5] crypto: tegra: Add Tegra Security Engine driver
+Thread-Index: AQHaTqDynERkn6GX3k+4bkJs49N3a7D2234AgARfRgA=
+Date: Tue, 6 Feb 2024 05:50:33 +0000
+Message-ID:
+ <SJ1PR12MB6339E195387767AC3BE74F0EC0462@SJ1PR12MB6339.namprd12.prod.outlook.com>
+References: <20240124083846.46487-1-akhilrajeev@nvidia.com>
+ <20240124083846.46487-4-akhilrajeev@nvidia.com>
+ <Zby5bLEgz/UktarE@gondor.apana.org.au>
+In-Reply-To: <Zby5bLEgz/UktarE@gondor.apana.org.au>
+Accept-Language: en-IN, en-US
+Content-Language: en-US
+X-MS-Has-Attach:
+X-MS-TNEF-Correlator:
+authentication-results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=nvidia.com;
+x-ms-publictraffictype: Email
+x-ms-traffictypediagnostic: SJ1PR12MB6339:EE_|BY5PR12MB5511:EE_
+x-ms-office365-filtering-correlation-id: 6ca41358-5c81-464d-c502-08dc26d78911
+x-ms-exchange-senderadcheck: 1
+x-ms-exchange-antispam-relay: 0
+x-microsoft-antispam: BCL:0;
+x-microsoft-antispam-message-info:
+ u8HBASLAeHAgCxKcetOZaNvWho0XwaRljd0VC3PiYNUytBQVxMGeQBcTgik4zBmJ6qwp6RFfkcTgFPLZHGQ+rdDH/AT4kpSLGnSR9B5O+/Uh9Fyz9jboQY5yLlJu+8F9lNb0y1ML7RzVZS1ahLUWn2Du4Ph6l6SZyn7mhlk6ogy7zYmDYe+Ibv+EqAKaCLxGwN2nEqrrQloJhPhn38qtM3nXTguNzUXvNi8AFk1BTS01GYNt6XZoF9g8UbN0BMfvHlG5T1gEKW1oudxNkjx/JvgApzgQUQIUqve0MvPWpPSYDf6RjLGLGWcNAr4nm3dQBu7hv02rOkZ/UrDbchhv4DsJeHeJ/QASj+g3KAb9W5KexTzPREtLRcKHXvIUgYZqNpwnfTOdmbCwSwlsoyjVq3tnxZne9GMeaWwTbjMEpaxGR3dKkBjRlNZW0PUreSbAbRO71wH2WzxEtiO8V1ZS/2PWn6kXRKbY2es1xn5KxgaeGHGvigHQHIlt7DemF96HBjnAzKMnAOaaQidcoQZzIn3KcLT1/DqhXDKfbkSEYm09WU4dO3TUM0AQFyDLcC77f/7OWyhwuZx4405oaXLjqD+gyMUL3zXSNTUPaZVaBbRFvJ60b7Gd01tUYmbCyJKJ
+x-forefront-antispam-report:
+ CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:SJ1PR12MB6339.namprd12.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230031)(396003)(366004)(346002)(39860400002)(136003)(376002)(230922051799003)(451199024)(1800799012)(186009)(64100799003)(86362001)(83380400001)(66556008)(26005)(4326008)(6916009)(7416002)(122000001)(76116006)(38100700002)(8676002)(8936002)(54906003)(66446008)(7696005)(64756008)(15650500001)(66946007)(6506007)(66476007)(316002)(71200400001)(2906002)(5660300002)(52536014)(9686003)(478600001)(38070700009)(33656002)(41300700001)(55016003);DIR:OUT;SFP:1101;
+x-ms-exchange-antispam-messagedata-chunkcount: 1
+x-ms-exchange-antispam-messagedata-0:
+ =?us-ascii?Q?m+G2dmR5jWeivSdFpWGHV1b/dgv7N1qgs5Th/rb5LQaVA2cDzA8UP2/qy+XX?=
+ =?us-ascii?Q?x+7L0ujX102EgZ7TCJwHjOIRpqTRU0Hx3sd9Qyg3S1kVI8c9zVPyohS6H09k?=
+ =?us-ascii?Q?KPLcY28NtF1lJn/qG1m6EiV9m6HHEc4ws6glwXxxDQAmlSgAylrONYyC3Wbc?=
+ =?us-ascii?Q?YWqLke6SzV6Y/Z5yiRtlhDh37deyO+DksmaFql3GERFHe1Vdo7RMcRq3lHYB?=
+ =?us-ascii?Q?sLnT9dvKNgX+p2CXi/VrvouzoXZiyfpitr+0CeyU5ZocF6mdiK/5l/x8Bigf?=
+ =?us-ascii?Q?9Bc5JAONMKLMJ7G0I37zMDfVCGLwySrNwa6sJa3PEiogTK7GWarMkVJbRJDr?=
+ =?us-ascii?Q?mqqFymvrYS9ACA7JGuzZDz12Dd5+6W7evQGD9OtG29ED4Y/zzduA/qHJvBtt?=
+ =?us-ascii?Q?QYwiNMgcL64jcyU2yBo7p/QZK4EHOPmDPDHsr55dAL5TWrHC5WYknn/eaRMz?=
+ =?us-ascii?Q?gHSx/vsRqosjzEYwu7FCBhin+lhVgN/zAsOgKT6+GE9G6Q011f3PrJcgfMyG?=
+ =?us-ascii?Q?iO1EIQ+UzANsJ2AttXBcC+7KQ20mM5H9GVcYsG/ewjHyZ7lwAPTaOzQw+KZ0?=
+ =?us-ascii?Q?Nk0ztCBtyXWkiyJNVW30i0WlSM36wgw+m9wzErp6NiDzSM+b0aQZAC2Fm7Us?=
+ =?us-ascii?Q?hx8H4esjGUrCT/nJIa6mnDqbW2b329aESYdfgs94QG1qfUMpPHp7AZf4oEfA?=
+ =?us-ascii?Q?IQW3zFwfp9BYfLHMXqPERLK74sWdb12YLLRCRiMzPSWRmDTYZcXl8FUKIBg3?=
+ =?us-ascii?Q?LX4R1R5mY10Csw7v2dMMz2fxZNXxh6zUqrMBe7h6rfxsCQn0JbXHXBayE6b2?=
+ =?us-ascii?Q?dYGKeongUh8bWJKygW8dPAzbFvpgkQW10r1hR4X9DJmO7trQWhXnXbq4AE9S?=
+ =?us-ascii?Q?G8CvC+h6fqy/gUX3YQLn9IKz4IILJFWWqoNlGfdNqxK1EPAG+8EXkeGPj6tC?=
+ =?us-ascii?Q?kCbq6YwazbWXqUL0hS/h408gPka2yR3Y7XiNYcNdgWqLtAwJ+MapxWIwpC03?=
+ =?us-ascii?Q?l4/D0+YqjlHtGdlvMuAh/7MNwQ/gHCfPYQDh4OFZxN4hVB0HSAlw8bvsRYoc?=
+ =?us-ascii?Q?WzeystSio5A/S4G6FuZkslrmXun2CTqNobwPnXNqxvjFyKRiLsI1nWpBVbgY?=
+ =?us-ascii?Q?wej6uWjQWUwPnjnrFo4slZmCm/9hDITt7HiiCfAnjcjjfM5rDdmTAn/Ssi8q?=
+ =?us-ascii?Q?eraOO7YB2rfIXaaEZ8i9GkpTf/l9+wtV2ggWHQr7NmAF4JSnOkKp0BYTlLz0?=
+ =?us-ascii?Q?GvNZJPhomFsRoc+GtW9HTBdjWqCGXyN7lythCdAGU5nqKv+VmcyLqytnp/Hl?=
+ =?us-ascii?Q?Cp6tkwVoNlfb/UF3OKhy9gnZKcUPtVL56jwHFzdQelDTic80+DMihQppEkLm?=
+ =?us-ascii?Q?E3BLV1E44PDLrq1/apUNDvii+6xhprsQFTpOB8uzh1Ny836AGKO+AA/4zKaQ?=
+ =?us-ascii?Q?yQ8fPmPU2x43j6Cf9r+ZOl7mwC+1S8LZn/9PoWpBKGSbUIlPqUOPOSZe7jTV?=
+ =?us-ascii?Q?0heTDW8b3WgtBBcSJHDlgK0hMeLudgE51vGA0r151nEB6snTVunwrN2TwAYi?=
+ =?us-ascii?Q?ZrOmCbALdjVvqCieD69xpOwKYbEI/D2gZoS0c61W?=
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
- nalasex01a.na.qualcomm.com (10.47.209.196)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-ORIG-GUID: Hjm0P1XVd4Dcj1VoXvHrux-UxDqqINnW
-X-Proofpoint-GUID: Hjm0P1XVd4Dcj1VoXvHrux-UxDqqINnW
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.272,Aquarius:18.0.1011,Hydra:6.0.619,FMLib:17.11.176.26
- definitions=2024-02-05_18,2024-01-31_01,2023-05-22_02
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 phishscore=0 impostorscore=0
- mlxscore=0 bulkscore=0 suspectscore=0 lowpriorityscore=0
- priorityscore=1501 mlxlogscore=778 malwarescore=0 clxscore=1015
- spamscore=0 adultscore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.19.0-2401310000 definitions=main-2402060035
+X-OriginatorOrg: Nvidia.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-AuthSource: SJ1PR12MB6339.namprd12.prod.outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 6ca41358-5c81-464d-c502-08dc26d78911
+X-MS-Exchange-CrossTenant-originalarrivaltime: 06 Feb 2024 05:50:33.8887
+ (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 43083d15-7273-40c1-b7db-39efd9ccc17a
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: 74NTKW/unE8cahq98gv/KuE1e4Rd9ZTnbhsBBkcTqzp/OFoWOtwthd+uvFBQjoreDfsAazL9rBDNOG/8HbNfBA==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: BY5PR12MB5511
 
-Power event IRQ stat registers are present for each port
-connected to controller. Add support for modifying all power event
-irq stat registers present in wrapper.
+> On Wed, Jan 24, 2024 at 02:08:44PM +0530, Akhil R wrote:
+> >
+> > +static void tegra_sha_init_fallback(struct tegra_sha_ctx *ctx, const c=
+har
+> *algname)
+> > +{
+> > +     ctx->fallback_tfm =3D crypto_alloc_ahash(algname, 0, CRYPTO_ALG_A=
+SYNC |
+> > +                                             CRYPTO_ALG_NEED_FALLBACK)=
+;
+> > +
+> > +     if (IS_ERR(ctx->fallback_tfm)) {
+> > +             dev_warn(ctx->se->dev, "failed to allocate fallback for %=
+s %ld\n",
+> > +                      algname, PTR_ERR(ctx->fallback_tfm));
+> > +             ctx->fallback_tfm =3D NULL;
+> > +     }
+> > +}
+>=20
+> This should check that the fallback state size is smaller than
+> that of tegra.  As otherwise the fallback export/import will break.
 
-Signed-off-by: Krishna Kurapati <quic_kriskura@quicinc.com>
----
- drivers/usb/dwc3/dwc3-qcom.c | 30 +++++++++++++++++++++++-------
- 1 file changed, 23 insertions(+), 7 deletions(-)
+Okay. Got it. Will update.
+=20
+> > +static int tegra_sha_import(struct ahash_request *req, const void *in)
+> > +{
+> > +     struct tegra_sha_reqctx *rctx =3D ahash_request_ctx(req);
+> > +     struct crypto_ahash *tfm =3D crypto_ahash_reqtfm(req);
+> > +     struct tegra_sha_ctx *ctx =3D crypto_ahash_ctx(tfm);
+> > +     int i;
+> > +
+> > +     if (ctx->fallback)
+> > +             return tegra_sha_fallback_import(req, in);
+> > +
+> > +     memcpy(rctx, in, sizeof(*rctx));
+> > +
+> > +     /* Paste all intermediate results */
+> > +     for (i =3D 0; i < HASH_RESULT_REG_COUNT; i++)
+> > +             writel(rctx->result[i],
+> > +                    ctx->se->base + ctx->se->hw->regs->result + (i * 4=
+));
+>=20
+> What happens when multiple requests of the same tfm import at
+> the same time?  Normally we don't actually touch the hardware
+> in the import function.  Instead, all the hard work happens at
+> the end of the update function, which moves hardware state into
+> the request object.
+>=20
+> The import/export function then simply copies the request object
+> state to the in/out buffer.
 
-diff --git a/drivers/usb/dwc3/dwc3-qcom.c b/drivers/usb/dwc3/dwc3-qcom.c
-index 572dc3fdae12..e789745a9468 100644
---- a/drivers/usb/dwc3/dwc3-qcom.c
-+++ b/drivers/usb/dwc3/dwc3-qcom.c
-@@ -37,7 +37,11 @@
- #define PIPE3_PHYSTATUS_SW			BIT(3)
- #define PIPE_UTMI_CLK_DIS			BIT(8)
- 
--#define PWR_EVNT_IRQ_STAT_REG			0x58
-+#define PWR_EVNT_IRQ1_STAT_REG			0x58
-+#define PWR_EVNT_IRQ2_STAT_REG			0x1dc
-+#define PWR_EVNT_IRQ3_STAT_REG			0x228
-+#define PWR_EVNT_IRQ4_STAT_REG			0x238
-+
- #define PWR_EVNT_LPM_IN_L2_MASK			BIT(4)
- #define PWR_EVNT_LPM_OUT_L2_MASK		BIT(5)
- 
-@@ -109,6 +113,13 @@ struct dwc3_qcom {
- 	u8			num_ports;
- };
- 
-+static const u32 pwr_evnt_irq_stat_reg_offset[DWC3_MAX_PORTS] = {
-+	PWR_EVNT_IRQ1_STAT_REG,
-+	PWR_EVNT_IRQ2_STAT_REG,
-+	PWR_EVNT_IRQ3_STAT_REG,
-+	PWR_EVNT_IRQ4_STAT_REG,
-+};
-+
- static inline void dwc3_qcom_setbits(void __iomem *base, u32 offset, u32 val)
- {
- 	u32 reg;
-@@ -444,9 +455,11 @@ static int dwc3_qcom_suspend(struct dwc3_qcom *qcom, bool wakeup)
- 	if (qcom->is_suspended)
- 		return 0;
- 
--	val = readl(qcom->qscratch_base + PWR_EVNT_IRQ_STAT_REG);
--	if (!(val & PWR_EVNT_LPM_IN_L2_MASK))
--		dev_err(qcom->dev, "HS-PHY not in L2\n");
-+	for (i = 0; i < qcom->num_ports; i++) {
-+		val = readl(qcom->qscratch_base + pwr_evnt_irq_stat_reg_offset[i]);
-+		if (!(val & PWR_EVNT_LPM_IN_L2_MASK))
-+			dev_err(qcom->dev, "Port-%d HS-PHY not in L2\n", i + 1);
-+	}
- 
- 	for (i = qcom->num_clocks - 1; i >= 0; i--)
- 		clk_disable_unprepare(qcom->clks[i]);
-@@ -491,9 +504,12 @@ static int dwc3_qcom_resume(struct dwc3_qcom *qcom, bool wakeup)
- 	if (ret)
- 		dev_warn(qcom->dev, "failed to enable interconnect: %d\n", ret);
- 
--	/* Clear existing events from PHY related to L2 in/out */
--	dwc3_qcom_setbits(qcom->qscratch_base, PWR_EVNT_IRQ_STAT_REG,
--			  PWR_EVNT_LPM_IN_L2_MASK | PWR_EVNT_LPM_OUT_L2_MASK);
-+	for (i = 0; i < qcom->num_ports; i++) {
-+		/* Clear existing events from PHY related to L2 in/out */
-+		dwc3_qcom_setbits(qcom->qscratch_base,
-+				  pwr_evnt_irq_stat_reg_offset[i],
-+				  PWR_EVNT_LPM_IN_L2_MASK | PWR_EVNT_LPM_OUT_L2_MASK);
-+	}
- 
- 	qcom->is_suspended = false;
- 
--- 
-2.34.1
+Understood the issue. But I feel it will be a bit overburden for the update=
+()
+to copy/paste these for every call. Let me explore more on the hardware and
+come back with a better approach.
+
+Thanks for the comments.
+
+Regards,
+Akhil
 
 
