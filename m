@@ -1,109 +1,147 @@
-Return-Path: <devicetree+bounces-39188-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-39189-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 967B284BACC
-	for <lists+devicetree@lfdr.de>; Tue,  6 Feb 2024 17:24:14 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id B3A5384BAF7
+	for <lists+devicetree@lfdr.de>; Tue,  6 Feb 2024 17:32:42 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id C83AAB2908D
-	for <lists+devicetree@lfdr.de>; Tue,  6 Feb 2024 16:23:20 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 6243E1F25260
+	for <lists+devicetree@lfdr.de>; Tue,  6 Feb 2024 16:32:42 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A8FB81350F6;
-	Tue,  6 Feb 2024 16:22:44 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 26E441362;
+	Tue,  6 Feb 2024 16:32:36 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="MrodTBgO"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="InhSnCUv"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 742EB1350EB;
-	Tue,  6 Feb 2024 16:22:44 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id ECBDF1109;
+	Tue,  6 Feb 2024 16:32:35 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1707236564; cv=none; b=i3GJgsLuxgBCv9lFmosFZn+QVPXgufhsxK45PoVJmZFwYQFeRtYFv27s2o+Kg5KfayQ4d8wR90tE38TkR4gJQfdBxP2WDKm1cjVCtrGWNl8C9EAZkZFHeUenaZ9T5J14jFYLnWQPwrJfos/UzsO+PDcmk37G/2AQaYyuAzdK2rg=
+	t=1707237156; cv=none; b=tkpnxRTQoY7mw9XSfDyx7px6Idf5qIMcAmcQhB/2SeWi9TmztC1AyltVae3I/bEJon5lFGoucn5ikUCaUqrUzCFi7ge5wAG9RMZVRYTraKVDxItwODO5gjl8lkXEWpyU7xP6Dj8cS4u7s9U2JUzz8ZqgeUEw0rp/oEAphzXIZjU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1707236564; c=relaxed/simple;
-	bh=KJ0tC6AYLto0c9nvm5TeupoYIt+wLpWcfBirBcMc89E=;
+	s=arc-20240116; t=1707237156; c=relaxed/simple;
+	bh=VUVf9m+WpTmCOVnNMaOwkUB5XVPEoBw58bzOPnIkiW0=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=ddhh384g7TiYRaiIcKvxwMM96f8QWXXCJ+vFhXKU91gyLnq6dMAvnNjv1GGW22T/zH1Ys2t0dzJgkECCBlsxwqyhqIqZ1m8rv4jtP982MJnUXVLavrVjPdKsjFkCooXBqE9XTy2g5NGMdA/4Rxved1ZfaROR2PseOk/cwxbPxbI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=MrodTBgO; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 3F306C433A6;
-	Tue,  6 Feb 2024 16:22:42 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=fQJ8kfgVezwgFbcRjH7G0kN3DOfhoo2ZyVZIC/K8VdjtiXjH25zC78fSGYjDq36nRJi3nMxXcWwtdCVKSfqjLFMckcfDUft+nFUk15MVAweTJuD3hkxtdyQt5weY/9OF1NSR+ds65jKd9gb63u7+bTH980j3BypVCuMvpoY1CdE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=InhSnCUv; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 990B6C433C7;
+	Tue,  6 Feb 2024 16:32:31 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1707236564;
-	bh=KJ0tC6AYLto0c9nvm5TeupoYIt+wLpWcfBirBcMc89E=;
+	s=k20201202; t=1707237155;
+	bh=VUVf9m+WpTmCOVnNMaOwkUB5XVPEoBw58bzOPnIkiW0=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=MrodTBgO7BcAPmmQrUC7NLTnQFj5LXXjbOnIjbdn8KM6fym7v73kzrkqETfdxg5Y2
-	 j3VRvnb+iBCYD4n6UGPGrz4IIWc8tAgx9rEGUyd6bvBy0MgsjyGMepp2ZPaA3xnaWj
-	 AOnRTrwwppYhRX2QI7GHyM4BWVijkQx5as6smAGtGpLEcp/YjzbN6b5wd0RbVDdo9M
-	 1YBHPxSGhX5T/hB4ycpcIol1dLQAiiCfbhhBWJqwhqyBySOtV32Is/7z2yKBBpsAZp
-	 LDPaKiBpTsIGJxvmd9iPw1dsbvvst+lpQgGnZBp5yDK1tSiriITF3gY8McIltkOBP2
-	 GCzS5sRFwE3Ng==
-Date: Tue, 6 Feb 2024 16:22:40 +0000
-From: Mark Brown <broonie@kernel.org>
-To: Javier Carrasco <javier.carrasco@wolfvision.net>
-Cc: Matthias Kaehlcke <mka@chromium.org>,
-	Liam Girdwood <lgirdwood@gmail.com>,
+	b=InhSnCUvkTocP2EuFSB8wXe5XoRhXPnCJWLvJPtGmNFYnhfkx32p1VY+NDXJ/tz8v
+	 v9Q/JvOgJVcOMYV1WkQSjPAbmmSq5NvATxL7yR36wc8WO6E2X7yZqzAGJpTK2wQXst
+	 YwKKx9TCqpOOdUrCwO09ZwE/Pt1+rDpIGNvoym7BwL5eMXcQZKiTtppWeP4Jp01aNj
+	 cC5uQae8LpnnTWEd/k2cd1423ghlMtPlzfpJYKhR6wu/HSUtGXdIN2II8O7rAq+Him
+	 51ou/AWe0CPyNY4sBlqdOWVGtbGeeWK5s7/F2qW54rKvcnYQJsgy5EyftJoqCc86AQ
+	 xL2yy5ISBD7JQ==
+Date: Tue, 6 Feb 2024 16:32:29 +0000
+From: Conor Dooley <conor@kernel.org>
+To: Christian Marangi <ansuelsmth@gmail.com>
+Cc: "David S. Miller" <davem@davemloft.net>,
+	Eric Dumazet <edumazet@google.com>,
+	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
 	Rob Herring <robh+dt@kernel.org>,
 	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
 	Conor Dooley <conor+dt@kernel.org>,
-	Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-	linux-sound@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org, linux-usb@vger.kernel.org
-Subject: Re: [PATCH v3 6/7] ASoC: dt-bindings: xmos,xvf3500: add XMOS XVF3500
- voice processor
-Message-ID: <ZcJc0JVr0nOGYK0B@finisterre.sirena.org.uk>
-References: <20240206-onboard_xvf3500-v3-0-f85b04116688@wolfvision.net>
- <20240206-onboard_xvf3500-v3-6-f85b04116688@wolfvision.net>
- <ZcJDFi+iIQOWzgYw@finisterre.sirena.org.uk>
- <7b472cb2-6658-446a-ae47-411d08798cca@wolfvision.net>
- <ZcJOrvmbukDubcuM@google.com>
- <42106e0c-109c-4ba2-a703-f95df92db5e3@wolfvision.net>
+	Bjorn Andersson <andersson@kernel.org>,
+	Konrad Dybcio <konrad.dybcio@linaro.org>,
+	Andrew Lunn <andrew@lunn.ch>,
+	Heiner Kallweit <hkallweit1@gmail.com>,
+	Russell King <linux@armlinux.org.uk>,
+	Florian Fainelli <florian.fainelli@broadcom.com>,
+	Broadcom internal kernel review list <bcm-kernel-feedback-list@broadcom.com>,
+	Robert Marko <robert.marko@sartura.hr>, netdev@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	linux-arm-msm@vger.kernel.org
+Subject: Re: [net-next PATCH v6 05/10] dt-bindings: net: Document Qcom
+ QCA807x PHY package
+Message-ID: <20240206-correct-viscous-1f8c163f4d0c@spud>
+References: <20240205164851.1351-1-ansuelsmth@gmail.com>
+ <20240205164851.1351-6-ansuelsmth@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="5oDTt8oCWPvri2Kt"
+Content-Type: multipart/signed; micalg=pgp-sha256;
+	protocol="application/pgp-signature"; boundary="a/vFkjiZ+/oGlKeY"
 Content-Disposition: inline
-In-Reply-To: <42106e0c-109c-4ba2-a703-f95df92db5e3@wolfvision.net>
-X-Cookie: You might have mail.
+In-Reply-To: <20240205164851.1351-6-ansuelsmth@gmail.com>
 
 
---5oDTt8oCWPvri2Kt
+--a/vFkjiZ+/oGlKeY
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-On Tue, Feb 06, 2024 at 04:35:54PM +0100, Javier Carrasco wrote:
+Hey Christian,
 
-> I took a look at its datasheet and there is no vdd2 as such, so I think
-> we are in a similar situation here. Actually that device requires five
-> supplies and they have been grouped into vdd and vdd2 according to their
-> voltage level.
+On Mon, Feb 05, 2024 at 05:48:37PM +0100, Christian Marangi wrote:
+> Document Qcom QCA807x PHY package.
+>=20
+> Qualcomm QCA807X Ethernet PHY is PHY package of 2 or 5
+> IEEE 802.3 clause 22 compliant 10BASE-Te, 100BASE-TX and
+> 1000BASE-T PHY-s.
+>=20
+> Document the required property to make the PHY package correctly
+> configure and work.
+>=20
+> Signed-off-by: Christian Marangi <ansuelsmth@gmail.com>
 
-That binding is just broken then and should be updated to reflect the
-reality of the hardware.  The current thing just won't work if any of
-those supplies come from different regulators.  It's really hard to
-understand how bindings like this get written :/
+I think this looks pretty decent, some minor comments.
 
---5oDTt8oCWPvri2Kt
+> +  qcom,package-mode:
+> +    description: |
+> +      PHY package can be configured in 3 mode following this table:
+> +
+> +                    First Serdes mode       Second Serdes mode
+> +      Option 1      PSGMII for copper       Disabled
+> +                    ports 0-4
+> +      Option 2      PSGMII for copper       1000BASE-X / 100BASE-FX
+> +                    ports 0-4
+> +      Option 3      QSGMII for copper       SGMII for
+> +                    ports 0-3               copper port 4
+> +
+> +      PSGMII mode (option 1 or 2) is configured dynamically by the driver
+
+I'd drop mention of the driver here, with s/by the driver//.
+
+> +      based on the presence of a connected SFP device.
+> +    $ref: /schemas/types.yaml#/definitions/string
+> +    enum:
+> +      - qsgmii
+> +      - psgmii
+> +    default: psgmii
+> +
+> +  qcom,tx-driver-strength-milliwatt:
+
+Is this a typo? Should not it be "drive-strength"? There's 39 mentions
+in tree of "driver-strength" and 3500 for "drive-strength".
+
+Otherwise I think the review comments have been resolved:
+Reviewed-by: Conor Dooley <conor.dooley@microchip.com>
+
+Cheers,
+Conor.
+
+--a/vFkjiZ+/oGlKeY
 Content-Type: application/pgp-signature; name="signature.asc"
 
 -----BEGIN PGP SIGNATURE-----
 
-iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAmXCXM8ACgkQJNaLcl1U
-h9CEkAf+O+edtJoQQbKZQMUgn6R7Jnmv8S64Lw5F7AsjcZzhjs6xeOZSl3Jgkl6l
-9+zZSQIe1jle3MYvVMQUP14S61wnXGV6oMS7N1f6Xxx//3msJ/ZUCNS3WzY6t+AQ
-Erxn2Au8obDlgJLqEEDgIYYuuZjqGr2SDlywLeiGXXWu/MOdoadYWDhfsk3HZcDY
-AjzfJ/zYMJIQR2PhZEVmzfSiEWLoQqYgn8R/7P/OHMhy+p1g7kRvr78TzzXr229Q
-b41WMdQ9BH9kX32VvkRc/I6/HYbvLjYRcAtDQF1CjQoKVCj3e/A+dzSjwVyhTzee
-QuijC6NAilFuC42FgnFQzvHVNSJiiQ==
-=kQmE
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZcJfHQAKCRB4tDGHoIJi
+0tXdAQCygPRitHtARrZJDmyO9gAZQRI5ZN6riGQM9vasnNvVqwD/YZY1UhnCp8RP
+gpI63/IURIEemQZndCY9SfLKbTrt9gA=
+=2+Jh
 -----END PGP SIGNATURE-----
 
---5oDTt8oCWPvri2Kt--
+--a/vFkjiZ+/oGlKeY--
 
