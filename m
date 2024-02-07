@@ -1,55 +1,48 @@
-Return-Path: <devicetree+bounces-39436-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-39437-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 87CE284CAC8
-	for <lists+devicetree@lfdr.de>; Wed,  7 Feb 2024 13:39:49 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id C6CC184CAD0
+	for <lists+devicetree@lfdr.de>; Wed,  7 Feb 2024 13:42:26 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 8B43DB2193B
-	for <lists+devicetree@lfdr.de>; Wed,  7 Feb 2024 12:39:46 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 7C152286AE5
+	for <lists+devicetree@lfdr.de>; Wed,  7 Feb 2024 12:42:25 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 58ACA76037;
-	Wed,  7 Feb 2024 12:39:41 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7432576032;
+	Wed,  7 Feb 2024 12:42:21 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b="S7oX9vLt"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="bNePkl8U"
 X-Original-To: devicetree@vger.kernel.org
-Received: from madrid.collaboradmins.com (madrid.collaboradmins.com [46.235.227.194])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9F49B76032;
-	Wed,  7 Feb 2024 12:39:39 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=46.235.227.194
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4B6915A0FE;
+	Wed,  7 Feb 2024 12:42:21 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1707309581; cv=none; b=lgqd+C8QRKvx2SzQuZ39Pj6KXVB5X4/5bpCAFpiJAuQ5WoDeB7mgcvYGHntcxTbEWg6XhR5x9Nc8/Tr+0ddmxoSVujnTeawdS5knaMZpDRxaUxZrI/bJBh8PFIfizvYiEqrDqewTD53YPpNTlTLqqVljpWo/1x738BAuBTeXb7U=
+	t=1707309741; cv=none; b=twU3X0NIVz89Liw2q4oWyT5X97opfs84PDmMSznD8H17axQmODsUoLclDO2EfxGzuAMVzWWfUz0EwjbKuF+QYHULrLVfXsmeMIdRHAGXNk3I2KbSJYQnECZaRxxGasbE4MWKSzaWDdy03T6uDjWmxky2iQux2szAOGKF3mjGb2E=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1707309581; c=relaxed/simple;
-	bh=JoE5es3b4RgJURPldxFLIyGMKvTDB86VVyi7w8h5Z4w=;
+	s=arc-20240116; t=1707309741; c=relaxed/simple;
+	bh=NC/M4lBc3klYSGIi2NaiARJesFYei1g1w2rS9yFOXuk=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=jekHtozKUJD63XRnNKF7LlT2iuK2yKVmIANj4Xzy/PjpRLVWGECLy+eVQb0mPVi9qxvXYLbDJRNhDuoX545MK2yE+iQoSZiBCR3FiQ9YNizVwqt6NTvh0iliaH+jIJrWf1TVSiJP3KktmlREShTiC+AIQrfE1HQYzUvxuFDLWaw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b=S7oX9vLt; arc=none smtp.client-ip=46.235.227.194
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=collabora.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-	s=mail; t=1707309577;
-	bh=JoE5es3b4RgJURPldxFLIyGMKvTDB86VVyi7w8h5Z4w=;
+	 In-Reply-To:Content-Type; b=aN5k004L5lE0ske5knrOm5p72zInC3SDI94yg/1pvI6ZoWakQqhOWdW2IQPKnHNEAf9LTj2S8322unhfs3o2ffs1/voOrlXoRxWmdSijW4BENyyV1/tuB3t5Mbqr4vJ2TBcD3ng4OUX+34im/UZysyGeB3/qJXrmUQURDG9PVuY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=bNePkl8U; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id BDC6AC433C7;
+	Wed,  7 Feb 2024 12:42:17 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1707309740;
+	bh=NC/M4lBc3klYSGIi2NaiARJesFYei1g1w2rS9yFOXuk=;
 	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=S7oX9vLtw7KCJwVjftvxhJsO3DqyytyCAOHFvUvp5D/wyL5B6j8/sHOFpMKCucwO5
-	 Ukrp4Zy6Zx2cbLquYkwoI1mSa/nuELGlAjebl1lam8IR3Oa93gJYn1ZHh1gMsT516u
-	 CmBtZxiCXPa/LqAoPjmRhqO8i1LT9l+InGpN4JrBKIdJ6rrO5ctCxFvaHmmHICppfO
-	 RMk7jNdltqF5QjpOohPnxoHyMdBJyo/LYXlYRxmGzj1QuYVBhZWGU0XdqWXi+f58O6
-	 mziBsmvdJdFymrRXG1/52+r8rqKFU82aRCBS/D8VU7qchRCfn2MIhv6SR2qOU1jZL7
-	 RYsR8cdECM9OQ==
-Received: from [100.115.223.179] (cola.collaboradmins.com [195.201.22.229])
-	(using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
-	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
-	(No client certificate requested)
-	(Authenticated sender: cristicc)
-	by madrid.collaboradmins.com (Postfix) with ESMTPSA id AD19B37809D0;
-	Wed,  7 Feb 2024 12:39:36 +0000 (UTC)
-Message-ID: <374f5069-9f3d-4ad2-a6da-b38a143a0c99@collabora.com>
-Date: Wed, 7 Feb 2024 14:39:36 +0200
+	b=bNePkl8UG2rG5iD3165+0CEWxyn1b5Ixd1hZvgdAotnzJWqnwPvts0rabBRjFi//B
+	 KBA8ULajSIp1mKJayMH48Hs2O27/8g2S2wOtlj9IEjwk7rFVzL37r4Iml6jcqHmKAG
+	 NGZTH2QUasjHMV0pdUu/vLBUiEywBcuAvOh+8GmycrfnoVwtzXllwnexdN7JOcPQgf
+	 zO8MmNdf8s9TKCREJmNrqokQwd8B+7b4qUFgatkqeQYw/5IseVm3eedCvaTUBmfwRD
+	 mvNay/xdB/H7sfdRFB2Zwol6WshPO9fqWvuOxDRUa9ujd93KDhGXbY2wGjKAvtSncM
+	 QAiKFxIGyCCww==
+Message-ID: <db95dba7-c749-48d3-bbba-01a45dfb9815@kernel.org>
+Date: Wed, 7 Feb 2024 14:42:14 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -57,99 +50,256 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 2/2] phy: rockchip: Add Samsung HDMI/eDP Combo PHY
- driver
+Subject: Re: [PATCH v4 3/3] arm64: dts: ti: k3-am62p: add the USB sub-system
 Content-Language: en-US
-To: Vinod Koul <vkoul@kernel.org>
-Cc: Rob Herring <robh+dt@kernel.org>,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Conor Dooley <conor+dt@kernel.org>, Heiko Stuebner <heiko@sntech.de>,
- Johan Jonker <jbx6244@gmail.com>,
- Sebastian Reichel <sebastian.reichel@collabora.com>,
- Sascha Hauer <s.hauer@pengutronix.de>, Andy Yan <andy.yan@rock-chips.com>,
- Kishon Vijay Abraham I <kishon@kernel.org>,
- Philipp Zabel <p.zabel@pengutronix.de>, Algea Cao
- <algea.cao@rock-chips.com>, devicetree@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, linux-rockchip@lists.infradead.org,
- linux-kernel@vger.kernel.org, linux-phy@lists.infradead.org,
- kernel@collabora.com
-References: <20240205-phy-hdptx-v2-0-a7150814c047@collabora.com>
- <20240205-phy-hdptx-v2-2-a7150814c047@collabora.com>
- <ZcNYlFgT0rXiCGbo@matsya>
-From: Cristian Ciocaltea <cristian.ciocaltea@collabora.com>
-In-Reply-To: <ZcNYlFgT0rXiCGbo@matsya>
+To: Andrew Davis <afd@ti.com>, nm@ti.com, vigneshr@ti.com
+Cc: kristo@kernel.org, robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
+ conor+dt@kernel.org, srk@ti.com, r-gunasekaran@ti.com, b-liu@ti.com,
+ linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org
+References: <20240205135908.54656-1-rogerq@kernel.org>
+ <20240205135908.54656-4-rogerq@kernel.org>
+ <45a0ed98-8dd2-4c5b-8e89-40c70e3fe831@ti.com>
+ <77f7b127-e609-45e3-90aa-67aa7838ce6b@kernel.org>
+ <8f9e8ec5-fc78-4b51-b36f-3ba06768ce62@ti.com>
+From: Roger Quadros <rogerq@kernel.org>
+In-Reply-To: <8f9e8ec5-fc78-4b51-b36f-3ba06768ce62@ti.com>
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
 
-On 2/7/24 12:16, Vinod Koul wrote:
-> On 05-02-24, 13:24, Cristian Ciocaltea wrote:
->> Add driver for the HDMI/eDP TX Combo PHY found on Rockchip RK3588 SoC.
 
-[...]
 
->> +static const struct reg_sequence hdtpx_common_cmn_init_seq[] = {
->> +	REG_SEQ0(CMN_REG(0009), 0x0c),
->> +	REG_SEQ0(CMN_REG(000A), 0x83),
->> +	REG_SEQ0(CMN_REG(000B), 0x06),
->> +	REG_SEQ0(CMN_REG(000C), 0x20),
->> +	REG_SEQ0(CMN_REG(000D), 0xb8),
->> +	REG_SEQ0(CMN_REG(000E), 0x0f),
->> +	REG_SEQ0(CMN_REG(000F), 0x0f),
+On 06/02/2024 19:34, Andrew Davis wrote:
+> On 2/6/24 6:30 AM, Roger Quadros wrote:
+>>
+>>
+>> On 05/02/2024 19:34, Andrew Davis wrote:
+>>> On 2/5/24 7:59 AM, Roger Quadros wrote:
+>>>> There are two USB instances available on the am62p5 starter kit. Include
+>>>> and enable them for use on the board.
+>>>>
+>>>> Signed-off-by: Vignesh Raghavendra <vigneshr@ti.com>
+>>>> Signed-off-by: Roger Quadros <rogerq@kernel.org>
+>>>> ---
+>>>>
+>>>> Notes:
+>>>>       Changelog:
+>>>>            v4 - no change
+>>>>            v3 - no change
+>>>>       https://lore.kernel.org/all/20240201120332.4811-4-rogerq@kernel.org/
+>>>>            v2:
+>>>>       - added USB PHY CTRL node changes here
+>>>>       - changed USB wrapper node names to usb@
+>>>>       - changed Type-C chip node name to usb-power-control@
+>>>>
+>>>>    arch/arm64/boot/dts/ti/k3-am62p-main.dtsi   | 46 ++++++++++++++
+>>>>    arch/arm64/boot/dts/ti/k3-am62p-wakeup.dtsi | 10 +++
+>>>>    arch/arm64/boot/dts/ti/k3-am62p5-sk.dts     | 67 +++++++++++++++++++++
+>>>>    3 files changed, 123 insertions(+)
+>>>>
+>>>> diff --git a/arch/arm64/boot/dts/ti/k3-am62p-main.dtsi b/arch/arm64/boot/dts/ti/k3-am62p-main.dtsi
+>>>> index 4c51bae06b57..17d28390d587 100644
+>>>> --- a/arch/arm64/boot/dts/ti/k3-am62p-main.dtsi
+>>>> +++ b/arch/arm64/boot/dts/ti/k3-am62p-main.dtsi
+>>>> @@ -560,6 +560,52 @@ sdhci2: mmc@fa20000 {
+>>>>            status = "disabled";
+>>>>        };
+>>>>    +    usbss0: usb@f900000 {
+>>>> +        compatible = "ti,am62-usb";
+>>>> +        reg = <0x00 0x0f900000 0x00 0x800>;
+>>>> +        clocks = <&k3_clks 161 3>;
+>>>> +        clock-names = "ref";
+>>>> +        ti,syscon-phy-pll-refclk = <&usb0_phy_ctrl 0x0>;
+>>>> +        #address-cells = <2>;
+>>>> +        #size-cells = <2>;
+>>>> +        power-domains = <&k3_pds 178 TI_SCI_PD_EXCLUSIVE>;
+>>>> +        ranges;
+>>>> +        status = "disabled";
+>>>> +
+>>>> +        usb0: usb@31000000 {
+>>>> +            compatible = "snps,dwc3";
+>>>> +            reg = <0x00 0x31000000 0x00 0x50000>;
+>>>> +            interrupts = <GIC_SPI 188 IRQ_TYPE_LEVEL_HIGH>, /* irq.0 */
+>>>> +            <GIC_SPI 188 IRQ_TYPE_LEVEL_HIGH>; /* irq.0 */
+>>>> +            interrupt-names = "host", "peripheral";
+>>>> +            maximum-speed = "high-speed";
+>>>> +            dr_mode = "otg";
+>>>> +        };
+>>>> +    };
+>>>> +
+>>>> +    usbss1: usb@f910000 {
+>>>> +        compatible = "ti,am62-usb";
+>>>> +        reg = <0x00 0x0f910000 0x00 0x800>;
+>>>> +        clocks = <&k3_clks 162 3>;
+>>>> +        clock-names = "ref";
+>>>> +        ti,syscon-phy-pll-refclk = <&usb1_phy_ctrl 0x0>;
+>>>> +        #address-cells = <2>;
+>>>> +        #size-cells = <2>;
+>>>> +        power-domains = <&k3_pds 179 TI_SCI_PD_EXCLUSIVE>;
+>>>> +        ranges;
+>>>> +        status = "disabled";
+>>>> +
+>>>> +        usb1: usb@31100000 {
+>>>> +            compatible = "snps,dwc3";
+>>>> +            reg = <0x00 0x31100000 0x00 0x50000>;
+>>>> +            interrupts = <GIC_SPI 226 IRQ_TYPE_LEVEL_HIGH>, /* irq.0 */
+>>>> +            <GIC_SPI 226 IRQ_TYPE_LEVEL_HIGH>; /* irq.0 */
+>>>> +            interrupt-names = "host", "peripheral";
+>>>> +            maximum-speed = "high-speed";
+>>>> +            dr_mode = "otg";
+>>>> +        };
+>>>> +    };
+>>>> +
+>>>>        fss: bus@fc00000 {
+>>>>            compatible = "simple-bus";
+>>>>            reg = <0x00 0x0fc00000 0x00 0x70000>;
+>>>> diff --git a/arch/arm64/boot/dts/ti/k3-am62p-wakeup.dtsi b/arch/arm64/boot/dts/ti/k3-am62p-wakeup.dtsi
+>>>> index 19f42b39394e..00dd38b02a52 100644
+>>>> --- a/arch/arm64/boot/dts/ti/k3-am62p-wakeup.dtsi
+>>>> +++ b/arch/arm64/boot/dts/ti/k3-am62p-wakeup.dtsi
+>>>> @@ -18,6 +18,16 @@ chipid: chipid@14 {
+>>>>                reg = <0x14 0x4>;
+>>>>                bootph-all;
+>>>>            };
+>>>> +
+>>>> +        usb0_phy_ctrl: syscon@4008 {
+>>>> +            compatible = "ti,am62-usb-phy-ctrl", "syscon";
+>>>> +            reg = <0x4008 0x4>;
+>>>> +        };
+>>>> +
+>>>> +        usb1_phy_ctrl: syscon@4018 {
+>>>> +            compatible = "ti,am62-usb-phy-ctrl", "syscon";
+>>>> +            reg = <0x4018 0x4>;
+>>>> +        };
+>>>>        };
+>>>>          wkup_uart0: serial@2b300000 {
+>>>> diff --git a/arch/arm64/boot/dts/ti/k3-am62p5-sk.dts b/arch/arm64/boot/dts/ti/k3-am62p5-sk.dts
+>>>> index 1773c05f752c..80be56c0a4e0 100644
+>>>> --- a/arch/arm64/boot/dts/ti/k3-am62p5-sk.dts
+>>>> +++ b/arch/arm64/boot/dts/ti/k3-am62p5-sk.dts
+>>>> @@ -27,6 +27,8 @@ aliases {
+>>>>            spi0 = &ospi0;
+>>>>            ethernet0 = &cpsw_port1;
+>>>>            ethernet1 = &cpsw_port2;
+>>>> +        usb0 = &usb0;
+>>>> +        usb1 = &usb1;
+>>>>        };
+>>>>          chosen {
+>>>> @@ -297,6 +299,12 @@ AM62PX_IOPAD(0x01b0, PIN_OUTPUT, 2) /* (G20) MCASP0_ACLKR.UART1_TXD */
+>>>>            bootph-all;
+>>>>        };
+>>>>    +    main_usb1_pins_default: main-usb1-default-pins {
+>>>> +        pinctrl-single,pins = <
+>>>> +            AM62PX_IOPAD(0x0258, PIN_INPUT, 0) /* (G21) USB1_DRVVBUS */
+>>>> +        >;
+>>>> +    };
+>>>> +
+>>>>        main_wlirq_pins_default: main-wlirq-default-pins {
+>>>>            pinctrl-single,pins = <
+>>>>                AM62PX_IOPAD(0x0128, PIN_INPUT, 7) /* (K25) MMC2_SDWP.GPIO0_72 */
+>>>> @@ -340,6 +348,36 @@ AM62PX_IOPAD(0x0124, PIN_INPUT, 7) /* (J25) MMC2_SDCD.GPIO0_71 */
+>>>>        };
+>>>>    };
+>>>>    +&main_i2c0 {
+>>>> +    status = "okay";
+>>>> +    pinctrl-names = "default";
+>>>> +    pinctrl-0 = <&main_i2c0_pins_default>;
+>>>> +    clock-frequency = <400000>;
+>>>> +
+>>>> +    typec_pd0: usb-power-controller@3f {
+>>>> +        compatible = "ti,tps6598x";
+>>>> +        reg = <0x3f>;
+>>>> +
+>>>> +        connector {
+>>>> +            compatible = "usb-c-connector";
+>>>> +            label = "USB-C";
+>>>> +            self-powered;
+>>>> +            data-role = "dual";
+>>>> +            power-role = "sink";
+>>>> +            ports {
+>>>> +                #address-cells = <1>;
+>>>> +                #size-cells = <0>;
+>>>> +                port@0 {
+>>>> +                    reg = <0>;
+>>>> +                    usb_con_hs: endpoint {
+>>>> +                        remote-endpoint = <&usb0_hs_ep>;
+>>>> +                    };
+>>>> +                };
+>>>> +            };
+>>>> +        };
+>>>> +    };
+>>>> +};
+>>>> +
+>>>>    &main_i2c1 {
+>>>>        status = "okay";
+>>>>        pinctrl-names = "default";
+>>>> @@ -460,6 +498,35 @@ cpsw3g_phy1: ethernet-phy@1 {
+>>>>        };
+>>>>    };
+>>>>    +&usbss0 {
+>>>> +    status = "okay";
+>>>> +    ti,vbus-divider;
+>>>> +};
+>>>> +
+>>>> +&usbss1 {
+>>>> +    status = "okay";
+>>>> +    ti,vbus-divider;
+>>>> +};
+>>>> +
+>>>> +&usb0 {
+>>>> +    usb-role-switch;
+>>>> +    #address-cells = <1>;
+>>>> +    #size-cells = <0>;
+>>>> +
+>>>> +    port@0 {
+>>>> +        reg = <0>;
+>>>> +        usb0_hs_ep: endpoint {
+>>>> +            remote-endpoint = <&usb_con_hs>;
+>>>> +        };
+>>>> +    };
+>>>> +};
+>>>> +
+>>>> +&usb1 {
+>>>> +    dr_mode = "host";
+>>>> +    pinctrl-names = "default";
+>>>> +    pinctrl-0 = <&main_usb1_pins_default>;
+>>>
+>>> I'm not super familiar with USB, but I see this pinmux for the
+>>> "DRVVBUS" pin is usually added the the parent USB subsystem node (usbss).
+>>> Does this pin belong to the subsystem or the specific USB instance?
+>>>
+>> There is only 1 USB instance per USB sub-system.
+>> The "DRVVBUS" pin is a control signal to enable the VBUS regulator
+>> while in host mode.
+>>
+>> Just probing the usbss1 driver has no use of "DRVVBUS".
+>> I think usb1 is the right place as it is used there.
+>>
 > 
-> Any reason for these to be mixed case, lets have lower case pls
-> everywhere
+> Seems reasonable, so if there ever was more than 1 instance
+> per sub-system, each instance would need its own pin?
 
-These were initially part of the register name defines, as specified in
-the RK3588 Technical Reference Manual, e.g. HDPTXPHY_CMN_REG000A.  But
-consistency is more important, I assume, hence I will do a lower case
-conversion.
+Yes.
 
-[...]
-
->> +static int hdptx_write(struct rockchip_hdptx_phy *hdptx, u32 reg, u8 val)
->> +{
->> +	return regmap_write(hdptx->regmap, reg, val);
->> +}
->> +
->> +#define hdptx_multi_reg_write(hdptx, seq) \
->> +	regmap_multi_reg_write((hdptx)->regmap, seq, ARRAY_SIZE(seq))
->> +
->> +static int hdptx_update_bits(struct rockchip_hdptx_phy *hdptx, u32 reg,
->> +			     u8 mask, u8 val)
->> +{
->> +	return regmap_update_bits(hdptx->regmap, reg, mask, val);
->> +}
->> +
->> +static int hdptx_grf_write(struct rockchip_hdptx_phy *hdptx, u32 reg, u32 val)
->> +{
->> +	return regmap_write(hdptx->grf, reg, val);
->> +}
->> +
->> +static u8 hdptx_grf_read(struct rockchip_hdptx_phy *hdptx, u32 reg)
->> +{
->> +	u32 val;
->> +
->> +	regmap_read(hdptx->grf, reg, &val);
->> +
->> +	return val;
->> +}
 > 
-> why use wrappers, why not call regmap_ apis directly
-
-Agree, no real benefit, will drop them, except probably
-hdptx_multi_reg_write() for the extra savings.
-
-So I'd keep using that one if there's no strong reason against.
-
-[...]
-
->> +	hdptx_write(hdptx, CMN_REG(0059), (cfg->pms_pdiv << 4) | cfg->pms_refdiv);
->> +	hdptx_write(hdptx, CMN_REG(005A), cfg->pms_sdiv << 4);
+> We should move these pinctrl to the instance node in the other
+> dts files at some point then.
 > 
-> small case here as well pls
+> Reviewed-by: Andrew Davis <afd@ti.com>
 
-Yes, will make sure to handle them all.
+Thanks!
 
-Thanks for the review,
-Cristian
+> 
+>>> Andrew
+>>>
+>>>> +};
+>>>> +
+>>>>    &mcasp1 {
+>>>>        status = "okay";
+>>>>        #sound-dai-cells = <0>;
+>>
+
+-- 
+cheers,
+-roger
 
