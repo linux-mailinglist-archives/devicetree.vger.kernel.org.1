@@ -1,129 +1,128 @@
-Return-Path: <devicetree+bounces-39538-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-39542-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id A1DBF84D604
-	for <lists+devicetree@lfdr.de>; Wed,  7 Feb 2024 23:47:04 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 9D96284D613
+	for <lists+devicetree@lfdr.de>; Wed,  7 Feb 2024 23:55:58 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id EB1EB283DC3
-	for <lists+devicetree@lfdr.de>; Wed,  7 Feb 2024 22:47:02 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 24B0E287DFE
+	for <lists+devicetree@lfdr.de>; Wed,  7 Feb 2024 22:55:57 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9A12F1CF8F;
-	Wed,  7 Feb 2024 22:46:51 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 80A452032D;
+	Wed,  7 Feb 2024 22:55:38 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="fxX+C25m"
+	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="DLyh20/s"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ej1-f54.google.com (mail-ej1-f54.google.com [209.85.218.54])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from fllv0015.ext.ti.com (fllv0015.ext.ti.com [198.47.19.141])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D3E271F947;
-	Wed,  7 Feb 2024 22:46:49 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.54
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C2A1E1EB42;
+	Wed,  7 Feb 2024 22:55:36 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.19.141
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1707346011; cv=none; b=btC/nANacixk6DZmQ5XnCNHi4xWvWs7/24wsgjCxUCh4BDK/zKAqJYH6vyeU1oEnKaaIQR6QBT4IPzhhz8eHzAxFp9SF+L26aNsViuCz3xi6ra3Jco8OKZSyE+01SXybHUaRd54DU2oH9yMkdHfBLdrxlXC5O5PBy86OsNMNaZk=
+	t=1707346538; cv=none; b=XN3BnkUJbjWOyt02HRb5KoIgVES4lMwiQyu0Pf+6KD1SVGb7hGgMw1plYabNWYbyMdwGhVmsVEh8ZouHRMHV71h+MRCBrGOgFnM32feqwqoE3vr+aJCotKhRNABJjTQeG6HWMiFR/agcrpd7jFZMyigAWE4FoakV/KmiBtFs7+8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1707346011; c=relaxed/simple;
-	bh=x+UHYL03txX/IiQygGKZy2oVnfJX5rWtBgj4pmbaRd8=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=bct1Gosu233gpcvmjJFZEZHQRfDEhdXjsH8z2M/gJpA7Gm2COP2Ee81RwV4j9KdKLLaxzb8DZ7HSmOYkT53FXHuyymM/X3ohMlDM5+zcflqLFG7xgCWB71sk309qrNkGGSPvwf0GQBy9kxcl7+54/TA2wwoqEwY2qtzHhEUSgCY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=fxX+C25m; arc=none smtp.client-ip=209.85.218.54
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-ej1-f54.google.com with SMTP id a640c23a62f3a-a38392b9917so159954266b.1;
-        Wed, 07 Feb 2024 14:46:49 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1707346008; x=1707950808; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=C9FdIPkRnRC8GFhXD7gXQqpwUiJyXPG9kqjvS6nLa3I=;
-        b=fxX+C25mnyIaPjiA4eK8qrUcD+GlqL/hP/WBrNZ/nANatovtEaeQ2vSGNhx1AtTulS
-         gzzh219iBoReCUn0mXInq0IcuVU4oyzOoF1wDjXqY7+6fHmXrMvpgQZDiS/YVTTWizEf
-         ydtxgvrpP7blXD6SR15HUy2HyGk+ITiYxt7VUZQoxOQbGQOhtcfWkxT4qEv6zMH9IpmC
-         v7leKcG42jCMc0KHyTok6var+1AfPR+IhM61bHr2CQlrdWlZ9d4RhJmxVqgEceHzPXW5
-         4v2OJ5AV0/xi/XriNtsvfo3GaMhAv8NwacTlc9TLAm9mrSB8DoiA3kOQC9KoJPQkjlia
-         eD1g==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1707346008; x=1707950808;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=C9FdIPkRnRC8GFhXD7gXQqpwUiJyXPG9kqjvS6nLa3I=;
-        b=DaSQIWS4O/qujv8Bgte+wkw8c2Rkq6l4mt4yU+ZzJztWAMUq7OIdKTLda7hyeDZ82J
-         ywbEcmcF0qkK6U3g91m8pvZsHJYyqm1PGZqGEtfjikHoNGUGTYf99AHkzhVfXA7zRNsZ
-         V9xjVOSRaWfOMQB8fLRsUD28LBe+8GvSkty1iZTN7NAN7evwip3Gk2adWlk2E3dcIU3E
-         36KCAL/QVTRF20Ji6W3V3fWop/t1LAiaSeuGU8ocRVxOg57wOXHWDBP2uyf6w/p05DsP
-         BEJFbbSbu19d0dKSeLhwOzcPkoYC2r7s09nc/WY44amHZMLgxEWsrImNeiF+T18rCePP
-         8yWg==
-X-Forwarded-Encrypted: i=1; AJvYcCXyXzzWTxtiyCRenjCcjlRNWffPfLrn6QAWSj4V18AES96HTswn34VYzS9v+IZMBFtnEMyX4zY4yqMdylxOpPHAYCQyIgJquxktJLapRreMtl6DDH2/YNRUlgm2UJzMrZCKTYsDPKJzzgLqhAIV1pqOAtNuXDQU824sorWzPzd9cPXFjA==
-X-Gm-Message-State: AOJu0YxWlWfgMX0AUjxQgr075Ad/RCKpmHMMU0zvOseFFDqyMWa70e2j
-	TNEaZsSbc0RnIIlV6me8rkXo0D+Zlvz7k58pp6/BZceYMcXuND4=
-X-Google-Smtp-Source: AGHT+IF0QPdMVJv15K2QOPbQPEqVG3lS1RLcmu2yTzxDvSwVgafg9vm3KWdW0FMS+sGUXy9xtRSTuQ==
-X-Received: by 2002:a17:906:4a06:b0:a36:2da9:987e with SMTP id w6-20020a1709064a0600b00a362da9987emr5411183eju.5.1707346007918;
-        Wed, 07 Feb 2024 14:46:47 -0800 (PST)
-X-Forwarded-Encrypted: i=1; AJvYcCUCQGQ62weSy2cPNUhFKLGMaBX4yA3vi+Q4FwaRc2QfdqBVHdUU2AIXB1XmA2UzNB/pxkVxxWgAn1G3mhrRmt7h+Nry5xb6oYYTpe7R1trhIuTKeLuXveDRNcmTAeEbibfmvNZMwHcdHEoc3yjSdO33WQ9RfyayLggJjzxMhdqiHQjCEA2MyogqUG2Ahytm+QLAjAV/aQGp+gbj3oiwqGhsDSc4eu1JN14EndRtcAddeVAWcfKaLjMauP0Lr6HeyovnZw0K3P8TTM8ZuLwFqyu0GstptVBvCqCHqA57kgcUpWthyTnlyicQGM6YTXOhO//mlt8xs6vadtilkpwXyRcra+9oFx11QFm0eUxQuq1rfKWyUi6LgXGTd3dK3czQc22i4tg85uodn/ui8Sr9OeALgDEPszdzgpXQHS93CfPYXH3QEEMzCY4Iw4Bw7rxCbaV21jTKfY6G0JDHMraLDFiegxZsbzvH42EVMgcgLdi+ykclr0n6aeYoWprAiSPQ5rWbkqOVbm1b+9QJIPz7xodU++g8zDD3DdmKwP0kfwX3B3aCVFS1xfBWQdZU50NszyGPo1vfT/Y9hZ8h4Md1+lLpz1AAlCyeQZypCQ==
-Received: from frutis-latitude7490.lan (public-gprs393011.centertel.pl. [37.47.166.116])
-        by smtp.googlemail.com with ESMTPSA id rs6-20020a170907036600b00a358b6242fcsm1217449ejb.114.2024.02.07.14.46.45
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 07 Feb 2024 14:46:47 -0800 (PST)
-From: =?UTF-8?q?Pawe=C5=82=20Owoc?= <frut3k7@gmail.com>
-To: Rob Herring <robh+dt@kernel.org>
-Cc: Robert Marko <robimarko@gmail.com>,
-	=?UTF-8?q?Pawe=C5=82=20Owoc?= <frut3k7@gmail.com>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Mark Brown <broonie@kernel.org>,
-	Guenter Roeck <linux@roeck-us.net>,
-	Peter Yin <peteryin.openbmc@gmail.com>,
-	Patrick Rudolph <patrick.rudolph@9elements.com>,
-	Michal Simek <michal.simek@amd.com>,
-	Marek Vasut <marex@denx.de>,
-	Luca Ceresoli <luca.ceresoli@bootlin.com>,
-	Bjorn Helgaas <bhelgaas@google.com>,
-	Lukas Wunner <lukas@wunner.de>,
-	Fabio Estevam <festevam@denx.de>,
-	Alexander Stein <alexander.stein@ew.tq-group.com>,
-	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	linux-spi@vger.kernel.org
-Subject: [PATCH v2 2/2] dt-bindings: trivial-devices: Add qca,qca4024
-Date: Wed,  7 Feb 2024 23:45:23 +0100
-Message-ID: <20240207224546.44030-2-frut3k7@gmail.com>
+	s=arc-20240116; t=1707346538; c=relaxed/simple;
+	bh=xX7JSbunBOvPlkFRAzytZEE8CRX45lbTaFkR1OIGUQQ=;
+	h=From:To:CC:Subject:Date:Message-ID:MIME-Version:Content-Type; b=VvxrXdb9DPyMASH37MqIpcouL76uOj1+6a6fb8q3iRV92Chphf+KEzhSUFHSQ1pJeKSej9aL5uIb66IWdJ5k5ACTG5jISN4w3XumfBNHfMm1r/3snXOwOSeNr6+bkKFLorVEgu4U7jKQPKuVS0lmYsnA6KdBmXIAGIjLaqWf0+Q=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=DLyh20/s; arc=none smtp.client-ip=198.47.19.141
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
+Received: from fllv0035.itg.ti.com ([10.64.41.0])
+	by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id 417MtR9h014810;
+	Wed, 7 Feb 2024 16:55:27 -0600
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+	s=ti-com-17Q1; t=1707346527;
+	bh=zOoJZOLG26Ul8soZA3DhrVj70l4+Sl0iEM4P7gItmx8=;
+	h=From:To:CC:Subject:Date;
+	b=DLyh20/sL1Oy7AzPwimy0MAAp4SL98c1hF8vLtGNYdUORwO91VlsTegIdr62ZDZkP
+	 qUzOW9yGjRAJuf4Tsc30WFO8/qTQ4yuJoKbOEZxPb+5n02aLSC9mZhDy2JRmIuW3V4
+	 ahXmUkZ4CNgmcLjM7G3XQuV9O8qqPWlfOu+Nv3Ss=
+Received: from DLEE110.ent.ti.com (dlee110.ent.ti.com [157.170.170.21])
+	by fllv0035.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 417MtRuE082333
+	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+	Wed, 7 Feb 2024 16:55:27 -0600
+Received: from DLEE102.ent.ti.com (157.170.170.32) by DLEE110.ent.ti.com
+ (157.170.170.21) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Wed, 7
+ Feb 2024 16:55:27 -0600
+Received: from lelvsmtp6.itg.ti.com (10.180.75.249) by DLEE102.ent.ti.com
+ (157.170.170.32) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
+ Frontend Transport; Wed, 7 Feb 2024 16:55:27 -0600
+Received: from judy-hp.dhcp.ti.com (judy-hp.dhcp.ti.com [128.247.81.105])
+	by lelvsmtp6.itg.ti.com (8.15.2/8.15.2) with ESMTP id 417MtQmT014027;
+	Wed, 7 Feb 2024 16:55:26 -0600
+From: Judith Mendez <jm@ti.com>
+To: Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski
+	<krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley <conor+dt@kernel.org>
+CC: Nishanth Menon <nm@ti.com>, Vignesh Raghavendra <vigneshr@ti.com>,
+        Tero
+ Kristo <kristo@kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>
+Subject: [PATCH v1 0/9] Fix MMC properties on Sitara devices
+Date: Wed, 7 Feb 2024 16:55:17 -0600
+Message-ID: <20240207225526.3953230-1-jm@ti.com>
 X-Mailer: git-send-email 2.43.0
-In-Reply-To: <20240207224546.44030-1-frut3k7@gmail.com>
-References: <ZcH9u7Vo2sFERIHJ@finisterre.sirena.org.uk>
- <20240207224546.44030-1-frut3k7@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 
-Add Qualcomm QCA4024 to trivial devices.
+This patch series aims to add or fix MMC properties:
+OTAPDLY/ITAPDLY.
 
-Signed-off-by: Paweł Owoc <frut3k7@gmail.com>
----
- Documentation/devicetree/bindings/trivial-devices.yaml | 2 ++
- 1 file changed, 2 insertions(+)
+The DLL properties ti,trm-icp and ti,driver-strength-ohm
+should also be updated since only AM64x and AM62p devices
+have a DLL to enable, so remove these properties when not
+applicable.
 
-diff --git a/Documentation/devicetree/bindings/trivial-devices.yaml b/Documentation/devicetree/bindings/trivial-devices.yaml
-index 79dcd92c4a43..c6362e981920 100644
---- a/Documentation/devicetree/bindings/trivial-devices.yaml
-+++ b/Documentation/devicetree/bindings/trivial-devices.yaml
-@@ -309,6 +309,8 @@ properties:
-           - plx,pex8648
-             # Pulsedlight LIDAR range-finding sensor
-           - pulsedlight,lidar-lite-v2
-+            # Qualcomm QCA4024 Multi-mode Bluetooth and 802.15.4 SoC
-+          - qca,qca4024
-             # Renesas HS3001 Temperature and Relative Humidity Sensors
-           - renesas,hs3001
-             # Renesas ISL29501 time-of-flight sensor
+Also add support for eMMC on AM62ax platform.
+
+This series was tested on:
+- AM62a SK
+- AM62x SK
+- AM62p SK
+- AM64x GP EVM
+- AM64x SK EVM
+
+Judith Mendez (7):
+  arm64: dts: ti: k3-am62a-main: Add sdhci2 instance
+  arm64: dts: ti: k3-am64-main: Fix ITAP/OTAP values for MMC
+  arm64: dts: ti: k3-am62p: Add ITAP/OTAP values for MMC
+  arm64: dts: ti: k3-am6*: Remove DLL properties for soft PHYs
+  arm64: dts: ti: k3-am6*: Fix ti,clkbuf-sel property in MMC nodes
+  arm64: dts: ti: k3-am6*: Fix bus-width property in MMC nodes
+  arm64: dts: ti: k3-am6*: Fix bootph-all property in MMC node
+
+Nitin Yadav (2):
+  arm64: dts: ti: k3-am62a-main: Add sdhci0 instance
+  arm64: dts: ti: k3-am62a7-sk: Enable eMMC support
+
+ arch/arm64/boot/dts/ti/k3-am62-main.dtsi      | 12 +++--
+ .../arm64/boot/dts/ti/k3-am625-beagleplay.dts |  4 --
+ arch/arm64/boot/dts/ti/k3-am62a-main.dtsi     | 45 ++++++++++++++++++-
+ arch/arm64/boot/dts/ti/k3-am62a7-sk.dts       | 27 ++++++++++-
+ arch/arm64/boot/dts/ti/k3-am62p-main.dtsi     | 44 ++++++++++++++++--
+ arch/arm64/boot/dts/ti/k3-am62p5-sk.dts       |  5 +--
+ .../arm64/boot/dts/ti/k3-am62x-sk-common.dtsi |  2 -
+ arch/arm64/boot/dts/ti/k3-am64-main.dtsi      | 15 +++++--
+ arch/arm64/boot/dts/ti/k3-am642-evm.dts       |  4 +-
+ arch/arm64/boot/dts/ti/k3-am642-sk.dts        |  2 -
+ 10 files changed, 130 insertions(+), 30 deletions(-)
+
+
+base-commit: 1e6bbc5185bcd113c8d2f7aa0a02f588a6bdbe5d
 -- 
 2.43.0
 
