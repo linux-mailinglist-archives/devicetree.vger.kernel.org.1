@@ -1,115 +1,134 @@
-Return-Path: <devicetree+bounces-39487-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-39488-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id D673C84CED3
-	for <lists+devicetree@lfdr.de>; Wed,  7 Feb 2024 17:26:18 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id E9C0084CED5
+	for <lists+devicetree@lfdr.de>; Wed,  7 Feb 2024 17:26:35 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 150DB1C25019
-	for <lists+devicetree@lfdr.de>; Wed,  7 Feb 2024 16:26:18 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 26D691C26138
+	for <lists+devicetree@lfdr.de>; Wed,  7 Feb 2024 16:26:35 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3FC26811F0;
-	Wed,  7 Feb 2024 16:26:17 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 889FC81207;
+	Wed,  7 Feb 2024 16:26:30 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b="1GZlapcC"
+	dkim=pass (2048-bit key) header.d=bgdev-pl.20230601.gappssmtp.com header.i=@bgdev-pl.20230601.gappssmtp.com header.b="tEn9GZR2"
 X-Original-To: devicetree@vger.kernel.org
-Received: from vps0.lunn.ch (vps0.lunn.ch [156.67.10.101])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-vs1-f47.google.com (mail-vs1-f47.google.com [209.85.217.47])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9A5BE7FBC9;
-	Wed,  7 Feb 2024 16:26:15 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=156.67.10.101
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E4A0B811F5
+	for <devicetree@vger.kernel.org>; Wed,  7 Feb 2024 16:26:28 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.217.47
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1707323177; cv=none; b=OoKMSaV1tFARUM/nGBpuMcXtk9Ku0VjLX9hK5nJct1SjR4i+m+fjbfWfI4aN+2tW3hTLbqrEz9jZ1cqzArRZ0hAv6+SatE7K2YdYJd37FsK2MsxJKgIBAFzgja+yAuHSjRkx8479ZiHZvuwLrkhmr5XjyToeIqkLDoat2qF4uQg=
+	t=1707323190; cv=none; b=V89hSe8yzc+UNJ4/ICAsKDJLhhXcqnboM9i7MR6AwQ6S5ssLx1oN3h+zmAW05ha1rKHuDZVMMnnm7dtLdbZ8772RalxhdUg1ZwZYj9cEd50bs4fzohNgBrJ4ARdUKGZqUCLecu4SROAbxnuUz5+fZkfaphSI5MfpTUxc8RXtPyU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1707323177; c=relaxed/simple;
-	bh=+zhFNcjljO8eUyVnHueReZfjxF3E9Yj+utWHBJpYqOU=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=DUqsmlrRpkAosSUAOkO+jOWltakJ5+TQXOHKU6GWnob+NV9N3F7iDO73ti5bgyRJZXAkvEPKz8JDLrEq8zlJafNl9Fgnj7any6SYfWEAyQWrksr+ioEoyHQ6PCSmYpGMwlSFsWeyPqAlGGbpH9Gn8X1cCnGWpmp5d+bcaTCuh0k=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch; spf=pass smtp.mailfrom=lunn.ch; dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b=1GZlapcC; arc=none smtp.client-ip=156.67.10.101
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=lunn.ch
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
-	s=20171124; h=In-Reply-To:Content-Disposition:Content-Type:MIME-Version:
-	References:Message-ID:Subject:Cc:To:From:Date:From:Sender:Reply-To:Subject:
-	Date:Message-ID:To:Cc:MIME-Version:Content-Type:Content-Transfer-Encoding:
-	Content-ID:Content-Description:Content-Disposition:In-Reply-To:References;
-	bh=GLB4Ak6omxg10pAPnfsUZTWUGvkbetcGVG9XYnbeFWg=; b=1GZlapcC3AQBLQ9iaiP56L3xX9
-	qKgt8IHRc5BuUBRepOXQWlq74JaC2+FlXv7/WCXjrZjWJUSSG5p6ScTUMTuzcv/EmX1ZmvM6IENZV
-	uQAx+fTw9x3jr05eBXhzM15jKOdJ33APCvZK0ZWgBbYZxcEp0qST6dE+r/PO48LOj+Qo=;
-Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
-	(envelope-from <andrew@lunn.ch>)
-	id 1rXkkJ-007EfN-Du; Wed, 07 Feb 2024 17:25:59 +0100
-Date: Wed, 7 Feb 2024 17:25:59 +0100
-From: Andrew Lunn <andrew@lunn.ch>
-To: Stefan Eichenberger <eichest@gmail.com>
-Cc: Russell King <rmk+kernel@armlinux.org.uk>,
-	Amit Kucheria <amitk@kernel.org>,
-	Daniel Lezcano <daniel.lezcano@linaro.org>,
-	Gregory Clement <gregory.clement@bootlin.com>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Miquel Raynal <miquel.raynal@bootlin.com>,
-	"Rafael J. Wysocki" <rafael@kernel.org>,
-	Rob Herring <robh+dt@kernel.org>,
-	Sebastian Hesselbarth <sebastian.hesselbarth@gmail.com>,
-	Zhang Rui <rui.zhang@intel.com>, Josua Mayer <josua@solid-run.com>,
-	devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-	linux-pm@vger.kernel.org, manuel.aebischer@netmodule.com
-Subject: Re: [PATCH 3/3] arm64: dts: armada-ap807: update thermal compatible
-Message-ID: <13ab003d-7449-4d6f-861a-fa2d0c3f4ad2@lunn.ch>
-References: <ZIxMYXDCTB7IvsDk@shell.armlinux.org.uk>
- <E1qA7yZ-00Ea50-OC@rmk-PC.armlinux.org.uk>
- <ZcOsjRzE8V73wNtT@eichest-laptop>
+	s=arc-20240116; t=1707323190; c=relaxed/simple;
+	bh=s/XBm+dZXo326rp4+k8nxRmZZap7vVe94gNKobiXRkE=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=Dey3T1GqjUwkpBepchP9MRr+7rgxQqokZ5Ccqk6Nx6iMO/KFEgSb/W7yLNa0KpWccHWepcBj+Woe9pY/m5zW9OkPeKCSsz+UcqH5wa9RFi8IPrQzi+8QFBOdNWxqy34ZiWtxc8a3fWucv7eNM84Pv+w2uP24OCVgq6D2BYP5ICg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=bgdev.pl; spf=none smtp.mailfrom=bgdev.pl; dkim=pass (2048-bit key) header.d=bgdev-pl.20230601.gappssmtp.com header.i=@bgdev-pl.20230601.gappssmtp.com header.b=tEn9GZR2; arc=none smtp.client-ip=209.85.217.47
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=bgdev.pl
+Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=bgdev.pl
+Received: by mail-vs1-f47.google.com with SMTP id ada2fe7eead31-46cf02b9f7eso270180137.3
+        for <devicetree@vger.kernel.org>; Wed, 07 Feb 2024 08:26:28 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=bgdev-pl.20230601.gappssmtp.com; s=20230601; t=1707323188; x=1707927988; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=WitkzYepwCuA/S4ttZlXhAljZ+JINQO7bz0r64E60hU=;
+        b=tEn9GZR2YW5QIUhpfy9WbjVoRZUSL8A4E2UxFn9joY8wr7taRtruBFS5ZDP8cbC/PE
+         +rY/R+HXqckBU0/cXttDcGD8TCgthunpbB4V+xxuVs64YsAYfzGTEsPkWv0siLLFEIJt
+         q3DRPVhLVBcUb5jBXacEuRnI5LYw3CQmqxcHc5jRCIqyXO9Rhtg1XmecZnDl43NRf/DZ
+         Ma9XYvgXTZFHFCFw4JMHkOKYtcBvEqC1yVzvOe6OgZF3+3A36F8PJYG6fEx6CLDNeUpA
+         GiD81yogPwnuljwzAB75RmxCo3njmj1PQmWCi6ASwK+B3pAMs3hRAFhoYC2KTb1nhvBd
+         uLEw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1707323188; x=1707927988;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=WitkzYepwCuA/S4ttZlXhAljZ+JINQO7bz0r64E60hU=;
+        b=J/oG+G1dTtfI+CH+xMbi1T3bMujf76uistBRpe0AfSg/IcIJhZq4UiDUff3Ofentfk
+         P51CjY7QvTTNSAA6fGsbJBlY6fZ6+Kk+6j+1+Rd/6NKQpssnAST7YXSS+4j2jJ0xrDnt
+         dLs7Imd1VqqhNGLCG3TZlGBx7x0T8UZblWF5l//xx8mTfNMSVrnI1mTgHIa9nWjaW3KT
+         lvPCegnO4g000Z//nmaf+W6XV6RQF9T68KxrYTt/qdjh9f7ypPR4vy2MnXYyqgJtZKQr
+         99xV7UZWJfIPGxQ7dXccDqw5E2TdAoKdB+giTFUzSmCWa47H+Odp2nEs1wHBO1ehmBVY
+         zizg==
+X-Gm-Message-State: AOJu0Yylax3gtQBXREVcinESwDEbAaMWOuz5sgozJRMrprygBPgkhpPR
+	mFyXHaDGF1+G2sSc0Tw05qafsbAmIB9rajrUvhRf1/Keb6vsu8BccYJnduqiuVPr+qy+fFZtVML
+	FEtdf0/tyAmtNVMrtHqh4c6y7kjcplH0zhBcfGg==
+X-Google-Smtp-Source: AGHT+IGUHF6vzAm6fF7RlJC8wV7QGPTkkEw3A+jO1stlUQVB3BJSXCPScQIS002+UPorZpqyfxR0CW3Oxe6kmokSvso=
+X-Received: by 2002:a67:f597:0:b0:46d:295d:1c5a with SMTP id
+ i23-20020a67f597000000b0046d295d1c5amr3129996vso.30.1707323187759; Wed, 07
+ Feb 2024 08:26:27 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <ZcOsjRzE8V73wNtT@eichest-laptop>
+References: <20240201155532.49707-1-brgl@bgdev.pl> <20240201155532.49707-9-brgl@bgdev.pl>
+ <7tbhdkqpl4iuaxmc73pje2nbbkarxxpgmabc7j4q26d2rhzrv5@ltu6niel5eb4>
+ <CAMRc=Md1oTrVMjZRH+Ux3JJKYeficKMYh+8V7ZA=Xz_X1hNd1g@mail.gmail.com> <2q5vwm7tgmpgbrm4dxfhypbs5pdggprxouvzfcherqeevpjhrj@6wtkv4za2gg5>
+In-Reply-To: <2q5vwm7tgmpgbrm4dxfhypbs5pdggprxouvzfcherqeevpjhrj@6wtkv4za2gg5>
+From: Bartosz Golaszewski <brgl@bgdev.pl>
+Date: Wed, 7 Feb 2024 17:26:16 +0100
+Message-ID: <CAMRc=MfsdsD4f3sC-BnR_sqvaHNEKWCZ+Xe+-ZhLU8vFYA06=w@mail.gmail.com>
+Subject: Re: Re: [RFC 8/9] PCI/pwrctl: add PCI power control core code
+To: Bjorn Andersson <andersson@kernel.org>
+Cc: Konrad Dybcio <konrad.dybcio@linaro.org>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Marcel Holtmann <marcel@holtmann.org>, Luiz Augusto von Dentz <luiz.dentz@gmail.com>, 
+	Bjorn Helgaas <bhelgaas@google.com>, Neil Armstrong <neil.armstrong@linaro.org>, 
+	Alex Elder <elder@linaro.org>, Srini Kandagatla <srinivas.kandagatla@linaro.org>, 
+	Greg Kroah-Hartman <gregkh@linuxfoundation.org>, Arnd Bergmann <arnd@arndb.de>, 
+	Abel Vesa <abel.vesa@linaro.org>, Manivannan Sadhasivam <mani@kernel.org>, Lukas Wunner <lukas@wunner.de>, 
+	linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org, linux-bluetooth@vger.kernel.org, 
+	linux-pci@vger.kernel.org, 
+	Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-On Wed, Feb 07, 2024 at 05:15:48PM +0100, Stefan Eichenberger wrote:
-> Hi Russell and Alex,
-> 
-> On Fri, Jun 16, 2023 at 12:50:47PM +0100, Russell King wrote:
-> > From: Alex Leibovich <alexl@marvell.com>
-> > 
-> > Use the correct thermal coefficients for the Armada AP807 dies.
-> > 
-> > Signed-off-by: Alex Leibovich <alexl@marvell.com>
-> > Reviewed-by: Stefan Chulski <stefanc@marvell.com>
-> > Tested-by: Stefan Chulski <stefanc@marvell.com>
-> > Signed-off-by: Russell King (Oracle) <rmk+kernel@armlinux.org.uk>
-> > ---
-> >  arch/arm64/boot/dts/marvell/armada-ap807.dtsi | 3 +++
-> >  1 file changed, 3 insertions(+)
-> > 
-> > diff --git a/arch/arm64/boot/dts/marvell/armada-ap807.dtsi b/arch/arm64/boot/dts/marvell/armada-ap807.dtsi
-> > index 4a23f65d475f..a3328d05fc94 100644
-> > --- a/arch/arm64/boot/dts/marvell/armada-ap807.dtsi
-> > +++ b/arch/arm64/boot/dts/marvell/armada-ap807.dtsi
-> > @@ -33,3 +33,6 @@ &ap_sdhci0 {
-> >  		     "marvell,armada-ap806-sdhci"; /* Backward compatibility */
-> >  };
-> >  
-> > +&ap_thermal {
-> > +	compatible = "marvell,armada-ap807-thermal";
-> > +};
-> 
-> While working on some thermal optimizations, our hardware team
-> discovered that this patch is still missing upstream. Is something
-> missing or did it get lost?
+On Fri, Feb 2, 2024 at 5:52=E2=80=AFPM Bjorn Andersson <andersson@kernel.or=
+g> wrote:
+>
+> On Fri, Feb 02, 2024 at 10:11:42AM +0100, Bartosz Golaszewski wrote:
+> > On Fri, Feb 2, 2024 at 4:53=E2=80=AFAM Bjorn Andersson <andersson@kerne=
+l.org> wrote:
+> [..]
+> > > > +             break;
+> > > > +     }
+> > > > +
+> > > > +     return NOTIFY_DONE;
+> > > > +}
+> > > > +
+> > > > +int pci_pwrctl_device_enable(struct pci_pwrctl *pwrctl)
+> > >
+> > > This function doesn't really "enable the device", looking at the exam=
+ple
+> > > driver it's rather "device_enabled" than "device_enable"...
+> > >
+> >
+> > I was also thinking about pci_pwrctl_device_ready() or
+> > pci_pwrctl_device_prepared().
+>
+> I like both of these.
+>
+> I guess the bigger question is how the flow would look like in the event
+> that we need to power-cycle the attached PCIe device, e.g. because
+> firmware has gotten into a really bad state.
+>
+> Will we need an operation that removes the device first, and then cut
+> the power, or do we cut the power and then call unprepared()?
+>
 
-Patch 1/3 had a change request. Was it ever reposted with the
-requested change?
+How would the core be notified about this power-cycle from the PCI
+subsystem? I honestly don't know. Is there a notifier we could
+subscribe to? Is the device unbound and rebound in such case?
 
-It would also be nice to convert the .txt to .yaml. The DT Maintainers
-might insist on that when it is reposted?
-
-      Andrew
-
+Bart
 
