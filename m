@@ -1,192 +1,146 @@
-Return-Path: <devicetree+bounces-39490-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-39491-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 61BBE84CEE5
-	for <lists+devicetree@lfdr.de>; Wed,  7 Feb 2024 17:32:59 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id B4C1284CF1B
+	for <lists+devicetree@lfdr.de>; Wed,  7 Feb 2024 17:40:01 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id CF5D028B9DB
-	for <lists+devicetree@lfdr.de>; Wed,  7 Feb 2024 16:32:57 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 44E9428D77A
+	for <lists+devicetree@lfdr.de>; Wed,  7 Feb 2024 16:40:00 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8305080612;
-	Wed,  7 Feb 2024 16:32:53 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id AFCCC80612;
+	Wed,  7 Feb 2024 16:39:44 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=bgdev-pl.20230601.gappssmtp.com header.i=@bgdev-pl.20230601.gappssmtp.com header.b="ZL+hZ9pA"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="VeyCnUhv"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-yb1-f179.google.com (mail-yb1-f179.google.com [209.85.219.179])
+Received: from mail-lf1-f47.google.com (mail-lf1-f47.google.com [209.85.167.47])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CDFDC7C6C1
-	for <devicetree@vger.kernel.org>; Wed,  7 Feb 2024 16:32:51 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.219.179
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C1D6F81AC6;
+	Wed,  7 Feb 2024 16:39:42 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.47
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1707323573; cv=none; b=ZGCNtTp2S9dAuXUcR6elhLwZd5q/XJS13cW04U9iVcQDgB6ZLpR6TVcvl2tQuTZfbJsr2Ll/JBfz0vchrUnkLw2aQvEWN//7Qr2h1E3XiDYijQb75or338+4gmDal9AWXpf+gvKMVYMYrJLNIS+yUVPZZI18I6eQbGEaIUQn3Z8=
+	t=1707323984; cv=none; b=r7AyMRSB2f334HCN19Wkl0w/vnYmQm7c189ppCrt2PXe9EQ+MNVvvQeAn7XoWt09GrM2esTxA8Z6GFH/oFHbfBKjNYCtyAct9JVuNmAHXz2P+QMFp/ZUayFzTtGwXk3QQ31MYpm/r1I9sXiiuur0DbSvm/fcX+Hl6iUGjlxP16k=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1707323573; c=relaxed/simple;
-	bh=6Yo/fyYh7fG38u08ZGJVpdUslT92MuMedlOE+fskdT4=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=It1oHIGEBm5QsgDaLHGroLIrKB4LkENNU9dMNEbXkL1MIOR1jYD4lD7lgyD4l0/m+pJ+js7ApBzyPO0jcc0Bb23GjuyI9tWWLJ1hx83ppnx2oNx0hdF2AnT1l0KEH8mV83eYGi48cBbY7M4uYlIwDewao5U3LIqnYAlv+G9CszI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=bgdev.pl; spf=none smtp.mailfrom=bgdev.pl; dkim=pass (2048-bit key) header.d=bgdev-pl.20230601.gappssmtp.com header.i=@bgdev-pl.20230601.gappssmtp.com header.b=ZL+hZ9pA; arc=none smtp.client-ip=209.85.219.179
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=bgdev.pl
-Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=bgdev.pl
-Received: by mail-yb1-f179.google.com with SMTP id 3f1490d57ef6-dc6e0fe3195so848043276.0
-        for <devicetree@vger.kernel.org>; Wed, 07 Feb 2024 08:32:51 -0800 (PST)
+	s=arc-20240116; t=1707323984; c=relaxed/simple;
+	bh=6VeUkduw5EfcGspExXyND+9I4cH5EtGKaVU95A84+Pk=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=gkWQOiFItp2xbroP+p8mwFDDihNr+4LHVpQZpxl5b/ZOrDuaSxHs9O5BTkClijzyWWIjpdqEuziY11PbYsd/Sx7kZDfFF6fTdPJAZs0yHbH5m0gEEYoiMxTRLmOrn59+Wgj26QiHZiDou8XCvyXaw3x5ImfRxezyCHGsrZ8bIEM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=VeyCnUhv; arc=none smtp.client-ip=209.85.167.47
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-lf1-f47.google.com with SMTP id 2adb3069b0e04-51167496943so1307994e87.2;
+        Wed, 07 Feb 2024 08:39:42 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=bgdev-pl.20230601.gappssmtp.com; s=20230601; t=1707323570; x=1707928370; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=6Yo/fyYh7fG38u08ZGJVpdUslT92MuMedlOE+fskdT4=;
-        b=ZL+hZ9pAzfYVNJ5X4fBcLg98ndLaGNBYNck/AGtAA7VIwl+S3EzDE5SR8pbD2kfH5l
-         Z1TncIKTTzRVVDES9JJYV1zrVXgx57Vi5m1lZvp14iG/TIlWwfTNZRULuKa4ZQGQDo/j
-         rNpe1Svy1sqh88W83WF4u3ZZozQpX6xZX0Go07Cl6o0E9jfIwQ4upB2+hN5+d8mQy7jQ
-         HCj7onieCi3bvpel3sD5Y6BilbfKMoDilGzKNVagV77JXL4aFaBNsdNcb9Tfa/fFwj7a
-         gZKGCWpVW7Xialj9vVy7WMbglDL3NPCof+8Bn+QFI1EhM2cqXmOzVqJd10LSat8CbeAi
-         7mlw==
+        d=gmail.com; s=20230601; t=1707323981; x=1707928781; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=SB6CElYBmH4Ozh9j3qgetp3odjgGs78Z185/4AJzzjc=;
+        b=VeyCnUhvUKX/n5T72vufkUQn4wRvfflyjvBHZ+MzRSfWmH4rN5D0kc62xnb+U83Fmp
+         Gw65F+yyu+CcPgmoQOGTnvhmEdhj4hBALBf3TwhK34OKU9X7MWI3lPYmGwOCFAHUZvkZ
+         a8ZBJCPi8HcucnYU0rFtWqVj2ZmUJBecsonB2TFFE8RzK8Q9qobi5ezmMMLoh4FyDMFX
+         DbIH11Eq8AWBUf/PysIwueZHH272EX8bOZdOtjmWZdgolH8zBntXpqpLVTd7tuTh/00Q
+         adKx3364bxbdGkzJQWQb8oRLnJQLdsuzs7WAxO/aFoFBlNSrdxnuLe006fPBta+MApYa
+         i+5A==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1707323570; x=1707928370;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=6Yo/fyYh7fG38u08ZGJVpdUslT92MuMedlOE+fskdT4=;
-        b=ktP4NXgt2fJv+znEn1chEgPiR5Njlq9wAwrz1yNjQiB7+i/pxDmdxz/lA/J7fpeovD
-         wDo4knmUCSOm5nbrTo3hK2vCFp+gFEhkdVMHQO+/POwru6bUWWRKgAUVasGTFSHnCuGT
-         KIMq3E0zu8u6wMzN2bwhW+3s09sYACVs5PNOocDzowVOsj2QYhazlEShjj/Vxhu04qEC
-         PGpGvJ+efil1jTHd+5GU89bTWxfGk27MVlftwTxzoIyN05qMNDZ5PHNP6hDnp8PP0YS6
-         osPcaBIqu0Mqv9qY9RAOgL5FmK8yrSfsf1wSMDSowkJRZENxCxiKrNMv8RYNk4KEpsTH
-         T4SA==
-X-Gm-Message-State: AOJu0YxjwP/Q8kQ+Cn60rIamBu8UD3PLNCwwCv50lqnna+4zwMEhVsvz
-	hwiO1vHU1NSgO/W2J+Wz+XGQAtQMB+J9r5omxAyYkbdjrXjZG/VDTW95t6gxp8Ianshjcid8vWo
-	vtEmM5kXt3fJAP7qLtbiVC66jcrKQZl4RH2Q/Bg==
-X-Google-Smtp-Source: AGHT+IE3zCdfJVGHV2I6xOZuAs5X41g7XZwMrMfSjZMfsSrqtH+jCnKdu76h60nVbqejDK2GD8n0GFHFIxgNUHOMEGE=
-X-Received: by 2002:a5b:74f:0:b0:dc6:de64:f74 with SMTP id s15-20020a5b074f000000b00dc6de640f74mr4960135ybq.9.1707323569174;
- Wed, 07 Feb 2024 08:32:49 -0800 (PST)
+        d=1e100.net; s=20230601; t=1707323981; x=1707928781;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=SB6CElYBmH4Ozh9j3qgetp3odjgGs78Z185/4AJzzjc=;
+        b=mXMl/AcXyrmtoP7I28AoEmV3vea52wCxPKL55OKhxSVnpz61hxbHinDuDvqeQPCovk
+         XByYK+1f4EeMYwO8dIlkdM3iyiPCeckwywOPCto1kfEX/0CnNgJqWTT3A7+evTz7x8Zu
+         6SDFnGoZ+kFNrnqfYalJ0ytbPP5YQ+D0ddE0hD1IIxRXLpF7ZFj+CT+7BfPfT1DDmu2g
+         wY+x6DInjLU8iGcv/ZvANRvaiMaDQGpp78c88ezi2WpN9IDday1wVYJvE7rd324NrWvM
+         kSufsd20JieZb1V76GmY+51qqf46LV/OBMUp7uqqGcFwX7/Um0ZFMKLtvojtRwE3RpS/
+         S9Pg==
+X-Gm-Message-State: AOJu0Yy8F/eJZPjLDm4wirhRXhZh3KOjYQ+HPvqRZb9vnQdMNa1zxYoE
+	ZAnYvFXLaOhvki76rCFCZMAihEk/NcBGD39QTH4OqCD4lvR785ez
+X-Google-Smtp-Source: AGHT+IEnogADwUjK5uNEdSvnGNhIDJaSNuBXzHhZhNeIsBgG5+yZgWSU6VWYiTjlgnBSk3KMEGLgGg==
+X-Received: by 2002:a19:7006:0:b0:511:4ee3:dc1c with SMTP id h6-20020a197006000000b005114ee3dc1cmr4380035lfc.33.1707323980416;
+        Wed, 07 Feb 2024 08:39:40 -0800 (PST)
+X-Forwarded-Encrypted: i=1; AJvYcCXF0HYAQTAdmVOfM8FfW9yagq93xaf13BYldFD03MDRvpI/Eg3wUkKqVFMVrXBrnQVDFf5WNtDEEOcAWkcnl29KoL58nA1hOOgjfKbHEu8NGId83Lc14PAw1yyQMV2v8XnGrv5v2E7jr9o8Ap/XizE+fH8+orVf9gqyAg1TP0syOv6oGmjX9aDSX/iEH0TkgBfYCUDnZyTlFa81+NRNWX+68+vAmJaLH8cl3ILk/q5eWDX5ADS02rclRcIsBB7BcjVxCG5Uj7xkC1LeA8Oz0MZata2/GVdKOXgpCXhOiY9cv33UfE0BvM1IcDir7d1vE3dvoZpnqsnqP2FjQqunwzN8C3WylxQ4YZMLx/fbz37K0377NauoSELPPwm6ie5mO1k8MxSikrRPnQrzifd2Mk32cfpmuJoruzcWIwujA3nw4uxN1gGfCXozqvA2B9H2DfRRNNzc5UREdZibp9epOXE9eATmrQKvVcXXC3UB9/pK6XA+reojbsaly93/r3YZ9YRplLRMSFMgn04mEq6we52BKfj1gYUU5RGNe2kreOoagIg/hmieQDaa/ed8hq2PPg==
+Received: from ?IPV6:2001:1c00:20d:1300:1b1c:4449:176a:89ea? (2001-1c00-020d-1300-1b1c-4449-176a-89ea.cable.dynamic.v6.ziggo.nl. [2001:1c00:20d:1300:1b1c:4449:176a:89ea])
+        by smtp.gmail.com with ESMTPSA id ho12-20020a1709070e8c00b00a372330e834sm922630ejc.102.2024.02.07.08.39.39
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 07 Feb 2024 08:39:39 -0800 (PST)
+Message-ID: <32897bd5-4b53-4280-a5c0-5765cfe5b7d6@gmail.com>
+Date: Wed, 7 Feb 2024 17:39:37 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20240117160748.37682-1-brgl@bgdev.pl> <20240117160748.37682-5-brgl@bgdev.pl>
- <2024011707-alibi-pregnancy-a64b@gregkh> <CAMRc=Mef7wxRccnfQ=EDLckpb1YN4DNLoC=AYL8v1LLJ=uFH2Q@mail.gmail.com>
- <2024011836-wok-treadmill-c517@gregkh> <d2he3ufg6m46zos4swww4t3peyq55blxhirsx37ou37rwqxmz2@5khumvic62je>
- <CAMRc=MeXJjpJhDjyn_P-SGo4rDnEuT9kGN5jAbRcuM_c7_aDzQ@mail.gmail.com>
- <oiwvcvu6wdmpvhss3t7uaqkl5q73mki5pz6liuv66bap4dr2mp@jtjjwzlvt6za> <CAMRc=McT8wt6UbKtyofkJo3WcyJ-S4d2MPp8oZmjWbX6LGbETQ@mail.gmail.com>
-In-Reply-To: <CAMRc=McT8wt6UbKtyofkJo3WcyJ-S4d2MPp8oZmjWbX6LGbETQ@mail.gmail.com>
-From: Bartosz Golaszewski <brgl@bgdev.pl>
-Date: Wed, 7 Feb 2024 17:32:38 +0100
-Message-ID: <CAMRc=MeWgp27YcS=-dbYdN1is1MEuZ2ar=pW_p9oY0Nf1EbFHA@mail.gmail.com>
-Subject: Re: Re: Re: [PATCH 4/9] PCI: create platform devices for child OF
- nodes of the port node
-To: Bjorn Andersson <andersson@kernel.org>, Greg Kroah-Hartman <gregkh@linuxfoundation.org>
-Cc: Kalle Valo <kvalo@kernel.org>, "David S . Miller" <davem@davemloft.net>, 
-	Eric Dumazet <edumazet@google.com>, Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>, 
-	Rob Herring <robh+dt@kernel.org>, 
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Konrad Dybcio <konrad.dybcio@linaro.org>, Catalin Marinas <catalin.marinas@arm.com>, 
-	Will Deacon <will@kernel.org>, Bjorn Helgaas <bhelgaas@google.com>, Heiko Stuebner <heiko@sntech.de>, 
-	Jernej Skrabec <jernej.skrabec@gmail.com>, Chris Morgan <macromorgan@hotmail.com>, 
-	Linus Walleij <linus.walleij@linaro.org>, Geert Uytterhoeven <geert+renesas@glider.be>, 
-	Arnd Bergmann <arnd@arndb.de>, Neil Armstrong <neil.armstrong@linaro.org>, 
-	=?UTF-8?B?TsOtY29sYXMgRiAuIFIgLiBBIC4gUHJhZG8=?= <nfraprado@collabora.com>, 
-	Marek Szyprowski <m.szyprowski@samsung.com>, Peng Fan <peng.fan@nxp.com>, 
-	Robert Richter <rrichter@amd.com>, Dan Williams <dan.j.williams@intel.com>, 
-	Jonathan Cameron <Jonathan.Cameron@huawei.com>, Terry Bowman <terry.bowman@amd.com>, 
-	Lukas Wunner <lukas@wunner.de>, Huacai Chen <chenhuacai@kernel.org>, Alex Elder <elder@linaro.org>, 
-	Srini Kandagatla <srinivas.kandagatla@linaro.org>, Abel Vesa <abel.vesa@linaro.org>, 
-	linux-wireless@vger.kernel.org, netdev@vger.kernel.org, 
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
-	linux-arm-msm@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
-	linux-pci@vger.kernel.org, 
-	Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH net-next 2/2] net: phy: air_en8811h: Add the Airoha
+ EN8811H PHY driver
+To: "Russell King (Oracle)" <linux@armlinux.org.uk>
+Cc: "David S. Miller" <davem@davemloft.net>,
+ Eric Dumazet <edumazet@google.com>, Jakub Kicinski <kuba@kernel.org>,
+ Paolo Abeni <pabeni@redhat.com>, Rob Herring <robh+dt@kernel.org>,
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+ Conor Dooley <conor+dt@kernel.org>, Andrew Lunn <andrew@lunn.ch>,
+ Heiner Kallweit <hkallweit1@gmail.com>,
+ Matthias Brugger <matthias.bgg@gmail.com>,
+ AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
+ Frank Wunderlich <frank-w@public-files.de>,
+ Daniel Golle <daniel@makrotopia.org>, Lucien Jheng
+ <lucien.jheng@airoha.com>, Zhi-Jun You <hujy652@protonmail.com>,
+ netdev@vger.kernel.org, devicetree@vger.kernel.org
+References: <20240206194751.1901802-1-ericwouds@gmail.com>
+ <20240206194751.1901802-3-ericwouds@gmail.com>
+ <ZcLGkmavpBAN02xq@shell.armlinux.org.uk>
+Content-Language: en-US
+From: Eric Woudstra <ericwouds@gmail.com>
+In-Reply-To: <ZcLGkmavpBAN02xq@shell.armlinux.org.uk>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
-On Fri, Feb 2, 2024 at 11:02=E2=80=AFAM Bartosz Golaszewski <brgl@bgdev.pl>=
- wrote:
->
-> On Fri, Feb 2, 2024 at 1:03=E2=80=AFAM Bjorn Andersson <andersson@kernel.=
-org> wrote:
-> >
->
-> [snip]
->
-> > > >
-> > > > I believe I missed this part of the discussion, why does this need =
-to be
-> > > > a platform_device? What does the platform_bus bring that can't be
-> > > > provided by some other bus?
-> > > >
-> > >
-> > > Does it need to be a platform_device? No, of course not. Does it make
-> > > sense for it to be one? Yes, for two reasons:
-> > >
-> > > 1. The ATH11K WLAN module is represented on the device tree like a
-> > > platform device, we know it's always there and it consumes regulators
-> > > from another platform device. The fact it uses PCIe doesn't change th=
-e
-> > > fact that it is logically a platform device.
-> >
-> > Are you referring to the ath11k SNOC (firmware running on co-processor
-> > in the SoC) variant?
-> >
-> > Afaict the PCIe-attached ath11k is not represented as a platform_device
-> > in DeviceTree.
-> >
->
-> My bad. In RB5 it isn't (yet - I want to add it in the power
-> sequencing series). It is in X13s though[1].
->
-> > Said platform_device is also not a child under the PCIe bus, so this
-> > would be a different platform_device...
-> >
->
-> It's the child of the PCIe port node but there's a reason for it to
-> have the `compatible` property. It's because it's an entity of whose
-> existence we are aware before the system boots.
->
-> > > 2. The platform bus already provides us with the entire infrastructur=
-e
-> > > that we'd now need to duplicate (possibly adding bugs) in order to
-> > > introduce a "power sequencing bus".
-> > >
-> >
-> > This is a perfectly reasonable desire. Look at our PMICs, they are full
-> > of platform_devices. But through the years it's been said many times,
-> > that this is not a valid or good reason for using platform_devices, and
-> > as a result we have e.g. auxiliary bus.
-> >
->
-> Ok, so I cannot find this information anywhere (nor any example). Do
-> you happen to know if the auxiliary bus offers any software node
-> integration so that the `compatible` property from DT can get
-> seamlessly mapped to auxiliary device IDs?
->
+Hi Russell,
 
-So I was just trying to port this to using the auxiliary bus, only to
-find myself literally reimplementing functions from
-drivers/of/device.c. I have a feeling that this is simply wrong. If
-we're instantiating devices well defined on the device-tree then IMO
-we *should* make them platform devices. Anything else and we'll be
-reimplementing drivers/of/ because we will need to parse the device
-nodes, check the compatible, match it against drivers etc. Things that
-are already implemented for the platform bus and of_* APIs.
+Thanks for your suggestions, I will change it accordingly.
 
-Greg: Could you chime in and confirm that it's alright to use the
-platform bus here? Or maybe there is some infrastructure to create
-auxiliary devices from software nodes?
+> Searching the driver for "air_buckpbus_reg_read", there are four
+> instances where you read-modify-write, and only one instance which is
+> just a read.
+> 
+> I wonder whether it would make more sense to structure the accessors as
+> 
+> 	__air_buckpbus_set_address(phydev, addr)
+> 	__air_buckpbus_read(phydev, *data)
+> 	__air_buckpbus_write(phydev, data)
+> 
+> which would make implementing reg_read, reg_write and reg_modify()
+> easier, and the addition of reg_modify() means that (a) there are less
+> bus cycles (through having to set the address twice) and (b) ensures
+> that the read-modify-write can be done atomically on the bus. This
+> assumes that reading data doesn't auto-increment the address (which
+> you would need to check.)
 
-Bartosz
+I will see if I can change the code to:
 
-> > Anyway, (please) don't claim that "we need to", when it actually is "we
-> > want to use platform_device because that's more convenient"!
->
-> Bart
->
-> [snip]
->
-> [1] https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/tr=
-ee/arch/arm64/boot/dts/qcom/sc8280xp-lenovo-thinkpad-x13s.dts#n744
+        __air_buckpbus_set_address(phydev, addr)
+        __air_buckpbus_read(phydev, *data)
+        __air_buckpbus_write(phydev, data)
+        air_buckpbus_reg_read()
+        air_buckpbus_reg_write()
+        air_buckpbus_reg_modify()
+
+While not changing (except if (saved_page >= 0)):
+
+        __air_write_buf()
+        air_write_buf()
+
+> While you only support 2500base-T, is there any reason not to use
+> linkmode_adv_to_mii_10gbt_adv_t() ?
+
+I will change it to use linkmode_adv_to_mii_10gbt_adv_t().
+
+Best Regards,
+
+Eric Woudstra
 
