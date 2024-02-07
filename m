@@ -1,295 +1,141 @@
-Return-Path: <devicetree+bounces-39513-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-39514-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id F1B3E84D149
-	for <lists+devicetree@lfdr.de>; Wed,  7 Feb 2024 19:37:46 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id A55F184D14D
+	for <lists+devicetree@lfdr.de>; Wed,  7 Feb 2024 19:39:49 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 7BA1A1F21756
-	for <lists+devicetree@lfdr.de>; Wed,  7 Feb 2024 18:37:46 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id D69611C21E95
+	for <lists+devicetree@lfdr.de>; Wed,  7 Feb 2024 18:39:48 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 11ACC40BE5;
-	Wed,  7 Feb 2024 18:37:42 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id AC43983CC1;
+	Wed,  7 Feb 2024 18:39:41 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=freebox-fr.20230601.gappssmtp.com header.i=@freebox-fr.20230601.gappssmtp.com header.b="FjT+K4jr"
+	dkim=pass (1024-bit key) header.d=redhat.com header.i=@redhat.com header.b="jKDwnEx/"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wr1-f54.google.com (mail-wr1-f54.google.com [209.85.221.54])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from us-smtp-delivery-124.mimecast.com (us-smtp-delivery-124.mimecast.com [170.10.133.124])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 525C54438D
-	for <devicetree@vger.kernel.org>; Wed,  7 Feb 2024 18:37:37 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.54
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0254382883
+	for <devicetree@vger.kernel.org>; Wed,  7 Feb 2024 18:39:39 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=170.10.133.124
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1707331062; cv=none; b=AaPFs3uKE7vxcG8H5+S/p8hiVeNW4SbS9vFQuvgyihPQ5GKkClHc9guqWlSMtMUcP1CwpPXQ1EfMj8v5XBfAhLk3ldym8WMoNwTN1aFV9QQsYYCsTdHmqaRJ8e8QG7D4SJM/iQd2AFLLqDlffFMz5LCdMZdEtF+Tbi6jhuSzoHo=
+	t=1707331181; cv=none; b=OKOm0HG7RcQGKV2Pc/+t/XPBQL/raRFeYHb8Gn0MaKzYPAp1JR04y4HMH2ThBY7crVUai06lntcr0kW/JE8AIcFrTPx2AU7FLr5FNGQ7UKcU/5IxELJ16w0M6A75002tjFQRQkdBxb5jz1D9JnUHlwGFhvMxWIhYI29yh7MNeHQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1707331062; c=relaxed/simple;
-	bh=hVPnry9HUBR8uXHQtdk3yjJpe+wRehIFQRCHlWNViOY=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=OGyEm9zauGfbM5e5rcESCMr99ktm7eaj0Lu5zDW0gFFpe9kwHCXkU3C1Zse3hOx66XE3XjDzKHYN1uNG1baQp4FPytEKoGOYmBRU7LQEzdVDVhMeJZ/JCUVLxCPYTwXhUDzhJNYmvjW5Es/15/edUUtV/EiXY3dbHdVfoK+9qIk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=freebox.fr; spf=pass smtp.mailfrom=freebox.fr; dkim=pass (2048-bit key) header.d=freebox-fr.20230601.gappssmtp.com header.i=@freebox-fr.20230601.gappssmtp.com header.b=FjT+K4jr; arc=none smtp.client-ip=209.85.221.54
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=freebox.fr
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=freebox.fr
-Received: by mail-wr1-f54.google.com with SMTP id ffacd0b85a97d-33b0e5d1e89so833969f8f.0
-        for <devicetree@vger.kernel.org>; Wed, 07 Feb 2024 10:37:37 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=freebox-fr.20230601.gappssmtp.com; s=20230601; t=1707331056; x=1707935856; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=Y1hbPvzxIa6Wp7FdAAF5RXLHH8K3DSeUZPtNJYiZTw8=;
-        b=FjT+K4jrP/DkUPY/enGkvs3WpY7lhK5PhH6/4Njz3FR8nMpJtO4bK4ru0PxeQHcODI
-         +JYYnnGuV2798r8KK4RsLZ1LLda3iYuUUcT8lEDEv0hin+oDN6iULQ1qE+ZsjOSayUOe
-         df8Zqj6IlMxbwnTqazRIAMkY1xodrqnEUc/hsoj0EUdkQVMAHQX+h2eYHjo76yIbqkJc
-         E6qB4B1L4nfhljWGWpz5MeQJS5UC8tTJY4p9K5YfD/RQn8WqY5TNgNgVeGNBcI2E+Hxi
-         GyUoOOsZEat96nw4rvrE7xQEJJZN/vXeUhkswFaPgrjc5CQB0OTbH0CwdT/DVPm7RGV4
-         pmZw==
+	s=arc-20240116; t=1707331181; c=relaxed/simple;
+	bh=bHH03PwBsJDDFfRRWRjUDTvMo/Icvm5kxoAEQTu957U=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=DXKZ8bZBMedctAa5DJiXIRAeqEBvdrG/1rSMHUxUyhe81WaMLLlD2LxsozohY95YFbkCO+JLcYw7df4kqgpyHVRuYQXJVitz5lN9hhNOhcXePlW+1y60Y44DBKlrxLIr94Hkgfgf5NAr4cbB1XcTtCHfa6czZPv6BffQ4f1oZvs=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=redhat.com; spf=pass smtp.mailfrom=redhat.com; dkim=pass (1024-bit key) header.d=redhat.com header.i=@redhat.com header.b=jKDwnEx/; arc=none smtp.client-ip=170.10.133.124
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=redhat.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=redhat.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
+	s=mimecast20190719; t=1707331179;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 in-reply-to:in-reply-to:references:references;
+	bh=zA3U/3AyORshqdfEbbnoh4Y8vo2HvRG4is/2gsO8esc=;
+	b=jKDwnEx/fmfj1Ufaw50Oa2DOPR6Hwq5V3ZRqb5s/7+oX4Zk/w7UPFtXlxeDKVOacgJErox
+	2C7aO5Oa1gZyC11++eE/d0/8rdP9frGIje8AqCcClXuA0nXVnkIhv9zsqGZfWChkcqnduU
+	ULTtaQriBB10ipeDvJzFPjzW/rDNSKc=
+Received: from mail-qv1-f71.google.com (mail-qv1-f71.google.com
+ [209.85.219.71]) by relay.mimecast.com with ESMTP with STARTTLS
+ (version=TLSv1.3, cipher=TLS_AES_256_GCM_SHA384) id
+ us-mta-248-5P4NgsqNNGmcRXR6605WZA-1; Wed, 07 Feb 2024 13:39:37 -0500
+X-MC-Unique: 5P4NgsqNNGmcRXR6605WZA-1
+Received: by mail-qv1-f71.google.com with SMTP id 6a1803df08f44-68cb759751aso12205646d6.1
+        for <devicetree@vger.kernel.org>; Wed, 07 Feb 2024 10:39:37 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1707331056; x=1707935856;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=Y1hbPvzxIa6Wp7FdAAF5RXLHH8K3DSeUZPtNJYiZTw8=;
-        b=gMdrZNRG0frhSzhvNKykLOt65HI91VaauoaVkRT79x6kJ065hZV7uyKh5DrGqqWxnT
-         zRKCYiXD3L5GsENy8jhHEki2MbBwESpKOzajdu4MQr2osY172RvFYRhKJV43rfU5eQQw
-         R5a/IFr28UwhpN+DZWDYBnu0y0bHMJjSgtD9hR2kEW09Ok8LbSbWVZpfWFVMDmuS1V1f
-         1luhs76sswvyaCy71na/d8lneQ/zYOPOhuKOYKQmBsVzv4RlWBKevgf7elJp9zQReUuL
-         lbz1rAg+/oOUbh36WQmXv0kYGMv75EB/lJ4X440SP/5QwaIL6h4P5CqzOcZ3sQm3DDHv
-         QXsA==
-X-Forwarded-Encrypted: i=1; AJvYcCWis71TE7H6Qysxn4fBNHjK1dh+8LBfWRnYsK2Btemy4CMZ6aXVN6wEYAb0JAaRaewTe+3FSw00CbObQjEGKnjACzrUaKvaaKpxiw==
-X-Gm-Message-State: AOJu0Yy9s9oNuMBpW7hCDNwXcs4MnPUq9snIssmZiL3MzqakVNyHsvcg
-	L2I6xk1X1KTcVN3ry3pHi0zW3nxQf9yAvLpApqFDVdSNQG8x2wxs5vpOMjwF3ZM=
-X-Google-Smtp-Source: AGHT+IHdjCu281igYonYc5LjAsqVjOjq7T6pfdcghL+Izjr/4nEkx9LlGFCy/8FEmItcI7B5ETar7A==
-X-Received: by 2002:a5d:4986:0:b0:33b:20c:d2cc with SMTP id r6-20020a5d4986000000b0033b020cd2ccmr4208172wrq.20.1707331056262;
-        Wed, 07 Feb 2024 10:37:36 -0800 (PST)
-X-Forwarded-Encrypted: i=1; AJvYcCWIQsMyQaqINy6Ty1XhxUYXe940+8ZGjGvOFS+KBTy+M+aqr5DLRMd5lHa/FI0Mnxa+oAQkMI3Ppw+aIlinntG+Aew0uHqG+lhCflxFWRb2C4qFudJUJUCt2XIjpeKMxasEztHA9Pgt/JhpXFr7gMl7N/rOuewmTA/s4T/iRSrVlwld6ufIE4HECKQ4UtO9iKSFEgevKIYM8kKbX9gGn5O0FKP2saQ3Cbnu4kaHQLOWgd6DA6KrMA3/iRAgvt7OjEHBuBItJ+WO2CWVxnnO6uP2WT+oR+JJAMsHGJHDajEJpBgtOR6VmYrF5KCLfwQcWmP6H5d6cIpUgbxFOdOiTtZb67821sYiVm81AmoqTeyNvDZ/JV7SO8YTx8JHIeyg
-Received: from ?IPV6:2a02:8428:2a4:1a01:a746:ab33:4ed9:80f9? ([2a02:8428:2a4:1a01:a746:ab33:4ed9:80f9])
-        by smtp.gmail.com with ESMTPSA id z20-20020a05600c0a1400b0040fd24653d4sm2876829wmp.36.2024.02.07.10.37.35
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 07 Feb 2024 10:37:35 -0800 (PST)
-Message-ID: <091c3f9c-6bd2-42c5-a9b0-9257387b9455@freebox.fr>
-Date: Wed, 7 Feb 2024 19:37:35 +0100
+        d=1e100.net; s=20230601; t=1707331177; x=1707935977;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=zA3U/3AyORshqdfEbbnoh4Y8vo2HvRG4is/2gsO8esc=;
+        b=Y77YAMTPVD5hrludEzUx9HisTZfAYB0I63Y5/7eP50Rrsp2ZCktylFiIZAyPdG4jFR
+         JO8YmF5hxWEMoW2L2Onp8ah0CAb89vKRgjTND53mMI1fgQ/o9Vqc62gxQ9qfSsW0Blzy
+         HGHzUskSVjLGej5cvuMiBqlGZspnuwgVJJyQewmwKVuCparUOfPVd5VWq4GqSn+uxwgZ
+         gg0SBHXAEPT3ZVDaPliyqBrkEsCHdJmJZ1C3Lo34/T1t2oN42pokpCtZcHjKP/85qJnI
+         VprpXOonzNTZBLtIyrMccm3JmaThOou2HpCF1G+5KWUdG2Je/cqZhvpbif4Eh6l1Td5a
+         Hr0w==
+X-Gm-Message-State: AOJu0YyPVEFrxLoA8m33DhXGdIfgJTLFhQd9HMdcZ27WYtTGzldGfzTc
+	Cc7OdnBBrKRIt0970lXL0JZsxEyB5CXeOpk4+HlpTnkn7HJcPJE/QZ+22QBvymqcr7Af44KGMPy
+	ApKfh9ffv6niHojC23B40LnLMf2Xh+GhfzGC9cBdUXvGAfMEBfgknd/wfTsw=
+X-Received: by 2002:a05:6214:19c8:b0:685:7b4a:2fa7 with SMTP id j8-20020a05621419c800b006857b4a2fa7mr8226606qvc.33.1707331177345;
+        Wed, 07 Feb 2024 10:39:37 -0800 (PST)
+X-Google-Smtp-Source: AGHT+IEkhV8vq9uOtPlMzQmzArx41ClcZgTX4ovDF+F3bU41POaEMaTi1sWPw91DgAY/TwdnFnfIxw==
+X-Received: by 2002:a05:6214:19c8:b0:685:7b4a:2fa7 with SMTP id j8-20020a05621419c800b006857b4a2fa7mr8226571qvc.33.1707331177099;
+        Wed, 07 Feb 2024 10:39:37 -0800 (PST)
+X-Forwarded-Encrypted: i=1; AJvYcCX0GzdGWjAG3uEc/8XaNsIzLnP2lCtpnJfXojYzocTRbEsdWQeAVTRu/Wpyv0z1y3wZ8mwi68/D0VcboBFxMyF56ceINGg036foh4bJ7yRyZgw+N+3LNGHF3kmR+iz3QE/mAdedoK0Y4CVOAnovVuT+iyyEuUyev3lstJWhHPOlOv1Y0UIsXOv0EnudX3m8lPVks2ynmvW/AU2NFxsm01WA0N1gNBoPzKc6McfGE/UyauLWe6cmk1WAe+FlalMfeIpLgcb4o7BzNN/a2oU5RPeJgEwDWDYSB5UDq7varlmuJUeFGGaN/xeZQOoN2RSmJO9G0serIBPXRU75yEb+oV7jOUwN40jhL4ZsPjmKcKJMllwbMYmVyXlj21SzslNNU96RqM61ELRs85vyu5tgJ4MoTgKn2lP+OMwSQj+ZFNjhR2xFOTeBUxc0iDcHvQ3Q9W4G4qRLT8jAGZb5YzOWG/FRTwZvqshltzVRcCaFpqD4Sbn7wAcrWzfdGDmdkBw39juF5d1EPBGW2NqjiIyyf0q09W2V47WN41qATWQu1g7LSK80+lPifXF3blNhT+yyh3cQZZPmG/3FvWCR6OBq9UUVc1LEOKW+wVwz7bf2f1/RuatXrztUHYgzKMsGEgQngHXEQpnThPkBU7jxm3mGeIkehamoMwndVaLfpSxWTAXuMW4jahbNFeC4fgkw7ubs87SX8VeacxexZ9OapWXaCkuw0roNJawZ01YiDdXIZ6apuvz8u98AiR7yBu1h3yTJE1qSMUVEdJlia3y1WmIiu2zI5xgDXQ==
+Received: from fedora ([2600:1700:1ff0:d0e0::37])
+        by smtp.gmail.com with ESMTPSA id ld11-20020a056214418b00b0068cbc630dc8sm835619qvb.49.2024.02.07.10.39.35
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 07 Feb 2024 10:39:36 -0800 (PST)
+Date: Wed, 7 Feb 2024 12:39:34 -0600
+From: Andrew Halaney <ahalaney@redhat.com>
+To: Jakub Kicinski <kuba@kernel.org>
+Cc: Jeff Johnson <quic_jjohnson@quicinc.com>, 
+	Abhishek Chauhan <quic_abchauha@quicinc.com>, Vinod Koul <vkoul@kernel.org>, 
+	Bhupesh Sharma <bhupesh.sharma@linaro.org>, Andy Gross <agross@kernel.org>, 
+	Bjorn Andersson <andersson@kernel.org>, Konrad Dybcio <konrad.dybcio@linaro.org>, 
+	"David S. Miller" <davem@davemloft.net>, Eric Dumazet <edumazet@google.com>, 
+	Rob Herring <robh+dt@kernel.org>, Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, 
+	Conor Dooley <conor+dt@kernel.org>, Alexandre Torgue <alexandre.torgue@foss.st.com>, 
+	Jose Abreu <joabreu@synopsys.com>, Maxime Coquelin <mcoquelin.stm32@gmail.com>, 
+	netdev@vger.kernel.org, linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org, linux-stm32@st-md-mailman.stormreply.com, 
+	Prasad Sodagudi <psodagud@quicinc.com>, Rob Herring <robh@kernel.org>, kernel@quicinc.com
+Subject: Re: Re: [PATCH v2] net: stmmac: dwmac-qcom-ethqos: Enable TBS on all
+ queues but 0
+Message-ID: <6ihzd33vbgvixbe54jjoaj27tc5thhaq7u6iaufbmpejrtgxol@jit6qyaxjy3y>
+References: <20240207001036.1333450-1-quic_abchauha@quicinc.com>
+ <578b6a6e-83df-4113-9c1f-cdd7aa65f65e@quicinc.com>
+ <20240207101934.6c0ab20b@kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [RFC PATCH v1] arm64: dts: amlogic: Add Freebox fbx8am boards
-Content-Language: en-US
-To: Neil Armstrong <neil.armstrong@linaro.org>,
- AML <linux-amlogic@lists.infradead.org>, DT <devicetree@vger.kernel.org>
-Cc: Kevin Hilman <khilman@baylibre.com>, Jerome Brunet
- <jbrunet@baylibre.com>,
- Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
- Rob Herring <robh+dt@kernel.org>,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Conor Dooley <conor+dt@kernel.org>,
- Pierre-Hugues Husson <phhusson@freebox.fr>
-References: <8c865c62-cd80-4c78-9fc5-c85491c037ca@freebox.fr>
- <2149edc1-e19d-4aae-851d-df35b91bcd98@linaro.org>
-From: Marc Gonzalez <mgonzalez@freebox.fr>
-In-Reply-To: <2149edc1-e19d-4aae-851d-df35b91bcd98@linaro.org>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20240207101934.6c0ab20b@kernel.org>
 
-On 06/02/2024 14:38, Neil Armstrong wrote:
-
-> Hi Marc, Pierre-Hugues,
-> On 06/02/2024 14:12, Marc Gonzalez wrote:
->
->> From: Pierre-Hugues Husson <phhusson@freebox.fr>
->>
->> The fbx8am boards are based on the Amlogic Meson G12A S905X2 SoC,
->> and the SEI510 board design.
->>
->> Signed-off-by: Pierre-Hugues Husson <phhusson@freebox.fr>
->> Signed-off-by: Marc Gonzalez <mgonzalez@freebox.fr>
->> ---
->> Request For Comments to spot obvious mistakes before formal submission
->> NB: on IRC, narmstrong mentioned:
->>> adding dtbos for variants seems to be the new preferred way to handle such case
->>> the fdtoverlay utility works well for this case
+On Wed, Feb 07, 2024 at 10:19:34AM -0800, Jakub Kicinski wrote:
+> On Wed, 7 Feb 2024 09:26:05 -0800 Jeff Johnson wrote:
+> > > This is similar to the patch raised by NXP <3b12ec8f618e>
+> > > <"net: stmmac: dwmac-imx: set TSO/TBS TX queues default settings">  
+> > 
+> > note that there is a standard way to refer to a prior patch, in your case:
+> > 3b12ec8f618e ("net: stmmac: dwmac-imx: set TSO/TBS TX queues default
+> > settings")
 > 
-> Thanks for this RFC, first please split it in at least 4 patches:
-> - vendor prefix
-> - bindings
-> - _base_ dt
-> - variant DT
+> Yes, please fix.
 > 
-> For the variant DT, indeed I think DTBOs should be the new preferred way
-> to handle that, for reference I pushed a patch for the DSI panel support
-> of the Khadas VIM3 as a DTBO:
-> https://lore.kernel.org/all/20240205-amlogic-v6-4-upstream-dsi-ccf-vim3-v10-6-dc06073d5330@linaro.org/
+> > (note this format is defined in the context of the Fixes tag at
+> > <https://www.kernel.org/doc/html/latest/process/submitting-patches.html#using-reported-by-tested-by-reviewed-by-suggested-by-and-fixes>)
 > 
-> It would greatly simplify your handling of current and future variants,
-> reduce the size of builds DTs and make it more flexible.
+> A fixes tag would be great. But we can't point at 3b12ec8f618e, right?
+> Can someone explain what the user-visible problem is?
+> TBS cannot be used? Device reinit is require to enable it?
+> 
 
-Below is my current patch (which still needs to be split in 4) for reference.
+I'm not sure you'd consider this a fix, but yes the syntax there should
+be using that fixes style for sure.
 
-We're not quite sure how to apply the DTBO at run-time.
+This enables the ability to use TBS / etf on queues other than 0. So I'd
+consider this a new feature for the Qualcomm variant of things here
+personally.
 
-PH mentioned passing a -@ option to dtc?
+Longer term it would be nice to be able to change which queues can do
+what via ethtool as was discussed over here, but for now this at least
+improves things and follows suit with the imx and intel variants:
 
-$ fdtoverlay -i meson-g12a-fbx8am.dtb -o dt.img meson-g12a-fbx8am-brcm.dtbo
-Failed to apply 'meson-g12a-fbx8am-brcm.dtbo': FDT_ERR_NOTFOUND
+    https://lore.kernel.org/netdev/c2497eef-1041-4cd0-8220-42622c8902f4@quicinc.com/
 
 
-  Documentation/devicetree/bindings/arm/amlogic.yaml         |   1 +
-  Documentation/devicetree/bindings/vendor-prefixes.yaml     |   2 +
-  arch/arm64/boot/dts/amlogic/Makefile                       |   5 +
-  arch/arm64/boot/dts/amlogic/meson-g12a-fbx8am-brcm.dtso    |  35 +++
-  arch/arm64/boot/dts/amlogic/meson-g12a-fbx8am-realtek.dtso |  25 ++
-  arch/arm64/boot/dts/amlogic/meson-g12a-fbx8am.dts          | 469 +++++++++++++++++++++++++++++++++
-  6 files changed, 537 insertions(+)
-
-diff --git a/Documentation/devicetree/bindings/arm/amlogic.yaml b/Documentation/devicetree/bindings/arm/amlogic.yaml
-index caab7ceeda45a..fce12e44c00af 100644
---- a/Documentation/devicetree/bindings/arm/amlogic.yaml
-+++ b/Documentation/devicetree/bindings/arm/amlogic.yaml
-@@ -148,6 +148,7 @@ properties:
-                - amlogic,u200
-                - radxa,zero
-                - seirobotics,sei510
-+              - freebox,fbx8am
-            - const: amlogic,g12a
-  
-        - description: Boards with the Amlogic Meson G12B A311D SoC
-diff --git a/Documentation/devicetree/bindings/vendor-prefixes.yaml b/Documentation/devicetree/bindings/vendor-prefixes.yaml
-index 1a0dc04f1db47..4f5a1f4e6689a 100644
---- a/Documentation/devicetree/bindings/vendor-prefixes.yaml
-+++ b/Documentation/devicetree/bindings/vendor-prefixes.yaml
-@@ -500,6 +500,8 @@ patternProperties:
-      description: FocalTech Systems Co.,Ltd
-    "^forlinx,.*":
-      description: Baoding Forlinx Embedded Technology Co., Ltd.
-+  "^freebox,.*":
-+    description: Freebox SAS
-    "^freecom,.*":
-      description: Freecom Gmbh
-    "^frida,.*":
-diff --git a/arch/arm64/boot/dts/amlogic/Makefile b/arch/arm64/boot/dts/amlogic/Makefile
-index cc8b34bd583d8..b10958e3837fe 100644
---- a/arch/arm64/boot/dts/amlogic/Makefile
-+++ b/arch/arm64/boot/dts/amlogic/Makefile
-@@ -8,6 +8,7 @@ dtb-$(CONFIG_ARCH_MESON) += meson-axg-jethome-jethub-j100.dtb
-  dtb-$(CONFIG_ARCH_MESON) += meson-axg-jethome-jethub-j110-rev-2.dtb
-  dtb-$(CONFIG_ARCH_MESON) += meson-axg-jethome-jethub-j110-rev-3.dtb
-  dtb-$(CONFIG_ARCH_MESON) += meson-axg-s400.dtb
-+dtb-$(CONFIG_ARCH_MESON) += meson-g12a-fbx8am.dtb
-  dtb-$(CONFIG_ARCH_MESON) += meson-g12a-radxa-zero.dtb
-  dtb-$(CONFIG_ARCH_MESON) += meson-g12a-sei510.dtb
-  dtb-$(CONFIG_ARCH_MESON) += meson-g12a-u200.dtb
-@@ -80,3 +81,7 @@ dtb-$(CONFIG_ARCH_MESON) += meson-sm1-odroid-hc4.dtb
-  dtb-$(CONFIG_ARCH_MESON) += meson-sm1-sei610.dtb
-  dtb-$(CONFIG_ARCH_MESON) += meson-sm1-x96-air-gbit.dtb
-  dtb-$(CONFIG_ARCH_MESON) += meson-sm1-x96-air.dtb
-+
-+# Overlays
-+dtb-$(CONFIG_ARCH_MESON) += meson-g12a-fbx8am-brcm.dtbo
-+dtb-$(CONFIG_ARCH_MESON) += meson-g12a-fbx8am-realtek.dtbo
-diff --git a/arch/arm64/boot/dts/amlogic/meson-g12a-fbx8am-brcm.dtso b/arch/arm64/boot/dts/amlogic/meson-g12a-fbx8am-brcm.dtso
-new file mode 100644
-index 0000000000000..ed79809b15859
---- /dev/null
-+++ b/arch/arm64/boot/dts/amlogic/meson-g12a-fbx8am-brcm.dtso
-@@ -0,0 +1,35 @@
-+// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
-+// Copyright (c) 2024 Freebox SAS
-+
-+/dts-v1/;
-+/plugin/;
-+
-+#include <dt-bindings/gpio/gpio.h>
-+#include <dt-bindings/gpio/meson-g12a-gpio.h>
-+
-+/ {
-+	compatible = "freebox,fbx8am-brcm", "freebox,fbx8am", "amlogic,g12a";
-+};
-+
-+&uart_A {
-+	bluetooth {
-+		compatible = "brcm,bcm43438-bt";
-+		shutdown-gpios = <&gpio GPIOX_17 GPIO_ACTIVE_HIGH>;
-+		max-speed = <2000000>;
-+		clocks = <&wifi32k>;
-+		clock-names = "lpo";
-+		vbat-supply = <&vddao_3v3>;
-+		vddio-supply = <&vddio_ao1v8>;
-+	};
-+};
-+
-+&sd_emmc_a {
-+	/* Per mmc-controller.yaml */
-+	#address-cells = <1>;
-+	#size-cells = <0>;
-+	/* NB: may be either AP6398S or AP6398SR3 wifi module */
-+	brcmf: wifi@1 {
-+		reg = <1>;
-+		compatible = "brcm,bcm4329-fmac";
-+	};
-+};
-diff --git a/arch/arm64/boot/dts/amlogic/meson-g12a-fbx8am-realtek.dtso b/arch/arm64/boot/dts/amlogic/meson-g12a-fbx8am-realtek.dtso
-new file mode 100644
-index 0000000000000..5da88fb94fb98
---- /dev/null
-+++ b/arch/arm64/boot/dts/amlogic/meson-g12a-fbx8am-realtek.dtso
-@@ -0,0 +1,25 @@
-+// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
-+// Copyright (c) 2024 Freebox SAS
-+
-+/dts-v1/;
-+/plugin/;
-+
-+#include <dt-bindings/gpio/gpio.h>
-+#include <dt-bindings/gpio/meson-g12a-gpio.h>
-+
-+/ {
-+	compatible = "freebox,fbx8am-realtek", "freebox,fbx8am", "amlogic,g12a";
-+};
-+
-+&uart_A {
-+	bluetooth {
-+		compatible = "realtek,rtl8822cs-bt";
-+		enable-gpios = <&gpio GPIOX_17 GPIO_ACTIVE_HIGH>;
-+		host-wake-gpios = <&gpio GPIOX_19 GPIO_ACTIVE_HIGH>;
-+		device-wake-gpios = <&gpio GPIOX_18 GPIO_ACTIVE_HIGH>;
-+	};
-+};
-+
-+&sd_emmc_a {
-+	/* No explicit compatible for rtl8822cs sdio */
-+};
-diff --git a/arch/arm64/boot/dts/amlogic/meson-g12a-fbx8am.dts b/arch/arm64/boot/dts/amlogic/meson-g12a-fbx8am.dts
-new file mode 100644
-index 0000000000000..750322c295133
---- /dev/null
-+++ b/arch/arm64/boot/dts/amlogic/meson-g12a-fbx8am.dts
-@@ -0,0 +1,469 @@
-+// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
-+// Copyright (c) 2024 Freebox SAS
-+
-+/*
-+ * SEI codename: SEI530FB (based on SEI510)
-+ * Freebox codename: fbx8am
-+ * Commercial names: Freebox Pop, Player TV Free 4K
-+ */
-+
-+/dts-v1/;
-+
-+#include "meson-g12a.dtsi"
-+#include <dt-bindings/gpio/gpio.h>
-+#include <dt-bindings/input/input.h>
-+#include <dt-bindings/gpio/meson-g12a-gpio.h>
-+#include <dt-bindings/sound/meson-g12a-tohdmitx.h>
-+
-+/ {
-+	compatible = "freebox,fbx8am", "amlogic,g12a";
-+	model = "Freebox Player Pop";
-+	chassis-type = "embedded";
-
-[ snip ]
+Thanks,
+Andrew
 
 
