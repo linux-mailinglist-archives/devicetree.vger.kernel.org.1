@@ -1,122 +1,393 @@
-Return-Path: <devicetree+bounces-39493-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-39494-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 39FAA84CF3B
-	for <lists+devicetree@lfdr.de>; Wed,  7 Feb 2024 17:47:18 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id D161484CFA0
+	for <lists+devicetree@lfdr.de>; Wed,  7 Feb 2024 18:18:08 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id CB36F1F22501
-	for <lists+devicetree@lfdr.de>; Wed,  7 Feb 2024 16:47:17 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 47FC2B29994
+	for <lists+devicetree@lfdr.de>; Wed,  7 Feb 2024 17:18:06 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id BD157823B8;
-	Wed,  7 Feb 2024 16:47:03 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id AC041823B8;
+	Wed,  7 Feb 2024 17:18:00 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="h9jcQgDf"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="G/L2yQQm"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wr1-f49.google.com (mail-wr1-f49.google.com [209.85.221.49])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 163DB823B5;
-	Wed,  7 Feb 2024 16:47:01 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.49
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 761D441C7C;
+	Wed,  7 Feb 2024 17:18:00 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1707324423; cv=none; b=Sx8/xRXb70lP8kCyM0YtZjgpXKtgQcA+RUAVMZyg/ypOwpEyHIvpJsfVaSUwSuHqICuV4nLykSyuxzZ0zNe5I3DatI3fWvTSPa0zYECNZvYwGvx7O0AsWY/JW7+aOFs+DtrnEHZALAjNTH9sY+pVRxb60uqZyG+CjhSSlvfH+Kc=
+	t=1707326280; cv=none; b=aFbBBOt+/ymgGX0IMHVvY2KFii3bcciq5YLdxP5o/FzQQRhdBL+/7cUw2dnqsQQiPUE3az/xh9xIrp7bNQG5KZS0fhiC3ANH85MCuA7dC9Yc3Wus+xTpqwUTbi3COHZ1TXGybsrBZ55ra51HX504N3yz8qk31LF2mx99/92Z8uA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1707324423; c=relaxed/simple;
-	bh=ow/h8HMMgjieSvpBo0RQLfojsUZLKxwQxt9Zr8Urlus=;
+	s=arc-20240116; t=1707326280; c=relaxed/simple;
+	bh=AifL6QYyqG53TI48TuU1GDWfHn3Aaxdxr+6Bcd1YliY=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=OgllB7QUSyatiFaG7eUI6mNNyiPP1qq0Hur0kGIpaGUNl2HQVG9pedsTs4V/G5FvRdXH5prjv0Hd5U0yJsJonZLdnbXeictBhPJ2nc13DW8gYvP1S/MaLpXUpNZPT6Eh0Et43DPoH9lyooweoJU5U6+lVpSDxR0DlVH2a86gX48=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=h9jcQgDf; arc=none smtp.client-ip=209.85.221.49
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-wr1-f49.google.com with SMTP id ffacd0b85a97d-3392b045e0aso556159f8f.2;
-        Wed, 07 Feb 2024 08:47:01 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1707324420; x=1707929220; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=LNyBJm271uKZuxLauB8cEdJcYLbaucijNIBqjeZVchI=;
-        b=h9jcQgDfoqKpS83QQgTu4HymBYIl3ImeTjXjWPPpi2VmaEK7NJjXurn5JBitTLBc+y
-         1vX1JMpCKL2KlPeVmnqyJbCLtQEvcbHsqKDlgN1w4M6dhRGcgsjl1q2YWCt//9MzxMtH
-         1ITFNFCedbr5cxMn5lLm11FiA+J5QE+Rcl92Gi4rPOv8N8JTacQrSbmq20J62f0p9u+v
-         11ExE5owH/ixdkRHvS/lIdrVU95A6nCVBPjIpXIELnLmsrePauWs4ZRLoeigtt4icM41
-         vj+8YVDRtxf81ywBh47Snc0G0b/p/icJPbEOTfrwdGdsF5Y4AXfZKof9xOYRNrNNkUhu
-         yMog==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1707324420; x=1707929220;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=LNyBJm271uKZuxLauB8cEdJcYLbaucijNIBqjeZVchI=;
-        b=fPNEOCs11Syfta2XGpDIMHR4JxZesTpOuvRKFkhAlNlKO4E4jZuGm9MEfxVdemSfBC
-         Z6Dm7ng9YBBwnS9JxzU4DO6K7m/Rg4YNN3slfV1sl5scROueiWWOa/gGPS/o/wVBJQuZ
-         EHAYlnZ2zPRvfHTkIYKgEy5kFbb4uiKuK8E/qweg2QNt2d8+O+qqUtn4+aPbVYCca/OW
-         FW8gMQBovaEWDihHQHlZZo2h5IvHHzcwelcM2OXMowjkxdbEqm2KqPcXJ6oI4ZZpR4HD
-         yIUJOltg6iozHhvsMQYbWYjE+QVjmY8jVapfyrs1hCbU5YUyqfaJK3/DQPoLokIlKq/I
-         3l7A==
-X-Forwarded-Encrypted: i=1; AJvYcCW2hMHMxuobt3FNHtR/Idqx9bvPkUiVD4BI0rQNy7SPzsu8D6/cRXGsaY2yPrQE3raO1HP/AhWqBWTqfDPRfiVy1EwKFwPG4R37muCFqfsl7M/k7WKVNLNUy77tPY81uYhgbRkr
-X-Gm-Message-State: AOJu0YwCvzXSR0qGdutRikXrI2j643P4u0LdIpimZ6vddnF9ChNFtIhq
-	msQvDrNGrJmvJ/uNQiUVpBRDAFNiToDEjZDFkbDiSH5uXpMQ+Xfl
-X-Google-Smtp-Source: AGHT+IHLJL92TguC8sEtCjhxW9AMlDys16cKTdv7JQMHIf6bMiiMlyMp/b/AkkcDwTYaRG486wm0aA==
-X-Received: by 2002:adf:e707:0:b0:33b:153a:de12 with SMTP id c7-20020adfe707000000b0033b153ade12mr4296483wrm.13.1707324420094;
-        Wed, 07 Feb 2024 08:47:00 -0800 (PST)
-X-Forwarded-Encrypted: i=1; AJvYcCWqIu/ontdqSsx+JVBhpOZoQVPeF7HGMkI1l8OZSOezAuCFfeafZ7VwFqKktb++AMgXcsfauN2GbRULJukw/yaAvAlnhgcvVWXVVW6V4rH92t7MlbwG4Yo/SQhJrk2MuVi8Ub8xt5j+XLoeH7NDOdwXMLOg0inuHedvGnYDnmrduFkJjImVzqWbUJjxZYPqApR/Fqkn0pZgGLD2BMo2kFpmgDWT7bc2jJrxDRd+8ToItzRZWloeUkYZMh8Hw8EspilGIhSZsB+rb4fdCw4TZ0Q3SFOO7waQ+c977bTHfVPWH743h4Sj+LivfDm+iIu7QwzWsmoXwWFkb/Zr49OX2/lejz64/1OfX16LTiQFVDWyWcVZjJuBQiiYMlZGhgtZnUMXEEGnHsyYlfdq9JvNaud0K3qSfB0s1NT+rnBswtQkUzOUMdQxFTMxHTruoEifT0abtMOoJAsuUBwNLjCg9HEd+FJgkzevHXtCFsofNd8zaQHP8yfVf2VeRED7YLZIMnUXHFaOgdkyZW+1GX7pJ+D6PbcxGGTG94UxlKXE4c26qBVHzRQ=
-Received: from eichest-laptop ([178.197.195.228])
-        by smtp.gmail.com with ESMTPSA id n15-20020adff08f000000b0033b1c321070sm1871607wro.31.2024.02.07.08.46.58
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 07 Feb 2024 08:46:59 -0800 (PST)
-Date: Wed, 7 Feb 2024 17:46:56 +0100
-From: Stefan Eichenberger <eichest@gmail.com>
-To: "Russell King (Oracle)" <linux@armlinux.org.uk>
-Cc: Andrew Lunn <andrew@lunn.ch>, Amit Kucheria <amitk@kernel.org>,
-	Daniel Lezcano <daniel.lezcano@linaro.org>,
-	Gregory Clement <gregory.clement@bootlin.com>,
+	 Content-Type:Content-Disposition:In-Reply-To; b=EcNXiBfRGRLbvWY3qddKDCKzxzq5dC9UvPHqoZaqPnOx4rx3BpEsNsd6D/etrhrTYe0Gbq2qpLCfdV+tJwc284Ah692Q9NA1S5vLyPM7VSHXS3OcOP0koIr7ilApGDK+J7CjPcA/L7kNQ2Eq6L8qpVhsobza2bLemNa2YRLF0Fc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=G/L2yQQm; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id CCCF7C433F1;
+	Wed,  7 Feb 2024 17:17:57 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1707326280;
+	bh=AifL6QYyqG53TI48TuU1GDWfHn3Aaxdxr+6Bcd1YliY=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=G/L2yQQmYa895GsoyX4Lt15r0xvtYdIz0J4pPvvLtwpQzZF8MBMaPylvvQk2zRQzn
+	 nJKuNGIMKoOtDvf4ey9+9c9L6XyYFP5NmElThKbIeyqcb2Dhw50XhQF7rK/hQypxKk
+	 Pj+SjOPurY33w6k76xhGSlXdipyjZS8dX47ZdbJLGa57dtwf+OUml/waQGnyKK95zy
+	 RHJY+UW579d1X/C5RmZxqNaqW5kZFtIKtXQtpfYaFiFTrA8CWLYphCuQsbh/dQzhDo
+	 atsZ8XbTm8yLbQCjoYQnHbBkc3MW5khL6gi32S6AA1Cy3Rrra0b+e8CV9eedOLrKR9
+	 2G9GYcKj3223w==
+Date: Wed, 7 Feb 2024 17:17:55 +0000
+From: Conor Dooley <conor@kernel.org>
+To: Frank Li <Frank.Li@nxp.com>
+Cc: Bjorn Helgaas <bhelgaas@google.com>,
+	Lorenzo Pieralisi <lpieralisi@kernel.org>,
+	Krzysztof =?utf-8?Q?Wilczy=C5=84ski?= <kw@linux.com>,
+	Rob Herring <robh@kernel.org>,
 	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Miquel Raynal <miquel.raynal@bootlin.com>,
-	"Rafael J. Wysocki" <rafael@kernel.org>,
-	Rob Herring <robh+dt@kernel.org>,
-	Sebastian Hesselbarth <sebastian.hesselbarth@gmail.com>,
-	Zhang Rui <rui.zhang@intel.com>, Josua Mayer <josua@solid-run.com>,
-	devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-	linux-pm@vger.kernel.org, manuel.aebischer@netmodule.com
-Subject: Re: [PATCH 3/3] arm64: dts: armada-ap807: update thermal compatible
-Message-ID: <ZcO0AAzK+P8sYHdX@eichest-laptop>
-References: <ZIxMYXDCTB7IvsDk@shell.armlinux.org.uk>
- <E1qA7yZ-00Ea50-OC@rmk-PC.armlinux.org.uk>
- <ZcOsjRzE8V73wNtT@eichest-laptop>
- <13ab003d-7449-4d6f-861a-fa2d0c3f4ad2@lunn.ch>
- <ZcOwB5xShhRoX5yh@shell.armlinux.org.uk>
+	Conor Dooley <conor+dt@kernel.org>,
+	"open list:PCI SUBSYSTEM" <linux-pci@vger.kernel.org>,
+	"open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" <devicetree@vger.kernel.org>,
+	open list <linux-kernel@vger.kernel.org>, imx@lists.linux.dev
+Subject: Re: [PATCH 1/1] dt-bindings: pci: layerscape-pci: Convert to yaml
+ file
+Message-ID: <20240207-yoga-mobility-90a728f6342c@spud>
+References: <20240207062403.304367-1-Frank.Li@nxp.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+Content-Type: multipart/signed; micalg=pgp-sha256;
+	protocol="application/pgp-signature"; boundary="Yz26zNuFXxc4q6EN"
+Content-Disposition: inline
+In-Reply-To: <20240207062403.304367-1-Frank.Li@nxp.com>
+
+
+--Yz26zNuFXxc4q6EN
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <ZcOwB5xShhRoX5yh@shell.armlinux.org.uk>
+Content-Transfer-Encoding: quoted-printable
 
-On Wed, Feb 07, 2024 at 04:29:59PM +0000, Russell King (Oracle) wrote:
-> On Wed, Feb 07, 2024 at 05:25:59PM +0100, Andrew Lunn wrote:
-> > > While working on some thermal optimizations, our hardware team
-> > > discovered that this patch is still missing upstream. Is something
-> > > missing or did it get lost?
-> > 
-> > Patch 1/3 had a change request. Was it ever reposted with the
-> > requested change?
+Hey Frank,
 
-I forgot to mention that the other patches were applied, so it is only
-the one missing without change request.
+On Wed, Feb 07, 2024 at 01:24:02AM -0500, Frank Li wrote:
+> Convert layerscape pcie bind document to yaml file.
+>=20
+> Signed-off-by: Frank Li <Frank.Li@nxp.com>
+> ---
+>  .../bindings/pci/fsl,layerscape-pcie-ep.yaml  |  84 +++++++++
+>  .../bindings/pci/fsl,layerscape-pcie.yaml     | 163 ++++++++++++++++++
+>  .../bindings/pci/layerscape-pci.txt           |  79 ---------
+>  3 files changed, 247 insertions(+), 79 deletions(-)
+>  create mode 100644 Documentation/devicetree/bindings/pci/fsl,layerscape-=
+pcie-ep.yaml
+>  create mode 100644 Documentation/devicetree/bindings/pci/fsl,layerscape-=
+pcie.yaml
+>  delete mode 100644 Documentation/devicetree/bindings/pci/layerscape-pci.=
+txt
+>=20
+> diff --git a/Documentation/devicetree/bindings/pci/fsl,layerscape-pcie-ep=
+=2Eyaml b/Documentation/devicetree/bindings/pci/fsl,layerscape-pcie-ep.yaml
+> new file mode 100644
+> index 0000000000000..3b592c820eb4c
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/pci/fsl,layerscape-pcie-ep.yaml
+> @@ -0,0 +1,84 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/pci/fsl,layerscape-pcie-ep.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: Freescale Layerscape PCIe controller
+> +
+> +maintainers:
+> +  - Frank Li <Frank.Li@nxp.com>
+> +
+> +description: |+
 
-> 
-> I don't think so, it's just another patch series of many that I have
-> that's basically low priority, and other stuff probably overrode it
-> and I then forgot about it.
+Are you sure that you need this chomping operator?
 
-No problem at all, thanks a lot for the feedback.
+> +  This PCIe endpoint controller is based on the Synopsys DesignWare PCIe=
+ IP
 
-Regards,
-Stefan
+> +  and thus inherits all the common properties defined in snps,dw-pcie-ep=
+=2Eyaml.
+
+You shouldn't need this statement given you have the ref: below.
+
+> +
+> +  This controller derives its clocks from the Reset Configuration Word (=
+RCW)
+> +  which is used to describe the PLL settings at the time of chip-reset.
+> +
+> +  Also as per the available Reference Manuals, there is no specific 'ver=
+sion'
+> +  register available in the Freescale PCIe controller register set,
+> +  which can allow determining the underlying DesignWare PCIe controller =
+version
+> +  information.
+> +
+> +properties:
+> +  compatible:
+> +    enum:
+> +      - fsl,ls2088a-pcie-ep
+> +      - fsl,ls1088a-pcie-ep
+> +      - fsl,ls1046a-pcie-ep
+> +      - fsl,ls1028a-pcie-ep
+> +      - fsl,lx2160ar2-pcie-ep
+
+Where did the fallback compatible go?
+
+> +
+> +  reg:
+> +    maxItems: 2
+> +
+> +  reg-names:
+> +    items:
+> +      - const: regs
+> +      - const: addr_space
+
+The example uses "regs" and "config". Where did addr_space come from?
+
+> +  fsl,pcie-scfg:
+> +    $ref: /schemas/types.yaml#/definitions/phandle
+> +    description: A phandle to the SCFG device node. The second entry is =
+the
+> +      physical PCIe controller index starting from '0'. This is used to =
+get
+> +      SCFG PEXN registers.
+> +
+> +  dma-coherent:
+
+dma-coherent: true
+
+> +    $ref: /schemas/types.yaml#/definitions/flag
+> +    description: Indicates that the hardware IP block can ensure the coh=
+erency
+> +      of the data transferred from/to the IP block. This can avoid the s=
+oftware
+> +      cache flush/invalid actions, and improve the performance significa=
+ntly.
+> +
+> +  big-endian:
+> +    $ref: /schemas/types.yaml#/definitions/flag
+> +    description: If the PEX_LUT and PF register block is in big-endian, =
+specify
+> +      this property.
+> +
+> +required:
+> +  - compatible
+> +  - reg
+> +  - reg-names
+
+This was not previously required, why is it required now?
+
+> +  - "#address-cells"
+> +  - "#size-cells"
+> +  - device_type
+> +  - bus-range
+> +  - ranges
+> +
+> +allOf:
+> +  - $ref: /schemas/pci/snps,dw-pcie-ep.yaml#
+> +
+> +  - if:
+> +      properties:
+> +        compatible:
+> +          enum:
+> +            - fsl,ls1028a-pcie-ep
+> +            - fsl,ls1046a-pcie-ep
+> +            - fsl,ls1088a-pcie-ep
+> +    then:
+> +      properties:
+> +        interrupt-names:
+> +          items:
+> +            - const: pme
+
+Please define the interrupt properties at the top-level and constrain
+them on a per-device basis.
+
+> +
+> +unevaluatedProperties: false
+> diff --git a/Documentation/devicetree/bindings/pci/fsl,layerscape-pcie.ya=
+ml b/Documentation/devicetree/bindings/pci/fsl,layerscape-pcie.yaml
+> new file mode 100644
+> index 0000000000000..e3719da306f25
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/pci/fsl,layerscape-pcie.yaml
+> @@ -0,0 +1,163 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/pci/fsl,layerscape-pcie.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+
+Only brief comments here, as it most is the same comments as for the=20
+> +
+> +title: Freescale Layerscape PCIe controller
+> +
+> +maintainers:
+> +  - Frank Li <Frank.Li@nxp.com>
+> +
+> +description: |+
+> +  This PCIe host controller is based on the Synopsys DesignWare PCIe IP
+> +  and thus inherits all the common properties defined in snps,dw-pcie.ya=
+ml.
+
+Same two comments here as above.
+
+> +
+> +  This controller derives its clocks from the Reset Configuration Word (=
+RCW)
+> +  which is used to describe the PLL settings at the time of chip-reset.
+> +
+> +  Also as per the available Reference Manuals, there is no specific 'ver=
+sion'
+> +  register available in the Freescale PCIe controller register set,
+> +  which can allow determining the underlying DesignWare PCIe controller =
+version
+> +  information.
+> +
+> +properties:
+> +  compatible:
+> +    enum:
+> +      - fsl,ls1021a-pcie
+> +      - fsl,ls2080a-pcie
+> +      - fsl,ls2085a-pcie
+> +      - fsl,ls2088a-pcie
+> +      - fsl,ls1088a-pcie
+> +      - fsl,ls1046a-pcie
+> +      - fsl,ls1043a-pcie
+> +      - fsl,ls1012a-pcie
+> +      - fsl,ls1028a-pcie
+> +
+> +  reg:
+> +    maxItems: 2
+> +
+> +  reg-names:
+> +    items:
+> +      - const: regs
+> +      - const: config
+> +
+> +  fsl,pcie-scfg:
+> +    $ref: /schemas/types.yaml#/definitions/phandle
+> +    description: A phandle to the SCFG device node. The second entry is =
+the
+> +      physical PCIe controller index starting from '0'. This is used to =
+get
+> +      SCFG PEXN registers.
+> +
+> +  dma-coherent:
+> +    $ref: /schemas/types.yaml#/definitions/flag
+> +    description: Indicates that the hardware IP block can ensure the coh=
+erency
+> +      of the data transferred from/to the IP block. This can avoid the s=
+oftware
+> +      cache flush/invalid actions, and improve the performance significa=
+ntly.
+
+Same here.
+
+> +
+> +  big-endian:
+> +    $ref: /schemas/types.yaml#/definitions/flag
+> +    description: If the PEX_LUT and PF register block is in big-endian, =
+specify
+> +      this property.
+> +
+> +  msi-parent: true
+> +
+> +  iommu-map: true
+> +
+> +required:
+> +  - compatible
+> +  - reg
+> +  - reg-names
+
+Same here.
+
+> +  - "#address-cells"
+> +  - "#size-cells"
+> +  - device_type
+> +  - bus-range
+> +  - ranges
+> +  - interrupts
+> +  - interrupt-names
+> +  - "#interrupt-cells"
+> +  - interrupt-map-mask
+> +  - interrupt-map
+> +
+> +allOf:
+> +  - $ref: /schemas/pci/pci-bus.yaml#
+> +
+
+> +  - if:
+> +      properties:
+> +        compatible:
+> +          enum:
+> +            - fsl,ls1028a-pcie
+> +            - fsl,ls1046a-pcie
+> +            - fsl,ls1043a-pcie
+> +            - fsl,ls1012a-pcie
+> +    then:
+> +      properties:
+> +        interrupts:
+> +          maxItems: 2
+> +        interrupt-names:
+> +          items:
+> +            - const: pme
+> +            - const: aer
+> +
+> +  - if:
+> +      properties:
+> +        compatible:
+> +          enum:
+> +            - fsl,ls2080a-pcie
+> +            - fsl,ls2085a-pcie
+> +            - fsl,ls2088a-pcie
+> +    then:
+> +      properties:
+> +        interrupts:
+> +          maxItems: 1
+> +        interrupt-names:
+> +          items:
+> +            - const: intr
+> +
+> +  - if:
+> +      properties:
+> +        compatible:
+> +          enum:
+> +            - fsl,ls1088a-pcie
+> +    then:
+> +      properties:
+> +        interrupts:
+> +          maxItems: 1
+> +        interrupt-names:
+> +          items:
+> +            - const: aer
+
+And same here.
+
+Thanks,
+Conor.
+
+--Yz26zNuFXxc4q6EN
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZcO7QwAKCRB4tDGHoIJi
+0kXFAP4yOTRC0bvtmQ0MsFVdS8ujw5GGs55XSRHGIrRROZqvmQD/UpsDMcsu2Gnm
+G6u8JTfv3mObcAOn6C4X3dj7YZblYgI=
+=iaaK
+-----END PGP SIGNATURE-----
+
+--Yz26zNuFXxc4q6EN--
 
