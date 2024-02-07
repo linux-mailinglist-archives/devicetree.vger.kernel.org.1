@@ -1,252 +1,248 @@
-Return-Path: <devicetree+bounces-39359-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-39360-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4FA6884C569
-	for <lists+devicetree@lfdr.de>; Wed,  7 Feb 2024 08:04:40 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 743C984C56F
+	for <lists+devicetree@lfdr.de>; Wed,  7 Feb 2024 08:05:29 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id B88D51F21D10
-	for <lists+devicetree@lfdr.de>; Wed,  7 Feb 2024 07:04:39 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 53E48B23D5B
+	for <lists+devicetree@lfdr.de>; Wed,  7 Feb 2024 07:05:26 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 273481D551;
-	Wed,  7 Feb 2024 07:04:31 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id ED7D61CFAC;
+	Wed,  7 Feb 2024 07:05:20 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="O0ruSE6W"
+	dkim=pass (1024-bit key) header.d=suse.de header.i=@suse.de header.b="pMEPN5i+";
+	dkim=permerror (0-bit key) header.d=suse.de header.i=@suse.de header.b="2Y1DwWSj";
+	dkim=pass (1024-bit key) header.d=suse.de header.i=@suse.de header.b="BVXP1nkI";
+	dkim=permerror (0-bit key) header.d=suse.de header.i=@suse.de header.b="CfugtL1Q"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f48.google.com (mail-wm1-f48.google.com [209.85.128.48])
+Received: from smtp-out1.suse.de (smtp-out1.suse.de [195.135.223.130])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 320751F5F0
-	for <devicetree@vger.kernel.org>; Wed,  7 Feb 2024 07:04:28 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.48
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 07B81200A8;
+	Wed,  7 Feb 2024 07:05:18 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=195.135.223.130
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1707289471; cv=none; b=ElyoIEcW62L+xgkxsO8544qft0pW7VB87NsTFOHJ48/guI3a7wmTLPqoaWWHBAKvOg9JO6v5fYxACLy+k+K7rzCsv+FpBpRtWHXisXDptS5rLqjPe8zxaKSdcQLWNmjBIadkP94v6VNkXjMptl9crjwAXTr9/YOvLHEY2vmuadE=
+	t=1707289520; cv=none; b=Zm3XlE8+UXdgv52WNv9hLy6uxgD/3KO/YxyolVYIghU3XFPSqgtlMOVu9NesT6oU+4hWIEMv32RzoKorEyaDPAsk2tc1EwSy9TRDA/ADPGyB2CXaCVSvTvHEGKVNd8aVKiPEUI9fM2yuxv1wgIlzH9KolSWEsAvGmB93ruuclWc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1707289471; c=relaxed/simple;
-	bh=ZvpmJ0RiKLlrFMkh0NikHJnBk2XqWFm5bNySknsd8SM=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=UCnu1UeKqAaZ7qJ3MFVUe9NsZ+yy7ZQLthNIFT2aeyspyGoOXO7wWUD3uHS6fysWsFXO7Mkyk0+D3bUDsNnOunyHjcRe42L0ni9jeZ6HQg3I6WXAf+EwdqSJjKltJnVnK9VoWLLDqoNsysgLuEVctL5J/seozmQs5+sn3ENf740=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=O0ruSE6W; arc=none smtp.client-ip=209.85.128.48
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-wm1-f48.google.com with SMTP id 5b1f17b1804b1-40fe282b8adso2003805e9.2
-        for <devicetree@vger.kernel.org>; Tue, 06 Feb 2024 23:04:27 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1707289466; x=1707894266; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=WUGV0B/PmwgC6ZkuZAsZ9yoKwxsl/mjj13ekKdv5Iv8=;
-        b=O0ruSE6WdcHw8iovgZB9tRLIikCWDWCY4maZaWfCPTtluAAnZbAEl8hTFTOTHBoEna
-         D9i+ZehMUM+N/LHZ2L6eVc/CFjEC943R2QZ7HgIwkBEUekBjGZQp3Fk8wlCs0CSoioPh
-         LLaGPo0vrKg6rWxE584gT7mHVult1BsrZatOtyCR6D8DNf8oufqKoKfqZvOO4dLrFfjM
-         YgZuicUOdHW80FCt+8n+SFpmJzE9EqQIQPHrXm569pDxDRcUC8pupjLyRYQGj54uUD8R
-         YAGPclzTTsTTdJe9WJozNgACRdegQ35ynkeGzo6hqgDNbpE8cI2QyunZPHjXTr2KPxp+
-         ZFSQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1707289466; x=1707894266;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=WUGV0B/PmwgC6ZkuZAsZ9yoKwxsl/mjj13ekKdv5Iv8=;
-        b=n+JM6p63IjaSw9KA5NVEFwyD1CbbcRdYx6EXu5lxd1LcQu8l3StztWqpLBZPKUz2Js
-         3y6aGmd31kwGTMww61YxMMMiQhSeaqzC1F5/ZuL6jgudvE2FGrLfDni9wf+OGUf3VA4F
-         s46Sym0P7L19ZjgDuVb0RyUA2eD7Px403+XqxCNjmLA9880vHD71UXouvIouyxd41P4v
-         Cy7lwt2WJhb2ytPoDSBur/gmZbGy/Y4cdRWKPjfNwqUIuUFQngXLHRNvlX3u/t10wM8W
-         YX0uC10uwkUDwegQRNXLWNVyDfcAL9/ZTRGRj/5w4b74gt997kPYmloNZ8AdIDBocl6y
-         x/2w==
-X-Gm-Message-State: AOJu0Yy4EGWCcrkquE+AZyFMNHooV9SHXk096z5byM+DHqs27xf41csF
-	CtfpjqmyJrJutoUFJVGrTzeWOFXT75s+4SHmIZaNwkikGqGZtLOEs5PQ09iH8ic=
-X-Google-Smtp-Source: AGHT+IED6dibeVsMjy1tpvPHsXYXNrwOKQw46Io+SXeW/Bqx/7ecKVNkVWABzwg06mql1JQI9f5NPQ==
-X-Received: by 2002:a05:600c:3553:b0:40e:fc26:8719 with SMTP id i19-20020a05600c355300b0040efc268719mr3424034wmq.35.1707289466363;
-        Tue, 06 Feb 2024 23:04:26 -0800 (PST)
-X-Forwarded-Encrypted: i=1; AJvYcCWsRvvJv+yQDiU75gECeewciWSwJ3KZBNRdLKD6g5/FTQfOQnZPgYb4gxFfzJ2cWiLC7KyxSRDuNq48ErLtT7Uc+PjHIqTP9odJmqOJerZu5KB3XSwmSj04jIVIkXkPnQBBB9Ja480KI22yQkN1umET3RGl+6IUDKUPJ3qZvU/RO9D7YSKo/fj1rE6BKt95nPqalxh28BYYHWGiyOs4917L5hWvKAx2DowquxHz3amKh3gvmAosytoVEQCJYkB+7VWW1hCG8INI4Oi7gyBM+a3Eb6mp7Y7Z/HisK9VTmuc8oTlvrl/5AqbeywjMesjD+zn3+EPouszZRij2oYktNLlX7X8/c0J1picZDSxW81NS/Rd/dNWS+VySON6BofCIGMtRA3bsc99mwbSGGSTnL9rQR4lINYDgCJIBgZhrfhlVpLNKp9qaF2jxARfR291/BNKF8jWr2kVkU/eWy323QoblmyriEWX4Y6z2E+FzEjo5YhoG2I/FovuI2Hs0gRN636wfi96h8Ae/XsjJWRlsZFp3mtRb/lxdHYOLsex3b+M6DRjw7vdIC3xNxiQY
-Received: from [192.168.0.107] ([79.115.63.202])
-        by smtp.gmail.com with ESMTPSA id s10-20020a05600c45ca00b0040f0219c371sm1031475wmo.19.2024.02.06.23.04.24
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 06 Feb 2024 23:04:25 -0800 (PST)
-Message-ID: <82358d4c-f100-472a-a4ed-88f28c460698@linaro.org>
-Date: Wed, 7 Feb 2024 07:04:24 +0000
+	s=arc-20240116; t=1707289520; c=relaxed/simple;
+	bh=EXW6XWWmdQH4JwkwGz7Ylm1fbJKRhblA7kQzzwKv14I=;
+	h=Date:Message-ID:From:To:Cc:Subject:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=mbsec2WnUKBu9KVuLo4jcYVSw2N9pY2s2r7bNQcpZHYBmXlZOrKLOrW4ve7vvhxjX9l9XiE5IpY2MKrqtg7IYLeLwyhK8IOs53R5YqveozruZLaFtPfUtBQllU6BhXgD00gndNsMnnzJPpgm9sUj1dpouhL1DrmGwDUVnjnUcc8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=suse.de; spf=pass smtp.mailfrom=suse.de; dkim=pass (1024-bit key) header.d=suse.de header.i=@suse.de header.b=pMEPN5i+; dkim=permerror (0-bit key) header.d=suse.de header.i=@suse.de header.b=2Y1DwWSj; dkim=pass (1024-bit key) header.d=suse.de header.i=@suse.de header.b=BVXP1nkI; dkim=permerror (0-bit key) header.d=suse.de header.i=@suse.de header.b=CfugtL1Q; arc=none smtp.client-ip=195.135.223.130
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=suse.de
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=suse.de
+Received: from imap1.dmz-prg2.suse.org (imap1.dmz-prg2.suse.org [IPv6:2a07:de40:b281:104:10:150:64:97])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+	(No client certificate requested)
+	by smtp-out1.suse.de (Postfix) with ESMTPS id E21512216B;
+	Wed,  7 Feb 2024 07:05:16 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=suse.de; s=susede2_rsa;
+	t=1707289517; h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
+	 mime-version:mime-version:content-type:content-type:
+	 in-reply-to:in-reply-to:references:references;
+	bh=8HJIOCuzaPdkBcXNr239npB0JKRrCXPsquj3JkdNAPI=;
+	b=pMEPN5i+Lu13GC+jWqQ3jk1LNuadyRVmDLOj4pSTFtN6HXPyyJrtX6vdoq7OdTBKiKchz4
+	ofpCwJoMZK9IZi7/hamp+jN3BmCmeJl5NCaPL+/o76VZ6e6xSa0e75RCmR0JfEWX91nH43
+	krgyk298FzhRTX6CQq0y/zb9ZL/n6WQ=
+DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=suse.de;
+	s=susede2_ed25519; t=1707289517;
+	h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
+	 mime-version:mime-version:content-type:content-type:
+	 in-reply-to:in-reply-to:references:references;
+	bh=8HJIOCuzaPdkBcXNr239npB0JKRrCXPsquj3JkdNAPI=;
+	b=2Y1DwWSjCHRMwvgkzLcepI3bRq3b/rRwT1ana8e2fhUzTIepWs66oNzfG2vmsGy+xoQh+P
+	G8zPS9jHT+voqkAw==
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=suse.de; s=susede2_rsa;
+	t=1707289516; h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
+	 mime-version:mime-version:content-type:content-type:
+	 in-reply-to:in-reply-to:references:references;
+	bh=8HJIOCuzaPdkBcXNr239npB0JKRrCXPsquj3JkdNAPI=;
+	b=BVXP1nkIDhCAx9Q5usIsQZNU6udEKJoNd64DEFApskn0IGl1EALHtmjrllSS2awdUJeTvc
+	t6tPxNaMMgawjDkqj7bOtgg369T517B1NbbfW35mIPv6H+esmBJqHEpVsvspCAwpzhiUy/
+	LQXNEBRQQMc1y6GnIiCmocHBO8pbkMg=
+DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=suse.de;
+	s=susede2_ed25519; t=1707289516;
+	h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
+	 mime-version:mime-version:content-type:content-type:
+	 in-reply-to:in-reply-to:references:references;
+	bh=8HJIOCuzaPdkBcXNr239npB0JKRrCXPsquj3JkdNAPI=;
+	b=CfugtL1QerC0Mii2wg1EJXe7pyXSl8GuKx7QtIMPXxxvhJaCyNmcex+gJS+FLZDcuCDCvt
+	Lt7lMDGchRhPdCDQ==
+Received: from imap1.dmz-prg2.suse.org (localhost [127.0.0.1])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+	(No client certificate requested)
+	by imap1.dmz-prg2.suse.org (Postfix) with ESMTPS id 43587139D8;
+	Wed,  7 Feb 2024 07:05:16 +0000 (UTC)
+Received: from dovecot-director2.suse.de ([10.150.64.162])
+	by imap1.dmz-prg2.suse.org with ESMTPSA
+	id TiDJDqwrw2XfLAAAD6G6ig
+	(envelope-from <tiwai@suse.de>); Wed, 07 Feb 2024 07:05:16 +0000
+Date: Wed, 07 Feb 2024 08:05:15 +0100
+Message-ID: <877cjg7o0k.wl-tiwai@suse.de>
+From: Takashi Iwai <tiwai@suse.de>
+To: Wesley Cheng <quic_wcheng@quicinc.com>
+Cc: <srinivas.kandagatla@linaro.org>,
+	<mathias.nyman@intel.com>,
+	<perex@perex.cz>,
+	<conor+dt@kernel.org>,
+	<corbet@lwn.net>,
+	<lgirdwood@gmail.com>,
+	<andersson@kernel.org>,
+	<krzysztof.kozlowski+dt@linaro.org>,
+	<gregkh@linuxfoundation.org>,
+	<Thinh.Nguyen@synopsys.com>,
+	<broonie@kernel.org>,
+	<bgoswami@quicinc.com>,
+	<tiwai@suse.com>,
+	<robh+dt@kernel.org>,
+	<konrad.dybcio@linaro.org>,
+	<linux-kernel@vger.kernel.org>,
+	<devicetree@vger.kernel.org>,
+	<linux-sound@vger.kernel.org>,
+	<linux-usb@vger.kernel.org>,
+	<linux-arm-msm@vger.kernel.org>,
+	<linux-doc@vger.kernel.org>,
+	<alsa-devel@alsa-project.org>
+Subject: Re: [PATCH v13 35/53] ALSA: usb-audio: Prevent starting of audio stream if in use
+In-Reply-To: <ef83036f-6605-1db3-d962-ac28a10711ac@quicinc.com>
+References: <20240203023645.31105-1-quic_wcheng@quicinc.com>
+	<20240203023645.31105-36-quic_wcheng@quicinc.com>
+	<87y1bxvj0o.wl-tiwai@suse.de>
+	<ef83036f-6605-1db3-d962-ac28a10711ac@quicinc.com>
+User-Agent: Wanderlust/2.15.9 (Almost Unreal) Emacs/27.2 Mule/6.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 3/4] spi: s3c64xx: add s3c64xx_iowrite{8,16}_32_rep
- accessors
-Content-Language: en-US
-To: Sam Protsenko <semen.protsenko@linaro.org>
-Cc: broonie@kernel.org, andi.shyti@kernel.org,
- krzysztof.kozlowski@linaro.org, alim.akhtar@samsung.com,
- linux-spi@vger.kernel.org, linux-samsung-soc@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
- andre.draszik@linaro.org, peter.griffin@linaro.org, kernel-team@android.com,
- willmcvicker@google.com, robh+dt@kernel.org, conor+dt@kernel.org,
- devicetree@vger.kernel.org
-References: <20240206085238.1208256-1-tudor.ambarus@linaro.org>
- <20240206085238.1208256-4-tudor.ambarus@linaro.org>
- <CAPLW+4k+FkuNwsyvWH54gcLz0YFmh8OmvOWt_LdQvELRXMvOTQ@mail.gmail.com>
-From: Tudor Ambarus <tudor.ambarus@linaro.org>
-In-Reply-To: <CAPLW+4k+FkuNwsyvWH54gcLz0YFmh8OmvOWt_LdQvELRXMvOTQ@mail.gmail.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+MIME-Version: 1.0 (generated by SEMI-EPG 1.14.7 - "Harue")
+Content-Type: text/plain; charset=US-ASCII
+Authentication-Results: smtp-out1.suse.de;
+	dkim=pass header.d=suse.de header.s=susede2_rsa header.b=BVXP1nkI;
+	dkim=pass header.d=suse.de header.s=susede2_ed25519 header.b=CfugtL1Q
+X-Spamd-Result: default: False [-4.31 / 50.00];
+	 RCVD_VIA_SMTP_AUTH(0.00)[];
+	 SPAMHAUS_XBL(0.00)[2a07:de40:b281:104:10:150:64:97:from];
+	 TO_DN_SOME(0.00)[];
+	 R_RATELIMIT(0.00)[to_ip_from(RLe67txhfobum3fqdb5xx8e3au)];
+	 RCVD_COUNT_THREE(0.00)[3];
+	 DKIM_TRACE(0.00)[suse.de:+];
+	 MX_GOOD(-0.01)[];
+	 FROM_EQ_ENVFROM(0.00)[];
+	 MIME_TRACE(0.00)[0:+];
+	 BAYES_HAM(-3.00)[100.00%];
+	 ARC_NA(0.00)[];
+	 R_DKIM_ALLOW(-0.20)[suse.de:s=susede2_rsa,suse.de:s=susede2_ed25519];
+	 FROM_HAS_DN(0.00)[];
+	 FREEMAIL_ENVRCPT(0.00)[gmail.com];
+	 TO_MATCH_ENVRCPT_ALL(0.00)[];
+	 TAGGED_RCPT(0.00)[dt];
+	 MIME_GOOD(-0.10)[text/plain];
+	 DWL_DNSWL_HI(-3.50)[suse.de:dkim];
+	 DKIM_SIGNED(0.00)[suse.de:s=susede2_rsa,suse.de:s=susede2_ed25519];
+	 RCPT_COUNT_TWELVE(0.00)[23];
+	 MID_CONTAINS_FROM(1.00)[];
+	 DBL_BLOCKED_OPENRESOLVER(0.00)[quicinc.com:email,suse.de:dkim];
+	 FUZZY_BLOCKED(0.00)[rspamd.com];
+	 FREEMAIL_CC(0.00)[linaro.org,intel.com,perex.cz,kernel.org,lwn.net,gmail.com,linuxfoundation.org,synopsys.com,quicinc.com,suse.com,vger.kernel.org,alsa-project.org];
+	 RCVD_TLS_ALL(0.00)[];
+	 SUSPICIOUS_RECIPS(1.50)[]
+X-Rspamd-Server: rspamd1.dmz-prg2.suse.org
+X-Rspamd-Queue-Id: E21512216B
+X-Spam-Level: 
+X-Spam-Score: -4.31
+X-Spam-Flag: NO
+
+On Wed, 07 Feb 2024 01:08:00 +0100,
+Wesley Cheng wrote:
+> 
+> Hi Takashi,
+> 
+> On 2/6/2024 5:07 AM, Takashi Iwai wrote:
+> > On Sat, 03 Feb 2024 03:36:27 +0100,
+> > Wesley Cheng wrote:
+> >> 
+> >> With USB audio offloading, an audio session is started from the ASoC
+> >> platform sound card and PCM devices.  Likewise, the USB SND path is still
+> >> readily available for use, in case the non-offload path is desired.  In
+> >> order to prevent the two entities from attempting to use the USB bus,
+> >> introduce a flag that determines when either paths are in use.
+> >> 
+> >> If a PCM device is already in use, the check will return an error to
+> >> userspace notifying that the stream is currently busy.  This ensures that
+> >> only one path is using the USB substream.
+> >> 
+> >> Signed-off-by: Wesley Cheng <quic_wcheng@quicinc.com>
+> > 
+> > Hm, I'm not sure whether it's safe to hold chip->mutex there for the
+> > long code path.  It even kicks off the auto-resume, which may call
+> > various functions at resuming, and some of them may re-hold
+> > chip->mutex.
+> > 
+> 
+> That's a good point.
+> 
+> > If it's only about the open flag, protect only the flag access with
+> > the mutex, not covering the all open function.  At least the re-entry
+> > can be avoided by that.
+> > 
+> 
+> Sure, let me re-order the check/assignment and the mutex locking.
+> Since this is now checked here in USB PCM and the QC offload driver,
+> we want to make sure that if there was some application attempting to
+> open both at the same time, we prevent any possible races.
+> 
+> I think the best way to address this would be something like:
+> 
+> static int snd_usb_pcm_open(struct snd_pcm_substream *substream)
+> {
+> ...
+> 	mutex_lock(&chip->mutex);
+> 	if (subs->opened) {
+> 		mutex_unlock(&chip->mutex);
+> 		return -EBUSY;
+> 	}
+> 	subs->opened = 1;
+> 	mutex_unlock(&chip->mutex);
+> 
+> //Execute bulk of PCM open routine
+> ...
+> 	return 0;
+> 
+> // If any errors are seen, unwind
+> err_resume:
+> 	snd_usb_autosuspend(subs->stream->chip);
+> err_open:
+> 	mutex_lock(&chip->mutex);
+> 	subs->opened = 0;
+> 	mutex_unlock(&chip->mutex);
+> 
+> 	return ret;
+> }
+> 
+> Set the opened flag first, so that if QC offload checks it, it can
+> exit early and vice versa.  Otherwise, if we set the opened flag at
+> the same position as the previous patch, we may be calling the other
+> routines in parallel to the QC offload enable stream routine.  The
+> only thing with this patch is that we'd need some error handling
+> unwinding.
+
+The above is what I had in mind.
+
+But, thinking on this again, you might be able to get the same result
+by using the ALSA PCM core substream open_mutex and hw_opened flag.
+This is already held and set at snd_pcm_core() (the hw_opened flag is
+set after open callback, though).  The offload driver can use those
+instead of the own lock and flag, too, although it's not really
+well-mannered behavior (hence you need proper comments).
 
 
+thanks,
 
-On 2/6/24 18:44, Sam Protsenko wrote:
-> On Tue, Feb 6, 2024 at 2:52 AM Tudor Ambarus <tudor.ambarus@linaro.org> wrote:
->>
->> Allow SoCs that require 32 bits register accesses to write data in
->> chunks of 8 or 16 bits. One SoC that requires 32 bit register accesses
->> is the google gs101. The operation is rare, thus open code it in the
->> driver rather than making it generic (through asm-generic/io.h)
->>
->> Signed-off-by: Tudor Ambarus <tudor.ambarus@linaro.org>
->> ---
->>  drivers/spi/spi-s3c64xx.c | 70 +++++++++++++++++++++++++++++++--------
->>  1 file changed, 56 insertions(+), 14 deletions(-)
->>
->> diff --git a/drivers/spi/spi-s3c64xx.c b/drivers/spi/spi-s3c64xx.c
->> index c15ca6a910dc..cb45ad615f3d 100644
->> --- a/drivers/spi/spi-s3c64xx.c
->> +++ b/drivers/spi/spi-s3c64xx.c
->> @@ -142,6 +142,7 @@ struct s3c64xx_spi_dma_data {
->>   *     prescaler unit.
->>   * @clk_ioclk: True if clock is present on this device
->>   * @has_loopback: True if loopback mode can be supported
->> + * @use_32bit_io: True if the SoC allows just 32-bit register accesses.
-> 
-> A matter of taste, but: just -> only.
-
-ok, will change if I send a new version.
-> 
->>   *
->>   * The Samsung s3c64xx SPI controller are used on various Samsung SoC's but
->>   * differ in some aspects such as the size of the fifo and spi bus clock
->> @@ -158,6 +159,7 @@ struct s3c64xx_spi_port_config {
->>         bool    clk_from_cmu;
->>         bool    clk_ioclk;
->>         bool    has_loopback;
->> +       bool    use_32bit_io;
->>  };
->>
->>  /**
->> @@ -412,6 +414,59 @@ static bool s3c64xx_spi_can_dma(struct spi_controller *host,
->>         return false;
->>  }
->>
->> +static void s3c64xx_iowrite8_32_rep(volatile void __iomem *addr,
->> +                                   const void *buffer, unsigned int count)
->> +{
->> +       if (count) {
->> +               const u8 *buf = buffer;
->> +
->> +               do {
->> +                       __raw_writel(*buf++, addr);
->> +               } while (--count);
->> +       }
-> 
-> How about:
-> 
->     while (count--)
->         __raw_writel(*buf++, addr);
-> 
-> This way "if" condition is not needed. The same goes for the function below.
-
-count will overflow, but shouldn't matter as it's not used afterwards.
-But I would keep the style as it is, if you don't mind, it follows other
-similar implementations from include/asm-generic/io.h. I'd like to be
-consistent with the coding style of the generic implementations.
-
-> 
->> +}
->> +
->> +static void s3c64xx_iowrite16_32_rep(volatile void __iomem *addr,
->> +                                    const void *buffer, unsigned int count)
->> +{
->> +       if (count) {
->> +               const u16 *buf = buffer;
->> +
->> +               do {
->> +                       __raw_writel(*buf++, addr);
->> +               } while (--count);
->> +       }
->> +}
->> +
->> +static void s3c64xx_iowrite_rep(const struct s3c64xx_spi_driver_data *sdd,
->> +                               struct spi_transfer *xfer)
->> +{
->> +       void __iomem *regs = sdd->regs;
-> 
-> Suggest declaring aliases here, like this:
-> 
->     void __iomem *addr = sdd->regs + S3C64XX_SPI_TX_DATA;
->     const void *buf = xfer->tx_buf;
->     unsigned int len = xfer->len;
-> 
-> Using those in the code below makes it more compact and easier to read.
-
-Ok, will add the local variables if I send again. I hope you're fine
-with adding the local variables when introducing the method.
-> 
->> +
->> +       switch (sdd->cur_bpw) {
->> +       case 32:
->> +               iowrite32_rep(regs + S3C64XX_SPI_TX_DATA,
->> +                             xfer->tx_buf, xfer->len / 4);
->> +               break;
->> +       case 16:
->> +               if (sdd->port_conf->use_32bit_io)
->> +                       s3c64xx_iowrite16_32_rep(regs + S3C64XX_SPI_TX_DATA,
->> +                                                xfer->tx_buf, xfer->len / 2);
->> +               else
->> +                       iowrite16_rep(regs + S3C64XX_SPI_TX_DATA,
->> +                                     xfer->tx_buf, xfer->len / 2);
->> +               break;
->> +       default:
->> +               if (sdd->port_conf->use_32bit_io)
->> +                       s3c64xx_iowrite8_32_rep(regs + S3C64XX_SPI_TX_DATA,
->> +                                               xfer->tx_buf, xfer->len);
->> +               else
->> +                       iowrite8_rep(regs + S3C64XX_SPI_TX_DATA,
->> +                                    xfer->tx_buf, xfer->len);
->> +               break;
->> +       }
->> +}
->> +
->>  static int s3c64xx_enable_datapath(struct s3c64xx_spi_driver_data *sdd,
->>                                     struct spi_transfer *xfer, int dma_mode)
->>  {
->> @@ -445,20 +500,7 @@ static int s3c64xx_enable_datapath(struct s3c64xx_spi_driver_data *sdd,
->>                         modecfg |= S3C64XX_SPI_MODE_TXDMA_ON;
->>                         ret = s3c64xx_prepare_dma(&sdd->tx_dma, &xfer->tx_sg);
->>                 } else {
->> -                       switch (sdd->cur_bpw) {
->> -                       case 32:
->> -                               iowrite32_rep(regs + S3C64XX_SPI_TX_DATA,
->> -                                       xfer->tx_buf, xfer->len / 4);
->> -                               break;
->> -                       case 16:
->> -                               iowrite16_rep(regs + S3C64XX_SPI_TX_DATA,
->> -                                       xfer->tx_buf, xfer->len / 2);
->> -                               break;
->> -                       default:
->> -                               iowrite8_rep(regs + S3C64XX_SPI_TX_DATA,
->> -                                       xfer->tx_buf, xfer->len);
->> -                               break;
->> -                       }
->> +                       s3c64xx_iowrite_rep(sdd, xfer);
-> 
-> This extraction (with no functional change yet) could've been a
-> preceding separate patch, preparing things for this rework.
-> 
-
-I'm not a fan of having preparation patches for small changes like this,
-it hides the scope. As the patch is now one can see that the logic
-extends and would have made the indentation horrible if not introducing
-a dedicated method. No preparation patch, please.
+Takashi
 
