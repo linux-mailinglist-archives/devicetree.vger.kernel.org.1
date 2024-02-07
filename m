@@ -1,140 +1,114 @@
-Return-Path: <devicetree+bounces-39462-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-39463-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id EA6BE84CC8F
-	for <lists+devicetree@lfdr.de>; Wed,  7 Feb 2024 15:23:35 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 22D3B84CC9C
+	for <lists+devicetree@lfdr.de>; Wed,  7 Feb 2024 15:25:23 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id A69A128939D
-	for <lists+devicetree@lfdr.de>; Wed,  7 Feb 2024 14:23:34 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id D4524287A51
+	for <lists+devicetree@lfdr.de>; Wed,  7 Feb 2024 14:25:21 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7E9D17C0AB;
-	Wed,  7 Feb 2024 14:23:25 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 303AD7C6C0;
+	Wed,  7 Feb 2024 14:25:20 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="RRxvGBaY"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-yw1-f176.google.com (mail-yw1-f176.google.com [209.85.128.176])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from lelv0143.ext.ti.com (lelv0143.ext.ti.com [198.47.23.248])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 515507A727;
-	Wed,  7 Feb 2024 14:23:23 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.176
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5A0077A727;
+	Wed,  7 Feb 2024 14:25:18 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.23.248
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1707315805; cv=none; b=LA19ro2/Z4QI4XFI1JXegdbgCXA8ePR1GrP1i2foI8wZPEJzmlJ9fiCChNwb/yGu/gzr3p8hOkp1k2E7GlNwGIFa6S/FCLwfSH8DM3jYJLtBfgv2iYmXO8965squVFoUtaQ63tol/h7fEFNYVTZKwbCZVK4z6qvIYaOWmH1XOZ4=
+	t=1707315920; cv=none; b=IWJvLmpI4squOZOJjpHET2bf5L0XCbMf4EdBpOYLyTwjebUoi0YF1H9E8/CPjSs0SxhwoDz/dV03vdKIa8xNGZ1x3bGjh8pbuqDtgjOOLDGqw4Xcz2hF9BTRctEa0olD8bA81K7l5VeIbmLgDQjABK95AEpbjiiowH1h+g2PBjs=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1707315805; c=relaxed/simple;
-	bh=C8HAWKdg+GGDjKPhogyYOys9iDIIKvHEu7Ej597B0xk=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=VlQtwyrL/IKPwd94AEltzk1xkxH5CDOxsEIs1Ne1qIcIA42d3H8gRKfWT6aIC2malHShnGfSNmFFg3OCMxhP3IjvnUeDbnoRaCYQXzrtx8ErTiGGE6tJ2EQ4+2woJuy/lcAl1aw+9PgsceeRXgAEKZm+ayQZ4Q3SdR2GoWhYPF0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org; spf=pass smtp.mailfrom=gmail.com; arc=none smtp.client-ip=209.85.128.176
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-yw1-f176.google.com with SMTP id 00721157ae682-60491b1fdeaso6387287b3.3;
-        Wed, 07 Feb 2024 06:23:23 -0800 (PST)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1707315801; x=1707920601;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=quLdQVtCbPlr3R7R7qoI+1xisR6sbzdwCB1pi/XdB0E=;
-        b=CrbNeQnrdfRbc7ZRmCfD9NCz2nfC2UmIZKjXUJJfUqc0FuJCD1Mz9Ty+G4dSbIqBLj
-         yBEVcntpWxt1Zjxc7YOhmJ6/mdMo3QCEEzIYbDtOXX6HLRP15b1jKaaG99mmnkZVfQKi
-         HBwkrDHaiSAfdjicdzlmqCaA9Z9wkPt/gRk/XIeJrYjHv83P3TFVjZ+U+/1nhivJRwBN
-         Op4Hc3n88WdNgDsZy8j8cAfF7WV5t2ozuwwHEWB8ovVsf3ZStWBwa0wNURPei6b62bjV
-         GmjHQV/GqW3c3AKvvqQ56tQVLJ0ftdFUwj/guRPTsM80v+qCyj4QxlZBZU5UTqnqITLe
-         0gBQ==
-X-Gm-Message-State: AOJu0YxAH5+WcI/BD/ydWE7gZbc/4CvG8Ec9WhobwMIWS+budCxkj0XJ
-	vADx0d4kmLWaOFK7E/So4QjH5qF04g8vk4zndCA3MWuVzlEHkQtIj9KNTsapctY=
-X-Google-Smtp-Source: AGHT+IFkoyZxcgIjHoazuT3U+9rYfh+rNKGQbBh9K+6z2lmCvxr8CXG2o7nsHROonhuJZzRTabavkg==
-X-Received: by 2002:a05:6902:1a45:b0:dc2:2e01:4ff0 with SMTP id cy5-20020a0569021a4500b00dc22e014ff0mr5239168ybb.45.1707315800924;
-        Wed, 07 Feb 2024 06:23:20 -0800 (PST)
-X-Forwarded-Encrypted: i=1; AJvYcCXXj5EIwA7CUKWQNYzVF7to7/Jv2XJXW84HaCbqfBWLzEwrckzVtACOmfONStfMc4i+n1a4fpZG94MI/NYONDOm4snGVe+1c/e8XuXb+dPj0dZHrnP6r1UP+/OB+Lsgy21JyBK86V2KqA3MByvtKbSKOM++XvbOvnYv1ScwavgA81mbnzGCnPiMrJwL87lqFgkGdiVTkw1aPQ2AsLgEnem6SnrquqwwpcYqugM=
-Received: from mail-yw1-f172.google.com (mail-yw1-f172.google.com. [209.85.128.172])
-        by smtp.gmail.com with ESMTPSA id ch22-20020a0569020b1600b00dc23af43ff3sm219983ybb.14.2024.02.07.06.23.19
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 07 Feb 2024 06:23:20 -0800 (PST)
-Received: by mail-yw1-f172.google.com with SMTP id 00721157ae682-60491b1fdeaso6386597b3.3;
-        Wed, 07 Feb 2024 06:23:19 -0800 (PST)
-X-Received: by 2002:a81:8841:0:b0:604:9c80:687a with SMTP id
- y62-20020a818841000000b006049c80687amr652928ywf.6.1707315799577; Wed, 07 Feb
- 2024 06:23:19 -0800 (PST)
+	s=arc-20240116; t=1707315920; c=relaxed/simple;
+	bh=goer9JW5LQVNm42ou1bYbGgI7bBWhVy7CrVfB19USoM=;
+	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
+	 In-Reply-To:Content-Type; b=RYKUtXc2WLEqYqso+aRk58TUkcFlhWRwgajHyDh+00AciuWUOMzofLtYdSeOcLmkECYmzvxK2CpacSedqmSao3Mc36WjKClgJuRkkF0v0sMKBptGw1Q9HyqxJEqHjoji7ujWBt1408eLHwuCFMYy5FJggNlXF4adizQFZUQ5ehA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=RRxvGBaY; arc=none smtp.client-ip=198.47.23.248
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
+Received: from fllv0034.itg.ti.com ([10.64.40.246])
+	by lelv0143.ext.ti.com (8.15.2/8.15.2) with ESMTP id 417EP8wD021937;
+	Wed, 7 Feb 2024 08:25:08 -0600
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+	s=ti-com-17Q1; t=1707315908;
+	bh=FzuzGJ8GsxhI1TBl02HGU19mwn0nxJbHBIPkm1no2Og=;
+	h=Date:Subject:To:CC:References:From:In-Reply-To;
+	b=RRxvGBaYBXMwn7fqssRZuaRVFDgQGs2eV14ztIOVNRMM5bgFQ+LZqVZbOY5ZFQBSb
+	 F9Cwqy9fcCyMDiGOxtlR1ZIhaJ96ucusc//3fnU/p6dZbxWqsoL37AGny8pm6LNYbG
+	 0Gx3MbFTzvCq8ozqp0pmAxXkJw104xtmX/oWDGzk=
+Received: from DFLE103.ent.ti.com (dfle103.ent.ti.com [10.64.6.24])
+	by fllv0034.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 417EP8cv046099
+	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+	Wed, 7 Feb 2024 08:25:08 -0600
+Received: from DFLE111.ent.ti.com (10.64.6.32) by DFLE103.ent.ti.com
+ (10.64.6.24) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Wed, 7
+ Feb 2024 08:25:08 -0600
+Received: from lelvsmtp6.itg.ti.com (10.180.75.249) by DFLE111.ent.ti.com
+ (10.64.6.32) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
+ Frontend Transport; Wed, 7 Feb 2024 08:25:08 -0600
+Received: from [10.249.141.75] ([10.249.141.75])
+	by lelvsmtp6.itg.ti.com (8.15.2/8.15.2) with ESMTP id 417EP4FF087603;
+	Wed, 7 Feb 2024 08:25:05 -0600
+Message-ID: <1d5c0570-fa10-4b87-9833-1710f33db01f@ti.com>
+Date: Wed, 7 Feb 2024 19:55:04 +0530
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20240207130745.1783198-1-claudiu.beznea.uj@bp.renesas.com> <20240207130745.1783198-3-claudiu.beznea.uj@bp.renesas.com>
-In-Reply-To: <20240207130745.1783198-3-claudiu.beznea.uj@bp.renesas.com>
-From: Geert Uytterhoeven <geert@linux-m68k.org>
-Date: Wed, 7 Feb 2024 15:23:07 +0100
-X-Gmail-Original-Message-ID: <CAMuHMdV-Lw3Ay94_gYHU4A8iYSRbXy8b7XOiMQ93Mbs+-ApsGQ@mail.gmail.com>
-Message-ID: <CAMuHMdV-Lw3Ay94_gYHU4A8iYSRbXy8b7XOiMQ93Mbs+-ApsGQ@mail.gmail.com>
-Subject: Re: [PATCH v5 2/9] watchdog: rzg2l_wdt: Make the driver depend on PM
-To: Claudiu <claudiu.beznea@tuxon.dev>
-Cc: wim@linux-watchdog.org, linux@roeck-us.net, robh@kernel.org, 
-	krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org, 
-	p.zabel@pengutronix.de, geert+renesas@glider.be, magnus.damm@gmail.com, 
-	biju.das.jz@bp.renesas.com, linux-watchdog@vger.kernel.org, 
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
-	linux-renesas-soc@vger.kernel.org, 
-	Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH V2 0/2] Add CAN and OSPI support for AM69-SK platform
+Content-Language: en-US
+To: <sabiya.d@mistralsolutions.com>, <nm@ti.com>, <vigneshr@ti.com>,
+        <kristo@kernel.org>, <robh+dt@kernel.org>,
+        <krzysztof.kozlowski+dt@linaro.org>, <linus.walleij@linaro.org>
+CC: <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        Dasnavis
+ Sabiya <sabiya.d@ti.com>,
+        "linux-arm-kernel@lists.infradead.org"
+	<linux-arm-kernel@lists.infradead.org>
+References: <20240205200744.216572-1-sabiya.d@ti.com>
+From: "Kumar, Udit" <u-kumar1@ti.com>
+In-Reply-To: <20240205200744.216572-1-sabiya.d@ti.com>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 7bit
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 
-Hi Claudiu,
 
-On Wed, Feb 7, 2024 at 2:08=E2=80=AFPM Claudiu <claudiu.beznea@tuxon.dev> w=
-rote:
-> From: Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>
+On 2/6/2024 1:37 AM, sabiya.d@mistralsolutions.com wrote:
+> From: Dasnavis Sabiya <sabiya.d@ti.com>
 >
-> The rzg2l_wdt watchdog driver cannot work w/o CONFIG_PM=3Dy (e.g. the
-> clocks are enabled though pm_runtime_* specific APIs). To avoid building
-> a driver that doesn't work make explicit the dependency on CONFIG_PM. Alo=
-ng
-> with it the dependency on CONFIG_PM and CONFIG_COMPILE_TEST was moved to =
-a
-> new line to have the code simpler.
+> Hi All,
 >
-> Suggested-by: Guenter Roeck <linux@roeck-us.net>
-> Signed-off-by: Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>
-> ---
+> This series adds support for the below interfaces on AM69-SK platform:
+> -  CAN support on both MCU and MAIN domains
+> -  OSPI NOR flash support
 >
-> Changes in v5:
-> - updated patch description
-> - added on a new line the dependency on PM and COMPILE_TEST
-
-Thanks for the update!
-
-> --- a/drivers/watchdog/Kconfig
-> +++ b/drivers/watchdog/Kconfig
-> @@ -910,7 +910,8 @@ config RENESAS_RZN1WDT
+> v2: Changelog:
+> 1) Removed CAN interface aliasing.
+> 2) Updated bootph property on the leaf nodes.
 >
->  config RENESAS_RZG2LWDT
->         tristate "Renesas RZ/G2L WDT Watchdog"
-> -       depends on ARCH_RZG2L || ARCH_R9A09G011 || COMPILE_TEST
-> +       depends on ARCH_RZG2L || ARCH_R9A09G011
+> Link to v1: https://lore.kernel.org/lkml/20240118153524.4135901-1-sabiya.d@ti.com/
+>
+> Dasnavis Sabiya (2):
+>    arm64: dts: ti: k3-am69-sk: Enable CAN interfaces for AM69 SK board
+>    arm64: dts: ti: k3-am69-sk: Add support for OSPI flash
 
-Please drop this change (i.e. retain the "|| COMPILE_TEST"), as it prevents
-compile-testing on any platforms but RZ/G2L(alike) and RZ/V2M.
 
-> +       depends on PM || COMPILE_TEST
->         select WATCHDOG_CORE
->         help
->           This driver adds watchdog support for the integrated watchdogs =
-in the
+For Series
 
-Gr{oetje,eeting}s,
+Reviewed-by: Udit Kumar <u-kumar1@ti.com>
 
-                        Geert
 
---=20
-Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k=
-.org
-
-In personal conversations with technical people, I call myself a hacker. Bu=
-t
-when I'm talking to journalists I just say "programmer" or something like t=
-hat.
-                                -- Linus Torvalds
+>   arch/arm64/boot/dts/ti/k3-am69-sk.dts | 162 ++++++++++++++++++++++++++
+>   1 file changed, 162 insertions(+)
+>
 
