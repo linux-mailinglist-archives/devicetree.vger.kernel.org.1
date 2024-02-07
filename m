@@ -1,294 +1,355 @@
-Return-Path: <devicetree+bounces-39382-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-39384-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5783F84C6FC
-	for <lists+devicetree@lfdr.de>; Wed,  7 Feb 2024 10:13:36 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2ED5584C718
+	for <lists+devicetree@lfdr.de>; Wed,  7 Feb 2024 10:19:05 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 7B8301C238D5
-	for <lists+devicetree@lfdr.de>; Wed,  7 Feb 2024 09:13:35 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id D8A8E28795C
+	for <lists+devicetree@lfdr.de>; Wed,  7 Feb 2024 09:19:03 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id F16CE20B21;
-	Wed,  7 Feb 2024 09:13:31 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 199EF21107;
+	Wed,  7 Feb 2024 09:18:55 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="PhbUG8R9"
+	dkim=pass (2048-bit key) header.d=ventanamicro.com header.i=@ventanamicro.com header.b="bMtxoIU5"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ej1-f42.google.com (mail-ej1-f42.google.com [209.85.218.42])
+Received: from mail-lj1-f180.google.com (mail-lj1-f180.google.com [209.85.208.180])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0702320B09;
-	Wed,  7 Feb 2024 09:13:29 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.42
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D9A4E20DD3
+	for <devicetree@vger.kernel.org>; Wed,  7 Feb 2024 09:18:52 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.180
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1707297211; cv=none; b=BEs78TF9sjtsU+pHBB9CNgG6WN0BTFWKhehMYXKgF7up4zSWU57xQqJsCSAFDQgW2lGfZQBie7qnJY+NeVwAnhahageN1Na7GF0HdUF8s6o9mAnFG7J8gQh0PfroXEVqqnHSFqTCV8A1uporQXlxS2P0TRLN+FDSeYIO86vrTU8=
+	t=1707297535; cv=none; b=UOg3ABYrL9RfPBhDQoVQ35O5xDccjXmL8me7EUFvVrVwwjs2LQ1Wv8Qaccl8Aw/48eYJGgG2LVneQG/tDXGBqsoTX/cDilyS0aQzYlH+QI4oIb/5uTN4TymsyHzBbohR+4yILVYY1r8CHLNCDOvN7A8YsPhLRnvyPbue6b0tSU0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1707297211; c=relaxed/simple;
-	bh=ABVtrywqzlREKTEdLbO3z97CMZIq3B6lGa9XOD4Pjn0=;
-	h=Message-ID:Subject:From:To:Cc:Date:In-Reply-To:References:
-	 Content-Type:MIME-Version; b=OwCO0pvXi7VRN53Z+dYb2uF5r0rLfnxamlNCI9OpItpzCcTjXyV67IxGxlOf/8ImU+7MJPjNuT6Zy7Yw39M5hoNpyCPzb5v7ZKQcJw2lJ9X3Wp0Kb1yxAsm5qYUDk8OtC0MuDjo7mk44jT2J853zqoepsXJJbWnL0Sy9tQyBdQ0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=PhbUG8R9; arc=none smtp.client-ip=209.85.218.42
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-ej1-f42.google.com with SMTP id a640c23a62f3a-a370e63835cso45014266b.1;
-        Wed, 07 Feb 2024 01:13:29 -0800 (PST)
+	s=arc-20240116; t=1707297535; c=relaxed/simple;
+	bh=WQJwsfg/oVdrAFGSZmbUFkmX64UmCg6HrDCzIPJhDF4=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=a+KvVeRDAc5ThVvB+jCp73Gv5jxACmbDCSLvBW0YU62PVXkLTa55N8e47BacQ1OMZPNCyyQFWGoCa3DwT6/N0iZ4xCYERdIcdmhImgNByRjRKipdWCcled8T4rCaeufxLu90aIxdUql47xlnaI45C/JJP7YV+rl3rt0vN2kDaMs=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ventanamicro.com; spf=pass smtp.mailfrom=ventanamicro.com; dkim=pass (2048-bit key) header.d=ventanamicro.com header.i=@ventanamicro.com header.b=bMtxoIU5; arc=none smtp.client-ip=209.85.208.180
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ventanamicro.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ventanamicro.com
+Received: by mail-lj1-f180.google.com with SMTP id 38308e7fff4ca-2cf3a095ba6so3495331fa.2
+        for <devicetree@vger.kernel.org>; Wed, 07 Feb 2024 01:18:52 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1707297208; x=1707902008; darn=vger.kernel.org;
-        h=mime-version:user-agent:content-transfer-encoding:references
-         :in-reply-to:date:cc:to:from:subject:message-id:from:to:cc:subject
-         :date:message-id:reply-to;
-        bh=ABVtrywqzlREKTEdLbO3z97CMZIq3B6lGa9XOD4Pjn0=;
-        b=PhbUG8R97yFL2lpmtI//Q+CCGgDd5dtI6h3TcmypUhKu51CYmicYeSyyVEK0WzdTsH
-         ONu2jDlKFF/AP/JMyYPFRz7zEtLATAjBmwgjZnyL+4Rdw16gn0XPDBGDBRvo9w6xXTOd
-         i+oZCaqER1rGAyqnS5qQqPspj/Ksviw2NE7uGM1nsfJzn79PbfdGPEqYUpdjVp3S0bce
-         4PIaWicuk91sM5sBoEux40Hp8B0gUxsWEDdjtpnkZJuvCtqRALFcQuBkZZc83hFanp6X
-         ZFZVgGdmT7oiMhgo3hkt08IgPukQrE1X035nirkpKz0dQneEuHb5uaHaEpp22inyLUPj
-         DV7A==
+        d=ventanamicro.com; s=google; t=1707297531; x=1707902331; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=k4z+6c2Ojggq8L+WEQD6OXtOIKBp3WeMOnFIQBtZ9bY=;
+        b=bMtxoIU5cNMa4u9gQXahhHTCOYH3mMyx4m8W/914joeZXl2nAv+eVwvFdUUXAydy4m
+         Nx4tTaN60Y3TPCCT1aKjvsa7mnpA9PdJZPjgZlXS+tz6FVlq+GjetI0JQSmEleQIjuuy
+         /wNREbvdh38vh8P2Vvfx7Vwprroq9xa/KMg7BHYGo7lK1TVK31bPmT0uN9fc/W3zXFyI
+         sM22SwvSGcNKPdm9IR3HZ/xPSQNSLRSQrHznhHFIURjiju9477mqfnenemrcLg6gwuYm
+         VxioFgGvTRsEQU4RBiVo1fZh0FJ+oY7Kv6/nKHEj5q03HXsKQYJVsk5QetnHoJUQ7j0D
+         ARsA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1707297208; x=1707902008;
-        h=mime-version:user-agent:content-transfer-encoding:references
-         :in-reply-to:date:cc:to:from:subject:message-id:x-gm-message-state
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=ABVtrywqzlREKTEdLbO3z97CMZIq3B6lGa9XOD4Pjn0=;
-        b=iyEBNpVUhszyUNsNcdBadMIk+V2HrE5UczlaWu1C9bHTrEfePbRjAveM1iloq3Br94
-         z5mqxoxga/WJrB3TCJ+TFlLNgJWTt4Ouz6cBR+Zx8kK37fQgzoQ3I3eHyvBNq1x7uBVi
-         gKRymuZm1+acUr7ljDUBenTI5Ev5MLVpvHx0NtN4W9Lzt/9IUjBL7zKTYdwuB+TmHtZJ
-         MkjkRjWjw4YHs/DeyIMeygjc5XytkHT6tBDNCU0TnKGWr2K9y9eO5+cdkpYlUNjzcM/T
-         WrQpbXzAYyd9PvqvQ5mVDph3ZtsrXjzZa46SH529UqgAqoj2llX9kuAtgNFcbyNFjxFu
-         Y8fg==
-X-Gm-Message-State: AOJu0YwafqszL+FqPvdq5eUFLvqNZikPkkXsbKsnfakibBS4ZwYRszCl
-	PY65zbzOcAjF8/w4yJGLypT64yux7vOYgB5IeXhtwiFtESQV20ap
-X-Google-Smtp-Source: AGHT+IFY9anbsMRTh2t20M/avQldRrhKwkVtResfFbCaos2hR/1W9m73dCYs56NB1qoZ3mm2JGCKFw==
-X-Received: by 2002:a17:906:5fc2:b0:a37:ad9c:c146 with SMTP id k2-20020a1709065fc200b00a37ad9cc146mr3568370ejv.62.1707297207895;
-        Wed, 07 Feb 2024 01:13:27 -0800 (PST)
-X-Forwarded-Encrypted: i=1; AJvYcCW3rn3jvG73jJjooMuvQK6QXWQD9qsdskEihG+vm6AqQaJrhd7dd3/8jWF32qctRGgdXVJ0/0Lg3X1e+jwj1mku3tXlbZsBGg3szayx6HMHU0vLw/qw2srFxKUJZGIl3pLhAxmnFI8bEd2yKLVz4SdoJgI2X1yKrPIXvEE0R4EF3gU5GnpQQdgCvwvkFr+dX/28a2O3w+YDr5sRT7K4a9OGg0wLR1pO7b6noOCnQuzjPty1DDFMeXPxPr8VeWPiK0WaA5gE5WX2oUd88b0AD3/DRNgJx/JUF3MZuF2Ly7bR4V8iWc0KdeIbjV70zfnWVTKam5PuDXyTrJ2AWlGnXkFCebfrACan0B9bROFx3iJs/36mGmfKhBFr6XKjJf1wIg==
-Received: from ?IPv6:2003:f6:ef1b:2000:15d4:fc17:481e:8afe? (p200300f6ef1b200015d4fc17481e8afe.dip0.t-ipconnect.de. [2003:f6:ef1b:2000:15d4:fc17:481e:8afe])
-        by smtp.gmail.com with ESMTPSA id i8-20020a170906264800b00a3860356f42sm541012ejc.19.2024.02.07.01.13.27
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 07 Feb 2024 01:13:27 -0800 (PST)
-Message-ID: <5c0985247622215c3eea548879afe68d0dce00ec.camel@gmail.com>
-Subject: Re: [PATCH v9 5/7] iio: add the IIO backend framework
-From: Nuno =?ISO-8859-1?Q?S=E1?= <noname.nuno@gmail.com>
-To: Andy Shevchenko <andy.shevchenko@gmail.com>, nuno.sa@analog.com
-Cc: linux-iio@vger.kernel.org, devicetree@vger.kernel.org, Lars-Peter
- Clausen <lars@metafoo.de>, Michael Hennerich
- <Michael.Hennerich@analog.com>,  Jonathan Cameron <jic23@kernel.org>, Rob
- Herring <robh+dt@kernel.org>, Krzysztof Kozlowski
- <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, 
- Frank Rowand <frowand.list@gmail.com>, Olivier Moysan
- <olivier.moysan@foss.st.com>
-Date: Wed, 07 Feb 2024 10:16:46 +0100
-In-Reply-To: <CAHp75VdUjNeYsgJHcMC+z9m9j=z7Qzh0BFXR=Zi7jPs6rRVUKg@mail.gmail.com>
-References: <20240206-iio-backend-v9-0-df66d159c000@analog.com>
-	 <20240206-iio-backend-v9-5-df66d159c000@analog.com>
-	 <CAHp75VdUjNeYsgJHcMC+z9m9j=z7Qzh0BFXR=Zi7jPs6rRVUKg@mail.gmail.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-User-Agent: Evolution 3.50.3 
+        d=1e100.net; s=20230601; t=1707297531; x=1707902331;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=k4z+6c2Ojggq8L+WEQD6OXtOIKBp3WeMOnFIQBtZ9bY=;
+        b=t520ufFQY/YpNoWp63a8nwqpjcMaAwo59Fjs20CO7ysWA+tgcjBrPlvuoh2HzFm7wf
+         uYEktrrzi+orM26KM1o4zk/pxuEKxjcNu6sdNhF5hOei7FJt72ppE/qIfkcRCG62Qujj
+         LheycmDClC8rL1+OBDQY2lbAo3h9fIE0kKI+vX31w+Aa+RvPYs7BTYPnAOTrEYGqybGA
+         qCpzRz1S33x8/C/3n0v2o+cxaa/WJg5xoAsDuiZMaV85Gr37FgQEThi1Gwf7g9rH06xx
+         7iZxQwub8GC6ezjVNisKbBJtfQcOGSj23vbjrC4kQ6oPvg69pBawVG6W/iQ5rKDhjI5i
+         JeDQ==
+X-Forwarded-Encrypted: i=1; AJvYcCV0WOr2nPljNoZMEPyHNQuG5AZ9EDsQwmiPbHbD56souu4Q4gAe4wsjHT34iGY+/vHWzLah59JdENF2tfVHNAxhKrG6L+yjdVChYA==
+X-Gm-Message-State: AOJu0Yxg/S0HlZ5yt9V3OQk2+CEfC1CHqekAvOueki9hpkqlHNhy5+fu
+	cEUdvpag7eXSth7ZaMOvjvzXpOZsfRkJLiL8PENVagV4i30q0PfHPWj8m+KLltfS0U7I+MpZegt
+	zGSBthlaKuYFElhKneVJYNxEjrF+mU2YOyBqvbQ==
+X-Google-Smtp-Source: AGHT+IHcxwyhyMh2dfiThnk4N7u2em8zMIYHs4F79LIirkuHGIqZos+LryQXJFdFMQ3TW5KWxo3n+0DejrGSdmLXbFA=
+X-Received: by 2002:a2e:988e:0:b0:2d0:b5b0:4d9f with SMTP id
+ b14-20020a2e988e000000b002d0b5b04d9fmr3637305ljj.24.1707297530426; Wed, 07
+ Feb 2024 01:18:50 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+References: <20240127161753.114685-1-apatel@ventanamicro.com>
+ <87h6ily53k.fsf@all.your.base.are.belong.to.us> <CAAhSdy2PPjS6++Edh8NkgiBmcovTUjS5oXE2eR5ZwPfAfVA0ng@mail.gmail.com>
+ <874jekag3w.fsf@all.your.base.are.belong.to.us>
+In-Reply-To: <874jekag3w.fsf@all.your.base.are.belong.to.us>
+From: Anup Patel <apatel@ventanamicro.com>
+Date: Wed, 7 Feb 2024 14:48:38 +0530
+Message-ID: <CAK9=C2XJYTfY4nXWtjK9OP1iXLDXBVF-=mN1SmJDmJ_dO5CohA@mail.gmail.com>
+Subject: Re: [PATCH v12 00/25] Linux RISC-V AIA Support
+To: =?UTF-8?B?QmrDtnJuIFTDtnBlbA==?= <bjorn@kernel.org>
+Cc: Anup Patel <anup@brainfault.org>, Palmer Dabbelt <palmer@dabbelt.com>, 
+	Paul Walmsley <paul.walmsley@sifive.com>, Thomas Gleixner <tglx@linutronix.de>, 
+	Rob Herring <robh+dt@kernel.org>, 
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Frank Rowand <frowand.list@gmail.com>, 
+	Conor Dooley <conor+dt@kernel.org>, devicetree@vger.kernel.org, 
+	Saravana Kannan <saravanak@google.com>, Marc Zyngier <maz@kernel.org>, linux-kernel@vger.kernel.org, 
+	Atish Patra <atishp@atishpatra.org>, linux-riscv@lists.infradead.org, 
+	linux-arm-kernel@lists.infradead.org, Andrew Jones <ajones@ventanamicro.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-On Tue, 2024-02-06 at 16:27 +0200, Andy Shevchenko wrote:
-> On Tue, Feb 6, 2024 at 12:08=E2=80=AFPM Nuno Sa via B4 Relay
-> <devnull+nuno.sa.analog.com@kernel.org> wrote:
-> >=20
-> > From: Nuno Sa <nuno.sa@analog.com>
-> >=20
-> > This is a Framework to handle complex IIO aggregate devices.
-> >=20
-> > The typical architecture is to have one device as the frontend device w=
-hich
-> > can be "linked" against one or multiple backend devices. All the IIO an=
-d
-> > userspace interface is expected to be registers/managed by the frontend
-> > device which will callback into the backends when needed (to get/set
-> > some configuration that it does not directly control).
-> >=20
-> > The basic framework interface is pretty simple:
-> > =C2=A0- Backends should register themselves with @devm_iio_backend_regi=
-ster()
-> > =C2=A0- Frontend devices should get backends with @devm_iio_backend_get=
-()
->=20
-> Not sure what the meaning of @ in the above lines.
->=20
+On Wed, Feb 7, 2024 at 12:57=E2=80=AFPM Bj=C3=B6rn T=C3=B6pel <bjorn@kernel=
+.org> wrote:
+>
+> Hi!
+>
+> Anup Patel <anup@brainfault.org> writes:
+>
+> > On Tue, Feb 6, 2024 at 9:09=E2=80=AFPM Bj=C3=B6rn T=C3=B6pel <bjorn@ker=
+nel.org> wrote:
+> >>
+> >> Hi Anup,
+> >>
+> >> Anup Patel <apatel@ventanamicro.com> writes:
+> >>
+> >> > The RISC-V AIA specification is ratified as-per the RISC-V internati=
+onal
+> >> > process. The latest ratified AIA specifcation can be found at:
+> >> > https://github.com/riscv/riscv-aia/releases/download/1.0/riscv-inter=
+rupts-1.0.pdf
+> >> >
+> >> > At a high-level, the AIA specification adds three things:
+> >> > 1) AIA CSRs
+> >> >    - Improved local interrupt support
+> >> > 2) Incoming Message Signaled Interrupt Controller (IMSIC)
+> >> >    - Per-HART MSI controller
+> >> >    - Support MSI virtualization
+> >> >    - Support IPI along with virtualization
+> >> > 3) Advanced Platform-Level Interrupt Controller (APLIC)
+> >> >    - Wired interrupt controller
+> >> >    - In MSI-mode, converts wired interrupt into MSIs (i.e. MSI gener=
+ator)
+> >> >    - In Direct-mode, injects external interrupts directly into HARTs
+> >> >
+> >> > For an overview of the AIA specification, refer the AIA virtualizati=
+on
+> >> > talk at KVM Forum 2022:
+> >> > https://static.sched.com/hosted_files/kvmforum2022/a1/AIA_Virtualiza=
+tion_in_KVM_RISCV_final.pdf
+> >> > https://www.youtube.com/watch?v=3Dr071dL8Z0yo
+> >>
+> >> Thank you for continuing to work on this series! I like this
+> >> direction of the series!
+> >>
+> >> TL;DR: I think we can get rid of most of the id/householding data
+> >> structures, except for the irq matrix.
+> >>
+> >> Most of my comments are more of a design/overview nature, so I'll
+> >> comment here in the cover letter.
+> >>
+> >> I took the series for a spin with and it with Alex' ftrace fix it,
+> >> passes all my tests nicely!
+> >>
+> >> Now some thoughts/comments (I'm coming from the x86 side of things!):
+> >>
+> >> id/enable-tracking: There are a lot of different id/enabled tracking
+> >> with corresponding locks, where there's IMO overlap with what the
+> >> matrix provides.
+> >
+> > The matrix allocator does not track the enabled/disabled state of
+> > the per-CPU IDs. This is why we have a separate per-CPU
+> > ids_enabled_bitmap which is also used for remote synchronization
+> > across CPUs.
+>
+> Exactly, but what I'm asking is if that structure is really needed. More
+> below.
+>
+> >> Let's start with struct imsic_priv:
+> >>
+> >>    | /* Dummy HW interrupt numbers */
+> >>    | unsigned int nr_hwirqs;
+> >>    | raw_spinlock_t hwirqs_lock;
+> >>    | unsigned long *hwirqs_used_bitmap;
+> >
+> > The matrix allocator manages actual IDs for each CPU whereas
+> > the Linux irq_data expects a fixed hwirq which does not change.
+> >
+> > Due to this, we have a dummy hwirq space which is always
+> > fixed. The only thing that is changed under-the-hood by the
+> > IMSIC driver is the dummy hwirq to actual HW vector (cpu, id)
+> > mapping.
+>
+> Read below. I'm not talking about local_id from the irq_matrix, I'm
+> saying use virq, which has the properties you're asking for, and doesn't
+> require an additional structure. When an irq/desc is allocated, you have
+> a nice unique number with the virq for the lifetime of the interrupt.
 
-No special meaning...
+Sure, let me explore using virq in-place of hwirq.
 
-> ...
->=20
-> > +/*
-> > + * Framework to handle complex IIO aggregate devices.
-> > + *
-> > + * The typical architecture is to have one device as the frontend devi=
-ce
-> > which
-> > + * can be "linked" against one or multiple backend devices.
->=20
-> Can we have an ASCII art with an example?
+>
+> >> These are used to for the domain routing (hwirq -> desc/virq), and not
+> >> needed. Just use the same id as virq (at allocation time), and get rid
+> >> of these data structures/corresponding functions. The lookup in the
+> >> interrupt handler via imsic_local_priv.vectors doesn't care about
+> >> hwirq. This is what x86 does... The imsic_vector roughly corresponds
+> >> to apic_chip_data (nit: imsic_vector could have the chip_data suffix
+> >> as well, at least it would have helped me!)
+> >
+> > Yes, imsic_vector corresponds to apic_chip_data in the x86 world.
+>
+> ...and I'm trying to ask the following; Given the IMSIC is pretty much
+> x86 vector (arch/x86/kernel/apic/vector.c), I'm trying to figure out the
+> rational why IMSIC has all the extra householding data, not needed by
+> x86. The x86 has been battle proven, and having to deal with all kind of
+> quirks (e.g. lost interrupts on affinity changes).
 
-I do have one in the cover and spoke on the possibility of having it here b=
-ut no
-one really expressed any interest on it. Personally, for now, I'm also not
-seeing it as *that* important.
+Understood.
 
->=20
-> > =C2=A0All the IIO and
-> > + * userspace interface is expected to be registers/managed by the fron=
-tend
-> > + * device which will callback into the backends when needed (to get/se=
-t
-> > some
-> > + * configuration that it does not directly control).
-> > + *
-> > + * The framework interface is pretty simple:
-> > + *=C2=A0=C2=A0 - Backends should register themselves with
-> > @devm_iio_backend_register()
-> > + *=C2=A0=C2=A0 - Frontend devices should get backends with @devm_iio_b=
-ackend_get()
-> > + *
-> > + * Also to note that the primary target for this framework are convert=
-ers
-> > like
-> > + * ADC/DACs so @iio_backend_ops will have some operations typical of
-> > converter
-> > + * devices. On top of that, this is "generic" for all IIO which means =
-any
-> > kind
-> > + * of device can make use of the framework. That said, If the
-> > @iio_backend_ops
-> > + * struct begins to grow out of control, we can always refactor things=
- so
-> > that
-> > + * the industrialio-backend.c is only left with the really generic stu=
-ff.
-> > Then,
-> > + * we can build on top of it depending on the needs.
-> > + *
-> > + * Copyright (C) 2023-2024 Analog Devices Inc.
-> > + */
->=20
-> ...
->=20
-> > +/*
-> > + * Helper macros to call backend ops. Makes sure the option is support=
-ed
->=20
-> Missing period.
->=20
-> > + */
->=20
-> ...
->=20
-> > +/**
-> > + * iio_backend_chan_enable - Enable a backend channel
-> > + * @back:=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 Backend device
-> > + * @chan:=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 Channel number
-> > + *
-> > + * RETURNS:
->=20
-> Not sure if this is the style used in other IIO core files...
->=20
-> > + * 0 on success, negative error number on failure.
-> > + */
->=20
-> ...
->=20
-> > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 if (!try_module_get(back->owner))=
- {
-> > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0=C2=A0=C2=A0 dev_err(dev, "Cannot get module reference\n");
-> > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0=C2=A0=C2=A0 return -ENODEV;
->=20
-> devm_*() are supposed to be used only at ->probe() stage, hence
-> dev_err_probe() is fine (and eventually would be nice to have for the
-> sake of making messaging uniform).
->=20
-> > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 }
->=20
-> ...
->=20
-> > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 link =3D device_link_add(dev, bac=
-k->dev, DL_FLAG_AUTOREMOVE_CONSUMER);
-> > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 if (!link) {
-> > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0=C2=A0=C2=A0 dev_err(dev, "Could not link to supplier(%s)\n",
-> > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 dev_name(ba=
-ck->dev));
-> > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0=C2=A0=C2=A0 return -EINVAL;
->=20
-> Ditto.
->=20
-> > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 }
->=20
-> ...
->=20
-> > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 if (name) {
-> > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0=C2=A0=C2=A0 ret =3D device_property_match_string(dev, "io-backend-names=
-",
-> > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
- name);
->=20
-> One line?
+>
+> >> Moving/affinity changes. The moving of a vector to another CPU
+> >> currently involves:
+> >>
+> >> 1. Allocate a new vector from the matrix
+> >> 2. Disable/enable the corresponding per-cpu ids_enabled_bitmap (nested
+> >>    spinlocks)
+> >> 3. Trigger two IPIs to apply the bitmap
+> >> 4. On each CPU target (imsic_local_sync()) loop the bitmap and flip
+> >>    all bits, and potentially rearm
+> >>
+> >> This seems a bit heavy-weight: Why are you explicitly setting/clearing
+> >> all the bits in a loop at the local sync?
+> >
+> > This can be certainly optimized by introducing another
+> > ids_dirty_bitmap. I will add this in the next revision.
+>
+> I rather have fewer maps, and less locks! ;-)
+>
+> >> x86 does it a bit differently (more lazily): The chip_data has
+> >> prev_{cpu,vector}/move_in_progress fields, and keep both vectors
+> >> enabled until there's an interrupt on the new vector, and then the old
+> >> one is cleaned (irq_complete_move()).
+> >>
+> >> Further; When it's time to remove the old vector, x86 doesn't trigger
+> >> an IPI on the disabling side, but queues a cleanup job on a per-cpu
+> >> list and triggers a timeout. So, the per-cpu chip_data (per-cpu
+> >> "vectors" in your series) can reside in two places during the transit.
+> >
+> > We can't avoid IPIs when moving vectors from one CPU to another
+> > CPU because IMSIC id enable/disable is only possible through
+> > CSRs. Also, keep in-mind that irq affinity change might be initiated
+> > on CPU X for some interrupt targeting CPU Y which is then changed
+> > to target CPU Z.
+> >
+> > In the case of x86, they have memory mapped registers which
+> > allows one CPU to enable/disable the ID of another CPU.
+>
+> Nope. Same mechanics on x86 -- the cleanup has to be done one the
+> originating core. What I asked was "what about using a timer instead of
+> an IPI". I think this was up in the last rev as well?
+>
+> Check out commit bdc1dad299bb ("x86/vector: Replace
+> IRQ_MOVE_CLEANUP_VECTOR with a timer callback") Specifically, the
+> comment about lost interrupts, and the rational for keeping the original
+> target active until there's a new interrupt on the new cpu.
 
-Would pass the 80 limit column. I would not mind at all to have the one lin=
-er
-but I'm playing by Jonathan's rules. Stick with that limit unless it hurts
-readability.
+Trying timer interrupt is still TBD on my side because with v12
+my goal was to implement per-device MSI domains. Let me
+explore timer interrupts for v13.
 
->=20
-> > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0=C2=A0=C2=A0 if (ret < 0)
-> > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 return ERR_=
-PTR(ret);
-> > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0=C2=A0=C2=A0 index =3D ret;
-> > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 } else {
-> > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0=C2=A0=C2=A0 index =3D 0;
-> > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 }
->=20
-> ...
->=20
-> > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 fwnode =3D fwnode_find_reference(=
-dev_fwnode(dev), "io-backends",
-> > index);
-> > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 if (IS_ERR(fwnode)) {
-> > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0=C2=A0=C2=A0 dev_err(dev, "Cannot get Firmware reference\n");
-> > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0=C2=A0=C2=A0 return ERR_CAST(fwnode);
->=20
-> dev_err_probe() ?
->=20
-> > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 }
->=20
-> ...
->=20
-> > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 if (!ops) {
-> > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0=C2=A0=C2=A0 dev_err(dev, "No backend ops given\n");
-> > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0=C2=A0=C2=A0 return -EINVAL;
->=20
-> dev_err_probe() ?
+>
+> >> I wonder if this clean up is less intrusive, and you just need to
+> >> perform what's in the per-list instead of dealing with the
+> >> ids_enabled_bitmap? Maybe we can even remove that bitmap as well. The
+> >> chip_data/desc has that information. This would mean that
+> >> imsic_local_priv() would only have the local vectors (chip_data), and
+> >> a cleanup list/timer.
+> >>
+> >> My general comment is that instead of having these global id-tracking
+> >> structures, use the matrix together with some desc/chip_data local
+> >> data, which should be sufficient.
+> >
+> > The "ids_enabled_bitmap", "dummy hwirqs" and private imsic_vectors
+> > are required since the matrix allocator only manages allocation of
+> > per-CPU IDs.
+>
+> The information in ids_enabled_bitmap is/could be inherent in
+> imsic_local_priv.vectors (guess what x86 does... ;-)).
+>
+> Dummy hwirqs could be replaced with the virq.
+>
+> Hmm, seems like we're talking past each other, or at least I get the
+> feeling I can't get my opinions out right. I'll try to do a quick PoC,
+> to show you what I mean. That's probably easier than just talking about
+> it. ...and maybe I'll come realizing I'm all wrong!
 
-Yeah, I can switch to that as on top of being devm APIs, these APIs are rea=
-lly
-intended to be called during probe().
+I suggest to wait for my v13 and try something on top of that
+otherwise we might duplicate efforts.
 
-- Nuno S=C3=A1
+>
+> My reaction is -- you're doing a lot of householding with a lot of
+> locks, and my worry is that we'll just end up with same issues/bloat
+> that x86 once had (has? ;-)).
+>
+> >> Random thought: Do we need to explicitly disable (csr) the vector,
+> >> when we're changing the affinity? What if we just leave it enabled,
+> >> and only when mask/unmask is performed it's actually explicitly masked
+> >> (writes to the csr)?
+> >
+> > We should not leave it enabled because some rough/buggy device
+> > can inject spurious interrupts using MSI writes to unused enabled
+> > interrupts.
+>
+> OK!
+>
+> >>
+> >> Missing features (which can be added later):
+> >> * Reservation mode/activate support (allocate many MSI, but only
+> >>   request/activate a subset)
+> >
+> > I did not see any PCIe or platform device requiring this kind of
+> > reservation. Any examples ?
+>
+> It's not a requirement. Some devices allocate a gazillion interrupts
+> (NICs with many QoS queues, e.g.), but only activate a subset (via
+> request_irq()). A system using these kind of devices might run out of
+> interrupts.
+
+I don't see how this is not possible currently.
+
+>
+> Problems you run into once you leave the embedded world, pretty much.
+>
+> >> * Handle managed interrupts
+> >
+> > Any examples of managed interrupts in the RISC-V world ?
+>
+> E.g. all nvme drives: nvme_setup_irqs(), and I'd assume contemporary
+> netdev drivers would use it. Typically devices with per-cpu queues.
+
+We have tested with NVMe devices, e1000e, VirtIO-net, etc and I did
+not see any issue.
+
+We can always add new features as separate incremental series as long
+as there is clear use-cause backed by real-world devices.
+
+>
+> >> * There might be some irqd flags are missing, which mostly cpuhp care
+> >>   about (e.g. irqd_*_single_target())...
+> >
+> > Okay, let me check and update.
+>
+> I haven't dug much into cpuhp, so I'm out on a limb here...
+>
+> >> Finally; Given that the APLIC requires a lot more patches, depending
+> >> on how the review process moves on -- maybe the IMSIC side could go as
+> >> a separate series?
+> >>
+> >
+> > The most popular implementation choice across RISC-V platforms
+> > will be IMSIC + APLIC so both drivers should go together. In fact,
+> > we need both drivers for the QEMU virt machine as well because
+> > UART interrupt (and other wired interrupts) on the QEMU virt
+> > machine goes through APLIC.
+>
+> Thanks for clearing that out! Hmm, an IMSIC only QEMU would be awesome.
+>
+>
+> Cheers,
+> Bj=C3=B6rn
+
+Regards,
+Anup
 
