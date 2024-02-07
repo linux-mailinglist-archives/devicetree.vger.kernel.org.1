@@ -1,107 +1,192 @@
-Return-Path: <devicetree+bounces-39411-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-39412-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 84FA484C903
-	for <lists+devicetree@lfdr.de>; Wed,  7 Feb 2024 11:54:57 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7A70584C90B
+	for <lists+devicetree@lfdr.de>; Wed,  7 Feb 2024 11:56:42 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 2435C1F26A02
-	for <lists+devicetree@lfdr.de>; Wed,  7 Feb 2024 10:54:57 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 00BA11F265A2
+	for <lists+devicetree@lfdr.de>; Wed,  7 Feb 2024 10:56:42 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A6504171B4;
-	Wed,  7 Feb 2024 10:54:54 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A74BA17559;
+	Wed,  7 Feb 2024 10:56:39 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="HDO9i16d"
+	dkim=pass (2048-bit key) header.d=cirrus.com header.i=@cirrus.com header.b="YDPs4PBf"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-yb1-f172.google.com (mail-yb1-f172.google.com [209.85.219.172])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mx0b-001ae601.pphosted.com (mx0a-001ae601.pphosted.com [67.231.149.25])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C47A117BC5
-	for <devicetree@vger.kernel.org>; Wed,  7 Feb 2024 10:54:52 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.219.172
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B845017582;
+	Wed,  7 Feb 2024 10:56:37 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=67.231.149.25
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1707303294; cv=none; b=cK2VulwMnoX5TTsDv8QHv10Rjjio6cCX2QbyVOq6ptlNmpe4tMKl0ELtzXA1AYa3lBpQPRgQUARWY3dX1OcO+saMUugTyrP+5U51o1TqKsJKxaAZNAEyiRH9shklIV7OVwW5aGCjrveN/EbNJqZZFNIlhRploSP8cnS5Hy+MMvk=
+	t=1707303399; cv=none; b=KdgB+GFE0rhnYC56mzX24FLNl4CFSjbrXsin2qRXso5bTohiA3Ksa1wov7e+7sWBPZLLCoA2J3TLhV/Ne86P23uSD2Jmq4lAuvTTIkRhh/u/HAMMdj0XmVpu+6dlpVaQxQtr6DEGA36bf2XCQGsltQ5UZ5jQXqrfpdhxSOdl5IU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1707303294; c=relaxed/simple;
-	bh=AqRyfre6hpYKrbdFfgct1DMOhUQC1J51jmJyfuq2n8I=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=r4TdH1+C7aYHeFOnlVKVa3MhU3y3hVpl8VWKzILovm4o8WROGElvpscKqfiars+cd1Z9zDXmvdIgwZSqwldxpY3LatNV7bgBLboZ0jMo6CKbYTeQrSy4y9rIHc740EENxwc8QqG70Lc29UaZeM8DRDo4ypr5yz0yjxz/ynUBiwc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=HDO9i16d; arc=none smtp.client-ip=209.85.219.172
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-yb1-f172.google.com with SMTP id 3f1490d57ef6-dc6d8f19ab3so462990276.3
-        for <devicetree@vger.kernel.org>; Wed, 07 Feb 2024 02:54:52 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1707303292; x=1707908092; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=AqRyfre6hpYKrbdFfgct1DMOhUQC1J51jmJyfuq2n8I=;
-        b=HDO9i16dkADSVvq6bn0Sbo+lrGoZqVgEmDyNnddeI8nc1hnZq+Ja3AMz9KQ3uYYhLz
-         /dccogs4m04hXV8h8p3iFRjmnsa5oOrDLB7agajpybVu09VFCRMSyGM5GEzQAz4jkTEa
-         X3Xn8Wu7VTXOR+alvwQIax07jdzy/X8V3P/4U9aoIQtQafuPuqtviS2tHCs8dTP4MCaD
-         0BlbgxAiNQYneX9QIZqfqVoVNV1aVZYGWgO1zIV8s5aoXVjGqJrhrzaXYnRgKY2xIN8/
-         fOrvWwnvq9iDaWDiPfqqjPR6e/CWaSymQpokA6dJcZqFEjHkdip85CsKVqK/BVgO10nX
-         2GWA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1707303292; x=1707908092;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=AqRyfre6hpYKrbdFfgct1DMOhUQC1J51jmJyfuq2n8I=;
-        b=lVyl0rVrWNdb0mgxrmere2lwZ5HttzorqwglErGRwM4W1msA73iZKHNBJNpevHc2mT
-         s4PUz+qXNt4UF8u9fNcLNijYZDbw8pEK1Xd4sDFjgLGnYrgNKD3xv0Z9vVNMYpy+LWWj
-         hwcCl9SYYrzMEblvaO8luwUww+VAS8AOvPoGsCU1WhlGqNPAIzBFNy1PseIA60OAy6Qj
-         yC2hQIXQrvDqFf1/7wmxg56hzMVEtTDNaa4d2k9WpiNA1jYNV4kz49BC4DJ3q7RNjgMB
-         Y7rNTjy/fD0B+t8r8V8pjW+gsaRcYmfwxyy/bvFSaykgG2RicnZzfbAVT9/My5DmxG2a
-         mrcA==
-X-Gm-Message-State: AOJu0YyTsvlUjGr4pC7Y+SpF9tydIZ8f3dtO1lvWqc1BeCRlwodyl1U9
-	AzC1eTv7Q6toao00lmoaA6LmToXrvjiG4NDrNS+d+BUTo+2kwE7gRFqBujKP+BJ8embQjAv6Tzm
-	PTMxW8YADbJzPjSV+RYkNZYYci2mfcAhTLcFwzQ==
-X-Google-Smtp-Source: AGHT+IGDflkHEVBa03b1Bfl72mpon3cdcyEI04qMZquBPzXoVaoldzCLxrdhfuAGz48oB/DXRZc65MMbqgc8o/+1+XU=
-X-Received: by 2002:a25:2d14:0:b0:dc2:3818:f36e with SMTP id
- t20-20020a252d14000000b00dc23818f36emr4815404ybt.18.1707303291509; Wed, 07
- Feb 2024 02:54:51 -0800 (PST)
+	s=arc-20240116; t=1707303399; c=relaxed/simple;
+	bh=cHuBJa3fwwSWWb95cRYPTGvmcJXWGVt/IdQMW89YmOk=;
+	h=Date:From:To:CC:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=Ytgjbz+2AO4/f2heOJpqeRoN3o8uja4ed5fRA+oR0XuO6LIuCj/hdT4yo8MVIE977SMn4C+RxlGhtnawJBrpWxxqNYASiAo2W27iA/TTUqa6g09MiTM2zqJFASp5Fh2WHFbqQscLb4wFHGXD30fAKLUpyWKNGXsjvRy0OcBP7u4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=opensource.cirrus.com; spf=pass smtp.mailfrom=opensource.cirrus.com; dkim=pass (2048-bit key) header.d=cirrus.com header.i=@cirrus.com header.b=YDPs4PBf; arc=none smtp.client-ip=67.231.149.25
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=opensource.cirrus.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=opensource.cirrus.com
+Received: from pps.filterd (m0077473.ppops.net [127.0.0.1])
+	by mx0a-001ae601.pphosted.com (8.17.1.24/8.17.1.24) with ESMTP id 4177gWj8022130;
+	Wed, 7 Feb 2024 04:56:30 -0600
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=cirrus.com; h=
+	date:from:to:cc:subject:message-id:references:mime-version
+	:content-type:in-reply-to; s=PODMain02222019; bh=WE5OOMkdDmTnFTR
+	5yFILUIuNO0lM6ppMfWaP+TqmU0E=; b=YDPs4PBf8XdBxnK1oqzc0SG/b2d1Uee
+	iZSRkxO6Nq87Pgp8jFB76aVngFAO/0lz79iboDe6lXGfqqiQKydPAmetLe6ZN5d3
+	x3WPfyijB2qfoTt9eF7tSVpoQknkUKOne1ma7hfi9KVEEhnKg6o6/nx2qnO8IxL+
+	kcg3IBdE/kkFqxyxToE6kpJH4BD9snBkaLxhuycqSPzFrXN6U2uOH/QhTMb7hdx/
+	g/CiZIikBqm/vpsmBW7yowZ7qnTmqgGwaVlA6Odwo7vt7LTg6BRTyqPt5SB++tZk
+	S8oeCXH7Zn7axVEnSvwcChfpDFtmDbPHcBP07RJnTQnYsmwXXoeU4Lg==
+Received: from ediex01.ad.cirrus.com ([84.19.233.68])
+	by mx0a-001ae601.pphosted.com (PPS) with ESMTPS id 3w1ks2cxha-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Wed, 07 Feb 2024 04:56:30 -0600 (CST)
+Received: from ediex02.ad.cirrus.com (198.61.84.81) by ediex01.ad.cirrus.com
+ (198.61.84.80) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1118.40; Wed, 7 Feb
+ 2024 10:56:28 +0000
+Received: from ediswmail9.ad.cirrus.com (198.61.86.93) by
+ anon-ediex02.ad.cirrus.com (198.61.84.81) with Microsoft SMTP Server id
+ 15.2.1118.40 via Frontend Transport; Wed, 7 Feb 2024 10:56:28 +0000
+Received: from ediswmail9.ad.cirrus.com (ediswmail9.ad.cirrus.com [198.61.86.93])
+	by ediswmail9.ad.cirrus.com (Postfix) with ESMTPS id 39633820243;
+	Wed,  7 Feb 2024 10:56:28 +0000 (UTC)
+Date: Wed, 7 Feb 2024 10:56:27 +0000
+From: Charles Keepax <ckeepax@opensource.cirrus.com>
+To: James Ogletree <jogletre@opensource.cirrus.com>
+CC: <dmitry.torokhov@gmail.com>, <robh+dt@kernel.org>,
+        <krzysztof.kozlowski+dt@linaro.org>, <conor+dt@kernel.org>,
+        <lee@kernel.org>, <broonie@kernel.org>, <jeff@labundy.com>,
+        <patches@opensource.cirrus.com>, <linux-sound@vger.kernel.org>,
+        <linux-input@vger.kernel.org>, <devicetree@vger.kernel.org>
+Subject: Re: [PATCH v6 1/5] firmware: cs_dsp: Add write sequencer interface
+Message-ID: <ZcNh2y35OWEdQPDm@ediswmail9.ad.cirrus.com>
+References: <20240207003612.4187370-1-jogletre@opensource.cirrus.com>
+ <20240207003612.4187370-2-jogletre@opensource.cirrus.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20240202223454.1667383-1-robh@kernel.org>
-In-Reply-To: <20240202223454.1667383-1-robh@kernel.org>
-From: Linus Walleij <linus.walleij@linaro.org>
-Date: Wed, 7 Feb 2024 11:55:04 +0100
-Message-ID: <CACRpkdb+Z8oxBa7kibHdob1qk1eVKiSm1MaY+bF442d=ztdmdA@mail.gmail.com>
-Subject: Re: [PATCH] dt-bindings: pinctrl: nvidia,tegra234-pinmux: Restructure
- common schema
-To: Rob Herring <robh@kernel.org>
-Cc: Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Thierry Reding <thierry.reding@gmail.com>, Jonathan Hunter <jonathanh@nvidia.com>, 
-	linux-gpio@vger.kernel.org, devicetree@vger.kernel.org, 
-	linux-tegra@vger.kernel.org, linux-kernel@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset="us-ascii"
+Content-Disposition: inline
+In-Reply-To: <20240207003612.4187370-2-jogletre@opensource.cirrus.com>
+X-Proofpoint-GUID: iL-g1Bw9r9WRT8_6cI6jiksdglvi2rGg
+X-Proofpoint-ORIG-GUID: iL-g1Bw9r9WRT8_6cI6jiksdglvi2rGg
+X-Proofpoint-Spam-Reason: safe
 
-On Fri, Feb 2, 2024 at 11:35=E2=80=AFPM Rob Herring <robh@kernel.org> wrote=
-:
+On Wed, Feb 07, 2024 at 12:36:08AM +0000, James Ogletree wrote:
+> A write sequencer is a sequence of register addresses
+> and values executed by some Cirrus DSPs following
+> power state transitions.
+> 
+> Add support for Cirrus drivers to update or add to a
+> write sequencer present in firmware.
+> 
+> Signed-off-by: James Ogletree <jogletre@opensource.cirrus.com>
+> ---
 
-> The structure of the NVIDIA Tegra234 common pinmux schema doesn't work
-> for restricting properties because a child node schema can't be extended
-> with additional properties from another schema defining the same child
-> node. The 2 child node schemas are evaluated independently as the
-> schemas are not recursively combined in any way.
->
-> As the common schema is almost all the child node schema anyways, just
-> remove the parent node from the common schema. Then add 'reg' and adjust
-> the $ref's in the users of the common schema.
->
-> Signed-off-by: Rob Herring <robh@kernel.org>
+Mostly down to some very minor nit picks from me on this one,
+only one comment on the list order.
 
-Patch applied!
+> +	ret = cs_dsp_coeff_read_ctrl(wseq->ctl, 0, words, wseq->ctl->len);
+> +	if (ret) {
+> +		cs_dsp_err(dsp, "Failed to read %s: %d\n", wseq->name, ret);
 
-Yours,
-Linus Walleij
+Use wseq->ctl->subname here should be the same string.
+
+> +		switch (op->operation) {
+> +		case CS_DSP_WSEQ_END:
+> +			op->data = WSEQ_END_OF_SCRIPT;
+> +			break;
+> +		case CS_DSP_WSEQ_UNLOCK:
+> +			op->data = cs_dsp_chunk_read(&ch, 16);
+> +			break;
+> +		case CS_DSP_WSEQ_ADDR8:
+> +			op->address = cs_dsp_chunk_read(&ch, 8);
+> +			op->data = cs_dsp_chunk_read(&ch, 32);
+> +			break;
+> +		case CS_DSP_WSEQ_H16:
+> +		case CS_DSP_WSEQ_L16:
+> +			op->address = cs_dsp_chunk_read(&ch, 24);
+> +			op->data = cs_dsp_chunk_read(&ch, 16);
+> +			break;
+> +		case CS_DSP_WSEQ_FULL:
+> +			op->address = cs_dsp_chunk_read(&ch, 32);
+> +			op->data = cs_dsp_chunk_read(&ch, 32);
+> +			break;
+> +		default:
+> +			ret = -EINVAL;
+> +			cs_dsp_err(dsp, "Unsupported op: %X\n", op->operation);
+> +			goto err_free;
+> +		}
+> +
+> +		list_add(&op->list, &wseq->ops);
+
+Unless I am mistaken, would be better to use list_add_tail
+here. Which would keep the order of writes in the list matching
+the order in the write sequence. Currently I think the list
+holds the writes in reverse order, so your search for the
+first write will actually find the last write.
+
+> +EXPORT_SYMBOL_GPL(cs_dsp_wseq_init);
+
+These should all be EXPORT_SYMBOL_NS_GPL(..., FW_CS_DSP).
+
+> + * cs_dsp_wseq_write() - Add or update an entry in a write sequence
+> + * @dsp: Pointer to a DSP structure
+> + * @wseq: Write sequence to write to
+> + * @addr: Address of the register to be written to
+> + * @data: Data to be written
+> + * @op_code: The type of operation of the new entry
+> + * @update: If true, searches for the first entry in the write sequence with
+> + * the same address and op_code, and replaces it. If false, creates a new entry
+> + * at the tail.
+
+This should now be expanded to note that it will also add a new
+entry if no matching entry is found even when update is set to
+true. The comment below says it but good to have it in the docs
+too.
+
+> +	if (!update) {
+> +		if (wseq->ctl->len - op_end->offset < new_op_size) {
+> +			cs_dsp_err(dsp, "Not enough memory in write sequence for entry\n");
+> +			ret = -ENOMEM;
+> +			goto op_new_free;
+> +		}
+> +
+> +		op_end->offset += new_op_size;
+> +
+> +		ret = cs_dsp_coeff_write_ctrl(wseq->ctl, op_end->offset / sizeof(u32),
+> +					      &op_end->data, sizeof(u32));
+> +		if (ret)
+> +			goto op_new_free;
+> +
+> +		list_add(&op_new->list, &wseq->ops);
+
+I think if you use list_add_tail(&op_new->list, &op_end->list),
+that will also keep the list order matching the hardware order
+here.
+
+> +/**
+> + * struct cs_dsp_wseq - Describes a write sequence
+> + * @name:	Name of cs_dsp control
+> + * @ctl:	Write sequence cs_dsp control
+> + * @ops:	Operations contained within this write sequence
+> + */
+> +struct cs_dsp_wseq {
+> +	const char *name;
+
+Drop name from the struct here it is redundant the ctl pointer
+precisely identifies a control.
+
+Thanks,
+Charles
 
