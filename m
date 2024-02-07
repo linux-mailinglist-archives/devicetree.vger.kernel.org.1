@@ -1,228 +1,116 @@
-Return-Path: <devicetree+bounces-39397-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-39398-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 15DCB84C805
-	for <lists+devicetree@lfdr.de>; Wed,  7 Feb 2024 10:53:59 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3A31E84C80D
+	for <lists+devicetree@lfdr.de>; Wed,  7 Feb 2024 10:55:16 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 5482AB2622D
-	for <lists+devicetree@lfdr.de>; Wed,  7 Feb 2024 09:53:56 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 5F30B1C252DA
+	for <lists+devicetree@lfdr.de>; Wed,  7 Feb 2024 09:55:15 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id BCEAE23757;
-	Wed,  7 Feb 2024 09:53:36 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5E15423773;
+	Wed,  7 Feb 2024 09:55:05 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="IsM44Qc9"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="Nr/LWBr9"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f46.google.com (mail-wm1-f46.google.com [209.85.128.46])
+Received: from mail-yw1-f170.google.com (mail-yw1-f170.google.com [209.85.128.170])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B0C7B2560C
-	for <devicetree@vger.kernel.org>; Wed,  7 Feb 2024 09:53:34 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.46
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AAA8525558
+	for <devicetree@vger.kernel.org>; Wed,  7 Feb 2024 09:55:02 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.170
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1707299616; cv=none; b=cJRXLZ1tDw8VcLBlN9BbHgougCzW5ZYvlNaIhaxhCNC9o0+pcr5npbQiU4b9r2bFZdHwlO2HfhF4ZE0DiIz8Q/mJk4XfRuFhv65543deGaQKGTZDh40bLC4Fx6Jc2QENxcZeukRoUX31H9WdaaLHM1mHlzyRTwVfU+o2qslRLhI=
+	t=1707299705; cv=none; b=Vd3jz54EVfYjTE7K4TB9EQ5ENRxhIRuzu9uXJ+PzntAm0RCBU3Sk4xFlixIZf697IyeF83yOkR23twgSf3QxiLIBGH5CDUHpwhhOjuf9qO0cufpWXyzthGoDAGV0sQ1U6ZhdXQ/d+x5m5D8I97t1ryGM4C+nOOG+I9Uc5fXxEPM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1707299616; c=relaxed/simple;
-	bh=f6UJyEw9i5rteqhbf8vMuiqLur1lK6pyVLjptQL1iDE=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=QJip9pb3BS91pcoKc+jFki3BkrNHkmtiEamyuFqoWe/IYF9ZmCUN9LTP2cYLWMPV/t3wNpl8WIzxnriI2a57CJQvc1I7vIPHoX6EXkSLA0PNI3tLx3/FC/eS9ZzpVoNhomwQIbXcUAFDjEO604TEJPiwZbiz9250Z14VQug6r0o=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=IsM44Qc9; arc=none smtp.client-ip=209.85.128.46
+	s=arc-20240116; t=1707299705; c=relaxed/simple;
+	bh=W0qMbCmeAVZPhJb+iYTwPmigfCpsBuM3I+cALhPa1L8=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=ewvkIakSHQ//iEwVcs2R92HDgr3nEmUOwcs4cil5v037ZYxXx1t+8n5G/xVbmCm+FBt7ZGlDfVZnYLLPlp1XzLt/EVAGnUMW466+7nfy1dJgkk37S3d+pg6wj0IhXvuMX37tyHDYUNoJH7VDpodavBbr4HD5aU9pvRM0xOHszIM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=Nr/LWBr9; arc=none smtp.client-ip=209.85.128.170
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-wm1-f46.google.com with SMTP id 5b1f17b1804b1-40fe59b22dbso3094315e9.3
-        for <devicetree@vger.kernel.org>; Wed, 07 Feb 2024 01:53:34 -0800 (PST)
+Received: by mail-yw1-f170.google.com with SMTP id 00721157ae682-604983ea984so1359037b3.1
+        for <devicetree@vger.kernel.org>; Wed, 07 Feb 2024 01:55:02 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1707299613; x=1707904413; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from
-         :content-language:references:cc:to:subject:user-agent:mime-version
-         :date:message-id:from:to:cc:subject:date:message-id:reply-to;
-        bh=48P2qL1gH0dQ6fHTQ76ksb1Xd1qjgcR6h7LjpWAx3E8=;
-        b=IsM44Qc9R7A/UTWt6jxFoqxH7cG02NPGq0PVtrHCuR0pUskRz6tIyr55tPn9avvyfu
-         I6aZWbDWspkVnYDaKhs+YvzCQJ7Rt6eL6k4DtY8yaT9sFJJaRBj0YJoduiCO7lzmK/6L
-         NrS0mrz1ZF9/M5idx02kW63TnKVeylVmB0pESIMspjG9I8f19bW5efF94xoPjbhwvZGO
-         7XW0S/b5emXT6Kqh8XXZFbGthZhaoq1NQGg46OciXT0CF0jRm3nQ2cqQlVrNrEaMWxmE
-         Qgim2KAIdLJsuyb+wa9JO6ixC3uWTaPNNFhpTVcbb8jnrOaUQOPzX73B70fhDFY/jjbx
-         bKxw==
+        d=linaro.org; s=google; t=1707299701; x=1707904501; darn=vger.kernel.org;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=RicxNNPMrKiw67Y7TzIkhzw6IPlh0lXHADdsE21F4B4=;
+        b=Nr/LWBr9yuOhURHxyQXzgiHkQCCYrp4lCuS6j3PIdAvJ2tfIys+JNkDPcQ6JRQi0QY
+         0Mwca/kBKF16eJdbbzN0DZC6YmBi9dVgCmyjZhxGcLX7Unix+npcEfcEI45fpy99w881
+         ITZO9Edm2ommzqMF7Z3n5D1s67zbH4FVymmXMC6cYX+9hk42BhDSx/IPQ4VENEAP0SIh
+         Jbw+ihPBEZnktex+bhzckPpQrmugUOZyKrPCiTLsXmDrHRKX6RC76aWU6KLMlbaFXm7K
+         nwU51mlumZFbMdloQuc2nrimhCWybsMxeayIYgi1/OMpxXAyavt21bvvksGpWmGxAFER
+         Un7Q==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1707299613; x=1707904413;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from
-         :content-language:references:cc:to:subject:user-agent:mime-version
-         :date:message-id:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=48P2qL1gH0dQ6fHTQ76ksb1Xd1qjgcR6h7LjpWAx3E8=;
-        b=oAXtrIG10Y2jTdibbNYimSgWcwJ/sXN4c1JBWtABTBWeuDLc3cwID5c09PGdGW4Lzd
-         CD2RoS0wjBCmn8A180aHTCCKL0x/veEiilq15QsIfUIJDO+LsOFohcthpk0Hi1wg0pLQ
-         NYh91J7flenztAwc4m0BLlVT1KZEcUojwKByJYvupjkV1nHaYaFRZKePU1Aj6lS8IJ89
-         RFGCjpIO/SADYMLOAwy3Ue6YEhv1b7d5E882aipB+eMFximjT4ZcrNd2++zCA4hmkEye
-         E3WJZa5TzLhMj/frGXAIVPri6I67M/u9xtfUafJqto0L7hPgoCyG1RTboiMJPREtPhoU
-         MIbg==
-X-Gm-Message-State: AOJu0Yz6LW8ZsGRjQsxHjj0QZ+9hX1MpPstkpZYAp6uKeMzJ/T4Q1wOc
-	6j+RGmFGBwumYlNUf14j52pwAaOcZ2pg1WUI1iiHlMh0gK7wIKt9kMiHyTIRIWk=
-X-Google-Smtp-Source: AGHT+IFRJY/crKfhr+4TJQ3MY6snvhsHCaf0dsjBr+P8mHGFvkHhupWDao5D9UxxcPXdlTwvPgN6IA==
-X-Received: by 2002:adf:ec92:0:b0:33a:f84b:22ee with SMTP id z18-20020adfec92000000b0033af84b22eemr3345895wrn.12.1707299612912;
-        Wed, 07 Feb 2024 01:53:32 -0800 (PST)
-X-Forwarded-Encrypted: i=1; AJvYcCUlQ+57aIaTVy+XtVNf6j1JEM6Jch3bsxVdjPxf14dabGbQcFhE7cn6CWDbaIWXakSKRkNUG604IKh3kWJWzewfazl628QtiO/+ft4w5MAK00Ik8dJ2+gmCP312XBSgdKWw0ROXtxKHzhE385jPpVcjaJwWVZafMNEr3dsfVoidG54NQgLYblLEdsSSpJKl3WJ95UimV9ZmbCRf/Ty05sb4l1IQpY1TK4HfV658z+MAxCFrvt4saX57y8AemskGRjqcR2mF72rY39Z6vUzpWb7glXXnLqYfcix/fSNW0Okbkxi8RbFB3TVQPeKIyk3jaBrpqf4LPkOEN1we8QNKavL5UmwpKlivcjQ7Nd7i91pjU2mu6WKKTJvb9wXVgt/p4gmUf0p7CkoiOkE+HqCGKuJ6QhK5AAVOeYCdUOUFKalySJjuhghRFpa2E5sdtMmcsgT528lm58XdOxfArFpTkhd45+zLlSaKi+3k4tPd6xjx7eRz8NYKZLA85WoefJUjV9pFWblFM8vc+axHjBMbx0nX60IrBbrhWAz204SX2L6Pc1JSZ6DROxwdKcdyMKiJ9OLClqRfySXYggr5qYD2Rw+uVzGJs/PrmBIvA96nvLTfln7Qph+RB3OW0qsW0xPnV+utJOOl5JFUkHcyndMii95nZFfbvOxI7oBLdSlmETwtHlP4LzOC2ayA0sNadRdUfjYrKzlKp1fVEQr3szMQHjtG1gNfaFkJlD3GAl9NTBEKk38RHj5B4jTNDR3cYh+0YXQ9TQ5oDAfsQlX1CIwg
-Received: from [192.168.1.20] ([178.197.222.62])
-        by smtp.gmail.com with ESMTPSA id b15-20020a05600010cf00b0033b4e58746asm1020055wrx.69.2024.02.07.01.53.30
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 07 Feb 2024 01:53:32 -0800 (PST)
-Message-ID: <e61999e6-8c82-40a2-a2b9-e19d636364f5@linaro.org>
-Date: Wed, 7 Feb 2024 10:53:28 +0100
+        d=1e100.net; s=20230601; t=1707299701; x=1707904501;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=RicxNNPMrKiw67Y7TzIkhzw6IPlh0lXHADdsE21F4B4=;
+        b=Wdvs4U7cLo5YXefl/OCB6UMxiM9weP+dVtMTaBvzHHmyo9FHLFYJPoxPDFnmPm2u+4
+         MzN3fyai1/ZQdWlB1r11rsZIrH2alu5glHLKQAbTUbhw8GLevzQ1XL3zXTempPaavBCy
+         fVz1IQsqIjC5y3dmye580ez7totqvGXafwh32YE5T0onjpb60gTFefI0ymcbW5xYyr4R
+         Kxn/MNAwZPcQXmPG72G7mWyokHeYiyTCI12iKSUfNYdx8pSvOk5UrmBa/QY2B8aG+7fj
+         YSMFpeZurY4GtYx/SveZate7/LZ5rGhy+86t7Z34yDLrcdJXcMmZtCVEcqNN1sDnC12D
+         upbQ==
+X-Gm-Message-State: AOJu0YxdQ3iGCi5XV95mzrwB04cgyIrY1YhxPl3WfMUpaCzcyQJMZpX2
+	ASFZRQvl5MKvInVWIAoX60ucLH8zFJ6PQDgFMKYWJff1+q3MVTXmbEbu6AttvfWhJtwVzCLRPp9
+	TY+1GViMx8gpPzsG3IqUOBAtg5onTR5Lr11R5Ow==
+X-Google-Smtp-Source: AGHT+IH2OCszgIyWLV9aSBN/6A9BrqUCrx0IXJZ6guPUfoxlYrbqi1ZwGlFpu/0nklPKspZSURkiAJyVsyKd8MNkFGQ=
+X-Received: by 2002:a0d:d6ca:0:b0:602:cd33:5339 with SMTP id
+ y193-20020a0dd6ca000000b00602cd335339mr3707239ywd.5.1707299701285; Wed, 07
+ Feb 2024 01:55:01 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [EXTERNAL] Re: [PATCH v3 4/4] ASoc: dt-bindings: PCM6240: Add
- initial DT binding
-To: "Ding, Shenghao" <shenghao-ding@ti.com>,
- "broonie@kernel.org" <broonie@kernel.org>,
- "conor+dt@kernel.org" <conor+dt@kernel.org>,
- "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
- "robh+dt@kernel.org" <robh+dt@kernel.org>,
- "andriy.shevchenko@linux.intel.com" <andriy.shevchenko@linux.intel.com>,
- "linux-sound@vger.kernel.org" <linux-sound@vger.kernel.org>,
- "liam.r.girdwood@intel.com" <liam.r.girdwood@intel.com>,
- "lgirdwood@gmail.com" <lgirdwood@gmail.com>,
- "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
-Cc: "Lu, Kevin" <kevin-lu@ti.com>, "Xu, Baojun" <baojun.xu@ti.com>,
- "P O, Vijeth" <v-po@ti.com>, "Navada Kanyana, Mukund" <navada@ti.com>,
- "perex@perex.cz" <perex@perex.cz>, "McPherson, Jeff" <j-mcpherson@ti.com>,
- "pierre-louis.bossart@linux.intel.com"
- <pierre-louis.bossart@linux.intel.com>,
- "13916275206@139.com" <13916275206@139.com>,
- "Chawla, Mohit" <mohit.chawla@ti.com>, "soyer@irl.hu" <soyer@irl.hu>,
- "Huang, Jonathan" <jkhuang3@ti.com>, "tiwai@suse.de" <tiwai@suse.de>,
- "Djuandi, Peter" <pdjuandi@ti.com>, "Agrawal, Manisha"
- <manisha.agrawal@ti.com>, "Hari, Raj" <s-hari@ti.com>,
- "Yashar, Avi" <aviel@ti.com>, "Nagalla, Hari" <hnagalla@ti.com>,
- "Bajjuri, Praneeth" <praneeth@ti.com>
-References: <20240203030504.1724-1-shenghao-ding@ti.com>
- <20240203030504.1724-4-shenghao-ding@ti.com>
- <ac4b73f6-0c2c-4586-98d6-e97c575b3df7@linaro.org>
- <8fe0b2d1990346efa056d6c2245412c3@ti.com>
-Content-Language: en-US
-From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
- 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
- D2GYIS41Kv4Isx2dEFh+/Q==
-In-Reply-To: <8fe0b2d1990346efa056d6c2245412c3@ti.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+References: <20240130-pmi632-typec-v3-0-b05fe44f0a51@linaro.org> <20240130-pmi632-typec-v3-3-b05fe44f0a51@linaro.org>
+In-Reply-To: <20240130-pmi632-typec-v3-3-b05fe44f0a51@linaro.org>
+From: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+Date: Wed, 7 Feb 2024 11:54:50 +0200
+Message-ID: <CAA8EJpqhfWsmUxwmBLtdtx-aFOmTo24erdNfRyz2ymi_y=yidw@mail.gmail.com>
+Subject: Re: [PATCH v3 3/6] usb: typec: qcom-pmic-typec: add support for
+ PMI632 PMIC
+To: Bjorn Andersson <andersson@kernel.org>, Konrad Dybcio <konrad.dybcio@linaro.org>, 
+	Liam Girdwood <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>, 
+	Rob Herring <robh+dt@kernel.org>, 
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Wesley Cheng <quic_wcheng@quicinc.com>, "Bryan O'Donoghue" <bryan.odonoghue@linaro.org>, 
+	Greg Kroah-Hartman <gregkh@linuxfoundation.org>, Guenter Roeck <linux@roeck-us.net>, 
+	Heikki Krogerus <heikki.krogerus@linux.intel.com>
+Cc: linux-arm-msm@vger.kernel.org, linux-kernel@vger.kernel.org, 
+	devicetree@vger.kernel.org, linux-usb@vger.kernel.org, 
+	Luca Weiss <luca.weiss@fairphone.com>
+Content-Type: text/plain; charset="UTF-8"
 
-On 07/02/2024 10:47, Ding, Shenghao wrote:
-> 
-> 
->> -----Original Message-----
->> From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
->> Sent: Tuesday, February 6, 2024 9:53 PM
->> To: Ding, Shenghao <shenghao-ding@ti.com>; broonie@kernel.org;
->> conor+dt@kernel.org; devicetree@vger.kernel.org; robh+dt@kernel.org;
->> andriy.shevchenko@linux.intel.com; linux-sound@vger.kernel.org;
->> liam.r.girdwood@intel.com; lgirdwood@gmail.com; linux-
->> kernel@vger.kernel.org
->> Cc: Lu, Kevin <kevin-lu@ti.com>; Xu, Baojun <baojun.xu@ti.com>; P O, Vijeth
->> <v-po@ti.com>; Navada Kanyana, Mukund <navada@ti.com>;
->> perex@perex.cz; McPherson, Jeff <j-mcpherson@ti.com>; pierre-
->> louis.bossart@linux.intel.com; 13916275206@139.com; Chawla, Mohit
->> <mohit.chawla@ti.com>; soyer@irl.hu; Huang, Jonathan
->> <jkhuang3@ti.com>; tiwai@suse.de; Djuandi, Peter <pdjuandi@ti.com>;
->> Agrawal, Manisha <manisha.agrawal@ti.com>; Hari, Raj <s-hari@ti.com>;
->> Yashar, Avi <aviel@ti.com>; Nagalla, Hari <hnagalla@ti.com>; Bajjuri,
->> Praneeth <praneeth@ti.com>
->> Subject: [EXTERNAL] Re: [PATCH v3 4/4] ASoc: dt-bindings: PCM6240: Add
->> initial DT binding
->>
->> On 03/02/2024 04: 05, Shenghao Ding wrote: > + > + ti,tad5212: Low-power
->> stereo audio DAC with 120-dB dynamic range. > + oneOf: > + - items: > + -
->> enum: > + - ti,adc3120 > + - ti,adc5120 > + - ti,pcm3120 > + - ti,pcm5120
->> ZjQcmQRYFpfptBannerStart This message was sent from outside of Texas
->> Instruments.
->> Do not click links or open attachments unless you recognize the source of
->> this email and know the content is safe.
->>
->> ZjQcmQRYFpfptBannerEnd
->> On 03/02/2024 04:05, Shenghao Ding wrote:
->>> +
->>> +      ti,tad5212: Low-power stereo audio DAC with 120-dB dynamic range.
->>> +    oneOf:
->>> +      - items:
->>> +          - enum:
->>> +              - ti,adc3120
->>> +              - ti,adc5120
->>> +              - ti,pcm3120
->>> +              - ti,pcm5120
->>> +              - ti,pcm6120
->>> +          - const: ti,adc6120
->>> +      - items:
->>> +          - enum:
->>> +              - ti,pcm6260
->>> +              - ti,pcm6140
->>> +              - ti,pcm3140
->>> +              - ti,pcm5140
->>> +          - const: ti,pcm6240
->>> +      - items:
->>> +          - const: ti,dix4192
->>> +          - const: ti,pcm6240
->>
->> Why dix4192 is not part of previous enum?
-> 
-> dix4192 is not traditional ADC or DAC, but an Integrated Digital Audio Interface 
-> Receiver and Transmitter, like an audio bridge to connect different digital audio 
-> protocol, compatible with the AES3, S/PDIF, IEC 60958, and EIAJ CP-1201 
-> interface standards, Left-Justified, Right-Justified, and Philips I2S™ Data Formats. 
-> So keep it alone for professional purpose. 
+On Tue, 30 Jan 2024 at 21:33, Dmitry Baryshkov
+<dmitry.baryshkov@linaro.org> wrote:
+>
+> The PMI632 PMIC support Type-C port handling, but lacks USB
+> PowerDelivery support. The TCPM requires all callbacks to be provided
+> by the implementation. Implement a special, 'stub' Qcom PD PHY
+> implementation to enable the PMI632 support.
+>
+> Acked-by: Bryan O'Donoghue <bryan.odonoghue@linaro.org>
+> Acked-by: Heikki Krogerus <heikki.krogerus@linux.intel.com>
+> Tested-by: Luca Weiss <luca.weiss@fairphone.com> # sdm632-fairphone-fp3
+> Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
 
-Hm, it is a bit surprising to see some PCM6240-compatible devices 100%
-different from other PCM6240-compatible. PCM6240 is ADC. DIX4192 is not
-ADC, not even DAC. How can it be compatible with PCM6240 in such case?
+Heikki, Gunter, Gret, is there anything left on my side to get these patches in?
 
-Best regards,
-Krzysztof
+> ---
+>  drivers/usb/typec/tcpm/qcom/Makefile               |  3 +-
+>  drivers/usb/typec/tcpm/qcom/qcom_pmic_typec.c      | 30 ++++++--
+>  .../usb/typec/tcpm/qcom/qcom_pmic_typec_pdphy.h    |  2 +
+>  .../typec/tcpm/qcom/qcom_pmic_typec_pdphy_stub.c   | 80 ++++++++++++++++++++++
+>  4 files changed, 107 insertions(+), 8 deletions(-)
 
+-- 
+With best wishes
+Dmitry
 
