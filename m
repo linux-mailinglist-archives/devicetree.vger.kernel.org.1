@@ -1,494 +1,246 @@
-Return-Path: <devicetree+bounces-39353-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-39354-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id A73A284C4F1
-	for <lists+devicetree@lfdr.de>; Wed,  7 Feb 2024 07:24:37 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0179F84C4FA
+	for <lists+devicetree@lfdr.de>; Wed,  7 Feb 2024 07:29:08 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 1A344B20F23
-	for <lists+devicetree@lfdr.de>; Wed,  7 Feb 2024 06:24:35 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id ADFBC285026
+	for <lists+devicetree@lfdr.de>; Wed,  7 Feb 2024 06:29:06 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B8FBF1BDE7;
-	Wed,  7 Feb 2024 06:24:30 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id AB46E1CD19;
+	Wed,  7 Feb 2024 06:29:03 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=nxp.com header.i=@nxp.com header.b="peLzen/b"
+	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="bKEuXDjB"
 X-Original-To: devicetree@vger.kernel.org
-Received: from EUR01-HE1-obe.outbound.protection.outlook.com (mail-he1eur01on2078.outbound.protection.outlook.com [40.107.13.78])
+Received: from lelv0143.ext.ti.com (lelv0143.ext.ti.com [198.47.23.248])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 29FAA1CF87;
-	Wed,  7 Feb 2024 06:24:27 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.107.13.78
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1707287070; cv=fail; b=C86VKobNHP4XgeHeOXDGJ2MUhMcWfcHdaa2ZbTU2dPrZ1IdxOp7P4g3xuBKq6RJJlvcUakrTmM2XbfAcDk/heWYtizsovLlSfyltZUzNDj13N7vl8a5WriLJMWqGuOiwu+xb+8f1w/gtciwUK5FCJKS+Sc8z8VyDQjZNF+p/x6I=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1707287070; c=relaxed/simple;
-	bh=2hOWvUgOfbO+GtoFYixeUKdBDgmY0G6lX/h4IEa2R4k=;
-	h=From:To:Cc:Subject:Date:Message-Id:Content-Type:MIME-Version; b=QewJ3hx3F22jQiNVWopNOy8RVfA/m0RMT1EFXJ/3SCrT8LMfvLivKqDTAskE0HLAeRFuqRNKAVoONzRjLuG0zk2yInJGnE56Ci5Qf2jAkxAs3Rgj3epPO7T9+FKwBiMUnlS/1XYbXTITyt2F1rNa9R5i76ecvkcCnQPO+MUutf4=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com; spf=pass smtp.mailfrom=nxp.com; dkim=pass (1024-bit key) header.d=nxp.com header.i=@nxp.com header.b=peLzen/b; arc=fail smtp.client-ip=40.107.13.78
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=nxp.com
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=HV2SNveeVlYEaSxWb1eF/+FJ9oAx2O9j45C67+lB6MH8HgwUKycTapmLc90Be2NUmeOFBuJxzk+w92F4UmAUlHLfAixVpuWuavjEjV9Z+m6PmVpTvwaOGg3U5UPz3mmBmcqylIHkRWcMfcrwzeYRr/zQFLyA7J9vLjZ+XDWGMJ8NdqQEa9tV0ZsMA/F50rrmJHuiAFW6HRfu6cQQgeMVyLHgeUoYM/7O7kml0DNyUG/K/cvbZS1tcSfCY3a9+2PjGf6W/BfvOFUzRxIOYWqpr/bvrCdtf7twKfM43k+RFMgsG2hTBw+VSZQjfpZWG6IN7a6BnL39aTh1RTTznlW1KA==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=9J+uDlQ71IlsL2ROCGPQx7s3FHMxqFolgrVvkpWpz2Q=;
- b=F4K8HHae3clESnPi3MWFihUQE1V1neP79O4VYvLtkZCQy18MykfRT5KfD5Og05Ls1i37BkRYezuXP3hgSrOVQZn056cCVNT/dnQoW9riuDFlZvnuiz+yATPs6YT08huqKA7wAxqSH+NOz+ZSsDzBRDwsf/Q3Lan766REJlh6XDCHuTnEGKa7XcYSJdcgdoExEAC6BrbY4ZsCinIHMgyDvru4JNM8DiMGEnpqMCQXJbDHNxnR9DAlm7rYtzz5Yr3KIgek5lG3ospRx3tPaxMZczqFcHX/eIVMumhKYaw7rwvmy2IaZOY2INT0/XDY4iZ851rqA4BuVsm+MN22k43Ulw==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
- header.d=nxp.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector2;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=9J+uDlQ71IlsL2ROCGPQx7s3FHMxqFolgrVvkpWpz2Q=;
- b=peLzen/bSYOSSkjkjTVYet+hczHHqSpTfucyEJqaHkUOcRYp1iR8162ML3Y/H+7zUrBTq8EZ3RmJb8fVW8jLtxVj60F6lKFIQqYmoD/dIGCarAqwuwBY3GlQxLSmts3ZXVyBqAZf2/I3ugQdvuKt5nYI0ju1c5qZq96H4VEtcyo=
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=nxp.com;
-Received: from PAXPR04MB9642.eurprd04.prod.outlook.com (2603:10a6:102:240::14)
- by PAXPR04MB8895.eurprd04.prod.outlook.com (2603:10a6:102:20e::9) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7249.36; Wed, 7 Feb
- 2024 06:24:24 +0000
-Received: from PAXPR04MB9642.eurprd04.prod.outlook.com
- ([fe80::c8b4:5648:8948:e85c]) by PAXPR04MB9642.eurprd04.prod.outlook.com
- ([fe80::c8b4:5648:8948:e85c%3]) with mapi id 15.20.7249.035; Wed, 7 Feb 2024
- 06:24:24 +0000
-From: Frank Li <Frank.Li@nxp.com>
-To: Bjorn Helgaas <bhelgaas@google.com>,
-	Lorenzo Pieralisi <lpieralisi@kernel.org>,
-	=?UTF-8?q?Krzysztof=20Wilczy=C5=84ski?= <kw@linux.com>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	linux-pci@vger.kernel.org (open list:PCI SUBSYSTEM),
-	devicetree@vger.kernel.org (open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS),
-	linux-kernel@vger.kernel.org (open list)
-Cc: imx@lists.linux.dev
-Subject: [PATCH 1/1] dt-bindings: pci: layerscape-pci: Convert to yaml file
-Date: Wed,  7 Feb 2024 01:24:02 -0500
-Message-Id: <20240207062403.304367-1-Frank.Li@nxp.com>
-X-Mailer: git-send-email 2.34.1
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-ClientProxiedBy: SJ0PR03CA0128.namprd03.prod.outlook.com
- (2603:10b6:a03:33c::13) To PAXPR04MB9642.eurprd04.prod.outlook.com
- (2603:10a6:102:240::14)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C8EAE1CD1B;
+	Wed,  7 Feb 2024 06:29:01 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.23.248
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1707287343; cv=none; b=mCvTAFHggpYjivWbKc1X/1ExCsGDsi4yQonpMHED8jaxggXV+VsqKwTjwHOLKvcxU+QyNXIxwA0+o4r4lAjx8KzwPn49ifG6CG3X1SyFQxjJLCaRWUvRQVQDmY+x3I9Miw/hZa4Z5OnGUyjIOL17ZP2vnu6K30eO1agI0azmQYU=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1707287343; c=relaxed/simple;
+	bh=jqksEA9y9Uu/DtYt8MagMMZG9Uyn1gsiHL7G7mml4Lo=;
+	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
+	 In-Reply-To:Content-Type; b=UFgqo6s47l1g9FlLXRSNFA4S3GdILal4eIR9+SI4w1d55RxmvyDDIs+Vj9nljcw4Y+WT7GO6WF6/n2m5PAC3z26ROivG/QQsBQyXUtMeILFzJ6xr9icTiYtIWast2NEOqLzvV4RmWk82wCFEmyhW4FtOuVMgYupaziWDYAi7lv4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=bKEuXDjB; arc=none smtp.client-ip=198.47.23.248
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
+Received: from lelv0265.itg.ti.com ([10.180.67.224])
+	by lelv0143.ext.ti.com (8.15.2/8.15.2) with ESMTP id 4176ScPv025845;
+	Wed, 7 Feb 2024 00:28:38 -0600
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+	s=ti-com-17Q1; t=1707287318;
+	bh=dPN8HYL6/Leds5zhIyEMYejbsYiwTQnRSCDFX8U4/yk=;
+	h=Date:Subject:To:CC:References:From:In-Reply-To;
+	b=bKEuXDjBbYhl1UX7iaNcbA9qazN6HBLDzEzRpqwjfYq6eKctYd5psUaz4aYM7CBO0
+	 iIWdvtO76tuSzzoSqG+CHP6B0D/8tDroMwTTMvH25f4hxEij+SrSo/Ueu1zC6YW0TI
+	 oPFX4PRJZzNQ74otbMsON1EQsb/eGUFcgFqhDnoY=
+Received: from DLEE108.ent.ti.com (dlee108.ent.ti.com [157.170.170.38])
+	by lelv0265.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 4176SciP029857
+	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+	Wed, 7 Feb 2024 00:28:38 -0600
+Received: from DLEE110.ent.ti.com (157.170.170.21) by DLEE108.ent.ti.com
+ (157.170.170.38) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Wed, 7
+ Feb 2024 00:28:37 -0600
+Received: from lelvsmtp6.itg.ti.com (10.180.75.249) by DLEE110.ent.ti.com
+ (157.170.170.21) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
+ Frontend Transport; Wed, 7 Feb 2024 00:28:38 -0600
+Received: from [10.249.128.48] ([10.249.128.48])
+	by lelvsmtp6.itg.ti.com (8.15.2/8.15.2) with ESMTP id 4176SUCx061775;
+	Wed, 7 Feb 2024 00:28:31 -0600
+Message-ID: <6994957a-9bc6-84fd-da05-d8fbc8356456@ti.com>
+Date: Wed, 7 Feb 2024 11:58:29 +0530
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: PAXPR04MB9642:EE_|PAXPR04MB8895:EE_
-X-MS-Office365-Filtering-Correlation-Id: f43310ae-ca4d-475f-76d4-08dc27a56d96
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info:
-	af1UuzzFBAOYwKjPXAwHvR3sp5sbZWtRwpIRXg565HF7vODvAzahNqakla3OnShoMVGLyLS6Y7sh/m9IwZEYEtUmhDffxDlAF3AAdS8k2g301QJQNsnG5p60uJZ4zxhV2XxHqu7Dxsfj1jifnnkN6KwWrGTf+4AhnUtVa3X/qWnwtg42QBD8sblFjxM1voorEUAs32YaB9j2Dud2Gp0/+HAB/NdIsfjFAVUaFSzVxrHUVMuYKZxP4yHOBWsVU838WQtqCRnW/Z6TurRK11I2j0dSFT3tVYU9S1OJlcm4LLYQMjqlLdOIoSUIzHGmiSETHeDgWIC4AhPO2oFvgom2VIBQFqyUeh66Qphbc8ggn3f/V2Xu91VrjdyZ4MeNawEW8lNofxT6noY59YpUpCl8wr/mvRhQDx7u/bKjTjKZvf/8R1WTWyqnkIg9LsuhWdkmrkoOQTyzq+jHQqSDMPm303nPC2iVFtr1YdXBHerm/jqOY3NqY5hG/HfJaHDqdKbeBZbZey6MVmWKphjzxvqnLGp9t6Mj5HDBfut8ySvVnMWEEdQ7JLOIvqfcysoFomMslGdXat5HJk9D5Te5jNziP+a0kMBsXRYCk5tBPA7jvXU=
-X-Forefront-Antispam-Report:
-	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:PAXPR04MB9642.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230031)(396003)(39860400002)(136003)(376002)(346002)(366004)(230922051799003)(186009)(451199024)(64100799003)(1800799012)(83380400001)(2906002)(38100700002)(41300700001)(316002)(26005)(38350700005)(66556008)(66946007)(66476007)(110136005)(7416002)(30864003)(8676002)(86362001)(8936002)(4326008)(6506007)(52116002)(2616005)(6666004)(5660300002)(6512007)(1076003)(478600001)(6486002)(36756003)(966005);DIR:OUT;SFP:1101;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0:
-	=?us-ascii?Q?oJ+MNXFm98LMxC7INJI27w5728vxdN+ATOI2YaDm7eKwJzky8+tH2D16/ira?=
- =?us-ascii?Q?TSwSPLWBTzocG6bQW4OCtSRpQC+Uw8chpftzouUk7Yo1RIhNaeECuGcgih04?=
- =?us-ascii?Q?sKSF7nWVAZl2Z0AvECmOJMY1pLsQGLiwvl0TCPtgxtxHVyHETwssFF2r8M+y?=
- =?us-ascii?Q?+VhjNtwxu63bWDfoOPnDSKvoT78O9dYzyQx0E8F1p1+rFOLfPAF0J8BaUB1Z?=
- =?us-ascii?Q?bcATnAyhvsdkGczgeQD/R42BSetq9VwAy9oESYp+y6jPpHOrxBRV4lsq0WDa?=
- =?us-ascii?Q?FV9K6uo/XKQXrSGVILr+AMns1HnWCZGbx9cJyPQ7i9lof7WKOfgUPuaiw1EZ?=
- =?us-ascii?Q?FwNy0t+EB8PB0nvzIled1gW+MSIbePy1HdgFZiIbbC2wbMcVqx4a3SQDo7qS?=
- =?us-ascii?Q?BOH8yGM9SFk5nnzDwkoqVOI6GLLtPjMb+nH5Pwkqp0czItK0TCmyon3Lm+LO?=
- =?us-ascii?Q?TvERTR3izQ48pHiERzTpsRnMb4zKOjR+CHYRe6+IcsJb9LLEnRrfvYZlDTK7?=
- =?us-ascii?Q?iMuexBXMrtl6ORbrFcy1FZzM4v1l9ul1MI+1vvr2UCLo8f9lu8EREqgz4p00?=
- =?us-ascii?Q?98T932o6EA+ZdJVJjGTAabN+S4DuIKdojSeejzNkK1FwERE5Q0ChW8/k3q+8?=
- =?us-ascii?Q?bCatgLQ0w6pLcVxAjBdkqMaixeihZClgNtoJSAcmERgULH0RmwP4cvZHmon8?=
- =?us-ascii?Q?zREqlxB65OQzBePuanLfhH1/q6Y1uHVpA/fe0ctvfM10JG8qseVk3n+AK5jQ?=
- =?us-ascii?Q?wRgt+P3CIrVY4cWw95bCzVn118R0uC1PpGlpWoy214rJOsedQpYX2sukOVMJ?=
- =?us-ascii?Q?Ku+Hm2wRVY+odtlyp7BPxga14LoSBBb8jIsxla72g2nqh//YA0q94Y3+TjCn?=
- =?us-ascii?Q?snU9GeNcEIo+jIOLzQwUxofwe9tDChe0v5uUl8JrK/EezmzzDfDNhn0e+nT8?=
- =?us-ascii?Q?ffZ9q24O/uF2mQRQhezvhvRCUy9dKE9zJM293hV0pssJFHaowHAJTv1HkJq9?=
- =?us-ascii?Q?UVnwDWuXQHoUHDM5klfsHQp962cpboRS3EIKwqq8G0Vx9ubYiYJkVvbQriBt?=
- =?us-ascii?Q?RBwbF/nLkaCrT/psm6U0VP2YbAIN7z8blmQOOlR8pmecySILB8l+092k0cLC?=
- =?us-ascii?Q?4N7YkoSnf3KnUvqgJ3Epu3VO2ot8ZyYP71ee2rdi2wIWC6AnCEL2WMS5HEFC?=
- =?us-ascii?Q?tUtJ/U7eidpxy3hE7doB7wqe8eoVERPMuyWiOHGg75JgfU/k6KLyqm5RZA92?=
- =?us-ascii?Q?45X2lFVsXeyINB0XDYWY6CPBBr1UUzrGoezuiuNnS85Qky2WvtJRGJmIVjVH?=
- =?us-ascii?Q?oxynr9QQ77nSrWH/qym4rnTO8Hx9kC/TkkdzNGd20N3IL4s+CnIcXBOpkqRc?=
- =?us-ascii?Q?5pT6JJ0uRtxYTKWdSPEzY7SUEl81gq8gSXN/smEPO0EAi5QA9DqH0hPrKcq5?=
- =?us-ascii?Q?+lH7zP+4ZJR+XED/U7MsDUdS/LS3UbAUb0ySl/iGDByACvfe5dzY6LAw9A1B?=
- =?us-ascii?Q?txkz7EgL1M1BaqosDW5xNnhKScpfwSlcOopBRB9qlTi4oS280JpaKhd/SqUm?=
- =?us-ascii?Q?fIjfwfPczYLUktfQ1CI=3D?=
-X-OriginatorOrg: nxp.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: f43310ae-ca4d-475f-76d4-08dc27a56d96
-X-MS-Exchange-CrossTenant-AuthSource: PAXPR04MB9642.eurprd04.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 07 Feb 2024 06:24:24.4348
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: 5In9dPYek0269yQ1VNglEyHXabeGV7Zds1wCU5B8iV8aLGEb4ZuONpUFpP+7NEExp+XQkt9HBsUdILj2uaDbkA==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: PAXPR04MB8895
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.11.0
+Subject: Re: [PATCH v4 1/3] media: dt-bindings: Add Imagination E5010 JPEG
+ Encoder
+To: Andrew Davis <afd@ti.com>, <mchehab@kernel.org>, <robh+dt@kernel.org>,
+        <krzysztof.kozlowski+dt@linaro.org>, <conor+dt@kernel.org>,
+        <hverkuil-cisco@xs4all.nl>, <linux-media@vger.kernel.org>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>
+CC: <laurent.pinchart@ideasonboard.com>, <praneeth@ti.com>, <nm@ti.com>,
+        <vigneshr@ti.com>, <a-bhatia1@ti.com>, <j-luthra@ti.com>,
+        <b-brnich@ti.com>, <detheridge@ti.com>, <p-mantena@ti.com>,
+        <vijayp@ti.com>, <andrzej.p@collabora.com>, <nicolas@ndufresne.ca>
+References: <20240205114239.924697-1-devarsht@ti.com>
+ <20240205114239.924697-2-devarsht@ti.com>
+ <b98a3cb1-ad0d-4f7e-872e-b6381e57ec4a@ti.com>
+Content-Language: en-US
+From: Devarsh Thakkar <devarsht@ti.com>
+In-Reply-To: <b98a3cb1-ad0d-4f7e-872e-b6381e57ec4a@ti.com>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 8bit
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 
-Convert layerscape pcie bind document to yaml file.
+Hi Andrew,
 
-Signed-off-by: Frank Li <Frank.Li@nxp.com>
----
- .../bindings/pci/fsl,layerscape-pcie-ep.yaml  |  84 +++++++++
- .../bindings/pci/fsl,layerscape-pcie.yaml     | 163 ++++++++++++++++++
- .../bindings/pci/layerscape-pci.txt           |  79 ---------
- 3 files changed, 247 insertions(+), 79 deletions(-)
- create mode 100644 Documentation/devicetree/bindings/pci/fsl,layerscape-pcie-ep.yaml
- create mode 100644 Documentation/devicetree/bindings/pci/fsl,layerscape-pcie.yaml
- delete mode 100644 Documentation/devicetree/bindings/pci/layerscape-pci.txt
+Thanks for the review.
 
-diff --git a/Documentation/devicetree/bindings/pci/fsl,layerscape-pcie-ep.yaml b/Documentation/devicetree/bindings/pci/fsl,layerscape-pcie-ep.yaml
-new file mode 100644
-index 0000000000000..3b592c820eb4c
---- /dev/null
-+++ b/Documentation/devicetree/bindings/pci/fsl,layerscape-pcie-ep.yaml
-@@ -0,0 +1,84 @@
-+# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/pci/fsl,layerscape-pcie-ep.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: Freescale Layerscape PCIe controller
-+
-+maintainers:
-+  - Frank Li <Frank.Li@nxp.com>
-+
-+description: |+
-+  This PCIe endpoint controller is based on the Synopsys DesignWare PCIe IP
-+  and thus inherits all the common properties defined in snps,dw-pcie-ep.yaml.
-+
-+  This controller derives its clocks from the Reset Configuration Word (RCW)
-+  which is used to describe the PLL settings at the time of chip-reset.
-+
-+  Also as per the available Reference Manuals, there is no specific 'version'
-+  register available in the Freescale PCIe controller register set,
-+  which can allow determining the underlying DesignWare PCIe controller version
-+  information.
-+
-+properties:
-+  compatible:
-+    enum:
-+      - fsl,ls2088a-pcie-ep
-+      - fsl,ls1088a-pcie-ep
-+      - fsl,ls1046a-pcie-ep
-+      - fsl,ls1028a-pcie-ep
-+      - fsl,lx2160ar2-pcie-ep
-+
-+  reg:
-+    maxItems: 2
-+
-+  reg-names:
-+    items:
-+      - const: regs
-+      - const: addr_space
-+
-+  fsl,pcie-scfg:
-+    $ref: /schemas/types.yaml#/definitions/phandle
-+    description: A phandle to the SCFG device node. The second entry is the
-+      physical PCIe controller index starting from '0'. This is used to get
-+      SCFG PEXN registers.
-+
-+  dma-coherent:
-+    $ref: /schemas/types.yaml#/definitions/flag
-+    description: Indicates that the hardware IP block can ensure the coherency
-+      of the data transferred from/to the IP block. This can avoid the software
-+      cache flush/invalid actions, and improve the performance significantly.
-+
-+  big-endian:
-+    $ref: /schemas/types.yaml#/definitions/flag
-+    description: If the PEX_LUT and PF register block is in big-endian, specify
-+      this property.
-+
-+required:
-+  - compatible
-+  - reg
-+  - reg-names
-+  - "#address-cells"
-+  - "#size-cells"
-+  - device_type
-+  - bus-range
-+  - ranges
-+
-+allOf:
-+  - $ref: /schemas/pci/snps,dw-pcie-ep.yaml#
-+
-+  - if:
-+      properties:
-+        compatible:
-+          enum:
-+            - fsl,ls1028a-pcie-ep
-+            - fsl,ls1046a-pcie-ep
-+            - fsl,ls1088a-pcie-ep
-+    then:
-+      properties:
-+        interrupt-names:
-+          items:
-+            - const: pme
-+
-+unevaluatedProperties: false
-diff --git a/Documentation/devicetree/bindings/pci/fsl,layerscape-pcie.yaml b/Documentation/devicetree/bindings/pci/fsl,layerscape-pcie.yaml
-new file mode 100644
-index 0000000000000..e3719da306f25
---- /dev/null
-+++ b/Documentation/devicetree/bindings/pci/fsl,layerscape-pcie.yaml
-@@ -0,0 +1,163 @@
-+# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/pci/fsl,layerscape-pcie.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: Freescale Layerscape PCIe controller
-+
-+maintainers:
-+  - Frank Li <Frank.Li@nxp.com>
-+
-+description: |+
-+  This PCIe host controller is based on the Synopsys DesignWare PCIe IP
-+  and thus inherits all the common properties defined in snps,dw-pcie.yaml.
-+
-+  This controller derives its clocks from the Reset Configuration Word (RCW)
-+  which is used to describe the PLL settings at the time of chip-reset.
-+
-+  Also as per the available Reference Manuals, there is no specific 'version'
-+  register available in the Freescale PCIe controller register set,
-+  which can allow determining the underlying DesignWare PCIe controller version
-+  information.
-+
-+properties:
-+  compatible:
-+    enum:
-+      - fsl,ls1021a-pcie
-+      - fsl,ls2080a-pcie
-+      - fsl,ls2085a-pcie
-+      - fsl,ls2088a-pcie
-+      - fsl,ls1088a-pcie
-+      - fsl,ls1046a-pcie
-+      - fsl,ls1043a-pcie
-+      - fsl,ls1012a-pcie
-+      - fsl,ls1028a-pcie
-+
-+  reg:
-+    maxItems: 2
-+
-+  reg-names:
-+    items:
-+      - const: regs
-+      - const: config
-+
-+  fsl,pcie-scfg:
-+    $ref: /schemas/types.yaml#/definitions/phandle
-+    description: A phandle to the SCFG device node. The second entry is the
-+      physical PCIe controller index starting from '0'. This is used to get
-+      SCFG PEXN registers.
-+
-+  dma-coherent:
-+    $ref: /schemas/types.yaml#/definitions/flag
-+    description: Indicates that the hardware IP block can ensure the coherency
-+      of the data transferred from/to the IP block. This can avoid the software
-+      cache flush/invalid actions, and improve the performance significantly.
-+
-+  big-endian:
-+    $ref: /schemas/types.yaml#/definitions/flag
-+    description: If the PEX_LUT and PF register block is in big-endian, specify
-+      this property.
-+
-+  msi-parent: true
-+
-+  iommu-map: true
-+
-+required:
-+  - compatible
-+  - reg
-+  - reg-names
-+  - "#address-cells"
-+  - "#size-cells"
-+  - device_type
-+  - bus-range
-+  - ranges
-+  - interrupts
-+  - interrupt-names
-+  - "#interrupt-cells"
-+  - interrupt-map-mask
-+  - interrupt-map
-+
-+allOf:
-+  - $ref: /schemas/pci/pci-bus.yaml#
-+
-+  - if:
-+      properties:
-+        compatible:
-+          enum:
-+            - fsl,ls1028a-pcie
-+            - fsl,ls1046a-pcie
-+            - fsl,ls1043a-pcie
-+            - fsl,ls1012a-pcie
-+    then:
-+      properties:
-+        interrupts:
-+          maxItems: 2
-+        interrupt-names:
-+          items:
-+            - const: pme
-+            - const: aer
-+
-+  - if:
-+      properties:
-+        compatible:
-+          enum:
-+            - fsl,ls2080a-pcie
-+            - fsl,ls2085a-pcie
-+            - fsl,ls2088a-pcie
-+    then:
-+      properties:
-+        interrupts:
-+          maxItems: 1
-+        interrupt-names:
-+          items:
-+            - const: intr
-+
-+  - if:
-+      properties:
-+        compatible:
-+          enum:
-+            - fsl,ls1088a-pcie
-+    then:
-+      properties:
-+        interrupts:
-+          maxItems: 1
-+        interrupt-names:
-+          items:
-+            - const: aer
-+
-+unevaluatedProperties: false
-+
-+examples:
-+  - |
-+    #include <dt-bindings/interrupt-controller/arm-gic.h>
-+
-+    soc {
-+      #address-cells = <2>;
-+      #size-cells = <2>;
-+
-+      pcie@3400000 {
-+        compatible = "fsl,ls1088a-pcie";
-+        reg = <0x00 0x03400000 0x0 0x00100000>, /* controller registers */
-+            <0x20 0x00000000 0x0 0x00002000>; /* configuration space */
-+        reg-names = "regs", "config";
-+        interrupts = <0 108 IRQ_TYPE_LEVEL_HIGH>; /* aer interrupt */
-+        interrupt-names = "aer";
-+        #address-cells = <3>;
-+        #size-cells = <2>;
-+        dma-coherent;
-+        device_type = "pci";
-+        bus-range = <0x0 0xff>;
-+        ranges = <0x81000000 0x0 0x00000000 0x20 0x00010000 0x0 0x00010000   /* downstream I/O */
-+                 0x82000000 0x0 0x40000000 0x20 0x40000000 0x0 0x40000000>; /* non-prefetchable memory */
-+        msi-parent = <&its>;
-+        #interrupt-cells = <1>;
-+        interrupt-map-mask = <0 0 0 7>;
-+        interrupt-map = <0000 0 0 1 &gic 0 0 0 109 IRQ_TYPE_LEVEL_HIGH>,
-+                        <0000 0 0 2 &gic 0 0 0 110 IRQ_TYPE_LEVEL_HIGH>,
-+                        <0000 0 0 3 &gic 0 0 0 111 IRQ_TYPE_LEVEL_HIGH>,
-+                        <0000 0 0 4 &gic 0 0 0 112 IRQ_TYPE_LEVEL_HIGH>;
-+        iommu-map = <0 &smmu 0 1>; /* Fixed-up by bootloader */
-+      };
-+    };
-+...
-diff --git a/Documentation/devicetree/bindings/pci/layerscape-pci.txt b/Documentation/devicetree/bindings/pci/layerscape-pci.txt
-deleted file mode 100644
-index ee8a4791a78b4..0000000000000
---- a/Documentation/devicetree/bindings/pci/layerscape-pci.txt
-+++ /dev/null
-@@ -1,79 +0,0 @@
--Freescale Layerscape PCIe controller
--
--This PCIe host controller is based on the Synopsys DesignWare PCIe IP
--and thus inherits all the common properties defined in snps,dw-pcie.yaml.
--
--This controller derives its clocks from the Reset Configuration Word (RCW)
--which is used to describe the PLL settings at the time of chip-reset.
--
--Also as per the available Reference Manuals, there is no specific 'version'
--register available in the Freescale PCIe controller register set,
--which can allow determining the underlying DesignWare PCIe controller version
--information.
--
--Required properties:
--- compatible: should contain the platform identifier such as:
--  RC mode:
--        "fsl,ls1021a-pcie"
--        "fsl,ls2080a-pcie", "fsl,ls2085a-pcie"
--        "fsl,ls2088a-pcie"
--        "fsl,ls1088a-pcie"
--        "fsl,ls1046a-pcie"
--        "fsl,ls1043a-pcie"
--        "fsl,ls1012a-pcie"
--        "fsl,ls1028a-pcie"
--  EP mode:
--	"fsl,ls1028a-pcie-ep", "fsl,ls-pcie-ep"
--	"fsl,ls1046a-pcie-ep", "fsl,ls-pcie-ep"
--	"fsl,ls1088a-pcie-ep", "fsl,ls-pcie-ep"
--	"fsl,ls2088a-pcie-ep", "fsl,ls-pcie-ep"
--	"fsl,lx2160ar2-pcie-ep", "fsl,ls-pcie-ep"
--- reg: base addresses and lengths of the PCIe controller register blocks.
--- interrupts: A list of interrupt outputs of the controller. Must contain an
--  entry for each entry in the interrupt-names property.
--- interrupt-names: It could include the following entries:
--  "aer": Used for interrupt line which reports AER events when
--	 non MSI/MSI-X/INTx mode is used
--  "pme": Used for interrupt line which reports PME events when
--	 non MSI/MSI-X/INTx mode is used
--  "intr": Used for SoCs(like ls2080a, lx2160a, ls2080a, ls2088a, ls1088a)
--	  which has a single interrupt line for miscellaneous controller
--	  events(could include AER and PME events).
--- fsl,pcie-scfg: Must include two entries.
--  The first entry must be a link to the SCFG device node
--  The second entry is the physical PCIe controller index starting from '0'.
--  This is used to get SCFG PEXN registers
--- dma-coherent: Indicates that the hardware IP block can ensure the coherency
--  of the data transferred from/to the IP block. This can avoid the software
--  cache flush/invalid actions, and improve the performance significantly.
--
--Optional properties:
--- big-endian: If the PEX_LUT and PF register block is in big-endian, specify
--  this property.
--
--Example:
--
--        pcie@3400000 {
--                compatible = "fsl,ls1088a-pcie";
--                reg = <0x00 0x03400000 0x0 0x00100000>, /* controller registers */
--                      <0x20 0x00000000 0x0 0x00002000>; /* configuration space */
--                reg-names = "regs", "config";
--                interrupts = <0 108 IRQ_TYPE_LEVEL_HIGH>; /* aer interrupt */
--                interrupt-names = "aer";
--                #address-cells = <3>;
--                #size-cells = <2>;
--                device_type = "pci";
--                dma-coherent;
--                num-viewport = <256>;
--                bus-range = <0x0 0xff>;
--                ranges = <0x81000000 0x0 0x00000000 0x20 0x00010000 0x0 0x00010000   /* downstream I/O */
--                          0x82000000 0x0 0x40000000 0x20 0x40000000 0x0 0x40000000>; /* non-prefetchable memory */
--                msi-parent = <&its>;
--                #interrupt-cells = <1>;
--                interrupt-map-mask = <0 0 0 7>;
--                interrupt-map = <0000 0 0 1 &gic 0 0 0 109 IRQ_TYPE_LEVEL_HIGH>,
--                                <0000 0 0 2 &gic 0 0 0 110 IRQ_TYPE_LEVEL_HIGH>,
--                                <0000 0 0 3 &gic 0 0 0 111 IRQ_TYPE_LEVEL_HIGH>,
--                                <0000 0 0 4 &gic 0 0 0 112 IRQ_TYPE_LEVEL_HIGH>;
--                iommu-map = <0 &smmu 0 1>; /* Fixed-up by bootloader */
--        };
--- 
-2.34.1
+On 06/02/24 03:22, Andrew Davis wrote:
+> On 2/5/24 5:42 AM, Devarsh Thakkar wrote:
+>> Add dt-bindings for Imagination E5010 JPEG Encoder [1] which is 
+>> implemented
+>> as stateful V4L2 M2M driver.
+>>
+>> The device supports baseline encoding with two different quantization
+>> tables and compression ratio as demanded.
+>>
+>> Minimum resolution supported is 64x64 and Maximum resolution supported is
+>> 8192x8192.
+>>
+>> [1]:  AM62A TRM (Section 7.6 is for JPEG Encoder)
+>> Link: https://www.ti.com/lit/pdf/spruj16
+>>
+>> Co-developed-by: David Huang <d-huang@ti.com>
+>> Signed-off-by: David Huang <d-huang@ti.com>
+>> Signed-off-by: Devarsh Thakkar <devarsht@ti.com>
+>> ---
+>> V2: No change
+>> V3:
+>> - Add vendor specific compatible
+>> - Update reg names
+>> - Update clocks to 1
+>> - Fix dts example with proper naming
+>> V4:
+>>   - Use ti-specific compatible ti,am62a-jpeg-enc as secondary one
+>>   - Update commit message and title
+>>   - Remove clock-names as only single clock
+>>
+>> Link to previous commit:
+>> https://lore.kernel.org/all/20230816152210.4080779-2-devarsht@ti.com/
+>> ---
+>>   .../bindings/media/img,e5010-jpeg-enc.yaml    | 75 +++++++++++++++++++
+>>   MAINTAINERS                                   |  5 ++
+>>   2 files changed, 80 insertions(+)
+>>   create mode 100644 
+>> Documentation/devicetree/bindings/media/img,e5010-jpeg-enc.yaml
+>>
+>> diff --git 
+>> a/Documentation/devicetree/bindings/media/img,e5010-jpeg-enc.yaml 
+>> b/Documentation/devicetree/bindings/media/img,e5010-jpeg-enc.yaml
+>> new file mode 100644
+>> index 000000000000..085020cb9e61
+>> --- /dev/null
+>> +++ b/Documentation/devicetree/bindings/media/img,e5010-jpeg-enc.yaml
+>> @@ -0,0 +1,75 @@
+>> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+>> +%YAML 1.2
+>> +---
+>> +$id: http://devicetree.org/schemas/media/img,e5010-jpeg-enc.yaml#
+>> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+>> +
+>> +title: Imagination E5010 JPEG Encoder
+>> +
+>> +maintainers:
+>> +  - Devarsh Thakkar <devarsht@ti.com>
+>> +
+>> +description: |
+>> +  The E5010 is a JPEG encoder from Imagination Technologies 
+>> implemented on
+>> +  TI's AM62A SoC. It is capable of real time encoding of YUV420 and 
+>> YUV422
+>> +  inputs to JPEG and M-JPEG. It supports baseline JPEG Encoding up to
+>> +  8Kx8K resolution.
+>> +
+>> +properties:
+>> +  compatible:
+>> +    oneOf:
+>> +      - items:
+>> +          - const: ti,am62a-jpeg-enc
+>> +          - const: img,e5010-jpeg-enc
+>> +      - const: img,e5010-jpeg-enc
+>> +
+>> +  reg:
+>> +    items:
+>> +      - description: The E5010 core register region
+>> +      - description: The E5010 mmu register region
+>> +
+>> +  reg-names:
+>> +    items:
+>> +      - const: core
+>> +      - const: mmu
+>> +
+>> +  power-domains:
+>> +    maxItems: 1
+>> +
+>> +  resets:
+>> +    maxItems: 1
+> 
+> "resets" seems unused.
+> 
 
+resets is an optional property. The E5010 IP as such supports reset 
+signal interface, but it is not mandatory to use it as IP also supports 
+register based reset too.
+
+Regards
+Devarsh
+
+> Andrew
+> 
+>> +
+>> +  clocks:
+>> +    maxItems: 1
+>> +
+>> +  interrupts:
+>> +    maxItems: 1
+>> +
+>> +required:
+>> +  - compatible
+>> +  - reg
+>> +  - reg-names
+>> +  - interrupts
+>> +  - clocks
+>> +
+>> +additionalProperties: false
+>> +
+>> +examples:
+>> +  - |
+>> +    #include <dt-bindings/soc/ti,sci_pm_domain.h>
+>> +    #include <dt-bindings/interrupt-controller/arm-gic.h>
+>> +    #include <dt-bindings/interrupt-controller/irq.h>
+>> +
+>> +    soc {
+>> +      #address-cells = <2>;
+>> +      #size-cells = <2>;
+>> +      jpeg-encoder@fd20000 {
+>> +          compatible = "img,e5010-jpeg-enc";
+>> +          reg = <0x00 0xfd20000 0x00 0x100>,
+>> +                <0x00 0xfd20200 0x00 0x200>;
+>> +          reg-names = "core", "mmu";
+>> +          clocks = <&k3_clks 201 0>;
+>> +          power-domains = <&k3_pds 201 TI_SCI_PD_EXCLUSIVE>;
+>> +          interrupts = <GIC_SPI 98 IRQ_TYPE_LEVEL_HIGH>;
+>> +      };
+>> +    };
+>> diff --git a/MAINTAINERS b/MAINTAINERS
+>> index 8999497011a2..d0f8c46d3ce9 100644
+>> --- a/MAINTAINERS
+>> +++ b/MAINTAINERS
+>> @@ -10461,6 +10461,11 @@ S:    Maintained
+>>   F:    Documentation/devicetree/bindings/auxdisplay/img,ascii-lcd.yaml
+>>   F:    drivers/auxdisplay/img-ascii-lcd.c
+>> +IMGTEC JPEG ENCODER DRIVER
+>> +M:    Devarsh Thakkar <devarsht@ti.com>
+>> +S:    Supported
+>> +F:    Documentation/devicetree/bindings/media/img,e5010-jpeg-enc.yaml
+>> +
+>>   IMGTEC IR DECODER DRIVER
+>>   S:    Orphan
+>>   F:    drivers/media/rc/img-ir/
+> 
 
