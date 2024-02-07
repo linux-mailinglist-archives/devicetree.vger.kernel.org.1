@@ -1,94 +1,103 @@
-Return-Path: <devicetree+bounces-39458-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-39459-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 847A384CC49
-	for <lists+devicetree@lfdr.de>; Wed,  7 Feb 2024 15:02:15 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 1018A84CC51
+	for <lists+devicetree@lfdr.de>; Wed,  7 Feb 2024 15:06:46 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id B67EA1C247DB
-	for <lists+devicetree@lfdr.de>; Wed,  7 Feb 2024 14:02:14 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 2FB031C22998
+	for <lists+devicetree@lfdr.de>; Wed,  7 Feb 2024 14:06:45 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id BE8AC7A73C;
-	Wed,  7 Feb 2024 14:01:33 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8A61177658;
+	Wed,  7 Feb 2024 14:06:41 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="JRulxDwt"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="IV6HDBHa"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 974807E586;
-	Wed,  7 Feb 2024 14:01:33 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 60EDA7C088;
+	Wed,  7 Feb 2024 14:06:41 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1707314493; cv=none; b=RZ40Kb2qa9F23WT7P1C43gacJ8iCJsq9Uok+/Tq3IoRiRJ012xqLyzaAOSLgg7uLWHvimaV+m1jb3gB97udoGsowpgojacYNPMv3P3UAFF23A37Wnn5qpAg40WkmQA8jEH5EvCSbqCg+5gl2urfgZqULrTDNcdSQhr27dDHpVZw=
+	t=1707314801; cv=none; b=WP3HrCCQDclCRIuug6/nUu0z6cV++PMvrQ22sEmM+TY8nPhu2EsP9vWPtfSLOzVYfCIFZjJ5hjnitrUTimvRsm1oDGiwjzOvUPQusuvKXThEuNZVjKBODjQq256KVNGxBRwo4lNVHIzq683Z6XHh94BRY5oV+7FPCggb75ViABo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1707314493; c=relaxed/simple;
-	bh=g3Z88DUNdFcDu+TkPwpM/lXAN8LWu5w+gBGr1EpmKz8=;
-	h=From:To:Cc:In-Reply-To:References:Subject:Message-Id:Date:
-	 MIME-Version:Content-Type; b=e0ZjnrBRiayR/gW3zVyR26vHOCUdhuY0xgp2DPQcj/AQPkqvHjKZ0vqgRfUgcD9oKq07G3NOh0d0fJZgpKjqnP+4hsq2MLMM2U8TUQSX0LUfj1EtEfu9XKK0EgqNzoH9jKJQiZ5mD0vl6DwAwuaFjBUMCWj/3+h1sFFFyZ8S4qQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=JRulxDwt; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 2E7FAC43399;
-	Wed,  7 Feb 2024 14:01:29 +0000 (UTC)
+	s=arc-20240116; t=1707314801; c=relaxed/simple;
+	bh=ZZh2zTyS9CP/+FQ/BuELNpqH1LEwwITFg2cvWsaj4Zg=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=rL693QFCAvgs+NDTmcSkXNVQb1TuJ7m6QqtyV0Evz4dkK55n4svDmWRIC0QCzuXHfL+ncvzAzwMlMj4z60KR9gUUKYenJRXRoR32d9mkx9Lki0h90z3ggTbwlTJyhteBgCMMD2xP8zr8nvRYjrlS1BCF0Hkjdfb06HTN4iKQdm8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=IV6HDBHa; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 5518BC433C7;
+	Wed,  7 Feb 2024 14:06:40 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1707314493;
-	bh=g3Z88DUNdFcDu+TkPwpM/lXAN8LWu5w+gBGr1EpmKz8=;
-	h=From:To:Cc:In-Reply-To:References:Subject:Date:From;
-	b=JRulxDwtEBTvF/i1yphRDtxYZsJHZ3RoXyDmR0n20YayYd3ONvQFTdgJXhRAxzmGZ
-	 gy7IYcUWCGcjxAT9YcYGMYu3IT0be4Xt0Ye8/E/6JxJ7t40YjKGCSgwmQsLaMlHQLs
-	 UPWeFhafDy9VRlvQBtYE3hBGYj1aqYQqh+O1WERtnIG+TprXL/ih29DUpbrroPOb6k
-	 hJ0KVsG0fgj0CYAQrhScp5mdH3ZpXQTQrWaRIP6osmTy3FZ+VArt5vsPnNB8C2U0Rp
-	 YLnhKpBJClH5KwYXXFi52cG1cOhAKb+Lxj9+bfwUGtraZPN26DgOMngx/knYXongCD
-	 D8EvOFZVgV+xQ==
+	s=k20201202; t=1707314800;
+	bh=ZZh2zTyS9CP/+FQ/BuELNpqH1LEwwITFg2cvWsaj4Zg=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=IV6HDBHac8FFIrL3H75dbmU7s5Cb6moJ+VkCQLwuVuDS4Fwhp498+Ux4j+8Kx226D
+	 +qY4jSwCtZ/D4cwV9kkvxql+cSTOV8vroWLaHBihJicKmifkf8CjyGVBERD6iOxZgo
+	 t9snGvsmHq6eX8mqcSbirEf6a7OPzL8aSj0yooJ5FcnTxS4oezRCw5nRndXL3wnNB7
+	 W3uhFfNGjGt4WO+CHGzKy5YA36h2d7hnKXzkd4wrfWVBOvv4CPAR+ypTNpl31pS2hj
+	 aft8nAneOjptcLMWQO/v+SB0ZuiOHfly7b93WJhWaGzGZkF0EOkbrzOqLwkzFJ3t8i
+	 E6yfcU/DCrKlQ==
+Date: Wed, 7 Feb 2024 15:06:37 +0100
 From: Vinod Koul <vkoul@kernel.org>
-To: Julien Stephan <jstephan@baylibre.com>
-Cc: Phi-bang Nguyen <pnguyen@baylibre.com>, 
- Louis Kuo <louis.kuo@mediatek.com>, Andy Hsieh <andy.hsieh@mediatek.com>, 
- AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>, 
- Chunfeng Yun <chunfeng.yun@mediatek.com>, 
- Chun-Kuang Hu <chunkuang.hu@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
- devicetree@vger.kernel.org, dri-devel@lists.freedesktop.org, 
- Kishon Vijay Abraham I <kishon@kernel.org>, 
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, 
- linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org, 
- linux-mediatek@lists.infradead.org, linux-phy@lists.infradead.org, 
- Matthias Brugger <matthias.bgg@gmail.com>, 
- Philipp Zabel <p.zabel@pengutronix.de>, Rob Herring <robh+dt@kernel.org>
-In-Reply-To: <20240111101738.468916-1-jstephan@baylibre.com>
-References: <20240111101738.468916-1-jstephan@baylibre.com>
-Subject: Re: [PATCH v5 2/2] phy: mtk-mipi-csi: add driver for CSI phy
-Message-Id: <170731448892.147119.12389092200889790020.b4-ty@kernel.org>
-Date: Wed, 07 Feb 2024 15:01:28 +0100
+To: Cristian Ciocaltea <cristian.ciocaltea@collabora.com>
+Cc: Rob Herring <robh+dt@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Heiko Stuebner <heiko@sntech.de>, Johan Jonker <jbx6244@gmail.com>,
+	Sebastian Reichel <sebastian.reichel@collabora.com>,
+	Sascha Hauer <s.hauer@pengutronix.de>,
+	Andy Yan <andy.yan@rock-chips.com>,
+	Kishon Vijay Abraham I <kishon@kernel.org>,
+	Philipp Zabel <p.zabel@pengutronix.de>,
+	Algea Cao <algea.cao@rock-chips.com>, devicetree@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org,
+	linux-phy@lists.infradead.org, kernel@collabora.com
+Subject: Re: [PATCH v2 2/2] phy: rockchip: Add Samsung HDMI/eDP Combo PHY
+ driver
+Message-ID: <ZcOObdUvxmRzdHnE@matsya>
+References: <20240205-phy-hdptx-v2-0-a7150814c047@collabora.com>
+ <20240205-phy-hdptx-v2-2-a7150814c047@collabora.com>
+ <ZcNYlFgT0rXiCGbo@matsya>
+ <374f5069-9f3d-4ad2-a6da-b38a143a0c99@collabora.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-X-Mailer: b4 0.12.3
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <374f5069-9f3d-4ad2-a6da-b38a143a0c99@collabora.com>
 
+On 07-02-24, 14:39, Cristian Ciocaltea wrote:
+> On 2/7/24 12:16, Vinod Koul wrote:
+> > On 05-02-24, 13:24, Cristian Ciocaltea wrote:
 
-On Thu, 11 Jan 2024 11:17:30 +0100, Julien Stephan wrote:
-> This is a new driver that supports the MIPI CSI CD-PHY version 0.5
+> >> +static u8 hdptx_grf_read(struct rockchip_hdptx_phy *hdptx, u32 reg)
+> >> +{
+> >> +	u32 val;
+> >> +
+> >> +	regmap_read(hdptx->grf, reg, &val);
+> >> +
+> >> +	return val;
+> >> +}
+> > 
+> > why use wrappers, why not call regmap_ apis directly
 > 
-> The number of PHYs depend on the SoC.
-> Each PHY can support D-PHY only or CD-PHY configuration.
-> The driver supports only D-PHY mode, so CD-PHY
-> compatible PHY are configured in D-PHY mode.
-> 
-> [...]
+> Agree, no real benefit, will drop them, except probably
+> hdptx_multi_reg_write() for the extra savings.
 
-Applied, thanks!
+That one is fine as there is good logic on the helper
+ 
+> So I'd keep using that one if there's no strong reason against.
 
-[2/2] phy: mtk-mipi-csi: add driver for CSI phy
-      commit: 673d70cb3c652ad6d97594e03225bbdf20226216
+ok
 
-Best regards,
 -- 
 ~Vinod
-
-
 
