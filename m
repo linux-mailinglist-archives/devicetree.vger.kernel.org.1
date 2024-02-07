@@ -1,123 +1,83 @@
-Return-Path: <devicetree+bounces-39375-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-39376-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2160484C677
-	for <lists+devicetree@lfdr.de>; Wed,  7 Feb 2024 09:43:56 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4235A84C6A1
+	for <lists+devicetree@lfdr.de>; Wed,  7 Feb 2024 09:50:18 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 7411AB2144D
-	for <lists+devicetree@lfdr.de>; Wed,  7 Feb 2024 08:43:53 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id F1EC62860C5
+	for <lists+devicetree@lfdr.de>; Wed,  7 Feb 2024 08:50:16 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 531F4200A4;
-	Wed,  7 Feb 2024 08:43:33 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8C305208B0;
+	Wed,  7 Feb 2024 08:49:34 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="mIdW6Q6L"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="p49uIPzl"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-oo1-f44.google.com (mail-oo1-f44.google.com [209.85.161.44])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C06BF224D1;
-	Wed,  7 Feb 2024 08:43:31 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.161.44
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 617F6241E2;
+	Wed,  7 Feb 2024 08:49:33 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1707295413; cv=none; b=nSEsHSqsLH8OprFXHKq5KDjoKHv/Bj0NE9A3zJFVg//zg/0l6l5O0GtkOd4v4GBPzmiHcaOsWxg8NUIU8hL5nCW3OVNAmSn28yeOCt4NIYxkxlHiG1Ygi+OBGnKOsK0ibMKkd0znECG29l0q6XWL9FHF1q+iCJk9KOZZG2ciqQ0=
+	t=1707295774; cv=none; b=JBxwlwvMQMkhhpVeYQ2Co4MV+IcdZxe82cr3e1jBKxLn3KSZacdvILaSlA/cNi7prCmaWXPKiPsmL+trvLfdga0hES4ylKzxhbF4MFI3Nyj34Jf8GDhjWvSILrfRmTIoJQ6QZS8cdZHiolrTVGHBEZHTbdXWAwuyYP06CF7rkPQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1707295413; c=relaxed/simple;
-	bh=AeXERdhsZSdHZJPsNsgbAAFELh/zeIqHLhVRBaa+zZA=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=PEqqLVl8okSLpALUTpuDAQ3dPF/aIUEqRG08n7zxnq+dLga9lHhLO4cjkrjUsO5Muf5ls4UCDY/LsiEpg7aPAY3+BUAzQLNJ1CY+vIX6S1gd2PAUYOnHW3jKjaHx0pgiWNE4zzwaFf0yIxmR3Skx58PaHT/TuBZjVYUkcQ4cNWg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=mIdW6Q6L; arc=none smtp.client-ip=209.85.161.44
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-oo1-f44.google.com with SMTP id 006d021491bc7-5961a2726aaso208220eaf.0;
-        Wed, 07 Feb 2024 00:43:31 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1707295411; x=1707900211; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=Vp05Gs6ocR+pGiy78G1ozNGgoHRJUMGLkTNH5sSFn7s=;
-        b=mIdW6Q6LvdJvyEyZPNpvWyQwL2NkXFHL1ggJKGB2RTJLFnJ2lvC6cBo+vndqpgD/T3
-         Dic3GpGULKyW5tpXpsmAGlTZttNvIJCkrl/KXxnY2xoRrQ7g8GlBHCLU3zxlV4xXfkkW
-         B5kiHnOfOge0WL2ZHZ+CCJJJgZ9TBE0iz1fEL2HLXXVvMeAP56o6Xi5tcv5X5S8eQs2p
-         zWpFln72PLgOzSWNWrS4Xvxxk4pKgW4AgaHV5R2T06njRBfXr7frgh5zMy7b3VzKSCg9
-         UBkDYEr0Vr8Aq6DA7SC+d6x7Z8unQ4z4zLSvugECEmz2/mpMYwCxoDY0kZry39kN/SOi
-         48Ww==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1707295411; x=1707900211;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=Vp05Gs6ocR+pGiy78G1ozNGgoHRJUMGLkTNH5sSFn7s=;
-        b=PT9xYuGn7FKqAy6iCN8zi8Hu93a+AfHHdKDBV1XTdO8hwY5oj6Uwj8uLg6jMnpejPL
-         dg3SmkiszwLl/uqSqfctBOs+Qv9uZ/nhbeGfOVmAc1tULo73KwJQKY/5lf8pFSNng73v
-         YRpAbg9Y3FxOk5NGGT4lo+Be7kKJUmKoQE1GgxbhBK3xfExRStbvlwOZHWTbIcWLUeMf
-         iw/TfzclaFXHSBS+4ImJBSyaUXAcQYX5e4sTuW557sHEmkZ8Vi7X3c80aZl/PrrsfF+0
-         Wy3RvLPVpuX3GNZ250XZcYg3wEOPFI8JiPU8/1GutfCOjrBEKPHgqe9ktm7VIrW/kOOv
-         iEoA==
-X-Forwarded-Encrypted: i=1; AJvYcCVOPLBCXMuWs3OAlYKO4C39qwTpamjvtYYjmj/THa/9G8QGm5t+XnRTESnf94mvRf6qmLRLRIzNpnctXpSEe0RWNpLxvH9zaa/Rz9dvZ6Yy3S7Q9djxgdP0cHobOX32oY1SbjxkxF43RxehxAiKX91gaRTc0Usgk8uabktZw35e0+H8Yw==
-X-Gm-Message-State: AOJu0YzMCFs5bRUL7wG7GhH4Eq6PWz8h33ZXVLMr7ZRG6pztNtSsAR1T
-	XpKqdl9odLzXwQzIujqzi5T6qgLSP2v8hUUJR2Ntv78mA2zzGs37b19eAAk0TN5nn7HOhXUzEUj
-	ktAeA8y6Ondp1G73MczYojnNTSHw=
-X-Google-Smtp-Source: AGHT+IGELlPVInHjuUNFiDoSwgl7eSrE39No9ErdiklAgq08gvX4ku9OXQZAPLT6wq1PZeBHvsC3cViu9Ao1ZMWDCJI=
-X-Received: by 2002:a4a:86c5:0:b0:59a:161e:ed64 with SMTP id
- y5-20020a4a86c5000000b0059a161eed64mr4392036ooh.8.1707295410167; Wed, 07 Feb
- 2024 00:43:30 -0800 (PST)
+	s=arc-20240116; t=1707295774; c=relaxed/simple;
+	bh=BYMa+c4SuvG+ZdZ4RzetzFCZxzoCsjh1usJq/fFXOBw=;
+	h=From:To:Cc:In-Reply-To:References:Subject:Message-Id:Date:
+	 MIME-Version:Content-Type; b=E06/ly1s5syWPAdd4E7wel5fCXZlfenIYE1qyUYBbqSaC7MBC+Tm3gyAmwYicmE917VmRDa+ualHP0Rrd55dn6PJTWa0FVfvIo2x1filRkxGMPfZtPk/Jma2CG1x4aeqIC/wYXeurVqUiw7Ggsi79OYYAZ2Fncs0bl7qi2sg1PU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=p49uIPzl; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id ECA42C433F1;
+	Wed,  7 Feb 2024 08:49:31 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1707295773;
+	bh=BYMa+c4SuvG+ZdZ4RzetzFCZxzoCsjh1usJq/fFXOBw=;
+	h=From:To:Cc:In-Reply-To:References:Subject:Date:From;
+	b=p49uIPzl1ZUi8xvzqAlvca3RRqfXXMZ5KQgBE7OqyDNXJX0yrUblATDWdIriomE4y
+	 /zuYyDxShttAUURpkg4bkZnBaXjWNtRxpaWfLspO0hTDnqFg1hDv1QatPTZa+x/o0+
+	 L5i+/netr7Po77LVrizxM6UVv7BW2xhtG2/5k73RI101bl3CG9vh5zOJlRcyzg5vy9
+	 qPoC9r82suDqKTPeXqSCkHBVEpDRiZhd+cgRck55EBrqI4WEJ5xL6TshFLobk5nt4N
+	 BLfaIFEt6fTe3SCJIRU6RlS8S5jEsk9U1PuGeKRbJIItCYtBTMcO/cDxOcbJra9IbO
+	 RWjbB7taUOJpA==
+From: Vinod Koul <vkoul@kernel.org>
+To: Rob Herring <robh+dt@kernel.org>, 
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, 
+ Conor Dooley <conor+dt@kernel.org>, Lubomir Rintel <lkundrak@v3.sk>, 
+ =?utf-8?q?Duje_Mihanovi=C4=87?= <duje.mihanovic@skole.hr>
+Cc: dmaengine@vger.kernel.org, devicetree@vger.kernel.org, 
+ linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org
+In-Reply-To: <20240131-pxa-dma-yaml-v2-0-9611d0af0edc@skole.hr>
+References: <20240131-pxa-dma-yaml-v2-0-9611d0af0edc@skole.hr>
+Subject: Re: (subset) [PATCH v2 0/2] dt-bindings: mmp-dma: YAML conversion
+Message-Id: <170729577170.88801.16549328232366263331.b4-ty@kernel.org>
+Date: Wed, 07 Feb 2024 09:49:31 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20240207055856.672184-1-qiujingbao.dlmu@gmail.com>
- <20240207060913.672554-1-qiujingbao.dlmu@gmail.com> <14d1464b-7d60-4021-bc33-b0e809f3cde0@kernel.org>
-In-Reply-To: <14d1464b-7d60-4021-bc33-b0e809f3cde0@kernel.org>
-From: Jingbao Qiu <qiujingbao.dlmu@gmail.com>
-Date: Wed, 7 Feb 2024 16:43:19 +0800
-Message-ID: <CAJRtX8Sj01ENTQ0VRNzwBy+e9qHyJdtUQxWBB1yDCE77-Xb9qw@mail.gmail.com>
-Subject: Re: [PATCH v1 2/2] pwm: sophgo: add pwm support for Sophgo CV1800 SoC
-To: Krzysztof Kozlowski <krzk@kernel.org>
-Cc: u.kleine-koenig@pengutronix.de, robh+dt@kernel.org, 
-	krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org, 
-	paul.walmsley@sifive.com, palmer@dabbelt.com, aou@eecs.berkeley.edu, 
-	linux-pwm@vger.kernel.org, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org, linux-riscv@lists.infradead.org, 
-	dlan@gentoo.org, inochiama@outlook.com
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
+X-Mailer: b4 0.12.3
 
-On Wed, Feb 7, 2024 at 4:09=E2=80=AFPM Krzysztof Kozlowski <krzk@kernel.org=
-> wrote:
->
-> On 07/02/2024 07:09, Jingbao Qiu wrote:
-> > Implement the PWM driver for CV1800.
-> >
-> > Signed-off-by: Jingbao Qiu <qiujingbao.dlmu@gmail.com>
-> > ---
->
->
-> > +
-> > +static struct platform_driver cv1800_pwm_driver =3D {
-> > +     .driver =3D {
-> > +             .name =3D "cv1800-pwm",
-> > +             .of_match_table =3D cv1800_pwm_dt_ids,
-> > +     },
-> > +     .probe =3D cv1800_pwm_probe,
-> > +};
-> > +module_platform_driver(cv1800_pwm_driver);
-> > +
-> > +MODULE_ALIAS("platform:cv1800-pwm");
->
-> You should not need MODULE_ALIAS() in normal cases. If you need it,
-> usually it means your device ID table is wrong (e.g. misses either
-> entries or MODULE_DEVICE_TABLE()). MODULE_ALIAS() is not a substitute
-> for incomplete ID table.
->
 
-you're right, I will drop it.
+On Wed, 31 Jan 2024 22:26:01 +0100, Duje Mihanović wrote:
+> Convert the mmp-dma binding to YAML and drop a useless property in
+> MMP2's ADMA node.
+> 
+> 
+
+Applied, thanks!
+
+[2/2] dt-bindings: mmp-dma: convert to YAML
+      commit: d2363272ef9f96709ec1a146bb66378256c92e1d
 
 Best regards,
-Jingbao Qiu
+-- 
+~Vinod
+
+
 
