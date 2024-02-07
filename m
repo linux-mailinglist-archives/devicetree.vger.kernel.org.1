@@ -1,55 +1,75 @@
-Return-Path: <devicetree+bounces-39465-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-39466-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 649D884CD10
-	for <lists+devicetree@lfdr.de>; Wed,  7 Feb 2024 15:42:55 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id E9A9E84CD32
+	for <lists+devicetree@lfdr.de>; Wed,  7 Feb 2024 15:48:39 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 0540CB2704B
-	for <lists+devicetree@lfdr.de>; Wed,  7 Feb 2024 14:42:53 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 575841F26B74
+	for <lists+devicetree@lfdr.de>; Wed,  7 Feb 2024 14:48:39 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A13FC7F46F;
-	Wed,  7 Feb 2024 14:42:41 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7A5257E79F;
+	Wed,  7 Feb 2024 14:48:25 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b="ByAuNcuj"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="ZLZX1m/u"
 X-Original-To: devicetree@vger.kernel.org
-Received: from madrid.collaboradmins.com (madrid.collaboradmins.com [46.235.227.194])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wm1-f41.google.com (mail-wm1-f41.google.com [209.85.128.41])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CFE4D7E77C;
-	Wed,  7 Feb 2024 14:42:39 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=46.235.227.194
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 874017E76E
+	for <devicetree@vger.kernel.org>; Wed,  7 Feb 2024 14:48:23 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.41
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1707316961; cv=none; b=E0jC0JARdYGpkkLuVOW9g/gLJk4hNehPDUbBv8MBEOaMo6M/tjweYgEITidyUz1q1k4yjbn3QOnA0i8VGGUC/UwBcC2t+dwcHUXUd8NjfvRTaBmgtjh/Q9j89jT6PO6m71270DZj1JxSsj7JgF3TPGgbJU3fjO15uZeXwEvv8+Y=
+	t=1707317305; cv=none; b=Qv5F/B9nZmwUYZ7W2NOyEotk3Oci5FiQ7ZphM9lKXKmf0e7bw/GRXAZlvUpPP6ySCdbn1zK8wD8NNuHqrCYT1qXmH/zp91i7mWTIZ48swA03uaj4A+UiH4euDZ8y6XjTWmjYwyYaMxd0vqGkpjPmaFc9vWW/l/rsbd9dUqRVhJ0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1707316961; c=relaxed/simple;
-	bh=lgwC+nQacpQt17RsMVSyGHUSSBjw2SwJRYu3FKz012I=;
+	s=arc-20240116; t=1707317305; c=relaxed/simple;
+	bh=TG3Gw2URrbzNYz4gRkIWZjCBPa9SJfm7IeLSghIRzEc=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=rm89eAQS4ndnf72Swe8/McxlPJju2WgtCsR/2Na9IWw2gajlYG99KhDNHjWTLifTVuZVYjOnQOt9GxWiqhCg32FeTwhGfZJQwYplsc4nqgPYHMaOKKpXWdMdbf+aHd+h4Iiz4G1wPXmzvbZ21Un4fz+G+7VT45+YTHuBEkUaz5c=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b=ByAuNcuj; arc=none smtp.client-ip=46.235.227.194
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=collabora.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-	s=mail; t=1707316958;
-	bh=lgwC+nQacpQt17RsMVSyGHUSSBjw2SwJRYu3FKz012I=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=ByAuNcuj3mlohoOnzvl7BmdLkgeOwehNmhTKZVdeqQBeznicf4Zw/sVSNXOThDjBM
-	 zcN654bub8cEGpt1kCxTHDioCOR5AnYbxSEwVPv0akvQXtpAs7DcI4CCgFDt6aRQNF
-	 l7UUtrqbUtH+470b0VC/OBbmtVrQbIJswD6ouu7A4Qo/RxWwEc+UkdHFoHAshLZ2yo
-	 BR25qkuB1WJSz4lsFxjwUZ9YJL0/hCvJMlK2jiOLaqnt+K2TW9+A7OQbMqj60XNs/Y
-	 l3NiXMG3YrupnomL5/2KEjMYhX3oNrp3BDiVaRptVsVTBvwYpgVbT2VUCOIORKO2v+
-	 P5d7mSnz85pTA==
-Received: from [100.113.186.2] (cola.collaboradmins.com [195.201.22.229])
-	(using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
-	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
-	(No client certificate requested)
-	(Authenticated sender: kholk11)
-	by madrid.collaboradmins.com (Postfix) with ESMTPSA id 368913782059;
-	Wed,  7 Feb 2024 14:42:36 +0000 (UTC)
-Message-ID: <420ee120-2962-4848-b76f-b32ed70e70b0@collabora.com>
-Date: Wed, 7 Feb 2024 15:42:36 +0100
+	 In-Reply-To:Content-Type; b=iXq2yafeLNw9FZNrXUPafRy9Flg8yvDsHDWfQeq+4nE4oH9iHZS+AZ3U4dvOFrOMb1PMn63cYkSScAJ4tSsxePp3ACDS3Wy8Kuj7AlssEZugC0w90SAz7YC5PAE/hcn5azJysKERZo0xI4ZrGYvxyRwOawLEQ+xSpxYgsLMJjCo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=ZLZX1m/u; arc=none smtp.client-ip=209.85.128.41
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-wm1-f41.google.com with SMTP id 5b1f17b1804b1-40fdd65a9bdso6019475e9.2
+        for <devicetree@vger.kernel.org>; Wed, 07 Feb 2024 06:48:23 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1707317302; x=1707922102; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from
+         :content-language:references:cc:to:subject:user-agent:mime-version
+         :date:message-id:from:to:cc:subject:date:message-id:reply-to;
+        bh=TjrnaMfjtaIdIMxZWoxjKFFoCN4X5eE097h6HkqsF+Y=;
+        b=ZLZX1m/uNPPzBfubNX0ZQmSXI3qTUnfJenUR2Q/hsOlkOYrrtzlPSAeEu2YzZmMLb+
+         AnSNLDbrrFqbvjt36kqGuf/XezZlwpvf8fabsB3TRzMkzgG4rO6k5OcmXiKPzyfaTCPQ
+         lajm3/P9H+57gfgIry89hwKTr7PX7qMFQDcQpHEOai/trJ7WA5ZMoYyFqvKVAd90db13
+         RR6bptRYp97lpiDzgFwnB31PnahY5M1URLaUMSyCPKjkDmWy+aBeOrS+TkhzVptTchpn
+         Pa8IGhZe5QkzPvjbvBi0B9Y8AZjgUzYhqkRCw5CBMzIgZzvYb3sNd5VttsPMvKqWQkiM
+         KhJw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1707317302; x=1707922102;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from
+         :content-language:references:cc:to:subject:user-agent:mime-version
+         :date:message-id:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=TjrnaMfjtaIdIMxZWoxjKFFoCN4X5eE097h6HkqsF+Y=;
+        b=NO3B/YpaCuEOsHwqP/3eAEX7iF0ZSO9VoaIyiFSn78WH319UJf0gg18StZJQU3wzql
+         ZTaW1xk0qZ1lNUnetsd8b3pWY8p1Jjv5bhrm4dQNhjCzUqphseuyiFbnz837WgxkvD9S
+         m2yFwmNz1ivJQVO3A35K1s8turzxM89EOBofty0t3hIhoqIK0CUtUuCY8f+hOK5tQRGp
+         hfYiESUacbTcrJuzNVHQ89MdiFc+p2fiG3mfXR12KsJymDEixWoyQ1sOhkOee+YrWNoG
+         Ji1NRAiDRFKA47dO0oe8nvQLYCMEZMecALNQqnhWLv4hV4DANDGZD7T6GQ4128wM+SDU
+         8TiQ==
+X-Gm-Message-State: AOJu0Yw2KOveofgEgM4GelwqNLA7gDkqoJmMX3UgbuVCY+U1pwWOotpS
+	QDJwewKKLYCAgEJUlbiUWn93n4jUiAf9bmG+pERrGZEnhn1ufVcnG1tnWNmKUK8=
+X-Google-Smtp-Source: AGHT+IGh8sXcNQjqiVsv9lLCBPY7A8Ao3cTvDIxAoj/rq2WKA4j7B3aKawxRDyUlkMTSZBLCDv2YWg==
+X-Received: by 2002:a05:600c:1ca6:b0:40e:b195:6bdb with SMTP id k38-20020a05600c1ca600b0040eb1956bdbmr5187499wms.2.1707317301725;
+        Wed, 07 Feb 2024 06:48:21 -0800 (PST)
+X-Forwarded-Encrypted: i=1; AJvYcCVr47OU9QJl84wqhieyiA7SQq/5jQEWYK8EGQjYIYZhlVII6geGc/M8BoVUFjokxeIvxWFIKDLcQpTgleT5Ppaajcnv1g7ZvlYlkvzN17Cedy6f8aRvB3ePmLfjV2vedna3vmXy/22FSQCf1rf8sc+05Ea7CZXH/Hvy+xI4h/xPIAlwzfT4qIxvhOucqWAs5qpkp3TzlckrOYJpeEiJnOrYM5hzt6R9/8AfFZsTjk3w1MpeVU4mrcJVU6JmpCdIyuO5CBC1tDC+tQcHbIgQPyNyDM7YLRD6CwMhLyjPcz0aGUcXnYMyDBOMAHiVmWx0H1IUyWbQAG3ecIN395x0GITI/RfkSqNgjtumXh/vlKErAsycLpSnDLgvfmZXfu9hoV7PGMvOMAroa1vr7fK1D4SswobOdezb4B/DtPCqWSTcv+Gvoi5g1SdGMNkcTcVsXgFBJ5EE6Lb8jeK/w8Tb7dVhQj/A+yEao2nm2bh2MggVYIgTp5P2ObDl+dOSvxaE2voMebJJqHaeyYiDp++E2tIYydQw9y5396r9wude4o46hR4Ee6PS9MatfuryGpRcYMPSybP4zHnpYQZlFcmgmDnQ8QTp5Uo5rwTSCKwJcgB14PUzVy25z9JAHbDtKGw=
+Received: from [192.168.1.20] ([178.197.222.62])
+        by smtp.gmail.com with ESMTPSA id o14-20020a05600c4fce00b0040fdd7cbc8dsm5518023wmq.47.2024.02.07.06.48.19
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 07 Feb 2024 06:48:21 -0800 (PST)
+Message-ID: <d367bd65-605e-44b7-9400-acd463dec0b6@linaro.org>
+Date: Wed, 7 Feb 2024 15:48:18 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -57,38 +77,137 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v4 1/2] media: dt-bindings: i2c: add GalaxyCore GC08A3
- image sensor
+Subject: Re: [PATCH v2 1/2] soc: samsung: exynos-pmu: Add regmap support for
+ SoCs that protect PMU regs
+To: Peter Griffin <peter.griffin@linaro.org>
+Cc: arnd@arndb.de, linux@roeck-us.net, wim@linux-watchdog.org,
+ alim.akhtar@samsung.com, jaewon02.kim@samsung.com,
+ semen.protsenko@linaro.org, kernel-team@android.com,
+ tudor.ambarus@linaro.org, andre.draszik@linaro.org, saravanak@google.com,
+ willmcvicker@google.com, linux-fsd@tesla.com,
+ linux-watchdog@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ linux-samsung-soc@vger.kernel.org
+References: <20240129211912.3068411-1-peter.griffin@linaro.org>
+ <20240129211912.3068411-2-peter.griffin@linaro.org>
+ <fb530eb8-e32b-4faf-81f3-efc334ebf241@linaro.org>
+ <CADrjBPoQmTRsFYRtxBxdvAoKK816O8XN3=hOJ3vBt8wbbbk-=Q@mail.gmail.com>
+ <99828589-c0b5-456d-b250-6ad3e6085a91@linaro.org>
+ <CADrjBPrWH8uFrFmn_CZpr+fAnPrzbDT4i9XuMXJqKfzeouPpKg@mail.gmail.com>
 Content-Language: en-US
-To: Zhi Mao <zhi.mao@mediatek.com>, mchehab@kernel.org, robh+dt@kernel.org,
- krzysztof.kozlowski+dt@linaro.org, sakari.ailus@linux.intel.com
-Cc: laurent.pinchart@ideasonboard.com, shengnan.wang@mediatek.com,
- yaya.chang@mediatek.com, 10572168@qq.com,
- Project_Global_Chrome_Upstream_Group@mediatek.com, yunkec@chromium.org,
- conor+dt@kernel.org, matthias.bgg@gmail.com, jacopo.mondi@ideasonboard.com,
- hverkuil-cisco@xs4all.nl, heiko@sntech.de, jernej.skrabec@gmail.com,
- macromorgan@hotmail.com, linus.walleij@linaro.org, hdegoede@redhat.com,
- tomi.valkeinen@ideasonboard.com, gerald.loacker@wolfvision.net,
- andy.shevchenko@gmail.com, bingbu.cao@intel.com,
- dan.scally@ideasonboard.com, linux-media@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, linux-mediatek@lists.infradead.org,
- Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-References: <20240204061538.2105-1-zhi.mao@mediatek.com>
- <20240204061538.2105-2-zhi.mao@mediatek.com>
-From: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
-In-Reply-To: <20240204061538.2105-2-zhi.mao@mediatek.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
+From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
+ 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
+ D2GYIS41Kv4Isx2dEFh+/Q==
+In-Reply-To: <CADrjBPrWH8uFrFmn_CZpr+fAnPrzbDT4i9XuMXJqKfzeouPpKg@mail.gmail.com>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-Il 04/02/24 07:15, Zhi Mao ha scritto:
-> Add YAML device tree binding for GC08A3 CMOS image sensor,
-> and the relevant MAINTAINERS entries.
+On 07/02/2024 12:42, Peter Griffin wrote:
+>>>>>  #include <linux/soc/samsung/exynos-regs-pmu.h>
+>>>>>  #include <linux/soc/samsung/exynos-pmu.h>
+>>>>>
+>>>>>  #include "exynos-pmu.h"
+>>>>>
+>>>>> +static struct platform_driver exynos_pmu_driver;
+>>>>
+>>>> I don't understand why do you need it. You can have only one
+>>>> pmu_context. The moment you probe second one, previous becomes invalid.
+>>>>
+>>>> I guess you want to parse phandle and check if just in case if it points
+>>>> to the right device, but still the original code is not ready for two
+>>>> PMU devices. I say either this problem should be solved entirely,
+>>>> allowing two devices, or just compare device node from phandle with
+>>>> device node of exynos_pmu_context->dev and return -EINVAL on mismatches.
+>>>
+>>> Apologies I didn't answer your original question. This wasn't about
+>>> having partial support for multiple pmu devices. It is being used by
+>>> driver_find_device_by_of_node() in exynos_get_pmu_regmap_by_phandle()
+>>> to determine that the exynos-pmu device has probed and therefore a
+>>> pmu_context exists and a regmap has been created and can be returned
+>>> to the caller (as opposed to doing a -EPROBE_DEFER).
+>>>
+>>> Is there some better/other API you recommend for this purpose? Just
+>>> checking pmu_context directly seems racy, so I don't think we should
+>>> do that.
+>>
+>> Hm, I don't quite get why you cannot use of_find_device_by_node()?
 > 
-> Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-> Signed-off-by: Zhi Mao <zhi.mao@mediatek.com>
+> of_find_device_by_node() returns a platform_device, even if the driver
+> hasn't probed. Whereas driver_find_device_by_of_node() iterates
+> devices bound to a driver.
+> 
+> If using of_find_device_by_node() API I could check the result of
+> platform_get_drvdata(), and -EPROBE_DEFER if NULL (that pattern seems
+> to be used by a few drivers). But that AFAIK only guarantees you
+> reached the platform_set_drvdata() call in your driver probe()
+> function, not that it has completed.
 
-Reviewed-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
+All drivers, except two, use of_find_device_by_node(), so basically you
+claim they are all broken. If that's true, the core API and these
+drivers should be fixed, instead of implementing here entirely different
+pattern.
 
+of_find_device_by_node() goes via platform_bus_type->sp->klist_devices
+and devices are added to the list in device_add() after
+bus_probe_device(dev), regardless of its success. Therefore after
+successful first probe, you will have the same result.
+
+
+> 
+> IMHO the drivers using driver_find_device_by_of_node() for probe
+> deferral are doing it more robustly than those using
+> of_find_device_by_node()  and checking if platform_get_drvdata() is
+> NULL.
+
+Some are checking dev->driver, but this also looks buggy, because it is
+called before actual drv->probe().
+
+OK, let's go with this method. I dislike the difference from everyone
+else, but it seems everyone else is doing it wrong. :(
+
+Best regards,
+Krzysztof
 
 
