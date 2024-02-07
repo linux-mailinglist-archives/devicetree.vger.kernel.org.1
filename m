@@ -1,60 +1,63 @@
-Return-Path: <devicetree+bounces-39326-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-39327-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2D26E84C3E3
-	for <lists+devicetree@lfdr.de>; Wed,  7 Feb 2024 05:48:22 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id D9F4B84C3E8
+	for <lists+devicetree@lfdr.de>; Wed,  7 Feb 2024 05:48:33 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id BAF711F26C73
-	for <lists+devicetree@lfdr.de>; Wed,  7 Feb 2024 04:48:21 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 7A6E7B2888A
+	for <lists+devicetree@lfdr.de>; Wed,  7 Feb 2024 04:48:31 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E3E621E4AB;
-	Wed,  7 Feb 2024 04:46:56 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B35741EEEA;
+	Wed,  7 Feb 2024 04:46:58 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="cmb5mWBC"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="jw3qbxO0"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 957A512E5D;
-	Wed,  7 Feb 2024 04:46:56 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 84F421EB3B;
+	Wed,  7 Feb 2024 04:46:58 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1707281216; cv=none; b=ZnpPrzWh0y7htLNqih70RHVqS6r1BydDfRoa6TEiikhwKxziSPBpCnh56dullG4ZwDcGDPrjdQvhxprpQpMq8ZgsDbXFT97Xim7PMCiDnvFRMhfPh2e0wfpo8ejuD6eK5S3EHi2/2lojg0qQVNLOIYG2idWrU6M7XmDcsJnlbE0=
+	t=1707281218; cv=none; b=kORTA7e2CZipLufNxFKv12N2SE5SdLUgpkyJQ2gReREhmpIbeFkQRqVfKeMcTvkToutZL6JNue46PiirubuxRKJPAAXpWsA3rYtpN5bmHXyqnnhgBH7kFB48uwsTcaf6sXK6Qk1M5N9blZgYpQS6X0qBgl3luWKzlHbq9bY2mA4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1707281216; c=relaxed/simple;
-	bh=CfuTQkxQHMgYQsckiTRGhKI0Ngzxboqqb2pmlujQKmc=;
+	s=arc-20240116; t=1707281218; c=relaxed/simple;
+	bh=jn7NKyy+JbYJae8CSyIvCz/hvmFATL3LAmTO5MmZnCA=;
 	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=jnX+41eZDTHxO60hKoZwnQ+2mHDw+DZXX+kJKdfiZGtMsIjNwjvLOWz1XfcFpsfHZaKEH6ZBVQdPfS7LcUxjihGRTac383zCcFqK1BP5R89Tls2ii8sUuZRnkDP4VOqSXpCSjpbSE/EQqz3tL6fYWu/pERxSElWQxdN6yFzAd2Y=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=cmb5mWBC; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 7E888C433A6;
-	Wed,  7 Feb 2024 04:46:55 +0000 (UTC)
+	 MIME-Version:Content-Type; b=mRPIMsbDQnFPft/ObpkfE0alEKT36XswDm4N6ZXQzxfK91l1nhRRcHXrKFtjp20Lajwd8/f6owa50OYx0I7lnaQEr1bSEcmVa0DkNbx5/Zzm19Q5H9AtLWHw+VQHPwwW+F0Pjq1KC5OccG9aY3ew1QX1Yy9cA7Oq8F12j4ZRWmU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=jw3qbxO0; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 87550C433B1;
+	Wed,  7 Feb 2024 04:46:57 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1707281216;
-	bh=CfuTQkxQHMgYQsckiTRGhKI0Ngzxboqqb2pmlujQKmc=;
+	s=k20201202; t=1707281218;
+	bh=jn7NKyy+JbYJae8CSyIvCz/hvmFATL3LAmTO5MmZnCA=;
 	h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-	b=cmb5mWBCldb15vZqrGKNEF+U0A7Ti2TScWqa88ExCJhEQ+QjQeijQDj2o3J4K/oO6
-	 XvOIJ8lNeOvmUWCbWXH5XWjA7KgUbQB8yGB1VAnTcNtGuiu3ubSaP0uYrEIpHQGgvB
-	 s0w54EuhokwuxuItF1vqXDgILV8r6ffh0R+bCzI4EVxCwVEHUq01vCJVwAm3DhwODC
-	 SUe9KwF7HLmDfbTclo+GQlFATxPc+fx+efjNvsx+jZuhruTxd48Ui2ShJSfAdk5UkE
-	 R7o/mnJBQ+WDqmZ+97wFA4TIJLkETtO7EJI4flmOmuPHF8OT+YsoI+Kaany3QzU2Je
-	 QWxs+UYoBMizQ==
+	b=jw3qbxO0xts9mRCW3wUtcTZXPMPX4fxZSwJZ9XZKT++5MBSE703Fi/Vohpo9jHKKG
+	 NGNX82AUlraAYj8mHKF+UvbZA63iT8Dgs476uckjhEvtkCboR0HuMR72oTs1homQ3F
+	 GaaguA6ibxwcbqFrbGGSoRgd0TgsfS9WthgXc9ULTNrHrVYPl/QR08QCs6ecAS+Reb
+	 xn3+X8aaavcGrFw03JCZJp3cmStVxOEe4Nu8VxtSq35y3gcyWg3F25P11MBFH3nacX
+	 sEFuWhsJpqI0/Lm4mpObQLx+k9g+UXh7TgyOg1i2o/ttt6pYy4Ch7CcmTdHUdvs8da
+	 Tvq/1AVA3Pbjw==
 From: Bjorn Andersson <andersson@kernel.org>
-To: Konrad Dybcio <konrad.dybcio@linaro.org>,
+To: Andy Gross <agross@kernel.org>,
+	Konrad Dybcio <konrad.dybcio@linaro.org>,
 	Rob Herring <robh+dt@kernel.org>,
 	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
 	Conor Dooley <conor+dt@kernel.org>,
-	Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-Cc: linux-arm-msm@vger.kernel.org,
-	devicetree@vger.kernel.org
-Subject: Re: [PATCH v2] arm64: dts: qcom: qrb2210-rb1: disable cluster power domains
-Date: Tue,  6 Feb 2024 22:46:19 -0600
-Message-ID: <170728117687.479358.11800231801149831015.b4-ty@kernel.org>
+	linux-arm-msm@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Cc: Abel Vesa <abel.vesa@linaro.org>
+Subject: Re: [PATCH 0/2] arm64: dts: qcom: x1e80100: add ADSP pieces
+Date: Tue,  6 Feb 2024 22:46:21 -0600
+Message-ID: <170728117670.479358.14018064010020173967.b4-ty@kernel.org>
 X-Mailer: git-send-email 2.43.0
-In-Reply-To: <20240130-rb1-suspend-cluster-v2-1-5bc1109b0869@linaro.org>
-References: <20240130-rb1-suspend-cluster-v2-1-5bc1109b0869@linaro.org>
+In-Reply-To: <20231212125632.54021-1-krzysztof.kozlowski@linaro.org>
+References: <20231212125632.54021-1-krzysztof.kozlowski@linaro.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -65,21 +68,23 @@ Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 8bit
 
 
-On Tue, 30 Jan 2024 18:48:08 +0200, Dmitry Baryshkov wrote:
-> If cluster domain idle state is enabled on the RB1, the board becomes
-> significantly less responsive. Under certain circumstances (if some of
-> the devices are disabled in kernel config) the board can even lock up.
+On Tue, 12 Dec 2023 13:56:30 +0100, Krzysztof Kozlowski wrote:
+> Depends on:
+> https://lore.kernel.org/all/20231212-x1e80100-dts-missing-nodes-v1-0-1472efec2b08@linaro.org/
 > 
-> It seems this is caused by the MPM not updating wakeup timer during CPU
-> idle (in the same way the RPMh updates it when cluster idle state is
-> entered).
+> Bindings were already applied.
+> 
+> Best regards,
+> Krzysztof
 > 
 > [...]
 
 Applied, thanks!
 
-[1/1] arm64: dts: qcom: qrb2210-rb1: disable cluster power domains
-      commit: 7f492d48f08207e4ee23edc926b11de9f720aa61
+[1/2] arm64: dts: qcom: x1e80100: add ADSP GPR
+      commit: 99f63aea9149e09239872a7315415f2d4be8ac86
+[2/2] arm64: dts: qcom: x1e80100: add LPASS LPI pin controller
+      commit: 060df4cbfe111d9034866f9e9757d191a22719fe
 
 Best regards,
 -- 
