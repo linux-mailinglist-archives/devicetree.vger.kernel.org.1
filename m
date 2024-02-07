@@ -1,108 +1,115 @@
-Return-Path: <devicetree+bounces-39486-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-39487-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 860B284CECC
-	for <lists+devicetree@lfdr.de>; Wed,  7 Feb 2024 17:22:52 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id D673C84CED3
+	for <lists+devicetree@lfdr.de>; Wed,  7 Feb 2024 17:26:18 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 258FBB26E4A
-	for <lists+devicetree@lfdr.de>; Wed,  7 Feb 2024 16:22:50 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 150DB1C25019
+	for <lists+devicetree@lfdr.de>; Wed,  7 Feb 2024 16:26:18 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 318AC80BE2;
-	Wed,  7 Feb 2024 16:22:43 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3FC26811F0;
+	Wed,  7 Feb 2024 16:26:17 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="qTqxE3AS"
+	dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b="1GZlapcC"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from vps0.lunn.ch (vps0.lunn.ch [156.67.10.101])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 00CB67FBBD;
-	Wed,  7 Feb 2024 16:22:42 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9A5BE7FBC9;
+	Wed,  7 Feb 2024 16:26:15 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=156.67.10.101
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1707322963; cv=none; b=glio6f2WM5KIlCe5EmiBwpkZApjo3iz8L0jV6GrQbtIl/WdRzrmyPtDNtx80DFG4bhzZktZfE2x5ZnXThuIAr/B8Hm7uKPmZK4dunUS1MjY3BI6utJpuTlbOD1tkx6SCYJuEcjoK14uya38b1B5OC0NHv4/C0nxtMYmGI+JHiSg=
+	t=1707323177; cv=none; b=OoKMSaV1tFARUM/nGBpuMcXtk9Ku0VjLX9hK5nJct1SjR4i+m+fjbfWfI4aN+2tW3hTLbqrEz9jZ1cqzArRZ0hAv6+SatE7K2YdYJd37FsK2MsxJKgIBAFzgja+yAuHSjRkx8479ZiHZvuwLrkhmr5XjyToeIqkLDoat2qF4uQg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1707322963; c=relaxed/simple;
-	bh=pMEzXXPIUcYuWpCdZv+0Vn1+7MD5FBZBfF3MLhc5cg8=;
+	s=arc-20240116; t=1707323177; c=relaxed/simple;
+	bh=+zhFNcjljO8eUyVnHueReZfjxF3E9Yj+utWHBJpYqOU=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=sTw2mAQGs5+Lhzs2HEjaZLMrihB+iQ9AnWH5xjFPX1LxrA5btMVzjkizclvuKJT0n5egIq5kiJ/Ug7Nls1QUXrHqikGjqlY1shnYHCA1GIlFC9pgYYlStL9FNyDaZHZ4xnOWGiY61EHLofclfxBYv93hVaLTU78XFVLW8fQKAoc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=qTqxE3AS; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id A236BC433F1;
-	Wed,  7 Feb 2024 16:22:39 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1707322962;
-	bh=pMEzXXPIUcYuWpCdZv+0Vn1+7MD5FBZBfF3MLhc5cg8=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=qTqxE3ASSOANkJoWnEcrFvIKWsHp0iuK6XxH0GlaFphdonkiWTAp2YJMACyodR2WM
-	 WrrHNgw4CFeydw6U6JA8UBHPpWGEhQFigXiqQI6qdze91FTs4LNskbdkNwOvQ/LYYv
-	 QMJparFv7hZdKWKTxikp+i1Qydwy2j2Y9pRyFEYL6cEZBh4SrgOhQY8TgJ4cBbW7lT
-	 L1Tr9krntbSmstW3rqrtPU3EdJO06os95uQO5wMpZEDxsdhCjiBEBafdJD7JQ71q+G
-	 XLLR7xNlir2mQGHrIIm8g426cAwdDFQQRZTMr+c5A9M+dvNKgpoFyKj2LA8PYqKeT/
-	 jnk2sINiEoCcw==
-Date: Wed, 7 Feb 2024 16:22:37 +0000
-From: Conor Dooley <conor@kernel.org>
-To: Josua Mayer <josua@solid-run.com>
-Cc: Nishanth Menon <nm@ti.com>, Vignesh Raghavendra <vigneshr@ti.com>,
-	Tero Kristo <kristo@kernel.org>, Rob Herring <robh+dt@kernel.org>,
+	 Content-Type:Content-Disposition:In-Reply-To; b=DUqsmlrRpkAosSUAOkO+jOWltakJ5+TQXOHKU6GWnob+NV9N3F7iDO73ti5bgyRJZXAkvEPKz8JDLrEq8zlJafNl9Fgnj7any6SYfWEAyQWrksr+ioEoyHQ6PCSmYpGMwlSFsWeyPqAlGGbpH9Gn8X1cCnGWpmp5d+bcaTCuh0k=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch; spf=pass smtp.mailfrom=lunn.ch; dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b=1GZlapcC; arc=none smtp.client-ip=156.67.10.101
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=lunn.ch
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
+	s=20171124; h=In-Reply-To:Content-Disposition:Content-Type:MIME-Version:
+	References:Message-ID:Subject:Cc:To:From:Date:From:Sender:Reply-To:Subject:
+	Date:Message-ID:To:Cc:MIME-Version:Content-Type:Content-Transfer-Encoding:
+	Content-ID:Content-Description:Content-Disposition:In-Reply-To:References;
+	bh=GLB4Ak6omxg10pAPnfsUZTWUGvkbetcGVG9XYnbeFWg=; b=1GZlapcC3AQBLQ9iaiP56L3xX9
+	qKgt8IHRc5BuUBRepOXQWlq74JaC2+FlXv7/WCXjrZjWJUSSG5p6ScTUMTuzcv/EmX1ZmvM6IENZV
+	uQAx+fTw9x3jr05eBXhzM15jKOdJ33APCvZK0ZWgBbYZxcEp0qST6dE+r/PO48LOj+Qo=;
+Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
+	(envelope-from <andrew@lunn.ch>)
+	id 1rXkkJ-007EfN-Du; Wed, 07 Feb 2024 17:25:59 +0100
+Date: Wed, 7 Feb 2024 17:25:59 +0100
+From: Andrew Lunn <andrew@lunn.ch>
+To: Stefan Eichenberger <eichest@gmail.com>
+Cc: Russell King <rmk+kernel@armlinux.org.uk>,
+	Amit Kucheria <amitk@kernel.org>,
+	Daniel Lezcano <daniel.lezcano@linaro.org>,
+	Gregory Clement <gregory.clement@bootlin.com>,
 	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Alessandro Zummo <a.zummo@towertech.it>,
-	Alexandre Belloni <alexandre.belloni@bootlin.com>,
-	Yazan Shhady <yazan.shhady@solid-run.com>,
-	"linux-arm-kernel@lists.infradead.org" <linux-arm-kernel@lists.infradead.org>,
-	"devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-	"linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-	"linux-rtc@vger.kernel.org" <linux-rtc@vger.kernel.org>
-Subject: Re: [PATCH v4 2/5] dt-bindings: rtc: abx80x: convert to yaml
-Message-ID: <20240207-astride-banister-371ce4d36edf@spud>
-References: <20240202-add-am64-som-v4-0-5f8b12af5e71@solid-run.com>
- <20240202-add-am64-som-v4-2-5f8b12af5e71@solid-run.com>
- <20240203-prolonged-backfield-c659e0016d70@spud>
- <20240203-tummy-egomaniac-5aba55889a83@spud>
- <0c784113-9288-46bd-a34e-49bf0f1651bb@solid-run.com>
+	Miquel Raynal <miquel.raynal@bootlin.com>,
+	"Rafael J. Wysocki" <rafael@kernel.org>,
+	Rob Herring <robh+dt@kernel.org>,
+	Sebastian Hesselbarth <sebastian.hesselbarth@gmail.com>,
+	Zhang Rui <rui.zhang@intel.com>, Josua Mayer <josua@solid-run.com>,
+	devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+	linux-pm@vger.kernel.org, manuel.aebischer@netmodule.com
+Subject: Re: [PATCH 3/3] arm64: dts: armada-ap807: update thermal compatible
+Message-ID: <13ab003d-7449-4d6f-861a-fa2d0c3f4ad2@lunn.ch>
+References: <ZIxMYXDCTB7IvsDk@shell.armlinux.org.uk>
+ <E1qA7yZ-00Ea50-OC@rmk-PC.armlinux.org.uk>
+ <ZcOsjRzE8V73wNtT@eichest-laptop>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-	protocol="application/pgp-signature"; boundary="DGDNYYnA7zsSAf/5"
-Content-Disposition: inline
-In-Reply-To: <0c784113-9288-46bd-a34e-49bf0f1651bb@solid-run.com>
-
-
---DGDNYYnA7zsSAf/5
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+In-Reply-To: <ZcOsjRzE8V73wNtT@eichest-laptop>
 
-On Tue, Feb 06, 2024 at 02:44:24PM +0000, Josua Mayer wrote:
+On Wed, Feb 07, 2024 at 05:15:48PM +0100, Stefan Eichenberger wrote:
+> Hi Russell and Alex,
+> 
+> On Fri, Jun 16, 2023 at 12:50:47PM +0100, Russell King wrote:
+> > From: Alex Leibovich <alexl@marvell.com>
+> > 
+> > Use the correct thermal coefficients for the Armada AP807 dies.
+> > 
+> > Signed-off-by: Alex Leibovich <alexl@marvell.com>
+> > Reviewed-by: Stefan Chulski <stefanc@marvell.com>
+> > Tested-by: Stefan Chulski <stefanc@marvell.com>
+> > Signed-off-by: Russell King (Oracle) <rmk+kernel@armlinux.org.uk>
+> > ---
+> >  arch/arm64/boot/dts/marvell/armada-ap807.dtsi | 3 +++
+> >  1 file changed, 3 insertions(+)
+> > 
+> > diff --git a/arch/arm64/boot/dts/marvell/armada-ap807.dtsi b/arch/arm64/boot/dts/marvell/armada-ap807.dtsi
+> > index 4a23f65d475f..a3328d05fc94 100644
+> > --- a/arch/arm64/boot/dts/marvell/armada-ap807.dtsi
+> > +++ b/arch/arm64/boot/dts/marvell/armada-ap807.dtsi
+> > @@ -33,3 +33,6 @@ &ap_sdhci0 {
+> >  		     "marvell,armada-ap806-sdhci"; /* Backward compatibility */
+> >  };
+> >  
+> > +&ap_thermal {
+> > +	compatible = "marvell,armada-ap807-thermal";
+> > +};
+> 
+> While working on some thermal optimizations, our hardware team
+> discovered that this patch is still missing upstream. Is something
+> missing or did it get lost?
 
-> > Ahh I now realise what your intent was here. All you need to do is add
-> > | interrupts:
-> > |   maxItems: 1
-> > to your binding and it should do what you're looking for.
->=20
-> Yes, that is in line with everything else.
->=20
-> What bugs me is what to do about interrupt-parent,
-> and whether to include it in example.
+Patch 1/3 had a change request. Was it ever reposted with the
+requested change?
 
-I am pretty sure you don't need to add it.
+It would also be nice to convert the .txt to .yaml. The DT Maintainers
+might insist on that when it is reposted?
 
---DGDNYYnA7zsSAf/5
-Content-Type: application/pgp-signature; name="signature.asc"
+      Andrew
 
------BEGIN PGP SIGNATURE-----
-
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZcOuTQAKCRB4tDGHoIJi
-0kQvAP4m2/Ux3BhI3wLWXVa9b0iB0LDgxI9uFmlV0BgUBArVyQD9GSbbODSVJO3+
-D0qUvcwI93EzGiK7IQ78d85Ym4ljygM=
-=b7P0
------END PGP SIGNATURE-----
-
---DGDNYYnA7zsSAf/5--
 
