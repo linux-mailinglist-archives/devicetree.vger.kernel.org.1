@@ -1,405 +1,140 @@
-Return-Path: <devicetree+bounces-39461-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-39462-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5A39A84CC80
-	for <lists+devicetree@lfdr.de>; Wed,  7 Feb 2024 15:19:30 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id EA6BE84CC8F
+	for <lists+devicetree@lfdr.de>; Wed,  7 Feb 2024 15:23:35 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 7F81C1C2548C
-	for <lists+devicetree@lfdr.de>; Wed,  7 Feb 2024 14:19:29 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id A69A128939D
+	for <lists+devicetree@lfdr.de>; Wed,  7 Feb 2024 14:23:34 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8613F7CF07;
-	Wed,  7 Feb 2024 14:19:19 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b="eKb75DVV"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7E9D17C0AB;
+	Wed,  7 Feb 2024 14:23:25 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lj1-f177.google.com (mail-lj1-f177.google.com [209.85.208.177])
+Received: from mail-yw1-f176.google.com (mail-yw1-f176.google.com [209.85.128.176])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F08557C092
-	for <devicetree@vger.kernel.org>; Wed,  7 Feb 2024 14:19:16 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.177
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 515507A727;
+	Wed,  7 Feb 2024 14:23:23 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.176
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1707315559; cv=none; b=dSLTJgLW7ud7NlqchihlNRSiPHT3WtC6qZCItC1YU5WcIAKnjmp5jGcgpF8orBfFZ5+3W85EvmHr13ROWKmAIcH0iheByNOc74b7LKq0UzvPky6y1V5HIaOlIqm7dAXakc6DB2TaHrHMMkMN0hFA6JRxjmt7DYIwmpJrXfQyemY=
+	t=1707315805; cv=none; b=LA19ro2/Z4QI4XFI1JXegdbgCXA8ePR1GrP1i2foI8wZPEJzmlJ9fiCChNwb/yGu/gzr3p8hOkp1k2E7GlNwGIFa6S/FCLwfSH8DM3jYJLtBfgv2iYmXO8965squVFoUtaQ63tol/h7fEFNYVTZKwbCZVK4z6qvIYaOWmH1XOZ4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1707315559; c=relaxed/simple;
-	bh=qNiDxmPLRX2gONHjp5V//oNUCAneHOBmKcLQJZDoqq4=;
+	s=arc-20240116; t=1707315805; c=relaxed/simple;
+	bh=C8HAWKdg+GGDjKPhogyYOys9iDIIKvHEu7Ej597B0xk=;
 	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=KExT5umSEc5sTN6FKfCBRox7HZSxhKzCp/Xw+sjaNs6H5jku4cSOOtuorOuK1l1gvgqUxrqW07EQAyhxeVbmiC7yepgOzIY53EaRgjgsF+lEGsxW6tGaMbH46Dos94Pq9oysUYljPs4zbeDfEMRS8IR4yFodyFP0G1VI9FLWO/k=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com; spf=pass smtp.mailfrom=baylibre.com; dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b=eKb75DVV; arc=none smtp.client-ip=209.85.208.177
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=baylibre.com
-Received: by mail-lj1-f177.google.com with SMTP id 38308e7fff4ca-2d0c9967fdcso6146931fa.0
-        for <devicetree@vger.kernel.org>; Wed, 07 Feb 2024 06:19:16 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1707315555; x=1707920355; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=ILWgMVro314dmhUiCh6UxBQcT1f8d7NxX/BsGCT/hZM=;
-        b=eKb75DVV8Qd00FiFEn12aPI/vM9FJRtYg4HbueN8N7x9bZC2UPgnapUBtxoaN/vevF
-         UJb/GvGkqYWFMnbG5+fpBYrJYxTl/rLqjOtbCMQwYsBTnU35C2PEKOzxpyT0FeMvZnvt
-         mX6d91qHVPcbaUw8dvULVdc3aCxBuFWnOnR3hjicX21YqU0wskhqYBucny9KiPtpb4ES
-         Yx/Bd8qDUeMOm3QlbRZao6VeWmPKjEeA33zw7/z2+sJkC1dOx6loLLUPlrlckld8SNG9
-         Iz606hhjAWL5Iq5CCk1MS2tT6Qmqbcm/BeOwHlqidRZkcX17GdRuwMtvG+cs/WVhWZP8
-         OA0g==
+	 To:Cc:Content-Type; b=VlQtwyrL/IKPwd94AEltzk1xkxH5CDOxsEIs1Ne1qIcIA42d3H8gRKfWT6aIC2malHShnGfSNmFFg3OCMxhP3IjvnUeDbnoRaCYQXzrtx8ErTiGGE6tJ2EQ4+2woJuy/lcAl1aw+9PgsceeRXgAEKZm+ayQZ4Q3SdR2GoWhYPF0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org; spf=pass smtp.mailfrom=gmail.com; arc=none smtp.client-ip=209.85.128.176
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-yw1-f176.google.com with SMTP id 00721157ae682-60491b1fdeaso6387287b3.3;
+        Wed, 07 Feb 2024 06:23:23 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1707315555; x=1707920355;
+        d=1e100.net; s=20230601; t=1707315801; x=1707920601;
         h=content-transfer-encoding:cc:to:subject:message-id:date:from
          :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=ILWgMVro314dmhUiCh6UxBQcT1f8d7NxX/BsGCT/hZM=;
-        b=CGkJrOd17k4wh/J2GCJOsqQdNcXGcIgoNG6p9RTDBze5J/icXBuoSHbZwDHZtnQIdp
-         MHyC85dpYiRr2P9K8UL90opixuB+5lkkCMyNCGSHUA8IjfArpE5Qpw6qZl9WVfYyGfYP
-         WkXlvgjj8o1avqOb6g5Mpmx/WJ0WCj+KC5bkT4EsRWVZ2B6WJfBb0mrMmwsvnG2AV5P4
-         lkpz9A9cUOPjZrMt6L9XvDCLuvNTK2RPjcoCFF92G/ZywtmrzipEOKTjlbboiq8PJuar
-         d2k9+7+wrGzm/OrLfUFT0M8hdGIm7iXFoQNFWgki6gFF9Byp/lxA8ZfbbvXVI/xqpJQ9
-         BfzA==
-X-Forwarded-Encrypted: i=1; AJvYcCU5sOROy34hum5aIm5QLXDhPvL0/o5Vi1AYoYh/7Vng9DiU6lxQ6eN+6u2y29UT4VPwMJq21PX+xhqF9JOVrO3KQrMnTZlRLS6TnA==
-X-Gm-Message-State: AOJu0YwfwulGbJJw3rEZNFPdWVPgPjqXDIKXr/sND61bX9lPj7875jqH
-	Pv5mv9Uahn0/65awmLfVe0eljcBFkl1Bjd6wTksV5FbAfQuUvTGbyak1GDs6npsPG9fREfgmXpc
-	xSJqbKapQZnJHK89zgUlXILpy+Qr/CZHdhKLOHg==
-X-Google-Smtp-Source: AGHT+IFfjr9Dp6bX7NVZVfUzrhPOrBXBAFSzMDuPsY9Vk33c1bMGHwminHgD/mEBhygi5I7Rp3i6pg1t4oaeS+X4e5E=
-X-Received: by 2002:a2e:988c:0:b0:2cf:57d7:6d35 with SMTP id
- b12-20020a2e988c000000b002cf57d76d35mr2094386ljj.10.1707315554797; Wed, 07
- Feb 2024 06:19:14 -0800 (PST)
+        bh=quLdQVtCbPlr3R7R7qoI+1xisR6sbzdwCB1pi/XdB0E=;
+        b=CrbNeQnrdfRbc7ZRmCfD9NCz2nfC2UmIZKjXUJJfUqc0FuJCD1Mz9Ty+G4dSbIqBLj
+         yBEVcntpWxt1Zjxc7YOhmJ6/mdMo3QCEEzIYbDtOXX6HLRP15b1jKaaG99mmnkZVfQKi
+         HBwkrDHaiSAfdjicdzlmqCaA9Z9wkPt/gRk/XIeJrYjHv83P3TFVjZ+U+/1nhivJRwBN
+         Op4Hc3n88WdNgDsZy8j8cAfF7WV5t2ozuwwHEWB8ovVsf3ZStWBwa0wNURPei6b62bjV
+         GmjHQV/GqW3c3AKvvqQ56tQVLJ0ftdFUwj/guRPTsM80v+qCyj4QxlZBZU5UTqnqITLe
+         0gBQ==
+X-Gm-Message-State: AOJu0YxAH5+WcI/BD/ydWE7gZbc/4CvG8Ec9WhobwMIWS+budCxkj0XJ
+	vADx0d4kmLWaOFK7E/So4QjH5qF04g8vk4zndCA3MWuVzlEHkQtIj9KNTsapctY=
+X-Google-Smtp-Source: AGHT+IFkoyZxcgIjHoazuT3U+9rYfh+rNKGQbBh9K+6z2lmCvxr8CXG2o7nsHROonhuJZzRTabavkg==
+X-Received: by 2002:a05:6902:1a45:b0:dc2:2e01:4ff0 with SMTP id cy5-20020a0569021a4500b00dc22e014ff0mr5239168ybb.45.1707315800924;
+        Wed, 07 Feb 2024 06:23:20 -0800 (PST)
+X-Forwarded-Encrypted: i=1; AJvYcCXXj5EIwA7CUKWQNYzVF7to7/Jv2XJXW84HaCbqfBWLzEwrckzVtACOmfONStfMc4i+n1a4fpZG94MI/NYONDOm4snGVe+1c/e8XuXb+dPj0dZHrnP6r1UP+/OB+Lsgy21JyBK86V2KqA3MByvtKbSKOM++XvbOvnYv1ScwavgA81mbnzGCnPiMrJwL87lqFgkGdiVTkw1aPQ2AsLgEnem6SnrquqwwpcYqugM=
+Received: from mail-yw1-f172.google.com (mail-yw1-f172.google.com. [209.85.128.172])
+        by smtp.gmail.com with ESMTPSA id ch22-20020a0569020b1600b00dc23af43ff3sm219983ybb.14.2024.02.07.06.23.19
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 07 Feb 2024 06:23:20 -0800 (PST)
+Received: by mail-yw1-f172.google.com with SMTP id 00721157ae682-60491b1fdeaso6386597b3.3;
+        Wed, 07 Feb 2024 06:23:19 -0800 (PST)
+X-Received: by 2002:a81:8841:0:b0:604:9c80:687a with SMTP id
+ y62-20020a818841000000b006049c80687amr652928ywf.6.1707315799577; Wed, 07 Feb
+ 2024 06:23:19 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20240206-ad7944-mainline-v1-0-bf115fa9474f@baylibre.com>
- <20240206-ad7944-mainline-v1-2-bf115fa9474f@baylibre.com> <5fd17b66eab1989b9cfb874445c18480a2282809.camel@gmail.com>
-In-Reply-To: <5fd17b66eab1989b9cfb874445c18480a2282809.camel@gmail.com>
-From: David Lechner <dlechner@baylibre.com>
-Date: Wed, 7 Feb 2024 08:19:03 -0600
-Message-ID: <CAMknhBHP40uXtviZ1KCQ3ZyruaLUVrjpp573u7QqMCT1tuoYjw@mail.gmail.com>
-Subject: Re: [PATCH 2/2] iio: adc: ad7944: add driver for AD7944/AD7985/AD7986
-To: =?UTF-8?B?TnVubyBTw6E=?= <noname.nuno@gmail.com>
-Cc: linux-iio@vger.kernel.org, 
-	Michael Hennerich <Michael.Hennerich@analog.com>, Jonathan Cameron <jic23@kernel.org>, 
-	Rob Herring <robh+dt@kernel.org>, 
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, 
-	=?UTF-8?B?TnVubyBTw6E=?= <nuno.sa@analog.com>, 
-	Liam Girdwood <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org
+References: <20240207130745.1783198-1-claudiu.beznea.uj@bp.renesas.com> <20240207130745.1783198-3-claudiu.beznea.uj@bp.renesas.com>
+In-Reply-To: <20240207130745.1783198-3-claudiu.beznea.uj@bp.renesas.com>
+From: Geert Uytterhoeven <geert@linux-m68k.org>
+Date: Wed, 7 Feb 2024 15:23:07 +0100
+X-Gmail-Original-Message-ID: <CAMuHMdV-Lw3Ay94_gYHU4A8iYSRbXy8b7XOiMQ93Mbs+-ApsGQ@mail.gmail.com>
+Message-ID: <CAMuHMdV-Lw3Ay94_gYHU4A8iYSRbXy8b7XOiMQ93Mbs+-ApsGQ@mail.gmail.com>
+Subject: Re: [PATCH v5 2/9] watchdog: rzg2l_wdt: Make the driver depend on PM
+To: Claudiu <claudiu.beznea@tuxon.dev>
+Cc: wim@linux-watchdog.org, linux@roeck-us.net, robh@kernel.org, 
+	krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org, 
+	p.zabel@pengutronix.de, geert+renesas@glider.be, magnus.damm@gmail.com, 
+	biju.das.jz@bp.renesas.com, linux-watchdog@vger.kernel.org, 
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+	linux-renesas-soc@vger.kernel.org, 
+	Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-On Wed, Feb 7, 2024 at 4:07=E2=80=AFAM Nuno S=C3=A1 <noname.nuno@gmail.com>=
- wrote:
->
-> Hi David,
->
-> The driver It's in pretty good shape... Just some comments from me
->
-> On Tue, 2024-02-06 at 11:26 -0600, David Lechner wrote:
-> > This adds a driver for the Analog Devices Inc. AD7944, AD7985, and
-> > AD7986 ADCs. These are a family of pin-compatible ADCs that can sample
-> > at rates up to 2.5 MSPS.
-> >
-> > The initial driver adds support for sampling at lower rates using the
-> > usual IIO triggered buffer and can handle all 3 possible reference
-> > voltage configurations.
-> >
-> > Signed-off-by: David Lechner <dlechner@baylibre.com>
-> > ---
-> >  MAINTAINERS              |   1 +
-> >  drivers/iio/adc/Kconfig  |  10 ++
-> >  drivers/iio/adc/Makefile |   1 +
-> >  drivers/iio/adc/ad7944.c | 397
-> > +++++++++++++++++++++++++++++++++++++++++++++++
-> >  4 files changed, 409 insertions(+)
-> >
-> > diff --git a/MAINTAINERS b/MAINTAINERS
-> > index 4f1e658e1e0d..83d8367595f1 100644
-> > --- a/MAINTAINERS
-> > +++ b/MAINTAINERS
-> > @@ -458,6 +458,7 @@ R:        David Lechner <dlechner@baylibre.com>
-> >  S:   Supported
-> >  W:   https://ez.analog.com/linux-software-drivers
-> >  F:   Documentation/devicetree/bindings/iio/adc/adi,ad7944.yaml
-> > +F:   drivers/iio/adc/ad7944.c
-> >
-> >  ADAFRUIT MINI I2C GAMEPAD
-> >  M:   Anshul Dalal <anshulusr@gmail.com>
-> > diff --git a/drivers/iio/adc/Kconfig b/drivers/iio/adc/Kconfig
-> > index 59ae1d17b50d..93fbe6f8e306 100644
-> > --- a/drivers/iio/adc/Kconfig
-> > +++ b/drivers/iio/adc/Kconfig
-> > @@ -280,6 +280,16 @@ config AD7923
-> >         To compile this driver as a module, choose M here: the
-> >         module will be called ad7923.
-> >
-> > +config AD7944
-> > +     tristate "Analog Devices AD7944 and similar ADCs driver"
-> > +     depends on SPI
-> > +     help
-> > +       Say yes here to build support for Analog Devices
-> > +       AD7944, AD7985, AD7986 ADCs.
-> > +
-> > +       To compile this driver as a module, choose M here: the
-> > +       module will be called ad7944
-> > +
-> >  config AD7949
-> >       tristate "Analog Devices AD7949 and similar ADCs driver"
-> >       depends on SPI
-> > diff --git a/drivers/iio/adc/Makefile b/drivers/iio/adc/Makefile
-> > index 5a26ab6f1109..52d803b92cd7 100644
-> > --- a/drivers/iio/adc/Makefile
-> > +++ b/drivers/iio/adc/Makefile
-> > @@ -29,6 +29,7 @@ obj-$(CONFIG_AD7780) +=3D ad7780.o
-> >  obj-$(CONFIG_AD7791) +=3D ad7791.o
-> >  obj-$(CONFIG_AD7793) +=3D ad7793.o
-> >  obj-$(CONFIG_AD7887) +=3D ad7887.o
-> > +obj-$(CONFIG_AD7944) +=3D ad7944.o
-> >  obj-$(CONFIG_AD7949) +=3D ad7949.o
-> >  obj-$(CONFIG_AD799X) +=3D ad799x.o
-> >  obj-$(CONFIG_AD9467) +=3D ad9467.o
-> > diff --git a/drivers/iio/adc/ad7944.c b/drivers/iio/adc/ad7944.c
-> > new file mode 100644
-> > index 000000000000..67b525fb8e59
-> > --- /dev/null
-> > +++ b/drivers/iio/adc/ad7944.c
-> > @@ -0,0 +1,397 @@
-> > +// SPDX-License-Identifier: GPL-2.0-only
-> > +/*
-> > + * Analog Devices AD7944/85/86 PulSAR ADC family driver.
-> > + *
-> > + * Copyright 2024 Analog Devices, Inc.
-> > + * Copyright 2024 Baylibre, SAS
-> > + */
-> > +
-> > +#include <linux/bitfield.h>
-> > +#include <linux/bitops.h>
-> > +#include <linux/delay.h>
-> > +#include <linux/device.h>
-> > +#include <linux/err.h>
-> > +#include <linux/gpio/consumer.h>
-> > +#include <linux/module.h>
-> > +#include <linux/property.h>
-> > +#include <linux/regulator/consumer.h>
-> > +#include <linux/spi/spi.h>
-> > +
-> > +#include <linux/iio/iio.h>
-> > +#include <linux/iio/sysfs.h>
-> > +#include <linux/iio/trigger_consumer.h>
-> > +#include <linux/iio/triggered_buffer.h>
-> > +
-> > +#define AD7944_INTERNAL_REF_MV               4096
-> > +
-> > +struct ad7944_timing_spec {
-> > +     /* Normal mode minimum CNV pulse width in nanoseconds. */
-> > +     unsigned int cnv_ns;
-> > +     /* TURBO mode minimum CNV pulse width in nanoseconds. */
-> > +     unsigned int turbo_cnv_ns;
-> > +};
-> > +
-> >
->
-> ...
->
-> > +}
-> > +
-> > +static int ad7944_single_conversion(struct ad7944_adc *adc,
-> > +                                 const struct iio_chan_spec *chan,
-> > +                                 int *val)
-> > +{
-> > +     int ret;
-> > +
-> > +     ret =3D ad7944_4_wire_mode_conversion(adc, chan);
-> > +     if (ret)
-> > +             return ret;
-> > +
-> > +     if (chan->scan_type.storagebits > 16)
-> > +             *val =3D adc->sample.raw.u32;
-> > +     else
-> > +             *val =3D adc->sample.raw.u16;
-> > +
->
-> Will this work both in big vs little endian archs? I don't think so but m=
-aybe
-> I'm missing something. At a first glance, it seems we get big endian from=
- spi so
-> shouldn't we have __be16 and __be32?
+Hi Claudiu,
 
-Yes, in Linux SPI words are always CPU-endian. It is the drivers that
-use 8-bit transfers to read 16 bits that need to handle big-endian
-swapping. But here we are using 14/16/18 bit transfers.
+On Wed, Feb 7, 2024 at 2:08=E2=80=AFPM Claudiu <claudiu.beznea@tuxon.dev> w=
+rote:
+> From: Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>
+>
+> The rzg2l_wdt watchdog driver cannot work w/o CONFIG_PM=3Dy (e.g. the
+> clocks are enabled though pm_runtime_* specific APIs). To avoid building
+> a driver that doesn't work make explicit the dependency on CONFIG_PM. Alo=
+ng
+> with it the dependency on CONFIG_PM and CONFIG_COMPILE_TEST was moved to =
+a
+> new line to have the code simpler.
+>
+> Suggested-by: Guenter Roeck <linux@roeck-us.net>
+> Signed-off-by: Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>
+> ---
+>
+> Changes in v5:
+> - updated patch description
+> - added on a new line the dependency on PM and COMPILE_TEST
 
->
-> > +     if (chan->scan_type.sign =3D=3D 's')
-> > +             *val =3D sign_extend32(*val, chan->scan_type.realbits - 1=
-);
-> > +
-> > +     return IIO_VAL_INT;
-> > +}
-> > +
-> > +static int ad7944_read_raw(struct iio_dev *indio_dev,
-> > +                        const struct iio_chan_spec *chan,
-> > +                        int *val, int *val2, long info)
-> > +{
-> > +     struct ad7944_adc *adc =3D iio_priv(indio_dev);
-> > +     int ret;
-> > +
-> > +     switch (info) {
-> > +     case IIO_CHAN_INFO_RAW:
-> > +             ret =3D iio_device_claim_direct_mode(indio_dev);
-> > +             if (ret)
-> > +                     return ret;
-> > +
->
-> I'm not totally sure but I think Jonathan already merged his series for t=
-he
-> cleanup stuff for the claim direct mode. Maybe take a look and use it? No=
-t a big
-> win in here but I guess we could still reduce some LOC.
+Thanks for the update!
 
-Yes, if it is merged already, happy to make use of it here.
+> --- a/drivers/watchdog/Kconfig
+> +++ b/drivers/watchdog/Kconfig
+> @@ -910,7 +910,8 @@ config RENESAS_RZN1WDT
+>
+>  config RENESAS_RZG2LWDT
+>         tristate "Renesas RZ/G2L WDT Watchdog"
+> -       depends on ARCH_RZG2L || ARCH_R9A09G011 || COMPILE_TEST
+> +       depends on ARCH_RZG2L || ARCH_R9A09G011
 
->
-> > +             ret =3D ad7944_single_conversion(adc, chan, val);
-> > +             iio_device_release_direct_mode(indio_dev);
-> > +             return ret;
-> > +
-> > +     case IIO_CHAN_INFO_SCALE:
-> > +             switch (chan->type) {
-> > +             case IIO_VOLTAGE:
-> > +                     *val =3D adc->ref_mv;
-> > +                     *val2 =3D chan->scan_type.realbits;
-> > +
-> > +                     return IIO_VAL_FRACTIONAL_LOG2;
-> > +             default:
-> > +                     return -EINVAL;
-> > +             }
-> > +
-> > +     default:
-> > +             return -EINVAL;
-> > +     }
-> > +}
-> > +
-> > +static const struct iio_info ad7944_iio_info =3D {
-> > +     .read_raw =3D &ad7944_read_raw,
-> > +};
-> > +
-> > +static irqreturn_t ad7944_trigger_handler(int irq, void *p)
-> > +{
-> > +     struct iio_poll_func *pf =3D p;
-> > +     struct iio_dev *indio_dev =3D pf->indio_dev;
-> > +     struct ad7944_adc *adc =3D iio_priv(indio_dev);
-> > +     int ret;
-> > +
-> > +     ret =3D ad7944_4_wire_mode_conversion(adc, &indio_dev->channels[0=
-]);
-> > +     if (ret)
-> > +             goto out;
-> > +
-> > +     iio_push_to_buffers_with_timestamp(indio_dev, &adc->sample.raw,
-> > +                                        indio_dev->scan_timestamp);
-> > +
-> > +out:
-> > +     iio_trigger_notify_done(indio_dev->trig);
-> > +
-> > +     return IRQ_HANDLED;
-> > +}
-> > +
-> > +static const char * const ad7944_power_supplies[] =3D {
-> > +     "avdd", "dvdd", "bvdd", "vio"
-> > +};
-> > +
-> > +static void ad7944_ref_disable(void *ref)
-> > +{
-> > +     regulator_disable(ref);
-> > +}
-> > +
-> > +static int ad7944_probe(struct spi_device *spi)
-> > +{
-> > +     const struct ad7944_chip_info *chip_info;
-> > +     struct iio_dev *indio_dev;
-> > +     struct ad7944_adc *adc;
-> > +     struct regulator *ref;
-> > +     const char *str_val;
-> > +     int ret;
-> > +
-> > +     /* adi,spi-mode property defaults to "4-wire" if not present */
-> > +     if (device_property_read_string(&spi->dev, "adi,spi-mode", &str_v=
-al)
-> > < 0)
-> > +             str_val =3D "4-wire";
-> > +
-> > +     if (strcmp(str_val, "4-wire"))
-> > +             return dev_err_probe(&spi->dev, -EINVAL,
-> > +                                  "only \"4-wire\" mode is currently
-> > supported\n");
->
-> Did you looked at spi core? I guess the chain mode is not available but I=
-IRC spi
-> already has spi-3wire. So maybe you could just have a boolean property fo=
-r the
-> chain mode and check both that and 3wire?
+Please drop this change (i.e. retain the "|| COMPILE_TEST"), as it prevents
+compile-testing on any platforms but RZ/G2L(alike) and RZ/V2M.
 
-I used the term "3-wire" because that is what the datasheet calls it,
-but it is not the same as what the SPI core calls SPI_3WIRE. The
-former is described in the DT bindings patch in this series and the
-latter means that SDI and SDO are on the same pin, which is not the
-case here.
+> +       depends on PM || COMPILE_TEST
+>         select WATCHDOG_CORE
+>         help
+>           This driver adds watchdog support for the integrated watchdogs =
+in the
 
->
-> > +
-> > +     indio_dev =3D devm_iio_device_alloc(&spi->dev, sizeof(*adc));
-> > +     if (!indio_dev)
-> > +             return -ENOMEM;
-> > +
-> > +     adc =3D iio_priv(indio_dev);
-> > +     adc->spi =3D spi;
-> > +
-> > +     chip_info =3D spi_get_device_match_data(spi);
-> > +     if (!chip_info)
-> > +             return dev_err_probe(&spi->dev, -EINVAL, "no chip info\n"=
-);
-> > +
-> > +     adc->t =3D chip_info->t;
-> > +
-> > +     /*
-> > +      * Some chips use unusual word sizes, so check now instead of wai=
-ting
-> > +      * for the first xfer.
-> > +      */
-> > +     if (!spi_is_bpw_supported(spi, chip_info-
-> > >channels[0].scan_type.realbits))
-> > +             return dev_err_probe(&spi->dev, -EINVAL,
-> > +                             "SPI host does not support %d bits per
-> > word\n",
-> > +                             chip_info->channels[0].scan_type.realbits=
-);
-> > +
-> > +     ret =3D devm_regulator_bulk_get_enable(&spi->dev,
-> > +
-> > ARRAY_SIZE(ad7944_power_supplies),
-> > +                                          ad7944_power_supplies);
-> > +     if (ret)
-> > +             return dev_err_probe(&spi->dev, ret,
-> > +                                  "failed to get and enable supplies\n=
-");
-> > +
-> > +     /* adi,reference property defaults to "internal" if not present *=
-/
-> > +     if (device_property_read_string(&spi->dev, "adi,reference", &str_=
-val)
-> > < 0)
-> > +             str_val =3D "internal";
-> > +
-> > +     /* sort out what is being used for the reference voltage */
-> > +     if (strcmp(str_val, "internal") =3D=3D 0) {
->
-> Maybe you can make the code neater with match_string() and some enum...
+Gr{oetje,eeting}s,
 
-I did not know about this function. Sounds useful.
+                        Geert
 
->
-> - Nuno S=C3=A1
->
+--=20
+Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k=
+.org
+
+In personal conversations with technical people, I call myself a hacker. Bu=
+t
+when I'm talking to journalists I just say "programmer" or something like t=
+hat.
+                                -- Linus Torvalds
 
