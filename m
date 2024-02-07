@@ -1,76 +1,75 @@
-Return-Path: <devicetree+bounces-39468-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-39469-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8BEA084CD8D
-	for <lists+devicetree@lfdr.de>; Wed,  7 Feb 2024 16:01:15 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 11DE884CD9D
+	for <lists+devicetree@lfdr.de>; Wed,  7 Feb 2024 16:05:36 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 024AA1F21E83
-	for <lists+devicetree@lfdr.de>; Wed,  7 Feb 2024 15:01:15 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 0A0F0B23C34
+	for <lists+devicetree@lfdr.de>; Wed,  7 Feb 2024 15:05:33 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6E9787F7F2;
-	Wed,  7 Feb 2024 15:00:59 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id EB6787762B;
+	Wed,  7 Feb 2024 15:05:28 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="l/tmqBGO"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="mTjmrwb8"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-il1-f181.google.com (mail-il1-f181.google.com [209.85.166.181])
+Received: from mail-wm1-f46.google.com (mail-wm1-f46.google.com [209.85.128.46])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 591C97E77B;
-	Wed,  7 Feb 2024 15:00:57 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.166.181
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0658938DDC
+	for <devicetree@vger.kernel.org>; Wed,  7 Feb 2024 15:05:26 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.46
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1707318059; cv=none; b=Jxc8ogO+AlTH1078j83ta+RpYQgE/mJtJaCMVbOxNXO+IyQcZJZHI6I7ZZ0030WOofNVmU7R2kc8PbNqcmeTFXNyXyaxKuXVmJIbgZNgswMnV3zgKho5ox4KNjkMPiWoPCqfFT/DNJ1KTuVKC4bIKMWD8zhZaPcmKCJ/ZSGNQDQ=
+	t=1707318328; cv=none; b=PFAjU3QW+dmX9JPTVhg18e8n83LuqmbnUoaodLGVLBNx+TnY2SkCqGvuMG2fm6ewV0UjOE9p7/y3dnzIzVVvmYNrnmqnpWfjqfwareQAp/gGbAdlRJcfjY/0dcd4o9rNd3qu9lvZUvHP7K0NHjeqtsyBW5GywjZQ+op6fLYN//o=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1707318059; c=relaxed/simple;
-	bh=ARoNHjLL7llqpYFs5KYureGvLa2fiWcX06FJCHdRk3Q=;
+	s=arc-20240116; t=1707318328; c=relaxed/simple;
+	bh=nQCqZN1M7jS6nlAFAJeHjMhCCAzl4s0EU+vsfwTbNFw=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=H/msx4r9BRtT2/vRc839ZSBNrO+t1uQ1ra8VcsiIG/4Dcw5EGBuXW6XkiU/IeK7NSa2VXEaHi4SPzYbjEZQTLDdSUMWjB/q7BjIJS/YjlYhMxy0wXaMgyrVMB1jt2BHnqhaArwxo/CG2EsAPOu3SXV4hhlH00lsTq2G9P4KAUt0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=roeck-us.net; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=l/tmqBGO; arc=none smtp.client-ip=209.85.166.181
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=roeck-us.net
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-il1-f181.google.com with SMTP id e9e14a558f8ab-363dd27c082so1984755ab.0;
-        Wed, 07 Feb 2024 07:00:57 -0800 (PST)
+	 In-Reply-To:Content-Type; b=JrKCfH3EDevjDy68mM2k498OB6Zn544geT37IP1f7pyPhUiy3lyVKZhLEzu23O8WTSM+jN+Pd4iQsR9emitbAmLfD9HKAWUxCcSYiZTlg1zhwwPqtz1TWSCmY6wRTPtRpLP0WgBcD1ohY+hFLIlMWRbD9RaX4pBcAC3nG5z+bWI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=mTjmrwb8; arc=none smtp.client-ip=209.85.128.46
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-wm1-f46.google.com with SMTP id 5b1f17b1804b1-40fd2f7ef55so10900345e9.0
+        for <devicetree@vger.kernel.org>; Wed, 07 Feb 2024 07:05:26 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1707318056; x=1707922856; darn=vger.kernel.org;
+        d=linaro.org; s=google; t=1707318325; x=1707923125; darn=vger.kernel.org;
         h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
          :to:content-language:subject:user-agent:mime-version:date:message-id
-         :sender:from:to:cc:subject:date:message-id:reply-to;
-        bh=Bf5IEcCL1X+M2EY5Ge7f4EYwZR9SnAQHYVr+IK+58ik=;
-        b=l/tmqBGOEzHtfoKLLBhZGNsXL3BsDY38V9KlXYIPR9eXGamTM8QDkgtnE0In7bSG1W
-         KunZXKUnKR7NGo27Vh9FfvQIL/cVELSX9t+6hAyJI+L7DeTGf7A72L5pavNecqvNgwsr
-         nK51UBXZpM1QO93+ul9p5RX6O75ZvYnP8dKLpAvMrxC+acY+NpeuQSGEyDLqdONm9Wd7
-         OlG0xRpL2XjcIaPwQmO82xiNmo5SQDkApSbP+QIWtv8bQ5jrvPFFM9s8xHIDRDglE9kN
-         210Iq6RsU+/beK6x1gNR0dFBp3eYarTdQfy988ZGj+7NgPRjiHFW6R8mUV7o5Je+yhu6
-         Fenw==
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=QfJNW7Px5n93mi1+mThAoBi6YIbkzwJpqqJDpysXpAA=;
+        b=mTjmrwb8v7qnae5xgPqEUJw9cgT0wL12YPUW8zRDcN5JFL2jXUFk8XCbrpQKbpuJQi
+         4UcI1S5+SI25skg4Wu2ZU6zn3ozma2n0t9DXII0WQjG6pTISdCG0ShEHocRlCG7jMJrk
+         vfyJ5ly2eig7lOgYepA6AhLOpEClwCATOJQTuNHGBEu6NPxNP6oH6fWjB8FDzQf6Upt4
+         Hld/HpoLZ6DQKwCIf6iMYoo4elF6tMgWAfwwP1hhVESFYRKMJHv4yG6acqgaRPg90HOk
+         8//T5WrOmyBVDmAqDXedW5sDf+/91YUCzBABUUZLjjj/5FsE2bbWfnZ7TTkqdomqi+Ms
+         l9Qw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1707318056; x=1707922856;
+        d=1e100.net; s=20230601; t=1707318325; x=1707923125;
         h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
          :to:content-language:subject:user-agent:mime-version:date:message-id
-         :sender:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=Bf5IEcCL1X+M2EY5Ge7f4EYwZR9SnAQHYVr+IK+58ik=;
-        b=Xxg1iksbIbH0hbQqPDQHnasealX+bLqI40gYWmk0AcC4Kao8WJTcl7bPcMfse6YhzH
-         lSvQxmm3Jm4kPiXz9jDXAA+/WPuIFGvCTbcsvy7Ss8TgO9BvZ14thPWTI+45ctiU3C2p
-         MyaOfJg2Llqknf22vlN5NFaIZ5fAf62ZMZ7T3P5nPVt+Hd3mAVFkTPp73LnhML0xEAqp
-         3POL2g8jPDKtzD+0Q5sk/gWy49DL7BsMuxYq29aC3ZDFXDuqvpCMjqPX+vHhVdb76ZcM
-         yT4ilFal75owf+1gGFMLbwxoPEemx/WLHIPI3ysjXXnlDZgv9hYfIhfhQdBpgGN/QRcG
-         rtnA==
-X-Gm-Message-State: AOJu0YxKOq6q1GAvWyS6V3G3wHKPT8MxF4pyWHLW+CicwVeBo1TY4hvN
-	lbleerh4L0S4CqOKgPA47Yoa0cH4PA27ovuDjBk7FlVzXKJ8I4ke
-X-Google-Smtp-Source: AGHT+IHLjJaPoB+Qy8JIVvVtGD/IMwQBIt0g39Hr6E+SiQT9JpiOsT7w6Hubday1EjHCq3GVdm9CuA==
-X-Received: by 2002:a92:d20b:0:b0:363:c386:194a with SMTP id y11-20020a92d20b000000b00363c386194amr5260318ily.25.1707318056245;
-        Wed, 07 Feb 2024 07:00:56 -0800 (PST)
-X-Forwarded-Encrypted: i=1; AJvYcCUuYuz7mtxjg/My1BjbrP08UrSgsebotpAJIEZxwvxsyRVGv3SYYq151kXn6yzdUoFIqWfI2R5lhtigxf4hw+oC7zJu1+UrJCJfj/XpQ5vlJbatKzRXy/ZbKCkVeJUXpDUTYwRU5cihFzDXqplKC1jajvotYKWBWUnbQ+9u5kYLlh5PYZK2onPa7otfjJCNoZkAL6eqEVr7jtLKVyrgwwR09kBMtlk+Ow0/jSCTbLZmTXAQub2YTLx7kiZlB9am860BBBQmUfx9vMSlLymeOV0BF0pepaIggEgBw12SjFSuFmVgByfmvp0wHODbK0hgWDiFEAuCz0q2zF9YDZeIiX5MWc3eiQBWRxNE4xrgvkdwDGo9oIIzk/a5ojPwHkxRLi0vA+Eb+GTrJcaS66DR2OcZCIndZ2t/AUFPnXfpXr3SUTZ+fU0gu5SDSbKU7+n1pajnBVk+uHMolgLWZLxtsU8ta9BY9Ct8FZ7I1xQE/KqS
-Received: from ?IPV6:2600:1700:e321:62f0:329c:23ff:fee3:9d7c? ([2600:1700:e321:62f0:329c:23ff:fee3:9d7c])
-        by smtp.gmail.com with ESMTPSA id c126-20020a633584000000b005dc1edf7371sm1654074pga.9.2024.02.07.07.00.54
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=QfJNW7Px5n93mi1+mThAoBi6YIbkzwJpqqJDpysXpAA=;
+        b=axdxSp62oJRtq5XUjUKv4srjsNFn2dRqrX1qfJeQlgxZNOD+BGVvPylgtMvsgjl68l
+         MhstJCsOyLTe8b+8CyWqveu2Vy6ml6MEXIZOmbw6RjUChR07nHn1RGxrmGgQLQt/h3Fe
+         OE+wQPNcwJMn3fOQNhA9K4Bokb8rBvYeztPr4wJ7ZKoUBBK4dVDYSCZxiWLOf2vf1c5b
+         OVyE9OwGnQX8HSDz4Nt8YsV2ATsWHlT6BCnEOfurECKc9JVk+o+57aHdHN2AFr5a2qZE
+         +jQ7p0tV2mSTpkv0p7HLojPVVf5von7rBhLZ6s1KHsq6xwLXFpGga8vSLFKRGvKtohWn
+         EFUw==
+X-Forwarded-Encrypted: i=1; AJvYcCVei5en+p+mjUFlU+2Kv4scP8s6Pi1jxIS9MSOPFHNKoyyg76YWxtKkgTOeSWqXavX0v+17P/TK7KwC4ca01xQ2zbv4BCq+8TOYAg==
+X-Gm-Message-State: AOJu0YwhhlsYhBzSC0I5W7cHHPLeykq/MunkA86SIyBOlkSGsBkkAtwJ
+	mDv3r19ZWvY9Gp5Bb45MAgQf3WAn5wre57hiF3Mg2vZzlog7krnVCT3gUJaOhvc=
+X-Google-Smtp-Source: AGHT+IFTDgu16oVML/Aqbv2KuuaJF8P+GWtWTG0DfBhJu/HgdFG03HXMmc43fVWoL4GwFrVEeV9y2Q==
+X-Received: by 2002:a05:600c:4f51:b0:40e:9fd3:6b75 with SMTP id m17-20020a05600c4f5100b0040e9fd36b75mr4928012wmq.2.1707318325142;
+        Wed, 07 Feb 2024 07:05:25 -0800 (PST)
+X-Forwarded-Encrypted: i=1; AJvYcCXUOxf7oHZlTfRSgNMPwMCjSGvD9EvX0EIiPGHbnxACdKX/QJS+vQT1+h2a8OBO/b9zEFwFYXxiF4lTjZkTsz3125PQFJo3POv9LDU4IejfnpQ80y9LaWv3Ac8jRCndehjXvroNgprMqVF2IID8GvzvDs9erVZhPL7NRSRNc3OBPa36LUv9sRKPyAi1qvNiBKtPTq3Rn1iuicNlTjwPRRmflo4pkgXSBgriSbqTUkaScYPAml0pj9AXRSvqpHmT6XaZ/EE2rgvgvtP/B8HzK9JWxcKath7dbRAfjJf4XvMJiQZihwgmdTL5wX4VxoyXh9nqP+eh6c/8GXx41HJnJqfodYr9HZML/yXWvkOCvLKYc+Y0lRJzOETTerzs6UNYSuVGOZAjR9Tuba3jeYdm0qtUBngYjHZjaj9WKWmC5CUUaPpljh50Qv/rCHSkoJG8aJGAU4ZcDKfQE91Vn3VZyfh9Azl6m3K+ZJcKezyxQlY5gTC2u9EJGrORGQt5+5+Uyhn8mCZaAqavzucoPYlIZbhREhiMiNkTAsIc50T4202z6+dKrLGi8PlMB0P0YhRsO+BVd6yRX4zU2lPADq14ks65rOBkMqRVd2b5S2X82/iLbiahxcFo
+Received: from [192.168.1.20] ([178.197.222.62])
+        by smtp.gmail.com with ESMTPSA id a11-20020a05600c348b00b0040e541ddcb1sm2373509wmq.33.2024.02.07.07.05.23
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 07 Feb 2024 07:00:55 -0800 (PST)
-Sender: Guenter Roeck <groeck7@gmail.com>
-Message-ID: <392dbedc-6b5b-48f6-a7f2-94a2aa6bbc33@roeck-us.net>
-Date: Wed, 7 Feb 2024 07:00:53 -0800
+        Wed, 07 Feb 2024 07:05:24 -0800 (PST)
+Message-ID: <b7fbbf3e-1e53-46a9-b26c-8acb5f9ccde7@linaro.org>
+Date: Wed, 7 Feb 2024 16:05:22 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -78,99 +77,167 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v6 2/2] dt-bindings: rtc: add max313xx RTCs
+Subject: Re: [PATCH 2/4] arm64: dts: exynos: gs101: add chipid node
 Content-Language: en-US
-To: "Miclaus, Antoniu" <Antoniu.Miclaus@analog.com>,
- Alexandre Belloni <alexandre.belloni@bootlin.com>,
- Chris Packham <Chris.Packham@alliedtelesis.co.nz>
-Cc: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
- "robh+dt@kernel.org" <robh+dt@kernel.org>,
- "krzysztof.kozlowski+dt@linaro.org" <krzysztof.kozlowski+dt@linaro.org>,
- "conor+dt@kernel.org" <conor+dt@kernel.org>,
- "jdelvare@suse.com" <jdelvare@suse.com>,
- "noname.nuno@gmail.com" <noname.nuno@gmail.com>,
- "linux-rtc@vger.kernel.org" <linux-rtc@vger.kernel.org>,
- "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
- "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
- "linux-hwmon@vger.kernel.org" <linux-hwmon@vger.kernel.org>,
- Ibrahim Tilki <Ibrahim.Tilki@analog.com>,
- "Arslanbenzer, Zeynep" <Zeynep.Arslanbenzer@analog.com>
-References: <20240202025241.834283-1-chris.packham@alliedtelesis.co.nz>
- <20240202025241.834283-3-chris.packham@alliedtelesis.co.nz>
- <aecd80a3-a017-405f-b77d-6deda67ef704@linaro.org>
- <5d4b7fa1-5cc2-4a4a-8fa4-d2c7a8d070b7@alliedtelesis.co.nz>
- <20240206211237d9192660@mail.local>
- <e7a21789-9253-4185-98ed-e335d0167df4@alliedtelesis.co.nz>
- <20240206221644f524816e@mail.local>
- <CY4PR03MB3399844E78F84B6CFA18280A9B452@CY4PR03MB3399.namprd03.prod.outlook.com>
-From: Guenter Roeck <linux@roeck-us.net>
-Autocrypt: addr=linux@roeck-us.net; keydata=
- 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
- mDW4+i+XlNFUPUYMrIKi9joBhu18ssf5i5Q=
-In-Reply-To: <CY4PR03MB3399844E78F84B6CFA18280A9B452@CY4PR03MB3399.namprd03.prod.outlook.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
+To: Peter Griffin <peter.griffin@linaro.org>
+Cc: Alexey Klimov <alexey.klimov@linaro.org>, alim.akhtar@samsung.com,
+ linux-samsung-soc@vger.kernel.org, semen.protsenko@linaro.org,
+ robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
+ devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ linux-kernel@vger.kernel.org, klimov.linux@gmail.com,
+ kernel-team@android.com, tudor.ambarus@linaro.org, andre.draszik@linaro.org,
+ saravanak@google.com, willmcvicker@google.com, arnd@arndb.de
+References: <20240201172224.574238-1-alexey.klimov@linaro.org>
+ <20240201172224.574238-2-alexey.klimov@linaro.org>
+ <CADrjBPpqHx1uoVZCYDX51kW+JdOr_-+4oryOjXcUMFkmLGTBLw@mail.gmail.com>
+ <b199ba24-403b-44fa-b807-9b98f9e98913@linaro.org>
+ <CADrjBPpNukp+YQ0AmsZAE1f=MEk_auPPZit=tV8gk4szQ8MqRg@mail.gmail.com>
+From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
+ 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
+ D2GYIS41Kv4Isx2dEFh+/Q==
+In-Reply-To: <CADrjBPpNukp+YQ0AmsZAE1f=MEk_auPPZit=tV8gk4szQ8MqRg@mail.gmail.com>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 2/7/24 01:54, Miclaus, Antoniu wrote:
-[ ... ]
+On 07/02/2024 15:11, Peter Griffin wrote:
+> Hi Krzysztof,
+> 
+> Thanks for your feedback.
+> 
+> On Tue, 6 Feb 2024 at 10:10, Krzysztof Kozlowski
+> <krzysztof.kozlowski@linaro.org> wrote:
 >>
->> The max31335 is not available
+>> On 05/02/2024 15:36, Peter Griffin wrote:
+>>> Hi Alexey & Krysztof,
+>>>
+>>> On Thu, 1 Feb 2024 at 17:22, Alexey Klimov <alexey.klimov@linaro.org> wrote:
+>>>>
+>>>> Signed-off-by: Alexey Klimov <alexey.klimov@linaro.org>
+>>>> ---
+>>>>  arch/arm64/boot/dts/exynos/google/gs101.dtsi | 5 +++++
+>>>>  1 file changed, 5 insertions(+)
+>>>>
+>>>> diff --git a/arch/arm64/boot/dts/exynos/google/gs101.dtsi b/arch/arm64/boot/dts/exynos/google/gs101.dtsi
+>>>> index d838e3a7af6e..156fec2575bc 100644
+>>>> --- a/arch/arm64/boot/dts/exynos/google/gs101.dtsi
+>>>> +++ b/arch/arm64/boot/dts/exynos/google/gs101.dtsi
+>>>> @@ -283,6 +283,11 @@ soc: soc@0 {
+>>>>                 #size-cells = <1>;
+>>>>                 ranges = <0x0 0x0 0x0 0x40000000>;
+>>>>
+>>>> +               chipid@10000000 {
+>>>> +                       compatible = "google,gs101-chipid";
+>>>> +                       reg = <0x10000000 0xd000>;
+>>>> +               };
+>>>> +
+>>>
+>>> I was wondering about the 0xd000 size here, as most upstream platforms
+>>> use a chipid size of 0x100 or 0x24. I see the downstream gs101 kernel
+>>> also uses 0xd000. Looking a bit more, that is because gs-chipid.c also
+>>> has support for dumping other areas of the OTP SFR bank like asv table
+>>> (offset 0x9000) hpm_asv (offset 0xa000) and hw_tune (0xc000).
+>>>
+>>> I checked Exynos850 and that also has ASV tables at those same offsets
+>>> above, but it currently uses a chipid size of 0x100 upstream.
+>>> Exynos-asv.c driver is part of exynos-chipid.c upstream so it seems
+>>> reasonable to have the increased size including those SFR registers.
+>>> Currently exynos-asv.c driver only supports Exynos5422 upstream.
+>>>
+>>> @Krzysztof - From a process PoV what is the best/correct thing to do
+>>> here? Have the increased size in DT that includes ASV parts of the OTP
+>>> bank from the get-go?
 >>
->   
-> Indeed, the max31355 datasheet is not available yet. This is also stated in the
-> cover letter of the patch series for max31335.
+>> ChipID so far had only size of 0x30 or something like that. What you
+>> refer to does not look like old ChipID but full blown OTP, which also
+>> includes ChipID.
 > 
-> It was an urgent request from a customer to have it mainline as soon as possible.
-> 
-> If there are questions about the part functionality, I can definitely help.
-> 
+> OK so in some previous Exynos SoCs chipid had its own separate memory
+> mapped SFRs as well as being present in the OTP area?
 
-It seems to be quite common for automotive chips, though, that they are held
-tightly under wrap, making it all but impossible to properly review their drivers.
-I have observed several times now that information not available to reviewers
-resulted in bad or buggy drivers. This isn't about willingness to help, it is
-about the ability to understand chip capabilities and requirements.
+None of the Exynos I know, have OTP area. There was only chipid. It
+seems that few newer designs come with OTP, in entirely separate address
+space. Exynos850 looks like the first which comes with integrated chipid
+into OTP, so OTP is not separate address.
 
-Guenter
+> 
+>>  Although I am not entirely sure about that, either.
+>> Depends whether they share clocks, for example.
+> 
+> This address is the OTP area, and I can't see chipid regs mentioned
+> anywhere else in the memory map other than OTP. Unfortunately there
+> are lots of separate docs for different IP blocks, so it isn't just a
+> case of searching a giant SoC TRM pdf.
+> 
+> e850 though looks to be the same (the address defined in DT is the otp
+> area), that is one large PDF and the chipid regs aren't mentioned
+> anywhere else, Given the chipid reg offset is the same (0x10000000)
+> for exynosautov9.dtsi, exynosautov920.dtsi, exynos850.dtsi, exynos7885
+> and exynos5433 I suspect this could be the same for all those SoCs as
+> well.
+> 
+>>
+>> I don't have any GS101 information so I don't know what's there. It
+>> seems you ask me to give you decision based on guessing... If you have
+>> one block, so if there is OTP, which contains ChipID, then define OTP.
+> 
+> I believe there is one block that contains ChipID, therefore based on
+> the above info we should define full OTP size?
+> 
+>> Not ChipID+OTP.
+>>
+>> I think Exynos850 DTSI is wrong here. That's OTP block, not ChipID.
+> 
+> Yes agreed, and quite possibly the other Exynos SoCs as well.
+
+If ChipID and OTP are in the same block (in OTP), then assume they both
+might need the same clocks or some other resources. Therefore we should
+not model them as two separate device nodes ChipID and OTP. Instead
+there should be one device node with entire OTP address space, which
+should not use ChipID compatible to avoid confusion.
+
+Best regards,
+Krzysztof
 
 
