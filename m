@@ -1,69 +1,69 @@
-Return-Path: <devicetree+bounces-39450-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-39451-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6549284CB2C
-	for <lists+devicetree@lfdr.de>; Wed,  7 Feb 2024 14:10:47 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 3B3CD84CB34
+	for <lists+devicetree@lfdr.de>; Wed,  7 Feb 2024 14:11:50 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 22ACD28E144
-	for <lists+devicetree@lfdr.de>; Wed,  7 Feb 2024 13:10:46 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id E61B728EFE7
+	for <lists+devicetree@lfdr.de>; Wed,  7 Feb 2024 13:11:48 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3B71576C8E;
-	Wed,  7 Feb 2024 13:09:16 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 09C3276C77;
+	Wed,  7 Feb 2024 13:10:56 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=ventanamicro.com header.i=@ventanamicro.com header.b="QX9qMGrB"
+	dkim=pass (2048-bit key) header.d=ventanamicro.com header.i=@ventanamicro.com header.b="Lh1Cv6rM"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lj1-f176.google.com (mail-lj1-f176.google.com [209.85.208.176])
+Received: from mail-lf1-f53.google.com (mail-lf1-f53.google.com [209.85.167.53])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 43A1B76C9B
-	for <devicetree@vger.kernel.org>; Wed,  7 Feb 2024 13:09:14 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.176
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3A88E76C7A
+	for <devicetree@vger.kernel.org>; Wed,  7 Feb 2024 13:10:54 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.53
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1707311356; cv=none; b=G5B7wih+yJEC6RwsYGlw9SXmI1qq0UiJj+nN0CB0InV15G9/+o68ZJvyG3UmU1Le7HkpYmguPS/tlb0A7Rh2hXr8Wsn+rQyr8z+PMlr/pyLkOfKHEFyJdPR5CRpWaLac7qm4bRR47TwYtaPMkUdvWEn1ikPQQFp1YtgIMqudf40=
+	t=1707311455; cv=none; b=Ey/pwDQzw5S50+93UVWSP8OQppPA05QWRUAUmS40ey8aMkMoyIDCV9k+mdTAeCu4WgfDE3+Y5rdo1yhyOvVlHteXm04k94GH9u851kmKA6hw9qr4lSJ4kCxIeOJZHN2wqdDrjqTzRfnCqt1wZEoLU8TRYHOv/g0kepRk3MEf8DQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1707311356; c=relaxed/simple;
-	bh=00E6HIe11CgAo2O0miczqRLxo0ZJcS0ae2ZwIYvBsds=;
+	s=arc-20240116; t=1707311455; c=relaxed/simple;
+	bh=QeiQKTjUpaXlC5rTpAh57LecWBMIQwcK9WBuhzqF9Gc=;
 	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=tAPVYkHr1ICTAooCZS9a7o4dodAbcjt/1peMHP7w32fIqsaQKIygo8KhcBmDNGJ11KVdupg0bskm5zfvo0cMhsRmmWOPNxAJaWDZWwSDmARCevnqxe+gl1lzYZIFGLh44qnhjdeeCYwpp/5b4wDRJTrUPynJv2W1x8Zl5uvrkbI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ventanamicro.com; spf=pass smtp.mailfrom=ventanamicro.com; dkim=pass (2048-bit key) header.d=ventanamicro.com header.i=@ventanamicro.com header.b=QX9qMGrB; arc=none smtp.client-ip=209.85.208.176
+	 To:Cc:Content-Type; b=kIeLaUXohcgu4x7HS7q+3L5TsutwZ3lguhFg/Ln/1u5XbSNR3QK/ko4LAKKdif+JTsFcA2ZlNULgoVOGswBieJNOr6F18t5+SpaaWXzh1UGW7dOGXcth+oGFMNdgU14Y9SsYmdfIQ6tt8pnuFMAwhxA3hfarXMthJokEmMCenNM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ventanamicro.com; spf=pass smtp.mailfrom=ventanamicro.com; dkim=pass (2048-bit key) header.d=ventanamicro.com header.i=@ventanamicro.com header.b=Lh1Cv6rM; arc=none smtp.client-ip=209.85.167.53
 Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ventanamicro.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ventanamicro.com
-Received: by mail-lj1-f176.google.com with SMTP id 38308e7fff4ca-2cf3ed3b917so6854091fa.1
-        for <devicetree@vger.kernel.org>; Wed, 07 Feb 2024 05:09:13 -0800 (PST)
+Received: by mail-lf1-f53.google.com with SMTP id 2adb3069b0e04-5114b2b3b73so706023e87.0
+        for <devicetree@vger.kernel.org>; Wed, 07 Feb 2024 05:10:53 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=ventanamicro.com; s=google; t=1707311352; x=1707916152; darn=vger.kernel.org;
+        d=ventanamicro.com; s=google; t=1707311452; x=1707916252; darn=vger.kernel.org;
         h=content-transfer-encoding:cc:to:subject:message-id:date:from
          :in-reply-to:references:mime-version:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=00E6HIe11CgAo2O0miczqRLxo0ZJcS0ae2ZwIYvBsds=;
-        b=QX9qMGrBRE/l91bW3xVYKcelFfA9qgDXW/Cn/Ft2eoVIE+vEgCBEM4zTEcHJJ0L4k0
-         oN4ovMy0SlD4YmUAa3VEg9v5eSdYyTQSbnygKfXQlar2dFoj9VOoP93y7OEWPwDsv6eM
-         O/0xQdKbxGogdc7jXndDILFszupMuyUTvkj6lRyx5d4HgVhhZI+E4CLUJ8l8mkrROFtS
-         pnNZka4fYa4Dd6irCI9DK7Y/7pTDd3kFHXl1PF3ugCByWOiTU0Itkq7LPBljNcwWZBp0
-         fnbOqg8QklpgsyEWsDkUTD2KpjbBIgwltG5KiOYM+m0cgLM9VJAaCzEmlIyE9ORxZtE3
-         Tmow==
+        bh=QeiQKTjUpaXlC5rTpAh57LecWBMIQwcK9WBuhzqF9Gc=;
+        b=Lh1Cv6rMH7oADt8qkmoRXSJ6/fdGaTDDdQMuEER+HE6dWn5lz7zeuO3+0i/3jIgrQf
+         016qOlOHcULn26X2CXLcLV6g3j+OBuKXFQ06e6dwFzmgNJ1JuFzUz36AaSUuXQMmWOhW
+         GWPEFPgXZ+KOw/+GYswfZjCqqhoaYDAMHfFwSbaPEJ8ix3Y5hdxluNA/m2ToNd/oxTGZ
+         WP/R0CuYC1CHO8we/XzuXMV225l00guXU3+iVVlbIJGoSpgGq4tQLDX1OCB6o9PgSSnO
+         B8UG2XbYcCIm5BBKE31HExIwKNiTDf4+PApZCxI4wOxMLpDb84x8u4lQhL5z8rg7s3MQ
+         SClw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1707311352; x=1707916152;
+        d=1e100.net; s=20230601; t=1707311452; x=1707916252;
         h=content-transfer-encoding:cc:to:subject:message-id:date:from
          :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=00E6HIe11CgAo2O0miczqRLxo0ZJcS0ae2ZwIYvBsds=;
-        b=sUAY56Yceef6o4irenEi9G83vg7cyuJJ7zihqSkYlmY3ZIB7DQNsP3Z7m+tqQvVE3q
-         tju1Xyj+A0kCz02ysVbPJ8ctq3obJcADjKai6Ld69hCBsPv7i3nkoEB2pGY036gnPp81
-         NspqshEHkUOwnF/KXu+V3pQeUgQjFSxTqLSh35qZjKAkVm+JOeEgKnQtBtj9Bw2wUt02
-         J91ffCT+AbS/l5o+gizd0wwZQ3ozrHd9PJ8h6o5VsurLsV+S2CeIJ/hMCkwU375zKS7T
-         mvkeRhM3YRh+7sc0kN+k8Ku/e9xESqobgrS/g3g2+QEqPjkV8taPeh9Dx7CeRuv1aFIb
-         30tA==
-X-Gm-Message-State: AOJu0YwtcTpuEceZAV0XHRd5AQt6mlPK1ujeP11CiLHh4wyqYLKsOVix
-	Md3kToLFTxCduEDSlOHltGpPa/UTIX0CBdDYeeTgcnEvxoVif9MCslTM4t0b6S2c3kI5hjwDoVb
-	bYVVHz+2rmp62fsWAt2PKQmqGxkraMenvTLt6gA==
-X-Google-Smtp-Source: AGHT+IFdqOXB6ghYnKqxixi71HDIVUyBb6K4yLgyQsY8z+jH6b5Dj0DBcg23SVmyQ/HQ0KyJt1aTiAzz+yQw9qYykWI=
-X-Received: by 2002:a2e:9ad4:0:b0:2d0:cb23:c719 with SMTP id
- p20-20020a2e9ad4000000b002d0cb23c719mr1085079ljj.13.1707311352050; Wed, 07
- Feb 2024 05:09:12 -0800 (PST)
+        bh=QeiQKTjUpaXlC5rTpAh57LecWBMIQwcK9WBuhzqF9Gc=;
+        b=AUiIc4ip6w8Lp/ohTRjDk3TgAMuyQ1srE9nYBvd5a/s+F2I4ph5h86DRAukj1DPpoO
+         Od668pypinEi6owCtUnQSmtY4awnLDfHF/pbKVa1oghOcLoqOwHzA8m1RsbeErmADdRC
+         7jRYZgA57o6EIhIGuYDtSm6SGcYvDvpDrDfecjGqbn1M6kyJAr+4KGQ4FXhjoCkfVezc
+         FS731Rl8gTLwCGmorC+A2ZrqcqFqQ/ees/5E2yhDy5mbG6h2PPPkZh96vnqXdLRKkGSn
+         618Ykl0VpzPVFTTbC2/Z31aLOsl2TlXy+O03GqVDAWso0fTM5DG0NMxSYkefdv++rlnx
+         u9CQ==
+X-Gm-Message-State: AOJu0YzbUqGD3r96207iGWC7VJZwFyh6/K/YeIPXJNY+34Urk64SKjDi
+	mcyy8DuNykdi+ojHEz6v+TR1bdSDkF9drm+5NPHyCs5XMK6na9Ng1+G6whmvRvAdHQLK8HHtpVL
+	xGUzOjusSFbXaABi0wtJnDB+TC3cYlUp8XnR9Cw==
+X-Google-Smtp-Source: AGHT+IEDiiJkE3kwGwtW/YKJfbR7qahBZMUX/dBC8fmDAROEYy79l0gPVz7ALeJMY4eBJ5z3ImHy8UPIS5Uk8HzPGLA=
+X-Received: by 2002:ac2:4ac4:0:b0:511:551a:c330 with SMTP id
+ m4-20020ac24ac4000000b00511551ac330mr4406484lfp.16.1707311452159; Wed, 07 Feb
+ 2024 05:10:52 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -76,8 +76,8 @@ References: <20240127161753.114685-1-apatel@ventanamicro.com>
  <87plx8y5s3.fsf@all.your.base.are.belong.to.us> <87sf24mo1g.fsf@all.your.base.are.belong.to.us>
 In-Reply-To: <87sf24mo1g.fsf@all.your.base.are.belong.to.us>
 From: Anup Patel <apatel@ventanamicro.com>
-Date: Wed, 7 Feb 2024 18:38:59 +0530
-Message-ID: <CAK9=C2UiOXS7NE91ykvQHc8h8-DUAUwEuMphwC-df3__zK1dVg@mail.gmail.com>
+Date: Wed, 7 Feb 2024 18:40:40 +0530
+Message-ID: <CAK9=C2VLf96D8cm86D26=hJMsqehUM5x_=Cjyy+7kVcAZ5KrUQ@mail.gmail.com>
 Subject: Re: [PATCH v12 00/25] Linux RISC-V AIA Support
 To: =?UTF-8?B?QmrDtnJuIFTDtnBlbA==?= <bjorn@kernel.org>
 Cc: Anup Patel <anup@brainfault.org>, Palmer Dabbelt <palmer@dabbelt.com>, 
@@ -113,29 +113,13 @@ ut
 > corresponding functions/locks. I'd say one lock is enough, and the key
 > is having the per-cpu imsic_local_priv.vectors change from struct
 > imsic_vector * to struct imsic_vector **.
-
-I have managed to remove hwirqs_bitmap (and related function).
-
-Now, I am trying another approach to simplify locking using atomics.
-
 >
 > Using smp_call_function_single() to IPI enable (and disable if you don't
 > want to use the lazy timer disable mechanism) seems feasible as well!
-
-We have intentionally kept separate virq for synchronization because
-this allows us to gather stats for debugging. Calling smp_call_function_sin=
-gle()
-will not allow us to separately gather stats for sync IPIs.
-
-The smp_call_function_single() eventually leads to __ipi_send_mask()
-via send_ipi_mask() in arch/riscv so directly calling __ipi_send_mask()
-for sync IPI is faster.
-
 >
 > (Let me know if you don't have the spare cycles, and I can help out.)
->
->
-> Bj=C3=B6rn
+
+If you can help upstream IOMMU driver then that would be awesome.
 
 Regards,
 Anup
