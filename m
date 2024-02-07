@@ -1,130 +1,108 @@
-Return-Path: <devicetree+bounces-39485-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-39486-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id ED9FF84CEB6
-	for <lists+devicetree@lfdr.de>; Wed,  7 Feb 2024 17:15:59 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 860B284CECC
+	for <lists+devicetree@lfdr.de>; Wed,  7 Feb 2024 17:22:52 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 15DEC1C24EF1
-	for <lists+devicetree@lfdr.de>; Wed,  7 Feb 2024 16:15:59 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 258FBB26E4A
+	for <lists+devicetree@lfdr.de>; Wed,  7 Feb 2024 16:22:50 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A0B9B80612;
-	Wed,  7 Feb 2024 16:15:55 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 318AC80BE2;
+	Wed,  7 Feb 2024 16:22:43 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="WKkDthLQ"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="qTqxE3AS"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wr1-f50.google.com (mail-wr1-f50.google.com [209.85.221.50])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E12E55A100;
-	Wed,  7 Feb 2024 16:15:53 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.50
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 00CB67FBBD;
+	Wed,  7 Feb 2024 16:22:42 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1707322555; cv=none; b=aqPfnBH3co5kM+APqCOzJyxqEyEUlhQZ1rIhVOG3uz9u4DqfBdUo2+8Pb2Lp9xmXShO+wIMgKwv05Cuh6sSMFwXkZCe5P0s8ahb/to+R1nJhYYEBFJ3UW9nlKT4WwcrsYfu/dfKUzmG3CbljQDEZS8NJ3xBAoexg4y7wSnNLwmw=
+	t=1707322963; cv=none; b=glio6f2WM5KIlCe5EmiBwpkZApjo3iz8L0jV6GrQbtIl/WdRzrmyPtDNtx80DFG4bhzZktZfE2x5ZnXThuIAr/B8Hm7uKPmZK4dunUS1MjY3BI6utJpuTlbOD1tkx6SCYJuEcjoK14uya38b1B5OC0NHv4/C0nxtMYmGI+JHiSg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1707322555; c=relaxed/simple;
-	bh=VUvNmp+FcptDTqhLyvPkH0jFwyeuzgPo0Vn4CkOHnWI=;
+	s=arc-20240116; t=1707322963; c=relaxed/simple;
+	bh=pMEzXXPIUcYuWpCdZv+0Vn1+7MD5FBZBfF3MLhc5cg8=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=ZcQKZ9VGZG8br3ypwa7IuaQKTk1gdVFBUpbEqkM0keWe3wRbtgMNS74LGpAy0pkZBuYNUUxWtirQXxePnN5ENyp0v237JnB+aGhxChKa4BAxCSfFNozZ6uIIgpwBU8a77H6CuXY5Mw+OUyTRda28kXxFetpko0kSbt+c7YgucWA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=WKkDthLQ; arc=none smtp.client-ip=209.85.221.50
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-wr1-f50.google.com with SMTP id ffacd0b85a97d-33b45e8a670so495966f8f.3;
-        Wed, 07 Feb 2024 08:15:53 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1707322552; x=1707927352; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=h4pYG6zwwEvVZqzB1UVyWdaE9HtpoW58qB+A15J4okA=;
-        b=WKkDthLQfGBJ/4L0bBtETaOKPWwvBRAIFsaOsU4NixeFrYw4R2FEP0YKruHSM0Ujzn
-         0mc/qOnL11/+NwJA3myqY921zO0S1AQ4uy/dBbqWSceMNLoOidEu+VhnTOy4WJYtQMe8
-         91kyATKmf6uGccT0OExgoD/P5kP7ZdmD4nbTyBKFBnIoT7N+iRQM1KKvKO4DtP2OLG5z
-         CbJnHID3Udqk4QxMTFJrBWIVkoiNXzCWaFXzgtjFEBj20zIkPZGxJhJidgUpMbpEXpgr
-         i14RVZge0SHv7bTJuTXtLZbXmtE8zIXrqrzV2WWM9udfWDHz7iE7jXdiQ0/myedBpLl9
-         y3Dg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1707322552; x=1707927352;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=h4pYG6zwwEvVZqzB1UVyWdaE9HtpoW58qB+A15J4okA=;
-        b=oR++mjzjePwpqFxNIgAzHdLFCHuzSWlfYBbAKKEw1HW+PF+Ak5phaoDbJnVQFozvOO
-         8FVNbbEdesheL6Iftee5Ft7+Oka2uA76xtOBKvjyBsvuzz2ACsj0fuBcVnpQkF0K3MFm
-         dy9ujZOVVmD4ca2yhNPchOs/xe7FBu1Mskl2SROSxZsAv4dYd6dWuOVYn75Y4MXuYOpA
-         aIYSr+DvyZ6Afy/NS+qWlBrGv0tFYjT8cjpE1ZOc6x48mFiSXo9kQAT115VwwA+XArjv
-         zIIYK0I1z9+CWw5W5oRXAxjLZ1SkG4D2hIxLuU9E79Y5+XAbv6xBJPDAweVSch6V3RrX
-         teTg==
-X-Gm-Message-State: AOJu0Yyhk6sUV2UVEV4wPv/DDKdbuPRjAAAZZde+I2ad7T8DpC9ufba8
-	717DePvJfAV/0vud2noPeM1i+8clXtZfwzd8iZ1M9hLFzwex9KlZXia+pG4PlTI=
-X-Google-Smtp-Source: AGHT+IHiMy8HKtkCt4IcEdpck47U2LufL/8oYN3slvxpUedKC9QRsxUcjMDjE+7vJNKSY1kscyktMw==
-X-Received: by 2002:adf:fc88:0:b0:33b:304d:36b7 with SMTP id g8-20020adffc88000000b0033b304d36b7mr3719237wrr.56.1707322551870;
-        Wed, 07 Feb 2024 08:15:51 -0800 (PST)
-X-Forwarded-Encrypted: i=1; AJvYcCWlml/unLO5WKB1WAImP4biDD6QniR65R7n3pK53EWq//01uJihJ2g1nuQOrV6XbNIKBSWP3Smc4+dJk4ocCSolUIxqEuJBBXMze92tUr2YWmA4LY2raDbCst2ZfjnpMiUOl54zw6S4iFK5bSLGmLQjD1cu2Gkhl2Mm9aPeMBqXt4ptrrAvBI/110kzy5Q6vys/JinxkcbNZW1wGoHkeq926xwsZnoADtKfP4hS5dpTPTZ91R1ArWJQg1y74nzYSIy3hnr8IVFLkGVDSq8xKEXIS9zp8qjeepeVOS0vpzWZosFbNCBRhQfQp8bRngPJsw57ljFFhm5MKtCm1g5CNRE/I74lQSAPnAfw4Pdjs2roVg+IvwegLGykH7Y6lyIcKmqk7cdMInFCXXH2Jhv9lxBdtJ2lbTsE85AcqG6NPP2Lmsaz2omO95OB9YVlbZmp3pqv03moci9G756yMl5NMWadvSY0PahN4Cig+4d245tL0UdAxyDLyXIuDlYjo4wtycNifBvlVBQJN2U5vgIL164+cPdNzDUt1heVfvC8rYhfhcyU
-Received: from eichest-laptop ([178.197.195.228])
-        by smtp.gmail.com with ESMTPSA id 9-20020a05600c234900b0040fccf7e8easm5597865wmq.36.2024.02.07.08.15.49
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 07 Feb 2024 08:15:51 -0800 (PST)
-Date: Wed, 7 Feb 2024 17:15:48 +0100
-From: Stefan Eichenberger <eichest@gmail.com>
-To: Russell King <rmk+kernel@armlinux.org.uk>
-Cc: Amit Kucheria <amitk@kernel.org>, Andrew Lunn <andrew@lunn.ch>,
-	Daniel Lezcano <daniel.lezcano@linaro.org>,
-	Gregory Clement <gregory.clement@bootlin.com>,
+	 Content-Type:Content-Disposition:In-Reply-To; b=sTw2mAQGs5+Lhzs2HEjaZLMrihB+iQ9AnWH5xjFPX1LxrA5btMVzjkizclvuKJT0n5egIq5kiJ/Ug7Nls1QUXrHqikGjqlY1shnYHCA1GIlFC9pgYYlStL9FNyDaZHZ4xnOWGiY61EHLofclfxBYv93hVaLTU78XFVLW8fQKAoc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=qTqxE3AS; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id A236BC433F1;
+	Wed,  7 Feb 2024 16:22:39 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1707322962;
+	bh=pMEzXXPIUcYuWpCdZv+0Vn1+7MD5FBZBfF3MLhc5cg8=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=qTqxE3ASSOANkJoWnEcrFvIKWsHp0iuK6XxH0GlaFphdonkiWTAp2YJMACyodR2WM
+	 WrrHNgw4CFeydw6U6JA8UBHPpWGEhQFigXiqQI6qdze91FTs4LNskbdkNwOvQ/LYYv
+	 QMJparFv7hZdKWKTxikp+i1Qydwy2j2Y9pRyFEYL6cEZBh4SrgOhQY8TgJ4cBbW7lT
+	 L1Tr9krntbSmstW3rqrtPU3EdJO06os95uQO5wMpZEDxsdhCjiBEBafdJD7JQ71q+G
+	 XLLR7xNlir2mQGHrIIm8g426cAwdDFQQRZTMr+c5A9M+dvNKgpoFyKj2LA8PYqKeT/
+	 jnk2sINiEoCcw==
+Date: Wed, 7 Feb 2024 16:22:37 +0000
+From: Conor Dooley <conor@kernel.org>
+To: Josua Mayer <josua@solid-run.com>
+Cc: Nishanth Menon <nm@ti.com>, Vignesh Raghavendra <vigneshr@ti.com>,
+	Tero Kristo <kristo@kernel.org>, Rob Herring <robh+dt@kernel.org>,
 	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Miquel Raynal <miquel.raynal@bootlin.com>,
-	"Rafael J. Wysocki" <rafael@kernel.org>,
-	Rob Herring <robh+dt@kernel.org>,
-	Sebastian Hesselbarth <sebastian.hesselbarth@gmail.com>,
-	Zhang Rui <rui.zhang@intel.com>, Josua Mayer <josua@solid-run.com>,
-	devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-	linux-pm@vger.kernel.org, manuel.aebischer@netmodule.com
-Subject: Re: [PATCH 3/3] arm64: dts: armada-ap807: update thermal compatible
-Message-ID: <ZcOsjRzE8V73wNtT@eichest-laptop>
-References: <ZIxMYXDCTB7IvsDk@shell.armlinux.org.uk>
- <E1qA7yZ-00Ea50-OC@rmk-PC.armlinux.org.uk>
+	Conor Dooley <conor+dt@kernel.org>,
+	Alessandro Zummo <a.zummo@towertech.it>,
+	Alexandre Belloni <alexandre.belloni@bootlin.com>,
+	Yazan Shhady <yazan.shhady@solid-run.com>,
+	"linux-arm-kernel@lists.infradead.org" <linux-arm-kernel@lists.infradead.org>,
+	"devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+	"linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+	"linux-rtc@vger.kernel.org" <linux-rtc@vger.kernel.org>
+Subject: Re: [PATCH v4 2/5] dt-bindings: rtc: abx80x: convert to yaml
+Message-ID: <20240207-astride-banister-371ce4d36edf@spud>
+References: <20240202-add-am64-som-v4-0-5f8b12af5e71@solid-run.com>
+ <20240202-add-am64-som-v4-2-5f8b12af5e71@solid-run.com>
+ <20240203-prolonged-backfield-c659e0016d70@spud>
+ <20240203-tummy-egomaniac-5aba55889a83@spud>
+ <0c784113-9288-46bd-a34e-49bf0f1651bb@solid-run.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+Content-Type: multipart/signed; micalg=pgp-sha256;
+	protocol="application/pgp-signature"; boundary="DGDNYYnA7zsSAf/5"
+Content-Disposition: inline
+In-Reply-To: <0c784113-9288-46bd-a34e-49bf0f1651bb@solid-run.com>
+
+
+--DGDNYYnA7zsSAf/5
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <E1qA7yZ-00Ea50-OC@rmk-PC.armlinux.org.uk>
+Content-Transfer-Encoding: quoted-printable
 
-Hi Russell and Alex,
+On Tue, Feb 06, 2024 at 02:44:24PM +0000, Josua Mayer wrote:
 
-On Fri, Jun 16, 2023 at 12:50:47PM +0100, Russell King wrote:
-> From: Alex Leibovich <alexl@marvell.com>
-> 
-> Use the correct thermal coefficients for the Armada AP807 dies.
-> 
-> Signed-off-by: Alex Leibovich <alexl@marvell.com>
-> Reviewed-by: Stefan Chulski <stefanc@marvell.com>
-> Tested-by: Stefan Chulski <stefanc@marvell.com>
-> Signed-off-by: Russell King (Oracle) <rmk+kernel@armlinux.org.uk>
-> ---
->  arch/arm64/boot/dts/marvell/armada-ap807.dtsi | 3 +++
->  1 file changed, 3 insertions(+)
-> 
-> diff --git a/arch/arm64/boot/dts/marvell/armada-ap807.dtsi b/arch/arm64/boot/dts/marvell/armada-ap807.dtsi
-> index 4a23f65d475f..a3328d05fc94 100644
-> --- a/arch/arm64/boot/dts/marvell/armada-ap807.dtsi
-> +++ b/arch/arm64/boot/dts/marvell/armada-ap807.dtsi
-> @@ -33,3 +33,6 @@ &ap_sdhci0 {
->  		     "marvell,armada-ap806-sdhci"; /* Backward compatibility */
->  };
->  
-> +&ap_thermal {
-> +	compatible = "marvell,armada-ap807-thermal";
-> +};
+> > Ahh I now realise what your intent was here. All you need to do is add
+> > | interrupts:
+> > |   maxItems: 1
+> > to your binding and it should do what you're looking for.
+>=20
+> Yes, that is in line with everything else.
+>=20
+> What bugs me is what to do about interrupt-parent,
+> and whether to include it in example.
 
-While working on some thermal optimizations, our hardware team
-discovered that this patch is still missing upstream. Is something
-missing or did it get lost?
+I am pretty sure you don't need to add it.
 
-Regards,
-Stefan
+--DGDNYYnA7zsSAf/5
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZcOuTQAKCRB4tDGHoIJi
+0kQvAP4m2/Ux3BhI3wLWXVa9b0iB0LDgxI9uFmlV0BgUBArVyQD9GSbbODSVJO3+
+D0qUvcwI93EzGiK7IQ78d85Ym4ljygM=
+=b7P0
+-----END PGP SIGNATURE-----
+
+--DGDNYYnA7zsSAf/5--
 
