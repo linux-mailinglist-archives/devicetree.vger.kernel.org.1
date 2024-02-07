@@ -1,191 +1,107 @@
-Return-Path: <devicetree+bounces-39410-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-39411-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id B021C84C8D9
-	for <lists+devicetree@lfdr.de>; Wed,  7 Feb 2024 11:42:26 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 84FA484C903
+	for <lists+devicetree@lfdr.de>; Wed,  7 Feb 2024 11:54:57 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 23C4B1F22A6E
-	for <lists+devicetree@lfdr.de>; Wed,  7 Feb 2024 10:42:26 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 2435C1F26A02
+	for <lists+devicetree@lfdr.de>; Wed,  7 Feb 2024 10:54:57 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3C94D14A90;
-	Wed,  7 Feb 2024 10:42:20 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A6504171B4;
+	Wed,  7 Feb 2024 10:54:54 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="mO/hQ3qs"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="HDO9i16d"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-yb1-f172.google.com (mail-yb1-f172.google.com [209.85.219.172])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6E76E14A89;
-	Wed,  7 Feb 2024 10:42:18 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C47A117BC5
+	for <devicetree@vger.kernel.org>; Wed,  7 Feb 2024 10:54:52 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.219.172
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1707302540; cv=none; b=r/ILn6rT0qJ2dt5gsKoKkCS+sW7tJhC4q1y0zn0qAsw4OzgxUFlnEvdwZBI3negp2ObRXWXlxrfVNtaebCNNNndsXggxbOqHul+cETrl7BAd9pZYRlKp14gVdjL0ZLhaIEbwzvucDOGpTgxqE6NxfCVeCG8+aIM06lkSW9qlGcc=
+	t=1707303294; cv=none; b=cK2VulwMnoX5TTsDv8QHv10Rjjio6cCX2QbyVOq6ptlNmpe4tMKl0ELtzXA1AYa3lBpQPRgQUARWY3dX1OcO+saMUugTyrP+5U51o1TqKsJKxaAZNAEyiRH9shklIV7OVwW5aGCjrveN/EbNJqZZFNIlhRploSP8cnS5Hy+MMvk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1707302540; c=relaxed/simple;
-	bh=II47jwsuZLY/0YRKVtpUI0sbrhHp7KT8QYWiYIYnm64=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-ID:To:CC; b=jiHJ6ngut7ABZTMl1n8IvVE53LRz+SyOKcioxGb9Z9PIvwU7oXAyMpgJjtnUcL/TjdpeEO4huNc2mKBGpYSpXiuAOJNuNHXy6slVHVEA3TCRj9qrefbWliCrWfUtIChwiB+8s5ZezqD36MtVfpQMx2e7wp741c/BylbgS43dfAs=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=mO/hQ3qs; arc=none smtp.client-ip=205.220.180.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
-Received: from pps.filterd (m0279869.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.17.1.24/8.17.1.24) with ESMTP id 417AQCvF013143;
-	Wed, 7 Feb 2024 10:42:02 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
-	from:date:subject:mime-version:content-type
-	:content-transfer-encoding:message-id:to:cc; s=qcppdkim1; bh=f4a
-	6QVU4hulFuG7QklOItbrc6hHNenm18VOdI1gRvJM=; b=mO/hQ3qsZ4NCjy6vB8h
-	7a8g10w6fApuzU7RUOC6n7rJwK0gxLthGHk8qp4BDmpFkBm0fnz/9RWfN1U99xZv
-	J53BsAZ+MUndGabJzXPMMAQpI2qpEsyvnLEkPly1204TV42ytQDFyfDkTsb2Df/J
-	MSqXdLmRfuHkKny7S2XYPkMrMED71J2RbYGBTceKGSlBXdwTeyTSpKvUiKgioOhn
-	HdPchDRdi90ycMsqclDXuBdf6MJc+5Auw4qSN+YVI+kKBsVZAXsgWBfXp2CqzOGD
-	Xic0cZYQ2rgLCDFv9fj/wdmHyDZOlp4k9kQXAMQexG/A/P/afQJEyP/FDisjHxAu
-	3dA==
-Received: from nalasppmta03.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3w3ub6hfnq-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Wed, 07 Feb 2024 10:42:02 +0000 (GMT)
-Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
-	by NALASPPMTA03.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 417Ag13b003200
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Wed, 7 Feb 2024 10:42:01 GMT
-Received: from hu-krichai-hyd.qualcomm.com (10.80.80.8) by
- nalasex01a.na.qualcomm.com (10.47.209.196) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.1118.40; Wed, 7 Feb 2024 02:41:56 -0800
-From: Krishna chaitanya chundru <quic_krichai@quicinc.com>
-Date: Wed, 7 Feb 2024 16:11:49 +0530
-Subject: [PATCH] arm64: dts: qcom: qcs6490-rb3gen2: Add PCIe nodes
+	s=arc-20240116; t=1707303294; c=relaxed/simple;
+	bh=AqRyfre6hpYKrbdFfgct1DMOhUQC1J51jmJyfuq2n8I=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=r4TdH1+C7aYHeFOnlVKVa3MhU3y3hVpl8VWKzILovm4o8WROGElvpscKqfiars+cd1Z9zDXmvdIgwZSqwldxpY3LatNV7bgBLboZ0jMo6CKbYTeQrSy4y9rIHc740EENxwc8QqG70Lc29UaZeM8DRDo4ypr5yz0yjxz/ynUBiwc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=HDO9i16d; arc=none smtp.client-ip=209.85.219.172
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-yb1-f172.google.com with SMTP id 3f1490d57ef6-dc6d8f19ab3so462990276.3
+        for <devicetree@vger.kernel.org>; Wed, 07 Feb 2024 02:54:52 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1707303292; x=1707908092; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=AqRyfre6hpYKrbdFfgct1DMOhUQC1J51jmJyfuq2n8I=;
+        b=HDO9i16dkADSVvq6bn0Sbo+lrGoZqVgEmDyNnddeI8nc1hnZq+Ja3AMz9KQ3uYYhLz
+         /dccogs4m04hXV8h8p3iFRjmnsa5oOrDLB7agajpybVu09VFCRMSyGM5GEzQAz4jkTEa
+         X3Xn8Wu7VTXOR+alvwQIax07jdzy/X8V3P/4U9aoIQtQafuPuqtviS2tHCs8dTP4MCaD
+         0BlbgxAiNQYneX9QIZqfqVoVNV1aVZYGWgO1zIV8s5aoXVjGqJrhrzaXYnRgKY2xIN8/
+         fOrvWwnvq9iDaWDiPfqqjPR6e/CWaSymQpokA6dJcZqFEjHkdip85CsKVqK/BVgO10nX
+         2GWA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1707303292; x=1707908092;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=AqRyfre6hpYKrbdFfgct1DMOhUQC1J51jmJyfuq2n8I=;
+        b=lVyl0rVrWNdb0mgxrmere2lwZ5HttzorqwglErGRwM4W1msA73iZKHNBJNpevHc2mT
+         s4PUz+qXNt4UF8u9fNcLNijYZDbw8pEK1Xd4sDFjgLGnYrgNKD3xv0Z9vVNMYpy+LWWj
+         hwcCl9SYYrzMEblvaO8luwUww+VAS8AOvPoGsCU1WhlGqNPAIzBFNy1PseIA60OAy6Qj
+         yC2hQIXQrvDqFf1/7wmxg56hzMVEtTDNaa4d2k9WpiNA1jYNV4kz49BC4DJ3q7RNjgMB
+         Y7rNTjy/fD0B+t8r8V8pjW+gsaRcYmfwxyy/bvFSaykgG2RicnZzfbAVT9/My5DmxG2a
+         mrcA==
+X-Gm-Message-State: AOJu0YyTsvlUjGr4pC7Y+SpF9tydIZ8f3dtO1lvWqc1BeCRlwodyl1U9
+	AzC1eTv7Q6toao00lmoaA6LmToXrvjiG4NDrNS+d+BUTo+2kwE7gRFqBujKP+BJ8embQjAv6Tzm
+	PTMxW8YADbJzPjSV+RYkNZYYci2mfcAhTLcFwzQ==
+X-Google-Smtp-Source: AGHT+IGDflkHEVBa03b1Bfl72mpon3cdcyEI04qMZquBPzXoVaoldzCLxrdhfuAGz48oB/DXRZc65MMbqgc8o/+1+XU=
+X-Received: by 2002:a25:2d14:0:b0:dc2:3818:f36e with SMTP id
+ t20-20020a252d14000000b00dc23818f36emr4815404ybt.18.1707303291509; Wed, 07
+ Feb 2024 02:54:51 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-ID: <20240207-enable_pcie-v1-1-b684afa6371c@quicinc.com>
-X-B4-Tracking: v=1; b=H4sIAG1ew2UC/6tWKk4tykwtVrJSqFYqSi3LLM7MzwNyDHUUlJIzE
- vPSU3UzU4B8JSMDIxMDIwNz3dS8xKSc1PiC5MxUXUvTJMMUMzNDoyQjcyWgjoKi1LTMCrBp0bG
- 1tQDbjrJiXQAAAA==
-To: Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio
-	<konrad.dybcio@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        "Krzysztof
- Kozlowski" <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley
-	<conor+dt@kernel.org>
-CC: <linux-arm-msm@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>, <quic_vbadigan@quicinc.com>,
-        <quic_ramkri@quicinc.com>, <quic_nitegupt@quicinc.com>,
-        <quic_skananth@quicinc.com>, <quic_parass@quicinc.com>,
-        "Krishna chaitanya
- chundru" <quic_krichai@quicinc.com>
-X-Mailer: b4 0.13-dev-83828
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1707302517; l=2092;
- i=quic_krichai@quicinc.com; s=20230907; h=from:subject:message-id;
- bh=II47jwsuZLY/0YRKVtpUI0sbrhHp7KT8QYWiYIYnm64=;
- b=u2Wyoa7F0oRnHv37GNU4l5ZZUKYEDZyWQtH9gXoTyXrBkP3tWdwz3DG5YGmGiYGfxXGIqOQdz
- Wu2/ku5afGnDK6vK/HMRwzBc2CIoCiER/U6gCqaKJouGC18XQcbPwnj
-X-Developer-Key: i=quic_krichai@quicinc.com; a=ed25519;
- pk=10CL2pdAKFyzyOHbfSWHCD0X0my7CXxj8gJScmn1FAg=
-X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
- nalasex01a.na.qualcomm.com (10.47.209.196)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-GUID: 8L8kUlVtulcoBfuJ32aTvlkce2y4ag-W
-X-Proofpoint-ORIG-GUID: 8L8kUlVtulcoBfuJ32aTvlkce2y4ag-W
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.272,Aquarius:18.0.1011,Hydra:6.0.619,FMLib:17.11.176.26
- definitions=2024-02-07_04,2024-01-31_01,2023-05-22_02
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 mlxlogscore=808 adultscore=0
- spamscore=0 bulkscore=0 priorityscore=1501 phishscore=0 clxscore=1015
- malwarescore=0 lowpriorityscore=0 suspectscore=0 impostorscore=0
- mlxscore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.19.0-2401310000 definitions=main-2402070079
+References: <20240202223454.1667383-1-robh@kernel.org>
+In-Reply-To: <20240202223454.1667383-1-robh@kernel.org>
+From: Linus Walleij <linus.walleij@linaro.org>
+Date: Wed, 7 Feb 2024 11:55:04 +0100
+Message-ID: <CACRpkdb+Z8oxBa7kibHdob1qk1eVKiSm1MaY+bF442d=ztdmdA@mail.gmail.com>
+Subject: Re: [PATCH] dt-bindings: pinctrl: nvidia,tegra234-pinmux: Restructure
+ common schema
+To: Rob Herring <robh@kernel.org>
+Cc: Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Thierry Reding <thierry.reding@gmail.com>, Jonathan Hunter <jonathanh@nvidia.com>, 
+	linux-gpio@vger.kernel.org, devicetree@vger.kernel.org, 
+	linux-tegra@vger.kernel.org, linux-kernel@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-Enable PCIe1 controller and its corresponding PHY nodes on
-qcs6490-rb3g2 platform.
+On Fri, Feb 2, 2024 at 11:35=E2=80=AFPM Rob Herring <robh@kernel.org> wrote=
+:
 
-PCIe switch is connected to PCIe1, PCIe switch has multiple endpoints
-connected. For each endpoint a unique BDF will be assigned and should
-assign unique smmu id. So for each BDF add smmu id.
+> The structure of the NVIDIA Tegra234 common pinmux schema doesn't work
+> for restricting properties because a child node schema can't be extended
+> with additional properties from another schema defining the same child
+> node. The 2 child node schemas are evaluated independently as the
+> schemas are not recursively combined in any way.
+>
+> As the common schema is almost all the child node schema anyways, just
+> remove the parent node from the common schema. Then add 'reg' and adjust
+> the $ref's in the users of the common schema.
+>
+> Signed-off-by: Rob Herring <robh@kernel.org>
 
-Signed-off-by: Krishna chaitanya chundru <quic_krichai@quicinc.com>
----
- arch/arm64/boot/dts/qcom/qcs6490-rb3gen2.dts | 42 ++++++++++++++++++++++++++++
- 1 file changed, 42 insertions(+)
+Patch applied!
 
-diff --git a/arch/arm64/boot/dts/qcom/qcs6490-rb3gen2.dts b/arch/arm64/boot/dts/qcom/qcs6490-rb3gen2.dts
-index 8bb7d13d85f6..0082a3399453 100644
---- a/arch/arm64/boot/dts/qcom/qcs6490-rb3gen2.dts
-+++ b/arch/arm64/boot/dts/qcom/qcs6490-rb3gen2.dts
-@@ -413,6 +413,32 @@ vreg_bob_3p296: bob {
- 	};
- };
- 
-+&pcie1 {
-+	perst-gpios = <&tlmm 2 GPIO_ACTIVE_LOW>;
-+
-+	pinctrl-0 = <&pcie1_reset_n>, <&pcie1_wake_n>;
-+	pinctrl-names = "default";
-+
-+	iommu-map = <0x0 &apps_smmu 0x1c80 0x1>,
-+		    <0x100 &apps_smmu 0x1c81 0x1>,
-+		    <0x208 &apps_smmu 0x1c84 0x1>,
-+		    <0x210 &apps_smmu 0x1c85 0x1>,
-+		    <0x218 &apps_smmu 0x1c86 0x1>,
-+		    <0x300 &apps_smmu 0x1c87 0x1>,
-+		    <0x400 &apps_smmu 0x1c88 0x1>,
-+		    <0x500 &apps_smmu 0x1c89 0x1>,
-+		    <0x501 &apps_smmu 0x1c90 0x1>;
-+
-+	status = "okay";
-+};
-+
-+&pcie1_phy {
-+	vdda-phy-supply = <&vreg_l10c_0p88>;
-+	vdda-pll-supply = <&vreg_l6b_1p2>;
-+
-+	status = "okay";
-+};
-+
- &qupv3_id_0 {
- 	status = "okay";
- };
-@@ -420,6 +446,22 @@ &qupv3_id_0 {
- &tlmm {
- 	gpio-reserved-ranges = <32 2>, /* ADSP */
- 			       <48 4>; /* NFC */
-+
-+	pcie1_reset_n: pcie1-reset-n-state {
-+		pins = "gpio2";
-+		function = "gpio";
-+		drive-strength = <16>;
-+		output-low;
-+		bias-disable;
-+	};
-+
-+	pcie1_wake_n: pcie1-wake-n-state {
-+		pins = "gpio3";
-+		function = "gpio";
-+		drive-strength = <2>;
-+		bias-pull-up;
-+	};
-+
- };
- 
- &uart5 {
-
----
-base-commit: 70d201a40823acba23899342d62bc2644051ad2e
-change-id: 20240207-enable_pcie-95b1d6612b27
-
-Best regards,
--- 
-Krishna chaitanya chundru <quic_krichai@quicinc.com>
-
+Yours,
+Linus Walleij
 
