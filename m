@@ -1,177 +1,405 @@
-Return-Path: <devicetree+bounces-39460-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-39461-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id DBCEE84CC61
-	for <lists+devicetree@lfdr.de>; Wed,  7 Feb 2024 15:12:03 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5A39A84CC80
+	for <lists+devicetree@lfdr.de>; Wed,  7 Feb 2024 15:19:30 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 973AD2876DC
-	for <lists+devicetree@lfdr.de>; Wed,  7 Feb 2024 14:12:02 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 7F81C1C2548C
+	for <lists+devicetree@lfdr.de>; Wed,  7 Feb 2024 14:19:29 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id DD07B7C088;
-	Wed,  7 Feb 2024 14:11:59 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8613F7CF07;
+	Wed,  7 Feb 2024 14:19:19 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="Uht1RhXR"
+	dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b="eKb75DVV"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-qv1-f53.google.com (mail-qv1-f53.google.com [209.85.219.53])
+Received: from mail-lj1-f177.google.com (mail-lj1-f177.google.com [209.85.208.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F05FC77F17
-	for <devicetree@vger.kernel.org>; Wed,  7 Feb 2024 14:11:57 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.219.53
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F08557C092
+	for <devicetree@vger.kernel.org>; Wed,  7 Feb 2024 14:19:16 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.177
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1707315119; cv=none; b=jsf5l6KaTdNDOt+auB/rkw6hJOslrPbS7/+x75Aa/NxCe0XoMs/qQkh+zljFPj+4YKheKdKxMtUQpzm9S4Mrl/lXcPcXnhnG3iClgDmmtV+afc5QMgTx9rJh1FMozpwqLeFt5DCw2+TBih4Kq5v0WZBeYu/3GWgbXrZO1SPJIbk=
+	t=1707315559; cv=none; b=dSLTJgLW7ud7NlqchihlNRSiPHT3WtC6qZCItC1YU5WcIAKnjmp5jGcgpF8orBfFZ5+3W85EvmHr13ROWKmAIcH0iheByNOc74b7LKq0UzvPky6y1V5HIaOlIqm7dAXakc6DB2TaHrHMMkMN0hFA6JRxjmt7DYIwmpJrXfQyemY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1707315119; c=relaxed/simple;
-	bh=nzkjMj0bCnuVMEZVy8mkyoMHQ9P0e3IYhsa7ydwwFko=;
+	s=arc-20240116; t=1707315559; c=relaxed/simple;
+	bh=qNiDxmPLRX2gONHjp5V//oNUCAneHOBmKcLQJZDoqq4=;
 	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=C7vzHrHi3wlIlSBkSfnPXFrPEI+GjE/aSGVuRw3VDvBsTPkj+ZmqODpal1NDxB4Ww+S7ZEPBSgHuLswoQ9R7lVaoHn9RCZzhNIhFuqtCrrSYJkHW+gjgkwcdczhR6w3+T/lDp96NrWFPhWevUHW6+CXbq4hVA3NrLx70IEvc/rQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=Uht1RhXR; arc=none smtp.client-ip=209.85.219.53
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-qv1-f53.google.com with SMTP id 6a1803df08f44-68c444f9272so3046066d6.3
-        for <devicetree@vger.kernel.org>; Wed, 07 Feb 2024 06:11:57 -0800 (PST)
+	 To:Cc:Content-Type; b=KExT5umSEc5sTN6FKfCBRox7HZSxhKzCp/Xw+sjaNs6H5jku4cSOOtuorOuK1l1gvgqUxrqW07EQAyhxeVbmiC7yepgOzIY53EaRgjgsF+lEGsxW6tGaMbH46Dos94Pq9oysUYljPs4zbeDfEMRS8IR4yFodyFP0G1VI9FLWO/k=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com; spf=pass smtp.mailfrom=baylibre.com; dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b=eKb75DVV; arc=none smtp.client-ip=209.85.208.177
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=baylibre.com
+Received: by mail-lj1-f177.google.com with SMTP id 38308e7fff4ca-2d0c9967fdcso6146931fa.0
+        for <devicetree@vger.kernel.org>; Wed, 07 Feb 2024 06:19:16 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1707315117; x=1707919917; darn=vger.kernel.org;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=tCe/2EWP6QyZNDgQYAyU30S8OaPYPa61/dD76E0Ooo0=;
-        b=Uht1RhXRiwsbtVHXbQMpR4P4PFoqqKKg6J5ZR+Jnm0fDHA7qYGHcPLtSJglXG2Otyo
-         mP6GIQ/lkSbmbw1FdgKoNoQBoB+jHfTSab1abzrNGTmJJXGFKB4b6qlxgcqlgFPL9DFV
-         U3AUU1XfpPGhmNhl2ONaMLTblYObES5YEvpjooIPssDAOpku4yteaPqsQZtR7f3MmJCP
-         +o0nBAsQgkRQGZS6FqRi6wGHUmcamb3okkFmE51lgoTDlSuUsf4MuxBoQqrbmsfbjtHk
-         qwPiuA6P4zqWkCNzbRKryIl6KajasxEDeXX6vI9xIgHubfBlYHXFsiNT5YGi5PmK19FT
-         o4sQ==
+        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1707315555; x=1707920355; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=ILWgMVro314dmhUiCh6UxBQcT1f8d7NxX/BsGCT/hZM=;
+        b=eKb75DVV8Qd00FiFEn12aPI/vM9FJRtYg4HbueN8N7x9bZC2UPgnapUBtxoaN/vevF
+         UJb/GvGkqYWFMnbG5+fpBYrJYxTl/rLqjOtbCMQwYsBTnU35C2PEKOzxpyT0FeMvZnvt
+         mX6d91qHVPcbaUw8dvULVdc3aCxBuFWnOnR3hjicX21YqU0wskhqYBucny9KiPtpb4ES
+         Yx/Bd8qDUeMOm3QlbRZao6VeWmPKjEeA33zw7/z2+sJkC1dOx6loLLUPlrlckld8SNG9
+         Iz606hhjAWL5Iq5CCk1MS2tT6Qmqbcm/BeOwHlqidRZkcX17GdRuwMtvG+cs/WVhWZP8
+         OA0g==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1707315117; x=1707919917;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=tCe/2EWP6QyZNDgQYAyU30S8OaPYPa61/dD76E0Ooo0=;
-        b=TWW4JNa49dFFFPqhcbS6pVBut081gkNn3mjEyxuJCoS1IlPDW/yPM2WVTp9gKrZmZY
-         DifP2Ygk9Gm9KMqZcHMyfT0/rUddp+3Ek1eptU05bQRxV2TA2F8G3mhH7664Tak2UfKy
-         rpIbyC24FX/RLfZUBKJZFO5OlGOBYHQemVNr8i4BKLjRXDmFo2ZzncV9mQcXWvwU5llK
-         cCDs0TAmH+8mFhQjXmMAg4HfScsucLkL1v+zK6v+k57iyLPGji0fjU/5tUjjIjjEgmiK
-         59qz+TCPqOkwekABMl5/EDhSz60i6zEdeDon0Svpojh2Cy8s5y4PT92/Zlkh6m4OZk2K
-         O5og==
-X-Forwarded-Encrypted: i=1; AJvYcCVFSl6iVMTfdm2piX59Ss/MMLtvH+cqFu5CvBqzgcsCpFKmb6uZ1mnxPf8S8SznFfDfUKsAJVUAn7Y7/Am+dEcairWXbafX1PnWAA==
-X-Gm-Message-State: AOJu0YxWQVsbTyb32vEjUTcRzhPgLTCjSXCijFE+Fn6QwJXW8G8yIud+
-	9A+mTvZTz9nsOUqMr7IXLdtnewEwNHdipnCwqnEe/N77PWohWouE09vXh2jDsAoGuufMk/83uMm
-	56ZgHeTsL4E2gUxu4fJ0IyvFwEKSOHHi9+PHI2Q==
-X-Google-Smtp-Source: AGHT+IFONdbekTpwnL2WS7ErPLZEcsqo1cwSW7hXmMwSQYIVBF2tuoVF58D1gjgEfjuqJwVzvhsa6qRhElUBpc3dfMc=
-X-Received: by 2002:ad4:5943:0:b0:68c:9d2d:6ae9 with SMTP id
- eo3-20020ad45943000000b0068c9d2d6ae9mr6339727qvb.8.1707315116782; Wed, 07 Feb
- 2024 06:11:56 -0800 (PST)
+        d=1e100.net; s=20230601; t=1707315555; x=1707920355;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=ILWgMVro314dmhUiCh6UxBQcT1f8d7NxX/BsGCT/hZM=;
+        b=CGkJrOd17k4wh/J2GCJOsqQdNcXGcIgoNG6p9RTDBze5J/icXBuoSHbZwDHZtnQIdp
+         MHyC85dpYiRr2P9K8UL90opixuB+5lkkCMyNCGSHUA8IjfArpE5Qpw6qZl9WVfYyGfYP
+         WkXlvgjj8o1avqOb6g5Mpmx/WJ0WCj+KC5bkT4EsRWVZ2B6WJfBb0mrMmwsvnG2AV5P4
+         lkpz9A9cUOPjZrMt6L9XvDCLuvNTK2RPjcoCFF92G/ZywtmrzipEOKTjlbboiq8PJuar
+         d2k9+7+wrGzm/OrLfUFT0M8hdGIm7iXFoQNFWgki6gFF9Byp/lxA8ZfbbvXVI/xqpJQ9
+         BfzA==
+X-Forwarded-Encrypted: i=1; AJvYcCU5sOROy34hum5aIm5QLXDhPvL0/o5Vi1AYoYh/7Vng9DiU6lxQ6eN+6u2y29UT4VPwMJq21PX+xhqF9JOVrO3KQrMnTZlRLS6TnA==
+X-Gm-Message-State: AOJu0YwfwulGbJJw3rEZNFPdWVPgPjqXDIKXr/sND61bX9lPj7875jqH
+	Pv5mv9Uahn0/65awmLfVe0eljcBFkl1Bjd6wTksV5FbAfQuUvTGbyak1GDs6npsPG9fREfgmXpc
+	xSJqbKapQZnJHK89zgUlXILpy+Qr/CZHdhKLOHg==
+X-Google-Smtp-Source: AGHT+IFfjr9Dp6bX7NVZVfUzrhPOrBXBAFSzMDuPsY9Vk33c1bMGHwminHgD/mEBhygi5I7Rp3i6pg1t4oaeS+X4e5E=
+X-Received: by 2002:a2e:988c:0:b0:2cf:57d7:6d35 with SMTP id
+ b12-20020a2e988c000000b002cf57d76d35mr2094386ljj.10.1707315554797; Wed, 07
+ Feb 2024 06:19:14 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20240201172224.574238-1-alexey.klimov@linaro.org>
- <20240201172224.574238-2-alexey.klimov@linaro.org> <CADrjBPpqHx1uoVZCYDX51kW+JdOr_-+4oryOjXcUMFkmLGTBLw@mail.gmail.com>
- <b199ba24-403b-44fa-b807-9b98f9e98913@linaro.org>
-In-Reply-To: <b199ba24-403b-44fa-b807-9b98f9e98913@linaro.org>
-From: Peter Griffin <peter.griffin@linaro.org>
-Date: Wed, 7 Feb 2024 14:11:45 +0000
-Message-ID: <CADrjBPpNukp+YQ0AmsZAE1f=MEk_auPPZit=tV8gk4szQ8MqRg@mail.gmail.com>
-Subject: Re: [PATCH 2/4] arm64: dts: exynos: gs101: add chipid node
-To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Cc: Alexey Klimov <alexey.klimov@linaro.org>, alim.akhtar@samsung.com, 
-	linux-samsung-soc@vger.kernel.org, semen.protsenko@linaro.org, 
-	robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org, 
-	devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
-	linux-kernel@vger.kernel.org, klimov.linux@gmail.com, kernel-team@android.com, 
-	tudor.ambarus@linaro.org, andre.draszik@linaro.org, saravanak@google.com, 
-	willmcvicker@google.com, arnd@arndb.de
+References: <20240206-ad7944-mainline-v1-0-bf115fa9474f@baylibre.com>
+ <20240206-ad7944-mainline-v1-2-bf115fa9474f@baylibre.com> <5fd17b66eab1989b9cfb874445c18480a2282809.camel@gmail.com>
+In-Reply-To: <5fd17b66eab1989b9cfb874445c18480a2282809.camel@gmail.com>
+From: David Lechner <dlechner@baylibre.com>
+Date: Wed, 7 Feb 2024 08:19:03 -0600
+Message-ID: <CAMknhBHP40uXtviZ1KCQ3ZyruaLUVrjpp573u7QqMCT1tuoYjw@mail.gmail.com>
+Subject: Re: [PATCH 2/2] iio: adc: ad7944: add driver for AD7944/AD7985/AD7986
+To: =?UTF-8?B?TnVubyBTw6E=?= <noname.nuno@gmail.com>
+Cc: linux-iio@vger.kernel.org, 
+	Michael Hennerich <Michael.Hennerich@analog.com>, Jonathan Cameron <jic23@kernel.org>, 
+	Rob Herring <robh+dt@kernel.org>, 
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, 
+	=?UTF-8?B?TnVubyBTw6E=?= <nuno.sa@analog.com>, 
+	Liam Girdwood <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org
 Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-Hi Krzysztof,
-
-Thanks for your feedback.
-
-On Tue, 6 Feb 2024 at 10:10, Krzysztof Kozlowski
-<krzysztof.kozlowski@linaro.org> wrote:
+On Wed, Feb 7, 2024 at 4:07=E2=80=AFAM Nuno S=C3=A1 <noname.nuno@gmail.com>=
+ wrote:
 >
-> On 05/02/2024 15:36, Peter Griffin wrote:
-> > Hi Alexey & Krysztof,
-> >
-> > On Thu, 1 Feb 2024 at 17:22, Alexey Klimov <alexey.klimov@linaro.org> wrote:
-> >>
-> >> Signed-off-by: Alexey Klimov <alexey.klimov@linaro.org>
-> >> ---
-> >>  arch/arm64/boot/dts/exynos/google/gs101.dtsi | 5 +++++
-> >>  1 file changed, 5 insertions(+)
-> >>
-> >> diff --git a/arch/arm64/boot/dts/exynos/google/gs101.dtsi b/arch/arm64/boot/dts/exynos/google/gs101.dtsi
-> >> index d838e3a7af6e..156fec2575bc 100644
-> >> --- a/arch/arm64/boot/dts/exynos/google/gs101.dtsi
-> >> +++ b/arch/arm64/boot/dts/exynos/google/gs101.dtsi
-> >> @@ -283,6 +283,11 @@ soc: soc@0 {
-> >>                 #size-cells = <1>;
-> >>                 ranges = <0x0 0x0 0x0 0x40000000>;
-> >>
-> >> +               chipid@10000000 {
-> >> +                       compatible = "google,gs101-chipid";
-> >> +                       reg = <0x10000000 0xd000>;
-> >> +               };
-> >> +
-> >
-> > I was wondering about the 0xd000 size here, as most upstream platforms
-> > use a chipid size of 0x100 or 0x24. I see the downstream gs101 kernel
-> > also uses 0xd000. Looking a bit more, that is because gs-chipid.c also
-> > has support for dumping other areas of the OTP SFR bank like asv table
-> > (offset 0x9000) hpm_asv (offset 0xa000) and hw_tune (0xc000).
-> >
-> > I checked Exynos850 and that also has ASV tables at those same offsets
-> > above, but it currently uses a chipid size of 0x100 upstream.
-> > Exynos-asv.c driver is part of exynos-chipid.c upstream so it seems
-> > reasonable to have the increased size including those SFR registers.
-> > Currently exynos-asv.c driver only supports Exynos5422 upstream.
-> >
-> > @Krzysztof - From a process PoV what is the best/correct thing to do
-> > here? Have the increased size in DT that includes ASV parts of the OTP
-> > bank from the get-go?
+> Hi David,
 >
-> ChipID so far had only size of 0x30 or something like that. What you
-> refer to does not look like old ChipID but full blown OTP, which also
-> includes ChipID.
+> The driver It's in pretty good shape... Just some comments from me
+>
+> On Tue, 2024-02-06 at 11:26 -0600, David Lechner wrote:
+> > This adds a driver for the Analog Devices Inc. AD7944, AD7985, and
+> > AD7986 ADCs. These are a family of pin-compatible ADCs that can sample
+> > at rates up to 2.5 MSPS.
+> >
+> > The initial driver adds support for sampling at lower rates using the
+> > usual IIO triggered buffer and can handle all 3 possible reference
+> > voltage configurations.
+> >
+> > Signed-off-by: David Lechner <dlechner@baylibre.com>
+> > ---
+> >  MAINTAINERS              |   1 +
+> >  drivers/iio/adc/Kconfig  |  10 ++
+> >  drivers/iio/adc/Makefile |   1 +
+> >  drivers/iio/adc/ad7944.c | 397
+> > +++++++++++++++++++++++++++++++++++++++++++++++
+> >  4 files changed, 409 insertions(+)
+> >
+> > diff --git a/MAINTAINERS b/MAINTAINERS
+> > index 4f1e658e1e0d..83d8367595f1 100644
+> > --- a/MAINTAINERS
+> > +++ b/MAINTAINERS
+> > @@ -458,6 +458,7 @@ R:        David Lechner <dlechner@baylibre.com>
+> >  S:   Supported
+> >  W:   https://ez.analog.com/linux-software-drivers
+> >  F:   Documentation/devicetree/bindings/iio/adc/adi,ad7944.yaml
+> > +F:   drivers/iio/adc/ad7944.c
+> >
+> >  ADAFRUIT MINI I2C GAMEPAD
+> >  M:   Anshul Dalal <anshulusr@gmail.com>
+> > diff --git a/drivers/iio/adc/Kconfig b/drivers/iio/adc/Kconfig
+> > index 59ae1d17b50d..93fbe6f8e306 100644
+> > --- a/drivers/iio/adc/Kconfig
+> > +++ b/drivers/iio/adc/Kconfig
+> > @@ -280,6 +280,16 @@ config AD7923
+> >         To compile this driver as a module, choose M here: the
+> >         module will be called ad7923.
+> >
+> > +config AD7944
+> > +     tristate "Analog Devices AD7944 and similar ADCs driver"
+> > +     depends on SPI
+> > +     help
+> > +       Say yes here to build support for Analog Devices
+> > +       AD7944, AD7985, AD7986 ADCs.
+> > +
+> > +       To compile this driver as a module, choose M here: the
+> > +       module will be called ad7944
+> > +
+> >  config AD7949
+> >       tristate "Analog Devices AD7949 and similar ADCs driver"
+> >       depends on SPI
+> > diff --git a/drivers/iio/adc/Makefile b/drivers/iio/adc/Makefile
+> > index 5a26ab6f1109..52d803b92cd7 100644
+> > --- a/drivers/iio/adc/Makefile
+> > +++ b/drivers/iio/adc/Makefile
+> > @@ -29,6 +29,7 @@ obj-$(CONFIG_AD7780) +=3D ad7780.o
+> >  obj-$(CONFIG_AD7791) +=3D ad7791.o
+> >  obj-$(CONFIG_AD7793) +=3D ad7793.o
+> >  obj-$(CONFIG_AD7887) +=3D ad7887.o
+> > +obj-$(CONFIG_AD7944) +=3D ad7944.o
+> >  obj-$(CONFIG_AD7949) +=3D ad7949.o
+> >  obj-$(CONFIG_AD799X) +=3D ad799x.o
+> >  obj-$(CONFIG_AD9467) +=3D ad9467.o
+> > diff --git a/drivers/iio/adc/ad7944.c b/drivers/iio/adc/ad7944.c
+> > new file mode 100644
+> > index 000000000000..67b525fb8e59
+> > --- /dev/null
+> > +++ b/drivers/iio/adc/ad7944.c
+> > @@ -0,0 +1,397 @@
+> > +// SPDX-License-Identifier: GPL-2.0-only
+> > +/*
+> > + * Analog Devices AD7944/85/86 PulSAR ADC family driver.
+> > + *
+> > + * Copyright 2024 Analog Devices, Inc.
+> > + * Copyright 2024 Baylibre, SAS
+> > + */
+> > +
+> > +#include <linux/bitfield.h>
+> > +#include <linux/bitops.h>
+> > +#include <linux/delay.h>
+> > +#include <linux/device.h>
+> > +#include <linux/err.h>
+> > +#include <linux/gpio/consumer.h>
+> > +#include <linux/module.h>
+> > +#include <linux/property.h>
+> > +#include <linux/regulator/consumer.h>
+> > +#include <linux/spi/spi.h>
+> > +
+> > +#include <linux/iio/iio.h>
+> > +#include <linux/iio/sysfs.h>
+> > +#include <linux/iio/trigger_consumer.h>
+> > +#include <linux/iio/triggered_buffer.h>
+> > +
+> > +#define AD7944_INTERNAL_REF_MV               4096
+> > +
+> > +struct ad7944_timing_spec {
+> > +     /* Normal mode minimum CNV pulse width in nanoseconds. */
+> > +     unsigned int cnv_ns;
+> > +     /* TURBO mode minimum CNV pulse width in nanoseconds. */
+> > +     unsigned int turbo_cnv_ns;
+> > +};
+> > +
+> >
+>
+> ...
+>
+> > +}
+> > +
+> > +static int ad7944_single_conversion(struct ad7944_adc *adc,
+> > +                                 const struct iio_chan_spec *chan,
+> > +                                 int *val)
+> > +{
+> > +     int ret;
+> > +
+> > +     ret =3D ad7944_4_wire_mode_conversion(adc, chan);
+> > +     if (ret)
+> > +             return ret;
+> > +
+> > +     if (chan->scan_type.storagebits > 16)
+> > +             *val =3D adc->sample.raw.u32;
+> > +     else
+> > +             *val =3D adc->sample.raw.u16;
+> > +
+>
+> Will this work both in big vs little endian archs? I don't think so but m=
+aybe
+> I'm missing something. At a first glance, it seems we get big endian from=
+ spi so
+> shouldn't we have __be16 and __be32?
 
-OK so in some previous Exynos SoCs chipid had its own separate memory
-mapped SFRs as well as being present in the OTP area?
-
->  Although I am not entirely sure about that, either.
-> Depends whether they share clocks, for example.
-
-This address is the OTP area, and I can't see chipid regs mentioned
-anywhere else in the memory map other than OTP. Unfortunately there
-are lots of separate docs for different IP blocks, so it isn't just a
-case of searching a giant SoC TRM pdf.
-
-e850 though looks to be the same (the address defined in DT is the otp
-area), that is one large PDF and the chipid regs aren't mentioned
-anywhere else, Given the chipid reg offset is the same (0x10000000)
-for exynosautov9.dtsi, exynosautov920.dtsi, exynos850.dtsi, exynos7885
-and exynos5433 I suspect this could be the same for all those SoCs as
-well.
+Yes, in Linux SPI words are always CPU-endian. It is the drivers that
+use 8-bit transfers to read 16 bits that need to handle big-endian
+swapping. But here we are using 14/16/18 bit transfers.
 
 >
-> I don't have any GS101 information so I don't know what's there. It
-> seems you ask me to give you decision based on guessing... If you have
-> one block, so if there is OTP, which contains ChipID, then define OTP.
-
-I believe there is one block that contains ChipID, therefore based on
-the above info we should define full OTP size?
-
-> Not ChipID+OTP.
+> > +     if (chan->scan_type.sign =3D=3D 's')
+> > +             *val =3D sign_extend32(*val, chan->scan_type.realbits - 1=
+);
+> > +
+> > +     return IIO_VAL_INT;
+> > +}
+> > +
+> > +static int ad7944_read_raw(struct iio_dev *indio_dev,
+> > +                        const struct iio_chan_spec *chan,
+> > +                        int *val, int *val2, long info)
+> > +{
+> > +     struct ad7944_adc *adc =3D iio_priv(indio_dev);
+> > +     int ret;
+> > +
+> > +     switch (info) {
+> > +     case IIO_CHAN_INFO_RAW:
+> > +             ret =3D iio_device_claim_direct_mode(indio_dev);
+> > +             if (ret)
+> > +                     return ret;
+> > +
 >
-> I think Exynos850 DTSI is wrong here. That's OTP block, not ChipID.
+> I'm not totally sure but I think Jonathan already merged his series for t=
+he
+> cleanup stuff for the claim direct mode. Maybe take a look and use it? No=
+t a big
+> win in here but I guess we could still reduce some LOC.
 
-Yes agreed, and quite possibly the other Exynos SoCs as well.
+Yes, if it is merged already, happy to make use of it here.
 
-Thanks,
+>
+> > +             ret =3D ad7944_single_conversion(adc, chan, val);
+> > +             iio_device_release_direct_mode(indio_dev);
+> > +             return ret;
+> > +
+> > +     case IIO_CHAN_INFO_SCALE:
+> > +             switch (chan->type) {
+> > +             case IIO_VOLTAGE:
+> > +                     *val =3D adc->ref_mv;
+> > +                     *val2 =3D chan->scan_type.realbits;
+> > +
+> > +                     return IIO_VAL_FRACTIONAL_LOG2;
+> > +             default:
+> > +                     return -EINVAL;
+> > +             }
+> > +
+> > +     default:
+> > +             return -EINVAL;
+> > +     }
+> > +}
+> > +
+> > +static const struct iio_info ad7944_iio_info =3D {
+> > +     .read_raw =3D &ad7944_read_raw,
+> > +};
+> > +
+> > +static irqreturn_t ad7944_trigger_handler(int irq, void *p)
+> > +{
+> > +     struct iio_poll_func *pf =3D p;
+> > +     struct iio_dev *indio_dev =3D pf->indio_dev;
+> > +     struct ad7944_adc *adc =3D iio_priv(indio_dev);
+> > +     int ret;
+> > +
+> > +     ret =3D ad7944_4_wire_mode_conversion(adc, &indio_dev->channels[0=
+]);
+> > +     if (ret)
+> > +             goto out;
+> > +
+> > +     iio_push_to_buffers_with_timestamp(indio_dev, &adc->sample.raw,
+> > +                                        indio_dev->scan_timestamp);
+> > +
+> > +out:
+> > +     iio_trigger_notify_done(indio_dev->trig);
+> > +
+> > +     return IRQ_HANDLED;
+> > +}
+> > +
+> > +static const char * const ad7944_power_supplies[] =3D {
+> > +     "avdd", "dvdd", "bvdd", "vio"
+> > +};
+> > +
+> > +static void ad7944_ref_disable(void *ref)
+> > +{
+> > +     regulator_disable(ref);
+> > +}
+> > +
+> > +static int ad7944_probe(struct spi_device *spi)
+> > +{
+> > +     const struct ad7944_chip_info *chip_info;
+> > +     struct iio_dev *indio_dev;
+> > +     struct ad7944_adc *adc;
+> > +     struct regulator *ref;
+> > +     const char *str_val;
+> > +     int ret;
+> > +
+> > +     /* adi,spi-mode property defaults to "4-wire" if not present */
+> > +     if (device_property_read_string(&spi->dev, "adi,spi-mode", &str_v=
+al)
+> > < 0)
+> > +             str_val =3D "4-wire";
+> > +
+> > +     if (strcmp(str_val, "4-wire"))
+> > +             return dev_err_probe(&spi->dev, -EINVAL,
+> > +                                  "only \"4-wire\" mode is currently
+> > supported\n");
+>
+> Did you looked at spi core? I guess the chain mode is not available but I=
+IRC spi
+> already has spi-3wire. So maybe you could just have a boolean property fo=
+r the
+> chain mode and check both that and 3wire?
 
-Peter.
+I used the term "3-wire" because that is what the datasheet calls it,
+but it is not the same as what the SPI core calls SPI_3WIRE. The
+former is described in the DT bindings patch in this series and the
+latter means that SDI and SDO are on the same pin, which is not the
+case here.
+
+>
+> > +
+> > +     indio_dev =3D devm_iio_device_alloc(&spi->dev, sizeof(*adc));
+> > +     if (!indio_dev)
+> > +             return -ENOMEM;
+> > +
+> > +     adc =3D iio_priv(indio_dev);
+> > +     adc->spi =3D spi;
+> > +
+> > +     chip_info =3D spi_get_device_match_data(spi);
+> > +     if (!chip_info)
+> > +             return dev_err_probe(&spi->dev, -EINVAL, "no chip info\n"=
+);
+> > +
+> > +     adc->t =3D chip_info->t;
+> > +
+> > +     /*
+> > +      * Some chips use unusual word sizes, so check now instead of wai=
+ting
+> > +      * for the first xfer.
+> > +      */
+> > +     if (!spi_is_bpw_supported(spi, chip_info-
+> > >channels[0].scan_type.realbits))
+> > +             return dev_err_probe(&spi->dev, -EINVAL,
+> > +                             "SPI host does not support %d bits per
+> > word\n",
+> > +                             chip_info->channels[0].scan_type.realbits=
+);
+> > +
+> > +     ret =3D devm_regulator_bulk_get_enable(&spi->dev,
+> > +
+> > ARRAY_SIZE(ad7944_power_supplies),
+> > +                                          ad7944_power_supplies);
+> > +     if (ret)
+> > +             return dev_err_probe(&spi->dev, ret,
+> > +                                  "failed to get and enable supplies\n=
+");
+> > +
+> > +     /* adi,reference property defaults to "internal" if not present *=
+/
+> > +     if (device_property_read_string(&spi->dev, "adi,reference", &str_=
+val)
+> > < 0)
+> > +             str_val =3D "internal";
+> > +
+> > +     /* sort out what is being used for the reference voltage */
+> > +     if (strcmp(str_val, "internal") =3D=3D 0) {
+>
+> Maybe you can make the code neater with match_string() and some enum...
+
+I did not know about this function. Sounds useful.
+
+>
+> - Nuno S=C3=A1
+>
 
