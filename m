@@ -1,116 +1,184 @@
-Return-Path: <devicetree+bounces-39310-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-39311-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id CB65884C1C6
-	for <lists+devicetree@lfdr.de>; Wed,  7 Feb 2024 02:19:05 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4923584C1DB
+	for <lists+devicetree@lfdr.de>; Wed,  7 Feb 2024 02:25:18 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id E1544B24D0D
-	for <lists+devicetree@lfdr.de>; Wed,  7 Feb 2024 01:19:02 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id E910028804C
+	for <lists+devicetree@lfdr.de>; Wed,  7 Feb 2024 01:25:16 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4B65F5256;
-	Wed,  7 Feb 2024 01:18:21 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 172E72F58;
+	Wed,  7 Feb 2024 01:25:13 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=google.com header.i=@google.com header.b="E5jDfe4Q"
+	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="Bwt5UhpS"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-yb1-f201.google.com (mail-yb1-f201.google.com [209.85.219.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id ACAF1EEC6
-	for <devicetree@vger.kernel.org>; Wed,  7 Feb 2024 01:18:19 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.219.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2BD9ADF44;
+	Wed,  7 Feb 2024 01:25:10 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1707268701; cv=none; b=lD5F/Qs2U/uhDc4qREF5BXqVI7LYzRk07keB/K7Mc7Zh4cdirhPPIKg3+jDJ/8gnkk2ty8qziC2Je38CbiEqyHzy06LKD7Ksy1QKmfyj971hZKPW/ipxa7mUXo/byuRTWGjhxASqWrqNF/Eiq6Ja4M5+P2kfNxKcUKNGYT17i50=
+	t=1707269113; cv=none; b=eP3Hv84hNWH8h9XS7p6LZ/FyTBEw1OpDctx7ksBKD7sVZolNQMYF8lv7e5pb0Yfv4kQ4Aw8n29wsQeFrxzRiXO0rBCE2wbwpx5mUbxIkxePkc8pewWYCWmUXIB7HM0chJsAuAGPBQajhTVyLSFwiO9Sl4yr5cR7MXHb6xOAo6Jo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1707268701; c=relaxed/simple;
-	bh=JJyqqsDhj00w4rvbp0+xvDd5ul7th/oRNUlKqIehj68=;
-	h=Date:In-Reply-To:Message-Id:Mime-Version:References:Subject:From:
-	 To:Cc:Content-Type; b=AYsa6hCOpkC1v+tWrhTSE2vAfIyj87HBPQ79UiqJ1pW3YApac/2RFQIOERKgvWLYdZGIwXicDvAJWaE77b+NrrtbxipswSpTAJa2rkkKLi74GRd74vruubw9cVvN/D8myJcBuVIFW7NeeRnnJL84B0C9LNstSK/3ONPQm7ciZI0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=google.com; spf=pass smtp.mailfrom=flex--saravanak.bounces.google.com; dkim=pass (2048-bit key) header.d=google.com header.i=@google.com header.b=E5jDfe4Q; arc=none smtp.client-ip=209.85.219.201
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=google.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=flex--saravanak.bounces.google.com
-Received: by mail-yb1-f201.google.com with SMTP id 3f1490d57ef6-dc6cd00633dso129398276.3
-        for <devicetree@vger.kernel.org>; Tue, 06 Feb 2024 17:18:19 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=google.com; s=20230601; t=1707268699; x=1707873499; darn=vger.kernel.org;
-        h=cc:to:from:subject:references:mime-version:message-id:in-reply-to
-         :date:from:to:cc:subject:date:message-id:reply-to;
-        bh=IALq/oq3h9hevE4KUuaY6CyXWslIu36itE2hrGdOodc=;
-        b=E5jDfe4QTJG4YayQayIPixvd9ItLqfrS5RRQcPItL8/NDiKG6yRM/W8eKiAxSyDZnu
-         b4yjEQpoOcU3Q2omAWegWR7h81HwwhWuF6n07HPNOSDzzDM+v0/TjjwihmEWOjvWbV5R
-         uA0jnxWx8LYpd7WvX/ewEAbVM5sF4ik4oOcPQ21KbddH7a+iedpS7km5CY8wUkjrvJsA
-         W3h+ZfhfEBIPknIsd8ejRv1ALQ7lrlKEdMly1DIQ320xNbg9Tsb7XPwQS95y2axZm+Ut
-         gOgQNy5JsRPMpM4hFH0EvhEbo56TMEUc7wTQ/tGcqob5AURFq3xtOP2kL4ojRn9aja1W
-         e95g==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1707268699; x=1707873499;
-        h=cc:to:from:subject:references:mime-version:message-id:in-reply-to
-         :date:x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=IALq/oq3h9hevE4KUuaY6CyXWslIu36itE2hrGdOodc=;
-        b=ZRI4JxI+ZfSPuoGuHGqOPWJTMG5ve3n1Fgw4BDXfo8pQ62uqsswuqEPM2XKaCMweWP
-         MEfoM3EfHdCU9hxoN5WSqbNrv2XwbKNnxckRnukJntlnyugVL2uN9KzSFl7nAklhMjDM
-         zEC1jFpgqceDAQUWJWhdeRyL0iOUCFH8tP9LXU0JvijUSaiMAvhaKzVHYnnXjdraTH23
-         bn8TkBt/5UfxOu0DRHgox2j0akFSDR6q9jK5bsGu1beCUzUM2TU9NYTvHWSC1YEgrrBJ
-         kw2mfI/j2a4CVVh9a5YtHacSeh5YewqOUsI360ryyUVKb3ItOZ7A+vLXjestzX9JrRXB
-         fGNw==
-X-Gm-Message-State: AOJu0YxIzFRet5I0kXvkOP0pEB8uU598nAqVQufFX1c2pSt4XdOL7Lb8
-	7EZF/4XbZad0aivqZU+h5TnlZ5v8FPYl1OVMSBid7brDmBX2i1HcSOsz74qOcBcERFQo1kGcmuO
-	YIOVihDVr7wExtg==
-X-Google-Smtp-Source: AGHT+IEfm4a88rUxhBt5lCf6gJ1kr+tZtTsbpaQYiZFB+DmCUF8SDTSzroVYIOyQjAf9f6G+i1LFC0K/MS0Wz2g=
-X-Received: from saravanak.san.corp.google.com ([2620:15c:2d:3:dc84:66b8:120:935a])
- (user=saravanak job=sendgmr) by 2002:a05:6902:168b:b0:dc6:d7a2:bc2 with SMTP
- id bx11-20020a056902168b00b00dc6d7a20bc2mr141599ybb.9.1707268698853; Tue, 06
- Feb 2024 17:18:18 -0800 (PST)
-Date: Tue,  6 Feb 2024 17:18:02 -0800
-In-Reply-To: <20240207011803.2637531-1-saravanak@google.com>
-Message-Id: <20240207011803.2637531-4-saravanak@google.com>
+	s=arc-20240116; t=1707269113; c=relaxed/simple;
+	bh=YNWm7VCwUiMbQ4q8yVKywcJhspzvtPPmE2IpmVn/494=;
+	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
+	 In-Reply-To:Content-Type; b=SWhJHLViH1NqaELIPvgpNKusgfJq/xnsVjwWu7+RUQLKUI9XzmL6eXl3GF7UFo/d8qnOwrTIMcFgscTZOiapIDy0JMdo6+4iFGLSRL86OGtNOtvPtTGp/Ey+MHl1NQoGGs6PhaggZgepndAblqtx/ae1p2zQXJbTd3yFCSmU1Eo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=Bwt5UhpS; arc=none smtp.client-ip=205.220.180.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
+Received: from pps.filterd (m0279869.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.17.1.24/8.17.1.24) with ESMTP id 416N9VN0028901;
+	Wed, 7 Feb 2024 01:24:49 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
+	message-id:date:mime-version:subject:to:cc:references:from
+	:in-reply-to:content-type:content-transfer-encoding; s=
+	qcppdkim1; bh=IgPl62Ica5DUxeR7iWfeniS7QkgQTS2Ho8V6ORfH3XA=; b=Bw
+	t5UhpSEDOH4ZP8oIiK5+UqhoT8yL35uL3wgR2YDVILcXOFHxpkgzm2HDIBItbNec
+	FCow4tRU+0pYxlA4ZZnC/Sj1eIWKb5afDzpODwBQ8W0Fu5HcAKm+0RWGORHiM6AA
+	0PB/2k+TKStetZoxOEmYvNSTxoWfXHXQFWX1OQ50NsGEMPAE18bswMIZyeDoGR2+
+	s7ClufMfQ9Fh1OhGJsNHkIgmJqwMUy0Kbp1H5TCx4QMgahhqPP6CMh+maGKybssQ
+	aYosRASaNeW0XR0s/+w5vPhqaPkX97mu8G5KxKRgVx7mLoybtvhwxAXgW+peGxAL
+	Ej5F7DeHuGoYO3eVGgJA==
+Received: from nalasppmta01.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3w3ub6gh8j-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Wed, 07 Feb 2024 01:24:49 +0000 (GMT)
+Received: from nalasex01b.na.qualcomm.com (nalasex01b.na.qualcomm.com [10.47.209.197])
+	by NALASPPMTA01.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 4171Ol18029927
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Wed, 7 Feb 2024 01:24:47 GMT
+Received: from [10.110.7.251] (10.80.80.8) by nalasex01b.na.qualcomm.com
+ (10.47.209.197) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1118.40; Tue, 6 Feb
+ 2024 17:24:47 -0800
+Message-ID: <dbe544de-dc04-59a8-6642-883fc00214f3@quicinc.com>
+Date: Tue, 6 Feb 2024 17:24:46 -0800
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-Mime-Version: 1.0
-References: <20240207011803.2637531-1-saravanak@google.com>
-X-Mailer: git-send-email 2.43.0.594.gd9cf4e227d-goog
-Subject: [PATCH v2 3/3] of: property: Add in-ports/out-ports support to of_graph_get_port_parent()
-From: Saravana Kannan <saravanak@google.com>
-To: Rob Herring <robh+dt@kernel.org>, Frank Rowand <frowand.list@gmail.com>, 
-	Greg Kroah-Hartman <gregkh@linuxfoundation.org>, Saravana Kannan <saravanak@google.com>
-Cc: Xu Yang <xu.yang_2@nxp.com>, kernel-team@android.com, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
+MIME-Version: 1.0
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:91.0) Gecko/20100101
+ Thunderbird/91.9.1
+Subject: Re: [PATCH v13 48/53] ALSA: usb-audio: mixer: Add USB offloading
+ mixer control
+Content-Language: en-US
+To: Takashi Iwai <tiwai@suse.de>
+CC: <srinivas.kandagatla@linaro.org>, <mathias.nyman@intel.com>,
+        <perex@perex.cz>, <conor+dt@kernel.org>, <corbet@lwn.net>,
+        <lgirdwood@gmail.com>, <andersson@kernel.org>,
+        <krzysztof.kozlowski+dt@linaro.org>, <gregkh@linuxfoundation.org>,
+        <Thinh.Nguyen@synopsys.com>, <broonie@kernel.org>,
+        <bgoswami@quicinc.com>, <tiwai@suse.com>, <robh+dt@kernel.org>,
+        <konrad.dybcio@linaro.org>, <linux-kernel@vger.kernel.org>,
+        <devicetree@vger.kernel.org>, <linux-sound@vger.kernel.org>,
+        <linux-usb@vger.kernel.org>, <linux-arm-msm@vger.kernel.org>,
+        <linux-doc@vger.kernel.org>, <alsa-devel@alsa-project.org>
+References: <20240203023645.31105-1-quic_wcheng@quicinc.com>
+ <20240203023645.31105-49-quic_wcheng@quicinc.com>
+ <871q9pwy0l.wl-tiwai@suse.de>
+From: Wesley Cheng <quic_wcheng@quicinc.com>
+In-Reply-To: <871q9pwy0l.wl-tiwai@suse.de>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 7bit
+X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
+ nalasex01b.na.qualcomm.com (10.47.209.197)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-GUID: bVpCbC7ibiiisGB-GI8oyNyTNgqoj7sy
+X-Proofpoint-ORIG-GUID: bVpCbC7ibiiisGB-GI8oyNyTNgqoj7sy
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.272,Aquarius:18.0.1011,Hydra:6.0.619,FMLib:17.11.176.26
+ definitions=2024-02-06_16,2024-01-31_01,2023-05-22_02
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 mlxlogscore=999 adultscore=0
+ spamscore=0 bulkscore=0 priorityscore=1501 phishscore=0 clxscore=1015
+ malwarescore=0 lowpriorityscore=0 suspectscore=0 impostorscore=0
+ mlxscore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.19.0-2401310000 definitions=main-2402070009
 
-Similar to the existing "ports" node name, coresight device tree bindings
-have added "in-ports" and "out-ports" as standard node names for a
-collection of ports.
+Hi Takashi,
 
-Add support for these name to of_graph_get_port_parent() so that
-remote-endpoint parsing can find the correct parent node for these
-coresight ports too.
+On 2/6/2024 4:57 AM, Takashi Iwai wrote:
+> On Sat, 03 Feb 2024 03:36:40 +0100,
+> Wesley Cheng wrote:
+>>
+>> In order to allow userspace/applications know about USB offloading status,
+>> expose a sound kcontrol that fetches information about which sound card
+>> index is associated with the ASoC platform card supporting offloading.  In
+>> the USB audio offloading framework, the ASoC BE DAI link is the entity
+>> responsible for registering to the SOC USB layer.  SOC USB will expose more
+>> details about the current offloading status, which includes the USB sound
+>> card and USB PCM device indexes currently being used.
+>>
+>> Signed-off-by: Wesley Cheng <quic_wcheng@quicinc.com>
+> 
+> The concept is understandable, but the control element name ("SNDUSB
+> OFFLD playback available") looks non-intrusive and non-conformant.
+> Use a bit more understandable name instead.
+> 
+> This provides a card number where the offload driver is bound, and the
+> name should indicate something about that.
+> 
 
-Signed-off-by: Saravana Kannan <saravanak@google.com>
----
- drivers/of/property.c | 4 +++-
- 1 file changed, 3 insertions(+), 1 deletion(-)
+Hmmm, does USB sound have a naming convention that it usually follows 
+for mixer/control interfaces?
 
-diff --git a/drivers/of/property.c b/drivers/of/property.c
-index 7bb2d8e290de..39a3ee1dfb58 100644
---- a/drivers/of/property.c
-+++ b/drivers/of/property.c
-@@ -763,7 +763,9 @@ struct device_node *of_graph_get_port_parent(struct device_node *node)
- 	/* Walk 3 levels up only if there is 'ports' node. */
- 	for (depth = 3; depth && node; depth--) {
- 		node = of_get_next_parent(node);
--		if (depth == 2 && !of_node_name_eq(node, "ports"))
-+		if (depth == 2 && !of_node_name_eq(node, "ports") &&
-+		    !of_node_name_eq(node, "in-ports") &&
-+		    !of_node_name_eq(node, "out-ports"))
- 			break;
- 	}
- 	return node;
--- 
-2.43.0.594.gd9cf4e227d-goog
+For something that is more closely related, how about:
+"USB offload capable card"
 
+> Also, about the implementation:
+> 
+>> +static int
+>> +snd_usb_offload_create_mixer(struct usb_mixer_interface *mixer,
+>> +		       const struct snd_kcontrol_new *new_kctl)
+>> +{
+>> +	struct snd_kcontrol *kctl;
+>> +	struct usb_mixer_elem_info *elem;
+>> +
+>> +	elem = kzalloc(sizeof(struct usb_mixer_elem_info), GFP_KERNEL);
+>> +	if (!elem)
+>> +		return -ENOMEM;
+>> +
+>> +	elem->head.mixer = mixer;
+>> +	elem->val_type = USB_MIXER_S32;
+>> +	elem->control = 0;
+>> +	elem->head.id = 0;
+>> +	elem->channels = 1;
+>> +
+>> +	kctl = snd_ctl_new1(new_kctl, elem);
+>> +	if (!kctl) {
+>> +		kfree(elem);
+>> +		return -ENOMEM;
+>> +	}
+>> +	kctl->private_free = snd_usb_mixer_elem_free;
+>> +
+>> +	return snd_usb_mixer_add_control(&elem->head, kctl);
+> 
+> This control has almost little to do with the standard USB interface,
+> and it'll be much simpler if you create a raw control element.
+> Pass the bus or the sysdev to private_data, and that's all you need in
+> the get callback.
+> 
+
+Sure, I'll remove the need to register over the SND USB mixer API, and 
+just use the core SND control APIs.
+
+> Also, don't forget to set the proper access bits (it's read-only).
+> 
+
+Thanks for pointing this out, will fix.
+
+Thanks
+Wesley Cheng
+
+> 
+> thanks,
+> 
+> Takashi
 
