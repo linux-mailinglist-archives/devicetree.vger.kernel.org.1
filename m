@@ -1,49 +1,49 @@
-Return-Path: <devicetree+bounces-39528-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-39529-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id AA2C684D4B9
-	for <lists+devicetree@lfdr.de>; Wed,  7 Feb 2024 22:52:11 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 87B9084D4C1
+	for <lists+devicetree@lfdr.de>; Wed,  7 Feb 2024 22:52:56 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id D0A781C222FD
-	for <lists+devicetree@lfdr.de>; Wed,  7 Feb 2024 21:52:10 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 42B192830A8
+	for <lists+devicetree@lfdr.de>; Wed,  7 Feb 2024 21:52:55 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 50F9815CB94;
-	Wed,  7 Feb 2024 21:25:56 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 00822160887;
+	Wed,  7 Feb 2024 21:26:00 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="WJlCtETy"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="hl3hCxpQ"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 248BF15CB8E;
-	Wed,  7 Feb 2024 21:25:56 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CBDEE15DF1D;
+	Wed,  7 Feb 2024 21:25:59 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1707341156; cv=none; b=KCYmrsFLIvA3BkikUSwsd0X/gElTmWBixscVg9ADmnN8zd9IbCXs0dtUE8FiHbSn4zXgkOaNpDEiPlcEnbboYyxEl1w77BQwR0U7BbMwpuAXgndVWOwcWUSRMBtshpl4Qcivoo08Ty5qnpWCQifSx9UHvCQypKFSOrpNYUe4hHA=
+	t=1707341159; cv=none; b=c4KJODKMHCt7mDBrgiRAULtMsheFtL1pinEJL4n5AEZs8cG/UGOB9278fIhvcJ0ogPDyL02R5upYuOJjUSxAUR2IhdUHtWyi4kvJk7zjsUqAbqs1oKUPXeosFjzOfoa7oXQS0EpzYbJPeh7G42L8GUxHtdaYlIliTvQON29gD3s=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1707341156; c=relaxed/simple;
-	bh=o8H4o09pkLeXy0frODGluKudoPi9PzNvii1yKYW0Lj0=;
+	s=arc-20240116; t=1707341159; c=relaxed/simple;
+	bh=e+Z2YkeWHVp4lNUuM47W5BZGrVfrvL38YMqC+CmljIM=;
 	h=Date:Content-Type:MIME-Version:From:To:Cc:In-Reply-To:References:
-	 Message-Id:Subject; b=p+g+EA7jiO2bhIAtplg8e2ft8fwifKa0s6rP9AYMyUqPzNWLhHAIsDO3rlZ8Ib1GUUJ/rMJ8hsiQP3q/WauQijA8h6IP4bfsrCWUo6rf7ySLpj0/fXnSGptrC3O1RI2TOzxEg1rot5IU8oDgiYnMKiO+OlDjCxylX5c8CvszE+Q=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=WJlCtETy; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 779B8C433A6;
-	Wed,  7 Feb 2024 21:25:55 +0000 (UTC)
+	 Message-Id:Subject; b=sUHR9DSy2Z77X+8Lb9baipiplf3U/sTHBGk6h+ySO9XLOS38xUOa4qDEoX099C1T8lL9oIDxox9JFCvPe1uOtfA4hEM6EhoVd6ZeVRIrO+S+qsIy27oXYtjzNwx44wPr6Qo1fmDUFWCq72d9ZxS8RdVIdvx7RiaJ6igAj6clhb8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=hl3hCxpQ; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 24EA9C433C7;
+	Wed,  7 Feb 2024 21:25:58 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1707341156;
-	bh=o8H4o09pkLeXy0frODGluKudoPi9PzNvii1yKYW0Lj0=;
+	s=k20201202; t=1707341159;
+	bh=e+Z2YkeWHVp4lNUuM47W5BZGrVfrvL38YMqC+CmljIM=;
 	h=Date:From:To:Cc:In-Reply-To:References:Subject:From;
-	b=WJlCtETyglI9CUyxAiNpStKaFOkznG4fLAhkcnYvWPyUx+NxNcee6IJe7iomn2NvO
-	 9iOGfbTdAqrj+eGjS0mhBhkmW1h96EqDclNYMHjQT67YbHIaXUOs9HDPEsjpxmxmdx
-	 hDkjNALZIPL7j1Ko4fCH3pGL8Yk/rqRECsQd72uxQBWNpgBTCWE0uwYROCvz6QKzxe
-	 J7JEC4TzxR/12ND3tr4VOo8XJ/XJe1FgZ5rZxiwZhXO0zxgAaIUeFWN6saFIMgV217
-	 dbag2poBlAKhjuMPEzqK9Nivc4AHks2ZlTsll3eyMmrz021A3wFKgJaqgprYBDJz90
-	 l1IqlucNJ1Hyw==
-Date: Wed, 07 Feb 2024 21:25:53 +0000
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
+	b=hl3hCxpQs3nZiA1Cfh0NDG/eOrfjD5H7qfTLdu8uBoKH62DkZVPbLOFWSJkCqWVDC
+	 0NBRSeCa80sfou54B9gt34GlGZX/eL5vgUpGfOL4kIqwo/kz+nqpvLKkrk61p0Awzd
+	 4yFlThgspST435hR4UowPVFyg16910/+x+tInsLegxwhlzY/GvCa3e48BEe8OkgxSK
+	 lrzM1GB8mb6f6hnK2seoSg+TGObb3ntQEVkwod+rPx7S2ljkSNwfNze4lsXenYPpK6
+	 3ubDyh+FJhVhZnP672fLPJ2hINoIN8ZJyRJliOWVVCz0YEJPCdVprpeXlcaGShcVEG
+	 tOlDrkGbaalqQ==
+Date: Wed, 07 Feb 2024 21:25:57 +0000
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -51,29 +51,31 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 From: Rob Herring <robh@kernel.org>
-To: Dimitri Fedrau <dima.fedrau@gmail.com>
-Cc: linux-iio@vger.kernel.org, 
+To: Charles Perry <charles.perry@savoirfairelinux.com>
+Cc: Rob Herring <robh+dt@kernel.org>, avandiver@markem-imaje.com, 
+ bcody@markem-imaje.com, mdf@kernel.org, linux-fpga@vger.kernel.org, 
+ kishore Manne <nava.kishore.manne@amd.com>, devicetree@vger.kernel.org, 
+ Wu Hao <hao.wu@intel.com>, 
  Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, 
- devicetree@vger.kernel.org, Rob Herring <robh+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, Jonathan Cameron <jic23@kernel.org>, 
- Lars-Peter Clausen <lars@metafoo.de>, Li peiyu <579lpy@gmail.com>, 
- Javier Carrasco <javier.carrasco.cruz@gmail.com>, 
- linux-kernel@vger.kernel.org, Nuno Sa <nuno.sa@analog.com>
-In-Reply-To: <20240207074758.4138724-3-dima.fedrau@gmail.com>
-References: <20240207074758.4138724-1-dima.fedrau@gmail.com>
- <20240207074758.4138724-3-dima.fedrau@gmail.com>
-Message-Id: <170734115194.3199410.700483085044705042.robh@kernel.org>
-Subject: Re: [PATCH v3 2/3] dt-bindings: iio: humidity: hdc3020: add
- interrupt bindings in example
+ linux-kernel@vger.kernel.org, Michal Simek <michal.simek@amd.com>, 
+ linux-arm-kernel@lists.infradead.org, Conor Dooley <conor+dt@kernel.org>, 
+ Tom Rix <trix@redhat.com>, Xu Yilun <yilun.xu@intel.com>
+In-Reply-To: <20240207180142.79625-5-charles.perry@savoirfairelinux.com>
+References: <20240207180142.79625-1-charles.perry@savoirfairelinux.com>
+ <20240207180142.79625-5-charles.perry@savoirfairelinux.com>
+Message-Id: <170734115258.3199432.9793593609172465868.robh@kernel.org>
+Subject: Re: [PATCH v3 4/5] dt-bindings: fpga: xlnx,fpga-selectmap: add DT
+ schema
 
 
-On Wed, 07 Feb 2024 08:47:52 +0100, Dimitri Fedrau wrote:
-> Add interrupt bindings in example.
+On Wed, 07 Feb 2024 13:01:27 -0500, Charles Perry wrote:
+> Document the SelectMAP interface of Xilinx 7 series FPGA.
 > 
-> Signed-off-by: Dimitri Fedrau <dima.fedrau@gmail.com>
+> Signed-off-by: Charles Perry <charles.perry@savoirfairelinux.com>
 > ---
->  Documentation/devicetree/bindings/iio/humidity/ti,hdc3020.yaml | 2 ++
->  1 file changed, 2 insertions(+)
+>  .../bindings/fpga/xlnx,fpga-selectmap.yaml    | 86 +++++++++++++++++++
+>  1 file changed, 86 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/fpga/xlnx,fpga-selectmap.yaml
 > 
 
 My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
@@ -82,16 +84,11 @@ on your patch (DT_CHECKER_FLAGS is new in v5.13):
 yamllint warnings/errors:
 
 dtschema/dtc warnings/errors:
-Error: Documentation/devicetree/bindings/iio/humidity/ti,hdc3020.example.dts:33.34-35 syntax error
-FATAL ERROR: Unable to parse input tree
-make[2]: *** [scripts/Makefile.lib:419: Documentation/devicetree/bindings/iio/humidity/ti,hdc3020.example.dtb] Error 1
-make[2]: *** Waiting for unfinished jobs....
-make[1]: *** [/builds/robherring/dt-review-ci/linux/Makefile:1428: dt_binding_check] Error 2
-make: *** [Makefile:240: __sub-make] Error 2
+Documentation/devicetree/bindings/fpga/xlnx,fpga-selectmap.example.dtb: /example-0/fpga-mgr@8000000: failed to match any schema with compatible: ['xlnx,fpga-selectmap']
 
 doc reference errors (make refcheckdocs):
 
-See https://patchwork.ozlabs.org/project/devicetree-bindings/patch/20240207074758.4138724-3-dima.fedrau@gmail.com
+See https://patchwork.ozlabs.org/project/devicetree-bindings/patch/20240207180142.79625-5-charles.perry@savoirfairelinux.com
 
 The base for the series is generally the latest rc1. A different dependency
 should be noted in *this* patch.
