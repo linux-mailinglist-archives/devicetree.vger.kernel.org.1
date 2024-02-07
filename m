@@ -1,74 +1,74 @@
-Return-Path: <devicetree+bounces-39472-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-39473-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1FC1D84CDC9
-	for <lists+devicetree@lfdr.de>; Wed,  7 Feb 2024 16:15:36 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 72F2E84CDE7
+	for <lists+devicetree@lfdr.de>; Wed,  7 Feb 2024 16:23:31 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 5301F1C2133D
-	for <lists+devicetree@lfdr.de>; Wed,  7 Feb 2024 15:15:35 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 976CA1C24EC3
+	for <lists+devicetree@lfdr.de>; Wed,  7 Feb 2024 15:23:30 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5A1E17F7C6;
-	Wed,  7 Feb 2024 15:15:28 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3C8A77F7DF;
+	Wed,  7 Feb 2024 15:23:25 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="y3uwWVhG"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="YQUmnG+x"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wr1-f41.google.com (mail-wr1-f41.google.com [209.85.221.41])
+Received: from mail-wm1-f47.google.com (mail-wm1-f47.google.com [209.85.128.47])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 88C417C096
-	for <devicetree@vger.kernel.org>; Wed,  7 Feb 2024 15:15:26 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.41
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 41B777F492
+	for <devicetree@vger.kernel.org>; Wed,  7 Feb 2024 15:23:23 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.47
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1707318928; cv=none; b=IuwIBNo6mWBQ0HkqGGIuVQYXC1rpF7y+XzDKFy+KhhQs/awVDupPjFp5SuUNalVqxehCdNXoXRIzUfzQiiRlkcTgFdt5RP1QJhSAJ5W7rKB2yk0AwjgOhmd/jh+/Vu8VpHm/pCtpvipIrlRfk4cZlCHvwwbTeOtk0rnQyMu25ro=
+	t=1707319405; cv=none; b=P9yAkbQDaIo1pCjN9uDoABe1bVN7MGqr9NyWNtey3a88YwaYoCZ/rj2FOUxRI1x0rfOw3pZ/mgxByuAKBEVoyPYM6+UELAzmSKhwRk5Z1TZwjlAqojIK782V2keBSgOPH4MR6fBSTH9OpOXSF6xbBmzOOZj+BZhHCsGelu6NNkk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1707318928; c=relaxed/simple;
-	bh=Ee6zdJvXpiG5HuRLWseEQDAdHe8kVEf++zpV/vNVZWg=;
-	h=Message-ID:Date:MIME-Version:Subject:To:References:From:
-	 In-Reply-To:Content-Type; b=i1bkalnn+Y7s9u2MWXgVziRGd9b47yuUoDXa7+falsD3DRxd+gmqtmD/TvTPnLKHZVZJfjxMZoC5g69fux37vGwS38nfNSoxqTPlBNLArzYj9lrSHY7iWAGumOTsP0zGQIx0NIkWi1AaitsXgJc3bJ1E8oqU/PkUkEQz0BeVWCI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=y3uwWVhG; arc=none smtp.client-ip=209.85.221.41
+	s=arc-20240116; t=1707319405; c=relaxed/simple;
+	bh=D1nHBy9BTEGJ6f8wgI2PA54FXtxwvMIUT6iWGXX6YOQ=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=oPOJbehx+ULAfon9EFoASL68pRqIJYnAQP34mpudOMdxGG+fm4zQuLdouNcycsTQ2Fnz4JLImxrWq+zTNFHFUxKATRCOwj4BYawI3Me3DpT4cZFyOPCiGQOYRgxuLumkLjChgjBje22qUpL+eMg1r0zDSWqMVeOYgVRbGBH7HUo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=YQUmnG+x; arc=none smtp.client-ip=209.85.128.47
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-wr1-f41.google.com with SMTP id ffacd0b85a97d-33934567777so518271f8f.1
-        for <devicetree@vger.kernel.org>; Wed, 07 Feb 2024 07:15:26 -0800 (PST)
+Received: by mail-wm1-f47.google.com with SMTP id 5b1f17b1804b1-40fd280421aso6511285e9.3
+        for <devicetree@vger.kernel.org>; Wed, 07 Feb 2024 07:23:23 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1707318924; x=1707923724; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:to
-         :content-language:subject:user-agent:mime-version:date:message-id
+        d=linaro.org; s=google; t=1707319401; x=1707924201; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
+         :to:content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=yVx0j6ksy+fPFmDjr9TzqWFPvcyfqzshrjkQRum4aQA=;
-        b=y3uwWVhGV1Kji5SNiMiQV60FUIIBMT3TyC7y4yf+Aw1UTVtr0FeAShYG3S6neQ5g79
-         wu22tNA6Dyk7u0QngaSaCfFfwwOnr6lNZMLunbhXV/9PAl01lsDKORMF+5a+s07U/JuG
-         4/OvVvjrUULAcyNkFpzQBWW7ZOuNi5jfRo9rwHuSWl6XvhpGu/CQTdfI4GCmTZJ/RJ1K
-         jLY01NzQd7ZqGjRulRwgpK/BRUTSaP9rWQGL4B3icqg0CritMGey6EdeGql4FV7KCWwL
-         yc2AILwo0FtiHFEsS0068PRhagHc3JZ3bI45GqM2nNJzUl2TeXa+5+ZD4ZlNp7Goshbh
-         tKaQ==
+        bh=mCvQlP1u/ahMkxnt3s+kY4WBZy5d0gK0JV7DH+GWHro=;
+        b=YQUmnG+xPxfjgPc1fZOyCPdUSG5gWG+pQ+cELWXQYiKQC4yzcgt02BnF/6tRRYczqG
+         XoSnnL0PnSKvxQLTcA0l9d54t73570VDiKfxVsZyk09V4icjuUYRWsnI9iw6jI8F5NRf
+         uCBQNkYND7QABEBg+ywLH2n0gpnTGcCRSMg7VFXyzoqGNrjJt6QD0pZGCAL+mZdi1WbP
+         e5EPeglkqxKnP7kt353NH4TS128SRXmVGlToa6AtLhUl2tnhSZ4k22IBa71Vr/KYnYDn
+         Q2K4R64MEvYUBxHPsmaKXx+IkPHU61gAp/0NkAfglkOGPfEbgVkLhUlc4nIykvzT+5qD
+         o8lA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1707318924; x=1707923724;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:to
-         :content-language:subject:user-agent:mime-version:date:message-id
+        d=1e100.net; s=20230601; t=1707319401; x=1707924201;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
+         :to:content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=yVx0j6ksy+fPFmDjr9TzqWFPvcyfqzshrjkQRum4aQA=;
-        b=iKyaPnO5XjHQXeV10BwYst0THWx/TUzgETyXb5Bunmby/D27eWkjuHY188wIr3I6iw
-         Xs204Tsqe7tlH0c6C+5k3KmXkbmu3RMsKje1QcCUBRAMFCqkg9Iweo+7wKHRub8V1N4E
-         WQjs/ET1Qqb3h2TQNhXycdMuxNUx80OxsdwyO+QND9QuoqlVQRk3pEAwm80yMkdYvwo4
-         tZeRh1LnsW324DDt9kjSUVV7bOhOSTUndMEJ9XSJpdq7v7dyx7CLjUPEbInrJaXhanry
-         vjJ7clZrkoi6qn5e7HuzWL7in8erlpvNwbTJcWqEfu7Vhe/xHduHVAktdYZmLWWds8jx
-         b3aw==
-X-Gm-Message-State: AOJu0YwCzIZ4SfWp14SMdqdAT8vc5y3qZasUIZ4M7FrYNJCMBsGHLkNQ
-	18V2k2SdsWlAhYSQiRrDLHR6iYM8VAU4sCosSy2COcX7ZkLgDSXIpAqyPu0RhYA=
-X-Google-Smtp-Source: AGHT+IHaxhBSKFF6bw/jMltRFvFdiYojKtEFlEkPjBte5M9Xxs5ibAsnQ5yOevTKDwqaID6Fc53OqQ==
-X-Received: by 2002:adf:ec88:0:b0:33a:e6e4:945d with SMTP id z8-20020adfec88000000b0033ae6e4945dmr4160304wrn.2.1707318924540;
-        Wed, 07 Feb 2024 07:15:24 -0800 (PST)
-X-Forwarded-Encrypted: i=1; AJvYcCWfiru0AQpeYhUI8vqrCoCLBLFe906Q4pjagcdMdTvfZP8cWIOreupvs9ep37jtkEe9KR7dvZE9oMUfT7mTPmecqF4TMnKFP+34F/5VsNn+omOvVcjxuEQW+IjuvY/yulut0dU1dkWKlkRG4z6lTWdz9x5xH2haZD5zWOCrWPGxZyAj01AbX6+LD6XP6mzHhBdGTVvlV1ZEfLK0zP+F8hPYMOePrCP2X0MdbsdG2zLwd8cJ05Hh81FDb6Dm7xINv9S+ON1+Dun7TcObVCG/3BVENQRXBlWc5k58EhgihF6xTIKd62+gImZyvnuGxOw5iRT16807Iax10PeY1BwBW3NSHeHmpUKyb7ci0qPfh8SvFSIlDHtgpWShpAzcUBdfgn/pMEk09p8AjJ2YZDRWYfNDHb8FFlXHk380SYVhdlzfo1wkk8RM0FL6zV9JuBjtYQM6RLctNRPkGMFSlyk8rRkNvtO/fe6g9UU=
+        bh=mCvQlP1u/ahMkxnt3s+kY4WBZy5d0gK0JV7DH+GWHro=;
+        b=TOV/h+ondabWtrMxuGgS/LSS/KTMJPteco3oJhmb7EdZgCAxXJ814v0YsnyY4WiHF+
+         Cd55OX4b7TBbI5xMhX7ldn/XQNcC6qMv/KR4squQZU58Ak2kJzKvn4TQeGcDW4q3CKp0
+         5lLJQ4CJRrTL69fVwApjmiF7o+c0SuismDJOcZhZmLaintO53tQK2G2qePx3VwPL+P5E
+         Q8lRVHOSuQMSt9SlX0ZsJvaJv2tpv1FWEss0aXMDkin9m2Jc5u9pbbQlNsNtck6UOU9v
+         7godejGetPOlocpqaNkpV2bBEzqJyuHhs9D+/FgpF26sGAEvzhJwbwMk+yefWPbv5C++
+         4l8A==
+X-Gm-Message-State: AOJu0YyBgJlF6rrZpSXaMrbRhoZ6U26MpJPvojDCGXfNjXMHmJ+eMyj8
+	qBmvMGCjgDOz4ix8L3OjIo5cP/fSaaPp6bzYlH39mHCPwYRdErQjHfJfHzO2LBA=
+X-Google-Smtp-Source: AGHT+IGNjyyB9/HI9xRkpYscVCCwB8DaNJjgYqtNY3P+rNPe1NY5dOlwlyA00QbTwbWNcMXClESO1A==
+X-Received: by 2002:a05:600c:5198:b0:40f:eb8c:71b4 with SMTP id fa24-20020a05600c519800b0040feb8c71b4mr3703239wmb.15.1707319401403;
+        Wed, 07 Feb 2024 07:23:21 -0800 (PST)
+X-Forwarded-Encrypted: i=1; AJvYcCWXDwo7H10qk/Re+HBBozFGkmpsK1Tyk/vJlHWPjxrhHeQORyYoFdTMgFa74InYKeAoQkHeVrninH1RWyWSkDXcxFBzKmbBq8KldAKaUHbEZVbItHJvLu3ihvpE+hcgmpP5yh3I4et3YFFk8t0XEqP+0bL/5UE67OeRUTy51YWbbfP8neqaFyKXweJVzaywHaq0tZAf+Y88ABsN56tRettYbTKGIXaeU7EhMNsJJssxRKPMJvn61ZpA7wgQEOd2hE0MLBjOLq6VlJKnEmgaurCHHJLx3RgDztmP5Qlr+ZEjGpQlm+nbfKr5Us7b3GCFvJB7Hui9zacrunpjhojPup03wGynY1s0WzNwq/Lbb6Ri5Hvuwnvh1WAxo482wnHLNjCm7CzugbP5zckSY36GaZq6O15GgbPRMLn44N2HFabQM1ssWUgi6sP1Q7+vr+oAJaVe8NbDzSAUuZB93dd20+dnj+nrcELNlhHJ2jlNV6z0AxohVP1gRmisjefOqDbSpvqqsbf036zZvZoJeEkSNREwD99LbD0+taOYJBKMDe5aO1k8XJr7s0VihUsxk1ye8kVE3QJyhs5MSvwmG+9LgKuF1Ki6KJgZdE+MvXHso+giaJP36+rE+bOygTadKkRCNA4CtLeNhjEyG73GJyLh+QugGcDaDvfbud1/OSmFg6qSga7CCVOFig==
 Received: from [192.168.1.20] ([178.197.222.62])
-        by smtp.gmail.com with ESMTPSA id k23-20020adfb357000000b0033b5008b5a1sm1292176wrd.94.2024.02.07.07.15.22
+        by smtp.gmail.com with ESMTPSA id b7-20020a05600010c700b0033b459e8f60sm1723604wrx.18.2024.02.07.07.23.19
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 07 Feb 2024 07:15:23 -0800 (PST)
-Message-ID: <982e81db-3bf9-49e9-b57f-a91612d62f5c@linaro.org>
-Date: Wed, 7 Feb 2024 16:15:21 +0100
+        Wed, 07 Feb 2024 07:23:20 -0800 (PST)
+Message-ID: <6feff535-d9d7-4f4c-8e7c-956c4bba1713@linaro.org>
+Date: Wed, 7 Feb 2024 16:23:18 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -76,17 +76,19 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH] dt-bindings: input: atmel,captouch: convert bindings to
- YAML
+Subject: Re: [PATCH v3 0/7] gs101 oriole: peripheral block 1 (peric1) and
+ i2c12 support
 Content-Language: en-US
-To: Dharma Balasubiramani <dharma.b@microchip.com>,
- dmitry.torokhov@gmail.com, robh+dt@kernel.org,
- krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
- nicolas.ferre@microchip.com, alexandre.belloni@bootlin.com,
- claudiu.beznea@tuxon.dev, linux-input@vger.kernel.org,
- devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- linux-kernel@vger.kernel.org
-References: <20240207090853.188400-1-dharma.b@microchip.com>
+To: =?UTF-8?Q?Andr=C3=A9_Draszik?= <andre.draszik@linaro.org>,
+ peter.griffin@linaro.org, mturquette@baylibre.com, sboyd@kernel.org,
+ robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org
+Cc: linux-kernel@vger.kernel.org, kernel-team@android.com,
+ tudor.ambarus@linaro.org, willmcvicker@google.com,
+ semen.protsenko@linaro.org, alim.akhtar@samsung.com, s.nawrocki@samsung.com,
+ tomasz.figa@gmail.com, cw00.choi@samsung.com,
+ linux-arm-kernel@lists.infradead.org, linux-samsung-soc@vger.kernel.org,
+ linux-clk@vger.kernel.org, devicetree@vger.kernel.org
+References: <20240201161258.1013664-1-andre.draszik@linaro.org>
 From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  xsFNBFVDQq4BEAC6KeLOfFsAvFMBsrCrJ2bCalhPv5+KQF2PS2+iwZI8BpRZoV+Bd5kWvN79
@@ -132,65 +134,35 @@ Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  KQ06ztUMRrj8eVtpImjsWCd0bDWRaaR4vqhCHvAG9iWXZu4qh3ipie2Y0oSJygcZT7H3UZxq
  fyYKiqEmRuqsvv6dcbblD8ZLkz1EVZL6djImH5zc5x8qpVxlA0A0i23v5QvN00m6G9NFF0Le
  D2GYIS41Kv4Isx2dEFh+/Q==
-In-Reply-To: <20240207090853.188400-1-dharma.b@microchip.com>
+In-Reply-To: <20240201161258.1013664-1-andre.draszik@linaro.org>
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
 
-On 07/02/2024 10:08, Dharma Balasubiramani wrote:
-> Convert the Atmel capacitive touchscreen bindings to YAML format.
+On 01/02/2024 17:11, André Draszik wrote:
+> Hi,
 > 
-> Signed-off-by: Dharma Balasubiramani <dharma.b@microchip.co
+> This patch series implements support for the 2nd connectivity
+> peripheral block on gs101.
+> This block contains an additional 6 USI, 1 I3C and 1 PWM
+> interfaces/busses.
+> 
+> i2cdetect shows all expected devices on the one i2c bus that this patch
+> series enables.
+> Everything that's in scope in this series works also without the
+> clk_ignore_unused kernel command line argument.
+> 
+> While working on this, I noticed the existing peric0 support for gs101
+> has a couple issues. That explains why there are differences compared
+> to it and a separate patch series has been sent to fix up peric0
+> support.
+> 
+> Cheers,
+> Andre'
+> 
+> Changes in v3:
+> - drop samsung,mode = <USI_V2_NONE> default assignment in patch #6
 
-Thank you for your patch. There is something to discuss/improve.
-
-> +
-> +properties:
-> +  compatible:
-> +    const: atmel,captouch
-> +
-> +  reg:
-> +    maxItems: 1
-> +
-> +  interrupts:
-> +    maxItems: 1
-> +
-> +  linux,keycodes:
-> +    minItems: 1
-> +    maxItems: 8
-> +
-> +  autorepeat:
-> +    type: boolean
-
-You can drop entire property, coming from input.yaml.
-
-> +
-> +required:
-> +  - compatible
-> +  - reg
-> +  - interrupts
-> +  - linux,keycodes
-> +
-> +additionalProperties: false
-
-Instead:
-unevaluatedProperties: false
-
-> +
-> +examples:
-> +  - |
-> +    #include <dt-bindings/interrupt-controller/irq.h>
-> +    #include <dt-bindings/input/linux-event-codes.h>
-> +    i2c {
-> +      #address-cells = <1>;
-> +      #size-cells = <0>;
-> +      atmel-captouch@51 {
-
-Instead:
-touchscreen? touchpad? if none of these, then just "touch@51"
-
-> +        compatible = "atmel,captouch";
-> +        reg = <0x51>;
-
+I am confused. I have "another" v3 with different changelog.
 
 Best regards,
 Krzysztof
