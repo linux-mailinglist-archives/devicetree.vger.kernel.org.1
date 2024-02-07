@@ -1,62 +1,61 @@
-Return-Path: <devicetree+bounces-39323-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-39324-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4754E84C3D9
-	for <lists+devicetree@lfdr.de>; Wed,  7 Feb 2024 05:47:44 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 321EC84C3DE
+	for <lists+devicetree@lfdr.de>; Wed,  7 Feb 2024 05:48:14 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 7A4CE1C25759
-	for <lists+devicetree@lfdr.de>; Wed,  7 Feb 2024 04:47:43 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id BCAE1B24DD2
+	for <lists+devicetree@lfdr.de>; Wed,  7 Feb 2024 04:48:11 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6D7121CF8A;
-	Wed,  7 Feb 2024 04:46:51 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C3D111D55E;
+	Wed,  7 Feb 2024 04:46:53 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="tEwZ19aE"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Ye5R67On"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 428611CD3D;
-	Wed,  7 Feb 2024 04:46:51 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8E10B1D555;
+	Wed,  7 Feb 2024 04:46:53 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1707281211; cv=none; b=CKfpBgJCwCyRUYzR9jxunkeT4bSJbHzSwID47+5/aVvID8CednT/TxxwVRm5kI/lf+QCLwO5OyfMoOdwmYNR/cKtnVAe8hCfU/paGcu9IenO/+mhmjPQeQackmM3YceY+X4L5I+I2M1Irs08Smc7+E9aisuDxcVXE0enxQ1AabA=
+	t=1707281213; cv=none; b=gVn9gsMXCBBwQYoBdQo1tpl88j+vEuleCbYds6rVzAXbjWTMzpb3kRvO9PnOurI+h38tn/rUBs1HDfV4MwFpO/gNI1b1sPJjUhidCPQbsFnAM23VeBT1fclMFPHqHrspbGVl914B5BrtNge8hmqb2bN4aZEpMcbCSU1GnNthNR8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1707281211; c=relaxed/simple;
-	bh=ZolLkX8+GJN1b/yf5VSGLzz4mFErT9IfSbvJWJhnSEQ=;
-	h=From:To:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=h2Pw89tWrMSYTF9UACA4fnKWxqyjQl08OtqE9Mainvv5KWbFk+HdwiREokMGUXWKfOE7v6Xb0BJ2tfN7sU3hA2/AilOw9WS0meE1xmVR9YBs4wfzqDIGB4T5PZ+TB2JXIulXdxgx1LvYSaMmmlrLK3DflxFpvgKxS1xMbRnXyN0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=tEwZ19aE; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 3BD38C433F1;
-	Wed,  7 Feb 2024 04:46:50 +0000 (UTC)
+	s=arc-20240116; t=1707281213; c=relaxed/simple;
+	bh=yARU6n8c5B9oVUAuwlcpmOl806MC3uGXsMsn8CkJnGY=;
+	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=q0fG9KaSaHSLyMwvzsYEhP620XwC9fNNCMRdpXt4OIb08GsPeDIhgNhVd9d3qtFpUW9Ge/zVYt70BuaqaQSXFD8MdvfP0TcVtPYGcVsI8NoY9SJBphLRy+MvPp6VsqUfipaZjCncnkdYPsIysycjtW4gRJKitvxdCFPlLTHkfQA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Ye5R67On; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 3D6FEC433B2;
+	Wed,  7 Feb 2024 04:46:52 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1707281211;
-	bh=ZolLkX8+GJN1b/yf5VSGLzz4mFErT9IfSbvJWJhnSEQ=;
-	h=From:To:Subject:Date:In-Reply-To:References:From;
-	b=tEwZ19aEp1TfW0QVtuAef9akdiS7F/LZBqhYf7uoJmo2ZLa95X0g8psC2LCOYbEyy
-	 VTKRHn6ExDwTuRbgV6HmPuh4NlJ/dG69Z6VSiAjVcVjhFzo0bA8QqSeZ6YnenrjcGD
-	 V3+40EeyCRgwEdG8lTYy4zss7qNF88Seosd0yKgmZhu0fifMUD1UMHt+HOqTWhzOPb
-	 cognq4tps7denThTPv+j7W9Pi2yW49PDrv2UEd2gRTSKPthNKzlIUrjzPhULPa7uId
-	 zXS9v39o5H6Na7Uk0HAqKMNfZ7tfph1tasHWEU8Q1ByUXEWjrUUXgZV+kdg7BSHh2G
-	 lvohDlEe7Azcg==
+	s=k20201202; t=1707281213;
+	bh=yARU6n8c5B9oVUAuwlcpmOl806MC3uGXsMsn8CkJnGY=;
+	h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
+	b=Ye5R67OnZxtRRNI9wcqOvXzPMd7RMXFTIIsVPx2RTDFPoF6OncyV/8WkNiuI7GKYv
+	 WtPRIM2+3Bn1mUmDbWqmEU9ZNMLiJdE/PnObW24zEDbk2gGnk66k9c/cZARsjEr5UZ
+	 frtapjuklnxIu258UQBZ3w9gcghR+LKmll0k/KralCnhY96hD/R/ND27Spcf+2pjw3
+	 f6i/bIjU/G8uhKsYWGlYz9XonqwvYwtmOlaH79RtyIyY+RQ4U2n8ShjV0wwL5alu6p
+	 fPruAyPCQTCs8u9BU+D57caP0wLGpZbDhqW5coh/kKCgeSXFV/OaSUYle5CsdEleCm
+	 Sk0rRcMc6izZQ==
 From: Bjorn Andersson <andersson@kernel.org>
-To: Andy Gross <agross@kernel.org>,
-	Konrad Dybcio <konrad.dybcio@linaro.org>,
-	Rob Herring <robh+dt@kernel.org>,
+To: Konrad Dybcio <konrad.dybcio@linaro.org>,
+	Rob Herring <robh@kernel.org>,
 	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
 	Conor Dooley <conor+dt@kernel.org>,
-	linux-arm-msm@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	Christian Marangi <ansuelsmth@gmail.com>
-Subject: Re: [PATCH] arm64: dts: qcom: ipq8074: add clock-frequency to MDIO node
-Date: Tue,  6 Feb 2024 22:46:14 -0600
-Message-ID: <170728117687.479358.12175881436084064299.b4-ty@kernel.org>
+	Stephen Boyd <sboyd@kernel.org>,
+	Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+Cc: linux-arm-msm@vger.kernel.org,
+	devicetree@vger.kernel.org
+Subject: Re: [PATCH] dt-bindings: arm: qcom: drop the superfluous device compatibility schema
+Date: Tue,  6 Feb 2024 22:46:16 -0600
+Message-ID: <170728117676.479358.5233595767406493966.b4-ty@kernel.org>
 X-Mailer: git-send-email 2.43.0
-In-Reply-To: <20240131022731.2118-1-ansuelsmth@gmail.com>
-References: <20240131022731.2118-1-ansuelsmth@gmail.com>
+In-Reply-To: <20240204-qcom-drop-compat-v1-1-69d6cd92aa0e@linaro.org>
+References: <20240204-qcom-drop-compat-v1-1-69d6cd92aa0e@linaro.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -67,16 +66,20 @@ Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 8bit
 
 
-On Wed, 31 Jan 2024 03:27:29 +0100, Christian Marangi wrote:
-> Add clock-frequency to MDIO node to set the MDC rate to 6.25Mhz instead
-> of using the default value of 390KHz from MDIO default divider.
+On Sun, 04 Feb 2024 18:56:35 +0200, Dmitry Baryshkov wrote:
+> The idea impressed in the commit b32e592d3c28 ("devicetree: bindings:
+> Document qcom board compatible format") never got actually adopted. As
+> can be seen from the existing board DT files, no device actually used
+> the PMIC / foundry / version parts of the compatible string. Drop this
+> compatibility string description to avoid possible confusion and keep
+> just the generic terms and the SoC list.
 > 
-> 
+> [...]
 
 Applied, thanks!
 
-[1/1] arm64: dts: qcom: ipq8074: add clock-frequency to MDIO node
-      commit: cb77d0ad460e2c97a00c02ed78afdf45476e5e5f
+[1/1] dt-bindings: arm: qcom: drop the superfluous device compatibility schema
+      commit: 869c3d4eef65f3daf2f7a3a4155655f76a11eb87
 
 Best regards,
 -- 
