@@ -1,134 +1,130 @@
-Return-Path: <devicetree+bounces-39488-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-39489-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id E9C0084CED5
-	for <lists+devicetree@lfdr.de>; Wed,  7 Feb 2024 17:26:35 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 969A884CEE0
+	for <lists+devicetree@lfdr.de>; Wed,  7 Feb 2024 17:30:34 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 26D691C26138
-	for <lists+devicetree@lfdr.de>; Wed,  7 Feb 2024 16:26:35 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 357341F285FF
+	for <lists+devicetree@lfdr.de>; Wed,  7 Feb 2024 16:30:34 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 889FC81207;
-	Wed,  7 Feb 2024 16:26:30 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3AA5C341BE;
+	Wed,  7 Feb 2024 16:30:27 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=bgdev-pl.20230601.gappssmtp.com header.i=@bgdev-pl.20230601.gappssmtp.com header.b="tEn9GZR2"
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=armlinux.org.uk header.i=@armlinux.org.uk header.b="A2fFEHzd"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-vs1-f47.google.com (mail-vs1-f47.google.com [209.85.217.47])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from pandora.armlinux.org.uk (pandora.armlinux.org.uk [78.32.30.218])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E4A0B811F5
-	for <devicetree@vger.kernel.org>; Wed,  7 Feb 2024 16:26:28 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.217.47
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1D2A41E498;
+	Wed,  7 Feb 2024 16:30:24 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=78.32.30.218
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1707323190; cv=none; b=V89hSe8yzc+UNJ4/ICAsKDJLhhXcqnboM9i7MR6AwQ6S5ssLx1oN3h+zmAW05ha1rKHuDZVMMnnm7dtLdbZ8772RalxhdUg1ZwZYj9cEd50bs4fzohNgBrJ4ARdUKGZqUCLecu4SROAbxnuUz5+fZkfaphSI5MfpTUxc8RXtPyU=
+	t=1707323427; cv=none; b=LxPkpXOUR1MladWZBBctQurC8/KldDri/h9oEYLIHE4iKdY/R5A25unwYjO3CsBLkNTwyuUxqOXyk5QAVCQwH0uQGMuN+hpRIRI/hoeq1teJ3gA4nhTElMGIFMnPo5EEgI8p7Q/fp3QXy391C24mo5rBT91JAKUttVUFVRrBsLY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1707323190; c=relaxed/simple;
-	bh=s/XBm+dZXo326rp4+k8nxRmZZap7vVe94gNKobiXRkE=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=Dey3T1GqjUwkpBepchP9MRr+7rgxQqokZ5Ccqk6Nx6iMO/KFEgSb/W7yLNa0KpWccHWepcBj+Woe9pY/m5zW9OkPeKCSsz+UcqH5wa9RFi8IPrQzi+8QFBOdNWxqy34ZiWtxc8a3fWucv7eNM84Pv+w2uP24OCVgq6D2BYP5ICg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=bgdev.pl; spf=none smtp.mailfrom=bgdev.pl; dkim=pass (2048-bit key) header.d=bgdev-pl.20230601.gappssmtp.com header.i=@bgdev-pl.20230601.gappssmtp.com header.b=tEn9GZR2; arc=none smtp.client-ip=209.85.217.47
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=bgdev.pl
-Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=bgdev.pl
-Received: by mail-vs1-f47.google.com with SMTP id ada2fe7eead31-46cf02b9f7eso270180137.3
-        for <devicetree@vger.kernel.org>; Wed, 07 Feb 2024 08:26:28 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=bgdev-pl.20230601.gappssmtp.com; s=20230601; t=1707323188; x=1707927988; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=WitkzYepwCuA/S4ttZlXhAljZ+JINQO7bz0r64E60hU=;
-        b=tEn9GZR2YW5QIUhpfy9WbjVoRZUSL8A4E2UxFn9joY8wr7taRtruBFS5ZDP8cbC/PE
-         +rY/R+HXqckBU0/cXttDcGD8TCgthunpbB4V+xxuVs64YsAYfzGTEsPkWv0siLLFEIJt
-         q3DRPVhLVBcUb5jBXacEuRnI5LYw3CQmqxcHc5jRCIqyXO9Rhtg1XmecZnDl43NRf/DZ
-         Ma9XYvgXTZFHFCFw4JMHkOKYtcBvEqC1yVzvOe6OgZF3+3A36F8PJYG6fEx6CLDNeUpA
-         GiD81yogPwnuljwzAB75RmxCo3njmj1PQmWCi6ASwK+B3pAMs3hRAFhoYC2KTb1nhvBd
-         uLEw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1707323188; x=1707927988;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=WitkzYepwCuA/S4ttZlXhAljZ+JINQO7bz0r64E60hU=;
-        b=J/oG+G1dTtfI+CH+xMbi1T3bMujf76uistBRpe0AfSg/IcIJhZq4UiDUff3Ofentfk
-         P51CjY7QvTTNSAA6fGsbJBlY6fZ6+Kk+6j+1+Rd/6NKQpssnAST7YXSS+4j2jJ0xrDnt
-         dLs7Imd1VqqhNGLCG3TZlGBx7x0T8UZblWF5l//xx8mTfNMSVrnI1mTgHIa9nWjaW3KT
-         lvPCegnO4g000Z//nmaf+W6XV6RQF9T68KxrYTt/qdjh9f7ypPR4vy2MnXYyqgJtZKQr
-         99xV7UZWJfIPGxQ7dXccDqw5E2TdAoKdB+giTFUzSmCWa47H+Odp2nEs1wHBO1ehmBVY
-         zizg==
-X-Gm-Message-State: AOJu0Yylax3gtQBXREVcinESwDEbAaMWOuz5sgozJRMrprygBPgkhpPR
-	mFyXHaDGF1+G2sSc0Tw05qafsbAmIB9rajrUvhRf1/Keb6vsu8BccYJnduqiuVPr+qy+fFZtVML
-	FEtdf0/tyAmtNVMrtHqh4c6y7kjcplH0zhBcfGg==
-X-Google-Smtp-Source: AGHT+IGUHF6vzAm6fF7RlJC8wV7QGPTkkEw3A+jO1stlUQVB3BJSXCPScQIS002+UPorZpqyfxR0CW3Oxe6kmokSvso=
-X-Received: by 2002:a67:f597:0:b0:46d:295d:1c5a with SMTP id
- i23-20020a67f597000000b0046d295d1c5amr3129996vso.30.1707323187759; Wed, 07
- Feb 2024 08:26:27 -0800 (PST)
+	s=arc-20240116; t=1707323427; c=relaxed/simple;
+	bh=Y3MiFi68RsW2/1W+DBqh4ihCSs9a/UvoIieVZEb0uLk=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=CAXhMiDpv5SRsABC1FETBx8GwClreX8ok8Cft5iIyphY/HtbgBdyLlnSPZ8/ztBJcoeTRmF76yC+c/3wzk9ocwAnQdR04BhpYdHjZeAj6BHheaEx1x47UnNua5/GsPr7F9yHibvm7x/mJtkoE3odDIP1mxwsqOmc6TYbpQUj+T8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=armlinux.org.uk; spf=none smtp.mailfrom=armlinux.org.uk; dkim=pass (2048-bit key) header.d=armlinux.org.uk header.i=@armlinux.org.uk header.b=A2fFEHzd; arc=none smtp.client-ip=78.32.30.218
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=armlinux.org.uk
+Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=armlinux.org.uk
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
+	d=armlinux.org.uk; s=pandora-2019; h=Sender:In-Reply-To:Content-Type:
+	MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:Reply-To:
+	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
+	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Id:
+	List-Help:List-Unsubscribe:List-Subscribe:List-Post:List-Owner:List-Archive;
+	bh=4QIMtO4mEbZ+/EroEk3hCpatB1zGAhkEKqF30slxxyQ=; b=A2fFEHzdmvO0xzVPZ6/FZzSslZ
+	EonrbHtSYj15PeEUv4eTqczy9L+I20OUpaZmadF/jPn/5PY4Jw+6BjtPnVCb2pjR8PIdU8vi3Vkaq
+	mMIVedT5tMGssphNmjCtLGOw0w9F2Gcdk2qVJPv2FPfR3Xw4jeADa3R7Z8crhg4XuXSQFNroJV5PD
+	Ff8CCMy6LsLixGmx8kBcDZmEpEQB09jXTscxD8aTvgQuun4jntr9Fv3qEwk5R04yaupxn4yPNyQNL
+	xVh4Y1WHDAhVHFinyCtYBheNpav4SnU/R9qLPImA0la1mkHZ9ob/eW8Cmfz/JuN4NAGzEEh0JzbZK
+	v1DQs8Lg==;
+Received: from shell.armlinux.org.uk ([fd8f:7570:feb6:1:5054:ff:fe00:4ec]:42404)
+	by pandora.armlinux.org.uk with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+	(Exim 4.96)
+	(envelope-from <linux@armlinux.org.uk>)
+	id 1rXkoH-0003Ta-2X;
+	Wed, 07 Feb 2024 16:30:05 +0000
+Received: from linux by shell.armlinux.org.uk with local (Exim 4.94.2)
+	(envelope-from <linux@shell.armlinux.org.uk>)
+	id 1rXkoB-0004im-CW; Wed, 07 Feb 2024 16:29:59 +0000
+Date: Wed, 7 Feb 2024 16:29:59 +0000
+From: "Russell King (Oracle)" <linux@armlinux.org.uk>
+To: Andrew Lunn <andrew@lunn.ch>
+Cc: Stefan Eichenberger <eichest@gmail.com>,
+	Amit Kucheria <amitk@kernel.org>,
+	Daniel Lezcano <daniel.lezcano@linaro.org>,
+	Gregory Clement <gregory.clement@bootlin.com>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Miquel Raynal <miquel.raynal@bootlin.com>,
+	"Rafael J. Wysocki" <rafael@kernel.org>,
+	Rob Herring <robh+dt@kernel.org>,
+	Sebastian Hesselbarth <sebastian.hesselbarth@gmail.com>,
+	Zhang Rui <rui.zhang@intel.com>, Josua Mayer <josua@solid-run.com>,
+	devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+	linux-pm@vger.kernel.org, manuel.aebischer@netmodule.com
+Subject: Re: [PATCH 3/3] arm64: dts: armada-ap807: update thermal compatible
+Message-ID: <ZcOwB5xShhRoX5yh@shell.armlinux.org.uk>
+References: <ZIxMYXDCTB7IvsDk@shell.armlinux.org.uk>
+ <E1qA7yZ-00Ea50-OC@rmk-PC.armlinux.org.uk>
+ <ZcOsjRzE8V73wNtT@eichest-laptop>
+ <13ab003d-7449-4d6f-861a-fa2d0c3f4ad2@lunn.ch>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20240201155532.49707-1-brgl@bgdev.pl> <20240201155532.49707-9-brgl@bgdev.pl>
- <7tbhdkqpl4iuaxmc73pje2nbbkarxxpgmabc7j4q26d2rhzrv5@ltu6niel5eb4>
- <CAMRc=Md1oTrVMjZRH+Ux3JJKYeficKMYh+8V7ZA=Xz_X1hNd1g@mail.gmail.com> <2q5vwm7tgmpgbrm4dxfhypbs5pdggprxouvzfcherqeevpjhrj@6wtkv4za2gg5>
-In-Reply-To: <2q5vwm7tgmpgbrm4dxfhypbs5pdggprxouvzfcherqeevpjhrj@6wtkv4za2gg5>
-From: Bartosz Golaszewski <brgl@bgdev.pl>
-Date: Wed, 7 Feb 2024 17:26:16 +0100
-Message-ID: <CAMRc=MfsdsD4f3sC-BnR_sqvaHNEKWCZ+Xe+-ZhLU8vFYA06=w@mail.gmail.com>
-Subject: Re: Re: [RFC 8/9] PCI/pwrctl: add PCI power control core code
-To: Bjorn Andersson <andersson@kernel.org>
-Cc: Konrad Dybcio <konrad.dybcio@linaro.org>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Marcel Holtmann <marcel@holtmann.org>, Luiz Augusto von Dentz <luiz.dentz@gmail.com>, 
-	Bjorn Helgaas <bhelgaas@google.com>, Neil Armstrong <neil.armstrong@linaro.org>, 
-	Alex Elder <elder@linaro.org>, Srini Kandagatla <srinivas.kandagatla@linaro.org>, 
-	Greg Kroah-Hartman <gregkh@linuxfoundation.org>, Arnd Bergmann <arnd@arndb.de>, 
-	Abel Vesa <abel.vesa@linaro.org>, Manivannan Sadhasivam <mani@kernel.org>, Lukas Wunner <lukas@wunner.de>, 
-	linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org, linux-bluetooth@vger.kernel.org, 
-	linux-pci@vger.kernel.org, 
-	Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <13ab003d-7449-4d6f-861a-fa2d0c3f4ad2@lunn.ch>
+Sender: Russell King (Oracle) <linux@armlinux.org.uk>
 
-On Fri, Feb 2, 2024 at 5:52=E2=80=AFPM Bjorn Andersson <andersson@kernel.or=
-g> wrote:
->
-> On Fri, Feb 02, 2024 at 10:11:42AM +0100, Bartosz Golaszewski wrote:
-> > On Fri, Feb 2, 2024 at 4:53=E2=80=AFAM Bjorn Andersson <andersson@kerne=
-l.org> wrote:
-> [..]
-> > > > +             break;
-> > > > +     }
-> > > > +
-> > > > +     return NOTIFY_DONE;
-> > > > +}
-> > > > +
-> > > > +int pci_pwrctl_device_enable(struct pci_pwrctl *pwrctl)
-> > >
-> > > This function doesn't really "enable the device", looking at the exam=
-ple
-> > > driver it's rather "device_enabled" than "device_enable"...
-> > >
-> >
-> > I was also thinking about pci_pwrctl_device_ready() or
-> > pci_pwrctl_device_prepared().
->
-> I like both of these.
->
-> I guess the bigger question is how the flow would look like in the event
-> that we need to power-cycle the attached PCIe device, e.g. because
-> firmware has gotten into a really bad state.
->
-> Will we need an operation that removes the device first, and then cut
-> the power, or do we cut the power and then call unprepared()?
->
+On Wed, Feb 07, 2024 at 05:25:59PM +0100, Andrew Lunn wrote:
+> On Wed, Feb 07, 2024 at 05:15:48PM +0100, Stefan Eichenberger wrote:
+> > Hi Russell and Alex,
+> > 
+> > On Fri, Jun 16, 2023 at 12:50:47PM +0100, Russell King wrote:
+> > > From: Alex Leibovich <alexl@marvell.com>
+> > > 
+> > > Use the correct thermal coefficients for the Armada AP807 dies.
+> > > 
+> > > Signed-off-by: Alex Leibovich <alexl@marvell.com>
+> > > Reviewed-by: Stefan Chulski <stefanc@marvell.com>
+> > > Tested-by: Stefan Chulski <stefanc@marvell.com>
+> > > Signed-off-by: Russell King (Oracle) <rmk+kernel@armlinux.org.uk>
+> > > ---
+> > >  arch/arm64/boot/dts/marvell/armada-ap807.dtsi | 3 +++
+> > >  1 file changed, 3 insertions(+)
+> > > 
+> > > diff --git a/arch/arm64/boot/dts/marvell/armada-ap807.dtsi b/arch/arm64/boot/dts/marvell/armada-ap807.dtsi
+> > > index 4a23f65d475f..a3328d05fc94 100644
+> > > --- a/arch/arm64/boot/dts/marvell/armada-ap807.dtsi
+> > > +++ b/arch/arm64/boot/dts/marvell/armada-ap807.dtsi
+> > > @@ -33,3 +33,6 @@ &ap_sdhci0 {
+> > >  		     "marvell,armada-ap806-sdhci"; /* Backward compatibility */
+> > >  };
+> > >  
+> > > +&ap_thermal {
+> > > +	compatible = "marvell,armada-ap807-thermal";
+> > > +};
+> > 
+> > While working on some thermal optimizations, our hardware team
+> > discovered that this patch is still missing upstream. Is something
+> > missing or did it get lost?
+> 
+> Patch 1/3 had a change request. Was it ever reposted with the
+> requested change?
 
-How would the core be notified about this power-cycle from the PCI
-subsystem? I honestly don't know. Is there a notifier we could
-subscribe to? Is the device unbound and rebound in such case?
+I don't think so, it's just another patch series of many that I have
+that's basically low priority, and other stuff probably overrode it
+and I then forgot about it.
 
-Bart
+-- 
+RMK's Patch system: https://www.armlinux.org.uk/developer/patches/
+FTTP is here! 80Mbps down 10Mbps up. Decent connectivity at last!
 
