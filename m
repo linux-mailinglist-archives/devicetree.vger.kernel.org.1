@@ -1,75 +1,74 @@
-Return-Path: <devicetree+bounces-39469-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-39470-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 11DE884CD9D
-	for <lists+devicetree@lfdr.de>; Wed,  7 Feb 2024 16:05:36 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id B818184CDA5
+	for <lists+devicetree@lfdr.de>; Wed,  7 Feb 2024 16:07:19 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 0A0F0B23C34
-	for <lists+devicetree@lfdr.de>; Wed,  7 Feb 2024 15:05:33 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id DB2151C22A7E
+	for <lists+devicetree@lfdr.de>; Wed,  7 Feb 2024 15:07:18 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id EB6787762B;
-	Wed,  7 Feb 2024 15:05:28 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7E5EB7F470;
+	Wed,  7 Feb 2024 15:07:15 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="mTjmrwb8"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="XGkjgbRt"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f46.google.com (mail-wm1-f46.google.com [209.85.128.46])
+Received: from mail-wr1-f54.google.com (mail-wr1-f54.google.com [209.85.221.54])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0658938DDC
-	for <devicetree@vger.kernel.org>; Wed,  7 Feb 2024 15:05:26 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.46
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9A7007E78A
+	for <devicetree@vger.kernel.org>; Wed,  7 Feb 2024 15:07:13 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.54
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1707318328; cv=none; b=PFAjU3QW+dmX9JPTVhg18e8n83LuqmbnUoaodLGVLBNx+TnY2SkCqGvuMG2fm6ewV0UjOE9p7/y3dnzIzVVvmYNrnmqnpWfjqfwareQAp/gGbAdlRJcfjY/0dcd4o9rNd3qu9lvZUvHP7K0NHjeqtsyBW5GywjZQ+op6fLYN//o=
+	t=1707318435; cv=none; b=Ru3JRJDUxAxpUwIIVbgt5wkEeygRCoxxrMhyiGBWSENeS3dV/dmmAm0GODkJ9UfyF9CimFh5SAP4t6bLiJBNHSOeBBv6vUen/Qt84DfzEY3VpqPg+LtwckqKaorCPwCa2YZz0nGuPVyICma1zRd90x/eCwmniHwLuOgPrdqbL1c=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1707318328; c=relaxed/simple;
-	bh=nQCqZN1M7jS6nlAFAJeHjMhCCAzl4s0EU+vsfwTbNFw=;
+	s=arc-20240116; t=1707318435; c=relaxed/simple;
+	bh=pZASOWSqteaB9GHlyiNAZwHfAOdXqGD/8tdZr624+BU=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=JrKCfH3EDevjDy68mM2k498OB6Zn544geT37IP1f7pyPhUiy3lyVKZhLEzu23O8WTSM+jN+Pd4iQsR9emitbAmLfD9HKAWUxCcSYiZTlg1zhwwPqtz1TWSCmY6wRTPtRpLP0WgBcD1ohY+hFLIlMWRbD9RaX4pBcAC3nG5z+bWI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=mTjmrwb8; arc=none smtp.client-ip=209.85.128.46
+	 In-Reply-To:Content-Type; b=jbM872paClEYfBRHi45yNaK6ieTdQ1xJn9UnSyWaV0S0vY7iKzXI3lnRfQ93vsobsAgh0kkZJnDCAnvEdZtG38LUxNO4gor0eyiYkzAa/3QGrHxkD7q1Ov+KZIKpPvPgYMLiLV24/NH0iTFrc17xehRiLigmZUfswd5BsLjxWGY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=XGkjgbRt; arc=none smtp.client-ip=209.85.221.54
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-wm1-f46.google.com with SMTP id 5b1f17b1804b1-40fd2f7ef55so10900345e9.0
-        for <devicetree@vger.kernel.org>; Wed, 07 Feb 2024 07:05:26 -0800 (PST)
+Received: by mail-wr1-f54.google.com with SMTP id ffacd0b85a97d-33b40208735so534114f8f.3
+        for <devicetree@vger.kernel.org>; Wed, 07 Feb 2024 07:07:13 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1707318325; x=1707923125; darn=vger.kernel.org;
+        d=linaro.org; s=google; t=1707318432; x=1707923232; darn=vger.kernel.org;
         h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
          :to:content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=QfJNW7Px5n93mi1+mThAoBi6YIbkzwJpqqJDpysXpAA=;
-        b=mTjmrwb8v7qnae5xgPqEUJw9cgT0wL12YPUW8zRDcN5JFL2jXUFk8XCbrpQKbpuJQi
-         4UcI1S5+SI25skg4Wu2ZU6zn3ozma2n0t9DXII0WQjG6pTISdCG0ShEHocRlCG7jMJrk
-         vfyJ5ly2eig7lOgYepA6AhLOpEClwCATOJQTuNHGBEu6NPxNP6oH6fWjB8FDzQf6Upt4
-         Hld/HpoLZ6DQKwCIf6iMYoo4elF6tMgWAfwwP1hhVESFYRKMJHv4yG6acqgaRPg90HOk
-         8//T5WrOmyBVDmAqDXedW5sDf+/91YUCzBABUUZLjjj/5FsE2bbWfnZ7TTkqdomqi+Ms
-         l9Qw==
+        bh=xSJxjfpzcsJVrC2izEOwtk03xqek2kTE6Ox1RH2MDNY=;
+        b=XGkjgbRtF57kO8jZgMqTY0olOo+qiqrcOWoM9bo/W1IcPhKtjUQcnaXLNJxRDTcNrg
+         y7PQNaPq2RKlh9Ky3YOuh0RN0DmVSwnrSAIXLXrwPYaUXRS3RP5welRaONyi4XJdzwUC
+         nzWgeZoPMgSomKWJLIsc3RGHyZC5kHcQviLn+wW7jNGmiomg52QHmpWa3NJqKiqAPDgy
+         NEsUDMidwXSiurKajl64JRfyGY5UZPyK4PBm6/uqXLnWhJB1yKKixxKWNvI6cd27SW06
+         pZyKu1Za3C9AeSs5VSc/2t8oyjT1A4zwupO2kyMg634XLi5ClOl6PXP1mgA7xerLghyG
+         JpQA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1707318325; x=1707923125;
+        d=1e100.net; s=20230601; t=1707318432; x=1707923232;
         h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
          :to:content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=QfJNW7Px5n93mi1+mThAoBi6YIbkzwJpqqJDpysXpAA=;
-        b=axdxSp62oJRtq5XUjUKv4srjsNFn2dRqrX1qfJeQlgxZNOD+BGVvPylgtMvsgjl68l
-         MhstJCsOyLTe8b+8CyWqveu2Vy6ml6MEXIZOmbw6RjUChR07nHn1RGxrmGgQLQt/h3Fe
-         OE+wQPNcwJMn3fOQNhA9K4Bokb8rBvYeztPr4wJ7ZKoUBBK4dVDYSCZxiWLOf2vf1c5b
-         OVyE9OwGnQX8HSDz4Nt8YsV2ATsWHlT6BCnEOfurECKc9JVk+o+57aHdHN2AFr5a2qZE
-         +jQ7p0tV2mSTpkv0p7HLojPVVf5von7rBhLZ6s1KHsq6xwLXFpGga8vSLFKRGvKtohWn
-         EFUw==
-X-Forwarded-Encrypted: i=1; AJvYcCVei5en+p+mjUFlU+2Kv4scP8s6Pi1jxIS9MSOPFHNKoyyg76YWxtKkgTOeSWqXavX0v+17P/TK7KwC4ca01xQ2zbv4BCq+8TOYAg==
-X-Gm-Message-State: AOJu0YwhhlsYhBzSC0I5W7cHHPLeykq/MunkA86SIyBOlkSGsBkkAtwJ
-	mDv3r19ZWvY9Gp5Bb45MAgQf3WAn5wre57hiF3Mg2vZzlog7krnVCT3gUJaOhvc=
-X-Google-Smtp-Source: AGHT+IFTDgu16oVML/Aqbv2KuuaJF8P+GWtWTG0DfBhJu/HgdFG03HXMmc43fVWoL4GwFrVEeV9y2Q==
-X-Received: by 2002:a05:600c:4f51:b0:40e:9fd3:6b75 with SMTP id m17-20020a05600c4f5100b0040e9fd36b75mr4928012wmq.2.1707318325142;
-        Wed, 07 Feb 2024 07:05:25 -0800 (PST)
-X-Forwarded-Encrypted: i=1; AJvYcCXUOxf7oHZlTfRSgNMPwMCjSGvD9EvX0EIiPGHbnxACdKX/QJS+vQT1+h2a8OBO/b9zEFwFYXxiF4lTjZkTsz3125PQFJo3POv9LDU4IejfnpQ80y9LaWv3Ac8jRCndehjXvroNgprMqVF2IID8GvzvDs9erVZhPL7NRSRNc3OBPa36LUv9sRKPyAi1qvNiBKtPTq3Rn1iuicNlTjwPRRmflo4pkgXSBgriSbqTUkaScYPAml0pj9AXRSvqpHmT6XaZ/EE2rgvgvtP/B8HzK9JWxcKath7dbRAfjJf4XvMJiQZihwgmdTL5wX4VxoyXh9nqP+eh6c/8GXx41HJnJqfodYr9HZML/yXWvkOCvLKYc+Y0lRJzOETTerzs6UNYSuVGOZAjR9Tuba3jeYdm0qtUBngYjHZjaj9WKWmC5CUUaPpljh50Qv/rCHSkoJG8aJGAU4ZcDKfQE91Vn3VZyfh9Azl6m3K+ZJcKezyxQlY5gTC2u9EJGrORGQt5+5+Uyhn8mCZaAqavzucoPYlIZbhREhiMiNkTAsIc50T4202z6+dKrLGi8PlMB0P0YhRsO+BVd6yRX4zU2lPADq14ks65rOBkMqRVd2b5S2X82/iLbiahxcFo
+        bh=xSJxjfpzcsJVrC2izEOwtk03xqek2kTE6Ox1RH2MDNY=;
+        b=uP2uM60ZA3U4fogWBEYlDAPKBXgpIy0+Qprc6ohS80JHT9DgSuSqqX6x4HMyFsNtw7
+         q4EFgKt24vlYlFPWB6TKwuE2DW8R9LMD6bAxNkEw2CgY8RpxKWwnrPc0w5s+GXJrDYas
+         p5zc+rc2ifipmiFq+npFq1vMXZgpuMX1ucOxlhYOSVzqZkmd8YPQMe9vZNc43jrtIvtP
+         24Qw/d54HQ7ROtAu8owP1n8eqTWLvtElwL76v63HdakDJk5G1IZbZRGAuqEV8n/T2pD9
+         sdPPWJRwqG6d6m08Znbj240zUyN91rxoeqOEU/Ea5Ty8NWWMJ3+FMOCSn+We2uL56JVB
+         CdVA==
+X-Gm-Message-State: AOJu0Yy4TbkdWbFsiCC6GmlSEaQ14VfPaOWpUAifOB6/m+uB522JQt3g
+	09ff0dmLb0zCT2pLu/AR42RaB/fljAMDPwRy0LqnRDOTIzWikGExEMbCy7mRB+I=
+X-Google-Smtp-Source: AGHT+IE3qctr+V4zYpCKmnDiY7t0ND8Q4GMD/+1dBqhfAZvk5RfgcBGRYhkyW/tGnCYgbk77Yuysdw==
+X-Received: by 2002:adf:e447:0:b0:33a:efe0:5a37 with SMTP id t7-20020adfe447000000b0033aefe05a37mr3714813wrm.6.1707318431771;
+        Wed, 07 Feb 2024 07:07:11 -0800 (PST)
+X-Forwarded-Encrypted: i=1; AJvYcCU//d2vEHnrwEebi4L7cfGxsiLliqxndVikholAvE9HkD8C0m0RHFVpWt3eLokHOaXfEwk+d7WEUy9QQvGAE/uKDrIYfXSPzX5JHZgOM6iTS2EbQy8UVscnqZx9w98HRXXTVEB8AzmT1R6Pje18734414KscTu1h0Ao2uLFNiScXmbJuKLIRVBjRo1IhYKKMYYj4fdP7AZKKu/j3h01WBcKhnfCP4al1EUOlcBg3U04/y20L+yx0dXRGCmgeIr0W0aIp8NI3G5KASJYkNT83kojwxMdbvhIVB5fDQWMReYoQX6FJjz8YP513GJ8pbx0UqbvjT0eyVkAXDA0Xe+ju7jcBChOYd406XPnZRcd0D2wSq6pBqrdvWR2yfJQX1py1NOAcx90Hcbw9oOfmLvoQ2neCRfgftcyt31YDtFAFcn7qP5yblVdKfUeiJ+13kS1J8uFzMIrDU7iDQKkMeQMOv2Xx3IGLWMcflIm5bevmIrSY5hBsuYTLO0smEM46HRB/UVvD7lWZW2h08kf2wVFQpcFl1KvcVYvEovmnn1UUDuu63oC4uUIO81tU0czz+IuFkzNJDV/1806o6RXCGCzqLOJCdgCT0iQQbF6POU1OHT4M79NF7kqHONmv6lYsMYPp4MWLs4Gtm0MqIvUn7n717UKkd6pegviRZTD
 Received: from [192.168.1.20] ([178.197.222.62])
-        by smtp.gmail.com with ESMTPSA id a11-20020a05600c348b00b0040e541ddcb1sm2373509wmq.33.2024.02.07.07.05.23
+        by smtp.gmail.com with ESMTPSA id m21-20020a05600c161500b0040fde0ec31esm5439647wmn.31.2024.02.07.07.07.10
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 07 Feb 2024 07:05:24 -0800 (PST)
-Message-ID: <b7fbbf3e-1e53-46a9-b26c-8acb5f9ccde7@linaro.org>
-Date: Wed, 7 Feb 2024 16:05:22 +0100
+        Wed, 07 Feb 2024 07:07:11 -0800 (PST)
+Message-ID: <f0921985-db06-4a66-aa85-69337665d2a9@linaro.org>
+Date: Wed, 7 Feb 2024 16:07:09 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -77,21 +76,25 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 2/4] arm64: dts: exynos: gs101: add chipid node
+Subject: Re: [PATCH v2 1/2] dt-bindings: phy: mediatek,mt7988-xfi-tphy: add
+ new bindings
 Content-Language: en-US
-To: Peter Griffin <peter.griffin@linaro.org>
-Cc: Alexey Klimov <alexey.klimov@linaro.org>, alim.akhtar@samsung.com,
- linux-samsung-soc@vger.kernel.org, semen.protsenko@linaro.org,
- robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
- devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- linux-kernel@vger.kernel.org, klimov.linux@gmail.com,
- kernel-team@android.com, tudor.ambarus@linaro.org, andre.draszik@linaro.org,
- saravanak@google.com, willmcvicker@google.com, arnd@arndb.de
-References: <20240201172224.574238-1-alexey.klimov@linaro.org>
- <20240201172224.574238-2-alexey.klimov@linaro.org>
- <CADrjBPpqHx1uoVZCYDX51kW+JdOr_-+4oryOjXcUMFkmLGTBLw@mail.gmail.com>
- <b199ba24-403b-44fa-b807-9b98f9e98913@linaro.org>
- <CADrjBPpNukp+YQ0AmsZAE1f=MEk_auPPZit=tV8gk4szQ8MqRg@mail.gmail.com>
+To: Daniel Golle <daniel@makrotopia.org>
+Cc: SkyLake Huang <SkyLake.Huang@mediatek.com>,
+ Bc-bocun Chen <bc-bocun.chen@mediatek.com>,
+ Chunfeng Yun <chunfeng.yun@mediatek.com>, Vinod Koul <vkoul@kernel.org>,
+ Kishon Vijay Abraham I <kishon@kernel.org>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+ Conor Dooley <conor+dt@kernel.org>, Matthias Brugger
+ <matthias.bgg@gmail.com>,
+ AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
+ Qingfang Deng <dqfext@gmail.com>, Philipp Zabel <p.zabel@pengutronix.de>,
+ linux-arm-kernel@lists.infradead.org, linux-mediatek@lists.infradead.org,
+ linux-phy@lists.infradead.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, netdev@vger.kernel.org
+References: <3251ac3db1a739e0c18ded0a824edae981c1e2df.1707153425.git.daniel@makrotopia.org>
+ <31d2c56a-5108-4265-a267-6733e1ba328e@linaro.org>
+ <ZcJQyaTotW_bCWGU@makrotopia.org>
 From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  xsFNBFVDQq4BEAC6KeLOfFsAvFMBsrCrJ2bCalhPv5+KQF2PS2+iwZI8BpRZoV+Bd5kWvN79
@@ -137,105 +140,73 @@ Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  KQ06ztUMRrj8eVtpImjsWCd0bDWRaaR4vqhCHvAG9iWXZu4qh3ipie2Y0oSJygcZT7H3UZxq
  fyYKiqEmRuqsvv6dcbblD8ZLkz1EVZL6djImH5zc5x8qpVxlA0A0i23v5QvN00m6G9NFF0Le
  D2GYIS41Kv4Isx2dEFh+/Q==
-In-Reply-To: <CADrjBPpNukp+YQ0AmsZAE1f=MEk_auPPZit=tV8gk4szQ8MqRg@mail.gmail.com>
+In-Reply-To: <ZcJQyaTotW_bCWGU@makrotopia.org>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 07/02/2024 15:11, Peter Griffin wrote:
+On 06/02/2024 16:31, Daniel Golle wrote:
 > Hi Krzysztof,
 > 
-> Thanks for your feedback.
-> 
-> On Tue, 6 Feb 2024 at 10:10, Krzysztof Kozlowski
-> <krzysztof.kozlowski@linaro.org> wrote:
+> On Tue, Feb 06, 2024 at 11:53:55AM +0100, Krzysztof Kozlowski wrote:
+>> On 05/02/2024 18:28, Daniel Golle wrote:
+>>> Add bindings for the MediaTek XFI Ethernet SerDes T-PHY found in the
+>>> MediaTek MT7988 SoC which can operate at various interfaces modes:
+>>>
+>>> via USXGMII PCS:
+>>>  * USXGMII
+>>>  * 10GBase-R
+>>>  * 5GBase-R
+>>>
+>>> via LynxI SGMII PCS:
+>>>  * 2500Base-X
+>>>  * 1000Base-X
+>>>  * Cisco SGMII (MAC side)
+>>>
+>>> Signed-off-by: Daniel Golle <daniel@makrotopia.org>
+>>> ---
+>>> v2: unify filename and compatible as requested
 >>
->> On 05/02/2024 15:36, Peter Griffin wrote:
->>> Hi Alexey & Krysztof,
->>>
->>> On Thu, 1 Feb 2024 at 17:22, Alexey Klimov <alexey.klimov@linaro.org> wrote:
->>>>
->>>> Signed-off-by: Alexey Klimov <alexey.klimov@linaro.org>
->>>> ---
->>>>  arch/arm64/boot/dts/exynos/google/gs101.dtsi | 5 +++++
->>>>  1 file changed, 5 insertions(+)
->>>>
->>>> diff --git a/arch/arm64/boot/dts/exynos/google/gs101.dtsi b/arch/arm64/boot/dts/exynos/google/gs101.dtsi
->>>> index d838e3a7af6e..156fec2575bc 100644
->>>> --- a/arch/arm64/boot/dts/exynos/google/gs101.dtsi
->>>> +++ b/arch/arm64/boot/dts/exynos/google/gs101.dtsi
->>>> @@ -283,6 +283,11 @@ soc: soc@0 {
->>>>                 #size-cells = <1>;
->>>>                 ranges = <0x0 0x0 0x0 0x40000000>;
->>>>
->>>> +               chipid@10000000 {
->>>> +                       compatible = "google,gs101-chipid";
->>>> +                       reg = <0x10000000 0xd000>;
->>>> +               };
->>>> +
->>>
->>> I was wondering about the 0xd000 size here, as most upstream platforms
->>> use a chipid size of 0x100 or 0x24. I see the downstream gs101 kernel
->>> also uses 0xd000. Looking a bit more, that is because gs-chipid.c also
->>> has support for dumping other areas of the OTP SFR bank like asv table
->>> (offset 0x9000) hpm_asv (offset 0xa000) and hw_tune (0xc000).
->>>
->>> I checked Exynos850 and that also has ASV tables at those same offsets
->>> above, but it currently uses a chipid size of 0x100 upstream.
->>> Exynos-asv.c driver is part of exynos-chipid.c upstream so it seems
->>> reasonable to have the increased size including those SFR registers.
->>> Currently exynos-asv.c driver only supports Exynos5422 upstream.
->>>
->>> @Krzysztof - From a process PoV what is the best/correct thing to do
->>> here? Have the increased size in DT that includes ASV parts of the OTP
->>> bank from the get-go?
->>
->> ChipID so far had only size of 0x30 or something like that. What you
->> refer to does not look like old ChipID but full blown OTP, which also
->> includes ChipID.
+>> Several comments, from me and Rob, were ignored. Please respond to them.
 > 
-> OK so in some previous Exynos SoCs chipid had its own separate memory
-> mapped SFRs as well as being present in the OTP area?
+> I'm sorry if I have missed something. I just checked again on
+> patchwork, just in case I would have missed an email reply to this or
+> any of the preceding posts of this patch as part of the old series
+> going to netdev.
+> 
+> Comments you have made which I have addressed:
+>  - removed $nodename
+>  - use compatible as filename
+> 
+> And the only thing I found that I didn't either fix or reply to is this:
+>> Can you explain what is this issue and errata about (except performance)?
+> 
+> Not overwriting that (undocumented) value in that (undocumented)
+> register results in 10GBase-R having performance issues according to a
+> commit in MediaTek's SDK, see here:
+> 
+> https://git01.mediatek.com/plugins/gitiles/openwrt/feeds/mtk-openwrt-feeds/+/a500d94cd%5E%21/#F0
+> 
+> Maybe Bc or SkyLake of MediaTek (added to Cc) can explain this in more
+> detail?
+> 
+> 
+> What I did miss was Rob's comment at the very bottom of this reply:
+>> What is PEXTP?
+> 
+> I can again only answer by referencing to MediaTek's SDK sources:
+> 
+> https://git01.mediatek.com/plugins/gitiles/openwrt/feeds/mtk-openwrt-feeds/+/refs/heads/master/21.02/files/target/linux/mediatek/files-5.4/drivers/net/ethernet/mediatek/mtk_sgmii.c#96
+> 
+> Here this reset is called XFI_PEXTP0_GRST.
+> 
+> I personally find that name confusing (as this PHY has nothing to do with
+> _P_ci _EX_press) and have tried to get rid of it where it isn't either part
+> of official documentation or already merged drivers (like Sam's clock driver).
+> 
+> If there have been any other issues with this patch which I'm not aware
+> of, please point them out to me.
 
-None of the Exynos I know, have OTP area. There was only chipid. It
-seems that few newer designs come with OTP, in entirely separate address
-space. Exynos850 looks like the first which comes with integrated chipid
-into OTP, so OTP is not separate address.
-
-> 
->>  Although I am not entirely sure about that, either.
->> Depends whether they share clocks, for example.
-> 
-> This address is the OTP area, and I can't see chipid regs mentioned
-> anywhere else in the memory map other than OTP. Unfortunately there
-> are lots of separate docs for different IP blocks, so it isn't just a
-> case of searching a giant SoC TRM pdf.
-> 
-> e850 though looks to be the same (the address defined in DT is the otp
-> area), that is one large PDF and the chipid regs aren't mentioned
-> anywhere else, Given the chipid reg offset is the same (0x10000000)
-> for exynosautov9.dtsi, exynosautov920.dtsi, exynos850.dtsi, exynos7885
-> and exynos5433 I suspect this could be the same for all those SoCs as
-> well.
-> 
->>
->> I don't have any GS101 information so I don't know what's there. It
->> seems you ask me to give you decision based on guessing... If you have
->> one block, so if there is OTP, which contains ChipID, then define OTP.
-> 
-> I believe there is one block that contains ChipID, therefore based on
-> the above info we should define full OTP size?
-> 
->> Not ChipID+OTP.
->>
->> I think Exynos850 DTSI is wrong here. That's OTP block, not ChipID.
-> 
-> Yes agreed, and quite possibly the other Exynos SoCs as well.
-
-If ChipID and OTP are in the same block (in OTP), then assume they both
-might need the same clocks or some other resources. Therefore we should
-not model them as two separate device nodes ChipID and OTP. Instead
-there should be one device node with entire OTP address space, which
-should not use ChipID compatible to avoid confusion.
+These both cases should be explained in the binding somehow.
 
 Best regards,
 Krzysztof
