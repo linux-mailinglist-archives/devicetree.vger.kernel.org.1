@@ -1,119 +1,116 @@
-Return-Path: <devicetree+bounces-39348-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-39349-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 97F9684C46D
-	for <lists+devicetree@lfdr.de>; Wed,  7 Feb 2024 06:40:40 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 842C284C48B
+	for <lists+devicetree@lfdr.de>; Wed,  7 Feb 2024 06:59:10 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 045B0288DAF
-	for <lists+devicetree@lfdr.de>; Wed,  7 Feb 2024 05:40:39 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id E54B7B2319A
+	for <lists+devicetree@lfdr.de>; Wed,  7 Feb 2024 05:59:07 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 87FBA13FF2;
-	Wed,  7 Feb 2024 05:40:35 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id DAB0814AB7;
+	Wed,  7 Feb 2024 05:59:02 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="jrbwZJwB"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="AZDGLJ1h"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ed1-f48.google.com (mail-ed1-f48.google.com [209.85.208.48])
+Received: from mail-pf1-f179.google.com (mail-pf1-f179.google.com [209.85.210.179])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D314114A85
-	for <devicetree@vger.kernel.org>; Wed,  7 Feb 2024 05:40:33 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.48
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6E8221CD19;
+	Wed,  7 Feb 2024 05:59:01 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.179
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1707284435; cv=none; b=QEV72YhOL9SJv22rofvi8cpZfzodlSd5EyCLFERdCga61TEvK9MXcNNXblomSHHOvX1dIKnWBAQ+bL5/VwXlGlteby3MDqygrfA3xQpIB1Df+LzfI6ixWZqpzZ1QlDIMR5slGoAlE51AaOk4xiehXv8EVcwOAFpbHVIDejT5sLw=
+	t=1707285542; cv=none; b=GNVDzxF5PHGlFgNnGiKaVLPtpCWbv1kpYYJ0ZmMCP5BU9ODKgO+LjkoYSo9RsThe7y7GUEJfLqHQzN2atfaOQT/2TiEbAUfIwBFT/2jjRSa5r7AGOGUG1gg9IKPYFmmK2M8De1rFEIYrFwzqfrvzGToJq8ig4MFbJcfpkoY9haw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1707284435; c=relaxed/simple;
-	bh=DRQDp6mIWL70DqU3ENBhn9k5AyXCvdNM57GCsuhzAkc=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=DL+3YWpKlkkJJ2ExZSnhu3naSwuTTyHBF3Uu9kc5tynMtQCzFgBmi1lqyMIa56cfl0fpdNHsh8RRm/1UY/kUW8l7tJSDOoCXGgj2gHamp1QGvE9zs0uPg2iNZOQZoH2HailQKhoj9DgprrzN6pKjNeI54WQ4NkvGICDU4cRQn0M=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=jrbwZJwB; arc=none smtp.client-ip=209.85.208.48
+	s=arc-20240116; t=1707285542; c=relaxed/simple;
+	bh=t+07vSCtQrMTARa0gnjUaC1zB1Rmh/ABvCeTKkGD6t8=;
+	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version; b=NGKYaptVZd/cL7LKmyweSC/bHAUYCaFSRTfoxr5jYqQLr+FX9x1bUVNpdlUL5lvw8/FRRahVvPWdhSyBanaHn0auh9xIKOhydCkMPE2EID3s6UhZdcKIFk04HHRraVSzH9mnjJCI/1J6cn9VqwwlnKmTgKvLXnSyP5yX98knU4s=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=AZDGLJ1h; arc=none smtp.client-ip=209.85.210.179
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-ed1-f48.google.com with SMTP id 4fb4d7f45d1cf-55fe4534e9bso241480a12.0
-        for <devicetree@vger.kernel.org>; Tue, 06 Feb 2024 21:40:33 -0800 (PST)
+Received: by mail-pf1-f179.google.com with SMTP id d2e1a72fcca58-6e04eca492fso202160b3a.1;
+        Tue, 06 Feb 2024 21:59:01 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1707284432; x=1707889232; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=+Z2UzrcQJ/APxKpzdv1JN9qsAxCXd38NlN9+sOrG6qo=;
-        b=jrbwZJwB0/F+1UKUjVGQzRyzZ2Vn+kwnu1ed8Geow+X5hL/HpWB0cfnF60rM9Q9O6J
-         QYWDuO/nXOlugOv+438aJ9w9kGOyXg9idQ77PUMCdQI+8yL/rpGvskIpSJ7Ia5cfgH2Z
-         pFpikkoYUS/RgnU3gZYdh4PPlCne/0DGzgZT4jUAPJmSf4IMm9L0jFpd4/p9lXrG0x8n
-         SDS00+MJKKGAXBpADJi7YHaRlSBr5dkW50bQyp/eQsuJRIY2uAPEZmNdeoUTIwhnr5mi
-         ozGZKPbauNWeJBB4dUTtAxtghdC6k+vij/poeh2OBb3EOuti46B7EtePmRR/ytYyy8M8
-         noNw==
+        d=gmail.com; s=20230601; t=1707285540; x=1707890340; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=GoTOTDguJ93aeizwcDFxhm41O6QP2z7HpzyOJGDVWFs=;
+        b=AZDGLJ1haYL1JQ7UDNsXx8LX+W780NnvXL9/mgB2/IVkUgRGBGb8j6VSMVXZTdu3WE
+         JjP1GcA/P/he1wbNS3OcvO7gR6BH1J0jgsfuDwl4CF6FhkI+ddBZa+P8M1AiavTNFT3/
+         x/ymWHh+UdgxWha05B7mXbr46IXTRyHkI3Sb/utrPbHYuwm97xwam5hCuPgzitYjd3/c
+         1AmIkqenakkb5Kdfgs3nf/gOEuVqBlBdMQMYObRMgbIJVbWHeIo4854a2N0OiUYOLx71
+         qcra1653DD7O08MDxfuYJvU5gYfh48ExkfOeUyLNjQ+f0SsX99tSHL5ldq/JnOqw2Fph
+         k6dg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1707284432; x=1707889232;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=+Z2UzrcQJ/APxKpzdv1JN9qsAxCXd38NlN9+sOrG6qo=;
-        b=kjncfHNcxtm1Q7+cvL5HqmENX8/Jud9vfb5XeR8cFGQuvD8DccvBY2kJSTpRK5dIwW
-         fgPBWTzSZYFPP/nm1B/Io9qqwsswlucMELW3FN/AvETjJuMrJ+vh5FPVHidUvkLB4kJO
-         euE039hHQUElBXP3meqOJbxDPxyBAZ+lwTc9D+s9q6TL8BKLjmIlRp4k81opSxn9gsKq
-         D1qUZ3O4rbykHw8HKx7SFy2AhyUyBle8Ry7S8Om2GEdUvFn4P1UbjGacMH5SQOYydvXQ
-         3oVKtBiUXp+IeqChkChinzeBnIvRHuytJLd2980Owr/2CJVkB7WkWTc8nbHAXmSXpCXk
-         wafQ==
-X-Gm-Message-State: AOJu0YwGy5C+t5OtSCMKi1tbsSCUylNnln7EysiEzW784GRvv9xAtHPD
-	YY2KkfO68I3HFZ9iG7eo3ajdqF/jFlHESe4fbJy/yfn9uVHYfq9D
-X-Google-Smtp-Source: AGHT+IF7Z/TIFjcYgFkXXQWuWiw6bLCi+9S9KWbHb8+GwD0IVhpLBatu/7E5ufmZHcN6hAImTs4ZSQ==
-X-Received: by 2002:a05:6402:8d6:b0:560:7543:877 with SMTP id d22-20020a05640208d600b0056075430877mr2829068edz.3.1707284431797;
-        Tue, 06 Feb 2024 21:40:31 -0800 (PST)
-X-Forwarded-Encrypted: i=1; AJvYcCWW3rLQcUY/Yvx8vUF7o5a9vPwpmRTSIIDVws7TixpvlcwpNSb4X+1ZpVx/kcdrRfVeHzeBInS/fB4n/LOcyEN4ovMcf/Ur+T2tqrDFJnjX6iILLQZRgS+n+9XqhBcGi2cv/C6/kudRa+Xr48+cVEAlfxt3tCrrjMKIdiVoC7tJD1HC0IE1gjUjUurGqzYnxeZ1JMHDpYnQQiYBsIDiLOvlh0dYMk7uSLl738dyV6cdq3MVVjjvPBFSkbS7sVAZ68CuxMA0tIz+TblxfwTm+0stuQdoqO+bSUyX3wF7H431+IhcmWrLcKaoOHI2mtzt1EnFw2jsXhwja8uAU/32SWkaNhu4dQorFvrwXuM/y4wGNfNNmQAubuxPJyO6LMdif+ueuoAvKfPGaLPG4I2u8TLrtZSjttoeAdMzGgcRB7/OFyCTwNy/vUsqpCN6qOhb6eHD79qDYs/kT7KUlh2H56Pvwd77vUc+DeaUm9eF65xR9kI2SkZ9cr8jmIaK0fhxB8Im6rvMn7olEO3gD1q0OWr+FhOuoZ6KIpvyQKdAiQx6bsqg2Llc6XBsC95k2Om/j5UxkC0Ib/JMH1Fc6RJ08YPaJbyMI8nF5d0z
-Received: from [192.168.26.149] (031011218106.poznan.vectranet.pl. [31.11.218.106])
-        by smtp.googlemail.com with ESMTPSA id h31-20020a0564020e9f00b00560743d2a4dsm283344eda.61.2024.02.06.21.40.30
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 06 Feb 2024 21:40:31 -0800 (PST)
-Message-ID: <b75897ce-a6e7-4e7d-a41c-c6466d9d746e@gmail.com>
-Date: Wed, 7 Feb 2024 06:40:29 +0100
+        d=1e100.net; s=20230601; t=1707285540; x=1707890340;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=GoTOTDguJ93aeizwcDFxhm41O6QP2z7HpzyOJGDVWFs=;
+        b=wiW9Ig7FKHFgks3wDuZfupD/B/0zH5BgcWuJUM+MVqZMKIMaDRcTzWoWKvBRMvT/tP
+         mavhxfcZRDTuVGBfmoSBtqz6lJuO0fHfHveBZp7YAD7dC1WWh6qotUtqjcWvrJXygZDL
+         OykFHrXghJYwnDPF8yGmBWHYAx/Igfuv9KyAeWg0xJbQ3tkv666/nTridHzJ6o9MyBKl
+         7LdjlA8Te3xoRXhJX1FiWJtzkDQXa0NpNCOfd5L6gbgvj4Z0NPMmDFXg3kWrNu+VynW+
+         1ScNNVaRQqDk5m2XD7p4a4VYEVxqfDJqEdiT5gktK4InFYEmK+4K/XwncAdJJIz7qeWS
+         bGtw==
+X-Gm-Message-State: AOJu0YwprIPb9cVeRczIsu8NZAtJrnaDM0DZ0HxjiSrMnb08Mv1gL5I8
+	zpQ5UCIZYlFEJIxMpH5ehuP3fH8CjcG1betiMpBO+gRgmBpvt/8W
+X-Google-Smtp-Source: AGHT+IHouwaipBmRkx+W7KWEdUOgEFQA6s0NO3f9JB/RNKrVn2g/lBwp4jn1iD/vuXVjhqmTUQmVgA==
+X-Received: by 2002:a05:6a20:d90e:b0:19e:9c72:90ab with SMTP id jd14-20020a056a20d90e00b0019e9c7290abmr3782447pzb.18.1707285539844;
+        Tue, 06 Feb 2024 21:58:59 -0800 (PST)
+X-Forwarded-Encrypted: i=1; AJvYcCXVPI7i3B1PMoZ1+rjTSmjarSOryk9owdORs02dNENYEWKFELT2v2icTKV3yLCHJ4v8NWtNY3IPncbQ40E6T4qmrzmazMDx/6h9QNdXlz//ZysmB/OFLojMCdAm2w+2Y/e0nHjzERO34NTK57LtWPPHpiJ1zUaxbnVts7x15Kv6RO5ljzsouWePpIwRm6EgjsnYrd8AniRDyU4kCbgQVQ9pJ9w1s9iJ01yYaUf0dO7/9n01eZBePLCcDzeOp6p3ZoG4eMol0HT0qEVXMJtFT3NqSR0+BxDEsXMHUZ8+YCcUG3KfjZNLzE83nL36kusfeL+zmmNXGklgE48gS+MtP8MiupY+KdBfEJ6KQHtT3uCMIWTSp3mLInXVBbAPi/+ovVahKwr2HykMrvk5ihR8YT/dE3ZP+ONWhbX0TsMfcIT9/XylYTPlcq3DbdBlrz/Mz4IZriiiOKQ73bBpc+oe
+Received: from localhost ([46.3.240.105])
+        by smtp.gmail.com with ESMTPSA id kk8-20020a170903070800b001d9a40f50c4sm533777plb.301.2024.02.06.21.58.59
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 06 Feb 2024 21:58:59 -0800 (PST)
+From: Jingbao Qiu <qiujingbao.dlmu@gmail.com>
+To: u.kleine-koenig@pengutronix.de,
+	robh+dt@kernel.org,
+	krzysztof.kozlowski+dt@linaro.org,
+	conor+dt@kernel.org,
+	paul.walmsley@sifive.com,
+	palmer@dabbelt.com,
+	aou@eecs.berkeley.edu
+Cc: linux-pwm@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	linux-riscv@lists.infradead.org,
+	dlan@gentoo.org,
+	inochiama@outlook.com,
+	Jingbao Qiu <qiujingbao.dlmu@gmail.com>
+Subject: [PATCH v1 0/2] riscv: pwm: sophgo: add pwm support for CV1800
+Date: Wed,  7 Feb 2024 13:58:54 +0800
+Message-Id: <20240207055856.672184-1-qiujingbao.dlmu@gmail.com>
+X-Mailer: git-send-email 2.25.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH V3 1/3] dt-bindings: vendor-prefixes: add acelink
-Content-Language: en-US
-To: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
- Matthias Brugger <matthias.bgg@gmail.com>, Rob Herring <robh+dt@kernel.org>,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Conor Dooley <conor+dt@kernel.org>
-Cc: =?UTF-8?Q?N=C3=ADcolas_F_=2E_R_=2E_A_=2E_Prado?=
- <nfraprado@collabora.com>, Macpaul Lin <macpaul.lin@mediatek.com>,
- =?UTF-8?Q?Bernhard_Rosenkr=C3=A4nzer?= <bero@baylibre.com>,
- Heiko Stuebner <heiko@sntech.de>, Jernej Skrabec <jernej.skrabec@gmail.com>,
- Chris Morgan <macromorgan@hotmail.com>,
- Linus Walleij <linus.walleij@linaro.org>, Sean Wang
- <sean.wang@mediatek.com>, devicetree@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, linux-mediatek@lists.infradead.org,
- =?UTF-8?B?UmFmYcWCIE1pxYJlY2tp?= <rafal@milecki.pl>,
- Conor Dooley <conor.dooley@microchip.com>
-References: <20231207080512.3688-1-zajec5@gmail.com>
-From: =?UTF-8?B?UmFmYcWCIE1pxYJlY2tp?= <zajec5@gmail.com>
-In-Reply-To: <20231207080512.3688-1-zajec5@gmail.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 8bit
 
-On 7.12.2023 09:05, Rafał Miłecki wrote:
-> From: Rafał Miłecki <rafal@milecki.pl>
-> 
-> Acelink is a Taiwan company providing network products (routers, access
-> points, switches, cameras and more).
-> 
-> Signed-off-by: Rafał Miłecki <rafal@milecki.pl>
-> Acked-by: Conor Dooley <conor.dooley@microchip.com>
-> Reviewed-by: Linus Walleij <linus.walleij@linaro.org>
+The Sophgo CV1800 chip provides a set of four independent
+PWM channel outputs.
+This series adds PWM controller support for Sophgo cv1800.
 
-It's 2 months now that I'm waiting for this patchset to be applied.
+Jingbao Qiu (2):
+  dt-bindings: pwm: sophgo: add pwm for Sophgo CV1800 series SoC.
+  pwm: sophgo: add pwm support for Sophgo CV1800 SoC
 
-Can you handle it now, please?
+ .../bindings/pwm/sophgo,cv1800-pwm.yaml       |  45 ++++
+ drivers/pwm/Kconfig                           |  10 +
+ drivers/pwm/Makefile                          |   1 +
+ drivers/pwm/pwm-cv1800.c                      | 218 ++++++++++++++++++
+ 4 files changed, 274 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/pwm/sophgo,cv1800-pwm.yaml
+ create mode 100644 drivers/pwm/pwm-cv1800.c
 
 
-While at it please also look at two more pending patches:
-[PATCH 1/2] arm64: dts: mediatek: mt7986: reorder properties
-[PATCH 2/2] arm64: dts: mediatek: mt7986: reorder nodes
+base-commit: 7afc0e7f681e6efd6b826f003fc14c17b5093643
+-- 
+2.25.1
+
 
