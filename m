@@ -1,156 +1,166 @@
-Return-Path: <devicetree+bounces-39481-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-39482-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7666284CE4A
-	for <lists+devicetree@lfdr.de>; Wed,  7 Feb 2024 16:42:40 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 752DC84CE53
+	for <lists+devicetree@lfdr.de>; Wed,  7 Feb 2024 16:44:43 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id CF88BB21E25
-	for <lists+devicetree@lfdr.de>; Wed,  7 Feb 2024 15:42:37 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 2B64428142F
+	for <lists+devicetree@lfdr.de>; Wed,  7 Feb 2024 15:44:42 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D1FC47FBD9;
-	Wed,  7 Feb 2024 15:42:33 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 58B0580022;
+	Wed,  7 Feb 2024 15:44:40 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="f72ZL+19"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="ELlOjE0w"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pg1-f169.google.com (mail-pg1-f169.google.com [209.85.215.169])
+Received: from mail-pj1-f46.google.com (mail-pj1-f46.google.com [209.85.216.46])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 483F47FBBD
-	for <devicetree@vger.kernel.org>; Wed,  7 Feb 2024 15:42:32 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.215.169
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A210A7FBD9
+	for <devicetree@vger.kernel.org>; Wed,  7 Feb 2024 15:44:38 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.216.46
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1707320553; cv=none; b=hyghux6Zd/snynodIHr7mIw7D0gWgTF4mCmVE6dCB2+w6fXagrLb+gtqVryR1vbTkeknTJRGQtwOgnDF19Jr4EJLHcTLNsEX/vb5qFgWzAs4gfSJL/0kqa0yi5+IJQ7ij6t7OlMlJdwzCU7OOl4/cnklXNabgg6YzOy2B71qM9c=
+	t=1707320680; cv=none; b=qhN1n1mi00D1prKzts5afbgw5u0AtUOPIyD8/SqYCCJuqYbwENk9e90WAp6DtlteTLPFhKssCGqc4d1CupmTeJAQD16nAxJqFxGdQv96/NhniW5jRrX+oFcu/EelE4NAKrMqayHKZbN6NF/HfBZTKlv9etIQK8/kABcaxzHF6mQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1707320553; c=relaxed/simple;
-	bh=6SHPMjNP8YDT15Iij7ixZFtooCnxVqeUcWFZiDatm2Y=;
+	s=arc-20240116; t=1707320680; c=relaxed/simple;
+	bh=hkvLvW5bir63qGmigcs+g/1lCwmcJeYVQAJXfmIzNFQ=;
 	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=GkQXFf8XgL787tLPNANaUdlLlw+L043BypOxWaEqPghL7MnMg7emEnG3TX/B5Lny3ovH0QuaZEz8R6loBf3+3id2DyFFVL8wIU3SdVM07b+TPj4xEo2Xi21QuvHkv01Jeb/PeNvGN332geOIW+3yPlOnVE00yRFfLsBGcCA29NI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=f72ZL+19; arc=none smtp.client-ip=209.85.215.169
+	 To:Cc:Content-Type; b=HCmxrqqpulamP3EZeNO1fuzLyMpUnOeqPaie93z/PjemANdkNelCHtjz/bKjgNfHtESfrvii15KdhSqNM9nxjbb+uE62dAHki0uxpfNBCSdeO2bTdKviVr0FxkjeOsF0PkuhrMQoLlMJ/5wPhr6gLuSD/IunWgC9cJNmnoHsP2U=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=ELlOjE0w; arc=none smtp.client-ip=209.85.216.46
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-pg1-f169.google.com with SMTP id 41be03b00d2f7-5cddfe0cb64so522347a12.0
-        for <devicetree@vger.kernel.org>; Wed, 07 Feb 2024 07:42:32 -0800 (PST)
+Received: by mail-pj1-f46.google.com with SMTP id 98e67ed59e1d1-296dcd75be7so555316a91.2
+        for <devicetree@vger.kernel.org>; Wed, 07 Feb 2024 07:44:38 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1707320551; x=1707925351; darn=vger.kernel.org;
+        d=linaro.org; s=google; t=1707320678; x=1707925478; darn=vger.kernel.org;
         h=content-transfer-encoding:cc:to:subject:message-id:date:from
          :in-reply-to:references:mime-version:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=G1k6l9VsJqCh+RqlLUdVe9MZtp+zPDCT1Q+6Pwca5BQ=;
-        b=f72ZL+19RKp/8pv1MeD3DGZTuv3EIHZ20hZ3sV4chavUcxoC34N5W6gE2E981dOuLE
-         2WfXE/z+dFoKxA2Vf9NOrBMQIJCv/Ild5c4Go31tnXsWt7GRdZMgc3ZIRFkwq4ty1vcX
-         L/b+sZBuGk8ixkBuhw8tXoMp1ROAZrhDg5x7tI6YduoZ6uKTwRws+lhTbbj8ljGhnkv1
-         4eCJAmydXrDc26POIxSPgY54xjM4UpvsgPQJpGdOcOMTasoDoEf7ouYu8D0LzV6SKpjl
-         BVq5Ts+idnVRAvypfKeMEgBO3b+MXKUqwcJ3MMAY1j6rn5gGt7RdvStLtaWCsrfBoF9A
-         d7Jg==
+        bh=cjM9X4mSlwFPt/1gwrjtYdpsyoYU4c7cfCOblUpLYMA=;
+        b=ELlOjE0wWbwSKt/f2BcpxFm3rpijzImxHkj9nGQ8AI4x4GBlVFDRoxLbNchWSBOC0g
+         O8S+6jcpFpdMA19jcPKtIYfezGgfNYmW0QuWvqeFRTDezY9T+gGG9c71LLmY/wGCpEws
+         x+xQ+3+lrGW/9NkSaXqr/1xX11kbaqTBs3JRi8XavDC2PSaZots4iL8dHJBEcP95vUDV
+         aTiSJbQ0PeuYWghvxZ+ovg6UhHXC8NsMPdlTyvJG3seWyGKtNNr4TS6Rw589owarxAl4
+         pFmPbBkxRF7esKLP6o9Jk7MHddmLhP7kS2IVGkv8FI1ZKEpgHFjfAWNeK3fzqfytiKSi
+         NuXw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1707320551; x=1707925351;
+        d=1e100.net; s=20230601; t=1707320678; x=1707925478;
         h=content-transfer-encoding:cc:to:subject:message-id:date:from
          :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=G1k6l9VsJqCh+RqlLUdVe9MZtp+zPDCT1Q+6Pwca5BQ=;
-        b=uBQeA8OYbpbkBNRmZ7ALH4dluschUhDb4b00pe+Mwhx1dF29ddwlTCRz8LtTUJoIAx
-         zmFK+PERrz2X5++jcjrHj3TaY9/DI/ZSYOrOLc8OpZ68skly4utCAUiauvrhtO4A2p2d
-         fGkaWkeKnpTR43WhJX2CQdWdhjDTsWHK1rYZH7M3BKWINzrg3g0jo2rfYkp0Bw8Fek8d
-         n/7GOPdzq0s2lUxj/H598NAyaDTUJmlLoPtNe9h1O74tVlxoTPQbLJs30lXPVxznG84h
-         +/t7qEoEfxne8ZNmz0roBhZsDll64Qd4V7huksuFTCIM9K4ojO9DJbs+vICVoVUv6bRL
-         F+Aw==
-X-Forwarded-Encrypted: i=1; AJvYcCUUeuH1RcQI++kdcBFpFhdMAtfJzHQJ8ctK0lVW+IGll+QfLkbfEBL4ZhTb7se2dW72r71ETz8WjldRaaM4sAEuSNwk0D+FnaceXA==
-X-Gm-Message-State: AOJu0Yw09IjrDi4ojQoPrmemm8CImhOxDqCjizepVCsJgYkcj+xe9mL3
-	VtrcyFYqLyu4cGw9bwufBMJj0pgorLwMEXmuVErqBcK2uA0ihHyA2UPCO2t6WfjvJ9LAV6Hln9/
-	p0R0J63w9fjPlfdtkPbhUfG7X9rFCMSZL52mEHg==
-X-Google-Smtp-Source: AGHT+IHoo4XR4AOXdM1Xi2DWyc3VAXdtc9F/OIyCgMe01EYezQtt37cphv12SPLoNwfrzSk+idTwfQsKhr3rHYJ1sig=
-X-Received: by 2002:a17:90a:d48f:b0:296:c695:4962 with SMTP id
- s15-20020a17090ad48f00b00296c6954962mr2669545pju.41.1707320551601; Wed, 07
- Feb 2024 07:42:31 -0800 (PST)
+        bh=cjM9X4mSlwFPt/1gwrjtYdpsyoYU4c7cfCOblUpLYMA=;
+        b=fXHxKgQR8koUHZIWkTUXC2sBhZKoece3yPpJ/tJWMFDUWE8YH4/9URT7UXudqrbZds
+         X7bFx3CzboJUUb+ehKAWy7HviNetmkCKimlQ2APQdbfMRcshzGzmEKTjtHmnQNl1hkGA
+         Mm8r1OWGmicNcWfNDonAX9ALsZ5JfQzmLSwKAD85WL6OwYyTDE8cHzQo4414nE3iiUDD
+         jyve6woT7mKVd/gD/XeyKuHfl5m2yXH0D9UHwdd+CX7lXWJD9hqLg7Vu6HbMP2Zdk/a7
+         S+ym1tAqp09Ut7fd4tdjciTPf9ROjAjmL/ida/ipf+a5kKh8+8Z/B+wErH0nTTqcXdcc
+         hKpg==
+X-Gm-Message-State: AOJu0YxvyUIkJf//SNIiwFbPXk56L2ilLx+xWMi0CzFiYaf07bshBJAh
+	bHgWyZydHychsrrNeS8GXMevIO7uhGbBUUDXw5TvHIW1jaovtQV3tKgkrVFVnix75yGXxgZ7oke
+	HItFfM+J4LbxvFXwhu2wyP2dtXDITWzFgDF4xeQ==
+X-Google-Smtp-Source: AGHT+IEOlo/KPrp4YPJuYvFD5Blwu/nidyNMltgHO7/0dpAc6+9Bv8bsnV+2FJETRdJtJxCs7qFvqtu+bC4a80lxed0=
+X-Received: by 2002:a17:90b:4c85:b0:296:2057:28c with SMTP id
+ my5-20020a17090b4c8500b002962057028cmr3040845pjb.31.1707320677939; Wed, 07
+ Feb 2024 07:44:37 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20240206085238.1208256-1-tudor.ambarus@linaro.org>
- <20240206085238.1208256-2-tudor.ambarus@linaro.org> <CAPLW+4=Xd+B=ZncqPgU4qaJ8zY8JJvJZApdUW_v0w6yr2cy9Sg@mail.gmail.com>
- <16a5e423-1111-49ff-ad6c-b0bb89a4879a@linaro.org>
-In-Reply-To: <16a5e423-1111-49ff-ad6c-b0bb89a4879a@linaro.org>
+References: <20240207111516.2563218-1-tudor.ambarus@linaro.org> <20240207111516.2563218-3-tudor.ambarus@linaro.org>
+In-Reply-To: <20240207111516.2563218-3-tudor.ambarus@linaro.org>
 From: Sam Protsenko <semen.protsenko@linaro.org>
-Date: Wed, 7 Feb 2024 09:42:20 -0600
-Message-ID: <CAPLW+4n_1yBOuzW3Ke2DKh_0EBZMUrd3nyGd=U0TeOML_2dXuw@mail.gmail.com>
-Subject: Re: [PATCH 1/4] spi: s3c64xx: explicitly include <linux/types.h>
+Date: Wed, 7 Feb 2024 09:44:27 -0600
+Message-ID: <CAPLW+4nyYxeZcvmrK8FJ4cvpxOs4=mPzBC5JcCPB5yNBNqkVAg@mail.gmail.com>
+Subject: Re: [PATCH v2 2/4] spi: s3c64xx: prepare for a different flavor of
+ iowrite rep
 To: Tudor Ambarus <tudor.ambarus@linaro.org>
-Cc: Greg Kroah-Hartman <gregkh@linuxfoundation.org>, broonie@kernel.org, andi.shyti@kernel.org, 
-	krzysztof.kozlowski@linaro.org, alim.akhtar@samsung.com, 
-	linux-spi@vger.kernel.org, linux-samsung-soc@vger.kernel.org, 
-	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org, 
-	andre.draszik@linaro.org, peter.griffin@linaro.org, kernel-team@android.com, 
-	willmcvicker@google.com, robh+dt@kernel.org, conor+dt@kernel.org, 
-	devicetree@vger.kernel.org
+Cc: broonie@kernel.org, andi.shyti@kernel.org, krzysztof.kozlowski@linaro.org, 
+	alim.akhtar@samsung.com, linux-spi@vger.kernel.org, 
+	linux-samsung-soc@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
+	linux-kernel@vger.kernel.org, andre.draszik@linaro.org, 
+	peter.griffin@linaro.org, kernel-team@android.com, willmcvicker@google.com, 
+	robh+dt@kernel.org, conor+dt@kernel.org, devicetree@vger.kernel.org
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-On Wed, Feb 7, 2024 at 12:21=E2=80=AFAM Tudor Ambarus <tudor.ambarus@linaro=
-.org> wrote:
+On Wed, Feb 7, 2024 at 5:15=E2=80=AFAM Tudor Ambarus <tudor.ambarus@linaro.=
+org> wrote:
 >
+> There are SoCs (gs101) that allow only 32 bit register accesses. As the
+> requirement is rare enough, for those SoCs we'll open code in the driver
+> some s3c64xx_iowrite{8,16}_32_rep() accessors. Prepare for such addition.
 >
->
-> On 2/6/24 18:02, Sam Protsenko wrote:
-> > On Tue, Feb 6, 2024 at 2:52=E2=80=AFAM Tudor Ambarus <tudor.ambarus@lin=
-aro.org> wrote:
-> >>
-> >> The driver uses u32 and relies on an implicit inclusion of
-> >> <linux/types.h>.
-> >>
-> >> It is good practice to directly include all headers used, it avoids
-> >> implicit dependencies and spurious breakage if someone rearranges
-> >> headers and causes the implicit include to vanish.
-> >>
-> >> Include the missing header.
-> >>
-> >> Fixes: 230d42d422e7 ("spi: Add s3c64xx SPI Controller driver")
-> >
-> > Not sure if Fixes tag is needed here.
->
-> We have already talked about this. If a patch that causes the implicit
-> include to vanish is backported to stable, it will reveal the missing
-> header here and will result in backporting this patch as well. So, as a
-> good practice let's allow this patch to be queued to stable, it will
-> avoid possible compilation errors.
->
-> I guess Mark has to break the tie again. Or Greg if he cares, I added
-> him in To:.
->
-> >
-> >> Signed-off-by: Tudor Ambarus <tudor.ambarus@linaro.org>
-> >> ---
-> >>  drivers/spi/spi-s3c64xx.c | 1 +
-> >>  1 file changed, 1 insertion(+)
-> >>
-> >> diff --git a/drivers/spi/spi-s3c64xx.c b/drivers/spi/spi-s3c64xx.c
-> >> index 72c35dbe53b2..c15ca6a910dc 100644
-> >> --- a/drivers/spi/spi-s3c64xx.c
-> >> +++ b/drivers/spi/spi-s3c64xx.c
-> >> @@ -17,6 +17,7 @@
-> >>  #include <linux/platform_device.h>
-> >>  #include <linux/pm_runtime.h>
-> >>  #include <linux/spi/spi.h>
-> >> +#include <linux/types.h>
-> >
-> > Is this really needed for the further patches in this series?
-> >
->
-> Yes, because in patch 3/4 I use u8 and u16 and I don't want to use those
-> without having the header included. Do you find this wrong?
->
+> Suggested-by: Sam Protsenko <semen.protsenko@linaro.org>
+> Signed-off-by: Tudor Ambarus <tudor.ambarus@linaro.org>
+> ---
 
-I'd say if this header is really needed for your patch 3/4 to have a
-successful build, just merge this patch into the patch 3/4 then.
+Reviewed-by: Sam Protsenko <semen.protsenko@linaro.org>
 
-> >>
-> >>  #define MAX_SPI_PORTS          12
-> >>  #define S3C64XX_SPI_QUIRK_CS_AUTO      (1 << 1)
-> >> --
-> >> 2.43.0.594.gd9cf4e227d-goog
-> >>
+>  drivers/spi/spi-s3c64xx.c | 35 +++++++++++++++++++++--------------
+>  1 file changed, 21 insertions(+), 14 deletions(-)
+>
+> diff --git a/drivers/spi/spi-s3c64xx.c b/drivers/spi/spi-s3c64xx.c
+> index 7f7eb8f742e4..eb79c6e4f509 100644
+> --- a/drivers/spi/spi-s3c64xx.c
+> +++ b/drivers/spi/spi-s3c64xx.c
+> @@ -414,6 +414,26 @@ static bool s3c64xx_spi_can_dma(struct spi_controlle=
+r *host,
+>
+>  }
+>
+> +static void s3c64xx_iowrite_rep(const struct s3c64xx_spi_driver_data *sd=
+d,
+> +                               struct spi_transfer *xfer)
+> +{
+> +       void __iomem *addr =3D sdd->regs + S3C64XX_SPI_TX_DATA;
+> +       const void *buf =3D xfer->tx_buf;
+> +       unsigned int len =3D xfer->len;
+> +
+> +       switch (sdd->cur_bpw) {
+> +       case 32:
+> +               iowrite32_rep(addr, buf, len / 4);
+> +               break;
+> +       case 16:
+> +               iowrite16_rep(addr, buf, len / 2);
+> +               break;
+> +       default:
+> +               iowrite8_rep(addr, buf, len);
+> +               break;
+> +       }
+> +}
+> +
+>  static int s3c64xx_enable_datapath(struct s3c64xx_spi_driver_data *sdd,
+>                                     struct spi_transfer *xfer, int dma_mo=
+de)
+>  {
+> @@ -447,20 +467,7 @@ static int s3c64xx_enable_datapath(struct s3c64xx_sp=
+i_driver_data *sdd,
+>                         modecfg |=3D S3C64XX_SPI_MODE_TXDMA_ON;
+>                         ret =3D prepare_dma(&sdd->tx_dma, &xfer->tx_sg);
+>                 } else {
+> -                       switch (sdd->cur_bpw) {
+> -                       case 32:
+> -                               iowrite32_rep(regs + S3C64XX_SPI_TX_DATA,
+> -                                       xfer->tx_buf, xfer->len / 4);
+> -                               break;
+> -                       case 16:
+> -                               iowrite16_rep(regs + S3C64XX_SPI_TX_DATA,
+> -                                       xfer->tx_buf, xfer->len / 2);
+> -                               break;
+> -                       default:
+> -                               iowrite8_rep(regs + S3C64XX_SPI_TX_DATA,
+> -                                       xfer->tx_buf, xfer->len);
+> -                               break;
+> -                       }
+> +                       s3c64xx_iowrite_rep(sdd, xfer);
+>                 }
+>         }
+>
+> --
+> 2.43.0.687.g38aa6559b0-goog
+>
 
