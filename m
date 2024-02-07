@@ -1,499 +1,177 @@
-Return-Path: <devicetree+bounces-39379-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-39380-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id BF73384C6C6
-	for <lists+devicetree@lfdr.de>; Wed,  7 Feb 2024 09:59:38 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 1403D84C6D9
+	for <lists+devicetree@lfdr.de>; Wed,  7 Feb 2024 10:06:11 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id EF216B212FE
-	for <lists+devicetree@lfdr.de>; Wed,  7 Feb 2024 08:59:35 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 8C522B253E4
+	for <lists+devicetree@lfdr.de>; Wed,  7 Feb 2024 09:06:08 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 81135208D2;
-	Wed,  7 Feb 2024 08:59:33 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="k4U7p3gC"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D64BE208D6;
+	Wed,  7 Feb 2024 09:06:06 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-oo1-f42.google.com (mail-oo1-f42.google.com [209.85.161.42])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from metis.whiteo.stw.pengutronix.de (metis.whiteo.stw.pengutronix.de [185.203.201.7])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8AC1A208D4;
-	Wed,  7 Feb 2024 08:59:31 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.161.42
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B63A2208D5
+	for <devicetree@vger.kernel.org>; Wed,  7 Feb 2024 09:06:04 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.203.201.7
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1707296373; cv=none; b=dAOECu7ov9xA4K1mfBUwuc1RHsSWgvArYG8kYmkjsTTUzEUXgyzyKFh6PH3pHwTWvgANtOgFOEa9LPniHK6ztNgQgsCeu6t+LvLd+q/HJv6I4PK6116+zuEiAsUOLRO/qGnoCe3jqYi+WFPm9rjqFaIEKurokSTnUTHJRRqVDGU=
+	t=1707296766; cv=none; b=VvSK29HT9onHtBAY/3qdGcQ6f25rhEtZVMyD6ibBdj6kEkFidYQFmGg1AfFZxgWuQ4mW4QbV/ZKFCSGURACAZh3HyeTYGH5MYb4Gk9wPZ6JHa6kP7KukUHd440YqnBr3rw9bPVm8WBjViRTVjOofwZfU+N0o7JLtk7GFv+QzTVo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1707296373; c=relaxed/simple;
-	bh=CSQ/u77doQW2qekHRrcEyQeA4CFKX/Sm36zUsJY4x+E=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=vB5qZT43Gm20EFConpytnx329qRUfjEvmd9CMQEKK1ydkuidcxb4rVhMo4c0TMS31LzZfVzjTjoqefVyWY0vqkACXvyDf4kNoZisA13oAZbY7rUDb6EAKZLYObzazMo4KEiqT/IqG5EI/uTszMrsjlgNDV8JD6K517XNZg2T9oc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=k4U7p3gC; arc=none smtp.client-ip=209.85.161.42
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-oo1-f42.google.com with SMTP id 006d021491bc7-595aa5b1fe0so219482eaf.2;
-        Wed, 07 Feb 2024 00:59:31 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1707296370; x=1707901170; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=m3a5nyWObsVej84nV0Ic98sQxQ/BTjNnRYeXCAhBsoM=;
-        b=k4U7p3gCeE41f+8XXqiAetGMXfAO0OCFqbMQ5GAQZibaSFT2/QwGrJhwTS9KU8mHno
-         v/3coqvJQnNiA9Snh82zK6tLyMeW8wc1/TquHNfL7lva7Qgwl2XBMUDM9PIvN8pFxtQY
-         6+xXWnzxSYsATHm47C2g8JU6HqswmCJTiMzZmGrZH7j5k/4WRcYbnIZESzdsjNj1rLdf
-         Y2WdJbl/YcqVC+chr3a/NG3A/+DVA0QZeCvBA4zWFdCcmK4UcMF7d0kcoEEPE4QaFbK7
-         7sj3OKZWpYFOImZG3SGOhDGYl/0NwkMTVz95/pZfcR/N/irzsa+868kVW6/xsTcVMAAz
-         H3Ew==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1707296370; x=1707901170;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=m3a5nyWObsVej84nV0Ic98sQxQ/BTjNnRYeXCAhBsoM=;
-        b=CCi08nTNO6K+4hu+F+Ny1FLKgSf+EiJ1eEX6YhfYP/04KAUdHALO7eemHv4d6gTpK/
-         jdy9kgW+I3tlxi8t5bVVUPoMCNrDbmnMjVKHxl6Lg0j+Qy9LBi+VKPPleRukZjFYO2fC
-         k1uIAMd9nqaU4oBobBzjA622GdGt1cGCizQYyrtNucqrRiHMJx8ZlXqAklLRIgL5QYps
-         uAt7Drfv6Csf5TSl8UF7D2s1uGmZ9beDaWYn2gM7/ySbZiZ8Qnz7pggr9vS0E8qk6T5A
-         ES8AZiziuCDYzdZJDUIAEWb7vfcvBPYatNsjLLym9UzTwGNCHeVxI/Uph2gKz7p2DO84
-         F6zg==
-X-Gm-Message-State: AOJu0YxZlR6rAyvqigjvpI22G4Ne/AuNggSAH4hpwM0+dKa/qgtnvV3N
-	05yHU/iNSrKWAzsF7ebfdi6HU4y8wBR09VtFabs22o6WRNDtmztSEw+HVEiGWdO6TeKp8Z+wWuG
-	LaWo2JemxDcYA2pkK4q13cMCoGtQ=
-X-Google-Smtp-Source: AGHT+IG+c1XyKmfQroAsVGsV8n/I+1C6DF3dvFIBkMwBesVdm7jA2z/Ef8KaZYt5+nDRHbVpk4AK+xwEpLJ0s3jEHZE=
-X-Received: by 2002:a4a:300e:0:b0:59c:2ab:511d with SMTP id
- q14-20020a4a300e000000b0059c02ab511dmr1141479oof.2.1707296369694; Wed, 07 Feb
- 2024 00:59:29 -0800 (PST)
+	s=arc-20240116; t=1707296766; c=relaxed/simple;
+	bh=XzbFnQpdmhf+mKnd1HI5n/EqRj6P7rnCdlIOlpz7ASQ=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=UIhwi3Y3ziAOjJ8cMOtQU3+ybw+03V34ZV1h2THsMsoec05Dpx/vr6q81O8W74fY0gqWfvYA9CywY/EsCTZwpEJ9DEsvK7OlMA0IEWh+bUI99cKwEDuzj0l2NpdHsIVDwMBWcAhzoube2MpAX2eFBOQgVf7fI11HiGtcgTuehuY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de; spf=pass smtp.mailfrom=pengutronix.de; arc=none smtp.client-ip=185.203.201.7
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=pengutronix.de
+Received: from drehscheibe.grey.stw.pengutronix.de ([2a0a:edc0:0:c01:1d::a2])
+	by metis.whiteo.stw.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
+	(Exim 4.92)
+	(envelope-from <mfe@pengutronix.de>)
+	id 1rXdsH-0003kB-V4; Wed, 07 Feb 2024 10:05:45 +0100
+Received: from [2a0a:edc0:2:b01:1d::c5] (helo=pty.whiteo.stw.pengutronix.de)
+	by drehscheibe.grey.stw.pengutronix.de with esmtps  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+	(Exim 4.94.2)
+	(envelope-from <mfe@pengutronix.de>)
+	id 1rXdsG-004zTa-IC; Wed, 07 Feb 2024 10:05:44 +0100
+Received: from mfe by pty.whiteo.stw.pengutronix.de with local (Exim 4.96)
+	(envelope-from <mfe@pengutronix.de>)
+	id 1rXdsG-00Fbzx-1L;
+	Wed, 07 Feb 2024 10:05:44 +0100
+Date: Wed, 7 Feb 2024 10:05:44 +0100
+From: Marco Felsch <m.felsch@pengutronix.de>
+To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Cc: gregkh@linuxfoundation.org, robh+dt@kernel.org,
+	krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
+	linux@roeck-us.net, heikki.krogerus@linux.intel.com,
+	linux-usb@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org, kernel@pengutronix.de
+Subject: Re: [PATCH 1/4] dt-bindings: usb: typec-tcpci: add tcpci compatible
+ binding
+Message-ID: <20240207090544.g7dy7grssah3o6n3@pengutronix.de>
+References: <20240205164316.805408-1-m.felsch@pengutronix.de>
+ <20240205164316.805408-2-m.felsch@pengutronix.de>
+ <004dbeb3-f863-416c-a4e4-18739302ae58@linaro.org>
+ <20240206145253.u555h3rvtetv3qaf@pengutronix.de>
+ <8d4cf7f7-0ee0-49ab-994a-892b200347e8@linaro.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20240207055856.672184-1-qiujingbao.dlmu@gmail.com>
- <20240207060913.672554-1-qiujingbao.dlmu@gmail.com> <sgdzjoyabi7jf6h6lzrx6evl5g625ccczqgnyseeh24zauvqgp@dhad3txonq6a>
-In-Reply-To: <sgdzjoyabi7jf6h6lzrx6evl5g625ccczqgnyseeh24zauvqgp@dhad3txonq6a>
-From: Jingbao Qiu <qiujingbao.dlmu@gmail.com>
-Date: Wed, 7 Feb 2024 16:59:18 +0800
-Message-ID: <CAJRtX8TvoqWBg4qpQL+dnY_TqoaMZdnmYXVNwcASK+Zs4f0kNQ@mail.gmail.com>
-Subject: Re: [PATCH v1 2/2] pwm: sophgo: add pwm support for Sophgo CV1800 SoC
-To: =?UTF-8?Q?Uwe_Kleine=2DK=C3=B6nig?= <u.kleine-koenig@pengutronix.de>
-Cc: robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org, 
-	paul.walmsley@sifive.com, palmer@dabbelt.com, aou@eecs.berkeley.edu, 
-	linux-pwm@vger.kernel.org, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org, linux-riscv@lists.infradead.org, 
-	dlan@gentoo.org, inochiama@outlook.com
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <8d4cf7f7-0ee0-49ab-994a-892b200347e8@linaro.org>
+X-SA-Exim-Connect-IP: 2a0a:edc0:0:c01:1d::a2
+X-SA-Exim-Mail-From: mfe@pengutronix.de
+X-SA-Exim-Scanned: No (on metis.whiteo.stw.pengutronix.de); SAEximRunCond expanded to false
+X-PTX-Original-Recipient: devicetree@vger.kernel.org
 
-On Wed, Feb 7, 2024 at 4:39=E2=80=AFPM Uwe Kleine-K=C3=B6nig
-<u.kleine-koenig@pengutronix.de> wrote:
->
-> Hello Jingbao,
->
-> On Wed, Feb 07, 2024 at 02:09:13PM +0800, Jingbao Qiu wrote:
-> > Implement the PWM driver for CV1800.
-> >
-> > Signed-off-by: Jingbao Qiu <qiujingbao.dlmu@gmail.com>
-> > ---
-> >  drivers/pwm/Kconfig      |  10 ++
-> >  drivers/pwm/Makefile     |   1 +
-> >  drivers/pwm/pwm-cv1800.c | 218 +++++++++++++++++++++++++++++++++++++++
-> >  3 files changed, 229 insertions(+)
-> >  create mode 100644 drivers/pwm/pwm-cv1800.c
-> >
-> > diff --git a/drivers/pwm/Kconfig b/drivers/pwm/Kconfig
-> > index 4b956d661755..455f07af94f7 100644
-> > --- a/drivers/pwm/Kconfig
-> > +++ b/drivers/pwm/Kconfig
-> > @@ -186,6 +186,16 @@ config PWM_CROS_EC
-> >         PWM driver for exposing a PWM attached to the ChromeOS Embedded
-> >         Controller.
-> >
-> > +config PWM_CV1800
-> > +     tristate "Sophgo CV1800 PWM driver"
-> > +     depends on ARCH_SOPHGO || COMPILE_TEST
-> > +     help
-> > +       Generic PWM framework driver for the Sophgo CV1800 series
-> > +       SoCs.
-> > +
-> > +       To compile this driver as a module, build the dependecies
-> > +       as modules, this will be called pwm-cv1800.
-> > +
-> >  config PWM_DWC_CORE
-> >       tristate
-> >       depends on HAS_IOMEM
-> > diff --git a/drivers/pwm/Makefile b/drivers/pwm/Makefile
-> > index c5ec9e168ee7..6c3c4a07a316 100644
-> > --- a/drivers/pwm/Makefile
-> > +++ b/drivers/pwm/Makefile
-> > @@ -15,6 +15,7 @@ obj-$(CONFIG_PWM_CLK)               +=3D pwm-clk.o
-> >  obj-$(CONFIG_PWM_CLPS711X)   +=3D pwm-clps711x.o
-> >  obj-$(CONFIG_PWM_CRC)                +=3D pwm-crc.o
-> >  obj-$(CONFIG_PWM_CROS_EC)    +=3D pwm-cros-ec.o
-> > +obj-$(CONFIG_PWM_CV1800)     +=3D pwm-cv1800.o
-> >  obj-$(CONFIG_PWM_DWC_CORE)   +=3D pwm-dwc-core.o
-> >  obj-$(CONFIG_PWM_DWC)                +=3D pwm-dwc.o
-> >  obj-$(CONFIG_PWM_EP93XX)     +=3D pwm-ep93xx.o
-> > diff --git a/drivers/pwm/pwm-cv1800.c b/drivers/pwm/pwm-cv1800.c
-> > new file mode 100644
-> > index 000000000000..4d4f233c9087
-> > --- /dev/null
-> > +++ b/drivers/pwm/pwm-cv1800.c
-> > @@ -0,0 +1,218 @@
-> > +// SPDX-License-Identifier: GPL-2.0-only
-> > +/*
-> > + * rtc-cv1800.c: PWM driver for Sophgo cv1800 RTC
-> > + *
-> > + * Author: Jingbao Qiu <qiujingbao.dlmu@gmail.com>
->
-> Please document the behaviour of the PWM here at the top of the driver.
-> Things to mention are:
->
->  - How does the hardware behave on disable? (Usual behaviours include:
->    output of inactive state; freeze where it just happens to be; high-z)
->
->  - If you reconfigure the hardware, does it complete the previously
->    running period before emitting the new wave form?
->
->  - Are there possible glitches in .apply()? (i.e. can it happen, that
->    for a short moment a wave form is emitted that has the new period but
->    the old duty_cycle?)
->
+On 24-02-06, Krzysztof Kozlowski wrote:
+> On 06/02/2024 15:52, Marco Felsch wrote:
+> > On 24-02-06, Krzysztof Kozlowski wrote:
+> >> On 05/02/2024 17:43, Marco Felsch wrote:
+> >>> This binding descripes the generic TCPCI specification [1]. So add the
+> >>
+> >> Typo: describes.
+> > 
+> > Argh.
+> > 
+> >> No, this binding describes PTN5110, not generic TCPCI. This is not
+> >> accurate commit description.
+> > 
+> > This binding is currently missued if another TCPCI conform chip is used
+> 
+> Why would people misuse binding instead of doing things properly? :)
 
-Thanks, I will do that.
+You know people... ;)
 
-> > + */
-> > +
-> > +#include <linux/clk.h>
-> > +#include <linux/kernel.h>
-> > +#include <linux/module.h>
-> > +#include <linux/of.h>
-> > +#include <linux/platform_device.h>
-> > +#include <linux/pwm.h>
-> > +#include <linux/regmap.h>
-> > +
-> > +#define HLPERIOD_BASE  0x00
-> > +#define PERIOD_BASE    0x04
-> > +#define POLARITY       0x040
-> > +#define PWMSTART       0x044
-> > +#define PWMDONE        0x048
-> > +#define PWMUPDATE      0x4c
-> > +#define PWM_OE         0xd0
-> > +#define HLPERIOD_SHIFT 0x08
-> > +#define PERIOD_SHIFT   0x08
-> > +
-> > +#define HLPERIOD(n)    (HLPERIOD_BASE + ((n) * HLPERIOD_SHIFT))
-> > +#define PERIOD(n)      (PERIOD_BASE + ((n) * PERIOD_SHIFT))
-> > +#define UPDATE(n)      (BIT(0) << (n))
-> > +#define OE_MASK(n)     (BIT(0) << (n))
-> > +#define START_MASK(n)  (BIT(0) << (n))
-> > +
-> > +#define PERIOD_RESET   0x02
-> > +#define HLPERIOD_RESET 0x1
-> > +#define REG_DISABLE    0x0U
-> > +#define REG_ENABLE     BIT(0)
->
-> Please use a driver specific prefix for all these defines.
->
+...
 
-I will do that.
+> >>>  properties:
+> >>>    compatible:
+> >>> -    const: nxp,ptn5110
+> >>> +    enum:
+> >>> +      - nxp,ptn5110
+> >>> +      - tcpci
+> >>
+> >> I don't think this is correct. First, this is binding for NXP chip, so
+> >> why generic implementation should be here? I would expect it in its own
+> >> dedicated binding.
+> > 
+> > The nxp,ptn5110 device was the first driver which implements an TCPCI
+> > conform driver. The driver already support the tcpci binding for i2c-id
+> > devices as I mentioned above. IMHO this whole binding (file) should be
+> > converted and the nxp,ptn5110 compatible should be marked as deprecated.
+> 
+> You speak about driver, but I was speaking about binding.
 
-> > +struct soc_info {
-> > +     unsigned int num_pwms;
-> > +};
-> > +
-> > +struct cv1800_pwm {
-> > +     struct pwm_chip chip;
-> > +     struct regmap *map;
-> > +     struct clk *clk;
-> > +};
-> > +
-> > +static inline struct cv1800_pwm *to_cv1800_pwm_dev(struct pwm_chip *ch=
-ip)
-> > +{
-> > +     return container_of(chip, struct cv1800_pwm, chip);
-> > +}
-> > +
-> > +static int cv1800_pwm_enable(struct pwm_chip *chip, struct pwm_device =
-*pwm,
-> > +                          u32 enable)
->
-> This is called with the enable parameter set to state->enabled which is
-> a bool. Please use a bool here, too, instead of a u32.
->
+I know and I was afraid of mention the driver within this conversation
+since this is all about bindings and devices :)
 
-Thanks, I will use bool instead of a u32.
+Nevertheless this particular NXP device does support the generic "tcpci"
+compatible already. The support is pulled indirectly via the
+i2c_device_id.name which is in the end used for of/acpi/legacy devices.
 
-> > +{
-> > +     struct cv1800_pwm *priv =3D to_cv1800_pwm_dev(chip);
-> > +     u32 pwm_enable;
-> > +
-> > +     regmap_read(priv->map, PWMSTART, &pwm_enable);
-> > +     pwm_enable >>=3D pwm->hwpwm;
->
-> I don't understand why this value is shifted here. I guess this misses a
-> mask?
+> >> Second, we rarely want generic compatibles. Care to share more details?
+> > 
+> > As said above this particular NXP chip is an TCPCI conform chip. There
+> > is nothing special about it. There are other vendors like OnSemi (in my
+> > case) which implement also an TCPCI conform chip. The (Linux) driver
+> > already binds to the generic tcpci compatible if the i2c-core falls back
+> > to the i2c-device id. It's even more confusing that the i2c-id supports
+> > only the generic binding the of-compatible support only the specifc one.
+> 
+> I don't know much about TCPCI, so maybe questions are obvious: you are
+> claiming that there will be no differentiating hardware element, like
+> reset-gpios or power supply for none of TCPCI-conforming chips? All of
+> them will never need any different hardware configuration?
 
-The nth bit of this register represents the running state, so a shift
-representation is required.
-I will use macro definitions to represent masks.
+Of course TCPCI doesn't mention reset gpios or power supplies but if you
+use this argumentation the already supported NXP device shouldn't be
+available too since the binding is missing the VDD supply ;) Since we
+never break compatibility, the vdd-supply have to be optional and the
+same can be done for reset-gpios.
 
->
-> > +     if (enable)
-> > +             clk_prepare_enable(priv->clk);
-> > +     else
-> > +             clk_disable_unprepare(priv->clk);
->
-> This is broken. It might well happen that the first call to .apply() has
-> state->enabled =3D false. Please make sure to properly balance clk
-> enabling.
->
+> Is this what you claim?
 
-I will fix it.
+Please see above.
 
-> > +     /*
-> > +      * If the parameters are changed during runtime, Register needs
-> > +      * to be updated to take effect.
-> > +      */
-> > +     if (pwm_enable) {
-> > +             regmap_update_bits(priv->map, PWMUPDATE, UPDATE(pwm->hwpw=
-m),
-> > +                                REG_ENABLE << pwm->hwpwm);
-> > +             regmap_update_bits(priv->map, PWMUPDATE, UPDATE(pwm->hwpw=
-m),
-> > +                                REG_DISABLE << pwm->hwpwm);
->
-> REG_DISABLE is zero. Why is this shifted? Very strange.
+> Just to remind: there was such claim for USB and PCI till we figured out
+> it was simply wrong and we are living now with on-board hubs and PCI
+> power-sequencing stuff.
 
-The data manual states that for dynamic updates, for the nth bit of
-this register
-write one first and then write 0.
-you're right, just 0 or BIT(n) is ok.
+Don't get me wrong, I get your point. In the end I don't care and can
+copy'n'paste the whole file and change the compatible to the OnSemi
+device or I can add the dedicated OnSemi compatible to this file. But I
+don't wanted to add an 2nd specific compatible while the device already
+supports the generic one but via i2c_device_id.name. Therefore I aligned
+the i2c_device_id with the of_device_id.
 
->
-> > +     } else {
-> > +             regmap_update_bits(priv->map, PWM_OE, OE_MASK(pwm->hwpwm)=
-,
-> > +                                enable << pwm->hwpwm);
-> > +             regmap_update_bits(priv->map, PWMSTART, START_MASK(pwm->h=
-wpwm),
-> > +                                enable << pwm->hwpwm);
-> > +     }
-> > +
-> > +     return 0;
-> > +}
-> > +
-> > +static int cv1800_pwm_apply(struct pwm_chip *chip, struct pwm_device *=
-pwm,
-> > +                         const struct pwm_state *state)
-> > +{
-> > +     struct cv1800_pwm *priv =3D to_cv1800_pwm_dev(chip);
-> > +     u64 period_ns, duty_ns;
-> > +     u32 period_val, hlperiod_val;
-> > +     unsigned long long rate, div;
-> > +
-> > +     period_ns =3D state->period;
-> > +     duty_ns =3D state->duty_cycle;
-> > +
-> > +     rate =3D (unsigned long long)clk_get_rate(priv->clk);
->
-> This cast has no effect, so please drop it. To prevent that the clock
-> changes rate while the PWM is running, please use
-> clk_rate_exclusive_get().
+> >> Are all details expected to follow spec, without need of quirks?
+> > 
+> > Please see above, I hope this helps.
+> 
+> Sorry, doesn't. You still speak about driver and how it can bind to
+> something. I did not ask about this at all.
+> 
+> To be clear:
+> WE ARE NOT TALKING ABOUT LINUX DRIVER.
 
-I will fix it.
+I KNOW
 
->
-> > +     div =3D rate * period_ns;
->
-> This might overflow. Please use mul_u64_u64_div_u64() or one of its
-> variants and error out on rate > NSEC_PER_SEC. (There are other pwm
-> drivers that make it right, took a look into these if this is unclear.)
->
+> We talk about hardware and how it is represented in Devicetree,
+> including its supplies, pins, GPIOs and any ideas hardware engineers
+> like to bring.
 
-Thanks, I will do that.
+I Know that too.
 
-> > +     do_div(div, NSEC_PER_SEC);
-> > +     period_val =3D div;
-> > +
-> > +     div =3D rate * (period_ns - duty_ns);
-> > +     do_div(div, NSEC_PER_SEC);
-> > +     hlperiod_val =3D div;
->
-> I think it can happen here, that div it too big to fit into this u32.
-
-you're right, I will fix it.
-
->
-> > +     regmap_write(priv->map, PERIOD(pwm->hwpwm), period_val);
-> > +     regmap_write(priv->map, HLPERIOD(pwm->hwpwm), hlperiod_val);
-> > +
-> > +     cv1800_pwm_enable(chip, pwm, state->enabled);
-> > +
-> > +     return 0;
-> > +}
-> > +
-> > +static int cv1800_pwm_get_state(struct pwm_chip *chip, struct pwm_devi=
-ce *pwm,
-> > +                              struct pwm_state *state)
-> > +{
-> > +     struct cv1800_pwm *priv =3D to_cv1800_pwm_dev(chip);
-> > +     u32 period_val, hlperiod_val, tem;
-> > +     u64 rate;
-> > +     u64 period_ns =3D 0;
-> > +     u64 duty_ns =3D 0;
-> > +     u32 enable =3D 0;
-> > +
-> > +     regmap_read(priv->map, PERIOD(pwm->hwpwm), &period_val);
-> > +     regmap_read(priv->map, HLPERIOD(pwm->hwpwm), &hlperiod_val);
-> > +
-> > +     if (period_val !=3D PERIOD_RESET || hlperiod_val !=3D HLPERIOD_RE=
-SET) {
-> > +             rate =3D (u64)clk_get_rate(priv->clk);
-> > +
-> > +             tem =3D NSEC_PER_SEC * period_val;
->
-> This might overflow.
-
-I will fix it.
-
->
-> > +             do_div(tem, rate);
-> > +             period_ns =3D tem;
->
-> This uses wrong rounding. If you enabled PWM_DEBUG during your tests,
-> this should be catched and logged.
-
-I will fix it.
-
->
-> > +
-> > +             tem =3D period_val * period_ns;
-> > +             do_div(tem, hlperiod_val);
-> > +             duty_ns =3D tem;
-> > +
-> > +             regmap_read(priv->map, PWMSTART, &enable);
-> > +             enable >>=3D pwm->hwpwm;
->
-> Again a missing mask??
-
-Yes, I will use a mask.
-
->
-> > +     }
-> > +
-> > +     state->period =3D period_ns;
-> > +     state->duty_cycle =3D duty_ns;
-> > +     state->enabled =3D enable;
-> > +
-> > +     return 0;
-> > +}
-> > +
-> > +static const struct pwm_ops cv1800_pwm_ops =3D {
-> > +     .apply =3D cv1800_pwm_apply,
-> > +     .get_state =3D cv1800_pwm_get_state,
-> > +};
-> > +
-> > +static const struct regmap_config cv1800_pwm_regmap_config =3D {
-> > +     .reg_bits =3D 32,
-> > +     .val_bits =3D 32,
-> > +     .reg_stride =3D 4,
-> > +};
-> > +
-> > +static int cv1800_pwm_probe(struct platform_device *pdev)
-> > +{
-> > +     struct device *dev =3D &pdev->dev;
-> > +     struct cv1800_pwm *cv_pwm;
->
-> Please pick always the same name for your driver private variable. In
-> the other functions it is called "priv".
-
-I will fix it.
-
->
-> > +     void __iomem *base;
-> > +     const struct soc_info *info;
-> > +
-> > +     info =3D device_get_match_data(dev);
-> > +     if (!info)
->
-> error message please.
-
-I will fix it.
-
->
-> > +             return -EINVAL;
-> > +
-> > +     cv_pwm =3D devm_kzalloc(dev, sizeof(*cv_pwm), GFP_KERNEL);
-> > +     if (!cv_pwm)
-> > +             return -ENOMEM;
-> > +
-> > +     base =3D devm_platform_ioremap_resource(pdev, 0);
-> > +     if (IS_ERR(base))
-> > +             return PTR_ERR(base);
-> > +
-> > +     cv_pwm->map =3D devm_regmap_init_mmio(&pdev->dev, base,
-> > +                                         &cv1800_pwm_regmap_config);
-> > +     if (IS_ERR(cv_pwm->map))
-> > +             return PTR_ERR(cv_pwm->map);
-> > +
-> > +     cv_pwm->clk =3D devm_clk_get(&pdev->dev, NULL);
-> > +     if (IS_ERR(cv_pwm->clk))
-> > +             return dev_err_probe(&pdev->dev, PTR_ERR(cv_pwm->clk),
-> > +                                  "clk not found\n");
-> > +
-> > +     cv_pwm->chip.dev =3D dev;
-> > +     cv_pwm->chip.ops =3D &cv1800_pwm_ops;
-> > +     cv_pwm->chip.npwm =3D info->num_pwms;
->
-> Missing clk handling here. Please all clk_prepare_enable once for each
-> running channel.
-
-I will fix it.
-
->
-> > +     return devm_pwmchip_add(dev, &cv_pwm->chip);
-> > +}
-> > +
-> > +static const struct soc_info cv1800b_soc_info =3D {
-> > +     .num_pwms =3D 4,
-> > +};
->
-> Until you support more variants, I suggest to just hardcode npwm to
-> four.
-
-I will do that.
-
->
-> > +static const struct of_device_id cv1800_pwm_dt_ids[] =3D {
-> > +     { .compatible =3D "sophgo,cv1800-pwm", .data =3D &cv1800b_soc_inf=
-o },
-> > +     {},
-> > +};
-> > +MODULE_DEVICE_TABLE(of, cv1800_pwm_dt_ids);
-> > +
-> > +static struct platform_driver cv1800_pwm_driver =3D {
-> > +     .driver =3D {
-> > +             .name =3D "cv1800-pwm",
-> > +             .of_match_table =3D cv1800_pwm_dt_ids,
-> > +     },
-> > +     .probe =3D cv1800_pwm_probe,
-> > +};
-> > +module_platform_driver(cv1800_pwm_driver);
-> > +
-> > +MODULE_ALIAS("platform:cv1800-pwm");
->
-> I'm with Krzysztof here, this shouldn't be needed.
-
-I will drop it.
-
->
-> > +MODULE_AUTHOR("Jingbao Qiu");
-> > +MODULE_DESCRIPTION("Sophgo cv1800 RTC Driver");
-> > +MODULE_LICENSE("GPL");
->
-
-Best regards
-Jingbao Qiu
+Regards,
+  Marco
 
