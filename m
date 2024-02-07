@@ -1,170 +1,136 @@
-Return-Path: <devicetree+bounces-39536-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-39537-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 271BF84D5B9
-	for <lists+devicetree@lfdr.de>; Wed,  7 Feb 2024 23:21:22 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1305E84D600
+	for <lists+devicetree@lfdr.de>; Wed,  7 Feb 2024 23:46:50 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 498611C23390
-	for <lists+devicetree@lfdr.de>; Wed,  7 Feb 2024 22:21:21 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id B52C61F245B7
+	for <lists+devicetree@lfdr.de>; Wed,  7 Feb 2024 22:46:49 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 66EAE149DF2;
-	Wed,  7 Feb 2024 22:21:16 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 71DC128E8;
+	Wed,  7 Feb 2024 22:46:44 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="PUVxTqRN"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="C7ZlLYm9"
 X-Original-To: devicetree@vger.kernel.org
-Received: from lelv0142.ext.ti.com (lelv0142.ext.ti.com [198.47.23.249])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-lf1-f46.google.com (mail-lf1-f46.google.com [209.85.167.46])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4851A149DE1;
-	Wed,  7 Feb 2024 22:21:14 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.23.249
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AA1EB1CF8F;
+	Wed,  7 Feb 2024 22:46:42 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.46
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1707344476; cv=none; b=G8lV43u3Wp+m/YNSfXd1AGUBBXKVTg/rZjR8dD38fxj/aospaVCXxUZjrw8JEA4q0uCmLV1X6NWjtM6wf6TNKgqOGiXe4t6uHxby7e5TJvazynZPVVW+UKyISVKTHpubbnLiTJiDOQ8Og6YvOfvTfmiWn9lk1vTMaiENLKTXtBE=
+	t=1707346004; cv=none; b=VbLAWHhdbtkZ44qmCKAKRc+r6MVww2SxdCE6ecLNiVu7bahCEvbH2qA8TxmkcMpM5NVVwI1SLfEt1/w2dWcCzO6Cc6oXlURJkxys7PyibXPPfPpHWs5h/+khM2dBBJgX1I1sBtNy9reuHjJuE29wdpLdwn8ZCtKSnzaDYJbLC6s=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1707344476; c=relaxed/simple;
-	bh=MwKKEGQFdFPG17wTp+h4gYVVhNXo2sy1ZgK90C/wlfc=;
-	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
-	 In-Reply-To:Content-Type; b=tBWV0/PC1/DaEzb7RI5r9JPRhlhApvOkyYfbOJz02Z1lNcyn7l4PufgP6r+bPHSmX1DwrbbJYg1ApU+i8B9n/iWg49AEOaEeioEY6+c9DEYYQnfqfru/QtP3OfhHVPlEUg4KG0F7R+wCV0Jn+KxrL7P6j85CzF3+/v7CjMUsX8g=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=PUVxTqRN; arc=none smtp.client-ip=198.47.23.249
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
-Received: from fllv0035.itg.ti.com ([10.64.41.0])
-	by lelv0142.ext.ti.com (8.15.2/8.15.2) with ESMTP id 417MKeTo092705;
-	Wed, 7 Feb 2024 16:20:40 -0600
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1707344440;
-	bh=eJhrs04xgEpmz99w4LZjg0w+qu2XVcprjfFaFuIENRs=;
-	h=Date:Subject:To:CC:References:From:In-Reply-To;
-	b=PUVxTqRNaX/jUnmKv47wB7SCWj2JxwopdOptbRF1OTFKZJYiqq0vMmAIaxFgVCh94
-	 39oahiqbKdv8cFNCMeTwR95k5Lfb+nqMo7YAEcmT7kG38Lv1ParELxzjDHP+jctdTh
-	 ahBXLUPGnrBOrjZC6eOvJOQgBbBvvyilY9tpWj+w=
-Received: from DFLE108.ent.ti.com (dfle108.ent.ti.com [10.64.6.29])
-	by fllv0035.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 417MKerg046097
-	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-	Wed, 7 Feb 2024 16:20:40 -0600
-Received: from DFLE100.ent.ti.com (10.64.6.21) by DFLE108.ent.ti.com
- (10.64.6.29) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Wed, 7
- Feb 2024 16:20:40 -0600
-Received: from lelvsmtp5.itg.ti.com (10.180.75.250) by DFLE100.ent.ti.com
- (10.64.6.21) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
- Frontend Transport; Wed, 7 Feb 2024 16:20:40 -0600
-Received: from [10.249.42.149] ([10.249.42.149])
-	by lelvsmtp5.itg.ti.com (8.15.2/8.15.2) with ESMTP id 417MKdtZ043771;
-	Wed, 7 Feb 2024 16:20:39 -0600
-Message-ID: <acd3c7f2-930d-46c0-9924-9775e9795fca@ti.com>
-Date: Wed, 7 Feb 2024 16:20:39 -0600
+	s=arc-20240116; t=1707346004; c=relaxed/simple;
+	bh=srEnOo609aZRRPxf38hr0wuZqh+Fyi8S9QuHLXUVF24=;
+	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=hDVfPdMjoHBZx4MAm+2hjmTsDeO3vNaWfGHkseBKiHGpEN+mmcEM85Ir0ZZzwQrROPhnvG2xQQd5SMTjJJg5IPINlGz7XaH3zaAk/XUVOWypUbx6YuvOAu/gOUzuLhSPsS5vdFtVPCxYZsw5nw6Q/1bSoHHYNMJnIEXytBrXgO4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=C7ZlLYm9; arc=none smtp.client-ip=209.85.167.46
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-lf1-f46.google.com with SMTP id 2adb3069b0e04-51165efb684so2203782e87.3;
+        Wed, 07 Feb 2024 14:46:42 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1707346000; x=1707950800; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=qPVQAbb7Z8lRSdP7gtfoXxA2k3RMbSoKja9V/cBhniE=;
+        b=C7ZlLYm9kf2xSzicCQRr54ASLnJfl3TsZuS3igh3aHnoQRhupJlCJfyxnbRGF5OZJ/
+         aIIEUwrbY6yZ3+NPkWXi74/xjIcJRixJYQt9ssymDom72txSyeL73Br/OPLIaXQy7o6c
+         4/QrHHymT4YOS/TzUcOaQBDoMngX7UOiY3r7WfUhol/2r7aT8leWSY+LECnKanBLiN2a
+         q6VYf2eshDwCEKwotzqooPdPCX6d2CizIBlesXc5LytvYYcdZFL2haMRBSAnDz2zlz8b
+         HL/z6uY4/Cb7xvIjEWruF9BCIGMDad42JBgaEj/aQImejKZdG4lZr7jqCnjar/MM+M2H
+         qMBw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1707346000; x=1707950800;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=qPVQAbb7Z8lRSdP7gtfoXxA2k3RMbSoKja9V/cBhniE=;
+        b=r0RTP2hfNv8pcxETs4f1Rh14hjnWvjseAJ+Tc0Db7X3LaorBNfvH5Io4r0XRXwLeGG
+         AJAvBoNi0wIx7UIPBuxXNfTsZe8w+qWw8NbQFqJQJ4hU7stBbSlxW40T6SnyGshDFEJN
+         im6U+1Z/F3RBm0oECt2wzTc55qV34pY5BNMIh7BY91SdbAyX3NFASIL7iKdoe1k2bUbA
+         clCxbExQZ1XcAhq/qEOTNQd5gTyW97W94O1fpEepKPEs4UJNeGlpv1XXlzcsq6py5rD/
+         1rS7BXujB08QqECfZeb0jeP8LvrkWP/NmK0OZm7Wm+0oElGv4yJqGRLqlLWsIqbXjGRr
+         dGNg==
+X-Gm-Message-State: AOJu0YzdCHHdKsgexo1M5jsEVMS9hT+tvq5pi34FhTPECcwOqV8gY6Ad
+	Pl/mb/n3DbTLxLRFO1tHCkXsoz/Cj0lkiNbb0cNNhP9TukhbZso=
+X-Google-Smtp-Source: AGHT+IHi3Ybg74ylC26r5ZmpeRYFBH/+gKQ/b2ir9l8j4ciISpDHHPV52kHPKl1u1+JRqO2w+G71iw==
+X-Received: by 2002:a05:6512:2009:b0:511:48fa:5c5a with SMTP id a9-20020a056512200900b0051148fa5c5amr4622070lfb.16.1707346000301;
+        Wed, 07 Feb 2024 14:46:40 -0800 (PST)
+X-Forwarded-Encrypted: i=1; AJvYcCXrC6l247Q5YZ2Qw7iNCkNPQoUyOjsVpmAlFUFEuN6iEQH66UrB1i6y6f5d2Hy5n2O0hzsMhByegLxiVyYgvocIyjS/LChEzN/EXRBKiO6a25Zn02aN0pS5PKo8gdNW6lSpzqNjK3vIXFLNUlF6W0EC2H2kDcQDq0k1qOmFiD2SYbSJKE61PNHpNSduS2oFi3ty+VKSCa8zQTCfO6rvPNAZmMfsElVWezrvFcuRS7WigotO09qrxRGi8ZR5WK47qNPCJ7jBk+/KkCDuJUbevUvITBA35FodKS7D4UcFJatRcikVyFbi3RUbnWLZ7rCY8KkGgU4SjXecRzO6T6rHLDYPSQDTMdHqHtkYIcHPwgspwyu2kia4INDO1ySw1PewIf86FfetaMz97YJmzRV5wv7ucKub9ButQV7GwgG2IiQzLxq6TLdwlg5Wxj5VxpvXlF6yMMu1ykKC+BOfocrvtNj27bjKl0fJXXzu4oKXnpenCIXwxofPdFIjlkS/i7IP2FZEr7nyY++ADfv6+fpcPxw2xJqd0u+9gt6j/BI0SgDHw9e9+DPzCxR39dTMj3YSaA5pmf3XFQXe5n60363OVCI2xxVFfJJbnyQEdYOc38t53Et0YbbP42a4MNqNA3KX6tM4yCRk+93hG9aaIeIhsZs=
+Received: from frutis-latitude7490.lan (public-gprs393011.centertel.pl. [37.47.166.116])
+        by smtp.googlemail.com with ESMTPSA id rs6-20020a170907036600b00a358b6242fcsm1217449ejb.114.2024.02.07.14.46.38
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 07 Feb 2024 14:46:39 -0800 (PST)
+From: =?UTF-8?q?Pawe=C5=82=20Owoc?= <frut3k7@gmail.com>
+To: Mark Brown <broonie@kernel.org>
+Cc: Robert Marko <robimarko@gmail.com>,
+	=?UTF-8?q?Pawe=C5=82=20Owoc?= <frut3k7@gmail.com>,
+	Rob Herring <robh+dt@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Guenter Roeck <linux@roeck-us.net>,
+	Jonathan Cameron <Jonathan.Cameron@huawei.com>,
+	Patrick Rudolph <patrick.rudolph@9elements.com>,
+	Peter Yin <peteryin.openbmc@gmail.com>,
+	Marek Vasut <marex@denx.de>,
+	Alexander Stein <alexander.stein@ew.tq-group.com>,
+	Lukas Wunner <lukas@wunner.de>,
+	Bjorn Helgaas <bhelgaas@google.com>,
+	Andre Werner <andre.werner@systec-electronic.com>,
+	Lakshmi Yadlapati <lakshmiy@us.ibm.com>,
+	Fabio Estevam <festevam@denx.de>,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	linux-spi@vger.kernel.org
+Subject: [PATCH v2 1/2] spi: spidev: Add Qualcomm qca4024 device compatible
+Date: Wed,  7 Feb 2024 23:45:22 +0100
+Message-ID: <20240207224546.44030-1-frut3k7@gmail.com>
+X-Mailer: git-send-email 2.43.0
+In-Reply-To: <ZcH9u7Vo2sFERIHJ@finisterre.sirena.org.uk>
+References: <ZcH9u7Vo2sFERIHJ@finisterre.sirena.org.uk>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH] arm64: dts: ti: am62-phyboard-lyra: Add overlay to enable
- a GPIO fan
-Content-Language: en-US
-To: Nathan Morrisson <nmorrisson@phytec.com>, <nm@ti.com>, <vigneshr@ti.com>,
-        <kristo@kernel.org>, <robh+dt@kernel.org>,
-        <krzysztof.kozlowski+dt@linaro.org>, <conor+dt@kernel.org>
-CC: <linux-arm-kernel@lists.infradead.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>, <upstream@lists.phytec.de>,
-        <w.egorov@phytec.de>
-References: <20240207172820.478332-1-nmorrisson@phytec.com>
-From: Andrew Davis <afd@ti.com>
-In-Reply-To: <20240207172820.478332-1-nmorrisson@phytec.com>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 7bit
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 
-On 2/7/24 11:28 AM, Nathan Morrisson wrote:
-> The phyBOARD-Lyra has a GPIO fan header. This overlay enables the fan
-> header and sets the fan to turn on at 65C.
-> 
-> Signed-off-by: Nathan Morrisson <nmorrisson@phytec.com>
-> ---
->   arch/arm64/boot/dts/ti/Makefile               |  1 +
->   .../ti/k3-am62-phyboard-lyra-gpio-fan.dtso    | 51 +++++++++++++++++++
->   2 files changed, 52 insertions(+)
->   create mode 100644 arch/arm64/boot/dts/ti/k3-am62-phyboard-lyra-gpio-fan.dtso
-> 
-> diff --git a/arch/arm64/boot/dts/ti/Makefile b/arch/arm64/boot/dts/ti/Makefile
-> index 52c1dc910308..379fb4f31a1f 100644
-> --- a/arch/arm64/boot/dts/ti/Makefile
-> +++ b/arch/arm64/boot/dts/ti/Makefile
-> @@ -23,6 +23,7 @@ dtb-$(CONFIG_ARCH_K3) += k3-am625-verdin-wifi-dev.dtb
->   dtb-$(CONFIG_ARCH_K3) += k3-am625-verdin-wifi-mallow.dtb
->   dtb-$(CONFIG_ARCH_K3) += k3-am625-verdin-wifi-yavia.dtb
->   dtb-$(CONFIG_ARCH_K3) += k3-am62-lp-sk.dtb
-> +dtb-$(CONFIG_ARCH_K3) += k3-am62-phyboard-lyra-gpio-fan.dtbo
+Add compatible string for Qualcomm QCA4024 device.
 
-Why not call this k3-am625-phyboard-lyra-gpio-fan.dtbo to match the
-name of the base board it applies to better?
+Signed-off-by: Paweł Owoc <frut3k7@gmail.com>
+---
+ drivers/spi/spidev.c | 2 ++
+ 1 file changed, 2 insertions(+)
 
-Andrew
+diff --git a/drivers/spi/spidev.c b/drivers/spi/spidev.c
+index 655f2c959cd4..0126a457a38e 100644
+--- a/drivers/spi/spidev.c
++++ b/drivers/spi/spidev.c
+@@ -710,6 +710,7 @@ static const struct spi_device_id spidev_spi_ids[] = {
+ 	{ .name = "spi-authenta" },
+ 	{ .name = "em3581" },
+ 	{ .name = "si3210" },
++	{ .name = "qca4024" },
+ 	{},
+ };
+ MODULE_DEVICE_TABLE(spi, spidev_spi_ids);
+@@ -734,6 +735,7 @@ static const struct of_device_id spidev_dt_ids[] = {
+ 	{ .compatible = "lwn,bk4", .data = &spidev_of_check },
+ 	{ .compatible = "menlo,m53cpld", .data = &spidev_of_check },
+ 	{ .compatible = "micron,spi-authenta", .data = &spidev_of_check },
++	{ .compatible = "qca,qca4024", .data = &spidev_of_check },
+ 	{ .compatible = "rohm,dh2228fv", .data = &spidev_of_check },
+ 	{ .compatible = "semtech,sx1301", .data = &spidev_of_check },
+ 	{ .compatible = "silabs,em3581", .data = &spidev_of_check },
+-- 
+2.43.0
 
->   
->   # Boards with AM62Ax SoC
->   dtb-$(CONFIG_ARCH_K3) += k3-am62a7-sk.dtb
-> diff --git a/arch/arm64/boot/dts/ti/k3-am62-phyboard-lyra-gpio-fan.dtso b/arch/arm64/boot/dts/ti/k3-am62-phyboard-lyra-gpio-fan.dtso
-> new file mode 100644
-> index 000000000000..9c05748bdd9d
-> --- /dev/null
-> +++ b/arch/arm64/boot/dts/ti/k3-am62-phyboard-lyra-gpio-fan.dtso
-> @@ -0,0 +1,51 @@
-> +// SPDX-License-Identifier: GPL-2.0-only OR MIT
-> +/*
-> + * Copyright (C) 2024 PHYTEC America LLC
-> + * Author: Garrett Giordano <ggiordano@phytec.com>
-> + */
-> +
-> +/dts-v1/;
-> +/plugin/;
-> +
-> +#include <dt-bindings/gpio/gpio.h>
-> +#include <dt-bindings/thermal/thermal.h>
-> +#include "k3-pinctrl.h"
-> +
-> +&{/} {
-> +	fan: gpio-fan {
-> +		compatible = "gpio-fan";
-> +		gpio-fan,speed-map = <0 0 8600 1>;
-> +		gpios = <&main_gpio0 40 GPIO_ACTIVE_LOW>;
-> +		#cooling-cells = <2>;
-> +		pinctrl-names = "default";
-> +		pinctrl-0 = <&gpio_fan_pins_default>;
-> +		status = "okay";
-> +	};
-> +};
-> +
-> +&main_pmx0 {
-> +	gpio_fan_pins_default: gpio-fan-default-pins {
-> +		pinctrl-single,pins = <
-> +			AM62X_IOPAD(0x0a4, PIN_OUTPUT, 7) /* (M22) GPMC0_DIR.GPIO0_40 */
-> +		>;
-> +	};
-> +};
-> +
-> +&thermal_zones {
-> +	main0_thermal: main0-thermal {
-> +		trips {
-> +			main0_thermal_trip0: main0-thermal-trip {
-> +				temperature = <65000>;  /* millicelsius */
-> +				hysteresis = <2000>;    /* millicelsius */
-> +				type = "active";
-> +			};
-> +		};
-> +
-> +		cooling-maps {
-> +			map0 {
-> +				trip = <&main0_thermal_trip0>;
-> +				cooling-device = <&fan THERMAL_NO_LIMIT THERMAL_NO_LIMIT>;
-> +			};
-> +		};
-> +	};
-> +};
 
