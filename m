@@ -1,115 +1,156 @@
-Return-Path: <devicetree+bounces-39480-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-39481-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id E62B584CE44
-	for <lists+devicetree@lfdr.de>; Wed,  7 Feb 2024 16:39:34 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7666284CE4A
+	for <lists+devicetree@lfdr.de>; Wed,  7 Feb 2024 16:42:40 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id A0A3628AD59
-	for <lists+devicetree@lfdr.de>; Wed,  7 Feb 2024 15:39:33 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id CF88BB21E25
+	for <lists+devicetree@lfdr.de>; Wed,  7 Feb 2024 15:42:37 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D01D981210;
-	Wed,  7 Feb 2024 15:38:34 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D1FC47FBD9;
+	Wed,  7 Feb 2024 15:42:33 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="sIKzYJDv"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="f72ZL+19"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f51.google.com (mail-wm1-f51.google.com [209.85.128.51])
+Received: from mail-pg1-f169.google.com (mail-pg1-f169.google.com [209.85.215.169])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 31BA8811F3
-	for <devicetree@vger.kernel.org>; Wed,  7 Feb 2024 15:38:33 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.51
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 483F47FBBD
+	for <devicetree@vger.kernel.org>; Wed,  7 Feb 2024 15:42:32 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.215.169
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1707320314; cv=none; b=WAJWBavK87zTXzLwIOyMuY9KijiEDKrhpBg62BwyyhJgwM+8lQTbXap/sDwlBLgMP+07+GiLXZ75DMoZ3dsdad/NRbm0jjEYzlDyrZoRBxcqka3aUUvVHsIPMISJiKyVtb6Zt1sAby0BGoM2bJtsd8+DAmTsmhMWpgGYc7MrhBM=
+	t=1707320553; cv=none; b=hyghux6Zd/snynodIHr7mIw7D0gWgTF4mCmVE6dCB2+w6fXagrLb+gtqVryR1vbTkeknTJRGQtwOgnDF19Jr4EJLHcTLNsEX/vb5qFgWzAs4gfSJL/0kqa0yi5+IJQ7ij6t7OlMlJdwzCU7OOl4/cnklXNabgg6YzOy2B71qM9c=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1707320314; c=relaxed/simple;
-	bh=oFGTh2OhIvPbiv0dHz2+sLUdT0AGdS+r+fNSNWcO/FA=;
-	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=geMnXBjCyMXfsnMYtkbWSJw9SBF4bkuglL2qX4t79yOYUx7W6dbsWS6CLbM84jbl4a+rmCaR297IDU6dNRq/GZOqjllasRPC6xccIbP4ywyCM1hlKUN6thbk+TcF3QBTK91wUWgP3t9U3zP4Xyh18q441Y/qiDPrJyV1A6ArA4A=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=sIKzYJDv; arc=none smtp.client-ip=209.85.128.51
+	s=arc-20240116; t=1707320553; c=relaxed/simple;
+	bh=6SHPMjNP8YDT15Iij7ixZFtooCnxVqeUcWFZiDatm2Y=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=GkQXFf8XgL787tLPNANaUdlLlw+L043BypOxWaEqPghL7MnMg7emEnG3TX/B5Lny3ovH0QuaZEz8R6loBf3+3id2DyFFVL8wIU3SdVM07b+TPj4xEo2Xi21QuvHkv01Jeb/PeNvGN332geOIW+3yPlOnVE00yRFfLsBGcCA29NI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=f72ZL+19; arc=none smtp.client-ip=209.85.215.169
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-wm1-f51.google.com with SMTP id 5b1f17b1804b1-4101565d20bso5536345e9.2
-        for <devicetree@vger.kernel.org>; Wed, 07 Feb 2024 07:38:32 -0800 (PST)
+Received: by mail-pg1-f169.google.com with SMTP id 41be03b00d2f7-5cddfe0cb64so522347a12.0
+        for <devicetree@vger.kernel.org>; Wed, 07 Feb 2024 07:42:32 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1707320311; x=1707925111; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
+        d=linaro.org; s=google; t=1707320551; x=1707925351; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=MbvJWnlre9MH2EiIqsIcJXmUPZrjG2BFAN9G+36KKP0=;
-        b=sIKzYJDvJiOKRktNfD+DW6VYZo1ONAQDl6JFUZYQiDqgZhxxUO/iF7okwYdwEFai15
-         EMN6EKIf5E6xf2qWRrdeIamfD0VLItC25dCbahqqxmHo1kUDlqZqOGn+ljqdwMqVz1zb
-         l+yNRrcCf67V3vGr/lsJ+tYSv0zdiW/IzmHod6PhFPlQuEYjBHtWGZbBXJxEIN97t8W8
-         eKKXhm3QoYhdov/JC+RNY8I24cAq11SeOvzwcRS+jreqXhfUHil0DhPp+6YLn3G52OfI
-         rCXq0PmkbEK4RBcg1xa9rjipE+h4R7w5bFboqpbd6D6gZ0BDwbyL4ysHxk2HgM7tvmWJ
-         R+Pg==
+        bh=G1k6l9VsJqCh+RqlLUdVe9MZtp+zPDCT1Q+6Pwca5BQ=;
+        b=f72ZL+19RKp/8pv1MeD3DGZTuv3EIHZ20hZ3sV4chavUcxoC34N5W6gE2E981dOuLE
+         2WfXE/z+dFoKxA2Vf9NOrBMQIJCv/Ild5c4Go31tnXsWt7GRdZMgc3ZIRFkwq4ty1vcX
+         L/b+sZBuGk8ixkBuhw8tXoMp1ROAZrhDg5x7tI6YduoZ6uKTwRws+lhTbbj8ljGhnkv1
+         4eCJAmydXrDc26POIxSPgY54xjM4UpvsgPQJpGdOcOMTasoDoEf7ouYu8D0LzV6SKpjl
+         BVq5Ts+idnVRAvypfKeMEgBO3b+MXKUqwcJ3MMAY1j6rn5gGt7RdvStLtaWCsrfBoF9A
+         d7Jg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1707320311; x=1707925111;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
+        d=1e100.net; s=20230601; t=1707320551; x=1707925351;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=MbvJWnlre9MH2EiIqsIcJXmUPZrjG2BFAN9G+36KKP0=;
-        b=HfsKKZbH+QATUr/cCaldJnyACsJDtv2vgW5MwIuGwmsCWvQQuP1gKhKdvzIa3aIydI
-         skomLf00Fn4EId3A/fmYBCvWU9DNxkPi/GXhB5k6a/8T8+WSt7oSWSyh1LrHb9pXOgdp
-         B6JantEZWy1OZ7UcZWAM9geY77IhGGYA5XB7KxMikitXw2gre2ZTTubp1ZLFhXu1Ov25
-         z073FU/lOzntV6z7M7ea5kr4eFrYpig/mUlqdiLmPxWBzKbkm48HJt26paPyS9/e9FIf
-         nMG5IFuudNUx7+MS29Enfq4I5xEYc0BQgHRyIim2eZpBUl8ntk5H5HkfFe3paYLoGh23
-         W7iQ==
-X-Forwarded-Encrypted: i=1; AJvYcCVnUOjZN1hv76qOe3qIL7wG+UetDRm0kcS43iiFpsd3Zg8aZ10PGoGf+fOknxw0kPB5fRFiJ1QSlNaksQ9SoMjAX9dBbfHcNJTYyA==
-X-Gm-Message-State: AOJu0YyrjeWIOiMKFJqAPNxBOcfbVpQFjNUpSFgGXwDcknSLCQ/rM3RU
-	VLB+rcyzjzc5+55XVqtbzJAGP2+ySm4rtaIiV7bjmbBuflusaNK202mB6S+v3eY=
-X-Google-Smtp-Source: AGHT+IGQqN+oRZ7J/ps9lkhJhgapJAFv4WN+VBydvkUTR/5OO834y+bRQjfqeYO9wqApvQHvaXOT7A==
-X-Received: by 2002:a05:600c:4f0e:b0:40f:dde8:1663 with SMTP id l14-20020a05600c4f0e00b0040fdde81663mr4975194wmq.19.1707320311617;
-        Wed, 07 Feb 2024 07:38:31 -0800 (PST)
-X-Forwarded-Encrypted: i=1; AJvYcCV1eYcUrPqoJ6E6XV63qXxSYuCmEy5u7Q6f5kaxMmJHILTmsgmwZdeYb1N7dcO3xGbdLEY5CdhZLczTPv8NkietV0vOOMOmNBm176mTYdh7nIZbtf2zzqNV+T3H5MOOZaCBW9yHJDykb3qEXQr6Fv1K/1RV/hWBir/thm9wO883n+ZxXl++LJv01xdCdRaLKdYvOx6g1WRd01SCDRNvNrNvTVhdpK2vVaxtBnyc/vH+pJ5qpgXcBuRIz+ADEGkO8qAeylKtbKwdcrmlLXuIX/EMRrCw5w7grPbxlWKZPgpVbfP0XqhDKiSHz2dWSAjh/CzbYeQPvgq5YFiGujLSsdG5Gjd2TeAoOAz6wpFT7stqzPJKupJpORClGMp77eZEDA9zkNxAZWVJZ23fMtBnY8bCfMAM
-Received: from krzk-bin.. ([178.197.222.62])
-        by smtp.gmail.com with ESMTPSA id 7-20020a05600c024700b0040ef0e26132sm1307678wmj.0.2024.02.07.07.38.29
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 07 Feb 2024 07:38:31 -0800 (PST)
-From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-To: Rob Herring <robh+dt@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Alim Akhtar <alim.akhtar@samsung.com>,
-	Marek Szyprowski <m.szyprowski@samsung.com>,
-	Henrik Grimler <henrik@grimler.se>
-Cc: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-	devicetree@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	linux-samsung-soc@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	~postmarketos/upstreaming@lists.sr.ht
-Subject: Re: [PATCH v2] ARM: dts: samsung: exynos5420-galaxy-tab-common: add wifi node
-Date: Wed,  7 Feb 2024 16:38:17 +0100
-Message-Id: <170732026212.120770.6589907576886281410.b4-ty@linaro.org>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20240206-galaxy-tab-s-cleanup-v2-1-89025c6c66c5@grimler.se>
-References: <20240206-galaxy-tab-s-cleanup-v2-1-89025c6c66c5@grimler.se>
+        bh=G1k6l9VsJqCh+RqlLUdVe9MZtp+zPDCT1Q+6Pwca5BQ=;
+        b=uBQeA8OYbpbkBNRmZ7ALH4dluschUhDb4b00pe+Mwhx1dF29ddwlTCRz8LtTUJoIAx
+         zmFK+PERrz2X5++jcjrHj3TaY9/DI/ZSYOrOLc8OpZ68skly4utCAUiauvrhtO4A2p2d
+         fGkaWkeKnpTR43WhJX2CQdWdhjDTsWHK1rYZH7M3BKWINzrg3g0jo2rfYkp0Bw8Fek8d
+         n/7GOPdzq0s2lUxj/H598NAyaDTUJmlLoPtNe9h1O74tVlxoTPQbLJs30lXPVxznG84h
+         +/t7qEoEfxne8ZNmz0roBhZsDll64Qd4V7huksuFTCIM9K4ojO9DJbs+vICVoVUv6bRL
+         F+Aw==
+X-Forwarded-Encrypted: i=1; AJvYcCUUeuH1RcQI++kdcBFpFhdMAtfJzHQJ8ctK0lVW+IGll+QfLkbfEBL4ZhTb7se2dW72r71ETz8WjldRaaM4sAEuSNwk0D+FnaceXA==
+X-Gm-Message-State: AOJu0Yw09IjrDi4ojQoPrmemm8CImhOxDqCjizepVCsJgYkcj+xe9mL3
+	VtrcyFYqLyu4cGw9bwufBMJj0pgorLwMEXmuVErqBcK2uA0ihHyA2UPCO2t6WfjvJ9LAV6Hln9/
+	p0R0J63w9fjPlfdtkPbhUfG7X9rFCMSZL52mEHg==
+X-Google-Smtp-Source: AGHT+IHoo4XR4AOXdM1Xi2DWyc3VAXdtc9F/OIyCgMe01EYezQtt37cphv12SPLoNwfrzSk+idTwfQsKhr3rHYJ1sig=
+X-Received: by 2002:a17:90a:d48f:b0:296:c695:4962 with SMTP id
+ s15-20020a17090ad48f00b00296c6954962mr2669545pju.41.1707320551601; Wed, 07
+ Feb 2024 07:42:31 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
+References: <20240206085238.1208256-1-tudor.ambarus@linaro.org>
+ <20240206085238.1208256-2-tudor.ambarus@linaro.org> <CAPLW+4=Xd+B=ZncqPgU4qaJ8zY8JJvJZApdUW_v0w6yr2cy9Sg@mail.gmail.com>
+ <16a5e423-1111-49ff-ad6c-b0bb89a4879a@linaro.org>
+In-Reply-To: <16a5e423-1111-49ff-ad6c-b0bb89a4879a@linaro.org>
+From: Sam Protsenko <semen.protsenko@linaro.org>
+Date: Wed, 7 Feb 2024 09:42:20 -0600
+Message-ID: <CAPLW+4n_1yBOuzW3Ke2DKh_0EBZMUrd3nyGd=U0TeOML_2dXuw@mail.gmail.com>
+Subject: Re: [PATCH 1/4] spi: s3c64xx: explicitly include <linux/types.h>
+To: Tudor Ambarus <tudor.ambarus@linaro.org>
+Cc: Greg Kroah-Hartman <gregkh@linuxfoundation.org>, broonie@kernel.org, andi.shyti@kernel.org, 
+	krzysztof.kozlowski@linaro.org, alim.akhtar@samsung.com, 
+	linux-spi@vger.kernel.org, linux-samsung-soc@vger.kernel.org, 
+	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org, 
+	andre.draszik@linaro.org, peter.griffin@linaro.org, kernel-team@android.com, 
+	willmcvicker@google.com, robh+dt@kernel.org, conor+dt@kernel.org, 
+	devicetree@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
+On Wed, Feb 7, 2024 at 12:21=E2=80=AFAM Tudor Ambarus <tudor.ambarus@linaro=
+.org> wrote:
+>
+>
+>
+> On 2/6/24 18:02, Sam Protsenko wrote:
+> > On Tue, Feb 6, 2024 at 2:52=E2=80=AFAM Tudor Ambarus <tudor.ambarus@lin=
+aro.org> wrote:
+> >>
+> >> The driver uses u32 and relies on an implicit inclusion of
+> >> <linux/types.h>.
+> >>
+> >> It is good practice to directly include all headers used, it avoids
+> >> implicit dependencies and spurious breakage if someone rearranges
+> >> headers and causes the implicit include to vanish.
+> >>
+> >> Include the missing header.
+> >>
+> >> Fixes: 230d42d422e7 ("spi: Add s3c64xx SPI Controller driver")
+> >
+> > Not sure if Fixes tag is needed here.
+>
+> We have already talked about this. If a patch that causes the implicit
+> include to vanish is backported to stable, it will reveal the missing
+> header here and will result in backporting this patch as well. So, as a
+> good practice let's allow this patch to be queued to stable, it will
+> avoid possible compilation errors.
+>
+> I guess Mark has to break the tie again. Or Greg if he cares, I added
+> him in To:.
+>
+> >
+> >> Signed-off-by: Tudor Ambarus <tudor.ambarus@linaro.org>
+> >> ---
+> >>  drivers/spi/spi-s3c64xx.c | 1 +
+> >>  1 file changed, 1 insertion(+)
+> >>
+> >> diff --git a/drivers/spi/spi-s3c64xx.c b/drivers/spi/spi-s3c64xx.c
+> >> index 72c35dbe53b2..c15ca6a910dc 100644
+> >> --- a/drivers/spi/spi-s3c64xx.c
+> >> +++ b/drivers/spi/spi-s3c64xx.c
+> >> @@ -17,6 +17,7 @@
+> >>  #include <linux/platform_device.h>
+> >>  #include <linux/pm_runtime.h>
+> >>  #include <linux/spi/spi.h>
+> >> +#include <linux/types.h>
+> >
+> > Is this really needed for the further patches in this series?
+> >
+>
+> Yes, because in patch 3/4 I use u8 and u16 and I don't want to use those
+> without having the header included. Do you find this wrong?
+>
 
-On Tue, 06 Feb 2024 17:02:27 +0100, Henrik Grimler wrote:
-> By using brcm/brcmfmac4354-sdio.bin from linux-firmware together with
-> nvram.txt from vendor firmware wifi works well on the chagall-wifi and
-> klimt-lte.
-> 
-> 
+I'd say if this header is really needed for your patch 3/4 to have a
+successful build, just merge this patch into the patch 3/4 then.
 
-Applied, thanks!
-
-[1/1] ARM: dts: samsung: exynos5420-galaxy-tab-common: add wifi node
-      https://git.kernel.org/krzk/linux/c/60f1164e21cc04666d23b63e1153af74e7a5650d
-
-Best regards,
--- 
-Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+> >>
+> >>  #define MAX_SPI_PORTS          12
+> >>  #define S3C64XX_SPI_QUIRK_CS_AUTO      (1 << 1)
+> >> --
+> >> 2.43.0.594.gd9cf4e227d-goog
+> >>
 
