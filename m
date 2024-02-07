@@ -1,216 +1,154 @@
-Return-Path: <devicetree+bounces-39393-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-39394-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6D5FF84C7C8
-	for <lists+devicetree@lfdr.de>; Wed,  7 Feb 2024 10:43:22 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id D146684C7D6
+	for <lists+devicetree@lfdr.de>; Wed,  7 Feb 2024 10:47:33 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id C11C128DCB3
-	for <lists+devicetree@lfdr.de>; Wed,  7 Feb 2024 09:43:20 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 8BF0E283366
+	for <lists+devicetree@lfdr.de>; Wed,  7 Feb 2024 09:47:32 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id EEEF6225CC;
-	Wed,  7 Feb 2024 09:43:11 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id F26F620DC3;
+	Wed,  7 Feb 2024 09:47:27 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Rr0WjIqw"
+	dkim=pass (1024-bit key) header.d=linuxfoundation.org header.i=@linuxfoundation.org header.b="hxxdc8kl"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C4B29224DD;
-	Wed,  7 Feb 2024 09:43:11 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A854523745;
+	Wed,  7 Feb 2024 09:47:27 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1707298991; cv=none; b=IrAwuatzjTFp3my7usGlP7TtQee7NzbT02MTvikXeDyWLX7DRQIiCkOh7FsqK7ZcQdLxvb+aSWx7MyfaQhh2we1zw5iARMskew1O4zgaTR1bZA/OJWs7SVpziT2kLq4laJSDKm0CLIFSUfYIOYqeB+NAHim/uvYS54qldKf9Os0=
+	t=1707299247; cv=none; b=H9BcuogCvT8xWS0oL4atuIPBUWuWlAHCIWR4DxfUEG7DHWRyx9AdQ123C71uUI71QUiMbvG5qLb5YwXDAbC8ITnYGTkutIvpqYZd+IaW61NJlPBMxgGu3tuQGfiBNeb4Try5LDZDKC21qpEAtuSf3Hk5b1Wl230UJ4FzSDYGDEY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1707298991; c=relaxed/simple;
-	bh=rBz0ZwAZn/fuX05TD2o/9u17HdFvyA2lKgn60HGjLzQ=;
-	h=From:To:Cc:Subject:In-Reply-To:References:Date:Message-ID:
-	 MIME-Version:Content-Type; b=bzod1wW+vhxcy+JU4YSEO8t6JI/KXEV2eUubGeDJpBujYRNJkb6bxIgdex2KHxf05sUE43ExMDyDcQlQH9hNJWq6Wkm9qeSR9EH4RsaBqJdZQddj7BHzKE8CY0BjO6tx4x9AoCFqch8xZ8g3gIAWBcZwARTWFy1XIMOruJO2a90=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Rr0WjIqw; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id BC510C43390;
-	Wed,  7 Feb 2024 09:43:10 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1707298991;
-	bh=rBz0ZwAZn/fuX05TD2o/9u17HdFvyA2lKgn60HGjLzQ=;
-	h=From:To:Cc:Subject:In-Reply-To:References:Date:From;
-	b=Rr0WjIqwWKkXMAj8MPLtyRgEsuKFpcOPImpwtlmcKRaT6LgHvR7IejqHLPxMxw2LA
-	 H7jP6h+RrMUibtGEzaHz0TfebbH2rZVovUGkbAxo6xEpZP6CWf7CU9lNN2wuyRzlIr
-	 LTKTwVK6TOSH/cuX470mt1ToYC9jK/BY1eLwFpxHGJws1w6qi4QjSEITbG6yMo+O8H
-	 2+YjBXGu8rJZA72FXkCOBwEyaqH8c2bZrekk5nOW30L0AR82JI65WHhSCuId/fNuQ0
-	 EXELA3/a90JO87R6/6Aalw5H9JldYFH1JH4/9Pk5DaGorhoV+duKfFGcet7dAT39ef
-	 W+tga8Ll1WeUQ==
-From: =?utf-8?B?QmrDtnJuIFTDtnBlbA==?= <bjorn@kernel.org>
-To: Anup Patel <apatel@ventanamicro.com>, Palmer Dabbelt
- <palmer@dabbelt.com>, Paul Walmsley <paul.walmsley@sifive.com>, Thomas
- Gleixner <tglx@linutronix.de>, Rob Herring <robh+dt@kernel.org>, Krzysztof
- Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Frank Rowand
- <frowand.list@gmail.com>, Conor Dooley <conor+dt@kernel.org>
-Cc: Anup Patel <apatel@ventanamicro.com>, devicetree@vger.kernel.org,
- Saravana Kannan <saravanak@google.com>, Marc Zyngier <maz@kernel.org>,
- Anup Patel <anup@brainfault.org>, linux-kernel@vger.kernel.org, Atish
- Patra <atishp@atishpatra.org>, linux-riscv@lists.infradead.org,
- linux-arm-kernel@lists.infradead.org, Andrew Jones
- <ajones@ventanamicro.com>
-Subject: Re: [PATCH v12 18/25] irqchip: Add RISC-V incoming MSI controller
- early driver
-In-Reply-To: <20240127161753.114685-19-apatel@ventanamicro.com>
-References: <20240127161753.114685-1-apatel@ventanamicro.com>
- <20240127161753.114685-19-apatel@ventanamicro.com>
-Date: Wed, 07 Feb 2024 10:43:08 +0100
-Message-ID: <87il30y5hv.fsf@all.your.base.are.belong.to.us>
+	s=arc-20240116; t=1707299247; c=relaxed/simple;
+	bh=3Guh8FFWdBHHjtk/64P3ZLJj+ITcekYysmUVlFzYeS4=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=QROWL7yS4vrQCGTn/7XzCN63XRghN/MzMnxveODzh4+i1Ievc1plF2cEd8LCrXpCpWl7w63TOC3fiHyMaS+Iw0TynWqIz7FgQXNJ+Iwyy3WN/as/RSnw4IEm1fqd5zk4F1Ajq/PXD6vUkbMSd0PlCAy3sleCKtBcUgiVk6sLy1w=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (1024-bit key) header.d=linuxfoundation.org header.i=@linuxfoundation.org header.b=hxxdc8kl; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 85A5EC433F1;
+	Wed,  7 Feb 2024 09:47:26 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=linuxfoundation.org;
+	s=korg; t=1707299247;
+	bh=3Guh8FFWdBHHjtk/64P3ZLJj+ITcekYysmUVlFzYeS4=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=hxxdc8klnIy4ZDNB5BWD04rH+GMHbiNDBN6/hTxQc/vByYJ5XITJCX69MyWl1yYxf
+	 0UeJc615SI12VAM1ChmwiQgVXFRgRg6ODGum5sCfsC3a07JrFwHB60n1zKwo599D5P
+	 Advs1kA3wnh04DvGL0zsveVAJSN93LbtYq6UYwz4=
+Date: Wed, 7 Feb 2024 09:47:23 +0000
+From: Greg Kroah-Hartman <gregkh@linuxfoundation.org>
+To: Luca Weiss <luca.weiss@fairphone.com>
+Cc: Konrad Dybcio <konrad.dybcio@linaro.org>,
+	Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
+	Bjorn Andersson <andersson@kernel.org>,
+	Rob Herring <robh+dt@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Heikki Krogerus <heikki.krogerus@linux.intel.com>,
+	cros-qcom-dts-watchers@chromium.org,
+	~postmarketos/upstreaming@lists.sr.ht, phone-devel@vger.kernel.org,
+	linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org, linux-usb@vger.kernel.org
+Subject: Re: [PATCH 0/3] Fairphone 5 PMIC-GLINK support (USB-C, charger, fuel
+ gauge)
+Message-ID: <2024020710-regulator-charging-7682@gregkh>
+References: <20231220-fp5-pmic-glink-v1-0-2a1f8e3c661c@fairphone.com>
+ <8d042095-1e09-45cc-9762-909fe8d663a9@linaro.org>
+ <CXTU5MLN0YDS.29PPV8KZF8G9R@fairphone.com>
+ <CAA8EJpoD3x=kVLu4x2yLtAqCp=wmGSU4ssq5Oj_SD5VQ=GyAYQ@mail.gmail.com>
+ <d2007240-2779-4881-8e9d-1c4f5daa55e5@linaro.org>
+ <CXU22OZNAH2H.24YIQWBA4KE3C@fairphone.com>
+ <2024010227-darn-litmus-4ddf@gregkh>
+ <CY49JOEDOEZX.1KNYT91GHL3MX@fairphone.com>
+ <2024010205-placidly-expire-221c@gregkh>
+ <CYYDQ7RF0HB7.G7R6KHP1Z42U@fairphone.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <CYYDQ7RF0HB7.G7R6KHP1Z42U@fairphone.com>
 
-Anup Patel <apatel@ventanamicro.com> writes:
+On Wed, Feb 07, 2024 at 12:20:00AM +0100, Luca Weiss wrote:
+> On Tue Jan 2, 2024 at 2:53 PM CET, Greg Kroah-Hartman wrote:
+> > On Tue, Jan 02, 2024 at 02:43:24PM +0100, Luca Weiss wrote:
+> > > On Tue Jan 2, 2024 at 2:36 PM CET, Greg Kroah-Hartman wrote:
+> > > > On Thu, Dec 21, 2023 at 02:45:26PM +0100, Luca Weiss wrote:
+> > > > > On Thu Dec 21, 2023 at 1:53 PM CET, Konrad Dybcio wrote:
+> > > > > > On 21.12.2023 11:34, Dmitry Baryshkov wrote:
+> > > > > > > On Thu, 21 Dec 2023 at 09:33, Luca Weiss <luca.weiss@fairphone.com> wrote:
+> > > > > > >>
+> > > > > > >> On Wed Dec 20, 2023 at 1:32 PM CET, Konrad Dybcio wrote:
+> > > > > > >>> On 20.12.2023 11:02, Luca Weiss wrote:
+> > > > > > >>>> This series adds all the necessary bits to enable USB-C role switching,
+> > > > > > >>>> charger and fuel gauge (all via pmic-glink) on Fairphone 5.
+> > > > > > >>>>
+> > > > > > >>>> One thing that could be made different is the pmic-glink compatible.
+> > > > > > >>>> I've chosen to use qcm6490 compatible for it and not sc7280 since
+> > > > > > >>>> there's plenty of firmware variety on sc7280-based platforms and they
+> > > > > > >>>> might require different quirks in the future, so limit this PDOS quirk
+> > > > > > >>>> to just qcm6490 for now.
+> > > > > > >>>>
+> > > > > > >>>> If someone thinks it should be qcom,sc7280-pmic-glink, please let me
+> > > > > > >>>> know :)
+> > > > > > >>> IMO it's best to continue using the "base soc" (which just so happened
+> > > > > > >>> to fall onto sc7280 this time around) for all compatibles, unless the
+> > > > > > >>> derivatives actually had changes
+> > > > > > >>
+> > > > > > >> Hi Konrad,
+> > > > > > >>
+> > > > > > >> I think at some point I asked Dmitry what he thought and he mentioned
+> > > > > > >> qcm6490. Even found the message again:
+> > > > > > >>
+> > > > > > >>> well, since it is a firmware thing, you might want to emphasise that.
+> > > > > > >>> So from my POV qcm6490 makes more sense
+> > > > > > >>
+> > > > > > >> But yeah since it's likely that sc7280 firmware behaves the same as
+> > > > > > >> qcm6490 firmware it's probably okay to use sc7280 compatible, worst case
+> > > > > > >> we change it later :) I'll send a v2 with those changes.
+> > > > > > > 
+> > > > > > > Worst case we end up with sc7280 which has yet another slightly
+> > > > > > > different UCSI / PMIC GLINK implementation, but the compatible string
+> > > > > > > is already taken.
+> > > > > > > I still suppose that this should be a qcm6490-related string.
+> > > > > > Right, let's keep qcm then
+> > > > > 
+> > > > > Ack from my side also. Thanks for the feedback!
+> > > >
+> > > > This doesn't apply to my tree, where should it be going through?
+> > > 
+> > > As far as I can see the dependency for the driver commit 1d103d6af241
+> > > ("usb: typec: ucsi: fix UCSI on buggy Qualcomm devices") was applied to
+> > > Bjorn's qcom tree, so 2/3 should also go there then.
+> > > 
+> > > Patch 3/3 (arm64 dts) definitely also Bjorn's qcom tree.
+> > > 
+> > > So that leaves patch 1/3 which Bjorn can probably pick up as well but
+> > > looking at git log you also picked up some for that file in the past,
+> > > dunno.
+> >
+> > Ok, for any remaining ones that want to be merged before 6.8-rc1 is out,
+> > feel free to add my:
+> >
+> > Acked-by: Greg Kroah-Hartman <gregkh@linuxfoundation.org>
+> >
+> > If they don't get picked up by 6.8-rc1, feel free to rebase and send it
+> > for me to take through my tree.
+> 
+> Hi Greg,
+> 
+> This applies cleanly on -next as of next-20240206 still.
+> 
+> Could you please pick it up for v6.9? I can also send a v2 with only
+> the two remaining patches (dts was applied to qcom by Bjorn already).
 
-> The RISC-V advanced interrupt architecture (AIA) specification
-> defines a new MSI controller called incoming message signalled
-> interrupt controller (IMSIC) which manages MSI on per-HART (or
-> per-CPU) basis. It also supports IPIs as software injected MSIs.
-> (For more details refer https://github.com/riscv/riscv-aia)
->
-> Let us add an early irqchip driver for RISC-V IMSIC which sets
-> up the IMSIC state and provide IPIs.
->
-> Signed-off-by: Anup Patel <apatel@ventanamicro.com>
-> ---
->  drivers/irqchip/Kconfig                 |   7 +
->  drivers/irqchip/Makefile                |   1 +
->  drivers/irqchip/irq-riscv-imsic-early.c | 241 +++++++
->  drivers/irqchip/irq-riscv-imsic-state.c | 887 ++++++++++++++++++++++++
->  drivers/irqchip/irq-riscv-imsic-state.h | 105 +++
->  include/linux/irqchip/riscv-imsic.h     |  87 +++
->  6 files changed, 1328 insertions(+)
->  create mode 100644 drivers/irqchip/irq-riscv-imsic-early.c
->  create mode 100644 drivers/irqchip/irq-riscv-imsic-state.c
->  create mode 100644 drivers/irqchip/irq-riscv-imsic-state.h
->  create mode 100644 include/linux/irqchip/riscv-imsic.h
->
-> diff --git a/drivers/irqchip/Kconfig b/drivers/irqchip/Kconfig
-> index f7149d0f3d45..85f86e31c996 100644
-> --- a/drivers/irqchip/Kconfig
-> +++ b/drivers/irqchip/Kconfig
-> @@ -546,6 +546,13 @@ config SIFIVE_PLIC
->  	select IRQ_DOMAIN_HIERARCHY
->  	select GENERIC_IRQ_EFFECTIVE_AFF_MASK if SMP
->=20=20
-> +config RISCV_IMSIC
-> +	bool
-> +	depends on RISCV
-> +	select IRQ_DOMAIN_HIERARCHY
-> +	select GENERIC_IRQ_MATRIX_ALLOCATOR
-> +	select GENERIC_MSI_IRQ
-> +
->  config EXYNOS_IRQ_COMBINER
->  	bool "Samsung Exynos IRQ combiner support" if COMPILE_TEST
->  	depends on (ARCH_EXYNOS && ARM) || COMPILE_TEST
-> diff --git a/drivers/irqchip/Makefile b/drivers/irqchip/Makefile
-> index ffd945fe71aa..d714724387ce 100644
-> --- a/drivers/irqchip/Makefile
-> +++ b/drivers/irqchip/Makefile
-> @@ -95,6 +95,7 @@ obj-$(CONFIG_QCOM_MPM)			+=3D irq-qcom-mpm.o
->  obj-$(CONFIG_CSKY_MPINTC)		+=3D irq-csky-mpintc.o
->  obj-$(CONFIG_CSKY_APB_INTC)		+=3D irq-csky-apb-intc.o
->  obj-$(CONFIG_RISCV_INTC)		+=3D irq-riscv-intc.o
-> +obj-$(CONFIG_RISCV_IMSIC)		+=3D irq-riscv-imsic-state.o irq-riscv-imsic-=
-early.o
->  obj-$(CONFIG_SIFIVE_PLIC)		+=3D irq-sifive-plic.o
->  obj-$(CONFIG_IMX_IRQSTEER)		+=3D irq-imx-irqsteer.o
->  obj-$(CONFIG_IMX_INTMUX)		+=3D irq-imx-intmux.o
-> diff --git a/drivers/irqchip/irq-riscv-imsic-early.c b/drivers/irqchip/ir=
-q-riscv-imsic-early.c
-> new file mode 100644
-> index 000000000000..3557e32a713c
-> --- /dev/null
-> +++ b/drivers/irqchip/irq-riscv-imsic-early.c
-> @@ -0,0 +1,241 @@
-> +// SPDX-License-Identifier: GPL-2.0
-> +/*
-> + * Copyright (C) 2021 Western Digital Corporation or its affiliates.
-> + * Copyright (C) 2022 Ventana Micro Systems Inc.
-> + */
-> +
-> +#define pr_fmt(fmt) "riscv-imsic: " fmt
-> +#include <linux/cpu.h>
-> +#include <linux/interrupt.h>
-> +#include <linux/io.h>
-> +#include <linux/irq.h>
-> +#include <linux/irqchip.h>
-> +#include <linux/irqchip/chained_irq.h>
-> +#include <linux/module.h>
-> +#include <linux/spinlock.h>
-> +#include <linux/smp.h>
-> +
-> +#include "irq-riscv-imsic-state.h"
-> +
-> +static int imsic_parent_irq;
-> +
-> +#ifdef CONFIG_SMP
-> +static irqreturn_t imsic_local_sync_handler(int irq, void *data)
-> +{
-> +	imsic_local_sync();
-> +	return IRQ_HANDLED;
-> +}
-> +
-> +static void imsic_ipi_send(unsigned int cpu)
-> +{
-> +	struct imsic_local_config *local =3D
-> +				per_cpu_ptr(imsic->global.local, cpu);
-> +
-> +	writel_relaxed(IMSIC_IPI_ID, local->msi_va);
-> +}
-> +
-> +static void imsic_ipi_starting_cpu(void)
-> +{
-> +	/* Enable IPIs for current CPU. */
-> +	__imsic_id_set_enable(IMSIC_IPI_ID);
-> +
-> +	/* Enable virtual IPI used for IMSIC ID synchronization */
-> +	enable_percpu_irq(imsic->ipi_virq, 0);
-> +}
-> +
-> +static void imsic_ipi_dying_cpu(void)
-> +{
-> +	/*
-> +	 * Disable virtual IPI used for IMSIC ID synchronization so
-> +	 * that we don't receive ID synchronization requests.
-> +	 */
-> +	disable_percpu_irq(imsic->ipi_virq);
-> +}
-> +
-> +static int __init imsic_ipi_domain_init(void)
-> +{
-> +	int virq;
-> +
-> +	/* Create IMSIC IPI multiplexing */
-> +	virq =3D ipi_mux_create(IMSIC_NR_IPI, imsic_ipi_send);
-> +	if (virq <=3D 0)
-> +		return (virq < 0) ? virq : -ENOMEM;
-> +	imsic->ipi_virq =3D virq;
-> +
-> +	/* First vIRQ is used for IMSIC ID synchronization */
-> +	virq =3D request_percpu_irq(imsic->ipi_virq, imsic_local_sync_handler,
-> +				  "riscv-imsic-lsync", imsic->global.local);
+v2 with just the remaining patches would be great, thanks.
 
-There's a lot of boilerplate for the local-sync IPI. Any reason not to
-use what the kernel provides out-of-the-box:
-
-  int smp_call_function_single(int cpuid, smp_call_func_t func, void *info,
-			     int wait);
-
-e.g.
-
-  smp_call_function_single(target_cpu, imsic_local_sync_with_new_signature,=
- NULL, 0);
-
-
-Bj=C3=B6rn
+greg k-h
 
