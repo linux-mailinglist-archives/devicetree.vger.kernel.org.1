@@ -1,201 +1,259 @@
-Return-Path: <devicetree+bounces-39850-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-39851-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 13DC084E5D1
-	for <lists+devicetree@lfdr.de>; Thu,  8 Feb 2024 18:00:07 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6AA8D84E5DA
+	for <lists+devicetree@lfdr.de>; Thu,  8 Feb 2024 18:01:45 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 91C791F23E11
-	for <lists+devicetree@lfdr.de>; Thu,  8 Feb 2024 17:00:06 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id EA5A928FA0A
+	for <lists+devicetree@lfdr.de>; Thu,  8 Feb 2024 17:01:43 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id EB55080BF0;
-	Thu,  8 Feb 2024 17:00:03 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id CD4EE8002C;
+	Thu,  8 Feb 2024 17:01:40 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="Xso+MMgb"
+	dkim=pass (1024-bit key) header.d=nxp.com header.i=@nxp.com header.b="aDAbJWAh"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+Received: from EUR03-VI1-obe.outbound.protection.outlook.com (mail-vi1eur03on2085.outbound.protection.outlook.com [40.107.103.85])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1BCC27F7FE;
-	Thu,  8 Feb 2024 17:00:01 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1707411603; cv=none; b=nCd/78q7dljoXkKLl4P7XNlkGdBnCsQLFgMNphMO9Ynv+T/rzf7sEbd4SJPGh/1O8r2yg7c6g+cmrNMPUa+D0lrWKS8n1vXQW0ZuB6ULljwRvTge0JGqc3KfkP8QEe9nkI3MNox2FWn3VbK7YKGR/PLYgfENg5BsmevbMWWXHps=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1707411603; c=relaxed/simple;
-	bh=VDndyaYeLSFQsPXNAP4dS8n7FchbSz5Kp9PJZapzE+w=;
-	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
-	 In-Reply-To:Content-Type; b=DrfFKvFF/uAlz6QUqDyDAl32NjE1s4LBp1ZecHDske07e3NlWE0tgrUW5JTmmgjHjRIU8YqECh/8Wo+bZEhb8xXmJyQBf7ej75BN59gkYs1E+Ug8RFB1FovxJKm1ZcTyVB0v5dX50BSgJdYNqSVaZZ0aRcnECzYuhd0No3VGtv8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=Xso+MMgb; arc=none smtp.client-ip=205.220.180.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
-Received: from pps.filterd (m0279870.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.17.1.24/8.17.1.24) with ESMTP id 418FR5Yv021218;
-	Thu, 8 Feb 2024 16:59:46 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
-	message-id:date:mime-version:subject:to:cc:references:from
-	:in-reply-to:content-type:content-transfer-encoding; s=
-	qcppdkim1; bh=vJ0Ng4GpEOGSL5tkjSsKqvDm5yvMqpG8nwhhwyAVv08=; b=Xs
-	o+MMgbMSB8SPIwYQA4mp1kEIQsT4hfWJQy+7LhSav2nSphTQtHiizceK/WvkdS+C
-	+aJg9KtGt7NcG+f8/4zkTQmCdgG1/hpJCXJXa3wgfHbhv8KYchWVfRzZRS/R0D39
-	mJUWuXAFNUcl9+otbzZ13kvydue+NLjMrueBEWcNzRr0Zh3c1hsRu8bzolj1U5IA
-	vZkRwWpCxTRTPmpmXCcd2aMUQwMTIJAOskQXDKQqWOkUUA5WE5Y77ZUt2siCeoV2
-	ZPjrkpW+pEE9cdaCzl3mXf1/VCChIjGRPQR7o+9W3Yn2lmpi7xL2CNlcCc9YYoJU
-	hmseroI4JV/KNVIOB3MA==
-Received: from nalasppmta02.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3w4rk81sre-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Thu, 08 Feb 2024 16:59:46 +0000 (GMT)
-Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
-	by NALASPPMTA02.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 418GxjS3006929
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Thu, 8 Feb 2024 16:59:45 GMT
-Received: from [10.71.109.81] (10.80.80.8) by nalasex01a.na.qualcomm.com
- (10.47.209.196) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1118.40; Thu, 8 Feb
- 2024 08:59:44 -0800
-Message-ID: <66ecb179-a878-bfe0-af8d-0640560e0a9b@quicinc.com>
-Date: Thu, 8 Feb 2024 08:59:43 -0800
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 460777D3F0;
+	Thu,  8 Feb 2024 17:01:37 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.107.103.85
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1707411700; cv=fail; b=tGMI7MwzgHd+cQfBAMY7kn1QevOqMYn+zs+DzGp0ISKTUms1mdQ1fRLRGnenaP+9Yqtz/ExECgZ/bRxsOdCGGUbKx2k+Nfj7c4hxSvfBGBcl2CUFiO63aaiNEUye9bkNgczDMxwODif6O8A67V0XICyydZbwkg7cq9/4gA6MQe8=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1707411700; c=relaxed/simple;
+	bh=hc0vWKzWBYmTQPNA0uhujkmwegxnId+yCijUqEvVwaI=;
+	h=From:To:Cc:Subject:Date:Message-Id:Content-Type:MIME-Version; b=p+D4qXa/Yh2OTQ+B7ZuUAAj2M63xeEDFiqh1ttoCY9PFHaQhckzrwPtM/KcvnSg4kdm29MrV5fKk+v1V7RUh3BQAaaJxSMORUBh4ocpZbC/x4kC/Tk7Q84JA8MuHRfSpdExc1pPLVGGk3pUcZurMYJcr5NiIDbZg832bWZGCkrE=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com; spf=pass smtp.mailfrom=nxp.com; dkim=pass (1024-bit key) header.d=nxp.com header.i=@nxp.com header.b=aDAbJWAh; arc=fail smtp.client-ip=40.107.103.85
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=nxp.com
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=aS3w7phlgUg7l7Tp4hEE9LUCUXKawYbfYsAucE+1PMV4x7oQEttgjV31HhL+I/BNu6Etj9/ULYBfq4s/MJkOtDGsk9trbd5gYyofYi6XB3DvvpDMC/r/RofkTdJeGOh2tzICtRJjjY6n09L1FzKeJG4sZUjhvot1fSC1Mq7XPQxmwg2WZff0+cZRn1v5mEvsNpjmnud/DnyrF0KwdqwMZVJ07pbrJp/vHHew06jod/um/hTYrcbT74JgArARyz4dqfxeurFPOaiBcRTXIFAetDjYEyNsPUoex6UvkKyk2oWR0CSEmdBVfa01/Qnmr28sd7golZR64DRzbArEkflh1g==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=qV44oIZVXxGjMUN038mXUA0fEvu2yZSoG67eTDt2HkM=;
+ b=iiKCfDtM/SRY68uSmv4/dFkCh3k7M5kkE+yULYwq8fhz6TB6O/QSeQo93C5luuM5U2rjEK2NmFbOO8q7P8OlmPnoYB+ifOg4j3ZbDBFS/RS+wdYw1015Cf2cxUPFfFmKcMuh3FOM8S05fjxtrt/Qxe3z3nJNAP6r4GozeIpV6bJbxFUw67rId8vJc0zoxOMXO1N3+BWn0s53QOorX90VTVBdyJbZBXDW2/4mG601gT+y4verHpYFA642AEm7D0M/yONrtS3OD1pavSKmJpMbxr3dV6N2h7rPA7ZaaZZZ7tiSsprq5Res9awqxYCd3eaolyu5DL+vw2eQ7qVzdlrUEw==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
+ header.d=nxp.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector2;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=qV44oIZVXxGjMUN038mXUA0fEvu2yZSoG67eTDt2HkM=;
+ b=aDAbJWAhV3DECOeYqLUYvrt8fwI99fpt+vx2CP2VRlC0pXdG+EsGSSTZfCV9iK6VIIhhggAVW6J8DHWNrwWRaoOOu/ZKeHfOHMz5icEb5A0+KE2Njk3THYQtmaHW4oswYuRK+1mNbNXlm3GMw2mqxSnx/+fuLFTUY570evozg9I=
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=nxp.com;
+Received: from PAXPR04MB9642.eurprd04.prod.outlook.com (2603:10a6:102:240::14)
+ by PA4PR04MB9248.eurprd04.prod.outlook.com (2603:10a6:102:2a3::14) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7249.36; Thu, 8 Feb
+ 2024 17:01:35 +0000
+Received: from PAXPR04MB9642.eurprd04.prod.outlook.com
+ ([fe80::c8b4:5648:8948:e85c]) by PAXPR04MB9642.eurprd04.prod.outlook.com
+ ([fe80::c8b4:5648:8948:e85c%3]) with mapi id 15.20.7249.035; Thu, 8 Feb 2024
+ 17:01:35 +0000
+From: Frank Li <Frank.Li@nxp.com>
+To: frank.li@nxp.com
+Cc: alexandre.belloni@bootlin.com,
+	conor.culhane@silvaco.com,
+	devicetree@vger.kernel.org,
+	gregkh@linuxfoundation.org,
+	ilpo.jarvinen@linux.intel.com,
+	imx@lists.linux.dev,
+	jirislaby@kernel.org,
+	joe@perches.com,
+	krzysztof.kozlowski+dt@linaro.org,
+	krzysztof.kozlowski@linaro.org,
+	linux-i3c@lists.infradead.org,
+	linux-kernel@vger.kernel.org,
+	linux-serial@vger.kernel.org,
+	miquel.raynal@bootlin.com,
+	robh@kernel.org,
+	zbigniew.lukwinski@linux.intel.com
+Subject: [PATCH v8 0/8] I3C target mode support
+Date: Thu,  8 Feb 2024 12:01:09 -0500
+Message-Id: <20240208170117.798357-1-Frank.Li@nxp.com>
+X-Mailer: git-send-email 2.34.1
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+X-ClientProxiedBy: SJ0PR03CA0245.namprd03.prod.outlook.com
+ (2603:10b6:a03:3a0::10) To PAXPR04MB9642.eurprd04.prod.outlook.com
+ (2603:10a6:102:240::14)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
- Thunderbird/102.11.0
-Subject: Re: [PATCH 3/5] drm/msm: mdss: Add X1E80100 support
-Content-Language: en-US
-To: Abel Vesa <abel.vesa@linaro.org>,
-        Dmitry Baryshkov
-	<dmitry.baryshkov@linaro.org>
-CC: Rob Clark <robdclark@gmail.com>, Sean Paul <sean@poorly.run>,
-        Marijn
- Suijten <marijn.suijten@somainline.org>,
-        David Airlie <airlied@gmail.com>, Daniel Vetter <daniel@ffwll.ch>,
-        Maarten Lankhorst
-	<maarten.lankhorst@linux.intel.com>,
-        Maxime Ripard <mripard@kernel.org>,
-        Thomas Zimmermann <tzimmermann@suse.de>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley
-	<conor+dt@kernel.org>,
-        Neil Armstrong <neil.armstrong@linaro.org>,
-        <linux-arm-msm@vger.kernel.org>, <dri-devel@lists.freedesktop.org>,
-        <freedreno@lists.freedesktop.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>
-References: <20240129-x1e80100-display-v1-0-0d9eb8254df0@linaro.org>
- <20240129-x1e80100-display-v1-3-0d9eb8254df0@linaro.org>
- <CAA8EJponbo2vvuj2ftCQuxtrZp0w7JQqJ_ADF80Wd2y1V74BzA@mail.gmail.com>
- <ZcTZL+fls7A8O9P0@linaro.org>
- <CAA8EJpr3p286ff1pHhhBdF7GA=g8Pnv9yWDukwnnNaOuykPcTQ@mail.gmail.com>
- <ZcTbNGVGT/Kwtc68@linaro.org>
-From: Abhinav Kumar <quic_abhinavk@quicinc.com>
-In-Reply-To: <ZcTbNGVGT/Kwtc68@linaro.org>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
- nalasex01a.na.qualcomm.com (10.47.209.196)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-GUID: QP1-8XBNzTm3HdoaeKnLEIa-nx0-FWo1
-X-Proofpoint-ORIG-GUID: QP1-8XBNzTm3HdoaeKnLEIa-nx0-FWo1
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.272,Aquarius:18.0.1011,Hydra:6.0.619,FMLib:17.11.176.26
- definitions=2024-02-08_07,2024-02-08_01,2023-05-22_02
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 mlxscore=0 clxscore=1015
- phishscore=0 priorityscore=1501 adultscore=0 bulkscore=0 suspectscore=0
- spamscore=0 impostorscore=0 mlxlogscore=999 malwarescore=0
- lowpriorityscore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.19.0-2401310000 definitions=main-2402080090
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: PAXPR04MB9642:EE_|PA4PR04MB9248:EE_
+X-MS-Office365-Filtering-Correlation-Id: 18a65b08-4f16-4c28-94ae-08dc28c79b5c
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info:
+	UhlbusNTMBw31RFGmtPyEaORzj8cMxHJzdMc9vbII2p/2okJG5tk0pHKaGGSOrNK/st0/vqmJGFEYssFQpbxxFebGltLBEQqUV4nQyvs2/2NEekuY9bbOWiy0/Fs5iIgk/fWplZ3nEKvIsgtCq5Ufmq+YNivlr75MStF0lyXp0hEy3hCSif+cddha2L14Eo4KRTjdoSflyhPftZLZPGTwobUzA3tA0dBQqzmWvua18hs2dRhmSM2B821O/0zSkUd8Hm70p0MkXgdOQXcHSrygehp/xYOAomthi/po2LxUSAVm5hUrGKSwhV4mrhv6oe/rwqkZYE5q/Oo6TgDG6675WYqidRKNTP2dwRkZXOa/Rh0PQErLHizGVUJcQ4G3V0KtXN2k2lfcqV8yX1qOYzcSw1V6vy0j0GPo+gqAEfH8x6thIUnRANzf6dvgyl8fl+2/PWLLMNa4ttBxWzVorSKPYZCUDTBwNzInSNTdCJZUfs0sZe7MektF6uLCLTfGWiomtqbyPDH7pGgO2AABIPKmw4e2yXxqqQnSgzHL4LY55UNUo+CkslQoFcHJ3C7uO7LYhNmzaYEjtQQ/ukUeK2LYCb/TdXkJEuWWEpXLcUU7RI=
+X-Forefront-Antispam-Report:
+	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:PAXPR04MB9642.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230031)(39860400002)(346002)(396003)(366004)(376002)(136003)(230922051799003)(230273577357003)(186009)(64100799003)(1800799012)(451199024)(38100700002)(6666004)(52116002)(6506007)(83380400001)(37006003)(66574015)(86362001)(7416002)(41300700001)(1076003)(2616005)(26005)(34206002)(6512007)(36756003)(8676002)(8936002)(4326008)(6486002)(478600001)(2906002)(5660300002)(66476007)(66946007)(316002)(66556008)(38350700005);DIR:OUT;SFP:1101;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0:
+	=?utf-8?B?b0tNUVIva1NuaXRkZ0VqRWZiaTNvUDh0elkzOXZ0a3ZNVWF3RXhSZW5zWXhE?=
+ =?utf-8?B?c2doOWpHb2dsbzY5WGdSa0NGdDRkdkFUQktJQi90ZnU4N3dQNXFDM0pQYVd2?=
+ =?utf-8?B?OTJzcmI0L3ZtSEM4ZmEwNTZrREVEOEN1OTdtYkI3TlprakF6V1NpdUdPbk5n?=
+ =?utf-8?B?T1BzbGd2aDhONDhVV3AvdkdCSmtNSzllWFlEMDg5S0M1ZDYxMWN4ZkFUeWw2?=
+ =?utf-8?B?aEc2eUkrazlSWGlic3NsUUU5V21uV3FoM2MzMG9mQkNIK3FxRjUrcWh3WUF6?=
+ =?utf-8?B?QmI1dC8rWFdUWTA0d2lZZzd5Y2R3eEF5OFBVdENFWmFqaHBqNnd3UXpURGFR?=
+ =?utf-8?B?MlJtM0xlYWZra0Y4bkovenNib0gxMG4vc1liWVpFem14c3VmbkU4RGlnbUZ0?=
+ =?utf-8?B?UHFTYnhFSXFFOVVUYUhVOHNRTFpod2hzWDhIT0IrUDFvZFcwc0xsRXovNXJ3?=
+ =?utf-8?B?SnJteFg1b3BYNmcxdDNMYXY1T1BuNktsdFhJOUxTVXFCVnFqNkt0eElNQno5?=
+ =?utf-8?B?UGNDdU5YOURKWEFsdTFHUCtOK0tLM0huKy81NGpReHNYU2J0QWRoMGpvS29m?=
+ =?utf-8?B?b3docTRndGtJOGlVWG95eUF5a1daZHM5Sy9XVkpKVlNSeHBZWHJ1UkZ1dkFM?=
+ =?utf-8?B?a1QxemNlUUdlSStuUUN5M2ZWVnYvVFI4V1pCUnlFb1NOK3pWUU81Z0doV1pk?=
+ =?utf-8?B?UHRtLzgvVXp5UkI5UFZvSldSV0Z0WDUrbUo0elFTMWFhbHllNEwvNWo4ckdh?=
+ =?utf-8?B?TDE3WllzMm9UTjFVMW9jY2RnM0YxS0N4SlIrd21aMVBOSlZ2bFZWZFJGNTZh?=
+ =?utf-8?B?WGlrQVVQQ2hPakt1RWpiclVwMjhVUzlhV3VIanRXQmlvZUhMU3EvVDc4a0tZ?=
+ =?utf-8?B?dy95d2lSL2hnSXp2Y3paL2duZW8vanBWcmlYOVEzNzUxeVZseG5jdUFzcU10?=
+ =?utf-8?B?T0dVZXJKazJQTlFPQVoxN21sMVp0c01jQ3NEQVdDMGJkWW0xbHlMMERLWDMv?=
+ =?utf-8?B?MkVNWTdjdVFmcTB3SGFDYTdyZFU5bHh2dll6dkZZWXY5dGFnMS9CZzV3YUxO?=
+ =?utf-8?B?U1Zibm9namZYWjdvbmhVNU5rd3ZGdUlIeWZvRURUUmo5LzV2dzExZVBiRyta?=
+ =?utf-8?B?dkw3Zk1vYkp3VWJsQ2kwMEtFTVM0UHJMbmZkRTBvcEZqaEFPVElJaE9xZkpw?=
+ =?utf-8?B?ZTZzWkEzZS94ZklMY1dTZ01telhEWEh2RDJPRmxsYTR1cVRaR0lWVnpPV2dW?=
+ =?utf-8?B?S1RFdmJIWWo3TE9TS0RCQzlCbDFvUk9XVi9SSEJoYkQvbWFWbG9ZRURiZkh4?=
+ =?utf-8?B?QXlManF2RGRENjFlOTFpNDBpN05lYy9ZMnNVYVVIUi9GN2RIdnpiUm8vZzNn?=
+ =?utf-8?B?YVpjVTZTVnArL3NRSlduL2o3TGNudkg4cSs0YlZ3d3NsK2w5cW8vNG9ON29T?=
+ =?utf-8?B?bzgwVkV2WmYxQlV1enVkYkUxcyt3TGZqUitLa2dqUXBtN2tUd0V0ZHM5cGF0?=
+ =?utf-8?B?WWltT0RkbEk5dk5qYk42UDJzVXpKS3IrMlNRdEwyMEIwZEdEY01yWncyU2Q0?=
+ =?utf-8?B?REpKTkxKcXpQMGl0Y1lsc1BPd2ZMSkgranIzRk02Y1RJYytjTUgzSGY3Yklu?=
+ =?utf-8?B?NTRvQ3dQZWtWMEM0blVLdDVkUDMvUHBSOTNtZURBWG8vNy9RQUtuTTBnTTE4?=
+ =?utf-8?B?eHczNTlUYXpwUTM4cElUdVQrOUV6RzJBL2FGSWFzZjRSMkVjeFJ1RjZIYkRO?=
+ =?utf-8?B?azcyRkQ1ZUNRRUFlZ3hZdThnSDRTOXJQYzEyWVJJVEM2dUYydW1MY2lES3FG?=
+ =?utf-8?B?UVNvUEdKb0lyVU1mNjNVY2dvZzFUcUE1dnAwTFFla21wSGp2UWxwRkNvRHJk?=
+ =?utf-8?B?ZlhuQkFqYUozRDNnWnRlemdaSUpLbmI0R09qampQdi95ai8wOEY2cnNKc2NO?=
+ =?utf-8?B?enV1ZVVyNmNVQ2YvWFROQVR5MjhISWY1NG5ILzJPUytRSXFBOWlDOGNhdklK?=
+ =?utf-8?B?eTkvWjRQcEtGVUx2OTBVQm91Y2lxYWFtUXpPRndodVdsS2MzSEZhcFAzazcw?=
+ =?utf-8?B?d09IVFNLVVcvempjb0RJRk1SQUMrbkdtUEZ6RG1zS2xlSUJRRzEzMUNpb0w5?=
+ =?utf-8?Q?XdMY=3D?=
+X-OriginatorOrg: nxp.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 18a65b08-4f16-4c28-94ae-08dc28c79b5c
+X-MS-Exchange-CrossTenant-AuthSource: PAXPR04MB9642.eurprd04.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 08 Feb 2024 17:01:35.1280
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: yE6H7cY9ZhjUtUK4uNXVI7p3P/EiYUKdRUBp9FTAFwNbjPVxhYP9/YdT4XTY6K92JeEkrJ1dt34Qz+vC3V/ZOg==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: PA4PR04MB9248
 
+This  patch introduces support for I3C target mode, which is referenced
+with a PCIe Endpoint system. It also establishes a configuration framework
+(configfs) for the I3C target controller driver and the I3C target function
+driver
 
+Typic usage as
 
-On 2/8/2024 5:46 AM, Abel Vesa wrote:
-> On 24-02-08 15:42:04, Dmitry Baryshkov wrote:
->> On Thu, 8 Feb 2024 at 15:37, Abel Vesa <abel.vesa@linaro.org> wrote:
->>>
->>> On 24-01-29 17:11:25, Dmitry Baryshkov wrote:
->>>> On Mon, 29 Jan 2024 at 15:19, Abel Vesa <abel.vesa@linaro.org> wrote:
->>>>>
->>>>> Add support for MDSS on X1E80100.
->>>>>
->>>>> Signed-off-by: Abel Vesa <abel.vesa@linaro.org>
->>>>> ---
->>>>>   drivers/gpu/drm/msm/msm_mdss.c | 10 ++++++++++
->>>>>   1 file changed, 10 insertions(+)
->>>>>
->>>>> diff --git a/drivers/gpu/drm/msm/msm_mdss.c b/drivers/gpu/drm/msm/msm_mdss.c
->>>>> index 455b2e3a0cdd..eddf7fdbb60a 100644
->>>>> --- a/drivers/gpu/drm/msm/msm_mdss.c
->>>>> +++ b/drivers/gpu/drm/msm/msm_mdss.c
->>>>> @@ -564,6 +564,15 @@ static const struct msm_mdss_data sdm670_data = {
->>>>>          .highest_bank_bit = 1,
->>>>>   };
->>>>>
->>>>> +static const struct msm_mdss_data x1e80100_data = {
->>>>> +       .ubwc_enc_version = UBWC_4_0,
->>>>> +       .ubwc_dec_version = UBWC_4_3,
->>>>> +       .ubwc_swizzle = 6,
->>>>> +       .ubwc_static = 1,
->>>>> +       .highest_bank_bit = 2,
->>>>> +       .macrotile_mode = 1,
->>>>
->>>> Missing .reg_bus_bw, LGTM otherwise
->>>
->>> Dmitry, I do not have the exact value yet.
->>>
->>> Can I come back with a subsequent (different) patch to add it at a later stage
->>> when I have that information?
->>>
->>> I see no point in holding display support any further since it works
->>> fine with the default bandwith.
->>>
->>> If yes, I'll respin this series right away, but without the reg_bus_bw.
->>
->> Please add a TODO or FIXME comment there.
-> 
-> Sure thing. Thanks.
-> 
+The user can configure the i3c-target-tty device using configfs entry. In
+order to change the vendorid, the following commands can be used
 
-I have not heard back from the clock team on the values.
+        # echo 0x011b > functions/tty/func1/vendor_id
+        # echo 0x1000 > functions/tty/func1/part_id
+        # echo 0x6 > functions/tty/t/bcr
 
-But, what I can confirm at this point is for basic functional display 
-support, we could let it go back to the default value which we have 
-hard-coded and fill up this entry later.
+Binding i3c-target-tty Device to target Controller
+------------------------------------------------
 
->>
->>>
->>>>
->>>>> +};
->>>>> +
->>>>>   static const struct msm_mdss_data sdm845_data = {
->>>>>          .ubwc_enc_version = UBWC_2_0,
->>>>>          .ubwc_dec_version = UBWC_2_0,
->>>>> @@ -655,6 +664,7 @@ static const struct of_device_id mdss_dt_match[] = {
->>>>>          { .compatible = "qcom,sm8450-mdss", .data = &sm8350_data },
->>>>>          { .compatible = "qcom,sm8550-mdss", .data = &sm8550_data },
->>>>>          { .compatible = "qcom,sm8650-mdss", .data = &sm8550_data},
->>>>> +       { .compatible = "qcom,x1e80100-mdss", .data = &x1e80100_data},
->>>>>          {}
->>>>>   };
->>>>>   MODULE_DEVICE_TABLE(of, mdss_dt_match);
->>>>>
->>>>> --
->>>>> 2.34.1
->>>>>
->>>>
->>>>
->>>> --
->>>> With best wishes
->>>> Dmitry
->>
->>
->>
->> -- 
->> With best wishes
->> Dmitry
+In order for the target function device to be useful, it has to be bound to
+a I3C target controller driver. Use the configfs to bind the function
+device to one of the controller driver present in the system::
+
+        # ln -s functions/pci_epf_test/func1 controllers/44330000.i3c-target/
+
+Host side:
+        cat /dev/ttyI3C0
+Taret side:
+        echo abc >/dev/ttyI3C0
+
+Notes about header files.
+
+About Ilpo Järvinen's header file comments, it can pass build, some header
+should be included by other header files.
+
+I added some, but I am not sure that is all needs. There may have tools,
+which can help check, but I don't know.
+
+Chagne from v2 to v3
+- using 'mode' distingiush master and target.
+- move svc-i3c-target.c to under master,
+- built together with svc-i3c-master.c
+
+Change from v1 to v2
+- change "slave" to "target"
+- include master side tty patch
+- fixed dtbcheck problem
+- fixed kerne-doc check warning
+
+Some review comment may be lost since it is quite long time since v1. Now
+master side dependent patches already in linux-next. So sent target side
+patches with tty support again.
+
+No sure why an additional "\r\n" appended.
+
+Frank Li (8):
+  i3c: add target mode support
+  dt-bindings: i3c: svc: add proptery mode
+  Documentation: i3c: Add I3C target mode controller and function
+  i3c: svc: Add svc-i3c-main.c and svc-i3c.h
+  i3c: target: add svc target controller support
+  i3c: target: func: add tty driver
+  i3c: add API i3c_dev_gettstatus_format1() to get target device status
+  tty: i3c: add TTY over I3C master support
+
+ .../bindings/i3c/silvaco,i3c-master.yaml      |  11 +-
+ Documentation/driver-api/i3c/index.rst        |   1 +
+ .../driver-api/i3c/target/i3c-target-cfs.rst  | 109 +++
+ .../driver-api/i3c/target/i3c-target.rst      | 189 +++++
+ .../driver-api/i3c/target/i3c-tty-howto.rst   | 109 +++
+ Documentation/driver-api/i3c/target/index.rst |  13 +
+ drivers/i3c/Kconfig                           |  31 +-
+ drivers/i3c/Makefile                          |   3 +
+ drivers/i3c/device.c                          |  24 +
+ drivers/i3c/func/Kconfig                      |   9 +
+ drivers/i3c/func/Makefile                     |   3 +
+ drivers/i3c/func/tty.c                        | 481 +++++++++++
+ drivers/i3c/i3c-cfs.c                         | 389 +++++++++
+ drivers/i3c/internals.h                       |   1 +
+ drivers/i3c/master.c                          |  26 +
+ drivers/i3c/master/Makefile                   |   3 +-
+ drivers/i3c/master/svc-i3c-main.c             |  80 ++
+ drivers/i3c/master/svc-i3c-master.c           |  34 +-
+ drivers/i3c/master/svc-i3c-target.c           | 776 ++++++++++++++++++
+ drivers/i3c/master/svc-i3c.h                  |  15 +
+ drivers/i3c/target.c                          | 453 ++++++++++
+ drivers/tty/Kconfig                           |  13 +
+ drivers/tty/Makefile                          |   1 +
+ drivers/tty/i3c_tty.c                         | 432 ++++++++++
+ include/linux/i3c/device.h                    |   1 +
+ include/linux/i3c/target.h                    | 548 +++++++++++++
+ 26 files changed, 3724 insertions(+), 31 deletions(-)
+ create mode 100644 Documentation/driver-api/i3c/target/i3c-target-cfs.rst
+ create mode 100644 Documentation/driver-api/i3c/target/i3c-target.rst
+ create mode 100644 Documentation/driver-api/i3c/target/i3c-tty-howto.rst
+ create mode 100644 Documentation/driver-api/i3c/target/index.rst
+ create mode 100644 drivers/i3c/func/Kconfig
+ create mode 100644 drivers/i3c/func/Makefile
+ create mode 100644 drivers/i3c/func/tty.c
+ create mode 100644 drivers/i3c/i3c-cfs.c
+ create mode 100644 drivers/i3c/master/svc-i3c-main.c
+ create mode 100644 drivers/i3c/master/svc-i3c-target.c
+ create mode 100644 drivers/i3c/master/svc-i3c.h
+ create mode 100644 drivers/i3c/target.c
+ create mode 100644 drivers/tty/i3c_tty.c
+ create mode 100644 include/linux/i3c/target.h
+
+-- 
+2.34.1
+
 
