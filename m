@@ -1,155 +1,124 @@
-Return-Path: <devicetree+bounces-39882-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-39883-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2181C84E76E
-	for <lists+devicetree@lfdr.de>; Thu,  8 Feb 2024 19:11:05 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id D147784E78B
+	for <lists+devicetree@lfdr.de>; Thu,  8 Feb 2024 19:17:22 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 3DD4B1C2485F
-	for <lists+devicetree@lfdr.de>; Thu,  8 Feb 2024 18:11:04 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 04CDF1C219F9
+	for <lists+devicetree@lfdr.de>; Thu,  8 Feb 2024 18:17:22 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 71E4384FA3;
-	Thu,  8 Feb 2024 18:11:00 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2BCAE86159;
+	Thu,  8 Feb 2024 18:17:05 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="nBupX1nZ"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-yw1-f175.google.com (mail-yw1-f175.google.com [209.85.128.175])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.16])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4F48182D6A;
-	Thu,  8 Feb 2024 18:10:57 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.175
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1234C84FBD;
+	Thu,  8 Feb 2024 18:17:02 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.175.65.16
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1707415860; cv=none; b=k+LAicHO6oNtL+8CnI1jrAUg1TfC8OgBIsMXd7UQ/CKt79nfokGboMOEybf5UWF+OW8o4y4oVVk/Z/j2TviFuhwUf3qShR5Ri8w9YDGIx2np31gaYBBw6vmX6Nn1F8Y0eiCSJuCybW6YPPOIXvRUXUIQwQoecg4wKvGEAFR5Lk8=
+	t=1707416225; cv=none; b=Iw9ssOwUqL1ra9/z0YAz1fWdzgyMPHh9M1gmrfutUzu+JQ1rGZRjUarhh9GM59NBnL+lJuCKSexPhuNY2auaK7uzYw+z1Q87V8KIR6fj2elCOFlgJ0I0/uWd2Qd7Xq+a+4Dtk3/4x3jkqtDfCP9Kn1ioOpTEVa5vHES0doMseQU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1707415860; c=relaxed/simple;
-	bh=qdQGrkyG00CdRQsmlmIAsh4C3EmiSMmlMAnAKqZBcHA=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=ZxQnkwluSyxHDVDNeOTaeMG8tGpHAnecbgYAu9tOcnB9YqG40gE8DDLNbVvZ8ImIOFzZK8TpGlZVZ6fl1rWIHNkuL5NiI9b6fuKn4Z9Qfky5WHxXMATQh24hY6IJzzmNVhoTEbz7NDeeZ2PaquoL7P0Gx6M4SqqZHNM/mJ9wnXk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org; spf=pass smtp.mailfrom=gmail.com; arc=none smtp.client-ip=209.85.128.175
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-yw1-f175.google.com with SMTP id 00721157ae682-604ac794c01so1453087b3.2;
-        Thu, 08 Feb 2024 10:10:57 -0800 (PST)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1707415855; x=1708020655;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=dNi0JU1w1S3j627lW71M/tpho72s+VxwyeKQBKOV30M=;
-        b=wjVZ6yYLF63fQTYXJACWPrHQiA2Vsu2g6H2JpgbXgGmw5n67LzkwDOjGvbUWzLdTzS
-         N0cBiRpXt+ndaCjBpW+3nkXg0r+3nABx1ymxa0y5coPKaqKrlgRdvOMza/gbzXScj+Jz
-         H+gMC3rir8mzE5FoYAfVqb/8dQP5IhO8evTJwdc5BGyN7n2cmobGaT/dB3sgslCO4Fri
-         kcftLd+lUQYvV0S7/uZ8/d7yxFbDZ54HUz8svDXTBaTHWnUhpsPAbr6i5fder9S/v//x
-         XzhvNTBfjRXqoFYR+GXXnDyss43i2/XDvhiFUWEi0ccElybpw3F7gUFeSWgIySU7VWl5
-         2djQ==
-X-Forwarded-Encrypted: i=1; AJvYcCWgId6SIGLQd3UQQz6ekHSzkjMZPsZgElt1/kGzAuSm5S1dn9XT+PoGb6AOXXG4ia0hghni5q5oIIyFq4mAv7mn8W/BuI5nZmg3A7sCVIR9OhQw5so1vb8mK4Y+mYYk6X1+v3aEAvc00w==
-X-Gm-Message-State: AOJu0YzpTeWSJY6SAPvXHMYzbKKN1RRBQiKDXmj8UoJg+LkJasfNjGAl
-	nPLmCod4qggBLiHglB+Xdl5i6uU4u7CX86tSzNJIBS+tDI9f6jlYzJchoTSbR2o=
-X-Google-Smtp-Source: AGHT+IGdUU3TTDbk/MynXhJi34rhfmEesWmfLyRMtnxb9vqXiEfyhbNeFgV0lcANnJZNnh4MMiw6Rg==
-X-Received: by 2002:a81:5c88:0:b0:5ff:4959:1da8 with SMTP id q130-20020a815c88000000b005ff49591da8mr97836ywb.50.1707415854667;
-        Thu, 08 Feb 2024 10:10:54 -0800 (PST)
-X-Forwarded-Encrypted: i=1; AJvYcCWEIy6Tp/R4hHRyLSG1CBYlO1dP+OonyN3ke/gjo43OX92p+RKAgfOg4Mi2BhkVqhhMXe/UHKzjdO5UFGwFihGSLrebsFZXwg2ecoKclGjv8Z61ttBT5hb1FR5FaW/gsI4k5bQBVYHyUw==
-Received: from mail-yw1-f178.google.com (mail-yw1-f178.google.com. [209.85.128.178])
-        by smtp.gmail.com with ESMTPSA id bh12-20020a05690c038c00b006047e932385sm784068ywb.95.2024.02.08.10.10.54
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 08 Feb 2024 10:10:54 -0800 (PST)
-Received: by mail-yw1-f178.google.com with SMTP id 00721157ae682-604ac794c01so1452627b3.2;
-        Thu, 08 Feb 2024 10:10:54 -0800 (PST)
-X-Forwarded-Encrypted: i=1; AJvYcCW6aXjGABMC+3tqkDb7k+xqMGAGlKmtjFNpcz36N4BuFoSAW+46JZFnKQLMp4FzlaibjZluHxp7J5/sBWs8dYCL7CSenTUal3sH8ngknMuJ+dw7rYeDF5Os88bCYYBrP9iRxKbmIgkzAQ==
-X-Received: by 2002:a0d:c604:0:b0:5ff:91d8:42b0 with SMTP id
- i4-20020a0dc604000000b005ff91d842b0mr127588ywd.46.1707415853936; Thu, 08 Feb
- 2024 10:10:53 -0800 (PST)
+	s=arc-20240116; t=1707416225; c=relaxed/simple;
+	bh=CCGL2Pl/BCg3YNBXmBuwxZ7UZxA+L40il8xtdEW8TZM=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=R2YCDxdutTuHKcVv5HgKAud6dW3gxX/dfnUEwRru8c2YBLouoKcDs2/1omY5LBF9o3M1kNuvDLIiKEafSznbDczJuee8wJCfnJdwOKr8tY5981EwO+DKT26cl308LYmUbTV5BQGwBbnqwGCiOlyXOmcvcRoVS9uyco4Rvwfj5v4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com; spf=none smtp.mailfrom=linux.intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=nBupX1nZ; arc=none smtp.client-ip=198.175.65.16
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com
+Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=linux.intel.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1707416223; x=1738952223;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=CCGL2Pl/BCg3YNBXmBuwxZ7UZxA+L40il8xtdEW8TZM=;
+  b=nBupX1nZfCmIP/IMKj+uGNoGArEoSA4Tr5VTW0MxNq5+jE1+ssfypmgK
+   szLSuyleFJURzBmC5sCiuSo/eiSQgBKyYYJUXd3lXwdQZhzbttKaL8vjk
+   BYaHVMc8yeGfhkO6HVtToRTyWssRhtO6txEopkQGgbhIqbq81IXw81fMn
+   olIEfinGfSkuYz6vAH55KIsljihRsG1wnufoRTRRslxCqvDhML5p+LjG9
+   Bf72L+5Y8M08clxtpnKRYs2P7xze9vm7LOxaMrX/BqSJqPt75OL8B09F6
+   NfWZopdP5vncV1z2HPkBrjNZg6Mk19on1bNn9pasq9qAjtxauQEqJHfQM
+   Q==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10978"; a="1440135"
+X-IronPort-AV: E=Sophos;i="6.05,254,1701158400"; 
+   d="scan'208";a="1440135"
+Received: from fmsmga002.fm.intel.com ([10.253.24.26])
+  by orvoesa108.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 08 Feb 2024 10:17:02 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=McAfee;i="6600,9927,10978"; a="910459977"
+X-IronPort-AV: E=Sophos;i="6.05,254,1701158400"; 
+   d="scan'208";a="910459977"
+Received: from smile.fi.intel.com ([10.237.72.54])
+  by fmsmga002.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 08 Feb 2024 10:16:59 -0800
+Received: from andy by smile.fi.intel.com with local (Exim 4.97)
+	(envelope-from <andriy.shevchenko@linux.intel.com>)
+	id 1rY8xE-00000002wkn-2bXG;
+	Thu, 08 Feb 2024 20:16:56 +0200
+Date: Thu, 8 Feb 2024 20:16:56 +0200
+From: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
+To: Conor Dooley <conor@kernel.org>
+Cc: devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	Miguel Ojeda <ojeda@kernel.org>, Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Robin van der Gracht <robin@protonic.nl>,
+	Paul Burton <paulburton@kernel.org>,
+	Geert Uytterhoeven <geert+renesas@glider.be>
+Subject: Re: [PATCH v1 14/15] dt-bindings: auxdisplay: Add Maxim MAX6958/6959
+Message-ID: <ZcUamOqKUuA-ahRY@smile.fi.intel.com>
+References: <20240208165937.2221193-1-andriy.shevchenko@linux.intel.com>
+ <20240208165937.2221193-15-andriy.shevchenko@linux.intel.com>
+ <20240208-chute-bacteria-75425bd34dc9@spud>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20240208165937.2221193-1-andriy.shevchenko@linux.intel.com> <20240208-drearily-carwash-60e4ba70a559@spud>
-In-Reply-To: <20240208-drearily-carwash-60e4ba70a559@spud>
-From: Geert Uytterhoeven <geert@linux-m68k.org>
-Date: Thu, 8 Feb 2024 19:10:40 +0100
-X-Gmail-Original-Message-ID: <CAMuHMdWBbjHe8D+sn94wMqXy3Rv-VU2CDWca=fJKyH+=G_ngmw@mail.gmail.com>
-Message-ID: <CAMuHMdWBbjHe8D+sn94wMqXy3Rv-VU2CDWca=fJKyH+=G_ngmw@mail.gmail.com>
-Subject: Re: [PATCH v1 00/15] auxdisplay: linedisp: Clean up and add new driver
-To: Conor Dooley <conor@kernel.org>
-Cc: Andy Shevchenko <andriy.shevchenko@linux.intel.com>, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org, Miguel Ojeda <ojeda@kernel.org>, 
-	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, 
-	Conor Dooley <conor+dt@kernel.org>, Robin van der Gracht <robin@protonic.nl>, 
-	Paul Burton <paulburton@kernel.org>, Geert Uytterhoeven <geert+renesas@glider.be>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20240208-chute-bacteria-75425bd34dc9@spud>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
 
-On Thu, Feb 8, 2024 at 6:52=E2=80=AFPM Conor Dooley <conor@kernel.org> wrot=
-e:
-> On Thu, Feb 08, 2024 at 06:58:43PM +0200, Andy Shevchenko wrote:
-> > Add a new initial driver for Maxim MAX6958/6959 chips.
-> > While developing that driver I realised that there is a lot
-> > of duplication between ht16k33 and a new one. Hence set of
-> > cleanups and refactorings.
-> >
-> > Note, the new driver has minimum support of the hardware and
-> > I have plans to cover more features in the future.
-> >
-> > Andy Shevchenko (15):
-> >   auxdisplay: img-ascii-lcd: Make container_of() no-op for struct
-> >     linedisp
-> >   auxdisplay: linedisp: Free allocated resources in ->release()
-> >   auxdisplay: linedisp: Use unique number for id
-> >   auxdisplay: linedisp: Unshadow error codes in ->store()
-> >   auxdisplay: linedisp: Add missing header(s)
-> >   auxdisplay: linedisp: Move exported symbols to a namespace
-> >   auxdisplay: linedisp: Group line display drivers together
-> >   auxdisplay: linedisp: Provide struct linedisp_ops for future extensio=
-n
-> >   auxdisplay: linedisp: Add support for overriding character mapping
-> >   auxdisplay: linedisp: Provide a small buffer in the struct linedisp
-> >   auxdisplay: ht16k33: Move ht16k33_linedisp_ops down
-> >   auxdisplay: ht16k33: Switch to use line display character mapping
-> >   auxdisplay: ht16k33: Use buffer from struct linedisp
-> >   dt-bindings: auxdisplay: Add Maxim MAX6958/6959
-> >   auxdisplay: Add driver for MAX695x 7-segment LED controllers
->
-> Not all of these patches have made their way to the lists FYI:
-> 2024-02-08 16:58 Andy Shevchenko [this message]
-> 2024-02-08 16:58 ` [PATCH v1 01/15] auxdisplay: img-ascii-lcd: Make conta=
-iner_of() no-op for struct linedisp Andy Shevchenko
-> 2024-02-08 16:58 ` [PATCH v1 02/15] auxdisplay: linedisp: Free allocated =
-resources in ->release() Andy Shevchenko
-> 2024-02-08 16:58 ` [PATCH v1 03/15] auxdisplay: linedisp: Use unique numb=
-er for id Andy Shevchenko
-> 2024-02-08 16:58 ` [PATCH v1 06/15] auxdisplay: linedisp: Move exported s=
-ymbols to a namespace Andy Shevchenko
-> 2024-02-08 16:58 ` [PATCH v1 07/15] auxdisplay: linedisp: Group line disp=
-lay drivers together Andy Shevchenko
-> 2024-02-08 16:58 ` [PATCH v1 08/15] auxdisplay: linedisp: Provide struct =
-linedisp_ops for future extension Andy Shevchenko
-> 2024-02-08 16:58 ` [PATCH v1 09/15] auxdisplay: linedisp: Add support for=
- overriding character mapping Andy Shevchenko
-> 2024-02-08 16:58 ` [PATCH v1 10/15] auxdisplay: linedisp: Provide a small=
- buffer in the struct linedisp Andy Shevchenko
-> 2024-02-08 16:58 ` [PATCH v1 14/15] dt-bindings: auxdisplay: Add Maxim MA=
-X6958/6959 Andy Shevchenko
-> 2024-02-08 16:58 ` [PATCH v1 15/15] auxdisplay: Add driver for MAX695x 7-=
-segment LED controllers Andy Shevchenko
-> https://lore.kernel.org/all/20240208165937.2221193-1-andriy.shevchenko@li=
-nux.intel.com/
+On Thu, Feb 08, 2024 at 05:50:51PM +0000, Conor Dooley wrote:
+> On Thu, Feb 08, 2024 at 06:58:57PM +0200, Andy Shevchenko wrote:
+> > Add initial device tree documentation for Maxim MAX6958/6959.
+> 
+> Why "initial"? Are there elements this display that you've not
+> documented yet? 
 
-Same for my mailbox.
+s/documented/implemented/
 
-Gr{oetje,eeting}s,
+There are features of the hardware that may need additional properties.
 
-                        Geert
+> > +title: MAX6958/6959 7-segment LED display controller with keyscan
+> 
+> > +properties:
+> > +  compatible:
+> > +    const: maxim,max6959
+> 
+> Where's the max6958's compatible? I don't see it in your driver either.
 
---=20
-Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k=
-.org
+For now, see above, there is no need. Moreover, there is no need at all
+as we have autodetection mechanism. I don't see why we should have two
+compatible strings just for the sake of having them.
 
-In personal conversations with technical people, I call myself a hacker. Bu=
-t
-when I'm talking to journalists I just say "programmer" or something like t=
-hat.
-                                -- Linus Torvalds
+> It seems that the max6959 has some interrupt capabilities that are not
+> available on the max6958, so a dedicated compatible seems suitable to
+> me.
+
+So, please clarify the DT's p.o.v. on the hardware that can be autodetected.
+Do we need to still have different compatible strings? What for? I don't
+see the need, sorry for my (silly) questions.
+
+-- 
+With Best Regards,
+Andy Shevchenko
+
+
 
