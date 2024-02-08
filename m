@@ -1,146 +1,198 @@
-Return-Path: <devicetree+bounces-39565-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-39566-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3F65184D97E
-	for <lists+devicetree@lfdr.de>; Thu,  8 Feb 2024 06:19:00 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id F05C684D9BD
+	for <lists+devicetree@lfdr.de>; Thu,  8 Feb 2024 06:58:58 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id E36CF283C19
-	for <lists+devicetree@lfdr.de>; Thu,  8 Feb 2024 05:18:58 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 211CD1C23678
+	for <lists+devicetree@lfdr.de>; Thu,  8 Feb 2024 05:58:58 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A7CE167A12;
-	Thu,  8 Feb 2024 05:18:54 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id EC82167E69;
+	Thu,  8 Feb 2024 05:58:44 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="Px45P5S3"
+	dkim=fail reason="signature verification failed" (1024-bit key) header.d=phytec.de header.i=@phytec.de header.b="tpHMyee2"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+Received: from mickerik.phytec.de (mickerik.phytec.de [91.26.50.163])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A361D67A07;
-	Thu,  8 Feb 2024 05:18:52 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BBC7F67C5D
+	for <devicetree@vger.kernel.org>; Thu,  8 Feb 2024 05:58:41 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=91.26.50.163
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1707369534; cv=none; b=kq25GMA1fFskls56hzsZytki6i3eNIvb8+27ZTE3A8HOszIy4iEoekkOor6DYFHInlQwKPkvF4TVNM05ALxXqF08oMETaJEYYCJXauTkhWnhXz7LNLgvds3gRJbCLbb/9AxfCahztWVOtj88kiWC3ONWvL1tTCgoy+ewTS7cXG0=
+	t=1707371924; cv=none; b=QcCSngrc/oU+lTygosF3xNQ4bY73xxL4QmWIN4BdInAyf+CQpKPqQKKPmRjWPRVVU3eCj7EW0pLJDBCPD/+SLx08cyuh3UvkUcEzw2gYKEJsaBuis3DPFhpuwCVZ0kHuTjk/4Yhg839ZrbEB4cZVU0l+/yQPuPDzI/SxLmHngsE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1707369534; c=relaxed/simple;
-	bh=iivgMn/eZNoH9LLlfm9hxbr5iUHDmqmWjt66U1kf5qE=;
+	s=arc-20240116; t=1707371924; c=relaxed/simple;
+	bh=vuZmv02dgek1NDNGlHYGyHlv7kNbKCbt/ogFrVSEmrE=;
 	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
-	 In-Reply-To:Content-Type; b=ONcuz7TpCN0Iof4aLd/OmXtmQAjhetgApjkp1sZAEjSK2cmFBJ4u0NpUn+IARx17Dud70zss/jNvLhY4F9LJ//miOcJVZaBW69UNyge7giMAIgVBtMBn1h1UTIRFR6KzeaIad13e7TegBVYwd7bsxesc0ev71JvCokfWDGpjprw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=Px45P5S3; arc=none smtp.client-ip=205.220.180.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
-Received: from pps.filterd (m0279869.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.17.1.24/8.17.1.24) with ESMTP id 4183s3oa031299;
-	Thu, 8 Feb 2024 05:18:48 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
-	message-id:date:mime-version:subject:to:cc:references:from
-	:in-reply-to:content-type:content-transfer-encoding; s=
-	qcppdkim1; bh=iivgMn/eZNoH9LLlfm9hxbr5iUHDmqmWjt66U1kf5qE=; b=Px
-	45P5S3WXfrsEN4qDVQvkopGMe3KpSmiqelSlVz2XcrQiujk0Qvk+FK5cQ41YDk9e
-	C/2tJCdZoefgIZUcbhEE8KONRPtGBh5T+iQEmm7eSr7ol388jfnmauQoWu1sneSl
-	yZHp/sY+oXlxTJ0hq/MtG8gtKNPbF9JMTsro7ZJb3JRAs31UgbmgZrVF6R0PhsU/
-	hB8sXZ431C2D4pW9ued8URwuby8TdQNx4NAw7ex3G9wBZHx4bRbA1fsPkktZWQZn
-	+2aEO9+CEvF/5Dd/ceBvJMMznxO09Yj+epf6VBmXYcRRojbks/CBd2oqxIajPflj
-	/G40K8fivBbXqvhLrAqA==
-Received: from nalasppmta03.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3w4pavg84h-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Thu, 08 Feb 2024 05:18:48 +0000 (GMT)
-Received: from nalasex01c.na.qualcomm.com (nalasex01c.na.qualcomm.com [10.47.97.35])
-	by NALASPPMTA03.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 4185IlYq024107
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Thu, 8 Feb 2024 05:18:47 GMT
-Received: from [10.218.19.46] (10.80.80.8) by nalasex01c.na.qualcomm.com
- (10.47.97.35) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1118.40; Wed, 7 Feb
- 2024 21:18:42 -0800
-Message-ID: <69250065-2168-0159-2ef9-986716d3adf8@quicinc.com>
-Date: Thu, 8 Feb 2024 10:48:39 +0530
+	 In-Reply-To:Content-Type; b=Nsp8WgpTCDsOCZRSxppjIAFH+nEe08apYd9fhs3nS3fxdXwCU9tZjpWRkEQ/GS9rTidUl/hOE3t0QyIRB+Y01gpHdJzfJ1w94b6+u23R521NySDwYFlu8cYWukxUsLcAsi6Q05qsss1lTerFHs0W2lW3tn+LQMiK//vst4eYLWU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=phytec.de; spf=pass smtp.mailfrom=phytec.de; dkim=pass (1024-bit key) header.d=phytec.de header.i=@phytec.de header.b=tpHMyee2; arc=none smtp.client-ip=91.26.50.163
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=phytec.de
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=phytec.de
+DKIM-Signature: v=1; a=rsa-sha256; d=phytec.de; s=a4; c=relaxed/simple;
+	q=dns/txt; i=@phytec.de; t=1707371909; x=1709963909;
+	h=From:Sender:Reply-To:Subject:Date:Message-ID:To:CC:MIME-Version:Content-Type:
+	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:List-Id:
+	List-Help:List-Unsubscribe:List-Subscribe:List-Post:List-Owner:List-Archive;
+	bh=vuZmv02dgek1NDNGlHYGyHlv7kNbKCbt/ogFrVSEmrE=;
+	b=tpHMyee2nQ0RjIZ6DuNAznJ00uqmWPA5IQSVlruzUzX3cN+UQnYc7rWZJpksL1Ol
+	Ea7iytXeW0pzmLrCnFJO1U/v50O0uxJWU3npZCsTBe1QzvpF6yvb7dvY8L1TbIXK
+	fYjVbh+l0NcydrSSc1aNsGgY45S9u4Fkn0i1wIWyepE=;
+X-AuditID: ac14000a-fadff7000000290d-61-65c46d8490f8
+Received: from berlix.phytec.de (Unknown_Domain [172.25.0.12])
+	(using TLS with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+	(Client did not present a certificate)
+	by mickerik.phytec.de (PHYTEC Mail Gateway) with SMTP id 13.5E.10509.48D64C56; Thu,  8 Feb 2024 06:58:28 +0100 (CET)
+Received: from [172.25.39.28] (172.25.0.11) by Berlix.phytec.de (172.25.0.12)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.6; Thu, 8 Feb 2024
+ 06:58:50 +0100
+Message-ID: <033de6e2-4ca4-46bc-a0a7-e9921ed15977@phytec.de>
+Date: Thu, 8 Feb 2024 06:57:54 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:91.0) Gecko/20100101
- Thunderbird/91.9.0
-Subject: Re: [PATCH 2/3] clk: qcom: gcc-sm8150: Add gcc_parents_0_ao support
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH] arm64: dts: ti: am62-phyboard-lyra: Add overlay to enable
+ a GPIO fan
+To: Andrew Davis <afd@ti.com>, Nathan Morrisson <nmorrisson@phytec.com>,
+	<nm@ti.com>, <vigneshr@ti.com>, <kristo@kernel.org>, <robh+dt@kernel.org>,
+	<krzysztof.kozlowski+dt@linaro.org>, <conor+dt@kernel.org>
+CC: <linux-arm-kernel@lists.infradead.org>, <devicetree@vger.kernel.org>,
+	<linux-kernel@vger.kernel.org>, <upstream@lists.phytec.de>
+References: <20240207172820.478332-1-nmorrisson@phytec.com>
+ <acd3c7f2-930d-46c0-9924-9775e9795fca@ti.com>
 Content-Language: en-US
-To: Konrad Dybcio <konrad.dybcio@linaro.org>,
-        Bjorn Andersson
-	<andersson@kernel.org>,
-        Michael Turquette <mturquette@baylibre.com>,
-        "Stephen
- Boyd" <sboyd@kernel.org>, Rob Herring <robh+dt@kernel.org>,
-        "Krzysztof
- Kozlowski" <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley
-	<conor+dt@kernel.org>,
-        Taniya Das <quic_tdas@quicinc.com>
-CC: <linux-arm-msm@vger.kernel.org>, <linux-clk@vger.kernel.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        Ajit Pandey
-	<quic_ajipan@quicinc.com>,
-        Imran Shaik <quic_imrashai@quicinc.com>,
-        "Jagadeesh Kona" <quic_jkona@quicinc.com>
-References: <20240123-gcc-ao-support-v1-0-6c18d5310874@quicinc.com>
- <20240123-gcc-ao-support-v1-2-6c18d5310874@quicinc.com>
- <d31a52fc-9073-483d-b84b-1f02a5698a89@linaro.org>
- <77903574-696b-90f9-f136-be5c5d219ba1@quicinc.com>
- <5ae84692-b05d-4a43-aabb-4d2e7d9926d5@linaro.org>
- <04788b2c-a212-b8a2-1124-d904f2f61f5d@quicinc.com>
- <6fdde54e-12cb-442c-9dea-d1d6cbca340b@linaro.org>
-From: "Satya Priya Kakitapalli (Temp)" <quic_skakitap@quicinc.com>
-In-Reply-To: <6fdde54e-12cb-442c-9dea-d1d6cbca340b@linaro.org>
+From: Wadim Egorov <w.egorov@phytec.de>
+In-Reply-To: <acd3c7f2-930d-46c0-9924-9775e9795fca@ti.com>
 Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
- nalasex01c.na.qualcomm.com (10.47.97.35)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-ORIG-GUID: 4TrP1OWOFRi7t024bkfVVs_bzsyXq1wC
-X-Proofpoint-GUID: 4TrP1OWOFRi7t024bkfVVs_bzsyXq1wC
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.272,Aquarius:18.0.1011,Hydra:6.0.619,FMLib:17.11.176.26
- definitions=2024-02-08_01,2024-02-07_01,2023-05-22_02
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 spamscore=0
- priorityscore=1501 mlxscore=0 lowpriorityscore=0 malwarescore=0
- mlxlogscore=999 phishscore=0 bulkscore=0 adultscore=0 clxscore=1015
- suspectscore=0 impostorscore=0 classifier=spam adjust=0 reason=mlx
- scancount=1 engine=8.19.0-2401310000 definitions=main-2402080025
+Content-Transfer-Encoding: 8bit
+X-ClientProxiedBy: Berlix.phytec.de (172.25.0.12) To Berlix.phytec.de
+ (172.25.0.12)
+X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFprDIsWRmVeSWpSXmKPExsWyRpKBR7cl90iqwZW3VhbvT01kt1iz9xyT
+	xfwj51gtln+ezW7R9+Ihs8Wmx9dYLS7vmsNm8ebHWSaLD42b2Sxa9x5ht+h+p27x/+wHdgce
+	j02rOtk87lzbw+axeUm9R393C6vHn4vvWD2O39jO5PF5k1wAexSXTUpqTmZZapG+XQJXxueO
+	GawFe2Qrfl66wdjAOFOyi5GTQ0LARGLBn4ksXYxcHEICi5kkTt9cyAjh3GGUONG/grWLkYOD
+	V8BGYt9Cd5AGFgEViUO9fSwgNq+AoMTJmU/AbFEBeYn7t2awg9jCAtESC+/MBbNFBC4xStx/
+	Uwgyk1mgjVHiycMDzCAJIYFsiZUrjoEVMQuIS9x6Mp8JxGYTUJe4s+EbK4jNKWAlcePMJUaI
+	GguJxW8OQtXLSzRvnQ01R17ixaXlLBDfyEtMO/eaGcIOldj6ZTvTBEbhWUhunYVk3SwkY2ch
+	GbuAkWUVo1BuZnJ2alFmtl5BRmVJarJeSuomRlAMijBw7WDsm+NxiJGJg/EQowQHs5IIr9mO
+	A6lCvCmJlVWpRfnxRaU5qcWHGKU5WJTEeVd3BKcKCaQnlqRmp6YWpBbBZJk4OKUaGKfZXNX/
+	v2ypyqEGxajw9bVrv9Z06ugfOPHrb9XM+1d2nkqaG/YxmeXRRqNd5/P0Vq78YWLzIPX4LI7/
+	2j+n/bFfw/ZzxhOzglheyZYXPYdkb6WozTlpI7VrZ0nO0zT/v9M0HbREND4fzb6g4SsfrKGv
+	8Ze7+XG9e/POur62ORzLni+MsD+iG63EUpyRaKjFXFScCACWX/irrwIAAA==
+
+Hi Andrew,
+
+Am 07.02.24 um 23:20 schrieb Andrew Davis:
+> On 2/7/24 11:28 AM, Nathan Morrisson wrote:
+>> The phyBOARD-Lyra has a GPIO fan header. This overlay enables the fan
+>> header and sets the fan to turn on at 65C.
+>>
+>> Signed-off-by: Nathan Morrisson <nmorrisson@phytec.com>
+>> ---
+>>   arch/arm64/boot/dts/ti/Makefile               |  1 +
+>>   .../ti/k3-am62-phyboard-lyra-gpio-fan.dtso    | 51 +++++++++++++++++++
+>>   2 files changed, 52 insertions(+)
+>>   create mode 100644 
+>> arch/arm64/boot/dts/ti/k3-am62-phyboard-lyra-gpio-fan.dtso
+>>
+>> diff --git a/arch/arm64/boot/dts/ti/Makefile 
+>> b/arch/arm64/boot/dts/ti/Makefile
+>> index 52c1dc910308..379fb4f31a1f 100644
+>> --- a/arch/arm64/boot/dts/ti/Makefile
+>> +++ b/arch/arm64/boot/dts/ti/Makefile
+>> @@ -23,6 +23,7 @@ dtb-$(CONFIG_ARCH_K3) += k3-am625-verdin-wifi-dev.dtb
+>>   dtb-$(CONFIG_ARCH_K3) += k3-am625-verdin-wifi-mallow.dtb
+>>   dtb-$(CONFIG_ARCH_K3) += k3-am625-verdin-wifi-yavia.dtb
+>>   dtb-$(CONFIG_ARCH_K3) += k3-am62-lp-sk.dtb
+>> +dtb-$(CONFIG_ARCH_K3) += k3-am62-phyboard-lyra-gpio-fan.dtbo
+>
+> Why not call this k3-am625-phyboard-lyra-gpio-fan.dtbo to match the
+> name of the base board it applies to better?
+
+We are able to reuse this overlay for different SoMs (am625 and am62a) 
+that are using the same carrier board (lyra).
+
+Regards,
+Wadim
 
 
-On 2/5/2024 5:03 PM, Konrad Dybcio wrote:
-> On 5.02.2024 09:37, Satya Priya Kakitapalli (Temp) wrote:
->> On 1/25/2024 3:25 PM, Konrad Dybcio wrote:
->>>
->>> On 1/25/24 06:49, Satya Priya Kakitapalli (Temp) wrote:
->>>> On 1/23/2024 11:17 PM, Konrad Dybcio wrote:
->>>>>
->>>>> On 1/23/24 17:34, Satya Priya Kakitapalli wrote:
->>>>>> Add active_only support for gcc_parents_0, this is needed because
->>>>>> some of the clocks under it are critical which would vote on xo
->>>>>> blocking the suspend.
->>>>>>
->>>>>> Signed-off-by: Satya Priya Kakitapalli <quic_skakitap@quicinc.com>
->>>>>> ---
->>>>> Is there a need to keep gcc_cpuss_ahb_clk_src around? Do we do any
->>>>> ratesetting on it? Should we ever turn it off?
->>>>>
->>>> The branch clocks under gcc_cpuss_ahb_clk_src are critical clocks, which are running at 19.2Mhz causing vote on XO during suspend. As of now no rate setting is happening but this rcg is useful to get the exact rates from debugfs. Hence this change is needed to avoid XO shutdown issues.
->>> So, if I underderstood you correctly, this clock serves no purpose other
->>> than getting rate?
->>>
->>> In this case, I'd say we should de-register it from the clock driver and
->>> use debugcc [1] (contributions welcome!) for precise measurements.
->>>
->> Although currently there is no rate-setting happening now, its better to keep the rcg modelling as is, considering that it might be needed if some use case arises in future.
-> We don't tend to solve imaginary problems, please lay out what it would be
-> used for, if at all. Then, we can assess whether it's necessary.
-
-
-Okay, I'll de-register this RCG.
-
+>
+> Andrew
+>
+>>     # Boards with AM62Ax SoC
+>>   dtb-$(CONFIG_ARCH_K3) += k3-am62a7-sk.dtb
+>> diff --git 
+>> a/arch/arm64/boot/dts/ti/k3-am62-phyboard-lyra-gpio-fan.dtso 
+>> b/arch/arm64/boot/dts/ti/k3-am62-phyboard-lyra-gpio-fan.dtso
+>> new file mode 100644
+>> index 000000000000..9c05748bdd9d
+>> --- /dev/null
+>> +++ b/arch/arm64/boot/dts/ti/k3-am62-phyboard-lyra-gpio-fan.dtso
+>> @@ -0,0 +1,51 @@
+>> +// SPDX-License-Identifier: GPL-2.0-only OR MIT
+>> +/*
+>> + * Copyright (C) 2024 PHYTEC America LLC
+>> + * Author: Garrett Giordano <ggiordano@phytec.com>
+>> + */
+>> +
+>> +/dts-v1/;
+>> +/plugin/;
+>> +
+>> +#include <dt-bindings/gpio/gpio.h>
+>> +#include <dt-bindings/thermal/thermal.h>
+>> +#include "k3-pinctrl.h"
+>> +
+>> +&{/} {
+>> +    fan: gpio-fan {
+>> +        compatible = "gpio-fan";
+>> +        gpio-fan,speed-map = <0 0 8600 1>;
+>> +        gpios = <&main_gpio0 40 GPIO_ACTIVE_LOW>;
+>> +        #cooling-cells = <2>;
+>> +        pinctrl-names = "default";
+>> +        pinctrl-0 = <&gpio_fan_pins_default>;
+>> +        status = "okay";
+>> +    };
+>> +};
+>> +
+>> +&main_pmx0 {
+>> +    gpio_fan_pins_default: gpio-fan-default-pins {
+>> +        pinctrl-single,pins = <
+>> +            AM62X_IOPAD(0x0a4, PIN_OUTPUT, 7) /* (M22) 
+>> GPMC0_DIR.GPIO0_40 */
+>> +        >;
+>> +    };
+>> +};
+>> +
+>> +&thermal_zones {
+>> +    main0_thermal: main0-thermal {
+>> +        trips {
+>> +            main0_thermal_trip0: main0-thermal-trip {
+>> +                temperature = <65000>;  /* millicelsius */
+>> +                hysteresis = <2000>;    /* millicelsius */
+>> +                type = "active";
+>> +            };
+>> +        };
+>> +
+>> +        cooling-maps {
+>> +            map0 {
+>> +                trip = <&main0_thermal_trip0>;
+>> +                cooling-device = <&fan THERMAL_NO_LIMIT 
+>> THERMAL_NO_LIMIT>;
+>> +            };
+>> +        };
+>> +    };
+>> +};
+>
+> _______________________________________________
+> linux-arm-kernel mailing list
+> linux-arm-kernel@lists.infradead.org
+> http://lists.infradead.org/mailman/listinfo/linux-arm-kernel
 
