@@ -1,263 +1,250 @@
-Return-Path: <devicetree+bounces-39584-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-39585-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id EA6A584DA9A
-	for <lists+devicetree@lfdr.de>; Thu,  8 Feb 2024 08:15:02 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id E1F6D84DAA7
+	for <lists+devicetree@lfdr.de>; Thu,  8 Feb 2024 08:22:54 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 9EAAF28724D
-	for <lists+devicetree@lfdr.de>; Thu,  8 Feb 2024 07:15:01 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 67A121F23070
+	for <lists+devicetree@lfdr.de>; Thu,  8 Feb 2024 07:22:54 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A54E169306;
-	Thu,  8 Feb 2024 07:14:56 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6E10D69311;
+	Thu,  8 Feb 2024 07:22:50 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="i8382Vt/"
+	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="nLduN4ok"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-yw1-f179.google.com (mail-yw1-f179.google.com [209.85.128.179])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from lelv0142.ext.ti.com (lelv0142.ext.ti.com [198.47.23.249])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A0A4E6A320
-	for <devicetree@vger.kernel.org>; Thu,  8 Feb 2024 07:14:53 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.179
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 31F5A67A0F;
+	Thu,  8 Feb 2024 07:22:47 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.23.249
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1707376496; cv=none; b=etfmhQ96FAoAo4of2IYK3S2TtzdXUoMj8AE+edSfPkIdMu7UQ7uGgPhB0BS25MzSC7VglhFBM0D1FL5xr68syvNO8IWMvWztf9Tt1KcL+srIAs8a9zvAI2Ikx/HxJgKQZADqB1oJVsxi8Bna35wioegGzYmoZQBq7QcuxY8LERM=
+	t=1707376970; cv=none; b=Hmt7TYdLuLiBZC/kKySwMlXMZLQLTBw+eG7hyPChdbrRCIUFu++O6oCS8LIoKpPFELGA6r8z9V1a+4MXrnQzB2hNQdrbRM/LSg3avrWJZ9/HE87HNfbDnSYxbtzMGbrXH94bifqNeRC2QNa8uu/MFrHHfOUEb0P02b6+glPHDbU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1707376496; c=relaxed/simple;
-	bh=/U5Gh8XoGRX9cNmLIUe79+ixUsV1OLqHzdIOkGn2IV8=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=em+oF+MHiNkJMZHWllYbPIb9j8I8ZKkIGzTxVZM3aWiRJY2uEm3Fl0mAo5bTA27oEMgZ98EhJpfz+giE0+lu1v/ZOIBFbcf/mVWuE8avscxl6YcLBmlBlbQUXAD1S9jelorynbY96Nar66ClmXUtpg2BKJwrUhAvDnRFTKZH9WU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=i8382Vt/; arc=none smtp.client-ip=209.85.128.179
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-yw1-f179.google.com with SMTP id 00721157ae682-604966eaf6eso12894757b3.1
-        for <devicetree@vger.kernel.org>; Wed, 07 Feb 2024 23:14:53 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1707376492; x=1707981292; darn=vger.kernel.org;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=7kOHHtSmI0tD6nUlCqLdvQWTYUnQ0nQol6M7u3YWTJA=;
-        b=i8382Vt/5pVJP4CHJZMnVd3vt9b72pok4cNtmitaR3JgoXnONeAThvh8M3dXbk/qCb
-         7sAF2aRHG61CiUHh5e8onFLi+FRsjDD2+9jeLRHvLgx/XB1qPJQJQXRddS4Uw7oykeKr
-         ZNhqkBUzgR+LCO5w9B6swFlyBpnk1bO6R6o6qsIJd7xevMQzY+Dwgs4MM3tCm0G/C6bT
-         +3nRVnp/tuMVOZhkfJCON3PmSbiUM+MYShawXAmPUZqFwfi6H1WxjFG0MbIhZEOaUBim
-         XpxsDDdw6Ex2S/ik2v+iT83MGZ+rfJQlo5QbEzAsHM+7tmS194/suDZTBF4BaU2iKcm7
-         PZ/w==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1707376492; x=1707981292;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=7kOHHtSmI0tD6nUlCqLdvQWTYUnQ0nQol6M7u3YWTJA=;
-        b=sMfuAzhzEW1X/7LYYl/remSGkdaR3xUlt6o3biBNrztztEb75VPZIt/XqQtw7vj3qo
-         IRXBJgAnUEuckVwj4ZwpdFKtOUVVkLPNJq4IhAXjQ8vJogVb3LsQKPhx0Boxd16udlWD
-         Mvoae99MMWW/k6qsgvHApQof6fkVhkAgSyHlGs9oScrwiYszh57QqsydaoY1VDO38vzO
-         jQU1mNmjJ9BjzrsQuAbVY0ZpXcBe2ldoH2lfCWHEV+1heKO+fqWeAfj3gl5ScpG8uFwA
-         yiBMo/nd3fJDXUNuOs6gBRfIjFxbdSewYvduL/tWOlkCocEw9CmoJRLJfJTwUQp0zmzR
-         zetQ==
-X-Forwarded-Encrypted: i=1; AJvYcCWY1wZ87UTjXwkEj3DwZdst+Dy7lcz1doTAxawjDUReNkq7ZO2xzsJIEbXxo684Kcfv/ptkC66/U4GGIe9PiQJiReODFakky/qv9Q==
-X-Gm-Message-State: AOJu0YwJO/MorA2PhJ6d7HudCOvkfHYGg2+mh00xMsnbQtPfoCyxw3xS
-	Oc8fAsFxpVdbwIrkaVeXVeShXTtHutgCuUJ1aSBNLCEih07FtpXR0LKr6F+gcB/t5+uPOx8uvPv
-	f2jJ020Gn8kjPShAklseFWbNW5LV6ixyMCLv+Pw==
-X-Google-Smtp-Source: AGHT+IHQohtdW+YcJ87TpigyepftuZfJ5M1HQOClm4+SzilT3k1paJp/TGcqro32Y2eO5/4ahWJ08ZnwJWc95siQiMI=
-X-Received: by 2002:a81:4f17:0:b0:604:9e94:7c2a with SMTP id
- d23-20020a814f17000000b006049e947c2amr2656450ywb.49.1707376492572; Wed, 07
- Feb 2024 23:14:52 -0800 (PST)
+	s=arc-20240116; t=1707376970; c=relaxed/simple;
+	bh=bTseBzxWDcq9gt0CHAOxcRC1TbnWfWAUQNygoI4GuiM=;
+	h=Date:From:To:CC:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=LldynpCR3nwcsdi4v/4Ya4eAaadLWlCHe0R6TYj2N50/AadGP3Hesfij/qMDbI4AXUWV4l3Rk4FJLr+e2SEs020iSyHyAXzrxHkJo/hxgstkXu4mhEqy+6UtHr9muBr3o/QYc/Z9qOF09PX27opHp1evwocSncm3fDNmXCVhVSU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=nLduN4ok; arc=none smtp.client-ip=198.47.23.249
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
+Received: from fllv0035.itg.ti.com ([10.64.41.0])
+	by lelv0142.ext.ti.com (8.15.2/8.15.2) with ESMTP id 4187Magk082163;
+	Thu, 8 Feb 2024 01:22:37 -0600
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+	s=ti-com-17Q1; t=1707376957;
+	bh=bTseBzxWDcq9gt0CHAOxcRC1TbnWfWAUQNygoI4GuiM=;
+	h=Date:From:To:CC:Subject:References:In-Reply-To;
+	b=nLduN4ok72nm0oxonfi0GyFZjosDYtMuB49CLoQlpgqhuAy7F5MgdZVabA56Qd1Id
+	 N4+AAqaR120s0IzEWpQsCxc1z2cALgfZkOrYaJ2kyPs+iA5O/thcH6YSELIZpfLb1n
+	 M0KC6fCg9tM7g2By3ZQgBBUpTZki7JvXBNkKVGeU=
+Received: from DFLE110.ent.ti.com (dfle110.ent.ti.com [10.64.6.31])
+	by fllv0035.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 4187MaPn092956
+	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+	Thu, 8 Feb 2024 01:22:36 -0600
+Received: from DFLE115.ent.ti.com (10.64.6.36) by DFLE110.ent.ti.com
+ (10.64.6.31) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Thu, 8
+ Feb 2024 01:22:36 -0600
+Received: from lelvsmtp5.itg.ti.com (10.180.75.250) by DFLE115.ent.ti.com
+ (10.64.6.36) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
+ Frontend Transport; Thu, 8 Feb 2024 01:22:36 -0600
+Received: from localhost (jluthra.dhcp.ti.com [172.24.227.217])
+	by lelvsmtp5.itg.ti.com (8.15.2/8.15.2) with ESMTP id 4187MZcK115426;
+	Thu, 8 Feb 2024 01:22:36 -0600
+Date: Thu, 8 Feb 2024 12:52:35 +0530
+From: Jai Luthra <j-luthra@ti.com>
+To: Wadim Egorov <w.egorov@phytec.de>
+CC: Andrew Davis <afd@ti.com>, Nathan Morrisson <nmorrisson@phytec.com>,
+        <nm@ti.com>, <vigneshr@ti.com>, <kristo@kernel.org>,
+        <robh+dt@kernel.org>, <krzysztof.kozlowski+dt@linaro.org>,
+        <conor+dt@kernel.org>, <linux-arm-kernel@lists.infradead.org>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <upstream@lists.phytec.de>
+Subject: Re: Re: [PATCH] arm64: dts: ti: am62-phyboard-lyra: Add overlay to
+ enable a GPIO fan
+Message-ID: <7zzhg5tgypia7nta3pz6ocu3linrfghmilnd7icdvsoupzyepp@4vbmmkh2jtc7>
+References: <20240207172820.478332-1-nmorrisson@phytec.com>
+ <acd3c7f2-930d-46c0-9924-9775e9795fca@ti.com>
+ <033de6e2-4ca4-46bc-a0a7-e9921ed15977@phytec.de>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20240208062836.19767-1-quic_tdas@quicinc.com> <20240208062836.19767-6-quic_tdas@quicinc.com>
-In-Reply-To: <20240208062836.19767-6-quic_tdas@quicinc.com>
-From: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-Date: Thu, 8 Feb 2024 09:14:41 +0200
-Message-ID: <CAA8EJpq4YfX+1mYBS3AMWFp+7pYGdY6bvTUGsvYeqfNOo1KbAg@mail.gmail.com>
-Subject: Re: [PATCH 5/5] arm64: dts: qcom: Update protected clocks list for
- qcm6490 variants
-To: Taniya Das <quic_tdas@quicinc.com>
-Cc: Stephen Boyd <sboyd@kernel.org>, Michael Turquette <mturquette@baylibre.com>, 
-	Bjorn Andersson <andersson@kernel.org>, Konrad Dybcio <konrad.dybcio@linaro.org>, 
-	Rob Herring <robh+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, linux-arm-msm@vger.kernel.org, 
-	linux-clk@vger.kernel.org, devicetree@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: multipart/signed; micalg=pgp-sha256;
+	protocol="application/pgp-signature"; boundary="nyrrqv4d76o3v3xw"
+Content-Disposition: inline
+In-Reply-To: <033de6e2-4ca4-46bc-a0a7-e9921ed15977@phytec.de>
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 
-On Thu, 8 Feb 2024 at 08:29, Taniya Das <quic_tdas@quicinc.com> wrote:
->
-> Certain clocks are not accessible on QCM6490-IDP and QCS6490-RB3GEN2 boards
-> thus require them to be marked protected.
->
-> Also disable the LPASS nodes which are not to be used.
->
-> Signed-off-by: Taniya Das <quic_tdas@quicinc.com>
-> ---
->  arch/arm64/boot/dts/qcom/qcm6490-idp.dts     | 54 +++++++++++++++++++-
->  arch/arm64/boot/dts/qcom/qcs6490-rb3gen2.dts | 50 +++++++++++++++++-
->  2 files changed, 102 insertions(+), 2 deletions(-)
->
-> diff --git a/arch/arm64/boot/dts/qcom/qcm6490-idp.dts b/arch/arm64/boot/dts/qcom/qcm6490-idp.dts
-> index 03e97e27d16d..425e4b87490b 100644
-> --- a/arch/arm64/boot/dts/qcom/qcm6490-idp.dts
-> +++ b/arch/arm64/boot/dts/qcom/qcm6490-idp.dts
-> @@ -1,6 +1,6 @@
->  // SPDX-License-Identifier: BSD-3-Clause
->  /*
-> - * Copyright (c) 2023 Qualcomm Innovation Center, Inc. All rights reserved.
-> + * Copyright (c) 2023-2024 Qualcomm Innovation Center, Inc. All rights reserved.
->   */
->
->  /dts-v1/;
-> @@ -415,6 +415,58 @@
->         };
->  };
->
-> +&gcc {
-> +       protected-clocks = <GCC_AGGRE_NOC_PCIE_1_AXI_CLK> ,<GCC_PCIE_1_AUX_CLK>,
-> +                       <GCC_PCIE_1_AUX_CLK_SRC>, <GCC_PCIE_1_CFG_AHB_CLK>,
-> +                       <GCC_PCIE_1_MSTR_AXI_CLK>, <GCC_PCIE_1_PHY_RCHNG_CLK_SRC>,
-> +                       <GCC_PCIE_1_PIPE_CLK>, <GCC_PCIE_1_PIPE_CLK_SRC>,
-> +                       <GCC_PCIE_1_SLV_AXI_CLK>, <GCC_PCIE_1_SLV_Q2A_AXI_CLK>,
-> +                       <GCC_QSPI_CNOC_PERIPH_AHB_CLK>, <GCC_QSPI_CORE_CLK>,
-> +                       <GCC_QSPI_CORE_CLK_SRC>,<GCC_USB30_SEC_MASTER_CLK>,
-> +                       <GCC_USB30_SEC_MASTER_CLK_SRC>, <GCC_USB30_SEC_MOCK_UTMI_CLK>,
-> +                       <GCC_USB30_SEC_MOCK_UTMI_CLK_SRC>,
-> +                       <GCC_USB30_SEC_MOCK_UTMI_POSTDIV_CLK_SRC>, <GCC_USB30_SEC_SLEEP_CLK>,
-> +                       <GCC_USB3_SEC_PHY_AUX_CLK>, <GCC_USB3_SEC_PHY_AUX_CLK_SRC>,
-> +                       <GCC_USB3_SEC_PHY_COM_AUX_CLK>, <GCC_USB3_SEC_PHY_PIPE_CLK>,
-> +                       <GCC_USB3_SEC_PHY_PIPE_CLK_SRC>, <GCC_CFG_NOC_LPASS_CLK>,
-> +                       <GCC_MSS_GPLL0_MAIN_DIV_CLK_SRC>, <GCC_MSS_CFG_AHB_CLK>,
-> +                       <GCC_MSS_OFFLINE_AXI_CLK>, <GCC_MSS_SNOC_AXI_CLK>,
-> +                       <GCC_MSS_Q6_MEMNOC_AXI_CLK>, <GCC_MSS_Q6SS_BOOT_CLK_SRC>,
-> +                       <GCC_SEC_CTRL_CLK_SRC>, <GCC_WPSS_AHB_CLK>,
-> +                       <GCC_WPSS_AHB_BDG_MST_CLK>, <GCC_WPSS_RSCP_CLK>;
+--nyrrqv4d76o3v3xw
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-This looks like a huge variety of clocks. Are they really not
-accessible or are you trying to make Linux stay away from all those
-clocks to keep bootloader settings?
+Hi Wadim,
 
-> +};
-> +
-> +&lpasscc {
-> +       status = "disabled";
-> +};
-> +
-> +&lpass_audiocc {
-> +       qcom,adsp-skip-pll;
-> +       protected-clocks = <LPASS_AUDIO_CC_CDIV_RX_MCLK_DIV_CLK_SRC>,
-> +               <LPASS_AUDIO_CC_CODEC_MEM0_CLK>, <LPASS_AUDIO_CC_CODEC_MEM1_CLK>,
-> +               <LPASS_AUDIO_CC_CODEC_MEM2_CLK>, <LPASS_AUDIO_CC_CODEC_MEM_CLK>,
-> +               <LPASS_AUDIO_CC_EXT_MCLK0_CLK>, <LPASS_AUDIO_CC_EXT_MCLK0_CLK_SRC>,
-> +               <LPASS_AUDIO_CC_EXT_MCLK1_CLK>, <LPASS_AUDIO_CC_EXT_MCLK1_CLK_SRC>,
-> +               <LPASS_AUDIO_CC_PLL>, <LPASS_AUDIO_CC_PLL_OUT_AUX2>,
-> +               <LPASS_AUDIO_CC_PLL_OUT_AUX2_DIV_CLK_SRC>,
-> +               <LPASS_AUDIO_CC_PLL_OUT_MAIN_DIV_CLK_SRC>,
-> +               <LPASS_AUDIO_CC_RX_MCLK_2X_CLK>, <LPASS_AUDIO_CC_RX_MCLK_CLK>,
-> +               <LPASS_AUDIO_CC_RX_MCLK_CLK_SRC>;
+On Feb 08, 2024 at 06:57:54 +0100, Wadim Egorov wrote:
+> Hi Andrew,
+>=20
+> Am 07.02.24 um 23:20 schrieb Andrew Davis:
+> > On 2/7/24 11:28 AM, Nathan Morrisson wrote:
+> > > The phyBOARD-Lyra has a GPIO fan header. This overlay enables the fan
+> > > header and sets the fan to turn on at 65C.
+> > >=20
+> > > Signed-off-by: Nathan Morrisson <nmorrisson@phytec.com>
+> > > ---
+> > > =C2=A0 arch/arm64/boot/dts/ti/Makefile=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 |=C2=A0 1 +
+> > > =C2=A0 .../ti/k3-am62-phyboard-lyra-gpio-fan.dtso=C2=A0=C2=A0=C2=A0 |=
+ 51 +++++++++++++++++++
+> > > =C2=A0 2 files changed, 52 insertions(+)
+> > > =C2=A0 create mode 100644
+> > > arch/arm64/boot/dts/ti/k3-am62-phyboard-lyra-gpio-fan.dtso
+> > >=20
+> > > diff --git a/arch/arm64/boot/dts/ti/Makefile
+> > > b/arch/arm64/boot/dts/ti/Makefile
+> > > index 52c1dc910308..379fb4f31a1f 100644
+> > > --- a/arch/arm64/boot/dts/ti/Makefile
+> > > +++ b/arch/arm64/boot/dts/ti/Makefile
+> > > @@ -23,6 +23,7 @@ dtb-$(CONFIG_ARCH_K3) +=3D k3-am625-verdin-wifi-dev=
+=2Edtb
+> > > =C2=A0 dtb-$(CONFIG_ARCH_K3) +=3D k3-am625-verdin-wifi-mallow.dtb
+> > > =C2=A0 dtb-$(CONFIG_ARCH_K3) +=3D k3-am625-verdin-wifi-yavia.dtb
+> > > =C2=A0 dtb-$(CONFIG_ARCH_K3) +=3D k3-am62-lp-sk.dtb
+> > > +dtb-$(CONFIG_ARCH_K3) +=3D k3-am62-phyboard-lyra-gpio-fan.dtbo
+> >=20
+> > Why not call this k3-am625-phyboard-lyra-gpio-fan.dtbo to match the
+> > name of the base board it applies to better?
+>=20
+> We are able to reuse this overlay for different SoMs (am625 and am62a) th=
+at
+> are using the same carrier board (lyra).
 
-This almost looks like a separate compatible.
+In that case do you mind calling it k3-am62x-phyboard-*? It would match=20
+the existing convention we have for camera sensor overlays that can be=20
+applied on SK-AM62, SK-AM62A, SK-AM62P etc.
+>=20
+> Regards,
+> Wadim
+>=20
+>=20
+> >=20
+> > Andrew
+> >=20
+> > > =C2=A0 =C2=A0 # Boards with AM62Ax SoC
+> > > =C2=A0 dtb-$(CONFIG_ARCH_K3) +=3D k3-am62a7-sk.dtb
+> > > diff --git
+> > > a/arch/arm64/boot/dts/ti/k3-am62-phyboard-lyra-gpio-fan.dtso
+> > > b/arch/arm64/boot/dts/ti/k3-am62-phyboard-lyra-gpio-fan.dtso
+> > > new file mode 100644
+> > > index 000000000000..9c05748bdd9d
+> > > --- /dev/null
+> > > +++ b/arch/arm64/boot/dts/ti/k3-am62-phyboard-lyra-gpio-fan.dtso
+> > > @@ -0,0 +1,51 @@
+> > > +// SPDX-License-Identifier: GPL-2.0-only OR MIT
+> > > +/*
+> > > + * Copyright (C) 2024 PHYTEC America LLC
+> > > + * Author: Garrett Giordano <ggiordano@phytec.com>
+> > > + */
+> > > +
+> > > +/dts-v1/;
+> > > +/plugin/;
+> > > +
+> > > +#include <dt-bindings/gpio/gpio.h>
+> > > +#include <dt-bindings/thermal/thermal.h>
+> > > +#include "k3-pinctrl.h"
+> > > +
+> > > +&{/} {
+> > > +=C2=A0=C2=A0=C2=A0 fan: gpio-fan {
+> > > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 compatible =3D "gpio-fan";
+> > > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 gpio-fan,speed-map =3D <0=
+ 0 8600 1>;
+> > > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 gpios =3D <&main_gpio0 40=
+ GPIO_ACTIVE_LOW>;
+> > > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 #cooling-cells =3D <2>;
+> > > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 pinctrl-names =3D "defaul=
+t";
+> > > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 pinctrl-0 =3D <&gpio_fan_=
+pins_default>;
+> > > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 status =3D "okay";
+> > > +=C2=A0=C2=A0=C2=A0 };
+> > > +};
+> > > +
+> > > +&main_pmx0 {
+> > > +=C2=A0=C2=A0=C2=A0 gpio_fan_pins_default: gpio-fan-default-pins {
+> > > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 pinctrl-single,pins =3D <
+> > > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 A=
+M62X_IOPAD(0x0a4, PIN_OUTPUT, 7) /* (M22)
+> > > GPMC0_DIR.GPIO0_40 */
+> > > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 >;
+> > > +=C2=A0=C2=A0=C2=A0 };
+> > > +};
+> > > +
+> > > +&thermal_zones {
+> > > +=C2=A0=C2=A0=C2=A0 main0_thermal: main0-thermal {
+> > > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 trips {
+> > > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 m=
+ain0_thermal_trip0: main0-thermal-trip {
+> > > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0 temperature =3D <65000>;=C2=A0 /* millicelsius */
+> > > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0 hysteresis =3D <2000>;=C2=A0=C2=A0=C2=A0 /* millic=
+elsius */
+> > > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0 type =3D "active";
+> > > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 };
+> > > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 };
+> > > +
+> > > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 cooling-maps {
+> > > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 m=
+ap0 {
+> > > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0 trip =3D <&main0_thermal_trip0>;
+> > > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0 cooling-device =3D <&fan THERMAL_NO_LIMIT
+> > > THERMAL_NO_LIMIT>;
+> > > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 };
+> > > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 };
+> > > +=C2=A0=C2=A0=C2=A0 };
+> > > +};
+> >=20
+> > _______________________________________________
+> > linux-arm-kernel mailing list
+> > linux-arm-kernel@lists.infradead.org
+> > http://lists.infradead.org/mailman/listinfo/linux-arm-kernel
 
-> +       /delete-property/ power-domains;
-> +};
-> +
-> +&lpass_aon {
-> +       status = "disabled";
+--=20
+Thanks,
+Jai
 
-Should this be "reserved", controlled by ADSP? See how this was
-implemented in sc7180.dtsi / sc7180-trogdor.dtsi.
-Please consider inverting the logic. Generic ADSP implementation
-should be present in sc7280.dtsi and then the non-default ChromeOS
-implementation should be a part of sc7280-chrome-common.dtsi.
+GPG Fingerprint: 4DE0 D818 E5D5 75E8 D45A AFC5 43DE 91F9 249A 7145
 
-> +};
-> +
-> +&lpass_core {
-> +       status = "disabled";
-> +};
-> +
-> +&lpass_hm {
-> +       status = "disabled";
-> +};
-> +
->  &qupv3_id_0 {
->         status = "okay";
->  };
-> diff --git a/arch/arm64/boot/dts/qcom/qcs6490-rb3gen2.dts b/arch/arm64/boot/dts/qcom/qcs6490-rb3gen2.dts
-> index 8bb7d13d85f6..1398b84634c3 100644
-> --- a/arch/arm64/boot/dts/qcom/qcs6490-rb3gen2.dts
-> +++ b/arch/arm64/boot/dts/qcom/qcs6490-rb3gen2.dts
-> @@ -1,6 +1,6 @@
->  // SPDX-License-Identifier: BSD-3-Clause
->  /*
-> - * Copyright (c) 2023 Qualcomm Innovation Center, Inc. All rights reserved.
-> + * Copyright (c) 2023-2024 Qualcomm Innovation Center, Inc. All rights reserved.
->   */
->
->  /dts-v1/;
-> @@ -413,6 +413,54 @@
->         };
->  };
->
-> +&gcc {
-> +       protected-clocks = <GCC_QSPI_CNOC_PERIPH_AHB_CLK>, <GCC_QSPI_CORE_CLK>,
-> +                       <GCC_QSPI_CORE_CLK_SRC>,<GCC_USB30_SEC_MASTER_CLK>,
-> +                       <GCC_USB30_SEC_MASTER_CLK_SRC>, <GCC_USB30_SEC_MOCK_UTMI_CLK>,
-> +                       <GCC_USB30_SEC_MOCK_UTMI_CLK_SRC>,
-> +                       <GCC_USB30_SEC_MOCK_UTMI_POSTDIV_CLK_SRC>, <GCC_USB30_SEC_SLEEP_CLK>,
-> +                       <GCC_USB3_SEC_PHY_AUX_CLK>, <GCC_USB3_SEC_PHY_AUX_CLK_SRC>,
-> +                       <GCC_USB3_SEC_PHY_COM_AUX_CLK>, <GCC_USB3_SEC_PHY_PIPE_CLK>,
-> +                       <GCC_USB3_SEC_PHY_PIPE_CLK_SRC>, <GCC_CFG_NOC_LPASS_CLK>,
-> +                       <GCC_MSS_GPLL0_MAIN_DIV_CLK_SRC>, <GCC_MSS_CFG_AHB_CLK>,
-> +                       <GCC_MSS_OFFLINE_AXI_CLK>, <GCC_MSS_SNOC_AXI_CLK>,
-> +                       <GCC_MSS_Q6_MEMNOC_AXI_CLK>, <GCC_MSS_Q6SS_BOOT_CLK_SRC>,
-> +                       <GCC_SEC_CTRL_CLK_SRC>, <GCC_WPSS_AHB_CLK>,
-> +                       <GCC_WPSS_AHB_BDG_MST_CLK>, <GCC_WPSS_RSCP_CLK>;
-> +};
-> +
-> +&lpasscc {
-> +       status = "disabled";
-> +};
-> +
-> +&lpass_audiocc {
-> +       qcom,adsp-skip-pll;
-> +       protected-clocks = <LPASS_AUDIO_CC_CDIV_RX_MCLK_DIV_CLK_SRC>,
-> +               <LPASS_AUDIO_CC_CODEC_MEM0_CLK>, <LPASS_AUDIO_CC_CODEC_MEM1_CLK>,
-> +               <LPASS_AUDIO_CC_CODEC_MEM2_CLK>, <LPASS_AUDIO_CC_CODEC_MEM_CLK>,
-> +               <LPASS_AUDIO_CC_EXT_MCLK0_CLK>, <LPASS_AUDIO_CC_EXT_MCLK0_CLK_SRC>,
-> +               <LPASS_AUDIO_CC_EXT_MCLK1_CLK>, <LPASS_AUDIO_CC_EXT_MCLK1_CLK_SRC>,
-> +               <LPASS_AUDIO_CC_PLL>, <LPASS_AUDIO_CC_PLL_OUT_AUX2>,
-> +               <LPASS_AUDIO_CC_PLL_OUT_AUX2_DIV_CLK_SRC>,
-> +               <LPASS_AUDIO_CC_PLL_OUT_MAIN_DIV_CLK_SRC>,
-> +               <LPASS_AUDIO_CC_RX_MCLK_2X_CLK>, <LPASS_AUDIO_CC_RX_MCLK_CLK>,
-> +               <LPASS_AUDIO_CC_RX_MCLK_CLK_SRC>;
-> +       /delete-property/ power-domains;
-> +};
-> +
-> +&lpass_aon {
-> +       status = "disabled";
-> +};
-> +
-> +&lpass_core {
-> +       status = "disabled";
-> +};
-> +
-> +&lpass_hm {
-> +       status = "disabled";
-> +};
-> +
-> +
->  &qupv3_id_0 {
->         status = "okay";
->  };
-> --
-> 2.17.1
->
->
+--nyrrqv4d76o3v3xw
+Content-Type: application/pgp-signature; name="signature.asc"
 
+-----BEGIN PGP SIGNATURE-----
 
--- 
-With best wishes
-Dmitry
+iQIzBAABCAAdFiEETeDYGOXVdejUWq/FQ96R+SSacUUFAmXEgTYACgkQQ96R+SSa
+cUUexA/8CbWipRfeSHq2u7+K+hYoyjV2o/C3gUS8RfzLQyZvl9Ey8mODmJpsTZH2
+YRBFvj5RT6w7foqhM1D0eWTkQR/Adm9Zr+WX5kZ7EB7A83pUNqDAkV322u5rV+Fv
+Yk3Lh+Jd7aBgKuEGrBUjsQrX4EggOgB6L8npNhcAu7TYHG2Vc5Ymqs6LNJxm3LO6
+MVmS0zN+1/aO6Yb/vfucnknYidEQPpJkEeomSxvTubNpFPPzlRdbPZ94ywmuAD9o
+oJeSEnvIRCZgP9uyVFnUtzI4J8wfuL9rOXteinEOzOaxValZ2Hlqvi0ICs0/Wlic
+LSv6NKmyhCuakGMuoCcgG0AK0dbV96rHYoB5tUcfSZgrGQeDtBJgr6djy9Ah22zy
+JUQ+uRya/r4Xk1xoCD4ZN4asQo8+VV6yVqT3xAP5Hd3PFJhUHGbeLfOHdPVUPsa/
+AA7r7zl35A1+CTCAlzwf8HxcWtC4/j+r4y7uLoCQf8UxP2wP1h6vaWZPQ9AA3+Ps
+Wl4OIYjCa9rlEGG6nU4cIkfuaHQYhrHuJ4qKUeaQlnFpro3Z+/5/wR0y2eKGRDIA
+Xfwi/kuB+/e3d2jF6wDRbQh/uwtNY2v5L1hC86exs0hrnOhGjWDcYT1xb9bh1iNW
+CRxo6dsLh7J/ykJMmh32idfoD/mOvCDHx9NdssXVjaTdSTrzdiA=
+=0Ili
+-----END PGP SIGNATURE-----
+
+--nyrrqv4d76o3v3xw--
 
