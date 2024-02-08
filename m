@@ -1,206 +1,269 @@
-Return-Path: <devicetree+bounces-39568-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-39569-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id C704D84D9DB
-	for <lists+devicetree@lfdr.de>; Thu,  8 Feb 2024 07:14:31 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6A5A484DA02
+	for <lists+devicetree@lfdr.de>; Thu,  8 Feb 2024 07:22:24 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 114E5B21D82
-	for <lists+devicetree@lfdr.de>; Thu,  8 Feb 2024 06:14:29 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 21BF428342C
+	for <lists+devicetree@lfdr.de>; Thu,  8 Feb 2024 06:22:23 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5C6C867C7B;
-	Thu,  8 Feb 2024 06:14:18 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id DDA2D67C6D;
+	Thu,  8 Feb 2024 06:22:19 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="eCZTKfFA"
+	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="lDLRGOo7"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+Received: from fllv0015.ext.ti.com (fllv0015.ext.ti.com [198.47.19.141])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 68DBF4C84;
-	Thu,  8 Feb 2024 06:14:16 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B9A7A67C79;
+	Thu,  8 Feb 2024 06:22:17 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.19.141
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1707372858; cv=none; b=n9ZnXaLxKrnUBeFhqENCjqJ/JiLWbEXQ/TGQ/l2SksMA1/y8ygAmVOwEB3IBZwd2qI5C4GrdeoVYUxnNn9uUCFzqPxlEKEfNKC35MX3XRQK0n/fZ15WTiAI/rC08mh4yiSLOj8y/jWJSrhNuOAZipAKiBxw7z0nxATSRKE47NMw=
+	t=1707373339; cv=none; b=P0Niyb9YZwtvuMSZ3hwDg7BpBMYMJkm2vTa83Hkvu6ObeAlXhC5Qqk3xeXdSUW2nzb1+cxOm8fzaaHDxQ5PO0eBq8uBfC1aZmSXJ8woZaUeUBTZCVmAs5p249hzBPnv4crlvBWSB4s1geDGFF7X9l+RUMU+s7CWv02l5dObnoYU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1707372858; c=relaxed/simple;
-	bh=SwX5XqArf5xwd6zmj6wvkne/CiOMRaP8kvliDxwOawQ=;
+	s=arc-20240116; t=1707373339; c=relaxed/simple;
+	bh=r14oebp+KeyBZkqFTuBJOO3xPPUWEpLLOwLHbAbBBMo=;
 	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
-	 In-Reply-To:Content-Type; b=sDQYhGf4WLW785SOYXThox9wYfoy4QAIUDJrzrQ0X00950L5ZwS7c7g5Nyij21q6b/f2gRAZcRF93UYRxm05t6/rWK7a2QAby7b1DFIGGt6FuxrZN9BY+Svz51LgIMMiZI/AGX5oQm+PqJosLaMKDoVIl3TsY5nosLcqy55xS3M=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=eCZTKfFA; arc=none smtp.client-ip=205.220.180.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
-Received: from pps.filterd (m0279868.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.17.1.24/8.17.1.24) with ESMTP id 4185asOE001595;
-	Thu, 8 Feb 2024 06:14:12 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
-	message-id:date:mime-version:subject:to:cc:references:from
-	:in-reply-to:content-type:content-transfer-encoding; s=
-	qcppdkim1; bh=r++821xKC0myDxKf9TKAwpRdOzG3nwXg/rQ65HdN2Sk=; b=eC
-	ZTKfFA81NFMAca8wq8myhmxfXa9TnhwaRIPcuMDy4MNWl0CWAp7Vu+XgDhIp0W0Z
-	H470ZrvTejaCPJXCYWHDQI9lrYmCAwHoaaW4AoC2cUaRUHlNVM7w6DKuZazq2cjs
-	JBMdWbQQj3+AB59DWaGOiy61TygJfmvWxKanHQGnpeF6B0+yixM64idEQ3pBnv06
-	tzzYnkUHvEmvc0IxwwqncJzNF+f4cbu/ePLyeNLgQhC5zpTqr9+uYquCYYmNbI+1
-	AVHtHYq8R4vH0iL8QBuoAWqlY0EZXc5vYz9G3ZSI+KsdztCk1b+g3wrWyISFMX+3
-	LSAZbYsVd47V0S8hQDoA==
-Received: from nalasppmta02.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3w3ywbu9ja-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Thu, 08 Feb 2024 06:14:11 +0000 (GMT)
-Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
-	by NALASPPMTA02.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 4186EASk007793
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Thu, 8 Feb 2024 06:14:10 GMT
-Received: from [10.216.36.240] (10.80.80.8) by nalasex01a.na.qualcomm.com
- (10.47.209.196) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1118.40; Wed, 7 Feb
- 2024 22:14:06 -0800
-Message-ID: <dec2976e-6e1e-6121-e175-210377ff6925@quicinc.com>
-Date: Thu, 8 Feb 2024 11:44:02 +0530
+	 In-Reply-To:Content-Type; b=K4oSHi64PsFK2eohGVbcGPNoQoIOwJwoZlSryUEOtHNrhLKoIBofmogNLSenrlc+BBa9mCrKxMSfYMgqBBmoDYjCQrpng4+QYUmleBWymvZrolbDjcVvhXJkn2w7AeJYs3T0qBnS1mKLxX3/gyvZxazUpySCh5Z0W3NbJ2AFmu0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=lDLRGOo7; arc=none smtp.client-ip=198.47.19.141
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
+Received: from fllv0035.itg.ti.com ([10.64.41.0])
+	by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id 4186M8dj113275;
+	Thu, 8 Feb 2024 00:22:08 -0600
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+	s=ti-com-17Q1; t=1707373328;
+	bh=ejWOb2HuMreagglrbUJOiWVLACXdSChrO+PXOXWj+hQ=;
+	h=Date:Subject:To:CC:References:From:In-Reply-To;
+	b=lDLRGOo7ngTXbcQy66+2yupUpd2NSMm0Obx4tYAX84WHSCr4pMKp7eCe6FN/mgbeH
+	 f4MDRAFGm6Yq34wh2MNm7BWj6YGi5QZ1TTo9HhgCY7/lNkG86Qtdwn4j4g62ZRqnem
+	 jeWH1fogkHrOGCcx46GBSw3aVX+30jYhG85lM9oQ=
+Received: from DLEE115.ent.ti.com (dlee115.ent.ti.com [157.170.170.26])
+	by fllv0035.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 4186M8a1030841
+	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+	Thu, 8 Feb 2024 00:22:08 -0600
+Received: from DLEE113.ent.ti.com (157.170.170.24) by DLEE115.ent.ti.com
+ (157.170.170.26) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Thu, 8
+ Feb 2024 00:22:08 -0600
+Received: from lelvsmtp6.itg.ti.com (10.180.75.249) by DLEE113.ent.ti.com
+ (157.170.170.24) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
+ Frontend Transport; Thu, 8 Feb 2024 00:22:08 -0600
+Received: from [10.250.146.202] ([10.250.146.202])
+	by lelvsmtp6.itg.ti.com (8.15.2/8.15.2) with ESMTP id 4186M3Co092479;
+	Thu, 8 Feb 2024 00:22:03 -0600
+Message-ID: <ab029558-fc04-854e-1f97-785f5cec0681@ti.com>
+Date: Thu, 8 Feb 2024 11:52:02 +0530
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:91.0) Gecko/20100101
- Thunderbird/91.13.1
-Subject: Re: [PATCH] arm64: dts: qcom: qcs6490-rb3gen2: Add PCIe nodes
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.11.0
+Subject: Re: [PATCH v2] dt-bindings: media: Add sram-size Property for Wave5
 Content-Language: en-US
-To: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-CC: Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio
-	<konrad.dybcio@linaro.org>,
+To: Brandon Brnich <b-brnich@ti.com>, Nishanth Menon <nm@ti.com>
+CC: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        Nas Chung
+	<nas.chung@chipsnmedia.com>,
+        Jackson Lee <jackson.lee@chipsnmedia.com>,
+        Mauro
+ Carvalho Chehab <mchehab@kernel.org>,
         Rob Herring <robh+dt@kernel.org>,
-        "Krzysztof
- Kozlowski" <krzysztof.kozlowski+dt@linaro.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
         Conor Dooley
-	<conor+dt@kernel.org>, <linux-arm-msm@vger.kernel.org>,
+	<conor+dt@kernel.org>, <linux-media@vger.kernel.org>,
         <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <quic_vbadigan@quicinc.com>, <quic_ramkri@quicinc.com>,
-        <quic_nitegupt@quicinc.com>, <quic_skananth@quicinc.com>,
-        <quic_parass@quicinc.com>
-References: <20240207-enable_pcie-v1-1-b684afa6371c@quicinc.com>
- <CAA8EJpqjm_2aE+7BtMkFUdet11q7v_jyHbUEpiDHSBSnzhndYA@mail.gmail.com>
-From: Krishna Chaitanya Chundru <quic_krichai@quicinc.com>
-In-Reply-To: <CAA8EJpqjm_2aE+7BtMkFUdet11q7v_jyHbUEpiDHSBSnzhndYA@mail.gmail.com>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
+        Vignesh
+ Raghavendra <vigneshr@ti.com>,
+        Darren Etheridge <detheridge@ti.com>
+References: <20240201184238.2542695-1-b-brnich@ti.com>
+ <1209b7cf-5be2-4107-aa6b-d67a32ea3737@linaro.org>
+ <20240202125257.p4astjuxpzr5ltjs@dragster>
+ <8091a8cf-c1c0-49b0-b136-1ad0d185aa6a@linaro.org>
+ <20240202155813.szxvi7bfp5xh7rvw@babble>
+ <adfef53c-d64e-4855-ab61-101b6fa419e5@linaro.org>
+ <20240205141255.z5kybm42qld44tdz@portfolio>
+ <20240205192003.3qns6cxqurqnnj7c@udba0500997>
+From: Devarsh Thakkar <devarsht@ti.com>
+In-Reply-To: <20240205192003.3qns6cxqurqnnj7c@udba0500997>
+Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
- nalasex01a.na.qualcomm.com (10.47.209.196)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-ORIG-GUID: Iq9og3MKBrJaKe10KconyFO7q-MQRpuQ
-X-Proofpoint-GUID: Iq9og3MKBrJaKe10KconyFO7q-MQRpuQ
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.272,Aquarius:18.0.1011,Hydra:6.0.619,FMLib:17.11.176.26
- definitions=2024-02-08_01,2024-02-07_01,2023-05-22_02
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 malwarescore=0 mlxscore=0
- lowpriorityscore=0 suspectscore=0 mlxlogscore=999 impostorscore=0
- phishscore=0 spamscore=0 adultscore=0 bulkscore=0 clxscore=1015
- priorityscore=1501 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.19.0-2401310000 definitions=main-2402080031
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 
+Hi Brandon, et-al,
 
-
-On 2/7/2024 5:17 PM, Dmitry Baryshkov wrote:
-> On Wed, 7 Feb 2024 at 12:42, Krishna chaitanya chundru
-> <quic_krichai@quicinc.com> wrote:
+On 06/02/24 00:50, Brandon Brnich wrote:
+> On 08:12-20240205, Nishanth Menon wrote:
+>> On 17:08-20240202, Krzysztof Kozlowski wrote:
+>>> On 02/02/2024 16:58, Nishanth Menon wrote:
+>>>> On 14:56-20240202, Krzysztof Kozlowski wrote:
+>>>>> On 02/02/2024 13:52, Nishanth Menon wrote:
+>>>>>> On 11:47-20240202, Krzysztof Kozlowski wrote:
+>>>>>>> On 01/02/2024 19:42, Brandon Brnich wrote:
+>>>>>>>> Wave521c has capability to use SRAM carveout to store reference data with
+>>>>>>>> purpose of reducing memory bandwidth. To properly use this pool, the driver
+>>>>>>>> expects to have an sram and sram-size node. Without sram-size node, driver
+>>>>>>>> will default value to zero, making sram node irrelevant.
+>>>>>>>
+>>>>>>> I am sorry, but what driver expects should not be rationale for new
+>>>>>>> property. This justification suggests clearly it is not a property for DT.
+>>>>>>>
+>>>>>>
+>>>>>> Yup, the argumentation in the commit message is from the wrong
+>>>>>> perspective. bindings are OS agnostic hardware description, and what
+>>>>>> driver does with the description is driver's problem.
+>>>>>>
+>>>>>> I will at least paraphrase my understanding:
+>>>>>> In this case, however, the hardware block will limp along with
+>>>>>> the usage of DDR (as is the current description), due to the
+>>>>>> latencies involved for DDR accesses. However, the hardware block
+>>>>>> has capability to use a substantially lower latency SRAM to provide
+>>>>>> proper performance and hence for example, deal with higher resolution
+>>>>>> data streams. This SRAM is instantiated at SoC level rather than
+>>>>>> embedded within the hardware block itself.
+>>>>>
+>>>>> That sounds like OS policy. Why would different boards with the same
+>>>>> component have this set differently? Based on amount of available
+>>>>> memory? This, I believe, is runtime configuration because it might
+>>>>> depend on user-space you run. Based on purpose (e.g. optimize for
+>>>>> decoding or general usage)? Again, run-time because same hardware board
+>>>>> can be used for different purposes.
+>>>>>
+>>>>
+>>>> Why is this OS policy? It is a hardware capability.
+>>>
+>>> How amount of SRAM size is hardware capability? Each hardware can work
+>>> probably with 1, 2 or 100 pages.
+>>>
+>>>> Traditionally
+>>>> many similar hardware blocks would have allocated local SRAM for
+>>>> worst case inside the hardware block itself and don't need to use
+>>>> DDR in the first place. However, for this hardware block, it has
+>>>> capability to use some part of one of the many SRAM blocks in the SoC,
+>>>> not be shared for some part of the system - so from a hardware
+>>>> description perspective, we will need to call that out as to which
+>>>> SRAM is available for the hardware block.
+>>>
+>>> Just because more than one device wants some memory, does not mean this
+>>> is hardware property. Drivers can ask how much memory available there
+>>> is. OS knows how many users of memory there is, so knows how much to
+>>> allocate for each device.
+>>>
+>>>>
+>>>> Why would different boards need this differently? simply because
+>>>> different cameras have different resolution and framerates - and you
+>>>> dont want to pay the worst case sram penalty for all product
+>>>> configuration.
+>>>
+>>> Choice of resolution and framerate is runtime choice or use-case
+>>> dependent, not board level configuration, therefore amount of SRAM size
+>>> to use is as well.
 >>
->> Enable PCIe1 controller and its corresponding PHY nodes on
->> qcs6490-rb3g2 platform.
+>> I am arguing this is similar to what we have for remote-procs. Yes,
+>> usecases usage come to a conclusion that sram size X is needed. Sure.
+>> Lets even argue that sram = <&sram> has X+100 bytes available, so as
+>> far as allocator is concerned, it can allocate. But how does the driver
+>> know that 1k of that sram is already used by a remote core or some other
+>> function?
 >>
->> PCIe switch is connected to PCIe1, PCIe switch has multiple endpoints
->> connected. For each endpoint a unique BDF will be assigned and should
->> assign unique smmu id. So for each BDF add smmu id.
->>
->> Signed-off-by: Krishna chaitanya chundru <quic_krichai@quicinc.com>
->> ---
->>   arch/arm64/boot/dts/qcom/qcs6490-rb3gen2.dts | 42 ++++++++++++++++++++++++++++
->>   1 file changed, 42 insertions(+)
->>
->> diff --git a/arch/arm64/boot/dts/qcom/qcs6490-rb3gen2.dts b/arch/arm64/boot/dts/qcom/qcs6490-rb3gen2.dts
->> index 8bb7d13d85f6..0082a3399453 100644
->> --- a/arch/arm64/boot/dts/qcom/qcs6490-rb3gen2.dts
->> +++ b/arch/arm64/boot/dts/qcom/qcs6490-rb3gen2.dts
->> @@ -413,6 +413,32 @@ vreg_bob_3p296: bob {
->>          };
->>   };
->>
->> +&pcie1 {
->> +       perst-gpios = <&tlmm 2 GPIO_ACTIVE_LOW>;
->> +
->> +       pinctrl-0 = <&pcie1_reset_n>, <&pcie1_wake_n>;
->> +       pinctrl-names = "default";
->> +
->> +       iommu-map = <0x0 &apps_smmu 0x1c80 0x1>,
->> +                   <0x100 &apps_smmu 0x1c81 0x1>,
->> +                   <0x208 &apps_smmu 0x1c84 0x1>,
->> +                   <0x210 &apps_smmu 0x1c85 0x1>,
->> +                   <0x218 &apps_smmu 0x1c86 0x1>,
->> +                   <0x300 &apps_smmu 0x1c87 0x1>,
->> +                   <0x400 &apps_smmu 0x1c88 0x1>,
->> +                   <0x500 &apps_smmu 0x1c89 0x1>,
->> +                   <0x501 &apps_smmu 0x1c90 0x1>;
+>> This is no different from a remote proc usecase, following which, I
+>> wonder if "memory-region" is the right way to describe this usage? That
+>> would be a very specific bucket that is made available to the driver.
+>> And I'd say sram and memory-region are two mutually exclusive option?
 > 
-> Is the iommu-map really board specific?
+> Wouldn't this just be a static allocation of the SRAM then? I believe
+> the correct way to do this is highlighted in Rob's[0] response. This is
+> also something we have done in the past[1], but I thought dynamic
+> allocation was preferred method so that the VPU didn't hog a portion of
+> SRAM. Seems wasteful in cases where the VPU is not being used.
 > 
-The iommu-map for PCIe varies if PCIe switch is connected.
-For this platform a PCIe switch is connected and for that reason
-we need to define additional smmu ID's for each BDF.
 
-For that reason we defined here as these ID's are applicable only
-for this board.
+I think even with the approach selected in [1] i.e. referring the
+mmio-sram node using DT property, you can still use dynamic SRAM
+allocation.
+The driver can still allocate from global sram pool dynamically using
+of_gen_pool API as being explained here [3] i.e allocate when first
+instance is opened and free up later when no instances are running.
 
-- Krishna Chaitanya.
->> +
->> +       status = "okay";
->> +};
->> +
->> +&pcie1_phy {
->> +       vdda-phy-supply = <&vreg_l10c_0p88>;
->> +       vdda-pll-supply = <&vreg_l6b_1p2>;
->> +
->> +       status = "okay";
->> +};
->> +
->>   &qupv3_id_0 {
->>          status = "okay";
->>   };
->> @@ -420,6 +446,22 @@ &qupv3_id_0 {
->>   &tlmm {
->>          gpio-reserved-ranges = <32 2>, /* ADSP */
->>                                 <48 4>; /* NFC */
->> +
->> +       pcie1_reset_n: pcie1-reset-n-state {
->> +               pins = "gpio2";
->> +               function = "gpio";
->> +               drive-strength = <16>;
->> +               output-low;
->> +               bias-disable;
->> +       };
->> +
->> +       pcie1_wake_n: pcie1-wake-n-state {
->> +               pins = "gpio3";
->> +               function = "gpio";
->> +               drive-strength = <2>;
->> +               bias-pull-up;
->> +       };
->> +
->>   };
->>
->>   &uart5 {
->>
->> ---
->> base-commit: 70d201a40823acba23899342d62bc2644051ad2e
->> change-id: 20240207-enable_pcie-95b1d6612b27
->>
->> Best regards,
->> --
->> Krishna chaitanya chundru <quic_krichai@quicinc.com>
->>
->>
+But I agree with Nishanth's point too that we may not want to give all
+of SRAM to VPU. For e.g. on AM62A we have 64KiB SRAM and a 1080p
+use-case requires 48KiB and even higher for 4K so if there is another
+peripheral who is referring this sram node, then it may not get enough
+as VPU will hog the major chunk (or all) of it while it is running and
+this is where an optional property like sram-size will help to cap the
+max sram usage for VPU and so this helps especially on platforms with
+limited SRAM availability.
+
+As I understand, the sram size allocation is dependent on resolution and
+once programmed can't be changed until all instances of VPU are done,
+and we can't predict how many instances user will launch and with what
+resolutions.
+
+So here's the flow we had thought of some time back :
+1) Define worst case sram size (per 4K use-case as I believe that's the
+max for CnM wave521c) as a macro in driver
+
+Then the condition for determining sram size to be allocated should be
+as below  :
+
+2) When first instance of VPU is opened, allocate as per sram-size if
+sram-size property is specified.
+
+3) If sram-size is not specified then :
+   -> Allocate as per worst case size macro defined in driver from sram
+pool,
+   -> If worst case size of SRAM > max SRAM size, then allocate
+      max SRAM size
+
+4). When all of the instances of VPU are closed, then free up all
+allocated SRAM.
+
+[3] :
+https://wiki.analog.com/resources/tools-software/linuxdsp/docs/linux-kernel-and-drivers/sram
+
+Regards
+Devarsh
+
+> The device itself has the capability of doing runtime allocation before
+> any decoder/encoder stream instances are opened. All of these opened
+> streams will share this one allocated pool, meaning first open stream
+> allocates and the rest share. Because of this, the goal is to allocate
+> enough to meet maximum use case of VPU (4K60) or max case supported by
+> the SoC itself if the SoC is unable to handle 4K60.
 > 
+> Is there preferred method for dynamic SRAM allocation? I understand
+> point that framerate and resolution are runtime choice, but these
+> properties are not guaranteed to be known when streams are being opened.
+> 
+> If static SRAM allocation is the correct method to go, then this series
+> can be ignored and I will add section in device tree and remove check
+> for parameter in driver as that will now be a bug.
+> 
+> [0]: https://patchwork.kernel.org/project/linux-media/patch/20240201184238.2542695-1-b-brnich@ti.com/#25696671
+> [1]: https://patchwork.kernel.org/project/linux-media/patch/20231108-wave5-v14-rebased-v14-8-0b4af1258656@collabora.com/
+>  
+>>>
+>>>>
+>>>> Further, Linux is not the only thing that runs on these SoCs.. these are
+>>>> mixed systems with autonomous operations of uC cores who may or maynot
+>>>> (typically not) even need to communicate with MPU to state which part of
+>>>> resource they are hogging (hence the board level definition).
+>>>
+>>> OK that could be the case but I could also say choice of RTOS or any
+>>> other is also board-independent.
+>> -- 
+>> Regards,
+>> Nishanth Menon
+>> Key (0xDDB5849D1736249D) / Fingerprint: F8A2 8693 54EB 8232 17A3  1A34 DDB5 849D 1736 249D
+> 
+> Thanks,
+> Brandon
 > 
 
