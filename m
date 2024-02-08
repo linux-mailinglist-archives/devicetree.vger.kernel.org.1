@@ -1,252 +1,199 @@
-Return-Path: <devicetree+bounces-39575-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-39576-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id D8FA984DA2C
-	for <lists+devicetree@lfdr.de>; Thu,  8 Feb 2024 07:29:21 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 50BCB84DA39
+	for <lists+devicetree@lfdr.de>; Thu,  8 Feb 2024 07:37:58 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 8F4A628A9AE
-	for <lists+devicetree@lfdr.de>; Thu,  8 Feb 2024 06:29:20 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id A9F53B21CEB
+	for <lists+devicetree@lfdr.de>; Thu,  8 Feb 2024 06:37:55 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8FD6867E74;
-	Thu,  8 Feb 2024 06:29:15 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 06B3D692E5;
+	Thu,  8 Feb 2024 06:37:50 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="BxDlLnbf"
+	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="bFDTUXl6"
 X-Original-To: devicetree@vger.kernel.org
 Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0706567E61;
-	Thu,  8 Feb 2024 06:29:13 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4C4583F9DB;
+	Thu,  8 Feb 2024 06:37:47 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1707373755; cv=none; b=V27OAcV5cUfMXk5bSrpa+NrJ2k2dzYfDLOmKJtj96pd3D1i577c3Re7g7v4steilG2D9efJMMQV7NSQdNYGExTqMEyI/JW5WBVj78XuCTYLgMY7xj2xD3Lxq46oelU9f1odiuzOsKw8uhdtt4z1FSQorL0vopPnIHd4GnJjIPhs=
+	t=1707374269; cv=none; b=AVrxmqZuOAKGpUoj/dT2G3ScvShmZntYzH3rVdK6tTAQExeo3yPWu/k+dHkwRLOeCcPCOlYevrZi082iz1s5r7kvvvNiMx4aPIvB57H59fS4m1p7en2fzYipKa4/KG+TrvOQqlrMsUL8ojKxIpWzs62LzT565OEM3xrNOaYp6bo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1707373755; c=relaxed/simple;
-	bh=VP+kt4un+Npwv130OUeqNC4/K4PHeK1uA/pVFjmW7ZA=;
-	h=From:To:CC:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=QBl2Wc0cAAh26XT9S9upMUVdMJHtIbe9inaUyloR41sjLuuAAM3XEY47tAvbYtRk8Wdi3nlFJqrQp0ZrBFtjIhHtjpUpfdzJLghP8Kn8knX/qbmA6wckSGj8ppp01eKinWtbI1fjkE6w4yLoCs4mvzLJABf+vH3StLw0OC5FVOY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=BxDlLnbf; arc=none smtp.client-ip=205.220.168.131
+	s=arc-20240116; t=1707374269; c=relaxed/simple;
+	bh=lpXhkHZbuArCIRnXjztrmiKSWD1vpZgicgPTWP2akM8=;
+	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
+	 In-Reply-To:Content-Type; b=HnM39Eb3/IdvScht3HrbeHBbqjXLFBsF6qE6SZwW0D+vOR4xNqQF3n48vE4axXoytOAlU1LW0Jy53pnfI63cikssSlU6oPtSiIyZg8FsZBjH4Qcc2WFOdaNDz7WPEacN7kYMdYNp0SYcqrPbjaI2Rl2oqZIRu8ki635CTAOyntM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=bFDTUXl6; arc=none smtp.client-ip=205.220.168.131
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
-Received: from pps.filterd (m0279862.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.17.1.24/8.17.1.24) with ESMTP id 4185xfL8027641;
-	Thu, 8 Feb 2024 06:29:10 GMT
+Received: from pps.filterd (m0279863.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.17.1.24/8.17.1.24) with ESMTP id 4185D5hi006412;
+	Thu, 8 Feb 2024 06:37:34 GMT
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
-	from:to:cc:subject:date:message-id:in-reply-to:references
-	:mime-version:content-type; s=qcppdkim1; bh=zLtdOZGA2TuvAnHvnyh6
-	uZUdKTmNwsolcBMKp1HBP+o=; b=BxDlLnbfgp2VT6qAODWqFYKGEZ5LutaszQ3S
-	dskD8G7e9mCeK0uE51tHblryOdL0xKeDT0c8XqlC0N6oBV9ue2No7Fea/GDMBK1n
-	Dq/fvD0IC9TBnBFdlf6aO8OHwG3CmjVkGCOsMeL2c3XHS0GslOnbaeQze1Sl15I2
-	vn+01ChTqlJK81o7MtCr0mv2yNgE2Mu5lL/sfK2nx0sSLiKgQvqUlGG5FLBeVxse
-	g/NjL+9dl6yuJ1M4J9mgunNhoZVVoPZmQRDIrFemmgpMUoLYA4VLIFVaKLPPsGjF
-	7VQRvf9v/GdrRdH8sYykrjtvwj9yKFxq39P0piKdGND76HevZQ==
-Received: from nalasppmta04.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3w46r82g2t-1
+	message-id:date:mime-version:subject:to:cc:references:from
+	:in-reply-to:content-type:content-transfer-encoding; s=
+	qcppdkim1; bh=s8qbuSFNjJuBlNttAu8PtvH2rwU4SiJ0wONp6iuuAsI=; b=bF
+	DTUXl6pS058Zz31ygL7EmXWx/gXfk03IPrT5hJ0DtzzRY6xpWbVb0p0vgiASyd97
+	Vrb657EcD8ZopFRaiVtaGkwIG4MQphQzTCQ5Ju7ZOkblvNOJHQDy6nGvnnNlYRTC
+	G1IJvq2rK6nBjZ+g61Dg6qVIiMEiFlDaM6MNvt7ewV3lZxRYnLrBvWaMmKv9+s0z
+	GOPWag4Rj2Ihic6cP9MVK8jTUJcxeGIUXQYu273jy8yudzux7fzBKv700W5Ajjq5
+	gN5YsiE9XtjGBtupEXgbacfUQqgEOs5Y1K6XV+IULNcVYIhH1T9lSJaVxgxrXmh/
+	eKZEkPCAV/VZikGa4Rrw==
+Received: from nasanppmta04.qualcomm.com (i-global254.qualcomm.com [199.106.103.254])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3w4862tbfd-1
 	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Thu, 08 Feb 2024 06:29:10 +0000 (GMT)
-Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
-	by NALASPPMTA04.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 4186T9Mk012386
+	Thu, 08 Feb 2024 06:37:33 +0000 (GMT)
+Received: from nasanex01a.na.qualcomm.com (nasanex01a.na.qualcomm.com [10.52.223.231])
+	by NASANPPMTA04.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 4186bWpL021127
 	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Thu, 8 Feb 2024 06:29:09 GMT
-Received: from hu-tdas-hyd.qualcomm.com (10.80.80.8) by
- nalasex01a.na.qualcomm.com (10.47.209.196) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.1118.40; Wed, 7 Feb 2024 22:29:06 -0800
-From: Taniya Das <quic_tdas@quicinc.com>
-To: Stephen Boyd <sboyd@kernel.org>,
-        =?UTF-8?q?Michael=20Turquette=20=C2=A0?=
-	<mturquette@baylibre.com>,
-        Bjorn Andersson <andersson@kernel.org>,
-        "Konrad
- Dybcio" <konrad.dybcio@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        "Conor
- Dooley" <conor+dt@kernel.org>,
-        Krzysztof Kozlowski
-	<krzysztof.kozlowski+dt@linaro.org>
-CC: <linux-arm-msm@vger.kernel.org>, <linux-clk@vger.kernel.org>,
-        <devicetree@vger.kernel.org>, Taniya Das <quic_tdas@quicinc.com>
-Subject: [PATCH 5/5] arm64: dts: qcom: Update protected clocks list for qcm6490 variants
-Date: Thu, 8 Feb 2024 11:58:36 +0530
-Message-ID: <20240208062836.19767-6-quic_tdas@quicinc.com>
-X-Mailer: git-send-email 2.17.1
-In-Reply-To: <20240208062836.19767-1-quic_tdas@quicinc.com>
-References: <20240208062836.19767-1-quic_tdas@quicinc.com>
+	Thu, 8 Feb 2024 06:37:32 GMT
+Received: from [10.239.132.150] (10.80.80.8) by nasanex01a.na.qualcomm.com
+ (10.52.223.231) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1118.40; Wed, 7 Feb
+ 2024 22:37:28 -0800
+Message-ID: <76cb3b37-5887-404f-95b7-10a22a7ba65b@quicinc.com>
+Date: Thu, 8 Feb 2024 14:37:25 +0800
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain
-X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
- nalasex01a.na.qualcomm.com (10.47.209.196)
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH] mm: memblock: avoid to create memmap for memblock nomap
+ regions
+Content-Language: en-US
+To: Mike Rapoport <rppt@kernel.org>,
+        Vijayanand Jitta
+	<quic_vjitta@quicinc.com>,
+        Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+CC: Faiyaz Mohammed <quic_faiyazm@quicinc.com>, <karahmed@amazon.de>,
+        <qperret@google.com>, <robh@kernel.org>, <akpm@linux-foundation.org>,
+        <linux-mm@kvack.org>, <linux-kernel@vger.kernel.org>,
+        <robh+dt@kernel.org>, <frowand.list@gmail.com>,
+        <devicetree@vger.kernel.org>
+References: <1649704172-13181-1-git-send-email-quic_faiyazm@quicinc.com>
+ <YlW2TO0O8qDHpkGW@kernel.org>
+ <7b18bea8-b996-601d-f490-cb8aadfffa1b@quicinc.com>
+ <YnQBKPWtPa87y4NA@kernel.org>
+ <42f28e7b-c001-7d01-1eb6-fe963491898e@quicinc.com>
+ <Ynj+M9cRm6zdCMMi@kernel.org>
+ <22aca197-8d18-2c9e-b3c4-f6fdc893ceb1@quicinc.com>
+ <Yu1t8TpXT1f372v/@kernel.org>
+From: "Aiqun Yu (Maria)" <quic_aiquny@quicinc.com>
+In-Reply-To: <Yu1t8TpXT1f372v/@kernel.org>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 7bit
+X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
+ nasanex01a.na.qualcomm.com (10.52.223.231)
 X-QCInternal: smtphost
 X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-GUID: 4wvxeMOOnOshP2AgLngQpAFrDsu7Rbvi
-X-Proofpoint-ORIG-GUID: 4wvxeMOOnOshP2AgLngQpAFrDsu7Rbvi
+X-Proofpoint-ORIG-GUID: q-G5v7MzFic47PyoNP9mknXqO5nMNrSC
+X-Proofpoint-GUID: q-G5v7MzFic47PyoNP9mknXqO5nMNrSC
 X-Proofpoint-Virus-Version: vendor=baseguard
  engine=ICAP:2.0.272,Aquarius:18.0.1011,Hydra:6.0.619,FMLib:17.11.176.26
  definitions=2024-02-08_01,2024-02-07_01,2023-05-22_02
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 phishscore=0 mlxlogscore=838
- spamscore=0 mlxscore=0 adultscore=0 malwarescore=0 bulkscore=0
- priorityscore=1501 suspectscore=0 lowpriorityscore=0 clxscore=1015
- impostorscore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.19.0-2401310000 definitions=main-2402080032
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 malwarescore=0 adultscore=0
+ priorityscore=1501 phishscore=0 lowpriorityscore=0 impostorscore=0
+ spamscore=0 mlxscore=0 suspectscore=0 clxscore=1011 mlxlogscore=999
+ bulkscore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.19.0-2401310000 definitions=main-2402080034
 
-Certain clocks are not accessible on QCM6490-IDP and QCS6490-RB3GEN2 boards
-thus require them to be marked protected.
 
-Also disable the LPASS nodes which are not to be used.
 
-Signed-off-by: Taniya Das <quic_tdas@quicinc.com>
----
- arch/arm64/boot/dts/qcom/qcm6490-idp.dts     | 54 +++++++++++++++++++-
- arch/arm64/boot/dts/qcom/qcs6490-rb3gen2.dts | 50 +++++++++++++++++-
- 2 files changed, 102 insertions(+), 2 deletions(-)
+On 8/6/2022 3:22 AM, Mike Rapoport wrote:
+> Hi Vijay,
+> 
+> On Wed, Aug 03, 2022 at 04:27:33PM +0530, Vijayanand Jitta wrote:
+>>
+>> On 5/9/2022 5:12 PM, Mike Rapoport wrote:
+>>> On Mon, May 09, 2022 at 04:37:30PM +0530, Faiyaz Mohammed wrote:
+>>>>
+>>>> On 5/5/2022 10:24 PM, Mike Rapoport wrote:
+>>>>> On Thu, May 05, 2022 at 08:46:15PM +0530, Faiyaz Mohammed wrote:
+>>>>>> On 4/12/2022 10:56 PM, Mike Rapoport wrote:
+>>>>>>> On Tue, Apr 12, 2022 at 12:39:32AM +0530, Faiyaz Mohammed wrote:
+>>>>>>>> This 'commit 86588296acbf ("fdt: Properly handle "no-map" field in the
+>>>>>>>> memory region")' is keeping the no-map regions in memblock.memory with
+>>>>>>>> MEMBLOCK_NOMAP flag set to use no-map memory for EFI using memblock api's,
+>>>>>>>> but during the initialization sparse_init mark all memblock.memory as
+>>>>>>>> present using for_each_mem_pfn_range, which is creating the memmap for
+>>>>>>>> no-map memblock regions. To avoid it skiping the memblock.memory regions
+>>>>>>>> set with MEMBLOCK_NOMAP set and with this change we will be able to save
+>>>>>>>> ~11MB memory for ~612MB carve out.
+>>>>>>> The MEMBLOCK_NOMAP is very fragile and caused a lot of issues already. I
+>>>>>>> really don't like the idea if adding more implicit assumptions about how
+>>>>>>> NOMAP memory may or may not be used in a generic iterator function.
+>>>>>> Sorry for delayed response.
+>>>>>> Yes, it is possible that implicit assumption can create
+>>>>>> misunderstanding. How about adding command line option and control the
+>>>>>> no-map region in fdt.c driver, to decide whether to keep "no-map" region
+>>>>>> with NOMAP flag or remove?. Something like below
+>>>>> I really don't like memblock_remove() for such cases.
+>>>>> Pretending there is a hole when there is an actual DRAM makes things really
+>>>>> hairy when it comes to memory map and page allocator initialization.
+>>>>> You wouldn't want to trade system stability and random memory corruptions
+>>>>> for 11M of "saved" memory.
+>>>>
+>>>> Creating memory map for holes memory is adding 11MB overhead which is
+>>>> huge on low memory target and same time 11MB memory saving is good enough
+>>>> on low memory target.
+>>>>
+>>>> Or we can have separate list of NOMAP like reserved?.
+>>>>
+>>>> Any other suggestion to address this issue?.
+>>>
+>>> Make your firmware to report the memory that Linux cannot use as a hole,
+>>> i.e. _not_ report it as memory.
+>>>   
+>>
+>> Thanks, Mike for the comments.
+>>
+>> Few concerns with this approach.
+>>
+>> 1) One concern is, even if firmware doesn't report these regions as
+>> memory, we would need addresses for these to be part of device tree so
+>> that the clients would be able to get these addresses. Otherwise there
+>> is no way for client to know these addresses.
+>>
+>> 2) This would also add a dependency on firmware to be able to pass these
+>> regions not as memory, though we know that these regions would be used
+>> by the clients. Isn't it better to have such control within the kernel ?
+> 
+> If it is memory that is used by the kernel it should be reported as memory
+> and have the memory map.
+> If this is a hole in the memory layout from the kernel perspective, then
+> kernel should not bother with this memory.
+Hi Mike,
 
-diff --git a/arch/arm64/boot/dts/qcom/qcm6490-idp.dts b/arch/arm64/boot/dts/qcom/qcm6490-idp.dts
-index 03e97e27d16d..425e4b87490b 100644
---- a/arch/arm64/boot/dts/qcom/qcm6490-idp.dts
-+++ b/arch/arm64/boot/dts/qcom/qcm6490-idp.dts
-@@ -1,6 +1,6 @@
- // SPDX-License-Identifier: BSD-3-Clause
- /*
-- * Copyright (c) 2023 Qualcomm Innovation Center, Inc. All rights reserved.
-+ * Copyright (c) 2023-2024 Qualcomm Innovation Center, Inc. All rights reserved.
-  */
+We've put effort on bootloader side to implement the similar suggestion 
+of os bootloader to convey the reserved memory by omit the hole from 
+/memory@0{reg=[]} directly.
+While there is a concern from device tree spec perspective, link [1]: "A 
+memory device node is required for all devicetrees and describes the 
+physical memory layout for the system. "
+Do you have any idea on this pls?
 
- /dts-v1/;
-@@ -415,6 +415,58 @@
- 	};
- };
+[1] 
+https://github.com/devicetree-org/devicetree-specification/blob/main/source/chapter3-devicenodes.rst
+> 
+> And I'm not buying "low memory target" argument if you have enough memory
+> to carve out ~600M for some mysterious clients.
+Just for your information, for low memory target, the carve out can be 
+more than ~60M out of 128M in total.
+>   
+>> Let me know your comments on these.
+>>
+>> Thanks,
+>> Vijay
+> 
 
-+&gcc {
-+	protected-clocks = <GCC_AGGRE_NOC_PCIE_1_AXI_CLK> ,<GCC_PCIE_1_AUX_CLK>,
-+			<GCC_PCIE_1_AUX_CLK_SRC>, <GCC_PCIE_1_CFG_AHB_CLK>,
-+			<GCC_PCIE_1_MSTR_AXI_CLK>, <GCC_PCIE_1_PHY_RCHNG_CLK_SRC>,
-+			<GCC_PCIE_1_PIPE_CLK>, <GCC_PCIE_1_PIPE_CLK_SRC>,
-+			<GCC_PCIE_1_SLV_AXI_CLK>, <GCC_PCIE_1_SLV_Q2A_AXI_CLK>,
-+			<GCC_QSPI_CNOC_PERIPH_AHB_CLK>, <GCC_QSPI_CORE_CLK>,
-+			<GCC_QSPI_CORE_CLK_SRC>,<GCC_USB30_SEC_MASTER_CLK>,
-+			<GCC_USB30_SEC_MASTER_CLK_SRC>, <GCC_USB30_SEC_MOCK_UTMI_CLK>,
-+			<GCC_USB30_SEC_MOCK_UTMI_CLK_SRC>,
-+			<GCC_USB30_SEC_MOCK_UTMI_POSTDIV_CLK_SRC>, <GCC_USB30_SEC_SLEEP_CLK>,
-+			<GCC_USB3_SEC_PHY_AUX_CLK>, <GCC_USB3_SEC_PHY_AUX_CLK_SRC>,
-+			<GCC_USB3_SEC_PHY_COM_AUX_CLK>, <GCC_USB3_SEC_PHY_PIPE_CLK>,
-+			<GCC_USB3_SEC_PHY_PIPE_CLK_SRC>, <GCC_CFG_NOC_LPASS_CLK>,
-+			<GCC_MSS_GPLL0_MAIN_DIV_CLK_SRC>, <GCC_MSS_CFG_AHB_CLK>,
-+			<GCC_MSS_OFFLINE_AXI_CLK>, <GCC_MSS_SNOC_AXI_CLK>,
-+			<GCC_MSS_Q6_MEMNOC_AXI_CLK>, <GCC_MSS_Q6SS_BOOT_CLK_SRC>,
-+			<GCC_SEC_CTRL_CLK_SRC>, <GCC_WPSS_AHB_CLK>,
-+			<GCC_WPSS_AHB_BDG_MST_CLK>, <GCC_WPSS_RSCP_CLK>;
-+};
-+
-+&lpasscc {
-+	status = "disabled";
-+};
-+
-+&lpass_audiocc {
-+	qcom,adsp-skip-pll;
-+	protected-clocks = <LPASS_AUDIO_CC_CDIV_RX_MCLK_DIV_CLK_SRC>,
-+		<LPASS_AUDIO_CC_CODEC_MEM0_CLK>, <LPASS_AUDIO_CC_CODEC_MEM1_CLK>,
-+		<LPASS_AUDIO_CC_CODEC_MEM2_CLK>, <LPASS_AUDIO_CC_CODEC_MEM_CLK>,
-+		<LPASS_AUDIO_CC_EXT_MCLK0_CLK>, <LPASS_AUDIO_CC_EXT_MCLK0_CLK_SRC>,
-+		<LPASS_AUDIO_CC_EXT_MCLK1_CLK>, <LPASS_AUDIO_CC_EXT_MCLK1_CLK_SRC>,
-+		<LPASS_AUDIO_CC_PLL>, <LPASS_AUDIO_CC_PLL_OUT_AUX2>,
-+		<LPASS_AUDIO_CC_PLL_OUT_AUX2_DIV_CLK_SRC>,
-+		<LPASS_AUDIO_CC_PLL_OUT_MAIN_DIV_CLK_SRC>,
-+		<LPASS_AUDIO_CC_RX_MCLK_2X_CLK>, <LPASS_AUDIO_CC_RX_MCLK_CLK>,
-+		<LPASS_AUDIO_CC_RX_MCLK_CLK_SRC>;
-+	/delete-property/ power-domains;
-+};
-+
-+&lpass_aon {
-+	status = "disabled";
-+};
-+
-+&lpass_core {
-+	status = "disabled";
-+};
-+
-+&lpass_hm {
-+	status = "disabled";
-+};
-+
- &qupv3_id_0 {
- 	status = "okay";
- };
-diff --git a/arch/arm64/boot/dts/qcom/qcs6490-rb3gen2.dts b/arch/arm64/boot/dts/qcom/qcs6490-rb3gen2.dts
-index 8bb7d13d85f6..1398b84634c3 100644
---- a/arch/arm64/boot/dts/qcom/qcs6490-rb3gen2.dts
-+++ b/arch/arm64/boot/dts/qcom/qcs6490-rb3gen2.dts
-@@ -1,6 +1,6 @@
- // SPDX-License-Identifier: BSD-3-Clause
- /*
-- * Copyright (c) 2023 Qualcomm Innovation Center, Inc. All rights reserved.
-+ * Copyright (c) 2023-2024 Qualcomm Innovation Center, Inc. All rights reserved.
-  */
-
- /dts-v1/;
-@@ -413,6 +413,54 @@
- 	};
- };
-
-+&gcc {
-+	protected-clocks = <GCC_QSPI_CNOC_PERIPH_AHB_CLK>, <GCC_QSPI_CORE_CLK>,
-+			<GCC_QSPI_CORE_CLK_SRC>,<GCC_USB30_SEC_MASTER_CLK>,
-+			<GCC_USB30_SEC_MASTER_CLK_SRC>, <GCC_USB30_SEC_MOCK_UTMI_CLK>,
-+			<GCC_USB30_SEC_MOCK_UTMI_CLK_SRC>,
-+			<GCC_USB30_SEC_MOCK_UTMI_POSTDIV_CLK_SRC>, <GCC_USB30_SEC_SLEEP_CLK>,
-+			<GCC_USB3_SEC_PHY_AUX_CLK>, <GCC_USB3_SEC_PHY_AUX_CLK_SRC>,
-+			<GCC_USB3_SEC_PHY_COM_AUX_CLK>, <GCC_USB3_SEC_PHY_PIPE_CLK>,
-+			<GCC_USB3_SEC_PHY_PIPE_CLK_SRC>, <GCC_CFG_NOC_LPASS_CLK>,
-+			<GCC_MSS_GPLL0_MAIN_DIV_CLK_SRC>, <GCC_MSS_CFG_AHB_CLK>,
-+			<GCC_MSS_OFFLINE_AXI_CLK>, <GCC_MSS_SNOC_AXI_CLK>,
-+			<GCC_MSS_Q6_MEMNOC_AXI_CLK>, <GCC_MSS_Q6SS_BOOT_CLK_SRC>,
-+			<GCC_SEC_CTRL_CLK_SRC>, <GCC_WPSS_AHB_CLK>,
-+			<GCC_WPSS_AHB_BDG_MST_CLK>, <GCC_WPSS_RSCP_CLK>;
-+};
-+
-+&lpasscc {
-+	status = "disabled";
-+};
-+
-+&lpass_audiocc {
-+	qcom,adsp-skip-pll;
-+	protected-clocks = <LPASS_AUDIO_CC_CDIV_RX_MCLK_DIV_CLK_SRC>,
-+		<LPASS_AUDIO_CC_CODEC_MEM0_CLK>, <LPASS_AUDIO_CC_CODEC_MEM1_CLK>,
-+		<LPASS_AUDIO_CC_CODEC_MEM2_CLK>, <LPASS_AUDIO_CC_CODEC_MEM_CLK>,
-+		<LPASS_AUDIO_CC_EXT_MCLK0_CLK>, <LPASS_AUDIO_CC_EXT_MCLK0_CLK_SRC>,
-+		<LPASS_AUDIO_CC_EXT_MCLK1_CLK>, <LPASS_AUDIO_CC_EXT_MCLK1_CLK_SRC>,
-+		<LPASS_AUDIO_CC_PLL>, <LPASS_AUDIO_CC_PLL_OUT_AUX2>,
-+		<LPASS_AUDIO_CC_PLL_OUT_AUX2_DIV_CLK_SRC>,
-+		<LPASS_AUDIO_CC_PLL_OUT_MAIN_DIV_CLK_SRC>,
-+		<LPASS_AUDIO_CC_RX_MCLK_2X_CLK>, <LPASS_AUDIO_CC_RX_MCLK_CLK>,
-+		<LPASS_AUDIO_CC_RX_MCLK_CLK_SRC>;
-+	/delete-property/ power-domains;
-+};
-+
-+&lpass_aon {
-+	status = "disabled";
-+};
-+
-+&lpass_core {
-+	status = "disabled";
-+};
-+
-+&lpass_hm {
-+	status = "disabled";
-+};
-+
-+
- &qupv3_id_0 {
- 	status = "okay";
- };
---
-2.17.1
-
+-- 
+Thx and BRs,
+Aiqun(Maria) Yu
 
