@@ -1,126 +1,161 @@
-Return-Path: <devicetree+bounces-39595-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-39596-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5E8BF84DB29
-	for <lists+devicetree@lfdr.de>; Thu,  8 Feb 2024 09:15:04 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1AA7E84DB2B
+	for <lists+devicetree@lfdr.de>; Thu,  8 Feb 2024 09:15:55 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id BD76EB2424B
-	for <lists+devicetree@lfdr.de>; Thu,  8 Feb 2024 08:15:01 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 3AE4E1C20E8F
+	for <lists+devicetree@lfdr.de>; Thu,  8 Feb 2024 08:15:54 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4D3DA69308;
-	Thu,  8 Feb 2024 08:14:53 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4A48F6A023;
+	Thu,  8 Feb 2024 08:15:51 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="jPmeoT/1"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="Q5LSt42D"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ej1-f42.google.com (mail-ej1-f42.google.com [209.85.218.42])
+Received: from mail-wr1-f49.google.com (mail-wr1-f49.google.com [209.85.221.49])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7B2C66A32C;
-	Thu,  8 Feb 2024 08:14:51 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.42
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8422D692FB
+	for <devicetree@vger.kernel.org>; Thu,  8 Feb 2024 08:15:49 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.49
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1707380093; cv=none; b=idX3IcCjdrxrYGdOnYYVgrPOfi9qUq8K9LoZVW+VMDkLnPOtyExbrWdDlWUfWZne0TiMzbuedjQBp+lB6rEuhDakredMOetGVgE4fU3fkU1KdjExUb+YWUXnBjgA/lAE8fSzgVK1oPiupMuXuiC1c3adcrT0qHhopx1K/jc4h48=
+	t=1707380151; cv=none; b=u5R1h0NBODi1OKAMKaIcq/Ag7F6RgYFEbH56ZuhkV6KRKn1ckJhtAo2q8JI4TozLPkA2Md+BPGEj+aUZXfgol4Cl4gsHInAq/3+D3+SdIiUZqQUSIR1s8hcHVb4EB+eo2Gvv+mty5BfJ45NntxmfiJpMR4ZhoG1G1g+fcYVukk8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1707380093; c=relaxed/simple;
-	bh=jStK1E4B2H8Kp5WWPi/ZlguVHeg+cUTkm2pJCAqNY7w=;
-	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version; b=d7FgQCuPUz80ffBM00pfvSmcncqd90+FbkO/mz/OjLYo6VrO9yvXcNnHo03obKF//C2HzTnnwRUNT6g3Wjwnjf6MYnXiVdvJmuKCdKBmARw3I3jFJd1ytHyQ/iY0fxgqJaeLQ08DU/JSdI1U3eIcqT+diVDrAiQIM/NhFSHFjQE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=jPmeoT/1; arc=none smtp.client-ip=209.85.218.42
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-ej1-f42.google.com with SMTP id a640c23a62f3a-a3884b1a441so161333566b.2;
-        Thu, 08 Feb 2024 00:14:51 -0800 (PST)
+	s=arc-20240116; t=1707380151; c=relaxed/simple;
+	bh=w34BqXAkC9cCZgiJT4hxTRUSpWFK3C/TIoqyI9bXHFY=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=aibpbaPjvVgZZJtHLtbRmzSQI0fqy7D+Zp8FUM0hd2mjW3nm+gBAkRRYCH2NQ0fTQlJXB2/MEjI38IuB/M3YK5RicUCusa2qGR46+NVZoBd+RpJh2t+V/5ZgAZ+uJZNClBUZXCv01gdQu3HxSHBypIKpK8VSM6wyPC4yOqTp5sk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=Q5LSt42D; arc=none smtp.client-ip=209.85.221.49
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-wr1-f49.google.com with SMTP id ffacd0b85a97d-33934567777so1015969f8f.1
+        for <devicetree@vger.kernel.org>; Thu, 08 Feb 2024 00:15:49 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1707380090; x=1707984890; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=RKUKf3BvCCQGdJPOJhG2nzrsLmyY/E+UafFVYZ5Q/bI=;
-        b=jPmeoT/193JIANvYe7022SsCjQFmuHT2z/OdP0mLjdVKdF4oK21KQUYMCeRTehTHP9
-         cCVYZP4WpSbDIbySPwQGP85Ue/Ei3Zf0jRsw4O7sjnO6aPUVcknowkdgH5tiky41Xn46
-         c8zWyGfwzW/0JuN+v6qqJVqXU6ct1JQsGoa2dCDPyrnHr5uVGWsAVQ3VRIk3XqdUgIYY
-         Gk46nPihTA4GbTVnWm7O15IVtfMYmmzZ1wJLO3j1sQr5iWiq9dCFbmCUuEgjZDjtU4bO
-         PVYjdHvXamGR/2TjN46qYc86iTOswvKqEwm65NVcmGzrOAJ73fWQAVvIdEDr8/OCV3SY
-         29XA==
+        d=linaro.org; s=google; t=1707380148; x=1707984948; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from
+         :content-language:references:cc:to:subject:user-agent:mime-version
+         :date:message-id:from:to:cc:subject:date:message-id:reply-to;
+        bh=Zve2rnpl44GQtsgnndzT9zpzr65KMlE60XiRloFy2Hs=;
+        b=Q5LSt42DzjwL7GF2imDffyhyQlBqVnF6ZUtNY+6e9NrBma2snpXDWuDwstHVMwdEIc
+         D1Vm3QpkiP2jLjzl9zHnAQPZZsAvOZ6KZmcAVS7QgJeGfmWL6YxbyJBUMqC+yTRjSQZe
+         d/cBHTuVCUOQ46ZbF8MG+xcI2M+1CEcfvvTu8VB/zovSXkJUvYVJiH1UFPrfqHakLNms
+         A29pxKE0KjjsZP2R6DdYfA02QSlLAu4yzKJot1VJxSgVmal8DMqRXMbw/Vk9zjZyzdqf
+         lZq6394G+Vhd/HLDaf0otMs46ce+mIgfYgW1ys4dhudez7ByIR5wEPcTvtwE6NHlmv52
+         urSg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1707380090; x=1707984890;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=RKUKf3BvCCQGdJPOJhG2nzrsLmyY/E+UafFVYZ5Q/bI=;
-        b=pbyy2w9WgigLHujaZ+fN/o2V3SKF/WMz7oK0UF3Zpf1m+LmcPGOMN+D0cwhgzWePSS
-         xZcRb8g5NVay/NlgioPKz+Lffm/RbthWmk3yYHf67jUAsdOeD6lcSZ0KpGWm3mC1KMg6
-         hiU3Rgrg60CFP6yP0RKqLHOGktFZvPSKv8utgu84x/Z+dy6YL6piuSVbo/af+1tKvzIl
-         P5EpFjG5VZBvu50wpYo06CkUfO2eNgYDHkRjjypflui+x2kz9p//vzSNptJXRH9OjHsX
-         KmmagDq3rq3Z0qnfwhx2oWQYS0BFsWfuRyXtCkiql5KqtBm3KyIITFLZCgTjlQHWkkJT
-         wk1g==
-X-Gm-Message-State: AOJu0Yw8REgw2EGyx/+lOj8neHnbG9uaHEi0hgNYvWwPMeJ24xz6hjqq
-	HdGxdEi7/hUI7Ha6pyM1oQuJ3iJQwxwPXyb4AAENDEj4gsnSPZM1
-X-Google-Smtp-Source: AGHT+IEJ2S/yteRZgInj+b959z6ndtyMadc40zq3ZF8cJmGkPO7Vi4jmi43dV5d+fPn/daLA7Qa6cQ==
-X-Received: by 2002:a17:907:78c1:b0:a38:83b2:c955 with SMTP id kv1-20020a17090778c100b00a3883b2c955mr2604927ejc.30.1707380089523;
-        Thu, 08 Feb 2024 00:14:49 -0800 (PST)
-X-Forwarded-Encrypted: i=1; AJvYcCV6pmCJMJknIOUI+rBAHI3up20E/S89sDCcHXY0H4o10JVxmV2vcSB/nzqnWgJVXg79ihX82bNAqvmO8i+Jv4t9YNpSGnJwy8+8AJ3vvGww17CC+Jt76F+g7IlHnKzStSpMTu2vcGYoIlF75BhR+66z4llbGqZ28l2PYSfrhMQ6vttDx/RYzfo26EIPqe3q2g9GqP4qTyOoEwqn0OeienriDm/InaJ5L4BILmIwH2CVb74hdjlBIR8/niByI4XUU31r0XmJvX65mwSnlyuO6wvAhsPGy+V6yEaZ/KVCPfCwe+97VHeMVpzlcQ1S6aCVEsvoZ9tkrKML6hEGOr4JXpksWc5gYUAcuTicHL3xqKbCX2bLieJV99ZLMeOqPT4gLkw6/VBrUp3HZ/kN3Xjy6M94W+jiO2S2
-Received: from eichest-laptop.lan ([2a02:168:af72:0:7052:988d:a756:96a6])
-        by smtp.gmail.com with ESMTPSA id v3-20020a1709060b4300b00a381ca0e589sm1641383ejg.22.2024.02.08.00.14.48
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 08 Feb 2024 00:14:49 -0800 (PST)
-From: Stefan Eichenberger <eichest@gmail.com>
-To: andrew@lunn.ch,
-	gregory.clement@bootlin.com,
-	sebastian.hesselbarth@gmail.com,
-	robh+dt@kernel.org,
-	krzysztof.kozlowski+dt@linaro.org,
-	conor+dt@kernel.org
-Cc: linux-arm-kernel@lists.infradead.org,
-	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	Alex Leibovich <alexl@marvell.com>,
-	Stefan Chulski <stefanc@marvell.com>,
-	Russell King <rmk+kernel@armlinux.org.uk>
-Subject: [PATCH v2] arm64: dts: armada-ap807: update thermal compatible
-Date: Thu,  8 Feb 2024 09:14:13 +0100
-Message-Id: <20240208081413.7923-1-eichest@gmail.com>
-X-Mailer: git-send-email 2.40.1
+        d=1e100.net; s=20230601; t=1707380148; x=1707984948;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from
+         :content-language:references:cc:to:subject:user-agent:mime-version
+         :date:message-id:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=Zve2rnpl44GQtsgnndzT9zpzr65KMlE60XiRloFy2Hs=;
+        b=oS7y3UjRB6xfQQygP+/haCjWeLL+kTO/nJ9u+opqimMtTBU5jJmrMYtb8qxenfiZac
+         29eOZyHGzyzJmDvmyjXOv+6trVXL1xSFTwT2K9HlP9Vn4c2Vzm0ToiVZ792JtnD8oJ7Q
+         Qia9IRl6qy46p5XChBMoL9V3K6E4J/6uCnh60arK3o6AM5ef6mvuZjDMeePQcTofDKKM
+         QPjiuVEI8542gk0oqg/Kzv/AJ96KhfpAn/Jhwfxmc0SSgce4xLzl5fgDJO0D21dTt39b
+         25mGtm0A/sBf9NberPSzU+RXCR4IfI2kKVrnrjIiiV4viUxq5DNogML+pwDQlDdu3ISV
+         hESg==
+X-Gm-Message-State: AOJu0YwQtc8Ro/jxrTcctm1qHJ4oeb3jy9ye10/SPsOn5oi87wu75JWb
+	w5X4+UywfEa4FuZKpnAoo3BmWAuoSOZKgoPcpklmwmDaWe9ywXf5CXjm2LC/Dgw=
+X-Google-Smtp-Source: AGHT+IGE3Tt531RRiqcQV8fSCjHqlixSeJpAt1TqmJ3H3McEB/ddxfsvVqh9lms9cL8MLm4xekMfcQ==
+X-Received: by 2002:adf:eac7:0:b0:33b:4d14:f25 with SMTP id o7-20020adfeac7000000b0033b4d140f25mr3908006wrn.44.1707380147751;
+        Thu, 08 Feb 2024 00:15:47 -0800 (PST)
+X-Forwarded-Encrypted: i=1; AJvYcCWsDlzb/i0oMKoGvT8BLR0vWCtisM2RtibU9mS2d1VO6JueIHgjArZTrcAogu73FF+R59FxYxJ3Hssuisbnl+gexgH7o9kU/7aC0vsWBICFWh/FZzLw0N9IG4QZrRBv8umwPVYqo5tR5IvbvzpkDPhyvNFZ76bHGiGovKm0uV7ofBJQA+lMikZW/hEzHljVVeJyNRHTGMvE0I4tNI2JzM7VL58GIq41f1ZLrQ10c+4PJMyDlRHwNKCY/9WmhTqCXs9+pXBi2YihGot9e9fCjVbPXPlDQAjY4WYlEXI4m6iZsASVqlmT/zSi553H6WKZXuwvCd8R832/soNPb2VrT4V/tOLN6nplDYa+SkNc
+Received: from [192.168.1.20] ([178.197.222.62])
+        by smtp.gmail.com with ESMTPSA id r20-20020adfb1d4000000b00337d6f0013esm3099374wra.107.2024.02.08.00.15.46
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 08 Feb 2024 00:15:47 -0800 (PST)
+Message-ID: <568c26db-45c4-4a62-9504-738d78007802@linaro.org>
+Date: Thu, 8 Feb 2024 09:15:44 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 1/5] bindings: clock: qcom: Add "qcom,adsp-skip-pll"
+ property
+To: Taniya Das <quic_tdas@quicinc.com>, Stephen Boyd <sboyd@kernel.org>,
+ Michael Turquette <mturquette@baylibre.com>,
+ Bjorn Andersson <andersson@kernel.org>,
+ Konrad Dybcio <konrad.dybcio@linaro.org>, Rob Herring <robh+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>,
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
+Cc: linux-arm-msm@vger.kernel.org, linux-clk@vger.kernel.org,
+ devicetree@vger.kernel.org
+References: <20240208062836.19767-1-quic_tdas@quicinc.com>
+ <20240208062836.19767-2-quic_tdas@quicinc.com>
+Content-Language: en-US
+From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
+ 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
+ D2GYIS41Kv4Isx2dEFh+/Q==
+In-Reply-To: <20240208062836.19767-2-quic_tdas@quicinc.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
-From: Alex Leibovich <alexl@marvell.com>
+On 08/02/2024 07:28, Taniya Das wrote:
+> When remoteproc is used to boot the LPASS the ADSP PLL should not be
+> configured from the high level OS. Thus add support for property to
+> avoid configuring the LPASS PLL.
+> 
+> Signed-off-by: Taniya Das <quic_tdas@quicinc.com>
 
-Use the correct thermal coefficients for the Armada AP807 dies.
+You nicely bypassed all my filters.
 
-Signed-off-by: Alex Leibovich <alexl@marvell.com>
-Reviewed-by: Stefan Chulski <stefanc@marvell.com>
-Tested-by: Stefan Chulski <stefanc@marvell.com>
-Signed-off-by: Russell King (Oracle) <rmk+kernel@armlinux.org.uk>
-Signed-off-by: Stefan Eichenberger <eichest@gmail.com>
----
-Changes in v2:
-- Added me as last signed-off-by
-- Besides that it is the third patch of this series:
-https://lore.kernel.org/all/ZIxMYXDCTB7IvsDk@shell.armlinux.org.uk/
-- The first two patches in the series are already applied
----
- arch/arm64/boot/dts/marvell/armada-ap807.dtsi | 3 +++
- 1 file changed, 3 insertions(+)
+Please use subject prefixes matching the subsystem. You can get them for
+example with `git log --oneline -- DIRECTORY_OR_FILE` on the directory
+your patch is touching.
 
-diff --git a/arch/arm64/boot/dts/marvell/armada-ap807.dtsi b/arch/arm64/boot/dts/marvell/armada-ap807.dtsi
-index 4a23f65d475f..a3328d05fc94 100644
---- a/arch/arm64/boot/dts/marvell/armada-ap807.dtsi
-+++ b/arch/arm64/boot/dts/marvell/armada-ap807.dtsi
-@@ -33,3 +33,6 @@ &ap_sdhci0 {
- 		     "marvell,armada-ap806-sdhci"; /* Backward compatibility */
- };
- 
-+&ap_thermal {
-+	compatible = "marvell,armada-ap807-thermal";
-+};
--- 
-2.40.1
+Anyway, I don't understand point of this commit. Aren't you now
+duplicating qcom,adsp-pil-mode?
+
+Best regards,
+Krzysztof
 
 
