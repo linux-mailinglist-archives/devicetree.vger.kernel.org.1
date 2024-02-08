@@ -1,131 +1,236 @@
-Return-Path: <devicetree+bounces-39912-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-39913-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id BAC7684E8A5
-	for <lists+devicetree@lfdr.de>; Thu,  8 Feb 2024 20:05:19 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id D3AF484E8BE
+	for <lists+devicetree@lfdr.de>; Thu,  8 Feb 2024 20:13:03 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 5998A1F28ABA
-	for <lists+devicetree@lfdr.de>; Thu,  8 Feb 2024 19:05:19 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 8B1F6293204
+	for <lists+devicetree@lfdr.de>; Thu,  8 Feb 2024 19:13:02 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 094B02560B;
-	Thu,  8 Feb 2024 19:05:12 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3DD423612D;
+	Thu,  8 Feb 2024 19:12:53 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="CS+rhKX+"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Lo7R4CcH"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C6A602555F;
-	Thu,  8 Feb 2024 19:05:11 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0BCA436121;
+	Thu,  8 Feb 2024 19:12:52 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1707419111; cv=none; b=IdIQontj8aq+h8DP4yMOjncajvQqIA69x9xHf+kyaTkEWcwGpD1UCgQcekfC5ViDLE6BQd7NiGTmKMngDkFC5M3+SWtZu452GbGsQpd2YQHtY6GKi/8TPAlZSZGJI6kppj9Y3OI5fLcm4SETpthIDB1CSH6us8rYqmJgU9hfsPU=
+	t=1707419573; cv=none; b=ib/lOUYYUEKCIvTEgDPWFutZmp3Vt40A9sToHGOo3b/bSMoJrlYlW7u20aUFJ2LeyfBJkJhsrh8n1T6D9Xpg9M3LEK4WPygg38Qic6zGRmUcZvTIuzf/qmmgOrC4BDiwayUXecjnIlXXFKcqxZN1bVYU36g4Wk6AoOYeotDSu+8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1707419111; c=relaxed/simple;
-	bh=2qlm0ODvAMoRIMtaJwc8hZTrxizT0hsAuAgTKH9Ac6E=;
+	s=arc-20240116; t=1707419573; c=relaxed/simple;
+	bh=qxWxhPD5BRxGx/8XjhWHfoKRfl1hlFiGpqLEiC51qZg=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=u4GUz/z6p0LCEYYs3h9b8FbnFuF9nwOP3HBja+fKVi3+Kq2A7fW7Rao07kxsxk85ASDu7fhTxb20qMVFbZuEt2j+8s5b8iLZX6Pz6jEs6DAj1N5QQoARjsTJi0xQaNK9mBpDWFdYIjreFK5sn3OF+Q44XZbNYc7v/UL4ehrkk+U=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=CS+rhKX+; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id B7FA8C433C7;
-	Thu,  8 Feb 2024 19:05:10 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=KCngwToU292RZEhw8KAdzyd+YxE++hMYWhMnXWpuYPH5JDHmvSdpettBE5BXSW/bdBDfdFxMHJ9pNnc29AgVsYA/yged/DiZKKIL20b/7zL/r0qngwED0x5OE0+BkhVXggyrC3xsZRO2LJ+h81+xA+q2Cnx43RNo+7yMLP22AJQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Lo7R4CcH; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 506BBC433F1;
+	Thu,  8 Feb 2024 19:12:50 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1707419111;
-	bh=2qlm0ODvAMoRIMtaJwc8hZTrxizT0hsAuAgTKH9Ac6E=;
+	s=k20201202; t=1707419572;
+	bh=qxWxhPD5BRxGx/8XjhWHfoKRfl1hlFiGpqLEiC51qZg=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=CS+rhKX+zDJN3T7gIg8okrFgf1lLcVxRZ5Cz2/LEoMRiSQxKhS1AYIReNBGBrTVOa
-	 yGqJm+psHTpyryvSVn48tarXkW32jPdhOsJuUilGnCn5RyDnnW1xE+F3m6ufGOSxpY
-	 6dgpYCNtVr0JoPVCUH1dwTJp7pwPM6zLkXbZGLRjdHQgqfLmr/SiIpq6wlLl9xK8SP
-	 m+jk10SQh1NBroTiSMleSL7a5iOztf6nOKR5PJnZ5FJHfSitqkdlzKZcTSAANynisw
-	 OMLtJJ5En7QH+SIapHuil/lYGb3Kq2NHrOGS5iEHl/Vggqzzd8k1Hoc3o+w4i15teY
-	 gx/zycT4wEFVg==
-Date: Thu, 8 Feb 2024 20:05:08 +0100
-From: Maxime Ripard <mripard@kernel.org>
-To: Frank Oltmanns <frank@oltmanns.dev>
-Cc: Michael Turquette <mturquette@baylibre.com>, 
-	Stephen Boyd <sboyd@kernel.org>, Chen-Yu Tsai <wens@csie.org>, 
-	Jernej Skrabec <jernej.skrabec@gmail.com>, Samuel Holland <samuel@sholland.org>, 
-	Guido =?utf-8?Q?G=C3=BCnther?= <agx@sigxcpu.org>, Purism Kernel Team <kernel@puri.sm>, Ondrej Jirman <megi@xff.cz>, 
-	Neil Armstrong <neil.armstrong@linaro.org>, Jessica Zhang <quic_jesszhan@quicinc.com>, 
-	Sam Ravnborg <sam@ravnborg.org>, Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, 
-	Thomas Zimmermann <tzimmermann@suse.de>, David Airlie <airlied@gmail.com>, 
-	Daniel Vetter <daniel@ffwll.ch>, Rob Herring <robh+dt@kernel.org>, 
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, linux-clk@vger.kernel.org, 
-	linux-arm-kernel@lists.infradead.org, linux-sunxi@lists.linux.dev, linux-kernel@vger.kernel.org, 
-	dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org
-Subject: Re: [PATCH v2 5/6] drm/panel: st7703: Drive XBD599 panel at higher
- clock rate
-Message-ID: <poua4bzyciiwt65sqjf2whqfdumvoe4h3bkjpf64px2vwgumrf@sai73byg2iju>
-References: <20240205-pinephone-pll-fixes-v2-0-96a46a2d8c9b@oltmanns.dev>
- <20240205-pinephone-pll-fixes-v2-5-96a46a2d8c9b@oltmanns.dev>
+	b=Lo7R4CcHxQOs7jopOpFDfOJl/mXi7YjRJaUBLFVVrbjbqkJnBLIo0D892ioPXPsT1
+	 D8TyFzhjX0ub3cvDhGf4OAMpQI/WRa8+WZ80lRvQ5NllZQ3UPOy4LEZIDYK0OLYfzh
+	 HmaK6zQ6ql5IMXE9r6+sskT9iSNTD+QCYSl7UP6hQBS6ZnfaPWQzXvRZXLfeTTmLJd
+	 NWGm6e4k7WenEMiWxXVO6SXrKoCoofDnKLrwvFimENLNyuoEd/tGFBy54YVd4Jt5Dl
+	 FrQErSW/Zb4K3hi68BZEfnMLg6dYbZozsatEGYyxl0sIfYg86ty1PKOZBWkujePgWw
+	 PfFdLemuhaoOg==
+Date: Thu, 8 Feb 2024 19:12:47 +0000
+From: Conor Dooley <conor@kernel.org>
+To: Frank Li <Frank.li@nxp.com>
+Cc: Bjorn Helgaas <bhelgaas@google.com>,
+	Lorenzo Pieralisi <lpieralisi@kernel.org>,
+	Krzysztof =?utf-8?Q?Wilczy=C5=84ski?= <kw@linux.com>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	"open list:PCI SUBSYSTEM" <linux-pci@vger.kernel.org>,
+	"open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" <devicetree@vger.kernel.org>,
+	open list <linux-kernel@vger.kernel.org>, imx@lists.linux.dev
+Subject: Re: [PATCH 1/1] dt-bindings: pci: layerscape-pci: Convert to yaml
+ file
+Message-ID: <20240208-jarring-frolic-8d4c9b409127@spud>
+References: <20240207062403.304367-1-Frank.Li@nxp.com>
+ <20240207-yoga-mobility-90a728f6342c@spud>
+ <ZcPCn8q7viB/qcOH@lizhi-Precision-Tower-5810>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="fpufhrhdecowdrbb"
+Content-Type: multipart/signed; micalg=pgp-sha256;
+	protocol="application/pgp-signature"; boundary="SRpmeCfQQ7dek33O"
 Content-Disposition: inline
-In-Reply-To: <20240205-pinephone-pll-fixes-v2-5-96a46a2d8c9b@oltmanns.dev>
+In-Reply-To: <ZcPCn8q7viB/qcOH@lizhi-Precision-Tower-5810>
 
 
---fpufhrhdecowdrbb
+--SRpmeCfQQ7dek33O
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
 Content-Transfer-Encoding: quoted-printable
 
-Hi Frank,
+On Wed, Feb 07, 2024 at 12:49:19PM -0500, Frank Li wrote:
+> On Wed, Feb 07, 2024 at 05:17:55PM +0000, Conor Dooley wrote:
+> > Hey Frank,
+> >=20
+> > On Wed, Feb 07, 2024 at 01:24:02AM -0500, Frank Li wrote:
+> > > Convert layerscape pcie bind document to yaml file.
+> > >=20
+> > > Signed-off-by: Frank Li <Frank.Li@nxp.com>
+> > > ---
+> > >  .../bindings/pci/fsl,layerscape-pcie-ep.yaml  |  84 +++++++++
+> > >  .../bindings/pci/fsl,layerscape-pcie.yaml     | 163 ++++++++++++++++=
+++
+> > >  .../bindings/pci/layerscape-pci.txt           |  79 ---------
+> > >  3 files changed, 247 insertions(+), 79 deletions(-)
+> > >  create mode 100644 Documentation/devicetree/bindings/pci/fsl,layersc=
+ape-pcie-ep.yaml
+> > >  create mode 100644 Documentation/devicetree/bindings/pci/fsl,layersc=
+ape-pcie.yaml
+> > >  delete mode 100644 Documentation/devicetree/bindings/pci/layerscape-=
+pci.txt
+> > >=20
+> > > diff --git a/Documentation/devicetree/bindings/pci/fsl,layerscape-pci=
+e-ep.yaml b/Documentation/devicetree/bindings/pci/fsl,layerscape-pcie-ep.ya=
+ml
+> > > new file mode 100644
+> > > index 0000000000000..3b592c820eb4c
+> > > --- /dev/null
+> > > +++ b/Documentation/devicetree/bindings/pci/fsl,layerscape-pcie-ep.ya=
+ml
+> > > @@ -0,0 +1,84 @@
+> > > +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> > > +%YAML 1.2
+> > > +---
+> > > +$id: http://devicetree.org/schemas/pci/fsl,layerscape-pcie-ep.yaml#
+> > > +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> > > +
+> > > +title: Freescale Layerscape PCIe controller
+> > > +
+> > > +maintainers:
+> > > +  - Frank Li <Frank.Li@nxp.com>
+> > > +
+> > > +description: |+
+> >=20
+> > Are you sure that you need this chomping operator?
+> >=20
+> > > +  This PCIe endpoint controller is based on the Synopsys DesignWare =
+PCIe IP
+> >=20
+> > > +  and thus inherits all the common properties defined in snps,dw-pci=
+e-ep.yaml.
+> >=20
+> > You shouldn't need this statement given you have the ref: below.
+> >=20
+> > > +
+> > > +  This controller derives its clocks from the Reset Configuration Wo=
+rd (RCW)
+> > > +  which is used to describe the PLL settings at the time of chip-res=
+et.
+> > > +
+> > > +  Also as per the available Reference Manuals, there is no specific =
+'version'
+> > > +  register available in the Freescale PCIe controller register set,
+> > > +  which can allow determining the underlying DesignWare PCIe control=
+ler version
+> > > +  information.
+> > > +
+> > > +properties:
+> > > +  compatible:
+> > > +    enum:
+> > > +      - fsl,ls2088a-pcie-ep
+> > > +      - fsl,ls1088a-pcie-ep
+> > > +      - fsl,ls1046a-pcie-ep
+> > > +      - fsl,ls1028a-pcie-ep
+> > > +      - fsl,lx2160ar2-pcie-ep
+> >=20
+> > Where did the fallback compatible go?
+>=20
+> So far, no fallback compatible needed now. each devices already have its
+> compatible string.
 
-On Mon, Feb 05, 2024 at 04:22:28PM +0100, Frank Oltmanns wrote:
-> This panel is used in the pinephone that runs on a Allwinner A64 SOC.
-> The SOC requires pll-mipi to run at more than 500 MHz.
->=20
-> This is the relevant clock tree:
->  pll-mipi
->     tcon0
->        tcon-data-clock
->=20
-> tcon-data-clock has to run at 1/4 the DSI per-lane bit rate. The XBD599
-> has 24 bpp and 4 lanes. Therefore, the resulting requested
-> tcon-data-clock rate is:
->     crtc_clock * 1000 * (24 / 4) / 4
->=20
-> tcon-data-clock runs at tcon0 / 4 (fixed divisor), so it requests a
-> parent rate of
->     4 * (crtc_clock * 1000 * (24 / 4) / 4)
->=20
-> Since tcon0 is a ccu_mux, the rate of tcon0 equals the rate of pll-mipi.
->=20
-> pll-mipi's constraint to run at 500MHz or higher forces us to have a
-> crtc_clock >=3D 83333 kHz if we want a 60 Hz vertical refresh rate.
->=20
-> Change [hv]sync_(start|end) so that we reach a clock rate of 83502 kHz
-> so that it is high enough to align with pll-pipi limits.
->=20
-> Signed-off-by: Frank Oltmanns <frank@oltmanns.dev>
+It used to exist though, have you checked that u-boot or *bsd etc do not
+use the fallback compatible? You also need to mention your justification
+for removing it in the commit message.
 
-That commit log is great, but it's kind of off-topic. It's a panel
-driver, it can be used on any MIPI-DSI controller, the only relevant
-information there should be the panel timings required in the datasheet.
+> > > +
+> > > +  reg:
+> > > +    maxItems: 2
+> > > +
+> > > +  reg-names:
+> > > +    items:
+> > > +      - const: regs
+> > > +      - const: addr_space
+> >=20
+> > The example uses "regs" and "config". Where did addr_space come from?
+>=20
+> Example just show pcie-host part. Not show pcie-ep part.
+> pcie-ep part need 'addr_space'.
 
-The PLL setup is something for the MIPI-DSI driver to adjust, not for
-the panel to care for.
+Okay. Again, please mention where this is coming from.
 
-Maxime
+>=20
+> >=20
+> > > +  fsl,pcie-scfg:
+> > > +    $ref: /schemas/types.yaml#/definitions/phandle
+> > > +    description: A phandle to the SCFG device node. The second entry=
+ is the
+> > > +      physical PCIe controller index starting from '0'. This is used=
+ to get
+> > > +      SCFG PEXN registers.
+> > > +
+> > > +  dma-coherent:
+> >=20
+> > dma-coherent: true
+> >=20
+> > > +    $ref: /schemas/types.yaml#/definitions/flag
+> > > +    description: Indicates that the hardware IP block can ensure the=
+ coherency
+> > > +      of the data transferred from/to the IP block. This can avoid t=
+he software
+> > > +      cache flush/invalid actions, and improve the performance signi=
+ficantly.
+> > > +
+> > > +  big-endian:
+> > > +    $ref: /schemas/types.yaml#/definitions/flag
+> > > +    description: If the PEX_LUT and PF register block is in big-endi=
+an, specify
+> > > +      this property.
+> > > +
+> > > +required:
+> > > +  - compatible
+> > > +  - reg
+> > > +  - reg-names
+> >=20
+> > This was not previously required, why is it required now?
+>=20
+> Actually its needed.
 
---fpufhrhdecowdrbb
+Well, if it wasn't, I'd hope that you wouldn't be making it required.
+But I asked /why/ and you've not given a reason. Please mention the why
+in your commit message for v2.
+
+Cheers,
+Conor.
+
+
+--SRpmeCfQQ7dek33O
 Content-Type: application/pgp-signature; name="signature.asc"
 
 -----BEGIN PGP SIGNATURE-----
 
-iHUEABYKAB0WIQRcEzekXsqa64kGDp7j7w1vZxhRxQUCZcUl4wAKCRDj7w1vZxhR
-xTm0AQDNC/Tab28G6xBV/FvvVOHHELD/uZcAMloaia6Nu7yTjQD/bu1heOYZp8J7
-/+vAKLYzF/jNMgEObqQ/VnHSFbOX+Ag=
-=CNG5
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZcUnrwAKCRB4tDGHoIJi
+0mtuAP9E4kgj16HNkIGd1VacL4AXJRLPuj/WspJh0e0xb9YX7wD+I6Mvg4AGjDL0
+57vFoWWJHnkFY8XXol6QAMWynXGjggg=
+=XvWb
 -----END PGP SIGNATURE-----
 
---fpufhrhdecowdrbb--
+--SRpmeCfQQ7dek33O--
 
