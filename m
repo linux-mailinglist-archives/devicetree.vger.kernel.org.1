@@ -1,119 +1,143 @@
-Return-Path: <devicetree+bounces-39893-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-39910-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3D04884E802
-	for <lists+devicetree@lfdr.de>; Thu,  8 Feb 2024 19:49:22 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id BA62384E88E
+	for <lists+devicetree@lfdr.de>; Thu,  8 Feb 2024 19:58:40 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id EA9062816EA
-	for <lists+devicetree@lfdr.de>; Thu,  8 Feb 2024 18:49:20 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id EA1861C22DDE
+	for <lists+devicetree@lfdr.de>; Thu,  8 Feb 2024 18:58:39 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6195921A19;
-	Thu,  8 Feb 2024 18:49:17 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C220E25605;
+	Thu,  8 Feb 2024 18:50:04 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="M+9rN5Ln"
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="jgfI801I"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.17])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 393A520DCD;
-	Thu,  8 Feb 2024 18:49:16 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 42AF720B34;
+	Thu,  8 Feb 2024 18:50:02 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=192.198.163.17
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1707418157; cv=none; b=d4rVEZGGsrTt9i6GkRcPpwrlYKyM8l33Gl1pG2rPLStsL7YnurWOoekbMAD/LucL97UVj++gpJyRMgREWfQbqqRnB+EUXZ8g936A6heZGSx4rey5fuaBSPk3u46VIG7BELhhqgJotAHLC6de35Pc3fQNQ+L7QhTyrH52sio3n4g=
+	t=1707418204; cv=none; b=lhja7JRwZsrKeqZylKe9WLKqJ7IzCu0zOs6sgb8M2AMjfwpzaj1fN/TiQ+GAPz1DF5aqhQvZaZltEUOj0uyE79pC3QU2nFtzbMyE8d08fFP7rbnRsv3M8YHqHCVcP2DohKnVCZE1YFDNOGqfehdYVdXzQS7nBzPR/VYaMDtAYUk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1707418157; c=relaxed/simple;
-	bh=pGYQLPjZv7rykpN/0QEQ5VmbaThkoGQZ3hKi9ODsEb8=;
+	s=arc-20240116; t=1707418204; c=relaxed/simple;
+	bh=hwTf093RVjq/m/qVR5K2tlUN00/hzHQE6eH+6DkfOdQ=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=UFSVrxifzfuuy+H7pp2nJrd5PChQq0QHgbknJlbPMQ4U78vXT+CKhXipUav0xtEks5Nru1lCV1AfUSSojWkZS6TwwZHLa6ntrTJrcUSUEoj1dEfn7p+i5yBgGsm3557bBELPjK6SoaY21GKXW5p5vltR3GH9bzSgKj7Gz27+wTA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=M+9rN5Ln; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 64471C43390;
-	Thu,  8 Feb 2024 18:49:14 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1707418156;
-	bh=pGYQLPjZv7rykpN/0QEQ5VmbaThkoGQZ3hKi9ODsEb8=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=M+9rN5LnWApR2bGtYvhy3yPoZPwm+UGQNmmHnt5bOQAHe/vb60JGAqJwb/2ihNj2q
-	 ElPZypWqm/xqNu2L8zoSKR1QSKGu4IGwAoGHrd0gwMVDsZvaSd6rhEGko5QSTCtiip
-	 DjghH+8vFgbLOIy6YaWBcIDzfh1tqSpIAGxtEz8/agvYACCxzIzpzCcftm65bSuw2o
-	 YVKV6RAlN3RN0IzPpeBFMsFzJUT9n9Wl7rjqvPixCFUWOrSqx+gSxBz+6aOPaoDzj+
-	 njFflNaeHksNxluvRskKHFu8+qxB6O9OTR6u5rowNFDBechGraU/DOlhu1QO1mR+sY
-	 wMs1JqHVdLUZA==
-Date: Thu, 8 Feb 2024 18:49:12 +0000
-From: Conor Dooley <conor@kernel.org>
-To: Rob Herring <robh@kernel.org>
-Cc: Dharma Balasubiramani <dharma.b@microchip.com>,
-	alexandre.belloni@bootlin.com, conor+dt@kernel.org,
-	linux-kernel@vger.kernel.org, tglx@linutronix.de,
-	nicolas.ferre@microchip.com, linux-arm-kernel@lists.infradead.org,
-	robh+dt@kernel.org, claudiu.beznea@tuxon.dev,
-	devicetree@vger.kernel.org, krzysztof.kozlowski+dt@linaro.org
-Subject: Re: [PATCH] dt-bindings: interrupt-controller: Convert Atmel AIC to
- json-schema
-Message-ID: <20240208-acuteness-visible-b60cd37c2b32@spud>
-References: <20240208092015.263210-1-dharma.b@microchip.com>
- <170740748922.3230402.17318224112819715619.robh@kernel.org>
+	 Content-Type:Content-Disposition:In-Reply-To; b=KXC5v3muJq5wS2BVrAv1i3BPXkyjmQq3BVWo4CjeibmMOqxK7psT17ygkQhzQUKLhew1p3rENABrIogTFote3FugMDe7Tc5eGNt8NGkm0bgTOWjZUAwy4TnMOSrH0fzZBD5fHVCHx6AdQx3rTMS+wgS7mtIwj8iNou7MRbVCg0U=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com; spf=none smtp.mailfrom=linux.intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=jgfI801I; arc=none smtp.client-ip=192.198.163.17
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com
+Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=linux.intel.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1707418203; x=1738954203;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:content-transfer-encoding:in-reply-to;
+  bh=hwTf093RVjq/m/qVR5K2tlUN00/hzHQE6eH+6DkfOdQ=;
+  b=jgfI801IVZ0F5wz/uofuUA33HjTDf2cRaVfZvppt9C6rF4nzG7GYsf04
+   5Uq9ebjc+A9LNpQl7eim/TONzULFIuRW6OfPslDfnVTn+4itGajnQiJgq
+   LXpIXT8FmYYS2Kj004Y805nugoLVw0JeN7+kjDq8HrPdaSJ08gNJHjpX3
+   2RRp7WF1/M6xrYsBbO04Hif1ino1dVp/bUmbmh4BE5A1KTbE1YDXsCkIR
+   3z7GsMgy6fDdQMkV+eBJ1+wbEPqKZdBd744hum8B2lWv4ZdkDJDuOUmCV
+   0dDh1aNOcOprvgfybpE9zsAL1dHKeyS8FFfR36Lx4Jp9zAVHPuHbhzVNB
+   A==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10978"; a="1179204"
+X-IronPort-AV: E=Sophos;i="6.05,254,1701158400"; 
+   d="scan'208";a="1179204"
+Received: from fmsmga002.fm.intel.com ([10.253.24.26])
+  by fmvoesa111.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 08 Feb 2024 10:50:02 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=McAfee;i="6600,9927,10978"; a="910469418"
+X-IronPort-AV: E=Sophos;i="6.05,254,1701158400"; 
+   d="scan'208";a="910469418"
+Received: from smile.fi.intel.com ([10.237.72.54])
+  by fmsmga002.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 08 Feb 2024 10:49:59 -0800
+Received: from andy by smile.fi.intel.com with local (Exim 4.97)
+	(envelope-from <andriy.shevchenko@linux.intel.com>)
+	id 1rY9TA-00000002xPb-3wmy;
+	Thu, 08 Feb 2024 20:49:56 +0200
+Date: Thu, 8 Feb 2024 20:49:56 +0200
+From: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
+To: Geert Uytterhoeven <geert@linux-m68k.org>
+Cc: Conor Dooley <conor@kernel.org>, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org, Miguel Ojeda <ojeda@kernel.org>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Robin van der Gracht <robin@protonic.nl>,
+	Paul Burton <paulburton@kernel.org>,
+	Geert Uytterhoeven <geert+renesas@glider.be>
+Subject: Re: [PATCH v1 00/15] auxdisplay: linedisp: Clean up and add new
+ driver
+Message-ID: <ZcUiVAk7uwJdqvsc@smile.fi.intel.com>
+References: <20240208165937.2221193-1-andriy.shevchenko@linux.intel.com>
+ <20240208-drearily-carwash-60e4ba70a559@spud>
+ <CAMuHMdWBbjHe8D+sn94wMqXy3Rv-VU2CDWca=fJKyH+=G_ngmw@mail.gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-	protocol="application/pgp-signature"; boundary="r4efttuvWDjAulLz"
+Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <170740748922.3230402.17318224112819715619.robh@kernel.org>
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <CAMuHMdWBbjHe8D+sn94wMqXy3Rv-VU2CDWca=fJKyH+=G_ngmw@mail.gmail.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+
+On Thu, Feb 08, 2024 at 07:10:40PM +0100, Geert Uytterhoeven wrote:
+> On Thu, Feb 8, 2024 at 6:52 PM Conor Dooley <conor@kernel.org> wrote:
+> > On Thu, Feb 08, 2024 at 06:58:43PM +0200, Andy Shevchenko wrote:
+> > > Add a new initial driver for Maxim MAX6958/6959 chips.
+> > > While developing that driver I realised that there is a lot
+> > > of duplication between ht16k33 and a new one. Hence set of
+> > > cleanups and refactorings.
+> > >
+> > > Note, the new driver has minimum support of the hardware and
+> > > I have plans to cover more features in the future.
+> > >
+> > > Andy Shevchenko (15):
+> > >   auxdisplay: img-ascii-lcd: Make container_of() no-op for struct
+> > >     linedisp
+> > >   auxdisplay: linedisp: Free allocated resources in ->release()
+> > >   auxdisplay: linedisp: Use unique number for id
+> > >   auxdisplay: linedisp: Unshadow error codes in ->store()
+> > >   auxdisplay: linedisp: Add missing header(s)
+> > >   auxdisplay: linedisp: Move exported symbols to a namespace
+> > >   auxdisplay: linedisp: Group line display drivers together
+> > >   auxdisplay: linedisp: Provide struct linedisp_ops for future extension
+> > >   auxdisplay: linedisp: Add support for overriding character mapping
+> > >   auxdisplay: linedisp: Provide a small buffer in the struct linedisp
+> > >   auxdisplay: ht16k33: Move ht16k33_linedisp_ops down
+> > >   auxdisplay: ht16k33: Switch to use line display character mapping
+> > >   auxdisplay: ht16k33: Use buffer from struct linedisp
+> > >   dt-bindings: auxdisplay: Add Maxim MAX6958/6959
+> > >   auxdisplay: Add driver for MAX695x 7-segment LED controllers
+> >
+> > Not all of these patches have made their way to the lists FYI:
+> > 2024-02-08 16:58 Andy Shevchenko [this message]
+> > 2024-02-08 16:58 ` [PATCH v1 01/15] auxdisplay: img-ascii-lcd: Make container_of() no-op for struct linedisp Andy Shevchenko
+> > 2024-02-08 16:58 ` [PATCH v1 02/15] auxdisplay: linedisp: Free allocated resources in ->release() Andy Shevchenko
+> > 2024-02-08 16:58 ` [PATCH v1 03/15] auxdisplay: linedisp: Use unique number for id Andy Shevchenko
+> > 2024-02-08 16:58 ` [PATCH v1 06/15] auxdisplay: linedisp: Move exported symbols to a namespace Andy Shevchenko
+> > 2024-02-08 16:58 ` [PATCH v1 07/15] auxdisplay: linedisp: Group line display drivers together Andy Shevchenko
+> > 2024-02-08 16:58 ` [PATCH v1 08/15] auxdisplay: linedisp: Provide struct linedisp_ops for future extension Andy Shevchenko
+> > 2024-02-08 16:58 ` [PATCH v1 09/15] auxdisplay: linedisp: Add support for overriding character mapping Andy Shevchenko
+> > 2024-02-08 16:58 ` [PATCH v1 10/15] auxdisplay: linedisp: Provide a small buffer in the struct linedisp Andy Shevchenko
+> > 2024-02-08 16:58 ` [PATCH v1 14/15] dt-bindings: auxdisplay: Add Maxim MAX6958/6959 Andy Shevchenko
+> > 2024-02-08 16:58 ` [PATCH v1 15/15] auxdisplay: Add driver for MAX695x 7-segment LED controllers Andy Shevchenko
+> > https://lore.kernel.org/all/20240208165937.2221193-1-andriy.shevchenko@linux.intel.com/
+> 
+> Same for my mailbox.
+
+I just resent it, hopefully without missing parts now.
+
+-- 
+With Best Regards,
+Andy Shevchenko
 
 
---r4efttuvWDjAulLz
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
-
-Hey Dharma,
-
-On Thu, Feb 08, 2024 at 03:51:31PM +0000, Rob Herring wrote:
->=20
-> On Thu, 08 Feb 2024 14:50:15 +0530, Dharma Balasubiramani wrote:
-> > Convert the Atmel AIC binding document to DT schema format using
-> > json-schema.
-> >=20
-> > Signed-off-by: Dharma Balasubiramani <dharma.b@microchip.com>
-> > ---
-> > Note: I get the following warnings on latest kernel but not in 6.7.
-> > Should I be worried?
-> > usage: yamllint [-h] [-] [-c CONFIG_FILE | -d CONFIG_DATA] [--list-file=
-s] [-f {parsable,standard,colored,github,auto}] [-s] [--no-warnings] [-v] [=
-FILE_OR_DIR [FILE_OR_DIR ...]]
-> > yamllint: error: one of the arguments FILE_OR_DIR - is required
-
-Hard to say, how were you envoking the command? There were some issues
-recently with dt_binding_check, but I thought those had been fixed.
-
-> dtschema/dtc warnings/errors:
-> Documentation/devicetree/bindings/interrupt-controller/atmel,aic.example.=
-dtb: /example-1/dma-controller@ffffec00: failed to match any schema with co=
-mpatible: ['atmel,at91sam9g45-dma']
-
-But you didn't see this warning?
-I think you can resolve it by just dropping the "user" example from the
-binding entirely. I don't think it adds anything at all.
-
-Cheers,
-Conor.
-
---r4efttuvWDjAulLz
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZcUiJwAKCRB4tDGHoIJi
-0sS9AQD3W68n9wb+XelY1CiPyQBNW4qjE+93A8BUi7FjnLX8tgEA9kvG6FUrzJ6Z
-Pf80Be18OKj8VCwO4NCuzfqcDK7XKAc=
-=Jla7
------END PGP SIGNATURE-----
-
---r4efttuvWDjAulLz--
 
