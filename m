@@ -1,183 +1,213 @@
-Return-Path: <devicetree+bounces-39835-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-39836-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1A8CC84E429
-	for <lists+devicetree@lfdr.de>; Thu,  8 Feb 2024 16:41:36 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0CF0884E43B
+	for <lists+devicetree@lfdr.de>; Thu,  8 Feb 2024 16:46:11 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 97F6028C43B
-	for <lists+devicetree@lfdr.de>; Thu,  8 Feb 2024 15:41:34 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 31C701C21B9B
+	for <lists+devicetree@lfdr.de>; Thu,  8 Feb 2024 15:46:10 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 00AEE7D402;
-	Thu,  8 Feb 2024 15:41:13 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id ED3A17CF02;
+	Thu,  8 Feb 2024 15:46:03 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=theobroma-systems.com header.i=@theobroma-systems.com header.b="g/HBttYr"
+	dkim=pass (2048-bit key) header.d=tuxon.dev header.i=@tuxon.dev header.b="Fzy65ssx"
 X-Original-To: devicetree@vger.kernel.org
-Received: from EUR05-AM6-obe.outbound.protection.outlook.com (mail-am6eur05on2098.outbound.protection.outlook.com [40.107.22.98])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wm1-f49.google.com (mail-wm1-f49.google.com [209.85.128.49])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 22F047CF1B;
-	Thu,  8 Feb 2024 15:41:11 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.107.22.98
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1707406872; cv=fail; b=s39weJ7vNhPIQczrC5zc8GVci3Atf643dbaEECet/42gl2EbWeytxHpCf2/C3PepmYmcQlDE9bXfpj/I7fc2rnUvhzLi0Ws1kgDY8P49M6ler2f6/fkCVb8XI4xFQB9SKDHUWMcrqYrWbc/zgO8m+S8NoxYvohGwBlHmQu3rfhg=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1707406872; c=relaxed/simple;
-	bh=bpQeCPlj119oYEC2ul+re0q0sBVa6xiao3JVx3YSNj8=;
-	h=From:Date:Subject:Content-Type:Message-Id:References:In-Reply-To:
-	 To:Cc:MIME-Version; b=OY2KOr3yQtrgJKNcKGdnZlLOSrEFF4h6hDk11/HIEUklabnHLxADfoVcAdWxsH+h9nXZ18f+A1/Gij0c2j5qVzlngmtnC4xlOTui5rXd0X4WNW8LZlHvzKb1X52kMNZa61ak79+fMXV/S+y6pLUMxKAhfj1hhaZeBOfm1eOLTFM=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=theobroma-systems.com; spf=pass smtp.mailfrom=theobroma-systems.com; dkim=pass (2048-bit key) header.d=theobroma-systems.com header.i=@theobroma-systems.com header.b=g/HBttYr; arc=fail smtp.client-ip=40.107.22.98
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=theobroma-systems.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=theobroma-systems.com
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=amdTxEO35Ol2fLY/v6EvxXiiOf8iEJFnf+X0S8Pkczq4Bihf48kPEmtuss+p9aWKBnVFdBsra0XnMm0cvei4jgpzbWf57M6KsiEypEYw+gjHxHgkq5aV4vA5FiT26QxiRiKr7qHckt9xvulpC2iLrzwoz8SARlK4eqK+7GW/uF3q8LVlrs7EhO524otTFn7WGTD7Ry8KK4IF84uKojoHLPRSXXjiAgUtdRXsfqfHJ4Aj5JVPoEpLySAuNfK8hZBmylgREGAX7OGC2J8OpG7k1XNsu9ek+Mk8ZhOh09e+iHTxslghtYwFw3wvYb02HCLYln07Mg0UhVdKOY95CObjYw==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=9E73qvcYPt+w1rq3AgHdWgp3ZIRu84aG3pPkfSbiArU=;
- b=l5rBnmIJx+o4n/qyIlxzX95xp8G0tT0vwio39JNJxEvRp90rBxtR0qjJnVdtGigndV82vNRSd177E9lSafb06egYcQBc+wqLYveYiqlcEF7FwnB+MdcpyqJxpa7dfdUWDSkxnwbYzqRyf0uc6ZYQbOas/L28KMLcncRNxzX6lQRgCKfvWWUK0aEpZip0udAe+0Ga+ojFoLGk6QY1FWRZESN98HxuI1HKTbfZL0Jw1catmLDhalZlZpLjEnGN/wZJ0sPP/1ZZfCwNld0hyXW3OjRHf9wEJ+Y+ugDlEv7r6IOxeoihnAKLbvgWZ8GrX/+Tpi/IofLFIh3xVzfUWq7GPg==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=theobroma-systems.com; dmarc=pass action=none
- header.from=theobroma-systems.com; dkim=pass header.d=theobroma-systems.com;
- arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=theobroma-systems.com;
- s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=9E73qvcYPt+w1rq3AgHdWgp3ZIRu84aG3pPkfSbiArU=;
- b=g/HBttYryVByc8G1QirxumJu6NUZNEURJGfSEcPNA+nAiFkZDn6NUFzbcW5KXYmc3C0WShoooTs0M1vQo0KwzThGJVdX775shOPp1oSkSj8+ZfRwWW0JdNBjuUj6vxdDfM9BDuweaaTJRuMRIGyoOul26cVjc3T7hQcSN8XZ7m38JKPYGigJOSKRMs243oys0ItLvIq27cxI3WiI6pd14jd/xe9pooMtoS1VyT780M2yBK6PVRj79oKdWTUFwlKM6M7rfq9zToHe/XDBzzvVRPTlKW/OlLm8+0GkloDIg8PmEscw8WJRLNASp1XnkkGmPXne429S1AjyxQPWg09s1g==
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=theobroma-systems.com;
-Received: from VE1PR04MB6382.eurprd04.prod.outlook.com (2603:10a6:803:122::31)
- by AS8PR04MB7621.eurprd04.prod.outlook.com (2603:10a6:20b:299::9) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7249.39; Thu, 8 Feb
- 2024 15:41:00 +0000
-Received: from VE1PR04MB6382.eurprd04.prod.outlook.com
- ([fe80::d4b1:cea8:7085:ec50]) by VE1PR04MB6382.eurprd04.prod.outlook.com
- ([fe80::d4b1:cea8:7085:ec50%4]) with mapi id 15.20.7249.035; Thu, 8 Feb 2024
- 15:41:00 +0000
-From: Farouk Bouabid <farouk.bouabid@theobroma-systems.com>
-Date: Thu, 08 Feb 2024 16:39:56 +0100
-Subject: [PATCH v6 2/2] arm64: dts: rockchip: px30-ringneck-haikou: add
- rs485 support on uart5
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20240208-dev-rx-enable-v6-2-39e68e17a339@theobroma-systems.com>
-References: <20240208-dev-rx-enable-v6-0-39e68e17a339@theobroma-systems.com>
-In-Reply-To: <20240208-dev-rx-enable-v6-0-39e68e17a339@theobroma-systems.com>
-To: Rob Herring <robh+dt@kernel.org>, 
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, 
- Conor Dooley <conor+dt@kernel.org>, Heiko Stuebner <heiko@sntech.de>
-Cc: devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
- linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org, 
- quentin.schulz@theobroma-systems.com, 
- Farouk Bouabid <farouk.bouabid@theobroma-systems.com>
-X-Mailer: b4 0.12.3
-X-ClientProxiedBy: VI1PR06CA0208.eurprd06.prod.outlook.com
- (2603:10a6:802:2c::29) To VE1PR04MB6382.eurprd04.prod.outlook.com
- (2603:10a6:803:122::31)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6E5AD7C092
+	for <devicetree@vger.kernel.org>; Thu,  8 Feb 2024 15:46:01 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.49
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1707407163; cv=none; b=X2znp5xUCAefwMBYL8foqoqGC1aBkjfBEOzcsER/6isxV5PDqVRci2aCxS5opUjx/NsKfUeOPfY9GnYW3a41GyTV1wh4OSt1Z/nxHQQukqVkuSnqAqGQGq+PbqE4nPSaz7OOD9E1p5mt126hufAbUqEwAAtfpJx9wP2vVHE4UiI=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1707407163; c=relaxed/simple;
+	bh=p371nnA0MYfDfaX9oKJYZFzzxG+rpokxG+v0PXCVgjM=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=MqKg65o/YdckMxlYKTyAC258vbnYnYRE+RGV0/gHjyNFdcmyUwENj+3j06//WeATRAlyQ8orcqbryMisP93VHPh5ot8Co99VsCOiN9OKdGfztTEGQ7yDrbIAhavTHJ0j7lQhQPzSkyyLnKPZEWWWjhaoFhXFQNqSH4d2GuQ0shI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=tuxon.dev; spf=pass smtp.mailfrom=tuxon.dev; dkim=pass (2048-bit key) header.d=tuxon.dev header.i=@tuxon.dev header.b=Fzy65ssx; arc=none smtp.client-ip=209.85.128.49
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=tuxon.dev
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=tuxon.dev
+Received: by mail-wm1-f49.google.com with SMTP id 5b1f17b1804b1-4101565d20bso16987495e9.2
+        for <devicetree@vger.kernel.org>; Thu, 08 Feb 2024 07:46:01 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=tuxon.dev; s=google; t=1707407159; x=1708011959; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=fdw1R25OH/oj1h+/23MCaEFMxMiuRqj0tdTYwVW8hgc=;
+        b=Fzy65ssxGS67G1aV9oLdT1X9zr1yfxoVbAhR5jGJwqHBo7D70/xc9FwvsZqM3RRIRk
+         RmeSyPU0Mqy4nmcSWaANGNqvBbYylVtprmstiPJ/C/F6GKFdBHnVHVEEwCUuhFsYD0Gq
+         JdNEG2HF+ENI3BQKkUMMiNOPOeuFYv3Mx6XzVUaGkl3yyUDilJ29Kq3nMWf60HAyuukn
+         82M4dgWLG8VawTWgsxKaCS9tudhV0w0VwWE4Hb49rI6p0gPtfMmB7LAf6WDwSK1UYKfO
+         hg2C1e7I1WsWQHQ5IEmcH2KzdEGqfaE7zOmlveHWzTHR6fvUhckAwG8U7Ctoy+Bzh+93
+         DOCQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1707407159; x=1708011959;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=fdw1R25OH/oj1h+/23MCaEFMxMiuRqj0tdTYwVW8hgc=;
+        b=BNGlm2WSjnPyzL1CG7/reeNT41pVpcc3+yDBE9Iu8YrTmq2DyUunMIxg6I85pyG29d
+         YuXQ0mUQIJZVCbty58MwGUwht9vEs9JT94CucqmXu6jCxG4/MDwhy8ia+eb7pqEy/v2a
+         CNd9Ct4Vt10WD4y1IzWDhujpckenR0o0kZSxRrOlfCy3+b81rEBz3QC/sZWlRrivTLks
+         jmFRtP4+ebqJfNcYofpbYsmDhCTavJQqtC9+PR62Ja3pylCTJWjGcaA6RoJ2xQdHxcDq
+         3Ss76V7vBh+xrrwhPsMv0tPKVGXgN4/PAk3tbc+TwDSsPUCDjde7PFccC6enuZdDqwn7
+         5SLQ==
+X-Gm-Message-State: AOJu0Yz6fYNSmk2DpcRtarT6YL3WUIP+6lI6XWnMeYSI8RZpFQ10fkbo
+	nfvK+H5PUPS7K/55wCiqOdkvzyjLlOBA28WEAyHiTpKthQo5dFrqWRxSgJeK6eU=
+X-Google-Smtp-Source: AGHT+IGAkVBgi2v/9rwm8yJ8TS8SQmm7MTHynY1Wd3oKB5eyxjrqqLsN0IR9u4OlbaJ/45wh27lESw==
+X-Received: by 2002:a05:600c:1910:b0:40e:fb76:5344 with SMTP id j16-20020a05600c191000b0040efb765344mr7185602wmq.11.1707407159502;
+        Thu, 08 Feb 2024 07:45:59 -0800 (PST)
+X-Forwarded-Encrypted: i=1; AJvYcCWcyGuyqyRlo0NUXLCGq0I6rMtLOkVAraDOwhjdq9cKgLyFxUECiO4kdkrmZ1kQaMSAvok8ZDc8xbR4uGFS8qxzrtaGNGrJd+40sHT96YHNndFupwkup/1NCh0YbMfd50pRAKhBJbtERteZ2GToMHUJ7+i/t7P2ZO3eE0/VMJGm/NiRLdo3W82kRYO2vefJ0BPjXdpJtNwFX836t6EAs2SP0XZ6HlVb+2vHEbHwqgkb62ky2kpUXdSknN6wkvgcQFkNIaOqWT8l1VxcOvAmA8AVhE/siwkfNpbo2bUM3IwCf5inwF/inAk0kt/46uc/cMNDcfYLisRDRv3V7QzVB7OfxioKLn7sWGbW51WYd7UPfTtRGiMqzI99hrCoWVVHmV9N5viwzkI7zgauTyDgXXpXRXyXBQOdbbqr5rKn9o+19lJN0RGIBMDVd1V0dOewI4Y8jmfc8NEY5QOmroUEJM/WaGmfBq9BsQOsBD23WVzvA4Ldfi1ZxJIWSDABDRGesF0zwoDujL0ntkcUHEpaEZoVdMqovSuCv9cOluPCcwjy/P718QDgIZwCET7HU+xrsvY7j608GVrctHNxaSjT6t9mC6pb42lrROg+
+Received: from [192.168.50.4] ([82.78.167.45])
+        by smtp.gmail.com with ESMTPSA id w9-20020a05600c474900b004101f27737asm1981436wmo.29.2024.02.08.07.45.57
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 08 Feb 2024 07:45:58 -0800 (PST)
+Message-ID: <67ad8052-1406-4dcb-9e35-5c42ada28797@tuxon.dev>
+Date: Thu, 8 Feb 2024 17:45:57 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: VE1PR04MB6382:EE_|AS8PR04MB7621:EE_
-X-MS-Office365-Filtering-Correlation-Id: 5b44e0cb-4831-4156-a47b-08dc28bc593b
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info:
-	nDKLzK92bQqkAbydubnS1Pue1Mjw3JNk+m7qg4b0KSVFzvZLEk28SZsVg0AtoSkMonkEkpo+NaK/kVGgHGc4BTWXWzGG4wdl1GlrzwOPVo8lhherQ1QOjg6mu/rEITe1gTYEz/g8zLqdIisRoqTQ/kyKs+oEwQNflqFDCuF9XYms1o1RcR/fl6RKnbuEPZPpx4/TDvQ6gCMfbw5+IPAk+8DV0/4MR6d5xRUf9GQ+UKED970v2XIJk0W2v5roqWzjFraDTyG9SADHJ+0UmBL1t0Ax693drHumOI2RZUIYcjDAKJC25HD9UWtQq9heZ2lJCxHHt2QNc2LBoKWXGJoqqpZM0a/YakouF6UNx2N+oEbHxkQDHQuP9TOMlizLW9MVhY7lezCFvpVpKePZ05PaoaAIbs478oFN/UJb13OU0aamHxDJXRP8cHS8Dx8toz+SZTyAKgjEalJqT9zABBQ89BDsEIcFkJf9/CC/OmPzKZweD5E3ttbM4qEhinICnqYJ7TrEgE7kRY5FnhuYLzQWfpA0EexcaTENlPMq/tOOTSRPiY5pqhLZv0ADACAwIJbNsMuUHEGNnrwlNnUOBcswZhZyUreRpsiXg90HtQqSH4Goj/CHqR4yo1e5XQm79Dyj
-X-Forefront-Antispam-Report:
-	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:VE1PR04MB6382.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230031)(376002)(366004)(346002)(136003)(39850400004)(396003)(230922051799003)(451199024)(64100799003)(186009)(1800799012)(107886003)(86362001)(2616005)(26005)(6486002)(44832011)(478600001)(5660300002)(2906002)(38350700005)(110136005)(66476007)(66556008)(316002)(66946007)(8936002)(4326008)(36756003)(6512007)(8676002)(6666004)(6506007)(52116002)(38100700002)(41300700001)(83380400001);DIR:OUT;SFP:1102;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0:
-	=?utf-8?B?bXMvajRiU2ljenVIV2NyOE1GNmlKWTB4SkVqZXhnTGNEMG9tc2JzdnVEMTQ2?=
- =?utf-8?B?UjBzSWpGZDRSRHZpeVg2Qy9WK1Ayd2ZMMGxFZ0llSmVsOFYyaTNBelUxaXpY?=
- =?utf-8?B?K3lpSDJhd3BKNllpTnM2YVpBWURkOXkzTmhOamJsMGsyYVFNVFJmNU1id0Rq?=
- =?utf-8?B?SHc2STJTd1IxYW03QTNibWk2Y2R3TUxxRzU4YXcyU2pzbTloVlE5VGhJRndL?=
- =?utf-8?B?ZHNqZmdVRlJuS0w1QlNMYnh4RHovM09JZ3VxbXYzYnoyS1JUVmFwZzA2MHNR?=
- =?utf-8?B?K3NoMFlLTXJ3NlhRYUsxMTM0d2xsaWhJWkRhTjRmZGdjUVpaem9NU2pqNWJH?=
- =?utf-8?B?U3RQSndVS0psbUpPSXdiRjZlTEF0MUF1TlVxcnRTUS8yYU1ha1lzT2txM2o0?=
- =?utf-8?B?dW1tQ3ZpY0FCVmE5U3hYZ3ZYRVFpZFlnNm9GU1NMdEo2THMwT2NQWXZCZGJN?=
- =?utf-8?B?K1ZmM2JDcjIvempMMHkxWTYxNDNIN1A5b2RIci9qUmZSMTBuZWwyT29ObUdU?=
- =?utf-8?B?SUEzSW4zTi9HK0s2dDEwYWVIeUdCQ3pJemJSR0ZnQ2F1c3l3UldrejdyZjgr?=
- =?utf-8?B?UDNtL2FnVzhjS1YzOE5yM09vTGdFWnBOZktidHMvMnZ3YUhNZHVpUDk2ZVJ3?=
- =?utf-8?B?TUJGaTNSM0JwYUV2bHdsRUtUblJjc0ozWlVKSWFwcm5IMFYxMTNEeHNWRkpq?=
- =?utf-8?B?Nzh0WU9qTzRZSmRLR0Q4eEp5WG9GNmQzSHFvbk1FMlE5ZWxlQTB5SUJ3Z0VR?=
- =?utf-8?B?OWZjOHNXSjVONEpmNmN3Q3A2VE00dW9Da2dpWTlvTFJ4L2ZlbTBTZG5IWGJK?=
- =?utf-8?B?dUpNNzljdnZMR0Qza0g2K0hnYyt0Yy9tbmYxdHd0ZVY5TEVqMnJOS2FnSnFn?=
- =?utf-8?B?WXlFWFV2V2ZSbWpJT3oveUVPRzJMdW9hYkxkTjYrTUN1dngraUt5K1JUZ3BR?=
- =?utf-8?B?SVZSYVh0b3Nhd1U1WG5PZFVqU0tzdGVHRDdOcGltSlRKbk0vMUNvVStOUDVy?=
- =?utf-8?B?d0pvajdiYjU5NlJVSUYrUkg3RlVlMm91Q09kSGtSQThNOFR2cDBpdDRNcTdp?=
- =?utf-8?B?TWlzSUtWZHJYbXlmWlJCQVFsNlhSbVh2TDlmOWFLaHRiT2xBUzRFejdTWmxG?=
- =?utf-8?B?dExSNk1Ua2J5UTdwUWt0K2pNUnZjb2ZTdWJ4UXJraElJT1kvVWtEUUhQR3BO?=
- =?utf-8?B?U1Z2MVhlN1BXWkpFSWVGY1Vpby9ZLzBqaDZmSWZpaEJOMW5vVHZyV1pHeG5O?=
- =?utf-8?B?QjV6QjVnMjBuVHhJZ3VPcENaTWdQTkVlUWF6MUFTTnh6N2k3YWU1YVp3ZGpu?=
- =?utf-8?B?Nzd3eGQvYkpUMjRCL1NWeGo5WVRwZWJRRWdadmxEb3BFSnh5cUFFR2JHc3d1?=
- =?utf-8?B?S1djemY4cGtjU3JYNVcycVRodTJYUlRPNXdtRzBoYkZPM2o1WkEzeHZDUWVp?=
- =?utf-8?B?WkkwWUlaYjVnbU1TS2lJTG9wZEtiMTBXUTNyRkdma000Zlc0cmVxVEdYNGN6?=
- =?utf-8?B?L2h6MTczMEduVFE4THBFZ2NpeWhMS3kyUXB2WDlXbzhWeWE3Si9SMWxSc0ln?=
- =?utf-8?B?emJObzd2WHROTStVWC9heUxmMGk3OWZQcEFoMXZ1SFJURjBwbUl5U2RHSUZ3?=
- =?utf-8?B?d0s3WW5CWlF6UnFBR3Qya3lhM1Y3M0dpQmJFNElZWEpHRTZuWk1YaWFHY0FB?=
- =?utf-8?B?dUNuUHBnOUFYcWhweStWUS9JRXhodDZDY3RrbDJxeitjUXU5bVd3bWNnWmJn?=
- =?utf-8?B?K1dxT0ZVSGlLK3pLYkhyWCtEQ3UrdFRka0xBRkxNR0dTTm1jWndSb045Vm9r?=
- =?utf-8?B?Q0JoemtEcFUxR2JzaGVTZGhJaWYyVmVlU3FrOEVjYkoxUW5VYVd6azI4cjZ1?=
- =?utf-8?B?ak9PYVNtbkplWk9LZXRCajNrdDNuUnQ1aTJoeEpsdmh2UDZ3Q0tYZlpJS1hl?=
- =?utf-8?B?MFV5UGs4aURMZEcxSW9CZzlLS3R0M0hWUmFvSUgzckRROGV5aVpoQkk0YTJw?=
- =?utf-8?B?Y0gzR3czMGplVC9YUUN5T0hsVkpld1plQW1RNTlyMmxoMTlkbGJQdnZSZnlv?=
- =?utf-8?B?cFlaT3IzeDRpdTdSek9BRzNqc2dGMG5Ud3VjWmVzQmhuZXIvb2JNMGlER1Vh?=
- =?utf-8?B?cE1tcDd3SWpkN0NJM2pGUm94a3RENS9uUm9WSDNmeGY4MWdwUkxZcWV2WU9D?=
- =?utf-8?Q?n4YTno1jS/I13++p8/J5MEc=3D?=
-X-OriginatorOrg: theobroma-systems.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 5b44e0cb-4831-4156-a47b-08dc28bc593b
-X-MS-Exchange-CrossTenant-AuthSource: VE1PR04MB6382.eurprd04.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 08 Feb 2024 15:40:59.6590
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 5e0e1b52-21b5-4e7b-83bb-514ec460677e
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: PNthGxRdS4RFGHNByN5GvJdptv68quzWJQk3QImw9HfDttKAIT7lE/bhNt8JMXt/6jZdozJ9p9ai3uukSGgh9JdDDKYbRBT+Rll/jcUNtxvj1+l4oZyjw25+zb5EsJaS
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: AS8PR04MB7621
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 01/17] dt-bindings: clock: r9a07g043-cpg: Add power domain
+ IDs
+Content-Language: en-US
+To: Biju Das <biju.das.jz@bp.renesas.com>,
+ "geert+renesas@glider.be" <geert+renesas@glider.be>,
+ "mturquette@baylibre.com" <mturquette@baylibre.com>,
+ "sboyd@kernel.org" <sboyd@kernel.org>, "robh@kernel.org" <robh@kernel.org>,
+ "krzysztof.kozlowski+dt@linaro.org" <krzysztof.kozlowski+dt@linaro.org>,
+ "conor+dt@kernel.org" <conor+dt@kernel.org>,
+ "magnus.damm@gmail.com" <magnus.damm@gmail.com>,
+ "paul.walmsley@sifive.com" <paul.walmsley@sifive.com>,
+ "palmer@dabbelt.com" <palmer@dabbelt.com>,
+ "aou@eecs.berkeley.edu" <aou@eecs.berkeley.edu>
+Cc: "linux-renesas-soc@vger.kernel.org" <linux-renesas-soc@vger.kernel.org>,
+ "linux-clk@vger.kernel.org" <linux-clk@vger.kernel.org>,
+ "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+ "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+ "linux-riscv@lists.infradead.org" <linux-riscv@lists.infradead.org>,
+ Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>
+References: <20240208124300.2740313-1-claudiu.beznea.uj@bp.renesas.com>
+ <20240208124300.2740313-2-claudiu.beznea.uj@bp.renesas.com>
+ <TYCPR01MB11269DEA9261CA594EECC949686442@TYCPR01MB11269.jpnprd01.prod.outlook.com>
+From: claudiu beznea <claudiu.beznea@tuxon.dev>
+In-Reply-To: <TYCPR01MB11269DEA9261CA594EECC949686442@TYCPR01MB11269.jpnprd01.prod.outlook.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
-A hardware switch can set the rs485 transceiver into half or full duplex
-mode.
+Hi, Biju,
 
-Switching to the half-duplex mode requires the user to enable em485 on
-uart5 using ioctl, DE/RE are both connected to GPIO0_B5 which is the
-RTS signal for uart0. Implement GPIO0_B5 as rts-gpios with RTS_ON_SEND
-option enabled (default) so that driver mode gets enabled while sending
-(RTS high) and receiver mode gets enabled while not sending (RTS low).
+On 08.02.2024 16:30, Biju Das wrote:
+> Hi Claudiu,
+> 
+> Thanks for the patch.
+> 
+>> -----Original Message-----
+>> From: Claudiu <claudiu.beznea@tuxon.dev>
+>> Sent: Thursday, February 8, 2024 12:43 PM
+>> Subject: [PATCH 01/17] dt-bindings: clock: r9a07g043-cpg: Add power domain
+>> IDs
+>>
+>> From: Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>
+>>
+>> Add power domain IDs for RZ/G2UL (R9A07G043) SoC.
+>>
+>> Signed-off-by: Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>
+>> ---
+>>  include/dt-bindings/clock/r9a07g043-cpg.h | 48 +++++++++++++++++++++++
+>>  1 file changed, 48 insertions(+)
+>>
+>> diff --git a/include/dt-bindings/clock/r9a07g043-cpg.h b/include/dt-
+>> bindings/clock/r9a07g043-cpg.h
+>> index 77cde8effdc7..eabfeec7ac37 100644
+>> --- a/include/dt-bindings/clock/r9a07g043-cpg.h
+>> +++ b/include/dt-bindings/clock/r9a07g043-cpg.h
+>> @@ -200,5 +200,53 @@
+>>  #define R9A07G043_AX45MP_CORE0_RESETN	78	/* RZ/Five Only */
+>>  #define R9A07G043_IAX45_RESETN		79	/* RZ/Five Only */
+>>
+>> +/* Power domain IDs. */
+>> +#define R9A07G043_PD_ALWAYS_ON		0
+>> +#define R9A07G043_PD_GIC		1
+>> +#define R9A07G043_PD_IA55		2
+>> +#define R9A07G043_PD_MHU		3
+>> +#define R9A07G043_PD_CORESIGHT		4
+>> +#define R9A07G043_PD_SYC		5
+>> +#define R9A07G043_PD_DMAC		6
+>> +#define R9A07G043_PD_GTM0		7
+>> +#define R9A07G043_PD_GTM1		8
+>> +#define R9A07G043_PD_GTM2		9
+>> +#define R9A07G043_PD_MTU		10
+>> +#define R9A07G043_PD_POE3		11
+>> +#define R9A07G043_PD_WDT0		12
+>> +#define R9A07G043_PD_SPI		13
+>> +#define R9A07G043_PD_SDHI0		14
+>> +#define R9A07G043_PD_SDHI1		15
+>> +#define R9A07G043_PD_ISU		16
+>> +#define R9A07G043_PD_CRU		17
+>> +#define R9A07G043_PD_LCDC		18
+>> +#define R9A07G043_PD_SSI0		19
+>> +#define R9A07G043_PD_SSI1		20
+>> +#define R9A07G043_PD_SSI2		21
+>> +#define R9A07G043_PD_SSI3		22
+>> +#define R9A07G043_PD_SRC		23
+>> +#define R9A07G043_PD_USB0		24
+>> +#define R9A07G043_PD_USB1		25
+>> +#define R9A07G043_PD_USB_PHY		26
+>> +#define R9A07G043_PD_ETHER0		27
+>> +#define R9A07G043_PD_ETHER1		28
+>> +#define R9A07G043_PD_I2C0		29
+>> +#define R9A07G043_PD_I2C1		30
+>> +#define R9A07G043_PD_I2C2		31
+>> +#define R9A07G043_PD_I2C3		32
+>> +#define R9A07G043_PD_SCIF0		33
+>> +#define R9A07G043_PD_SCIF1		34
+>> +#define R9A07G043_PD_SCIF2		35
+>> +#define R9A07G043_PD_SCIF3		36
+>> +#define R9A07G043_PD_SCIF4		37
+>> +#define R9A07G043_PD_SCI0		38
+>> +#define R9A07G043_PD_SCI1		39
+>> +#define R9A07G043_PD_IRDA		40
+>> +#define R9A07G043_PD_RSPI0		41
+>> +#define R9A07G043_PD_RSPI1		42
+>> +#define R9A07G043_PD_RSPI2		43
+>> +#define R9A07G043_PD_CANFD		44
+>> +#define R9A07G043_PD_ADC		45
+>> +#define R9A07G043_PD_TSU		46
+> 
+> Not sure from "Table 42.3 Registers for Module Standby Mode"
+> 
+> Power domain ID has to be based on CPG_BUS_***_MSTOP or CPG_CLKON_***
+> As former reduces number of IDs??
 
-In full-duplex mode (em485 is disabled), DE is connected to GPIO0_B5 and
-RE is grounded (enabled). Since GPIO0_B5 is implemented as rts-gpios, the
-driver mode gets enabled whenever we want to send something and RE is not
-affected (always enabled) in this case by the state of RTS.
+If I understand correctly your point here, you want me to describe PM
+domain in DT with something like:
 
-Signed-off-by: Farouk Bouabid <farouk.bouabid@theobroma-systems.com>
----
- arch/arm64/boot/dts/rockchip/px30-ringneck-haikou.dts | 1 +
- 1 file changed, 1 insertion(+)
+power-domains = <&cpg CPG_BUS_X_MSTOP>;
 
-diff --git a/arch/arm64/boot/dts/rockchip/px30-ringneck-haikou.dts b/arch/arm64/boot/dts/rockchip/px30-ringneck-haikou.dts
-index 16798eb77077..ae398acdcf45 100644
---- a/arch/arm64/boot/dts/rockchip/px30-ringneck-haikou.dts
-+++ b/arch/arm64/boot/dts/rockchip/px30-ringneck-haikou.dts
-@@ -227,6 +227,7 @@ &uart0 {
- 
- &uart5 {
- 	pinctrl-0 = <&uart5_xfer>;
-+	rts-gpios = <&gpio0 RK_PB5 GPIO_ACTIVE_HIGH>;
- 	status = "okay";
- };
- 
+where X={ACPU, PERI_CPU, PERI_CPU2, REG0, REG1} ?
 
--- 
-2.34.1
+With this, I still see the necessity of a 3rd identifier that will be IP
+specific to be able to uniquely match b/w DT description and registered
+power domain. FMPOV, this will lead to a more complicated implementation.
 
+We need a unique ID that the pm domain xlate will use to xlate the DT
+binding to driver data structures.
+
+Thank you,
+Claudiu Beznea
+> 
+> Cheers,
+> Biju
+> 
+>  
+> 
 
