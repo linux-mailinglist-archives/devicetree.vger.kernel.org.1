@@ -1,104 +1,94 @@
-Return-Path: <devicetree+bounces-39815-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-39818-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id BAB4F84E29D
-	for <lists+devicetree@lfdr.de>; Thu,  8 Feb 2024 14:57:17 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9A05A84E2AC
+	for <lists+devicetree@lfdr.de>; Thu,  8 Feb 2024 14:59:00 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id EE0E91C270B1
-	for <lists+devicetree@lfdr.de>; Thu,  8 Feb 2024 13:57:16 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 54DAA28DE94
+	for <lists+devicetree@lfdr.de>; Thu,  8 Feb 2024 13:58:59 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id EC87679954;
-	Thu,  8 Feb 2024 13:56:48 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 51EE5768E1;
+	Thu,  8 Feb 2024 13:58:54 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b="lRfpav/j"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="KeB/kC8e"
 X-Original-To: devicetree@vger.kernel.org
-Received: from vps0.lunn.ch (vps0.lunn.ch [156.67.10.101])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 75DBD1E485;
-	Thu,  8 Feb 2024 13:56:46 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=156.67.10.101
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2676076417;
+	Thu,  8 Feb 2024 13:58:53 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1707400608; cv=none; b=Us9ZvfUXtTMzjJHL4K0MM/ZLJbPa0ZhHKkfFGo0QwiBUWO+Wgv/Czo5F37RZIFU/hAPYiSMi9rJ6nlKrq9NwrmXejAjnnu+iTFsmaDHSBQjQgOe/nFffY96MxrlPK4DIa3p/18LhDnRhhFz3/d0unm+7JMzezxlbhOm7+xv+moU=
+	t=1707400734; cv=none; b=gzEbOFlyNkpnKvqiZ+6flX5pJmaoC/emODy1s5/LfpCjTE4ZNrPKlrS5tyF2myVwX1TIwE22ycv4N1+MhrinFsj6c7gPWqDeXKi9jJc9TcUwQHUlZIuw4zlq4bxoi3S2K7zhEof3lsNEQLOLjYslwg5h0zKqteQQiUi3sqzVXwc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1707400608; c=relaxed/simple;
-	bh=FuVF+eJ+3ABnfmzK4oUj76/6C587TcB1yKwdLXQapuU=;
+	s=arc-20240116; t=1707400734; c=relaxed/simple;
+	bh=ll0dar8cNCeW9SvNKADTETzN3jimsD0cr4E8aRV6sng=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=i6HDQRRyRdmX+msf0TVLrKgQxO+3MRWfElsqN3jiducaj7Eu85n8Rk1DBfCh9dqKzrujRjIUbvKvez8hhrWw4G+MR6eF4wQsgvkUPZZvoOenZPvd/S+T7tyYk3MqFyLUBN0jlh1P22KKOYn74F8qhLhcOHTkQW4SbQtSL/CaDt0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch; spf=pass smtp.mailfrom=lunn.ch; dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b=lRfpav/j; arc=none smtp.client-ip=156.67.10.101
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=lunn.ch
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
-	s=20171124; h=In-Reply-To:Content-Disposition:Content-Type:MIME-Version:
-	References:Message-ID:Subject:Cc:To:From:Date:From:Sender:Reply-To:Subject:
-	Date:Message-ID:To:Cc:MIME-Version:Content-Type:Content-Transfer-Encoding:
-	Content-ID:Content-Description:Content-Disposition:In-Reply-To:References;
-	bh=Dej5H/0l4N8S9JwfsbANmrzhys6YFfTllssE9ozh6P8=; b=lRfpav/jSMFg7FFOHIB3QgRiKg
-	atqKDwftQSwxyTcLW5pAccjMVhyraxElasRoopDU0yh6CnPTJq14ROx4k/LBhCQbsTn4FkqoEfGQf
-	00huKYVp70PB4+jj8/qs2qNQoOu/TCmiqdDz2ZOpycZydLwL653u+ZTjx4YNCrJ6fHbc=;
-Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
-	(envelope-from <andrew@lunn.ch>)
-	id 1rY4tF-007JSy-Kl; Thu, 08 Feb 2024 14:56:33 +0100
-Date: Thu, 8 Feb 2024 14:56:33 +0100
-From: Andrew Lunn <andrew@lunn.ch>
-To: POPESCU Catalin <catalin.popescu@leica-geosystems.com>
-Cc: "davem@davemloft.net" <davem@davemloft.net>,
-	"kuba@kernel.org" <kuba@kernel.org>,
-	"pabeni@redhat.com" <pabeni@redhat.com>,
-	"robh+dt@kernel.org" <robh+dt@kernel.org>,
-	"krzysztof.kozlowski+dt@linaro.org" <krzysztof.kozlowski+dt@linaro.org>,
-	"conor+dt@kernel.org" <conor+dt@kernel.org>,
-	"afd@ti.com" <afd@ti.com>,
-	"hkallweit1@gmail.com" <hkallweit1@gmail.com>,
-	"linux@armlinux.org.uk" <linux@armlinux.org.uk>,
-	"netdev@vger.kernel.org" <netdev@vger.kernel.org>,
-	"devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-	"linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-	GEO-CHHER-bsp-development <bsp-development.geo@leica-geosystems.com>,
-	"m.felsch@pengutronix.de" <m.felsch@pengutronix.de>
-Subject: Re: [PATCH v2 2/2] net: phy: dp83826: support TX data voltage tuning
-Message-ID: <145e1c28-af2b-4aca-9fd3-f9d7a272516c@lunn.ch>
-References: <20240207175845.764775-1-catalin.popescu@leica-geosystems.com>
- <20240207175845.764775-2-catalin.popescu@leica-geosystems.com>
- <4dc382bd-3477-45cb-8044-fc5c2c7251f4@lunn.ch>
- <f37e9df4-e1bd-4d40-bd99-3998cfd803f4@leica-geosystems.com>
+	 Content-Type:Content-Disposition:In-Reply-To; b=eXkmqwAlRtLhIyaCL+qb471zK7QZoobCM+pBWZDqISTTTrd7dmr5WYMxNAT1X4a821sEWu/aUXRMrBXlup6wsnU6OUQK8wPhmgsmhPzF9wwcdqswI4fFofU3m0hPBCrTOFDdc2i2f2Ke7dzyyncAba5bOnIx+1TW3XVGvYEpW14=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=KeB/kC8e; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id B9CD6C433F1;
+	Thu,  8 Feb 2024 13:58:50 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1707400733;
+	bh=ll0dar8cNCeW9SvNKADTETzN3jimsD0cr4E8aRV6sng=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=KeB/kC8eS9lFq7WL1GePLNR2AttRt0VbcbJGS2fImIqe2w8JqS7qeqX63KbzsHwsb
+	 Kuv0mqym8BhobYBLPF2f0UZ1Y8Olje9owlwwa4QnLMxdZzVYymsg1VqdvObnndz/cH
+	 U5rTOdtos9LtcuPa+kj173umTLsTL5Cj6iO7O/dyB+ygNtIoDkVYInR/i+cDH3KZZv
+	 +a25L/rc4aBUTCleEpmSg+D0EkALXmksk7Oy1zfWy0xViR7ebcoAdAKtWSLhiyGMxv
+	 ORR5lTzb5JugyH/P709EE6OjJ4WwXvVFSMk9p3hSJRDnk32Bf1hfjGyFu+g3bL3Q4S
+	 t6Pg/RXHwkY0g==
+Date: Thu, 8 Feb 2024 13:58:47 +0000
+From: Lee Jones <lee@kernel.org>
+To: Dmitry Rokosov <ddrokosov@salutedevices.com>
+Cc: Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+	Pavel Machek <pavel@ucw.cz>,
+	Martin Kurbanov <mmkurbanov@salutedevices.com>,
+	Jacek Anaszewski <jacek.anaszewski@gmail.com>,
+	Rob Herring <robh+dt@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Jonathan Corbet <corbet@lwn.net>,
+	Andy Shevchenko <andy.shevchenko@gmail.com>,
+	linux-kernel@vger.kernel.org, linux-leds@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-doc@vger.kernel.org,
+	kernel@salutedevices.com
+Subject: Re: [PATCH v1 1/2] leds: aw200xx: support for hw pattern controllers
+Message-ID: <20240208135847.GP689448@google.com>
+References: <20231207125938.175119-1-mmkurbanov@salutedevices.com>
+ <20231207125938.175119-2-mmkurbanov@salutedevices.com>
+ <20231221161011.GO10102@google.com>
+ <85c89859-ae03-4692-9c09-5779e4c40eae@salutedevices.com>
+ <20240125130049.GF74950@google.com>
+ <20240126122310.hrs37vybo2wnxto3@CAB-WSD-L081021>
+ <2024012643-safeness-stipulate-153f@gregkh>
+ <20240129141339.vvqi5z7ta7jkhvxy@CAB-WSD-L081021>
+ <20240205105717.bmppb3xalmmqapqg@CAB-WSD-L081021>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <f37e9df4-e1bd-4d40-bd99-3998cfd803f4@leica-geosystems.com>
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20240205105717.bmppb3xalmmqapqg@CAB-WSD-L081021>
 
-> > I could be reading this wrong, but it looks like
-> > DP83826_CFG_DAC_MINUS_DEFAULT actually means leave the value
-> > unchanged? Is there anything guaranteeing it does in fact have the
-> > default value in the hardware?
-> >
-> >          Andrew
+On Mon, 05 Feb 2024, Dmitry Rokosov wrote:
+
+> Hello Greg, Lee and Pavel,
 > 
-> Yes, the datasheet clearly states the default/reset values of both 
-> registers VOD_CFG1 & VOD_CFG2 which are :
-> - cfg_dac_minus : 30h
-> - cfg_dac_plus : 10h
+> Apologies for the ping, but I would appreciate it if you could spare a
+> couple of minutes to decide on the next steps. From my perspective, the
+> problems I previously described persist, and we need to discuss the
+> possible solutions.
 
-And the device is actually and always reset by Linux when the driver
-loads? Anything the bootloader has done, or a previous kernel, will be
-cleared?
+I thought you were going to use hw_pattern?
 
-Please add this explanation to the commit message.
-
-I'm being pedantic because we have had problems like this in the past.
-If a register was not actually set back to the default value, the
-bootloader set it to some other value, the board can work fine. Then a
-board can came along which the bootloader set the wrong value, and the
-default is actually needed. Fixing the driver to actually enforce the
-default breaks boards...
-
-	 Andrew
+-- 
+Lee Jones [李琼斯]
 
