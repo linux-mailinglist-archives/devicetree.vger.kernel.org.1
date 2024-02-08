@@ -1,62 +1,62 @@
-Return-Path: <devicetree+bounces-39656-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-39657-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id C731E84DE39
-	for <lists+devicetree@lfdr.de>; Thu,  8 Feb 2024 11:25:57 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8CE5984DE43
+	for <lists+devicetree@lfdr.de>; Thu,  8 Feb 2024 11:27:43 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 7BC2428C473
-	for <lists+devicetree@lfdr.de>; Thu,  8 Feb 2024 10:25:56 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id BF5B01C27855
+	for <lists+devicetree@lfdr.de>; Thu,  8 Feb 2024 10:27:42 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2AFFF6EB76;
-	Thu,  8 Feb 2024 10:24:40 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 506E56DD07;
+	Thu,  8 Feb 2024 10:27:21 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="YiC7pCmZ"
+	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="phHA2Y6g"
 X-Original-To: devicetree@vger.kernel.org
-Received: from lelv0143.ext.ti.com (lelv0143.ext.ti.com [198.47.23.248])
+Received: from lelv0142.ext.ti.com (lelv0142.ext.ti.com [198.47.23.249])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 78C9C6E2BF;
-	Thu,  8 Feb 2024 10:24:38 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.23.248
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8B3EC6BB55;
+	Thu,  8 Feb 2024 10:27:19 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.23.249
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1707387880; cv=none; b=qnTXEqW1fLHRsQdGnezcXbSEN912T6G59Z8yKci4rui7cQSdZLNwr7q44G69upwJJJw1ba84XnZgBO0AY3OVyVOj1SWCI+U3uWU6A1t50Vxu/vNWVrIFTn53+54nPxDlJMhxz4AM8GpUYtAcM3Yg+iKSxgvPgD4uLlEt4XmHrXA=
+	t=1707388041; cv=none; b=fBaI0WoI604cEem4KagYdi7aQ9R4QavpzuKDNpCNlsn7gLY1wUI+ZBTsI0PsoRmDT2G8DWbmhouocK8g9OO6F4V//vv0wTfv8i9dt/YjdffuUvjBtNGIOFzzrt5SmyP2KgYBJrNDfhv664xlcleY5BRIgtsik7W/IOP4NB6IfmQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1707387880; c=relaxed/simple;
-	bh=RglOcQHHFGgO3tM4CqA2dKXfZFuePHgLMJpyeTo8QwA=;
+	s=arc-20240116; t=1707388041; c=relaxed/simple;
+	bh=UbKP7F7NjGfACf2LwEa8Nj2a6MMVW/aeWp0+BtVb7Ng=;
 	h=Date:From:To:CC:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=Xer3SgFf9+bKZWtdC7Hp76qqlcgDIYSr4wlLhvIfgaGvm8fTRhfdO0wOp/SFmc23sTAB/09VmujtTVSUl69FckHmuYPMkPLktLv4+rd+Eiz9h7ofPO8Gd2LzKvrTrq7/easzmzC+Tze/8nea3eOeqjyTnypqd/8PKSSGfbiowIk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=YiC7pCmZ; arc=none smtp.client-ip=198.47.23.248
+	 Content-Type:Content-Disposition:In-Reply-To; b=o4Q1Z7hcToLJTFl5WtHbT9RAWtrtIRRUfA+NzqsdvgrIy67JGPc7VLZjtd15fJOxXougqcijlozT5TTUFMrdgmhjfjQaT+5BorFyb7Fhpc0ddVh7OFBH+6sdQHVNoKufbmreyj4xI62C0QSHUDAfzGajwXK/xVXODj7SC9uqYvI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=phHA2Y6g; arc=none smtp.client-ip=198.47.23.249
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
-Received: from fllv0034.itg.ti.com ([10.64.40.246])
-	by lelv0143.ext.ti.com (8.15.2/8.15.2) with ESMTP id 418AOUGS041577;
-	Thu, 8 Feb 2024 04:24:30 -0600
+Received: from lelv0266.itg.ti.com ([10.180.67.225])
+	by lelv0142.ext.ti.com (8.15.2/8.15.2) with ESMTP id 418AR9uZ002823;
+	Thu, 8 Feb 2024 04:27:09 -0600
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1707387870;
-	bh=F6BFCG0r1SRdQiNbxOlHWnk62HHr+PcFy9G1i9f2DnA=;
+	s=ti-com-17Q1; t=1707388030;
+	bh=MStN4qUCDtdpGV9D2YTDQ1a6a4nQ4xeUvwKSSwIWCFA=;
 	h=Date:From:To:CC:Subject:References:In-Reply-To;
-	b=YiC7pCmZ6rhr0TThPlo3zH8bVpNgGy2TPwOcc3OhBKg+s2EFJEGWELv006q/x+efa
-	 FHItX8PjvrVAb3kr7H4QJlshk8guvSmxFboCB9YApD8jAW9Te90VUHeTxEBOqlNeap
-	 fjCclN3ikQrKvwmHdhrDm5UI4Lzxjw1rWhAseuw8=
-Received: from DLEE107.ent.ti.com (dlee107.ent.ti.com [157.170.170.37])
-	by fllv0034.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 418AOU4W008903
+	b=phHA2Y6gUjjxcBGuU6HnmC3MOFkH4ZI3f8UwZUpfDPErLGSwVsLW+YicAg7XyDr9p
+	 RDJel418PFJ2wSzDA8hr5+/d41YzZ8nP5oc0qY505AKkV2WOnEFU5ojrRHMIO3eiG6
+	 mvdgsV9PL6J+hYFKAR3tV54/qVdiFlH1hGfZuTUU=
+Received: from DFLE104.ent.ti.com (dfle104.ent.ti.com [10.64.6.25])
+	by lelv0266.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 418AR9IB016938
 	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-	Thu, 8 Feb 2024 04:24:30 -0600
-Received: from DLEE100.ent.ti.com (157.170.170.30) by DLEE107.ent.ti.com
- (157.170.170.37) with Microsoft SMTP Server (version=TLS1_2,
+	Thu, 8 Feb 2024 04:27:09 -0600
+Received: from DFLE108.ent.ti.com (10.64.6.29) by DFLE104.ent.ti.com
+ (10.64.6.25) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Thu, 8
- Feb 2024 04:24:30 -0600
-Received: from lelvsmtp6.itg.ti.com (10.180.75.249) by DLEE100.ent.ti.com
- (157.170.170.30) with Microsoft SMTP Server (version=TLS1_2,
+ Feb 2024 04:27:09 -0600
+Received: from lelvsmtp5.itg.ti.com (10.180.75.250) by DFLE108.ent.ti.com
+ (10.64.6.29) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
- Frontend Transport; Thu, 8 Feb 2024 04:24:30 -0600
+ Frontend Transport; Thu, 8 Feb 2024 04:27:09 -0600
 Received: from localhost (jluthra.dhcp.ti.com [172.24.227.217])
-	by lelvsmtp6.itg.ti.com (8.15.2/8.15.2) with ESMTP id 418AOTg2041311;
-	Thu, 8 Feb 2024 04:24:30 -0600
-Date: Thu, 8 Feb 2024 15:54:29 +0530
+	by lelvsmtp5.itg.ti.com (8.15.2/8.15.2) with ESMTP id 418AR8Vw117907;
+	Thu, 8 Feb 2024 04:27:09 -0600
+Date: Thu, 8 Feb 2024 15:57:08 +0530
 From: Jai Luthra <j-luthra@ti.com>
 To: Vaishnav Achath <vaishnav.a@ti.com>
 CC: <vigneshr@ti.com>, <nm@ti.com>, <conor+dt@kernel.org>, <kristo@kernel.org>,
@@ -64,11 +64,11 @@ CC: <vigneshr@ti.com>, <nm@ti.com>, <conor+dt@kernel.org>, <kristo@kernel.org>,
         <devicetree@vger.kernel.org>, <j-choudhary@ti.com>,
         <kernel@pengutronix.de>, <linux-arm-kernel@lists.infradead.org>,
         <linux-kernel@vger.kernel.org>, <u-kumar1@ti.com>, <afd@ti.com>
-Subject: Re: [PATCH v2 3/9] arm64: dts: ti: k3-am68-sk-base-board: Enable
- camera peripherals
-Message-ID: <apb7w6l5rgsd4ghzr4jvmlwujuw7ksmuxzgurq5zyoglydlvux@fznvmwzzyfxs>
+Subject: Re: [PATCH v2 4/9] arm64: dts: ti: k3-am69-sk: Enable camera
+ peripherals
+Message-ID: <wbvrqqpf7hhpgwgtsjkoblja4gxr22mgt7ehwoy7qokeds4wna@rljhzoapwevw>
 References: <20240208084254.295289-1-vaishnav.a@ti.com>
- <20240208084254.295289-4-vaishnav.a@ti.com>
+ <20240208084254.295289-5-vaishnav.a@ti.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -76,21 +76,25 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: multipart/signed; micalg=pgp-sha256;
-	protocol="application/pgp-signature"; boundary="srk43ge6bs43mqkn"
+	protocol="application/pgp-signature"; boundary="564tziksoh4uhygc"
 Content-Disposition: inline
-In-Reply-To: <20240208084254.295289-4-vaishnav.a@ti.com>
+In-Reply-To: <20240208084254.295289-5-vaishnav.a@ti.com>
 X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 
---srk43ge6bs43mqkn
+--564tziksoh4uhygc
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
 Content-Transfer-Encoding: quoted-printable
 
-On Feb 08, 2024 at 14:12:48 +0530, Vaishnav Achath wrote:
-> CSI cameras are controlled using I2C. On AM68 Starter Kit, this is routed
-> to I2C-1, so enable the instance and the TCA9543 I2C switch on the bus.
+On Feb 08, 2024 at 14:12:49 +0530, Vaishnav Achath wrote:
+> CSI cameras are controlled using I2C. On AM69 Starter Kit, this is routed
+> to I2C-1, so enable the instance, TCA9543 I2C switch and the TCA6408
+> GPIO expander on the bus. AM69 SK has the CSI2RX routed to a MIPI CSI
+> connector and to 22-pin RPi camera connector through an analog mux with
+> GPIO control, model that so that an overlay can control the mux state
+> according to connected cameras.
 >=20
-> AM68 SK schematics: https://www.ti.com/lit/zip/sprr463
+> AM69 SK schematics: https://www.ti.com/lit/zip/sprr466
 >=20
 > Signed-off-by: Vaishnav Achath <vaishnav.a@ti.com>
 
@@ -100,8 +104,8 @@ Reviewed-by: Jai Luthra <j-luthra@ti.com>
 >=20
 > V1->V2: Update commit message with schematics.
 >=20
->  .../boot/dts/ti/k3-am68-sk-base-board.dts     | 50 +++++++++++++++++++
->  1 file changed, 50 insertions(+)
+>  arch/arm64/boot/dts/ti/k3-am69-sk.dts | 51 +++++++++++++++++++++++++++
+>  1 file changed, 51 insertions(+)
 >=20
 > [...]=20
 
@@ -111,25 +115,25 @@ Jai
 
 GPG Fingerprint: 4DE0 D818 E5D5 75E8 D45A AFC5 43DE 91F9 249A 7145
 
---srk43ge6bs43mqkn
+--564tziksoh4uhygc
 Content-Type: application/pgp-signature; name="signature.asc"
 
 -----BEGIN PGP SIGNATURE-----
 
-iQIzBAABCAAdFiEETeDYGOXVdejUWq/FQ96R+SSacUUFAmXEq9wACgkQQ96R+SSa
-cUXo/w//Q6VvB1DU87nwQmKj6xumnIOnxvsIBAQoBDyyoDXAukKTh9QAR+d+uFtp
-E3qR4QRB5B6WaHIZ7ftkV9gbF549WcUXFZ1edjevT3tfSIbx87Ziars3fpyzi8+E
-L20QZ9vF6dQZZmMJkM/UNNb3AN37d6/jUEaPU9gFrVayXTVouGzNrMtFJ1QZUYm0
-6G9StF+a162wiwilRKRLY3NEa+Xhf6Rx0ab4uo/MDyX7CyptaWmAAPD1uwzclZeC
-rBWXM5QbaqeJJEr3VhG3XUAfT51EjLDfKIjo1zvO6OdniCxVTa9O2Ape1KltcsI5
-zwxVv2aTV2lLKDxsy3ver4fqEIVrihy2QZwFtcVUqw03qR65Ovho/biitxWKK1I1
-bKIFyRYdNySsNYxZMe96v92JODCaSuoxNM21dL7CrzuB45cuHGW/Rm7lw7vjV1y3
-sZ4Uwtzsx2+eIFLeUXg6OECdyEMNDayBCZ51YkGjakV+HDoEmQqB5BFL1i1OF4pR
-o7BwO7EFnDvBODSwGCxGowi/KFYCnobf3zXBU5Vzh2XIah4ACuZ4tUF1rlOis/PV
-PB2dw/AqWra8ieUID3aNJVoyTwD2OswYylHdgmibbsiLNfL5MhZXpCSiuxsCcsbT
-raGRTiRyoAaJ8zrQHbQ9yGxC1h/1Y/gOdZdZgoR/cSjtAGWpExQ=
-=97JO
+iQIzBAABCAAdFiEETeDYGOXVdejUWq/FQ96R+SSacUUFAmXErHsACgkQQ96R+SSa
+cUVrDxAAh8jOhepvlGZEIjNpyWQr6FDiT7E7IwPuJNMpOo4++cv6ViDI8J/92WxH
+oTCPKlTP2LSflP7XqCddoaxubtjflOZiaHEpUAuiLI8LECv7rDDfITERS77yFhlw
+SCP8jFwfzGO7rGj7Z28ZnYUzMA1PN29hOtYnqupB6V4k+yWpnDopVI3uR2Bl8HaR
++0NkQW7sX/8K0DqMBx76HIGaBscnxCbZVjTtV6f8IWnjAK1h3Z1YHHuVQqebJFCC
+z80g1PdM5v4cREd1RhE+Or2BRHt4bMgmToIKJA2tafcDwWaVeRyOGGHbZ663754v
+F9RuhudYIGzWEmFh1H/kwZsheGZwPyiCHiTEUmRAOPNpwsEg6hQB6soGuqWNMg5L
+lrVPV7IYqKAwKmwXweo+Z6M178w4ISGvMrg5PvRx6XCJYmZGr/4g4EPy+OeS8VX4
+UDruiITZaxGiBsi+1Xz1fYBm/N+6R1z7hOQoyu58pcJenxYfOPvq5Xw8OPYDLx8P
+aDgHJRKPYLgfryFwyZ4rN9DSuPyIcE2UDnHLx1sRtmesumZQbyYPVlyMoX/Spe+1
+sys1Fx55arY8h839x2e6WxbspQVLzUVOe/2Z+Z8OyJExU0f1svLdOUnGr18HHfyB
+GZQ8DggNqqD5/5ISHAZlWfV+oxLkBbr/5c0PznfoS/rlVlJgUe4=
+=4cBx
 -----END PGP SIGNATURE-----
 
---srk43ge6bs43mqkn--
+--564tziksoh4uhygc--
 
