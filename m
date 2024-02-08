@@ -1,148 +1,230 @@
-Return-Path: <devicetree+bounces-39651-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-39653-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 69BF084DE26
-	for <lists+devicetree@lfdr.de>; Thu,  8 Feb 2024 11:24:03 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 573A384DE30
+	for <lists+devicetree@lfdr.de>; Thu,  8 Feb 2024 11:24:59 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 9C3C91C21D55
-	for <lists+devicetree@lfdr.de>; Thu,  8 Feb 2024 10:24:02 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id F41EE282F55
+	for <lists+devicetree@lfdr.de>; Thu,  8 Feb 2024 10:24:57 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6DC086F07C;
-	Thu,  8 Feb 2024 10:22:26 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9425C6E2AE;
+	Thu,  8 Feb 2024 10:23:21 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="ZRdGbNty"
+	dkim=pass (2048-bit key) header.d=atomide.com header.i=@atomide.com header.b="uIs3cud2"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+Received: from mail5.25mail.st (mail5.25mail.st [74.50.62.9])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B3C5A6D1C9;
-	Thu,  8 Feb 2024 10:22:24 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6E5396D1B1;
+	Thu,  8 Feb 2024 10:23:19 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=74.50.62.9
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1707387746; cv=none; b=uot6KCxYnIYSTP+orl7GQlDmRcCOCm7BM7b9La/bTnQftEa3WIXaPf36Zu5IcPAInMdpEUqdL9fkcm1pickcCzSFgq7tgJjlOmdhw4UuHBGLB8H9QPKRihu/EFKyiXXWUlwMCKNgVMALgHctzmJTr7NZwgna2u3CTF9mvlqWMug=
+	t=1707387801; cv=none; b=UDH1pgd98eYDnvMmNbv7iXtJi6Hfg4z19AojMWS2Nx97PLToQbjzJOKxBXdGQ1erm4q5iESxP/XnytAVRnRm/J/2+6WdZKvzhLRZhVeM2K9inpKBkF8xVmREcx1Rw9ZaciQSqsJPQncNdqbd/cn1o+4GpL5fVldWsULeURORKwQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1707387746; c=relaxed/simple;
-	bh=PfLUmuXo0GEDMmnRiXHPOLXCNaYZZAjXgb0dXfGF/lw=;
-	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
-	 In-Reply-To:Content-Type; b=LFacqUiDHY0N+QNBZF7cDt0olIcHz293+Dved++vpjcohhiqziBm+FGA0W4eCGS62J/JET2Z03yO7thiq5IDVYuGrFY5OMrIrVNw0WSN/yDqrfGUgUwCa3yUrS55V/MQn5r6UNTzWeop+gJf8+3myNstUjSqqykbaJePs1qfU/A=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=ZRdGbNty; arc=none smtp.client-ip=205.220.168.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
-Received: from pps.filterd (m0279865.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.17.1.24/8.17.1.24) with ESMTP id 4187oU5T002432;
-	Thu, 8 Feb 2024 10:22:17 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
-	message-id:date:mime-version:subject:to:cc:references:from
-	:in-reply-to:content-type:content-transfer-encoding; s=
-	qcppdkim1; bh=6j2DPWy54VnId1kVZnydmlSBxga3Rz9SWby7Pw3pcyE=; b=ZR
-	dGbNtyL8E2INdw8l18s34Kksahdy7oS+8NjgnbKXow+VSUyEHuQ8El46vydUaOmI
-	vODtjJYNU4vZTxSj6zlHrXA4hxYi7QaI0toa0nSSUgolgkA1Zi+1NBqg1LKUIOZe
-	uDTeZnkQdAyq6RILWx36VJDplWQB/un84ygFM8qFRuasT/5Hrx3MbqnNhY/CuweK
-	CHkE/2DTXJ7wo6EVJBmlmB6yAhMLpnzeEsM2LUBUEdCtY98fXhBpa3NQ5aEPf01x
-	yupxspvQSb2rSWLgkoNGoPlTFgZ9Au4IaUn2zY815mwuV0LNI/8/MhvcYX03ZXJ7
-	WybWEjRcX+TnNswYPZXA==
-Received: from nalasppmta05.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3w4stxgkcp-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Thu, 08 Feb 2024 10:22:17 +0000 (GMT)
-Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
-	by NALASPPMTA05.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 418AMGMM017355
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Thu, 8 Feb 2024 10:22:16 GMT
-Received: from [10.131.33.37] (10.80.80.8) by nalasex01a.na.qualcomm.com
- (10.47.209.196) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1118.40; Thu, 8 Feb
- 2024 02:22:11 -0800
-Message-ID: <1f0c2767-c489-58a6-e5ba-9f1974072bb7@quicinc.com>
-Date: Thu, 8 Feb 2024 15:52:07 +0530
+	s=arc-20240116; t=1707387801; c=relaxed/simple;
+	bh=rdTUwc8x+VP4Z80u7knDZnICtRjt28f4v9RiwMWuWNE=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=Bb0Gdwz3/v2/BrsdXUDA7wvp+eyg68RME3LxuNfFc32cSrZWjJJ+HxmEvgPmtaiODOGJbdE10A56LsMRY14KmIv8D0Ax5thZh+h9ULd17xXYckeuaB2IAy3fvyRufapaf5g0cLl6szupDLVqvuO7omLEd9LXNHpaMDcO4fuIw9M=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=atomide.com; spf=fail smtp.mailfrom=atomide.com; dkim=pass (2048-bit key) header.d=atomide.com header.i=@atomide.com header.b=uIs3cud2; arc=none smtp.client-ip=74.50.62.9
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=atomide.com
+Authentication-Results: smtp.subspace.kernel.org; spf=fail smtp.mailfrom=atomide.com
+Received: from localhost (91-158-86-216.elisa-laajakaista.fi [91.158.86.216])
+	by mail5.25mail.st (Postfix) with ESMTPSA id 277F260A49;
+	Thu,  8 Feb 2024 10:22:54 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple; d=atomide.com;
+	s=25mailst; t=1707387798;
+	bh=rdTUwc8x+VP4Z80u7knDZnICtRjt28f4v9RiwMWuWNE=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=uIs3cud2W+1a+liFnivGr1DZTxgNDfsoAFHv75Q+ClJErKFdZL69vvVTVIcLDmRyT
+	 X0uCOotD6bHkHC1LnexQQl0LYVQegSn09St1jFJ+nWiH+QK18Cw3mmfuAVh3NtECNa
+	 1N3J4NsfH5CTjzfFpGbU7oQyb4TB1lRaIpj0JmJA8ttSdDMwguOw7ccWXQCHoQ5tRz
+	 w+wgBN5UgGMq8V6WgrnJ4Z8hzw+DiZb0GeMmje+O6NRiCenl9dmAb/xkFA83cL9C9m
+	 e4LOLSagkDSGjFDbP1NRYvkTHLvD8DcU8f0tCmpoJ5Y6tXcUXHy2s89zb/te+sNp+a
+	 4Hl6raPkSR9rQ==
+Date: Thu, 8 Feb 2024 12:22:52 +0200
+From: Tony Lindgren <tony@atomide.com>
+To: Rob Herring <robh@kernel.org>
+Cc: Andreas Kemnade <andreas@kemnade.info>, mturquette@baylibre.com,
+	sboyd@kernel.org, krzysztof.kozlowski+dt@linaro.org,
+	conor+dt@kernel.org, kristo@kernel.org, linux-clk@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	linux-omap@vger.kernel.org
+Subject: Re: [PATCH] dt-bindings: clock: ti: Convert interface.txt to
+ json-schema
+Message-ID: <20240208102252.GB52537@atomide.com>
+References: <20231127202359.145778-1-andreas@kemnade.info>
+ <20231128171647.GA3343123-robh@kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.11.0
-Subject: Re: [RFC 1/7] dt-bindings: mailbox: qcom: Add CPUCP mailbox
- controller bindings
-To: Konrad Dybcio <konrad.dybcio@linaro.org>, <sudeep.holla@arm.com>,
-        <cristian.marussi@arm.com>, <andersson@kernel.org>,
-        <jassisinghbrar@gmail.com>, <robh+dt@kernel.org>,
-        <krzysztof.kozlowski+dt@linaro.org>
-CC: <linux-kernel@vger.kernel.org>, <linux-arm-msm@vger.kernel.org>,
-        <devicetree@vger.kernel.org>, <quic_rgottimu@quicinc.com>,
-        <quic_kshivnan@quicinc.com>, <conor+dt@kernel.org>
-References: <20240117173458.2312669-1-quic_sibis@quicinc.com>
- <20240117173458.2312669-2-quic_sibis@quicinc.com>
- <7bf729a4-f3ac-4751-9275-a2aa4d62c036@linaro.org>
-Content-Language: en-US
-From: Sibi Sankar <quic_sibis@quicinc.com>
-In-Reply-To: <7bf729a4-f3ac-4751-9275-a2aa4d62c036@linaro.org>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 8bit
-X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
- nalasex01a.na.qualcomm.com (10.47.209.196)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-GUID: 4QNLi6la1u5zi_sYGFlZlGpXS4GzKd9A
-X-Proofpoint-ORIG-GUID: 4QNLi6la1u5zi_sYGFlZlGpXS4GzKd9A
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.272,Aquarius:18.0.1011,Hydra:6.0.619,FMLib:17.11.176.26
- definitions=2024-02-08_01,2024-02-07_01,2023-05-22_02
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 clxscore=1011 adultscore=0
- malwarescore=0 mlxlogscore=534 spamscore=0 impostorscore=0
- priorityscore=1501 phishscore=0 lowpriorityscore=0 mlxscore=0
- suspectscore=0 bulkscore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.19.0-2401310000 definitions=main-2402080054
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20231128171647.GA3343123-robh@kernel.org>
 
+Hi,
 
-
-On 1/18/24 01:23, Konrad Dybcio wrote:
+* Rob Herring <robh@kernel.org> [231128 17:16]:
+> On Mon, Nov 27, 2023 at 09:23:59PM +0100, Andreas Kemnade wrote:
+> > Convert the OMAP interface clock device tree binding to json-schema
+> > and fix up reg property which is optional and taken from parent if
+> > not specified.
+> > Specify the creator of the original binding as a maintainer.
 > 
+> Great! This and other TI clocks are at the top of the list[1] of 
+> occurrences of undocumented (by schemas) compatibles: 
 > 
-> On 1/17/24 18:34, Sibi Sankar wrote:
->> Add devicetree binding for CPUSS Control Processor (CPUCP) mailbox
->> controller.
->>
->> Signed-off-by: Sibi Sankar <quic_sibis@quicinc.com>
->> ---
+>    3763 ['ti,omap3-interface-clock']
+>    3249 ['ti,divider-clock']
+>    1764 ['ti,mux-clock']
+>    1680 ['ti,gate-clock']
+>    1522 ['ti,wait-gate-clock']
+>    1459 ['ti,composite-clock']
+>    1343 ['ti,composite-mux-clock']
+>    1341 ['ti,clkctrl']
+>    1296 ['fsl,imx6q-ssi', 'fsl,imx51-ssi']
+>    1196 ['ti,composite-gate-clock']
+>    1032 ['ti,clockdomain']
 > 
+> Of course, that's largely due to OMAP being early clock adopter and 
+> trying to do fine-grained clocks in DT.
 
-Hey Konrad,
+So related to dealing with the warnings above, and the numerous
+warnings for unique_unit_address, I suggest we update the clksel clock
+children for the standard reg property as we already discussed a bit
+earlier.
 
-Thanks for taking time to review the series.
+The suggested patch for the am3 clksel children is below for reference.
+I have at least one issue to sort out before I can post proper patches.
 
-> [...]
-> 
->> +  - |
->> +    #include <dt-bindings/interrupt-controller/arm-gic.h>
->> +
->> +    mailbox@17430000 {
->> +        compatible = "qcom,x1e80100-cpucp-mbox", "qcom,cpucp-mbox";
->> +        reg = <0x17430000 0x10000>, <0x18830000 0x300>;
-> 
-> These reg spaces are quite far apart.. On 7280-8550, a similar
-> mailbox exists, although it's dubbed RIMPS-mbox instead. In
-> that case, I separated the mbox into tx (via
-> qcom-apcs-ipc-mailbox.c) and rx (with a simple driver). Still
-> haven't pushed or posted that anywhere, I'd need to access
-> another machine..
-> 
-> On (some of) these SoCs, one of the channels (rx[1], iirc?) clearly
-> bleeds into the CPUFREQ_HW/OSM register region, which gives an
-> impression of misrepresenting the hardware. X1E doesn't have a
-> node for cpufreq_hw defined, so I can't tell whether it's also the
-> case here.
+The issue I'm seeing is that updating omap3 clkcsel clocks in a similar
+way adds a new error that gets multiplied by about 50 times as the
+dss_tv_fck and dss_96m_fck both seem to really be gated by the same
+bit..
 
-I am aware of ^^ discussion and the X1E doesn't have this problem.
-Both the regions described are only used for mailbox communication.
-X1E uses the scmi perf protocol for cpu dvfs.
+I think the dss_tv_fck might be derived from the dss_96m_fck really,
+and the documentation is wrong. If anybody has more info on this please
+let me know, otherwise I guess I'll just leave the clock@e00 not updated
+for now.
 
--Sibi
+Regards,
 
-> 
-> Konrad
+Tony
+
+> [1] https://gitlab.com/robherring/linux-dt/-/jobs/5620809910#L5618
+>
+
+8< ---------------------------
+diff --git a/arch/arm/boot/dts/ti/omap/am33xx-clocks.dtsi b/arch/arm/boot/dts/ti/omap/am33xx-clocks.dtsi
+--- a/arch/arm/boot/dts/ti/omap/am33xx-clocks.dtsi
++++ b/arch/arm/boot/dts/ti/omap/am33xx-clocks.dtsi
+@@ -108,30 +108,31 @@ clock@664 {
+ 		compatible = "ti,clksel";
+ 		reg = <0x664>;
+ 		#clock-cells = <2>;
+-		#address-cells = <0>;
++		#address-cells = <1>;
++		#size-cells = <0>;
+ 
+-		ehrpwm0_tbclk: clock-ehrpwm0-tbclk {
++		ehrpwm0_tbclk: clock-ehrpwm0-tbclk@0 {
++			reg = <0>;
+ 			#clock-cells = <0>;
+ 			compatible = "ti,gate-clock";
+ 			clock-output-names = "ehrpwm0_tbclk";
+ 			clocks = <&l4ls_gclk>;
+-			ti,bit-shift = <0>;
+ 		};
+ 
+-		ehrpwm1_tbclk: clock-ehrpwm1-tbclk {
++		ehrpwm1_tbclk: clock-ehrpwm1-tbclk@1 {
++			reg = <1>;
+ 			#clock-cells = <0>;
+ 			compatible = "ti,gate-clock";
+ 			clock-output-names = "ehrpwm1_tbclk";
+ 			clocks = <&l4ls_gclk>;
+-			ti,bit-shift = <1>;
+ 		};
+ 
+-		ehrpwm2_tbclk: clock-ehrpwm2-tbclk {
++		ehrpwm2_tbclk: clock-ehrpwm2-tbclk@2 {
++			reg = <2>;
+ 			#clock-cells = <0>;
+ 			compatible = "ti,gate-clock";
+ 			clock-output-names = "ehrpwm2_tbclk";
+ 			clocks = <&l4ls_gclk>;
+-			ti,bit-shift = <2>;
+ 		};
+ 	};
+ };
+@@ -566,17 +567,19 @@ clock@52c {
+ 		compatible = "ti,clksel";
+ 		reg = <0x52c>;
+ 		#clock-cells = <2>;
+-		#address-cells = <0>;
++		#address-cells = <1>;
++		#size-cells = <0>;
+ 
+-		gfx_fclk_clksel_ck: clock-gfx-fclk-clksel {
++		gfx_fclk_clksel_ck: clock-gfx-fclk-clksel@1 {
++			reg = <1>;
+ 			#clock-cells = <0>;
+ 			compatible = "ti,mux-clock";
+ 			clock-output-names = "gfx_fclk_clksel_ck";
+ 			clocks = <&dpll_core_m4_ck>, <&dpll_per_m2_ck>;
+-			ti,bit-shift = <1>;
+ 		};
+ 
+-		gfx_fck_div_ck: clock-gfx-fck-div {
++		gfx_fck_div_ck: clock-gfx-fck-div@0 {
++			reg = <0>;
+ 			#clock-cells = <0>;
+ 			compatible = "ti,divider-clock";
+ 			clock-output-names = "gfx_fck_div_ck";
+@@ -589,30 +592,32 @@ clock@700 {
+ 		compatible = "ti,clksel";
+ 		reg = <0x700>;
+ 		#clock-cells = <2>;
+-		#address-cells = <0>;
++		#address-cells = <1>;
++		#size-cells = <0>;
+ 
+-		sysclkout_pre_ck: clock-sysclkout-pre {
++		sysclkout_pre_ck: clock-sysclkout-pre@0 {
++			reg = <0>;
+ 			#clock-cells = <0>;
+ 			compatible = "ti,mux-clock";
+ 			clock-output-names = "sysclkout_pre_ck";
+ 			clocks = <&clk_32768_ck>, <&l3_gclk>, <&dpll_ddr_m2_ck>, <&dpll_per_m2_ck>, <&lcd_gclk>;
+ 		};
+ 
+-		clkout2_div_ck: clock-clkout2-div {
++		clkout2_div_ck: clock-clkout2-div@3 {
++			reg = <3>;
+ 			#clock-cells = <0>;
+ 			compatible = "ti,divider-clock";
+ 			clock-output-names = "clkout2_div_ck";
+ 			clocks = <&sysclkout_pre_ck>;
+-			ti,bit-shift = <3>;
+ 			ti,max-div = <8>;
+ 		};
+ 
+-		clkout2_ck: clock-clkout2 {
++		clkout2_ck: clock-clkout2@7 {
++			reg = <7>;
+ 			#clock-cells = <0>;
+ 			compatible = "ti,gate-clock";
+ 			clock-output-names = "clkout2_ck";
+ 			clocks = <&clkout2_div_ck>;
+-			ti,bit-shift = <7>;
+ 		};
+ 	};
+ };
+-- 
+2.43.0
 
