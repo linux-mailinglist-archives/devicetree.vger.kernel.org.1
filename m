@@ -1,94 +1,61 @@
-Return-Path: <devicetree+bounces-39680-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-39681-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id F251984DEE4
-	for <lists+devicetree@lfdr.de>; Thu,  8 Feb 2024 11:57:56 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id D12BD84DEE5
+	for <lists+devicetree@lfdr.de>; Thu,  8 Feb 2024 11:58:07 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id CF40E1C22DB5
-	for <lists+devicetree@lfdr.de>; Thu,  8 Feb 2024 10:57:55 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 706FA1F2C6A5
+	for <lists+devicetree@lfdr.de>; Thu,  8 Feb 2024 10:58:07 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 67F537A738;
-	Thu,  8 Feb 2024 10:53:35 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="LdzTlN1h"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 18BF56F07C;
+	Thu,  8 Feb 2024 10:54:06 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lj1-f177.google.com (mail-lj1-f177.google.com [209.85.208.177])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from esa2.ltts.com (unknown [14.140.155.42])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 667556F061
-	for <devicetree@vger.kernel.org>; Thu,  8 Feb 2024 10:53:32 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.177
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E11366F06D;
+	Thu,  8 Feb 2024 10:54:02 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=14.140.155.42
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1707389615; cv=none; b=dp5vXaPE3av1xTAw1FiwLx6OXj+w9ul7q+Vl/KtY6LJ02dxvjqirMQB4Ck0uAOM1JQL05ZhiNtr5kx21DYpNW+f8Yn0ny9pMKcAfMCa9vDMqf0xtDlaxA6FA7Ug2Ef+s8g/X8F2IWgkmu+zL8ypdnIcUE2JQpnifcmuy7pZj7eQ=
+	t=1707389646; cv=none; b=qSSUsYFWgWkb3xQZSMFhArydOYCOeMmjoVQ5TbNz11gOJ0o/rGrGsFzsD+3G+cUD+tFXUvkWYpHF28RwXDeYbnvwfA8YFcOJrf1LDVzgTzB3gIBplbJubOyb+sI/Xsewx8zHM09RkVexvw/LkDJCUiyBC8nNUe5FUlICHilvwmM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1707389615; c=relaxed/simple;
-	bh=Yak4cFjMHPZmLSpzj5mNffL7x3y3cDltdS0WVHZOEzk=;
-	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version; b=Yy1sTKq7PDwNrB2sNY19vhOnTAVdtjGJG1xk7zBa2Mz8+ZPT/gOVZB+vVYZzTwmFaWpVmSbXKXqGBkY7o/+kSj8ryyvdwk5uBT4DR76jk6qK6i4mP9GnxOAuOi0jEUJ9ohhxDYdIUSeC5GqnPyeHwXD/131cTGhj9izQIPCaxFc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=LdzTlN1h; arc=none smtp.client-ip=209.85.208.177
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-lj1-f177.google.com with SMTP id 38308e7fff4ca-2d0b4ea773eso17027281fa.0
-        for <devicetree@vger.kernel.org>; Thu, 08 Feb 2024 02:53:32 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1707389610; x=1707994410; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=jPbaHNpdgRM2voFhkmhteYkFLuMSfGggj9pZ2tYQahA=;
-        b=LdzTlN1hUIqHqT5L5/jBEJc1wkIZL5hW0kTD/69px5dENE823nf4WSe6vThq0Fk40d
-         AHtsR0TLyUmrs2ISVd+4wUExhz687XALkZZWi+a1y9JmbaeE4hfrU2CvzqYPTlrv+wKo
-         i2GsYyTDlOZPc5ZHHC37lWuwoklOfyFKRyH+9qW3hjOaK2Z9mLxT7nI1ZnNpTSF9J2Mb
-         +VttzGA8v3aYYNeUAxk8nuNjVWkOwe+Qu2xQywGwEnPGQnxY55C7/wG6/Jq1yIf8rTjR
-         lLugGaZ/j+dlV7tEDJVRobhJbcjSKzYXNfDWRezL0txK3xWY6fr+xruJ28FarU5eA9CM
-         M92A==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1707389610; x=1707994410;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=jPbaHNpdgRM2voFhkmhteYkFLuMSfGggj9pZ2tYQahA=;
-        b=vDG/djvnLpwl/cHn8pqIqJmcGDD6wTIEmVy7RoRMkJT28TZ28fjYCLqwug7GiXM78R
-         BuASlJRBwuBrRTer8Wvsvok1OLl/AtTcivi6JK8ezG87tt6A8jnLtn8ir6AX2uchOgud
-         ziQo/L9czXX9cRYv2K+p/gD3UjwtHWo4th1mC0f7BMwsM28uLyXfN+vyHKXgdvzYnBb4
-         3qbfKO9S3jGUy1fy8WQKUuLu03iO2dtppYtNB+1JnXQEof5ON0EoiDNEHMaX+IzpDvFk
-         CN7dX5pyeHleRQvLDMd5zCKmU6zxROtgg0lnmly2X1LFtsSl4jSgeeqVUwm2n0yDMKnw
-         Y4pw==
-X-Gm-Message-State: AOJu0YwethUEq8j2vhfKVOLfyDGv/cwXcT+mdzrw1/M26n43tjpixgob
-	MxBlXeak2CYjmY+gOYqS08TbCHKDJRrBohg0E/ebHaAy9OUFK1E2EFdSU07PAaYSP5+AMgafPzn
-	R
-X-Google-Smtp-Source: AGHT+IE6hoYZwYD0dWVmAGmKkSd9PFPDghU6N/6PiAFFxP0tnFnQHDz4xtisHPCpPSjEHYZbbvqINw==
-X-Received: by 2002:ac2:5de5:0:b0:511:5036:8e9f with SMTP id z5-20020ac25de5000000b0051150368e9fmr5870212lfq.12.1707389610461;
-        Thu, 08 Feb 2024 02:53:30 -0800 (PST)
-X-Forwarded-Encrypted: i=1; AJvYcCUMWuVQrY8stnoRFivkfykW9gfoU0KgAA0ARDUMH41jJObwrwK24UxqnmtnhIh7HuLi36zZF47bUqwTj5/iDe3BgX1D+neH/suGK98ikRsEayZc3frc75Ba8Fxkvlxze2U+vEhHXd0WNHXHobVIL9WGPZ32vWOGgb74yaRruhPZaMWSy0grEws+eImfbxq9E/IMa3BchtzPwYKvf8l3jQV01BoqDCezhbd+Er+vqIHG24dehg7PE3abjSYP8VaJmFPYTI8/Z5BrQzpNQ3Y82uFMdOsTBTIGbKjvn1FwpEiyVWOg1nCTaNswIbhAmOluIBlJQQWrlV0Dq1ssIxvVDMVrqaumY4iiDn2qfZ66Mg0Z05CkG5TRxnQIV09wt/fnmEX2tsDu+/oLfQj66YG6B53ePfamdT9eQ2ykHOnWBFlsxhRcoL4HblQcp5YM7e28N9NoAwISAhmmb3C/TVIvLfKIkTnEAabzfUsgyU5j3t0MPH3NbpJM4MshCNBQsY9uKkBuLUkZV9wV6n3BL5Itk1ZWJpSJH+sqWohItBFunGc=
-Received: from krzk-bin.. ([178.197.222.62])
-        by smtp.gmail.com with ESMTPSA id s10-20020a05600c044a00b004100b3c41absm1212129wmb.30.2024.02.08.02.53.28
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 08 Feb 2024 02:53:30 -0800 (PST)
-From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-To: Neil Armstrong <neil.armstrong@linaro.org>,
-	Jessica Zhang <quic_jesszhan@quicinc.com>,
-	Sam Ravnborg <sam@ravnborg.org>,
-	David Airlie <airlied@gmail.com>,
-	Daniel Vetter <daniel@ffwll.ch>,
-	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
-	Maxime Ripard <mripard@kernel.org>,
-	Thomas Zimmermann <tzimmermann@suse.de>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-	Benjamin Bara <benjamin.bara@skidata.com>,
-	dri-devel@lists.freedesktop.org,
+	s=arc-20240116; t=1707389646; c=relaxed/simple;
+	bh=NGlHW/aBv9IHGU3rIPQqJQrm5GA1wX8GLiD/3YcDe2w=;
+	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version; b=Bv1GAdQmFdES7CirJ/YnEjGQpKsIFE8lTWabrdt/USDHQRMHsuRkjTIX2wpzrbdkWikP24uWyLkWD3E7e5+MMfB5UVYv23UsW8DqGCJIpEk6T96YwIYljAECAFV0kEqK1PCg/09ST1cvSb2PrZVPD8lwNHG6kaf8yLVDL3HF/U0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ltts.com; spf=pass smtp.mailfrom=ltts.com; arc=none smtp.client-ip=14.140.155.42
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ltts.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ltts.com
+IronPort-SDR: ANbbIVegLGfyeApOkc/5R7UcPjVQqPtCh3y5hPL66t9NPCnZZvvAr05S4XC39Vo7SyPCVG4sa8
+ 3fD0WWscPu9Q==
+Received: from unknown (HELO localhost.localdomain) ([192.168.34.55])
+  by esa2.ltts.com with ESMTP; 08 Feb 2024 16:23:59 +0530
+From: Bhargav Raviprakash <bhargav.r@ltts.com>
+To: linux-kernel@vger.kernel.org
+Cc: m.nirmaladevi@ltts.com,
+	lee@kernel.org,
+	robh+dt@kernel.org,
+	krzysztof.kozlowski+dt@linaro.org,
+	conor+dt@kernel.org,
+	jpanis@baylibre.com,
 	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	linux-usb@vger.kernel.org
-Cc: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Subject: [PATCH] dt-bindings: use capital "OR" for multiple licenses in SPDX
-Date: Thu,  8 Feb 2024 11:53:27 +0100
-Message-Id: <20240208105327.129159-1-krzysztof.kozlowski@linaro.org>
-X-Mailer: git-send-email 2.34.1
+	arnd@arndb.de,
+	gregkh@linuxfoundation.org,
+	lgirdwood@gmail.com,
+	broonie@kernel.org,
+	linus.walleij@linaro.org,
+	linux-gpio@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	nm@ti.com,
+	vigneshr@ti.com,
+	kristo@kernel.org,
+	Bhargav Raviprakash <bhargav.r@ltts.com>
+Subject: [RESEND PATCH v1 00/13] Add support for TI TPS65224 PMIC
+Date: Thu,  8 Feb 2024 16:23:30 +0530
+Message-Id: <20240208105343.1212902-1-bhargav.r@ltts.com>
+X-Mailer: git-send-email 2.25.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -97,48 +64,98 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 
-Documentation/process/license-rules.rst and checkpatch expect the SPDX
-identifier syntax for multiple licenses to use capital "OR".  Correct it
-to keep consistent format and avoid copy-paste issues.
+This series modifies the existing TPS6594 drivers to add support for the
+TPS65224 PMIC device that is a derivative of TPS6594. TPS65224 has a
+similar register map to TPS6594 with a few differences. SPI, I2C, ESM,
+PFSM, Regulators and GPIO features overlap between the two devices.
 
-Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
----
- .../devicetree/bindings/display/panel/visionox,r66451.yaml      | 2 +-
- Documentation/devicetree/bindings/usb/cypress,hx3.yaml          | 2 +-
- include/dt-bindings/power/amlogic,c3-pwrc.h                     | 2 +-
- 3 files changed, 3 insertions(+), 3 deletions(-)
+TPS65224 is a Power Management IC (PMIC) which provides regulators and
+other features like GPIOs, Watchdog, Error Signal Monitor (ESM) and
+Pre-configurable Finite State Machine (PFSM). The SoC and the PMIC can
+communicate through the I2C or SPI interfaces. The PMIC TPS65224
+additionally has a 12-bit ADC.
+Data Sheet for TPS65224: https://www.ti.com/product/TPS65224-Q1
 
-diff --git a/Documentation/devicetree/bindings/display/panel/visionox,r66451.yaml b/Documentation/devicetree/bindings/display/panel/visionox,r66451.yaml
-index 6ba323683921..187840bb76c7 100644
---- a/Documentation/devicetree/bindings/display/panel/visionox,r66451.yaml
-+++ b/Documentation/devicetree/bindings/display/panel/visionox,r66451.yaml
-@@ -1,4 +1,4 @@
--# SPDX-License-Identifier: GPL-2.0-only or BSD-2-Clause
-+# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
- %YAML 1.2
- ---
- $id: http://devicetree.org/schemas/display/panel/visionox,r66451.yaml#
-diff --git a/Documentation/devicetree/bindings/usb/cypress,hx3.yaml b/Documentation/devicetree/bindings/usb/cypress,hx3.yaml
-index 47add0d85fb8..28096619a882 100644
---- a/Documentation/devicetree/bindings/usb/cypress,hx3.yaml
-+++ b/Documentation/devicetree/bindings/usb/cypress,hx3.yaml
-@@ -1,4 +1,4 @@
--# SPDX-License-Identifier: GPL-2.0-only or BSD-2-Clause
-+# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
- %YAML 1.2
- ---
- $id: http://devicetree.org/schemas/usb/cypress,hx3.yaml#
-diff --git a/include/dt-bindings/power/amlogic,c3-pwrc.h b/include/dt-bindings/power/amlogic,c3-pwrc.h
-index 1d98a25b08a4..61759df4b2e7 100644
---- a/include/dt-bindings/power/amlogic,c3-pwrc.h
-+++ b/include/dt-bindings/power/amlogic,c3-pwrc.h
-@@ -1,4 +1,4 @@
--/* SPDX-License-Identifier: (GPL-2.0+ or MIT) */
-+/* SPDX-License-Identifier: (GPL-2.0+ OR MIT) */
- /*
-  * Copyright (c) 2023 Amlogic, Inc.
-  * Author: hongyu chen1 <hongyu.chen1@amlogic.com>
+Driver re-use is applied following the advice of the following series:
+https://lore.kernel.org/lkml/2f467b0a-1d11-4ec7-8ca6-6c4ba66e5887@baylibre.com/
+
+The features implemented in this series are:
+- TPS65224 Register definitions
+- Core (MFD I2C and SPI entry points)
+- PFSM	
+- ESM
+- Regulators
+- Pinctrl
+
+TPS65224 Register definitions:
+This patch adds macros for register field definitions of TPS65224
+to the existing TPS6594 driver.  
+
+Core description:
+I2C and SPI interface protocols are implemented, with and without
+the bit-integrity error detection feature (CRC mode).
+
+PFSM description:
+Strictly speaking, PFSM is not hardware. It is a piece of code.
+PMIC integrates a state machine which manages operational modes.
+Depending on the current operational mode, some voltage domains
+remain energized while others can be off.
+PFSM driver can be used to trigger transitions between configured
+states.
+
+ESM description:
+This device monitors the SoC error output signal at its nERR_MCU
+input pin. On error detection, ESM driver toggles the PMIC nRSTOUT pin
+to reset the SoC.
+
+Regulators description:
+4 BUCKs and 3 LDOs.
+BUCK12 can be used in dual-phase mode.
+
+Pinctrl description:
+TPS65224 family has 6 GPIOs. Those GPIOs can also serve different
+functions such as I2C or SPI interface or watchdog disable functions.
+The driver provides both pinmuxing for the functions and GPIO capability.
+
+This series was tested on linux-next tag: next-20240118
+
+Test logs can be found here:
+https://gist.github.com/LeonardMH/58ec135921fb1062ffd4a8b384831eb0
+
+Bhargav Raviprakash (10):
+  mfd: tps6594: use volatile_table instead of volatile_reg
+  dt-bindings: mfd: ti,tps6594: Add TI TPS65224 PMIC
+  mfd: tps6594-i2c: Add TI TPS65224 PMIC I2C
+  mfd: tps6594-spi: Add TI TPS65224 PMIC SPI
+  mfd: tps6594-core: Add TI TPS65224 PMIC core
+  misc: tps6594-pfsm: Add TI TPS65224 PMIC PFSM
+  misc: tps6594-esm: reversion check limited to TPS6594 family
+  misc: tps6594-esm: use regmap_field
+  misc: tps6594-esm: Add TI TPS65224 PMIC ESM
+  arch: arm64: dts: ti: k3-am62p5-sk: Add TPS65224 PMIC support in AM62P
+    dts
+
+Nirmala Devi Mal Nadar (3):
+  mfd: tps6594: Add register definitions for TI TPS65224 PMIC
+  regulator: tps6594-regulator: Add TI TPS65224 PMIC regulators
+  pinctrl: pinctrl-tps6594: Add TPS65224 PMIC pinctrl and GPIO
+
+ .../devicetree/bindings/mfd/ti,tps6594.yaml   |   1 +
+ arch/arm64/boot/dts/ti/k3-am62p5-sk.dts       |  95 +++++
+ drivers/mfd/tps6594-core.c                    | 258 ++++++++++++-
+ drivers/mfd/tps6594-i2c.c                     |  20 +-
+ drivers/mfd/tps6594-spi.c                     |  18 +-
+ drivers/misc/tps6594-esm.c                    |  89 +++--
+ drivers/misc/tps6594-pfsm.c                   |  55 ++-
+ drivers/pinctrl/pinctrl-tps6594.c             | 287 ++++++++++++--
+ drivers/regulator/Kconfig                     |   4 +-
+ drivers/regulator/tps6594-regulator.c         | 244 ++++++++++--
+ include/linux/mfd/tps6594.h                   | 358 +++++++++++++++++-
+ 11 files changed, 1272 insertions(+), 157 deletions(-)
+
+
+base-commit: 2863b714f3ad0a9686f2de1b779228ad8c7a8052
 -- 
-2.34.1
+2.25.1
 
 
