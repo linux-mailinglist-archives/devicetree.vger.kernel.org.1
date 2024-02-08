@@ -1,97 +1,90 @@
-Return-Path: <devicetree+bounces-39731-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-39745-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2A43484E089
-	for <lists+devicetree@lfdr.de>; Thu,  8 Feb 2024 13:18:17 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 457E384E0DD
+	for <lists+devicetree@lfdr.de>; Thu,  8 Feb 2024 13:43:35 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 5D9671C255CF
-	for <lists+devicetree@lfdr.de>; Thu,  8 Feb 2024 12:18:16 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id D9DDB1F23E78
+	for <lists+devicetree@lfdr.de>; Thu,  8 Feb 2024 12:43:34 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A52EA73181;
-	Thu,  8 Feb 2024 12:18:03 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="CNzUK9Rv"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 255A371B2E;
+	Thu,  8 Feb 2024 12:43:28 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7DB5171B30;
-	Thu,  8 Feb 2024 12:18:03 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+Received: from elvis.franken.de (elvis.franken.de [193.175.24.41])
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 998E76EB44;
+	Thu,  8 Feb 2024 12:43:24 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=193.175.24.41
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1707394683; cv=none; b=u4DP3tQLfc7lfwlqmSxTDGpmKflSP3ohPiYs0C5YI9L98RUQr/MsOK/OhIwauWwkzp7FhlbK7j88V4MnXb+yuaG9+IBmXDCAkRuf4OOkA1VicIKpI8aMTtTITFtEigXB6vN7jmPlF506fQnZ0Ar9AZ43Dc01+BEMXnNLMZX+8Lo=
+	t=1707396208; cv=none; b=RBzo25ryOwsp38moGZ/pXJETkl1qrq4UFBskoq1d2v+giKJWi2R3NjIwXcmJ56ZZ5gTvv4makFYt0JXVDUcbDRZpWRD1P4P/eRaomHcrlg6jdCreB3Wzx0Y1IlVZDIXpYLsgfcG0VA5k0lUo0BwrSWTPy4dBgDvZKlaFtCmY4fM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1707394683; c=relaxed/simple;
-	bh=vlMeIXt8ifiopSXwgt29frglOiKdPC8TfKie08iAiqE=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=D7Vgn3zirufHME7p722Qp10Rk04xgenK11Guv/lf3AaI1i13AFN506dSnTTV5L8aEMQm3pl6n7cJOCJ0IiOv6FPr7KV+CwttfePKw5F59PO9OBVGLNKDhxhVo+XhCS563+eASf9V2ChAKJjDzbsl6tRKEJERp12ZLnxLYrMhOvQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=CNzUK9Rv; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 101F8C433F1;
-	Thu,  8 Feb 2024 12:17:59 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1707394682;
-	bh=vlMeIXt8ifiopSXwgt29frglOiKdPC8TfKie08iAiqE=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=CNzUK9Rvo6u7WhIyz3ev1ouEu88GNkkm/9d+qW+tFOeEYCzEybDoZ5DY2dd6tV140
-	 UxOfjdRHuz6mugw2o/rLMGUgCDzfOT1yVVvVzUKt8JU4pQyAk1IPcnwZzEyHTROXib
-	 OzzaoH+3ohuMyk6ohmxVg7DrsHsZRIXI7yD943/MCMz+D5frXbCldRmhn39p21qeS/
-	 SQve1rNBTrR8CBhQmXI0utqkNrpyVBrtlglupJlXPR8mQa7Zae1r1Nm1a5ZNyIdRb2
-	 8b0jSuzvS90IwTYI7QAvW9gyRv5GSFZSSdqfTDVHathgViK/tPq1C9D/LzT41ln4Sc
-	 bPajP1EKdZIkA==
-Message-ID: <daec387f-987e-43c6-a9d4-caa4580d1113@kernel.org>
-Date: Thu, 8 Feb 2024 14:17:57 +0200
+	s=arc-20240116; t=1707396208; c=relaxed/simple;
+	bh=UsM4BcpfcImsSZDujcIlDhvQpBCwADaptLL3/9Qq0Bc=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=bPikdd9KGS31zXkL67gMpPTel2xAVMv6TXBJVIyKlgWl1LQDhjM3yqWQvP5JdoHSkZmtGz3PRTu/xCvrlDho7+kP6aNahgtadfts8CmSpmNOPa2NpWaUOTHf5eNdJOpUKLwFaFAWDzDIkdOG3o6Yrvsi6RrtPc32gIImvVtkl+M=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=alpha.franken.de; spf=pass smtp.mailfrom=alpha.franken.de; arc=none smtp.client-ip=193.175.24.41
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=alpha.franken.de
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=alpha.franken.de
+Received: from uucp by elvis.franken.de with local-rmail (Exim 3.36 #1)
+	id 1rY3Mr-00032B-00; Thu, 08 Feb 2024 13:19:01 +0100
+Received: by alpha.franken.de (Postfix, from userid 1000)
+	id 72F0AC0267; Thu,  8 Feb 2024 13:18:27 +0100 (CET)
+Date: Thu, 8 Feb 2024 13:18:27 +0100
+From: Thomas Bogendoerfer <tsbogend@alpha.franken.de>
+To: Gregory CLEMENT <gregory.clement@bootlin.com>
+Cc: Paul Burton <paulburton@kernel.org>, linux-mips@vger.kernel.org,
+	Jiaxun Yang <jiaxun.yang@flygoat.com>,
+	Rob Herring <robh+dt@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	Vladimir Kondratiev <vladimir.kondratiev@mobileye.com>,
+	Tawfik Bayouk <tawfik.bayouk@mobileye.com>,
+	Alexandre Belloni <alexandre.belloni@bootlin.com>,
+	=?iso-8859-1?Q?Th=E9o?= Lebrun <theo.lebrun@bootlin.com>,
+	Thomas Petazzoni <thomas.petazzoni@bootlin.com>
+Subject: Re: [PATCH v7 00/14] Add support for the Mobileye EyeQ5 SoC
+Message-ID: <ZcTGk/iJO2wZlRxT@alpha.franken.de>
+References: <20240205153503.574468-1-gregory.clement@bootlin.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v4 3/3] arm64: dts: ti: k3-am642-evm: add overlay for
- icssg1 2nd port
-Content-Language: en-US
-To: MD Danish Anwar <danishanwar@ti.com>,
- Vignesh Raghavendra <vigneshr@ti.com>, Nishanth Menon <nm@ti.com>
-Cc: Andrew Lunn <andrew@lunn.ch>, Conor Dooley <conor+dt@kernel.org>,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Rob Herring <robh+dt@kernel.org>, linux-kernel@vger.kernel.org,
- devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- Tero Kristo <kristo@kernel.org>, srk@ti.com, r-gunasekaran@ti.com
-References: <20240205090546.4000446-1-danishanwar@ti.com>
- <20240205090546.4000446-4-danishanwar@ti.com>
-From: Roger Quadros <rogerq@kernel.org>
-In-Reply-To: <20240205090546.4000446-4-danishanwar@ti.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20240205153503.574468-1-gregory.clement@bootlin.com>
 
-
-
-On 05/02/2024 11:05, MD Danish Anwar wrote:
-> The am642-evm doesn't allow to enable 2 x CPSW3g ports and 2 x ICSSG1 ports
-> all together, so base k3-am642-evm.dts enables by default 2 x CPSW3g ports
-> and 1 x ICSSG1 ports, but it is also possible to support 1 x CPSW3g ports
-> and 2 x ICSSG1 ports configuration.
+On Mon, Feb 05, 2024 at 04:34:46PM +0100, Gregory CLEMENT wrote:
+> Hello,
 > 
-> This patch adds overlay to support 1 x CPSW3g ports and 2 x ICSSG1 ports
-> configuration:
-> - Renames 'mdio-mux-1' node to 'mdio-mux@1'
-> - Add label name 'mdio_mux_1' for 'mdio-mux@1' node so that the node
->   'mdio-mux@1' can be disabled in the overlay using the label name.
-> - disable 2nd CPSW3g port
-> - update CPSW3g pinmuxes to not use RGMII2
-> - disable mdio-mux-1 and define mdio-mux-2 to route ICSSG1 MDIO to the
->   shared DP83869 PHY
-> - add and enable ICSSG1 RGMII2 pinmuxes
-> - enable ICSSG1 MII1 port
-
-/icssg1/ICSSG1 in subject
-
+> The EyeQ5 SoC from Mobileye is based on the MIPS I6500 architecture
+> and features multiple controllers such as the classic UART, I2C, SPI,
+> as well as CAN-FD, PCIe, Octal/Quad SPI Flash interface, Gigabit
+> Ethernet, MIPI CSI-2, and eMMC 5.1. It also includes a Hardware
+> Security Module, Functional Safety Hardware, and MJPEG encoder.
 > 
-> Signed-off-by: MD Danish Anwar <danishanwar@ti.com>
-> Reviewed-by: Ravi Gunasekaran <r-gunasekaran@ti.com>
+> One peculiarity of this SoC is that the physical address of the DDDR
+> exceeds 32 bits. Given that the architecture is 64 bits, this is not
+> an issue, but it requires some changes in how the mips64 is currently
+> managed during boot.
+> 
+> In this seventh version, I removed the OLB related part as it is not
+> used yet. I have left it to Théo to handle in his series. Another
+> notable change is the Kconfig modification to remove the selection of
+> unused configurations.
+> [..]
 
-Reviewed-by: Roger Quadros <rogerq@kernel.org>
+thank you for your work on this patch set. I've commented on the
+two patches, where is see need for changes. Other than that it's
+looking good.
+
+Thomas.
+
+-- 
+Crap can work. Given enough thrust pigs will fly, but it's not necessarily a
+good idea.                                                [ RFC1925, 2.3 ]
 
