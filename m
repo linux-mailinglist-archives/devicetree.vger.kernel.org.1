@@ -1,222 +1,149 @@
-Return-Path: <devicetree+bounces-39860-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-39872-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id AD1A084E670
-	for <lists+devicetree@lfdr.de>; Thu,  8 Feb 2024 18:15:06 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id C9AAE84E69E
+	for <lists+devicetree@lfdr.de>; Thu,  8 Feb 2024 18:25:25 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id C6F9A1C23631
-	for <lists+devicetree@lfdr.de>; Thu,  8 Feb 2024 17:15:05 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 072231C240AE
+	for <lists+devicetree@lfdr.de>; Thu,  8 Feb 2024 17:25:25 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id F25258121B;
-	Thu,  8 Feb 2024 17:14:58 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id DDCDA81AD0;
+	Thu,  8 Feb 2024 17:25:19 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=redhat.com header.i=@redhat.com header.b="Tz+3StRt"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="jI95zpbI"
 X-Original-To: devicetree@vger.kernel.org
-Received: from us-smtp-delivery-124.mimecast.com (us-smtp-delivery-124.mimecast.com [170.10.129.124])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wm1-f45.google.com (mail-wm1-f45.google.com [209.85.128.45])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0857E7FBA3
-	for <devicetree@vger.kernel.org>; Thu,  8 Feb 2024 17:14:56 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=170.10.129.124
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2AEF47EF19;
+	Thu,  8 Feb 2024 17:25:17 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.45
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1707412498; cv=none; b=TI0RimivCaPxTWVoMxIXFjoGjMLQQEo8OMiU9Pc7jyndWEHptRq42aMftbSL+xSKaM2yGm+ZHSB/gD1koZ7WKO1URrwApCQQ46EkBqQEwq36gSNdZm+qYV/4P8VIlbvb2sQHUPmsGIpG5h88aDvgR1NanCiHJIYGjw1mHkBnySM=
+	t=1707413119; cv=none; b=BYAFBm+yDZnqGEriVlX2zZwO7KHD1lzIagd5yGhbaV3zcs1ZF4vM91QJ04WYygXMOV+InAp5n9+/bYxfFZSYSctIHUecbotf6vsfcnpGun8WC2+YNcUXtBRGHJo0rDz/hrDJ7VuBSuk7BaryoJ+qFXLPwMqgDoNYMN8FJtyCl4c=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1707412498; c=relaxed/simple;
-	bh=Y0r4zejSC9VWwc8OnukUl3cp4kpBgPxtHcTOZAILMWY=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=jzShFq0gwAyyzlxTioYiR2pCDsjS1EyM03DmKPXEbBrr9UrfjGYLHPIvIJV1bMTGW00mjJW4v+v8Lw6h6YhMGd2hoJCPlDuv8zqVlL+iI4Klb5Rzbk0fmpIA8q+ztmkz7+CmVuI+wuJpWODh9BNGzBbVWlrkHAWYOQoA31zfmr8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=redhat.com; spf=pass smtp.mailfrom=redhat.com; dkim=pass (1024-bit key) header.d=redhat.com header.i=@redhat.com header.b=Tz+3StRt; arc=none smtp.client-ip=170.10.129.124
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=redhat.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=redhat.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
-	s=mimecast20190719; t=1707412495;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 in-reply-to:in-reply-to:references:references;
-	bh=xR4RHbfkwYwkWKAZQm9GK8FwvPGu1EB/xVzVABSRZsI=;
-	b=Tz+3StRtetKK+sD8ZrhvLRfLuBYWoq3972fS18uQfwXHsrvEE9VUjEFp45shgGgryv22n1
-	tXmhgnzbFbmPx5KFOg3zLWz5/Szrbk4SvjneKUIj1cQMFOZbeVJStESOEKYd6iQHSft2ot
-	bSiIAYuG1nq4KoCYskBG99yeaZ7sI1U=
-Received: from mail-qv1-f71.google.com (mail-qv1-f71.google.com
- [209.85.219.71]) by relay.mimecast.com with ESMTP with STARTTLS
- (version=TLSv1.3, cipher=TLS_AES_256_GCM_SHA384) id
- us-mta-203-anacqdhyOXCdbpwCN9ZCVw-1; Thu, 08 Feb 2024 12:14:54 -0500
-X-MC-Unique: anacqdhyOXCdbpwCN9ZCVw-1
-Received: by mail-qv1-f71.google.com with SMTP id 6a1803df08f44-68cbfe09cb6so345476d6.2
-        for <devicetree@vger.kernel.org>; Thu, 08 Feb 2024 09:14:54 -0800 (PST)
+	s=arc-20240116; t=1707413119; c=relaxed/simple;
+	bh=hq4ku4vt1XeKlMRyCUa/KiDao0mlnt+hFYOaYzFxPdY=;
+	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version; b=sPNMt53opEHOhEPN2Si1osDNOYovQ6cJymU997P3+VQMKolQgICdie8Zt0+3Gf2ListLONUO/0cHuEMtuyGBvkxBSjKjWcVsvDimCHE0/mA3RZJGo+Yqkvh4JxxmK8kklljdlnlBo08L8K0Ri1nLHEsm/Wood6LmNjaWLNwbHsw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=jI95zpbI; arc=none smtp.client-ip=209.85.128.45
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-wm1-f45.google.com with SMTP id 5b1f17b1804b1-4105006bf11so654495e9.3;
+        Thu, 08 Feb 2024 09:25:17 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1707413116; x=1708017916; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=uN08IAla3/N8TjlJJkn0QlgypV3q8u6aGyf2X9ykCwg=;
+        b=jI95zpbIB5qTyRWGsqLd3V9YHjaku2r0ZOe+S37amNG3/1xQVdLV1X8V9basiogVlg
+         b4FQk7L80SU6tGRZ63Ml5UxswOrb26YV1CJz2cj9m8bopZCXIsg/7K1USdbpKOHDdE8s
+         XMwGmqLSDvOyu+ZJ7fQ9fG3hUNbrQAJ5DhN8KQbjE9PDr4yBq4IhFUcC9hU9gpNHWjqE
+         i5+Aru3VznawFFIAqbOKOFGQjJ11atx/QwRyFDn6B9SSpcUt6zsHijwdk03UDer4is6R
+         lgUVhl/sFMpkGc973do1T8RXQx6tc+rAAiqKS84fh+bLRI1x9lV8qtQYnJuLkq8blig4
+         OFFA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1707412494; x=1708017294;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=xR4RHbfkwYwkWKAZQm9GK8FwvPGu1EB/xVzVABSRZsI=;
-        b=XJIYqFPPcBp2xL7Nsp1gCVGoaS5Cn9aJdfiMy08jxYWppKPsLS8GaDSmh/+7cFAFeF
-         D+0OPeMgE3f+VZ0Aq6PxIakG5Am4PNdkqrVrPMEIa4Hx65QZYSpVQrQTVIg/vq8saRtw
-         F5gqGVxopyasxMuDDiBF5SCKH5ov/18aecak0xZ5ICmyhPBsE1WhWMqTm2151Bd1Nbts
-         Ji8mOKLtW6O6kHIKSGxN88g4ge49BtimAvMj08Ar771rF0oOugi0GevMCMA+f+3V1QnO
-         GAqxIzn0nSzN9svexOb37pRccc9aTYC7ELzXCKqTgbe/iWpqWVj9OM7YmXlrrOfQZm+C
-         WBqg==
-X-Gm-Message-State: AOJu0Yyx4ZKekUpEz35f9tWbgKJhLlbOCzlGGB4Ud0wG7zAVH91eWldr
-	xs3b7P2m2wwuajaVFII8s41gcBAgGP1sG+SaCtTbYBiXHxWesik1IlU0z7Kk8sTvm8TDYHAfEnM
-	ttZNutM8TXBjTc6ZR3FhhjRG29G8rdvzX7j9WdiplBt23b9tDL3COkuHv7ZQ=
-X-Received: by 2002:a05:6214:500a:b0:68c:ae6d:2959 with SMTP id jo10-20020a056214500a00b0068cae6d2959mr11937110qvb.26.1707412493941;
-        Thu, 08 Feb 2024 09:14:53 -0800 (PST)
-X-Google-Smtp-Source: AGHT+IHYuXqpva6SZF2Aah0b10Z312RBpdPeN2QIUsmjUHlOSOk360M3rZ+hHlv/zNdE9PGoJ1Y3cg==
-X-Received: by 2002:a05:6214:500a:b0:68c:ae6d:2959 with SMTP id jo10-20020a056214500a00b0068cae6d2959mr11937077qvb.26.1707412493654;
-        Thu, 08 Feb 2024 09:14:53 -0800 (PST)
-X-Forwarded-Encrypted: i=1; AJvYcCXW7BwTvO0LbHhIp+FRYAMN4I1CMQF/dqmLhHe7tOe54hdTsWbldG7uky9/bU9LCt1W82/+dMh5+gRXTTqdxrEDBJQSbajdk9cUrtCVRRyNqAWQ8M2cJyA+4RA1OqgKOgHonSrfWg0qz+WugtkkqaF85XXcF4A/7wT2FUVjBYE4Mq3yphlZkq19xh1rc9BIvRDqlsAxWOzkLGaTcMXB3gFx+JN9atuoB4ZzFoxTHM80OZOltLKZjQ7oQ8JQ3O/oaDB1Wcxu7Bjr2N7njyZXGDK/vrou9bJ+59FHxVCbciOpAsLKoemgggI0AwntEP1A/dEB5yj96hCqZ0GCtaksVg5sLCcsqB3DjzCvnvNZ4OhnYKYddoHyY5HXsT8jJlq5HNqE9qQqMmYTk1/p8J/3R3kcr3D/+Pv5UHuDOsA4us6a1YbC1hmTTyHhmAVCMSNSlps=
-Received: from fedora ([2600:1700:1ff0:d0e0::37])
-        by smtp.gmail.com with ESMTPSA id ly6-20020a0562145c0600b0068caacd861fsm176128qvb.25.2024.02.08.09.14.52
+        d=1e100.net; s=20230601; t=1707413116; x=1708017916;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=uN08IAla3/N8TjlJJkn0QlgypV3q8u6aGyf2X9ykCwg=;
+        b=gZ9+9ZCrEU+OwO2LNMzCx+2kg1DN46JqczqPQNXyb3fIus0mPhIfq6Nr1IGYd1NppK
+         geA+UuNIqejyd9oOj82fahbh34a5H7DwSRza1bJcipq8sgmJnnxUx0UKcTvvGu/ZWnaC
+         eRvKxzTUiBlseDSfRoRCSecP6YJWUR6jCBkWwtAV1jHmnKnzSFKmCQNcOzGH1twcX4PT
+         c2CCPrdRdkZO0NW+ApvIAeqaiHi/5hkN0jss/4sTI6ZVhQwsiWUQMOA4q68EfxIUX5Iu
+         PJT+0MwElIb90x8YzXbgTxQNquDrHp2PFZElT3rVj+Rqf0XA+uQVyOaJ/U/dY0ra+MBs
+         aKCg==
+X-Gm-Message-State: AOJu0Yw8VIt6PKHS4lJkCxl/e6Q1KQ09LJbBhOB76cMEkoe3R5yBld4x
+	ncmPJTJeCIZDmy98nmfDWrZ42r/5LaPS09ObxXakYxF1xO+eoAfZ
+X-Google-Smtp-Source: AGHT+IH9maMdm/drLZSZPWPMiIpW6dfGNTm5yS9rIUuDgcaNf72XHQKtZuDyl1QPz76zdFn7NVl1lg==
+X-Received: by 2002:a05:600c:1e1d:b0:40f:f4b2:b26 with SMTP id ay29-20020a05600c1e1d00b0040ff4b20b26mr6406312wmb.25.1707413116179;
+        Thu, 08 Feb 2024 09:25:16 -0800 (PST)
+X-Forwarded-Encrypted: i=1; AJvYcCUrICMUJOG1BkiKRk1VgQOuejlq+GcUC7yLJ5gdEyG9AhtINf0KvigU2j2f5cGGiJD6f4u60YlOD7aP5J3z9vbOZltK+Ryhkd9UKPsuxZ9xScrWrBB1KKEHdWfmBpkEUr2wjKOC876XZ5ZGTO0YmJvlKK9KYPgY6GW0XWBbMdiC2kydL+v4Bi+OXbFCkAHeBafdr43wQyzVJnRcDzo75Ten20j43xLYlrzxxRGuPjrnCMeZfHg14eCfirTZw721p9huTCpnDGBR4N1b3p0D4wU8/tWHA46mSBZFg0dGz9gaS/cU2AQJyxFsu55pZm68zUvcm0EEfES4HjTU66JhXCAsJdQOVY6RrUgRAM7kKFDaBiRot1+5FGEnYS2+zOAIIp4498r+qIQSln16Jjp+p7exzlZH2z7iWJxvJ5TIdR7sPJ9Ykb4NO8eNqoUXiKQ9Zlpkfo1AaDbXLB71cB9y5pRGhyYVEhl95spswTEIf2/vQK3WbvBLHUY=
+Received: from spiri.. ([5.2.194.157])
+        by smtp.gmail.com with ESMTPSA id w9-20020a05600c474900b004101f27737asm2238214wmo.29.2024.02.08.09.25.14
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 08 Feb 2024 09:14:53 -0800 (PST)
-Date: Thu, 8 Feb 2024 11:14:51 -0600
-From: Andrew Halaney <ahalaney@redhat.com>
-To: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-Cc: neil.armstrong@linaro.org, 
-	Krishna Kurapati <quic_kriskura@quicinc.com>, Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, 
-	Rob Herring <robh+dt@kernel.org>, Bjorn Andersson <andersson@kernel.org>, 
-	Konrad Dybcio <konrad.dybcio@linaro.org>, Conor Dooley <conor+dt@kernel.org>, linux-kernel@vger.kernel.org, 
-	linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org, quic_ppratap@quicinc.com, 
-	quic_jackp@quicinc.com
-Subject: Re: Re: [PATCH 3/3] arm64: dts: qcom: sa8540-ride: Enable first port
- of tertiary usb controller
-Message-ID: <baw3wxbdvzpkqqb6a7iut2wpt6jgzyqii5uyfkzptzt4ryjvao@4tpee6nqup5w>
-References: <20240206114745.1388491-1-quic_kriskura@quicinc.com>
- <20240206114745.1388491-4-quic_kriskura@quicinc.com>
- <23824242-1b37-4544-ae9a-0a5a0582580e@linaro.org>
- <CAA8EJpqbXvKMQktGsxMFJnR+fXoOz8hFmm+E3ROPTjjiD0QLvg@mail.gmail.com>
- <6q2ocvrujbli42rjddflyol74xianr7j47jwcgdnnmwjanv25d@uw2da7zulqqd>
- <CAA8EJpr6k8c5C54S9xxQgZvd9NYFoxi5qQrOTz2AMrp0xeZZpw@mail.gmail.com>
+        Thu, 08 Feb 2024 09:25:15 -0800 (PST)
+From: Alisa-Dariana Roman <alisadariana@gmail.com>
+X-Google-Original-From: Alisa-Dariana Roman <alisa.roman@analog.com>
+To: 
+Cc: alexandru.tachici@analog.com,
+	alisa.roman@analog.com,
+	alisadariana@gmail.com,
+	conor+dt@kernel.org,
+	devicetree@vger.kernel.org,
+	dlechner@baylibre.com,
+	jic23@kernel.org,
+	krzysztof.kozlowski+dt@linaro.org,
+	krzysztof.kozlowski@linaro.org,
+	lars@metafoo.de,
+	linux-iio@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	michael.hennerich@analog.com,
+	robh+dt@kernel.org
+Subject: [PATCH v3 0/5] iio: adc: ad7192: Add support for AD7194
+Date: Thu,  8 Feb 2024 19:24:54 +0200
+Message-Id: <20240208172459.280189-1-alisa.roman@analog.com>
+X-Mailer: git-send-email 2.34.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <CAA8EJpr6k8c5C54S9xxQgZvd9NYFoxi5qQrOTz2AMrp0xeZZpw@mail.gmail.com>
+Content-Transfer-Encoding: 8bit
 
-On Wed, Feb 07, 2024 at 03:32:03AM +0200, Dmitry Baryshkov wrote:
-> On Wed, 7 Feb 2024 at 02:10, Andrew Halaney <ahalaney@redhat.com> wrote:
-> >
-> > On Tue, Feb 06, 2024 at 03:30:32PM +0200, Dmitry Baryshkov wrote:
-> > > On Tue, 6 Feb 2024 at 15:28, <neil.armstrong@linaro.org> wrote:
-> > > >
-> > > > On 06/02/2024 12:47, Krishna Kurapati wrote:
-> > > > > From: Andrew Halaney <ahalaney@redhat.com>
-> > > > >
-> > > > > There is now support for the multiport USB controller this uses so
-> > > > > enable it.
-> > > > >
-> > > > > The board only has a single port hooked up (despite it being wired up to
-> > > > > the multiport IP on the SoC). There's also a USB 2.0 mux hooked up,
-> > > > > which by default on boot is selected to mux properly. Grab the gpio
-> > > > > controlling that and ensure it stays in the right position so USB 2.0
-> > > > > continues to be routed from the external port to the SoC.
-> > >
-> > > What is connected to the other port of the MUX?
-> >
-> > /me blows off the dust on the schematic
-> >
-> > It's a 1:2 mux, and one option is the out the board, the other
-> > is a test point I believe if I'm reading things right, although its not
-> > labeled so I'm not sure anyone would actually find it on the board.
-> 
-> Ack, this definitely looks like a static configuration.
+Dear maintainers,
 
-Krishna, when you make v2 can you update the wording about the USB 2.0
-mux? Maybe something like "which by default on boot is selected to mux
-to the external port on the board (with the other option being a test
-point)." instead of the wording I originally had? That way the
-information Dmitry requested here is easily accessible in the future.
+Thank you all for the feedback!
 
-> 
-> >
-> > >
-> > > > >
-> > > > > Signed-off-by: Andrew Halaney <ahalaney@redhat.com>
-> > > > > Co-developed-by: Krishna Kurapati <quic_kriskura@quicinc.com>
-> > > > > Signed-off-by: Krishna Kurapati <quic_kriskura@quicinc.com>
-> > > > > ---
-> > > > >   arch/arm64/boot/dts/qcom/sa8540p-ride.dts | 21 +++++++++++++++++++++
-> > > > >   1 file changed, 21 insertions(+)
-> > > > >
-> > > > > diff --git a/arch/arm64/boot/dts/qcom/sa8540p-ride.dts b/arch/arm64/boot/dts/qcom/sa8540p-ride.dts
-> > > > > index b04f72ec097c..eed1ddc29bc1 100644
-> > > > > --- a/arch/arm64/boot/dts/qcom/sa8540p-ride.dts
-> > > > > +++ b/arch/arm64/boot/dts/qcom/sa8540p-ride.dts
-> > > > > @@ -503,6 +503,18 @@ &usb_2_qmpphy0 {
-> > > > >       status = "okay";
-> > > > >   };
-> > > > >
-> > > > > +&usb_2 {
-> > > > > +     pinctrl-0 = <&usb2_en>;
-> > > > > +     pinctrl-names = "default";
-> > > > > +
-> > > > > +     status = "okay";
-> > > > > +};
-> > > > > +
-> > > > > +&usb_2_dwc3 {
-> > > > > +     phy-names = "usb2-port0", "usb3-port0";
-> > > > > +     phys = <&usb_2_hsphy0>, <&usb_2_qmpphy0>;
-> > > > > +};
-> > > > > +
-> > > > >   &xo_board_clk {
-> > > > >       clock-frequency = <38400000>;
-> > > > >   };
-> > > > > @@ -655,4 +667,13 @@ wake-pins {
-> > > > >                       bias-pull-up;
-> > > > >               };
-> > > > >       };
-> > > > > +
-> > > > > +     usb2_en: usb2-en-state {
-> > > > > +             /* TS3USB221A USB2.0 mux select */
-> > > > > +             pins = "gpio24";
-> > > > > +             function = "gpio";
-> > > > > +             drive-strength = <2>;
-> > > > > +             bias-disable;
-> > > > > +             output-low;
-> > > > > +     };
-> > > > >   };
-> > > >
-> > > > Isn't gpio-hog the preferred way to describe that ?
-> > >
-> > > That depends. As this pinctrl describes board configuration, I'd agree
-> > > with Neil.
-> >
-> > I unfortunately don't have the experience with gpio-hog to weigh in
-> > here, but wouldn't be opposed to Krishna switching it if that's what's
-> > recommended for this type of thing.
-> 
-> Quoting gpio.txt:
-> 
-> The GPIO chip may contain GPIO hog definitions. GPIO hogging is a mechanism
-> providing automatic GPIO request and configuration as part of the
-> gpio-controller's driver probe function.
-> 
-> See sdm845-pinctrl.yaml for an example of the gpio-hog node.
+I am submitting the upgraded series of patches for the ad7192 driver.
 
-Thanks, that seems like the way to go. Krishna please take note of this
-for v2!
+Please consider applying in order.
 
-> 
-> >
-> > >
-> > >
-> > > --
-> > > With best wishes
-> > > Dmitry
-> > >
-> >
-> 
-> 
-> -- 
-> With best wishes
-> Dmitry
-> 
+Note that I dropped the patch related to the clock bindings. I will be
+back with another series of patches related to the clock.
+
+Thank you!
+
+v2 -> v3
+	- add precursor patch to simply functions to only pass
+	  ad7192_state
+	- add patch to replace custom attribute
+	- bindings patch: correct use of allOf and some minor changes to
+	  the ad7194 example
+	- add ad7194 patch:
+		- use "ad7192 and similar"
+		- ad7194 no longer needs attribute group
+		- use callback function in chip_info to parse channels
+		- move struct ad7192_chip_info
+		- change position of parse functions
+	- drop clock bindings patch
+
+v1 -> v2
+	- new commit with missing documentation for properties
+	- add constraint for channels in binding
+	- correct pattern for channels
+	- correct commit message by adding "()" to functions
+	- use in_range
+	- use preferred structure in Kconfig
+
+Kind regards,
+
+Alisa-Dariana Roman (5):
+  iio: adc: ad7192: Use device api
+  iio: adc: ad7192: Pass state directly
+  iio: adc: ad7192: Use standard attribute
+  dt-bindings: iio: adc: ad7192: Add AD7194 support
+  iio: adc: ad7192: Add AD7194 support
+
+ .../bindings/iio/adc/adi,ad7192.yaml          |  75 ++++++
+ drivers/iio/adc/Kconfig                       |  11 +-
+ drivers/iio/adc/ad7192.c                      | 252 +++++++++++++-----
+ 3 files changed, 269 insertions(+), 69 deletions(-)
+
+-- 
+2.34.1
 
 
