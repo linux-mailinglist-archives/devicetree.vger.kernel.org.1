@@ -1,305 +1,232 @@
-Return-Path: <devicetree+bounces-39720-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-39721-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 659BC84DFE5
-	for <lists+devicetree@lfdr.de>; Thu,  8 Feb 2024 12:42:46 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 16CA484DFEE
+	for <lists+devicetree@lfdr.de>; Thu,  8 Feb 2024 12:45:04 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 89E9F1C22372
-	for <lists+devicetree@lfdr.de>; Thu,  8 Feb 2024 11:42:45 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 3BACB1C22F6E
+	for <lists+devicetree@lfdr.de>; Thu,  8 Feb 2024 11:45:03 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 29CD06F500;
-	Thu,  8 Feb 2024 11:42:12 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 611B66F096;
+	Thu,  8 Feb 2024 11:44:58 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="dGfqvEQ1"
+	dkim=pass (2048-bit key) header.d=microchip.com header.i=@microchip.com header.b="RmnrDl+N"
 X-Original-To: devicetree@vger.kernel.org
-Received: from fllv0015.ext.ti.com (fllv0015.ext.ti.com [198.47.19.141])
+Received: from esa.microchip.iphmx.com (esa.microchip.iphmx.com [68.232.154.123])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 422BC73181;
-	Thu,  8 Feb 2024 11:42:10 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.19.141
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E1A386EB70;
+	Thu,  8 Feb 2024 11:44:55 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=68.232.154.123
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1707392532; cv=none; b=lcIalDWoJoF3W3yyOe6luFhwsrqiZqrP3R1FwpbWmipS8LEX0NS3bXGVQDXxtOY/3gYsoJ8ItlXt6tV03Vw1Gqa1Xq+xaJ5p21z4YIg3Y6zCt6VyOH/Y0LHiINCX7oyi+VC2UVOzJWjV8XxpAg8WXg5HMbHEHi/W4/GFvF3Fzf0=
+	t=1707392698; cv=none; b=F9v2WfOkPCrlNTrxzgXrqpnNOqIRIj3HyWEHEf/mseb/FmLfMUW58svpcAVJIO6WEU3zLWqdTrPq8lgoEfemnQMhA5cZuBCJZ7B3BjLUygcefG7ElDp+Oa4p+/aTvFNBk4fJznXDnEaeRQ9SceaZu+Pgk0wL1zG3nbV5O0+07KI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1707392532; c=relaxed/simple;
-	bh=A7EVTIDLHtGX9lO4EdDXrAGB8NfIUDtJqg9uBTSY2ak=;
-	h=From:To:CC:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=UECySTCgWDbTEDehL3M1+Ofm7Pcezf1RKeSgXdCFcONHf7En7O6m8jVjzqEqaF9z8JxmzwWsW5yhqeFIaoSxd6+JRHWU7n4x1zWKCeK98jKQs0+X5/iizOQTPr1QxNXB5xkpotp72WnQHyLI/9uATdyAipe99Ntna+ddnNntMUU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=dGfqvEQ1; arc=none smtp.client-ip=198.47.19.141
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
-Received: from lelv0265.itg.ti.com ([10.180.67.224])
-	by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id 418BfMu8057672;
-	Thu, 8 Feb 2024 05:41:22 -0600
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1707392482;
-	bh=i66KRsT5MXiCMeRUrNYxeiPCd7Z1pAneWKX/rWP8R50=;
-	h=From:To:CC:Subject:Date:In-Reply-To:References;
-	b=dGfqvEQ1JzgAqtWGw2+20+CzKARBxpWSBtxIq8yRbg1+dIY5GagVnpDjCLqbDxGFO
-	 77YGa89Jh8aXTmTgb+m8cKX/kj6WZnSWTallKhUyagUq2E67zFQmYu4r4f7z3tcDwq
-	 ljQeLZ2/NZnDP8rvAIEO+toS86lUx7niVETYF4Gg=
-Received: from DFLE106.ent.ti.com (dfle106.ent.ti.com [10.64.6.27])
-	by lelv0265.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 418BfM9k025668
-	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-	Thu, 8 Feb 2024 05:41:22 -0600
-Received: from DFLE114.ent.ti.com (10.64.6.35) by DFLE106.ent.ti.com
- (10.64.6.27) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Thu, 8
- Feb 2024 05:41:21 -0600
-Received: from lelvsmtp6.itg.ti.com (10.180.75.249) by DFLE114.ent.ti.com
- (10.64.6.35) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
- Frontend Transport; Thu, 8 Feb 2024 05:41:21 -0600
-Received: from LT5CG31242FY.dhcp.ti.com ([10.250.162.93])
-	by lelvsmtp6.itg.ti.com (8.15.2/8.15.2) with ESMTP id 418BepBx007761;
-	Thu, 8 Feb 2024 05:41:15 -0600
-From: Shenghao Ding <shenghao-ding@ti.com>
-To: <linux-kernel@vger.kernel.org>
-CC: <lgirdwood@gmail.com>, <broonie@kernel.org>, <robh+dt@kernel.org>,
-        <krzysztof.kozlowski+dt@linaro.org>, <conor+dt@kernel.org>,
-        <linux-sound@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <perex@perex.cz>, <tiwai@suse.com>, <13916275206@139.com>,
-        <mohit.chawla@ti.com>, <soyer@irl.hu>, <jkhuang3@ti.com>,
-        <tiwai@suse.de>, <pdjuandi@ti.com>, <manisha.agrawal@ti.com>,
-        <s-hari@ti.com>, <aviel@ti.com>, <hnagalla@ti.com>, <praneeth@ti.com>,
-        Shenghao Ding <shenghao-ding@ti.com>
-Subject: [RESEND PATCH v4 4/4] ASoc: dt-bindings: PCM6240: Add initial DT binding
-Date: Thu, 8 Feb 2024 19:40:48 +0800
-Message-ID: <20240208114049.1429-4-shenghao-ding@ti.com>
-X-Mailer: git-send-email 2.33.0.windows.2
-In-Reply-To: <20240208114049.1429-1-shenghao-ding@ti.com>
-References: <20240208114049.1429-1-shenghao-ding@ti.com>
+	s=arc-20240116; t=1707392698; c=relaxed/simple;
+	bh=4RLrpLO9Lr9DKthkMv9dYVS7bKcH7m8SKjLUBGgExck=;
+	h=From:Date:Subject:MIME-Version:Content-Type:Message-ID:To:CC; b=ASgQq/bIsgpv7sDXYsZBvh4yYwX9ZMpQFEm2XcoJh0Ez8jjAEWBIwCYOJrHlKqXauQNiagNSKLCgkUBiWRfUYgGwThRGKcswV80/f6I1LpyyAE2ylMU2zNF7NQeMte5VUYsEPPNQUOmKxGwhuz23g76aezGv2Kge+D1FsQZbH1o=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=microchip.com; spf=pass smtp.mailfrom=microchip.com; dkim=pass (2048-bit key) header.d=microchip.com header.i=@microchip.com header.b=RmnrDl+N; arc=none smtp.client-ip=68.232.154.123
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=microchip.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=microchip.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
+  t=1707392695; x=1738928695;
+  h=from:date:subject:mime-version:content-transfer-encoding:
+   message-id:to:cc;
+  bh=4RLrpLO9Lr9DKthkMv9dYVS7bKcH7m8SKjLUBGgExck=;
+  b=RmnrDl+N3xQJo69LYDdDZp96I3eMI5CMPAYOtEdqt1lvjX8G1xX42JWo
+   YR1QbtVoEcZSLBCTf9ogl7yfDGSetakXSdmcYmdY27XFoMBamYVP0fBRP
+   HcLc295vQv3k8isqxvN92DQYa1uTh7Ez+aEBpX4DJXcXbrxmVRm0gR9Bf
+   g8XKeSK9CJI62k4rfA1tB4aCpcDnaPsM1nKmmYaxx1ZRrWHy01f2nJxSx
+   kRn6dmKAUALxa+ugEvMjxGRfGuXcBkF+5LrPVOqX31uW517ZiZUAB4OgU
+   za7xO7LgqEJDEVtxShZxqE7uDq6rPw8r200UcLMI4Bz4mspx/7ZWi44zD
+   g==;
+X-CSE-ConnectionGUID: 1FvkdppZRHmt/Dzk9vusdQ==
+X-CSE-MsgGUID: OJNdQtm/SPKx55/Ftri+9A==
+X-IronPort-AV: E=Sophos;i="6.05,253,1701154800"; 
+   d="scan'208";a="15964774"
+X-Amp-Result: SKIPPED(no attachment in message)
+Received: from unknown (HELO email.microchip.com) ([170.129.1.10])
+  by esa4.microchip.iphmx.com with ESMTP/TLS/ECDHE-RSA-AES128-GCM-SHA256; 08 Feb 2024 04:44:54 -0700
+Received: from chn-vm-ex01.mchp-main.com (10.10.85.143) by
+ chn-vm-ex02.mchp-main.com (10.10.85.144) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.35; Thu, 8 Feb 2024 04:44:34 -0700
+Received: from [10.40.56.22] (10.10.85.11) by chn-vm-ex01.mchp-main.com
+ (10.10.85.143) with Microsoft SMTP Server id 15.1.2507.35 via Frontend
+ Transport; Thu, 8 Feb 2024 04:44:29 -0700
+From: Nayab Sayed <nayabbasha.sayed@microchip.com>
+Date: Thu, 8 Feb 2024 17:12:12 +0530
+Subject: [PATCH] dt-bindings: mtd: update references from partition.txt to
+ mtd.yaml
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 8bit
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+Message-ID: <20240208-partition-txt-v1-1-4398af3b7bb2@microchip.com>
+X-B4-Tracking: v=1; b=H4sIABO+xGUC/x2MQQqAIBAAvxJ7TjATsb4SHUy32ouJSgji35OOA
+ zNTIWEkTLAOFSK+lOjxHaZxAHsbfyEj1xkEF5ILrlkwMVPuFsslM6cQudWHVMsMvQkRTyr/b9t
+ b+wD7YKiJXwAAAA==
+To: Miquel Raynal <miquel.raynal@bootlin.com>, Richard Weinberger
+	<richard@nod.at>, Vignesh Raghavendra <vigneshr@ti.com>, Rob Herring
+	<robh+dt@kernel.org>, Krzysztof Kozlowski
+	<krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>,
+	Stefan Agner <stefan@agner.ch>, Lucas Stach <dev@lynxeye.de>, Thierry Reding
+	<thierry.reding@gmail.com>, Jonathan Hunter <jonathanh@nvidia.com>, Han Xu
+	<han.xu@nxp.com>
+CC: <linux-mtd@lists.infradead.org>, <devicetree@vger.kernel.org>,
+	<linux-kernel@vger.kernel.org>, <linux-tegra@vger.kernel.org>, Nayab Sayed
+	<nayabbasha.sayed@microchip.com>
+X-Mailer: b4 0.12.4
 
-PCM6240 family chips are popular among audio customers, in spite of only a
-portion of the functionality of codec, such as ADC or DAC, and so on, for
-different Specifications, range from Personal Electric to Automotive
-Electric, even some professional fields.yet their audio performance is far
-superior to the codec's, and cost is lower than codec, and much easier to
-program than codec.
+Commit f902baa917b6 ("dt-bindings: mtd: Remove useless file about
+partitions") removed the file partition.txt. Hence, in this commit, the
+lines mentioning this file are updated to reference mtd.yaml, which now
+includes partition{,s}.yaml.
 
-Signed-off-by: Shenghao Ding <shenghao-ding@ti.com>
+Signed-off-by: Nayab Sayed <nayabbasha.sayed@microchip.com>
+---
+ Documentation/devicetree/bindings/mtd/davinci-nand.txt        | 2 +-
+ Documentation/devicetree/bindings/mtd/flctl-nand.txt          | 2 +-
+ Documentation/devicetree/bindings/mtd/fsl-upm-nand.txt        | 2 +-
+ Documentation/devicetree/bindings/mtd/gpio-control-nand.txt   | 2 +-
+ Documentation/devicetree/bindings/mtd/gpmi-nand.yaml          | 2 +-
+ Documentation/devicetree/bindings/mtd/hisi504-nand.txt        | 2 +-
+ Documentation/devicetree/bindings/mtd/nvidia-tegra20-nand.txt | 2 +-
+ Documentation/devicetree/bindings/mtd/orion-nand.txt          | 2 +-
+ Documentation/devicetree/bindings/mtd/samsung-s3c2410.txt     | 2 +-
+ 9 files changed, 9 insertions(+), 9 deletions(-)
+
+diff --git a/Documentation/devicetree/bindings/mtd/davinci-nand.txt b/Documentation/devicetree/bindings/mtd/davinci-nand.txt
+index edebeae1f5b3..eb8e2ff4dbd2 100644
+--- a/Documentation/devicetree/bindings/mtd/davinci-nand.txt
++++ b/Documentation/devicetree/bindings/mtd/davinci-nand.txt
+@@ -68,7 +68,7 @@ Deprecated properties:
+ 				false.
+ 
+ Nand device bindings may contain additional sub-nodes describing partitions of
+-the address space. See partition.txt for more detail. The NAND Flash timing
++the address space. See mtd.yaml for more detail. The NAND Flash timing
+ values must be programmed in the chip select’s node of AEMIF
+ memory-controller (see Documentation/devicetree/bindings/memory-controllers/
+ davinci-aemif.txt).
+diff --git a/Documentation/devicetree/bindings/mtd/flctl-nand.txt b/Documentation/devicetree/bindings/mtd/flctl-nand.txt
+index 427f46dc60ad..51518399d737 100644
+--- a/Documentation/devicetree/bindings/mtd/flctl-nand.txt
++++ b/Documentation/devicetree/bindings/mtd/flctl-nand.txt
+@@ -15,7 +15,7 @@ The DMA fields are not used yet in the driver but are listed here for
+ completing the bindings.
+ 
+ The device tree may optionally contain sub-nodes describing partitions of the
+-address space. See partition.txt for more detail.
++address space. See mtd.yaml for more detail.
+ 
+ Example:
+ 
+diff --git a/Documentation/devicetree/bindings/mtd/fsl-upm-nand.txt b/Documentation/devicetree/bindings/mtd/fsl-upm-nand.txt
+index 25f07c1f9e44..530c017e014e 100644
+--- a/Documentation/devicetree/bindings/mtd/fsl-upm-nand.txt
++++ b/Documentation/devicetree/bindings/mtd/fsl-upm-nand.txt
+@@ -22,7 +22,7 @@ Deprecated properties:
+ 	(R/B# pins not connected).
+ 
+ Each flash chip described may optionally contain additional sub-nodes
+-describing partitions of the address space. See partition.txt for more
++describing partitions of the address space. See mtd.yaml for more
+ detail.
+ 
+ Examples:
+diff --git a/Documentation/devicetree/bindings/mtd/gpio-control-nand.txt b/Documentation/devicetree/bindings/mtd/gpio-control-nand.txt
+index 486a17d533d7..0edf55d47ea8 100644
+--- a/Documentation/devicetree/bindings/mtd/gpio-control-nand.txt
++++ b/Documentation/devicetree/bindings/mtd/gpio-control-nand.txt
+@@ -26,7 +26,7 @@ Optional properties:
+   read to ensure that the GPIO accesses have completed.
+ 
+ The device tree may optionally contain sub-nodes describing partitions of the
+-address space. See partition.txt for more detail.
++address space. See mtd.yaml for more detail.
+ 
+ Examples:
+ 
+diff --git a/Documentation/devicetree/bindings/mtd/gpmi-nand.yaml b/Documentation/devicetree/bindings/mtd/gpmi-nand.yaml
+index ba086c34626d..021c0da0b072 100644
+--- a/Documentation/devicetree/bindings/mtd/gpmi-nand.yaml
++++ b/Documentation/devicetree/bindings/mtd/gpmi-nand.yaml
+@@ -12,7 +12,7 @@ maintainers:
+ description: |
+   The GPMI nand controller provides an interface to control the NAND
+   flash chips. The device tree may optionally contain sub-nodes
+-  describing partitions of the address space. See partition.txt for
++  describing partitions of the address space. See mtd.yaml for
+   more detail.
+ 
+ properties:
+diff --git a/Documentation/devicetree/bindings/mtd/hisi504-nand.txt b/Documentation/devicetree/bindings/mtd/hisi504-nand.txt
+index 8963983ae7cb..362203e7d50e 100644
+--- a/Documentation/devicetree/bindings/mtd/hisi504-nand.txt
++++ b/Documentation/devicetree/bindings/mtd/hisi504-nand.txt
+@@ -22,7 +22,7 @@ The following ECC strength and step size are currently supported:
+  - nand-ecc-strength = <16>, nand-ecc-step-size = <1024>
+ 
+ Flash chip may optionally contain additional sub-nodes describing partitions of
+-the address space. See partition.txt for more detail.
++the address space. See mtd.yaml for more detail.
+ 
+ Example:
+ 
+diff --git a/Documentation/devicetree/bindings/mtd/nvidia-tegra20-nand.txt b/Documentation/devicetree/bindings/mtd/nvidia-tegra20-nand.txt
+index e737e5beb7bf..4a00ec2b2540 100644
+--- a/Documentation/devicetree/bindings/mtd/nvidia-tegra20-nand.txt
++++ b/Documentation/devicetree/bindings/mtd/nvidia-tegra20-nand.txt
+@@ -39,7 +39,7 @@ Optional children node properties:
+ - wp-gpios: GPIO specifier for the write protect pin.
+ 
+ Optional child node of NAND chip nodes:
+-Partitions: see partition.txt
++Partitions: see mtd.yaml
+ 
+   Example:
+ 	nand-controller@70008000 {
+diff --git a/Documentation/devicetree/bindings/mtd/orion-nand.txt b/Documentation/devicetree/bindings/mtd/orion-nand.txt
+index 2d6ab660e603..b9997b1f13ac 100644
+--- a/Documentation/devicetree/bindings/mtd/orion-nand.txt
++++ b/Documentation/devicetree/bindings/mtd/orion-nand.txt
+@@ -13,7 +13,7 @@ Optional properties:
+                registers in usecs
+ 
+ The device tree may optionally contain sub-nodes describing partitions of the
+-address space. See partition.txt for more detail.
++address space. See mtd.yaml for more detail.
+ 
+ Example:
+ 
+diff --git a/Documentation/devicetree/bindings/mtd/samsung-s3c2410.txt b/Documentation/devicetree/bindings/mtd/samsung-s3c2410.txt
+index 09815c40fc8a..635455350660 100644
+--- a/Documentation/devicetree/bindings/mtd/samsung-s3c2410.txt
++++ b/Documentation/devicetree/bindings/mtd/samsung-s3c2410.txt
+@@ -19,7 +19,7 @@ Optional child properties:
+ 
+ Each child device node may optionally contain a 'partitions' sub-node,
+ which further contains sub-nodes describing the flash partition mapping.
+-See partition.txt for more detail.
++See mtd.yaml for more detail.
+ 
+ Example:
+ 
 
 ---
-Change in v4:
- - Rewrite the subject to match something similar to other commits.
- - And none of them are compatible with something.
- - minItems, then maxItems.
- - Drop reset-gpios description
- - Remove the repeated reg descriptions and reg constraints.
- - Drop redundant spaces.
- - Add missing line breaks between blocks and additionalProperties.
- - Correct compatibility issue on adc6120 and pcm6240.
- - All these chips have only a portion of the functionality of codec,
-   such as ADC or DAC, and so on, but their audio performance is far
-   superior to the codec's, and cost is lower than codec, and much easier
-   to program than codec. Simply one or two register settings can enable
-   them to work. Init for these chips are hardware reset or software reset.
-   As to some audio filter params for internal filters, it is up to the
-   special user cases, which can be saved into the bin file. The default
-   value also can work well.
- - Add blank line before reg.
- - remove unneeded items and if branches.
- - Add missing compatible devices, such as adc6120, etc.
- - Add necessary people into the list for DTS review
- - correct misaligned.
- - Remove dix4192
- - simplify the compatibility
----
- .../devicetree/bindings/sound/ti,pcm6240.yaml | 172 ++++++++++++++++++
- 1 file changed, 172 insertions(+)
- create mode 100644 Documentation/devicetree/bindings/sound/ti,pcm6240.yaml
+base-commit: 547ab8fc4cb04a1a6b34377dd8fad34cd2c8a8e3
+change-id: 20240208-partition-txt-d6ee0c8b4693
 
-diff --git a/Documentation/devicetree/bindings/sound/ti,pcm6240.yaml b/Documentation/devicetree/bindings/sound/ti,pcm6240.yaml
-new file mode 100644
-index 000000000000..05fcb5459920
---- /dev/null
-+++ b/Documentation/devicetree/bindings/sound/ti,pcm6240.yaml
-@@ -0,0 +1,172 @@
-+# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-+# Copyright (C) 2022 - 2024 Texas Instruments Incorporated
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/sound/ti,pcm6240.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: Texas Instruments PCM6240 Family Audio ADC/DAC
-+
-+maintainers:
-+  - Shenghao Ding <shenghao-ding@ti.com>
-+
-+description: |
-+  The PCM6240 Family is a big family of Audio ADC/DAC for
-+  different Specifications, range from Personal Electric
-+  to Automotive Electric, even some professional fields.
-+
-+  Specifications about the audio chip can be found at:
-+    https://www.ti.com/lit/gpn/tlv320adc3120
-+    https://www.ti.com/lit/gpn/tlv320adc5120
-+    https://www.ti.com/lit/gpn/tlv320adc6120
-+    https://www.ti.com/lit/gpn/pcm1690
-+    https://www.ti.com/lit/gpn/pcm3120-q1
-+    https://www.ti.com/lit/gpn/pcm3140-q1
-+    https://www.ti.com/lit/gpn/pcm5120-q1
-+    https://www.ti.com/lit/gpn/pcm6120-q1
-+    https://www.ti.com/lit/gpn/pcm6260-q1
-+    https://www.ti.com/lit/gpn/pcm9211
-+    https://www.ti.com/lit/gpn/pcmd3140
-+    https://www.ti.com/lit/gpn/pcmd3180
-+    https://www.ti.com/lit/gpn/taa5212
-+    https://www.ti.com/lit/gpn/tad5212
-+
-+properties:
-+  compatible:
-+    description: |
-+      ti,adc3120: Stereo-channel, 768-kHz, Burr-Brown™ audio analog-to-
-+      digital converter (ADC) with 106-dB SNR.
-+
-+      ti,adc5120: 2-Channel, 768-kHz, Burr-Brown™ Audio ADC with 120-dB SNR.
-+
-+      ti,adc6120: Stereo-channel, 768-kHz, Burr-Brown™ audio analog-to-
-+      digital converter (ADC) with 123-dB SNR.
-+
-+      ti,pcm1690: Automotive Catalog 113dB SNR 8-Channel Audio DAC with
-+      Differential Outputs.
-+
-+      ti,pcm3120: Automotive, stereo, 106-dB SNR, 768-kHz, low-power
-+      software-controlled audio ADC.
-+
-+      ti,pcm3140: Automotive, Quad-Channel, 768-kHz, Burr-Brown™ Audio ADC
-+      with 106-dB SNR.
-+
-+      ti,pcm5120: Automotive, stereo, 120-dB SNR, 768-kHz, low-power
-+      software-controlled audio ADC.
-+
-+      ti,pcm5140: Automotive, Quad-Channel, 768-kHz, Burr-Brown™ Audio ADC
-+      with 120-dB SNR.
-+
-+      ti,pcm6120: Automotive, stereo, 123-dB SNR, 768-kHz, low-power
-+      software-controlled audio ADC.
-+
-+      ti,pcm6140: Automotive, Quad-Channel, 768-kHz, Burr-Brown™ Audio ADC
-+      with 123-dB SNR.
-+
-+      ti,pcm6240: Automotive 4-ch audio ADC with integrated programmable mic
-+      bias, boost and input diagnostics.
-+
-+      ti,pcm6260: Automotive 6-ch audio ADC with integrated programmable mic
-+      bias, boost and input diagnostics.
-+
-+      ti,pcm9211: 216-kHz Digital Audio Interface Transceiver (DIX)
-+      With Stereo ADC and Routing.
-+
-+      ti,pcmd3140: Four-channel PDM-input to TDM or I2S output converter.
-+
-+      ti,pcmd3180: Eight-channel pulse-density-modulation input to TDM or
-+      I2S output converter.
-+
-+      ti,taa5212: Low-power high-performance stereo audio ADC with 118-dB
-+      dynamic range.
-+
-+      ti,tad5212: Low-power stereo audio DAC with 120-dB dynamic range.
-+    oneOf:
-+      - items:
-+          - enum:
-+              - ti,adc3120
-+              - ti,adc5120
-+              - ti,pcm3120
-+              - ti,pcm5120
-+              - ti,pcm6120
-+          - const: ti,adc6120
-+      - items:
-+          - enum:
-+              - ti,pcmd512x
-+              - ti,pcm9211
-+              - ti,taa5212
-+              - ti,tad5212
-+          - const: ti,adc6120
-+      - items:
-+          - enum:
-+              - ti,pcm6260
-+              - ti,pcm6140
-+              - ti,pcm3140
-+              - ti,pcm5140
-+          - const: ti,pcm6240
-+      - items:
-+          - enum:
-+              - ti,pcmd3140
-+              - ti,pcmd3180
-+              - ti,pcm1690
-+              - ti,taa5412
-+              - ti,tad5412
-+          - const: ti,pcm6240
-+      - enum:
-+          - ti,adc6120
-+          - ti,pcm6240
-+
-+  reg:
-+    description:
-+      I2C address, in multiple pcmdevices case, all the i2c address
-+      aggregate as one Audio Device to support multiple audio slots.
-+    minItems: 1
-+    maxItems: 4
-+
-+  reset-gpios:
-+    maxItems: 1
-+
-+  interrupts:
-+    maxItems: 1
-+    description:
-+      Invalid only for ti,pcm1690 because of no INT pin.
-+
-+  '#sound-dai-cells':
-+    const: 0
-+
-+required:
-+  - compatible
-+  - reg
-+
-+allOf:
-+  - $ref: dai-common.yaml#
-+  - if:
-+      properties:
-+        compatible:
-+          contains:
-+            enum:
-+              - ti,pcm1690
-+    then:
-+      properties:
-+        interrupts: false
-+
-+additionalProperties: false
-+
-+examples:
-+  - |
-+   #include <dt-bindings/gpio/gpio.h>
-+   i2c {
-+     /* example for two devices with interrupt support */
-+     #address-cells = <1>;
-+     #size-cells = <0>;
-+     pcm6240: audio-codec@48 {
-+       compatible = "ti,pcm6240";
-+       reg = <0x48>, /* primary-device */
-+             <0x4b>; /* secondary-device */
-+       #sound-dai-cells = <0>;
-+       reset-gpios = <&gpio1 10 GPIO_ACTIVE_HIGH>;
-+       interrupt-parent = <&gpio1>;
-+       interrupts = <15>;
-+     };
-+   };
-+...
+Best regards,
 -- 
-2.34.1
+Nayab Sayed <nayabbasha.sayed@microchip.com>
 
 
