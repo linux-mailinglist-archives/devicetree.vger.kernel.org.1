@@ -1,279 +1,231 @@
-Return-Path: <devicetree+bounces-39829-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-39830-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5F6D284E389
-	for <lists+devicetree@lfdr.de>; Thu,  8 Feb 2024 15:57:31 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 5CA5B84E38D
+	for <lists+devicetree@lfdr.de>; Thu,  8 Feb 2024 15:58:21 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 160542824D8
-	for <lists+devicetree@lfdr.de>; Thu,  8 Feb 2024 14:57:30 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 12E402824D8
+	for <lists+devicetree@lfdr.de>; Thu,  8 Feb 2024 14:58:20 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0843A7AE4B;
-	Thu,  8 Feb 2024 14:57:24 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 11D3B7AE79;
+	Thu,  8 Feb 2024 14:58:18 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=amd.com header.i=@amd.com header.b="wal73oxa"
+	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="eY7XQKBP"
 X-Original-To: devicetree@vger.kernel.org
-Received: from NAM12-MW2-obe.outbound.protection.outlook.com (mail-mw2nam12on2053.outbound.protection.outlook.com [40.107.244.53])
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3C4CF79DD5;
-	Thu,  8 Feb 2024 14:57:21 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.107.244.53
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1707404243; cv=fail; b=Rt8vTN+pcMqgrJNo2Ct9X2RzpLj4Q855kLakZ3QK6JDU39Y71pHCITw7DMd4bsPyFw+MiVVZ/j4h8yIIvsz3pbk3cD1F4IwJMKBblZCsu5wDJJT/gF1S492DEy+9Q+ow5s5ZwtFo/1vs09O/8+In2AaOqwvmqy3uraaJPkrE/IA=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1707404243; c=relaxed/simple;
-	bh=/zKVY/75O3UqHJdgB9j4HojESikrGWhSp0TBufatPxw=;
-	h=Message-ID:Date:Subject:To:References:From:In-Reply-To:
-	 Content-Type:MIME-Version; b=CFQdZ/jTP8rYPC31O7g6vJWITgrggavq7z2IZduWcG6Jxb/KU6XzYKq5kE7gl2UyfkFR1Y9duN3xrEzIQhK1iGnTF2CuWqLmfZyyUJk1AVgx7otnz/uYCNIZaA6xdHHoZf579kv8r5nXRkvRkOeNpvfcgHm42IdPoi+YJ+YBhoU=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=amd.com; spf=fail smtp.mailfrom=amd.com; dkim=pass (1024-bit key) header.d=amd.com header.i=@amd.com header.b=wal73oxa; arc=fail smtp.client-ip=40.107.244.53
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=amd.com
-Authentication-Results: smtp.subspace.kernel.org; spf=fail smtp.mailfrom=amd.com
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=ocXLsCo3fbRr1cPqTusqcNiZsz7Aej/5988rehnVQcfkfmWYBOmEopira2uwJzzrlREuxEDAk2WxTzvOO4P9lsMdKGM5Tj4K0NmAFxiH0GFlY7lT7Wx1LuPLa5ON4ZxXBhCb0yeMjVAopZHTPF98qOCguzpp7vAJsUfQ5X3lbfm3M8Pwc1iJ0bCURy7nVzfeLIUTAMjvRDqMT1SCsRRFJTOx24/aMHo3vPQCZL5mM7jvWAw/68PlKfsLRdmb1cCCgpjVYWZ97kzwQLfRP1SKHBISOQ/JG8IIgn1bLSYs8vmC8VBlgu6s4k6IXerMI/pHLMX+Ernl67SZh/6/RT/Djg==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=nsqVsWIMo6VHQIN4XA7nG5x4HJlZeUF6TpOxQyitxSQ=;
- b=QyXsYOGypPT7hCpXM9xFSRmcFUWlNSSJKzKvI7W1BeIgV0yhm2CqLkeMaEQ+FknTIWf9GRITkmhWGDqK0q/aEjlKrf7+VwcKYpirxdVjOCi+4ZhrNUlbiCr9Iz2yAdW6gyt0yNGVLJlxzBnDXy5q+xjv/44fNd/hXVOiM5qtIZ8iDSarcVo8cNl0/oG6UUy/DF3BEnK1w3I9AGLhJ/RFYIpdoCwriXuZOxl2QjbVZofqGAXkc2eD79sQfHmG/UbB2ltYAnYsZ00W61eBqJaJectaFxExHdOdlvFJzATqyRqAcESZhuhY+HUQhEZqU6eTDRoMehlNdRLhzfPTRCvPtA==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
- header.d=amd.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=nsqVsWIMo6VHQIN4XA7nG5x4HJlZeUF6TpOxQyitxSQ=;
- b=wal73oxaVRxKf4ZwtRg0aqtDbKA4ybGrl0RrTSgM5W2bBYhyIgHVl3P2A981My3ZP40bceokdV9bDZFr44mZNDmc84RgKhdJrwmiJ12xvd5555gkwH3f3Y6udL9dyugOkKT55aUULPFWKth5V46ZADHJ8x1SEBEklF5ptrkEpCY=
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=amd.com;
-Received: from SN6PR12MB4752.namprd12.prod.outlook.com (2603:10b6:805:e9::10)
- by DM4PR12MB8500.namprd12.prod.outlook.com (2603:10b6:8:190::14) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7270.14; Thu, 8 Feb
- 2024 14:57:18 +0000
-Received: from SN6PR12MB4752.namprd12.prod.outlook.com
- ([fe80::f1ca:c26f:a79c:ac36]) by SN6PR12MB4752.namprd12.prod.outlook.com
- ([fe80::f1ca:c26f:a79c:ac36%7]) with mapi id 15.20.7270.012; Thu, 8 Feb 2024
- 14:57:18 +0000
-Message-ID: <d4fe8b55-a1ea-4ce7-89ac-ce17e8ff4e45@amd.com>
-Date: Thu, 8 Feb 2024 08:57:16 -0600
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 1/1] ARM:dts:aspeed: Initial device tree for AMD Onyx
- Platform
-Content-Language: en-US
-To: Supreeth Venkatesh <supreeth.venkatesh@amd.com>, joel@jms.id.au,
- andrew@aj.id.au, devicetree@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, linux-aspeed@lists.ozlabs.org,
- linux-kernel@vger.kernel.org, openbmc@lists.ozlabs.org, robh+dt@kernel.org
-References: <20240110033543.799919-1-supreeth.venkatesh@amd.com>
-From: Supreeth Venkatesh <supvenka@amd.com>
-In-Reply-To: <20240110033543.799919-1-supreeth.venkatesh@amd.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: DM6PR08CA0043.namprd08.prod.outlook.com
- (2603:10b6:5:1e0::17) To SN6PR12MB4752.namprd12.prod.outlook.com
- (2603:10b6:805:e9::10)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 50F307A738;
+	Thu,  8 Feb 2024 14:58:16 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1707404298; cv=none; b=spYxlXPYPcZkUo61lB+/9RV6iWLiAioJMcfPqy0jzQkgHxJmIvp62lEGjsOAbt3aEtx2uqePkgR1IpJRW5aU8CZJoFgdH/2Rld5hnbk6Ggzik+YTYsKIaNHq+7yn0NJEq5sfuhqe/HrtX0VOsbkR4kLa/jpnqyIkp/DWkQIm5XE=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1707404298; c=relaxed/simple;
+	bh=ako2aJdiOkB48kPl7T8N9a20fA0l/yMwizdE0vbWTgs=;
+	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
+	 In-Reply-To:Content-Type; b=M3t2WZ9Io8TWhmHxQvNzk7EHEWZjqd69U5vm8gzakdILQZnQVSEycal5fuoK6d2FsiPaiDmVyH1nteGg1BaYLZXXr8itEI7GxLpCApaiTJ0XG0d8k+pvsd1k+djesuEknJSYuhgcek1OGvZjZoX8ftroj59MCEM00Y4uPS6dXSo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=eY7XQKBP; arc=none smtp.client-ip=205.220.168.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
+Received: from pps.filterd (m0279864.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.17.1.24/8.17.1.24) with ESMTP id 418Acrhg000981;
+	Thu, 8 Feb 2024 14:58:12 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
+	message-id:date:mime-version:subject:to:cc:references:from
+	:in-reply-to:content-type:content-transfer-encoding; s=
+	qcppdkim1; bh=76YPUW+4xtU+KjH5ZjMr6Yydl5/IkA1gxuA6u42Y6Ds=; b=eY
+	7XQKBPCIYIyPmtZx8z1wU8N4Jfk8vobiuzsNEIjYXrk++O5wWpyagQyhmfu7N3C6
+	CahIpggn0KgvCNfDwJ534S7rCgRp5sa06lr4AgydCxWeCCjlf+lXDd8VXcs6tcsY
+	ozSk+PPr5E3R0DoSX0Fvx+4CZT1ga79CWi4WAneQ3WpZQmFvK4waWldndecNeKVL
+	YROEIoCvKhrB2OW43tZy4gc4ugMnIxjD5mjSbndvNuOWVTZU1MXT8HlRkToQHn8S
+	YHIRRTD+KEw6gWMB3Hmb9cixq7YoA2HhX6ctbzSlIHdW0tuLsIrafQ3yvLjrQMrQ
+	5plAZcyjU4vwvQhuw8jA==
+Received: from nalasppmta04.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3w4h0uj8dv-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Thu, 08 Feb 2024 14:58:12 +0000 (GMT)
+Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
+	by NALASPPMTA04.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 418EwB90026307
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Thu, 8 Feb 2024 14:58:11 GMT
+Received: from [10.216.50.187] (10.80.80.8) by nalasex01a.na.qualcomm.com
+ (10.47.209.196) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1118.40; Thu, 8 Feb
+ 2024 06:58:06 -0800
+Message-ID: <3ad77846-b4a8-80ee-e9e1-d5cbf4add6d8@quicinc.com>
+Date: Thu, 8 Feb 2024 20:28:01 +0530
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: SN6PR12MB4752:EE_|DM4PR12MB8500:EE_
-X-MS-Office365-Filtering-Correlation-Id: 0fe4f774-1fca-475a-03a8-08dc28b63ee5
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info:
-	AoBB82IliSgfl7NeGNUtq5h3Ui2mwzxO6AtwjcTX0iDZAcNzfx993FR0sKw4MQvT7zvPLq+wxNDGvs9PjuSBB9iA02ZxNe+A9TAzJP9sn7wuP+hbBlFbzjYXSngCPwiDq5N5+uOFDFL/fISKnlw8Uv7c9MRQHUY/xEVEu9uxcVWcj+To5JcFAWAfoTk4MlMUASTT/nYuDmjppAOZNAVJ1aV7e3CgR1hpNBgR5dIEo1jCFTXtpBtK1i59csgSbuNVk5TBM9a4ONvUzs2O9sDYQTwIgg1DKYDzg9+vjS+jRLxasJtWbbb6udbJ/k8NbKWehIs7+Td7gJoEWZrM00R7NLNgxD+9FBsS2PVWVtqx/7VDasWTBLmFUi8PkRsJEIyN5QRBDRwTV/0lOOaCIGWeVpC16LIVNRcWFr8exdalTDXhXduClvD17lUfhnNa/KobDgqNZEJ5oBnm3VStJpYwUKSxB44EKCob352fVKvV8BG0Ssp8trHNX3h7PxRUOl7ztJcWS1tHb35g96ML5FvWNeP+vNc4PMXWok8hAxRB2czHk7bSRRXioiZ8IjC5w5XY
-X-Forefront-Antispam-Report:
-	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:SN6PR12MB4752.namprd12.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230031)(366004)(396003)(136003)(39860400002)(346002)(376002)(230922051799003)(451199024)(1800799012)(64100799003)(186009)(41300700001)(36756003)(6512007)(6506007)(2616005)(66476007)(478600001)(31686004)(66946007)(2906002)(26005)(5660300002)(31696002)(8676002)(83380400001)(38100700002)(316002)(8936002)(66556008)(6486002)(53546011);DIR:OUT;SFP:1101;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0:
-	=?utf-8?B?SnFUYTRQMVZzRzF0ckdkMVRJcnQ5NU5rVjJTZTh0QkRmQ1hNUGdtZzgxR0Z6?=
- =?utf-8?B?TjgzOXJEbEIxL3hkdGhXWXlCVTZNTjZ1TUFRWVg4aGtBNDlOVXd2eUpJTW5o?=
- =?utf-8?B?WTNQNWE4Sml0T3BqMXo4aHdEZ0p1ZHpZdTljRG5LK3NxYnBEOFR0MGZhdWoz?=
- =?utf-8?B?SUlzSXg3clE0alJ5bFFxSGYxLzFOOGJGZHR0czR4WEwrQm5SUGZaMUVXU0E3?=
- =?utf-8?B?Vkt6VkhBK2RjejZVdGQzL1h1MDlMaTRtU3AzRC9hNjZoYzZjL25aM2JXei9a?=
- =?utf-8?B?Zkg0UXQxRERGTkR5WU10ODY4RHVxTmVZQmE3Z1ZDcUI1OUFncDlGWVQwRHNO?=
- =?utf-8?B?c212RU1wZHhNM2NEMXpvNXRITm96bk5DUFB0TWhvRGNjWnVZUDFCV282Si9T?=
- =?utf-8?B?WXAzcGwza1plWFZFdWhvcFdDYlVFU0hDbnFJWWlvcUNVL0wrNFJMeHJ5MnBU?=
- =?utf-8?B?eTJyRTMvVy9tRmt0UjMxb0tHcGk0Q1hpTXB5cjZIRXpJWi83aGFpejZoT3Vx?=
- =?utf-8?B?d1RHUE5vSHBKanBPRUV1OStVNURQVXdCREF2NG1OeVdzdzNXY3VxK2JoeHhX?=
- =?utf-8?B?ekxhMUpaVTI4SFp1RlNhOVRRWFROR2t5V1Z6czQ5bENodllhMU1uN05USHYw?=
- =?utf-8?B?NEdEbG1RdmUrbnlwd2tSVVBBSFFWM25GMEhEb05NZzNKSmJBaVZtaTNOM3Fx?=
- =?utf-8?B?RFRJR1F2dmZDVmg0RWo2d014N1FvajM5NGpHNkpteVpFQkVVd1hZNEV6emVT?=
- =?utf-8?B?aUlqTDg3djJNeTdOYVBqT0dZYXhyYXNRZ21xM1BvTnVlTDdEaXZIVHlsSTU4?=
- =?utf-8?B?UkYvZzFkNDl4ek9VaUduREw5T2pVMTBBUEdXL2N4V0V3WXpQZmxWUEpOR0ZY?=
- =?utf-8?B?RTJIZlJ5T29RVDlXZGx4KzZNQUFHVVB1RHRYMGZJNjFNV2NvUlZWNVdQdTdn?=
- =?utf-8?B?ejR3YVhycHN1Y0RmTnhXSWNaSTVyeHZuWVQ5WEw1VnJKa2d6UmZsenZ4K2Rk?=
- =?utf-8?B?dExaM2dieGx0NEtOa0tGQVdJRS9NelVuTlR0NnNuWlhsUGFjSFd5VUpaUzhj?=
- =?utf-8?B?QjRMQ3RIbE4vWFBqY01NTFBIU3JNbHo1U3FRVUlyenFwMkxTSTVPSXZ3cTdx?=
- =?utf-8?B?djM4ck53VzdLMncwWlM4VzlvdDR1c01SQk5Hb1hsU0ErdlorenpvcmdhNGRE?=
- =?utf-8?B?cjlZWkdXdHZXSHlwcWpWL1d2d01kMGVqM1UwNlg2aGgvR0loOEo5Ty9nbDdW?=
- =?utf-8?B?RE8wb3VRU1NUOTdLVmluaGRKV2ppQng5bmQzWkpZMVZvU3N6WHN2VWNxazJk?=
- =?utf-8?B?MndTS09XNG9ZdEpYWW1wbDlFSDVwam5YUkJWQVpwUkM5SnA4WTJIYzVBbjZF?=
- =?utf-8?B?cGFkcVFYL2FPSlk5emlnTHpQSDlsbWNXdHpuM1o2UnJKdFlXd1VJVTZmUFRy?=
- =?utf-8?B?bThqY09ZUEN4M0Z2a1UvQ3dkWnV6OUFneUZaVGczVHVTbmJlSTVLQStDRE9B?=
- =?utf-8?B?LzBnbHFGbXZkNUFXVHRwNGZLak1vTFlVOWt3dWxENlYydGhxUG0zLzJGMHRQ?=
- =?utf-8?B?MFZ6dDJVZVVZbzRaZEU3QlJqdTZ5NUtleWhCeVVMeGFVSTBMU1plWUhhc1FQ?=
- =?utf-8?B?TWNHSnFlSmErdnBzOWFQTWRIbXdsbld2QzMrL0prNFRBSFgxMTBxU0VtbU1I?=
- =?utf-8?B?NEFpdmEwZ3haQTFvOGZMN2NzY1JncUp1WFNRVGQ4Tis0S3h5NEtwcS9VSDJW?=
- =?utf-8?B?dlJuajVGd20zNG5LKzNVdUk4Ync4RTJ5SW1xYjZsTmVxODhUQWhsRG9IZkda?=
- =?utf-8?B?alQxdkVBYjFZR1ZaWit4N291bEI2WHVVSE5HL1R3bGMzdHJmTUt0K3ovS2Vl?=
- =?utf-8?B?Qm9JRTZFc2MzZUNZNWdyaXJnVEM0NkRZQmdnZWFiVm9DWXJQQ2xpWEJuU3I4?=
- =?utf-8?B?UEZHL20xWWpwRzNWQzdDMWdVbXc0NlViUFBJKzFUVWRrZnllZW91SDR1cTB2?=
- =?utf-8?B?d3BRcUVtWElCTk1WR2d1c3pZUFMySWptNDV4N2pDdk9jeHhwS3pUcHBzNVBj?=
- =?utf-8?B?dEpGNzRkNE1TWlhZbE51d2tVNXJoMGZlcEN5WWs4WXFtdzhBNHdNNWlNbXo0?=
- =?utf-8?Q?VQMZL4ceLhngPFsVL4LbRjONR?=
-X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 0fe4f774-1fca-475a-03a8-08dc28b63ee5
-X-MS-Exchange-CrossTenant-AuthSource: SN6PR12MB4752.namprd12.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 08 Feb 2024 14:57:18.5474
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: MmsH3I+brArDbs2IKkzxcHkdaysq+MYKVV8+QUvZULtx/5+vNBavERtWswIfK+It7tFsCUIWdfWOqVKNun18HQ==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM4PR12MB8500
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:91.0) Gecko/20100101
+ Thunderbird/91.13.1
+Subject: Re: [PATCH] arm64: dts: qcom: qcs6490-rb3gen2: Add PCIe nodes
+Content-Language: en-US
+To: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+CC: Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio
+	<konrad.dybcio@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        "Krzysztof
+ Kozlowski" <krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley
+	<conor+dt@kernel.org>, <linux-arm-msm@vger.kernel.org>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <quic_vbadigan@quicinc.com>, <quic_ramkri@quicinc.com>,
+        <quic_nitegupt@quicinc.com>, <quic_skananth@quicinc.com>,
+        <quic_parass@quicinc.com>
+References: <20240207-enable_pcie-v1-1-b684afa6371c@quicinc.com>
+ <CAA8EJpqjm_2aE+7BtMkFUdet11q7v_jyHbUEpiDHSBSnzhndYA@mail.gmail.com>
+ <dec2976e-6e1e-6121-e175-210377ff6925@quicinc.com>
+ <CAA8EJprsm5Tw=vFpmfEKL8fxS-S+aW+YR0byfyL=v78k75TGEw@mail.gmail.com>
+From: Krishna Chaitanya Chundru <quic_krichai@quicinc.com>
+In-Reply-To: <CAA8EJprsm5Tw=vFpmfEKL8fxS-S+aW+YR0byfyL=v78k75TGEw@mail.gmail.com>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 7bit
+X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
+ nalasex01a.na.qualcomm.com (10.47.209.196)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-ORIG-GUID: ihUM9dPdVjbYBgTWmRWoyx7pe9_TZkvu
+X-Proofpoint-GUID: ihUM9dPdVjbYBgTWmRWoyx7pe9_TZkvu
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.272,Aquarius:18.0.1011,Hydra:6.0.619,FMLib:17.11.176.26
+ definitions=2024-02-08_05,2024-02-08_01,2023-05-22_02
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 impostorscore=0 adultscore=0
+ spamscore=0 mlxscore=0 suspectscore=0 phishscore=0 malwarescore=0
+ bulkscore=0 mlxlogscore=960 priorityscore=1501 clxscore=1015
+ lowpriorityscore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.19.0-2401310000 definitions=main-2402080080
 
-This patch is pending for a month now.
 
-Can DT maintainers please help review this and provide feedback?
 
-On 1/9/24 21:35, Supreeth Venkatesh wrote:
-> This patch adds initial device tree and makefile updates for
-> AMD Onyx platform.
+On 2/8/2024 12:21 PM, Dmitry Baryshkov wrote:
+> On Thu, 8 Feb 2024 at 08:14, Krishna Chaitanya Chundru
+> <quic_krichai@quicinc.com> wrote:
+>>
+>>
+>>
+>> On 2/7/2024 5:17 PM, Dmitry Baryshkov wrote:
+>>> On Wed, 7 Feb 2024 at 12:42, Krishna chaitanya chundru
+>>> <quic_krichai@quicinc.com> wrote:
+>>>>
+>>>> Enable PCIe1 controller and its corresponding PHY nodes on
+>>>> qcs6490-rb3g2 platform.
+>>>>
+>>>> PCIe switch is connected to PCIe1, PCIe switch has multiple endpoints
+>>>> connected. For each endpoint a unique BDF will be assigned and should
+>>>> assign unique smmu id. So for each BDF add smmu id.
+>>>>
+>>>> Signed-off-by: Krishna chaitanya chundru <quic_krichai@quicinc.com>
+>>>> ---
+>>>>    arch/arm64/boot/dts/qcom/qcs6490-rb3gen2.dts | 42 ++++++++++++++++++++++++++++
+>>>>    1 file changed, 42 insertions(+)
+>>>>
+>>>> diff --git a/arch/arm64/boot/dts/qcom/qcs6490-rb3gen2.dts b/arch/arm64/boot/dts/qcom/qcs6490-rb3gen2.dts
+>>>> index 8bb7d13d85f6..0082a3399453 100644
+>>>> --- a/arch/arm64/boot/dts/qcom/qcs6490-rb3gen2.dts
+>>>> +++ b/arch/arm64/boot/dts/qcom/qcs6490-rb3gen2.dts
+>>>> @@ -413,6 +413,32 @@ vreg_bob_3p296: bob {
+>>>>           };
+>>>>    };
+>>>>
+>>>> +&pcie1 {
+>>>> +       perst-gpios = <&tlmm 2 GPIO_ACTIVE_LOW>;
+>>>> +
+>>>> +       pinctrl-0 = <&pcie1_reset_n>, <&pcie1_wake_n>;
+>>>> +       pinctrl-names = "default";
+>>>> +
+>>>> +       iommu-map = <0x0 &apps_smmu 0x1c80 0x1>,
+>>>> +                   <0x100 &apps_smmu 0x1c81 0x1>,
+>>>> +                   <0x208 &apps_smmu 0x1c84 0x1>,
+>>>> +                   <0x210 &apps_smmu 0x1c85 0x1>,
+>>>> +                   <0x218 &apps_smmu 0x1c86 0x1>,
+>>>> +                   <0x300 &apps_smmu 0x1c87 0x1>,
+>>>> +                   <0x400 &apps_smmu 0x1c88 0x1>,
+>>>> +                   <0x500 &apps_smmu 0x1c89 0x1>,
+>>>> +                   <0x501 &apps_smmu 0x1c90 0x1>;
+>>>
+>>> Is the iommu-map really board specific?
+>>>
+>> The iommu-map for PCIe varies if PCIe switch is connected.
+>> For this platform a PCIe switch is connected and for that reason
+>> we need to define additional smmu ID's for each BDF.
+>>
+>> For that reason we defined here as these ID's are applicable only
+>> for this board.
+> 
+> So, these IDs are the same for all boards, just being unused on
+> devices which have no bridges / switches connected to this PCIe host.
+> If this is correct, please move them to sc7280.dtsi.
 >
-> AMD Onyx platform is an AMD customer reference board with an Aspeed
-> ast2600 BMC manufactured by AMD.
-> It describes I2c devices, Fans, Kcs devices, Uarts, Mac, LEDs, etc.
-> present on AMD Onyx platform.
->
-> Signed-off-by: Supreeth Venkatesh <supreeth.venkatesh@amd.com>
-> ---
->   arch/arm/boot/dts/aspeed/Makefile             |  1 +
->   .../boot/dts/aspeed/aspeed-bmc-amd-onyx.dts   | 98 +++++++++++++++++++
->   2 files changed, 99 insertions(+)
->   create mode 100644 arch/arm/boot/dts/aspeed/aspeed-bmc-amd-onyx.dts
->
-> diff --git a/arch/arm/boot/dts/aspeed/Makefile b/arch/arm/boot/dts/aspeed/Makefile
-> index fb9cc95f1b60..2b27d377aae2 100644
-> --- a/arch/arm/boot/dts/aspeed/Makefile
-> +++ b/arch/arm/boot/dts/aspeed/Makefile
-> @@ -5,6 +5,7 @@ dtb-$(CONFIG_ARCH_ASPEED) += \
->   	aspeed-ast2600-evb.dtb \
->   	aspeed-bmc-amd-daytonax.dtb \
->   	aspeed-bmc-amd-ethanolx.dtb \
-> +	aspeed-bmc-amd-onyx.dtb \
->   	aspeed-bmc-ampere-mtjade.dtb \
->   	aspeed-bmc-ampere-mtmitchell.dtb \
->   	aspeed-bmc-arm-stardragon4800-rep2.dtb \
-> diff --git a/arch/arm/boot/dts/aspeed/aspeed-bmc-amd-onyx.dts b/arch/arm/boot/dts/aspeed/aspeed-bmc-amd-onyx.dts
-> new file mode 100644
-> index 000000000000..a7056cd29553
-> --- /dev/null
-> +++ b/arch/arm/boot/dts/aspeed/aspeed-bmc-amd-onyx.dts
-> @@ -0,0 +1,98 @@
-> +// SPDX-License-Identifier: GPL-2.0+
-> +// Copyright (c) 2021 - 2024 AMD Inc.
-> +// Author: Supreeth Venkatesh <supreeth.venkatesh@amd.com>
-> +
-> +/dts-v1/;
-> +
-> +#include "aspeed-g6.dtsi"
-> +#include <dt-bindings/gpio/aspeed-gpio.h>
-> +
-> +/ {
-> +       model = "AMD Onyx BMC";
-> +       compatible = "amd,onyx-bmc", "aspeed,ast2600";
-> +
-> +       aliases {
-> +               serial0 = &uart1;
-> +               serial4 = &uart5;
-> +      };
-> +
-> +       chosen {
-> +               stdout-path = &uart5;
-> +               bootargs = "console=ttyS4,115200 earlyprintk vmalloc=512MB";
-> +       };
-> +
-> +       memory@80000000 {
-> +               device_type = "memory";
-> +               reg = <0x80000000 0x80000000>;
-> +       };
-> +
-> +};
-> +
-> +&mdio0 {
-> +       status = "okay";
-> +
-> +       ethphy0: ethernet-phy@0 {
-> +               compatible = "ethernet-phy-ieee802.3-c22";
-> +               reg = <0>;
-> +       };
-> +};
-> +
-> +&mac3 {
-> +       status = "okay";
-> +       phy-mode = "rgmii";
-> +       phy-handle = <&ethphy0>;
-> +
-> +       pinctrl-names = "default";
-> +       pinctrl-0 = <&pinctrl_rgmii4_default>;
-> +};
-> +
-> +
-> +
-> +&fmc {
-> +       status = "okay";
-> +       flash@0 {
-> +               compatible = "jedec,spi-nor";
-> +               status = "okay";
-> +               #include "openbmc-flash-layout-128.dtsi"
-> +       };
-> +};
-> +
-> +//Host Console
-> +&uart1 {
-> +       status = "okay";
-> +};
-> +
-> +//BMC Console
-> +&uart5 {
-> +       status = "okay";
-> +};
-> +
-> +&gpio0 {
-> +        gpio-line-names =
-> +        /*A0-A7*/       "","","","","","","","",
-> +        /*B0-B7*/       "","","","","MON_POST_COMPLETE","P0_PRESENT_L","","",
-> +        /*C0-C7*/       "","","","","","","","",
-> +        /*D0-D7*/       "","","","","","","","",
-> +        /*E0-E7*/       "","","","","","","","",
-> +        /*F0-F7*/       "","","","","","","","",
-> +        /*G0-G7*/       "","","","","","","","",
-> +        /*H0-H7*/       "","ASSERT_WARM_RST_BTN_L","ASSERT_SOC_RST_BTN_L","","","","","",
-> +        /*I0-I7*/       "","","","","","","","P0_I3C_APML_ALERT_L",
-> +        /*J0-J7*/       "","","","","","","","",
-> +        /*K0-K7*/       "","","","","","","","",
-> +        /*L0-L7*/       "","","","","","","","",
-> +        /*M0-M7*/       "","","","","","","","",
-> +        /*N0-N7*/       "","","","","","","PSP_SOFT_FUSE_NOTIFY","ASSERT_BMC_READY",
-> +        /*O0-O7*/       "","","HDT_SEL","HDT_XTRIG5","HDT_XTRIG6","JTAG_TRST_N","","",
-> +        /*P0-P7*/       "MON_RST_BTN_L","ASSERT_RST_BTN_L","MON_PWR_BTN_L","ASSERT_PWR_BTN_L","HPM_FPGA_LOCKOUT","ASSERT_NMI_BTN_L","MON_PWR_GOOD","",
-> +        /*Q0-Q7*/       "","","HDT_DBREQ_L","","BIOS_SPD_MUX_CTRL_RELEASED_L","","","",
-> +        /*R0-R7*/       "","","","","","","","",
-> +        /*S0-S7*/       "","","","","","","P0_DIMM_AF_ERROR","P0_DIMM_GL_ERROR",
-> +        /*T0-T7*/       "","","","","","","","",
-> +        /*U0-U7*/       "","","","","","","","",
-> +        /*V0-V7*/       "","","","","","","","",
-> +        /*W0-W7*/       "","","","","","","","",
-> +        /*X0-X7*/       "","","","","","","","",
-> +        /*Y0-Y7*/       "","","","","","","","",
-> +        /*Z0-Z7*/       "","","","","","","","";
-> +};
+Yes ID's will be same for all boards. we can move them sc7280.dtsi
+but the BDF to smmu mapping will be specific to this board only.
+if there is some other PCIe switch with different configuration is
+connected to different board of same variant in future again these
+mapping needs to updated.
+
+For that reason I tried to add it here.
+
+- Krishna Chaitanya.
+>>
+>> - Krishna Chaitanya.
+>>>> +
+>>>> +       status = "okay";
+>>>> +};
+>>>> +
+>>>> +&pcie1_phy {
+>>>> +       vdda-phy-supply = <&vreg_l10c_0p88>;
+>>>> +       vdda-pll-supply = <&vreg_l6b_1p2>;
+>>>> +
+>>>> +       status = "okay";
+>>>> +};
+>>>> +
+>>>>    &qupv3_id_0 {
+>>>>           status = "okay";
+>>>>    };
+>>>> @@ -420,6 +446,22 @@ &qupv3_id_0 {
+>>>>    &tlmm {
+>>>>           gpio-reserved-ranges = <32 2>, /* ADSP */
+>>>>                                  <48 4>; /* NFC */
+>>>> +
+>>>> +       pcie1_reset_n: pcie1-reset-n-state {
+>>>> +               pins = "gpio2";
+>>>> +               function = "gpio";
+>>>> +               drive-strength = <16>;
+>>>> +               output-low;
+>>>> +               bias-disable;
+>>>> +       };
+>>>> +
+>>>> +       pcie1_wake_n: pcie1-wake-n-state {
+>>>> +               pins = "gpio3";
+>>>> +               function = "gpio";
+>>>> +               drive-strength = <2>;
+>>>> +               bias-pull-up;
+>>>> +       };
+>>>> +
+>>>>    };
+>>>>
+>>>>    &uart5 {
+>>>>
+>>>> ---
+>>>> base-commit: 70d201a40823acba23899342d62bc2644051ad2e
+>>>> change-id: 20240207-enable_pcie-95b1d6612b27
+>>>>
+>>>> Best regards,
+>>>> --
+>>>> Krishna chaitanya chundru <quic_krichai@quicinc.com>
+>>>>
+>>>>
+>>>
+>>>
+> 
+> 
+> 
 
