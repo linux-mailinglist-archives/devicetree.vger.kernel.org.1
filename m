@@ -1,121 +1,131 @@
-Return-Path: <devicetree+bounces-39911-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-39912-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id E27CC84E8B6
-	for <lists+devicetree@lfdr.de>; Thu,  8 Feb 2024 20:07:57 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id BAC7684E8A5
+	for <lists+devicetree@lfdr.de>; Thu,  8 Feb 2024 20:05:19 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 8D50AB2C510
-	for <lists+devicetree@lfdr.de>; Thu,  8 Feb 2024 18:59:56 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 5998A1F28ABA
+	for <lists+devicetree@lfdr.de>; Thu,  8 Feb 2024 19:05:19 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id CD61B2E415;
-	Thu,  8 Feb 2024 18:52:29 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 094B02560B;
+	Thu,  8 Feb 2024 19:05:12 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="HeVDzwv0"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="CS+rhKX+"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A17C731A7E;
-	Thu,  8 Feb 2024 18:52:29 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C6A602555F;
+	Thu,  8 Feb 2024 19:05:11 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1707418349; cv=none; b=A9AeLfimFD3ND4gvrXm7qZUoOWnLmlRotFJpjCi1wNGTzsZw+UhGymiD1stE5D4LMNTEs1/JRFbxrSHjvxB83Oy6LdEwqC9uvlhrcaTxBxpJw/2BWqlUeYKecjXEcJ2SJn40JrQybPu0mBohUOvjLh86YQ5Z7vKc6Xy0jn8D8ww=
+	t=1707419111; cv=none; b=IdIQontj8aq+h8DP4yMOjncajvQqIA69x9xHf+kyaTkEWcwGpD1UCgQcekfC5ViDLE6BQd7NiGTmKMngDkFC5M3+SWtZu452GbGsQpd2YQHtY6GKi/8TPAlZSZGJI6kppj9Y3OI5fLcm4SETpthIDB1CSH6us8rYqmJgU9hfsPU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1707418349; c=relaxed/simple;
-	bh=Eg9z1FUcFH19toKXZnOKOyuQw5ciqSE32Ydq6NT2mOI=;
+	s=arc-20240116; t=1707419111; c=relaxed/simple;
+	bh=2qlm0ODvAMoRIMtaJwc8hZTrxizT0hsAuAgTKH9Ac6E=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=sGxuMI9KYgG+nTD/ztlnmHG2V9r8kgaahCJCubPFRNJpCObjVSLmFyEkGuLW7zSlWlg13ixazrKUES6+NkqeYxuo5xZjaQS7mhVd8PGUl2giQLfjHZtFD3qAM4R+Opz2j4gU4GgXB9/J+rQk+LtBjmo0KEhz/AEAavLH8H3gzwY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=HeVDzwv0; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id D4D4FC43394;
-	Thu,  8 Feb 2024 18:52:25 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=u4GUz/z6p0LCEYYs3h9b8FbnFuF9nwOP3HBja+fKVi3+Kq2A7fW7Rao07kxsxk85ASDu7fhTxb20qMVFbZuEt2j+8s5b8iLZX6Pz6jEs6DAj1N5QQoARjsTJi0xQaNK9mBpDWFdYIjreFK5sn3OF+Q44XZbNYc7v/UL4ehrkk+U=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=CS+rhKX+; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id B7FA8C433C7;
+	Thu,  8 Feb 2024 19:05:10 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1707418349;
-	bh=Eg9z1FUcFH19toKXZnOKOyuQw5ciqSE32Ydq6NT2mOI=;
+	s=k20201202; t=1707419111;
+	bh=2qlm0ODvAMoRIMtaJwc8hZTrxizT0hsAuAgTKH9Ac6E=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=HeVDzwv0RfFpuTGG5IgzUvM+UIRgTGPUN8DiMCam/1+0/+TVj2ol/IrxCSxzWLpwg
-	 NOrsHdldxU7LZP+ix06o7XOQkd9RZ4Lxg1euwvPpwRVrgQhiP47T2sfv786+EKKAC6
-	 USSamSS4ZYo3X+dqpqiio4wRcN0vrMYm4ewZvhOW6hHC5usLIYDKj/N80uDIRGajhZ
-	 e9v1ZE7KyWcPdv+q3pe3iFBMojnU3ZqZVi6uhkmuQJvXVnYDqU0+BWF0yyoyanj4Wm
-	 YXfTQnO8hUwn8QHZyOY9BppnHbPx4V3kXoLx2O+MJa+hiqoFN+UEEWLSW73ZR2WJwP
-	 LnG33u4LHbdcA==
-Date: Thu, 8 Feb 2024 18:52:23 +0000
-From: Conor Dooley <conor@kernel.org>
-To: Subhajit Ghosh <subhajit.ghosh@tweaklogic.com>
-Cc: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-	Jonathan Cameron <jic23@kernel.org>,
-	Lars-Peter Clausen <lars@metafoo.de>,
-	Rob Herring <robh+dt@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Matti Vaittinen <mazziesaccount@gmail.com>,
-	Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
-	Marek Vasut <marex@denx.de>, Anshul Dalal <anshulusr@gmail.com>,
-	Javier Carrasco <javier.carrasco.cruz@gmail.com>,
-	Matt Ranostay <matt@ranostay.sg>,
-	Stefan Windfeldt-Prytz <stefan.windfeldt-prytz@axis.com>,
-	linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v6 4/5] dt-bindings: iio: light: Avago APDS9306
-Message-ID: <20240208-chaplain-empathy-3955eabb7152@spud>
-References: <20240206130017.7839-1-subhajit.ghosh@tweaklogic.com>
- <20240206130017.7839-5-subhajit.ghosh@tweaklogic.com>
- <80e58f2f-b98b-46de-bcd4-fccbab11422a@linaro.org>
- <f7c18fca-2a85-46b2-a671-2409e662520f@tweaklogic.com>
+	b=CS+rhKX+zDJN3T7gIg8okrFgf1lLcVxRZ5Cz2/LEoMRiSQxKhS1AYIReNBGBrTVOa
+	 yGqJm+psHTpyryvSVn48tarXkW32jPdhOsJuUilGnCn5RyDnnW1xE+F3m6ufGOSxpY
+	 6dgpYCNtVr0JoPVCUH1dwTJp7pwPM6zLkXbZGLRjdHQgqfLmr/SiIpq6wlLl9xK8SP
+	 m+jk10SQh1NBroTiSMleSL7a5iOztf6nOKR5PJnZ5FJHfSitqkdlzKZcTSAANynisw
+	 OMLtJJ5En7QH+SIapHuil/lYGb3Kq2NHrOGS5iEHl/Vggqzzd8k1Hoc3o+w4i15teY
+	 gx/zycT4wEFVg==
+Date: Thu, 8 Feb 2024 20:05:08 +0100
+From: Maxime Ripard <mripard@kernel.org>
+To: Frank Oltmanns <frank@oltmanns.dev>
+Cc: Michael Turquette <mturquette@baylibre.com>, 
+	Stephen Boyd <sboyd@kernel.org>, Chen-Yu Tsai <wens@csie.org>, 
+	Jernej Skrabec <jernej.skrabec@gmail.com>, Samuel Holland <samuel@sholland.org>, 
+	Guido =?utf-8?Q?G=C3=BCnther?= <agx@sigxcpu.org>, Purism Kernel Team <kernel@puri.sm>, Ondrej Jirman <megi@xff.cz>, 
+	Neil Armstrong <neil.armstrong@linaro.org>, Jessica Zhang <quic_jesszhan@quicinc.com>, 
+	Sam Ravnborg <sam@ravnborg.org>, Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, 
+	Thomas Zimmermann <tzimmermann@suse.de>, David Airlie <airlied@gmail.com>, 
+	Daniel Vetter <daniel@ffwll.ch>, Rob Herring <robh+dt@kernel.org>, 
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, linux-clk@vger.kernel.org, 
+	linux-arm-kernel@lists.infradead.org, linux-sunxi@lists.linux.dev, linux-kernel@vger.kernel.org, 
+	dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org
+Subject: Re: [PATCH v2 5/6] drm/panel: st7703: Drive XBD599 panel at higher
+ clock rate
+Message-ID: <poua4bzyciiwt65sqjf2whqfdumvoe4h3bkjpf64px2vwgumrf@sai73byg2iju>
+References: <20240205-pinephone-pll-fixes-v2-0-96a46a2d8c9b@oltmanns.dev>
+ <20240205-pinephone-pll-fixes-v2-5-96a46a2d8c9b@oltmanns.dev>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-	protocol="application/pgp-signature"; boundary="af9Ebe8YYb4QbsX4"
+Content-Type: multipart/signed; micalg=pgp-sha512;
+	protocol="application/pgp-signature"; boundary="fpufhrhdecowdrbb"
 Content-Disposition: inline
-In-Reply-To: <f7c18fca-2a85-46b2-a671-2409e662520f@tweaklogic.com>
+In-Reply-To: <20240205-pinephone-pll-fixes-v2-5-96a46a2d8c9b@oltmanns.dev>
 
 
---af9Ebe8YYb4QbsX4
+--fpufhrhdecowdrbb
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
 Content-Transfer-Encoding: quoted-printable
 
-On Thu, Feb 08, 2024 at 09:21:17PM +1030, Subhajit Ghosh wrote:
-> Hi Krzysztof,
+Hi Frank,
+
+On Mon, Feb 05, 2024 at 04:22:28PM +0100, Frank Oltmanns wrote:
+> This panel is used in the pinephone that runs on a Allwinner A64 SOC.
+> The SOC requires pll-mipi to run at more than 500 MHz.
 >=20
-> On 8/2/24 18:48, Krzysztof Kozlowski wrote:
-> > On 06/02/2024 14:00, Subhajit Ghosh wrote:
-> > > Driver support for Avago (Broadcom) APDS9306 Ambient Light Sensor.
-> > > Extend avago,apds9300.yaml schema file to support apds9306 device.
-> > >=20
-> > > this patch depends on patch:
-> > > "dt-bindings: iio: light: adps9300: Update interrupt definitions"
-> >=20
-> > Drop the paragraph, not helping. There is no dependency here.
-> In the submitting patches guide, I read that if one patch depends
-> on another, it should be mentioned.
-> If I try to apply this patch with "git am", it fails without
-> first applying the patch dependency mentioned above. Is that fine?
-> Again, sorry about the silly questions, just don't want to assume stuff!
+> This is the relevant clock tree:
+>  pll-mipi
+>     tcon0
+>        tcon-data-clock
+>=20
+> tcon-data-clock has to run at 1/4 the DSI per-lane bit rate. The XBD599
+> has 24 bpp and 4 lanes. Therefore, the resulting requested
+> tcon-data-clock rate is:
+>     crtc_clock * 1000 * (24 / 4) / 4
+>=20
+> tcon-data-clock runs at tcon0 / 4 (fixed divisor), so it requests a
+> parent rate of
+>     4 * (crtc_clock * 1000 * (24 / 4) / 4)
+>=20
+> Since tcon0 is a ccu_mux, the rate of tcon0 equals the rate of pll-mipi.
+>=20
+> pll-mipi's constraint to run at 500MHz or higher forces us to have a
+> crtc_clock >=3D 83333 kHz if we want a 60 Hz vertical refresh rate.
+>=20
+> Change [hv]sync_(start|end) so that we reach a clock rate of 83502 kHz
+> so that it is high enough to align with pll-pipi limits.
+>=20
+> Signed-off-by: Frank Oltmanns <frank@oltmanns.dev>
 
-It's another patch in the same series, I don't think you should bother
-mentioning this at all. If there's a dependency on another series, then
-you should mention it under the --- line.
+That commit log is great, but it's kind of off-topic. It's a panel
+driver, it can be used on any MIPI-DSI controller, the only relevant
+information there should be the panel timings required in the datasheet.
 
-Cheers,
-Conor.
+The PLL setup is something for the MIPI-DSI driver to adjust, not for
+the panel to care for.
 
---af9Ebe8YYb4QbsX4
+Maxime
+
+--fpufhrhdecowdrbb
 Content-Type: application/pgp-signature; name="signature.asc"
 
 -----BEGIN PGP SIGNATURE-----
 
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZcUi5wAKCRB4tDGHoIJi
-0lnHAQC9wivPF4YxddHYID9CtPgWPTeEgG17Con/IIEpnWiH6gEAqvN2d3BXWdhd
-vcYFhuj+VV82l9lpQe5TkcehuXwkdwA=
-=jV4e
+iHUEABYKAB0WIQRcEzekXsqa64kGDp7j7w1vZxhRxQUCZcUl4wAKCRDj7w1vZxhR
+xTm0AQDNC/Tab28G6xBV/FvvVOHHELD/uZcAMloaia6Nu7yTjQD/bu1heOYZp8J7
+/+vAKLYzF/jNMgEObqQ/VnHSFbOX+Ag=
+=CNG5
 -----END PGP SIGNATURE-----
 
---af9Ebe8YYb4QbsX4--
+--fpufhrhdecowdrbb--
 
