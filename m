@@ -1,252 +1,165 @@
-Return-Path: <devicetree+bounces-39841-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-39843-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8CD9684E475
-	for <lists+devicetree@lfdr.de>; Thu,  8 Feb 2024 16:56:10 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 970EA84E48D
+	for <lists+devicetree@lfdr.de>; Thu,  8 Feb 2024 16:59:16 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 029251F24EA0
-	for <lists+devicetree@lfdr.de>; Thu,  8 Feb 2024 15:56:10 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 475732870A4
+	for <lists+devicetree@lfdr.de>; Thu,  8 Feb 2024 15:59:15 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E88AA7D3EF;
-	Thu,  8 Feb 2024 15:56:00 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8C8A17B3DB;
+	Thu,  8 Feb 2024 15:59:13 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=tuxon.dev header.i=@tuxon.dev header.b="Ku88jgjg"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="l08614JF"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f54.google.com (mail-wm1-f54.google.com [209.85.128.54])
+Received: from mail-pl1-f179.google.com (mail-pl1-f179.google.com [209.85.214.179])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EF2917CF3C
-	for <devicetree@vger.kernel.org>; Thu,  8 Feb 2024 15:55:57 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.54
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 03A347CF3A;
+	Thu,  8 Feb 2024 15:59:11 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.179
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1707407760; cv=none; b=GM42Tc2wa6J4i4AxIisIbv5VseNk6kz8jCUdJhoJzW/JFRI/yR2X9BJDNn/7W50neeiYOpvTC1f2s4UQYqRAazmmc+UOFOphXSzAEq7A5kJdkA1Hrfq01rk5thmveNhkP1KDliMslssMgYSSsJhZJS7Vh2kMZ+V9DYTOHA2AkTY=
+	t=1707407953; cv=none; b=HtMcajswqOX5arCpoD12NVkNwVVNFhsNJkuwG3z1RzV+CSxUJ5LsjVSiE2OC6GRwJZhHqwlARpWJVCvXSTBMSsCHQT32dQeUee0DCNYGCT8iDTsDCJeZGCz9dRo9BXD3Sb9Wy6NrSbim36whMluWCwy4atNfTajvlCmHqNARqV0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1707407760; c=relaxed/simple;
-	bh=VxRJGKaYXSRYdovy63fzI0ASEaNdAGwALPigMzGJrG8=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=IpOVLyajxy766v5VWZ69HPbWXQthU12/LptrTHpx9rCzKw76fhB98oyQ4qMtJyogUDIW1ftkZEBlvgkeUDUD5WGx1XsvgAfWWPgscAW17J2gl4yTOw6bgQHWNI9ZISX5Ob1e7oPg45R/aHbm5F3iKw+vwmCdjiRiGqNX7UBBJ3o=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=tuxon.dev; spf=pass smtp.mailfrom=tuxon.dev; dkim=pass (2048-bit key) header.d=tuxon.dev header.i=@tuxon.dev header.b=Ku88jgjg; arc=none smtp.client-ip=209.85.128.54
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=tuxon.dev
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=tuxon.dev
-Received: by mail-wm1-f54.google.com with SMTP id 5b1f17b1804b1-4101565d20bso16225e9.2
-        for <devicetree@vger.kernel.org>; Thu, 08 Feb 2024 07:55:57 -0800 (PST)
+	s=arc-20240116; t=1707407953; c=relaxed/simple;
+	bh=92/zBLiDqGl0yNbZXLAAVGbATRsISNLm+Yc9FNwOrXc=;
+	h=Date:From:To:Cc:Subject:Message-ID:MIME-Version:Content-Type:
+	 Content-Disposition; b=ey/PKDxjvvZRJK4322m/H8gcZEmy3EysTl/yeEITuPn3wh+63VAo0M2TcqXLwibkCsVaxlFZY+sJ3HlPULm5drZJurvH9mslPxe/Dj6pntAk6B77zRh7U8Y4bICaaYzAjzEyWFCwNL5WEXtj6wjwlA3ERve3xMBNbWdRyjWmpVE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=l08614JF; arc=none smtp.client-ip=209.85.214.179
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-pl1-f179.google.com with SMTP id d9443c01a7336-1d746856d85so15644585ad.0;
+        Thu, 08 Feb 2024 07:59:11 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=tuxon.dev; s=google; t=1707407756; x=1708012556; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
+        d=gmail.com; s=20230601; t=1707407951; x=1708012751; darn=vger.kernel.org;
+        h=content-disposition:mime-version:message-id:subject:cc:to:from:date
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=jwj187v5DmD95irFdBgTanplv+ZSPDewhhqQqZrj+18=;
-        b=Ku88jgjgigv/7hXHH5pvyCXBDd7haFMI+DznB49JMHo/JZO2YfqIkQRE/+1EOKBSK3
-         kFwBZOI8Jq/mjZsGqzBqiskJBuZGWYlsFxInR719+tDZYC/ZrOwJTItoA8q4a76+jVmh
-         WxkKJmWwXUc3YypNRyULcjDUy24pM0twQ5SjHQZY3rCb2SMEkVfbaGyH3709Z19tQTkJ
-         HL/32NjTTBvLgLgziQmNRD79A4TQQy6CNFwCYOXOS+1pRXog5YmsNqhOv9ig+DrpzjkI
-         aD6r5Mwsta0Z91tWLkjAY0woYrAXlm/3o20FasAhSgSv1ncs5qC2wBOMuV2Imc9R6Qj2
-         l2Ow==
+        bh=/UkasknRx/MidvQOJkmoofU2A+zo1MZfchNN3vbBj50=;
+        b=l08614JFOWFv9Uhz3SCYVdzVpSY87tnNGhQTwUqosj3lpT8kV4zshDaVGYcqhb/w+x
+         pY/9gEUBgq3RwB04ndmIznrWcIujnyhxm6vjPJ6FRVg1xj5xY048+zB4otG67Q2jcppo
+         Z+0ekM07xrPAJqn362N4ZrBe4yBAMqRRk/IwYhyhOa8EPae3FUucE2ORFsTkeNHWeuX1
+         OyYTH4wG/+I/xIhMA17hYy+MFP17k+qymNM+9+Sirob1j0Jf5SdrKBeynF+PShef64Ta
+         POZX5C0EyHZfi6nHZTOIR8VHRO1imPJRs+n5u7SO1Q6fVVfjj9ZOsFiKY7W3Cc0VKyGP
+         GVPA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1707407756; x=1708012556;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
+        d=1e100.net; s=20230601; t=1707407951; x=1708012751;
+        h=content-disposition:mime-version:message-id:subject:cc:to:from:date
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=jwj187v5DmD95irFdBgTanplv+ZSPDewhhqQqZrj+18=;
-        b=vdIsQpuKMbCb3Yhp/8d+V+SDl8z18pjo14ywcPp469OMwpYNYvfENriFJ6we3NM8bN
-         bgBkiVmx549vDBJ3Euke/opILPVheWY2hPpSufKu2mV2t4ADVnHi3Nn0IFuLl2mVx+vS
-         8uw9PSJ8IjJ3GyKCaVnxpGgH/Qyq+mU7iRysrfiGCtVATjUd8yHBERqKI5vbZw/h3wLk
-         /Dq0rlaWgd0KbccStVEI4HzaE+FG5geYpmExKdoiRWpBuNumOsV2Hnvw3RkpMJ10W2ea
-         ZEeMRWiIh2VJ2uPnkD7SltYFyxYwPeilDlt6AiwBdKfcIvdUpXujhDmSa+RCZzuJJJbq
-         6WtQ==
-X-Gm-Message-State: AOJu0Yz4YMc7zxfwTf4+wh+KzSppHD8ylN5EfMJWNmKI4aTp0axSK5Vj
-	HYfd+jpvh1XkNqfv9cEE/g8RaBH9BchCgxbvi3aR4kxIcCbgQOk82CkK0RUCCc4=
-X-Google-Smtp-Source: AGHT+IFfdq3GR+jNAtlGIoRDXvcR8MQLIIZqMZPsMrgv6b4NoWs3p8MQUDAlqRR3ToqtEy/wPcKNIg==
-X-Received: by 2002:a5d:4dcc:0:b0:33b:4d13:3e91 with SMTP id f12-20020a5d4dcc000000b0033b4d133e91mr3820391wru.45.1707407756251;
-        Thu, 08 Feb 2024 07:55:56 -0800 (PST)
-X-Forwarded-Encrypted: i=1; AJvYcCULtDWAiTDbRxR7h0kvcsiu+OwZWCxku0b5SYZAaErDiFKeCuOOEqPUGLCtZgOuCtf8Ip8AbJdxJssk7bBOvR3rBCFEgHHjk2EYqEyBNOoBHo5KhtPaw9ZubnDqy5qaaePhYqDWQaoGgWY2JjEIPecqTMFop0/ZLyoCjIZ7KFaYo4dsW7LP3+CmmpalQje2sv1+lnZkGXX4bseVubc+J8Ius9BpkVWiCN/Ju0Fnw50gR2O/U13W6a+T7sJGHU28QuhAPqT1fLAp3DtFBMJCeSk6wWkwon1PZgYBm/lvKAUwYEUlmsRwZorlOWqlGaYxenBRQqZERJ3QZ7PFihZ4Mh6Id0bMDxzgRREJC/x3YR7pmrn3yU6Y7138sx4gwvJJ6DeyuC4Xf0d/zuu/HD0NBfPWt62HdnQdGoBpM7OP1ifpDE+M/aZR8SPVf/FUN07kd8JpQHQSAIsB8bzUfTS0AsK/y5hHU1Gnw2aXnsbsraqBpD0aKw7loIPDQOQWjrNrzG3X5wZgvEmlEYHhNlmzKcZHNWO5g5w+eQO23Gwg6TrsHQyOEda3pdXae2MPThgDDRiw2tIdPPkZB1+1sgQcH+ch5DIzgBVaEegH
-Received: from [192.168.50.4] ([82.78.167.45])
-        by smtp.gmail.com with ESMTPSA id m25-20020a056000181900b0033b4235b155sm3852770wrh.48.2024.02.08.07.55.54
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 08 Feb 2024 07:55:55 -0800 (PST)
-Message-ID: <0e45aef2-5fc5-4677-9370-b9e565f0767b@tuxon.dev>
-Date: Thu, 8 Feb 2024 17:55:53 +0200
+        bh=/UkasknRx/MidvQOJkmoofU2A+zo1MZfchNN3vbBj50=;
+        b=ReQTFCIwO8xTyuQ5HmqVz+6jU6MK/+S4h9dAojODBJCJaIjJurLXCcM5+YjR9zU9qh
+         nDVVUN3OvGyAkYd7FHoF52UAXPDNedO8JJ4UL4TvSLy62DiJRz2VVp0L+zi5DATHtk9p
+         kwVr34DYxNLuHz43A8ojuYKviIhOloeUKGdnJ3JnPrXfbdsnCrS9fsSqlB3PNkWapNpU
+         v/LLmHXjL6veO5qxVr70nZCImohsLf5G+9QiAKOnJnZCG1kfz74lgB8aAthMTwJM4scH
+         7aMG/LBNcTV4FCgETAfjPUVmViK9X4MOxGaWF0ZUHDHvo93d16aOu7foMtLO1sklkhlq
+         hBOA==
+X-Gm-Message-State: AOJu0YxxLyUWdnimvSfKgtzBKXQRGJlQMy3KIuve70MySbzhTHSSWum4
+	V5Z3p1FoVClt8jmToHWedD9kwVyX/4klv/yZXBil05knbm4ghn7V6vjIOgB9nRM=
+X-Google-Smtp-Source: AGHT+IGm26flaODwILEs377DOWF7gf2yBRM1VJeNDFyz4e42ANl9iL6maaca5aRO6j3uV08HiDyVmA==
+X-Received: by 2002:a17:902:d2c4:b0:1d9:5ef3:e5ea with SMTP id n4-20020a170902d2c400b001d95ef3e5eamr10470840plc.50.1707407951209;
+        Thu, 08 Feb 2024 07:59:11 -0800 (PST)
+X-Forwarded-Encrypted: i=1; AJvYcCUnkx8QcLgJcxAcwfW2AqPOmi73QJUYw5evFy3JQJ74xZdb+LCPzzZK71yjmgughBTxzUSp2jxR2WIMgGbu9SQpP2Jk9ZcJ4Wi7qRuAXsuGD+3Kn/kTsD3jtqkyHJ7JAWjSDiJExNpxIoFCCWCZMoqB7dRHc+YJkkVN71T5Y516TP8qG9W+AcFPQjJg5mIQ/bRzyBwI2AYaSj36LAoYqAa46YjX7Ee6ALxPk5za++3Vs1RhGsKXUGUAvWagduniikxVJ45ssQ//0Q4fmZtYy7d3+RBY3Bz/dX3+BQbbvSIGvVhKb2xTebZjyG2yLxrQd2cdDEvUwD+bRcEotVqdnydzKOuDJZWDRQ==
+Received: from hdebian ([201.82.41.210])
+        by smtp.gmail.com with ESMTPSA id jv11-20020a170903058b00b001d9a146907dsm3557638plb.11.2024.02.08.07.59.08
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 08 Feb 2024 07:59:10 -0800 (PST)
+Date: Thu, 8 Feb 2024 12:58:02 -0300
+From: Hiago De Franco <hiagofranco@gmail.com>
+To: Marco Felsch <m.felsch@pengutronix.de>, 
+	Roland Hieber <rhi@pengutronix.de>, Shawn Guo <shawnguo@kernel.org>
+Cc: Rob Herring <robh+dt@kernel.org>, 
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Sascha Hauer <s.hauer@pengutronix.de>, devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
+	linux-kernel@vger.kernel.org
+Subject: MXSFB error: -ENODEV: Cannot connect bridge
+Message-ID: <34yzygh3mbwpqr2re7nxmhyxy3s7qmqy4vhxvoyxnoguktriur@z66m7gvpqlia>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 02/17] dt-bindings: clock: r9a07g044-cpg: Add power domain
- IDs
-Content-Language: en-US
-To: Biju Das <biju.das.jz@bp.renesas.com>,
- "geert+renesas@glider.be" <geert+renesas@glider.be>,
- "mturquette@baylibre.com" <mturquette@baylibre.com>,
- "sboyd@kernel.org" <sboyd@kernel.org>, "robh@kernel.org" <robh@kernel.org>,
- "krzysztof.kozlowski+dt@linaro.org" <krzysztof.kozlowski+dt@linaro.org>,
- "conor+dt@kernel.org" <conor+dt@kernel.org>,
- "magnus.damm@gmail.com" <magnus.damm@gmail.com>,
- "paul.walmsley@sifive.com" <paul.walmsley@sifive.com>,
- "palmer@dabbelt.com" <palmer@dabbelt.com>,
- "aou@eecs.berkeley.edu" <aou@eecs.berkeley.edu>
-Cc: "linux-renesas-soc@vger.kernel.org" <linux-renesas-soc@vger.kernel.org>,
- "linux-clk@vger.kernel.org" <linux-clk@vger.kernel.org>,
- "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
- "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
- "linux-riscv@lists.infradead.org" <linux-riscv@lists.infradead.org>,
- Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>
-References: <20240208124300.2740313-1-claudiu.beznea.uj@bp.renesas.com>
- <20240208124300.2740313-3-claudiu.beznea.uj@bp.renesas.com>
- <TYCPR01MB1126925EE70DA30AC2662862686442@TYCPR01MB11269.jpnprd01.prod.outlook.com>
-From: claudiu beznea <claudiu.beznea@tuxon.dev>
-In-Reply-To: <TYCPR01MB1126925EE70DA30AC2662862686442@TYCPR01MB11269.jpnprd01.prod.outlook.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
 
-Hi, Biju,
+Hello all,
 
-On 08.02.2024 16:39, Biju Das wrote:
-> Hi Claudiu,
-> 
->> -----Original Message-----
->> From: Claudiu <claudiu.beznea@tuxon.dev>
->> Sent: Thursday, February 8, 2024 12:43 PM
->> Subject: [PATCH 02/17] dt-bindings: clock: r9a07g044-cpg: Add power domain
->> IDs
->>
->> From: Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>
->>
->> Add power domain IDs for RZ/G2L (R9A07G044) SoC.
->>
->> Signed-off-by: Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>
->> ---
->>  include/dt-bindings/clock/r9a07g044-cpg.h | 58 +++++++++++++++++++++++
->>  1 file changed, 58 insertions(+)
->>
->> diff --git a/include/dt-bindings/clock/r9a07g044-cpg.h b/include/dt-
->> bindings/clock/r9a07g044-cpg.h
->> index 0bb17ff1a01a..e209f96f92b7 100644
->> --- a/include/dt-bindings/clock/r9a07g044-cpg.h
->> +++ b/include/dt-bindings/clock/r9a07g044-cpg.h
->> @@ -217,4 +217,62 @@
->>  #define R9A07G044_ADC_ADRST_N		82
->>  #define R9A07G044_TSU_PRESETN		83
->>
->> +/* Power domain IDs. */
->> +#define R9A07G044_PD_ALWAYS_ON		0
->> +#define R9A07G044_PD_GIC		1
->> +#define R9A07G044_PD_IA55		2
->> +#define R9A07G044_PD_MHU		3
->> +#define R9A07G044_PD_CORESIGHT		4
->> +#define R9A07G044_PD_SYC		5
->> +#define R9A07G044_PD_DMAC		6
->> +#define R9A07G044_PD_GTM0		7
->> +#define R9A07G044_PD_GTM1		8
->> +#define R9A07G044_PD_GTM2		9
->> +#define R9A07G044_PD_MTU		10
->> +#define R9A07G044_PD_POE3		11
->> +#define R9A07G044_PD_GPT		12
->> +#define R9A07G044_PD_POEGA		13
->> +#define R9A07G044_PD_POEGB		14
->> +#define R9A07G044_PD_POEGC		15
->> +#define R9A07G044_PD_POEGD		16
->> +#define R9A07G044_PD_WDT0		17
->> +#define R9A07G044_PD_WDT1		18
->> +#define R9A07G044_PD_SPI		19
->> +#define R9A07G044_PD_SDHI0		20
->> +#define R9A07G044_PD_SDHI1		21
->> +#define R9A07G044_PD_3DGE		22
->> +#define R9A07G044_PD_ISU		23
->> +#define R9A07G044_PD_VCPL4		24
->> +#define R9A07G044_PD_CRU		25
->> +#define R9A07G044_PD_MIPI_DSI		26
->> +#define R9A07G044_PD_LCDC		27
->> +#define R9A07G044_PD_SSI0		28
->> +#define R9A07G044_PD_SSI1		29
->> +#define R9A07G044_PD_SSI2		30
->> +#define R9A07G044_PD_SSI3		31
->> +#define R9A07G044_PD_SRC		32
->> +#define R9A07G044_PD_USB0		33
->> +#define R9A07G044_PD_USB1		34
->> +#define R9A07G044_PD_USB_PHY		35
->> +#define R9A07G044_PD_ETHER0		36
->> +#define R9A07G044_PD_ETHER1		37
->> +#define R9A07G044_PD_I2C0		38
->> +#define R9A07G044_PD_I2C1		39
->> +#define R9A07G044_PD_I2C2		40
->> +#define R9A07G044_PD_I2C3		41
->> +#define R9A07G044_PD_SCIF0		42
->> +#define R9A07G044_PD_SCIF1		43
->> +#define R9A07G044_PD_SCIF2		44
->> +#define R9A07G044_PD_SCIF3		45
->> +#define R9A07G044_PD_SCIF4		46
->> +#define R9A07G044_PD_SCI0		47
->> +#define R9A07G044_PD_SCI1		48
->> +#define R9A07G044_PD_IRDA		49
->> +#define R9A07G044_PD_RSPI0		50
->> +#define R9A07G044_PD_RSPI1		51
->> +#define R9A07G044_PD_RSPI2		52
->> +#define R9A07G044_PD_CANFD		53
->> +#define R9A07G044_PD_ADC		54
->> +#define R9A07G044_PD_TSU		55
-> 
-> Not sure these PD id's can be generic and used across all RZ/G2L family
-> devices and RZ/V2M?
+while doing some tests with kernel v6.8-rc3 and Colibri iMX7D, we
+noticed the following error:
 
-That may be another approach. I chose this one to have everything SoC
-specific in a single place. With this, e.g., we can have all the SCIF
-related IDs grouped together (as we know from the beginning how many SCIF
-blocks a SoC has):
+[    0.432547] mxsfb 30730000.lcdif: error -ENODEV: Cannot connect bridge
 
-+#define R9A07G044_PD_SCIF0		42
-+#define R9A07G044_PD_SCIF1		43
-+#define R9A07G044_PD_SCIF2		44
-+#define R9A07G044_PD_SCIF3		45
-+#define R9A07G044_PD_SCIF4		46
+This was introduced by commit edbbae7fba495284f72f05768696572691231558
+("ARM: dts: imx7: add MIPI-DSI support"). This patch is routing the
+lcdif to the mipi_dsi_in_lcdif endpoint, however we do not have the DSI
+pins available in our edge connector. Instead, we use the parallel RGB
+LCD interface directly with, as example, an external LVDS transmitter:
 
-If a single file with all the IDs for all the SoC will be used then, as
-every SoC will have a different number of SCIFs, I2Cs, RSPIs, to keep the
-DT binding backward compatibility, we will end up with these IDs not being
-grouped on functionality, e.g., we may end up with something like:
+&lcdif {
+...
+	status = "disabled";
 
-+#define R9A07G044_PD_I2C0		38
-+#define R9A07G044_PD_I2C1		39
-+#define R9A07G044_PD_I2C2		40
-+#define R9A07G044_PD_I2C3		41
-+#define R9A07G044_PD_SCIF0		42
-+#define R9A07G044_PD_SCIF1		43
-+#define R9A07G044_PD_SCIF2		44
-+#define R9A07G044_PD_SCIF3		45
-+#define R9A07G044_PD_SCIF4		46
-+#define R9A07G044_PD_SCI0		47
-+#define R9A07G044_PD_SCI1		48
-+#define R9A07G044_PD_IRDA		49
-+#define R9A07G044_PD_RSPI0		50
-+#define R9A07G044_PD_RSPI1		51
-+#define R9A07G044_PD_RSPI2		52
-+#define R9A07G044_PD_CANFD		53
-+#define R9A07G044_PD_ADC		54
-+#define R9A07G044_PD_TSU		55
+	port {
+		lcdif_out: endpoint {
+			remote-endpoint = <&lcd_panel_in>;
+		};
+	};
+};
 
-+#define R9A07G044_PD_SCIF5		56
-+#define R9A07G044_PD_SCIF6		57
-+#define R9A07G044_PD_I2C4		58
-+#define R9A07G044_PD_RSPI3		58
-+#define R9A07G044_PD_RSPI4		59
+By applying the following patch, the issue is gone and the LVDS works
+again:
 
-Of course, I can adjust it if Geert wants it differently.
+diff --git a/arch/arm/boot/dts/nxp/imx/imx7s.dtsi b/arch/arm/boot/dts/nxp/imx/imx7s.dtsi
+index ebf7befcc11e..9c81c6baa2d3 100644
+--- a/arch/arm/boot/dts/nxp/imx/imx7s.dtsi
++++ b/arch/arm/boot/dts/nxp/imx/imx7s.dtsi
+@@ -834,16 +834,6 @@ lcdif: lcdif@30730000 {
+ 					<&clks IMX7D_LCDIF_PIXEL_ROOT_CLK>;
+ 				clock-names = "pix", "axi";
+ 				status = "disabled";
+-
+-				port {
+-					#address-cells = <1>;
+-					#size-cells = <0>;
+-
+-					lcdif_out_mipi_dsi: endpoint@0 {
+-						reg = <0>;
+-						remote-endpoint = <&mipi_dsi_in_lcdif>;
+-					};
+-				};
+ 			};
+ 
+ 			mipi_csi: mipi-csi@30750000 {
+@@ -895,22 +885,6 @@ mipi_dsi: dsi@30760000 {
+ 				samsung,esc-clock-frequency = <20000000>;
+ 				samsung,pll-clock-frequency = <24000000>;
+ 				status = "disabled";
+-
+-				ports {
+-					#address-cells = <1>;
+-					#size-cells = <0>;
+-
+-					port@0 {
+-						reg = <0>;
+-						#address-cells = <1>;
+-						#size-cells = <0>;
+-
+-						mipi_dsi_in_lcdif: endpoint@0 {
+-							reg = <0>;
+-							remote-endpoint = <&lcdif_out_mipi_dsi>;
+-						};
+-					};
+-				};
+ 			};
+ 		};
 
-Thank you,
-Claudiu Beznea
+I would like to know your opinion about this patch before sending it,
+does it makes sense for you? I understand that routing to endpoint
+should be done in the SoM device tree, so we are free to rout other
+endpoint without issues.
 
-> 
-> Cheers,
-> Biju
-> 
->> +
->>  #endif /* __DT_BINDINGS_CLOCK_R9A07G044_CPG_H__ */
->> --
->> 2.39.2
->>
-> 
+Regards,
+Hiago.
 
