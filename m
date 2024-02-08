@@ -1,213 +1,206 @@
-Return-Path: <devicetree+bounces-39567-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-39568-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id CFF6B84D9BE
-	for <lists+devicetree@lfdr.de>; Thu,  8 Feb 2024 07:03:05 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id C704D84D9DB
+	for <lists+devicetree@lfdr.de>; Thu,  8 Feb 2024 07:14:31 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id D0CBCB212ED
-	for <lists+devicetree@lfdr.de>; Thu,  8 Feb 2024 06:03:02 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 114E5B21D82
+	for <lists+devicetree@lfdr.de>; Thu,  8 Feb 2024 06:14:29 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3074167C71;
-	Thu,  8 Feb 2024 06:02:57 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5C6C867C7B;
+	Thu,  8 Feb 2024 06:14:18 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="OHgDqGIH"
+	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="eCZTKfFA"
 X-Original-To: devicetree@vger.kernel.org
-Received: from lelv0142.ext.ti.com (lelv0142.ext.ti.com [198.47.23.249])
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2B09867C5D;
-	Thu,  8 Feb 2024 06:02:54 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.23.249
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 68DBF4C84;
+	Thu,  8 Feb 2024 06:14:16 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1707372177; cv=none; b=pvhZ/Sw9us8al/qTh9StzXnTnIEtCnM/2W8GMyBA+bC3GMlxttBlHOaqzCbuvSfNRreXU9TPoILBffoTaeKIJyO/2XCHAHGrrohNrnl6b9KjvjnlTv38609Gve3EDanGudJyZnTz+hZ0TT7b72bMilHZFb8hpMrBy1u+Ye/RNs4=
+	t=1707372858; cv=none; b=n9ZnXaLxKrnUBeFhqENCjqJ/JiLWbEXQ/TGQ/l2SksMA1/y8ygAmVOwEB3IBZwd2qI5C4GrdeoVYUxnNn9uUCFzqPxlEKEfNKC35MX3XRQK0n/fZ15WTiAI/rC08mh4yiSLOj8y/jWJSrhNuOAZipAKiBxw7z0nxATSRKE47NMw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1707372177; c=relaxed/simple;
-	bh=hCdityRgUs/8n4qwmql+eUGxp4yHpjYJh3eWocmqb3Q=;
-	h=Date:From:To:CC:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=JEj09VV1xqVYGQFx0ZpwBVRuG9kG4CVWTBNz9FdBPxFNE5Ms6JiKJG9HaIyGimgYaQJrGpmbAmpvSYNMxIHrgrp0qSsrcfmPG2L3iAUKyTj2w7AISfdWCsJtrAiJhT4iAV4+BMoF0tik0y3Ofi5lE+R3L+Y0z/vZdnmXJLiw9s8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=OHgDqGIH; arc=none smtp.client-ip=198.47.23.249
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
-Received: from fllv0035.itg.ti.com ([10.64.41.0])
-	by lelv0142.ext.ti.com (8.15.2/8.15.2) with ESMTP id 41862WXh060454;
-	Thu, 8 Feb 2024 00:02:32 -0600
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1707372152;
-	bh=WZQnBXMDi3UTGUamN7oDX+THEml/Zdj07yvVv5rZAv4=;
-	h=Date:From:To:CC:Subject:References:In-Reply-To;
-	b=OHgDqGIHhsva8oOpm8F4m4RnwuD1tRMXMl3l+ego7JtajTUEicZN6S6xBghXccned
-	 0hptgHwUCDCwZMPeZOK/p3TItnrGc8kpLVkk7It3e+pQuiD3IVSncc2afx469nbyzn
-	 PmGHa6N2kgxNT7E3uDC2us1ISbDp/vdiynmAWeeU=
-Received: from DLEE101.ent.ti.com (dlee101.ent.ti.com [157.170.170.31])
-	by fllv0035.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 41862WNg003980
-	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-	Thu, 8 Feb 2024 00:02:32 -0600
-Received: from DLEE107.ent.ti.com (157.170.170.37) by DLEE101.ent.ti.com
- (157.170.170.31) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Thu, 8
- Feb 2024 00:02:31 -0600
-Received: from lelvsmtp5.itg.ti.com (10.180.75.250) by DLEE107.ent.ti.com
- (157.170.170.37) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
- Frontend Transport; Thu, 8 Feb 2024 00:02:31 -0600
-Received: from localhost (jluthra.dhcp.ti.com [172.24.227.217])
-	by lelvsmtp5.itg.ti.com (8.15.2/8.15.2) with ESMTP id 41862Ujk002881;
-	Thu, 8 Feb 2024 00:02:31 -0600
-Date: Thu, 8 Feb 2024 11:32:30 +0530
-From: Jai Luthra <j-luthra@ti.com>
-To: Nathan Morrisson <nmorrisson@phytec.com>
-CC: <nm@ti.com>, <vigneshr@ti.com>, <kristo@kernel.org>, <robh+dt@kernel.org>,
-        <krzysztof.kozlowski+dt@linaro.org>, <conor+dt@kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>, <upstream@lists.phytec.de>,
-        <w.egorov@phytec.de>
-Subject: Re: [PATCH] arm64: dts: ti: am62-phyboard-lyra: Add overlay to
- enable a GPIO fan
-Message-ID: <ynrdlauwefl6ckabxtk5qykeffcyisi6wivlforzbij3sga6uo@xdgewvanjgug>
-References: <20240207172820.478332-1-nmorrisson@phytec.com>
+	s=arc-20240116; t=1707372858; c=relaxed/simple;
+	bh=SwX5XqArf5xwd6zmj6wvkne/CiOMRaP8kvliDxwOawQ=;
+	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
+	 In-Reply-To:Content-Type; b=sDQYhGf4WLW785SOYXThox9wYfoy4QAIUDJrzrQ0X00950L5ZwS7c7g5Nyij21q6b/f2gRAZcRF93UYRxm05t6/rWK7a2QAby7b1DFIGGt6FuxrZN9BY+Svz51LgIMMiZI/AGX5oQm+PqJosLaMKDoVIl3TsY5nosLcqy55xS3M=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=eCZTKfFA; arc=none smtp.client-ip=205.220.180.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
+Received: from pps.filterd (m0279868.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.17.1.24/8.17.1.24) with ESMTP id 4185asOE001595;
+	Thu, 8 Feb 2024 06:14:12 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
+	message-id:date:mime-version:subject:to:cc:references:from
+	:in-reply-to:content-type:content-transfer-encoding; s=
+	qcppdkim1; bh=r++821xKC0myDxKf9TKAwpRdOzG3nwXg/rQ65HdN2Sk=; b=eC
+	ZTKfFA81NFMAca8wq8myhmxfXa9TnhwaRIPcuMDy4MNWl0CWAp7Vu+XgDhIp0W0Z
+	H470ZrvTejaCPJXCYWHDQI9lrYmCAwHoaaW4AoC2cUaRUHlNVM7w6DKuZazq2cjs
+	JBMdWbQQj3+AB59DWaGOiy61TygJfmvWxKanHQGnpeF6B0+yixM64idEQ3pBnv06
+	tzzYnkUHvEmvc0IxwwqncJzNF+f4cbu/ePLyeNLgQhC5zpTqr9+uYquCYYmNbI+1
+	AVHtHYq8R4vH0iL8QBuoAWqlY0EZXc5vYz9G3ZSI+KsdztCk1b+g3wrWyISFMX+3
+	LSAZbYsVd47V0S8hQDoA==
+Received: from nalasppmta02.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3w3ywbu9ja-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Thu, 08 Feb 2024 06:14:11 +0000 (GMT)
+Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
+	by NALASPPMTA02.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 4186EASk007793
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Thu, 8 Feb 2024 06:14:10 GMT
+Received: from [10.216.36.240] (10.80.80.8) by nalasex01a.na.qualcomm.com
+ (10.47.209.196) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1118.40; Wed, 7 Feb
+ 2024 22:14:06 -0800
+Message-ID: <dec2976e-6e1e-6121-e175-210377ff6925@quicinc.com>
+Date: Thu, 8 Feb 2024 11:44:02 +0530
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-	protocol="application/pgp-signature"; boundary="mrmu7qla3hw4wr47"
-Content-Disposition: inline
-In-Reply-To: <20240207172820.478332-1-nmorrisson@phytec.com>
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:91.0) Gecko/20100101
+ Thunderbird/91.13.1
+Subject: Re: [PATCH] arm64: dts: qcom: qcs6490-rb3gen2: Add PCIe nodes
+Content-Language: en-US
+To: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+CC: Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio
+	<konrad.dybcio@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        "Krzysztof
+ Kozlowski" <krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley
+	<conor+dt@kernel.org>, <linux-arm-msm@vger.kernel.org>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <quic_vbadigan@quicinc.com>, <quic_ramkri@quicinc.com>,
+        <quic_nitegupt@quicinc.com>, <quic_skananth@quicinc.com>,
+        <quic_parass@quicinc.com>
+References: <20240207-enable_pcie-v1-1-b684afa6371c@quicinc.com>
+ <CAA8EJpqjm_2aE+7BtMkFUdet11q7v_jyHbUEpiDHSBSnzhndYA@mail.gmail.com>
+From: Krishna Chaitanya Chundru <quic_krichai@quicinc.com>
+In-Reply-To: <CAA8EJpqjm_2aE+7BtMkFUdet11q7v_jyHbUEpiDHSBSnzhndYA@mail.gmail.com>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 7bit
+X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
+ nalasex01a.na.qualcomm.com (10.47.209.196)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-ORIG-GUID: Iq9og3MKBrJaKe10KconyFO7q-MQRpuQ
+X-Proofpoint-GUID: Iq9og3MKBrJaKe10KconyFO7q-MQRpuQ
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.272,Aquarius:18.0.1011,Hydra:6.0.619,FMLib:17.11.176.26
+ definitions=2024-02-08_01,2024-02-07_01,2023-05-22_02
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 malwarescore=0 mlxscore=0
+ lowpriorityscore=0 suspectscore=0 mlxlogscore=999 impostorscore=0
+ phishscore=0 spamscore=0 adultscore=0 bulkscore=0 clxscore=1015
+ priorityscore=1501 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.19.0-2401310000 definitions=main-2402080031
 
---mrmu7qla3hw4wr47
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
 
-Hi Nathan,
 
-Thanks for the patch.
+On 2/7/2024 5:17 PM, Dmitry Baryshkov wrote:
+> On Wed, 7 Feb 2024 at 12:42, Krishna chaitanya chundru
+> <quic_krichai@quicinc.com> wrote:
+>>
+>> Enable PCIe1 controller and its corresponding PHY nodes on
+>> qcs6490-rb3g2 platform.
+>>
+>> PCIe switch is connected to PCIe1, PCIe switch has multiple endpoints
+>> connected. For each endpoint a unique BDF will be assigned and should
+>> assign unique smmu id. So for each BDF add smmu id.
+>>
+>> Signed-off-by: Krishna chaitanya chundru <quic_krichai@quicinc.com>
+>> ---
+>>   arch/arm64/boot/dts/qcom/qcs6490-rb3gen2.dts | 42 ++++++++++++++++++++++++++++
+>>   1 file changed, 42 insertions(+)
+>>
+>> diff --git a/arch/arm64/boot/dts/qcom/qcs6490-rb3gen2.dts b/arch/arm64/boot/dts/qcom/qcs6490-rb3gen2.dts
+>> index 8bb7d13d85f6..0082a3399453 100644
+>> --- a/arch/arm64/boot/dts/qcom/qcs6490-rb3gen2.dts
+>> +++ b/arch/arm64/boot/dts/qcom/qcs6490-rb3gen2.dts
+>> @@ -413,6 +413,32 @@ vreg_bob_3p296: bob {
+>>          };
+>>   };
+>>
+>> +&pcie1 {
+>> +       perst-gpios = <&tlmm 2 GPIO_ACTIVE_LOW>;
+>> +
+>> +       pinctrl-0 = <&pcie1_reset_n>, <&pcie1_wake_n>;
+>> +       pinctrl-names = "default";
+>> +
+>> +       iommu-map = <0x0 &apps_smmu 0x1c80 0x1>,
+>> +                   <0x100 &apps_smmu 0x1c81 0x1>,
+>> +                   <0x208 &apps_smmu 0x1c84 0x1>,
+>> +                   <0x210 &apps_smmu 0x1c85 0x1>,
+>> +                   <0x218 &apps_smmu 0x1c86 0x1>,
+>> +                   <0x300 &apps_smmu 0x1c87 0x1>,
+>> +                   <0x400 &apps_smmu 0x1c88 0x1>,
+>> +                   <0x500 &apps_smmu 0x1c89 0x1>,
+>> +                   <0x501 &apps_smmu 0x1c90 0x1>;
+> 
+> Is the iommu-map really board specific?
+> 
+The iommu-map for PCIe varies if PCIe switch is connected.
+For this platform a PCIe switch is connected and for that reason
+we need to define additional smmu ID's for each BDF.
 
-On Feb 07, 2024 at 09:28:20 -0800, Nathan Morrisson wrote:
-> The phyBOARD-Lyra has a GPIO fan header. This overlay enables the fan
-> header and sets the fan to turn on at 65C.
->=20
-> Signed-off-by: Nathan Morrisson <nmorrisson@phytec.com>
-> ---
->  arch/arm64/boot/dts/ti/Makefile               |  1 +
->  .../ti/k3-am62-phyboard-lyra-gpio-fan.dtso    | 51 +++++++++++++++++++
->  2 files changed, 52 insertions(+)
->  create mode 100644 arch/arm64/boot/dts/ti/k3-am62-phyboard-lyra-gpio-fan=
-=2Edtso
->=20
-> diff --git a/arch/arm64/boot/dts/ti/Makefile b/arch/arm64/boot/dts/ti/Mak=
-efile
-> index 52c1dc910308..379fb4f31a1f 100644
-> --- a/arch/arm64/boot/dts/ti/Makefile
-> +++ b/arch/arm64/boot/dts/ti/Makefile
-> @@ -23,6 +23,7 @@ dtb-$(CONFIG_ARCH_K3) +=3D k3-am625-verdin-wifi-dev.dtb
->  dtb-$(CONFIG_ARCH_K3) +=3D k3-am625-verdin-wifi-mallow.dtb
->  dtb-$(CONFIG_ARCH_K3) +=3D k3-am625-verdin-wifi-yavia.dtb
->  dtb-$(CONFIG_ARCH_K3) +=3D k3-am62-lp-sk.dtb
-> +dtb-$(CONFIG_ARCH_K3) +=3D k3-am62-phyboard-lyra-gpio-fan.dtbo
+For that reason we defined here as these ID's are applicable only
+for this board.
 
-You can also add a compile time test, to check if this applies cleanly=20
-on your phyboard base DTB.
-
-Please see the "Build time test only, enabled by CONFIG_OF_ALL_DTBS"=20
-section below in this file.
-
-> =20
->  # Boards with AM62Ax SoC
->  dtb-$(CONFIG_ARCH_K3) +=3D k3-am62a7-sk.dtb
-> diff --git a/arch/arm64/boot/dts/ti/k3-am62-phyboard-lyra-gpio-fan.dtso b=
-/arch/arm64/boot/dts/ti/k3-am62-phyboard-lyra-gpio-fan.dtso
-> new file mode 100644
-> index 000000000000..9c05748bdd9d
-> --- /dev/null
-> +++ b/arch/arm64/boot/dts/ti/k3-am62-phyboard-lyra-gpio-fan.dtso
-> @@ -0,0 +1,51 @@
-> +// SPDX-License-Identifier: GPL-2.0-only OR MIT
-> +/*
-> + * Copyright (C) 2024 PHYTEC America LLC
-> + * Author: Garrett Giordano <ggiordano@phytec.com>
-> + */
-> +
-> +/dts-v1/;
-> +/plugin/;
-> +
-> +#include <dt-bindings/gpio/gpio.h>
-> +#include <dt-bindings/thermal/thermal.h>
-> +#include "k3-pinctrl.h"
-> +
-> +&{/} {
-> +	fan: gpio-fan {
-> +		compatible =3D "gpio-fan";
-> +		gpio-fan,speed-map =3D <0 0 8600 1>;
-> +		gpios =3D <&main_gpio0 40 GPIO_ACTIVE_LOW>;
-> +		#cooling-cells =3D <2>;
-> +		pinctrl-names =3D "default";
-> +		pinctrl-0 =3D <&gpio_fan_pins_default>;
-> +		status =3D "okay";
-> +	};
-> +};
-> +
-> +&main_pmx0 {
-> +	gpio_fan_pins_default: gpio-fan-default-pins {
-> +		pinctrl-single,pins =3D <
-> +			AM62X_IOPAD(0x0a4, PIN_OUTPUT, 7) /* (M22) GPMC0_DIR.GPIO0_40 */
-> +		>;
-> +	};
-> +};
-> +
-> +&thermal_zones {
-> +	main0_thermal: main0-thermal {
-> +		trips {
-> +			main0_thermal_trip0: main0-thermal-trip {
-> +				temperature =3D <65000>;  /* millicelsius */
-> +				hysteresis =3D <2000>;    /* millicelsius */
-> +				type =3D "active";
-> +			};
-> +		};
-> +
-> +		cooling-maps {
-> +			map0 {
-> +				trip =3D <&main0_thermal_trip0>;
-> +				cooling-device =3D <&fan THERMAL_NO_LIMIT THERMAL_NO_LIMIT>;
-> +			};
-> +		};
-> +	};
-> +};
-> --=20
-> 2.25.1
->=20
-
---=20
-Thanks,
-Jai
-
-GPG Fingerprint: 4DE0 D818 E5D5 75E8 D45A AFC5 43DE 91F9 249A 7145
-
---mrmu7qla3hw4wr47
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQIzBAABCAAdFiEETeDYGOXVdejUWq/FQ96R+SSacUUFAmXEbnIACgkQQ96R+SSa
-cUUQCg/+PR53xujkTW+LArP7Z7bQT/dChxpQtnLtzYWoq5DAo3D2FoqwBmSEW5yU
-+MSvUERDwPStjqL7Tru6e5ZCg0CojSdmnnz5U5yv0/cn0G6AGf3Ts3nHK8DB53My
-8rfNRhkYJG8gwUWB7TeoKlIVfPckM2ZUR1oW4K7k6mr7DpCR25FSuG0jiUNBIwXT
-THaa5WeBsa/0+r3SuFazWi/8mfnKQcl1qPUsNelb3QQZR9LOnmn7YwQuXT8DEHoH
-96hQOchdqx63wEFxkngbwEE5iN6cDjuuXDDZ9RY1xtP8lki3NU0ll3GJg6toUQez
-52zcJr6OhwkPLb6BjUnxROSVxfa17LGZRn/4hXbTqpuLsXtHmP8M8/vpiWCKRYQ8
-YEf36rKMX4xfsmvFK7Aop0R9jA/RhbKLJMQ5D0viSUHIWegA/04yTfW/jw72XZsF
-zyiYwpKYNJi8VZSynmTgH4hfLAyVBgix1HdfmPpchkrxHF5uJmrMzDd1xvfFhkNk
-sN0DsQaHXZ8u+MaIH5UcG6MxUyBCVBFRLIzETccEMNHYo2LBdhv5/a0Xhg295KiW
-EAdL7zF5AsW/rS+eKrCYvj85CTdlEWxDP4zCkcmGjhlJSWVAn12zKIU4kI0GV2ID
-gafGCjR2RtYfbnPtsBefdxEdWEt+csSjUOrN7FVElsiHfB7m6U4=
-=2LXb
------END PGP SIGNATURE-----
-
---mrmu7qla3hw4wr47--
+- Krishna Chaitanya.
+>> +
+>> +       status = "okay";
+>> +};
+>> +
+>> +&pcie1_phy {
+>> +       vdda-phy-supply = <&vreg_l10c_0p88>;
+>> +       vdda-pll-supply = <&vreg_l6b_1p2>;
+>> +
+>> +       status = "okay";
+>> +};
+>> +
+>>   &qupv3_id_0 {
+>>          status = "okay";
+>>   };
+>> @@ -420,6 +446,22 @@ &qupv3_id_0 {
+>>   &tlmm {
+>>          gpio-reserved-ranges = <32 2>, /* ADSP */
+>>                                 <48 4>; /* NFC */
+>> +
+>> +       pcie1_reset_n: pcie1-reset-n-state {
+>> +               pins = "gpio2";
+>> +               function = "gpio";
+>> +               drive-strength = <16>;
+>> +               output-low;
+>> +               bias-disable;
+>> +       };
+>> +
+>> +       pcie1_wake_n: pcie1-wake-n-state {
+>> +               pins = "gpio3";
+>> +               function = "gpio";
+>> +               drive-strength = <2>;
+>> +               bias-pull-up;
+>> +       };
+>> +
+>>   };
+>>
+>>   &uart5 {
+>>
+>> ---
+>> base-commit: 70d201a40823acba23899342d62bc2644051ad2e
+>> change-id: 20240207-enable_pcie-95b1d6612b27
+>>
+>> Best regards,
+>> --
+>> Krishna chaitanya chundru <quic_krichai@quicinc.com>
+>>
+>>
+> 
+> 
 
