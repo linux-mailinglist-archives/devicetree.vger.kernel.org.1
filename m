@@ -1,341 +1,222 @@
-Return-Path: <devicetree+bounces-39862-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-39860-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3129884E67A
-	for <lists+devicetree@lfdr.de>; Thu,  8 Feb 2024 18:17:47 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id AD1A084E670
+	for <lists+devicetree@lfdr.de>; Thu,  8 Feb 2024 18:15:06 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 552611C21E60
-	for <lists+devicetree@lfdr.de>; Thu,  8 Feb 2024 17:17:46 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id C6F9A1C23631
+	for <lists+devicetree@lfdr.de>; Thu,  8 Feb 2024 17:15:05 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 54CF5823CF;
-	Thu,  8 Feb 2024 17:17:33 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id F25258121B;
+	Thu,  8 Feb 2024 17:14:58 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="dhPfP0r4"
+	dkim=pass (1024-bit key) header.d=redhat.com header.i=@redhat.com header.b="Tz+3StRt"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.16])
+Received: from us-smtp-delivery-124.mimecast.com (us-smtp-delivery-124.mimecast.com [170.10.129.124])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 51F228002E;
-	Thu,  8 Feb 2024 17:17:31 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=192.198.163.16
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0857E7FBA3
+	for <devicetree@vger.kernel.org>; Thu,  8 Feb 2024 17:14:56 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=170.10.129.124
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1707412653; cv=none; b=pGfyF3dVRlYb3QepLVmSaO1J5lDiTmZNc1S8xMFtRfEG3wymDRq9Lyrce0+PEPk4GE4Cf8Kqlv295X/D6x2KOQZmza3j4CraE+jeZUIU7zf7SDo0y1T7GbTjARtvQZOHQMVEEfu2G3f8ITAx1y3GC8DoHocnHhhDbAyQoF9vVRA=
+	t=1707412498; cv=none; b=TI0RimivCaPxTWVoMxIXFjoGjMLQQEo8OMiU9Pc7jyndWEHptRq42aMftbSL+xSKaM2yGm+ZHSB/gD1koZ7WKO1URrwApCQQ46EkBqQEwq36gSNdZm+qYV/4P8VIlbvb2sQHUPmsGIpG5h88aDvgR1NanCiHJIYGjw1mHkBnySM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1707412653; c=relaxed/simple;
-	bh=v6wTWOcgnBbdVRVq0vTx2zi8kxA67Ld9K3m1TKyiM1Q=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=MFGpV7GE0QYB0WTXl0pjSC2zD9/rp7n6IpwT09as7DZHmTBilU8z46WiFU7V9aZ6r3eW64+Ty3+CpNhulhQGDGw02fhkhDR47EilHjlcBaldm0/kqfAaGf4nUU47nc+ynQ7EC7d92HOMfaRopfNyJ6eIv4UHMpwIBwTG89JEkSM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com; spf=none smtp.mailfrom=linux.intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=dhPfP0r4; arc=none smtp.client-ip=192.198.163.16
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com
-Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=linux.intel.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1707412651; x=1738948651;
-  h=from:to:cc:subject:date:message-id:in-reply-to:
-   references:mime-version:content-transfer-encoding;
-  bh=v6wTWOcgnBbdVRVq0vTx2zi8kxA67Ld9K3m1TKyiM1Q=;
-  b=dhPfP0r47cv/qUFig/NFuKnfa2SUaYAETqttt16MJNs0lqwu/IZ7faUM
-   WDLAxq1KwvA6YXaebERDc/fxlHResNg8WTw8gBLKdQ3A+8SXzCC8PeRha
-   ZcYJYlOc1K95sKw4QC5fK8JZL8ASV70IWtdWw0uE0rHX+W34QN9+QIB/S
-   qKS4D1Luj4BhMukL2/KUVdnCMQcK0vLw7LP6EFtQS3/5g2zL7LvoSvWYB
-   tOODw0N1E1jjQuuqEhwH9db9nmf3wCe0CY8KSg/wHvt4guKF6c4dQ2Eh3
-   tjHMPCpnraNPmUmMHPoIAhoFeRY/ZdmNst32IkqkAaURyHt0zWcfAwSeB
-   w==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10978"; a="1565638"
-X-IronPort-AV: E=Sophos;i="6.05,254,1701158400"; 
-   d="scan'208";a="1565638"
-Received: from fmsmga001.fm.intel.com ([10.253.24.23])
-  by fmvoesa110.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 08 Feb 2024 09:17:28 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10978"; a="934195356"
-X-IronPort-AV: E=Sophos;i="6.05,254,1701158400"; 
-   d="scan'208";a="934195356"
-Received: from black.fi.intel.com ([10.237.72.28])
-  by fmsmga001.fm.intel.com with ESMTP; 08 Feb 2024 09:17:26 -0800
-Received: by black.fi.intel.com (Postfix, from userid 1003)
-	id AD51B1584; Thu,  8 Feb 2024 18:59:41 +0200 (EET)
-From: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
-To: Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
-	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org
-Cc: Miguel Ojeda <ojeda@kernel.org>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Robin van der Gracht <robin@protonic.nl>,
-	Paul Burton <paulburton@kernel.org>,
-	Geert Uytterhoeven <geert+renesas@glider.be>
-Subject: [PATCH v1 15/15] auxdisplay: Add driver for MAX695x 7-segment LED controllers
-Date: Thu,  8 Feb 2024 18:58:58 +0200
-Message-ID: <20240208165937.2221193-16-andriy.shevchenko@linux.intel.com>
-X-Mailer: git-send-email 2.43.0.rc1.1.gbec44491f096
-In-Reply-To: <20240208165937.2221193-1-andriy.shevchenko@linux.intel.com>
-References: <20240208165937.2221193-1-andriy.shevchenko@linux.intel.com>
+	s=arc-20240116; t=1707412498; c=relaxed/simple;
+	bh=Y0r4zejSC9VWwc8OnukUl3cp4kpBgPxtHcTOZAILMWY=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=jzShFq0gwAyyzlxTioYiR2pCDsjS1EyM03DmKPXEbBrr9UrfjGYLHPIvIJV1bMTGW00mjJW4v+v8Lw6h6YhMGd2hoJCPlDuv8zqVlL+iI4Klb5Rzbk0fmpIA8q+ztmkz7+CmVuI+wuJpWODh9BNGzBbVWlrkHAWYOQoA31zfmr8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=redhat.com; spf=pass smtp.mailfrom=redhat.com; dkim=pass (1024-bit key) header.d=redhat.com header.i=@redhat.com header.b=Tz+3StRt; arc=none smtp.client-ip=170.10.129.124
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=redhat.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=redhat.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
+	s=mimecast20190719; t=1707412495;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 in-reply-to:in-reply-to:references:references;
+	bh=xR4RHbfkwYwkWKAZQm9GK8FwvPGu1EB/xVzVABSRZsI=;
+	b=Tz+3StRtetKK+sD8ZrhvLRfLuBYWoq3972fS18uQfwXHsrvEE9VUjEFp45shgGgryv22n1
+	tXmhgnzbFbmPx5KFOg3zLWz5/Szrbk4SvjneKUIj1cQMFOZbeVJStESOEKYd6iQHSft2ot
+	bSiIAYuG1nq4KoCYskBG99yeaZ7sI1U=
+Received: from mail-qv1-f71.google.com (mail-qv1-f71.google.com
+ [209.85.219.71]) by relay.mimecast.com with ESMTP with STARTTLS
+ (version=TLSv1.3, cipher=TLS_AES_256_GCM_SHA384) id
+ us-mta-203-anacqdhyOXCdbpwCN9ZCVw-1; Thu, 08 Feb 2024 12:14:54 -0500
+X-MC-Unique: anacqdhyOXCdbpwCN9ZCVw-1
+Received: by mail-qv1-f71.google.com with SMTP id 6a1803df08f44-68cbfe09cb6so345476d6.2
+        for <devicetree@vger.kernel.org>; Thu, 08 Feb 2024 09:14:54 -0800 (PST)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1707412494; x=1708017294;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=xR4RHbfkwYwkWKAZQm9GK8FwvPGu1EB/xVzVABSRZsI=;
+        b=XJIYqFPPcBp2xL7Nsp1gCVGoaS5Cn9aJdfiMy08jxYWppKPsLS8GaDSmh/+7cFAFeF
+         D+0OPeMgE3f+VZ0Aq6PxIakG5Am4PNdkqrVrPMEIa4Hx65QZYSpVQrQTVIg/vq8saRtw
+         F5gqGVxopyasxMuDDiBF5SCKH5ov/18aecak0xZ5ICmyhPBsE1WhWMqTm2151Bd1Nbts
+         Ji8mOKLtW6O6kHIKSGxN88g4ge49BtimAvMj08Ar771rF0oOugi0GevMCMA+f+3V1QnO
+         GAqxIzn0nSzN9svexOb37pRccc9aTYC7ELzXCKqTgbe/iWpqWVj9OM7YmXlrrOfQZm+C
+         WBqg==
+X-Gm-Message-State: AOJu0Yyx4ZKekUpEz35f9tWbgKJhLlbOCzlGGB4Ud0wG7zAVH91eWldr
+	xs3b7P2m2wwuajaVFII8s41gcBAgGP1sG+SaCtTbYBiXHxWesik1IlU0z7Kk8sTvm8TDYHAfEnM
+	ttZNutM8TXBjTc6ZR3FhhjRG29G8rdvzX7j9WdiplBt23b9tDL3COkuHv7ZQ=
+X-Received: by 2002:a05:6214:500a:b0:68c:ae6d:2959 with SMTP id jo10-20020a056214500a00b0068cae6d2959mr11937110qvb.26.1707412493941;
+        Thu, 08 Feb 2024 09:14:53 -0800 (PST)
+X-Google-Smtp-Source: AGHT+IHYuXqpva6SZF2Aah0b10Z312RBpdPeN2QIUsmjUHlOSOk360M3rZ+hHlv/zNdE9PGoJ1Y3cg==
+X-Received: by 2002:a05:6214:500a:b0:68c:ae6d:2959 with SMTP id jo10-20020a056214500a00b0068cae6d2959mr11937077qvb.26.1707412493654;
+        Thu, 08 Feb 2024 09:14:53 -0800 (PST)
+X-Forwarded-Encrypted: i=1; AJvYcCXW7BwTvO0LbHhIp+FRYAMN4I1CMQF/dqmLhHe7tOe54hdTsWbldG7uky9/bU9LCt1W82/+dMh5+gRXTTqdxrEDBJQSbajdk9cUrtCVRRyNqAWQ8M2cJyA+4RA1OqgKOgHonSrfWg0qz+WugtkkqaF85XXcF4A/7wT2FUVjBYE4Mq3yphlZkq19xh1rc9BIvRDqlsAxWOzkLGaTcMXB3gFx+JN9atuoB4ZzFoxTHM80OZOltLKZjQ7oQ8JQ3O/oaDB1Wcxu7Bjr2N7njyZXGDK/vrou9bJ+59FHxVCbciOpAsLKoemgggI0AwntEP1A/dEB5yj96hCqZ0GCtaksVg5sLCcsqB3DjzCvnvNZ4OhnYKYddoHyY5HXsT8jJlq5HNqE9qQqMmYTk1/p8J/3R3kcr3D/+Pv5UHuDOsA4us6a1YbC1hmTTyHhmAVCMSNSlps=
+Received: from fedora ([2600:1700:1ff0:d0e0::37])
+        by smtp.gmail.com with ESMTPSA id ly6-20020a0562145c0600b0068caacd861fsm176128qvb.25.2024.02.08.09.14.52
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 08 Feb 2024 09:14:53 -0800 (PST)
+Date: Thu, 8 Feb 2024 11:14:51 -0600
+From: Andrew Halaney <ahalaney@redhat.com>
+To: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+Cc: neil.armstrong@linaro.org, 
+	Krishna Kurapati <quic_kriskura@quicinc.com>, Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, 
+	Rob Herring <robh+dt@kernel.org>, Bjorn Andersson <andersson@kernel.org>, 
+	Konrad Dybcio <konrad.dybcio@linaro.org>, Conor Dooley <conor+dt@kernel.org>, linux-kernel@vger.kernel.org, 
+	linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org, quic_ppratap@quicinc.com, 
+	quic_jackp@quicinc.com
+Subject: Re: Re: [PATCH 3/3] arm64: dts: qcom: sa8540-ride: Enable first port
+ of tertiary usb controller
+Message-ID: <baw3wxbdvzpkqqb6a7iut2wpt6jgzyqii5uyfkzptzt4ryjvao@4tpee6nqup5w>
+References: <20240206114745.1388491-1-quic_kriskura@quicinc.com>
+ <20240206114745.1388491-4-quic_kriskura@quicinc.com>
+ <23824242-1b37-4544-ae9a-0a5a0582580e@linaro.org>
+ <CAA8EJpqbXvKMQktGsxMFJnR+fXoOz8hFmm+E3ROPTjjiD0QLvg@mail.gmail.com>
+ <6q2ocvrujbli42rjddflyol74xianr7j47jwcgdnnmwjanv25d@uw2da7zulqqd>
+ <CAA8EJpr6k8c5C54S9xxQgZvd9NYFoxi5qQrOTz2AMrp0xeZZpw@mail.gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <CAA8EJpr6k8c5C54S9xxQgZvd9NYFoxi5qQrOTz2AMrp0xeZZpw@mail.gmail.com>
 
-Add initial driver for the MAX6958 and MAX6959 7-segment LED
-controllers.
+On Wed, Feb 07, 2024 at 03:32:03AM +0200, Dmitry Baryshkov wrote:
+> On Wed, 7 Feb 2024 at 02:10, Andrew Halaney <ahalaney@redhat.com> wrote:
+> >
+> > On Tue, Feb 06, 2024 at 03:30:32PM +0200, Dmitry Baryshkov wrote:
+> > > On Tue, 6 Feb 2024 at 15:28, <neil.armstrong@linaro.org> wrote:
+> > > >
+> > > > On 06/02/2024 12:47, Krishna Kurapati wrote:
+> > > > > From: Andrew Halaney <ahalaney@redhat.com>
+> > > > >
+> > > > > There is now support for the multiport USB controller this uses so
+> > > > > enable it.
+> > > > >
+> > > > > The board only has a single port hooked up (despite it being wired up to
+> > > > > the multiport IP on the SoC). There's also a USB 2.0 mux hooked up,
+> > > > > which by default on boot is selected to mux properly. Grab the gpio
+> > > > > controlling that and ensure it stays in the right position so USB 2.0
+> > > > > continues to be routed from the external port to the SoC.
+> > >
+> > > What is connected to the other port of the MUX?
+> >
+> > /me blows off the dust on the schematic
+> >
+> > It's a 1:2 mux, and one option is the out the board, the other
+> > is a test point I believe if I'm reading things right, although its not
+> > labeled so I'm not sure anyone would actually find it on the board.
+> 
+> Ack, this definitely looks like a static configuration.
 
-Signed-off-by: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
----
- drivers/auxdisplay/Kconfig   |  14 +++
- drivers/auxdisplay/Makefile  |   1 +
- drivers/auxdisplay/max6959.c | 200 +++++++++++++++++++++++++++++++++++
- 3 files changed, 215 insertions(+)
- create mode 100644 drivers/auxdisplay/max6959.c
+Krishna, when you make v2 can you update the wording about the USB 2.0
+mux? Maybe something like "which by default on boot is selected to mux
+to the external port on the board (with the other option being a test
+point)." instead of the wording I originally had? That way the
+information Dmitry requested here is easily accessible in the future.
 
-diff --git a/drivers/auxdisplay/Kconfig b/drivers/auxdisplay/Kconfig
-index a34a9a52158f..079d58bb0293 100644
---- a/drivers/auxdisplay/Kconfig
-+++ b/drivers/auxdisplay/Kconfig
-@@ -187,6 +187,20 @@ config HT16K33
- 	  Say yes here to add support for Holtek HT16K33, RAM mapping 16*8
- 	  LED controller driver with keyscan.
- 
-+config MAX6959
-+	tristate "Maxim MAX6958/6959 7-segment LED controller with keyscan"
-+	depends on I2C
-+	select REGMAP_I2C
-+	select LINEDISP
-+	help
-+	  If you say yes here you get support for the following Maxim chips
-+	  (I2C 7-segment LED display controller with keyscan):
-+	  - MAX6958
-+	  - MAX6959 (debounce support)
-+
-+	  This driver can also be built as a module. If so, the module
-+	  will be called max6959.
-+
- config ARM_CHARLCD
- 	bool "ARM Ltd. Character LCD Driver"
- 	depends on PLAT_VERSATILE
-diff --git a/drivers/auxdisplay/Makefile b/drivers/auxdisplay/Makefile
-index 43bad850481c..f62a258809ef 100644
---- a/drivers/auxdisplay/Makefile
-+++ b/drivers/auxdisplay/Makefile
-@@ -12,5 +12,6 @@ obj-$(CONFIG_CFAG12864B)	+= cfag12864b.o cfag12864bfb.o
- obj-$(CONFIG_LINEDISP)		+= line-display.o
- obj-$(CONFIG_IMG_ASCII_LCD)	+= img-ascii-lcd.o
- obj-$(CONFIG_HT16K33)		+= ht16k33.o
-+obj-$(CONFIG_MAX6959)		+= max6959.o
- obj-$(CONFIG_ARM_CHARLCD)	+= arm-charlcd.o
- obj-$(CONFIG_PARPORT_PANEL)	+= panel.o
-diff --git a/drivers/auxdisplay/max6959.c b/drivers/auxdisplay/max6959.c
-new file mode 100644
-index 000000000000..0c5cbd16c3fe
---- /dev/null
-+++ b/drivers/auxdisplay/max6959.c
-@@ -0,0 +1,200 @@
-+// SPDX-License-Identifier: GPL-2.0
-+/*
-+ * MAX6958/6959 7-segment LED display controller with keyscan
-+ * Datasheet:
-+ * https://www.analog.com/media/en/technical-documentation/data-sheets/MAX6958-MAX6959.pdf
-+ *
-+ * Copyright (c) 2024, Intel Corporation.
-+ * Author: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
-+ */
-+#include <linux/array_size.h>
-+#include <linux/bitrev.h>
-+#include <linux/bits.h>
-+#include <linux/container_of.h>
-+#include <linux/err.h>
-+#include <linux/i2c.h>
-+#include <linux/mod_devicetable.h>
-+#include <linux/module.h>
-+#include <linux/pm.h>
-+#include <linux/regmap.h>
-+#include <linux/slab.h>
-+#include <linux/types.h>
-+#include <linux/workqueue.h>
-+
-+#include <linux/map_to_7segment.h>
-+
-+#include "line-display.h"
-+
-+/* Registers */
-+#define REG_DECODE_MODE			0x01
-+#define REG_INTENSITY			0x02
-+#define REG_SCAN_LIMIT			0x03
-+#define REG_CONFIGURATION		0x04
-+#define REG_CONFIGURATION_S_BIT		BIT(0)
-+
-+#define REG_DIGIT(x)			(0x20 + (x))
-+#define REG_DIGIT0			0x20
-+#define REG_DIGIT1			0x21
-+#define REG_DIGIT2			0x22
-+#define REG_DIGIT3			0x23
-+
-+#define REG_SEGMENTS			0x24
-+#define REG_MAX				REG_SEGMENTS
-+
-+/* Defines */
-+#define MIN_BRIGHTNESS			0x01
-+#define MAX_BRIGHTNESS			0x40
-+
-+struct max6959_priv {
-+	struct linedisp linedisp;
-+
-+	struct delayed_work work;
-+
-+	struct regmap *regmap;
-+};
-+
-+static void max6959_disp_update(struct work_struct *work)
-+{
-+	struct max6959_priv *priv = container_of(work, struct max6959_priv, work.work);
-+	struct linedisp *linedisp = &priv->linedisp;
-+	struct linedisp_map *map = linedisp->map;
-+	char *s = linedisp->curr;
-+	u8 buf[4];
-+
-+	/* Map segments according to datasheet */
-+	buf[0] = bitrev8(map_to_seg7(&map->map.seg7, *s++)) >> 1;
-+	buf[1] = bitrev8(map_to_seg7(&map->map.seg7, *s++)) >> 1;
-+	buf[2] = bitrev8(map_to_seg7(&map->map.seg7, *s++)) >> 1;
-+	buf[3] = bitrev8(map_to_seg7(&map->map.seg7, *s++)) >> 1;
-+
-+	regmap_bulk_write(priv->regmap, REG_DIGIT(0), buf, ARRAY_SIZE(buf));
-+}
-+
-+static int max6959_linedisp_get_map_type(struct linedisp *linedisp)
-+{
-+	struct max6959_priv *priv = container_of(linedisp, struct max6959_priv, linedisp);
-+
-+	INIT_DELAYED_WORK(&priv->work, max6959_disp_update);
-+	return LINEDISP_MAP_SEG7;
-+}
-+
-+static void max6959_linedisp_update(struct linedisp *linedisp)
-+{
-+	struct max6959_priv *priv = container_of(linedisp, struct max6959_priv, linedisp);
-+
-+	schedule_delayed_work(&priv->work, 0);
-+}
-+
-+static const struct linedisp_ops max6959_linedisp_ops = {
-+	.get_map_type = max6959_linedisp_get_map_type,
-+	.update = max6959_linedisp_update,
-+};
-+
-+static int max6959_enable(struct max6959_priv *priv, bool enable)
-+{
-+	u8 mask = REG_CONFIGURATION_S_BIT;
-+	u8 value = enable ? mask : 0;
-+
-+	return regmap_update_bits(priv->regmap, REG_CONFIGURATION, mask, value);
-+}
-+
-+static void max6959_power_off(void *priv)
-+{
-+	max6959_enable(priv, false);
-+}
-+
-+static int max6959_power_on(struct max6959_priv *priv)
-+{
-+	struct device *dev = regmap_get_device(priv->regmap);
-+	int ret;
-+
-+	ret = max6959_enable(priv, true);
-+	if (ret)
-+		return ret;
-+
-+	return devm_add_action_or_reset(dev, max6959_power_off, priv);
-+}
-+
-+static const struct regmap_config max6959_regmap_config = {
-+	.reg_bits = 8,
-+	.val_bits = 8,
-+
-+	.max_register = REG_MAX,
-+	.cache_type = REGCACHE_MAPLE,
-+};
-+
-+static int max6959_i2c_probe(struct i2c_client *client)
-+{
-+	struct device *dev = &client->dev;
-+	struct max6959_priv *priv;
-+	int ret;
-+
-+	priv = devm_kzalloc(dev, sizeof(*priv), GFP_KERNEL);
-+	if (!priv)
-+		return -ENOMEM;
-+
-+	priv->regmap = devm_regmap_init_i2c(client, &max6959_regmap_config);
-+	if (IS_ERR(priv->regmap))
-+		return PTR_ERR(priv->regmap);
-+
-+	ret = max6959_power_on(priv);
-+	if (ret)
-+		return ret;
-+
-+	ret = linedisp_register(&priv->linedisp, dev, 4, NULL, &max6959_linedisp_ops);
-+	if (ret)
-+		return ret;
-+
-+	i2c_set_clientdata(client, priv);
-+
-+	return 0;
-+}
-+
-+static void max6959_i2c_remove(struct i2c_client *client)
-+{
-+	struct max6959_priv *priv = i2c_get_clientdata(client);
-+
-+	cancel_delayed_work_sync(&priv->work);
-+	linedisp_unregister(&priv->linedisp);
-+}
-+
-+static int max6959_suspend(struct device *dev)
-+{
-+	return max6959_enable(dev_get_drvdata(dev), false);
-+}
-+
-+static int max6959_resume(struct device *dev)
-+{
-+	return max6959_enable(dev_get_drvdata(dev), true);
-+}
-+
-+static DEFINE_SIMPLE_DEV_PM_OPS(max6959_pm_ops, max6959_suspend, max6959_resume);
-+
-+static const struct i2c_device_id max6959_i2c_id[] = {
-+	{ "max6959" },
-+	{ }
-+};
-+MODULE_DEVICE_TABLE(i2c, max6959_i2c_id);
-+
-+static const struct of_device_id max6959_of_table[] = {
-+	{ .compatible = "maxim,max6959" },
-+	{ }
-+};
-+MODULE_DEVICE_TABLE(of, max6959_of_table);
-+
-+static struct i2c_driver max6959_i2c_driver = {
-+	.driver = {
-+		.name = "max6959",
-+		.pm = pm_sleep_ptr(&max6959_pm_ops),
-+		.of_match_table = max6959_of_table,
-+	},
-+	.probe = max6959_i2c_probe,
-+	.remove = max6959_i2c_remove,
-+	.id_table = max6959_i2c_id,
-+};
-+module_i2c_driver(max6959_i2c_driver);
-+
-+MODULE_DESCRIPTION("MAX6958/6959 7-segment LED controller with keyscan");
-+MODULE_AUTHOR("Andy Shevchenko <andriy.shevchenko@linux.intel.com>");
-+MODULE_LICENSE("GPL");
-+MODULE_IMPORT_NS(LINEDISP);
--- 
-2.43.0.rc1.1.gbec44491f096
+> 
+> >
+> > >
+> > > > >
+> > > > > Signed-off-by: Andrew Halaney <ahalaney@redhat.com>
+> > > > > Co-developed-by: Krishna Kurapati <quic_kriskura@quicinc.com>
+> > > > > Signed-off-by: Krishna Kurapati <quic_kriskura@quicinc.com>
+> > > > > ---
+> > > > >   arch/arm64/boot/dts/qcom/sa8540p-ride.dts | 21 +++++++++++++++++++++
+> > > > >   1 file changed, 21 insertions(+)
+> > > > >
+> > > > > diff --git a/arch/arm64/boot/dts/qcom/sa8540p-ride.dts b/arch/arm64/boot/dts/qcom/sa8540p-ride.dts
+> > > > > index b04f72ec097c..eed1ddc29bc1 100644
+> > > > > --- a/arch/arm64/boot/dts/qcom/sa8540p-ride.dts
+> > > > > +++ b/arch/arm64/boot/dts/qcom/sa8540p-ride.dts
+> > > > > @@ -503,6 +503,18 @@ &usb_2_qmpphy0 {
+> > > > >       status = "okay";
+> > > > >   };
+> > > > >
+> > > > > +&usb_2 {
+> > > > > +     pinctrl-0 = <&usb2_en>;
+> > > > > +     pinctrl-names = "default";
+> > > > > +
+> > > > > +     status = "okay";
+> > > > > +};
+> > > > > +
+> > > > > +&usb_2_dwc3 {
+> > > > > +     phy-names = "usb2-port0", "usb3-port0";
+> > > > > +     phys = <&usb_2_hsphy0>, <&usb_2_qmpphy0>;
+> > > > > +};
+> > > > > +
+> > > > >   &xo_board_clk {
+> > > > >       clock-frequency = <38400000>;
+> > > > >   };
+> > > > > @@ -655,4 +667,13 @@ wake-pins {
+> > > > >                       bias-pull-up;
+> > > > >               };
+> > > > >       };
+> > > > > +
+> > > > > +     usb2_en: usb2-en-state {
+> > > > > +             /* TS3USB221A USB2.0 mux select */
+> > > > > +             pins = "gpio24";
+> > > > > +             function = "gpio";
+> > > > > +             drive-strength = <2>;
+> > > > > +             bias-disable;
+> > > > > +             output-low;
+> > > > > +     };
+> > > > >   };
+> > > >
+> > > > Isn't gpio-hog the preferred way to describe that ?
+> > >
+> > > That depends. As this pinctrl describes board configuration, I'd agree
+> > > with Neil.
+> >
+> > I unfortunately don't have the experience with gpio-hog to weigh in
+> > here, but wouldn't be opposed to Krishna switching it if that's what's
+> > recommended for this type of thing.
+> 
+> Quoting gpio.txt:
+> 
+> The GPIO chip may contain GPIO hog definitions. GPIO hogging is a mechanism
+> providing automatic GPIO request and configuration as part of the
+> gpio-controller's driver probe function.
+> 
+> See sdm845-pinctrl.yaml for an example of the gpio-hog node.
+
+Thanks, that seems like the way to go. Krishna please take note of this
+for v2!
+
+> 
+> >
+> > >
+> > >
+> > > --
+> > > With best wishes
+> > > Dmitry
+> > >
+> >
+> 
+> 
+> -- 
+> With best wishes
+> Dmitry
+> 
 
 
