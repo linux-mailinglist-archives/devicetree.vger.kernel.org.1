@@ -1,200 +1,177 @@
-Return-Path: <devicetree+bounces-39935-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-39936-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6611F84EB09
-	for <lists+devicetree@lfdr.de>; Thu,  8 Feb 2024 23:00:38 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id D0D2D84EB5E
+	for <lists+devicetree@lfdr.de>; Thu,  8 Feb 2024 23:12:14 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id B8A5828F95F
-	for <lists+devicetree@lfdr.de>; Thu,  8 Feb 2024 22:00:36 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 8D18F288349
+	for <lists+devicetree@lfdr.de>; Thu,  8 Feb 2024 22:12:13 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 063C84F600;
-	Thu,  8 Feb 2024 21:59:45 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B83C350244;
+	Thu,  8 Feb 2024 22:11:26 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="SVmfoHOW"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="ezKlEX8z"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ej1-f43.google.com (mail-ej1-f43.google.com [209.85.218.43])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3895B50A64;
-	Thu,  8 Feb 2024 21:59:43 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.43
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8843F51018;
+	Thu,  8 Feb 2024 22:11:25 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1707429584; cv=none; b=lGiKjeBwlP0XPgFzIxl0hp0kJvdKTIR1ZBBCzflD/HINWscAtaTWNvuCGzZ6ZL1iik4asWQ5rBKCC7vs51HYtrlJPzDBinwHFOrUHo6aQTSzRimmCAcwm8XyBWpn7gX1H4mFEblEUopHJ1wvzltqB9KAwW2AYQF+pzVKX6oFlb0=
+	t=1707430286; cv=none; b=Emkemasj4Kn9B0hsBTBmdVAI4xJKjLewIw4pLIn9Rj8NjAft3Ov4exq55Cl9dO749fk/GSmLAkm1EwRXA5jONPcxnKldOLs2gRcO5mfj/CEx7Gg50bM0CSf4KeWXPu2xpI6QRw3sGeWYy/1rZk3pyURy1jeGyO7oxc5XDRqoKpU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1707429584; c=relaxed/simple;
-	bh=8f35FdJ/pQY+mhck7+IAQi4vxCn4gr2UiZgQP2iv6T4=;
-	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=lUYl8jZSU9F+N82K079jIPyWCpixHWWot101amMyqTn26Ht0Osj9hxAzXBR6X+VGNLrvnNhudGLJztKuMOp7rvT3NqkqIe+q/Px/I7gShfhwVev0FSoewy4GmcVKns9PbB6sT97gJ+8E8F+QVg2EnsD+6gZHxu1tXWpW4uxrF0Y=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=SVmfoHOW; arc=none smtp.client-ip=209.85.218.43
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-ej1-f43.google.com with SMTP id a640c23a62f3a-a388c5542e9so254686266b.1;
-        Thu, 08 Feb 2024 13:59:42 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1707429581; x=1708034381; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=zpgVj5cIJYfsEe4k8tOMDseJ01hUY/30ToLsNTzKrj0=;
-        b=SVmfoHOWuY2SnmMM7Tk4IwF729lltn8G8DbU7ssHqWOAAeC2c9QEMbGD+JGrrz2mFa
-         yVRHDGnRUoqAWzDScTen6UObg9TSzQ4ItFJMJiGtFMhjkAq2dz42vovKhKOhQQbIRwkR
-         GCnzfq3h187EhDdiMISdLzAcne9gfAcylNIOldq/n2w1roqO2HawjUVFYYSbI5DVMSqS
-         sPB2gjnD1NqOiHF3BqGN6BWsWuMuXwAB6+JkRqAGAI1o3uxrso6iK7TBzTHaacAeWIt5
-         eC5bPzb3zQC0FOJ3rEqsyE3zN+cT7u7SkUz7hxgqwdM97mskILOw+I63chrkLyAZx4TB
-         3anQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1707429581; x=1708034381;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=zpgVj5cIJYfsEe4k8tOMDseJ01hUY/30ToLsNTzKrj0=;
-        b=IafNcKVA5ayGifwl1icbdpbEBJ7SXLsZ1NHLFrIpa/v1lIX+Ix53ghcYBmAnNi/s/j
-         Zfjw+P0XpLoNFFBxw/LbReQKhoj6OC9EiFXJ1JPEWRLlUrkdezX35geIGIfFvtdBbSFY
-         tWE0x5HD6Cx4vu45e7SCVSsUGHc5tKMuKsIxHiqf7YkkQhIa6paTkaZzb/8Je5THuC85
-         NCB7uuAQs5zvDgQI8bIKuJcC1b693aK7bUxEuPYL+qFJIvGEibUdVRDZebIvuIiXqQxp
-         tCwXF3+IyvRTzQfoMmUUTvv6ooE6RLc7/SR4be5mvogvEgk9pnfNQcfubfRZVgE6yQvL
-         U3Kg==
-X-Gm-Message-State: AOJu0YxdqBnpp98FmiRpxHh3oVJFl0x/n01etm0m1WtZauJkG6bEEQGX
-	JwfRr3CKUs0pXVHtzC1INQGHkzEpa4kePZZyumU53jg5Bwkth5bhqFWLY4k7
-X-Google-Smtp-Source: AGHT+IFNxvM9cY+GaiQyQtPUyUX5PIfavKE10/ptk4BXmXj9FVhWmxsdHmeT4N0bGqDsEKu83NTBLw==
-X-Received: by 2002:a17:906:f753:b0:a36:5c45:1e09 with SMTP id jp19-20020a170906f75300b00a365c451e09mr628743ejb.31.1707429581490;
-        Thu, 08 Feb 2024 13:59:41 -0800 (PST)
-X-Forwarded-Encrypted: i=1; AJvYcCXltFUHHXN3QJVpFmKZaCHkdH8PMvNfBhL99ytOY454pqiQKr2FFutKWFoWShjCCMTwLN2sgcRcefp+CfhhFBcdRzvld0rnW/jtVj30JvFzNrZ3Q6qrvYpCsRAd/VBSDViKWcNHWQQz1xJtKoCPjrLo1aPy1TwbAVwebS/VqbfRtXPeu8QgMP3xIB3/V/dIzyQhb03FnQuAzbLpOplvi8/ltLffe89S1oaeq3zP6Wz9ekzVfJwPKM2Pr9S98EH/55v5/L9tk4KlbT6RkBpRMgkY2LLeHf6B/9CnOUzA1IRb3RMX0KwILY1g6Z9qYqSEJSj1Wm7jnNhTXJfCZKE6rNNl8qYGpGSdG8/wWehReYwAzFl2jvDwx3msi9Uvp/fC2WBTMwc0X8r0Zc5c0K1gN/uGzHHloLc+WFb63Ht1JFtsFL4Z8UXj7PSB48Kk13tBQ2rkrcakd5XMDmESB6J85Uc8ypzzM1DVJspwHDloamzfdBbU8q1WRr31fxRikE3HCrJycO0=
-Received: from localhost.lan (031011218106.poznan.vectranet.pl. [31.11.218.106])
-        by smtp.gmail.com with ESMTPSA id rf19-20020a1709076a1300b00a3743142429sm108255ejc.39.2024.02.08.13.59.40
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 08 Feb 2024 13:59:41 -0800 (PST)
-From: =?UTF-8?q?Rafa=C5=82=20Mi=C5=82ecki?= <zajec5@gmail.com>
-To: Russell King <linux@armlinux.org.uk>,
-	Daniel Lezcano <daniel.lezcano@linaro.org>,
-	Thomas Gleixner <tglx@linutronix.de>,
-	Rob Herring <robh+dt@kernel.org>,
+	s=arc-20240116; t=1707430286; c=relaxed/simple;
+	bh=sUvaMWVgfLPM3IN3kP/Sfp4tQsrwPgz8kE7lgIpeMlQ=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=Uctg8Ba5+Ya0ApxmoLyh3l5uFxC3YkUF1sIY34fgxmXIrT9m4MdffCRsMPfPYwQKgnlLBeEoqNJVye3o8EpODxQYrmXPt+urZV9vrmOAMEfY+kzUuh0ot/6o2V0pC7fbmZ6FIdI6CLxIzrRxlbNcCxjtSOVjnXwzu3lVjUqWWgU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=ezKlEX8z; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 2A895C433C7;
+	Thu,  8 Feb 2024 22:11:23 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1707430285;
+	bh=sUvaMWVgfLPM3IN3kP/Sfp4tQsrwPgz8kE7lgIpeMlQ=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=ezKlEX8zXSUDJqybqX+QHV4c2jcM/bJJNBIrg2J/YRLTPCdoyujq3V6ofrwZmRhuv
+	 34m6lynRMNqP2vmpOMzgXyEdF+AnVKnDg0oY0qC/ZAfLJSTFz/Utl2UO7kfo6Fp1YL
+	 R/sDB/yKvsIZ9jOOsUc/s3euwlWCfQkwZF1sHVx0L+kUlwBkhtmgGgyWIsI3u5phT5
+	 ZWwe6ZXuCcvxrvu+idHaE6wRo/wx7RxYuOv+3pfyIuhfsNNLIEuAg6y9bz3c5oI/z3
+	 vRFoFGIyk6XpHps2Zm5SyO4AKiwfsYiyppsx0jkEqXnydb2o69eDvmMOnFGetMRmj+
+	 uqDOCCYq+iskQ==
+Date: Thu, 8 Feb 2024 22:11:20 +0000
+From: Conor Dooley <conor@kernel.org>
+To: Frank Li <Frank.li@nxp.com>
+Cc: Bjorn Helgaas <bhelgaas@google.com>,
+	Lorenzo Pieralisi <lpieralisi@kernel.org>,
+	Krzysztof =?utf-8?Q?Wilczy=C5=84ski?= <kw@linux.com>,
+	Rob Herring <robh@kernel.org>,
 	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>
-Cc: Matthias Brugger <matthias.bgg@gmail.com>,
-	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
-	devicetree@vger.kernel.org,
-	linux-clk@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	linux-mediatek@lists.infradead.org,
-	linux-kernel@vger.kernel.org,
-	=?UTF-8?q?Rafa=C5=82=20Mi=C5=82ecki?= <rafal@milecki.pl>
-Subject: [PATCH V2 3/3] dt-bindings: arm: mediatek: convert SSUSBSYS to the json-schema clock
-Date: Thu,  8 Feb 2024 22:59:26 +0100
-Message-Id: <20240208215926.10085-4-zajec5@gmail.com>
-X-Mailer: git-send-email 2.35.3
-In-Reply-To: <20240208215926.10085-1-zajec5@gmail.com>
-References: <20240208215926.10085-1-zajec5@gmail.com>
+	Conor Dooley <conor+dt@kernel.org>,
+	"open list:PCI SUBSYSTEM" <linux-pci@vger.kernel.org>,
+	"open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" <devicetree@vger.kernel.org>,
+	open list <linux-kernel@vger.kernel.org>, imx@lists.linux.dev
+Subject: Re: [PATCH 1/1] dt-bindings: pci: layerscape-pci: Convert to yaml
+ file
+Message-ID: <20240208-nanometer-coke-07811889bafc@spud>
+References: <20240207062403.304367-1-Frank.Li@nxp.com>
+ <20240207-yoga-mobility-90a728f6342c@spud>
+ <ZcPCn8q7viB/qcOH@lizhi-Precision-Tower-5810>
+ <20240208-jarring-frolic-8d4c9b409127@spud>
+ <ZcUs16+Z+I4m4q00@lizhi-Precision-Tower-5810>
+ <20240208-revoke-doorman-5ba34f39c743@spud>
+ <ZcU3ohEg5Z1ky+/W@lizhi-Precision-Tower-5810>
+ <20240208-outing-nature-74b6fab0cdea@spud>
+ <ZcVI23X4T04cFyJL@lizhi-Precision-Tower-5810>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+Content-Type: multipart/signed; micalg=pgp-sha256;
+	protocol="application/pgp-signature"; boundary="1wFBWAeU2OQ4hQEl"
+Content-Disposition: inline
+In-Reply-To: <ZcVI23X4T04cFyJL@lizhi-Precision-Tower-5810>
 
-From: Rafał Miłecki <rafal@milecki.pl>
 
-This helps validating DTS files. Introduced changes:
-1. Documented "reg" property
-2. Dropped "syscon" as it was incorrectly used
-3. Adjusted nodename, "compatible" and "reg" in example
+--1wFBWAeU2OQ4hQEl
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-Signed-off-by: Rafał Miłecki <rafal@milecki.pl>
----
- .../arm/mediatek/mediatek,ssusbsys.txt        | 25 -----------
- .../clock/mediatek,mt7622-ssusbsys.yaml       | 45 +++++++++++++++++++
- 2 files changed, 45 insertions(+), 25 deletions(-)
- delete mode 100644 Documentation/devicetree/bindings/arm/mediatek/mediatek,ssusbsys.txt
- create mode 100644 Documentation/devicetree/bindings/clock/mediatek,mt7622-ssusbsys.yaml
+On Thu, Feb 08, 2024 at 04:34:19PM -0500, Frank Li wrote:
+> On Thu, Feb 08, 2024 at 09:20:08PM +0000, Conor Dooley wrote:
+> > On Thu, Feb 08, 2024 at 03:20:50PM -0500, Frank Li wrote:
+> >=20
+> > > > > > > > > +  reg:
+> > > > > > > > > +    maxItems: 2
+> > > > > > > > > +
+> > > > > > > > > +  reg-names:
+> > > > > > > > > +    items:
+> > > > > > > > > +      - const: regs
+> > > > > > > > > +      - const: addr_space
+> > > > > > > >=20
+> > > > > > > > The example uses "regs" and "config". Where did addr_space =
+come from?
+> > > > > > >=20
+> > > > > > > Example just show pcie-host part. Not show pcie-ep part.
+> > > > > > > pcie-ep part need 'addr_space'.
+> > > > > >=20
+> > > > > > Okay. Again, please mention where this is coming from.
+> > > > >=20
+> > > > > Ideally it comes from snsp,dwc-pcie-ep.yaml. but it is use 'dbi' =
+instead
+> > > > > of 'regs'. It needs extra effort to make driver code algin common
+> > > > > snps,dwc-pcie-ep.yaml, and update exist all dts files.
+> > > > >=20
+> > > > > I think it will be deleted soon.=20
+> > > >=20
+> > > > What I am looking for here is you to explain in the commit message =
+that
+> > > > the endpoint driver in linux and the dts have always used "addr_spa=
+ce".
+> > > > Checking that there's not a u-boot or *bsd that uses "config" would=
+ also
+> > > > be very helpful.
+> > >=20
+> > > I confused. Actually this two part PCIE-RC and PCIE-EP.
+> > > PCIE-RC using 'config'
+> > > PCIE-EP using 'addr_spcae'
+> >=20
+> > Yeah, I get this. The text binding makes it seem like "config" should be
+> > used for both RC and EP, so I am just asking you to check that there are
+> > no drivers in other kernels or bootloaders that use "config" for EP
+> > mode.
+>=20
+> There are not 'config' concept for EP mode. Only RC mode have 'config'
+> space concept to get PCIe device's config space. EP mode only have
+> "add_space" for outbound windows. If other place using "config" for EP, it
+> is totally wrong, they should fix it.
 
-diff --git a/Documentation/devicetree/bindings/arm/mediatek/mediatek,ssusbsys.txt b/Documentation/devicetree/bindings/arm/mediatek/mediatek,ssusbsys.txt
-deleted file mode 100644
-index 7cb02c930613..000000000000
---- a/Documentation/devicetree/bindings/arm/mediatek/mediatek,ssusbsys.txt
-+++ /dev/null
-@@ -1,25 +0,0 @@
--MediaTek SSUSBSYS controller
--============================
--
--The MediaTek SSUSBSYS controller provides various clocks to the system.
--
--Required Properties:
--
--- compatible: Should be:
--	- "mediatek,mt7622-ssusbsys", "syscon"
--	- "mediatek,mt7629-ssusbsys", "syscon"
--- #clock-cells: Must be 1
--- #reset-cells: Must be 1
--
--The SSUSBSYS controller uses the common clk binding from
--Documentation/devicetree/bindings/clock/clock-bindings.txt
--The available clocks are defined in dt-bindings/clock/mt*-clk.h.
--
--Example:
--
--ssusbsys: ssusbsys@1a000000 {
--	compatible = "mediatek,mt7622-ssusbsys", "syscon";
--	reg = <0 0x1a000000 0 0x1000>;
--	#clock-cells = <1>;
--	#reset-cells = <1>;
--};
-diff --git a/Documentation/devicetree/bindings/clock/mediatek,mt7622-ssusbsys.yaml b/Documentation/devicetree/bindings/clock/mediatek,mt7622-ssusbsys.yaml
-new file mode 100644
-index 000000000000..5e48c2d3ff11
---- /dev/null
-+++ b/Documentation/devicetree/bindings/clock/mediatek,mt7622-ssusbsys.yaml
-@@ -0,0 +1,45 @@
-+# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/clock/mediatek,mt7622-ssusbsys.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: MediaTek SSUSBSYS controller
-+
-+description:
-+  The MediaTek SSUSBSYS controller provides various clocks to the system.
-+
-+maintainers:
-+  - Matthias Brugger <matthias.bgg@gmail.com>
-+
-+properties:
-+  compatible:
-+    enum:
-+      - mediatek,mt7622-ssusbsys
-+      - mediatek,mt7629-ssusbsys
-+
-+  reg:
-+    maxItems: 1
-+
-+  "#clock-cells":
-+    const: 1
-+    description: The available clocks are defined in dt-bindings/clock/mt*-clk.h
-+
-+  "#reset-cells":
-+    const: 1
-+
-+required:
-+  - reg
-+  - "#clock-cells"
-+  - "#reset-cells"
-+
-+additionalProperties: false
-+
-+examples:
-+  - |
-+    clock-controller@1a000000 {
-+        compatible = "mediatek,mt7622-ssusbsys";
-+        reg = <0x1a000000 0x1000>;
-+        #clock-cells = <1>;
-+        #reset-cells = <1>;
-+    };
--- 
-2.35.3
+It might be a totally wrong concept, but it is what the binding said, so
+they are within their rights to use that name.
 
+>=20
+> >=20
+> > > I check old txt file, which have not mention it. I can remove it.
+> >=20
+> > if you drop "addr_space", you'll need to update the endpoint driver so
+> > that it supports both "addr_space" and "config". If there are no
+> > endpoint drivers using "config" in other operating systems, and all the
+> > dts files use "addr_space", documenting "reg" and "addr_space" for
+> > endpoint mode seems fair to me.
+>=20
+> It is up to how to create patches. "addr_space" needs. If you want me to
+> create one version, which 100% match original txt. I can do that. Then
+> create increment patch to fix the problem.
+>=20
+> If want to create a basic work version like this, which included some min=
+us
+> fixes. =20
+>=20
+> The both method is fine for me. Second method just need more efforts.
+
+I don't have a problem with you making it "addr_space" as long as you
+check to make sure that there are no users of "config" outside the
+kernel and you mention in the commit message that this is a difference
+=66rom the text binding (and why).
+
+Thanks,
+Conor.
+
+--1wFBWAeU2OQ4hQEl
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZcVRiAAKCRB4tDGHoIJi
+0jBnAQCTnRYkic8ytH+lBjI2iV6es96Hip0STSW/bDe2HdeSmAEA9DDxK8QheU2Q
+BzbwvLnS5EhLH7ofoK7nlfCGHTwkHw4=
+=lYmd
+-----END PGP SIGNATURE-----
+
+--1wFBWAeU2OQ4hQEl--
 
