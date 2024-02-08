@@ -1,154 +1,119 @@
-Return-Path: <devicetree+bounces-39770-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-39771-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8E5A084E14E
-	for <lists+devicetree@lfdr.de>; Thu,  8 Feb 2024 14:02:38 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8418784E164
+	for <lists+devicetree@lfdr.de>; Thu,  8 Feb 2024 14:07:03 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 4B4ED2865E5
-	for <lists+devicetree@lfdr.de>; Thu,  8 Feb 2024 13:02:37 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 210641F28EBE
+	for <lists+devicetree@lfdr.de>; Thu,  8 Feb 2024 13:07:03 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C71D4763EF;
-	Thu,  8 Feb 2024 13:02:30 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 67D1E768E1;
+	Thu,  8 Feb 2024 13:05:41 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=tuxon.dev header.i=@tuxon.dev header.b="IwgxIbHM"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="Te/+rAPn"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f49.google.com (mail-wm1-f49.google.com [209.85.128.49])
+Received: from mail-yw1-f171.google.com (mail-yw1-f171.google.com [209.85.128.171])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0EBDB763E8
-	for <devicetree@vger.kernel.org>; Thu,  8 Feb 2024 13:02:28 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.49
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C70E7763FB
+	for <devicetree@vger.kernel.org>; Thu,  8 Feb 2024 13:05:39 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.171
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1707397350; cv=none; b=JhbRK4945ySJjXbm+HYUsPyW6wcpXAivR5dv74WbGSvtj3+8a6aUEkh5wDyPr/y8kQnbcBLNe+drKJNzqwqVPxfToIS7c4KmCmG/whYkFmcrzlo2wJmdb+syqv5+soN4N6+DmCVEEnSd2BDxFZMHGjScr3ZrUHOBs2Ubg/ajj+w=
+	t=1707397541; cv=none; b=RhF5/TjWQ+7Dq5f9Sd3gMGqW8S7i3B4rCcgxWWorLzFdNIYYgVfwD50/HsU68XAgd01yeyAlpJW+AjxS7QscUKrbK1eVMZvNSSQWWP1k3JJDs4VTTBV8vb+TIF1tIyN6dtgUXTiSqwWPUi+CZrxMEHLY3WqO1Izrm82PQ1hcqX4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1707397350; c=relaxed/simple;
-	bh=PlpJiPv+jw1aT2k6PyxJHhvGRzCrE9cSPhqoqNUxN1c=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=ojpUhUYIbNeqCdSwaSiZANG8lekgnUDJGRu+3HwPh1a+6WFc5h188jkREpp2Q+LXfMXGZAuvayvHbEAYAOqwc9MKslQio2Nr0RaFi71eJW2eiFZiXMEh4FO3K8aUChtN7NTKLBLLJ1pQtHQAjtWsPdSfYqbh9eJGsCZLPaVMCUw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=tuxon.dev; spf=pass smtp.mailfrom=tuxon.dev; dkim=pass (2048-bit key) header.d=tuxon.dev header.i=@tuxon.dev header.b=IwgxIbHM; arc=none smtp.client-ip=209.85.128.49
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=tuxon.dev
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=tuxon.dev
-Received: by mail-wm1-f49.google.com with SMTP id 5b1f17b1804b1-4101d4c5772so5282395e9.0
-        for <devicetree@vger.kernel.org>; Thu, 08 Feb 2024 05:02:28 -0800 (PST)
+	s=arc-20240116; t=1707397541; c=relaxed/simple;
+	bh=OOm3KwQlSkpx/aQ0RD1Q/n3/Iu+q+deGUZmDwakoQcE=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=oMzOrbYR2H6yEqxVhxXiKca6uJy5TFHmutJIJcWNJJS7KmPCiZVo9vXnthnESFfiLYll2tvThAdFOOB2leXYWA16vkHQiv3DN/2j0ILcEYO+MtHOD4ycWjwE1SYGEMnLNY8NWhqOe5xj48D/HLDqts3pXp4Y2z7iE+zdNzdubpA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=Te/+rAPn; arc=none smtp.client-ip=209.85.128.171
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-yw1-f171.google.com with SMTP id 00721157ae682-60492a2593fso17291097b3.2
+        for <devicetree@vger.kernel.org>; Thu, 08 Feb 2024 05:05:39 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=tuxon.dev; s=google; t=1707397347; x=1708002147; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=KslkqBZgMhr9Pa5UzxbX4ZtZqy31jeJRHoyaCwGBOVE=;
-        b=IwgxIbHM8Q8+zHbtYvbOK/wFO/pqQn2WwW3f6zaGaAT3AfeUiRDNY6aAwRjiNNKGGW
-         OYTGslRjOZNhOtLIjUaLFcuZaGk1utGFlKnFAaBGodkACCn/NLo/jrOPCDrj2veQJi4i
-         BXuICyb30vCMjeqvMfEyxIJ0zLGNLOV+bOpBpWlq9BsW5Ty+QPdor64DszzvTeyVH/gT
-         QT7uFNp96mYeMHvB23fgmM1baZzXi3FVXd02D9HMu0m+wij55wxRgWUihMOoWfimpDSq
-         tfPPtJ7sOK0Z9DEvBoEbyY53rKg/Rykm/I01QQqmd/ELW++h7NYo8WokQ7piQQO9fcXA
-         4yaw==
+        d=linaro.org; s=google; t=1707397538; x=1708002338; darn=vger.kernel.org;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=yaonEZUtkmkL4+4T+nM7QfSGszePSMsGy31jLocXPig=;
+        b=Te/+rAPnwX88eKPsw+alKjdBZYCeoe8J0KHRMKLgAHAwhZxVinM0ID5JbJOpjT8zR3
+         UHYIXdwQNBNhN6ZuYWalk3qx1b3q6WyVyXA4ttlxOIziwgPxkQTd+l/GcStwqVm9G5IB
+         A5kIbLXp1FmmzLaDvY7aO7Fd/kYlrNSbElathT/zTr3wkhdxTMFEDRDLiQHaXtgap0ha
+         Y/AQHE4wuDnQ6V9pjr/1epMNhblnGN3UldUd0NVHTts022hVf4qgIQRgTXIoAmAvz1xE
+         x+zSpIz0NRupYcofLP54syOFAhnxVLq2i+YLPVBkkVK66YwEDTVq84TtEDE3k3QoUKQ1
+         D0NA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1707397347; x=1708002147;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=KslkqBZgMhr9Pa5UzxbX4ZtZqy31jeJRHoyaCwGBOVE=;
-        b=I1a1wUx21uinGJ5VsU0RG218Vn1aVj0P3qRsoYK+FbXKhDSPFvLLru9Sgh9fQBanLV
-         8ZB0wnKA1ZUr2vTxPJYO/ovLnfbMMmnMV8RYtePtUZFqnOVbRmrpzuX19AOzPVftG0Xr
-         FLdybajNtmdDtCYVBXMECG47X6GsElyS6/zDZJXuS2RWyvFlHICwGM4NdVP0XIyEI97t
-         f0eufC2mJzxQSRpmOGEz9ZYVKeL0wZp9XGJTpm4O8l4XA+NvWjAdtHaiZ7XBjCzHEafH
-         ZTmBcPpisGxmbSJW6OJdo5pzsUNKsjLlg6psEd0j0Wknb9y3eV3IlDb4RCZviHL+An25
-         oLiw==
-X-Gm-Message-State: AOJu0YwZXEGav0daIQFCP2A0OpPe9wf4cZ0ELs+Hn0eGKfEH1aC0CSd6
-	Z570TVc3EDKRdaRSlOnz2XW0UCUBMwcucT8X93ttJCN78E8qX8jnpsXEXiEZ8i8=
-X-Google-Smtp-Source: AGHT+IFyM+8GKV3anGRcdos8vbiQwAuAKSWFo3KY91hdLwqYwrpGtWj+zK257876QNpKlLzDzjeawA==
-X-Received: by 2002:a05:600c:45c7:b0:40f:c2f0:7ed3 with SMTP id s7-20020a05600c45c700b0040fc2f07ed3mr1921728wmo.18.1707397347317;
-        Thu, 08 Feb 2024 05:02:27 -0800 (PST)
-X-Forwarded-Encrypted: i=1; AJvYcCVdwXHNypH1uvDaGJJlWre62DtyvZEl42XjlTMZdtLVCOB7a5lRly6Ui04anloUq5UGoH3oN45LYduaVoORMjwuvVKwuJdaStp9eTVQLMjlq+us1d7DCpKaA1oFXRWXccxU6JOZ2m1KLmZFX/vA+TmnJALVRqZ6gYDwWy2Rr7uci9ewkDkG8dMnsQRngpPkv+4U2WkMwKe90KBTHmWWZ8bbPA9vimCljh96XR4y9YF2DwSTkGETeT3imwNBqOWxRQ1o9N8vcJZip5e3AgTvOaYXcBUmDyFFwidgk3+Q/L/B92HtNqsWN2VijoR30CmON01WnBOTtBRJg0C8emxjsCJYgDfwGvM74/9TAyS2ZrAm8dj9PXMUrTvVqQ4YUZ5ro7OIIRKEyHndG1Pf1NblKk9J1x+XHevdWol4+rHV+ChR0cxsjtYTKNxDygUsBdtk6e+6d9k69MzF0vEbdRTBrc2o2HFhL2tLE/QmdUFC6u4kZcc+bHFCh6l5PZ5g9BB+jgKunidcbpVpWRBdco/dkur2+rd24X20Z4+4sj8BXx/m1qo05KLZNvbr
-Received: from [192.168.50.4] ([82.78.167.45])
-        by smtp.gmail.com with ESMTPSA id f17-20020a05600c4e9100b0040fd24653d4sm1565037wmq.36.2024.02.08.05.02.25
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 08 Feb 2024 05:02:26 -0800 (PST)
-Message-ID: <fea4f538-b3c2-4299-9af1-5e2b61d06ce4@tuxon.dev>
-Date: Thu, 8 Feb 2024 15:02:24 +0200
+        d=1e100.net; s=20230601; t=1707397538; x=1708002338;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=yaonEZUtkmkL4+4T+nM7QfSGszePSMsGy31jLocXPig=;
+        b=HdtQq4TnAd3CmXQcwKfGjYd5WIM2AFsGdkDavNeoYr72+L4cfq6bhrlZnaksObiSMh
+         JQ2ZhaLOjTZxjaBDVtLQgFa2EY2Nx/JAc9oOsvujiI8gFAw3W4oam/veqD0EDC+4NLbJ
+         Xd3q1SI53iFt9D6uJ0EigX2StZEc5tlb4YjeSn8hMghNJkzqiOTRtQUp7m63kKK/QlPU
+         RxoZRvdCTzioy7BlVcGMpD/HtJXPNx93Uap3vSYoFi/NP20rKYrmEdLIpC5I6jLsa78/
+         dMjXBcUVqjb16rLFZIoJ79XQprM/cmNoz/qTXuF4sgCfuxok+EwPn4wf2WQQp525uLdO
+         PcuQ==
+X-Gm-Message-State: AOJu0Yw3si3A7uqsWD8h5m1HksnlPwvdqYAqN+0nw3H6PZKCNlUOQnrx
+	bcwkHO3ShO08jPO9PYS77nEBonXmsdDK/610IBB9j2aWh+WoGVXrFp4uqkJvwPVsZ1mpFQjq97W
+	fwjPNWFR/nHvjeJkmbrS2VMg26Fk30AAKL9C/ug==
+X-Google-Smtp-Source: AGHT+IGfphzyQv/EWtNvXSUhZkKTokLhrAXhw2QIgrex5Lkm5/2iiFvKEz8iowkI5t4PsE48NVTAvoH79ulzgHlzIPY=
+X-Received: by 2002:a0d:c545:0:b0:604:71b3:2021 with SMTP id
+ h66-20020a0dc545000000b0060471b32021mr8488916ywd.3.1707397533831; Thu, 08 Feb
+ 2024 05:05:33 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v6 2/9] watchdog: rzg2l_wdt: Make the driver depend on PM
-Content-Language: en-US
-To: Geert Uytterhoeven <geert@linux-m68k.org>
-Cc: wim@linux-watchdog.org, linux@roeck-us.net, robh@kernel.org,
- krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
- p.zabel@pengutronix.de, geert+renesas@glider.be, magnus.damm@gmail.com,
- biju.das.jz@bp.renesas.com, linux-watchdog@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- linux-renesas-soc@vger.kernel.org,
- Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>
-References: <20240208105817.2619703-1-claudiu.beznea.uj@bp.renesas.com>
- <20240208105817.2619703-3-claudiu.beznea.uj@bp.renesas.com>
- <CAMuHMdV+CryvbFkcFGthk2VM0j7m13rQJ_0GtumPg2f-hpuMvA@mail.gmail.com>
-From: claudiu beznea <claudiu.beznea@tuxon.dev>
-In-Reply-To: <CAMuHMdV+CryvbFkcFGthk2VM0j7m13rQJ_0GtumPg2f-hpuMvA@mail.gmail.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+References: <20240130-pmi632-typec-v3-0-b05fe44f0a51@linaro.org>
+ <20240130-pmi632-typec-v3-3-b05fe44f0a51@linaro.org> <CAA8EJpqhfWsmUxwmBLtdtx-aFOmTo24erdNfRyz2ymi_y=yidw@mail.gmail.com>
+ <ZcTA5hbcladmKuLh@kuha.fi.intel.com>
+In-Reply-To: <ZcTA5hbcladmKuLh@kuha.fi.intel.com>
+From: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+Date: Thu, 8 Feb 2024 15:05:22 +0200
+Message-ID: <CAA8EJpqf_iQz5JWwEsZmUOV=VSY5y_RrO6JqEztr9Q2Fc2J-FA@mail.gmail.com>
+Subject: Re: [PATCH v3 3/6] usb: typec: qcom-pmic-typec: add support for
+ PMI632 PMIC
+To: Heikki Krogerus <heikki.krogerus@linux.intel.com>
+Cc: Bjorn Andersson <andersson@kernel.org>, Konrad Dybcio <konrad.dybcio@linaro.org>, 
+	Liam Girdwood <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>, 
+	Rob Herring <robh+dt@kernel.org>, 
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Wesley Cheng <quic_wcheng@quicinc.com>, "Bryan O'Donoghue" <bryan.odonoghue@linaro.org>, 
+	Greg Kroah-Hartman <gregkh@linuxfoundation.org>, Guenter Roeck <linux@roeck-us.net>, 
+	linux-arm-msm@vger.kernel.org, linux-kernel@vger.kernel.org, 
+	devicetree@vger.kernel.org, linux-usb@vger.kernel.org, 
+	Luca Weiss <luca.weiss@fairphone.com>
+Content-Type: text/plain; charset="UTF-8"
 
-Hi, Geert,
+On Thu, 8 Feb 2024 at 13:54, Heikki Krogerus
+<heikki.krogerus@linux.intel.com> wrote:
+>
+> On Wed, Feb 07, 2024 at 11:54:50AM +0200, Dmitry Baryshkov wrote:
+> > On Tue, 30 Jan 2024 at 21:33, Dmitry Baryshkov
+> > <dmitry.baryshkov@linaro.org> wrote:
+> > >
+> > > The PMI632 PMIC support Type-C port handling, but lacks USB
+> > > PowerDelivery support. The TCPM requires all callbacks to be provided
+> > > by the implementation. Implement a special, 'stub' Qcom PD PHY
+> > > implementation to enable the PMI632 support.
+> > >
+> > > Acked-by: Bryan O'Donoghue <bryan.odonoghue@linaro.org>
+> > > Acked-by: Heikki Krogerus <heikki.krogerus@linux.intel.com>
+> > > Tested-by: Luca Weiss <luca.weiss@fairphone.com> # sdm632-fairphone-fp3
+> > > Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+> >
+> > Heikki, Gunter, Gret, is there anything left on my side to get these patches in?
+>
+> Nothing from me. Do you want Greg to pick these?
 
-On 08.02.2024 14:53, Geert Uytterhoeven wrote:
-> Hi Claudiu,
-> 
-> On Thu, Feb 8, 2024 at 1:26 PM Claudiu <claudiu.beznea@tuxon.dev> wrote:
->> From: Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>
->>
->> The rzg2l_wdt watchdog driver cannot work w/o CONFIG_PM=y (e.g. the
->> clocks are enabled though pm_runtime_* specific APIs). To avoid building
->> a driver that doesn't work make explicit the dependency on CONFIG_PM.
->>
->> Suggested-by: Guenter Roeck <linux@roeck-us.net>
->> Signed-off-by: Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>
->> ---
->>
->> Changes in v6:
->> - update patch description
->> - fixed the dependency on COMPILE_TEST previously introduced
-> 
-> Thanks for the update!
-> 
->> --- a/drivers/watchdog/Kconfig
->> +++ b/drivers/watchdog/Kconfig
->> @@ -911,6 +911,7 @@ config RENESAS_RZN1WDT
->>  config RENESAS_RZG2LWDT
->>         tristate "Renesas RZ/G2L WDT Watchdog"
->>         depends on ARCH_RZG2L || ARCH_R9A09G011 || COMPILE_TEST
->> +       depends on PM
-> 
-> depends on PM || COMPILE_TEST
+Yes, please.
 
-Isn't "depends on PM" enough? As of [1] ("If multiple dependencies are
-defined, they are connected with '&&'") the above:
-
-depends on ARCH_RZG2L || ARCH_R9A09G011 || COMPILE_TEST
-depends on PM
-
-are translated into:
-depends on (ARCH_RZG2L || ARCH_R9A09G011 || COMPILE_TEST) && PM
-
-Please let me know if I'm wrong.
-
-Thank you,
-Claudiu Beznea
-
-[1] https://www.kernel.org/doc/html/next/kbuild/kconfig-language.html
-
-> 
->>         select WATCHDOG_CORE
->>         help
->>           This driver adds watchdog support for the integrated watchdogs in the
-> 
-> Gr{oetje,eeting}s,
-> 
->                         Geert
-> 
+-- 
+With best wishes
+Dmitry
 
