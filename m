@@ -1,135 +1,229 @@
-Return-Path: <devicetree+bounces-39766-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-39767-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4868684E137
-	for <lists+devicetree@lfdr.de>; Thu,  8 Feb 2024 13:53:58 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id DAFCD84E142
+	for <lists+devicetree@lfdr.de>; Thu,  8 Feb 2024 13:57:00 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id DC6D51F2B3FC
-	for <lists+devicetree@lfdr.de>; Thu,  8 Feb 2024 12:53:57 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id EB95F1C21F62
+	for <lists+devicetree@lfdr.de>; Thu,  8 Feb 2024 12:56:59 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 921F8762D9;
-	Thu,  8 Feb 2024 12:53:55 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 23C24762FA;
+	Thu,  8 Feb 2024 12:56:56 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="KWVtlXAt"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-yw1-f175.google.com (mail-yw1-f175.google.com [209.85.128.175])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from lelv0143.ext.ti.com (lelv0143.ext.ti.com [198.47.23.248])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DE8DD7602C;
-	Thu,  8 Feb 2024 12:53:52 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.175
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2492F762F5;
+	Thu,  8 Feb 2024 12:56:53 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.23.248
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1707396835; cv=none; b=fcoa0z04Fp/B+RB+ObRpW9017XxGopLc4iP1Z5mmuMViy1L9KzjtNXKDflQV2Am3jFzPsU3OjDzBeAVSiC7zmCeSUilqvaRTWoGcwNgdbWr1MVkPQm0xYOJzVSZ4AmCuFLcuEOgR7H4gqraTXuuEsTTzk9mRKvX29tlQP8yxh4s=
+	t=1707397016; cv=none; b=c1bm9LQnfJDpXbt399o7crIjFZ2OD1Xgq9ksXi/iQbO1Jkie5NXKlKgTyGqcHsHr+hHfdFGJs0TADta4Vea+ElwnfvmuQXRFk+AlNcS18t1T3WPkQ5hmJhcY+t8MHSj7uC11nqD5vbdE0lQhlWut1gfz5QLzbn/yfmKYnZgWFNM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1707396835; c=relaxed/simple;
-	bh=Cli3dfHjTQg2JF+CpPCW6kjPq9xjuZ84+noWzYcT2Ec=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=S5V+AmnEcndu6P+o0auq8/z8ESHjkhTZ22n0nO3ZnS5jz2xJVE2j2bbEi47syixui6X+yGWJThcT6qC4QMoniqRPWXORVrF+M0c9QVWZmeALRGBZK35LwcBFCDyzjVIfrysTZkbQmp7gW2K2LpmY0avRI/5k6Uwj4TBeSSr+O18=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org; spf=pass smtp.mailfrom=gmail.com; arc=none smtp.client-ip=209.85.128.175
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-yw1-f175.google.com with SMTP id 00721157ae682-604b27e3bd2so674387b3.1;
-        Thu, 08 Feb 2024 04:53:52 -0800 (PST)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1707396831; x=1708001631;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=NztMPrBdvMmS8LR3qgfsF/yKHS6WGHXK/n/wOhAxkkQ=;
-        b=D3yWNgnQmfuDtHQEgN/MgDi06Stl2jeD4EdT4R+8PxEgEiSyrL13/e3N4Y3XQGvNVQ
-         ZvtMGPuSirvmxxsFlMqKF0EwoXh3lXjZiS49Q6tvXAAwT9L/7WkzL/i1xsHQszIC7F9E
-         VRWqEchzKLEE36f7Oul7DdAGWwXyUXUeOc43PypWHz712hs8DgqM3Pv0e34KMHAxSVYF
-         SXgvstNK3o3PqkmvZcZuNHVUxzLbYQiUfWrXdRNmkt5m6hLSfHeVCtIjvmrnR2xf+qP6
-         jK4AgKADFcC2dItzjHaz7rIjtmYzmOOHrC14/gD1jfFzunxcrpJaoonsJ8NpZ5qZt60e
-         pxnA==
-X-Forwarded-Encrypted: i=1; AJvYcCWrwFgBM0CtTXpA+p1/SM2Bixjfhq6kJ9mBHoqYtOpsF1BbYN4WVPRrwVaUT7uScFULkw33qrsfqDqLQRYYrCvubc5vv7FVLRGgKXBmLWHTy76uwAvmpGgEOBgMf2ZrG/yS32jWri3ll5q37bUQzbS/KFUlVggBM3jv62jcfBnpjdnBnCmqSip/9LLp5TvXt/kgsdAsamX7IJuGELcQbRP0qeNXZg7EAsRjEUk=
-X-Gm-Message-State: AOJu0YxiL/FuLyGq9iMSAXfyv2FhWxbBvEQZ40aDm5qMVyqQvWOuLoAU
-	/iqgUVuvh7pWSE3YC+XQObpx45uykcGS2ZTdzfRpaOU8Atj9ZQKx9gLi6ZD0GdQ=
-X-Google-Smtp-Source: AGHT+IHGcKcNdmGCYkQJ34MFr8SzjnS5WA9rW1UtvmPqYfjSg2zruMJ2g7uONRrQbTwDTSFNvFDpsQ==
-X-Received: by 2002:a81:431f:0:b0:604:a51c:cbd3 with SMTP id q31-20020a81431f000000b00604a51ccbd3mr1074665ywa.15.1707396830821;
-        Thu, 08 Feb 2024 04:53:50 -0800 (PST)
-X-Forwarded-Encrypted: i=1; AJvYcCXy893PHtyeRMfsFwW2vC40iS5aQyzlbsAW3sjpQAdedFG3yBTorjO01r38/7szW7YlNU7tN8SymExs4cR7rR0NziV+bhzP6Dz6/577hIzUOB/+36a6lkKEYvTyjWp6lY9MJnt6wHC50F4poWWUKR2qO6c/x2VDSuSwQC2eyNKm/qf6RU4IGBl2RVGujpPxmAJQwY1Rr/3QxJUa+ecmjk7WWOsLq2cWx7eIJb8=
-Received: from mail-yb1-f171.google.com (mail-yb1-f171.google.com. [209.85.219.171])
-        by smtp.gmail.com with ESMTPSA id t142-20020a0dea94000000b006049b905176sm505471ywe.39.2024.02.08.04.53.50
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 08 Feb 2024 04:53:50 -0800 (PST)
-Received: by mail-yb1-f171.google.com with SMTP id 3f1490d57ef6-dbed179f0faso625571276.1;
-        Thu, 08 Feb 2024 04:53:50 -0800 (PST)
-X-Forwarded-Encrypted: i=1; AJvYcCX0Xe+N6h3zn5QRxl/l/uW3XtSjIArmOS8EVDT6BXiYVnbXk+G61R2mvYfdTPcDjxjbF4x2eYmg5bGDvLR7hg2Efae7c9BDX+8BI/Hsiu5em4r1B6IB/TghA6v41e4PrtBtdzEbDPNGWcH6NtRoWvqNlcAAJSSdEIyw9veRkhn/j8jWOhWckDRWI4auPnm5eOHKjaVoKdZdTIzYEYjM//MMhdTQbH21qLcmvOQ=
-X-Received: by 2002:a25:c8c3:0:b0:dc6:e7f6:254a with SMTP id
- y186-20020a25c8c3000000b00dc6e7f6254amr1664738ybf.8.1707396829937; Thu, 08
- Feb 2024 04:53:49 -0800 (PST)
+	s=arc-20240116; t=1707397016; c=relaxed/simple;
+	bh=efvb6dNURkmdVnsys6kx9a47+lJ7uN+DpYoknOfrvd4=;
+	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
+	 In-Reply-To:Content-Type; b=t8651pCz1+Q3PAi4VNBKJoxxSInZAjjR6lQyDkFPLoAQxZ1kN9mgxjZWUZkdz4WmBqHoHXTm9FIf9uP+Ih3/WBxwBUdURknvVy4XcIteg9+CcrnDfmp3/H63QE5aDQ8nokjiWCoEc5UQZxQ473QC9S+SNK7BNXht1yD7n3QnV2E=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=KWVtlXAt; arc=none smtp.client-ip=198.47.23.248
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
+Received: from lelv0265.itg.ti.com ([10.180.67.224])
+	by lelv0143.ext.ti.com (8.15.2/8.15.2) with ESMTP id 418CuPGh074250;
+	Thu, 8 Feb 2024 06:56:25 -0600
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+	s=ti-com-17Q1; t=1707396985;
+	bh=kJWir3gepfEI0QDhPbIpModwmcsuWvX/sJYAgHRrEcI=;
+	h=Date:Subject:To:CC:References:From:In-Reply-To;
+	b=KWVtlXAtmDTsSrDqoPrILvRnRBL0tND5PMFGvUiwg9JiqY2V0c6zEG5z7pIhm7bQs
+	 oboZ76SIbYCKRL2FnK/QIEPTLLoRr0rOefrr5BlwtM4oXAMtGKv6stzkDw42/lgyWe
+	 u8q91BYLPfoLtmawFERC2C31gBiBLEYJCQbNkjKU=
+Received: from DFLE102.ent.ti.com (dfle102.ent.ti.com [10.64.6.23])
+	by lelv0265.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 418CuPik004649
+	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+	Thu, 8 Feb 2024 06:56:25 -0600
+Received: from DFLE104.ent.ti.com (10.64.6.25) by DFLE102.ent.ti.com
+ (10.64.6.23) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Thu, 8
+ Feb 2024 06:56:25 -0600
+Received: from lelvsmtp5.itg.ti.com (10.180.75.250) by DFLE104.ent.ti.com
+ (10.64.6.25) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
+ Frontend Transport; Thu, 8 Feb 2024 06:56:25 -0600
+Received: from [10.250.146.202] ([10.250.146.202])
+	by lelvsmtp5.itg.ti.com (8.15.2/8.15.2) with ESMTP id 418CuIJ9046995;
+	Thu, 8 Feb 2024 06:56:19 -0600
+Message-ID: <88018f5f-a7db-7278-e5c3-bb1dbf0e3f14@ti.com>
+Date: Thu, 8 Feb 2024 18:26:17 +0530
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20240208105817.2619703-1-claudiu.beznea.uj@bp.renesas.com> <20240208105817.2619703-3-claudiu.beznea.uj@bp.renesas.com>
-In-Reply-To: <20240208105817.2619703-3-claudiu.beznea.uj@bp.renesas.com>
-From: Geert Uytterhoeven <geert@linux-m68k.org>
-Date: Thu, 8 Feb 2024 13:53:37 +0100
-X-Gmail-Original-Message-ID: <CAMuHMdV+CryvbFkcFGthk2VM0j7m13rQJ_0GtumPg2f-hpuMvA@mail.gmail.com>
-Message-ID: <CAMuHMdV+CryvbFkcFGthk2VM0j7m13rQJ_0GtumPg2f-hpuMvA@mail.gmail.com>
-Subject: Re: [PATCH v6 2/9] watchdog: rzg2l_wdt: Make the driver depend on PM
-To: Claudiu <claudiu.beznea@tuxon.dev>
-Cc: wim@linux-watchdog.org, linux@roeck-us.net, robh@kernel.org, 
-	krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org, 
-	p.zabel@pengutronix.de, geert+renesas@glider.be, magnus.damm@gmail.com, 
-	biju.das.jz@bp.renesas.com, linux-watchdog@vger.kernel.org, 
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
-	linux-renesas-soc@vger.kernel.org, 
-	Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.11.0
+Subject: Re: [RFC PATCH 2/3] drm/tidss: Add support for display sharing
+Content-Language: en-US
+To: Maxime Ripard <mripard@kernel.org>
+CC: <jyri.sarha@iki.fi>, <tomi.valkeinen@ideasonboard.com>,
+        <airlied@gmail.com>, <daniel@ffwll.ch>,
+        <maarten.lankhorst@linux.intel.com>, <tzimmermann@suse.de>,
+        <robh+dt@kernel.org>, <krzysztof.kozlowski+dt@linaro.org>,
+        <conor+dt@kernel.org>, <dri-devel@lists.freedesktop.org>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>, <nm@ti.com>, <vigneshr@ti.com>,
+        <kristo@kernel.org>, <praneeth@ti.com>, <a-bhatia1@ti.com>,
+        <j-luthra@ti.com>
+References: <20240116134142.2092483-1-devarsht@ti.com>
+ <20240116134142.2092483-3-devarsht@ti.com>
+ <vgfzhamtiwkpdyk5ndagsb63subclinotoe6tsi3wu6z7454ec@igxfzjc5gyqm>
+From: Devarsh Thakkar <devarsht@ti.com>
+In-Reply-To: <vgfzhamtiwkpdyk5ndagsb63subclinotoe6tsi3wu6z7454ec@igxfzjc5gyqm>
 Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Transfer-Encoding: 7bit
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 
-Hi Claudiu,
+Hi Maxime,
 
-On Thu, Feb 8, 2024 at 1:26=E2=80=AFPM Claudiu <claudiu.beznea@tuxon.dev> w=
-rote:
-> From: Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>
->
-> The rzg2l_wdt watchdog driver cannot work w/o CONFIG_PM=3Dy (e.g. the
-> clocks are enabled though pm_runtime_* specific APIs). To avoid building
-> a driver that doesn't work make explicit the dependency on CONFIG_PM.
->
-> Suggested-by: Guenter Roeck <linux@roeck-us.net>
-> Signed-off-by: Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>
-> ---
->
-> Changes in v6:
-> - update patch description
-> - fixed the dependency on COMPILE_TEST previously introduced
+Thanks a lot for checking on this.
 
-Thanks for the update!
+On 26/01/24 17:45, Maxime Ripard wrote:
+> Hi,
+> 
+> Thanks a lot for working on that.
+> 
+> On Tue, Jan 16, 2024 at 07:11:41PM +0530, Devarsh Thakkar wrote:
+>> Display subsystem present in TI Keystone family of devices supports sharing
+>> of display between multiple hosts as it provides separate register space
+>> (common* region) for each host to programming display controller and also a
+>> unique interrupt line for each host.
+>>
+>> This adds support for display sharing, by allowing partitioning of
+>> resources either at video port level or at video plane level as
+>> described below :
+>>
+>> 1) Linux can own (i.e have write access) completely one or more of video
+>> ports along with corresponding resources (viz. overlay managers,
+>> video planes) used by Linux in context of those video ports.
+>> Even if Linux is owning
+>> these video ports it can still share this video port with a remote core
+>> which can own one or more video planes associated with this video port.
+>>
+>> 2) Linux owns one or more of the video planes with video port
+>> (along with corresponding overlay manager) associated with these planes
+>> being owned and controlled by a remote core. Linux still has read-only
+>> access to the associated video port and overlay managers so that it can
+>> parse the settings made by remote core.
+> 
+> So, just to make sure we're on the same page. 1) means Linux drives the
+> whole display engine, but can lend planes to the R5? How does that work,
+> is Linux aware of the workload being there (plane size, format, etc) ?
+> 
 
-> --- a/drivers/watchdog/Kconfig
-> +++ b/drivers/watchdog/Kconfig
-> @@ -911,6 +911,7 @@ config RENESAS_RZN1WDT
->  config RENESAS_RZG2LWDT
->         tristate "Renesas RZ/G2L WDT Watchdog"
->         depends on ARCH_RZG2L || ARCH_R9A09G011 || COMPILE_TEST
-> +       depends on PM
+Well, there is no dynamic procedure being followed for lending. The
+partitioning scheme is decided and known before hand, and the remote
+core firmware updated and compiled accordingly, and similarly the
+device-tree overlay for Linux is also updated with partitioning
+information before bootup.
 
-depends on PM || COMPILE_TEST
+What would happen here is that Linux will know before-hand this
+partitioning information via device-tree properties and won't enumerate
+the plane owned by RTOS, but it will enumerate the rest of the display
+components and initialize the DSS, after which user can load the DSS
+firmware on remote core and this firmware will only have control of
+plane as it was compiled with that configuration.
 
->         select WATCHDOG_CORE
->         help
->           This driver adds watchdog support for the integrated watchdogs =
-in the
 
-Gr{oetje,eeting}s,
+> And 2) would mean that the display engine is under the R5 control and
+> Linux only gets to fill the plane and let the firmware know of what it
+> wants?
+> 
 
-                        Geert
+Here too the partitioning information is pre-decided and remote core
+firmware and device-tree overlay for Linux updated accordingly. But in
+this case as remote core firmware owns the display (minus the plane
+owned by Linux) it is started and initialized during the bootloader
+phase itself where it initializes the DSS and starts rendering using the
+plane owned by it and Linux just latches to the DSS without
+re-initializing it, with write access only to the plane that is owned by
+Linux. You can refer [1] for more details on this.
 
---=20
-Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k=
-.org
 
-In personal conversations with technical people, I call myself a hacker. Bu=
-t
-when I'm talking to journalists I just say "programmer" or something like t=
-hat.
-                                -- Linus Torvalds
+> If so, do we even need the tidss driver in the second case? We could
+> just write a fwkms driver of some sorts that could be used by multiple
+> implementations of the same "defer to firmware" logic.
+> 
+
+This feature of static partitioning of DSS resources is specific to DSS7
+hardware (which is controlled by tidss driver) which supports dedicated
+register space and interrupt line for each of the hosts [0], so that
+multiple hosts can drive the display controller simultaneously as  per
+the desired static partitioning of resources, and so I don't think a
+separate driver is required here and tidss seems the right place to
+support this, where using this device-tree approach different resource
+partitioning schemas can be achieved as described here [1]. This was
+also aligned with Tomi too where we discussed that tidss is the right
+place to support this as we are simply leveraging the DSS hardware
+capabilities of static partitioning here.
+
+
+>> For both the cases, the resources used in context of processing core
+>> running Linux along with ownership information are exposed by user as
+>> part of device-tree blob and driver uses an updated feature list tailored
+>> for this shared mode accordingly. The driver also auto-populates
+>> matching overlay managers and output types from shared video
+>> port list provided in device-tree blob.
+>> In dispc_feature struct remove const access specfier for output_type
+>> array as it is required to be updated dynamically in run-time for shared
+>> mode.
+> 
+> I'm also not entirely sure that the device tree is the right path there.
+> Surely the firmware capabilities will evolve over time, while the device
+> tree won't. Is there some way to make it discoverable at probe time by
+> the driver?
+> 
+
+I think the main highlight of the sharing feature is the hardware
+capability where each host is provided separate irq and register space
+to program display for their display context independently and without
+any sort of inter-processor communication and the current implementation
+just mirrors by specifying the display context information in the form
+of device-tree properties instead of relying on any inter-processor
+communication or negotiation phase.
+
+Having said that, for the second case Linux still has read access to
+display registers which can be read to infer some of the display
+configuration set by the RTOS and we are infact using that to infer some
+of the context like for e.g. what was the display mode set by RTOS, but
+we don't want to rely completely on register reads of RTOS programmed
+registers to gather full information regarding partitioning or even to
+infer that we are in sharing mode.
+
+The remote core firmware is compiled with the partitioning information
+known before-hand and same is fed in the form of DT properties to Linux
+and this looks much cleaner, simple and reliable to us.
+
+But yes we wanted to support firmwares with different partitioning
+schemes/capabilities as you said and so the tidss-shared-mode
+device-tree properties were designed keeping in mind that they should be
+adequate and flexible enough to define all different partition schemes
+which can be supported, this is also demonstrated with an example here [1]
+
+[0]:
+https://software-dl.ti.com/processor-sdk-linux/esd/AM62PX/09_01_00_08/exports/docs/linux/Foundational_Components/Kernel/Kernel_Drivers/Display/DSS7.html#soc-hardware-description
+
+
+[1]:
+https://software-dl.ti.com/processor-sdk-linux/esd/AM62PX/09_01_00_08/exports/docs/linux/How_to_Guides/Target/How_to_enable_display_sharing_between_remotecore_and_Linux.html
+
+
+Regards
+Devarsh
+
+
+> Maxime
 
