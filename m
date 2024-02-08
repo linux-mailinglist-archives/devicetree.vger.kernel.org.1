@@ -1,76 +1,75 @@
-Return-Path: <devicetree+bounces-39586-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-39587-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 69A5A84DAAF
-	for <lists+devicetree@lfdr.de>; Thu,  8 Feb 2024 08:29:54 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4E44D84DAB6
+	for <lists+devicetree@lfdr.de>; Thu,  8 Feb 2024 08:32:28 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 8ED341C21412
-	for <lists+devicetree@lfdr.de>; Thu,  8 Feb 2024 07:29:53 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 051AF2873AB
+	for <lists+devicetree@lfdr.de>; Thu,  8 Feb 2024 07:32:27 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6B4B169313;
-	Thu,  8 Feb 2024 07:29:48 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A80A569317;
+	Thu,  8 Feb 2024 07:32:21 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="bctN3dxC"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="L05W6Rja"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-qt1-f177.google.com (mail-qt1-f177.google.com [209.85.160.177])
+Received: from mail-lf1-f43.google.com (mail-lf1-f43.google.com [209.85.167.43])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CDDC96930E
-	for <devicetree@vger.kernel.org>; Thu,  8 Feb 2024 07:29:46 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.160.177
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BC21D69E00
+	for <devicetree@vger.kernel.org>; Thu,  8 Feb 2024 07:32:19 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.43
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1707377388; cv=none; b=uXzFgqmRxTBTvLgOrtTLd+VkZP3NvKzc8G130olh29Eau81LENljagQxocU/I7M2P8qdRLrwRURLojlpRiMWKXjwElfSwt/kwIbqk5n5BexBR+oFa0vElbeWfe7ob75aHi9JUjtdk2VZxfMsuubsz8rkWrgpkbfA/7HxHClk4GI=
+	t=1707377541; cv=none; b=Bum3brKElqU1UFwLY026r83maauEKFtGMqwZOzBrikIbnKYDV6Bb/q0Lhi+3DrJY0i3UTAD5+Bk2wXMzwj9QV5zP+Pi4jAsB7FOFg8+5D9EkpQmRjVdAjN/S6j3yf4Tb0SNpwF2OrX4vSZdPKvHKF/AOgl+wDt2Hd0pX2/CMZMU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1707377388; c=relaxed/simple;
-	bh=Paa5SnRIlKkPvBlKLdVacmEMB1hdpYl3sazVCnFA3Nw=;
-	h=Message-ID:Date:MIME-Version:Subject:To:References:From:
-	 In-Reply-To:Content-Type; b=l6jI6BSAAnX1+omZGF4nDUZhttBveoZy8rdU/HjARhMIxjIzIMbu1D9HMveFkO2JyhSqDnDIjCGXeko9sbwf2vIVpwLiuo13+DjSSBjXy3cQiWeJ32U+VZjML1+14JrI6QDGhy+xTWug7/ZqZZauDZyTLpdtj9R7Gryi4+9I7oo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=bctN3dxC; arc=none smtp.client-ip=209.85.160.177
+	s=arc-20240116; t=1707377541; c=relaxed/simple;
+	bh=uLkeIwhidF0+HPRxCS8SSoTPkZq8KV/kmA8Upd2Vrhs=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=aEbGb/YDOswMfsDuu6XsXXNKikm1UWB/+kVaWZCfFw1yzMjlJuNyQZij4iwdVjY/RqlmwBRDVECCGGG8+mxvBKA+q99ueYc7SqHbx+QQ54B9ynOAVTVi/tAJJHXumb/GpoACe1uexLcPcykpuuzJ6HIGNC1YD+NMTz4Vtp1kEqg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=L05W6Rja; arc=none smtp.client-ip=209.85.167.43
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-qt1-f177.google.com with SMTP id d75a77b69052e-42c3925edebso12612421cf.0
-        for <devicetree@vger.kernel.org>; Wed, 07 Feb 2024 23:29:46 -0800 (PST)
+Received: by mail-lf1-f43.google.com with SMTP id 2adb3069b0e04-5116063585aso1885676e87.1
+        for <devicetree@vger.kernel.org>; Wed, 07 Feb 2024 23:32:19 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1707377385; x=1707982185; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from
-         :content-language:references:to:subject:user-agent:mime-version:date
-         :message-id:from:to:cc:subject:date:message-id:reply-to;
-        bh=X8GfuUECNrI7jCf2NNIk0M337xBIYCYX1bPSr2SNtlM=;
-        b=bctN3dxCbnaHNZDgXPbMr5Uy3nvTl8vdHVB9pKUaziNrQY5iw/ZK96LsVK2P0a7+08
-         I4ylE9Z4+9S5i/sS5E0nsCCo3o8X/9BHcs0m/J/zhiLtKZ2qx1uV82ql/On8keYxsvk8
-         zwAQMwliyZpmuzPbsQL21TizkcGXJNAyouvsoU6fjvdKt2umCtT9YTpjnBhGUhS2ucTr
-         WRXBw8O+CRNANM7BKEWdUeb5fqexKRET1sa7/iDEvSN8x0P/DJoLxgw6Z9OizbMWr0By
-         M0l3nOegUNEpC5WBH4Ig56Rnq+8MJRaXclqnae0JTypdqHiEwwzcecV9aU9CIfefTJAK
-         N2cw==
+        d=linaro.org; s=google; t=1707377538; x=1707982338; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
+         :to:content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=6HgVkffXGaVubbouENe7n1eeWInbNkSOz9ofktE7wXI=;
+        b=L05W6RjamIE+6pET3brr3O4wHZibMc3lbf4qt/9jFwK5oKKPwB2TOm+yzlOGuMp4lC
+         C6IMpBAJ/XwhNKYXJ3J311eaiWVyXdHkP0Q6B/ViNE4z78VMzH/6mCNoyGGHL4JCG28E
+         knD9SBOyZASg0btT+B4U3BlHgVIN84Ww49cLL9atYCYjW+nCav+813Zr6HlnSk6BPqur
+         G8WDPVMSADCEoGGwK75B/yfM8Dmcyr8XYWmjmD2g6V0dCY7UYjqHK/9PDASU2b1Ql+sK
+         r2w6a1woUP/lFS2BFctclvGePR8rrqLOCHRQeSfST/GScmI/rMuhc7LMkLc5MjyeTyXu
+         mMAw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1707377385; x=1707982185;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from
-         :content-language:references:to:subject:user-agent:mime-version:date
-         :message-id:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=X8GfuUECNrI7jCf2NNIk0M337xBIYCYX1bPSr2SNtlM=;
-        b=Jzbzl3ygfX5OMtVixonYfnTBLyxCB5PONVoefkMHunzs72tB7aZ3XyC5I6jbzxXj3z
-         yvd6sG4jOIVDcKtd+i7NAHMfUISyMhkyCmhApCcVaZvuGsxa2pwL8MsrtIJR6oK+Qypf
-         NKBGdvwLjtHKWguHjq4dYZAf5H5V225lpLADdxTGd2h2BeSe/k5LZQ/wbWwZNQ8Q9J3r
-         QP3wcgR3NmRxRCXWQ9z4Bls+Xf7VNmsUJMlWKLO8EM4z8r5AaxVcmKGbhIjg4Mvs8J/Z
-         whkrdteJIQnA3Y34kSJv/rdsLszNzJfLgul6ZDj0DEBn7blOYtQ8aDcF+5jgIowadB1D
-         hTUA==
-X-Forwarded-Encrypted: i=1; AJvYcCXhJvcycMI1TLbEFNKisuCQI+3iOuoOXL+l/R7OTZTgdPhu27LQqKzVujigFlF9FZXOOGAWjSmCi9MXasS2J0uLVjPOkePF8bg4aA==
-X-Gm-Message-State: AOJu0YwDYPgfqpnMLc5FtAQMHviM2p6zdn8naB5vKAG0OlENuf61E6ue
-	GXq89DAYMWz44z62N8vNeMqpHb9cnKkWU1yGNDCmV6a3xccliUf2mgfDTuuv7Tg=
-X-Google-Smtp-Source: AGHT+IG22T6gy4UTv9+xkrL8MuXUvskCkD9zMqSKmcH84iVFhrvyv5RrOKwafMGRdtnNI0o3MuJroQ==
-X-Received: by 2002:a05:6214:29cd:b0:68c:3c2d:4375 with SMTP id gh13-20020a05621429cd00b0068c3c2d4375mr9346933qvb.24.1707377385692;
-        Wed, 07 Feb 2024 23:29:45 -0800 (PST)
-X-Forwarded-Encrypted: i=1; AJvYcCWQbiJIjiT68PWINCTFlRdWh4OfhPgBsePs6Iw5uwS5ayPyGs5EYW7X6fN3NZ397AbB30HsN1vIMHaiSKwVRwhcNQIvJ66bvkjls3X7OHdCEiflAvKKnrQZpWJS4Ybm9cZBOWw8eq7WBUJjBrkPvDx+PORDmLIZBsKusRZCypJ/8sRFSvvxyVt/HJAa9+8jH+wef5Up640EqC2Z+nEYUHO4hQZ4Zz5lF5FHZLYXAIiLm3K1iUczmp2f+wL0g1WkzsJ8lI8y9+12AnWf4wbmWuKdnonFPulW7tc7CKclKVyz06teVbrGAAfgNvDRteq0R9dqa0VSRUT6XbXI1vMJZIwlQJ5RL/le7GOEXHTYIPVjVW1itw4DKZNIlSkCwjJ27FVxX3KPv/xB/Zn40MElW/7WHT4CfYI2rStjhvUOwKFgYTzAaAXiG3NdRJrk9UI2jQ3JhtgnYz65EPtS+X80MPscJRyNN1nVwd8=
+        d=1e100.net; s=20230601; t=1707377538; x=1707982338;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
+         :to:content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=6HgVkffXGaVubbouENe7n1eeWInbNkSOz9ofktE7wXI=;
+        b=WRnuy27KhT5m8d77rpLExZ+N9TS0zFjGzmG17AZbMTh0CpvO3mNWeyfoDqzrElp2KF
+         qbgVcYqZDOf8l5iPmaTgvGCugBj5+UNKlP9nSctL+AXK0a0kIhwFE6X0K1PnHBLy369c
+         AgG4UFBkz6c0u+IyNSTTPnV1gFvj1nXPv87BUE/bApWW2tqPj19QRIDgdeMnIIrpH4O4
+         vFhDGx9u5lsa4Es5aY2dNfNmiVIHBEYsV0Qufx/F95Z/kgJ0yBM7xbEr6wihSdGGNOrI
+         k+4UTYUE7pRxSjjzGL9ILIemQHvuUaLLqpdXvcTxFAFfvsM3QbYfGile6Q4bz8AnzAhe
+         cB9Q==
+X-Forwarded-Encrypted: i=1; AJvYcCXe75h8PCa8svW9TjPSW7OA8rEb3YB8+PVSuQ1+94PwWDXJ25GZRmLK4yrsutNX+K4HKR4jqrZPlHGM3tzrrYCztvcx2mtrujmjzw==
+X-Gm-Message-State: AOJu0YzOj403Xy0522YoLWE7UYb9Jp8w6zRxp/PpeiUr9Ka3JKYn5vrT
+	ccwhSRTm2M7n8DdIyJJcDepVJsF0VC7KelyRmRwCwqGWD/SUUpA0dzxeVGkR6BI=
+X-Google-Smtp-Source: AGHT+IFbfXThW+ICkeJEZNslqMuZmqAw6idkxpWRqNoHAsOfvbmF2/fv/09jUfNegjHA17qPLVGRog==
+X-Received: by 2002:ac2:4e92:0:b0:511:51ec:8684 with SMTP id o18-20020ac24e92000000b0051151ec8684mr5308602lfr.50.1707377537748;
+        Wed, 07 Feb 2024 23:32:17 -0800 (PST)
+X-Forwarded-Encrypted: i=1; AJvYcCXelVdasAyTuzkjNojKgNXUhxeUH1oY/uux+wAYDGo9vYAdPjigVX/lhb2RghJpUm1J69QVxTzwMhjbOhkrKgvj0dVGp8Ymbp1t3PeGBbt8rQ3kcucMlSXBKJCMukgCCTh2VpDRKHoO+L4wAnb/GbHUOsvwH+b/KTOQO0NiXR/THjmdCPi68H01bo3mUaX7ezLf9YPg5fzwxFJH1hqPPSFDI/jq28DKl36s+uhBb+92yUClLzEjZA5C75+Pm6wml0Ts9BmP6UNziTA4iFDWyKibVe1krqUq3j4HVL7zx2uXtAMBpx16gjyULW57Jxbw0mLSwR0JLNDfyLecFvgsmvYihw4ao+UtWRhodNnL2A1hGVSJ4/Rp9wPuDgrO1OdDf/BAE8zR8K4gwph4myJmEs6bwknkblcx+PZGpZffFdGRXswP+18PWPJSK0InR/9C6KkI0QzU35SJAMNs5YmjqsivOqXymuEqnku3STCuISJDphXmSOsSQfaFstQL3+YF0RPSzIih/ITeYxSXKxs7V84mHjTEOQbgwE8nY1vFnn+9C4QwBtxfy7yraQkDwl6QGUUelPm2mGVhB0CVcbhAHKb79ETstVf7jS0r2Hw=
 Received: from [192.168.1.20] ([178.197.222.62])
-        by smtp.gmail.com with ESMTPSA id oi8-20020a05621443c800b0068cc16f33c4sm985111qvb.80.2024.02.07.23.29.43
+        by smtp.gmail.com with ESMTPSA id j18-20020a5d4652000000b0033b2276e71csm2995398wrs.62.2024.02.07.23.32.16
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 07 Feb 2024 23:29:45 -0800 (PST)
-Message-ID: <6e703599-0389-435e-b163-55e5a046a8f5@linaro.org>
-Date: Thu, 8 Feb 2024 08:29:41 +0100
+        Wed, 07 Feb 2024 23:32:17 -0800 (PST)
+Message-ID: <cd8c2f79-2307-4ad8-90c7-747d40f14ede@linaro.org>
+Date: Thu, 8 Feb 2024 08:32:15 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -78,18 +77,25 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH] dt-bindings: input: atmel,captouch: convert bindings to
- YAML
-To: Dharma.B@microchip.com, dmitry.torokhov@gmail.com, robh+dt@kernel.org,
- krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
- Nicolas.Ferre@microchip.com, alexandre.belloni@bootlin.com,
- claudiu.beznea@tuxon.dev, linux-input@vger.kernel.org,
- devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- linux-kernel@vger.kernel.org
-References: <20240207090853.188400-1-dharma.b@microchip.com>
- <982e81db-3bf9-49e9-b57f-a91612d62f5c@linaro.org>
- <09c25824-f56b-4598-b8cc-1df992812754@microchip.com>
+Subject: Re: [PATCH v2 2/2] dt-bindings: trivial-devices: Add qca,qca4024
 Content-Language: en-US
+To: =?UTF-8?Q?Pawe=C5=82_Owoc?= <frut3k7@gmail.com>,
+ Rob Herring <robh+dt@kernel.org>
+Cc: Robert Marko <robimarko@gmail.com>,
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+ Conor Dooley <conor+dt@kernel.org>, Mark Brown <broonie@kernel.org>,
+ Guenter Roeck <linux@roeck-us.net>, Peter Yin <peteryin.openbmc@gmail.com>,
+ Patrick Rudolph <patrick.rudolph@9elements.com>,
+ Michal Simek <michal.simek@amd.com>, Marek Vasut <marex@denx.de>,
+ Luca Ceresoli <luca.ceresoli@bootlin.com>,
+ Bjorn Helgaas <bhelgaas@google.com>, Lukas Wunner <lukas@wunner.de>,
+ Fabio Estevam <festevam@denx.de>,
+ Alexander Stein <alexander.stein@ew.tq-group.com>,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ linux-spi@vger.kernel.org
+References: <ZcH9u7Vo2sFERIHJ@finisterre.sirena.org.uk>
+ <20240207224546.44030-1-frut3k7@gmail.com>
+ <20240207224546.44030-2-frut3k7@gmail.com>
 From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  xsFNBFVDQq4BEAC6KeLOfFsAvFMBsrCrJ2bCalhPv5+KQF2PS2+iwZI8BpRZoV+Bd5kWvN79
@@ -135,34 +141,33 @@ Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  KQ06ztUMRrj8eVtpImjsWCd0bDWRaaR4vqhCHvAG9iWXZu4qh3ipie2Y0oSJygcZT7H3UZxq
  fyYKiqEmRuqsvv6dcbblD8ZLkz1EVZL6djImH5zc5x8qpVxlA0A0i23v5QvN00m6G9NFF0Le
  D2GYIS41Kv4Isx2dEFh+/Q==
-In-Reply-To: <09c25824-f56b-4598-b8cc-1df992812754@microchip.com>
+In-Reply-To: <20240207224546.44030-2-frut3k7@gmail.com>
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
 
-On 08/02/2024 04:59, Dharma.B@microchip.com wrote:
->>> +
->>> +properties:
->>> +  compatible:
->>> +    const: atmel,captouch
->>> +
->>> +  reg:
->>> +    maxItems: 1
->>> +
->>> +  interrupts:
->>> +    maxItems: 1
->>> +
->>> +  linux,keycodes:
->>> +    minItems: 1
->>> +    maxItems: 8
->>> +
->>> +  autorepeat:
->>> +    type: boolean
->>
->> You can drop entire property, coming from input.yaml.
+On 07/02/2024 23:45, Paweł Owoc wrote:
+> Add Qualcomm QCA4024 to trivial devices.
 > 
-> Sure, I will drop the 'linux,keycodes' and 'autorepeat' properties.
+> Signed-off-by: Paweł Owoc <frut3k7@gmail.com>
+> ---
+>  Documentation/devicetree/bindings/trivial-devices.yaml | 2 ++
+>  1 file changed, 2 insertions(+)
+> 
+> diff --git a/Documentation/devicetree/bindings/trivial-devices.yaml b/Documentation/devicetree/bindings/trivial-devices.yaml
+> index 79dcd92c4a43..c6362e981920 100644
+> --- a/Documentation/devicetree/bindings/trivial-devices.yaml
+> +++ b/Documentation/devicetree/bindings/trivial-devices.yaml
+> @@ -309,6 +309,8 @@ properties:
+>            - plx,pex8648
+>              # Pulsedlight LIDAR range-finding sensor
+>            - pulsedlight,lidar-lite-v2
+> +            # Qualcomm QCA4024 Multi-mode Bluetooth and 802.15.4 SoC
+> +          - qca,qca4024
 
-Why linux,keycodes? Is the size restricted in any other referenced schema?
+
+As I wrote, Bluetooth chip is not a trivial device. This one
+particular exposes several interfaces to the host, needs a clock and
+power supply.
 
 Best regards,
 Krzysztof
