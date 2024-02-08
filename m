@@ -1,60 +1,60 @@
-Return-Path: <devicetree+bounces-39879-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-39880-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id AE69184E722
-	for <lists+devicetree@lfdr.de>; Thu,  8 Feb 2024 18:52:56 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9D3CB84E740
+	for <lists+devicetree@lfdr.de>; Thu,  8 Feb 2024 19:03:39 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 6C6C528882A
-	for <lists+devicetree@lfdr.de>; Thu,  8 Feb 2024 17:52:55 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 408DAB223B3
+	for <lists+devicetree@lfdr.de>; Thu,  8 Feb 2024 18:03:26 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6979D823CF;
-	Thu,  8 Feb 2024 17:52:52 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5D79883CAB;
+	Thu,  8 Feb 2024 18:03:21 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="nfH6EKrD"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="UbbMaIqH"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 41BBD7A714;
-	Thu,  8 Feb 2024 17:52:51 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2EB8B82D6E;
+	Thu,  8 Feb 2024 18:03:20 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1707414772; cv=none; b=tF2C4qX8EizNwQPIflP3SarCtvJqiK0cgWiJYsRPbhLn8hymd38lSKPbFvSqs6H6WI/19YIVDZhdgKHk6kvkOqU5q1H54f0uTmSdXCUAimkIgK6bZQqnXNytyerxZLR5x4R+6XOMxiHjSxQ5YNQ6wPkKwyVpb0lkx+hiJ3II4OQ=
+	t=1707415401; cv=none; b=Swlf8UC9aOcVZQZqdXiUSVjVzJWl8pDOwx06kWaTL0uPiBGCp1/rKq+li09fjRvvYoa6Bsa0g/HBJbfF3CWj7hlUY/FCT4qgHe6nT3ohUG9nnMwiz4bl1YySuUFSi4ERCmYlgs0OUChlfmPZl040FFM/dcct73Do29sdyAZRTyo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1707414772; c=relaxed/simple;
-	bh=voK6sna2N/Lnp9vi6/RUIFz4KqvtXd51irAZy8iVR9A=;
+	s=arc-20240116; t=1707415401; c=relaxed/simple;
+	bh=SflXpkK8SwfV6EA0RSn49xTMuoxJ95n7w6hQuP1ovoA=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=kzIwaU6BswqulL4UxCTiyfzaTLoaGvakgHhxmuNL8wpHVNxbeu2DJvKPvO6mSvFxhk5T5WliKewT6YudR+9xZVTz+F259a29QAehJYhwqfkbjwsC47tMujex4pwudKilon8aIFP2dAKM3D1g7W/1SeRdppKfgn7/UhdMjtrV3rY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=nfH6EKrD; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 9C9FBC433C7;
-	Thu,  8 Feb 2024 17:52:49 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=WqQDRfHwjRZBCmpzuFPDGVPxXy+h25vEMaAYkbSXcXdvdmirzDnRNxwexPTh+qQwsiA6t6kUOGYfyYFl1gvq0fLzvB0lq5Q2Cz6zgPcBClst05PT9OTec9cyPoLG8b7yVOfpUvQKd//Uj9MwcGCIIAba6p4rkYnRBgW53Ubdnag=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=UbbMaIqH; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id DBE3AC433F1;
+	Thu,  8 Feb 2024 18:03:17 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1707414771;
-	bh=voK6sna2N/Lnp9vi6/RUIFz4KqvtXd51irAZy8iVR9A=;
+	s=k20201202; t=1707415400;
+	bh=SflXpkK8SwfV6EA0RSn49xTMuoxJ95n7w6hQuP1ovoA=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=nfH6EKrDiBBBUUoqVu3JFgkBSh2ymwkFu/NOWSpW8+PCG49sNGe8ym9D1Hs2oQCIX
-	 xNjMg3vdtjpO1npZW8zCbPktQYXzcgQJ8PYtEdEY+N7nkf2egMRotdIRUPnICYj/7h
-	 kcpbZs1QixhzGg89xHtCoEQBoYfZWLYKBcIsRYo0CL3ZxpbFhrc3S3ZS1eayDVqS+R
-	 OWrUIPY15Gu2HO6n00TZWUYhDS9XSPEFqkEzEJELX6zKNbl9mzhRKKvp8/07aUjPeQ
-	 QKxdEJpJTjCW2d1GxjceQADl5LOkw1/51tZrP6dPn2CBj5xuVi+Vp88tgr0Ptc0AXH
-	 be05zFFihsJCA==
-Date: Thu, 8 Feb 2024 17:52:47 +0000
+	b=UbbMaIqHXQgLF2N3WdPp7XnxKM1r58M64i0EGmKM4Z/JSbAjw1OYE2czzzdru5sJW
+	 ZVFIpda5xLbbOuvw3soXdKhsRtVD68ZqsZaUUVzti9lWga5ZQUU2WkTzL6MJv/pBl8
+	 QRe6T2u9ZnyNktHTeqqswLct5MTVvKHLxsi0fzVk5N3DxM7jODRZrCXzKh83bkOR5c
+	 usKz4FivKf7DRzua/9FFbsIiNdfeLnv9yosO4c0JvFDnlasejjxtRPlLslcxrAatva
+	 8LmeopxvFw4XJbeaHuq8XqtXhrnie7dfqg1s5kfyQSjk3nn69j0cNXhZgFoqexuLvk
+	 tN5SFYD6XM0lA==
+Date: Thu, 8 Feb 2024 18:03:15 +0000
 From: Conor Dooley <conor@kernel.org>
-To: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
-Cc: devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	Miguel Ojeda <ojeda@kernel.org>, Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Robin van der Gracht <robin@protonic.nl>,
-	Paul Burton <paulburton@kernel.org>,
-	Geert Uytterhoeven <geert+renesas@glider.be>
-Subject: Re: [PATCH v1 00/15] auxdisplay: linedisp: Clean up and add new
- driver
-Message-ID: <20240208-drearily-carwash-60e4ba70a559@spud>
-References: <20240208165937.2221193-1-andriy.shevchenko@linux.intel.com>
+To: Alisa-Dariana Roman <alisadariana@gmail.com>
+Cc: alexandru.tachici@analog.com, alisa.roman@analog.com,
+	conor+dt@kernel.org, devicetree@vger.kernel.org,
+	dlechner@baylibre.com, jic23@kernel.org,
+	krzysztof.kozlowski+dt@linaro.org, krzysztof.kozlowski@linaro.org,
+	lars@metafoo.de, linux-iio@vger.kernel.org,
+	linux-kernel@vger.kernel.org, michael.hennerich@analog.com,
+	robh+dt@kernel.org
+Subject: Re: [PATCH v3 4/5] dt-bindings: iio: adc: ad7192: Add AD7194 support
+Message-ID: <20240208-occupancy-shudder-514d8569e261@spud>
+References: <20240208172459.280189-1-alisa.roman@analog.com>
+ <20240208172459.280189-5-alisa.roman@analog.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -62,81 +62,65 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: multipart/signed; micalg=pgp-sha256;
-	protocol="application/pgp-signature"; boundary="O7SgCvLz8KEdP71U"
+	protocol="application/pgp-signature"; boundary="Rp3tYQwRmI9LNr60"
 Content-Disposition: inline
-In-Reply-To: <20240208165937.2221193-1-andriy.shevchenko@linux.intel.com>
+In-Reply-To: <20240208172459.280189-5-alisa.roman@analog.com>
 
 
---O7SgCvLz8KEdP71U
+--Rp3tYQwRmI9LNr60
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
 
-On Thu, Feb 08, 2024 at 06:58:43PM +0200, Andy Shevchenko wrote:
-> Add a new initial driver for Maxim MAX6958/6959 chips.
-> While developing that driver I realised that there is a lot
-> of duplication between ht16k33 and a new one. Hence set of
-> cleanups and refactorings.
->=20
-> Note, the new driver has minimum support of the hardware and
-> I have plans to cover more features in the future.
->=20
-> Andy Shevchenko (15):
->   auxdisplay: img-ascii-lcd: Make container_of() no-op for struct
->     linedisp
->   auxdisplay: linedisp: Free allocated resources in ->release()
->   auxdisplay: linedisp: Use unique number for id
->   auxdisplay: linedisp: Unshadow error codes in ->store()
->   auxdisplay: linedisp: Add missing header(s)
->   auxdisplay: linedisp: Move exported symbols to a namespace
->   auxdisplay: linedisp: Group line display drivers together
->   auxdisplay: linedisp: Provide struct linedisp_ops for future extension
->   auxdisplay: linedisp: Add support for overriding character mapping
->   auxdisplay: linedisp: Provide a small buffer in the struct linedisp
->   auxdisplay: ht16k33: Move ht16k33_linedisp_ops down
->   auxdisplay: ht16k33: Switch to use line display character mapping
->   auxdisplay: ht16k33: Use buffer from struct linedisp
->   dt-bindings: auxdisplay: Add Maxim MAX6958/6959
->   auxdisplay: Add driver for MAX695x 7-segment LED controllers
+Hey,
 
-Not all of these patches have made their way to the lists FYI:
-2024-02-08 16:58 Andy Shevchenko [this message]
-2024-02-08 16:58 ` [PATCH v1 01/15] auxdisplay: img-ascii-lcd: Make contain=
-er_of() no-op for struct linedisp Andy Shevchenko
-2024-02-08 16:58 ` [PATCH v1 02/15] auxdisplay: linedisp: Free allocated re=
-sources in ->release() Andy Shevchenko
-2024-02-08 16:58 ` [PATCH v1 03/15] auxdisplay: linedisp: Use unique number=
- for id Andy Shevchenko
-2024-02-08 16:58 ` [PATCH v1 06/15] auxdisplay: linedisp: Move exported sym=
-bols to a namespace Andy Shevchenko
-2024-02-08 16:58 ` [PATCH v1 07/15] auxdisplay: linedisp: Group line displa=
-y drivers together Andy Shevchenko
-2024-02-08 16:58 ` [PATCH v1 08/15] auxdisplay: linedisp: Provide struct li=
-nedisp_ops for future extension Andy Shevchenko
-2024-02-08 16:58 ` [PATCH v1 09/15] auxdisplay: linedisp: Add support for o=
-verriding character mapping Andy Shevchenko
-2024-02-08 16:58 ` [PATCH v1 10/15] auxdisplay: linedisp: Provide a small b=
-uffer in the struct linedisp Andy Shevchenko
-2024-02-08 16:58 ` [PATCH v1 14/15] dt-bindings: auxdisplay: Add Maxim MAX6=
-958/6959 Andy Shevchenko
-2024-02-08 16:58 ` [PATCH v1 15/15] auxdisplay: Add driver for MAX695x 7-se=
-gment LED controllers Andy Shevchenko
-https://lore.kernel.org/all/20240208165937.2221193-1-andriy.shevchenko@linu=
-x.intel.com/
+On Thu, Feb 08, 2024 at 07:24:58PM +0200, Alisa-Dariana Roman wrote:
 
-Cheers,
+> +patternProperties:
+> +  "^channel@([0-7a-f])$":
+> +    type: object
+> +    $ref: adc.yaml
+> +    unevaluatedProperties: false
+> +
+> +    properties:
+> +      reg:
+> +        description: The channel index.
+> +        minimum: 0
+> +        maximum: 7
+
+There are only 8 possible channels, at indices 0 to 7, so why is the
+pattern property more permissive than that? Shouldn't "^channel@[0-7]$"
+suffice?
+
+> +
+> +       diff-channels:
+
+> +        description: |
+> +          The differential channel pair for Ad7194 configurable channels. The
+> +          first channel is the positive input, the second channel is the
+> +          negative input.
+
+This duplicates the description in adc.yaml
+
+> +        items:
+> +          minimum: 1
+> +          maximum: 16
+
+Hmm, this makes me wonder: why doesn't this match the number of channels
+available and why is 0 not a valid channel for differential measurements?
+
+Thanks,
 Conor.
 
---O7SgCvLz8KEdP71U
+--Rp3tYQwRmI9LNr60
 Content-Type: application/pgp-signature; name="signature.asc"
 
 -----BEGIN PGP SIGNATURE-----
 
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZcUU7wAKCRB4tDGHoIJi
-0gXAAP9bL24AhxzmmQRRnY3Rhu2L6gqn1Hh5TRCMhmZCd7TlngD+NNB8AKdlQ1JH
-JxoOIo6rC9vlJ1FBJwpHi6QKypAy2As=
-=qyIp
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZcUXYwAKCRB4tDGHoIJi
+0kl+AQC98IfDjABHtVsFckhffOx27fA9Ms+JQBbJ5iVop4SrEwEAkr5hI1PonKfm
+IEj2BwHwm0qUl7HTq928BlyZg9nkHgo=
+=qjtc
 -----END PGP SIGNATURE-----
 
---O7SgCvLz8KEdP71U--
+--Rp3tYQwRmI9LNr60--
 
