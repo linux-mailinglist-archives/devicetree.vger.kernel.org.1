@@ -1,152 +1,230 @@
-Return-Path: <devicetree+bounces-39765-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-39727-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7966B84E12F
-	for <lists+devicetree@lfdr.de>; Thu,  8 Feb 2024 13:50:09 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 14BB584E079
+	for <lists+devicetree@lfdr.de>; Thu,  8 Feb 2024 13:14:15 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id AC5C11C23516
-	for <lists+devicetree@lfdr.de>; Thu,  8 Feb 2024 12:50:08 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 3998A1C27BBD
+	for <lists+devicetree@lfdr.de>; Thu,  8 Feb 2024 12:14:14 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C0C61763E8;
-	Thu,  8 Feb 2024 12:49:56 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 653AF71B3D;
+	Thu,  8 Feb 2024 12:14:11 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="VDPuHIxI"
 X-Original-To: devicetree@vger.kernel.org
-Received: from elvis.franken.de (elvis.franken.de [193.175.24.41])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2736F763E4;
-	Thu,  8 Feb 2024 12:49:52 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=193.175.24.41
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+	(No client certificate requested)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3A83F71B41;
+	Thu,  8 Feb 2024 12:14:10 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1707396596; cv=none; b=d0Nr/f+7ma081radKxGGQCHdVceTUse6PkxPQQhCU0n5BCdms3KnbBZCv6l4k2tzwLdw40tseht9PoccG3//b2j9KYE3DaY/boWrus0U2EwrS9bxYxfItbc/fxtXbnvfjcIwH1+FGpQdyZQT3pcpiQ4yQ/C3hmLvhDC0ZAtOPIQ=
+	t=1707394451; cv=none; b=LIqNxOt1HHv9ROjTTl/7DfHgj8Vh9WIRvFDJhsHJA6pRQlPVC5tA1dptu4GvQoUtcINFzbwz2K9v6Oj/pFdTkYD65PIpy0ahiXvvK18QwKaiRNPze6ClfMChUe7Mw0rxXKOCA0WXN+NTkbiPa7pdv1UTK1P0lvpEo9SbLBV40Cw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1707396596; c=relaxed/simple;
-	bh=/raue+ELhkH2hPh2pJ5EPvccB2rMfZ0AyREnP0RN1h4=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=PuBEsCiJOflRC6iThJPN6gDHJcbZCEyOvBc54MZc0KVzffFSlGX/EGyEUX91lN6FP1X3B1XsLXsS1hYei0sS8oEiXAFk9XlYfKNy1AL4EtmZKEPlxIMAq5rrTYFl7JTAQBgl8+AnillPd+GTvP+eu3Sbjhp22GDbMueGchjlEK0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=alpha.franken.de; spf=pass smtp.mailfrom=alpha.franken.de; arc=none smtp.client-ip=193.175.24.41
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=alpha.franken.de
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=alpha.franken.de
-Received: from uucp by elvis.franken.de with local-rmail (Exim 3.36 #1)
-	id 1rY3Mr-000327-00; Thu, 08 Feb 2024 13:19:01 +0100
-Received: by alpha.franken.de (Postfix, from userid 1000)
-	id 71A38C0267; Thu,  8 Feb 2024 13:11:30 +0100 (CET)
-Date: Thu, 8 Feb 2024 13:11:30 +0100
-From: Thomas Bogendoerfer <tsbogend@alpha.franken.de>
-To: Gregory CLEMENT <gregory.clement@bootlin.com>
-Cc: Paul Burton <paulburton@kernel.org>, linux-mips@vger.kernel.org,
-	Jiaxun Yang <jiaxun.yang@flygoat.com>,
-	Rob Herring <robh+dt@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	Vladimir Kondratiev <vladimir.kondratiev@mobileye.com>,
-	Tawfik Bayouk <tawfik.bayouk@mobileye.com>,
-	Alexandre Belloni <alexandre.belloni@bootlin.com>,
-	=?iso-8859-1?Q?Th=E9o?= Lebrun <theo.lebrun@bootlin.com>,
-	Thomas Petazzoni <thomas.petazzoni@bootlin.com>
-Subject: Re: [PATCH v7 03/14] MIPS: Allows relocation exception vectors
- everywhere
-Message-ID: <ZcTE8nKCaKuaUvAe@alpha.franken.de>
-References: <20240205153503.574468-1-gregory.clement@bootlin.com>
- <20240205153503.574468-4-gregory.clement@bootlin.com>
+	s=arc-20240116; t=1707394451; c=relaxed/simple;
+	bh=zjtkOe2cugeGmcRyM/zpknBqUAd2EbvZfuhd4DjjtQU=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=k6AZ6IkUeD9cZfTnQUXxnsUBpHGPulPtU+sYtV88J9qVdpP7IaalT8P7eTcdoSpLE36y7GTM2K8SF6R9NGVoj/MOuw7Y+EkHcwH1lEy5MQa1zZGxBinMmozYTbw9/X90GB85ty3HvaK5jHAWK1iZSvrZ1lzTB0lux36HwBJhAeo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=VDPuHIxI; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id CB59DC433F1;
+	Thu,  8 Feb 2024 12:14:07 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1707394450;
+	bh=zjtkOe2cugeGmcRyM/zpknBqUAd2EbvZfuhd4DjjtQU=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=VDPuHIxIrAosGiYGdETmKtYzVVUsiVsurTz2ZxPNcfvl1C40lcmKrHUIYjjsroCmT
+	 iA3MpZIeZM3I/SwzUF+j29MavcKdwr/rs7/UXmvFmvwqqTBK+J4YwGjzIm2MGIRLoh
+	 eFB5G0ZFsr7J6yoCURXVx2vsDv3JjxOrSzC3/Lh/PG3qTOqu/whCAECzAri7/TNmlm
+	 SjGedj61i0znkqaSnxH0Q8qTixkg16vpk7tCOUCCd9a83uFpmimP+XsWN4Yemo3X3B
+	 I0IJhcbIHGiIH1Okj/VWzymCKNURuivkBgl5vTmjbeoh2mHrZi0ikUbzq6lj3siB2x
+	 rMoTfxTQU8wsQ==
+Message-ID: <93f6ed54-2173-453e-8b57-373a303d725b@kernel.org>
+Date: Thu, 8 Feb 2024 14:14:05 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20240205153503.574468-4-gregory.clement@bootlin.com>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v4 2/3] arm64: dts: ti: k3-am642-evm: add ICSSG1 Ethernet
+ support
+Content-Language: en-US
+To: MD Danish Anwar <danishanwar@ti.com>,
+ Vignesh Raghavendra <vigneshr@ti.com>, Nishanth Menon <nm@ti.com>
+Cc: Andrew Lunn <andrew@lunn.ch>, Conor Dooley <conor+dt@kernel.org>,
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+ Rob Herring <robh+dt@kernel.org>, linux-kernel@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ Tero Kristo <kristo@kernel.org>, srk@ti.com, r-gunasekaran@ti.com
+References: <20240205090546.4000446-1-danishanwar@ti.com>
+ <20240205090546.4000446-3-danishanwar@ti.com>
+From: Roger Quadros <rogerq@kernel.org>
+In-Reply-To: <20240205090546.4000446-3-danishanwar@ti.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
-On Mon, Feb 05, 2024 at 04:34:49PM +0100, Gregory CLEMENT wrote:
-> From: Jiaxun Yang <jiaxun.yang@flygoat.com>
+
+
+On 05/02/2024 11:05, MD Danish Anwar wrote:
+> ICSSG1 provides dual Gigabit Ethernet support with proper FW loaded.
 > 
-> Now the exception vector for CPS systems are allocated on-fly
-> with memblock as well.
+> The ICSSG1 MII0 (RGMII1) has DP83869 PHY attached to it. The ICSSG1 shares
+> MII1 (RGMII2) PHY DP83869 with CPSW3g and it's assigned by default to
+> CPSW3g. The MDIO access to MII1 (RGMII2) PHY DP83869 is controlled by MDIO
+> bus switch and also assigned to CPSW3g. Therefore the ICSSG1 MII1 (RGMII2)
+> port is kept disable and ICSSG1 is enabled in single MAC mode by
+> default.
 > 
-> It will try to allocate from KSEG1 first, and then try to allocate
-> in low 4G if possible.
-> 
-> The main reset vector is now generated by uasm, to avoid tons
-> of patches to the code. Other vectors are copied to the location
-> later.
-> 
-> gc: use the new macro CKSEG[0A1]DDR_OR_64BIT()
->     move 64bits fix in an other patch
->     fix cache issue with mips_cps_core_entry
->     rewrite the patch to reduce the diff stat
-> Signed-off-by: Jiaxun Yang <jiaxun.yang@flygoat.com>
-> Signed-off-by: Gregory CLEMENT <gregory.clement@bootlin.com>
+> Signed-off-by: MD Danish Anwar <danishanwar@ti.com>
+> Reviewed-by: Ravi Gunasekaran <r-gunasekaran@ti.com>
 > ---
->  arch/mips/include/asm/mips-cm.h |   1 +
->  arch/mips/include/asm/smp-cps.h |   4 +-
->  arch/mips/kernel/cps-vec.S      |  48 ++-------
->  arch/mips/kernel/smp-cps.c      | 171 +++++++++++++++++++++++++++-----
->  4 files changed, 157 insertions(+), 67 deletions(-)
-> [..]
-> diff --git a/arch/mips/kernel/smp-cps.c b/arch/mips/kernel/smp-cps.c
-> index dd55d59b88db3..f4cdd50177e0b 100644
-> --- a/arch/mips/kernel/smp-cps.c
-> +++ b/arch/mips/kernel/smp-cps.c
-> @@ -7,6 +7,7 @@
->  #include <linux/cpu.h>
->  #include <linux/delay.h>
->  #include <linux/io.h>
-> +#include <linux/memblock.h>
->  #include <linux/sched/task_stack.h>
->  #include <linux/sched/hotplug.h>
->  #include <linux/slab.h>
-> @@ -25,7 +26,34 @@
->  #include <asm/time.h>
->  #include <asm/uasm.h>
+>  arch/arm64/boot/dts/ti/k3-am642-evm.dts | 97 +++++++++++++++++++++++++
+>  1 file changed, 97 insertions(+)
+> 
+> diff --git a/arch/arm64/boot/dts/ti/k3-am642-evm.dts b/arch/arm64/boot/dts/ti/k3-am642-evm.dts
+> index 8c5651d2cf5d..6b97e447c486 100644
+> --- a/arch/arm64/boot/dts/ti/k3-am642-evm.dts
+> +++ b/arch/arm64/boot/dts/ti/k3-am642-evm.dts
+> @@ -32,6 +32,7 @@ aliases {
+>  		mmc1 = &sdhci1;
+>  		ethernet0 = &cpsw_port1;
+>  		ethernet1 = &cpsw_port2;
+> +		ethernet2 = &icssg1_emac0;
+>  	};
 >  
-> +#define BEV_VEC_SIZE	0x500
-> +#define BEV_VEC_ALIGN	0x1000
+>  	memory@80000000 {
+> @@ -229,6 +230,66 @@ transceiver2: can-phy1 {
+>  		max-bitrate = <5000000>;
+>  		standby-gpios = <&exp1 9 GPIO_ACTIVE_HIGH>;
+>  	};
 > +
-> +#define A0		4
-> +#define A1		5
-> +#define T9		25
-> +#define K0		26
-> +#define K1		27
+> +	icssg1_eth: icssg1-eth {
+> +		compatible = "ti,am642-icssg-prueth";
+> +		pinctrl-names = "default";
+> +		pinctrl-0 = <&icssg1_rgmii1_pins_default>;
+> +		sram = <&oc_sram>;
+> +		ti,prus = <&pru1_0>, <&rtu1_0>, <&tx_pru1_0>, <&pru1_1>, <&rtu1_1>, <&tx_pru1_1>;
+> +		firmware-name = "ti-pruss/am64x-sr2-pru0-prueth-fw.elf",
+> +				"ti-pruss/am64x-sr2-rtu0-prueth-fw.elf",
+> +				"ti-pruss/am64x-sr2-txpru0-prueth-fw.elf",
+> +				"ti-pruss/am64x-sr2-pru1-prueth-fw.elf",
+> +				"ti-pruss/am64x-sr2-rtu1-prueth-fw.elf",
+> +				"ti-pruss/am64x-sr2-txpru1-prueth-fw.elf";
 > +
-> +#define C0_STATUS	12, 0
-> +#define C0_CAUSE	13, 0
+> +		ti,pruss-gp-mux-sel = <2>,	/* MII mode */
+> +				      <2>,
+> +				      <2>,
+> +				      <2>,	/* MII mode */
+> +				      <2>,
+> +				      <2>;
+> +		ti,mii-g-rt = <&icssg1_mii_g_rt>;
+> +		ti,mii-rt = <&icssg1_mii_rt>;
+> +		ti,iep = <&icssg1_iep0>,  <&icssg1_iep1>;
+> +		interrupt-parent = <&icssg1_intc>;
+> +		interrupts = <24 0 2>, <25 1 3>;
+> +		interrupt-names = "tx_ts0", "tx_ts1";
+> +		dmas = <&main_pktdma 0xc200 15>, /* egress slice 0 */
+> +		       <&main_pktdma 0xc201 15>, /* egress slice 0 */
+> +		       <&main_pktdma 0xc202 15>, /* egress slice 0 */
+> +		       <&main_pktdma 0xc203 15>, /* egress slice 0 */
+> +		       <&main_pktdma 0xc204 15>, /* egress slice 1 */
+> +		       <&main_pktdma 0xc205 15>, /* egress slice 1 */
+> +		       <&main_pktdma 0xc206 15>, /* egress slice 1 */
+> +		       <&main_pktdma 0xc207 15>, /* egress slice 1 */
+> +		       <&main_pktdma 0x4200 15>, /* ingress slice 0 */
+> +		       <&main_pktdma 0x4201 15>; /* ingress slice 1 */
+> +		dma-names = "tx0-0", "tx0-1", "tx0-2", "tx0-3",
+> +			    "tx1-0", "tx1-1", "tx1-2", "tx1-3",
+> +			    "rx0", "rx1";
 > +
-> +#define ST0_NMI_BIT	19
-> +#ifdef CONFIG_64BIT
-> +#define ST0_KX_IF_64	ST0_KX
-> +#else
-> +#define ST0_KX_IF_64	0
-> +#endif
+> +		ethernet-ports {
+> +			#address-cells = <1>;
+> +			#size-cells = <0>;
+> +			icssg1_emac0: port@0 {
+> +				reg = <0>;
+> +				phy-handle = <&icssg1_phy1>;
+> +				phy-mode = "rgmii-id";
+> +				ti,syscon-rgmii-delay = <&main_conf 0x4110>;
 
-please move this together with the other defines in arch/mips/kvm/entry.c
-to a header file (arch/mips/include/asm/uasm.h sounds like a good fit).
+"syscon" compatible will be eventually dropped from the main_conf node.
+It is not there on other platforms e.g. am62p
 
-> +static void __init setup_cps_vecs(void)
-> +{
-> +	extern void excep_tlbfill(void);
-> +	extern void excep_xtlbfill(void);
-> +	extern void excep_cache(void);
-> +	extern void excep_genex(void);
-> +	extern void excep_intex(void);
-> +	extern void excep_ejtag(void);
-
-I know this used a lot in arch/mips, but don't add another one and
-put this to a header file. IMHO checkpatch should have warned you about
+One solution is to add a device tree node in main_conf and reference to
 that.
+e.g.
+https://lore.kernel.org/all/20240205135908.54656-3-rogerq@kernel.org/
 
-> +	/* We want to ensure cache is clean before writing uncached mem */
-> +	blast_dcache_range(CKSEG0ADDR_OR_64BIT(cps_vec_pa), CKSEG0ADDR_OR_64BIT(cps_vec_pa) + BEV_VEC_SIZE);
-> +	bc_wback_inv(CKSEG0ADDR_OR_64BIT(cps_vec_pa), BEV_VEC_SIZE);
-> +	__sync();
+> +				/* Filled in by bootloader */
+> +				local-mac-address = [00 00 00 00 00 00];
+> +			};
+> +			icssg1_emac1: port@1 {
+> +				reg = <1>;
+> +				ti,syscon-rgmii-delay = <&main_conf 0x4114>;
 
-how about doint the generation with cached memory and flush caches
-after that ?
+here too
 
-Thomas.
+> +				/* Filled in by bootloader */
+> +				local-mac-address = [00 00 00 00 00 00];
+> +				status = "disabled";
+> +			};
+> +		};
+> +	};
+>  };
+>  
+>  &main_pmx0 {
+> @@ -383,6 +444,30 @@ ddr_vtt_pins_default: ddr-vtt-default-pins {
+>  			AM64X_IOPAD(0x0030, PIN_OUTPUT_PULLUP, 7) /* (L18) OSPI0_CSN1.GPIO0_12 */
+>  		>;
+>  	};
+> +
+> +	icssg1_mdio1_pins_default: icssg1-mdio1-default-pins {
+> +		pinctrl-single,pins = <
+> +			AM64X_IOPAD(0x015c, PIN_OUTPUT, 0) /* (Y6) PRG1_MDIO0_MDC */
+> +			AM64X_IOPAD(0x0158, PIN_INPUT, 0) /* (AA6) PRG1_MDIO0_MDIO */
+> +		>;
+> +	};
+> +
+> +	icssg1_rgmii1_pins_default: icssg1-rgmii1-default-pins{
+> +		pinctrl-single,pins = <
+> +			AM64X_IOPAD(0x00b8, PIN_INPUT, 2) /* (Y7) PRG1_PRU0_GPO0.PRG1_RGMII1_RD0 */
+> +			AM64X_IOPAD(0x00bc, PIN_INPUT, 2) /* (U8) PRG1_PRU0_GPO1.PRG1_RGMII1_RD1 */
+> +			AM64X_IOPAD(0x00c0, PIN_INPUT, 2) /* (W8) PRG1_PRU0_GPO2.PRG1_RGMII1_RD2 */
+> +			AM64X_IOPAD(0x00c4, PIN_INPUT, 2) /* (V8) PRG1_PRU0_GPO3.PRG1_RGMII1_RD3 */
+> +			AM64X_IOPAD(0x00d0, PIN_INPUT, 2) /* (AA7) PRG1_PRU0_GPO6.PRG1_RGMII1_RXC */
+> +			AM64X_IOPAD(0x00c8, PIN_INPUT, 2) /* (Y8) PRG1_PRU0_GPO4.PRG1_RGMII1_RX_CTL */
+> +			AM64X_IOPAD(0x00e4, PIN_INPUT, 2) /* (AA8) PRG1_PRU0_GPO11.PRG1_RGMII1_TD0 */
+> +			AM64X_IOPAD(0x00e8, PIN_INPUT, 2) /* (U9) PRG1_PRU0_GPO12.PRG1_RGMII1_TD1 */
+> +			AM64X_IOPAD(0x00ec, PIN_INPUT, 2) /* (W9) PRG1_PRU0_GPO13.PRG1_RGMII1_TD2 */
+> +			AM64X_IOPAD(0x00f0, PIN_INPUT, 2) /* (AA9) PRG1_PRU0_GPO14.PRG1_RGMII1_TD3 */
+> +			AM64X_IOPAD(0x00f8, PIN_INPUT, 2) /* (V9) PRG1_PRU0_GPO16.PRG1_RGMII1_TXC */
+> +			AM64X_IOPAD(0x00f4, PIN_INPUT, 2) /* (Y9) PRG1_PRU0_GPO15.PRG1_RGMII1_TX_CTL */
+> +		>;
+> +	};
+>  };
+>  
+>  &main_uart0 {
+> @@ -731,3 +816,15 @@ &main_mcan1 {
+>  	pinctrl-0 = <&main_mcan1_pins_default>;
+>  	phys = <&transceiver2>;
+>  };
+> +
+> +&icssg1_mdio {
+> +	status = "okay";
+> +	pinctrl-names = "default";
+> +	pinctrl-0 = <&icssg1_mdio1_pins_default>;
+> +
+> +	icssg1_phy1: ethernet-phy@f {
+> +		reg = <0xf>;
+> +		tx-internal-delay-ps = <250>;
+> +		rx-internal-delay-ps = <2000>;
+> +	};
+> +};
 
 -- 
-Crap can work. Given enough thrust pigs will fly, but it's not necessarily a
-good idea.                                                [ RFC1925, 2.3 ]
+cheers,
+-roger
 
