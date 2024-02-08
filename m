@@ -1,259 +1,532 @@
-Return-Path: <devicetree+bounces-39914-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-39915-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1BC0A84E8D8
-	for <lists+devicetree@lfdr.de>; Thu,  8 Feb 2024 20:20:44 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id BBC4B84E8E9
+	for <lists+devicetree@lfdr.de>; Thu,  8 Feb 2024 20:26:46 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 95AC01F30E17
-	for <lists+devicetree@lfdr.de>; Thu,  8 Feb 2024 19:20:43 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 413331F24FFB
+	for <lists+devicetree@lfdr.de>; Thu,  8 Feb 2024 19:26:46 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B893536B0E;
-	Thu,  8 Feb 2024 19:20:35 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 23AA6381C8;
+	Thu,  8 Feb 2024 19:26:21 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=bp.renesas.com header.i=@bp.renesas.com header.b="ogz3deaz"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="hUG5n/3N"
 X-Original-To: devicetree@vger.kernel.org
-Received: from JPN01-TYC-obe.outbound.protection.outlook.com (mail-tycjpn01on2059.outbound.protection.outlook.com [40.107.114.59])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CCACB2560F;
-	Thu,  8 Feb 2024 19:20:31 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.107.114.59
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1707420035; cv=fail; b=uhz3k2UjSyndtbJTg6cP513G2/XmcKKqpx+FIvSE2kw4pNHpxVH3QSJjK1uW6SqL0BzPA7dKp+6xvCTderHUwupKZWjEtkwVGvIAjQ2+sKGrt+0lnKmd5oYbLk70UWtwdFxl5hnBsIGBg7NP7QOydTqnRU3V13CC2nDiyq4goNg=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1707420035; c=relaxed/simple;
-	bh=2hTeE8MK7T39NEGq3WF72E07Lz5Om6cbZzHKyL0WF40=;
-	h=From:To:CC:Subject:Date:Message-ID:References:In-Reply-To:
-	 Content-Type:MIME-Version; b=iFVfwkzORx0lkdDumU8zpFSmdeeefEWZrqTCGRGKpHxF6GCBwAxC28ifGZmuQZOt798YsyY6yRLNDPsHRXQLihty8hBXFRRzh10vFSDMLqP3qS6w8nMCpH23LIsYJGj7Q9y6AuaRiaeUyfu9Fjl9GchOuq4/5oQFymWyFXgVays=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=bp.renesas.com; spf=pass smtp.mailfrom=bp.renesas.com; dkim=pass (1024-bit key) header.d=bp.renesas.com header.i=@bp.renesas.com header.b=ogz3deaz; arc=fail smtp.client-ip=40.107.114.59
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=bp.renesas.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bp.renesas.com
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=M0kF1MCD9pz3Rlwo2oxesC9mVUAf2nHYCP49hJBC1+f0v+KA1R/RSUdiW+Ci8K9tmFd2rk9OVN9xvTsbGqW636f/4Ys1V1pXTWeLfiRul/TBwzgiPa1soHzPtdki8EClbpZxepi933Idj34msLh6eVT+wiYvmciXrdhWfF+w91ftQ2GJF+1imJUd42GTowXQ0QsB6LHOLGHazilLwG41GfYDdpYs/q5sJzrGhMhjwZIy25YwrIJKcsmuSpyzySO6y+4OIp/GWQN6ghvegJuMBjgZCPt17thKnstg0zwbJgIwXsJJDttlPtuDMGJR5Rf1cw5/k7HKd927hoPMDbbymA==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=2hTeE8MK7T39NEGq3WF72E07Lz5Om6cbZzHKyL0WF40=;
- b=ek8ap8gmfGfjEt8PBZxslbSTlbbhqQ/835mpdHiFjx0/wOjwPD7vNQVkYpRHqg2llF2V5MBgQKxyoTa4Ta+HD4Q6XaJ5rv9juSiKNKNKVcb76I7DYoBxhFo3teYNvgpu728Zfj0Oq+RjO+wDXbAqPzgnkMr+hpGRwXJ24unt8xObQLKTSKOZ8gpLU5DkfWLtVXgOIrjVMVrOBqZYHdyQjxN8CY3vsPG/ZGzFVVF8Xp7cryvW7uc7acQzvMZ9itZJsAF6s2oqt4o8BGcV2U5xBkZa3W+76ca2dg5sYaZ8lEc8kQoZycBT1BAbfJ1hsStnKo4c8McUlssMzntjcVvOfA==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=bp.renesas.com; dmarc=pass action=none
- header.from=bp.renesas.com; dkim=pass header.d=bp.renesas.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bp.renesas.com;
- s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=2hTeE8MK7T39NEGq3WF72E07Lz5Om6cbZzHKyL0WF40=;
- b=ogz3deaz102LVfo9O1hCZ0zFzI6hT4e90CrGvVWkdc2UaYVd1VdRxNl11FRTKhRr6fG7vWTt8pZI6aj6XkhQs04otcq30EFHVZqJPQpRBL742CI5tjrXoEfE2GNyKrFImLJRBr+Ah7NnF/n3bM2jEqbpReUaVmrx5sFwfLX2Hx4=
-Received: from TYCPR01MB11269.jpnprd01.prod.outlook.com
- (2603:1096:400:3c0::10) by TY3PR01MB11722.jpnprd01.prod.outlook.com
- (2603:1096:400:3dc::11) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7270.24; Thu, 8 Feb
- 2024 19:20:28 +0000
-Received: from TYCPR01MB11269.jpnprd01.prod.outlook.com
- ([fe80::6719:535a:7217:9f0]) by TYCPR01MB11269.jpnprd01.prod.outlook.com
- ([fe80::6719:535a:7217:9f0%3]) with mapi id 15.20.7249.039; Thu, 8 Feb 2024
- 19:20:28 +0000
-From: Biju Das <biju.das.jz@bp.renesas.com>
-To: Claudiu.Beznea <claudiu.beznea@tuxon.dev>, "geert+renesas@glider.be"
-	<geert+renesas@glider.be>, "mturquette@baylibre.com"
-	<mturquette@baylibre.com>, "sboyd@kernel.org" <sboyd@kernel.org>,
-	"robh@kernel.org" <robh@kernel.org>, "krzysztof.kozlowski+dt@linaro.org"
-	<krzysztof.kozlowski+dt@linaro.org>, "conor+dt@kernel.org"
-	<conor+dt@kernel.org>, "magnus.damm@gmail.com" <magnus.damm@gmail.com>,
-	"paul.walmsley@sifive.com" <paul.walmsley@sifive.com>, "palmer@dabbelt.com"
-	<palmer@dabbelt.com>, "aou@eecs.berkeley.edu" <aou@eecs.berkeley.edu>
-CC: "linux-renesas-soc@vger.kernel.org" <linux-renesas-soc@vger.kernel.org>,
-	"linux-clk@vger.kernel.org" <linux-clk@vger.kernel.org>,
-	"devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-	"linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-	"linux-riscv@lists.infradead.org" <linux-riscv@lists.infradead.org>, Claudiu
- Beznea <claudiu.beznea.uj@bp.renesas.com>
-Subject: RE: [PATCH 01/17] dt-bindings: clock: r9a07g043-cpg: Add power domain
- IDs
-Thread-Topic: [PATCH 01/17] dt-bindings: clock: r9a07g043-cpg: Add power
- domain IDs
-Thread-Index: AQHaWox93XkHXchpTkaSnTQ6Ok/3vrEAgGfQgAAWUICAAAlS4IAACXEAgAAoXKA=
-Date: Thu, 8 Feb 2024 19:20:28 +0000
-Message-ID:
- <TYCPR01MB11269015C92AA327DC6BFA76586442@TYCPR01MB11269.jpnprd01.prod.outlook.com>
-References: <20240208124300.2740313-1-claudiu.beznea.uj@bp.renesas.com>
- <20240208124300.2740313-2-claudiu.beznea.uj@bp.renesas.com>
- <TYCPR01MB11269DEA9261CA594EECC949686442@TYCPR01MB11269.jpnprd01.prod.outlook.com>
- <67ad8052-1406-4dcb-9e35-5c42ada28797@tuxon.dev>
- <TYCPR01MB112698AB206332D13105C064186442@TYCPR01MB11269.jpnprd01.prod.outlook.com>
- <e170f5f8-f95c-4553-b088-1072345fae53@tuxon.dev>
-In-Reply-To: <e170f5f8-f95c-4553-b088-1072345fae53@tuxon.dev>
-Accept-Language: en-GB, en-US
-Content-Language: en-US
-X-MS-Has-Attach:
-X-MS-TNEF-Correlator:
-authentication-results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=bp.renesas.com;
-x-ms-publictraffictype: Email
-x-ms-traffictypediagnostic: TYCPR01MB11269:EE_|TY3PR01MB11722:EE_
-x-ms-office365-filtering-correlation-id: 08629697-b2c1-4c70-56d8-08dc28db02a1
-x-ld-processed: 53d82571-da19-47e4-9cb4-625a166a4a2a,ExtAddr
-x-ms-exchange-senderadcheck: 1
-x-ms-exchange-antispam-relay: 0
-x-microsoft-antispam: BCL:0;
-x-microsoft-antispam-message-info:
- ihMVtHX7/A3k3dya1JDNSt+vYT1wf/+/Qh0awk0EQnAvWwqZH0L+lnRVL0dw7c65QpYjjDRMgN4HeoGP0UUZaKRsgKxWUrB8qOe2V/3vFmDprTo4ba17m010eDpX1a/v/iO6URBg9jQsVsh1fS2It75v/TEO3FzKbeTu/A8l0kYBSOJW5QSZE+sYZ0S6VzgQLjbzcSv4nts2/hndXJFlLngGQZoC//Moif6S63UZ8NCxK4yu1U63INbO/byhSA0W7YUg/E1BnAnKDTMXdt8lVmKbB0Sl3ekX6AV5ztfFFjpLeyX+7BkainZYV5WRUZgHwhHZVshXwoKAfBGH8800gOF7TQwvNVy5aQOSMsnotrqZY3BfQM9OxrTQ+yF8Z8lTKrCrUMgekEdABJxxXF+WGXBWexfd4rmFse41oZ34gtmp6JYClLT09G1DshUzYHM0MjlOpV10dmapChYh+SKNGfLG5FiniMT7hOUGzAwv04nG/Fx9F4PCc4aa6f1W+ZQeNaCsaEd2Y7RiXOizFD4yBlCbOXqPuGtralIvHdnTTh9nq0Zr6/Zqvn01g6QZixdaYMsoTKjNxXQpaaBmRLb5hoInc6Rcj9OOx7foBif2DhXkvW2MHpeyBZVKRuX5HCIw+adTc6RPOHUwxZpSmsP7rQ==
-x-forefront-antispam-report:
- CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:TYCPR01MB11269.jpnprd01.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230031)(376002)(39860400002)(136003)(366004)(346002)(396003)(230922051799003)(1800799012)(186009)(64100799003)(451199024)(55016003)(316002)(7416002)(5660300002)(2906002)(66556008)(66946007)(8936002)(66476007)(4326008)(52536014)(8676002)(83380400001)(38100700002)(66446008)(33656002)(64756008)(921011)(110136005)(122000001)(71200400001)(54906003)(76116006)(7696005)(6506007)(53546011)(9686003)(38070700009)(107886003)(41300700001)(55236004)(26005)(478600001)(86362001);DIR:OUT;SFP:1101;
-x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0:
- =?utf-8?B?Z3BMcnd6QU5ieFNmQzVTL2pucGlYdXFXY0F2WnkvclR4TEVLTmV2dEFkeHds?=
- =?utf-8?B?dzViY2lDcUhkbFB6bTlBM2hBWVhXV1pRZW92V1hyYzhtSGxUQk9oa1pjK3Nl?=
- =?utf-8?B?cVdGcXJJUXVReDE4R3RlR2lPQ1RGcWhiYnh3UklhNEYzb2EwV3M5TnNkbXk0?=
- =?utf-8?B?a0poUmhJbEE2WjhPUElEdXpOK0hxZmcxcmJhcWQ4eTZBTkg1TDdjenlJN2NW?=
- =?utf-8?B?K1VKWnlsemt3RWJDMmNrWUtMRnlROFJEckw5c0NJb3FKWWtsSG43Ny9WRWpo?=
- =?utf-8?B?T3pVRmNtMzFYalZTbVFHeXFNN3pDTFp6dzJLMVNVdURjMzErcVFYSHRKZnc0?=
- =?utf-8?B?RVRrL2U3YmFPSWFnNlIzSk1mRXdBMElmMmVVU3JpZTB5bmpXQTVzb1IvZUVR?=
- =?utf-8?B?TUt6TWtKSThUWEorMTh3RTRzSlFPMENBL2JQK1pQbHQvRlhiQ1M3bnFucjVn?=
- =?utf-8?B?QmpEK3NYWnNMSjh2RXZEcE43WlZUaU1EZTRPTWV1K04xaUlzUmtyUjRiMEVM?=
- =?utf-8?B?SFJBV2hQYXNUYlJpaUJtWEs0cGJhQWE1VGU2d3BVUmo5Smlsem1sZGVVS1dU?=
- =?utf-8?B?dk40dnFnRjdIRERoUG9pVXVWdXI4OEtNVEJhbC9KNHZIMU5uSUYrY2p0VWNN?=
- =?utf-8?B?dDJudUkvQ2dUMkROWG1RS3RETTdsUndkN2lyb2dTT2RndW11M0UyWEZVRWQ2?=
- =?utf-8?B?R2tHRlRTbEZ6dXVHemppaVorRkR2d0JpbG9MYkx2a0VSWmRTSFdOazEwems4?=
- =?utf-8?B?Z3lScVF1bnpYMzNyOXlFNUozZzBCanJrL2Q3dnE3dVN0em5hbHBVcDhGREJQ?=
- =?utf-8?B?OS9GNDNzZEMxRnFlN0RaVFV1UjhJZnN5Q3JIcVcyMlprb0ZOUERMNmQzK3Na?=
- =?utf-8?B?WXpwSEtYcVl4YzgweldTM3hJNDh4VmFmZFRLODY5OS9RdVh4Vi9FZlNvVzZY?=
- =?utf-8?B?M2lMbVhpRk5UOXF6ZnYrbGwyeTVnWW5vTk54MWNHNjU0dXhKZmJUUkMwKzNW?=
- =?utf-8?B?a0ZycUhsQUIxMXhjaHRVOGtYdjc2RGF0ektRdlV4WFlwTytNMllWa3hIR04z?=
- =?utf-8?B?cmw1cnNPQ3Z2VHBHaE9VVUZ0QkZ1Z2grT1hTczhZQVQ4NWlHbk00RGlQMlJC?=
- =?utf-8?B?TmhwR2R5dEh0TWNTUlJpbnhQeis3RUhwWmkzV2Q2VkxCeWMxMjErZnhyM0Ix?=
- =?utf-8?B?VkcvTE9uY2dCekd3T3dHNzVGUXllbnZIaTJoQWkxd2lMV2txVGhCbzc3Rnp2?=
- =?utf-8?B?SUt3bHZYbm9IUS9LUkNQVWxLeGZvcHpIS2k5UFZUcFlhU2JpUzNTazhzSVZN?=
- =?utf-8?B?UmJrOFdOanNoTlJGN1pxbWtjOTFNVWwzcysvem13SlFnYndiaUZyT2trNmFh?=
- =?utf-8?B?TnNUVGlEK0lGWURPNGRuUmUwSWZHTURhQXkva3VEL1JHMlYxdjUwQnFZTmEv?=
- =?utf-8?B?YnRDUXJuVlNtcFQzcStvU3Zsb0RBQlVhQ2ZJazh1Zk0wU1N5aVFxS3lTVFIx?=
- =?utf-8?B?aTJSQ2RoQmlzWVArdHV4cVM0QVlNaVpmbFN1Y3pTMndIMXM4SzdOL3laM0ZB?=
- =?utf-8?B?OHc5eUtSb1JCQldlNEo5Tmk5SHloNTdqNjh4eU9PamRwNU44QWJ3bnhsbHpU?=
- =?utf-8?B?ZVRJQmYxMWVUVnhib0l3bEJ4UVRQeXdkUDJ3TXF1cSttQmE3aVIrM1NGWWth?=
- =?utf-8?B?d0lNUnBWYnJ3RHFJc2ZTaXd2RUlkUUJMVzV2NE1PeXFkVm5QclIrT3g2T1lC?=
- =?utf-8?B?TTNVTXYycVBIQUNBTC9NeEk0TFdxWkZUaDVmMFV5RTc1V2pXaEdWc1l1N2tJ?=
- =?utf-8?B?ME43MVRkN1IzY1UxanRYejlnYXVsODFVOXNrcmhMVlh6VnZSbmRqTXphRlpy?=
- =?utf-8?B?QllXNEJCY29PSnM5Y3JqMEFaK1FReEJEb0ZVeDVQWlcxRjJxYytsMnpHWloz?=
- =?utf-8?B?OWt0MVpJTFZkbGhuZ0MrSHM2RWVJNXNiMk9YTlR0VjZDa0NhWkNhWmdBTm9E?=
- =?utf-8?B?VXMwaWdvR3U1UmJzNFZ2RStrZnl4ZC8rZHRDUG04WnFKSTE4Z0tlWjZtTzN6?=
- =?utf-8?B?RVZYbXQwaVdYZm9QaVlKYU9KZ1lyK0lmdk0zZ1dDME0xL2NPOVBiclo2RzBi?=
- =?utf-8?B?b2ZVdUl5aG1Kd0xSaEZ0dWRSYjU3RUtzK2lpYWEzR0RBcHBBSytRV0ZhajV2?=
- =?utf-8?B?QlE9PQ==?=
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DDE9F376FD;
+	Thu,  8 Feb 2024 19:26:20 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1707420381; cv=none; b=tVgqTpVKgGQC6l0Ma3Q8GXh2U+lhPAV8nujkBEOahOcRLefWvYf3jxqd/LtMOLD5FUUlnQMnNhRpRM3sz6VGNfJ8oYvttw+3V6Jn35b64Av/FJks/XHf+5jvJJ0bvvDjx6up4VSypW11sp3DTI/T/9o+b2lUQerNgTLS2CDjrLM=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1707420381; c=relaxed/simple;
+	bh=biJlj7vhbrf9o2ZlnVMqywQXI9Tsh+VpWr7/U4LkYfo=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=iAAuTyvFzQIzJiAot4uzpOf8eg5q+K3DvYpgoWlJv6PWAIwJQ3LIGhiMuxqiI+5dgrRsgwRe9Hc6oKX6E92PW+/h9SrA8uT+2ZIkeQJ6ieXMnzbdsBEVnuzgepFiOd4rV9vg7r+jJgcLqle8vWRYTrwFeaq/M812d9gHXBphtls=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=hUG5n/3N; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 24C6EC433C7;
+	Thu,  8 Feb 2024 19:26:17 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1707420380;
+	bh=biJlj7vhbrf9o2ZlnVMqywQXI9Tsh+VpWr7/U4LkYfo=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=hUG5n/3N8YRaazVF3WtzvtumqN3Yl9XxF/J0+WV1+PSnqw3PuXJ1gjgVOPmxfkzCL
+	 qgQxa54d4dbgjJ89N+wT4aA9ljJ2k+/cejuNuclii7HAvHCy/Vn5L1O9tdevqa5Ebv
+	 HZ5jF2pLMseB2/Y97N1tPtWBBLvwxJnujNMkvuxLN7GrcvzSwyRNbW0T3ClvqtYYF+
+	 SIkUnHC1bj5pYsu8oNQsEDtXiaOjqHABHjR/FuzdVCDdBpZ3tOo4OPayZg8d0mKjBe
+	 IyiBvodBBMf6qRMvlP3oUjkBXt+zcn+rh6bjxciw/8APW4HsYDqIY+bklPAr2aW9o/
+	 VY+CyHGirqd0A==
+Date: Thu, 8 Feb 2024 19:26:15 +0000
+From: Conor Dooley <conor@kernel.org>
+To: Frank Li <Frank.Li@nxp.com>
+Cc: Bjorn Helgaas <bhelgaas@google.com>,
+	Lorenzo Pieralisi <lpieralisi@kernel.org>,
+	Krzysztof =?utf-8?Q?Wilczy=C5=84ski?= <kw@linux.com>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	"open list:PCI SUBSYSTEM" <linux-pci@vger.kernel.org>,
+	"open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" <devicetree@vger.kernel.org>,
+	open list <linux-kernel@vger.kernel.org>, imx@lists.linux.dev
+Subject: Re: [PATCH v2 1/1] dt-bindings: pci: layerscape-pci: Convert to yaml
+ file
+Message-ID: <20240208-subfloor-polka-96bbbbc27fb0@spud>
+References: <20240207231550.2663689-1-Frank.Li@nxp.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-OriginatorOrg: bp.renesas.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: TYCPR01MB11269.jpnprd01.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 08629697-b2c1-4c70-56d8-08dc28db02a1
-X-MS-Exchange-CrossTenant-originalarrivaltime: 08 Feb 2024 19:20:28.6424
- (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 53d82571-da19-47e4-9cb4-625a166a4a2a
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: y4fa70p3qpWRAV1IFvvPeoQjpQE1jz/Zt1/H8VuX0RszzQQE9bT9nmEREUsiMLUPQoH0oApQjdtJU0XK+aNAv3NzxWPYPqmyvyqSNX1M568=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: TY3PR01MB11722
+Content-Type: multipart/signed; micalg=pgp-sha256;
+	protocol="application/pgp-signature"; boundary="c8zVfnGHMbU1k5gA"
+Content-Disposition: inline
+In-Reply-To: <20240207231550.2663689-1-Frank.Li@nxp.com>
 
-DQoNCj4gLS0tLS1PcmlnaW5hbCBNZXNzYWdlLS0tLS0NCj4gRnJvbTogY2xhdWRpdSBiZXpuZWEg
-PGNsYXVkaXUuYmV6bmVhQHR1eG9uLmRldj4NCj4gU2VudDogVGh1cnNkYXksIEZlYnJ1YXJ5IDgs
-IDIwMjQgNDo1MyBQTQ0KPiBUbzogQmlqdSBEYXMgPGJpanUuZGFzLmp6QGJwLnJlbmVzYXMuY29t
-PjsgZ2VlcnQrcmVuZXNhc0BnbGlkZXIuYmU7DQo+IG10dXJxdWV0dGVAYmF5bGlicmUuY29tOyBz
-Ym95ZEBrZXJuZWwub3JnOyByb2JoQGtlcm5lbC5vcmc7DQo+IGtyenlzenRvZi5rb3psb3dza2kr
-ZHRAbGluYXJvLm9yZzsgY29ub3IrZHRAa2VybmVsLm9yZzsNCj4gbWFnbnVzLmRhbW1AZ21haWwu
-Y29tOyBwYXVsLndhbG1zbGV5QHNpZml2ZS5jb207IHBhbG1lckBkYWJiZWx0LmNvbTsNCj4gYW91
-QGVlY3MuYmVya2VsZXkuZWR1DQo+IENjOiBsaW51eC1yZW5lc2FzLXNvY0B2Z2VyLmtlcm5lbC5v
-cmc7IGxpbnV4LWNsa0B2Z2VyLmtlcm5lbC5vcmc7DQo+IGRldmljZXRyZWVAdmdlci5rZXJuZWwu
-b3JnOyBsaW51eC1rZXJuZWxAdmdlci5rZXJuZWwub3JnOyBsaW51eC0NCj4gcmlzY3ZAbGlzdHMu
-aW5mcmFkZWFkLm9yZzsgQ2xhdWRpdSBCZXpuZWENCj4gPGNsYXVkaXUuYmV6bmVhLnVqQGJwLnJl
-bmVzYXMuY29tPg0KPiBTdWJqZWN0OiBSZTogW1BBVENIIDAxLzE3XSBkdC1iaW5kaW5nczogY2xv
-Y2s6IHI5YTA3ZzA0My1jcGc6IEFkZCBwb3dlcg0KPiBkb21haW4gSURzDQo+IA0KPiANCj4gDQo+
-IE9uIDA4LjAyLjIwMjQgMTg6MjgsIEJpanUgRGFzIHdyb3RlOg0KPiA+DQo+ID4NCj4gPj4gLS0t
-LS1PcmlnaW5hbCBNZXNzYWdlLS0tLS0NCj4gPj4gRnJvbTogY2xhdWRpdSBiZXpuZWEgPGNsYXVk
-aXUuYmV6bmVhQHR1eG9uLmRldj4NCj4gPj4gU2VudDogVGh1cnNkYXksIEZlYnJ1YXJ5IDgsIDIw
-MjQgMzo0NiBQTQ0KPiA+PiBTdWJqZWN0OiBSZTogW1BBVENIIDAxLzE3XSBkdC1iaW5kaW5nczog
-Y2xvY2s6IHI5YTA3ZzA0My1jcGc6IEFkZA0KPiA+PiBwb3dlciBkb21haW4gSURzDQo+ID4+DQo+
-ID4+IEhpLCBCaWp1LA0KPiA+Pg0KPiA+PiBPbiAwOC4wMi4yMDI0IDE2OjMwLCBCaWp1IERhcyB3
-cm90ZToNCj4gPj4+IEhpIENsYXVkaXUsDQo+ID4+Pg0KPiA+Pj4gVGhhbmtzIGZvciB0aGUgcGF0
-Y2guDQo+ID4+Pg0KPiA+Pj4+IC0tLS0tT3JpZ2luYWwgTWVzc2FnZS0tLS0tDQo+ID4+Pj4gRnJv
-bTogQ2xhdWRpdSA8Y2xhdWRpdS5iZXpuZWFAdHV4b24uZGV2Pg0KPiA+Pj4+IFNlbnQ6IFRodXJz
-ZGF5LCBGZWJydWFyeSA4LCAyMDI0IDEyOjQzIFBNDQo+ID4+Pj4gU3ViamVjdDogW1BBVENIIDAx
-LzE3XSBkdC1iaW5kaW5nczogY2xvY2s6IHI5YTA3ZzA0My1jcGc6IEFkZCBwb3dlcg0KPiA+Pj4+
-IGRvbWFpbiBJRHMNCj4gPj4+Pg0KPiA+Pj4+IEZyb206IENsYXVkaXUgQmV6bmVhIDxjbGF1ZGl1
-LmJlem5lYS51akBicC5yZW5lc2FzLmNvbT4NCj4gPj4+Pg0KPiA+Pj4+IEFkZCBwb3dlciBkb21h
-aW4gSURzIGZvciBSWi9HMlVMIChSOUEwN0cwNDMpIFNvQy4NCj4gPj4+Pg0KPiA+Pj4+IFNpZ25l
-ZC1vZmYtYnk6IENsYXVkaXUgQmV6bmVhIDxjbGF1ZGl1LmJlem5lYS51akBicC5yZW5lc2FzLmNv
-bT4NCj4gPj4+PiAtLS0NCj4gPj4+PiAgaW5jbHVkZS9kdC1iaW5kaW5ncy9jbG9jay9yOWEwN2cw
-NDMtY3BnLmggfCA0OA0KPiA+Pj4+ICsrKysrKysrKysrKysrKysrKysrKysrDQo+ID4+Pj4gIDEg
-ZmlsZSBjaGFuZ2VkLCA0OCBpbnNlcnRpb25zKCspDQo+ID4+Pj4NCj4gPj4+PiBkaWZmIC0tZ2l0
-IGEvaW5jbHVkZS9kdC1iaW5kaW5ncy9jbG9jay9yOWEwN2cwNDMtY3BnLmgNCj4gPj4+PiBiL2lu
-Y2x1ZGUvZHQtIGJpbmRpbmdzL2Nsb2NrL3I5YTA3ZzA0My1jcGcuaCBpbmRleA0KPiA+Pj4+IDc3
-Y2RlOGVmZmRjNy4uZWFiZmVlYzdhYzM3DQo+ID4+Pj4gMTAwNjQ0DQo+ID4+Pj4gLS0tIGEvaW5j
-bHVkZS9kdC1iaW5kaW5ncy9jbG9jay9yOWEwN2cwNDMtY3BnLmgNCj4gPj4+PiArKysgYi9pbmNs
-dWRlL2R0LWJpbmRpbmdzL2Nsb2NrL3I5YTA3ZzA0My1jcGcuaA0KPiA+Pj4+IEBAIC0yMDAsNSAr
-MjAwLDUzIEBADQo+ID4+Pj4gICNkZWZpbmUgUjlBMDdHMDQzX0FYNDVNUF9DT1JFMF9SRVNFVE4J
-NzgJLyogUlovRml2ZSBPbmx5ICovDQo+ID4+Pj4gICNkZWZpbmUgUjlBMDdHMDQzX0lBWDQ1X1JF
-U0VUTgkJNzkJLyogUlovRml2ZSBPbmx5ICovDQo+ID4+Pj4NCj4gPj4+PiArLyogUG93ZXIgZG9t
-YWluIElEcy4gKi8NCj4gPj4+PiArI2RlZmluZSBSOUEwN0cwNDNfUERfQUxXQVlTX09OCQkwDQo+
-ID4+Pj4gKyNkZWZpbmUgUjlBMDdHMDQzX1BEX0dJQwkJMQ0KPiA+Pj4+ICsjZGVmaW5lIFI5QTA3
-RzA0M19QRF9JQTU1CQkyDQo+ID4+Pj4gKyNkZWZpbmUgUjlBMDdHMDQzX1BEX01IVQkJMw0KPiA+
-Pj4+ICsjZGVmaW5lIFI5QTA3RzA0M19QRF9DT1JFU0lHSFQJCTQNCj4gPj4+PiArI2RlZmluZSBS
-OUEwN0cwNDNfUERfU1lDCQk1DQo+ID4+Pj4gKyNkZWZpbmUgUjlBMDdHMDQzX1BEX0RNQUMJCTYN
-Cj4gPj4+PiArI2RlZmluZSBSOUEwN0cwNDNfUERfR1RNMAkJNw0KPiA+Pj4+ICsjZGVmaW5lIFI5
-QTA3RzA0M19QRF9HVE0xCQk4DQo+ID4+Pj4gKyNkZWZpbmUgUjlBMDdHMDQzX1BEX0dUTTIJCTkN
-Cj4gPj4+PiArI2RlZmluZSBSOUEwN0cwNDNfUERfTVRVCQkxMA0KPiA+Pj4+ICsjZGVmaW5lIFI5
-QTA3RzA0M19QRF9QT0UzCQkxMQ0KPiA+Pj4+ICsjZGVmaW5lIFI5QTA3RzA0M19QRF9XRFQwCQkx
-Mg0KPiA+Pj4+ICsjZGVmaW5lIFI5QTA3RzA0M19QRF9TUEkJCTEzDQo+ID4+Pj4gKyNkZWZpbmUg
-UjlBMDdHMDQzX1BEX1NESEkwCQkxNA0KPiA+Pj4+ICsjZGVmaW5lIFI5QTA3RzA0M19QRF9TREhJ
-MQkJMTUNCj4gPj4+PiArI2RlZmluZSBSOUEwN0cwNDNfUERfSVNVCQkxNg0KPiA+Pj4+ICsjZGVm
-aW5lIFI5QTA3RzA0M19QRF9DUlUJCTE3DQo+ID4+Pj4gKyNkZWZpbmUgUjlBMDdHMDQzX1BEX0xD
-REMJCTE4DQo+ID4+Pj4gKyNkZWZpbmUgUjlBMDdHMDQzX1BEX1NTSTAJCTE5DQo+ID4+Pj4gKyNk
-ZWZpbmUgUjlBMDdHMDQzX1BEX1NTSTEJCTIwDQo+ID4+Pj4gKyNkZWZpbmUgUjlBMDdHMDQzX1BE
-X1NTSTIJCTIxDQo+ID4+Pj4gKyNkZWZpbmUgUjlBMDdHMDQzX1BEX1NTSTMJCTIyDQo+ID4+Pj4g
-KyNkZWZpbmUgUjlBMDdHMDQzX1BEX1NSQwkJMjMNCj4gPj4+PiArI2RlZmluZSBSOUEwN0cwNDNf
-UERfVVNCMAkJMjQNCj4gPj4+PiArI2RlZmluZSBSOUEwN0cwNDNfUERfVVNCMQkJMjUNCj4gPj4+
-PiArI2RlZmluZSBSOUEwN0cwNDNfUERfVVNCX1BIWQkJMjYNCj4gPj4+PiArI2RlZmluZSBSOUEw
-N0cwNDNfUERfRVRIRVIwCQkyNw0KPiA+Pj4+ICsjZGVmaW5lIFI5QTA3RzA0M19QRF9FVEhFUjEJ
-CTI4DQo+ID4+Pj4gKyNkZWZpbmUgUjlBMDdHMDQzX1BEX0kyQzAJCTI5DQo+ID4+Pj4gKyNkZWZp
-bmUgUjlBMDdHMDQzX1BEX0kyQzEJCTMwDQo+ID4+Pj4gKyNkZWZpbmUgUjlBMDdHMDQzX1BEX0ky
-QzIJCTMxDQo+ID4+Pj4gKyNkZWZpbmUgUjlBMDdHMDQzX1BEX0kyQzMJCTMyDQo+ID4+Pj4gKyNk
-ZWZpbmUgUjlBMDdHMDQzX1BEX1NDSUYwCQkzMw0KPiA+Pj4+ICsjZGVmaW5lIFI5QTA3RzA0M19Q
-RF9TQ0lGMQkJMzQNCj4gPj4+PiArI2RlZmluZSBSOUEwN0cwNDNfUERfU0NJRjIJCTM1DQo+ID4+
-Pj4gKyNkZWZpbmUgUjlBMDdHMDQzX1BEX1NDSUYzCQkzNg0KPiA+Pj4+ICsjZGVmaW5lIFI5QTA3
-RzA0M19QRF9TQ0lGNAkJMzcNCj4gPj4+PiArI2RlZmluZSBSOUEwN0cwNDNfUERfU0NJMAkJMzgN
-Cj4gPj4+PiArI2RlZmluZSBSOUEwN0cwNDNfUERfU0NJMQkJMzkNCj4gPj4+PiArI2RlZmluZSBS
-OUEwN0cwNDNfUERfSVJEQQkJNDANCj4gPj4+PiArI2RlZmluZSBSOUEwN0cwNDNfUERfUlNQSTAJ
-CTQxDQo+ID4+Pj4gKyNkZWZpbmUgUjlBMDdHMDQzX1BEX1JTUEkxCQk0Mg0KPiA+Pj4+ICsjZGVm
-aW5lIFI5QTA3RzA0M19QRF9SU1BJMgkJNDMNCj4gPj4+PiArI2RlZmluZSBSOUEwN0cwNDNfUERf
-Q0FORkQJCTQ0DQo+ID4+Pj4gKyNkZWZpbmUgUjlBMDdHMDQzX1BEX0FEQwkJNDUNCj4gPj4+PiAr
-I2RlZmluZSBSOUEwN0cwNDNfUERfVFNVCQk0Ng0KPiA+Pj4NCj4gPj4+IE5vdCBzdXJlIGZyb20g
-IlRhYmxlIDQyLjMgUmVnaXN0ZXJzIGZvciBNb2R1bGUgU3RhbmRieSBNb2RlIg0KPiA+Pj4NCj4g
-Pj4+IFBvd2VyIGRvbWFpbiBJRCBoYXMgdG8gYmUgYmFzZWQgb24gQ1BHX0JVU18qKipfTVNUT1Ag
-b3INCj4gPj4+IENQR19DTEtPTl8qKiogQXMgZm9ybWVyIHJlZHVjZXMgbnVtYmVyIG9mIElEcz8/
-DQo+ID4+DQo+ID4+IElmIEkgdW5kZXJzdGFuZCBjb3JyZWN0bHkgeW91ciBwb2ludCBoZXJlLCB5
-b3Ugd2FudCBtZSB0byBkZXNjcmliZSBQTQ0KPiA+PiBkb21haW4gaW4gRFQgd2l0aCBzb21ldGhp
-bmcgbGlrZToNCj4gPj4NCj4gPj4gcG93ZXItZG9tYWlucyA9IDwmY3BnIENQR19CVVNfWF9NU1RP
-UD47DQo+ID4NCj4gPiBNU1RPUCBiaXRzIGFyZSBkaXN0aW5jdCBmb3IgZWFjaCBJUC4NCj4gPg0K
-PiA+IDwmY3BnIENQR19CVVNfTUNQVTFfTVNUT1AgeD47IHggPTEuLjkNCj4gPg0KPiA+IDI9TVRV
-IElQDQo+ID4NCj4gPiA0PSBHUFQNCj4gPg0KPiA+IGV0Yy4uLg0KPiA+DQo+ID4gSXMgaXQgc29t
-ZXRoaW5nIHdvcms/Pw0KPiANCj4gSXQgbWlnaHQgd29yay4gQnV0Og0KPiANCj4gLSB5b3UgaGF2
-ZSB0byBjb25zaWRlciB0aGF0IHNvbWUgSVBzIGhhdmUgbW9yZSB0aGFuIG9uZSBNU1RPUCBiaXQs
-IHRodXMsDQo+IGRvDQo+ICAgd2Ugd2FudCB0byB1bmlxdWVseSBpZGVudGlmeSB0aGVzZSB3aXRo
-IGFsbCBNU1RPUCBiaXRzICh0aHVzIHRoZSAybmQNCj4gY2VsbA0KPiAgIGJlaW5nIGEgYml0bWFz
-aykgb3Igb25seSBvbmUgaXMgZW5vdWdoPw0KDQpXZSBjYW4gaGF2ZSBhbiBlbmNvZGluZyBpbiB0
-aGF0IGNhc2UgODoxNiAyNCBiaXQgZW50cmllcw0KDQo+IC0gc29tZSBIVyBibG9ja3MgKGUuZy4g
-T1RGREVfRERSKSBoYXZlIG5vIE1TVE9QIGJpdHMgYXNzb2NpYXRlZCAoYXMgb2YgbXkNCj4gICBj
-dXJyZW50IHJlc2VhcmNoKSwgc28sIG9ubHkgUFdSRE4NCg0KV2h5IGRvIHdlIHdhbnQgdG8gYWRk
-IHBvd2VyIGRvbWFpbiBzdXBwb3J0IGZvciBERFI/DQoNCj4gLSBzb21lIEhXIGJsb2NrcyBoYXZl
-IGJvdGggTVNUT1AgYW5kIFBXUkRODQoNClRoYXQgd2lsbCBiZSBhbiBhcnJheSByaWdodD8NCg0K
-PiAtIGlmIGZ1dHVyZSBoYXJkd2FyZSBpbXBsZW1lbnRhdGlvbiB3aWxsIHNwcmVhZCB0aGUgTVNU
-T1AgYml0cyBmb3Igb25lIElQDQo+ICAgdG8gbW9yZSB0aGFuIG9uZSByZWdpc3RlciB0aGVuIHRo
-aXMgcHJvcG9zYWwgd2lsbCBub3Qgd29yaw0KDQpUaGF0IHdpbGwgYmUgYW4gYXJyYXkgcmlnaHQ/
-DQoNCkNoZWVycywNCkJpanUNCg==
+
+--c8zVfnGHMbU1k5gA
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
+
+On Wed, Feb 07, 2024 at 06:15:49PM -0500, Frank Li wrote:
+> Convert layerscape pcie bind document to yaml file.
+>=20
+> Signed-off-by: Frank Li <Frank.Li@nxp.com>
+
+Please don't send new versions before giving people a chance to finish
+the discussion on the existing ones. This is not the first time in the
+last few days I am asking you this. Nobody pays me to review DT
+bindings, so you'll have to accept that I will take some time to reply.
+
+Thanks,
+Conor.
+
+> ---
+>=20
+> Notes:
+>     Change from v1 to v2
+>     - remove '|-'
+>     - dma-coherent: true
+>     - add interrupts and interrupt-names at before Allof
+>     - remove ref to snps,pcie*.yaml, some reg-names are not aligned with =
+in
+>     drivers
+>     - Add an example for pcie-ep
+>=20
+>  .../bindings/pci/fsl,layerscape-pcie-ep.yaml  | 102 +++++++++++
+>  .../bindings/pci/fsl,layerscape-pcie.yaml     | 167 ++++++++++++++++++
+>  .../bindings/pci/layerscape-pci.txt           |  79 ---------
+>  3 files changed, 269 insertions(+), 79 deletions(-)
+>  create mode 100644 Documentation/devicetree/bindings/pci/fsl,layerscape-=
+pcie-ep.yaml
+>  create mode 100644 Documentation/devicetree/bindings/pci/fsl,layerscape-=
+pcie.yaml
+>  delete mode 100644 Documentation/devicetree/bindings/pci/layerscape-pci.=
+txt
+>=20
+> diff --git a/Documentation/devicetree/bindings/pci/fsl,layerscape-pcie-ep=
+=2Eyaml b/Documentation/devicetree/bindings/pci/fsl,layerscape-pcie-ep.yaml
+> new file mode 100644
+> index 0000000000000..399efa7364c93
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/pci/fsl,layerscape-pcie-ep.yaml
+> @@ -0,0 +1,102 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/pci/fsl,layerscape-pcie-ep.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: Freescale Layerscape PCIe Endpoint(EP) controller
+> +
+> +maintainers:
+> +  - Frank Li <Frank.Li@nxp.com>
+> +
+> +description:
+> +  This PCIe EP controller is based on the Synopsys DesignWare PCIe IP.
+> +
+> +  This controller derives its clocks from the Reset Configuration Word (=
+RCW)
+> +  which is used to describe the PLL settings at the time of chip-reset.
+> +
+> +  Also as per the available Reference Manuals, there is no specific 'ver=
+sion'
+> +  register available in the Freescale PCIe controller register set,
+> +  which can allow determining the underlying DesignWare PCIe controller =
+version
+> +  information.
+> +
+> +properties:
+> +  compatible:
+> +    enum:
+> +      - fsl,ls2088a-pcie-ep
+> +      - fsl,ls1088a-pcie-ep
+> +      - fsl,ls1046a-pcie-ep
+> +      - fsl,ls1028a-pcie-ep
+> +      - fsl,lx2160ar2-pcie-ep
+> +
+> +  reg:
+> +    maxItems: 2
+> +
+> +  reg-names:
+> +    items:
+> +      - const: regs
+> +      - const: addr_space
+> +
+> +  fsl,pcie-scfg:
+> +    $ref: /schemas/types.yaml#/definitions/phandle
+> +    description: A phandle to the SCFG device node. The second entry is =
+the
+> +      physical PCIe controller index starting from '0'. This is used to =
+get
+> +      SCFG PEXN registers.
+> +
+> +  big-endian:
+> +    $ref: /schemas/types.yaml#/definitions/flag
+> +    description: If the PEX_LUT and PF register block is in big-endian, =
+specify
+> +      this property.
+> +
+> +  dma-coherent: true
+> +
+> +  interrupts:
+> +    minItems: 1
+> +    maxItems: 2
+> +
+> +  interrupt-names:
+> +    minItems: 1
+> +    maxItems: 2
+> +
+> +required:
+> +  - compatible
+> +  - reg
+> +  - reg-names
+> +
+> +allOf:
+> +  - if:
+> +      properties:
+> +        compatible:
+> +          enum:
+> +            - fsl,ls1028a-pcie-ep
+> +            - fsl,ls1046a-pcie-ep
+> +            - fsl,ls1088a-pcie-ep
+> +    then:
+> +      properties:
+> +        interrupt-names:
+> +          items:
+> +            - const: pme
+> +
+> +unevaluatedProperties: false
+> +
+> +examples:
+> +  - |
+> +    #include <dt-bindings/interrupt-controller/arm-gic.h>
+> +
+> +    soc {
+> +      #address-cells =3D <2>;
+> +      #size-cells =3D <2>;
+> +
+> +      pcie_ep1: pcie-ep@3400000 {
+> +        compatible =3D "fsl,ls1028a-pcie-ep";
+> +        reg =3D <0x00 0x03400000 0x0 0x00100000
+> +              0x80 0x00000000 0x8 0x00000000>;
+> +        reg-names =3D "regs", "addr_space";
+> +        interrupts =3D <GIC_SPI 108 IRQ_TYPE_LEVEL_HIGH>; /* PME interru=
+pt */
+> +        interrupt-names =3D "pme";
+> +        num-ib-windows =3D <6>;
+> +        num-ob-windows =3D <8>;
+> +        status =3D "disabled";
+> +      };
+> +    };
+> +...
+> diff --git a/Documentation/devicetree/bindings/pci/fsl,layerscape-pcie.ya=
+ml b/Documentation/devicetree/bindings/pci/fsl,layerscape-pcie.yaml
+> new file mode 100644
+> index 0000000000000..793986c5af7ff
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/pci/fsl,layerscape-pcie.yaml
+> @@ -0,0 +1,167 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/pci/fsl,layerscape-pcie.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: Freescale Layerscape PCIe Root Complex(RC) controller
+> +
+> +maintainers:
+> +  - Frank Li <Frank.Li@nxp.com>
+> +
+> +description:
+> +  This PCIe RC controller is based on the Synopsys DesignWare PCIe IP
+> +
+> +  This controller derives its clocks from the Reset Configuration Word (=
+RCW)
+> +  which is used to describe the PLL settings at the time of chip-reset.
+> +
+> +  Also as per the available Reference Manuals, there is no specific 'ver=
+sion'
+> +  register available in the Freescale PCIe controller register set,
+> +  which can allow determining the underlying DesignWare PCIe controller =
+version
+> +  information.
+> +
+> +properties:
+> +  compatible:
+> +    enum:
+> +      - fsl,ls1021a-pcie
+> +      - fsl,ls2080a-pcie
+> +      - fsl,ls2085a-pcie
+> +      - fsl,ls2088a-pcie
+> +      - fsl,ls1088a-pcie
+> +      - fsl,ls1046a-pcie
+> +      - fsl,ls1043a-pcie
+> +      - fsl,ls1012a-pcie
+> +      - fsl,ls1028a-pcie
+> +      - fsl,lx2160a-pcie
+> +
+> +  reg:
+> +    maxItems: 2
+> +
+> +  reg-names:
+> +    items:
+> +      - const: regs
+> +      - const: config
+> +
+> +  fsl,pcie-scfg:
+> +    $ref: /schemas/types.yaml#/definitions/phandle
+> +    description: A phandle to the SCFG device node. The second entry is =
+the
+> +      physical PCIe controller index starting from '0'. This is used to =
+get
+> +      SCFG PEXN registers.
+> +
+> +  big-endian:
+> +    $ref: /schemas/types.yaml#/definitions/flag
+> +    description: If the PEX_LUT and PF register block is in big-endian, =
+specify
+> +      this property.
+> +
+> +  dma-coherent: true
+> +
+> +  msi-parent: true
+> +
+> +  iommu-map: true
+> +
+> +  interrupts:
+> +    minItems: 1
+> +    maxItems: 2
+> +
+> +  interrupt-names:
+> +    minItems: 1
+> +    maxItems: 2
+> +
+> +required:
+> +  - compatible
+> +  - reg
+> +  - reg-names
+> +  - "#address-cells"
+> +  - "#size-cells"
+> +  - device_type
+> +  - bus-range
+> +  - ranges
+> +  - interrupts
+> +  - interrupt-names
+> +  - "#interrupt-cells"
+> +  - interrupt-map-mask
+> +  - interrupt-map
+> +
+> +allOf:
+> +  - $ref: /schemas/pci/pci-bus.yaml#
+> +
+> +  - if:
+> +      properties:
+> +        compatible:
+> +          enum:
+> +            - fsl,ls1028a-pcie
+> +            - fsl,ls1046a-pcie
+> +            - fsl,ls1043a-pcie
+> +            - fsl,ls1012a-pcie
+> +    then:
+> +      properties:
+> +        interrupts:
+> +          maxItems: 2
+> +        interrupt-names:
+> +          items:
+> +            - const: pme
+> +            - const: aer
+> +
+> +  - if:
+> +      properties:
+> +        compatible:
+> +          enum:
+> +            - fsl,ls2080a-pcie
+> +            - fsl,ls2085a-pcie
+> +            - fsl,ls2088a-pcie
+> +    then:
+> +      properties:
+> +        interrupts:
+> +          maxItems: 1
+> +        interrupt-names:
+> +          items:
+> +            - const: intr
+> +
+> +  - if:
+> +      properties:
+> +        compatible:
+> +          enum:
+> +            - fsl,ls1088a-pcie
+> +    then:
+> +      properties:
+> +        interrupts:
+> +          maxItems: 1
+> +        interrupt-names:
+> +          items:
+> +            - const: aer
+> +
+> +unevaluatedProperties: false
+> +
+> +examples:
+> +  - |
+> +    #include <dt-bindings/interrupt-controller/arm-gic.h>
+> +
+> +    soc {
+> +      #address-cells =3D <2>;
+> +      #size-cells =3D <2>;
+> +
+> +      pcie@3400000 {
+> +        compatible =3D "fsl,ls1088a-pcie";
+> +        reg =3D <0x00 0x03400000 0x0 0x00100000>, /* controller register=
+s */
+> +            <0x20 0x00000000 0x0 0x00002000>; /* configuration space */
+> +        reg-names =3D "regs", "config";
+> +        interrupts =3D <0 108 IRQ_TYPE_LEVEL_HIGH>; /* aer interrupt */
+> +        interrupt-names =3D "aer";
+> +        #address-cells =3D <3>;
+> +        #size-cells =3D <2>;
+> +        dma-coherent;
+> +        device_type =3D "pci";
+> +        bus-range =3D <0x0 0xff>;
+> +        ranges =3D <0x81000000 0x0 0x00000000 0x20 0x00010000 0x0 0x0001=
+0000   /* downstream I/O */
+> +                 0x82000000 0x0 0x40000000 0x20 0x40000000 0x0 0x4000000=
+0>; /* non-prefetchable memory */
+> +        msi-parent =3D <&its>;
+> +        #interrupt-cells =3D <1>;
+> +        interrupt-map-mask =3D <0 0 0 7>;
+> +        interrupt-map =3D <0000 0 0 1 &gic 0 0 0 109 IRQ_TYPE_LEVEL_HIGH=
+>,
+> +                        <0000 0 0 2 &gic 0 0 0 110 IRQ_TYPE_LEVEL_HIGH>,
+> +                        <0000 0 0 3 &gic 0 0 0 111 IRQ_TYPE_LEVEL_HIGH>,
+> +                        <0000 0 0 4 &gic 0 0 0 112 IRQ_TYPE_LEVEL_HIGH>;
+> +        iommu-map =3D <0 &smmu 0 1>; /* Fixed-up by bootloader */
+> +      };
+> +    };
+> +...
+> diff --git a/Documentation/devicetree/bindings/pci/layerscape-pci.txt b/D=
+ocumentation/devicetree/bindings/pci/layerscape-pci.txt
+> deleted file mode 100644
+> index ee8a4791a78b4..0000000000000
+> --- a/Documentation/devicetree/bindings/pci/layerscape-pci.txt
+> +++ /dev/null
+> @@ -1,79 +0,0 @@
+> -Freescale Layerscape PCIe controller
+> -
+> -This PCIe host controller is based on the Synopsys DesignWare PCIe IP
+> -and thus inherits all the common properties defined in snps,dw-pcie.yaml.
+> -
+> -This controller derives its clocks from the Reset Configuration Word (RC=
+W)
+> -which is used to describe the PLL settings at the time of chip-reset.
+> -
+> -Also as per the available Reference Manuals, there is no specific 'versi=
+on'
+> -register available in the Freescale PCIe controller register set,
+> -which can allow determining the underlying DesignWare PCIe controller ve=
+rsion
+> -information.
+> -
+> -Required properties:
+> -- compatible: should contain the platform identifier such as:
+> -  RC mode:
+> -        "fsl,ls1021a-pcie"
+> -        "fsl,ls2080a-pcie", "fsl,ls2085a-pcie"
+> -        "fsl,ls2088a-pcie"
+> -        "fsl,ls1088a-pcie"
+> -        "fsl,ls1046a-pcie"
+> -        "fsl,ls1043a-pcie"
+> -        "fsl,ls1012a-pcie"
+> -        "fsl,ls1028a-pcie"
+> -  EP mode:
+> -	"fsl,ls1028a-pcie-ep", "fsl,ls-pcie-ep"
+> -	"fsl,ls1046a-pcie-ep", "fsl,ls-pcie-ep"
+> -	"fsl,ls1088a-pcie-ep", "fsl,ls-pcie-ep"
+> -	"fsl,ls2088a-pcie-ep", "fsl,ls-pcie-ep"
+> -	"fsl,lx2160ar2-pcie-ep", "fsl,ls-pcie-ep"
+> -- reg: base addresses and lengths of the PCIe controller register blocks.
+> -- interrupts: A list of interrupt outputs of the controller. Must contai=
+n an
+> -  entry for each entry in the interrupt-names property.
+> -- interrupt-names: It could include the following entries:
+> -  "aer": Used for interrupt line which reports AER events when
+> -	 non MSI/MSI-X/INTx mode is used
+> -  "pme": Used for interrupt line which reports PME events when
+> -	 non MSI/MSI-X/INTx mode is used
+> -  "intr": Used for SoCs(like ls2080a, lx2160a, ls2080a, ls2088a, ls1088a)
+> -	  which has a single interrupt line for miscellaneous controller
+> -	  events(could include AER and PME events).
+> -- fsl,pcie-scfg: Must include two entries.
+> -  The first entry must be a link to the SCFG device node
+> -  The second entry is the physical PCIe controller index starting from '=
+0'.
+> -  This is used to get SCFG PEXN registers
+> -- dma-coherent: Indicates that the hardware IP block can ensure the cohe=
+rency
+> -  of the data transferred from/to the IP block. This can avoid the softw=
+are
+> -  cache flush/invalid actions, and improve the performance significantly.
+> -
+> -Optional properties:
+> -- big-endian: If the PEX_LUT and PF register block is in big-endian, spe=
+cify
+> -  this property.
+> -
+> -Example:
+> -
+> -        pcie@3400000 {
+> -                compatible =3D "fsl,ls1088a-pcie";
+> -                reg =3D <0x00 0x03400000 0x0 0x00100000>, /* controller =
+registers */
+> -                      <0x20 0x00000000 0x0 0x00002000>; /* configuration=
+ space */
+> -                reg-names =3D "regs", "config";
+> -                interrupts =3D <0 108 IRQ_TYPE_LEVEL_HIGH>; /* aer inter=
+rupt */
+> -                interrupt-names =3D "aer";
+> -                #address-cells =3D <3>;
+> -                #size-cells =3D <2>;
+> -                device_type =3D "pci";
+> -                dma-coherent;
+> -                num-viewport =3D <256>;
+> -                bus-range =3D <0x0 0xff>;
+> -                ranges =3D <0x81000000 0x0 0x00000000 0x20 0x00010000 0x=
+0 0x00010000   /* downstream I/O */
+> -                          0x82000000 0x0 0x40000000 0x20 0x40000000 0x0 =
+0x40000000>; /* non-prefetchable memory */
+> -                msi-parent =3D <&its>;
+> -                #interrupt-cells =3D <1>;
+> -                interrupt-map-mask =3D <0 0 0 7>;
+> -                interrupt-map =3D <0000 0 0 1 &gic 0 0 0 109 IRQ_TYPE_LE=
+VEL_HIGH>,
+> -                                <0000 0 0 2 &gic 0 0 0 110 IRQ_TYPE_LEVE=
+L_HIGH>,
+> -                                <0000 0 0 3 &gic 0 0 0 111 IRQ_TYPE_LEVE=
+L_HIGH>,
+> -                                <0000 0 0 4 &gic 0 0 0 112 IRQ_TYPE_LEVE=
+L_HIGH>;
+> -                iommu-map =3D <0 &smmu 0 1>; /* Fixed-up by bootloader */
+> -        };
+> --=20
+> 2.34.1
+>=20
+
+--c8zVfnGHMbU1k5gA
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZcUq1wAKCRB4tDGHoIJi
+0knIAP0conUEI0xDLtG5rFbTfR5akdlBa5fcql7l753maO/RkgEA3/RVZWkRFIjL
+jUKzXUJfyP805/XgLtB8A25fFQ4x5Qg=
+=5ziL
+-----END PGP SIGNATURE-----
+
+--c8zVfnGHMbU1k5gA--
 
