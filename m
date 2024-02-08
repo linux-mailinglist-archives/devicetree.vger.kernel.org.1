@@ -1,74 +1,75 @@
-Return-Path: <devicetree+bounces-39631-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-39632-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2864084DC85
-	for <lists+devicetree@lfdr.de>; Thu,  8 Feb 2024 10:12:39 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2F13984DC8E
+	for <lists+devicetree@lfdr.de>; Thu,  8 Feb 2024 10:13:46 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 4D1751C20E12
-	for <lists+devicetree@lfdr.de>; Thu,  8 Feb 2024 09:12:38 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 99101B21F51
+	for <lists+devicetree@lfdr.de>; Thu,  8 Feb 2024 09:13:43 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8A3BC6BB3B;
-	Thu,  8 Feb 2024 09:12:34 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E0C2A6BB55;
+	Thu,  8 Feb 2024 09:13:34 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="gQ5Ju95+"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="xqTQOE83"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wr1-f41.google.com (mail-wr1-f41.google.com [209.85.221.41])
+Received: from mail-wr1-f44.google.com (mail-wr1-f44.google.com [209.85.221.44])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 952116931C
-	for <devicetree@vger.kernel.org>; Thu,  8 Feb 2024 09:12:32 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.41
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 23A946BB42
+	for <devicetree@vger.kernel.org>; Thu,  8 Feb 2024 09:13:32 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.44
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1707383554; cv=none; b=f1URHSXfHh9pCG8sxjHYdthpMm4U4EP/YF9ugtzFArTm/fGCR6kyxc7E1LQXbzinYMEFQMO2iimnuO86tqeo1QwH1RXwl4nHZ0aP5h6nvl9IY3aqzJZRqx8TDxM5Di4QyB3xw5nvWVKzjreQ3l/NuE+YYXQqmpCRWEYYOXGoQDY=
+	t=1707383614; cv=none; b=iCc6cjT3qJ2v7TrUg80wnhdKtzhtwSuyz+g4JSBIl+/pMP2MCc0MvJdxhMmN3uptDXoeh8fpABhhW3mn2RJ+jNF6/q61TiLnRoGmjAVZVG8dQcln/FdV3Q++7vcuLcUmxSvLVNgmVnnfOnVLm9RMq9BduTq85rQ7ygA5L4ZE1DA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1707383554; c=relaxed/simple;
-	bh=e5f5GRj9rwLD/m3HqFj8t/1npzy9Xt+rj3nQlCMLK9Q=;
+	s=arc-20240116; t=1707383614; c=relaxed/simple;
+	bh=1I1yKQ80oZdg/1cOG6tN/GRuKHREtAW08DYzVMOBkCQ=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=CRQHRvcmkTGYLyF0uwuwwfSUgPSWyEnq70btC33a5PiOzsqy55yFHMvhkuM0JdT5M6VzR6JAYAdKlbTGgv4b15OaWKScmonmK+HobaxD/exbMwF5tEpzoHnzL+zZ+7THEpIhMWgEXglXBmTD09GRb84+HJqXFmqIcMZOgkBiTt8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=gQ5Ju95+; arc=none smtp.client-ip=209.85.221.41
+	 In-Reply-To:Content-Type; b=OOz+sGPlHzOnEWu6JHxnW+TMFEZjaS9tDNmkLuQB0/2FxE/ojcPCcrnwm0OvcsdgeMuDMFpW3CFQOArnuw7/aB3DXhxjO7katSKXmlwRSRmnpxzWj0oapuH4dj7FJpx8f/Hls0emM8CbXHvEmmK4e16ui+sM8JilO6j9pkENXh8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=xqTQOE83; arc=none smtp.client-ip=209.85.221.44
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-wr1-f41.google.com with SMTP id ffacd0b85a97d-33b2fba3176so949514f8f.0
-        for <devicetree@vger.kernel.org>; Thu, 08 Feb 2024 01:12:32 -0800 (PST)
+Received: by mail-wr1-f44.google.com with SMTP id ffacd0b85a97d-33b586e38f7so233449f8f.1
+        for <devicetree@vger.kernel.org>; Thu, 08 Feb 2024 01:13:32 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1707383551; x=1707988351; darn=vger.kernel.org;
+        d=linaro.org; s=google; t=1707383611; x=1707988411; darn=vger.kernel.org;
         h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
          :to:content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=Y5eybrynvjns/Wtq7b/PZsWmH5mdyHyY+UrR2V8V3g4=;
-        b=gQ5Ju95+RRhuEh7pLqWFjwKTDBxJz4FlHzJ0JF/U2Nf5zSBNnNew3ZiwzenKORXzin
-         fuNmZgeY6rxWu4kNjExn5oju1HtcxXCyUe7oGSR+mQ0o84SecUo6Rhvo/eoEYNpAD55B
-         1O/2fp/iOavn240CbrQbJ0gFgDoTj5DWYfcizyjfSCfzWKfRqv4gGl7hdwahpH2elrdS
-         njC82+Q9IEjlWOBR9QyLYgyXhi8MndBDzpuAUFOQATTSve4dHW2kPjyWky6cGFvXeSH7
-         gDHtpeNc0PPIBNZY50gcb1Brem/awsMNO1cw8G6g9hFwO11eq4LWOBWSYA7zNogT99dn
-         kDuw==
+        bh=CnUe9V7duXEuvCT+1bn2cFd0u4tuG7u2zc21WRUzJJk=;
+        b=xqTQOE83xfIM3zhifXQ2bBQXuZM5v2N6519czFoLsYGE/UvEJ0PlkAPbggKCmAo7EC
+         3CxDURBRfaNPx5UW/UT7CIqzn9Kg1J+fXzjQc3lEbBpfHWtK5ddof5T+j7FxfrBOyg5D
+         G+gQmlodWemtCNQ+4g4H5a2vmQw78S4ET14pnPHw2xAtUAGZ1rEpv2vbpodoiUokVDfD
+         7+gJ/OJMYJ8wvUlPOcFpLrkF5dGdp7RGQFqAgEyfmdCFzXgfcIGwIW2vXsQJVz5zdpyM
+         y5a2flzELws1l0wiKcFNqmX7sEo/EcKnUbtDVGxq6a7HGQjGJ9KOLd/VDXq7MGDeWh4u
+         iXBA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1707383551; x=1707988351;
+        d=1e100.net; s=20230601; t=1707383611; x=1707988411;
         h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
          :to:content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=Y5eybrynvjns/Wtq7b/PZsWmH5mdyHyY+UrR2V8V3g4=;
-        b=Pblkjva9YBtiDM/P5VmuwQD9eHZZfK1gHqe/vjYNBdN/gfJXTU4OGKjneWo9C3akuB
-         cp6AfcT8X4Z5glLJW4JQJmAIkGcuq5BAEiYPzKvuHp3gysSVoAB499Z/olPm/JvMAlB4
-         F94JsJcGNdxQUC/+vCkXUr0TQBnyBXlGpwCY1ysXcQ+g38JxKVX5QB7nJ2+LWfEfiGGO
-         xzPvS3XOGnQt+beSFSTE8CgqZNyo7JkGVkg+OYuRnwaXd8R8y0rTEl5+HYJJxly06h98
-         xVkCtQ8jcaT4W4AADKyRpPDma3n/mg+OODNcqW2fmVbgt6rE91GljGdgWLd+kTtXguY2
-         HqfQ==
-X-Gm-Message-State: AOJu0YxUjUougTWh4vMlmIqB2qjH4+X/IXwMBxx7hT62Y8FV5KPfiMkM
-	tHbIX6jQH6LvoruGUZVAEHSVTEW7Zu38fph7d/kTGSi+t8nu1pLGaKaKBe217U0=
-X-Google-Smtp-Source: AGHT+IFEVSjU54mXWQNKgdwLchAZkMEQQmVLOMO4sUAlJHwkGiVK5NVODPQN1MRg66rCkEtDhDDW8w==
-X-Received: by 2002:a05:6000:ce:b0:33b:5b90:f62a with SMTP id q14-20020a05600000ce00b0033b5b90f62amr325224wrx.17.1707383550696;
-        Thu, 08 Feb 2024 01:12:30 -0800 (PST)
-X-Forwarded-Encrypted: i=1; AJvYcCVx3rY+59XE52vIbPHrU4E5vT1UjVE0bm4rYjHlOZiLI6VlVcMWKIZ83ubcvWdBbFc76L7Q42ItPf7G2xEHQMmrUn5Un2sLNQ2B4E2TE1q1I4AyLz4HvMAK/stJUQNnqKnN5XWIrfp3WSIYrhDxZ9nwTr4/rhM6rt+Z4pY2Cae7FFQ9OOXA2YfOkFyD2B9s3cSt0b6Kqf9fumsb/R0k97/DteQrTNupkqznzj0ugdXuXsWkFRI2Z3u56Nmw/UZUqtG1pA9BP1S7bln7qtt8j54Ys5yspLEeWr9LTJIXbQXd68MyCL5wzkFxpRJuzfZnUJ7ObkiEDrIjHAzj0sIyJO2e1SDrfjDp8gft9yJmfOcsnAEnENA9IwYAtcDuvB/CJyat56F4BW5KJbNjxKi+JuYzoOHxyHRCmi+6sjOhlAvf8aZHWikUCahWBCOgg7S7TVSEv6Kz50sQEa65GrpjhdLiLRkS2+GPUYJJ+UEO0IlXfoWptfk/BoULOQ==
+        bh=CnUe9V7duXEuvCT+1bn2cFd0u4tuG7u2zc21WRUzJJk=;
+        b=Bls6IFY1vq4n4eZp7yPlyXxcuFGXbUU7+OSxbkBFJ/PZXsJGDvRE38db9Y+yBZIjGN
+         x2MYAK2PvpPQZrBVBNwERDc5eemiKCfpti7CARBLMemo8AHmtWTgz9izmlGa0Gx1plaQ
+         PTU80cGq+UT8NBWTlZzDReGV2/PGMBFKL8OxGSi2uTOrizFv6hGidSxE4yDIjczsrd0V
+         JYZSzAP+1B60WHSDJTxUAIvTMX1LAwiE7IjWPjDKwNRHcfqd7z2WadJ2DJf2PbLhWecr
+         w8siv22DGEa1S+c09sf9miC5TngEivQN8QnnmnR08g4Vd3q4YEhalS7BpOqDaA9zjb2J
+         IGpg==
+X-Forwarded-Encrypted: i=1; AJvYcCXIrma/iLBZpugjwoua+2IUQUmJZjiIy01Io43SBaDHYy/cUCI5WoeYDZDjmhgQYbVKtDDedJq7bA9CXdNHQ19w/Brtqchjqjcz0Q==
+X-Gm-Message-State: AOJu0YwFDQe5BYi1DIvd1pZhcdDse0sSfuUyDM1aH3E0N6H83/7BWNN3
+	RDsV2hGvM385vOUsTgD6pxyx5v6L6WdwSHtLezkAi4H/PGIQESlaszWKnHoeo5A=
+X-Google-Smtp-Source: AGHT+IGhcZporjbNJC0FuJkYYJQqSPzXnwrl/iTsWobOD7HDOJjGtaH0syrvc4IdK87GHHpq+0ANvQ==
+X-Received: by 2002:a05:6000:1a51:b0:33b:401f:bd59 with SMTP id t17-20020a0560001a5100b0033b401fbd59mr5148784wry.14.1707383611408;
+        Thu, 08 Feb 2024 01:13:31 -0800 (PST)
+X-Forwarded-Encrypted: i=1; AJvYcCVxgEfq9R0qrJX7wQwCORRmrGYQ+NmOEmI2OeomoR6snSIxST88mpuC1mEfjkHkIR9KwNdD07JmzbqQLINtjYeIlsLY5yMZ0GjMFP0HOJkiwVs23B/pSqqY6NoDuMsUMe5Gm/zlFJ80TF+qTTM7vfce85jiBa7auPyeWfQTGj5q9jp2pkilt6qEPOXx0y+uGOCGW4moKea/Vvlw+9O+DQwA3l0Liu+CtBSNfYGxROWoIXl6/yYwgEe5Ke36mrF1C1cF23bn9YF2UR55Lkke9t/WBtm5HdcwpeScwd4+3414w7IFvy8DgnPsR1PNoPyvdlUJONSTA/9kek9J4GDCqJvUeZuzKy5N6pdP2qo4dMHgdhH/qKSCntGg/u7rt2GCsIEmi8B4fIcptEzEgHaiiIQ0Pm8f5r6qMP73hmhEQoM=
 Received: from [192.168.1.20] ([178.197.222.62])
-        by smtp.gmail.com with ESMTPSA id a6-20020a056000100600b0033b3c03053esm3174687wrx.78.2024.02.08.01.12.28
+        by smtp.gmail.com with ESMTPSA id a6-20020a056000100600b0033b3c03053esm3174687wrx.78.2024.02.08.01.13.30
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 08 Feb 2024 01:12:30 -0800 (PST)
-Message-ID: <cb7b7f91-5fcc-4efe-9066-2eb3de836361@linaro.org>
-Date: Thu, 8 Feb 2024 10:12:28 +0100
+        Thu, 08 Feb 2024 01:13:30 -0800 (PST)
+Message-ID: <acf9dce0-10c3-4ad8-b96a-5f44b6428497@linaro.org>
+Date: Thu, 8 Feb 2024 10:13:30 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -76,28 +77,27 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 1/2] dt-bindings: net: dp83826: support TX data voltage
- tuning
+Subject: Re: [PATCH 2/3] arm64: dts: qcom: sa8295p: Enable tertiary controller
+ and its 4 USB ports
 Content-Language: en-US
-To: POPESCU Catalin <catalin.popescu@leica-geosystems.com>,
- "davem@davemloft.net" <davem@davemloft.net>,
- "kuba@kernel.org" <kuba@kernel.org>, "pabeni@redhat.com"
- <pabeni@redhat.com>, "robh+dt@kernel.org" <robh+dt@kernel.org>,
- "krzysztof.kozlowski+dt@linaro.org" <krzysztof.kozlowski+dt@linaro.org>,
- "conor+dt@kernel.org" <conor+dt@kernel.org>, "afd@ti.com" <afd@ti.com>,
- "andrew@lunn.ch" <andrew@lunn.ch>,
- "hkallweit1@gmail.com" <hkallweit1@gmail.com>,
- "linux@armlinux.org.uk" <linux@armlinux.org.uk>
-Cc: "netdev@vger.kernel.org" <netdev@vger.kernel.org>,
- "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
- "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
- GEO-CHHER-bsp-development <bsp-development.geo@leica-geosystems.com>,
- "m.felsch@pengutronix.de" <m.felsch@pengutronix.de>
-References: <20240207175845.764775-1-catalin.popescu@leica-geosystems.com>
- <a4949983-f6ba-4d98-b180-755de6b11d0f@linaro.org>
- <83f00386-e741-4bde-bcfb-462fadde1519@leica-geosystems.com>
- <2c4e76f5-0a13-44b5-8ece-3deb957dd260@linaro.org>
- <f35e239d-3f78-40e1-8d5b-4d7b949f08aa@leica-geosystems.com>
+To: Krishna Kurapati PSSNV <quic_kriskura@quicinc.com>,
+ Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
+ Konrad Dybcio <konrad.dybcio@linaro.org>,
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
+Cc: Rob Herring <robh+dt@kernel.org>, Bjorn Andersson <andersson@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>, linux-kernel@vger.kernel.org,
+ linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+ quic_ppratap@quicinc.com, quic_jackp@quicinc.com
+References: <20240206114745.1388491-1-quic_kriskura@quicinc.com>
+ <20240206114745.1388491-3-quic_kriskura@quicinc.com>
+ <CAA8EJpoed-hu4hPXAcwQxmJAaNRwJ2y5q9qybWaPP8bdMnz_oA@mail.gmail.com>
+ <0470a930-d629-4467-b619-58d3e76f59a7@quicinc.com>
+ <CAA8EJppJAdHXoVs_2VqQf=_Wk_LoEcNMY2H-Xzqu8KzeaN8i0g@mail.gmail.com>
+ <fd4f4cc8-3366-485b-b540-b05ef59dd5d4@quicinc.com>
+ <CAA8EJppi+3cJqzkhcaDR_3w_Qhy_AzLBJsW7-dtugzE1egM3Kg@mail.gmail.com>
+ <7500f1f8-1d97-4fa9-a7cd-7dea0ad52e00@quicinc.com>
+ <CAA8EJpoe-gaSgD_HruYSUAPgfBNCw9-G9wnEnvpkiCtmrqFQ7A@mail.gmail.com>
+ <62bba89d-97b0-4129-8abe-6025790d9d13@quicinc.com>
 From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  xsFNBFVDQq4BEAC6KeLOfFsAvFMBsrCrJ2bCalhPv5+KQF2PS2+iwZI8BpRZoV+Bd5kWvN79
@@ -143,73 +143,37 @@ Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  KQ06ztUMRrj8eVtpImjsWCd0bDWRaaR4vqhCHvAG9iWXZu4qh3ipie2Y0oSJygcZT7H3UZxq
  fyYKiqEmRuqsvv6dcbblD8ZLkz1EVZL6djImH5zc5x8qpVxlA0A0i23v5QvN00m6G9NFF0Le
  D2GYIS41Kv4Isx2dEFh+/Q==
-In-Reply-To: <f35e239d-3f78-40e1-8d5b-4d7b949f08aa@leica-geosystems.com>
+In-Reply-To: <62bba89d-97b0-4129-8abe-6025790d9d13@quicinc.com>
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+Content-Transfer-Encoding: 7bit
 
-On 08/02/2024 10:08, POPESCU Catalin wrote:
-> On 08.02.24 09:50, Krzysztof Kozlowski wrote:
->> This email is not from Hexagon’s Office 365 instance. Please be careful while clicking links, opening attachments, or replying to this email.
->>
->>
->> On 08/02/2024 09:48, POPESCU Catalin wrote:
->>> On 08.02.24 08:35, Krzysztof Kozlowski wrote:
->>>> [You don't often get email from krzysztof.kozlowski@linaro.org. Learn why this is important at https://aka.ms/LearnAboutSenderIdentification ]
+On 08/02/2024 10:07, Krishna Kurapati PSSNV wrote:
 >>>>
->>>> This email is not from Hexagon’s Office 365 instance. Please be careful while clicking links, opening attachments, or replying to this email.
+>>>>> One query. If we model it as a regulator, do we need to add it as a
+>>>>> supply and call regulator_enable in dwc3_qcom probe again ?
 >>>>
+>>>> Not in probe(), but yes. It needs to be enabled when the VBUS has to
+>>>> be powered up, when the device is initialised or switched to the host
+>>>> mode, and disabled when the VBUS has to be powered down, if the device
+>>>> is being switched to the device mode.
 >>>>
->>>> On 07/02/2024 18:58, Catalin Popescu wrote:
->>>>> Add properties ti,cfg-dac-minus-one-milli-percent and
->>>>> ti,cfg-dac-plus-one-milli-percent to support voltage tuning
->>>>> of logical levels -1/+1 of the MLT-3 encoded TX data.
->>>>>
->>>>> Signed-off-by: Catalin Popescu <catalin.popescu@leica-geosystems.com>
->>>>> ---
->>>>> Changes in v2:
->>>>>    - squash the 2 DT bindings patches in one single patch
->>>>>    - drop redundant "binding" from the DT bindings patch title
->>>>>    - rename DT properties and define them as percentage
->>>>>    - add default value for each new DT property
->>>>> ---
->>>>>    .../devicetree/bindings/net/ti,dp83822.yaml    | 18 ++++++++++++++++++
->>>>>    1 file changed, 18 insertions(+)
->>>>>
->>>>> diff --git a/Documentation/devicetree/bindings/net/ti,dp83822.yaml b/Documentation/devicetree/bindings/net/ti,dp83822.yaml
->>>>> index db74474207ed..6bbd465e51d6 100644
->>>>> --- a/Documentation/devicetree/bindings/net/ti,dp83822.yaml
->>>>> +++ b/Documentation/devicetree/bindings/net/ti,dp83822.yaml
->>>>> @@ -62,6 +62,24 @@ properties:
->>>>>           for the PHY.  The internal delay for the PHY is fixed to 3.5ns relative
->>>>>           to transmit data.
->>>>>
->>>>> +  ti,cfg-dac-minus-one-milli-percent:
->>>>> +    description: |
->>>>> +       DP83826 PHY only.
->>>>> +       Sets the voltage ratio (with respect to the nominal value)
->>>>> +       of the logical level -1 for the MLT-3 encoded TX data.
->>>>> +    enum: [50000, 56250, 62500, 68750, 75000, 81250, 87500, 93750, 100000,
->>>>> +           106250, 112500, 118750, 125000, 131250, 137500, 143750, 150000]
->>>> I see all values being multiple of basis points, so why not using -bp
->>>> suffix?
->>> I can read :
 >>>
->>>     "-bp$":
->>>       $ref: types.yaml#/definitions/int32-array
->>>       description: basis points (1/100 of a percent)
->>>
->>> In my case it's 1/1000 of a percent. As I'm not sure exactly what the
->>> author meant by "basis points", would this apply to my patch as well?
->> So please show me the value which does not fit in -bp.
+>>> Actually since we never go to device mode, can't we just stick to this
+>>> pinctrl approach and skip turning on regulator in driver ?
+>>
+>> Scroll several emails back. DT should describe the hardware. Hardware
+>> has VBUS regulators.
+>>
 > 
-> "Basis points" doesn't mean anything to me, that's why I was asking for 
-> confirmation :)
-> I don't have any issue to use "-bp" at all, I'm not pusing against.
+> Hi Dmitry,
+> 
+> I dug up the schematic and I see that the gpio's we are using in this 
+> patch are actually "Enable Pins" to an external chip that provides vbus 
+> to the peripherals connected. So from the perspective of SoC, it is a 
+> GPIO and not to be represented as a regulator I believe.
 
-https://en.wikipedia.org/wiki/Basis_point
-
-Looks like all your values fit there, at least for these devices. Maybe
-you would need to be sure other devices do not require mpercent after all.
+According to such logic nothing is a regulator... sorry, you just
+described regulator.
 
 Best regards,
 Krzysztof
