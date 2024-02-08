@@ -1,238 +1,143 @@
-Return-Path: <devicetree+bounces-39556-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-39557-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9020684D7BE
-	for <lists+devicetree@lfdr.de>; Thu,  8 Feb 2024 03:21:35 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id D235484D7E5
+	for <lists+devicetree@lfdr.de>; Thu,  8 Feb 2024 03:40:31 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id B500DB21CDF
-	for <lists+devicetree@lfdr.de>; Thu,  8 Feb 2024 02:21:32 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 7168A1F22AFE
+	for <lists+devicetree@lfdr.de>; Thu,  8 Feb 2024 02:40:31 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8D0371CD3E;
-	Thu,  8 Feb 2024 02:21:29 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 77EA8171A4;
+	Thu,  8 Feb 2024 02:40:24 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="BV2OT+SF"
+	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="Fl7l18II"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.55.52.88])
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 078501C6A8;
-	Thu,  8 Feb 2024 02:21:26 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=192.55.52.88
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DFA6E1E893;
+	Thu,  8 Feb 2024 02:40:22 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1707358889; cv=none; b=SejUWvhPFvJXaNkeqJZ6OCwZIB0SJMN/yt/4GSe8y9ypNZh8kNRhQWOWokF8/08xtWg/WLm1Bb8/5cH/7dcIZazOH4+gzprelptMtZoZkUaAVU/s0wnKbHQmx/gMbTHttUHJ0FEJgUxKQerF4hAisLiwGTIFRd8OusYILIVPCSU=
+	t=1707360024; cv=none; b=msaGmeb/XGlIjDlrPdXta4UnrS1/eaL/sbBuLVCJ1C5bk99PZOHg/RGnrUMDJvfTaf/lB/eV3vPPBI/+aY4wobvmTpBSTIxAJrnx1AZ8jIs1swapWmbN1HUQjp21w7sI+HHe7C8uifVRD9UOu/sx4g1hfGt23DoNByXChuBHoz4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1707358889; c=relaxed/simple;
-	bh=UKmPL5Zx+C+SOFiu/lgbITC5x7HQmDloUJhMi2ef6a4=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=uUw8tyaXNroeNV+uknpquteaX/tKhAX5SiUY6ISqag6vqCMHkvXGAyRydyIedDtUQIzT4cNJy4kHY1qQJWH+0mg8VtK1h8o7FJl4Ynfh1s/zXlCq6fdD9H1ZfiSy1EWyxOVSz6GuV9/bl75fBBDqSJf0iJfyRpivtH4ByujPtOw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=BV2OT+SF; arc=none smtp.client-ip=192.55.52.88
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1707358887; x=1738894887;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=UKmPL5Zx+C+SOFiu/lgbITC5x7HQmDloUJhMi2ef6a4=;
-  b=BV2OT+SFp3wGr/d2tOFar6nhEWPjmT2vzPOxKBuAqeMajNKfiUpTx3qo
-   /r6d4ZjX5y9om0LDwZv+VETk3oCvvMP1HfF1xPDBm+VLIJQhTsBA4NVNU
-   g1/q7gcAO1PMZ5JMBO2y+e/eKTvNewyrx9kccwmxmcrlh+3v85LBRGP6F
-   ntQc4JmhbilRa6AYOexzcLCcnarL4S3eVfVZOIqJbngPxDKceiac/hhsQ
-   K/GFmI+k6OZ+kY9jF2y4lbGYPgeTcjytageNDqZmacMJ4V+/LDi9EUIS8
-   zjGLuARLadSaHcz8k3Jcb9pFO5f7H/SMb4CzahotC6L1R/vqwmgiNN6NB
-   A==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10977"; a="436266519"
-X-IronPort-AV: E=Sophos;i="6.05,252,1701158400"; 
-   d="scan'208";a="436266519"
-Received: from orviesa006.jf.intel.com ([10.64.159.146])
-  by fmsmga101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 07 Feb 2024 18:21:25 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.05,252,1701158400"; 
-   d="scan'208";a="1837261"
-Received: from lkp-server01.sh.intel.com (HELO 01f0647817ea) ([10.239.97.150])
-  by orviesa006.jf.intel.com with ESMTP; 07 Feb 2024 18:21:21 -0800
-Received: from kbuild by 01f0647817ea with local (Exim 4.96)
-	(envelope-from <lkp@intel.com>)
-	id 1rXu2Q-0003Fi-2L;
-	Thu, 08 Feb 2024 02:21:18 +0000
-Date: Thu, 8 Feb 2024 10:20:43 +0800
-From: kernel test robot <lkp@intel.com>
-To: Jingbao Qiu <qiujingbao.dlmu@gmail.com>, u.kleine-koenig@pengutronix.de,
-	robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
-	conor+dt@kernel.org, paul.walmsley@sifive.com, palmer@dabbelt.com,
-	aou@eecs.berkeley.edu
-Cc: llvm@lists.linux.dev, oe-kbuild-all@lists.linux.dev,
-	linux-pwm@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org, linux-riscv@lists.infradead.org,
-	dlan@gentoo.org, inochiama@outlook.com,
-	Jingbao Qiu <qiujingbao.dlmu@gmail.com>
-Subject: Re: [PATCH v1 2/2] pwm: sophgo: add pwm support for Sophgo CV1800 SoC
-Message-ID: <202402081005.iOYVJ6KI-lkp@intel.com>
-References: <20240207060913.672554-1-qiujingbao.dlmu@gmail.com>
+	s=arc-20240116; t=1707360024; c=relaxed/simple;
+	bh=YfUA8bYcjPPdkHKmp+0pbCt9snSvyjAV+Ek9TOcTOZk=;
+	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
+	 In-Reply-To:Content-Type; b=EmguykzqV09B8lZLx78oZnwcROu4NSNQXgIzcOe8LVQ2aH0i2TKrNnBPNsGK1vaNEPw1mqN1oegZc5ZJB6IHtJVn5Q0/GKUnNxlLaW4jXmDa5sSHd73gi63kMCRbEJcDTtv7MKRCSYDWG6zKqTI5VPLIUGy9ILuC6jnsJrJYZ6k=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=Fl7l18II; arc=none smtp.client-ip=205.220.168.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
+Received: from pps.filterd (m0279864.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.17.1.24/8.17.1.24) with ESMTP id 4180R5Uk003257;
+	Thu, 8 Feb 2024 02:40:19 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
+	message-id:date:mime-version:subject:to:cc:references:from
+	:in-reply-to:content-type:content-transfer-encoding; s=
+	qcppdkim1; bh=r36MAqpN75U9/o+bC5YhUOJXFz6fuk0pNIH1qiuTQ7A=; b=Fl
+	7l18IIdvqF916PBEPxEd6xR1BoLGr/izdTzyALff3dlWBRBSlRFdNvqOMFWTxWrc
+	HpojJmfAPfFZVi1sC10EjnGb2IkoolZa1x9QZ/b7TpmFO1c4mSp8OwStKiqly3xo
+	GixHd2Gt9lIXSqygoLrP65qJ6v78rquje4RX5i3Oshi/t4vvwPWYmqLSU32JW/jC
+	DgjPigQL0PqUyEChnX+vACTXGAvIPx7zd/MAWFcVgw3mDg2/Z4+gMIenPyrZSZ2J
+	6PmpjaHBJ2mXZI+e8b7+lxwVtvARVdbdO1EiXltxu+TKAxr1fJt5l2l/2q54nXVA
+	ofFtwOlqonk1anKA833g==
+Received: from nalasppmta02.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3w4h0ugjvc-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Thu, 08 Feb 2024 02:40:19 +0000 (GMT)
+Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
+	by NALASPPMTA02.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 4182eIoR028142
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Thu, 8 Feb 2024 02:40:18 GMT
+Received: from [10.216.53.86] (10.80.80.8) by nalasex01a.na.qualcomm.com
+ (10.47.209.196) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1118.40; Wed, 7 Feb
+ 2024 18:40:14 -0800
+Message-ID: <fd4f4cc8-3366-485b-b540-b05ef59dd5d4@quicinc.com>
+Date: Thu, 8 Feb 2024 08:10:10 +0530
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20240207060913.672554-1-qiujingbao.dlmu@gmail.com>
-
-Hi Jingbao,
-
-kernel test robot noticed the following build warnings:
-
-[auto build test WARNING on 7afc0e7f681e6efd6b826f003fc14c17b5093643]
-
-url:    https://github.com/intel-lab-lkp/linux/commits/Jingbao-Qiu/dt-bindings-pwm-sophgo-add-pwm-for-Sophgo-CV1800-series-SoC/20240207-141135
-base:   7afc0e7f681e6efd6b826f003fc14c17b5093643
-patch link:    https://lore.kernel.org/r/20240207060913.672554-1-qiujingbao.dlmu%40gmail.com
-patch subject: [PATCH v1 2/2] pwm: sophgo: add pwm support for Sophgo CV1800 SoC
-config: hexagon-allyesconfig (https://download.01.org/0day-ci/archive/20240208/202402081005.iOYVJ6KI-lkp@intel.com/config)
-compiler: clang version 19.0.0git (https://github.com/llvm/llvm-project 7dd790db8b77c4a833c06632e903dc4f13877a64)
-reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20240208/202402081005.iOYVJ6KI-lkp@intel.com/reproduce)
-
-If you fix the issue in a separate patch/commit (i.e. not just a new version of
-the same patch/commit), kindly add following tags
-| Reported-by: kernel test robot <lkp@intel.com>
-| Closes: https://lore.kernel.org/oe-kbuild-all/202402081005.iOYVJ6KI-lkp@intel.com/
-
-All warnings (new ones prefixed by >>):
-
-   In file included from drivers/pwm/pwm-cv1800.c:14:
-   In file included from include/linux/regmap.h:20:
-   In file included from include/linux/iopoll.h:14:
-   In file included from include/linux/io.h:13:
-   In file included from arch/hexagon/include/asm/io.h:337:
-   include/asm-generic/io.h:547:31: warning: performing pointer arithmetic on a null pointer has undefined behavior [-Wnull-pointer-arithmetic]
-     547 |         val = __raw_readb(PCI_IOBASE + addr);
-         |                           ~~~~~~~~~~ ^
-   include/asm-generic/io.h:560:61: warning: performing pointer arithmetic on a null pointer has undefined behavior [-Wnull-pointer-arithmetic]
-     560 |         val = __le16_to_cpu((__le16 __force)__raw_readw(PCI_IOBASE + addr));
-         |                                                         ~~~~~~~~~~ ^
-   include/uapi/linux/byteorder/little_endian.h:37:51: note: expanded from macro '__le16_to_cpu'
-      37 | #define __le16_to_cpu(x) ((__force __u16)(__le16)(x))
-         |                                                   ^
-   In file included from drivers/pwm/pwm-cv1800.c:14:
-   In file included from include/linux/regmap.h:20:
-   In file included from include/linux/iopoll.h:14:
-   In file included from include/linux/io.h:13:
-   In file included from arch/hexagon/include/asm/io.h:337:
-   include/asm-generic/io.h:573:61: warning: performing pointer arithmetic on a null pointer has undefined behavior [-Wnull-pointer-arithmetic]
-     573 |         val = __le32_to_cpu((__le32 __force)__raw_readl(PCI_IOBASE + addr));
-         |                                                         ~~~~~~~~~~ ^
-   include/uapi/linux/byteorder/little_endian.h:35:51: note: expanded from macro '__le32_to_cpu'
-      35 | #define __le32_to_cpu(x) ((__force __u32)(__le32)(x))
-         |                                                   ^
-   In file included from drivers/pwm/pwm-cv1800.c:14:
-   In file included from include/linux/regmap.h:20:
-   In file included from include/linux/iopoll.h:14:
-   In file included from include/linux/io.h:13:
-   In file included from arch/hexagon/include/asm/io.h:337:
-   include/asm-generic/io.h:584:33: warning: performing pointer arithmetic on a null pointer has undefined behavior [-Wnull-pointer-arithmetic]
-     584 |         __raw_writeb(value, PCI_IOBASE + addr);
-         |                             ~~~~~~~~~~ ^
-   include/asm-generic/io.h:594:59: warning: performing pointer arithmetic on a null pointer has undefined behavior [-Wnull-pointer-arithmetic]
-     594 |         __raw_writew((u16 __force)cpu_to_le16(value), PCI_IOBASE + addr);
-         |                                                       ~~~~~~~~~~ ^
-   include/asm-generic/io.h:604:59: warning: performing pointer arithmetic on a null pointer has undefined behavior [-Wnull-pointer-arithmetic]
-     604 |         __raw_writel((u32 __force)cpu_to_le32(value), PCI_IOBASE + addr);
-         |                                                       ~~~~~~~~~~ ^
->> drivers/pwm/pwm-cv1800.c:131:3: warning: comparison of distinct pointer types ('typeof ((tem)) *' (aka 'unsigned int *') and 'uint64_t *' (aka 'unsigned long long *')) [-Wcompare-distinct-pointer-types]
-     131 |                 do_div(tem, rate);
-         |                 ^~~~~~~~~~~~~~~~~
-   include/asm-generic/div64.h:222:28: note: expanded from macro 'do_div'
-     222 |         (void)(((typeof((n)) *)0) == ((uint64_t *)0));  \
-         |                ~~~~~~~~~~~~~~~~~~ ^  ~~~~~~~~~~~~~~~
-   drivers/pwm/pwm-cv1800.c:131:3: error: incompatible pointer types passing 'u32 *' (aka 'unsigned int *') to parameter of type 'uint64_t *' (aka 'unsigned long long *') [-Werror,-Wincompatible-pointer-types]
-     131 |                 do_div(tem, rate);
-         |                 ^~~~~~~~~~~~~~~~~
-   include/asm-generic/div64.h:238:22: note: expanded from macro 'do_div'
-     238 |                 __rem = __div64_32(&(n), __base);       \
-         |                                    ^~~~
-   include/asm-generic/div64.h:213:38: note: passing argument to parameter 'dividend' here
-     213 | extern uint32_t __div64_32(uint64_t *dividend, uint32_t divisor);
-         |                                      ^
-   drivers/pwm/pwm-cv1800.c:135:3: warning: comparison of distinct pointer types ('typeof ((tem)) *' (aka 'unsigned int *') and 'uint64_t *' (aka 'unsigned long long *')) [-Wcompare-distinct-pointer-types]
-     135 |                 do_div(tem, hlperiod_val);
-         |                 ^~~~~~~~~~~~~~~~~~~~~~~~~
-   include/asm-generic/div64.h:222:28: note: expanded from macro 'do_div'
-     222 |         (void)(((typeof((n)) *)0) == ((uint64_t *)0));  \
-         |                ~~~~~~~~~~~~~~~~~~ ^  ~~~~~~~~~~~~~~~
-   drivers/pwm/pwm-cv1800.c:135:3: error: incompatible pointer types passing 'u32 *' (aka 'unsigned int *') to parameter of type 'uint64_t *' (aka 'unsigned long long *') [-Werror,-Wincompatible-pointer-types]
-     135 |                 do_div(tem, hlperiod_val);
-         |                 ^~~~~~~~~~~~~~~~~~~~~~~~~
-   include/asm-generic/div64.h:238:22: note: expanded from macro 'do_div'
-     238 |                 __rem = __div64_32(&(n), __base);       \
-         |                                    ^~~~
-   include/asm-generic/div64.h:213:38: note: passing argument to parameter 'dividend' here
-     213 | extern uint32_t __div64_32(uint64_t *dividend, uint32_t divisor);
-         |                                      ^
->> drivers/pwm/pwm-cv1800.c:131:3: warning: shift count >= width of type [-Wshift-count-overflow]
-     131 |                 do_div(tem, rate);
-         |                 ^~~~~~~~~~~~~~~~~
-   include/asm-generic/div64.h:234:25: note: expanded from macro 'do_div'
-     234 |         } else if (likely(((n) >> 32) == 0)) {          \
-         |                                ^  ~~
-   include/linux/compiler.h:76:40: note: expanded from macro 'likely'
-      76 | # define likely(x)      __builtin_expect(!!(x), 1)
-         |                                             ^
-   drivers/pwm/pwm-cv1800.c:135:3: warning: shift count >= width of type [-Wshift-count-overflow]
-     135 |                 do_div(tem, hlperiod_val);
-         |                 ^~~~~~~~~~~~~~~~~~~~~~~~~
-   include/asm-generic/div64.h:234:25: note: expanded from macro 'do_div'
-     234 |         } else if (likely(((n) >> 32) == 0)) {          \
-         |                                ^  ~~
-   include/linux/compiler.h:76:40: note: expanded from macro 'likely'
-      76 | # define likely(x)      __builtin_expect(!!(x), 1)
-         |                                             ^
-   10 warnings and 2 errors generated.
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 2/3] arm64: dts: qcom: sa8295p: Enable tertiary controller
+ and its 4 USB ports
+To: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
+        Krzysztof Kozlowski
+	<krzysztof.kozlowski+dt@linaro.org>,
+        Konrad Dybcio <konrad.dybcio@linaro.org>
+CC: Rob Herring <robh+dt@kernel.org>, Bjorn Andersson <andersson@kernel.org>,
+        Conor Dooley <conor+dt@kernel.org>, <linux-kernel@vger.kernel.org>,
+        <linux-arm-msm@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <quic_ppratap@quicinc.com>, <quic_jackp@quicinc.com>
+References: <20240206114745.1388491-1-quic_kriskura@quicinc.com>
+ <20240206114745.1388491-3-quic_kriskura@quicinc.com>
+ <CAA8EJpoed-hu4hPXAcwQxmJAaNRwJ2y5q9qybWaPP8bdMnz_oA@mail.gmail.com>
+ <0470a930-d629-4467-b619-58d3e76f59a7@quicinc.com>
+ <CAA8EJppJAdHXoVs_2VqQf=_Wk_LoEcNMY2H-Xzqu8KzeaN8i0g@mail.gmail.com>
+Content-Language: en-US
+From: Krishna Kurapati PSSNV <quic_kriskura@quicinc.com>
+In-Reply-To: <CAA8EJppJAdHXoVs_2VqQf=_Wk_LoEcNMY2H-Xzqu8KzeaN8i0g@mail.gmail.com>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 7bit
+X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
+ nalasex01a.na.qualcomm.com (10.47.209.196)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-ORIG-GUID: 55FaGuf4DUzEYbqwjkf0V5s-AoZ1OkcA
+X-Proofpoint-GUID: 55FaGuf4DUzEYbqwjkf0V5s-AoZ1OkcA
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.272,Aquarius:18.0.1011,Hydra:6.0.619,FMLib:17.11.176.26
+ definitions=2024-02-08_01,2024-02-07_01,2023-05-22_02
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 impostorscore=0 adultscore=0
+ spamscore=0 mlxscore=0 suspectscore=0 phishscore=0 malwarescore=0
+ bulkscore=0 mlxlogscore=731 priorityscore=1501 clxscore=1015
+ lowpriorityscore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.19.0-2401310000 definitions=main-2402080011
 
 
-vim +131 drivers/pwm/pwm-cv1800.c
 
-   113	
-   114	static int cv1800_pwm_get_state(struct pwm_chip *chip, struct pwm_device *pwm,
-   115					 struct pwm_state *state)
-   116	{
-   117		struct cv1800_pwm *priv = to_cv1800_pwm_dev(chip);
-   118		u32 period_val, hlperiod_val, tem;
-   119		u64 rate;
-   120		u64 period_ns = 0;
-   121		u64 duty_ns = 0;
-   122		u32 enable = 0;
-   123	
-   124		regmap_read(priv->map, PERIOD(pwm->hwpwm), &period_val);
-   125		regmap_read(priv->map, HLPERIOD(pwm->hwpwm), &hlperiod_val);
-   126	
-   127		if (period_val != PERIOD_RESET || hlperiod_val != HLPERIOD_RESET) {
-   128			rate = (u64)clk_get_rate(priv->clk);
-   129	
-   130			tem = NSEC_PER_SEC * period_val;
- > 131			do_div(tem, rate);
-   132			period_ns = tem;
-   133	
-   134			tem = period_val * period_ns;
-   135			do_div(tem, hlperiod_val);
-   136			duty_ns = tem;
-   137	
-   138			regmap_read(priv->map, PWMSTART, &enable);
-   139			enable >>= pwm->hwpwm;
-   140		}
-   141	
-   142		state->period = period_ns;
-   143		state->duty_cycle = duty_ns;
-   144		state->enabled = enable;
-   145	
-   146		return 0;
-   147	}
-   148	
+On 2/6/2024 6:54 PM, Dmitry Baryshkov wrote:
+> On Tue, 6 Feb 2024 at 14:28, Krishna Kurapati PSSNV
+> <quic_kriskura@quicinc.com> wrote:
+>>
+>>
+>>
+>> On 2/6/2024 5:43 PM, Dmitry Baryshkov wrote:
+>>> On Tue, 6 Feb 2024 at 14:03, Krishna Kurapati <quic_kriskura@quicinc.com> wrote:
+>>>>
+>>>> Enable tertiary controller for SA8295P (based on SC8280XP).
+>>>> Add pinctrl support for usb ports to provide VBUS to connected peripherals.
+>>>
+>>> These are not just pinctrl entries. They hide VBUS regulators. Please
+>>> implement them properly as corresponding vbus regulators.
+>>>
+>>
+>> Hi Dmitry. Apologies, can you elaborate on your comment. I thought this
+>> implementation was fine as Konrad reviewed it in v13 [1]. I removed his
+>> RB tag as I made one change of dropping "_state" in labels.
+> 
+> My comment is pretty simple: if I'm not mistaken, your DT doesn't
+> reflect your hardware design.
+> You have actual VBUS regulators driven by these GPIO pins. Is this correct?
+> If so, you should describe them properly in the device tree rather
+> than describing them just as USB host's pinctrl state.
+> 
 
--- 
-0-DAY CI Kernel Test Service
-https://github.com/intel/lkp-tests/wiki
+Hi Dmitry,
+
+  I have very little idea about the gpio controller regulators. I will 
+go through it and see how I can implement it. I just found this : 
+https://www.kernel.org/doc/Documentation/devicetree/bindings/regulator/gpio-regulator.txt
+
+One query. If we model it as a regulator, do we need to add it as a 
+supply and call regulator_enable in dwc3_qcom probe again ?
+
+Regards,
+Krishna,
 
