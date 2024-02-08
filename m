@@ -1,117 +1,122 @@
-Return-Path: <devicetree+bounces-39927-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-39928-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 027FB84EA55
-	for <lists+devicetree@lfdr.de>; Thu,  8 Feb 2024 22:23:08 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 275AA84EA6E
+	for <lists+devicetree@lfdr.de>; Thu,  8 Feb 2024 22:26:01 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id B31D02860E4
-	for <lists+devicetree@lfdr.de>; Thu,  8 Feb 2024 21:23:06 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id CF1F71F217D8
+	for <lists+devicetree@lfdr.de>; Thu,  8 Feb 2024 21:26:00 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E2F264F611;
-	Thu,  8 Feb 2024 21:21:59 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B7A7B4F203;
+	Thu,  8 Feb 2024 21:24:50 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="b41Wji/P"
+	dkim=pass (2048-bit key) header.d=smile-fr.20230601.gappssmtp.com header.i=@smile-fr.20230601.gappssmtp.com header.b="RmTV4/cP"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wr1-f42.google.com (mail-wr1-f42.google.com [209.85.221.42])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B6A9C50240;
-	Thu,  8 Feb 2024 21:21:59 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 238B04F1F5
+	for <devicetree@vger.kernel.org>; Thu,  8 Feb 2024 21:24:47 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.42
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1707427319; cv=none; b=SGtCbgKXs8gc5k4MuTzBLYyGQtIjK+xqgLQrRWFj29KNgOmUGHs4JGQRMPUrTv8BCwBHDETDgQFu37muvmDW9md4FBCkZ6aSSf0rdrwHHxMAdIxc39noZADv2hu1vED0vBMvrgRI0wWHiwrtqSlSM6Fwr9sW+d2+XJt+7WOzu8A=
+	t=1707427490; cv=none; b=XZAcsaHiDURZXXfqnZV6ektmZTZOZMsxBbCNPwPFQ02lJUUTHBAQEn8tVzyX7KruyXxjsKK8ldykhg2f75BL8fqFvLsYpGjJLqFkAHdpFFu5rc1BNvy470yCJBlZx/m6a4EnaqzmeCluJ5odJg5VZPj58HINpS3L50fvuYmVjC8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1707427319; c=relaxed/simple;
-	bh=7kFefmY9OkruYvpC22qfl6iaCiaO242TM4HTYdl5UDw=;
-	h=From:To:Cc:In-Reply-To:References:Subject:Message-Id:Date:
-	 MIME-Version:Content-Type; b=HkXcgmwe5oAkRf4CNnDE1qDlSnMHxOaRoJD0RZtwSRT7xWtFK1Pvf9m/2m1yU6vk5j4RFbZo9jdi2uxsqqvnBIurjRP6Lip0IcNlO4lzss4DiHIeGj8Bf4/wO2ivXfPqW145RpMjrdJy5JkFnGFra85wRZfZEka6IFDiifr0wQc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=b41Wji/P; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 9D29FC43390;
-	Thu,  8 Feb 2024 21:21:55 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1707427319;
-	bh=7kFefmY9OkruYvpC22qfl6iaCiaO242TM4HTYdl5UDw=;
-	h=From:To:Cc:In-Reply-To:References:Subject:Date:From;
-	b=b41Wji/PSSGxOAp7tKK8Kd4OM532AlOMLT7ZaIXaY4g+XaOVdPWb8KrgOXWQmvPQx
-	 dLE4r494hLgqrBFkVjCAmrLTkXfEFNxKdqmTOkBFYdxIj+YMoqu+okQ8nPJ6CKxW22
-	 tiWpCCkDHhEHhh2cSyqljk9gosEddjLiODxvLo6RwLO0KEs38SrX60CLEv0Z7jSbsM
-	 fc7kjPazyMo5mbAaThm5jfwKZVllAQxpGJ9zvBGTwlw91jYEkTkozDNaLbO8XqO5s+
-	 uJKcmOOmvo48G9wuH+VqsISlVyQjkG/yIl1S5N1s+cjlA8P6Re2lDZSjLoqQoU8s4g
-	 HKIOvBEK1hIwQ==
-From: Mark Brown <broonie@kernel.org>
-To: andi.shyti@kernel.org, semen.protsenko@linaro.org, 
- Tudor Ambarus <tudor.ambarus@linaro.org>
-Cc: krzysztof.kozlowski@linaro.org, alim.akhtar@samsung.com, 
- linux-spi@vger.kernel.org, linux-samsung-soc@vger.kernel.org, 
- linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org, 
- andre.draszik@linaro.org, peter.griffin@linaro.org, kernel-team@android.com, 
- willmcvicker@google.com, robh+dt@kernel.org, conor+dt@kernel.org, 
- devicetree@vger.kernel.org
-In-Reply-To: <20240207111516.2563218-1-tudor.ambarus@linaro.org>
-References: <20240207111516.2563218-1-tudor.ambarus@linaro.org>
-Subject: Re: [PATCH v2 0/4] spi: s3c64xx: add support for google,gs101-spi
-Message-Id: <170742731537.2266792.3851016361229293846.b4-ty@kernel.org>
-Date: Thu, 08 Feb 2024 21:21:55 +0000
+	s=arc-20240116; t=1707427490; c=relaxed/simple;
+	bh=Bjsp+KZtyL8O80qh9O9Z57mm54YKxPF3W3gwM9bSRzs=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=rxyiLkJ7MSTLPngqZWJds3g2HnFn5oPkXkEDMSvj2LNpfxA/OutQIfnh/4xaXzyB/O8Bt3GrS+i93rCGHw7KCUSnY2s6MvfZ6kC2BwkisvevcluGTnhh2131eVexkQzUUn15M9kpKPLdSeY+fQqttNbkHjkkftdcvjlN7J46l8E=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=smile.fr; spf=pass smtp.mailfrom=smile.fr; dkim=pass (2048-bit key) header.d=smile-fr.20230601.gappssmtp.com header.i=@smile-fr.20230601.gappssmtp.com header.b=RmTV4/cP; arc=none smtp.client-ip=209.85.221.42
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=smile.fr
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=smile.fr
+Received: by mail-wr1-f42.google.com with SMTP id ffacd0b85a97d-3394bec856fso846121f8f.0
+        for <devicetree@vger.kernel.org>; Thu, 08 Feb 2024 13:24:47 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=smile-fr.20230601.gappssmtp.com; s=20230601; t=1707427486; x=1708032286; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=Ue3Hv5Tp9scHSTy47Ds5eoq01BRybMaUAWCl5QsfxDE=;
+        b=RmTV4/cPY9B4pJbvERfOm8xMTHvqQyul3UIKMTnpCyBMObx+w+ujJal6PfOHt97ksg
+         cJJpO12nIGStey7m2F0/bpmdLQu0Je/SbOJlSM1S9ZpzcaRsdiug/QvlbVL7Bsv1u2du
+         BD1J6sHpfKLTblJK7nULgPUpkWSNII2BmxpdLvATNieSmcxYkIANeu23eyUEzFVBuZfD
+         aB5CDmUeBMP33+kySp7q3z+oFMzECK77RMzlgliCZYma7cuJ1XIV437WPrDgke1r4Hhd
+         6oo0bhb7AkfC5aA2tVVjuSPeUazUwveBwPxMdpJovowSL7IwjfHIT9ItzR8/SptzemFg
+         eENQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1707427486; x=1708032286;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=Ue3Hv5Tp9scHSTy47Ds5eoq01BRybMaUAWCl5QsfxDE=;
+        b=m3o4TUboByhJ5yOeYxQbOzjpXB517T3+C/4/Zgp+NNvLtCmdbr6pppsI5Qu6iEb/oU
+         00DDpcvv4WiS80vwzyUgZUzgPyaCVHpmg+Ag+vD26vuhf93KTM+sD76rVfksS16FIqmY
+         +/Ti//1b/pCdLkD4mw0jlL0VGCUrN8sqBWvmN7bm+8xD0eeaEYvjv/IKlGAuKCIIZhLb
+         LHbSIg+m5FsCWteoJ9hoLf1apfbR99ALuuOBELCyXASprpNrFSlW0ko3MqljfAiw0FGT
+         337pRVoa8mXA0bQwDCjXNCvvTpaV0ch026GKdGvFYjPNG15vQFR+yTG8FfKElaquRtu3
+         kJ0A==
+X-Gm-Message-State: AOJu0Yz6UmHIPYpUuat1JmRtj2/HrIfMjhx0Vq3cmfUVyk0aH2uR7A7p
+	+C5nfyfBkhvxwiSZfASZhZzdJeOr/nHnCg1h1KRFbd9ldxo54BnHgjzuraavpXA=
+X-Google-Smtp-Source: AGHT+IEvfGlve63gugRzGCdewUU1Q9SjV28hrhTqbwiN23IJqj3Jpckw6XciNmP2H+uqsNHmTASxsg==
+X-Received: by 2002:a5d:62c4:0:b0:33b:3c97:b4b1 with SMTP id o4-20020a5d62c4000000b0033b3c97b4b1mr553797wrv.15.1707427486146;
+        Thu, 08 Feb 2024 13:24:46 -0800 (PST)
+X-Forwarded-Encrypted: i=1; AJvYcCXh3K2bsuSwpkElhnbrJDcTvK5Iz1X+GamWvtivXCO7NT78ivnWDiWl3FbUmfFUrvU8mDR+FlI0/Kj9yzvLZ2eJ8ziT7g0s0FhJJe5AYtORrSh37sz3HJYKGeKI/6xr2PE0p5XiL8RwNSRaROWF2eoRV+twcT30lpipb/CNCvFBV1g6wDjZgA6kTc22a//L1Q83+dS5lGkXG9P69RrnERwfc3ipXird2sv70Va3TJYhIC/urY+XItIEngGGHP4z00z2V+5nS2cXiTnvrojOc4UCZ26GwUmATjlAHHtt2DppeiL0goD+rvQUY3Lv0BKqGEdVMjLLF5vaRnIHjtKR
+Received: from P-NTS-Evian.home (2a01cb05945b7e009bdc688723a24f31.ipv6.abo.wanadoo.fr. [2a01:cb05:945b:7e00:9bdc:6887:23a2:4f31])
+        by smtp.gmail.com with ESMTPSA id bk27-20020a0560001d9b00b0033b55661f32sm228721wrb.9.2024.02.08.13.24.45
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 08 Feb 2024 13:24:45 -0800 (PST)
+From: Romain Naour <romain.naour@smile.fr>
+To: linux-kernel@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	conor+dt@kernel.org,
+	krzysztof.kozlowski+dt@linaro.org,
+	robh+dt@kernel.org,
+	kristo@kernel.org,
+	vigneshr@ti.com,
+	nm@ti.com
+Cc: Romain Naour <romain.naour@smile.fr>,
+	Neha Malcom Francis <n-francis@ti.com>
+Subject: [PATCH 1/2] arm64: dts: ti: k3-am69-sk: fix PMIC interrupt number
+Date: Thu,  8 Feb 2024 22:24:21 +0100
+Message-ID: <20240208212422.213693-1-romain.naour@smile.fr>
+X-Mailer: git-send-email 2.43.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-X-Mailer: b4 0.13-dev-0438c
+Content-Transfer-Encoding: 8bit
 
-On Wed, 07 Feb 2024 11:15:12 +0000, Tudor Ambarus wrote:
-> This applies on Mark's for-next branch. It can be queued before the
-> simple cleanup patches.
-> 
-> v2:
-> - drop the include linux/types.h patch
-> - patch 2 is a preparation step as per Sam's suggestion
-> - contrary to Sam's suggestion, I kept the style for the
->   s3c64xx_iowrite{8,16}_32_rep() methods, to be consistent with the
->   generic implementations from asm-generic/io.h.
-> - s/just/only
-> - collect R-b tags.
-> 
-> [...]
+The tps659413 node set WKUP_GPIO0_83 (AA37) pin as input to be used as
+PMIC interrupt but uses 39 (WKUP_GPIO0_39) as "interrupts" property.
 
-Applied to
+Replace 39 by 83 after checking in the board schematic [1].
 
-   https://git.kernel.org/pub/scm/linux/kernel/git/broonie/spi.git for-next
+[1] https://www.ti.com/tool/SK-AM69
 
-Thanks!
+Fixes: 865a1593bf99 ("arm64: dts: ti: k3-am69-sk: Add support for TPS6594 PMIC")
+Cc: Neha Malcom Francis <n-francis@ti.com>
+Signed-off-by: Romain Naour <romain.naour@smile.fr>
+---
+ arch/arm64/boot/dts/ti/k3-am69-sk.dts | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-[1/4] spi: dt-bindings: samsung: add google,gs101-spi compatible
-      commit: ff690e75d64b0ca119adbfc3bd0b444bc1d0a1c5
-[2/4] spi: s3c64xx: prepare for a different flavor of iowrite rep
-      commit: 80d3204a3b1dbef570ed29d4d375e4d6922da82d
-[3/4] spi: s3c64xx: add s3c64xx_iowrite{8,16}_32_rep accessors
-      commit: b7bafb9f54fc4609ff84ecd633f918f6f973f471
-[4/4] spi: s3c64xx: add support for google,gs101-spi
-      commit: 0f0212558bc9e33fad4148d3f44745a367076b20
-
-All being well this means that it will be integrated into the linux-next
-tree (usually sometime in the next 24 hours) and sent to Linus during
-the next merge window (or sooner if it is a bug fix), however if
-problems are discovered then the patch may be dropped or reverted.
-
-You may get further e-mails resulting from automated or manual testing
-and review of the tree, please engage with people reporting problems and
-send followup patches addressing any issues that are reported if needed.
-
-If any updates are required or you are submitting further changes they
-should be sent as incremental updates against current git, existing
-patches will not be replaced.
-
-Please add any relevant lists and maintainers to the CCs when replying
-to this mail.
-
-Thanks,
-Mark
+diff --git a/arch/arm64/boot/dts/ti/k3-am69-sk.dts b/arch/arm64/boot/dts/ti/k3-am69-sk.dts
+index 8da591579868..95c9d3da59d3 100644
+--- a/arch/arm64/boot/dts/ti/k3-am69-sk.dts
++++ b/arch/arm64/boot/dts/ti/k3-am69-sk.dts
+@@ -646,7 +646,7 @@ tps659413: pmic@48 {
+ 		pinctrl-names = "default";
+ 		pinctrl-0 = <&pmic_irq_pins_default>;
+ 		interrupt-parent = <&wkup_gpio0>;
+-		interrupts = <39 IRQ_TYPE_EDGE_FALLING>;
++		interrupts = <83 IRQ_TYPE_EDGE_FALLING>;
+ 		gpio-controller;
+ 		#gpio-cells = <2>;
+ 		ti,primary-pmic;
+-- 
+2.43.0
 
 
