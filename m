@@ -1,144 +1,120 @@
-Return-Path: <devicetree+bounces-40255-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-40256-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id B3DD584FDB8
-	for <lists+devicetree@lfdr.de>; Fri,  9 Feb 2024 21:36:41 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 08F9684FE22
+	for <lists+devicetree@lfdr.de>; Fri,  9 Feb 2024 22:06:08 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id E77EF1C21C9E
-	for <lists+devicetree@lfdr.de>; Fri,  9 Feb 2024 20:36:40 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 3B96D1C21B62
+	for <lists+devicetree@lfdr.de>; Fri,  9 Feb 2024 21:06:07 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9B1A81E496;
-	Fri,  9 Feb 2024 20:35:20 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 398AB1863A;
+	Fri,  9 Feb 2024 21:05:54 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="MVTQxeHc"
+	dkim=pass (2048-bit key) header.d=google.com header.i=@google.com header.b="xkE/m40j"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-qt1-f180.google.com (mail-qt1-f180.google.com [209.85.160.180])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C74461CF9C;
-	Fri,  9 Feb 2024 20:35:18 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A00D717739
+	for <devicetree@vger.kernel.org>; Fri,  9 Feb 2024 21:05:52 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.160.180
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1707510920; cv=none; b=oY36ySTe+07+eGu4bdrlARzmKqvZAjv7zs0vmVFIgfhJmMwBOV9Ud+lD6eF/pN9aYMh1Ew/Sr2/rTg5wO2VU5veAbEUPD6ltVPw0YOFr7Aa9Gj5SsAZGOp4/SY2G7Tx+d4iQkMGvIznznU41XyBwafeKVxKtCBO1BanjpI+sz6o=
+	t=1707512754; cv=none; b=sMnBQKZHxlzqMQqKwIy6VNw9fe5DAzoLNfGYXy8ubeML9EsvqxlhRMOb4sMo8bGpRMePEv1CZa5cJEUoMQNXtQejU4HULf1UMNgNM2Ry9PT+rsge32e8x0wAWeg21XfZ/l5t4vzF98++63CbSQwSTr4tq9rIfvANHaNHRoXgdEY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1707510920; c=relaxed/simple;
-	bh=AcZcr3f09+rD5Y7GuUWLp4tl4KPCmu+ts7Zq4Po7zKQ=;
-	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
-	 In-Reply-To:Content-Type; b=MyoDzxpRIHvOl0NQCq/hk3el6c3bFrm7U+rdkGGf1elUAUcrMPyZYAxwkeaUWlvoIVJIUACwpe9n2SjifhNPabnxR2I+E+2WHxtZ85IVKUPLq28Qzr7aT+1JGofkky7mggWs7UXoauX8884eL9WuY+Bk519s39hwtfjN0ehPSnk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=MVTQxeHc; arc=none smtp.client-ip=205.220.168.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
-Received: from pps.filterd (m0279866.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.17.1.24/8.17.1.24) with ESMTP id 419KVEgL025374;
-	Fri, 9 Feb 2024 20:34:42 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
-	message-id:date:mime-version:subject:to:cc:references:from
-	:in-reply-to:content-type:content-transfer-encoding; s=
-	qcppdkim1; bh=EcK6pRWGITTYQwRJIMt0XeWCySM/dPmPOKmlZyQFeLY=; b=MV
-	TQxeHcKaUtkHSWaQIIKu4WTKh1B/4yD31xiBpsW+MLQSz2A8bG8zbdkSLGK3gJl3
-	dH04youaGU1LSR5J0cPMJekgoGPdlM6xjnO3NMQxfDHshXyoszvcJvzMmZ/BDGuz
-	+cYZR3hKhB6WF/sARfFcvddU6Q4enlUtNI12dkO/C/H8XQZoNXE2DKh8QKVpjNRW
-	Y/lG6MuVt17x+pS/ZPD5qzKYdp//gmaNK8BXClHWhYfw9a1StmwlP50NkeBL2l36
-	8IPXpPSEoEcJYyAL/fPVhbLudpovNQiPNCSog3ioquzLIMjYyb45Dvq0t1Fog1P3
-	gMpRbi/HpO4CcG8lQoBA==
-Received: from nalasppmta05.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3w5u4br0c9-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Fri, 09 Feb 2024 20:34:42 +0000 (GMT)
-Received: from nalasex01b.na.qualcomm.com (nalasex01b.na.qualcomm.com [10.47.209.197])
-	by NALASPPMTA05.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 419KYfxF021392
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Fri, 9 Feb 2024 20:34:41 GMT
-Received: from [10.110.93.252] (10.80.80.8) by nalasex01b.na.qualcomm.com
- (10.47.209.197) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1118.40; Fri, 9 Feb
- 2024 12:34:40 -0800
-Message-ID: <b007a78c-b8fb-83bc-3be6-963708182cee@quicinc.com>
-Date: Fri, 9 Feb 2024 12:34:39 -0800
+	s=arc-20240116; t=1707512754; c=relaxed/simple;
+	bh=fWX8AY1UCsAO7A9Rl5Srx2ebyrVS3CEaNUQK2IZKBWw=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=ZRy5tQG4qjEILBdN+Ej5BVt0+uG9I1vk9fsBqVgQ1nCke96oLV7+3mAQ7cCt7h3gIVJ3Y0JBk5n8iZBqmJVSb7/cUxjw+pkkzoFmUGowyuTU/VFiP2s/Bumd5hDlslHay8rzYAHiO4525BwQiaxk0jmFixkG4atnEHh+livpOuM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=google.com; spf=pass smtp.mailfrom=google.com; dkim=pass (2048-bit key) header.d=google.com header.i=@google.com header.b=xkE/m40j; arc=none smtp.client-ip=209.85.160.180
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=google.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=google.com
+Received: by mail-qt1-f180.google.com with SMTP id d75a77b69052e-42c2591e7aaso7660971cf.0
+        for <devicetree@vger.kernel.org>; Fri, 09 Feb 2024 13:05:52 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=google.com; s=20230601; t=1707512751; x=1708117551; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=fWX8AY1UCsAO7A9Rl5Srx2ebyrVS3CEaNUQK2IZKBWw=;
+        b=xkE/m40j0myteCeuAXkuUT8lnEN4ct8CDu7mmbTDAT1CMQe3r8is3167wYTJir800a
+         R9UEZtfTDZiHt0/ODAi5VOq3Yc8qvvj2hrWM0CbENgWjHiJrWUxT/eHp8lYE6/XfqpHJ
+         WkuxnKVBcpgvMMpQNICP4WP0PqNZuiVNU6AyEgzk2uYlwxb/Jit5huKkYxsjbtYFKgNO
+         R8UB/BB8BfvKb21FK253U3NJiSyfJjddJySGbHFoU1KDKAznofeogDLpWLzQ5yOVedoG
+         m8+cx6f20TCO8lyhoop27z4JFeHtNMSPCj/LJDufWD9yTCSI+kiunMtlPP8onE6zn53b
+         k6eQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1707512751; x=1708117551;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=fWX8AY1UCsAO7A9Rl5Srx2ebyrVS3CEaNUQK2IZKBWw=;
+        b=TpHj9bxg89u6VJxWwS+2fYt7k5o5HVTpTrcEtouT7uc0r7olJdT2keLQcIrtQfe8vK
+         7Rj8jlqosJyWRJ3Z7TdvDLafQU0cdTY5rdLGuLBgdQIH1qD5G1SdNMfUohoM7s5AZ8pD
+         8/Kcw0lYyS0t4uiGrQlZmSOtN0dIR7g8d/EsJIKDiFOrDgtP3PREkAy0av7bpMBpr1DW
+         AvzeKjuQDQKzBavxkpwtDl88W8jU8AwTJOybG7+xQJIbdyzxVRZ/lZiuv6BSarkFlr+5
+         zFgFAdOUyrabSYPCtPgM7iIJtcWg2CINiK+qpxG1VkTo1ulJSAYYrvOJ+5r1FvXhqH6r
+         uiDg==
+X-Gm-Message-State: AOJu0Yw5U8748kUjCfeSBvx/S2U3Rl3mNA2t4VZ5jsRNsd1G01W7LF/v
+	3/KFz5RjbUcnHeoS6aBkSurXlmjyD2SyV6P+rrfUQIoHTUWGeR9gHC3QnA0th5/mTloCKob2w2E
+	Fr6wNX/xKqYeYx2YwhXe/YNYpAjS+KLwhHDO6
+X-Google-Smtp-Source: AGHT+IGs5gOcnQQd2dq5dd2RpG8BY/CC0Qys6/UWioQgwTa/o34PsoRm6jC/jXHj8ljZ3lVgAqg4J2Flc7+R3ljGXEQ=
+X-Received: by 2002:a0c:e351:0:b0:68c:bf1d:70ca with SMTP id
+ a17-20020a0ce351000000b0068cbf1d70camr354954qvm.43.1707512751398; Fri, 09 Feb
+ 2024 13:05:51 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:91.0) Gecko/20100101
- Thunderbird/91.9.1
-Subject: Re: [PATCH v14 20/53] ASoC: Add SOC USB APIs for adding an USB
- backend
-Content-Language: en-US
-To: Takashi Iwai <tiwai@suse.de>
-CC: <srinivas.kandagatla@linaro.org>, <mathias.nyman@intel.com>,
-        <perex@perex.cz>, <conor+dt@kernel.org>, <corbet@lwn.net>,
-        <lgirdwood@gmail.com>, <andersson@kernel.org>,
-        <krzysztof.kozlowski+dt@linaro.org>, <gregkh@linuxfoundation.org>,
-        <Thinh.Nguyen@synopsys.com>, <broonie@kernel.org>,
-        <bgoswami@quicinc.com>, <tiwai@suse.com>, <robh+dt@kernel.org>,
-        <konrad.dybcio@linaro.org>, <linux-kernel@vger.kernel.org>,
-        <devicetree@vger.kernel.org>, <linux-sound@vger.kernel.org>,
-        <linux-usb@vger.kernel.org>, <linux-arm-msm@vger.kernel.org>,
-        <linux-doc@vger.kernel.org>, <alsa-devel@alsa-project.org>
-References: <20240208231406.27397-1-quic_wcheng@quicinc.com>
- <20240208231406.27397-21-quic_wcheng@quicinc.com>
- <87r0hl29ha.wl-tiwai@suse.de>
-From: Wesley Cheng <quic_wcheng@quicinc.com>
-In-Reply-To: <87r0hl29ha.wl-tiwai@suse.de>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
- nalasex01b.na.qualcomm.com (10.47.209.197)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-ORIG-GUID: PRnU2u4QXt78XkFphwTc7NkRjdlhcKXl
-X-Proofpoint-GUID: PRnU2u4QXt78XkFphwTc7NkRjdlhcKXl
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.272,Aquarius:18.0.1011,Hydra:6.0.619,FMLib:17.11.176.26
- definitions=2024-02-09_18,2024-02-08_01,2023-05-22_02
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 spamscore=0 suspectscore=0
- priorityscore=1501 malwarescore=0 bulkscore=0 mlxscore=0 mlxlogscore=884
- lowpriorityscore=0 impostorscore=0 phishscore=0 adultscore=0 clxscore=1015
- classifier=spam adjust=0 reason=mlx scancount=1 engine=8.19.0-2401310000
- definitions=main-2402090150
+References: <20240201044623.374389-1-aahila@google.com> <ZbuEsltcMLNn4SyF@smile.fi.intel.com>
+In-Reply-To: <ZbuEsltcMLNn4SyF@smile.fi.intel.com>
+From: Aahil Awatramani <aahila@google.com>
+Date: Fri, 9 Feb 2024 13:05:39 -0800
+Message-ID: <CAGfWUPxLVzziWmwcfqDCfWuVM_Gjya4AzTmoqs1xTcGMXsRorA@mail.gmail.com>
+Subject: Re: [PATCH 1/2] dt-bindings: i2c: designware: allow fine tuning
+ tuning waveform from device tree
+To: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
+Cc: David Dillow <dillow@google.com>, Wolfram Sang <wsa+renesas@sang-engineering.com>, 
+	Andi Shyti <andi.shyti@kernel.org>, Rob Herring <robh+dt@kernel.org>, 
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Jarkko Nikula <jarkko.nikula@linux.intel.com>, 
+	Mika Westerberg <mika.westerberg@linux.intel.com>, Jan Dabros <jsd@semihalf.com>, 
+	linux-i2c@vger.kernel.org, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-Hi Takashi,
+Thank you Andy and Krzysztof,
 
-On 2/9/2024 2:54 AM, Takashi Iwai wrote:
-> On Fri, 09 Feb 2024 00:13:33 +0100,
-> Wesley Cheng wrote:
->>
->> Some platforms may have support for offloading USB audio devices to a
->> dedicated audio DSP.  Introduce a set of APIs that allow for management of
->> USB sound card and PCM devices enumerated by the USB SND class driver.
->> This allows for the ASoC components to be aware of what USB devices are
->> available for offloading.
->>
->> Signed-off-by: Wesley Cheng <quic_wcheng@quicinc.com>
-> (snip)
->> --- a/sound/soc/Makefile
->> +++ b/sound/soc/Makefile
->> @@ -1,5 +1,5 @@
->>   # SPDX-License-Identifier: GPL-2.0
->> -snd-soc-core-objs := soc-core.o soc-dapm.o soc-jack.o soc-utils.o soc-dai.o soc-component.o
->> +snd-soc-core-objs := soc-core.o soc-dapm.o soc-jack.o soc-usb.o soc-utils.o soc-dai.o soc-component.o
->>   snd-soc-core-objs += soc-pcm.o soc-devres.o soc-ops.o soc-link.o soc-card.o
->>   snd-soc-core-$(CONFIG_SND_SOC_COMPRESS) += soc-compress.o
-> 
-> Do we really want to build this into ASoC core unconditionally?
-> This is very specific to Qualcomm USB-offload stuff, so it's better to
-> factor out.
-> 
+I think you are right and I can use the other DT counter, I am
+currently trying to test if they work for me.
 
-Ideally, the SOC USB part shouldn't be Qualcomm specific.  Since I don't 
-have access or insight into how other vendors are achieving the same 
-thing, I can only base the soc-usb layer to work with the information 
-that is required to get the audio stream up and running on the QC 
-platforms.  In its simplest form, its basically just a SW entity that 
-notifies ASoC components about changes occurring from USB SND, and I 
-think all vendors that have an ASoC based platform card handling the 
-offload will need this notification.
+Best,
+Aahil
 
-Thanks
-Wesley Cheng
+On Thu, Feb 1, 2024 at 3:49=E2=80=AFAM Andy Shevchenko
+<andriy.shevchenko@linux.intel.com> wrote:
+>
+> On Thu, Feb 01, 2024 at 04:46:22AM +0000, Aahil Awatramani wrote:
+> > The Synopsys i2c driver allows a user to override the parameters
+> > controlling the waveform using ACPI; this is useful for fine tuning whe=
+n
+> > needed to make spec compliance. Extend this support to the device tree =
+to
+> > allow non-ACPI platforms the same capabilities.
+>
+> DT has different counters from which one should derive these ones.
+> Can you explain why existing bindings may _not_ be utilised?
+>
+> Without this very justification, NAK.
+>
+> --
+> With Best Regards,
+> Andy Shevchenko
+>
+>
 
