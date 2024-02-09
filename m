@@ -1,140 +1,150 @@
-Return-Path: <devicetree+bounces-40218-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-40219-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id D71C484FABA
-	for <lists+devicetree@lfdr.de>; Fri,  9 Feb 2024 18:12:07 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4A19D84FACC
+	for <lists+devicetree@lfdr.de>; Fri,  9 Feb 2024 18:14:29 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 11C7A1C20B8C
-	for <lists+devicetree@lfdr.de>; Fri,  9 Feb 2024 17:12:07 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 00B972847EF
+	for <lists+devicetree@lfdr.de>; Fri,  9 Feb 2024 17:14:28 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0E05E7C6C0;
-	Fri,  9 Feb 2024 17:11:54 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=smile-fr.20230601.gappssmtp.com header.i=@smile-fr.20230601.gappssmtp.com header.b="z0og/ach"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3FC677BAF4;
+	Fri,  9 Feb 2024 17:14:17 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f48.google.com (mail-wm1-f48.google.com [209.85.128.48])
+Received: from mail-yw1-f179.google.com (mail-yw1-f179.google.com [209.85.128.179])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DD57A7BAE6
-	for <devicetree@vger.kernel.org>; Fri,  9 Feb 2024 17:11:51 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.48
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2B48D4D112;
+	Fri,  9 Feb 2024 17:14:14 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.179
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1707498713; cv=none; b=VO9VWO11MtRjL1aqM7tsro+0sEwyk8ablWO5/3S4YVE3Y3r+3QyNZNpDZZcSyuVVKeji621d5LPVbfJmjaP9P/4K0jcJvcMYURf+BlheT8OuwZtBZ6nZuEF3zRhsc/6J9aEHyN54GmrnYQKDe29eINoFGbJEtb6TB22zlQUAja0=
+	t=1707498857; cv=none; b=aSwWNbxNtnEcWvZtZqS9rYjEXihF2+bpm7PS6D77HjcdUq1z9XToqBKUqsNsz6raGXSEMfF9vMoIcSP+e5ph7X22ggfmAFcrEiceQwOmeeAEHuG9sZwuXFqiu6LsdlKaSuTrlS+Ogcfx6HDeCB+WtNXFHiolT4gORYuzoU4Gfzg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1707498713; c=relaxed/simple;
-	bh=pU444VR2MwBF7EKORvFSL5kRdlp16m+GcFlxgCwXC3o=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=Q2x9Plm3ys9ySEVoGcj0rs1kRoKfqhLEjAQ/+YWJgNQRqU961Kn5WXdK2jwiFoA+HOLyu6b6QUBF+fLbEdkIMwLGn2bcVEUJhxMEJp1AJg2WJdN6IpS4lor6zXKTN3d6PAEYdglxS+A2y1mTuOGQ4TfrQB/gReYQxsJ0KNH3fWs=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=smile.fr; spf=pass smtp.mailfrom=smile.fr; dkim=pass (2048-bit key) header.d=smile-fr.20230601.gappssmtp.com header.i=@smile-fr.20230601.gappssmtp.com header.b=z0og/ach; arc=none smtp.client-ip=209.85.128.48
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=smile.fr
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=smile.fr
-Received: by mail-wm1-f48.google.com with SMTP id 5b1f17b1804b1-4107f854a11so3506015e9.3
-        for <devicetree@vger.kernel.org>; Fri, 09 Feb 2024 09:11:51 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=smile-fr.20230601.gappssmtp.com; s=20230601; t=1707498710; x=1708103510; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=+dMezPy7Z8IlkSblQ1TNf+lGFLcC7KJPcuNV88kKu60=;
-        b=z0og/achpH6L6DdWgxLTQV9yUh7BAb8TrkgNloNtOogjBReubWe5lGvQnj/3aUxNSk
-         iQdj0oWvKIYasUXBKezOUn2eE1FgF/0UsRbL5sQk4fxPjOXmnGblnWiiC6suDRcj0pq2
-         itMlvjXDfQr15abeWT1anza/QtRxQsjYCcEt9UYNma9BOIVIP+aTygvEev6lxvTkFXOo
-         EhqTZOwWVmDoMF5yJW1AAnUcXBIFZYVnHdq7uMiAAGCXhYMqpGO79lclcIGNuSNLZjmi
-         x5LC4KM7CoYB0joVKmA4YpOoOnc4oHFxdm/quu8BK/qepfs4rD75J95ayWkGK8sUf4fF
-         ZGEg==
+	s=arc-20240116; t=1707498857; c=relaxed/simple;
+	bh=+DTDGzLknxo/ZOoEm1bGhlARIpKxl17yogEhWgOhX6A=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=Y3gCJ2pJxE4wsChnS0oay2jgQjwhvwfdP8MaMnRhC+Ao4bVCjOqyMuydHgWj/H4AxTEgOAr+qGPkpwQlHwexqj5Fwcu65ySb6ARCNCLFZ/g/FvqtRLO4WyBs3M0DXfxoQV05seMAht0BjRJoWnasGaq8LcLEiF0RhqsIGUf6utw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org; spf=pass smtp.mailfrom=gmail.com; arc=none smtp.client-ip=209.85.128.179
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-yw1-f179.google.com with SMTP id 00721157ae682-603fd31f5c2so19581917b3.0;
+        Fri, 09 Feb 2024 09:14:14 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1707498710; x=1708103510;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
+        d=1e100.net; s=20230601; t=1707498853; x=1708103653;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=+dMezPy7Z8IlkSblQ1TNf+lGFLcC7KJPcuNV88kKu60=;
-        b=NYSg9+4wDdxMXs512lUzQJQ8ULDuz+Sibaxoo4v7vaj3WIyv25QalldptGTGEENAad
-         jV6U0p78+XWbXw/XXEYJF2+gGlWwQ9i4YFMTWYOoRK5mFOLUOW+CTY0HBEP6NmmZYI9e
-         F9N5E8Nn0WWLa3dfiZL7U43FEVndDajau71Sj37tuMRwgRssLJVO7XwkgklCcmyOPI+j
-         Zk99Ts+OMQ0yNQJVlpvH7ZlrGVfVYhKnsGOqvGuuLirFdrwSkFcgvaWTxqMazs6VeczC
-         wnryzyTGWYWertE6nGbfmMg/EsyDZRZAI359LHGwwqaDQBvSOONV/Vw+Ep83pUkS9Qev
-         PmHw==
-X-Forwarded-Encrypted: i=1; AJvYcCVwTiiq5UrqFOA4MDDmKunlpu5zJRVY5IDzbuGScEGY7qbJ1dHaNjJAvRSYp1JwzW28UEWtYzucg5VzsgU2YtP6jdhxX9QhaGQ2zw==
-X-Gm-Message-State: AOJu0Yx/kVT+Lbn5P+yz0h5Nkm4BaF/l+xCu93LHN8MtZ5ePKh7svwzP
-	5Ll3hT/OfSTUoAoxOzpbygFKbxOfsdmNueC0o6HBZmW/LytC8DGUsyRQXTFclRQ=
-X-Google-Smtp-Source: AGHT+IEynWPshXsRwRlkf4uRadX5FfqUMljHK7RezRibLJLz3N8KjLbFaJz1AGuMHemYdr4hQyVyAw==
-X-Received: by 2002:a05:600c:4511:b0:40f:d280:612f with SMTP id t17-20020a05600c451100b0040fd280612fmr1641979wmo.30.1707498710188;
-        Fri, 09 Feb 2024 09:11:50 -0800 (PST)
-X-Forwarded-Encrypted: i=1; AJvYcCX3JjG5yMWZfol2W5d7LuIwSoIC008nDdNGToBntF1qg8FMA/ghJ1fUdfVD8KRYhUo5xZ7NMMGYI4hRsO+beylB2CHemQVYHglpb19g2bLNmUdInSZyKKV1OSluU7KqVcduv4zP9fjALlLCXRsxam9Gd81CP9Yd5Ht4rIduDmvzXWyhvSh6QJ8TevAU0Lsqq88X/ZFoWQtaS2/Ry96/PMznCmHcowoGLNxNoZWtovrP1WulYcjKi8nUDeHHMUdDR7vs7leA8fNZWEqrQcAVaLcsIxVgahkks2tvVqsTvVjpMH9phZobCRURxSliYfrnAYEdMX2wRyZ9voMpq5L+
-Received: from P-NTS-Evian.home (2a01cb05945b7e009bdc688723a24f31.ipv6.abo.wanadoo.fr. [2a01:cb05:945b:7e00:9bdc:6887:23a2:4f31])
-        by smtp.gmail.com with ESMTPSA id a20-20020a05600c225400b004104ecb39d1sm1154711wmm.32.2024.02.09.09.11.49
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 09 Feb 2024 09:11:49 -0800 (PST)
-From: Romain Naour <romain.naour@smile.fr>
-To: linux-kernel@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	conor+dt@kernel.org,
-	krzysztof.kozlowski+dt@linaro.org,
-	robh+dt@kernel.org,
-	kristo@kernel.org,
-	vigneshr@ti.com,
-	nm@ti.com
-Cc: Romain Naour <romain.naour@smile.fr>,
-	Neha Malcom Francis <n-francis@ti.com>
-Subject: [PATCH v2 2/2] arm64: dts: ti: k3-j721e-sk: fix PMIC interrupt number
-Date: Fri,  9 Feb 2024 18:11:46 +0100
-Message-ID: <20240209171146.307465-2-romain.naour@smile.fr>
-X-Mailer: git-send-email 2.43.0
-In-Reply-To: <20240209171146.307465-1-romain.naour@smile.fr>
-References: <20240209171146.307465-1-romain.naour@smile.fr>
+        bh=EdDdMzA8rqlb5+lk3BPGGmoUh4tuhQ6PGFVYwnqwvAU=;
+        b=JOZH8vAEgHp1WFUVMx2TFSxXLRI1EIgfA5/MOXO6kA8G+OuuHhi99V1emexGMOMr/g
+         qmE9kpHQaTQJObv8xECwdifLB9uhzWEuE6juHKBuuuhc4QN2WmFhk9nTr//GAXv/P3ej
+         HBGsoW3N9cGnII5Xy2nWkVyGGMFS1bWKRZ3G1JUsIzhekeii+AlPigBAC+F5hZZc0WCj
+         RFwzxZ+CkE74H+ZUWVO/GEWgK6Q0OFKAnem6mc4EQ6Mg2TZtYzQ2e6Z/Kze5OVWdIZoC
+         VggYxQBSbKgUfpL1LnQK535kCuXXlndeFVXq16IBEY+pFylHl+uyjMuQZYAhrT6kH9vy
+         Pwyw==
+X-Gm-Message-State: AOJu0YyZsv2Eoui3OgR83zG2CerH/+unHd3HyYbwIJHCAOjDZGXWYXXe
+	1oHGrj4okkcFv+aeJRUSY+jAXSyJo8FpRUFccFqJhmALZUk188VAGo1FxgilDWw=
+X-Google-Smtp-Source: AGHT+IE6B/Co1YRt+cE8VwwHGwCVN5zGEsDVSd3ykEiszvLfBtuxiEZUk4RX8vwPy8vNh26LxxXfzA==
+X-Received: by 2002:a0d:db42:0:b0:604:95db:c4c5 with SMTP id d63-20020a0ddb42000000b0060495dbc4c5mr1167605ywe.25.1707498853060;
+        Fri, 09 Feb 2024 09:14:13 -0800 (PST)
+X-Forwarded-Encrypted: i=1; AJvYcCX4wJgA301Dmptw9GlKGEcLXqi5f8g0qDjEHS7FhZ3ukwjlNAvLwk/9Xl5KGGUnaj3no8/EhsklyDzXII+NPJbSJ/V2pwbTq7KovJwkKUcKPM5vIh+CdMOGecbI5ZNP+J1y47MTzjJFmeT06cW4OW1uL+xaey61f3UJkQ+GJKe+TFWPptEpISQO0R2WsKr0cYG+qWqo9+QF6nsabD7IDmgzS1S6B9lYWccHW01XB7DW4Qtn5hpUXUNJ1j6sw8HM0efgwCDnvy+Yuqw=
+Received: from mail-yw1-f178.google.com (mail-yw1-f178.google.com. [209.85.128.178])
+        by smtp.gmail.com with ESMTPSA id u13-20020a81a50d000000b006047567a828sm384273ywg.96.2024.02.09.09.14.12
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 09 Feb 2024 09:14:12 -0800 (PST)
+Received: by mail-yw1-f178.google.com with SMTP id 00721157ae682-6049b115630so15899537b3.1;
+        Fri, 09 Feb 2024 09:14:12 -0800 (PST)
+X-Received: by 2002:a81:4956:0:b0:604:48a9:44a3 with SMTP id
+ w83-20020a814956000000b0060448a944a3mr1528272ywa.16.1707498851842; Fri, 09
+ Feb 2024 09:14:11 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+References: <20240208135045.3728927-1-tudor.ambarus@linaro.org> <20240208135045.3728927-2-tudor.ambarus@linaro.org>
+In-Reply-To: <20240208135045.3728927-2-tudor.ambarus@linaro.org>
+From: Geert Uytterhoeven <geert@linux-m68k.org>
+Date: Fri, 9 Feb 2024 18:13:59 +0100
+X-Gmail-Original-Message-ID: <CAMuHMdU_Hx9PLmHf2Xm1KKTy_OF-TeCv7SzmA5CZWz+PLkbAGA@mail.gmail.com>
+Message-ID: <CAMuHMdU_Hx9PLmHf2Xm1KKTy_OF-TeCv7SzmA5CZWz+PLkbAGA@mail.gmail.com>
+Subject: Re: [PATCH 01/12] spi: dt-bindings: introduce the ``fifo-depth`` property
+To: Tudor Ambarus <tudor.ambarus@linaro.org>
+Cc: broonie@kernel.org, robh@kernel.org, andi.shyti@kernel.org, 
+	semen.protsenko@linaro.org, krzysztof.kozlowski@linaro.org, 
+	alim.akhtar@samsung.com, linux-spi@vger.kernel.org, 
+	linux-samsung-soc@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
+	linux-kernel@vger.kernel.org, andre.draszik@linaro.org, 
+	peter.griffin@linaro.org, kernel-team@android.com, willmcvicker@google.com, 
+	conor+dt@kernel.org, devicetree@vger.kernel.org, arnd@arndb.de, 
+	Linux-Renesas <linux-renesas-soc@vger.kernel.org>, 
+	Wolfram Sang <wsa+renesas@sang-engineering.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-The tps659413 and tps659411 nodes set WKUP_GPIO0_7 (G28) pin as input
-to be used as PMIC interrupt but uses 9 (WKUP_GPIO0_9) as
-"interrupts" property.
+Hi Tudor,
 
-Replace 9 by 7 for both tps659413 and tps659411 after checking in the
-board schematic [1].
+On Thu, Feb 8, 2024 at 2:51=E2=80=AFPM Tudor Ambarus <tudor.ambarus@linaro.=
+org> wrote:
+> There are instances of the same IP that are configured by the integrator
+> with different FIFO depths. Introduce the fifo-depth property to allow
+> such nodes to specify their FIFO depth.
+>
+> We haven't seen SPI IPs with different FIFO depths for RX and TX, thus
+> introduce a single property.
 
-[1] https://www.ti.com/tool/SK-TDA4VM
+Ha...
 
-Fixes: b808cef0be46 ("arm64: dts: ti: k3-j721e-sk: Add TPS6594 family PMICs")
-Cc: Neha Malcom Francis <n-francis@ti.com>
-Signed-off-by: Romain Naour <romain.naour@smile.fr>
----
-v2: update tps659411 interrupts parameter too.
----
- arch/arm64/boot/dts/ti/k3-j721e-sk.dts | 4 ++--
- 1 file changed, 2 insertions(+), 2 deletions(-)
+Current documentation for the Clock-Synchronized Serial Interface with
+FIFO (MSIOF) on e.g. R-Car Gen2 and later states:
 
-diff --git a/arch/arm64/boot/dts/ti/k3-j721e-sk.dts b/arch/arm64/boot/dts/ti/k3-j721e-sk.dts
-index 188dfe291a32..658764f7d544 100644
---- a/arch/arm64/boot/dts/ti/k3-j721e-sk.dts
-+++ b/arch/arm64/boot/dts/ti/k3-j721e-sk.dts
-@@ -574,7 +574,7 @@ tps659413: pmic@48 {
- 		pinctrl-names = "default";
- 		pinctrl-0 = <&pmic_irq_pins_default>;
- 		interrupt-parent = <&wkup_gpio0>;
--		interrupts = <9 IRQ_TYPE_EDGE_FALLING>;
-+		interrupts = <7 IRQ_TYPE_EDGE_FALLING>;
- 		gpio-controller;
- 		#gpio-cells = <2>;
- 		ti,primary-pmic;
-@@ -651,7 +651,7 @@ tps659411: pmic@4c {
- 		reg = <0x4c>;
- 		system-power-controller;
- 		interrupt-parent = <&wkup_gpio0>;
--		interrupts = <9 IRQ_TYPE_EDGE_FALLING>;
-+		interrupts = <7 IRQ_TYPE_EDGE_FALLING>;
- 		gpio-controller;
- 		#gpio-cells = <2>;
- 		buck1234-supply = <&vsys_3v3>;
--- 
-2.43.0
+    FIFO capacity: 32 bits =C3=97 64 stages for transmission and 32 bits =
+=C3=97
+256 stages for reception
 
+Initially (many years ago), there was some doubt about the validity
+of these values (older variants on SH supported 64/64), hence
+drivers/spi/spi-sh-msiof.c still has
+
+    .tx_fifo_size =3D 64,
+    .rx_fifo_size =3D 64,
+
+Probably we should test and revisit this...
+
+> --- a/Documentation/devicetree/bindings/spi/spi-controller.yaml
+> +++ b/Documentation/devicetree/bindings/spi/spi-controller.yaml
+> @@ -69,6 +69,11 @@ properties:
+>           Should be generally avoided and be replaced by
+>           spi-cs-high + ACTIVE_HIGH.
+>
+> +  fifo-depth:
+> +    $ref: /schemas/types.yaml#/definitions/uint32
+> +    description:
+> +      Size of the data FIFO in bytes.
+
+I think it is prudent to consider the asymmetric case, too.
+Whether that should be just two properties ("rx-fifo-depth" and
+"tx-fifo-depth"), or also a third "fifo-depth", I defer to the DT
+maintainers...
+
+> +
+>    num-cs:
+>      $ref: /schemas/types.yaml#/definitions/uint32
+>      description:
+
+Gr{oetje,eeting}s,
+
+                        Geert
+
+--=20
+Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k=
+.org
+
+In personal conversations with technical people, I call myself a hacker. Bu=
+t
+when I'm talking to journalists I just say "programmer" or something like t=
+hat.
+                                -- Linus Torvalds
 
