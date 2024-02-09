@@ -1,237 +1,152 @@
-Return-Path: <devicetree+bounces-40189-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-40190-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3406E84F9BC
-	for <lists+devicetree@lfdr.de>; Fri,  9 Feb 2024 17:37:55 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 66DD484F9C0
+	for <lists+devicetree@lfdr.de>; Fri,  9 Feb 2024 17:38:11 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id E968A28773D
-	for <lists+devicetree@lfdr.de>; Fri,  9 Feb 2024 16:37:53 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 020AE1F2125F
+	for <lists+devicetree@lfdr.de>; Fri,  9 Feb 2024 16:38:11 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D07F57E115;
-	Fri,  9 Feb 2024 16:37:18 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1A2137B3D2;
+	Fri,  9 Feb 2024 16:38:02 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="D4miS6A1"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="H97gUlc1"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-ej1-f46.google.com (mail-ej1-f46.google.com [209.85.218.46])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A57617BAFD;
-	Fri,  9 Feb 2024 16:37:18 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 672195339E;
+	Fri,  9 Feb 2024 16:38:00 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.46
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1707496638; cv=none; b=KHogJf1ebMPeui+c8Rr6PNyjLuF8wDtZ69DR/Xvf0NR9tk7mlVVChhyQ9d53bif7Sm68YiQRY6WeByWXYhMEUJPQ01fK0bCjEXY5PRrlA+x5A2TPOVBBrmXNY2PuLj0KgpQXFUh1ngXU4xj9jRmezM5mXwzFRx8JzJLFrBEqHBM=
+	t=1707496682; cv=none; b=r6zU89HlI5OD50VqigFD10n9izpOECwUbmguTJO8PC1y5g16ofxhAY80556/eOUEZpBcwjB+pHZ5GIhBfet9KpoyodmKsHJdQx6Z2IXMYWXwH7vdLLcl0LN+6MK7z2LG1OLFGYtiwv37HST6PHHWgjShB5dtuAmDcpqnQ1dMeVk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1707496638; c=relaxed/simple;
-	bh=5vITn9HQvHi1/Ga6fSu3LijrkNlFyI/oeTS3I6OXY8s=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=ITWPxf74HLn+dykNYGwCTLcJ7cLVfz7EDL+diwcCVuDdLa4JrikfRnJYJg8bFECCDupaAvwnz1Z4s0ejTbeaCdtrdunhBX84mo9DHrNjHNprBVrkdcIf6LTQaY/ZqdxzWDDxTU7AHZGo0kMGX39sVTtoDPcwpRaLmd4rouS/BKQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=D4miS6A1; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 54AA0C433F1;
-	Fri,  9 Feb 2024 16:37:17 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1707496638;
-	bh=5vITn9HQvHi1/Ga6fSu3LijrkNlFyI/oeTS3I6OXY8s=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=D4miS6A1gYmVxJfllih+2wFdh1HHf2/PAKWrxxpBbtGROfkh31exXNOS+cvGu2ocx
-	 CkAHbcBLf1hYPE2/DMDhEdvM2IzCXQsiKr30qWh/pieKH13w5bEzSI+FXBwGMlQ7j4
-	 Fjc633Mf/d7mXmc4xhbNTFtUlGraKqiTpGpIwHzLhuDKGHz35m2RT9Dopo3TF+v9wB
-	 s6kQNW84VhwdqmgZPAC6XuS0bwsDmkAichfYLuIW/dm+oTmp8Qb4SNbZ+C+jm2K7kw
-	 kHeKbKvrEUeuDFSwJkmhnYooAUZeEjuVHQnQcMNgGl024fK5k3p+vIEcu71jKlAxMp
-	 qG7cfQTFK8vaQ==
-Date: Fri, 9 Feb 2024 10:37:15 -0600
-From: Bjorn Andersson <andersson@kernel.org>
-To: Taniya Das <quic_tdas@quicinc.com>
-Cc: Stephen Boyd <sboyd@kernel.org>, 
-	Michael Turquette =?utf-8?B?wqA=?= <mturquette@baylibre.com>, Konrad Dybcio <konrad.dybcio@linaro.org>, 
-	Rob Herring <robh+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, linux-arm-msm@vger.kernel.org, linux-clk@vger.kernel.org, 
-	devicetree@vger.kernel.org
-Subject: Re: [PATCH 5/5] arm64: dts: qcom: Update protected clocks list for
- qcm6490 variants
-Message-ID: <zzxpyvprhgl6f3kkcecmtxfksdplxqoljwsu6wguawlb3if2ym@jiybnvtplijc>
-References: <20240208062836.19767-1-quic_tdas@quicinc.com>
- <20240208062836.19767-6-quic_tdas@quicinc.com>
+	s=arc-20240116; t=1707496682; c=relaxed/simple;
+	bh=3c4KyVUY+8+J2DM9TNTTr8gHCtMfIf+GQGeL5c4hL+s=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=Iq4HdflRnNwK51ufUJvvP/qYGKr0baIyX3/LCAXnaQp1IcmKPHhikbJkL0C/OtCIxIi9lUG4Xf2DkaSHoN2kIV2oi/GBVyYAGxr3m5QYz9hUoE7gGCx/0EcQonUbyEF2gaWtaj3VmvEeL//Vq8nY5C3CTvMWbfxafp3yQPtHS6k=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=H97gUlc1; arc=none smtp.client-ip=209.85.218.46
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-ej1-f46.google.com with SMTP id a640c23a62f3a-a30f7c9574eso139066566b.0;
+        Fri, 09 Feb 2024 08:38:00 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1707496678; x=1708101478; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=2vt0bXaQo/CSZ1wNgT5DTTVusWcy3bPhCv+mvMVFiao=;
+        b=H97gUlc18FG7S1/v1gg4+CDYZXF4n50+/C5SeV5+CSf1GkAJTcAfCvK6NQVxqtVR/G
+         EoRodCv7r1mBxBDUBwv3KlJJhr/6dONX6frJzafE5iJ1RHpjBuff31QG6xJHLkSkadoE
+         YKWlEK03u/Yse+jElvJzxeqZ7HfkZ3UmFz7WM1GQPzx9qv84LRmh+tODhEIgldfQNNJe
+         nFcxTKV37bWa4nwXaNwXZO7w6jU2GcgDcaYV98tmF56qvZck1gYL0PDYfLl/X6+6YV/G
+         Dvbt03epskiQrIqBtmVOkmmnPl0prTa9A8CXY/BZrIWuH+SMuJKsWnV9+KNs3Ie7Bsg4
+         RI9A==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1707496678; x=1708101478;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=2vt0bXaQo/CSZ1wNgT5DTTVusWcy3bPhCv+mvMVFiao=;
+        b=RxSs2Vk1xnaHdVG9uzTBcNidhgNYTQgyJl7JoTGjzh7ocfY6svK1aI6f1kpf7WGmWI
+         i64+1PWuKAs+QzubhMvDIsEKKzGxLW3OuFVoKkLm+kkW3tQaxUtO5cySt1NtBazj1V3X
+         Kg/rH8KmVv6jQIqGIcGbOBHzFGjvOuaJcfBRurnbw3CYpqzOnKzPqX3dMTvf50jGnCRL
+         YIg3k2qcOa3prFGu80EV64LOMHOvMSyVB8uO3xOv6qPKKXM9cfpXd6hA/3W/bF6FmxlZ
+         ZFTayAnEByooxuCivS6O8j+7+Q6dHxWcXbFO7AWJUCkTuG69EOeCpzCC0WJL8z22dR0I
+         8Z/w==
+X-Gm-Message-State: AOJu0Yz7RlZOgno/Inuybksj+93feWW0YWLAlRJGfkVDer0g6MkJu2Wp
+	vNVbZLBONBZNQCLuRV386OwcYpTVneuJFUs7cnhkV+DoyKJhy8V7fpXbx5amLM13BvDaLiGsdTM
+	h69SQakZ3jk/IRujFETCMgJ+jJ7A=
+X-Google-Smtp-Source: AGHT+IHjBfcFQ2n8/BDra0d/k8j4SvKGStxvIAM5UnP75L0HVnopCXmDW3q2CDesrBcoA7hmLnl6msi1j/s4FahpZNM=
+X-Received: by 2002:a17:906:138a:b0:a3c:2b1:48ae with SMTP id
+ f10-20020a170906138a00b00a3c02b148aemr1085170ejc.27.1707496678288; Fri, 09
+ Feb 2024 08:37:58 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20240208062836.19767-6-quic_tdas@quicinc.com>
+References: <20240209-iio-backend-v10-0-3ed842064318@analog.com> <20240209-iio-backend-v10-6-3ed842064318@analog.com>
+In-Reply-To: <20240209-iio-backend-v10-6-3ed842064318@analog.com>
+From: Andy Shevchenko <andy.shevchenko@gmail.com>
+Date: Fri, 9 Feb 2024 18:37:21 +0200
+Message-ID: <CAHp75Vd0qcJiw7EPsSjLAG1G8RFymFuRif7FY2YVTBPK9M2KJQ@mail.gmail.com>
+Subject: Re: [PATCH v10 6/7] iio: adc: ad9467: convert to backend framework
+To: Nuno Sa <nuno.sa@analog.com>
+Cc: linux-iio@vger.kernel.org, devicetree@vger.kernel.org, 
+	Lars-Peter Clausen <lars@metafoo.de>, Michael Hennerich <Michael.Hennerich@analog.com>, 
+	Jonathan Cameron <jic23@kernel.org>, Rob Herring <robh+dt@kernel.org>, 
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Frank Rowand <frowand.list@gmail.com>, Olivier Moysan <olivier.moysan@foss.st.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-On Thu, Feb 08, 2024 at 11:58:36AM +0530, Taniya Das wrote:
-> Certain clocks are not accessible on QCM6490-IDP and QCS6490-RB3GEN2 boards
-> thus require them to be marked protected.
-> 
-> Also disable the LPASS nodes which are not to be used.
-> 
+On Fri, Feb 9, 2024 at 5:26=E2=80=AFPM Nuno Sa <nuno.sa@analog.com> wrote:
+>
+> Convert the driver to use the new IIO backend framework. The device
+> functionality is expected to be the same (meaning no added or removed
+> features).
+>
+> Also note this patch effectively breaks ABI and that's needed so we can
+> properly support this device and add needed features making use of the
+> new IIO framework.
+>
+> Given the lack of features (and devices supported) in the ad9467 driver
+> compared with the ADI out of tree version, we don't expect any user of
+> the upstream driver so no one should notice the ABI breakage. However,
+> if someone is affected by this, ADI will happily support transitioning
+> to the backend framework.
 
-Please find a smaller patch, to make the board boot again here:
+...
 
-https://lore.kernel.org/linux-arm-msm/20240209-qcm6490-gcc-protected-clocks-v1-1-bd3487b2e7b1@quicinc.com/T/#u
-
-> Signed-off-by: Taniya Das <quic_tdas@quicinc.com>
-> ---
->  arch/arm64/boot/dts/qcom/qcm6490-idp.dts     | 54 +++++++++++++++++++-
->  arch/arm64/boot/dts/qcom/qcs6490-rb3gen2.dts | 50 +++++++++++++++++-
->  2 files changed, 102 insertions(+), 2 deletions(-)
-> 
-> diff --git a/arch/arm64/boot/dts/qcom/qcm6490-idp.dts b/arch/arm64/boot/dts/qcom/qcm6490-idp.dts
-> index 03e97e27d16d..425e4b87490b 100644
-> --- a/arch/arm64/boot/dts/qcom/qcm6490-idp.dts
-> +++ b/arch/arm64/boot/dts/qcom/qcm6490-idp.dts
-> @@ -1,6 +1,6 @@
->  // SPDX-License-Identifier: BSD-3-Clause
->  /*
-> - * Copyright (c) 2023 Qualcomm Innovation Center, Inc. All rights reserved.
-> + * Copyright (c) 2023-2024 Qualcomm Innovation Center, Inc. All rights reserved.
->   */
-> 
->  /dts-v1/;
-> @@ -415,6 +415,58 @@
->  	};
+>  struct ad9467_chip_info {
+> -       struct adi_axi_adc_chip_info    axi_adc_info;
+> -       unsigned int                    default_output_mode;
+> -       unsigned int                    vref_mask;
+> +       const char              *name;
+> +       unsigned int            id;
+> +       const struct            iio_chan_spec *channels;
+> +       unsigned int            num_channels;
+> +       const unsigned int      (*scale_table)[2];
+> +       int                     num_scales;
+> +       unsigned long           max_rate;
+> +       unsigned int            default_output_mode;
+> +       unsigned int            vref_mask;
 >  };
-> 
-> +&gcc {
-> +	protected-clocks = <GCC_AGGRE_NOC_PCIE_1_AXI_CLK> ,<GCC_PCIE_1_AUX_CLK>,
-> +			<GCC_PCIE_1_AUX_CLK_SRC>, <GCC_PCIE_1_CFG_AHB_CLK>,
-> +			<GCC_PCIE_1_MSTR_AXI_CLK>, <GCC_PCIE_1_PHY_RCHNG_CLK_SRC>,
-> +			<GCC_PCIE_1_PIPE_CLK>, <GCC_PCIE_1_PIPE_CLK_SRC>,
-> +			<GCC_PCIE_1_SLV_AXI_CLK>, <GCC_PCIE_1_SLV_Q2A_AXI_CLK>,
 
-protected-clocks should mark the clocks that Linux must not access.
+Seems like you haven't checked this layout with `pahole`.
 
-With that in mind, how is listing GCC_PCIE_1_* here compatible with
-Krishna's patch [1], which clearly shows that Linux is expected to use
-pcie1.
+...
 
-[1] https://lore.kernel.org/linux-arm-msm/20240207-enable_pcie-v1-1-b684afa6371c@quicinc.com/
+> +static int ad9467_iio_backend_get(struct ad9467_state *st)
+> +{
+> +       struct device *dev =3D &st->spi->dev;
+> +       struct device_node *__back;
+> +
+> +       st->back =3D devm_iio_backend_get(&st->spi->dev, NULL);
 
-Regards,
-Bjorn
+Simply 'dev' as the first parameter?
 
-> +			<GCC_QSPI_CNOC_PERIPH_AHB_CLK>, <GCC_QSPI_CORE_CLK>,
-> +			<GCC_QSPI_CORE_CLK_SRC>,<GCC_USB30_SEC_MASTER_CLK>,
-> +			<GCC_USB30_SEC_MASTER_CLK_SRC>, <GCC_USB30_SEC_MOCK_UTMI_CLK>,
-> +			<GCC_USB30_SEC_MOCK_UTMI_CLK_SRC>,
-> +			<GCC_USB30_SEC_MOCK_UTMI_POSTDIV_CLK_SRC>, <GCC_USB30_SEC_SLEEP_CLK>,
-> +			<GCC_USB3_SEC_PHY_AUX_CLK>, <GCC_USB3_SEC_PHY_AUX_CLK_SRC>,
-> +			<GCC_USB3_SEC_PHY_COM_AUX_CLK>, <GCC_USB3_SEC_PHY_PIPE_CLK>,
-> +			<GCC_USB3_SEC_PHY_PIPE_CLK_SRC>, <GCC_CFG_NOC_LPASS_CLK>,
-> +			<GCC_MSS_GPLL0_MAIN_DIV_CLK_SRC>, <GCC_MSS_CFG_AHB_CLK>,
-> +			<GCC_MSS_OFFLINE_AXI_CLK>, <GCC_MSS_SNOC_AXI_CLK>,
-> +			<GCC_MSS_Q6_MEMNOC_AXI_CLK>, <GCC_MSS_Q6SS_BOOT_CLK_SRC>,
-> +			<GCC_SEC_CTRL_CLK_SRC>, <GCC_WPSS_AHB_CLK>,
-> +			<GCC_WPSS_AHB_BDG_MST_CLK>, <GCC_WPSS_RSCP_CLK>;
-> +};
-> +
-> +&lpasscc {
-> +	status = "disabled";
-> +};
-> +
-> +&lpass_audiocc {
-> +	qcom,adsp-skip-pll;
-> +	protected-clocks = <LPASS_AUDIO_CC_CDIV_RX_MCLK_DIV_CLK_SRC>,
-> +		<LPASS_AUDIO_CC_CODEC_MEM0_CLK>, <LPASS_AUDIO_CC_CODEC_MEM1_CLK>,
-> +		<LPASS_AUDIO_CC_CODEC_MEM2_CLK>, <LPASS_AUDIO_CC_CODEC_MEM_CLK>,
-> +		<LPASS_AUDIO_CC_EXT_MCLK0_CLK>, <LPASS_AUDIO_CC_EXT_MCLK0_CLK_SRC>,
-> +		<LPASS_AUDIO_CC_EXT_MCLK1_CLK>, <LPASS_AUDIO_CC_EXT_MCLK1_CLK_SRC>,
-> +		<LPASS_AUDIO_CC_PLL>, <LPASS_AUDIO_CC_PLL_OUT_AUX2>,
-> +		<LPASS_AUDIO_CC_PLL_OUT_AUX2_DIV_CLK_SRC>,
-> +		<LPASS_AUDIO_CC_PLL_OUT_MAIN_DIV_CLK_SRC>,
-> +		<LPASS_AUDIO_CC_RX_MCLK_2X_CLK>, <LPASS_AUDIO_CC_RX_MCLK_CLK>,
-> +		<LPASS_AUDIO_CC_RX_MCLK_CLK_SRC>;
-> +	/delete-property/ power-domains;
-> +};
-> +
-> +&lpass_aon {
-> +	status = "disabled";
-> +};
-> +
-> +&lpass_core {
-> +	status = "disabled";
-> +};
-> +
-> +&lpass_hm {
-> +	status = "disabled";
-> +};
-> +
->  &qupv3_id_0 {
->  	status = "okay";
->  };
-> diff --git a/arch/arm64/boot/dts/qcom/qcs6490-rb3gen2.dts b/arch/arm64/boot/dts/qcom/qcs6490-rb3gen2.dts
-> index 8bb7d13d85f6..1398b84634c3 100644
-> --- a/arch/arm64/boot/dts/qcom/qcs6490-rb3gen2.dts
-> +++ b/arch/arm64/boot/dts/qcom/qcs6490-rb3gen2.dts
-> @@ -1,6 +1,6 @@
->  // SPDX-License-Identifier: BSD-3-Clause
->  /*
-> - * Copyright (c) 2023 Qualcomm Innovation Center, Inc. All rights reserved.
-> + * Copyright (c) 2023-2024 Qualcomm Innovation Center, Inc. All rights reserved.
->   */
-> 
->  /dts-v1/;
-> @@ -413,6 +413,54 @@
->  	};
->  };
-> 
-> +&gcc {
-> +	protected-clocks = <GCC_QSPI_CNOC_PERIPH_AHB_CLK>, <GCC_QSPI_CORE_CLK>,
-> +			<GCC_QSPI_CORE_CLK_SRC>,<GCC_USB30_SEC_MASTER_CLK>,
-> +			<GCC_USB30_SEC_MASTER_CLK_SRC>, <GCC_USB30_SEC_MOCK_UTMI_CLK>,
-> +			<GCC_USB30_SEC_MOCK_UTMI_CLK_SRC>,
-> +			<GCC_USB30_SEC_MOCK_UTMI_POSTDIV_CLK_SRC>, <GCC_USB30_SEC_SLEEP_CLK>,
-> +			<GCC_USB3_SEC_PHY_AUX_CLK>, <GCC_USB3_SEC_PHY_AUX_CLK_SRC>,
-> +			<GCC_USB3_SEC_PHY_COM_AUX_CLK>, <GCC_USB3_SEC_PHY_PIPE_CLK>,
-> +			<GCC_USB3_SEC_PHY_PIPE_CLK_SRC>, <GCC_CFG_NOC_LPASS_CLK>,
-> +			<GCC_MSS_GPLL0_MAIN_DIV_CLK_SRC>, <GCC_MSS_CFG_AHB_CLK>,
-> +			<GCC_MSS_OFFLINE_AXI_CLK>, <GCC_MSS_SNOC_AXI_CLK>,
-> +			<GCC_MSS_Q6_MEMNOC_AXI_CLK>, <GCC_MSS_Q6SS_BOOT_CLK_SRC>,
-> +			<GCC_SEC_CTRL_CLK_SRC>, <GCC_WPSS_AHB_CLK>,
-> +			<GCC_WPSS_AHB_BDG_MST_CLK>, <GCC_WPSS_RSCP_CLK>;
-> +};
-> +
-> +&lpasscc {
-> +	status = "disabled";
-> +};
-> +
-> +&lpass_audiocc {
-> +	qcom,adsp-skip-pll;
-> +	protected-clocks = <LPASS_AUDIO_CC_CDIV_RX_MCLK_DIV_CLK_SRC>,
-> +		<LPASS_AUDIO_CC_CODEC_MEM0_CLK>, <LPASS_AUDIO_CC_CODEC_MEM1_CLK>,
-> +		<LPASS_AUDIO_CC_CODEC_MEM2_CLK>, <LPASS_AUDIO_CC_CODEC_MEM_CLK>,
-> +		<LPASS_AUDIO_CC_EXT_MCLK0_CLK>, <LPASS_AUDIO_CC_EXT_MCLK0_CLK_SRC>,
-> +		<LPASS_AUDIO_CC_EXT_MCLK1_CLK>, <LPASS_AUDIO_CC_EXT_MCLK1_CLK_SRC>,
-> +		<LPASS_AUDIO_CC_PLL>, <LPASS_AUDIO_CC_PLL_OUT_AUX2>,
-> +		<LPASS_AUDIO_CC_PLL_OUT_AUX2_DIV_CLK_SRC>,
-> +		<LPASS_AUDIO_CC_PLL_OUT_MAIN_DIV_CLK_SRC>,
-> +		<LPASS_AUDIO_CC_RX_MCLK_2X_CLK>, <LPASS_AUDIO_CC_RX_MCLK_CLK>,
-> +		<LPASS_AUDIO_CC_RX_MCLK_CLK_SRC>;
-> +	/delete-property/ power-domains;
-> +};
-> +
-> +&lpass_aon {
-> +	status = "disabled";
-> +};
-> +
-> +&lpass_core {
-> +	status = "disabled";
-> +};
-> +
-> +&lpass_hm {
-> +	status = "disabled";
-> +};
-> +
-> +
->  &qupv3_id_0 {
->  	status = "okay";
->  };
-> --
-> 2.17.1
-> 
+...
+
+> +       /* If not found, don't error out as we might have legacy DT prope=
+rty */
+
+This seems related to ENOENT, correct?
+
+> +       if (!IS_ERR(st->back))
+> +               return 0;
+
+And the above is about something else (found?) case, right?
+
+> +       if (PTR_ERR(st->back) !=3D -ENOENT)
+> +               return PTR_ERR(st->back);
+
+--
+With Best Regards,
+Andy Shevchenko
 
