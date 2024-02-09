@@ -1,166 +1,196 @@
-Return-Path: <devicetree+bounces-40276-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-40277-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3280584FF3E
-	for <lists+devicetree@lfdr.de>; Fri,  9 Feb 2024 22:51:43 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 7C2E784FFBC
+	for <lists+devicetree@lfdr.de>; Fri,  9 Feb 2024 23:21:23 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id E9A9D28D16A
-	for <lists+devicetree@lfdr.de>; Fri,  9 Feb 2024 21:51:41 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 42ED9287B47
+	for <lists+devicetree@lfdr.de>; Fri,  9 Feb 2024 22:21:22 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2FEF738DEA;
-	Fri,  9 Feb 2024 21:50:44 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="xinAG5Ei"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A309B29D1C;
+	Fri,  9 Feb 2024 22:18:07 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lj1-f181.google.com (mail-lj1-f181.google.com [209.85.208.181])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from gloria.sntech.de (gloria.sntech.de [185.11.138.130])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 77C5638396
-	for <devicetree@vger.kernel.org>; Fri,  9 Feb 2024 21:50:42 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.181
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D4B2925748;
+	Fri,  9 Feb 2024 22:18:03 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.11.138.130
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1707515444; cv=none; b=pNyvx7RmZsOzxO1/KdeMxgyDhhW41idAkFZwTarlWdGteTBSnKo5eEsEuel6VMzKqY3H/1/Zd0lsw5itvi5k/gtkm/diNtza9wciDJE7sa8MCjHn8kk0xcfTM8ZDjCm96CJgHt/jO+P59x9mK6I0CL2LhdYpDj0AKhEg3zGG3NQ=
+	t=1707517087; cv=none; b=b2T7MJVy39j0gIPfsOHKSFxzRTuvEKXxIifFwlFdCUdXM3A40/+Oe4Em+Q2GsGd+++x0CeQ158/Jt0FA3Bn47R4pypHC1WHZhJCqFu15dJHZ6e51xF7I1WOHXad8uIY09JM7WRJj5ppe9lfvT+zMhqeOf1lMuAgjUZ5hrts5e+Q=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1707515444; c=relaxed/simple;
-	bh=74MCy96nF03W7EAJTz2PT10B7QEkB+SqtG1CDRc9HX8=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=b8wD3Y4bjSvjSN+rkMRsn3sf/koG7q5fJkMt+gdVi+oH4OR6nyDCnC+iB3ctTay/yXf+toya7KAbzTQEYSqIWBYAwWVvZKw3Qmjyjtc0rp+cI95A8d1+blyIrPLv+YtsGX18tt9olaTZyMNawPsLnjkbpZx8DJQXHrrt2XoecO8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=xinAG5Ei; arc=none smtp.client-ip=209.85.208.181
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-lj1-f181.google.com with SMTP id 38308e7fff4ca-2d0e5213d43so1618181fa.1
-        for <devicetree@vger.kernel.org>; Fri, 09 Feb 2024 13:50:42 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1707515440; x=1708120240; darn=vger.kernel.org;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=v20cGtgi8PVpPVdnThFjD58lzld+LA+T4nI6IieahUk=;
-        b=xinAG5EiKQqnaVxnBCwJMu0k2ZRT5VFIblSkehdEq0AkNJtXEbj5UNFOR8a0Izaw0F
-         LNU8+wGe+WAjrpWwSHI8AWaDijbVrg8WxSg5d9hwjnc2HQcwZDieqrw5Kf+JpSjXxpxy
-         3y92alrJva+EcueT1LbXUUuYf2KSVWP0QU+M/5sylD3L7h+2dFTBI4O69aLy7ui/8D/A
-         Xuk+OjG0J2RUEtlCzq0OOc49v0rojHaFTQIFnD1msVQqn5XtMVcyrFGZDduYUl6FTnt7
-         tOgKZFnXiZjodWnnK3xADde5LIeZKF/EKIBkda6IqmjNOMDH5Ctgc9cjeHcOnGEXd0Yd
-         dnRA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1707515440; x=1708120240;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=v20cGtgi8PVpPVdnThFjD58lzld+LA+T4nI6IieahUk=;
-        b=Q4AdKBwL49QCf8Im5gaH5p0mKEefspSR143cC6KKPUDHroqWxPPGG6xoi6dp49D56O
-         fZ8yV2LCu1Kn1ipiZbn4l2AXEqJUQrKEIhthnmxrzWSTODsB9v5vWMOuLqcvVfH12ZZF
-         uISpZnF6kAg8RwZfbsj/udWwSH37NjS9su0dALzqOSwy9+GL+A4vOs3U2Nj6unruawSb
-         euUorg3l/+b4jc/IyP4UnoAOnix1acAf5ZrH/rQgITL1iFgpgYdOqlIzelVNDXTOI4Dd
-         g1NHem2DfHz5r3NZWhTovdR2jA+KW+KY714Tfdu0tjzfCzh4XOz/cSTp6bnfzLXS1lf8
-         H4Jg==
-X-Forwarded-Encrypted: i=1; AJvYcCU4gDRK97kA0qW9+fnzV4NJqfr4HRBV5DlgyfeyNwMfiMDfhrhccuYXqDbMipIgBKE/oS+iTem8/AbOdThrmQRRRorBTTzaF1mmJA==
-X-Gm-Message-State: AOJu0Yy2OExeFkHURDB53+gwL4vhQcohCCUnlfydV8HpDFhoTorGmaKm
-	FBfDJNfB+DYyf6FFYjr0bNj/yrXkK6umANFE3oHZBd3eXyV50N/ahLIUO4jji9w=
-X-Google-Smtp-Source: AGHT+IGVOM4JYXMSQBQEWi4mjU6HTWulEOLVqsiC6pwlL45ECHXhHKIE2cNtxQxUTg9k+481ofY64g==
-X-Received: by 2002:a2e:8884:0:b0:2d0:cd24:24c3 with SMTP id k4-20020a2e8884000000b002d0cd2424c3mr155994lji.53.1707515440667;
-        Fri, 09 Feb 2024 13:50:40 -0800 (PST)
-X-Forwarded-Encrypted: i=1; AJvYcCVSDVrhLuIic87LKe8KhZUCIZcaWQiQsLS690R6xfrOlLzh85+PVdRgQh3iOt6PsrtNNRuEZE9vJeHm8rfE4OJlVOjtRRgL7tws5m5e45D7xNOXq2o1TErLhHTGuAB0mp/WM7dyM7WBM2SXpxj5d1GlEPkECWWiKYL/lam53AYUSBYW7Q9KlkBIrteDIoN/hrRic2mVqTZGVeP+HBvIHcaTVUey++KN+UsIR1q1rm/+B0wGHNPlxibQW7NN+O8IG3XT4dDwd0kIRyFIj8mMwnpSaQQKVgyJy9JbsN6JgnTxhK/ctKKed9dvWL9O0DLQfCh/RA8EhVd96q6tCPzacJf443hDOaxH5BLe8wvjmJ9Pg69kgEXBIFP4+65XKDKq8gHuSfbyaZuUGDt+7kTImyyNO0/vt3MSjlx3dy3SCawKakGAkALtuBQJ0C0BQzRGdAD0C79PIi42n6GFlPJedPY+qIRFafoU1xOIKXx4J0bAvJWJQOI2tI80DLrzFj3hCkWhjEn1tvFaNb5Hhsq4/aV3axdTC3Ixyx0KM+W/BN+94CH/a6o6C8nprkNOKDZIBhcinGSyqk51uzo+lMC/N92f2X6PVp6gb8U=
-Received: from umbar.lan ([192.130.178.91])
-        by smtp.gmail.com with ESMTPSA id t1-20020a2e2d01000000b002d0ac71862csm391162ljt.9.2024.02.09.13.50.39
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 09 Feb 2024 13:50:40 -0800 (PST)
-From: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-Date: Fri, 09 Feb 2024 23:50:38 +0200
-Subject: [PATCH 8/8] arm64: dts: qcom: msm8996: drop source clock entries
- from the UFS node
+	s=arc-20240116; t=1707517087; c=relaxed/simple;
+	bh=7tbkgyy9saKSRyBIxabQor3qpnFHI3DnO5mdDOv/3Ew=;
+	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=YPBxPlniuuStgTxt2xjX6O55sOcdIYpuy3VkqLoaQilwk2MUw5sVTJBz4FoaedAtVK/ehPKzowgc0mSzqtMS1iDm5TGc5xn81t64B8IAYVvBPV9X/Ql3/raRm10Uzy8wu0CLxd9NVNPpoFWORsFxWlxCKB8Ck5r2NQ91VaStguk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=sntech.de; spf=pass smtp.mailfrom=sntech.de; arc=none smtp.client-ip=185.11.138.130
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=sntech.de
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=sntech.de
+Received: from i5e861914.versanet.de ([94.134.25.20] helo=diego.localnet)
+	by gloria.sntech.de with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+	(Exim 4.94.2)
+	(envelope-from <heiko@sntech.de>)
+	id 1rYZBm-00089k-3z; Fri, 09 Feb 2024 23:17:42 +0100
+From: Heiko =?ISO-8859-1?Q?St=FCbner?= <heiko@sntech.de>
+To: Vinod Koul <vkoul@kernel.org>, Kishon Vijay Abraham I <kishon@kernel.org>,
+ linux-rockchip@lists.infradead.org, linux-phy@lists.infradead.org,
+ Sebastian Reichel <sebastian.reichel@collabora.com>
+Cc: Rob Herring <robh+dt@kernel.org>,
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+ Conor Dooley <conor+dt@kernel.org>, Frank Wang <frank.wang@rock-chips.com>,
+ Kever Yang <kever.yang@rock-chips.com>, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org,
+ Sebastian Reichel <sebastian.reichel@collabora.com>, kernel@collabora.com
+Subject:
+ Re: [PATCH v1 03/10] dt-bindings: phy: add rockchip usbdp combo phy document
+Date: Fri, 09 Feb 2024 23:17:40 +0100
+Message-ID: <3267388.oiGErgHkdL@diego>
+In-Reply-To: <20240209181831.104687-4-sebastian.reichel@collabora.com>
+References:
+ <20240209181831.104687-1-sebastian.reichel@collabora.com>
+ <20240209181831.104687-4-sebastian.reichel@collabora.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20240209-msm8996-fix-ufs-v1-8-107b52e57420@linaro.org>
-References: <20240209-msm8996-fix-ufs-v1-0-107b52e57420@linaro.org>
-In-Reply-To: <20240209-msm8996-fix-ufs-v1-0-107b52e57420@linaro.org>
-To: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>, 
- Bjorn Andersson <andersson@kernel.org>, 
- Konrad Dybcio <konrad.dybcio@linaro.org>, 
- "James E.J. Bottomley" <jejb@linux.ibm.com>, 
- "Martin K. Petersen" <martin.petersen@oracle.com>, 
- Nitin Rawat <quic_nitirawa@quicinc.com>, Can Guo <quic_cang@quicinc.com>, 
- Naveen Kumar Goud Arepalli <quic_narepall@quicinc.com>, 
- Rob Herring <robh@kernel.org>, 
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, 
- Conor Dooley <conor+dt@kernel.org>, Andy Gross <andy.gross@linaro.org>, 
- Alim Akhtar <alim.akhtar@samsung.com>, Avri Altman <avri.altman@wdc.com>, 
- Bart Van Assche <bvanassche@acm.org>, Andy Gross <agross@kernel.org>
-Cc: linux-arm-msm@vger.kernel.org, linux-scsi@vger.kernel.org, 
- devicetree@vger.kernel.org
-X-Mailer: b4 0.12.4
-X-Developer-Signature: v=1; a=openpgp-sha256; l=1516;
- i=dmitry.baryshkov@linaro.org; h=from:subject:message-id;
- bh=74MCy96nF03W7EAJTz2PT10B7QEkB+SqtG1CDRc9HX8=;
- b=owGbwMvMwMXYbdNlx6SpcZXxtFoSQ+qxeZoc8focG91fuD+QiwgTVXfYLbhfe8ah0En9E7Tdd
- 2eHs5zqZDRmYWDkYpAVU2TxKWiZGrMpOezDjqn1MINYmUCmMHBxCsBFvNj/cJSpqqwrZ7xzo1w2
- 50q+6cGaxe6ChiynXr6PiT62e3qM/wze1yInZWtf1PqcsdIU5fM/ofFlR4fKI2u5Ezeudm3yZv8
- 9zT3cWGjew1ePOyZwrPvq0lhk65xpU6jq92/nLoHa6rRpB+YWh3FpWC6xYav1PqK0UmjTO+X0zE
- 7eP4IP2gLfcpsVXrPP1r/cECD1TruuoPXrNnWGyS5CzefP3jBveK3K2nth1SRZ14nXohancVaue
- RHBE7fp1YxH+6MCn/Y0dCeer5rCcOno49g8n2zpedfN57y9fz3LpmCV+cmVnPcMLpsy7JtWeD+6
- 9nbjxxjWdUf9yudybkl7sDN3zn7+n++8UpRyo7YF5JYDAA==
-X-Developer-Key: i=dmitry.baryshkov@linaro.org; a=openpgp;
- fpr=8F88381DD5C873E4AE487DA5199BF1243632046A
+Content-Transfer-Encoding: 7Bit
+Content-Type: text/plain; charset="us-ascii"
 
-There is no need to mention and/or to touch in any way the intermediate
-(source) clocks. Drop them from MSM8996 UFSHCD schema, making it follow
-the example lead by all other platforms.
+Hi,
 
-Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
----
- arch/arm64/boot/dts/qcom/msm8996.dtsi | 6 ------
- 1 file changed, 6 deletions(-)
+Am Freitag, 9. Februar 2024, 19:17:19 CET schrieb Sebastian Reichel:
+> Add device tree binding document for Rockchip USBDP Combo PHY
+> with Samsung IP block.
+> 
+> Co-developed-by: Frank Wang <frank.wang@rock-chips.com>
+> Signed-off-by: Frank Wang <frank.wang@rock-chips.com>
+> Signed-off-by: Sebastian Reichel <sebastian.reichel@collabora.com>
 
-diff --git a/arch/arm64/boot/dts/qcom/msm8996.dtsi b/arch/arm64/boot/dts/qcom/msm8996.dtsi
-index 6c847fdff192..fc44979d7902 100644
---- a/arch/arm64/boot/dts/qcom/msm8996.dtsi
-+++ b/arch/arm64/boot/dts/qcom/msm8996.dtsi
-@@ -2047,12 +2047,10 @@ ufshc: ufshc@624000 {
- 			power-domains = <&gcc UFS_GDSC>;
- 
- 			clock-names =
--				"core_clk_src",
- 				"core_clk",
- 				"bus_clk",
- 				"bus_aggr_clk",
- 				"iface_clk",
--				"core_clk_unipro_src",
- 				"core_clk_unipro",
- 				"core_clk_ice",
- 				"ref_clk",
-@@ -2060,12 +2058,10 @@ ufshc: ufshc@624000 {
- 				"rx_lane0_sync_clk",
- 				"rx_lane1_sync_clk";
- 			clocks =
--				<&gcc UFS_AXI_CLK_SRC>,
- 				<&gcc GCC_UFS_AXI_CLK>,
- 				<&gcc GCC_SYS_NOC_UFS_AXI_CLK>,
- 				<&gcc GCC_AGGRE2_UFS_AXI_CLK>,
- 				<&gcc GCC_UFS_AHB_CLK>,
--				<&gcc UFS_ICE_CORE_CLK_SRC>,
- 				<&gcc GCC_UFS_UNIPRO_CORE_CLK>,
- 				<&gcc GCC_UFS_ICE_CORE_CLK>,
- 				<&rpmcc RPM_SMD_LN_BB_CLK>,
-@@ -2074,8 +2070,6 @@ ufshc: ufshc@624000 {
- 				<&gcc GCC_UFS_RX_SYMBOL_1_CLK>;
- 			freq-table-hz =
- 				<100000000 200000000>,
--				<100000000 200000000>,
--				<0 0>,
- 				<0 0>,
- 				<0 0>,
- 				<0 0>,
+looks ok to me overall, but I stumbled over some spelling below.
 
--- 
-2.39.2
+> ---
+>  .../bindings/phy/phy-rockchip-usbdp.yaml      | 166 ++++++++++++++++++
+>  1 file changed, 166 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/phy/phy-rockchip-usbdp.yaml
+> 
+> diff --git a/Documentation/devicetree/bindings/phy/phy-rockchip-usbdp.yaml b/Documentation/devicetree/bindings/phy/phy-rockchip-usbdp.yaml
+> new file mode 100644
+> index 000000000000..3375a3099038
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/phy/phy-rockchip-usbdp.yaml
+> @@ -0,0 +1,166 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/phy/phy-rockchip-usbdp.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: Rockchip USBDP Combo PHY with Samsung IP block
+> +
+> +maintainers:
+> +  - Frank Wang <frank.wang@rock-chips.com>
+> +  - Zhang Yubing <yubing.zhang@rock-chips.com>
+> +
+> +properties:
+> +  compatible:
+> +    enum:
+> +      - rockchip,rk3588-usbdp-phy
+> +
+> +  reg:
+> +    maxItems: 1
+> +
+> +  clocks:
+> +    maxItems: 4
+> +
+> +  clock-names:
+> +    items:
+> +      - const: refclk
+> +      - const: immortal
+> +      - const: pclk
+> +      - const: utmi
+> +
+> +  resets:
+> +    maxItems: 5
+> +
+> +  reset-names:
+> +    items:
+> +      - const: init
+> +      - const: cmn
+> +      - const: lane
+> +      - const: pcs_apb
+> +      - const: pma_apb
+> +
+> +  rockchip,dp-lane-mux:
+> +    $ref: /schemas/types.yaml#/definitions/uint32-array
+> +    minItems: 2
+> +    maxItems: 4
+> +    description:
+> +      An array of physical Tyep-C lanes indexes. Position of an entry determines
+
+nit: Type-C lane indexes
+
+> +      the dp lane index, while the value of an entry indicater physical Type-C lane.
+
+nit: indicates instead of indicater?
+
+> +      The support dp lanes number are 2 or 4. e.g. for 2 lanes dp lanes map, we could
+
+nit: The supported dp lane numbers ... ?
+
+
+> +      have "rockchip,dp-lane-mux = <2, 3>;", assuming dp lane0 on Type-C phy lane2,
+> +      dp lane1 on Type-C phy lane3. For 4 lanes dp lanes map, we could have
+> +      "rockchip,dp-lane-mux = <0, 1, 2, 3>;", assuming dp lane0 on Type-C phy lane0,
+> +      dp lane1 on Type-C phy lane1, dp lane2 on Type-C phy lane2, dp lane3 on Type-C
+> +      phy lane3. If dp lane map by DisplayPort Alt mode, this property is not need.
+> +
+> +  rockchip,u2phy-grf:
+> +    $ref: /schemas/types.yaml#/definitions/phandle
+> +    description:
+> +      Phandle to the syscon managing the 'usb2 phy general register files'.
+> +
+> +  rockchip,usb-grf:
+> +    $ref: /schemas/types.yaml#/definitions/phandle
+> +    description:
+> +      Phandle to the syscon managing the 'usb general register files'.
+> +
+> +  rockchip,usbdpphy-grf:
+> +    $ref: /schemas/types.yaml#/definitions/phandle
+> +    description:
+> +      Phandle to the syscon managing the 'usbdp phy general register files'.
+> +
+> +  rockchip,vo-grf:
+> +    $ref: /schemas/types.yaml#/definitions/phandle
+> +    description:
+> +      Phandle to the syscon managing the 'video output general register files'.
+> +      When select the dp lane mapping will request its phandle.
+> +
+> +  sbu1-dc-gpios:
+> +    description:
+> +      GPIO connected to the SBU1 line of the USB-C connector via a big resistor
+> +      (~100K) to apply a DC offset for signalling the connector orientation.
+> +
+> +  sbu2-dc-gpios:
+> +    description:
+> +      GPIO connected to the SBU2 line of the USB-C connector via a big resistor
+> +      (~100K) to apply a DC offset for signalling the connector orientation.
+> +
+> +  orientation-switch:
+> +    description: Flag the port as possible handler of orientation switching
+> +    type: boolean
+> +
+> +  mode-switch:
+> +    description: Flag the port as possible handle of altmode switching
+
+nit: also a handler ... aka add an r ?
+
+
+Heiko
+
 
 
