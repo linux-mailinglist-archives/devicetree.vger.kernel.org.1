@@ -1,124 +1,158 @@
-Return-Path: <devicetree+bounces-40182-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-40183-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id CA47784F979
-	for <lists+devicetree@lfdr.de>; Fri,  9 Feb 2024 17:20:04 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0159584F97E
+	for <lists+devicetree@lfdr.de>; Fri,  9 Feb 2024 17:21:29 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 0937D1C21248
-	for <lists+devicetree@lfdr.de>; Fri,  9 Feb 2024 16:20:04 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id F00231C24BC9
+	for <lists+devicetree@lfdr.de>; Fri,  9 Feb 2024 16:21:27 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 492D5762C9;
-	Fri,  9 Feb 2024 16:19:59 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5BEB42D61B;
+	Fri,  9 Feb 2024 16:21:22 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="l95ykCD3"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="hF2EIiWr"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ej1-f45.google.com (mail-ej1-f45.google.com [209.85.218.45])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 993A271B2F;
-	Fri,  9 Feb 2024 16:19:57 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.45
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 28A1E762DC;
+	Fri,  9 Feb 2024 16:21:22 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1707495599; cv=none; b=P/OH2y0o8iu0KhNUCxGR72wR9vq5ExW5GFuvsigSzVuSN9b16pdETxI7/4J5/8hHZF1N5a48Yv7aIgFWnwc/utMnAk3gKF5gOlmaNcHR+tJRwACoi4ksOz/y3UeN0gzJJSCZEvst9jGK72Fu4K+RGLNmrESnu13NXGwkxY2++78=
+	t=1707495682; cv=none; b=PKfHJxRK46u30m67pdZAseZOkePpwQG4aljmUj6OznIXaIapjgz9H1hn3RZ60vsuHB7F41LUk+YicSHNqkECBfEH0l6Q3eJcaVeGzMtHy5sejSXdU5ArDkDBZ3+rc83H2DD8azCmYcy9qZ5/inRB/ZUvL94aVmci68K9vOhW4UM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1707495599; c=relaxed/simple;
-	bh=uDjDUY3P0+WE/SPdp/1ux0/uBkjqqDlL7BI+AmmT2tI=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=Ds177alD9PY6m7bwgyHRIa9Qb0Lv7DLQQz0HiY9+yS6n4AJT0ppQipwevbXNvlKklyJf2PcYCvEtOAxyzQhDsKzsq7Q0JleD/CnZOgPk6SmZZMRTjDrZQMjMdYuXRfm/a0f1Jf7D0047HCCvkArdQY0QihumS70LUwiblH1W+vI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=l95ykCD3; arc=none smtp.client-ip=209.85.218.45
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-ej1-f45.google.com with SMTP id a640c23a62f3a-a293f2280c7so160124466b.1;
-        Fri, 09 Feb 2024 08:19:57 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1707495596; x=1708100396; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=wLP9iN3k8faqF+s9nCNVsfYWD3ZQYtsS40zG0nFvago=;
-        b=l95ykCD30K15nXul/IfqSdxhyp+XJ5sor9iu0e8J5yUKsaP4WYVklCuSQKEMC0Pw0i
-         sD2217IEoNIZTnZwlU3yT2qjvY7VB9OcXbrVWFfPKqjYMl7fZYyvcOZy5pUK0QBuzzW5
-         Hb/bWVM4pQRz9DNI7zUdrb3wph858DstudbGpczX6dZbhTSh2ryqZOhLzh9a9Ay3iBDt
-         Ny7fLtIiYCbTcRm0/NUHicXLMY4PkQSs2qSC8ljecaFCktuGV5aGjxgkMlIonUVmitCB
-         A817QU2UmtcHgQ1qRAM/QKQ3vU9m9lJXOH8Y2qlh+z0Ip5yGjZ/fcke/QmT3piRksQGH
-         5N4A==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1707495596; x=1708100396;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=wLP9iN3k8faqF+s9nCNVsfYWD3ZQYtsS40zG0nFvago=;
-        b=OJQ4XDHUirce5Zwu/fwnTcvzH+5eT2iw1taSh/49ncC9qY0i/laolWvzg9NVL03fki
-         j/ytpvh6lQfyTDcRBLStjjRGpKW2Z0Irfi5CaoJMTTodwWGuHYFb0+KDs+JK7u2IEB0D
-         EP7zF4p6nvBbsVKUOL2a5Pjdt6sI3E0spl72n3C4oO0oQR2fSXEQa/DSZz17DeDLtmvB
-         dasKYeIijdBs/gr0rxmGpSurX5jnp1XKh8dGTDYKnYGqUmCw1M6EMGXHiVaY+h6HafPu
-         T5AUpdMyWDI/jZk6hwa4a7rhS2IEIb/LUXk6OkXexbnK841/bW2evMHSai0PizLSGAB6
-         otAQ==
-X-Forwarded-Encrypted: i=1; AJvYcCUADJC+gH+QBjTfM/9vP302WAvtYqkU+J/o1Fk+Z0ppDY3BPS7R+hQhmZPcdrT4Cr+8EoUeWafB/LJaXJalTTm0f1G3mCI/39Vt+A==
-X-Gm-Message-State: AOJu0YwQslldAwTWm8j7874xyqFqxyHcgqyTQ2KDy2csRjSC/FYb5UXd
-	Whi14fjtZSqaVa0ewtGa9v9AJhqQf1apap/oyIGb2hbjf5YrtIQjw8Z+W7s+iqhOs/HhVytrkvV
-	md1L+CGGszHcp7XRR0h45waTltEc=
-X-Google-Smtp-Source: AGHT+IEHK6VVEB+VN3NaW9zCak+RKLaMsm7Ru5zv6jOnArykt/XGpIEXG224KeccUyxBvD3o32Y3TDpway3uwAkjRkY=
-X-Received: by 2002:a17:906:bc5b:b0:a38:c07:7d51 with SMTP id
- s27-20020a170906bc5b00b00a380c077d51mr1821507ejv.59.1707495595578; Fri, 09
- Feb 2024 08:19:55 -0800 (PST)
+	s=arc-20240116; t=1707495682; c=relaxed/simple;
+	bh=6P50JpMWtNawcrLYmSC8txcAEjCecYqddP8IbfkgA3c=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=DU4jvsMYkelaMw2YbOFP6EW6QDMJw9yAkvXJqW2gquirDgAtXM2Dut1AhVoXyT6eWDPLu3sLH9BJ1tXO6acxkpF2PG/f9JzoSMi1wWeyfclXrkq8sTTUD98dy6mir7g6aQh1T3IVNiBhBmPyNgnpbcxN5zBSd7GxlpIg+QgeWA0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=hF2EIiWr; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 4FEDAC433C7;
+	Fri,  9 Feb 2024 16:21:18 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1707495682;
+	bh=6P50JpMWtNawcrLYmSC8txcAEjCecYqddP8IbfkgA3c=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=hF2EIiWrjPw+Pd13noyfJM2a0X3wBpj11gmQh5LXNvhwZuwyiaUALxiZPyJA3noAe
+	 SAyXo43AQs97YOuyh7+2k+q3sEej2tDUHKexse0N7KFS9AfyI23QEEO9tqqsbFYIKh
+	 rq7OdTgGF5FNILD6DMgYbltC0kmMHKxHuOdvgdZmMZo8s1fWBvg62sORYZW0bp8Msz
+	 io6TzO/hyZN/4jMNEy0vnTjt6Pjx62ZzL4dXSZl+aYkY8a15YwAUTvPAPdp45gaIxh
+	 fUPr+MaFUWlwdvSkXeiScC569n27Us+ziXK24iDYRBYUw9t9w42xY1Ne4c9q0BD/PH
+	 YiTiBj/THVklw==
+Date: Fri, 9 Feb 2024 16:21:16 +0000
+From: Conor Dooley <conor@kernel.org>
+To: Tudor Ambarus <tudor.ambarus@linaro.org>
+Cc: Geert Uytterhoeven <geert+renesas@glider.be>, broonie@kernel.org,
+	robh@kernel.org, andi.shyti@kernel.org, semen.protsenko@linaro.org,
+	krzysztof.kozlowski@linaro.org, alim.akhtar@samsung.com,
+	linux-spi@vger.kernel.org, linux-samsung-soc@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+	andre.draszik@linaro.org, peter.griffin@linaro.org,
+	kernel-team@android.com, willmcvicker@google.com,
+	conor+dt@kernel.org, devicetree@vger.kernel.org, arnd@arndb.de
+Subject: Re: [PATCH 01/12] spi: dt-bindings: introduce the ``fifo-depth``
+ property
+Message-ID: <20240209-chest-sleet-a119fc3d4243@spud>
+References: <20240208135045.3728927-1-tudor.ambarus@linaro.org>
+ <20240208135045.3728927-2-tudor.ambarus@linaro.org>
+ <20240208-grating-legwarmer-0a04cfb04d61@spud>
+ <c2b08463-cb13-4e9b-8797-8ebcf1047f66@linaro.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20240209-iio-backend-v10-0-3ed842064318@analog.com> <20240209-iio-backend-v10-5-3ed842064318@analog.com>
-In-Reply-To: <20240209-iio-backend-v10-5-3ed842064318@analog.com>
-From: Andy Shevchenko <andy.shevchenko@gmail.com>
-Date: Fri, 9 Feb 2024 18:19:19 +0200
-Message-ID: <CAHp75VfxXohbPXZBzTqjBvr8Yec0MTRgBOg5SKs108+0oseq3Q@mail.gmail.com>
-Subject: Re: [PATCH v10 5/7] iio: add the IIO backend framework
-To: Nuno Sa <nuno.sa@analog.com>, Andi Shyti <andi.shyti@kernel.org>
-Cc: linux-iio@vger.kernel.org, devicetree@vger.kernel.org, 
-	Lars-Peter Clausen <lars@metafoo.de>, Michael Hennerich <Michael.Hennerich@analog.com>, 
-	Jonathan Cameron <jic23@kernel.org>, Rob Herring <robh+dt@kernel.org>, 
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Frank Rowand <frowand.list@gmail.com>, Olivier Moysan <olivier.moysan@foss.st.com>
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: multipart/signed; micalg=pgp-sha256;
+	protocol="application/pgp-signature"; boundary="AYm2FyfJMLjy9NNH"
+Content-Disposition: inline
+In-Reply-To: <c2b08463-cb13-4e9b-8797-8ebcf1047f66@linaro.org>
+
+
+--AYm2FyfJMLjy9NNH
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
 Content-Transfer-Encoding: quoted-printable
 
-On Fri, Feb 9, 2024 at 5:26=E2=80=AFPM Nuno Sa <nuno.sa@analog.com> wrote:
->
-> This is a Framework to handle complex IIO aggregate devices.
->
-> The typical architecture is to have one device as the frontend device whi=
-ch
-> can be "linked" against one or multiple backend devices. All the IIO and
-> userspace interface is expected to be registers/managed by the frontend
-> device which will callback into the backends when needed (to get/set
-> some configuration that it does not directly control).
->
-> The basic framework interface is pretty simple:
->  - Backends should register themselves with @devm_iio_backend_register()
->  - Frontend devices should get backends with @devm_iio_backend_get()
+On Fri, Feb 09, 2024 at 01:56:56PM +0000, Tudor Ambarus wrote:
+>=20
+> + Geert
+>=20
+> On 2/8/24 18:24, Conor Dooley wrote:
+> > On Thu, Feb 08, 2024 at 01:50:34PM +0000, Tudor Ambarus wrote:
+> >> There are instances of the same IP that are configured by the integrat=
+or
+> >> with different FIFO depths. Introduce the fifo-depth property to allow
+> >> such nodes to specify their FIFO depth.
+> >>
+> >> We haven't seen SPI IPs with different FIFO depths for RX and TX, thus
+> >> introduce a single property.
+> >=20
+> > Some citation attached to this would be nice. "We haven't seen" offers
+> > no detail as to what IPs that allow this sort of configuration of FIFO
+> > size that you have actually checked.
+> >=20
+> > I went and checked our IP that we use in FPGA fabric, which has a
+> > configurable fifo depth. It only has a single knob for both RX and TX
+> > FIFOs. The Xilinx xps spi core also has configurable FIFOs, but again RX
+> > and TX sizes are tied there. At least that's a sample size of three.
+> >=20
+> > One of our guys is working on support for the IP I just mentioned and
+> > would be defining a vendor property for this, so
+> > Reviewed-by: Conor Dooley <conor.dooley@microchip.com>
+> >=20
+>=20
+> Thanks, Conor. I had in mind that SPI has a shift register and it's
+> improbable to have different FIFO depths for RX and TX.
 
-...
+IDK, but I've learned to expect the unexpectable, especially when it
+comes to the IPs intended for use in FPGAs.
 
-> +       fwnode =3D fwnode_find_reference(dev_fwnode(dev), "io-backends", =
-index);
-> +       if (IS_ERR(fwnode)) {
-> +               dev_err_probe(dev, PTR_ERR(fwnode),
-> +                             "Cannot get Firmware reference\n");
-> +               return ERR_CAST(fwnode);
+> At least I don't
+> see how it would work, I guess it will use the minimum depth between the
+> two?
 
-You can combine them in one line (yeah, a bit ugly, I know, we
-discussed with Andi at some point that it would be nice to have
-dev_err_probe*() family of helpers for this and other not yet covered
-cases). Whatever Jonathan likes (as two or a single line), I'm fine
-with this, just a side note.
+I'm not really sure how it would work other than that in the general
+case, but some use case specific configuration could work, but I do
+agree that it is
 
-> +       }
+> I grepped by "fifo" in the spi bindings and I now see that renesas is
+> using dedicated properties for RX and TX, but I think that there too the
+> FIFOs have the same depths. Looking into drivers/spi/spi-sh-msiof.c I
+> see that the of_device_id.data contains 64 bytes FIFOs for RX and TX,
+> regardless of the compatible.
+>=20
+> Geert, any idea if the FIFO depths can differ for RX and TX in
+> spi-sh-msiof.c?
+>=20
+> Anyway, even if there are such imbalanced architectures, I guess we can
+> consider them when/if they appear? (add rx/tx-fifo-depth dt properties)
 
---=20
-With Best Regards,
-Andy Shevchenko
+I think so.
+
+> Documentation/devicetree/bindings/spi/renesas,sh-msiof.yaml:
+> Override the default TX fifo size.  Unit is words.  Ignored if 0.
+> Documentation/devicetree/bindings/spi/renesas,sh-msiof.yaml:
+> renesas,rx-fifo-size:
+> Documentation/devicetree/bindings/spi/renesas,sh-msiof.yaml:
+> Override the default RX fifo size.  Unit is words.  Ignored if 0.
+
+These renesas ones seemed interesting at first glance due to these
+comments, but what's missed by grep the is "deprecated" marking on
+these. They seem to have been replaced by soc-specific compatibles.
+
+--AYm2FyfJMLjy9NNH
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZcZQ+wAKCRB4tDGHoIJi
+0tCHAQC+UahOjFrFh4KmlxoZGj3mhl0GhMgYnpK4Y008NNbSKwD7BWwhfjMZ1Zk1
+UZE3Fa1Tubov+aQxuH2m9T+rmex3fQg=
+=PHwh
+-----END PGP SIGNATURE-----
+
+--AYm2FyfJMLjy9NNH--
 
