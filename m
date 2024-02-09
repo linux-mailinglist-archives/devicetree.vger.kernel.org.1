@@ -1,181 +1,160 @@
-Return-Path: <devicetree+bounces-40027-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-40028-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id CA84B84F005
-	for <lists+devicetree@lfdr.de>; Fri,  9 Feb 2024 06:52:29 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 56B1384F008
+	for <lists+devicetree@lfdr.de>; Fri,  9 Feb 2024 06:55:01 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id EECAE1C24776
-	for <lists+devicetree@lfdr.de>; Fri,  9 Feb 2024 05:52:28 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 0E11E2862B3
+	for <lists+devicetree@lfdr.de>; Fri,  9 Feb 2024 05:55:00 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A569956B77;
-	Fri,  9 Feb 2024 05:52:25 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 307A056B8F;
+	Fri,  9 Feb 2024 05:54:56 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="YkhiOva3"
+	dkim=pass (2048-bit key) header.d=tuxon.dev header.i=@tuxon.dev header.b="cy/0XMGb"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ej1-f53.google.com (mail-ej1-f53.google.com [209.85.218.53])
+Received: from mail-wm1-f43.google.com (mail-wm1-f43.google.com [209.85.128.43])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E554656B86;
-	Fri,  9 Feb 2024 05:52:23 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.53
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3DA1256B9C
+	for <devicetree@vger.kernel.org>; Fri,  9 Feb 2024 05:54:54 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.43
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1707457945; cv=none; b=BL51hmcFqm5vLu49Wg+FIeuaLaoXV43B+Wqa8Tr4YUbCFiE44bMgSHRRgWWmLlu4YPXA7NWz4gWaf+ZRZb0NLqueyBTg6AwYtplZRea4MlRz2vOqgVjFJAN1aFzS4UZ3Da/AWkCx+lNhqesPi5jd9PYT6vApbbpoUi8YeY2GNwc=
+	t=1707458096; cv=none; b=nYk6SLLYJm00K9sbEvQ2cHXx94i/7xjHWfdqTgsZrBmykDJ+L9TxbVMxe7OPIIkw/IVBJJ31Xn/SCk/S1znCS2LYwJFoDkufgYS8v0/4LCp62x72oVfaezqew2d7UvDLIEzTRB3ysJSVxuna4irONa7/05jlwIw49sWUK/OmRHU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1707457945; c=relaxed/simple;
-	bh=gHFWdGJb33J6+jC1gRs0+QcHVDLwUVfle/UXEO8MmAs=;
-	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version:Content-Type; b=M6kcQp2pYtogcVZYjDE/n7tucmerrJ5dCaLWqP9iBXqsY1qxXNGp+Rs3CaYMkoiuB7mLF7smAr1zNtOP4wqnYc0net4XSV3ACqWmHtCiUWgAOIxL8/58l8lhVKv7be9HbNjv89xq2QlYFOfRnKfNku75D4x8VmLhak1MVazDxg4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=YkhiOva3; arc=none smtp.client-ip=209.85.218.53
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-ej1-f53.google.com with SMTP id a640c23a62f3a-a26ed1e05c7so69087666b.2;
-        Thu, 08 Feb 2024 21:52:23 -0800 (PST)
+	s=arc-20240116; t=1707458096; c=relaxed/simple;
+	bh=6O8nnoLFzLnwrH6TEG7OKKLM/CWovHK2pvgd9GTlM+o=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=kDCiN3JV/Q1A+m7pzo9pDRkqwL5eg3TL6UJ8iOqr9+F6LrmljRgAI43TAIHuj3YCX1r09p1NWQq43edrgTUfg0sB5puCB+pPnKYvUx5Rzb70pv5BqeZKZYDLAEBrj8KTccZtfnJGHzg+DZe4qJ7dVsmJ+oxML+/OtFlak1GfMgU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=tuxon.dev; spf=pass smtp.mailfrom=tuxon.dev; dkim=pass (2048-bit key) header.d=tuxon.dev header.i=@tuxon.dev header.b=cy/0XMGb; arc=none smtp.client-ip=209.85.128.43
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=tuxon.dev
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=tuxon.dev
+Received: by mail-wm1-f43.google.com with SMTP id 5b1f17b1804b1-41065fe9f4dso2588715e9.1
+        for <devicetree@vger.kernel.org>; Thu, 08 Feb 2024 21:54:53 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1707457942; x=1708062742; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=Mf57nKobtsp78hnGcDhJlA31IVpSkcv337k1qnzv71g=;
-        b=YkhiOva3FComFg8AOOwiL6DJim1olIMcovLhOYGqqMIAcCLHF27hGbgcX8qhpKA5Fw
-         04eo92bjsHSYFwRWkw6tIpaQqDYteN8S4CZoySeRjtjCyDiwPa/eh3f5y4p/+K7ytoDt
-         OwhofenBVqwEUrtLRsHJTXrK9XEovEG9l3ml6C/zc4efapzKCtxqaHuhup8Bm81C1Qm2
-         RNgPZDkwnsTvJZw0dcynEy2SX1egRvr0BXybv/NqasuYlrNMkItSihgkdM4KsRjiP2+S
-         hJTHQaH/C24QP++FEn9SARDwaHiPMEsP0oOQASlw8GdGh9L2co/0+lTgEEPegvXTgbvl
-         /Efg==
+        d=tuxon.dev; s=google; t=1707458092; x=1708062892; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=NHy3VGid497O23zJdu4K5s/J5uKQU2yHP46MdF54AZI=;
+        b=cy/0XMGbR1xqhphlo5YTxJ73BcLObnVTw5shjcV1fGZnCWhWfO+Mbjjw0mDXld/aHY
+         SkpekrfFD7Zr0U0nfZohZC7cIwYd43lDZrZ849xIS2q7Nd1oWdgXpuhdZC8U9wJtC2mb
+         mFmr9tI6NZtykrZ0sUEka+HLRvO1UI90e3KJ8UTdTbJU37QlVXbI9jFKOXYC5daGmk3P
+         dWZRN7LO9P4hekAc5FvJ5ASCzeaIzOZJ5umesvFVQ4amsgnZgZfh3HvRXMBcodlsHDH4
+         sfk3U++xCFe97PE3XswrHjaFEvEF0WUfp853eFx6BQ+/owSLTX1h2OpK7ZJlO78dXeqy
+         7iSQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1707457942; x=1708062742;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=Mf57nKobtsp78hnGcDhJlA31IVpSkcv337k1qnzv71g=;
-        b=sUA/FpE5xx2rvl2r+V5ArEoQ9TWHShGiupDqLxPiK3HZIpx2majhoVckaUc8ttBS8v
-         GHZ+ynVzkxkWBGDphmrP+geeo8Qbs95ig8Mj3OZGapXro3jRToYPeepn7FJFgN0hIWvG
-         KgV5fXKjJZ8TEydNMR1MCxe5SnDRixQG3IB0PKfB21zE/YMoS9M6//AyVR6CGMYAEdUR
-         xkT9w/2+ZwkAtFo7JLKMIkg+Xb/bFKuMq6dxBJ29T4/M61C/XJMFhGb1pgyrjj+o4rBy
-         +DVB7IfDqhZ7ZiWPx1kS2FXklz3t+ixnQID4+YjJlwe4ZzGkWFKYYXXDoP0fqXT2jp0e
-         1x9Q==
-X-Forwarded-Encrypted: i=1; AJvYcCUDYc1ovENkyPOU0mMlTQNNDQJSePe6mQEF/0Ogq0tKOabraBQl/lB5g12wHpXntovYbmBGDwieXU3ugrmtTDS0Sz9F3MMiWuZw62QcD03HWmBZNg46q19NkgXhmg7m0L4oVlpx
-X-Gm-Message-State: AOJu0YzGfQd9ahiRun30fucljOlMQeO30uB4M3tGLNG05VjjK4D27Bxu
-	HE5qVOZrRSBDjDvR1c+hQ5ZPuSYKujW9xDiU+w5lllLODgFQyGZ3
-X-Google-Smtp-Source: AGHT+IExdn4j3WLpPkGZHSKFJQSuFHiN82pOOTC6WPoYbiqwyvGkAeQonPfG93G/w/yBTpMA0QcwdA==
-X-Received: by 2002:a17:906:1156:b0:a38:66ef:14d3 with SMTP id i22-20020a170906115600b00a3866ef14d3mr334720eja.13.1707457941890;
-        Thu, 08 Feb 2024 21:52:21 -0800 (PST)
-X-Forwarded-Encrypted: i=1; AJvYcCWjiSfPNrT9WvFt7lXwMCztpAG3PneMTXFgXSZNJO0QyErCoFzz8jHQ97qwEZQzOmh1KGcAgD0kijIEZVJlzrwCHTY1cJan8Z6xfHt2mUHit0t+usAqd3KUFEmaTQOwANRE/62yreyyvM7cOEaIlM6kJ92U2MEDPRe6ChZ3tIxvEYDqI7wMir0jIGjVStl5TusC+nLm1bYM8kcBj4776kpqnsiXeSOcdVpv+AsSezDDFdnMPF/iRgAg9dqdlumnOObL1KP3MRzlLtsYf1R1B0BloXTngqvAtKn/2S+7aC359odNoT1wZe3XCWTItO9WG7R+U91vXs7x/XH/TlyoXPSqbrXxNqb5HTZbtBTFAQKVTzXBrCOo/ZgqTuxnwztu+1fdXRuXEgdQfjDm5ugcsTNEkxMFjXdO/kNcn3tQK/VY0iNtaI5Tun4dE7XFqrdgzRxYxy2liKG6JxhsIix4JMeSS4Fn5v2aieEkWm2q3odDFPcmBAX6e8ZapFSUx4tKsx7nZiZr61zoDh9+Eg2fyfBlKH65lzpcRcQWQ/d/QJ4D/MTHsZe0pOtkliA9Rx/KBjJtEsgOGoVrsjk0GR/LxjChgAap
-Received: from localhost.lan (031011218106.poznan.vectranet.pl. [31.11.218.106])
-        by smtp.gmail.com with ESMTPSA id vk3-20020a170907cbc300b00a37fbee48f8sm404551ejc.133.2024.02.08.21.52.20
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 08 Feb 2024 21:52:21 -0800 (PST)
-From: =?UTF-8?q?Rafa=C5=82=20Mi=C5=82ecki?= <zajec5@gmail.com>
-To: "Rafael J . Wysocki" <rafael@kernel.org>,
-	Daniel Lezcano <daniel.lezcano@linaro.org>,
-	Rob Herring <robh+dt@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>
-Cc: Zhang Rui <rui.zhang@intel.com>,
-	Lukasz Luba <lukasz.luba@arm.com>,
-	Matthias Brugger <matthias.bgg@gmail.com>,
-	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
-	Sascha Hauer <s.hauer@pengutronix.de>,
-	linux-pm@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	linux-mediatek@lists.infradead.org,
-	=?UTF-8?q?Rafa=C5=82=20Mi=C5=82ecki?= <rafal@milecki.pl>,
-	Daniel Golle <daniel@makrotopia.org>,
-	Sam Shih <sam.shih@mediatek.com>
-Subject: [PATCH V2] dt-bindings: thermal: mediatek,thermal: document AUXADC 32k clock
-Date: Fri,  9 Feb 2024 06:52:03 +0100
-Message-Id: <20240209055203.17144-1-zajec5@gmail.com>
-X-Mailer: git-send-email 2.35.3
+        d=1e100.net; s=20230601; t=1707458092; x=1708062892;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=NHy3VGid497O23zJdu4K5s/J5uKQU2yHP46MdF54AZI=;
+        b=aQ/RHM+p2Vra8bOqaNZVEMkMtrxM72+ESKKoRscdv4QmQf9jUhaWtqNv8CC71PzgbH
+         4BZMQHx27fvpZ43QSaZEwfPdmts/l1ZqKna8LoJ1Nwe6qsbBZpJd9LcgfA0l70wB3CNG
+         keS8xzXY/QTAC9dZyUZ6GatDeaD+dynheTEyHwI5EHa2E7h2Q/SrtDXrsBJskr9YeunF
+         ELMIHPZzTDD+EWes9l29R2V/sycglL1zBpEohIdjB0NMXkiogoCdUavyymWAY5q8P2Tc
+         O+AyRD+AX5hIedyGBCUodrQP+3hH+RZrEOXYn9J2xDH3Dioqsk5ZdHPPy9qOKBbIX450
+         eLIQ==
+X-Gm-Message-State: AOJu0Yz5akJ+vS6biYRxuZrZxnoMw6RPHdYnceP8Oy5aTllB4uiqRA8K
+	zAT2WocrzsT+PTbZM1gyZcLoB0/3wdJgBBAe47gsFFS7CcFFwKvOyVBg8Ph/EkM=
+X-Google-Smtp-Source: AGHT+IEuUxs9lAPfJ/sLN4UiG4fjRtUUI244mYYOE5/0j1dk6EM85cWi7PJgaar6+vsAy8WACWYalA==
+X-Received: by 2002:a5d:610e:0:b0:33b:6073:335 with SMTP id v14-20020a5d610e000000b0033b60730335mr308406wrt.55.1707458092359;
+        Thu, 08 Feb 2024 21:54:52 -0800 (PST)
+X-Forwarded-Encrypted: i=1; AJvYcCX1LTGYuUHSatTm8Me5EcYa9WUXtVNfzARxigi860VQ5Rq7gIsMBnx0vA+gwoeJNxbCkKIxdaGe+FscX6cDei8pfhGg7XfsgCIywQVrSdywbTCUMDb2xrxHYGGLzCMRAzUg1LIIqcfEAlw4XSWGsOOr+w0R69BTgdEIymGST8Y23aGlmGpqevfwINrzDxfUTaqepBaglGKG2wBO5Z52fgsiVfghIrsb4OewvS19Hw3QqhzB3tGlu7Uw8jbL7F8zBPM5oW3iYhDp9PD6uCSvddmB2gOpNEi/KZdixLLOAAcsKdg3A47oYlXExfiV8z03wsUNQZsYy/2vLJn5pMgpLNUjIGeIDY9NPC5GXjc5Pwy8pPiE3Kj2ijYLa46VzwO+DccNT791McPS9Bwo5XrnpI/QJCExCGFDYmPGmA==
+Received: from [192.168.50.4] ([82.78.167.124])
+        by smtp.gmail.com with ESMTPSA id bv28-20020a0560001f1c00b0033b4335dce5sm921517wrb.85.2024.02.08.21.54.51
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 08 Feb 2024 21:54:52 -0800 (PST)
+Message-ID: <b16a15fb-bf7b-42db-a54b-795caac8a3f1@tuxon.dev>
+Date: Fri, 9 Feb 2024 07:54:49 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 1/2] pinctrl: renesas: rzg2l: Add suspend/resume support
+Content-Language: en-US
+To: geert+renesas@glider.be, magnus.damm@gmail.com, robh@kernel.org,
+ krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
+ linus.walleij@linaro.org
+Cc: linux-renesas-soc@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, linux-gpio@vger.kernel.org,
+ Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>
+References: <20240208135629.2840932-1-claudiu.beznea.uj@bp.renesas.com>
+ <20240208135629.2840932-2-claudiu.beznea.uj@bp.renesas.com>
+From: claudiu beznea <claudiu.beznea@tuxon.dev>
+In-Reply-To: <20240208135629.2840932-2-claudiu.beznea.uj@bp.renesas.com>
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+Content-Transfer-Encoding: 7bit
 
-From: Rafał Miłecki <rafal@milecki.pl>
 
-SoCs MT7981 and MT7986 include a newer thermal block (V3) that requires
-enabling one more clock called AUXADC 32k. Require it in binding.
 
-Cc: Daniel Golle <daniel@makrotopia.org>
-Cc: Sam Shih <sam.shih@mediatek.com>
-Signed-off-by: Rafał Miłecki <rafal@milecki.pl>
----
-V2: Disallow "adc_32k" on other chipsets (maxItems: 2)
+On 08.02.2024 15:56, Claudiu wrote:
+> From: Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>
+> 
+> pinctrl-rzg2l driver is used on RZ/G3S which support deep sleep states
+> where power to most of the SoC components is turned off.
+> 
+> For this add suspend/resume support. This involves saving and restoring
+> configured registers along with disabling clock in case there is no pin
+> configured as wakeup sources.
+> 
+> To save/restore registers 2 caches were allocated: one for GPIO pins and
+> one for dedicated pins.
+> 
+> On suspend path the pin controller registers are saved and if none of the
+> pins are configured as wakeup sources the pinctrl clock is disabled.
+> Otherwise it remains on.
+> 
+> On resume path the configuration is done as follows:
+> 1/ setup PFCs by writing to registers on pin based accesses
+> 2/ setup GPIOs by writing to registers on port based accesses and
+>    following configuration steps specified in hardware manual
+> 3/ setup dedicated pins by writing to registers on port based accesses
+> 4/ setup interrupts.
+> 
+> Because interrupt signals are routed to IA55 interrupt controller and
+> IA55 interrupt controller resumes before pin controller, patch restores
+> also the configured interrupts just after pin settings are restored to
+> avoid invalid interrupts while resuming.
+> 
+> Signed-off-by: Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>
+> ---
+[ ... ]
 
- .../bindings/thermal/mediatek,thermal.yaml    | 31 +++++++++++++++++--
- 1 file changed, 28 insertions(+), 3 deletions(-)
+>  
+> +/**
+> + * struct rzg2l_pinctrl_reg_cache - register cache structure (to be used in suspend/resume)
+> + * @p: P registers cache
+> + * @pm: PM registers cache
+> + * @pmc: PMC registers cache
+> + * @pfc: PFC registers cache
+> + * @iolh: IOLH registers cache
+> + * @ien: IEN registers cache
+> + * @sd_ch: SD_CH registers cache
+> + * @eth_poc: ET_POC registers cache
+> + * @eth_mode: ETH_MODE register cache
+> + * @qspi: QSPI registers cache
+> + */
+> +struct rzg2l_pinctrl_reg_cache {
+> +	u8	*p;
+> +	u16	*pm;
+> +	u8	*pmc;
+> +	u32	*pfc;
+> +	u32	*iolh[2];
+> +	u32	*ien[2];
 
-diff --git a/Documentation/devicetree/bindings/thermal/mediatek,thermal.yaml b/Documentation/devicetree/bindings/thermal/mediatek,thermal.yaml
-index d96a2e32bd8f..e7373d78618c 100644
---- a/Documentation/devicetree/bindings/thermal/mediatek,thermal.yaml
-+++ b/Documentation/devicetree/bindings/thermal/mediatek,thermal.yaml
-@@ -15,9 +15,6 @@ description:
-   controls a mux in the apmixedsys register space via AHB bus accesses, so a
-   phandle to the APMIXEDSYS is also needed.
- 
--allOf:
--  - $ref: thermal-sensor.yaml#
--
- properties:
-   compatible:
-     enum:
-@@ -38,14 +35,18 @@ properties:
-     maxItems: 1
- 
-   clocks:
-+    minItems: 2
-     items:
-       - description: Main clock needed for register access
-       - description: The AUXADC clock
-+      - description: AUXADC 32k clock
- 
-   clock-names:
-+    minItems: 2
-     items:
-       - const: therm
-       - const: auxadc
-+      - const: adc_32k
- 
-   mediatek,auxadc:
-     $ref: /schemas/types.yaml#/definitions/phandle
-@@ -76,6 +77,30 @@ required:
-   - mediatek,auxadc
-   - mediatek,apmixedsys
- 
-+allOf:
-+  - $ref: thermal-sensor.yaml#
-+  - if:
-+      properties:
-+        compatible:
-+          contains:
-+            enum:
-+              - mediatek,mt7981-thermal
-+              - mediatek,mt7986-thermal
-+    then:
-+      properties:
-+        clocks:
-+          minItems: 3
-+
-+        clock-names:
-+          minItems: 3
-+    else:
-+      properties:
-+        clocks:
-+          maxItems: 2
-+
-+        clock-names:
-+          maxItems: 2
-+
- unevaluatedProperties: false
- 
- examples:
--- 
-2.35.3
 
+> +	u32	sd_ch[2];
+> +	u32	eth_poc[2];
+> +	u32	eth_mode;
+> +	u32	qspi;
+
+I missed it, u8 should be enough for these.
+
+[ ... ]
 
