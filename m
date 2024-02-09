@@ -1,194 +1,181 @@
-Return-Path: <devicetree+bounces-40026-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-40027-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id B06F384EFE6
-	for <lists+devicetree@lfdr.de>; Fri,  9 Feb 2024 06:26:35 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id CA84B84F005
+	for <lists+devicetree@lfdr.de>; Fri,  9 Feb 2024 06:52:29 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 6CFE528A03B
-	for <lists+devicetree@lfdr.de>; Fri,  9 Feb 2024 05:26:34 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id EECAE1C24776
+	for <lists+devicetree@lfdr.de>; Fri,  9 Feb 2024 05:52:28 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 02D9B56B7C;
-	Fri,  9 Feb 2024 05:26:32 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A569956B77;
+	Fri,  9 Feb 2024 05:52:25 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=fail reason="signature verification failed" (1024-bit key) header.d=phytec.de header.i=@phytec.de header.b="VCk01+Sn"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="YkhiOva3"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mickerik.phytec.de (mickerik.phytec.de [91.26.50.163])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-ej1-f53.google.com (mail-ej1-f53.google.com [209.85.218.53])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8AF284C9D
-	for <devicetree@vger.kernel.org>; Fri,  9 Feb 2024 05:26:27 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=91.26.50.163
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E554656B86;
+	Fri,  9 Feb 2024 05:52:23 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.53
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1707456391; cv=none; b=o3c2+ew+LyKpnv8Ge2sQZ93XowLJ2FIQzk/EO1/ukTqmZJ6SxR3U70PjFAN2NIH6L1RjIoygebEc9qHLGpzDom+8JnRq/hJ0sr5c+uUMSe3Wn6NIewADgX7rf+kdNfBa9kAp3kijWddfczHZrNCHswayWrJm5iSr3AXn7cOFn64=
+	t=1707457945; cv=none; b=BL51hmcFqm5vLu49Wg+FIeuaLaoXV43B+Wqa8Tr4YUbCFiE44bMgSHRRgWWmLlu4YPXA7NWz4gWaf+ZRZb0NLqueyBTg6AwYtplZRea4MlRz2vOqgVjFJAN1aFzS4UZ3Da/AWkCx+lNhqesPi5jd9PYT6vApbbpoUi8YeY2GNwc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1707456391; c=relaxed/simple;
-	bh=LU343LXx/knwbBD2JmFNNAEoZvmvYoXV11fwUg6/Kgs=;
-	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
-	 In-Reply-To:Content-Type; b=HwTqmP6o47rJXaXoTQphNOHWEqPvU7RcTt0EcbqNqGrdqdmOnxEY3etBByYA8WeysyY2oiIzmahd+hfMbka0SuvLs7VsIMgK53Bk61IPRkmlS6CS9M4C6HWrFlZ2vNOGFDANsQkdTshI8QHzlokRKpJQKmxKT9dpt33Y5kyyBgg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=phytec.de; spf=pass smtp.mailfrom=phytec.de; dkim=pass (1024-bit key) header.d=phytec.de header.i=@phytec.de header.b=VCk01+Sn; arc=none smtp.client-ip=91.26.50.163
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=phytec.de
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=phytec.de
-DKIM-Signature: v=1; a=rsa-sha256; d=phytec.de; s=a4; c=relaxed/simple;
-	q=dns/txt; i=@phytec.de; t=1707456384; x=1710048384;
-	h=From:Sender:Reply-To:Subject:Date:Message-ID:To:CC:MIME-Version:Content-Type:
-	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:Resent-From:
-	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:List-Id:
-	List-Help:List-Unsubscribe:List-Subscribe:List-Post:List-Owner:List-Archive;
-	bh=LU343LXx/knwbBD2JmFNNAEoZvmvYoXV11fwUg6/Kgs=;
-	b=VCk01+Sn7xbSV42o+VCEkRydDN1EJ8wcTz8Pq0DuM+/KaxtVPpRnAimALIJyYXAY
-	opQOlZ4EmuTgbj1NWonEUz/zQjepeFss1Gb5nzZIGez/iuHPItqLg83O34OUgv/h
-	rVsWv9JOn+payoNnGzDQBY8CsjdjQC9mtxQ/OkRG7vU=;
-X-AuditID: ac14000a-fbefe7000000290d-23-65c5b7801676
-Received: from berlix.phytec.de (Unknown_Domain [172.25.0.12])
-	(using TLS with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
-	(Client did not present a certificate)
-	by mickerik.phytec.de (PHYTEC Mail Gateway) with SMTP id 20.43.10509.087B5C56; Fri,  9 Feb 2024 06:26:24 +0100 (CET)
-Received: from [172.25.39.28] (172.25.0.11) by Berlix.phytec.de (172.25.0.12)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.6; Fri, 9 Feb 2024
- 06:26:20 +0100
-Message-ID: <1ab1d500-1429-4dc2-b31a-fc24d171206f@phytec.de>
-Date: Fri, 9 Feb 2024 06:26:18 +0100
+	s=arc-20240116; t=1707457945; c=relaxed/simple;
+	bh=gHFWdGJb33J6+jC1gRs0+QcHVDLwUVfle/UXEO8MmAs=;
+	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version:Content-Type; b=M6kcQp2pYtogcVZYjDE/n7tucmerrJ5dCaLWqP9iBXqsY1qxXNGp+Rs3CaYMkoiuB7mLF7smAr1zNtOP4wqnYc0net4XSV3ACqWmHtCiUWgAOIxL8/58l8lhVKv7be9HbNjv89xq2QlYFOfRnKfNku75D4x8VmLhak1MVazDxg4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=YkhiOva3; arc=none smtp.client-ip=209.85.218.53
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-ej1-f53.google.com with SMTP id a640c23a62f3a-a26ed1e05c7so69087666b.2;
+        Thu, 08 Feb 2024 21:52:23 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1707457942; x=1708062742; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=Mf57nKobtsp78hnGcDhJlA31IVpSkcv337k1qnzv71g=;
+        b=YkhiOva3FComFg8AOOwiL6DJim1olIMcovLhOYGqqMIAcCLHF27hGbgcX8qhpKA5Fw
+         04eo92bjsHSYFwRWkw6tIpaQqDYteN8S4CZoySeRjtjCyDiwPa/eh3f5y4p/+K7ytoDt
+         OwhofenBVqwEUrtLRsHJTXrK9XEovEG9l3ml6C/zc4efapzKCtxqaHuhup8Bm81C1Qm2
+         RNgPZDkwnsTvJZw0dcynEy2SX1egRvr0BXybv/NqasuYlrNMkItSihgkdM4KsRjiP2+S
+         hJTHQaH/C24QP++FEn9SARDwaHiPMEsP0oOQASlw8GdGh9L2co/0+lTgEEPegvXTgbvl
+         /Efg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1707457942; x=1708062742;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=Mf57nKobtsp78hnGcDhJlA31IVpSkcv337k1qnzv71g=;
+        b=sUA/FpE5xx2rvl2r+V5ArEoQ9TWHShGiupDqLxPiK3HZIpx2majhoVckaUc8ttBS8v
+         GHZ+ynVzkxkWBGDphmrP+geeo8Qbs95ig8Mj3OZGapXro3jRToYPeepn7FJFgN0hIWvG
+         KgV5fXKjJZ8TEydNMR1MCxe5SnDRixQG3IB0PKfB21zE/YMoS9M6//AyVR6CGMYAEdUR
+         xkT9w/2+ZwkAtFo7JLKMIkg+Xb/bFKuMq6dxBJ29T4/M61C/XJMFhGb1pgyrjj+o4rBy
+         +DVB7IfDqhZ7ZiWPx1kS2FXklz3t+ixnQID4+YjJlwe4ZzGkWFKYYXXDoP0fqXT2jp0e
+         1x9Q==
+X-Forwarded-Encrypted: i=1; AJvYcCUDYc1ovENkyPOU0mMlTQNNDQJSePe6mQEF/0Ogq0tKOabraBQl/lB5g12wHpXntovYbmBGDwieXU3ugrmtTDS0Sz9F3MMiWuZw62QcD03HWmBZNg46q19NkgXhmg7m0L4oVlpx
+X-Gm-Message-State: AOJu0YzGfQd9ahiRun30fucljOlMQeO30uB4M3tGLNG05VjjK4D27Bxu
+	HE5qVOZrRSBDjDvR1c+hQ5ZPuSYKujW9xDiU+w5lllLODgFQyGZ3
+X-Google-Smtp-Source: AGHT+IExdn4j3WLpPkGZHSKFJQSuFHiN82pOOTC6WPoYbiqwyvGkAeQonPfG93G/w/yBTpMA0QcwdA==
+X-Received: by 2002:a17:906:1156:b0:a38:66ef:14d3 with SMTP id i22-20020a170906115600b00a3866ef14d3mr334720eja.13.1707457941890;
+        Thu, 08 Feb 2024 21:52:21 -0800 (PST)
+X-Forwarded-Encrypted: i=1; AJvYcCWjiSfPNrT9WvFt7lXwMCztpAG3PneMTXFgXSZNJO0QyErCoFzz8jHQ97qwEZQzOmh1KGcAgD0kijIEZVJlzrwCHTY1cJan8Z6xfHt2mUHit0t+usAqd3KUFEmaTQOwANRE/62yreyyvM7cOEaIlM6kJ92U2MEDPRe6ChZ3tIxvEYDqI7wMir0jIGjVStl5TusC+nLm1bYM8kcBj4776kpqnsiXeSOcdVpv+AsSezDDFdnMPF/iRgAg9dqdlumnOObL1KP3MRzlLtsYf1R1B0BloXTngqvAtKn/2S+7aC359odNoT1wZe3XCWTItO9WG7R+U91vXs7x/XH/TlyoXPSqbrXxNqb5HTZbtBTFAQKVTzXBrCOo/ZgqTuxnwztu+1fdXRuXEgdQfjDm5ugcsTNEkxMFjXdO/kNcn3tQK/VY0iNtaI5Tun4dE7XFqrdgzRxYxy2liKG6JxhsIix4JMeSS4Fn5v2aieEkWm2q3odDFPcmBAX6e8ZapFSUx4tKsx7nZiZr61zoDh9+Eg2fyfBlKH65lzpcRcQWQ/d/QJ4D/MTHsZe0pOtkliA9Rx/KBjJtEsgOGoVrsjk0GR/LxjChgAap
+Received: from localhost.lan (031011218106.poznan.vectranet.pl. [31.11.218.106])
+        by smtp.gmail.com with ESMTPSA id vk3-20020a170907cbc300b00a37fbee48f8sm404551ejc.133.2024.02.08.21.52.20
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 08 Feb 2024 21:52:21 -0800 (PST)
+From: =?UTF-8?q?Rafa=C5=82=20Mi=C5=82ecki?= <zajec5@gmail.com>
+To: "Rafael J . Wysocki" <rafael@kernel.org>,
+	Daniel Lezcano <daniel.lezcano@linaro.org>,
+	Rob Herring <robh+dt@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>
+Cc: Zhang Rui <rui.zhang@intel.com>,
+	Lukasz Luba <lukasz.luba@arm.com>,
+	Matthias Brugger <matthias.bgg@gmail.com>,
+	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
+	Sascha Hauer <s.hauer@pengutronix.de>,
+	linux-pm@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	linux-mediatek@lists.infradead.org,
+	=?UTF-8?q?Rafa=C5=82=20Mi=C5=82ecki?= <rafal@milecki.pl>,
+	Daniel Golle <daniel@makrotopia.org>,
+	Sam Shih <sam.shih@mediatek.com>
+Subject: [PATCH V2] dt-bindings: thermal: mediatek,thermal: document AUXADC 32k clock
+Date: Fri,  9 Feb 2024 06:52:03 +0100
+Message-Id: <20240209055203.17144-1-zajec5@gmail.com>
+X-Mailer: git-send-email 2.35.3
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2] arm64: dts: ti: am62-phyboard-lyra: Add overlay to
- enable a GPIO fan
-Content-Language: en-US
-To: Nathan Morrisson <nmorrisson@phytec.com>, <nm@ti.com>, <vigneshr@ti.com>,
-	<kristo@kernel.org>, <robh+dt@kernel.org>,
-	<krzysztof.kozlowski+dt@linaro.org>, <conor+dt@kernel.org>
-CC: <devicetree@vger.kernel.org>, <upstream@lists.phytec.de>,
-	<linux-kernel@vger.kernel.org>, <linux-arm-kernel@lists.infradead.org>
-References: <20240209002916.1284433-1-nmorrisson@phytec.com>
-From: Wadim Egorov <w.egorov@phytec.de>
-In-Reply-To: <20240209002916.1284433-1-nmorrisson@phytec.com>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: Berlix.phytec.de (172.25.0.12) To Berlix.phytec.de
- (172.25.0.12)
-X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFprBIsWRmVeSWpSXmKPExsWyRpKBR7dh+9FUg5mThCzW7D3HZDH/yDlW
-	i+WfZ7Nb9L14yGyx6fE1VovLu+awWbz5cZbJ4kPjZjaL1r1H2C2636lb/D/7gd2B22PTqk42
-	jzvX9rB5bF5S79Hf3cLq8efiO1aP4ze2M3l83iQXwB7FZZOSmpNZllqkb5fAlXFg2wamgjXS
-	FSeetLI2MK4X62Lk5JAQMJF4cmg1cxcjF4eQwGImia93JzFCOHcYJX69n8oEUsUrYCOxceMZ
-	dhCbRUBF4s++fkaIuKDEyZlPWEBsUQF5ifu3ZoDVCAvEScx6e5sNxGYWEJe49WQ+E8hQEYHt
-	jBJrFi8CW8cs0MYo8WBDN1AVB9A6G4nVU1VAGtgE1CXubPjGCmJzCthKXO56ywIxyEJi8ZuD
-	7BC2vMT2t3OYQWwhIPvFpeUsEO/IS0w795oZwg6V2PplO9MERuFZSG6dheSmWUjGzkIydgEj
-	yypGodzM5OzUosxsvYKMypLUZL2U1E2MoNgTYeDawdg3x+MQIxMH4yFGCQ5mJRHekCVHUoV4
-	UxIrq1KL8uOLSnNSiw8xSnOwKInzru4IThUSSE8sSc1OTS1ILYLJMnFwSjUwWiktOinUsY5n
-	iiszQy1PjdexNTMkluzkEb0uY3Xx3uYfpTNc9K5HGd0t6O244b7s7Opv1xco5Ty/OyO2+Xux
-	+QZeywmrihepfLZm+CeULDrhWfF/xsojInP2ik+arP/p4xGFq9+UvleI+hhEHHrY8Nzi8QXP
-	z01xs5Un72X+qyB7X2W+1P0pO5RYijMSDbWYi4oTAa2behSrAgAA
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 
-Hi Nathan,
+From: Rafał Miłecki <rafal@milecki.pl>
 
-Am 09.02.24 um 01:29 schrieb Nathan Morrisson:
-> The phyBOARD-Lyra has a GPIO fan header. This overlay enables the fan
-> header and sets the fan to turn on at 65C.
->
-> Signed-off-by: Nathan Morrisson <nmorrisson@phytec.com>
-> ---
-> v2:
-> - Change overlay name from k3-am62-... to k3-am62x-...
-> - Add compile time test
->
->   arch/arm64/boot/dts/ti/Makefile               |  3 ++
->   .../ti/k3-am62x-phyboard-lyra-gpio-fan.dtso   | 51 +++++++++++++++++++
->   2 files changed, 54 insertions(+)
->   create mode 100644 arch/arm64/boot/dts/ti/k3-am62x-phyboard-lyra-gpio-fan.dtso
->
-> diff --git a/arch/arm64/boot/dts/ti/Makefile b/arch/arm64/boot/dts/ti/Makefile
-> index 52c1dc910308..bfeb496d5039 100644
-> --- a/arch/arm64/boot/dts/ti/Makefile
-> +++ b/arch/arm64/boot/dts/ti/Makefile
-> @@ -22,6 +22,7 @@ dtb-$(CONFIG_ARCH_K3) += k3-am625-verdin-wifi-dahlia.dtb
->   dtb-$(CONFIG_ARCH_K3) += k3-am625-verdin-wifi-dev.dtb
->   dtb-$(CONFIG_ARCH_K3) += k3-am625-verdin-wifi-mallow.dtb
->   dtb-$(CONFIG_ARCH_K3) += k3-am625-verdin-wifi-yavia.dtb
-> +dtb-$(CONFIG_ARCH_K3) += k3-am62x-phyboard-lyra-gpio-fan.dtbo
->   dtb-$(CONFIG_ARCH_K3) += k3-am62-lp-sk.dtb
->   
->   # Boards with AM62Ax SoC
-> @@ -87,6 +88,8 @@ k3-am625-beagleplay-csi2-ov5640-dtbs := k3-am625-beagleplay.dtb \
->   	k3-am625-beagleplay-csi2-ov5640.dtbo
->   k3-am625-beagleplay-csi2-tevi-ov5640-dtbs := k3-am625-beagleplay.dtb \
->   	k3-am625-beagleplay-csi2-tevi-ov5640.dtbo
-> +k3-am625-phyboard-lyra-gpio-fan-dtbs := k3-am625-phyboard-lyra-rdk.dtb \
-> +	k3-am62x-phyboard-lyra-gpio-fan.dtbo
->   k3-am625-sk-csi2-imx219-dtbs := k3-am625-sk.dtb \
->   	k3-am62x-sk-csi2-imx219.dtbo
->   k3-am625-sk-csi2-ov5640-dtbs := k3-am625-sk.dtb \
-> diff --git a/arch/arm64/boot/dts/ti/k3-am62x-phyboard-lyra-gpio-fan.dtso b/arch/arm64/boot/dts/ti/k3-am62x-phyboard-lyra-gpio-fan.dtso
-> new file mode 100644
-> index 000000000000..9c05748bdd9d
-> --- /dev/null
-> +++ b/arch/arm64/boot/dts/ti/k3-am62x-phyboard-lyra-gpio-fan.dtso
-> @@ -0,0 +1,51 @@
-> +// SPDX-License-Identifier: GPL-2.0-only OR MIT
-> +/*
-> + * Copyright (C) 2024 PHYTEC America LLC
-> + * Author: Garrett Giordano <ggiordano@phytec.com>
-> + */
-> +
-> +/dts-v1/;
-> +/plugin/;
-> +
-> +#include <dt-bindings/gpio/gpio.h>
-> +#include <dt-bindings/thermal/thermal.h>
-> +#include "k3-pinctrl.h"
-> +
-> +&{/} {
-> +	fan: gpio-fan {
-> +		compatible = "gpio-fan";
-> +		gpio-fan,speed-map = <0 0 8600 1>;
-> +		gpios = <&main_gpio0 40 GPIO_ACTIVE_LOW>;
-> +		#cooling-cells = <2>;
-> +		pinctrl-names = "default";
-> +		pinctrl-0 = <&gpio_fan_pins_default>;
-> +		status = "okay";
+SoCs MT7981 and MT7986 include a newer thermal block (V3) that requires
+enabling one more clock called AUXADC 32k. Require it in binding.
 
-There is no need to set the status. If no status is present, it also 
-indicates that the node is activated.
+Cc: Daniel Golle <daniel@makrotopia.org>
+Cc: Sam Shih <sam.shih@mediatek.com>
+Signed-off-by: Rafał Miłecki <rafal@milecki.pl>
+---
+V2: Disallow "adc_32k" on other chipsets (maxItems: 2)
 
-With this change,
+ .../bindings/thermal/mediatek,thermal.yaml    | 31 +++++++++++++++++--
+ 1 file changed, 28 insertions(+), 3 deletions(-)
 
-Reviewed-by: Wadim Egorov <w.egorov@phytec.de>
+diff --git a/Documentation/devicetree/bindings/thermal/mediatek,thermal.yaml b/Documentation/devicetree/bindings/thermal/mediatek,thermal.yaml
+index d96a2e32bd8f..e7373d78618c 100644
+--- a/Documentation/devicetree/bindings/thermal/mediatek,thermal.yaml
++++ b/Documentation/devicetree/bindings/thermal/mediatek,thermal.yaml
+@@ -15,9 +15,6 @@ description:
+   controls a mux in the apmixedsys register space via AHB bus accesses, so a
+   phandle to the APMIXEDSYS is also needed.
+ 
+-allOf:
+-  - $ref: thermal-sensor.yaml#
+-
+ properties:
+   compatible:
+     enum:
+@@ -38,14 +35,18 @@ properties:
+     maxItems: 1
+ 
+   clocks:
++    minItems: 2
+     items:
+       - description: Main clock needed for register access
+       - description: The AUXADC clock
++      - description: AUXADC 32k clock
+ 
+   clock-names:
++    minItems: 2
+     items:
+       - const: therm
+       - const: auxadc
++      - const: adc_32k
+ 
+   mediatek,auxadc:
+     $ref: /schemas/types.yaml#/definitions/phandle
+@@ -76,6 +77,30 @@ required:
+   - mediatek,auxadc
+   - mediatek,apmixedsys
+ 
++allOf:
++  - $ref: thermal-sensor.yaml#
++  - if:
++      properties:
++        compatible:
++          contains:
++            enum:
++              - mediatek,mt7981-thermal
++              - mediatek,mt7986-thermal
++    then:
++      properties:
++        clocks:
++          minItems: 3
++
++        clock-names:
++          minItems: 3
++    else:
++      properties:
++        clocks:
++          maxItems: 2
++
++        clock-names:
++          maxItems: 2
++
+ unevaluatedProperties: false
+ 
+ examples:
+-- 
+2.35.3
 
-
-> +	};
-> +};
-> +
-> +&main_pmx0 {
-> +	gpio_fan_pins_default: gpio-fan-default-pins {
-> +		pinctrl-single,pins = <
-> +			AM62X_IOPAD(0x0a4, PIN_OUTPUT, 7) /* (M22) GPMC0_DIR.GPIO0_40 */
-> +		>;
-> +	};
-> +};
-> +
-> +&thermal_zones {
-> +	main0_thermal: main0-thermal {
-> +		trips {
-> +			main0_thermal_trip0: main0-thermal-trip {
-> +				temperature = <65000>;  /* millicelsius */
-> +				hysteresis = <2000>;    /* millicelsius */
-> +				type = "active";
-> +			};
-> +		};
-> +
-> +		cooling-maps {
-> +			map0 {
-> +				trip = <&main0_thermal_trip0>;
-> +				cooling-device = <&fan THERMAL_NO_LIMIT THERMAL_NO_LIMIT>;
-> +			};
-> +		};
-> +	};
-> +};
 
