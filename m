@@ -1,154 +1,110 @@
-Return-Path: <devicetree+bounces-40233-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-40234-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 134B884FB72
-	for <lists+devicetree@lfdr.de>; Fri,  9 Feb 2024 19:02:25 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id C10EA84FB7E
+	for <lists+devicetree@lfdr.de>; Fri,  9 Feb 2024 19:05:31 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 6E648B2717D
-	for <lists+devicetree@lfdr.de>; Fri,  9 Feb 2024 18:02:22 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id BBEFD1C24314
+	for <lists+devicetree@lfdr.de>; Fri,  9 Feb 2024 18:05:30 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2C84F80BF7;
-	Fri,  9 Feb 2024 18:01:30 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id F2D637EEE7;
+	Fri,  9 Feb 2024 18:05:26 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="OxlAsaTT"
+	dkim=pass (2048-bit key) header.d=dolcini.it header.i=@dolcini.it header.b="KeL8jjIH"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-yw1-f173.google.com (mail-yw1-f173.google.com [209.85.128.173])
+Received: from mail11.truemail.it (mail11.truemail.it [217.194.8.81])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6C30680C16
-	for <devicetree@vger.kernel.org>; Fri,  9 Feb 2024 18:01:28 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.173
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 070FB364D6;
+	Fri,  9 Feb 2024 18:05:22 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.194.8.81
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1707501690; cv=none; b=Y/KEgKuwxepqubYdHzFuCXV0s7ZgEG+SKwdtuLuAqOvqmg1dcIZaYdn0ay6SFxZ31LGeNRwv7t7X0VxkjlZs8bi6KPFKK5bbObXVVnF/3Q5ILI1Kw4EWkWY6TnkezSQZEZqMeMISszxvi6AQ6X9mUGWUocrQlHTS7BC8Xi0YY5o=
+	t=1707501926; cv=none; b=qnrzn0vpE9GNEFQaAzo28NDPzzbc8Gh7KgwedW919ev5EYIg4xHfrHGqtBVBLUgqTyilfxc3AWLpq5Kc3uv7G3Gpy3KYkCA5W//GP1U+JDUK6azsFqHtijaBr0eEbdjxRTXtjGNn/OnjenKRREHOC6q4hh0CfriePOhybl31gRQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1707501690; c=relaxed/simple;
-	bh=ZIxcGmiR4gGSReoL37yMRXuMkVPpy2y+83NsY4EsGcM=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=GtTzBiUyNhJVTfPsjr/1Bh1ADcWMlG/msWAkobgbMJlnC0U58Pl4G8iP9F2U1gC3gvG97FLrERcrJJ+nQmWGi9kg97Paq58LDCs7pRYcfUoezh7UbcAEkYn1DqyRzGa+gI0ZDl6BcZTUcH85Mh9R+AgmVgl2PXfzkX2nV0gsVAw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=OxlAsaTT; arc=none smtp.client-ip=209.85.128.173
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-yw1-f173.google.com with SMTP id 00721157ae682-604aab67616so13719257b3.2
-        for <devicetree@vger.kernel.org>; Fri, 09 Feb 2024 10:01:28 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1707501687; x=1708106487; darn=vger.kernel.org;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=lMOHoZq4LqJoeusiTjh5rsO9vvT8R6dscB00SY5z3ME=;
-        b=OxlAsaTTlzt7cAS/BB64nUD+6YK4RTVifQwQNa94upJvfjBH2Xh1BChn9TeomyPoGS
-         h95p4l6DwF8NzSkJ+zT/eU7vegbBSgQaHUcpbR/BLs7mSyI9gwdePByPNl+sax7cKp6Y
-         KI4g9TVRffoqyBsV+4vJmEjvy8IZ0ARrucQuCOMA3PZAaDW+VJzehFfVRPFVsgFQjzfm
-         TQhDMw0NXkLqLe41RdXDippRnH/6vyFYqSCmcq/P0YEEz9CNvWGiRu5688KO6oVAFyp6
-         Zuwv+rfyArtZCc9/oXKnjxuZx/gqjynNvxVrcHhfY4AOkPwrxTL/Q1CjQOUZpyIgvmPa
-         kEEQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1707501687; x=1708106487;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=lMOHoZq4LqJoeusiTjh5rsO9vvT8R6dscB00SY5z3ME=;
-        b=fSPJbPX8xseN9fE8NHmCsQiD5kFQLGNggs6ppaIzIbONvHGuI6BCoij7b7i7839FKp
-         cafrMY112eQUZulNzt6bAplIsoE4+m3t4VhPgCGHQCKB7/X3kF8aP15yr5xtbUhwCc9m
-         WVWPBOP/fZnFbvibZjvB4K00AyKUJpo9duOdQJ5GVf42/PWaWO9CZbdwzBq3wFC5AR07
-         uY41+vmpmNunR6csRBR22DpW2vHz+1PFYSjZrgkRldfWRdG9B7Rz7NWxWQbu1r+cfs9p
-         y/4ykdqX3gGQ6qyCveoFUoi0wbPh46ssAPUvvKCp+1wjU3pkayJPEBnulaheL30AaQY9
-         owJA==
-X-Gm-Message-State: AOJu0Yxw2PzfC9lyVJcOsDauKyvBbF9vqgkGW4b/D1theF6b0rtf7O2X
-	64r4MC6OT8+eURlSbFWo/HMmkdKOSWg467VDTMM5equNaKVsSzYx/fAjsrjhdaGAttakga78cuF
-	t4CAEmzi/gclEieEKY/eDZ5gTg2npps+a2KViJQ==
-X-Google-Smtp-Source: AGHT+IFPSOL9a8c/GVGVq9MDFtWcygLZBixUpmOLpueIbE9kRc9dfBdNvOhUVH/jwXvduN581cPLQQrKnVOPmbfI1hQ=
-X-Received: by 2002:a0d:cc95:0:b0:5fb:e74c:ff8d with SMTP id
- o143-20020a0dcc95000000b005fbe74cff8dmr2647607ywd.10.1707501687222; Fri, 09
- Feb 2024 10:01:27 -0800 (PST)
+	s=arc-20240116; t=1707501926; c=relaxed/simple;
+	bh=lJyAU8yQz51SW8SOniYlqVu/+wOdi8AdTwmtfY7WCtA=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=t+kvu4b+UtRrLiMKkrS+Z1sNfkNPUok1Lq3Zb2/jqx4wVgAgXtg+ZXyditHz1OghP1mpWAiPQ3sShaCGJM5AvOempplv/kJCaEHMPQ/7gHeWH2n7P51DirYbvThmLBuc9VpcsP9PXnP/Jcw39f4WnRghB9sp8ECua4wPm9dR/6g=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=dolcini.it; spf=pass smtp.mailfrom=dolcini.it; dkim=pass (2048-bit key) header.d=dolcini.it header.i=@dolcini.it header.b=KeL8jjIH; arc=none smtp.client-ip=217.194.8.81
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=dolcini.it
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=dolcini.it
+Received: from francesco-nb (93-49-2-63.ip317.fastwebnet.it [93.49.2.63])
+	by mail11.truemail.it (Postfix) with ESMTPA id EF8392073A;
+	Fri,  9 Feb 2024 19:05:18 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=dolcini.it;
+	s=default; t=1707501919;
+	bh=4QolG5s83ZgMBBHUDESDuQh8dOx2txXds4jPygj9pYc=; h=From:To:Subject;
+	b=KeL8jjIHa9uWfkqypSt8R4bG6mhXZ3fROuLCo+zQQlGmTEIBEVno8vg3yYUKvjcuv
+	 NaHtB6ra70WHL3ke7VGzn2vgM074PgLnwVMhMPVHiTpja4KzFrgEZMQRQreLAgp5bd
+	 xOcm48ThYc86nfbWwP9jH+WQZ5rgbBp+GWfp3y8JQLR/iFmwJEYOzjMNXC1sNG0iWM
+	 xY/gLcVFmlxDKCn+QAOnDDaOuP0Payb19AAvWi2rKe2n4DK/+89wtRvu07z6aKcqFd
+	 Gt4SjVDSR29Wm/H/WOqtkOsnQsLTSlGB9J5fYyt4t1x896hdr/Zho9aZyU69QTYRXm
+	 AZykZZZnNwkAQ==
+Date: Fri, 9 Feb 2024 19:05:15 +0100
+From: Francesco Dolcini <francesco@dolcini.it>
+To: Judith Mendez <jm@ti.com>
+Cc: Rob Herring <robh+dt@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>, Nishanth Menon <nm@ti.com>,
+	Vignesh Raghavendra <vigneshr@ti.com>,
+	Tero Kristo <kristo@kernel.org>,
+	linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v1 6/9] arm64: dts: ti: k3-am6*: Remove DLL properties
+ for soft PHYs
+Message-ID: <20240209180515.GA29650@francesco-nb>
+References: <20240207225526.3953230-1-jm@ti.com>
+ <20240207225526.3953230-7-jm@ti.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20240209-qcm6490-gcc-protected-clocks-v1-1-bd3487b2e7b1@quicinc.com>
-In-Reply-To: <20240209-qcm6490-gcc-protected-clocks-v1-1-bd3487b2e7b1@quicinc.com>
-From: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-Date: Fri, 9 Feb 2024 20:01:15 +0200
-Message-ID: <CAA8EJpr987frG7rpceybSmg8TFj-OsQeoRKBdLT=dnTbfzruKQ@mail.gmail.com>
-Subject: Re: [PATCH] arm64: dts: qcom: qcs6490-rb3gen2: Declare GCC clocks protected
-To: Bjorn Andersson <quic_bjorande@quicinc.com>
-Cc: Bjorn Andersson <andersson@kernel.org>, Konrad Dybcio <konrad.dybcio@linaro.org>, 
-	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, 
-	Conor Dooley <conor+dt@kernel.org>, Taniya Das <quic_tdas@quicinc.com>, 
-	linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20240207225526.3953230-7-jm@ti.com>
 
-On Fri, 9 Feb 2024 at 18:21, Bjorn Andersson <quic_bjorande@quicinc.com> wrote:
->
-> The SC7180 GCC binding describes clocks which, due to the difference in
-> security model, are not accessible on the RB3gen2 - in the same way seen
-> on QCM6490.
->
-> Mark these clocks as protected, to allow the board to boot.
->
-> Signed-off-by: Bjorn Andersson <quic_bjorande@quicinc.com>
+On Wed, Feb 07, 2024 at 04:55:23PM -0600, Judith Mendez wrote:
+> Remove DLL properties which are not applicable for soft PHYs
+> since these PHYs do not have a DLL to enable.
+> 
+> Signed-off-by: Judith Mendez <jm@ti.com>
 > ---
-> I did notice Taniya's patch [1] after writing this patch. I'd prefer to
-> merge this minimal set asap, to make the board boot, unless there's a
-> strong argument for including those other clocks in the protected list.
->
-> [1] https://lore.kernel.org/linux-arm-msm/20240208062836.19767-6-quic_tdas@quicinc.com/
-> ---
->  arch/arm64/boot/dts/qcom/qcs6490-rb3gen2.dts | 18 ++++++++++++++++++
->  1 file changed, 18 insertions(+)
->
-> diff --git a/arch/arm64/boot/dts/qcom/qcs6490-rb3gen2.dts b/arch/arm64/boot/dts/qcom/qcs6490-rb3gen2.dts
-> index 8bb7d13d85f6..97b1586f9f19 100644
-> --- a/arch/arm64/boot/dts/qcom/qcs6490-rb3gen2.dts
-> +++ b/arch/arm64/boot/dts/qcom/qcs6490-rb3gen2.dts
-> @@ -413,6 +413,24 @@ vreg_bob_3p296: bob {
->         };
->  };
->
-> +&gcc {
-> +       protected-clocks = <GCC_CFG_NOC_LPASS_CLK>,
-> +                          <GCC_EDP_CLKREF_EN>,
+>  arch/arm64/boot/dts/ti/k3-am62-main.dtsi       | 3 ---
+>  arch/arm64/boot/dts/ti/k3-am625-beagleplay.dts | 3 ---
+>  arch/arm64/boot/dts/ti/k3-am62a-main.dtsi      | 1 -
+>  arch/arm64/boot/dts/ti/k3-am62a7-sk.dts        | 1 -
+>  arch/arm64/boot/dts/ti/k3-am62p5-sk.dts        | 1 -
+>  arch/arm64/boot/dts/ti/k3-am62x-sk-common.dtsi | 2 --
+>  arch/arm64/boot/dts/ti/k3-am64-main.dtsi       | 1 -
+>  arch/arm64/boot/dts/ti/k3-am642-evm.dts        | 1 -
+>  arch/arm64/boot/dts/ti/k3-am642-sk.dts         | 1 -
+>  9 files changed, 14 deletions(-)
 
-I'd say these two clocks looks strange in this list, but you probably
-know what you are doing. Thus:
+you missed k3-am62-verdin-dev.dtsi and more ?
 
-Reviewed-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+$ ack --dts -g k3-am6[24] | ack -x -l ti,driver-strength-ohm
+arch/arm64/boot/dts/ti/k3-am62-verdin-dahlia.dtsi
+arch/arm64/boot/dts/ti/k3-am62x-sk-common.dtsi
+arch/arm64/boot/dts/ti/k3-am64-phycore-som.dtsi
+arch/arm64/boot/dts/ti/k3-am642-tqma64xxl-mbax4xxl.dts
+arch/arm64/boot/dts/ti/k3-am625-phyboard-lyra-rdk.dts
+arch/arm64/boot/dts/ti/k3-am62-verdin-wifi.dtsi
+arch/arm64/boot/dts/ti/k3-am642-tqma64xxl.dtsi
+arch/arm64/boot/dts/ti/k3-am62p5-sk.dts
+arch/arm64/boot/dts/ti/k3-am62-verdin.dtsi
+arch/arm64/boot/dts/ti/k3-am625-beagleplay.dts
+arch/arm64/boot/dts/ti/k3-am642-evm.dts
+arch/arm64/boot/dts/ti/k3-am642-sk.dts
+arch/arm64/boot/dts/ti/k3-am642-phyboard-electra-rdk.dts
+arch/arm64/boot/dts/ti/k3-am62-phycore-som.dtsi
+arch/arm64/boot/dts/ti/k3-am62a7-sk.dts
+arch/arm64/boot/dts/ti/k3-am62-verdin-dev.dtsi
 
-> +                          <GCC_MSS_CFG_AHB_CLK>,
-> +                          <GCC_MSS_GPLL0_MAIN_DIV_CLK_SRC>,
-> +                          <GCC_MSS_OFFLINE_AXI_CLK>,
-> +                          <GCC_MSS_Q6SS_BOOT_CLK_SRC>,
-> +                          <GCC_MSS_Q6_MEMNOC_AXI_CLK>,
-> +                          <GCC_MSS_SNOC_AXI_CLK>,
-> +                          <GCC_QSPI_CNOC_PERIPH_AHB_CLK>,
-> +                          <GCC_QSPI_CORE_CLK>,
-> +                          <GCC_QSPI_CORE_CLK_SRC>,
-> +                          <GCC_SEC_CTRL_CLK_SRC>,
-> +                          <GCC_WPSS_AHB_BDG_MST_CLK>,
-> +                          <GCC_WPSS_AHB_CLK>,
-> +                          <GCC_WPSS_RSCP_CLK>;
-> +};
-> +
->  &qupv3_id_0 {
->         status = "okay";
->  };
->
-> ---
-> base-commit: b1d3a0e70c3881d2f8cf6692ccf7c2a4fb2d030d
-> change-id: 20240209-qcm6490-gcc-protected-clocks-ee5fafdb76b3
->
-> Best regards,
-> --
-> Bjorn Andersson <quic_bjorande@quicinc.com>
->
+Francesco
 
-
--- 
-With best wishes
-Dmitry
 
