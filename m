@@ -1,74 +1,59 @@
-Return-Path: <devicetree+bounces-40037-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-40051-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6F1B784F064
-	for <lists+devicetree@lfdr.de>; Fri,  9 Feb 2024 07:48:18 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id E119384F0D8
+	for <lists+devicetree@lfdr.de>; Fri,  9 Feb 2024 08:34:09 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id BE2F82876BF
-	for <lists+devicetree@lfdr.de>; Fri,  9 Feb 2024 06:48:16 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 1F63D1C216A3
+	for <lists+devicetree@lfdr.de>; Fri,  9 Feb 2024 07:34:09 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7248E657AB;
-	Fri,  9 Feb 2024 06:48:14 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2B19F657CA;
+	Fri,  9 Feb 2024 07:33:42 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=microchip.com header.i=@microchip.com header.b="zhB+FFBQ"
+	dkim=pass (1024-bit key) header.d=siemens.com header.i=jan.kiszka@siemens.com header.b="OFk6vg/b"
 X-Original-To: devicetree@vger.kernel.org
-Received: from esa.microchip.iphmx.com (esa.microchip.iphmx.com [68.232.154.123])
+Received: from mta-65-228.siemens.flowmailer.net (mta-65-228.siemens.flowmailer.net [185.136.65.228])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 367AA651B4;
-	Fri,  9 Feb 2024 06:48:11 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=68.232.154.123
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 50FA665BBA
+	for <devicetree@vger.kernel.org>; Fri,  9 Feb 2024 07:33:39 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.136.65.228
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1707461294; cv=none; b=j65l05E4E/sJLq8pLjir9iA+ZZCe3tcnY3P4RkvWgOyHZhchDd0ZyC/xGGhzBC7D+8OuhV5llgshst98yp7Q2oLvobrD75W1j/31EXUoBNMrHKDfeFaOuJocEmk+bjWTB0aeZtlU5nl518j0aJ+X0I5MDvqavhsu19CP8CNbglM=
+	t=1707464022; cv=none; b=TcsSw1MdIbz9X0wxJ3ZNq+QfkkJfuizNttDDly4vFsR8SuaXDYjGMc6r3CdLh37kgWcHb10oViIBmkSHQyg1vObHgRI4RIsFN9a1+Jm+8X0tc++3XG6LZJXLsoGHCooQDuB0lX8RTe+LEWJDCj99EF5EbsXJginiwe4NMho40Io=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1707461294; c=relaxed/simple;
-	bh=1ZSf+APxW2qVV/1F4MZZ3Qbx8Oczq7xhc84aIlEpvM0=;
-	h=From:To:CC:Subject:Date:Message-ID:MIME-Version:Content-Type; b=NggpKjkRBlZ479cgfn2IaxZ5SfDDJ+QByLOjWIsgcckKTAtVUwqTy73dyJj/wKgabE5focQFdlyKEvit21VSh4UY2feL0eAoo/dK9EsMyWloT6uBdd8xPvtryXUbF4VvYz6MPMP04Dhem1ynnBgEJ8aYIpp0Rt0xDarzXpFxbzQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=microchip.com; spf=pass smtp.mailfrom=microchip.com; dkim=pass (2048-bit key) header.d=microchip.com header.i=@microchip.com header.b=zhB+FFBQ; arc=none smtp.client-ip=68.232.154.123
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=microchip.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=microchip.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
-  t=1707461292; x=1738997292;
-  h=from:to:cc:subject:date:message-id:mime-version:
-   content-transfer-encoding;
-  bh=1ZSf+APxW2qVV/1F4MZZ3Qbx8Oczq7xhc84aIlEpvM0=;
-  b=zhB+FFBQpYTXUUMS/mw8lb1PpKHvqh6pMBIWe7XZgu3IRDQNUxDNMZTE
-   EcepeWF/bXdEOnsx0XJyaML4hWwK9ACcFIRDeKQtiOiXQJ4b2k9px0IGe
-   tgarlk56ekZA5q0IiV5JRWN9eVhyf8T4EborYAC9y48zVheHodJgoHUYC
-   oT4DCVOTtMEnBkngn8xfwOaubHLzdN7HyUbuxZhjUogllD+dB+0FVjDLP
-   KZooKya8s4T0v0LK8/ZgVniaSqHVPhzIWGuH8Uc1+v6OVwaId43UTIS1J
-   aKZZCWE01x9sQ7YdZpSyLkRrfLx0Pgylk5l/wo3L5Jj5SwyZsp7wPx5vR
-   A==;
-X-CSE-ConnectionGUID: FIYM4WLeRgaNRFDjepZ6hg==
-X-CSE-MsgGUID: oRycRM6ITICVbkPn5DqoAQ==
-X-IronPort-AV: E=Sophos;i="6.05,256,1701154800"; 
-   d="scan'208";a="16524208"
-X-Amp-Result: SKIPPED(no attachment in message)
-Received: from unknown (HELO email.microchip.com) ([170.129.1.10])
-  by esa2.microchip.iphmx.com with ESMTP/TLS/ECDHE-RSA-AES128-GCM-SHA256; 08 Feb 2024 23:48:11 -0700
-Received: from chn-vm-ex02.mchp-main.com (10.10.87.72) by
- chn-vm-ex02.mchp-main.com (10.10.87.72) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.35; Thu, 8 Feb 2024 23:48:03 -0700
-Received: from che-lt-i70843lx.microchip.com (10.10.85.11) by
- chn-vm-ex02.mchp-main.com (10.10.85.144) with Microsoft SMTP Server id
- 15.1.2507.35 via Frontend Transport; Thu, 8 Feb 2024 23:47:57 -0700
-From: Dharma Balasubiramani <dharma.b@microchip.com>
-To: <dmitry.torokhov@gmail.com>, <robh+dt@kernel.org>,
-	<krzysztof.kozlowski+dt@linaro.org>, <conor+dt@kernel.org>,
-	<nicolas.ferre@microchip.com>, <alexandre.belloni@bootlin.com>,
-	<claudiu.beznea@tuxon.dev>, <dharma.b@microchip.com>,
-	<linux-input@vger.kernel.org>, <devicetree@vger.kernel.org>,
-	<linux-arm-kernel@lists.infradead.org>, <linux-kernel@vger.kernel.org>
-CC: <hari.prasathge@microchip.com>
-Subject: [PATCH v2] dt-bindings: input: atmel,captouch: convert bindings to YAML
-Date: Fri, 9 Feb 2024 12:17:55 +0530
-Message-ID: <20240209064755.47516-1-dharma.b@microchip.com>
-X-Mailer: git-send-email 2.25.1
+	s=arc-20240116; t=1707464022; c=relaxed/simple;
+	bh=LZnhRecmWjEEyuhkw2UEePxVcIJYubz4dwo2XU9EvnQ=;
+	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version; b=dLOobSKQFNm9x0smKJ9UBoPcKxj6eyWdJpd714IB+pvPjVsEWgGNPLWH13IYAinxwyMToH6fV5xx/1X8Yye3SbS6qQ8rXEsIg0ptT48T1c28CzHVhMITK7nd+/QdJAT5TkVGUaen0fUB6p/mL0DdLgpRE8Xf5oAbBKVV92BHX3g=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=siemens.com; spf=pass smtp.mailfrom=rts-flowmailer.siemens.com; dkim=pass (1024-bit key) header.d=siemens.com header.i=jan.kiszka@siemens.com header.b=OFk6vg/b; arc=none smtp.client-ip=185.136.65.228
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=siemens.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=rts-flowmailer.siemens.com
+Received: by mta-65-228.siemens.flowmailer.net with ESMTPSA id 2024020907232274d1005c50abfe1a47
+        for <devicetree@vger.kernel.org>;
+        Fri, 09 Feb 2024 08:23:22 +0100
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; s=fm1;
+ d=siemens.com; i=jan.kiszka@siemens.com;
+ h=Date:From:Subject:To:Message-ID:MIME-Version:Content-Type:Content-Transfer-Encoding:Cc;
+ bh=swzmFknxPpbMNSXu2CcioHwcS14EtTfEqDfVF30rdzY=;
+ b=OFk6vg/bc9luc1S2UXUwaNO/cADhXKSo5B6lqEzAtLKFtf/jR/FLOKmgrMc+GYxDBgurPu
+ TMiIdq2BxZcBgX8pl9bY1MzByySMApC8ZH7IThjmjb5R9nFmP9+9GOZfrbaJ8OoZ2qv73+DJ
+ UCBp9hxTDWEzsdnQUIfrvY/Z0UmDk=;
+From: Jan Kiszka <jan.kiszka@siemens.com>
+To: Nishanth Menon <nm@ti.com>,
+	Vignesh Raghavendra <vigneshr@ti.com>,
+	Tero Kristo <kristo@kernel.org>,
+	Rob Herring <robh+dt@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>
+Cc: linux-arm-kernel@lists.infradead.org,
+	linux-kernel@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	Bao Cheng Su <baocheng.su@siemens.com>
+Subject: [PATCH v3 0/7] arm64: dts: iot2050: Add support for new SM variant
+Date: Fri,  9 Feb 2024 08:23:14 +0100
+Message-Id: <cover.1707463401.git.jan.kiszka@siemens.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -76,134 +61,59 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
+X-Flowmailer-Platform: Siemens
+Feedback-ID: 519:519-294854:519-21489:flowmailer
 
-Convert the Atmel capacitive touchscreen bindings to YAML format.
+Changes in v3:
+ - rebased
 
-Signed-off-by: Dharma Balasubiramani <dharma.b@microchip.com>
----
-Changelog
-v1 -> v2
-- Drop autorepeat property.
-- Use unevaluatedProperties instead of additionalProperties.
-- Use node name "touch@51" instead of "atmel-captouch@51".
----
- .../bindings/input/atmel,captouch.txt         | 36 -----------
- .../bindings/input/atmel,captouch.yaml        | 59 +++++++++++++++++++
- 2 files changed, 59 insertions(+), 36 deletions(-)
- delete mode 100644 Documentation/devicetree/bindings/input/atmel,captouch.txt
- create mode 100644 Documentation/devicetree/bindings/input/atmel,captouch.yaml
+Changes in v2:
+ - LED improvements
+ - factor out DP and USB3 dtsi files
+ - fix subject of last patch
 
-diff --git a/Documentation/devicetree/bindings/input/atmel,captouch.txt b/Documentation/devicetree/bindings/input/atmel,captouch.txt
-deleted file mode 100644
-index fe9ee5c53bcc..000000000000
---- a/Documentation/devicetree/bindings/input/atmel,captouch.txt
-+++ /dev/null
-@@ -1,36 +0,0 @@
--Device tree bindings for Atmel capacitive touch device, typically
--an Atmel touch sensor connected to AtmegaXX MCU running firmware
--based on Qtouch library.
--
--The node for this device must be a child of a I2C controller node, as the
--device communicates via I2C.
--
--Required properties:
--
--	compatible:	Must be "atmel,captouch".
--	reg:		The I2C slave address of the device.
--	interrupts:	Property describing the interrupt line the device
--			is connected to. The device only has one interrupt
--			source.
--	linux,keycodes:	Specifies an array of numeric keycode values to
--			be used for reporting button presses. The array can
--			contain up to 8 entries.
--
--Optional properties:
--
--	autorepeat:	Enables the Linux input system's autorepeat
--			feature on the input device.
--
--Example:
--
--	atmel-captouch@51 {
--		compatible = "atmel,captouch";
--		reg = <0x51>;
--		interrupt-parent = <&tlmm>;
--		interrupts = <67 IRQ_TYPE_EDGE_FALLING>;
--		linux,keycodes = <BTN_0>, <BTN_1>,
--			<BTN_2>, <BTN_3>,
--			<BTN_4>, <BTN_5>,
--			<BTN_6>, <BTN_7>;
--		autorepeat;
--	};
-diff --git a/Documentation/devicetree/bindings/input/atmel,captouch.yaml b/Documentation/devicetree/bindings/input/atmel,captouch.yaml
-new file mode 100644
-index 000000000000..f7477091d5a6
---- /dev/null
-+++ b/Documentation/devicetree/bindings/input/atmel,captouch.yaml
-@@ -0,0 +1,59 @@
-+# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/input/atmel,captouch.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: Atmel capacitive touch device
-+
-+maintainers:
-+  - Dharma balasubiramani <dharma.b@microchip.com>
-+
-+description:
-+  Atmel capacitive touch device, typically an Atmel touch sensor connected to
-+  AtmegaXX MCU running firmware based on Qtouch library.
-+
-+allOf:
-+  - $ref: input.yaml#
-+
-+properties:
-+  compatible:
-+    const: atmel,captouch
-+
-+  reg:
-+    maxItems: 1
-+
-+  interrupts:
-+    maxItems: 1
-+
-+  linux,keycodes:
-+    minItems: 1
-+    maxItems: 8
-+
-+required:
-+  - compatible
-+  - reg
-+  - interrupts
-+  - linux,keycodes
-+
-+unevaluatedProperties: false
-+
-+examples:
-+  - |
-+    #include <dt-bindings/interrupt-controller/irq.h>
-+    #include <dt-bindings/input/linux-event-codes.h>
-+    i2c {
-+      #address-cells = <1>;
-+      #size-cells = <0>;
-+      touch@51 {
-+        compatible = "atmel,captouch";
-+        reg = <0x51>;
-+        interrupt-parent = <&tlmm>;
-+        interrupts = <67 IRQ_TYPE_EDGE_FALLING>;
-+        linux,keycodes = <BTN_0>, <BTN_1>,
-+                         <BTN_2>, <BTN_3>,
-+                         <BTN_4>, <BTN_5>,
-+                         <BTN_6>, <BTN_7>;
-+        autorepeat;
-+      };
-+    };
+This bring support for yet another IOT2050 device variant, see last
+patch for details. The rest is binding and refactoring to make that
+happen. Plus, LED nodes are improved by adding function and color
+properties.
 
-base-commit: 0dd3ee31125508cd67f7e7172247f05b7fd1753a
+Jan
+
+Baocheng Su (2):
+  arm64: dts: ti: iot2050: Disable R5 lockstep for all PG2 boards
+  arm64: dts: ti: iot2050: Support IOT2050-SM variant
+
+Jan Kiszka (4):
+  arm64: dts: ti: iot2050: Factor out arduino connector bits
+  arm64: dts: ti: iot2050: Factor out enabling of USB3 support
+  arm64: dts: ti: iot2050: Factor out DP related bits
+  arm64: dts: ti: iot2050: Annotate LED nodes
+
+Su Bao Cheng (1):
+  dt-bindings: arm: ti: Add binding for Siemens IOT2050 SM variant
+
+ .../devicetree/bindings/arm/ti/k3.yaml        |   1 +
+ arch/arm64/boot/dts/ti/Makefile               |   1 +
+ .../ti/k3-am65-iot2050-arduino-connector.dtsi | 768 +++++++++++++++
+ .../dts/ti/k3-am65-iot2050-common-pg1.dtsi    |   5 +-
+ .../dts/ti/k3-am65-iot2050-common-pg2.dtsi    |  25 +-
+ .../boot/dts/ti/k3-am65-iot2050-common.dtsi   | 871 +-----------------
+ .../arm64/boot/dts/ti/k3-am65-iot2050-dp.dtsi |  98 ++
+ .../boot/dts/ti/k3-am65-iot2050-usb3.dtsi     |  27 +
+ .../ti/k3-am6528-iot2050-basic-common.dtsi    |   6 +-
+ .../dts/ti/k3-am6528-iot2050-basic-pg2.dts    |   2 +
+ .../boot/dts/ti/k3-am6528-iot2050-basic.dts   |   5 +
+ .../dts/ti/k3-am6548-iot2050-advanced-m2.dts  |  20 +-
+ .../dts/ti/k3-am6548-iot2050-advanced-pg2.dts |  10 +-
+ .../dts/ti/k3-am6548-iot2050-advanced-sm.dts  | 189 ++++
+ .../dts/ti/k3-am6548-iot2050-advanced.dts     |   1 +
+ 15 files changed, 1132 insertions(+), 897 deletions(-)
+ create mode 100644 arch/arm64/boot/dts/ti/k3-am65-iot2050-arduino-connector.dtsi
+ create mode 100644 arch/arm64/boot/dts/ti/k3-am65-iot2050-dp.dtsi
+ create mode 100644 arch/arm64/boot/dts/ti/k3-am65-iot2050-usb3.dtsi
+ create mode 100644 arch/arm64/boot/dts/ti/k3-am6548-iot2050-advanced-sm.dts
+
 -- 
-2.25.1
+2.35.3
 
 
