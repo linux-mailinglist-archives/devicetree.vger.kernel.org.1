@@ -1,232 +1,419 @@
-Return-Path: <devicetree+bounces-40008-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-40009-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4C84484EE63
-	for <lists+devicetree@lfdr.de>; Fri,  9 Feb 2024 01:30:24 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 71C0884EE74
+	for <lists+devicetree@lfdr.de>; Fri,  9 Feb 2024 01:56:09 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id B66FFB27C30
-	for <lists+devicetree@lfdr.de>; Fri,  9 Feb 2024 00:30:21 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 783FA1C246A4
+	for <lists+devicetree@lfdr.de>; Fri,  9 Feb 2024 00:56:08 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3F5A41370;
-	Fri,  9 Feb 2024 00:30:10 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=phytec.com header.i=@phytec.com header.b="Um45UUzj"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6F073376;
+	Fri,  9 Feb 2024 00:56:04 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from NAM11-CO1-obe.outbound.protection.outlook.com (mail-co1nam11on2102.outbound.protection.outlook.com [40.107.220.102])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B643D1859;
-	Fri,  9 Feb 2024 00:30:07 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.107.220.102
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1707438610; cv=fail; b=RYwg2Sbw2RGd9s1EERsPQJdbd39qtBOcPNE+CmLnH7Ey4hl9WD6cgfzGwolA2Q9z+JO5IbOMiu7mce5iss/hELXAX7/ENulutrVirJM0cfSGGgDnjW9RD6B8rrWrOx1BEngRzQd2EpLAPHu9vkaKF/j7STja87DL4ghz6ylR0Rg=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1707438610; c=relaxed/simple;
-	bh=IJ9eV2kPLoouYVDvolEXZYPALe8KI9H4vlbggLFtV4Q=;
-	h=From:To:Cc:Subject:Date:Message-Id:Content-Type:MIME-Version; b=mDsE04T7EW4SbD5350oGgG5LR2vyj37UZSZoXIfFhVPPgfJUyKS0Vqo5H3LER910Z5Ylm2upYHv8qVgSQvFCtV4SZlH4zmnJsHIvGF/lQXxxqf4DdfE2ZSVRAizGxKm9KIrNXFYRUsiGq0wsvyuItJuhE4Y47AXGYMNfMPmiv9A=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=phytec.com; spf=pass smtp.mailfrom=phytec.com; dkim=pass (1024-bit key) header.d=phytec.com header.i=@phytec.com header.b=Um45UUzj; arc=fail smtp.client-ip=40.107.220.102
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=phytec.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=phytec.com
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=FRhTI+v1T+Jw8sKBaEDAuIb5xD7Tdg/gdYzZqzSHFK09YBx/AplZaCPwBShlEqEVi+Fc2scNW3dAiILTLnFDM06WN3EIqKcR9qU74+6feKDaqF+ca4hVa5Ixm2z6TM1lfy7pk6mw/9/HOaILY8CBhqOmkBRMrsqrSk4gb4a49GtJ54jAnwkKWln3Gii0Ze27JCHoV/A7UjB9f4n73c0RaESbr4WK59rSV8gU3tU5Zys5wyPzy2p8sAeEA1oOcdj63ILiZRqJjD8Ths1DLSvpGTh0SmDgelJxhWDTFoVAJahlp6oRiuyyT8faNvoHZZxqSjahEm8+O0ncyZAzMZpjQg==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=bHh61+24Jy9Tlvc7MBSOO7yNsx4N9V/S3p6Ac71d7io=;
- b=ATPPQpEwArGRRC7D5nLTU/vhQ4koxiTzIu6BwaMYkcv0s8W7R0P5JxtTk84SJ0Tdm+dPMpNLOnXJfJt/ltGzyMCyCDW4l/uN6mqDhIF82nXRrPy5SZovEznpe/L4ME964fz9uu+d52waZdA4bm6LfTrwsaXNOAeAjdl1w9yOKF3HJMltx7COlMg6F3n3IwjAi+Nf51h9lht484y4PAhvbnOW7tmQToZ1M1k3UNmG4s+zKPFb2V25IkM+ATy8TIUmDZGBNOlGqP3WRTxcaoPzJLgaNckEy1cOJhkuovP+gto+JRhyNbK6NlcCKiB7n+/qfMmRTWZDmz7mHu1yhvEqNw==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=phytec.com; dmarc=pass action=none header.from=phytec.com;
- dkim=pass header.d=phytec.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=phytec.com;
- s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=bHh61+24Jy9Tlvc7MBSOO7yNsx4N9V/S3p6Ac71d7io=;
- b=Um45UUzjAV/NiGaHEtihPraG+mKw+cSnxVDRTCq6Tqe8gtNSQcqDbtRwBqfRDbWdcakOJ7VxGSzaOlM/mJrq/1tr8GxkI3MiXR+0jWzXOn/CLhzLHgjtT27887OM0a3prY+NDd6Xa4P0TQqHrx0kC+bwP0LgcH5O6+1M1f1ZYcA=
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=phytec.com;
-Received: from SA1PR22MB5636.namprd22.prod.outlook.com (2603:10b6:806:3e2::15)
- by MW6PR22MB4174.namprd22.prod.outlook.com (2603:10b6:303:23f::10) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7249.37; Fri, 9 Feb
- 2024 00:30:04 +0000
-Received: from SA1PR22MB5636.namprd22.prod.outlook.com
- ([fe80::e2ac:f990:32c6:334b]) by SA1PR22MB5636.namprd22.prod.outlook.com
- ([fe80::e2ac:f990:32c6:334b%6]) with mapi id 15.20.7249.038; Fri, 9 Feb 2024
- 00:30:03 +0000
-From: Nathan Morrisson <nmorrisson@phytec.com>
-To: nm@ti.com,
-	vigneshr@ti.com,
-	kristo@kernel.org,
-	robh+dt@kernel.org,
-	krzysztof.kozlowski+dt@linaro.org,
-	conor+dt@kernel.org
-Cc: devicetree@vger.kernel.org,
-	upstream@lists.phytec.de,
-	linux-kernel@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	w.egorov@phytec.de
-Subject: [PATCH v2] arm64: dts: ti: am62-phyboard-lyra: Add overlay to enable a GPIO fan
-Date: Thu,  8 Feb 2024 16:29:16 -0800
-Message-Id: <20240209002916.1284433-1-nmorrisson@phytec.com>
-X-Mailer: git-send-email 2.25.1
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-ClientProxiedBy: CH5P222CA0001.NAMP222.PROD.OUTLOOK.COM
- (2603:10b6:610:1ee::15) To SA1PR22MB5636.namprd22.prod.outlook.com
- (2603:10b6:806:3e2::15)
+Received: from foss.arm.com (foss.arm.com [217.140.110.172])
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 219E37EB
+	for <devicetree@vger.kernel.org>; Fri,  9 Feb 2024 00:56:01 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.140.110.172
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1707440164; cv=none; b=FLiWvuincx4+JzZm3tMR1rmft8+N+PdKuEM3sC7A1/CGezcZxIZwgFVbEPZiObRMikg8/WkRq8TYC++EVg7PwbXUxJKsU5EDyAcPttmDz9XHEbCx5+pHvRQGogRI3lEWUAD29qwE1JlQzpVhQpO/HeyAAxIPSJ/r2D7SF5ob3fQ=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1707440164; c=relaxed/simple;
+	bh=1dCpeep0agJQkedOkDf1VFb6WXerfmYqYZqWOn7Iwzw=;
+	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=IcvL5N1MgBy6216AlmDt7J2TElf4B3D/gIb3k4AQDPkEhA+qWYqCdU00kKTCWUCBEAef4f6Lkzc0vFUQsq/Zf7nLf55twgZx3yYIyXtIg1UZWx7MBEgl8P1IMMlsOQekBTj5l+R4lqLYWvrds29zy1dDTyi6oLmJZRCBUyz1oDw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com; spf=pass smtp.mailfrom=arm.com; arc=none smtp.client-ip=217.140.110.172
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=arm.com
+Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
+	by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 9BF3EDA7;
+	Thu,  8 Feb 2024 16:56:43 -0800 (PST)
+Received: from minigeek.lan (unknown [172.31.20.19])
+	by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id E6CDF3F64C;
+	Thu,  8 Feb 2024 16:55:59 -0800 (PST)
+Date: Fri, 9 Feb 2024 00:54:46 +0000
+From: Andre Przywara <andre.przywara@arm.com>
+To: Jernej =?UTF-8?B?xaBrcmFiZWM=?= <jernej.skrabec@gmail.com>
+Cc: Chen-Yu Tsai <wens@csie.org>, Samuel Holland <samuel@sholland.org>, Rob
+ Herring <robh+dt@kernel.org>, Krzysztof Kozlowski
+ <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>,
+ linux-sunxi@lists.linux.dev, devicetree@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, Nick Alilovic
+ <nickalilovic@gmail.com>
+Subject: Re: [PATCH 3/3] arm64: dts: allwinner: Add Jide Remix Mini PC
+ support
+Message-ID: <20240209005446.7fb50882@minigeek.lan>
+In-Reply-To: <1957012.PYKUYFuaPT@jernej-laptop>
+References: <20240204094404.149776-1-andre.przywara@arm.com>
+	<8d9d1d7c-8066-4400-8fe4-68aa0e28023d@arm.com>
+	<10413667.nUPlyArG6x@jernej-laptop>
+	<1957012.PYKUYFuaPT@jernej-laptop>
+Organization: Arm Ltd.
+X-Mailer: Claws Mail 4.2.0 (GTK 3.24.31; x86_64-slackware-linux-gnu)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: SA1PR22MB5636:EE_|MW6PR22MB4174:EE_
-X-MS-Office365-Filtering-Correlation-Id: cd21294b-410d-4859-c42a-08dc29064231
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info:
-	0r8NVOiwfocZyriq9PoBKcAn2RkEkUDhi7zEpmavemgPtcY/qJTYMshvr9bHze1vAPriHyYpOGzO7ETOzlggsOKSyjfdBfj60bjcXM7p66NwUQO2FcBEpGWP3bdSvnOWGFHs6JBC7Wc/Y6iZpMRdSUwiKQQhyYD5aGtsVtbM3GqlQVqngYjzoMx5E3uMuoEG2KtPETmxVC7cxaKIKsOrMuLQIwrbV4rnTcmcsiRwIur7xSOMpuTtbz/HUpB1S1z1OQVae3tItSgwDwS+TtrhJ8JLhqhTsvj/8PxqnJxUYWBiQN7rqUu5zlIdTGXfA8q6DCboVu+Jg0ndhQVvnhy37LUZeueyrE/p8ke0dFnxw6DO1JWECCAUvUSia1pcJMYsuSoLWcVTMq8NVHg/IDtTOiKZwjm7k1Bxl9kaOiSPs+OXjMB3JIoqwVBoiiVr+MHYwjy+ncSLyugLtatApZwqrbka0sbuSsCl275sbeTXAzpiEbdos7bjWOKrqcTaYPee0xM+BO2Efdu248CBssxHO9if9pF5hGt6PiEXke5dUvo8WvdQDg8jRQ3qdadTHYkFD7RWcCV5rR3Cc5emdM9Qb+HRAqvB6ZosNK68gwhwFrFnWdESOGQRMlIgnSTUzuaG
-X-Forefront-Antispam-Report:
-	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:SA1PR22MB5636.namprd22.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230031)(346002)(366004)(136003)(376002)(396003)(39830400003)(230922051799003)(64100799003)(1800799012)(186009)(451199024)(6486002)(8936002)(66476007)(66946007)(316002)(66556008)(86362001)(478600001)(4326008)(8676002)(5660300002)(38100700002)(6506007)(2906002)(6512007)(2616005)(1076003)(6666004)(26005)(52116002)(83380400001)(7416002)(38350700005)(36756003)(41300700001);DIR:OUT;SFP:1102;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0:
-	=?us-ascii?Q?E9S5aUXP4lUwjXCV52sTOR8yO6Yin1I6mARawCCa8FOmuBslLcAoxcZwJRqQ?=
- =?us-ascii?Q?059AtNBDT6PWyGXvP6ECFRhbOdLqgZIlXaI6S2CwYEdciaWfiKZXXyhWAK1D?=
- =?us-ascii?Q?NvBiVNkt82f1yvHzVokOUvteJBYDEy3sQm6cjcHvjfVyJ9j7Fuo/af6477Ln?=
- =?us-ascii?Q?l/yKgVoJ3O+YG03uThM3JX4yEoKXkoC7jgrDVOtfLVe/SB02tuN2IwNFwkV4?=
- =?us-ascii?Q?72VGilTkjx872JHj/FjQBAPv8mxkIoEkpAj+1hzIy+IzfvnFmoVhxMtyOT+W?=
- =?us-ascii?Q?BIOHNGNmHzYDY4gZJ032cGPKhCn0EYOMPQ8AtpICkYV2FibXwUBKjQKU1oJ5?=
- =?us-ascii?Q?ZfFHmvmnP97lioHPDkZ63W3t9Jaftd28e45QOxNrb/jMafzG2mSTEqKLxoHh?=
- =?us-ascii?Q?bmlyWvGvC+0VvJGaAe/4MkggQ1ZHQbrGPc5e/lHxF68j2etKGx55DW6Mj1Il?=
- =?us-ascii?Q?lkRorIa3CxFu343N5IlPWZ3ZSAXXVZ13IbXjXWBR6bDeJJQGWWhA5ipP3mTg?=
- =?us-ascii?Q?U0FCNk8lZ9b7fdBUWlddQFb/SHMJUzDcYxf1de7Rg4cSfjCtcuPpd4uikwmG?=
- =?us-ascii?Q?BmwOf6H5jv7powd7C2BIZ3YXuMWsYKSpl/ztIw1WstAqhOt9uvz5qgYHT8iv?=
- =?us-ascii?Q?meXWqtsTShoVlRmG5sPm1p8K3BtfaYikAS8saDmq7i+5kCAAqvs1lo1Wkre9?=
- =?us-ascii?Q?HRO4M9sGipOnCHVTWnNR0+LcLxeiO8PrHwxkPS6ZOAgtfpRuDB3ucQUCbD0P?=
- =?us-ascii?Q?v5jK/GID1QO0LK6lVfo+c8KfbnT2qAvBqOG4Eq1WxJYE+vh1s49oudUSTr8d?=
- =?us-ascii?Q?pvexmkD8+hOpaHkpM4Y1cl+jt50c5iIaUU4vLqQx1uOKqFQVZfcGEZvFjcBc?=
- =?us-ascii?Q?KtVbGy++B51i1wcWRN6BigTigwIe+8gyLnK/p7cSmH4aDf6co7R5EIZdPJRa?=
- =?us-ascii?Q?JvVldOwcKjvdFLzqne3Qq+LbISAHTuxVnb1iMHXEQRsX3cGqmMNlz9L5PzDd?=
- =?us-ascii?Q?GFOd+uVmN1LiIQQaiKmoZGozDDgnChcSQOwYJUcwKLMPtj7GAcVzMTCxa2l4?=
- =?us-ascii?Q?iIsTV0O9q0Kpfqp5gRKsPFZ12Lim+dHqBn2Tc5PivhriHMxhH0IDXfc4FKS4?=
- =?us-ascii?Q?Su8RxOYv/ZD/Dsl2IJJRvAY+/MqC/MgThk5QMiTOtYyBmhdaahYK4HE0clXW?=
- =?us-ascii?Q?hshLLG290jAYEgvhf11i7Ce5bx4E+fudLn0gLED5rw0S8iUZ24A+vfbViLON?=
- =?us-ascii?Q?lDISot/K9xMXrJpYadSSOSmr3WlGu892LXHNtZTmGrijWrd2+IwDqWpvIzHE?=
- =?us-ascii?Q?PXaMJAe3e0VN4Pi4K5vtVi+SMXdlLqbrdYAytpBzfV0nYnoimvCoXtNQpOKP?=
- =?us-ascii?Q?nAQxe3AqB3EfmTXCzV5cBand4cnRojegJK1lOxkmlJMmfapqbDMY0h+dVF/5?=
- =?us-ascii?Q?En1dphUIuLJ4SCyiQaeUzpdniGIiZbF3xhWyZr41DThvxa+9watN80e1Zqhq?=
- =?us-ascii?Q?KQ9Rf1aMiXSv9aRl6+yr7b8k1BRSH/N0Z8pGPWSYD8sNL5ZsUhfpdI9wJkNG?=
- =?us-ascii?Q?Mb298+YRsowyl1CF66MG5t4wTsOJdQvnPPcomz8G?=
-X-OriginatorOrg: phytec.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: cd21294b-410d-4859-c42a-08dc29064231
-X-MS-Exchange-CrossTenant-AuthSource: SA1PR22MB5636.namprd22.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 09 Feb 2024 00:30:03.7940
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 67bcab1a-5db0-4ee8-86f4-1533d0b4b5c7
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: 7X4rnQIz5Y9QOZaB7KJZv5mhJjSV2tznJCNuU0ZLWGJRfb+wg6KAG+hBt/gtNsGUcO4L2D+5QpV1gzvlxzjklQ==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: MW6PR22MB4174
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
 
-The phyBOARD-Lyra has a GPIO fan header. This overlay enables the fan
-header and sets the fan to turn on at 65C.
+On Tue, 06 Feb 2024 19:27:22 +0100
+Jernej =C5=A0krabec <jernej.skrabec@gmail.com> wrote:
 
-Signed-off-by: Nathan Morrisson <nmorrisson@phytec.com>
----
-v2:
-- Change overlay name from k3-am62-... to k3-am62x-...
-- Add compile time test
+Hi,
 
- arch/arm64/boot/dts/ti/Makefile               |  3 ++
- .../ti/k3-am62x-phyboard-lyra-gpio-fan.dtso   | 51 +++++++++++++++++++
- 2 files changed, 54 insertions(+)
- create mode 100644 arch/arm64/boot/dts/ti/k3-am62x-phyboard-lyra-gpio-fan.dtso
+....
 
-diff --git a/arch/arm64/boot/dts/ti/Makefile b/arch/arm64/boot/dts/ti/Makefile
-index 52c1dc910308..bfeb496d5039 100644
---- a/arch/arm64/boot/dts/ti/Makefile
-+++ b/arch/arm64/boot/dts/ti/Makefile
-@@ -22,6 +22,7 @@ dtb-$(CONFIG_ARCH_K3) += k3-am625-verdin-wifi-dahlia.dtb
- dtb-$(CONFIG_ARCH_K3) += k3-am625-verdin-wifi-dev.dtb
- dtb-$(CONFIG_ARCH_K3) += k3-am625-verdin-wifi-mallow.dtb
- dtb-$(CONFIG_ARCH_K3) += k3-am625-verdin-wifi-yavia.dtb
-+dtb-$(CONFIG_ARCH_K3) += k3-am62x-phyboard-lyra-gpio-fan.dtbo
- dtb-$(CONFIG_ARCH_K3) += k3-am62-lp-sk.dtb
- 
- # Boards with AM62Ax SoC
-@@ -87,6 +88,8 @@ k3-am625-beagleplay-csi2-ov5640-dtbs := k3-am625-beagleplay.dtb \
- 	k3-am625-beagleplay-csi2-ov5640.dtbo
- k3-am625-beagleplay-csi2-tevi-ov5640-dtbs := k3-am625-beagleplay.dtb \
- 	k3-am625-beagleplay-csi2-tevi-ov5640.dtbo
-+k3-am625-phyboard-lyra-gpio-fan-dtbs := k3-am625-phyboard-lyra-rdk.dtb \
-+	k3-am62x-phyboard-lyra-gpio-fan.dtbo
- k3-am625-sk-csi2-imx219-dtbs := k3-am625-sk.dtb \
- 	k3-am62x-sk-csi2-imx219.dtbo
- k3-am625-sk-csi2-ov5640-dtbs := k3-am625-sk.dtb \
-diff --git a/arch/arm64/boot/dts/ti/k3-am62x-phyboard-lyra-gpio-fan.dtso b/arch/arm64/boot/dts/ti/k3-am62x-phyboard-lyra-gpio-fan.dtso
-new file mode 100644
-index 000000000000..9c05748bdd9d
---- /dev/null
-+++ b/arch/arm64/boot/dts/ti/k3-am62x-phyboard-lyra-gpio-fan.dtso
-@@ -0,0 +1,51 @@
-+// SPDX-License-Identifier: GPL-2.0-only OR MIT
-+/*
-+ * Copyright (C) 2024 PHYTEC America LLC
-+ * Author: Garrett Giordano <ggiordano@phytec.com>
-+ */
-+
-+/dts-v1/;
-+/plugin/;
-+
-+#include <dt-bindings/gpio/gpio.h>
-+#include <dt-bindings/thermal/thermal.h>
-+#include "k3-pinctrl.h"
-+
-+&{/} {
-+	fan: gpio-fan {
-+		compatible = "gpio-fan";
-+		gpio-fan,speed-map = <0 0 8600 1>;
-+		gpios = <&main_gpio0 40 GPIO_ACTIVE_LOW>;
-+		#cooling-cells = <2>;
-+		pinctrl-names = "default";
-+		pinctrl-0 = <&gpio_fan_pins_default>;
-+		status = "okay";
-+	};
-+};
-+
-+&main_pmx0 {
-+	gpio_fan_pins_default: gpio-fan-default-pins {
-+		pinctrl-single,pins = <
-+			AM62X_IOPAD(0x0a4, PIN_OUTPUT, 7) /* (M22) GPMC0_DIR.GPIO0_40 */
-+		>;
-+	};
-+};
-+
-+&thermal_zones {
-+	main0_thermal: main0-thermal {
-+		trips {
-+			main0_thermal_trip0: main0-thermal-trip {
-+				temperature = <65000>;  /* millicelsius */
-+				hysteresis = <2000>;    /* millicelsius */
-+				type = "active";
-+			};
-+		};
-+
-+		cooling-maps {
-+			map0 {
-+				trip = <&main0_thermal_trip0>;
-+				cooling-device = <&fan THERMAL_NO_LIMIT THERMAL_NO_LIMIT>;
-+			};
-+		};
-+	};
-+};
--- 
-2.25.1
+> > > >>>>> +&mmc2 {
+> > > >>>>> +	pinctrl-names =3D "default";
+> > > >>>>> +	pinctrl-0 =3D <&mmc2_pins>, <&mmc2_ds_pin>;
+> > > >>>>> +	vmmc-supply =3D <&reg_dcdc1>;
+> > > >>>>> +	vqmmc-supply =3D <&reg_eldo1>;
+> > > >>>>> +	bus-width =3D <8>;
+> > > >>>>> +	non-removable;
+> > > >>>>> +	mmc-ddr-1_8v;
+> > > >>>>> +	mmc-hs200-1_8v; =20
+> > > >>>>
+> > > >>>> Aren't these speed modes enabled by default? =20
+> > > >>
+> > > >> Enabled by who? Our current sunxi-mmc driver? I cannot find anythi=
+ng in
+> > > >> the binding that suggests that there would be some default setting=
+s. =20
+> > > >=20
+> > > > Looking at Linux sunxi mmc driver, mmc-ddr-1_8v is enabled by defau=
+lt for
+> > > > "new timings" variants except for H5. Anyway... =20
+> > >=20
+> > > But this is a Linux implementation detail, which we should not rely o=
+n=20
+> > > in a DT? And if I remember Maxime correctly back then, the plan was t=
+o=20
+> > > avoid those driver hacks and just say what we support in the DT, goin=
+g=20
+> > > forward. This might be needed for other OSes, which might not support=
+=20
+> > > HS-200? =20
+> > > >>> Sorry, mmc-hs200-1_8v is ok, but mmc-ddr-1_8v should be
+> > > >>> removed. =20
+> > > >>
+> > > >> Mmh, I am confused: I thought after the H5 eMMC mishap we figured =
+that
+> > > >> all speed modes supported by the eMMC chip should be listed in the=
+ DT? =20
+> > > >=20
+> > > > I think H5 just has (had?) driver issue. From what I can see, only =
+highest
+> > > > supported mode by kernel and chip is specified in all Allwinner DTs.
+> > > > mmc-ddr-1_8v is only specified by two recent board addition, where =
+I missed
+> > > > it while reviewing.
+> > > >  =20
+> > > >> So any driver wouldn't need to make assumptions, and if a particul=
+ar
+> > > >> mode shows problems on a board, we just remove that mode from the =
+DT.
+> > > >> Actually, thinking about that, I guess I should list HS-400 as wel=
+l? The
+> > > >> BSP kernel uses that mode. =20
+> > > >=20
+> > > > Sure, but it also calibrates timing for it. If you'll specify HS400=
+, kernel
+> > > > will try to use it, but it won't work. =20
+> > >=20
+> > > But this is also a limitation of the current Linux kernel driver. And=
+=20
+> > > since we indeed don't support HS-400, we explicitly remove it from th=
+e=20
+> > > capability list, *after* the call to mmc_of_parse():
+> > >=20
+> > > drivers/mmc/host/sunxi-mmc.c:1460
+> > >          /* TODO: This driver doesn't support HS400 mode yet */
+> > >          mmc->caps2 &=3D ~MMC_CAP2_HS400;
+> > >=20
+> > > So I think this should be safe? =20
+> >=20
+> > Right. Can you test it?
+> >=20
+> > Best regards,
+> > Jernej
+> >  =20
+> > >=20
+> > > Cheers,
+> > > Andre
+> > >  =20
+> > > >  =20
+> > > >> Or do you mean to say that in particular DDR (@1.8V) is problemati=
+c? I
+> > > >> cannot test at the moment, but could try later to force that mode.=
+ =20
+> > > >=20
+> > > > No, no need. =20
+>=20
+> If we go in new direction, then it would be good to test it.
+
+So I did this, and curiously enough MMC DDR didn't work. It's a bit
+odd, since 50 MHz DDR sounds less problematic than 200 MHz SDR, but
+apparently there is more than just the frequency at play here.
+Announcing HS-400 didn't make a difference in Linux, as expected, since
+the driver filters it out.
+
+So I will drop mmc-ddr-1_8v, but add mmc-hs400-1_8v.
+
+Thanks,
+Andre
+
+
+>=20
+> Best regards,
+> Jernej
+>=20
+> > > >=20
+> > > > Best regards,
+> > > > Jernej
+> > > >  =20
+> > > >>
+> > > >> Cheers,
+> > > >> Andre
+> > > >>
+> > > >> =20
+> > > >>>>> +	cap-mmc-hw-reset;
+> > > >>>>> +	status =3D "okay";
+> > > >>>>> +};
+> > > >>>>> +
+> > > >>>>> +&ohci0 {
+> > > >>>>> +	status =3D "okay";
+> > > >>>>> +};
+> > > >>>>> +
+> > > >>>>> +&ohci1 {
+> > > >>>>> +	status =3D "okay";
+> > > >>>>> +};
+> > > >>>>> +
+> > > >>>>> +&pio {
+> > > >>>>> +	vcc-pb-supply =3D <&reg_dcdc1>;
+> > > >>>>> +	vcc-pc-supply =3D <&reg_dcdc1>;
+> > > >>>>> +	vcc-pd-supply =3D <&reg_dcdc1>;
+> > > >>>>> +	vcc-pe-supply =3D <&reg_dcdc1>;
+> > > >>>>> +	vcc-pf-supply =3D <&reg_dcdc1>;
+> > > >>>>> +	vcc-pg-supply =3D <&reg_dldo4>;
+> > > >>>>> +	vcc-ph-supply =3D <&reg_dcdc1>;
+> > > >>>>> +};
+> > > >>>>> +
+> > > >>>>> +&r_ir {
+> > > >>>>> +	status =3D "okay";
+> > > >>>>> +};
+> > > >>>>> +
+> > > >>>>> +&r_pio {
+> > > >>>>> +	/*
+> > > >>>>> +	 * We cannot add that supply for now since it would create a =
+circular
+> > > >>>>> +	 * dependency between pinctrl, the regulator and the RSB Bus.
+> > > >>>>> +	 *
+> > > >>>>> +	 * vcc-pl-supply =3D <&reg_aldo2>;
+> > > >>>>> +	 */
+> > > >>>>> +};
+> > > >>>>> +
+> > > >>>>> +&r_rsb {
+> > > >>>>> +	status =3D "okay";
+> > > >>>>> +
+> > > >>>>> +	axp803: pmic@3a3 {
+> > > >>>>> +		compatible =3D "x-powers,axp803";
+> > > >>>>> +		reg =3D <0x3a3>;
+> > > >>>>> +		interrupt-parent =3D <&r_intc>;
+> > > >>>>> +		interrupts =3D <GIC_SPI 0 IRQ_TYPE_LEVEL_LOW>;
+> > > >>>>> +		x-powers,drive-vbus-en;
+> > > >>>>> +
+> > > >>>>> +		vin1-supply =3D <&reg_vcc5v>;
+> > > >>>>> +		vin2-supply =3D <&reg_vcc5v>;
+> > > >>>>> +		vin3-supply =3D <&reg_vcc5v>;
+> > > >>>>> +		vin5-supply =3D <&reg_vcc5v>;
+> > > >>>>> +		vin6-supply =3D <&reg_vcc5v>;
+> > > >>>>> +		aldoin-supply =3D <&reg_vcc5v>;
+> > > >>>>> +		dldoin-supply =3D <&reg_vcc5v>;
+> > > >>>>> +		eldoin-supply =3D <&reg_vcc5v>;
+> > > >>>>> +		fldoin-supply =3D <&reg_vcc5v>;
+> > > >>>>> +		drivevbus-supply =3D <&reg_vcc5v>;
+> > > >>>>> +		ips-supply =3D <&reg_vcc5v>;
+> > > >>>>> +
+> > > >>>>> +		status =3D "okay";
+> > > >>>>> +	};
+> > > >>>>> +};
+> > > >>>>> +
+> > > >>>>> +#include "axp803.dtsi"
+> > > >>>>> +
+> > > >>>>> +&ac_power_supply {
+> > > >>>>> +	status =3D "okay";
+> > > >>>>> +};
+> > > >>>>> +
+> > > >>>>> +&reg_dcdc1 {
+> > > >>>>> +	regulator-always-on;
+> > > >>>>> +	regulator-min-microvolt =3D <3300000>;
+> > > >>>>> +	regulator-max-microvolt =3D <3300000>;
+> > > >>>>> +	regulator-name =3D "vcc-3v3";
+> > > >>>>> +};
+> > > >>>>> +
+> > > >>>>> +&reg_dcdc2 {
+> > > >>>>> +	regulator-always-on;
+> > > >>>>> +	regulator-min-microvolt =3D <1040000>;
+> > > >>>>> +	regulator-max-microvolt =3D <1300000>;
+> > > >>>>> +	regulator-name =3D "vdd-cpux";
+> > > >>>>> +};
+> > > >>>>> +
+> > > >>>>> +/* DCDC3 is polyphased with DCDC2 */
+> > > >>>>> +
+> > > >>>>> +&reg_dcdc5 {
+> > > >>>>> +	regulator-always-on;
+> > > >>>>> +	regulator-min-microvolt =3D <1500000>;
+> > > >>>>> +	regulator-max-microvolt =3D <1500000>;
+> > > >>>>> +	regulator-name =3D "vcc-dram";
+> > > >>>>> +};
+> > > >>>>> +
+> > > >>>>> +/* Deviates from the reset default of 1.1V. */
+> > > >>>>> +&reg_dcdc6 {
+> > > >>>>> +	regulator-always-on;
+> > > >>>>> +	regulator-min-microvolt =3D <1200000>;
+> > > >>>>> +	regulator-max-microvolt =3D <1200000>;
+> > > >>>>> +	regulator-name =3D "vdd-sys";
+> > > >>>>> +};
+> > > >>>>> +
+> > > >>>>> +&reg_aldo1 {
+> > > >>>>> +	regulator-min-microvolt =3D <3300000>;
+> > > >>>>> +	regulator-max-microvolt =3D <3300000>;
+> > > >>>>> +	regulator-name =3D "vcc-wifi";
+> > > >>>>> +};
+> > > >>>>> +
+> > > >>>>> +&reg_aldo2 {
+> > > >>>>> +	/* Specifying R_PIO consumer would create circular dependency=
+. */
+> > > >>>>> +	regulator-always-on;
+> > > >>>>> +	regulator-min-microvolt =3D <3300000>;
+> > > >>>>> +	regulator-max-microvolt =3D <3300000>;
+> > > >>>>> +	regulator-name =3D "vcc-pl";
+> > > >>>>> +};
+> > > >>>>> +
+> > > >>>>> +&reg_aldo3 {
+> > > >>>>> +	regulator-always-on;
+> > > >>>>> +	regulator-min-microvolt =3D <3000000>;
+> > > >>>>> +	regulator-max-microvolt =3D <3000000>;
+> > > >>>>> +	regulator-name =3D "vcc-pll-avcc";
+> > > >>>>> +};
+> > > >>>>> +
+> > > >>>>> +/* AC200 power supply */
+> > > >>>>> +&reg_dldo1 {
+> > > >>>>> +	regulator-always-on;
+> > > >>>>> +	regulator-min-microvolt =3D <3300000>;
+> > > >>>>> +	regulator-max-microvolt =3D <3300000>;
+> > > >>>>> +	regulator-name =3D "vcc-ave-33";
+> > > >>>>> +};
+> > > >>>>> +
+> > > >>>>> +&reg_dldo4 {
+> > > >>>>> +	regulator-min-microvolt =3D <3300000>;
+> > > >>>>> +	regulator-max-microvolt =3D <3300000>;
+> > > >>>>> +	regulator-name =3D "vcc-wifi-io";
+> > > >>>>> +};
+> > > >>>>> +
+> > > >>>>> +&reg_drivevbus {
+> > > >>>>> +	regulator-name =3D "usb0-vbus";
+> > > >>>>> +	status =3D "okay";
+> > > >>>>> +};
+> > > >>>>> +
+> > > >>>>> +&reg_eldo1 {
+> > > >>>>> +	regulator-always-on;
+> > > >>>>> +	regulator-min-microvolt =3D <1800000>;
+> > > >>>>> +	regulator-max-microvolt =3D <1800000>;
+> > > >>>>> +	regulator-name =3D "vcc-cpvdd-dram-emmc";
+> > > >>>>> +};
+> > > >>>>> +
+> > > >>>>> +/* Supplies the arisc management core, needed by TF-A to power=
+ off cores. */
+> > > >>>>> +&reg_fldo2 {
+> > > >>>>> +	regulator-always-on;
+> > > >>>>> +	regulator-min-microvolt =3D <1100000>;
+> > > >>>>> +	regulator-max-microvolt =3D <1100000>;
+> > > >>>>> +	regulator-name =3D "vdd-cpus";
+> > > >>>>> +};
+> > > >>>>> +
+> > > >>>>> +&reg_rtc_ldo {
+> > > >>>>> +	regulator-name =3D "vcc-rtc";
+> > > >>>>> +};
+> > > >>>>> +
+> > > >>>>> +&simplefb_hdmi {
+> > > >>>>> +	vcc-hdmi-supply =3D <&reg_dcdc1>;
+> > > >>>>> +};
+> > > >>>>> +
+> > > >>>>> +&sound {
+> > > >>>>> +	simple-audio-card,aux-devs =3D <&codec_analog>;
+> > > >>>>> +	simple-audio-card,widgets =3D "Microphone", "Microphone Jack",
+> > > >>>>> +				    "Headphone", "Headphone Jack";
+> > > >>>>> +	simple-audio-card,routing =3D
+> > > >>>>> +			"Left DAC", "DACL",
+> > > >>>>> +			"Right DAC", "DACR",
+> > > >>>>> +			"Headphone Jack", "HP",
+> > > >>>>> +			"ADCL", "Left ADC",
+> > > >>>>> +			"ADCR", "Right ADC",
+> > > >>>>> +			"MIC2", "Microphone Jack";
+> > > >>>>> +	status =3D "okay";
+> > > >>>>> +};
+> > > >>>>> +
+> > > >>>>> +/* On the (unpopulated) UART pads. */
+> > > >>>>> +&uart0 {
+> > > >>>>> +	pinctrl-names =3D "default";
+> > > >>>>> +	pinctrl-0 =3D <&uart0_pb_pins>;
+> > > >>>>> +	status =3D "okay";
+> > > >>>>> +};
+> > > >>>>> +
+> > > >>>>> +&uart1 {
+> > > >>>>> +	pinctrl-names =3D "default";
+> > > >>>>> +	pinctrl-0 =3D <&uart1_pins>, <&uart1_rts_cts_pins>;
+> > > >>>>> +	uart-has-rtscts;
+> > > >>>>> +	status =3D "okay";
+> > > >>>>> +
+> > > >>>>> +	bluetooth {
+> > > >>>>> +		compatible =3D "realtek,rtl8723bs-bt";
+> > > >>>>> +		enable-gpios =3D <&r_pio 0 4 GPIO_ACTIVE_HIGH>; /* PL4 */
+> > > >>>>> +		max-speed =3D <1500000>;
+> > > >>>>> +	};
+> > > >>>>> +};
+> > > >>>>> +
+> > > >>>>> +&usb_otg {
+> > > >>>>> +	dr_mode =3D "host";
+> > > >>>>> +	status =3D "okay";
+> > > >>>>> +};
+> > > >>>>> +
+> > > >>>>> +&usbphy {
+> > > >>>>> +	usb0_vbus-supply =3D <&reg_drivevbus>;
+> > > >>>>> +	usb1_vbus-supply =3D <&reg_drivevbus>;
+> > > >>>>> +	status =3D "okay";
+> > > >>>>> +};
+> > > >>>>> =20
+> > > >>>>
+> > > >>>>
+> > > >>>>
+> > > >>>>
+> > > >>>> =20
+> > > >>>
+> > > >>>
+> > > >>>
+> > > >>> =20
+> > > >> =20
+> > > >=20
+> > > >=20
+> > > >=20
+> > > >  =20
+> > >  =20
+> >=20
+> >=20
+> >=20
+> >=20
+> >  =20
+>=20
+>=20
+>=20
+>=20
+>=20
 
 
