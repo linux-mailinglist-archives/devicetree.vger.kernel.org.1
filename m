@@ -1,168 +1,208 @@
-Return-Path: <devicetree+bounces-40106-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-40107-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7EFAE84F410
-	for <lists+devicetree@lfdr.de>; Fri,  9 Feb 2024 12:02:40 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3FCA984F422
+	for <lists+devicetree@lfdr.de>; Fri,  9 Feb 2024 12:05:55 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 35A9128A1F2
-	for <lists+devicetree@lfdr.de>; Fri,  9 Feb 2024 11:02:39 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id BC8FE1F28B10
+	for <lists+devicetree@lfdr.de>; Fri,  9 Feb 2024 11:05:54 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 65E7128691;
-	Fri,  9 Feb 2024 11:02:35 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 62B38286AF;
+	Fri,  9 Feb 2024 11:05:48 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=suse.de header.i=@suse.de header.b="V/9zbXJ9";
-	dkim=permerror (0-bit key) header.d=suse.de header.i=@suse.de header.b="W/CSpT8S";
-	dkim=pass (1024-bit key) header.d=suse.de header.i=@suse.de header.b="V/9zbXJ9";
-	dkim=permerror (0-bit key) header.d=suse.de header.i=@suse.de header.b="W/CSpT8S"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="GYxDnPRi"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp-out2.suse.de (smtp-out2.suse.de [195.135.223.131])
+Received: from mail-ej1-f42.google.com (mail-ej1-f42.google.com [209.85.218.42])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B5D5320332;
-	Fri,  9 Feb 2024 11:02:33 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=195.135.223.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A45FF149E12;
+	Fri,  9 Feb 2024 11:05:46 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.42
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1707476555; cv=none; b=ESL/pqXXCrVA3NHAPjL9YpIbFlVAAV/zKZebRL0IIRndYpDsLU8HZwK8mt7v3L8K61RSRHmn5aq0X9q7eCaPOj9y4B/6LrxXjzHk4dn0QA1Iqu6rypKB7BV4mcYtBPql3p0FBvB2ZroKXW/Bgp4iPtVve7b4L2djVJHrRBGgpo4=
+	t=1707476748; cv=none; b=c+eZyE1YLBcq4I8SUKHBgotzc/PSmQD9PLJMQDFJAYcDTxQQSKwbBJTe2JPViwocKwEDMWi8nPNxkFfJp0nP/Y/i1XXK+7SxEqFgRcg0qgq0nfrBZgtYPhP1JUAvDgFJGNo1zQhKXt8vegl1cVOUDZOg+TrNZMPXIOm7yxk/0/w=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1707476555; c=relaxed/simple;
-	bh=DYL2Vo7wXZo44LWPSiZJxteFaz2Bsb/d2g1o9IIqOik=;
-	h=Date:Message-ID:From:To:Cc:Subject:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=MMap17bd87HEIksxXYmjohUrkYjcpL2u8zmR/O8e3S/tPxhYIsDUoFac5v5DIBi1kk5RzvQbWjy64FndA7+56wSwYWdfUZzp0vrXyELCnip3X8l3pC2bRRe2xmpx3YRE95GU8TKt6aCZPIm5w0ZAW7FGRCi+akaaKve8uJPzZjY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=suse.de; spf=pass smtp.mailfrom=suse.de; dkim=pass (1024-bit key) header.d=suse.de header.i=@suse.de header.b=V/9zbXJ9; dkim=permerror (0-bit key) header.d=suse.de header.i=@suse.de header.b=W/CSpT8S; dkim=pass (1024-bit key) header.d=suse.de header.i=@suse.de header.b=V/9zbXJ9; dkim=permerror (0-bit key) header.d=suse.de header.i=@suse.de header.b=W/CSpT8S; arc=none smtp.client-ip=195.135.223.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=suse.de
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=suse.de
-Received: from imap1.dmz-prg2.suse.org (imap1.dmz-prg2.suse.org [10.150.64.97])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
-	(No client certificate requested)
-	by smtp-out2.suse.de (Postfix) with ESMTPS id CD71C1FD32;
-	Fri,  9 Feb 2024 11:02:31 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=suse.de; s=susede2_rsa;
-	t=1707476551; h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
-	 mime-version:mime-version:content-type:content-type:
-	 in-reply-to:in-reply-to:references:references;
-	bh=5zQwm5kPigELiJNBBb9hvLn79vg8BzIewehmXpsozFI=;
-	b=V/9zbXJ9ahmqdhj3d/guoVKUJNMAwhxR5fBRCqxWSwO+m9z1l5126BwbhI0x4jy3GjWggO
-	4xCcSrHi8rOLslSG4tR3Af2xPqspGT/oyWLALcgTUcSC5XCi32CuYVM4cDgjaj/LgYuRd1
-	Fo1U0kTOJD5d1gHtOkrwVliwrSLeet4=
-DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=suse.de;
-	s=susede2_ed25519; t=1707476551;
-	h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
-	 mime-version:mime-version:content-type:content-type:
-	 in-reply-to:in-reply-to:references:references;
-	bh=5zQwm5kPigELiJNBBb9hvLn79vg8BzIewehmXpsozFI=;
-	b=W/CSpT8SMhOtfjNq/AoNqGM6+Is88NEcwU2+ottuiG4PdFTjaF8A234VY0NaFfEZZ2D/Fi
-	EP1eGUP2PYwE50BA==
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=suse.de; s=susede2_rsa;
-	t=1707476551; h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
-	 mime-version:mime-version:content-type:content-type:
-	 in-reply-to:in-reply-to:references:references;
-	bh=5zQwm5kPigELiJNBBb9hvLn79vg8BzIewehmXpsozFI=;
-	b=V/9zbXJ9ahmqdhj3d/guoVKUJNMAwhxR5fBRCqxWSwO+m9z1l5126BwbhI0x4jy3GjWggO
-	4xCcSrHi8rOLslSG4tR3Af2xPqspGT/oyWLALcgTUcSC5XCi32CuYVM4cDgjaj/LgYuRd1
-	Fo1U0kTOJD5d1gHtOkrwVliwrSLeet4=
-DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=suse.de;
-	s=susede2_ed25519; t=1707476551;
-	h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
-	 mime-version:mime-version:content-type:content-type:
-	 in-reply-to:in-reply-to:references:references;
-	bh=5zQwm5kPigELiJNBBb9hvLn79vg8BzIewehmXpsozFI=;
-	b=W/CSpT8SMhOtfjNq/AoNqGM6+Is88NEcwU2+ottuiG4PdFTjaF8A234VY0NaFfEZZ2D/Fi
-	EP1eGUP2PYwE50BA==
-Received: from imap1.dmz-prg2.suse.org (localhost [127.0.0.1])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
-	(No client certificate requested)
-	by imap1.dmz-prg2.suse.org (Postfix) with ESMTPS id 2F6361326D;
-	Fri,  9 Feb 2024 11:02:31 +0000 (UTC)
-Received: from dovecot-director2.suse.de ([10.150.64.162])
-	by imap1.dmz-prg2.suse.org with ESMTPSA
-	id 1iklCkcGxmVoLwAAD6G6ig
-	(envelope-from <tiwai@suse.de>); Fri, 09 Feb 2024 11:02:31 +0000
-Date: Fri, 09 Feb 2024 12:02:30 +0100
-Message-ID: <87plx5294p.wl-tiwai@suse.de>
-From: Takashi Iwai <tiwai@suse.de>
-To: Wesley Cheng <quic_wcheng@quicinc.com>
-Cc: <srinivas.kandagatla@linaro.org>,
-	<mathias.nyman@intel.com>,
-	<perex@perex.cz>,
-	<conor+dt@kernel.org>,
-	<corbet@lwn.net>,
-	<lgirdwood@gmail.com>,
-	<andersson@kernel.org>,
-	<krzysztof.kozlowski+dt@linaro.org>,
-	<gregkh@linuxfoundation.org>,
-	<Thinh.Nguyen@synopsys.com>,
-	<broonie@kernel.org>,
-	<bgoswami@quicinc.com>,
-	<tiwai@suse.com>,
-	<robh+dt@kernel.org>,
-	<konrad.dybcio@linaro.org>,
-	<linux-kernel@vger.kernel.org>,
-	<devicetree@vger.kernel.org>,
-	<linux-sound@vger.kernel.org>,
-	<linux-usb@vger.kernel.org>,
-	<linux-arm-msm@vger.kernel.org>,
-	<linux-doc@vger.kernel.org>,
-	<alsa-devel@alsa-project.org>
-Subject: Re: [PATCH v14 45/53] ASoC: usb: Create SOC USB SND jack kcontrol
-In-Reply-To: <20240208231406.27397-46-quic_wcheng@quicinc.com>
-References: <20240208231406.27397-1-quic_wcheng@quicinc.com>
-	<20240208231406.27397-46-quic_wcheng@quicinc.com>
-User-Agent: Wanderlust/2.15.9 (Almost Unreal) Emacs/27.2 Mule/6.0
+	s=arc-20240116; t=1707476748; c=relaxed/simple;
+	bh=yTyp75CZWYZNbUXtfkznJ6XWbMlAr0XgWNSjRN9Csbk=;
+	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version; b=HbukmHJuTYbNyweZ7aEi0Lg+zVpCarMnzFq35PhngaVH1nWrKHBbH4vapgfCQ+GIN/Y4XWauhl/4eGKh+m1GpkaPeB87lH8bAPjWgy7QPHFkyCIVDBz4zdJBGJu4sQN6G7AR++zvkV4OxaUT1gmEsnurKMIA/rkIvtagRvZEJqw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=GYxDnPRi; arc=none smtp.client-ip=209.85.218.42
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-ej1-f42.google.com with SMTP id a640c23a62f3a-a28a6cef709so102009766b.1;
+        Fri, 09 Feb 2024 03:05:46 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1707476745; x=1708081545; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=xbaeKdjw60cNsDBZcRkItqfkpOC+hAL3qmMor2xymZ0=;
+        b=GYxDnPRiyxUbrroJpsDkFQ02qntzXzvFpSCz10+b0B7NTPR7ZC4JsbHHWVOqZZi+1O
+         1Yjta47RKcyFlN0MHdG9dV9eLuevyIyp9tP2xODKMwOpmwcP2IcIgdfiMhYA/deDTKMW
+         7NNkUq0fY3ENrNSEkmpXyE/PY+3qY/An6evwWKXM2dZnfHctkug7NJtSLJDlu1/t/mSx
+         8n7MAIcof0ZEiIdNizB3hLM9lTQrCZNpkJ34SwyJhzKqjtAyHNeuDZjB+xXBoOOZUt1M
+         mel/fG3kVuliTYB7qNAVFlrUHv0RG6tRdx67RNMwe7L5JKldfhHPzx1B79dPXjhZE/yH
+         Udiw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1707476745; x=1708081545;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=xbaeKdjw60cNsDBZcRkItqfkpOC+hAL3qmMor2xymZ0=;
+        b=fRzFHyI9XdAebowcH4dI/r4GN7g0dI0qMuSnxMRURZIHALL5oT5lEiAXQJAb17brbk
+         aaYRvNWDKz61TySbbGHmO0hV35t/u7tjYaB2gOlpM4OBX0lD5sB6xgwlqhv0Omw1CvEJ
+         jykxW+CxYrxw55XoPAsvUOoFJenlhCPdFI3Pxe7x9n4x24GLa32x/iXOyaoJW9xMolOF
+         gdLK5RZP4j64dmmGO1Nj+HkB5Aqa6ezyXqhaTnUIZSUGiWlWXLInP+49+dwLrQ+w6k/s
+         1fWe7wphWRPUd/w/f/067F7aQJ3p1gHXzVU6g2L5IDmu6qEgbhppt0odBAFLcavthm4N
+         RHoA==
+X-Gm-Message-State: AOJu0YwyvEhi9gQ/Y0oKLDQAGQ57c8i0cCLRrkzQuR0MmfAdpLwNseCK
+	/ZcUGL9Qf2DdaH0PoSHTxNQ6H9IHq7K0EXzIxzYrTXsQmrpzDv/QJ+Ya9j21yqw=
+X-Google-Smtp-Source: AGHT+IF1K8ViNAW3P+fefZz4G5jK2tN/Sn4NqbfifXPw2j4rGzGbZ3qD3nbaSf+I5j4uU3afSLWW3Q==
+X-Received: by 2002:a17:906:2dc6:b0:a38:42f4:dfb6 with SMTP id h6-20020a1709062dc600b00a3842f4dfb6mr958758eji.63.1707476744531;
+        Fri, 09 Feb 2024 03:05:44 -0800 (PST)
+X-Forwarded-Encrypted: i=1; AJvYcCU8H9Oqo/86n65sM39xyh0B3MD99Tc97Z87eRmLSOIKEQOZIhRAIBKUqlG3ky3zVbtYSeUy4MFPnGhr502vVr1VxSSzk6MeGqFCMbBrKkC7ch/5K+p7MhoD3I2HV+/rrhoUkWDLzTKTyl1oZ481k3BVQn4qhwft7Lk/peodlBjH0kRmHN9dgFaTjX7kinuKBKENYrj1BonzTLa1EMGbsiMDIG9tT9DQU8FgrjYxYQDgfbdzhNNZpHBpT03RoVo2OWTC+SXl5GoSyaRhDJyJYCuLfGGZUqX3YMYHNjlevSCeUxbC/e643moYXTCxFz7Uj+vGzLQPyIlptoubOH7EUw==
+Received: from andrejs-nb.int.toradex.com (77-59-154-235.dclient.hispeed.ch. [77.59.154.235])
+        by smtp.gmail.com with ESMTPSA id kh20-20020a170906f81400b00a35cd148c7esm637832ejb.212.2024.02.09.03.05.42
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 09 Feb 2024 03:05:43 -0800 (PST)
+From: Andrejs Cainikovs <andrejs.cainikovs@gmail.com>
+To: Nishanth Menon <nm@ti.com>,
+	Vignesh Raghavendra <vigneshr@ti.com>,
+	Tero Kristo <kristo@kernel.org>,
+	Rob Herring <robh+dt@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>
+Cc: Andrejs Cainikovs <andrejs.cainikovs@toradex.com>,
+	linux-arm-kernel@lists.infradead.org,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org
+Subject: [PATCH v1] arm64: dts: ti: verdin-am62: add support for Verdin USB1 interface
+Date: Fri,  9 Feb 2024 12:05:00 +0100
+Message-Id: <20240209110500.22193-1-andrejs.cainikovs@gmail.com>
+X-Mailer: git-send-email 2.34.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-MIME-Version: 1.0 (generated by SEMI-EPG 1.14.7 - "Harue")
-Content-Type: text/plain; charset=US-ASCII
-Authentication-Results: smtp-out2.suse.de;
-	none
-X-Spam-Level: 
-X-Spam-Score: -0.16
-X-Spamd-Result: default: False [-0.16 / 50.00];
-	 ARC_NA(0.00)[];
-	 RCVD_VIA_SMTP_AUTH(0.00)[];
-	 BAYES_HAM(-1.36)[90.57%];
-	 FROM_HAS_DN(0.00)[];
-	 TO_DN_SOME(0.00)[];
-	 FREEMAIL_ENVRCPT(0.00)[gmail.com];
-	 TO_MATCH_ENVRCPT_ALL(0.00)[];
-	 TAGGED_RCPT(0.00)[dt];
-	 MIME_GOOD(-0.10)[text/plain];
-	 NEURAL_HAM_LONG(-1.00)[-1.000];
-	 R_RATELIMIT(0.00)[to_ip_from(RLjs3ec4aura4kmsd6wxjjm4hg)];
-	 RCVD_COUNT_THREE(0.00)[3];
-	 DKIM_SIGNED(0.00)[suse.de:s=susede2_rsa,suse.de:s=susede2_ed25519];
-	 NEURAL_HAM_SHORT(-0.20)[-1.000];
-	 RCPT_COUNT_TWELVE(0.00)[23];
-	 MID_CONTAINS_FROM(1.00)[];
-	 FUZZY_BLOCKED(0.00)[rspamd.com];
-	 FROM_EQ_ENVFROM(0.00)[];
-	 MIME_TRACE(0.00)[0:+];
-	 FREEMAIL_CC(0.00)[linaro.org,intel.com,perex.cz,kernel.org,lwn.net,gmail.com,linuxfoundation.org,synopsys.com,quicinc.com,suse.com,vger.kernel.org,alsa-project.org];
-	 RCVD_TLS_ALL(0.00)[];
-	 SUSPICIOUS_RECIPS(1.50)[]
-X-Spam-Flag: NO
+MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
 
-On Fri, 09 Feb 2024 00:13:58 +0100,
-Wesley Cheng wrote:
-> 
-> Expose API for creation of a jack control for notifying of available
-> devices that are plugged in/discovered, and that support offloading.  This
-> allows for control names to be standardized across implementations of USB
-> audio offloading.
-> 
-> Signed-off-by: Wesley Cheng <quic_wcheng@quicinc.com>
+From: Andrejs Cainikovs <andrejs.cainikovs@toradex.com>
 
-Again, use a more intuitive control element name.
+Add support for Verdin USB1 interface, implements role switch
+functionality using "gpio-usb-b-connector", VBUS is also now
+controlled with "regulator-fixed" using a standard GPIO.
 
+Signed-off-by: Andrejs Cainikovs <andrejs.cainikovs@toradex.com>
+---
+ arch/arm64/boot/dts/ti/k3-am62-verdin.dtsi | 55 +++++++++++++++++-----
+ 1 file changed, 44 insertions(+), 11 deletions(-)
 
-thanks,
+diff --git a/arch/arm64/boot/dts/ti/k3-am62-verdin.dtsi b/arch/arm64/boot/dts/ti/k3-am62-verdin.dtsi
+index 6a06724b6d16..bfd44f4a15cf 100644
+--- a/arch/arm64/boot/dts/ti/k3-am62-verdin.dtsi
++++ b/arch/arm64/boot/dts/ti/k3-am62-verdin.dtsi
+@@ -42,6 +42,22 @@ aliases {
+ 		usb1 = &usb1;
+ 	};
+ 
++	connector {
++		compatible = "gpio-usb-b-connector", "usb-b-connector";
++		pinctrl-names = "default";
++		pinctrl-0 = <&pinctrl_usb0_id>;
++		id-gpios = <&main_gpio1 19 GPIO_ACTIVE_HIGH>;
++		label = "USB_1";
++		self-powered;
++		vbus-supply = <&reg_usb0_vbus>;
++
++		port {
++			usb_dr_connector: endpoint {
++				remote-endpoint = <&usb0_ep>;
++			};
++		};
++	};
++
+ 	verdin_gpio_keys: gpio-keys {
+ 		compatible = "gpio-keys";
+ 		pinctrl-names = "default";
+@@ -151,6 +167,18 @@ reg_sdhc1_vqmmc: regulator-sdhci1-vqmmc {
+ 		vin-supply = <&reg_sd_3v3_1v8>;
+ 	};
+ 
++	reg_usb0_vbus: regulator-usb0-vbus {
++		compatible = "regulator-fixed";
++		pinctrl-names = "default";
++		pinctrl-0 = <&pinctrl_usb0_en>;
++		enable-active-high;
++		/* Verdin USB_1_EN (SODIMM 155) */
++		gpio = <&main_gpio1 50 GPIO_ACTIVE_HIGH>;
++		regulator-max-microvolt = <5000000>;
++		regulator-min-microvolt = <5000000>;
++		regulator-name = "USB_1_EN";
++	};
++
+ 	reserved-memory {
+ 		#address-cells = <2>;
+ 		#size-cells = <2>;
+@@ -436,6 +464,13 @@ AM62X_IOPAD(0x0244, PIN_INPUT_PULLUP, 7) /* (C17) MMC1_SDWP.GPIO1_49 */ /* SODIM
+ 		>;
+ 	};
+ 
++	/* Verdin USB_1_EN */
++	pinctrl_usb0_en: main-gpio1-50-default-pins {
++		pinctrl-single,pins = <
++			AM62X_IOPAD(0x0254, PIN_INPUT, 7) /* (C20) USB0_DRVVBUS.GPIO1_50 */ /* SODIMM 155 */
++		>;
++	};
++
+ 	/* On-module I2C - PMIC_I2C */
+ 	pinctrl_i2c0: main-i2c0-default-pins {
+ 		pinctrl-single,pins = <
+@@ -660,13 +695,6 @@ AM62X_IOPAD(0x0038, PIN_OUTPUT,       5) /* (E24) OSPI0_CSn3.UART5_TXD    */ /*
+ 		>;
+ 	};
+ 
+-	/* Verdin USB_1 */
+-	pinctrl_usb0: main-usb0-default-pins {
+-		pinctrl-single,pins = <
+-			AM62X_IOPAD(0x0254, PIN_OUTPUT, 0) /* (C20) USB0_DRVVBUS */ /* SODIMM 155 */
+-		>;
+-	};
+-
+ 	/* Verdin USB_2 */
+ 	pinctrl_usb1: main-usb1-default-pins {
+ 		pinctrl-single,pins = <
+@@ -1013,7 +1041,7 @@ &main_gpio1 {
+ 		"",
+ 		"",
+ 		"SODIMM_17",
+-		"", /* 50 */
++		"SODIMM 155", /* 50 */
+ 		"",
+ 		"",
+ 		"",
+@@ -1428,11 +1456,16 @@ &usbss0 {
+ 	status = "disabled";
+ };
+ 
+-/* TODO: role swich using ID pin */
+ &usb0 {
+-	pinctrl-names = "default";
+-	pinctrl-0 = <&pinctrl_usb0>, <&pinctrl_usb0_id>;
++	adp-disable;
++	usb-role-switch;
+ 	status = "disabled";
++
++	port {
++		usb0_ep: endpoint {
++			remote-endpoint = <&usb_dr_connector>;
++		};
++	};
+ };
+ 
+ /* Verdin USB_2 */
+-- 
+2.34.1
 
-Takashi
 
