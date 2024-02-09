@@ -1,150 +1,163 @@
-Return-Path: <devicetree+bounces-40219-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-40220-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4A19D84FACC
-	for <lists+devicetree@lfdr.de>; Fri,  9 Feb 2024 18:14:29 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8316884FAD0
+	for <lists+devicetree@lfdr.de>; Fri,  9 Feb 2024 18:14:46 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 00B972847EF
-	for <lists+devicetree@lfdr.de>; Fri,  9 Feb 2024 17:14:28 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 42EEA28548B
+	for <lists+devicetree@lfdr.de>; Fri,  9 Feb 2024 17:14:45 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3FC677BAF4;
-	Fri,  9 Feb 2024 17:14:17 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E96877BAF9;
+	Fri,  9 Feb 2024 17:14:35 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="t4e2zs4d"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-yw1-f179.google.com (mail-yw1-f179.google.com [209.85.128.179])
+Received: from mail-yw1-f180.google.com (mail-yw1-f180.google.com [209.85.128.180])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2B48D4D112;
-	Fri,  9 Feb 2024 17:14:14 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.179
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 241094D112
+	for <devicetree@vger.kernel.org>; Fri,  9 Feb 2024 17:14:34 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.180
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1707498857; cv=none; b=aSwWNbxNtnEcWvZtZqS9rYjEXihF2+bpm7PS6D77HjcdUq1z9XToqBKUqsNsz6raGXSEMfF9vMoIcSP+e5ph7X22ggfmAFcrEiceQwOmeeAEHuG9sZwuXFqiu6LsdlKaSuTrlS+Ogcfx6HDeCB+WtNXFHiolT4gORYuzoU4Gfzg=
+	t=1707498875; cv=none; b=kzNzh7oIrv1G41XdmmOA+adCaLeII0JRoz0rC+zL8NXVNF5A2SQpzeaMuAHZgblLpgOwnElEDYHYdXzXyKGwYD5uJv28sni1JvcMt/w3qNqb2p8Mx9VtiydCrZqG8mitFJg9VoP+vdvvopBqslxozVnlTGVJR/xLPTV9DyBLb+A=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1707498857; c=relaxed/simple;
-	bh=+DTDGzLknxo/ZOoEm1bGhlARIpKxl17yogEhWgOhX6A=;
+	s=arc-20240116; t=1707498875; c=relaxed/simple;
+	bh=8zaCR8O41K02r3ojsjLx+ja3Hf6OnvwNbDj913/XFkQ=;
 	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=Y3gCJ2pJxE4wsChnS0oay2jgQjwhvwfdP8MaMnRhC+Ao4bVCjOqyMuydHgWj/H4AxTEgOAr+qGPkpwQlHwexqj5Fwcu65ySb6ARCNCLFZ/g/FvqtRLO4WyBs3M0DXfxoQV05seMAht0BjRJoWnasGaq8LcLEiF0RhqsIGUf6utw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org; spf=pass smtp.mailfrom=gmail.com; arc=none smtp.client-ip=209.85.128.179
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-yw1-f179.google.com with SMTP id 00721157ae682-603fd31f5c2so19581917b3.0;
-        Fri, 09 Feb 2024 09:14:14 -0800 (PST)
+	 To:Cc:Content-Type; b=m05G1RUWe1Ig+1nv203/4w9p04qGaeptSobz2cmZQmbysd2fGrrwhaD32bHJXbipM85FiliwoTA70TH0uaGAFG4poF/C8FUHf9t7Po4JlTnR7ioi9iizsKlBPkmSUysqocOh29rEJV89cjah+FAw9mJcYCWDxrRYDtEI268l3k4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=t4e2zs4d; arc=none smtp.client-ip=209.85.128.180
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-yw1-f180.google.com with SMTP id 00721157ae682-604a3d33c4dso12983787b3.1
+        for <devicetree@vger.kernel.org>; Fri, 09 Feb 2024 09:14:33 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1707498873; x=1708103673; darn=vger.kernel.org;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=3WqcxEXG8TSNrlTn9gKFAz+5r+7V+KkZ4U4GAUZ3UpU=;
+        b=t4e2zs4dqiCsyRyp8s89NVoCCPLNxY+EV3IX3sBj3R/cz6DdgHC7eLPnkq0PVyinYv
+         wdMR9Eqm2siSUtmd03TY+k8MKoGI9yFs/jvNt4PfKxFehkLdggM96cc/1ERbX4fe7BeK
+         ETgRtPta7g0wBR6mxjGT372cheeIoCW0YivjZSZKJiWkTiP5dISHqT657hPh6YNqOSpa
+         tiqtdh7Zs6zEZBPoyu6IrPDGsTDO6DJmFCUaRPRcJSiXnAXJWguhXNoKDEXSXDclJMhO
+         KrjfcUOGtwsr9Bn7hggsX/iztBVJhKYggg1t8hQRoRlwEfzYe3FPn5cEeHkdYI6IN2lG
+         3JtA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1707498853; x=1708103653;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=EdDdMzA8rqlb5+lk3BPGGmoUh4tuhQ6PGFVYwnqwvAU=;
-        b=JOZH8vAEgHp1WFUVMx2TFSxXLRI1EIgfA5/MOXO6kA8G+OuuHhi99V1emexGMOMr/g
-         qmE9kpHQaTQJObv8xECwdifLB9uhzWEuE6juHKBuuuhc4QN2WmFhk9nTr//GAXv/P3ej
-         HBGsoW3N9cGnII5Xy2nWkVyGGMFS1bWKRZ3G1JUsIzhekeii+AlPigBAC+F5hZZc0WCj
-         RFwzxZ+CkE74H+ZUWVO/GEWgK6Q0OFKAnem6mc4EQ6Mg2TZtYzQ2e6Z/Kze5OVWdIZoC
-         VggYxQBSbKgUfpL1LnQK535kCuXXlndeFVXq16IBEY+pFylHl+uyjMuQZYAhrT6kH9vy
-         Pwyw==
-X-Gm-Message-State: AOJu0YyZsv2Eoui3OgR83zG2CerH/+unHd3HyYbwIJHCAOjDZGXWYXXe
-	1oHGrj4okkcFv+aeJRUSY+jAXSyJo8FpRUFccFqJhmALZUk188VAGo1FxgilDWw=
-X-Google-Smtp-Source: AGHT+IE6B/Co1YRt+cE8VwwHGwCVN5zGEsDVSd3ykEiszvLfBtuxiEZUk4RX8vwPy8vNh26LxxXfzA==
-X-Received: by 2002:a0d:db42:0:b0:604:95db:c4c5 with SMTP id d63-20020a0ddb42000000b0060495dbc4c5mr1167605ywe.25.1707498853060;
-        Fri, 09 Feb 2024 09:14:13 -0800 (PST)
-X-Forwarded-Encrypted: i=1; AJvYcCX4wJgA301Dmptw9GlKGEcLXqi5f8g0qDjEHS7FhZ3ukwjlNAvLwk/9Xl5KGGUnaj3no8/EhsklyDzXII+NPJbSJ/V2pwbTq7KovJwkKUcKPM5vIh+CdMOGecbI5ZNP+J1y47MTzjJFmeT06cW4OW1uL+xaey61f3UJkQ+GJKe+TFWPptEpISQO0R2WsKr0cYG+qWqo9+QF6nsabD7IDmgzS1S6B9lYWccHW01XB7DW4Qtn5hpUXUNJ1j6sw8HM0efgwCDnvy+Yuqw=
-Received: from mail-yw1-f178.google.com (mail-yw1-f178.google.com. [209.85.128.178])
-        by smtp.gmail.com with ESMTPSA id u13-20020a81a50d000000b006047567a828sm384273ywg.96.2024.02.09.09.14.12
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 09 Feb 2024 09:14:12 -0800 (PST)
-Received: by mail-yw1-f178.google.com with SMTP id 00721157ae682-6049b115630so15899537b3.1;
-        Fri, 09 Feb 2024 09:14:12 -0800 (PST)
-X-Received: by 2002:a81:4956:0:b0:604:48a9:44a3 with SMTP id
- w83-20020a814956000000b0060448a944a3mr1528272ywa.16.1707498851842; Fri, 09
- Feb 2024 09:14:11 -0800 (PST)
+        d=1e100.net; s=20230601; t=1707498873; x=1708103673;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=3WqcxEXG8TSNrlTn9gKFAz+5r+7V+KkZ4U4GAUZ3UpU=;
+        b=RIxewoc4uEOJxNdg15yu4ESY69ACTEOJfUMsbqKhlAtomEhgqEw6H9Zvq0r91ZRjP2
+         vLfFpUdfcj4oUvcv6UkRuaMiNvs08aH44SiOZgnWb1CnidxV8+9jw5H862RDdZHZ9N9O
+         FSEgnDTHS65inb8BKUfwh8Xa0k8TkDzC0H9mnA5imM36LcRcwlu8kMMPGDtY5ri+A1bO
+         /uyI36kqdvrOzT4BUzrtfAeC1iFihM+PLACw0Xf5H6rS0cMHEeTCHG6qt+h7floap1V3
+         UTwsbEJx9e3nEn+wXV/QfsExeepClhmL41gEfZ36h2nuegzIdaBDbWsyaU7QsBunWIRd
+         +ZJg==
+X-Forwarded-Encrypted: i=1; AJvYcCV6dHer7w9HnVmH5fUJjIyR077Ltu4baFrjpYdGDwYziOPlHfkbDtWrUu1awKDWRYh1vCDZwwWy5de15fsCKP9ATBCx8KuFgP+YSw==
+X-Gm-Message-State: AOJu0Yz2/OeBZ0iXnAyJPXYgDyQ+tfJGUte3L2mAt5D1jkPqGgNxhXCM
+	vjTK/Lcf8I5CDzqq68MhBQNeUv1Yx0mIr3kUILyfNOK6oWJEUPhm2XXRLOYyh++zixTLJBjmV5e
+	cbqMhWBfzgzJdXI4QitNcPRP/9U0ewCkJ6+9OwA==
+X-Google-Smtp-Source: AGHT+IG9zOiYIYM/FYll97ufxp+MZpdExZ7lLXkZ0kzyNUppWY10G7rrXWC7YcsMeVL5SCwYkcal4Ne4S4nySZh2/9o=
+X-Received: by 2002:a81:9204:0:b0:604:1693:80df with SMTP id
+ j4-20020a819204000000b00604169380dfmr2372634ywg.10.1707498872897; Fri, 09 Feb
+ 2024 09:14:32 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20240208135045.3728927-1-tudor.ambarus@linaro.org> <20240208135045.3728927-2-tudor.ambarus@linaro.org>
-In-Reply-To: <20240208135045.3728927-2-tudor.ambarus@linaro.org>
-From: Geert Uytterhoeven <geert@linux-m68k.org>
-Date: Fri, 9 Feb 2024 18:13:59 +0100
-X-Gmail-Original-Message-ID: <CAMuHMdU_Hx9PLmHf2Xm1KKTy_OF-TeCv7SzmA5CZWz+PLkbAGA@mail.gmail.com>
-Message-ID: <CAMuHMdU_Hx9PLmHf2Xm1KKTy_OF-TeCv7SzmA5CZWz+PLkbAGA@mail.gmail.com>
-Subject: Re: [PATCH 01/12] spi: dt-bindings: introduce the ``fifo-depth`` property
-To: Tudor Ambarus <tudor.ambarus@linaro.org>
-Cc: broonie@kernel.org, robh@kernel.org, andi.shyti@kernel.org, 
-	semen.protsenko@linaro.org, krzysztof.kozlowski@linaro.org, 
-	alim.akhtar@samsung.com, linux-spi@vger.kernel.org, 
-	linux-samsung-soc@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
-	linux-kernel@vger.kernel.org, andre.draszik@linaro.org, 
-	peter.griffin@linaro.org, kernel-team@android.com, willmcvicker@google.com, 
-	conor+dt@kernel.org, devicetree@vger.kernel.org, arnd@arndb.de, 
-	Linux-Renesas <linux-renesas-soc@vger.kernel.org>, 
-	Wolfram Sang <wsa+renesas@sang-engineering.com>
+References: <20240209-qcm6490-gcc-protected-clocks-v1-1-bd3487b2e7b1@quicinc.com>
+ <CZ0P9E67Q6AQ.TU3Q2Y8VTWUK@fairphone.com>
+In-Reply-To: <CZ0P9E67Q6AQ.TU3Q2Y8VTWUK@fairphone.com>
+From: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+Date: Fri, 9 Feb 2024 19:14:21 +0200
+Message-ID: <CAA8EJpqkPKYX51-DAkc7A8Kpzmnk82HhFs78TkCxzo6dfubHFA@mail.gmail.com>
+Subject: Re: [PATCH] arm64: dts: qcom: qcs6490-rb3gen2: Declare GCC clocks protected
+To: Luca Weiss <luca.weiss@fairphone.com>
+Cc: Bjorn Andersson <quic_bjorande@quicinc.com>, Bjorn Andersson <andersson@kernel.org>, 
+	Konrad Dybcio <konrad.dybcio@linaro.org>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Taniya Das <quic_tdas@quicinc.com>, linux-arm-msm@vger.kernel.org, 
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
 Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
 
-Hi Tudor,
-
-On Thu, Feb 8, 2024 at 2:51=E2=80=AFPM Tudor Ambarus <tudor.ambarus@linaro.=
-org> wrote:
-> There are instances of the same IP that are configured by the integrator
-> with different FIFO depths. Introduce the fifo-depth property to allow
-> such nodes to specify their FIFO depth.
+On Fri, 9 Feb 2024 at 18:47, Luca Weiss <luca.weiss@fairphone.com> wrote:
 >
-> We haven't seen SPI IPs with different FIFO depths for RX and TX, thus
-> introduce a single property.
-
-Ha...
-
-Current documentation for the Clock-Synchronized Serial Interface with
-FIFO (MSIOF) on e.g. R-Car Gen2 and later states:
-
-    FIFO capacity: 32 bits =C3=97 64 stages for transmission and 32 bits =
-=C3=97
-256 stages for reception
-
-Initially (many years ago), there was some doubt about the validity
-of these values (older variants on SH supported 64/64), hence
-drivers/spi/spi-sh-msiof.c still has
-
-    .tx_fifo_size =3D 64,
-    .rx_fifo_size =3D 64,
-
-Probably we should test and revisit this...
-
-> --- a/Documentation/devicetree/bindings/spi/spi-controller.yaml
-> +++ b/Documentation/devicetree/bindings/spi/spi-controller.yaml
-> @@ -69,6 +69,11 @@ properties:
->           Should be generally avoided and be replaced by
->           spi-cs-high + ACTIVE_HIGH.
+> On Fri Feb 9, 2024 at 5:21 PM CET, Bjorn Andersson wrote:
+> > The SC7180 GCC binding describes clocks which, due to the difference in
 >
-> +  fifo-depth:
-> +    $ref: /schemas/types.yaml#/definitions/uint32
-> +    description:
-> +      Size of the data FIFO in bytes.
+> SC7180 -> SC7280?
+>
+> With that fixed:
+>
+> Reviewed-by: Luca Weiss <luca.weiss@fairphone.com>
+>
+> > security model, are not accessible on the RB3gen2 - in the same way seen
+> > on QCM6490.
+> >
+> > Mark these clocks as protected, to allow the board to boot.
+>
+> So the board never was able to boot before this patch?
 
-I think it is prudent to consider the asymmetric case, too.
-Whether that should be just two properties ("rx-fifo-depth" and
-"tx-fifo-depth"), or also a third "fifo-depth", I defer to the DT
-maintainers...
+Seems so, we had a similar patch in the meta-qcom repo for those
+boards: https://github.com/Linaro/meta-qcom/blob/master/recipes-kernel/linux/linux-yocto/qcm6490-dtsi/0001-PENDING-arm64-dts-qcm6490-Update-the-protected-clock.patch
 
-> +
->    num-cs:
->      $ref: /schemas/types.yaml#/definitions/uint32
->      description:
+>
+> >
+> > Signed-off-by: Bjorn Andersson <quic_bjorande@quicinc.com>
+> > ---
+> > I did notice Taniya's patch [1] after writing this patch. I'd prefer to
+> > merge this minimal set asap, to make the board boot, unless there's a
+> > strong argument for including those other clocks in the protected list.
+> >
+> > [1] https://lore.kernel.org/linux-arm-msm/20240208062836.19767-6-quic_tdas@quicinc.com/
+> > ---
+> >  arch/arm64/boot/dts/qcom/qcs6490-rb3gen2.dts | 18 ++++++++++++++++++
+> >  1 file changed, 18 insertions(+)
+> >
+> > diff --git a/arch/arm64/boot/dts/qcom/qcs6490-rb3gen2.dts b/arch/arm64/boot/dts/qcom/qcs6490-rb3gen2.dts
+> > index 8bb7d13d85f6..97b1586f9f19 100644
+> > --- a/arch/arm64/boot/dts/qcom/qcs6490-rb3gen2.dts
+> > +++ b/arch/arm64/boot/dts/qcom/qcs6490-rb3gen2.dts
+> > @@ -413,6 +413,24 @@ vreg_bob_3p296: bob {
+> >       };
+> >  };
+> >
+> > +&gcc {
+> > +     protected-clocks = <GCC_CFG_NOC_LPASS_CLK>,
+> > +                        <GCC_EDP_CLKREF_EN>,
+> > +                        <GCC_MSS_CFG_AHB_CLK>,
+> > +                        <GCC_MSS_GPLL0_MAIN_DIV_CLK_SRC>,
+> > +                        <GCC_MSS_OFFLINE_AXI_CLK>,
+> > +                        <GCC_MSS_Q6SS_BOOT_CLK_SRC>,
+> > +                        <GCC_MSS_Q6_MEMNOC_AXI_CLK>,
+> > +                        <GCC_MSS_SNOC_AXI_CLK>,
+> > +                        <GCC_QSPI_CNOC_PERIPH_AHB_CLK>,
+> > +                        <GCC_QSPI_CORE_CLK>,
+> > +                        <GCC_QSPI_CORE_CLK_SRC>,
+> > +                        <GCC_SEC_CTRL_CLK_SRC>,
+> > +                        <GCC_WPSS_AHB_BDG_MST_CLK>,
+> > +                        <GCC_WPSS_AHB_CLK>,
+> > +                        <GCC_WPSS_RSCP_CLK>;
+> > +};
+> > +
+> >  &qupv3_id_0 {
+> >       status = "okay";
+> >  };
+> >
+> > ---
+> > base-commit: b1d3a0e70c3881d2f8cf6692ccf7c2a4fb2d030d
+> > change-id: 20240209-qcm6490-gcc-protected-clocks-ee5fafdb76b3
+> >
+> > Best regards,
+>
 
-Gr{oetje,eeting}s,
 
-                        Geert
-
---=20
-Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k=
-.org
-
-In personal conversations with technical people, I call myself a hacker. Bu=
-t
-when I'm talking to journalists I just say "programmer" or something like t=
-hat.
-                                -- Linus Torvalds
+-- 
+With best wishes
+Dmitry
 
