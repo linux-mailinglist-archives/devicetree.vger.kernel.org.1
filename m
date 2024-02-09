@@ -1,76 +1,76 @@
-Return-Path: <devicetree+bounces-40047-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-40048-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id ECF6D84F0CA
-	for <lists+devicetree@lfdr.de>; Fri,  9 Feb 2024 08:31:54 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1EEEF84F0D0
+	for <lists+devicetree@lfdr.de>; Fri,  9 Feb 2024 08:33:24 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 5B7CD1F24381
-	for <lists+devicetree@lfdr.de>; Fri,  9 Feb 2024 07:31:54 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id CAFA8290DCE
+	for <lists+devicetree@lfdr.de>; Fri,  9 Feb 2024 07:33:22 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id CD840657DA;
-	Fri,  9 Feb 2024 07:31:48 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4EEB5657D3;
+	Fri,  9 Feb 2024 07:33:16 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="aQmBEGTK"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="XyM8r8wx"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f49.google.com (mail-wm1-f49.google.com [209.85.128.49])
+Received: from mail-wm1-f42.google.com (mail-wm1-f42.google.com [209.85.128.42])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 968C8657D1
-	for <devicetree@vger.kernel.org>; Fri,  9 Feb 2024 07:31:46 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.49
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8F33E657CE
+	for <devicetree@vger.kernel.org>; Fri,  9 Feb 2024 07:33:14 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.42
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1707463908; cv=none; b=NX3XH+KKdjnBbQgbKoRH9AeW6YjwasH1L3L3TbDOBV8oJgg4c+TF2LbB83bWA9XwTJi6FUeDVARcXzt3Op8pL1DeTws5figpdWwBT6sXY17YK39JSrePEMLSIZxV+iYD3YuuyGhU4l4JtyGsnfkveP37ZdFJYh3nC5YBPOeoi1c=
+	t=1707463996; cv=none; b=sCXHYa2hQu3TVl1Hj7p+3ydPPWRQocSMmYYJLE2mQcSdwBdkZReTPDYoI3QAlrXbc23ulFuoHKKXeB1WPMOoOP/43WzruUfK3T7kTgAbcxjtSgXc6Ng/9QYU5cqzph6XeGw0Iuvu0JUxKmnEZF6M/3039dbGVvPWwxX2lzT8zBg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1707463908; c=relaxed/simple;
-	bh=xFmNZJS37ahgZTb4n847UyVexynqHYAijXk03hvaqSk=;
+	s=arc-20240116; t=1707463996; c=relaxed/simple;
+	bh=qUgnCv02AqFoVGHUvFtpLza5eVa3gjDOpxMSlXLPB+A=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=C0z9qTp/8Du3NDnrJ+9nxpQxPCn/P48MtSueCZwp5XM1Fw2bQAXj60omLz+6l5UeSliEZ6VYy4sQpMCcMD5eQivEEvM92cdWS63KaX9m/s0ZJfxqce1X05gJdeBw/vaGuPvDuQWnqrC1rpzbT/FtUve+Wke5E/poJ078ZI4Hd9A=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=aQmBEGTK; arc=none smtp.client-ip=209.85.128.49
+	 In-Reply-To:Content-Type; b=X0t/UQLIXCbl/bZVWNwXYmugtZREKwDOYdrZ93+l6OdxGxu/7U+ThUA5zq7k6d99K87qj7uZEm91/J/Zy5mldV4lfQCHsJamPq9au6EacIh1f8MmMH7Us3c0ElcszXAXznzMsDUPycHHsXCtWhOxkXJE3MtKv4CEncj9dY0ae9A=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=XyM8r8wx; arc=none smtp.client-ip=209.85.128.42
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-wm1-f49.google.com with SMTP id 5b1f17b1804b1-40fb3b5893eso5194275e9.0
-        for <devicetree@vger.kernel.org>; Thu, 08 Feb 2024 23:31:46 -0800 (PST)
+Received: by mail-wm1-f42.google.com with SMTP id 5b1f17b1804b1-410708db221so1133895e9.0
+        for <devicetree@vger.kernel.org>; Thu, 08 Feb 2024 23:33:14 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1707463905; x=1708068705; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from
-         :content-language:references:cc:to:subject:user-agent:mime-version
-         :date:message-id:from:to:cc:subject:date:message-id:reply-to;
-        bh=czGphICzS+JvFtvh9UqhTVKfL9+aki9x9lhTNwlN9yA=;
-        b=aQmBEGTKchApd4zSo56unmE6wiGijvxdEbu9eMr2DuDmcAECTzkGNVOlqoxSgL1OZG
-         uW/1vPDh3qQQC28RqDXpt81gf7/Ws+TMd9uYUlhszSmbakoPa3Buv+t4hID9n56d6IYT
-         9yjIPpCMLmjCIDGil/Kp/CyHugtndog4PQY8dpxldMJyq1m3NLH9fykc3prrB7E2N1sy
-         g9BQ1NGYYm/uJzAXUweSPqFXiEDxR3qbi5hJSbYnYnidqZKi9T09841ay/HrInPWIZrr
-         MzTPF0x6q0T5uCbmWs+MLFz+/BnamG2dEdcofTlhhUcDIIfz5jGjF2Z8A2ia4UpSvNKg
-         NwPQ==
+        d=linaro.org; s=google; t=1707463993; x=1708068793; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
+         :to:content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=whYEWb6AiuOh6o4SV8A9fmTcuk9/RFPwvABeVLePaDQ=;
+        b=XyM8r8wxBJpqZWEcISM7oDKflEjNotCaxObLxk48/t/ItmQNACZSDwm3CCxVGtMH8t
+         6l5G3N/abRo/K32xxJCjqU2Xf9wk+VBEnsi63PSh9RbmIK0lKd+x1cPASVKRELd2my4n
+         IYan56t9hSs8Gb3/nRU8TVZIvV4iiQtaNBgse2RoMn/UHbt7+7kybWhraXKgx3/3Doe4
+         5F3bq6RZCYRjh6EeuezRg3q55ygbQTJN02gijNtapjp/ZaaMrKajwyrQ4hb6werO0CEK
+         xz1FUYjvAgo6GV3/XBl4jCDpjkASeC6BHnatBWzEs7XoqufH9MBpLE2LGJRPSYo9WiFI
+         N8bQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1707463905; x=1708068705;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from
-         :content-language:references:cc:to:subject:user-agent:mime-version
-         :date:message-id:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=czGphICzS+JvFtvh9UqhTVKfL9+aki9x9lhTNwlN9yA=;
-        b=oXOmcagNVGuueB6W34I4omp8mkj3Qk54kls+8fcNPxc3V1q+6ByetH7N3ZnqmL7bOI
-         EjS1CDEEeQm/SwiVj4xVFXN6ETgoNkcQdvpM56PeIqNWRiB6bJprVR/GFrzLP7U66GMd
-         a9q40yd6GDVrXDzFm2t/0od9FJR6FzmT+s3RAgo9/rOli0/M7uX6UN8Ro0ZpV1mWYP5u
-         7WojCbE3JhLnx8BHQmJ4FFjqh+urQYmMkoa/eZolhbhz37jTnr91YnC6hDDJrtvP06fo
-         1clFmmG4TvhKZXvge2BioLSJXgr1NvmyhfJ8Rhg08qQMRnn3BqZnAlM44l53aUTnLSYW
-         7nDQ==
-X-Forwarded-Encrypted: i=1; AJvYcCXk8WtaSfiylmqVblrV7mkNeuMthqXApSlEuZ/rg/QbKfh+kEXqYn2k+3tbWulJSRr/4nV/XuDG98VbdvQoCBLbGvzc7YuqJPTUTA==
-X-Gm-Message-State: AOJu0Yy6VHNnqR88KBH+ZCOR1lbeMMnocuSn4swU/wJ9w3ms4aOzArXl
-	ZieFa0rTheMIXPEausA1sZEjBE6ikaXXXDkouOi3QDtBG70amIbdsEe9N1NEZz4=
-X-Google-Smtp-Source: AGHT+IF21UJMU+NhR40BDtgwZB2n++F2lik57iCGic0Zp+dyoR82suy8CBdyf5CO29MzoJwnGZq1JA==
-X-Received: by 2002:a05:600c:3ac9:b0:40e:fbb3:f67c with SMTP id d9-20020a05600c3ac900b0040efbb3f67cmr506540wms.38.1707463904746;
-        Thu, 08 Feb 2024 23:31:44 -0800 (PST)
-X-Forwarded-Encrypted: i=1; AJvYcCXoBgw94rOUHYSUFCtX3RXxcYDkM2MLAIzu1+et4Zr0eIQRwlqrzUpLl0+ZcoWHIEJJjOa0EfgLKFZZdMeVb02GCQhSh98ADzA2MF+Wy5IQ16yXQNOwo/YnmiJCbDB3j3AHuSmn/hg53wYwU1Lym6joVm0JDK3oRO4T0qELvIf9vkegm1nFE83q/Z4spBSpLhnS/qpS+t5j/lHRU0ejsDd/0X3Guj/U9jcPuq0sy5OtzFzRR2mLT7lpTvelifSlCwC7pIMHk1TLX+Oj01DQKqSUJPUvQPLnvvt67sABkXQGaXJLpTaF5LcltoOnQno32ad3xIPcA91exP/P7JYSf6Gn7GgZK9q9jOpa9iClJr+Vd7KKYM2/DA5ISAzVXwpZvqoQ2mfUlQ7NR/7XhS0cCcXK6YQa86nb4w/fM5GNZpnLYHdw2bgitwiDDiGw2zBkQVbIYNU7cQlGSMKavY7zSjulMSn0b5o6ObKN2fiv1u/XUPRClg1+PUXK+CpDSnld
+        d=1e100.net; s=20230601; t=1707463993; x=1708068793;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
+         :to:content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=whYEWb6AiuOh6o4SV8A9fmTcuk9/RFPwvABeVLePaDQ=;
+        b=VkxLLafNHmD7DRiQ8RdMcNPRuOYXyr8LP2Aj0o5EEDP4wptH2+ybWHfklPmp1hsKYv
+         VEi4MUUlbYZPUecb3MKVGS7379kN0G8KtJFzzKFOtV6JZQ0mKtm3TeCyzhxrKNWSOv1P
+         s3rVAS67iJspcR9oX7IiKiSc0ccWj+vzdkUjTkPHwPEAMLET1MLDCYrRBsUI/2NTqVXt
+         UYTNnabk+Ni2mZ9PYc/Jm+VWNCOxWWormJFOQ0Ixn42Dg60CT/AeSMb5lnzpfrUC4RwA
+         vLJROa6hfiwo6xx7mlYIV5dAmupgTrnB2w4j2DdK1Z5UBXfSynRTsPhkIBqYitMqXh0/
+         GXzA==
+X-Forwarded-Encrypted: i=1; AJvYcCWKcblt8tfWLnDslhsuC3cdN6KhYHh+Ocii0Syp3xrO53NZC4PwRPjEE+h8W/JCz7xGwzO0ijIZcXqpNvwdOo/vIw4Um78/b2nlRQ==
+X-Gm-Message-State: AOJu0YyG0lxjeyxlIceARS8P5R4BjUMrKnrFI6hBcKrk7ulKR5yMBWbF
+	RDGHXzUpOKwVDpMOpca6Hm5wrpgSi+1V/XFKUiOZGbqzG1soHs1nScbOh1K7o8vUvyl17QUH2Dm
+	u
+X-Google-Smtp-Source: AGHT+IHPe77GBlhxi5pXgsU1vl2NwN4n6+q+g7UdUcH7WD6bMOLHoCEubEsD9UD0pOemxDxdXRtD4w==
+X-Received: by 2002:a05:600c:601c:b0:410:14f1:7ee6 with SMTP id az28-20020a05600c601c00b0041014f17ee6mr518177wmb.0.1707463992731;
+        Thu, 08 Feb 2024 23:33:12 -0800 (PST)
+X-Forwarded-Encrypted: i=1; AJvYcCUkTGDZwpjsI6mz/9aGxYPAO0/aMej+Arqa/qPjRcHR2tn4YP62yR6SmRIPoeey1KO01o4MbSX6qYZrQyJnAbK7IhK3oUFD7YdHeBiW/EnmYFzifnwhpOopXK6kSMMoK5BlfpeK9RJ4Luy9BPpedUNRstuFzFAJL7BiweBfLGS9iLEN3/eYrr4aSUxYcyHBT7b9DNbnDaR3Sl1NF4Y5AB80oYsr5biCxa0v60KUeUlOH5daqBGwbkPwl1yx2pNckdZ1iaU+dvGM4RpoVnVcgM1B4DTTxonvuvc4v2Ornel8JqdMMH3UN2Poi0stIJlUH3rXrpAjjFXTA2jtQIibI3oN+jM+EwgEPa/JXF5I7kv5/GGvsxM+/yr2TDymPNfrDTwN3fAhVAHkD5BM1ge2X68QUT2B676ZCoZuoeKdZY+zesdhBoZkAK91oELkaBNEQUT9hgUR3nP3jeX0g7pAKnpa38oVpvwhkzM1s+bPWsJxgIjF7RX1WUUv/TdzeDdPnIPFQ4RLqWXK8PyxcbhoZds5PXapXQ==
 Received: from [192.168.1.20] ([178.197.222.62])
-        by smtp.gmail.com with ESMTPSA id f7-20020a05600c154700b0041039d20454sm1664309wmg.41.2024.02.08.23.31.43
+        by smtp.gmail.com with ESMTPSA id f7-20020a05600c154700b0041039d20454sm1664309wmg.41.2024.02.08.23.33.11
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 08 Feb 2024 23:31:44 -0800 (PST)
-Message-ID: <973a15f2-4841-43ee-899b-d6f8ac57dde2@linaro.org>
-Date: Fri, 9 Feb 2024 08:31:42 +0100
+        Thu, 08 Feb 2024 23:33:12 -0800 (PST)
+Message-ID: <0a03e639-9998-40b2-95bd-15dc40139509@linaro.org>
+Date: Fri, 9 Feb 2024 08:33:11 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -78,26 +78,26 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 1/2] dt-bindings: usb: dwc3: Add system bus request info
-To: Frank Li <Frank.li@nxp.com>
-Cc: Conor Dooley <conor@kernel.org>, thinh.nguyen@synopsys.com,
- robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
- balbi@kernel.org, devicetree@vger.kernel.org, gregkh@linuxfoundation.org,
- imx@lists.linux.dev, linux-kernel@vger.kernel.org,
- linux-usb@vger.kernel.org, mark.rutland@arm.com, mathias.nyman@intel.com,
- pku.leo@gmail.com, sergei.shtylyov@cogentembedded.com
-References: <20240123-nanometer-atlantic-6465b270043a@spud>
- <ZbAR/NQvjUnf2At+@lizhi-Precision-Tower-5810>
- <46781012-2678-4f6c-9aee-b020cabcbb28@linaro.org>
- <ZbA8ea9Ex+hMdDDZ@lizhi-Precision-Tower-5810>
- <ZbfB/KT+fzO/F2e5@lizhi-Precision-Tower-5810>
- <20240129-encode-catchable-f5712d561a47@spud>
- <ZbfjZoHiH7BsKyzl@lizhi-Precision-Tower-5810>
- <f3811c1f-eff2-4c7b-8cea-6d3115525235@linaro.org>
- <ZbkTvu0Q85zyieXr@lizhi-Precision-Tower-5810>
- <0be231a2-0c3d-4f18-8de2-3e4f1fe1cd29@linaro.org>
- <ZcVFlRug4ATBcH9R@lizhi-Precision-Tower-5810>
+Subject: Re: [PATCH v6 2/5] dt-bindings: iio: light: adps9300: Add property
+ vdd-supply
 Content-Language: en-US
+To: Subhajit Ghosh <subhajit.ghosh@tweaklogic.com>,
+ Jonathan Cameron <jic23@kernel.org>, Lars-Peter Clausen <lars@metafoo.de>,
+ Rob Herring <robh+dt@kernel.org>,
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+ Conor Dooley <conor+dt@kernel.org>,
+ Matti Vaittinen <mazziesaccount@gmail.com>,
+ Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
+ Marek Vasut <marex@denx.de>, Anshul Dalal <anshulusr@gmail.com>,
+ Javier Carrasco <javier.carrasco.cruz@gmail.com>
+Cc: Matt Ranostay <matt@ranostay.sg>,
+ Stefan Windfeldt-Prytz <stefan.windfeldt-prytz@axis.com>,
+ linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org
+References: <20240206130017.7839-1-subhajit.ghosh@tweaklogic.com>
+ <20240206130017.7839-3-subhajit.ghosh@tweaklogic.com>
+ <dbfde067-50b8-4f86-a098-0fc160114854@linaro.org>
+ <84591019-6958-4685-8830-54260aadd26b@tweaklogic.com>
 From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  xsFNBFVDQq4BEAC6KeLOfFsAvFMBsrCrJ2bCalhPv5+KQF2PS2+iwZI8BpRZoV+Bd5kWvN79
@@ -143,100 +143,42 @@ Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  KQ06ztUMRrj8eVtpImjsWCd0bDWRaaR4vqhCHvAG9iWXZu4qh3ipie2Y0oSJygcZT7H3UZxq
  fyYKiqEmRuqsvv6dcbblD8ZLkz1EVZL6djImH5zc5x8qpVxlA0A0i23v5QvN00m6G9NFF0Le
  D2GYIS41Kv4Isx2dEFh+/Q==
-In-Reply-To: <ZcVFlRug4ATBcH9R@lizhi-Precision-Tower-5810>
+In-Reply-To: <84591019-6958-4685-8830-54260aadd26b@tweaklogic.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 08/02/2024 22:20, Frank Li wrote:
-> On Tue, Jan 30, 2024 at 05:10:54PM +0100, Krzysztof Kozlowski wrote:
->> On 30/01/2024 16:20, Frank Li wrote:
->>> On Tue, Jan 30, 2024 at 08:40:29AM +0100, Krzysztof Kozlowski wrote:
->>>> On 29/01/2024 18:41, Frank Li wrote:
->>>>> On Mon, Jan 29, 2024 at 04:49:21PM +0000, Conor Dooley wrote:
->>>>>> On Mon, Jan 29, 2024 at 10:19:24AM -0500, Frank Li wrote:
->>>>>>> On Tue, Jan 23, 2024 at 05:23:53PM -0500, Frank Li wrote:
->>>>>>>> On Tue, Jan 23, 2024 at 10:46:39PM +0100, Krzysztof Kozlowski wrote:
->>>>>>>>> On 23/01/2024 20:22, Frank Li wrote:
->>>>>>>>>> On Tue, Jan 23, 2024 at 06:42:27PM +0000, Conor Dooley wrote:
->>>>>>>>>>> On Tue, Jan 23, 2024 at 01:02:21PM -0500, Frank Li wrote:
->>>>>>>>>>>> On Tue, Jan 23, 2024 at 05:51:48PM +0000, Conor Dooley wrote:
->>>>>>>>>>>>> On Tue, Jan 23, 2024 at 12:49:27PM -0500, Frank Li wrote:
->>>>>>>>>>>>>> On Tue, Jan 23, 2024 at 05:27:13PM +0000, Conor Dooley wrote:
->>>>>>>>>>>>>>> On Tue, Jan 23, 2024 at 12:02:05PM -0500, Frank Li wrote:
->>>>>>>>>>>>>>>> Add device tree binding allow platform overwrite default value of *REQIN in
->>>>>>>>>>>>>>>> GSBUSCFG0.
->>>>>>>>>>>>>>>
->>>>>>>>>>>>>>> Why might a platform actually want to do this? Why does this need to be
->>>>>>>>>>>>>>> set at the board level and being aware of which SoC is in use is not
->>>>>>>>>>>>>>> sufficient for the driver to set the correct values?
->>>>>>>>>>>>>>
->>>>>>>>>>>>>> In snps,dwc3.yaml, there are already similary proptery, such as
->>>>>>>>>>>>>> snps,incr-burst-type-adjustment. Use this method can keep whole dwc3 usb
->>>>>>>>>>>>>> driver keep consistent. And not all platform try enable hardware
->>>>>>>>>>>>>> dma_cohenrence. It is configable for difference platform.
->>>>>>>>>>>>>
->>>>>>>>>>>>> When you say "platform", what do you mean? I understand that term to
->>>>>>>>>>>>> mean a combination of board, soc and firmware.
->>>>>>>>>>>>
->>>>>>>>>>>> In my company's environment, "platform" is "board". I will use "board" in
->>>>>>>>>>>> future. Is it big difference here?
->>>>>>>>>>>
->>>>>>>>>>> Nah, that's close enough that it makes no difference here.
->>>>>>>>>>>
->>>>>>>>>>> I'd still like an explanation for why a platform would need to actually
->>>>>>>>>>> set these properties though, and why information about coherency cannot
->>>>>>>>>>> be determined from whether or not the boss the usb controller is on is
->>>>>>>>>>> communicated to be dma coherent via the existing devicetree properties
->>>>>>>>>>> for that purpose.
->>>>>>>>>>
->>>>>>>>>> Actually, I am not very clear about reason. I guest maybe treat off power
->>>>>>>>>> consumption and performance.
->>>>>>>>>>
->>>>>>>>>> What's your judgement about proptery, which should be in dts. Such as
->>>>>>>>>> reg, clk, reset, dma and irq, which is tighted with SOC. It is the fixed
->>>>>>>>>> value for every SOC. The board dts never change these.
->>>>>>>>>
->>>>>>>>> Then it can be deduced from the compatible and there is no need for new
->>>>>>>>> properties.
->>>>>>>>
->>>>>>>> Okay, I think "*reqinfo" match this. When new Soc(using compatible dwc usb
->>>>>>>> controller) appear regardless dma-cohorence or not, connect by AXI3 or
->>>>>>>> AXI4, needn't add new propterties. 
->>>>>>>
->>>>>>> Anyone have objection? I will prepare v2 to fix rob's bot error.
->>>>>>
->>>>>> I'm not sure what you want me to object to/not object to.
->>>>>> Your last message said "needn't add new propterties", seemingly in
->>>>>> agreement with Krzysztoff saying that it can be deduced from the
->>>>>> compatible. That seems like a good way forward for me.
->>>>>
->>>>> Okay, let me clear it again. dwc usb is quite common IP. The below is
->>>>> what reason why need "*reginfo* instead of using compatible string.
->>>>>
->>>>> 1. *reginfo* property is decscript hardware behevior, which will be changed
->>>>> at difference SOC.
->>>>> 2. it may change at board level according to if enable dma coherence.
->>>>
->>>> dma coherence is not a board property. Anyway, you said it will never
->>>> change in the board.
->>>
->>> Sorry, let's correct what my previous said. There are two kinds bus in
->>> system, one is dma_coherence, the other is none dma_coherence. There are
->>> some dwc usb core ip, which is the exact the same. Some connect to
->>> dma_coherence bus, some connect to non-dma_coherence bus.
->>>
->>> So dma_coherence will be varible for this case. we need set *reginfo* for
->>> dwc usb core, which connnect to dma_coherence bus.  not set "reginfo* for
->>> the dwc usb core, which connect to none dma_coherence bus.
->>
->> OK, that makes sense. Please provide link to upstream DTS
->> (mainline/next/lore link/other upstream projects) showing this.
+On 08/02/2024 11:40, Subhajit Ghosh wrote:
+> Hi Krzysztof,
 > 
-> Look like I still have not found the real case yet. But I think it is
-> existed (maybe not upstream yet). Can I forward using this method?
+> On 8/2/24 18:47, Krzysztof Kozlowski wrote:
+>> On 06/02/2024 14:00, Subhajit Ghosh wrote:
+>>> Add vdd-supply property which is valid and useful for all the
+>>> devices in this schema.
+>>
+>> Why is it useful? How is it useful? DT describes the hardware, not
+>> because something is "useful".
+> I am adding this property based on a previous review:
+> https://lore.kernel.org/all/20240121153655.5f734180@jic23-huawei/
 
-No, because downstream code does things wrong and does not follow basic
-principles...
+The property was there already.
+
+> 
+> Does the below commit message in this context make sense to you?
+> "Add vdd-supply property for all the devices in this schema."
+
+It's still poor. You should say why, e.g. because devices have it.
+
+>>
+>>>
+>>> this patch depends on patch:
+>>> "dt-bindings: iio: light: Merge APDS9300 and APDS9960 schemas"
+>>
+>> This is unrelated and does not make any sense in commit msg. Drop.
+> Apologies for the silly questions:
+> What does the "Drop" signify? Are you asking me to drop/delete the above
+> "...patch depends..." message or does it have any other meaning?
+
+Drop entire paragraph.
 
 
 Best regards,
