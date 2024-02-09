@@ -1,63 +1,55 @@
-Return-Path: <devicetree+bounces-40062-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-40063-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id A116384F157
-	for <lists+devicetree@lfdr.de>; Fri,  9 Feb 2024 09:28:28 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id A08CB84F179
+	for <lists+devicetree@lfdr.de>; Fri,  9 Feb 2024 09:40:27 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 5E4C82845A5
-	for <lists+devicetree@lfdr.de>; Fri,  9 Feb 2024 08:28:27 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id C560B1C21C2F
+	for <lists+devicetree@lfdr.de>; Fri,  9 Feb 2024 08:40:26 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5A9D565BBC;
-	Fri,  9 Feb 2024 08:28:23 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C4E5C65BDB;
+	Fri,  9 Feb 2024 08:40:20 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="smibZTC1"
+	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b="Z4YmH6zs"
 X-Original-To: devicetree@vger.kernel.org
-Received: from fllv0016.ext.ti.com (fllv0016.ext.ti.com [198.47.19.142])
+Received: from madrid.collaboradmins.com (madrid.collaboradmins.com [46.235.227.194])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9FA7B8493;
-	Fri,  9 Feb 2024 08:28:21 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.19.142
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0F48D57303;
+	Fri,  9 Feb 2024 08:40:18 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=46.235.227.194
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1707467303; cv=none; b=sqb2BCr8ZMabhFX11PIwu5uFSNsxZnqDeYSDlMZCxVOw4W4dsns5UkVAv2Xm449YmnokP0ds4uNyN8OgGRm4S8qQd55q24DFQ568FG7qOnbyQ0yXi+MxK76k6/zv3ym2ZNdsdn+OW1QE3bIrX2pBAfujpjyDGdbcixIKp18NWaY=
+	t=1707468020; cv=none; b=cCjrcOF5+xIDxbPAF5A++LC2O8Zsv4l5MvXyyU1iZPBDb9v29HFum+nfGPZ5cuBaNsGcr6oLh/bYuGO4yj3278eWkzlaLK+rEYCMfeGD0NksjXfTz2z24Je+HUSZTCMLkFC7VZ4qo2IqHLpEqy2y7/Z+rGAj+W21dcs6mVn+ToE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1707467303; c=relaxed/simple;
-	bh=+QH+553GL+SWjO0XkO+qLFoo/G4FjOEM6rMs8ZmIinI=;
-	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
-	 In-Reply-To:Content-Type; b=VRUBazyUcL53v/94qDo8+CyUgYCGDKbX+WJPRRjBdeK0Rr74gum3ginOdli4iBx3wgn73RhT1W0JCI34iu6I2OlXt0iO+Grm3cFdhuyLjlRwcSQ4dGemfBJtfYP0bb39Kenr3cKnclstEBzj4Gd9CFrSV8A0vJBZkgjhD4YcQh4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=smibZTC1; arc=none smtp.client-ip=198.47.19.142
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
-Received: from lelv0265.itg.ti.com ([10.180.67.224])
-	by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id 4198SBBa119876;
-	Fri, 9 Feb 2024 02:28:11 -0600
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1707467291;
-	bh=i+ZqXAvXX2eRIpqy23tFyQ2Wt1ZQp9tSOqqUg7PIwAw=;
-	h=Date:Subject:To:CC:References:From:In-Reply-To;
-	b=smibZTC1NbIzgz3XEZ/CUyQZgyXIZOwznhwpFmAgt7xGmhrFtLk5Bam0rGqg/9P57
-	 d3WamESEtTuXIRhjP8XsRYPR0G5bnQY7HF0bUHGEdMwHtGnpHq8UsF1J81XqwTelX4
-	 HUyTbp2op6fcjcJNJwP1vI1LGjFx1GRairiVmq54=
-Received: from DFLE112.ent.ti.com (dfle112.ent.ti.com [10.64.6.33])
-	by lelv0265.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 4198SAWg023122
-	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-	Fri, 9 Feb 2024 02:28:10 -0600
-Received: from DFLE103.ent.ti.com (10.64.6.24) by DFLE112.ent.ti.com
- (10.64.6.33) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Fri, 9
- Feb 2024 02:28:10 -0600
-Received: from lelvsmtp6.itg.ti.com (10.180.75.249) by DFLE103.ent.ti.com
- (10.64.6.24) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
- Frontend Transport; Fri, 9 Feb 2024 02:28:10 -0600
-Received: from [10.249.128.244] ([10.249.128.244])
-	by lelvsmtp6.itg.ti.com (8.15.2/8.15.2) with ESMTP id 4198Rkh6056265;
-	Fri, 9 Feb 2024 02:27:49 -0600
-Message-ID: <f3548adc-4256-4b05-b072-631133bda4da@ti.com>
-Date: Fri, 9 Feb 2024 13:57:43 +0530
+	s=arc-20240116; t=1707468020; c=relaxed/simple;
+	bh=rWeUK8kIRCrP3AvyVO4HwXkI+h4htosgYJJ/r64ObXM=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=EhaAuYl1KSVFrxXvZaeL0gdf5h3YigL0i4vC4ha5e+5V61gQdhz2Rd6x6GS0NgPoak63HcwCYi5qlfBj484jDwjI6KbFjHwsQXJ3KflqQf8f+cRdaAlXLZafoOjefmeKlmCxgk4aDv+H4kTK8H/x/Udm1Dac/NE+l9eAnfz02Hg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b=Z4YmH6zs; arc=none smtp.client-ip=46.235.227.194
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=collabora.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
+	s=mail; t=1707468017;
+	bh=rWeUK8kIRCrP3AvyVO4HwXkI+h4htosgYJJ/r64ObXM=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=Z4YmH6zs1Fqk8U3NtnC/OFO6SYmTupi4k5jo5CSSJB7g7Btm0uiJrIDiCJNdCWjaA
+	 +HlfZpeHCUJLFVoyTUeTeEikJLNssP9q/VDrbtrHS2+eZxzwVUmfWhc+i4YWTyR+SY
+	 XGIjethQ12pQzgZX9N4a47kxBwlCIXOZ2TjjJPKmyo8d0Tbe/dfCQJwsZ3wRecV3QX
+	 kFmWt8XE9AvRnZ7sQ3w3i0SLSdS9TnVFMM6h6dUyIww/GNgdn7pjHBJb5vHiIGsfsw
+	 WhxpAb8wkrZIaFdArIdz+3P+4foadiehVHtM8PqHiWSP2QCj+hNxJ/IpNWl2pNQbwW
+	 f8IlHktIJdVew==
+Received: from [100.113.186.2] (cola.collaboradmins.com [195.201.22.229])
+	(using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
+	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+	(No client certificate requested)
+	(Authenticated sender: kholk11)
+	by madrid.collaboradmins.com (Postfix) with ESMTPSA id 5EA8437809D0;
+	Fri,  9 Feb 2024 08:40:16 +0000 (UTC)
+Message-ID: <023a1706-f6ca-481e-8a95-bc9e0e7e46ad@collabora.com>
+Date: Fri, 9 Feb 2024 09:40:16 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -65,65 +57,51 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 1/3] arm64: dts: ti: am65x: Fix dtbs_install for
- Rocktech OLDI overlay
-To: Roger Quadros <rogerq@kernel.org>, Nishanth Menon <nm@ti.com>,
-        "Vignesh
- Raghavendra" <vigneshr@ti.com>,
-        Tero Kristo <kristo@kernel.org>, Rob Herring
-	<robh+dt@kernel.org>,
-        Krzysztof Kozlowski
-	<krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>
-CC: Andrew Davis <afd@ti.com>,
-        Tomi Valkeinen
-	<tomi.valkeinen@ideasonboard.com>,
-        Nikhil Devshatwar <nikhil.nd@ti.com>,
-        <linux-arm-kernel@lists.infradead.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>, <srk@ti.com>, <r-gunasekaran@ti.com>
-References: <20240208-for-v6-9-am65-overlays-2-0-v2-0-70bae3e91597@kernel.org>
- <20240208-for-v6-9-am65-overlays-2-0-v2-1-70bae3e91597@kernel.org>
+Subject: Re: [PATCH] dt-bindings: media: convert Mediatek consumer IR to the
+ json-schema
+To: =?UTF-8?B?UmFmYcWCIE1pxYJlY2tp?= <zajec5@gmail.com>,
+ Mauro Carvalho Chehab <mchehab@kernel.org>, Rob Herring
+ <robh+dt@kernel.org>, Krzysztof Kozlowski
+ <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>
+Cc: Matthias Brugger <matthias.bgg@gmail.com>,
+ Sean Wang <sean.wang@mediatek.com>, linux-media@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ linux-mediatek@lists.infradead.org, linux-kernel@vger.kernel.org
+References: <20240124095230.25704-1-zajec5@gmail.com>
+ <62fca33c-eb1a-42ad-b7f7-31b14f0aa446@collabora.com>
+ <6012ec99-4246-41b6-adb2-1bcd4dd159ac@gmail.com>
+From: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
 Content-Language: en-US
-From: Aradhya Bhatia <a-bhatia1@ti.com>
-In-Reply-To: <20240208-for-v6-9-am65-overlays-2-0-v2-1-70bae3e91597@kernel.org>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 7bit
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+In-Reply-To: <6012ec99-4246-41b6-adb2-1bcd4dd159ac@gmail.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
 
-
-
-On 08-Feb-24 19:21, Roger Quadros wrote:
-> Add the overlay dtbo file to a Makefile target so it can be
-> picked by the dtbs_install command.
+Il 09/02/24 08:24, Rafał Miłecki ha scritto:
+> On 24.01.2024 13:33, AngeloGioacchino Del Regno wrote:
+>> The driver says:
+>>
+>>      ir->bus = devm_clk_get(dev, "bus");
+>>      if (IS_ERR(ir->bus)) {
+>>          /*
+>>           * For compatibility with older device trees try unnamed
+>>           * ir->bus uses the same clock as ir->clock.
+>>           */
+>>          ir->bus = ir->clk;
+>>      }
+>>
+>> This makes me think that requiring *one* clock on MT7623 would be a mistake
+>> and the devicetree should use clk, bus - CLK_INFRA_IRRX_PD, CLK_TOP_F10M_REF_SEL.
 > 
-> Fixes: b8690ed3d1d1 ("arm64: dts: ti: am65x: Add Rocktech OLDI panel DT overlay")
-> Signed-off-by: Roger Quadros <rogerq@kernel.org>
-
-Reviewed-by: Aradhya Bhatia <a-bhatia1@ti.com>
-
-Regards
-Aradhya
-
-> ---
-> Changelog:
+> Looking at mt2701-clk.h I can see CLK_INFRA_IRRX (which I guess you
+> meant above).
 > 
-> v2: no change
-> v1: https://lore.kernel.org/all/20240126114530.40913-2-rogerq@kernel.org/
-> ---
->  arch/arm64/boot/dts/ti/Makefile | 1 +
->  1 file changed, 1 insertion(+)
-> 
-> diff --git a/arch/arm64/boot/dts/ti/Makefile b/arch/arm64/boot/dts/ti/Makefile
-> index 4a570dffb638..bfcc86ff8e24 100644
-> --- a/arch/arm64/boot/dts/ti/Makefile
-> +++ b/arch/arm64/boot/dts/ti/Makefile
-> @@ -57,6 +57,7 @@ dtb-$(CONFIG_ARCH_K3) += k3-am654-base-board.dtb
->  dtb-$(CONFIG_ARCH_K3) += k3-am654-gp-evm.dtb
->  dtb-$(CONFIG_ARCH_K3) += k3-am654-evm.dtb
->  dtb-$(CONFIG_ARCH_K3) += k3-am654-idk.dtb
-> +dtb-$(CONFIG_ARCH_K3) += k3-am654-base-board-rocktech-rk101-panel.dtbo
->  
->  # Boards with J7200 SoC
->  k3-j7200-evm-dtbs := k3-j7200-common-proc-board.dtb k3-j7200-evm-quad-port-eth-exp.dtbo
-> 
+> I can't find CLK_TOP_F10M_REF_SEL however. This seems to be available on
+> MT7622 and MT7629 only.
+> Could you take another look at it, please? Can you somehow verify what
+> clock should be used by IR on MT7623?
+
+For MT2701/MT7623N you can use topckgen CLK_TOP_AXI_SEL as bus clock.
+
+Cheers,
+Angelo
 
