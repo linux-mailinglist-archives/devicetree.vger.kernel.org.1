@@ -1,381 +1,258 @@
-Return-Path: <devicetree+bounces-40125-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-40126-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3FADE84F542
-	for <lists+devicetree@lfdr.de>; Fri,  9 Feb 2024 13:36:55 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id F358184F54D
+	for <lists+devicetree@lfdr.de>; Fri,  9 Feb 2024 13:38:59 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id A14851F25355
-	for <lists+devicetree@lfdr.de>; Fri,  9 Feb 2024 12:36:54 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 31F661C21726
+	for <lists+devicetree@lfdr.de>; Fri,  9 Feb 2024 12:38:59 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id BA62C374F8;
-	Fri,  9 Feb 2024 12:36:36 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 87D853612A;
+	Fri,  9 Feb 2024 12:38:50 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=leica-geosystems.com header.i=@leica-geosystems.com header.b="PQY6C32E"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="b4fU8DQn"
 X-Original-To: devicetree@vger.kernel.org
-Received: from EUR04-DB3-obe.outbound.protection.outlook.com (mail-db3eur04on2043.outbound.protection.outlook.com [40.107.6.43])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wm1-f54.google.com (mail-wm1-f54.google.com [209.85.128.54])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8E0F62E847;
-	Fri,  9 Feb 2024 12:36:34 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.107.6.43
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1707482196; cv=fail; b=UUGqgEdLX1SqK5pvUNmj9ndhmNgaW8FGxslqduiS0FnsfaZEUEq32sGWKGAbRKQRFli5gJJNOzjW6VOyTecw9DbGSUObPDazNsksqR/B5rGSYddbkFH5PAHM4ZLHSGIzEX+PB79q29mIwEAIxPVwuR5xfV/Whwv6a072ugL+Zuc=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1707482196; c=relaxed/simple;
-	bh=clZmkcHh/noq0vjRkwJ6ctpzOHtMfMw7pgr3mAS/5tc=;
-	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=JNceWU/XDeOax/WEaRyWcun/vHct7Oq2CXHdEXfQub1sqtCe8RGICQ9hgFRXhNnXwQAY18Nhy6Y1ie12L6uJB9eJws22vmJVCz2cN4bg0eUh/N5RAfIPtFITwzqY8zc5r5xTfhPIvwO4CNjsfyoWwPv2Ca8W6S27kgQcCHqadmI=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=leica-geosystems.com; spf=fail smtp.mailfrom=leica-geosystems.com; dkim=pass (1024-bit key) header.d=leica-geosystems.com header.i=@leica-geosystems.com header.b=PQY6C32E; arc=fail smtp.client-ip=40.107.6.43
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=leica-geosystems.com
-Authentication-Results: smtp.subspace.kernel.org; spf=fail smtp.mailfrom=leica-geosystems.com
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=JqAbv9tP6Imyo/ZgWg1yNCHOKxf2gjkkp6hE0Hco92xC6gCfuOFFdzty2bpwdcYPS4JjHFLkuaxYYHpwCax4aMu9Zn6CzXfmOFK7buVaYUvARURMjdzErgJ7ERoLIBP5x2jcqLKFyW2xoUZYnhiMuvxKmiJXNl17ePqDFC2XADxQJWiD5C6Vfd1vodPQYtu0xTgiXVKJDyy0XLR1KCM+aRy7WAg5YCT7dEBh0o3fT0yyhYeEdqJ/SaypYZeEfw/11ehfRpqwQT/V6OUd/cKAEZ9Q2+9SMi1f2BIoWKvn2t6obrLYz75wMTN3wxK5oZukJPaiUBs09eAcUL2o5mppqg==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=3JL5CuQco33ZN6B+4Cp3GsKSNE6oHqtU9p71KL1DcoI=;
- b=VmXpZ/mmcynDGRHz4Kx8xZKV23DhmjZ3Fxvb4bYQ+wb8ElxCPqJn2DlhXc1dD/weUFVlGqHo8a6T7to0inJmEGJr9Bj222d9k902PN3zj1zC5qkT2Kwr3YIHLNCJmdxnX0RLNI+DGcNdmbpDeX7YVDZsGhOpOL1/DiSiltfSfLIn3VCp/W2OQSmWR4z7wix1Kb6CxiJaQUqBGNSCNpMOGQ3ZF+BVzdl7SiaOhfPsbvSamL3DlJ89+GbKjC2HbZdr/z63vuYvkvB1oPElrXbfRM0Z40YHUCNSHM6A0l2qQw+/3hgA/n4JA5f3M7rZtWg7bizb5qaor46Z1IDRYjsM1g==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
- 193.8.40.94) smtp.rcpttodomain=vger.kernel.org
- smtp.mailfrom=leica-geosystems.com; dmarc=pass (p=reject sp=reject pct=100)
- action=none header.from=leica-geosystems.com; dkim=none (message not signed);
- arc=none (0)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=leica-geosystems.com;
- s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=3JL5CuQco33ZN6B+4Cp3GsKSNE6oHqtU9p71KL1DcoI=;
- b=PQY6C32E6sVWKyqpAuldbggxlg0ulYsTr7N5R7GMYmtjGV3A6Zxz0YQeKzezzD/9DQCE98DK0+7spGH0VGLR9uytuEf1AEQRvr6hbt5SOrpyiwnLa24QuuyVQYFT6mB+pK4SkveUrfT9HkuVlx/v08f0Fqh1UG9qSbQYpvl9+P8=
-Received: from DB8PR09CA0007.eurprd09.prod.outlook.com (2603:10a6:10:a0::20)
- by AS8PR06MB7191.eurprd06.prod.outlook.com (2603:10a6:20b:25e::15) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7270.24; Fri, 9 Feb
- 2024 12:36:31 +0000
-Received: from DU6PEPF0000B61B.eurprd02.prod.outlook.com
- (2603:10a6:10:a0:cafe::e0) by DB8PR09CA0007.outlook.office365.com
- (2603:10a6:10:a0::20) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7249.36 via Frontend
- Transport; Fri, 9 Feb 2024 12:36:31 +0000
-X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 193.8.40.94)
- smtp.mailfrom=leica-geosystems.com; dkim=none (message not signed)
- header.d=none;dmarc=pass action=none header.from=leica-geosystems.com;
-Received-SPF: Pass (protection.outlook.com: domain of leica-geosystems.com
- designates 193.8.40.94 as permitted sender) receiver=protection.outlook.com;
- client-ip=193.8.40.94; helo=hexagon.com; pr=C
-Received: from hexagon.com (193.8.40.94) by
- DU6PEPF0000B61B.mail.protection.outlook.com (10.167.8.132) with Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.7249.19 via Frontend Transport; Fri, 9 Feb 2024 12:36:30 +0000
-Received: from aherlnxbspsrv01.lgs-net.com ([10.60.34.116]) by hexagon.com with Microsoft SMTPSVC(10.0.17763.1697);
-	 Fri, 9 Feb 2024 13:36:30 +0100
-From: Catalin Popescu <catalin.popescu@leica-geosystems.com>
-To: davem@davemloft.net,
-	kuba@kernel.org,
-	pabeni@redhat.com,
-	robh+dt@kernel.org,
-	krzysztof.kozlowski+dt@linaro.org,
-	conor+dt@kernel.org,
-	afd@ti.com,
-	andrew@lunn.ch,
-	hkallweit1@gmail.com,
-	linux@armlinux.org.uk
-Cc: netdev@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	bsp-development.geo@leica-geosystems.com,
-	m.felsch@pengutronix.de,
-	Catalin Popescu <catalin.popescu@leica-geosystems.com>
-Subject: [PATCH v3 2/2] net: phy: dp83826: support TX data voltage tuning
-Date: Fri,  9 Feb 2024 13:36:28 +0100
-Message-Id: <20240209123628.2113971-2-catalin.popescu@leica-geosystems.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20240209123628.2113971-1-catalin.popescu@leica-geosystems.com>
-References: <20240209123628.2113971-1-catalin.popescu@leica-geosystems.com>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5D6BD374C2
+	for <devicetree@vger.kernel.org>; Fri,  9 Feb 2024 12:38:47 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.54
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1707482330; cv=none; b=dkv9UBgYJTHEtKnzPFFrVzqJIYBH8ZqDUr2kbebmZUWEl5osCCoKjaCOUH49vPi5AlCgo61lJB9g6JhjtF/1Uh9hF9VTzO6xmDL4ZOp4n8FQMvlrP76Q3qVTXoYKHaNuTzHx2snD5HDMcqkHu/Qo7VC4VOpcf+NzBpKwz8tAX5E=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1707482330; c=relaxed/simple;
+	bh=/7ePMKhf/jwpNQyGAfViRmSleIJsB8xN+xpJpmyGV3g=;
+	h=Message-ID:Date:MIME-Version:Subject:To:References:From:
+	 In-Reply-To:Content-Type; b=faY9X82Rl1+YYz9BKCj9L2/bMS7Y9MtH66ATvw0meFTI6Gmzhb0kjFzqypQwimkSeKXZCok4zFLh6Sr/OhqdFGrGf0xAQOzNJQNLCQKw3Fu7g+cVLH4ZDkddxAE2ql/nrXJnXp1UuhCdpKWXmR9aeJHLwFUDuq/vsZIsJ8dGJlQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=b4fU8DQn; arc=none smtp.client-ip=209.85.128.54
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-wm1-f54.google.com with SMTP id 5b1f17b1804b1-41060e5b664so5607755e9.1
+        for <devicetree@vger.kernel.org>; Fri, 09 Feb 2024 04:38:47 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1707482325; x=1708087125; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from
+         :content-language:references:to:subject:user-agent:mime-version:date
+         :message-id:from:to:cc:subject:date:message-id:reply-to;
+        bh=MCv2kQLqTwyLEu6yumZzrrTFSEY37Nydh42fHPDeBe0=;
+        b=b4fU8DQnKWptQOYbr+D0GzWd78swUJza1vcZMapeDfMoCNgnK/u2VQLXiEfjOHw0u+
+         LjZxn6dcKgoQmpb7v6xHsZNmH+3dvXKtv9NWiDzB2UabejvZQQ8mxmAPtKJuU62c9iPu
+         fwJ2/gp4AFLCWMbk5d/9t0fuF+TRNNHQjVHcAhHgsTLe1Dk5rBtPyiBbs9EMPzCPUd7Z
+         D7QouYe/0vxCPKgMO+oZBYfxJKrDaMLcLIfziug9qB2JBQd4sQGbiLOWaRvRcfuZvF+b
+         UugmTy20sSZkCSulx/P60C2RUAOiLIBXLpR4VpK6DnNxd2eE22z0zlos6TqDlRAJZfg8
+         V0Dw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1707482325; x=1708087125;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from
+         :content-language:references:to:subject:user-agent:mime-version:date
+         :message-id:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=MCv2kQLqTwyLEu6yumZzrrTFSEY37Nydh42fHPDeBe0=;
+        b=iqK2TNnQMfaBL/g+ScMM57HTa8iDlxO+/widYc3AK+r3iFH+/FG3t4Qb9P0/vB6SJV
+         kVlIiiGmeXesW3CLvLryIpDh0GKnuoCmbJrv4ZJjHeZwCde9RYirZW/ax5pFDBqdlhQQ
+         XhZSEHuLZJxxpVinh+noAw8wAJuBeUezOcGYOuBuFwUpn/2ty2mGYGa6Ib8aroXN4O4x
+         bOpMMxzVqAG6W7OP6yhXPWAa1i+i3GV26qFyFhjJjpUXlk361lyU6aoe7z2GMtTo9y4I
+         OT99tWfBtgrUFmyGAn81o6rat4jBDgVDQ2Wrr0gIKFgaFFQ0gwIRy1CM494NNcGtwxAL
+         jEFg==
+X-Gm-Message-State: AOJu0YzCvck/l8AEEyvw4p7UnpubHvjcd/V4ygpUPpeEGWRcL9BKfaYw
+	AVkUt7wPGAdFSQaiQ8BSVeN2F2hdf7yWTzvfRcL/OfoJ3InjCHNH79KeNYZL0Ts=
+X-Google-Smtp-Source: AGHT+IFaynWaB4IOtcO4cVsPTOTuo8vTmoP1T8geeHJOYORcTko7JoBDxt1ruNCLKTCEVwR7Q91Z3w==
+X-Received: by 2002:a05:600c:1c81:b0:40f:4e0a:4ead with SMTP id k1-20020a05600c1c8100b0040f4e0a4eadmr920192wms.26.1707482325455;
+        Fri, 09 Feb 2024 04:38:45 -0800 (PST)
+X-Forwarded-Encrypted: i=1; AJvYcCWH45pCXG3ZTSbLNCdN35lJIE4pV+eRqZI62/Iwo68mO96KiIvKzmeNe+pCIZ4B2dNaMEHFNgUyiNbxdbcXiDjsDcruf86HCRB0SvXE2Kai4ruPzYNukRLcBDDXddathsMaiMVr10zX9IX8vDGUDSF+LvYW9Ya9c2ojj6XF+iTTrp3V5g97dAqsiEzp1bg/jbi2tU4vgQPqGAIZMUN5o0af4M28s74q7lQT2ninCSPTrLPsEg7tIxNspR9QlXf/U6kHqXV+872UXqV4rzfHbKk2I/g9RKy2gwcYTk7RtmbBsp88eH59Ct25XEXU1WwA83Wqjlr+W5JrVQiujSytvxfTw7dDyZL1qo+160DnaDSzzQ+dJfANoRZR
+Received: from [192.168.1.20] ([178.197.222.62])
+        by smtp.gmail.com with ESMTPSA id ay3-20020a05600c1e0300b004107ab8158bsm569370wmb.2.2024.02.09.04.38.44
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 09 Feb 2024 04:38:45 -0800 (PST)
+Message-ID: <dda6c22e-8f35-4c18-9fea-6a6295dee3a1@linaro.org>
+Date: Fri, 9 Feb 2024 13:38:42 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-OriginalArrivalTime: 09 Feb 2024 12:36:30.0588 (UTC) FILETIME=[9B8C13C0:01DA5B54]
-X-EOPAttributedMessage: 0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: DU6PEPF0000B61B:EE_|AS8PR06MB7191:EE_
-Content-Type: text/plain
-X-MS-Office365-Filtering-Correlation-Id: 260d3fa2-c479-48e3-3ae5-08dc296bbe50
-X-SET-LOWER-SCL-SCANNER: YES
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info:
-	jPlsfO1uE8gn0/QnETdPe4L18xDvQKxO2B9zOna5Bo88jsFqdojJoVQGbgTQxFIwSfyl1bERXgQ7I7sqTyRxtveIx3NPMXyTyoXn9e0ZM6vgmDnVgNV9pqH9ts8gIx/dYrPTQNLuaQELDkbiFylBRDhR9uKyBmSH3fc48BJxix1iWDSoy54/efaGr2NvU4yTxt/J6SnYkfYX3/Az5y8aVonBFdXygNRWsRcO6ZoHWmG1fVLER4Ux5J5fXEqRJoT74ApTRmWS/LL2D6tkEVeQ2H2IvV9o3Xdd51jtl/4feNmvu7CQLv2/X2XJZQy05Jo61F50pl1Mvve+63xXp8g/O91HGJd2XVQCT2OZBHJlWjwd9aie+i5fCT7OAXGLYhs3KhdtzfFSLkwpoIWyDOE61BHKU2k3ckeB8Awpz+LyhcgRvsYVr0mPhuszlhVKHkHsX+QcjQG9s2s/ASDiFjm9Emt1UzAQ/dq8etmP4F4rCkeszXnEVcjg1OdFcmJVwv4KU3COA3o1Ehon6XBOB6FreNQFvMEWhS9XyIlbqaT38GBn6zybbmRZOPdWgcgXDhI2TkgNTx5gO++RDtwvx4+R1eSLZycu9FqTF/A1S9rmmzMcdEvbroOa4b2b/dhJr+xm6yxVSjyWA9sPWuY6H8LX0g==
-X-Forefront-Antispam-Report:
-	CIP:193.8.40.94;CTRY:CH;LANG:en;SCL:1;SRV:;IPV:CAL;SFV:NSPM;H:hexagon.com;PTR:ahersrvdom50.leica-geosystems.com;CAT:NONE;SFS:(13230031)(4636009)(136003)(376002)(396003)(346002)(39860400002)(230922051799003)(451199024)(64100799003)(82310400011)(1800799012)(186009)(46966006)(40470700004)(36840700001)(82740400003)(107886003)(356005)(81166007)(86362001)(83380400001)(70586007)(316002)(2616005)(70206006)(336012)(26005)(478600001)(36756003)(921011)(1076003)(66899024)(450100002)(5660300002)(4326008)(44832011)(8936002)(8676002)(41300700001)(2906002);DIR:OUT;SFP:1101;
-X-OriginatorOrg: leica-geosystems.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 09 Feb 2024 12:36:30.9529
- (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: 260d3fa2-c479-48e3-3ae5-08dc296bbe50
-X-MS-Exchange-CrossTenant-Id: 1b16ab3e-b8f6-4fe3-9f3e-2db7fe549f6a
-X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=1b16ab3e-b8f6-4fe3-9f3e-2db7fe549f6a;Ip=[193.8.40.94];Helo=[hexagon.com]
-X-MS-Exchange-CrossTenant-AuthSource:
-	DU6PEPF0000B61B.eurprd02.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Anonymous
-X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: AS8PR06MB7191
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 1/1] ARM:dts:aspeed: Initial device tree for AMD Onyx
+ Platform
+To: Supreeth Venkatesh <supvenka@amd.com>,
+ Supreeth Venkatesh <supreeth.venkatesh@amd.com>, joel@jms.id.au,
+ andrew@aj.id.au, devicetree@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, linux-aspeed@lists.ozlabs.org,
+ linux-kernel@vger.kernel.org, openbmc@lists.ozlabs.org, robh+dt@kernel.org
+References: <20240110033543.799919-1-supreeth.venkatesh@amd.com>
+ <d4fe8b55-a1ea-4ce7-89ac-ce17e8ff4e45@amd.com>
+Content-Language: en-US
+From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
+ 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
+ D2GYIS41Kv4Isx2dEFh+/Q==
+In-Reply-To: <d4fe8b55-a1ea-4ce7-89ac-ce17e8ff4e45@amd.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
-DP83826 offers the possibility to tune the voltage of logical
-levels of the MLT-3 encoded TX data. This is especially interesting
-when the TX data path is lossy and we want to increase the voltage
-levels to compensate the loss.
+On 08/02/2024 15:57, Supreeth Venkatesh wrote:
+> This patch is pending for a month now.
+> 
+> Can DT maintainers please help review this and provide feedback?
 
-Prior to PHY configuration, the driver SW resets the PHY which has
-the same effect as the HW reset pin according to the datasheet.
-Hence, there's no need to force update the VOD_CFG registers to make
-sure they hold their reset values. VOD_CFG registers need to be
-updated only if the DT has been configured with values other than
-the reset ones.
+I don't have the original patch in my inbox anymore, so probably you
+should resend. Anyway quick look points to obvious issues (comments below).
 
-Signed-off-by: Catalin Popescu <catalin.popescu@leica-geosystems.com>
----
-Changes in v2:
- - remove raw values mapping tables dp83826_cfg_dac_minus_raw/
-   dp83826_cfg_dac_plus_raw and replace them with functions
-   dp83826_to_dac_minus_one_regval/dp83826_to_dac_plus_one_regval
- - increase readability of function dp83826_config_init
- - change return value of function dp83826_of_init from int to void
-   since it never returns any error
+> 
+> On 1/9/24 21:35, Supreeth Venkatesh wrote:
+>> This patch adds initial device tree and makefile updates for
+>> AMD Onyx platform.
+>>
+>> AMD Onyx platform is an AMD customer reference board with an Aspeed
+>> ast2600 BMC manufactured by AMD.
+>> It describes I2c devices, Fans, Kcs devices, Uarts, Mac, LEDs, etc.
+>> present on AMD Onyx platform.
+>>
+>> Signed-off-by: Supreeth Venkatesh <supreeth.venkatesh@amd.com>
+>> ---
+>>   arch/arm/boot/dts/aspeed/Makefile             |  1 +
+>>   .../boot/dts/aspeed/aspeed-bmc-amd-onyx.dts   | 98 +++++++++++++++++++
+>>   2 files changed, 99 insertions(+)
+>>   create mode 100644 arch/arm/boot/dts/aspeed/aspeed-bmc-amd-onyx.dts
+>>
+>> diff --git a/arch/arm/boot/dts/aspeed/Makefile b/arch/arm/boot/dts/aspeed/Makefile
+>> index fb9cc95f1b60..2b27d377aae2 100644
+>> --- a/arch/arm/boot/dts/aspeed/Makefile
+>> +++ b/arch/arm/boot/dts/aspeed/Makefile
+>> @@ -5,6 +5,7 @@ dtb-$(CONFIG_ARCH_ASPEED) += \
+>>   	aspeed-ast2600-evb.dtb \
+>>   	aspeed-bmc-amd-daytonax.dtb \
+>>   	aspeed-bmc-amd-ethanolx.dtb \
+>> +	aspeed-bmc-amd-onyx.dtb \
+>>   	aspeed-bmc-ampere-mtjade.dtb \
+>>   	aspeed-bmc-ampere-mtmitchell.dtb \
+>>   	aspeed-bmc-arm-stardragon4800-rep2.dtb \
+>> diff --git a/arch/arm/boot/dts/aspeed/aspeed-bmc-amd-onyx.dts b/arch/arm/boot/dts/aspeed/aspeed-bmc-amd-onyx.dts
+>> new file mode 100644
+>> index 000000000000..a7056cd29553
+>> --- /dev/null
+>> +++ b/arch/arm/boot/dts/aspeed/aspeed-bmc-amd-onyx.dts
+>> @@ -0,0 +1,98 @@
+>> +// SPDX-License-Identifier: GPL-2.0+
+>> +// Copyright (c) 2021 - 2024 AMD Inc.
+>> +// Author: Supreeth Venkatesh <supreeth.venkatesh@amd.com>
+>> +
+>> +/dts-v1/;
+>> +
+>> +#include "aspeed-g6.dtsi"
+>> +#include <dt-bindings/gpio/aspeed-gpio.h>
+>> +
+>> +/ {
+>> +       model = "AMD Onyx BMC";
+>> +       compatible = "amd,onyx-bmc", "aspeed,ast2600";
 
-Changes in v3:
- - rename DT properties to "-bp"
- - rename DP83826_CFG_DAC_MPERCENT_DEFAULT/DP83826_CFG_DAC_MPERCENT_PER_STEP
-   to DP83826_CFG_DAC_PERCENT_DEFAULT/DP83826_CFG_DAC_PERCENT_PER_STEP and
-   update their values to reflect the new unit "basis point"
- - update commit message with explanation about the registers reset
-   values
----
- drivers/net/phy/dp83822.c | 130 ++++++++++++++++++++++++++++++++++++--
- 1 file changed, 126 insertions(+), 4 deletions(-)
+Undocumented compatibles.
 
-diff --git a/drivers/net/phy/dp83822.c b/drivers/net/phy/dp83822.c
-index b7cb71817780..30f2616ab1c2 100644
---- a/drivers/net/phy/dp83822.c
-+++ b/drivers/net/phy/dp83822.c
-@@ -12,6 +12,7 @@
- #include <linux/of.h>
- #include <linux/phy.h>
- #include <linux/netdevice.h>
-+#include <linux/bitfield.h>
- 
- #define DP83822_PHY_ID	        0x2000a240
- #define DP83825S_PHY_ID		0x2000a140
-@@ -34,6 +35,10 @@
- #define MII_DP83822_GENCFG	0x465
- #define MII_DP83822_SOR1	0x467
- 
-+/* DP83826 specific registers */
-+#define MII_DP83826_VOD_CFG1	0x30b
-+#define MII_DP83826_VOD_CFG2	0x30c
-+
- /* GENCFG */
- #define DP83822_SIG_DET_LOW	BIT(0)
- 
-@@ -110,6 +115,19 @@
- #define DP83822_RX_ER_STR_MASK	GENMASK(9, 8)
- #define DP83822_RX_ER_SHIFT	8
- 
-+/* DP83826: VOD_CFG1 & VOD_CFG2 */
-+#define DP83826_VOD_CFG1_MINUS_MDIX_MASK	GENMASK(13, 12)
-+#define DP83826_VOD_CFG1_MINUS_MDI_MASK		GENMASK(11, 6)
-+#define DP83826_VOD_CFG2_MINUS_MDIX_MASK	GENMASK(15, 12)
-+#define DP83826_VOD_CFG2_PLUS_MDIX_MASK		GENMASK(11, 6)
-+#define DP83826_VOD_CFG2_PLUS_MDI_MASK		GENMASK(5, 0)
-+#define DP83826_CFG_DAC_MINUS_MDIX_5_TO_4	GENMASK(5, 4)
-+#define DP83826_CFG_DAC_MINUS_MDIX_3_TO_0	GENMASK(3, 0)
-+#define DP83826_CFG_DAC_PERCENT_PER_STEP	625
-+#define DP83826_CFG_DAC_PERCENT_DEFAULT		10000
-+#define DP83826_CFG_DAC_MINUS_DEFAULT		0x30
-+#define DP83826_CFG_DAC_PLUS_DEFAULT		0x10
-+
- #define MII_DP83822_FIBER_ADVERTISE    (ADVERTISED_TP | ADVERTISED_MII | \
- 					ADVERTISED_FIBRE | \
- 					ADVERTISED_Pause | ADVERTISED_Asym_Pause)
-@@ -118,6 +136,8 @@ struct dp83822_private {
- 	bool fx_signal_det_low;
- 	int fx_enabled;
- 	u16 fx_sd_enable;
-+	u8 cfg_dac_minus;
-+	u8 cfg_dac_plus;
- };
- 
- static int dp83822_set_wol(struct phy_device *phydev,
-@@ -233,7 +253,7 @@ static int dp83822_config_intr(struct phy_device *phydev)
- 				DP83822_ENERGY_DET_INT_EN |
- 				DP83822_LINK_QUAL_INT_EN);
- 
--		/* Private data pointer is NULL on DP83825/26 */
-+		/* Private data pointer is NULL on DP83825 */
- 		if (!dp83822 || !dp83822->fx_enabled)
- 			misr_status |= DP83822_ANEG_COMPLETE_INT_EN |
- 				       DP83822_DUP_MODE_CHANGE_INT_EN |
-@@ -254,7 +274,7 @@ static int dp83822_config_intr(struct phy_device *phydev)
- 				DP83822_PAGE_RX_INT_EN |
- 				DP83822_EEE_ERROR_CHANGE_INT_EN);
- 
--		/* Private data pointer is NULL on DP83825/26 */
-+		/* Private data pointer is NULL on DP83825 */
- 		if (!dp83822 || !dp83822->fx_enabled)
- 			misr_status |= DP83822_ANEG_ERR_INT_EN |
- 				       DP83822_WOL_PKT_INT_EN;
-@@ -474,6 +494,43 @@ static int dp83822_config_init(struct phy_device *phydev)
- 	return dp8382x_disable_wol(phydev);
- }
- 
-+static int dp83826_config_init(struct phy_device *phydev)
-+{
-+	struct dp83822_private *dp83822 = phydev->priv;
-+	u16 val, mask;
-+	int ret;
-+
-+	if (dp83822->cfg_dac_minus != DP83826_CFG_DAC_MINUS_DEFAULT) {
-+		val = FIELD_PREP(DP83826_VOD_CFG1_MINUS_MDI_MASK, dp83822->cfg_dac_minus) |
-+		      FIELD_PREP(DP83826_VOD_CFG1_MINUS_MDIX_MASK,
-+				 FIELD_GET(DP83826_CFG_DAC_MINUS_MDIX_5_TO_4,
-+					   dp83822->cfg_dac_minus));
-+		mask = DP83826_VOD_CFG1_MINUS_MDIX_MASK | DP83826_VOD_CFG1_MINUS_MDI_MASK;
-+		ret = phy_modify_mmd(phydev, DP83822_DEVADDR, MII_DP83826_VOD_CFG1, mask, val);
-+		if (ret)
-+			return ret;
-+
-+		val = FIELD_PREP(DP83826_VOD_CFG2_MINUS_MDIX_MASK,
-+				 FIELD_GET(DP83826_CFG_DAC_MINUS_MDIX_3_TO_0,
-+					   dp83822->cfg_dac_minus));
-+		mask = DP83826_VOD_CFG2_MINUS_MDIX_MASK;
-+		ret = phy_modify_mmd(phydev, DP83822_DEVADDR, MII_DP83826_VOD_CFG2, mask, val);
-+		if (ret)
-+			return ret;
-+	}
-+
-+	if (dp83822->cfg_dac_plus != DP83826_CFG_DAC_PLUS_DEFAULT) {
-+		val = FIELD_PREP(DP83826_VOD_CFG2_PLUS_MDIX_MASK, dp83822->cfg_dac_plus) |
-+		      FIELD_PREP(DP83826_VOD_CFG2_PLUS_MDI_MASK, dp83822->cfg_dac_plus);
-+		mask = DP83826_VOD_CFG2_PLUS_MDIX_MASK | DP83826_VOD_CFG2_PLUS_MDI_MASK;
-+		ret = phy_modify_mmd(phydev, DP83822_DEVADDR, MII_DP83826_VOD_CFG2, mask, val);
-+		if (ret)
-+			return ret;
-+	}
-+
-+	return 0;
-+}
-+
- static int dp8382x_config_init(struct phy_device *phydev)
- {
- 	return dp8382x_disable_wol(phydev);
-@@ -509,11 +566,44 @@ static int dp83822_of_init(struct phy_device *phydev)
- 
- 	return 0;
- }
-+
-+static int dp83826_to_dac_minus_one_regval(int percent)
-+{
-+	int tmp = DP83826_CFG_DAC_PERCENT_DEFAULT - percent;
-+
-+	return tmp / DP83826_CFG_DAC_PERCENT_PER_STEP;
-+}
-+
-+static int dp83826_to_dac_plus_one_regval(int percent)
-+{
-+	int tmp = percent - DP83826_CFG_DAC_PERCENT_DEFAULT;
-+
-+	return tmp / DP83826_CFG_DAC_PERCENT_PER_STEP;
-+}
-+
-+static void dp83826_of_init(struct phy_device *phydev)
-+{
-+	struct dp83822_private *dp83822 = phydev->priv;
-+	struct device *dev = &phydev->mdio.dev;
-+	u32 val;
-+
-+	dp83822->cfg_dac_minus = DP83826_CFG_DAC_MINUS_DEFAULT;
-+	if (!device_property_read_u32(dev, "ti,cfg-dac-minus-one-bp", &val))
-+		dp83822->cfg_dac_minus += dp83826_to_dac_minus_one_regval(val);
-+
-+	dp83822->cfg_dac_plus = DP83826_CFG_DAC_PLUS_DEFAULT;
-+	if (!device_property_read_u32(dev, "ti,cfg-dac-plus-one-bp", &val))
-+		dp83822->cfg_dac_plus += dp83826_to_dac_plus_one_regval(val);
-+}
- #else
- static int dp83822_of_init(struct phy_device *phydev)
- {
- 	return 0;
- }
-+
-+static void dp83826_of_init(struct phy_device *phydev)
-+{
-+}
- #endif /* CONFIG_OF_MDIO */
- 
- static int dp83822_read_straps(struct phy_device *phydev)
-@@ -567,6 +657,22 @@ static int dp83822_probe(struct phy_device *phydev)
- 	return 0;
- }
- 
-+static int dp83826_probe(struct phy_device *phydev)
-+{
-+	struct dp83822_private *dp83822;
-+
-+	dp83822 = devm_kzalloc(&phydev->mdio.dev, sizeof(*dp83822),
-+			       GFP_KERNEL);
-+	if (!dp83822)
-+		return -ENOMEM;
-+
-+	phydev->priv = dp83822;
-+
-+	dp83826_of_init(phydev);
-+
-+	return 0;
-+}
-+
- static int dp83822_suspend(struct phy_device *phydev)
- {
- 	int value;
-@@ -610,6 +716,22 @@ static int dp83822_resume(struct phy_device *phydev)
- 		.resume = dp83822_resume,			\
- 	}
- 
-+#define DP83826_PHY_DRIVER(_id, _name)				\
-+	{							\
-+		PHY_ID_MATCH_MODEL(_id),			\
-+		.name		= (_name),			\
-+		/* PHY_BASIC_FEATURES */			\
-+		.probe          = dp83826_probe,		\
-+		.soft_reset	= dp83822_phy_reset,		\
-+		.config_init	= dp83826_config_init,		\
-+		.get_wol = dp83822_get_wol,			\
-+		.set_wol = dp83822_set_wol,			\
-+		.config_intr = dp83822_config_intr,		\
-+		.handle_interrupt = dp83822_handle_interrupt,	\
-+		.suspend = dp83822_suspend,			\
-+		.resume = dp83822_resume,			\
-+	}
-+
- #define DP8382X_PHY_DRIVER(_id, _name)				\
- 	{							\
- 		PHY_ID_MATCH_MODEL(_id),			\
-@@ -628,8 +750,8 @@ static int dp83822_resume(struct phy_device *phydev)
- static struct phy_driver dp83822_driver[] = {
- 	DP83822_PHY_DRIVER(DP83822_PHY_ID, "TI DP83822"),
- 	DP8382X_PHY_DRIVER(DP83825I_PHY_ID, "TI DP83825I"),
--	DP8382X_PHY_DRIVER(DP83826C_PHY_ID, "TI DP83826C"),
--	DP8382X_PHY_DRIVER(DP83826NC_PHY_ID, "TI DP83826NC"),
-+	DP83826_PHY_DRIVER(DP83826C_PHY_ID, "TI DP83826C"),
-+	DP83826_PHY_DRIVER(DP83826NC_PHY_ID, "TI DP83826NC"),
- 	DP8382X_PHY_DRIVER(DP83825S_PHY_ID, "TI DP83825S"),
- 	DP8382X_PHY_DRIVER(DP83825CM_PHY_ID, "TI DP83825M"),
- 	DP8382X_PHY_DRIVER(DP83825CS_PHY_ID, "TI DP83825CS"),
--- 
-2.34.1
+Please run scripts/checkpatch.pl and fix reported warnings. Some
+warnings can be ignored, but the code here looks like it needs a fix.
+Feel free to get in touch if the warning is not clear.
+
+>> +
+>> +       aliases {
+>> +               serial0 = &uart1;
+>> +               serial4 = &uart5;
+>> +      };
+>> +
+>> +       chosen {
+>> +               stdout-path = &uart5;
+>> +               bootargs = "console=ttyS4,115200 earlyprintk vmalloc=512MB";
+
+earlyprintk is debugging, not for mainline, so drop.
+
+Console should be encoded in stdout-path.
+
+vmalloc looks like OS tuning, so also not suitable for mainline DTS.
+
+
+>> +       };
+>> +
+>> +       memory@80000000 {
+>> +               device_type = "memory";
+>> +               reg = <0x80000000 0x80000000>;
+>> +       };
+>> +
+
+Drop redundant blank lines.
+
+>> +};
+>> +
+>> +&mdio0 {
+>> +       status = "okay";
+>> +
+>> +       ethphy0: ethernet-phy@0 {
+>> +               compatible = "ethernet-phy-ieee802.3-c22";
+>> +               reg = <0>;
+>> +       };
+>> +};
+>> +
+>> +&mac3 {
+>> +       status = "okay";
+>> +       phy-mode = "rgmii";
+>> +       phy-handle = <&ethphy0>;
+>> +
+>> +       pinctrl-names = "default";
+>> +       pinctrl-0 = <&pinctrl_rgmii4_default>;
+>> +};
+>> +
+>> +>> +
+
+Drop redundant blank lines. You can open existing, recent DTS from
+maintained platforms like Qcom or TI and look there at coding style.
+
+
+
+Best regards,
+Krzysztof
 
 
