@@ -1,198 +1,473 @@
-Return-Path: <devicetree+bounces-40010-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-40011-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id E20ED84EE8F
-	for <lists+devicetree@lfdr.de>; Fri,  9 Feb 2024 02:19:52 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id BED9B84EE9C
+	for <lists+devicetree@lfdr.de>; Fri,  9 Feb 2024 02:35:27 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 30E22B21086
-	for <lists+devicetree@lfdr.de>; Fri,  9 Feb 2024 01:19:50 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 397421F238B0
+	for <lists+devicetree@lfdr.de>; Fri,  9 Feb 2024 01:35:27 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id DE81C7FF;
-	Fri,  9 Feb 2024 01:19:44 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E0632A5F;
+	Fri,  9 Feb 2024 01:35:20 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="S1jCk+Ai"
+	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="Z6xDGvsN"
 X-Original-To: devicetree@vger.kernel.org
-Received: from fllv0015.ext.ti.com (fllv0015.ext.ti.com [198.47.19.141])
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AD4A815CB;
-	Fri,  9 Feb 2024 01:19:42 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.19.141
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C25404A28;
+	Fri,  9 Feb 2024 01:35:18 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1707441584; cv=none; b=JJB68n0hKcRkY2HWDJN14GtKbkwQ5UVCbrurY5L4Bf2lE9b//dIRFmANVIAqygG5pFnusIwjewVmR1efjle54l0VVhn6onFKbbHYkMRXO1Cmc+U+BMXjXzMv5HXLvUk7D9KxRGc/zDCBT9looqyWmWshkgpDOyoTvH6QUh1YI98=
+	t=1707442520; cv=none; b=r2/9fE/0oPzXTyLKr/eqCGbV4UnqxcRxQTgqPs0PCTi9cgcRR3MMcFw0g5zfe/m5jfjqP3BSUzzU1X58rN0xq00RWp/Yl2WhySaGGsqk81h1uC9ZXqM0Rqqyz9fyof0BJjNjfWvlWQ0prqXSD4SoEeIayoKYfa3GhlFSTs+DAC8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1707441584; c=relaxed/simple;
-	bh=0wVFDmI0+jW33EAXeYu8I6pNcVeSL60c5dCEWwO8FJI=;
-	h=From:To:CC:Subject:Date:Message-ID:References:In-Reply-To:
-	 Content-Type:MIME-Version; b=PfAtmc3rUo2lzFGWPfIpTjmt0kf5EpEfv+ffwO7IL3Ma/lk0Rv0n5pK2eDe6KDLI1xqRfmCf7pU7S7sDE5mSmxbC9SdiYMpzyZtrKgXQTM9548dbvN/GARQNG1FfobayWVoS3YxkKwxc6Zucut7O/8YrQNM6O4PmsK7nNf9vNW4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=S1jCk+Ai; arc=none smtp.client-ip=198.47.19.141
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
-Received: from lelv0266.itg.ti.com ([10.180.67.225])
-	by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id 4191Iea9131003;
-	Thu, 8 Feb 2024 19:18:40 -0600
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1707441520;
-	bh=0wVFDmI0+jW33EAXeYu8I6pNcVeSL60c5dCEWwO8FJI=;
-	h=From:To:CC:Subject:Date:References:In-Reply-To;
-	b=S1jCk+AiNjfeqE71S37Fb2Nnu1ddLJZf9LaD+MVPOxQwg7cXEFPv0i6uFYxB5jGPD
-	 xCjgvo7ZSKYIosC7ljpzgcWl7pssmKrKup8bItfrXaOGE3BE0qvXAhRbIRTC+yg9Yo
-	 +csjjMC28uY4pQMOfuKTCliaig5uk/gjWtbBxWPg=
-Received: from DLEE103.ent.ti.com (dlee103.ent.ti.com [157.170.170.33])
-	by lelv0266.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 4191IeTD040651
-	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-	Thu, 8 Feb 2024 19:18:40 -0600
-Received: from DLEE101.ent.ti.com (157.170.170.31) by DLEE103.ent.ti.com
- (157.170.170.33) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Thu, 8
- Feb 2024 19:18:40 -0600
-Received: from DLEE101.ent.ti.com ([fe80::91ee:60bc:bfb7:851c]) by
- DLEE101.ent.ti.com ([fe80::91ee:60bc:bfb7:851c%18]) with mapi id
- 15.01.2507.023; Thu, 8 Feb 2024 19:18:40 -0600
-From: "Ding, Shenghao" <shenghao-ding@ti.com>
-To: Pierre-Louis Bossart <pierre-louis.bossart@linux.intel.com>,
-        "broonie@kernel.org" <broonie@kernel.org>,
-        "conor+dt@kernel.org"
-	<conor+dt@kernel.org>,
-        "krzysztof.kozlowski@linaro.org"
-	<krzysztof.kozlowski@linaro.org>,
-        "devicetree@vger.kernel.org"
-	<devicetree@vger.kernel.org>,
-        "robh+dt@kernel.org" <robh+dt@kernel.org>,
-        "andriy.shevchenko@linux.intel.com" <andriy.shevchenko@linux.intel.com>,
-        "linux-sound@vger.kernel.org" <linux-sound@vger.kernel.org>,
-        "liam.r.girdwood@intel.com" <liam.r.girdwood@intel.com>,
-        "lgirdwood@gmail.com" <lgirdwood@gmail.com>,
-        "linux-kernel@vger.kernel.org"
-	<linux-kernel@vger.kernel.org>
-CC: "Lu, Kevin" <kevin-lu@ti.com>, "Xu, Baojun" <baojun.xu@ti.com>,
-        "P O,
- Vijeth" <v-po@ti.com>, "Navada Kanyana, Mukund" <navada@ti.com>,
-        "perex@perex.cz" <perex@perex.cz>,
-        "McPherson, Jeff" <j-mcpherson@ti.com>,
-        "13916275206@139.com" <13916275206@139.com>,
-        "Chawla, Mohit"
-	<mohit.chawla@ti.com>, "soyer@irl.hu" <soyer@irl.hu>,
-        "Huang, Jonathan"
-	<jkhuang3@ti.com>, "tiwai@suse.de" <tiwai@suse.de>,
-        "Djuandi, Peter"
-	<pdjuandi@ti.com>,
-        "Agrawal, Manisha" <manisha.agrawal@ti.com>,
-        "Hari, Raj"
-	<s-hari@ti.com>, "Yashar, Avi" <aviel@ti.com>,
-        "Nagalla, Hari"
-	<hnagalla@ti.com>,
-        "Bajjuri, Praneeth" <praneeth@ti.com>
-Subject: RE: [PATCH v4 1/4] ASoc: PCM6240: Create PCM6240 Family driver code
-Thread-Topic: [PATCH v4 1/4] ASoc: PCM6240: Create PCM6240 Family driver code
-Thread-Index: AQHaWnSfDeO74bOuYEul5lAt29DtqLEA6IQAgAA6qQA=
-Date: Fri, 9 Feb 2024 01:18:39 +0000
-Message-ID: <0ac563b32399400897b8f3adce6195c3@ti.com>
-References: <20240208095255.1508-1-shenghao-ding@ti.com>
- <160173b0-098e-493f-93b1-8b831838e0a0@linux.intel.com>
-In-Reply-To: <160173b0-098e-493f-93b1-8b831838e0a0@linux.intel.com>
-Accept-Language: en-US, zh-CN
-Content-Language: en-US
-X-MS-Has-Attach:
-X-MS-TNEF-Correlator:
-x-exclaimer-md-config: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+	s=arc-20240116; t=1707442520; c=relaxed/simple;
+	bh=uE0f9w+M4vDE5kJEDgbSE6hWoUYXcNZ7V4Tb8blpJmU=;
+	h=Message-ID:Date:MIME-Version:Subject:To:References:From:
+	 In-Reply-To:Content-Type; b=QdcfXS/uYRaxkzzqVaknsrwrijVryMBlwxofG5t2kpZdLPKPh6JYAqBgJE1ICHewgeh/RbiOpwYOeN9qbZbPnYPOD9aBCjnHH0rmsEkl2MhKrHI3rEdf3Ve2Jiymieq5HsbKBS5qLHDpHyeInZyjSMRYuI98INp2Um5p6TciZNg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=Z6xDGvsN; arc=none smtp.client-ip=205.220.168.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
+Received: from pps.filterd (m0279864.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.17.1.24/8.17.1.24) with ESMTP id 4191TNYb006729;
+	Fri, 9 Feb 2024 01:35:03 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
+	message-id:date:mime-version:subject:to:references:from
+	:in-reply-to:content-type:content-transfer-encoding; s=
+	qcppdkim1; bh=zWj7ztsoZE7+/uyJu/2pUz+z0PRwsVAMoPW2j4KL3FU=; b=Z6
+	xDGvsN8GUW6SFkPVVxSeuB9b051xH/zVa7ijBxAHrEce8sGymwa8qSwLSNVoxb3F
+	WWLWtw29mDAE/u4JI1VsQiae2MT1rs8x/kTVD3a45XlzflKBVQKL7EsVZXn3VpfJ
+	vThAZQbtXVT8x2SA2zRKlil2TwZX5aX2M3Lp69AYIqG0xGNe6ww06+MjSsXL0OBV
+	fllctx9BDMxvAM2lL1rQW0QzPr2QXdby51VPndWHsIIhqRHkigd1if3MJ20hBTh5
+	q1d+mXzh5nD6bQjc/P0nKrYA+vft5t7kCgxpWLr1OzOHYwQJsz3iUOaRSEGd8tUz
+	lu+F8cb2R+jz6gZXNNUw==
+Received: from nasanppmta04.qualcomm.com (i-global254.qualcomm.com [199.106.103.254])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3w4h0ukjpr-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Fri, 09 Feb 2024 01:35:02 +0000 (GMT)
+Received: from nasanex01b.na.qualcomm.com (nasanex01b.na.qualcomm.com [10.46.141.250])
+	by NASANPPMTA04.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 4191Z1Y0023450
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Fri, 9 Feb 2024 01:35:01 GMT
+Received: from [10.71.111.207] (10.80.80.8) by nasanex01b.na.qualcomm.com
+ (10.46.141.250) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1118.40; Thu, 8 Feb
+ 2024 17:34:58 -0800
+Message-ID: <09ef60d6-8404-4a2f-b2f5-8cd77668e4f0@quicinc.com>
+Date: Thu, 8 Feb 2024 17:34:57 -0800
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 2/3] drm/panel: add samsung s6e3fa7 panel driver
+Content-Language: en-US
+To: Richard Acayan <mailingradian@gmail.com>,
+        Neil Armstrong
+	<neil.armstrong@linaro.org>,
+        Sam Ravnborg <sam@ravnborg.org>, David Airlie
+	<airlied@gmail.com>,
+        Daniel Vetter <daniel@ffwll.ch>,
+        Maarten Lankhorst
+	<maarten.lankhorst@linux.intel.com>,
+        Maxime Ripard <mripard@kernel.org>,
+        Thomas Zimmermann <tzimmermann@suse.de>, Rob Herring <robh@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley
+	<conor+dt@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio
+	<konrad.dybcio@linaro.org>,
+        Thierry Reding <thierry.reding@gmail.com>,
+        <dri-devel@lists.freedesktop.org>, <devicetree@vger.kernel.org>,
+        <linux-arm-msm@vger.kernel.org>
+References: <20240209001639.387374-6-mailingradian@gmail.com>
+ <20240209001639.387374-8-mailingradian@gmail.com>
+From: Jessica Zhang <quic_jesszhan@quicinc.com>
+In-Reply-To: <20240209001639.387374-8-mailingradian@gmail.com>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 7bit
+X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
+ nasanex01b.na.qualcomm.com (10.46.141.250)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-ORIG-GUID: whfAwEecYt5boIDs4BRxrmtfJ9rWJ_UO
+X-Proofpoint-GUID: whfAwEecYt5boIDs4BRxrmtfJ9rWJ_UO
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.272,Aquarius:18.0.1011,Hydra:6.0.619,FMLib:17.11.176.26
+ definitions=2024-02-08_13,2024-02-08_01,2023-05-22_02
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 impostorscore=0 adultscore=0
+ spamscore=0 mlxscore=0 suspectscore=0 phishscore=0 malwarescore=0
+ bulkscore=0 mlxlogscore=999 priorityscore=1501 clxscore=1011
+ lowpriorityscore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.19.0-2401310000 definitions=main-2402090009
 
-SGkgUGllcnJlDQpUaGFua3MgZm9yIHlvdXIgY29tbWVudHMsIGFuc3dlcnMgYXJlIGlubGluZQ0K
-TG9va2luZyBmb3J3YXJkIHRvIHlvdXIgY29tbWVudHMuDQo+IC0tLS0tT3JpZ2luYWwgTWVzc2Fn
-ZS0tLS0tDQo+IEZyb206IFBpZXJyZS1Mb3VpcyBCb3NzYXJ0IDxwaWVycmUtbG91aXMuYm9zc2Fy
-dEBsaW51eC5pbnRlbC5jb20+DQo+IFNlbnQ6IFRodXJzZGF5LCBGZWJydWFyeSA4LCAyMDI0IDEw
-OjM4IFBNDQo+IFRvOiBEaW5nLCBTaGVuZ2hhbyA8c2hlbmdoYW8tZGluZ0B0aS5jb20+OyBicm9v
-bmllQGtlcm5lbC5vcmc7DQo+IGNvbm9yK2R0QGtlcm5lbC5vcmc7IGtyenlzenRvZi5rb3psb3dz
-a2lAbGluYXJvLm9yZzsNCj4gZGV2aWNldHJlZUB2Z2VyLmtlcm5lbC5vcmc7IHJvYmgrZHRAa2Vy
-bmVsLm9yZzsNCj4gYW5kcml5LnNoZXZjaGVua29AbGludXguaW50ZWwuY29tOyBsaW51eC1zb3Vu
-ZEB2Z2VyLmtlcm5lbC5vcmc7DQo+IGxpYW0uci5naXJkd29vZEBpbnRlbC5jb207IGxnaXJkd29v
-ZEBnbWFpbC5jb207IGxpbnV4LQ0KPiBrZXJuZWxAdmdlci5rZXJuZWwub3JnDQo+IENjOiBMdSwg
-S2V2aW4gPGtldmluLWx1QHRpLmNvbT47IFh1LCBCYW9qdW4gPGJhb2p1bi54dUB0aS5jb20+OyBQ
-IE8sIFZpamV0aA0KPiA8di1wb0B0aS5jb20+OyBOYXZhZGEgS2FueWFuYSwgTXVrdW5kIDxuYXZh
-ZGFAdGkuY29tPjsNCj4gcGVyZXhAcGVyZXguY3o7IE1jUGhlcnNvbiwgSmVmZiA8ai1tY3BoZXJz
-b25AdGkuY29tPjsNCj4gMTM5MTYyNzUyMDZAMTM5LmNvbTsgQ2hhd2xhLCBNb2hpdCA8bW9oaXQu
-Y2hhd2xhQHRpLmNvbT47DQo+IHNveWVyQGlybC5odTsgSHVhbmcsIEpvbmF0aGFuIDxqa2h1YW5n
-M0B0aS5jb20+OyB0aXdhaUBzdXNlLmRlOyBEanVhbmRpLA0KPiBQZXRlciA8cGRqdWFuZGlAdGku
-Y29tPjsgQWdyYXdhbCwgTWFuaXNoYSA8bWFuaXNoYS5hZ3Jhd2FsQHRpLmNvbT47DQo+IEhhcmks
-IFJhaiA8cy1oYXJpQHRpLmNvbT47IFlhc2hhciwgQXZpIDxhdmllbEB0aS5jb20+OyBOYWdhbGxh
-LCBIYXJpDQo+IDxobmFnYWxsYUB0aS5jb20+OyBCYWpqdXJpLCBQcmFuZWV0aCA8cHJhbmVldGhA
-dGkuY29tPg0KPiBTdWJqZWN0OiBSZTogW1BBVENIIHY0IDEvNF0gQVNvYzogUENNNjI0MDogQ3Jl
-YXRlIFBDTTYyNDAgRmFtaWx5IGRyaXZlcg0KPiBjb2RlDQo+IA0KPiANCj4gDQo+IA0KPiA+ICtz
-dGF0aWMgY29uc3QgY2hhciAqY29uc3QgcGNtZGV2X2N0cmxfbmFtZVtdID0gew0KPiA+ICsJIiVz
-LWkyYy0lZC1kZXYlZC1jaCVkLWFuYS1nYWluIiwNCj4gPiArCSIlcy1pMmMtJWQtZGV2JWQtY2gl
-ZC1kaWdpLWdhaW4iLA0KPiA+ICsJIiVzLWkyYy0lZC1kZXYlZC1jaCVkLWZpbmUtZ2FpbiIsDQo+
-ID4gK307DQo+IA0KPiBDb250cm9scyBhcmUgZXhwb3NlZCB0byB1c2VyLXNwYWNlLCBhbmQgaXQg
-aGVscHMgaWYgaXQncyBlYXN5IHRvIGlkZW50aWZ5IHdoaWNoDQo+IGRldmljZSBpcyB3aGljaC4N
-Cj4gDQo+IEJ1dCBiZWxvdyB5b3UgYXJlIHVzaW5nIHRoZSBJMkMgYWRkcmVzcywgaXMgdGhpcyAn
-c3RhYmxlJyBlbm91Z2ggc28gdGhhdA0KPiB1c2Vyc3BhY2UgY2FuIHN0aWxsIGlkZW50aWZ5IHRo
-ZSBjb250cm9scyBhbmQgc2V0IHRoZW0gYWNjb3JkaW5nbHkgd2l0aCBhbWl4ZXINCj4gb3IgVUNN
-Pw0KPiANClNvIGZhciwgSSBoYXZlIG5vIGdvb2Qgd2F5IHRvIGhhbmRsZSB0aGUgZGV2aWNlcyB3
-aXRoIG11bHRpcGxlIHBjbWRldmljZXMgc2l0dGluZyBpbiBkaWZmZXJlbnQgaTJjIGJ1c2VzLg0K
-QXMgeW91IGtub3csIHRoZSBnYWluIHZhbHVlIGhpZ2hseSBkZXBlbmRzIG9uIGJvdGggdGhlIG1p
-Yy1waG9uZSBwb3NpdGlvbiBhbmQgdGhlIG1pYy1waG9uZSdzIG93bg0KIGNoYXJhY3RlcnMuIEFs
-bCB0aGVzZSBjb250cm9scyBoYXZlIHRvIGJlIG9wZW4gdG8gdGhlIHByb2R1Y3QgZGV2ZWxvcGVy
-IG9yIG1hbnVmYWN0dXJlci4gVGhleSBtaWdodA0KcmVuYW1lIHRoZW0gcGVyIHRoZWlyIHByb2R1
-Y3RzIGlmIHRoZXkgd2FudC4NCkFzIHRvIHRoZSBzdGFibGUsIG15IGN1c3RvbWVycyBhbmQgSSBo
-YWQgZGV2ZWxvcGVkIG1hbnkgcHJvZHVjdG9ycyBvbiBhcm0tYmFzZWQgcGFsdGZvcm1zLiBBdCBs
-ZWFzdCwgDQp0aGUgaTJjIG51bWJlciBpcyBzYW1lIGFzIHRoZSBvbmUgZGVmaW5lZCBpbiBkdHMu
-IA0KPiANCj4gPiArCWVyciA9IHBjbWRldl9kZXZfdXBkYXRlX2JpdHMocGNtX2RldiwgZGV2X25v
-LCByZWcsIHZhbF9tYXNrLCB2YWwpOw0KPiA+ICsJaWYgKGVycikNCj4gPiArCQlkZXZfZXJyKHBj
-bV9kZXYtPmRldiwgIiVzOnVwZGF0ZV9iaXRzLCBFUlJPUiwgRT0lZFxuIiwNCj4gPiArCQkJX19m
-dW5jX18sIGVycik7DQo+IA0KPiBnZW5lcmljIGNvbW1lbnQgZm9yIHRoaXMgcGF0Y2g6IHlvdSBt
-YXkgd2FudCB0byBmb2xsb3cgdGhlIHNhbWUNCj4gY29udmVudGlvbiBmb3IgZXJyb3IgbG9nLCBz
-b21ldGltZXMgaXQncyAlcywgb3IgJXM6IG9yIG5vICVzDQo+IA0KQWNjZXB0DQo+IA0KPiA+ICtz
-dGF0aWMgaW50IHBjbWRldmljZV9jb2RlY19wcm9iZShzdHJ1Y3Qgc25kX3NvY19jb21wb25lbnQg
-KmNvZGVjKSB7DQo+ID4gKwlzdHJ1Y3QgcGNtZGV2aWNlX3ByaXYgKnBjbV9kZXYgPQ0KPiBzbmRf
-c29jX2NvbXBvbmVudF9nZXRfZHJ2ZGF0YShjb2RlYyk7DQo+ID4gKwlzdHJ1Y3QgaTJjX2FkYXB0
-ZXIgKmFkYXAgPSBwY21fZGV2LT5jbGllbnQtPmFkYXB0ZXI7DQo+ID4gKwlpbnQgcmV0LCBpLCBq
-Ow0KPiA+ICsNCj4gPiArCW11dGV4X2xvY2soJnBjbV9kZXYtPmNvZGVjX2xvY2spOw0KPiA+ICsJ
-cGNtX2Rldi0+Y29tcG9uZW50ID0gY29kZWM7DQo+ID4gKwlwY21fZGV2LT5md19zdGF0ZSA9IFBD
-TURFVklDRV9GV19MT0FEX09LOw0KPiA+ICsNCj4gPiArCWZvciAoaSA9IDA7IGkgPCBwY21fZGV2
-LT5uZGV2OyBpKyspIHsNCj4gPiArCQlmb3IgKGogPSAwOyBqIDwgMjsgaisrKSB7DQo+ID4gKwkJ
-CXJldCA9IHBjbWRldl9nYWluX2N0cmxfYWRkKHBjbV9kZXYsIGksIGopOw0KPiA+ICsJCQlpZiAo
-cmV0IDwgMCkNCj4gPiArCQkJCWdvdG8gb3V0Ow0KPiA+ICsJCX0NCj4gPiArCX0NCj4gPiArDQo+
-ID4gKwkvKiBkZXZpY2UtbmFtZVtkZWZpbmVkIGluIHBjbWRldmljZV9pMmNfaWRdLWkyYy1idXNf
-aWRbMCwxLC4uLixOXS0NCj4gPiArCSAqIHN1bVsxLDIsLi4uLDRdZGV2LXJlZy5iaW4gc3RvcmVz
-IHRoZSBmaXJtd2FyZSBpbmNsdWRpbmcgcmVnaXN0ZXINCj4gPiArCSAqIHNldHRpbmcgYW5kIHBh
-cmFtcyBmb3IgZGlmZmVyZW50IGZpbHRlcnMgaW5zaWRlIGNoaXBzLCBpdCBtdXN0IGJlDQo+ID4g
-KwkgKiBjb3BpZWQgaW50byBmaXJtd2FyZSBmb2xkZXIuIFRoZSBzYW1lIHR5cGVzIG9mIHBjbWRl
-dmljZXMgc2l0dGluZw0KPiA+ICsJICogb24gdGhlIHNhbWUgaTJjIGJ1cyB3aWxsIGJlIGFnZ3Jl
-Z2F0ZWQgYXMgb25lIHNpbmdsZSBjb2RlYywNCj4gPiArCSAqIGFsbCBvZiB0aGVtIHNoYXJlIHRo
-ZSBzYW1lIGJpbiBmaWxlLg0KPiA+ICsJICovDQo+ID4gKwlzY25wcmludGYocGNtX2Rldi0+cmVn
-YmluX25hbWUsDQo+IFBDTURFVklDRV9SRUdCSU5fRklMRU5BTUVfTEVOLA0KPiA+ICsJCSIlcy1p
-MmMtJWQtJXVkZXYtcmVnLmJpbiIsIHBjbV9kZXYtPmRldl9uYW1lLCBhZGFwLT5uciwNCj4gPiAr
-CQlwY21fZGV2LT5uZGV2KTsNCj4gPiArDQo+ID4gKwlyZXQgPSByZXF1ZXN0X2Zpcm13YXJlX25v
-d2FpdChUSElTX01PRFVMRSwNCj4gRldfQUNUSU9OX1VFVkVOVCwNCj4gPiArCQlwY21fZGV2LT5y
-ZWdiaW5fbmFtZSwgcGNtX2Rldi0+ZGV2LCBHRlBfS0VSTkVMLA0KPiBwY21fZGV2LA0KPiA+ICsJ
-CXBjbWRldl9yZWdiaW5fcmVhZHkpOw0KPiANCj4gSSBhbHJlYWR5IGhhZCBhIHF1ZXN0aW9uIGVh
-cmx5IG9uIHdoZXRoZXIgdGhlc2UgYWRkcmVzc2VzIGFyZSAnc3RhYmxlJywgYnV0DQo+IGhlcmUg
-dGhlIGRldmljZSBhZGRyZXNzIGlzIHVzZWQgdG8gZmV0Y2ggZmlybXdhcmUsIGFuZCB0aGVyZSBp
-cyBubyBwcmVmaXggb3INCj4gZGlyZWN0b3J5IHRvIGlkZW50aWZ5IHBsYXRmb3JtLXNwZWNpZmlj
-IHNldHRpbmdzLg0KPiANCj4gSSBkb24ndCBrbm93IGhvdyB0aGlzIG1pZ2h0IHdvcmsgZm9yIGEg
-ZGlzdHJpYnV0aW9uLiBUaGVyZSBuZWVkcyB0byBiZSBhIHdheQ0KPiB0byBkZXRlY3Qgd2hhdCBz
-eXN0ZW0gdGhpcyBpcyBhdCBydW4tdGltZSwgYW5kIG1ha2Ugc3VyZSB3ZSBkb24ndCB1c2UNCj4g
-c2V0dGluZ3MgZm9yIHBsYXRmb3JtIFhZWiBvbiBwbGF0Zm9ybSBBQkMuDQo+IA0KSW4gUEMsIGh3
-aWQsIHN1YnN5c2lkIGFuZCB2ZW5kb3JpZCBjYW4gaGVscCB0byBpZGVudGlmeSB0aGUgcGxhdGZv
-cm0uDQogQnV0IGl0IHNlZW1lZCBkaWZmaWN1bHQgdG8gZ2V0IHBsYXRmb3JtIGlkIG9uIG5vbi1Q
-QyBzeXN0ZW0uIE1vcmUgb2Z0ZW4sDQpkaWZmZXJlbnQgcHJvZHVjdG9ycyBmcm9tIGRpZmZlcmVu
-dCBjdXN0b21lcnMgbWlnaHQgdXNlIHRoZSBzYW1lIHBsYXRmb3JtLg0KSW4gbXkgdmlldywgdGhl
-IHByb2R1Y3RzIGRldmVsb3BlciBvciBtYW51ZmFjdHVyZXIgbWlnaHQgcmVuYW1lIHRoZSBmaXJt
-d2FyZQ0KIHBlciB0aGVpciBwcm9kdWN0cyBpZiB0aGV5IHdhbnQsIG5vdCBsaW1pdGVkIHRvIHRo
-ZSBwbGF0Zm9ybS4NCj4gDQo+ID4gK3N0YXRpYyBpbnQgcGNtZGV2aWNlX3NldF9kYWlfc3lzY2xr
-KHN0cnVjdCBzbmRfc29jX2RhaSAqY29kZWNfZGFpLA0KPiA+ICsJaW50IGNsa19pZCwgdW5zaWdu
-ZWQgaW50IGZyZXEsIGludCBkaXIpIHsNCj4gPiArCXN0cnVjdCBwY21kZXZpY2VfcHJpdiAqcGNt
-X2RldiA9DQo+IHNuZF9zb2NfZGFpX2dldF9kcnZkYXRhKGNvZGVjX2RhaSk7DQo+ID4gKw0KPiA+
-ICsJcGNtX2Rldi0+c3lzY2xrID0gZnJlcTsNCj4gDQo+IGNoZWNrIGNsb2NrIHZhbHVlcz8NCj4g
-DQo+ID4gKw0KPiA+ICsJcmV0dXJuIDA7DQo+ID4gK30NCg0K
+
+
+On 2/8/2024 4:16 PM, Richard Acayan wrote:
+> The S6E3FA7 display controller is enabled in every Pixel 3a (non-XL)
+> variant. Add the driver for it, generated by
+> linux-mdss-dsi-panel-driver-generator.
+> 
+> There are other panels connected to the same S6E3FA7 display controller,
+> such as the AMS604NL01 panel, which are incompatible with this driver.
+> Name the device tree compatible after the panel model according to
+> iFixit.
+> 
+> Link: https://github.com/msm8916-mainline/linux-mdss-dsi-panel-driver-generator
+> Link: https://android.googlesource.com/kernel/msm/+/7fda1cd7b64710dafac5f34899611c6d35eb4cd2/arch/arm64/boot/dts/google/dsi-panel-s6e3fa7-1080p-cmd.dtsi
+> Link: https://github.com/msm8953-mainline/linux/blob/v6.6.12-r0/drivers/gpu/drm/panel/panel-samsung-s6e3fa7.c
+> Link: https://www.ifixit.com/Guide/Image/meta/muyjtLQTHu6MDkhK
+> Signed-off-by: Richard Acayan <mailingradian@gmail.com>
+> ---
+>   drivers/gpu/drm/panel/Kconfig                 |   9 +
+>   drivers/gpu/drm/panel/Makefile                |   1 +
+>   drivers/gpu/drm/panel/panel-samsung-s6e3fa7.c | 285 ++++++++++++++++++
+>   3 files changed, 295 insertions(+)
+>   create mode 100644 drivers/gpu/drm/panel/panel-samsung-s6e3fa7.c
+> 
+> diff --git a/drivers/gpu/drm/panel/Kconfig b/drivers/gpu/drm/panel/Kconfig
+> index 8f3783742208..a693b03f680e 100644
+> --- a/drivers/gpu/drm/panel/Kconfig
+> +++ b/drivers/gpu/drm/panel/Kconfig
+> @@ -577,6 +577,15 @@ config DRM_PANEL_SAMSUNG_DB7430
+>   	  DB7430 DPI display controller used in such devices as the
+>   	  LMS397KF04 480x800 DPI panel.
+>   
+> +config DRM_PANEL_SAMSUNG_S6E3FA7
+> +	tristate "Samsung S6E3FA7 panel driver"
+> +	depends on OF
+> +	depends on DRM_MIPI_DSI
+> +	depends on BACKLIGHT_CLASS_DEVICE
+> +	help
+> +	  Say Y here if you want to enable support for the Samsung S6E3FA7
+> +	  1920x2220 panel.
+> +
+>   config DRM_PANEL_SAMSUNG_S6D16D0
+>   	tristate "Samsung S6D16D0 DSI video mode panel"
+>   	depends on OF
+> diff --git a/drivers/gpu/drm/panel/Makefile b/drivers/gpu/drm/panel/Makefile
+> index d94a644d0a6c..560b62129f68 100644
+> --- a/drivers/gpu/drm/panel/Makefile
+> +++ b/drivers/gpu/drm/panel/Makefile
+> @@ -59,6 +59,7 @@ obj-$(CONFIG_DRM_PANEL_SAMSUNG_LD9040) += panel-samsung-ld9040.o
+>   obj-$(CONFIG_DRM_PANEL_SAMSUNG_S6D16D0) += panel-samsung-s6d16d0.o
+>   obj-$(CONFIG_DRM_PANEL_SAMSUNG_S6D27A1) += panel-samsung-s6d27a1.o
+>   obj-$(CONFIG_DRM_PANEL_SAMSUNG_S6D7AA0) += panel-samsung-s6d7aa0.o
+> +obj-$(CONFIG_DRM_PANEL_SAMSUNG_S6E3FA7) += panel-samsung-s6e3fa7.o
+>   obj-$(CONFIG_DRM_PANEL_SAMSUNG_S6E3HA2) += panel-samsung-s6e3ha2.o
+>   obj-$(CONFIG_DRM_PANEL_SAMSUNG_S6E63J0X03) += panel-samsung-s6e63j0x03.o
+>   obj-$(CONFIG_DRM_PANEL_SAMSUNG_S6E63M0) += panel-samsung-s6e63m0.o
+> diff --git a/drivers/gpu/drm/panel/panel-samsung-s6e3fa7.c b/drivers/gpu/drm/panel/panel-samsung-s6e3fa7.c
+> new file mode 100644
+> index 000000000000..10bc8fb5f1f9
+> --- /dev/null
+> +++ b/drivers/gpu/drm/panel/panel-samsung-s6e3fa7.c
+> @@ -0,0 +1,285 @@
+> +// SPDX-License-Identifier: GPL-2.0-only
+> +/*
+> + * Driver for the Samsung S6E3FA7 panel.
+> + *
+> + * Copyright (c) 2022-2024, The Linux Foundation. All rights reserved.
+
+
+Hi Richard,
+
+Not really sure about the copyright dates -- since this is a completely 
+new file to this tree, wouldn't the year be just 2024?
+
+The rest LGTM.
+
+Thanks,
+
+Jessica Zhang
+
+> + * Generated with linux-mdss-dsi-panel-driver-generator from vendor device tree:
+> + * Copyright (c) 2013, The Linux Foundation. All rights reserved.
+> + */ > +
+> +#include <linux/backlight.h>
+> +#include <linux/delay.h>
+> +#include <linux/gpio/consumer.h>
+> +#include <linux/module.h>
+> +#include <linux/of.h>
+> +
+> +#include <video/mipi_display.h>
+> +
+> +#include <drm/drm_mipi_dsi.h>
+> +#include <drm/drm_modes.h>
+> +#include <drm/drm_panel.h>
+> +
+> +struct s6e3fa7_panel {
+> +	struct drm_panel panel;
+> +	struct mipi_dsi_device *dsi;
+> +	struct gpio_desc *reset_gpio;
+> +};
+> +
+> +static inline struct s6e3fa7_panel *to_s6e3fa7_panel(struct drm_panel *panel)
+> +{
+> +	return container_of(panel, struct s6e3fa7_panel, panel);
+> +}
+> +
+> +static void s6e3fa7_panel_reset(struct s6e3fa7_panel *ctx)
+> +{
+> +	gpiod_set_value_cansleep(ctx->reset_gpio, 1);
+> +	usleep_range(1000, 2000);
+> +	gpiod_set_value_cansleep(ctx->reset_gpio, 0);
+> +	usleep_range(10000, 11000);
+> +}
+> +
+> +static int s6e3fa7_panel_on(struct s6e3fa7_panel *ctx)
+> +{
+> +	struct mipi_dsi_device *dsi = ctx->dsi;
+> +	struct device *dev = &dsi->dev;
+> +	int ret;
+> +
+> +	ret = mipi_dsi_dcs_exit_sleep_mode(dsi);
+> +	if (ret < 0) {
+> +		dev_err(dev, "Failed to exit sleep mode: %d\n", ret);
+> +		return ret;
+> +	}
+> +	msleep(120);
+> +
+> +	ret = mipi_dsi_dcs_set_tear_on(dsi, MIPI_DSI_DCS_TEAR_MODE_VBLANK);
+> +	if (ret < 0) {
+> +		dev_err(dev, "Failed to set tear on: %d\n", ret);
+> +		return ret;
+> +	}
+> +
+> +	mipi_dsi_dcs_write_seq(dsi, 0xf0, 0x5a, 0x5a);
+> +	mipi_dsi_dcs_write_seq(dsi, 0xf4,
+> +			       0xbb, 0x23, 0x19, 0x3a, 0x9f, 0x0f, 0x09, 0xc0,
+> +			       0x00, 0xb4, 0x37, 0x70, 0x79, 0x69);
+> +	mipi_dsi_dcs_write_seq(dsi, 0xf0, 0xa5, 0xa5);
+> +	mipi_dsi_dcs_write_seq(dsi, MIPI_DCS_WRITE_CONTROL_DISPLAY, 0x20);
+> +
+> +	ret = mipi_dsi_dcs_set_display_on(dsi);
+> +	if (ret < 0) {
+> +		dev_err(dev, "Failed to set display on: %d\n", ret);
+> +		return ret;
+> +	}
+> +
+> +	return 0;
+> +}
+> +
+> +static int s6e3fa7_panel_prepare(struct drm_panel *panel)
+> +{
+> +	struct s6e3fa7_panel *ctx = to_s6e3fa7_panel(panel);
+> +	struct device *dev = &ctx->dsi->dev;
+> +	int ret;
+> +
+> +	s6e3fa7_panel_reset(ctx);
+> +
+> +	ret = s6e3fa7_panel_on(ctx);
+> +	if (ret < 0) {
+> +		dev_err(dev, "Failed to initialize panel: %d\n", ret);
+> +		gpiod_set_value_cansleep(ctx->reset_gpio, 1);
+> +		return ret;
+> +	}
+> +
+> +	return 0;
+> +}
+> +
+> +static int s6e3fa7_panel_unprepare(struct drm_panel *panel)
+> +{
+> +	struct s6e3fa7_panel *ctx = to_s6e3fa7_panel(panel);
+> +
+> +	gpiod_set_value_cansleep(ctx->reset_gpio, 1);
+> +
+> +	return 0;
+> +}
+> +
+> +static int s6e3fa7_panel_disable(struct drm_panel *panel)
+> +{
+> +	struct s6e3fa7_panel *ctx = to_s6e3fa7_panel(panel);
+> +	struct mipi_dsi_device *dsi = ctx->dsi;
+> +	struct device *dev = &dsi->dev;
+> +	int ret;
+> +
+> +	ret = mipi_dsi_dcs_set_display_off(dsi);
+> +	if (ret < 0) {
+> +		dev_err(dev, "Failed to set display off: %d\n", ret);
+> +		return ret;
+> +	}
+> +
+> +	ret = mipi_dsi_dcs_enter_sleep_mode(dsi);
+> +	if (ret < 0) {
+> +		dev_err(dev, "Failed to enter sleep mode: %d\n", ret);
+> +		return ret;
+> +	}
+> +	msleep(120);
+> +
+> +	return 0;
+> +}
+> +
+> +static const struct drm_display_mode s6e3fa7_panel_mode = {
+> +	.clock = (1080 + 32 + 32 + 78) * (2220 + 32 + 4 + 78) * 60 / 1000,
+> +	.hdisplay = 1080,
+> +	.hsync_start = 1080 + 32,
+> +	.hsync_end = 1080 + 32 + 32,
+> +	.htotal = 1080 + 32 + 32 + 78,
+> +	.vdisplay = 2220,
+> +	.vsync_start = 2220 + 32,
+> +	.vsync_end = 2220 + 32 + 4,
+> +	.vtotal = 2220 + 32 + 4 + 78,
+> +	.width_mm = 62,
+> +	.height_mm = 127,
+> +};
+> +
+> +static int s6e3fa7_panel_get_modes(struct drm_panel *panel,
+> +				 struct drm_connector *connector)
+> +{
+> +	struct drm_display_mode *mode;
+> +
+> +	mode = drm_mode_duplicate(connector->dev, &s6e3fa7_panel_mode);
+> +	if (!mode)
+> +		return -ENOMEM;
+> +
+> +	drm_mode_set_name(mode);
+> +
+> +	mode->type = DRM_MODE_TYPE_DRIVER | DRM_MODE_TYPE_PREFERRED;
+> +	connector->display_info.width_mm = mode->width_mm;
+> +	connector->display_info.height_mm = mode->height_mm;
+> +	drm_mode_probed_add(connector, mode);
+> +
+> +	return 1;
+> +}
+> +
+> +static const struct drm_panel_funcs s6e3fa7_panel_funcs = {
+> +	.prepare = s6e3fa7_panel_prepare,
+> +	.unprepare = s6e3fa7_panel_unprepare,
+> +	.disable = s6e3fa7_panel_disable,
+> +	.get_modes = s6e3fa7_panel_get_modes,
+> +};
+> +
+> +static int s6e3fa7_panel_bl_update_status(struct backlight_device *bl)
+> +{
+> +	struct mipi_dsi_device *dsi = bl_get_data(bl);
+> +	u16 brightness = backlight_get_brightness(bl);
+> +	int ret;
+> +
+> +	ret = mipi_dsi_dcs_set_display_brightness_large(dsi, brightness);
+> +	if (ret < 0)
+> +		return ret;
+> +
+> +	return 0;
+> +}
+> +
+> +static int s6e3fa7_panel_bl_get_brightness(struct backlight_device *bl)
+> +{
+> +	struct mipi_dsi_device *dsi = bl_get_data(bl);
+> +	u16 brightness;
+> +	int ret;
+> +
+> +	ret = mipi_dsi_dcs_get_display_brightness_large(dsi, &brightness);
+> +	if (ret < 0)
+> +		return ret;
+> +
+> +	return brightness;
+> +}
+> +
+> +static const struct backlight_ops s6e3fa7_panel_bl_ops = {
+> +	.update_status = s6e3fa7_panel_bl_update_status,
+> +	.get_brightness = s6e3fa7_panel_bl_get_brightness,
+> +};
+> +
+> +static struct backlight_device *
+> +s6e3fa7_panel_create_backlight(struct mipi_dsi_device *dsi)
+> +{
+> +	struct device *dev = &dsi->dev;
+> +	const struct backlight_properties props = {
+> +		.type = BACKLIGHT_RAW,
+> +		.brightness = 1023,
+> +		.max_brightness = 1023,
+> +	};
+> +
+> +	return devm_backlight_device_register(dev, dev_name(dev), dev, dsi,
+> +					      &s6e3fa7_panel_bl_ops, &props);
+> +}
+> +
+> +static int s6e3fa7_panel_probe(struct mipi_dsi_device *dsi)
+> +{
+> +	struct device *dev = &dsi->dev;
+> +	struct s6e3fa7_panel *ctx;
+> +	int ret;
+> +
+> +	ctx = devm_kzalloc(dev, sizeof(*ctx), GFP_KERNEL);
+> +	if (!ctx)
+> +		return -ENOMEM;
+> +
+> +	ctx->reset_gpio = devm_gpiod_get(dev, "reset", GPIOD_OUT_HIGH);
+> +	if (IS_ERR(ctx->reset_gpio))
+> +		return dev_err_probe(dev, PTR_ERR(ctx->reset_gpio),
+> +				     "Failed to get reset-gpios\n");
+> +
+> +	ctx->dsi = dsi;
+> +	mipi_dsi_set_drvdata(dsi, ctx);
+> +
+> +	dsi->lanes = 4;
+> +	dsi->format = MIPI_DSI_FMT_RGB888;
+> +	dsi->mode_flags = MIPI_DSI_MODE_VIDEO_BURST |
+> +			  MIPI_DSI_CLOCK_NON_CONTINUOUS | MIPI_DSI_MODE_LPM;
+> +
+> +	drm_panel_init(&ctx->panel, dev, &s6e3fa7_panel_funcs,
+> +		       DRM_MODE_CONNECTOR_DSI);
+> +	ctx->panel.prepare_prev_first = true;
+> +
+> +	ctx->panel.backlight = s6e3fa7_panel_create_backlight(dsi);
+> +	if (IS_ERR(ctx->panel.backlight))
+> +		return dev_err_probe(dev, PTR_ERR(ctx->panel.backlight),
+> +				     "Failed to create backlight\n");
+> +
+> +	drm_panel_add(&ctx->panel);
+> +
+> +	ret = mipi_dsi_attach(dsi);
+> +	if (ret < 0) {
+> +		dev_err(dev, "Failed to attach to DSI host: %d\n", ret);
+> +		drm_panel_remove(&ctx->panel);
+> +		return ret;
+> +	}
+> +
+> +	return 0;
+> +}
+> +
+> +static void s6e3fa7_panel_remove(struct mipi_dsi_device *dsi)
+> +{
+> +	struct s6e3fa7_panel *ctx = mipi_dsi_get_drvdata(dsi);
+> +	int ret;
+> +
+> +	ret = mipi_dsi_detach(dsi);
+> +	if (ret < 0)
+> +		dev_err(&dsi->dev, "Failed to detach from DSI host: %d\n", ret);
+> +
+> +	drm_panel_remove(&ctx->panel);
+> +}
+> +
+> +static const struct of_device_id s6e3fa7_panel_of_match[] = {
+> +	{ .compatible = "samsung,s6e3fa7-ams559nk06" },
+> +	{ /* sentinel */ }
+> +};
+> +MODULE_DEVICE_TABLE(of, s6e3fa7_panel_of_match);
+> +
+> +static struct mipi_dsi_driver s6e3fa7_panel_driver = {
+> +	.probe = s6e3fa7_panel_probe,
+> +	.remove = s6e3fa7_panel_remove,
+> +	.driver = {
+> +		.name = "panel-samsung-s6e3fa7",
+> +		.of_match_table = s6e3fa7_panel_of_match,
+> +	},
+> +};
+> +module_mipi_dsi_driver(s6e3fa7_panel_driver);
+> +
+> +MODULE_AUTHOR("Richard Acayan <mailingradian@gmail.com>");
+> +MODULE_DESCRIPTION("DRM driver for Samsung S6E3FA7 command mode DSI panel");
+> +MODULE_LICENSE("GPL");
+> -- 
+> 2.43.0
+> 
+> 
 
