@@ -1,157 +1,215 @@
-Return-Path: <devicetree+bounces-40074-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-40075-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id BCBEA84F1BB
-	for <lists+devicetree@lfdr.de>; Fri,  9 Feb 2024 09:53:48 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id ACBB484F1CF
+	for <lists+devicetree@lfdr.de>; Fri,  9 Feb 2024 09:56:40 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 787B82892C9
-	for <lists+devicetree@lfdr.de>; Fri,  9 Feb 2024 08:53:47 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id D0E681C2287B
+	for <lists+devicetree@lfdr.de>; Fri,  9 Feb 2024 08:56:39 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 45D76664B5;
-	Fri,  9 Feb 2024 08:53:22 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 72F9F66B2C;
+	Fri,  9 Feb 2024 08:56:25 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b="og1eab/P"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="N8uipCIo"
 X-Original-To: devicetree@vger.kernel.org
-Received: from madrid.collaboradmins.com (madrid.collaboradmins.com [46.235.227.194])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-ed1-f44.google.com (mail-ed1-f44.google.com [209.85.208.44])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A7C54664AF;
-	Fri,  9 Feb 2024 08:53:20 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=46.235.227.194
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A6633664CD;
+	Fri,  9 Feb 2024 08:56:23 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.44
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1707468802; cv=none; b=p9VgpCmI+emJ7SLHXs9MTTEHbW+WvTYvTSu4Vm+ngRStIVU5N/j1IOYztHsx6xC42+GR1fqHin9BDQK3THSj33N90eBofc+Y3IJBVkANPOx/JTOX6+dOCSqmcxC+Q8PmOJq7iyL0vdQ8RokiWzltPireKdi7ybXfVhOSEAvhqmU=
+	t=1707468985; cv=none; b=pkKLeHovgaT5WGr4qe01fYAtvdDeQzaXp/G9JgsqfQzakitQdVPT2V7R82efuqaTsVTWaLkNz+kT2oFkrTPDqnBZid/D+e+3vMt1+07i8wAuD3ammyvYHKkwgGYUEySKXwXBEUdxBcZJZ0U0lWsJHB0ovM4Bs+dJRD5iJ5A6FrQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1707468802; c=relaxed/simple;
-	bh=30icvp5V3/sN88X5yZ5Qu/GuxcwktWzuh4T4oylBLLM=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=SnhIzKEHAHG1GFAIFPPmzWvJvw1m+dDM5gLQgw9Y/+aWMjn98ojZcSoOZKeSD90zKBdn6vdzb0Ur4P1TL047iuqEydt4Iwu4FocSfEp/pc/7Ax8jQc2hHY0pA0USemcsGuY7JjwhCGfnj2fJl1tct3xNt/CsRDa1cWgC1U6c/VI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b=og1eab/P; arc=none smtp.client-ip=46.235.227.194
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=collabora.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-	s=mail; t=1707468799;
-	bh=30icvp5V3/sN88X5yZ5Qu/GuxcwktWzuh4T4oylBLLM=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=og1eab/P3zYG4XIff5Tzr59qJhbZSaeeoG4aGvVSriIqow5keEhjlYxUdPUGkr1Bb
-	 dinNWGwZ367ad6BycXdiHtXo+Ba2DwIazn8S9beJLq5yEmxb0maXqc1TBzmOtRORot
-	 i3YIjpXLZe74qPqvXooQdhr51SuWNb03mYd6VQodEtpD05ZiAk1qPi82WOieRhOhwz
-	 mXCbgiYVO5KNP6yjtM0xws4+cJrQktkCJxtUalRP1gGNWR/qdERPI0HOdLlTtOyNHq
-	 wmxwHxseaT0NfCc78o2mwk0L3ijI9aVMPVrURWeHZ3v52YnRn+R+Hc0uOMgFdTEZsc
-	 piYoRWqubbWqg==
-Received: from [100.113.186.2] (cola.collaboradmins.com [195.201.22.229])
-	(using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
-	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
-	(No client certificate requested)
-	(Authenticated sender: kholk11)
-	by madrid.collaboradmins.com (Postfix) with ESMTPSA id 2E9533782069;
-	Fri,  9 Feb 2024 08:53:18 +0000 (UTC)
-Message-ID: <d4a4a468-4a81-413e-9de6-060c2ba9e0b6@collabora.com>
-Date: Fri, 9 Feb 2024 09:53:18 +0100
+	s=arc-20240116; t=1707468985; c=relaxed/simple;
+	bh=VBbiUmPADiYD6GrR3jzy54qrdeN9TRJQ1J6XHQRONsM=;
+	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version:Content-Type; b=i9sIM/8bIQ4n7ZHfBvCmJ2eVgjAk04rgrjCgRIDZRHPSzKALCaqFJKOGRVTIGbK6VRKck6i6l4f3AcXCpqaYXnp5w2s/E+/nQ371B/suqgAodmUZYq/HIJqchNylhkB38XXA4/RmyvY1KJVzrzjpiXeJOLVHXndkt2qgb1feRhI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=N8uipCIo; arc=none smtp.client-ip=209.85.208.44
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-ed1-f44.google.com with SMTP id 4fb4d7f45d1cf-5610c233b95so825312a12.0;
+        Fri, 09 Feb 2024 00:56:23 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1707468982; x=1708073782; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=4j7w0tByNWeRjldXgrdGngLfYLub5epQdu5N9wCAKVU=;
+        b=N8uipCIoNSGl24YXaCfcgJWVrvj/HFsDwuBmQfW++TjFRcc82s7cEOpdMi4JGQooZM
+         f6KxJL7k3mle9Q2Z/LmiISMckdbRPcUbF7dB1LQJQ0LaRxX5T0sxkmcgLRWbF1NP5KkR
+         XJd/+ET4IhoVP28n4IYojv/1R6rr23fYjj/WECgtMHb2TNfCNkPxnOiK2BL+qiYKK7ab
+         VYFlztXK+/BvV0OESNFtd2fWzjs1UFH7oD2JaZXMXgP76Jsysf3baa9p0oT8c/jNsEsq
+         AxkcUhCtl6jvdb0KKcnyw+ynr750ccWnzvRSdbJYbFADso84lNdpdCD2Hx54J09qO8ea
+         ZUYQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1707468982; x=1708073782;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=4j7w0tByNWeRjldXgrdGngLfYLub5epQdu5N9wCAKVU=;
+        b=kIukSi6SrLBm45IZQOa7Cy++wvuCmpiC6e2QKJJlWZQrxIMj3jBT8n51fk4ch3MIIV
+         +H3DHv4ZSM5vL7334zy1Seit1GiAEhB+NN2GCH64/5dy9I9fOeqZkUUVhD2FqI7L7Ekv
+         +fGvNEgy2COrb+YO50BUIdffj9oXU2Jr1y7b8PWrfD24v9zH+LjZtX3cBCWe3L7NWEQq
+         /AbcrMFCI3QklIxMqKKaJrtYYG9tQsjCcj+iSz7ACLbmNABeq3edWOSigBcS1pH3SwUr
+         teKQdO/DVFPtjsao7vrPkkl9+MuYccBlY9GCxYHnLb0XH8B/HlGXprIk9xJLJthHi7IS
+         yvoQ==
+X-Forwarded-Encrypted: i=1; AJvYcCW6+MUT0UquwRdxp8Ksn/wqIRNbUewrGL0jTCulqk6oYt5guVzVeMpY8b6lCpR821QmdxybWfcrGL5kr3gQfNAOtEkGCSFYqSIqzObX2yoxS2WC3rjdSdV3sVKrSRX7IlImmpXFRfFH3+n14FhRLH5OPGQvqHIp4jyOd9YJ6EcBWjO3rd62
+X-Gm-Message-State: AOJu0Yws49tKMEvUu4bKRpd8dprI+iJXhe4ETBSQrSsprDHo1ofzm9Fk
+	d2MCA0Z63zCAlQOrFGz/McCccVPA8I+ZM7luRT7clzxACvoYIyUI
+X-Google-Smtp-Source: AGHT+IHgUuPQ7ASwNg4AZLYzCfolnE+XedYQpKiuByHC3g0qdKp7WqfDRZQlga0+sRblJhvvfXBs2g==
+X-Received: by 2002:a05:6402:1812:b0:55f:fc07:baea with SMTP id g18-20020a056402181200b0055ffc07baeamr794710edy.4.1707468981739;
+        Fri, 09 Feb 2024 00:56:21 -0800 (PST)
+X-Forwarded-Encrypted: i=1; AJvYcCVbqSBHGNmgdBRpDUYcZC699RCw2D4Xv3BMZi05Dp2S2QFd8qqK4tk8EkwSUREvszkQ8OyCP5ik4Q6h90Bu1fnb/q7eJxHvTj1/4YikS+rUxBPMjyUPb2+J9iLUtnB/Z4gVZKRAzS41peNFg7FKyd40G94aq20a00ZQ6/NRsY5hkCmmzwom7klWckUuQzGLLY3n8oVOYHE7F5CI51KnBcpjcLoJqjwtibGAawrpSh+v7gA+Y1EzPuN2rvuhCNpuZApaSiyBGI2V+5fb7Kj7tI7rBbuTG43+fFSgF36eAb+mJsqb5uHEIBFqlAxp3K+Cae/7TvA2AcqRT7VbTxLO8lekl/zMWMUv7st1aPph5zBoy5YHPdmZL1SU3hUc+/hJkMNQ67sHWVNo+V/E0NgjF1RtVYEzUs8x1xLbYsOwFWnjIPfvWtMxpDafQImls6+5BASvAk4aq8dyxFpQdjJgAi9NEACeCe4LzOcHd//KKyE=
+Received: from localhost.lan (031011218106.poznan.vectranet.pl. [31.11.218.106])
+        by smtp.gmail.com with ESMTPSA id ay2-20020a056402202200b005611fc0cc11sm583618edb.43.2024.02.09.00.56.20
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 09 Feb 2024 00:56:21 -0800 (PST)
+From: =?UTF-8?q?Rafa=C5=82=20Mi=C5=82ecki?= <zajec5@gmail.com>
+To: Mauro Carvalho Chehab <mchehab@kernel.org>,
+	Rob Herring <robh+dt@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>
+Cc: Matthias Brugger <matthias.bgg@gmail.com>,
+	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
+	Sean Wang <sean.wang@mediatek.com>,
+	linux-media@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	linux-mediatek@lists.infradead.org,
+	linux-kernel@vger.kernel.org,
+	=?UTF-8?q?Rafa=C5=82=20Mi=C5=82ecki?= <rafal@milecki.pl>
+Subject: [PATCH V2] dt-bindings: media: convert Mediatek consumer IR to the json-schema
+Date: Fri,  9 Feb 2024 09:56:16 +0100
+Message-Id: <20240209085616.1062-1-zajec5@gmail.com>
+X-Mailer: git-send-email 2.35.3
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH V2 1/3] dt-bindings: arm: mediatek: convert hifsys to the
- json-schema clock
-Content-Language: en-US
-To: =?UTF-8?B?UmFmYcWCIE1pxYJlY2tp?= <zajec5@gmail.com>,
- Russell King <linux@armlinux.org.uk>,
- Daniel Lezcano <daniel.lezcano@linaro.org>,
- Thomas Gleixner <tglx@linutronix.de>, Rob Herring <robh+dt@kernel.org>,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Conor Dooley <conor+dt@kernel.org>
-Cc: Matthias Brugger <matthias.bgg@gmail.com>, devicetree@vger.kernel.org,
- linux-clk@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- linux-mediatek@lists.infradead.org, linux-kernel@vger.kernel.org,
- =?UTF-8?B?UmFmYcWCIE1pxYJlY2tp?= <rafal@milecki.pl>
-References: <20240208215926.10085-1-zajec5@gmail.com>
- <20240208215926.10085-2-zajec5@gmail.com>
-From: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
-In-Reply-To: <20240208215926.10085-2-zajec5@gmail.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
 
-Il 08/02/24 22:59, Rafał Miłecki ha scritto:
-> From: Rafał Miłecki <rafal@milecki.pl>
-> 
-> This helps validating DTS files. Introduced changes:
-> 1. Documented "reg" property
-> 2. Documented "#reset-cells" property
-> 3. Dropped "syscon" as it was incorrectly used
-> 4. Adjusted "compatible" and "reg" in example
-> 
-> Signed-off-by: Rafał Miłecki <rafal@milecki.pl>
-> ---
->   .../bindings/arm/mediatek/mediatek,hifsys.txt | 26 ----------
->   .../clock/mediatek,mt2701-hifsys.yaml         | 51 +++++++++++++++++++
->   2 files changed, 51 insertions(+), 26 deletions(-)
->   delete mode 100644 Documentation/devicetree/bindings/arm/mediatek/mediatek,hifsys.txt
->   create mode 100644 Documentation/devicetree/bindings/clock/mediatek,mt2701-hifsys.yaml
-> 
-> diff --git a/Documentation/devicetree/bindings/arm/mediatek/mediatek,hifsys.txt b/Documentation/devicetree/bindings/arm/mediatek/mediatek,hifsys.txt
-> deleted file mode 100644
-> index 323905af82c3..000000000000
-> --- a/Documentation/devicetree/bindings/arm/mediatek/mediatek,hifsys.txt
-> +++ /dev/null
-> @@ -1,26 +0,0 @@
-> -Mediatek hifsys controller
-> -============================
-> -
-> -The Mediatek hifsys controller provides various clocks and reset
-> -outputs to the system.
-> -
-> -Required Properties:
-> -
-> -- compatible: Should be:
-> -	- "mediatek,mt2701-hifsys", "syscon"
-> -	- "mediatek,mt7622-hifsys", "syscon"
-> -	- "mediatek,mt7623-hifsys", "mediatek,mt2701-hifsys", "syscon"
-> -- #clock-cells: Must be 1
-> -
-> -The hifsys controller uses the common clk binding from
-> -Documentation/devicetree/bindings/clock/clock-bindings.txt
-> -The available clocks are defined in dt-bindings/clock/mt*-clk.h.
-> -
-> -Example:
-> -
-> -hifsys: clock-controller@1a000000 {
-> -	compatible = "mediatek,mt2701-hifsys", "syscon";
-> -	reg = <0 0x1a000000 0 0x1000>;
-> -	#clock-cells = <1>;
-> -	#reset-cells = <1>;
-> -};
-> diff --git a/Documentation/devicetree/bindings/clock/mediatek,mt2701-hifsys.yaml b/Documentation/devicetree/bindings/clock/mediatek,mt2701-hifsys.yaml
-> new file mode 100644
-> index 000000000000..eb429337cdf4
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/clock/mediatek,mt2701-hifsys.yaml
-> @@ -0,0 +1,51 @@
-> +# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/clock/mediatek,mt2701-hifsys.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: Mediatek hifsys controller
+From: Rafał Miłecki <rafal@milecki.pl>
 
-Please, "MediaTek HIFSYS controller"
+This helps validating DTS files. Introduced changes:
+1. Reworded title
+2. Made "bus" clock required on MT7623 as well
+3. Added required #include-s and adjusted "reg" & clocks in example
 
-> +
-> +description:
-> +  The Mediatek hifsys controller provides various clocks and reset outputs to
-> +  the system.
+Signed-off-by: Rafał Miłecki <rafal@milecki.pl>
+---
+V2: Extended "IR" in title
+    Made "bus" required at MT7623 needs it as well
+    Updated example
 
-Same here, "The MediaTek HIFSYS controller..."
+Thanks AngeloGioacchino!
 
-Anyway, apart from that
+ .../bindings/media/mediatek,mt7622-cir.yaml   | 55 +++++++++++++++++++
+ .../devicetree/bindings/media/mtk-cir.txt     | 28 ----------
+ 2 files changed, 55 insertions(+), 28 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/media/mediatek,mt7622-cir.yaml
+ delete mode 100644 Documentation/devicetree/bindings/media/mtk-cir.txt
 
-Reviewed-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
+diff --git a/Documentation/devicetree/bindings/media/mediatek,mt7622-cir.yaml b/Documentation/devicetree/bindings/media/mediatek,mt7622-cir.yaml
+new file mode 100644
+index 000000000000..c01210e053f9
+--- /dev/null
++++ b/Documentation/devicetree/bindings/media/mediatek,mt7622-cir.yaml
+@@ -0,0 +1,55 @@
++# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/media/mediatek,mt7622-cir.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
++
++title: MediaTek Consumer Infrared Receiver on-SoC Controller
++
++maintainers:
++  - Sean Wang <sean.wang@mediatek.com>
++
++allOf:
++  - $ref: rc.yaml#
++
++properties:
++  compatible:
++    enum:
++      - mediatek,mt7622-cir
++      - mediatek,mt7623-cir
++
++  reg:
++    maxItems: 1
++
++  interrupts:
++    maxItems: 1
++
++  clocks:
++    maxItems: 2
++
++  clock-names:
++    items:
++      - const: clk
++      - const: bus
++
++required:
++  - reg
++  - interrupts
++  - clocks
++  - clock-names
++
++unevaluatedProperties: false
++
++examples:
++  - |
++    #include <dt-bindings/clock/mt2701-clk.h>
++    #include <dt-bindings/interrupt-controller/arm-gic.h>
++
++    ir@10013000 {
++        compatible = "mediatek,mt7623-cir";
++        reg = <0x10013000 0x1000>;
++        interrupts = <GIC_SPI 87 IRQ_TYPE_LEVEL_LOW>;
++        clocks = <&infracfg CLK_INFRA_IRRX>, <&topckgen CLK_TOP_AXI_SEL>;
++        clock-names = "clk", "bus";
++        linux,rc-map-name = "rc-rc6-mce";
++    };
+diff --git a/Documentation/devicetree/bindings/media/mtk-cir.txt b/Documentation/devicetree/bindings/media/mtk-cir.txt
+deleted file mode 100644
+index 5e18087ce11f..000000000000
+--- a/Documentation/devicetree/bindings/media/mtk-cir.txt
++++ /dev/null
+@@ -1,28 +0,0 @@
+-Device-Tree bindings for Mediatek consumer IR controller
+-found in Mediatek SoC family
+-
+-Required properties:
+-- compatible	    : Should be
+-			"mediatek,mt7623-cir": for MT7623 SoC
+-			"mediatek,mt7622-cir": for MT7622 SoC
+-- clocks	    : list of clock specifiers, corresponding to
+-		      entries in clock-names property;
+-- clock-names	    : should contain
+-			- "clk" entries: for MT7623 SoC
+-			- "clk", "bus" entries: for MT7622 SoC
+-- interrupts	    : should contain IR IRQ number;
+-- reg		    : should contain IO map address for IR.
+-
+-Optional properties:
+-- linux,rc-map-name : see rc.txt file in the same directory.
+-
+-Example:
+-
+-cir: cir@10013000 {
+-	compatible = "mediatek,mt7623-cir";
+-	reg = <0 0x10013000 0 0x1000>;
+-	interrupts = <GIC_SPI 87 IRQ_TYPE_LEVEL_LOW>;
+-	clocks = <&infracfg CLK_INFRA_IRRX>;
+-	clock-names = "clk";
+-	linux,rc-map-name = "rc-rc6-mce";
+-};
+-- 
+2.35.3
 
-Cheers!
 
