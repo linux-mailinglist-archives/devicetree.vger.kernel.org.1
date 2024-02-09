@@ -1,142 +1,106 @@
-Return-Path: <devicetree+bounces-40221-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-40222-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id A86C184FAF4
-	for <lists+devicetree@lfdr.de>; Fri,  9 Feb 2024 18:22:18 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 10F5384FB01
+	for <lists+devicetree@lfdr.de>; Fri,  9 Feb 2024 18:28:22 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 372B71F296C5
-	for <lists+devicetree@lfdr.de>; Fri,  9 Feb 2024 17:22:18 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 43C7B1C21048
+	for <lists+devicetree@lfdr.de>; Fri,  9 Feb 2024 17:28:21 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2A1BE7D3ED;
-	Fri,  9 Feb 2024 17:22:09 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id BD1E07BB1C;
+	Fri,  9 Feb 2024 17:28:16 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=ndufresne-ca.20230601.gappssmtp.com header.i=@ndufresne-ca.20230601.gappssmtp.com header.b="OJK5+rus"
+	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="uWKlbt3e"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ot1-f50.google.com (mail-ot1-f50.google.com [209.85.210.50])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from fllv0016.ext.ti.com (fllv0016.ext.ti.com [198.47.19.142])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AC1807BB02
-	for <devicetree@vger.kernel.org>; Fri,  9 Feb 2024 17:22:07 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.50
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 135D153398;
+	Fri,  9 Feb 2024 17:28:14 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.19.142
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1707499329; cv=none; b=d3SSFpTWHAdhTSkZSjS3lMzA/HJpG407SHJDDvkaF3e1fY3lon7B3s6N7N7mX4+xpSiAEUm9KgEnq2wBkFL9btC6W20+Y0SxC2TN1gJa5uFJU8vicQGPCH71GCYwxgd3NqGaNG72gq2XPFz0czROo/mUcNYM21rf1JGXaUfZ0s8=
+	t=1707499696; cv=none; b=Ovtg9g2npjAeytNxGYeXGhrrBlOAsOinKVgRL2dURZAcRUL85B+pMo/evQ+MFSjDD2t7RGfZe4GzTLS8AXAtesq5eMXW4qKig+aWUnUdao74s4QAxF85tRmbLHfxD4V5jjkM2RXCc7jJNk8xseyxo1ejGQWq1TwFhubT7h2x5x4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1707499329; c=relaxed/simple;
-	bh=+imSJtxf176adv1L38bIPJf24ZMDxnz4d3q1WOYyKQE=;
-	h=Message-ID:Subject:From:To:Cc:Date:In-Reply-To:References:
-	 Content-Type:MIME-Version; b=WY7GvA0DZXzzdjbLxDxBFbqhT4ZxgKIV9uT4myjrqbxP5z9N3aJVM5VNrG5BevrB0T/l1tcYSwUVGTDLQ6+NSzOaZ8sJZJd+V+W4QnkWeoEsk7Vsq96S48sOTBii/njGvekh9Q7Az3lQw/PViRIi1By3N/YwZnJQJPwHBqXZg3Y=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ndufresne.ca; spf=none smtp.mailfrom=ndufresne.ca; dkim=pass (2048-bit key) header.d=ndufresne-ca.20230601.gappssmtp.com header.i=@ndufresne-ca.20230601.gappssmtp.com header.b=OJK5+rus; arc=none smtp.client-ip=209.85.210.50
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ndufresne.ca
-Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=ndufresne.ca
-Received: by mail-ot1-f50.google.com with SMTP id 46e09a7af769-6e2b1a83ed1so638634a34.3
-        for <devicetree@vger.kernel.org>; Fri, 09 Feb 2024 09:22:07 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=ndufresne-ca.20230601.gappssmtp.com; s=20230601; t=1707499326; x=1708104126; darn=vger.kernel.org;
-        h=mime-version:user-agent:content-transfer-encoding:autocrypt
-         :references:in-reply-to:date:cc:to:from:subject:message-id:from:to
-         :cc:subject:date:message-id:reply-to;
-        bh=+imSJtxf176adv1L38bIPJf24ZMDxnz4d3q1WOYyKQE=;
-        b=OJK5+rus6F1AyXivlrEo+gEc6DR3qy/ewI+Q/JirZeMNhhsCsbzsgPX0z3fnFxJJGj
-         p6DUFSkcT7jDkIn9AgqVuzK6dMJFnRou4HmFc7038zeuzU2OUiTiYgUWfwMNAnHnAcP4
-         jmiaSzL7+S2Pnh0fIA/RD4435x3fGDwHTwWSRY8xYjOasOajzoFpEeHbWTRUSnU0H46i
-         TBS+KXGz8EzFKu8UZ7yHzjcfOEJ6upmPUltfS9U6cUgKqd5faWLau9oQSHw1dMMlaP3A
-         cufBLUgjATVA/IWXiaa0suzPq7d3vcgPrYBwfZMl12OIcpOSN+P5SKAD8nQ6HNqEIb/X
-         7Ktg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1707499326; x=1708104126;
-        h=mime-version:user-agent:content-transfer-encoding:autocrypt
-         :references:in-reply-to:date:cc:to:from:subject:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=+imSJtxf176adv1L38bIPJf24ZMDxnz4d3q1WOYyKQE=;
-        b=CpP8sH89KjNvLRMUkzGjquGvXh29XBLXhfLNvBZ0E/yLtFyHdN55vTOit9RBTxr/eg
-         RypofZ8Cy91TkykU0XtH+og0W/XaXH2JMdzFSAp3XslkN9rRFQBxLxDhxibvlo1oHu1G
-         TqOO26oAfEuBXCPvoaVww1G7r/vDD5pNdC/auSEigfxgtkIlexje+I8xn+yctcjod9tR
-         YQq1JmUJzrp+10GEBdyyg3bgWBeWmI/MpyiGXoxIYtvzE/hdxLkLyAuaGZ6yXbDsmoZF
-         VVygE1ySvXSsJyuKwFHV05QJHO7VTxZMHMsP/dcqWXVqq5mZYK2Dlh8VuZQw9cwWtVcs
-         G+5g==
-X-Forwarded-Encrypted: i=1; AJvYcCXVkoJzwDNNeSKpsUwYyIRY3Ui28dYcpMrySnh8r2iDAZ8pxcl5GXs4u4cXg28pLg7WOe5cc2SapmS1Da3FZ9ToqERDPopZUjuy0w==
-X-Gm-Message-State: AOJu0YwFVuKi6gnkobSKseQyEaQRIL6fiNWVLMaRsTd5pD9XXytIx6NS
-	aPlbt1tkUZMG+K66YGIl8GoI+Zqa9ytDmmHgiWZfB6OWJxzNGxYR9pDmtpvFT7o=
-X-Google-Smtp-Source: AGHT+IFVo1pyfJE5nNc0iZXG549RZyZgrMmyUpAXcQcZ48gSLZ324pgrOfBLIZmWlQVqzzGfl7rpPg==
-X-Received: by 2002:a9d:4f19:0:b0:6e1:34d7:27b1 with SMTP id d25-20020a9d4f19000000b006e134d727b1mr2335811otl.8.1707499326690;
-        Fri, 09 Feb 2024 09:22:06 -0800 (PST)
-X-Forwarded-Encrypted: i=1; AJvYcCVl6Fpxn1AxKI+k4lodJiIXYHWQhjKKkC3ASjZ65vLhhYopbZD4x09DaxSONhI9f8fNv19KzFGRx1cEyAi+lcYnbk01QarhXSdQvJjFiZPx26YW9yk+m2bEXnvQO4Vm+xdI6xoOLpYg9y3dZKmS0g+tWyYI98LdWAIGjmXB25m2q4OH2vr2FWWl4kPhsyJkPHGQk5GY2NPD9aO4yHNB9FopjPSt0hHOhVTu6ZbduszvYPa6zwzw2mSoTa6oBmPPOg5Cj58vApHjPEYGb09XDfFSoupbxGYjPFBqsnOnzDpYU7Exzl+ppvMd90+W0t6+wu/+oSf8TbAdWO2ru3lhIwHQ6rOZFdGIwc2/cgx7xOA7GnY/DXTXZEglLjYG/e9zCA6Mx5N79QBEUV9dT1wA6Ijj7TEiqofo45d+BB+opNiu0Awrd3f/nin2pvp1FavRnd7Zxa1pdqG1DdGofLxzlk5Hhg==
-Received: from nicolas-tpx395.localdomain ([2606:6d00:11:3354::7a9])
-        by smtp.gmail.com with ESMTPSA id o19-20020ac85553000000b0042a31bc98b9sm860015qtr.24.2024.02.09.09.22.03
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 09 Feb 2024 09:22:04 -0800 (PST)
-Message-ID: <49067f872e56d6f315a8b1b93bea92e54cba4874.camel@ndufresne.ca>
-Subject: Re: [PATCH v2] dt-bindings: media: Add sram-size Property for Wave5
-From: Nicolas Dufresne <nicolas@ndufresne.ca>
-To: Nishanth Menon <nm@ti.com>, Krzysztof Kozlowski
-	 <krzysztof.kozlowski@linaro.org>
-Cc: Brandon Brnich <b-brnich@ti.com>, Nas Chung <nas.chung@chipsnmedia.com>,
-  Jackson Lee <jackson.lee@chipsnmedia.com>, Mauro Carvalho Chehab
- <mchehab@kernel.org>, Rob Herring <robh+dt@kernel.org>, Krzysztof Kozlowski
- <krzysztof.kozlowski+dt@linaro.org>,  Conor Dooley <conor+dt@kernel.org>,
- linux-media@vger.kernel.org, devicetree@vger.kernel.org, 
- linux-kernel@vger.kernel.org, Vignesh Raghavendra <vigneshr@ti.com>, Darren
- Etheridge <detheridge@ti.com>
-Date: Fri, 09 Feb 2024 12:22:02 -0500
-In-Reply-To: <20240202125257.p4astjuxpzr5ltjs@dragster>
-References: <20240201184238.2542695-1-b-brnich@ti.com>
-	 <1209b7cf-5be2-4107-aa6b-d67a32ea3737@linaro.org>
-	 <20240202125257.p4astjuxpzr5ltjs@dragster>
-Autocrypt: addr=nicolas@ndufresne.ca; prefer-encrypt=mutual; keydata=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
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-User-Agent: Evolution 3.50.3 (3.50.3-1.fc39) 
+	s=arc-20240116; t=1707499696; c=relaxed/simple;
+	bh=gT2MMmQYb6BDxoKJ6012hLv8jiRgdYiZ/k0iLDkFY5I=;
+	h=Date:From:To:CC:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=j12QUvvG7RL/SWF+sPNAyERVFcezbdMUqo3Bb86N1I+LurP/uVjno2MyxBmDRcfRNdJ+i8uq8cyejmTjLgWm2N92YLZRdK5VWT+zDUDLjQM/W5sMqxs4DwbDQV+JcMPhQcXFAPdPG5a6UhQM5Qj4lbve9p/1Va25X8zPiMQRBSY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=uWKlbt3e; arc=none smtp.client-ip=198.47.19.142
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
+Received: from fllv0034.itg.ti.com ([10.64.40.246])
+	by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id 419HRjMN107124;
+	Fri, 9 Feb 2024 11:27:45 -0600
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+	s=ti-com-17Q1; t=1707499665;
+	bh=ChMKvF2JsnRfO1wCJ3seSx1YCrX0MD0sAXNdfyh2XCo=;
+	h=Date:From:To:CC:Subject:References:In-Reply-To;
+	b=uWKlbt3e0mr9rUSIGde9qmnmgxr75d3H3ENeOaNBiEOLNSja7TdeGcqLSHk8wBSYe
+	 7PPvhHUoSVToNxUd8aMRbZNYe33Culu+Tvfn4WhG5LO/Lnyh7iUimAW+iKKU9bQJgy
+	 8EXXSIHmoA+PrhQfybH6t4lo4Jiqrtb36Gq4AOY4=
+Received: from DFLE113.ent.ti.com (dfle113.ent.ti.com [10.64.6.34])
+	by fllv0034.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 419HRjh2003793
+	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+	Fri, 9 Feb 2024 11:27:45 -0600
+Received: from DFLE102.ent.ti.com (10.64.6.23) by DFLE113.ent.ti.com
+ (10.64.6.34) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Fri, 9
+ Feb 2024 11:27:45 -0600
+Received: from lelvsmtp6.itg.ti.com (10.180.75.249) by DFLE102.ent.ti.com
+ (10.64.6.23) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
+ Frontend Transport; Fri, 9 Feb 2024 11:27:45 -0600
+Received: from localhost (uda0133052.dhcp.ti.com [128.247.81.232])
+	by lelvsmtp6.itg.ti.com (8.15.2/8.15.2) with ESMTP id 419HRj5N128855;
+	Fri, 9 Feb 2024 11:27:45 -0600
+Date: Fri, 9 Feb 2024 11:27:45 -0600
+From: Nishanth Menon <nm@ti.com>
+To: Judith Mendez <jm@ti.com>
+CC: Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski
+	<krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Vignesh Raghavendra <vigneshr@ti.com>, Tero Kristo <kristo@kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>
+Subject: Re: [PATCH v1 9/9] arm64: dts: ti: k3-am6*: Fix bootph-all property
+ in MMC node
+Message-ID: <20240209172745.dswt5q6xnulubrjp@bagpipe>
+References: <20240207225526.3953230-1-jm@ti.com>
+ <20240207225526.3953230-10-jm@ti.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+Content-Type: text/plain; charset="us-ascii"
+Content-Disposition: inline
+In-Reply-To: <20240207225526.3953230-10-jm@ti.com>
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 
-Le vendredi 02 f=C3=A9vrier 2024 =C3=A0 06:52 -0600, Nishanth Menon a =C3=
-=A9crit=C2=A0:
-> On 11:47-20240202, Krzysztof Kozlowski wrote:
-> > On 01/02/2024 19:42, Brandon Brnich wrote:
-> > > Wave521c has capability to use SRAM carveout to store reference data =
-with
-> > > purpose of reducing memory bandwidth. To properly use this pool, the =
-driver
-> > > expects to have an sram and sram-size node. Without sram-size node, d=
-river
-> > > will default value to zero, making sram node irrelevant.
-> >=20
-> > I am sorry, but what driver expects should not be rationale for new
-> > property. This justification suggests clearly it is not a property for =
-DT.
-> >=20
->=20
-> Yup, the argumentation in the commit message is from the wrong
-> perspective. bindings are OS agnostic hardware description, and what
-> driver does with the description is driver's problem.
->=20
-> I will at least paraphrase my understanding:
-> In this case, however, the hardware block will limp along with
-> the usage of DDR (as is the current description), due to the
-> latencies involved for DDR accesses. However, the hardware block
-> has capability to use a substantially lower latency SRAM to provide
-> proper performance and hence for example, deal with higher resolution
+On 16:55-20240207, Judith Mendez wrote:
+>  &sdhci1 {
+>  	/* SD/MMC */
+> +	bootph-all;
+>  	status = "okay";
+>  	vmmc-supply = <&vdd_mmc1>;
+>  	vqmmc-supply = <&vddshv_sdio>;
+>  	pinctrl-names = "default";
+>  	pinctrl-0 = <&main_mmc1_pins_default>;
+>  	disable-wp;
+> -	bootph-all;
 
-nit: I'd suggest to refer to "higher bandwidth" to generalize the combinati=
-on
-formed by resolution and frame rate. The resolution is always fixed with th=
-is
-IP, regardless if its fast enough of not. It may not match the stream creat=
-or
-intended frame rate though, which such optimization may fix.
+NAK! Read [1]
 
-> data streams. This SRAM is instantiated at SoC level rather than
-> embedded within the hardware block itself.
->=20
->=20
 
+[1] https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/tree/Documentation/devicetree/bindings/dts-coding-style.rst#n117
+
+-- 
+Regards,
+Nishanth Menon
+Key (0xDDB5849D1736249D) / Fingerprint: F8A2 8693 54EB 8232 17A3  1A34 DDB5 849D 1736 249D
 
