@@ -1,215 +1,124 @@
-Return-Path: <devicetree+bounces-40075-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-40076-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id ACBB484F1CF
-	for <lists+devicetree@lfdr.de>; Fri,  9 Feb 2024 09:56:40 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id ACC1C84F1DF
+	for <lists+devicetree@lfdr.de>; Fri,  9 Feb 2024 10:04:48 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id D0E681C2287B
-	for <lists+devicetree@lfdr.de>; Fri,  9 Feb 2024 08:56:39 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 33D12B2306F
+	for <lists+devicetree@lfdr.de>; Fri,  9 Feb 2024 09:04:46 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 72F9F66B2C;
-	Fri,  9 Feb 2024 08:56:25 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="N8uipCIo"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6EC7F664BF;
+	Fri,  9 Feb 2024 09:04:39 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ed1-f44.google.com (mail-ed1-f44.google.com [209.85.208.44])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from bmailout2.hostsharing.net (bmailout2.hostsharing.net [83.223.78.240])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A6633664CD;
-	Fri,  9 Feb 2024 08:56:23 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.44
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 51E37664BD;
+	Fri,  9 Feb 2024 09:04:34 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=83.223.78.240
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1707468985; cv=none; b=pkKLeHovgaT5WGr4qe01fYAtvdDeQzaXp/G9JgsqfQzakitQdVPT2V7R82efuqaTsVTWaLkNz+kT2oFkrTPDqnBZid/D+e+3vMt1+07i8wAuD3ammyvYHKkwgGYUEySKXwXBEUdxBcZJZ0U0lWsJHB0ovM4Bs+dJRD5iJ5A6FrQ=
+	t=1707469479; cv=none; b=Ek/COwWCJGeT4MKX70+zsFGyBYoRgcBBnpM/3GLdDpZKkASb95FsABiXZfPN501vkayXSA4aXAGmGnVOu1euTiH5nejrQ62uAcn4zCjTNXZLAj9JoTDB48ga3TDlrW1KaFWf0IL3Zhr1y6+rJLMXRf2OBRgleG0PWzT+50B17I8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1707468985; c=relaxed/simple;
-	bh=VBbiUmPADiYD6GrR3jzy54qrdeN9TRJQ1J6XHQRONsM=;
-	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version:Content-Type; b=i9sIM/8bIQ4n7ZHfBvCmJ2eVgjAk04rgrjCgRIDZRHPSzKALCaqFJKOGRVTIGbK6VRKck6i6l4f3AcXCpqaYXnp5w2s/E+/nQ371B/suqgAodmUZYq/HIJqchNylhkB38XXA4/RmyvY1KJVzrzjpiXeJOLVHXndkt2qgb1feRhI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=N8uipCIo; arc=none smtp.client-ip=209.85.208.44
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-ed1-f44.google.com with SMTP id 4fb4d7f45d1cf-5610c233b95so825312a12.0;
-        Fri, 09 Feb 2024 00:56:23 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1707468982; x=1708073782; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=4j7w0tByNWeRjldXgrdGngLfYLub5epQdu5N9wCAKVU=;
-        b=N8uipCIoNSGl24YXaCfcgJWVrvj/HFsDwuBmQfW++TjFRcc82s7cEOpdMi4JGQooZM
-         f6KxJL7k3mle9Q2Z/LmiISMckdbRPcUbF7dB1LQJQ0LaRxX5T0sxkmcgLRWbF1NP5KkR
-         XJd/+ET4IhoVP28n4IYojv/1R6rr23fYjj/WECgtMHb2TNfCNkPxnOiK2BL+qiYKK7ab
-         VYFlztXK+/BvV0OESNFtd2fWzjs1UFH7oD2JaZXMXgP76Jsysf3baa9p0oT8c/jNsEsq
-         AxkcUhCtl6jvdb0KKcnyw+ynr750ccWnzvRSdbJYbFADso84lNdpdCD2Hx54J09qO8ea
-         ZUYQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1707468982; x=1708073782;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=4j7w0tByNWeRjldXgrdGngLfYLub5epQdu5N9wCAKVU=;
-        b=kIukSi6SrLBm45IZQOa7Cy++wvuCmpiC6e2QKJJlWZQrxIMj3jBT8n51fk4ch3MIIV
-         +H3DHv4ZSM5vL7334zy1Seit1GiAEhB+NN2GCH64/5dy9I9fOeqZkUUVhD2FqI7L7Ekv
-         +fGvNEgy2COrb+YO50BUIdffj9oXU2Jr1y7b8PWrfD24v9zH+LjZtX3cBCWe3L7NWEQq
-         /AbcrMFCI3QklIxMqKKaJrtYYG9tQsjCcj+iSz7ACLbmNABeq3edWOSigBcS1pH3SwUr
-         teKQdO/DVFPtjsao7vrPkkl9+MuYccBlY9GCxYHnLb0XH8B/HlGXprIk9xJLJthHi7IS
-         yvoQ==
-X-Forwarded-Encrypted: i=1; AJvYcCW6+MUT0UquwRdxp8Ksn/wqIRNbUewrGL0jTCulqk6oYt5guVzVeMpY8b6lCpR821QmdxybWfcrGL5kr3gQfNAOtEkGCSFYqSIqzObX2yoxS2WC3rjdSdV3sVKrSRX7IlImmpXFRfFH3+n14FhRLH5OPGQvqHIp4jyOd9YJ6EcBWjO3rd62
-X-Gm-Message-State: AOJu0Yws49tKMEvUu4bKRpd8dprI+iJXhe4ETBSQrSsprDHo1ofzm9Fk
-	d2MCA0Z63zCAlQOrFGz/McCccVPA8I+ZM7luRT7clzxACvoYIyUI
-X-Google-Smtp-Source: AGHT+IHgUuPQ7ASwNg4AZLYzCfolnE+XedYQpKiuByHC3g0qdKp7WqfDRZQlga0+sRblJhvvfXBs2g==
-X-Received: by 2002:a05:6402:1812:b0:55f:fc07:baea with SMTP id g18-20020a056402181200b0055ffc07baeamr794710edy.4.1707468981739;
-        Fri, 09 Feb 2024 00:56:21 -0800 (PST)
-X-Forwarded-Encrypted: i=1; AJvYcCVbqSBHGNmgdBRpDUYcZC699RCw2D4Xv3BMZi05Dp2S2QFd8qqK4tk8EkwSUREvszkQ8OyCP5ik4Q6h90Bu1fnb/q7eJxHvTj1/4YikS+rUxBPMjyUPb2+J9iLUtnB/Z4gVZKRAzS41peNFg7FKyd40G94aq20a00ZQ6/NRsY5hkCmmzwom7klWckUuQzGLLY3n8oVOYHE7F5CI51KnBcpjcLoJqjwtibGAawrpSh+v7gA+Y1EzPuN2rvuhCNpuZApaSiyBGI2V+5fb7Kj7tI7rBbuTG43+fFSgF36eAb+mJsqb5uHEIBFqlAxp3K+Cae/7TvA2AcqRT7VbTxLO8lekl/zMWMUv7st1aPph5zBoy5YHPdmZL1SU3hUc+/hJkMNQ67sHWVNo+V/E0NgjF1RtVYEzUs8x1xLbYsOwFWnjIPfvWtMxpDafQImls6+5BASvAk4aq8dyxFpQdjJgAi9NEACeCe4LzOcHd//KKyE=
-Received: from localhost.lan (031011218106.poznan.vectranet.pl. [31.11.218.106])
-        by smtp.gmail.com with ESMTPSA id ay2-20020a056402202200b005611fc0cc11sm583618edb.43.2024.02.09.00.56.20
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 09 Feb 2024 00:56:21 -0800 (PST)
-From: =?UTF-8?q?Rafa=C5=82=20Mi=C5=82ecki?= <zajec5@gmail.com>
-To: Mauro Carvalho Chehab <mchehab@kernel.org>,
-	Rob Herring <robh+dt@kernel.org>,
+	s=arc-20240116; t=1707469479; c=relaxed/simple;
+	bh=WDlbkaEhExeSC6m6O4mA/Olpggr5HL955m2MFzYt5XY=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=ZJmWwd5+C39B15Eans5KmeXgbzk5+vcU67kVXZKmpTE1FnazAoJT+aniAfVZLJnZpv942J+Fz0+NBziwP9PJPnn0CaVVtjbagMs8olWoDQmPw1l/X7QX41ZZiaV0TS+iiQ0dFVOv3o5K7CJwRWv2/VZdzwUNa4inLZ0HDDb8lZU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=wunner.de; spf=none smtp.mailfrom=h08.hostsharing.net; arc=none smtp.client-ip=83.223.78.240
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=wunner.de
+Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=h08.hostsharing.net
+Received: from h08.hostsharing.net (h08.hostsharing.net [IPv6:2a01:37:1000::53df:5f1c:0])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256
+	 client-signature RSA-PSS (4096 bits) client-digest SHA256)
+	(Client CN "*.hostsharing.net", Issuer "RapidSSL TLS RSA CA G1" (verified OK))
+	by bmailout2.hostsharing.net (Postfix) with ESMTPS id 352F72800C91D;
+	Fri,  9 Feb 2024 10:04:33 +0100 (CET)
+Received: by h08.hostsharing.net (Postfix, from userid 100393)
+	id 240BE4E7B09; Fri,  9 Feb 2024 10:04:33 +0100 (CET)
+Date: Fri, 9 Feb 2024 10:04:33 +0100
+From: Lukas Wunner <lukas@wunner.de>
+To: Bartosz Golaszewski <brgl@bgdev.pl>
+Cc: Bjorn Andersson <andersson@kernel.org>,
+	Konrad Dybcio <konrad.dybcio@linaro.org>,
+	Rob Herring <robh@kernel.org>,
 	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>
-Cc: Matthias Brugger <matthias.bgg@gmail.com>,
-	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
-	Sean Wang <sean.wang@mediatek.com>,
-	linux-media@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	linux-mediatek@lists.infradead.org,
-	linux-kernel@vger.kernel.org,
-	=?UTF-8?q?Rafa=C5=82=20Mi=C5=82ecki?= <rafal@milecki.pl>
-Subject: [PATCH V2] dt-bindings: media: convert Mediatek consumer IR to the json-schema
-Date: Fri,  9 Feb 2024 09:56:16 +0100
-Message-Id: <20240209085616.1062-1-zajec5@gmail.com>
-X-Mailer: git-send-email 2.35.3
+	Conor Dooley <conor+dt@kernel.org>,
+	Marcel Holtmann <marcel@holtmann.org>,
+	Luiz Augusto von Dentz <luiz.dentz@gmail.com>,
+	Bjorn Helgaas <bhelgaas@google.com>,
+	Neil Armstrong <neil.armstrong@linaro.org>,
+	Alex Elder <elder@linaro.org>,
+	Srini Kandagatla <srinivas.kandagatla@linaro.org>,
+	Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+	Arnd Bergmann <arnd@arndb.de>, Abel Vesa <abel.vesa@linaro.org>,
+	Manivannan Sadhasivam <mani@kernel.org>,
+	linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org, linux-bluetooth@vger.kernel.org,
+	linux-pci@vger.kernel.org,
+	Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
+Subject: Re: Re: [RFC 8/9] PCI/pwrctl: add PCI power control core code
+Message-ID: <20240209090433.GA18651@wunner.de>
+References: <20240201155532.49707-1-brgl@bgdev.pl>
+ <20240201155532.49707-9-brgl@bgdev.pl>
+ <7tbhdkqpl4iuaxmc73pje2nbbkarxxpgmabc7j4q26d2rhzrv5@ltu6niel5eb4>
+ <CAMRc=Md1oTrVMjZRH+Ux3JJKYeficKMYh+8V7ZA=Xz_X1hNd1g@mail.gmail.com>
+ <2q5vwm7tgmpgbrm4dxfhypbs5pdggprxouvzfcherqeevpjhrj@6wtkv4za2gg5>
+ <CAMRc=MfsdsD4f3sC-BnR_sqvaHNEKWCZ+Xe+-ZhLU8vFYA06=w@mail.gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <CAMRc=MfsdsD4f3sC-BnR_sqvaHNEKWCZ+Xe+-ZhLU8vFYA06=w@mail.gmail.com>
+User-Agent: Mutt/1.10.1 (2018-07-13)
 
-From: Rafał Miłecki <rafal@milecki.pl>
+On Wed, Feb 07, 2024 at 05:26:16PM +0100, Bartosz Golaszewski wrote:
+> On Fri, Feb 2, 2024 at 5:52???PM Bjorn Andersson <andersson@kernel.org> wrote:
+> > On Fri, Feb 02, 2024 at 10:11:42AM +0100, Bartosz Golaszewski wrote:
+> > > I was also thinking about pci_pwrctl_device_ready() or
+> > > pci_pwrctl_device_prepared().
+> >
+> > I like both of these.
+> >
+> > I guess the bigger question is how the flow would look like in the event
+> > that we need to power-cycle the attached PCIe device, e.g. because
+> > firmware has gotten into a really bad state.
+> >
+> > Will we need an operation that removes the device first, and then cut
+> > the power, or do we cut the power and then call unprepared()?
+> 
+> How would the core be notified about this power-cycle from the PCI
+> subsystem? I honestly don't know. Is there a notifier we could
+> subscribe to? Is the device unbound and rebound in such case?
 
-This helps validating DTS files. Introduced changes:
-1. Reworded title
-2. Made "bus" clock required on MT7623 as well
-3. Added required #include-s and adjusted "reg" & clocks in example
+To power-manage the PCI device for runtime PM (suspend to D3cold)
+or system sleep, you need to amend:
 
-Signed-off-by: Rafał Miłecki <rafal@milecki.pl>
----
-V2: Extended "IR" in title
-    Made "bus" required at MT7623 needs it as well
-    Updated example
+  platform_pci_power_manageable()
+  platform_pci_set_power_state()
+  platform_pci_get_power_state()
+  platform_pci_refresh_power_state()
+  platform_pci_choose_state()
 
-Thanks AngeloGioacchino!
+E.g. platform_pci_power_manageable() would check for presence of a
+regulator in the DT and platform_pci_set_power_state() would disable
+or enable the regulator.
 
- .../bindings/media/mediatek,mt7622-cir.yaml   | 55 +++++++++++++++++++
- .../devicetree/bindings/media/mtk-cir.txt     | 28 ----------
- 2 files changed, 55 insertions(+), 28 deletions(-)
- create mode 100644 Documentation/devicetree/bindings/media/mediatek,mt7622-cir.yaml
- delete mode 100644 Documentation/devicetree/bindings/media/mtk-cir.txt
+To reset the device by power cycling it, amend pci_reset_fn_methods[]
+to provide a reset method which disables and re-enables the regulator.
+Then you can choose that reset method via sysfs and power-cycle the
+device.  The PCI core will also automatically use that reset method
+if there's nothing else available (e.g. if no Secondary Bus Reset
+is available because the device has siblings or children, or if FLR
+is not supported).
 
-diff --git a/Documentation/devicetree/bindings/media/mediatek,mt7622-cir.yaml b/Documentation/devicetree/bindings/media/mediatek,mt7622-cir.yaml
-new file mode 100644
-index 000000000000..c01210e053f9
---- /dev/null
-+++ b/Documentation/devicetree/bindings/media/mediatek,mt7622-cir.yaml
-@@ -0,0 +1,55 @@
-+# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/media/mediatek,mt7622-cir.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: MediaTek Consumer Infrared Receiver on-SoC Controller
-+
-+maintainers:
-+  - Sean Wang <sean.wang@mediatek.com>
-+
-+allOf:
-+  - $ref: rc.yaml#
-+
-+properties:
-+  compatible:
-+    enum:
-+      - mediatek,mt7622-cir
-+      - mediatek,mt7623-cir
-+
-+  reg:
-+    maxItems: 1
-+
-+  interrupts:
-+    maxItems: 1
-+
-+  clocks:
-+    maxItems: 2
-+
-+  clock-names:
-+    items:
-+      - const: clk
-+      - const: bus
-+
-+required:
-+  - reg
-+  - interrupts
-+  - clocks
-+  - clock-names
-+
-+unevaluatedProperties: false
-+
-+examples:
-+  - |
-+    #include <dt-bindings/clock/mt2701-clk.h>
-+    #include <dt-bindings/interrupt-controller/arm-gic.h>
-+
-+    ir@10013000 {
-+        compatible = "mediatek,mt7623-cir";
-+        reg = <0x10013000 0x1000>;
-+        interrupts = <GIC_SPI 87 IRQ_TYPE_LEVEL_LOW>;
-+        clocks = <&infracfg CLK_INFRA_IRRX>, <&topckgen CLK_TOP_AXI_SEL>;
-+        clock-names = "clk", "bus";
-+        linux,rc-map-name = "rc-rc6-mce";
-+    };
-diff --git a/Documentation/devicetree/bindings/media/mtk-cir.txt b/Documentation/devicetree/bindings/media/mtk-cir.txt
-deleted file mode 100644
-index 5e18087ce11f..000000000000
---- a/Documentation/devicetree/bindings/media/mtk-cir.txt
-+++ /dev/null
-@@ -1,28 +0,0 @@
--Device-Tree bindings for Mediatek consumer IR controller
--found in Mediatek SoC family
--
--Required properties:
--- compatible	    : Should be
--			"mediatek,mt7623-cir": for MT7623 SoC
--			"mediatek,mt7622-cir": for MT7622 SoC
--- clocks	    : list of clock specifiers, corresponding to
--		      entries in clock-names property;
--- clock-names	    : should contain
--			- "clk" entries: for MT7623 SoC
--			- "clk", "bus" entries: for MT7622 SoC
--- interrupts	    : should contain IR IRQ number;
--- reg		    : should contain IO map address for IR.
--
--Optional properties:
--- linux,rc-map-name : see rc.txt file in the same directory.
--
--Example:
--
--cir: cir@10013000 {
--	compatible = "mediatek,mt7623-cir";
--	reg = <0 0x10013000 0 0x1000>;
--	interrupts = <GIC_SPI 87 IRQ_TYPE_LEVEL_LOW>;
--	clocks = <&infracfg CLK_INFRA_IRRX>;
--	clock-names = "clk";
--	linux,rc-map-name = "rc-rc6-mce";
--};
--- 
-2.35.3
+Thanks,
 
+Lukas
 
