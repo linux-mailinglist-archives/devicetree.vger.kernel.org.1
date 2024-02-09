@@ -1,114 +1,152 @@
-Return-Path: <devicetree+bounces-40022-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-40023-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id C281584EF28
-	for <lists+devicetree@lfdr.de>; Fri,  9 Feb 2024 04:00:18 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0C69684EFA0
+	for <lists+devicetree@lfdr.de>; Fri,  9 Feb 2024 05:32:25 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 7DF1628D821
-	for <lists+devicetree@lfdr.de>; Fri,  9 Feb 2024 03:00:17 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 40BA61C247BF
+	for <lists+devicetree@lfdr.de>; Fri,  9 Feb 2024 04:32:24 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1F6D320EE;
-	Fri,  9 Feb 2024 03:00:14 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 66AEE1103;
+	Fri,  9 Feb 2024 04:32:21 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="c0RvK6BJ"
+	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="ak2F+eMg"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from lelv0142.ext.ti.com (lelv0142.ext.ti.com [198.47.23.249])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E89394C61;
-	Fri,  9 Feb 2024 03:00:13 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5CEAD5667;
+	Fri,  9 Feb 2024 04:32:19 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.23.249
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1707447614; cv=none; b=jXzZWb7yc9vIsXkd91ECqeKNVWfFyK/lBP31G0Ng0upr3u+pTdLuphhcraNoJ88tNtoccZeiCE46Knlu4FS8Tl7+ytrpTmsylGHKqaMH9OQIxPinMIzrBW1Au1er7+0G134unFnR53WMpZnD2ASkcW4V3dYhwaO27XYqzDCR77A=
+	t=1707453141; cv=none; b=Jym/TJ558mvA2LiN4n9eTO5gTBwu8Y74/3VSqwmnNFQKl4S04DBRyMUInbe2aQdMb/EpuZi67ooWrcdVHxbEEtrnaTJmVC07U2tA3gkFFArUmHAp/jVKQnlwpuLC5WXQNxuWTV/t/7mCnwMJwu/n6CRBikfZmW8ZD6CaVPnAn7Q=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1707447614; c=relaxed/simple;
-	bh=YWSXk4gg3iRUPrFxk01vbso3R2LXES4Zpy2uWOn8ZRE=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=jLdceKlT6jiL23kazd/0wvSVDovBl0eVzMz+mkUCLT64oQot730oY2tkx8I2eOjoxl/BBpmFiiasRSUQRaOskTtDxP4pC/qv//Isp0chonTgAhVFaUvlY9kvt8lZrZiwa9/tDoQEYZynP2/PzXCNZL/jVYJuM6I+THN8kZ7V1Po=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=c0RvK6BJ; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 6C046C433F1;
-	Fri,  9 Feb 2024 03:00:12 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1707447613;
-	bh=YWSXk4gg3iRUPrFxk01vbso3R2LXES4Zpy2uWOn8ZRE=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=c0RvK6BJYc+i0eo4kPitnWN56L8nyAEUoRXfFPqmwIF6WdpQInOmsPnEgAdXvMwpN
-	 VEGRXWU5prRW1XkylT/VR5TPM1XJZVn6x39iCYFjC+2wbA1sgbX53NL0eINgjcpX3K
-	 ysgjTDfOh6a+hy+Rdf0/dHeWIOBk3JQMHjVu1myLdjFQOD/oHPlgDna+j5715fZAaL
-	 UbjSBnQO+hmNaV3PdrNEsqAsI4ydIltEx+D4T8ieWx9mqORcAKZkCKIimBvOMPWOpP
-	 MBFMNe1j+bf/Q7QtMCdMyudvincnyvyHBuGgZVlNa8npF0PQQgih6XnsQVkaGHA8L0
-	 AbJIr28u8ZS7A==
-Date: Thu, 8 Feb 2024 21:00:10 -0600
-From: Bjorn Andersson <andersson@kernel.org>
-To: Krishna Kurapati <quic_kriskura@quicinc.com>
-Cc: Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, 
-	Rob Herring <robh+dt@kernel.org>, Wesley Cheng <quic_wcheng@quicinc.com>, 
-	Konrad Dybcio <konrad.dybcio@linaro.org>, Greg Kroah-Hartman <gregkh@linuxfoundation.org>, 
-	Conor Dooley <conor+dt@kernel.org>, Thinh Nguyen <Thinh.Nguyen@synopsys.com>, 
-	Felipe Balbi <balbi@kernel.org>, devicetree@vger.kernel.org, linux-arm-msm@vger.kernel.org, 
-	linux-usb@vger.kernel.org, linux-kernel@vger.kernel.org, quic_ppratap@quicinc.com, 
-	quic_jackp@quicinc.com
-Subject: Re: [PATCH v14 1/9] dt-bindings: usb: Add bindings for multiport
- properties on DWC3 controller
-Message-ID: <wrki53fjc45ercxecxadq72p66diui4l4oklsk3nomsmshg3i4@5lrhk3fmjkal>
-References: <20240206051825.1038685-1-quic_kriskura@quicinc.com>
- <20240206051825.1038685-2-quic_kriskura@quicinc.com>
+	s=arc-20240116; t=1707453141; c=relaxed/simple;
+	bh=bZrvCuSOQMNUmKNsRvjhpQgjgA0Peil2icaRvMuA1xc=;
+	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
+	 In-Reply-To:Content-Type; b=hlx7nxeKe+iEFxV1j08++2pKgFQC8TnuOWcwm+bQwkS/osWWZMiNKAVtRct1rOH26oqmAlt1a6RP27jE3WRzmKVMLpinEIPPxAVXxOI6IP6T4QGSoNqBj7G6AlFFbS162IjmvakuI9dpvISO+4Rtxo0aZmGOZN5uoK1kOSQE9io=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=ak2F+eMg; arc=none smtp.client-ip=198.47.23.249
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
+Received: from fllv0035.itg.ti.com ([10.64.41.0])
+	by lelv0142.ext.ti.com (8.15.2/8.15.2) with ESMTP id 4194W1Pk107335;
+	Thu, 8 Feb 2024 22:32:01 -0600
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+	s=ti-com-17Q1; t=1707453121;
+	bh=zjBEHr2TXVf64x70Kkim+L61ZVcMM8U30PCVzLJdbfs=;
+	h=Date:Subject:To:CC:References:From:In-Reply-To;
+	b=ak2F+eMgsNwlcr7cOyeYwg3jMBvKULoAznMxp/9MMqWVzHOJ/2co7J1vyF1HXvQnX
+	 q8b0T4HXGGv0vvikw3KLYNQERzSmP5GM4Cc9U/Zrtk4bobHLPdAWdMsS/arNoIr2GF
+	 VlOS+9enkwlgkxcayKK7i9caYAVoHZr5EDYB46vQ=
+Received: from DFLE102.ent.ti.com (dfle102.ent.ti.com [10.64.6.23])
+	by fllv0035.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 4194W1vg121050
+	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+	Thu, 8 Feb 2024 22:32:01 -0600
+Received: from DFLE113.ent.ti.com (10.64.6.34) by DFLE102.ent.ti.com
+ (10.64.6.23) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Thu, 8
+ Feb 2024 22:32:01 -0600
+Received: from lelvsmtp5.itg.ti.com (10.180.75.250) by DFLE113.ent.ti.com
+ (10.64.6.34) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
+ Frontend Transport; Thu, 8 Feb 2024 22:32:01 -0600
+Received: from [172.24.227.94] (uda0132425.dhcp.ti.com [172.24.227.94])
+	by lelvsmtp5.itg.ti.com (8.15.2/8.15.2) with ESMTP id 4194VwgB007245;
+	Thu, 8 Feb 2024 22:31:59 -0600
+Message-ID: <f9030cae-d059-4083-91d3-d790a889d012@ti.com>
+Date: Fri, 9 Feb 2024 10:01:57 +0530
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20240206051825.1038685-2-quic_kriskura@quicinc.com>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 1/3] arm64: dts: ti: k3-j7200-common-proc-board: Modify
+ Pinmux for wakeup and mcu uart
+Content-Language: en-US
+To: Bhavya Kapoor <b-kapoor@ti.com>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>
+CC: <nm@ti.com>, <kristo@kernel.org>, <robh+dt@kernel.org>,
+        <krzysztof.kozlowski+dt@linaro.org>, <conor+dt@kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>
+References: <20240208110602.931573-1-b-kapoor@ti.com>
+ <20240208110602.931573-2-b-kapoor@ti.com>
+From: Vignesh Raghavendra <vigneshr@ti.com>
+In-Reply-To: <20240208110602.931573-2-b-kapoor@ti.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 7bit
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 
-On Tue, Feb 06, 2024 at 10:48:17AM +0530, Krishna Kurapati wrote:
-> Add bindings to indicate properties required to support multiport
-> on Synopsys DWC3 controller.
+
+
+On 08/02/24 16:36, Bhavya Kapoor wrote:
+> WKUP_PADCONFIG registers for wakeup and mcu uart lies
+> under wkup_pmx2 for J7200. Thus, modify pinmux for both
+> of them.
 > 
-> Signed-off-by: Krishna Kurapati <quic_kriskura@quicinc.com>
-
-Reviewed-by: Bjorn Andersson <andersson@kernel.org>
-
-Regards,
-Bjorn
-
+> Signed-off-by: Bhavya Kapoor <b-kapoor@ti.com>
 > ---
->  .../devicetree/bindings/usb/snps,dwc3.yaml          | 13 +++++++------
->  1 file changed, 7 insertions(+), 6 deletions(-)
+>  .../boot/dts/ti/k3-j7200-common-proc-board.dts | 18 +++++++++---------
+>  1 file changed, 9 insertions(+), 9 deletions(-)
 > 
-> diff --git a/Documentation/devicetree/bindings/usb/snps,dwc3.yaml b/Documentation/devicetree/bindings/usb/snps,dwc3.yaml
-> index 8f5d250070c7..9227e200bcab 100644
-> --- a/Documentation/devicetree/bindings/usb/snps,dwc3.yaml
-> +++ b/Documentation/devicetree/bindings/usb/snps,dwc3.yaml
-> @@ -85,15 +85,16 @@ properties:
+> diff --git a/arch/arm64/boot/dts/ti/k3-j7200-common-proc-board.dts b/arch/arm64/boot/dts/ti/k3-j7200-common-proc-board.dts
+> index 1d8bddcae90e..6593c5da82c0 100644
+> --- a/arch/arm64/boot/dts/ti/k3-j7200-common-proc-board.dts
+> +++ b/arch/arm64/boot/dts/ti/k3-j7200-common-proc-board.dts
+> @@ -119,24 +119,25 @@ transceiver3: can-phy3 {
+>  };
 >  
->    phys:
->      minItems: 1
-> -    maxItems: 2
-> +    maxItems: 8
+>  &wkup_pmx0 {
+> +};
+> +
+> +&wkup_pmx2 {
+>  	mcu_uart0_pins_default: mcu-uart0-default-pins {
+>  		pinctrl-single,pins = <
+> -			J721E_WKUP_IOPAD(0xf4, PIN_INPUT, 0) /* (D20) MCU_UART0_RXD */
+> -			J721E_WKUP_IOPAD(0xf0, PIN_OUTPUT, 0) /* (D19) MCU_UART0_TXD */
+> -			J721E_WKUP_IOPAD(0xf8, PIN_INPUT, 0) /* (E20) MCU_UART0_CTSn */
+> -			J721E_WKUP_IOPAD(0xfc, PIN_OUTPUT, 0) /* (E21) MCU_UART0_RTSn */
+> +			J721E_WKUP_IOPAD(0x90, PIN_INPUT, 0) /* (E20) MCU_UART0_CTSn */
+> +			J721E_WKUP_IOPAD(0x94, PIN_OUTPUT, 0) /* (E21) MCU_UART0_RTSn */
+> +			J721E_WKUP_IOPAD(0x8c, PIN_INPUT, 0) /* (D20) MCU_UART0_RXD */
+> +			J721E_WKUP_IOPAD(0x88, PIN_OUTPUT, 0) /* (D19) MCU_UART0_TXD */
+>  		>;
+>  	};
 >  
->    phy-names:
->      minItems: 1
-> -    maxItems: 2
-> -    items:
-> -      enum:
-> -        - usb2-phy
-> -        - usb3-phy
-> +    maxItems: 8
-> +    oneOf:
-> +      - items:
-> +          enum: [ usb2-phy, usb3-phy ]
-> +      - items:
-> +          pattern: "^usb[23]-[0-3]$"
+>  	wkup_uart0_pins_default: wkup-uart0-default-pins {
+>  		pinctrl-single,pins = <
+> -			J721E_WKUP_IOPAD(0xb0, PIN_INPUT, 0) /* (B14) WKUP_UART0_RXD */
+> -			J721E_WKUP_IOPAD(0xb4, PIN_OUTPUT, 0) /* (A14) WKUP_UART0_TXD */
+> +			J721E_WKUP_IOPAD(0x48, PIN_INPUT, 0) /* (B14) WKUP_UART0_RXD */
+> +			J721E_WKUP_IOPAD(0x4c, PIN_OUTPUT, 0) /* (A14) WKUP_UART0_TXD */
+>  		>;
+>  	};
+> -};
 >  
->    power-domains:
->      description:
-> -- 
-> 2.34.1
-> 
+> -&wkup_pmx2 {
+>  	mcu_cpsw_pins_default: mcu-cpsw-default-pins {
+>  		pinctrl-single,pins = <
+>  			J721E_WKUP_IOPAD(0x0000, PIN_OUTPUT, 0) /* MCU_RGMII1_TX_CTL */
+> @@ -272,7 +273,6 @@ &mcu_uart0 {
+>  	status = "okay";
+>  	pinctrl-names = "default";
+>  	pinctrl-0 = <&mcu_uart0_pins_default>;
+> -	clock-frequency = <96000000>;
+
+You are not only modifying pinmux but also dropping clock-frequency for
+mcu_uart. Please split that out into separate patch with rationale for
+the same.
+
+
+>  };
+>  
+>  &main_uart0 {
+
+-- 
+Regards
+Vignesh
 
