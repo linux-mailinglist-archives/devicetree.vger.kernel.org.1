@@ -1,261 +1,235 @@
-Return-Path: <devicetree+bounces-40092-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-40093-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 063AA84F2B5
-	for <lists+devicetree@lfdr.de>; Fri,  9 Feb 2024 10:53:06 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4C64884F2E4
+	for <lists+devicetree@lfdr.de>; Fri,  9 Feb 2024 11:02:17 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 2B32D1C228CE
-	for <lists+devicetree@lfdr.de>; Fri,  9 Feb 2024 09:53:05 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 02D53282AB4
+	for <lists+devicetree@lfdr.de>; Fri,  9 Feb 2024 10:02:16 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8C9B267C5D;
-	Fri,  9 Feb 2024 09:53:00 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4857167E62;
+	Fri,  9 Feb 2024 10:02:13 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="bHcVyIYP"
+	dkim=pass (2048-bit key) header.d=microchip.com header.i=@microchip.com header.b="c0kNo2SP"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lf1-f41.google.com (mail-lf1-f41.google.com [209.85.167.41])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from esa.microchip.iphmx.com (esa.microchip.iphmx.com [68.232.153.233])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 874BE69941;
-	Fri,  9 Feb 2024 09:52:58 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.41
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 614703FDF;
+	Fri,  9 Feb 2024 10:02:10 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=68.232.153.233
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1707472380; cv=none; b=hyHeBN9tM757kg1wRzDaN1nnBiCk4WbTZiw4aon5jkvNSC1jXqEeNIVftsVJDZ/ZY8reEudVi4rO1lEI+tg0IfKEMUe6ClF9F2UE/wwL10IHxlQW5MY/gxyYUHRr+wdMdIB3zrXcApiqO7T1jNSTuk0B3YRwjkLhh6pgyPWylek=
+	t=1707472933; cv=none; b=QbGWUFk7hADUjUhmc8mUy/dA+N7Hk5wVwvBR74fcWaJzgCt7FrxCCNH9p0Feqfh1NJQGjqzWfmEepM+Uag3j/0A7N1VWiFr2jgavUTSY5knakKg511AUIymarWixepMP8Kq9kJAaDlt3jThapuaZDXmBbfVIJiwQR97weshaLdc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1707472380; c=relaxed/simple;
-	bh=iVzoL3o7JUS146pZQBt+eZtE43hCFkiCYA9D9Tpn9lc=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=hHO5KDBJfSRwgSlNQcAkeLh+iydUIUH/MTak3hZ+1sH4CfmmuxvvXAMEKqJRIzQteZKYLpV5IwchjQK1ZAR7HLY290MCzT/IUbP8vsBkiiRErD9f2KXSSbs2VOi1g15P9SFS8+vqO94sWeVgTB4FPpDqNvxizGYohQ3blgN+tCY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=bHcVyIYP; arc=none smtp.client-ip=209.85.167.41
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-lf1-f41.google.com with SMTP id 2adb3069b0e04-5112bd13a4fso2011709e87.0;
-        Fri, 09 Feb 2024 01:52:58 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1707472376; x=1708077176; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=eiV2K5pZJw71dGzNyLKMSPjJLxHQRGdnK/KkiTE5WaY=;
-        b=bHcVyIYPVpy/2y5aeYISRptqqc2a18CHRJZG1Ts1ncgY0jxDclMtAtuuPBT4RBqJ4E
-         i8M6gatNwseA68eSezqtjWBFk4kB0qumZYh/GoFnQnw5FFlcrpFhcrFrpznVI80+IXSR
-         Gp8AaA/+/tIKJ7kIn9VabkleZTol3PDjprQHgbIKcWUoD5XhKkPR6zArCt8TcTnhFhxh
-         vnYqRW9KpQCrI9sCnI5NADD9b4mMIu2rjVs63Xa+pmOFdlUxPulmtAgdya1T0LDVEX87
-         CxogV9qBALKhKzexfPo+wf9yCd1JYDwp+Ee7ZWI3rvdnBdqVf9F087/V9R7FdmrO22YC
-         roVQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1707472376; x=1708077176;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=eiV2K5pZJw71dGzNyLKMSPjJLxHQRGdnK/KkiTE5WaY=;
-        b=WRBQDkHpv6yIayu7M+owmnmyzfZORuhY6J3ZwyMlbFvgD06e7dSXiP664BmebEvjUa
-         wsM64J8XWC2NTPfy5w4g0P97+K8YJt8v9oK31k74prIl1CQTEkzTKUfcBsbdNIRybIDN
-         29IQH0JGirJn3wHQvwk68hchGZ7NvDVPMBe4XCUbm8Kt3F9TQPRc8sW7SCulDJD9JxYe
-         m4gYM7UrglRWjVtuWMMX3rz7MHhbqTtxsWqKRLBdXBDS75YOsEjcwenVS8NhV0FMiVDq
-         PQ0bE0z+pi13RDVJH9zTcWVfvXmO+B+B9th09F7ZW5ItJFHtFtEXg80BEerodgz3PQ2o
-         eRDA==
-X-Forwarded-Encrypted: i=1; AJvYcCVzj1hj8SOa3a8eB0huU4CR004GRNhqGnxm9RHwMgyma/0QO3hg882TBdKh6zBP5fQNFmY5HzwJ91sLGTsKcnwGTph4Dbb+ljWVX8bDDbsrI7Oo1hLlBGMQFv4vtOqSzHByW1AJOohznweuDfd5QdY2arroaScvxbho0n/q5UzSvGf6Ag==
-X-Gm-Message-State: AOJu0Yx4cFvonQmRUAKor+Ao6peQayxTu501bbQzCCuw45mXAjcdRkkg
-	97xpEF+5hmtjNgRZ46qLNWnEeLpnRf5N+1d2YEgJ1HcH3xFJTg9h
-X-Google-Smtp-Source: AGHT+IHkRzAfsj6AV5nFtVc0uRgnhec7BneScP04Ft7o+QBqpDeEz/4O/PlmlO1S7CmcKMtPYmhr2w==
-X-Received: by 2002:ac2:5611:0:b0:511:3bce:9157 with SMTP id v17-20020ac25611000000b005113bce9157mr211091lfd.9.1707472376208;
-        Fri, 09 Feb 2024 01:52:56 -0800 (PST)
-X-Forwarded-Encrypted: i=1; AJvYcCX4Nlogw9/inrehVzw1A/MaI06NEnGBb2Wd+Ej1VNkQrwDQRJkb8zsZaHSsNJdSa8t2W5F54hkpFTcu9nSQhbEuSPWrQZrj7zYM0O8HeB7ZuwOLpHKG8rRr4a8bZpzio4QDjoF5FTNtaoP86eTNMcXCLJc/UMwhb9QtpgXgBRhI8DcHZKNY+z0H2OIu1YuWCvn9PRSIZsJw4PKuAbcLvqHBzXOoOOx/yjnxOxJkm6fvQ7D+1QOnm7quvabMZoK0QGKEA+BkOQHf++ld6Clb/f+tDJyq3Uey3uqVytSMj4ryOmXP+mDFmJnlxsVV8qSRB2FQHSYQO26F6YeRIpdQHKLDOi4wRVqqhc0MJWkRgh1bRCY2B/CILpe+6KYx1aw/3pVvGCAidwUry1IKmJzAdna5ovfx8ThVhrHPE/cOXgi3DW7lyjjXPEpEr0sWQRkasJ07Se4B/+1jHoOZr1o=
-Received: from mobilestation ([178.176.56.174])
-        by smtp.gmail.com with ESMTPSA id q28-20020ac246fc000000b0051134f1cf5fsm237130lfo.271.2024.02.09.01.52.55
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 09 Feb 2024 01:52:55 -0800 (PST)
-Date: Fri, 9 Feb 2024 12:52:52 +0300
-From: Serge Semin <fancer.lancer@gmail.com>
-To: Frank Li <Frank.li@nxp.com>, Rob Herring <robh@kernel.org>, 
-	Bjorn Helgaas <bhelgaas@google.com>
-Cc: Jingoo Han <jingoohan1@gmail.com>, 
-	Gustavo Pimentel <gustavo.pimentel@synopsys.com>, Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>, 
-	Lorenzo Pieralisi <lpieralisi@kernel.org>, Krzysztof =?utf-8?Q?Wilczy=C5=84ski?= <kw@linux.com>, 
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, imx@lists.linux.dev, 
-	linux-pci@vger.kernel.org, linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
-Subject: Re: [PATCH v3 5/6] dt-bindings: PCI: dwc: Add 'msg' register region
-Message-ID: <gl7zmzkezr6k4txrrgqyikspfah3vmgwwz2e3j5kwb2iarpkxv@3ofwrhtxl2sz>
-References: <20240202-pme_msg-v3-0-ff2af57a02ad@nxp.com>
- <20240202-pme_msg-v3-5-ff2af57a02ad@nxp.com>
- <eg7wrjp5ebz43g37fvebr44nwkoh4rptbtyu76nalbmgbbnqke@4zugpgwesyqd>
- <20240205183048.GA3818249-robh@kernel.org>
- <ZcEzYdZKotBJlR5i@lizhi-Precision-Tower-5810>
- <ZcK2/tmLG9O7CBEH@lizhi-Precision-Tower-5810>
- <luk5hswq4wnk5p7axml73qih35hio3y3pfnklctbn6rwres62s@mumnvygjh5ch>
- <ZcOpehO3rzCfAwXf@lizhi-Precision-Tower-5810>
+	s=arc-20240116; t=1707472933; c=relaxed/simple;
+	bh=dHt3XARATvm47LBWteX4AQlK8JTfzsMgBrvHp9qNz0k=;
+	h=From:To:Subject:Date:Message-ID:MIME-Version:Content-Type; b=nL29ZPvtz2cDbI8BHXFRUzZ7Ioh2CGFvsuigH9Lc2PUNX/z+09E8iJyqthb7R1HyXUV+6FoAj8W/3W9xvCW86obSFocqw2dKjWL0GHi9yKGC/jsrATYmmGRCKvnbHh60p7Ubq2cwWw6n6B3I9yI9SI6GOqnTpUOkxUZmECrXsMg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=microchip.com; spf=pass smtp.mailfrom=microchip.com; dkim=pass (2048-bit key) header.d=microchip.com header.i=@microchip.com header.b=c0kNo2SP; arc=none smtp.client-ip=68.232.153.233
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=microchip.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=microchip.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
+  t=1707472931; x=1739008931;
+  h=from:to:subject:date:message-id:mime-version:
+   content-transfer-encoding;
+  bh=dHt3XARATvm47LBWteX4AQlK8JTfzsMgBrvHp9qNz0k=;
+  b=c0kNo2SPI6EbSBVthgfSe7+zNz01vqweSIlSvXFdQOlDGWCZ9uBlHjMP
+   +aZBawe2TSaSqwe1a062RYEKHgQeuAHWCxgQfG+sMt5kRiDl86wtH+nI4
+   OzxMUPnQ+dqjm4hyvuFO8rqgkH8uDpY3FFd4dyVJvSbcl3a0TQaqEJQ2/
+   6r7LjuFiqC8ECqfWf9uEiCkH474Bhj1oPSogu4ckH2xDdbX+KGvztBDRA
+   EMe9o25yE7wtfaFhp0dcofbjrrMaiqi68ha/KAiZ/7TuGfJyK1BOfTOWE
+   nlpTt5BcJU3RtWF1+khwaQVr8tFnlUxBRAcaBjHEpy0PnfIegM4psKtow
+   A==;
+X-CSE-ConnectionGUID: fX7JcovPRN+JJx0KDfcpAQ==
+X-CSE-MsgGUID: gvdEMF7UTZGKu02Cq+Yz3Q==
+X-IronPort-AV: E=Sophos;i="6.05,256,1701154800"; 
+   d="scan'208";a="17415429"
+X-Amp-Result: SKIPPED(no attachment in message)
+Received: from unknown (HELO email.microchip.com) ([170.129.1.10])
+  by esa1.microchip.iphmx.com with ESMTP/TLS/ECDHE-RSA-AES128-GCM-SHA256; 09 Feb 2024 03:02:09 -0700
+Received: from chn-vm-ex01.mchp-main.com (10.10.85.143) by
+ chn-vm-ex01.mchp-main.com (10.10.85.143) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.35; Fri, 9 Feb 2024 03:01:29 -0700
+Received: from che-lt-i70843lx.microchip.com (10.10.85.11) by
+ chn-vm-ex01.mchp-main.com (10.10.85.143) with Microsoft SMTP Server id
+ 15.1.2507.35 via Frontend Transport; Fri, 9 Feb 2024 03:01:25 -0700
+From: Dharma Balasubiramani <dharma.b@microchip.com>
+To: <tglx@linutronix.de>, <robh+dt@kernel.org>,
+	<krzysztof.kozlowski+dt@linaro.org>, <conor+dt@kernel.org>,
+	<nicolas.ferre@microchip.com>, <alexandre.belloni@bootlin.com>,
+	<claudiu.beznea@tuxon.dev>, <dharma.b@microchip.com>,
+	<linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>,
+	<linux-arm-kernel@lists.infradead.org>
+Subject: [PATCH v2] dt-bindings: interrupt-controller: Convert Atmel AIC to json-schema
+Date: Fri, 9 Feb 2024 15:31:22 +0530
+Message-ID: <20240209100122.61335-1-dharma.b@microchip.com>
+X-Mailer: git-send-email 2.25.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <ZcOpehO3rzCfAwXf@lizhi-Precision-Tower-5810>
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
 
-On Wed, Feb 07, 2024 at 11:02:02AM -0500, Frank Li wrote:
-> On Wed, Feb 07, 2024 at 03:37:30PM +0300, Serge Semin wrote:
-> > On Tue, Feb 06, 2024 at 05:47:26PM -0500, Frank Li wrote:
-> > > On Mon, Feb 05, 2024 at 02:13:37PM -0500, Frank Li wrote:
-> > > > On Mon, Feb 05, 2024 at 06:30:48PM +0000, Rob Herring wrote:
-> > > > > On Sat, Feb 03, 2024 at 01:44:31AM +0300, Serge Semin wrote:
-> > > > > > On Fri, Feb 02, 2024 at 10:11:27AM -0500, Frank Li wrote:
-> > > > > > > Add an outbound iATU-capable memory-region which will be used to send PCIe
-> > > > > > > message (such as PME_Turn_Off) to peripheral. So all platforms can use
-> > > > > > > common method to send out PME_Turn_Off message by using one outbound iATU.
-> > > > > > > 
-> > > > > > > Signed-off-by: Frank Li <Frank.Li@nxp.com>
-> > > > > > > ---
-> > > > > > >  Documentation/devicetree/bindings/pci/snps,dw-pcie.yaml | 4 ++++
-> > > > > > >  1 file changed, 4 insertions(+)
-> > > > > > > 
-> > > > > > > diff --git a/Documentation/devicetree/bindings/pci/snps,dw-pcie.yaml b/Documentation/devicetree/bindings/pci/snps,dw-pcie.yaml
-> > > > > > > index 022055edbf9e6..25a5420a9ce1e 100644
-> > > > > > > --- a/Documentation/devicetree/bindings/pci/snps,dw-pcie.yaml
-> > > > > > > +++ b/Documentation/devicetree/bindings/pci/snps,dw-pcie.yaml
-> > > > > > > @@ -101,6 +101,10 @@ properties:
-> > > > > > 
-> > > > > > >              Outbound iATU-capable memory-region which will be used to access
-> > > > > > >              the peripheral PCIe devices configuration space.
-> > > > > > >            const: config
-> > > > > > > +        - description:
-> > > > > > > +            Outbound iATU-capable memory-region which will be used to send
-> > > > > > > +            PCIe message (such as PME_Turn_Off) to peripheral.
-> > > > > > > +          const: msg
-> > > > > > 
-> > > > > > Note there is a good chance Rob won't like this change. AFAIR he
-> > > > > > already expressed a concern regarding having the "config" reg-name
-> > > > > > describing a memory space within the outbound iATU memory which is
-> > > > > > normally defined by the "ranges" property. Adding a new reg-entry with
-> > > > > > similar semantics I guess won't receive warm welcome.
-> > > > > 
-> > > > > I do think it is a bit questionable. Ideally, the driver could 
-> > > > > just configure this on its own. However, since we don't describe all of 
-> > > > > the CPU address space (that's input to the iATU) already, that's not 
-> > > > > going to be possible. I suppose we could fix that, but then config space 
-> > > > > would have to be handled differently too.
-> > > > 
-> > > > Sorry, I have not understand what your means. Do you means, you want
-> > > > a "cpu-space", for example, 0x8000000 - 0x9000000 for all ATU. 
-> > > > 
-> > > > Then allocated some space to 'config', 'io', 'memory' and this 'msg'.
-> > > 
-> > > @rob:
-> > > 
-> > >     So far, I think "msg" is feasilbe solution. Or give me some little
-> > > detail direction?
-> > 
-> > Found the Rob' note about the iATU-space chunks utilized in the reg
-> > property:
-> > https://lore.kernel.org/linux-pci/CAL_JsqLp7QVgxrAZkW=z38iB7SV5VeWH1O6s+DVCm9p338Czdw@mail.gmail.com/
-> > 
-> > So basically Rob meant back then that
-> > either originally we should have defined a new reg-name like "atu-out"
-> > with the entire outbound iATU CPU-space specified and unpin the
-> > regions like "config"/"ecam"/"msg"/etc from there in the driver
-> > or, well, stick to the chunking further. The later path was chosen
-> > after the patch with the "ecam" reg-name was accepted (see the link
-> > above).
-> > 
-> > Really ECAM/config space access, custom TLP messages, legacy interrupt
-> > TLPs, etc are all application-specific features. Each of them is
-> > implemented based on a bit specific but basically the same outbound
-> > iATU engine setup. Thus from the "DT is a hardware description" point
-> > of view it would have been enough to describe the entire outbound iATU
-> > CPU address space and then let the software do the space
-> > reconfiguration in runtime based on it' application needs.
-> 
-> There are "addr_space" in EP mode, which useful map out outbound iatu
-> region. We can reuse this name.
-> 
-> To keep compatiblity, cut hole from 'config' and 'ranges'. If there are
-> not 'config', we can alloc a 1M(default) from top for 'config', then, 4K
-> (default) for msg, 64K( for IO if not IO region in 'ranges'), left is
-> mem region. We can config each region size by module parameter or drvdata.
-> 
-> So we can deprecate 'config', even 'ranges'
+Convert the Atmel AIC binding document to DT schema format using
+json-schema.
 
-Not sure I fully understand what you mean. In anyway the "config" reg
-name is highly utilized by the DW PCIe IP-core instances. We can't
-deprecate it that easily. At least the backwards compatibility must be
-preserved. Moreover "addr_space" is also just a single value reg which
-won't solve a problem with the disjoint DW PCIe outbound iATU memory
-regions.
+Signed-off-by: Dharma Balasubiramani <dharma.b@microchip.com>
+---
+Changelog
+v1 -> v2
+- Drop the '|' as there is no formatting to preserve.
+- Remove unnecessary marketing statement from description.
+- Drop the description for interrupts and reg, it's obvious.
+- Put reg after compatible.
+- Drop comment in example.
+- Drop the example of device that is wired to an AIC as it's(dma) binding is
+  not yet available.
+---
+ .../interrupt-controller/atmel,aic.txt        | 43 -----------
+ .../interrupt-controller/atmel,aic.yaml       | 74 +++++++++++++++++++
+ 2 files changed, 74 insertions(+), 43 deletions(-)
+ delete mode 100644 Documentation/devicetree/bindings/interrupt-controller/atmel,aic.txt
+ create mode 100644 Documentation/devicetree/bindings/interrupt-controller/atmel,aic.yaml
 
-The "ranges" property is a part of the DT specification.  The
-PCI-specific way of the property-based mapping is de-facto a standard
-too. So this can't be deprecated.
+diff --git a/Documentation/devicetree/bindings/interrupt-controller/atmel,aic.txt b/Documentation/devicetree/bindings/interrupt-controller/atmel,aic.txt
+deleted file mode 100644
+index 7079d44bf3ba..000000000000
+--- a/Documentation/devicetree/bindings/interrupt-controller/atmel,aic.txt
++++ /dev/null
+@@ -1,43 +0,0 @@
+-* Advanced Interrupt Controller (AIC)
+-
+-Required properties:
+-- compatible: Should be:
+-    - "atmel,<chip>-aic" where  <chip> can be "at91rm9200", "sama5d2",
+-      "sama5d3" or "sama5d4"
+-    - "microchip,<chip>-aic" where <chip> can be "sam9x60"
+-
+-- interrupt-controller: Identifies the node as an interrupt controller.
+-- #interrupt-cells: The number of cells to define the interrupts. It should be 3.
+-  The first cell is the IRQ number (aka "Peripheral IDentifier" on datasheet).
+-  The second cell is used to specify flags:
+-    bits[3:0] trigger type and level flags:
+-      1 = low-to-high edge triggered.
+-      2 = high-to-low edge triggered.
+-      4 = active high level-sensitive.
+-      8 = active low level-sensitive.
+-      Valid combinations are 1, 2, 3, 4, 8.
+-      Default flag for internal sources should be set to 4 (active high).
+-  The third cell is used to specify the irq priority from 0 (lowest) to 7
+-  (highest).
+-- reg: Should contain AIC registers location and length
+-- atmel,external-irqs: u32 array of external irqs.
+-
+-Examples:
+-	/*
+-	 * AIC
+-	 */
+-	aic: interrupt-controller@fffff000 {
+-		compatible = "atmel,at91rm9200-aic";
+-		interrupt-controller;
+-		#interrupt-cells = <3>;
+-		reg = <0xfffff000 0x200>;
+-	};
+-
+-	/*
+-	 * An interrupt generating device that is wired to an AIC.
+-	 */
+-	dma: dma-controller@ffffec00 {
+-		compatible = "atmel,at91sam9g45-dma";
+-		reg = <0xffffec00 0x200>;
+-		interrupts = <21 4 5>;
+-	};
+diff --git a/Documentation/devicetree/bindings/interrupt-controller/atmel,aic.yaml b/Documentation/devicetree/bindings/interrupt-controller/atmel,aic.yaml
+new file mode 100644
+index 000000000000..df81115a8b7f
+--- /dev/null
++++ b/Documentation/devicetree/bindings/interrupt-controller/atmel,aic.yaml
+@@ -0,0 +1,74 @@
++# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/interrupt-controller/atmel,aic.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
++
++title: Advanced Interrupt Controller (AIC)
++
++maintainers:
++  - Nicolas Ferre <nicolas.ferre@microchip.com>
++  - Dharma balasubiramani <dharma.b@microchip.com>
++
++description:
++  The Advanced Interrupt Controller (AIC) is an 8-level priority, individually
++  maskable, vectored interrupt controller providing handling of up to one
++  hundred and twenty-eight interrupt sources.
++
++allOf:
++  - $ref: /schemas/interrupt-controller.yaml#
++
++properties:
++  compatible:
++    enum:
++      - atmel,at91rm9200-aic
++      - atmel,sama5d2-aic
++      - atmel,sama5d3-aic
++      - atmel,sama5d4-aic
++      - microchip,sam9x60-aic
++
++  reg:
++    maxItems: 1
++
++  interrupt-controller: true
++
++  "#interrupt-cells":
++    const: 3
++    description: |
++      The 1st cell is the IRQ number (Peripheral IDentifier on datasheet).
++      The 2nd cell specifies flags:
++        bits[3:0] trigger type and level flags:
++          1 = low-to-high edge triggered.
++          2 = high-to-low edge triggered.
++          4 = active high level-sensitive.
++          8 = active low level-sensitive.
++        Valid combinations: 1, 2, 3, 4, 8.
++        Default for internal sources: 4 (active high).
++      The 3rd cell specifies irq priority from 0 (lowest) to 7 (highest).
++
++  interrupts:
++    maxItems: 1
++
++  atmel,external-irqs:
++    $ref: /schemas/types.yaml#/definitions/uint32-array
++    description: u32 array of external irqs.
++
++required:
++  - compatible
++  - reg
++  - interrupt-controller
++  - "#interrupt-cells"
++  - atmel,external-irqs
++
++unevaluatedProperties: false
++
++examples:
++  - |
++    interrupt-controller@fffff000 {
++      compatible = "atmel,at91rm9200-aic";
++      interrupt-controller;
++      #interrupt-cells = <3>;
++      reg = <0xfffff000 0x200>;
++      atmel,external-irqs = <31>;
++    };
++...
 
-> 
-> > 
-> > * Rob, correct me if am wrong.
-> > 
-> > On the other hand it's possible to have more than one disjoint CPU
-> > address region handled by the outbound iATU (especially if there is no
-> > AXI-bridge enabled, see XALI - application transmit client interfaces
-> > in HW manual). Thus having a single reg-property might get to be
-> > inapplicable in some cases. Thinking about that got me to an idea.
-> > What about just extending the PCIe "ranges" property flags
-> > (IORESOURCE_TYPE_BITS) with the new ones in this case indicating the
-> > TLP Msg mapping? Thus we can avoid creating app-specific reg-names and
-> > use the flag to define a custom memory range for the TLP messages
-> > generation. At some point it can be also utilized for the config-space
-> > mapping. What do you think?
-> 
+base-commit: 0dd3ee31125508cd67f7e7172247f05b7fd1753a
+-- 
+2.25.1
 
-> IORESOURCE_TYPE_BITS is 1f, Only 5bit. If extend IORESOURCE_TYPE_BITS, 
-> all IORESOURCE_* bit need move. And it is actual MEMORY regain. 
-
-No. The lowest four bits aren't flags but the actual value. They are
-retrieved from the PCI-specific memory ranges mapping:
-https://elinux.org/Device_Tree_Usage#PCI_Address_Translation
-https://elixir.bootlin.com/linux/latest/source/arch/sparc/kernel/of_device_64.c#L141
-https://elixir.bootlin.com/linux/latest/source/arch/sparc/kernel/of_device_32.c#L78
-Currently only first four out of _sixteen_ values have been defined so
-far. So we can freely use some of the free values for custom TLPs,
-etc. Note the config-space is already defined by the ranges property
-having the 0x0 space code (see the first link above), but it isn't
-currently supported by the PCI subsystem. So at least that option can
-be considered as a ready-to-implement replacement for the "config"
-reg-name.
-
-> 
-> Or we can use IORESOURCE_BITS (0xff)
-> 
-> /* PCI ROM control bits (IORESOURCE_BITS) */
-> #define IORESOURCE_ROM_ENABLE		(1<<0)	/* ROM is enabled, same as PCI_ROM_ADDRESS_ENABLE */
-> #define IORESOURCE_ROM_SHADOW		(1<<1)	/* Use RAM image, not ROM BAR */
-> 
-> /* PCI control bits.  Shares IORESOURCE_BITS with above PCI ROM.  */
-> #define IORESOURCE_PCI_FIXED		(1<<4)	/* Do not move resource */
-> #define IORESOURCE_PCI_EA_BEI		(1<<5)	/* BAR Equivalent Indicator */
-> 
-> we can add
-> 
-> IORESOURCE_PRIV_WINDOWS			(1<<6)
-> 
-> I think previous method was more extendable. How do you think?
-
-IMO extending the PCIe "ranges" property semantics looks more
-promising, more flexible and more portable across various PCIe
-controllers. But the most importantly is what Rob and Bjorn think
-about that, not me.
-
--Serge(y)
-
-> 
-> > 
-> > -Serge(y)
-> > 
-> > > 
-> > > Frank
-> > > 
-> > > > 
-> > > > Frank
-> > > > 
-> > > > > 
-> > > > > Rob
 
