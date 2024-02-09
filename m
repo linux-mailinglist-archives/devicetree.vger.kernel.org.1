@@ -1,122 +1,104 @@
-Return-Path: <devicetree+bounces-40217-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-40216-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id ECE7584FABC
-	for <lists+devicetree@lfdr.de>; Fri,  9 Feb 2024 18:12:09 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 68C5A84FAB7
+	for <lists+devicetree@lfdr.de>; Fri,  9 Feb 2024 18:11:59 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 71365B27059
-	for <lists+devicetree@lfdr.de>; Fri,  9 Feb 2024 17:12:07 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 137FB28EF11
+	for <lists+devicetree@lfdr.de>; Fri,  9 Feb 2024 17:11:58 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0CDF07C0AB;
-	Fri,  9 Feb 2024 17:11:54 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5AD817BB07;
+	Fri,  9 Feb 2024 17:11:53 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=smile-fr.20230601.gappssmtp.com header.i=@smile-fr.20230601.gappssmtp.com header.b="s6n60y/D"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="FqXkuT5d"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f48.google.com (mail-wm1-f48.google.com [209.85.128.48])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1DD5F6BB2F
-	for <devicetree@vger.kernel.org>; Fri,  9 Feb 2024 17:11:50 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.48
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2DCCB7BAF4;
+	Fri,  9 Feb 2024 17:11:52 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1707498713; cv=none; b=Vp13IAbE0QNm6gMnN9OwuMBZzPvXnelqQcQNn1jfCgaIIXAP2MLGQ0h5KmoZTmYK3JYwwG5AiORl3pB8mIBXu4CYKpPshbOe8ERMnynx9XwRrRmllxR3eFrb7/kKCKB8EjhYWZghzK7rJRfLpAKinY/ZRzmrE12z29AzVdVCbmU=
+	t=1707498713; cv=none; b=N4h7oylOfSB01ImkfAJrWeoK4spQm9BdTco6Rz802YtZoEsMwuwyq7esH+qzByKYhNNgG+NMzBUR5tQ1f7ILRhatt2+iIu0hQnV1JzjDq1N5xyu88MDnPVwtjJM9OYmwvsxqeDtp1welQqdTi8dkCq62jOWP0IuwAPhVejQLrfk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
 	s=arc-20240116; t=1707498713; c=relaxed/simple;
-	bh=Bjsp+KZtyL8O80qh9O9Z57mm54YKxPF3W3gwM9bSRzs=;
-	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=LXkeFsfXL4zkTM6t6V4EiQEkrxbZAgXdOGAc0KCzWQTkTXDMa/y5l+SZMCGZZcg6e2DojrfkS2vpxyoi5eOD0b+sXgPN2NhVlsHxYVXx9rqashrwrKm+CXRUWUDS2s6TqqtqSBuDPojNjKdbCC702xEk3G1XggS6QL/8wPoZwr8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=smile.fr; spf=pass smtp.mailfrom=smile.fr; dkim=pass (2048-bit key) header.d=smile-fr.20230601.gappssmtp.com header.i=@smile-fr.20230601.gappssmtp.com header.b=s6n60y/D; arc=none smtp.client-ip=209.85.128.48
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=smile.fr
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=smile.fr
-Received: by mail-wm1-f48.google.com with SMTP id 5b1f17b1804b1-4105876a3e5so10179265e9.3
-        for <devicetree@vger.kernel.org>; Fri, 09 Feb 2024 09:11:50 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=smile-fr.20230601.gappssmtp.com; s=20230601; t=1707498709; x=1708103509; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=Ue3Hv5Tp9scHSTy47Ds5eoq01BRybMaUAWCl5QsfxDE=;
-        b=s6n60y/D8uuNaQaAiVLb9KCOOovA9VhkYxVUiN7vvSjhjHAKHkI+L9xPs7incctLlQ
-         /V0tHLMiorUdxlAA7sciC8Je1H1zBRUYBkjLZ41nI1GnAqCqiGWKeQTG2jN8LfCb4yDl
-         0QXjT7EruTPtjfRrrojCA85mGR+p0Q+aCg0dSqZ1196nXQwngUylcJygHKqDDFXEAZue
-         qrzcDFVp9/QenktIj2DoSAN/BvScQq14fTTaIMongtH1+CJJ9Qa2wRqb/snERwK/doLG
-         MMbKfoPNJlmltp8e0ZjFv04PA7FKAIhkYGPx7peghIgyUNkez+OgsdzyuZ/xeoEAXNRs
-         6ZqA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1707498709; x=1708103509;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=Ue3Hv5Tp9scHSTy47Ds5eoq01BRybMaUAWCl5QsfxDE=;
-        b=eq7cfluVdnVKzkQTRh6MhjVb02ehJ9APLQS7nCTT3rUMIywUfOd6iBlu7D1TUkl2Uz
-         BMLEIvYsF4H4U+ILM47CrAwjHkrh9tg3/bsaPfM37lpOn97KdYdUV5/75t031DAcfT7l
-         gwtuAiM0+0SE/YNSNnnJ4P0C84Jntajk+3svg/0b+wv2hesHWpDcgKaRYywBHr9bTGff
-         kW6IkUv8ubtQDJA5gXyi08B0yrzFaxkbo9rX4IAIN8pfeJ5gXIAlIlpGWeVNi4piZ1sG
-         DnQe9b98vWZpCBkA8I3/OcWCyGHch3CO6jv/naN0B2MQvM20OZBKhTK35fdETQrbCTcN
-         wn/w==
-X-Gm-Message-State: AOJu0YwfpsXy0DE5x0QnLWXUuaDyDNp/ANP63+URJC0OXVev7qbsZy0s
-	uKkY63c7NGolc/I+xRsg/fZ7WqUO/aUmOy7SKC/02s+EKAUO4ZZebC+CR7hOlPE=
-X-Google-Smtp-Source: AGHT+IG3dN9xA5+wcmP96KwiTqU26PY7MdzhjfvXcbM2slJ41I/tBrhwgRalwRcfYEQbgIeuH0KsAw==
-X-Received: by 2002:a05:600c:4f4e:b0:40f:df17:f0ce with SMTP id m14-20020a05600c4f4e00b0040fdf17f0cemr1831671wmq.28.1707498709226;
-        Fri, 09 Feb 2024 09:11:49 -0800 (PST)
-X-Forwarded-Encrypted: i=1; AJvYcCWnGar+cKZgWNeQ+21aAnbQeq2d4Yu8sDJR2KwQt0t2Wfq1JY6aOrqPBbuAEeCTxHBHSdNWhRKvRCRO/tQ6+//8xe9IpiwFKOfZl02woAXSjYD5u1kE4W8wrZyoSfUxYBgTZ1jHDzWEz0LnS1N+ZAXRsX6kVHUWhIu/vlFsX9X8MmKeZB3v7sBTXlfFyRLjzfUQa8S6/VoM9DzhRhAawEP4Does1m2A6wR34qifhA0LabZTvLF7+ouhkpZVgqt4/GbZlFmiPqr1nKnbLLE6uXztMdLyt0jqztuMJZ6rVr0TB11LjVwzqsnxPxodLgf1w9uxKq7azYG+xBeT8DuE
-Received: from P-NTS-Evian.home (2a01cb05945b7e009bdc688723a24f31.ipv6.abo.wanadoo.fr. [2a01:cb05:945b:7e00:9bdc:6887:23a2:4f31])
-        by smtp.gmail.com with ESMTPSA id a20-20020a05600c225400b004104ecb39d1sm1154711wmm.32.2024.02.09.09.11.48
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 09 Feb 2024 09:11:48 -0800 (PST)
-From: Romain Naour <romain.naour@smile.fr>
-To: linux-kernel@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	conor+dt@kernel.org,
-	krzysztof.kozlowski+dt@linaro.org,
-	robh+dt@kernel.org,
-	kristo@kernel.org,
-	vigneshr@ti.com,
-	nm@ti.com
-Cc: Romain Naour <romain.naour@smile.fr>,
-	Neha Malcom Francis <n-francis@ti.com>
-Subject: [PATCH v2 1/2] arm64: dts: ti: k3-am69-sk: fix PMIC interrupt number
-Date: Fri,  9 Feb 2024 18:11:45 +0100
-Message-ID: <20240209171146.307465-1-romain.naour@smile.fr>
-X-Mailer: git-send-email 2.43.0
+	bh=TVN6AoYDGpCY0AXJRKxcSKPo6wonZIAnszqeZBEPtsA=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=YzFnf2eiiP1d98ZIIddbtDJwxBoF1fWV3vGRYLh7PPVdlpSpMtd6E29ayPk7tStUGi9+vttVmIggpVN654JXwXak7q7sBNCKvgsa3KXhA5VzaRsbnjywKENYaAomEOcfmfZkUnoBBZxuGyiwNHaBQBNpvzqNChTmGK1M2fyKwUk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=FqXkuT5d; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 9DF6EC433C7;
+	Fri,  9 Feb 2024 17:11:48 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1707498712;
+	bh=TVN6AoYDGpCY0AXJRKxcSKPo6wonZIAnszqeZBEPtsA=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=FqXkuT5dLtmYHu/v3UHeZUzV4WjT53HNAiOawRTeMtzG6azLfeWzEW7XsfymG2JL2
+	 aKIyQLmcDtx4Fq8K63tQd/Ja1ZEqeChBOEQbpm+kmz3IROErjVb1LpLaTpQDGKpMhb
+	 jVeoj0gJRWhsQRQm59iOPpoYxfCcRDPlW6WgbOBLRJyyDR50pJ2chsii9r/z/ntENO
+	 CkrL0CltgfB2pPAh75sWDxdeJgPDyZRFL4JsVaEuy3b0NiXP72SYXsBonXB6qw8Qgx
+	 a/kOWeyslVe9CBIB8yYbrQV0c/XJCIZO+5JZZcdfnynfxvhJC1bDRqpyiwC9Wx6+wz
+	 CebN7Sc4EXnbQ==
+Date: Fri, 9 Feb 2024 17:11:46 +0000
+From: Conor Dooley <conor@kernel.org>
+To: Bhargav Raviprakash <bhargav.r@ltts.com>
+Cc: linux-kernel@vger.kernel.org, m.nirmaladevi@ltts.com, lee@kernel.org,
+	robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
+	conor+dt@kernel.org, jpanis@baylibre.com,
+	devicetree@vger.kernel.org, arnd@arndb.de,
+	gregkh@linuxfoundation.org, lgirdwood@gmail.com, broonie@kernel.org,
+	linus.walleij@linaro.org, linux-gpio@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org, nm@ti.com, vigneshr@ti.com,
+	kristo@kernel.org
+Subject: Re: [RESEND PATCH v1 03/13] dt-bindings: mfd: ti,tps6594: Add TI
+ TPS65224 PMIC
+Message-ID: <20240209-blitz-fidgety-78469aa80d6d@spud>
+References: <20240208105343.1212902-1-bhargav.r@ltts.com>
+ <20240208105343.1212902-4-bhargav.r@ltts.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: multipart/signed; micalg=pgp-sha256;
+	protocol="application/pgp-signature"; boundary="dna+SjxlSwr7Px85"
+Content-Disposition: inline
+In-Reply-To: <20240208105343.1212902-4-bhargav.r@ltts.com>
 
-The tps659413 node set WKUP_GPIO0_83 (AA37) pin as input to be used as
-PMIC interrupt but uses 39 (WKUP_GPIO0_39) as "interrupts" property.
 
-Replace 39 by 83 after checking in the board schematic [1].
+--dna+SjxlSwr7Px85
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
 
-[1] https://www.ti.com/tool/SK-AM69
+On Thu, Feb 08, 2024 at 04:23:33PM +0530, Bhargav Raviprakash wrote:
+> TPS65224 is a Power Management IC with 4 Buck regulators and 3 LDO
+> regulators, it includes additional features like GPIOs, watchdog, ESMs
+> (Error Signal Monitor), and PFSM (Pre-configurable Finite State Machine)
+> managing the state of the device.
 
-Fixes: 865a1593bf99 ("arm64: dts: ti: k3-am69-sk: Add support for TPS6594 PMIC")
-Cc: Neha Malcom Francis <n-francis@ti.com>
-Signed-off-by: Romain Naour <romain.naour@smile.fr>
----
- arch/arm64/boot/dts/ti/k3-am69-sk.dts | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+> TPS6594 and TPS65224 have significant functional overlap.
 
-diff --git a/arch/arm64/boot/dts/ti/k3-am69-sk.dts b/arch/arm64/boot/dts/ti/k3-am69-sk.dts
-index 8da591579868..95c9d3da59d3 100644
---- a/arch/arm64/boot/dts/ti/k3-am69-sk.dts
-+++ b/arch/arm64/boot/dts/ti/k3-am69-sk.dts
-@@ -646,7 +646,7 @@ tps659413: pmic@48 {
- 		pinctrl-names = "default";
- 		pinctrl-0 = <&pmic_irq_pins_default>;
- 		interrupt-parent = <&wkup_gpio0>;
--		interrupts = <39 IRQ_TYPE_EDGE_FALLING>;
-+		interrupts = <83 IRQ_TYPE_EDGE_FALLING>;
- 		gpio-controller;
- 		#gpio-cells = <2>;
- 		ti,primary-pmic;
--- 
-2.43.0
+What does "significant functional overlap" mean? Does one implement a
+compatible subset of the other? I assume the answer is no, given there
+seems to be some core looking registers at different addresses.
 
+Thanks,
+Conor.
+
+
+--dna+SjxlSwr7Px85
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZcZc0gAKCRB4tDGHoIJi
+0lB3AP96KY07xT0eqyhknqStgg/xJs8nbUytoWWoPJdth7LwjgD/UXf7lbRiCCMR
+E23eyu80aZqV2GBn/8cTKrtsQEdECQA=
+=EYha
+-----END PGP SIGNATURE-----
+
+--dna+SjxlSwr7Px85--
 
