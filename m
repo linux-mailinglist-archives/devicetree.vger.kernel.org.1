@@ -1,144 +1,87 @@
-Return-Path: <devicetree+bounces-40086-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-40087-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2974984F25C
-	for <lists+devicetree@lfdr.de>; Fri,  9 Feb 2024 10:39:01 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 681EE84F265
+	for <lists+devicetree@lfdr.de>; Fri,  9 Feb 2024 10:40:59 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 23513B23A7D
-	for <lists+devicetree@lfdr.de>; Fri,  9 Feb 2024 09:38:58 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 1A0491F233E9
+	for <lists+devicetree@lfdr.de>; Fri,  9 Feb 2024 09:40:59 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 271BF679ED;
-	Fri,  9 Feb 2024 09:38:49 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id DF6CA679E7;
+	Fri,  9 Feb 2024 09:40:52 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="kFUPVvsm"
+	dkim=pass (1024-bit key) header.d=linuxfoundation.org header.i=@linuxfoundation.org header.b="VhVJhVHZ"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E61D6651AC;
-	Fri,  9 Feb 2024 09:38:48 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AAF9C664B4;
+	Fri,  9 Feb 2024 09:40:52 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1707471529; cv=none; b=TpySMzWNRVF42yeoUTGZUj3s5dgMVZejb531S+I4FvQQXNIvQOkSlosR9gqvQEEJnwqhnlrQdtNs5rwKVbabAyDBEs/7AwtN+vIPa79nOOTuSP9IBaSCFgjtP6iM6QDOsAImo3du1JrJtRM6F+eAroGjCnA678rgw6fAUO/3S0Y=
+	t=1707471652; cv=none; b=HG0XKiRu2HBu2Dryuk+pIa/yQK3jkkHZS4nNmhFYyVBt+nDDiGq49Ule9leujKZOYBDZu/bLopkZA6YSYprqAzj+XrA3sE+Zt13s49NMNihZlMk7jQjoJq6SPmCNx1Tu4osMhHLKU4lAxpN/r4tS1wJmcmVHh0PKuVcBmAVNBnc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1707471529; c=relaxed/simple;
-	bh=dEK5MLKQfiIZqixssJklw9y0fREaNMf3USH5yVCloyY=;
+	s=arc-20240116; t=1707471652; c=relaxed/simple;
+	bh=jzZ/VNt6rEEtxZX6VQAnrsQIlVcxLaQEBm6Js0gK5oM=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=pn7jlkuMaVbHm44E7NCqHQ+sseJ3gteq8h/m2LvcG8/F/LKE+0R0erUI/szsBQSZCEPsk31vnQpfrsq1Brroi2KLkl2bwMjHDO4KOwrJ5heU4czVOfLMfnZaVqH/5GntIZlrEqN4UP8qMcojOLioiSJKc7IKQLj6m75hcu0cKeY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=kFUPVvsm; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 9FDDFC433F1;
-	Fri,  9 Feb 2024 09:38:42 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1707471528;
-	bh=dEK5MLKQfiIZqixssJklw9y0fREaNMf3USH5yVCloyY=;
+	 Content-Type:Content-Disposition:In-Reply-To; b=HtqyUToXb/oFgQoTFVLhsA/CDu4JFKOuvQwKTrICCRq1SI3y1ccEvVE65ZRR5ccStTFpHzLWooq5lwWrrIZQRJhmOXCinXZSRubdu/v2dJ94bz4IS4e12oelNci+EoxkgeRrtVBYKKsl/XBdk6osIDvRSPup8IqTXnOeuoWWNWU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (1024-bit key) header.d=linuxfoundation.org header.i=@linuxfoundation.org header.b=VhVJhVHZ; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id A62E4C433C7;
+	Fri,  9 Feb 2024 09:40:51 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=linuxfoundation.org;
+	s=korg; t=1707471652;
+	bh=jzZ/VNt6rEEtxZX6VQAnrsQIlVcxLaQEBm6Js0gK5oM=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=kFUPVvsm4u+vUOmBCXw5BnRhkLeBE5z9K6h8L0PipM2YCflMoenBpR0saxwhZCtXa
-	 w9hAeAYNhvKCQu7iJWiN0s1koYNTnDJLiwTZaprON+6yzuT38qBsQ+EwvjAaoHx0Bs
-	 sUvTwxSTuJpqonB3bEYTOg7XGfWpbURipBESlWmvRbzspALw4oXGB372jFyo3yXmt3
-	 q/3ZSpuYGwLIVREGHXh4deNEwaN1CSVClJmzJY6JQvuStu6Q6mfawZYV4akceFpaSr
-	 2yy2icRGSS58AdAALAJOkULCDL0GtZHL5ppLIBMK+pXvaYkxdfuGjufoRZNlI9w8r2
-	 McrlusVnmwsHA==
-Date: Fri, 9 Feb 2024 15:08:39 +0530
-From: Manivannan Sadhasivam <mani@kernel.org>
-To: Lukas Wunner <lukas@wunner.de>
-Cc: Bartosz Golaszewski <brgl@bgdev.pl>,
-	Bjorn Andersson <andersson@kernel.org>,
-	Konrad Dybcio <konrad.dybcio@linaro.org>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Marcel Holtmann <marcel@holtmann.org>,
-	Luiz Augusto von Dentz <luiz.dentz@gmail.com>,
-	Bjorn Helgaas <bhelgaas@google.com>,
-	Neil Armstrong <neil.armstrong@linaro.org>,
-	Alex Elder <elder@linaro.org>,
-	Srini Kandagatla <srinivas.kandagatla@linaro.org>,
-	Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-	Arnd Bergmann <arnd@arndb.de>, Abel Vesa <abel.vesa@linaro.org>,
-	Manivannan Sadhasivam <mani@kernel.org>,
-	linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org, linux-bluetooth@vger.kernel.org,
-	linux-pci@vger.kernel.org,
-	Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
-Subject: Re: Re: [RFC 8/9] PCI/pwrctl: add PCI power control core code
-Message-ID: <20240209093839.GH12035@thinkpad>
-References: <20240201155532.49707-1-brgl@bgdev.pl>
- <20240201155532.49707-9-brgl@bgdev.pl>
- <7tbhdkqpl4iuaxmc73pje2nbbkarxxpgmabc7j4q26d2rhzrv5@ltu6niel5eb4>
- <CAMRc=Md1oTrVMjZRH+Ux3JJKYeficKMYh+8V7ZA=Xz_X1hNd1g@mail.gmail.com>
- <2q5vwm7tgmpgbrm4dxfhypbs5pdggprxouvzfcherqeevpjhrj@6wtkv4za2gg5>
- <CAMRc=MfsdsD4f3sC-BnR_sqvaHNEKWCZ+Xe+-ZhLU8vFYA06=w@mail.gmail.com>
- <20240209090433.GA18651@wunner.de>
+	b=VhVJhVHZsRa9Pqz5fCrlUkCCB/A/PdMn5almDD6tlOUGPXDDaWtLVdSgQVMMgaX23
+	 8FIqBI4fSm9o+QQqoefoQr/mY4Gne5ewh6dr5onNr8VHyEADH0OdL6xnV7LWGTCYqU
+	 nEuVCwpxJyDFEu7PmC1k4a17jjaiyin9FBmrF6tw=
+Date: Fri, 9 Feb 2024 09:40:48 +0000
+From: Greg KH <gregkh@linuxfoundation.org>
+To: Stefan Eichenberger <eichest@gmail.com>
+Cc: robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
+	conor+dt@kernel.org, piyush.mehta@amd.com, michal.simek@amd.com,
+	francesco.dolcini@toradex.com, linux-usb@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	Stefan Eichenberger <stefan.eichenberger@toradex.com>
+Subject: Re: [PATCH] dt-bindings: usb: microchip,usb5744: Remove peer-hub as
+ requirement
+Message-ID: <2024020941-small-devious-1e36@gregkh>
+References: <20240130073505.8916-1-eichest@gmail.com>
+ <ZcXfflAvkzHzWBfb@eichest-laptop>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20240209090433.GA18651@wunner.de>
+In-Reply-To: <ZcXfflAvkzHzWBfb@eichest-laptop>
 
-On Fri, Feb 09, 2024 at 10:04:33AM +0100, Lukas Wunner wrote:
-> On Wed, Feb 07, 2024 at 05:26:16PM +0100, Bartosz Golaszewski wrote:
-> > On Fri, Feb 2, 2024 at 5:52???PM Bjorn Andersson <andersson@kernel.org> wrote:
-> > > On Fri, Feb 02, 2024 at 10:11:42AM +0100, Bartosz Golaszewski wrote:
-> > > > I was also thinking about pci_pwrctl_device_ready() or
-> > > > pci_pwrctl_device_prepared().
-> > >
-> > > I like both of these.
-> > >
-> > > I guess the bigger question is how the flow would look like in the event
-> > > that we need to power-cycle the attached PCIe device, e.g. because
-> > > firmware has gotten into a really bad state.
-> > >
-> > > Will we need an operation that removes the device first, and then cut
-> > > the power, or do we cut the power and then call unprepared()?
+On Fri, Feb 09, 2024 at 09:17:02AM +0100, Stefan Eichenberger wrote:
+> Hi Greg,
+> 
+> On Tue, Jan 30, 2024 at 08:35:05AM +0100, Stefan Eichenberger wrote:
+> > From: Stefan Eichenberger <stefan.eichenberger@toradex.com>
 > > 
-> > How would the core be notified about this power-cycle from the PCI
-> > subsystem? I honestly don't know. Is there a notifier we could
-> > subscribe to? Is the device unbound and rebound in such case?
+> > The peer-hub is used to model the relationship between the USB 2 and USB
+> > 3 hub. However, it is possible to only connect USB 2 without having
+> > USB 3. Therefore, the peer-hub property should not be marked as required.
 > 
-> To power-manage the PCI device for runtime PM (suspend to D3cold)
-> or system sleep, you need to amend:
-> 
->   platform_pci_power_manageable()
->   platform_pci_set_power_state()
->   platform_pci_get_power_state()
->   platform_pci_refresh_power_state()
->   platform_pci_choose_state()
-> 
-> E.g. platform_pci_power_manageable() would check for presence of a
-> regulator in the DT and platform_pci_set_power_state() would disable
-> or enable the regulator.
-> 
+> I just wanted to ask if everything is okay with the patch and if its
+> fine to apply it or if it needs some updates?
 
-This will work if the sole control of the resources lies in these platform_*()
-APIs. But in reality, the controller drivers are the ones controlling the power
-supply to the devices  and with this series, the control would be shifted partly
-to pwrctl driver.
+That was only 10 days ago, please give us a chance to catch up on
+reviews.
 
-I think what we need is to call in the callbacks of the drivers in a hierarchial
-order.
+In the meantime, while waiting, please review other changes on the
+lists, that way yours moves higher up in the queue.  Any reason why you
+can't do that now?
 
-- Mani
+thanks,
 
-> To reset the device by power cycling it, amend pci_reset_fn_methods[]
-> to provide a reset method which disables and re-enables the regulator.
-> Then you can choose that reset method via sysfs and power-cycle the
-> device.  The PCI core will also automatically use that reset method
-> if there's nothing else available (e.g. if no Secondary Bus Reset
-> is available because the device has siblings or children, or if FLR
-> is not supported).
-> 
-> Thanks,
-> 
-> Lukas
-
--- 
-மணிவண்ணன் சதாசிவம்
+greg k-h
 
