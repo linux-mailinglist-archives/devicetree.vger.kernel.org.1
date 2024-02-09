@@ -1,120 +1,124 @@
-Return-Path: <devicetree+bounces-40181-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-40182-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3CCB584F975
-	for <lists+devicetree@lfdr.de>; Fri,  9 Feb 2024 17:18:41 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id CA47784F979
+	for <lists+devicetree@lfdr.de>; Fri,  9 Feb 2024 17:20:04 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 6E66F1C20F7B
-	for <lists+devicetree@lfdr.de>; Fri,  9 Feb 2024 16:18:40 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 0937D1C21248
+	for <lists+devicetree@lfdr.de>; Fri,  9 Feb 2024 16:20:04 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3F158762C9;
-	Fri,  9 Feb 2024 16:18:36 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 492D5762C9;
+	Fri,  9 Feb 2024 16:19:59 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="o9Du5kxk"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="l95ykCD3"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-ej1-f45.google.com (mail-ej1-f45.google.com [209.85.218.45])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AF7E674E2B;
-	Fri,  9 Feb 2024 16:18:34 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 993A271B2F;
+	Fri,  9 Feb 2024 16:19:57 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.45
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1707495516; cv=none; b=tDb3FB7IgFtbZMS6YFXkqN/+CmuuXKNQsckn7EYRwZS6vUa9KZmSl6irkA8RnC/21kwXfJAWkD4Er8QbDB83jrYLFNacL53hW96gYGsyioC7Z9vDVQc1dbdVfzHlg02iFiYj2Ibne5LuHfc3TRPoWkxJKJwn8ut32YCuoqtOa+c=
+	t=1707495599; cv=none; b=P/OH2y0o8iu0KhNUCxGR72wR9vq5ExW5GFuvsigSzVuSN9b16pdETxI7/4J5/8hHZF1N5a48Yv7aIgFWnwc/utMnAk3gKF5gOlmaNcHR+tJRwACoi4ksOz/y3UeN0gzJJSCZEvst9jGK72Fu4K+RGLNmrESnu13NXGwkxY2++78=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1707495516; c=relaxed/simple;
-	bh=T2AfydLIYm7P7v0jVs0AD6Xigpk5QM18sacEyvHtS9o=;
-	h=From:To:CC:Subject:Date:Message-ID:MIME-Version:Content-Type; b=FgHgqAUk8g5KCM8Vu2ji/LPGp+Q4ivDIY2VPG9pfSWklhIiNuo+p0foDeUrP3tTmhu0pbwGE3xQ7Qv3bjP2tgV0rx57QFaSLvzx4/dDt7gRhr+YKEqJHL5tAVU+94rSlMbF0z4zcVnRyI+TygY8wd+V/AkaJSqvU0qv0wP+hYoQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=o9Du5kxk; arc=none smtp.client-ip=205.220.168.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
-Received: from pps.filterd (m0279863.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.17.1.24/8.17.1.24) with ESMTP id 419FQ6VM012051;
-	Fri, 9 Feb 2024 16:18:16 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
-	from:to:cc:subject:date:message-id:mime-version
-	:content-transfer-encoding:content-type; s=qcppdkim1; bh=FDudMkc
-	BnrHHsBx06brnVBQgTQBahGVuiHXHp0oAYrA=; b=o9Du5kxkPcRqsTsLIKOX+aA
-	GYIvfoZ/6XGKFlsb7vn9D6iWDJqEaDoyFbDwgroqODuFKOJD2RI6GFn9aY1SQUh0
-	o+qW8S95xjeEZfvFT77BQzZaQcj5RHEepRsU2ACjXnOwo/1WFiocXWvnqnJYC78m
-	XlbAlU+QaY0vAp3hgM6D1PRRmQnXct/p6LM3RjaSc3byh1O2DxGV7nI/zi6bcXvP
-	U6jfu5i2RFEL5LQ7TQ26inyRXvueLS1/g15+4rT1Y4lt159nKMPY4dtxeAjDfEaJ
-	1I1wFWy8289QhoOLrr3xu7wIoOdn7iHt0F1RHUstAUKVtBZKw+wpRQ6RuE+QGTw=
-	=
-Received: from nalasppmta01.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3w4wbvkhqr-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Fri, 09 Feb 2024 16:18:16 +0000 (GMT)
-Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
-	by NALASPPMTA01.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 419GIFoj027267
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Fri, 9 Feb 2024 16:18:15 GMT
-Received: from jhugo-lnx.qualcomm.com (10.80.80.8) by
- nalasex01a.na.qualcomm.com (10.47.209.196) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.1118.40; Fri, 9 Feb 2024 08:18:14 -0800
-From: Jeffrey Hugo <quic_jhugo@quicinc.com>
-To: <andersson@kernel.org>, <konrad.dybcio@linaro.org>,
-        <wim@linux-watchdog.org>, <linux@roeck-us.net>, <robh@kernel.org>,
-        <krzysztof.kozlowski+dt@linaro.org>, <conor+dt@kernel.org>,
-        <quic_rjendra@quicinc.com>
-CC: <linux-arm-msm@vger.kernel.org>, <linux-watchdog@vger.kernel.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        Jeffrey Hugo
-	<quic_jhugo@quicinc.com>
-Subject: [PATCH] dt-bindings: watchdog: qcom-wdt: Update maintainer to Rajendra Nayak
-Date: Fri, 9 Feb 2024 09:18:00 -0700
-Message-ID: <20240209161800.3872964-1-quic_jhugo@quicinc.com>
-X-Mailer: git-send-email 2.34.1
+	s=arc-20240116; t=1707495599; c=relaxed/simple;
+	bh=uDjDUY3P0+WE/SPdp/1ux0/uBkjqqDlL7BI+AmmT2tI=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=Ds177alD9PY6m7bwgyHRIa9Qb0Lv7DLQQz0HiY9+yS6n4AJT0ppQipwevbXNvlKklyJf2PcYCvEtOAxyzQhDsKzsq7Q0JleD/CnZOgPk6SmZZMRTjDrZQMjMdYuXRfm/a0f1Jf7D0047HCCvkArdQY0QihumS70LUwiblH1W+vI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=l95ykCD3; arc=none smtp.client-ip=209.85.218.45
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-ej1-f45.google.com with SMTP id a640c23a62f3a-a293f2280c7so160124466b.1;
+        Fri, 09 Feb 2024 08:19:57 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1707495596; x=1708100396; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=wLP9iN3k8faqF+s9nCNVsfYWD3ZQYtsS40zG0nFvago=;
+        b=l95ykCD30K15nXul/IfqSdxhyp+XJ5sor9iu0e8J5yUKsaP4WYVklCuSQKEMC0Pw0i
+         sD2217IEoNIZTnZwlU3yT2qjvY7VB9OcXbrVWFfPKqjYMl7fZYyvcOZy5pUK0QBuzzW5
+         Hb/bWVM4pQRz9DNI7zUdrb3wph858DstudbGpczX6dZbhTSh2ryqZOhLzh9a9Ay3iBDt
+         Ny7fLtIiYCbTcRm0/NUHicXLMY4PkQSs2qSC8ljecaFCktuGV5aGjxgkMlIonUVmitCB
+         A817QU2UmtcHgQ1qRAM/QKQ3vU9m9lJXOH8Y2qlh+z0Ip5yGjZ/fcke/QmT3piRksQGH
+         5N4A==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1707495596; x=1708100396;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=wLP9iN3k8faqF+s9nCNVsfYWD3ZQYtsS40zG0nFvago=;
+        b=OJQ4XDHUirce5Zwu/fwnTcvzH+5eT2iw1taSh/49ncC9qY0i/laolWvzg9NVL03fki
+         j/ytpvh6lQfyTDcRBLStjjRGpKW2Z0Irfi5CaoJMTTodwWGuHYFb0+KDs+JK7u2IEB0D
+         EP7zF4p6nvBbsVKUOL2a5Pjdt6sI3E0spl72n3C4oO0oQR2fSXEQa/DSZz17DeDLtmvB
+         dasKYeIijdBs/gr0rxmGpSurX5jnp1XKh8dGTDYKnYGqUmCw1M6EMGXHiVaY+h6HafPu
+         T5AUpdMyWDI/jZk6hwa4a7rhS2IEIb/LUXk6OkXexbnK841/bW2evMHSai0PizLSGAB6
+         otAQ==
+X-Forwarded-Encrypted: i=1; AJvYcCUADJC+gH+QBjTfM/9vP302WAvtYqkU+J/o1Fk+Z0ppDY3BPS7R+hQhmZPcdrT4Cr+8EoUeWafB/LJaXJalTTm0f1G3mCI/39Vt+A==
+X-Gm-Message-State: AOJu0YwQslldAwTWm8j7874xyqFqxyHcgqyTQ2KDy2csRjSC/FYb5UXd
+	Whi14fjtZSqaVa0ewtGa9v9AJhqQf1apap/oyIGb2hbjf5YrtIQjw8Z+W7s+iqhOs/HhVytrkvV
+	md1L+CGGszHcp7XRR0h45waTltEc=
+X-Google-Smtp-Source: AGHT+IEHK6VVEB+VN3NaW9zCak+RKLaMsm7Ru5zv6jOnArykt/XGpIEXG224KeccUyxBvD3o32Y3TDpway3uwAkjRkY=
+X-Received: by 2002:a17:906:bc5b:b0:a38:c07:7d51 with SMTP id
+ s27-20020a170906bc5b00b00a380c077d51mr1821507ejv.59.1707495595578; Fri, 09
+ Feb 2024 08:19:55 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
- nalasex01a.na.qualcomm.com (10.47.209.196)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-GUID: nw2lAVp0wTIXFXzoSZxk-MU6i4UY9kmc
-X-Proofpoint-ORIG-GUID: nw2lAVp0wTIXFXzoSZxk-MU6i4UY9kmc
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.272,Aquarius:18.0.1011,Hydra:6.0.619,FMLib:17.11.176.26
- definitions=2024-02-09_14,2024-02-08_01,2023-05-22_02
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 impostorscore=0
- lowpriorityscore=0 phishscore=0 adultscore=0 bulkscore=0 clxscore=1011
- priorityscore=1501 malwarescore=0 suspectscore=0 mlxlogscore=775
- spamscore=0 mlxscore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.19.0-2401310000 definitions=main-2402090120
+References: <20240209-iio-backend-v10-0-3ed842064318@analog.com> <20240209-iio-backend-v10-5-3ed842064318@analog.com>
+In-Reply-To: <20240209-iio-backend-v10-5-3ed842064318@analog.com>
+From: Andy Shevchenko <andy.shevchenko@gmail.com>
+Date: Fri, 9 Feb 2024 18:19:19 +0200
+Message-ID: <CAHp75VfxXohbPXZBzTqjBvr8Yec0MTRgBOg5SKs108+0oseq3Q@mail.gmail.com>
+Subject: Re: [PATCH v10 5/7] iio: add the IIO backend framework
+To: Nuno Sa <nuno.sa@analog.com>, Andi Shyti <andi.shyti@kernel.org>
+Cc: linux-iio@vger.kernel.org, devicetree@vger.kernel.org, 
+	Lars-Peter Clausen <lars@metafoo.de>, Michael Hennerich <Michael.Hennerich@analog.com>, 
+	Jonathan Cameron <jic23@kernel.org>, Rob Herring <robh+dt@kernel.org>, 
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Frank Rowand <frowand.list@gmail.com>, Olivier Moysan <olivier.moysan@foss.st.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-The servers for the @codeaurora domain are long retired and any messages
-sent there will bounce. Sai has left the company and appears no longer
-active in the community which leaves this binding orphaned. Rajendra Nayak
-has volunteered to take over as maintainer.
+On Fri, Feb 9, 2024 at 5:26=E2=80=AFPM Nuno Sa <nuno.sa@analog.com> wrote:
+>
+> This is a Framework to handle complex IIO aggregate devices.
+>
+> The typical architecture is to have one device as the frontend device whi=
+ch
+> can be "linked" against one or multiple backend devices. All the IIO and
+> userspace interface is expected to be registers/managed by the frontend
+> device which will callback into the backends when needed (to get/set
+> some configuration that it does not directly control).
+>
+> The basic framework interface is pretty simple:
+>  - Backends should register themselves with @devm_iio_backend_register()
+>  - Frontend devices should get backends with @devm_iio_backend_get()
 
-Signed-off-by: Jeffrey Hugo <quic_jhugo@quicinc.com>
----
- Documentation/devicetree/bindings/watchdog/qcom-wdt.yaml | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+...
 
-diff --git a/Documentation/devicetree/bindings/watchdog/qcom-wdt.yaml b/Documentation/devicetree/bindings/watchdog/qcom-wdt.yaml
-index a4f35c598cdb..47587971fb0b 100644
---- a/Documentation/devicetree/bindings/watchdog/qcom-wdt.yaml
-+++ b/Documentation/devicetree/bindings/watchdog/qcom-wdt.yaml
-@@ -7,7 +7,7 @@ $schema: http://devicetree.org/meta-schemas/core.yaml#
- title: Qualcomm Krait Processor Sub-system (KPSS) Watchdog timer
- 
- maintainers:
--  - Sai Prakash Ranjan <saiprakash.ranjan@codeaurora.org>
-+  - Rajendra Nayak <quic_rjendra@quicinc.com>
- 
- properties:
-   $nodename:
--- 
-2.34.1
+> +       fwnode =3D fwnode_find_reference(dev_fwnode(dev), "io-backends", =
+index);
+> +       if (IS_ERR(fwnode)) {
+> +               dev_err_probe(dev, PTR_ERR(fwnode),
+> +                             "Cannot get Firmware reference\n");
+> +               return ERR_CAST(fwnode);
 
+You can combine them in one line (yeah, a bit ugly, I know, we
+discussed with Andi at some point that it would be nice to have
+dev_err_probe*() family of helpers for this and other not yet covered
+cases). Whatever Jonathan likes (as two or a single line), I'm fine
+with this, just a side note.
+
+> +       }
+
+--=20
+With Best Regards,
+Andy Shevchenko
 
