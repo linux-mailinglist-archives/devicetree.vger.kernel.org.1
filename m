@@ -1,258 +1,146 @@
-Return-Path: <devicetree+bounces-40126-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-40127-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id F358184F54D
-	for <lists+devicetree@lfdr.de>; Fri,  9 Feb 2024 13:38:59 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3807984F552
+	for <lists+devicetree@lfdr.de>; Fri,  9 Feb 2024 13:42:06 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 31F661C21726
-	for <lists+devicetree@lfdr.de>; Fri,  9 Feb 2024 12:38:59 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 5BE1E1C21977
+	for <lists+devicetree@lfdr.de>; Fri,  9 Feb 2024 12:42:05 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 87D853612A;
-	Fri,  9 Feb 2024 12:38:50 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="b4fU8DQn"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1697A374C6;
+	Fri,  9 Feb 2024 12:42:01 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f54.google.com (mail-wm1-f54.google.com [209.85.128.54])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from IND01-BMX-obe.outbound.protection.outlook.com (mail-bmxind01on2099.outbound.protection.outlook.com [40.107.239.99])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5D6BD374C2
-	for <devicetree@vger.kernel.org>; Fri,  9 Feb 2024 12:38:47 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.54
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1707482330; cv=none; b=dkv9UBgYJTHEtKnzPFFrVzqJIYBH8ZqDUr2kbebmZUWEl5osCCoKjaCOUH49vPi5AlCgo61lJB9g6JhjtF/1Uh9hF9VTzO6xmDL4ZOp4n8FQMvlrP76Q3qVTXoYKHaNuTzHx2snD5HDMcqkHu/Qo7VC4VOpcf+NzBpKwz8tAX5E=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1707482330; c=relaxed/simple;
-	bh=/7ePMKhf/jwpNQyGAfViRmSleIJsB8xN+xpJpmyGV3g=;
-	h=Message-ID:Date:MIME-Version:Subject:To:References:From:
-	 In-Reply-To:Content-Type; b=faY9X82Rl1+YYz9BKCj9L2/bMS7Y9MtH66ATvw0meFTI6Gmzhb0kjFzqypQwimkSeKXZCok4zFLh6Sr/OhqdFGrGf0xAQOzNJQNLCQKw3Fu7g+cVLH4ZDkddxAE2ql/nrXJnXp1UuhCdpKWXmR9aeJHLwFUDuq/vsZIsJ8dGJlQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=b4fU8DQn; arc=none smtp.client-ip=209.85.128.54
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-wm1-f54.google.com with SMTP id 5b1f17b1804b1-41060e5b664so5607755e9.1
-        for <devicetree@vger.kernel.org>; Fri, 09 Feb 2024 04:38:47 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1707482325; x=1708087125; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from
-         :content-language:references:to:subject:user-agent:mime-version:date
-         :message-id:from:to:cc:subject:date:message-id:reply-to;
-        bh=MCv2kQLqTwyLEu6yumZzrrTFSEY37Nydh42fHPDeBe0=;
-        b=b4fU8DQnKWptQOYbr+D0GzWd78swUJza1vcZMapeDfMoCNgnK/u2VQLXiEfjOHw0u+
-         LjZxn6dcKgoQmpb7v6xHsZNmH+3dvXKtv9NWiDzB2UabejvZQQ8mxmAPtKJuU62c9iPu
-         fwJ2/gp4AFLCWMbk5d/9t0fuF+TRNNHQjVHcAhHgsTLe1Dk5rBtPyiBbs9EMPzCPUd7Z
-         D7QouYe/0vxCPKgMO+oZBYfxJKrDaMLcLIfziug9qB2JBQd4sQGbiLOWaRvRcfuZvF+b
-         UugmTy20sSZkCSulx/P60C2RUAOiLIBXLpR4VpK6DnNxd2eE22z0zlos6TqDlRAJZfg8
-         V0Dw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1707482325; x=1708087125;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from
-         :content-language:references:to:subject:user-agent:mime-version:date
-         :message-id:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=MCv2kQLqTwyLEu6yumZzrrTFSEY37Nydh42fHPDeBe0=;
-        b=iqK2TNnQMfaBL/g+ScMM57HTa8iDlxO+/widYc3AK+r3iFH+/FG3t4Qb9P0/vB6SJV
-         kVlIiiGmeXesW3CLvLryIpDh0GKnuoCmbJrv4ZJjHeZwCde9RYirZW/ax5pFDBqdlhQQ
-         XhZSEHuLZJxxpVinh+noAw8wAJuBeUezOcGYOuBuFwUpn/2ty2mGYGa6Ib8aroXN4O4x
-         bOpMMxzVqAG6W7OP6yhXPWAa1i+i3GV26qFyFhjJjpUXlk361lyU6aoe7z2GMtTo9y4I
-         OT99tWfBtgrUFmyGAn81o6rat4jBDgVDQ2Wrr0gIKFgaFFQ0gwIRy1CM494NNcGtwxAL
-         jEFg==
-X-Gm-Message-State: AOJu0YzCvck/l8AEEyvw4p7UnpubHvjcd/V4ygpUPpeEGWRcL9BKfaYw
-	AVkUt7wPGAdFSQaiQ8BSVeN2F2hdf7yWTzvfRcL/OfoJ3InjCHNH79KeNYZL0Ts=
-X-Google-Smtp-Source: AGHT+IFaynWaB4IOtcO4cVsPTOTuo8vTmoP1T8geeHJOYORcTko7JoBDxt1ruNCLKTCEVwR7Q91Z3w==
-X-Received: by 2002:a05:600c:1c81:b0:40f:4e0a:4ead with SMTP id k1-20020a05600c1c8100b0040f4e0a4eadmr920192wms.26.1707482325455;
-        Fri, 09 Feb 2024 04:38:45 -0800 (PST)
-X-Forwarded-Encrypted: i=1; AJvYcCWH45pCXG3ZTSbLNCdN35lJIE4pV+eRqZI62/Iwo68mO96KiIvKzmeNe+pCIZ4B2dNaMEHFNgUyiNbxdbcXiDjsDcruf86HCRB0SvXE2Kai4ruPzYNukRLcBDDXddathsMaiMVr10zX9IX8vDGUDSF+LvYW9Ya9c2ojj6XF+iTTrp3V5g97dAqsiEzp1bg/jbi2tU4vgQPqGAIZMUN5o0af4M28s74q7lQT2ninCSPTrLPsEg7tIxNspR9QlXf/U6kHqXV+872UXqV4rzfHbKk2I/g9RKy2gwcYTk7RtmbBsp88eH59Ct25XEXU1WwA83Wqjlr+W5JrVQiujSytvxfTw7dDyZL1qo+160DnaDSzzQ+dJfANoRZR
-Received: from [192.168.1.20] ([178.197.222.62])
-        by smtp.gmail.com with ESMTPSA id ay3-20020a05600c1e0300b004107ab8158bsm569370wmb.2.2024.02.09.04.38.44
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 09 Feb 2024 04:38:45 -0800 (PST)
-Message-ID: <dda6c22e-8f35-4c18-9fea-6a6295dee3a1@linaro.org>
-Date: Fri, 9 Feb 2024 13:38:42 +0100
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 598632E847;
+	Fri,  9 Feb 2024 12:41:58 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.107.239.99
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1707482521; cv=fail; b=kGS810MAw57dMl5sPgREzD9FA3Kos1T/wxtfpcEVWWgABkYW3ynEu869j0CJTD8GqLK4omTJ0Pny0jtg9TF8PKDUv/vZjPDKzMRIMaZtKuVml0Nto/EiJ0Uoxddlg8elrrTxzYAxeNIrincguOWr+9DxIPb7Jt/e4krZGKH/9bo=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1707482521; c=relaxed/simple;
+	bh=bmHiOXakmX8aFhnp2RqV4JTstKmsfWW5sShPvgSwFec=;
+	h=From:To:CC:Subject:Date:Message-ID:References:In-Reply-To:
+	 Content-Type:MIME-Version; b=jww05qGtiA5M1cTbtcHy346bStei62k7HsCCfG0lwc0uIGk3WDp0zdxUyyoD5wSz7BH1c2dtLCO9rGEpQMs1Z2d8BKfZcO9THxjm77+2o5L/bMsJT5o2fvGB8QyBiQ4o7vFSUqmwd1p1xvMRTHALbondMQYPZ9A5Wk81/hB7LD0=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=siliconsignals.io; spf=pass smtp.mailfrom=siliconsignals.io; arc=fail smtp.client-ip=40.107.239.99
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=siliconsignals.io
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=siliconsignals.io
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=JTbW+iGScD5LXhk9y6hkKH2zQfZHrswXiOxkTl+2ju3gkDlXKFGnh9OFKINpcIsMDydIy4/uFxT8VnSWDc5n2JI8G2vsgrUedfKL5IkKJHuK4GoIN4iT32mswbY1fDweUSqc5Oa/UO7nYpfw2FAhgWv+Bp0yULI2kjW8eQCI8DKNn1hsrwpy27Pqp7Gzsj8mEUtAfTkjur1Cy/TMrsYr9Z78yyZPIKOSlbPU9Pd+J3fHEixbm4wGpVky16JJhi3ZDLu8OH+2qtH9/t5CA2ACHqCV/plQPhLLAnmD3lF6KQENaxswb7ioFf+8o//YS5yz0ElaQqlm2LReubkSJtT5lw==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=bmHiOXakmX8aFhnp2RqV4JTstKmsfWW5sShPvgSwFec=;
+ b=ElqSKgi8xB/0nN6j/1ILmHw5LuLyXi2Fp3hStcIY/KyVMOOFcj3IPzlSh1/fICgIST2nkb7/atbR88E2flRWlTaRvV3kxZoygP54yxRLpmMp3KiABsWPQ1118KgjB5dw+sLHwyIGJJOA5Bqs1e6D92Z8QT8jlI6xfocG/Gzy9HRCbS8YscogJjgP19srmQdFMENKMZZWnIB+V8HaE18hEkqtbPzDgb8gp8/McBudgTpEq9jluUTCUfoAZnM4JhMjeYP8F11S+89WyAP4xZ0FuIYocpxODiwJkr4/PRlBTO3GTX9m/swph2IB26ZguoBesWBMoS+V8mjvTKo4fTZ9Kg==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=siliconsignals.io; dmarc=pass action=none
+ header.from=siliconsignals.io; dkim=pass header.d=siliconsignals.io; arc=none
+Received: from MAZPR01MB6957.INDPRD01.PROD.OUTLOOK.COM (2603:1096:a01:42::6)
+ by PN2PR01MB9746.INDPRD01.PROD.OUTLOOK.COM (2603:1096:c01:128::6) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7249.39; Fri, 9 Feb
+ 2024 12:41:55 +0000
+Received: from MAZPR01MB6957.INDPRD01.PROD.OUTLOOK.COM
+ ([fe80::72b4:8a64:2d93:7cc0]) by MAZPR01MB6957.INDPRD01.PROD.OUTLOOK.COM
+ ([fe80::72b4:8a64:2d93:7cc0%4]) with mapi id 15.20.7249.037; Fri, 9 Feb 2024
+ 12:41:55 +0000
+From: Bhavin Sharma <bhavin.sharma@siliconsignals.io>
+To: "sre@kernel.org" <sre@kernel.org>, "robh+dt@kernel.org"
+	<robh+dt@kernel.org>, "krzysztof.kozlowski+dt@linaro.org"
+	<krzysztof.kozlowski+dt@linaro.org>, "conor+dt@kernel.org"
+	<conor+dt@kernel.org>
+CC: Hardevsinh Palaniya <hardevsinh.palaniya@siliconsignals.io>,
+	"linux-pm@vger.kernel.org" <linux-pm@vger.kernel.org>,
+	"devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+	"linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
+Subject: Re: [PATCH v3 1/2] power: supply: Add STC3117 fuel gauge unit driver
+Thread-Topic: [PATCH v3 1/2] power: supply: Add STC3117 fuel gauge unit driver
+Thread-Index: AQHaV/IXnFbpZ+c/F0qcNLK93OyLCbEB+aEZ
+Date: Fri, 9 Feb 2024 12:41:55 +0000
+Message-ID:
+ <MAZPR01MB69579A5F5DB7BAEDA31E03E2F24B2@MAZPR01MB6957.INDPRD01.PROD.OUTLOOK.COM>
+References: <20240205051321.4079933-1-bhavin.sharma@siliconsignals.io>
+In-Reply-To: <20240205051321.4079933-1-bhavin.sharma@siliconsignals.io>
+Accept-Language: en-US
+Content-Language: en-US
+X-MS-Has-Attach:
+X-MS-TNEF-Correlator:
+msip_labels:
+authentication-results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=siliconsignals.io;
+x-ms-publictraffictype: Email
+x-ms-traffictypediagnostic: MAZPR01MB6957:EE_|PN2PR01MB9746:EE_
+x-ms-office365-filtering-correlation-id: 9d245599-c05e-42e9-a9c3-08dc296c7f96
+x-ms-exchange-senderadcheck: 1
+x-ms-exchange-antispam-relay: 0
+x-microsoft-antispam: BCL:0;
+x-microsoft-antispam-message-info:
+ 7ZyI/5wM9rc7gBcEVqyhZRvLNGNQpi/6ukTKJ8f6AZmvmtaixSmLazA95HKzeIdGkoERywCAEiEd6qM0xsRumySA778dnGAnTBQHgiZUq43kjNXfnCN2f+23Ocv0b0Ji4W2zeqKgM07xGQGN7jxhxqf2tAeZAgFYxg4YWKFbvYlkSJ2hfY9qC8g52SQTlkJPsoWDfTi1Vt4YH43nqmP0+0FKXO1vs7o4tzvaQlGLWZO1/j6NJ5Gj5Yp9Ss4ghVyfT7utp8NmPCiVuzK5BAmm7BXXcugDKyXveogdSn4gwJKbD1YgwocfmHEPfftZkfLa3fH1040Z8deceI9I5d/YwwVsF23fCk2r0Zj/gzy5JIodGEftB+7QoInqDEUb/pNatQeCXQ0MwE9iQOQCK3zkazgWl1Pn+nX231o9KG4zoyrK3wZ/p7wPhCQH7eYvUGGjOJp/zOdaAIbhhugXWWFhUr2pxF7LUnZ31Bkmhw8IALzz/7yb1RjLmoji9v57UjeoZtBfxlu64gZ0Q7R/uzFFPITR4H6goTR4KUfjlSQyV4QPgTckBPx7F9fJe4BTAv1XEoIgg8ytkGHpPZTk6kTikwjTkU9BfHeejTwVMLBuYAKyukTajTXOnUkwUz14Ev2E
+x-forefront-antispam-report:
+ CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:MAZPR01MB6957.INDPRD01.PROD.OUTLOOK.COM;PTR:;CAT:NONE;SFS:(13230031)(136003)(346002)(376002)(366004)(39830400003)(396003)(230922051799003)(186009)(64100799003)(451199024)(1800799012)(2906002)(44832011)(5660300002)(52536014)(55016003)(41300700001)(122000001)(38100700002)(26005)(86362001)(66476007)(6506007)(316002)(64756008)(478600001)(71200400001)(54906003)(9686003)(76116006)(33656002)(110136005)(7696005)(66556008)(66446008)(91956017)(66946007)(8936002)(558084003)(38070700009)(8676002)(4326008);DIR:OUT;SFP:1102;
+x-ms-exchange-antispam-messagedata-chunkcount: 1
+x-ms-exchange-antispam-messagedata-0:
+ =?iso-8859-1?Q?U7C+DBhnc3pdDGcHXPjW0IJfX9DrIAxOyEClKvNqKArYp27yFbuGAsQOAp?=
+ =?iso-8859-1?Q?15YM0v2fdLuPiTt/ftvCDT9szZRrwo1fXHGoxktADSxPTQZkAJVZkUL5mq?=
+ =?iso-8859-1?Q?ORW8oixZizeBBy2gSli1w28sMZT05gPkbcX5PR++z76/68CYxph61fzn4z?=
+ =?iso-8859-1?Q?TO05RDen1AEem46DH7/KC9u0t9sma5hsnfZ9G8qqmEyffsmLeaprPEoRm8?=
+ =?iso-8859-1?Q?BWvbJ7faoF+5mLRa43TEXO9AMhzVKW2n8+PyubpY/6Qn/eelWsnusfxs+/?=
+ =?iso-8859-1?Q?jdLY9mlG2Bn/ENu5sS263LSVOxODmM5DKqScQdUzwnksDdwMxh6J/NtFw4?=
+ =?iso-8859-1?Q?TobTxhovimqcGcbc8cw6ilhZKX88COEdhcAYinOyVZq0n7VxG1UCyByJaj?=
+ =?iso-8859-1?Q?JjwTiYMuzNZ/b3QWHAr5u1u6xVX7UpEYuRtStAzyAO4ISgYV6C8RvMSKrT?=
+ =?iso-8859-1?Q?ra6/hWP5rVtvJLpzuoFe5baGsIe7pQ5ukmzI7SlYSjX7Wfy/sh+8Ov1ZGM?=
+ =?iso-8859-1?Q?0CT6SMFdmRWvNlTRHiSPBmrtxms+9TJRxlTnNv6q+Ld7+q2IJ03/vWDFE+?=
+ =?iso-8859-1?Q?HOL8J7vaHUXuJnlXcWax2gv7BKt6sddVYVx58qlMx8nXREwfL2qXrSwUsJ?=
+ =?iso-8859-1?Q?PGJu6P2+yqyVdbQFj5nPRMekCsIg//1x2GpgfRqMKIHx0MWr0drOzbeIM4?=
+ =?iso-8859-1?Q?ELgEnP0YywBbHKXEOLoTSst1WC4Vlnfh6ne/df+gZblu4cUahl0T65VQRp?=
+ =?iso-8859-1?Q?4wD3v6+BKN1zv7cJEq6vb3QxZOP7TmJg9sNC+q3lm8fgDVwEpS0chu6Lsg?=
+ =?iso-8859-1?Q?mJcnPVbDPu5ZsaMlmdSGtKmij2E31gDnHThMtSbMuw5KrQ19UGuwKdoG8Z?=
+ =?iso-8859-1?Q?MzJZ01C8NAY69KUofkbOkGcQaiD/OyqwfTj/YV/jUV3Li270HauyxhUWtY?=
+ =?iso-8859-1?Q?zWaK3K98f+LSIzgpT8JSWFdwx9Gyz+SnV9jP64DojvJLh10alLFoYyaJdB?=
+ =?iso-8859-1?Q?ZzISmLfSdiiSWWcVywFEwSsp/RFpJpnmZ+aywzqqMLRnkcpV+i1IHy/+WD?=
+ =?iso-8859-1?Q?mEJb9vkMCnQr8twjiKADLAzBxFzygI/0lG6YXUcT3lALWKj3fOSRgSJ6Zo?=
+ =?iso-8859-1?Q?90G0dnDUzETTugPGPtHRmP/T4/diwAsX2MimQUGnTNaYa2HCHYo/JjBvjj?=
+ =?iso-8859-1?Q?RVIuHNWJin41/IRp5O9Ax+wya3HkmhGCf/Q835Yex2KfopBxFCBlmeCqYv?=
+ =?iso-8859-1?Q?rJZ9j3oKVijzP1QOfi9a3aPO5JGvGlpRU3tbthpOIQKXwV5M4l/VaoPOJj?=
+ =?iso-8859-1?Q?vY9aJSk7UtgxTqIIIP6bGOC74F7D/JXgpJfFo9ldiptN53NZA0WTJ1VK/w?=
+ =?iso-8859-1?Q?fF2/LHmIaJ4VfISWeGr6EkCRgm0/v9C9iOzCFtyPaLTEt2n7df4SF7PN+k?=
+ =?iso-8859-1?Q?LOy4vOnyedG+AAwahxVxHKBDGW9myz8XSHmT0/V+XoY8t0EUUZDUceM+7e?=
+ =?iso-8859-1?Q?kDN71pNHuXdeA4RUOW/aSYt52BRgyoie7eHI5OZjwgenP2pXbKrTxJxmoW?=
+ =?iso-8859-1?Q?1YohLqtfw1b8zcwYnRYkBu3J9PNS0Ukt1xaTLcJ4eXnLWSqMqZbRaR21Ek?=
+ =?iso-8859-1?Q?2EWnzw3RGqdfj38JfNx+VKv3FQgSA7yTxsZIhKsN+04gyFRs8/3Zt56A?=
+ =?iso-8859-1?Q?=3D=3D?=
+Content-Type: text/plain; charset="iso-8859-1"
+Content-Transfer-Encoding: quoted-printable
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 1/1] ARM:dts:aspeed: Initial device tree for AMD Onyx
- Platform
-To: Supreeth Venkatesh <supvenka@amd.com>,
- Supreeth Venkatesh <supreeth.venkatesh@amd.com>, joel@jms.id.au,
- andrew@aj.id.au, devicetree@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, linux-aspeed@lists.ozlabs.org,
- linux-kernel@vger.kernel.org, openbmc@lists.ozlabs.org, robh+dt@kernel.org
-References: <20240110033543.799919-1-supreeth.venkatesh@amd.com>
- <d4fe8b55-a1ea-4ce7-89ac-ce17e8ff4e45@amd.com>
-Content-Language: en-US
-From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
- 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
- D2GYIS41Kv4Isx2dEFh+/Q==
-In-Reply-To: <d4fe8b55-a1ea-4ce7-89ac-ce17e8ff4e45@amd.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+X-OriginatorOrg: siliconsignals.io
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-AuthSource: MAZPR01MB6957.INDPRD01.PROD.OUTLOOK.COM
+X-MS-Exchange-CrossTenant-Network-Message-Id: 9d245599-c05e-42e9-a9c3-08dc296c7f96
+X-MS-Exchange-CrossTenant-originalarrivaltime: 09 Feb 2024 12:41:55.3291
+ (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 7ec5089e-a433-4bd1-a638-82ee62e21d37
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: 4ELmvzIhMy1LtctNIT901TwEDg4fcXXBuCyybcbwcZxQCQzkUQo5WNnZHLXEx3AvlVs4EgSeLj+WuLlpsiGzXjN0eX7Fm4lnSPNip3Illdg=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: PN2PR01MB9746
 
-On 08/02/2024 15:57, Supreeth Venkatesh wrote:
-> This patch is pending for a month now.
-> 
-> Can DT maintainers please help review this and provide feedback?
-
-I don't have the original patch in my inbox anymore, so probably you
-should resend. Anyway quick look points to obvious issues (comments below).
-
-> 
-> On 1/9/24 21:35, Supreeth Venkatesh wrote:
->> This patch adds initial device tree and makefile updates for
->> AMD Onyx platform.
->>
->> AMD Onyx platform is an AMD customer reference board with an Aspeed
->> ast2600 BMC manufactured by AMD.
->> It describes I2c devices, Fans, Kcs devices, Uarts, Mac, LEDs, etc.
->> present on AMD Onyx platform.
->>
->> Signed-off-by: Supreeth Venkatesh <supreeth.venkatesh@amd.com>
->> ---
->>   arch/arm/boot/dts/aspeed/Makefile             |  1 +
->>   .../boot/dts/aspeed/aspeed-bmc-amd-onyx.dts   | 98 +++++++++++++++++++
->>   2 files changed, 99 insertions(+)
->>   create mode 100644 arch/arm/boot/dts/aspeed/aspeed-bmc-amd-onyx.dts
->>
->> diff --git a/arch/arm/boot/dts/aspeed/Makefile b/arch/arm/boot/dts/aspeed/Makefile
->> index fb9cc95f1b60..2b27d377aae2 100644
->> --- a/arch/arm/boot/dts/aspeed/Makefile
->> +++ b/arch/arm/boot/dts/aspeed/Makefile
->> @@ -5,6 +5,7 @@ dtb-$(CONFIG_ARCH_ASPEED) += \
->>   	aspeed-ast2600-evb.dtb \
->>   	aspeed-bmc-amd-daytonax.dtb \
->>   	aspeed-bmc-amd-ethanolx.dtb \
->> +	aspeed-bmc-amd-onyx.dtb \
->>   	aspeed-bmc-ampere-mtjade.dtb \
->>   	aspeed-bmc-ampere-mtmitchell.dtb \
->>   	aspeed-bmc-arm-stardragon4800-rep2.dtb \
->> diff --git a/arch/arm/boot/dts/aspeed/aspeed-bmc-amd-onyx.dts b/arch/arm/boot/dts/aspeed/aspeed-bmc-amd-onyx.dts
->> new file mode 100644
->> index 000000000000..a7056cd29553
->> --- /dev/null
->> +++ b/arch/arm/boot/dts/aspeed/aspeed-bmc-amd-onyx.dts
->> @@ -0,0 +1,98 @@
->> +// SPDX-License-Identifier: GPL-2.0+
->> +// Copyright (c) 2021 - 2024 AMD Inc.
->> +// Author: Supreeth Venkatesh <supreeth.venkatesh@amd.com>
->> +
->> +/dts-v1/;
->> +
->> +#include "aspeed-g6.dtsi"
->> +#include <dt-bindings/gpio/aspeed-gpio.h>
->> +
->> +/ {
->> +       model = "AMD Onyx BMC";
->> +       compatible = "amd,onyx-bmc", "aspeed,ast2600";
-
-Undocumented compatibles.
-
-Please run scripts/checkpatch.pl and fix reported warnings. Some
-warnings can be ignored, but the code here looks like it needs a fix.
-Feel free to get in touch if the warning is not clear.
-
->> +
->> +       aliases {
->> +               serial0 = &uart1;
->> +               serial4 = &uart5;
->> +      };
->> +
->> +       chosen {
->> +               stdout-path = &uart5;
->> +               bootargs = "console=ttyS4,115200 earlyprintk vmalloc=512MB";
-
-earlyprintk is debugging, not for mainline, so drop.
-
-Console should be encoded in stdout-path.
-
-vmalloc looks like OS tuning, so also not suitable for mainline DTS.
-
-
->> +       };
->> +
->> +       memory@80000000 {
->> +               device_type = "memory";
->> +               reg = <0x80000000 0x80000000>;
->> +       };
->> +
-
-Drop redundant blank lines.
-
->> +};
->> +
->> +&mdio0 {
->> +       status = "okay";
->> +
->> +       ethphy0: ethernet-phy@0 {
->> +               compatible = "ethernet-phy-ieee802.3-c22";
->> +               reg = <0>;
->> +       };
->> +};
->> +
->> +&mac3 {
->> +       status = "okay";
->> +       phy-mode = "rgmii";
->> +       phy-handle = <&ethphy0>;
->> +
->> +       pinctrl-names = "default";
->> +       pinctrl-0 = <&pinctrl_rgmii4_default>;
->> +};
->> +
->> +>> +
-
-Drop redundant blank lines. You can open existing, recent DTS from
-maintained platforms like Qcom or TI and look there at coding style.
-
-
-
-Best regards,
-Krzysztof
-
+Hi,=0A=
+=0A=
+I have received comments for documentation patch of this driver and I am wo=
+rking on it. =0A=
+=0A=
+Any comments or suggestions here?=0A=
+=0A=
+=0A=
+Regards,=0A=
+Bhavin Sharma=0A=
 
