@@ -1,74 +1,75 @@
-Return-Path: <devicetree+bounces-40257-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-40258-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8349D84FE8D
-	for <lists+devicetree@lfdr.de>; Fri,  9 Feb 2024 22:19:46 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 917F284FEAD
+	for <lists+devicetree@lfdr.de>; Fri,  9 Feb 2024 22:22:57 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 133671F26099
-	for <lists+devicetree@lfdr.de>; Fri,  9 Feb 2024 21:19:46 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 08814B230DE
+	for <lists+devicetree@lfdr.de>; Fri,  9 Feb 2024 21:22:55 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2D32C16439;
-	Fri,  9 Feb 2024 21:14:33 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D1CD226297;
+	Fri,  9 Feb 2024 21:17:58 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="trQ6dcth"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="vBA5/R5v"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lj1-f182.google.com (mail-lj1-f182.google.com [209.85.208.182])
+Received: from mail-ej1-f42.google.com (mail-ej1-f42.google.com [209.85.218.42])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 639C120DED
-	for <devicetree@vger.kernel.org>; Fri,  9 Feb 2024 21:14:30 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.182
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0890E28DDE
+	for <devicetree@vger.kernel.org>; Fri,  9 Feb 2024 21:17:56 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.42
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1707513273; cv=none; b=rZVlvQzYCnLNjskm182QdKDRAVCy3DJ3QINHfp2ee5GYipdKfLgeiVNxrPARgK++2aGxalnjQuiM8fmtGhTwSfDfBIBr7NiuV+MkcSvyTXQMwiSshO2exy2r+G/z1t1p3HyDFOFBGXEZLuUm4QwfFnqH+B8ltscBrb4FtsvRqPI=
+	t=1707513478; cv=none; b=Bzwp0JEwvrhyCHHp7BAPoSLYWeBOogke5NvJUC4PkPB3D3AGON52A+lT5RKDQDMXSv1iphTP8N7/Ig2msKSe3BCFV3JWVPlZTgAyfMBnoqXizSzMq8mOSBgMtapCmY6hWn0x0d5fB99Yw5rFy/VjXxSrbf/hJ7sj4RSCT9toYmk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1707513273; c=relaxed/simple;
-	bh=/4PvF6Tyb1ttF395L3gJlZpQ1YM5myFip1eEfl36e0M=;
+	s=arc-20240116; t=1707513478; c=relaxed/simple;
+	bh=k+q8GVcm37M2DOBHfFk5ukpkWH4xwPFh21oXz/kS0S8=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=Vcvd8Lri0Dx0H/bTr/fxwol873X+ZAlSsD3oZgE4PEVhC1K9dEJk4HAWI7pf6pZLwU5ZV3bgeqWvN6JSvt4fe1nfgNkjPYo8Z/+JQ5abzpEoOR5WkSLdx1duXPKf/xOskLl49GW5ZnQW0b4t0g83r8KIag4VFScWBv4tDSFDx8I=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=trQ6dcth; arc=none smtp.client-ip=209.85.208.182
+	 In-Reply-To:Content-Type; b=pcJKbLGFEdKry8UCXmtEgjlSW0l47WhxTlVe0pn6c/xvS6Y40tSQvqQ4dMKFc/o87sxa2WDcWZV/yHbPUqjxVvw0OJgTzHVw4yk9DDkmI3eaFxESuk8E+ppLzrXJsCClytlNYES9R8nf1h2Hp4EsqJ3J9l5PXqoQTFpu6+utuJs=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=vBA5/R5v; arc=none smtp.client-ip=209.85.218.42
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-lj1-f182.google.com with SMTP id 38308e7fff4ca-2d0e5210151so1262501fa.3
-        for <devicetree@vger.kernel.org>; Fri, 09 Feb 2024 13:14:30 -0800 (PST)
+Received: by mail-ej1-f42.google.com with SMTP id a640c23a62f3a-a3c0d92ca8aso69833266b.3
+        for <devicetree@vger.kernel.org>; Fri, 09 Feb 2024 13:17:56 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1707513269; x=1708118069; darn=vger.kernel.org;
+        d=linaro.org; s=google; t=1707513475; x=1708118275; darn=vger.kernel.org;
         h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
          :to:content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=6EW1CDRbIEpLF8e19KgnZEiq7iXVg7C616XZKbJYbY0=;
-        b=trQ6dcthAhcs9XIk9aI4Rz2cqYMlNr5wCmBgrM4tnU24PkxIsJ/BttFcc5+ElusTTR
-         WtJT9hILrRygTs/AlDl4dyIHcCNXL72b6XBmoqZWWK0lfYBUTEImEVjIXz23ij54jjSr
-         id31dc4ft/OIpynuQnRUOkXW27ZqaxmIzR+enmhlTosWnKEAs+sNZKU40ma8axG2dAVk
-         fPLL9Gr5doiIk0mAxGQmerKQ1Giw8uqy/xb/BL+iLk5doo7kBu2rS2LZ40lyyZ+ZJqNc
-         FU7xWc6tPF2Hw7jZ/KUzZRgywDiWkjaqJGPSvuKvy40gIOql99A7OySDPlVvjSSNQyKr
-         Rqvw==
+        bh=LVoSokiaKGaUYmnPXQyscywpomvYxKVzbMKo32GAWvs=;
+        b=vBA5/R5vRVqTPJBQcpsikJ1i9XyIOGcEbiLwQFhc3kzI+Rn4OoO7Ew36k9sZ625UNg
+         pg5pNU6WStniZX7qW4HGcJXWotQS3OCfUhMuSN7bZPdK1d+HAgwu8AyEY38fQi6w5h27
+         DFTlWVtHPenFuCdZPDwQWVdli/28Mc0vIyg9QXH1eIllvtdd1z9Lw5xAEAnSt3wxq3TS
+         /xmPF3nUejjlURa0V924xfonXoasGkvv99Esn3M/FinDWAemtJwSKhXCgDk+nlNTSaGJ
+         j1hEzsYHHggCj95+ti5yuw2MzgVcPPiCi5akMlYhbsNTWvPuoqB+DQzQ5+HKwq3TFPRg
+         LpPw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1707513269; x=1708118069;
+        d=1e100.net; s=20230601; t=1707513475; x=1708118275;
         h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
          :to:content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=6EW1CDRbIEpLF8e19KgnZEiq7iXVg7C616XZKbJYbY0=;
-        b=F8xNBIqstV4jGx7YIe4WjYo6m8ACpwIKEJUiO8X6Zsd4kdCwgc/0WJZFEcpHQX8ewF
-         e2cufK2B8G88SYcOdJMmBSyScLE98DmpSN5TEzUKdbI6YJez1XtS6OAKcldC29TTDzkA
-         gzU1krXd6+kz9vPnj4X6E0FwHyNrmgDnDG7rl5LHz/U3HX5tbu2NZz33P1MwTN2oyVwl
-         hblZdTLO3SYfqmYIPC56lAxYrBNLqhs8MSpPuO0VQCARTYKytd3YR31xFrzOxlCVaAP2
-         gKbzbbBEl1Zi3oOa09gtFyCy0rZERyc6tanJ8Cne1t7Rty5+M63qPMpWPvH8O5fdiv8/
-         s+Cg==
-X-Gm-Message-State: AOJu0YxEATRtL63PEziXZbtgXdLimOtqja97CAT013G855tz3lmnTTOi
-	Jk2JVElaXehusHysaLHWJA7kXSVXuOR5d/wArvmFoEd14EnIZwpNYo8IkCPsb9o=
-X-Google-Smtp-Source: AGHT+IERL9gI6gwl5IKFoX2LFUUFiGchsQS6j1nPZSDT/LjNQFedLL5+aL/SUvBpyHArN+tP8vp2mw==
-X-Received: by 2002:a05:651c:199f:b0:2d0:9a6e:80 with SMTP id bx31-20020a05651c199f00b002d09a6e0080mr150223ljb.43.1707513268970;
-        Fri, 09 Feb 2024 13:14:28 -0800 (PST)
-X-Forwarded-Encrypted: i=1; AJvYcCUhmor25wMXZG/moYNVgx/bGZybxE8qQR8IDlnfNj4UQnVA1FzdRz5EncLGwD70beDLK1KacUH4ktzFf+Vs2zo0R/plzZY4yTji5eCXM1YA7gkWEBBBG/HgBQ3bGDD7hQcflSsEQ7xrNsrhrkbnaUka95X5TUI1Fn0m4FbM8P2v2MMz+q1epx46L0xGFfWHNXbtVuRcsRtNiEUX4UI66J6bLw4s6P72A7/bkhgYVt0/TdgVCT7j4noRpzvy8XGbHWRJNJoU0ld/Yb6/4wbe5a+ui21DSzTFBvKSqGaobX4pR60lJl1cjv9+YdDXuEbq6CHMRarF9Yftgxnh7cbaKldB/bRZTeFoKgYma9GPZVXYN0l4yyPEc/Au3ek+mfs/Q4JqigEGMemQnSX44Bg58KjZHwEluJXQIhm1+a2Z1db954J84RHLAJpUe2zrIGe9ws4El7Tx5c4JLF5DVmP+/YwkAWhGfdf6nNWIXjufANCdrUsr4XVBA+HOGAtckEbzkIlx5SG/eYcI9S+tHN1+5PcCu713meA3ul4eoIyA94rTrONYG6u/Wi9oOm0a6sN4g7rZIliFfiu7vpFFpJZ0E33YNzkr1+zLaCT7e8HN5CV7FMcZqq6JskO5usHX+3rkrCNztl9cNMR0DyD8uLOxFtH3dz81FoHpL9XROVKeab4VVUvEfjJrA7LngBTdKyDO
+        bh=LVoSokiaKGaUYmnPXQyscywpomvYxKVzbMKo32GAWvs=;
+        b=RAX/STjpXAJ2Q5XpZ/qQhZaCSUTRmilAApO+v+sBm3NnYvk6+YaG7FhPXK6klkFdMD
+         Jkd63HoF2wcgyrnhxny6k8376Csv5TKSkX4pMi+z1pVicp49gpvoFX0Fe64ISLB5q+Ei
+         nroRb63MPQYe+1TwndLXZMe3T1rz2Zz+yr+7G5+nhX1y/O0TbYgf9lCYex4ck2wtZPuX
+         KkqwpMTLl111BDqcsznPGpOUqo8xSx48H460/I3wX7sAfObITnuoRnjhUEjqqHJLk4oi
+         uN2NOFuIr9UqCR9u0BGHgNgpb8EnKKABagaLNDr1VWqtzgpuW1bXH8cZkXTYUj7SAhJl
+         HVWw==
+X-Forwarded-Encrypted: i=1; AJvYcCXDlU+Ih4tFAWIcFqwJNE5YH0JKyvu0NS/lYq4LZLBCA8Dv+GATziQ5vFrBvl4dcm1mtSclRImLr9oOw30bK9L5KkxN+Zkxz/H1ag==
+X-Gm-Message-State: AOJu0YxptV4nZC0RAL4ytCwXhBoHrANoTzn9e2hdShZx8wRrkMcmqldm
+	OkrGOmxxEkRRVs/etZD3zW+pz8jt1t7eZdp57BfRqgFelkzcVV9hIIQjBo6pOQs=
+X-Google-Smtp-Source: AGHT+IFPHbebB0TCxBDxDR4N2achstR5pskoa23oRsBbFjLI5DrWhSZbEqMOFVS6xYiKv+0I7Y0q2A==
+X-Received: by 2002:a17:906:7b87:b0:a38:a2f:c131 with SMTP id s7-20020a1709067b8700b00a380a2fc131mr192858ejo.43.1707513475257;
+        Fri, 09 Feb 2024 13:17:55 -0800 (PST)
+X-Forwarded-Encrypted: i=1; AJvYcCV8SLIGRdPYwgzRHTmageyjpQrkavjkcpzurK4DCp0Qky210Dnq3OXvIoi84ZbLcaMqXMGlGaoUyV20QKFx3XipkXwFbnwEvKyBca1yFA0PLM2wHSdGXAhq/53yZy7czXjF1c2ZX7fje89K7/nKo+MV9QGaH7cpT9WBmfR0+5CMeQ7ec12Z1Xr6xmwp2pgdgRTDizRRXqV6TS6/87dtefQIPUkG+WIXqc9ExnfU5LLFLz85PNWAU1fG9MEn8gou6K/WwAJNzbRFLBmLEXCndysvxJcd/SxYxlLMJ8tKI9u9hCFlAOJikiSQVV7ZLMxg3DsZx6bNekhCkcQ=
 Received: from [192.168.192.207] (037008245233.garwolin.vectranet.pl. [37.8.245.233])
-        by smtp.gmail.com with ESMTPSA id u16-20020aa7d890000000b0055ef7742204sm98897edq.97.2024.02.09.13.14.26
+        by smtp.gmail.com with ESMTPSA id re12-20020a170906d8cc00b00a3895de6d53sm1125971ejb.140.2024.02.09.13.17.53
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 09 Feb 2024 13:14:28 -0800 (PST)
-Message-ID: <8a7b63a8-0583-43cf-9876-8a964c8b77ee@linaro.org>
-Date: Fri, 9 Feb 2024 22:14:25 +0100
+        Fri, 09 Feb 2024 13:17:54 -0800 (PST)
+Message-ID: <b60c69e5-69e9-46d2-ab23-52b12cfdd203@linaro.org>
+Date: Fri, 9 Feb 2024 22:17:52 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -76,33 +77,13 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v6 5/6] arm64: dts: qcom: sm8450: Add opp table support to
- PCIe
+Subject: Re: [PATCH] arm64: dts: qcom: aim300: Enable PCIe0 for WLAN
 Content-Language: en-US
-To: Viresh Kumar <viresh.kumar@linaro.org>
-Cc: Manivannan Sadhasivam <mani@kernel.org>,
- Krishna chaitanya chundru <quic_krichai@quicinc.com>,
- Bjorn Andersson <andersson@kernel.org>, Bjorn Helgaas <bhelgaas@google.com>,
- Lorenzo Pieralisi <lpieralisi@kernel.org>,
- =?UTF-8?Q?Krzysztof_Wilczy=C5=84ski?= <kw@linux.com>,
- Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Conor Dooley <conor+dt@kernel.org>, Rob Herring <robh+dt@kernel.org>,
- Johan Hovold <johan+linaro@kernel.org>, Brian Masney <bmasney@redhat.com>,
- Georgi Djakov <djakov@kernel.org>, linux-arm-msm@vger.kernel.org,
- vireshk@kernel.org, quic_vbadigan@quicinc.com, quic_skananth@quicinc.com,
- quic_nitegupt@quicinc.com, linux-pci@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-References: <20240112-opp_support-v6-5-77bbf7d0cc37@quicinc.com>
- <20240129160420.GA27739@thinkpad>
- <20240130061111.eeo2fzaltpbh35sj@vireshk-i7>
- <20240130071449.GG32821@thinkpad>
- <20240130083619.lqbj47fl7aa5j3k5@vireshk-i7>
- <20240130094804.GD83288@thinkpad>
- <20240130095508.zgufudflizrpxqhy@vireshk-i7> <20240130131625.GA2554@thinkpad>
- <20240131052335.6nqpmccgr64voque@vireshk-i7>
- <610d5d7c-ec8d-42f1-81a2-1376b8a1a43f@linaro.org>
- <20240202073334.mkabgezwxn3qe7iy@vireshk-i7>
+To: Qiang Yu <quic_qianyu@quicinc.com>, andersson@kernel.org,
+ robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org
+Cc: linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, quic_cang@quicinc.com, quic_mrana@quicinc.com
+References: <1706257348-638-1-git-send-email-quic_qianyu@quicinc.com>
 From: Konrad Dybcio <konrad.dybcio@linaro.org>
 Autocrypt: addr=konrad.dybcio@linaro.org; keydata=
  xsFNBF9ALYUBEADWAhxdTBWrwAgDQQzc1O/bJ5O7b6cXYxwbBd9xKP7MICh5YA0DcCjJSOum
@@ -139,26 +120,49 @@ Autocrypt: addr=konrad.dybcio@linaro.org; keydata=
  bGqMHex48FVZhexNPYOd58EY9/7mL5u0sJmo+jTeb4JBgIbFPJCFyng4HwbniWgQJZ1WqaUC
  nas9J77uICis2WH7N8Bs9jy0wQYezNzqS+FxoNXmDQg2jetX8en4bO2Di7Pmx0jXA4TOb9TM
  izWDgYvmBE8=
-In-Reply-To: <20240202073334.mkabgezwxn3qe7iy@vireshk-i7>
+In-Reply-To: <1706257348-638-1-git-send-email-quic_qianyu@quicinc.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 2.02.2024 08:33, Viresh Kumar wrote:
-> On 01-02-24, 15:45, Konrad Dybcio wrote:
->> I'm lukewarm on this.
->>
->> A *lot* of hardware has more complex requirements than "x MBps at y MHz",
->> especially when performance counters come into the picture for dynamic
->> bw management.
->>
->> OPP tables can't really handle this properly.
+On 26.01.2024 09:22, Qiang Yu wrote:
+> WLAN is connected to PCIe0 on aim300 board. Hence, enable PCIe0 to let
+> WLAN work.
 > 
-> There was a similar concern for voltages earlier on and we added the capability
-> of adjusting the voltage for OPPs in the OPP core. Maybe something similar can
-> be done here ?
+> Signed-off-by: Qiang Yu <quic_qianyu@quicinc.com>
+> ---
+> This change is tested and rebased on https://lore.kernel.org/linux-arm-msm/20240119100621.11788-7-quic_tengfan@quicinc.com/
 > 
-I really don't think it's fitting.. At any moment the device may require any
-bandwidth value between 0 and MAX_BW_PER_LINK_GEN * LINK_WIDTH..
+>  arch/arm64/boot/dts/qcom/qcs8550-aim300-aiot.dts | 19 ++++++++++++++++++-
+>  1 file changed, 18 insertions(+), 1 deletion(-)
+> 
+> diff --git a/arch/arm64/boot/dts/qcom/qcs8550-aim300-aiot.dts b/arch/arm64/boot/dts/qcom/qcs8550-aim300-aiot.dts
+> index 20a3c97..d42cfac 100644
+> --- a/arch/arm64/boot/dts/qcom/qcs8550-aim300-aiot.dts
+> +++ b/arch/arm64/boot/dts/qcom/qcs8550-aim300-aiot.dts
+> @@ -251,7 +251,7 @@
+>  
+>  &gcc {
+>  	clocks = <&bi_tcxo_div2>, <&sleep_clk>,
+> -		 <0>,
+> +		 <&pcie0_phy>,
+>  		 <&pcie1_phy>,
+>  		 <0>,
+>  		 <&ufs_mem_phy 0>,
+> @@ -349,6 +349,23 @@
+>  	status = "okay";
+>  };
+>  
+> +&pcie0 {
+> +	wake-gpios = <&tlmm 96 GPIO_ACTIVE_HIGH>;
+> +	perst-gpios = <&tlmm 94 GPIO_ACTIVE_LOW>;
+> +
+> +	pinctrl-names = "default";
+> +	pinctrl-0 = <&pcie0_default_state>;
+
+property-n
+property-names
+
+Acked-by: Konrad Dybcio <konrad.dybcio@linaro.org>
 
 Konrad
 
