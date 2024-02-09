@@ -1,90 +1,186 @@
-Return-Path: <devicetree+bounces-40177-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-40179-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6F9F784F8BB
-	for <lists+devicetree@lfdr.de>; Fri,  9 Feb 2024 16:40:56 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0C4DB84F8FC
+	for <lists+devicetree@lfdr.de>; Fri,  9 Feb 2024 16:57:08 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 06B8D1F25A0D
-	for <lists+devicetree@lfdr.de>; Fri,  9 Feb 2024 15:40:56 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 5BA4DB22C41
+	for <lists+devicetree@lfdr.de>; Fri,  9 Feb 2024 15:57:05 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2779374E15;
-	Fri,  9 Feb 2024 15:40:51 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id AF19876037;
+	Fri,  9 Feb 2024 15:57:01 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b="H480AzYP"
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="Y1EpISaC"
 X-Original-To: devicetree@vger.kernel.org
-Received: from vps0.lunn.ch (vps0.lunn.ch [156.67.10.101])
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.10])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 655A14EB3B;
-	Fri,  9 Feb 2024 15:40:49 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=156.67.10.101
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B94E16BFD6;
+	Fri,  9 Feb 2024 15:56:59 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=192.198.163.10
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1707493251; cv=none; b=sfl2C4qfnr8+92UzTvZyU0LEig1OcS/4tPFR73Kirdc+AZmDS/SFPHgvmcURITa0SAu53OahzAQQJcW9Q6fky4IeCBP2WojaxqigiErdi+aqawVKSuw2HB1jkL0F0ateKpZUTrI0gi0yoXmYeaR0dz3cF8MN2XgsMJLGQY8EAKA=
+	t=1707494221; cv=none; b=DjdWUUDUzl8ss03MgKRpLJZk/KMCDuq9IbcqfqyujMc8uIHuf3n685KrvyDheU/W755HepGIns3YPNggGRu4M9aub4la68Gyz99VwBFsZxXV9/4MO999jp3AwjIyYDLmfezpbNwkaKukYB+VeXsT/kFKwtWXw+diiEDeXeSLMEM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1707493251; c=relaxed/simple;
-	bh=MPW5mUOHhGvQPg5Tf7W+tLCjO+I4TQCvuwIij893KfA=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=jqD4jrauYAQD4KMuL6/obizFCXEyetOCFmBRNJkSdEP9Wj7MozdtkZQ0lemA1anELtijnxw7momI4dDmJ36ql05R/CEIcINVmla7ynlxOQZvJs409r5aeZtP4papEdTYTPphAaaPcS7UJX4+36hdEZokO08GW3G+zrU2G4+DDwY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch; spf=pass smtp.mailfrom=lunn.ch; dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b=H480AzYP; arc=none smtp.client-ip=156.67.10.101
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=lunn.ch
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
-	s=20171124; h=In-Reply-To:Content-Disposition:Content-Type:MIME-Version:
-	References:Message-ID:Subject:Cc:To:From:Date:From:Sender:Reply-To:Subject:
-	Date:Message-ID:To:Cc:MIME-Version:Content-Type:Content-Transfer-Encoding:
-	Content-ID:Content-Description:Content-Disposition:In-Reply-To:References;
-	bh=0JtvBMaLBcFOgHj2y9suAh17jw5aR24oDvXIDv/MskI=; b=H480AzYP/5GQ9LD5jtt07Tj8Mo
-	tSAs5RMFHHzFw2ZRMhUrJJXX/eS2xAAdhYuetmBs7FlvLfH0DkrH82JRdFEf1IkpQBhWkTpdc1qEo
-	QLqxon46sriFrfWYdbr+1/3vj1RlBLk+MJdphxEA+fvJ7kk+RHwxHNOhEIjgIJmw+WWc=;
-Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
-	(envelope-from <andrew@lunn.ch>)
-	id 1rYSzP-007Ogm-Cn; Fri, 09 Feb 2024 16:40:31 +0100
-Date: Fri, 9 Feb 2024 16:40:31 +0100
-From: Andrew Lunn <andrew@lunn.ch>
-To: POPESCU Catalin <catalin.popescu@leica-geosystems.com>
-Cc: "davem@davemloft.net" <davem@davemloft.net>,
-	"kuba@kernel.org" <kuba@kernel.org>,
-	"pabeni@redhat.com" <pabeni@redhat.com>,
-	"robh+dt@kernel.org" <robh+dt@kernel.org>,
-	"krzysztof.kozlowski+dt@linaro.org" <krzysztof.kozlowski+dt@linaro.org>,
-	"conor+dt@kernel.org" <conor+dt@kernel.org>,
-	"afd@ti.com" <afd@ti.com>,
-	"hkallweit1@gmail.com" <hkallweit1@gmail.com>,
-	"linux@armlinux.org.uk" <linux@armlinux.org.uk>,
-	"netdev@vger.kernel.org" <netdev@vger.kernel.org>,
-	"devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-	"linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-	GEO-CHHER-bsp-development <bsp-development.geo@leica-geosystems.com>,
-	"m.felsch@pengutronix.de" <m.felsch@pengutronix.de>
-Subject: Re: [PATCH v3 2/2] net: phy: dp83826: support TX data voltage tuning
-Message-ID: <3a0eace4-6f24-4f7e-b693-65973a112b32@lunn.ch>
-References: <20240209123628.2113971-1-catalin.popescu@leica-geosystems.com>
- <20240209123628.2113971-2-catalin.popescu@leica-geosystems.com>
- <00691961-d516-4338-b7e8-203625e561ee@lunn.ch>
- <5a15d8eb-d6e9-46cf-9b33-d0a04e01b365@leica-geosystems.com>
+	s=arc-20240116; t=1707494221; c=relaxed/simple;
+	bh=1Py4UFKVG/mP2yurJX7hEGwtHJpXMmiQ6Q1WRDmX8xc=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=lSTPzruh8WXMlEvY7xQHK99a3QN+oY+ziIgN6pKY4SPgmHaCh6h17Qy1jciEKNiJxEYq6RKkIiNsyuzX9kpLutfD3uyXtFMW1z+ZfKpWy/XPvCrCbKZp6TLgYSIccw806q22BAdVJ+GrGwUU//yNMUIQgetfpIja/osGy7fT4zo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com; spf=none smtp.mailfrom=linux.intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=Y1EpISaC; arc=none smtp.client-ip=192.198.163.10
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com
+Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=linux.intel.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1707494220; x=1739030220;
+  h=message-id:date:mime-version:subject:to:cc:references:
+   from:in-reply-to:content-transfer-encoding;
+  bh=1Py4UFKVG/mP2yurJX7hEGwtHJpXMmiQ6Q1WRDmX8xc=;
+  b=Y1EpISaCrQrk6iXtsa8lnM6Hd0aUxwyGY43YlK2gCVB2fpd8gAtUH3qk
+   44Un1m4TRKGVYIWGELuJj+rJYzY0oCU3Sfihl4qglVOTVh2irolrDmfI2
+   5lkYXDrTYBYdpJb+xCfQaFJW9ndU57gpFZIgZukHoBtCNN2We22hkmYG2
+   llaIQ4Vn7sfjOeInHnW1rz2yW9fZaGeTXoebPaFRI3JVZYbpfdFsTq2t3
+   qDfw20V5CdEJddC+Heaqo0KgXyQob819r70bL51owP/1o7NPqvTFZSKUo
+   j9px1I2KBPovPmAZokVVJRVM1f8MMKpatJ9xr2F5hZ7/p7GCdRKKKQYpT
+   w==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10979"; a="12823531"
+X-IronPort-AV: E=Sophos;i="6.05,257,1701158400"; 
+   d="scan'208";a="12823531"
+Received: from fmviesa009.fm.intel.com ([10.60.135.149])
+  by fmvoesa104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 09 Feb 2024 07:56:59 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.05,257,1701158400"; 
+   d="scan'208";a="1956636"
+Received: from csromei-mobl1.amr.corp.intel.com (HELO [10.212.93.94]) ([10.212.93.94])
+  by fmviesa009-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 09 Feb 2024 07:56:56 -0800
+Message-ID: <d65cf9f4-1617-2962-2786-bcaf7907dd67@linux.intel.com>
+Date: Fri, 9 Feb 2024 09:44:25 -0600
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <5a15d8eb-d6e9-46cf-9b33-d0a04e01b365@leica-geosystems.com>
+User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10.15; rv:102.0)
+ Gecko/20100101 Thunderbird/102.15.1
+Subject: Re: [PATCH v4 1/4] ASoc: PCM6240: Create PCM6240 Family driver code
+To: "Ding, Shenghao" <shenghao-ding@ti.com>,
+ "broonie@kernel.org" <broonie@kernel.org>,
+ "conor+dt@kernel.org" <conor+dt@kernel.org>,
+ "krzysztof.kozlowski@linaro.org" <krzysztof.kozlowski@linaro.org>,
+ "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+ "robh+dt@kernel.org" <robh+dt@kernel.org>,
+ "andriy.shevchenko@linux.intel.com" <andriy.shevchenko@linux.intel.com>,
+ "linux-sound@vger.kernel.org" <linux-sound@vger.kernel.org>,
+ "liam.r.girdwood@intel.com" <liam.r.girdwood@intel.com>,
+ "lgirdwood@gmail.com" <lgirdwood@gmail.com>,
+ "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
+Cc: "Lu, Kevin" <kevin-lu@ti.com>, "Xu, Baojun" <baojun.xu@ti.com>,
+ "P O, Vijeth" <v-po@ti.com>, "Navada Kanyana, Mukund" <navada@ti.com>,
+ "perex@perex.cz" <perex@perex.cz>, "McPherson, Jeff" <j-mcpherson@ti.com>,
+ "13916275206@139.com" <13916275206@139.com>,
+ "Chawla, Mohit" <mohit.chawla@ti.com>, "soyer@irl.hu" <soyer@irl.hu>,
+ "Huang, Jonathan" <jkhuang3@ti.com>, "tiwai@suse.de" <tiwai@suse.de>,
+ "Djuandi, Peter" <pdjuandi@ti.com>, "Agrawal, Manisha"
+ <manisha.agrawal@ti.com>, "Hari, Raj" <s-hari@ti.com>,
+ "Yashar, Avi" <aviel@ti.com>, "Nagalla, Hari" <hnagalla@ti.com>,
+ "Bajjuri, Praneeth" <praneeth@ti.com>
+References: <20240208095255.1508-1-shenghao-ding@ti.com>
+ <160173b0-098e-493f-93b1-8b831838e0a0@linux.intel.com>
+ <0ac563b32399400897b8f3adce6195c3@ti.com>
+Content-Language: en-US
+From: Pierre-Louis Bossart <pierre-louis.bossart@linux.intel.com>
+In-Reply-To: <0ac563b32399400897b8f3adce6195c3@ti.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
 
-> DP83826 offers the possibility to tune the voltage of logical levels of 
-> the MLT-3 encoded TX data. This is useful when there is a voltage drop 
-> in between the PHY and the connector and we want to increase the voltage 
-> levels to compensate for that drop.
-> 
-> Is this more meaningful ?
 
-Yes, that is good.
+>>> +static const char *const pcmdev_ctrl_name[] = {
+>>> +	"%s-i2c-%d-dev%d-ch%d-ana-gain",
+>>> +	"%s-i2c-%d-dev%d-ch%d-digi-gain",
+>>> +	"%s-i2c-%d-dev%d-ch%d-fine-gain",
+>>> +};
+>>
+>> Controls are exposed to user-space, and it helps if it's easy to identify which
+>> device is which.
+>>
+>> But below you are using the I2C address, is this 'stable' enough so that
+>> userspace can still identify the controls and set them accordingly with amixer
+>> or UCM?
+>>
+> So far, I have no good way to handle the devices with multiple pcmdevices sitting in different i2c buses.
+> As you know, the gain value highly depends on both the mic-phone position and the mic-phone's own
+>   characters. All these controls have to be open to the product developer or manufacturer. They might
+> rename them per their products if they want.
+> As to the stable, my customers and I had developed many productors on arm-based paltforms. At least,
+> the i2c number is same as the one defined in dts.
 
-Thanks
+IIRC there is a codec prefix that can be used to uniquify controls, 
+that's what we used when we have identical amplifier devices in the same 
+system. Using this prefix would avoid this sort of hard-coding of the 
+control names proper, in other words let the ASoC framework add a prefix 
+if needed.
 
-	Andrew
+>>> +static int pcmdevice_codec_probe(struct snd_soc_component *codec) {
+>>> +	struct pcmdevice_priv *pcm_dev =
+>> snd_soc_component_get_drvdata(codec);
+>>> +	struct i2c_adapter *adap = pcm_dev->client->adapter;
+>>> +	int ret, i, j;
+>>> +
+>>> +	mutex_lock(&pcm_dev->codec_lock);
+>>> +	pcm_dev->component = codec;
+>>> +	pcm_dev->fw_state = PCMDEVICE_FW_LOAD_OK;
+>>> +
+>>> +	for (i = 0; i < pcm_dev->ndev; i++) {
+>>> +		for (j = 0; j < 2; j++) {
+>>> +			ret = pcmdev_gain_ctrl_add(pcm_dev, i, j);
+>>> +			if (ret < 0)
+>>> +				goto out;
+>>> +		}
+>>> +	}
+>>> +
+>>> +	/* device-name[defined in pcmdevice_i2c_id]-i2c-bus_id[0,1,...,N]-
+>>> +	 * sum[1,2,...,4]dev-reg.bin stores the firmware including register
+>>> +	 * setting and params for different filters inside chips, it must be
+>>> +	 * copied into firmware folder. The same types of pcmdevices sitting
+>>> +	 * on the same i2c bus will be aggregated as one single codec,
+>>> +	 * all of them share the same bin file.
+>>> +	 */
+>>> +	scnprintf(pcm_dev->regbin_name,
+>> PCMDEVICE_REGBIN_FILENAME_LEN,
+>>> +		"%s-i2c-%d-%udev-reg.bin", pcm_dev->dev_name, adap->nr,
+>>> +		pcm_dev->ndev);
+>>> +
+>>> +	ret = request_firmware_nowait(THIS_MODULE,
+>> FW_ACTION_UEVENT,
+>>> +		pcm_dev->regbin_name, pcm_dev->dev, GFP_KERNEL,
+>> pcm_dev,
+>>> +		pcmdev_regbin_ready);
+>>
+>> I already had a question early on whether these addresses are 'stable', but
+>> here the device address is used to fetch firmware, and there is no prefix or
+>> directory to identify platform-specific settings.
+>>
+>> I don't know how this might work for a distribution. There needs to be a way
+>> to detect what system this is at run-time, and make sure we don't use
+>> settings for platform XYZ on platform ABC.
+>>
+> In PC, hwid, subsysid and vendorid can help to identify the platform.
+>   But it seemed difficult to get platform id on non-PC system. More often,
+> different productors from different customers might use the same platform.
+> In my view, the products developer or manufacturer might rename the firmware
+>   per their products if they want, not limited to the platform.
+
+It's not "might rename", it's "are required to rename".
+
+Your solution works if everything is build and configured for ONE board. 
+That's pretty limiting, even for your own CI and tests.
+
+Could we not add a prefix for the firmware path that either either set 
+with a subsys_id or vendor_id, and if it doesn't exist with a kernel 
+parameter or a quirk?
+
+Renaming firmware files is a never-ending source of problems IMHO.
+
 
