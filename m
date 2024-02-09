@@ -1,122 +1,124 @@
-Return-Path: <devicetree+bounces-40116-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-40117-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4882D84F4CF
-	for <lists+devicetree@lfdr.de>; Fri,  9 Feb 2024 12:45:38 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 9A95D84F4DE
+	for <lists+devicetree@lfdr.de>; Fri,  9 Feb 2024 12:57:24 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 7B4D41C2143D
-	for <lists+devicetree@lfdr.de>; Fri,  9 Feb 2024 11:45:37 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id A18661C254CD
+	for <lists+devicetree@lfdr.de>; Fri,  9 Feb 2024 11:57:23 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 388D82E651;
-	Fri,  9 Feb 2024 11:45:27 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8E40D2E84D;
+	Fri,  9 Feb 2024 11:57:19 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="eHQxB1F4"
+	dkim=pass (2048-bit key) header.d=tuxon.dev header.i=@tuxon.dev header.b="d81OdcC+"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lj1-f176.google.com (mail-lj1-f176.google.com [209.85.208.176])
+Received: from mail-wm1-f44.google.com (mail-wm1-f44.google.com [209.85.128.44])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 94BA02E644
-	for <devicetree@vger.kernel.org>; Fri,  9 Feb 2024 11:45:25 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.176
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B344C2E651
+	for <devicetree@vger.kernel.org>; Fri,  9 Feb 2024 11:57:17 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.44
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1707479127; cv=none; b=MeHFAYmQaz/Otp5cavrDcgM2+C+xq2WyeNiy0cRrC3H/kEBKvCoqvMsSsl0EH0cVdPPQFcB9Bm+d63FNS2R4y05JTiSFJWHZcerdRGO9GoP/7HNIO/KFZhGOQcKAbKS1STeRdutoHEJW2aYY15y9S6i0d/xYoinJrC5h2MVhVsg=
+	t=1707479839; cv=none; b=LdvX+sabmwEXpfnNCcbVrY6Yb46qduDwJtYFz6kb1eBTLyiCBpRm6v+aUPF95er25WyynIx/Mt8Zl1yyiSob+5/F6yp3biCpgVKW69pDw/WRm59OZuCRoy3G9tdALUyvyzRTgnqUYcqIs/D6UQSzIlM8lzTCduduQENmhzFjmKk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1707479127; c=relaxed/simple;
-	bh=kpUX+5Fp0emM5GhamAYigk31OhEZhOSBXFWlaXEM8mA=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=D7y8oc4slq3epTsa/SF8RNNYGjOv0iuXo4UgJZoPOGB7hf6ApW/YTt4UP2gl+HWQtx9QsvwReQ4JU0jChC45ZJ6frUrBrG+KtWnQZ7Oq79l4jzG4NlCZ80O2UwZAVX7Sgh+tvCyC03i0Loglk2xPqKUv90HfhNx7kfKgpvtbQcg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=eHQxB1F4; arc=none smtp.client-ip=209.85.208.176
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-lj1-f176.google.com with SMTP id 38308e7fff4ca-2d066b532f0so12146271fa.1
-        for <devicetree@vger.kernel.org>; Fri, 09 Feb 2024 03:45:25 -0800 (PST)
+	s=arc-20240116; t=1707479839; c=relaxed/simple;
+	bh=o4EHuYCxFzdlSmTFph+ybaPuKYFCpmiTOIxz9Of8RU8=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=gCgUFNm81N54NwDjUdeS7XN60cXwm5E+Or/e4v2OGOBD1pRFHylRC4wY7DR2AtrbqgcZiUZfBlrkbOiZY8oa/+EGM/i++//hztyhY7Eh2AOLan4fLNS9Nm6eRndOxEgblqnrZvXX6owbLxlMX1OXHtKsBZj64DhalRgg1OOLybY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=tuxon.dev; spf=pass smtp.mailfrom=tuxon.dev; dkim=pass (2048-bit key) header.d=tuxon.dev header.i=@tuxon.dev header.b=d81OdcC+; arc=none smtp.client-ip=209.85.128.44
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=tuxon.dev
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=tuxon.dev
+Received: by mail-wm1-f44.google.com with SMTP id 5b1f17b1804b1-40fd72f7125so7182035e9.1
+        for <devicetree@vger.kernel.org>; Fri, 09 Feb 2024 03:57:17 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1707479124; x=1708083924; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=+ed61mmNefo4NF61Anc4jK9I9WqvYzH3tKYcqREzO6Y=;
-        b=eHQxB1F43TNTaSP4krW01y6PEjompRuBENauKzW48ChAaTmtK0KkS/hxVMxXihHbWd
-         tmbAj6HYf4fVRurCbd1y3zYHFsUOKEv2XBU9tAEzes1a+7aAn+8T1IL2S1AzSm3A5Z9x
-         KnA3C/TjemR/7Z8cZ5rod54um39+b7TA+1o81UCIVCe4Ha7Xr9xk86nm/3IMzueVToac
-         hcAOquDhVRCGA5xGrH8EOsN7CJk3ev5dRNKyBw+cgjl240X7dj/tl9jKNiBHo1iSXjsx
-         FPk7Pm5N0IrgSoq3D8F2NU09wHBWMroC6RIx3ZVGic04sGYIOHd6zA6Kc3eNEs+0Tvg9
-         Excw==
+        d=tuxon.dev; s=google; t=1707479836; x=1708084636; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=s1AGI08loNSP5zs2tQjZO2F5Z+x9CwlZlooCUALsHSk=;
+        b=d81OdcC+uGFkuiACN81NmABpWndf6O/f0e/rry7IRkxxTfSVUWFTy+3iDSbG6PIY6Z
+         Pzkb7gnFqfDw0OIJLCg5H1mMQTN7pONNyZiXKw7hh3bJFzXUjpk61v8acjgzk2Do2/yN
+         3lpQVNAisMyme+MOlbBiPCGvz8jjuPddN/28GZEMxSBVhAOPl/3Nc58TZt+WhqJhbf73
+         h8vbNpbk9V4wUhqMokzmw5A6SD3hq+a4uGO8Z6XTl3YIgo/EVwLed4XxdwjW9w5PRr1X
+         O3z+19iwXH22jTzItughDnS9H84eBI6T/Vdo/9ZQjLvrBLbClEoDQDPt7YCnRRXoG2JG
+         /0Xw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1707479124; x=1708083924;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=+ed61mmNefo4NF61Anc4jK9I9WqvYzH3tKYcqREzO6Y=;
-        b=hgpcmqNz+WtpnE7Iq3cMIcWmgKSPi80n4RTl8MTkWpoHCvtyTMozGdsbknlnVfuvLU
-         KlIEuUwcLll4581jKmWGmtaMATyM9a3ZUYGPk7y8ZOmTuXJ7RuMYC7Mf+8XPazscM6nk
-         1MlC+HUyFEVcR8a0ZZ4spOqPWoxii6hTM9g1sGeVTQDXu0VvonMyU0a6V1UoFHoiR2vm
-         c+MR8BMr98cUmdDnnHwnPC09UN/3WU62JqXYY+6VB16pE4Y25pScvwoOk54UWynWazd0
-         gjrGYJ2GejBJytON/QP9PnK8JC9bByYSHtUwtaxd8QMNio051S+m+fqqfysxSUu7xtaD
-         8pJQ==
-X-Gm-Message-State: AOJu0Ywq9wRaGVW4m3PtIJIeMryygJ4MDDhtSAU5UdumtTSW5wU0e6/T
-	0YOzg9L2UxKE2H4pWJaojBHdZgZ4GV3uDp9XManxM0gUJPPqB/I7
-X-Google-Smtp-Source: AGHT+IHPuiI9yUhj38xnAq24ekaAemX5dHuo9kRydZ/nMn329vwW8svhY3XBIzPKSYXM85Su+qSddg==
-X-Received: by 2002:a2e:b018:0:b0:2d0:cd59:f142 with SMTP id y24-20020a2eb018000000b002d0cd59f142mr1230330ljk.40.1707479123460;
-        Fri, 09 Feb 2024 03:45:23 -0800 (PST)
-X-Forwarded-Encrypted: i=1; AJvYcCURXIpYNJeqV2VUSdTl7HppEggOsY6x/7JIOWfxm7yqQP5oG01RbjWKXp/GdE6OHYIwbMjEQEgjMTNG8MHy5kYWStkAe07ad+9MbENFlXqtOWhW3o3t1aO3K97PeUa2bqRb6RiRGP6V8IpEAo7elzIQ9lKeZGWxBZB42kFiEbkQIdxLFdLkHuNoBi8IhCkJb8IbbmGNoMGDEnfn3cSDjdiTGaWnASzyt0FOYrXl1efSvbHr7gk0ldUMBxTEJ+NRqvcE/2udhkLiqUJzDdf+Rkw6O367Ve6DajyIpOqoas+MSu1KcfLHNA==
-Received: from jernej-laptop.localnet (APN-123-244-98-gprs.simobil.net. [46.123.244.98])
-        by smtp.gmail.com with ESMTPSA id d17-20020a2e3611000000b002d07aa888d3sm225057lja.23.2024.02.09.03.45.21
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 09 Feb 2024 03:45:23 -0800 (PST)
-From: Jernej =?utf-8?B?xaBrcmFiZWM=?= <jernej.skrabec@gmail.com>
-To: Chen-Yu Tsai <wens@csie.org>, Samuel Holland <samuel@sholland.org>,
- Rob Herring <robh+dt@kernel.org>,
- Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
- Conor Dooley <conor+dt@kernel.org>, Andre Przywara <andre.przywara@arm.com>
-Cc: linux-sunxi@lists.linux.dev, devicetree@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org
-Subject:
- Re: [PATCH v2 3/3] arm64: dts: allwinner: Add Jide Remix Mini PC support
-Date: Fri, 09 Feb 2024 12:45:20 +0100
-Message-ID: <5752892.DvuYhMxLoT@jernej-laptop>
-In-Reply-To: <20240209114018.3580370-4-andre.przywara@arm.com>
-References:
- <20240209114018.3580370-1-andre.przywara@arm.com>
- <20240209114018.3580370-4-andre.przywara@arm.com>
+        d=1e100.net; s=20230601; t=1707479836; x=1708084636;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=s1AGI08loNSP5zs2tQjZO2F5Z+x9CwlZlooCUALsHSk=;
+        b=AOIRzlaTKRbJA+yVxt1cb3xhnTup+xDbD+MUqPMOWscxlaQrw+vl46/pViPQej9kH8
+         Q5Mj4yhX9WUp4r9kvWKZDMtLTCra6fv45JoNfcVbq4h9V6PsoHcmwb38DBWipOLHztg5
+         98SIKWfPaXTWVwgc/crE8IGGiyxaOuXMXEWSDfzVgehFn6gMTwvMUxCFqaQtsLMGQebq
+         /1WXUjtx/4659UcAUTFjLdGC7qRceaG48S4vZv4bgskCIAik2lqHMBkQTmp6ySZ438MM
+         IuZmTKxGDlh3EEGhk6bxXL9jFRRiT4CCOvZVE9+N4V8QVqkm/ys0g8bocEfC2Xjjubhr
+         0T8w==
+X-Gm-Message-State: AOJu0YxCNIh0G7cBIY7p6WgqJ/GeOzHXg0SljUEmpCTWtuO5r/aZYZCD
+	C1FNLhy41O0/g2TNrgM3c1a9yn44cqTxuy9BOdn3v85O+Um2zlFXh/Yo4vUH/Ww=
+X-Google-Smtp-Source: AGHT+IEKzu4OuFFBCPwKZoMQia7OUvrZSIFd3Jvmqto4G+RVfQMhTVHmnKJdeyHKOtvS5NI6eTUdog==
+X-Received: by 2002:a05:600c:19c7:b0:40e:b447:ae7d with SMTP id u7-20020a05600c19c700b0040eb447ae7dmr947456wmq.33.1707479835728;
+        Fri, 09 Feb 2024 03:57:15 -0800 (PST)
+X-Forwarded-Encrypted: i=1; AJvYcCWaqRlja5LmVmSLBC34yIDZX/OpKcoeNWEH/++uyCsiufhNaTzwB+ruJGChVPLdlAc6+inB2hhNBlnXPee11Vspf7mMh/6ALqIHyj/GUhdqXNqNTx81mvyuBGyu1p/4sO8hfpuGuGk1UuEOH3bjQ0hs1xHFlt1zdTg79SEH2xqEaZs8q1sngx8EVRTb/p7TGpRzwjNOjcF/EnNOX2ER2X8bChWnGpKXLRtPBI7iF2YDRXbE0wmRk3LSOfKzC1eyVIMoy0tUZI/BtZczJHiy6NtyG0ChhsZR086Elt2Qa6xaASy0CIoBm2Q9PMwIpkGCY5yVczBepGfG7JpD1sa19dk5CfjxOiEVRYTeoP6TdnT2gpu1EA5aTEzApEf1JaxmKPmMXYEOg9moAwW5bimJHnIoa9nstIu+AegPhZoT1GxiZV8qoFkfeTDfBM+QQ6mwISC40lO1LrtIO/9J+bWchpDs96iY/H1QXSL/N/7LMm7FGvXfthIlbK/CtqmbAFllEeXXsXdzjFEPBDDj3/CsqqLYOOkt7x5c9+X7uTqtI9GlluFYfhD+EQ==
+Received: from [192.168.50.4] ([82.78.167.20])
+        by smtp.gmail.com with ESMTPSA id c11-20020a7bc84b000000b0040f035bebfcsm412491wml.12.2024.02.09.03.57.14
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 09 Feb 2024 03:57:15 -0800 (PST)
+Message-ID: <a280eb6b-e7ee-4136-a555-3c9ec19dbb8c@tuxon.dev>
+Date: Fri, 9 Feb 2024 13:57:13 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7Bit
-Content-Type: text/plain; charset="us-ascii"
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 06/17] dt-bindings: clock: renesas,rzg2l-cpg: Update
+ #power-domain-cells = <1>
+Content-Language: en-US
+To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+ geert+renesas@glider.be, mturquette@baylibre.com, sboyd@kernel.org,
+ robh@kernel.org, krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
+ magnus.damm@gmail.com, paul.walmsley@sifive.com, palmer@dabbelt.com,
+ aou@eecs.berkeley.edu
+Cc: linux-renesas-soc@vger.kernel.org, linux-clk@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ linux-riscv@lists.infradead.org,
+ Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>
+References: <20240208124300.2740313-1-claudiu.beznea.uj@bp.renesas.com>
+ <20240208124300.2740313-7-claudiu.beznea.uj@bp.renesas.com>
+ <2ca67a77-b51c-4f7f-828f-8d91d8971c75@linaro.org>
+From: claudiu beznea <claudiu.beznea@tuxon.dev>
+In-Reply-To: <2ca67a77-b51c-4f7f-828f-8d91d8971c75@linaro.org>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
-Dne petek, 09. februar 2024 ob 12:40:18 CET je Andre Przywara napisal(a):
-> The Remix Mini PC is a "mini computer" using the Allwinner H64 SoC,
-> which appears to be just a relabelled A64. It was launched in 2015 by
-> the now defunct company Jide, and shipped with a desktop optimised
-> version of Android. It features
-> 	- Allwinner H64 Soc (4 * Arm Cortex-A53 cores)
-> 	- 1 or 2 GB DRAM
-> 	- 8 or 16 GB eMMC flash
-> 	- 100 MBit Ethernet port (using an X-Powers AC200 PHY)
-> 	- RTL8723BS WiFi & Bluetooth chip
-> 	- HDMI port
-> 	- two USB 2.0 ports
-> 	- 3.5mm AV port
-> 	- microSD card slot
+
+
+On 09.02.2024 09:56, Krzysztof Kozlowski wrote:
+> On 08/02/2024 13:42, Claudiu wrote:
+>> From: Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>
+>>
+>> The driver will be modified (in the next commits) to be able to specify
+>> individual power domain ID for each IP. Update the documentation to cope
+>> with this.
 > 
-> The devicetree covers most peripherals, though there is no agreed
-> binding for the PHY chip yet, so this is left out.
-> The eMMC did not work with the MMC DDR speed mode, so this mode property
-> is omitted.
+> You are affecting existing users, so you should explain that you keep
+> ABI intact or if you break it, why it is fine to do so.
 > 
-> Signed-off-by: Andre Przywara <andre.przywara@arm.com>
 
-Reviewed-by: Jernej Skrabec <jernej.skrabec@gmail.com>
+OK, I'll improve the description. The ABI will not be broken with the
+changes in this series.
 
-Best regards,
-Jernej
+Thank you,
+Claudiu Beznea
 
-
+> 
+> 
+> Best regards,
+> Krzysztof
+> 
 
