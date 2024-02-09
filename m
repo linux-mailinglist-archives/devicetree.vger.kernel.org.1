@@ -1,46 +1,46 @@
-Return-Path: <devicetree+bounces-40038-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-40049-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id F249B84F0AF
-	for <lists+devicetree@lfdr.de>; Fri,  9 Feb 2024 08:24:20 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id D2C3E84F0D4
+	for <lists+devicetree@lfdr.de>; Fri,  9 Feb 2024 08:33:41 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 7D58A288EB9
-	for <lists+devicetree@lfdr.de>; Fri,  9 Feb 2024 07:24:19 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 8EF82290725
+	for <lists+devicetree@lfdr.de>; Fri,  9 Feb 2024 07:33:40 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 631F12E3E0;
-	Fri,  9 Feb 2024 07:23:33 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A1120657C7;
+	Fri,  9 Feb 2024 07:33:36 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=siemens.com header.i=jan.kiszka@siemens.com header.b="LXtykBmX"
+	dkim=pass (1024-bit key) header.d=siemens.com header.i=jan.kiszka@siemens.com header.b="gTRqxxzt"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mta-65-226.siemens.flowmailer.net (mta-65-226.siemens.flowmailer.net [185.136.65.226])
+Received: from mta-65-225.siemens.flowmailer.net (mta-65-225.siemens.flowmailer.net [185.136.65.225])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 77FBE664A5
-	for <devicetree@vger.kernel.org>; Fri,  9 Feb 2024 07:23:30 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.136.65.226
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5846165BB4
+	for <devicetree@vger.kernel.org>; Fri,  9 Feb 2024 07:33:32 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.136.65.225
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1707463413; cv=none; b=lZpicIWb3b5oEv1CIga8btqqIcTBwpXqaGVOMYSt90t2J32UAu+5Rl3gXMNVOv9t/V51edTNEPmBqYrKzi96bBubyJdrbI9b7Ssb9vty05T5fYQKB0+pjb4az8fvNrjn9kVtrslEFbOSTrNVgDLxUDfGl1GfNZgaLVvMGZ7ttOM=
+	t=1707464016; cv=none; b=JGugzioy+qRgGvyaI61seqj2h10fMg2eRCLbN3IvoYkiihay/CerWSaEShm9nzoE8IvmY/L9gFa3O064cJd6EA58FDSRt8Ce52luO2+h8hdWVegItmDPtmyN91+NhoaM/L2lrDYJmP/pYoGcL24FAt1+Wa0tXg+TIsw2nZ9PbaI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1707463413; c=relaxed/simple;
-	bh=BXHf8bSFqMRDKpHNP0Bi4qB+zeNTBA97tTKWD4lT45U=;
+	s=arc-20240116; t=1707464016; c=relaxed/simple;
+	bh=RLUBw5rRXak8EjSpQFHg4m3NozL4KVpKO2aKpiNsJRw=;
 	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
-	 MIME-Version; b=QBPr+4emv+Gb/9rPATXQiQMaG5bzF8W2CVvgU4+4i0w47K5oRXQshIGLvZkDtQAjabO78yzG8xeebdPwWO35q5XCiza9iAHw51sW6w5a5qWDn+kdkss7WuhbRhEQ5RNnawnfsdUJTWmx6d/fcSSiAtPeBVxOWOba5cPIBw7D0DE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=siemens.com; spf=pass smtp.mailfrom=rts-flowmailer.siemens.com; dkim=pass (1024-bit key) header.d=siemens.com header.i=jan.kiszka@siemens.com header.b=LXtykBmX; arc=none smtp.client-ip=185.136.65.226
+	 MIME-Version; b=eoXV+ldkcH+AxO/pYCdXqLlYX8OBhoxKubLxFPTqJvZejIe5Per6et4uwkv/zSYUW4XUJLfHrB/TgKajhdjvkOfD1COxQzHRXVrrg2/zLqiyXUGcnoVO835uIEZ4mpxS1xmeLircZHqgabgtTfpwjLk4HAzLUAAVcE9UAS4oUyY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=siemens.com; spf=pass smtp.mailfrom=rts-flowmailer.siemens.com; dkim=pass (1024-bit key) header.d=siemens.com header.i=jan.kiszka@siemens.com header.b=gTRqxxzt; arc=none smtp.client-ip=185.136.65.225
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=siemens.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=rts-flowmailer.siemens.com
-Received: by mta-65-226.siemens.flowmailer.net with ESMTPSA id 20240209072323236806ab35d7e47625
+Received: by mta-65-225.siemens.flowmailer.net with ESMTPSA id 20240209072323640e5c35ae4c5ba12f
         for <devicetree@vger.kernel.org>;
         Fri, 09 Feb 2024 08:23:23 +0100
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; s=fm1;
  d=siemens.com; i=jan.kiszka@siemens.com;
  h=Date:From:Subject:To:Message-ID:MIME-Version:Content-Type:Content-Transfer-Encoding:Cc:References:In-Reply-To;
- bh=d4oZ1vDSY7M3mK9PrAl/qDky65iWWq9JdkDYhp5N1LQ=;
- b=LXtykBmXXuQVm7H477xpGO3T6+CsIje7Ltj13Zg+YYWkN5QB95PRaWhFOWIhgD7c51yzIf
- NBvzmUTrbd0rQCRD3YnfZwDYJW1qQXwExnLV2MUFMqdKyuCWhV7ihrkDEJ8O0IvbREzAvu0K
- CI0hY9geyEZOacmILngbU6Rd8QYZU=;
+ bh=yA1XgL1R9WxxOtIY8CnNkY8TcITrL/GQzQuoi7f9MIE=;
+ b=gTRqxxztly4FS8drCSRCTqbssCSQ+A3SVMLaKQSv8PwkxIWjO0QJofo+2HSODB5FRs+fT1
+ C9FCI3I+viLBjAFB+jPJtqx6FO9w8dzavQhRexM5lQht+N0jtemKlsJvse1VUkgnCUHA02lk
+ tZvVc8rh1QdDWcfQHkbjIDAkGnUmw=;
 From: Jan Kiszka <jan.kiszka@siemens.com>
 To: Nishanth Menon <nm@ti.com>,
 	Vignesh Raghavendra <vigneshr@ti.com>,
@@ -51,11 +51,10 @@ To: Nishanth Menon <nm@ti.com>,
 Cc: linux-arm-kernel@lists.infradead.org,
 	linux-kernel@vger.kernel.org,
 	devicetree@vger.kernel.org,
-	Bao Cheng Su <baocheng.su@siemens.com>,
-	Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Subject: [PATCH v3 1/7] dt-bindings: arm: ti: Add binding for Siemens IOT2050 SM variant
-Date: Fri,  9 Feb 2024 08:23:15 +0100
-Message-Id: <595d8d79647a0f5e6e635a22ee0fee011f8a5c5e.1707463401.git.jan.kiszka@siemens.com>
+	Bao Cheng Su <baocheng.su@siemens.com>
+Subject: [PATCH v3 2/7] arm64: dts: ti: iot2050: Disable R5 lockstep for all PG2 boards
+Date: Fri,  9 Feb 2024 08:23:16 +0100
+Message-Id: <f692d0211915aefd4de7c9ecff5234683c9c7d59.1707463401.git.jan.kiszka@siemens.com>
 In-Reply-To: <cover.1707463401.git.jan.kiszka@siemens.com>
 References: <cover.1707463401.git.jan.kiszka@siemens.com>
 Precedence: bulk
@@ -68,31 +67,112 @@ Content-Transfer-Encoding: 8bit
 X-Flowmailer-Platform: Siemens
 Feedback-ID: 519:519-294854:519-21489:flowmailer
 
-From: Su Bao Cheng <baocheng.su@siemens.com>
+From: Baocheng Su <baocheng.su@siemens.com>
 
-This new variant is derived from the Advanced PG2 board, removing the
-Arduino interface, and adding a new ASIC for communicating with the
-PLC 1200 signal modules.
+The R5 lockstep disabling should be common for all PG2 boards, move it
+from variants dts to common-pg2.dtsi.
 
-Signed-off-by: Su Bao Cheng <baocheng.su@siemens.com>
+As now the Basic PG2 consumes this twice, move Basic disabling to the
+PG1 variant.
+
+Signed-off-by: Baocheng Su <baocheng.su@siemens.com>
+[Jan: avoid duplication of disabling for Basic PG2]
 Signed-off-by: Jan Kiszka <jan.kiszka@siemens.com>
-Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 ---
- Documentation/devicetree/bindings/arm/ti/k3.yaml | 1 +
- 1 file changed, 1 insertion(+)
+ arch/arm64/boot/dts/ti/k3-am65-iot2050-common-pg2.dtsi     | 7 ++++++-
+ arch/arm64/boot/dts/ti/k3-am6528-iot2050-basic-common.dtsi | 5 -----
+ arch/arm64/boot/dts/ti/k3-am6528-iot2050-basic.dts         | 5 +++++
+ arch/arm64/boot/dts/ti/k3-am6548-iot2050-advanced-m2.dts   | 5 -----
+ arch/arm64/boot/dts/ti/k3-am6548-iot2050-advanced-pg2.dts  | 7 +------
+ 5 files changed, 12 insertions(+), 17 deletions(-)
 
-diff --git a/Documentation/devicetree/bindings/arm/ti/k3.yaml b/Documentation/devicetree/bindings/arm/ti/k3.yaml
-index c6506bccfe88..1723e1fa7fee 100644
---- a/Documentation/devicetree/bindings/arm/ti/k3.yaml
-+++ b/Documentation/devicetree/bindings/arm/ti/k3.yaml
-@@ -93,6 +93,7 @@ properties:
-               - siemens,iot2050-advanced
-               - siemens,iot2050-advanced-m2
-               - siemens,iot2050-advanced-pg2
-+              - siemens,iot2050-advanced-sm
-               - siemens,iot2050-basic
-               - siemens,iot2050-basic-pg2
-               - ti,am654-evm
+diff --git a/arch/arm64/boot/dts/ti/k3-am65-iot2050-common-pg2.dtsi b/arch/arm64/boot/dts/ti/k3-am65-iot2050-common-pg2.dtsi
+index e9b57b87e42e..42adb8815f38 100644
+--- a/arch/arm64/boot/dts/ti/k3-am65-iot2050-common-pg2.dtsi
++++ b/arch/arm64/boot/dts/ti/k3-am65-iot2050-common-pg2.dtsi
+@@ -1,6 +1,6 @@
+ // SPDX-License-Identifier: GPL-2.0
+ /*
+- * Copyright (c) Siemens AG, 2021
++ * Copyright (c) Siemens AG, 2021-2023
+  *
+  * Authors:
+  *   Chao Zeng <chao.zeng@siemens.com>
+@@ -9,6 +9,11 @@
+  * Common bits of the IOT2050 Basic and Advanced variants, PG2
+  */
+ 
++&mcu_r5fss0 {
++	/* lock-step mode not supported on PG2 boards */
++	ti,cluster-mode = <0>;
++};
++
+ &main_pmx0 {
+ 	cp2102n_reset_pin_default: cp2102n-reset-default-pins {
+ 		pinctrl-single,pins = <
+diff --git a/arch/arm64/boot/dts/ti/k3-am6528-iot2050-basic-common.dtsi b/arch/arm64/boot/dts/ti/k3-am6528-iot2050-basic-common.dtsi
+index 1d6cddb11991..3bb6bcb0a5d3 100644
+--- a/arch/arm64/boot/dts/ti/k3-am6528-iot2050-basic-common.dtsi
++++ b/arch/arm64/boot/dts/ti/k3-am6528-iot2050-basic-common.dtsi
+@@ -40,8 +40,3 @@ &main_uart0 {
+ 	pinctrl-names = "default";
+ 	pinctrl-0 = <&main_uart0_pins_default>;
+ };
+-
+-&mcu_r5fss0 {
+-	/* lock-step mode not supported on Basic boards */
+-	ti,cluster-mode = <0>;
+-};
+diff --git a/arch/arm64/boot/dts/ti/k3-am6528-iot2050-basic.dts b/arch/arm64/boot/dts/ti/k3-am6528-iot2050-basic.dts
+index 87928ff28214..be9c8db4c43a 100644
+--- a/arch/arm64/boot/dts/ti/k3-am6528-iot2050-basic.dts
++++ b/arch/arm64/boot/dts/ti/k3-am6528-iot2050-basic.dts
+@@ -22,3 +22,8 @@ / {
+ 	compatible = "siemens,iot2050-basic", "ti,am654";
+ 	model = "SIMATIC IOT2050 Basic";
+ };
++
++&mcu_r5fss0 {
++	/* lock-step mode not supported on this board */
++	ti,cluster-mode = <0>;
++};
+diff --git a/arch/arm64/boot/dts/ti/k3-am6548-iot2050-advanced-m2.dts b/arch/arm64/boot/dts/ti/k3-am6548-iot2050-advanced-m2.dts
+index bd6f2e696e94..1e5d4d98b69b 100644
+--- a/arch/arm64/boot/dts/ti/k3-am6548-iot2050-advanced-m2.dts
++++ b/arch/arm64/boot/dts/ti/k3-am6548-iot2050-advanced-m2.dts
+@@ -21,11 +21,6 @@ / {
+ 	model = "SIMATIC IOT2050 Advanced M2";
+ };
+ 
+-&mcu_r5fss0 {
+-	/* lock-step mode not supported on this board */
+-	ti,cluster-mode = <0>;
+-};
+-
+ &main_pmx0 {
+ 	main_bkey_pcie_reset: main-bkey-pcie-reset-default-pins {
+ 		pinctrl-single,pins = <
+diff --git a/arch/arm64/boot/dts/ti/k3-am6548-iot2050-advanced-pg2.dts b/arch/arm64/boot/dts/ti/k3-am6548-iot2050-advanced-pg2.dts
+index f00dc86d01b9..a8ce8c891894 100644
+--- a/arch/arm64/boot/dts/ti/k3-am6548-iot2050-advanced-pg2.dts
++++ b/arch/arm64/boot/dts/ti/k3-am6548-iot2050-advanced-pg2.dts
+@@ -1,6 +1,6 @@
+ // SPDX-License-Identifier: GPL-2.0
+ /*
+- * Copyright (c) Siemens AG, 2018-2021
++ * Copyright (c) Siemens AG, 2018-2023
+  *
+  * Authors:
+  *   Le Jin <le.jin@siemens.com>
+@@ -22,8 +22,3 @@ / {
+ 	compatible = "siemens,iot2050-advanced-pg2", "ti,am654";
+ 	model = "SIMATIC IOT2050 Advanced PG2";
+ };
+-
+-&mcu_r5fss0 {
+-	/* lock-step mode not supported on this board */
+-	ti,cluster-mode = <0>;
+-};
 -- 
 2.35.3
 
