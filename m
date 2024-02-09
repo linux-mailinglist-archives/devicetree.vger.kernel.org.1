@@ -1,106 +1,111 @@
-Return-Path: <devicetree+bounces-40228-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-40229-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 77A4284FB1D
-	for <lists+devicetree@lfdr.de>; Fri,  9 Feb 2024 18:35:41 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4B77684FB2F
+	for <lists+devicetree@lfdr.de>; Fri,  9 Feb 2024 18:42:02 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 1823F1F25608
-	for <lists+devicetree@lfdr.de>; Fri,  9 Feb 2024 17:35:41 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 7E3C21C21583
+	for <lists+devicetree@lfdr.de>; Fri,  9 Feb 2024 17:42:01 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2744B7EEF3;
-	Fri,  9 Feb 2024 17:35:35 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A92567EEF3;
+	Fri,  9 Feb 2024 17:41:56 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="A+TGZY+V"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="W31tYjMS"
 X-Original-To: devicetree@vger.kernel.org
-Received: from fllv0016.ext.ti.com (fllv0016.ext.ti.com [198.47.19.142])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4232853398;
-	Fri,  9 Feb 2024 17:35:32 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.19.142
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7B6767B3D2;
+	Fri,  9 Feb 2024 17:41:56 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1707500135; cv=none; b=rF/lJQXP8zRD03MFkpBBJ02GXdGWDo7mSj1bwqLjdSL/OVSWKnefqygoTHaTvvBrVIy3eUsR2Op2RKPC57eFrAofBn/SVWwyn4odXeIL4c6SNay5jAXBohCx4rwkHwNGSn7aHeYRfk1kYdBWowsGQ3z7OW3OMILGRlK/SX0ahOU=
+	t=1707500516; cv=none; b=LT+rBQ+BgPrlOdStJ/3D9PbrQt7sHcsFqGLO5U8jRfmycIABDI9TZplecZFi0N2SX7lhFk02ha+9AdjqeLhnY3nXjZW4DJeRWz02Z/33QNn23NvrKts0ozc7MCb93Y3UXHDp3RWssEInJlG/BLHBMu1F+M0y9r15xo1DuTh5PV8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1707500135; c=relaxed/simple;
-	bh=L7LVF0xgSx/tkSIKccTfmZ8enVLgMwrvXD7JYedesak=;
-	h=Date:From:To:CC:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=LSGzCtGT33ZA8aO+8E2B77Wu1l95sAOQQGbvqiIU/RkYwaPOUEb3+TNdLCi4IZb9LhZe+Yg3bsvMxsJbUSB8raXwdrZ+boRmT8iqeN2ftof70J2nGkgG5oUOdL+Cin0ph+lxkYXUGQHXcwkEmgL1Ev0yK2mI/pPEyhs3ScArPIk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=A+TGZY+V; arc=none smtp.client-ip=198.47.19.142
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
-Received: from lelv0265.itg.ti.com ([10.180.67.224])
-	by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id 419HZI1Z110129;
-	Fri, 9 Feb 2024 11:35:18 -0600
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1707500118;
-	bh=u1wp8/LboIEGg7Ak8EZDY4zBL+bnAzpumV/bqdbzzrc=;
-	h=Date:From:To:CC:Subject:References:In-Reply-To;
-	b=A+TGZY+V93KJK+E+iweZnKfY4drbX/7o2P35KJmiSVbg6Z7ktF6bvCyd66ZW6SHoW
-	 9+TEQ8cDbVic2UxSWAaz6WK0SgyDWzb7BXPiok+Lx4rDjVtQT5t45IE7h3nf7B+OvC
-	 ajH55OpUOu2aFsugWwn/fy9AghFy/+eIy0ciBzec=
-Received: from DLEE112.ent.ti.com (dlee112.ent.ti.com [157.170.170.23])
-	by lelv0265.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 419HZIcC010482
-	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-	Fri, 9 Feb 2024 11:35:18 -0600
-Received: from DLEE105.ent.ti.com (157.170.170.35) by DLEE112.ent.ti.com
- (157.170.170.23) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Fri, 9
- Feb 2024 11:35:17 -0600
-Received: from lelvsmtp5.itg.ti.com (10.180.75.250) by DLEE105.ent.ti.com
- (157.170.170.35) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
- Frontend Transport; Fri, 9 Feb 2024 11:35:17 -0600
-Received: from localhost (uda0133052.dhcp.ti.com [128.247.81.232])
-	by lelvsmtp5.itg.ti.com (8.15.2/8.15.2) with ESMTP id 419HZHa6069048;
-	Fri, 9 Feb 2024 11:35:17 -0600
-Date: Fri, 9 Feb 2024 11:35:17 -0600
-From: Nishanth Menon <nm@ti.com>
-To: Bhargav Raviprakash <bhargav.r@ltts.com>
-CC: <linux-kernel@vger.kernel.org>, <m.nirmaladevi@ltts.com>, <lee@kernel.org>,
-        <robh+dt@kernel.org>, <krzysztof.kozlowski+dt@linaro.org>,
-        <conor+dt@kernel.org>, <jpanis@baylibre.com>,
-        <devicetree@vger.kernel.org>, <arnd@arndb.de>,
-        <gregkh@linuxfoundation.org>, <lgirdwood@gmail.com>,
-        <broonie@kernel.org>, <linus.walleij@linaro.org>,
-        <linux-gpio@vger.kernel.org>, <linux-arm-kernel@lists.infradead.org>,
-        <vigneshr@ti.com>, <kristo@kernel.org>
-Subject: Re: [RESEND PATCH v1 01/13] mfd: tps6594: Add register definitions
- for TI TPS65224 PMIC
-Message-ID: <20240209173517.i67qttasxjum7oek@strum>
-References: <20240208105343.1212902-1-bhargav.r@ltts.com>
- <20240208105343.1212902-2-bhargav.r@ltts.com>
+	s=arc-20240116; t=1707500516; c=relaxed/simple;
+	bh=Qc4AbQqALiytLpMcojyv4Ko9mDH1xImfA6IKZkEgKFQ=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=RG3he8f3I6ABX3W0VXd++XBuZmTf/nVwQLJn8QJJGKZQUYHS5L7RyVdTQBAbpraF6LIKEpsNEcw3TJwK6dXQf7jcnX3QpS0sUMAdxQ6wAPOSyBFevS3FjkZxBZeq22mud57mNXC/ziywqAO7mIQyu7A4vfIZfl/rvzPsOsyahg8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=W31tYjMS; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 350E4C433C7;
+	Fri,  9 Feb 2024 17:41:54 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1707500515;
+	bh=Qc4AbQqALiytLpMcojyv4Ko9mDH1xImfA6IKZkEgKFQ=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=W31tYjMSmQ111vjm+XeO6U1F3LX9XB1Q8g/y+du1AH49RXonhAqz+xKFUrA0eA2OH
+	 /M7tVdLaLD6BtZbLzpBsw4olqjVdMPOY+JLYP1fTTq9QjBdVMoWdcSi65zxfId0OWs
+	 hJlceQGm+doqVrbrUOm7A6FBQCMOzYeLhlMoS6cITY3OOzz9X4Z5ChZk1NfYuLXrHM
+	 mHdy8VMz7pg1omHGuW0keCpXVQ6LUjoJRMb0gseRutDLrsmxaDSA4O9WYGC1F4OB9A
+	 vIqP3cafYV/CIkJS/9i9DwLaCDmW5WC6j5KggWkp0dFBoGt5cDJmTq/9guEKGzwiS7
+	 jSVuDulsag74A==
+Date: Fri, 9 Feb 2024 17:41:51 +0000
+From: Mark Brown <broonie@kernel.org>
+To: Conor Dooley <conor@kernel.org>
+Cc: Tudor Ambarus <tudor.ambarus@linaro.org>,
+	Geert Uytterhoeven <geert+renesas@glider.be>, robh@kernel.org,
+	andi.shyti@kernel.org, semen.protsenko@linaro.org,
+	krzysztof.kozlowski@linaro.org, alim.akhtar@samsung.com,
+	linux-spi@vger.kernel.org, linux-samsung-soc@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+	andre.draszik@linaro.org, peter.griffin@linaro.org,
+	kernel-team@android.com, willmcvicker@google.com,
+	conor+dt@kernel.org, devicetree@vger.kernel.org, arnd@arndb.de
+Subject: Re: [PATCH 01/12] spi: dt-bindings: introduce the ``fifo-depth``
+ property
+Message-ID: <ZcZj3/0xI6HqP8n8@finisterre.sirena.org.uk>
+References: <20240208135045.3728927-1-tudor.ambarus@linaro.org>
+ <20240208135045.3728927-2-tudor.ambarus@linaro.org>
+ <20240208-grating-legwarmer-0a04cfb04d61@spud>
+ <c2b08463-cb13-4e9b-8797-8ebcf1047f66@linaro.org>
+ <20240209-chest-sleet-a119fc3d4243@spud>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"
+Content-Type: multipart/signed; micalg=pgp-sha512;
+	protocol="application/pgp-signature"; boundary="xgLDICfeMpZPQCWn"
 Content-Disposition: inline
-In-Reply-To: <20240208105343.1212902-2-bhargav.r@ltts.com>
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
-
-On 16:23-20240208, Bhargav Raviprakash wrote:
-> From: Nirmala Devi Mal Nadar <m.nirmaladevi@ltts.com>
-> 
-> Extend TPS6594 PMIC register and field definitions to support TPS65224
-> power management IC.
-> 
-> TPS65224 is software compatible to TPS6594 and can re-use many of the
-> same definitions, new definitions are added to support additional
-> controls available on TPS65224.
-> 
-> Signed-off-by: Nirmala Devi Mal Nadar <m.nirmaladevi@ltts.com>
-
-You've got to Sign-off as part of recommendations read [1]
+In-Reply-To: <20240209-chest-sleet-a119fc3d4243@spud>
+X-Cookie: You might have mail.
 
 
-[1] https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/tree/Documentation/process/submitting-patches.rst#n451
--- 
-Regards,
-Nishanth Menon
-Key (0xDDB5849D1736249D) / Fingerprint: F8A2 8693 54EB 8232 17A3  1A34 DDB5 849D 1736 249D
+--xgLDICfeMpZPQCWn
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+
+On Fri, Feb 09, 2024 at 04:21:16PM +0000, Conor Dooley wrote:
+> On Fri, Feb 09, 2024 at 01:56:56PM +0000, Tudor Ambarus wrote:
+
+> > At least I don't
+> > see how it would work, I guess it will use the minimum depth between the
+> > two?
+
+> I'm not really sure how it would work other than that in the general
+> case, but some use case specific configuration could work, but I do
+> agree that it is
+
+You do get devices that are single duplex only where the mismatched
+sizes wouldn't be a pressing issue.
+
+--xgLDICfeMpZPQCWn
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAmXGY94ACgkQJNaLcl1U
+h9CRSAf/UeE2nO0guLYvWREfU8g9XrY8V4UUuS9NFBhw7MxxJ7LMq3HNckLuExHe
+ooFPzasOI0p1bL9293Lp6lx7xjjB9v/3g+mdiWKQP3zGz2GeFALCACYhXPSAJMr0
+MGyjPLSsh62r3YTLVmi85MpnrbLiv63/uKTPuzonGgDrxF8xPpDHKrnHCZlSX84D
+aL63bNmK+OZZoVOWitOMy+BZLJbI7khnbt6QNatsyFtcW4LqNS6ssM1a5TwkLqtj
+bkfJ/cmBBRDMxj52bhU2aHPhzxkx9p3BRJNKogV6Pxk0WanzbRwcbmJFZS/IQTjk
+3z1Rf91cjlbTfeSCRRhLjAM5IeFY9g==
+=5hKK
+-----END PGP SIGNATURE-----
+
+--xgLDICfeMpZPQCWn--
 
