@@ -1,147 +1,224 @@
-Return-Path: <devicetree+bounces-40192-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-40193-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id F150B84F9F9
-	for <lists+devicetree@lfdr.de>; Fri,  9 Feb 2024 17:49:53 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 14E3E84F9FE
+	for <lists+devicetree@lfdr.de>; Fri,  9 Feb 2024 17:50:08 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id B530728FD45
-	for <lists+devicetree@lfdr.de>; Fri,  9 Feb 2024 16:49:52 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 60C092900A2
+	for <lists+devicetree@lfdr.de>; Fri,  9 Feb 2024 16:50:06 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 025FF82872;
-	Fri,  9 Feb 2024 16:45:48 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4E85284A29;
+	Fri,  9 Feb 2024 16:46:23 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="CR2lZzsv"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="AzW5mZ/8"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lj1-f173.google.com (mail-lj1-f173.google.com [209.85.208.173])
+Received: from mail-ej1-f53.google.com (mail-ej1-f53.google.com [209.85.218.53])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 296B07BB16;
-	Fri,  9 Feb 2024 16:45:45 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.173
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4868274E28
+	for <devicetree@vger.kernel.org>; Fri,  9 Feb 2024 16:46:21 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.53
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1707497147; cv=none; b=HBa9ozWg4uFVzFgk7FpDllm4lwZJUzisjclBC4E6Y1HGuDY8qBoGit5SmwKfxjeIE5iZ4DgB94JVUSkEcq041bgy9Yh0nQjB/n0gfrB1GGbQBvRjrp18kgI3tMPnmO0WPURZCdBZGdYU4tIRdkNtAUkjti5JOuUMRix7uYgvnRc=
+	t=1707497183; cv=none; b=RbHNDIg+bJvxbnKH2ee+wZxvMn28/hBj3Lm82+bRrQ+51AMHsWe5O1aEbx+HvuX/VE4Cry9XoHJz1pNfG2/g1n68HPJo3OWrG6mRfk+V1sMYIhSdccVJyQGvdJfKq+BeDHSPfuklfZH5a6tLK5+9YcE0MwXrWkqTbrifcNf1M5I=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1707497147; c=relaxed/simple;
-	bh=KGH5OXP8EbvTmHw25GrldAD2WeRQUqpcbMrriiRUIKk=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=VAGhP03Onw1PJfhl3RuX6oqTwEh/8mc1aQ7kuM+6Mp1rUJovtUCIbljog/bhiyPbEitmQGHywwpCpTZtwz75GFgkRiraXLE1FmyL476xqUbb/bdmBrgZcObknCOxVCUQ6P1FuO7cOXv7yQQfiHfrZuDVmJZ/EaYx3mdnE9Lo7aY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=CR2lZzsv; arc=none smtp.client-ip=209.85.208.173
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-lj1-f173.google.com with SMTP id 38308e7fff4ca-2d0a0873404so12637201fa.2;
-        Fri, 09 Feb 2024 08:45:45 -0800 (PST)
+	s=arc-20240116; t=1707497183; c=relaxed/simple;
+	bh=O3fngnfCj5aOh0G0wwm8vha6G/YnqgOojLqiWw4NAZI=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=EdtlK1h1fBhfieUjmWV2iFUzvKLPB++BjzGA1nT/GKFXdV0rO0+0KH11qH80cyhEKHGlWaTcW9iH4bV1xAxRRqCwFNGg43EFOQrkh0VB+djfjOmlwr0c37qF/nL8DAeYrCBgQ63PWLY7HtWl3ww8h/o2RU0A+VqbEaYD9rskeLc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=AzW5mZ/8; arc=none smtp.client-ip=209.85.218.53
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-ej1-f53.google.com with SMTP id a640c23a62f3a-a3122b70439so142926066b.3
+        for <devicetree@vger.kernel.org>; Fri, 09 Feb 2024 08:46:21 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1707497144; x=1708101944; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=N+yYyr70UKV2DkHopnVFh+mCvqXDfbCeLVfwKeuwJcc=;
-        b=CR2lZzsvFoDhOvGLm3wyA9VML8r7bEYY/WA6afTSTvzOdXG9WlBhapN8rLH26pYrZB
-         t3EqDgID3e6rIUyOJ2urD7vOExkawXO2w567CkuBAnoYMxuM5lxcjMJSKNsDul+3BvOO
-         JFmL/PB86FtoMo+X0rv8oPkIZsWvC/BKeaZpZCxqAS66Lp5nM09CcyHU8IG9HV1fBY8f
-         3nHT6atjhR0/UnskYa7L3qOssEqfZRg42OWTZH6hep6twYhRu7z+d8Ee4M45p7bx4JNs
-         wmLiQzEG1qDpgdRaxmftZORb00zPuHZ4fgu0FvvwlsG39LmOflaQtPD9x3dRpLWaXrHr
-         RZkQ==
+        d=linaro.org; s=google; t=1707497179; x=1708101979; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
+         :to:content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=1rUsxPQxs+K7iUQvdQghSAavfdmA0Tse73YII5128kk=;
+        b=AzW5mZ/8ZFBq35Ddnp9g/1rcdVvg+J1VT/LIhL2LvGf633lrnQNG0B96mQmCDb+BjP
+         k/bRgKxGhNdSVpfbky1GENCSLDi/4yg5foAeAE9hhHc4sVhPBhGBgcCIyr4EKt8DQ0bP
+         RL9UbQ49j0Bt/TxjYRvoetEUyW4rGzfth/OzPzk9uqgTNhb6OcOQVLwf76QMAjx4jDDz
+         waZFLGPELYf0vx4gmvYrb1Y0WLTRxbs1paSP0G/xUdbU1/TznGFwKfcx/7jdZHIoYihB
+         hEuhV1gZhEpKtnX+kTAAsp++a1whgfyFOsS+MGlTuvz2z0lmwry9NW8D0RDOpvZywtHH
+         Ilqg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1707497144; x=1708101944;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=N+yYyr70UKV2DkHopnVFh+mCvqXDfbCeLVfwKeuwJcc=;
-        b=I9bOfaEwJel6wiegO0LQnVHWVIuuK+P667GxcgPTd7uTgxGa195cNq/7wSVE5TvoBE
-         qz/zEvzzPBkWmG1XN3gaiU0R3F1K3xmXpG8xWJGpr/4B8BEZ0l2SAdIVBSz2DWf/q1n+
-         ETsSWkO1tMVXxQDcV/UD4tPLQ5HjP8MNYfN9FOn1ckAKUn5EM7uIJuO+/w10qMipvs8K
-         bLT7pES/tZ10rHre/Bve9rjNRs7bmt6jruMaWgJS51ln0Khdjvyt7NDXSczssm/wykI+
-         4Ldjnt53mDqs2OTGcEx9Ol9cQWfo82ZbEXzdAF18uFz+VGIoKCymRkEwC3Y8JiQEKiWj
-         sIZw==
-X-Forwarded-Encrypted: i=1; AJvYcCWoKI4smazUFfpU6oHpmhqxk3EwGwUIkLYz4indAlHzcepqbRizE/I3yOaQeDErVvHfj2RhRfi/2Ogd0YM0pxz8PtHdc++tXqDFHQ==
-X-Gm-Message-State: AOJu0YwmTdrTMyON6pBN/U57uEw7N2xXfJI7GJQGNMsOFQDvu+vRtRdy
-	jeEsFkl8kXvBb6OarVtj1UA+o+5IypGe/iR+18mfviRnclkeeJ6VQWsxQpOqlBR60tWxHlQu1SP
-	+k92kp0qm0dD+VOMyswalbhwoy/lorfWMDYU=
-X-Google-Smtp-Source: AGHT+IHnBS1yK9r1wjZuIuUaP0HbxNbqI+X9ixPZs5tjP7CSv3LvAWOcXFdkLMac4Mb70plo1+ddeEvLWmj7vfONT9Q=
-X-Received: by 2002:a2e:a787:0:b0:2d0:9b1c:648f with SMTP id
- c7-20020a2ea787000000b002d09b1c648fmr1966315ljf.24.1707497143855; Fri, 09 Feb
- 2024 08:45:43 -0800 (PST)
+        d=1e100.net; s=20230601; t=1707497179; x=1708101979;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
+         :to:content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=1rUsxPQxs+K7iUQvdQghSAavfdmA0Tse73YII5128kk=;
+        b=g8fr1ViP4HMLQkdDWLZxKc/wwWG5hcWAwTGyS1Icp/kVWkDY+i6hpit3RyH5KUfVih
+         qVvhun00FERkBpLZRJLyVPEx4SiBrfZ2fvnIc60xtY87pyWY8EQAzx63JiLY5n2d34Hi
+         S5EWpGemAo3Ywknuj/7N/fxHzWRAUBU+1ul6Djn4/M46OfKghjJxNK9/Ov1O3R4hsU83
+         BDJbsH3Xgp6EaNX0jW+pkPqoSRihzB6ecgUAIk3q6xQHd9D1EZpPN0hutq2q+mnGVBro
+         UH29BKB82HYXXOewoHBtA8pf4iU2j5ZI0ZQMCJfuRldk89Dgez9ytWaavPNznXWlmghi
+         Dr2Q==
+X-Gm-Message-State: AOJu0Yz9qshLixiisdtab6+MaJFuAsYn0iGSLjafPcrilAUefYuGNUDW
+	kdneUQIY0iDEwzCe26te7+rGjpMliAQ26/VhvsBU0dqeyRdFRxUnTtNNdmDOTbQ=
+X-Google-Smtp-Source: AGHT+IF+KoPD1FCogFq1g1HVZo9JDowlvJb+vv3Ik862H1eIqG6bGPcF3oBJaI8TiGYJ0NSxqzsavw==
+X-Received: by 2002:a17:906:bfe3:b0:a37:bbe7:6002 with SMTP id vr3-20020a170906bfe300b00a37bbe76002mr1505111ejb.19.1707497179535;
+        Fri, 09 Feb 2024 08:46:19 -0800 (PST)
+X-Forwarded-Encrypted: i=1; AJvYcCVxFJxB5SWe8jb932wdrFaVqu+jSrTbnro9C4RAlZu433iTqktEI+RNKnG607wh1mTeaHxzMRyHx+EAcBuuWprfTAG6hPujAcBMeSzfvk69kgxortfWEjtxOqdpEer7f+xkfcb2aCMuK8MeKv/2QAg+v5haS+oqeYgKWqbY+aBtPAKu8C4aFUnIGt0HFzEAlrK05QHzdEa7enkA13Nt+NYeHuWhN4FxuoOzv47U1otZ+EqfKgVJD/yKGYmpMo0CVWXJtCZhAGH/5bs/spIAqJQXuWYvxzHCugTpTfdKPXIKWnhRwtbWJBriOStv3mXtJagUrg==
+Received: from [192.168.192.207] (037008245233.garwolin.vectranet.pl. [37.8.245.233])
+        by smtp.gmail.com with ESMTPSA id qw32-20020a1709066a2000b00a3c09f3aea8sm263632ejc.211.2024.02.09.08.46.17
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 09 Feb 2024 08:46:18 -0800 (PST)
+Message-ID: <7003e28a-c901-4def-be31-a68eb896adb8@linaro.org>
+Date: Fri, 9 Feb 2024 17:46:16 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20240209-iio-backend-v10-0-3ed842064318@analog.com> <20240209-iio-backend-v10-7-3ed842064318@analog.com>
-In-Reply-To: <20240209-iio-backend-v10-7-3ed842064318@analog.com>
-From: Andy Shevchenko <andy.shevchenko@gmail.com>
-Date: Fri, 9 Feb 2024 18:45:07 +0200
-Message-ID: <CAHp75Vd1KkZHFon205O8sNF_zo6G5-m1vZNpnZZNr-V1CTP_VQ@mail.gmail.com>
-Subject: Re: [PATCH v10 7/7] iio: adc: adi-axi-adc: move to backend framework
-To: Nuno Sa <nuno.sa@analog.com>
-Cc: linux-iio@vger.kernel.org, devicetree@vger.kernel.org, 
-	Lars-Peter Clausen <lars@metafoo.de>, Michael Hennerich <Michael.Hennerich@analog.com>, 
-	Jonathan Cameron <jic23@kernel.org>, Rob Herring <robh+dt@kernel.org>, 
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Frank Rowand <frowand.list@gmail.com>, Olivier Moysan <olivier.moysan@foss.st.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 5/5] arm64: dts: qcom: Update protected clocks list for
+ qcm6490 variants
+Content-Language: en-US
+To: Taniya Das <quic_tdas@quicinc.com>, Stephen Boyd <sboyd@kernel.org>,
+ Michael Turquette <mturquette@baylibre.com>,
+ Bjorn Andersson <andersson@kernel.org>, Rob Herring <robh+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>,
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
+Cc: linux-arm-msm@vger.kernel.org, linux-clk@vger.kernel.org,
+ devicetree@vger.kernel.org
+References: <20240208062836.19767-1-quic_tdas@quicinc.com>
+ <20240208062836.19767-6-quic_tdas@quicinc.com>
+From: Konrad Dybcio <konrad.dybcio@linaro.org>
+Autocrypt: addr=konrad.dybcio@linaro.org; keydata=
+ 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
+ izWDgYvmBE8=
+In-Reply-To: <20240208062836.19767-6-quic_tdas@quicinc.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
-On Fri, Feb 9, 2024 at 5:26=E2=80=AFPM Nuno Sa <nuno.sa@analog.com> wrote:
->
-> Move to the IIO backend framework. Devices supported by adi-axi-adc now
-> register themselves as backend devices.
+On 8.02.2024 07:28, Taniya Das wrote:
+> Certain clocks are not accessible on QCM6490-IDP and QCS6490-RB3GEN2 boards
+> thus require them to be marked protected.
+> 
+> Also disable the LPASS nodes which are not to be used.
+> 
+> Signed-off-by: Taniya Das <quic_tdas@quicinc.com>
+> ---
 
-...
+One patch per board, please
 
-> -#include <linux/iio/iio.h>
-> -#include <linux/iio/sysfs.h>
-> -#include <linux/iio/buffer.h>
-> -#include <linux/iio/buffer-dmaengine.h>
-> -
->  #include <linux/fpga/adi-axi-common.h>
-> -#include <linux/iio/adc/adi-axi-adc.h>
+>  arch/arm64/boot/dts/qcom/qcm6490-idp.dts     | 54 +++++++++++++++++++-
+>  arch/arm64/boot/dts/qcom/qcs6490-rb3gen2.dts | 50 +++++++++++++++++-
+>  2 files changed, 102 insertions(+), 2 deletions(-)
+> 
+> diff --git a/arch/arm64/boot/dts/qcom/qcm6490-idp.dts b/arch/arm64/boot/dts/qcom/qcm6490-idp.dts
+> index 03e97e27d16d..425e4b87490b 100644
+> --- a/arch/arm64/boot/dts/qcom/qcm6490-idp.dts
+> +++ b/arch/arm64/boot/dts/qcom/qcm6490-idp.dts
+> @@ -1,6 +1,6 @@
+>  // SPDX-License-Identifier: BSD-3-Clause
+>  /*
+> - * Copyright (c) 2023 Qualcomm Innovation Center, Inc. All rights reserved.
+> + * Copyright (c) 2023-2024 Qualcomm Innovation Center, Inc. All rights reserved.
+>   */
+> 
+>  /dts-v1/;
+> @@ -415,6 +415,58 @@
+>  	};
+>  };
+> 
+> +&gcc {
+> +	protected-clocks = <GCC_AGGRE_NOC_PCIE_1_AXI_CLK> ,<GCC_PCIE_1_AUX_CLK>,
+> +			<GCC_PCIE_1_AUX_CLK_SRC>, <GCC_PCIE_1_CFG_AHB_CLK>,
+> +			<GCC_PCIE_1_MSTR_AXI_CLK>, <GCC_PCIE_1_PHY_RCHNG_CLK_SRC>,
+> +			<GCC_PCIE_1_PIPE_CLK>, <GCC_PCIE_1_PIPE_CLK_SRC>,
+> +			<GCC_PCIE_1_SLV_AXI_CLK>, <GCC_PCIE_1_SLV_Q2A_AXI_CLK>,
+> +			<GCC_QSPI_CNOC_PERIPH_AHB_CLK>, <GCC_QSPI_CORE_CLK>,
+> +			<GCC_QSPI_CORE_CLK_SRC>,<GCC_USB30_SEC_MASTER_CLK>,
+> +			<GCC_USB30_SEC_MASTER_CLK_SRC>, <GCC_USB30_SEC_MOCK_UTMI_CLK>,
+> +			<GCC_USB30_SEC_MOCK_UTMI_CLK_SRC>,
+> +			<GCC_USB30_SEC_MOCK_UTMI_POSTDIV_CLK_SRC>, <GCC_USB30_SEC_SLEEP_CLK>,
+> +			<GCC_USB3_SEC_PHY_AUX_CLK>, <GCC_USB3_SEC_PHY_AUX_CLK_SRC>,
+> +			<GCC_USB3_SEC_PHY_COM_AUX_CLK>, <GCC_USB3_SEC_PHY_PIPE_CLK>,
+> +			<GCC_USB3_SEC_PHY_PIPE_CLK_SRC>, <GCC_CFG_NOC_LPASS_CLK>,
+> +			<GCC_MSS_GPLL0_MAIN_DIV_CLK_SRC>, <GCC_MSS_CFG_AHB_CLK>,
+> +			<GCC_MSS_OFFLINE_AXI_CLK>, <GCC_MSS_SNOC_AXI_CLK>,
+> +			<GCC_MSS_Q6_MEMNOC_AXI_CLK>, <GCC_MSS_Q6SS_BOOT_CLK_SRC>,
+> +			<GCC_SEC_CTRL_CLK_SRC>, <GCC_WPSS_AHB_CLK>,
+> +			<GCC_WPSS_AHB_BDG_MST_CLK>, <GCC_WPSS_RSCP_CLK>;
 
-+ Blank line?
+Why on earth are clocks such as USB sleep reserved? How does it work?
 
-> +#include <linux/iio/backend.h>
-> +#include <linux/iio/buffer-dmaengine.h>
-> +#include <linux/iio/buffer.h>
-> +#include <linux/iio/iio.h>
+> +};
+> +
+> +&lpasscc {
+> +	status = "disabled";
+> +};
+> +
+> +&lpass_audiocc {
+> +	qcom,adsp-skip-pll;
+> +	protected-clocks = <LPASS_AUDIO_CC_CDIV_RX_MCLK_DIV_CLK_SRC>,
+> +		<LPASS_AUDIO_CC_CODEC_MEM0_CLK>, <LPASS_AUDIO_CC_CODEC_MEM1_CLK>,
+> +		<LPASS_AUDIO_CC_CODEC_MEM2_CLK>, <LPASS_AUDIO_CC_CODEC_MEM_CLK>,
+> +		<LPASS_AUDIO_CC_EXT_MCLK0_CLK>, <LPASS_AUDIO_CC_EXT_MCLK0_CLK_SRC>,
+> +		<LPASS_AUDIO_CC_EXT_MCLK1_CLK>, <LPASS_AUDIO_CC_EXT_MCLK1_CLK_SRC>,
+> +		<LPASS_AUDIO_CC_PLL>, <LPASS_AUDIO_CC_PLL_OUT_AUX2>,
+> +		<LPASS_AUDIO_CC_PLL_OUT_AUX2_DIV_CLK_SRC>,
+> +		<LPASS_AUDIO_CC_PLL_OUT_MAIN_DIV_CLK_SRC>,
+> +		<LPASS_AUDIO_CC_RX_MCLK_2X_CLK>, <LPASS_AUDIO_CC_RX_MCLK_CLK>,
+> +		<LPASS_AUDIO_CC_RX_MCLK_CLK_SRC>;
+> +	/delete-property/ power-domains;
+> +};
 
-...
+This literally disables all clocks that come out of this controller, why
+not just set status = "reserved"?
 
-> +static int axi_adc_enable(struct iio_backend *back)
->  {
-> +       struct adi_axi_adc_state *st =3D iio_backend_get_priv(back);
->         int ret;
->
-> +       ret =3D regmap_set_bits(st->regmap, ADI_AXI_REG_RSTN,
-> +                             ADI_AXI_REG_RSTN_MMCM_RSTN);
-> +       if (ret)
-> +               return ret;
+> +
+> +&lpass_aon {
+> +	status = "disabled";
+> +};
+> +
+> +&lpass_core {
+> +	status = "disabled";
+> +};
+> +
+> +&lpass_hm {
+> +	status = "disabled";
+> +};
 
-> +       fsleep(10);
+These three are status = "reserved" by default already, so it's a NOP..
 
-Would be nice to have a comment that probably the datasheet defines
-the minimum timeout for reset. Ah and you decreased it 1000x times,
-why?
-
-> +       return regmap_set_bits(st->regmap, ADI_AXI_REG_RSTN,
-> +                              ADI_AXI_REG_RSTN_RSTN | ADI_AXI_REG_RSTN_M=
-MCM_RSTN);
->  }
-
-...
-
-> +       expected_ver =3D (unsigned int *)device_get_match_data(&pdev->dev=
-);
-
-expected_ver should have const and you can drop the casting IIUC.
-
-> +       if (!expected_ver)
-> +               return -ENODEV;
-
---=20
-With Best Regards,
-Andy Shevchenko
+Konrad
 
