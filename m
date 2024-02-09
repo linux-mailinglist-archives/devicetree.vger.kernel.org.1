@@ -1,188 +1,128 @@
-Return-Path: <devicetree+bounces-40100-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-40101-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id B304484F3A8
-	for <lists+devicetree@lfdr.de>; Fri,  9 Feb 2024 11:45:03 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 04A3784F3C1
+	for <lists+devicetree@lfdr.de>; Fri,  9 Feb 2024 11:50:35 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id D75251C214D5
-	for <lists+devicetree@lfdr.de>; Fri,  9 Feb 2024 10:45:02 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id AD8851F2A2B1
+	for <lists+devicetree@lfdr.de>; Fri,  9 Feb 2024 10:50:34 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7AFBE20325;
-	Fri,  9 Feb 2024 10:44:58 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8C43128691;
+	Fri,  9 Feb 2024 10:50:17 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="sytJY/KP"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="RB+ND9Pp"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ej1-f41.google.com (mail-ej1-f41.google.com [209.85.218.41])
+Received: from mail-lf1-f44.google.com (mail-lf1-f44.google.com [209.85.167.44])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7B4F7200DC
-	for <devicetree@vger.kernel.org>; Fri,  9 Feb 2024 10:44:55 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.41
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CC26725601;
+	Fri,  9 Feb 2024 10:50:15 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.44
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1707475498; cv=none; b=Z1KdiF91tSXwU2pEhkUvIJHoKSATVK0hpoTqSOEOgIXPjbTyHAILnuFbKtyiTEuhZinb2dGcbAr4FoqRFezyFszsxpT6nJCaEihlmWJhjDt5Z/OBiWNeJWGPUVRu0kkISXXlTmxNdu+tQi10lVS8DesIGiIoz3Ey8kP2+OB7Mmg=
+	t=1707475817; cv=none; b=MSWJDziKB7j7fBtp9z5dn+rw8xlIWK0RoAucvbqcXqXntFoGUV+fWy8Arvz9hoSi/sH46ln4ePfom4DKajaiH4tEnqq4YU8YJ7iQ2YcefoJPy4bLmsONebY83uqDYSPVwnJo/Mitnkab3iNX5UyyYtWGlrH88+CWOJVOzkymjYo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1707475498; c=relaxed/simple;
-	bh=0qyI/gAu4ZJlfLwIOWsskUoL5PfJkS1ylp4Ng0x+uIE=;
-	h=Date:From:To:Cc:Subject:Message-ID:MIME-Version:Content-Type:
-	 Content-Disposition:In-Reply-To; b=tkeUrtnpNZ2HsQuSxKEcnaDg+dD9ia9DliKaxeoruiAAWm72CJhIer7V2bG5pVmScvvAWTzNCAlTR5SMzN52+ksqyodi1iv8AqLUUnz6TtkzjtOUQy2P1PwnWJddYCaM8Oa9XGBmr1UJCFANI56VM4SRCYMTZA5Dd6LNuPuD9vo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=sytJY/KP; arc=none smtp.client-ip=209.85.218.41
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-ej1-f41.google.com with SMTP id a640c23a62f3a-a381df83113so81075166b.3
-        for <devicetree@vger.kernel.org>; Fri, 09 Feb 2024 02:44:55 -0800 (PST)
+	s=arc-20240116; t=1707475817; c=relaxed/simple;
+	bh=bINds3wnwjsfuZArQrwolY39Op4Zultj31lCbJh0k+w=;
+	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version; b=U1i6MIjSEzVb73pT+3n0OwE89tCjkSQvD6tk+frPe/+jRwkLgF8x3NAAt99xQI0LNHPIsqdyhTBeRMoinFxwDf0qjyxgwkgtbFj3M1KnBj6w4eW7NQFaQtBL/rGRo5SQoFqfupn/2V75p04pfUeua1xWUV+3ipL8pBkjxOVhM0M=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=RB+ND9Pp; arc=none smtp.client-ip=209.85.167.44
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-lf1-f44.google.com with SMTP id 2adb3069b0e04-51168572090so1375985e87.0;
+        Fri, 09 Feb 2024 02:50:15 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1707475494; x=1708080294; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:message-id:subject:cc
-         :to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=ufiK/AwoGBnph0IZzYo7gGHR9qgDp2zpSqPlnrqsLUg=;
-        b=sytJY/KPswOY/tulG5ho2eTfeInnevGiWO1aNXArSJdTDi2RlBOv9uuimV8HN8MYG5
-         qR6UlJQpD/OX2NQiUf7Vzlh8htKSDRePgqw42DMTzRWKZjkXK6z7hD0DEWOts2SkC77/
-         82K6IFQLYVJc+/Cpvz8u+/EjK8ykhPnAffQla9Ucmggtg2ZStlCIvM8PwMJAlNA4aJ45
-         OwqR2B0QZegfHp9SU+xJTniWqsMcfMfLcxaZx2zI0eQV9JtrrW3wRjbdv+80UDYktC4Y
-         6S2RzBSHfNI+qVTx0/Ze/WwXvPbsRYUaMFHCCnxI44MXX0+sPhuQWgRPwO0rlKmKcki0
-         oVtQ==
+        d=gmail.com; s=20230601; t=1707475814; x=1708080614; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=s6uYbxf7yYToxU6OmDz8coT5iHkSyLV83vl+tZgOKS0=;
+        b=RB+ND9Pp4XGpI2WX7zE6kaazLToPakCvXUu5eWSBtsL8nw6VXEmKBjVHVA0Er4HL/c
+         fmwSqrLNDBUHzk+STQUjX5kFzljLn5O5P9yK8oC/cg8414klbOwWxWcxoScVnXuybKOQ
+         L6xU6HzzHP+D94fDmUBGM0cd4GOTD+rWFJtyXMT1WK43Zvm5gp7F6TJpUIL4bpQbOZod
+         rViKo0mzPvjleboPZiIWWcOkiLBCCoZ78RzEyC2DDkKYgR7OMcJLrGs/ylmGj55nTsbV
+         nCMSxU7A5gjCAm2xuFNt4DIwtoFsgCf6/hdMYnEfK2kGj2eSyzM9TOtpXZuL4Gj+3NQT
+         hcSg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1707475494; x=1708080294;
-        h=in-reply-to:content-disposition:mime-version:message-id:subject:cc
-         :to:from:date:x-gm-message-state:from:to:cc:subject:date:message-id
+        d=1e100.net; s=20230601; t=1707475814; x=1708080614;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=ufiK/AwoGBnph0IZzYo7gGHR9qgDp2zpSqPlnrqsLUg=;
-        b=eUY1VjhJeavm7Zd9JWiNtUg3prz/e98Urvb5sBw3aRFlDGvkRipXgCg5HJe1WV0kaM
-         zfmSTceRGC3zD2inhamAXuNsTh+Erj4+ZGDZn9xLKzCNzBbMXdmWt4VegaByQ91BIs7G
-         1Lx4TH0koJCU3D+xr+galU8cZ9Cs9WAFCxij3178wzX/dbIZ2Z26gx9/KZowPvAzDXYU
-         jzM45IzDqTWT46XRUacQSTRRQ/3SLuZDy3euKad75iBULsn5ox8nQ3uJZEEhaOPcYFVH
-         KOpIHvc44XcjSQNqgJDKqeMQgzml2Lv+0BlZkt+hua+93D565G7KUfHjdWVpDn2tWApQ
-         Wj0Q==
-X-Forwarded-Encrypted: i=1; AJvYcCX6+a5Ao1zvmQvbbq6LWCquxDeU9/H+W2ANKWllPXnep9HBG0kVX3S088NQsqsm1BWLYVA8nGg/RWMpTJLBu8chc30JNleiqMg1KQ==
-X-Gm-Message-State: AOJu0Yy6xVMk/Qi+rUvfzQYXDOoLsk5NZkI1KHQPs/Ka80I5PljBC1aQ
-	CrcRXX/YJ8ChS/W0sVVD2LRq9OSa1KnLWYu59F0hoBLGQ/bnTR0oCTiXHgAON3M=
-X-Google-Smtp-Source: AGHT+IHpwhLDqRapIlu66G2J3dMTMPNIHznYNeglqdg8ydW1switl8iLg14HH6Hb8NK/lWJs9J3NEw==
-X-Received: by 2002:a17:906:ce32:b0:a38:9ff:571c with SMTP id sd18-20020a170906ce3200b00a3809ff571cmr826572ejb.9.1707475493711;
-        Fri, 09 Feb 2024 02:44:53 -0800 (PST)
-X-Forwarded-Encrypted: i=1; AJvYcCXxmx2xbvCtX9cdjQK7LWMARKC4KfxZaOTLJ1aOxw/b6X1nBR3D0/gcULbBz+tTFmUrigGigD57yCCNn8t1CB3Zo2TmGsUZp7iFsHHdnetrKztQCb6bVe4ZI4OE5KMmsJl7J7hXaqSx5lJlHQ5UJUJbSmo0ISFXrWjVJiAH6BKmOH0LAVC7j32IPan/0tlKpBJaiXQrrIT50QISg+8snRtDeNvo3pA8fSG09Lxp/tIb7K109IVl89ef0NZ0HBg2J5ZsmCi0nzWllNArK1NSMayVDmDmeFSIoErSKRjrDoOx3Kk5gtQlprjhtaScnRSYWJiw+ppsfEFZHLUwvf92hQAwNHF8RrmrHBzqUcOE+mRxM6aFEiSiONVg4ytuPhqaRfOP0g6YFuvbnwOMT4MxBkthE0sGZN+icCQb18k89kXNUOLCTxGJpf3WYG3ILO4sucvkKA9SCCI++4muNlMklW9oZSfd5+wc139jAy0qpa1MHhiBobBpx9zn/XeK7H83pfaHyW6JF3mguM6ZUjyiOOdUNfdxUNuYqMg1rtKoJsUpnTJANEX1bjI+Omu1vK/0cPkH+DgcC1qAIfN11K2Bq54pIIM6XY3Crcxs8SArFssDN9Bc8dvnfgFgNB4NqnWQP0ZKiNfJYfOuNdlG9M8w3L8=
-Received: from localhost ([102.222.70.76])
-        by smtp.gmail.com with ESMTPSA id gr1-20020a170906e2c100b00a311ab95fbdsm638306ejb.63.2024.02.09.02.44.52
+        bh=s6uYbxf7yYToxU6OmDz8coT5iHkSyLV83vl+tZgOKS0=;
+        b=UG9bAbWdAONdh4+dS0t7kigMfGN2HuRXQT8/eiBHSo80MbsZ+0Pb18uI4Swg8JR2dH
+         K6TGHzYm5kN6257o+SzoURdhWZmz/O5D1MQ/qcBNWughhw9bD5fpHVf85YpSGXyqck0/
+         A5cHAlOLviEda/hQSU7ewFGq359oD/nTqrUCa6UMktpidpj+pipOF3okUEdeLhHnjB33
+         dvMsJpbqmmi4vJLVZzjEhVjrTJBNtuqCWf/a22soJAaJLBhHv0tQZ6qUZDNfVD01uTSx
+         SmmmUNApE5Usw7MNacCwM3HInMr7AR/MXi2HITO6G+YRFNiYqK/+CCQvj6YrQahe2enS
+         44gg==
+X-Gm-Message-State: AOJu0YwYj9lhVT/9r+PzPXz7Fjry/KDTIc8D7FugyoY6qbBj35qZW4Gd
+	QmSGp/958lHMKSXYtOAwK9hy/35CXct1qMGfN+1iT2JMktO8/zkT
+X-Google-Smtp-Source: AGHT+IEpIumUNsf3xiDQPPvz/mreysnuOLMTL8jtpyugnii1nY9eDYj78HAqFUquXMdkJh6Uqam2SA==
+X-Received: by 2002:ac2:4568:0:b0:511:706d:72f2 with SMTP id k8-20020ac24568000000b00511706d72f2mr708108lfm.68.1707475813482;
+        Fri, 09 Feb 2024 02:50:13 -0800 (PST)
+X-Forwarded-Encrypted: i=1; AJvYcCUpNxTnu5n+LmuDXdn+i9OCGDckrfR6gbVuF5lYldSVYxaTEAprOvu3h9L16s0T201fQmaRC24aer8Ie5EpRN5blle3HrDylW7bp9CQlmTOKAQklaLgPR8/l8XSron3DKGB5tyjDGzNHk588ziuBXHsnB3iyjAgYSe1zIIJlxdLaUEPdeFwYrXJCVP2wJM//C95Fm8kKd/D6OIl5Stq7V8mG69VKzrTDzRoOLmO9WzothIMpjDohI8cooDbZvHz6ZDNF+tQZ9hN0WiFtJpyw41mntJrseO/usnYZiotir8Y70fyaQZyzlIdclYKEzAxhQhmF9b2wAefb2hmW2y7rFGOeWD/0KFLtDlx4zfhdUL63zop+kpgArG337C89FoKckhOC9PVrkJdOcfoG6CQ5I+nEhZkkCTKoz0aDZGHOCRO3z1l1fFRQwAONcB/pGNh49210fthq8Y+bRkNUt9Z9GXvXqZ5oM2ETLhXaF5u68RTaWZOXq2EQQIdYhb951kMYhs1NK7c
+Received: from eichest-laptop.toradex.int ([2a02:168:af72:0:765:2268:762e:2748])
+        by smtp.gmail.com with ESMTPSA id t18-20020a05600c199200b0040fc26183e8sm253627wmq.8.2024.02.09.02.50.12
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 09 Feb 2024 02:44:53 -0800 (PST)
-Date: Fri, 9 Feb 2024 13:44:49 +0300
-From: Dan Carpenter <dan.carpenter@linaro.org>
-To: oe-kbuild@lists.linux.dev, Jagadeesh Kona <quic_jkona@quicinc.com>,
-	Bjorn Andersson <andersson@kernel.org>,
-	Konrad Dybcio <konrad.dybcio@linaro.org>,
-	Michael Turquette <mturquette@baylibre.com>,
-	Stephen Boyd <sboyd@kernel.org>, Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>
-Cc: lkp@intel.com, oe-kbuild-all@lists.linux.dev,
-	Vladimir Zapolskiy <vladimir.zapolskiy@linaro.org>,
-	Taniya Das <quic_tdas@quicinc.com>, linux-arm-msm@vger.kernel.org,
-	linux-clk@vger.kernel.org, devicetree@vger.kernel.org,
+        Fri, 09 Feb 2024 02:50:13 -0800 (PST)
+From: Stefan Eichenberger <eichest@gmail.com>
+To: nick@shmanahar.org,
+	dmitry.torokhov@gmail.com,
+	robh+dt@kernel.org,
+	krzysztof.kozlowski+dt@linaro.org,
+	conor+dt@kernel.org,
+	nicolas.ferre@microchip.com,
+	alexandre.belloni@bootlin.com,
+	claudiu.beznea@tuxon.dev,
+	linus.walleij@linaro.org
+Cc: linux-input@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org,
 	linux-kernel@vger.kernel.org,
-	Imran Shaik <quic_imrashai@quicinc.com>,
-	Ajit Pandey <quic_ajipan@quicinc.com>,
-	Jagadeesh Kona <quic_jkona@quicinc.com>
-Subject: Re: [PATCH 2/5] clk: qcom: videocc-sm8550: Add support for SM8650
- videocc
-Message-ID: <63a0302d-8f36-4675-b390-75f546261c6e@moroto.mountain>
+	francesco.dolcini@toradex.com
+Subject: [PATCH RESEND v3 0/2] Add a property to turn off the max touch controller in suspend mode
+Date: Fri,  9 Feb 2024 11:50:10 +0100
+Message-Id: <20240209105012.22470-1-eichest@gmail.com>
+X-Mailer: git-send-email 2.40.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20240206113145.31096-3-quic_jkona@quicinc.com>
+Content-Transfer-Encoding: 8bit
 
-Hi Jagadeesh,
+Our hardware has a shared regulator that powers various peripherals such
+as the display, touch, USB hub, etc. Since the Maxtouch controller
+doesn't currently allow it to be turned off, this regulator has to stay
+on in suspend mode. This increases the overall power consumption. In
+order to turn off the controller when the system goes into suspend mode,
+this series adds a device tree property to the maxtouch driver that
+allows the controller to be turned off completely and ensurs that it can
+resume from the power off state.
 
-kernel test robot noticed the following build warnings:
+Resend v3:
+- Previously I messed up the series because send-email crashed. This is
+  a resend of the original series:
+  https://lore.kernel.org/linux-input/20240209084543.14726-1-eichest@gmail.com/T/#t
+  https://lore.kernel.org/linux-input/20240209084818.14925-1-eichest@gmail.com/T/#u
 
-https://git-scm.com/docs/git-format-patch#_base_tree_information]
+Changes since v2:
+- Add Reviewed-by tags from Linus and Krzysztof to the dt-bindings patch
 
-url:    https://github.com/intel-lab-lkp/linux/commits/Jagadeesh-Kona/dt-bindings-clock-qcom-Add-video-clock-bindings-for-SM8650/20240206-194148
-base:   https://git.kernel.org/pub/scm/linux/kernel/git/clk/linux.git clk-next
-patch link:    https://lore.kernel.org/r/20240206113145.31096-3-quic_jkona%40quicinc.com
-patch subject: [PATCH 2/5] clk: qcom: videocc-sm8550: Add support for SM8650 videocc
-config: arm64-randconfig-r071-20240207 (https://download.01.org/0day-ci/archive/20240209/202402091804.SdrSLt10-lkp@intel.com/config)
-compiler: clang version 14.0.6 (https://github.com/llvm/llvm-project.git f28c006a5895fc0e329fe15fead81e37457cb1d1)
+Changes since v1:
+- Rename the property and change the description (Krzysztof, Linus,
+Dmitry, Conor)
 
-If you fix the issue in a separate patch/commit (i.e. not just a new version of
-the same patch/commit), kindly add following tags
-| Reported-by: kernel test robot <lkp@intel.com>
-| Reported-by: Dan Carpenter <dan.carpenter@linaro.org>
-| Closes: https://lore.kernel.org/r/202402091804.SdrSLt10-lkp@intel.com/
+Stefan Eichenberger (2):
+  dt-bindings: input: atmel,maxtouch: add poweroff-sleep property
+  Input: atmel_mxt_ts - support poweroff in suspend
 
-smatch warnings:
-drivers/clk/qcom/videocc-sm8550.c:590 video_cc_sm8550_probe() error: uninitialized symbol 'offset'.
-
-vim +/offset +590 drivers/clk/qcom/videocc-sm8550.c
-
-f53153a37969c1 Jagadeesh Kona   2023-05-24  543  static int video_cc_sm8550_probe(struct platform_device *pdev)
-f53153a37969c1 Jagadeesh Kona   2023-05-24  544  {
-f53153a37969c1 Jagadeesh Kona   2023-05-24  545  	struct regmap *regmap;
-f53153a37969c1 Jagadeesh Kona   2023-05-24  546  	int ret;
-5ab3df7257a04f Jagadeesh Kona   2024-02-06  547  	u32 offset;
-f53153a37969c1 Jagadeesh Kona   2023-05-24  548  
-f53153a37969c1 Jagadeesh Kona   2023-05-24  549  	ret = devm_pm_runtime_enable(&pdev->dev);
-f53153a37969c1 Jagadeesh Kona   2023-05-24  550  	if (ret)
-f53153a37969c1 Jagadeesh Kona   2023-05-24  551  		return ret;
-f53153a37969c1 Jagadeesh Kona   2023-05-24  552  
-f53153a37969c1 Jagadeesh Kona   2023-05-24  553  	ret = pm_runtime_resume_and_get(&pdev->dev);
-f53153a37969c1 Jagadeesh Kona   2023-05-24  554  	if (ret)
-f53153a37969c1 Jagadeesh Kona   2023-05-24  555  		return ret;
-f53153a37969c1 Jagadeesh Kona   2023-05-24  556  
-f53153a37969c1 Jagadeesh Kona   2023-05-24  557  	regmap = qcom_cc_map(pdev, &video_cc_sm8550_desc);
-f53153a37969c1 Jagadeesh Kona   2023-05-24  558  	if (IS_ERR(regmap)) {
-f53153a37969c1 Jagadeesh Kona   2023-05-24  559  		pm_runtime_put(&pdev->dev);
-f53153a37969c1 Jagadeesh Kona   2023-05-24  560  		return PTR_ERR(regmap);
-f53153a37969c1 Jagadeesh Kona   2023-05-24  561  	}
-f53153a37969c1 Jagadeesh Kona   2023-05-24  562  
-5ab3df7257a04f Jagadeesh Kona   2024-02-06  563  	if (of_device_is_compatible(pdev->dev.of_node, "qcom,sm8550-videocc")) {
-5ab3df7257a04f Jagadeesh Kona   2024-02-06  564  		video_cc_sm8550_clocks[VIDEO_CC_MVS0_SHIFT_CLK] = NULL;
-5ab3df7257a04f Jagadeesh Kona   2024-02-06  565  		video_cc_sm8550_clocks[VIDEO_CC_MVS0C_SHIFT_CLK] = NULL;
-5ab3df7257a04f Jagadeesh Kona   2024-02-06  566  		video_cc_sm8550_clocks[VIDEO_CC_MVS1_SHIFT_CLK] = NULL;
-5ab3df7257a04f Jagadeesh Kona   2024-02-06  567  		video_cc_sm8550_clocks[VIDEO_CC_MVS1C_SHIFT_CLK] = NULL;
-5ab3df7257a04f Jagadeesh Kona   2024-02-06  568  		video_cc_sm8550_clocks[VIDEO_CC_XO_CLK_SRC] = NULL;
-5ab3df7257a04f Jagadeesh Kona   2024-02-06  569  		offset = 0x8140;
-5ab3df7257a04f Jagadeesh Kona   2024-02-06  570  	} else  if (of_device_is_compatible(pdev->dev.of_node, "qcom,sm8650-videocc")) {
-5ab3df7257a04f Jagadeesh Kona   2024-02-06  571  		video_cc_pll0_config.l = 0x1e;
-5ab3df7257a04f Jagadeesh Kona   2024-02-06  572  		video_cc_pll0_config.alpha = 0xa000;
-5ab3df7257a04f Jagadeesh Kona   2024-02-06  573  		video_cc_pll1_config.l = 0x2b;
-5ab3df7257a04f Jagadeesh Kona   2024-02-06  574  		video_cc_pll1_config.alpha = 0xc000;
-5ab3df7257a04f Jagadeesh Kona   2024-02-06  575  		video_cc_mvs0_clk_src.freq_tbl = ftbl_video_cc_mvs0_clk_src_sm8650;
-5ab3df7257a04f Jagadeesh Kona   2024-02-06  576  		video_cc_mvs1_clk_src.freq_tbl = ftbl_video_cc_mvs1_clk_src_sm8650;
-5ab3df7257a04f Jagadeesh Kona   2024-02-06  577  		offset = 0x8150;
-5ab3df7257a04f Jagadeesh Kona   2024-02-06  578  	}
-
-no else statement.
-
-5ab3df7257a04f Jagadeesh Kona   2024-02-06  579  
-a2620539ae2529 Dmitry Baryshkov 2023-10-16  580  	clk_lucid_ole_pll_configure(&video_cc_pll0, regmap, &video_cc_pll0_config);
-a2620539ae2529 Dmitry Baryshkov 2023-10-16  581  	clk_lucid_ole_pll_configure(&video_cc_pll1, regmap, &video_cc_pll1_config);
-f53153a37969c1 Jagadeesh Kona   2023-05-24  582  
-f53153a37969c1 Jagadeesh Kona   2023-05-24  583  	/*
-f53153a37969c1 Jagadeesh Kona   2023-05-24  584  	 * Keep clocks always enabled:
-f53153a37969c1 Jagadeesh Kona   2023-05-24  585  	 *	video_cc_ahb_clk
-f53153a37969c1 Jagadeesh Kona   2023-05-24  586  	 *	video_cc_sleep_clk
-f53153a37969c1 Jagadeesh Kona   2023-05-24  587  	 *	video_cc_xo_clk
-f53153a37969c1 Jagadeesh Kona   2023-05-24  588  	 */
-f53153a37969c1 Jagadeesh Kona   2023-05-24  589  	regmap_update_bits(regmap, 0x80f4, BIT(0), BIT(0));
-5ab3df7257a04f Jagadeesh Kona   2024-02-06 @590  	regmap_update_bits(regmap, offset, BIT(0), BIT(0));
-f53153a37969c1 Jagadeesh Kona   2023-05-24  591  	regmap_update_bits(regmap, 0x8124, BIT(0), BIT(0));
-f53153a37969c1 Jagadeesh Kona   2023-05-24  592  
-f53153a37969c1 Jagadeesh Kona   2023-05-24  593  	ret = qcom_cc_really_probe(pdev, &video_cc_sm8550_desc, regmap);
-f53153a37969c1 Jagadeesh Kona   2023-05-24  594  
-f53153a37969c1 Jagadeesh Kona   2023-05-24  595  	pm_runtime_put(&pdev->dev);
-f53153a37969c1 Jagadeesh Kona   2023-05-24  596  
-f53153a37969c1 Jagadeesh Kona   2023-05-24  597  	return ret;
-f53153a37969c1 Jagadeesh Kona   2023-05-24  598  }
+ .../bindings/input/atmel,maxtouch.yaml        |  6 ++
+ drivers/input/touchscreen/atmel_mxt_ts.c      | 72 ++++++++++++++-----
+ 2 files changed, 61 insertions(+), 17 deletions(-)
 
 -- 
-0-DAY CI Kernel Test Service
-https://github.com/intel/lkp-tests/wiki
+2.40.1
 
 
