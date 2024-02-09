@@ -1,55 +1,65 @@
-Return-Path: <devicetree+bounces-40082-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-40083-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 214B284F22F
-	for <lists+devicetree@lfdr.de>; Fri,  9 Feb 2024 10:21:56 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0904F84F238
+	for <lists+devicetree@lfdr.de>; Fri,  9 Feb 2024 10:24:34 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id BB60D2830BE
-	for <lists+devicetree@lfdr.de>; Fri,  9 Feb 2024 09:21:54 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 3BA1A1C212DC
+	for <lists+devicetree@lfdr.de>; Fri,  9 Feb 2024 09:24:33 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id DCD3566B55;
-	Fri,  9 Feb 2024 09:21:50 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C8A8666B52;
+	Fri,  9 Feb 2024 09:24:29 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b="tFvDqK+k"
+	dkim=pass (2048-bit key) header.d=foss.st.com header.i=@foss.st.com header.b="go1r9tIv"
 X-Original-To: devicetree@vger.kernel.org
-Received: from madrid.collaboradmins.com (madrid.collaboradmins.com [46.235.227.194])
+Received: from mx07-00178001.pphosted.com (mx07-00178001.pphosted.com [185.132.182.106])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3EDC265BDB;
-	Fri,  9 Feb 2024 09:21:48 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=46.235.227.194
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A15D6664B1;
+	Fri,  9 Feb 2024 09:24:27 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.132.182.106
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1707470510; cv=none; b=OOqAkWkOhXLYOZJcN2726KqCo3dVvkh1u9uW8WsXuuJRt0s46c4m21KRXS9Q6LVT9QK4Yn/O3BCk7PYGW9S2+5XYt3SzRQIbbT+xEffAOBtpItm2T0Ww4m2rYbMExYC59NMe79rok/9A5i5bNwOzcmlQe9wri8XwPMtbF1L0gFg=
+	t=1707470669; cv=none; b=dG4QYeDRKQlvbwYTk0njY+qlr5ulotNEARsyEPe9K7IZatxEkNvi4RByvG7W2oI2rXAQIOJS2iJSdVR6ZU2bx+7iY5mNMGyTulXIiceDlLdO1I3+A2ind7YgkB9J/uFTiqh4V3L29GSyZGeXoY0xeQrPCYuz5mxwwGeXT+gnZwM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1707470510; c=relaxed/simple;
-	bh=JbZ74A9tk2UWT+VrLIApBOpqqPN0+cze41j1I55Ge6Q=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=tF+R0NiCqHN4kCiqMUbgQ+I+/6iBZSog8OFcPoU0VTCbGB4E8U+Lg0IYeg5SAs5QjAMrNqMqBWmZDsUnTusY1TEANkoHabD/8/i2u0YW/uNhWVA+v2utImiJNjNYH5iD5mihKHWp4/TOSzlaWDQ8hIShWe+/F5YV9Hccn37IxLg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b=tFvDqK+k; arc=none smtp.client-ip=46.235.227.194
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=collabora.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-	s=mail; t=1707470507;
-	bh=JbZ74A9tk2UWT+VrLIApBOpqqPN0+cze41j1I55Ge6Q=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=tFvDqK+klPRWkB14WAgjKKUsbzaEZMT8Qt6Dtt0PHCBG3BTF+I7tmwXivMImqGlqk
-	 DagdXAySSBDsAELUumgQ90DPTHZUHhKgAvW4sQhwhND6TX35JgguzCaOvyTb/SfDAP
-	 hzgf5v2gDCsFqLXznwjS9ZW+lqpCuF+wCsEzju29gDkwSlXO7xW/yMiMK682HUEM3j
-	 51/YLR51n2eL9Bqk8fWDMzddA4jsT1lCPwZqfwbvnn1HJVl1mK4isy5twQjsD3kdNn
-	 sWDtug2YaCF+E/e73GFO1BorESezwL7SbmGBcRem4+8YETBlEXTsXTgA5rB2tc2P2T
-	 VffYn3elHpc6A==
-Received: from [100.113.186.2] (cola.collaboradmins.com [195.201.22.229])
-	(using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
-	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
-	(No client certificate requested)
-	(Authenticated sender: kholk11)
-	by madrid.collaboradmins.com (Postfix) with ESMTPSA id 74EE837811F4;
-	Fri,  9 Feb 2024 09:21:46 +0000 (UTC)
-Message-ID: <185865bb-983e-467f-be2d-4978c8f4d6dc@collabora.com>
-Date: Fri, 9 Feb 2024 10:21:45 +0100
+	s=arc-20240116; t=1707470669; c=relaxed/simple;
+	bh=LWo09Ys4wrV+4aRTLA+zoGjZ77c40wS/ePushfPdaVY=;
+	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
+	 In-Reply-To:Content-Type; b=cxcZJHDXoLy2+zIdF8LjsMboLbhG/T0zkjItR5h9rXramQ5uD87KyM3ofyR/zGu4nzbFrj0EUntJ2ObA+StOF+Xc31LlF4ing4YunizacfdR8XzJPL3507IiwI8z3ibBEAvpKmcEPe5x0lDWJK1pJHvYVp5zH3eVNbMKKVuK9FQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=foss.st.com; spf=pass smtp.mailfrom=foss.st.com; dkim=pass (2048-bit key) header.d=foss.st.com header.i=@foss.st.com header.b=go1r9tIv; arc=none smtp.client-ip=185.132.182.106
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=foss.st.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=foss.st.com
+Received: from pps.filterd (m0288072.ppops.net [127.0.0.1])
+	by mx07-00178001.pphosted.com (8.17.1.24/8.17.1.24) with ESMTP id 4196LvNB025594;
+	Fri, 9 Feb 2024 10:24:20 +0100
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=foss.st.com; h=
+	message-id:date:mime-version:subject:to:cc:references:from
+	:in-reply-to:content-type:content-transfer-encoding; s=
+	selector1; bh=G8hv0Ly9R1rT33a7xksaagvTQAfMa5pgb5qJjkEb21U=; b=go
+	1r9tIv4JdHkmq78CLfNkktZfRUcyFQ9GCvK9W3gbBXDhe5ZqPR32oheuRwrwWnS/
+	/CqHDAEF1n3WLcCiqoqCu5s34cfeyNlRROSm/K6jQ+les6A8EJE9ZzwqgfoyCARX
+	3NT7lbJC8t0US5tp46A270yLMc40FNQ5ax2S8sWvc1f6NOeLarw1hCdfTSqAKwTY
+	aR0b8Lo58yzTGpaq0cwx6h/iBs3BNwjK2IfmBL7EgeOBGGJ6NzJtyOigNqR/jwc6
+	BuVIWMRvxx2F8cB+05KSOwH2IVQEWPSjBRVpVSLiMNXTcTJnowG+X9L9oO03slEc
+	q0w1kS1kqvwvAFDRpbZA==
+Received: from beta.dmz-eu.st.com (beta.dmz-eu.st.com [164.129.1.35])
+	by mx07-00178001.pphosted.com (PPS) with ESMTPS id 3w1eyprt7v-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Fri, 09 Feb 2024 10:24:20 +0100 (CET)
+Received: from euls16034.sgp.st.com (euls16034.sgp.st.com [10.75.44.20])
+	by beta.dmz-eu.st.com (STMicroelectronics) with ESMTP id 9704410004F;
+	Fri,  9 Feb 2024 10:24:19 +0100 (CET)
+Received: from Webmail-eu.st.com (shfdag1node1.st.com [10.75.129.69])
+	by euls16034.sgp.st.com (STMicroelectronics) with ESMTP id 8C58D2128DF;
+	Fri,  9 Feb 2024 10:24:19 +0100 (CET)
+Received: from [10.252.23.147] (10.252.23.147) by SHFDAG1NODE1.st.com
+ (10.75.129.69) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.27; Fri, 9 Feb
+ 2024 10:24:19 +0100
+Message-ID: <4bffed14-0edf-49a6-8bbb-cc122137e9de@foss.st.com>
+Date: Fri, 9 Feb 2024 10:24:18 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -57,110 +67,76 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH V2 1/3] dt-bindings: arm: mediatek: convert hifsys to the
- json-schema clock
+Subject: Re: [PATCH] media: dt-bindings: st-vgxy61: relax data-lanes
+ restriction
 Content-Language: en-US
-To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
- =?UTF-8?B?UmFmYcWCIE1pxYJlY2tp?= <zajec5@gmail.com>,
- Russell King <linux@armlinux.org.uk>,
- Daniel Lezcano <daniel.lezcano@linaro.org>,
- Thomas Gleixner <tglx@linutronix.de>, Rob Herring <robh+dt@kernel.org>,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Conor Dooley <conor+dt@kernel.org>
-Cc: Matthias Brugger <matthias.bgg@gmail.com>, devicetree@vger.kernel.org,
- linux-clk@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- linux-mediatek@lists.infradead.org, linux-kernel@vger.kernel.org,
- =?UTF-8?B?UmFmYcWCIE1pxYJlY2tp?= <rafal@milecki.pl>
-References: <20240208215926.10085-1-zajec5@gmail.com>
- <20240208215926.10085-2-zajec5@gmail.com>
- <d4a4a468-4a81-413e-9de6-060c2ba9e0b6@collabora.com>
- <502836d9-5a57-4614-b908-2adc0f01df33@linaro.org>
-From: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
-In-Reply-To: <502836d9-5a57-4614-b908-2adc0f01df33@linaro.org>
-Content-Type: text/plain; charset=UTF-8; format=flowed
+To: Julien Massot <julien.massot@collabora.com>,
+        Conor Dooley
+	<conor@kernel.org>
+CC: <sylvain.petinot@foss.st.com>, <mchehab@kernel.org>, <robh+dt@kernel.org>,
+        <krzysztof.kozlowski+dt@linaro.org>, <conor+dt@kernel.org>,
+        <kernel@collabora.com>, <devicetree@vger.kernel.org>,
+        <linux-media@vger.kernel.org>
+References: <20231213071737.1070162-1-julien.massot@collabora.com>
+ <20231213-chest-turf-8e9c4fb0a3db@spud>
+ <aa478429-57f6-40f8-8481-269311fdc937@collabora.com>
+From: Benjamin Mugnier <benjamin.mugnier@foss.st.com>
+In-Reply-To: <aa478429-57f6-40f8-8481-269311fdc937@collabora.com>
+Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: 8bit
+X-ClientProxiedBy: SHFCAS1NODE1.st.com (10.75.129.72) To SHFDAG1NODE1.st.com
+ (10.75.129.69)
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.272,Aquarius:18.0.1011,Hydra:6.0.619,FMLib:17.11.176.26
+ definitions=2024-02-09_06,2024-02-08_01,2023-05-22_02
 
-Il 09/02/24 10:17, Krzysztof Kozlowski ha scritto:
-> On 09/02/2024 09:53, AngeloGioacchino Del Regno wrote:
->> Il 08/02/24 22:59, Rafał Miłecki ha scritto:
->>> From: Rafał Miłecki <rafal@milecki.pl>
+Hi Julien,
+
+On 1/5/24 10:36, Julien Massot wrote:
+> Hi,
+> 
+> On 12/13/23 17:30, Conor Dooley wrote:
+>> On Wed, Dec 13, 2023 at 08:17:37AM +0100, Julien Massot wrote:
+>>> The ST VGXY61 sensors support multiple lane number, as
+>>> well as lane mapping.
 >>>
->>> This helps validating DTS files. Introduced changes:
->>> 1. Documented "reg" property
->>> 2. Documented "#reset-cells" property
->>> 3. Dropped "syscon" as it was incorrectly used
->>> 4. Adjusted "compatible" and "reg" in example
->>>
->>> Signed-off-by: Rafał Miłecki <rafal@milecki.pl>
+>>> Signed-off-by: Julien Massot <julien.massot@collabora.com>
 >>> ---
->>>    .../bindings/arm/mediatek/mediatek,hifsys.txt | 26 ----------
->>>    .../clock/mediatek,mt2701-hifsys.yaml         | 51 +++++++++++++++++++
->>>    2 files changed, 51 insertions(+), 26 deletions(-)
->>>    delete mode 100644 Documentation/devicetree/bindings/arm/mediatek/mediatek,hifsys.txt
->>>    create mode 100644 Documentation/devicetree/bindings/clock/mediatek,mt2701-hifsys.yaml
+>>>   .../devicetree/bindings/media/i2c/st,st-vgxy61.yaml        | 7 ++-----
+>>>   1 file changed, 2 insertions(+), 5 deletions(-)
 >>>
->>> diff --git a/Documentation/devicetree/bindings/arm/mediatek/mediatek,hifsys.txt b/Documentation/devicetree/bindings/arm/mediatek/mediatek,hifsys.txt
->>> deleted file mode 100644
->>> index 323905af82c3..000000000000
->>> --- a/Documentation/devicetree/bindings/arm/mediatek/mediatek,hifsys.txt
->>> +++ /dev/null
->>> @@ -1,26 +0,0 @@
->>> -Mediatek hifsys controller
->>> -============================
->>> -
->>> -The Mediatek hifsys controller provides various clocks and reset
->>> -outputs to the system.
->>> -
->>> -Required Properties:
->>> -
->>> -- compatible: Should be:
->>> -	- "mediatek,mt2701-hifsys", "syscon"
->>> -	- "mediatek,mt7622-hifsys", "syscon"
->>> -	- "mediatek,mt7623-hifsys", "mediatek,mt2701-hifsys", "syscon"
->>> -- #clock-cells: Must be 1
->>> -
->>> -The hifsys controller uses the common clk binding from
->>> -Documentation/devicetree/bindings/clock/clock-bindings.txt
->>> -The available clocks are defined in dt-bindings/clock/mt*-clk.h.
->>> -
->>> -Example:
->>> -
->>> -hifsys: clock-controller@1a000000 {
->>> -	compatible = "mediatek,mt2701-hifsys", "syscon";
->>> -	reg = <0 0x1a000000 0 0x1000>;
->>> -	#clock-cells = <1>;
->>> -	#reset-cells = <1>;
->>> -};
->>> diff --git a/Documentation/devicetree/bindings/clock/mediatek,mt2701-hifsys.yaml b/Documentation/devicetree/bindings/clock/mediatek,mt2701-hifsys.yaml
->>> new file mode 100644
->>> index 000000000000..eb429337cdf4
->>> --- /dev/null
->>> +++ b/Documentation/devicetree/bindings/clock/mediatek,mt2701-hifsys.yaml
->>> @@ -0,0 +1,51 @@
->>> +# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
->>> +%YAML 1.2
->>> +---
->>> +$id: http://devicetree.org/schemas/clock/mediatek,mt2701-hifsys.yaml#
->>> +$schema: http://devicetree.org/meta-schemas/core.yaml#
->>> +
->>> +title: Mediatek hifsys controller
+>>> diff --git
+>>> a/Documentation/devicetree/bindings/media/i2c/st,st-vgxy61.yaml
+>>> b/Documentation/devicetree/bindings/media/i2c/st,st-vgxy61.yaml
+>>> index 8c28848b226a..733fac85a20f 100644
+>>> --- a/Documentation/devicetree/bindings/media/i2c/st,st-vgxy61.yaml
+>>> +++ b/Documentation/devicetree/bindings/media/i2c/st,st-vgxy61.yaml
+>>> @@ -67,11 +67,8 @@ properties:
+>>>             data-lanes:
+>>>               description:
+>>>                 CSI lanes to use
+>>> -            items:
+>>> -              - const: 1
+>>> -              - const: 2
+>>> -              - const: 3
+>>> -              - const: 4
+>>> +            minItems: 1
+>>> +            maxItems: 4
 >>
->> Please, "MediaTek HIFSYS controller"
+>> So, it is now valid to have "data-lanes = <6 7 8>;" now?
 > 
-> Them maybe "clock controller" or "clock and reset controller"?
+> Indeed it's not valid, I will send a v2 with a 'minimum: 1', 'maximum:
+> 4' items properties.
 
-Yeah, that's right, let's prefer "clock and reset controller", as this binding does
-describe exactly only those two functionalities of the whole HIFSYS block.
-
-Cheers,
-Angelo
+I'm interested in this patch. Did you send a v2 yet that I might have
+missed ?
+Thank you.
 
 > 
-> 
-> Best regards,
-> Krzysztof
-> 
+> Thanks,
 
+-- 
+Regards,
 
-
+Benjamin
 
