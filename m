@@ -1,111 +1,272 @@
-Return-Path: <devicetree+bounces-40401-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-40402-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 022B98505B4
-	for <lists+devicetree@lfdr.de>; Sat, 10 Feb 2024 18:23:05 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7C5CB8505BF
+	for <lists+devicetree@lfdr.de>; Sat, 10 Feb 2024 18:40:40 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id BADB828135B
-	for <lists+devicetree@lfdr.de>; Sat, 10 Feb 2024 17:23:03 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 681F51C2249F
+	for <lists+devicetree@lfdr.de>; Sat, 10 Feb 2024 17:40:39 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6050F5CDFD;
-	Sat, 10 Feb 2024 17:22:56 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2950F5CDF7;
+	Sat, 10 Feb 2024 17:40:36 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="i6f7HItU"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="CZwDDv0f"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ed1-f45.google.com (mail-ed1-f45.google.com [209.85.208.45])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7BB5A5D468
-	for <devicetree@vger.kernel.org>; Sat, 10 Feb 2024 17:22:53 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.45
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EE5A95C8E8;
+	Sat, 10 Feb 2024 17:40:35 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1707585776; cv=none; b=OjNBgX7qXD9+24g5AqiFZQLLRVp0D6ulPmc9NUDVcA7CZU8k1vqZtX3CeOJA3jBG55CfBNS/ayahn8Gv2q9z1IrAyj7WwrHayKB535MZwwtvPnnSSqGUuNW75F4jti/DHZtcaO5UFF6vx2k9b1I5Qg/n0P7zyvH/UFZ0X3JoQMo=
+	t=1707586836; cv=none; b=ACwM1j/7kNi1nOgMt195EeD+sG0IpqI0UPZ6SGicTLixaPQIdBqmekfSgJWM5VurzVu+dJf0Ue+qu92VPQtD35j1uBO3aqsHukUy1uUV7lWOWOSSvjsvj6Cps1lHSaSK336kuuIpH0UxRXewsqi16J6z3DXSLJkUFUG55rbeNAs=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1707585776; c=relaxed/simple;
-	bh=yXq0eQN0IMkM9OvgeuQdLA51FwQpaGpF9u82EJZYeYs=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=WdMx7gkdeYJdpl5hBpInUbi/Bf9I0Ta9WTIrUqRXzdv3LbOXjfMVTKVucLbnpeBhrbstq7JQma9uvsY2F4axHJIeBGiFpU//1j6WKSssPADy3XTM5kYRq2EGk1hyn8PbmwGO4qJkHFkCU79Hg8o9pdq21xTIWo9lsepJbZSR4Ms=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=i6f7HItU; arc=none smtp.client-ip=209.85.208.45
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-ed1-f45.google.com with SMTP id 4fb4d7f45d1cf-5605c7b1f32so2598300a12.0
-        for <devicetree@vger.kernel.org>; Sat, 10 Feb 2024 09:22:53 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1707585772; x=1708190572; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=nbVwA3r2T4XIvj2MIMw96k+rlz8R9spHjVGSs/k39Oc=;
-        b=i6f7HItU+0DN046QP45gt4uMVRhXO0IetetSq5eCVraBremVnNQPYhSXOimLVnw6Mb
-         vFJ0Ofc8/37pSQXUHKVf9+D4uugL7fkUEDkE1p3LADOvUmdTvI88ToxGDLc1bx7nuGeZ
-         rxVZPof//9V6OacIs1+9j6qgWp7+3JBy7R97JjJTPLsyPuMOfR0pK7lamUdRjRmVv+Hf
-         eLWR51RAqmjsfcAl5AlD6rDIUOc8gN/iOWRXHl7xY7HXZ/GWbTuV2hu/7HQ/jNiC//TY
-         8pGgbk5eW58LWPWtgMrGHwOFTaLxMOrRohze7xLSvaDIO7cr4lwCMhqAsSEmuUcy8wJl
-         rKoQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1707585772; x=1708190572;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=nbVwA3r2T4XIvj2MIMw96k+rlz8R9spHjVGSs/k39Oc=;
-        b=oxWvK8nCkijN6ZNe1fEO7D+hIVE1bbbHBLLLWzOVgI6wHSYVprmHC5fn6s2sW8qHN/
-         6B+YYfUNG7hUAQK6CyOEK+XBt8JKHzUQ7zlM2tYM5mAptjUJDgYpDQ++wxCwgdhiZ3N3
-         lkXtwQxutNek/iimtdd25obMaE2R0LaqG8Gle6zotgVKkA/kvYAy5Ntf05DuAp/y0AI1
-         9tsLOpBAyKh/Kyw9pnKf0zYq1OtOv/mlTHGLE0P+TVsWJ9Gspm0r0obefj8L+vXJAkIt
-         5TgrXBD1cGaqeR1U1At2Uz71cCGdGWZWLiaRtV1lrAHB0RhaaBY+62vzwTRIyN7KfGUC
-         x/Sg==
-X-Forwarded-Encrypted: i=1; AJvYcCVFQpEEdUvANw7oFMuu9ZUuhzRjAqktTtkMs/+/ODcQxZcl+fPI7tL44tofQd/RITUbvEZTiVZkzIQcj6Kq52krB8RNI1656H4ymQ==
-X-Gm-Message-State: AOJu0Yw8tkQudCA2cOheqvHFhnVOsCDSgVzxSv7ghzJVBuGZfShGc21I
-	w6zLniuIx+SK7elYW3hX99RqN4V++drhuUw1mwDWNfVjsT9ykijjcPA+7XDf6Zc=
-X-Google-Smtp-Source: AGHT+IGjoZvwR/m5KuFRcY0hOSai9+AEivTeOhkS5ox7CXsFR1jLXzf0c93cLSctabNSd6vaZ6PMqA==
-X-Received: by 2002:aa7:d60c:0:b0:561:b28:e61 with SMTP id c12-20020aa7d60c000000b005610b280e61mr1685777edr.31.1707585771786;
-        Sat, 10 Feb 2024 09:22:51 -0800 (PST)
-X-Forwarded-Encrypted: i=1; AJvYcCXQ6Yzt65ip2g8FNsleIQBI8vTw+gpSs7VD4tpfkofMR/vl1KFjfdrfMPnCkB9feLjhvH2AzFXfKMGiNoEhhQASy2iQRWeMBDDqXqLx4f1ls19KQ6M7q63LqgfPgW/UHajaBHeHh0kqvozVFXJEOZdId5ZSrmDJGG3dJ+tS9E5Wz9lSo5GyDAl3JwROeg3kG6Gu79dJUEla55Ej6Al1Yl6jn4tfnMuE2W3luEYyDCiKSHe8uTsUUsWoZzoAcEaqwwdkVlyi4KOSycGVoKISNujC7+3LyRql9j2B0t0ip1r/fM2MJcoz/ROsfeGBt2rcTSI85+E2h9EENBm/BB8G/SJ4rTyuWYIp8tuXkkXih/tTLi63ABxf6Gg5UbWVyNXE5OjXd6S/c4ocjBPdZdlZ2ttHQ1Fe1l3kcBhJCtvwHhcl
-Received: from [192.168.1.116] (abyl12.neoplus.adsl.tpnet.pl. [83.9.31.12])
-        by smtp.gmail.com with ESMTPSA id dk21-20020a0564021d9500b0055c85e6d75dsm922314edb.87.2024.02.10.09.22.50
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sat, 10 Feb 2024 09:22:51 -0800 (PST)
-Message-ID: <d0c8fdcc-bf1b-47cb-9d34-337c069cbd2c@linaro.org>
-Date: Sat, 10 Feb 2024 18:22:49 +0100
+	s=arc-20240116; t=1707586836; c=relaxed/simple;
+	bh=Fc8diulIWuhCb0amP63B4SrZUV50n4/GYqCpyB1sdBc=;
+	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=DzMxwNgRV1jwRNEWLSXJXzp78loa+sK8eYZtaIYvhST+3nM01zML+8NzonDnKocuomaDggZDBRubC+1gPemnZ2M5YGfx7RPMKWlJsU3CtY0vipG/EWfDVQsxrFL4wwTdoYXtpmsx6bdX2CPjW/T656sdO5U+kvh7Kv+Xo8DwXxg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=CZwDDv0f; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id A1882C433F1;
+	Sat, 10 Feb 2024 17:40:32 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1707586835;
+	bh=Fc8diulIWuhCb0amP63B4SrZUV50n4/GYqCpyB1sdBc=;
+	h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
+	b=CZwDDv0fz1QceWKOQvulnjHT8apcZf832Tx54pyWGwNAl7z9r8DcuPEFW/LEkQgsM
+	 rmNfRgJg46rYEPQYnY3dSvErzklMppheYz5atgoThjbDFIPf8UK2W7boKqo8bDFaXY
+	 AlASG0soSQOHJz8F0q38tPIh5CqVs/TOFju3W69YZUFH4sxDiQdUrmUAyLB4X3RXit
+	 beeROIdGJH8M803BWzviB/1Wkdan3LJWMlQsQ3y7cbmci5VP1Sgs5tRnxohUldnkd3
+	 EqJDwObJ4/rjOmJc8m/iGfBZFypTZVlf0+UAq67RvM6usGJZaBXjeibylN8zSdpSe9
+	 2aECyXvK+wSGQ==
+Date: Sat, 10 Feb 2024 17:40:22 +0000
+From: Jonathan Cameron <jic23@kernel.org>
+To: David Lechner <dlechner@baylibre.com>
+Cc: linux-iio@vger.kernel.org, Michael Hennerich
+ <Michael.Hennerich@analog.com>, Rob Herring <robh+dt@kernel.org>, Krzysztof
+ Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley
+ <conor+dt@kernel.org>, Nuno =?UTF-8?B?U8Oh?= <nuno.sa@analog.com>, Liam
+ Girdwood <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH 1/2] dt-bindings: iio: adc: add ad7944 ADCs
+Message-ID: <20240210174022.7a0c7cdc@jic23-huawei>
+In-Reply-To: <20240206-ad7944-mainline-v1-1-bf115fa9474f@baylibre.com>
+References: <20240206-ad7944-mainline-v1-0-bf115fa9474f@baylibre.com>
+	<20240206-ad7944-mainline-v1-1-bf115fa9474f@baylibre.com>
+X-Mailer: Claws Mail 4.2.0 (GTK 3.24.41; x86_64-pc-linux-gnu)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 3/3] ARM: dts: qcom: msm8226: Add CPU and SAW/ACC nodes
-Content-Language: en-US
-To: Luca Weiss <luca@z3ntu.xyz>, ~postmarketos/upstreaming@lists.sr.ht,
- phone-devel@vger.kernel.org, Andy Gross <agross@kernel.org>,
- Bjorn Andersson <andersson@kernel.org>, Rob Herring <robh+dt@kernel.org>,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Conor Dooley <conor+dt@kernel.org>
-Cc: linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, Ivaylo Ivanov <ivo.ivanov.ivanov1@gmail.com>
-References: <20240210-msm8226-cpu-v2-0-5d9cb4c35204@z3ntu.xyz>
- <20240210-msm8226-cpu-v2-3-5d9cb4c35204@z3ntu.xyz>
-From: Konrad Dybcio <konrad.dybcio@linaro.org>
-In-Reply-To: <20240210-msm8226-cpu-v2-3-5d9cb4c35204@z3ntu.xyz>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
 
+On Tue,  6 Feb 2024 11:25:59 -0600
+David Lechner <dlechner@baylibre.com> wrote:
 
+> This adds a new binding for the Analog Devices, Inc. AD7944, AD7985, and
+> AD7986 ADCs.
+>=20
+> Signed-off-by: David Lechner <dlechner@baylibre.com>
 
-On 2/10/24 17:28, Luca Weiss wrote:
-> From: Ivaylo Ivanov <ivo.ivanov.ivanov1@gmail.com>
-> 
-> Add CPU and SAW/ACC nodes to enable SMP on MSM8226.
-> 
-> Signed-off-by: Ivaylo Ivanov <ivo.ivanov.ivanov1@gmail.com>
-> [luca: update some nodes to fix dtbs_check errors, reorder, cleanup]
-> Signed-off-by: Luca Weiss <luca@z3ntu.xyz>
+Hi David,
+
+Some tricky corners...
+3-wire here for example doesn't mean what I at least expected it to.
+
 > ---
+>  .../devicetree/bindings/iio/adc/adi,ad7944.yaml    | 231 +++++++++++++++=
+++++++
+>  MAINTAINERS                                        |   8 +
+>  2 files changed, 239 insertions(+)
+>=20
+> diff --git a/Documentation/devicetree/bindings/iio/adc/adi,ad7944.yaml b/=
+Documentation/devicetree/bindings/iio/adc/adi,ad7944.yaml
+> new file mode 100644
+> index 000000000000..a023adbeba42
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/iio/adc/adi,ad7944.yaml
+> @@ -0,0 +1,231 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/iio/adc/adi,ad7944.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: Analog Devices PulSAR LFCSP Analog to Digital Converters
+> +
+> +maintainers:
+> +  - Michael Hennerich <Michael.Hennerich@analog.com>
+> +  - Nuno S=C3=A1 <nuno.sa@analog.com
 
-Reviewed-by: Konrad Dybcio <konrad.dybcio@linaro.org>
+I hope Nuno + Michael will ack this. Bit mean to drop them in it otherwise
+(funny though :)
 
-Konrad
+> +
+> +description: |
+> +  A family of pin-compatible single channel differential analog to digit=
+al
+> +  converters with SPI support in a LFCSP package.
+> +
+> +  * https://www.analog.com/en/products/ad7944.html
+> +  * https://www.analog.com/en/products/ad7985.html
+> +  * https://www.analog.com/en/products/ad7986.html
+> +
+> +$ref: /schemas/spi/spi-peripheral-props.yaml#
+> +
+> +properties:
+> +  compatible:
+> +    enum:
+> +      - adi,ad7944
+> +      - adi,ad7985
+> +      - adi,ad7986
+> +
+> +  reg:
+> +    maxItems: 1
+> +
+> +  spi-max-frequency:
+> +    maximum: 111111111
+
+So 9ns for 3-write and 4-wire, but I think it's 11ns for chained.
+Maybe it's not worth constraining that.
+
+> +
+> +  spi-cpha: true
+> +
+> +  adi,spi-mode:
+> +    $ref: /schemas/types.yaml#/definitions/string
+> +    enum: [ 3-wire, 4-wire, chain ]
+> +    default: 4-wire
+> +    description:
+> +      This chip can operate in a 3-wire mode where SDI is tied to VIO, a=
+ 4-wire
+> +      mode where SDI acts as the CS line, or a chain mode where SDI of o=
+ne chip
+> +      is tied to the SDO of the next chip in the chain and the SDI of th=
+e last
+> +      chip in the chain is tied to GND.
+
+there is a standard property in spi-controller.yaml for 3-wire. Does that c=
+over
+the selection between 3-wire and 4-wire here?  Seems like this might behave
+differently from that (and so perhaps we shouldn't use 3-wire as the descri=
+ption
+to avoid confusion, normally 3-wire is a half duplex link I think).
+
+Chain mode is more fun.  We've had that before and I'm trying to remember w=
+hat
+the bindings look like. Devices like ad7280a do a different form of chainin=
+g.
+
+Anyhow, main thing here is we need to be careful that the terms don't overl=
+ap
+with other possible interpretations.
+
+I think what this really means is:
+
+3-wire - no chip select, exclusive use of the SPI bus (yuk)
+4-write - conventional SPI with CS
+chained - the 3 wire mode really but with some timing effects?
+
+Can we figure out if chained is going on at runtime?
+
+
+
+
+
+
+
+> +
+> +  avdd-supply:
+> +    description: A 2.5V supply that powers the analog circuitry.
+> +
+> +  dvdd-supply:
+> +    description: A 2.5V supply that powers the digital circuitry.
+> +
+> +  vio-supply:
+> +    description:
+> +      A 1.8V to 2.7V supply for the digital inputs and outputs.
+> +
+> +  bvdd-supply:
+> +    description:
+> +      A voltage supply for the buffered power. When using an external re=
+ference
+> +      without an internal buffer (PDREF high, REFIN low), this should be
+> +      connected to the same supply as ref-supply. Otherwise, when using =
+an
+> +      internal reference or an external reference with an internal buffe=
+r, this
+> +      is connected to a 5V supply.
+> +
+> +  ref-supply:
+> +    description:
+> +      Voltage regulator for the reference voltage (REF). This property is
+> +      omitted when using an internal reference.
+> +
+> +  refin-supply:
+> +    description:
+> +      Voltage regulator for the reference buffer input (REFIN). When usi=
+ng an
+> +      external buffer with internal reference, this should be connected =
+to a
+> +      1.2V external reference voltage supply.
+> +
+> +  adi,reference:
+> +    $ref: /schemas/types.yaml#/definitions/string
+> +    enum: [ internal, internal-buffer, external ]
+
+I'm a bit lost on this one - but think we can get rid of it in favour of us=
+ing
+the fact someone wired up the supplies to indicate their intent?
+
+> +    default: internal
+> +    description: |
+> +      This property is used to specify the reference voltage source.
+> +
+> +      * internal: PDREF is wired low. The internal 4.096V reference volt=
+age is
+> +        used. The REF pin outputs 4.096V and REFIN outputs 1.2V.
+
+So if neither refin-supply or ref-supply is present then this is the one to=
+ use.
+
+> +      * internal-buffer: PDREF is wired high. REFIN is supplied with 1.2=
+V. The
+> +        buffered internal 4.096V reference voltage is used. The REF pin =
+outputs
+> +        4.096V.
+
+So if refin-supply is supplied this is the expected choice?
+
+> +      * external: PDREF is wired high and REFIN is wired low. The supply
+> +        connnected the REF pin is used as the reference voltage.
+
+So if a ref-supply is provided this is expected choice?
+
+If we are going to rule you supplying refin and ref supplies.=20
+
+> +
+> +  cnv-gpios:
+> +    description:
+> +      The Convert Input (CNV). This input has multiple functions. It ini=
+tiates
+> +      the conversions and selects the SPI mode of the device (chain or C=
+S). In
+> +      3-wire mode, this property is omitted if the CNV pin is connected =
+to the
+> +      CS line of the SPI controller.
+> +    maxItems: 1
+
+ah, that's exciting - so in 3-wire mode, we basically put the CS on a diffe=
+rent pin...
+
+Mark, perhaps you can suggest how to handle this complex family of spi vari=
+ants?
+
+Jonathan
+
 
