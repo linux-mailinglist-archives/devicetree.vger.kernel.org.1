@@ -1,110 +1,137 @@
-Return-Path: <devicetree+bounces-40385-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-40386-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 83E8F850534
-	for <lists+devicetree@lfdr.de>; Sat, 10 Feb 2024 17:31:19 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 1FC0B850537
+	for <lists+devicetree@lfdr.de>; Sat, 10 Feb 2024 17:32:10 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 4AED3285492
-	for <lists+devicetree@lfdr.de>; Sat, 10 Feb 2024 16:31:18 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id D569D28593D
+	for <lists+devicetree@lfdr.de>; Sat, 10 Feb 2024 16:32:08 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 906465C5E8;
-	Sat, 10 Feb 2024 16:31:12 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B20AA41AAC;
+	Sat, 10 Feb 2024 16:32:04 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=z3ntu.xyz header.i=@z3ntu.xyz header.b="izGw1yWs"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="m8fALJ8q"
 X-Original-To: devicetree@vger.kernel.org
-Received: from ahti.lucaweiss.eu (ahti.lucaweiss.eu [128.199.32.197])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 136C941C87;
-	Sat, 10 Feb 2024 16:31:10 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=128.199.32.197
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 890D529CEF;
+	Sat, 10 Feb 2024 16:32:04 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1707582672; cv=none; b=ZCZAlhf5j3xC8t/HOIegj+BZ4sW4GhTazsq8VQWTMu8E+U+ZObmfPgj0ZRD4fcDlvlkKGpyxGiiz+J5RIo+sLVhacFb5RUFnOIS3kmKLOHO0KXi1vAuK3wBOWp0oKAk3jizc+oqCLKqB5Id3FSmM5fzYaT9zSWuVvstbYfdVnyk=
+	t=1707582724; cv=none; b=TRqeFCNAvEKDEAbhrtSlsCeXN+dmKCOS62LATLTnkZyoOsronVTpJi9HxO4iQdTGnMNtChwNDbc7BW467clj2JBPDWYJYZzoHn6SbeaI4go8Z4V4fSH0cPXyix6tmo9KA9vinYwwBEW0UInpaWxWwVjqcb/OdI+tdhxJXooEFBI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1707582672; c=relaxed/simple;
-	bh=IncA1VMrA6tuD7GF+f2a0bUCatFt+ciCkgzzDC3uVAY=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=VjVw86NtiTQ9Y2TZP8PMllTa0UA/nq18FUktozKrFJuf6iaGZ+EvYdRj7i3titMzYtdSWl9Uff9fxkBOQmeQeWMrFcE8X+BtssRXFUbtGlJKStwlR5W6K17NTcV9XnlHYygrlVUAG2HGY1aS+6z0ZNOncdGf7qI6KBQeq8w+G+w=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=z3ntu.xyz; spf=pass smtp.mailfrom=z3ntu.xyz; dkim=pass (1024-bit key) header.d=z3ntu.xyz header.i=@z3ntu.xyz header.b=izGw1yWs; arc=none smtp.client-ip=128.199.32.197
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=z3ntu.xyz
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=z3ntu.xyz
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=z3ntu.xyz; s=s1;
-	t=1707582669; bh=IncA1VMrA6tuD7GF+f2a0bUCatFt+ciCkgzzDC3uVAY=;
-	h=From:To:Cc:Subject:Date:In-Reply-To:References;
-	b=izGw1yWsOH2QZrQIZAsJDTMJIuBMNJt7Bpeaeh/XfhUhXMYA/jNUZkRkT+SiQhM+I
-	 uCysQg6CG68EvsyzlsNnAEYxdwvRwcbdZpULod9Q0r5tABYn/N4GlnGgJb4bs8QpyO
-	 xR5OqOhzewQdDmcKz16rByI2OUbRMl3KCGk2ujWA=
-From: Luca Weiss <luca@z3ntu.xyz>
-To: ~postmarketos/upstreaming@lists.sr.ht, phone-devel@vger.kernel.org,
- Bjorn Andersson <andersson@kernel.org>, Rob Herring <robh+dt@kernel.org>,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Conor Dooley <conor+dt@kernel.org>, Ulf Hansson <ulf.hansson@linaro.org>,
- Stephan Gerhold <stephan@gerhold.net>,
- Matti =?ISO-8859-1?Q?Lehtim=E4ki?= <matti.lehtimaki@gmail.com>,
- Konrad Dybcio <konrad.dybcio@linaro.org>
-Cc: linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, linux-pm@vger.kernel.org
-Subject:
- Re: [PATCH 2/3] pmdomain: qcom: rpmpd: Add MSM8974+PM8841 power domains
-Date: Sat, 10 Feb 2024 17:31:08 +0100
-Message-ID: <2171119.irdbgypaU6@z3ntu.xyz>
-In-Reply-To: <18ae7906-5089-42b3-a511-6e301f116e06@linaro.org>
-References:
- <20240210-msm8974-rpmpd-v1-0-de9355e6842a@z3ntu.xyz>
- <20240210-msm8974-rpmpd-v1-2-de9355e6842a@z3ntu.xyz>
- <18ae7906-5089-42b3-a511-6e301f116e06@linaro.org>
+	s=arc-20240116; t=1707582724; c=relaxed/simple;
+	bh=fRQuHaaaN/V5ij49FbfGzU94BV7t2qScQxlth67fsyo=;
+	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=qY4vTEOQgAX9lhKgu3aIhcqse7qWiNzazdY+6d3sBEFa4Qi93mG3VM0As8V+jEgb2SkDl2KtxQzsMXuCX5Gyj5qTFHY0JYeZb1KhF1O+T6D7yDA6oBf4/vbFWePwB/jdU8YRRCFZM+T4SI54mAGYun1DanFwLZGnWNEk7eThY6U=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=m8fALJ8q; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 0FA9DC433C7;
+	Sat, 10 Feb 2024 16:32:00 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1707582724;
+	bh=fRQuHaaaN/V5ij49FbfGzU94BV7t2qScQxlth67fsyo=;
+	h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
+	b=m8fALJ8qRwn3nqGlYBGnmEeCCntgMBGtxtRjvyNTi37W5t6hA3Asun0xhDH68yGty
+	 TarF+o+d0ZPvLXmNeZEnB94b2B1Fx1zQtTRWQ/3Pk3isBqnosWUa/OBVNZ4/ELWQHG
+	 0O6ADEPTLGMe5lTZ9jRugMz6eG2pDDDfaVdDeKpbbBXOnTCoHixLiPo/keiPJpXcOA
+	 UN7uN1SorNzCYHiIrGlZyb5vE9ztojSmB/qlv6xdywYIKzQUe6R2BG5OeG6LS542LW
+	 htNj1pjTDS1A26aGi5bpREthNHrWwRCdZSuH1+gVQX5+bhfKTG9WCbuG/O47HGDgVN
+	 e+XWRn7FmS2hw==
+Date: Sat, 10 Feb 2024 16:31:51 +0000
+From: Jonathan Cameron <jic23@kernel.org>
+To: Nuno =?UTF-8?B?U8Oh?= <noname.nuno@gmail.com>
+Cc: Andy Shevchenko <andy.shevchenko@gmail.com>, nuno.sa@analog.com,
+ linux-iio@vger.kernel.org, devicetree@vger.kernel.org, Lars-Peter Clausen
+ <lars@metafoo.de>, Michael Hennerich <Michael.Hennerich@analog.com>, Rob
+ Herring <robh+dt@kernel.org>, Krzysztof Kozlowski
+ <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>,
+ Frank Rowand <frowand.list@gmail.com>, Olivier Moysan
+ <olivier.moysan@foss.st.com>
+Subject: Re: [PATCH v9 6/7] iio: adc: ad9467: convert to backend framework
+Message-ID: <20240210163151.37c31016@jic23-huawei>
+In-Reply-To: <18a89feff869edb9bef6c5d7ffdbc7baadf2cfee.camel@gmail.com>
+References: <20240206-iio-backend-v9-0-df66d159c000@analog.com>
+	<20240206-iio-backend-v9-6-df66d159c000@analog.com>
+	<CAHp75VeWV0+hqCoUb4YvfObnEAv0AaYJmXgpxJLfve+mBwhkyQ@mail.gmail.com>
+	<f6ed72343be50c358db8e7e36d9afa875f788425.camel@gmail.com>
+	<CAHp75Vf3vvYHz6pTpAQGEAxV-obWV+0XbhVhaFqYU5JUbtFY8Q@mail.gmail.com>
+	<18a89feff869edb9bef6c5d7ffdbc7baadf2cfee.camel@gmail.com>
+X-Mailer: Claws Mail 4.2.0 (GTK 3.24.41; x86_64-pc-linux-gnu)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7Bit
-Content-Type: text/plain; charset="us-ascii"
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
 
-On Samstag, 10. Februar 2024 15:19:54 CET Konrad Dybcio wrote:
-> On 2/10/24 15:12, Luca Weiss wrote:
-> > Add the power domains CX & GFX found on devices with MSM8974 and PM8841.
-> > 
-> > Signed-off-by: Luca Weiss <luca@z3ntu.xyz>
-> > ---
-> 
-> [...]
-> 
-> > +static struct rpmpd gfx_s4b_corner_ao;
-> > +static struct rpmpd gfx_s4b_corner = {
-> > +	.pd = { .name = "gfx", },
-> > +	.peer = &gfx_s4b_corner_ao,
-> > +	.res_type = RPMPD_SMPB,
-> > +	.res_id = 4,
-> > +	.key = KEY_CORNER,
-> > +};
-> > +
-> > +static struct rpmpd gfx_s4b_corner_ao = {
-> > +	.pd = { .name = "gfx_ao", },
-> > +	.peer = &gfx_s4b_corner,
-> > +	.active_only = true,
-> > +	.res_type = RPMPD_SMPB,
-> > +	.res_id = 4,
-> > +	.key = KEY_CORNER,
-> > +};
-> 
-> I don't see a s4b_ao downstream.. Though it's very unfortunate we
-> didn't choose to add power-domain-cells or sth and set the bucket
-> through that..
+On Wed, 07 Feb 2024 10:23:36 +0100
+Nuno S=C3=A1 <noname.nuno@gmail.com> wrote:
 
-Right, overlooked that. Will drop gfx_ao for both this and the other patch.
+> On Tue, 2024-02-06 at 19:51 +0200, Andy Shevchenko wrote:
+> > On Tue, Feb 6, 2024 at 6:51=E2=80=AFPM Nuno S=C3=A1 <noname.nuno@gmail.=
+com> wrote: =20
+> > > On Tue, 2024-02-06 at 16:20 +0200, Andy Shevchenko wrote: =20
+> > > > On Tue, Feb 6, 2024 at 12:08=E2=80=AFPM Nuno Sa via B4 Relay
+> > > > <devnull+nuno.sa.analog.com@kernel.org> wrote: =20
+> >=20
+> > ...
+> >  =20
+> > > > > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 st->back =3D devm_iio_backe=
+nd_get(&st->spi->dev, NULL);
+> > > > > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 /* If not found, don't erro=
+r out as we might have legacy DT
+> > > > > property */
+> > > > > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 if (!IS_ERR(st->back))
+> > > > > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0 return 0;
+> > > > > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 if (PTR_ERR(st->back) !=3D =
+-ENOENT)
+> > > > > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0 return PTR_ERR(st->back); =20
+> > > >=20
+> > > > This looks hackish... =20
+> > >=20
+> > > This was suggested by Jonathan so I'm keen in leaving it as-is =20
+> >=20
+> > I think I proposed how to improve it. Jonathan?
+> >  =20
+>=20
+> Well, you did change it around so that we have the typical 'if (ret)' pat=
+tern.
+> But, honestly, that is also bringing an arguably useless helper. So, yes,
+> currently we are not doing the typical "check for errors first" pattern b=
+ut I do
+> think that the code is perfectly fine and readable as it is.
+>=20
+> It's also already pretty late in the review process of the series and the=
+re was
+> already some back and forth so to me, the above is really a minor detail =
+and I'm
+> not keen on changing it at this stage (unless Jonathan really feels stron=
+g about
+> doing it).
+It's odd code I don't expect to see anywhere else, so I'm not that fussed if
+it takes a little more thinking than normal (and you have a comment there t=
+o help
+us!)
 
-Regards
-Luca
+So I'm fine with leaving this as it stands
 
-> 
-> Konrad
+Jonathan
 
-
-
+>=20
+> I'll spin a v10 with your dev_err_probe() suggestion later today but at t=
+his
+> point I would prefer to not have to spin another one (afterwards) unless =
+really
+> needed (meaning, not because of minor details).
+>=20
+> - Nuno S=C3=A1
 
 
