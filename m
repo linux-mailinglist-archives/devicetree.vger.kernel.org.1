@@ -1,132 +1,194 @@
-Return-Path: <devicetree+bounces-40392-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-40393-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8485E850561
-	for <lists+devicetree@lfdr.de>; Sat, 10 Feb 2024 17:45:53 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5241C850563
+	for <lists+devicetree@lfdr.de>; Sat, 10 Feb 2024 17:46:38 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 249721F21F3C
-	for <lists+devicetree@lfdr.de>; Sat, 10 Feb 2024 16:45:53 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 15938285BCF
+	for <lists+devicetree@lfdr.de>; Sat, 10 Feb 2024 16:46:37 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5DA9B5C8EA;
-	Sat, 10 Feb 2024 16:45:46 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2C1685C8EA;
+	Sat, 10 Feb 2024 16:46:34 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=z3ntu.xyz header.i=@z3ntu.xyz header.b="J5wKH7Gs"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="Pdkj1U1J"
 X-Original-To: devicetree@vger.kernel.org
-Received: from ahti.lucaweiss.eu (ahti.lucaweiss.eu [128.199.32.197])
+Received: from mail-ej1-f54.google.com (mail-ej1-f54.google.com [209.85.218.54])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D6D7E53815;
-	Sat, 10 Feb 2024 16:45:44 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=128.199.32.197
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 696AB53815;
+	Sat, 10 Feb 2024 16:46:32 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.54
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1707583546; cv=none; b=WepdmjkIsIIpkcN2ZJUIGXCu1gqOMqGbVTEk4yo5iVVK0LpAC4MTj8TicQZztFnit+Hh342dYd4U+zZshdcXzAffzXvyv279vbJ5XJOPPWxM46qQX2PpqTj8hNcJCIx6Hao6xqGrOGLuG7CrtLI9M+0VO4AMMnRJKCSygNtAAUg=
+	t=1707583594; cv=none; b=YWQzKhlzAv7sfYhNlxbrqFabUWbn50nzTN6dDFXs5pfgx+lXb5Ckq9cCplJSlZgbf0E4zVzxzxWvphrPoRAICGAJ+nUF3vVDJgnWe6F9vwtiVC+GLQZYJ66i2KzqfKMuErgMh4+bgYmae0nPaRBOWUz2tNL1h8k0JhD58S80ACQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1707583546; c=relaxed/simple;
-	bh=4LyuSFtAH8dWWrZ0TdSmOR1VTioRfo0NSD7Xn7VGFGg=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:To:Cc; b=c9u7atVSIp9bCXIaeStX69x+PxXnsABsN5/mSGd4bnunCrnNMFwbqLN7coMjnDUpG9UjTjN1S1Jqm9l5yD2Y7DXqC0Xd6h4RhVVjYsuMSBR19C4LUQsd8UmddMnpTdpi4RXmBg4gTSZ/hljQN7vCkt7fUVWfGjWUYwFq/Fj4Cl4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=z3ntu.xyz; spf=pass smtp.mailfrom=z3ntu.xyz; dkim=pass (1024-bit key) header.d=z3ntu.xyz header.i=@z3ntu.xyz header.b=J5wKH7Gs; arc=none smtp.client-ip=128.199.32.197
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=z3ntu.xyz
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=z3ntu.xyz
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=z3ntu.xyz; s=s1;
-	t=1707583542; bh=4LyuSFtAH8dWWrZ0TdSmOR1VTioRfo0NSD7Xn7VGFGg=;
-	h=From:Date:Subject:To:Cc;
-	b=J5wKH7GsmmoA90iPoUjYjckXz+rIS0s3lrsdeo8Z6oaRchZovUxG/dMvuS8OhRhE9
-	 gkTN/BtHgNwjfBTlVJNkIFWyryS7Wa0LemsmUgCXvS9Ht9ozBZVScLbY1CX6hZ4NPc
-	 K8+ZOMSwTm9etD/mLV3O+4PSAqyopqhMiWAJfdtA=
-From: Luca Weiss <luca@z3ntu.xyz>
-Date: Sat, 10 Feb 2024 17:45:40 +0100
-Subject: [PATCH v3] ARM: dts: qcom: msm8974: correct qfprom node size
+	s=arc-20240116; t=1707583594; c=relaxed/simple;
+	bh=uF/0Q+hh+EB/Ryd/jd7if3EhKP/ZPR4Y77SPn/T8mVE=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=YyiY/22qJg7CDHcEqYJXFUK5XFRLPXD6witpCjDCXHMNnMVaA1riPWx+5gpqJvllQmTT5Bsqko2W4Iq+IAMpJ9K0Q+hm01fgRuA0xWKVFype/ecdScBqpI/87juR2gvxjTnFGdUWT1Dx5fLFSth3+2rFrZ4c+v4Qznq/VTcnr8Q=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=Pdkj1U1J; arc=none smtp.client-ip=209.85.218.54
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-ej1-f54.google.com with SMTP id a640c23a62f3a-a34c5ca2537so244284166b.0;
+        Sat, 10 Feb 2024 08:46:32 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1707583590; x=1708188390; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=/JMNYww4W2d3Ru1Gyj95iIBUMoBqeLdTXBDYv9vdUcs=;
+        b=Pdkj1U1J0TpRwkwhuk4dpZZuCqrpHRFDpWZZ2YT+c6iVVTuLU7ByZbjS4oTCFtsP8k
+         kbF4ol8XqF6laAiB6F3d+8KzsZhJlI5p4E86WlPfMSnd1ZJaZMOiniX4E9L45YJLjOPH
+         gnt3oHzpL7PU/Cwye0idmp4JGR8qMayUOzSXQ3t5u/NuLTidXFo5sEcTPzkXMQ5JsUUX
+         fDmsM009t2uLjeehLUB1jegsKl8vuyoPLLcQATpWy6SwxxguSdsqNnRAWY6LX9l0hxpQ
+         jI8Dpool+AqekJIgJ7/AkbWMNog8rj02N4Zc41QqZyQmJAY6SCslsxM5JYhnKvvQjjAf
+         ZwVw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1707583590; x=1708188390;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=/JMNYww4W2d3Ru1Gyj95iIBUMoBqeLdTXBDYv9vdUcs=;
+        b=fTfoIHocfJzVRg8CaYZtp2fSL9+udIui8wen7W4alo76kHO18rLo1qIYFxaumci4Jz
+         utDw7NoiZeef4O/SC5s1IUYcLzZFX81GX189LI3v0WFcH7yg9nBWlt/Gs3BADR5Oj5o1
+         nbcKu4WNe8wW134D04TcydMWbhCC5t0+ZYoEFGkUEkNgsSsAS81FOCW0kQFpk6YHAgz1
+         Usbsm3LvJjOUxzEOfC3jCVVnx6huJSMBzVXYjhVjzTt8NSxNyDCeXk69RFQ3oY0aIgI5
+         rAVH1PCPoIlcvWzBDwiHZKZUWGrlbWP80Gdb7U7cChbdQvBk3CErgJq9wQa2Y7iR4Kdq
+         1G2w==
+X-Gm-Message-State: AOJu0YwndkZdI7e/5iuSUF2vs1xednS+h1ychGTWLnzUS+/qJSB0D2S0
+	pR28UN35GQgAZUI7NHoYWhJBpOYJqGAaZr/LDno/flBx+nVt4Ai0vtz2PbErG0Dr99xcY6Q22XU
+	qeXC6EHiMo5rWZFx+H3WjcwVPnMs=
+X-Google-Smtp-Source: AGHT+IH1m23SIjqIl+WA8F9WiHmEA7Lz54P20eVi3bNzbZ3Oc0vOguk29THac6uOQcCovsThuKZ4Hwuqo7bXky3g0BQ=
+X-Received: by 2002:a17:906:590a:b0:a36:fc15:c6b2 with SMTP id
+ h10-20020a170906590a00b00a36fc15c6b2mr1377798ejq.35.1707583590365; Sat, 10
+ Feb 2024 08:46:30 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20240210-msm8974-qfprom-v3-1-26c424160334@z3ntu.xyz>
-X-B4-Tracking: v=1; b=H4sIADOox2UC/32Oyw6DIBBFf8WwLoaHWuiq/9F0gThUFqKCGh/x3
- 4smTbppl2dyz72zoQDeQkC3ZEMeJhts6yLwS4J0rdwLsK0iI0YYJ5QT3IRGyGuGe9P5tsEFlZq
- AMKyAEkWpVAFw6ZXT9aH1OmY+SpHSdMG6G42H/gh3Hoydz/XHM3Jtw9D65Xxmosf15+5EMcXym
- itFIAci+H3lbhjTeVnRUTWx/zqLOhdcapPRSgJ86/u+vwHuonN8GAEAAA==
-To: ~postmarketos/upstreaming@lists.sr.ht, phone-devel@vger.kernel.org, 
- Andy Gross <agross@kernel.org>, Bjorn Andersson <andersson@kernel.org>, 
- Konrad Dybcio <konrad.dybcio@linaro.org>, Rob Herring <robh+dt@kernel.org>, 
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, 
- Eduardo Valentin <edubezval@gmail.com>, Conor Dooley <conor+dt@kernel.org>, 
- Rajendra Nayak <quic_rjendra@quicinc.com>
-Cc: Rob Herring <robh@kernel.org>, Andy Gross <andy.gross@linaro.org>, 
- linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org, 
- linux-kernel@vger.kernel.org, Craig Tatlor <ctatlor97@gmail.com>, 
- Luca Weiss <luca@z3ntu.xyz>
-X-Mailer: b4 0.12.4
-X-Developer-Signature: v=1; a=openpgp-sha256; l=1645; i=luca@z3ntu.xyz;
- h=from:subject:message-id; bh=peTVay4s/vEFP1xuIof2gqhA52otBBr/es0IRRtLLgo=;
- b=owEBbQKS/ZANAwAIAXLYQ7idTddWAcsmYgBlx6g1kxsk59DftR8bHzdIk0OfLUVwAx4GIsCB8
- m880mDOfleJAjMEAAEIAB0WIQQ5utIvCCzakboVj/py2EO4nU3XVgUCZceoNQAKCRBy2EO4nU3X
- VjoQEACHSyPAgR37KKm8sMLAWsYLyK+wcIPisBND9Kx6T+78GNNPMf/ZvJj6D7DEk8TjXYE2Nuw
- xWevyDHF6/Z0JjT/FoqXa+dMQ+VXOCm+xTZYPqcHsEmdGd9RPrZHujHSDod5tOeO3hTVYUWmO7v
- 3GEdu4cH4GEgv3DlbnQJewDKdJtTYcCVmh/yKzDomSuFN7X5Sm0w11/6yjZwKbsoQ55aWhe1pos
- 0RbN6iRHB3lkYTkYq1qHBVZaKBSBhAY/Bz+IA/Ro9WvpLbzZajxZeyVTlm/4F9vFSmf+/twe+bz
- qtiORq+j3KrCj6fMRAWYya5DcFluczRRN8Y5+pgkHopc/RqBvOSUJ03VRAMULLTbFSMIKrpiJHP
- v21f/CKSGN3GWHTOyoCnGcG7BvZOQZxJKEY66dgn0Zyh1GvDk2bdp4YjhAi1pCQ8J2Q9Uq1+ohC
- lOj0hK9SkK9iOr6gx99YGeSvTdXEsuYlCU0M9UWxb1Bn4NiQf0ElcBlCViATPMVYmOPxiRXGFw/
- FeZ2dLb2bapkxMa7ju+JyyHMM7aZlnh1z+gMIeVyw3fXB629CVogf27r/9uGl/GjWu7aypknLbZ
- Q6psbh8lS8KIRIPWaUptx27EbXHMJzE3IihcldaJ8fT5hpXLrK3NzMxTFhmRTCthA8G+lfAiYkv
- 3layf8Pxk0qirOw==
-X-Developer-Key: i=luca@z3ntu.xyz; a=openpgp;
- fpr=BD04DA24C971B8D587B2B8D7FAF69CF6CD2D02CD
+References: <20240209-iio-backend-v10-0-3ed842064318@analog.com>
+ <20240209-iio-backend-v10-5-3ed842064318@analog.com> <CAHp75VeqUnV33YF1WT9B0h=V_DpJBjwaH3g6AHiQQ-yDZBOyfg@mail.gmail.com>
+ <20240210164152.49d5406a@jic23-huawei>
+In-Reply-To: <20240210164152.49d5406a@jic23-huawei>
+From: Andy Shevchenko <andy.shevchenko@gmail.com>
+Date: Sat, 10 Feb 2024 18:45:53 +0200
+Message-ID: <CAHp75VfVK_9wr+fVLkMLoQk+ONgKNdpTdBodJSXE6msim_woaw@mail.gmail.com>
+Subject: Re: [PATCH v10 5/7] iio: add the IIO backend framework
+To: Jonathan Cameron <jic23@kernel.org>
+Cc: Nuno Sa <nuno.sa@analog.com>, linux-iio@vger.kernel.org, 
+	devicetree@vger.kernel.org, Lars-Peter Clausen <lars@metafoo.de>, 
+	Michael Hennerich <Michael.Hennerich@analog.com>, Rob Herring <robh+dt@kernel.org>, 
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Frank Rowand <frowand.list@gmail.com>, Olivier Moysan <olivier.moysan@foss.st.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-From: Craig Tatlor <ctatlor97@gmail.com>
+On Sat, Feb 10, 2024 at 6:42=E2=80=AFPM Jonathan Cameron <jic23@kernel.org>=
+ wrote:
+> On Fri, 9 Feb 2024 18:30:53 +0200
+> Andy Shevchenko <andy.shevchenko@gmail.com> wrote:
+> > On Fri, Feb 9, 2024 at 5:26=E2=80=AFPM Nuno Sa <nuno.sa@analog.com> wro=
+te:
 
-The qfprom actually is bigger than 0x1000, so adjust the reg.
+...
 
-Note that the non-ECC-corrected qfprom can be found at 0xfc4b8000
-(-0x4000). The current reg points to the ECC-corrected qfprom block
-which should have equivalent values at all offsets compared to the
-non-corrected version.
+> > > +struct iio_backend *devm_iio_backend_get(struct device *dev, const c=
+har *name)
+> > > +{
+> > > +       struct fwnode_handle *fwnode;
+> > > +       struct iio_backend *back;
+> > > +       unsigned int index;
+> > > +       int ret;
+> > > +
+> > > +       if (name) {
+> > > +               ret =3D device_property_match_string(dev, "io-backend=
+-names",
+> > > +                                                  name);
+> > > +               if (ret < 0)
+> > > +                       return ERR_PTR(ret);
+> > > +               index =3D ret;
+> > > +       } else {
+> > > +               index =3D 0;
+> > > +       }
+> > > +
+> > > +       fwnode =3D fwnode_find_reference(dev_fwnode(dev), "io-backend=
+s", index);
+> > > +       if (IS_ERR(fwnode)) {
+> > > +               dev_err_probe(dev, PTR_ERR(fwnode),
+> > > +                             "Cannot get Firmware reference\n");
+> > > +               return ERR_CAST(fwnode);
+> > > +       }
+> > > +
+> > > +       guard(mutex)(&iio_back_lock);
+> > > +       list_for_each_entry(back, &iio_back_list, entry) {
+> > > +               if (!device_match_fwnode(back->dev, fwnode))
+> > > +                       continue;
+> >
+> > > +               fwnode_handle_put(fwnode);
+> > > +               ret =3D __devm_iio_backend_get(dev, back);
+> >
+> > This order makes me think about the reference counting. So, fwnode is
+> > the one of the backend devices to which the property points to.
+> > Another piece is the local (to this framework) list that keeps backend
+> > devices. So, fwnode reference can be  dropped earlier, while the usual
+> > pattern to interleave gets and puts in a chain. Dunno if above needs a
+> > comment, reordering or nothing.
+> >
+> I'm lost. Why don't we need to hold fwnode reference for the
+> device_match_fwnode() just before here?
 
-[luca@z3ntu.xyz: extract to standalone patch and adjust for review
-comments]
+> Or do you mean that we are safe here with the fwnode_handle_put() being
+> before the __devm_iio_backend_get()?
 
-Fixes: c59ffb519357 ("arm: dts: msm8974: Add thermal zones, tsens and qfprom nodes")
-Signed-off-by: Craig Tatlor <ctatlor97@gmail.com>
-Signed-off-by: Luca Weiss <luca@z3ntu.xyz>
----
-Changes in v3:
-- Update size from 0x3000 to 0x2100 (Dmitry)
-- Link to v2: https://lore.kernel.org/r/20230130-msm8974-qfprom-v2-1-3839cf41d9ee@z3ntu.xyz
+This one.
 
-Changes in v2:
-- Keep base offset but expand reg from 0x1000 to 0x3000 (Konrad)
-- Link to v1: https://lore.kernel.org/r/20230130-msm8974-qfprom-v1-1-975aa0e5e083@z3ntu.xyz
----
- arch/arm/boot/dts/qcom/qcom-msm8974.dtsi | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+> I think you are correct that the
+> lifetimes are fine as we switched from the fwnode to the
+> iio_backend from the list at this point.
+>
+> > > +               if (ret)
+> > > +                       return ERR_PTR(ret);
+> > > +
+> > > +               return back;
+> > > +       }
+> > > +
+> > > +       fwnode_handle_put(fwnode);
+> > > +       return ERR_PTR(-EPROBE_DEFER);
+> >
+> > While thinking about the above, I noticed the room to refactor.
+> >
+> >   list_for_each_entry(...) {
+> >     if (...)
+> >       break;
+> >   }
+> >   fwnode_handle_put(...);
+> >   // Yes, we may use the below macro as the (global) pointers are
+> > protected by a mutex.
+> >   if (list_entry_is_head(...))
+>
+> Knowing that means we failed to match is a bit obscure.
+>
+> >     return ERR_PTR(...);
+> >
+> >   ret =3D __devm_iio_backend_get(...);
+> >   ...
+>
+> Maybe - it's a little ugly either way.  I don't think we care about
+> potentially holding the fwnode handle too long, so flipping over to
+> the cleanup.h handling (I need to get back to that sometime this week)
+> will make this all simpler.
 
-diff --git a/arch/arm/boot/dts/qcom/qcom-msm8974.dtsi b/arch/arm/boot/dts/qcom/qcom-msm8974.dtsi
-index b1413983787c..083ab780ab7e 100644
---- a/arch/arm/boot/dts/qcom/qcom-msm8974.dtsi
-+++ b/arch/arm/boot/dts/qcom/qcom-msm8974.dtsi
-@@ -1234,7 +1234,7 @@ restart@fc4ab000 {
- 
- 		qfprom: qfprom@fc4bc000 {
- 			compatible = "qcom,msm8974-qfprom", "qcom,qfprom";
--			reg = <0xfc4bc000 0x1000>;
-+			reg = <0xfc4bc000 0x2100>;
- 			#address-cells = <1>;
- 			#size-cells = <1>;
- 
+Yes, I agree with your point of view. That's why I'm not insisting on
+this change.
 
----
-base-commit: 54be6c6c5ae8e0d93a6c4641cb7528eb0b6ba478
-change-id: 20230130-msm8974-qfprom-619c0e8f26eb
+> > > +}
 
-Best regards,
--- 
-Luca Weiss <luca@z3ntu.xyz>
 
+--=20
+With Best Regards,
+Andy Shevchenko
 
