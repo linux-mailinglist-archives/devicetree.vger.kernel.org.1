@@ -1,213 +1,216 @@
-Return-Path: <devicetree+bounces-40354-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-40355-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3DEB2850372
-	for <lists+devicetree@lfdr.de>; Sat, 10 Feb 2024 09:08:46 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 1F30F850402
+	for <lists+devicetree@lfdr.de>; Sat, 10 Feb 2024 11:44:22 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 5E9771C21BDD
-	for <lists+devicetree@lfdr.de>; Sat, 10 Feb 2024 08:08:45 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 44E951C21585
+	for <lists+devicetree@lfdr.de>; Sat, 10 Feb 2024 10:44:21 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 253092B9B7;
-	Sat, 10 Feb 2024 08:08:41 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 60BF7364B7;
+	Sat, 10 Feb 2024 10:44:17 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=suse.de header.i=@suse.de header.b="KJoW4J71";
-	dkim=permerror (0-bit key) header.d=suse.de header.i=@suse.de header.b="DALLQMtL";
-	dkim=pass (1024-bit key) header.d=suse.de header.i=@suse.de header.b="ZTWz1/eC";
-	dkim=permerror (0-bit key) header.d=suse.de header.i=@suse.de header.b="xJIBcXYS"
+	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="T/vpNaM/"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp-out2.suse.de (smtp-out2.suse.de [195.135.223.131])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3098B23DB;
-	Sat, 10 Feb 2024 08:08:38 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=195.135.223.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A5D082030B;
+	Sat, 10 Feb 2024 10:44:15 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1707552521; cv=none; b=OwGFxKA5M57o6TbtJYLLJec8nayWveFq4/A6TXx5fMIUV1lkxPDn1dlbXvWhAqlqi4MiqJoaDXXlIJu1EDfGu8RvX6Y6aA5fhx5x/uaJPaXGG7UZiCvxF3S4YRJfX80Z9IoTP12Y1wL1dGzmSKMHCnureubc92+3q6WPk8ThUt8=
+	t=1707561857; cv=none; b=BxLJKaB8cnWV/bCKngkYO0P1EQBqI6VgO7/nQbmAsG2J16ip31x6/bbN6X/qwaUvKFuwPtorxngYzhvh9ZRE6a0hBZHKmYYTushYomtmQJz1gItG53C9kGfpQHJQcQTPJljrFysLjE0oRZUdiZWur1m1WzamPXVFo39fljv/3rg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1707552521; c=relaxed/simple;
-	bh=F8DGyIH//SMvI1ax+96o/ObM1ZtA0zzCYF6zYzURkuY=;
-	h=Date:Message-ID:From:To:Cc:Subject:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=VhCY1L1lQi+MdjZS2jWDSFdycXNRwKP6xvGQD9BN6rFJ46d/6ijPOmZjlHzIeZsrJVepws8kchAfqha3LIIX59Sh/XEIaNfdRXHG05bJsHTw+vOXcb0JV42fnPdjdVE2aDEMqgRdN8OVNE7xmZkxnrmohCXGCl6VehNhjxbGRIs=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=suse.de; spf=pass smtp.mailfrom=suse.de; dkim=pass (1024-bit key) header.d=suse.de header.i=@suse.de header.b=KJoW4J71; dkim=permerror (0-bit key) header.d=suse.de header.i=@suse.de header.b=DALLQMtL; dkim=pass (1024-bit key) header.d=suse.de header.i=@suse.de header.b=ZTWz1/eC; dkim=permerror (0-bit key) header.d=suse.de header.i=@suse.de header.b=xJIBcXYS; arc=none smtp.client-ip=195.135.223.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=suse.de
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=suse.de
-Received: from imap1.dmz-prg2.suse.org (imap1.dmz-prg2.suse.org [IPv6:2a07:de40:b281:104:10:150:64:97])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
-	(No client certificate requested)
-	by smtp-out2.suse.de (Postfix) with ESMTPS id 5A6711F871;
-	Sat, 10 Feb 2024 08:08:35 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=suse.de; s=susede2_rsa;
-	t=1707552517; h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
-	 mime-version:mime-version:content-type:content-type:
-	 in-reply-to:in-reply-to:references:references;
-	bh=zlZxIUNjuMw/gmtQRSWgnNoi6CtpoNOtj4J6OuXVIjg=;
-	b=KJoW4J71U9ZLJ7gO2a8d/PIy4nhqzxY0s2zlnSK3EfY+kPyH4g9TEVPDrbfiXtcc/TIc19
-	rBz1R3rMMqHBFpfdklsVYAvJUBGeIBd1yEeUbyG+S4pvPUI3SlQWCdSERiYlNcqQK8aMbi
-	FLTcGWIGmoltnHEJ9DbUUfL3K59u3Cs=
-DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=suse.de;
-	s=susede2_ed25519; t=1707552517;
-	h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
-	 mime-version:mime-version:content-type:content-type:
-	 in-reply-to:in-reply-to:references:references;
-	bh=zlZxIUNjuMw/gmtQRSWgnNoi6CtpoNOtj4J6OuXVIjg=;
-	b=DALLQMtLxjWwWSgCINWrel5oJJeUceaqE4HtJb6m4CQza+kjwh0s/IV8ugvQhrrR/EzT5b
-	Us/14GhwwZ1wBUAQ==
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=suse.de; s=susede2_rsa;
-	t=1707552515; h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
-	 mime-version:mime-version:content-type:content-type:
-	 in-reply-to:in-reply-to:references:references;
-	bh=zlZxIUNjuMw/gmtQRSWgnNoi6CtpoNOtj4J6OuXVIjg=;
-	b=ZTWz1/eCrW4xLIfHtnBLB6BnNE2Hyv+DpxtveF0h6zNq9n2cM02p5thixj/s3MPSNtnQ1z
-	oWVlRIw4qVHxPrc9pXXKeC739EKUY3jDKS0izOgEk9N/+8AYvkDEcvuryy8bu1Wg0PaJqU
-	w8ZfhTZZRJjf5urEpo/4ELDawf/K784=
-DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=suse.de;
-	s=susede2_ed25519; t=1707552515;
-	h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
-	 mime-version:mime-version:content-type:content-type:
-	 in-reply-to:in-reply-to:references:references;
-	bh=zlZxIUNjuMw/gmtQRSWgnNoi6CtpoNOtj4J6OuXVIjg=;
-	b=xJIBcXYSPUlRFsJAH686aURuAcIgKNqRNMW8Sp8PsxJ1wmcHs6/sbp65Meumml9uDAWSPz
-	lg4vL/0gbcQppkBA==
-Received: from imap1.dmz-prg2.suse.org (localhost [127.0.0.1])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
-	(No client certificate requested)
-	by imap1.dmz-prg2.suse.org (Postfix) with ESMTPS id A58C613867;
-	Sat, 10 Feb 2024 08:08:34 +0000 (UTC)
-Received: from dovecot-director2.suse.de ([10.150.64.162])
-	by imap1.dmz-prg2.suse.org with ESMTPSA
-	id dyCTJgIvx2VMcQAAD6G6ig
-	(envelope-from <tiwai@suse.de>); Sat, 10 Feb 2024 08:08:34 +0000
-Date: Sat, 10 Feb 2024 09:08:34 +0100
-Message-ID: <875xywzqpp.wl-tiwai@suse.de>
-From: Takashi Iwai <tiwai@suse.de>
-To: Wesley Cheng <quic_wcheng@quicinc.com>
-Cc: <srinivas.kandagatla@linaro.org>,
-	<mathias.nyman@intel.com>,
-	<perex@perex.cz>,
-	<conor+dt@kernel.org>,
-	<corbet@lwn.net>,
-	<lgirdwood@gmail.com>,
-	<andersson@kernel.org>,
-	<krzysztof.kozlowski+dt@linaro.org>,
-	<gregkh@linuxfoundation.org>,
-	<Thinh.Nguyen@synopsys.com>,
-	<broonie@kernel.org>,
-	<bgoswami@quicinc.com>,
-	<tiwai@suse.com>,
-	<robh+dt@kernel.org>,
-	<konrad.dybcio@linaro.org>,
-	<linux-kernel@vger.kernel.org>,
-	<devicetree@vger.kernel.org>,
-	<linux-sound@vger.kernel.org>,
-	<linux-usb@vger.kernel.org>,
-	<linux-arm-msm@vger.kernel.org>,
-	<linux-doc@vger.kernel.org>,
-	<alsa-devel@alsa-project.org>
-Subject: Re: [PATCH v14 20/53] ASoC: Add SOC USB APIs for adding an USB backend
-In-Reply-To: <b007a78c-b8fb-83bc-3be6-963708182cee@quicinc.com>
-References: <20240208231406.27397-1-quic_wcheng@quicinc.com>
-	<20240208231406.27397-21-quic_wcheng@quicinc.com>
-	<87r0hl29ha.wl-tiwai@suse.de>
-	<b007a78c-b8fb-83bc-3be6-963708182cee@quicinc.com>
-User-Agent: Wanderlust/2.15.9 (Almost Unreal) Emacs/27.2 Mule/6.0
+	s=arc-20240116; t=1707561857; c=relaxed/simple;
+	bh=HdoGJKfM4IdFF97CvlZ7u9IYY/5htVYwh9r2vlaTMWM=;
+	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
+	 In-Reply-To:Content-Type; b=KWtqj7CdNLoOAae/pHJpnvK2nMejkDj9ZJz8UIyeH/tJAZJjyjXiCB3eMqPvwn67zMhe00l62OM5jLSluTYgLBIdASwHvUHoxIz/LzZy+HbpfQ4cd9u6gA7wTP6DR0NLMiZ3Oup8nEwdxfdVtcxHASY+yg0U6Uqk4jT4yCczZ7I=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=T/vpNaM/; arc=none smtp.client-ip=205.220.168.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
+Received: from pps.filterd (m0279862.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.17.1.24/8.17.1.24) with ESMTP id 41AAfFDC018067;
+	Sat, 10 Feb 2024 10:44:03 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
+	message-id:date:mime-version:subject:to:cc:references:from
+	:in-reply-to:content-type:content-transfer-encoding; s=
+	qcppdkim1; bh=UYh6Vys92a+IOZW81ElMcn3EE5XcVQKjyrgj0qy6/9k=; b=T/
+	vpNaM/eYQRs8mfiz9h7/9Rj+FTnCmM6hL3aBTTzasvbA1kcJrV5ih27OO0Pbn5p6
+	PVxQlsi3EEIOZNJ5qFAPt8bIM8fhonTh5mZyw+7cz72PhoKMxvPAyC+i/Pf6PwZ9
+	0F9Y2YI22hbUqfgOJrO68JFpa91SC9rElaLbstUrAVWZ4AZ4a1yQds53YhRMTuzJ
+	cVPTBbtOV9NoFTDBXlPSruWn6hGz1XjlHJE5LaxHMqVcpK490U7m6wUGoERB1r6d
+	4sibxEI8jt5N3QsffRKLnv0V2BLhQW6UlMJpFCyCFnVb0ddwyJr6zG9yjli9aiBS
+	rH/7Me8mxh1mrar+ZN0w==
+Received: from nalasppmta04.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3w62pv8bwc-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Sat, 10 Feb 2024 10:44:03 +0000 (GMT)
+Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
+	by NALASPPMTA04.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 41AAi2lK029254
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Sat, 10 Feb 2024 10:44:02 GMT
+Received: from [10.216.17.117] (10.80.80.8) by nalasex01a.na.qualcomm.com
+ (10.47.209.196) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1118.40; Sat, 10 Feb
+ 2024 02:43:56 -0800
+Message-ID: <b5c25274-9af0-4b3e-ade7-9a55d3cecd29@quicinc.com>
+Date: Sat, 10 Feb 2024 16:13:51 +0530
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-MIME-Version: 1.0 (generated by SEMI-EPG 1.14.7 - "Harue")
-Content-Type: text/plain; charset=US-ASCII
-X-Spam-Level: 
-Authentication-Results: smtp-out2.suse.de;
-	dkim=pass header.d=suse.de header.s=susede2_rsa header.b="ZTWz1/eC";
-	dkim=pass header.d=suse.de header.s=susede2_ed25519 header.b=xJIBcXYS
-X-Rspamd-Server: rspamd2.dmz-prg2.suse.org
-X-Spamd-Result: default: False [-3.01 / 50.00];
-	 RCVD_VIA_SMTP_AUTH(0.00)[];
-	 SPAMHAUS_XBL(0.00)[2a07:de40:b281:104:10:150:64:97:from];
-	 TO_DN_SOME(0.00)[];
-	 R_RATELIMIT(0.00)[to_ip_from(RLe67txhfobum3fqdb5xx8e3au)];
-	 RCVD_COUNT_THREE(0.00)[3];
-	 DKIM_TRACE(0.00)[suse.de:+];
-	 MX_GOOD(-0.01)[];
-	 NEURAL_HAM_SHORT(-0.20)[-1.000];
-	 FROM_EQ_ENVFROM(0.00)[];
-	 MIME_TRACE(0.00)[0:+];
-	 BAYES_HAM(-3.00)[100.00%];
-	 ARC_NA(0.00)[];
-	 R_DKIM_ALLOW(-0.20)[suse.de:s=susede2_rsa,suse.de:s=susede2_ed25519];
-	 FROM_HAS_DN(0.00)[];
-	 FREEMAIL_ENVRCPT(0.00)[gmail.com];
-	 TO_MATCH_ENVRCPT_ALL(0.00)[];
-	 TAGGED_RCPT(0.00)[dt];
-	 MIME_GOOD(-0.10)[text/plain];
-	 NEURAL_HAM_LONG(-1.00)[-1.000];
-	 DWL_DNSWL_LOW(-1.00)[suse.de:dkim];
-	 DKIM_SIGNED(0.00)[suse.de:s=susede2_rsa,suse.de:s=susede2_ed25519];
-	 RCPT_COUNT_TWELVE(0.00)[23];
-	 MID_CONTAINS_FROM(1.00)[];
-	 DBL_BLOCKED_OPENRESOLVER(0.00)[suse.de:dkim,quicinc.com:email];
-	 FUZZY_BLOCKED(0.00)[rspamd.com];
-	 FREEMAIL_CC(0.00)[linaro.org,intel.com,perex.cz,kernel.org,lwn.net,gmail.com,linuxfoundation.org,synopsys.com,quicinc.com,suse.com,vger.kernel.org,alsa-project.org];
-	 RCVD_TLS_ALL(0.00)[];
-	 SUSPICIOUS_RECIPS(1.50)[]
-X-Spam-Score: -3.01
-X-Rspamd-Queue-Id: 5A6711F871
-X-Spam-Flag: NO
+MIME-Version: 1.0
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 3/3] arm64: dts: qcom: sa8540-ride: Enable first port of
+ tertiary usb controller
+To: Andrew Halaney <ahalaney@redhat.com>,
+        Dmitry Baryshkov
+	<dmitry.baryshkov@linaro.org>
+CC: <neil.armstrong@linaro.org>,
+        Krzysztof Kozlowski
+	<krzysztof.kozlowski+dt@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        "Bjorn
+ Andersson" <andersson@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@linaro.org>,
+        Conor Dooley <conor+dt@kernel.org>, <linux-kernel@vger.kernel.org>,
+        <linux-arm-msm@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <quic_ppratap@quicinc.com>, <quic_jackp@quicinc.com>
+References: <20240206114745.1388491-1-quic_kriskura@quicinc.com>
+ <20240206114745.1388491-4-quic_kriskura@quicinc.com>
+ <23824242-1b37-4544-ae9a-0a5a0582580e@linaro.org>
+ <CAA8EJpqbXvKMQktGsxMFJnR+fXoOz8hFmm+E3ROPTjjiD0QLvg@mail.gmail.com>
+ <6q2ocvrujbli42rjddflyol74xianr7j47jwcgdnnmwjanv25d@uw2da7zulqqd>
+ <CAA8EJpr6k8c5C54S9xxQgZvd9NYFoxi5qQrOTz2AMrp0xeZZpw@mail.gmail.com>
+ <baw3wxbdvzpkqqb6a7iut2wpt6jgzyqii5uyfkzptzt4ryjvao@4tpee6nqup5w>
+Content-Language: en-US
+From: Krishna Kurapati PSSNV <quic_kriskura@quicinc.com>
+In-Reply-To: <baw3wxbdvzpkqqb6a7iut2wpt6jgzyqii5uyfkzptzt4ryjvao@4tpee6nqup5w>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 7bit
+X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
+ nalasex01a.na.qualcomm.com (10.47.209.196)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-GUID: gLWvh4piTatOfY9fqLXs4PyYmy-tI6LZ
+X-Proofpoint-ORIG-GUID: gLWvh4piTatOfY9fqLXs4PyYmy-tI6LZ
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.272,Aquarius:18.0.1011,Hydra:6.0.619,FMLib:17.11.176.26
+ definitions=2024-02-10_10,2024-02-08_01,2023-05-22_02
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 lowpriorityscore=0
+ impostorscore=0 bulkscore=0 clxscore=1011 mlxlogscore=999 adultscore=0
+ suspectscore=0 priorityscore=1501 phishscore=0 spamscore=0 malwarescore=0
+ mlxscore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.19.0-2401310000 definitions=main-2402100090
 
-On Fri, 09 Feb 2024 21:34:39 +0100,
-Wesley Cheng wrote:
+> Krishna, when you make v2 can you update the wording about the USB 2.0
+> mux? Maybe something like "which by default on boot is selected to mux
+> to the external port on the board (with the other option being a test
+> point)." instead of the wording I originally had? That way the
+> information Dmitry requested here is easily accessible in the future.
 > 
-> Hi Takashi,
+>>
+>>>
+
+[...]
+
+>>>>>>    };
+>>>>>
+>>>>> Isn't gpio-hog the preferred way to describe that ?
+>>>>
+>>>> That depends. As this pinctrl describes board configuration, I'd agree
+>>>> with Neil.
+>>>
+>>> I unfortunately don't have the experience with gpio-hog to weigh in
+>>> here, but wouldn't be opposed to Krishna switching it if that's what's
+>>> recommended for this type of thing.
+>>
+>> Quoting gpio.txt:
+>>
+>> The GPIO chip may contain GPIO hog definitions. GPIO hogging is a mechanism
+>> providing automatic GPIO request and configuration as part of the
+>> gpio-controller's driver probe function.
+>>
+>> See sdm845-pinctrl.yaml for an example of the gpio-hog node.
 > 
-> On 2/9/2024 2:54 AM, Takashi Iwai wrote:
-> > On Fri, 09 Feb 2024 00:13:33 +0100,
-> > Wesley Cheng wrote:
-> >> 
-> >> Some platforms may have support for offloading USB audio devices to a
-> >> dedicated audio DSP.  Introduce a set of APIs that allow for management of
-> >> USB sound card and PCM devices enumerated by the USB SND class driver.
-> >> This allows for the ASoC components to be aware of what USB devices are
-> >> available for offloading.
-> >> 
-> >> Signed-off-by: Wesley Cheng <quic_wcheng@quicinc.com>
-> > (snip)
-> >> --- a/sound/soc/Makefile
-> >> +++ b/sound/soc/Makefile
-> >> @@ -1,5 +1,5 @@
-> >>   # SPDX-License-Identifier: GPL-2.0
-> >> -snd-soc-core-objs := soc-core.o soc-dapm.o soc-jack.o soc-utils.o soc-dai.o soc-component.o
-> >> +snd-soc-core-objs := soc-core.o soc-dapm.o soc-jack.o soc-usb.o soc-utils.o soc-dai.o soc-component.o
-> >>   snd-soc-core-objs += soc-pcm.o soc-devres.o soc-ops.o soc-link.o soc-card.o
-> >>   snd-soc-core-$(CONFIG_SND_SOC_COMPRESS) += soc-compress.o
-> > 
-> > Do we really want to build this into ASoC core unconditionally?
-> > This is very specific to Qualcomm USB-offload stuff, so it's better to
-> > factor out.
-> > 
+> Thanks, that seems like the way to go. Krishna please take note of this
+> for v2!
 > 
-> Ideally, the SOC USB part shouldn't be Qualcomm specific.  Since I
-> don't have access or insight into how other vendors are achieving the
-> same thing, I can only base the soc-usb layer to work with the
-> information that is required to get the audio stream up and running on
-> the QC platforms.  In its simplest form, its basically just a SW
-> entity that notifies ASoC components about changes occurring from USB
-> SND, and I think all vendors that have an ASoC based platform card
-> handling the offload will need this notification.
 
-Yes, but it's not necessarily built into the snd-soc-core module at
-all, but can be split to another module, right?  Otherwise all
-machines must load this code even if it doesn't use at all.
-If this were common among various chips, it'd be worth to be merged
-into the default common module.  But I don't think that's the case.
+Hi Andrew,
+
+  Can you help test the following patch. It is just an add-on to your 
+original one. I don't have a SA8540P Ride at the moment and getting one 
+might take time. Incase you can confirm this patch is working. I can 
+push v2 of this series.
 
 
-thanks,
+diff --git 
+a/Documentation/devicetree/bindings/pinctrl/qcom,sc8280xp-tlmm.yaml 
+b/Documentation/devicetree/bindings/pinctrl/qcom,sc8280xp-tlmm.yaml
+index ed344deaf8b9..aa42ac5a3197 100644
+--- a/Documentation/devicetree/bindings/pinctrl/qcom,sc8280xp-tlmm.yaml
++++ b/Documentation/devicetree/bindings/pinctrl/qcom,sc8280xp-tlmm.yaml
+@@ -36,6 +36,10 @@ patternProperties:
+              $ref: "#/$defs/qcom-sc8280xp-tlmm-state"
+          additionalProperties: false
 
-Takashi
++  "-hog(-[0-9]+)?$":
++    required:
++      - gpio-hog
++
+  $defs:
+    qcom-sc8280xp-tlmm-state:
+      type: object
+diff --git a/arch/arm64/boot/dts/qcom/sa8540p-ride.dts 
+b/arch/arm64/boot/dts/qcom/sa8540p-ride.dts
+index b04f72ec097c..aa0cec0b4cc2 100644
+--- a/arch/arm64/boot/dts/qcom/sa8540p-ride.dts
++++ b/arch/arm64/boot/dts/qcom/sa8540p-ride.dts
+@@ -503,6 +503,18 @@ &usb_2_qmpphy0 {
+         status = "okay";
+  };
+
++&usb_2 {
++       pinctrl-0 = <&usb2_en_state>;
++       pinctrl-names = "default";
++
++       status = "okay";
++};
++
++&usb_2_dwc3 {
++       phy-names = "usb2-port0", "usb3-port0";
++       phys = <&usb_2_hsphy0>, <&usb_2_qmpphy0>;
++};
++
+  &xo_board_clk {
+         clock-frequency = <38400000>;
+  };
+@@ -655,4 +667,19 @@ wake-pins {
+                         bias-pull-up;
+                 };
+         };
++
++       usb2-en-hog {
++               gpio-hog;
++               gpios = <24 GPIO_ACTIVE_LOW>;
++               output-low;
++       };
++
++       usb2_en_state: usb2-en-state {
++               /* TS3USB221A USB2.0 mux select */
++               pins = "gpio24";
++               function = "gpio";
++               drive-strength = <2>;
++               bias-disable;
++               output-low;
++       };
+
+
+Regards,
+Krishna,
 
