@@ -1,61 +1,68 @@
-Return-Path: <devicetree+bounces-40394-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-40395-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0A1EC850565
-	for <lists+devicetree@lfdr.de>; Sat, 10 Feb 2024 17:46:59 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 589AE85057E
+	for <lists+devicetree@lfdr.de>; Sat, 10 Feb 2024 18:01:34 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id C0616285C06
-	for <lists+devicetree@lfdr.de>; Sat, 10 Feb 2024 16:46:57 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 0B8B4285E97
+	for <lists+devicetree@lfdr.de>; Sat, 10 Feb 2024 17:01:33 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 697685C8F3;
-	Sat, 10 Feb 2024 16:46:54 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A4EEC5CDC2;
+	Sat, 10 Feb 2024 17:01:28 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="I3zLzifv"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Jti9DQCg"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3B3F95C8E2;
-	Sat, 10 Feb 2024 16:46:53 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 794B05C8E5;
+	Sat, 10 Feb 2024 17:01:28 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1707583614; cv=none; b=OxzdQVyHKRxYPvsKK2wNj2reR89B1fxJdcgJIGzMeeJ5Te2a5+vtJOtTB1NdTCi9JBXqMHXO8PUMTTOg9PC42OpolrJYRwPFnZOHA3q1fi2g3fvjMVrHxZ9cxUg/a4eWijkevVrAecjTEgojOhSrF6ia9aiMIFrdDuy8X+wusdI=
+	t=1707584488; cv=none; b=c27MrwPsNBV2C+Farq88QLmbNKa3hTVNTgb1Au8vyHAO6PNfofE1siCAhX7XfI26qeLy85wHjjwRqbw7FfeOUfx5f6PHkbU0LzTbiN05/pDXCJzkG1dbJpOou6LIZYFzV9VwvLA/WxejnRf51WGIbU8puABMPw0LRUxmJDl99Xs=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1707583614; c=relaxed/simple;
-	bh=3XLFL1ro5i0dI0fsCV0D+QJ/wvNwCKeAITScA7QxGRo=;
+	s=arc-20240116; t=1707584488; c=relaxed/simple;
+	bh=wBaZwgCz9hDMOWTOOkxRLr2T1pQmpM9MV+Znrfc3GPE=;
 	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=BHc4Ry5vgqRKrMa9aFYYmIYNoWdrtJRkTufQuh9m7JlQYMHF5FgN+3xOMOBrVxlQhOpCrPK/1scJEBn5JiIlcsp3AiPIe33jDWT13ujoJHlihbLk+zEcgQLpdr5Ae4AnhYI+3HMkKJHC5QmsbLKGLob/bYqdTn7pUfzdZsRENSA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=I3zLzifv; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 16861C433C7;
-	Sat, 10 Feb 2024 16:46:50 +0000 (UTC)
+	 MIME-Version:Content-Type; b=cEukKOvdWNyjd+ld9FcNEtrP3KwlMZyMxkCAu3C+G9Pnu1wcX2+yAXdCkTWgQzKjFc1UgkEGsfQpIcUtdr0nzUD/CPRkW9EZyN9mlgwQccZ6tJ2GOBcNPCVCyi8z7BTykjwfFguSC6O5GXLgKLeQK5lVfkVaHrM47quOZ5xeqWI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Jti9DQCg; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id DAC73C433F1;
+	Sat, 10 Feb 2024 17:01:23 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1707583613;
-	bh=3XLFL1ro5i0dI0fsCV0D+QJ/wvNwCKeAITScA7QxGRo=;
+	s=k20201202; t=1707584487;
+	bh=wBaZwgCz9hDMOWTOOkxRLr2T1pQmpM9MV+Znrfc3GPE=;
 	h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
-	b=I3zLzifvvXbdRWEhANCGAmbhDCJUTtnTroSEO+mveCKSTifkr1iWNNMkxB3fCPEcJ
-	 +A28YxSdeZXYqFBOqMla3/KlT70zceA8dd8DYPqdGdPlkZSuLAlBdlcP2/mdUx9F1Q
-	 BNWeP+WKQKWL9oHig2vo5grFKS+vy577NmGzKu/sQYLydMBjcnSVg9aCXk9138JlaQ
-	 H9RdyESooTeE/ICtorve0n/nJMsI0UtAV90fsShKLGkx7zFsUOwH4s8ChR08pS1oMu
-	 ctF/8isL7rc6xEQgr1jrfJ/I/JtslsWnbrETvXm+u8ZjK9qVy95x380BnnKZYj489/
-	 pIzanpGLPmVTQ==
-Date: Sat, 10 Feb 2024 16:46:41 +0000
+	b=Jti9DQCgOa1bYArslPlAj3zkaAxaVDja0M21z1Rvuol/alBRIECrnfwWERxVfZv8o
+	 Lp/8JbQU1N0rGdzYyb716MkdAsb0DOBwK21NpDRP8PVmLXsL6LWP8s/QB4rHcK1RUb
+	 4tqk9ARrED5fj9noZkUTBkKGlwa3f4B4jTorYjI73RVjyqD28JK4oOj1XnzYU12+U6
+	 NBVsgFf55Ikr25rkp4ag/OmImRgFaJ7V8jjSGr1OTq8sF13aZHfqNKkd/R9dqIjfOk
+	 ZkeET940pZGy6qUrIkKA2xz6rl2KCU32QOeSvWrX+Uasg2wzpfC4rHuVLLGIkR2SRX
+	 hQHemKzUMGbCw==
+Date: Sat, 10 Feb 2024 17:01:12 +0000
 From: Jonathan Cameron <jic23@kernel.org>
-To: Conor Dooley <conor@kernel.org>
-Cc: Naresh Solanki <naresh.solanki@9elements.com>, Peter Rosin
- <peda@axentia.se>, Lars-Peter Clausen <lars@metafoo.de>, Rob Herring
- <robh+dt@kernel.org>, Krzysztof Kozlowski
+To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Cc: Subhajit Ghosh <subhajit.ghosh@tweaklogic.com>, Lars-Peter Clausen
+ <lars@metafoo.de>, Rob Herring <robh+dt@kernel.org>, Krzysztof Kozlowski
  <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>,
- mazziesaccount@gmail.com, linux-iio@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v4] dt-bindings: iio: afe: voltage-divider: Add
- io-channel-cells
-Message-ID: <20240210164641.52631ce6@jic23-huawei>
-In-Reply-To: <20240206-washboard-sustained-990e97d86d78@spud>
-References: <20240206105502.648255-1-naresh.solanki@9elements.com>
-	<20240206-washboard-sustained-990e97d86d78@spud>
+ Matti Vaittinen <mazziesaccount@gmail.com>, Andy Shevchenko
+ <andriy.shevchenko@linux.intel.com>, Marek Vasut <marex@denx.de>, Anshul
+ Dalal <anshulusr@gmail.com>, Javier Carrasco
+ <javier.carrasco.cruz@gmail.com>, Matt Ranostay <matt@ranostay.sg>, Stefan
+ Windfeldt-Prytz <stefan.windfeldt-prytz@axis.com>,
+ linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v6 2/5] dt-bindings: iio: light: adps9300: Add property
+ vdd-supply
+Message-ID: <20240210170112.6528a3d4@jic23-huawei>
+In-Reply-To: <0a03e639-9998-40b2-95bd-15dc40139509@linaro.org>
+References: <20240206130017.7839-1-subhajit.ghosh@tweaklogic.com>
+	<20240206130017.7839-3-subhajit.ghosh@tweaklogic.com>
+	<dbfde067-50b8-4f86-a098-0fc160114854@linaro.org>
+	<84591019-6958-4685-8830-54260aadd26b@tweaklogic.com>
+	<0a03e639-9998-40b2-95bd-15dc40139509@linaro.org>
 X-Mailer: Claws Mail 4.2.0 (GTK 3.24.41; x86_64-pc-linux-gnu)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
@@ -66,74 +73,55 @@ MIME-Version: 1.0
 Content-Type: text/plain; charset=US-ASCII
 Content-Transfer-Encoding: 7bit
 
-On Tue, 6 Feb 2024 15:22:29 +0000
-Conor Dooley <conor@kernel.org> wrote:
+On Fri, 9 Feb 2024 08:33:11 +0100
+Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org> wrote:
 
-> On Tue, Feb 06, 2024 at 04:25:01PM +0530, Naresh Solanki wrote:
-> > Enable the voltage divider to both receive and provide measurement
-> > services by adding #io-channel-cells.
+> On 08/02/2024 11:40, Subhajit Ghosh wrote:
+> > Hi Krzysztof,
 > > 
-> > This is especially valuable in scenarios where an ADC has an analog
-> > frontend, like a voltage divider, and obtaining its raw value isn't
-> > interesting. It is desired to get the real voltage before the voltage
-> > divider.
+> > On 8/2/24 18:47, Krzysztof Kozlowski wrote:  
+> >> On 06/02/2024 14:00, Subhajit Ghosh wrote:  
+> >>> Add vdd-supply property which is valid and useful for all the
+> >>> devices in this schema.  
+> >>
+> >> Why is it useful? How is it useful? DT describes the hardware, not
+> >> because something is "useful".  
+> > I am adding this property based on a previous review:
+> > https://lore.kernel.org/all/20240121153655.5f734180@jic23-huawei/  
+> 
+> The property was there already.
+> 
 > > 
-> > Signed-off-by: Naresh Solanki <naresh.solanki@9elements.com>  
+> > Does the below commit message in this context make sense to you?
+> > "Add vdd-supply property for all the devices in this schema."  
 > 
-> Reviewed-by: Conor Dooley <conor.dooley@microchip.com>
-> 
-> Thanks for adding the example. I have one comment about the wording, cos
-> the last sentence doesn't really make sense without something referring
-> back to the scenario you describe.
-> 
-> > ---
-> >  .../devicetree/bindings/iio/afe/voltage-divider.yaml  | 11 +++++++++++
-> >  1 file changed, 11 insertions(+)
-> > 
-> > diff --git a/Documentation/devicetree/bindings/iio/afe/voltage-divider.yaml b/Documentation/devicetree/bindings/iio/afe/voltage-divider.yaml
-> > index dddf97b50549..fd3c511e1beb 100644
-> > --- a/Documentation/devicetree/bindings/iio/afe/voltage-divider.yaml
-> > +++ b/Documentation/devicetree/bindings/iio/afe/voltage-divider.yaml
-> > @@ -39,6 +39,17 @@ properties:
-> >      description: |
-> >        Channel node of a voltage io-channel.
-> >  
-> > +  '#io-channel-cells':
-> > +    description:
-> > +      In addition to consuming the measurement services of a voltage
-> > +      output channel, the voltage divider can act as a provider of
-> > +      measurement services to other devices. This is particularly
-> > +      useful in scenarios wherein an ADC has an analog frontend,
-> > +      such as a voltage divider, and then consuming its raw value
-> > +      isn't interesting.  
-> 
-> > It is desired to get the real voltage
-> > +      before the voltage divider.  
-> 
-> "In this case, the voltage before the divider is desired".
-> 
-> Perhaps Jonathan can make that change, provided you are okay with it.
-I've made the change and applied this patch. Given it will only initially
-be pushed out for 0-day to take a look at it, feel free to shout if you'd
-prefer different wording from Conor's suggestion.
+> It's still poor. You should say why, e.g. because devices have it.
 
-Thanks,
+I'd change the patch title to:
 
-Jonathan
+dt-bindings: iio: light: adps9300: Add missing vdd-supply
+
+For description something simple like:
+
+All devices covered by the binding have a vdd supply.
+
 
 > 
-> Cheers,
-> Conor.
+> >>  
+> >>>
+> >>> this patch depends on patch:
+> >>> "dt-bindings: iio: light: Merge APDS9300 and APDS9960 schemas"  
+> >>
+> >> This is unrelated and does not make any sense in commit msg. Drop.  
+> > Apologies for the silly questions:
+> > What does the "Drop" signify? Are you asking me to drop/delete the above
+> > "...patch depends..." message or does it have any other meaning?  
 > 
-> > +    const: 1
-> > +
-> >    output-ohms:
-> >      description:
-> >        Resistance Rout over which the output voltage is measured. See full-ohms.
-> > 
-> > base-commit: 99bd3cb0d12e85d5114425353552121ec8f93adc
-> > -- 
-> > 2.42.0
-> >   
+> Drop entire paragraph.
+> 
+> 
+> Best regards,
+> Krzysztof
+> 
 
 
