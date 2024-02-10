@@ -1,111 +1,88 @@
-Return-Path: <devicetree+bounces-40375-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-40376-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0E0878504B3
-	for <lists+devicetree@lfdr.de>; Sat, 10 Feb 2024 15:23:20 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id E5D368504D9
+	for <lists+devicetree@lfdr.de>; Sat, 10 Feb 2024 16:12:44 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 40A321C20C8E
-	for <lists+devicetree@lfdr.de>; Sat, 10 Feb 2024 14:23:19 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 18B421C20ECA
+	for <lists+devicetree@lfdr.de>; Sat, 10 Feb 2024 15:12:44 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8AF7653E3C;
-	Sat, 10 Feb 2024 14:23:18 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id ADDC15BAD1;
+	Sat, 10 Feb 2024 15:12:39 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="wrpaDEIo"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="LI4cRHuB"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ej1-f42.google.com (mail-ej1-f42.google.com [209.85.218.42])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CB79353E3F
-	for <devicetree@vger.kernel.org>; Sat, 10 Feb 2024 14:23:16 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.42
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8255954FB3;
+	Sat, 10 Feb 2024 15:12:39 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1707574998; cv=none; b=VzCe2WkLVqz1H1/0+/1yOhgojhOdJPFhB1qOaHXspwXNJ1xegLpkGISUaH52Scp9pHqfRD7NgrvPuWQXA8qRjDZOvfHRn/S4TfnyEyTrkdLpj6O40Uac0657Ib4I5gfM4uDuzvnfdOl2HwZWejOnmpclFx1+Xk9RjrBEFIP+r5o=
+	t=1707577959; cv=none; b=hIMVzgAnLg1W96KDlUjh091TYsM0kv+/slZb+rz92l4HyFbR7+Stj5TopBTwjZ3jjbpAOotNxPWln/aDtPGSH9XkIQ7Cfc2uF6WVPthROD9wSMuFdIIqNylYO/197yPRfGkgLvP1aBPWyqx/hwhiS0lzIywBhS7Ner8E3FQD/MM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1707574998; c=relaxed/simple;
-	bh=DaI34cmoQ2TTjezX6O9uXpwQhRxq41aFstLGILeGAGA=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=pFWJAIJjEaLUdSzdTVut5X8hCe2SxL0iwu2qewy+UtYU9jY2wqHFMzxGwYvqJscs83O03EHAmgpGxDkJudiaHbKwzvf/m6eNrZA8B7h6vKGJb7CPmBeLpSFIr/9NSzA1p4FjvcRmBzi1NOn7ehtoh8VfaQf/OaXEBprSG9unNCM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=wrpaDEIo; arc=none smtp.client-ip=209.85.218.42
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-ej1-f42.google.com with SMTP id a640c23a62f3a-a381df83113so197352066b.3
-        for <devicetree@vger.kernel.org>; Sat, 10 Feb 2024 06:23:16 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1707574995; x=1708179795; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=E4HO4hLAzbgJmOVEY8MO0LN738x8Cz2lxnox/JBlwZw=;
-        b=wrpaDEIoEfZ6CvTreW7HMqeGmUiT+lNGKLlkeSu6zeFbdVZXXCdSLbO9zj37qc4aZF
-         iqGi4Lh0iP98qA/13t25XNM3LKius6SP+9x4eBBCkDt4fvc8aX+OupO7v2ay1p5bzyTQ
-         Ez8lOM82ntvl2ozKNYQHsb/jTLjdfnwLqXNBLIOuyb+GW9IB0uAgcHvAnE82OhF60fL/
-         tLiXaVFhQygaZrxokbYPjGJp1CUYlw/S01ImyA3vic50aWYv4qm2JM4D0DXoU1qOPXbX
-         1ev0Rc6+9yrt+G/CF4BHbo6iSzxJz3M6vys6VxdDnTpyxyxEu48k6Y2fUjvqvnEMpZAq
-         DMlg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1707574995; x=1708179795;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=E4HO4hLAzbgJmOVEY8MO0LN738x8Cz2lxnox/JBlwZw=;
-        b=aMa50ZiR/ZBpZdqYf6C5e6yuq2HWaBDZQ/S2P4MaCqJtt/fIWpr68SQd4zDRd0eysZ
-         tlLTaD3QCnif5kwDb8uI8xsRgvo/67TCMgf2S0R723k8NTEAxkYac+gk8wABwFpFhgTh
-         JB6f3sYO7VexnHFsRqyCY8wwUDpLRZYui/2x6eBWVmpPjkfOZzgFTeLyGa8mZ0vgYAQ0
-         DuX6HtDiraFyN7SYpaMlaCb0R2XJCaYoP9yl8gZsv4r12PoA8Z9tvK56bE/L1ZcNOe9G
-         gCz16RgFxYrYphACpxXf1Z8xRPMsgalgADS5vVSo3vqmi6OK/wMU2EdvitS/y/9dUt0Z
-         Bi6A==
-X-Gm-Message-State: AOJu0YyOnAnaifBWdoGKSh+lkPOK+GjXip2kR/+noG15KIoNPZ4POu+m
-	Ry0+7S+RnvkJYSXlebD1e5+j75FV8+bgqH5eHcwX550Ut+WB8TDszupqcnJHBGE=
-X-Google-Smtp-Source: AGHT+IEJZtlhHoDZ5lAeCtmu7+okxoXyvoQMZqadchssc7Ffm8NwFqahbNXqLhMwFKdEQU7UwQkTSA==
-X-Received: by 2002:a17:906:2789:b0:a3c:4503:f72e with SMTP id j9-20020a170906278900b00a3c4503f72emr620585ejc.22.1707574995136;
-        Sat, 10 Feb 2024 06:23:15 -0800 (PST)
-X-Forwarded-Encrypted: i=1; AJvYcCW+CqreWMjIfkQHM7lVlY9oTvW1YpdcnimBkIIejPItqBzmLjSfvYQEj6mBODYLt8dPX2VmVbmRbWe8DYKIb9R6CbpHVV98CYSpcZPxncrMTyAf2t7hOOZ8qTtNX0syvlT/xq2EyLX5Op92EGljvqQ+cucSsaulV7BUJZOOIfKCVDEuf+eydSe03EkjNY4Mf5LtZvhdDmaQpR8a/ecLZ+HLikQ+wKJw6nv/WtoOYdkUzi/7sg3PhWhQD8ugQe0FB1ZZHaUCaX1eCd9Ab7gMjSVHA8RcVq+8ELQouZ8DTpqgvIfhFyNOyssY5q0516SX+lCmCDOflEtY5+u25QIbiNy4fLwLm7MuyYnFKgfvNuDdYbyxeyn5xHbFRCtsmpMZrGxrw+Q2Xa4ihNnNKU0fjWtDdTY9JHfeEW4aoiEElvMb7QnHGQUMa0V4HoZFijsqkViY83SygbPRIfkRfSKh8ohuXR/s7OBo9SvzeZ2O3uwBMg==
-Received: from [192.168.1.116] (abyl12.neoplus.adsl.tpnet.pl. [83.9.31.12])
-        by smtp.gmail.com with ESMTPSA id k6-20020a1709061c0600b00a387d9d6dc5sm1858412ejg.174.2024.02.10.06.23.11
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sat, 10 Feb 2024 06:23:14 -0800 (PST)
-Message-ID: <38722fc3-b340-4ba0-9573-21eae476d2b3@linaro.org>
-Date: Sat, 10 Feb 2024 15:23:08 +0100
+	s=arc-20240116; t=1707577959; c=relaxed/simple;
+	bh=Bqdhe6m0hszTXiqousyJsHzppKR51PKO0JlO3RE6qMA=;
+	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=KMo0K3P34+rEvhD+rT6tJXEO9U6iNPEMKS3aPRepz//P+tYm4J8cbmn1W9gwjl/6xqlkeT6bHoJezuGQOeqGgTFn4Y3miWPep+jmFgosBExZTc7i1ahy2XkdY652iGvSBiZt8Lqo3qwoyBaHNIlaZBYPyt3TKRh7HEsJBgszmgk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=LI4cRHuB; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 9ADD5C433F1;
+	Sat, 10 Feb 2024 15:12:37 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1707577959;
+	bh=Bqdhe6m0hszTXiqousyJsHzppKR51PKO0JlO3RE6qMA=;
+	h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
+	b=LI4cRHuBhmuYT3wQXMIIYKbPfcTOXbIGi9dxE7c/qyVg6nK4DnkBoLkin8YJzQ242
+	 ylm9WJYACDOupoQ/YfoGQwaZN6872OyVt9cbb7SY2Llwjb1ViyL+LBfRdHjznh7+g1
+	 alzlLc3yp8mThTM1N2f25OB3/ecqha9xytiEDDhqAj4ZOJaoNDpSOANlez23HoBJBU
+	 JIZZ+bBGLqBBr98IvgnksLGJyUCkGePnfmp59Q6aFs+Ecqyqwg0ZDO+5JYdEHLYtAz
+	 E2wRsoDkCWOMVxOjCcZYeiLcYhEOlc6n3nkrHc/IjiU/gh91n9/DwaBhakcIH0Nul9
+	 5emnwrJcKg2Tg==
+Date: Sat, 10 Feb 2024 15:12:28 +0000
+From: Jonathan Cameron <jic23@kernel.org>
+To: Rob Herring <robh@kernel.org>
+Cc: Lorenzo Bianconi <lorenzo@kernel.org>, lorenzo.bianconi@redhat.com,
+ linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
+ krzysztof.kozlowski+dt@linaro.org
+Subject: Re: [PATCH v4 3/3] dt-bindings: iio: imu: st_lsm6dsx: add
+ asm330lhhxg1
+Message-ID: <20240210151228.38702142@jic23-huawei>
+In-Reply-To: <170714168769.3273951.16124017499544303407.robh@kernel.org>
+References: <cover.1706961432.git.lorenzo@kernel.org>
+	<942452ec9626bc1166501cec0fa88c369e28ec6f.1706961432.git.lorenzo@kernel.org>
+	<170714168769.3273951.16124017499544303407.robh@kernel.org>
+X-Mailer: Claws Mail 4.2.0 (GTK 3.24.41; x86_64-pc-linux-gnu)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 3/3] pmdomain: qcom: rpmpd: Add MSM8974PRO+PMA8084 power
- domains
-Content-Language: en-US
-To: Luca Weiss <luca@z3ntu.xyz>, ~postmarketos/upstreaming@lists.sr.ht,
- phone-devel@vger.kernel.org, Bjorn Andersson <andersson@kernel.org>,
- Rob Herring <robh+dt@kernel.org>,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Conor Dooley <conor+dt@kernel.org>, Ulf Hansson <ulf.hansson@linaro.org>,
- Stephan Gerhold <stephan@gerhold.net>,
- =?UTF-8?Q?Matti_Lehtim=C3=A4ki?= <matti.lehtimaki@gmail.com>
-Cc: linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, linux-pm@vger.kernel.org
-References: <20240210-msm8974-rpmpd-v1-0-de9355e6842a@z3ntu.xyz>
- <20240210-msm8974-rpmpd-v1-3-de9355e6842a@z3ntu.xyz>
-From: Konrad Dybcio <konrad.dybcio@linaro.org>
-In-Reply-To: <20240210-msm8974-rpmpd-v1-3-de9355e6842a@z3ntu.xyz>
-Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Type: text/plain; charset=US-ASCII
 Content-Transfer-Encoding: 7bit
 
+On Mon, 5 Feb 2024 14:01:28 +0000
+Rob Herring <robh@kernel.org> wrote:
 
-
-On 2/10/24 15:12, Luca Weiss wrote:
-> Add the power domains CX & GFX found on MSM8974 devices that use PMA8084
-> instead of the standard PM8841+PM8941 combo.
+> On Sat, 03 Feb 2024 13:01:38 +0100, Lorenzo Bianconi wrote:
+> > Add device bindings for asm330lhhxg1 IMU sensor.
+> > The lsm6dsr supports the features and functionality provided by
+> > the asm330lhhxg1 via identical interfaces and so is a suitable
+> > fallback compatible.
+> > 
+> > Signed-off-by: Lorenzo Bianconi <lorenzo@kernel.org>
+> > ---
+> >  Documentation/devicetree/bindings/iio/imu/st,lsm6dsx.yaml | 4 +++-
+> >  1 file changed, 3 insertions(+), 1 deletion(-)
+> >   
 > 
-> Signed-off-by: Luca Weiss <luca@z3ntu.xyz>
-> ---
+> Reviewed-by: Rob Herring <robh@kernel.org>
+> 
 
-Same comment as p2, gfx_ao may not make much sense on this
-platform
+Series applied.
 
-Konrad
+Thanks
 
