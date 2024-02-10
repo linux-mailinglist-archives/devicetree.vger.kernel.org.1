@@ -1,132 +1,173 @@
-Return-Path: <devicetree+bounces-40413-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-40416-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 788AB850654
-	for <lists+devicetree@lfdr.de>; Sat, 10 Feb 2024 21:48:06 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id C2758850657
+	for <lists+devicetree@lfdr.de>; Sat, 10 Feb 2024 21:57:29 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 2CBFA1F21D3A
-	for <lists+devicetree@lfdr.de>; Sat, 10 Feb 2024 20:48:06 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 743CE285CB5
+	for <lists+devicetree@lfdr.de>; Sat, 10 Feb 2024 20:57:28 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3A8096027F;
-	Sat, 10 Feb 2024 20:46:34 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id BEB905FBAD;
+	Sat, 10 Feb 2024 20:57:21 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="MH0c9Wgt"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="bGvprrux"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-yb1-f177.google.com (mail-yb1-f177.google.com [209.85.219.177])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AD3906026A;
-	Sat, 10 Feb 2024 20:46:32 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.219.177
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8E81F5F879;
+	Sat, 10 Feb 2024 20:57:21 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1707597994; cv=none; b=gzRuAqR0lGp3me1ckS2cyWD1OVD1+1vU6DbY1U9wPogGWX3yc9LxkaAlRSsmwepmd4neeHzq/ZSvs4JE1i4Uia0LI6VdhIf7mgM6Mx7eFSyyWJBKA4JjM+SLI8Ccj13/2PhOaD1Z7MLYL0ZO3Mpgh+rY7QwY0xXUiuvqDWIafhM=
+	t=1707598641; cv=none; b=USRJI7Zr5UlFMFbj5VnzTzY2QbmM3AUwh2L0Oql0wxLFvqasr2SJk2O/A9c/2OsIE0CpRNw2Ws0QDuRGrHtyK4x96JzlJKf2z/IHz8wHQuWE9ym3WyQHV6g2P1bgwI4knClPVd+sXBBGHMU6ewDidudrU2CaUjfQiA9JWNyVQcs=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1707597994; c=relaxed/simple;
-	bh=UaVR5OZa0WGcg5GCJwsdYxJmw+RtjRhaAWwaN3+ScVw=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=CVphkeBrRHHExSK2SPWZhje1qHuQeaBPu9xigGADnSOJlENQoObY9HiqirdCw4iLf63ugx2O4E03mkkeCudOAOqRt0JN3U8xnjGo4hNXRR0+8wdTPtRQEty7GrblsvPRNpTtcIP/nEByy7kJ0n36ep7pIHSdtLEe5CRGuqjvnTc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=MH0c9Wgt; arc=none smtp.client-ip=209.85.219.177
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-yb1-f177.google.com with SMTP id 3f1490d57ef6-dc6e080c1f0so1931455276.2;
-        Sat, 10 Feb 2024 12:46:32 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1707597991; x=1708202791; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=jMNqmGpCpYRyGD3lm2gu6alF/32hYvXVEyCc/US0g+U=;
-        b=MH0c9WgtSRNr6gYwdO5xklHndJk+iNqm1zc0h7tmEsCbBRYw1JMZ/fWstITdUzXcoz
-         Au7x6TjMIO44mGIB6SZ8sswTmbSDmhkaAnFvuT3VbJE0OUlslmg+WH7Jzh/+Ugr/Fs/5
-         d6Th9x03MFfmCN8eozkSksCRI4WY7HuOGYsrmUVhEoq3ELuPu6eMPX2XkFtDHqopRg+z
-         1Ikk9Hj29S+uUt2gYxfqHsPsxgcEv/W2RZMLkwxahm6IBXGFJn0U2Wuq7HwwnD+jZQ6c
-         Pp27214BGdyjguz8Ccqjs/FD5AmYd6ZUAj5iAaCzbS8habHXgEP1y1XGFtP5uQrpUxxg
-         ybjg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1707597991; x=1708202791;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=jMNqmGpCpYRyGD3lm2gu6alF/32hYvXVEyCc/US0g+U=;
-        b=PXo/Y297iUrdkEs8WYoVV2yzbDNkhANihfxkBNBrfV93bCzj7itzsC69jzyy0dNfds
-         FAdqxuUbeHoYotaLDZv7OY3pWyZ1ZpPJgVp8I8qCAfHQ6+XqhasbBfFzWNTJf+CWDqZZ
-         D2WW8hMGknazsdqKEEIQcjNRy+s2CXmpwpex8LBZtH7dX1cdf0dAYNiqZulB7fwKHw3t
-         Nc8vo+Zoq4CZGDUPlESLtYt7NSiyBHdcIuKfuRI6LP9IBCaxUfxhucSMNNsI1ANwN1j6
-         qlMR2Wc+YTC3PlXOIz7PhgxmEHrvEc95vlw6E8mLWLryz39UO4EbOYqoR6UAPl5fXU9F
-         lw2Q==
-X-Gm-Message-State: AOJu0YzYLXxymT+9qcF8/vtwmTaYsz9CCUSGr7zP6hhpkS3QB/zn4TF2
-	QQbeaK55g3aClRRbQ7FjyvU7eitouDu3LgRNA1QOaDYYlwgbzOaJFCqzD+Aq
-X-Google-Smtp-Source: AGHT+IHgx712Qt0uPzY3BKOyK91B3LD/rc1vFptzX160m43q2KsKblVYhW7VrPbTHGq3SN6LhllN8g==
-X-Received: by 2002:a5b:b0f:0:b0:dc7:49da:5f4 with SMTP id z15-20020a5b0b0f000000b00dc749da05f4mr2754107ybp.11.1707597991484;
-        Sat, 10 Feb 2024 12:46:31 -0800 (PST)
-X-Forwarded-Encrypted: i=1; AJvYcCVR6ncD88zt1yVh3P2jEjcgsr1octwT0Xcboct6HI+KW6uiASuYizor/YMwjA/4YBU7J4v1FeUR88pazimK2bL68tdOTAyYfSb/ds5aUAx6J3lpvN3WYqFOzuEeXHYB/W3ViaxfIuTRqjI2uvi/EBLHTtfOj7ukXeSOYe1Nd6tfJNwG+43UDTCvXyYVRfkTq8BLyrBa4y7J7BXkjqZlYUozI8x3Pn1Fa328zhGAdvkbzCQg6n2atr4pRUM/Bo6q7Z1GvJIbLKbsZsceiuOZwRdXAeKDfpwXlKYkI9ShmjInX45mUX/lvzwd6ZLlSSKsOq4duF7Mv7R6AChrWWH4kc1+DQrVPF8XXaLdwJe5ieaBOhg8CBmluRLRab9eqRpBLPcKu2woU8laW3ZtwQ+kPiYgBjdaqeNIajdZScZFNL97YFE15YmF3+VYdJdWan39AGaKOBxKWqgT+7q/r6Hq4ul8ujbaV7NessyP64Q6NDVjKWYiQJByNU+/3U3FKwgJVt7rOsuA3JbY+VvQc3hub6I6HP2RhG3F2vkTGZmC2z0bn6UsuSW3yw2H1Nfw5hOUnNJaitQv9JhExulkZufn1RP6CfX1xcepclF61Hg4s8OU0g==
-Received: from aford-System-Version.lan ([2601:447:d002:5be:27d7:3989:2897:88a7])
-        by smtp.gmail.com with ESMTPSA id m20-20020a0cdb94000000b0068c9db26ae1sm2079526qvk.41.2024.02.10.12.46.29
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sat, 10 Feb 2024 12:46:30 -0800 (PST)
-From: Adam Ford <aford173@gmail.com>
-To: linux-arm-kernel@lists.infradead.org
-Cc: marex@denx.de,
-	aford@beaconembedded.com,
-	Adam Ford <aford173@gmail.com>,
-	Vinod Koul <vkoul@kernel.org>,
-	Kishon Vijay Abraham I <kishon@kernel.org>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Shawn Guo <shawnguo@kernel.org>,
-	Sascha Hauer <s.hauer@pengutronix.de>,
-	Pengutronix Kernel Team <kernel@pengutronix.de>,
-	Fabio Estevam <festevam@gmail.com>,
-	NXP Linux Team <linux-imx@nxp.com>,
-	Catalin Marinas <catalin.marinas@arm.com>,
-	Will Deacon <will@kernel.org>,
-	Lucas Stach <l.stach@pengutronix.de>,
-	linux-phy@lists.infradead.org,
-	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org
-Subject: [PATCH V4 6/6] arm64: defconfig: Enable DRM_IMX8MP_DW_HDMI_BRIDGE as module
-Date: Sat, 10 Feb 2024 14:46:02 -0600
-Message-ID: <20240210204606.11944-7-aford173@gmail.com>
-X-Mailer: git-send-email 2.43.0
-In-Reply-To: <20240210204606.11944-1-aford173@gmail.com>
-References: <20240210204606.11944-1-aford173@gmail.com>
+	s=arc-20240116; t=1707598641; c=relaxed/simple;
+	bh=q4V3T80Txq6jSUjNLG3n3P4nfNbu0tPkxZiFNMalY7s=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=OduVJToWk3SqgCoSAeIrJBu5S1jPQHTqeshu9GnvmYNEWjP5vKW15nUw31PAugHqK4Q0aW0y63uCeu22Y/oCnsqm+bZSPoikJEumVsxBtyRfSgjA4Vy0/CFWE7G3XHHpJXbluNmrL3kVvW5Q2QR9nK3ZAWt+J8MN4RWs4V8gheg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=bGvprrux; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPS id 07E52C433F1;
+	Sat, 10 Feb 2024 20:57:21 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1707598641;
+	bh=q4V3T80Txq6jSUjNLG3n3P4nfNbu0tPkxZiFNMalY7s=;
+	h=From:Subject:Date:To:Cc:Reply-To:From;
+	b=bGvprruxPEi5jIsTs9nC3i8f2k5zMRkkXS2VM9dXayHbK4SYPkYbtBgt4B5ddiOfT
+	 WPQ3WIMYUwo3R82FgKRjaobPTF/g/n/WE0Eae9xSw+pU0LE76Kc4P9aK+f5SIciSxh
+	 TRcNaJbH53Mzzp5Cp7aczDHxypPnVZIJ6YDl77Iex8GnnC7GCkci9EwIDyCvW7IqCG
+	 5BcQbKwn+uox9D3+ZNGRYP7mX6t/zidK5YXVN6UhYjYZKVXkugGuzEQBt1lGmA0PQc
+	 kdvYyK8IzO4i3V5rKy3m//9DOctvIowbTCCFkJqRlickue0yKl+BGu1DUb/ZclsnkU
+	 zsng1iLEY5SpA==
+Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
+	by smtp.lore.kernel.org (Postfix) with ESMTP id E1112C48260;
+	Sat, 10 Feb 2024 20:57:20 +0000 (UTC)
+From: Nuno Sa via B4 Relay <devnull+nuno.sa.analog.com@kernel.org>
+Subject: [PATCH v11 0/7] iio: add new backend framework
+Date: Sat, 10 Feb 2024 21:57:12 +0100
+Message-Id: <20240210-iio-backend-v11-0-f5242a5fb42a@analog.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 8bit
+X-B4-Tracking: v=1; b=H4sIACjjx2UC/2XP20rEMBCA4VdZcm0kk8M02SvfQ7yYHLob1EZaC
+ crSdzddFBt6MzAD3w9zY0uac1rY+XRjc6p5yWVqC8DDiYUrTZfEc2wHJoVUIMHxnAv3FF7TFDm
+ pGICQBjKWNfExpzF/3XPPL22/5uWzzN/3etXb9bcjRdepmgvunE0OtPXo5BNN9FYuj6G8sy1Uz
+ R/WAkD22DTsYwoUhQby+oBxj/sPKjYM1hmFQRkS5oCHHZaqx8OG/ThKhd6iUwds/3EbPbYNj2h
+ SssFKoeIBuz3GHruG44gYwbgghOjwuq4/ooAvHNkBAAA=
+To: linux-iio@vger.kernel.org, devicetree@vger.kernel.org
+Cc: Lars-Peter Clausen <lars@metafoo.de>, 
+ Michael Hennerich <Michael.Hennerich@analog.com>, 
+ Jonathan Cameron <jic23@kernel.org>, Rob Herring <robh+dt@kernel.org>, 
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, 
+ Conor Dooley <conor+dt@kernel.org>, Frank Rowand <frowand.list@gmail.com>, 
+ Olivier Moysan <olivier.moysan@foss.st.com>, andy.shevchenko@gmail.com, 
+ Rob Herring <robh@kernel.org>
+X-Mailer: b4 0.12.3
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1707598639; l=3748;
+ i=nuno.sa@analog.com; s=20231116; h=from:subject:message-id;
+ bh=q4V3T80Txq6jSUjNLG3n3P4nfNbu0tPkxZiFNMalY7s=;
+ b=mj9zDaKxZirMr/a7AvN8pw/m5jXV47e/D7X7RYcG779EudkgWBg4ysdG3U5bxgi7DRbsLgmgA
+ X8iHGYG78QoBmy93uweVsJCYlIA2E+8FNEKXaKtjKvN3Li+nW2ZqmSh
+X-Developer-Key: i=nuno.sa@analog.com; a=ed25519;
+ pk=3NQwYA013OUYZsmDFBf8rmyyr5iQlxV/9H4/Df83o1E=
+X-Endpoint-Received:
+ by B4 Relay for nuno.sa@analog.com/20231116 with auth_id=100
+X-Original-From: Nuno Sa <nuno.sa@analog.com>
+Reply-To: <nuno.sa@analog.com>
 
-The i.MX8M Plus has support for an HDMI transmitter.  The
-video is genereated by lcdif3, routed to the hdmi parallel
-video interface, then fed to a DW HDMI bridge to support
-up to 4K video output.
+v1:
+ https://lore.kernel.org/linux-iio/20231204144925.4fe9922f@jic23-huawei/T/#m222f5175273b81dbfe40b7f0daffcdc67d6cb8ff
 
-Signed-off-by: Adam Ford <aford173@gmail.com>
+v2:
+ https://lore.kernel.org/r/20231208-dev-iio-backend-v2-0-5450951895e1@analog.com
+
+v3:
+ https://lore.kernel.org/linux-iio/20231213-dev-iio-backend-v3-0-bb9f12a5c6dc@analog.com/
+
+v4:
+ https://lore.kernel.org/r/20231220-iio-backend-v4-0-998e9148b692@analog.com
+
+v5:
+ https://lore.kernel.org/r/20240112-iio-backend-v5-0-bdecad041ab4@analog.com
+
+v6:
+ https://lore.kernel.org/r/20240119-iio-backend-v6-0-189536c35a05@analog.com
+
+v7
+ https://lore.kernel.org/r/20240123-iio-backend-v7-0-1bff236b8693@analog.com
+
+v8:
+ https://lore.kernel.org/r/20240202-iio-backend-v8-0-f65ee8c8203d@analog.com
+
+v9:
+ https://lore.kernel.org/r/20240206-iio-backend-v9-0-df66d159c000@analog.com
+
+v10:
+ https://lore.kernel.org/r/20240209-iio-backend-v10-0-3ed842064318@analog.com/
+
+Changes in v11:
+ - Patch 6
+   * Directly use dev in devm_iio_backend_get();
+   * Move comment above the proper place.
+ - Patch 7
+   * Added blank line between includes (to logically separate them);
+   * Move back to 10 millisecond sleep;
+   * Constify expected_ver and removed unneeded cast.
+
+Jonathan, the series is based on next-20240202 since it already includes
+the io-channels fix Rob applied in his tree. I guess it should land in rc3 so
+after you rebase, all patches should apply cleanly (if applying them of course
+:)). Let me know if anything fails...
+
+Keeping the block diagram  so we don't have to follow links
+to check one of the typical setups.
+
+                                           -------------------------------------------------------
+ ------------------                        | -----------         ------------      -------  FPGA |
+ |     ADC        |------------------------| | AXI ADC |---------| DMA CORE |------| RAM |       |
+ | (Frontend/IIO) | Serial Data (eg: LVDS) | |(backend)|---------|          |------|     |       |
+ |                |------------------------| -----------         ------------      -------       |
+ ------------------                        -------------------------------------------------------
+
 ---
-No change since V1
----
- arch/arm64/configs/defconfig | 1 +
- 1 file changed, 1 insertion(+)
+Nuno Sa (6):
+      dt-bindings: adc: ad9467: add new io-backend property
+      dt-bindings: adc: axi-adc: update bindings for backend framework
+      iio: buffer-dmaengine: export buffer alloc and free functions
+      iio: add the IIO backend framework
+      iio: adc: ad9467: convert to backend framework
+      iio: adc: adi-axi-adc: move to backend framework
 
-diff --git a/arch/arm64/configs/defconfig b/arch/arm64/configs/defconfig
-index f44b3abf3cef..03ba9e89a0a5 100644
---- a/arch/arm64/configs/defconfig
-+++ b/arch/arm64/configs/defconfig
-@@ -886,6 +886,7 @@ CONFIG_DRM_ANALOGIX_ANX7625=m
- CONFIG_DRM_I2C_ADV7511=m
- CONFIG_DRM_I2C_ADV7511_AUDIO=y
- CONFIG_DRM_CDNS_MHDP8546=m
-+CONFIG_DRM_IMX8MP_DW_HDMI_BRIDGE=m
- CONFIG_DRM_DW_HDMI_AHB_AUDIO=m
- CONFIG_DRM_DW_HDMI_CEC=m
- CONFIG_DRM_IMX_DCSS=m
--- 
-2.43.0
+Olivier Moysan (1):
+      of: property: add device link support for io-backends
+
+ .../devicetree/bindings/iio/adc/adi,ad9467.yaml    |   4 +
+ .../devicetree/bindings/iio/adc/adi,axi-adc.yaml   |   8 +-
+ MAINTAINERS                                        |   8 +
+ drivers/iio/Kconfig                                |   9 +
+ drivers/iio/Makefile                               |   1 +
+ drivers/iio/adc/Kconfig                            |   4 +-
+ drivers/iio/adc/ad9467.c                           | 267 ++++++++-----
+ drivers/iio/adc/adi-axi-adc.c                      | 385 +++++--------------
+ drivers/iio/buffer/industrialio-buffer-dmaengine.c |   8 +-
+ drivers/iio/industrialio-backend.c                 | 418 +++++++++++++++++++++
+ drivers/of/property.c                              |   2 +
+ include/linux/iio/adc/adi-axi-adc.h                |  68 ----
+ include/linux/iio/backend.h                        |  72 ++++
+ include/linux/iio/buffer-dmaengine.h               |   3 +
+ 14 files changed, 802 insertions(+), 455 deletions(-)
+---
+base-commit: 076d56d74f17e625b3d63cf4743b3d7d02180379
+change-id: 20231219-iio-backend-a3dc1a6a7a58
+--
+
+Thanks!
+- Nuno Sá
 
 
