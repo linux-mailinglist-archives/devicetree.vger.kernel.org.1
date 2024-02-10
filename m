@@ -1,149 +1,118 @@
-Return-Path: <devicetree+bounces-40324-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-40325-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id DA5C0850244
-	for <lists+devicetree@lfdr.de>; Sat, 10 Feb 2024 03:59:41 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id A968385024E
+	for <lists+devicetree@lfdr.de>; Sat, 10 Feb 2024 04:06:07 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 9ED5E283FCA
-	for <lists+devicetree@lfdr.de>; Sat, 10 Feb 2024 02:59:40 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id DC0921C240AA
+	for <lists+devicetree@lfdr.de>; Sat, 10 Feb 2024 03:06:06 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9AE355234;
-	Sat, 10 Feb 2024 02:59:36 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5D5875663;
+	Sat, 10 Feb 2024 03:05:56 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="syYrFvDR"
+	dkim=pass (2048-bit key) header.d=google.com header.i=@google.com header.b="ZUzekhGW"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-yw1-f202.google.com (mail-yw1-f202.google.com [209.85.128.202])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 657AF5226;
-	Sat, 10 Feb 2024 02:59:35 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 58FF533C0
+	for <devicetree@vger.kernel.org>; Sat, 10 Feb 2024 03:05:53 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.202
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1707533976; cv=none; b=stoYyxEAhke4ebkMQp3jHJn7LdGcxnYjFTV8FRDyT3xYjOe9iG3fp04FpefoEV9BZ7khQtAaBnF4Kv94m8hp0vr50hAal0Y09uuYNh4krqgiZ70TtD90Mn5vP33ZbPqIiJgGgj8eRsSIaZ42Rhsar+p+uYV7PDFOJ8NDdVB+zhU=
+	t=1707534356; cv=none; b=LgELnX5571191Csmk4YWMDNfIyy/kX2bcjGMAOHsvGRrcEmsZ2mdpdW7/Nhg3yqJOo01VA23sX/sLgBRY4JZhoZOM8nZUIY9VX2LieTe/m/s2YJXNrMivxttmvS+QeFCeqVnJWjBKm2WYq66vLgso6eIUpSnPv3zJjMDD6yUTUw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1707533976; c=relaxed/simple;
-	bh=2lP+NSQhJ4c3moxHDlaunCfBTdIXLlNuFrDcFX1+1pE=;
-	h=Message-ID:Content-Type:MIME-Version:In-Reply-To:References:
-	 Subject:From:Cc:To:Date; b=nJHgTKX9g7+PGXh4dzsinlMNJFiIXhlEpbSuFScK8IB94q8nT5anSFwrCjPoXqCBAEWOjsbdKPfcmD8Ek0TSaNx65gmJvlrNVQR79sBsC29jhMD7La0jntORTD3Rl4uOlJdps2kUU/gEgOaPNO5WcAf9ONZzh445EBFwYu2L43k=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=syYrFvDR; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id A872DC433F1;
-	Sat, 10 Feb 2024 02:59:35 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1707533975;
-	bh=2lP+NSQhJ4c3moxHDlaunCfBTdIXLlNuFrDcFX1+1pE=;
-	h=In-Reply-To:References:Subject:From:Cc:To:Date:From;
-	b=syYrFvDRzT653oWWDp8sFGcDJPCsnBbiq/Rh5N533i/1ZAPuPKKfb2urx8dmIPuxN
-	 HvhWAo0LRLHoZLAfmr+r8pi/UTRSALYpQUk6iRbffi526uRWZXB8K7peKdASwUJiCx
-	 hueU0WPHflJ4Jouf6M2u3HuOlk+5SUEDEV+3OWMvW/UszAAS1QroWA/xKpM3O9AuuS
-	 MHyjv9m76ReLhXjfE20Nb2pXg4I4YocmFKiCYiGBtNOGuT4eKGTg8pwTJ8apJK9PHF
-	 KCTKL9oq6/oGGyP2PYqxSgpDqQeEr5ETzpglwUB0YrFKfLt9CvbFjX1mK5MJqw6Nor
-	 0EeXid8XjhdDg==
-Message-ID: <2185a3cc3152a0b9a94b0c64353bc9a1.sboyd@kernel.org>
-Content-Type: text/plain; charset="utf-8"
+	s=arc-20240116; t=1707534356; c=relaxed/simple;
+	bh=H9Reg8b+jS8TkwjOMN95FrdB7sOlVzGGwIlyR7QTdJA=;
+	h=Date:Message-Id:Mime-Version:Subject:From:To:Cc:Content-Type; b=Oakvh6teLCZw8WycYohDxggOJsWUqfsY2ruEPYwFD3wD9+tDE9aLJaiInQDSOBiLfDVw2nlPgfsZwflI6EPOBpjfOjQ2VoixxXtTK9ot7qGZaEkJTzjEIVbHw4odtHQFY/+0NKwqYQVDem75sJaqd1oYRVwVPSxhrLHP7pGg7tM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=google.com; spf=pass smtp.mailfrom=flex--saravanak.bounces.google.com; dkim=pass (2048-bit key) header.d=google.com header.i=@google.com header.b=ZUzekhGW; arc=none smtp.client-ip=209.85.128.202
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=google.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=flex--saravanak.bounces.google.com
+Received: by mail-yw1-f202.google.com with SMTP id 00721157ae682-6049520940dso33048187b3.0
+        for <devicetree@vger.kernel.org>; Fri, 09 Feb 2024 19:05:53 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=google.com; s=20230601; t=1707534352; x=1708139152; darn=vger.kernel.org;
+        h=cc:to:from:subject:mime-version:message-id:date:from:to:cc:subject
+         :date:message-id:reply-to;
+        bh=Lk+GB+kHbk4tJmAHLH1aR/cCxbbVSiuBX2AWpDuc13M=;
+        b=ZUzekhGW6kTW1J+jsmslEXjeEImuNOv27L1c+OnjlkhfQWf0Ln93kGZ3KRf+KvM2eg
+         I35b+9lz6tq37+AX6GChsK4emqmAfTc3CdnEHG8zBpY4ROi4YB1ALKgkypN4LuW7Q5nM
+         yXbq155Ps8CaL0miP6toTluQ87RoLUTW5PuqviVzBNqpj6EI54drEl6QAsvncl6337rQ
+         JHil91EgHpcOFJoqnN2xUh1nEoAnDeLv//ud6JpfCKvyzfyyLVfawK6Z+5/TgWzNMy5g
+         BG5pIoewdxyhCGClmqX8J1flow3h6LKmYkXBWmU/nP+rqMi5yibKjgrMOC2GXPiF14gG
+         5L/A==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1707534352; x=1708139152;
+        h=cc:to:from:subject:mime-version:message-id:date:x-gm-message-state
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=Lk+GB+kHbk4tJmAHLH1aR/cCxbbVSiuBX2AWpDuc13M=;
+        b=jzh7ekpZfVERJ/VLd+dwHK4wO9EgMyZAuU4JaRT0lbRN4wwKAyuk+Dn04J38WcOtM/
+         OahuSw/8XosoYVU1+7HyPAQ+yWv7L5xrynBYtBTw8e0Shs55MXv8ZRRqsxRYkHm3ZcDF
+         SuRz7nDtMa8XcYd6uAo5CqvHM0qp/TkFtCosSANNszR+KM8/rpvZjbjqMd//v6UsK5E6
+         qGLPRrET5Xb2T9UUY7QSJhfu+uER7q5Ecz8FImwWJmaUyTn4b+hRt4n8Frj2VpXeANR3
+         8Rp3Vp70PQcP63YF6WXNkhKoeecRUzoFIDdoIjBsk1/1QUa73mLaYSZ5nKky7Dfaehdq
+         KTBw==
+X-Gm-Message-State: AOJu0Yx8SvVznKYOD+iitBDd423ObP0ztgT1oEQIa0KE0FqBxtkVwH/H
+	LAKeDalS5m3KYZd9/3gXnt3k+1bcTIOP6PpaTf9W9A+aTIq2IlyFaZas2gIHbUQHjbWz5lCUKl1
+	1BGEOLa1bKB1s0A==
+X-Google-Smtp-Source: AGHT+IE/uuWDxdol9sXaEnPCB66yNsPa4nWES8Tyh05rnMrvZgyjUNND+XZgyBWyRqOpm/3fC76p14pGakwp1i8=
+X-Received: from saravanak.san.corp.google.com ([2620:15c:2d:3:6b44:91e7:13e1:5d92])
+ (user=saravanak job=sendgmr) by 2002:a05:690c:a98:b0:5ee:d5ed:5f70 with SMTP
+ id ci24-20020a05690c0a9800b005eed5ed5f70mr243749ywb.9.1707534352400; Fri, 09
+ Feb 2024 19:05:52 -0800 (PST)
+Date: Fri,  9 Feb 2024 19:05:43 -0800
+Message-Id: <20240210030549.4048795-1-saravanak@google.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-MIME-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
-In-Reply-To: <CAMuHMdUuP5Ya2gU3V_ET=Ji_+yx+jr7eCch5uDJSqvQN9jJM3g@mail.gmail.com>
-References: <20240202195909.3458162-1-sboyd@kernel.org> <20240202195909.3458162-8-sboyd@kernel.org> <CABVgOS=A8BQ6HHpBKFqg-N10ckk2XYavaS-MPXvZ0wenrVm=1g@mail.gmail.com> <89892ecd6b1b043db58258705c32b02b.sboyd@kernel.org> <CAMuHMdUuP5Ya2gU3V_ET=Ji_+yx+jr7eCch5uDJSqvQN9jJM3g@mail.gmail.com>
-Subject: Re: [PATCH v3 7/7] of: Add KUnit test to confirm DTB is loaded
-From: Stephen Boyd <sboyd@kernel.org>
-Cc: David Gow <davidgow@google.com>, Rob Herring <robh+dt@kernel.org>, linux-kernel@vger.kernel.org, patches@lists.linux.dev, linux-um@lists.infradead.org, linux-arm-kernel@lists.infradead.org, kunit-dev@googlegroups.com, linux-kselftest@vger.kernel.org, devicetree@vger.kernel.org, Frank Rowand <frowand.list@gmail.com>, Brendan Higgins <brendan.higgins@linux.dev>
-To: Geert Uytterhoeven <geert@linux-m68k.org>
-Date: Fri, 09 Feb 2024 18:59:33 -0800
-User-Agent: alot/0.10
+Mime-Version: 1.0
+X-Mailer: git-send-email 2.43.0.687.g38aa6559b0-goog
+Subject: [PATCH v1 0/4] Add post-init-supplier binding to improve
+ suspend/resume stability
+From: Saravana Kannan <saravanak@google.com>
+To: Saravana Kannan <saravanak@google.com>, Rob Herring <robh+dt@kernel.org>, 
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Greg Kroah-Hartman <gregkh@linuxfoundation.org>, "Rafael J. Wysocki" <rafael@kernel.org>, 
+	Ard Biesheuvel <ardb@kernel.org>, Frank Rowand <frowand.list@gmail.com>, 
+	Andy Shevchenko <andriy.shevchenko@linux.intel.com>, Daniel Scally <djrscally@gmail.com>, 
+	Heikki Krogerus <heikki.krogerus@linux.intel.com>, 
+	Sakari Ailus <sakari.ailus@linux.intel.com>, Len Brown <lenb@kernel.org>
+Cc: kernel-team@android.com, linux-kernel@vger.kernel.org, 
+	devicetree@vger.kernel.org, linux-efi@vger.kernel.org, 
+	linux-acpi@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
 
-Quoting Geert Uytterhoeven (2024-02-05 11:55:29)
-> On Mon, Feb 5, 2024 at 8:19=E2=80=AFPM Stephen Boyd <sboyd@kernel.org> wr=
-ote:
-> > Quoting David Gow (2024-02-02 20:10:17)
-> > > On Sat, 3 Feb 2024 at 03:59, Stephen Boyd <sboyd@kernel.org> wrote:
-> > > > Add a KUnit test that confirms a DTB has been loaded, i.e. there is=
- a
-> > > > root node, and that the of_have_populated_dt() API works properly.
-> > > >
-> > > > Cc: Rob Herring <robh+dt@kernel.org>
-> > > > Cc: Frank Rowand <frowand.list@gmail.com>
-> > > > Cc: David Gow <davidgow@google.com>
-> > > > Cc: Brendan Higgins <brendan.higgins@linux.dev>
-> > > > Signed-off-by: Stephen Boyd <sboyd@kernel.org>
-> > > > ---
-> > >
-> > > This looks pretty good to me test-wise, though it still fails on m68k.
-> > > (Everything else I tried it on works, though I've definitely not tried
-> > > _every_ architecture.)
-> > >
-> > > aarch64: PASSED
-> > > i386: PASSED
-> > > x86_64: PASSED
-> > > x86_64 KASAN: PASSED
-> > > powerpc64: PASSED
-> > > UML: PASSED
-> > > UML LLVM: PASSED
-> > > m68k: FAILED
-> > > > $ qemu-system-m68k -nodefaults -m 1024 -kernel .kunit-all-m68k/vmli=
-nux -append 'kunit.enable=3D1 console=3Dhvc0 kunit_shutdown=3Dreboot' -no-r=
-eboot -nographic -serial stdio -machine virt
-> > > > [11:55:05] =3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
-=3D=3D=3D dtb (2 subtests) =3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
-=3D=3D=3D=3D=3D
-> > > > [11:55:05] # dtb_root_node_found_by_path: EXPECTATION FAILED at dri=
-vers/of/of_test.c:18
-> > > > [11:55:05] Expected np is not null, but is
-> > > > [11:55:05] [FAILED] dtb_root_node_found_by_path
-> > > > [11:55:05] # dtb_root_node_populates_of_root: EXPECTATION FAILED at=
- drivers/of/of_test.c:28
-> > > > [11:55:05] Expected of_root is not null, but is
-> > > > [11:55:05] [FAILED] dtb_root_node_populates_of_root
-> > > > [11:55:05]     # module: of_test
-> > > > [11:55:05] # dtb: pass:0 fail:2 skip:0 total:2
-> > > > [11:55:05] # Totals: pass:0 fail:2 skip:0 total:2
-> > > > [11:55:05] =3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
-=3D=3D=3D=3D=3D [FAILED] dtb =3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
-=3D=3D=3D=3D=3D=3D=3D=3D
-> >
-> > Ah yeah I forgot to mention that. m68k fails because it doesn't call the
-> > unflatten_(and_copy)?_device_tree() function, so we don't populate a
-> > root node on that architecture. One solution would be to make CONFIG_OF
-> > unavailable on m68k. Or we have to make sure DT works on any
-> > architecture. Rob, what do you prefer here?
->=20
-> I guess the latter?
-> Alpha, hexagon, parisc, s390, and sparc are also lacking calls
-> to unflatten.*device_tree().
->=20
+This patch series adds a "post-init-supplier" device tree binding that
+can be used to break dependency cycles in device tree and enforce a more
+determinstic probe/suspend/resume order. This will also improve the
+stability of global async probing and async suspend/resume and allow us
+to enable them more easily. Yet another step away from playing initcall
+chicken with probing and step towards fully async probing and
+suspend/resume.
 
-sparc does that on purpose. Perhaps it's simplest to call
-unflatten_device_tree() if of_root is still NULL after setup_arch()
-returns.
+Patch 3 (the binding docunentation) provide a lot more details and examples.
 
----8<---
-diff --git a/init/main.c b/init/main.c
-index e24b0780fdff..02f5cf8be6c1 100644
---- a/init/main.c
-+++ b/init/main.c
-@@ -97,6 +97,8 @@
- #include <linux/jump_label.h>
- #include <linux/kcsan.h>
- #include <linux/init_syscalls.h>
-+#include <linux/of.h>
-+#include <linux/of_fdt.h>
- #include <linux/stackdepot.h>
- #include <linux/randomize_kstack.h>
- #include <net/net_namespace.h>
-@@ -895,6 +897,8 @@ void start_kernel(void)
- 	pr_notice("%s", linux_banner);
- 	early_security_init();
- 	setup_arch(&command_line);
-+	if (!of_root)
-+		unflatten_device_tree();
- 	setup_boot_config();
- 	setup_command_line(command_line);
- 	setup_nr_cpu_ids();
+Saravana Kannan (4):
+  driver core: Adds flags param to fwnode_link_add()
+  driver core: Add FWLINK_FLAG_IGNORE to completely ignore a fwnode link
+  dt-bindings: Add post-init-supplier property
+  of: property: fw_devlink: Add support for "post-init-supplier"
+    property
+
+ .../bindings/post-init-supplier.yaml          | 99 +++++++++++++++++++
+ MAINTAINERS                                   |  3 +-
+ drivers/base/core.c                           | 14 ++-
+ drivers/firmware/efi/sysfb_efi.c              |  2 +-
+ drivers/of/property.c                         | 17 +++-
+ include/linux/fwnode.h                        |  5 +-
+ 6 files changed, 131 insertions(+), 9 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/post-init-supplier.yaml
+
+-- 
+2.43.0.687.g38aa6559b0-goog
+
 
