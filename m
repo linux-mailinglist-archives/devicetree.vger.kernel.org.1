@@ -1,216 +1,295 @@
-Return-Path: <devicetree+bounces-40355-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-40356-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1F30F850402
-	for <lists+devicetree@lfdr.de>; Sat, 10 Feb 2024 11:44:22 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id DC7BD850421
+	for <lists+devicetree@lfdr.de>; Sat, 10 Feb 2024 12:26:33 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 44E951C21585
-	for <lists+devicetree@lfdr.de>; Sat, 10 Feb 2024 10:44:21 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 8ED8E286505
+	for <lists+devicetree@lfdr.de>; Sat, 10 Feb 2024 11:26:32 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 60BF7364B7;
-	Sat, 10 Feb 2024 10:44:17 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9E06D3CF43;
+	Sat, 10 Feb 2024 11:26:27 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="T/vpNaM/"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="uS3WTuqW"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A5D082030B;
-	Sat, 10 Feb 2024 10:44:15 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6302D3C099;
+	Sat, 10 Feb 2024 11:26:27 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1707561857; cv=none; b=BxLJKaB8cnWV/bCKngkYO0P1EQBqI6VgO7/nQbmAsG2J16ip31x6/bbN6X/qwaUvKFuwPtorxngYzhvh9ZRE6a0hBZHKmYYTushYomtmQJz1gItG53C9kGfpQHJQcQTPJljrFysLjE0oRZUdiZWur1m1WzamPXVFo39fljv/3rg=
+	t=1707564387; cv=none; b=KEmkINylO/VN+rEJwzJnwfb5iSUYT1+8CK0Yy8QtZzywXa4PFSeRW1i+6u1SnD+N3wi48YTL3wIT7hK04+KviWqdbvdEMj+7VBscBh7SgPAspWsbuMZL0wS5/NjP4/8vp2oFMBxMe579SB3WhpX8eEWfwb1zrQ95hu49ZIapDHg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1707561857; c=relaxed/simple;
-	bh=HdoGJKfM4IdFF97CvlZ7u9IYY/5htVYwh9r2vlaTMWM=;
-	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
-	 In-Reply-To:Content-Type; b=KWtqj7CdNLoOAae/pHJpnvK2nMejkDj9ZJz8UIyeH/tJAZJjyjXiCB3eMqPvwn67zMhe00l62OM5jLSluTYgLBIdASwHvUHoxIz/LzZy+HbpfQ4cd9u6gA7wTP6DR0NLMiZ3Oup8nEwdxfdVtcxHASY+yg0U6Uqk4jT4yCczZ7I=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=T/vpNaM/; arc=none smtp.client-ip=205.220.168.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
-Received: from pps.filterd (m0279862.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.17.1.24/8.17.1.24) with ESMTP id 41AAfFDC018067;
-	Sat, 10 Feb 2024 10:44:03 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
-	message-id:date:mime-version:subject:to:cc:references:from
-	:in-reply-to:content-type:content-transfer-encoding; s=
-	qcppdkim1; bh=UYh6Vys92a+IOZW81ElMcn3EE5XcVQKjyrgj0qy6/9k=; b=T/
-	vpNaM/eYQRs8mfiz9h7/9Rj+FTnCmM6hL3aBTTzasvbA1kcJrV5ih27OO0Pbn5p6
-	PVxQlsi3EEIOZNJ5qFAPt8bIM8fhonTh5mZyw+7cz72PhoKMxvPAyC+i/Pf6PwZ9
-	0F9Y2YI22hbUqfgOJrO68JFpa91SC9rElaLbstUrAVWZ4AZ4a1yQds53YhRMTuzJ
-	cVPTBbtOV9NoFTDBXlPSruWn6hGz1XjlHJE5LaxHMqVcpK490U7m6wUGoERB1r6d
-	4sibxEI8jt5N3QsffRKLnv0V2BLhQW6UlMJpFCyCFnVb0ddwyJr6zG9yjli9aiBS
-	rH/7Me8mxh1mrar+ZN0w==
-Received: from nalasppmta04.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3w62pv8bwc-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Sat, 10 Feb 2024 10:44:03 +0000 (GMT)
-Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
-	by NALASPPMTA04.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 41AAi2lK029254
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Sat, 10 Feb 2024 10:44:02 GMT
-Received: from [10.216.17.117] (10.80.80.8) by nalasex01a.na.qualcomm.com
- (10.47.209.196) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1118.40; Sat, 10 Feb
- 2024 02:43:56 -0800
-Message-ID: <b5c25274-9af0-4b3e-ade7-9a55d3cecd29@quicinc.com>
-Date: Sat, 10 Feb 2024 16:13:51 +0530
+	s=arc-20240116; t=1707564387; c=relaxed/simple;
+	bh=L0ci31G0jYzl6VBiXaBLl3DHMQtouFJCjuDEsEbmM1I=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=ZchU8M1j21yJInIKqNDEGWgwR+Inktm8k6WseqM88hjd6MXU7WVjdTSqJKJDZn5b0QXrtbpKk5dlEbxYmtDqrZOAMhBV556P2Z+jOF0K5vjwB9Xt40+MjuFvR4aGmKy98RA7Xa2lMP9tCc3EAvnj8oaUIDv4PUrNwOAoY6fMkRw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=uS3WTuqW; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id D428DC43390;
+	Sat, 10 Feb 2024 11:26:26 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1707564386;
+	bh=L0ci31G0jYzl6VBiXaBLl3DHMQtouFJCjuDEsEbmM1I=;
+	h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+	b=uS3WTuqWK5m//0XlZlfvv4zylVUZ6S1WBcNbg5UoupukNn7eZbc2MMVolo7OqWUpl
+	 lMdcqn9VeaW4OqVX9JHgcPcc0E8UvhSukGP/eM5Wk78n1x9gCwj3785IwZhrHFAJcd
+	 cEPGa2K+WqwxWmzsMBhdoabMcGMLtlHQPf/uqsCxTq5C1FlDBA43WXzzAA46RtBXRr
+	 csMkRCZXqW+rDPhoFwiqFoLe7EFau/A76vVSvfSYpT8f3aVWbtLn7IKaF7UTdGXDd0
+	 aAwYQFc8t6FnBzwlfV5+P/zQSq88iLWPS1Vus1t9O0ic2HoWYzWPXVRPPYPHn5hVgd
+	 9QtYeMTEFMZqw==
+Received: by mail-lj1-f170.google.com with SMTP id 38308e7fff4ca-2d0cdbd67f0so22921821fa.3;
+        Sat, 10 Feb 2024 03:26:26 -0800 (PST)
+X-Gm-Message-State: AOJu0YzzhXhCSBwgmoNB2tBFMzEYkUCxPuqAATgGAfagxORAcYSyt0yR
+	Ms1en/TkTaEv/kJkH8wXHRIr0ijNb1DEwMgGOkjOtj2ap0jYBfiGCyVE3e525/7i1HpwFluLrGH
+	teAUIWFFKQ+fdB+gEspZdhkUqmA==
+X-Google-Smtp-Source: AGHT+IGm5CAQFu2k6EUAvZ+8eqM1TlsDaGcpTUrthNslat/7K4fnyWnRVvu9hHQ3c+CErN8WYacAoVSbXGiF8UUqelU=
+X-Received: by 2002:a2e:3806:0:b0:2d0:a71f:5eab with SMTP id
+ f6-20020a2e3806000000b002d0a71f5eabmr1287112lja.23.1707564384958; Sat, 10 Feb
+ 2024 03:26:24 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 3/3] arm64: dts: qcom: sa8540-ride: Enable first port of
- tertiary usb controller
-To: Andrew Halaney <ahalaney@redhat.com>,
-        Dmitry Baryshkov
-	<dmitry.baryshkov@linaro.org>
-CC: <neil.armstrong@linaro.org>,
-        Krzysztof Kozlowski
-	<krzysztof.kozlowski+dt@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        "Bjorn
- Andersson" <andersson@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>, <linux-kernel@vger.kernel.org>,
-        <linux-arm-msm@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <quic_ppratap@quicinc.com>, <quic_jackp@quicinc.com>
-References: <20240206114745.1388491-1-quic_kriskura@quicinc.com>
- <20240206114745.1388491-4-quic_kriskura@quicinc.com>
- <23824242-1b37-4544-ae9a-0a5a0582580e@linaro.org>
- <CAA8EJpqbXvKMQktGsxMFJnR+fXoOz8hFmm+E3ROPTjjiD0QLvg@mail.gmail.com>
- <6q2ocvrujbli42rjddflyol74xianr7j47jwcgdnnmwjanv25d@uw2da7zulqqd>
- <CAA8EJpr6k8c5C54S9xxQgZvd9NYFoxi5qQrOTz2AMrp0xeZZpw@mail.gmail.com>
- <baw3wxbdvzpkqqb6a7iut2wpt6jgzyqii5uyfkzptzt4ryjvao@4tpee6nqup5w>
-Content-Language: en-US
-From: Krishna Kurapati PSSNV <quic_kriskura@quicinc.com>
-In-Reply-To: <baw3wxbdvzpkqqb6a7iut2wpt6jgzyqii5uyfkzptzt4ryjvao@4tpee6nqup5w>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
- nalasex01a.na.qualcomm.com (10.47.209.196)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-GUID: gLWvh4piTatOfY9fqLXs4PyYmy-tI6LZ
-X-Proofpoint-ORIG-GUID: gLWvh4piTatOfY9fqLXs4PyYmy-tI6LZ
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.272,Aquarius:18.0.1011,Hydra:6.0.619,FMLib:17.11.176.26
- definitions=2024-02-10_10,2024-02-08_01,2023-05-22_02
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 lowpriorityscore=0
- impostorscore=0 bulkscore=0 clxscore=1011 mlxlogscore=999 adultscore=0
- suspectscore=0 priorityscore=1501 phishscore=0 spamscore=0 malwarescore=0
- mlxscore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.19.0-2401310000 definitions=main-2402100090
+References: <20240210030549.4048795-1-saravanak@google.com> <20240210030549.4048795-4-saravanak@google.com>
+In-Reply-To: <20240210030549.4048795-4-saravanak@google.com>
+From: Rob Herring <robh+dt@kernel.org>
+Date: Sat, 10 Feb 2024 11:26:13 +0000
+X-Gmail-Original-Message-ID: <CAL_Jsq+tMK6myLtvD2EYEE2juev+wMvWoVMnYpT8JPy2eD9hKA@mail.gmail.com>
+Message-ID: <CAL_Jsq+tMK6myLtvD2EYEE2juev+wMvWoVMnYpT8JPy2eD9hKA@mail.gmail.com>
+Subject: Re: [PATCH v1 3/4] dt-bindings: Add post-init-supplier property
+To: Saravana Kannan <saravanak@google.com>
+Cc: Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Greg Kroah-Hartman <gregkh@linuxfoundation.org>, "Rafael J. Wysocki" <rafael@kernel.org>, 
+	Ard Biesheuvel <ardb@kernel.org>, Frank Rowand <frowand.list@gmail.com>, 
+	Andy Shevchenko <andriy.shevchenko@linux.intel.com>, Daniel Scally <djrscally@gmail.com>, 
+	Heikki Krogerus <heikki.krogerus@linux.intel.com>, 
+	Sakari Ailus <sakari.ailus@linux.intel.com>, Len Brown <lenb@kernel.org>, kernel-team@android.com, 
+	linux-kernel@vger.kernel.org, devicetree@vger.kernel.org, 
+	linux-efi@vger.kernel.org, linux-acpi@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-> Krishna, when you make v2 can you update the wording about the USB 2.0
-> mux? Maybe something like "which by default on boot is selected to mux
-> to the external port on the board (with the other option being a test
-> point)." instead of the wording I originally had? That way the
-> information Dmitry requested here is easily accessible in the future.
-> 
->>
->>>
+On Sat, Feb 10, 2024 at 3:06=E2=80=AFAM Saravana Kannan <saravanak@google.c=
+om> wrote:
+>
+> The post-init-supplier property can be used to break a dependency cycle b=
+y
+> marking some supplier(s) as a post device initialization supplier(s). Thi=
+s
+> allows the kernel to do a better job at ordering initialization and
 
-[...]
+s/the kernel/an OS/
 
->>>>>>    };
->>>>>
->>>>> Isn't gpio-hog the preferred way to describe that ?
->>>>
->>>> That depends. As this pinctrl describes board configuration, I'd agree
->>>> with Neil.
->>>
->>> I unfortunately don't have the experience with gpio-hog to weigh in
->>> here, but wouldn't be opposed to Krishna switching it if that's what's
->>> recommended for this type of thing.
->>
->> Quoting gpio.txt:
->>
->> The GPIO chip may contain GPIO hog definitions. GPIO hogging is a mechanism
->> providing automatic GPIO request and configuration as part of the
->> gpio-controller's driver probe function.
->>
->> See sdm845-pinctrl.yaml for an example of the gpio-hog node.
-> 
-> Thanks, that seems like the way to go. Krishna please take note of this
-> for v2!
-> 
+> suspend/resume of the devices in a dependency cycle.
+>
+> Signed-off-by: Saravana Kannan <saravanak@google.com>
+> ---
+>  .../bindings/post-init-supplier.yaml          | 99 +++++++++++++++++++
 
-Hi Andrew,
+This should probably go into dtschema instead, but fine here now for review=
+ing.
 
-  Can you help test the following patch. It is just an add-on to your 
-original one. I don't have a SA8540P Ride at the moment and getting one 
-might take time. Incase you can confirm this patch is working. I can 
-push v2 of this series.
+We have to consider if this property should be automatically allowed
+on any node or nodes with specific suppliers, or if it should be
+explicit for users. The former needs tool support. I'm leaning towards
+the latter as I want to know when this is needed.
 
+>  MAINTAINERS                                   |  3 +-
+>  2 files changed, 101 insertions(+), 1 deletion(-)
+>  create mode 100644 Documentation/devicetree/bindings/post-init-supplier.=
+yaml
+>
+> diff --git a/Documentation/devicetree/bindings/post-init-supplier.yaml b/=
+Documentation/devicetree/bindings/post-init-supplier.yaml
+> new file mode 100644
+> index 000000000000..cf9071ecd06e
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/post-init-supplier.yaml
+> @@ -0,0 +1,99 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +# Copyright 2018 Linaro Ltd.
 
-diff --git 
-a/Documentation/devicetree/bindings/pinctrl/qcom,sc8280xp-tlmm.yaml 
-b/Documentation/devicetree/bindings/pinctrl/qcom,sc8280xp-tlmm.yaml
-index ed344deaf8b9..aa42ac5a3197 100644
---- a/Documentation/devicetree/bindings/pinctrl/qcom,sc8280xp-tlmm.yaml
-+++ b/Documentation/devicetree/bindings/pinctrl/qcom,sc8280xp-tlmm.yaml
-@@ -36,6 +36,10 @@ patternProperties:
-              $ref: "#/$defs/qcom-sc8280xp-tlmm-state"
-          additionalProperties: false
+?
 
-+  "-hog(-[0-9]+)?$":
-+    required:
-+      - gpio-hog
-+
-  $defs:
-    qcom-sc8280xp-tlmm-state:
-      type: object
-diff --git a/arch/arm64/boot/dts/qcom/sa8540p-ride.dts 
-b/arch/arm64/boot/dts/qcom/sa8540p-ride.dts
-index b04f72ec097c..aa0cec0b4cc2 100644
---- a/arch/arm64/boot/dts/qcom/sa8540p-ride.dts
-+++ b/arch/arm64/boot/dts/qcom/sa8540p-ride.dts
-@@ -503,6 +503,18 @@ &usb_2_qmpphy0 {
-         status = "okay";
-  };
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/post-init-supplier.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: Post device initialization supplier
+> +
+> +maintainers:
+> +  - Saravana Kannan <saravanak@google.com>
+> +
+> +description: |
+> +  This property is used to indicate that the device(s) pointed to by the
+> +  property are not needed for the initialization of the device that list=
+s this
+> +  property.
+> +
+> +  A device can list its suppliers in devicetree using one or more of the
+> +  standard devicetree bindings. By default, it would be safe to assume t=
+he
+> +  supplier device can be initialized before the consumer device is initi=
+alized.
+> +
+> +  However, that assumption cannot be made when there are cyclic dependec=
+ies
 
-+&usb_2 {
-+       pinctrl-0 = <&usb2_en_state>;
-+       pinctrl-names = "default";
-+
-+       status = "okay";
-+};
-+
-+&usb_2_dwc3 {
-+       phy-names = "usb2-port0", "usb3-port0";
-+       phys = <&usb_2_hsphy0>, <&usb_2_qmpphy0>;
-+};
-+
-  &xo_board_clk {
-         clock-frequency = <38400000>;
-  };
-@@ -655,4 +667,19 @@ wake-pins {
-                         bias-pull-up;
-                 };
-         };
-+
-+       usb2-en-hog {
-+               gpio-hog;
-+               gpios = <24 GPIO_ACTIVE_LOW>;
-+               output-low;
-+       };
-+
-+       usb2_en_state: usb2-en-state {
-+               /* TS3USB221A USB2.0 mux select */
-+               pins = "gpio24";
-+               function = "gpio";
-+               drive-strength = <2>;
-+               bias-disable;
-+               output-low;
-+       };
+typo
 
+> +  between devices. Since each device is a supplier (directly or indirect=
+ly) of
+> +  the others in the cycle, there is no guaranteed safe order for initali=
+zing
 
-Regards,
-Krishna,
+typo
+
+> +  the devices in a cycle. We can try to initialize them in an arbitrary =
+order
+> +  and eventually successfully initialize all of them, but that doesn't a=
+lways
+> +  work well.
+> +
+> +  For example, say,
+> +  * The device tree has the following cyclic dependency X -> Y -> Z -> X=
+ (where
+> +    -> denotes "depends on").
+> +  * But X is not needed to fully initialize Z (X might be needed only wh=
+en a
+> +    specific functionality if requested post initialization).
+> +
+> +  If all the other -> are mandatory initialization dependencies, then tr=
+ying to
+> +  initialize the devices in a loop (or arbitrarily) will always eventual=
+ly end
+> +  up with the devices being initialized in the order Z, Y and X.
+> +
+> +  However, if Y is an optional supplier for X (where X provides limited
+> +  functionality when Y is not initialized and providing its services), t=
+hen
+> +  trying to initialize the devices in a loop (or arbitrarily) could end =
+up with
+> +  the devices being initialized in the following order:
+> +
+> +  * Z, Y and X - All devices provide full functionality
+> +  * Z, X and Y - X provides partial functionality
+> +  * X, Z and Y - X provides partial functionality
+> +
+> +  However, we always want to initialize the devices in the order Z, Y an=
+d X
+> +  since that provides the full functionality without interruptions.
+> +
+> +  One alternate option that might be suggested is to have the driver for=
+ X
+> +  notice that Y became available at a later point and adjust the functio=
+nality
+> +  it provides. However, other userspace applications could have started =
+using X
+> +  with the limited functionality before Y was available and it might not=
+ be
+> +  possible to transparently transition X or the users of X to full
+> +  functionality while X is in use.
+> +
+> +  Similarly, when it comes to suspend (resume) ordering, it's unclear wh=
+ich
+> +  device in a dependency cycle needs to be suspended/resumed first and t=
+rying
+> +  arbitrary orders can result in system crashes or instability.
+> +
+> +  Explicitly calling out which link in a cycle needs to be broken when
+> +  determining the order, simplifies things a lot, improves efficiency, m=
+akes
+> +  the behavior more deterministic and maximizes the functionality that c=
+an be
+> +  provided without interruption.
+> +
+> +  This property is used to provide this additional information between d=
+evices
+> +  in a cycle by telling which supplier(s) is not needed for initializing=
+ the
+> +  device that lists this property.
+> +
+> +  In the example above, Z would list X as a post-init-supplier and the
+> +  initialization dependency would become X -> Y -> Z -/-> X. So the best=
+ order
+> +  to initialize them become clear: Z, Y and then X.
+> +
+
+select: true
+
+Otherwise, this is never applied.
+
+> +properties:
+> +  # A dictionary of DT properties for this binding schema
+
+Drop
+
+> +  post-init-supplier:
+> +    # One or more suppliers can be marked as post initialization supplie=
+r
+> +    minItems: 1
+
+That's the default.
+
+> +    description:
+> +      List of phandles to suppliers that are not needed for initializing=
+ or
+> +      resuming this device.
+> +    $ref: /schemas/types.yaml#/definitions/phandle
+
+Should be phandle-array plus:
+
+items:
+  maxItems: 1
+
+(as each entry is a single phandle)
+
+> +
+> +examples:
+> +  - |
+> +    gcc: general-clock-controller@1000 {
+
+clock-controller@1000
+
+> +        compatible =3D "vendor,soc4-gcc", "vendor,soc1-gcc";
+> +        reg =3D <0x1000 0x80>;> +        clocks =3D <&dispcc 0x1>
+> +        #clock-cells =3D <1>;
+> +        post-init-supplier =3D <&dispcc>;
+> +    };
+> +    dispcc: display-clock-controller@2000 {
+
+clock-controller@2000
+
+> +        compatible =3D "vendor,soc4-dispcc", "vendor,soc1-dispcc";
+> +        reg =3D <0x2000 0x80>;
+> +        clocks =3D <&gcc 0xdd>
+> +        #clock-cells =3D <1>;
+> +    };
+> diff --git a/MAINTAINERS b/MAINTAINERS
+> index 3dfe7ea25320..40fd498543a5 100644
+> --- a/MAINTAINERS
+> +++ b/MAINTAINERS
+> @@ -6055,10 +6055,11 @@ S:      Maintained
+>  F:     drivers/base/devcoredump.c
+>  F:     include/linux/devcoredump.h
+>
+> -DEVICE DEPENDENCY HELPER SCRIPT
+> +FIRMWARE DEVICE LINK (fw_devlink)
+>  M:     Saravana Kannan <saravanak@google.com>
+>  L:     linux-kernel@vger.kernel.org
+>  S:     Maintained
+> +F:     Documentation/devicetree/bindings/post-init-supplier.yaml
+>  F:     scripts/dev-needs.sh
+>
+>  DEVICE DIRECT ACCESS (DAX)
+> --
+> 2.43.0.687.g38aa6559b0-goog
+>
 
