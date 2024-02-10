@@ -1,88 +1,116 @@
-Return-Path: <devicetree+bounces-40376-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-40377-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id E5D368504D9
-	for <lists+devicetree@lfdr.de>; Sat, 10 Feb 2024 16:12:44 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1A9548504F8
+	for <lists+devicetree@lfdr.de>; Sat, 10 Feb 2024 16:40:41 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 18B421C20ECA
-	for <lists+devicetree@lfdr.de>; Sat, 10 Feb 2024 15:12:44 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 2BFFCB22D64
+	for <lists+devicetree@lfdr.de>; Sat, 10 Feb 2024 15:40:38 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id ADDC15BAD1;
-	Sat, 10 Feb 2024 15:12:39 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3DBB85BAE1;
+	Sat, 10 Feb 2024 15:40:32 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="LI4cRHuB"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="f6T7GiZT"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8255954FB3;
-	Sat, 10 Feb 2024 15:12:39 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0A90A5381A;
+	Sat, 10 Feb 2024 15:40:31 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1707577959; cv=none; b=hIMVzgAnLg1W96KDlUjh091TYsM0kv+/slZb+rz92l4HyFbR7+Stj5TopBTwjZ3jjbpAOotNxPWln/aDtPGSH9XkIQ7Cfc2uF6WVPthROD9wSMuFdIIqNylYO/197yPRfGkgLvP1aBPWyqx/hwhiS0lzIywBhS7Ner8E3FQD/MM=
+	t=1707579632; cv=none; b=CHoKc1ihGXnW1t27LoWFjt9tkF7OiPNJ4U5nCHCAjUg+T/cHtvkMAk/OOvKc3iEPpukQ87UaIBVehCQw6o5Uzjqk/ZOeNdvRXB/kJ6j1IfD8MF0DD1O6HOb/IlkM8lH0S/4RpjRXic2wCFi6P1yzuA/bm9Hcq5yuOvBRWosEf9w=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1707577959; c=relaxed/simple;
-	bh=Bqdhe6m0hszTXiqousyJsHzppKR51PKO0JlO3RE6qMA=;
-	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=KMo0K3P34+rEvhD+rT6tJXEO9U6iNPEMKS3aPRepz//P+tYm4J8cbmn1W9gwjl/6xqlkeT6bHoJezuGQOeqGgTFn4Y3miWPep+jmFgosBExZTc7i1ahy2XkdY652iGvSBiZt8Lqo3qwoyBaHNIlaZBYPyt3TKRh7HEsJBgszmgk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=LI4cRHuB; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 9ADD5C433F1;
-	Sat, 10 Feb 2024 15:12:37 +0000 (UTC)
+	s=arc-20240116; t=1707579632; c=relaxed/simple;
+	bh=o90dBGsaOc4h8XZXjOy2Vf5kYvkiA8PHxCs2WzXIIkE=;
+	h=Content-Type:MIME-Version:Subject:From:Message-Id:Date:References:
+	 In-Reply-To:To:Cc; b=XgcXOW00RADCfs5lRzqMm2plwTZnB7M94Orrbd1OGVJDa3ZZYkj2udTVsOk0BYP/R/39v11A30I0hRxN7toXjNJO6g9cECi6QEPU3wEkNGXc9ByoVKZ8bqHxvtZXiB7sCOrRgxJhWUvQWhd0lGpNICaOxwzH07DD9e697jOojp0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=f6T7GiZT; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPS id 59049C43390;
+	Sat, 10 Feb 2024 15:40:31 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1707577959;
-	bh=Bqdhe6m0hszTXiqousyJsHzppKR51PKO0JlO3RE6qMA=;
-	h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
-	b=LI4cRHuBhmuYT3wQXMIIYKbPfcTOXbIGi9dxE7c/qyVg6nK4DnkBoLkin8YJzQ242
-	 ylm9WJYACDOupoQ/YfoGQwaZN6872OyVt9cbb7SY2Llwjb1ViyL+LBfRdHjznh7+g1
-	 alzlLc3yp8mThTM1N2f25OB3/ecqha9xytiEDDhqAj4ZOJaoNDpSOANlez23HoBJBU
-	 JIZZ+bBGLqBBr98IvgnksLGJyUCkGePnfmp59Q6aFs+Ecqyqwg0ZDO+5JYdEHLYtAz
-	 E2wRsoDkCWOMVxOjCcZYeiLcYhEOlc6n3nkrHc/IjiU/gh91n9/DwaBhakcIH0Nul9
-	 5emnwrJcKg2Tg==
-Date: Sat, 10 Feb 2024 15:12:28 +0000
-From: Jonathan Cameron <jic23@kernel.org>
-To: Rob Herring <robh@kernel.org>
-Cc: Lorenzo Bianconi <lorenzo@kernel.org>, lorenzo.bianconi@redhat.com,
- linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
- krzysztof.kozlowski+dt@linaro.org
-Subject: Re: [PATCH v4 3/3] dt-bindings: iio: imu: st_lsm6dsx: add
- asm330lhhxg1
-Message-ID: <20240210151228.38702142@jic23-huawei>
-In-Reply-To: <170714168769.3273951.16124017499544303407.robh@kernel.org>
-References: <cover.1706961432.git.lorenzo@kernel.org>
-	<942452ec9626bc1166501cec0fa88c369e28ec6f.1706961432.git.lorenzo@kernel.org>
-	<170714168769.3273951.16124017499544303407.robh@kernel.org>
-X-Mailer: Claws Mail 4.2.0 (GTK 3.24.41; x86_64-pc-linux-gnu)
+	s=k20201202; t=1707579631;
+	bh=o90dBGsaOc4h8XZXjOy2Vf5kYvkiA8PHxCs2WzXIIkE=;
+	h=Subject:From:Date:References:In-Reply-To:To:Cc:From;
+	b=f6T7GiZTni50nnfBV1omFsyGeirpUSqU6elXu7ewt73RCq5+HOh7VkVrdRvFRHFXO
+	 jv/YxV4p119HjSnoK6JdqiqM2se0/BLhlu/K6z+glLLEJHnfWWuLzXOCPJtgBp/o2w
+	 tF2MawnXCGeor1yXB1IzOu3WSKSRwVk8/7LP3QkA+fzNPGE36vA+3s9beLRJ4tLU/t
+	 hJWl5aUoOkdvlFUIOG6/b0OwmVA+2dAlMGRMOtyyLdohaX6m0UxwcH3fzhK7W2dUtr
+	 9V/FXrJt4dFSdAnF9jCaKjiMQpdnnvGvSyxX9opVSY8ubbVEM1jzm2Is+qPH/0Abcf
+	 Ex1Gz38JgLzDA==
+Received: from aws-us-west-2-korg-oddjob-1.ci.codeaurora.org (localhost.localdomain [127.0.0.1])
+	by aws-us-west-2-korg-oddjob-1.ci.codeaurora.org (Postfix) with ESMTP id 3E5E6E2F2F0;
+	Sat, 10 Feb 2024 15:40:31 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
+Subject: Re: [net-next PATCH v7 00/10] net: phy: Introduce PHY Package concept
+From: patchwork-bot+netdevbpf@kernel.org
+Message-Id: 
+ <170757963125.14284.2496460448206023966.git-patchwork-notify@kernel.org>
+Date: Sat, 10 Feb 2024 15:40:31 +0000
+References: <20240206173115.7654-1-ansuelsmth@gmail.com>
+In-Reply-To: <20240206173115.7654-1-ansuelsmth@gmail.com>
+To: Christian Marangi <ansuelsmth@gmail.com>
+Cc: davem@davemloft.net, edumazet@google.com, kuba@kernel.org,
+ pabeni@redhat.com, robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
+ conor+dt@kernel.org, andersson@kernel.org, konrad.dybcio@linaro.org,
+ andrew@lunn.ch, hkallweit1@gmail.com, linux@armlinux.org.uk,
+ florian.fainelli@broadcom.com, bcm-kernel-feedback-list@broadcom.com,
+ robert.marko@sartura.hr, netdev@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, linux-arm-msm@vger.kernel.org
 
-On Mon, 5 Feb 2024 14:01:28 +0000
-Rob Herring <robh@kernel.org> wrote:
+Hello:
 
-> On Sat, 03 Feb 2024 13:01:38 +0100, Lorenzo Bianconi wrote:
-> > Add device bindings for asm330lhhxg1 IMU sensor.
-> > The lsm6dsr supports the features and functionality provided by
-> > the asm330lhhxg1 via identical interfaces and so is a suitable
-> > fallback compatible.
-> > 
-> > Signed-off-by: Lorenzo Bianconi <lorenzo@kernel.org>
-> > ---
-> >  Documentation/devicetree/bindings/iio/imu/st,lsm6dsx.yaml | 4 +++-
-> >  1 file changed, 3 insertions(+), 1 deletion(-)
-> >   
+This series was applied to netdev/net-next.git (main)
+by David S. Miller <davem@davemloft.net>:
+
+On Tue,  6 Feb 2024 18:31:03 +0100 you wrote:
+> Idea of this big series is to introduce the concept of PHY package in DT
+> and give PHY drivers a way to derive the base address from DT.
 > 
-> Reviewed-by: Rob Herring <robh@kernel.org>
+> The concept of PHY package is nothing new and is already a thing in the
+> kernel with the API phy_package_join/leave/read/write.
 > 
+> What is currently lacking is describing this in DT and better reference
+> a base address to calculate offset from.
+> 
+> [...]
 
-Series applied.
+Here is the summary with links:
+  - [net-next,v7,01/10] dt-bindings: net: document ethernet PHY package nodes
+    https://git.kernel.org/netdev/net-next/c/8453c88c7a15
+  - [net-next,v7,02/10] net: phy: add support for scanning PHY in PHY packages nodes
+    https://git.kernel.org/netdev/net-next/c/385ef48f4686
+  - [net-next,v7,03/10] net: phy: add devm/of_phy_package_join helper
+    https://git.kernel.org/netdev/net-next/c/471e8fd3afce
+  - [net-next,v7,04/10] net: phy: qcom: move more function to shared library
+    https://git.kernel.org/netdev/net-next/c/737eb75a815f
+  - [net-next,v7,05/10] dt-bindings: net: Document Qcom QCA807x PHY package
+    https://git.kernel.org/netdev/net-next/c/dd87eaa13787
+  - [net-next,v7,06/10] net: phy: provide whether link has changed in c37_read_status
+    https://git.kernel.org/netdev/net-next/c/9b1d5e055508
+  - [net-next,v7,07/10] net: phy: qcom: add support for QCA807x PHY Family
+    https://git.kernel.org/netdev/net-next/c/d1cb613efbd3
+  - [net-next,v7,08/10] net: phy: qcom: move common qca808x LED define to shared header
+    https://git.kernel.org/netdev/net-next/c/ee9d9807bee0
+  - [net-next,v7,09/10] net: phy: qcom: generalize some qca808x LED functions
+    https://git.kernel.org/netdev/net-next/c/47b930d0dd43
+  - [net-next,v7,10/10] net: phy: qca807x: add support for configurable LED
+    https://git.kernel.org/netdev/net-next/c/f508a226b517
 
-Thanks
+You are awesome, thank you!
+-- 
+Deet-doot-dot, I am a bot.
+https://korg.docs.kernel.org/patchwork/pwbot.html
+
+
 
