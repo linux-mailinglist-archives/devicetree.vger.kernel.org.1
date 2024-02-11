@@ -1,74 +1,75 @@
-Return-Path: <devicetree+bounces-40468-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-40469-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3FA68850933
-	for <lists+devicetree@lfdr.de>; Sun, 11 Feb 2024 13:39:56 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 04DF2850937
+	for <lists+devicetree@lfdr.de>; Sun, 11 Feb 2024 13:40:54 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 5EBC51C20D9E
-	for <lists+devicetree@lfdr.de>; Sun, 11 Feb 2024 12:39:55 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id AFE61286264
+	for <lists+devicetree@lfdr.de>; Sun, 11 Feb 2024 12:40:52 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5EDF836B01;
-	Sun, 11 Feb 2024 12:31:11 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id DDA3C5A784;
+	Sun, 11 Feb 2024 12:33:56 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="lfyRtA93"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="hIq1AO0m"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f51.google.com (mail-wm1-f51.google.com [209.85.128.51])
+Received: from mail-lf1-f54.google.com (mail-lf1-f54.google.com [209.85.167.54])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A292361682
-	for <devicetree@vger.kernel.org>; Sun, 11 Feb 2024 12:31:08 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.51
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 14AF83D38F
+	for <devicetree@vger.kernel.org>; Sun, 11 Feb 2024 12:33:54 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.54
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1707654671; cv=none; b=aN/tZ2m7wu3M2BlRG6/pFW8qhIhSn0vE6GnA9yWtuqzTIpBrUWmFsSWDSkzvoyOMLvvrSdJYspX1dKcqN5+2eqPr/ba7BcadRMM4KD1e3YRvj8Rv8JzYWiqdP8kulZZCTSeMjCHpePzOJm/9WbIxJbMPBGqweUYvWnHmwDJ+5ms=
+	t=1707654836; cv=none; b=qnCt1qzrPLBrF6r0ImMdyQccpLqHM6t/6USS1GOOda4CrdFjs2FCEfMGbaVW+7YPVHKGbpGZ7wCUpLY0pVHEmu4GBEaCrjwcpNY2lmEMGnPt+7gnUnyisvIJHen4rgjOPUfnkU9T8IjbyngS9xwisYEBdltoUhlghJ/++2AfYQI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1707654671; c=relaxed/simple;
-	bh=Byh3QALddwWbe09AZxoMPKkeSBdvpBUaUYu9tQY4iJY=;
+	s=arc-20240116; t=1707654836; c=relaxed/simple;
+	bh=GCED/QP/xyH+7CW8WTFgW3oMBKe+o8sf2sTvuBphVXU=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=uqoqj/ACb/1PQ3ln5SRLsmOUMFebjUYrH/n8288iJ97En4UkC4ff9r3Wg8g3LlBX/TRb2s+cT/0xZ1SaTmPfKOA+DjPZH98GC/GJFeubHl02VO+FAIn7tzsAker3NTo0Qms43hgxqkGZzjylbkaZx/7vx0LlYvAgdZSs/8ZLkBg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=lfyRtA93; arc=none smtp.client-ip=209.85.128.51
+	 In-Reply-To:Content-Type; b=LZEb0oS5LIFEMsM6MGU6RnJLNe16CvO71uq7r+DG+u6Suh+jjFK+XdMvL/7OJ0MTGyI328yMKHbDtfXJcdJgBoZdEnge8mPS861mXYgluPPlRkgdYwFTXxToMQ8yCZSAy576FRq48uvwVBK+YXVJ4GdLX4qvfoiwpequaOnU3u8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=hIq1AO0m; arc=none smtp.client-ip=209.85.167.54
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-wm1-f51.google.com with SMTP id 5b1f17b1804b1-41090edfeb3so7372895e9.2
-        for <devicetree@vger.kernel.org>; Sun, 11 Feb 2024 04:31:08 -0800 (PST)
+Received: by mail-lf1-f54.google.com with SMTP id 2adb3069b0e04-5116588189aso4186933e87.1
+        for <devicetree@vger.kernel.org>; Sun, 11 Feb 2024 04:33:54 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1707654667; x=1708259467; darn=vger.kernel.org;
+        d=linaro.org; s=google; t=1707654833; x=1708259633; darn=vger.kernel.org;
         h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
          :to:content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=TlhezHxMst/l6Js8Jb5c85s1kBor6lNLzw63UUzO3EM=;
-        b=lfyRtA93WLZPbtOnsmvZNyRHD94VW00tq7dlW2mcO5cngx7nSG1REuGmBIY5dfLMxl
-         sBt88m32+UCKBt8n6kNQmJrr/RDVzKzShOutxULrONDm8AYSG8EcPDg3Ls2rFHl/OI3w
-         PEGKI403c2yxaoMy2ciFVS/8r3M/9YuRyzf/7IuiitaLaVhOAIHT/ozKA5CCQdzKkLs8
-         zWExwy+YFfkixgl6PPkKiQzk1BrYc9dtdbf/3ytpeN5BCZjelQEn0DoDMIIEu2bUs8i3
-         YjXJbS0lpWfwjq6ZB7Hs62eKNEjqU8qMvLl5WDRqKhIZ60RT3WXxPFPJiysq1n5k6XRr
-         ICqA==
+        bh=/aI7qXhMOcf5MtNE5vZGmHT8dxl7tg52Y94nD3qt87c=;
+        b=hIq1AO0mIlAij9rXzHld5tio1FxhFn5CyXMxIM672IIboynw5HVELTY7lIu1Q9OR/Z
+         WDvgCuEg5YfoNwGfiORbMIshaJFbS9xdOAgJq2/0wN/uusWZhnAH7NiRlTFwSGR2uST8
+         lrX70dh1BEth2KKXrEWMBCFFlQ3BYyf5FHJArk7aYoP6H8ysBlthCeW5d4cPyOsKjGNW
+         QlkwGbqIiG11CPEHKS9GZtO1sfk2MKVxzIm74Lm/Ty8EFNge1QBdnKt3g4v1lgXKeqmE
+         mQbhOpVzdb18EUNA2ZXH0MsHvcP06py/T7ErygjXXo8oTHVGc6ZGKtDR8iQXllTtYhri
+         Ymxw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1707654667; x=1708259467;
+        d=1e100.net; s=20230601; t=1707654833; x=1708259633;
         h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
          :to:content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=TlhezHxMst/l6Js8Jb5c85s1kBor6lNLzw63UUzO3EM=;
-        b=XNy49x0y3ckz15Euv+KBkf2rBih5ys1ZsdtzjBlSPEtcttbf0z1eOqfJxI6y5iRzSd
-         JswlgKGgLLAR36aK+Shoi2y+l0hPKDWMamTXPliU2kCPueDBQV23Z9/3KCemTFTo0f3G
-         /3J1Bj9h1/l2WZ9tOPc0e1F3X/Jydsx0efe8pdfVZ2t/zsdnQujSLEqI7IG3uRMbKn6s
-         f1SQAqkkbn+k2w59N7NtJGo+42QRkMuXGFrbJc9YsQ0YVmtstmo5JNuNvJWXct8gtx2A
-         6wxlj8dOGXl1eK5mbwsrjM9lLhVAwBKxnDBkseAdypz+qciE8ogvuyUdV9cekt8BLoDv
-         Z5WA==
-X-Gm-Message-State: AOJu0YwmBRT7Qs5zevDVUe8f9mIqDvAMd48W40lDQ7CF+Z3VHHWLTKpA
-	DrQHTdh6fNlZ/W6wu/dATu5vaVJgVYzP7Nx+3w1U0tVV3/8bnNZuQF5WLgcSMfs=
-X-Google-Smtp-Source: AGHT+IEQttI9s33BqHQN0cE7nLErLNgK/WU+pW8bh1hWuTsdasRUhwLno6Q3sp/UONX8XquJhQ3NGw==
-X-Received: by 2002:a05:600c:4588:b0:40f:cf69:3e1a with SMTP id r8-20020a05600c458800b0040fcf693e1amr3603529wmo.39.1707654666794;
-        Sun, 11 Feb 2024 04:31:06 -0800 (PST)
-X-Forwarded-Encrypted: i=1; AJvYcCUBgt7FE3xiJd48SCWwRYMplcc4Dpm2vk4VRnwHt1XOtFzYrqbiQ1ygkj9y6qUKO2uZFqjIFyuYxn3+Tr2pm4ao3EpDmrSLZKpb3N/hR476FoUw2JVhNvqXtW5td5YagoPt+2gxiL8cV41hYH6d2+wZXv5lIOTslP6No3rDW5n9Tjhy1JsSgk2oAqVXZcpI61WGz9mrRiM5fOrCNCaYs3EFm4ya3ahSER7zYJ2ij0QeReascnfKILkxUc6c70okRUrzaWAjZoiVkATMWZ4fGBQtqA1b80b7VCZsf+6k9VHtvLWCiX1Xtq6IssAx03Mez1L2xXx/VXnCsXCu3lQXKflL81rt69aqw5QgAmAxX0SMefMORaneTBqeaYxIJXkXRa77IbYCiWYioZRx10uD5stuwNwuiHOL/+wt0GJlOyeHnv7oLpz/1ZrsldX7urc6kEot5Y8t1Tjfuf/VHUhIyUZLUh7exTJZUdkta+hAJZaADLBu58qyj1e7KAsgcJuJSY//Y2+WF5rYaN9DlIDr4w==
+        bh=/aI7qXhMOcf5MtNE5vZGmHT8dxl7tg52Y94nD3qt87c=;
+        b=GXxe7DVZX0D4vsU945Fmh/ZFBOlME+hYWqpK1J/0vk4Kxr0cf2SmMMJYhfjETbSpva
+         7rF5aU7Tjt5s6jMP4tePhI4F55MdnkfUPP6e+pg9XRvyfvozEUBzfW2Mh1pd2PFnBV5Q
+         61pvuQMqyqTzJb+Jek5WFN7121wSefPmg8jF+zWUivCJBEZCcU29iLfULfNU4w3hcK01
+         5aUSdEME000B3fG91tQr2ToqgLHIlRv5Ak+LBzg3l5X8HqREW9tW5ZayjX0su96jKo7d
+         U9kMQf5WGm1nPAAzk/yOCj0eqFlm43iEKLuJjSrM5sRSsJcHY0Kkod6tMxxrtURmunps
+         89BA==
+X-Forwarded-Encrypted: i=1; AJvYcCXFF91OtxIlO3wX/bRliOMGhMdKzLeptcDUqGppfJAbJthzxchZy5N4b+jUtM8e2N/R+b6O8VWpoweiqmPQYSRq2pae16k38+82rA==
+X-Gm-Message-State: AOJu0Yyl3RbUTyKIIsEyR8MNv4xxQcGPMYGpeN7U2DmstMI8x23nYtgs
+	bSQxf/hhcV7otiLOZ0JxVwjmbmFUpMg/P3y4sgp1SYFzaCrXEw7ijt7VtVcE5VY=
+X-Google-Smtp-Source: AGHT+IGro3bN2jjp78eM+pbqQ9ReRWEHRHxVZoUNckYdXQWuiJ9gflrHkADPdP8I4rvfKMW4+of3ug==
+X-Received: by 2002:a05:6512:33cb:b0:511:85c3:32be with SMTP id d11-20020a05651233cb00b0051185c332bemr1948418lfg.34.1707654832967;
+        Sun, 11 Feb 2024 04:33:52 -0800 (PST)
+X-Forwarded-Encrypted: i=1; AJvYcCU/lyt7L2JL6reMZu9vtq8oSEj4hK0X5Cq2euVtSezHwy1hn/Yt3BAY5rC8uaflH2kldek2feMTjLDOP50alaUwTroklynfUrRBXOrLEXNLxCJTUv3Kvc5/aa0ZJoDYM7D9KcX9yVcHI85yXHI9y4FG1XDtI2QdjaknPE44O99t8XWdxvdZZujBWqjDJi/obxK61xcgfoifyFBNnaOP1YkrxsiHhYTfCgBEpY8oz48F5wJEENsQixoJzYJcamGLwISolGgNfk1k/6Wd764t+qKcQ1xkY6oOLf1ql0D8Y2HvZ0IDCnopFfj4IkIJbUf84DV37AEgtBPxnkGB6QJDLLO4yuVdxnXm5yBH87x7VWXv5Lrjwq/F/ujWenl/bt7hyWoExeos5Tw0s0BEv+xdIOeJzsEJEbVJI7qrpvCv5G5u89lmyTSBdNq5dBBgMnl4M6j2dNzxKJ8XzsKu5WlkyaX3oBf/MNxS4GzGO1nKnkO8AFU10T+0bZqT4qOH1H4Ry9wdd+V4oMt3tekMvCqFSA==
 Received: from [192.168.1.20] ([178.197.223.6])
-        by smtp.gmail.com with ESMTPSA id k20-20020a7bc414000000b004104c42ad5asm5703347wmi.22.2024.02.11.04.31.04
+        by smtp.gmail.com with ESMTPSA id n38-20020a05600c3ba600b0040fdb17e66csm5833625wms.4.2024.02.11.04.33.51
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sun, 11 Feb 2024 04:31:06 -0800 (PST)
-Message-ID: <38e18310-4eba-4daa-b780-c719f38d3c5f@linaro.org>
-Date: Sun, 11 Feb 2024 13:31:04 +0100
+        Sun, 11 Feb 2024 04:33:52 -0800 (PST)
+Message-ID: <e086d382-299c-4b60-b8f7-0b13d92131c7@linaro.org>
+Date: Sun, 11 Feb 2024 13:33:50 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -76,7 +77,7 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v1 02/14] dt-bindings: bus: imx-weim: convert to YAML
+Subject: Re: [PATCH v1 12/14] dt-bindings: vendor-prefixes: add UNI-T
 Content-Language: en-US
 To: Sebastian Reichel <sre@kernel.org>, Rob Herring <robh+dt@kernel.org>,
  Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
@@ -90,7 +91,7 @@ Cc: Dong Aisheng <aisheng.dong@nxp.com>,
  <broonie@kernel.org>, linux-arm-kernel@lists.infradead.org,
  devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
 References: <20240210012114.489102-1-sre@kernel.org>
- <20240210012114.489102-3-sre@kernel.org>
+ <20240210012114.489102-13-sre@kernel.org>
 From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  xsFNBFVDQq4BEAC6KeLOfFsAvFMBsrCrJ2bCalhPv5+KQF2PS2+iwZI8BpRZoV+Bd5kWvN79
@@ -136,150 +137,17 @@ Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  KQ06ztUMRrj8eVtpImjsWCd0bDWRaaR4vqhCHvAG9iWXZu4qh3ipie2Y0oSJygcZT7H3UZxq
  fyYKiqEmRuqsvv6dcbblD8ZLkz1EVZL6djImH5zc5x8qpVxlA0A0i23v5QvN00m6G9NFF0Le
  D2GYIS41Kv4Isx2dEFh+/Q==
-In-Reply-To: <20240210012114.489102-3-sre@kernel.org>
+In-Reply-To: <20240210012114.489102-13-sre@kernel.org>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
 On 10/02/2024 02:18, Sebastian Reichel wrote:
-> Convert the i.MX  Wireless External Interface Module binding to YAML.
+> Uni-Trend Technology is a manufacturer of measurement
+> and testing tools.
 > 
 > Signed-off-by: Sebastian Reichel <sre@kernel.org>
-> ---
->  .../devicetree/bindings/bus/fsl,imx-weim.yaml | 225 ++++++++++++++++++
->  .../devicetree/bindings/bus/imx-weim.txt      | 117 ---------
->  2 files changed, 225 insertions(+), 117 deletions(-)
->  create mode 100644 Documentation/devicetree/bindings/bus/fsl,imx-weim.yaml
->  delete mode 100644 Documentation/devicetree/bindings/bus/imx-weim.txt
-> 
-> diff --git a/Documentation/devicetree/bindings/bus/fsl,imx-weim.yaml b/Documentation/devicetree/bindings/bus/fsl,imx-weim.yaml
-> new file mode 100644
-> index 000000000000..3d27bdaef304
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/bus/fsl,imx-weim.yaml
-> @@ -0,0 +1,225 @@
-> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/bus/fsl,imx-weim.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: i.MX Wireless External Interface Module (WEIM)
 
-This patchset does not do what I asked to, but maybe that's just
-coincidence that you send conversion now.
-
-To recall:
-
-https://lore.kernel.org/all/cee1ca11-03bf-4a0b-9ff3-490457f9fbe8@linaro.org/
-
-> +
-> +maintainers:
-> +  - Shawn Guo <shawnguo@kernel.org>
-> +  - Sascha Hauer <s.hauer@pengutronix.de>
-> +
-> +description:
-> +  The term "wireless" does not imply that the WEIM is literally an interface
-> +  without wires. It simply means that this module was originally designed for
-> +  wireless and mobile applications that use low-power technology. The actual
-> +  devices are instantiated from the child nodes of a WEIM node.
-> +
-> +properties:
-> +  compatible:
-> +    oneOf:
-> +      - enum:
-> +          - fsl,imx1-weim
-> +          - fsl,imx27-weim
-> +          - fsl,imx50-weim
-> +          - fsl,imx51-weim
-> +          - fsl,imx6q-weim
-> +      - items:
-> +          - enum:
-> +              - fsl,imx31-weim
-> +              - fsl,imx35-weim
-> +          - const: fsl,imx27-weim
-> +      - items:
-> +          - enum:
-> +              - fsl,imx6sx-weim
-> +              - fsl,imx6ul-weim
-> +          - const: fsl,imx6q-weim
-> +
-> +  reg:
-> +    maxItems: 1
-> +
-> +  clocks:
-> +    maxItems: 1
-> +
-> +  interrupts:
-> +    maxItems: 1
-> +
-> +  '#address-cells':
-> +    const: 2
-> +
-> +  '#size-cells':
-> +    const: 1
-> +
-> +  ranges: true
-> +
-> +  fsl,weim-cs-gpr:
-> +    $ref: /schemas/types.yaml#/definitions/phandle
-> +    description: |
-> +      Phandle to the system General Purpose Register controller that contains
-> +      WEIM CS GPR register, e.g. IOMUXC_GPR1 on i.MX6Q. IOMUXC_GPR1[11:0]
-> +      should be set up as one of the following 4 possible values depending on
-> +      the CS space configuration.
-> +
-> +      IOMUXC_GPR1[11:0]    CS0    CS1    CS2    CS3
-> +      ---------------------------------------------
-> +              05          128M     0M     0M     0M
-> +              033          64M    64M     0M     0M
-> +              0113         64M    32M    32M     0M
-> +              01111        32M    32M    32M    32M
-> +
-> +      In case that the property is absent, the reset value or what bootloader
-> +      sets up in IOMUXC_GPR1[11:0] will be used.
-> +
-> +  fsl,burst-clk-enable:
-> +    type: boolean
-> +    description:
-> +      The presence of this property indicates that the weim bus should operate
-> +      in Burst Clock Mode.
-> +
-> +  fsl,continuous-burst-clk:
-> +    type: boolean
-> +    description:
-> +      Make Burst Clock to output continuous clock. Without this option Burst
-> +      Clock will output clock only when necessary.
-> +
-> +patternProperties:
-> +  "^.*@[0-7],[0-9a-f]+$":
-> +    description: Devices attached to chip selects are represented as subnodes.
-> +    type: object
-> +    additionalProperties: true
-> +    properties:
-> +      fsl,weim-cs-timing:
-> +        $ref: /schemas/types.yaml#/definitions/uint32-array
-> +        description:
-> +          Timing values for the child node.
-> +    required:
-> +      - fsl,weim-cs-timing
-
-You need to integrate it into mc-peripheral-props.yaml. Also check how
-other bus controllers define children schema.
-
-
-required: block goes here.
-
-> +
-> +allOf:
-> +  - if:
-> +      properties:
-> +        compatible:
-> +          not:
-> +            contains:
-> +              enum:
-> +                - fsl,imx50-weim
-
-
+Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
 Best regards,
 Krzysztof
