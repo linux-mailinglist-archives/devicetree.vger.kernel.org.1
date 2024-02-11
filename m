@@ -1,389 +1,155 @@
-Return-Path: <devicetree+bounces-40538-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-40539-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 85FFF850B71
-	for <lists+devicetree@lfdr.de>; Sun, 11 Feb 2024 21:22:21 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id DC4DF850B73
+	for <lists+devicetree@lfdr.de>; Sun, 11 Feb 2024 21:27:26 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 0D5E61F2140D
-	for <lists+devicetree@lfdr.de>; Sun, 11 Feb 2024 20:22:21 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 96566282BAF
+	for <lists+devicetree@lfdr.de>; Sun, 11 Feb 2024 20:27:25 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 682025E3A5;
-	Sun, 11 Feb 2024 20:22:16 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 823925E3BA;
+	Sun, 11 Feb 2024 20:27:22 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="Tg4aCCub"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="SVHdbPNt"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f47.google.com (mail-wm1-f47.google.com [209.85.128.47])
+Received: from mail-wr1-f43.google.com (mail-wr1-f43.google.com [209.85.221.43])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 89B3E5DF21
-	for <devicetree@vger.kernel.org>; Sun, 11 Feb 2024 20:22:14 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.47
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BBCA75DF2E;
+	Sun, 11 Feb 2024 20:27:20 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.43
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1707682936; cv=none; b=sWxMRj9F8+QvDaKfNr51TXuUNO1yGYqVh4QS41hGjaa9+BvAaWrMcfAgJXMDtTZknHOgYahqYBbfd0D4v525nsZYiMyCDpK30uMv9P7OudxYhkYBZozv6IN5437rGm7gqk307uTPHYlcCTqKFuYfNbXveAKiuaJPdmB7JyqR49Y=
+	t=1707683242; cv=none; b=rKhQiuWo0XnnvTY3NaH4MJOjumHOer56rb74LkpyWA5ooKhgZ/STXkBXqVWHGMyogOluKbCipV3BFOwzlJtJOVToKWjwbzioXXjzefN/owm53SyI56YwoVGEApzyw/bSncmPEz/yVWQZ8L1FB70eMCkzr2fv+WpvBFKyPys9fcI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1707682936; c=relaxed/simple;
-	bh=BnqZbwlWndWGHb2kMgY8KVwzLWgZcCnUPDSvAdz4/u0=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=QteWmYgdNd5yAP1+ohW33PS78L+ofL4CjdKTWh6ijqM4/S+0Kv6WmuXCwu3ZqkRc8VEkIhG6JV6QgU2LgSap63+oO9akXT/xmZ7AjYmhaktK7gPGVyHg3W2Wd3+4EfZykHH7MakRwvgnOn7kCa68w7BGlhaH/AzUMAU8WUVnQc8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=Tg4aCCub; arc=none smtp.client-ip=209.85.128.47
+	s=arc-20240116; t=1707683242; c=relaxed/simple;
+	bh=Dr3fLzk8kA922HbxhveF4yYarebxt3ZJKSb4iwmQ3t0=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=gt/iFu+pGKHOLDubL30DMbjKE8DeDYcczG9N5oRAwxGBjeu1h+L1QixIhRuH4zMs8n0U4ukw2wRsXT4MsZ8w1yex9kRtMPwnnO+ptwOjI5wYiLn6w3JBhGfH5phr7Q7X8W7pGMuwFTD43QpgKeBkkw4wVRFFXh3Y3dmw0K8HoXc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=SVHdbPNt; arc=none smtp.client-ip=209.85.221.43
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-wm1-f47.google.com with SMTP id 5b1f17b1804b1-410bd8dfe9aso4031675e9.3
-        for <devicetree@vger.kernel.org>; Sun, 11 Feb 2024 12:22:14 -0800 (PST)
+Received: by mail-wr1-f43.google.com with SMTP id ffacd0b85a97d-33b815b182fso184401f8f.3;
+        Sun, 11 Feb 2024 12:27:20 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1707682933; x=1708287733; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=P7Mkr1zhHmz0WP38eyAJ3mhqGHkB1EOoRhhXSYzyRm4=;
-        b=Tg4aCCub1JLtE7sNrabkm8aaM2Q5ER92PPC+8oFT8pM8SWIfmRwEQpv07p6y8JOJA4
-         l7ghu6tGGi7tyCK7III4G9ie/OEIyJ/6PgaFUd/HMCMJSTAf8f6N4g+9tnv7aGUGebvO
-         t2DUeSuyvycotiy6YHEDHB2etQhVGCsgNg0Xt+QXIHT06weApw80/2i8V55PxeWRpDoU
-         0PnMBUDy/LJfxqvWjtG7z8VDjGn3MbOh6LBdz4V8dzWQygcSwbBrhPcM0I6Y98xWqbzl
-         yERZHpDJu6nkWlaeF320QvE0p2NrF+gzzUj3RMQ756Wo+sYDOcNwccBNvxbsWwflRlWI
-         hxZg==
+        d=gmail.com; s=20230601; t=1707683239; x=1708288039; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=SfjESUyL60qQjpBUzMKvPhhO/EQtTKQK2CnbnGbsaOw=;
+        b=SVHdbPNtw1do72ozVA0tpVtqlKQTJw17MciGSXIQTZMVs1yoqfGLDqxiztV42sJ3Mo
+         gyUGYXMbA43YkHjN1qn5gRia/svdxrB4bBp5iSZRik/hMTFSJq5PZp28njAcU9Lpo/Y3
+         PwKOQ7nUwIBlkefZ+hohyNY9PG+8qtY2f7rh6HyQvaArQ68F6tcp6RmskKlagy+RrbSL
+         d6pqechTvHYx3tTlDmoQbzfvn/AEDohuUwM+4FfF2WHxTT0n6ZdrPl2yqIsiBIwHrLcW
+         uTA5m2oZWWgV8c1Wro3JiUbON37EbgOpVvbaLQ3X70p6wjiSSwmLuIssOQnMEMhFDBxn
+         B9Cw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1707682933; x=1708287733;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=P7Mkr1zhHmz0WP38eyAJ3mhqGHkB1EOoRhhXSYzyRm4=;
-        b=DxoP4AEoFCiHW/cWDxqGdfhnfl9aS98Xa6NPYZg6SwQOE+k4X20mZm2Dr77VfbeHxe
-         3450tWkKoukJjdieCoMAH9kFpzFYqN6lTYeg8Ok5VTCti38jofcIS7dx1KkzeOwacAZn
-         cuXJvm7tuPEXwuzfnehr2iVVDxa16zSmW7C3oDEzuOACATi1022ldrP7oPm8pxXCAX8A
-         NleKf6ueqjbwVKYO8X+MEStpAtBXxNsPqqA99LBvPTgPM2U/RDk41CuyTg5gxbpuEPPz
-         6msLyZoRb9D4RBcNIgxQxkEFreTyquy0IxfCi/OrjiaeP/LXDDb8gKGUt3eTq6CCDSjs
-         S/BA==
-X-Gm-Message-State: AOJu0YxIQiEIOStGgsBX/hGJXWKIfgOm7w2wI5CbbViRAi0LAYyHda62
-	O5DOp4u8LvuqsgNoGqIkpoPhutY8K7N9cLu60vYSnoVgiiiZ4psG
-X-Google-Smtp-Source: AGHT+IFW7n6cfpnUeDZOYPFgJUyGR0x1bHJpttPtRhBeWJpu1LTUieJ6i6TOMZtzgQRxYCDR/Vn00A==
-X-Received: by 2002:a05:600c:4fc9:b0:410:68e1:d9ca with SMTP id o9-20020a05600c4fc900b0041068e1d9camr4322587wmq.2.1707682932731;
-        Sun, 11 Feb 2024 12:22:12 -0800 (PST)
-X-Forwarded-Encrypted: i=1; AJvYcCXbLwbNTm0GY3IEjH42B1/CudtNA/ITJEfJQMA3ddBlA7jQiXIHHqt4hhUCU5wtR83/QrNAHOvlcFfoQ6L/dTdyHgCUzHgB1E0ePRqxzBgKluQjXfl2HhC4U1KdxNSQVs5hditzp5yIuvkmbSqGixmzRg57EFVmMw5GZ+e+oXGyz41cB/NLPmLExHiZ9BZK6pS1YstsUpo4j37JuFDlzfYsxBLGPi/v8BW2i+0wTyQEq6cH0a/hUQcgB3iMfFYRxCpFfV6N8wFKRz3KjcPIngWE6BCt49ai4wZMmUgdbyrupcZqS/HUGbgskvX/gX90HZWSVDZnVR6VoqU=
-Received: from jernej-laptop.localnet (86-58-6-171.dynamic.telemach.net. [86.58.6.171])
-        by smtp.gmail.com with ESMTPSA id ay8-20020a05600c1e0800b00410c4aefe5fsm1905663wmb.24.2024.02.11.12.22.11
+        d=1e100.net; s=20230601; t=1707683239; x=1708288039;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=SfjESUyL60qQjpBUzMKvPhhO/EQtTKQK2CnbnGbsaOw=;
+        b=KXTdvkL3K4y/SKRt2PEaYuC9A061kjgNc7w4U6+eZqelS+ZmYdPg3nAK21xSQCMv7M
+         iVbVbC8U/fFeVtO/+ViH/LIec9a1hEq+WUEKh6XTQHDtuL0ZwQoCaD3Z4NBvswvoKUda
+         oGOoh7FLm/XRhqydFvKr94qo4hi24t/qtceyMXrr1yW0xinv9GhhRqTRhQpvJprUIgcm
+         Mn180QI4hIoMRxQDtpU07csFfRxFvkTZCcXXmFThxQQBAWsSK8ndlvJrkkTNjyApjTEE
+         19myw3c0UakuvId2u/A5FLD/jbAvMwcVqpR7o6FmgQTaqdym5hebDWVY8Xewm0aXC56U
+         l+oA==
+X-Gm-Message-State: AOJu0Yy4jhvozpkoBdvlF4ffR1hbr4tLeoX7S4AjE7GgXCUTwPbwqOZf
+	QxYGUiuZPQ48jhUE//9/yJb3bc20jX35DjB7IhMcib4NWxXIeZKl
+X-Google-Smtp-Source: AGHT+IFpzaOGbMHpBLmEW+9pJTDC0gg8iTM+pW6/GJz00psxpVJpc4GMU37OTQr/Nx7oUzfOMQaPyA==
+X-Received: by 2002:adf:eec9:0:b0:33b:2281:ef32 with SMTP id a9-20020adfeec9000000b0033b2281ef32mr3718249wrp.69.1707683238705;
+        Sun, 11 Feb 2024 12:27:18 -0800 (PST)
+X-Forwarded-Encrypted: i=1; AJvYcCUVb4O9ZzbLNsUmZmbrYbBo7NMd8GBzCdmP0OF72ZmbKMzTCONPiuBLBB5JUMLPH9briiTxQz1v1ydVeOhpQKsa/t2Aqodu5+s05jN88DircY7Z/xYgGnuhaw4Gw+EetsvPSZNPXWK7P8uE4D/yTiYP0g6X5ZWMfPiwen9CuDpHcAJouD1WT3GaqKqO5PkX4qxazNj8tZQp/BguxUwJnQ7YdW7rSMGNzugDW4i7bd0kXc7r65LjsLN1pu7JYVgg3VWckw2SrfsmeaAYCJ9JA7ROr2QfM6kOENeoAq2ak0k5MduDXy8f2ohG0rY7vrc=
+Received: from localhost.localdomain (93-34-89-13.ip49.fastwebnet.it. [93.34.89.13])
+        by smtp.googlemail.com with ESMTPSA id r17-20020adfe691000000b0033aeb0afa8fsm4969194wrm.39.2024.02.11.12.27.17
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sun, 11 Feb 2024 12:22:12 -0800 (PST)
-From: Jernej =?utf-8?B?xaBrcmFiZWM=?= <jernej.skrabec@gmail.com>
-To: Chen-Yu Tsai <wens@csie.org>, Samuel Holland <samuel@sholland.org>,
- Rob Herring <robh+dt@kernel.org>,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Conor Dooley <conor+dt@kernel.org>, Andre Przywara <andre.przywara@arm.com>
-Cc: linux-sunxi@lists.linux.dev, devicetree@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, Icenowy Zheng <uwu@icenowy.me>
-Subject:
- Re: [PATCH v2 2/2] arm64: dts: allwinner: h618: add BananaPi M4 Berry board
-Date: Sun, 11 Feb 2024 21:22:11 +0100
-Message-ID: <3791760.kQq0lBPeGt@jernej-laptop>
-In-Reply-To: <22174359.EfDdHjke4D@jernej-laptop>
-References:
- <20240204101054.152012-1-andre.przywara@arm.com>
- <20240204101054.152012-3-andre.przywara@arm.com>
- <22174359.EfDdHjke4D@jernej-laptop>
+        Sun, 11 Feb 2024 12:27:18 -0800 (PST)
+From: Christian Marangi <ansuelsmth@gmail.com>
+To: Bjorn Andersson <andersson@kernel.org>,
+	Konrad Dybcio <konrad.dybcio@linaro.org>,
+	Rob Herring <robh+dt@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	linux-arm-msm@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org
+Cc: Christian Marangi <ansuelsmth@gmail.com>
+Subject: [PATCH] ARM: dts: qcom: ipq4019: add QCA8075 PHY Package nodes
+Date: Sun, 11 Feb 2024 21:26:55 +0100
+Message-ID: <20240211202700.17810-1-ansuelsmth@gmail.com>
+X-Mailer: git-send-email 2.43.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
-Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 8bit
 
-Hi Andre!
+Add QCA8075 PHY Package nodes. The PHY nodes that were previously
+defined never worked and actually never had a driver to correctly setup
+these PHY. Now that we have a correct driver, correctly add the PHY
+Package node and set the default value of 300mw for tx driver strength
+following specification of ipq4019 SoC.
 
-Dne ponedeljek, 05. februar 2024 ob 19:19:26 CET je Jernej =C5=A0krabec nap=
-isal(a):
-> Dne nedelja, 04. februar 2024 ob 11:10:54 CET je Andre Przywara napisal(a=
-):
-> > The BananaPi M4 Berry is a development board using the Allwinner H618
-> > SoC. It comes with the following specs:
-> > 	- Allwinner H618 SoC (4 * Arm Cortex-A53 cores, 1MB L2 cache)
-> > 	- 2 GiB LPDDR4 DRAM
-> > 	- 8 GiB eMMC flash
-> > 	- AXP313a PMIC
-> > 	- Gigabit Ethernet, using RTL8211 PHY
-> > 	- RTL8821CU USB WiFi chip
-> > 	- HDMI port
-> > 	- 4 * USB 2.0 ports, via an on-board hub chip
-> > 	- microSD card slot
-> > 	- 3.5mm A/V port
-> > 	- power supply and USB-OTG via USB-C connector
-> >=20
-> > Add a devicetree file describing the components that we already have
-> > bindings for, that excludes audio and video at the moment.
-> >=20
-> > Signed-off-by: Andre Przywara <andre.przywara@arm.com>
-> > ---
-> >  arch/arm64/boot/dts/allwinner/Makefile        |   1 +
-> >  .../sun50i-h618-bananapi-m4-berry.dts         | 223 ++++++++++++++++++
-> >  2 files changed, 224 insertions(+)
-> >  create mode 100644 arch/arm64/boot/dts/allwinner/sun50i-h618-bananapi-=
-m4-berry.dts
-> >=20
-> > diff --git a/arch/arm64/boot/dts/allwinner/Makefile b/arch/arm64/boot/d=
-ts/allwinner/Makefile
-> > index 2db3b15ad09f..1c5c204a109b 100644
-> > --- a/arch/arm64/boot/dts/allwinner/Makefile
-> > +++ b/arch/arm64/boot/dts/allwinner/Makefile
-> > @@ -43,5 +43,6 @@ dtb-$(CONFIG_ARCH_SUNXI) +=3D sun50i-h616-bigtreetech=
-=2Dcb1-manta.dtb
-> >  dtb-$(CONFIG_ARCH_SUNXI) +=3D sun50i-h616-bigtreetech-pi.dtb
-> >  dtb-$(CONFIG_ARCH_SUNXI) +=3D sun50i-h616-orangepi-zero2.dtb
-> >  dtb-$(CONFIG_ARCH_SUNXI) +=3D sun50i-h616-x96-mate.dtb
-> > +dtb-$(CONFIG_ARCH_SUNXI) +=3D sun50i-h618-bananapi-m4-berry.dtb
-> >  dtb-$(CONFIG_ARCH_SUNXI) +=3D sun50i-h618-orangepi-zero3.dtb
-> >  dtb-$(CONFIG_ARCH_SUNXI) +=3D sun50i-h618-transpeed-8k618-t.dtb
-> > diff --git a/arch/arm64/boot/dts/allwinner/sun50i-h618-bananapi-m4-berr=
-y.dts b/arch/arm64/boot/dts/allwinner/sun50i-h618-bananapi-m4-berry.dts
-> > new file mode 100644
-> > index 000000000000..a3f8ff75db42
-> > --- /dev/null
-> > +++ b/arch/arm64/boot/dts/allwinner/sun50i-h618-bananapi-m4-berry.dts
-> > @@ -0,0 +1,223 @@
-> > +// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
-> > +/*
-> > + * Copyright (C) 2023 Arm Ltd.
-> > + */
-> > +
-> > +/dts-v1/;
-> > +
-> > +#include "sun50i-h616.dtsi"
-> > +
-> > +#include <dt-bindings/gpio/gpio.h>
-> > +#include <dt-bindings/input/linux-event-codes.h>
-> > +#include <dt-bindings/interrupt-controller/arm-gic.h>
-> > +#include <dt-bindings/leds/common.h>
-> > +
-> > +/ {
-> > +	model =3D "BananaPi M4 Berry";
-> > +	compatible =3D "sinovoip,bananapi-m4-berry", "allwinner,sun50i-h618";
-> > +
-> > +	aliases {
-> > +		ethernet0 =3D &emac0;
-> > +		serial0 =3D &uart0;
-> > +	};
-> > +
-> > +	chosen {
-> > +		stdout-path =3D "serial0:115200n8";
-> > +	};
-> > +
-> > +	leds {
-> > +		compatible =3D "gpio-leds";
-> > +
-> > +		led-0 {
-> > +			function =3D LED_FUNCTION_STATUS;
-> > +			color =3D <LED_COLOR_ID_GREEN>;
-> > +			gpios =3D <&pio 2 12 GPIO_ACTIVE_LOW>; /* PC12 */
-> > +		};
-> > +	};
-> > +
-> > +	gpio-keys {
-> > +		compatible =3D "gpio-keys";
-> > +
-> > +		key-sw3 {
-> > +			label =3D "sw3";
-> > +			linux,code =3D <BTN_0>;
-> > +			gpios =3D <&pio 2 7 GPIO_ACTIVE_LOW>;	/* PC7 */
-> > +		};
-> > +	};
-> > +
-> > +	reg_vcc5v: regulator-5v {
-> > +		/* board wide 5V supply directly from the USB-C socket */
-> > +		compatible =3D "regulator-fixed";
-> > +		regulator-name =3D "vcc-5v";
-> > +		regulator-min-microvolt =3D <5000000>;
-> > +		regulator-max-microvolt =3D <5000000>;
-> > +		regulator-always-on;
-> > +	};
-> > +
-> > +	reg_usb_vbus: regulator-usb-vbus {
-> > +		/* separate discrete regulator for the USB ports */
-> > +		compatible =3D "regulator-fixed";
-> > +		regulator-name =3D "usb-vbus";
-> > +		regulator-min-microvolt =3D <5000000>;
-> > +		regulator-max-microvolt =3D <5000000>;
-> > +		vin-supply =3D <&reg_vcc5v>;
-> > +	};
-> > +
-> > +	reg_3v3: regulator-3v3 {
-> > +		/* separate discrete regulator for WiFi and Ethernet PHY */
-> > +		compatible =3D "regulator-fixed";
-> > +		regulator-name =3D "vcc-3v3";
-> > +		regulator-min-microvolt =3D <3300000>;
-> > +		regulator-max-microvolt =3D <3300000>;
-> > +		vin-supply =3D <&reg_vcc5v>;
-> > +	};
-> > +};
-> > +
-> > +&cpu0 {
-> > +	cpu-supply =3D <&reg_dcdc2>;
-> > +};
-> > +
-> > +/* Connected to an on-board RTL8821CU USB WiFi chip. */
-> > +&ehci1 {
-> > +	status =3D "okay";
-> > +};
-> > +
-> > +/* EHCI2 is on unpopulated pins */
-> > +
-> > +/* Connected to an on-board FE1.1s USB hub chip, supplying 4 USB-A por=
-ts. */
-> > +&ehci3 {
-> > +	status =3D "okay";
-> > +};
-> > +
-> > +&emac0 {
-> > +	pinctrl-names =3D "default";
-> > +	pinctrl-0 =3D <&ext_rgmii_pins>;
-> > +	phy-mode =3D "rgmii";
-> > +	phy-handle =3D <&ext_rgmii_phy>;
-> > +	phy-supply =3D <&reg_3v3>;
-> > +	allwinner,rx-delay-ps =3D <3100>;
-> > +	allwinner,tx-delay-ps =3D <700>;
-> > +	status =3D "okay";
-> > +};
-> > +
-> > +&ir {
-> > +	status =3D "okay";
-> > +};
-> > +
-> > +&mdio0 {
-> > +	ext_rgmii_phy: ethernet-phy@1 {
-> > +		compatible =3D "ethernet-phy-ieee802.3-c22";
-> > +		reg =3D <1>;
-> > +		reset-gpios =3D <&pio 8 16 GPIO_ACTIVE_LOW>;	/* PI16 */
-> > +	};
-> > +};
-> > +
-> > +&mmc0 {
-> > +	cd-gpios =3D <&pio 5 6 GPIO_ACTIVE_LOW>;	/* PF6 */
-> > +	vmmc-supply =3D <&reg_dldo1>;
-> > +	bus-width =3D <4>;
-> > +	status =3D "okay";
-> > +};
-> > +
-> > +&mmc2 {
-> > +	vmmc-supply =3D <&reg_dldo1>;
-> > +	vqmmc-supply =3D <&reg_aldo1>;
-> > +	bus-width =3D <8>;
-> > +	non-removable;
-> > +	cap-mmc-hw-reset;
-> > +	mmc-ddr-1_8v;
->=20
-> This one should be dropped.
+Signed-off-by: Christian Marangi <ansuelsmth@gmail.com>
+---
+ arch/arm/boot/dts/qcom/qcom-ipq4019.dtsi | 35 +++++++++++++++---------
+ 1 file changed, 22 insertions(+), 13 deletions(-)
 
-Can you please test this one? If it works, I'll merge this series.
-
-Best regards,
-Jernej
-=20
-> > +	mmc-hs200-1_8v;
-> > +	status =3D "okay";
-> > +};
-> > +
-> > +/* USB ports 1 and 3 connect to onboard devices that are high-speed on=
-ly. */
-> > +
-> > +/* OHCI2 is on unpopulated pins */
-> > +
-> > +&pio {
-> > +	vcc-pc-supply =3D <&reg_aldo1>;
-> > +	vcc-pf-supply =3D <&reg_dldo1>;
-> > +	vcc-pg-supply =3D <&reg_dldo1>;
-> > +	vcc-ph-supply =3D <&reg_dldo1>;
-> > +	vcc-pi-supply =3D <&reg_dldo1>;
-> > +};
-> > +
-> > +&r_i2c {
-> > +	status =3D "okay";
-> > +
-> > +	axp313: pmic@36 {
-> > +		compatible =3D "x-powers,axp313a";
-> > +		reg =3D <0x36>;
-> > +		#interrupt-cells =3D <1>;
-> > +		interrupt-controller;
-> > +		interrupt-parent =3D <&pio>;
-> > +
-> > +		vin1-supply =3D <&reg_vcc5v>;
-> > +		vin2-supply =3D <&reg_vcc5v>;
-> > +		vin3-supply =3D <&reg_vcc5v>;
-> > +
-> > +		regulators {
-> > +			reg_aldo1: aldo1 {
-> > +				regulator-always-on;
-> > +				regulator-min-microvolt =3D <1800000>;
-> > +				regulator-max-microvolt =3D <1800000>;
-> > +				regulator-name =3D "vcc-1v8-pll";
-> > +			};
-> > +
-> > +			reg_dldo1: dldo1 {
-> > +				regulator-always-on;
-> > +				regulator-min-microvolt =3D <3300000>;
-> > +				regulator-max-microvolt =3D <3300000>;
-> > +				regulator-name =3D "vcc-3v3-io";
-> > +			};
-> > +
-> > +			reg_dcdc1: dcdc1 {
-> > +				regulator-always-on;
-> > +				regulator-min-microvolt =3D <810000>;
-> > +				regulator-max-microvolt =3D <990000>;
-> > +				regulator-name =3D "vdd-gpu-sys";
-> > +			};
-> > +
-> > +			reg_dcdc2: dcdc2 {
-> > +				regulator-always-on;
-> > +				regulator-min-microvolt =3D <810000>;
-> > +				regulator-max-microvolt =3D <1100000>;
-> > +				regulator-name =3D "vdd-cpu";
-> > +			};
-> > +
-> > +			reg_dcdc3: dcdc3 {
-> > +				regulator-always-on;
-> > +				regulator-min-microvolt =3D <1100000>;
-> > +				regulator-max-microvolt =3D <1100000>;
-> > +				regulator-name =3D "vdd-dram";
-> > +			};
-> > +		};
-> > +	};
-> > +};
-> > +
-> > +&uart0 {
-> > +	pinctrl-names =3D "default";
-> > +	pinctrl-0 =3D <&uart0_ph_pins>;
-> > +	status =3D "okay";
-> > +};
-> > +
-> > +&usbotg {
-> > +	/*
-> > +	 * PHY0 pins are connected to a USB-C socket, but a role switch is not
-> > +	 * implemented: both CC pins are pulled to GND via a 5.1K resistor.
-> > +	 * The VBUS pins power the device, so a fixed peripheral mode
-> > +	 * is the best choice.
-> > +	 * The board can be powered via GPIOs, in this case port0 *can*
-> > +	 * act as a host (with a cable/adapter ignoring CC), as VBUS is
-> > +	 * then provided by the GPIOs. Any user of this setup would
-> > +	 * need to adjust the DT accordingly: dr_mode set to "host",
-> > +	 * enabling OHCI0 and EHCI0.
-> > +	 */
-> > +	dr_mode =3D "peripheral";
-> > +	status =3D "okay";
-> > +};
-> > +
-> > +&usbphy {
-> > +	usb3_vbus-supply =3D <&reg_usb_vbus>;
-> > +	status =3D "okay";
-> > +};
-> >=20
->=20
->=20
->=20
->=20
->=20
-
-
-
+diff --git a/arch/arm/boot/dts/qcom/qcom-ipq4019.dtsi b/arch/arm/boot/dts/qcom/qcom-ipq4019.dtsi
+index f989bd741cd1..6c97d852d342 100644
+--- a/arch/arm/boot/dts/qcom/qcom-ipq4019.dtsi
++++ b/arch/arm/boot/dts/qcom/qcom-ipq4019.dtsi
+@@ -603,24 +603,33 @@ mdio: mdio@90000 {
+ 			reg = <0x90000 0x64>;
+ 			status = "disabled";
+ 
+-			ethphy0: ethernet-phy@0 {
++			ethernet-phy-package@0 {
++				#address-cells = <1>;
++				#size-cells = <0>;
++				compatible = "qcom,qca8075-package";
+ 				reg = <0>;
+-			};
+ 
+-			ethphy1: ethernet-phy@1 {
+-				reg = <1>;
+-			};
++				qcom,tx-drive-strength-milliwatt = <300>;
+ 
+-			ethphy2: ethernet-phy@2 {
+-				reg = <2>;
+-			};
++				ethphy0: ethernet-phy@0 {
++					reg = <0>;
++				};
+ 
+-			ethphy3: ethernet-phy@3 {
+-				reg = <3>;
+-			};
++				ethphy1: ethernet-phy@1 {
++					reg = <1>;
++				};
++
++				ethphy2: ethernet-phy@2 {
++					reg = <2>;
++				};
++
++				ethphy3: ethernet-phy@3 {
++					reg = <3>;
++				};
+ 
+-			ethphy4: ethernet-phy@4 {
+-				reg = <4>;
++				ethphy4: ethernet-phy@4 {
++					reg = <4>;
++				};
+ 			};
+ 		};
+ 
+-- 
+2.43.0
 
 
