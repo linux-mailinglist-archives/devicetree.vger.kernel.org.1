@@ -1,77 +1,77 @@
-Return-Path: <devicetree+bounces-40548-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-40549-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 88FC4850BA0
-	for <lists+devicetree@lfdr.de>; Sun, 11 Feb 2024 22:24:39 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 18E0A850BA1
+	for <lists+devicetree@lfdr.de>; Sun, 11 Feb 2024 22:24:40 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 07F901F221C4
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 371E51C20B4E
 	for <lists+devicetree@lfdr.de>; Sun, 11 Feb 2024 21:24:39 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7633E5F481;
-	Sun, 11 Feb 2024 21:24:34 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A9B575F48A;
+	Sun, 11 Feb 2024 21:24:35 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="PDXpBlCW"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="q6ubuEO3"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lj1-f179.google.com (mail-lj1-f179.google.com [209.85.208.179])
+Received: from mail-lf1-f52.google.com (mail-lf1-f52.google.com [209.85.167.52])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 983B25F479
-	for <devicetree@vger.kernel.org>; Sun, 11 Feb 2024 21:24:32 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.179
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BA2875A784
+	for <devicetree@vger.kernel.org>; Sun, 11 Feb 2024 21:24:33 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.52
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1707686674; cv=none; b=SOuXM2kaWU3znz5XHXth9iHOXDHwwlMjoL2S+1FbUoUT4/nXd/y+tXdEHRoEcPDQ4sozXMZbxpL9cptwqLFz7K7KN+S4GvUSSgVB+2hvdmuGuQtuZrEmQKxKAgYxCaHunvnAr3j2TFQ5wXBZthFSyLC0mN5SRoOhtfMgYaOqhUo=
+	t=1707686675; cv=none; b=ZP3bYPYHNvOLjjhFFCM8Zi6ygHZUCA9J7Q0LfU7xDoZaQHTijxBVDClN+x5eHZs5/SpJ1G0KVcgil9535rPMCgi6IgbbOTnsmo4DtilrZsqpjpzfQ5CrND49CMf/Z5dDbKzjeDZ0ewujtv3/NTUbHJ5k7XD/lQFI1dt5bSunfTg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1707686674; c=relaxed/simple;
-	bh=98yZP338tQqWx0GijR5ah87bnOWBJYX+tkjQDDLkbo0=;
+	s=arc-20240116; t=1707686675; c=relaxed/simple;
+	bh=ApHfz9xMnUcbJaFt7ppRVEzThnbfy8QJhXxG/AdxaWU=;
 	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=kXoNO+7WNK44B2H4ogH2x9XqC3m6uXXW0hYX75NUDUajwHhwxNhVEnSOevhk5py/dZBMr5BTb9tQs4HqFot6R7LhmJE4+LUremsUQhucdtRmaVZ8qZZT7WT09G9SOsP40goNKlsm+LnCl+PBZjQVFauSFlaledEoWgwqbib0Pd8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=PDXpBlCW; arc=none smtp.client-ip=209.85.208.179
+	 In-Reply-To:To:Cc; b=D8JYrhUxPyT4984g7bDQfmfdZK/D/RBtnANZfuMm+sFDtTZYEBZ8BfSx7bUjyfA0Ph0pp9Lw9wg3b/zgobudDSMSXjT7fSrRcmQ+tNFeKGWce2bzmvvsOEFuj1OOa/bi+i7R21J6PHx6pI+Wx2McNP63R1GNQN9ux/o8zRzhw4k=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=q6ubuEO3; arc=none smtp.client-ip=209.85.167.52
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-lj1-f179.google.com with SMTP id 38308e7fff4ca-2cf206e4d56so35825761fa.3
-        for <devicetree@vger.kernel.org>; Sun, 11 Feb 2024 13:24:32 -0800 (PST)
+Received: by mail-lf1-f52.google.com with SMTP id 2adb3069b0e04-511898b6c9eso560049e87.3
+        for <devicetree@vger.kernel.org>; Sun, 11 Feb 2024 13:24:33 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1707686670; x=1708291470; darn=vger.kernel.org;
+        d=linaro.org; s=google; t=1707686671; x=1708291471; darn=vger.kernel.org;
         h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
          :mime-version:subject:date:from:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=SpPoAHSPLW8YMujkw0W6zINo/VdyrGjtrtRnN92gB/8=;
-        b=PDXpBlCWBek0XFcqxkur/58sfS5fQ0AvTKsyCIvE1SXAeAlsmuz1+SW84npzDiERem
-         wRyQbRwIVDVhZk6G2462Ls9Zma8DQJZzYXJVuREP2ffgn7ZuTKWFF/ZTN/eAaCb3B/Jj
-         7ashPfTbhI/yKelU3ZT8Pf5aalVRt1diV7MQktZKMi0rh0H03bonWbfOTTv1EEJyzKE9
-         l0rc0c12csihSgX/1DF2UUFmCzv+Hlce0LweNs2S9FHbygaZhx9sgKS6E/dxIT4azznT
-         8cLgWQ2UyFgAWhAAOC7ULJB/zDiw9UueLbPeqTbNlEOFWPNMDU0N9fJi/N+pUuFXDvFP
-         gdVw==
+        bh=ZM1XIaD3ecrXLxEb1Gsx+3ajyZG58aa345Y2A9SVCU0=;
+        b=q6ubuEO3c/xep9/hutO2CI02WSe3/4F4pSRyNcgRe3EZEG+EmLjc1vvGqpIpOw4UpM
+         zG6UB6WUHowD+UMQXK38ga8QFnKbINudY7T7K1gR8hS9dfh3g/O8zriFnM5d39ggH0nP
+         BRGWb2asx3BIfNUR2tl6VhBDrAUF9JjxS1RIBAvBs4Ggaup+MasQre2Lpl1zXgO/kjeL
+         qxtHi3ElKDyZ/EFEoxUWY7iJcgdvvQXBO1MjVfSIHCPEz0p2PG7kMdZRlO9RvwzDtMUp
+         rL38WeudWBka678DJkzmexMv3GkaZvu3d2GpTDj3dSkIS0QCP0M3RAlXPmzibRb4DAMS
+         waeQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1707686670; x=1708291470;
+        d=1e100.net; s=20230601; t=1707686671; x=1708291471;
         h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
          :mime-version:subject:date:from:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=SpPoAHSPLW8YMujkw0W6zINo/VdyrGjtrtRnN92gB/8=;
-        b=jpBu5Rt4iGZ3ats9p72RwhmPzKup6t91neoFtS/NwdlzSsgNPf5o0qsdsMX9lA51uo
-         Xy1758jA7A+FVoogNOZnXeA271P10QWvu8pGJfXG3H2xmBkxGO5JxHBAKLUJMgf93Wg6
-         oxhuUwBYtaouj1ejTJgGLIqaphHYakddwnsyHG39S2VtjtlQa+AAeDcKPPqmaBN6bLZQ
-         aOm/ZCDLSUNgi0LWVrEfoB98e/U16AJqY03FbszoHisaC4vNe96pqmrdKsesr2fXRoHl
-         T/4YHk4RWQFj+MZcSca4a/jkVwP2gO+LXa96ZsTpEcPPUy8uR+0JLbJXg+O25q5rhlUu
-         PoPA==
-X-Forwarded-Encrypted: i=1; AJvYcCWgSmwgyrEwou/8zCU+9lLq6nhmqrIDVNcRMBUk2oYgrF2leNgwcT6Y9PljQQKWG65xYBkkwZT5MeKIjyw4bHNnPSq+BbM2gJchUA==
-X-Gm-Message-State: AOJu0YyVl++DXH8SGB9dfC0LPFwUg4naemb11A17LjejMYK1j9svnhPC
-	1wgLPpXQQfwIPN1x5sQlbljpFA+fmd6B6kPQzlo88yZ5fM4AZMa7JeYaVWg1tTUN1oNfEwxJX/V
-	9
-X-Google-Smtp-Source: AGHT+IGgkx9mhQ5Us/zTWdGH3t5j4Spncszt0JUMVFtF1LwFW1m7mDQ3QkcTNodenK17f9DTPPRanQ==
-X-Received: by 2002:ac2:546c:0:b0:511:8ce8:c38 with SMTP id e12-20020ac2546c000000b005118ce80c38mr1036274lfn.12.1707686670531;
-        Sun, 11 Feb 2024 13:24:30 -0800 (PST)
-X-Forwarded-Encrypted: i=1; AJvYcCU52kukOH02TuLx2HJ7aleBCpSnYJkTU08Xl7pZa0nM/WKM6OAioCtwx2Q/zlYvco8V7rSILqSacd0/JD1I90kFfv/byuR0opMWeNwlYIfVQvB2+Uc3PjRMoUDeqb1pIK2CMrC4/AToX7vogDKtsTxiNTH5KmQoZiRmbar1O2kYL4Jjoi5nNCX5D3jLTnjhPH5Gwz36cvvBzplT8moUw4/alf7wMK/dWjbtqickAPnLHQ==
+        bh=ZM1XIaD3ecrXLxEb1Gsx+3ajyZG58aa345Y2A9SVCU0=;
+        b=lFpD4EmojZp4IPriucEMs6dA0GrYTixZU8g8XTYT7YvEneOnXSqCAxIKO3K+nUhGu0
+         unWe3V44ZdMBhjvNEX66ziK/qsmyiZbSHUAe6jowYDZhV1s2L5570Fy3HBUmfmaZ9Pco
+         y9sUdkJWsxLeK7NSLRgQXjOv7vZFIm2m/3r/XgHrE9MIh8V2324pOYS7xHGhGXzaBIG7
+         8nsA2ulsXq7zULztx91MUWyLJqKICP1CdWAtnNrWWvJJnnyWB4Jv3klLd6VuflOpz2m6
+         x/Z74bDEfX+ooizLq+0YiPjWzZ+9+xCNdw/y4D7BvCzpGHB8QBNepW+Dy4opg8F2VTew
+         XmCg==
+X-Forwarded-Encrypted: i=1; AJvYcCXl/YbNn0xmmyyhcgzMzhk5Py9l04o5bS0qH/Fyq4ECMf7mhLzZhFyelNBGopPRzjTMfy9agG6oCzdEOsFXupc576WS5gu8i9rccg==
+X-Gm-Message-State: AOJu0YyLAMymTWurzaxXqWBOdXfpWkFXlo4T20Dq7OFUG2fsIJ5g6pxP
+	8wG7y5aYtxoF61eQVQ4cf2vnlVw7AV8UGADdz9iDHyn10lxWuiKA+HwvI4PcmWpK8MyzlYVoqGV
+	6
+X-Google-Smtp-Source: AGHT+IFozJUWcdMIObw5s9xg8xEz4tg7IbyDH7wOa6wzeGpHQkxs7qISL4cpwNIfC1Ma4jngJPccbA==
+X-Received: by 2002:a05:6512:b95:b0:511:47ed:d744 with SMTP id b21-20020a0565120b9500b0051147edd744mr3944622lfv.12.1707686671313;
+        Sun, 11 Feb 2024 13:24:31 -0800 (PST)
+X-Forwarded-Encrypted: i=1; AJvYcCXIX8aGnTvZf0NC9xOJoKWeEuzl/ob3qL31m+DMzAo595IopD9Njz6Y1qbWu1Pg/G2QiEiSdlTrVS0/oZUf5nyPcJ804WUl6uxPN1EySzadF3XAKBFE433FCoU0EX7ZfHZUSoazEHgac2RIY/K9GqZG2uZ6RRKkD+15MNyLXXW/54+iSyFCcYgD+1ZqNrVPNIYI4aCBV0pIfzkO2rWyKdgfui/BVvD+2tuqdxng8HA1Mw==
 Received: from [127.0.1.1] ([85.235.12.238])
-        by smtp.gmail.com with ESMTPSA id h8-20020a056512220800b005115edd71c9sm623684lfu.165.2024.02.11.13.24.29
+        by smtp.gmail.com with ESMTPSA id h8-20020a056512220800b005115edd71c9sm623684lfu.165.2024.02.11.13.24.30
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sun, 11 Feb 2024 13:24:29 -0800 (PST)
+        Sun, 11 Feb 2024 13:24:30 -0800 (PST)
 From: Linus Walleij <linus.walleij@linaro.org>
-Date: Sun, 11 Feb 2024 22:24:24 +0100
-Subject: [PATCH 2/4] ARM: dts: gemini: Fix wiligear compatible strings
+Date: Sun, 11 Feb 2024 22:24:25 +0100
+Subject: [PATCH 3/4] ARM: dts: gemini: Map reset keys to KEY_RESTART
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -80,7 +80,7 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-Message-Id: <20240211-gemini-dts-v1-2-6c09adeb4c2e@linaro.org>
+Message-Id: <20240211-gemini-dts-v1-3-6c09adeb4c2e@linaro.org>
 References: <20240211-gemini-dts-v1-0-6c09adeb4c2e@linaro.org>
 In-Reply-To: <20240211-gemini-dts-v1-0-6c09adeb4c2e@linaro.org>
 To: Hans Ulli Kroll <ulli.kroll@googlemail.com>, 
@@ -91,41 +91,115 @@ Cc: linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
  Linus Walleij <linus.walleij@linaro.org>
 X-Mailer: b4 0.12.4
 
-These board strings were deprecated in the bindings ages ago,
-switch the boards over to the real names.
+This maps the misc "reset", "setup" and "facory reset" keys to the
+only key a standard userspace is likely to understand: KEY_RESTART.
+On OpenWrt this will simply restart the system under controlled
+forms.
 
 Signed-off-by: Linus Walleij <linus.walleij@linaro.org>
 ---
- arch/arm/boot/dts/gemini/gemini-wbd111.dts | 2 +-
- arch/arm/boot/dts/gemini/gemini-wbd222.dts | 2 +-
- 2 files changed, 2 insertions(+), 2 deletions(-)
+ arch/arm/boot/dts/gemini/gemini-dlink-dir-685.dts | 4 ++--
+ arch/arm/boot/dts/gemini/gemini-dlink-dns-313.dts | 4 ++--
+ arch/arm/boot/dts/gemini/gemini-sl93512r.dts      | 2 +-
+ arch/arm/boot/dts/gemini/gemini-sq201.dts         | 2 +-
+ arch/arm/boot/dts/gemini/gemini-wbd111.dts        | 4 ++--
+ arch/arm/boot/dts/gemini/gemini-wbd222.dts        | 4 ++--
+ 6 files changed, 10 insertions(+), 10 deletions(-)
 
+diff --git a/arch/arm/boot/dts/gemini/gemini-dlink-dir-685.dts b/arch/arm/boot/dts/gemini/gemini-dlink-dir-685.dts
+index 30c931415680..b4dbcf8f168e 100644
+--- a/arch/arm/boot/dts/gemini/gemini-dlink-dir-685.dts
++++ b/arch/arm/boot/dts/gemini/gemini-dlink-dir-685.dts
+@@ -27,10 +27,10 @@ chosen {
+ 	gpio_keys {
+ 		compatible = "gpio-keys";
+ 
+-		button-esc {
++		button-reset {
+ 			debounce-interval = <100>;
+ 			wakeup-source;
+-			linux,code = <KEY_ESC>;
++			linux,code = <KEY_RESTART>;
+ 			label = "reset";
+ 			/* Collides with LPC_LAD[0], UART DCD, SSP 97RST */
+ 			gpios = <&gpio0 8 GPIO_ACTIVE_LOW>;
+diff --git a/arch/arm/boot/dts/gemini/gemini-dlink-dns-313.dts b/arch/arm/boot/dts/gemini/gemini-dlink-dns-313.dts
+index 138c47e1ac1b..8c54d3a5a721 100644
+--- a/arch/arm/boot/dts/gemini/gemini-dlink-dns-313.dts
++++ b/arch/arm/boot/dts/gemini/gemini-dlink-dns-313.dts
+@@ -33,10 +33,10 @@ chosen {
+ 	gpio_keys {
+ 		compatible = "gpio-keys";
+ 
+-		button-esc {
++		button-reset {
+ 			debounce-interval = <100>;
+ 			wakeup-source;
+-			linux,code = <KEY_ESC>;
++			linux,code = <KEY_RESTART>;
+ 			label = "reset";
+ 			gpios = <&gpio1 31 GPIO_ACTIVE_LOW>;
+ 		};
+diff --git a/arch/arm/boot/dts/gemini/gemini-sl93512r.dts b/arch/arm/boot/dts/gemini/gemini-sl93512r.dts
+index 91c19e8ebfe8..be06a3815e3a 100644
+--- a/arch/arm/boot/dts/gemini/gemini-sl93512r.dts
++++ b/arch/arm/boot/dts/gemini/gemini-sl93512r.dts
+@@ -43,7 +43,7 @@ button-wps {
+ 		button-setup {
+ 			debounce-interval = <50>;
+ 			wakeup-source;
+-			linux,code = <KEY_SETUP>;
++			linux,code = <KEY_RESTART>;
+ 			label = "factory reset";
+ 			/* Conflict with NAND flash */
+ 			gpios = <&gpio0 18 GPIO_ACTIVE_LOW>;
+diff --git a/arch/arm/boot/dts/gemini/gemini-sq201.dts b/arch/arm/boot/dts/gemini/gemini-sq201.dts
+index d0efd76695da..05ef8b80f104 100644
+--- a/arch/arm/boot/dts/gemini/gemini-sq201.dts
++++ b/arch/arm/boot/dts/gemini/gemini-sq201.dts
+@@ -30,7 +30,7 @@ gpio_keys {
+ 		button-setup {
+ 			debounce-interval = <100>;
+ 			wakeup-source;
+-			linux,code = <KEY_SETUP>;
++			linux,code = <KEY_RESTART>;
+ 			label = "factory reset";
+ 			/* Conflict with NAND flash */
+ 			gpios = <&gpio0 18 GPIO_ACTIVE_LOW>;
 diff --git a/arch/arm/boot/dts/gemini/gemini-wbd111.dts b/arch/arm/boot/dts/gemini/gemini-wbd111.dts
-index 3c88c59ab481..d4038930c70f 100644
+index d4038930c70f..6a0c89e0c918 100644
 --- a/arch/arm/boot/dts/gemini/gemini-wbd111.dts
 +++ b/arch/arm/boot/dts/gemini/gemini-wbd111.dts
-@@ -10,7 +10,7 @@
+@@ -28,10 +28,10 @@ chosen {
+ 	gpio_keys {
+ 		compatible = "gpio-keys";
  
- / {
- 	model = "Wiliboard WBD-111";
--	compatible = "wiliboard,wbd111", "cortina,gemini";
-+	compatible = "wiligear,wiliboard-wbd111", "cortina,gemini";
- 	#address-cells = <1>;
- 	#size-cells = <1>;
- 
+-		button-setup {
++		button-reset {
+ 			debounce-interval = <100>;
+ 			wakeup-source;
+-			linux,code = <KEY_SETUP>;
++			linux,code = <KEY_RESTART>;
+ 			label = "reset";
+ 			/* Conflict with ICE */
+ 			gpios = <&gpio0 5 GPIO_ACTIVE_LOW>;
 diff --git a/arch/arm/boot/dts/gemini/gemini-wbd222.dts b/arch/arm/boot/dts/gemini/gemini-wbd222.dts
-index ff72bbc4db3e..a503bcff5f4a 100644
+index a503bcff5f4a..d8b34ebad4b0 100644
 --- a/arch/arm/boot/dts/gemini/gemini-wbd222.dts
 +++ b/arch/arm/boot/dts/gemini/gemini-wbd222.dts
-@@ -10,7 +10,7 @@
+@@ -27,10 +27,10 @@ chosen {
+ 	gpio_keys {
+ 		compatible = "gpio-keys";
  
- / {
- 	model = "Wiliboard WBD-222";
--	compatible = "wiliboard,wbd222", "cortina,gemini";
-+	compatible = "wiligear,wiliboard-wbd222", "cortina,gemini";
- 	#address-cells = <1>;
- 	#size-cells = <1>;
- 
+-		button-setup {
++		button-reset {
+ 			debounce-interval = <100>;
+ 			wakeup-source;
+-			linux,code = <KEY_SETUP>;
++			linux,code = <KEY_RESTART>;
+ 			label = "reset";
+ 			/* Conflict with ICE */
+ 			gpios = <&gpio0 5 GPIO_ACTIVE_LOW>;
 
 -- 
 2.34.1
