@@ -1,75 +1,75 @@
-Return-Path: <devicetree+bounces-40482-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-40483-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id DAE09850971
-	for <lists+devicetree@lfdr.de>; Sun, 11 Feb 2024 14:43:04 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3221B850974
+	for <lists+devicetree@lfdr.de>; Sun, 11 Feb 2024 14:50:07 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 5B644B21AC8
-	for <lists+devicetree@lfdr.de>; Sun, 11 Feb 2024 13:43:02 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id A4A4C1F24138
+	for <lists+devicetree@lfdr.de>; Sun, 11 Feb 2024 13:50:06 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0D5C15B5AF;
-	Sun, 11 Feb 2024 13:42:55 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 45B475B5B0;
+	Sun, 11 Feb 2024 13:50:00 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="vGcM6h7P"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="nUOVKLfe"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wr1-f41.google.com (mail-wr1-f41.google.com [209.85.221.41])
+Received: from mail-wm1-f47.google.com (mail-wm1-f47.google.com [209.85.128.47])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B2A9F5A781
-	for <devicetree@vger.kernel.org>; Sun, 11 Feb 2024 13:42:52 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.41
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 454A62E851
+	for <devicetree@vger.kernel.org>; Sun, 11 Feb 2024 13:49:58 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.47
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1707658974; cv=none; b=Oe07Qisajvw3zwWvjKsYvrM0WpQsRIbdRh4DGfbgGCYFnyXegFtqyTEMf6xEvqHMP3uaBg15pmu4KInWeSDk0R2IAuHwEa/SW7hPi/qh02I0QdJrrlEeUCXaEHoFfIh38k+5ERWFHDsQzNObFTX9GwtBq7Ro/oL5gAhtWUrriqg=
+	t=1707659400; cv=none; b=iHIGETbXi4kjy3HXQi5i5qWhiqrjkYc9f19u2bwXyfyz51Q85UKskqLQsBFE0vafTPoAYLSpbfiJPCRcalumghJB251xc7oMw3ubcuWiNZT/HW8lm6XY3HXweqVymRWfBb6U6axjGlsxuHsAIWz0/djEaCDpu+JIaVnFPMoSkFs=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1707658974; c=relaxed/simple;
-	bh=4HICgIwcA4E03AfeL5kgkyGrXmMH3I2/2JdFXSNqDhI=;
-	h=Message-ID:Date:MIME-Version:Subject:To:References:From:
-	 In-Reply-To:Content-Type; b=UU29ohjPJHfz/LbV7d6VymaPbgPZWg2IgjHX1nYAljBqz6NDVIjj6Lkt8f0GGKZlQaPu9kDIuf/+Xj9eLdDJ4BoqUNrp27jzLddypoPqxvRC5nMWS9a0RZdlneFvZUmmm7S3uEGINtLi1CgpUvwOiZU2y/w1qt1cNAf+XRtez7s=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=vGcM6h7P; arc=none smtp.client-ip=209.85.221.41
+	s=arc-20240116; t=1707659400; c=relaxed/simple;
+	bh=XglN44Cj2ooZyrdTI5DyBdaZNjc7OZcxKklN1/CsZMA=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=jcFyDbqx6DyhvCiVnpbMpThInKusoba22ldQepzGlLkvFDdTYrNzZJlUTCfiE7QimF3tBVgZD3JiH193xzIBtEEyIzG9KO6sAZqOdEthw9Gh5LED3w2kTLxfzaZ6HtGM+47OdSE0iStrOI4ptGygHZ5AsXp235zzqe1UrBx/Mzw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=nUOVKLfe; arc=none smtp.client-ip=209.85.128.47
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-wr1-f41.google.com with SMTP id ffacd0b85a97d-33b13332ca7so1335508f8f.2
-        for <devicetree@vger.kernel.org>; Sun, 11 Feb 2024 05:42:52 -0800 (PST)
+Received: by mail-wm1-f47.google.com with SMTP id 5b1f17b1804b1-410d0f8811fso838425e9.1
+        for <devicetree@vger.kernel.org>; Sun, 11 Feb 2024 05:49:58 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1707658971; x=1708263771; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:to
-         :content-language:subject:user-agent:mime-version:date:message-id
+        d=linaro.org; s=google; t=1707659396; x=1708264196; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
+         :to:content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=vNl2TNJJT9F/ECiKzGFxOoeb4VRRB8d6Ro6PERp/HBw=;
-        b=vGcM6h7Pvy5WetFXJ54u/CoUEihh2Kh2d4HP3XNdNqXqwDKESNoyeMvezGVg8U5tiN
-         PuhILZsobyMuun/HcH9nLf6aDWeETUGqm26IF0H1W7KITJ4xfOW9zEeEu9/67QaWeOdD
-         hSI7u4XiL2+V1vrxGDhSYXZ410pRHYx3KqLZzYgMsnmWK9SGC5BNQEjhvrWnWp6ygB1F
-         SlgOH6R6WL30ZiiNVpGSJj3+gurj8y6HwzcvgwOe5C+Lt8r+A3JM9YE7TC8rYakHDZB5
-         X6WUI+7CoCTPksCMYIPLWk1kbv2l8Z+nnLOP7KwO0ixM3B69F6ZUJT7a0b8YP3WUNH8S
-         K/8w==
+        bh=0imYPIS38kKZEnWaPAclZV8nXR/Nfa1Ot0nhLSCtPdA=;
+        b=nUOVKLfeiFM/TaXCepvedZkeheJv/tdwkXqZKPADc/coFDlpVQhIrXeXUKlZuzmev7
+         T1QHlBqjZQXKUpp3yKvM5JxoBJk8M1YVGf9wIDVBiJ4tB10FLPi0/Zb9XUFM1t2RugFW
+         XbudAuq5Oyd2bZAzmyoksHTTNeEk7enxI/iQ5X60MyNy3P+ynbqkVwauKAzx6vOQw5Rc
+         406RBod64H6ierPKf3/RroAhjZhdHGajd4kgAO5hf5FPaqSJgTb8jl5UaxKii/fJR0gR
+         BdwK9CTKXeYI+Pp9az+5sT6FLObM5EPbCbmziRa3MTeTzTS3txt2JKV7K8lrjQrOvF09
+         X/KQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1707658971; x=1708263771;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:to
-         :content-language:subject:user-agent:mime-version:date:message-id
+        d=1e100.net; s=20230601; t=1707659396; x=1708264196;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
+         :to:content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=vNl2TNJJT9F/ECiKzGFxOoeb4VRRB8d6Ro6PERp/HBw=;
-        b=niVP4ZwYXlX9P7VN+8KdjOWQvGH3cawQ1VJo1CXeRpYC5nr5IcvJoPe15QkHxVWQQp
-         jQrWDLnzqq0KYSCaW1Eez8IsrbM1lJ46GwWTvX4YH/P1vE2/9rjhOIeHSOdIe5eubk2+
-         QJ85S+xacwpDHVRjTv5v3fs9yMQ6/7opmA6mqz2q0aQ50Isms4gkzX9OMyJz5OuSqACq
-         eaT64xuQOViKIL+XP7rJNqBBhPLsaPRGS7J6j3faSfCSmW2yFc5JXlbkIsk51wSLT7El
-         FbHITmYrOLzVSmQZjH0ZoQgvFXFmg602j2ENcKhkvA9EzO5pUXqGPhU0gp52o+FGLxZh
-         77Sg==
-X-Forwarded-Encrypted: i=1; AJvYcCVey/OEXrfSz/g2s6RcyTiUg7feOuj4clQbjrOMD3W1/9JRey0NHqm9oknAxyXZD2VBTe2eHL2NB8whOZbb5iFNxAJcN9v3+STVaA==
-X-Gm-Message-State: AOJu0Yx2E8oeyyasS2I8ly966ojDXkKiu/q4KhH7O8d5ic4xPy+AO/4y
-	qvCywZR6djoPqugHqz5j2tc0E78LNlNE3MGUzMBJPLLdBuH8kZFIw2DS6OAvUIc=
-X-Google-Smtp-Source: AGHT+IHZ/a5U6it5nOITDX6BVKRmPbh7X1afwcLmxuPyfMAqtYz3gHLXPT8ZIBqIsDnKSqR/+VJpqw==
-X-Received: by 2002:adf:d1ee:0:b0:33b:649a:1a12 with SMTP id g14-20020adfd1ee000000b0033b649a1a12mr4062726wrd.55.1707658970873;
-        Sun, 11 Feb 2024 05:42:50 -0800 (PST)
-X-Forwarded-Encrypted: i=1; AJvYcCXp7r9BIoB/cXoY9YZQSb5jOs+5TxAm1QbngscDcGXCd3VYAoUurb6YMWRyhbxrbC+veqwNRiX3IEg0teXQRmJ9O5IrqtjGpLUvMe8I+cUuorrKAZkkqnlg13ImHzbjuHOohFgNigDuO9fkZk8EvWtoo3P1N11DjI+1rYdZ4Gj9ZUBW9LPKbrTJr79MY6smBKmfbE6SZk6oyB90L0uI2Ktv1nidF67JEpbi8TlWPUqGlr7G7GptZ/QUbFATm8orhvg3XIoLlPTaV/w6aJsrQgVLTqBUKIpaKb//h0htOhNGPC7L2r0mSe/s2HLum4ocKd6XaX+J0cf0Bb2MdRBsOD+QkOyJMBZKywmTPP9uN1iKQfDhJfanR38FYnS8Px0YktK5Ylrv2Bg6nSFmtgz3kbUDLzEYWtIGgMfoq+nFwKj3DmiQF1x861bpAN2YrrwOeTUH+cABU5AvZQa3K5jrZ3SjNKISVDW2yboZQoENTvBi+nX+3Llv5C1Pq8zgzqAB6ZY1uXAf1+creAgbla8QmK6ZrGZsDfgjMm93zET2WO9qPOEKrvUa99tf72xRllcPS/nVnrqatXmwvu1hNrSp+bEWxTDWHs16gSQ0+XdN/Qv5qaiJPkF4hCJVR50VfKfIVKsHD1wEIMAb5ikmsFl5L40iBwovmB97fTpnfW5L8xz5HwPe+6fDbHTTT25c4ntM6VjOO++CcvDxHYsiiIb3rgh9aawVU0qSA00iyHTu9mcIfsniZ8zMNdbtcOc+4jR8HVU=
+        bh=0imYPIS38kKZEnWaPAclZV8nXR/Nfa1Ot0nhLSCtPdA=;
+        b=Q7dhdY/++rkNCtSxkIjBui1KYWsL3jFuDMABn02br93YEFlmjjiSvJ/VxRlXu2QL/a
+         38s1BwzUrRr5ZKvTUmKz3VISza2EwHTr7vDUGnVyd+bS62EwBC4Yk3XpHm36ku9qxBqH
+         QEggSru81yXpPf6FMppBhJbWXFxKT3tON9qY1lGuLkPta0w7FxxefU0ZzH+urBynMN6n
+         vQoqVAcIYWy094whFv6bfmhi/knrKLxaAxIih/ds26CX6Laun9n4F1r9srDlpnYLJQyv
+         Bxfj/iWkEMhgiJeJVGIMXCwVpFjOwaDSMXjIwOSDp0zLeRD2iEF3hrLX3ulJ1cxP7pZS
+         O8Cg==
+X-Forwarded-Encrypted: i=1; AJvYcCUeYFYtLmp6KHAtWz4uxm5Vqu/7+X878JPdybgiZttlfAKW5dNWU76HOVMnDG6P/KKwF/2iukApoomdkaH7tRBpobb+MKVu55mQRQ==
+X-Gm-Message-State: AOJu0YyLspt3QJubgmcD4esCobnt+XQZscEjt3v06PEwpy7WybOXb91/
+	zSom6+ig9ftxujJokt9ZvCY6BQxdg18Z3X8PCyytif0cBinsegKKdSIsr1nCAA0=
+X-Google-Smtp-Source: AGHT+IGgNjixJ7a6Dq+Uti7cy/aISaLp/DXGksERORSKXN5It7AmTARvmRuHh4IFg3mXA+PV5C6eBw==
+X-Received: by 2002:a05:600c:3591:b0:40f:de25:f9b4 with SMTP id p17-20020a05600c359100b0040fde25f9b4mr3645319wmq.26.1707659396538;
+        Sun, 11 Feb 2024 05:49:56 -0800 (PST)
+X-Forwarded-Encrypted: i=1; AJvYcCV1bIxMUI3Offr6cvI9+Zhw+m6iDDHdggy9CUAeFU/6yR3uXAm1kmUvscZQj8nqx2gxUJRN2/oljKm04feaTGJb+mk1k+MrIykVodeJLGuyI8jMG71pIFq7uJ1fnrZygNAAxuu6fJAcw1fW93TiO87MRIBQFBLsTmJkr8xk5WflVHZGpiWww96lwZuUrJb8Zav2q7BVtXNWOllcTmN+JEJP20InDMbf4TAfq/m046d1e3pk1TC+WaFbaowI1to2Rn9VuG+1j4xqnOlvBZAhoVw5Eonfrmju8QLeYcH6XijtPu4s1QXdP+dc8ejJpMmW1CA5p+yyvEC+ZBQeytR7CZHXMo0R3YaBOVAAR49idiZfqonHhjRF95kawV5SJ/8geY8KsJaDyJD8nOk45Xvx82ghInsDAphvHudcXtv+tb2HzVhKH3JCv8XUBNewrcrFkQ42Ndt8aubEUv7mOjE+grF306lZ75fOMJY1nCc+npslc/hFQWT2KS7Qgt1qpeiknmzAaKN3hzIah0hFVnPia6+WFRSYoBNevaJWMBPHDm/T3Ult7TC9nsb2c1wo3TzT/ACUH2SiB549apwC9EbP/OYT2GRueqIWtquQuJZWcNnO3SJuIBEzti5rkLKxHMF++sUZgRPAcdbQ6jR5Cr8i70cExFy9k0xztE0A0RaK2Nih/5RGJr7VzxS5XFcD05HfDmdGDQ==
 Received: from [192.168.1.20] ([178.197.223.6])
-        by smtp.gmail.com with ESMTPSA id dv5-20020a0560000d8500b0033b483d1abcsm4273462wrb.53.2024.02.11.05.42.49
+        by smtp.gmail.com with ESMTPSA id q18-20020a7bce92000000b00410c04e5455sm1315753wmj.20.2024.02.11.05.49.54
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sun, 11 Feb 2024 05:42:50 -0800 (PST)
-Message-ID: <b6c28118-a20c-46a5-b070-2306d4c0b2a1@linaro.org>
-Date: Sun, 11 Feb 2024 14:42:48 +0100
+        Sun, 11 Feb 2024 05:49:55 -0800 (PST)
+Message-ID: <be84e32e-e11d-47fe-ad56-da8b0dec5007@linaro.org>
+Date: Sun, 11 Feb 2024 14:49:53 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -77,24 +77,22 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v3 1/2] dt-bindings: phy: mediatek,mt7988-xfi-tphy: add
- new bindings
+Subject: Re: [PATCH 01/12] spi: dt-bindings: introduce the ``fifo-depth``
+ property
 Content-Language: en-US
-To: Daniel Golle <daniel@makrotopia.org>,
- Bc-bocun Chen <bc-bocun.chen@mediatek.com>,
- Steven Liu <steven.liu@mediatek.com>, John Crispin <john@phrozen.org>,
- Chunfeng Yun <chunfeng.yun@mediatek.com>, Vinod Koul <vkoul@kernel.org>,
- Kishon Vijay Abraham I <kishon@kernel.org>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Conor Dooley <conor+dt@kernel.org>, Matthias Brugger
- <matthias.bgg@gmail.com>,
- AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
- Qingfang Deng <dqfext@gmail.com>, SkyLake Huang
- <SkyLake.Huang@mediatek.com>, Philipp Zabel <p.zabel@pengutronix.de>,
- linux-arm-kernel@lists.infradead.org, linux-mediatek@lists.infradead.org,
- linux-phy@lists.infradead.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, netdev@vger.kernel.org
-References: <745f8b46f676e94c1a396df8c46aefe0e8b4771c.1707530671.git.daniel@makrotopia.org>
+To: Geert Uytterhoeven <geert@linux-m68k.org>,
+ Tudor Ambarus <tudor.ambarus@linaro.org>
+Cc: broonie@kernel.org, robh@kernel.org, andi.shyti@kernel.org,
+ semen.protsenko@linaro.org, alim.akhtar@samsung.com,
+ linux-spi@vger.kernel.org, linux-samsung-soc@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+ andre.draszik@linaro.org, peter.griffin@linaro.org, kernel-team@android.com,
+ willmcvicker@google.com, conor+dt@kernel.org, devicetree@vger.kernel.org,
+ arnd@arndb.de, Linux-Renesas <linux-renesas-soc@vger.kernel.org>,
+ Wolfram Sang <wsa+renesas@sang-engineering.com>
+References: <20240208135045.3728927-1-tudor.ambarus@linaro.org>
+ <20240208135045.3728927-2-tudor.ambarus@linaro.org>
+ <CAMuHMdU_Hx9PLmHf2Xm1KKTy_OF-TeCv7SzmA5CZWz+PLkbAGA@mail.gmail.com>
 From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  xsFNBFVDQq4BEAC6KeLOfFsAvFMBsrCrJ2bCalhPv5+KQF2PS2+iwZI8BpRZoV+Bd5kWvN79
@@ -140,33 +138,68 @@ Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  KQ06ztUMRrj8eVtpImjsWCd0bDWRaaR4vqhCHvAG9iWXZu4qh3ipie2Y0oSJygcZT7H3UZxq
  fyYKiqEmRuqsvv6dcbblD8ZLkz1EVZL6djImH5zc5x8qpVxlA0A0i23v5QvN00m6G9NFF0Le
  D2GYIS41Kv4Isx2dEFh+/Q==
-In-Reply-To: <745f8b46f676e94c1a396df8c46aefe0e8b4771c.1707530671.git.daniel@makrotopia.org>
+In-Reply-To: <CAMuHMdU_Hx9PLmHf2Xm1KKTy_OF-TeCv7SzmA5CZWz+PLkbAGA@mail.gmail.com>
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
 
-On 10/02/2024 03:10, Daniel Golle wrote:
-> Add bindings for the MediaTek XFI Ethernet SerDes T-PHY found in the
-> MediaTek MT7988 SoC which can operate at various interfaces modes:
+On 09/02/2024 18:13, Geert Uytterhoeven wrote:
+> Hi Tudor,
 > 
-> via USXGMII PCS:
->  * USXGMII
->  * 10GBase-R
->  * 5GBase-R
+> On Thu, Feb 8, 2024 at 2:51 PM Tudor Ambarus <tudor.ambarus@linaro.org> wrote:
+>> There are instances of the same IP that are configured by the integrator
+>> with different FIFO depths. Introduce the fifo-depth property to allow
+>> such nodes to specify their FIFO depth.
+>>
+>> We haven't seen SPI IPs with different FIFO depths for RX and TX, thus
+>> introduce a single property.
 > 
-> via LynxI SGMII PCS:
->  * 2500Base-X
->  * 1000Base-X
->  * Cisco SGMII (MAC side)
+> Ha...
 > 
-> Signed-off-by: Daniel Golle <daniel@makrotopia.org>
-> Reviewed-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
-> ---
-> v3: Add reference to MediaTek-internal "pextp" name, better explain reset as
->     well as 10GBase-R tuning work-around.
-> v2: unify filename and compatible as requested
+> Current documentation for the Clock-Synchronized Serial Interface with
+> FIFO (MSIOF) on e.g. R-Car Gen2 and later states:
 > 
+>     FIFO capacity: 32 bits × 64 stages for transmission and 32 bits ×
+> 256 stages for reception
+> 
+> Initially (many years ago), there was some doubt about the validity
+> of these values (older variants on SH supported 64/64), hence
+> drivers/spi/spi-sh-msiof.c still has
+> 
+>     .tx_fifo_size = 64,
+>     .rx_fifo_size = 64,
+> 
+> Probably we should test and revisit this...
+> 
+>> --- a/Documentation/devicetree/bindings/spi/spi-controller.yaml
+>> +++ b/Documentation/devicetree/bindings/spi/spi-controller.yaml
+>> @@ -69,6 +69,11 @@ properties:
+>>           Should be generally avoided and be replaced by
+>>           spi-cs-high + ACTIVE_HIGH.
+>>
+>> +  fifo-depth:
+>> +    $ref: /schemas/types.yaml#/definitions/uint32
+>> +    description:
+>> +      Size of the data FIFO in bytes.
+> 
+> I think it is prudent to consider the asymmetric case, too.
+> Whether that should be just two properties ("rx-fifo-depth" and
+> "tx-fifo-depth"), or also a third "fifo-depth", I defer to the DT
+> maintainers...
 
-Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Since most of the cases FIFO depth tx=rx, we could go with three
+properties and:
+
+allOf:
+ - not:
+     required:
+       - fifo-depth
+       - tx-fifo-depth
+ - not:
+     required:
+       - fifo-depth
+       - rx-fifo-depth
+
+and probably dependencies between rx and tx (see example-schema).
 
 Best regards,
 Krzysztof
