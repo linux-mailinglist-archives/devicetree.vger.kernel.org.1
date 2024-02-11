@@ -1,346 +1,138 @@
-Return-Path: <devicetree+bounces-40434-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-40435-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1494085081E
-	for <lists+devicetree@lfdr.de>; Sun, 11 Feb 2024 09:31:09 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 00BA985083A
+	for <lists+devicetree@lfdr.de>; Sun, 11 Feb 2024 09:52:40 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id C043B283CDC
-	for <lists+devicetree@lfdr.de>; Sun, 11 Feb 2024 08:31:07 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 40433B21FEC
+	for <lists+devicetree@lfdr.de>; Sun, 11 Feb 2024 08:52:38 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 88ED84CE02;
-	Sun, 11 Feb 2024 08:30:42 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A698659159;
+	Sun, 11 Feb 2024 08:52:33 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="iy3X3sVN"
+	dkim=pass (1024-bit key) header.d=chromium.org header.i=@chromium.org header.b="dATkH9CM"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-lf1-f42.google.com (mail-lf1-f42.google.com [209.85.167.42])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5811A4CDEB;
-	Sun, 11 Feb 2024 08:30:42 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D48E459148
+	for <devicetree@vger.kernel.org>; Sun, 11 Feb 2024 08:52:31 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.42
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1707640242; cv=none; b=JyhsAERkUsTdMwDr1SqwafE/CuwQ8iTw50D3XaJGgOeHt9JhQZwOZKgORNb7z9lHlKgdrte5MZA2k6F4rKcRbJtv4WeCJocPweVnFnhWPgG/2Q/qdAzqvqGew9+Kt2FdDuMEiX8tfyTTozpGdyteXolreMMjGwZ40dLKTc7N8Vg=
+	t=1707641553; cv=none; b=h7Sd7m4eBzQ8UJiSp4qDmIpZ4ZKwWRIGAy6MLli0YJYlf1O8qMt4LLiJDgaYYgTI8K3C+q8Ow1iN0v46n8sEFEDzpr6wOs/c5Kqwkxz0XA835SgTxfpGhvNWlWsFWfzcg+tYptuKswqeu6MEb8pXYgSysjcZmSqVYoQwIaNrW1w=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1707640242; c=relaxed/simple;
-	bh=hlTXI6UMycx+TmqfADYS2mcyoWnWOeTxWDUhNcbZ2Lc=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=NngDtV5WXF4Z8kRxX0i9VZe88cWhyk6q4NxZGEHouGTThAo7PTbyxTBHT2ebRy6aq0PKuRll4qAF2RtUN1LzJGswLFKj5dULpFgYQceR2YnMt9FuBnru8+0g3+6fZDtDIO7OQoLJaHXWmmXlmmkeW1bCp1BSSGB1PZM7DTZVsp8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=iy3X3sVN; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id AED75C433C7;
-	Sun, 11 Feb 2024 08:30:39 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1707640241;
-	bh=hlTXI6UMycx+TmqfADYS2mcyoWnWOeTxWDUhNcbZ2Lc=;
-	h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-	b=iy3X3sVNKk801bGIoz3l2BA6iHEWjb4xDKo26QHWe5a90yoV1XpdBGvOmyy9KaRse
-	 AKJJ7/Ruv0SaB9bxNAJcejGwJ5xvD8duOPopzP7ixW80lBMVIHmZW/HXQnsOmpw6PX
-	 OFWbRpMRvTjijmiJhZmvWoNj2CZOVrhFkueiJoHJam77m1PDMGSllT3CfZMK0yM/d6
-	 TqiLeZfZxLyBvapyMr2nvYHKv0jBVWGkyq9Ab/F+E7oKjyPqYYZhwc4Bsal/JfSWLB
-	 fiCwe5oGV30oHFNjWVyzPhdY/N1R44AKQ1IUnHud3N4gsH0Jxgeks1zjZrFIdsBJEA
-	 SjL6VpWwqOUEQ==
-From: Jisheng Zhang <jszhang@kernel.org>
-To: Rob Herring <robh+dt@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Chen-Yu Tsai <wens@csie.org>,
-	Jernej Skrabec <jernej.skrabec@gmail.com>,
-	Samuel Holland <samuel@sholland.org>,
-	Andre Przywara <andre.przywara@arm.com>
-Cc: devicetree@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	linux-sunxi@lists.linux.dev,
-	linux-kernel@vger.kernel.org
-Subject: [PATCH v3 2/2] arm64: dts: allwinner: h616: Add Sipeed Longan SoM 3H and Pi 3H board support
-Date: Sun, 11 Feb 2024 16:17:39 +0800
-Message-ID: <20240211081739.395-3-jszhang@kernel.org>
-X-Mailer: git-send-email 2.43.0
-In-Reply-To: <20240211081739.395-1-jszhang@kernel.org>
-References: <20240211081739.395-1-jszhang@kernel.org>
+	s=arc-20240116; t=1707641553; c=relaxed/simple;
+	bh=8artP/TApEldtwBPGtbWZ5bG6juyp+Nno5U5w89q+Bw=;
+	h=MIME-Version:In-Reply-To:References:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=hwHxhCjyOxXuGn0WmwGLjUP8LF77xZJjq4nDtXT4ZZ96eZ9/qEIZS8wQt2hwVirnc5eNL6J5p9bMm3OUQ9zfRXvVJaJr10ckdDCQ6ZUdUylXdfQVH+n4xDAWqf712+Ov1rAL8uwu4R3RXZu1w2n4gz/UR87P57QZbaQmrmM+k1U=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=chromium.org; spf=pass smtp.mailfrom=chromium.org; dkim=pass (1024-bit key) header.d=chromium.org header.i=@chromium.org header.b=dATkH9CM; arc=none smtp.client-ip=209.85.167.42
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=chromium.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=chromium.org
+Received: by mail-lf1-f42.google.com with SMTP id 2adb3069b0e04-51167e470f7so2819821e87.2
+        for <devicetree@vger.kernel.org>; Sun, 11 Feb 2024 00:52:31 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=chromium.org; s=google; t=1707641550; x=1708246350; darn=vger.kernel.org;
+        h=cc:to:subject:message-id:date:user-agent:from:references
+         :in-reply-to:mime-version:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=CLizHpyv/f+DbolOV42ApsVVXm0Dg0xdAa06w8qDvks=;
+        b=dATkH9CMfh1+IqH8rXZkSRL4Zi2we1WcG69zvAmuUtlHPw1bQgT8pboXvg2dewDwxp
+         bujEh2C5aIKpLkaZixEmw9Nud9ZHfp6NjV/BfOOBN2dCQlm717g7ebS9Xx1oOzoEEXRs
+         4yDi4IBAIfyXJt0/cGbMD/tHPggOAg0yPybEw=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1707641550; x=1708246350;
+        h=cc:to:subject:message-id:date:user-agent:from:references
+         :in-reply-to:mime-version:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=CLizHpyv/f+DbolOV42ApsVVXm0Dg0xdAa06w8qDvks=;
+        b=ihfwyBL0F3I5qEzcgUYM2ZiE6/MSzZQ881dXoNQ+j0hMDHmuXqmdJIdEfYekHGgD+A
+         D9khSzGwi/BI31R/ScJ9SGqh+iIZOGIuhOOm5xlOn1jC8uEGRGUkBmuW0H6X2bGtR1oU
+         5t+a4Ff3HczrqKAR0OyDuuDvTjZbNfndYAB0wa6sfXrpj96oGW3QuQN3Mk2VLIcXW4er
+         WzWZgOOy82ybzA5R2wD5WSFQlQukrXSvSTO/1V1hXlp3sOL4oFKzWAkh0NlC4a5a78SP
+         8ylKy3NhvUdLeQlUwmIPzdfREDAYHto/NZvctL6ZZuAMW+ijh2rEV4rA3fWj8I2FhJBP
+         1m1w==
+X-Gm-Message-State: AOJu0YwG04NlgDOSSgToU3+AAHnGicUWl7KQfSf3UWiPFXe8VJQTu19E
+	HcyyBREnytfZs0dYDWq/0tF+pdQ7s9Gor9EYK0Azp27FNV94JS5WNEZuERZaywO9gJEtnni60X9
+	l27a8eT3zhLNDw6GHEEmauibqKSdq0aqD5/gT
+X-Google-Smtp-Source: AGHT+IHu/AGsCNFvoS5rSkn2rcab3CL0eH8KJbrh21hRNc1eAtuTTEdGTiVu8+aUJynphjEZq0QVTIz4VjEp3nNrSpQ=
+X-Received: by 2002:a05:6512:21c7:b0:511:8cb2:2f80 with SMTP id
+ d7-20020a05651221c700b005118cb22f80mr267458lft.43.1707641549800; Sun, 11 Feb
+ 2024 00:52:29 -0800 (PST)
+Received: from 753933720722 named unknown by gmailapi.google.com with
+ HTTPREST; Sun, 11 Feb 2024 03:52:28 -0500
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+In-Reply-To: <CAA8EJpo1g9QKq1skibqSj9yc3mNSfkcts9oVf_vGjVjDzVZwiA@mail.gmail.com>
+References: <20240210070934.2549994-1-swboyd@chromium.org> <20240210070934.2549994-15-swboyd@chromium.org>
+ <CAA8EJpo1g9QKq1skibqSj9yc3mNSfkcts9oVf_vGjVjDzVZwiA@mail.gmail.com>
+From: Stephen Boyd <swboyd@chromium.org>
+User-Agent: alot/0.10
+Date: Sun, 11 Feb 2024 03:52:28 -0500
+Message-ID: <CAE-0n50xu83yYoXoFYEDrkuMw_exS=UGqsU+EwtTOGZyNW+k=Q@mail.gmail.com>
+Subject: Re: [PATCH 14/22] platform/chrome: cros_typec_switch: Add support for
+ signaling HPD to drm_bridge
+To: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+Cc: chrome-platform@lists.linux.dev, linux-kernel@vger.kernel.org, 
+	patches@lists.linux.dev, linux-arm-kernel@lists.infradead.org, 
+	devicetree@vger.kernel.org, linux-arm-msm@vger.kernel.org, 
+	Douglas Anderson <dianders@chromium.org>, Pin-yen Lin <treapking@chromium.org>, 
+	Prashant Malani <pmalani@chromium.org>, Benson Leung <bleung@chromium.org>, 
+	Tzung-Bi Shih <tzungbi@kernel.org>
+Content-Type: text/plain; charset="UTF-8"
 
-The Sipeed Longan SoM 3H is a system on module based on the Allwinner
-H618 SoC. The SoM features:
+Quoting Dmitry Baryshkov (2024-02-10 06:10:31)
+> On Sat, 10 Feb 2024 at 09:14, Stephen Boyd <swboyd@chromium.org> wrote:
+> > diff --git a/drivers/platform/chrome/cros_typec_switch.c b/drivers/platform/chrome/cros_typec_switch.c
+> > index 769de2889f2f..d8fb6662cf8d 100644
+> > --- a/drivers/platform/chrome/cros_typec_switch.c
+> > +++ b/drivers/platform/chrome/cros_typec_switch.c
+> > @@ -18,6 +19,15 @@
+> >  #include <linux/usb/typec_mux.h>
+> >  #include <linux/usb/typec_retimer.h>
+> >
+> > +#include <drm/drm_bridge.h>
+> > +#include <drm/drm_print.h>
+> > +
+> > +struct cros_typec_dp_bridge {
+> > +       struct cros_typec_switch_data *sdata;
+> > +       bool hpd_enabled;
+> > +       struct drm_bridge bridge;
+> > +};
+>
+> Is there any chance that you can use drm_dp_hpd_bridge_register() /
+> drm_aux_hpd_bridge_notify() instead of implementing another
+> drm_bridge?
+> If something is missing from the existing implementation we can
+> probably work that out.
 
-- Four ARM Cortex-A53 cores, Mali-G31 MP2 GPU
-- 2/4 GiB LPDDR4 DRAM SoMs
-- AXP313a PMIC
-- eMMC
+Yeah I think that can work. I had put the drm_bridge in this driver
+because I needed a 'struct device' per DP phy, but I think that problem
+goes away with an auxiliary device, so that is nicely solved.
 
-The Sipeed Longan PI 3H is a development board based on the above SoM.
-The board features:
-- Longan SoM 3H
-- Raspberry-Pi-1 compatible GPIO header
-- 2 USB 2.0 host port
-- 1 USB 2.0 type C port (power supply + OTG)
-- MicroSD slot
-- 1Gbps Ethernet port (via RTL8211 PHY)
-- HDMI port
-- WiFi/BT chip
+I'll have to add logic about typec ports to that auxiliary driver
+though, like mapping data-lanes and handling lane assignments. And then
+I'll move this code from the cros_typec_switch driver to the
+cros_ec_typec driver so it can be called outside of the typec mux set
+path. That's probably better because it's sort of bolted on to the
+cros_typec_switch driver. We'll need to know if the DP phy needs to
+handle orientation or if the EC is doing that somehow, so probably I'll
+need to add a DT property to the google,cros-ec-typec binding to
+indicate that orientation control is needed.
 
-Add the devicetree file describing the currently supported features,
-namely PMIC, LEDs, UART, SD card, eMMC, USB and Ethernet.
-
-Signed-off-by: Jisheng Zhang <jszhang@kernel.org>
----
- arch/arm64/boot/dts/allwinner/Makefile        |   1 +
- .../sun50i-h618-longan-module-3h.dtsi         |  75 +++++++++
- .../dts/allwinner/sun50i-h618-longanpi-3h.dts | 144 ++++++++++++++++++
- 3 files changed, 220 insertions(+)
- create mode 100644 arch/arm64/boot/dts/allwinner/sun50i-h618-longan-module-3h.dtsi
- create mode 100644 arch/arm64/boot/dts/allwinner/sun50i-h618-longanpi-3h.dts
-
-diff --git a/arch/arm64/boot/dts/allwinner/Makefile b/arch/arm64/boot/dts/allwinner/Makefile
-index 91d505b385de..4b9173a16efe 100644
---- a/arch/arm64/boot/dts/allwinner/Makefile
-+++ b/arch/arm64/boot/dts/allwinner/Makefile
-@@ -42,5 +42,6 @@ dtb-$(CONFIG_ARCH_SUNXI) += sun50i-h616-bigtreetech-cb1-manta.dtb
- dtb-$(CONFIG_ARCH_SUNXI) += sun50i-h616-bigtreetech-pi.dtb
- dtb-$(CONFIG_ARCH_SUNXI) += sun50i-h616-orangepi-zero2.dtb
- dtb-$(CONFIG_ARCH_SUNXI) += sun50i-h616-x96-mate.dtb
-+dtb-$(CONFIG_ARCH_SUNXI) += sun50i-h618-longanpi-3h.dtb
- dtb-$(CONFIG_ARCH_SUNXI) += sun50i-h618-orangepi-zero3.dtb
- dtb-$(CONFIG_ARCH_SUNXI) += sun50i-h618-transpeed-8k618-t.dtb
-diff --git a/arch/arm64/boot/dts/allwinner/sun50i-h618-longan-module-3h.dtsi b/arch/arm64/boot/dts/allwinner/sun50i-h618-longan-module-3h.dtsi
-new file mode 100644
-index 000000000000..8c1263a3939e
---- /dev/null
-+++ b/arch/arm64/boot/dts/allwinner/sun50i-h618-longan-module-3h.dtsi
-@@ -0,0 +1,75 @@
-+// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
-+/*
-+ * Copyright (C) Jisheng Zhang <jszhang@kernel.org>
-+ */
-+
-+#include "sun50i-h616.dtsi"
-+
-+&mmc2 {
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&mmc2_pins>;
-+	vmmc-supply = <&reg_dldo1>;
-+	vqmmc-supply = <&reg_aldo1>;
-+	bus-width = <8>;
-+	non-removable;
-+	cap-mmc-hw-reset;
-+	mmc-ddr-1_8v;
-+	mmc-hs200-1_8v;
-+	status = "okay";
-+};
-+
-+&r_i2c {
-+	status = "okay";
-+
-+	axp313: pmic@36 {
-+		compatible = "x-powers,axp313a";
-+		reg = <0x36>;
-+		#interrupt-cells = <1>;
-+		interrupt-controller;
-+
-+		regulators {
-+			reg_aldo1: aldo1 {
-+				regulator-always-on;
-+				regulator-min-microvolt = <1800000>;
-+				regulator-max-microvolt = <1800000>;
-+				regulator-name = "vcc-1v8-pll";
-+			};
-+
-+			reg_dldo1: dldo1 {
-+				regulator-always-on;
-+				regulator-min-microvolt = <3300000>;
-+				regulator-max-microvolt = <3300000>;
-+				regulator-name = "vcc-3v3-io";
-+			};
-+
-+			reg_dcdc1: dcdc1 {
-+				regulator-always-on;
-+				regulator-min-microvolt = <810000>;
-+				regulator-max-microvolt = <990000>;
-+				regulator-name = "vdd-gpu-sys";
-+			};
-+
-+			reg_dcdc2: dcdc2 {
-+				regulator-always-on;
-+				regulator-min-microvolt = <810000>;
-+				regulator-max-microvolt = <1100000>;
-+				regulator-name = "vdd-cpu";
-+			};
-+
-+			reg_dcdc3: dcdc3 {
-+				regulator-always-on;
-+				regulator-min-microvolt = <1100000>;
-+				regulator-max-microvolt = <1100000>;
-+				regulator-name = "vdd-dram";
-+			};
-+		};
-+	};
-+};
-+
-+&pio {
-+	vcc-pc-supply = <&reg_dldo1>;
-+	vcc-pf-supply = <&reg_dldo1>;
-+	vcc-pg-supply = <&reg_aldo1>;
-+	vcc-ph-supply = <&reg_dldo1>;
-+	vcc-pi-supply = <&reg_dldo1>;
-+};
-diff --git a/arch/arm64/boot/dts/allwinner/sun50i-h618-longanpi-3h.dts b/arch/arm64/boot/dts/allwinner/sun50i-h618-longanpi-3h.dts
-new file mode 100644
-index 000000000000..18b29c6b867f
---- /dev/null
-+++ b/arch/arm64/boot/dts/allwinner/sun50i-h618-longanpi-3h.dts
-@@ -0,0 +1,144 @@
-+// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
-+/*
-+ * Copyright (C) Jisheng Zhang <jszhang@kernel.org>
-+ */
-+
-+/dts-v1/;
-+
-+#include "sun50i-h618-longan-module-3h.dtsi"
-+
-+#include <dt-bindings/gpio/gpio.h>
-+#include <dt-bindings/interrupt-controller/arm-gic.h>
-+#include <dt-bindings/leds/common.h>
-+
-+/ {
-+	model = "Sipeed Longan Pi 3H";
-+	compatible = "sipeed,longan-pi-3h", "sipeed,longan-module-3h", "allwinner,sun50i-h618";
-+
-+	aliases {
-+		ethernet0 = &emac0;
-+		serial0 = &uart0;
-+	};
-+
-+	chosen {
-+		stdout-path = "serial0:115200n8";
-+	};
-+
-+	leds {
-+		compatible = "gpio-leds";
-+
-+		led-0 {
-+			color = <LED_COLOR_ID_ORANGE>;
-+			function = LED_FUNCTION_INDICATOR;
-+			function-enumerator = <0>;
-+			gpios = <&pio 6 2 GPIO_ACTIVE_LOW>; /* PG2 */
-+		};
-+
-+		led-1 {
-+			color = <LED_COLOR_ID_ORANGE>;
-+			function = LED_FUNCTION_INDICATOR;
-+			function-enumerator = <1>;
-+			gpios = <&pio 6 4 GPIO_ACTIVE_LOW>; /* PG4 */
-+		};
-+	};
-+
-+	reg_vcc5v: regulator-vcc5v {
-+		/* board wide 5V supply directly from the USB-C socket */
-+		compatible = "regulator-fixed";
-+		regulator-name = "vcc-5v";
-+		regulator-min-microvolt = <5000000>;
-+		regulator-max-microvolt = <5000000>;
-+		regulator-always-on;
-+	};
-+
-+	reg_vcc3v3: regulator-vcc3v3 {
-+		compatible = "regulator-fixed";
-+		regulator-name = "vcc-3v3";
-+		regulator-min-microvolt = <3300000>;
-+		regulator-max-microvolt = <3300000>;
-+		regulator-always-on;
-+		vin-supply = <&reg_vcc5v>;
-+	};
-+};
-+
-+&axp313 {
-+	vin1-supply = <&reg_vcc5v>;
-+	vin2-supply = <&reg_vcc5v>;
-+	vin3-supply = <&reg_vcc5v>;
-+};
-+
-+&ehci1 {
-+	status = "okay";
-+};
-+
-+&ohci1 {
-+	status = "okay";
-+};
-+
-+&ehci2 {
-+	status = "okay";
-+};
-+
-+&ohci2 {
-+	status = "okay";
-+};
-+
-+/* WiFi & BT combo module is connected to this Host */
-+&ehci3 {
-+	status = "okay";
-+};
-+
-+&ohci3 {
-+	status = "okay";
-+};
-+
-+&emac0 {
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&ext_rgmii_pins>;
-+	phy-mode = "rgmii";
-+	phy-handle = <&ext_rgmii_phy>;
-+	allwinner,rx-delay-ps = <3100>;
-+	allwinner,tx-delay-ps = <700>;
-+	phy-supply = <&reg_vcc3v3>;
-+	status = "okay";
-+};
-+
-+&mdio0 {
-+	ext_rgmii_phy: ethernet-phy@1 {
-+		compatible = "ethernet-phy-ieee802.3-c22";
-+		reg = <1>;
-+	};
-+};
-+
-+&mmc0 {
-+	bus-width = <4>;
-+	cd-gpios = <&pio 5 6 GPIO_ACTIVE_HIGH>;	/* PF6 */
-+	vmmc-supply = <&reg_vcc3v3>;
-+	status = "okay";
-+};
-+
-+&uart0 {
-+	status = "okay";
-+};
-+
-+&usbotg {
-+	/*
-+	 * PHY0 pins are connected to a USB-C socket, but a role switch
-+	 * is not implemented: both CC pins are pulled to GND.
-+	 * The VBUS pins power the device, so a fixed peripheral mode
-+	 * is the best choice.
-+	 * The board can be powered via GPIOs, in this case port0 *can*
-+	 * act as a host (with a cable/adapter ignoring CC), as VBUS is
-+	 * then provided by the GPIOs. Any user of this setup would
-+	 * need to adjust the DT accordingly: dr_mode set to "host",
-+	 * enabling OHCI0 and EHCI0.
-+	 */
-+	dr_mode = "peripheral";
-+	status = "okay";
-+};
-+
-+&usbphy {
-+	usb1_vbus-supply = <&reg_vcc5v>;
-+	usb2_vbus-supply = <&reg_vcc5v>;
-+	status = "okay";
-+};
--- 
-2.43.0
-
+It looks like I should add a new auxiliary device, like
+'dp_typec_bridge', and have some other function like
+drm_dp_typec_bridge_register() for that. I can wrap the 'struct
+drm_aux_hpd_bridge_data' with a 'struct drm_aux_typec_bridge_data' and
+then the typec port information can live there. HPD can still be
+signaled with drm_aux_hpd_bridge_notify() but other functions can be
+used to set the active typec port, e.g.
+drm_aux_typec_bridge_set_active_port(), and then get orientation with
+typec_get_orientation() in the atomic_check().
 
