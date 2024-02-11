@@ -1,141 +1,312 @@
-Return-Path: <devicetree+bounces-40532-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-40534-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id ADB17850B00
-	for <lists+devicetree@lfdr.de>; Sun, 11 Feb 2024 20:04:29 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 1D8B2850B3B
+	for <lists+devicetree@lfdr.de>; Sun, 11 Feb 2024 20:30:27 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 693B1282F91
-	for <lists+devicetree@lfdr.de>; Sun, 11 Feb 2024 19:04:28 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id C777F28141E
+	for <lists+devicetree@lfdr.de>; Sun, 11 Feb 2024 19:30:25 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8D1BA5EE6D;
-	Sun, 11 Feb 2024 19:03:48 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 121A75D90B;
+	Sun, 11 Feb 2024 19:30:22 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="cIRojGTl"
+	dkim=pass (1024-bit key) header.d=yandex.com header.i=@yandex.com header.b="P1FBs1Xb"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ej1-f44.google.com (mail-ej1-f44.google.com [209.85.218.44])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from forward502b.mail.yandex.net (forward502b.mail.yandex.net [178.154.239.146])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D06875E3A0;
-	Sun, 11 Feb 2024 19:03:46 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.44
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6EC375D478;
+	Sun, 11 Feb 2024 19:30:17 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=178.154.239.146
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1707678228; cv=none; b=N3eFln3mRdXWj+iw2yn3qKIn7UnRPYSFeTCfaFRgYR4ULcgj8NDQY6k7GZV+QPUzHVZy4gL+T9cmHWxLwNULxi0KcTiLx4ZIC23UUUATa10dnAgNmZ5pooKISyqbDcHgXEno0+4WHbRTnKG3hVRTWZceJ0Dt2a7QTkEWvn28Lg8=
+	t=1707679822; cv=none; b=OprpBr+HnnY5KBz3E5wQFiCqV/G4CsXWnd3vm2mg0RH6aXO3V5mkq3Vk6+0opf0SuPgX0WFcrqbDm2FdkYJh0YrIqxxC0JczPMdKeXIYPtwcfhDWkzMsXrwIbarrG9yjXTgWZVn0hupwmbxiAUWgNbsqyDprYqdkFEgtvb1zvEA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1707678228; c=relaxed/simple;
-	bh=R8nbQPilcuK/zTa/Qd5mtxOQqvhrM5GRqlCnYSJHc+A=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=uT2Z288QwttQquDb8jt5Y8qarFGNdREWhCcx6vJA+vUwyd4Zhnh6Dgqao+HaLClKBClHAUzJr3kL3v6ywCNF82AIqrKEiARZyXFSMYvCaiTF20ThyYYZfelIqYWe8GXGMMWEVCv5hllEWQ0jDoRlQB3gGCK/qAnCYZZfR58eVK4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=cIRojGTl; arc=none smtp.client-ip=209.85.218.44
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-ej1-f44.google.com with SMTP id a640c23a62f3a-a293f2280c7so352520966b.1;
-        Sun, 11 Feb 2024 11:03:46 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1707678225; x=1708283025; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=4X9gXtJ2jH9YgV610FJCPLMZwxMN7PK1ETxRA0Am1hs=;
-        b=cIRojGTlU6To90/T0kqNYQjmXXNXtjL8a+nZB4UHzfYKgEF3duf0ydJbfv0Nu2sNqc
-         X3R19QEq6EKHpWxiF8gAY2jQSeqGREQTLWWBiWVz0HyYMFb3MCDzkYvheNBhc1+EUZMA
-         ESP25u97V/1/NQhI3Ea4B4WeLf71uF6xz+yngJS8byhY9Nh5i9o4D0k07fV2o6MQBRrf
-         1m4xoqRIiU/iQk1W+EyajKeZHY6SxWZ9KUWQS83M+ESGCBczN4em9mJtrNK8F1aAYc+4
-         L/i1Yz5Q1X+lpmRJMRoNPaUjcWVGq0KJDtyOsKhrEaEXuzeEefsDJtfSrFEKWHNRbeZZ
-         MQTg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1707678225; x=1708283025;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=4X9gXtJ2jH9YgV610FJCPLMZwxMN7PK1ETxRA0Am1hs=;
-        b=aBYgRU4pW/aiy2lGRrs3EVXrriqZofrEiEJt7DCYfVSoCoXGeCypg875cD5XrH/u1F
-         Woh0tOpYaSIpqu304otKVYR8Q3hHQo+m9ml0fLtWSENIaAQ+S91IiZx22JxWGp5gTz10
-         itJFcqiasXiTUgx+TlWjeiLoBvil7wXF7Wk4jz45mdO4s+K7xwpfqSF9fRb6af2CI03O
-         SoSGhEP5f0IhcBoBUmJfmypeKJzEDThEFeRfgEs9cUzRlulYH0kQtZ09H4QDDezcN2uU
-         wk50NnJLK3b3oS7MsaocOXYs7mgobXgRZ/QKuxRjy4Vd7ea/AQKAgXTtHs3X2kyYbQaU
-         J12A==
-X-Gm-Message-State: AOJu0Yw/3p57dCc/0GGnyPb2Kmz4BvR5HcTp6G9mRZHWplddudsjFd8+
-	7NGSVjWi69kxvlxFx25LXla9Oxfg2IW4xCdnbf1Qc4Myy9VbSUrU
-X-Google-Smtp-Source: AGHT+IEPGO27Q2F8ELCDw/h+m7Siyc4BpmpJdA/nJa7DZ7pmsIXSCHxT4i7w6iNqHAhI6ZTIOPkhQg==
-X-Received: by 2002:a17:906:3596:b0:a3b:acdb:4922 with SMTP id o22-20020a170906359600b00a3bacdb4922mr3451279ejb.8.1707678224766;
-        Sun, 11 Feb 2024 11:03:44 -0800 (PST)
-X-Forwarded-Encrypted: i=1; AJvYcCVqqngmGLbiOIGazXprKf+BgTCIh2Ak/6mUEwc2g7kDFfShRBGwlquhYhyBpik6jjhNUJJPBAxke8mnNmTg+PlaArkAShRxOqARChCITho8kM3r8Aml8yq+uAwqIwAwsbiz9mN7nIVQXf5xtwA1XmKcBCHtXWlsK0kvbcvyA0x8/jj+CUPMOC1AZJNHwDMty8FHdqJ+x7U12yY/TIsToOI3C2z+nRR9MZO1Wt36yrPZtrwYPpQwp7ndXkRQqHRSmUCu1dty6KXXBVg5KKTrL7k64x02mFW9xp5DvM9mAnOaJzYGx9f7dgMOAf3Ux8OIeeCArBpLnpH7103xJCeCU+kOlk34qA9BFOjdpk+ywmvU0Pl9WTkBqexSkKhKPxtAREJRDRRx+HNXe9aApt2GpSl+Vekz1rLYG3b60Jx+SKRIHFpqoMC7Au+YnaGPiBh/nT8vwFsoDSElGcBdDm7F+8qkcW59tZeSmVAukj4P3odlQ6whspxLQCDU1a6+X2gfl3BwoX8rG+SZyjufSFRBjylnzHxmDw76Ylz/epwfCtqXQwEFjIOrx48wNTbFvRi61HwjAXftjrOlgwzZNyoKdSd6p5Ho/yZb6GGwC0qyGzY=
-Received: from localhost.localdomain ([2a02:8109:aa27:2d00::2d2b])
-        by smtp.gmail.com with ESMTPSA id ps7-20020a170906bf4700b00a3c5fa1052csm1207400ejb.138.2024.02.11.11.03.43
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sun, 11 Feb 2024 11:03:44 -0800 (PST)
-From: Mehdi Djait <mehdi.djait.k@gmail.com>
-To: mchehab@kernel.org,
-	heiko@sntech.de,
-	hverkuil-cisco@xs4all.nl,
-	krzysztof.kozlowski+dt@linaro.org,
-	robh+dt@kernel.org,
-	conor+dt@kernel.org
-Cc: linux-media@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	thomas.petazzoni@bootlin.com,
-	alexandre.belloni@bootlin.com,
-	maxime.chevallier@bootlin.com,
-	paul.kocialkowski@bootlin.com,
-	michael.riesch@wolfvision.net,
-	laurent.pinchart@ideasonboard.com,
-	Mehdi Djait <mehdi.djait.k@gmail.com>,
-	Mehdi Djait <mehdi.djait@bootlin.com>
-Subject: [RESEND Patch v13 3/3] arm64: dts: rockchip: Add the px30 camera interface
-Date: Sun, 11 Feb 2024 20:03:32 +0100
-Message-ID: <d404cf1fe7055b6fad43cbb1df4c679057d76828.1707677804.git.mehdi.djait.k@gmail.com>
-X-Mailer: git-send-email 2.43.0
-In-Reply-To: <cover.1707677804.git.mehdi.djait.k@gmail.com>
-References: <cover.1707677804.git.mehdi.djait.k@gmail.com>
+	s=arc-20240116; t=1707679822; c=relaxed/simple;
+	bh=+mjYQE0yG8iZMBkj/7ns1zMoGo4xZc3D3i9bd3juDNI=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=c0eZvrQiFFII7MqVyj4Ik3MvTtJhWMzJXs5yWydJXzGqYsM85P8baSY6fDrXHkvxPS1Z0otADhM/iSUV0Ost4okBRyeMbp6n1ZhAzpx1wGhVN6sV7TBKMrNtNMRGDXwoAXQLJTocgjIJcHFTBw5iO4u89A7KxtzyLXWeXqrVkLk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=yandex.com; spf=pass smtp.mailfrom=yandex.com; dkim=pass (1024-bit key) header.d=yandex.com header.i=@yandex.com header.b=P1FBs1Xb; arc=none smtp.client-ip=178.154.239.146
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=yandex.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=yandex.com
+Received: from mail-nwsmtp-smtp-production-main-17.iva.yp-c.yandex.net (mail-nwsmtp-smtp-production-main-17.iva.yp-c.yandex.net [IPv6:2a02:6b8:c0c:c19a:0:640:943d:0])
+	by forward502b.mail.yandex.net (Yandex) with ESMTPS id EF3C75E8F2;
+	Sun, 11 Feb 2024 22:24:40 +0300 (MSK)
+Received: by mail-nwsmtp-smtp-production-main-17.iva.yp-c.yandex.net (smtp/Yandex) with ESMTPSA id bOrWZP1OjeA0-GQutgD4Z;
+	Sun, 11 Feb 2024 22:24:39 +0300
+X-Yandex-Fwd: 1
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=yandex.com; s=mail;
+	t=1707679480; bh=qH7n8BBTtmjWH7BLroA9TvV0Az20WPNeUUvkeOfGcV0=;
+	h=From:In-Reply-To:Cc:Date:References:To:Subject:Message-ID;
+	b=P1FBs1XbpeY1Bpk1pS/bN3EJymfSMyLbtsi3OWdQ7So791M8jPHgL2dsjWgUacxNK
+	 X2LOI/THK3Bb/J9aVpT0jgZ/jYX7Tk9wS8TJ4ZwwS9wCeLoWfQ2aiwBnCn/qETGnkI
+	 tD8gk/7tU5kpeNx6IvBJ5d8uYTSmDwEL5nyH99j0=
+Authentication-Results: mail-nwsmtp-smtp-production-main-17.iva.yp-c.yandex.net; dkim=pass header.i=@yandex.com
+Message-ID: <6bc2f825-7e50-488d-a373-a211ac2cc8e1@yandex.com>
+Date: Sun, 11 Feb 2024 20:24:36 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v1 06/10] arm64: dts: rockchip: add USBDP phys on rk3588
+To: Sebastian Reichel <sebastian.reichel@collabora.com>,
+ Heiko Stuebner <heiko@sntech.de>, Vinod Koul <vkoul@kernel.org>,
+ Kishon Vijay Abraham I <kishon@kernel.org>,
+ linux-rockchip@lists.infradead.org, linux-phy@lists.infradead.org
+Cc: Rob Herring <robh+dt@kernel.org>,
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+ Conor Dooley <conor+dt@kernel.org>, Frank Wang <frank.wang@rock-chips.com>,
+ Kever Yang <kever.yang@rock-chips.com>, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, kernel@collabora.com
+References: <20240209181831.104687-1-sebastian.reichel@collabora.com>
+ <20240209181831.104687-7-sebastian.reichel@collabora.com>
+Content-Language: en-US
+From: Johan Jonker <jbx6244@yandex.com>
+In-Reply-To: <20240209181831.104687-7-sebastian.reichel@collabora.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
-From: Mehdi Djait <mehdi.djait@bootlin.com>
 
-The px30 has a video capture component, supporting the BT.656
-parallel interface. Add a DT description for it.
 
-Reviewed-by: Michael Riesch <michael.riesch@wolfvision.net>
-Reviewed-by: Paul Kocialkowski <paul.kocialkowski@bootlin.com>
-Signed-off-by: Mehdi Djait <mehdi.djait@bootlin.com>
-Signed-off-by: Mehdi Djait <mehdi.djait.k@gmail.com>
----
- arch/arm64/boot/dts/rockchip/px30.dtsi | 12 ++++++++++++
- 1 file changed, 12 insertions(+)
+On 2/9/24 19:17, Sebastian Reichel wrote:
+> Add both USB3-Displayport PHYs to RK3588 SoC DT.
+> 
+> Signed-off-by: Sebastian Reichel <sebastian.reichel@collabora.com>
+> ---
+>  arch/arm64/boot/dts/rockchip/rk3588.dtsi  | 62 +++++++++++++++++++
+>  arch/arm64/boot/dts/rockchip/rk3588s.dtsi | 73 +++++++++++++++++++++++
+>  2 files changed, 135 insertions(+)
+> 
+> diff --git a/arch/arm64/boot/dts/rockchip/rk3588.dtsi b/arch/arm64/boot/dts/rockchip/rk3588.dtsi
+> index 5519c1430cb7..c26288ec75ce 100644
+> --- a/arch/arm64/boot/dts/rockchip/rk3588.dtsi
+> +++ b/arch/arm64/boot/dts/rockchip/rk3588.dtsi
+> @@ -17,6 +17,37 @@ pipe_phy1_grf: syscon@fd5c0000 {
+>  		reg = <0x0 0xfd5c0000 0x0 0x100>;
+>  	};
+>  
+> +	usbdpphy1_grf: syscon@fd5cc000 {
+> +		compatible = "rockchip,rk3588-usbdpphy-grf", "syscon";
+> +		reg = <0x0 0xfd5cc000 0x0 0x4000>;
+> +	};
+> +
+> +	usb2phy1_grf: syscon@fd5d4000 {
 
-diff --git a/arch/arm64/boot/dts/rockchip/px30.dtsi b/arch/arm64/boot/dts/rockchip/px30.dtsi
-index d0905515399b..a8eb5371235b 100644
---- a/arch/arm64/boot/dts/rockchip/px30.dtsi
-+++ b/arch/arm64/boot/dts/rockchip/px30.dtsi
-@@ -1280,6 +1280,18 @@ isp_mmu: iommu@ff4a8000 {
- 		#iommu-cells = <0>;
- 	};
- 
-+	cif: video-capture@ff490000 {
-+		compatible = "rockchip,px30-vip";
-+		reg = <0x0 0xff490000 0x0 0x200>;
-+		interrupts = <GIC_SPI 69 IRQ_TYPE_LEVEL_HIGH>;
-+		clocks = <&cru ACLK_CIF>, <&cru HCLK_CIF>, <&cru PCLK_CIF>;
-+		clock-names = "aclk", "hclk", "pclk";
-+		power-domains = <&power PX30_PD_VI>;
-+		resets = <&cru SRST_CIF_A>, <&cru SRST_CIF_H>, <&cru SRST_CIF_PCLKIN>;
-+		reset-names = "axi", "ahb", "pclkin";
-+		status = "disabled";
-+	};
-+
- 	qos_gmac: qos@ff518000 {
- 		compatible = "rockchip,px30-qos", "syscon";
- 		reg = <0x0 0xff518000 0x0 0x20>;
--- 
-2.43.0
+> +		compatible = "rockchip,rk3588-usb2phy-grf", "syscon",
+> +			     "simple-mfd";
 
+Use same line like usb2phy2_grf.
+
+> +		reg = <0x0 0xfd5d4000 0x0 0x4000>;
+> +		#address-cells = <1>;
+> +		#size-cells = <1>;
+> +
+
+> +		u2phy1: usb2-phy@4000 {
+
+        "usb2phy@[0-9a-f]+$":
+
+> +			compatible = "rockchip,rk3588-usb2phy";
+> +			reg = <0x4000 0x10>;
+> +			interrupts = <GIC_SPI 394 IRQ_TYPE_LEVEL_HIGH 0>;
+
+> +			resets = <&cru SRST_OTGPHY_U3_1>, <&cru SRST_P_USB2PHY_U3_1_GRF0>;
+> +			reset-names = "phy", "apb";
+> +			clocks = <&cru CLK_USB2PHY_HDPTXRXPHY_REF>;
+> +			clock-names = "phyclk";
+> +			clock-output-names = "usb480m_phy1";
+> +			#clock-cells = <0>;
+
+Align with the (new) documentation
+about property ordering.
+
+> +			status = "disabled";
+> +
+> +			u2phy1_otg: otg-port {
+> +				#phy-cells = <0>;
+> +				status = "disabled";
+> +			};
+> +		};
+> +	};
+> +
+>  	i2s8_8ch: i2s@fddc8000 {
+>  		compatible = "rockchip,rk3588-i2s-tdm";
+>  		reg = <0x0 0xfddc8000 0x0 0x1000>;
+> @@ -310,6 +341,37 @@ sata-port@0 {
+>  		};
+>  	};
+>  
+> +	usbdp_phy1: phy@fed90000 {
+> +		compatible = "rockchip,rk3588-usbdp-phy";
+> +		reg = <0x0 0xfed90000 0x0 0x10000>;
+
+> +		rockchip,u2phy-grf = <&usb2phy1_grf>;
+> +		rockchip,usb-grf = <&usb_grf>;
+> +		rockchip,usbdpphy-grf = <&usbdpphy1_grf>;
+> +		rockchip,vo-grf = <&vo0_grf>;
+> +		clocks = <&cru CLK_USBDPPHY_MIPIDCPPHY_REF>,
+> +			 <&cru CLK_USBDP_PHY1_IMMORTAL>,
+> +			 <&cru PCLK_USBDPPHY1>,
+> +			 <&u2phy1>;
+> +		clock-names = "refclk", "immortal", "pclk", "utmi";
+> +		resets = <&cru SRST_USBDP_COMBO_PHY1_INIT>,
+> +			 <&cru SRST_USBDP_COMBO_PHY1_CMN>,
+> +			 <&cru SRST_USBDP_COMBO_PHY1_LANE>,
+> +			 <&cru SRST_USBDP_COMBO_PHY1_PCS>,
+> +			 <&cru SRST_P_USBDPPHY1>;
+> +		reset-names = "init", "cmn", "lane", "pcs_apb", "pma_apb";
+
+Align with the (new) documentation
+about property ordering.
+
+> +		status = "disabled";
+> +
+> +		usbdp_phy1_dp: dp-port {
+> +			#phy-cells = <0>;
+> +			status = "disabled";
+> +		};
+> +
+> +		usbdp_phy1_u3: usb3-port {
+> +			#phy-cells = <0>;
+> +			status = "disabled";
+> +		};
+> +	};
+> +
+>  	combphy1_ps: phy@fee10000 {
+>  		compatible = "rockchip,rk3588-naneng-combphy";
+>  		reg = <0x0 0xfee10000 0x0 0x100>;
+> diff --git a/arch/arm64/boot/dts/rockchip/rk3588s.dtsi b/arch/arm64/boot/dts/rockchip/rk3588s.dtsi
+> index 36b1b7acfe6a..553e1883cfe4 100644
+> --- a/arch/arm64/boot/dts/rockchip/rk3588s.dtsi
+> +++ b/arch/arm64/boot/dts/rockchip/rk3588s.dtsi
+> @@ -536,6 +536,37 @@ pipe_phy2_grf: syscon@fd5c4000 {
+>  		reg = <0x0 0xfd5c4000 0x0 0x100>;
+>  	};
+>  
+> +	usbdpphy0_grf: syscon@fd5c8000 {
+> +		compatible = "rockchip,rk3588-usbdpphy-grf", "syscon";
+> +		reg = <0x0 0xfd5c8000 0x0 0x4000>;
+> +	};
+> +
+> +	usb2phy0_grf: syscon@fd5d0000 {
+
+> +		compatible = "rockchip,rk3588-usb2phy-grf", "syscon",
+> +			     "simple-mfd";
+
+Use same line like usb2phy2_grf.
+
+> +		reg = <0x0 0xfd5d0000 0x0 0x4000>;
+> +		#address-cells = <1>;
+> +		#size-cells = <1>;
+> +
+
+> +		u2phy0: usb2-phy@0 {
+
+From grf.yaml:
+
+        "usb2phy@[0-9a-f]+$":
+
+> +			compatible = "rockchip,rk3588-usb2phy";
+> +			reg = <0x0 0x10>;
+> +			interrupts = <GIC_SPI 393 IRQ_TYPE_LEVEL_HIGH 0>;
+
+> +			resets = <&cru SRST_OTGPHY_U3_0>, <&cru SRST_P_USB2PHY_U3_0_GRF0>;
+> +			reset-names = "phy", "apb";
+> +			clocks = <&cru CLK_USB2PHY_HDPTXRXPHY_REF>;
+> +			clock-names = "phyclk";
+> +			clock-output-names = "usb480m_phy0";
+> +			#clock-cells = <0>;
+
+Align with the (new) documentation
+about property ordering.
+
+> +			status = "disabled";
+> +
+> +			u2phy0_otg: otg-port {
+> +				#phy-cells = <0>;
+> +				status = "disabled";
+> +			};
+> +		};
+> +	};
+> +
+>  	usb2phy2_grf: syscon@fd5d8000 {
+>  		compatible = "rockchip,rk3588-usb2phy-grf", "syscon", "simple-mfd";
+
+Fix usb2phy2_grf as well.
+
+        "usb2phy@[0-9a-f]+$":
+
+>  		reg = <0x0 0xfd5d8000 0x0 0x4000>;
+> @@ -561,6 +592,17 @@ u2phy2_host: host-port {
+>  		};
+>  	};
+>  
+> +	vo0_grf: syscon@fd5a6000 {
+> +		compatible = "rockchip,rk3588-vo-grf", "syscon";
+> +		reg = <0x0 0xfd5a6000 0x0 0x2000>;
+> +		clocks = <&cru PCLK_VO0GRF>;
+> +	};
+> +
+> +	usb_grf: syscon@fd5ac000 {
+> +		compatible = "rockchip,rk3588-usb-grf", "syscon";
+> +		reg = <0x0 0xfd5ac000 0x0 0x4000>;
+> +	};
+> +
+>  	usb2phy3_grf: syscon@fd5dc000 {
+>  		compatible = "rockchip,rk3588-usb2phy-grf", "syscon", "simple-mfd";
+
+Fix usb2phy3_grf as well.
+
+        "usb2phy@[0-9a-f]+$":
+
+
+>  		reg = <0x0 0xfd5dc000 0x0 0x4000>;
+> @@ -2360,6 +2402,37 @@ dmac2: dma-controller@fed10000 {
+>  		#dma-cells = <1>;
+>  	};
+>  
+> +	usbdp_phy0: phy@fed80000 {
+> +		compatible = "rockchip,rk3588-usbdp-phy";
+> +		reg = <0x0 0xfed80000 0x0 0x10000>;
+
+> +		rockchip,u2phy-grf = <&usb2phy0_grf>;
+> +		rockchip,usb-grf = <&usb_grf>;
+> +		rockchip,usbdpphy-grf = <&usbdpphy0_grf>;
+> +		rockchip,vo-grf = <&vo0_grf>;
+> +		clocks = <&cru CLK_USBDPPHY_MIPIDCPPHY_REF>,
+> +			 <&cru CLK_USBDP_PHY0_IMMORTAL>,
+> +			 <&cru PCLK_USBDPPHY0>,
+> +			 <&u2phy0>;
+> +		clock-names = "refclk", "immortal", "pclk", "utmi";
+> +		resets = <&cru SRST_USBDP_COMBO_PHY0_INIT>,
+> +			 <&cru SRST_USBDP_COMBO_PHY0_CMN>,
+> +			 <&cru SRST_USBDP_COMBO_PHY0_LANE>,
+> +			 <&cru SRST_USBDP_COMBO_PHY0_PCS>,
+> +			 <&cru SRST_P_USBDPPHY0>;
+> +		reset-names = "init", "cmn", "lane", "pcs_apb", "pma_apb";
+
+Align with the (new) documentation
+about property ordering.
+
+> +		status = "disabled";
+> +
+> +		usbdp_phy0_dp: dp-port {
+> +			#phy-cells = <0>;
+> +			status = "disabled";
+> +		};
+> +
+> +		usbdp_phy0_u3: usb3-port {
+> +			#phy-cells = <0>;
+> +			status = "disabled";
+> +		};
+> +	};
+> +
+>  	combphy0_ps: phy@fee00000 {
+>  		compatible = "rockchip,rk3588-naneng-combphy";
+>  		reg = <0x0 0xfee00000 0x0 0x100>;
 
