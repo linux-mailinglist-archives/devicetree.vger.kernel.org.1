@@ -1,48 +1,49 @@
-Return-Path: <devicetree+bounces-40445-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-40446-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 30B7E850873
-	for <lists+devicetree@lfdr.de>; Sun, 11 Feb 2024 10:53:05 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 507CF850874
+	for <lists+devicetree@lfdr.de>; Sun, 11 Feb 2024 10:53:44 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id BE6631F21927
-	for <lists+devicetree@lfdr.de>; Sun, 11 Feb 2024 09:53:04 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 830F41C20A80
+	for <lists+devicetree@lfdr.de>; Sun, 11 Feb 2024 09:53:43 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1E94E59168;
-	Sun, 11 Feb 2024 09:53:01 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6104059171;
+	Sun, 11 Feb 2024 09:53:40 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=atomide.com header.i=@atomide.com header.b="iEmVN+6y"
+	dkim=pass (2048-bit key) header.d=atomide.com header.i=@atomide.com header.b="J9GCfR4z"
 X-Original-To: devicetree@vger.kernel.org
 Received: from mail5.25mail.st (mail5.25mail.st [74.50.62.9])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6584959141
-	for <devicetree@vger.kernel.org>; Sun, 11 Feb 2024 09:52:59 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C649059141
+	for <devicetree@vger.kernel.org>; Sun, 11 Feb 2024 09:53:38 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=74.50.62.9
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1707645181; cv=none; b=Sw2CmvwDLBLQ2N5Tjx/0NJ7K670z+UaJnuPDOf4gyiU3VtCmu/UKkXyq0/xBIXPq9IEjP/LZK+wX7idhgqJFlFh3GNTZaDt2P686uWvyanny1D4yNERd1IOWz9U0QNTo5n2fignmCu8jMkKPbPVKDNBZXpFPiQ9zSxuGqOK66D0=
+	t=1707645220; cv=none; b=qw2B4JG6sCq23ttSf+PtjhbMwkVxer+i1UIzJRELBR3Kor/2WqBGkI0qS+njE9LdzmqYsG8nHi1qGodamWU+GadzpRwX1SL8BcWkEq41eubAJFCzYn9TBt9Rg4TDRgGFUpQGdDI6tQjcxeHyhFk9J9JB0g8VVzvIR69mRpwWLPE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1707645181; c=relaxed/simple;
-	bh=2tmLXp+7aThXLcoyLP6d9CCh9eBdQKl2YmMBFlXEZss=;
-	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=byh6hgFzfGERP/yUSsO16hT+AJESHQiP7jX8h2cLxXL1pycNNCHSfu9cuESZT+43/hyyoPZr5SrqOsQGBkD7R2t5UvcddpaGZY5DnupuH3EwyRs+0VONZx9LE6y9kc3yAooCqGc0teARcuCTzLJwUZ7475ysvoB3K1GEhtP9uhE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=atomide.com; spf=fail smtp.mailfrom=atomide.com; dkim=pass (2048-bit key) header.d=atomide.com header.i=@atomide.com header.b=iEmVN+6y; arc=none smtp.client-ip=74.50.62.9
+	s=arc-20240116; t=1707645220; c=relaxed/simple;
+	bh=tP5AC41GiYDobaCkRgLI+2FBA4s/W4ZP0qFF3WFMI7A=;
+	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
+	 MIME-Version; b=e90EUvPZRWqkCGOoYLPMeAmMQwe3tDYKnHfg6/Cp1xhswrzL3p8FS6hAvLbzXSkH3AYGJxGqt8vkjEUz6RQboowbvdGfd4Ezh5j7+eIrFRud5Xo0MQVD5gG5cNBOIH1nlo0A55FX1CrcLAUP96wv0zAc/KV+W6/l3FHMld56Kes=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=atomide.com; spf=fail smtp.mailfrom=atomide.com; dkim=pass (2048-bit key) header.d=atomide.com header.i=@atomide.com header.b=J9GCfR4z; arc=none smtp.client-ip=74.50.62.9
 Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=atomide.com
 Authentication-Results: smtp.subspace.kernel.org; spf=fail smtp.mailfrom=atomide.com
 Received: from localhost (91-158-86-216.elisa-laajakaista.fi [91.158.86.216])
-	by mail5.25mail.st (Postfix) with ESMTPSA id E340D6049B;
-	Sun, 11 Feb 2024 09:52:10 +0000 (UTC)
+	by mail5.25mail.st (Postfix) with ESMTPSA id D872960531;
+	Sun, 11 Feb 2024 09:52:56 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple; d=atomide.com;
-	s=25mailst; t=1707645172;
-	bh=2tmLXp+7aThXLcoyLP6d9CCh9eBdQKl2YmMBFlXEZss=;
-	h=From:To:Cc:Subject:Date:From;
-	b=iEmVN+6yiec3LzZrePcBZPFMwwbM1NKh5kwy499Ah5Kr3/ZxdB+hDxBvP9fDl036N
-	 GkarL7eaFYMNHfvkPnJYpXY8hj020vn4GosEvk16ZmPHQIz22WWjwIh/7CZSufcN8i
-	 Skh9uI/Sk65GYk27XufuvtGw5gOjCLIgiUwd/Lcdw1YBDz+QQ+nuUQjCFah86omZNo
-	 US9FkLq2Es+Fd84dEWPSnkLUs1JtzvxyS0Fx3thkHrafeOlcZXqHAdSfh5/LA68zRf
-	 kYkNvpnUv9VG6kd9oNww2cWV2YagnjB2gVYLfTldtW26WOIpvLQTBk6YTxWIxI+QZq
-	 bFsobr552at3A==
+	s=25mailst; t=1707645218;
+	bh=tP5AC41GiYDobaCkRgLI+2FBA4s/W4ZP0qFF3WFMI7A=;
+	h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
+	b=J9GCfR4zsfq12L0vvMRYRIq4jUxidU2XbajF5KbMIdLal5xpBD9RcDoy6Ae8KeLIQ
+	 bQa8qGCDRpHwOesH0XUlWc0H8999MmQ1brJaFaBKSxSVgdZpOnGHX3BWtn6dwEbrmb
+	 Xg2pAXsXSjW2lPfWdm/3iNtuTbYmbGsvhm43nTTV++mVIKq2EM4Fl+/dsPxD3Jvn0w
+	 vpoeRYX4D4xDVH1yFL8IXsZnXPWDksHNQHYrE8Sy463J7C4E+vZuXV5YNDhZzlTWfx
+	 ZbCsv010ytOfSLtckjfyhWCIDmMu4BjvSciYrWc8CgzGoG7ewLPIfFVG3qTDlkoQdI
+	 L5azwRnzaL5Lw==
 From: Tony Lindgren <tony@atomide.com>
 To: Andrzej Hajda <andrzej.hajda@intel.com>,
 	Neil Armstrong <neil.armstrong@linaro.org>,
@@ -50,24 +51,26 @@ To: Andrzej Hajda <andrzej.hajda@intel.com>,
 	Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
 	Jonas Karlman <jonas@kwiboo.se>,
 	Jernej Skrabec <jernej.skrabec@gmail.com>,
+	David Airlie <airlied@gmail.com>,
+	Daniel Vetter <daniel@ffwll.ch>,
 	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
 	Maxime Ripard <mripard@kernel.org>,
 	Thomas Zimmermann <tzimmermann@suse.de>,
-	David Airlie <airlied@gmail.com>,
-	Daniel Vetter <daniel@ffwll.ch>,
 	Rob Herring <robh+dt@kernel.org>,
 	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
 	Conor Dooley <conor+dt@kernel.org>,
 	Simha BN <simhavcs@gmail.com>,
 	Sam Ravnborg <sam@ravnborg.org>
-Cc: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
-	Michael Walle <mwalle@kernel.org>,
+Cc: Michael Walle <mwalle@kernel.org>,
+	Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
 	dri-devel@lists.freedesktop.org,
 	devicetree@vger.kernel.org
-Subject: [PATCH v3 00/10] Improvments for tc358775 with support for tc358765
-Date: Sun, 11 Feb 2024 11:51:05 +0200
-Message-ID: <20240211095144.2589-1-tony@atomide.com>
+Subject: [PATCH v3 01/10] dt-bindings: display: bridge: tc358775: make stby gpio optional
+Date: Sun, 11 Feb 2024 11:51:06 +0200
+Message-ID: <20240211095144.2589-2-tony@atomide.com>
 X-Mailer: git-send-email 2.43.1
+In-Reply-To: <20240211095144.2589-1-tony@atomide.com>
+References: <20240211095144.2589-1-tony@atomide.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -76,61 +79,31 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 
-Hi all,
+From: Michael Walle <mwalle@kernel.org>
 
-Here are v3 patches to improve tc358775 driver and add support for
-tc358765.
+For a normal operation, the stby GPIO is not needed.
 
-Regards,
+The reset pin is required because once the PPI (PHY protocol interface)
+is started, it can only be stopped by asserting the reset pin.
 
-Tony
+Signed-off-by: Michael Walle <mwalle@kernel.org>
+[tony@atomide.com: dropped regulator related changes]
+Signed-off-by: Tony Lindgren <tony@atomide.com>
+---
+ .../devicetree/bindings/display/bridge/toshiba,tc358775.yaml     | 1 -
+ 1 file changed, 1 deletion(-)
 
-Changes since v2:
-
-- Only make stby-gpios optional for tc358775, and disallow them for
-  tc358765 as noted by Krzysztof
-
-- Added additionalProperties: false for port-base as noted by Krzysztof
-
-- Updated patch description for why there can be a data-lanes property
-  for both the DSI host and the bridge as noted by Dmitry
-
-- Improved the old dtb data-lanes warning as suggested by Michael
-
-- Fix warning on casting of_device_get_match_data() as noted by the
-  kernel test robot
-
-
-Changes since v1:
-
-- After a brief offline discussion with Michael, merge series with
-  Michael's patch series to make stby gpio and supplies optional as they
-  may be hardwired
-
-- Use Michael's better patch for the jeida timings change
-
-- Parse lanes on the bridge side like other bridge devices do, and if not
-  found, also parse on the DSI host side and warn
-
-Michael Walle (3):
-  dt-bindings: display: bridge: tc358775: make stby gpio optional
-  drm/bridge: tc358775: fix support for jeida-18 and jeida-24
-  drm/bridge: tc358775: make standby GPIO optional
-
-Tony Lindgren (7):
-  dt-bindings: display: bridge: tc358775: Add data-lanes
-  dt-bindings: display: bridge: tc358775: Add support for tc358765
-  drm/bridge: tc358775: Get bridge data lanes instead of the DSI host
-    lanes
-  drm/bridge: tc358775: Add burst and low-power modes
-  drm/bridge: tc358775: Enable pre_enable_prev_first flag
-  drm/bridge: tc358775: Add support for tc358765
-  drm/bridge: tc358775: Configure hs_rate and lp_rate
-
- .../display/bridge/toshiba,tc358775.yaml      | 38 +++++--
- drivers/gpu/drm/bridge/tc358775.c             | 98 ++++++++++++-------
- 2 files changed, 93 insertions(+), 43 deletions(-)
-
+diff --git a/Documentation/devicetree/bindings/display/bridge/toshiba,tc358775.yaml b/Documentation/devicetree/bindings/display/bridge/toshiba,tc358775.yaml
+--- a/Documentation/devicetree/bindings/display/bridge/toshiba,tc358775.yaml
++++ b/Documentation/devicetree/bindings/display/bridge/toshiba,tc358775.yaml
+@@ -70,7 +70,6 @@ required:
+   - reg
+   - vdd-supply
+   - vddio-supply
+-  - stby-gpios
+   - reset-gpios
+   - ports
+ 
 -- 
 2.43.0
 
