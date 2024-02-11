@@ -1,75 +1,74 @@
-Return-Path: <devicetree+bounces-40472-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-40473-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 15BC1850943
-	for <lists+devicetree@lfdr.de>; Sun, 11 Feb 2024 13:46:40 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8FF1A850947
+	for <lists+devicetree@lfdr.de>; Sun, 11 Feb 2024 13:47:34 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 1784E1C20EC7
-	for <lists+devicetree@lfdr.de>; Sun, 11 Feb 2024 12:46:39 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 19F441F21850
+	for <lists+devicetree@lfdr.de>; Sun, 11 Feb 2024 12:47:34 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 29FBC42053;
-	Sun, 11 Feb 2024 12:46:33 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 960FB433A3;
+	Sun, 11 Feb 2024 12:47:28 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="PT2WVs5l"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="iQ1sEy8L"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wr1-f41.google.com (mail-wr1-f41.google.com [209.85.221.41])
+Received: from mail-wr1-f43.google.com (mail-wr1-f43.google.com [209.85.221.43])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4F86E2E851
-	for <devicetree@vger.kernel.org>; Sun, 11 Feb 2024 12:46:30 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.41
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CFC9D2E851
+	for <devicetree@vger.kernel.org>; Sun, 11 Feb 2024 12:47:26 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.43
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1707655593; cv=none; b=t4ObsUB2B7ksa3k1h+oRxofenN7We3WmDCbAftEDPjQTIApjNBmoc7dJuC95x+wGbgyOZyYWo3HW6moMApkJCsnRDZX9ND0koZTrWOw3G1E6JknAJjCGVcBR6D97sjYVqikwJDjIlDLYwRjv8seH41iFLdsxxKwOcM9r8Vo7f+k=
+	t=1707655648; cv=none; b=uixkZyGsnZt+KsgWCtQl7L0ELT7oaPROHrsYw+Og6qs5m+Rt0JyhMxRnBq3DNko+Y4mh25xSzFbg6TI8br4Sot0GBBkrdXzFkV4pqhen/RR3/V6u+U5+iGVtjcH7u/rQLrrSnC4MJAvi6R4OlgGZs1uI5Zbx+XobDOgiMaOXyoc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1707655593; c=relaxed/simple;
-	bh=VI+0SRVypq2HyI1O5SnaEoWk6lfEy8PO1nyerHcdjUk=;
+	s=arc-20240116; t=1707655648; c=relaxed/simple;
+	bh=G25xHqUFzksy8kb1jyALeIWZG2R9a0mTV07uXW34yk8=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=ITCgMRWr3mMdmOVwawXC/v1dlkbnZT02OUV4WFQGc1vS+zaofRVFeKLDW+q8eMpnC1Vnxf0O1s1z9owYp/uRRzSIvigljSL9CzhoeWHoKKBAYXwFJ8+6Gcdvr0UCzYrTxFfkuXd5yfkL7v1H6yUTDUjBEXM7sAEVA1RTySsvgAo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=PT2WVs5l; arc=none smtp.client-ip=209.85.221.41
+	 In-Reply-To:Content-Type; b=gMGe4gTSBbPDJvBlU1SIrT+mzGq/DP2ZhUVPEEjXRSXMkNi6q2uvmpN0wqfH5pVOiv8zXNCuhWhXRWs//se3NIceBCu/HdFbR33S1oI3BLWcmCbjZ2rsKam0aTcHf0aH+6Qtl/e8CTYaeTYYozZ/ypCUgNULWlKirr4zNTBX3fg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=iQ1sEy8L; arc=none smtp.client-ip=209.85.221.43
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-wr1-f41.google.com with SMTP id ffacd0b85a97d-33b29b5ea96so1104101f8f.0
-        for <devicetree@vger.kernel.org>; Sun, 11 Feb 2024 04:46:30 -0800 (PST)
+Received: by mail-wr1-f43.google.com with SMTP id ffacd0b85a97d-33b29b5ea96so1104313f8f.0
+        for <devicetree@vger.kernel.org>; Sun, 11 Feb 2024 04:47:26 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1707655589; x=1708260389; darn=vger.kernel.org;
+        d=linaro.org; s=google; t=1707655645; x=1708260445; darn=vger.kernel.org;
         h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
          :to:content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=z0nuXyLnGkRM+aE42c9HMhwu3xQ7zs2sqRHsDfqObl8=;
-        b=PT2WVs5lGuPayPb0ee0sFBQZZAQR/PS8aj+d1lJPgYXp6ca3paz3QFqEqiTZuqwF8/
-         PScagKCP6WiCaGQnF59t0aUIhyLIEpSvmxexU7yKzmaa7q47DqDrgL03PaMeChYAdLzG
-         xITqmrPRuT/dsJO3oAj2Bwc9vr+Unt5etsaGO4O5aRumLlpE7qHF0qzIUlYAhBv2hyCO
-         nValELiTyRwkE6fGxp9tChd+oYz+4Py7OPTLcQVDOjKduk4+6PaUWyLPOOhbSJPORnfF
-         tyX6yKk8pfBBJOapsmFGCEm0v1dLY4Ea3+vQ8zFKmn4iyI8W3gvK7jP5mckqvKsFzOS5
-         NnQw==
+        bh=kuLm1mBq+YQU/C/djqzAs9Oj/JD7svM/Rt4/im8xGjs=;
+        b=iQ1sEy8LPgHf9Ij6OzV6HpRS8L7dJuwXZ+s+J3+eRmBxpJTX6GikPFmAMcTVWOxlJ4
+         FHf8B3AzR6Lfdh4G5P1/EEReF36SeIUprek3SsqY6TuVmpd5p8lEYNS5VMRrld/Dt8mF
+         cJWvoEjQ0C4+B1l0ndByxVpwyLm0pT78QN60EE9fKkjXxZNBwsI3UD3CP11QmvPAbWNj
+         V6+H1owM/TsXR6k0V5mcM4sstPgY/rAljzeWSTQdKl783DXI5pSCgeUW80RjwErhLq7P
+         V/htVz9FnErgLQVNdhfIOwl9GM2GAl0Fffs1zY7nA2+jY50JzVbx5k2CyYONIVFGWswl
+         Emgg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1707655589; x=1708260389;
+        d=1e100.net; s=20230601; t=1707655645; x=1708260445;
         h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
          :to:content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=z0nuXyLnGkRM+aE42c9HMhwu3xQ7zs2sqRHsDfqObl8=;
-        b=MFQpvWnm4gJmhEQm/uJweKwEa1VhLaRInG7/ldkWxr+6gntBPkm6IxCCBnUN2AIWxP
-         Mj+udqmT3aR4kz72zpVBsDWzUbQkLi90IZfShx04p4sspvdA/8uz3pc+fjWxazvUWBt1
-         QYH26J5c3tGEpKBdJCIMAwk+5us9EfLlAL+Du8JBhfzB7rmKsqJX0GZeYZX5qYJgGyek
-         Es/GuVPHZ4v4QWTzQp1+wKCoh9NFuXicyrFgrqBJBGZC+ryICWbA+cCNS2SqX//ZGThn
-         aohScS9EaVr/lhtO846JCyUeF5CoXcXnR1XS/oS5LTiUlBSvUbPLcVwHJJEIeHhGD9iT
-         iyIg==
-X-Forwarded-Encrypted: i=1; AJvYcCWm/ijd2/I43nsGPAl1yRaxWaGr+U2LK4Qs+9UAz6HIeSZ9ZCq+1P8erUQkEsE4NUNfbdWx+h5WqCTdURvEGVo6drFcpDIxbPId0g==
-X-Gm-Message-State: AOJu0YzOceEv90rp79HQKDFcnETdx6nmDMrCxqbCSNpQLcIY3ZmhU/fV
-	rgwbwotkoRyRcSWTvp/Tc5hfv7WUX1i49wuDm75CeBrturDvA7w+Vj5f+7a/0GY=
-X-Google-Smtp-Source: AGHT+IHc30rIQzrJeRx1I1zG/F6xmVeTCNa5yGXUDdCcyUBME0PByW8GR29oUQCgOqKDRr2yO/RVQQ==
-X-Received: by 2002:adf:a39d:0:b0:33b:1b10:7ea3 with SMTP id l29-20020adfa39d000000b0033b1b107ea3mr3394857wrb.9.1707655589014;
-        Sun, 11 Feb 2024 04:46:29 -0800 (PST)
-X-Forwarded-Encrypted: i=1; AJvYcCUJehZhZ2OoRyGPn9yMYdawia/a5igtcb4HzsTDEVn8pkj5Y+j9fNk0pzD0j/H/WifrnZNdwu00/yLUPJaJFjarLM7ttvwea3iTXCZG5hXPMI+XTFhUFksiDs56pFrfBllub5iZX1w8dpWnDdrAe2vSUwvDzZeqy4XFPcxncnG51WRcAQsK/D/u7dbRZx+FPhAh6mykdKB4aL698l4Prw+iMx6nQaxkcM12uPN+Q4HNZIn1fWjiDMjw2dMHqhfB/VX499YLq76zGb1s+Wu374RBm6RC8oZF+dVeetVANUUPxcAdYQfStmzQ/qFsE2zQEJBYEl3lk1q34n5jsRU46S2OdmPa4NHDoJ+LuarmETjnErYloIM9sTv13GpZbRXxKPbtzFIo47XEMEYS9cq4uXTXWsWUvC7xByK31yPT2hQovhWhhn9gblvFkkw7/1Uqm0RtJf3DWolrdYDrqEDBvSUW7EcviicEjBKarDexzsTz56hrUrrdieQWcyvSOxzo2fzkV1Rt+hBaPaBRG949/Q==
+        bh=kuLm1mBq+YQU/C/djqzAs9Oj/JD7svM/Rt4/im8xGjs=;
+        b=IBd65L0sbAQHKUc4fv8AMjj15cjRhfds8ynjuNWYOKvz4gIxSF6A5B9HHTE9mN2LkO
+         Mgt4aSlkIYQMqKF8o1+0BKT8Zgl8kHLcfud4bnJDEwgcrqYBQ+eFb3+9/RJt9YD91xmE
+         KHXW+oqZIX8l+xfDZnRtZ5nAkk7ljBvOrtaklDhobHD027kLgdOCXTlAdCIHw7fj4gyP
+         VTJxn52oz9LRgI+w6OJZDX00w3DDofhKeNs0lgWt7rQ2j8wvSfgXpaadXLJ02kuWYzk7
+         HdZeuHpfZdjcEjpER+oq09NLPZovpfSTWhbaY8bnUDxMCD2z2kuCzFyQ5AdQtme9sCF9
+         ePoQ==
+X-Gm-Message-State: AOJu0YzxMFqBK7al6WyICAJ2puTEe+YaQ7+WbH1qPvzgzsmxk8wExwvv
+	E684bUlrX/P7Y3HXMY2mwCt9NLmCxhD1VYnThv+aeUDSRc8WVXUHcZp4Eyq33Ps=
+X-Google-Smtp-Source: AGHT+IEbMc5/xpMvyDzKivK7t4UtR/DSUuHozaW89IOzosGgYy/foWu3MRhGbmh2h7S/1qxl+GEm8A==
+X-Received: by 2002:a05:6000:108d:b0:33b:4d14:2eea with SMTP id y13-20020a056000108d00b0033b4d142eeamr5268293wrw.5.1707655645063;
+        Sun, 11 Feb 2024 04:47:25 -0800 (PST)
+X-Forwarded-Encrypted: i=1; AJvYcCW4dcGAfUzywa4TdAdcvxLz20Aw2Kv8Z6f1LIb3tQp5uT5LUZFGJfaF7P9PHhIYHVuiyx/TJG7ICwpnQjx0RP0lj6xkYHUQ1eWgSwauqosvpN+b+EgRnjV9fyHPqNoxZ/4odv6LzwL67R8v1qDEhKf0Ctl3ngmkkeQ0N9A1jMMfb/iUhFkmYjQsDmVOOOsDyUu/9iK9sinN75gBi5tjbJ7yO3Y28msxh/rPugif4R7AwbKvHSshUFWsU3wZsNJk/KnGJDjY9LxuDUvcvyc30KIvqMK8MeYSCDn7Y9rTNPG5A+gFOC+fLIobSlw0opB1foVr7dCzbDXYYTutBpNyiatRKFlBfngXi8qzZiah/+gf+JZyRKx+QrLZjJw8hW4UvFMhpIsI5SF/NZfjcF9ZcmeCRYNL/G5ML+85LbfM9eecNyXMh8VYr+qNo53ATxHRdiQtv0lpEUtJLN1/0VIBNBFuJK7PLCN7ltfv870ifHAARo9KFhRCz9nXUsvseDr6yPQtJ9u+D9irFCCYnV43xw==
 Received: from [192.168.1.20] ([178.197.223.6])
-        by smtp.gmail.com with ESMTPSA id a14-20020adff7ce000000b0033b2276e71csm4192345wrq.62.2024.02.11.04.46.27
+        by smtp.gmail.com with ESMTPSA id a14-20020adff7ce000000b0033b2276e71csm4192345wrq.62.2024.02.11.04.47.23
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sun, 11 Feb 2024 04:46:28 -0800 (PST)
-Message-ID: <2c2d8bee-e9c6-45db-a166-d344f7890e06@linaro.org>
-Date: Sun, 11 Feb 2024 13:46:26 +0100
+        Sun, 11 Feb 2024 04:47:24 -0800 (PST)
+Message-ID: <bc73e76a-74da-4372-bb92-d52025b2b2aa@linaro.org>
+Date: Sun, 11 Feb 2024 13:47:23 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -77,8 +76,8 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v1 04/14] dt-bindings: input: touchscreen: fsl,imx6ul-tsc
- convert to YAML
+Subject: Re: [PATCH v1 06/14] dt-bindings: soc: imx: fsl,imx-iomuxc-gpr: add
+ imx6
 Content-Language: en-US
 To: Sebastian Reichel <sre@kernel.org>, Rob Herring <robh+dt@kernel.org>,
  Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
@@ -92,7 +91,7 @@ Cc: Dong Aisheng <aisheng.dong@nxp.com>,
  <broonie@kernel.org>, linux-arm-kernel@lists.infradead.org,
  devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
 References: <20240210012114.489102-1-sre@kernel.org>
- <20240210012114.489102-5-sre@kernel.org>
+ <20240210012114.489102-7-sre@kernel.org>
 From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  xsFNBFVDQq4BEAC6KeLOfFsAvFMBsrCrJ2bCalhPv5+KQF2PS2+iwZI8BpRZoV+Bd5kWvN79
@@ -138,97 +137,31 @@ Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  KQ06ztUMRrj8eVtpImjsWCd0bDWRaaR4vqhCHvAG9iWXZu4qh3ipie2Y0oSJygcZT7H3UZxq
  fyYKiqEmRuqsvv6dcbblD8ZLkz1EVZL6djImH5zc5x8qpVxlA0A0i23v5QvN00m6G9NFF0Le
  D2GYIS41Kv4Isx2dEFh+/Q==
-In-Reply-To: <20240210012114.489102-5-sre@kernel.org>
+In-Reply-To: <20240210012114.489102-7-sre@kernel.org>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
 On 10/02/2024 02:18, Sebastian Reichel wrote:
-> Convert the i.MX6UL touchscreen DT binding to YAML.
+> Add compatibles used by different i.MX6 variants to the i.MX IOMUX
+> Controller GPR binding.
 > 
 > Signed-off-by: Sebastian Reichel <sre@kernel.org>
 > ---
+>  .../bindings/soc/imx/fsl,imx-iomuxc-gpr.yaml   | 18 ++++++++++++++++++
+>  1 file changed, 18 insertions(+)
+> 
+> diff --git a/Documentation/devicetree/bindings/soc/imx/fsl,imx-iomuxc-gpr.yaml b/Documentation/devicetree/bindings/soc/imx/fsl,imx-iomuxc-gpr.yaml
+> index 1da1b758b4ae..6f229ffe20a5 100644
+> --- a/Documentation/devicetree/bindings/soc/imx/fsl,imx-iomuxc-gpr.yaml
+> +++ b/Documentation/devicetree/bindings/soc/imx/fsl,imx-iomuxc-gpr.yaml
+> @@ -16,6 +16,24 @@ description:
+>  properties:
+>    compatible:
+>      oneOf:
+> +      - items:
+> +          - const: fsl,imx6q-iomuxc-gpr
 
-...
-
-> +
-> +  interrupts:
-> +    items:
-> +      - description: touch controller address
-> +      - description: ADC2 address
-> +
-> +  clocks:
-> +    maxItems: 2
-> +
-> +  clock-names:
-> +    items:
-> +      - const: tsc
-> +      - const: adc
-> +
-> +  xnur-gpio:
-
-xnur-gpios:
-
-Also you need:
-maxItems: 1
-
-> +    description:
-> +      The X- gpio this controller connect to. This xnur-gpio returns to
-> +      low once the finger leave the touch screen (The last touch event
-> +      the touch controller capture).
-> +
-> +  measure-delay-time:
-> +    $ref: /schemas/types.yaml#/definitions/uint32
-> +    description:
-> +      The value of measure delay time. Before X-axis or Y-axis measurement,
-> +      the screen need some time before even potential distribution ready.
-> +    default: 0xffff
-> +    minimum: 0
-> +    maximum: 0xffffff
-
-Time seems like something humans can grasp, so why using hexadecimal
-numbers? Same question for pre-charge-time.
-
-
-> +
-> +  pre-charge-time:
-> +    $ref: /schemas/types.yaml#/definitions/uint32
-> +    description:
-> +      The touch screen need some time to precharge.
-> +    default: 0xfff
-> +    minimum: 0
-> +    maximum: 0xffffffff
-> +
-> +  touchscreen-average-samples:
-> +    description: Number of data samples which are averaged for each read.
-
-This should fail the testing - judging by Rob's reports, you did not
-test it. You don't have type for this property. Missing allOf: to
-touchscreen.
-
-> +    enum: [ 1, 4, 8, 16, 32 ]
-> +
-> +required:
-> +  - compatible
-> +  - reg
-> +  - interrupts
-> +  - clocks
-> +  - clock-names
-> +  - xnur-gpio
-> +
-
-
-allOf: with $ref to touchscreen.
-
-> +additionalProperties: false
-> +
-> +examples:
-> +  - |
-> +    #include <dt-bindings/interrupt-controller/arm-gic.h>
-> +    #include <dt-bindings/clock/imx6ul-clock.h>
-> +    #include <dt-bindings/gpio/gpio.h>
-> +    tsc: tsc@2040000 {
-
-Drop label and just "touchscreen@2040000"
+Just change existing entry to enum and add it there.
 
 
 Best regards,
