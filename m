@@ -1,107 +1,153 @@
-Return-Path: <devicetree+bounces-40424-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-40425-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 70096850741
-	for <lists+devicetree@lfdr.de>; Sun, 11 Feb 2024 00:15:25 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 891D08507B8
+	for <lists+devicetree@lfdr.de>; Sun, 11 Feb 2024 05:20:01 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 9C6481C20FDD
-	for <lists+devicetree@lfdr.de>; Sat, 10 Feb 2024 23:15:24 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id E4F8E1F23812
+	for <lists+devicetree@lfdr.de>; Sun, 11 Feb 2024 04:20:00 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 659085FEEE;
-	Sat, 10 Feb 2024 23:15:21 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A71BE10942;
+	Sun, 11 Feb 2024 04:19:53 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=google.com header.i=@google.com header.b="SxDJ+Uav"
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="WhuREhkN"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-yb1-f202.google.com (mail-yb1-f202.google.com [209.85.219.202])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mgamail.intel.com (mgamail.intel.com [192.55.52.88])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DD1925C604
-	for <devicetree@vger.kernel.org>; Sat, 10 Feb 2024 23:15:19 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.219.202
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8F936FBF5;
+	Sun, 11 Feb 2024 04:19:50 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=192.55.52.88
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1707606921; cv=none; b=OVaA7YriKXxZQDr7S8/HzL/zAf58TUAcC4brlCRFBFwIEb2o78YsGawy6cZvB5UZO24B82yKS73D6vLYs8oTU9R6noqJ7pAtLQkpcXDzbsqaWlWS/tVgjQUnP5K/R6ecMN+eUqTeJ/MmIbeV9BJQByoiaYiskVy37CuG1oj0yTc=
+	t=1707625193; cv=none; b=mLFvrHnQd3S3OKmh/Fz9qsGkds1gqeeN/7Z6l8NeDR0EbFJ8DSNltCQnJG25t3Oe5SKEp06RXo0vLy26u1kJdSHUW+NOqEh8zFvA4zS96Vb+UayExAax+/P6OCS29bCtJmm7Hoo5TAVwjfkPJqpft31h79uQAz8b9tdJoclX45M=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1707606921; c=relaxed/simple;
-	bh=/3YzkBLodMNUrjnwjELpDTo92n8iOXA1+uqd9b5AE1c=;
-	h=Date:Message-Id:Mime-Version:Subject:From:To:Cc:Content-Type; b=dw9iGBeblLBqeURhYeF+FjygXAEch3CZyWf7uzZnLjsmL4llRkOK3gxEcxB/lr08LZ5d1NjuTy4TZYP7Nbft38zwnZff8K6s4zk7J8uY6VQYhNxbhYd9Rtaq3ksJenSBbp3ZevoRIxL6gr6B3dLCKw8+JEbArJ7KlzBGMTzheRw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=google.com; spf=pass smtp.mailfrom=flex--saravanak.bounces.google.com; dkim=pass (2048-bit key) header.d=google.com header.i=@google.com header.b=SxDJ+Uav; arc=none smtp.client-ip=209.85.219.202
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=google.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=flex--saravanak.bounces.google.com
-Received: by mail-yb1-f202.google.com with SMTP id 3f1490d57ef6-dc74f8d953fso2639349276.3
-        for <devicetree@vger.kernel.org>; Sat, 10 Feb 2024 15:15:19 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=google.com; s=20230601; t=1707606919; x=1708211719; darn=vger.kernel.org;
-        h=cc:to:from:subject:mime-version:message-id:date:from:to:cc:subject
-         :date:message-id:reply-to;
-        bh=X74cf6T8C4bXDHMgSvTgHCjENEzriqu7nAo5Mgz+MM4=;
-        b=SxDJ+Uav1JT1xkr11P8EWEEH4aiXtqA/CIPkKFuknE8oeTqX2JHCgSUINDuODtOmpq
-         pObCE5xGnFRkDYuBH9S0dR8GJtn58SBdpwz711//joxiINoHdiESNXrSXHHNQPmmPSGr
-         noebh6eRIBWeXMnrPEIJCsjCYa/MewornumtwWDCwKZvuTacIdfkiYrs+GFLv/uxpTjM
-         /sRHtp6Pv0BKDFoXrWNVgASVNLj5AA53fwHqWqSSjb2J5v7vwjO6Cn2swRXggb5tuaFt
-         J7yxGEWnqt0IBWXbzpnP4uG0J9DZ0Yi1mzweIxc6PXf2Y1RUcfwXFymIyTyG4oqiRxuA
-         MDjQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1707606919; x=1708211719;
-        h=cc:to:from:subject:mime-version:message-id:date:x-gm-message-state
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=X74cf6T8C4bXDHMgSvTgHCjENEzriqu7nAo5Mgz+MM4=;
-        b=SCMjvhl6N/wQ/ZEUGWtLshk399mJmH7/KATb+G6WIKYPDumgdQFZmFhabykVSX/JJG
-         wC/9F9S5CSB2HOmRgHSWWud473rYg70BKTs2D8F8qMZ49XxcfQ8NiyzK/tbF64HXIh4E
-         ZPhupr7B7y6V7c8/51TEtEVt7MsBkrTO1EYBtIptC+4WWfVyQ1X9V1Jn2iVLGssQPzK4
-         q4mNHXSKIlcsB6yzAc2PVzd83Zt/QSaZtt1eiCnAXK0Jb6VzvqstIEpS9fKcQCN7jrW6
-         1Y4DKxvjfUQPS9e/0ObA95M2I51sxMqNtkoGuzgZod4V0pG8gQSTEg2xTgQF+JyYF98o
-         Lt1A==
-X-Gm-Message-State: AOJu0YyePuftD91DN2/lQwDKzjw7Uk+4dUW2uEZ3W6hB4g0MxSpiHBsK
-	SFc2xHyQzvaszGQUmhlDr2CQrsMj8fodZrmCaerzJZZq4a78UEUjweuG1aDZIRHDRKQLfHRe5Qy
-	LOqLD0bvSvnQxuw==
-X-Google-Smtp-Source: AGHT+IH2Adref4+yil6FrbE6d/7iC18rjqbq852WHMSpdwSZBvXZFSyEt1R4atXsHCbl3PmMo9FKTKBDAQtPReQ=
-X-Received: from saravanak.san.corp.google.com ([2620:15c:2d:3:80ad:1a11:8cc3:735])
- (user=saravanak job=sendgmr) by 2002:a05:6902:2213:b0:dc6:ebd4:cca2 with SMTP
- id dm19-20020a056902221300b00dc6ebd4cca2mr118406ybb.11.1707606918832; Sat, 10
- Feb 2024 15:15:18 -0800 (PST)
-Date: Sat, 10 Feb 2024 15:15:12 -0800
-Message-Id: <20240210231513.111117-1-saravanak@google.com>
+	s=arc-20240116; t=1707625193; c=relaxed/simple;
+	bh=HuE/qn9uO4Mak3wb7u3vZhiBv+6UYRAGaV1V4lIuL0U=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=BGEipj57WH0Bmh8zF4sndzAHjvIi6XRvYW06sFyOFEi7cMtlOcUeqajel3JZ9PVl7n80qPOX109CH1/02F1I4en5zaL2tXMsPd08/dZmHknZNa7rVQyp9dz/e1XikFlguJXWyIsmrplwHFt+UpZC7E+wOGyJD/ZCGMv5xPKAnFc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=WhuREhkN; arc=none smtp.client-ip=192.55.52.88
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1707625190; x=1739161190;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=HuE/qn9uO4Mak3wb7u3vZhiBv+6UYRAGaV1V4lIuL0U=;
+  b=WhuREhkNtB2O6qHGVR+E46PamqHHfzu3HOwyCJXxlgtf0XuvF+pAWrk1
+   4nglJiL8u9bkE2uE40rsYrKwR+FoiBpGULVneQw3rZcKjmMgWlDTDesxp
+   dLyhmAVdWIM/9c9ngf1TE27wA761FUH7JbJbdDup20oqM4tOQzPjees5e
+   mbBcD3zw50HN6v6ooo6T42SAExyma8IboSUovy6oXC3eON6Y8RsiPRP/o
+   BQy0c4kOnNkz+KPQJsa3VBokZYHKq1XF6YXiwk1Kusi1hMnWljG+43TUL
+   te03d5tW5Ypzy9sk7RoLZBY4GdWpO4cvz08mqy5NjP4IuRYHabOq+OGoA
+   w==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10980"; a="436747867"
+X-IronPort-AV: E=Sophos;i="6.05,260,1701158400"; 
+   d="scan'208";a="436747867"
+Received: from fmviesa006.fm.intel.com ([10.60.135.146])
+  by fmsmga101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 10 Feb 2024 20:19:49 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.05,260,1701158400"; 
+   d="scan'208";a="2588419"
+Received: from lkp-server01.sh.intel.com (HELO 01f0647817ea) ([10.239.97.150])
+  by fmviesa006.fm.intel.com with ESMTP; 10 Feb 2024 20:19:46 -0800
+Received: from kbuild by 01f0647817ea with local (Exim 4.96)
+	(envelope-from <lkp@intel.com>)
+	id 1rZ1Jg-0006Jc-0q;
+	Sun, 11 Feb 2024 04:19:44 +0000
+Date: Sun, 11 Feb 2024 12:19:20 +0800
+From: kernel test robot <lkp@intel.com>
+To: Jacky Huang <ychuang570808@gmail.com>, linus.walleij@linaro.org,
+	robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
+	conor+dt@kernel.org, p.zabel@pengutronix.de, j.neuschaefer@gmx.net
+Cc: oe-kbuild-all@lists.linux.dev, linux-arm-kernel@lists.infradead.org,
+	linux-gpio@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org, ychuang3@nuvoton.com,
+	schung@nuvoton.com
+Subject: Re: [PATCH v4 4/4] pinctrl: nuvoton: Add ma35d1 pinctrl and GPIO
+ driver
+Message-ID: <202402111204.to88Twuu-lkp@intel.com>
+References: <20240206025223.35147-5-ychuang570808@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-Mime-Version: 1.0
-X-Mailer: git-send-email 2.43.0.687.g38aa6559b0-goog
-Subject: [PATCH] MAINTAINERS: of: Add Saravana Kannan
-From: Saravana Kannan <saravanak@google.com>
-To: Rob Herring <robh@kernel.org>
-Cc: Saravana Kannan <saravanak@google.com>, devicetree@vger.kernel.org, 
-	kernel-team@android.com, linux-kernel@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20240206025223.35147-5-ychuang570808@gmail.com>
 
-Adding myself as a second maintainer for Open Firmware and Device Tree
-to help Rob out with reviews and other maintainer work.
+Hi Jacky,
 
-Cc: devicetree@vger.kernel.org
-Signed-off-by: Saravana Kannan <saravanak@google.com>
----
-Discussed this with Rob.
+kernel test robot noticed the following build errors:
 
- MAINTAINERS | 1 +
- 1 file changed, 1 insertion(+)
+[auto build test ERROR on linusw-pinctrl/devel]
+[also build test ERROR on linusw-pinctrl/for-next robh/for-next linus/master v6.8-rc3 next-20240209]
+[If your patch is applied to the wrong git tree, kindly drop us a note.
+And when submitting patch, we suggest to use '--base' as documented in
+https://git-scm.com/docs/git-format-patch#_base_tree_information]
 
-diff --git a/MAINTAINERS b/MAINTAINERS
-index b01f890ec789..45c6c13b4edf 100644
---- a/MAINTAINERS
-+++ b/MAINTAINERS
-@@ -16359,6 +16359,7 @@ F:	drivers/infiniband/ulp/opa_vnic
- 
- OPEN FIRMWARE AND FLATTENED DEVICE TREE
- M:	Rob Herring <robh@kernel.org>
-+M:	Saravana Kannan <saravanak@google.com>
- L:	devicetree@vger.kernel.org
- S:	Maintained
- W:	http://www.devicetree.org/
+url:    https://github.com/intel-lab-lkp/linux/commits/Jacky-Huang/dt-bindings-reset-Add-syscon-to-nuvoton-ma35d1-system-management-node/20240206-105502
+base:   https://git.kernel.org/pub/scm/linux/kernel/git/linusw/linux-pinctrl.git devel
+patch link:    https://lore.kernel.org/r/20240206025223.35147-5-ychuang570808%40gmail.com
+patch subject: [PATCH v4 4/4] pinctrl: nuvoton: Add ma35d1 pinctrl and GPIO driver
+config: powerpc-randconfig-r122-20240208 (https://download.01.org/0day-ci/archive/20240211/202402111204.to88Twuu-lkp@intel.com/config)
+compiler: clang version 14.0.6 (https://github.com/llvm/llvm-project.git f28c006a5895fc0e329fe15fead81e37457cb1d1)
+reproduce: (https://download.01.org/0day-ci/archive/20240211/202402111204.to88Twuu-lkp@intel.com/reproduce)
+
+If you fix the issue in a separate patch/commit (i.e. not just a new version of
+the same patch/commit), kindly add following tags
+| Reported-by: kernel test robot <lkp@intel.com>
+| Closes: https://lore.kernel.org/oe-kbuild-all/202402111204.to88Twuu-lkp@intel.com/
+
+All errors (new ones prefixed by >>):
+
+   In file included from drivers/pinctrl/nuvoton/pinctrl-ma35d1.c:14:
+   drivers/pinctrl/nuvoton/pinctrl-ma35.h:46:31: warning: declaration of 'struct platform_device' will not be visible outside of this function [-Wvisibility]
+   int ma35_pinctrl_probe(struct platform_device *pdev, const struct ma35_pinctrl_soc_info *info);
+                                 ^
+   drivers/pinctrl/nuvoton/pinctrl-ma35d1.c:1770:40: warning: declaration of 'struct platform_device' will not be visible outside of this function [-Wvisibility]
+   static int ma35d1_pinctrl_probe(struct platform_device *pdev)
+                                          ^
+   drivers/pinctrl/nuvoton/pinctrl-ma35d1.c:1772:28: error: incompatible pointer types passing 'struct platform_device *' to parameter of type 'struct platform_device *' [-Werror,-Wincompatible-pointer-types]
+           return ma35_pinctrl_probe(pdev, &ma35d1_pinctrl_info);
+                                     ^~~~
+   drivers/pinctrl/nuvoton/pinctrl-ma35.h:46:48: note: passing argument to parameter 'pdev' here
+   int ma35_pinctrl_probe(struct platform_device *pdev, const struct ma35_pinctrl_soc_info *info);
+                                                  ^
+   drivers/pinctrl/nuvoton/pinctrl-ma35d1.c:1780:31: error: variable has incomplete type 'struct platform_driver'
+   static struct platform_driver ma35d1_pinctrl_driver = {
+                                 ^
+   drivers/pinctrl/nuvoton/pinctrl-ma35d1.c:1780:15: note: forward declaration of 'struct platform_driver'
+   static struct platform_driver ma35d1_pinctrl_driver = {
+                 ^
+>> drivers/pinctrl/nuvoton/pinctrl-ma35d1.c:1791:9: error: implicit declaration of function 'platform_driver_register' is invalid in C99 [-Werror,-Wimplicit-function-declaration]
+           return platform_driver_register(&ma35d1_pinctrl_driver);
+                  ^
+   2 warnings and 3 errors generated.
+
+Kconfig warnings: (for reference only)
+   WARNING: unmet direct dependencies detected for ADB_CUDA
+   Depends on [n]: MACINTOSH_DRIVERS [=n] && (ADB [=n] || PPC_PMAC [=y]) && !PPC_PMAC64 [=n]
+   Selected by [y]:
+   - PPC_PMAC [=y] && PPC_BOOK3S [=y] && CPU_BIG_ENDIAN [=y] && POWER_RESET [=y] && PPC32 [=y]
+
+
+vim +/platform_driver_register +1791 drivers/pinctrl/nuvoton/pinctrl-ma35d1.c
+
+  1788	
+  1789	static int __init ma35d1_pinctrl_init(void)
+  1790	{
+> 1791		return platform_driver_register(&ma35d1_pinctrl_driver);
+  1792	}
+  1793	arch_initcall(ma35d1_pinctrl_init);
+  1794	
+
 -- 
-2.43.0.687.g38aa6559b0-goog
-
+0-DAY CI Kernel Test Service
+https://github.com/intel/lkp-tests/wiki
 
