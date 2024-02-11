@@ -1,75 +1,74 @@
-Return-Path: <devicetree+bounces-40485-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-40486-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 468E5850983
-	for <lists+devicetree@lfdr.de>; Sun, 11 Feb 2024 14:56:14 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 545B985098D
+	for <lists+devicetree@lfdr.de>; Sun, 11 Feb 2024 15:02:21 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 16B17B212D8
-	for <lists+devicetree@lfdr.de>; Sun, 11 Feb 2024 13:56:11 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id CE7BB1F214EB
+	for <lists+devicetree@lfdr.de>; Sun, 11 Feb 2024 14:02:20 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E97155B5C5;
-	Sun, 11 Feb 2024 13:56:06 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 261325B5CF;
+	Sun, 11 Feb 2024 14:02:12 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="Nqq/187p"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="xec1oan8"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f42.google.com (mail-wm1-f42.google.com [209.85.128.42])
+Received: from mail-lf1-f43.google.com (mail-lf1-f43.google.com [209.85.167.43])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 063A25B5BB
-	for <devicetree@vger.kernel.org>; Sun, 11 Feb 2024 13:56:04 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.42
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A99125A781
+	for <devicetree@vger.kernel.org>; Sun, 11 Feb 2024 14:02:09 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.43
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1707659766; cv=none; b=QgdqH1oCvM0b901wh4iBT+bRsf9iC6bkqbyrzE3iqqgihsMTCODlPHigDhbJjHfb9cZE+TEjZ7+5WVyLBT6QPKkV4zYupK6tQRMUuKm3wwf+qmBtellOY3+7UGQyWysBzU1UgJdDOxvciINecbu6DE7hsHbQKgwbsEdq9nFvTQM=
+	t=1707660132; cv=none; b=KViUAiecld3aFXq9RzuIp3jDbnHjQlL+ofqxLBeb461kfbqefNbZRWQ3XRSFEcoE/JL8N9mxAI58I20nAlHZiHSjJzaZ5WJprtjSk8lWZV7kPwgoytxSMcV8ncnc5lOqcNcVzsoFj8ZVa9UK7vZoG4h7jOH431mvRyTtor7TfgM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1707659766; c=relaxed/simple;
-	bh=pXvsImowq0i/i575K7kHTSMoxVErfBTiVGiGOnNGGyQ=;
-	h=Message-ID:Date:MIME-Version:Subject:To:References:From:
-	 In-Reply-To:Content-Type; b=ZzRyDIlqLee+TnqLlYZS0jQt1kZklAux9o4Z8OJAHtUe+mL4O+ymlcB4pN4VzNCm4/vGMwYABL4rdgLcZGaVvayY1YvzPxMPtiQlQt09oqvVxx6ZO/gOO6s45hMJSAO3fohCpXaWQyZRtudQtDp67lv/Cj0fvaQONJeq7tmGqzU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=Nqq/187p; arc=none smtp.client-ip=209.85.128.42
+	s=arc-20240116; t=1707660132; c=relaxed/simple;
+	bh=uolM5cNnSQVvJyH665m1YzWBscW8SurboetXEIW+yac=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=AYdwlgvP9b/GTHbnFiqGXF4LDJS8hI8cBERMQ/lG/srKgJjtSeGwbzH1e5imvSD6dOwfhpdjB47mEYfaRSHPAfC3Dq34dwLdS2o594r+eC3xEANqt0jueL9uiV7CONncX6f4bpEqIFcYe7GuUa9hepB4PJSXnJcsPsfTNiH8zJc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=xec1oan8; arc=none smtp.client-ip=209.85.167.43
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-wm1-f42.google.com with SMTP id 5b1f17b1804b1-410980dfddeso7042105e9.1
-        for <devicetree@vger.kernel.org>; Sun, 11 Feb 2024 05:56:04 -0800 (PST)
+Received: by mail-lf1-f43.google.com with SMTP id 2adb3069b0e04-51171c9f4c0so2837868e87.3
+        for <devicetree@vger.kernel.org>; Sun, 11 Feb 2024 06:02:09 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1707659763; x=1708264563; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:to
-         :content-language:subject:user-agent:mime-version:date:message-id
+        d=linaro.org; s=google; t=1707660128; x=1708264928; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
+         :to:content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=QQbDMuCf8echH2vXmVfP4WtPzr419Vx4QeYzyXyHPfc=;
-        b=Nqq/187pFvUaUG1/jex3/Y0+oToKc491sJ6qDwnxlhcm5WwpnZJsMQnf/qTTUjqA7L
-         LhG6+yCVMdMJxXckCGAlana+qACZWDjkJKxlo+YsvW6fX4Yw+amuTDfkUb1E1sy6Owv/
-         JcPmnw0QJxLRt6+kKtjVTW2nCkumTykJdjJgQi40gmHb8K9d41WjwgNBlx8xwuH+YjDo
-         SzoZ5pfZfUCxrFcWbJOfgJRwh2JkYQB3C6pcAkDa+1myL16JeEw3MuBLzdRG13TzZZA6
-         yUEnj5WskH7H+LQPJvNX+xtAe/qE9KaWSYM9rNouW1X7EKXzTgM5piMcf3OpJ4XObfjt
-         iVyQ==
+        bh=DEpRo3ZggIX9g5kXsq9qVrRRUWMCmjE5JkWjKuuxLn8=;
+        b=xec1oan8vaO/YLzwzQxcVuhaL3KOBGVO42qVMBYp6Sj6DG9elxjroK/7RSbbcY7VLX
+         Vwzk8aMUB4saLm8krGdwzUpYYYFnU+V5pberzFgK145zMg5bVJn4dTf8PYl9yk2GpB8f
+         GuHo1wUNiU/X2llHySfOLGejoJoOkWYoYX/TH1ibMaAzrWPSxpIv1F/l2DVka2OP1MzL
+         PiWZo672XXD3xgOJg6K8u5si7PBXxtoRX5JIBOv8dflL4iXesqhALH8xUIJVcgSMNTjU
+         M+os7RANbXsCX3s0zGlDa/CIW0nGg6fxDXCPAmxBaur/kunMzNehrjvtgt/AOOyyTwUD
+         6/Gg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1707659763; x=1708264563;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:to
-         :content-language:subject:user-agent:mime-version:date:message-id
+        d=1e100.net; s=20230601; t=1707660128; x=1708264928;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
+         :to:content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=QQbDMuCf8echH2vXmVfP4WtPzr419Vx4QeYzyXyHPfc=;
-        b=t++GDZYaclZJewfp+G2YFXvwdoYhj9WVmINq42Fj27D2SkXRYJNRqVx1hZvOTLbH8k
-         uBsda3K/oseEKpqJzCQAgXgGOE4tzoDgBSyy6prAoz2dj5gsl//82LtprVTNTuTlPa3w
-         d7eC/zAdH4fBbLs46ozhq2lnCXqNaT+rOT2o4u1IGXm6cjzlMX4R9zIVP907MZp+P+o9
-         rBpt1DtXXnZUzcOhCiMiE5j7OmU7MTll5bvx0zYEGWoq3jh2yvtM6bZ+D+Geam/XMVxn
-         Ka8CT7CdzXAGiE8iqSdHEuxQ+UHQrJmu5F/86g9vBb4qT/jqc6z3ctBcHCE5Euubnvv0
-         yWHA==
-X-Forwarded-Encrypted: i=1; AJvYcCUeVgkHtNVHCp2ZWV6arVZJOwku9FQxgOoEO4XVV3g99Qd/SZ1HbiqcKtnFhFB1hi+KVkYZ/JrcJkZjLqiM5eS8lxroRZ1tY4jyPw==
-X-Gm-Message-State: AOJu0YzH9MWoOPFSrRcxgMZd2qWIIRTP92zWBScG+85cNTpaHkez03wN
-	7016qtHTZs3fjxdCgTmkXbHNtKitM/P0dzd+ywVgQZXMr+SChO7APMnw817iUDM=
-X-Google-Smtp-Source: AGHT+IEcqc+r1s7VzO31zVMQiEdZhbAY1dcw4wyYDP5pGtpMY4RnCkIYujTW1p+Ero6RkbKNTFkCng==
-X-Received: by 2002:a5d:58f0:0:b0:33b:279a:5c99 with SMTP id f16-20020a5d58f0000000b0033b279a5c99mr3049176wrd.18.1707659763180;
-        Sun, 11 Feb 2024 05:56:03 -0800 (PST)
-X-Forwarded-Encrypted: i=1; AJvYcCWHIMkAK5n7prPrl8eptYlgnUtosbcSd6JRdRnczhvvfF3dJn6EAwAkw4KVb5DEmbXam5CGGX0f5xPPTb4hvTJXfrEgUSMexnB7V/rYjbracuZxeknQvRMkx3Gqxxecame8dMAmMj5Fo+F3O9fr5ao1zLvba/trgFKkljXv5efpVMLhtrVc2qrQ91xMHxGxWWQ++PJuuzrc87mop3LJCCq1KEhn6/8e7KiulRSmeYhbHq2hrnASRjT1hOUylaUzwMqByJp94VcCBM+So+WPwjp5JdJ5SoD35b0y3KPE3iTV3fcu+kMV+vzhVl/wkw8Ty8wZPTwuxMpGSxGOX6vaEd97QPi+t+HUPHjYCnMEcFtazjjvwGPSGj763TzNDbMGHfuWh1TGfXblRhp5BvGzADqnBROHMBwoj5UY6ZtJA/biEq6BHEqwhJmQYlY8wXg4sajVoWps8e9z205MGQfY
+        bh=DEpRo3ZggIX9g5kXsq9qVrRRUWMCmjE5JkWjKuuxLn8=;
+        b=r5nAww/LHnuM+VvZ3zvz5k8DetJSLyISgxUxqscm41v6Dg1aQ+6oQdwEvNKpwPT44K
+         2U9/W/E+tEAOrGbc25cKaAYhviuHOfiZdDWakshLVPja+76H95qmz2p4wVPiQmh15jlc
+         bFxhLHYk02wJf45yOgzsCMa3I5Oto0Orj6X3XPtUE88FUosdjzWqwjOID0FVNYcpG8yo
+         iEBhV/ucLJchl7F/hUzwgemPLTkBwusjr1qSb4S5La5CE7cUieXnLb+rs8N+qf1MUUBr
+         zKWo6N8/i99VPBls971yRXnEldjbg8mit1VgM72sgxnR9mi28lBT9B+AZxn+wGzyhrYb
+         ajow==
+X-Gm-Message-State: AOJu0YwytR5NQWc3Ig3ovNMWMhcQbOePbTn0Anvwt4kWrTz29aHOTdea
+	KIQ92UReff7a+WIloKALj4Cq9x4c5SFz/+ArBCPtgmVNBVTgmvwHVKfZwsv3CE0=
+X-Google-Smtp-Source: AGHT+IHoWAGqQISq55MozqAxC/fe4t3KNXLkGWg+Rx5PqZ7/N20Xg4Fn21542+o+qEGkHII01JA1pA==
+X-Received: by 2002:a05:6512:3b82:b0:511:6764:a8c7 with SMTP id g2-20020a0565123b8200b005116764a8c7mr3263216lfv.10.1707660127654;
+        Sun, 11 Feb 2024 06:02:07 -0800 (PST)
+X-Forwarded-Encrypted: i=1; AJvYcCWYQZ6suB7go1tqVx30CofLlR7kXp9G1WhXVT3QtadQpD06aUqZic0s4ngZP3Qz96UvYR1Iml2A98tzZk4f4RlvajkvdBi4AIYzXUlLWzo/5Y47iQaJApNwrMlE0usrTAOxfjO9Tn522Pni/uftpxPrY0lFwyfv20sqze76zNlZk9xrfkM1iQ/L9I+IHE6WAp1JVIJr8afDsmu4M8Bf02UlwmBCDFAXi3WzrLkENvSEOT2QmFK1GIdoLC2xvpMcifAxz9FL3FMorOhAv4PFQx3DgxTxRGNCZ5vL9y6Wgk+eu7hjrMEFEfOYBtuQNVs+mpHs/hA0I420gks/Ld7LOJNZmOw8UjlDPXJgi9L+CnXbw6cYd420Xd4vhguTZvkgR+h0LmKsoBZ/HHNByrmOfLG0znoa9SrvqVty0K+XPWXkzGW7AazXvZbSCTW9RbNJyb4U7+f+BRM4oHGP7IWZjcaVfrfItAu9Id/sFRfvEiKEUvUp/VCU7rLLPsAUMJmlLtKpzoG5zJT2kXhHV3D4JXcMlrOl8luV6QpvMklkbyCnbe90vLkjfPgBmZv3ge30yaJTgmW0hw9nMkJGv2zSmPovhDOSNeo+zdpOY7FXIMH6aWeksU8DYk/QYxxJGeCzzxSovA/CFuLmhEmS
 Received: from [192.168.1.20] ([178.197.223.6])
-        by smtp.gmail.com with ESMTPSA id dv5-20020a0560000d8500b0033b483d1abcsm4297527wrb.53.2024.02.11.05.56.01
+        by smtp.gmail.com with ESMTPSA id o1-20020a05600c4fc100b0040ff583e17csm5961987wmq.9.2024.02.11.06.02.05
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sun, 11 Feb 2024 05:56:02 -0800 (PST)
-Message-ID: <3a662ef2-1888-4f24-bebe-3ce32da9d277@linaro.org>
-Date: Sun, 11 Feb 2024 14:56:01 +0100
+        Sun, 11 Feb 2024 06:02:07 -0800 (PST)
+Message-ID: <6dd8b54e-8334-4bc7-a6c5-7a81c04ed8bb@linaro.org>
+Date: Sun, 11 Feb 2024 15:02:04 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -77,15 +76,26 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH] dt-bindings: usb: typec: anx7688: start a binding
- document
+Subject: Re: [PATCH 1/8] dt-bindings: ufs: qcom,ufs: add second RX lane on
+ MSM8996 platform
 Content-Language: en-US
-To: Pavel Machek <pavel@ucw.cz>, phone-devel@vger.kernel.org,
- kernel list <linux-kernel@vger.kernel.org>, fiona.klute@gmx.de,
- martijn@brixit.nl, samuel@sholland.org, heikki.krogerus@linux.intel.com,
- gregkh@linuxfoundation.org, linux-usb@vger.kernel.org, robh+dt@kernel.org,
- krzysztof.kozlowski+dt@linaro.org, devicetree@vger.kernel.org, megi@xff.cz
-References: <ZcaCXYOf6o4VNneu@duo.ucw.cz>
+To: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
+ Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
+ Bjorn Andersson <andersson@kernel.org>,
+ Konrad Dybcio <konrad.dybcio@linaro.org>,
+ "James E.J. Bottomley" <jejb@linux.ibm.com>,
+ "Martin K. Petersen" <martin.petersen@oracle.com>,
+ Nitin Rawat <quic_nitirawa@quicinc.com>, Can Guo <quic_cang@quicinc.com>,
+ Naveen Kumar Goud Arepalli <quic_narepall@quicinc.com>,
+ Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+ Conor Dooley <conor+dt@kernel.org>, Andy Gross <andy.gross@linaro.org>,
+ Alim Akhtar <alim.akhtar@samsung.com>, Avri Altman <avri.altman@wdc.com>,
+ Bart Van Assche <bvanassche@acm.org>, Andy Gross <agross@kernel.org>
+Cc: linux-arm-msm@vger.kernel.org, linux-scsi@vger.kernel.org,
+ devicetree@vger.kernel.org
+References: <20240209-msm8996-fix-ufs-v1-0-107b52e57420@linaro.org>
+ <20240209-msm8996-fix-ufs-v1-1-107b52e57420@linaro.org>
 From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  xsFNBFVDQq4BEAC6KeLOfFsAvFMBsrCrJ2bCalhPv5+KQF2PS2+iwZI8BpRZoV+Bd5kWvN79
@@ -131,153 +141,39 @@ Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  KQ06ztUMRrj8eVtpImjsWCd0bDWRaaR4vqhCHvAG9iWXZu4qh3ipie2Y0oSJygcZT7H3UZxq
  fyYKiqEmRuqsvv6dcbblD8ZLkz1EVZL6djImH5zc5x8qpVxlA0A0i23v5QvN00m6G9NFF0Le
  D2GYIS41Kv4Isx2dEFh+/Q==
-In-Reply-To: <ZcaCXYOf6o4VNneu@duo.ucw.cz>
+In-Reply-To: <20240209-msm8996-fix-ufs-v1-1-107b52e57420@linaro.org>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 09/02/2024 20:51, Pavel Machek wrote:
-> Add binding for anx7688 usb type-c bridge. I don't have a datasheet,
-> but I did best I could.
+On 09/02/2024 22:50, Dmitry Baryshkov wrote:
+> Describe the second RX lane used by the UFS controller on MSM8996
+> platform.
 > 
-> Signed-off-by: Pavel Machek <pavel@ucw.cz>
+> Fixes: 462c5c0aa798 ("dt-bindings: ufs: qcom,ufs: convert to dtschema")
+
+Your commit msg does not explain why this is a fix.
+
+> Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+> ---
+>  Documentation/devicetree/bindings/ufs/qcom,ufs.yaml | 11 ++++++-----
+>  1 file changed, 6 insertions(+), 5 deletions(-)
 > 
+> diff --git a/Documentation/devicetree/bindings/ufs/qcom,ufs.yaml b/Documentation/devicetree/bindings/ufs/qcom,ufs.yaml
+> index 10c146424baa..f1de3244b473 100644
+> --- a/Documentation/devicetree/bindings/ufs/qcom,ufs.yaml
+> +++ b/Documentation/devicetree/bindings/ufs/qcom,ufs.yaml
+> @@ -43,11 +43,11 @@ properties:
+>  
+>    clocks:
+>      minItems: 8
+> -    maxItems: 11
+> +    maxItems: 12
+>  
+>    clock-names:
+>      minItems: 8
+> -    maxItems: 11
+> +    maxItems: 12
 
-You miss proper diffstat which makes reviewing difficult.
-
-Actually entire patch is corrupted and impossible to apply.
-
-Anyway, where is any user of this? Nothing in commit msg explains this.
-
-
-> diff --git a/Documentation/devicetree/bindings/usb/analogix,anx7688.yaml b/Documentation/devicetree/bindings/usb/analogix,anx7688.yaml
-> new file mode 100644
-> index 000000000000..b9d60586937f
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/usb/analogix,anx7688.yaml
-> @@ -0,0 +1,140 @@
-> +# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/usb/analogix,anx7688.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: Analogix ANX7688 Type-C controller
-> +
-> +maintainers:
-> +  - Pavel Machek <pavel@ucw.cz>
-> +
-> +properties:
-> +  compatible:
-> +    enum:
-> +      - analogix,anx7688
-> +
-> +  reg:
-> +    maxItems: 1
-> +
-> +  interrupts:
-> +    maxItems: 1
-> +
-> +  reset-gpios:
-> +    maxItems: 1
-
-blank line
-
-> +  enable-gpios:
-> +    maxItems: 1
-> +  cabledet-gpios:
-> +    maxItems: 1
-> +
-> +  avdd10-supply:
-> +    description:
-> +      1.0V power supply
-
-Keep description in one line and add a blank line. This code is not that
-readable.
-
-> +  dvdd10-supply:
-> +    description:
-> +      1.0V power supply
-> +  avdd18-supply:
-> +    description:
-> +      1.8V power supply
-> +  dvdd18-supply:
-> +    description:
-> +      1.8V power supply
-> +  avdd33-supply:
-> +    description:
-> +      3.3V power supply
-> +  i2c-supply:
-> +    description:
-> +      Power supply
-
-Drop all useless descriptions (so : true)
-
-> +  vconn-supply:
-> +    description:
-> +      Power supply
-> +  hdmi_vt-supply:
-> +    description:
-> +      Power supply
-> +
-> +  vbus-supply:
-> +    description:
-> +      Power supply
-> +  vbus_in-supply:
-
-No underscores in property names.
-
-> +    description:
-> +      Power supply
-> +
-> +  connector:
-> +    type: object
-> +    $ref: ../connector/usb-connector.yaml
-
-Full path, so /schemas/connector/......
-
-> +    unevaluatedProperties: false
-
-Drop
-
-> +
-> +    description:
-> +      Properties for usb c connector.
-
-> +
-> +    properties:
-> +      compatible:
-> +        const: usb-c-connector
-> +
-> +      power-role: true
-> +
-> +      data-role: true
-> +
-> +      try-power-role: true
-
-I don't understand why do you have here properties. Do you see any
-binding like this?
-
-> +
-> +    required:
-> +      - compatible
-
-Drop, why is it needed?
-
-> +
-> +required:
-> +  - compatible
-> +  - reg
-> +  - connector
-> +
-> +additionalProperti
-
-I don't know what's further but this patch is not a patch... Please read
-submitting-patches, organize your patchset correctly into manageable
-logical chunks and send them as proper patchset, not one junk.
-
-b4 helps here a lot...
-
-> 
 
 Best regards,
 Krzysztof
