@@ -1,272 +1,172 @@
-Return-Path: <devicetree+bounces-40501-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-40502-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id D28D18509EE
-	for <lists+devicetree@lfdr.de>; Sun, 11 Feb 2024 16:11:12 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 42264850A09
+	for <lists+devicetree@lfdr.de>; Sun, 11 Feb 2024 16:39:38 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id C47A11C20E98
-	for <lists+devicetree@lfdr.de>; Sun, 11 Feb 2024 15:11:11 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 614701C20AE8
+	for <lists+devicetree@lfdr.de>; Sun, 11 Feb 2024 15:39:37 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2CC9F5C61D;
-	Sun, 11 Feb 2024 15:09:30 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 564285B670;
+	Sun, 11 Feb 2024 15:39:34 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=oltmanns.dev header.i=@oltmanns.dev header.b="iNacjmOH"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="J/N7OR0n"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mout-p-201.mailbox.org (mout-p-201.mailbox.org [80.241.56.171])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wm1-f49.google.com (mail-wm1-f49.google.com [209.85.128.49])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A2C5A5C8FD;
-	Sun, 11 Feb 2024 15:09:27 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=80.241.56.171
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7E07C5B5BB
+	for <devicetree@vger.kernel.org>; Sun, 11 Feb 2024 15:39:32 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.49
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1707664170; cv=none; b=kF2oHzIgz+37iIkTBqDEkvh0WL7ZOOi+Lv5lo/TkMc2pcBOs3WJZz/GA/cqs+dc0g+Hhzgfvn15nmyGGx7cdjIREeyVaEtp3gdZmjtFgUqH7g8MPIyNROiJwCYbHAGF3SDKPuUfnSS3d2o2GsIzT9ceATnoUMrNqeDh9ilx3VJA=
+	t=1707665974; cv=none; b=ut+Cn/5yjICOSZ3Fec2RbVGbEhCv8RKLre6NTDD9GNIk/i29ivOaqRZMY3lYixbCpmK8QcKVhdrBb4yGbIb5DttRT9Idn0g0YQXPe+vhEPaz81XVLSkiQetGpl+unlVry8Nw1Osivm3VvVxJJfiDzf8wx00cKzvRCmXDpLmqku0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1707664170; c=relaxed/simple;
-	bh=Jql5iGou1X/RyvV8b/jJVSCrI5gfo2R/oLK0sRZrM2w=;
-	h=References:From:To:Cc:Subject:In-reply-to:Date:Message-ID:
-	 MIME-Version:Content-Type; b=VUIMVUE0UIl8BT/Ex7VUe5UgcfWuMFFkNMeYk3bkmj6QMOhUq6Hvtdf3weA+9ILdOUdTv9DAv0+Mcix7UKwkVRkYfA9OUB2T5/ENnY06GYP9WPYJjYSgAGwbzvHliMIskzRyT5tryIYU4k8JGvAw/qiAoDynnCc0Vn7iYdsUuG4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=oltmanns.dev; spf=pass smtp.mailfrom=oltmanns.dev; dkim=pass (2048-bit key) header.d=oltmanns.dev header.i=@oltmanns.dev header.b=iNacjmOH; arc=none smtp.client-ip=80.241.56.171
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=oltmanns.dev
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oltmanns.dev
-Received: from smtp102.mailbox.org (smtp102.mailbox.org [IPv6:2001:67c:2050:b231:465::102])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
-	(No client certificate requested)
-	by mout-p-201.mailbox.org (Postfix) with ESMTPS id 4TXrbR1fH4z9sQm;
-	Sun, 11 Feb 2024 16:09:23 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=oltmanns.dev;
-	s=MBO0001; t=1707664163;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=LUVCRZm4sMe3u++O9hyPgin+lwvmga6oGxpeS7+ujsw=;
-	b=iNacjmOHnnJ7cN7BlOWZYDwt9xoKhavIzlIDQUkisuFwI/Do5r1nA5ByoqLssXMWFgfwfm
-	+URrBjnBznNmzPuWYko6BWSnAuqgK+kP6z4djSYiS5bSA1f9PhH4Wk9JISqbNvT1JrqWKe
-	YFABOkhChQcjji6fkK394DaHJ4S7uQZDesUmOipXbmcilPSczQPRDhwCKeKYU75fXp6KfW
-	gZZllox4x/AlU22kbWcC30634jdmVWfxXplgrGQGgpJrKbjWP+utG9zTWvx90Z5HSVqxah
-	KEHVjEiDshV1NHikGOd+BEKe+G56Bt4y0QhAeckFoAHqV9dWqwk8KkEmwdv0Dg==
-References: <20240205-pinephone-pll-fixes-v2-0-96a46a2d8c9b@oltmanns.dev>
- <jzl3mlzk4j7qvgcedvipgale5nhinznefodrnaehwsqfnseiwc@7zzlxd4dpueh>
- <bgyyemyi4shj3spo6qy4icvk56nrp5sihnzqurnozqdyktwugc@ikurx4ojoxpi>
-From: Frank Oltmanns <frank@oltmanns.dev>
-To: =?utf-8?Q?Ond=C5=99ej?= Jirman <megi@xff.cz>
-Cc: Michael Turquette <mturquette@baylibre.com>, Stephen Boyd
- <sboyd@kernel.org>, Chen-Yu Tsai <wens@csie.org>, Jernej Skrabec
- <jernej.skrabec@gmail.com>, Samuel Holland <samuel@sholland.org>, Guido
- =?utf-8?Q?G=C3=BCnther?= <agx@sigxcpu.org>, Purism Kernel Team
- <kernel@puri.sm>, Neil
- Armstrong <neil.armstrong@linaro.org>, Jessica Zhang
- <quic_jesszhan@quicinc.com>, Sam Ravnborg <sam@ravnborg.org>, Maarten
- Lankhorst <maarten.lankhorst@linux.intel.com>, Maxime Ripard
- <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>, David
- Airlie <airlied@gmail.com>, Daniel Vetter <daniel@ffwll.ch>, Rob Herring
- <robh+dt@kernel.org>, Krzysztof Kozlowski
- <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>,
- linux-clk@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- linux-sunxi@lists.linux.dev, linux-kernel@vger.kernel.org,
- dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org
-Subject: Re: [PATCH v2 0/6] Pinephone video out fixes (flipping between two
- frames)
-In-reply-to: <bgyyemyi4shj3spo6qy4icvk56nrp5sihnzqurnozqdyktwugc@ikurx4ojoxpi>
-Date: Sun, 11 Feb 2024 16:09:16 +0100
-Message-ID: <87wmrbxckj.fsf@oltmanns.dev>
+	s=arc-20240116; t=1707665974; c=relaxed/simple;
+	bh=p2OrY5Sntk1BJ2038kpst2b2dqLgitfCh8kdLSqPOSQ=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=oaKsApdJy78SoPBvLqi9DFRBHcqJfv3zCxQbtkRgy293l5rvs7Yhw2aKWe1xfWnTBvlwga9knQ3dpRQg5z5dv/GKSkSRKmHxwqhSqN1PF7HP/Ban1rWBEGroKsHk9FaoypGO3ZPA/2QU7KqNlyO+HHsfe41C40Bj6z7NjyJRZPc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=J/N7OR0n; arc=none smtp.client-ip=209.85.128.49
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-wm1-f49.google.com with SMTP id 5b1f17b1804b1-41090edfeb3so8123005e9.2
+        for <devicetree@vger.kernel.org>; Sun, 11 Feb 2024 07:39:32 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1707665970; x=1708270770; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from
+         :content-language:references:cc:to:subject:user-agent:mime-version
+         :date:message-id:from:to:cc:subject:date:message-id:reply-to;
+        bh=LSjWqhkf6+v8Y6bhbWzIso8PIeD6RApLquHv7FdvFeA=;
+        b=J/N7OR0nOJDIK4fuTzeCakw0ysQm2/L/+d2R5m9hWWg4b63vMHUIxMHNYtrylCS4Vi
+         mxD+gltRbqVWhEOOIXN3w0yWZYT9u7XHOMVcyXojS6FKr9wYh0p2/picjahL1SZ+zz5x
+         vlahLRYM4AjcQ4y59qp9sxR2SnZ1qpTM3DtbL6QJJxDPzXJ1+APuy9IIqYE5xujlblQy
+         MrZAYDhxEG8lvSt0l8TO82yalBpQa6KVJXjn5cNPAguxA+Yfe63AIB0y1rY0V+eeyKru
+         FcI7+No4vH5tdf+ydjDGViAta1JZgU+60pILqocs6QFOk21LrmtVtPKkImJ2E62OSM9z
+         5S0Q==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1707665971; x=1708270771;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from
+         :content-language:references:cc:to:subject:user-agent:mime-version
+         :date:message-id:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=LSjWqhkf6+v8Y6bhbWzIso8PIeD6RApLquHv7FdvFeA=;
+        b=TL2oSCuWm2EEY4iWN3urBn237ZR6gta89BjITO5Rm4bTtlbhp1x3qQOyGrkTb7bLyu
+         LubVbnX0ZALBECfj0Lb2GRV05Pn/rgWHOqxk7Dqi2NRmnk06oGj2n2BkU8FDKaQJEh21
+         HaKXj0Tc032yHWQN+yHcjetAC6m60fm7XEc6Ey8Cz0c0G0TBR2duM/gphn0Aw34pGco7
+         zGL1nc8I+6JIAzMjE6CaHm+EVV1lD39xixxFrY70Cpf3Eme4ckTLq/W3LOyRptlfxFmC
+         8V60QkSSQEX9FMd+tH3iOiQ904P1kBrp138FxGyyxt62syFt9yXMM4d/qJO3I6B3X8T5
+         yrPA==
+X-Forwarded-Encrypted: i=1; AJvYcCVvwKDpp7GWvad8bhnU6BZkVa36P1/gbpSVRWPYJI3wRyuFDU+kr3vrxnSL7jroOCdNlzMQ4j3Yp/9ixqZuXZze3WkZKz/YntSUYg==
+X-Gm-Message-State: AOJu0YziQxT3BgIBbC1Fj8AF/0XP6cWuvK6aD9Eo1m6Mh+AisMz3Kkc/
+	7UcNokxcNqNKtGLvucClyAn2P22IrsPoAJg3kcBriY8HSRIcIYrreu7jY2dgYwc=
+X-Google-Smtp-Source: AGHT+IE0YvrJ0dkHWV5/x42Grnb0S2MrQ1HrVcFZVtPCnQpfmV+fyVtfU8EhEvpV3gyZpQFNGt7PCQ==
+X-Received: by 2002:a05:600c:46c9:b0:40f:ddb6:a63b with SMTP id q9-20020a05600c46c900b0040fddb6a63bmr3994127wmo.24.1707665970669;
+        Sun, 11 Feb 2024 07:39:30 -0800 (PST)
+X-Forwarded-Encrypted: i=1; AJvYcCVsiyEI2Z9Pp+hRaOVLqjtrReTL/kAEY0qZqvMv8xMFoSkdvOgA5uPakOMQdkI838j5lgF+VOkJDWJs6RDTAYCIRA0hxCDsp718P47Jh5FNGbDkQ9+fJognD/8I8Hu+IDr/iuL17WpICceMD3dGsFcIACos/LyPehOOIao9Ljw9lP3yGwZvJnjZHky3yzQiBb03MBMR0DBwNSG36OC/aJTLEh8bYNYEDWzDcONyI9Ip07hB48an9N39G7ns1TXK2m6WZu+3IpeuHnyZWJm3OdKfTPbYqxAdFcDAwIO3wCRISbSkupCOKCV1wDTxa1+NB5m/j5ZvJcBAThFfFwromzvjuOtU0D/TaJqpCOFMZ7hkSz154MnqZJ2yZjl6+RcjszsfXsII34E3ktIcj9k3vGcXD9tqHUgOQ7tI++H+Dfq8p1qZC706Nv7Ejvlu/+QRoGe/O9yihtK02dCmnFbW0b1Ry2twEuQ1ohTfTeSm9O9RXfdcoEVTwGObo+cQ2Y2H80+pbIqg6a1a
+Received: from [192.168.1.20] ([178.197.223.6])
+        by smtp.gmail.com with ESMTPSA id n12-20020a05600c500c00b004109a5ccd7fsm3885151wmr.47.2024.02.11.07.39.29
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Sun, 11 Feb 2024 07:39:30 -0800 (PST)
+Message-ID: <69679d9a-02e9-498f-8f5a-7c029059a8c1@linaro.org>
+Date: Sun, 11 Feb 2024 16:39:28 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: quoted-printable
-X-Rspamd-Queue-Id: 4TXrbR1fH4z9sQm
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v3 2/5] dt-bindings: fpga: xlnx,fpga-slave-serial: rename
+ gpios
+To: Charles Perry <charles.perry@savoirfairelinux.com>, mdf@kernel.org
+Cc: avandiver@markem-imaje.com, bcody@markem-imaje.com,
+ Wu Hao <hao.wu@intel.com>, Xu Yilun <yilun.xu@intel.com>,
+ Tom Rix <trix@redhat.com>, Rob Herring <robh+dt@kernel.org>,
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+ Conor Dooley <conor+dt@kernel.org>, Michal Simek <michal.simek@amd.com>,
+ kishore Manne <nava.kishore.manne@amd.com>, linux-fpga@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org
+References: <20240207180142.79625-1-charles.perry@savoirfairelinux.com>
+ <20240207180142.79625-3-charles.perry@savoirfairelinux.com>
+Content-Language: en-US
+From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
+ 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
+ D2GYIS41Kv4Isx2dEFh+/Q==
+In-Reply-To: <20240207180142.79625-3-charles.perry@savoirfairelinux.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
-Hi Ond=C5=99ej,
+On 07/02/2024 19:01, Charles Perry wrote:
+> By convention, gpio consumer names should not contain underscores
+> (prog_b here) and shouldn't contain active low suffixes (-b here).
+> 
+> Signed-off-by: Charles Perry <charles.perry@savoirfairelinux.com>
+> ---
+>  .../bindings/fpga/xlnx,fpga-slave-serial.yaml        | 12 ++++++------
+>  1 file changed, 6 insertions(+), 6 deletions(-)
+> 
+> diff --git a/Documentation/devicetree/bindings/fpga/xlnx,fpga-slave-serial.yaml b/Documentation/devicetree/bindings/fpga/xlnx,fpga-slave-serial.yaml
+> index 614d86ad825f3..650a4d8792b64 100644
+> --- a/Documentation/devicetree/bindings/fpga/xlnx,fpga-slave-serial.yaml
+> +++ b/Documentation/devicetree/bindings/fpga/xlnx,fpga-slave-serial.yaml
+> @@ -36,7 +36,7 @@ properties:
+>    reg:
+>      maxItems: 1
+>  
+> -  prog_b-gpios:
+> +  prog-gpios:
 
-On 2024-02-05 at 17:02:00 +0100, Ond=C5=99ej Jirman <megi@xff.cz> wrote:
-> On Mon, Feb 05, 2024 at 04:54:07PM +0100, Ond=C5=99ej Jirman wrote:
->> On Mon, Feb 05, 2024 at 04:22:23PM +0100, Frank Oltmanns wrote:
->> > On some pinephones the video output sometimes freezes (flips between t=
-wo
->> > frames) [1]. It seems to be that the reason for this behaviour is that
->> > PLL-MIPI, PLL-GPU and GPU are operating outside their limits.
->> >
->> > In this patch series I propose the followin changes:
->> >   1. sunxi-ng: Adhere to the following constraints given in the
->> >      Allwinner A64 Manual regarding PLL-MIPI:
->> >       * M/N <=3D 3
->> >       * (PLL_VIDEO0)/M >=3D 24MHz
->> >       * 500MHz <=3D clockrate <=3D 1400MHz
->> >
->> >   2. Choose a higher clock rate for the ST7703 based XDB599 panel, so
->> >      that the panel function well with the Allwinner A64 SOC. PLL-MIPI
->> >      must run between 500 MHz and 1.4 GHz. As PLL-MIPI runs at 6 times
->> >      the panel's clock rate, we need the panel's clock to be at least
->> >      83.333 MHz.
->> >
->> >   3. Increase the minimum frequency in the A64 DTS OPPs from 120 MHz to
->> >      192 MHz. This further reduces the issue.
->> >
->> > Unfortunately, with these patches the issue [1] is not completely gone,
->> > but becomes less likely.
->> >
->> > Note, that when pinning the GPU to 432 MHz the issue completely
->> > disappears for me. I've searched the BSP and could not find any
->> > indication that supports the idea of having the three OPPs. The only
->> > frequency I found in the BPSs for A64 is 432 MHz, that has also proven
->> > stable for me. So, while increasing the minimum frequency to 192 MHz
->> > reduces the issue, should we maybe instead set the GPU to a fixed 432
->> > MHz instead?
->>
->> Per A64 User Manual 1.1 page 81:
->>
->> (9). Clock output of PLL_GPU can be used for GPU;and dynamic frequency s=
-caling is not supported;
->
-> You may be able to elegantly work around this by pinning PLL_GPU to a cer=
-tain
-> frequency (assing it in DT and then don't decalre gpu clock as
-> CLK_SET_RATE_PARENT). Say 432 MHz for PLL and then do the scaling via GPU=
-_CLK_REG
-> N divider between 432MHz and 216MHz and maybe 108MHz if that brings any g=
-ains.
->
+Please deprecate old property and add allOf excluding the usage of both.
+Driver still parses old property, so we should have it documented.
 
-I really like this idea. Unfortunately, it seems that the divisor of the
-GPU_CLK_REG must always be set to 1. I tried to convey this info in the
-commit message for PATCH 6. If using a different divisor than 1 the bug
-I'm trying to fix here occurs within minutes. Nevertheless, I gave your
-proposal a quick try - it seems so elegant. Unfortunately, but not
-unexpectedly, the bug occured almost immediately.
+https://lore.kernel.org/all/20230118163208.GA117919-robh@kernel.org/
 
-> Then you can perhaps sidestep all these potential issues with PLL_GPU and
-> lack of DVFS support decalred in the manual.
->
-> regards,
-> 	o.
->
->> Also sunxi-ng clk driver does apply NM factors at once to PLL_GPU clock,
->> which can cause sudden frequency increase beyond intended output frequen=
-cy,
->> because division is applied immediately while multiplication is reflected
->> slowly.
->>
->> Eg. if you're changing divider from 7 to 1, you can get a sudden 7x outp=
-ut
->> frequency spike, before PLL VCO manages to lower the frequency through N=
- clk
->> divider feedback loop and lock on again. This can mess up whatever's con=
-nected
->> to the output quite badly.
->>
->> You'd have to put logging on kernel writes to PLL_GPU register to see wh=
-at
->> is written in there and if divider is lowered significantly on some GPU
->> devfreq frequency transitions.
+Best regards,
+Krzysztof
 
-By looking at the clocks in clk_summary in debugfs, the rate of PLL-GPU
-always matches the rate of the GPU (at least at 120, 312, and 432 MHz).
-This is further underlined by the fact, that none of the rates can be
-achieved by integer dividing one of the other rates. sunxi-ng would
-only favor a different rate for pll-gpu than the one that is requested
-for the gpu, if pll-gpu is already running at a rate such that there
-exists an M =E2=88=88 {1, 2, 3, 4, 5, 6, 7, 8}, where
-  rate of pll-gpu / M =3D requested gpu rate
-or if the requested rate could not be reached directly by pll-gpu. Both
-is not the case for the rates in question (120, 192, 312, and 432 MHz).
-
-This means that the following divisor/multipliers are used by sunxi-ng's
-ccu_nm:
-N =3D  5, M =3D 1 for 120 MHz (min value without PATCH 6)
-N =3D  8, M =3D 1 for 192 MHz (min value after applying PATCH 6)
-N =3D 13, M =3D 1 for 312 MHz
-N =3D 18, M =3D 1 for 432 MHz
-
-So, with or without PATCH 6, the divider stays constant and it's only
-the multiplier that changes. This means, there should be no unexpected
-frequency spikes, right?
-
->> It's also unclear what happens when FRAC_CLK_OUT or PLL_MODE_SEL changes.
-
-Those are not changed once the clock is initialized. The bug however
-occurs hours or days after booting. IMO, this makes it unlikely that this
-could be the culprit.
-
->> Maybe not much because M is supposed to be set to 1, but you still need =
-to
->> care when enabling fractional mode, and setting M to 1 because that's ex=
-actly
->> the bad scenario if M was previously higher than 1.
->>
->> It's tricky.
->>
->> Having GPU module clock gated during PLL config changes may help! You can
->> do that without locking yourself out, unlike with the CPU PLL.
->>
->> There's a gate enable bit for it at GPU_CLK_REG.SCLK_GATING. (page 122)
-
-The GPU should already be properly gated:
-https://elixir.bootlin.com/linux/v6.7.4/source/drivers/clk/sunxi-ng/ccu-sun=
-50i-a64.c#L599
-
-Thank you for your detailed proposal! It was insightful to read. But
-while those were all great ideas, they have all already been taken care
-of. I'm fresh out of ideas again (except for pinning the GPU rate).
-
-Again, thank you so much,
-  Frank
-
->>
->> Kind regards,
->> 	o.
->>
->> > I very much appreciate your feedback!
->> >
->> > [1] https://gitlab.com/postmarketOS/pmaports/-/issues/805
->> >
->> > Signed-off-by: Frank Oltmanns <frank@oltmanns.dev>
->> > ---
->> > Changes in v2:
->> > - dts: Increase minimum GPU frequency to 192 MHz.
->> > - nkm and a64: Add minimum and maximum rate for PLL-MIPI.
->> > - nkm: Use the same approach for skipping invalid rates in
->> >   ccu_nkm_find_best() as in ccu_nkm_find_best_with_parent_adj().
->> > - nkm: Improve names for ratio struct members and hence get rid of
->> >   describing comments.
->> > - nkm and a64: Correct description in the commit messages: M/N <=3D 3
->> > - Remove patches for nm as they were not needed.
->> > - st7703: Rework the commit message to cover more background for the
->> >   change.
->> > - Link to v1: https://lore.kernel.org/r/20231218-pinephone-pll-fixes-v=
-1-0-e238b6ed6dc1@oltmanns.dev
->> >
->> > ---
->> > Frank Oltmanns (6):
->> >       clk: sunxi-ng: nkm: Support constraints on m/n ratio and parent =
-rate
->> >       clk: sunxi-ng: a64: Add constraints on PLL-MIPI's n/m ratio and =
-parent rate
->> >       clk: sunxi-ng: nkm: Support minimum and maximum rate
->> >       clk: sunxi-ng: a64: Set minimum and maximum rate for PLL-MIPI
->> >       drm/panel: st7703: Drive XBD599 panel at higher clock rate
->> >       arm64: dts: allwinner: a64: Fix minimum GPU OPP rate
->> >
->> >  arch/arm64/boot/dts/allwinner/sun50i-a64.dtsi |  4 ++--
->> >  drivers/clk/sunxi-ng/ccu-sun50i-a64.c         | 14 +++++++----
->> >  drivers/clk/sunxi-ng/ccu_nkm.c                | 34 ++++++++++++++++++=
-+++++++++
->> >  drivers/clk/sunxi-ng/ccu_nkm.h                |  4 ++++
->> >  drivers/gpu/drm/panel/panel-sitronix-st7703.c | 14 +++++------
->> >  5 files changed, 56 insertions(+), 14 deletions(-)
->> > ---
->> > base-commit: 059c53e877ca6e723e10490c27c1487a63e66efe
->> > change-id: 20231218-pinephone-pll-fixes-0ccdfde273e4
->> >
->> > Best regards,
->> > --
->> > Frank Oltmanns <frank@oltmanns.dev>
->> >
 
