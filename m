@@ -1,148 +1,287 @@
-Return-Path: <devicetree+bounces-40467-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-40468-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8C7358508F7
-	for <lists+devicetree@lfdr.de>; Sun, 11 Feb 2024 13:30:14 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3FA68850933
+	for <lists+devicetree@lfdr.de>; Sun, 11 Feb 2024 13:39:56 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 488B6281197
-	for <lists+devicetree@lfdr.de>; Sun, 11 Feb 2024 12:30:13 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 5EBC51C20D9E
+	for <lists+devicetree@lfdr.de>; Sun, 11 Feb 2024 12:39:55 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3CBB753368;
-	Sun, 11 Feb 2024 12:30:10 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5EDF836B01;
+	Sun, 11 Feb 2024 12:31:11 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="P/wnW/73"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="lfyRtA93"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-oi1-f182.google.com (mail-oi1-f182.google.com [209.85.167.182])
+Received: from mail-wm1-f51.google.com (mail-wm1-f51.google.com [209.85.128.51])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B6B9B59B77;
-	Sun, 11 Feb 2024 12:30:08 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.182
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A292361682
+	for <devicetree@vger.kernel.org>; Sun, 11 Feb 2024 12:31:08 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.51
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1707654610; cv=none; b=lrvFcZEQB1U1w6TdqH76v7L22Xghcp0zBeaAV/qfEBl1LzDf7kRJfyvQqbqa4RlE45JmAfq0p8mBw4jQEzySkKn/ek0ipUHfrBnaN2wVY2RNz+ABKFlYYCXBNKZR+/1Hx4xYAndDrz3Zd1bKoq2wmGbpRAxrxy5l77Sr47wjI9U=
+	t=1707654671; cv=none; b=aN/tZ2m7wu3M2BlRG6/pFW8qhIhSn0vE6GnA9yWtuqzTIpBrUWmFsSWDSkzvoyOMLvvrSdJYspX1dKcqN5+2eqPr/ba7BcadRMM4KD1e3YRvj8Rv8JzYWiqdP8kulZZCTSeMjCHpePzOJm/9WbIxJbMPBGqweUYvWnHmwDJ+5ms=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1707654610; c=relaxed/simple;
-	bh=ky+RAWf8J8vXkQ6HF5HH603Fg0/+EkBj84w84UXqyY4=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=lEXyUFUQOlVn/SzD96AGMLbWDLs8aP9Zab0qFMVPAbqlR5hwJSSEyxZIGdQ2JK9lO7PMNM+HxRlWBhGzeArBjP/knUvEtqmmHVAP8ZI7uLR186x78RvY6+qcHx27woS80rw1PVl3kkWwl/DCnwxw/e9hAC9EbSa7xzTHq0o6gsE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=P/wnW/73; arc=none smtp.client-ip=209.85.167.182
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-oi1-f182.google.com with SMTP id 5614622812f47-3bfdb84c0ebso1109101b6e.1;
-        Sun, 11 Feb 2024 04:30:08 -0800 (PST)
+	s=arc-20240116; t=1707654671; c=relaxed/simple;
+	bh=Byh3QALddwWbe09AZxoMPKkeSBdvpBUaUYu9tQY4iJY=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=uqoqj/ACb/1PQ3ln5SRLsmOUMFebjUYrH/n8288iJ97En4UkC4ff9r3Wg8g3LlBX/TRb2s+cT/0xZ1SaTmPfKOA+DjPZH98GC/GJFeubHl02VO+FAIn7tzsAker3NTo0Qms43hgxqkGZzjylbkaZx/7vx0LlYvAgdZSs/8ZLkBg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=lfyRtA93; arc=none smtp.client-ip=209.85.128.51
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-wm1-f51.google.com with SMTP id 5b1f17b1804b1-41090edfeb3so7372895e9.2
+        for <devicetree@vger.kernel.org>; Sun, 11 Feb 2024 04:31:08 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1707654607; x=1708259407; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=yY1B5EOzgtD2gnfK4gYntuGm53FWM/Oxlr8jej3jl3g=;
-        b=P/wnW/73+i6FUruOE679x/7LB3UejkU92aLoXbcYLr2mjWEiBXyiSojDzM1YdsE2XV
-         +V9m3qdA4TvZIiaQ8lLIPs/otd4e0PZbM1CXTL0p1e0iCjpMpcR8znRv/oV+PhS7z5lp
-         3Fgbq3hgsvxvDa+SPoK6FHRyhVyiKXjAqyXd137GRhn9scMl2q/hwf/EJf2z9lyU0bDJ
-         IrJgyi+oEp06EDiCHtFdWtvaa6JrPLsaRnH1aSt5Vq5cAC2Hq5fndGpSVJwTbNCgXlFv
-         GjBzguLaROD35KMhq2cPR6aDMaJUxM2kOnnwnoAcsIUHnmvm0+11jib256fth2/R13ib
-         6igg==
+        d=linaro.org; s=google; t=1707654667; x=1708259467; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
+         :to:content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=TlhezHxMst/l6Js8Jb5c85s1kBor6lNLzw63UUzO3EM=;
+        b=lfyRtA93WLZPbtOnsmvZNyRHD94VW00tq7dlW2mcO5cngx7nSG1REuGmBIY5dfLMxl
+         sBt88m32+UCKBt8n6kNQmJrr/RDVzKzShOutxULrONDm8AYSG8EcPDg3Ls2rFHl/OI3w
+         PEGKI403c2yxaoMy2ciFVS/8r3M/9YuRyzf/7IuiitaLaVhOAIHT/ozKA5CCQdzKkLs8
+         zWExwy+YFfkixgl6PPkKiQzk1BrYc9dtdbf/3ytpeN5BCZjelQEn0DoDMIIEu2bUs8i3
+         YjXJbS0lpWfwjq6ZB7Hs62eKNEjqU8qMvLl5WDRqKhIZ60RT3WXxPFPJiysq1n5k6XRr
+         ICqA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1707654607; x=1708259407;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=yY1B5EOzgtD2gnfK4gYntuGm53FWM/Oxlr8jej3jl3g=;
-        b=lgixtSQpdTitFJ4KnzKWo5lW8xxS5V45FTJyJJkmq+4dvE+gKqviAHXOsefVInp/eu
-         TbPQ6FdGCTn0mMbk27gItbiC2NYm/QYWGGkg6GVRd1f6OjLC/NuOHWIlf1hTxgszdQkU
-         rRYAYd4Q3Sh94F1FSt5SgfHDCgn7kBsPnGcU11PHSSvG7dHJ5gisY6Rl8786u5x2D0zW
-         nBJMNSfSEuZDUeOEltUq2CsW8p76zuTtyi7PMmhwzOGhD9gnsb2Dg7YMFpzOk2Xre6iv
-         Nffq1e10wju0f1Jlo8j7BNrEfa7tHGbbGAouddLvgzxHFCV9W3ukGHcCKvCSKyqC38fg
-         hGOg==
-X-Forwarded-Encrypted: i=1; AJvYcCXm1UhGA9NBdpqmEOjo3QMlyppwm4ppjqfEwqDX3fL0ksX4B1qYtBEGyxTLlqVLXnt7kBBOIOgirE+Nj+LzmwdYQRP1KNbTi6spalRtPOr4Ce1PXInj+ZgbiUp+B0Tu/LzcBoaT8l4CLhXSSCItCEDgXcYOo3Lb8o13ksKVe1JAiPeHnwo=
-X-Gm-Message-State: AOJu0YwjRCWlv8lbBVTl8mb5g5MqrhybSKOhJ7TCn6jrorkGK+l2EAtN
-	BIeBnR1McEcvTgesv7Kt9PhRu8TIQbN4UnFjQdXGNNCivf0G/OSZ
-X-Google-Smtp-Source: AGHT+IF35wU7oQHIL1WAqzc2rw7d/zu+t9GZ4FvO8SQu/9DFopyNSSZKv+8ggBOG/7GT5mlted3Y9A==
-X-Received: by 2002:a05:6808:140d:b0:3bf:f233:faed with SMTP id w13-20020a056808140d00b003bff233faedmr4915160oiv.39.1707654607542;
-        Sun, 11 Feb 2024 04:30:07 -0800 (PST)
-X-Forwarded-Encrypted: i=1; AJvYcCVGidnzGiLsb6tQWbD8jVvfID7bmIWxsQ7LOgUorrYLJEaiUrJv0xahtK6LablJrNmqpUrSXEnBalbh+qvMv3LF8MyasuPWlrR+/sxfTT3q1+tI0GyXxJ+F7VRvMRBR0QVpkcu4f4XjIh3xXzYbHaGJOF3iIJpt6QC10BAh/wq0+w0Q6LUKK/5SrRvUUfZRr5jXkW2j2ZfUiGmzdLeulJE6myhcW1jIY1cxrp2MtF3MN61TEXExikyVwXxKG58nXb2vdo9e6cDRsHfp9wudgSWy3yBGcRsId7OHh80dUEkYv/0esOS+VUwz27bjyrajRMZKMzn1gqwMvdATdxYIreljqMOSWYC2Ln4AVY9fykPdXY0dortluwrhM3bxQZG5pWFDJqqIy1l1uRxSGFYaoWH0JQWgVo+AbX+K7jpk7x5vJ0Vq0qOsMRmLcwfQEMo8unz+kTx8CwLEyd3AnyDMlMSZzfMMWjXo67+1DWDz6JKKVuHaB8VY
-Received: from primary ([174.95.13.129])
-        by smtp.gmail.com with ESMTPSA id ch7-20020a0561300c8700b007d2eba3ad17sm653128uab.24.2024.02.11.04.30.05
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sun, 11 Feb 2024 04:30:06 -0800 (PST)
-Date: Sun, 11 Feb 2024 07:29:56 -0500
-From: Abdel Alkuor <alkuor@gmail.com>
-To: Lee Jones <lee@kernel.org>
-Cc: Pavel Machek <pavel@ucw.cz>, Rob Herring <robh+dt@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Lukas Bulwahn <lukas.bulwahn@gmail.com>,
-	Jean-Jacques Hiblot <jjhiblot@traphandler.com>,
-	ChiYuan Huang <cy_huang@richtek.com>,
-	=?utf-8?B?QW5kcsOp?= Apitzsch <git@apitzsch.eu>,
-	Alice Chen <alice_chen@richtek.com>,
-	Jacek Anaszewski <jacek.anaszewski@gmail.com>,
-	ChiaEn Wu <chiaen_wu@richtek.com>, linux-kernel@vger.kernel.org,
-	linux-leds@vger.kernel.org, devicetree@vger.kernel.org
-Subject: Re: [PATCH 2/2] leds: Add NCP5623 multi-led driver
-Message-ID: <Zci9xE5uHRJGMg5q@primary>
-References: <20240203175910.301099-1-alkuor@gmail.com>
- <20240203175910.301099-2-alkuor@gmail.com>
- <20240208130115.GM689448@google.com>
+        d=1e100.net; s=20230601; t=1707654667; x=1708259467;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
+         :to:content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=TlhezHxMst/l6Js8Jb5c85s1kBor6lNLzw63UUzO3EM=;
+        b=XNy49x0y3ckz15Euv+KBkf2rBih5ys1ZsdtzjBlSPEtcttbf0z1eOqfJxI6y5iRzSd
+         JswlgKGgLLAR36aK+Shoi2y+l0hPKDWMamTXPliU2kCPueDBQV23Z9/3KCemTFTo0f3G
+         /3J1Bj9h1/l2WZ9tOPc0e1F3X/Jydsx0efe8pdfVZ2t/zsdnQujSLEqI7IG3uRMbKn6s
+         f1SQAqkkbn+k2w59N7NtJGo+42QRkMuXGFrbJc9YsQ0YVmtstmo5JNuNvJWXct8gtx2A
+         6wxlj8dOGXl1eK5mbwsrjM9lLhVAwBKxnDBkseAdypz+qciE8ogvuyUdV9cekt8BLoDv
+         Z5WA==
+X-Gm-Message-State: AOJu0YwmBRT7Qs5zevDVUe8f9mIqDvAMd48W40lDQ7CF+Z3VHHWLTKpA
+	DrQHTdh6fNlZ/W6wu/dATu5vaVJgVYzP7Nx+3w1U0tVV3/8bnNZuQF5WLgcSMfs=
+X-Google-Smtp-Source: AGHT+IEQttI9s33BqHQN0cE7nLErLNgK/WU+pW8bh1hWuTsdasRUhwLno6Q3sp/UONX8XquJhQ3NGw==
+X-Received: by 2002:a05:600c:4588:b0:40f:cf69:3e1a with SMTP id r8-20020a05600c458800b0040fcf693e1amr3603529wmo.39.1707654666794;
+        Sun, 11 Feb 2024 04:31:06 -0800 (PST)
+X-Forwarded-Encrypted: i=1; AJvYcCUBgt7FE3xiJd48SCWwRYMplcc4Dpm2vk4VRnwHt1XOtFzYrqbiQ1ygkj9y6qUKO2uZFqjIFyuYxn3+Tr2pm4ao3EpDmrSLZKpb3N/hR476FoUw2JVhNvqXtW5td5YagoPt+2gxiL8cV41hYH6d2+wZXv5lIOTslP6No3rDW5n9Tjhy1JsSgk2oAqVXZcpI61WGz9mrRiM5fOrCNCaYs3EFm4ya3ahSER7zYJ2ij0QeReascnfKILkxUc6c70okRUrzaWAjZoiVkATMWZ4fGBQtqA1b80b7VCZsf+6k9VHtvLWCiX1Xtq6IssAx03Mez1L2xXx/VXnCsXCu3lQXKflL81rt69aqw5QgAmAxX0SMefMORaneTBqeaYxIJXkXRa77IbYCiWYioZRx10uD5stuwNwuiHOL/+wt0GJlOyeHnv7oLpz/1ZrsldX7urc6kEot5Y8t1Tjfuf/VHUhIyUZLUh7exTJZUdkta+hAJZaADLBu58qyj1e7KAsgcJuJSY//Y2+WF5rYaN9DlIDr4w==
+Received: from [192.168.1.20] ([178.197.223.6])
+        by smtp.gmail.com with ESMTPSA id k20-20020a7bc414000000b004104c42ad5asm5703347wmi.22.2024.02.11.04.31.04
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Sun, 11 Feb 2024 04:31:06 -0800 (PST)
+Message-ID: <38e18310-4eba-4daa-b780-c719f38d3c5f@linaro.org>
+Date: Sun, 11 Feb 2024 13:31:04 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20240208130115.GM689448@google.com>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v1 02/14] dt-bindings: bus: imx-weim: convert to YAML
+Content-Language: en-US
+To: Sebastian Reichel <sre@kernel.org>, Rob Herring <robh+dt@kernel.org>,
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+ Conor Dooley <conor+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>,
+ Sascha Hauer <s.hauer@pengutronix.de>, Fabio Estevam <festevam@gmail.com>,
+ Pengutronix Kernel Team <kernel@pengutronix.de>,
+ NXP Linux Team <linux-imx@nxp.com>
+Cc: Dong Aisheng <aisheng.dong@nxp.com>,
+ Linus Walleij <linus.walleij@linaro.org>,
+ Dmitry Torokhov <dmitry.torokhov@gmail.com>, Mark Brown
+ <broonie@kernel.org>, linux-arm-kernel@lists.infradead.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+References: <20240210012114.489102-1-sre@kernel.org>
+ <20240210012114.489102-3-sre@kernel.org>
+From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
+ 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
+ D2GYIS41Kv4Isx2dEFh+/Q==
+In-Reply-To: <20240210012114.489102-3-sre@kernel.org>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
-On Thu, Feb 08, 2024 at 01:01:15PM +0000, Lee Jones wrote:
-> On Sat, 03 Feb 2024, Abdel Alkuor wrote:
->
-Hi Lee,
+On 10/02/2024 02:18, Sebastian Reichel wrote:
+> Convert the i.MX  Wireless External Interface Module binding to YAML.
+> 
+> Signed-off-by: Sebastian Reichel <sre@kernel.org>
+> ---
+>  .../devicetree/bindings/bus/fsl,imx-weim.yaml | 225 ++++++++++++++++++
+>  .../devicetree/bindings/bus/imx-weim.txt      | 117 ---------
+>  2 files changed, 225 insertions(+), 117 deletions(-)
+>  create mode 100644 Documentation/devicetree/bindings/bus/fsl,imx-weim.yaml
+>  delete mode 100644 Documentation/devicetree/bindings/bus/imx-weim.txt
+> 
+> diff --git a/Documentation/devicetree/bindings/bus/fsl,imx-weim.yaml b/Documentation/devicetree/bindings/bus/fsl,imx-weim.yaml
+> new file mode 100644
+> index 000000000000..3d27bdaef304
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/bus/fsl,imx-weim.yaml
+> @@ -0,0 +1,225 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/bus/fsl,imx-weim.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: i.MX Wireless External Interface Module (WEIM)
 
-Please check the inline comment. All other comments will be addressed
-in v2.
+This patchset does not do what I asked to, but maybe that's just
+coincidence that you send conversion now.
 
-> > +What:		/sys/class/leds/<led>/dim_step
-> 
-> The step principle seems a bit arbitrary.
-> 
-> Why not provide the time directly?
-> 
-> dim_step_delay?
-> 
-> I already see documentation for risetime and falltime.
-> 
-> Perhaps that will omit the need for both direction and step?
->
-I'm going to drop off both and use risetime and falltime. That being
-said, the documented risetime and falltime for lm3533 use steps instead of
-entering the time directly. This is my first time doing this, should I document
-risetime/falltime in sysfs-class-led-multicolor-driver-ncp5623? or should
-I update risetime/falltime in sysfs-class-led-driver-lm3533 to reflect
-risetime/falltime for ncp5623?
-> > +Date:		Feb 2024
-> > +KernelVersion:	6.8
-> > +Contact:	Abdel Alkuor <alkuor@gmail.com>
-> > +Description:
-> > +		Set gradual dimming time.
-> > +
-> > +		==== ======== ==== ======== ==== ========
-> > +		Step Time(ms) Step Time(ms) Step Time(ms)
-> > +		0     0       11   88       22   176
-> > +		1     8       12   96       23   184
-> > +		2     16      13   104      24   192
-> > +		3     24      14   112      25   200
-> > +		4     32      15   120      26   208
-> > +		5     40      16   128      27   216
-> > +		6     48      17   136      28   224
-> > +		7     56      18   144      29   232
-> > +		8     64      19   152      30   240
-> > +		9     72      20   160      31   248
-> > +		10    80      21   168
-> > +		==== ======== ==== ======== ==== ========
+To recall:
 
-Thanks,
-Abdel
+https://lore.kernel.org/all/cee1ca11-03bf-4a0b-9ff3-490457f9fbe8@linaro.org/
+
+> +
+> +maintainers:
+> +  - Shawn Guo <shawnguo@kernel.org>
+> +  - Sascha Hauer <s.hauer@pengutronix.de>
+> +
+> +description:
+> +  The term "wireless" does not imply that the WEIM is literally an interface
+> +  without wires. It simply means that this module was originally designed for
+> +  wireless and mobile applications that use low-power technology. The actual
+> +  devices are instantiated from the child nodes of a WEIM node.
+> +
+> +properties:
+> +  compatible:
+> +    oneOf:
+> +      - enum:
+> +          - fsl,imx1-weim
+> +          - fsl,imx27-weim
+> +          - fsl,imx50-weim
+> +          - fsl,imx51-weim
+> +          - fsl,imx6q-weim
+> +      - items:
+> +          - enum:
+> +              - fsl,imx31-weim
+> +              - fsl,imx35-weim
+> +          - const: fsl,imx27-weim
+> +      - items:
+> +          - enum:
+> +              - fsl,imx6sx-weim
+> +              - fsl,imx6ul-weim
+> +          - const: fsl,imx6q-weim
+> +
+> +  reg:
+> +    maxItems: 1
+> +
+> +  clocks:
+> +    maxItems: 1
+> +
+> +  interrupts:
+> +    maxItems: 1
+> +
+> +  '#address-cells':
+> +    const: 2
+> +
+> +  '#size-cells':
+> +    const: 1
+> +
+> +  ranges: true
+> +
+> +  fsl,weim-cs-gpr:
+> +    $ref: /schemas/types.yaml#/definitions/phandle
+> +    description: |
+> +      Phandle to the system General Purpose Register controller that contains
+> +      WEIM CS GPR register, e.g. IOMUXC_GPR1 on i.MX6Q. IOMUXC_GPR1[11:0]
+> +      should be set up as one of the following 4 possible values depending on
+> +      the CS space configuration.
+> +
+> +      IOMUXC_GPR1[11:0]    CS0    CS1    CS2    CS3
+> +      ---------------------------------------------
+> +              05          128M     0M     0M     0M
+> +              033          64M    64M     0M     0M
+> +              0113         64M    32M    32M     0M
+> +              01111        32M    32M    32M    32M
+> +
+> +      In case that the property is absent, the reset value or what bootloader
+> +      sets up in IOMUXC_GPR1[11:0] will be used.
+> +
+> +  fsl,burst-clk-enable:
+> +    type: boolean
+> +    description:
+> +      The presence of this property indicates that the weim bus should operate
+> +      in Burst Clock Mode.
+> +
+> +  fsl,continuous-burst-clk:
+> +    type: boolean
+> +    description:
+> +      Make Burst Clock to output continuous clock. Without this option Burst
+> +      Clock will output clock only when necessary.
+> +
+> +patternProperties:
+> +  "^.*@[0-7],[0-9a-f]+$":
+> +    description: Devices attached to chip selects are represented as subnodes.
+> +    type: object
+> +    additionalProperties: true
+> +    properties:
+> +      fsl,weim-cs-timing:
+> +        $ref: /schemas/types.yaml#/definitions/uint32-array
+> +        description:
+> +          Timing values for the child node.
+> +    required:
+> +      - fsl,weim-cs-timing
+
+You need to integrate it into mc-peripheral-props.yaml. Also check how
+other bus controllers define children schema.
+
+
+required: block goes here.
+
+> +
+> +allOf:
+> +  - if:
+> +      properties:
+> +        compatible:
+> +          not:
+> +            contains:
+> +              enum:
+> +                - fsl,imx50-weim
+
+
+
+Best regards,
+Krzysztof
+
 
