@@ -1,116 +1,129 @@
-Return-Path: <devicetree+bounces-40455-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-40456-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id C9987850890
-	for <lists+devicetree@lfdr.de>; Sun, 11 Feb 2024 11:00:38 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id AED3E8508AD
+	for <lists+devicetree@lfdr.de>; Sun, 11 Feb 2024 11:42:46 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 077271C20C53
-	for <lists+devicetree@lfdr.de>; Sun, 11 Feb 2024 10:00:38 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 6AC8F282115
+	for <lists+devicetree@lfdr.de>; Sun, 11 Feb 2024 10:42:45 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C86D459B40;
-	Sun, 11 Feb 2024 10:00:34 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 59C9D59169;
+	Sun, 11 Feb 2024 10:42:43 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=atomide.com header.i=@atomide.com header.b="VYsyooBc"
+	dkim=pass (2048-bit key) header.d=gerhold.net header.i=@gerhold.net header.b="EFG7ifem";
+	dkim=permerror (0-bit key) header.d=gerhold.net header.i=@gerhold.net header.b="Be65dXFe"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail5.25mail.st (mail5.25mail.st [74.50.62.9])
+Received: from mo4-p01-ob.smtp.rzone.de (mo4-p01-ob.smtp.rzone.de [85.215.255.54])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 36DFD5917F
-	for <devicetree@vger.kernel.org>; Sun, 11 Feb 2024 10:00:32 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=74.50.62.9
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1707645634; cv=none; b=MOm1pmejssuuZkQEJDtN4b0BlWyCDVkl+1I+KjVCEAbYcjpoLvVqc7nfQdZKrG8ULo/chCOGuEzW14YbJbrspt/hs/xpNm2WbSB+FUvYkvIXkVew0vCBT1ZWsuK6/jOv9bU82IjrliLRQbYoAXLs2Z32U4p+/xkOg9ycC7N9DsM=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1707645634; c=relaxed/simple;
-	bh=z77kUUxPWALrfsKKAEPCPtQ6fzajT+5D56pYe6z494c=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=aC6YsnOQPU587Yp3rcVgljIIVD7PxojtumXWLiyl+oLnlq9n1avWHxhHO87YZe2p6dSpwy9GF7TqjRgcIvfRBUFAVhVU65RVu9QMLIwbVAsFgIuROOO8BnL92FHXF58hlVDylIJqTwP38Mb+LIcAToonfNUp+Qs8a4/+N5iaZas=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=atomide.com; spf=fail smtp.mailfrom=atomide.com; dkim=pass (2048-bit key) header.d=atomide.com header.i=@atomide.com header.b=VYsyooBc; arc=none smtp.client-ip=74.50.62.9
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=atomide.com
-Authentication-Results: smtp.subspace.kernel.org; spf=fail smtp.mailfrom=atomide.com
-Received: from localhost (91-158-86-216.elisa-laajakaista.fi [91.158.86.216])
-	by mail5.25mail.st (Postfix) with ESMTPSA id 61CCD6049B;
-	Sun, 11 Feb 2024 09:59:50 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple; d=atomide.com;
-	s=25mailst; t=1707645631;
-	bh=z77kUUxPWALrfsKKAEPCPtQ6fzajT+5D56pYe6z494c=;
-	h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-	b=VYsyooBchSHu4xNsPxcmZx6jIy9z/i+kD39f1I/TiQ39fofbwfZJ3kWQNySbqVB9H
-	 JqTNrvTE6C0UPRW5FYEmaXrHDYoLzwyIwCUADYOz2ZX02w7hKGNYeTGjueyGlFbhNR
-	 AZIv4tKqwEvs02jlxEFciw9ogA02npE/nrzsVffuXxVRwnACHhQIAcdEVr6H3bVia4
-	 pU/uIHwVkFrpLYYSWD+Pae/7PI70o2F8kz81vdlRaDYwWAuTk1dmPegCc6lEttekk7
-	 H7JgdBhxM89oBIykNkSs93uCwDM+9yGerWqm109OK4KSKow6/f/h9cbwMPGmQXpk6k
-	 4QieNyO1FeliQ==
-From: Tony Lindgren <tony@atomide.com>
-To: Andrzej Hajda <andrzej.hajda@intel.com>,
-	Neil Armstrong <neil.armstrong@linaro.org>,
-	Robert Foss <rfoss@kernel.org>,
-	Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
-	Jonas Karlman <jonas@kwiboo.se>,
-	Jernej Skrabec <jernej.skrabec@gmail.com>,
-	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
-	Maxime Ripard <mripard@kernel.org>,
-	Thomas Zimmermann <tzimmermann@suse.de>,
-	David Airlie <airlied@gmail.com>,
-	Daniel Vetter <daniel@ffwll.ch>,
-	Rob Herring <robh+dt@kernel.org>,
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 932325A0EA;
+	Sun, 11 Feb 2024 10:42:39 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=pass smtp.client-ip=85.215.255.54
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1707648162; cv=pass; b=ZDEa/uCLPKWzSWRHxPdCIwZvzkKSu7FWnTERcw1VYVKUlJF60KqCdbPs36/N5BjYADkf2sXFWXR6HKY5Ih1ICGdcF9wOe6QbcPRMNoGsGrulcvr5yTi/SYooENE5CbyUKQnJRiYHqoYUBuWNXnoFMFZkf83KMX/Ms9j5nwD2w5o=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1707648162; c=relaxed/simple;
+	bh=Aow+bMPgcsYV6lYBWt4fQDjz0mXtrZrFqP55lUoOulA=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=ANCj0w7CmrnWuO2mozZKm7FdSLGgsZU9Gjn4aND8R29J/TPoaBYam684TfsJrLjNv3exER0JxXg+O8uvep3SOF4JwnC+npJrPaf3xh9oizYRaTEcPj5AXw8EEwRhMizPVeZvVaoywEdL5LIv3OHZ5OebuHBEd2Gkurdx1+lySNo=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=gerhold.net; spf=none smtp.mailfrom=gerhold.net; dkim=pass (2048-bit key) header.d=gerhold.net header.i=@gerhold.net header.b=EFG7ifem; dkim=permerror (0-bit key) header.d=gerhold.net header.i=@gerhold.net header.b=Be65dXFe; arc=pass smtp.client-ip=85.215.255.54
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=gerhold.net
+Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=gerhold.net
+ARC-Seal: i=1; a=rsa-sha256; t=1707647793; cv=none;
+    d=strato.com; s=strato-dkim-0002;
+    b=JuiFGOjsu0wZDGu9fesMgV4rgQDEPf8KREeof5sSVk3KGzeO0bL311Y54QjzSXx65N
+    EAADxCQ3XUYLfJOEyeIzIbbOk/4M84pT/CumwBPsplmg+Qgc1KfEAy4s4rYb1OofDnES
+    h+FSPAxRkzbB5z6O2f7YjRXWdhO4MaxgAhoBiVmIOFBAdztVqdUN8iVhfYgNel+9aw9E
+    +MPOY76Z2nCfeidK7OtJOLES7Rr51K0aq4utNbDlKdLNwAmLcZZQ4NDr0nkGtNSai30U
+    TvZVrKszQk3ZbV+xOzUFLWq81gYRNPnxiq70U9dwKEJMkpFJ1XUNBbFGyGUj344djLXZ
+    6iEw==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; t=1707647793;
+    s=strato-dkim-0002; d=strato.com;
+    h=In-Reply-To:References:Message-ID:Subject:Cc:To:From:Date:Cc:Date:
+    From:Subject:Sender;
+    bh=q2f3LZgzQJXMe1Tijial+M7v6Ms5A+7r4K4NtKlVbys=;
+    b=iEKNNNc/cxYuODR6W9RIG32/ASRbjF76JtT6KNdHopZB+fATCVkhUiEnSmUMQFcBbN
+    OO5vDRo3CuaQ0un/xF3s+A6fUyrPT1S0nlCAbMorxOl5adJBv9KVPllU0pKsAtgKbePE
+    TpbgVuMPvbeLRfjYWAZonKCxlSvm6Q/MlqPo6x252cEsjB1Qn8ytlruZlBFRsM9VVFtu
+    K/xh3CPKh/XRSYdgQ9iQkpT5ZhX9v8tf7+xQZLE38D5AMPgwrlB8YmuP/ncVo2UeqFe5
+    X2NK+kwTebZCW/EF9rZ1AMUBOR3dZlV5hmIOXf/Zrd7uJIzBq3/1SL69t/2avTc2dUjl
+    e8OA==
+ARC-Authentication-Results: i=1; strato.com;
+    arc=none;
+    dkim=none
+X-RZG-CLASS-ID: mo01
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; t=1707647793;
+    s=strato-dkim-0002; d=gerhold.net;
+    h=In-Reply-To:References:Message-ID:Subject:Cc:To:From:Date:Cc:Date:
+    From:Subject:Sender;
+    bh=q2f3LZgzQJXMe1Tijial+M7v6Ms5A+7r4K4NtKlVbys=;
+    b=EFG7ifemRoqC2v/43keSCGGmM15Qn3X2ZIwyTNuNJ3h0enDoWVmqf/W+EwmaislaNh
+    Q/DU9I1l91Us58/l/SozATl4ZxnGm7khxbYyV40G4VizJUhRqetv74yrdMY0bxxcBWj3
+    v9S5IwW0UX0zADskgNTpCuaNkuRJY3ITTXOOlXU40aNxWDHt+Fl1WreGXTJggaxenrRz
+    15F6CP2S369FAfHzzZ1tA0Eg46/ZuBNNnKD2GvIy9VZqbsd7Vqq/J/MDgrQ4296DXOZN
+    J4DPCNbNDpcP7o61FSn+P9+HOiDBv4WduKqi8C0jaxJN+Bzr9wWaGbnJ+GeiVJLWj0bO
+    tBLg==
+DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; t=1707647793;
+    s=strato-dkim-0003; d=gerhold.net;
+    h=In-Reply-To:References:Message-ID:Subject:Cc:To:From:Date:Cc:Date:
+    From:Subject:Sender;
+    bh=q2f3LZgzQJXMe1Tijial+M7v6Ms5A+7r4K4NtKlVbys=;
+    b=Be65dXFej5YtVTCJ60WNiXtApYFED5iu9NEf40n9delluouWz1BTkC41gKvirAKwPg
+    iWonG+YFcis9dsX+bvAg==
+X-RZG-AUTH: ":P3gBZUipdd93FF5ZZvYFPugejmSTVR2nRPhVOQ/OcYgojyw4j34+u261EJF5OxJD4peA8Z/h"
+Received: from gerhold.net
+    by smtp.strato.de (RZmta 49.11.2 DYNA|AUTH)
+    with ESMTPSA id ze34f101BAaXwwD
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256 bits))
+	(Client did not present a certificate);
+    Sun, 11 Feb 2024 11:36:33 +0100 (CET)
+Date: Sun, 11 Feb 2024 11:36:26 +0100
+From: Stephan Gerhold <stephan@gerhold.net>
+To: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+Cc: Bjorn Andersson <andersson@kernel.org>,
+	Konrad Dybcio <konrad.dybcio@linaro.org>,
+	Rob Herring <robh@kernel.org>,
 	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Simha BN <simhavcs@gmail.com>,
-	Sam Ravnborg <sam@ravnborg.org>
-Cc: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
-	Michael Walle <mwalle@kernel.org>,
-	dri-devel@lists.freedesktop.org,
-	devicetree@vger.kernel.org
-Subject: [PATCH v3 10/10] drm/bridge: tc358775: Configure hs_rate and lp_rate
-Date: Sun, 11 Feb 2024 11:51:15 +0200
-Message-ID: <20240211095144.2589-11-tony@atomide.com>
-X-Mailer: git-send-email 2.43.1
-In-Reply-To: <20240211095144.2589-1-tony@atomide.com>
-References: <20240211095144.2589-1-tony@atomide.com>
+	Conor Dooley <conor+dt@kernel.org>, Stephen Boyd <sboyd@kernel.org>,
+	linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org
+Subject: Re: [PATCH] dt-bindings: arm: qcom: drop the superfluous device
+ compatibility schema
+Message-ID: <ZcijFk9GcgtVoXoV@gerhold.net>
+References: <20240204-qcom-drop-compat-v1-1-69d6cd92aa0e@linaro.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20240204-qcom-drop-compat-v1-1-69d6cd92aa0e@linaro.org>
+Content-Transfer-Encoding: 7bit
 
-The hs_rate and lp_rate may be used by the dsi host for timing
-calculations. The tc358775 has a maximum bit rate of 1 Gbps/lane,
-tc358765 has maximurate of 800 Mbps per lane.
+On Sun, Feb 04, 2024 at 06:56:35PM +0200, Dmitry Baryshkov wrote:
+> The idea impressed in the commit b32e592d3c28 ("devicetree: bindings:
+> Document qcom board compatible format") never got actually adopted. As
+> can be seen from the existing board DT files, no device actually used
+> the PMIC / foundry / version parts of the compatible string. Drop this
+> compatibility string description to avoid possible confusion and keep
+> just the generic terms and the SoC list.
+> 
+> Fixes: b32e592d3c28 ("devicetree: bindings: Document qcom board compatible format")
 
-Signed-off-by: Tony Lindgren <tony@atomide.com>
----
- drivers/gpu/drm/bridge/tc358775.c | 13 +++++++++++++
- 1 file changed, 13 insertions(+)
+FWIW: It's not correct that no device uses the version parts of the
+compatible string. There are actually two boards documented in qcom.yaml
+that follow this scheme:
 
-diff --git a/drivers/gpu/drm/bridge/tc358775.c b/drivers/gpu/drm/bridge/tc358775.c
---- a/drivers/gpu/drm/bridge/tc358775.c
-+++ b/drivers/gpu/drm/bridge/tc358775.c
-@@ -637,6 +637,19 @@ static int tc_attach_host(struct tc_data *tc)
- 	dsi->mode_flags = MIPI_DSI_MODE_VIDEO | MIPI_DSI_MODE_VIDEO_BURST |
- 			  MIPI_DSI_MODE_LPM;
- 
-+	/*
-+	 * The hs_rate and lp_rate are data rate values. The HS mode is
-+	 * differential, while the LP mode is single ended. As the HS mode
-+	 * uses DDR, the DSI clock frequency is half the hs_rate. The 10 Mbs
-+	 * data rate for LP mode is not specified in the bridge data sheet,
-+	 * but seems to be part of the MIPI DSI spec.
-+	 */
-+	if (tc->type == TC358765)
-+		dsi->hs_rate = 800000000;
-+	else
-+		dsi->hs_rate = 1000000000;
-+	dsi->lp_rate = 10000000;
-+
- 	ret = devm_mipi_dsi_attach(dev, dsi);
- 	if (ret < 0) {
- 		dev_err(dev, "failed to attach dsi to host\n");
--- 
-2.43.0
+  compatible = "qcom,msm8916-mtp", "qcom,msm8916-mtp/1", "qcom,msm8916";
+  compatible = "longcheer,l8150", "qcom,msm8916-v1-qrd/9-v1", "qcom,msm8916";
+
+I don't think anyone is actively relying on those, though. I guess we
+can just ignore them or even remove them.
+
+Thanks,
+Stephan
 
