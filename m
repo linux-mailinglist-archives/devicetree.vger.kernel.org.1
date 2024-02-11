@@ -1,133 +1,133 @@
-Return-Path: <devicetree+bounces-40459-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-40460-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id CC3828508CD
-	for <lists+devicetree@lfdr.de>; Sun, 11 Feb 2024 12:18:44 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 004FC8508CE
+	for <lists+devicetree@lfdr.de>; Sun, 11 Feb 2024 12:19:26 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 0B0871C2136C
-	for <lists+devicetree@lfdr.de>; Sun, 11 Feb 2024 11:18:44 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 32FC11C213A6
+	for <lists+devicetree@lfdr.de>; Sun, 11 Feb 2024 11:19:26 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5EE7739AFA;
-	Sun, 11 Feb 2024 11:18:31 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E993A5A4D8;
+	Sun, 11 Feb 2024 11:19:20 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=atomide.com header.i=@atomide.com header.b="S4VHzaJw"
+	dkim=pass (1024-bit key) header.d=z3ntu.xyz header.i=@z3ntu.xyz header.b="izEB8l+5"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail5.25mail.st (mail5.25mail.st [74.50.62.9])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from ahti.lucaweiss.eu (ahti.lucaweiss.eu [128.199.32.197])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A2E3D5A79C
-	for <devicetree@vger.kernel.org>; Sun, 11 Feb 2024 11:18:29 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=74.50.62.9
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 46B965A4C7;
+	Sun, 11 Feb 2024 11:19:17 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=128.199.32.197
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1707650311; cv=none; b=qD9EgWLxo3XYtSm1yqmloyKDdyD4ia55NeBT5LmDLM6VnfrEvEWxtOcsGuLSFnKbXP6AO2o9EHLHVKzkrppkQzazFszv4i8tDNafPdgmZODv78Dt9gxdGHWm1i1FNg/Gnu0c83AZvEPlH+lGJ9UHqul9hQ82vax1KJLPDNntSik=
+	t=1707650360; cv=none; b=DamDw2HoJnRxfFouXvgLqNn5TrOR0rrms1je28zXbAT+T9YfClUYTquhG5lwJDRVM/jmMWvttOS6Jig2KR1W4nIyc+6gj7hrp1ks1fnMRa0y0A8uMapv2Z6Fz8EiXA35VS+9u2/KZ2l1hfEfg3GecxgRxyAQYbjzWFD016Io+wM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1707650311; c=relaxed/simple;
-	bh=y3V35ER3Ilcu2aNMexJjIxdCPyQR6xRTWRwiX3tpK34=;
+	s=arc-20240116; t=1707650360; c=relaxed/simple;
+	bh=yA/biYvRr9hf2HQDPmoGQm+4JVMxSnfysgiTJ9nNW/c=;
 	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=SBDxRiGh9CgkDG7vtibV2I0WmkYZfTWBUV0r4g/4yAxe3jWox4LJ0QkAxhbMkf+Dlwckzg0l09dRDrxrrBysQquTdJgtGIaF2/IB4GulG+dxG0/XUw5YIUIWZ7aOj2drQ4ro1WSwNSJyYYDt5byZBMNkYqDJl8qcOhNNAvo9/lA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=atomide.com; spf=fail smtp.mailfrom=atomide.com; dkim=pass (2048-bit key) header.d=atomide.com header.i=@atomide.com header.b=S4VHzaJw; arc=none smtp.client-ip=74.50.62.9
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=atomide.com
-Authentication-Results: smtp.subspace.kernel.org; spf=fail smtp.mailfrom=atomide.com
-Received: from localhost (91-158-86-216.elisa-laajakaista.fi [91.158.86.216])
-	by mail5.25mail.st (Postfix) with ESMTPSA id ABE38604E8;
-	Sun, 11 Feb 2024 11:17:55 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple; d=atomide.com;
-	s=25mailst; t=1707650308;
-	bh=y3V35ER3Ilcu2aNMexJjIxdCPyQR6xRTWRwiX3tpK34=;
-	h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-	b=S4VHzaJwkBtpb0wUV0eH7YHUTKWHPpVyeVmkIXTc7BD2SD48iEtZhb7/7NsA3K5pv
-	 fYddUA9B2eCxye1E9+PcWmrN+VtuG7sOPhKCaTl6p1UlEjOxxA5vT5wmX/xjIJ/Jfj
-	 YSo22xkt0HnXqRgmt2iiBPZEKj/X+cKFoQCOBXUssQd1/J+s8rWctdLTf3SIHqZf69
-	 +YnMHxMCVpZdobhHLKPA/kud14O1jh/Oeozq7S60zHPTqhLLr05801j7M065h09ZJf
-	 Q1Q/lwlWDimKyMF05HDViZm9AcM7UXFN8ply2qYmQSjIqsYhwSAB8X4dqnKFwKIrNX
-	 NiUPqXHvFJJ1A==
-From: Tony Lindgren <tony@atomide.com>
-To: Neil Armstrong <neil.armstrong@linaro.org>,
-	Jessica Zhang <quic_jesszhan@quicinc.com>,
-	Sam Ravnborg <sam@ravnborg.org>,
-	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
-	Maxime Ripard <mripard@kernel.org>,
-	Thomas Zimmermann <tzimmermann@suse.de>,
-	David Airlie <airlied@gmail.com>,
-	Daniel Vetter <daniel@ffwll.ch>,
-	Rob Herring <robh+dt@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Thierry Reding <thierry.reding@gmail.com>
-Cc: Conor Dooley <conor.dooley@microchip.com>,
-	Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
-	dri-devel@lists.freedesktop.org,
-	devicetree@vger.kernel.org
-Subject: [PATCH v2 2/2] drm/panel: simple: Add BOE BP082WX1-100 8.2" panel
-Date: Sun, 11 Feb 2024 13:16:59 +0200
-Message-ID: <20240211111703.7567-2-tony@atomide.com>
-X-Mailer: git-send-email 2.43.1
-In-Reply-To: <20240211111703.7567-1-tony@atomide.com>
-References: <20240211111703.7567-1-tony@atomide.com>
+	 MIME-Version:Content-Type; b=klB3Cgh3oDVutwa2VtaxHfTzIXNjxyF6rQiiJMy/QstsxbT18hwcDkQnaF2txL5a9ih+lXYE19Yr1vNccrIcXz6nwuOP9IgcDldH5i44WWC3J54mhlNXQIW574oH9cQvmJyqrHVQxBJxzVwItNwsvQIU6vUtA1zKW+ZBF1b+wNI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=z3ntu.xyz; spf=pass smtp.mailfrom=z3ntu.xyz; dkim=pass (1024-bit key) header.d=z3ntu.xyz header.i=@z3ntu.xyz header.b=izEB8l+5; arc=none smtp.client-ip=128.199.32.197
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=z3ntu.xyz
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=z3ntu.xyz
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=z3ntu.xyz; s=s1;
+	t=1707650356; bh=yA/biYvRr9hf2HQDPmoGQm+4JVMxSnfysgiTJ9nNW/c=;
+	h=From:To:Cc:Subject:Date:In-Reply-To:References;
+	b=izEB8l+5fyMBafcahj7RxjD8caa3o5xLsoG7sDDf37Zu/xKZZR0jihu0LFMaOPwOa
+	 cc0+40R3Sy0T93Zthk+X7jCJjKdR6opIDYLK4V8W7tNr6tgshExAAObmfhk/IimQj1
+	 r1v32OhZe6ZKEii3Pjp9zlT5xQQ0zkGlhETbSxLM=
+From: Luca Weiss <luca@z3ntu.xyz>
+To: Stephan Gerhold <stephan@gerhold.net>
+Cc: ~postmarketos/upstreaming@lists.sr.ht, phone-devel@vger.kernel.org,
+ Bjorn Andersson <andersson@kernel.org>,
+ Konrad Dybcio <konrad.dybcio@linaro.org>, Rob Herring <robh+dt@kernel.org>,
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+ Conor Dooley <conor+dt@kernel.org>, Ulf Hansson <ulf.hansson@linaro.org>,
+ Matti =?ISO-8859-1?Q?Lehtim=E4ki?= <matti.lehtimaki@gmail.com>,
+ linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, linux-pm@vger.kernel.org
+Subject:
+ Re: [PATCH v2 1/3] dt-bindings: power: rpmpd: Add MSM8974 power domains
+Date: Sun, 11 Feb 2024 12:19:14 +0100
+Message-ID: <12625470.O9o76ZdvQC@z3ntu.xyz>
+In-Reply-To: <Zcipcz70vEPWLAFg@gerhold.net>
+References:
+ <20240210-msm8974-rpmpd-v2-0-595e2ff80ea1@z3ntu.xyz>
+ <20240210-msm8974-rpmpd-v2-1-595e2ff80ea1@z3ntu.xyz>
+ <Zcipcz70vEPWLAFg@gerhold.net>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Transfer-Encoding: 7Bit
+Content-Type: text/plain; charset="us-ascii"
 
-The BOE BP082WX1-100 is a 8.2" panel similar to the 10.1" panel
-BP101WX1-100. Both panels use the same timings.
+On Sonntag, 11. Februar 2024 12:03:15 CET Stephan Gerhold wrote:
+> On Sat, Feb 10, 2024 at 05:38:56PM +0100, Luca Weiss wrote:
+> > Add the compatibles and indexes for the rpmpd in MSM8974, both with the
+> > standard PM8841+PM8941 PMICs but also devices found with PMA8084.
+> > 
+> > Signed-off-by: Luca Weiss <luca@z3ntu.xyz>
+> > ---
+> > 
+> >  Documentation/devicetree/bindings/power/qcom,rpmpd.yaml | 2 ++
+> >  include/dt-bindings/power/qcom-rpmpd.h                  | 7 +++++++
+> >  2 files changed, 9 insertions(+)
+> > 
+> > diff --git a/Documentation/devicetree/bindings/power/qcom,rpmpd.yaml
+> > b/Documentation/devicetree/bindings/power/qcom,rpmpd.yaml index
+> > 2ff246cf8b81..929b7ef9c1bc 100644
+> > --- a/Documentation/devicetree/bindings/power/qcom,rpmpd.yaml
+> > +++ b/Documentation/devicetree/bindings/power/qcom,rpmpd.yaml
+> > 
+> > @@ -24,6 +24,8 @@ properties:
+> >            - qcom,msm8917-rpmpd
+> >            - qcom,msm8939-rpmpd
+> >            - qcom,msm8953-rpmpd
+> > 
+> > +          - qcom,msm8974-rpmpd
+> > +          - qcom,msm8974pro-pma8084-rpmpd
+> > 
+> >            - qcom,msm8976-rpmpd
+> >            - qcom,msm8994-rpmpd
+> >            - qcom,msm8996-rpmpd
+> 
+> This is maybe more something for the DT reviewers to decide but I wonder
+> if it is a bit confusing/misleading to describe one particular PMIC with
+> a generic compatible, and the other with a more specific one. Perhaps it
+> would be clearer to include the PMIC name in both compatibles, i.e.
+> "qcom,msm8974-pm8941-rpmpd" instead of "qcom,msm8974-rpmpd".
 
-Acked-by: Conor Dooley <conor.dooley@microchip.com>
-Reviewed-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-Signed-off-by: Tony Lindgren <tony@atomide.com>
----
+FWIW if we'd do that it should be qcom,msm8974-pm8841-rpmpd (so pm8841 instead 
+of pm8941)
 
-Changes since v1:
-- Update viewport dimensions based on panelook values asa suggested
-  by Dmitry
+But also in the same vain, it was maybe a bit of a bad decision originally to 
+make the compatibles SoC-specific and not SoC+PMIC-specific - though in nearly 
+all cases this combo is fixed for a given SoC?
 
----
- drivers/gpu/drm/panel/panel-simple.c | 20 ++++++++++++++++++++
- 1 file changed, 20 insertions(+)
+Anyways, I'll wait for more comments about this, I'm open to changing it 
+either way.
 
-diff --git a/drivers/gpu/drm/panel/panel-simple.c b/drivers/gpu/drm/panel/panel-simple.c
---- a/drivers/gpu/drm/panel/panel-simple.c
-+++ b/drivers/gpu/drm/panel/panel-simple.c
-@@ -1367,6 +1367,23 @@ static const struct drm_display_mode boe_bp101wx1_100_mode = {
- 	.vtotal = 800 + 6 + 8 + 2,
- };
- 
-+static const struct panel_desc boe_bp082wx1_100 = {
-+	.modes = &boe_bp101wx1_100_mode,
-+	.num_modes = 1,
-+	.bpc = 8,
-+	.size = {
-+		.width = 177,
-+		.height = 110,
-+	},
-+	.delay = {
-+		.enable = 50,
-+		.disable = 50,
-+	},
-+	.bus_format = MEDIA_BUS_FMT_RGB888_1X7X4_JEIDA,
-+	.bus_flags = DRM_BUS_FLAG_DE_HIGH,
-+	.connector_type = DRM_MODE_CONNECTOR_LVDS,
-+};
-+
- static const struct panel_desc boe_bp101wx1_100 = {
- 	.modes = &boe_bp101wx1_100_mode,
- 	.num_modes = 1,
-@@ -4343,6 +4360,9 @@ static const struct of_device_id platform_of_match[] = {
- 	}, {
- 		.compatible = "bananapi,s070wv20-ct16",
- 		.data = &bananapi_s070wv20_ct16,
-+	}, {
-+		.compatible = "boe,bp082wx1-100",
-+		.data = &boe_bp082wx1_100,
- 	}, {
- 		.compatible = "boe,bp101wx1-100",
- 		.data = &boe_bp101wx1_100,
--- 
-2.43.1
+Regards
+Luca
+
+> 
+> The "qcom,msm8974-rpmpd" compatible could be maybe added as fallback.
+> While it wouldn't be used for matching in the (Linux) driver the DT
+> binding itself *is* "compatible" between the two PMICs because they both
+> have the same power domain indexes.
+> 
+> i.e.
+> 	compatible = "qcom,msm8974-pm8941-rpmpd", "qcom,msm8974-rpmpd";
+> 	compatible = "qcom,msm8974pro-pma8084-rpmpd", "qcom,msm8974-rpmpd";
+> 
+> Thanks,
+> Stephan
+
+
+
+
 
