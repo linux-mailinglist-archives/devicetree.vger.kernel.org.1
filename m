@@ -1,129 +1,199 @@
-Return-Path: <devicetree+bounces-40456-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-40457-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id AED3E8508AD
-	for <lists+devicetree@lfdr.de>; Sun, 11 Feb 2024 11:42:46 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id B9FE58508B1
+	for <lists+devicetree@lfdr.de>; Sun, 11 Feb 2024 11:53:50 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 6AC8F282115
-	for <lists+devicetree@lfdr.de>; Sun, 11 Feb 2024 10:42:45 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 416781F2272E
+	for <lists+devicetree@lfdr.de>; Sun, 11 Feb 2024 10:53:50 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 59C9D59169;
-	Sun, 11 Feb 2024 10:42:43 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 56F4F5A119;
+	Sun, 11 Feb 2024 10:53:44 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gerhold.net header.i=@gerhold.net header.b="EFG7ifem";
-	dkim=permerror (0-bit key) header.d=gerhold.net header.i=@gerhold.net header.b="Be65dXFe"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="bdYKNLZ4"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mo4-p01-ob.smtp.rzone.de (mo4-p01-ob.smtp.rzone.de [85.215.255.54])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-lj1-f176.google.com (mail-lj1-f176.google.com [209.85.208.176])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 932325A0EA;
-	Sun, 11 Feb 2024 10:42:39 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=pass smtp.client-ip=85.215.255.54
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1707648162; cv=pass; b=ZDEa/uCLPKWzSWRHxPdCIwZvzkKSu7FWnTERcw1VYVKUlJF60KqCdbPs36/N5BjYADkf2sXFWXR6HKY5Ih1ICGdcF9wOe6QbcPRMNoGsGrulcvr5yTi/SYooENE5CbyUKQnJRiYHqoYUBuWNXnoFMFZkf83KMX/Ms9j5nwD2w5o=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1707648162; c=relaxed/simple;
-	bh=Aow+bMPgcsYV6lYBWt4fQDjz0mXtrZrFqP55lUoOulA=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=ANCj0w7CmrnWuO2mozZKm7FdSLGgsZU9Gjn4aND8R29J/TPoaBYam684TfsJrLjNv3exER0JxXg+O8uvep3SOF4JwnC+npJrPaf3xh9oizYRaTEcPj5AXw8EEwRhMizPVeZvVaoywEdL5LIv3OHZ5OebuHBEd2Gkurdx1+lySNo=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=gerhold.net; spf=none smtp.mailfrom=gerhold.net; dkim=pass (2048-bit key) header.d=gerhold.net header.i=@gerhold.net header.b=EFG7ifem; dkim=permerror (0-bit key) header.d=gerhold.net header.i=@gerhold.net header.b=Be65dXFe; arc=pass smtp.client-ip=85.215.255.54
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=gerhold.net
-Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=gerhold.net
-ARC-Seal: i=1; a=rsa-sha256; t=1707647793; cv=none;
-    d=strato.com; s=strato-dkim-0002;
-    b=JuiFGOjsu0wZDGu9fesMgV4rgQDEPf8KREeof5sSVk3KGzeO0bL311Y54QjzSXx65N
-    EAADxCQ3XUYLfJOEyeIzIbbOk/4M84pT/CumwBPsplmg+Qgc1KfEAy4s4rYb1OofDnES
-    h+FSPAxRkzbB5z6O2f7YjRXWdhO4MaxgAhoBiVmIOFBAdztVqdUN8iVhfYgNel+9aw9E
-    +MPOY76Z2nCfeidK7OtJOLES7Rr51K0aq4utNbDlKdLNwAmLcZZQ4NDr0nkGtNSai30U
-    TvZVrKszQk3ZbV+xOzUFLWq81gYRNPnxiq70U9dwKEJMkpFJ1XUNBbFGyGUj344djLXZ
-    6iEw==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; t=1707647793;
-    s=strato-dkim-0002; d=strato.com;
-    h=In-Reply-To:References:Message-ID:Subject:Cc:To:From:Date:Cc:Date:
-    From:Subject:Sender;
-    bh=q2f3LZgzQJXMe1Tijial+M7v6Ms5A+7r4K4NtKlVbys=;
-    b=iEKNNNc/cxYuODR6W9RIG32/ASRbjF76JtT6KNdHopZB+fATCVkhUiEnSmUMQFcBbN
-    OO5vDRo3CuaQ0un/xF3s+A6fUyrPT1S0nlCAbMorxOl5adJBv9KVPllU0pKsAtgKbePE
-    TpbgVuMPvbeLRfjYWAZonKCxlSvm6Q/MlqPo6x252cEsjB1Qn8ytlruZlBFRsM9VVFtu
-    K/xh3CPKh/XRSYdgQ9iQkpT5ZhX9v8tf7+xQZLE38D5AMPgwrlB8YmuP/ncVo2UeqFe5
-    X2NK+kwTebZCW/EF9rZ1AMUBOR3dZlV5hmIOXf/Zrd7uJIzBq3/1SL69t/2avTc2dUjl
-    e8OA==
-ARC-Authentication-Results: i=1; strato.com;
-    arc=none;
-    dkim=none
-X-RZG-CLASS-ID: mo01
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; t=1707647793;
-    s=strato-dkim-0002; d=gerhold.net;
-    h=In-Reply-To:References:Message-ID:Subject:Cc:To:From:Date:Cc:Date:
-    From:Subject:Sender;
-    bh=q2f3LZgzQJXMe1Tijial+M7v6Ms5A+7r4K4NtKlVbys=;
-    b=EFG7ifemRoqC2v/43keSCGGmM15Qn3X2ZIwyTNuNJ3h0enDoWVmqf/W+EwmaislaNh
-    Q/DU9I1l91Us58/l/SozATl4ZxnGm7khxbYyV40G4VizJUhRqetv74yrdMY0bxxcBWj3
-    v9S5IwW0UX0zADskgNTpCuaNkuRJY3ITTXOOlXU40aNxWDHt+Fl1WreGXTJggaxenrRz
-    15F6CP2S369FAfHzzZ1tA0Eg46/ZuBNNnKD2GvIy9VZqbsd7Vqq/J/MDgrQ4296DXOZN
-    J4DPCNbNDpcP7o61FSn+P9+HOiDBv4WduKqi8C0jaxJN+Bzr9wWaGbnJ+GeiVJLWj0bO
-    tBLg==
-DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; t=1707647793;
-    s=strato-dkim-0003; d=gerhold.net;
-    h=In-Reply-To:References:Message-ID:Subject:Cc:To:From:Date:Cc:Date:
-    From:Subject:Sender;
-    bh=q2f3LZgzQJXMe1Tijial+M7v6Ms5A+7r4K4NtKlVbys=;
-    b=Be65dXFej5YtVTCJ60WNiXtApYFED5iu9NEf40n9delluouWz1BTkC41gKvirAKwPg
-    iWonG+YFcis9dsX+bvAg==
-X-RZG-AUTH: ":P3gBZUipdd93FF5ZZvYFPugejmSTVR2nRPhVOQ/OcYgojyw4j34+u261EJF5OxJD4peA8Z/h"
-Received: from gerhold.net
-    by smtp.strato.de (RZmta 49.11.2 DYNA|AUTH)
-    with ESMTPSA id ze34f101BAaXwwD
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256 bits))
-	(Client did not present a certificate);
-    Sun, 11 Feb 2024 11:36:33 +0100 (CET)
-Date: Sun, 11 Feb 2024 11:36:26 +0100
-From: Stephan Gerhold <stephan@gerhold.net>
-To: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-Cc: Bjorn Andersson <andersson@kernel.org>,
-	Konrad Dybcio <konrad.dybcio@linaro.org>,
-	Rob Herring <robh@kernel.org>,
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 824A259174;
+	Sun, 11 Feb 2024 10:53:42 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.176
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1707648824; cv=none; b=N/EgaEUD9RUER7oTuYZHtr8EXZxmyHJBDU4nAj+6mhsenjwmXxsoEArPinv/1NJlV5YJwiuchdgu3fcFO6qEdQ4gxnE0RP37l6TcDTW5p7C+eL8bSynuBK88GXf5wNrnmoQMBP7i4beqDPC+/iMvNhuJVqHq7eG14ZEoXAzIwpU=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1707648824; c=relaxed/simple;
+	bh=aHVHW7Z9Vz8E35efk396ga0J8V70ILA+KvMuR//APMA=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=MYy7olzOWDiGLxO2g0S/MWbcS7/PkQcophLfzpimNezbHo/o32YY2rSVlEKYX7xtcyPtghMCEDWLYbvJaLAZI7VAsIk7AuV2M6HCyzXZXlt0+UylOj0VR+tmvw/kyc9Wb/dIduFN1ETia8TmCHNYB+xMxfFFrE4S1cNZsdmtCa0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=bdYKNLZ4; arc=none smtp.client-ip=209.85.208.176
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-lj1-f176.google.com with SMTP id 38308e7fff4ca-2d0ed7cbd76so9094721fa.1;
+        Sun, 11 Feb 2024 02:53:42 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1707648820; x=1708253620; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=uO+FD++i6lu3R3UMtfKiyAbMLFBWQFc/P76C+86fYSw=;
+        b=bdYKNLZ4avyCYV/xWpProgwYZdbxw5QAViXW4qlgrJcAyz4wpIZTyy5YyPuFwyh3os
+         1bbli7YLnO4p+r/iWcoQ0ukevMzvQoToRcbRAX3YuiIkUA0VAs8hzyhjbYo8yqMQvE9p
+         X8GgPD48h+wcgcUCZmYgBQ4Lztgbd4yhsfi6bDX60fo0Bs+/nWfaM3omSmO0cC3h2JCv
+         zKmsvNRfDwg8Y4fl5tW9H124YRBzF6XDN8RHgTmYQkjBN/s/4ewiJ2NITIbbmaDiThNe
+         F96NogJ3sWQ9PmeF7PmUd87vTXGdfhskHdxf+Nfkf3A6NSJ1IsucTVxSuUW2rvpbcWwD
+         EGTA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1707648820; x=1708253620;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=uO+FD++i6lu3R3UMtfKiyAbMLFBWQFc/P76C+86fYSw=;
+        b=Htz1D2d25RGuS5/i0pNo/OoPVLYBIqqOnkRoHyn3/RJP5N0M7x+ynrEGUcMEhy+Jmg
+         53r1sgOEscUMHqHYhapF4WpADrVOwgMe5LVwTLryRos+k1+XJx91gVXCQjfMQzJOgPFa
+         oMgDxbF+PUFYAeASqeuII97BxQYBLCBvnxRq7Hu9z2+3fpOTL88YprerNpCTiTvGNRDG
+         31IkucgO9/ZnjeBD0sDm/DSRv3y73l4QtgDsJYOIHAuY1nvrsJdG5aXEwC3w8dUMuBjB
+         hKJYhE4XdMY19kZRLjvUeXMXZfysryfEGn8afMSRPI6/StvQQxYPdeO1xHu+nWA4van5
+         mXjA==
+X-Forwarded-Encrypted: i=1; AJvYcCVhlwsqHGGgw+ux74AmuE02aJyz14mZ68SP4ZmgHUFURMhlupwWSm30b0rYYiR4x9XtsBVzRuPXLd2nV6zytaclYS/Qt7aqGMuQSClT7qmhCCrC2e09GheYK+5jJ81nnEMMdRRHAxYMAA==
+X-Gm-Message-State: AOJu0Yy5WptuvBrlItGn9USSve9s2Vt1q0vGZpQl4mtTUMcmDP24wCtr
+	ze5HzkQ5PX1X1XO61e2hKDJXTNRU/tgEG9rH1/B2tTgSElehbPtZ
+X-Google-Smtp-Source: AGHT+IHfeJGfD6S5ADXFrljt6jbddz9qVjW3/0nsFBVwOu/NPnAfiZcxzuyjoHLont1QS/afVvVHYw==
+X-Received: by 2002:a2e:a0c5:0:b0:2d0:41d1:8124 with SMTP id f5-20020a2ea0c5000000b002d041d18124mr2687733ljm.1.1707648820227;
+        Sun, 11 Feb 2024 02:53:40 -0800 (PST)
+X-Forwarded-Encrypted: i=1; AJvYcCXq0bUGyM2L2ZMhPe3QpzgYa2IAkwmyOEM121qoFdMoe+SQp89/Lo1WfqGa3sgNYrtjmEojn5mz2kpuhustodB5Gp3JOTfyUfGcemSebzkqRrsrzReLXngmSqImWSCUdcrPz/07+oV80iYqDNefI0e+zcVybbPZbySaATJnRYzx+rM5sIpXUZoCcks5pf8Rb+GjC2d8ooGmLJKNGsr+GPaP1VxQgrr3JOYPVa/Eu1lAAmzUgZRr9XtNzadND3dP5LW0jke9n0sxDBdslvXAz1mFEHuv33a5akuoYGsUrm/DKxPYQf8uCtbcjHS6H0yb0g2W3bkFwhO+Sft9I0NbhvDwdfBhJGdGWolmywbcSpGmxjOqxtf8akVzUX1c17J9X1gZUKmKMp7cUChndpLB7bp8ki78slLaIKa2++EOs7zSiPAcnzNjVm4xmwTBaD57deNaCh8YnOJznTwImzoD1QNFKN28/ZKTrAC9Duni6hL+VBG0L2lXZQ==
+Received: from localhost.localdomain ([2a05:3580:f312:6c01:1b8f:2a1b:d18:1951])
+        by smtp.gmail.com with ESMTPSA id y5-20020a2e95c5000000b002cd34872be7sm893799ljh.25.2024.02.11.02.53.39
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Sun, 11 Feb 2024 02:53:39 -0800 (PST)
+From: Andrey Skvortsov <andrej.skvortzov@gmail.com>
+To: Rob Herring <robh+dt@kernel.org>,
 	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>, Stephen Boyd <sboyd@kernel.org>,
-	linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org
-Subject: Re: [PATCH] dt-bindings: arm: qcom: drop the superfluous device
- compatibility schema
-Message-ID: <ZcijFk9GcgtVoXoV@gerhold.net>
-References: <20240204-qcom-drop-compat-v1-1-69d6cd92aa0e@linaro.org>
+	Conor Dooley <conor+dt@kernel.org>,
+	Chen-Yu Tsai <wens@csie.org>,
+	Jernej Skrabec <jernej.skrabec@gmail.com>,
+	Samuel Holland <samuel@sholland.org>,
+	devicetree@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	linux-sunxi@lists.linux.dev,
+	linux-kernel@vger.kernel.org,
+	Arnaud Ferraris <arnaud.ferraris@collabora.com>,
+	Alexey Klimov <alexey.klimov@linaro.org>
+Cc: Daniel Lezcano <daniel.lezcano@linaro.org>,
+	Andrey Skvortsov <andrej.skvortzov@gmail.com>
+Subject: [PATCH] arm64: dts: allwinner: a64: Add thermal trip points for GPU
+Date: Sun, 11 Feb 2024 13:53:26 +0300
+Message-ID: <20240211105326.506049-1-andrej.skvortzov@gmail.com>
+X-Mailer: git-send-email 2.43.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20240204-qcom-drop-compat-v1-1-69d6cd92aa0e@linaro.org>
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
 
-On Sun, Feb 04, 2024 at 06:56:35PM +0200, Dmitry Baryshkov wrote:
-> The idea impressed in the commit b32e592d3c28 ("devicetree: bindings:
-> Document qcom board compatible format") never got actually adopted. As
-> can be seen from the existing board DT files, no device actually used
-> the PMIC / foundry / version parts of the compatible string. Drop this
-> compatibility string description to avoid possible confusion and keep
-> just the generic terms and the SoC list.
-> 
-> Fixes: b32e592d3c28 ("devicetree: bindings: Document qcom board compatible format")
+From: Alexey Klimov <alexey.klimov@linaro.org>
 
-FWIW: It's not correct that no device uses the version parts of the
-compatible string. There are actually two boards documented in qcom.yaml
-that follow this scheme:
+Without trip points for GPU, the following errors are printed in the
+dmesg log and the sun8i-thermal driver fails to load:
 
-  compatible = "qcom,msm8916-mtp", "qcom,msm8916-mtp/1", "qcom,msm8916";
-  compatible = "longcheer,l8150", "qcom,msm8916-v1-qrd/9-v1", "qcom,msm8916";
+thermal_sys: Failed to find 'trips' node
+thermal_sys: Failed to find trip points for thermal-sensor id=1
+sun8i-thermal: probe of 1c25000.thermal-sensor failed with error -22
 
-I don't think anyone is actively relying on those, though. I guess we
-can just ignore them or even remove them.
+When thermal zones are defined, trip points definitions are mandatory.
+Trip values for the GPU are assumed to be the same values as the CPU
+ones. The available specs do not provide any hints about thermal regimes
+for the GPU and it seems GPU is implemented on the same die as the CPU.
 
-Thanks,
-Stephan
+'make dtbs_check' complains about problem in dts for 18 A64-based boards
+supported by the kernel:
+
+sun50i-a64-pine64.dtb: thermal-zones: gpu0-thermal: 'trips' is a required property
+	from schema $id: http://devicetree.org/schemas/thermal/thermal-zones.yaml#
+sun50i-a64-pine64.dtb: thermal-zones: gpu1-thermal: 'trips' is a required property
+	from schema $id: http://devicetree.org/schemas/thermal/thermal-zones.yaml#
+
+Tested on Pine a64+ and PinePhone 1.2.
+
+Cc: Samuel Holland <samuel@sholland.org>
+Cc: Jernej Skrabec <jernej.skrabec@gmail.com>
+Cc: Chen-Yu Tsai <wens@csie.org>
+Cc: Daniel Lezcano <daniel.lezcano@linaro.org>
+Cc: devicetree@vger.kernel.org
+Signed-off-by: Alexey Klimov <alexey.klimov@linaro.org>
+Tested-by: Andrey Skvortsov <andrej.skvortzov@gmail.com>
+
+---
+ arch/arm64/boot/dts/allwinner/sun50i-a64.dtsi | 46 +++++++++++++++++++
+ 1 file changed, 46 insertions(+)
+
+diff --git a/arch/arm64/boot/dts/allwinner/sun50i-a64.dtsi b/arch/arm64/boot/dts/allwinner/sun50i-a64.dtsi
+index 57ac18738c99..c25da7229e42 100644
+--- a/arch/arm64/boot/dts/allwinner/sun50i-a64.dtsi
++++ b/arch/arm64/boot/dts/allwinner/sun50i-a64.dtsi
+@@ -244,6 +244,29 @@ gpu0_thermal: gpu0-thermal {
+ 			polling-delay-passive = <0>;
+ 			polling-delay = <0>;
+ 			thermal-sensors = <&ths 1>;
++
++			trips {
++				gpu0_alert0: gpu0_alert0 {
++					/* milliCelsius */
++					temperature = <75000>;
++					hysteresis = <2000>;
++					type = "passive";
++				};
++
++				gpu0_alert1: gpu0_alert1 {
++					/* milliCelsius */
++					temperature = <90000>;
++					hysteresis = <2000>;
++					type = "hot";
++				};
++
++				gpu0_crit: gpu0_crit {
++					/* milliCelsius */
++					temperature = <110000>;
++					hysteresis = <2000>;
++					type = "critical";
++				};
++			};
+ 		};
+ 
+ 		gpu1_thermal: gpu1-thermal {
+@@ -251,6 +274,29 @@ gpu1_thermal: gpu1-thermal {
+ 			polling-delay-passive = <0>;
+ 			polling-delay = <0>;
+ 			thermal-sensors = <&ths 2>;
++
++			trips {
++				gpu1_alert0: gpu1_alert0 {
++					/* milliCelsius */
++					temperature = <75000>;
++					hysteresis = <2000>;
++					type = "passive";
++				};
++
++				gpu1_alert1: gpu1_alert1 {
++					/* milliCelsius */
++					temperature = <90000>;
++					hysteresis = <2000>;
++					type = "hot";
++				};
++
++				gpu1_crit: gpu1_crit {
++					/* milliCelsius */
++					temperature = <110000>;
++					hysteresis = <2000>;
++					type = "critical";
++				};
++			};
+ 		};
+ 	};
+ 
+-- 
+2.43.0
+
 
