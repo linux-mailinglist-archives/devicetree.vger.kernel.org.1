@@ -1,155 +1,105 @@
-Return-Path: <devicetree+bounces-40539-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-40540-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id DC4DF850B73
-	for <lists+devicetree@lfdr.de>; Sun, 11 Feb 2024 21:27:26 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id C7D1C850B7F
+	for <lists+devicetree@lfdr.de>; Sun, 11 Feb 2024 21:50:52 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 96566282BAF
-	for <lists+devicetree@lfdr.de>; Sun, 11 Feb 2024 20:27:25 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 2FB112834CE
+	for <lists+devicetree@lfdr.de>; Sun, 11 Feb 2024 20:50:51 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 823925E3BA;
-	Sun, 11 Feb 2024 20:27:22 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id EE3D15D904;
+	Sun, 11 Feb 2024 20:50:46 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="SVHdbPNt"
+	dkim=pass (1024-bit key) header.d=yandex.com header.i=@yandex.com header.b="SQXWkKNz"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wr1-f43.google.com (mail-wr1-f43.google.com [209.85.221.43])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from forward502a.mail.yandex.net (forward502a.mail.yandex.net [178.154.239.82])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BBCA75DF2E;
-	Sun, 11 Feb 2024 20:27:20 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.43
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B3BB01E887;
+	Sun, 11 Feb 2024 20:50:42 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=178.154.239.82
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1707683242; cv=none; b=rKhQiuWo0XnnvTY3NaH4MJOjumHOer56rb74LkpyWA5ooKhgZ/STXkBXqVWHGMyogOluKbCipV3BFOwzlJtJOVToKWjwbzioXXjzefN/owm53SyI56YwoVGEApzyw/bSncmPEz/yVWQZ8L1FB70eMCkzr2fv+WpvBFKyPys9fcI=
+	t=1707684646; cv=none; b=GHNctjZrEQK3/UKX0lhzs3KgroGU7agtnMmORlyhSHA6kGjUZ3I1w2S5EoNYJpffxKDO9X7k9E18eGjiq4uX9gw0WUvk2R++Pys06YS5w7W5/GYS4M5s5vhFVdj6rLokv2GQx39yflSpPuoMoyXLXFjPHcnhivxiSGFYXThXihE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1707683242; c=relaxed/simple;
-	bh=Dr3fLzk8kA922HbxhveF4yYarebxt3ZJKSb4iwmQ3t0=;
-	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=gt/iFu+pGKHOLDubL30DMbjKE8DeDYcczG9N5oRAwxGBjeu1h+L1QixIhRuH4zMs8n0U4ukw2wRsXT4MsZ8w1yex9kRtMPwnnO+ptwOjI5wYiLn6w3JBhGfH5phr7Q7X8W7pGMuwFTD43QpgKeBkkw4wVRFFXh3Y3dmw0K8HoXc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=SVHdbPNt; arc=none smtp.client-ip=209.85.221.43
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-wr1-f43.google.com with SMTP id ffacd0b85a97d-33b815b182fso184401f8f.3;
-        Sun, 11 Feb 2024 12:27:20 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1707683239; x=1708288039; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=SfjESUyL60qQjpBUzMKvPhhO/EQtTKQK2CnbnGbsaOw=;
-        b=SVHdbPNtw1do72ozVA0tpVtqlKQTJw17MciGSXIQTZMVs1yoqfGLDqxiztV42sJ3Mo
-         gyUGYXMbA43YkHjN1qn5gRia/svdxrB4bBp5iSZRik/hMTFSJq5PZp28njAcU9Lpo/Y3
-         PwKOQ7nUwIBlkefZ+hohyNY9PG+8qtY2f7rh6HyQvaArQ68F6tcp6RmskKlagy+RrbSL
-         d6pqechTvHYx3tTlDmoQbzfvn/AEDohuUwM+4FfF2WHxTT0n6ZdrPl2yqIsiBIwHrLcW
-         uTA5m2oZWWgV8c1Wro3JiUbON37EbgOpVvbaLQ3X70p6wjiSSwmLuIssOQnMEMhFDBxn
-         B9Cw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1707683239; x=1708288039;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=SfjESUyL60qQjpBUzMKvPhhO/EQtTKQK2CnbnGbsaOw=;
-        b=KXTdvkL3K4y/SKRt2PEaYuC9A061kjgNc7w4U6+eZqelS+ZmYdPg3nAK21xSQCMv7M
-         iVbVbC8U/fFeVtO/+ViH/LIec9a1hEq+WUEKh6XTQHDtuL0ZwQoCaD3Z4NBvswvoKUda
-         oGOoh7FLm/XRhqydFvKr94qo4hi24t/qtceyMXrr1yW0xinv9GhhRqTRhQpvJprUIgcm
-         Mn180QI4hIoMRxQDtpU07csFfRxFvkTZCcXXmFThxQQBAWsSK8ndlvJrkkTNjyApjTEE
-         19myw3c0UakuvId2u/A5FLD/jbAvMwcVqpR7o6FmgQTaqdym5hebDWVY8Xewm0aXC56U
-         l+oA==
-X-Gm-Message-State: AOJu0Yy4jhvozpkoBdvlF4ffR1hbr4tLeoX7S4AjE7GgXCUTwPbwqOZf
-	QxYGUiuZPQ48jhUE//9/yJb3bc20jX35DjB7IhMcib4NWxXIeZKl
-X-Google-Smtp-Source: AGHT+IFpzaOGbMHpBLmEW+9pJTDC0gg8iTM+pW6/GJz00psxpVJpc4GMU37OTQr/Nx7oUzfOMQaPyA==
-X-Received: by 2002:adf:eec9:0:b0:33b:2281:ef32 with SMTP id a9-20020adfeec9000000b0033b2281ef32mr3718249wrp.69.1707683238705;
-        Sun, 11 Feb 2024 12:27:18 -0800 (PST)
-X-Forwarded-Encrypted: i=1; AJvYcCUVb4O9ZzbLNsUmZmbrYbBo7NMd8GBzCdmP0OF72ZmbKMzTCONPiuBLBB5JUMLPH9briiTxQz1v1ydVeOhpQKsa/t2Aqodu5+s05jN88DircY7Z/xYgGnuhaw4Gw+EetsvPSZNPXWK7P8uE4D/yTiYP0g6X5ZWMfPiwen9CuDpHcAJouD1WT3GaqKqO5PkX4qxazNj8tZQp/BguxUwJnQ7YdW7rSMGNzugDW4i7bd0kXc7r65LjsLN1pu7JYVgg3VWckw2SrfsmeaAYCJ9JA7ROr2QfM6kOENeoAq2ak0k5MduDXy8f2ohG0rY7vrc=
-Received: from localhost.localdomain (93-34-89-13.ip49.fastwebnet.it. [93.34.89.13])
-        by smtp.googlemail.com with ESMTPSA id r17-20020adfe691000000b0033aeb0afa8fsm4969194wrm.39.2024.02.11.12.27.17
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sun, 11 Feb 2024 12:27:18 -0800 (PST)
-From: Christian Marangi <ansuelsmth@gmail.com>
-To: Bjorn Andersson <andersson@kernel.org>,
-	Konrad Dybcio <konrad.dybcio@linaro.org>,
-	Rob Herring <robh+dt@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	linux-arm-msm@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org
-Cc: Christian Marangi <ansuelsmth@gmail.com>
-Subject: [PATCH] ARM: dts: qcom: ipq4019: add QCA8075 PHY Package nodes
-Date: Sun, 11 Feb 2024 21:26:55 +0100
-Message-ID: <20240211202700.17810-1-ansuelsmth@gmail.com>
-X-Mailer: git-send-email 2.43.0
+	s=arc-20240116; t=1707684646; c=relaxed/simple;
+	bh=/TVt/WXLbFLMhyemN6XrxxKty2GPdqWLsNom6iJb7nA=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=Suu0v7pWy2JP568cwbOghGk6L/jOJR092p/9+Lnw96XT6bNLxUNKiBHdxl9UzN9bZ+QYRy7ozSUAbDL9RM5/BVSuVXHia+KcT+UqiVstzEv0dmMqWAwjJZ2gRTFWtuG9S0k83Dw+K1mgZUdAhNAi0qreAuJ9hxdow/2lVGxytnQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=yandex.com; spf=pass smtp.mailfrom=yandex.com; dkim=pass (1024-bit key) header.d=yandex.com header.i=@yandex.com header.b=SQXWkKNz; arc=none smtp.client-ip=178.154.239.82
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=yandex.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=yandex.com
+Received: from mail-nwsmtp-smtp-production-main-51.vla.yp-c.yandex.net (mail-nwsmtp-smtp-production-main-51.vla.yp-c.yandex.net [IPv6:2a02:6b8:c0d:2a02:0:640:77d9:0])
+	by forward502a.mail.yandex.net (Yandex) with ESMTPS id 5310460D2B;
+	Sun, 11 Feb 2024 23:45:10 +0300 (MSK)
+Received: by mail-nwsmtp-smtp-production-main-51.vla.yp-c.yandex.net (smtp/Yandex) with ESMTPSA id 5jsT2eIDX8c0-J19H6vkO;
+	Sun, 11 Feb 2024 23:45:09 +0300
+X-Yandex-Fwd: 1
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=yandex.com; s=mail;
+	t=1707684309; bh=f5rRJR6KNn/eOO0vS9ImbNMvdI5OX8OfzGV14/X6mbA=;
+	h=From:In-Reply-To:Cc:Date:References:To:Subject:Message-ID;
+	b=SQXWkKNz3llZC3eFqKDPg9fqHM3R23uhtyqwJutAGYubmH2pQpkRSHqigAgGcu4qe
+	 sCDOLTytsMsRIgoxeOG11Pr3x2GBRH0d6sGybO9YuXjB/4UIus89bfGVNkMq9vvEeb
+	 Qpytfo+H88tyz5U2QjP2emKwvGZQXsH5vS8U/bRk=
+Authentication-Results: mail-nwsmtp-smtp-production-main-51.vla.yp-c.yandex.net; dkim=pass header.i=@yandex.com
+Message-ID: <bdb92ba5-5ac7-4ae7-ab63-8a7545053988@yandex.com>
+Date: Sun, 11 Feb 2024 21:45:04 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v1 04/10] phy: rockchip: add usbdp combo phy driver
+To: Sebastian Reichel <sebastian.reichel@collabora.com>,
+ Heiko Stuebner <heiko@sntech.de>, Vinod Koul <vkoul@kernel.org>,
+ Kishon Vijay Abraham I <kishon@kernel.org>,
+ linux-rockchip@lists.infradead.org, linux-phy@lists.infradead.org
+Cc: Rob Herring <robh+dt@kernel.org>,
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+ Conor Dooley <conor+dt@kernel.org>, Frank Wang <frank.wang@rock-chips.com>,
+ Kever Yang <kever.yang@rock-chips.com>, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, kernel@collabora.com,
+ Zhang Yubing <yubing.zhang@rock-chips.com>
+References: <20240209181831.104687-1-sebastian.reichel@collabora.com>
+ <20240209181831.104687-5-sebastian.reichel@collabora.com>
+Content-Language: en-US
+From: Johan Jonker <jbx6244@yandex.com>
+In-Reply-To: <20240209181831.104687-5-sebastian.reichel@collabora.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
-Add QCA8075 PHY Package nodes. The PHY nodes that were previously
-defined never worked and actually never had a driver to correctly setup
-these PHY. Now that we have a correct driver, correctly add the PHY
-Package node and set the default value of 300mw for tx driver strength
-following specification of ipq4019 SoC.
 
-Signed-off-by: Christian Marangi <ansuelsmth@gmail.com>
----
- arch/arm/boot/dts/qcom/qcom-ipq4019.dtsi | 35 +++++++++++++++---------
- 1 file changed, 22 insertions(+), 13 deletions(-)
 
-diff --git a/arch/arm/boot/dts/qcom/qcom-ipq4019.dtsi b/arch/arm/boot/dts/qcom/qcom-ipq4019.dtsi
-index f989bd741cd1..6c97d852d342 100644
---- a/arch/arm/boot/dts/qcom/qcom-ipq4019.dtsi
-+++ b/arch/arm/boot/dts/qcom/qcom-ipq4019.dtsi
-@@ -603,24 +603,33 @@ mdio: mdio@90000 {
- 			reg = <0x90000 0x64>;
- 			status = "disabled";
- 
--			ethphy0: ethernet-phy@0 {
-+			ethernet-phy-package@0 {
-+				#address-cells = <1>;
-+				#size-cells = <0>;
-+				compatible = "qcom,qca8075-package";
- 				reg = <0>;
--			};
- 
--			ethphy1: ethernet-phy@1 {
--				reg = <1>;
--			};
-+				qcom,tx-drive-strength-milliwatt = <300>;
- 
--			ethphy2: ethernet-phy@2 {
--				reg = <2>;
--			};
-+				ethphy0: ethernet-phy@0 {
-+					reg = <0>;
-+				};
- 
--			ethphy3: ethernet-phy@3 {
--				reg = <3>;
--			};
-+				ethphy1: ethernet-phy@1 {
-+					reg = <1>;
-+				};
-+
-+				ethphy2: ethernet-phy@2 {
-+					reg = <2>;
-+				};
-+
-+				ethphy3: ethernet-phy@3 {
-+					reg = <3>;
-+				};
- 
--			ethphy4: ethernet-phy@4 {
--				reg = <4>;
-+				ethphy4: ethernet-phy@4 {
-+					reg = <4>;
-+				};
- 			};
- 		};
- 
--- 
-2.43.0
+On 2/9/24 19:17, Sebastian Reichel wrote:
+> This adds a new USBDP combo PHY with Samsung IP block driver.
+> 
+> The driver get lane mux and mapping info in 2 ways, supporting
+> DisplayPort alternate mode or parsing from DT. When parsing from DT,
+> the property "rockchip,dp-lane-mux" provide the DP mux and mapping
+> info. This is needed when the PHY is not used with TypeC Alt-Mode.
+> For example if the USB3 interface of the PHY is connected to a USB
+> Type A connector and the DP interface is connected to a DisplayPort
+> connector.
+> 
+> When do DP link training, need to set lane number, link rate, swing,
+> and pre-emphasis via PHY configure interface.
+> 
+> Co-developed-by: Heiko Stuebner <heiko@sntech.de>
+> Signed-off-by: Heiko Stuebner <heiko@sntech.de>
+> Co-developed-by: Zhang Yubing <yubing.zhang@rock-chips.com>
+> Signed-off-by: Zhang Yubing <yubing.zhang@rock-chips.com>
+> Co-developed-by: Frank Wang <frank.wang@rock-chips.com>
+> Signed-off-by: Frank Wang <frank.wang@rock-chips.com>
+> Signed-off-by: Sebastian Reichel <sebastian.reichel@collabora.com>
+> ---
 
+For Linux FTRACE filters it is needed that all functions in a driver start with the same function prefix.
+Currently there's a mix of udphy_* and rockchip_*
+Maybe use rk_udphy_* ??? similar to for example rk_nfc_* in rockchip-nand-controller.c
+
+Johan
 
