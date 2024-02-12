@@ -1,63 +1,75 @@
-Return-Path: <devicetree+bounces-41019-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-41020-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6C344851F4E
-	for <lists+devicetree@lfdr.de>; Mon, 12 Feb 2024 22:14:14 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 24615851F5B
+	for <lists+devicetree@lfdr.de>; Mon, 12 Feb 2024 22:17:07 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 23BFB284F03
-	for <lists+devicetree@lfdr.de>; Mon, 12 Feb 2024 21:14:13 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 517B01C2201C
+	for <lists+devicetree@lfdr.de>; Mon, 12 Feb 2024 21:17:06 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D913F4C61B;
-	Mon, 12 Feb 2024 21:14:07 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7EC7C4C62E;
+	Mon, 12 Feb 2024 21:17:02 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="Z7zizSvS"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="AIoXSvnu"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wr1-f51.google.com (mail-wr1-f51.google.com [209.85.221.51])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4668A4CE04
-	for <devicetree@vger.kernel.org>; Mon, 12 Feb 2024 21:14:06 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BA48B4C61F
+	for <devicetree@vger.kernel.org>; Mon, 12 Feb 2024 21:17:00 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.51
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1707772447; cv=none; b=HFc/OSHhn5VLEKnNXqI5sNhelXduYB5Un1XmUSCjvEO2Xze/t0+QrtxKnRLdYD6k+b6P0P4xwG65sOt7Y7TPjXgiZtSzCa7UUugUOO6Qjo98yCFEYNEFm88k2Ee7ECscot+RtVB9kwwU6Th8ZWIOApwe/eA9aQ2C11Tz2AI1WlQ=
+	t=1707772622; cv=none; b=f4H63lJj+oH7OfzShwqQx1hidSzrULuEpkIX57PqIwFDtWXkMcbDknAC8lfBwl4+Mj1tHZgvWBgLa+ZobftMISZp93YmopsbcvXopB1KzSay5Ma2rd9pWXLJBDAAIti+1LkSoIQjJwonSIGE+i9CFVFpVOh04e894MiQ8IWG+oE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1707772447; c=relaxed/simple;
-	bh=AFtyrA6a8r62pKQ2dEtKrrBLnMP3wPeoxQfM4E5P2Z8=;
-	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
-	 In-Reply-To:Content-Type; b=JxYYxXAWaWDEdWKnS7jSXEPVzDA0Rjk/ztHGDwVbR0lcYlZz8VLYK1G5hs0/QCzcBHYR1G/lDaLjnS/+gJhV59j0ezfqmPrQDrc7ZiyWBsYTkS22xSr8fMt0YuTTVaNpNjepM9T2pSDTsxXiYZ2UqPswv63d7NLUDpCan0x3iOM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=Z7zizSvS; arc=none smtp.client-ip=205.220.168.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
-Received: from pps.filterd (m0279867.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.17.1.24/8.17.1.24) with ESMTP id 41CKwFrL000889;
-	Mon, 12 Feb 2024 21:13:38 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
-	message-id:date:mime-version:subject:to:cc:references:from
-	:in-reply-to:content-type:content-transfer-encoding; s=
-	qcppdkim1; bh=ZuUfCR5VASzqzJemnGoBlBsjV+cKninvVRKG9Zj9GLQ=; b=Z7
-	zizSvSmeR3j6EIBNez/gaGlh33t4nU8gDsCUyMqc0JKQ3PjN/bXYjjAjrDqcJ4F8
-	nejTwQ1yK4Cm5bYZlkamWgqPJQRncuunmvZaLDN0nalB5zPve23oEilXQiSNiBBo
-	4jTzsvL9/HJELSAElhQSc3FZXkn2eX517Jcw4qBwyv2/NQ25+ZnzQFNhjKS9SfNC
-	TLdy5cxQOaXZdc7aV8M8pP09u7Z+d6MgFuTtdcV1dDRPUYjoQGoPShQEemLcSOzd
-	NADVaaIrwqyGUbci5HNOK7QFEAJVRqbtFvwN0ml+I5lWY18ONvubvs8WSnyTr84o
-	nZs15mTqKohA/jNxlvEw==
-Received: from nasanppmta05.qualcomm.com (i-global254.qualcomm.com [199.106.103.254])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3w7ju79881-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Mon, 12 Feb 2024 21:13:38 +0000 (GMT)
-Received: from nasanex01b.na.qualcomm.com (nasanex01b.na.qualcomm.com [10.46.141.250])
-	by NASANPPMTA05.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 41CLDbi4020455
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Mon, 12 Feb 2024 21:13:37 GMT
-Received: from [10.71.111.207] (10.80.80.8) by nasanex01b.na.qualcomm.com
- (10.46.141.250) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1118.40; Mon, 12 Feb
- 2024 13:13:36 -0800
-Message-ID: <c30d904e-d249-430e-a07a-f326a9a23459@quicinc.com>
-Date: Mon, 12 Feb 2024 13:13:35 -0800
+	s=arc-20240116; t=1707772622; c=relaxed/simple;
+	bh=nAx2mPQTsaOk0/7xVAy29UdElMfrEAZDlaWkMPGlOzE=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=WP0+A/DEkOTFeES+9ClZJ1fzR5/cZ5BmUP+FUC9eMTdHyi7l0MmaebLaERjhMdVNkcwmqtPRb4PsZL0yDN/kBbqQNwpToXMZglUq4Sms38tbdSG1M8fnIismpr2zuZFlQ0hXSJdSAaxjuxIV7Y8v37R5eEDjrul7n7lO/Rj8lAI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=AIoXSvnu; arc=none smtp.client-ip=209.85.221.51
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-wr1-f51.google.com with SMTP id ffacd0b85a97d-33b0e5d1e89so2483743f8f.0
+        for <devicetree@vger.kernel.org>; Mon, 12 Feb 2024 13:17:00 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1707772619; x=1708377419; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
+         :to:content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=lThJKVe/txBS0wmOHDLSoMleAO0axNAH8qnzzAys7rE=;
+        b=AIoXSvnuPiY1BB1Bp9xvgfr9KWa9UaNWm1q+36Af+IxGMsMjGo4nJJ3Cy1I6RynqNS
+         VqX4cnOIwovJnCC9JECDywymVZJhqtPSV2+q7k4dg4FjJ1Ew3dV6bVevUg0a++ECc5z1
+         N8XQH0spWhIF+iuzVI8KfhwaJzzfKuHdbXSkgElYx4fox8knMxTJPiprYhYsjS9KBRVk
+         UsNtZXYVKozs2Cgcq2OVhZgWUmfHdsPFHX2G7O9Cc4HDFFDNhhTtN8muPtNaJexZuTkQ
+         +VqHoz9s7QESeZH/H9HKum1XyWUk5KPD58/O1fcDh9zwqRFyeq5EFboghCkPLaucROhz
+         MLKA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1707772619; x=1708377419;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
+         :to:content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=lThJKVe/txBS0wmOHDLSoMleAO0axNAH8qnzzAys7rE=;
+        b=PsRCpmQeK5QmhSeczd1uIEomnWUwsTc8+ytProaB55JKp45VaoEMowD+K8nj2P328x
+         QoLpd7nLuKl1a+oNlbldgpN85Xfa9GVDlkt1IqWXodHmw+vJtUdwLBwhLr6RYSx1pNQ/
+         GJWWOMvKtcQpTh9E+WRjLiS9ZksRA3ZRIqUfQWnQvm6R9I0fylbx8hstnnVgmsS8v8vE
+         QnwgPdR6quo6YjQPYBH4GIlkhBxHUhOLdha05/pV0dDh8UZUMQU7otm/+XFf0jXYl0aA
+         FkWXx8621Z7eXNJzNftGOJcZ4vo8FFnMoIe6b01QjTXuzS+vBzFagILvISKKH64glvz6
+         r/Kg==
+X-Forwarded-Encrypted: i=1; AJvYcCVCGqNjNb3uUDURSId+dCMzgE4lLqqLWTLLD29XWerZ1mZzNnQPKRCjrN+qGKrDWusr+2D2VvovylvYoHGHSo/WTP7oUFcVZuLyvg==
+X-Gm-Message-State: AOJu0YyDY6YEMShxlg20aWhTRSRlsnVIfkZpLhVPHKHD9kYTcXZhsqHX
+	b9fU+XkIME2ekNKyQqarkZ0ugGbLrS+ZBgxxkcNf8p/6fOmmXo2vSNldWbOrMl4=
+X-Google-Smtp-Source: AGHT+IGTEzLXiSLefrTtyD2tqT6VQjiVCehBeTj4eoWFAgGTSlLmRNGpZHyK6JzNp5Yrnvd5AsYZwA==
+X-Received: by 2002:adf:ec03:0:b0:33b:628f:3690 with SMTP id x3-20020adfec03000000b0033b628f3690mr5081505wrn.20.1707772618895;
+        Mon, 12 Feb 2024 13:16:58 -0800 (PST)
+X-Forwarded-Encrypted: i=1; AJvYcCXlMPcx8sllE1ZnkBUXVn3caXq1aZ/blSXEAP0vaw+7rK/rHY6+E06HI2ZDbOGEGPCaLZLfcSMMzeJsKNfrEI27LEqzHuo5eM6wtaCJ7O3J9BxqrZ9WTlH8TiNQTcpBNfDkUVkfCONwl3yXYqD9CfWUK675X1sFAHY/OEPjctXpzVfgQukrm2pz8+D5BMgxQpUFeFh3lFcTx0T03UfZdVHtJ17+Th+NkII7pmepnDnMI19N/b6H9EknWzjh/38CdKoTyExR0kPT2uFpjc97ICK5vjrfsGvTZchoMdXWr3rH/vk=
+Received: from [192.168.1.20] ([178.197.223.6])
+        by smtp.gmail.com with ESMTPSA id z7-20020adfe547000000b0033b55186901sm7738185wrm.94.2024.02.12.13.16.57
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 12 Feb 2024 13:16:58 -0800 (PST)
+Message-ID: <177b479a-bbd9-4bf4-9e32-246d130d6aa1@linaro.org>
+Date: Mon, 12 Feb 2024 22:16:57 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -65,172 +77,77 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 2/7] drm/panel: st7703: Add Powkiddy RGB10MAX3 Panel
- Support
+Subject: Re: [PATCH 2/2] soc: qcom: socinfo: Add Soc IDs for SM8475 family
 Content-Language: en-US
-To: Chris Morgan <macroalpha82@gmail.com>,
-        <linux-rockchip@lists.infradead.org>
-CC: <devicetree@vger.kernel.org>, <dri-devel@lists.freedesktop.org>,
-        <tzimmermann@suse.de>, <mripard@kernel.org>,
-        <maarten.lankhorst@linux.intel.com>, <daniel@ffwll.ch>,
-        <airlied@gmail.com>, <sam@ravnborg.org>, <neil.armstrong@linaro.org>,
-        <megi@xff.cz>, <kernel@puri.sm>, <agx@sigxcpu.org>, <heiko@sntech.de>,
-        <conor+dt@kernel.org>, <krzysztof.kozlowski+dt@linaro.org>,
-        <robh+dt@kernel.org>, Chris Morgan <macromorgan@hotmail.com>
-References: <20240212184950.52210-1-macroalpha82@gmail.com>
- <20240212184950.52210-3-macroalpha82@gmail.com>
-From: Jessica Zhang <quic_jesszhan@quicinc.com>
-In-Reply-To: <20240212184950.52210-3-macroalpha82@gmail.com>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
+To: Danila Tikhonov <danila@jiaxyga.com>, andersson@kernel.org,
+ konrad.dybcio@linaro.org, robh@kernel.org,
+ krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org
+Cc: linux-arm-msm@vger.kernel.org, linux-kernel@vger.kernel.org,
+ devicetree@vger.kernel.org
+References: <20240212201428.87151-1-danila@jiaxyga.com>
+ <20240212201428.87151-3-danila@jiaxyga.com>
+From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
+ 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
+ D2GYIS41Kv4Isx2dEFh+/Q==
+In-Reply-To: <20240212201428.87151-3-danila@jiaxyga.com>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
- nasanex01b.na.qualcomm.com (10.46.141.250)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-ORIG-GUID: duYr1z6oTFX_rTI9gr9ZgJ6XQQjJ-Bav
-X-Proofpoint-GUID: duYr1z6oTFX_rTI9gr9ZgJ6XQQjJ-Bav
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.272,Aquarius:18.0.1011,Hydra:6.0.619,FMLib:17.11.176.26
- definitions=2024-02-12_16,2024-02-12_03,2023-05-22_02
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 impostorscore=0
- mlxlogscore=999 lowpriorityscore=0 spamscore=0 clxscore=1011
- priorityscore=1501 mlxscore=0 malwarescore=0 suspectscore=0 phishscore=0
- adultscore=0 bulkscore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.19.0-2401310000 definitions=main-2402120164
 
-
-
-On 2/12/2024 10:49 AM, Chris Morgan wrote:
-> From: Chris Morgan <macromorgan@hotmail.com>
+On 12/02/2024 21:14, Danila Tikhonov wrote:
+> Add Soc ID table entries for Qualcomm SM8475 family.
 > 
-> The Powkiddy RGB10MAX3 is a handheld device with a 5 inch 720x1280
-> display panel with a Sitronix ST7703 display controller. The panel
-> is installed rotated 270 degrees.
-> 
-> Signed-off-by: Chris Morgan <macromorgan@hotmail.com>
-
-Hi Chris,
-
-Reviewed-by: Jessica Zhang <quic_jesszhan@quicinc.com>
-
-Thanks,
-
-Jessica Zhang
-
+> Signed-off-by: Danila Tikhonov <danila@jiaxyga.com>
 > ---
->   drivers/gpu/drm/panel/panel-sitronix-st7703.c | 91 +++++++++++++++++++
->   1 file changed, 91 insertions(+)
-> 
-> diff --git a/drivers/gpu/drm/panel/panel-sitronix-st7703.c b/drivers/gpu/drm/panel/panel-sitronix-st7703.c
-> index b55bafd1a8be..939ba05c9b58 100644
-> --- a/drivers/gpu/drm/panel/panel-sitronix-st7703.c
-> +++ b/drivers/gpu/drm/panel/panel-sitronix-st7703.c
-> @@ -521,6 +521,96 @@ static const struct st7703_panel_desc rgb30panel_desc = {
->   	.init_sequence = rgb30panel_init_sequence,
->   };
->   
-> +static int rgb10max3_panel_init_sequence(struct st7703 *ctx)
-> +{
-> +	struct mipi_dsi_device *dsi = to_mipi_dsi_device(ctx->dev);
-> +
-> +	/* Init sequence extracted from Powkiddy RGB10MAX3 BSP kernel. */
-> +
-> +	mipi_dsi_dcs_write_seq(dsi, ST7703_CMD_SETEXTC, 0xf1, 0x12, 0x83);
-> +	mipi_dsi_dcs_write_seq(dsi, ST7703_CMD_SETAPID, 0x00, 0x00, 0x00, 0xda,
-> +			       0x80);
-> +	mipi_dsi_dcs_write_seq(dsi, ST7703_CMD_SETDISP, 0xc8, 0x02, 0x30);
-> +	mipi_dsi_dcs_write_seq(dsi, ST7703_CMD_SETRGBIF, 0x10, 0x10, 0x28,
-> +			       0x28, 0x03, 0xff, 0x00, 0x00, 0x00, 0x00);
-> +	mipi_dsi_dcs_write_seq(dsi, ST7703_CMD_SETCYC, 0x80);
-> +	mipi_dsi_dcs_write_seq(dsi, ST7703_CMD_SETBGP, 0x04, 0x04);
-> +	mipi_dsi_dcs_write_seq(dsi, ST7703_CMD_SETVCOM, 0x78, 0x78);
-> +	mipi_dsi_dcs_write_seq(dsi, ST7703_CMD_SETPOWER_EXT, 0x25, 0x22, 0xf0,
-> +			       0x63);
-> +	mipi_dsi_dcs_write_seq(dsi, ST7703_CMD_SETMIPI, 0x33, 0x81, 0x05, 0xf9,
-> +			       0x0e, 0x0e, 0x20, 0x00, 0x00, 0x00, 0x00, 0x00,
-> +			       0x00, 0x00, 0x44, 0x25, 0x00, 0x90, 0x0a, 0x00,
-> +			       0x00, 0x01, 0x4f, 0x01, 0x00, 0x00, 0x37);
-> +	mipi_dsi_dcs_write_seq(dsi, ST7703_CMD_SETVDC, 0x47);
-> +	mipi_dsi_dcs_write_seq(dsi, ST7703_CMD_UNKNOWN_BF, 0x02, 0x11, 0x00);
-> +	mipi_dsi_dcs_write_seq(dsi, ST7703_CMD_SETSCR, 0x73, 0x73, 0x50, 0x50,
-> +			       0x00, 0x00, 0x12, 0x70, 0x00);
-> +	mipi_dsi_dcs_write_seq(dsi, ST7703_CMD_SETPOWER, 0x25, 0x00, 0x32,
-> +			       0x32, 0x77, 0xe1, 0xff, 0xff, 0xcc, 0xcc, 0x77,
-> +			       0x77);
-> +	mipi_dsi_dcs_write_seq(dsi, ST7703_CMD_SETECO, 0x82, 0x00, 0xbf, 0xff,
-> +			       0x00, 0xff);
-> +	mipi_dsi_dcs_write_seq(dsi, ST7703_CMD_SETIO, 0xb8, 0x00, 0x0a, 0x00,
-> +			       0x00, 0x00);
-> +	mipi_dsi_dcs_write_seq(dsi, ST7703_CMD_SETCABC, 0x10, 0x40, 0x1e,
-> +			       0x02);
-> +	mipi_dsi_dcs_write_seq(dsi, ST7703_CMD_SETPANEL, 0x0b);
-> +	mipi_dsi_dcs_write_seq(dsi, ST7703_CMD_SETGAMMA, 0x00, 0x04, 0x07,
-> +			       0x2a, 0x39, 0x3f, 0x36, 0x31, 0x06, 0x0b, 0x0e,
-> +			       0x12, 0x14, 0x12, 0x13, 0x0f, 0x17, 0x00, 0x04,
-> +			       0x07, 0x2a, 0x39, 0x3f, 0x36, 0x31, 0x06, 0x0b,
-> +			       0x0e, 0x12, 0x14, 0x12, 0x13, 0x0f, 0x17);
-> +	mipi_dsi_dcs_write_seq(dsi, ST7703_CMD_SETEQ, 0x03, 0x03, 0x03, 0x03,
-> +			       0x00, 0x03, 0x00, 0x00, 0x00, 0x00, 0xff, 0x80,
-> +			       0xc0, 0x10);
-> +	mipi_dsi_dcs_write_seq(dsi, ST7703_CMD_SETGIP1, 0xc8, 0x10, 0x08, 0x00,
-> +			       0x00, 0x41, 0xf8, 0x12, 0x31, 0x23, 0x37, 0x86,
-> +			       0x11, 0xc8, 0x37, 0x2a, 0x00, 0x00, 0x0c, 0x00,
-> +			       0x00, 0x00, 0x00, 0x00, 0x0c, 0x00, 0x00, 0x00,
-> +			       0x88, 0x20, 0x46, 0x02, 0x88, 0x88, 0x88, 0x88,
-> +			       0x88, 0x88, 0xff, 0x88, 0x31, 0x57, 0x13, 0x88,
-> +			       0x88, 0x88, 0x88, 0x88, 0x88, 0xff, 0x00, 0x00,
-> +			       0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-> +			       0x00, 0x00, 0x00);
-> +	mipi_dsi_dcs_write_seq(dsi, ST7703_CMD_SETGIP2, 0x00, 0x1a, 0x00, 0x00,
-> +			       0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-> +			       0x8f, 0x13, 0x31, 0x75, 0x88, 0x88, 0x88, 0x88,
-> +			       0x88, 0x88, 0xf8, 0x8f, 0x02, 0x20, 0x64, 0x88,
-> +			       0x88, 0x88, 0x88, 0x88, 0x88, 0xf8, 0x00, 0x00,
-> +			       0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-> +			       0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-> +			       0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-> +			       0x00);
-> +	mipi_dsi_dcs_write_seq(dsi, ST7703_CMD_UNKNOWN_EF, 0xff, 0xff, 0x01);
-> +
-> +	return 0;
-> +}
-> +
-> +static const struct drm_display_mode rgb10max3_panel_mode = {
-> +	.hdisplay	= 720,
-> +	.hsync_start	= 720 + 40,
-> +	.hsync_end	= 720 + 40 + 10,
-> +	.htotal		= 720 + 40 + 10 + 40,
-> +	.vdisplay	= 1280,
-> +	.vsync_start	= 1280 + 16,
-> +	.vsync_end	= 1280 + 16 + 4,
-> +	.vtotal		= 1280 + 16 + 4 + 14,
-> +	.clock		= 63800,
-> +	.flags		= DRM_MODE_FLAG_NHSYNC | DRM_MODE_FLAG_NVSYNC,
-> +	.width_mm	= 62,
-> +	.height_mm	= 109,
-> +};
-> +
-> +static const struct st7703_panel_desc rgb10max3_panel_desc = {
-> +	.mode = &rgb10max3_panel_mode,
-> +	.lanes = 4,
-> +	.mode_flags = MIPI_DSI_MODE_VIDEO | MIPI_DSI_MODE_VIDEO_BURST |
-> +		      MIPI_DSI_MODE_NO_EOT_PACKET | MIPI_DSI_MODE_LPM,
-> +	.format = MIPI_DSI_FMT_RGB888,
-> +	.init_sequence = rgb10max3_panel_init_sequence,
-> +};
-> +
->   static int st7703_enable(struct drm_panel *panel)
->   {
->   	struct st7703 *ctx = panel_to_st7703(panel);
-> @@ -784,6 +874,7 @@ static void st7703_remove(struct mipi_dsi_device *dsi)
->   
->   static const struct of_device_id st7703_of_match[] = {
->   	{ .compatible = "anbernic,rg353v-panel-v2", .data = &rg353v2_desc },
-> +	{ .compatible = "powkiddy,rgb10max3-panel", .data = &rgb10max3_panel_desc },
->   	{ .compatible = "powkiddy,rgb30-panel", .data = &rgb30panel_desc },
->   	{ .compatible = "rocktech,jh057n00900", .data = &jh057n00900_panel_desc },
->   	{ .compatible = "xingbangda,xbd599", .data = &xbd599_desc },
-> -- 
-> 2.34.1
-> 
+>  drivers/soc/qcom/socinfo.c | 3 +++
+>  1 file changed, 3 insertions(+)
+
+I assume you are going to send DTS for SM8475?
+
+Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+
+Best regards,
+Krzysztof
+
 
