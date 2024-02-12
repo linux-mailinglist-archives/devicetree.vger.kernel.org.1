@@ -1,149 +1,144 @@
-Return-Path: <devicetree+bounces-41010-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-41011-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 320F8851ED9
-	for <lists+devicetree@lfdr.de>; Mon, 12 Feb 2024 21:48:09 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 71891851EF5
+	for <lists+devicetree@lfdr.de>; Mon, 12 Feb 2024 21:57:09 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 98B831F22A68
-	for <lists+devicetree@lfdr.de>; Mon, 12 Feb 2024 20:48:08 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id A48221C21705
+	for <lists+devicetree@lfdr.de>; Mon, 12 Feb 2024 20:57:08 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id CAEE9482EB;
-	Mon, 12 Feb 2024 20:48:03 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 81B8547F7A;
+	Mon, 12 Feb 2024 20:57:05 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="a+Yb7tEC"
+	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="QUPIWdUl"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-yb1-f176.google.com (mail-yb1-f176.google.com [209.85.219.176])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EFA62405FB
-	for <devicetree@vger.kernel.org>; Mon, 12 Feb 2024 20:48:01 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.219.176
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D90474CDE0;
+	Mon, 12 Feb 2024 20:57:03 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1707770883; cv=none; b=O4q2yE6M18nsIvdDjqg+vD1gb0tY3quGqMfOeBms5CbFpHPEf4RnG7CXUFh5w5gwlLFr+cVQIy936puD2/FzitCU8S8m/qn8QqtIwR1Gu+7hW/awcxfa7z/qiLUrclp1islZMAFBNdYM2+mf2VwbQm9eHb7h4yUMbrD3ym9NNwo=
+	t=1707771425; cv=none; b=DMQe3gUCK07O4OIEtDPjc0qhy54JRXE9E1Cfe2jfdOUKFbBHjFceiyBneAgMXXc4F0YW2YjvibO10OwhJjIHSl+YnSIGzjztPYxV7cAWFoscg6iSUB+jM0EYdVaVqTkDrr2QadJEOVE2dFHSGU1oB3ccf2EZhwdp1XjdrMTBSHQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1707770883; c=relaxed/simple;
-	bh=sMYBJYjLm8YsiiGaWfwhHa/Xio+UaZ439FcuhwQ9JVg=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=LeJuxKnLYIllzbP/uR9mtKuKspZjEN/Gp4GkBxV6O2DJQ/aLuni9YLgeQLjV7otpOI2x5f32zkl97NaufSKFnJ6cJ15zc85gmzhA7idONaThW+SsM6Yx6gIyJaIGE4iYQHMYi6IUH895Y78+9iC8AOpWEg38/BEbMSDpnzKtqLY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=a+Yb7tEC; arc=none smtp.client-ip=209.85.219.176
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-yb1-f176.google.com with SMTP id 3f1490d57ef6-dc7472aa206so3077130276.2
-        for <devicetree@vger.kernel.org>; Mon, 12 Feb 2024 12:48:01 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1707770881; x=1708375681; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=PY3cqSsBwNpTxKZXjc6hWsn0tIs/KUkTAVHRiL48yE4=;
-        b=a+Yb7tECEsxUlJG9pZBQ4yYsQJfwSb8/Dp7q9QQg/oUfwoRoVm7+sAHVAPASxRcUO4
-         jnfIjeb/hO2y3ZxtQZUcFVB7T9nv0p3SHMmAhI4++ZlDRp4Lf2/JBYBt1sn27BXWHRIH
-         //eg1gydfBzXBgUcScNBllJ9VXAceIq+IJG0miyzlR85sSSl7F9NtMmmRt3J2rfKTzvs
-         ErPJtzQLXWAWNN2di9UwfCUoudZO2FTHZ8g9RZjQfHRk0KGFcLRhOnX9Gpvc44YfZhAg
-         nAJ+CzzXA/N45fz67vDcWlUGXrHxlsL2xzsrtTHkQKMMtrm84syYBNZKJV4HiiPhyOtS
-         rUew==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1707770881; x=1708375681;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=PY3cqSsBwNpTxKZXjc6hWsn0tIs/KUkTAVHRiL48yE4=;
-        b=Uizb3H3UKC7wM5Vj4TcMo/cGqnHwrHoPK1tQmXmNNggSU6o6u/ZcYJoY+yBd2R3xXj
-         LZJkQ38xKrcgWx1dJBReHVxlW62ZFIAIkpF3h/3nJloTVemlLC6xSVGePwUiFb/akYda
-         RQp/+sCnsKxwOBwqzIuBi4QV1Bi5iN96hm8GONA+Z6nkXhDNQpbm5BdLu9EP65w8IWvk
-         JDOzOLIdr6B/T6N0TF3gRqfarNCtVu6v++h+YoY62Iu5LUlfMthAVW2T/yiJFF9VdfB4
-         PEuhYMEMCxRR4zM6Qv2Hp8RQt+nf97YZAxgZF0Bc8/chy7aipmmbNr3nVPz2wSz9gcHP
-         RRsQ==
-X-Forwarded-Encrypted: i=1; AJvYcCXJtCgwIsGOqZha70CG0cEQ6pq6qO9YZfGkRmQ4J8O0IqJ3B3GSmdDRxzxEJzgEKbwe6ix/qHbx1FERW8R/BRgHdjVKnHYAbV5rGQ==
-X-Gm-Message-State: AOJu0YzwbKsCU34iIcwFOjZFsceqnFf5fnJusZ39OIfe6v4z2tq7aCf+
-	1MlIcHhwAhwaYFTVKhEJjyx/1wbQ/oujxReyOg4MQTHeoZjimN9jgjeLkMDgq8+gGOvnb/hU5oJ
-	JSzVg3uQpCI7LzbpR34HUy1M9zVnLCTxhyVTJNw==
-X-Google-Smtp-Source: AGHT+IHpuGZC6SrLdNnZki7WawOfEUwxb557/rUhxkGHMzuDzurgn+uKQ9WrdUdXaiN7gnBNgrqdYeHN6a/77FI22dc=
-X-Received: by 2002:a25:ad82:0:b0:dc2:2f4f:757 with SMTP id
- z2-20020a25ad82000000b00dc22f4f0757mr6478822ybi.7.1707770880839; Mon, 12 Feb
- 2024 12:48:00 -0800 (PST)
+	s=arc-20240116; t=1707771425; c=relaxed/simple;
+	bh=W5I8hgPwwBAyzQHQfZk2G35oMt4b5jINXtjFVACOhvs=;
+	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
+	 In-Reply-To:Content-Type; b=YUqUrLDC7CIWvAsfe1yka13eLiFNfmZskRCk354TmmD4LhK+qVwiGDxNrRGH+KeB7h78m2M3yCaBvQM7OfJEXiQ00YKCwfDz3LdtcH6KSDJVaVzDWDA2Ymm0HG7mkf/dnxho+QkHSOsZ/g+BSB+YOjeny2BIJLPEooYEYJbtDIk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=QUPIWdUl; arc=none smtp.client-ip=205.220.168.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
+Received: from pps.filterd (m0279864.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.17.1.24/8.17.1.24) with ESMTP id 41CKNJQD006780;
+	Mon, 12 Feb 2024 20:56:53 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
+	message-id:date:mime-version:subject:to:cc:references:from
+	:in-reply-to:content-type:content-transfer-encoding; s=
+	qcppdkim1; bh=OPbrlq1m98uTfCMnFJ6G1tzc5WlIlN1tivo58zQxrRY=; b=QU
+	PIWdUlo/uBqS7JVV3AGQO8/TsAlVn/O58VEoVHUjuA6fD+yLfT57yFWdxQv0Ebmb
+	Q9F8EYWemmfXPZd1QKhV3oJzgJxCtzCHDsZMRMUxyD6SIrJLxLae51d12uMMBc93
+	CopubSGDTgjVZrr6UR8nYI8G9WpQF+XLAaEN67grSswiDZX1uq0MKpRkJUi9NHH/
+	JigG3JSSj8lSY1zbJZfFrdU6v8BXbBjpzzu51AwNYrH/kRfnjryul3ZjFzpgvws1
+	AxKowcJP1YDJmo/QAmf57EBwmB8AMzLhezuWtUYkE8cRjwItwTRDxyMjEYmwdawv
+	Vk/BEJ/k2xYyk6mvBoEg==
+Received: from nalasppmta02.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3w7tanr1pm-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Mon, 12 Feb 2024 20:56:53 +0000 (GMT)
+Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
+	by NALASPPMTA02.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 41CKuqQ9020216
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Mon, 12 Feb 2024 20:56:52 GMT
+Received: from [10.227.110.203] (10.80.80.8) by nalasex01a.na.qualcomm.com
+ (10.47.209.196) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1118.40; Mon, 12 Feb
+ 2024 12:56:51 -0800
+Message-ID: <08c312f4-f3d3-4980-b998-b28026b5180f@quicinc.com>
+Date: Mon, 12 Feb 2024 12:56:51 -0800
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20240129115216.96479-1-krzysztof.kozlowski@linaro.org> <20240129115216.96479-5-krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20240129115216.96479-5-krzysztof.kozlowski@linaro.org>
-From: Linus Walleij <linus.walleij@linaro.org>
-Date: Mon, 12 Feb 2024 21:47:49 +0100
-Message-ID: <CACRpkdbMFHPK0SBSxiZ3FOqChQFCBdOny0yYG--6V+1S=CKgiw@mail.gmail.com>
-Subject: Re: [PATCH v6 4/6] reset: Instantiate reset GPIO controller for
- shared reset-gpios
-To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Cc: Srinivas Kandagatla <srinivas.kandagatla@linaro.org>, Banajit Goswami <bgoswami@quicinc.com>, 
-	Bjorn Andersson <andersson@kernel.org>, Konrad Dybcio <konrad.dybcio@linaro.org>, 
-	Liam Girdwood <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>, 
-	Rob Herring <robh+dt@kernel.org>, 
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Philipp Zabel <p.zabel@pengutronix.de>, "Rafael J. Wysocki" <rafael@kernel.org>, 
-	Viresh Kumar <viresh.kumar@linaro.org>, Frank Rowand <frowand.list@gmail.com>, 
-	Jaroslav Kysela <perex@perex.cz>, Takashi Iwai <tiwai@suse.com>, alsa-devel@alsa-project.org, 
-	linux-arm-msm@vger.kernel.org, linux-sound@vger.kernel.org, 
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
-	linux-pm@vger.kernel.org, Bartosz Golaszewski <brgl@bgdev.pl>, 
-	Chris Packham <chris.packham@alliedtelesis.co.nz>, Sean Anderson <sean.anderson@seco.com>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH RFC 0/4] wifi: ath10k: support board-specific firmware
+ overrides
+Content-Language: en-US
+To: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
+        Kalle Valo
+	<kvalo@kernel.org>,
+        "David S. Miller" <davem@davemloft.net>,
+        Eric Dumazet
+	<edumazet@google.com>, Jakub Kicinski <kuba@kernel.org>,
+        Paolo Abeni
+	<pabeni@redhat.com>, Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski
+	<krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio
+	<konrad.dybcio@linaro.org>
+CC: <ath10k@lists.infradead.org>, <linux-wireless@vger.kernel.org>,
+        <netdev@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-arm-msm@vger.kernel.org>
+References: <20240130-wcn3990-firmware-path-v1-0-826b93202964@linaro.org>
+From: Jeff Johnson <quic_jjohnson@quicinc.com>
+In-Reply-To: <20240130-wcn3990-firmware-path-v1-0-826b93202964@linaro.org>
 Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Transfer-Encoding: 7bit
+X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
+ nalasex01a.na.qualcomm.com (10.47.209.196)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-GUID: g4-fB0Y-JmWvy8lcJl8LgKG4GzMQwrSp
+X-Proofpoint-ORIG-GUID: g4-fB0Y-JmWvy8lcJl8LgKG4GzMQwrSp
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.272,Aquarius:18.0.1011,Hydra:6.0.619,FMLib:17.11.176.26
+ definitions=2024-02-12_16,2024-02-12_03,2023-05-22_02
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 phishscore=0 malwarescore=0
+ clxscore=1015 lowpriorityscore=0 spamscore=0 impostorscore=0
+ mlxlogscore=925 bulkscore=0 priorityscore=1501 suspectscore=0 adultscore=0
+ mlxscore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.19.0-2401310000 definitions=main-2402120162
 
-On Mon, Jan 29, 2024 at 12:53=E2=80=AFPM Krzysztof Kozlowski
-<krzysztof.kozlowski@linaro.org> wrote:
-
-> Devices sharing a reset GPIO could use the reset framework for
-> coordinated handling of that shared GPIO line.  We have several cases of
-> such needs, at least for Devicetree-based platforms.
->
-> If Devicetree-based device requests a reset line, while "resets"
-> Devicetree property is missing but there is a "reset-gpios" one,
-> instantiate a new "reset-gpio" platform device which will handle such
-> reset line.  This allows seamless handling of such shared reset-gpios
-> without need of changing Devicetree binding [1].
->
-> To avoid creating multiple "reset-gpio" platform devices, store the
-> Devicetree "reset-gpios" GPIO specifiers used for new devices on a
-> linked list.  Later such Devicetree GPIO specifier (phandle to GPIO
-> controller, GPIO number and GPIO flags) is used to check if reset
-> controller for given GPIO was already registered.
->
-> If two devices have conflicting "reset-gpios" property, e.g. with
-> different ACTIVE_xxx flags, this would allow to spawn two separate
-> "reset-gpio" devices, where the second would fail probing on busy GPIO
-> request.
->
-> Link: https://lore.kernel.org/all/YXi5CUCEi7YmNxXM@robh.at.kernel.org/ [1=
-]
-> Cc: Bartosz Golaszewski <brgl@bgdev.pl>
-> Cc: Chris Packham <chris.packham@alliedtelesis.co.nz>
-> Cc: Sean Anderson <sean.anderson@seco.com>
-> Reviewed-by: Philipp Zabel <p.zabel@pengutronix.de>
-> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-
-Acked-by: Linus Walleij <linus.walleij@linaro.org>
-
-I can't think of anything better, that is reasonable to ask for.
-
-I feel slightly icky about the way the code reaches into gpiolib, and I thi=
-nk
-regulators should be able to reuse the code, but unfortunately only the day
-they have no board files left :/
-
-I do feel the core code handling "reset-gpios" could as well have been
-used to handle "enable-gpios" in regulators, just that the regulator code
-has more requirements, and would be really hard to rewrite, and deals
-with descriptors passed in from drivers instead of centralizing it.
-
-Like regulators, reset grows core support for handling GPIO for resets
-which is *long due*, given how common it must be. We really need
-something like this, and this is certainly elegant enough to do the job.
-
-Yours,
-Linus Walleij
+On 1/30/2024 8:38 AM, Dmitry Baryshkov wrote:
+> On WCN3990 platforms actual firmware, wlanmdsp.mbn, is sideloaded to the
+> modem DSP via the TQFTPserv. These MBN files are signed by the device
+> vendor, can only be used with the particular SoC or device.
+> 
+> Unfortunately different firmware versions come with different features.
+> For example firmware for SDM845 doesn't use single-chan-info-per-channel
+> feature, while firmware for QRB2210 / QRB4210 requires that feature.
+> 
+> Allow board DT files to override the subdir of the fw dir used to lookup
+> the firmware-N.bin file decribing corresponding WiFi firmware.
+> For example, adding firmware-name = "qrb4210" property will make the
+> driver look for the firmware-N.bin first in ath10k/WCN3990/hw1.0/qrb4210
+> directory and then fallback to the default ath10k/WCN3990/hw1.0 dir.
+> 
+> Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+> ---
+> Dmitry Baryshkov (4):
+>       dt-bindings: net: wireless: ath10k: describe firmware-name property
+>       wifi: ath10k: support board-specific firmware overrides
+>       arm64: dts: qcom: qrb2210-rb1: add firmware-name qualifier to WiFi node
+>       arm64: dts: qcom: qrb4210-rb1: add firmware-name qualifier to WiFi node
+> 
+>  .../devicetree/bindings/net/wireless/qcom,ath10k.yaml         |  6 ++++++
+>  arch/arm64/boot/dts/qcom/qrb2210-rb1.dts                      |  1 +
+>  arch/arm64/boot/dts/qcom/qrb4210-rb2.dts                      |  1 +
+>  drivers/net/wireless/ath/ath10k/core.c                        | 11 ++++++++++-
+>  drivers/net/wireless/ath/ath10k/core.h                        |  2 ++
+>  drivers/net/wireless/ath/ath10k/snoc.c                        |  3 +++
+>  6 files changed, 23 insertions(+), 1 deletion(-)
+> ---
+> base-commit: 596764183be8ebb13352b281a442a1f1151c9b06
+> change-id: 20240130-wcn3990-firmware-path-7a05a0cf8107
+> 
+> Best regards,
+This series looks OK to me, but would like Kalle to review as well
 
