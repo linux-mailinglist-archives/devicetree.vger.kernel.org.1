@@ -1,76 +1,74 @@
-Return-Path: <devicetree+bounces-40584-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-40585-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 63A5E850E8E
-	for <lists+devicetree@lfdr.de>; Mon, 12 Feb 2024 09:05:36 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id BEA17850E93
+	for <lists+devicetree@lfdr.de>; Mon, 12 Feb 2024 09:06:30 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 1A8AF280D51
-	for <lists+devicetree@lfdr.de>; Mon, 12 Feb 2024 08:05:35 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id E3A421C216B4
+	for <lists+devicetree@lfdr.de>; Mon, 12 Feb 2024 08:06:29 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1AD6E29A1;
-	Mon, 12 Feb 2024 08:05:31 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id BAA9D3207;
+	Mon, 12 Feb 2024 08:06:15 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="uMWSLU0v"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="j36Kf9Vn"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f52.google.com (mail-wm1-f52.google.com [209.85.128.52])
+Received: from mail-lf1-f52.google.com (mail-lf1-f52.google.com [209.85.167.52])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 558A56FCB
-	for <devicetree@vger.kernel.org>; Mon, 12 Feb 2024 08:05:29 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.52
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E46C5F9CA
+	for <devicetree@vger.kernel.org>; Mon, 12 Feb 2024 08:06:13 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.52
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1707725131; cv=none; b=NVrVP6YAvAx1wIhZi3ZE9LsTv8aMjI5U+VswIlI6WdvTgarvhcu6NzkG7zxCDE8zvt8anHwOczWavD1/EX2YqL5MxRVE0kmt/r+qxTb8vQiNsiPCsk9UgUTGWl2EripD57CE8uOoIvdonCCK0pPqAvtR2YyB2Nc/CP+F2LBrP0w=
+	t=1707725175; cv=none; b=jHMzmM9G3GMNP1ckl8UzRjNopso+C5miE/m5pKlwwukbKMxfz8sg2dBjUDR2fm5S1o7xLYTFIXDvhi3YygW0M5Cne7DEgfRyJ4JVpFY+UEifpJi6pEJhN4QnmQ+pbOuOd9EfqOu8ayJ2kCC/9sANCJ/KsYTCEPDmb3ejtu/73Cs=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1707725131; c=relaxed/simple;
-	bh=/rBKgnXuhUKdXB/IPGLCCWFL0LiJnlTcjviYNlpwIrA=;
+	s=arc-20240116; t=1707725175; c=relaxed/simple;
+	bh=36XQO96DsT3oPwV40x5XQq5zFj/eQDZiSVBrPKBRKxU=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=YwMaENtxcy5AsEi6yKuD7zg1pVAYGklOQAzOGU2tXRRAg0Owx4h8v0EdciVgPJRumTwBNxpfZiUEEkykjVbYd8PW799akK+9/L4MADT6eR69A9NMIM1sSoaFZPMisS1qaB3Nw9OXBaZ59KXYWFgUtJdKG+MvA5acsOFWwETJufo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=uMWSLU0v; arc=none smtp.client-ip=209.85.128.52
+	 In-Reply-To:Content-Type; b=bI5lFf/XIUjeeAB2/KWZiPv9M+mvmgAARLJG5oT69v4L4T+HB6lgBHzCO8a9evCdTNKumvHoOOExoT12XbCBwf874OdGAmHkE+p+jUYVsNg1Qj8rRh61lqF4l64jKS4Wgzsq4NwF05PtM3B7RwcUz5/IsZGic64NN13YjdahcbM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=j36Kf9Vn; arc=none smtp.client-ip=209.85.167.52
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-wm1-f52.google.com with SMTP id 5b1f17b1804b1-410ca9e851bso4696185e9.3
-        for <devicetree@vger.kernel.org>; Mon, 12 Feb 2024 00:05:29 -0800 (PST)
+Received: by mail-lf1-f52.google.com with SMTP id 2adb3069b0e04-51181d8f52fso1815029e87.3
+        for <devicetree@vger.kernel.org>; Mon, 12 Feb 2024 00:06:13 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1707725127; x=1708329927; darn=vger.kernel.org;
+        d=linaro.org; s=google; t=1707725172; x=1708329972; darn=vger.kernel.org;
         h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
          :to:content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=jfCaG4VvMyKMzOb/1e6Q0Brw7CIgAIOkySvxonDdoYQ=;
-        b=uMWSLU0vmqfi5p59QscUlVMe4Eoe42gQj5EZIidNkjsuR2W31GOcnzPo+d9Nd6rbzk
-         diBiRr/sSGhNRRmSSnJo3c9ZvN2qarGkJ5NzyzOzMEJbsal5u4vAek7Jd4JXE9vvrI2b
-         x6gNt7GSFsHr8n1ie8OCVMJdLFh0ghR9LI543Ioo+5mpuRvlpk8zpMCUss7OBWaxzcko
-         +12hHhW2Tflo8RvfV65SFLCMLABQb9OFu1Xn/j259ijg7tKwpttZ5gt+GZMZy2xiP6OC
-         a2wXu0Po8MCwJJ8hcGYLA5dWyLjTsWr2ODKeZTHYIaz/bN09DEFlYhIfYf4vBLXTKkgl
-         quiw==
+        bh=CbQOlcS38lNorYOFMdrL1FUETrD2W5+o8O5DySchflQ=;
+        b=j36Kf9VnFDZ+jxDsaKmVOa90w7Lg6yNl3tyiVp8twl4qZ+UY9ygsnMpzzXFG5oQcvq
+         ZsOKk8+iR9zrgT44zhNdvQB7RMJMqleHoWyBiHE8mcqO69DgifCnurK/TYpjmRhqr8l9
+         FEEYpUre3u/DtFg7wx+5vd051+FmVq7ENq6ISIF1DvBMkkKeuGqHycwREv91LxIv/JRB
+         t54gWXpbt5k5aPcCh95GwYmaHHpAiUqooGyVKLv96Sec9myHMW116+oWMA4vqVqXrDml
+         pz0a2iBOfoYKelXIscN7tPHdtyLFoAAWbhRos8PdOvLqA4b1Q9YpsXpSmypQZebbSfaB
+         3JjQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1707725127; x=1708329927;
+        d=1e100.net; s=20230601; t=1707725172; x=1708329972;
         h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
          :to:content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=jfCaG4VvMyKMzOb/1e6Q0Brw7CIgAIOkySvxonDdoYQ=;
-        b=S/dcAfv3f1WvkCDLzB/PUcK3Txk0cLYn92eUgtEU+wl1bc3emWNFo/3s665OkX8CWa
-         fIAgoha86zP1+vY1mdvJmn7gYLIkqtktdNnpwDVLEYxuHeMTkwG0RW4LfrkTp0cNwVVZ
-         PpZZIJZDbzW4IX3alPoN2tJrzVdqmM6e2XWUHVf+FeMrsatB2exyG5WK/EuQiBCtpcTt
-         2kK0rj3EdKMRzx6gIE9a7zZFf5FXuCkO7GiofaU5xPZADdipa8UoGd7KqGK+DzcZYJmP
-         GvaBtQnVGqI02P/OISfMP34Xt5vpF4+/3B9DHZd7JFtHxuiuvwR0UKC4/EL9tHBr3TOC
-         lhxQ==
-X-Forwarded-Encrypted: i=1; AJvYcCVAtutytzJw25LQD5fo6wc4Gpen75bAJK10ZNo5hjEvA4zCYNU9C+a6ugjS/8mvEGML4LVAt3RS0xmJgpLrjykyd97ARI4Xmai8yg==
-X-Gm-Message-State: AOJu0YyG3Ht1wIQoXrRzUqsY6RtPotnMYe15a8I+gDlmAtirYKKeqIw6
-	u2Ido0pK7gMz577BDrbb59nhyraQphpeXNfQAKbr1Eu1vMRjKRdmZ5X7cOyYxpUhMLc1TYy96/K
-	v
-X-Google-Smtp-Source: AGHT+IGFvpZ+DhrGn6aZ+iLL7W/S1HVWUzzzGBjdqb6If0h2Pd3HSrWq3vtSqF7tA5j4lFTjtbBcUA==
-X-Received: by 2002:a05:600c:5192:b0:411:2e20:fce4 with SMTP id fa18-20020a05600c519200b004112e20fce4mr209864wmb.29.1707725127609;
-        Mon, 12 Feb 2024 00:05:27 -0800 (PST)
-X-Forwarded-Encrypted: i=1; AJvYcCULvRkI3fws/kkH0muhMSkByhjEhxf06pagPgVPje9ftMMUJxmk6jnNoJYVxURzaVaHWy5utV/EM05HRJz0ztPSKrW7sa31qVOBQJuqUoKAtH2QI+/WM7WLgPdxSxJwOrr2F2vi9SEUbu6PzBczhTT25A3fjPlX2l25hK1FgfFarR4NbCWZ913JGjMu+zBC8qe1tMbEKIx6d3GDIxvJ+mvHPmLW9jY7XFycrfP1nhiP9GJe35IPLhmJ44WFLHPjd3ygpxJt2Lt36PyqXLe9XDlOCSlrwLTRxsTcwDuecesRfPPtP79IV79RW1i8n/eGqNxXGA/4VfjB+2hHLvin27N73b/7lNyXUaewuBgYkqghqnf8hoHI1Q6nxTWCfNCYtLqK4mxz7M3kuqzZE1V3khBLJq4zglEl2dNvJ4lYxNpMS8NEqudR+EuHW/jUUuBb/Zih1grNi1E8laLTufkeT4kMDuf1wCynzkeouWkfI1/7HkKupi8AOq3eNyaapBxm1zh53rrj0EJlaTI5zyhiyqGn8/FG2P7LIbD02gHjay5mzPhRwb/8aEwwp7IgKDVEOihhScq1YEt3H8Dm9Mvmh7BHIqCEiF02AHhq3aV61hNLWVOUaEjdNCvQL8yfNg3uqPv1dIclBwFShQSDTc2vFNF7XPVAwA==
+        bh=CbQOlcS38lNorYOFMdrL1FUETrD2W5+o8O5DySchflQ=;
+        b=sRuWJYSZD1drERRm3sVN5e0c5JHCSEvUWE6Ti4RPfFiTZBQwhoYUi2roW2y8wpe1n4
+         5fxnuoLiIJdEYkjsLV9TWkFI+ahGTWiy9Jfm8+ISexFSoEIM3/2IYHSguLUa1TzAdOu3
+         Em3fpddqdHs5ZxRvx8gDbINhxJRIqu+VJIkIw1uQgwrnPHjFf1gHHZ0zp9FRuVelmOxb
+         hkecQkYJqmdcB7/AxMTZsYwhesVDVu8LAiXURi5crhEJXqqp0AjCbNTjTtKh59dtkK4i
+         Ai6/p//Ti3pb3cmQsvJUQTGSM8HT01sHhrDS8p8LskJ5Qazn+UZzut3qPt+j2ifUCgC6
+         BTOA==
+X-Gm-Message-State: AOJu0Yz1oyvRvROLG+BMFU0/hVktkC2Vs3brVjSCLZJoBJfZ7qzkP6Bo
+	PQ0AuYGGsIP2iRIMSLY/0/R/I7rWr40hS6zQd+lyYflOWzzNBQO3u4cPolFW4MM=
+X-Google-Smtp-Source: AGHT+IFpW16b4m/9wQZgcZ5u0hre5D1K3WEKW27nJjwubvdGFaxOrN9QSXyQ7/cdWCy0dyRWRO5+FQ==
+X-Received: by 2002:a05:6512:39c4:b0:511:8b95:1384 with SMTP id k4-20020a05651239c400b005118b951384mr2421709lfu.26.1707725171788;
+        Mon, 12 Feb 2024 00:06:11 -0800 (PST)
+X-Forwarded-Encrypted: i=1; AJvYcCWFSpXChVUyjQMK2D6qSa+WZAyVhOJze/M6O+MXzry1OU56mmiQ8nEfO738tsY+l3HFMNp+u5Wy/HrfqoGVh1r1a1OOsUjRyk8sIxcR5xgoX6t2TEd7v+vY9gRk+RGYAO25Pfw0qoLnlDxKn+cRIYGA417aKTXMuVAnhKl8duC9YlpWsWyrB4jGuToVlK3Oywtje20TYtk/FwSDzxioXmn6xJhk8aKE5IDWlTkcOBVfH7DVCZkUaR5/48jzM4TdlRIAqShCJc5bFE2xfq80vOQL39gQ7PhyeHGA6mVAIVpCoIl1ged+eN1MraF4bgi2Q9Z10agNHUoVllWXX1SlkVFSpDcsTwRWOY4tqgvJCXsNVO3ukLHRH/UD81wTbHyO1uaT/2I+KnkETJryMgclT7Wa2qy342prK9L97FBVZBEadKgQIUJK2rmcLD6VcKtnY+gC1ClrXwcKw4Sa3dMC/1o8zUp+clSG5SyJ8BbQC9z1lR1Af6Yu9wkNsb+PdXyp8KQYO81DzCgVOWyLFH6216cgyOOrVFIzKpjcD4bwwJ8JdI44nG5IsQhoihNFpC+54w6yYLDN+s4r061Xd2qbsJ5gX55+vN/OmW4DxFkUTITf/hgaqep5wKLBNQ8nGULmif1R4n1YQEGaiX9fL65ihsLJozF6Og==
 Received: from [192.168.1.20] ([178.197.223.6])
-        by smtp.gmail.com with ESMTPSA id h16-20020a05600c351000b00410e6a6403esm980417wmq.34.2024.02.12.00.05.25
+        by smtp.gmail.com with ESMTPSA id h16-20020a05600c351000b00410e6a6403esm980417wmq.34.2024.02.12.00.06.09
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 12 Feb 2024 00:05:27 -0800 (PST)
-Message-ID: <de359646-2bf2-4fd9-9b98-c6fb809b2de6@linaro.org>
-Date: Mon, 12 Feb 2024 09:05:25 +0100
+        Mon, 12 Feb 2024 00:06:11 -0800 (PST)
+Message-ID: <adeb3ebb-76ed-4f00-8b46-a1b9c36cfc64@linaro.org>
+Date: Mon, 12 Feb 2024 09:06:09 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -78,8 +76,8 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v3 02/10] dt-bindings: display: bridge: tc358775: Add
- data-lanes
+Subject: Re: [PATCH v3 03/10] dt-bindings: display: bridge: tc358775: Add
+ support for tc358765
 Content-Language: en-US
 To: Tony Lindgren <tony@atomide.com>, Andrzej Hajda
  <andrzej.hajda@intel.com>, Neil Armstrong <neil.armstrong@linaro.org>,
@@ -97,7 +95,7 @@ Cc: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
  Michael Walle <mwalle@kernel.org>, dri-devel@lists.freedesktop.org,
  devicetree@vger.kernel.org
 References: <20240211095144.2589-1-tony@atomide.com>
- <20240211095144.2589-3-tony@atomide.com>
+ <20240211095144.2589-4-tony@atomide.com>
 From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  xsFNBFVDQq4BEAC6KeLOfFsAvFMBsrCrJ2bCalhPv5+KQF2PS2+iwZI8BpRZoV+Bd5kWvN79
@@ -143,23 +141,25 @@ Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  KQ06ztUMRrj8eVtpImjsWCd0bDWRaaR4vqhCHvAG9iWXZu4qh3ipie2Y0oSJygcZT7H3UZxq
  fyYKiqEmRuqsvv6dcbblD8ZLkz1EVZL6djImH5zc5x8qpVxlA0A0i23v5QvN00m6G9NFF0Le
  D2GYIS41Kv4Isx2dEFh+/Q==
-In-Reply-To: <20240211095144.2589-3-tony@atomide.com>
+In-Reply-To: <20240211095144.2589-4-tony@atomide.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
 On 11/02/2024 10:51, Tony Lindgren wrote:
-> The device uses a clock lane, and 1 to 4 DSI data lanes. Let's add the
-> data-lanes property starting at 1 similar to what the other bridge
-> bindings are doing.
+> The tc358765 is similar to tc358775. The tc358765 just an earlier version
+> of the hardware, and it's pin and register compatible with tc358775 for
+> most part.
 > 
-> Let's also drop the data-lanes properties in the example for the DSI host
-> controller to avoid confusion. The configuration of the DSI host depends
-> on the controller used and is unrelated to the bridge binding.
+> From the binding point of view the only difference is that the tc358765
+> does not have stdby-gpios.
 > 
 > Signed-off-by: Tony Lindgren <tony@atomide.com>
 > ---
 
-Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+It does not look like you tested the bindings, at least after quick
+look. Please run `make dt_binding_check` (see
+Documentation/devicetree/bindings/writing-schema.rst for instructions).
+Maybe you need to update your dtschema and yamllint.
 
 Best regards,
 Krzysztof
