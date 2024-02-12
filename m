@@ -1,74 +1,75 @@
-Return-Path: <devicetree+bounces-40814-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-40815-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9C9288516D8
-	for <lists+devicetree@lfdr.de>; Mon, 12 Feb 2024 15:17:03 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 65C228516E9
+	for <lists+devicetree@lfdr.de>; Mon, 12 Feb 2024 15:20:37 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id C14A71C21349
-	for <lists+devicetree@lfdr.de>; Mon, 12 Feb 2024 14:17:02 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id D00381F21568
+	for <lists+devicetree@lfdr.de>; Mon, 12 Feb 2024 14:20:36 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2528E3B78D;
-	Mon, 12 Feb 2024 14:16:16 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id CECF63A8DC;
+	Mon, 12 Feb 2024 14:20:31 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="cADnfjYW"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="VtNtKiyD"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f52.google.com (mail-wm1-f52.google.com [209.85.128.52])
+Received: from mail-oi1-f174.google.com (mail-oi1-f174.google.com [209.85.167.174])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A3B153B2A1
-	for <devicetree@vger.kernel.org>; Mon, 12 Feb 2024 14:16:12 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.52
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 46A9C848E
+	for <devicetree@vger.kernel.org>; Mon, 12 Feb 2024 14:20:30 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.174
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1707747376; cv=none; b=DaPFp47HO6yZapAjTpRCxOb0FXV1YmC0e4nuzwDVbYNCXlD8LIea9jXKhufAlxj/SDSVKpV6BkQ9NWB+u8Ey1EyRTpL0KeWIs37HDigeR6vEFhtdPrykajygf2WpClr+fQp6y0+vZKDVinUte8yFs1pkDXozpnYDSUDvHokRQfs=
+	t=1707747631; cv=none; b=AxM76ByDh+VTGwYzalE94Lani8yhGmWW+95UsSS7BV/ittXvwdnyo1UIO8Vvq3j1cX6CZ3P9jhv9Rw/liQr4AGgckVhNxD/ZbDbpVcyWMwMFx//X30vn9fOgZj6JMVHdOpw9Yo5IvyTR8o+GuDFqGCtV1+fgxVbAntyimGIBbUA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1707747376; c=relaxed/simple;
-	bh=H4/04zivKVAFJVVs+E5Mftrh36HHEgeKNY0LNBAaZGA=;
+	s=arc-20240116; t=1707747631; c=relaxed/simple;
+	bh=IhQAKpuPrgzYPj8eGChOmKdNzeEYV7muCE4GmdmJGQQ=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=mX9Pb2rVh1VQzcCVsRONrOdia7x8Cqp2bLVxdFyKXwnEuSKJ9Sgn3YiliHqMflpbdhPPfrcFBa8Isvl5vltk7qN9is9va58tARhYyRBmoJ6qnRcveT+KN0ldyBwKRZZywJARU1H139B3YCW5GkS/vDDVMPlvY7jO5tixFOEeS8U=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=cADnfjYW; arc=none smtp.client-ip=209.85.128.52
+	 In-Reply-To:Content-Type; b=XzcFlzf/UBRO+e0B0PENt/Yv6LLOfN9zLxS5WaRoq3YtYKfjHjBjYYtZ+ACDyZOOAOcFW1fCnsvI539kZDaAkk9DifhEQQJtb6vUwaVHiI42519tUrDUVElbZScBeyOoCamJy4LCv2Qt6PUsQ91nMgTvv3nn/5CjKPHuYsZIL+8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=VtNtKiyD; arc=none smtp.client-ip=209.85.167.174
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-wm1-f52.google.com with SMTP id 5b1f17b1804b1-410cb93185dso8159155e9.3
-        for <devicetree@vger.kernel.org>; Mon, 12 Feb 2024 06:16:12 -0800 (PST)
+Received: by mail-oi1-f174.google.com with SMTP id 5614622812f47-3bff204fad4so1506457b6e.2
+        for <devicetree@vger.kernel.org>; Mon, 12 Feb 2024 06:20:30 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1707747371; x=1708352171; darn=vger.kernel.org;
+        d=linaro.org; s=google; t=1707747629; x=1708352429; darn=vger.kernel.org;
         h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
          :to:content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=DQX3D7uSYgu1r4rqjqsVdtDZuOmWbLq20gw1bWo5TGM=;
-        b=cADnfjYWENZ3F6mg8ATuMPcSYp2nsj3f7t5uNRP/M3zk74zGC+5VFYTHYY4DW5k3gL
-         PmOJHMBGTYtHM5AmjYGRFKZVF25PYlb9xtFUPa9cH2x39TkfpS9hfLQ7lFasAosDm4a2
-         CRMbLyDC25vyTmVsYDvVKgKLDevw1Rtexu/UJWJ+cPKVDEyus1DoBkoXQhmv1AO7j2t0
-         3C2rPCc2l4/bY1WislhInsvVMgjEEohpUjhMzPoUwQyVD6AIOH855rdlRVQxaH0JC/r4
-         tFqj/UCuVPNlMvbaCqTb3PNyeWwzi88i5UfvblUGvUgv8qwV83bZHTVWpyHWftrS15ya
-         hEkA==
+        bh=gyBJeVAbVLOUugM8uBMgD4ijJoIOfpy1k/OkoITELdI=;
+        b=VtNtKiyDunRbaiZFiHfe3G+NrKpBZRLUVMeuHCILbMCskPc8yOP7DKvLEGF85Kq6Do
+         Dr+O8Ifwd83NXWYM7Lw7LItb+jpUjSY6VdqliROZKseVYul3P9jO0x6dn6kq0tz2uifg
+         pzVZxADsx/rGTcdaPmD6iXKqFs+UnGgqre1l+hLWyMwe2aN9ZzoIiGDv92+RJflOzGve
+         6gv3I/tMgNeV4VyE+ttJJE2f9qsnEzNqjyTlXnvBst+fa18OUSEG759JqA1u8Ym2r7+A
+         xuaXbeQQ2/UekdW35avkS5QmHHq+lnhOiyFOvktrQQoOcjX2C7u9E/CwBvuUXBIEBFoT
+         FXrw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1707747371; x=1708352171;
+        d=1e100.net; s=20230601; t=1707747629; x=1708352429;
         h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
          :to:content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=DQX3D7uSYgu1r4rqjqsVdtDZuOmWbLq20gw1bWo5TGM=;
-        b=VSXb9TfNTDvKNIBTrvfz4ciKTbYOPC37AsrNs7q1PO06DpUmVMJ6tAwgZH4lXM+GfF
-         wSGIbvoaps6uZp79hts/H150PCr7BUBlm+TVd6j5nwJkoVSaJWlM44v/inolxqNUCRQ4
-         esVOTXmtkxFQtuQM6QjZL5Hdem/alqUb3MF5zl/xd5hL9/cnUcdjEE6YfqsKmqlycSb4
-         cp40qsU/xjY09SMKoNDPPCPnCsryt+UZiFvYE4NwmDOM8YcP3l6HQ716PQFhcKOS3fb3
-         ATsxJlfchTwN3tVSLlYUZQhyb+Q6EkXgJxVoPV9vRxhcNUe5WiQZc0SWddOX60jaOJfp
-         LIqw==
-X-Gm-Message-State: AOJu0YyFJ6xIrbPhSfeoXHSmpBMkO0zfBsMq4lv4lIFT6P6hSIRo8PJL
-	er7Ex2W15o5dZdGEoywFtB3Fux4+DzCZsHFMKizxtl3muBprpA1S+JOlQFDRDQk=
-X-Google-Smtp-Source: AGHT+IHBNzgzVJG64iRD6HyjjEvHDaia2pqj+0FrY5DYd9WSkmbsRvrWf7kZ91Xv/bUce9tOwQv87w==
-X-Received: by 2002:a05:600c:19d3:b0:410:2b93:4908 with SMTP id u19-20020a05600c19d300b004102b934908mr5920183wmq.4.1707747370880;
-        Mon, 12 Feb 2024 06:16:10 -0800 (PST)
-X-Forwarded-Encrypted: i=1; AJvYcCUeBs4qyXfYqxAm+ZVzlkcKDbAMLq+dtw8laFxEaT+UmhQ1yoWgcDydGlnI7B3AzVd1oRlMylYAPF2dwvnY6I3OhiZtXRb6/ao0TBv9Ie/escMhqONrkwmCzniJGd/KpbSasnGsZKEkxasVBqQSIQRcudqVXZIO8fN2HCUvqGz47xJT9W0qqIOWFYJ12e3bu+UscyuxSqeSpy84g0bhlPIOUdEuLAgZrgLsPPrNUk9qRpSz4TnsbsJQrf6+Ps4DainoGvzo8PrKEwGpwMYmeKhvWBSZ1QTmdqbL3NpAza0+S2QI2M6NsEc3QYLVWWGtKFFAxfm0Qmj4o7ax4LIqcNk584aQ4cO+iIHNFyYX/RZ8gkq5uKRC588S6dBiSUP2mk5LBPVDkp3f0rMP//YyHI6LOSsus9vdrlOCQ2v6wngIjQDSHQIubMbF5LoAt7QeSm+BrT823yw2VpjjiGmUEJyqgFNi/yRzQ2LIDwzLsBOT3ptqX1ZNfRjJC3tYY0byGOrqT0oD+L/mHoXhyKpgCQIeaeBpRFbYPY6zEtUCI1+QsxudVayqYoAjRQVJIUBxGYdzS1b17pLN/9ENb5hAnFOHyTGiFCefQwl1B9hmNxwHaXcDu1pNvWhECVrIPTfkMslib8oqBMsW/PBj/z1HOHhdA7r+Jg/JdXkob22BDMziAVXleo9oN/Y+qj11Hh0s1qkN4SfjSD3+PNn0409xkO9wqYKrnV7NP2/CgwrcxXhjGi828lzfupHwPjuM7ZL8I1Y7AtXEkuicTZIEEytS+Rn57gfQhG4Ocx+oFPxd55Sjq4/Bw5U02pg=
+        bh=gyBJeVAbVLOUugM8uBMgD4ijJoIOfpy1k/OkoITELdI=;
+        b=ZjFkr1D1LLNvn9+9aGCW/ln13A2GksLQZyqUNmAQEuAi+WuInO2Pa8pckpN9awj2K4
+         0Llz+yjvpAaqg1uAkxX1kQovp94EPwf44UW7Iu61ZHI9gmgNviImXkzc9vstYvPMhLPf
+         moULNbqyEYG8FQCkXwy6i86sQXr70kJyoHMEBaDCuDfoG6w5dA/hlGp8azKT9Bjok7kH
+         bwAajnGuUjjE7IBFJA3aawFwiF/fVQKRbhO13EamwJVetKLt1R3QyaMPOPc3M1ZvyLmn
+         7L3a96veRZK23aeYdFp1b/g18BMdcFRg4JDQx/6sNd8ztQNxkhlIwn95l1F6pxRoM/9d
+         aFMA==
+X-Forwarded-Encrypted: i=1; AJvYcCUsZDFCc5He/ro3KelgcbFK8CSUbA/zzlD7udgQqWbFqBUAoE/GI0FPUk7ry4qQX02CvwyD9SKvjCVKwqD8dJ1W4nXWuULljuD8Yw==
+X-Gm-Message-State: AOJu0YykOsX4AyCPYkVHN4YZ0lxh/Umy/EChFxNavlOY59begVP0J//K
+	vPJmHwchxrJitjRDfE8G/V3hbVModGSnSSFkJdiIsWMMXS15KdoH+rfdkL85J4M=
+X-Google-Smtp-Source: AGHT+IEGwcabb0YbhKwmetbqxIxk8MR6hwoLl7QmVWgc4fBr5tMkd3EHAZxNjeVus+2aEpCRzz2hUA==
+X-Received: by 2002:a05:6808:4384:b0:3bf:e02e:6429 with SMTP id dz4-20020a056808438400b003bfe02e6429mr6045776oib.24.1707747629328;
+        Mon, 12 Feb 2024 06:20:29 -0800 (PST)
+X-Forwarded-Encrypted: i=1; AJvYcCXnJp0TmICHcK9u990k/r8Wr9NMlUp/F3Ktj/d4g2A/wGijqSF1rMoOayxG2H2BfX+C5y2JDzQSNOpLI3Cgjr0+F2CbVR8MU69JP8+uyTP3Z/h/XdnIaIkNED7ihwuEYahQlncrMl/gpAmiT7u2DA6pPWHd+sBdmxx1uMSYuqf3F1PkbAEiNR9S/T198MlN+V+Nll16+VJNpr3ES4UMxzKhI5HxxMXNyFIENiM80W/VHOHk1bx2UpwGje7A5GYQlJUa41QhF2ePbN+KcWLcAMXTaU96Kf68E2i1AIVhxVDKF1MQIDqK3QE/GQD/snBCjArbRdeMRcGORv4/p9C6IHBTGpWS/U3v/QwFHcxg6Rep+s4UiAVqIuNG32US3Vb0xf4Zqx4P+c+qjXguGZo=
 Received: from [192.168.1.20] ([178.197.223.6])
-        by smtp.gmail.com with ESMTPSA id y19-20020a05600c20d300b00410e8ef51cbsm1789757wmm.31.2024.02.12.06.16.08
+        by smtp.gmail.com with ESMTPSA id pe5-20020a05620a850500b00783f77b968fsm2053452qkn.109.2024.02.12.06.20.27
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 12 Feb 2024 06:16:10 -0800 (PST)
-Message-ID: <58e45922-5d84-457a-9fe2-ccb5dcda0fd4@linaro.org>
-Date: Mon, 12 Feb 2024 15:16:08 +0100
+        Mon, 12 Feb 2024 06:20:28 -0800 (PST)
+Message-ID: <b836cf9d-dc71-4835-b45f-1092aafa1dfd@linaro.org>
+Date: Mon, 12 Feb 2024 15:20:26 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -76,29 +77,22 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v6 4/6] reset: Instantiate reset GPIO controller for
- shared reset-gpios
+Subject: Re: [PATCH 1/3] dt-bindings: auxdisplay: hit,hd44780: drop redundant
+ GPIO node
 Content-Language: en-US
-To: Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
- Banajit Goswami <bgoswami@quicinc.com>,
- Bjorn Andersson <andersson@kernel.org>,
- Konrad Dybcio <konrad.dybcio@linaro.org>, Liam Girdwood
- <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>,
- Rob Herring <robh+dt@kernel.org>,
+To: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
+Cc: Linus Walleij <linus.walleij@linaro.org>, Miguel Ojeda
+ <ojeda@kernel.org>, Rob Herring <robh+dt@kernel.org>,
  Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Conor Dooley <conor+dt@kernel.org>, Philipp Zabel <p.zabel@pengutronix.de>,
- "Rafael J. Wysocki" <rafael@kernel.org>,
- Viresh Kumar <viresh.kumar@linaro.org>, Frank Rowand
- <frowand.list@gmail.com>, Jaroslav Kysela <perex@perex.cz>,
- Takashi Iwai <tiwai@suse.com>, alsa-devel@alsa-project.org,
- linux-arm-msm@vger.kernel.org, linux-sound@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- linux-pm@vger.kernel.org, Linus Walleij <linus.walleij@linaro.org>
-Cc: Bartosz Golaszewski <brgl@bgdev.pl>,
- Chris Packham <chris.packham@alliedtelesis.co.nz>,
- Sean Anderson <sean.anderson@seco.com>
-References: <20240129115216.96479-1-krzysztof.kozlowski@linaro.org>
- <20240129115216.96479-5-krzysztof.kozlowski@linaro.org>
+ Conor Dooley <conor+dt@kernel.org>, Robin van der Gracht
+ <robin@protonic.nl>, Paul Burton <paulburton@kernel.org>,
+ Geert Uytterhoeven <geert@linux-m68k.org>,
+ linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org
+References: <20240212083426.26757-1-krzysztof.kozlowski@linaro.org>
+ <ZcofhWb8stiddmru@smile.fi.intel.com>
+ <906db6a6-48ba-41e5-be23-1dea0ecf96ee@linaro.org>
+ <Zcomjp9oH9VfO3NA@smile.fi.intel.com>
 From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  xsFNBFVDQq4BEAC6KeLOfFsAvFMBsrCrJ2bCalhPv5+KQF2PS2+iwZI8BpRZoV+Bd5kWvN79
@@ -144,49 +138,44 @@ Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  KQ06ztUMRrj8eVtpImjsWCd0bDWRaaR4vqhCHvAG9iWXZu4qh3ipie2Y0oSJygcZT7H3UZxq
  fyYKiqEmRuqsvv6dcbblD8ZLkz1EVZL6djImH5zc5x8qpVxlA0A0i23v5QvN00m6G9NFF0Le
  D2GYIS41Kv4Isx2dEFh+/Q==
-In-Reply-To: <20240129115216.96479-5-krzysztof.kozlowski@linaro.org>
+In-Reply-To: <Zcomjp9oH9VfO3NA@smile.fi.intel.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 29/01/2024 12:52, Krzysztof Kozlowski wrote:
-> Devices sharing a reset GPIO could use the reset framework for
-> coordinated handling of that shared GPIO line.  We have several cases of
-> such needs, at least for Devicetree-based platforms.
+On 12/02/2024 15:09, Andy Shevchenko wrote:
+> On Mon, Feb 12, 2024 at 02:56:43PM +0100, Krzysztof Kozlowski wrote:
+>> On 12/02/2024 14:39, Andy Shevchenko wrote:
+>>> On Mon, Feb 12, 2024 at 09:34:24AM +0100, Krzysztof Kozlowski wrote:
 > 
-> If Devicetree-based device requests a reset line, while "resets"
-> Devicetree property is missing but there is a "reset-gpios" one,
-> instantiate a new "reset-gpio" platform device which will handle such
-> reset line.  This allows seamless handling of such shared reset-gpios
-> without need of changing Devicetree binding [1].
+> ...
 > 
-> To avoid creating multiple "reset-gpio" platform devices, store the
-> Devicetree "reset-gpios" GPIO specifiers used for new devices on a
-> linked list.  Later such Devicetree GPIO specifier (phandle to GPIO
-> controller, GPIO number and GPIO flags) is used to check if reset
-> controller for given GPIO was already registered.
+>>>> -    i2c {
+>>>> -            #address-cells = <1>;
+>>>> -            #size-cells = <0>;
+>>>>  
+>>>> -            pcf8574: pcf8574@27 {
+>>>> -                    compatible = "nxp,pcf8574";
+>>>> -                    reg = <0x27>;
+>>>> -                    gpio-controller;
+>>>> -                    #gpio-cells = <2>;
+>>>> -            };
+>>>> -    };
+>>>
+>>> In patch 3 you updated the lines that have lost their sense due to this one.
+>>
+>> How did they lose it?
 > 
-> If two devices have conflicting "reset-gpios" property, e.g. with
-> different ACTIVE_xxx flags, this would allow to spawn two separate
-> "reset-gpio" devices, where the second would fail probing on busy GPIO
-> request.
-> 
-> Link: https://lore.kernel.org/all/YXi5CUCEi7YmNxXM@robh.at.kernel.org/ [1]
-> Cc: Bartosz Golaszewski <brgl@bgdev.pl>
-> Cc: Chris Packham <chris.packham@alliedtelesis.co.nz>
-> Cc: Sean Anderson <sean.anderson@seco.com>
-> Reviewed-by: Philipp Zabel <p.zabel@pengutronix.de>
-> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+> Now they are referring to the non-existed node in the example. OTOH, there is
+> already hc595 case...
 
-Are any reviewers comments unresolved or unsatisfied with the
-discussion? I have impression that discussion bikeschedded a bit towards
-NONEXCLUSIVE, which was later clarified that NONEXCLUSIVE is not the
-solution for this problem, but maybe we miss some final Ack?
+All of the bindings examples do it. It's expected.
 
-Anyone is here unhappy with this solution?
+> 
+> The Q here (as you pointed out that it's better to name nodes in generic way),
+> how these names are okay with the schema (hc595, pcf8574) as being referred to?
 
-To remind: this is a generic solution solving at least two people's
-problems, probably more. It does not solve all people's problem, but I
-doubt anyone has enough of time to satisfy all people...
+They are not OK, although I don't see the name "hc595". There is phandle
+to the hc595 label, but that's fine. Not a node name.
 
 Best regards,
 Krzysztof
