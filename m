@@ -1,396 +1,128 @@
-Return-Path: <devicetree+bounces-40596-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-40597-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id CBA0B850EE1
-	for <lists+devicetree@lfdr.de>; Mon, 12 Feb 2024 09:31:38 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1D9B5850EEB
+	for <lists+devicetree@lfdr.de>; Mon, 12 Feb 2024 09:34:45 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 4DD181F25A35
-	for <lists+devicetree@lfdr.de>; Mon, 12 Feb 2024 08:31:38 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 50A771C2166B
+	for <lists+devicetree@lfdr.de>; Mon, 12 Feb 2024 08:34:44 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A94812F3E;
-	Mon, 12 Feb 2024 08:31:34 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 51193290A;
+	Mon, 12 Feb 2024 08:34:34 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="a29Nh45J"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="hHVahMUL"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-lf1-f43.google.com (mail-lf1-f43.google.com [209.85.167.43])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 93968EAE3;
-	Mon, 12 Feb 2024 08:31:32 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 719C610A0E
+	for <devicetree@vger.kernel.org>; Mon, 12 Feb 2024 08:34:31 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.43
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1707726694; cv=none; b=BrMExHSCIKOM5QgPnYVzVfez4byrIZGVhDjCtDEDB8vueOUoum7JNuz4AkUq/gsCTZ3FD5s/n9hjd9z7hUXg2You8OCc8RKLFZ7SL9zof6xBH3Tv5oEBhPu+A2rClK5nNBpJLNrOHS9z98AHEmG+lqOGmqGinBcDgQ/7SgNXpYY=
+	t=1707726874; cv=none; b=g07QcuMhjx3Js+KemMXs39Auj/+jlNOYZl/AK/ufZNYmsy6SZ4+Rg32EQCNDx6RbjvcapGdzzckyP7pHYBo3ZqoIQFh/bAZFHjc9LPIjD/+Px8wHwMj1XaF9bOFVEXbobJy+kgh2lm7GxtbV7RQaO/3JOHso+yMmN3WwtOmV2Go=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1707726694; c=relaxed/simple;
-	bh=GUQ7DQ7kwxgM4WTXtFcH6Oix95LRGDfvMgsxii8Jykk=;
-	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
-	 In-Reply-To:Content-Type; b=pgogmfyIsGtqPkgiOBrF7jzOcmPOtAGGSuXk+OdPbGzX7DoI2r752ZhayB2JyLtXSjkynnAg7+MZZ6ckll+finmJ7hBjlq6FHwr8Gan3MLjFwRAeVW+YebRaOluOWeFGbAmMD8zYXMqxK0S6EfUnLdb5tOwlLhcIFdpJQg2YK4s=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=a29Nh45J; arc=none smtp.client-ip=205.220.180.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
-Received: from pps.filterd (m0279868.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.17.1.24/8.17.1.24) with ESMTP id 41C7H3qk016634;
-	Mon, 12 Feb 2024 08:31:25 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
-	message-id:date:mime-version:subject:to:cc:references:from
-	:in-reply-to:content-type:content-transfer-encoding; s=
-	qcppdkim1; bh=yTucRgJBo8/A2HJgMuT0wk4I588NU1na//7P6y/aNPk=; b=a2
-	9Nh45JxZloEui01KURYGocIYMN0gHENQPRQGYx1cXWOi5VnS3HY29VaOUcmNNjPc
-	YNgAIJ+vWOSbk+P3VQ82NnSXgY71ookF9dngk8V+qpaGXdaXbjNy/eAZaO5A9Ycy
-	uzRviVgzgNiwBbUhnRRh6AfcK+Te4VYnx1e2uMc4DnbRSYViG7j9O4S33nq+Ooiy
-	rGTkP0O6bamAJSMbR60l4Z0MVD6hXRlQzszQY4Kt2m1P3czaR3u/7sdbrxYDf+c9
-	tf4X0WlC0Aye9fAuWgXl3RiKgWh2vFJ26Qf5cIPnOMTyXHlEQkscbIIhyse0K9mB
-	BwMb6ckym1S5WEZ6zXUA==
-Received: from nalasppmta02.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3w62ps2rys-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Mon, 12 Feb 2024 08:31:24 +0000 (GMT)
-Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
-	by NALASPPMTA02.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 41C8VNOB016583
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Mon, 12 Feb 2024 08:31:23 GMT
-Received: from [10.131.33.37] (10.80.80.8) by nalasex01a.na.qualcomm.com
- (10.47.209.196) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1118.40; Mon, 12 Feb
- 2024 00:31:19 -0800
-Message-ID: <a777f419-05a5-fecc-b51c-fa442502ac47@quicinc.com>
-Date: Mon, 12 Feb 2024 14:01:16 +0530
+	s=arc-20240116; t=1707726874; c=relaxed/simple;
+	bh=HlXn3h+kaQ0ElD0RQ8Ha9CS2kgD8dt6z4YNhjTiljZA=;
+	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version; b=ALwGOqxZL20z0SJkeGO77Ic56Jsr2d3WWNbHdQ3vAAQYkeLrZvEc8BNkuyWyZg+4LGWjMcySBoVnFno1naAPK5TQEJOX5YuJw0nEs322fiAorFP6eGaDNcEYKsdV6pqWVnejffoZDpcYKwXldcvBr3UEZkg5FqNcBt8+Ag31PPY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=hHVahMUL; arc=none smtp.client-ip=209.85.167.43
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-lf1-f43.google.com with SMTP id 2adb3069b0e04-51032058f17so3415155e87.3
+        for <devicetree@vger.kernel.org>; Mon, 12 Feb 2024 00:34:31 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1707726870; x=1708331670; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=gv5wKhvz2IkMiVTY6JBsKVbcSvEbLs7uJIPS1y/GGHA=;
+        b=hHVahMUL7Ie+bKU+dKwYKKqREmmxVR5DYml1yKsOevkq7Fyc1rggzJIg5dGjU8aTRT
+         zcamReHQwBxIt1g17pjoqcaZKvVw0C/msaA6RqZ+7S/0pn5vekU2qP3H4kWvnn057oQE
+         MLI8aAGZcfH8NZDFNYUGbtJsNuDw7c4hNuUWftJa2gx7LrcUosN/aZpGf8/RHwh/gknv
+         Rc8jYSylKOeChQkViHIsSLaP3UFAuI6i/5U/SHVEOJ73lxcd+gR0l9vL+HqFUDKEZAhg
+         3bCUfxacZC417VUSrXsSvhzerTzuyMCCEKs124Elbwyk0Yez2Gek7NkFbaQZtPkN2JIE
+         NBbA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1707726870; x=1708331670;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=gv5wKhvz2IkMiVTY6JBsKVbcSvEbLs7uJIPS1y/GGHA=;
+        b=uqaxDKPEuF2kN/ZFxm1+m3luW40RB8Mxjqz3XKZA6pedybt+cnX8xC0/OmGePTpdpV
+         oyeVP+iQ0hyO3UEX4+UBtMxbKHffT1TLzgLVaBal+Vd+lJ9k2x81mT1Jhy6rkNq05EcR
+         IU2AvCBnVdi97IXW3N1WdazU2xAuTxNNd3Dfq8RPjnEG2JEjhZnwA4sDrpr7jEbQ295g
+         zUXTrRaT2h1z0O5VPZH4L95dwe6Puk1KR23iF9Dw7rq5i6dlXmqfX/FC+RKUT7ikszbD
+         fpXCbWAerdC3HqADY4p0zEyYDr1xuourh8Xe6FrmWaxaYZGPejiOn2LPOeZatDPxCwG2
+         WOZg==
+X-Gm-Message-State: AOJu0Yyc1bxwxULBrvhJbGEvT+BCTAx2olm4QgG9PNvNDf2+1q41Sj3c
+	YCdQdZAtEBKH8MW5VL8CLG2eAY6Z2+g1v4Z6c7JQl0uBLEJ3Od+28bEXhQXmARg=
+X-Google-Smtp-Source: AGHT+IGxLy+g+zXrEzb6fK7p+nnX2U1Ebgap6clpVk38ct0XBVElw0mqtAvQW8HzVwU5SlBZAAnqfw==
+X-Received: by 2002:a05:6512:ac3:b0:511:622a:97bc with SMTP id n3-20020a0565120ac300b00511622a97bcmr4332576lfu.18.1707726869900;
+        Mon, 12 Feb 2024 00:34:29 -0800 (PST)
+X-Forwarded-Encrypted: i=1; AJvYcCX2/OOxwQkBfCOqrL69OJ2Og2SLXQbIWxYUftBYaEdpQwcR9KvBj46EaZ/X0p/ECSV6BbcYFfOvCibaxWiaIH8O+40/0TBOGdb42Ra6AqIcOSAVcCwIRGv573ZeMpqVLuvr4YJKNtDlP1j41LiGSiUDlEV69bRyqOTMbMYfZeoUo/MS13JUVmk16rtLWu02oj0un0+f1SKLSEAaBfb9PkljhnaKNk1CPrurjGfcdB+GOhPzgd8rYFcgPH+jHSpRy16k6PrmGXja33hzMUoD53Nor5PTjdU4ofSJDeXN6g8VETb2iRyUdxHLWklpu51CDB2n9fe6R729XyFpfNQzuu558tQ+sozROWCXAuzkCRW8gjrffGPFBWPP01J3r+6Y4uah0YAmR41ZtopZObs=
+Received: from krzk-bin.. ([178.197.223.6])
+        by smtp.gmail.com with ESMTPSA id y12-20020a056000108c00b0033b40a3f92asm6111024wrw.25.2024.02.12.00.34.28
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 12 Feb 2024 00:34:29 -0800 (PST)
+From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+To: Linus Walleij <linus.walleij@linaro.org>,
+	Miguel Ojeda <ojeda@kernel.org>,
+	Rob Herring <robh+dt@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Robin van der Gracht <robin@protonic.nl>,
+	Paul Burton <paulburton@kernel.org>,
+	Geert Uytterhoeven <geert@linux-m68k.org>,
+	linux-arm-kernel@lists.infradead.org,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org
+Cc: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+	Andy Shevchenko <andriy.shevchenko@linux.intel.com>
+Subject: [PATCH 1/3] dt-bindings: auxdisplay: hit,hd44780: drop redundant GPIO node
+Date: Mon, 12 Feb 2024 09:34:24 +0100
+Message-Id: <20240212083426.26757-1-krzysztof.kozlowski@linaro.org>
+X-Mailer: git-send-email 2.34.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.11.0
-Subject: Re: [RFC 3/7] firmware: arm_scmi: Add QCOM vendor protocol
-Content-Language: en-US
-To: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-CC: <sudeep.holla@arm.com>, <cristian.marussi@arm.com>, <andersson@kernel.org>,
-        <konrad.dybcio@linaro.org>, <jassisinghbrar@gmail.com>,
-        <robh+dt@kernel.org>, <krzysztof.kozlowski+dt@linaro.org>,
-        <linux-kernel@vger.kernel.org>, <linux-arm-msm@vger.kernel.org>,
-        <devicetree@vger.kernel.org>, <quic_rgottimu@quicinc.com>,
-        <quic_kshivnan@quicinc.com>, <conor+dt@kernel.org>,
-        Amir Vajid <avajid@quicinc.com>
-References: <20240117173458.2312669-1-quic_sibis@quicinc.com>
- <20240117173458.2312669-4-quic_sibis@quicinc.com>
- <CAA8EJpqUgqHfMOZip58yGpt6S3XSBz+9BeXZSL_JmWar_JbO4g@mail.gmail.com>
-From: Sibi Sankar <quic_sibis@quicinc.com>
-In-Reply-To: <CAA8EJpqUgqHfMOZip58yGpt6S3XSBz+9BeXZSL_JmWar_JbO4g@mail.gmail.com>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
- nalasex01a.na.qualcomm.com (10.47.209.196)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-ORIG-GUID: VioE8Q4BC608BBwFnaXJVzmxlrb-K6ti
-X-Proofpoint-GUID: VioE8Q4BC608BBwFnaXJVzmxlrb-K6ti
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.272,Aquarius:18.0.1011,Hydra:6.0.619,FMLib:17.11.176.26
- definitions=2024-02-12_05,2024-02-08_01,2023-05-22_02
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 lowpriorityscore=0
- malwarescore=0 bulkscore=0 spamscore=0 phishscore=0 suspectscore=0
- mlxscore=0 priorityscore=1501 adultscore=0 clxscore=1015 mlxlogscore=999
- impostorscore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.19.0-2401310000 definitions=main-2402120063
+Content-Transfer-Encoding: 8bit
 
+Examples of other nodes, like GPIO controller, are redundant and not
+really needed in device bindings.
 
+Cc: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
+Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+---
+ .../devicetree/bindings/auxdisplay/hit,hd44780.yaml    | 10 ----------
+ 1 file changed, 10 deletions(-)
 
-On 1/18/24 00:39, Dmitry Baryshkov wrote:
-> On Wed, 17 Jan 2024 at 19:36, Sibi Sankar <quic_sibis@quicinc.com> wrote:
->>
->> From: Shivnandan Kumar <quic_kshivnan@quicinc.com>
->>
->> SCMI QCOM vendor protocol provides interface to communicate with SCMI
->> controller and enable vendor specific features like bus scaling capable
->> of running on it.
->>
+diff --git a/Documentation/devicetree/bindings/auxdisplay/hit,hd44780.yaml b/Documentation/devicetree/bindings/auxdisplay/hit,hd44780.yaml
+index 406a922a714e..73d07f2cb303 100644
+--- a/Documentation/devicetree/bindings/auxdisplay/hit,hd44780.yaml
++++ b/Documentation/devicetree/bindings/auxdisplay/hit,hd44780.yaml
+@@ -99,17 +99,7 @@ examples:
+     };
+   - |
+     #include <dt-bindings/gpio/gpio.h>
+-    i2c {
+-            #address-cells = <1>;
+-            #size-cells = <0>;
+ 
+-            pcf8574: pcf8574@27 {
+-                    compatible = "nxp,pcf8574";
+-                    reg = <0x27>;
+-                    gpio-controller;
+-                    #gpio-cells = <2>;
+-            };
+-    };
+     hd44780 {
+             compatible = "hit,hd44780";
+             display-height-chars = <2>;
+-- 
+2.34.1
 
-Hey Dmitry,
-
-Thanks for taking time to review the series!
-
-Will get all of these done in the next re-spin.
-
->> Signed-off-by: Shivnandan Kumar <quic_kshivnan@quicinc.com>
->> Co-developed-by: Ramakrishna Gottimukkula <quic_rgottimu@quicinc.com>
->> Signed-off-by: Ramakrishna Gottimukkula <quic_rgottimu@quicinc.com>
->> Co-developed-by: Amir Vajid <avajid@quicinc.com>
->> Signed-off-by: Amir Vajid <avajid@quicinc.com>
->> Co-developed-by: Sibi Sankar <quic_sibis@quicinc.com>
->> Signed-off-by: Sibi Sankar <quic_sibis@quicinc.com>
->> ---
->>   drivers/firmware/arm_scmi/Kconfig            |  11 ++
->>   drivers/firmware/arm_scmi/Makefile           |   1 +
->>   drivers/firmware/arm_scmi/qcom_scmi_vendor.c | 160 +++++++++++++++++++
->>   include/linux/qcom_scmi_vendor.h             |  36 +++++
->>   4 files changed, 208 insertions(+)
->>   create mode 100644 drivers/firmware/arm_scmi/qcom_scmi_vendor.c
->>   create mode 100644 include/linux/qcom_scmi_vendor.h
->>
->> diff --git a/drivers/firmware/arm_scmi/Kconfig b/drivers/firmware/arm_scmi/Kconfig
->> index aa5842be19b2..86b5d6c18ec4 100644
->> --- a/drivers/firmware/arm_scmi/Kconfig
->> +++ b/drivers/firmware/arm_scmi/Kconfig
->> @@ -180,4 +180,15 @@ config ARM_SCMI_POWER_CONTROL
->>            called scmi_power_control. Note this may needed early in boot to catch
->>            early shutdown/reboot SCMI requests.
->>
->> +config QCOM_SCMI_VENDOR_PROTOCOL
->> +       tristate "Qualcomm Technologies, Inc. Qcom SCMI vendor Protocol"
->> +       depends on ARM || ARM64 || COMPILE_TEST
->> +       depends on ARM_SCMI_PROTOCOL
->> +       help
->> +         The SCMI QCOM vendor protocol provides interface to communicate with SCMI
->> +         controller and enable vendor specific features like bus scaling.
->> +
->> +         This driver defines the commands or message ID's used for this
->> +         communication and also exposes the ops used by the clients.
->> +
->>   endmenu
->> diff --git a/drivers/firmware/arm_scmi/Makefile b/drivers/firmware/arm_scmi/Makefile
->> index a7bc4796519c..eaeb788b93c6 100644
->> --- a/drivers/firmware/arm_scmi/Makefile
->> +++ b/drivers/firmware/arm_scmi/Makefile
->> @@ -17,6 +17,7 @@ obj-$(CONFIG_ARM_SCMI_PROTOCOL) += scmi-core.o
->>   obj-$(CONFIG_ARM_SCMI_PROTOCOL) += scmi-module.o
->>
->>   obj-$(CONFIG_ARM_SCMI_POWER_CONTROL) += scmi_power_control.o
->> +obj-$(CONFIG_QCOM_SCMI_VENDOR_PROTOCOL) += qcom_scmi_vendor.o
->>
->>   ifeq ($(CONFIG_THUMB2_KERNEL)$(CONFIG_CC_IS_CLANG),yy)
->>   # The use of R7 in the SMCCC conflicts with the compiler's use of R7 as a frame
->> diff --git a/drivers/firmware/arm_scmi/qcom_scmi_vendor.c b/drivers/firmware/arm_scmi/qcom_scmi_vendor.c
->> new file mode 100644
->> index 000000000000..878b99f0d1ef
->> --- /dev/null
->> +++ b/drivers/firmware/arm_scmi/qcom_scmi_vendor.c
->> @@ -0,0 +1,160 @@
->> +// SPDX-License-Identifier: GPL-2.0-only
->> +/*
->> + * Copyright (c) 2024, The Linux Foundation. All rights reserved.
->> + */
->> +
->> +#include <linux/qcom_scmi_vendor.h>
->> +
->> +#include "common.h"
->> +
->> +#define        EXTENDED_MSG_ID                 0
->> +#define        SCMI_MAX_TX_RX_SIZE             128
->> +#define        PROTOCOL_PAYLOAD_SIZE           16
->> +#define        SET_PARAM                       0x10
->> +#define        GET_PARAM                       0x11
->> +#define        START_ACTIVITY                  0x12
->> +#define        STOP_ACTIVITY                   0x13
->> +
->> +static int qcom_scmi_set_param(const struct scmi_protocol_handle *ph, void *buf, u64 algo_str,
->> +                              u32 param_id, size_t size)
->> +{
->> +       int ret = -EINVAL;
->> +       struct scmi_xfer *t;
->> +       u32 *msg;
->> +
->> +       if (!ph || !ph->xops)
->> +               return ret;
-> 
-> Drop init of ret, return -EINVAL directly here.
-> 
->> +
->> +       ret = ph->xops->xfer_get_init(ph, SET_PARAM, size + PROTOCOL_PAYLOAD_SIZE,
->> +                                     SCMI_MAX_TX_RX_SIZE, &t);
->> +       if (ret)
->> +               return ret;
->> +
->> +       msg = t->tx.buf;
->> +       *msg++ = cpu_to_le32(EXTENDED_MSG_ID);
->> +       *msg++ = cpu_to_le32(algo_str & GENMASK(31, 0));
->> +       *msg++ = cpu_to_le32((algo_str & GENMASK(63, 32)) >> 32);
->> +       *msg++ = cpu_to_le32(param_id);
-> 
-> First, this header ops looks like a generic code which can be extracted.
-> 
-> Second, using GENMASK here in the ops doesn't make any sense. The
-> values will be limited to u32 anyway.
-> 
->> +       memcpy(msg, buf, size);
->> +       ret = ph->xops->do_xfer(ph, t);
->> +       ph->xops->xfer_put(ph, t);
->> +
->> +       return ret;
->> +}
->> +
->> +static int qcom_scmi_get_param(const struct scmi_protocol_handle *ph, void *buf, u64 algo_str,
->> +                              u32 param_id, size_t tx_size, size_t rx_size)
->> +{
->> +       int ret = -EINVAL;
->> +       struct scmi_xfer *t;
->> +       u32 *msg;
->> +
->> +       if (!ph || !ph->xops || !buf)
->> +               return ret;
-> 
-> Drop init of ret, return -EINVAL directly here.
-> 
->> +
->> +       ret = ph->xops->xfer_get_init(ph, GET_PARAM, tx_size + PROTOCOL_PAYLOAD_SIZE,
->> +                                     SCMI_MAX_TX_RX_SIZE, &t);
->> +       if (ret)
->> +               return ret;
->> +
->> +       msg = t->tx.buf;
->> +       *msg++ = cpu_to_le32(EXTENDED_MSG_ID);
->> +       *msg++ = cpu_to_le32(algo_str & GENMASK(31, 0));
->> +       *msg++ = cpu_to_le32((algo_str & GENMASK(63, 32)) >> 32);
->> +       *msg++ = cpu_to_le32(param_id);
->> +       memcpy(msg, buf, tx_size);
->> +       ret = ph->xops->do_xfer(ph, t);
->> +       if (t->rx.len > rx_size) {
->> +               pr_err("SCMI received buffer size %zu is more than expected size %zu\n",
->> +                      t->rx.len, rx_size);
->> +               return -EMSGSIZE;
->> +       }
->> +       memcpy(buf, t->rx.buf, t->rx.len);
->> +       ph->xops->xfer_put(ph, t);
->> +
->> +       return ret;
->> +}
->> +
->> +static int qcom_scmi_start_activity(const struct scmi_protocol_handle *ph,
->> +                                   void *buf, u64 algo_str, u32 param_id, size_t size)
->> +{
->> +       int ret = -EINVAL;
->> +       struct scmi_xfer *t;
->> +       u32 *msg;
->> +
->> +       if (!ph || !ph->xops)
->> +               return ret;
-> 
-> You can guess the comment here.
-> 
->> +
->> +       ret = ph->xops->xfer_get_init(ph, START_ACTIVITY, size + PROTOCOL_PAYLOAD_SIZE,
->> +                                     SCMI_MAX_TX_RX_SIZE, &t);
->> +       if (ret)
->> +               return ret;
->> +
->> +       msg = t->tx.buf;
->> +       *msg++ = cpu_to_le32(EXTENDED_MSG_ID);
->> +       *msg++ = cpu_to_le32(algo_str & GENMASK(31, 0));
->> +       *msg++ = cpu_to_le32((algo_str & GENMASK(63, 32)) >> 32);
->> +       *msg++ = cpu_to_le32(param_id);
->> +       memcpy(msg, buf, size);
->> +       ret = ph->xops->do_xfer(ph, t);
->> +       ph->xops->xfer_put(ph, t);
->> +
->> +       return ret;
->> +}
->> +
->> +static int qcom_scmi_stop_activity(const struct scmi_protocol_handle *ph, void *buf, u64 algo_str,
->> +                                  u32 param_id, size_t size)
->> +{
->> +       int ret = -EINVAL;
->> +       struct scmi_xfer *t;
->> +       u32 *msg;
->> +
->> +       if (!ph || !ph->xops)
->> +               return ret;
->> +
->> +       ret = ph->xops->xfer_get_init(ph, STOP_ACTIVITY, size + PROTOCOL_PAYLOAD_SIZE,
->> +                                     SCMI_MAX_TX_RX_SIZE, &t);
->> +       if (ret)
->> +               return ret;
->> +
->> +       msg = t->tx.buf;
->> +       *msg++ = cpu_to_le32(EXTENDED_MSG_ID);
->> +       *msg++ = cpu_to_le32(algo_str & GENMASK(31, 0));
->> +       *msg++ = cpu_to_le32((algo_str & GENMASK(63, 32)) >> 32);
->> +       *msg++ = cpu_to_le32(param_id);
->> +       memcpy(msg, buf, size);
->> +       ret = ph->xops->do_xfer(ph, t);
->> +       ph->xops->xfer_put(ph, t);
->> +
->> +       return ret;
->> +}
->> +
->> +static struct qcom_scmi_vendor_ops qcom_proto_ops = {
->> +       .set_param = qcom_scmi_set_param,
->> +       .get_param = qcom_scmi_get_param,
->> +       .start_activity = qcom_scmi_start_activity,
->> +       .stop_activity = qcom_scmi_stop_activity,
->> +};
->> +
->> +static int qcom_scmi_vendor_protocol_init(const struct scmi_protocol_handle *ph)
->> +{
->> +       u32 version;
->> +
->> +       ph->xops->version_get(ph, &version);
->> +
->> +       dev_info(ph->dev, "qcom scmi version %d.%d\n",
->> +                PROTOCOL_REV_MAJOR(version), PROTOCOL_REV_MINOR(version));
->> +
->> +       return 0;
->> +}
->> +
->> +static const struct scmi_protocol qcom_scmi_vendor = {
->> +       .id = QCOM_SCMI_VENDOR_PROTOCOL,
->> +       .owner = THIS_MODULE,
->> +       .instance_init = &qcom_scmi_vendor_protocol_init,
->> +       .ops = &qcom_proto_ops,
->> +};
->> +module_scmi_protocol(qcom_scmi_vendor);
->> +
->> +MODULE_DESCRIPTION("QTI SCMI vendor protocol");
->> +MODULE_LICENSE("GPL");
->> diff --git a/include/linux/qcom_scmi_vendor.h b/include/linux/qcom_scmi_vendor.h
->> new file mode 100644
->> index 000000000000..bde57bb18367
->> --- /dev/null
->> +++ b/include/linux/qcom_scmi_vendor.h
->> @@ -0,0 +1,36 @@
->> +/* SPDX-License-Identifier: GPL-2.0-only */
->> +/*
->> + * QTI SCMI vendor protocol's header
->> + *
->> + * Copyright (c) 2024, The Linux Foundation. All rights reserved.
->> + */
->> +
->> +#ifndef _QCOM_SCMI_VENDOR_H
->> +#define _QCOM_SCMI_VENDOR_H
->> +
->> +#include <linux/bitfield.h>
->> +#include <linux/device.h>
->> +#include <linux/types.h>
->> +
->> +#define QCOM_SCMI_VENDOR_PROTOCOL    0x80
->> +
->> +struct scmi_protocol_handle;
->> +extern struct scmi_device *get_qcom_scmi_device(void);
->> +
->> +/**
->> + * struct qcom_scmi_vendor_ops - represents the various operations provided
->> + *                              by qcom scmi vendor protocol
->> + */
->> +struct qcom_scmi_vendor_ops {
->> +       int (*set_param)(const struct scmi_protocol_handle *ph, void *buf, u64 algo_str,
->> +                        u32 param_id, size_t size);
->> +       int (*get_param)(const struct scmi_protocol_handle *ph, void *buf, u64 algo_str,
->> +                        u32 param_id, size_t tx_size, size_t rx_size);
->> +       int (*start_activity)(const struct scmi_protocol_handle *ph, void *buf, u64 algo_str,
->> +                             u32 param_id, size_t size);
->> +       int (*stop_activity)(const struct scmi_protocol_handle *ph, void *buf, u64 algo_str,
->> +                            u32 param_id, size_t size);
->> +};
->> +
->> +#endif /* _QCOM_SCMI_VENDOR_H */
->> +
->> --
->> 2.34.1
->>
->>
-> 
-> 
 
