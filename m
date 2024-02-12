@@ -1,222 +1,195 @@
-Return-Path: <devicetree+bounces-40736-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-40737-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 93BF8851561
-	for <lists+devicetree@lfdr.de>; Mon, 12 Feb 2024 14:37:30 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0D125851570
+	for <lists+devicetree@lfdr.de>; Mon, 12 Feb 2024 14:39:25 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 4A06E284EAF
-	for <lists+devicetree@lfdr.de>; Mon, 12 Feb 2024 13:37:29 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 328571C2220E
+	for <lists+devicetree@lfdr.de>; Mon, 12 Feb 2024 13:39:24 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3E9404596F;
-	Mon, 12 Feb 2024 13:27:48 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 72BC14CB5B;
+	Mon, 12 Feb 2024 13:29:34 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="nwwQIhOZ"
+	dkim=pass (2048-bit key) header.d=oltmanns.dev header.i=@oltmanns.dev header.b="vw0PaWBD"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-yb1-f174.google.com (mail-yb1-f174.google.com [209.85.219.174])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mout-p-102.mailbox.org (mout-p-102.mailbox.org [80.241.56.152])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6FD833BB32
-	for <devicetree@vger.kernel.org>; Mon, 12 Feb 2024 13:27:46 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.219.174
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AB7473C063;
+	Mon, 12 Feb 2024 13:29:31 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=80.241.56.152
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1707744468; cv=none; b=AjRxeU4YgBeve4etdCXPK6GtmvMSMvgZzTVfEHoN3+PDzduf/tn7isl61erwzb+H7oC1XxSO1Suk+50obOpR5ARbVaIbV51QM/BUnY5m1Uxd0FEEsPGlAQYDGS/RrTLcSFultmXM76aRT3PH65VnhqLWDWwLBsuIoCvrANviIII=
+	t=1707744574; cv=none; b=jjpY6GU5msKho7tRDv4/a7vhDLKGJvjsuB65Zh90BnCSmXQ2S2SxPOuHNuDj04G7GghWy0c9FruY1f4xpGAjDjhTHh77xCT9UD+gc29H1DngFB97CvnDDy3Y/l1cjfV20P1sPxYfLT3UUPEdYpmbjFp2nk6aMb0bKJXzHdA7+Z8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1707744468; c=relaxed/simple;
-	bh=Pzid5VzqMw7NFHi/Bpd3vXctcXS4gU4pJSvps3B5q3c=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=CzQwgh3CgyHDBBz9yN5BqpUzurf4IFs5Zn7xcHOlmsMMv61kAakQtnFiVK2X1AHm2uJmTXw0GYjzTpBgr9NIea2QeFCCblkyY/ZGqMNFT9zkAYuTagzSWQVKNkssTihslWe2ae9Vr0PX/dvK2y9G+BKDn2gp7ZP1QE5/ekDj18w=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=nwwQIhOZ; arc=none smtp.client-ip=209.85.219.174
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-yb1-f174.google.com with SMTP id 3f1490d57ef6-db3a09e96daso2651091276.3
-        for <devicetree@vger.kernel.org>; Mon, 12 Feb 2024 05:27:46 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1707744465; x=1708349265; darn=vger.kernel.org;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=Vau0u582e/BzBLvL1+v01Dg8WYI7gOwAbmPsNQJ/3cw=;
-        b=nwwQIhOZuOQhNk5F58Y2hZp4tmS9YbdVtSMWd3aeTxt0OLoN1+8P596OJrNCuzR9hk
-         IXho4ARD5DXZGt3OU1vAFP9KM4LR56jmTmMPEytFKhxZWE2RIfR4qy+cO6LThdtIK1ZZ
-         PPv8AUJ387Wq6asf3Ur8CsdYNocmlwWxl6syGrsst5d5mEN+RnrNXpEBbZnu1z+voewz
-         MWJSTNlArh6VFhBRcEiw+A50FA15nrSOXNAr8uvQlRSQ6bx+OqkG+y866G04S3pHjnq4
-         hLQ1FskaQ+7P5qvFO+VPPj/gOFDXsFIB4d71lQYAwQx9jVFoBLJY7BGrCNEBK6WXB0Jz
-         /ahg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1707744465; x=1708349265;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=Vau0u582e/BzBLvL1+v01Dg8WYI7gOwAbmPsNQJ/3cw=;
-        b=lPwgofEDIWDgbBVumyQJHLzurzdq2DmZRcHo6FkfWP0wdDTGZwhFI8VCMqd8qRrpE1
-         XT+HZTAPu6wRaTnpNKiQFJU5PLbWV2wqLpRFok20CBCITML65/tbNWB17YnTvszHftSh
-         Qq7vMm/0hY32a/ORfUB0GxkW36ouLlQfPNz+5ipKo37RZgse5BEWoaPjmG8jUybOHJdL
-         d7akJgNLKtF35RHx4j8DaXqE8TGBaI2KBJLuUkozUiIWgdMcIGDipo7TDf71k5KqoCn9
-         stZ+k9LtXvp3YIuKoAdTxfmPa6IR7gLoWYPLT0AXgVuw8DxWqr7v6R//+QB299tm+Hy2
-         8mfQ==
-X-Gm-Message-State: AOJu0YxPA+TP8JZGuYXv0RDxSWalxPiioV5FFHTLvHyzT1nYL9ptfQq7
-	U1iuiJ0acYWxqS/B1/VjdxrdJwSvhgYEk8C8VW1aIGrI7w1HlIni+WeA8aAxNbwyVJ6tz/eMxzh
-	vGY5KW14jqoZ7zBl31K++tht/JfROjA4IA4yiww==
-X-Google-Smtp-Source: AGHT+IHQ0ZRz7PMXuybHo/Y1O2A8BwWG3h7isMAuW3IuKDdEMatIUaD2RbHJdlEZ1UrAAHV/W1VGA+F6v3XLRK+L0wo=
-X-Received: by 2002:a05:6902:2007:b0:dc6:b0ce:97d with SMTP id
- dh7-20020a056902200700b00dc6b0ce097dmr5768975ybb.29.1707744465295; Mon, 12
- Feb 2024 05:27:45 -0800 (PST)
+	s=arc-20240116; t=1707744574; c=relaxed/simple;
+	bh=U2euNzWu3qoY7qsLi74++0YSoMrQP1238IGSIcTeH/M=;
+	h=References:From:To:Cc:Subject:In-reply-to:Date:Message-ID:
+	 MIME-Version:Content-Type; b=CY8r02xrSL/dQla7HWMTT8g0N8A2r0C0C7rbPtuuZ+dZqbv5fQoDUeoGI1kinJ+XNKF7wFXOzoZoqcueNw14nkrwtS1iLhgYaNOkogtei6/yDXbC/8pjUsoTGp6YT1YF6rvdsYREjUP0vOYTmFXSMRDPZ0CXUzBHPEnv/Jwn9W4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=oltmanns.dev; spf=pass smtp.mailfrom=oltmanns.dev; dkim=pass (2048-bit key) header.d=oltmanns.dev header.i=@oltmanns.dev header.b=vw0PaWBD; arc=none smtp.client-ip=80.241.56.152
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=oltmanns.dev
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oltmanns.dev
+Received: from smtp2.mailbox.org (smtp2.mailbox.org [10.196.197.2])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+	(No client certificate requested)
+	by mout-p-102.mailbox.org (Postfix) with ESMTPS id 4TYQKY3z40z9sbq;
+	Mon, 12 Feb 2024 14:29:21 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=oltmanns.dev;
+	s=MBO0001; t=1707744561;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 in-reply-to:in-reply-to:references:references;
+	bh=6hQXyKsjxlQOVZTDodnZAiw/5mwBoEpdiKUN3Omtj/4=;
+	b=vw0PaWBD/K1z9/h6KAOxQ33Wa+sXzXwyrc5m8vXDM0DDGmCre4J5jA4GBLZR7mbU47XTIw
+	xmU4VNFK7vajv6HhNe0qeV/VYW0cU6ZN1A9ESzAdmrAYpNG+HsG2hJjuexkJHndxTiZ8dv
+	mzAX4NgZ6Ii525xOHXFDG/DruyFc95+VHeP7H0dzGEwf9wouGAdcNWnWH0dGaQiYojmmdq
+	fmObgubotgbVFOmnNChdzKiMWeCKQXiysg18nifA0/OUb4SJavwo6yv4uruXLn+nA6LQ86
+	k0yfiWnHsdTs68XseNapwFnFCIHwAQc1oBBpyQjNVV+/n7yWOqFwVvR1nOmbOQ==
+References: <20240205-pinephone-pll-fixes-v2-0-96a46a2d8c9b@oltmanns.dev>
+ <20240205-pinephone-pll-fixes-v2-5-96a46a2d8c9b@oltmanns.dev>
+ <poua4bzyciiwt65sqjf2whqfdumvoe4h3bkjpf64px2vwgumrf@sai73byg2iju>
+ <87sf1zxb0s.fsf@oltmanns.dev>
+From: Frank Oltmanns <frank@oltmanns.dev>
+To: Maxime Ripard <mripard@kernel.org>
+Cc: Michael Turquette <mturquette@baylibre.com>, Stephen Boyd
+ <sboyd@kernel.org>, Chen-Yu Tsai <wens@csie.org>, Jernej Skrabec
+ <jernej.skrabec@gmail.com>, Samuel Holland <samuel@sholland.org>, Guido
+  =?utf-8?Q?G=C3=BCnther?= <agx@sigxcpu.org>, Purism Kernel Team
+ <kernel@puri.sm>, Ondrej
+  Jirman <megi@xff.cz>, Neil Armstrong <neil.armstrong@linaro.org>, Jessica
+  Zhang <quic_jesszhan@quicinc.com>, Sam Ravnborg <sam@ravnborg.org>,
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, Thomas Zimmermann
+ <tzimmermann@suse.de>, David Airlie <airlied@gmail.com>, Daniel Vetter
+ <daniel@ffwll.ch>, Rob Herring <robh+dt@kernel.org>, Krzysztof Kozlowski
+ <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>,
+ linux-clk@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ linux-sunxi@lists.linux.dev, linux-kernel@vger.kernel.org,
+ dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org
+Subject: Re: [PATCH v2 5/6] drm/panel: st7703: Drive XBD599 panel at higher
+ clock rate
+In-reply-to: <87sf1zxb0s.fsf@oltmanns.dev>
+Date: Mon, 12 Feb 2024 14:29:14 +0100
+Message-ID: <87o7clyfo5.fsf@oltmanns.dev>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20240116094935.9988-1-quic_riteshk@quicinc.com>
- <20240116094935.9988-3-quic_riteshk@quicinc.com> <20a8efd1-e243-434e-8f75-aa786ac8014f@linaro.org>
- <CAA8EJpqQVuS+yqXQ2y5sNQrRVg7tcQAJ3ywsEjg+O=7TkUZWLQ@mail.gmail.com>
- <99a9a562-9f6f-411c-be1c-0a28fc2524dd@quicinc.com> <CAA8EJppj+cDnw7p4yANvF0FmEhX3+L5xUq8w3TeevAGhcpo1Yg@mail.gmail.com>
- <9d1c684f-51ac-4d9c-a189-940ff65e0cab@linaro.org> <7932ccbb-3b41-49e2-bb88-9c2633002a0d@quicinc.com>
-In-Reply-To: <7932ccbb-3b41-49e2-bb88-9c2633002a0d@quicinc.com>
-From: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-Date: Mon, 12 Feb 2024 15:27:34 +0200
-Message-ID: <CAA8EJppdJqBz=+2Lq4XEXptPoudHS_N7Qs0cjJ9bx2EZwP07dw@mail.gmail.com>
-Subject: Re: [PATCH 2/2] arm64: dts: qcom: qcm6490-idp: add display and panel
-To: Ritesh Kumar <quic_riteshk@quicinc.com>
-Cc: Konrad Dybcio <konrad.dybcio@linaro.org>, andersson@kernel.org, robh+dt@kernel.org, 
-	krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org, 
-	catalin.marinas@arm.com, will@kernel.org, quic_bjorande@quicinc.com, 
-	geert+renesas@glider.be, arnd@arndb.de, neil.armstrong@linaro.org, 
-	nfraprado@collabora.com, m.szyprowski@samsung.com, 
-	linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
-	quic_abhinavk@quicinc.com, quic_rajeevny@quicinc.com, 
-	quic_vproddut@quicinc.com
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: text/plain
 
-On Mon, 12 Feb 2024 at 14:28, Ritesh Kumar <quic_riteshk@quicinc.com> wrote:
->
->
-> On 1/23/2024 11:34 PM, Konrad Dybcio wrote:
-> >
-> >
-> > On 1/23/24 16:12, Dmitry Baryshkov wrote:
-> >> On Tue, 23 Jan 2024 at 15:43, Ritesh Kumar <quic_riteshk@quicinc.com>
-> >> wrote:
-> >>>
-> >>>
-> >>> On 1/16/2024 6:27 PM, Dmitry Baryshkov wrote:
-> >>>
-> >>>> On Tue, 16 Jan 2024 at 14:06, Konrad Dybcio
-> >>>> <konrad.dybcio@linaro.org> wrote:
-> >>>>>
-> >>>>>
-> >>>>> On 1/16/24 10:49, Ritesh Kumar wrote:
-> >>>>>> Enable Display Subsystem with Novatek NT36672E Panel
-> >>>>>> on qcm6490 idp platform.
-> >>>>>>
-> >>>>>> Signed-off-by: Ritesh Kumar <quic_riteshk@quicinc.com>
-> >>>>>> ---
-> >>>>>>     arch/arm64/boot/dts/qcom/qcm6490-idp.dts | 100
-> >>>>>> +++++++++++++++++++++++
-> >>>>>>     1 file changed, 100 insertions(+)
-> >>>>>>
-> >>>>>> diff --git a/arch/arm64/boot/dts/qcom/qcm6490-idp.dts
-> >>>>>> b/arch/arm64/boot/dts/qcom/qcm6490-idp.dts
-> >>>>>> index 2a6e4907c5ee..efa5252130a1 100644
-> >>>>>> --- a/arch/arm64/boot/dts/qcom/qcm6490-idp.dts
-> >>>>>> +++ b/arch/arm64/boot/dts/qcom/qcm6490-idp.dts
-> >>>>>> @@ -9,6 +9,7 @@
-> >>>>>>     #define PM7250B_SID 8
-> >>>>>>     #define PM7250B_SID1 9
-> >>>>>>
-> >>>>>> +#include <dt-bindings/pinctrl/qcom,pmic-gpio.h>
-> >>>>>>     #include <dt-bindings/regulator/qcom,rpmh-regulator.h>
-> >>>>>>     #include "sc7280.dtsi"
-> >>>>>>     #include "pm7250b.dtsi"
-> >>>>>> @@ -38,6 +39,25 @@
-> >>>>>>                 stdout-path = "serial0:115200n8";
-> >>>>>>         };
-> >>>>>>
-> >>>>>> +     lcd_disp_bias: lcd-disp-bias-regulator {
-> >>>>>> +             compatible = "regulator-fixed";
-> >>>>>> +             regulator-name = "lcd_disp_bias";
-> >>>>>> +             regulator-min-microvolt = <5500000>;
-> >>>>>> +             regulator-max-microvolt = <5500000>;
-> >>>>>> +             gpio = <&pm7250b_gpios 2 GPIO_ACTIVE_HIGH>;
-> >>>>>> +             enable-active-high;
-> >>>>>> +             pinctrl-names = "default";
-> >>>>>> +             pinctrl-0 = <&lcd_disp_bias_en>;
-> >>>>> property-n
-> >>>>> property-names
-> >>>>>
-> >>>>> all throughout the patch
-> >>>
-> >>> Thanks, I will update in the new version.
-> >>>
-> >>>>>> +&gpu {
-> >>>>>> +     status = "disabled";
-> >>>>>> +};
-> >>>>> Hm.. generally we disable the GPU in the SoC DT, but that doesn't
-> >>>>> seem to have happened here..
-> >>>>>
-> >>>>> Thinking about it more, is disabling it here necessary? Does it
-> >>>>> not fail gracefully?
-> >>>> Missed this.
-> >>>>
-> >>>> I'd say, I don't see a reason to disable it at all. The GPU should be
-> >>>> working on sc7280 / qcm4290.
-> >>>
-> >>> With GPU device node enabled, adreno_bind failure is seen as the
-> >>> "speed_bin" was not populated on QCM6490 target which leads to display
-> >>> bind failure.
-> >>
-> >> Excuse me please. The GPU node for sc7280 already has speed_bin, which
-> >> points to qfprom + 0x1e9, bits 5 to 9.
-> >>
-> >> Do you mean that qcm6490 uses different speed bin location? Or
-> >> different values for the speed bins?
-> >>
-> >>> Spoke with GPU team and on QCM6490 board, only CPU rendering is
-> >>> supported for now and there is no plan to enable GPU rendering in near
-> >>> future.
-> >>
-> >> This sounds like having the feature disabled for no particular reason.
-> >> Both the kernel and Mesa have supported the Adreno 635 for quite a
-> >> while.
-> >
-> > 643 [1], [2]
-> >
-> >>
-> >>> In this regard, what do you suggest
-> >>>
-> >>> 1) Disable GPU in QCM6490 DT (as per the current patch)
-> >>> 2) Disable GPU in the SoC DT, but enable it in other platform DTs.
-> >>> (This
-> >>> will prompt change in all the dt's and we don't have all the devices to
-> >>> test)
-> >>
-> >> The second option definitely follows what is present on other platforms.
-> >>
-> >>> Please let me know your views on it.
-> >>
-> >> Please enable the GPU instead.
-> >
-> > +1
-> >
-> > Konrad
-> >
-> > [1]
-> > https://gitlab.freedesktop.org/mesa/mesa/-/merge_requests/25408/diffs?commit_id=b1e851d66c3a3e53f1a464023f675f3f6cbd3503
-> > [2]
-> > https://patches.linaro.org/project/linux-arm-msm/cover/20230926-topic-a643-v1-0-7af6937ac0a3@linaro.org/
->
-> Thanks for the help. After applying missing patches from series
-> https://patches.linaro.org/project/linux-arm-msm/cover/20230926-topic-a643-v1-0-7af6937ac0a3@linaro.org/
-> in my local build, GPU is working fine. GPU disablement change is not
-> needed. I will send new version of patch removing GPU part and
-> addressing other review comments.
 
-Thank you!
+On 2024-02-11 at 16:42:43 +0100, Frank Oltmanns <frank@oltmanns.dev> wrote:
+> On 2024-02-08 at 20:05:08 +0100, Maxime Ripard <mripard@kernel.org> wrote:
+>> [[PGP Signed Part:Undecided]]
+>> Hi Frank,
+>>
+>> On Mon, Feb 05, 2024 at 04:22:28PM +0100, Frank Oltmanns wrote:
+>>> This panel is used in the pinephone that runs on a Allwinner A64 SOC.
+>>> The SOC requires pll-mipi to run at more than 500 MHz.
+>>>
+>>> This is the relevant clock tree:
+>>>  pll-mipi
+>>>     tcon0
+>>>        tcon-data-clock
+>>>
+>>> tcon-data-clock has to run at 1/4 the DSI per-lane bit rate. The XBD599
+>>> has 24 bpp and 4 lanes. Therefore, the resulting requested
+>>> tcon-data-clock rate is:
+>>>     crtc_clock * 1000 * (24 / 4) / 4
+>>>
+>>> tcon-data-clock runs at tcon0 / 4 (fixed divisor), so it requests a
+>>> parent rate of
+>>>     4 * (crtc_clock * 1000 * (24 / 4) / 4)
+>>>
+>>> Since tcon0 is a ccu_mux, the rate of tcon0 equals the rate of pll-mipi.
+>>>
+>>> pll-mipi's constraint to run at 500MHz or higher forces us to have a
+>>> crtc_clock >= 83333 kHz if we want a 60 Hz vertical refresh rate.
+>>>
+>>> Change [hv]sync_(start|end) so that we reach a clock rate of 83502 kHz
+>>> so that it is high enough to align with pll-pipi limits.
+>>>
+>>> Signed-off-by: Frank Oltmanns <frank@oltmanns.dev>
+>>
+>> That commit log is great, but it's kind of off-topic. It's a panel
+>> driver, it can be used on any MIPI-DSI controller, the only relevant
+>> information there should be the panel timings required in the datasheet.
+>>
+>> The PLL setup is something for the MIPI-DSI driver to adjust, not for
+>> the panel to care for.
+>>
+>
+> I absolutely agree. It even was the reason for my submission of a
+> sunxi-ng patch series last year that was accepted, to make pll-mipi more
+> flexible. :)
+>
+> The only remaining option I currently see for adjusting the sunxi-ng
+> driver to further accomodate the panel, is trying to use a higher
+> divisor than 4 for calculating tcon-data-clock from tcon0. I remember
+> reading a discussion about this, but as far as I remember that proposal
+> was rejected (by you, IIRC).
+>
+> While I appreciate other suggestion as well, I'll look into options for
+> using a different divisor than 4.
 
--- 
-With best wishes
-Dmitry
+I tried the following:
+--- a/drivers/gpu/drm/sun4i/sun4i_tcon.c
++++ b/drivers/gpu/drm/sun4i/sun4i_tcon.c
+@@ -391,7 +391,7 @@ static void sun4i_tcon0_mode_set_cpu(struct sun4i_tcon *tcon,
+         * dclk is required to run at 1/4 the DSI per-lane bit rate.
+         */
+        tcon->dclk_min_div = SUN6I_DSI_TCON_DIV;
+-       tcon->dclk_max_div = SUN6I_DSI_TCON_DIV;
++       tcon->dclk_max_div = 127;
+        clk_set_rate(tcon->dclk, mode->crtc_clock * 1000 * (bpp / lanes)
+                                                  / SUN6I_DSI_TCON_DIV);
+
+On the pinephone, this selects a divisor of 6 resulting in a 25% frame
+drop. I.e., unless I'm missing something using a divisor other than 4 is
+not an option. This also matches your report from 2019: "Well, it's also
+breaking another panel." [1]
+
+I can currently see the following options:
+
+a. Drive PLL-MIPI outside spec and panel within spec (current situation,
+   but missing a small patch [2] that fixes the crtc_clock and nothing
+   else) and live with the fact that some pinephones will run
+   unreliably.
+
+b. Drive PLL-MIPI and panel within spec and shove data into the panel at
+   a too high rate (i.e., apply the rest of this series but not this
+   specific patch). This seems to mostly work, but hasn't seen any long
+   term testing. Short term testing showed that this approach results in
+   a slight but noticable unsmooth scrolling behavior.
+
+c. Drive PLL-MIPI within spec and panel outside spec (i.e., apply a
+   future version of the whole series). This has been tested for over a
+   month on three devices that I know of. There are no reports of panels
+   not working with the suggested parameters.
+
+All options require additional work on the GPU rate which is currently
+being discussed in a parallel thread of this series. Unless somebody
+comes up with a better idea, I will pause working on fixing PLL-MIPI and
+focus on the GPU instead. While I doubt it, maybe fixing the GPU is
+sufficient and continuing to drive PLL-MIPI outside spec proves to be
+ok.
+
+[1]: https://lore.kernel.org/all/20190828130341.s5z76wejulwdgxlc@flea/
+[2]: https://lore.kernel.org/all/20230219114553.288057-2-frank@oltmanns.dev/
+
+Best regards,
+  Frank
+
+>
+> Best regards,
+>   Frank
+>
+>>
+>> Maxime
+>>
+>> [[End of PGP Signed Part]]
 
