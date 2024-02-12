@@ -1,133 +1,105 @@
-Return-Path: <devicetree+bounces-40851-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-40852-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0A3B9851886
-	for <lists+devicetree@lfdr.de>; Mon, 12 Feb 2024 16:56:25 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7CC5A851897
+	for <lists+devicetree@lfdr.de>; Mon, 12 Feb 2024 17:02:41 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id A9B561F231B4
-	for <lists+devicetree@lfdr.de>; Mon, 12 Feb 2024 15:56:24 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 0FEF12838CD
+	for <lists+devicetree@lfdr.de>; Mon, 12 Feb 2024 16:02:40 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 92D323CF6D;
-	Mon, 12 Feb 2024 15:56:17 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3C2923CF79;
+	Mon, 12 Feb 2024 16:02:35 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=cirrus.com header.i=@cirrus.com header.b="kHJS4noC"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="TujBrWeB"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-001ae601.pphosted.com (mx0a-001ae601.pphosted.com [67.231.149.25])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B970B3C473;
-	Mon, 12 Feb 2024 15:56:15 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=67.231.149.25
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 117DC3D0A4;
+	Mon, 12 Feb 2024 16:02:34 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1707753377; cv=none; b=apV1loz64EOwzzDoejNm0L+WBRDVXvMNtgHfvLiy9yu+FIVWrZNkpy+G2GMX1RO1nsWAgU/E06Zw7gaJ0osM94T0fhHjRgctX0R1ZMrfshW1JfGcadxWcjHjoZ+2iYAySHc4qvNX9LTep7YWnEhKXMsFLoDx7LeU+jC3AZ7DkKs=
+	t=1707753755; cv=none; b=psnAn8N8QLL+U2Ih9ahNcVw9rjlXzxNyCynGJIxD2chwrF6HmsLgXuxIaKPqEqozhDjy9kVlNvDRTvsf2zRwismVowUI83J1cp0WkrYj9AdJdzOh2zXrQOmGqKjsQNR6esj/ZOmMi+ZAw8HyCZpV0yvc7jD6Yha6czG5Rhsnh+4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1707753377; c=relaxed/simple;
-	bh=UEoUzI0eopOfpfMWL9+ubXLmnf6UPKl4bf+SH/FfhF8=;
-	h=Content-Type:MIME-Version:Subject:From:In-Reply-To:Date:CC:
-	 Message-ID:References:To; b=f/PNH0VE/4LcNtjcSvRC3BxycJUq2PbfzXMqiNKlSiNkAZp8JPMvL20Afu5E7suYsWj0ahSfphyeIpyy6glYl2xEKJq4l9ncrsQKBHr/ILDKuWplqtoIRA9EdEUumts0QUp6tZwJ0WeIdqXTTULvUAXbWKGtcsZsAhEqNAZ8rSo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=opensource.cirrus.com; spf=pass smtp.mailfrom=opensource.cirrus.com; dkim=pass (2048-bit key) header.d=cirrus.com header.i=@cirrus.com header.b=kHJS4noC; arc=none smtp.client-ip=67.231.149.25
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=opensource.cirrus.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=opensource.cirrus.com
-Received: from pps.filterd (m0077473.ppops.net [127.0.0.1])
-	by mx0a-001ae601.pphosted.com (8.17.1.24/8.17.1.24) with ESMTP id 41C7wuOt021531;
-	Mon, 12 Feb 2024 09:55:47 -0600
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=cirrus.com; h=
-	content-type:mime-version:subject:from:in-reply-to:date:cc
-	:content-transfer-encoding:message-id:references:to; s=
-	PODMain02222019; bh=UEoUzI0eopOfpfMWL9+ubXLmnf6UPKl4bf+SH/FfhF8=; b=
-	kHJS4noCFaqhHA00df2Nyt5FmY+gB7OQUEEpeP6D0ExctWUJA3mYo5WEuWviyrsZ
-	zHrY3ylV93fWTxp591elNivJTtdqJyFz84ghlZhNvVbLM/Li4w8cSVjED4gkx51C
-	s4zl9UzYuYZNN7Cg86cNIsX6NftCxBvhN8UlXkMfAlPN4EYP+owuwTQYVAA60zpa
-	gxzz2LJgSv2+w2XisaJbdqntbrL1ARM57umBDUA/n2AN0PAqEf/xCTXMjvqdanPN
-	JbN6nYOJQL1XQf5Rhm61D1HnvGjI82/rS/IijKmAjCLoHhqhKYdTqliVB8S9UqRP
-	vA+9bmzebhDR/jr8EXGHwQ==
-Received: from ediex01.ad.cirrus.com ([84.19.233.68])
-	by mx0a-001ae601.pphosted.com (PPS) with ESMTPS id 3w67e220gf-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Mon, 12 Feb 2024 09:55:47 -0600 (CST)
-Received: from ediex02.ad.cirrus.com (198.61.84.81) by ediex01.ad.cirrus.com
- (198.61.84.80) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1118.40; Mon, 12 Feb
- 2024 15:55:45 +0000
-Received: from ediswmail9.ad.cirrus.com (198.61.86.93) by
- anon-ediex02.ad.cirrus.com (198.61.84.81) with Microsoft SMTP Server id
- 15.2.1118.40 via Frontend Transport; Mon, 12 Feb 2024 15:55:45 +0000
-Received: from smtpclient.apple (unknown [141.131.76.118])
-	by ediswmail9.ad.cirrus.com (Postfix) with ESMTPS id 7CA6A820242;
-	Mon, 12 Feb 2024 15:55:41 +0000 (UTC)
-Content-Type: text/plain; charset="utf-8"
+	s=arc-20240116; t=1707753755; c=relaxed/simple;
+	bh=BO82b3pF0PgWZbp7XtrFt5+deNdyxcVfHCqOz7Kr9Us=;
+	h=Content-Type:Date:Message-Id:Subject:Cc:From:To:References:
+	 In-Reply-To; b=OxvKBCNG25TsayJNDvB0TipjdSIQ+fza0xeKv/zctZhGQ3+kDDV5SKmtFGFXwoVavruKUssnULIWYSyecplQR8hUVdQr9KlpU0SKo118AAVF6OCkMrWKT8DctkCPalGnrszT+H/71pyuVo0gqYXy3bwettKoVbuUF+/ioMax3vg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=TujBrWeB; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 16B67C433F1;
+	Mon, 12 Feb 2024 16:02:33 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1707753754;
+	bh=BO82b3pF0PgWZbp7XtrFt5+deNdyxcVfHCqOz7Kr9Us=;
+	h=Date:Subject:Cc:From:To:References:In-Reply-To:From;
+	b=TujBrWeBJT+lImis8uQdYb3Iw8y7ZrBPelEPlFc7/JVzV/uLFR5WBrp5XFNsLMILQ
+	 rUAgsBTbUWdq+SULdLgg3/3HnEsDaEqvvdYi0bmeguYyj9mhs/CC1ZXlu81dqAq+qf
+	 YEE6IzXXI2rDiCANqzvLbss0xHw1Sehrhw05/75gxYX6wlLSlcCmywGvQYXVppUbhu
+	 kTO8g7S4Iu1sDj5hoKVDyxlzLTv5EngrCz/yNU0j5xhQfO/C/moznk2rXyoxw7qRQI
+	 R96Rc1rXQqOI+416w/QJKP8uFAtMNuMNxTPmGTdgwci9mLRnQ44i6UZXw06OIeT0UX
+	 E14MSFs4+esng==
+Content-Type: multipart/signed;
+ boundary=05d8fdd48591a07013dcd1904d8242782772683d9de18a86a0b1a38b036b;
+ micalg=pgp-sha256; protocol="application/pgp-signature"
+Date: Mon, 12 Feb 2024 17:02:31 +0100
+Message-Id: <CZ386ITQ83KH.1KNOV5MXLXPBF@kernel.org>
+Subject: Re: [PATCH v2 3/3] arm64: dts: ti: Add support for TI J722S
+ Evaluation Module
+Cc: <devicetree@vger.kernel.org>, <linux-arm-kernel@lists.infradead.org>,
+ <linux-kernel@vger.kernel.org>, <u-kumar1@ti.com>, <j-choudhary@ti.com>
+From: "Michael Walle" <mwalle@kernel.org>
+To: "Andrew Davis" <afd@ti.com>, "Vaishnav Achath" <vaishnav.a@ti.com>,
+ <nm@ti.com>, <vigneshr@ti.com>, <conor+dt@kernel.org>,
+ <krzysztof.kozlowski+dt@linaro.org>, <kristo@kernel.org>,
+ <robh+dt@kernel.org>
+X-Mailer: aerc 0.16.0
+References: <20240206100608.127702-1-vaishnav.a@ti.com>
+ <20240206100608.127702-4-vaishnav.a@ti.com>
+In-Reply-To: <20240206100608.127702-4-vaishnav.a@ti.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-MIME-Version: 1.0 (Mac OS X Mail 16.0 \(3774.300.61.1.2\))
-Subject: Re: [PATCH 1/7] dt-bindings: ASoC: cs35l45: Add interrupts
-From: "Rivera-Matos, Ricardo" <rriveram@opensource.cirrus.com>
-In-Reply-To: <ac5cbfbf-45ea-4d34-ac3d-d3a0fc6ff061@linaro.org>
-Date: Mon, 12 Feb 2024 09:55:29 -0600
-CC: James Schulman <james.schulman@cirrus.com>,
-        David Rhodes
-	<david.rhodes@cirrus.com>,
-        Richard Fitzgerald <rf@opensource.cirrus.com>,
-        Liam Girdwood <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>,
-        "Rob
- Herring" <robh@kernel.org>,
-        Krzysztof Kozlowski
-	<krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Abel Vesa <abel.vesa@linaro.org>,
-        "Sai Prakash Ranjan" <quic_saipraka@quicinc.com>,
-        Neil Armstrong
-	<neil.armstrong@linaro.org>,
-        Kees Cook <keescook@chromium.org>, Tony Luck
-	<tony.luck@intel.com>,
-        "Guilherme G. Piccoli" <gpiccoli@igalia.com>,
-        "Marijn
- Suijten" <marijn.suijten@somainline.org>,
-        <alsa-devel@alsa-project.org>, <patches@opensource.cirrus.com>,
-        <linux-sound@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>, <linux-arm-msm@vger.kernel.org>,
-        <linux-hardening@vger.kernel.org>,
-        "Krzysztof Kozlowski" <krzysztof.kozlowski@linaro.org>
+
+--05d8fdd48591a07013dcd1904d8242782772683d9de18a86a0b1a38b036b
+Mime-Version: 1.0
 Content-Transfer-Encoding: quoted-printable
-Message-ID: <C8A97AB6-A3BB-4018-A8E3-CEEECFCBECE2@opensource.cirrus.com>
-References: <20240210-topic-1v-v1-0-fda0db38e29b@linaro.org>
- <20240210-topic-1v-v1-1-fda0db38e29b@linaro.org>
- <ac5cbfbf-45ea-4d34-ac3d-d3a0fc6ff061@linaro.org>
-To: Konrad Dybcio <konrad.dybcio@linaro.org>
-X-Mailer: Apple Mail (2.3774.300.61.1.2)
-X-Proofpoint-ORIG-GUID: HVAAhL2KDvY-331du_lPmDeJ2OJzJ91Y
-X-Proofpoint-GUID: HVAAhL2KDvY-331du_lPmDeJ2OJzJ91Y
-X-Proofpoint-Spam-Reason: safe
+Content-Type: text/plain; charset=UTF-8
 
-Konrad,
+Hi,
 
-> On Feb 12, 2024, at 7:25=E2=80=AFAM, Krzysztof Kozlowski =
-<krzysztof.kozlowski@linaro.org> wrote:
->=20
-> On 12/02/2024 14:10, Konrad Dybcio wrote:
->> This chip seems to have an IRQ line, let us describe it.
->>=20
->> Signed-off-by: Konrad Dybcio <konrad.dybcio@linaro.org>
->=20
-> Subject: ASoC: dt-bindings: cs35l45=E2=80=A6=E2=80=A6
-ditto
->=20
->=20
-> Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Acked-by: Ricardo Rivera-Matos <rriveram@opensource.cirrus.com =
-<mailto:rriveram@opensource.cirrus.com>>
->=20
-> Best regards,
-> Krzysztof
->=20
+On Tue Feb 6, 2024 at 11:06 AM CET, Vaishnav Achath wrote:
+> +# Boards with J722s SoC
+> +dtb-$(CONFIG_ARCH_K3) +=3D k3-j722s-evm.dtb
 
-Thanks,
-Ricardo
+I'm a bit confused by your names. What are the new/correct ones now?
+Some seem to use the amXX names and some the jXX ones. I've read [1]
+and it appears it was suggested to use the am67 names for the device
+trees. Esp. because there is already, am62, am64, am65, am68 and
+am69 in as names for the device trees.
 
+The TRM you've linked in the cover letter doesn't shed much light
+either. It just lists both.
+
+-michael
+
+[1] https://lore.kernel.org/all/81f90d13-da10-4a68-a0e7-95212f40b3e8@ti.com=
+/           =20
+
+--05d8fdd48591a07013dcd1904d8242782772683d9de18a86a0b1a38b036b
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iIgEABYIADAWIQQCnWSOYTtih6UXaxvNyh2jtWxG+wUCZcpBFxIcbXdhbGxlQGtl
+cm5lbC5vcmcACgkQzcodo7VsRvv0uwEA4jm13dBnm43Oj2GFAFm9iSVBGGpr5Z5A
+SSqmgG6p8ooBAMXFFQ4/G3rtFucR6XBarqueSUXKQmTbzoaXpC4t1a8B
+=hBTt
+-----END PGP SIGNATURE-----
+
+--05d8fdd48591a07013dcd1904d8242782772683d9de18a86a0b1a38b036b--
 
