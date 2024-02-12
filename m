@@ -1,147 +1,96 @@
-Return-Path: <devicetree+bounces-40840-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-40846-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id AAEF28517B8
-	for <lists+devicetree@lfdr.de>; Mon, 12 Feb 2024 16:14:56 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 96CE3851829
+	for <lists+devicetree@lfdr.de>; Mon, 12 Feb 2024 16:34:42 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 61C8D2832EF
-	for <lists+devicetree@lfdr.de>; Mon, 12 Feb 2024 15:14:55 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 331D21F21FC4
+	for <lists+devicetree@lfdr.de>; Mon, 12 Feb 2024 15:34:42 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 439773C087;
-	Mon, 12 Feb 2024 15:14:52 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7F63F3C694;
+	Mon, 12 Feb 2024 15:33:51 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="YQkfmy+V"
+	dkim=pass (1024-bit key) header.d=ysoft.com header.i=@ysoft.com header.b="QDAPGFOG"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from uho.ysoft.cz (uho.ysoft.cz [81.19.3.130])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 154611DFD9;
-	Mon, 12 Feb 2024 15:14:51 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F38E93C486;
+	Mon, 12 Feb 2024 15:33:48 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=81.19.3.130
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1707750892; cv=none; b=NDT9ivu9XMBNMZPO/R/Z3tSZhspyo4Qf/u9g6elUrpWaAixQAjMPWO4C27nSmSaHVNn6xJRYF95p6hEh0AjiehE2x6CVfaRjOWZEPR07eTBLx7VUbNS+KIDvcZFTPao1eXvU8km5AUM24r3kT7bWyAuyNy5rWlaUbb7AeWYW6fM=
+	t=1707752031; cv=none; b=YBfGKNsW3+KFUxSe9/8K4rjjHthxwKeyE0VTSxVu6Y7XruA7toqxavm20elcjV3ASLRdGmVwbsTJmrkjR9LBHTrFVIusp/O753xEdpcxh3TeeWcBYzCpPVEd8JbjwAHPVrQub+JZm0vDgdBkNDmUY5R+XltVSV0eKnDOYoOjCa0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1707750892; c=relaxed/simple;
-	bh=5q6JZRqfcRM8joFrd/AFSLb1fQAqV7AVpQcJ1988pP4=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=IC+J3ePRB2YpIZ21S7JkEcgmTamurXQxGtSbfLZsmMoutGdRnQMWNidEpnIbbdK7NVpNY8V/r7kpORmAliPuNglmgE5Sn9zUwLrpQVhycHPVuq32FsuvvlwnPr62YSyWM2RK7CDvedb1jdyzHxvooFGxRo3uN8qvcstDh1kFWyE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=YQkfmy+V; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 34609C433C7;
-	Mon, 12 Feb 2024 15:14:51 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1707750891;
-	bh=5q6JZRqfcRM8joFrd/AFSLb1fQAqV7AVpQcJ1988pP4=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=YQkfmy+VhabegvGXYGdHPXVnU/TNaW2q6GRYvxAKffYehQeYdPKGKik/HCuQ88VhG
-	 juJB0HrNy/KuEymDRS460fW8Q+3mLNnW6gzkQuEANAB1OHBqYfWuoYIAN+xutNTJxR
-	 oYJn6xUg+jaQNP1aO/1WQYbTQTORUYdE+cD9CAHnzywsuTvzBKFczSu58mlit3Fvfs
-	 mvil+84HteuRA1x5MDRfVZD5JVcg73qqK/DtMW8d+C0q1bAieBygA+IvCvGJV+uLEl
-	 WbK5BlpmL9TMKBjGsR6vqLz8rt1P43xbB85xA/ztcWebzfRXLd2kKs4ezbhpr4Ftua
-	 c66lzHktm0dpg==
-Date: Mon, 12 Feb 2024 09:14:49 -0600
-From: Rob Herring <robh@kernel.org>
-To: Chen Wang <unicorn_wang@outlook.com>
-Cc: Chen Wang <unicornxw@gmail.com>, aou@eecs.berkeley.edu,
-	chao.wei@sophgo.com, conor@kernel.org,
-	krzysztof.kozlowski+dt@linaro.org, mturquette@baylibre.com,
-	palmer@dabbelt.com, paul.walmsley@sifive.com,
-	richardcochran@gmail.com, sboyd@kernel.org,
-	devicetree@vger.kernel.org, linux-clk@vger.kernel.org,
-	linux-kernel@vger.kernel.org, linux-riscv@lists.infradead.org,
-	haijiao.liu@sophgo.com, xiaoguang.xing@sophgo.com,
-	guoren@kernel.org, jszhang@kernel.org, inochiama@outlook.com,
-	samuel.holland@sifive.com
-Subject: Re: [PATCH v9 2/5] dt-bindings: clock: sophgo: add RP gate clocks
- for SG2042
-Message-ID: <20240212151449.GA379868-robh@kernel.org>
-References: <cover.1706854074.git.unicorn_wang@outlook.com>
- <fcdd83addcd9af159a0bebf2a14543168bd59a07.1706854074.git.unicorn_wang@outlook.com>
- <20240205172422.GA3643653-robh@kernel.org>
- <MA0P287MB2822C8930916B90A9C1BAA49FE462@MA0P287MB2822.INDP287.PROD.OUTLOOK.COM>
+	s=arc-20240116; t=1707752031; c=relaxed/simple;
+	bh=MUhljBiclhV0V2vA5Xv3eSfj8tABtUDPWCxDhu338mY=;
+	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version:Content-Type; b=eJFKzTeWrlM4KU8nk+8RKrKbNNuR1Lr+t9ojkWfhqF1qkBWm6okKwbNzAmnhMfNnNt7FSSSoF6aL/TWpSe3zzyw2wcZVN7nrzOWP+/AlXZtChqefWXyhje1FgMDj8OUdNuPzLTyH6H7rfAa0RKz73gSBwQY3mHTZNqy8nZtHo1U=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ysoft.com; spf=pass smtp.mailfrom=ysoft.com; dkim=pass (1024-bit key) header.d=ysoft.com header.i=@ysoft.com header.b=QDAPGFOG; arc=none smtp.client-ip=81.19.3.130
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ysoft.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ysoft.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ysoft.com;
+	s=20160406-ysoft-com; t=1707751453;
+	bh=oQZRF4F+VMaG/PnSRd+2qqxRcUHkMwMcRftkyRxLyiU=;
+	h=From:To:Cc:Subject:Date:From;
+	b=QDAPGFOGUDnlVz3BO72IhRUYgGrnYfQD5uonfWZtkNNE3Uzn73yfp3T0CSLyD/ZIe
+	 pxK/ZzJmYyewYaCYddymNprnTvdUF6QsV+IHie3zbpqmdwWjJNUgqs7JZ4mzqCcou9
+	 ujWxwEoMOQC7MmtDASvNymzst1A8hD0cU652TuE8=
+Received: from iota-build.ysoft.local (unknown [10.1.5.151])
+	by uho.ysoft.cz (Postfix) with ESMTP id C54E3A05D4;
+	Mon, 12 Feb 2024 16:24:13 +0100 (CET)
+From: =?UTF-8?q?Michal=20Vok=C3=A1=C4=8D?= <michal.vokac@ysoft.com>
+To: Shawn Guo <shawnguo@kernel.org>,
+	Fabio Estevam <festevam@gmail.com>
+Cc: Rob Herring <robh+dt@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Sascha Hauer <s.hauer@pengutronix.de>,
+	Pengutronix Kernel Team <kernel@pengutronix.de>,
+	NXP Linux Team <linux-imx@nxp.com>,
+	devicetree@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	linux-kernel@vger.kernel.org,
+	Andrew Lunn <andrew@lunn.ch>,
+	=?UTF-8?q?Michal=20Vok=C3=A1=C4=8D?= <michal.vokac@ysoft.com>
+Subject: [PATCH 1/2] ARM: dts: imx6dl-yapp4: Fix the QCA switch register address
+Date: Mon, 12 Feb 2024 16:23:41 +0100
+Message-Id: <1707751422-31517-1-git-send-email-michal.vokac@ysoft.com>
+X-Mailer: git-send-email 2.1.4
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <MA0P287MB2822C8930916B90A9C1BAA49FE462@MA0P287MB2822.INDP287.PROD.OUTLOOK.COM>
 
-On Tue, Feb 06, 2024 at 08:57:27PM +0800, Chen Wang wrote:
-> 
-> On 2024/2/6 1:24, Rob Herring wrote:
-> > On Fri, Feb 02, 2024 at 02:42:02PM +0800, Chen Wang wrote:
-> > > From: Chen Wang <unicorn_wang@outlook.com>
-> > > 
-> > > Add bindings for the gate clocks of RP subsystem for Sophgo SG2042.
-> > > 
-> > > Signed-off-by: Chen Wang <unicorn_wang@outlook.com>
-> > > ---
-> > >   .../bindings/clock/sophgo,sg2042-rpgate.yaml  | 37 ++++++++++++
-> > >   .../dt-bindings/clock/sophgo,sg2042-rpgate.h  | 58 +++++++++++++++++++
-> > >   2 files changed, 95 insertions(+)
-> > >   create mode 100644 Documentation/devicetree/bindings/clock/sophgo,sg2042-rpgate.yaml
-> > >   create mode 100644 include/dt-bindings/clock/sophgo,sg2042-rpgate.h
-> > > 
-> > > diff --git a/Documentation/devicetree/bindings/clock/sophgo,sg2042-rpgate.yaml b/Documentation/devicetree/bindings/clock/sophgo,sg2042-rpgate.yaml
-> > > new file mode 100644
-> > > index 000000000000..69ce3a64f66c
-> > > --- /dev/null
-> > > +++ b/Documentation/devicetree/bindings/clock/sophgo,sg2042-rpgate.yaml
-> > > @@ -0,0 +1,37 @@
-> > > +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
-> > > +%YAML 1.2
-> > > +---
-> > > +$id: http://devicetree.org/schemas/clock/sophgo,sg2042-rpgate.yaml#
-> > > +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> > > +
-> > > +title: Sophgo SG2042 Gate Clock Generator for RP(riscv processors) subsystem
-> > > +
-> > > +maintainers:
-> > > +  - Chen Wang <unicorn_wang@outlook.com>
-> > > +
-> > > +properties:
-> > > +  compatible:
-> > > +    const: sophgo,sg2042-rpgate
-> > > +
-> > > +  reg:
-> > > +    maxItems: 1
-> > > +
-> > > +  '#clock-cells':
-> > > +    const: 1
-> > > +    description:
-> > > +      See <dt-bindings/clock/sophgo,sg2042-rpgate.h> for valid indices.
-> > > +
-> > > +required:
-> > > +  - compatible
-> > > +  - reg
-> > > +  - '#clock-cells'
-> > > +
-> > > +additionalProperties: false
-> > > +
-> > > +examples:
-> > > +  - |
-> > > +    clock-controller@10000000 {
-> > > +      compatible = "sophgo,sg2042-rpgate";
-> > > +      reg = <0x10000000 0x10000>;
-> > > +      #clock-cells = <1>;
-> > No input clocks?
-> 
-> I think it should have some input, I will add it, thanks.
-> 
-> BTW,  can we ignore this property if driver doesn't use it？ In other words,
-> do we have to add this clocks property just to indicate that this node
-> requires some clocks as input from a hardware perspective?
+The switch address in the node name is in hex while the address in the reg
+property is decimal which is wrong. Fix that and write the reg address
+as a hexadecimal number.
 
-Yes and no. The kernel will see the dependency and track that. But your 
-driver doesn't have to get the clock or anything. Though presumably the 
-source is a fixed-clock and you need its frequency to calculate child 
-clock rates.
+Fixes: 15b43e497ffd ("ARM: dts: imx6dl-yapp4: Use correct pseudo PHY address for the switch")
+Signed-off-by: Michal Vokáč <michal.vokac@ysoft.com>
+---
+ arch/arm/boot/dts/nxp/imx/imx6dl-yapp4-common.dtsi | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-Rob
+diff --git a/arch/arm/boot/dts/nxp/imx/imx6dl-yapp4-common.dtsi b/arch/arm/boot/dts/nxp/imx/imx6dl-yapp4-common.dtsi
+index cfb0fc924b42..5763f8253d51 100644
+--- a/arch/arm/boot/dts/nxp/imx/imx6dl-yapp4-common.dtsi
++++ b/arch/arm/boot/dts/nxp/imx/imx6dl-yapp4-common.dtsi
+@@ -143,7 +143,7 @@
+ 
+ 		switch@10 {
+ 			compatible = "qca,qca8334";
+-			reg = <10>;
++			reg = <0x10>;
+ 			reset-gpios = <&gpio1 25 GPIO_ACTIVE_LOW>;
+ 
+ 			switch_ports: ports {
+-- 
+2.1.4
+
 
