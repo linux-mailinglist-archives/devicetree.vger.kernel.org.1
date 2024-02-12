@@ -1,435 +1,177 @@
-Return-Path: <devicetree+bounces-40645-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-40646-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id B9D6485119C
-	for <lists+devicetree@lfdr.de>; Mon, 12 Feb 2024 11:55:52 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id E7B008511AA
+	for <lists+devicetree@lfdr.de>; Mon, 12 Feb 2024 11:57:54 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 209B0B26115
-	for <lists+devicetree@lfdr.de>; Mon, 12 Feb 2024 10:55:50 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 43954B267A7
+	for <lists+devicetree@lfdr.de>; Mon, 12 Feb 2024 10:57:52 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8146139859;
-	Mon, 12 Feb 2024 10:54:53 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8C52C22067;
+	Mon, 12 Feb 2024 10:57:46 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="BTWytZL9"
+	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="oPLwlbXx"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lf1-f49.google.com (mail-lf1-f49.google.com [209.85.167.49])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from fllv0015.ext.ti.com (fllv0015.ext.ti.com [198.47.19.141])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 665453984D
-	for <devicetree@vger.kernel.org>; Mon, 12 Feb 2024 10:54:51 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.49
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7B74A1864C;
+	Mon, 12 Feb 2024 10:57:44 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.19.141
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1707735293; cv=none; b=jbh9YFVAJ4kXGBybTAG/PVUOGgsN2RgypLMuqJHGbxdVn4bsTtYKpFYRaq3qniYHV154nXMg9huLVWLP1StrtXPb2Ahsf4wTvov4s1+r8JVM3KSN9Y1A+nSaV/JRjQbGhHwUthnD+HFtWgYY06BT9fvKo3aGcQnc/UHdUBtoLNY=
+	t=1707735466; cv=none; b=CTxyKZ5s/ASls1QVKrw1Bss56K12QryrJBf37OrSmLJsDRgo31hWeN5WevcNFqIE7TqlNH3cXuMbuiVXG/fg+kjd6lc5NJW5Ce8PBJqEvINk7i4Ba9KcNiBO/Sm/Y6ffZpfkemq9wv68O5/AfVv4/hbixLcFnI3h6EqtL1iqHgw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1707735293; c=relaxed/simple;
-	bh=JkGNB6EACZs7G0wca90SjCDRR1MMVvxtGzQZVSSTfnA=;
-	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version; b=IGgszcXGxRC59ovSQqfnSlflXw7ZH0e3ANCl63K7ZCVH3ZpGF7fLFaAlgpq13fTnz5TA9Go1aE4zSOOBe8+QJD5nBpUJef8DHyRIfmB0oSFmGzui33S2P0zkUQHrLJ3HMZlfnasAftTObNVxwYO+s+J5qEnEIuUKoCW9sTllpTw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=BTWytZL9; arc=none smtp.client-ip=209.85.167.49
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-lf1-f49.google.com with SMTP id 2adb3069b0e04-51182ece518so1544767e87.3
-        for <devicetree@vger.kernel.org>; Mon, 12 Feb 2024 02:54:51 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1707735289; x=1708340089; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=Ku8IgqKXgZ1aGnd9uYNvU88mrbVJaBGhSivSTqvjkG4=;
-        b=BTWytZL9jm6F2+TS5DPFO/AbXTPbtMr2r5f1PKSYwA8QBJR3gK9lezWit4QJ3ATDIe
-         4Z+Rzur0CP4VghfftkIUN06Gxk1YMoyg9+kdvxA9/5C1EW6GuRma9FrJKAvFhmdN49pJ
-         4WdsV6zfqZhyX2zQck9zAmCS/ZBfYHEfRSs4QEvBL++iYKWvHtGg8RR1efdArgLFQpYH
-         wn017ZnPMqsnPD+zkGplR90ptl8WgdXZIc3p8j3wxof3EScNlLXmtkAhun607O8SEGCE
-         0Lok48hZepxFl8PNW5RUp57E50ajH/ho95UwKsfT+XVKMfMexck7kvTF+dF98Hfnm+qJ
-         /UYA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1707735289; x=1708340089;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=Ku8IgqKXgZ1aGnd9uYNvU88mrbVJaBGhSivSTqvjkG4=;
-        b=ESmVnlgz4qJeWPPodo6EJsV3Gmi77NsfQvmi1VgFwHIASqZp2rBsOsbcZGbOqQSXOs
-         TA6Ey4mXE7aSPuO+qIeyXtjDX0ROrdE8ma6bME0Fy7azMcRbJZ1+f3A9Ff07znjTuH99
-         1F7vQAPAowg3RmA5ovbGDUMgnx9T0No8QpQgu539khqa41IJclEuJRZOWHtEsPbxbRhr
-         IXc04yrFF7RrJ9qRHztDNSyQmBsiuIpZlUVfda489wPreJXyoFke4DbTfdQLmPLPMi70
-         yeekJmRPuMEcdTXSLkKQ+s9+N4Yb2w9H8Xd4oxbMGjpEHdr+oRR5Zo28PJlNJ1Al77av
-         DVEA==
-X-Forwarded-Encrypted: i=1; AJvYcCVooOWE6B6BOVBoiDlnUdlY31xhO9OhmJxGq+xOPpj7MoBX1rzjF98fcHvi8d+IUAJTEiLP3AjdFGxNFwjCzZ3BTtGEIybeav5jzw==
-X-Gm-Message-State: AOJu0YyOWPZmqBfQHoalLyu+pXpEsRKqC2tGQKjlKoXiZyyZRUFGNOj4
-	CAeYMy6uuQC3k46ndmeXr+lkCd9ZjHmtx7DCpqMCr4irwv8qeo6oifY2i1S7n5M=
-X-Google-Smtp-Source: AGHT+IHsBDotn/x5BD/p+sM1GZBMREIr2F7mHACW9xeTtzvtTArG/x3WnIz7chqZs8i/kxyttofBBQ==
-X-Received: by 2002:ac2:48ae:0:b0:511:4e6a:12e7 with SMTP id u14-20020ac248ae000000b005114e6a12e7mr4069980lfg.58.1707735289337;
-        Mon, 12 Feb 2024 02:54:49 -0800 (PST)
-X-Forwarded-Encrypted: i=1; AJvYcCXUuuWtapF0T9cozNGQIW32rnMy0ZE0ChapQXoo6k9hEeUmQFrGZtzDoVmADFxRBSSv7TKPzCfJ+KWfhX3gUX/B1U59ToS1llc6o6EfieZ+6YU1SspBUAhquTrJARdDo0qlcbKX8dJdRAF6565A1DbA6QB8vjdQ0z+kbXgdpbgOlVoyDpcdzHcq3bsnCwIP9zf0JbCorKy+3QM5Bvur0hegGkHnZI5UYhD6BNrrSjvprPvI9Yz5XaETCR2+oCrs518A3ROWDqehNSZuNa9Kvodvut9mmnsG8RX6o7nkaLINYEMBfie2PIqWsBS1nBhvyFHb8OJh2u32cOYUuB9gk+rhopDWrPNPxmNgLLRA+VxCDaJ6D9tMYFvmgmSSSZdCS5r+a3giOYgrPCtcFfa0nV14VJMObggr
-Received: from krzk-bin.. ([178.197.223.6])
-        by smtp.gmail.com with ESMTPSA id m27-20020a05600c3b1b00b00410794ddfc6sm8349380wms.35.2024.02.12.02.54.47
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 12 Feb 2024 02:54:48 -0800 (PST)
-From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-To: Andrew Lunn <andrew@lunn.ch>,
-	Florian Fainelli <f.fainelli@gmail.com>,
-	Vladimir Oltean <olteanv@gmail.com>,
-	"David S. Miller" <davem@davemloft.net>,
-	Eric Dumazet <edumazet@google.com>,
-	Jakub Kicinski <kuba@kernel.org>,
-	Paolo Abeni <pabeni@redhat.com>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Oleksij Rempel <o.rempel@pengutronix.de>,
-	netdev@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org
-Cc: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Subject: [PATCH net-next] dt-bindings: net: qca,ar9331: convert to DT schema
-Date: Mon, 12 Feb 2024 11:54:45 +0100
-Message-Id: <20240212105445.45341-1-krzysztof.kozlowski@linaro.org>
-X-Mailer: git-send-email 2.34.1
+	s=arc-20240116; t=1707735466; c=relaxed/simple;
+	bh=9xW0e/NGcWkk+FEV31dLjsWMJfc9mdwIin0wbI9k+Vw=;
+	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
+	 In-Reply-To:Content-Type; b=To3dHpobRcHQm4WzBXhSUziEja2mOntQFoBOqMAOmMn0HGhmRfJfBE0nPenKh4YbML2TaPcWtx4T7yZEBkJ0vrCELsaIiPqE14qQWkpJT1a3XRgPgRtSDvKAub2pIoPkpLoCXBGut60/2dUkKCO8G+9z0WrP9RFMhXVVpZFFvwI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=oPLwlbXx; arc=none smtp.client-ip=198.47.19.141
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
+Received: from fllv0034.itg.ti.com ([10.64.40.246])
+	by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id 41CAvXFW117411;
+	Mon, 12 Feb 2024 04:57:33 -0600
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+	s=ti-com-17Q1; t=1707735453;
+	bh=tkADkNXyuq0rzbZNH8mLuZ5jl0kk11rq9K3V6xvB+bo=;
+	h=Date:Subject:To:CC:References:From:In-Reply-To;
+	b=oPLwlbXxW2Hij6ZnKcI7jhDd+p3S8L3omOYL/nfq9Z5Df8PY0vI9Ex8wWXLXVIZBZ
+	 274Rt9lODVhmJTNm/92ornuec/qtlv9MdRUq2PWkuHl/AlGqg6R5Yr0krPPlzeXK6o
+	 12nYwurZQWS1Vealtk7HPNrvirRMlUV7fc32+gZE=
+Received: from DLEE114.ent.ti.com (dlee114.ent.ti.com [157.170.170.25])
+	by fllv0034.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 41CAvXKa083841
+	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+	Mon, 12 Feb 2024 04:57:33 -0600
+Received: from DLEE109.ent.ti.com (157.170.170.41) by DLEE114.ent.ti.com
+ (157.170.170.25) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Mon, 12
+ Feb 2024 04:57:33 -0600
+Received: from lelvsmtp5.itg.ti.com (10.180.75.250) by DLEE109.ent.ti.com
+ (157.170.170.41) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
+ Frontend Transport; Mon, 12 Feb 2024 04:57:33 -0600
+Received: from [172.24.227.193] (devarsht.dhcp.ti.com [172.24.227.193])
+	by lelvsmtp5.itg.ti.com (8.15.2/8.15.2) with ESMTP id 41CAvSNE002368;
+	Mon, 12 Feb 2024 04:57:29 -0600
+Message-ID: <9c5b7b2c-8a66-4173-dfe9-5724ec5f733d@ti.com>
+Date: Mon, 12 Feb 2024 16:27:28 +0530
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.11.0
+Subject: Re: [PATCH v2] dt-bindings: media: Add sram-size Property for Wave5
+Content-Language: en-US
+To: Nicolas Dufresne <nicolas@ndufresne.ca>, Brandon Brnich <b-brnich@ti.com>,
+        Nishanth Menon <nm@ti.com>
+CC: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        Nas Chung
+	<nas.chung@chipsnmedia.com>,
+        Jackson Lee <jackson.lee@chipsnmedia.com>,
+        Mauro
+ Carvalho Chehab <mchehab@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley
+	<conor+dt@kernel.org>, <linux-media@vger.kernel.org>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        Vignesh
+ Raghavendra <vigneshr@ti.com>,
+        Darren Etheridge <detheridge@ti.com>
+References: <20240201184238.2542695-1-b-brnich@ti.com>
+ <1209b7cf-5be2-4107-aa6b-d67a32ea3737@linaro.org>
+ <20240202125257.p4astjuxpzr5ltjs@dragster>
+ <8091a8cf-c1c0-49b0-b136-1ad0d185aa6a@linaro.org>
+ <20240202155813.szxvi7bfp5xh7rvw@babble>
+ <adfef53c-d64e-4855-ab61-101b6fa419e5@linaro.org>
+ <20240205141255.z5kybm42qld44tdz@portfolio>
+ <20240205192003.3qns6cxqurqnnj7c@udba0500997>
+ <ab029558-fc04-854e-1f97-785f5cec0681@ti.com>
+ <fccdc181727307f52a36f3bb621d6a4e192096da.camel@ndufresne.ca>
+From: Devarsh Thakkar <devarsht@ti.com>
+In-Reply-To: <fccdc181727307f52a36f3bb621d6a4e192096da.camel@ndufresne.ca>
+Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: 8bit
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 
-Convert the Qualcomm Atheros AR9331 built-in switch bindings to DT
-schema.
+Hi Nicolas,
 
-Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+On 09/02/24 23:12, Nicolas Dufresne wrote:
+> Le jeudi 08 février 2024 à 11:52 +0530, Devarsh Thakkar a écrit :
+>> I think even with the approach selected in [1] i.e. referring the
+>> mmio-sram node using DT property, you can still use dynamic SRAM
+>> allocation.
+>> The driver can still allocate from global sram pool dynamically using
+>> of_gen_pool API as being explained here [3] i.e allocate when first
+>> instance is opened and free up later when no instances are running.
+>>
+>> But I agree with Nishanth's point too that we may not want to give all
+>> of SRAM to VPU. For e.g. on AM62A we have 64KiB SRAM and a 1080p
+>> use-case requires 48KiB and even higher for 4K so if there is another
+>> peripheral who is referring this sram node, then it may not get enough
+>> as VPU will hog the major chunk (or all) of it while it is running and
+>> this is where an optional property like sram-size will help to cap the
+>> max sram usage for VPU and so this helps especially on platforms with
+>> limited SRAM availability.
+>>
+>> As I understand, the sram size allocation is dependent on resolution and
+>> once programmed can't be changed until all instances of VPU are done,
+>> and we can't predict how many instances user will launch and with what
+>> resolutions.
+>>
+>> So here's the flow we had thought of some time back :
+>> 1) Define worst case sram size (per 4K use-case as I believe that's the
+>> max for CnM wave521c) as a macro in driver
+>>
+>> Then the condition for determining sram size to be allocated should be
+>> as below  :
+>>
+>> 2) When first instance of VPU is opened, allocate as per sram-size if
+>> sram-size property is specified.
+>>
+>> 3) If sram-size is not specified then :
+>>    -> Allocate as per worst case size macro defined in driver from sram
+>> pool,
+>>    -> If worst case size of SRAM > max SRAM size, then allocate
+>>       max SRAM size
+>>
+>> 4). When all of the instances of VPU are closed, then free up all
+>> allocated SRAM.
+>>
+>> [3] :
+>> https://wiki.analog.com/resources/tools-software/linuxdsp/docs/linux-kernel-and-drivers/sram
+> 
+> Only issue here is that DT is not a use case configuration file. That DT
+> parameter is meant for HW that simply cannot be operated without it. This is
+> also edgy, because it also means that it should only be used if that information
+> is not static and vary unpredictably per SoC, which seems generally unlikely. 
+> 
+> The Wave5 IP *can* work without it, so it should resort to something more
+> dynamic. User configuration should be sorted out at the OS level.
+> 
+> Nicolas
 
----
+Thanks, yeah that makes sense. The sram allocation size is dependent on
+resolution so I think we should employ a fallback model for sram allocation as
+described below :
 
-DSA switch bindings still bring me headache...
----
- .../devicetree/bindings/net/dsa/ar9331.txt    | 147 ----------------
- .../bindings/net/dsa/qca,ar9331.yaml          | 161 ++++++++++++++++++
- 2 files changed, 161 insertions(+), 147 deletions(-)
- delete mode 100644 Documentation/devicetree/bindings/net/dsa/ar9331.txt
- create mode 100644 Documentation/devicetree/bindings/net/dsa/qca,ar9331.yaml
+1) Driver code should enumerate required sram sizes for each of the standard
+resolutions (for e.g. #define 1080P_SRAM_SIZE 48128, #define 4K_SRAM_SIZE
+66368 and so on...) and try to allocate per highest enumerated resolution
+first) from sram pool using gen_pool_alloc when first instance of VPU is opened.
 
-diff --git a/Documentation/devicetree/bindings/net/dsa/ar9331.txt b/Documentation/devicetree/bindings/net/dsa/ar9331.txt
-deleted file mode 100644
-index f824fdae0da2..000000000000
---- a/Documentation/devicetree/bindings/net/dsa/ar9331.txt
-+++ /dev/null
-@@ -1,147 +0,0 @@
--Atheros AR9331 built-in switch
--=============================
--
--It is a switch built-in to Atheros AR9331 WiSoC and addressable over internal
--MDIO bus. All PHYs are built-in as well.
--
--Required properties:
--
-- - compatible: should be: "qca,ar9331-switch"
-- - reg: Address on the MII bus for the switch.
-- - resets : Must contain an entry for each entry in reset-names.
-- - reset-names : Must include the following entries: "switch"
-- - interrupt-parent: Phandle to the parent interrupt controller
-- - interrupts: IRQ line for the switch
-- - interrupt-controller: Indicates the switch is itself an interrupt
--   controller. This is used for the PHY interrupts.
-- - #interrupt-cells: must be 1
-- - mdio: Container of PHY and devices on the switches MDIO bus.
--
--See Documentation/devicetree/bindings/net/dsa/dsa.txt for a list of additional
--required and optional properties.
--Examples:
--
--eth0: ethernet@19000000 {
--	compatible = "qca,ar9330-eth";
--	reg = <0x19000000 0x200>;
--	interrupts = <4>;
--
--	resets = <&rst 9>, <&rst 22>;
--	reset-names = "mac", "mdio";
--	clocks = <&pll ATH79_CLK_AHB>, <&pll ATH79_CLK_AHB>;
--	clock-names = "eth", "mdio";
--
--	phy-mode = "mii";
--	phy-handle = <&phy_port4>;
--};
--
--eth1: ethernet@1a000000 {
--	compatible = "qca,ar9330-eth";
--	reg = <0x1a000000 0x200>;
--	interrupts = <5>;
--	resets = <&rst 13>, <&rst 23>;
--	reset-names = "mac", "mdio";
--	clocks = <&pll ATH79_CLK_AHB>, <&pll ATH79_CLK_AHB>;
--	clock-names = "eth", "mdio";
--
--	phy-mode = "gmii";
--
--	fixed-link {
--		speed = <1000>;
--		full-duplex;
--	};
--
--	mdio {
--		#address-cells = <1>;
--		#size-cells = <0>;
--
--		switch10: switch@10 {
--			#address-cells = <1>;
--			#size-cells = <0>;
--
--			compatible = "qca,ar9331-switch";
--			reg = <0x10>;
--			resets = <&rst 8>;
--			reset-names = "switch";
--
--			interrupt-parent = <&miscintc>;
--			interrupts = <12>;
--
--			interrupt-controller;
--			#interrupt-cells = <1>;
--
--			ports {
--				#address-cells = <1>;
--				#size-cells = <0>;
--
--				switch_port0: port@0 {
--					reg = <0x0>;
--					ethernet = <&eth1>;
--
--					phy-mode = "gmii";
--
--					fixed-link {
--						speed = <1000>;
--						full-duplex;
--					};
--				};
--
--				switch_port1: port@1 {
--					reg = <0x1>;
--					phy-handle = <&phy_port0>;
--					phy-mode = "internal";
--				};
--
--				switch_port2: port@2 {
--					reg = <0x2>;
--					phy-handle = <&phy_port1>;
--					phy-mode = "internal";
--				};
--
--				switch_port3: port@3 {
--					reg = <0x3>;
--					phy-handle = <&phy_port2>;
--					phy-mode = "internal";
--				};
--
--				switch_port4: port@4 {
--					reg = <0x4>;
--					phy-handle = <&phy_port3>;
--					phy-mode = "internal";
--				};
--			};
--
--			mdio {
--				#address-cells = <1>;
--				#size-cells = <0>;
--
--				interrupt-parent = <&switch10>;
--
--				phy_port0: phy@0 {
--					reg = <0x0>;
--					interrupts = <0>;
--				};
--
--				phy_port1: phy@1 {
--					reg = <0x1>;
--					interrupts = <0>;
--				};
--
--				phy_port2: phy@2 {
--					reg = <0x2>;
--					interrupts = <0>;
--				};
--
--				phy_port3: phy@3 {
--					reg = <0x3>;
--					interrupts = <0>;
--				};
--
--				phy_port4: phy@4 {
--					reg = <0x4>;
--					interrupts = <0>;
--				};
--			};
--		};
--	};
--};
-diff --git a/Documentation/devicetree/bindings/net/dsa/qca,ar9331.yaml b/Documentation/devicetree/bindings/net/dsa/qca,ar9331.yaml
-new file mode 100644
-index 000000000000..5c4f789a75fb
---- /dev/null
-+++ b/Documentation/devicetree/bindings/net/dsa/qca,ar9331.yaml
-@@ -0,0 +1,161 @@
-+# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/net/dsa/qca,ar9331.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: Qualcomm Atheros AR9331 built-in switch
-+
-+maintainers:
-+  - Oleksij Rempel <o.rempel@pengutronix.de>
-+
-+description:
-+  Qualcomm Atheros AR9331 is a switch built-in to Atheros AR9331 WiSoC and
-+  addressable over internal MDIO bus. All PHYs are built-in as well.
-+
-+properties:
-+  compatible:
-+    const: qca,ar9331-switch
-+
-+  reg:
-+    maxItems: 1
-+
-+  interrupts:
-+    maxItems: 1
-+
-+  interrupt-controller: true
-+
-+  '#interrupt-cells':
-+    const: 1
-+
-+  mdio:
-+    $ref: /schemas/net/mdio.yaml#
-+    unevaluatedProperties: false
-+    properties:
-+      interrupt-parent: true
-+
-+    patternProperties:
-+      '@[0-9a-f]+$':
-+        type: object
-+        unevaluatedProperties: false
-+
-+        properties:
-+          reg: true
-+          interrupts:
-+            maxItems: 1
-+
-+  resets:
-+    maxItems: 1
-+
-+  reset-names:
-+    items:
-+      - const: switch
-+
-+required:
-+  - compatible
-+  - reg
-+  - interrupts
-+  - interrupt-controller
-+  - '#interrupt-cells'
-+  - mdio
-+  - ports
-+  - resets
-+  - reset-names
-+
-+allOf:
-+  - $ref: dsa.yaml#/$defs/ethernet-ports
-+
-+unevaluatedProperties: false
-+
-+examples:
-+  - |
-+    mdio {
-+        #address-cells = <1>;
-+        #size-cells = <0>;
-+
-+        switch10: switch@10 {
-+            compatible = "qca,ar9331-switch";
-+            reg = <0x10>;
-+
-+            interrupt-parent = <&miscintc>;
-+            interrupts = <12>;
-+            interrupt-controller;
-+            #interrupt-cells = <1>;
-+
-+            resets = <&rst 8>;
-+            reset-names = "switch";
-+
-+            ports {
-+                #address-cells = <1>;
-+                #size-cells = <0>;
-+
-+                port@0 {
-+                    reg = <0x0>;
-+                    ethernet = <&eth1>;
-+
-+                    phy-mode = "gmii";
-+
-+                    fixed-link {
-+                        speed = <1000>;
-+                        full-duplex;
-+                    };
-+                };
-+
-+                port@1 {
-+                    reg = <0x1>;
-+                    phy-handle = <&phy_port0>;
-+                    phy-mode = "internal";
-+                };
-+
-+                port@2 {
-+                    reg = <0x2>;
-+                    phy-handle = <&phy_port1>;
-+                    phy-mode = "internal";
-+                };
-+
-+                port@3 {
-+                    reg = <0x3>;
-+                    phy-handle = <&phy_port2>;
-+                    phy-mode = "internal";
-+                };
-+
-+                port@4 {
-+                    reg = <0x4>;
-+                    phy-handle = <&phy_port3>;
-+                    phy-mode = "internal";
-+                };
-+            };
-+
-+            mdio {
-+                #address-cells = <1>;
-+                #size-cells = <0>;
-+
-+                interrupt-parent = <&switch10>;
-+
-+                phy_port0: ethernet-phy@0 {
-+                    reg = <0x0>;
-+                    interrupts = <0>;
-+                };
-+
-+                phy_port1: ethernet-phy@1 {
-+                    reg = <0x1>;
-+                    interrupts = <0>;
-+                };
-+
-+                phy_port2: ethernet-phy@2 {
-+                    reg = <0x2>;
-+                    interrupts = <0>;
-+                };
-+
-+                phy_port3: ethernet-phy@3 {
-+                    reg = <0x3>;
-+                    interrupts = <0>;
-+                };
-+
-+                phy_port4: ethernet-phy@4 {
-+                    reg = <0x4>;
-+                    interrupts = <0>;
-+                };
-+            };
-+        };
-+    };
--- 
-2.34.1
+2) If the allocation fails, then driver should try to fallback to lower
+resolution sram allocation size (viz. 1080P_SRAM_SIZE) for sram allocation.
 
+3) When all of the VPU instances get closed, then free up all allocated SRAM
+back to the pool so that other peripherals can use it.
+
+Regards
+Devarsh
 
