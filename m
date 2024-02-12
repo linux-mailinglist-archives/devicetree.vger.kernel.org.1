@@ -1,132 +1,123 @@
-Return-Path: <devicetree+bounces-40975-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-40976-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 91C9E851CDA
-	for <lists+devicetree@lfdr.de>; Mon, 12 Feb 2024 19:34:27 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5CA85851CDF
+	for <lists+devicetree@lfdr.de>; Mon, 12 Feb 2024 19:36:15 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 775FC1C22315
-	for <lists+devicetree@lfdr.de>; Mon, 12 Feb 2024 18:34:26 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 193D928292E
+	for <lists+devicetree@lfdr.de>; Mon, 12 Feb 2024 18:36:14 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4FB383FB01;
-	Mon, 12 Feb 2024 18:33:15 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id F16D13DB91;
+	Mon, 12 Feb 2024 18:36:08 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="WWcM4sGb"
+	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b="ViEM1ASS"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from madrid.collaboradmins.com (madrid.collaboradmins.com [46.235.227.194])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 24E9C3DB91;
-	Mon, 12 Feb 2024 18:33:14 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 51FB33FB01;
+	Mon, 12 Feb 2024 18:36:07 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=46.235.227.194
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1707762795; cv=none; b=YX7xkJYmwXVAtk7R3rzoBJgsBZrVMomEX93pf/UKeuBilpuWjLiqz4G364jTza7YOifJOleps2yBOELNVH096nYyM1tgGwRGpBW3KRwJhJZY2ZHtMR1ohJsI2TB7ULng28+BruE3XAkbiNPzJvTG+eb55Qd3UMfmoKUAELueguY=
+	t=1707762968; cv=none; b=LJWwkWxtK7nD8He/yTPjtCIeYcCIUVuoXIi0O2p399SGH8w2okLcxnwHfY+WNw0kuQrsbI2D5A9EZ7a9Lu99iJELP87fdsCCjgnPnzS3Vk3TEGBFENMjfTv/HRxUOHSb32EoDSD1EyuTbdxR0zNrRK/Usq29lUlYrZ0znI/0I4U=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1707762795; c=relaxed/simple;
-	bh=DTRybV3KMIhH9nFsPr7JEPKWMu1YNivRlPVO0kxFIiU=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=lhLGF37G8GmRrsIYEVqc7Ys9nafNJDW63d6/wx3Pjbtj1IUGJNF3cNn+Lq8PgP6PFzqqsCAnNHPk9J3wMSdon+7dZ4g8lZLMaaf/Wau167D34sVYC7/5w1jXEAElF2vo5jddK+JAhk1wyyAfpY+s2zbBLz0GncT9M5Xu30htCCY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=WWcM4sGb; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 052C8C433C7;
-	Mon, 12 Feb 2024 18:33:11 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1707762794;
-	bh=DTRybV3KMIhH9nFsPr7JEPKWMu1YNivRlPVO0kxFIiU=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=WWcM4sGbpiBnCAUBh2PddGbGin4HS+JBNofityp2fupukmpyHsOs7EiAa+B8FaxoX
-	 umxolyJDbeqDhf0mToD38sZ/Pof6zsgMByK1YBv5MxdJznwH8T5wGKTbb5ln5TMjgo
-	 D0octNIsY6GRkNtS7TFkPdY6NZhiV+nwR+WAtBPmVwOZgm8J5XaNnqE9sxh4JLWgUS
-	 m+gNn47PiYAgVwl/gYwF5CIq4OrjuYrgmgtdeqed3+Rm/9aDDrzgNj9tIDj9alXKIJ
-	 o35hE/mqajrE7UxjmxYgZ7dPgskafzSutk1vYx7F+sM1QaLRuAp0irh2bA2bSYnH/0
-	 StDyTiQv8O6OA==
-Date: Mon, 12 Feb 2024 18:33:09 +0000
-From: Conor Dooley <conor@kernel.org>
-To: Christophe Kerello <christophe.kerello@foss.st.com>
-Cc: miquel.raynal@bootlin.com, richard@nod.at, vigneshr@ti.com,
-	krzysztof.kozlowski@linaro.org, robh+dt@kernel.org,
-	krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
-	linux-mtd@lists.infradead.org, linux-kernel@vger.kernel.org,
-	linux-stm32@st-md-mailman.stormreply.com,
-	devicetree@vger.kernel.org,
-	Patrick Delaunay <patrick.delaunay@foss.st.com>
-Subject: Re: [PATCH 02/12] dt-bindings: memory-controller: st,stm32: add
- 'power-domains' property
-Message-ID: <20240212-chemicals-skinny-18eda1cfe781@spud>
-References: <20240212174822.77734-1-christophe.kerello@foss.st.com>
- <20240212174822.77734-3-christophe.kerello@foss.st.com>
+	s=arc-20240116; t=1707762968; c=relaxed/simple;
+	bh=T6klo5znd49M931UrjN16DNw3T/R1nxaLTG4aDB8gV4=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=TLmRP2raQq/9OUW9YaYJEdZfxCElJ/qiiZtgcJuyYFMM0rkjWm0GxKPlBAkDSFvMyYS0Sy+CZuGM+uD1Omwp4YXXLl7bVCvZEAs13s+w57Ym+qqJsvpqb+9SQqYssKhzhxl4XzleX68YpvMy2Y3uyKZyFIn2eb4RtdbMuhgb8zM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b=ViEM1ASS; arc=none smtp.client-ip=46.235.227.194
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=collabora.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
+	s=mail; t=1707762965;
+	bh=T6klo5znd49M931UrjN16DNw3T/R1nxaLTG4aDB8gV4=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=ViEM1ASSooz6/5l6YhYrLglA/e9pS7yzXmNL899kVcI6WvbWsO2YTMBU5RHhM6vHo
+	 sDSDiOBEF+9A1U24pV7d6Nv30985UXdCSXoUx5+H/Yla0qVzWC/OPoMd1/J1WEo8Yx
+	 jmUOfgyRlk/a6nLF26s8jpyQzl1e1G/x28X307zQFTPvDVV34WxMGM13V+fWNLfVSb
+	 0TeJqUoxnUjURSy+5zYdcIr/3bnPOBiV5ScgmQBFcZuWX41VxhhfIaNk92UNZOqwtW
+	 WDWgb3nhFoZGfvSMXy3nOcP+/xfI3vNm+zh1oG6gDiy3gbuLeXCLjdmy6iCdPmJ6nv
+	 FtcJtDTDDWgYQ==
+Received: from [100.115.223.179] (cola.collaboradmins.com [195.201.22.229])
+	(using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
+	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+	(No client certificate requested)
+	(Authenticated sender: cristicc)
+	by madrid.collaboradmins.com (Postfix) with ESMTPSA id 277193781FCE;
+	Mon, 12 Feb 2024 18:36:04 +0000 (UTC)
+Message-ID: <4efca2ec-b078-4421-8956-e3add15d8f62@collabora.com>
+Date: Mon, 12 Feb 2024 20:36:03 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-	protocol="application/pgp-signature"; boundary="j0T5UxTZF6zrutiv"
-Content-Disposition: inline
-In-Reply-To: <20240212174822.77734-3-christophe.kerello@foss.st.com>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v2 2/2] phy: rockchip: Add Samsung HDMI/eDP Combo PHY
+ driver
+Content-Language: en-US
+To: Luis de Arquer <ldearquer@gmail.com>, Rob Herring <robh+dt@kernel.org>,
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+ Conor Dooley <conor+dt@kernel.org>, Heiko Stuebner <heiko@sntech.de>,
+ Johan Jonker <jbx6244@gmail.com>,
+ Sebastian Reichel <sebastian.reichel@collabora.com>,
+ Sascha Hauer <s.hauer@pengutronix.de>, Andy Yan <andy.yan@rock-chips.com>,
+ Vinod Koul <vkoul@kernel.org>, Kishon Vijay Abraham I <kishon@kernel.org>,
+ Philipp Zabel <p.zabel@pengutronix.de>, Algea Cao <algea.cao@rock-chips.com>
+Cc: devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org,
+ linux-phy@lists.infradead.org, kernel@collabora.com
+References: <20240205-phy-hdptx-v2-0-a7150814c047@collabora.com>
+ <20240205-phy-hdptx-v2-2-a7150814c047@collabora.com>
+ <61af7b121b23fe8ed06df5348692f862b9b125bf.camel@gmail.com>
+From: Cristian Ciocaltea <cristian.ciocaltea@collabora.com>
+In-Reply-To: <61af7b121b23fe8ed06df5348692f862b9b125bf.camel@gmail.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
+Hi Luis,
 
---j0T5UxTZF6zrutiv
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+On 2/12/24 18:44, Luis de Arquer wrote:
+> Hi Cristian,
+> 
+> On Mon, 2024-02-05 at 13:24 +0200, Cristian Ciocaltea wrote:
+>> +
+>> +static bool hdptx_phy_clk_pll_calc(unsigned int data_rate,
+>> +				   struct ropll_config *cfg)
+>> +{
+>> +	const unsigned int fout = data_rate / 2, fref = 24000;
+>> +	unsigned long k = 0, lc, k_sub, lc_sub;
+>> +	unsigned int fvco, sdc;
+>> +	u32 mdiv, sdiv, n = 8;
+>> +
+>> +	for (sdiv = 16; sdiv >= 1; sdiv--) {
+>> +		if (sdiv % 2 && sdiv != 1)
+>> +			continue;
+>> +
+>> +		fvco = fout * sdiv;
+>> +
+>> +		if (fvco < 2000000 || fvco > 4000000)
+>> +			continue;
+>> +
+> 
+> What about adding a check to data_rate, maybe like
+> 
+> if (fout > 0x0FFFFFFF)
+> 	return false;
+> 
+> or similar, before the for loop, to keep the multiplication safe?
+> 
+> Right now it would be redundant, given that data_rate was, at some
+> point, encoded in 28 bits within bus_width. But can prevent future pain,
+> especially after changing to phy_configure_opts_hdmi.
 
-On Mon, Feb 12, 2024 at 06:48:12PM +0100, Christophe Kerello wrote:
-> From: Patrick Delaunay <patrick.delaunay@foss.st.com>
->=20
-> On STM32MP25 SOC, STM32 FMC2 memory controller is in a power domain.
-> Allow a single 'power-domains' entry for STM32 FMC2.
+Indeed, it makes sense to do the check, thanks for the heads up!
+I was almost ready to submit v3, so this arrived just in time. :-)
 
-This should be squashed with patch 1, since they both modify the same
-file and this power-domain is part of the addition of mp25 support.
-
-If the mp1 doesn't have power domains, shouldn't you constrain the
-property to mp25 only?
-
-Cheers,
-Conor.
-
->=20
-> Signed-off-by: Patrick Delaunay <patrick.delaunay@foss.st.com>
-> Signed-off-by: Christophe Kerello <christophe.kerello@foss.st.com>
-> ---
->  .../bindings/memory-controllers/st,stm32-fmc2-ebi.yaml         | 3 +++
->  1 file changed, 3 insertions(+)
->=20
-> diff --git a/Documentation/devicetree/bindings/memory-controllers/st,stm3=
-2-fmc2-ebi.yaml b/Documentation/devicetree/bindings/memory-controllers/st,s=
-tm32-fmc2-ebi.yaml
-> index 12e6afeceffd..84ac6f50a6fc 100644
-> --- a/Documentation/devicetree/bindings/memory-controllers/st,stm32-fmc2-=
-ebi.yaml
-> +++ b/Documentation/devicetree/bindings/memory-controllers/st,stm32-fmc2-=
-ebi.yaml
-> @@ -36,6 +36,9 @@ properties:
->    resets:
->      maxItems: 1
-> =20
-> +  power-domains:
-> +    maxItems: 1
-> +
->    "#address-cells":
->      const: 2
-> =20
-> --=20
-> 2.25.1
->=20
-
---j0T5UxTZF6zrutiv
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZcpkZQAKCRB4tDGHoIJi
-0tdKAQDHXMMk62WtYxljI4EYVK5zcDC6VAMJ9PBRjLb5XKG6fAD9FkStE7CE4iEM
-IAf7Cd+5U9DpPVQ7o7X7sfH21yTKLAk=
-=tk2s
------END PGP SIGNATURE-----
-
---j0T5UxTZF6zrutiv--
+Regards,
+Cristian
 
