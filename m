@@ -1,149 +1,154 @@
-Return-Path: <devicetree+bounces-40924-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-40929-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id F1345851B6B
-	for <lists+devicetree@lfdr.de>; Mon, 12 Feb 2024 18:30:30 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6F9C4851B78
+	for <lists+devicetree@lfdr.de>; Mon, 12 Feb 2024 18:31:54 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id AD025283CEA
-	for <lists+devicetree@lfdr.de>; Mon, 12 Feb 2024 17:30:29 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id A2B6C1C2093F
+	for <lists+devicetree@lfdr.de>; Mon, 12 Feb 2024 17:31:53 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 44C163E487;
-	Mon, 12 Feb 2024 17:30:24 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9E6283F9C9;
+	Mon, 12 Feb 2024 17:31:40 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="XhoQwY6c"
+	dkim=pass (2048-bit key) header.d=cirrus.com header.i=@cirrus.com header.b="mME2VuDB"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+Received: from mx0b-001ae601.pphosted.com (mx0b-001ae601.pphosted.com [67.231.152.168])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8D21A3F8D0;
-	Mon, 12 Feb 2024 17:30:22 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D7FAD3EA7B;
+	Mon, 12 Feb 2024 17:31:38 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=67.231.152.168
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1707759024; cv=none; b=bh6TpMOWeZ6iabcPs5WiDEoYu4YlTibLgJsCh7XgCScp9TBSarGk/Gh3k+eC6lsRM3d0EnOGjeWcQ6NFy1akcokcvI+FA+oAXgD1Q3+sa7v2jGL1jbEqPJAO3gEyyuro9ML0PyK5ouROI3QUISXmNGg9Ch16D82RVCPfYpAHjyc=
+	t=1707759100; cv=none; b=D7BYvboS9CyKYedD2EPvIQURlL14hwDdbKXqSxflvJ/h0POUQdfyNlqrYRJuUv0fnmU7LL2LQVvmaUOJ9yRStTn68ESO0Cf+MW/cIe63MS65jgyih3p6CT6oJDNqL1W60tqa+2TjFWEmvl47meKsbJgrLKzB7FWKGhpJqPzLgVg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1707759024; c=relaxed/simple;
-	bh=ZHz2/Ii2ezqNSyAK1WHFHID3r78PJgY7A/ovJL/qKVs=;
-	h=Message-ID:Date:MIME-Version:From:Subject:To:CC:References:
-	 In-Reply-To:Content-Type; b=jmTSR4mlhIzMxwCKl7bgT+36ScVYSpnRNXsjGd74trdIFiYtvRpGXqy/Y1yTi4CrmiG7XZjZclNG27VRu42ycFHyMnT6kMrCCV9mfJ9DAOpy86u1yMBGHFXVjsYmdOjCmMSnOOkmTgDRSuk2MqK2c+YFcNRVN9Br1TlkXUdVjhQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=XhoQwY6c; arc=none smtp.client-ip=205.220.168.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
-Received: from pps.filterd (m0279867.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.17.1.24/8.17.1.24) with ESMTP id 41CDWMM2029846;
-	Mon, 12 Feb 2024 17:30:01 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
-	message-id:date:mime-version:from:subject:to:cc:references
-	:in-reply-to:content-type:content-transfer-encoding; s=
-	qcppdkim1; bh=mFP93yrNCBsj8NEPJw3QpaEx/+1X39HZCQ2vhvFATU4=; b=Xh
-	oQwY6cFCoNr21eQv9CMDQAUN7ZiaLKUEdtxPi3MgdyjEdOuwPlLIHKWehZ9u8xCL
-	sjxkBxx6GIaP3s+LGEywfy87A0U4WWgXCWcyA9/hlHAUqlKHR/TaBDULqOeTZRzo
-	tMltdFXGh7to9XIi8kwIcSPUO4Z/axOC5RdlyyiGW2763+2dGDql2TYioJOQwdlv
-	ze9sVhH4Nq3a8jRUD3jwLcihDTMdZwlGPPlxfkP3UHNrcdzvW5ZJCHw/7Lfdj5a6
-	cvMKKBUAxyQmtoBgx9aYxkzvkA8cXWh+UjKa9hXh+UKHWFrw2aeS42E+QRVdMMgS
-	cbQvmBe8NPNwKQk/fbDA==
-Received: from nasanppmta05.qualcomm.com (i-global254.qualcomm.com [199.106.103.254])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3w7ju78t7h-1
+	s=arc-20240116; t=1707759100; c=relaxed/simple;
+	bh=mK31yRTxup64WSxJD8dsvPJdAc7rD+RgAShdC5fAsbw=;
+	h=From:To:CC:Subject:Date:Message-ID:MIME-Version:Content-Type; b=bUJ6nGdrgrHCPwE2o6fwfxk9bvCfRPPw4OUqkg54qaEMsUI2qX4oGsFbMcf+1XeTBIzIZPzNi/0SOge3F3GhGMnUDhZ3Xc0u3loM8RoX1z6gYT28w/MAXCBWinmxevVUa/+yPinbnANfu8CcTbLK3irMSSPhfA7plfGeF83eGR4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=opensource.cirrus.com; spf=pass smtp.mailfrom=opensource.cirrus.com; dkim=pass (2048-bit key) header.d=cirrus.com header.i=@cirrus.com header.b=mME2VuDB; arc=none smtp.client-ip=67.231.152.168
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=opensource.cirrus.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=opensource.cirrus.com
+Received: from pps.filterd (m0077474.ppops.net [127.0.0.1])
+	by mx0b-001ae601.pphosted.com (8.17.1.24/8.17.1.24) with ESMTP id 41CHUCVE001221;
+	Mon, 12 Feb 2024 11:31:20 -0600
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=cirrus.com; h=
+	from:to:cc:subject:date:message-id:mime-version
+	:content-transfer-encoding:content-type; s=PODMain02222019; bh=4
+	vvGckA5Yki91rPQ2RmiMlPYqiKpqyWB62mVLTfHrGc=; b=mME2VuDBI3SbkwS5+
+	aJvt7vS+vsgDEQM+SrxGrCrEvpWCW6GXA7K3hLi9Vbf/Ms2Wu60dePg9YQFu9Qps
+	baAIQrFRTeLtiwUDHtRNLtAP3NcSZI+Ux8JWe8eSKHtv06biokJd0OzFpGW3CWKH
+	FQxLBsrMbSjM+LY/fHfkTe2lizJKRYB9lv06m8bs7pys0Y6CE0C9rf9REpcG/jwt
+	twtO8O4b1h9M2+HWmoOh5R790QjCmzqIvIkG3h5jPY1jaSHScqNp8ElsbltQqIhM
+	YvCg8a+zB1L16u9qsBWfkplGUgis0oBAmYcnRpj8wy3RlyEIAYAFaVtAKtFBx66C
+	p67oQ==
+Received: from ediex01.ad.cirrus.com ([84.19.233.68])
+	by mx0b-001ae601.pphosted.com (PPS) with ESMTPS id 3w66ep25rh-1
 	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Mon, 12 Feb 2024 17:30:01 +0000 (GMT)
-Received: from nasanex01c.na.qualcomm.com (nasanex01c.na.qualcomm.com [10.45.79.139])
-	by NASANPPMTA05.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 41CHU0wC027045
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Mon, 12 Feb 2024 17:30:00 GMT
-Received: from [10.216.55.125] (10.80.80.8) by nasanex01c.na.qualcomm.com
- (10.45.79.139) with Microsoft SMTP Server (version=TLS1_2,
+	Mon, 12 Feb 2024 11:31:20 -0600 (CST)
+Received: from ediex02.ad.cirrus.com (198.61.84.81) by ediex01.ad.cirrus.com
+ (198.61.84.80) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1118.40; Mon, 12 Feb
- 2024 09:29:53 -0800
-Message-ID: <13da9cd9-218d-4b3f-98f8-62edcd91a23e@quicinc.com>
-Date: Mon, 12 Feb 2024 22:59:50 +0530
+ 2024 17:31:18 +0000
+Received: from ediswmail9.ad.cirrus.com (198.61.86.93) by
+ anon-ediex02.ad.cirrus.com (198.61.84.81) with Microsoft SMTP Server id
+ 15.2.1118.40 via Frontend Transport; Mon, 12 Feb 2024 17:31:18 +0000
+Received: from aus-sw-rshr002.ad.cirrus.com (aus-sw-rshr002.ad.cirrus.com [141.131.145.53])
+	by ediswmail9.ad.cirrus.com (Postfix) with ESMTP id 0B9D4820243;
+	Mon, 12 Feb 2024 17:31:16 +0000 (UTC)
+From: James Ogletree <jogletre@opensource.cirrus.com>
+To: <dmitry.torokhov@gmail.com>, <robh+dt@kernel.org>,
+        <krzysztof.kozlowski+dt@linaro.org>, <conor+dt@kernel.org>,
+        <lee@kernel.org>, <broonie@kernel.org>, <jeff@labundy.com>
+CC: <patches@opensource.cirrus.com>, <linux-sound@vger.kernel.org>,
+        <linux-input@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        James Ogletree
+	<jogletre@opensource.cirrus.com>
+Subject: [PATCH v7 0/5] Add support for CS40L50
+Date: Mon, 12 Feb 2024 17:31:06 +0000
+Message-ID: <20240212173111.771107-1-jogletre@opensource.cirrus.com>
+X-Mailer: git-send-email 2.25.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-From: Pratyush Brahma <quic_pbrahma@quicinc.com>
-Subject: Re: [PATCH v4 03/10] iommu/arm-smmu-qcom: Add support for TBUs
-To: <quic_c_gdjako@quicinc.com>
-CC: <andersson@kernel.org>, <conor+dt@kernel.org>,
-        <devicetree@vger.kernel.org>, <djakov@kernel.org>,
-        <iommu@lists.linux.dev>, <joro@8bytes.org>, <konrad.dybcio@linaro.org>,
-        <krzysztof.kozlowski+dt@linaro.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <linux-arm-msm@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <quic_cgoldswo@quicinc.com>, <quic_pdaly@quicinc.com>,
-        <quic_sudaraja@quicinc.com>, <quic_sukadev@quicinc.com>,
-        <robdclark@gmail.com>, <robh+dt@kernel.org>, <robin.murphy@arm.com>,
-        <will@kernel.org>
-References: <20240201210529.7728-4-quic_c_gdjako@quicinc.com>
-Content-Language: en-US
-In-Reply-To: <20240201210529.7728-4-quic_c_gdjako@quicinc.com>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
- nasanex01c.na.qualcomm.com (10.45.79.139)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-ORIG-GUID: 9AwD145O5tY5kb5MEBPsEImeSD339Gw-
-X-Proofpoint-GUID: 9AwD145O5tY5kb5MEBPsEImeSD339Gw-
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.272,Aquarius:18.0.1011,Hydra:6.0.619,FMLib:17.11.176.26
- definitions=2024-02-12_14,2024-02-12_03,2023-05-22_02
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 impostorscore=0
- mlxlogscore=999 lowpriorityscore=0 spamscore=0 clxscore=1011
- priorityscore=1501 mlxscore=0 malwarescore=0 suspectscore=0 phishscore=0
- adultscore=0 bulkscore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.19.0-2401310000 definitions=main-2402120133
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-Proofpoint-ORIG-GUID: aCs3FWX-ErcDJhkIeTXFdkn1jxmj21CM
+X-Proofpoint-GUID: aCs3FWX-ErcDJhkIeTXFdkn1jxmj21CM
+X-Proofpoint-Spam-Reason: safe
 
-Hi
+Changes in v7:
+- Fixed sparse warning
+- Moved write sequences to private data structure
+- Logical and style improvements in write sequence interface
 
-The following patch would introduce a use-after-free bug which was found 
-during KASAN testing on qcm6490 with the patch.
+Changes in v6:
+- Updated write sequencer interface to be control-name based
+- Fix 1. a race condition and 2. non-handling of repeats in playback callback
+- Stylistic and logical improvements all around
 
-diff 
-<https://lore.kernel.org/all/20240201210529.7728-4-quic_c_gdjako@quicinc.com/#iZ2e.:20240201210529.7728-4-quic_c_gdjako::40quicinc.com:1drivers:iommu:arm:arm-smmu:arm-smmu-qcom.c> 
---git a/drivers/iommu/arm/arm-smmu/arm-smmu-qcom.c 
-b/drivers/iommu/arm/arm-smmu/arm-smmu-qcom.c index 
-8b04ece00420..ca806644e6eb 100644 --- 
-a/drivers/iommu/arm/arm-smmu/arm-smmu-qcom.c +++ 
-b/drivers/iommu/arm/arm-smmu/arm-smmu-qcom.c @@ -1,12 +1,14 @@   // SPDX-License-Identifier: GPL-2.0-only
-  /*
-   * Copyright (c) 2019, The Linux Foundation. All rights reserved.
-+ * Copyright (c) 2024 Qualcomm Innovation Center, Inc. All rights reserved    */
-  
-  #include <linux/acpi.h>
-  #include <linux/adreno-smmu-priv.h>
-  #include <linux/delay.h>
-  #include <linux/of_device.h>
-+#include <linux/of_platform.h>   #include <linux/firmware/qcom/qcom_scm.h>
-  
-  #include "arm-smmu.h"
-@@ -446,6 +448,7 @@ static struct arm_smmu_device 
-*qcom_smmu_create(struct arm_smmu_device *smmu,   	const struct device_node *np = smmu->dev->of_node;
-  	const struct arm_smmu_impl *impl;
-  	struct qcom_smmu *qsmmu;
-+ int ret;   
-  	if (!data)
-  		return ERR_PTR(-EINVAL);
-@@ -469,6 +472,12 @@ static struct arm_smmu_device 
-*qcom_smmu_create(struct arm_smmu_device *smmu,   	qsmmu->smmu.impl = impl;
-  	qsmmu->cfg = data->cfg;
-  
-+ INIT_LIST_HEAD(&qsmmu->tbu_list); + mutex_init(&qsmmu->tbu_list_lock); 
-+ ret = devm_of_platform_populate(smmu->dev); // smmu has been freed by 
-devm_krealloc() above but is being accessed here again later. This 
-causes use-after-free bug. + if (ret) + return ERR_PTR(ret); +   	return &qsmmu->smmu;
-  }
+Changes in v5:
+- Added a codec sub-device to support I2S streaming
+- Moved write sequencer code from cirrus_haptics to cs_dsp
+- Reverted cirrus_haptics library; future Cirrus input
+  drivers will export and utilize cs40l50_vibra functions
+- Added more comments
+- Many small stylistic and logical improvements
 
-Can it be done like below?
-  	qsmmu->smmu.impl = impl;
-  	qsmmu->cfg = data->cfg;
-  
-+ INIT_LIST_HEAD(&qsmmu->tbu_list); + mutex_init(&qsmmu->tbu_list_lock); 
-+ ret = devm_of_platform_populate(qsmmu->smmu.dev);// Using the struct 
-to which smmu was copied instead of freed ptr. Thanks, Pratyush
+Changes in v4:
+- Moved from Input to MFD
+- Moved common Cirrus haptic functions to a library
+- Incorporated runtime PM framework
+- Many style improvements
+
+Changes in v3:
+- YAML formatting corrections
+- Fixed typo in MAINTAINERS
+- Used generic node name "haptic-driver"
+- Fixed probe error code paths
+- Switched to "sizeof(*)"
+- Removed tree reference in MAINTAINERS
+
+Changes in v2:
+- Fixed checkpatch warnings
+
+James Ogletree (5):
+  firmware: cs_dsp: Add write sequencer interface
+  dt-bindings: input: cirrus,cs40l50: Add initial DT binding
+  mfd: cs40l50: Add support for CS40L50 core driver
+  Input: cs40l50 - Add support for the CS40L50 haptic driver
+  ASoC: cs40l50: Support I2S streaming to CS40L50
+
+ .../bindings/input/cirrus,cs40l50.yaml        |  70 +++
+ MAINTAINERS                                   |  12 +
+ drivers/firmware/cirrus/cs_dsp.c              | 265 ++++++++
+ drivers/input/misc/Kconfig                    |  10 +
+ drivers/input/misc/Makefile                   |   1 +
+ drivers/input/misc/cs40l50-vibra.c            | 575 ++++++++++++++++++
+ drivers/mfd/Kconfig                           |  30 +
+ drivers/mfd/Makefile                          |   4 +
+ drivers/mfd/cs40l50-core.c                    | 531 ++++++++++++++++
+ drivers/mfd/cs40l50-i2c.c                     |  69 +++
+ drivers/mfd/cs40l50-spi.c                     |  69 +++
+ include/linux/firmware/cirrus/cs_dsp.h        |  28 +
+ include/linux/mfd/cs40l50.h                   | 142 +++++
+ sound/soc/codecs/Kconfig                      |  11 +
+ sound/soc/codecs/Makefile                     |   2 +
+ sound/soc/codecs/cs40l50-codec.c              | 311 ++++++++++
+ 16 files changed, 2130 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/input/cirrus,cs40l50.yaml
+ create mode 100644 drivers/input/misc/cs40l50-vibra.c
+ create mode 100644 drivers/mfd/cs40l50-core.c
+ create mode 100644 drivers/mfd/cs40l50-i2c.c
+ create mode 100644 drivers/mfd/cs40l50-spi.c
+ create mode 100644 include/linux/mfd/cs40l50.h
+ create mode 100644 sound/soc/codecs/cs40l50-codec.c
+
+-- 
+2.25.1
 
 
