@@ -1,245 +1,351 @@
-Return-Path: <devicetree+bounces-40609-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-40610-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id AC61C850F43
-	for <lists+devicetree@lfdr.de>; Mon, 12 Feb 2024 10:05:46 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 890EF850F79
+	for <lists+devicetree@lfdr.de>; Mon, 12 Feb 2024 10:14:52 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 1DEF2B22AEE
-	for <lists+devicetree@lfdr.de>; Mon, 12 Feb 2024 09:05:43 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id AD5FF1C21336
+	for <lists+devicetree@lfdr.de>; Mon, 12 Feb 2024 09:14:51 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id EC9C4F9FF;
-	Mon, 12 Feb 2024 09:05:36 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 718E1101D0;
+	Mon, 12 Feb 2024 09:14:47 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="bmH7xL9d"
+	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="DniD6MP/"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lf1-f41.google.com (mail-lf1-f41.google.com [209.85.167.41])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 069FE101D4
-	for <devicetree@vger.kernel.org>; Mon, 12 Feb 2024 09:05:34 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.41
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 92116F51F;
+	Mon, 12 Feb 2024 09:14:45 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1707728736; cv=none; b=FQt+7s78l24ihz5Epn+H09fi8zLvka/OJ3qtoJ3Yk+pIoHtlGLTSVGU2lhbROwAE80cxw+Lh/26Ul7lBGhV986mj7JBKENTMYpNMY3RVkb9RzjHtAaDs4ieTEQpH8wAajn55WLwf/iSffIs3MCP9hVH23OmOx6wrZahHO+Y6E58=
+	t=1707729287; cv=none; b=mGpgyktfcj3POU06y94TOUuc2NTNkTtDu6AIUa6a3zN1niZ1Msyv3F2+GF5A/4yPPjSxXmDSHzRc1uNQIcTd86SvswpWi8jZHYVppsHpVSanPOZ6+55weZ4faniLNdLATHkRtj1Oe4HT5kqHSr4L7eIeGxiXqiYtOawfRVggHG8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1707728736; c=relaxed/simple;
-	bh=gVkxZOW0qDNFYvxUR7rpHDkF6TSGRjxwh81qAxtr7IE=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=OhJWxsNJCX3vVYiREIzetvcMtz6XChD7J/IPOYrnYRXKaHdj21eEwXM9LQSJTS+jGXg818ydVKmbfiH+/T2x7mA3k65Nl7Tpt8RDl+FP7TvXr1v3XkOin9+ITWnpwbAT5LdxxglFkvI01rzvkwowMlJF0eJvgVEgS0XXhKfxdmQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=bmH7xL9d; arc=none smtp.client-ip=209.85.167.41
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-lf1-f41.google.com with SMTP id 2adb3069b0e04-511831801f3so1473050e87.2
-        for <devicetree@vger.kernel.org>; Mon, 12 Feb 2024 01:05:34 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1707728733; x=1708333533; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
-         :to:content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=TZnKAadz2mGqyTSo/WNR6RbUGVWdGOd/LAxiL7KSVdY=;
-        b=bmH7xL9dROZwwSdZehl1/d/78S/8hrQVLAJI5BpCeRRcCEldsgIpC0chSR6H0+d3qA
-         xUh9SF9hXuKCxqd0x9TGegrjAgp0E+Gf++JFxDQF4R0nmLekECLsONNgpRCSXo9pmq8a
-         YTNnW5ycccKRgXlfcOjVIk8mVK3fibXao5oOErh69O2LS0vqEmkhx+UpCGRhM8AUEUmS
-         mjhKSA9xbZAH+gTK2u/lqCnw1q26Z6N83HQ5TVXQ+iMmfV2kJDvGtZm3V2Z67MI7WAsD
-         EKPhQP1fLzJhX09rXuyxe6Ue6EbLh7QneemC7bwKBmxVSNKLyC4e7A4/kwfQmNzUsKbF
-         3Nyw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1707728733; x=1708333533;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
-         :to:content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=TZnKAadz2mGqyTSo/WNR6RbUGVWdGOd/LAxiL7KSVdY=;
-        b=PpfL2gj4w6ce4YTuj+r2HDYfeadutGmCsr6y/LKTlI/HRcpYvqMCihtRptRebQdD7j
-         Y2b3MlJxMgRwgamP7zDT+MwMa0WxOjCr1vHlvQaY7DPTRzdAM59fTx+v46o6UBf9ZyzL
-         aNHpolUU78lyP2pSKQlRzO/fAlq/UjbyXWDvvAWSnGyTwzRwqMMoKfbHAF/uBFUtFgOA
-         FfrcSAbNmz8+KgMW/Bk8ytFeLnTVqmIVZOcEJCVER5270LnWinsKIQQBjBhejkHEGVmH
-         AoGYe1CEew1MyhDrieRvF9NcKlgr43L+155r6h7ccPzRwZpnJ6BvZFxvpqeEgR90750p
-         8fTw==
-X-Gm-Message-State: AOJu0Yxl20dCvTkl3JjPNx6iwf6Q/9aUFLPX8KTWX0c21cAYzBeCuBYc
-	nvq8YjmC6rx9dFcPDObEt+8AiPJJCkyNyQRXdMcagOrQl8UBoKzwmkqXNEHrNDw=
-X-Google-Smtp-Source: AGHT+IG5mnRjQlIZ27VLKJ59THK0Z0Se2SHAX8bkSt8PnxJT86zPMPDJ5WnROW0bmeffBM0F+EiPig==
-X-Received: by 2002:ac2:46c9:0:b0:511:86c0:dad2 with SMTP id p9-20020ac246c9000000b0051186c0dad2mr2672727lfo.62.1707728732982;
-        Mon, 12 Feb 2024 01:05:32 -0800 (PST)
-X-Forwarded-Encrypted: i=1; AJvYcCWR2czG3Y96UGkARwGAUo7SpRzhiB+tP4Q8pXmXXuwMV2Ot7p+t0oBsmdB8kSVAPZp0rKfsbmosI0RyykH48hq3AFLQve66BOlsLztiC3o1/KMAMUIUqq0DJ3IVk7bnK+IzNfY1ct+HclF/KJ2Vpo53b4EqSuq09C40aTg1iWo8EOQUryq4mLN4/Dt/02MpnBBDjngBMVTV3lCojueD1y2VWqFTjyQBV4AvPGDAiz4KAsLdh5RUoIV3cv3JUsvfEJoIesOcn+XBvu1SbOSi52yOUcblHT4pUwTeMK7AD8XA+6er8sAcTqm6yl8FdNbrtU0y83u1dibSvv9/2LjWx95EtzSh85kqmJXpBmoKIxg1rrlodsjb1dXrvzgja4noh7V7wgf2hwtwEG9VXC6ahaLs8q0VLKj494Oz23qGgAODVy5wtJiTyeBkMEt290YkpPRvkMraCd/wmx15kiLx1ZDVLvspiH9H4ra2E/ZxapSQj8olbAxMSvWo+l7L7GGr5eiNbNrQ4uZcvp/eaaMVh2xOIG7PFa8qSSM2Fwxu/ffVj86r82Q5/GLI1eeKHCY7v+F8ZPIhcZM3
-Received: from [192.168.1.20] ([178.197.223.6])
-        by smtp.gmail.com with ESMTPSA id l21-20020a05600c1d1500b00410e638357asm1140338wms.10.2024.02.12.01.05.31
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 12 Feb 2024 01:05:32 -0800 (PST)
-Message-ID: <b55f4d1e-2e77-4539-8d18-8d8f2185b501@linaro.org>
-Date: Mon, 12 Feb 2024 10:05:30 +0100
+	s=arc-20240116; t=1707729287; c=relaxed/simple;
+	bh=mqBjwcdggk7KMrtyKppldYG4v4/Rk/ISycJb1OdOS8c=;
+	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
+	 In-Reply-To:Content-Type; b=WyhKulUpNlEyTxItMYtFu+swqEw+Slkw2pTDU5V4llNiC6tPpwwMAsxcM5bYMRievZDZXXC1qwnxb6fLqb/YwxL8PYDQuTVFF2knJZdpt5XwT18I4ufBeZVkhuPmI3NRD5uBsxizLebFe5JcBIOO7heuWmvj6ZlzOKUcsw6qAOc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=DniD6MP/; arc=none smtp.client-ip=205.220.168.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
+Received: from pps.filterd (m0279864.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.17.1.24/8.17.1.24) with ESMTP id 41C8ms6x009721;
+	Mon, 12 Feb 2024 09:14:38 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
+	message-id:date:mime-version:subject:to:cc:references:from
+	:in-reply-to:content-type:content-transfer-encoding; s=
+	qcppdkim1; bh=OU5LC9ro5XnCzs3/2ne/mzqvDS+MuBqxMJ32iSfO9p4=; b=Dn
+	iD6MP/WhDiTKFsruz9ECGLvdeg2nzAWqxY+/fqBMvqxH1rZtom7DML2qSy1d7gcL
+	JOKMkwxf05fpSxQCF1T7Pc+DUZ4grGRqpZRClYwmt7xeuK9MKonyMslNAWhUwTH8
+	UvsGk083qTjkw+sQhEvulvdDtiAtATCIndGgyXki1CpjUPDVBIuh7OGE/nYjqrb9
+	6MywPp/ZGM+kpkAREOONmTPwG69cOcb2aP7//qOviEHSoecji65mkxJsMGMw+/Ia
+	pSjm0kiJKygg/t/9mq6nGpJmAbH/1LqEbW2sJJcye/cL8xs8MzbxmDQHWp24fcTg
+	97sjweLujGBsHWrNkDYQ==
+Received: from nalasppmta02.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3w62n02uvn-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Mon, 12 Feb 2024 09:14:37 +0000 (GMT)
+Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
+	by NALASPPMTA02.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 41C9EbPo003966
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Mon, 12 Feb 2024 09:14:37 GMT
+Received: from [10.131.33.37] (10.80.80.8) by nalasex01a.na.qualcomm.com
+ (10.47.209.196) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1118.40; Mon, 12 Feb
+ 2024 01:14:32 -0800
+Message-ID: <b8343f62-ce6d-b10d-9d5d-845eea14cd4c@quicinc.com>
+Date: Mon, 12 Feb 2024 14:44:29 +0530
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 6/8] media: dt-bindings: Add bindings for Raspberry Pi
- PiSP Back End
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.11.0
+Subject: Re: [RFC 3/7] firmware: arm_scmi: Add QCOM vendor protocol
 Content-Language: en-US
-To: Jacopo Mondi <jacopo.mondi@ideasonboard.com>
-Cc: Linux Media Mailing List <linux-media@vger.kernel.org>,
- Rob Herring <robh+dt@kernel.org>,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Conor Dooley <conor+dt@kernel.org>,
- David Plowman <david.plowman@raspberrypi.com>,
- Naushir Patuck <naush@raspberrypi.com>,
- Nick Hollinghurst <nick.hollinghurst@raspberrypi.org>,
- Dave Stevenson <dave.stevenson@raspberrypi.com>,
- Tomi Valkeinen <tomi.valkeinen@ideasonboard.com>,
- Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
- Kieran Bingham <kieran.bingham@ideasonboard.com>,
- Sakari Ailus <sakari.ailus@iki.fi>, Hans Verkuil <hverkuil-cisco@xs4all.nl>,
- Mauro Carvalho Chehab <mchehab@kernel.org>, devicetree@vger.kernel.org
-References: <20240209164825.166800-1-jacopo.mondi@ideasonboard.com>
- <20240209164825.166800-7-jacopo.mondi@ideasonboard.com>
- <7f7979af-8eda-48cd-a334-bb64ddf5b9b8@linaro.org>
- <myfjzqh4wqa3lf4dcrgaswrarlh7sril6vz3mtnbz646rwxylt@oz75b5j5srot>
-From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
- 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
- D2GYIS41Kv4Isx2dEFh+/Q==
-In-Reply-To: <myfjzqh4wqa3lf4dcrgaswrarlh7sril6vz3mtnbz646rwxylt@oz75b5j5srot>
-Content-Type: text/plain; charset=UTF-8
+To: Sudeep Holla <sudeep.holla@arm.com>
+CC: <cristian.marussi@arm.com>, <andersson@kernel.org>,
+        <konrad.dybcio@linaro.org>, <jassisinghbrar@gmail.com>,
+        <robh+dt@kernel.org>, <krzysztof.kozlowski+dt@linaro.org>,
+        <linux-kernel@vger.kernel.org>, <linux-arm-msm@vger.kernel.org>,
+        <devicetree@vger.kernel.org>, <quic_rgottimu@quicinc.com>,
+        <quic_kshivnan@quicinc.com>, <conor+dt@kernel.org>,
+        Amir Vajid <avajid@quicinc.com>
+References: <20240117173458.2312669-1-quic_sibis@quicinc.com>
+ <20240117173458.2312669-4-quic_sibis@quicinc.com> <ZaleTVhYlUj6iufT@bogus>
+From: Sibi Sankar <quic_sibis@quicinc.com>
+In-Reply-To: <ZaleTVhYlUj6iufT@bogus>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
 Content-Transfer-Encoding: 7bit
+X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
+ nalasex01a.na.qualcomm.com (10.47.209.196)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-GUID: oCTeDu4KHpLNTHBb6cpoWQ_Z7h-34OZ0
+X-Proofpoint-ORIG-GUID: oCTeDu4KHpLNTHBb6cpoWQ_Z7h-34OZ0
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.272,Aquarius:18.0.1011,Hydra:6.0.619,FMLib:17.11.176.26
+ definitions=2024-02-12_06,2024-02-08_01,2023-05-22_02
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 adultscore=0
+ lowpriorityscore=0 malwarescore=0 impostorscore=0 bulkscore=0
+ mlxlogscore=999 phishscore=0 priorityscore=1501 mlxscore=0 suspectscore=0
+ spamscore=0 clxscore=1015 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.19.0-2401310000 definitions=main-2402120069
 
-On 12/02/2024 09:50, Jacopo Mondi wrote:
 
->>> +properties:
->>> +  compatible:
->>> +    const: raspberrypi,pispbe
+
+On 1/18/24 22:52, Sudeep Holla wrote:
+> On Wed, Jan 17, 2024 at 11:04:54PM +0530, Sibi Sankar wrote:
+>> From: Shivnandan Kumar <quic_kshivnan@quicinc.com>
 >>
->> Nothing more specific? No model name, no version? It's quite generic
->> compatible which in general should not be allowed. I would assume that
->> at least version of Pi could denote some sort of a model... unless
->> version is detectable?
+>> SCMI QCOM vendor protocol provides interface to communicate with SCMI
+>> controller and enable vendor specific features like bus scaling capable
+>> of running on it.
+
+Hey Sudeep,
+
+Thanks for taking time to review the series!
+
 >>
-> 
-> The driver matches on a version register and that should be enough to
-> handle quirks which are specific to an IP revision in the driver
-> itself.
-> 
-> Considering how minimal the integration with the SoC is (one clock, one
-> interrupt and one optional iommu reference) even if we'll get future
-> revisions of the SoC I don't think there will be any need to match on
-> a dedicated compatible for bindings-validation purposes.
-> 
-> However I understand that to be future-proof it's good practice to
-> allow a more flexible scheme, so we can have a generic fallback and a
-> revision-specific entry.
-> 
-> Would
-> 
->   compatible:
->     items:
->       - enum:
->         - raspberrypi,pipspbe-bcm2712
-
-bcm2712 is manufactured by Broadcom, not Raspberry Pi, so it should be
-rather Pi model?
-
->       - const: raspberrypi,pispbe
-> 
-> do in this case ?
-> 
-> Also, let's see what RPi think as they are certainly more informed
-> than me on what a good revision-specific match could be
-
-I am fine with auto-detection, though.
-
-...
-
->>> +
->>> +examples:
->>> +  - |
->>> +    #include <dt-bindings/interrupt-controller/arm-gic.h>
->>> +
->>> +    rpi1 {
+>> Signed-off-by: Shivnandan Kumar <quic_kshivnan@quicinc.com>
+>> Co-developed-by: Ramakrishna Gottimukkula <quic_rgottimu@quicinc.com>
+>> Signed-off-by: Ramakrishna Gottimukkula <quic_rgottimu@quicinc.com>
+>> Co-developed-by: Amir Vajid <avajid@quicinc.com>
+>> Signed-off-by: Amir Vajid <avajid@quicinc.com>
+>> Co-developed-by: Sibi Sankar <quic_sibis@quicinc.com>
+>> Signed-off-by: Sibi Sankar <quic_sibis@quicinc.com>
+>> ---
+>>   drivers/firmware/arm_scmi/Kconfig            |  11 ++
+>>   drivers/firmware/arm_scmi/Makefile           |   1 +
+>>   drivers/firmware/arm_scmi/qcom_scmi_vendor.c | 160 +++++++++++++++++++
+>>   include/linux/qcom_scmi_vendor.h             |  36 +++++
+>>   4 files changed, 208 insertions(+)
+>>   create mode 100644 drivers/firmware/arm_scmi/qcom_scmi_vendor.c
+>>   create mode 100644 include/linux/qcom_scmi_vendor.h
 >>
->> soc {
+>> diff --git a/drivers/firmware/arm_scmi/Kconfig b/drivers/firmware/arm_scmi/Kconfig
+>> index aa5842be19b2..86b5d6c18ec4 100644
+>> --- a/drivers/firmware/arm_scmi/Kconfig
+>> +++ b/drivers/firmware/arm_scmi/Kconfig
+>> @@ -180,4 +180,15 @@ config ARM_SCMI_POWER_CONTROL
+>>   	  called scmi_power_control. Note this may needed early in boot to catch
+>>   	  early shutdown/reboot SCMI requests.
 >>
+>> +config QCOM_SCMI_VENDOR_PROTOCOL
+>> +	tristate "Qualcomm Technologies, Inc. Qcom SCMI vendor Protocol"
+>> +	depends on ARM || ARM64 || COMPILE_TEST
+>> +	depends on ARM_SCMI_PROTOCOL
+>> +	help
+>> +	  The SCMI QCOM vendor protocol provides interface to communicate with SCMI
+>> +	  controller and enable vendor specific features like bus scaling.
+>> +
 > 
-> Are you sure ? This will only ever live in the 'rp1' node.
+> I assume it will include all the Qualcomm specific vendor protocol
+> handling here. Not sure how it it implemented across different platforms
+> and but I already assume different platforms will use same protocol id
+> for different things and this implementation will abstract all those
+> details.
 
-What is "rp1" node? Does not look like a generic name.
+Yes, that's what we are going for.
 
+> 
+>> diff --git a/drivers/firmware/arm_scmi/qcom_scmi_vendor.c b/drivers/firmware/arm_scmi/qcom_scmi_vendor.c
+>> new file mode 100644
+>> index 000000000000..878b99f0d1ef
+>> --- /dev/null
+>> +++ b/drivers/firmware/arm_scmi/qcom_scmi_vendor.c
+>> @@ -0,0 +1,160 @@
+>> +// SPDX-License-Identifier: GPL-2.0-only
+>> +/*
+>> + * Copyright (c) 2024, The Linux Foundation. All rights reserved.
+>> + */
+>> +
+>> +#include <linux/qcom_scmi_vendor.h>
+>> +
+>> +#include "common.h"
+>> +
+>> +#define	EXTENDED_MSG_ID			0
+> 
+> This gives me no clue what this means ?
+> 
+>> +#define	SCMI_MAX_TX_RX_SIZE		128
+>> +#define	PROTOCOL_PAYLOAD_SIZE		16
+>> +#define	SET_PARAM			0x10
+> 
+> I assume these are the actual message IDs ? Any idea why 0x0-0xF is skipped ?
+> I assume atleast the required 0x0-0x2 are implemented.
+
+Yup 0x0-0x2 should be implemented. I'll have to get info on why the rest
+were skipped. Will add comments detailing the extended msg id as well.
 
 > 
->>> +        #address-cells = <2>;
->>> +        #size-cells = <2>;
->>> +
->>> +        isp: pisp_be@880000  {
->>
->> Node names should be generic. See also an explanation and list of
->> examples (not exhaustive) in DT specification:
->> https://devicetree-specification.readthedocs.io/en/latest/chapter2-devicetree-basics.html#generic-names-recommendation
->> so: isp@
->>
->> and drop unused label
+>> +#define	GET_PARAM			0x11
+>> +#define	START_ACTIVITY			0x12
+>> +#define	STOP_ACTIVITY			0x13
 > 
-> ok
+> In general, good to add description of these in the implementation here
+> or under Documentation or a pointer to the url where I can get the info.
+> If documenting within the kernel, please use SCMI spec format as it may
+> be easy to follow the same pattern even in the vendor protocols.
 > 
-> Thanks
->   j
-> 
-> PS:
-> on v6.8-rc1 I'm seeing
-> 
-> LINT    Documentation/devicetree/bindings
-> usage: yamllint [-h] [-] [-c CONFIG_FILE | -d CONFIG_DATA] [--list-files]
->                 [-f {parsable,standard,colored,github,auto}] [-s] [--no-warnings] [-v]
->                 [FILE_OR_DIR ...]
-> 
-> when running dt_binding_check
-> 
-> My setup should be reasonably up-to-date, is it me only seeing this ?
 
-I think you need to update your yamllint.
+ack
 
-Best regards,
-Krzysztof
+>> +
+>> +static int qcom_scmi_set_param(const struct scmi_protocol_handle *ph, void *buf, u64 algo_str,
+>> +			       u32 param_id, size_t size)
+>> +{
+>> +	int ret = -EINVAL;
+>> +	struct scmi_xfer *t;
+>> +	u32 *msg;
+>> +
+>> +	if (!ph || !ph->xops)
+>> +		return ret;
+>> +
+>> +	ret = ph->xops->xfer_get_init(ph, SET_PARAM, size + PROTOCOL_PAYLOAD_SIZE,
+>> +				      SCMI_MAX_TX_RX_SIZE, &t);
+>> +	if (ret)
+>> +		return ret;
+>> +
+>> +	msg = t->tx.buf;
+>> +	*msg++ = cpu_to_le32(EXTENDED_MSG_ID);
+>> +	*msg++ = cpu_to_le32(algo_str & GENMASK(31, 0));
+>> +	*msg++ = cpu_to_le32((algo_str & GENMASK(63, 32)) >> 32);
+>> +	*msg++ = cpu_to_le32(param_id);
+>> +	memcpy(msg, buf, size);
+>> +	ret = ph->xops->do_xfer(ph, t);
+>> +	ph->xops->xfer_put(ph, t);
+>> +
+>> +	return ret;
+>> +}
+>> +
+>> +static int qcom_scmi_get_param(const struct scmi_protocol_handle *ph, void *buf, u64 algo_str,
+>> +			       u32 param_id, size_t tx_size, size_t rx_size)
+>> +{
+>> +	int ret = -EINVAL;
+>> +	struct scmi_xfer *t;
+>> +	u32 *msg;
+>> +
+>> +	if (!ph || !ph->xops || !buf)
+>> +		return ret;
+>> +
+>> +	ret = ph->xops->xfer_get_init(ph, GET_PARAM, tx_size + PROTOCOL_PAYLOAD_SIZE,
+>> +				      SCMI_MAX_TX_RX_SIZE, &t);
+>> +	if (ret)
+>> +		return ret;
+>> +
+>> +	msg = t->tx.buf;
+>> +	*msg++ = cpu_to_le32(EXTENDED_MSG_ID);
+>> +	*msg++ = cpu_to_le32(algo_str & GENMASK(31, 0));
+>> +	*msg++ = cpu_to_le32((algo_str & GENMASK(63, 32)) >> 32);
+>> +	*msg++ = cpu_to_le32(param_id);
+>> +	memcpy(msg, buf, tx_size);
+>> +	ret = ph->xops->do_xfer(ph, t);
+>> +	if (t->rx.len > rx_size) {
+>> +		pr_err("SCMI received buffer size %zu is more than expected size %zu\n",
+>> +		       t->rx.len, rx_size);
+>> +		return -EMSGSIZE;
+>> +	}
+>> +	memcpy(buf, t->rx.buf, t->rx.len);
+>> +	ph->xops->xfer_put(ph, t);
+>> +
+>> +	return ret;
+>> +}
+>> +
+>> +static int qcom_scmi_start_activity(const struct scmi_protocol_handle *ph,
+>> +				    void *buf, u64 algo_str, u32 param_id, size_t size)
+>> +{
+>> +	int ret = -EINVAL;
+>> +	struct scmi_xfer *t;
+>> +	u32 *msg;
+>> +
+>> +	if (!ph || !ph->xops)
+>> +		return ret;
+>> +
+>> +	ret = ph->xops->xfer_get_init(ph, START_ACTIVITY, size + PROTOCOL_PAYLOAD_SIZE,
+>> +				      SCMI_MAX_TX_RX_SIZE, &t);
+>> +	if (ret)
+>> +		return ret;
+>> +
+>> +	msg = t->tx.buf;
+>> +	*msg++ = cpu_to_le32(EXTENDED_MSG_ID);
+>> +	*msg++ = cpu_to_le32(algo_str & GENMASK(31, 0));
+>> +	*msg++ = cpu_to_le32((algo_str & GENMASK(63, 32)) >> 32);
+>> +	*msg++ = cpu_to_le32(param_id);
+>> +	memcpy(msg, buf, size);
+>> +	ret = ph->xops->do_xfer(ph, t);
+>> +	ph->xops->xfer_put(ph, t);
+>> +
+>> +	return ret;
+>> +}
+>> +
+>> +static int qcom_scmi_stop_activity(const struct scmi_protocol_handle *ph, void *buf, u64 algo_str,
+>> +				   u32 param_id, size_t size)
+>> +{
+>> +	int ret = -EINVAL;
+>> +	struct scmi_xfer *t;
+>> +	u32 *msg;
+>> +
+>> +	if (!ph || !ph->xops)
+>> +		return ret;
+>> +
+>> +	ret = ph->xops->xfer_get_init(ph, STOP_ACTIVITY, size + PROTOCOL_PAYLOAD_SIZE,
+>> +				      SCMI_MAX_TX_RX_SIZE, &t);
+>> +	if (ret)
+>> +		return ret;
+>> +
+>> +	msg = t->tx.buf;
+>> +	*msg++ = cpu_to_le32(EXTENDED_MSG_ID);
+>> +	*msg++ = cpu_to_le32(algo_str & GENMASK(31, 0));
+>> +	*msg++ = cpu_to_le32((algo_str & GENMASK(63, 32)) >> 32);
+>> +	*msg++ = cpu_to_le32(param_id);
+>> +	memcpy(msg, buf, size);
+>> +	ret = ph->xops->do_xfer(ph, t);
+>> +	ph->xops->xfer_put(ph, t);
+>> +
+>> +	return ret;
+>> +}
+>> +
+>> +static struct qcom_scmi_vendor_ops qcom_proto_ops = {
+>> +	.set_param = qcom_scmi_set_param,
+>> +	.get_param = qcom_scmi_get_param,
+>> +	.start_activity = qcom_scmi_start_activity,
+>> +	.stop_activity = qcom_scmi_stop_activity,
+>> +};
+>> +
+>> +static int qcom_scmi_vendor_protocol_init(const struct scmi_protocol_handle *ph)
+>> +{
+>> +	u32 version;
+>> +
+>> +	ph->xops->version_get(ph, &version);
+>> +
+>> +	dev_info(ph->dev, "qcom scmi version %d.%d\n",
+>> +		 PROTOCOL_REV_MAJOR(version), PROTOCOL_REV_MINOR(version));
+>> +
+>> +	return 0;
+>> +}
+>> +
+>> +static const struct scmi_protocol qcom_scmi_vendor = {
+>> +	.id = QCOM_SCMI_VENDOR_PROTOCOL,
+> 
+> As Cristian might have pointed out, this will conflict and we need better
+> matching to ensure each vendor and protocols with each implementation has
+> unique matching mechanism so that only one match occurs per protocol on
+> any platform.
 
+Ack.
+
+Also as mentioned in another thread this will be the only implementation
+of the 0x80 vendor protocol upstream given that no other SoC actually
+shipped with it enabled (expect for sc7180 which already has an
+alternative dvfs solution upstream).
+
+-Sibi
+
+> 
 
