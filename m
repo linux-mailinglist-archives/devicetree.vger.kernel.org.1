@@ -1,277 +1,175 @@
-Return-Path: <devicetree+bounces-40767-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-40770-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7E8EA8515FE
-	for <lists+devicetree@lfdr.de>; Mon, 12 Feb 2024 14:53:40 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 70C79851615
+	for <lists+devicetree@lfdr.de>; Mon, 12 Feb 2024 14:57:11 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 099C61F21E71
-	for <lists+devicetree@lfdr.de>; Mon, 12 Feb 2024 13:53:40 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 29989286B06
+	for <lists+devicetree@lfdr.de>; Mon, 12 Feb 2024 13:57:10 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8FAB94D5BF;
-	Mon, 12 Feb 2024 13:44:50 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2284E3A8DB;
+	Mon, 12 Feb 2024 13:51:33 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="FEuE7F60"
+	dkim=pass (2048-bit key) header.d=salutedevices.com header.i=@salutedevices.com header.b="U1lEQSgC"
 X-Original-To: devicetree@vger.kernel.org
-Received: from relay9-d.mail.gandi.net (relay9-d.mail.gandi.net [217.70.183.199])
+Received: from mx1.sberdevices.ru (mx1.sberdevices.ru [37.18.73.165])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 85FD9487A7;
-	Mon, 12 Feb 2024 13:44:47 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.70.183.199
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7814A3A1CA;
+	Mon, 12 Feb 2024 13:51:26 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=37.18.73.165
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1707745490; cv=none; b=ShYyvrxGXnEPzX+ndFtlxXFbWIlynLBMmov7yhnfwI/Xlws1sJ5CFYkmD3X8JV88lqS06WG+VjLyM42ilf9ZX4bxyYxUMMIb8zVe1LDBIE66puAPeqIZ7RhEFX6PRHqHRt19dwSJkBLYqO92ypcEnq34aOD087g6+mj3kJb27iI=
+	t=1707745893; cv=none; b=u3boSUVdJks8uKm5337jo5I1zt8j6DngtU+AO6k2cRbLs4oFr+tHJu2qrU89Omn+LXxl5oNS76rchCqhkUQ8QgsNMhJgeuAVxvrdUVw9rxduJWQoe3nRrGvTr4IODu1/uO4aFIRa1RQ6rIn/cUUJFOkpxlgYSFOTdYbid99ZMRI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1707745490; c=relaxed/simple;
-	bh=AOujWblAL/Eb3SoFX/DXZmLu4by42Gj1/JOw1DWfuS8=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=fySjpcaL2IxQt05lXlmeghC7zT53+XBxvoj4/Z5pJTHBLrJftkSs89IUs35S4qzMfI9SO7rCOt6qo4WQKMCsQlsKCHyLm86qNqyTI7d29iv+UKRbI3uOJyRfuUkDT9XxJsLMHNw3Lpw+opET5zXdXadCGYDaAbXIldD53C4lCMs=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=FEuE7F60; arc=none smtp.client-ip=217.70.183.199
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
-Received: by mail.gandi.net (Postfix) with ESMTPSA id E59C7FF80D;
-	Mon, 12 Feb 2024 13:44:44 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
-	t=1707745485;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=ntwnUlVjSIXSSPhME4Hzl2L0UVU1UFUtEinrPzePqbc=;
-	b=FEuE7F60GbzlKRHPPJBWauRvqMcuSgV8RV3aIUMUmQyFbdDZBR6GhUc1Icb5cwl4iLA6Wa
-	sG+z4mYAo0SPRU5zatybX2y2De23/gGgNld179CWO46ltbv4YBcOiNVkD07Kjs/i1vCi64
-	mCzPyQZ3KTYcb4UHvLPAsjb7t9GEemSpU7ctBusSKKeC80/u86AdcQ/QbhmdQD/uANZGn3
-	5vlQswfP609J3hRyVVzBonv0Mz9u/WM6jZr6LOm2mKuwN60aCMbe6qXIMqiNgAxJiC1Lup
-	gWZjBn5LqwmE0Fvw9Y3GwX/eNkVvvvk1uuQHaTO++nmygxsej7TK4RnFOQn2KA==
-From: =?utf-8?q?Th=C3=A9o_Lebrun?= <theo.lebrun@bootlin.com>
-Date: Mon, 12 Feb 2024 14:44:44 +0100
-Subject: [PATCH v6 13/13] MIPS: mobileye: eyeq5: add pinctrl node & pinmux
- function nodes
+	s=arc-20240116; t=1707745893; c=relaxed/simple;
+	bh=DPPrL6sv7FymgMmZSaIwoTtfCNvIn0EnMIyUPOcCUbk=;
+	h=From:To:CC:Subject:Date:Message-ID:MIME-Version:Content-Type; b=dcBZWogIYf38gkAR3nlGGlcnjXHC/t3+4eF3rLJvZ+0qs3ZYUlm8oPgxj98Y5nJjR1kzVSsr+P7+vCxE74S7rJvJvVzK5UBoNikUV0dExpzVRCEmOZLIBN+bquqONa8rAAZ5GuMy3qAeyeQQ+cjormDnW/M1JF2dqmEPWYpKiJE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=salutedevices.com; spf=pass smtp.mailfrom=salutedevices.com; dkim=pass (2048-bit key) header.d=salutedevices.com header.i=@salutedevices.com header.b=U1lEQSgC; arc=none smtp.client-ip=37.18.73.165
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=salutedevices.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=salutedevices.com
+Received: from p-infra-ksmg-sc-msk01 (localhost [127.0.0.1])
+	by mx1.sberdevices.ru (Postfix) with ESMTP id BDB0F100003;
+	Mon, 12 Feb 2024 16:51:24 +0300 (MSK)
+DKIM-Filter: OpenDKIM Filter v2.11.0 mx1.sberdevices.ru BDB0F100003
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=salutedevices.com;
+	s=mail; t=1707745884;
+	bh=8uGK4t+37P5OiYU6HxCSJUlVAKIjJ305xkFCbBQX5D0=;
+	h=From:To:Subject:Date:Message-ID:MIME-Version:Content-Type:From;
+	b=U1lEQSgC5CFot640GHE+jxmqmzBVV06rooY9L3FsqcFUQhKvrsT9jan+4LzoHu9rz
+	 NnRu+Ci4QOW1yNW6ZHC4/rRX4/mAM/2N8Ild/yUpnsnMOCy1F64cfVTGftDDv3UzeU
+	 a3KuTbt7VuJjrMNNdxkS/LfuZVqW396P8XimL19o1QRt9tNoi2hnk3PM3i/FUAbUkQ
+	 OuS1itdXXpKOaewKQ7KoY1oCttB6Dfc2ZR29Y7TEzaoJUNvhZp+ZCB00PEi9lBBoi2
+	 fdxEJFgXiC+jjLXRzJjOZdhpjSp2iSraAno1RQTachROvWxXzYztSDgO778TAA33Qf
+	 +9Gty+Sv8SmqA==
+Received: from smtp.sberdevices.ru (p-i-exch-sc-m01.sberdevices.ru [172.16.192.107])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+	(No client certificate requested)
+	by mx1.sberdevices.ru (Postfix) with ESMTPS;
+	Mon, 12 Feb 2024 16:51:24 +0300 (MSK)
+Received: from user-A520M-DS3H.sberdevices.ru (100.64.160.123) by
+ p-i-exch-sc-m01.sberdevices.ru (172.16.192.107) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.1118.40; Mon, 12 Feb 2024 16:51:22 +0300
+From: Alexey Romanov <avromanov@salutedevices.com>
+To: <neil.armstrong@linaro.org>, <clabbe@baylibre.com>,
+	<herbert@gondor.apana.org.au>, <davem@davemloft.net>, <robh+dt@kernel.org>,
+	<krzysztof.kozlowski+dt@linaro.org>, <conor+dt@kernel.org>,
+	<khilman@baylibre.com>, <jbrunet@baylibre.com>,
+	<martin.blumenstingl@googlemail.com>, <vadim.fedorenko@linux.dev>
+CC: <linux-crypto@vger.kernel.org>, <linux-amlogic@lists.infradead.org>,
+	<linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>,
+	<linux-arm-kernel@lists.infradead.org>, <kernel@salutedevices.com>, Alexey
+ Romanov <avromanov@salutedevices.com>
+Subject: [PATCH v4 00/20] Support more Amlogic SoC families in crypto driver
+Date: Mon, 12 Feb 2024 16:50:48 +0300
+Message-ID: <20240212135108.549755-1-avromanov@salutedevices.com>
+X-Mailer: git-send-email 2.34.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 8bit
-Message-Id: <20240212-mbly-clk-v6-13-c46fa1f93839@bootlin.com>
-References: <20240212-mbly-clk-v6-0-c46fa1f93839@bootlin.com>
-In-Reply-To: <20240212-mbly-clk-v6-0-c46fa1f93839@bootlin.com>
-To: Gregory CLEMENT <gregory.clement@bootlin.com>, 
- Michael Turquette <mturquette@baylibre.com>, 
- Stephen Boyd <sboyd@kernel.org>, Rob Herring <robh+dt@kernel.org>, 
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, 
- Conor Dooley <conor+dt@kernel.org>, 
- Thomas Bogendoerfer <tsbogend@alpha.franken.de>, 
- Linus Walleij <linus.walleij@linaro.org>, 
- =?utf-8?q?Rafa=C5=82_Mi=C5=82ecki?= <rafal@milecki.pl>, 
- Philipp Zabel <p.zabel@pengutronix.de>
-Cc: Vladimir Kondratiev <vladimir.kondratiev@mobileye.com>, 
- linux-mips@vger.kernel.org, linux-clk@vger.kernel.org, 
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
- Thomas Petazzoni <thomas.petazzoni@bootlin.com>, 
- Tawfik Bayouk <tawfik.bayouk@mobileye.com>, linux-gpio@vger.kernel.org, 
- =?utf-8?q?Th=C3=A9o_Lebrun?= <theo.lebrun@bootlin.com>
-X-Mailer: b4 0.12.4
-X-GND-Sasl: theo.lebrun@bootlin.com
+Content-Type: text/plain
+X-ClientProxiedBy: p-i-exch-sc-m01.sberdevices.ru (172.16.192.107) To
+ p-i-exch-sc-m01.sberdevices.ru (172.16.192.107)
+X-KSMG-Rule-ID: 10
+X-KSMG-Message-Action: clean
+X-KSMG-AntiSpam-Lua-Profiles: 183368 [Feb 12 2024]
+X-KSMG-AntiSpam-Version: 6.1.0.3
+X-KSMG-AntiSpam-Envelope-From: avromanov@salutedevices.com
+X-KSMG-AntiSpam-Rate: 0
+X-KSMG-AntiSpam-Status: not_detected
+X-KSMG-AntiSpam-Method: none
+X-KSMG-AntiSpam-Auth: dkim=none
+X-KSMG-AntiSpam-Info: LuaCore: 7 0.3.7 6d6bf5bd8eea7373134f756a2fd73e9456bb7d1a, {Tracking_uf_ne_domains}, {Tracking_from_domain_doesnt_match_to}, d41d8cd98f00b204e9800998ecf8427e.com:7.1.1;gist.github.com:7.1.1;100.64.160.123:7.1.2;smtp.sberdevices.ru:7.1.1,5.0.1;lore.kernel.org:7.1.1;salutedevices.com:7.1.1;127.0.0.199:7.1.2, FromAlignment: s, ApMailHostAddress: 100.64.160.123
+X-MS-Exchange-Organization-SCL: -1
+X-KSMG-AntiSpam-Interceptor-Info: scan successful
+X-KSMG-AntiPhishing: Clean, bases: 2024/02/12 08:55:00
+X-KSMG-LinksScanning: Clean, bases: 2024/02/12 08:55:00
+X-KSMG-AntiVirus: Kaspersky Secure Mail Gateway, version 2.0.1.6960, bases: 2024/02/12 07:49:00 #23556813
+X-KSMG-AntiVirus-Status: Clean, skipped
 
-Pins on this platform have two functions: GPIO or something-else. We
-create function nodes for each something-else based on functions.
+Hello!
 
-UART nodes are present in the platform devicetree. Add pinctrl to them
-now that the pin controller is supported.
+This patchset expand the funcionality of the Amlogic
+crypto driver by adding support for more SoC families:
+AXG, G12A, G12B, SM1, A1, S4.
 
-Signed-off-by: Théo Lebrun <theo.lebrun@bootlin.com>
+Also specify and enable crypto node in device tree
+for reference Amlogic devices.
+
+Tested on AXG, G12A/B, SM1, A1 and S4 devices via
+custom tests [1] and tcrypt module.
+
 ---
- arch/mips/boot/dts/mobileye/eyeq5-pins.dtsi | 125 ++++++++++++++++++++++++++++
- arch/mips/boot/dts/mobileye/eyeq5.dtsi      |  13 +++
- 2 files changed, 138 insertions(+)
 
-diff --git a/arch/mips/boot/dts/mobileye/eyeq5-pins.dtsi b/arch/mips/boot/dts/mobileye/eyeq5-pins.dtsi
-new file mode 100644
-index 000000000000..42acda13e57a
---- /dev/null
-+++ b/arch/mips/boot/dts/mobileye/eyeq5-pins.dtsi
-@@ -0,0 +1,125 @@
-+// SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-+
-+/*
-+ * Default pin configuration for Mobileye EyeQ5 boards. We mostly create one
-+ * pin configuration node per function.
-+ */
-+
-+&pinctrl {
-+	timer0_pins: timer0-pins {
-+		function = "timer0";
-+		pins = "PA0", "PA1";
-+	};
-+	timer1_pins: timer1-pins {
-+		function = "timer1";
-+		pins = "PA2", "PA3";
-+	};
-+	timer2_pins: timer2-pins {
-+		function = "timer2";
-+		pins = "PA4", "PA5";
-+	};
-+	pps0_pins: pps0-pin {
-+		function = "timer2";
-+		pins = "PA4";
-+	};
-+	pps1_pins: pps1-pin {
-+		function = "timer2";
-+		pins = "PA5";
-+	};
-+	timer5_ext_pins: timer5-ext-pins {
-+		function = "timer5";
-+		pins = "PA6", "PA7", "PA8", "PA9";
-+	};
-+	timer5_ext_input_pins: timer5-ext-input-pins {
-+		function = "timer5";
-+		pins = "PA6", "PA7";
-+	};
-+	timer5_ext_incap_a_pins: timer5-ext-incap-a-pin {
-+		function = "timer5";
-+		pins = "PA6";
-+	};
-+	timer5_ext_incap_b_pins: timer5-ext-incap-b-pin {
-+		function = "timer5";
-+		pins = "PA7";
-+	};
-+	can0_pins: can0-pins {
-+		function = "can0";
-+		pins = "PA14", "PA15";
-+	};
-+	can1_pins: can1-pins {
-+		function = "can1";
-+		pins = "PA16", "PA17";
-+	};
-+	uart0_pins: uart0-pins {
-+		function = "uart0";
-+		pins = "PA10", "PA11";
-+	};
-+	uart1_pins: uart1-pins {
-+		function = "uart1";
-+		pins = "PA12", "PA13";
-+	};
-+	spi0_pins: spi0-pins {
-+		function = "spi0";
-+		pins = "PA18", "PA19", "PA20", "PA21", "PA22";
-+	};
-+	spi1_pins: spi1-pins {
-+		function = "spi1";
-+		pins = "PA23", "PA24", "PA25", "PA26", "PA27";
-+	};
-+	spi1_slave_pins: spi1-slave-pins {
-+		function = "spi1";
-+		pins = "PA24", "PA25", "PA26";
-+	};
-+	refclk0_pins: refclk0-pin {
-+		function = "refclk0";
-+		pins = "PA28";
-+	};
-+	timer3_pins: timer3-pins {
-+		function = "timer3";
-+		pins = "PB0", "PB1";
-+	};
-+	timer4_pins: timer4-pins {
-+		function = "timer4";
-+		pins = "PB2", "PB3";
-+	};
-+	timer6_ext_pins: timer6-ext-pins {
-+		function = "timer6";
-+		pins = "PB4", "PB5", "PB6", "PB7";
-+	};
-+	timer6_ext_input_pins: timer6-ext-input-pins {
-+		function = "timer6";
-+		pins = "PB4", "PB5";
-+	};
-+	timer6_ext_incap_a_pins: timer6-ext-incap-a-pin {
-+		function = "timer6";
-+		pins = "PB4";
-+	};
-+	timer6_ext_incap_b_pins: timer6-ext-incap-b-pin {
-+		function = "timer6";
-+		pins = "PB5";
-+	};
-+	can2_pins: can2-pins {
-+		function = "can2";
-+		pins = "PB10", "PB11";
-+	};
-+	uart2_pins: uart2-pins {
-+		function = "uart2";
-+		pins = "PB8", "PB9";
-+	};
-+	spi2_pins: spi2-pins {
-+		function = "spi2";
-+		pins = "PB12", "PB13", "PB14", "PB15", "PB16";
-+	};
-+	spi3_pins: spi3-pins {
-+		function = "spi3";
-+		pins = "PB17", "PB18", "PB19", "PB20", "PB21";
-+	};
-+	spi3_slave_pins: spi3-slave-pins {
-+		function = "spi3";
-+		pins = "PB18", "PB19", "PB20";
-+	};
-+	mclk0_pins: mclk0-pin {
-+		function = "mclk0";
-+		pins = "PB22";
-+	};
-+};
-diff --git a/arch/mips/boot/dts/mobileye/eyeq5.dtsi b/arch/mips/boot/dts/mobileye/eyeq5.dtsi
-index 76935f237ab5..8d4f65ec912d 100644
---- a/arch/mips/boot/dts/mobileye/eyeq5.dtsi
-+++ b/arch/mips/boot/dts/mobileye/eyeq5.dtsi
-@@ -79,6 +79,8 @@ uart0: serial@800000 {
- 			clocks  = <&uart_clk>, <&occ_periph>;
- 			clock-names = "uartclk", "apb_pclk";
- 			resets = <&reset 0 10>;
-+			pinctrl-names = "default";
-+			pinctrl-0 = <&uart0_pins>;
- 		};
- 
- 		uart1: serial@900000 {
-@@ -90,6 +92,8 @@ uart1: serial@900000 {
- 			clocks  = <&uart_clk>, <&occ_periph>;
- 			clock-names = "uartclk", "apb_pclk";
- 			resets = <&reset 0 11>;
-+			pinctrl-names = "default";
-+			pinctrl-0 = <&uart1_pins>;
- 		};
- 
- 		uart2: serial@a00000 {
-@@ -101,6 +105,8 @@ uart2: serial@a00000 {
- 			clocks  = <&uart_clk>, <&occ_periph>;
- 			clock-names = "uartclk", "apb_pclk";
- 			resets = <&reset 0 12>;
-+			pinctrl-names = "default";
-+			pinctrl-0 = <&uart2_pins>;
- 		};
- 
- 		olb: system-controller@e00000 {
-@@ -125,6 +131,11 @@ clocks: clock-controller@e0002c {
- 				clocks = <&xtal>;
- 				clock-names = "ref";
- 			};
-+
-+			pinctrl: pinctrl@e000b0 {
-+				compatible = "mobileye,eyeq5-pinctrl";
-+				reg = <0x0b0 0x30>;
-+			};
- 		};
- 
- 		gic: interrupt-controller@140000 {
-@@ -149,3 +160,5 @@ timer {
- 		};
- 	};
- };
-+
-+#include "eyeq5-pins.dtsi"
+Changes V1 -> V2 [2]:
+
+- Rebased over linux-next.
+- Adjusted device tree bindings description.
+- A1 and S4 dts use their own compatible, which is a G12 fallback.
+
+Changes V2 -> V3 [3]:
+
+- Fix errors in dt-bindings and device tree.
+- Add new field in platform data, which determines
+whether clock controller should be used for crypto IP.
+- Place back MODULE_DEVICE_TABLE.
+- Correct commit messages.
+
+Changes V3 -> V4 [4]:
+
+- Update dt-bindings as per Krzysztof Kozlowski comments.
+- Fix bisection: get rid of compiler errors in some patches.
+
+Links:
+  - [1] https://gist.github.com/mRrvz/3fb8943a7487ab7b943ec140706995e7
+  - [2] https://lore.kernel.org/all/20240110201216.18016-1-avromanov@salutedevices.com/
+  - [3] https://lore.kernel.org/all/20240123165831.970023-1-avromanov@salutedevices.com/
+  - [4] https://lore.kernel.org/all/20240205155521.1795552-1-avromanov@salutedevices.com/
+
+Alexey Romanov (20):
+  drivers: crypto: meson: don't hardcode IRQ count
+  drviers: crypto: meson: add platform data
+  drivers: crypto: meson: make CLK controller optional
+  drivers: crypto: meson: add MMIO helpers
+  drivers: crypto: meson: move get_engine_number()
+  drivers: crypto: meson: drop status field from meson_flow
+  drivers: crypto: meson: move algs definition and cipher API to
+    cipher.c
+  drivers: crypto: meson: cleanup defines
+  drivers: crypto: meson: process more than MAXDESCS descriptors
+  drivers: crypto: meson: avoid kzalloc in engine thread
+  drivers: crypto: meson: introduce hasher
+  drivers: crypto: meson: add support for AES-CTR
+  drivers: crypto: meson: use fallback for 192-bit keys
+  drivers: crypto: meson: add support for G12-series
+  drivers: crypto: meson: add support for AXG-series
+  dt-bindings: crypto: meson: support new SoC's
+  arch: arm64: dts: meson: a1: add crypto node
+  arch: arm64: dts: meson: s4: add crypto node
+  arch: arm64: dts: meson: g12: add crypto node
+  arch: arm64: dts: meson: axg: add crypto node
+
+ .../bindings/crypto/amlogic,gxl-crypto.yaml   |  43 +-
+ arch/arm64/boot/dts/amlogic/meson-a1.dtsi     |   7 +
+ arch/arm64/boot/dts/amlogic/meson-axg.dtsi    |   6 +
+ .../boot/dts/amlogic/meson-g12-common.dtsi    |   6 +
+ arch/arm64/boot/dts/amlogic/meson-s4.dtsi     |   6 +
+ drivers/crypto/amlogic/Makefile               |   2 +-
+ drivers/crypto/amlogic/amlogic-gxl-cipher.c   | 602 ++++++++++++------
+ drivers/crypto/amlogic/amlogic-gxl-core.c     | 290 +++++----
+ drivers/crypto/amlogic/amlogic-gxl-hasher.c   | 452 +++++++++++++
+ drivers/crypto/amlogic/amlogic-gxl.h          | 117 +++-
+ 10 files changed, 1183 insertions(+), 348 deletions(-)
+ create mode 100644 drivers/crypto/amlogic/amlogic-gxl-hasher.c
 
 -- 
-2.43.0
+2.34.1
 
 
