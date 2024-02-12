@@ -1,247 +1,328 @@
-Return-Path: <devicetree+bounces-40725-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-40726-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7375785151F
-	for <lists+devicetree@lfdr.de>; Mon, 12 Feb 2024 14:30:20 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4BA6D851525
+	for <lists+devicetree@lfdr.de>; Mon, 12 Feb 2024 14:31:04 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 9813B1C224B3
-	for <lists+devicetree@lfdr.de>; Mon, 12 Feb 2024 13:30:19 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 00DAC281D90
+	for <lists+devicetree@lfdr.de>; Mon, 12 Feb 2024 13:31:03 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B4D373CF46;
-	Mon, 12 Feb 2024 13:16:02 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B162C3CF5A;
+	Mon, 12 Feb 2024 13:16:34 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="HKqs7Zx2"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="YBQqvgd8"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pf1-f179.google.com (mail-pf1-f179.google.com [209.85.210.179])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 466F03C473
-	for <devicetree@vger.kernel.org>; Mon, 12 Feb 2024 13:16:00 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.179
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8AA613C499;
+	Mon, 12 Feb 2024 13:16:34 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1707743762; cv=none; b=OqGHVKPIex9K9wo3d24IDk36yMutlG12eIAOLSFWbXbRzaa+g3dgAqGyylK8nShRauInQcLmdY5yhDyN0pvhQDcZhFeCuDFffU+TYA76NuHIdTC5BxsnC36vJ8EUAdCHavoV3crOn/qvja/UmWhFi5HIR2YncJ6pq9YheWzmo0c=
+	t=1707743794; cv=none; b=JxQFYiAeVrT2BsF8LBDwBUGH3MwK3lqp6m+/5rlGiB6KuZmQiHtrxq95iZY6gVgniZ1z1+3ks6HToIe88aykwj6fSooKpTR5ntdG8LCPzaRubrHf1ltIkXUZlj1q58AVfkOC1C/Ad4i7Zv4/AkeB1SjE98h0t6kLFcSxyrPlFLU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1707743762; c=relaxed/simple;
-	bh=54HbHFwCCbg3M+0SBKCgliN6Fh7ZVO5xk5OXJIIAeL0=;
+	s=arc-20240116; t=1707743794; c=relaxed/simple;
+	bh=9sevq/yqb1NYFYOfIyOHJePYkgdalV/0E1nKUcbcKNc=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=bDAXolv6yj9joRFSY3KAwu6OVM056iDUCkxeERoD6f3mxyIFe/qDrmv1UPpmcME0PjdGk7ffUHT+SJC8NJlrhoFMzAvmg2aUAEcHghUvlTHsywTJ6Jl+T6AFup2ust8IJ298iXAPuhw+ax+oMD/g4QX6tUHnSU7viKM+aJ0a+a8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=HKqs7Zx2; arc=none smtp.client-ip=209.85.210.179
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-pf1-f179.google.com with SMTP id d2e1a72fcca58-6e0ce573902so677016b3a.1
-        for <devicetree@vger.kernel.org>; Mon, 12 Feb 2024 05:16:00 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1707743759; x=1708348559; darn=vger.kernel.org;
-        h=in-reply-to:content-transfer-encoding:content-disposition
-         :mime-version:references:message-id:subject:cc:to:from:date:from:to
-         :cc:subject:date:message-id:reply-to;
-        bh=OeXYUde/gNeerB7H1YgPniVL9J1+gk3sOmdNHfWxiOI=;
-        b=HKqs7Zx2UPHK7N7T7o+TILjKcFQ/dWsOJJM79yiXosfgDMt29amrtIoeBUvLMAmoLC
-         SzfvmiGUDqfwgmsPBH8RBpQgGgGwZpgXDFMyM7SF+KVBeibJkxuuwrAnhp0ix0pZIrK3
-         9ztUrigwfrU0rrEkKi+qzogmpdw2tfq+Yg5P47sj0EexSnl+8KHu7ZbZxautSu/mrwps
-         wAyszKHBZQZ2s6RMliP1pnbTLdjiL07xPl23SPpA6etEE/+SuYo8mmgrycye2hti24jA
-         UYnvEvWhWRjMZttVkS6UwMzKVg7MW5xBifT6iJn+XQTtynAEC40Qdj7zERFxQoOE9f5T
-         gEqw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1707743759; x=1708348559;
-        h=in-reply-to:content-transfer-encoding:content-disposition
-         :mime-version:references:message-id:subject:cc:to:from:date
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=OeXYUde/gNeerB7H1YgPniVL9J1+gk3sOmdNHfWxiOI=;
-        b=gxztkOYM9y/uMShO+HkWXPblmwCQhiI8UuD3zDuVEYlfBDZkCWPBzv+qw/DwNWudEC
-         MEtnqa+4fG4I0WyqF+ZcSEYcMoazDEv7uBp+ugajcQ2ffsoNuEnWJUi0hiZzlxNLYr67
-         Fkc0Kp5okGGnC+ivQOwC40qlnWvW0pUCQ+tCdVFC3ju6K89A6bkPUsbRd/HKd2aDc2di
-         yrJxez6Zva+D9aO0PnMmN34AcqZlwVz26Mc8UR3XbtOdM0oB1qW7KgJzvF+bQ1bSoUBz
-         gLigzVHXcFB48WfYpns/9hpdwJ5j8MP40Ic3JMZ33Xerytz1J0zT3IhKBD7GcX9z8r9V
-         +Rzw==
-X-Forwarded-Encrypted: i=1; AJvYcCVtnWnvIbS2m6tI7IHPtNurMXYwHhw2e0a8FCx1Bg/+otTbSnQab2U+98oVvDlV091dCqMkBAAWVzoti+tpbvtlfUkxTCnB6aZGfw==
-X-Gm-Message-State: AOJu0YziaQUF1uX1qks2PM3R9nu6Q9xEro+sq73WZsGHoeQMm5m6uzZz
-	65z2ekCeB4IZwila8cx/DFZSvqhTpaZkI2l3A3SKMwr3bLIthpQdlrCCLD2ttw==
-X-Google-Smtp-Source: AGHT+IFx2bU7kb7bF79qJannuNFleEh92fqeRBaFnMU41WmOB0rVr1FOwMQ6/fxnr4f/shsPm3fAzw==
-X-Received: by 2002:a05:6a00:10c9:b0:6dd:da40:948d with SMTP id d9-20020a056a0010c900b006ddda40948dmr6719847pfu.25.1707743759476;
-        Mon, 12 Feb 2024 05:15:59 -0800 (PST)
-X-Forwarded-Encrypted: i=1; AJvYcCXV+xO1Brck8IFlcfDhCO5DPss2bxQv9p2ySYPe0AWoUymv5Nbfko/WfjN5j5WANkzLIbkvWkeJneeqVgUaX7RxaX/NmpAoeM43meCmgnMTIOZlVYWy9bU0EjtPl0AR97uiH9h6uxbBjjHBdobffkgzAKYL7IzgZXUIjwbSCxW0hiVz0sgjes6CL55lMau+/k0d/6QlyesUbOU+mxk9CGa52hvSI5sHkq+EbForMesAIv5ojZGsfQYdHtAgjs6neLt9Rp+KHO55GKH2LgN06D8SsnwpOb/jD7dasJeHghXbE7Daq36CjcRFczIjNKX9M317AzFrNZL1Gh6kwL5INGfDFQuF3k3nR35IQxjJMJzegu755I52ajUa8rvXP5YpGLTFkRw5PwCI1vl7kUKA+uMjR6AatGYaTL7xPqPn2tKJdZW8FAUBIigqf2qfMlSjLS7MzEfESV37OexI1aIShARvowhJAl9mEF1GaM3ilVkCnAtavp7npxoDuY7Ubp9lLXMifo7rRU4=
-Received: from thinkpad ([117.193.211.169])
-        by smtp.gmail.com with ESMTPSA id w12-20020a056a0014cc00b006e03c68ae9asm5665844pfu.16.2024.02.12.05.15.55
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 12 Feb 2024 05:15:59 -0800 (PST)
-Date: Mon, 12 Feb 2024 18:45:51 +0530
-From: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
-To: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-Cc: Krishna Chaitanya Chundru <quic_krichai@quicinc.com>,
-	Bjorn Andersson <andersson@kernel.org>,
-	Konrad Dybcio <konrad.dybcio@linaro.org>,
-	Rob Herring <robh+dt@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>, linux-arm-msm@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	quic_vbadigan@quicinc.com, quic_ramkri@quicinc.com,
-	quic_nitegupt@quicinc.com, quic_skananth@quicinc.com,
-	quic_parass@quicinc.com
-Subject: Re: [PATCH] arm64: dts: qcom: qcs6490-rb3gen2: Add PCIe nodes
-Message-ID: <20240212131551.GA74465@thinkpad>
-References: <20240207-enable_pcie-v1-1-b684afa6371c@quicinc.com>
- <CAA8EJpqjm_2aE+7BtMkFUdet11q7v_jyHbUEpiDHSBSnzhndYA@mail.gmail.com>
- <dec2976e-6e1e-6121-e175-210377ff6925@quicinc.com>
- <CAA8EJprsm5Tw=vFpmfEKL8fxS-S+aW+YR0byfyL=v78k75TGEw@mail.gmail.com>
- <3ad77846-b4a8-80ee-e9e1-d5cbf4add6d8@quicinc.com>
- <CAA8EJprRF0tVFZK9c=MT8bSRcBdRvcugBaeEzpX5-wfRyNgc3Q@mail.gmail.com>
- <c8be2bbf-a51c-a38f-6e6f-a88801f953d5@quicinc.com>
- <20240209075716.GA12035@thinkpad>
- <CAA8EJppfzc_dM9c9mHPVWheVxi-1gJxCmaWPvreELijEQDDSyA@mail.gmail.com>
+	 Content-Type:Content-Disposition:In-Reply-To; b=sSzrwvI7QBitIOeStPnOUy993pXYlSUVcPOj1P8+7lmFV56KX1RiQs1ED954JGMlYDlhv2OedvVlk+4cCvVH3EL8kdUmJLELHCbPv4PGzNoizHO1XXuw7kYGsX4RIdR+hCtvjzPngSYpN1vHOYrdyLGcR5ZwurMKoDaLdGXvR6c=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=YBQqvgd8; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id BE4D6C433C7;
+	Mon, 12 Feb 2024 13:16:33 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1707743794;
+	bh=9sevq/yqb1NYFYOfIyOHJePYkgdalV/0E1nKUcbcKNc=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=YBQqvgd8VpHznL+2fPx1BpJzFkdBIj+hfBKMURUlx4Z+sCT3dE9pI+lR3o8sdRVJG
+	 p+D5J1WaYWTFQDs2QJXQPx9aZnFO89wgHY/ouZlRqC5hUnR+PFwKNi292GrE6S97d3
+	 euxsGhWTecaAeQ5MK1A8v56g4a1VT8zgUJWWSTFeustlByzP4NcYIJCLZFATGU8g74
+	 lt2+P+kXZz+E7Ayk/tTCBiZt6M33n/ecVTYrVQHwwqLt/DqC5g/lIAVM58SHTTdVj3
+	 epfb/TKkslN0bqdi4JsxDSRCtQpo7npzpbcEKBZ0Bdg34yNqNweKkNq/O1S2ovqtBG
+	 LqJV0tJs8rUzg==
+Date: Mon, 12 Feb 2024 07:16:31 -0600
+From: Rob Herring <robh@kernel.org>
+To: Sebastian Reichel <sre@kernel.org>
+Cc: Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>,
+	Sascha Hauer <s.hauer@pengutronix.de>,
+	Fabio Estevam <festevam@gmail.com>,
+	Pengutronix Kernel Team <kernel@pengutronix.de>,
+	NXP Linux Team <linux-imx@nxp.com>,
+	Dong Aisheng <aisheng.dong@nxp.com>,
+	Linus Walleij <linus.walleij@linaro.org>,
+	Dmitry Torokhov <dmitry.torokhov@gmail.com>,
+	Mark Brown <broonie@kernel.org>,
+	linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v1 02/14] dt-bindings: bus: imx-weim: convert to YAML
+Message-ID: <20240212131631.GA13910-robh@kernel.org>
+References: <20240210012114.489102-1-sre@kernel.org>
+ <20240210012114.489102-3-sre@kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <CAA8EJppfzc_dM9c9mHPVWheVxi-1gJxCmaWPvreELijEQDDSyA@mail.gmail.com>
+In-Reply-To: <20240210012114.489102-3-sre@kernel.org>
 
-On Fri, Feb 09, 2024 at 12:56:18PM +0200, Dmitry Baryshkov wrote:
-> On Fri, 9 Feb 2024 at 09:57, Manivannan Sadhasivam
-> <manivannan.sadhasivam@linaro.org> wrote:
-> >
-> > On Fri, Feb 09, 2024 at 12:58:15PM +0530, Krishna Chaitanya Chundru wrote:
-> > >
-> > >
-> > > On 2/8/2024 8:49 PM, Dmitry Baryshkov wrote:
-> > > > On Thu, 8 Feb 2024 at 16:58, Krishna Chaitanya Chundru
-> > > > <quic_krichai@quicinc.com> wrote:
-> > > > > On 2/8/2024 12:21 PM, Dmitry Baryshkov wrote:
-> > > > > > On Thu, 8 Feb 2024 at 08:14, Krishna Chaitanya Chundru
-> > > > > > <quic_krichai@quicinc.com> wrote:
-> > > > > > >
-> > > > > > >
-> > > > > > >
-> > > > > > > On 2/7/2024 5:17 PM, Dmitry Baryshkov wrote:
-> > > > > > > > On Wed, 7 Feb 2024 at 12:42, Krishna chaitanya chundru
-> > > > > > > > <quic_krichai@quicinc.com> wrote:
-> > > > > > > > >
-> > > > > > > > > Enable PCIe1 controller and its corresponding PHY nodes on
-> > > > > > > > > qcs6490-rb3g2 platform.
-> > > > > > > > >
-> > > > > > > > > PCIe switch is connected to PCIe1, PCIe switch has multiple endpoints
-> > > > > > > > > connected. For each endpoint a unique BDF will be assigned and should
-> > > > > > > > > assign unique smmu id. So for each BDF add smmu id.
-> > > > > > > > >
-> > > > > > > > > Signed-off-by: Krishna chaitanya chundru <quic_krichai@quicinc.com>
-> > > > > > > > > ---
-> > > > > > > > >     arch/arm64/boot/dts/qcom/qcs6490-rb3gen2.dts | 42 ++++++++++++++++++++++++++++
-> > > > > > > > >     1 file changed, 42 insertions(+)
-> > > > > > > > >
-> > > > > > > > > diff --git a/arch/arm64/boot/dts/qcom/qcs6490-rb3gen2.dts b/arch/arm64/boot/dts/qcom/qcs6490-rb3gen2.dts
-> > > > > > > > > index 8bb7d13d85f6..0082a3399453 100644
-> > > > > > > > > --- a/arch/arm64/boot/dts/qcom/qcs6490-rb3gen2.dts
-> > > > > > > > > +++ b/arch/arm64/boot/dts/qcom/qcs6490-rb3gen2.dts
-> > > > > > > > > @@ -413,6 +413,32 @@ vreg_bob_3p296: bob {
-> > > > > > > > >            };
-> > > > > > > > >     };
-> > > > > > > > >
-> > > > > > > > > +&pcie1 {
-> > > > > > > > > +       perst-gpios = <&tlmm 2 GPIO_ACTIVE_LOW>;
-> > > > > > > > > +
-> > > > > > > > > +       pinctrl-0 = <&pcie1_reset_n>, <&pcie1_wake_n>;
-> > > > > > > > > +       pinctrl-names = "default";
-> > > > > > > > > +
-> > > > > > > > > +       iommu-map = <0x0 &apps_smmu 0x1c80 0x1>,
-> > > > > > > > > +                   <0x100 &apps_smmu 0x1c81 0x1>,
-> > > > > > > > > +                   <0x208 &apps_smmu 0x1c84 0x1>,
-> > > > > > > > > +                   <0x210 &apps_smmu 0x1c85 0x1>,
-> > > > > > > > > +                   <0x218 &apps_smmu 0x1c86 0x1>,
-> > > > > > > > > +                   <0x300 &apps_smmu 0x1c87 0x1>,
-> > > > > > > > > +                   <0x400 &apps_smmu 0x1c88 0x1>,
-> > > > > > > > > +                   <0x500 &apps_smmu 0x1c89 0x1>,
-> > > > > > > > > +                   <0x501 &apps_smmu 0x1c90 0x1>;
-> > > > > > > >
-> > > > > > > > Is the iommu-map really board specific?
-> > > > > > > >
-> > > > > > > The iommu-map for PCIe varies if PCIe switch is connected.
-> > > > > > > For this platform a PCIe switch is connected and for that reason
-> > > > > > > we need to define additional smmu ID's for each BDF.
-> > > > > > >
-> > > > > > > For that reason we defined here as these ID's are applicable only
-> > > > > > > for this board.
-> > > > > >
-> > > > > > So, these IDs are the same for all boards, just being unused on
-> > > > > > devices which have no bridges / switches connected to this PCIe host.
-> > > > > > If this is correct, please move them to sc7280.dtsi.
-> > > > > >
-> > > > > Yes ID's will be same for all boards. we can move them sc7280.dtsi
-> > > > > but the BDF to smmu mapping will be specific to this board only.
-> > > > > if there is some other PCIe switch with different configuration is
-> > > > > connected to different board of same variant in future again these
-> > > > > mapping needs to updated.
-> > > >
-> > > > Could you possibly clarify this? Are they assigned one at a time
-> > > > manually? Or is it somehow handled by the board's TZ code, which
-> > > > assigns them sequentially to the known endpoints? And is it done via
-> > > > probing the link or via some static configuration?
-> > >
-> > > There is no assignment of SID's in TZ for PCIe.
-> > > PCIe controller has BDF to SID mapping table which we need to
-> > > program with the iommu map table.
-> > >
-> > > https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/tree/drivers/pci/controller/dwc/pcie-qcom.c?h=v6.8-rc3#n997
-> > >
-> > > Based upon switch the BDF to SID table will change for example I had two
-> > > switches with one switch has 2 PCIe ports and other has 3 ports one
-> > > embedded port which supports multiple functions.
-> > >
-> > > For the first switch the BDF's are
-> > >       - 0x000(root complex),
-> > >       - 0x100(USP),
-> > >       - 0x208(DSP 0),
-> > >       - 0x210(DSP 1),
-> > >       - 0x300(endpoint connected to DSP 0),
-> > >       - 0x400( endpoint connected to DSP 1).
-> > >
-> > > For 2nd switch the BDF's are
-> > >       - 0x000(root complex),
-> > >       - 0x100(USP),
-> > >       - 0x208(embeeded DSP 0),
-> > >       - 0x210(DSP 1),
-> > >       - 0x218 (DSP 2),
-> > >       - 0x300(embedded endpoint function 0),
-> > >       - 0x301 (embedded endpoint function 1)
-> > >       - 0x400( endpoint connected to DSP 1)
-> > >       - 0x500(endpoint connected to DSP2).
-> > >
-> > > For these two switches we need different BDF to SID table so for that
-> > > reason we are keeping iommu map here as this is specific to this board.
-> > >
-> >
-> > I don't understand why the SID table has to change between PCIe devices. The SID
-> > mapping should be part of the SoC dtsi, where a single SID would be defined for
-> > the devices under a bus. And all the devices under the bus have to use the same
-> > SID.
+On Sat, Feb 10, 2024 at 02:18:06AM +0100, Sebastian Reichel wrote:
+> Convert the i.MX  Wireless External Interface Module binding to YAML.
 > 
-> This sounds like a sane default, indeed. Nevertheless, I see a point
-> in having per-device-SID assignment. This increases isolation and can
-> potentially prevent security issues. However in such case SID
-> assignment should be handled in some automagic way. In other words,
-> there must be no need to duplicate the topology of the PCIe bus in the
-> iommu-maps property.
+> Signed-off-by: Sebastian Reichel <sre@kernel.org>
+> ---
+>  .../devicetree/bindings/bus/fsl,imx-weim.yaml | 225 ++++++++++++++++++
+>  .../devicetree/bindings/bus/imx-weim.txt      | 117 ---------
+>  2 files changed, 225 insertions(+), 117 deletions(-)
+>  create mode 100644 Documentation/devicetree/bindings/bus/fsl,imx-weim.yaml
+>  delete mode 100644 Documentation/devicetree/bindings/bus/imx-weim.txt
 > 
+> diff --git a/Documentation/devicetree/bindings/bus/fsl,imx-weim.yaml b/Documentation/devicetree/bindings/bus/fsl,imx-weim.yaml
+> new file mode 100644
+> index 000000000000..3d27bdaef304
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/bus/fsl,imx-weim.yaml
+> @@ -0,0 +1,225 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/bus/fsl,imx-weim.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: i.MX Wireless External Interface Module (WEIM)
+> +
+> +maintainers:
+> +  - Shawn Guo <shawnguo@kernel.org>
+> +  - Sascha Hauer <s.hauer@pengutronix.de>
+> +
+> +description:
+> +  The term "wireless" does not imply that the WEIM is literally an interface
+> +  without wires. It simply means that this module was originally designed for
+> +  wireless and mobile applications that use low-power technology. The actual
+> +  devices are instantiated from the child nodes of a WEIM node.
+> +
+> +properties:
+> +  compatible:
+> +    oneOf:
+> +      - enum:
+> +          - fsl,imx1-weim
+> +          - fsl,imx27-weim
+> +          - fsl,imx50-weim
+> +          - fsl,imx51-weim
+> +          - fsl,imx6q-weim
+> +      - items:
+> +          - enum:
+> +              - fsl,imx31-weim
+> +              - fsl,imx35-weim
+> +          - const: fsl,imx27-weim
+> +      - items:
+> +          - enum:
+> +              - fsl,imx6sx-weim
+> +              - fsl,imx6ul-weim
+> +          - const: fsl,imx6q-weim
+> +
+> +  reg:
+> +    maxItems: 1
+> +
+> +  clocks:
+> +    maxItems: 1
+> +
+> +  interrupts:
+> +    maxItems: 1
+> +
+> +  '#address-cells':
+> +    const: 2
+> +
+> +  '#size-cells':
+> +    const: 1
+> +
+> +  ranges: true
+> +
+> +  fsl,weim-cs-gpr:
+> +    $ref: /schemas/types.yaml#/definitions/phandle
+> +    description: |
+> +      Phandle to the system General Purpose Register controller that contains
+> +      WEIM CS GPR register, e.g. IOMUXC_GPR1 on i.MX6Q. IOMUXC_GPR1[11:0]
+> +      should be set up as one of the following 4 possible values depending on
+> +      the CS space configuration.
+> +
+> +      IOMUXC_GPR1[11:0]    CS0    CS1    CS2    CS3
+> +      ---------------------------------------------
+> +              05          128M     0M     0M     0M
+> +              033          64M    64M     0M     0M
+> +              0113         64M    32M    32M     0M
+> +              01111        32M    32M    32M    32M
+> +
+> +      In case that the property is absent, the reset value or what bootloader
+> +      sets up in IOMUXC_GPR1[11:0] will be used.
+> +
+> +  fsl,burst-clk-enable:
+> +    type: boolean
+> +    description:
+> +      The presence of this property indicates that the weim bus should operate
+> +      in Burst Clock Mode.
+> +
+> +  fsl,continuous-burst-clk:
+> +    type: boolean
+> +    description:
+> +      Make Burst Clock to output continuous clock. Without this option Burst
+> +      Clock will output clock only when necessary.
+> +
+> +patternProperties:
+> +  "^.*@[0-7],[0-9a-f]+$":
+> +    description: Devices attached to chip selects are represented as subnodes.
+> +    type: object
+> +    additionalProperties: true
+> +    properties:
+> +      fsl,weim-cs-timing:
+> +        $ref: /schemas/types.yaml#/definitions/uint32-array
+> +        description:
+> +          Timing values for the child node.
+> +    required:
+> +      - fsl,weim-cs-timing
 
-Yes, address space isolation is the primary motive behind this patch. But as
-you said, we should not do it by hardcoding the SIDs in the board DTS. It won't
-scale and is not a proper solution.
+This needs to go in its own schema doc and then added to 
+memory-controllers/mc-peripheral-props.yaml
 
-Instead, the issue should be addressed in the IOMMU layer by working with the
-IOMMU folks.
+We should probably also move this binding to memory-controllers/
 
-It should be noted that we _cannot_ use any arbitrary SID for PCIe bus. HYP/TZ
-will fault the transactions coming with different SIDs than the ones assigned
-to them. So we still need to pass that info from DT to IOMMU layer.
 
-- Mani
+> +
+> +allOf:
+> +  - if:
+> +      properties:
+> +        compatible:
+> +          not:
+> +            contains:
+> +              enum:
+> +                - fsl,imx50-weim
+> +                - fsl,imx6q-weim
+> +    then:
+> +      properties:
+> +        fsl,weim-cs-gpr: false
+> +        fsl,burst-clk-enable: false
+> +  - if:
+> +      properties:
+> +        fsl,burst-clk-enable: false
+> +    then:
+> +      properties:
+> +        fsl,continuous-burst-clk: false
+> +  - if:
+> +      properties:
+> +        compatible:
+> +          contains:
+> +            const: fsl,imx1-weim
+> +    then:
+> +      patternProperties:
+> +        "^.*@[0-7],[0-9a-f]+$":
+> +          properties:
+> +            fsl,weim-cs-timing:
+> +              items:
+> +                items:
+> +                  - description: CSxU
+> +                  - description: CSxL
+> +  - if:
+> +      properties:
+> +        compatible:
+> +          contains:
+> +            enum:
+> +              - fsl,imx27-weim
+> +              - fsl,imx31-weim
+> +              - fsl,imx35-weim
+> +    then:
+> +      patternProperties:
+> +        "^.*@[0-7],[0-9a-f]+$":
+> +          properties:
+> +            fsl,weim-cs-timing:
+> +              items:
+> +                items:
+> +                  - description: CSCRxU
+> +                  - description: CSCRxL
+> +                  - description: CSCRxA
+> +  - if:
+> +      properties:
+> +        compatible:
+> +          contains:
+> +            enum:
+> +              - fsl,imx50-weim
+> +              - fsl,imx51-weim
+> +              - fsl,imx6q-weim
+> +              - fsl,imx6sx-weim
+> +              - fsl,imx6ul-weim
+> +    then:
+> +      patternProperties:
+> +        "^.*@[0-7],[0-9a-f]+$":
+> +          properties:
+> +            fsl,weim-cs-timing:
+> +              items:
+> +                items:
+> +                  - description: CSxGCR1
+> +                  - description: CSxGCR2
+> +                  - description: CSxRCR1
+> +                  - description: CSxRCR2
+> +                  - description: CSxWCR1
+> +                  - description: CSxWCR2
+> +
+> +required:
+> +  - compatible
+> +  - reg
+> +  - clocks
+> +  - '#address-cells'
+> +  - '#size-cells'
+> +  - ranges
+> +
+> +additionalProperties: false
+> +
+> +examples:
+> +  - |
+> +    weim@21b8000 {
 
--- 
-மணிவண்ணன் சதாசிவம்
+bus or external-bus
+
+> +        compatible = "fsl,imx6q-weim";
+> +        reg = <0x021b8000 0x4000>;
+> +        clocks = <&clks 196>;
+> +        #address-cells = <2>;
+> +        #size-cells = <1>;
+> +        ranges = <0 0 0x08000000 0x08000000>;
+> +        fsl,weim-cs-gpr = <&gpr>;
+> +
+> +        nor@0,0 {
+> +            compatible = "cfi-flash";
+> +            reg = <0 0 0x02000000>;
+> +            #address-cells = <1>;
+> +            #size-cells = <1>;
+> +            bank-width = <2>;
+> +            fsl,weim-cs-timing = <0x00620081 0x00000001 0x1c022000
+> +            0x0000c000 0x1404a38e 0x00000000>;
+> +        };
+> +    };
+> +  - |
+> +    weim@21b8000 {
+> +        compatible = "fsl,imx6q-weim";
+> +        reg = <0x021b8000 0x4000>;
+> +        clocks = <&clks 196>;
+> +        #address-cells = <2>;
+> +        #size-cells = <1>;
+> +        ranges = <0 0 0x08000000 0x02000000
+> +                  1 0 0x0a000000 0x02000000
+> +                  2 0 0x0c000000 0x02000000
+> +                  3 0 0x0e000000 0x02000000>;
+> +        fsl,weim-cs-gpr = <&gpr>;
+> +
+> +        acme@0,0 {
+> +            compatible = "acme,whatever";
+
+Real bindings only please.
+
+> +            reg = <0 0 0x100>, <0 0x400000 0x800>,
+> +                  <1 0x400000 0x800>;
+> +            fsl,weim-cs-timing = <0x024400b1 0x00001010 0x20081100
+> +                                  0x00000000 0xa0000240 0x00000000>;
+> +        };
+> +    };
 
