@@ -1,222 +1,182 @@
-Return-Path: <devicetree+bounces-40859-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-40860-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 719DF8518D9
-	for <lists+devicetree@lfdr.de>; Mon, 12 Feb 2024 17:20:09 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 803958518DF
+	for <lists+devicetree@lfdr.de>; Mon, 12 Feb 2024 17:25:04 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 96A131C203AB
-	for <lists+devicetree@lfdr.de>; Mon, 12 Feb 2024 16:20:08 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id A48361C20ECC
+	for <lists+devicetree@lfdr.de>; Mon, 12 Feb 2024 16:25:03 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id F2E6E3D964;
-	Mon, 12 Feb 2024 16:19:35 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=nxp.com header.i=@nxp.com header.b="qMxMH0Fk"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5FA443D0D2;
+	Mon, 12 Feb 2024 16:25:01 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from EUR04-DB3-obe.outbound.protection.outlook.com (mail-db3eur04on2058.outbound.protection.outlook.com [40.107.6.58])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-yb1-f181.google.com (mail-yb1-f181.google.com [209.85.219.181])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 109BD3D552;
-	Mon, 12 Feb 2024 16:19:34 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.107.6.58
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1707754775; cv=fail; b=QpNgpfbACbilAEZdojVovty9JsGeT+Flqy8Q8rOaYPfHKxBJ1tg9MkF0v8y3K6+QytGZz4kRYBZfBGB4g3A/RJ2ThMrztKAFwMOxBXu/kY5YlyH1va8JlmuXOMEBW4Vqtdm7FdcNgC/1y/rKVP94geyADsevjKEvnixVSao4oxo=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1707754775; c=relaxed/simple;
-	bh=RVZanAIO2cvNYwqNO1H2+H1kfQCW0KHxJ3QV94uN8yE=;
-	h=From:Date:Subject:Content-Type:Message-Id:References:In-Reply-To:
-	 To:Cc:MIME-Version; b=TnH23vePvQaSH4//BwpJFB43RcrDOKROo5vSMfXtnwGZp+lQUdl9U2bCP+em2OhTRI7Ue8jSqnpT8uk18i2NAIbp39EaWyqLOW4pgMq6X3dsxfrD1Xe5GFCASWxtr4hzTp549IjNzIUUTxZ1t2lsqfSAo9ePJzEq91xNRmEfTaQ=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com; spf=pass smtp.mailfrom=nxp.com; dkim=pass (1024-bit key) header.d=nxp.com header.i=@nxp.com header.b=qMxMH0Fk; arc=fail smtp.client-ip=40.107.6.58
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=nxp.com
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=CgAGTf6jHPeivSZd6gk/oXqAJ9m5O5NO/uH/3G4NE29/oudl8I5p1MNjetvvuSOGrmzZoje5tUa5ErEluqsJ3tUouaTKdcrIZhInLu7cfzU1nYrXW1iToJ5QBG1GYZSDRyeNulPXerJltdaK+gnApwwpjulU4wYztBx5zpeG4h7bnW1PyoWP9u/oaheezXh3C2K63w0RxZeARYiO26bK7vcV65SFhThQjyEdFF2rj0KmwQYf89d2swfQwnyn6PQssFdiEJklpi1Al7l3ItTEyZ+OnnbovalFal7YMW1dkghnZ5kbor43kg0jX/YUJKLry0nLQYzOB/m+eNzEs68ssA==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=pjv7QnKdUodCbDCtWeMa8BZzh8+qG0XKvEheQHpbLE8=;
- b=mAlVImCzFYSzuM4GDwwWMXlC5EOjiEUOpsS3Ov2vicj6K4sY5K6NGjWiizJwe8jq8NpF7muoTBIg7oDqKLjXhirMFmN7DioA4xyvuSun+AMc01+oVvqUrY4E/cEiMx/hRUHb1wLK5e88su1FdNYMGaad6b5UWey4wT+5he4wooW2NIaPyJvYTXNm4AhGiqxexVhQum9kZMNqXMrH/PcFkMMjkISFY6JnXIZHaHiHYLQcj72L42CazCGc24U5xdHH9eUh+SD8YD6L4Ls8tHzVL3/RJANgobvlcqnepp6cO/tesSpDp8PQ5kiVv3+Z0JnO7fhG3yHteAoVEDbqPU9Uqg==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
- header.d=nxp.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector2;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=pjv7QnKdUodCbDCtWeMa8BZzh8+qG0XKvEheQHpbLE8=;
- b=qMxMH0Fk4t8T4euYIkQpIKS3HL0eStO30VZG5PfeCJqbYCpSHQe9vhxtEDh14aX0ogpy1T++c8NS0fQfwpDpdc0cbQau4f7IyDeEp/c2vcDfVn4IHWn4Z7Sdc5oDcv91ncvICQLyqAP5awNmYJhgFyijcyjY2ElSLjJINx/UHS0=
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=nxp.com;
-Received: from PAXPR04MB9642.eurprd04.prod.outlook.com (2603:10a6:102:240::14)
- by DU2PR04MB9049.eurprd04.prod.outlook.com (2603:10a6:10:2e4::14) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7270.35; Mon, 12 Feb
- 2024 16:19:30 +0000
-Received: from PAXPR04MB9642.eurprd04.prod.outlook.com
- ([fe80::c8b4:5648:8948:e85c]) by PAXPR04MB9642.eurprd04.prod.outlook.com
- ([fe80::c8b4:5648:8948:e85c%3]) with mapi id 15.20.7270.025; Mon, 12 Feb 2024
- 16:19:30 +0000
-From: Frank Li <Frank.Li@nxp.com>
-Date: Mon, 12 Feb 2024 11:19:08 -0500
-Subject: [PATCH v2 2/2] usb: dwc3: apply snps,host-vbus-glitches workaround
- unconditionally
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20240212-vbus-glitch-v2-2-d71b73a82de1@nxp.com>
-References: <20240212-vbus-glitch-v2-0-d71b73a82de1@nxp.com>
-In-Reply-To: <20240212-vbus-glitch-v2-0-d71b73a82de1@nxp.com>
-To: Greg Kroah-Hartman <gregkh@linuxfoundation.org>, 
- Rob Herring <robh@kernel.org>, 
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, 
- Conor Dooley <conor+dt@kernel.org>, Felipe Balbi <balbi@kernel.org>, 
- Thinh Nguyen <Thinh.Nguyen@synopsys.com>
-Cc: linux-usb@vger.kernel.org, devicetree@vger.kernel.org, 
- linux-kernel@vger.kernel.org, imx@lists.linux.dev, 
- Frank Li <Frank.Li@nxp.com>
-X-Mailer: b4 0.13-dev-c87ef
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1707754764; l=2477;
- i=Frank.Li@nxp.com; s=20240130; h=from:subject:message-id;
- bh=RVZanAIO2cvNYwqNO1H2+H1kfQCW0KHxJ3QV94uN8yE=;
- b=UDHEWzz3fU1LvjbSPirbztQdGXqjfNd3iHqO6GmfrBVppRfsEjnhT2hc3jYX53NlAmYGMNW9h
- +vnx1nUSV2lDyg9HTpsxJEoY3UkY+wjsL1LB48xPmGU9DqGtW7lA6q6
-X-Developer-Key: i=Frank.Li@nxp.com; a=ed25519;
- pk=I0L1sDUfPxpAkRvPKy7MdauTuSENRq+DnA+G4qcS94Q=
-X-ClientProxiedBy: SN4PR0501CA0001.namprd05.prod.outlook.com
- (2603:10b6:803:40::14) To PAXPR04MB9642.eurprd04.prod.outlook.com
- (2603:10a6:102:240::14)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5CBD03D0D1;
+	Mon, 12 Feb 2024 16:24:59 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.219.181
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1707755101; cv=none; b=k1F4w6d68wPEDXrlHYvpNBioszIczHy9SNW9JIEbxSyDa+YQ3tkVfWAm7KsCu97ZArJTAwvlNYtsnUZjYkDaA82Z/u4YnfaTFNcV2q7oW59FXDqkP1GkwWtJMxAVP3P5Dr2RjksSGXnrX4aDUpHgq8HnLRJ25Lu5qV8vAvIyRzw=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1707755101; c=relaxed/simple;
+	bh=rmkbXCdg84yoQwpkq7NH1fqrGGiLhnDvubFSBGJe+yk=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=LHzMHkGpGnNIAWhhJEIS8PG/lkzwUvO5TTYuE9PpV0WtTBovJcYipOZ2ViaLozdTkm6wZX5FmmkCTjMTBTEoeiPWa1spROeShSsMFZou8y0FLBBfQCP/xmIJM4G2DPAVseJAF+gyZ67PIOfP6etL6cap6Ri/QjvtHZuKjtnhJqs=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org; spf=pass smtp.mailfrom=gmail.com; arc=none smtp.client-ip=209.85.219.181
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-yb1-f181.google.com with SMTP id 3f1490d57ef6-dc75c5e3151so2088598276.1;
+        Mon, 12 Feb 2024 08:24:59 -0800 (PST)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1707755097; x=1708359897;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=hb3maADtaAKKNSwdn2QybG1Ogk1CA+GA1APXldxFH+U=;
+        b=mF20jCC4ZiLO2U98+apDlVN+AZAEpQIoFraQutsq0NXYaJiwAVNvUzuSzNkEQEgd8u
+         ZvH+8iEetOw/3c0KT8X9HwQLFsIFtcBOkr1VD/T/NEsNAJ5PRB5yfYCrm29Tg8U0PYtW
+         kacXiqV4sqxSKQvkth56FRJ6ynrJLtIY2C1BZbI8oyOG9RtxeBfuwWjMxPWEZ6WVIVrZ
+         bxfvnx9zdi9nKK+EshD82kLpYr6swiUz5ED8+sEJvRM5DVqIm1GYS6oMblapFyg8XUd1
+         AEC4W44qRKRf0fkQOfu8cVgIK36FCsco7pHH6oISCcLk54U8IQ9VArprPWlOud2A5G0K
+         Thsw==
+X-Forwarded-Encrypted: i=1; AJvYcCVY+9B52u89K1gqqvODb2qXDNgZgQmymaFZdxU/uCpdvAfwXz232F3GevlMWkORz+GlciCgd3IjUhyiluMT0jo6RV2z9qqJ82YhJ0XpTTdMWS2GYyXuJT2PpFn2l/pyH5XS0O6K3HASrKWaEysn+M322rHtDPOcsslYN3sZps19DCA5+6W5mZQj6e7T
+X-Gm-Message-State: AOJu0Yy5xwE3FAThNA3rO0GWdimt+AkEwjYBWyUf7w8dK54RAwhYhNdr
+	j910RZy5KzhwC6tTiLS6Rl7JXk8UqqkZF+iA+rut0RlJCyrR4xQNTt/wlMX9QTs=
+X-Google-Smtp-Source: AGHT+IGpDKCUm49Jrpq+v9zw3n8Ses4IzwmHcEiXGGrrGrSeqEg5V+hCRB8febkQaOTLxNy9I3Mufw==
+X-Received: by 2002:a25:4194:0:b0:dcb:ca7e:7e73 with SMTP id o142-20020a254194000000b00dcbca7e7e73mr781765yba.11.1707755097672;
+        Mon, 12 Feb 2024 08:24:57 -0800 (PST)
+X-Forwarded-Encrypted: i=1; AJvYcCW1j6E5u4H0tycjyhjF5ZCA2dOuOkHsSqfQu1bHrwCGFryKpRz468S1q5vKReoq8D8gOVhdUbEgsn0kIbVQ/0vQITaIsI0/JCAw5p4ChEjmmYFIpq5hO5D89G6E/LC7F/vEDAph58rnUmamhxCsQirxZJ8gW7iWhxcd83aVLvSW9kCoVlqMYunOL3Zr
+Received: from mail-yb1-f175.google.com (mail-yb1-f175.google.com. [209.85.219.175])
+        by smtp.gmail.com with ESMTPSA id l37-20020a25ad65000000b00dc230f91674sm1298716ybe.26.2024.02.12.08.24.57
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 12 Feb 2024 08:24:57 -0800 (PST)
+Received: by mail-yb1-f175.google.com with SMTP id 3f1490d57ef6-dcbbc41d3d5so419705276.3;
+        Mon, 12 Feb 2024 08:24:57 -0800 (PST)
+X-Forwarded-Encrypted: i=1; AJvYcCVTPj5fGxYzBzb5YQUnTZVF2f4vM3MHoXLXRXXDdMLzrJsoGc+Dkbo8pyOeFCJLMSQ/Lgl0SpEyI666KVOorETX6gCzObFtWviuc8JoXouJCWbKr3u8aAJjtTwbZsS+JHH9dXga8paw812tPDmjUgmBQpvGe8dSYRj/gGScTBPfkt+P+gsKSd1UQdbx
+X-Received: by 2002:a25:aa6d:0:b0:dc6:d7de:5b29 with SMTP id
+ s100-20020a25aa6d000000b00dc6d7de5b29mr5622636ybi.10.1707755097054; Mon, 12
+ Feb 2024 08:24:57 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: PAXPR04MB9642:EE_|DU2PR04MB9049:EE_
-X-MS-Office365-Filtering-Correlation-Id: 11c26fc0-abe9-4f8c-b337-08dc2be66444
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info:
-	9MvcPLGXj1UyHo5GTB/5dhHzpG2cjs4vUQh3/K9X3DTMlQgsoEeGbuP0iW5XmJcbihgGTXCHe1ItVLS/rcsGt6L+d84VeOxrf5AORURMzqXoPYkrBSgkfufbUL3HPE9/qjKeh1pSSGkBqonmk59gZSQMDodY+Mtpc8Z11+LYf37pL1bVuY9tMvTP7X8sEi5MI9Ll3UysBYQs0xAgItkmxE+CwxyfDAXGJg3MDcu079h/Mji9S4GrZsYHE+6cXcXHn9GowPw68Al6Z50rKwf3wV8phHgc54Ijh2fkPz1jYFZGC93ZwUJ6WZaLx4n3Iari5ev8GfekAqY5D3coOAXIu2oUvI+hEzOYx7oM0/BcwuGl7MOLgpeCMhPX+CbiLFUgYXokat3cwVboyaMVlw+BWRXoVadFtTrFJOTfRazQPbzE5cs56d2xgq5HWGgLi2e5aQD5a8F0wgRp5L+oPtZSlscaD5qySlShMffoWPqbcViiNrqB4GtiFB0YRULE5pXOYp21y8MmKNoCOBQRZMLNBxM0v8t/7KctvBAWm8EWwgXR1KtPK3LcEARAcTVSncQHk+YCZAkIQ0UNLRADeGzuckUB7BhXCIz9LS2ABLIj5qzV7sK19/gg7l3Q/7wM1hu5
-X-Forefront-Antispam-Report:
-	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:PAXPR04MB9642.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230031)(376002)(346002)(136003)(366004)(39860400002)(396003)(230922051799003)(64100799003)(1800799012)(451199024)(186009)(6512007)(478600001)(6486002)(41300700001)(8676002)(8936002)(4326008)(7416002)(5660300002)(2906002)(110136005)(38350700005)(66476007)(6506007)(6666004)(316002)(52116002)(66946007)(66556008)(83380400001)(2616005)(86362001)(26005)(38100700002)(36756003);DIR:OUT;SFP:1101;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0:
-	=?utf-8?B?OXJFTWFaYmFOZTVqMSsvRm9WN040aXZzcmdxSEpManJkZjlTWFlvOEo0VEJW?=
- =?utf-8?B?a3RiUnVEYlhoZjhWbFRpZXRIOVUrdjJtNG9uWEN2SU9nZE0zVzl3eTJKSW0v?=
- =?utf-8?B?ZWdqUm1Wb2w0V2NjL1hTODJCbEJ5RW13M09ZalRvbTFxT2tzTFdKYnVQM0pW?=
- =?utf-8?B?cEZMaVd0bnFhY0JTUy8yOFd0ZXlRT3RaTStRN1JGQlhGY3NiWGlydGRuQU5x?=
- =?utf-8?B?RXIrV2U2L0QxRjUyOW9RVDNIbHFlelhOL1hmMVcwN1RQZGxUZVZCVzZSclBX?=
- =?utf-8?B?R0V2STlMZHJ2ZE5pTmE5WHZjNDBvbGxMZHI1ZkJKM2JaWmtQSG1ZY2RIdk9u?=
- =?utf-8?B?UUk4K2h5T2RPYWRkem8ydmJKR2pKc1FFK2VlRUxBYTQxc0ZMSkpMMS9taVZ4?=
- =?utf-8?B?ZytoWHczcXJ6Snk0WkZwWHVyU1VCR3NrY05jTjFISHU0MU9IQ0ppenlmR1pV?=
- =?utf-8?B?SmVjTzQrWlhCU2Z2eEtkTzViZllRR3NvM01MVjdFVDErUEFaajdYc285N2tF?=
- =?utf-8?B?dDdKRWRVYjZ1azV4NStGNzdGY2dSbDA4TzVXQ0dwZzU2OUpmYmdnTkdDcFpV?=
- =?utf-8?B?WXpZNmxjQks4NGQ3N1UrUW5NMDlXc2dvRkJSRUxQdW9zaUd0dFNsd2Z4ak1i?=
- =?utf-8?B?dzJkTUxGczV2dlY4SUpYYUxnTEdFc0JUOUZncmh0Wk1JWDJJRWhXakhOVUJK?=
- =?utf-8?B?UDRsTlZPbW1mTytTTzUybFhJUldsVDAyRGZ5NEVkT1MyTExFbzBsR1IyYWND?=
- =?utf-8?B?QVl4WFdNWmUyZzVsb0Znbkp4QTNpWmRoUjFsdkVzdXFqY290dThDcytmcDlq?=
- =?utf-8?B?M2JnUkdrdk53dmlnVTBJdkJDSWVRcWtuQzNHT0htVFVxQkw0Uk9ZNFgvRVJ4?=
- =?utf-8?B?ak9UMFN4aWROeE00dTcvNncycWVYUVp1TFZQZTgwS3JIaW5BYWh6R2hnWGg1?=
- =?utf-8?B?bklBUnVOdnpYclFHVkF0dy8zUzBTMVJGQWtnNmQvdER0Ly9CT2xtTDdvdGgv?=
- =?utf-8?B?V1YvSlYweTZ2TVFTNUFFTzlBTC80RHRUcHIrYUFqUjA5S3pUa21nZWJuNzU0?=
- =?utf-8?B?bVM5YnB3dDFsc2NtWGhINXF2NlArcXB6OGxPa3JzVVliQUl5RWtoTFNIeVJ2?=
- =?utf-8?B?VHZpTWVWYjhFWXVNSW5yVG9HdW5BckhnbmIyczlpWU12UGZxV3dXSm9hZEhL?=
- =?utf-8?B?cVlWbWtpQUZQaVlSQ0I5TE5EZXJHQVpJR3NkUzRqWm8zSW9FdmxpLzJpdE1j?=
- =?utf-8?B?QWNUZGFsSzgrL3VDZGx6aldtbHBIUS9rSkhHOEh0cVdmaGRyQjhkbS9qQWNj?=
- =?utf-8?B?VUwwaVdYOGNBaUpHcFpGYlJ2R2V2M1FzZ1FmVGVQZFVjOGVjT1k4Q3pORkxT?=
- =?utf-8?B?U2FwTnJyQURQUElMQVMwS1UzcEpSWDZCd1owc2ZGYUVGSGV4NENZcmdSRGZM?=
- =?utf-8?B?OEM2blBZNjF1S2NVSDRGeUZ0ekwxSHhCMW5CdTB3VWsxYTZrUlUyTEl6YXlW?=
- =?utf-8?B?TTh6cnM4M1F4aUM2bi85citUSDd2R0tGcktreGpTNlpjR2V5dlNhMmRqMWhH?=
- =?utf-8?B?NzZmV3FLazhCSUYxQXY1SU9mRUNHUnNHMTRGOHZwRGc0WDdWWDhNeGNRa0V1?=
- =?utf-8?B?aVRsNzNOd1ZWTm0xY3VOTUh6cXo4dGJRUjlWV2hWbW9CYVBaVkdVeitwUlN5?=
- =?utf-8?B?VUh5Y2ZmV2FKekhGQkZwS3Fxdm8yRXRPRjJBeDJhaDl4b1BON29BeklrL3Jp?=
- =?utf-8?B?Sjc2ZjJadjdWV2NKVXIrSUV6WC92YlkrOFlEZVlQZ0tmUHFYUFptUDZxR2l2?=
- =?utf-8?B?WXJ0bGFSSGtOOEE1Y3V6YkpGanM2TFhHOWROTnhyUFN6ZkhIaHdZbWJ5eWh5?=
- =?utf-8?B?YjFTTjhobElBNG45cisxT1hzUnFzYm96QWc2UXZMZEFWWlJiaDU3My9CWGY3?=
- =?utf-8?B?OU1jMzIvL010NFRNbCtnemNvemxKMnVvTXJoMXhSVkFDbGF6NnNuRDU0dTR2?=
- =?utf-8?B?NGQ4TGtQK2dnNUpHa01uTTkvMjlqVld1c0pPWDEwOTlRS2xYcEFrOTE0Wisy?=
- =?utf-8?B?Zk9LRHhGWXBtUDhVY2J6Y2k5cVFmZ3JhMitaN21BYm9pMkR2alF0ZW1GU2lO?=
- =?utf-8?Q?Gdjk=3D?=
-X-OriginatorOrg: nxp.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 11c26fc0-abe9-4f8c-b337-08dc2be66444
-X-MS-Exchange-CrossTenant-AuthSource: PAXPR04MB9642.eurprd04.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 12 Feb 2024 16:19:30.5521
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: dZjJkGXhNVIGpybPBEctOi2EJrUCbA3u9IrvctqR/Uwc4qlEWa+zo/seKT8lLCTmAQpx3+TKyO1bF18mOWsTnA==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DU2PR04MB9049
+References: <20240205144421.51195-1-prabhakar.mahadev-lad.rj@bp.renesas.com> <20240205144421.51195-2-prabhakar.mahadev-lad.rj@bp.renesas.com>
+In-Reply-To: <20240205144421.51195-2-prabhakar.mahadev-lad.rj@bp.renesas.com>
+From: Geert Uytterhoeven <geert@linux-m68k.org>
+Date: Mon, 12 Feb 2024 17:24:45 +0100
+X-Gmail-Original-Message-ID: <CAMuHMdW0xWgA+9rtDcRUgoS1HYvd+mukvK25MHbzHpo=1uGq0g@mail.gmail.com>
+Message-ID: <CAMuHMdW0xWgA+9rtDcRUgoS1HYvd+mukvK25MHbzHpo=1uGq0g@mail.gmail.com>
+Subject: Re: [PATCH v2 1/3] dt-bindings: interrupt-controller:
+ renesas,rzg2l-irqc: Update interrupts
+To: Prabhakar <prabhakar.csengg@gmail.com>
+Cc: Thomas Gleixner <tglx@linutronix.de>, Rob Herring <robh+dt@kernel.org>, 
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Magnus Damm <magnus.damm@gmail.com>, devicetree@vger.kernel.org, 
+	linux-renesas-soc@vger.kernel.org, linux-kernel@vger.kernel.org, 
+	Biju Das <biju.das.jz@bp.renesas.com>, 
+	Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>, 
+	Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-Remove 'snps,host-vbus-glitches-quirk' and apply workaround
-unconditionally.
+Hi Prabhakar,
 
-It is safer to keep vbus disabled before handing over to xhci driver. So
-needn't 'snps,host-vbus-glitches' property to enable it and apply it
-unconditionally.
+On Mon, Feb 5, 2024 at 3:44=E2=80=AFPM Prabhakar <prabhakar.csengg@gmail.co=
+m> wrote:
+> From: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+>
+> All the RZ/G2L and alike SoC's (listed below) have ECCRAM0/1 interrupts
+> supported by the IRQC block, reflect the same in DT binding doc.
+>
+> - R9A07G043U              - RZ/G2UL
+> - R9A07G044L/R9A07G044LC  - RZ/{G2L,G2LC}
+> - R9A07G054               - RZ/V2L
+> - R9A08G045               - RZ/G3S
+>
+> For the RZ/G3S SoC ("R9A08G045") ECCRAM0/1 interrupts combined into singl=
+e
+> interrupt so we just use the below to represent them:
+> - ec7tie1-0
+> - ec7tie2-0
+> - ec7tiovf-0
+>
+> Previously, it was assumed that BUS-error and ECCRAM0/1 error interrupts
+> were only supported by RZ/G2UL ("R9A07G043U") and RZ/G3S ("R9A08G045")
+> SoCs. However, in reality, all RZ/G2L and similar SoCs (listed above)
+> support these interrupts. Therefore, mark the 'interrupt-names' property
+> as required for all the SoCs and update the example node in the binding
+> document.
+>
+> Fixes: 96fed779d3d4 ("dt-bindings: interrupt-controller: Add Renesas RZ/G=
+2L Interrupt Controller")
+> Fixes: 1cf0697a24ef ("dt-bindings: interrupt-controller: renesas,rzg2l-ir=
+qc: Document RZ/G3S")
+> Signed-off-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
 
-Remove all host_vbus_glitches variable and call
-dwc3_power_off_all_roothub_ports() directly.
+Thanks for your patch!
 
-Signed-off-by: Frank Li <Frank.Li@nxp.com>
----
- drivers/usb/dwc3/core.c | 3 ---
- drivers/usb/dwc3/core.h | 2 --
- drivers/usb/dwc3/host.c | 3 +--
- 3 files changed, 1 insertion(+), 7 deletions(-)
+Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
 
-diff --git a/drivers/usb/dwc3/core.c b/drivers/usb/dwc3/core.c
-index 3b68e8e45b8b9..3e55838c00014 100644
---- a/drivers/usb/dwc3/core.c
-+++ b/drivers/usb/dwc3/core.c
-@@ -1626,9 +1626,6 @@ static void dwc3_get_properties(struct dwc3 *dwc)
- 	dwc->dis_split_quirk = device_property_read_bool(dev,
- 				"snps,dis-split-quirk");
- 
--	dwc->host_vbus_glitches_quirk = device_property_read_bool(dev,
--				"snps,host-vbus-glitches-quirk");
--
- 	dwc->lpm_nyet_threshold = lpm_nyet_threshold;
- 	dwc->tx_de_emphasis = tx_de_emphasis;
- 
-diff --git a/drivers/usb/dwc3/core.h b/drivers/usb/dwc3/core.h
-index df544ec730d22..e3eea965e57bf 100644
---- a/drivers/usb/dwc3/core.h
-+++ b/drivers/usb/dwc3/core.h
-@@ -1132,7 +1132,6 @@ struct dwc3_scratchpad_array {
-  *	2	- No de-emphasis
-  *	3	- Reserved
-  * @dis_metastability_quirk: set to disable metastability quirk.
-- * @host_vbus_glitches_quirk: set to avoid vbus glitch during xhci reset.
-  * @dis_split_quirk: set to disable split boundary.
-  * @wakeup_configured: set if the device is configured for remote wakeup.
-  * @suspended: set to track suspend event due to U3/L2.
-@@ -1354,7 +1353,6 @@ struct dwc3 {
- 	unsigned		tx_de_emphasis:2;
- 
- 	unsigned		dis_metastability_quirk:1;
--	unsigned		host_vbus_glitches_quirk:1;
- 
- 	unsigned		dis_split_quirk:1;
- 	unsigned		async_callbacks:1;
-diff --git a/drivers/usb/dwc3/host.c b/drivers/usb/dwc3/host.c
-index ae189b7a4f8b8..98964e8dea1f7 100644
---- a/drivers/usb/dwc3/host.c
-+++ b/drivers/usb/dwc3/host.c
-@@ -114,8 +114,7 @@ int dwc3_host_init(struct dwc3 *dwc)
- 	 * Some platforms need to power off all Root hub ports immediately after DWC3 set to host
- 	 * mode to avoid VBUS glitch happen when xhci get reset later.
- 	 */
--	if (dwc->host_vbus_glitches_quirk)
--		dwc3_power_off_all_roothub_ports(dwc);
-+	dwc3_power_off_all_roothub_ports(dwc);
- 
- 	irq = dwc3_host_get_irq(dwc);
- 	if (irq < 0)
+> --- a/Documentation/devicetree/bindings/interrupt-controller/renesas,rzg2=
+l-irqc.yaml
+> +++ b/Documentation/devicetree/bindings/interrupt-controller/renesas,rzg2=
+l-irqc.yaml
+> @@ -88,9 +88,15 @@ properties:
+>        - description: GPIO interrupt, TINT30
+>        - description: GPIO interrupt, TINT31
+>        - description: Bus error interrupt
+> +      - description: ECCRAM0 1bit error interrupt
+> +      - description: ECCRAM0 2bit error interrupt
+> +      - description: ECCRAM0 error overflow interrupt
+> +      - description: ECCRAM1 1bit error interrupt
+> +      - description: ECCRAM1 2bit error interrupt
+> +      - description: ECCRAM1 error overflow interrupt
+>
+>    interrupt-names:
+> -    minItems: 41
+> +    minItems: 45
+>      items:
+>        - const: nmi
+>        - const: irq0
+> @@ -134,6 +140,12 @@ properties:
+>        - const: tint30
+>        - const: tint31
+>        - const: bus-err
+> +      - const: ec7tie1-0   # For RZ/G3S SoC ("R9A08G045") ECCRAM0/1 inte=
+rrupts are combined into single interrupt.
+> +      - const: ec7tie2-0   # For RZ/G3S SoC ("R9A08G045") ECCRAM0/1 inte=
+rrupts are combined into single interrupt.
+> +      - const: ec7tiovf-0  # For RZ/G3S SoC ("R9A08G045") ECCRAM0/1 inte=
+rrupts are combined into single interrupt.
 
--- 
-2.34.1
+These lines are indeed a bit long, and might become longer when newer
+SoCs are introduced.
 
+What about changing the descriptions instead, like
+
+    -      - description: ECCRAM0 1bit error interrupt
+    +      - description: ECCRAM0 or combined ECCRAM0/1 1bit error interrup=
+t
+
+?
+
+Gr{oetje,eeting}s,
+
+                        Geert
+
+--=20
+Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k=
+.org
+
+In personal conversations with technical people, I call myself a hacker. Bu=
+t
+when I'm talking to journalists I just say "programmer" or something like t=
+hat.
+                                -- Linus Torvalds
 
