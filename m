@@ -1,177 +1,162 @@
-Return-Path: <devicetree+bounces-40646-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-40647-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id E7B008511AA
-	for <lists+devicetree@lfdr.de>; Mon, 12 Feb 2024 11:57:54 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id B2E848511B0
+	for <lists+devicetree@lfdr.de>; Mon, 12 Feb 2024 12:00:31 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 43954B267A7
-	for <lists+devicetree@lfdr.de>; Mon, 12 Feb 2024 10:57:52 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 69347285CDE
+	for <lists+devicetree@lfdr.de>; Mon, 12 Feb 2024 11:00:30 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8C52C22067;
-	Mon, 12 Feb 2024 10:57:46 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8F87522067;
+	Mon, 12 Feb 2024 11:00:26 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="oPLwlbXx"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="kr2729iD"
 X-Original-To: devicetree@vger.kernel.org
-Received: from fllv0015.ext.ti.com (fllv0015.ext.ti.com [198.47.19.141])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-lf1-f41.google.com (mail-lf1-f41.google.com [209.85.167.41])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7B74A1864C;
-	Mon, 12 Feb 2024 10:57:44 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.19.141
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B5A882BAE9
+	for <devicetree@vger.kernel.org>; Mon, 12 Feb 2024 11:00:24 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.41
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1707735466; cv=none; b=CTxyKZ5s/ASls1QVKrw1Bss56K12QryrJBf37OrSmLJsDRgo31hWeN5WevcNFqIE7TqlNH3cXuMbuiVXG/fg+kjd6lc5NJW5Ce8PBJqEvINk7i4Ba9KcNiBO/Sm/Y6ffZpfkemq9wv68O5/AfVv4/hbixLcFnI3h6EqtL1iqHgw=
+	t=1707735626; cv=none; b=DEWv6xX9RVe1CJ4pTtlLZC4NADvw3gGgX+X0OgWW/S0szxL5B8ZNLcqVFAyVdT+i9vZv+u3foLHTznGQ6ahhKCnn5/SGvrHomEkaOma6uZmgdHKSgr8fpuKQR4ILvYwIElgrZWgo4JwMO0jq/Qc4xZGV6hZS/7DIwm1cqPKcAfw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1707735466; c=relaxed/simple;
-	bh=9xW0e/NGcWkk+FEV31dLjsWMJfc9mdwIin0wbI9k+Vw=;
-	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
-	 In-Reply-To:Content-Type; b=To3dHpobRcHQm4WzBXhSUziEja2mOntQFoBOqMAOmMn0HGhmRfJfBE0nPenKh4YbML2TaPcWtx4T7yZEBkJ0vrCELsaIiPqE14qQWkpJT1a3XRgPgRtSDvKAub2pIoPkpLoCXBGut60/2dUkKCO8G+9z0WrP9RFMhXVVpZFFvwI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=oPLwlbXx; arc=none smtp.client-ip=198.47.19.141
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
-Received: from fllv0034.itg.ti.com ([10.64.40.246])
-	by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id 41CAvXFW117411;
-	Mon, 12 Feb 2024 04:57:33 -0600
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1707735453;
-	bh=tkADkNXyuq0rzbZNH8mLuZ5jl0kk11rq9K3V6xvB+bo=;
-	h=Date:Subject:To:CC:References:From:In-Reply-To;
-	b=oPLwlbXxW2Hij6ZnKcI7jhDd+p3S8L3omOYL/nfq9Z5Df8PY0vI9Ex8wWXLXVIZBZ
-	 274Rt9lODVhmJTNm/92ornuec/qtlv9MdRUq2PWkuHl/AlGqg6R5Yr0krPPlzeXK6o
-	 12nYwurZQWS1Vealtk7HPNrvirRMlUV7fc32+gZE=
-Received: from DLEE114.ent.ti.com (dlee114.ent.ti.com [157.170.170.25])
-	by fllv0034.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 41CAvXKa083841
-	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-	Mon, 12 Feb 2024 04:57:33 -0600
-Received: from DLEE109.ent.ti.com (157.170.170.41) by DLEE114.ent.ti.com
- (157.170.170.25) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Mon, 12
- Feb 2024 04:57:33 -0600
-Received: from lelvsmtp5.itg.ti.com (10.180.75.250) by DLEE109.ent.ti.com
- (157.170.170.41) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
- Frontend Transport; Mon, 12 Feb 2024 04:57:33 -0600
-Received: from [172.24.227.193] (devarsht.dhcp.ti.com [172.24.227.193])
-	by lelvsmtp5.itg.ti.com (8.15.2/8.15.2) with ESMTP id 41CAvSNE002368;
-	Mon, 12 Feb 2024 04:57:29 -0600
-Message-ID: <9c5b7b2c-8a66-4173-dfe9-5724ec5f733d@ti.com>
-Date: Mon, 12 Feb 2024 16:27:28 +0530
+	s=arc-20240116; t=1707735626; c=relaxed/simple;
+	bh=LWccpRX2+gLf6CTggYt7DhfiAYn55RZ5XYtMD8dHrXw=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=ULIwuUXJ6oSAIYKlwflGySIBGLhrE8qvNcGTFny2mwmha4sotpuF2UyAE8VIPBmZn+5CFtFASwwSUiGV1qXeH0UHE18FvrSbo02y7AwuyaJGy89ahu7enCDfGbyOO5sNCCNKrXTfSE3/8w2gSrOxCsrqui8hrhNxhnVMKMxksPE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=kr2729iD; arc=none smtp.client-ip=209.85.167.41
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-lf1-f41.google.com with SMTP id 2adb3069b0e04-51167e470f7so3647985e87.2
+        for <devicetree@vger.kernel.org>; Mon, 12 Feb 2024 03:00:24 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1707735623; x=1708340423; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
+         :to:content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=q8i7o5P1PuIVri7pPB4Y9ULBsVBvdNHUjDSmDfokZeY=;
+        b=kr2729iDCB9O0qbBjojXLZz6ulQpWsAw/2Vau9tSczASpY8lLgovRbMBz7q4dUUFzy
+         vL9scfSFbxi97f1gJEAXVAfn5JAzhY3VO7mPKmD1OdbGprkhglWw+Cg6egGKZ0OSmQVy
+         mV6h5kQIcX5lsYf9vzhJ5ecO8W5CwWTDWyQSQuVe8Y5sTYBZ1sBZU9lphzqShLO9lZAN
+         TiIvnQ4g/Er5OeQg0EwEpXVTTdREO9rBJJVRBHAi/s3LEbaFfpZ9Lm+AvR821CQK8jAa
+         +mm+j6UxhASxTsLcGUMWrFLiMdOdjs+XwJXQUan9Qnwd4QPvCLPOLQQBJXmglEYuVH9H
+         Y40Q==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1707735623; x=1708340423;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
+         :to:content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=q8i7o5P1PuIVri7pPB4Y9ULBsVBvdNHUjDSmDfokZeY=;
+        b=GoJHYjozp0N+IXWV51Ep1l3r+dxXZyhyfCpOaO9E25VBZQng1EObCASHYaHCAHg4RU
+         r76QeCuSNYQDXUWekENCkcF01gv2EDtycIMHSEG2ET3tHcS1HJHNxwNtEnzbSKw80tNU
+         LoHZTLfiaRfIzyAOhzpBK1yffU3WLnE0fx7iPTIXcdlk67gf3hCW5q24/4GtnoZ6ZnjF
+         JyaK8G7hKOD0tWhZUH26rWlJJ5WZCECSCdJmWN9nfP4GEPLH2Nq9CaJ4x3H0CWlEyje+
+         UQEVxRX89OrZ4fksP89/QyJCVIYWD644KoJ9Xfv76GGT82NGtGVI7o//thrn2A1iSqve
+         MwoQ==
+X-Forwarded-Encrypted: i=1; AJvYcCXN3h/spAg5gXFfkr8Emng5Wj8WaeVyLlCX46Xll1GwIMAX45nHttxH+dU1UcZftB3++shu5iQYee7boH6ccXfQEM8vs/QU5iOqiw==
+X-Gm-Message-State: AOJu0YyJ3BFf8hrizv0Fp7AWi+xLLlECtXd3xBazgoJX+HKog5RepD3b
+	faTPX6nreKjrCbBIlA5nBGJla88yTAKW8Pus5qFJjunWhS3sWvMJ4LcY3aw2c1A=
+X-Google-Smtp-Source: AGHT+IH19aSFbAEMJysF6sd6YLlZYgD6xAdYc7qRPYruPShtxZ3HcVjwtAi1K9T6Nq3GlUVH71n2Kw==
+X-Received: by 2002:ac2:457c:0:b0:511:8e27:10fa with SMTP id k28-20020ac2457c000000b005118e2710famr1384070lfm.54.1707735622795;
+        Mon, 12 Feb 2024 03:00:22 -0800 (PST)
+X-Forwarded-Encrypted: i=1; AJvYcCXW+o4MXrarcYh53SKrVmEZ/HWlT28LAQqpypqvt1ebP3vPn7aCux7Wa+0bP62yTlSI+pqJ6Yy3cWXpnthZGpVVzNZrAB7CGErbvjzOxO+XY05QchS7m5xEOzcFM8wOUFv21YyMuSxcguJBadvPVM7ZZUd73eycn8WxCabw8wNFcKVeV+xth+ozvA0s173RsASV2IVuxXDt21EPfqlo3ffy0Fz0vqVTw4gm/rQ2u9iED5zp4GVM5w1tPAF/vEENR2BweV5Dg6goeDKrBH/3U8AfeeiAMDY6IlXMy6BTOb2XoYMXt5hEHKKFA3gsRea0plctE4TgBb5EbuJZrT34euiAEb9w+nYXCa09AGGNtA1BsyEhj5tBtp2aGheQUjR3d1oN1arbaWpZtXElDZgNqAR6Qz9SI5KUd2FoaLWrkTfyKHbiy7dhAsEYeljoq5E4arBAnCaWeiJT+goZQ18dcUBQJzS2M6wy
+Received: from [192.168.1.20] ([178.197.223.6])
+        by smtp.gmail.com with ESMTPSA id t22-20020a1c7716000000b0040fe308ff25sm8218212wmi.24.2024.02.12.03.00.20
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 12 Feb 2024 03:00:22 -0800 (PST)
+Message-ID: <069b82ac-b59c-4665-8a77-6c11a2463faa@linaro.org>
+Date: Mon, 12 Feb 2024 12:00:19 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.11.0
-Subject: Re: [PATCH v2] dt-bindings: media: Add sram-size Property for Wave5
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 2/2] arm64: dts: qcom: sm8650: Add dma-coherent property
 Content-Language: en-US
-To: Nicolas Dufresne <nicolas@ndufresne.ca>, Brandon Brnich <b-brnich@ti.com>,
-        Nishanth Menon <nm@ti.com>
-CC: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        Nas Chung
-	<nas.chung@chipsnmedia.com>,
-        Jackson Lee <jackson.lee@chipsnmedia.com>,
-        Mauro
- Carvalho Chehab <mchehab@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley
-	<conor+dt@kernel.org>, <linux-media@vger.kernel.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        Vignesh
- Raghavendra <vigneshr@ti.com>,
-        Darren Etheridge <detheridge@ti.com>
-References: <20240201184238.2542695-1-b-brnich@ti.com>
- <1209b7cf-5be2-4107-aa6b-d67a32ea3737@linaro.org>
- <20240202125257.p4astjuxpzr5ltjs@dragster>
- <8091a8cf-c1c0-49b0-b136-1ad0d185aa6a@linaro.org>
- <20240202155813.szxvi7bfp5xh7rvw@babble>
- <adfef53c-d64e-4855-ab61-101b6fa419e5@linaro.org>
- <20240205141255.z5kybm42qld44tdz@portfolio>
- <20240205192003.3qns6cxqurqnnj7c@udba0500997>
- <ab029558-fc04-854e-1f97-785f5cec0681@ti.com>
- <fccdc181727307f52a36f3bb621d6a4e192096da.camel@ndufresne.ca>
-From: Devarsh Thakkar <devarsht@ti.com>
-In-Reply-To: <fccdc181727307f52a36f3bb621d6a4e192096da.camel@ndufresne.ca>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 8bit
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+To: Ling Xu <quic_lxu5@quicinc.com>, andersson@kernel.org,
+ konrad.dybcio@linaro.org, robh+dt@kernel.org,
+ krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org
+Cc: quic_kuiw@quicinc.com, quic_ekangupt@quicinc.com, kernel@quicinc.com,
+ linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, "Aiqun Yu (Maria)" <quic_aiquny@quicinc.com>,
+ Neil Armstrong <neil.armstrong@linaro.org>
+References: <20240125102413.3016-1-quic_lxu5@quicinc.com>
+ <20240125102413.3016-3-quic_lxu5@quicinc.com>
+From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
+ 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
+ D2GYIS41Kv4Isx2dEFh+/Q==
+In-Reply-To: <20240125102413.3016-3-quic_lxu5@quicinc.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
-Hi Nicolas,
-
-On 09/02/24 23:12, Nicolas Dufresne wrote:
-> Le jeudi 08 février 2024 à 11:52 +0530, Devarsh Thakkar a écrit :
->> I think even with the approach selected in [1] i.e. referring the
->> mmio-sram node using DT property, you can still use dynamic SRAM
->> allocation.
->> The driver can still allocate from global sram pool dynamically using
->> of_gen_pool API as being explained here [3] i.e allocate when first
->> instance is opened and free up later when no instances are running.
->>
->> But I agree with Nishanth's point too that we may not want to give all
->> of SRAM to VPU. For e.g. on AM62A we have 64KiB SRAM and a 1080p
->> use-case requires 48KiB and even higher for 4K so if there is another
->> peripheral who is referring this sram node, then it may not get enough
->> as VPU will hog the major chunk (or all) of it while it is running and
->> this is where an optional property like sram-size will help to cap the
->> max sram usage for VPU and so this helps especially on platforms with
->> limited SRAM availability.
->>
->> As I understand, the sram size allocation is dependent on resolution and
->> once programmed can't be changed until all instances of VPU are done,
->> and we can't predict how many instances user will launch and with what
->> resolutions.
->>
->> So here's the flow we had thought of some time back :
->> 1) Define worst case sram size (per 4K use-case as I believe that's the
->> max for CnM wave521c) as a macro in driver
->>
->> Then the condition for determining sram size to be allocated should be
->> as below  :
->>
->> 2) When first instance of VPU is opened, allocate as per sram-size if
->> sram-size property is specified.
->>
->> 3) If sram-size is not specified then :
->>    -> Allocate as per worst case size macro defined in driver from sram
->> pool,
->>    -> If worst case size of SRAM > max SRAM size, then allocate
->>       max SRAM size
->>
->> 4). When all of the instances of VPU are closed, then free up all
->> allocated SRAM.
->>
->> [3] :
->> https://wiki.analog.com/resources/tools-software/linuxdsp/docs/linux-kernel-and-drivers/sram
+On 25/01/2024 11:24, Ling Xu wrote:
+> Add dma-coherent property to fastRPC context bank nodes to pass dma
+> sequence test in fastrpc sanity test, ensure that data integrity is
+> maintained during DMA operations.
 > 
-> Only issue here is that DT is not a use case configuration file. That DT
-> parameter is meant for HW that simply cannot be operated without it. This is
-> also edgy, because it also means that it should only be used if that information
-> is not static and vary unpredictably per SoC, which seems generally unlikely. 
-> 
-> The Wave5 IP *can* work without it, so it should resort to something more
-> dynamic. User configuration should be sorted out at the OS level.
-> 
-> Nicolas
+> Signed-off-by: Ling Xu <quic_lxu5@quicinc.com>
+> ---
+>  arch/arm64/boot/dts/qcom/sm8650.dtsi | 13 +++++++++++++
 
-Thanks, yeah that makes sense. The sram allocation size is dependent on
-resolution so I think we should employ a fallback model for sram allocation as
-described below :
+This wasn't ever tested:
 
-1) Driver code should enumerate required sram sizes for each of the standard
-resolutions (for e.g. #define 1080P_SRAM_SIZE 48128, #define 4K_SRAM_SIZE
-66368 and so on...) and try to allocate per highest enumerated resolution
-first) from sram pool using gen_pool_alloc when first instance of VPU is opened.
+sm8650-qrd.dtb: remoteproc@32300000: glink-edge:fastrpc:compute-cb@1:
+'dma-coherent' does not match any of the regexes: 'pinctrl-[0-9]+'
 
-2) If the allocation fails, then driver should try to fallback to lower
-resolution sram allocation size (viz. 1080P_SRAM_SIZE) for sram allocation.
+Ling,
+How is this testing-patches-before-sending work in different teams? Do
+you have such requirement?
 
-3) When all of the VPU instances get closed, then free up all allocated SRAM
-back to the pool so that other peripherals can use it.
 
-Regards
-Devarsh
+Best regards,
+Krzysztof
+
 
