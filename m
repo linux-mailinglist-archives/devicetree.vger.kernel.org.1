@@ -1,171 +1,109 @@
-Return-Path: <devicetree+bounces-40569-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-40570-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 008B9850D80
-	for <lists+devicetree@lfdr.de>; Mon, 12 Feb 2024 07:17:28 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0DCD6850DE5
+	for <lists+devicetree@lfdr.de>; Mon, 12 Feb 2024 08:20:25 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 27DB5284051
-	for <lists+devicetree@lfdr.de>; Mon, 12 Feb 2024 06:17:26 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 963321F27C46
+	for <lists+devicetree@lfdr.de>; Mon, 12 Feb 2024 07:20:24 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B7BA86FCC;
-	Mon, 12 Feb 2024 06:17:22 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1BF7EE54C;
+	Mon, 12 Feb 2024 07:19:10 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="O2CKwP9p"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="HQQ2zHFM"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f42.google.com (mail-wm1-f42.google.com [209.85.128.42])
+Received: from mail-lf1-f47.google.com (mail-lf1-f47.google.com [209.85.167.47])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B39F0149E12
-	for <devicetree@vger.kernel.org>; Mon, 12 Feb 2024 06:17:20 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.42
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5213AEADF;
+	Mon, 12 Feb 2024 07:19:08 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.47
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1707718642; cv=none; b=Xxdc6i2LOodsyyx21nQG/4ef3HmSh66aYcIEZRFiTMkmvLx+SYBeJ15h2yqGhhXTlKifQfLrK6yMw2q08xcgAh10+YFR6cQUbwWLygEP1kyeqIyBqWdGKYaFl2oX9dL1wzAg2ohHkbROZYQJPDGhYoQgqlBFCpUS7YQLyWFbFZo=
+	t=1707722350; cv=none; b=IbWZgZFpyEdxafZzyZ4coqR6liNBtL4CoFOKNyecldMNJIDeBIsLJQ8Nij1V1ODvdNJgRA9n170B5MKDmRnnboxG1BrBcVWGiTiavmunT9VUBYHh0ldT1gX5s5gKYcC8JWoXzuqXpVZsRbPZ1hfS1Z7COq7Q2/GHR/ql68ve5DE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1707718642; c=relaxed/simple;
-	bh=wC4Rk/S2bZqAswL5Eum62/awDJqfLo6FVUpkq2UC/Fk=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=BeQydJvm45QdvxtvEHm5+8Lh1itzWRsVXZicEaCvWhU9HUe6HoPJD6GcKYzr+dVIQtLSBOMe7MB7pva5JK2HPCmd/ZPPUHvpLBA6s+WcCryb8KEB8vJJlchTuNHhnoNfQ539KJMPO62IbZTEzI89FgvD2dTRNjxBjtKqeW+PxDg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=O2CKwP9p; arc=none smtp.client-ip=209.85.128.42
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-wm1-f42.google.com with SMTP id 5b1f17b1804b1-41097f9a9a4so10511605e9.2
-        for <devicetree@vger.kernel.org>; Sun, 11 Feb 2024 22:17:20 -0800 (PST)
+	s=arc-20240116; t=1707722350; c=relaxed/simple;
+	bh=tGkzgsfshKCNTYNBI2JO1PxZmWaw14PA3PJ9RbEK0v4=;
+	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version; b=FyXXvexR0aDUKvSP198GCpHqAxhbLr2js4X7Eoz1mhkPQNUFkHSseW57b6CRNuVVZgiYEWv4PU3jtLhskphNTKF82/Lu/MPWEo/o7NjLb6ne4o3Q/jlUpdQTn46dUJDb42Uc4/mcmoicyPze8rpKiePnzOR3Vt2KZv0ziCQp6qY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=HQQ2zHFM; arc=none smtp.client-ip=209.85.167.47
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-lf1-f47.google.com with SMTP id 2adb3069b0e04-51183b02564so1117967e87.0;
+        Sun, 11 Feb 2024 23:19:08 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1707718639; x=1708323439; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=b+WNd/f9UKS2JvJprk002/RUuWpEUM6bLJ0kQf3agDo=;
-        b=O2CKwP9pRrYeyjeIlG3uGQrQqmNUaKhMJtePHr/jX2qaOSNJFlnhvC1Pf+HkURNBxB
-         Q/14nVF2Wk6T3mXx/PwUNfLwaXD1MwvdUXrNNwszaT606GzWRjn/V4yByHB+lI9mPdFn
-         dMHNtraDGYqVeRx1/E/rI1+XUB0syRIJxOHd6JnhvjRGgrajUzB4UiukUKouFS7QPy8O
-         GfgaYdqUhvQ7yCFfEAoE3UW2v8bPdSduDxxjn0/l2H4ds/WpjqODaXL/uaBl0Npejhkw
-         cR7g8aB4CLKTipnuEHrkV6lx1kluXcoUL0QA2DJcSwMEq/jVmUHK4gyEOmrLZxLJsKWL
-         grLA==
+        d=gmail.com; s=20230601; t=1707722346; x=1708327146; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=pIOSxIN7r278dt0Tf0zy54XV9Mva7+Eu/RjQv3pZW/I=;
+        b=HQQ2zHFMDM0BxLdbr4UhOlukSbfl9ySWN+nIR5XDHWewa/9RAVrKFHgnsgS63SuD7L
+         ky65gZhLTHiigYtuzmVI2IfLfnzf8xf7fAppxIlzYLHtfBX1U3tFFFqlIguJZMboGen2
+         Q/JJx9+Eo3DEX9BFi0B0x/nrvwXdYBptUAVpmbL//+G7slXLOSLO7tW8k4INF1LEBKgM
+         0DT0o1bBskWjJ5nydhDaW969WZhGMjvU2xpDzllOB3f2zExgd4BoL9h/A5xeFk+ZGnsC
+         VG0yhWDHQi9PD+maLrWmQUUGcm+4pZvYbsi7XrF4POqOKTK7L95MIcfxo5Nx/CMpGxLR
+         01PQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1707718639; x=1708323439;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=b+WNd/f9UKS2JvJprk002/RUuWpEUM6bLJ0kQf3agDo=;
-        b=O2aUFGpvNVu5c8sjD4XFmZYWHZNdMUMaQkLta2XA0TmY1l9HKE+TVqK1UUmLHWMULr
-         HZHA5Qe2FCfsm300jdQ9gh9PJILtMKRSwIF9bNx6hD50714psOMZHNclAfQql8Spk/EP
-         KhL0JCeetJJPs+TpSb/kYZlJOS0Zd9ryfCRDEA26Vd8lcs+40c9OiCSw1QSnlpyeF5Mg
-         cJPj9OQUJeWB2GozA0FNNWu9erZjpSCFOyFJAIrYS4bmJNBm9sDHvl7gbgTmCdqY0bMT
-         X3FLOUDqS8nn+4dltOaO6pLfqhdeCZiF9tF9lCV6sp6leHECUMYO5JUpP5nr9idcZAcS
-         Gheg==
-X-Forwarded-Encrypted: i=1; AJvYcCWeIsU6J0+zgeDgRB8gulAF9AXhZ2+tetwtwm5cs6UlmspeVQ01n3no7xK7LDOAi2NPaUZkCs5WGxpsgLq8/LYatsH1eBCtGQ+NOA==
-X-Gm-Message-State: AOJu0Yyw+ukzszqTW1tzyXa+BHbqMfYBk1lKv3LCDliDNPpalaexQm/P
-	KbrEwgtta5xjYwIMXoFJ/KWwUwbBNg6AM42uBg8HjEx2rOKC3UPhhRrFpXtRMuY=
-X-Google-Smtp-Source: AGHT+IENgctBzjxpmoVSMXEFhr5XLSDpWz9NezLUaPU2O7kQn9asFgyTyqv7IH7E5ZTn1yurJe5d9g==
-X-Received: by 2002:a05:600c:3150:b0:410:e95c:9490 with SMTP id h16-20020a05600c315000b00410e95c9490mr411370wmo.0.1707718638843;
-        Sun, 11 Feb 2024 22:17:18 -0800 (PST)
-X-Forwarded-Encrypted: i=1; AJvYcCVRD2NhVgORBiVkh5cz8qgqWl0sLqW/Lw2609YICdpQgMjYF3eEnbQZ2lsvH57C6ODcuBuozJhSd23gGxcFkHxDT7Gb8GlptwjteD9BJx/xtjYhERaLGJp9MIqS6PK9G+KcTBihhEc1DJeMsNPzjazS6rVn4VWC7zKcY3FYZ4knrHFbzMFjjfSRg9WDkX4lh7fEOEgVNpeW8fORd9eighunRiWFp+VGs+IZLIr97cmN6fiG0fFBtGkIAk8ZNyAMsdAmT0vTfbRikgISDCLneRLtB2uBCf0zdSihZSEeyqdFHE6LvpAPgiTCUxTTQAGijxa0cmRH+aNTl9AlkAWJ7ZHGRHdVj0evj9MkiVrFBeYgFKOTQ2FepEjnOn1bVZiw1CwGtwRrsPbAxe8WrNLbjiy73SnJjNg2+q1pmbKUO/8W2wwhb5b0pq8rQ9nqSMEpluQiMYw7x88cndzD4mZ4d3fbkvZLB175MM1eKgZ5Yi07d84f8BZHBGyZE7D7iJacwuKcetj3JH7e+dxlAUvGe3rc123ofOArNkUpmb5Z7RkqNGVjqz9Gq5zWXzMo9QHMjV7jS0z3nBuTJR6L0xN4xZPud1hwIjTDSDpq+rsRo+D27+NsthLX6OGI/lDF4gRzDq179lOcfA1FBlyA3mkfiWguou+HpmifkUKH2SEcee62TgDniL81DvY8eAZlboki
-Received: from [192.168.2.107] ([79.115.63.202])
-        by smtp.gmail.com with ESMTPSA id x16-20020a05600c2a5000b0040fe0bb761dsm7515815wme.16.2024.02.11.22.17.15
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sun, 11 Feb 2024 22:17:17 -0800 (PST)
-Message-ID: <828d9947-ee96-4c2f-b856-0fac3640c863@linaro.org>
-Date: Mon, 12 Feb 2024 06:17:14 +0000
+        d=1e100.net; s=20230601; t=1707722346; x=1708327146;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=pIOSxIN7r278dt0Tf0zy54XV9Mva7+Eu/RjQv3pZW/I=;
+        b=wEXSdLclQd7I/YMiQ00emuzkM6SoDWb27IJ+Ktk5k3xaJC1wEePOUi4sppF4LSuNBN
+         ChZma9teBwd+zwg1u2dEblZRApbE7pNDzgkrWpdVqXnSiYFjU+YySmT/Ov+V4bSO+hqc
+         dt6d5Gm+55hkPwRJoGNEuO+CBI4kHIjDHCLoc2KTbwsVFSg/quX/zY5Hwx7nwrhWwfY4
+         mBE8I8whVFIMJRtGJmVksQ6or1eNbq5Otr2syr6Pc0Bzvoxonc6CgemuROzxrHUqODjE
+         XHVMDj3LuHs4xvJaRcTXGhHXkMZBAkNgHogW2sTA1QuKs6qzv4Jq5AVWrOHNMob1viAK
+         JQ5Q==
+X-Gm-Message-State: AOJu0Yzzuvl75GM6logM/um/fYEUDfY0KqvcrVL0Nm2RhkZWbCf+hfME
+	E0sTyYhaiom2SXjY0QtZ/XQ5JSA7EfwJw4Qj7UMXPJUKvQzTHn7t
+X-Google-Smtp-Source: AGHT+IEiAFgLMJl1NdAOfwNlu93LjoEnlIu8EUkejwTSdpEw3b7Kvjuzhyes+CmiqCFAlTLIKWKgYQ==
+X-Received: by 2002:a05:6512:104b:b0:511:8101:baf7 with SMTP id c11-20020a056512104b00b005118101baf7mr4250741lfb.38.1707722346036;
+        Sun, 11 Feb 2024 23:19:06 -0800 (PST)
+X-Forwarded-Encrypted: i=1; AJvYcCWreSjSfwPDIxHurifl74hTFVu0kBWoN2Hz5g1chDxJrXTizxTXPBb4o8SK5cx2WGPg+C0M/uTbhyr6Jr+3AajESn1zRU+hbH9MO5KEbJO9VVGT/bWY53xxbgDrXZZUjAGMHWnXiAboAv0ES1/5i0X+dJ5j1cllm5rRA9dny0bSnMjE5XyN9yOkmft+llwQCCpwdzJDYRGUVIrAlVQoeWqh9kL96ldRq/SerClucYZ4/6O/K9y2R/FF0yQbPpt/D8nxofEGBdC94Lkyx7xBndSBFWKj1YDsuGUiKvAAZnB1b+DAwEUiTPTBPzQp58nYX76Oehuxl1jFuQ==
+Received: from xeon.. ([188.163.112.49])
+        by smtp.gmail.com with ESMTPSA id g8-20020a05600c310800b00410cfc34260sm2340327wmo.2.2024.02.11.23.19.05
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Sun, 11 Feb 2024 23:19:05 -0800 (PST)
+From: Svyatoslav Ryhel <clamor95@gmail.com>
+To: Rob Herring <robh+dt@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Thierry Reding <thierry.reding@gmail.com>,
+	Jonathan Hunter <jonathanh@nvidia.com>,
+	Svyatoslav Ryhel <clamor95@gmail.com>,
+	Shubhi Garg <shgarg@nvidia.com>
+Cc: devicetree@vger.kernel.org,
+	linux-tegra@vger.kernel.org,
+	linux-kernel@vger.kernel.org
+Subject: [PATCH v1 0/2] Tegra114: switch Tegra Note 7 from tn7 to tegratab
+Date: Mon, 12 Feb 2024 09:18:41 +0200
+Message-Id: <20240212071843.6679-1-clamor95@gmail.com>
+X-Mailer: git-send-email 2.40.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 01/12] spi: dt-bindings: introduce the ``fifo-depth``
- property
-Content-Language: en-US
-To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
- Geert Uytterhoeven <geert@linux-m68k.org>
-Cc: broonie@kernel.org, robh@kernel.org, andi.shyti@kernel.org,
- semen.protsenko@linaro.org, alim.akhtar@samsung.com,
- linux-spi@vger.kernel.org, linux-samsung-soc@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
- andre.draszik@linaro.org, peter.griffin@linaro.org, kernel-team@android.com,
- willmcvicker@google.com, conor+dt@kernel.org, devicetree@vger.kernel.org,
- arnd@arndb.de, Linux-Renesas <linux-renesas-soc@vger.kernel.org>,
- Wolfram Sang <wsa+renesas@sang-engineering.com>
-References: <20240208135045.3728927-1-tudor.ambarus@linaro.org>
- <20240208135045.3728927-2-tudor.ambarus@linaro.org>
- <CAMuHMdU_Hx9PLmHf2Xm1KKTy_OF-TeCv7SzmA5CZWz+PLkbAGA@mail.gmail.com>
- <be84e32e-e11d-47fe-ad56-da8b0dec5007@linaro.org>
-From: Tudor Ambarus <tudor.ambarus@linaro.org>
-In-Reply-To: <be84e32e-e11d-47fe-ad56-da8b0dec5007@linaro.org>
-Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
 
+Currently Tegra Note 7 uses tn7 compatible and device tree name which is
+not quite correct. This device has proper codename which is tegratab.
+Switch tn7 in compatible to tegratab and set a better device tree name
+tegra114-nvidia-tegratab which aligns with newer trees.
 
+Svyatoslav Ryhel (2):
+  ARM: tegra: set correct naming for Tegra Note 7
+  dt-bindings: arm: tegra: document NVIDIA Tegra Note 7 properly
 
-Hi, Geert, Krzysztof,
+ Documentation/devicetree/bindings/arm/tegra.yaml             | 5 ++++-
+ arch/arm/boot/dts/nvidia/Makefile                            | 4 ++--
+ .../{tegra114-tn7.dts => tegra114-nvidia-tegratab.dts}       | 5 +++--
+ 3 files changed, 9 insertions(+), 5 deletions(-)
+ rename arch/arm/boot/dts/nvidia/{tegra114-tn7.dts => tegra114-nvidia-tegratab.dts} (98%)
 
-On 2/11/24 13:49, Krzysztof Kozlowski wrote:> On 09/02/2024 18:13, Geert
-Uytterhoeven wrote:
->> Hi Tudor,
->>
->> On Thu, Feb 8, 2024 at 2:51 PM Tudor Ambarus <tudor.ambarus@linaro.org> wrote:
->>> There are instances of the same IP that are configured by the integrator
->>> with different FIFO depths. Introduce the fifo-depth property to allow
->>> such nodes to specify their FIFO depth.
->>>
->>> We haven't seen SPI IPs with different FIFO depths for RX and TX, thus
->>> introduce a single property.
->>
->> Ha...
->>
->> Current documentation for the Clock-Synchronized Serial Interface with
->> FIFO (MSIOF) on e.g. R-Car Gen2 and later states:
->>
->>     FIFO capacity: 32 bits × 64 stages for transmission and 32 bits ×
->> 256 stages for reception
->>
->> Initially (many years ago), there was some doubt about the validity
->> of these values (older variants on SH supported 64/64), hence
->> drivers/spi/spi-sh-msiof.c still has
->>
->>     .tx_fifo_size = 64,
->>     .rx_fifo_size = 64,
->>
->> Probably we should test and revisit this...
->>
->>> --- a/Documentation/devicetree/bindings/spi/spi-controller.yaml
->>> +++ b/Documentation/devicetree/bindings/spi/spi-controller.yaml
->>> @@ -69,6 +69,11 @@ properties:
->>>           Should be generally avoided and be replaced by
->>>           spi-cs-high + ACTIVE_HIGH.
->>>
->>> +  fifo-depth:
->>> +    $ref: /schemas/types.yaml#/definitions/uint32
->>> +    description:
->>> +      Size of the data FIFO in bytes.
->>
->> I think it is prudent to consider the asymmetric case, too.
->> Whether that should be just two properties ("rx-fifo-depth" and
->> "tx-fifo-depth"), or also a third "fifo-depth", I defer to the DT
->> maintainers...
+-- 
+2.40.1
 
-Thanks, Geert for the insight!
-> 
-> Since most of the cases FIFO depth tx=rx, we could go with three
-> properties and:
-> 
-> allOf:
->  - not:
->      required:
->        - fifo-depth
->        - tx-fifo-depth
->  - not:
->      required:
->        - fifo-depth
->        - rx-fifo-depth
-> 
-> and probably dependencies between rx and tx (see example-schema).
-> 
-Great. Thanks, Krzysztof! I'll give it a try.
-Cheers,
-ta
 
