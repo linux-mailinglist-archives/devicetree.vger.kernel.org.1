@@ -1,97 +1,236 @@
-Return-Path: <devicetree+bounces-40683-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-40679-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1811F851319
-	for <lists+devicetree@lfdr.de>; Mon, 12 Feb 2024 13:10:44 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id B82E58512F8
+	for <lists+devicetree@lfdr.de>; Mon, 12 Feb 2024 13:06:59 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id C2A7E285C0E
-	for <lists+devicetree@lfdr.de>; Mon, 12 Feb 2024 12:10:42 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 48BEF28101A
+	for <lists+devicetree@lfdr.de>; Mon, 12 Feb 2024 12:06:58 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id CBB4E3A1BC;
-	Mon, 12 Feb 2024 12:05:18 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id EAA2A3BB4E;
+	Mon, 12 Feb 2024 12:02:01 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="TUKuyoTm"
 X-Original-To: devicetree@vger.kernel.org
-Received: from tux.runtux.com (tux.runtux.com [176.9.82.136])
+Received: from mail-wm1-f49.google.com (mail-wm1-f49.google.com [209.85.128.49])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 205453A1A2;
-	Mon, 12 Feb 2024 12:05:16 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=176.9.82.136
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CCD003BB3C
+	for <devicetree@vger.kernel.org>; Mon, 12 Feb 2024 12:01:59 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.49
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1707739518; cv=none; b=dbKf2LxUH3alzidaXniygkvV21wssjaAnCdf3Yc6wNyO9O9xWIzEBS5FAv83QehHqA254QI/etHsdgRdNdSg8wWcGYCBHCZJJXtehslv1PgptVJoJEnm+rP+FQWAErJG4rhZTqK2CLdtkC8ByiwXLINSXjBcfV5p1UjBhrxznF8=
+	t=1707739321; cv=none; b=oHKRLjcxptS0sXVdvecq4UdTW0fk7e9sGhgKVW+bf1cld7cjricQxq4puLjkI/588j8nZ81N8kLBWxWXDQ9YPo0xJ2SsUo6n6fZVTUtbBVsSB2pJ9PC4p8Bk6ycnrBzMD7c8xIGki1+C7qYQiblsC4nM73yIBvuWPAofC51uRUU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1707739518; c=relaxed/simple;
-	bh=E3KFB6K5OgQs2dHpXglx69hmIvkGlu7uEPBJjLo5jMo=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=bSCNy5vu2KJLRvxl4Cqo90SedGQlCdmS7sDlm3tGOYt7xeqL1aZQJt7VcssspOtwgSe6jKb+5mI5J6q8FtONqskpi18bxODcL/YOhR+PGyTCPoDV7MmYs34Ta8obMrLXwDM45G728q2Ic4XrRxv9CW92lTXcKsdo1zG52kS7FAY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=runtux.com; spf=pass smtp.mailfrom=runtux.com; arc=none smtp.client-ip=176.9.82.136
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=runtux.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=runtux.com
-Received: from localhost (localhost [127.0.0.1])
-	by tux.runtux.com (Postfix) with ESMTP id 0F1466F065;
-	Mon, 12 Feb 2024 12:58:41 +0100 (CET)
-X-Virus-Scanned: Debian amavisd-new at tux.runtux.com
-Received: from tux.runtux.com ([127.0.0.1])
-	by localhost (tux2.runtux.com [127.0.0.1]) (amavisd-new, port 10026)
-	with LMTP id qrdKvZuhnK0i; Mon, 12 Feb 2024 12:58:40 +0100 (CET)
-Received: from bee.priv.zoo (62-99-217-90.static.upcbusiness.at [62.99.217.90])
-	(Authenticated sender: postmaster@runtux.com)
-	by tux.runtux.com (Postfix) with ESMTPSA id 91EF76EF02;
-	Mon, 12 Feb 2024 12:58:39 +0100 (CET)
-Received: by bee.priv.zoo (Postfix, from userid 1002)
-	id 2722E472; Mon, 12 Feb 2024 12:58:39 +0100 (CET)
-Date: Mon, 12 Feb 2024 12:58:39 +0100
-From: Ralf Schlatterbeck <rsc@runtux.com>
-To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Cc: Geert Uytterhoeven <geert@linux-m68k.org>,
-	Linus Walleij <linus.walleij@linaro.org>,
-	Miguel Ojeda <ojeda@kernel.org>, Rob Herring <robh+dt@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Robin van der Gracht <robin@protonic.nl>,
-	Paul Burton <paulburton@kernel.org>,
-	linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	Andy Shevchenko <andriy.shevchenko@linux.intel.com>
-Subject: Re: [PATCH 1/3] dt-bindings: auxdisplay: hit, hd44780: drop
- redundant GPIO node
-Message-ID: <20240212115837.efz73yxinkysdmgh@runtux.com>
-References: <20240212083426.26757-1-krzysztof.kozlowski@linaro.org>
- <CAMuHMdU-c5_Z2AMNtNH4Cc4JUrn+oKU-1CumEOAP6=5Zomcj_A@mail.gmail.com>
- <2922eece-5486-4eff-af99-f7060cb61d17@linaro.org>
+	s=arc-20240116; t=1707739321; c=relaxed/simple;
+	bh=6jOThHeHLJcV7xo9OpIo5+QWwr5tWK5FlUO10NVx9Iw=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=XAT5lc/j395fXBUoekr/C6S1dyGixnsAvRSi/nEjYQlm+RWeGRKfHAi1P5k3uTbWsr8HRsPVAFI1rT+FTxlvFKxADtv82MGETW26Rr+tP0VgtzlJluJAeGtnXEEiu7Qn6FG3Azmh5c7ww2P2qac4FzHRlQ7R4D3uQNxfZ4HnrKE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=TUKuyoTm; arc=none smtp.client-ip=209.85.128.49
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-wm1-f49.google.com with SMTP id 5b1f17b1804b1-4114e0a2936so1962295e9.3
+        for <devicetree@vger.kernel.org>; Mon, 12 Feb 2024 04:01:59 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1707739318; x=1708344118; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=2RfW1yKu6VnzD6W1R22Wk491SAkADnMhexZ9bi5hjB4=;
+        b=TUKuyoTm97uvp9AKQF6SFjw3obviG9XkjE01cAyYtTIvK3z4C/SAeBoUkjI8eRnHfw
+         +qVDCTnMGpaA/AljD0ZJ/z3Va05RhAIkhZ7fTY/xILR25iZBMxbGAOz3KpWP+HaFfN+x
+         xone2qVamYYPaUGQrmjPoijMHn1lzU0HpAb4kkpnUt8fPKNY3CEhR35ssf4yTuWF6zql
+         qdkO340+oD4CYRoexr1XOkQsm1vSrWP154Ofe9anvyFGSwvUGfHuzW5oJG0W1WtsLSY2
+         VqJZOARN62oLqjbnaDSGzeMBPqyFrro2lQyrFKGI2k2YoNmCEDd36sQaJ0YbZ7uIV6lw
+         raSQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1707739318; x=1708344118;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=2RfW1yKu6VnzD6W1R22Wk491SAkADnMhexZ9bi5hjB4=;
+        b=fm/+u7YPq+n0fDFxI4XG5vdHQEBIKpA2NEmpyxtkaB41gXFZXWLmhOdLbrVLjB/EKv
+         Wo3OcQCSxbPefGnwSYh2Y8S3QU/0Fi2uUX936KE1k6b4/mCmfwV4n2Kw91Wvbw6fGfsW
+         lARutTSsvpXEs8QholKujoxHy7D6P/MZlxKBz21sXdX8/G0KF/LzkE3aA3mHwXuwLG1l
+         fZ08AaDoJE8tO9zspxo66pQVsYqokzFS7iT2tfmxw4aGkZ8HHvpr5L3ytfesX1mO2Prs
+         2afPMuDokVrIN4hceu0/3qyLbiyJF89xD2tMxnbtAoWRbpmGNACoPlbYwrO3gEeYhd4L
+         RHgw==
+X-Gm-Message-State: AOJu0YxfScoJfdcrp+jPY3mdnmJsyHY73kYkmjqTADjo0PSEm76NE4Sy
+	TEG1OrpZ+RC5xxmDfV0bayhKoqqOznuiBPQzQduFVDZTE3D52ZuZcPr+hJJW/PU=
+X-Google-Smtp-Source: AGHT+IEFctiL0oXp51EPgUWe8Fnt/DqYywvQmm4QP+S5XyApNLGmpHMXsexg4n8EThYzpEZzhKOBjA==
+X-Received: by 2002:a5d:55cc:0:b0:33b:60cb:c3ad with SMTP id i12-20020a5d55cc000000b0033b60cbc3admr5740831wrw.41.1707739317996;
+        Mon, 12 Feb 2024 04:01:57 -0800 (PST)
+X-Forwarded-Encrypted: i=1; AJvYcCVl8AaJjjM+8NdAfmzeYbuNmlVemAz2z+06wOIVJbkD+bj1sxVNF/sLtMO30dKeBFYuVydqVE4it6e4wFtU7FJVvenMwolV7md9o00r/A1Bu59Xb55Ti4qN0U+ccT3otk4QwKcdX/D/PKFo3hh8LVsk6g7KCZgZWoE/Sz8PpHveL4pnVTx2m+qamA4BYn4AUCgHIxQ7b0YznjQYfK359EPlRA3ObLqqyomvDNH8tTohNZWS3KclTmaQt8v3e5HIeusMB4oNKYOBbNyBHSn08RPgf/bG3TbfCO4wXo4cwiFWMAqiNty2nb7k+SvqEhObTGHxWSbHx7sLTITH3FMQhBgK7t8XZefO3sk7NfEs+UxPnsHpGmJTiqNDU5hPnDgYiAuOVZ/IDr24I9PF+Uz4zoIzt2HLgy32TY4EVoXWpkhaTS4mJ7UjmUXH5qmrn7NrEbqm036wWwfnykB9XIJ6nlupm7mlC07Tz6tNJlJSWiLLM0+NjwH81MRKTzuGEmMln2szRuodsi+RyCsqUOIlg6cV0/YvUyic8+nkyykiCea+hCq46ICecidpTcMC24ufCqIHavzEp0M2QDN2SRo11lJAfL4J3luLfy0sEW0D4oCYeJku
+Received: from [192.168.2.107] ([79.115.63.202])
+        by smtp.gmail.com with ESMTPSA id n14-20020a056000170e00b0033b5b5033b9sm6709452wrc.18.2024.02.12.04.01.54
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 12 Feb 2024 04:01:55 -0800 (PST)
+Message-ID: <b7051bea-8197-4338-a089-5e5fff540ac5@linaro.org>
+Date: Mon, 12 Feb 2024 12:01:54 +0000
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <2922eece-5486-4eff-af99-f7060cb61d17@linaro.org>
-X-ray: beware
-User-Agent: NeoMutt/20180716
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 01/12] spi: dt-bindings: introduce the ``fifo-depth``
+ property
+Content-Language: en-US
+To: Geert Uytterhoeven <geert@linux-m68k.org>
+Cc: Conor Dooley <conor@kernel.org>, broonie@kernel.org, robh@kernel.org,
+ andi.shyti@kernel.org, semen.protsenko@linaro.org,
+ krzysztof.kozlowski@linaro.org, alim.akhtar@samsung.com,
+ linux-spi@vger.kernel.org, linux-samsung-soc@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+ andre.draszik@linaro.org, peter.griffin@linaro.org, kernel-team@android.com,
+ willmcvicker@google.com, conor+dt@kernel.org, devicetree@vger.kernel.org,
+ arnd@arndb.de
+References: <20240208135045.3728927-1-tudor.ambarus@linaro.org>
+ <20240208135045.3728927-2-tudor.ambarus@linaro.org>
+ <20240208-grating-legwarmer-0a04cfb04d61@spud>
+ <c2b08463-cb13-4e9b-8797-8ebcf1047f66@linaro.org>
+ <20240209-chest-sleet-a119fc3d4243@spud>
+ <0ac8d573-6486-458d-afb9-090b5f8d4a21@linaro.org>
+ <CAMuHMdXEKecx-wQCSzqmRr6af2AUOnoFhfD2JLx28n8OYnvzGw@mail.gmail.com>
+From: Tudor Ambarus <tudor.ambarus@linaro.org>
+In-Reply-To: <CAMuHMdXEKecx-wQCSzqmRr6af2AUOnoFhfD2JLx28n8OYnvzGw@mail.gmail.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 
-On Mon, Feb 12, 2024 at 12:25:48PM +0100, Krzysztof Kozlowski wrote:
+
+
+On 2/12/24 10:38, Geert Uytterhoeven wrote:
+> Hi Tudor,
+
+Hi, Geert!
+
 > 
-> Hm, I don't understand how exactly it helps. The GPIO expander has its
-> own example and as you pointed below, this is basically the same code,
-> except rw and backlight GPIOs.
+> On Fri, Feb 9, 2024 at 5:55 PM Tudor Ambarus <tudor.ambarus@linaro.org> wrote:
+>> On 2/9/24 16:21, Conor Dooley wrote:
+>>> On Fri, Feb 09, 2024 at 01:56:56PM +0000, Tudor Ambarus wrote:
+>>>> On 2/8/24 18:24, Conor Dooley wrote:
+>>>>> On Thu, Feb 08, 2024 at 01:50:34PM +0000, Tudor Ambarus wrote:
+>>>>>> There are instances of the same IP that are configured by the integrator
+>>>>>> with different FIFO depths. Introduce the fifo-depth property to allow
+>>>>>> such nodes to specify their FIFO depth.
+>>>>>>
+>>>>>> We haven't seen SPI IPs with different FIFO depths for RX and TX, thus
+>>>>>> introduce a single property.
+>>>>>
+>>>>> Some citation attached to this would be nice. "We haven't seen" offers
+>>>>> no detail as to what IPs that allow this sort of configuration of FIFO
+>>>>> size that you have actually checked.
+>>>>>
+>>>>> I went and checked our IP that we use in FPGA fabric, which has a
+>>>>> configurable fifo depth. It only has a single knob for both RX and TX
+>>>>> FIFOs. The Xilinx xps spi core also has configurable FIFOs, but again RX
+>>>>> and TX sizes are tied there. At least that's a sample size of three.
+>>>>>
+>>>>> One of our guys is working on support for the IP I just mentioned and
+>>>>> would be defining a vendor property for this, so
+>>>>> Reviewed-by: Conor Dooley <conor.dooley@microchip.com>
+>>>>>
+>>>>
+>>>> Thanks, Conor. I had in mind that SPI has a shift register and it's
+>>>> improbable to have different FIFO depths for RX and TX.
+>>>
+>>> IDK, but I've learned to expect the unexpectable, especially when it
+>>> comes to the IPs intended for use in FPGAs.
+>>>
+>>>> At least I don't
+>>>> see how it would work, I guess it will use the minimum depth between the
+>>>> two?
+>>>
+>>> I'm not really sure how it would work other than that in the general
+>>> case, but some use case specific configuration could work, but I do
+>>> agree that it is
+>>>
+>>>> I grepped by "fifo" in the spi bindings and I now see that renesas is
+>>>> using dedicated properties for RX and TX, but I think that there too the
+>>>> FIFOs have the same depths. Looking into drivers/spi/spi-sh-msiof.c I
+>>>> see that the of_device_id.data contains 64 bytes FIFOs for RX and TX,
+>>>> regardless of the compatible.
+>>>>
+>>>> Geert, any idea if the FIFO depths can differ for RX and TX in
+>>>> spi-sh-msiof.c?
+> 
+> See my other email
+> https://lore.kernel.org/all/CAMuHMdU_Hx9PLmHf2Xm1KKTy_OF-TeCv7SzmA5CZWz+PLkbAGA@mail.gmail.com
+> 
 
-The hd44780 is a display that is very often used.
-By people (like me some time ago) not familiar with the nice io expander
-implementation in Linux. The consequence of that is that you'll find
-several out-of-tree implementations for this display with i2c out in the
-wild. So my thought of documenting this (again) at that location is to
-make it easier for people with a hd44780 with the standard i2c interface
-to see how it is done in Linux.
+I saw the response, thanks again!
 
-So I really think it helps. It would have helped me :-)
+> Note that at one point we did have 64/256 in the driver, but that was
+> changed in commit fe78d0b7691c0274 ("spi: sh-msiof: Fix FIFO size to
+> 64 word from 256 word").  Diving into the discussion around that patch,
+> there seem to be two factors at play:
+>   1. Actual FIFO size,
+>   2. Maximum transfer size per block
+>      (up to 2 blocks on R-Car, up to 4 blocks on SH(-Mobile)).
+> As the driver supports only a single block, it should be limited to
+> 64 on R-Car Gen2/3.  R-Car Gen4 claims to have widened the register
+> bit field for the maximum transfer size per block, so 256 might be
+> possible there...
 
-Ralf
--- 
-Dr. Ralf Schlatterbeck                  Tel:   +43/2243/26465-16
-Open Source Consulting                  www:   www.runtux.com
-Reichergasse 131, A-3411 Weidling       email: office@runtux.com
+Got it.
+
+> 
+>>>> Anyway, even if there are such imbalanced architectures, I guess we can
+>>>> consider them when/if they appear? (add rx/tx-fifo-depth dt properties)
+>>>
+>>> I think so.
+>>>
+>>>> Documentation/devicetree/bindings/spi/renesas,sh-msiof.yaml:
+>>>> Override the default TX fifo size.  Unit is words.  Ignored if 0.
+>>>> Documentation/devicetree/bindings/spi/renesas,sh-msiof.yaml:
+>>>> renesas,rx-fifo-size:
+>>>> Documentation/devicetree/bindings/spi/renesas,sh-msiof.yaml:
+>>>> Override the default RX fifo size.  Unit is words.  Ignored if 0.
+>>>
+>>> These renesas ones seemed interesting at first glance due to these
+>>> comments, but what's missed by grep the is "deprecated" marking on
+>>> these. They seem to have been replaced by soc-specific compatibles.
+>>
+>> In the driver the renesas,{rx,tx}-fifo-size properties still have the
+>> highest priority:
+>>
+>> https://git.kernel.org/pub/scm/linux/kernel/git/broonie/spi.git/tree/drivers/spi/spi-sh-msiof.c#n1350
+>>
+>> Maybe something for Geert, as I see he was the one marking these
+>> properties as deprecated. I guess he forgot to update the driver.
+>>
+>> Anyway, I think we shall be fine, even if we don't hear from Geert.
+> 
+> The renesas,{rx,tx}-fifo-size properties date back to the early days
+> of DT an ARM, when it was assumed that slightly different versions of
+> IP cores could be handled well using a single common compatible value,
+> and properties describing the (few) differences.  The pitfall here
+> is the "few differences": too many times people discovered later that
+> there were more differences, needing more properties, and complicating
+> backwards-compatibility.
+> 
+> Hence the handling of different FIFO sizes was moved to the driver based
+> on compatible values, and the renesas,{rx,tx}-fifo-size properties were
+> deprecated.  See commit beb74bb0875579c4 ("spi: sh-msiof: Add support
+> for R-Car H2 and M2"), which shows that there were more changes
+> needed than the anticipated FIFO sizes.  And more were added later,
+> see later additions to sh_msiof_chipdata.
+> 
+> So unless it is meant for a configurable synthesizable IP core, where
+> this is a documented parameter of the IP core, I advise against
+> specifying the FIFO size(s) in DT.
+> 
+
+I guess I get it now. You marked those properties as deprecated so that
+users stop using them and rely on the driver based compatible values,
+but at the same time you allowed the devicetree properties to have a
+higher priority than the driver based compatible values in case one
+really wants/needs to use the dt properties. I don't have a preference
+here, I guess it's fine.
+
+Thanks for the explanations!
+ta
 
