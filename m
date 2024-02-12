@@ -1,117 +1,112 @@
-Return-Path: <devicetree+bounces-40752-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-40753-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id AF68E8515B3
-	for <lists+devicetree@lfdr.de>; Mon, 12 Feb 2024 14:48:24 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6C7EE8515B6
+	for <lists+devicetree@lfdr.de>; Mon, 12 Feb 2024 14:48:56 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 59A281F213E6
-	for <lists+devicetree@lfdr.de>; Mon, 12 Feb 2024 13:48:24 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 26B48282283
+	for <lists+devicetree@lfdr.de>; Mon, 12 Feb 2024 13:48:55 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3E9C93A28E;
-	Mon, 12 Feb 2024 13:42:54 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 23F213BB33;
+	Mon, 12 Feb 2024 13:44:00 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=sang-engineering.com header.i=@sang-engineering.com header.b="NXy22sJo"
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="AOo6nEDx"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail.zeus03.de (www.zeus03.de [194.117.254.33])
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.14])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5F8963B193
-	for <devicetree@vger.kernel.org>; Mon, 12 Feb 2024 13:42:51 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=194.117.254.33
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8C6573A28B;
+	Mon, 12 Feb 2024 13:43:58 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.175.65.14
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1707745374; cv=none; b=A1jHOSqD51lRowYAlY0CEstdF4uRsNrP3PVVpkbBTRymFPV99LnUJlsE5TusxoaM4FJC8s/2wLNsMCwJ5GKgk7NZn5EURSyFLPnKc5HxLPMSUcggTubUvqYil7rl+/VBs2AI6am+30UTb+cXCOApB6QzEA3lTtD/SvFMMHw09L4=
+	t=1707745440; cv=none; b=ky5ytH4dJcyWbh54hJ48sy3q8fe0V0OgXLgfNvxLfAK4FJ2MbKXugAlsYfs2exCLMp2T7w5JUgsLdbne/CbGvaEw7QCiuSYjlXJeKBwQSwH5g3xydFgZWozNxBr0eYTV02ZYGzkPz9QZe/Evzh1CwNRy957FVEaIuq9BFAWxz30=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1707745374; c=relaxed/simple;
-	bh=AbjQ2DV/nX2p97vvxC2UM0Jmz09uFhNK2994d7XYkN0=;
+	s=arc-20240116; t=1707745440; c=relaxed/simple;
+	bh=ReFfb4Ca/K0nRT7HGDlG5FJYa8HVxtgFYOvGETOwcfE=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=peGIlyfUqB7hv9KelwFYH3IL3iD/RDa+QN5gocM63xBQWsL05dlLZljDWOcdwmZOPKV4a8N4bkOp4EMYD/l5oqk9mM3KyN+SdxNMqpc/vTSRI+txGhCdDkUphA7SG9I+6aAUcNhb2xFaCOgM0BB7bW1m6S1wq7MJh9bTHh5/1lM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=sang-engineering.com; spf=pass smtp.mailfrom=sang-engineering.com; dkim=pass (2048-bit key) header.d=sang-engineering.com header.i=@sang-engineering.com header.b=NXy22sJo; arc=none smtp.client-ip=194.117.254.33
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=sang-engineering.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=sang-engineering.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
-	sang-engineering.com; h=date:from:to:cc:subject:message-id
-	:references:mime-version:content-type:in-reply-to; s=k1; bh=dnTS
-	RML03NXrWUaUmxvov3tWnZvOFwRpDRGc9usJsQY=; b=NXy22sJo52GISOYqjKz/
-	SbNuxA723hME+fgFkGtRfQhZLvw0iPDvN5YM5VXbIG2iUhtkUL9nQH9pEb+hskfE
-	pCql1kw0C33DVAdvfpHFYu/jJttug9qrvWUcwZtDYG0XW6Ds/nFfSXTWwxh9JW0o
-	yN5hrQaZ9lQCmY3ADrzYAH6vdzAZ7xuXjW+WRmg5TiP+jEtU27whraP8T5jPRXxk
-	J3rOVSWFGvB6Y1Y3Am+KakJgbsqRiqb+iVXZekkNZhAfboZPNr6iMylDrzHG8T+4
-	RsJnYPykLS0RrloDZPyaZ4r/d+9HPi3zhkFKC7rZ88fMEPWEO84wgthLlRw+eq9a
-	cw==
-Received: (qmail 514895 invoked from network); 12 Feb 2024 14:42:50 +0100
-Received: by mail.zeus03.de with ESMTPSA (TLS_AES_256_GCM_SHA384 encrypted, authenticated); 12 Feb 2024 14:42:50 +0100
-X-UD-Smtp-Session: l3s3148p1@iFAmdC8RyMEujnsZ
-Date: Mon, 12 Feb 2024 14:42:50 +0100
-From: Wolfram Sang <wsa+renesas@sang-engineering.com>
-To: Geert Uytterhoeven <geert@linux-m68k.org>
-Cc: linux-renesas-soc@vger.kernel.org, Magnus Damm <magnus.damm@gmail.com>,
-	Rob Herring <robh+dt@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org
-Subject: Re: [RFC PATCH 1/2] arm64: dts: renesas: ulcb-kf: adapt 1.8V HDMI
- regulator to schematics
-Message-ID: <ZcogWgtQ7hZ-5aj0@shikoro>
-Mail-Followup-To: Wolfram Sang <wsa+renesas@sang-engineering.com>,
+	 Content-Type:Content-Disposition:In-Reply-To; b=o+i1wKBniUI/TlOAVshoVdCHDP6V+w5tb2VKwPwkl0x0TOlef1tGs3GbwNDasTOX5FtUGOLJJzTvd73VIKy8NjN4SKZ0ne0hK5hBP+5+a4C/j1OBvU8xsxJk22nxLNKxouGmtpFUIAfEu/QkQ8gBA5NgRCytPQCRTXVrDCawi0s=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com; spf=none smtp.mailfrom=linux.intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=AOo6nEDx; arc=none smtp.client-ip=198.175.65.14
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com
+Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=linux.intel.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1707745438; x=1739281438;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=ReFfb4Ca/K0nRT7HGDlG5FJYa8HVxtgFYOvGETOwcfE=;
+  b=AOo6nEDxe6ucOz1S9QCPoA74tvFVf+hwQ7J8Ti4+NbymUSeqsOCi4WNX
+   7FH/4kTGxBFc1XARW/q/vFHO56RU6mPsIIQOwBkGKnob0hZIeev2K8NXD
+   VOPxeoIf7GR5ayPAy5B3F41/BBHIJz7EFmFi0WUDMouTfxrtySUtJCeJk
+   sGq8LZgzhOZstYFW4aBg6sh2eXRzqTVuxBfHgWlBMCD2/tYSrSLfkGMJF
+   niCsAUIQm+txwa/d4qmMNrYPxq7ptR6oq9zQCZPRAOVX39bZxgYnUb2n8
+   7zHb8R8Cktkij5SWCd38UpQhrRGEGbbyJ+XQ6EqE3FRR80OYEbevgYf1+
+   g==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10981"; a="5533892"
+X-IronPort-AV: E=Sophos;i="6.06,264,1705392000"; 
+   d="scan'208";a="5533892"
+Received: from fmsmga002.fm.intel.com ([10.253.24.26])
+  by orvoesa106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 12 Feb 2024 05:43:58 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=McAfee;i="6600,9927,10981"; a="911485132"
+X-IronPort-AV: E=Sophos;i="6.06,264,1705392000"; 
+   d="scan'208";a="911485132"
+Received: from smile.fi.intel.com ([10.237.72.54])
+  by fmsmga002.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 12 Feb 2024 05:43:54 -0800
+Received: from andy by smile.fi.intel.com with local (Exim 4.97)
+	(envelope-from <andriy.shevchenko@linux.intel.com>)
+	id 1rZWb9-00000003uR5-2c5X;
+	Mon, 12 Feb 2024 15:43:51 +0200
+Date: Mon, 12 Feb 2024 15:43:51 +0200
+From: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
+To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Cc: Ralf Schlatterbeck <rsc@runtux.com>,
 	Geert Uytterhoeven <geert@linux-m68k.org>,
-	linux-renesas-soc@vger.kernel.org,
-	Magnus Damm <magnus.damm@gmail.com>,
-	Rob Herring <robh+dt@kernel.org>,
+	Linus Walleij <linus.walleij@linaro.org>,
+	Miguel Ojeda <ojeda@kernel.org>, Rob Herring <robh+dt@kernel.org>,
 	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>, devicetree@vger.kernel.org,
+	Conor Dooley <conor+dt@kernel.org>,
+	Robin van der Gracht <robin@protonic.nl>,
+	Paul Burton <paulburton@kernel.org>,
+	linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
 	linux-kernel@vger.kernel.org
-References: <20240129212350.33370-1-wsa+renesas@sang-engineering.com>
- <20240129212350.33370-2-wsa+renesas@sang-engineering.com>
- <CAMuHMdXuWHCLa8HFXBZK4M4fqivudxjHcqqUyZ2=a3=OfFLPYQ@mail.gmail.com>
+Subject: Re: [PATCH 1/3] dt-bindings: auxdisplay: hit, hd44780: drop
+ redundant GPIO node
+Message-ID: <Zcogl6tqbMdQldKA@smile.fi.intel.com>
+References: <20240212083426.26757-1-krzysztof.kozlowski@linaro.org>
+ <CAMuHMdU-c5_Z2AMNtNH4Cc4JUrn+oKU-1CumEOAP6=5Zomcj_A@mail.gmail.com>
+ <2922eece-5486-4eff-af99-f7060cb61d17@linaro.org>
+ <20240212115837.efz73yxinkysdmgh@runtux.com>
+ <e2a5b005-7916-4296-b072-c24efd4b3357@linaro.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="ViCkhs1N/DSNyQCE"
-Content-Disposition: inline
-In-Reply-To: <CAMuHMdXuWHCLa8HFXBZK4M4fqivudxjHcqqUyZ2=a3=OfFLPYQ@mail.gmail.com>
-
-
---ViCkhs1N/DSNyQCE
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+In-Reply-To: <e2a5b005-7916-4296-b072-c24efd4b3357@linaro.org>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+
+On Mon, Feb 12, 2024 at 02:38:27PM +0100, Krzysztof Kozlowski wrote:
+> On 12/02/2024 12:58, Ralf Schlatterbeck wrote:
+
+...
+
+> Anyway, binding examples should not be collection of unrelated
+> solutions, because then we should accept for each device schema several
+> other variations and combinations.
+
+Is this documented?
+
+In any case, you would need to amend your series one way or another.
+
+-- 
+With Best Regards,
+Andy Shevchenko
 
 
-> > -       hdmi_1v8: regulator-hdmi-1v8 {
-> > +       t1v8: regulator-t1v8 {
->=20
-> "t1p8v"?
-> Or "reg_t1p8v", as the former is a rather short name, causing conflicts?
-
-Agreed, I'll take the latter and resend.
-
-
---ViCkhs1N/DSNyQCE
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQIzBAABCgAdFiEEOZGx6rniZ1Gk92RdFA3kzBSgKbYFAmXKIFkACgkQFA3kzBSg
-KbYo+A/5AQodBk5gyl8QWD4Fgh53bbi20T4mIrlsEXtIiXO8UWJBw11a9aApsiw4
-a2EYedUgo5gsf6KB5NvB5bMEVN6ALiJAJ/GcDktgwibWxxlFMYC3CeSp4A2BymQw
-0fZI1uOV4R1mZcDjP9Lotu7tJMXSRbqj9U9ubIE+/EWaPrF5WpIuvqlyEcvWA/UL
-uSY4e/c8LQPnGFBMxcL7ASnvpVMwurYi3cVLhWttxAN6KNT+wF6hH18K9fy/aA4u
-e7aeJY5kHZcujzSbs2Bv/GeHIMC3CG1d3AsGiRMAFhL8FTvfazuCjoYPBJ686qzY
-Zzz4A0i/Rt2EmjtvaRNJpZudjHAEj2rY+RXCJ/QFrdJ7NY6S0Y7RSp9NfwltOcu4
-pGTM5XTPBbXGJfNtyb1hGNdb4qxchb5pL5foNniZoMww4KXMj8OxqvPpS/2Tok9w
-SHwDKJtTRbA8fTQtr8EkuxWfao97wcJXF25rsFtWcOYuvqD4phQmWu4RzghDwTOA
-Dq59n7Vb32neX4qcGXMbb7yUq0qLxPy9d+BdG43MwVy9O4fSac/qQEK+NFqt27sR
-SIIVZRuFKG7rpLmhRZz6K8IMT30hGbsb/pJQ5RYTM/I1aPMKV0FWXV+hiq50ELcg
-GDG+5M1AJepnGDAtLgmtWOp08R7yYZjz0gUY83Ayepgw8ygLang=
-=tcSq
------END PGP SIGNATURE-----
-
---ViCkhs1N/DSNyQCE--
 
