@@ -1,135 +1,109 @@
-Return-Path: <devicetree+bounces-40604-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-40603-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 45BA2850F28
-	for <lists+devicetree@lfdr.de>; Mon, 12 Feb 2024 09:54:24 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7E445850F27
+	for <lists+devicetree@lfdr.de>; Mon, 12 Feb 2024 09:54:07 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 5E8EC1C211A3
-	for <lists+devicetree@lfdr.de>; Mon, 12 Feb 2024 08:54:23 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 010F9B209BE
+	for <lists+devicetree@lfdr.de>; Mon, 12 Feb 2024 08:54:05 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 09473F9E6;
-	Mon, 12 Feb 2024 08:54:20 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id EFDE47489;
+	Mon, 12 Feb 2024 08:53:59 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="nkJ/dGqi"
+	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b="1178iJRL"
 X-Original-To: devicetree@vger.kernel.org
-Received: from fllv0016.ext.ti.com (fllv0016.ext.ti.com [198.47.19.142])
+Received: from madrid.collaboradmins.com (madrid.collaboradmins.com [46.235.227.194])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 09FD67489;
-	Mon, 12 Feb 2024 08:54:17 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.19.142
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 664CBF9D1;
+	Mon, 12 Feb 2024 08:53:58 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=46.235.227.194
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1707728059; cv=none; b=vDdsZ0eM7UlEvodEu1er6sd2mY5d0UulYSjYOsxBA0mE/oFFJRon2PgDB/ALTzjvBFmOU+BiPs3fDfe8dayNrEQ4H1AyCcrRKOhj4SvGyubHBS1w4lmpRF0eFX92odNxBOdgVaG8z/mzFZjV6aPDAcn9Io3W1Iyy7bjA57yJu4g=
+	t=1707728039; cv=none; b=Ivj6wQ3v7n0CV/XMMdD9Lc0TeKEtvLFbwcJTs4JcVA1bgd7vn04cbjI2YKIkIBrv669rUPEFxuhcF+XLdbKdLEpe6E1OkWhKLOx+XFaoG6f3xJV6DSgEKE1Fm7TaUjrgBx57eUrYMoVMQ3g/zyD5S4Wd+kmTkdfd52sfxf8CbXc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1707728059; c=relaxed/simple;
-	bh=Icz1i3w5C5PCoCJWhEx8Q4ARzAXbRLcRLO4H+Tn6HBk=;
-	h=From:To:CC:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=ogchQrmz6UewpqrPMKphcz2x96GVzTq8riIiMoYlolyiGJ01bmFwI2Wb+T2+gu8Wrg2WZmkzNv0ryRD4bXX4i6tJJRcwWXL9SDFMWeeG88CSWvy3rV2ipOyazeUagya3fFaGgwheWLM2BauBCybz8Gn1vCRMz+/hmOakIBhFOwo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=nkJ/dGqi; arc=none smtp.client-ip=198.47.19.142
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
-Received: from fllv0035.itg.ti.com ([10.64.41.0])
-	by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id 41C8s87K095299;
-	Mon, 12 Feb 2024 02:54:08 -0600
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1707728048;
-	bh=XEnHiguWpWLJO7Gkrsj0u16xJ6oLhMKb7JAitQWrolo=;
-	h=From:To:CC:Subject:Date:In-Reply-To:References;
-	b=nkJ/dGqi46XzR9y/9V5gpzpTK/rWy1psBqudV3IEjB5TkWlOvC5KTI3eHoRvXOX+z
-	 ryzaqoHGKoGci/QjDm9PW2dPgm5B/86g25PQptKiSM3AArmBX6trUiAgm+LaLckZnn
-	 8hVpjvLS+ptdKOJbkBq1GEjoH2Pt0a3mWXaX+IA8=
-Received: from DFLE112.ent.ti.com (dfle112.ent.ti.com [10.64.6.33])
-	by fllv0035.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 41C8s84b085118
-	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-	Mon, 12 Feb 2024 02:54:08 -0600
-Received: from DFLE111.ent.ti.com (10.64.6.32) by DFLE112.ent.ti.com
- (10.64.6.33) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Mon, 12
- Feb 2024 02:54:08 -0600
-Received: from lelvsmtp6.itg.ti.com (10.180.75.249) by DFLE111.ent.ti.com
- (10.64.6.32) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
- Frontend Transport; Mon, 12 Feb 2024 02:54:08 -0600
-Received: from uda0132425.dhcp.ti.com (uda0132425.dhcp.ti.com [172.24.227.94])
-	by lelvsmtp6.itg.ti.com (8.15.2/8.15.2) with ESMTP id 41C8s4oj091102;
-	Mon, 12 Feb 2024 02:54:05 -0600
-From: Vignesh Raghavendra <vigneshr@ti.com>
-To: Nishanth Menon <nm@ti.com>, Tero Kristo <kristo@kernel.org>,
-        Rob Herring
-	<robh@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>, Aradhya Bhatia <a-bhatia1@ti.com>
-CC: Vignesh Raghavendra <vigneshr@ti.com>,
-        Devicetree List
-	<devicetree@vger.kernel.org>,
-        Linux Kernel List
-	<linux-kernel@vger.kernel.org>,
-        Linux ARM Kernel List
-	<linux-arm-kernel@lists.infradead.org>,
-        Tomi Valkeinen
-	<tomi.valkeinen@ideasonboard.com>,
-        Devarsh Thakkar <devarsht@ti.com>, Jai
- Luthra <j-luthra@ti.com>
-Subject: Re: [PATCH 0/3] arm64: ti: k3-am62a: Add display support
-Date: Mon, 12 Feb 2024 14:22:36 +0530
-Message-ID: <170772794559.2674561.13954046137471686164.b4-ty@ti.com>
-X-Mailer: git-send-email 2.43.0
-In-Reply-To: <20240201125452.1920623-1-a-bhatia1@ti.com>
-References: <20240201125452.1920623-1-a-bhatia1@ti.com>
+	s=arc-20240116; t=1707728039; c=relaxed/simple;
+	bh=7piWbCGcMV8jXNFfjDe8eSN9IgwzXBxHsFlz7ti4esk=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=FKTWfH0NRtb4SUUtz17P3gObCVuJ/lVMik/bOLqNu/ofu7z5lhyYb8XbpadEQ1n521Zqxs5iFkp3CcibdhH1Sw4O6KQdJsu+41qKzlXBY67+3mft4E8PVEdkwaPkvIR3RPsl/8k4cKCKs2X5uEmjk7OQaOpEu4ubxXzdOvr8N1U=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b=1178iJRL; arc=none smtp.client-ip=46.235.227.194
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=collabora.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
+	s=mail; t=1707728036;
+	bh=7piWbCGcMV8jXNFfjDe8eSN9IgwzXBxHsFlz7ti4esk=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=1178iJRLXbbYR8AYKbv5sFIihYAc/ahj51fIrhXgT3ft6izjDupE9LvnKlJxm4Bfp
+	 0VbEIFSQRHHqNZalSc7Vb5i+ezl17azKyJGxU3umGhSgPCi2ELmcmjxUUy+nW91CJ1
+	 H346mHIjZrGLmQRur2D3DuotorEFq31G43LCRFlwQ5mCjlted4dJrqMv8yfNDRu9/Z
+	 7036VddkvHloZF6ysL8jnJklrsPLJUbl8k2gmzpj6nXd8BQHDVVrLX2Q6FsJRdwxsi
+	 7yjn/kmQdhpbIDymTnafGQ25UGYQsoJPoZ1r8oyaP67oHkiAm7HTVGLQBmPr1NevEG
+	 IawYeZ/SLVXJA==
+Received: from [100.113.186.2] (cola.collaboradmins.com [195.201.22.229])
+	(using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
+	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+	(No client certificate requested)
+	(Authenticated sender: kholk11)
+	by madrid.collaboradmins.com (Postfix) with ESMTPSA id 66A5D378203F;
+	Mon, 12 Feb 2024 08:53:55 +0000 (UTC)
+Message-ID: <cd1350d0-6333-4519-a811-8413080ac92d@collabora.com>
+Date: Mon, 12 Feb 2024 09:53:54 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH V2] dt-bindings: thermal: mediatek,thermal: document
+ AUXADC 32k clock
+Content-Language: en-US
+To: =?UTF-8?B?UmFmYcWCIE1pxYJlY2tp?= <zajec5@gmail.com>,
+ "Rafael J . Wysocki" <rafael@kernel.org>,
+ Daniel Lezcano <daniel.lezcano@linaro.org>, Rob Herring
+ <robh+dt@kernel.org>, Krzysztof Kozlowski
+ <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>
+Cc: Zhang Rui <rui.zhang@intel.com>, Lukasz Luba <lukasz.luba@arm.com>,
+ Matthias Brugger <matthias.bgg@gmail.com>,
+ Sascha Hauer <s.hauer@pengutronix.de>, linux-pm@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ linux-mediatek@lists.infradead.org, =?UTF-8?B?UmFmYcWCIE1pxYJlY2tp?=
+ <rafal@milecki.pl>, Daniel Golle <daniel@makrotopia.org>,
+ Sam Shih <sam.shih@mediatek.com>
+References: <20240209055203.17144-1-zajec5@gmail.com>
+ <17d143aa-576e-4d67-a0ea-b79f3518b81c@collabora.com>
+ <ddec28a5-8d65-4e52-bb3c-9587acf7bca1@gmail.com>
+From: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
+In-Reply-To: <ddec28a5-8d65-4e52-bb3c-9587acf7bca1@gmail.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 8bit
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 
-Hi Aradhya Bhatia,
-
-On Thu, 01 Feb 2024 18:24:49 +0530, Aradhya Bhatia wrote:
-> This patch series adds DT nodes for Display SubSystem (DSS) and other
-> peripherals required to enable the HDMI audio and video on the
-> AM62A7-SK EVM. An HDMI monitor can be connected to the platform for the
-> audio-video outputs.
+Il 12/02/24 07:11, Rafał Miłecki ha scritto:
+> On 9.02.2024 10:13, AngeloGioacchino Del Regno wrote:
+>> Il 09/02/24 06:52, Rafał Miłecki ha scritto:
+>>> From: Rafał Miłecki <rafal@milecki.pl>
+>>>
+>>> SoCs MT7981 and MT7986 include a newer thermal block (V3) that requires
+>>> enabling one more clock called AUXADC 32k. Require it in binding.
+>>>
+>>> Cc: Daniel Golle <daniel@makrotopia.org>
+>>> Cc: Sam Shih <sam.shih@mediatek.com>
+>>> Signed-off-by: Rafał Miłecki <rafal@milecki.pl>
+>>
+>> So, I've made some research on this matter.. and this is a NACK.
 > 
-> Regards
-> Aradhya
+> Well, I can only thank you for the research.
 > 
-> [...]
+> Let's drop this patch. I'll sort out the rest later.
 
-I have applied the following to branch ti-k3-dts-next on [1].
-Thank you!
+Thank you for bringing that up - this was necessary to clarify this and
+to actually make both of us aware of the mistake in the device trees that
+we have for those SoCs.
 
-[1/3] arm64: dts: ti: k3-am62a-main: Add node for Display SubSystem (DSS)
-      commit: 3618811657b31090da08a0c4bcd9941102b5456f
-[2/3] arm64: dts: ti: k3-am62a7-sk: Add HDMI support
-      commit: 396ca2fc736b0b3c6f738408e9a3e82d86b62d49
-[3/3] arm64: dts: ti: Makefile: Add HDMI audio check for AM62A7-SK
-      commit: cff6dd01a68fe9a8aaab724ef4e21f37eff609e9
+Take your time, btw, you're doing a great job.
 
-All being well this means that it will be integrated into the linux-next
-tree (usually sometime in the next 24 hours) and sent up the chain during
-the next merge window (or sooner if it is a relevant bug fix), however if
-problems are discovered then the patch may be dropped or reverted.
-
-You may get further e-mails resulting from automated or manual testing
-and review of the tree, please engage with people reporting problems and
-send followup patches addressing any issues that are reported if needed.
-
-If any updates are required or you are submitting further changes they
-should be sent as incremental updates against current git, existing
-patches will not be replaced.
-
-Please add any relevant lists and maintainers to the CCs when replying
-to this mail.
-
-[1] https://git.kernel.org/pub/scm/linux/kernel/git/ti/linux.git
---
-Vignesh
-
+Cheers,
+Angelo
 
