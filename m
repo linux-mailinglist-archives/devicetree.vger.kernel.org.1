@@ -1,65 +1,63 @@
-Return-Path: <devicetree+bounces-41041-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-41042-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5EB7A852251
-	for <lists+devicetree@lfdr.de>; Tue, 13 Feb 2024 00:11:06 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id B9D54852261
+	for <lists+devicetree@lfdr.de>; Tue, 13 Feb 2024 00:23:07 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 1177A1F22BC7
-	for <lists+devicetree@lfdr.de>; Mon, 12 Feb 2024 23:11:06 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 117E4B2170D
+	for <lists+devicetree@lfdr.de>; Mon, 12 Feb 2024 23:23:05 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7F79D4EB5C;
-	Mon, 12 Feb 2024 23:11:00 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E59F94F610;
+	Mon, 12 Feb 2024 23:23:00 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="K82rgZj6"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="jBplwNVL"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 56B804EB49;
-	Mon, 12 Feb 2024 23:11:00 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BBA7A4F5EA;
+	Mon, 12 Feb 2024 23:23:00 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1707779460; cv=none; b=lOFUwCQ2nnxBjnnHazKSUdYh6AbST4/aQtZ0kQ8XrkR4YsH351lEsi8zrv6Sp6XvVeyBWT+l4xn1ops0Lg0qEm32g96N0+G9GTdJa2x0SHTe55OVfnZNotYtu+KszTrgwV8nMnmEFIUulhEdVG82FK/ZcJYsGjVvkxYFnlbJhCc=
+	t=1707780180; cv=none; b=P7Sn0YRydxFcb7JnMYAOdv68++sd0CFNBVwiJOe4Xg1SPCaVE+o2ZpfDnxJ4tqaWdiqRK72Cz8a/AFQL3+yPu2i/WYQTVs7HFgBIZgw7YZ93kuJOPjdNbKttatECqTq5f/3WpgarkI++D3uF1mRLTFw4aeP6QwER3ni/RrjjXws=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1707779460; c=relaxed/simple;
-	bh=pDDsqmdQFRiFzmJFubeCQnwDZA8NVX7LbcVD1ftUghQ=;
+	s=arc-20240116; t=1707780180; c=relaxed/simple;
+	bh=XWqdgb3L3o8wIr1+5PSvPQXWLlZ0UO8V5aBZgH2XA90=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=B+cmhUieUDZHX0r9EB/kTj74qZ701BgFKOWU6a5VjED6aytEvQzGTtp0lfAgMQjUdCjjphwa8IIFh7l12hcoatnaOvRbuTGKXsAVA+H5PWNJaBBopCLlmCK5OSUiW0WqvmR/RMOcEDxPXxA9RpDJUyGLSP3rCbpnPgP2rv7qXyA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=K82rgZj6; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 983BBC433F1;
-	Mon, 12 Feb 2024 23:10:58 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=RapgVIpVBAG3Dfc5rWMyTcNNtYfyLszLoo25He5SGSpxW8XG3cwX5D69oKLhb+UvMjO8WBajJYvd8GiUHIyWhlEY9x0VBBSR087XqZPC/w4Ea5l8ly5P9yzEllJ2B7Kr778uQIEIZbDNZ8qwaISnraPxQ3UM/qi+FAJyflC5jSk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=jBplwNVL; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 02BD0C433F1;
+	Mon, 12 Feb 2024 23:23:00 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1707779459;
-	bh=pDDsqmdQFRiFzmJFubeCQnwDZA8NVX7LbcVD1ftUghQ=;
+	s=k20201202; t=1707780180;
+	bh=XWqdgb3L3o8wIr1+5PSvPQXWLlZ0UO8V5aBZgH2XA90=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=K82rgZj6YmUtE3BC0zZBZsiXjcvfUmjeXkHAFvDN/Q/JiCsKfWtg8qB0BfnU2Q4bx
-	 fc7yCTPogLXyoaGtDmcF/9YzaqxCj4sef6pp4ZoqOUyrtA/dTX1mig5amErUARtvoV
-	 757gsAoi0pOGnj9jdutfM6goglMeJjXA2c7SxqrP9WlhOo3STLuYzpU6s1Ob6rn/Yv
-	 PfrTPTzZaM2qw5+nR+W9cRu1gHLTjmNTYudaHD9xiPmMm92kFsy8gw1EDk+ghzrbVX
-	 x3zuUlG8+uPQ3rudmLzS9242cDEBmapXI8uO8pCNauQv1RUb2jbVquj4sCEdT0oojA
-	 l10H6TFt8YzrA==
+	b=jBplwNVLpdn+QXj4vDN4+N4Yf6S7EVzb9pJH+z2MjSAFrxtMprTc24r+I0F9415Ja
+	 MBfz/gJkl7h05RKSqLZbKH5gA8hmJHKeQnmxdaejUndfGaOnzxql3kQc4dIVZAKZF2
+	 rVyE1QVV9+lPfDEnJOGbMhFdlJ/Obpkm3ZGD3YF6MbDi0YT1hlHpx++bsJFV3p566P
+	 F2hsXLYj2fs6cGDazIeVhgUXDCLb5R9VRJeVJ2chtgbedDvSLNG5ci51zriKYy+N2x
+	 vdsDbb6PTD6nur4Ac23KM6ObKOjfKaCN0SsM8LPyVHtIsTATvQ6A51exkfO6zUuS7L
+	 FfxgTmasRmaew==
 Received: by mercury (Postfix, from userid 1000)
-	id ECE1F106A041; Tue, 13 Feb 2024 00:10:55 +0100 (CET)
-Date: Tue, 13 Feb 2024 00:10:55 +0100
+	id 3A674106A041; Tue, 13 Feb 2024 00:22:57 +0100 (CET)
+Date: Tue, 13 Feb 2024 00:22:57 +0100
 From: Sebastian Reichel <sre@kernel.org>
-To: Stefan Wahren <wahrenst@gmx.net>
-Cc: Rob Herring <robh+dt@kernel.org>, 
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Shawn Guo <shawnguo@kernel.org>, Sascha Hauer <s.hauer@pengutronix.de>, 
-	Fabio Estevam <festevam@gmail.com>, Pengutronix Kernel Team <kernel@pengutronix.de>, 
-	NXP Linux Team <linux-imx@nxp.com>, Dong Aisheng <aisheng.dong@nxp.com>, 
-	Linus Walleij <linus.walleij@linaro.org>, Dmitry Torokhov <dmitry.torokhov@gmail.com>, 
-	Mark Brown <broonie@kernel.org>, linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v1 07/14] dt-bindings: lcdif: Do not require
- power-domains for i.MX6ULL
-Message-ID: <khwsxrpj5fgxl7ukiur2tdyy7a6d6h6zryc5z2h7o6f7k3b32p@cjqsmdbocfpe>
+To: Rob Herring <robh@kernel.org>
+Cc: Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, 
+	Conor Dooley <conor+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>, 
+	Sascha Hauer <s.hauer@pengutronix.de>, Fabio Estevam <festevam@gmail.com>, 
+	Pengutronix Kernel Team <kernel@pengutronix.de>, NXP Linux Team <linux-imx@nxp.com>, 
+	Dong Aisheng <aisheng.dong@nxp.com>, Linus Walleij <linus.walleij@linaro.org>, 
+	Dmitry Torokhov <dmitry.torokhov@gmail.com>, Mark Brown <broonie@kernel.org>, 
+	linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v1 02/14] dt-bindings: bus: imx-weim: convert to YAML
+Message-ID: <rbhozhrww74j2hkhx5fcqc7edi6zlnjt6fg3onfn4jqumxem27@kaxyyrbbfplw>
 References: <20240210012114.489102-1-sre@kernel.org>
- <20240210012114.489102-8-sre@kernel.org>
- <a8b55331-a8c3-457e-83e0-2aa361ed23c6@gmx.net>
+ <20240210012114.489102-3-sre@kernel.org>
+ <20240212131631.GA13910-robh@kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -68,32 +66,20 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <a8b55331-a8c3-457e-83e0-2aa361ed23c6@gmx.net>
+In-Reply-To: <20240212131631.GA13910-robh@kernel.org>
 
-Hi Stefan,
+Hi Rob,
 
-On Mon, Feb 12, 2024 at 08:20:35PM +0100, Stefan Wahren wrote:
-> Am 10.02.24 um 02:18 schrieb Sebastian Reichel:
-> > i.MX6UL(L) uses "fsl,imx6sx-lcdif" as fallback compatible string,
-> > but has only very lightweight DISPLAY power domain. Its DISPLAY
-> > power domain is not supported by the binding / Linux kernel at
-> > the moment. Since the current setup is working, let's remove the
-> > power-domain from being required for that platform to fix the warning
-> > printed by CHECK_DTBS=y.
-> i'm not sure this is a good idea. In case i.MX6UL(L) is different from
-> i.MX6SX here, then it should have a different compatible.
+On Mon, Feb 12, 2024 at 07:16:31AM -0600, Rob Herring wrote:
+> [...]
+> > +examples:
+> > +  - |
+> > +    weim@21b8000 {
+> 
+> bus or external-bus
 
-It already has. The i.MX6UL(L) compatible looks like this:
-
-compatible = "fsl,imx6ul-lcdif", "fsl,imx6sx-lcdif"
-
-So the i.MX6SX one is just a fallback compatible. But the current
-requirement for power-domains affects i.MX6UL(L), since it says
-the compatible only needs to contain "fsl,imx6sx-lcdif" somewhere
-to make power-domains mandatory.
-
-Note, that the kernel driver does not use "fsl,imx6ul-lcdif", so
-the hardware itself is indeed compatible.
+I used "memory-controller", which is what the other bindings in
+memory-controller use.
 
 -- Sebastian
 
