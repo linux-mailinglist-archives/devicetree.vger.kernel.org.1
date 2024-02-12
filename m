@@ -1,288 +1,129 @@
-Return-Path: <devicetree+bounces-40620-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-40621-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 46BC885106E
-	for <lists+devicetree@lfdr.de>; Mon, 12 Feb 2024 11:17:16 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 69C1C85108B
+	for <lists+devicetree@lfdr.de>; Mon, 12 Feb 2024 11:17:59 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id C067D1F221C6
-	for <lists+devicetree@lfdr.de>; Mon, 12 Feb 2024 10:17:15 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 8ACAB1C21CD0
+	for <lists+devicetree@lfdr.de>; Mon, 12 Feb 2024 10:17:58 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7791117C6C;
-	Mon, 12 Feb 2024 10:17:11 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6237717C7C;
+	Mon, 12 Feb 2024 10:17:54 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=tuxon.dev header.i=@tuxon.dev header.b="VJQ4RCTx"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="Y6QFCcFb"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f53.google.com (mail-wm1-f53.google.com [209.85.128.53])
+Received: from mail-wr1-f50.google.com (mail-wr1-f50.google.com [209.85.221.50])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 40CCF17C69
-	for <devicetree@vger.kernel.org>; Mon, 12 Feb 2024 10:17:08 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.53
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9229417C70
+	for <devicetree@vger.kernel.org>; Mon, 12 Feb 2024 10:17:52 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.50
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1707733031; cv=none; b=nmCXoFSbT6QIpYjtnJxBS4lvI8sBDwwMPApgO4861BugBrof72fOGnAVlKAvKMGqdfUQHsVJXIPeluR0TFV66e8SAwjj6kDHMurD/37y17tcsOwZG4+caAYP6+n7VzR5RS5BbRQj5YIwHtm5DdlbOkjkVEu/1KR2DhUEmGl6C68=
+	t=1707733074; cv=none; b=d433xNRCq5pRV8qmu/k/TeNWRA46/Zg7D0PoTt/wrz3ffpo0mtlOd6zo46/IWJVtE+JsUGDhN7ZOjx8zX7Tc3Ozdl/Qh+stV8VGpmdlSp5iU85tm69N4qjckDbPnSMLTcET98Rrs5zPlmioCkGxyWn0ZsakZox52GgoBJEFmk1U=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1707733031; c=relaxed/simple;
-	bh=I6wNZ4pza9EtIc8UsE6gyNDwJIsXjeyvx6EI+rVwxPM=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=Z0ST3+DkngNpPXMgIuHVTSTGl0pmP+WlEbB6hpOvn8rE8lSNAC9SfP4a7UzKpSwKaY2PT210TR/FMSOp3bQALv8Y8uEm3wRIGIm8QMkeDBQhEApewiIFhVy56YM0c722sYPX4oSYbqLUY9vpw09FafCoqccejcEhrJr1IkBwJRU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=tuxon.dev; spf=pass smtp.mailfrom=tuxon.dev; dkim=pass (2048-bit key) header.d=tuxon.dev header.i=@tuxon.dev header.b=VJQ4RCTx; arc=none smtp.client-ip=209.85.128.53
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=tuxon.dev
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=tuxon.dev
-Received: by mail-wm1-f53.google.com with SMTP id 5b1f17b1804b1-410ed9f8621so2302425e9.1
-        for <devicetree@vger.kernel.org>; Mon, 12 Feb 2024 02:17:08 -0800 (PST)
+	s=arc-20240116; t=1707733074; c=relaxed/simple;
+	bh=8tSF0jlKqaYoudnTGmjGNrNMBoIoz9p0dEXgVzrpIhQ=;
+	h=Message-ID:Subject:From:To:Cc:Date:In-Reply-To:References:
+	 Content-Type:MIME-Version; b=m72+CXW+wwA81LnVKgwW7mXtfFaKhFiVQ8BhtQ/+QD2tMFi8txlCu+V0GZNF7kIKqHITQNIYo57gGUH4RhHU2qhrbi9WwuN+3UCsYeZlEt/UTnEHDitAxeofq+K/PZ5c1DtMCpLNe4SMUKYFJ3K4FZAxAT+R4yTJ1L1NdH9b0U8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=Y6QFCcFb; arc=none smtp.client-ip=209.85.221.50
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-wr1-f50.google.com with SMTP id ffacd0b85a97d-33b4e6972f6so1539227f8f.2
+        for <devicetree@vger.kernel.org>; Mon, 12 Feb 2024 02:17:52 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=tuxon.dev; s=google; t=1707733027; x=1708337827; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=Dd4aZvMpVCCSCnP/v1/q3mbmiSL+tNaXKE5+hDn+73Y=;
-        b=VJQ4RCTxUGsPeIt1E00/x8mIhHr0IPLyq/300pBBoUV/D/K5wxt0OtR6qEqT21gKaq
-         Ql2XYadgj94DQA1JjVYOL6A18R5dWq8YXn599OA7qq7V/M5+T+zWo7XsX7M3HCgBDuC5
-         UlpS5vQuRf2/IMkpOQ5fJUYRhltiO24Zbq8jyis7f9XNuN0tUOiBt/mqNQMYQrld51cK
-         jnizPBTZXMjDraAhUghgedNA7IK62sUYy61M3AzQeLHeBBu58r2pbl0QeudgBwQ7ZWtv
-         wgHXEmLhmO06BjVuO8E8/J3x2JygidFHaagRDu/jpx2EzGGHb6IQPMg0wiBc32NhyXBE
-         Bn6A==
+        d=linaro.org; s=google; t=1707733071; x=1708337871; darn=vger.kernel.org;
+        h=mime-version:user-agent:content-transfer-encoding:references
+         :in-reply-to:date:cc:to:from:subject:message-id:from:to:cc:subject
+         :date:message-id:reply-to;
+        bh=8tSF0jlKqaYoudnTGmjGNrNMBoIoz9p0dEXgVzrpIhQ=;
+        b=Y6QFCcFb6aIC1V4CAChXY9MKXionRmZAhL+8H7v+61GquWmWm0JzYmLExg1MMrz159
+         A8IKg/4dNjgA2fYMWtI/F3yq+J+6acvMAPSnhWz4zxPAD6VzCibzcg1vig0DZBdc/ip9
+         bgK8vjQolVjIzU3GuT2YEnO5Bvgqv8po1v/mBXeici5zHKQ4/6pjyz9ZeznHCgh4nrT3
+         4Rx0tHoA2ZrpU9t6ZmMdpYjEIz22jwyFHQ+DM/ZtinFaSxzZF6Ma64Jamo7PTY4cfS1L
+         1zOPQL2ANHmxgvnw+sbIV+6geGmWu7KVTHZwP2wYpmatp7spQxAlOdQZYssHJthVzVku
+         9aOg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1707733027; x=1708337827;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=Dd4aZvMpVCCSCnP/v1/q3mbmiSL+tNaXKE5+hDn+73Y=;
-        b=mvs7ngUewoQcyHxrtuRS9VqKageC8ca1VNtux3Lnx5WQuO9FTxNOEjTxiKsOhrp7R5
-         oWxPejwLTNstiOE8ca1GmjGID/QWBOz34OxmVpFMzuAhC7ghPldvVEJQgWT3QO6ZN4dX
-         Gqi9xt9xBdfoQRgo0SMx65tl7heQsLx/nMZUCa2iQtMnvGG4mWAmoYYtlSsHJl3LmcS1
-         0iGQgDx9HaIC7PuosKGirJKqepoiEdqWyK5uJBZXp1Fai8AiT4FOIll8vUbDyynPx/HP
-         DoX+AwbhafeNGKRkcypVBFicIfSn3NpJaa/MHVw4rt9CdnBde4viveKCIM5Mj798igZ5
-         YmzA==
-X-Forwarded-Encrypted: i=1; AJvYcCVOFrS+QvSNrDxVJMA9eHiNAMuzmrGPkZfEKXgQ8ifZMTLWdMLZ1e/1hPBs3OQbAxO94JHlVRfpcN8IVRbhrWIvT7ym0yMUsRsQMQ==
-X-Gm-Message-State: AOJu0YwNyJCxRs5X+3F5pvmCvGqg9wPzXcQKYo9aPT244zwigeE2qyWr
-	olKa4OzOAu6oSDMmhcXoddgwHtaGnXudTtAMLC/nlF6wJpQXrPSqiljQ8HIZx/I=
-X-Google-Smtp-Source: AGHT+IGKS3cAGeO91ncUkS3BzIDpmHkJlAP3rM+a3pmivE6RK7mO5OdH3h9r0soPZ9FeRjTndSpbEg==
-X-Received: by 2002:a5d:424c:0:b0:33b:2633:b527 with SMTP id s12-20020a5d424c000000b0033b2633b527mr3644735wrr.20.1707733027133;
-        Mon, 12 Feb 2024 02:17:07 -0800 (PST)
-X-Forwarded-Encrypted: i=1; AJvYcCXS/3bn8x9wSB7hJgZQQQrZrpThyplym6YpI1SmaffkSK9Gu6jVbETHmPWZMZqGD1Fg2+QLCoZoCyd9dnjfWoyfsoDHlcF/jIiLKg5yZgaIjxKBAMyAuaECBDDnoc7lsqe7q88rWP0Y8l02G6zcDi/R3sZcfbP8HiKNA9OlwtBxyhH/kFA0xnSUM7pmTfpfG2DamdFGrwiEpY+BsAlIY+UIYJ+rvA78pOQo0XD9DtPzBrE7stOgKFvNrF0YLau0mvSIEGsXvfzvgPKP2TWnOk5L2DOy4ZAHx+658d/wSUiYHHFl+VaMyvKc7WMiGMteUFTbvzYgIPdG1/QLejKIcvW9pS14KJQj7yjzDwFeUA9ZixxC3gZimROIfJ9WwA3s/6TQ95ydu1DQvAvwrVB3s4EfEcbKNu16EA8e94Ti9hy3OR82BtHyNWVJCmKzfhBQ70PlX6VVj7kzL6E/PVg0YU2ntyFy+GYTF055BsUf8fQrEZA3i4qkK0EZowXjb9QWa7mY6BZFL334+cGk4S8cygYcXQMW/cy47OHIj4Xf/Q2LP4faE9KA4V4Q8F4/L2MGhdo7Dm5z/T3HVCfHQTVpqLflPKshZll1Nao2
-Received: from [192.168.50.4] ([82.78.167.20])
-        by smtp.gmail.com with ESMTPSA id f5-20020a5d58e5000000b0033b44456463sm6320751wrd.106.2024.02.12.02.17.05
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 12 Feb 2024 02:17:06 -0800 (PST)
-Message-ID: <b484c9ef-254e-4cdb-8409-6f0af1171335@tuxon.dev>
-Date: Mon, 12 Feb 2024 12:17:05 +0200
+        d=1e100.net; s=20230601; t=1707733071; x=1708337871;
+        h=mime-version:user-agent:content-transfer-encoding:references
+         :in-reply-to:date:cc:to:from:subject:message-id:x-gm-message-state
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=8tSF0jlKqaYoudnTGmjGNrNMBoIoz9p0dEXgVzrpIhQ=;
+        b=Wykh7MJvftoCeIl1wtUucjHyf92B2S77f/2boz3arVlfRM1pOQdWlFIwlaMrQwBLZF
+         4EFGEc6syhrMTyICy4Ac8UcKrB53OFWF+ZAv4rrAw8IqC5giiTWlbg/eNZ8u+EsdVHAw
+         SYVDUzj00G3jDlv1mEuc0Cd8l8gA8kaxQOXagOf9Mq9W0Os8scSDAwpIqx4gMT7FD2iQ
+         jcmE1aAzyS1/CUYLmSYdElTeD+F7gZL68MyZBdwKejsNWt8HdGj5DjcwYksCqTgZe9lU
+         MJ3iyfFldFY/nxrM9b4tPsJ01TyKWXXBq50gvFSb9+Ftfk7HyXzEqMTVDg7PYrY342Sw
+         R9PQ==
+X-Forwarded-Encrypted: i=1; AJvYcCWlUG12OHG5LxVDfnIoXhhGHsSyjqe1PxbpL6MZ16BFAzTezAVQ2vQigpjylXnu38/+pgSvVdhFffIkE0q0sj7M17tPt6hBOmjJkg==
+X-Gm-Message-State: AOJu0YwojEHy7UIWg5s4E47RPOl4SI4ZfoeGZCaxrEFEKqtYn8h8rd+d
+	khoonIvLboW6byMZspKtvEjDC5Ria3392HuPbhJEkv3gvhsEO0Gkcq7ZExnaLmw=
+X-Google-Smtp-Source: AGHT+IFcf82HXcacp3V+HVrWbXaP9rjPPjK8qFH+9DGIcSX8OpZbtxgBhGvuHv7p+wPMLEO+M4T7xA==
+X-Received: by 2002:a5d:4a04:0:b0:33b:615a:19b7 with SMTP id m4-20020a5d4a04000000b0033b615a19b7mr4595435wrq.22.1707733069963;
+        Mon, 12 Feb 2024 02:17:49 -0800 (PST)
+X-Forwarded-Encrypted: i=1; AJvYcCW+mm3KiRPo1HXNV7b+yhiuRyD7lE2xoiezMnzudmmH7NuHMH6anZGcme3J8GlP3/ouVSGng246HS1MWVzwnlSPN9z8+WLvnCG7VjyyY6Zwugr6TlTpFTB+tBo0PTp4BLpl66F2mA+iJk8M14/s/IxLhh0/VfLi+Qz6YS9NQuU/+N0TtoOkY5jLmgf1ySssHf2NHr+V0KcALj1951KvYnBQpE/VkvNfGQZWdmIZQK9EUU5coOL8lQcgFFyd8mehZACtSi1P1SiTHCNMJnq7Ce3deP5K3sWjiAc/V7g7vwVvDossPGPEuQNW7F1QmkcZsHYbdzw7SYyTEDi4kPbjP3kRGH20vIqa6OylHF1TOqnVc92I3OSQjX38inx4Q8VIjLyMNwjUTIus0OFdLTdzEKXA8nd7WIUD7Z+iLV/mDY/oIbHHG/xGuaFs5anUjIF5brT5B9ViFzWj
+Received: from draszik.lan ([80.111.64.44])
+        by smtp.gmail.com with ESMTPSA id u7-20020a056000038700b0033b72aa93b5sm5744635wrf.89.2024.02.12.02.17.48
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 12 Feb 2024 02:17:49 -0800 (PST)
+Message-ID: <5972b6a4ae8669e2a9e872278b740b182217906b.camel@linaro.org>
+Subject: Re: [PATCH] arm64: dts: exynos: gs101: add stable i2c aliases for
+ gs101-oriole
+From: =?ISO-8859-1?Q?Andr=E9?= Draszik <andre.draszik@linaro.org>
+To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>, 
+ peter.griffin@linaro.org, robh+dt@kernel.org,
+ krzysztof.kozlowski+dt@linaro.org,  conor+dt@kernel.org
+Cc: linux-kernel@vger.kernel.org, kernel-team@android.com, 
+ tudor.ambarus@linaro.org, willmcvicker@google.com,
+ semen.protsenko@linaro.org,  alim.akhtar@samsung.com,
+ linux-arm-kernel@lists.infradead.org,  linux-samsung-soc@vger.kernel.org,
+ devicetree@vger.kernel.org
+Date: Mon, 12 Feb 2024 10:17:48 +0000
+In-Reply-To: <170737972037.52344.9107022607101399076.b4-ty@linaro.org>
+References: <20240130233700.2287442-1-andre.draszik@linaro.org>
+	 <170737972037.52344.9107022607101399076.b4-ty@linaro.org>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+User-Agent: Evolution 3.50.1-1 
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 01/17] dt-bindings: clock: r9a07g043-cpg: Add power domain
- IDs
-Content-Language: en-US
-To: Biju Das <biju.das.jz@bp.renesas.com>,
- "geert+renesas@glider.be" <geert+renesas@glider.be>,
- "mturquette@baylibre.com" <mturquette@baylibre.com>,
- "sboyd@kernel.org" <sboyd@kernel.org>, "robh@kernel.org" <robh@kernel.org>,
- "krzysztof.kozlowski+dt@linaro.org" <krzysztof.kozlowski+dt@linaro.org>,
- "conor+dt@kernel.org" <conor+dt@kernel.org>,
- "magnus.damm@gmail.com" <magnus.damm@gmail.com>,
- "paul.walmsley@sifive.com" <paul.walmsley@sifive.com>,
- "palmer@dabbelt.com" <palmer@dabbelt.com>,
- "aou@eecs.berkeley.edu" <aou@eecs.berkeley.edu>
-Cc: "linux-renesas-soc@vger.kernel.org" <linux-renesas-soc@vger.kernel.org>,
- "linux-clk@vger.kernel.org" <linux-clk@vger.kernel.org>,
- "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
- "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
- "linux-riscv@lists.infradead.org" <linux-riscv@lists.infradead.org>,
- Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>
-References: <20240208124300.2740313-1-claudiu.beznea.uj@bp.renesas.com>
- <20240208124300.2740313-2-claudiu.beznea.uj@bp.renesas.com>
- <TYCPR01MB11269DEA9261CA594EECC949686442@TYCPR01MB11269.jpnprd01.prod.outlook.com>
- <67ad8052-1406-4dcb-9e35-5c42ada28797@tuxon.dev>
- <TYCPR01MB112698AB206332D13105C064186442@TYCPR01MB11269.jpnprd01.prod.outlook.com>
- <e170f5f8-f95c-4553-b088-1072345fae53@tuxon.dev>
- <TYCPR01MB11269015C92AA327DC6BFA76586442@TYCPR01MB11269.jpnprd01.prod.outlook.com>
- <786f90f4-ba47-46cb-b5e0-e3c42b1b741a@tuxon.dev>
- <TYCPR01MB11269A240E2EDD460D0B97B9786482@TYCPR01MB11269.jpnprd01.prod.outlook.com>
-From: claudiu beznea <claudiu.beznea@tuxon.dev>
-In-Reply-To: <TYCPR01MB11269A240E2EDD460D0B97B9786482@TYCPR01MB11269.jpnprd01.prod.outlook.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+
+Hi Krzysztof,
+
+On Thu, 2024-02-08 at 09:08 +0100, Krzysztof Kozlowski wrote:
+>=20
+> On Tue, 30 Jan 2024 23:37:00 +0000, Andr=C3=A9 Draszik wrote:
+> > Now that we have more than i2c interface, add aliases to ensure
+> > deterministic bus number assignment.
+> >=20
+> > So as to keep compatibility with existing Pixel userspace builds, use
+> > the same bus numbers for hsi2c_8 and hsi2c_12 as the downstream
+> > drivers with the intention to eventually add all the earlier busses as
+> > well.
+> >=20
+> > [...]
+>=20
+> Applied, thanks!
+>=20
+> [1/1] arm64: dts: exynos: gs101: add stable i2c aliases for gs101-oriole
+> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 https://git.kernel.org/krzk/linux/c/72ccd9=
+25dcbd2ad6935a4874679b6cf5b3de7156
+
+Is it too late to ask for this patch to be dropped please? It appears
+downstream has just changed all their aliases on Friday, whereas the
+point of this patch was to keep things aligned.
+
+I won't post anything similar until we start integrating with Android/AOSP
+at some point in the future.
 
 
+Thanks,
+Andre'
 
-On 12.02.2024 10:59, Biju Das wrote:
-> Hi Claudiu,
-> 
->> -----Original Message-----
->> From: claudiu beznea <claudiu.beznea@tuxon.dev>
->> Sent: Monday, February 12, 2024 8:02 AM
->> Subject: Re: [PATCH 01/17] dt-bindings: clock: r9a07g043-cpg: Add power
->> domain IDs
->>
->> Hi, Biju,
->>
->> On 08.02.2024 21:20, Biju Das wrote:
->>>
->>>
->>>> -----Original Message-----
->>>> From: claudiu beznea <claudiu.beznea@tuxon.dev>
->>>> Sent: Thursday, February 8, 2024 4:53 PM
->>>> To: Biju Das <biju.das.jz@bp.renesas.com>; geert+renesas@glider.be;
->>>> mturquette@baylibre.com; sboyd@kernel.org; robh@kernel.org;
->>>> krzysztof.kozlowski+dt@linaro.org; conor+dt@kernel.org;
->>>> magnus.damm@gmail.com; paul.walmsley@sifive.com; palmer@dabbelt.com;
->>>> aou@eecs.berkeley.edu
->>>> Cc: linux-renesas-soc@vger.kernel.org; linux-clk@vger.kernel.org;
->>>> devicetree@vger.kernel.org; linux-kernel@vger.kernel.org; linux-
->>>> riscv@lists.infradead.org; Claudiu Beznea
->>>> <claudiu.beznea.uj@bp.renesas.com>
->>>> Subject: Re: [PATCH 01/17] dt-bindings: clock: r9a07g043-cpg: Add
->>>> power domain IDs
->>>>
->>>>
->>>>
->>>> On 08.02.2024 18:28, Biju Das wrote:
->>>>>
->>>>>
->>>>>> -----Original Message-----
->>>>>> From: claudiu beznea <claudiu.beznea@tuxon.dev>
->>>>>> Sent: Thursday, February 8, 2024 3:46 PM
->>>>>> Subject: Re: [PATCH 01/17] dt-bindings: clock: r9a07g043-cpg: Add
->>>>>> power domain IDs
->>>>>>
->>>>>> Hi, Biju,
->>>>>>
->>>>>> On 08.02.2024 16:30, Biju Das wrote:
->>>>>>> Hi Claudiu,
->>>>>>>
->>>>>>> Thanks for the patch.
->>>>>>>
->>>>>>>> -----Original Message-----
->>>>>>>> From: Claudiu <claudiu.beznea@tuxon.dev>
->>>>>>>> Sent: Thursday, February 8, 2024 12:43 PM
->>>>>>>> Subject: [PATCH 01/17] dt-bindings: clock: r9a07g043-cpg: Add
->>>>>>>> power domain IDs
->>>>>>>>
->>>>>>>> From: Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>
->>>>>>>>
->>>>>>>> Add power domain IDs for RZ/G2UL (R9A07G043) SoC.
->>>>>>>>
->>>>>>>> Signed-off-by: Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>
->>>>>>>> ---
->>>>>>>>  include/dt-bindings/clock/r9a07g043-cpg.h | 48
->>>>>>>> +++++++++++++++++++++++
->>>>>>>>  1 file changed, 48 insertions(+)
-[ ... ]
-
->>>>>>>> +#define R9A07G043_PD_TSU		46
->>>>>>>
->>>>>>> Not sure from "Table 42.3 Registers for Module Standby Mode"
->>>>>>>
->>>>>>> Power domain ID has to be based on CPG_BUS_***_MSTOP or
->>>>>>> CPG_CLKON_*** As former reduces number of IDs??
->>>>>>
->>>>>> If I understand correctly your point here, you want me to describe
->>>>>> PM domain in DT with something like:
->>>>>>
->>>>>> power-domains = <&cpg CPG_BUS_X_MSTOP>;
->>>>>
->>>>> MSTOP bits are distinct for each IP.
->>>>>
->>>>> <&cpg CPG_BUS_MCPU1_MSTOP x>; x =1..9
->>>>>
->>>>> 2=MTU IP
->>>>>
->>>>> 4= GPT
->>>>>
->>>>> etc...
->>>>>
->>>>> Is it something work??
->>>>
->>>> It might work. But:
->>>>
->>>> - you have to consider that some IPs have more than one MSTOP bit,
->>>> thus, do
->>>>   we want to uniquely identify these with all MSTOP bits (thus the
->>>> 2nd cell
->>>>   being a bitmask) or only one is enough?
->>>
->>> We can have an encoding in that case 8:16 24 bit entries
->>
->> I consider this complicates the bindings. I don't consider this is the way
->> going forward. But I may be wrong. I'll let Geert to give his opinion on
->> it and change it afterwards, if any.
->>
->>>
->>>> - some HW blocks (e.g. OTFDE_DDR) have no MSTOP bits associated (as of
->> my
->>>>   current research), so, only PWRDN
->>>
->>> Why do we want to add power domain support for DDR?
->>
->> To power it up (in case bootloader does any settings in this area) such
->> that the system will not block while booting.
-> 
-> DDR is enabled by TF_A and is not touched by linux, so why are we adding
-> Power domain at all in first place. TZC DDR is not accessible in normal world.
-> 
-> So if you don't add DDR power domains, linux doesn't know about any thing about
-> and it should work like current case.
-
-It is related to the way MSTOP and PWRDN hardware features works together.
-PWRDN allows you to save more power by setting IP specific bits in this
-registers after you set the MSTOP.
-
-OFTDE_DDR and TZCDDR have PWRDN bits dedicated as well as other IPs (e.g.
-serial, ethernet, etc) in CPG_PWRDN_IP2. Setting CPG_PWRDN_MSTOP_ENABLE to
-CPG_PWRDN_MSTOP applies the power down for the IPs specified in
-CPG_PWRDN_{IP1, IP2}.
-
-It may happen (as in my case) to have a bootloader that sets all the bits
-in CPG_PWRD_{IP1,IP2}.
-
-If you want to save power for the other IPs listed in CPG_PWRD_{IP1,IP2}
-you have to instantiate power domains for the blocks that you don't want to
-be powered down due to setting CPG_PWRDN_MSTOP_ENABLE to CPG_PWRDN_MSTOP,
-to power them up. Otherwise the system will block when setting
-CPG_PWRDN_MSTOP_ENABLE to CPG_PWRDN_MSTOP (if bootloaders previously did
-some settings in the above specified registers).
-
-Hope it was clear.
-
-Thank you,
-Claudiu Beznea
-
-> 
->>
->> It is explained in cover letter:
->>
->> The current DT
->> bindings were updated with module IDs for the modules listed in tables
->> with name "Registers for Module Standby Mode" (see HW manual) exception
->> being RZ/G3S where, *due to the power down functionality*, the DDR,
->> TZCDDR, OTFDE_DDR were also added, to avoid system being blocked due to
->> the following lines of code from patch 7/17.
->>
->> +       /* Prepare for power down the BUSes in power down mode. */
->> +       if (info->pm_domain_pwrdn_mstop)
->> +               writel(CPG_PWRDN_MSTOP_ENABLE, priv->base +
->> + CPG_PWRDN_MSTOP);
->>
->>>
->>>> - some HW blocks have both MSTOP and PWRDN
->>>
->>> That will be an array right?
->>
->> I'm not sure what you want to say here.
-> 
-> This has to be an array PM domains(multi PM domain) like clocks?
-> 
-> Or 
-> 
-> It can be  handled as sibliling power domain like sibling clocks in RZ/G2L Gbether.
-> 
-> Cheers,
-> Biju
 
