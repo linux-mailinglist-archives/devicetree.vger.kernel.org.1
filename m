@@ -1,102 +1,112 @@
-Return-Path: <devicetree+bounces-40821-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-40822-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7A3DF851731
-	for <lists+devicetree@lfdr.de>; Mon, 12 Feb 2024 15:40:16 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id A26AD85173D
+	for <lists+devicetree@lfdr.de>; Mon, 12 Feb 2024 15:45:28 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 0D6AEB21389
-	for <lists+devicetree@lfdr.de>; Mon, 12 Feb 2024 14:40:12 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 540FF1F225EE
+	for <lists+devicetree@lfdr.de>; Mon, 12 Feb 2024 14:45:28 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 924BD3B290;
-	Mon, 12 Feb 2024 14:40:05 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 35BE03B2AD;
+	Mon, 12 Feb 2024 14:45:19 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="RoOMYfZK"
 X-Original-To: devicetree@vger.kernel.org
-Received: from tux.runtux.com (tux.runtux.com [176.9.82.136])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DE7DDFC16;
-	Mon, 12 Feb 2024 14:40:03 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=176.9.82.136
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 08E9D3BB46;
+	Mon, 12 Feb 2024 14:45:18 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1707748805; cv=none; b=khE9Wwsh8K9EjPpTIEZ3TeNohgagZ/5RVnexVZWYgufAeuGh7j6PUDAEw9NDPbBV5k5PGXvFxyotW9zJY11qFZ1xCt9w16iepHW1IDVRqP2N/khjQml6hXdGqC2vdPOZ/Xhn+Z/COYTjFF8r+riAiHdFKXP/QyJJe30oFIF4mTQ=
+	t=1707749119; cv=none; b=tWlnML4GW82QPGFnZx9JORbOorFEFL/Fa+hOE4lCWi//ONGiBIHjeKglhF4iQQ6mOwb9pdRgQtL9/ZNxp4wuGI85FV/jvAhLVVcAqMAEJ2ZLpJdVCsMKNjF9l9+QTnqIG4TrwVEKvnMrbQ19E3QBdFuyVYHRC0ETJBaLqX/Ugc4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1707748805; c=relaxed/simple;
-	bh=stDOpKX2vOjeRZ0yU+kSRW2NtkeM5LOv9GIRMijbGtA=;
+	s=arc-20240116; t=1707749119; c=relaxed/simple;
+	bh=Uy1Hm9Mf3DmrZrxeQWTmF971xd/SzhqApTD6KqZ4D6g=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=mrnIWI+eCPfpv6Pb5JBghH8oYshu6HheX1hBZdhszKSzRa3FLYl7u5oS1t7G6cNoL8SJk6IOJODDmirITr6n6nGJ6spiAl6Yw88+AGAXB31QVyrIW8B9Po0+hQs/ny86jG/W9TdyT0TbzGcmAr5p4fSBo6/Hv0/OV6eGFcfJ29Q=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=runtux.com; spf=pass smtp.mailfrom=runtux.com; arc=none smtp.client-ip=176.9.82.136
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=runtux.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=runtux.com
-Received: from localhost (localhost [127.0.0.1])
-	by tux.runtux.com (Postfix) with ESMTP id 6CA786F065;
-	Mon, 12 Feb 2024 15:40:00 +0100 (CET)
-X-Virus-Scanned: Debian amavisd-new at tux.runtux.com
-Received: from tux.runtux.com ([127.0.0.1])
-	by localhost (tux2.runtux.com [127.0.0.1]) (amavisd-new, port 10026)
-	with LMTP id PkmeLa6QKAcP; Mon, 12 Feb 2024 15:39:59 +0100 (CET)
-Received: from bee.priv.zoo (62-99-217-90.static.upcbusiness.at [62.99.217.90])
-	(Authenticated sender: postmaster@runtux.com)
-	by tux.runtux.com (Postfix) with ESMTPSA id E8B6C6EF02;
-	Mon, 12 Feb 2024 15:39:58 +0100 (CET)
-Received: by bee.priv.zoo (Postfix, from userid 1002)
-	id 44DCD46A; Mon, 12 Feb 2024 15:39:58 +0100 (CET)
-Date: Mon, 12 Feb 2024 15:39:58 +0100
-From: Ralf Schlatterbeck <rsc@runtux.com>
-To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Cc: Geert Uytterhoeven <geert@linux-m68k.org>,
-	Linus Walleij <linus.walleij@linaro.org>,
-	Miguel Ojeda <ojeda@kernel.org>, Rob Herring <robh+dt@kernel.org>,
+	 Content-Type:Content-Disposition:In-Reply-To; b=Zcd88ur30g7+W/KKTwKak/VnpOn7cwqlAHTi+cOTOLDEKvh2eRwfODpOr3dfxWTiSlRzj+NmOGyBTmmXgmkPiM95orrV0v49IT9K6+aKl/si8o2B101UN8nfdwteu9ah0jT1zTa5McBa7Dy5dBltQjTDrMawru0fZT+de//DrSg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=RoOMYfZK; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 3B27AC433F1;
+	Mon, 12 Feb 2024 14:45:18 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1707749118;
+	bh=Uy1Hm9Mf3DmrZrxeQWTmF971xd/SzhqApTD6KqZ4D6g=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=RoOMYfZKgD8COEAhzGgUFwSARdrtr2Vc5dPquEXPszpOgD/5ee88wy6GdU4Sd0BQb
+	 +8x1GyckSVT3oJUYR5azNO9cLuStG8b1Jb1SgfQnT3fJXbfnTfmsm7oOKQ1BHJ1XoI
+	 v/wP6LARAixstuhtEmq2PHwvN+NUSEEGxAy4pqK59xpwz5YWy2pX9YEU4es5USbDxa
+	 AnyTbH6MBUHlBhIDvTY4+9suY42Rj5MQRI72UQYexuB9r1/a42PzfQ0eguEXKienvo
+	 scdFV71Hpi8/GRTzpW2pPoJCkwnKzwordFgFVGTYeR1kExWjOIlE5Iozp1ekkRjN1E
+	 Pu+OL9u1uiiww==
+Date: Mon, 12 Feb 2024 08:45:16 -0600
+From: Rob Herring <robh@kernel.org>
+To: =?utf-8?B?UmFmYcWCIE1pxYJlY2tp?= <zajec5@gmail.com>
+Cc: Russell King <linux@armlinux.org.uk>,
+	Daniel Lezcano <daniel.lezcano@linaro.org>,
+	Thomas Gleixner <tglx@linutronix.de>,
 	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
 	Conor Dooley <conor+dt@kernel.org>,
-	Robin van der Gracht <robin@protonic.nl>,
-	Paul Burton <paulburton@kernel.org>,
-	linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	Andy Shevchenko <andriy.shevchenko@linux.intel.com>
-Subject: Re: [PATCH 1/3] dt-bindings: auxdisplay: hit, hd44780: drop
- redundant GPIO node
-Message-ID: <20240212143957.gaxxz3nt7pxhlmqh@runtux.com>
-References: <20240212083426.26757-1-krzysztof.kozlowski@linaro.org>
- <CAMuHMdU-c5_Z2AMNtNH4Cc4JUrn+oKU-1CumEOAP6=5Zomcj_A@mail.gmail.com>
- <2922eece-5486-4eff-af99-f7060cb61d17@linaro.org>
- <20240212115837.efz73yxinkysdmgh@runtux.com>
- <e2a5b005-7916-4296-b072-c24efd4b3357@linaro.org>
+	Matthias Brugger <matthias.bgg@gmail.com>,
+	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
+	devicetree@vger.kernel.org, linux-clk@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	linux-mediatek@lists.infradead.org, linux-kernel@vger.kernel.org,
+	=?utf-8?B?UmFmYcWCIE1pxYJlY2tp?= <rafal@milecki.pl>
+Subject: Re: [PATCH V3 0/3] dt-bindings: arm: mediatek: convert
+ MT7622-related bindings to the json-schema
+Message-ID: <20240212144516.GA301127-robh@kernel.org>
+References: <20240211213925.18348-1-zajec5@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <e2a5b005-7916-4296-b072-c24efd4b3357@linaro.org>
-X-ray: beware
-User-Agent: NeoMutt/20180716
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20240211213925.18348-1-zajec5@gmail.com>
 
-On Mon, Feb 12, 2024 at 02:38:27PM +0100, Krzysztof Kozlowski wrote:
-> On 12/02/2024 12:58, Ralf Schlatterbeck wrote:
+On Sun, Feb 11, 2024 at 10:39:22PM +0100, Rafał Miłecki wrote:
+> From: Rafał Miłecki <rafal@milecki.pl>
 > 
-> GPIO expanders and their usage is nothing specific to this device -
-> other devices also might benefit of them. Or the SoCs which have enough
-> of GPIOs... I really do not understand why do we need expander here and
-> how does it help
+> There are more MediaTek bindings to convert but for now I focused on
+> those used by MT7622.
+> 
+> V2: Move bindings to /clock/
+>     Use clock-controller@ nodenames
+>     Drop incorrectly specified "syscon"
+> 
+> V3: Update titles of all 3 bindings
+>     Simplify HIFSYS compatbile (drop "items:")
+> 
+> Rafał Miłecki (3):
+>   dt-bindings: arm: mediatek: convert hifsys to the json-schema clock
+>   dt-bindings: arm: mediatek: convert PCIESYS to the json-schema clock
+>   dt-bindings: arm: mediatek: convert SSUSBSYS to the json-schema clock
 
-Can we then at least link the I/O Expander example to the docs of that
-display?
-I've documented my experience here:
-https://blog.runtux.com/posts/2021/01/06/
+dt-bindings: clock: mediatek: ...
 
-And at the time there were two out-of-tree implementations.
+>  .../bindings/arm/mediatek/mediatek,hifsys.txt | 26 ----------
+>  .../arm/mediatek/mediatek,pciesys.txt         | 25 ----------
+>  .../arm/mediatek/mediatek,ssusbsys.txt        | 25 ----------
+>  .../clock/mediatek,mt2701-hifsys.yaml         | 50 +++++++++++++++++++
+>  .../clock/mediatek,mt7622-pciesys.yaml        | 45 +++++++++++++++++
+>  .../clock/mediatek,mt7622-ssusbsys.yaml       | 45 +++++++++++++++++
+>  6 files changed, 140 insertions(+), 76 deletions(-)
+>  delete mode 100644 Documentation/devicetree/bindings/arm/mediatek/mediatek,hifsys.txt
+>  delete mode 100644 Documentation/devicetree/bindings/arm/mediatek/mediatek,pciesys.txt
+>  delete mode 100644 Documentation/devicetree/bindings/arm/mediatek/mediatek,ssusbsys.txt
+>  create mode 100644 Documentation/devicetree/bindings/clock/mediatek,mt2701-hifsys.yaml
+>  create mode 100644 Documentation/devicetree/bindings/clock/mediatek,mt7622-pciesys.yaml
+>  create mode 100644 Documentation/devicetree/bindings/clock/mediatek,mt7622-ssusbsys.yaml
 
-Note that I think that redundancy in code is bad.
-Not so for documentation.
+Presumably Stephen should take these, but you Cc'ed the timekeeping 
+maintainers rather than the clock maintainers. Please use 
+get_maintainer.pl.
 
-Thanks + kind regards
-Ralf
--- 
-Dr. Ralf Schlatterbeck                  Tel:   +43/2243/26465-16
-Open Source Consulting                  www:   www.runtux.com
-Reichergasse 131, A-3411 Weidling       email: office@runtux.com
+Rob
 
