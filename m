@@ -1,149 +1,127 @@
-Return-Path: <devicetree+bounces-41005-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-41009-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2CD62851E9D
-	for <lists+devicetree@lfdr.de>; Mon, 12 Feb 2024 21:26:07 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 40BCE851ED6
+	for <lists+devicetree@lfdr.de>; Mon, 12 Feb 2024 21:47:11 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id D65812824F1
-	for <lists+devicetree@lfdr.de>; Mon, 12 Feb 2024 20:26:05 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 73B401C21DAD
+	for <lists+devicetree@lfdr.de>; Mon, 12 Feb 2024 20:47:10 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7DE75481D5;
-	Mon, 12 Feb 2024 20:26:01 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2C00947A7A;
+	Mon, 12 Feb 2024 20:47:07 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="mkk5glm7"
 X-Original-To: devicetree@vger.kernel.org
-Received: from foss.arm.com (foss.arm.com [217.140.110.172])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id CA40B41208;
-	Mon, 12 Feb 2024 20:25:58 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.140.110.172
+Received: from mail-wm1-f46.google.com (mail-wm1-f46.google.com [209.85.128.46])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+	(No client certificate requested)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7BEB843AA8;
+	Mon, 12 Feb 2024 20:47:05 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.46
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1707769561; cv=none; b=WpwykS3czgGQweqTuytdFVsz2mxR4/ZXdWlZUoaF5923gt6jpRKdV8DYGfkEgI4ruWbeqWa07q7ohrfbUKppVXXoto8DSIwLjiDoEvNZSV4P62/lziwyDc2OrP46GOPiNInsB6nKudnKD4kqiD8fQx72I7X/m0lKYY+pCtLvhiI=
+	t=1707770827; cv=none; b=mnrr6cT2A7gZsYenrbBHMk4A7Nl2jR2mrUwAljsNACZCyMlOcZuYgG2ZrPQcav3yCprnkjJpYoJZsjb5vUkVdxGvJ1HVzQHkhPUSzquJPbqS/hG7f+L/FePVm9D3eD/zYuAglMYc+t2Z1ZnoSnFaNzTAEuJETMjQYfGCoJjJ54A=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1707769561; c=relaxed/simple;
-	bh=4LzQNYnhDLWF7CpRALP+fSk7Y3GuFx5cvns2xtzlsOw=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=jP8FjXZeudN/8K8XNRsZdgZqtFLzUZF+/Y9odJ4TK4Czqhl6gJzEMfeNhrtwZzC5FOWjNEv4pyW3aRqzvUY4zScCfdOk4oAOs9ZbGVz540zvYA8a0iI4WUMwSv4x268DcUTEEjG85f3Q0vQz988m7gyCqOtFs8joWFjekWgkCSE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com; spf=pass smtp.mailfrom=arm.com; arc=none smtp.client-ip=217.140.110.172
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=arm.com
-Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
-	by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 37B6BDA7;
-	Mon, 12 Feb 2024 12:26:39 -0800 (PST)
-Received: from [10.57.48.89] (unknown [10.57.48.89])
-	by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 26C4E3F766;
-	Mon, 12 Feb 2024 12:25:55 -0800 (PST)
-Message-ID: <cfc87678-0445-42e6-9fc1-b22ef25566ff@arm.com>
-Date: Mon, 12 Feb 2024 20:25:53 +0000
+	s=arc-20240116; t=1707770827; c=relaxed/simple;
+	bh=fn/5FyBTMnahqzrbwfSbO2KeE7u5oVugq+iHM/NMsHE=;
+	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=CEKpRUvnNFhnFN1OzYBt8k5UnuNU+ao6M0kBXhnfPhvj4+PJ2AcFByawUCMXGbID2RaAQkmVHMOfLdZU21mlo9vkz2MnwqEzTLad0RD9ZNH+xk1Pncs4Ehn9ChU2YwFZV4jWcL24zuPtmJzJGgG1Hc8Z85vOh36OYhBn5sR2Sb0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=mkk5glm7; arc=none smtp.client-ip=209.85.128.46
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-wm1-f46.google.com with SMTP id 5b1f17b1804b1-4116650a345so6696205e9.1;
+        Mon, 12 Feb 2024 12:47:05 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1707770824; x=1708375624; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=4Wilr3QrMZJFwg5LcPt9WBQXjwBqyBsWNwp0pkv/Cww=;
+        b=mkk5glm7kVWofrzoL9fZ80s4eSr90UqMj4FeQZeNoV4fMg8OeFSpZSadN3h9ZOYYEw
+         ExcA2Nu0JK/gfJY4S0U/7OErhyQiAXhJXtJKsE1UZk8PJStGOjIyEzdpisr3sIK49XcK
+         SZQK1ex7/UhdV/28lNSoEPVWz3ozfax8OweZ4ojlfyGoDHvf+md7NWKFlLNKqPST5i8J
+         jojcwh0wwHjNUcpDQvvGfvZm9zQdiycWFUk/3RcV0jfsKi42NqNyWnurKXMkgOTddjOt
+         2YOMxFrlC9Qr+Ijzy/2BOIGSIxFOkD+ZSnOSmKcncy9W/F805MHmlIni6QXkHV2GNPNk
+         6mmg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1707770824; x=1708375624;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=4Wilr3QrMZJFwg5LcPt9WBQXjwBqyBsWNwp0pkv/Cww=;
+        b=n902BWQKnI7aO/rfn79v77fs6D0eRQdwM9DMD4sdEGVtYuxmfl1J4amMUSZIGRuxfB
+         Lkwh1cFSvYjjuPm07G/x8sqmppKSS5SdtM8VQc1NPHAItb03zMxfle+x4AfHmyzqTVzX
+         2Pr8lXO8Hz3B4yDPQLRZxkYcdgj2cIy71nzcXgjDkR1hTOZWomI/TIb93+F0oE52V9z2
+         2hNlGv0RlNi1W+rqahNvQGtFhsDRS0ORr3Buuf3I18NDzE2RKi5R3HcHe1KoTHhCI6Oc
+         DM8CQnH6s7lZ7/jHdRIQLiFnEM9loRpJw3jO2IIDwDHrkH2Ni9cjOIgGw7PewvAkJeU7
+         UVhg==
+X-Gm-Message-State: AOJu0YzpcgUL06yAUkZijo9gYAiLjRoDmy/D7QmxaK2utCjVqvHmpEJc
+	GW7w6HpR7dQMHwOHMIrvC+trRgb0KVLXNX96ji7ZGbXKlR5RPui3
+X-Google-Smtp-Source: AGHT+IHQl8C8lV6IrF9Twikea11MfjHKeNl0A2ayoFaUaUSjFQctY/JUdfxlgWGuijlnjz/l7OG8KQ==
+X-Received: by 2002:adf:db4a:0:b0:33b:3bad:d3ee with SMTP id f10-20020adfdb4a000000b0033b3badd3eemr5329806wrj.43.1707770823491;
+        Mon, 12 Feb 2024 12:47:03 -0800 (PST)
+X-Forwarded-Encrypted: i=1; AJvYcCUGijjUNoZKPS9rcc3LIBg6g+m0cUf2oDK2qWYWYsKjR9Uwl61nvvPEjrpEe288Kyrl6ndLcRoJagr7jkv9oJCmOkmMihcxAHmQ0g0HUsGlLSyPJT0G3mYCwMgl18CUvVeSQFDpTs9CeKbvG5QCXjBUnZbRMlReYQE8SblNakkPflYhHUUre/JRVTORIo9RmEwZdmRyP1aZRUHkUE5Kdi3trY36GZHoBn4X9YTwLxifE2D2gMWIXQLFATFB2zrvQHU434BpaBl0qv3jYMtwUFexVrlHDYJCTJi1KhMldp5NA9QXjmUcLbXcpbPpqwrVytsme8OOxv+Hv2crtoxmS1ftdyrKDl8l/yuupckBJNlAiW4SyOIoLdI=
+Received: from jernej-laptop.localnet (86-58-6-171.dynamic.telemach.net. [86.58.6.171])
+        by smtp.gmail.com with ESMTPSA id bt25-20020a056000081900b0033b792ed609sm5526948wrb.91.2024.02.12.12.47.01
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 12 Feb 2024 12:47:02 -0800 (PST)
+From: Jernej =?utf-8?B?xaBrcmFiZWM=?= <jernej.skrabec@gmail.com>
+To: Rob Herring <robh+dt@kernel.org>,
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+ Conor Dooley <conor+dt@kernel.org>, Chen-Yu Tsai <wens@csie.org>,
+ Samuel Holland <samuel@sholland.org>,
+ Andre Przywara <andre.przywara@arm.com>, Jisheng Zhang <jszhang@kernel.org>
+Cc: devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ linux-sunxi@lists.linux.dev, linux-kernel@vger.kernel.org
+Subject:
+ Re: [PATCH v3 2/2] arm64: dts: allwinner: h616: Add Sipeed Longan SoM 3H and
+ Pi 3H board support
+Date: Mon, 12 Feb 2024 21:47:01 +0100
+Message-ID: <2596781.Lt9SDvczpP@jernej-laptop>
+In-Reply-To: <20240211081739.395-3-jszhang@kernel.org>
+References:
+ <20240211081739.395-1-jszhang@kernel.org>
+ <20240211081739.395-3-jszhang@kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v4 01/10] dt-bindings: iommu: Add Translation Buffer Unit
- bindings
-Content-Language: en-GB
-To: Georgi Djakov <quic_c_gdjako@quicinc.com>, robh+dt@kernel.org,
- krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org, will@kernel.org,
- joro@8bytes.org, iommu@lists.linux.dev
-Cc: devicetree@vger.kernel.org, andersson@kernel.org,
- konrad.dybcio@linaro.org, robdclark@gmail.com,
- linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
- linux-arm-msm@vger.kernel.org, quic_cgoldswo@quicinc.com,
- quic_sukadev@quicinc.com, quic_pdaly@quicinc.com, quic_sudaraja@quicinc.com,
- djakov@kernel.org
-References: <20240201210529.7728-1-quic_c_gdjako@quicinc.com>
- <20240201210529.7728-2-quic_c_gdjako@quicinc.com>
-From: Robin Murphy <robin.murphy@arm.com>
-In-Reply-To: <20240201210529.7728-2-quic_c_gdjako@quicinc.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 7Bit
+Content-Type: text/plain; charset="us-ascii"
 
-On 2024-02-01 9:05 pm, Georgi Djakov wrote:
-> Add common bindings for the TBUs to describe their properties. The
-> TBUs are modelled as child devices of the IOMMU and each of them is
-> described with their compatible, reg and stream-id-range properties.
-> There could be other implementation specific properties to describe
-> any resources like clocks, regulators, power-domains, interconnects
-> that would be needed for TBU operation. Such properties will be
-> documented in a separate vendor-specific TBU schema.
+Dne nedelja, 11. februar 2024 ob 09:17:39 CET je Jisheng Zhang napisal(a):
+> The Sipeed Longan SoM 3H is a system on module based on the Allwinner
+> H618 SoC. The SoM features:
 > 
-> Signed-off-by: Georgi Djakov <quic_c_gdjako@quicinc.com>
-> ---
->   .../devicetree/bindings/iommu/arm,smmu.yaml   | 14 ++++++++++
->   .../devicetree/bindings/iommu/tbu-common.yaml | 28 +++++++++++++++++++
->   2 files changed, 42 insertions(+)
->   create mode 100644 Documentation/devicetree/bindings/iommu/tbu-common.yaml
+> - Four ARM Cortex-A53 cores, Mali-G31 MP2 GPU
+> - 2/4 GiB LPDDR4 DRAM SoMs
+> - AXP313a PMIC
+> - eMMC
 > 
-> diff --git a/Documentation/devicetree/bindings/iommu/arm,smmu.yaml b/Documentation/devicetree/bindings/iommu/arm,smmu.yaml
-> index a4042ae24770..ba3237023b39 100644
-> --- a/Documentation/devicetree/bindings/iommu/arm,smmu.yaml
-> +++ b/Documentation/devicetree/bindings/iommu/arm,smmu.yaml
-> @@ -235,6 +235,20 @@ properties:
->         enabled for any given device.
->       $ref: /schemas/types.yaml#/definitions/phandle
->   
-> +  '#address-cells':
-> +    enum: [ 1, 2 ]
-> +
-> +  '#size-cells':
-> +    enum: [ 1, 2 ]
-> +
-> +  ranges: true
-> +
-> +patternProperties:
-> +  "^tbu@[0-9a-f]+$":
-> +    description: TBU child nodes
-> +    type: object
-> +    $ref: tbu-common.yaml#
-> +
->   required:
->     - compatible
->     - reg
-> diff --git a/Documentation/devicetree/bindings/iommu/tbu-common.yaml b/Documentation/devicetree/bindings/iommu/tbu-common.yaml
-> new file mode 100644
-> index 000000000000..3e95b356e572
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/iommu/tbu-common.yaml
-> @@ -0,0 +1,28 @@
-> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/iommu/tbu-common.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: Translation Buffer Unit (TBU) common properties
-> +
-> +maintainers:
-> +  - Georgi Djakov <quic_c_gdjako@quicinc.com>
-> +
-> +description:
-> +  The SMMU implements a TBU for system masters. It consists if a
-> +  Translation Lookaside Buffer (TLB) that caches page tables.
-> +
-> +properties:
-> +  reg:
-> +    maxItems: 1
-> +
-> +  stream-id-range:
-> +    $ref: /schemas/types.yaml#/definitions/uint32-array
-> +    description: Stream ID range (address and size) that is assigned by the TBU
-> +    items:
-> +      minItems: 2
-> +      maxItems: 2
+> The Sipeed Longan PI 3H is a development board based on the above SoM.
+> The board features:
+> - Longan SoM 3H
+> - Raspberry-Pi-1 compatible GPIO header
+> - 2 USB 2.0 host port
+> - 1 USB 2.0 type C port (power supply + OTG)
+> - MicroSD slot
+> - 1Gbps Ethernet port (via RTL8211 PHY)
+> - HDMI port
+> - WiFi/BT chip
+> 
+> Add the devicetree file describing the currently supported features,
+> namely PMIC, LEDs, UART, SD card, eMMC, USB and Ethernet.
+> 
+> Signed-off-by: Jisheng Zhang <jszhang@kernel.org>
 
-Actually, even this doesn't work - for the 15-bit StreamID config, 
-there's no guarantee that the devices behind each TBU will use a single 
-contiguous StreamID range. Conversely, for any other config the 
-StreamIDs are already uniquely associated with a TBU by their top 5 
-bits, so the "size" doesn't matter.
+Reviewed-by: Jernej Skrabec <jernej.skrabec@gmail.com>
 
-Thanks,
-Robin.
+Best regards,
+Jernej
 
-> +
-> +additionalProperties: true
-> +...
+
 
