@@ -1,200 +1,145 @@
-Return-Path: <devicetree+bounces-40878-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-40879-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id DD8BB851A51
-	for <lists+devicetree@lfdr.de>; Mon, 12 Feb 2024 17:59:23 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4A093851A91
+	for <lists+devicetree@lfdr.de>; Mon, 12 Feb 2024 18:03:16 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 545C61F24455
-	for <lists+devicetree@lfdr.de>; Mon, 12 Feb 2024 16:59:23 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id F033C288A71
+	for <lists+devicetree@lfdr.de>; Mon, 12 Feb 2024 17:03:14 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8BF6F3D55D;
-	Mon, 12 Feb 2024 16:59:17 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D6F683CF68;
+	Mon, 12 Feb 2024 17:02:56 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="OoobwbyB"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="dNtIu875"
 X-Original-To: devicetree@vger.kernel.org
-Received: from fllv0016.ext.ti.com (fllv0016.ext.ti.com [198.47.19.142])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-lf1-f51.google.com (mail-lf1-f51.google.com [209.85.167.51])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 92C983D555;
-	Mon, 12 Feb 2024 16:59:15 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.19.142
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F0EC93D561
+	for <devicetree@vger.kernel.org>; Mon, 12 Feb 2024 17:02:54 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.51
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1707757157; cv=none; b=fp6D5VPlxiQdmj4QDHK2qIr9E89IWMGMvnc2CPXtGIeNwNlD12qFZunOzd1jke1XVwajKej3v6LrNm/X/xSc8YLD9yJ5iUCVveKuypSnSr95XmnRP/DBT+zE9a6ncksCEh9E4hySF4kdnXA8l/5nkCPoHBeOqgnKZjotB37ygg0=
+	t=1707757376; cv=none; b=TXUEXsvzw70F5x+Zr4okwyoYWlwSS16sz38KuZzgjQCa397Q7E55cnT69YZHBjK11L+/60gdrJPSxNlQvUOrq33hjPsntXcbEmrlWSN1JfXetYqGxZCgPtemLMOv8t3hwzbvxihZwn2F9Ei660P2NS4qXe1EzmZLer5avA8UnFM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1707757157; c=relaxed/simple;
-	bh=5p6lcAM5uCVDCqa9PLQwQdZns2EPPvsUH0B6n9Zpzhs=;
-	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
-	 In-Reply-To:Content-Type; b=lpITNMwLMwPCZOBOx7nBtGXJf3Q76XmgCCiln6P7ZmrgCQDbPUnbheh1b1+W/LkRSmyJea6dTMdRrmyAOoCyAvx/1ugUbeT+okMXRMKrwWd4Dtgu3EqNptMbdM8O9xMIzX/DdXI7zVMnCCFDopi64VTV0mgHHBpZZcSMrVneNSg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=OoobwbyB; arc=none smtp.client-ip=198.47.19.142
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
-Received: from fllv0034.itg.ti.com ([10.64.40.246])
-	by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id 41CGwxlJ085838;
-	Mon, 12 Feb 2024 10:58:59 -0600
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1707757139;
-	bh=PISZoT3QXJstu+Olwl27x4IhcTlCvY6q/N4khZGRgaU=;
-	h=Date:Subject:To:CC:References:From:In-Reply-To;
-	b=OoobwbyBw83TL4qnAyLqbWqAkB79JzykGKzAVeyITEGsZJJEkTscqAdb0FuaIEPF1
-	 +xFZherLRqELBDgB78yGxPFFzBjT23t1V2PBibaxOpj1siODEds8oZSvqROq/99DuN
-	 ugOSJZLN08XYSYHSXSe+n+TObtIxDJnOGiO1gnv8=
-Received: from DLEE108.ent.ti.com (dlee108.ent.ti.com [157.170.170.38])
-	by fllv0034.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 41CGwxFU074266
-	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-	Mon, 12 Feb 2024 10:58:59 -0600
-Received: from DLEE106.ent.ti.com (157.170.170.36) by DLEE108.ent.ti.com
- (157.170.170.38) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Mon, 12
- Feb 2024 10:58:59 -0600
-Received: from lelvsmtp5.itg.ti.com (10.180.75.250) by DLEE106.ent.ti.com
- (157.170.170.36) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
- Frontend Transport; Mon, 12 Feb 2024 10:58:59 -0600
-Received: from [10.249.42.149] ([10.249.42.149])
-	by lelvsmtp5.itg.ti.com (8.15.2/8.15.2) with ESMTP id 41CGwwHK001151;
-	Mon, 12 Feb 2024 10:58:58 -0600
-Message-ID: <faaca11f-508e-450c-83f2-1aa03734b7cd@ti.com>
-Date: Mon, 12 Feb 2024 10:58:58 -0600
+	s=arc-20240116; t=1707757376; c=relaxed/simple;
+	bh=nnFi0dz7hSqMF4DlCZ0/X5ltymPDZD4pOj9wQcTNkyg=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=sbGNgzLa+Qf6SZPxFs8UXn5ZvNKRoxL7AM7rhwZDkRmuAcyR+R+bfoNLXJROJTj77xkyBPD9Ymi7gO+3eyi4WhmEq+Z7hOd5ES5rJ+x7c7gSprhPRyeDD/q9L/J4detXhFoBmDaxWVW1wHdlRx3FEPYKJS/2gQ4rA5/hMbcrbS4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=dNtIu875; arc=none smtp.client-ip=209.85.167.51
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-lf1-f51.google.com with SMTP id 2adb3069b0e04-51187830d6dso1442285e87.3
+        for <devicetree@vger.kernel.org>; Mon, 12 Feb 2024 09:02:54 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1707757373; x=1708362173; darn=vger.kernel.org;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=Glg4WPNjCjWUYTPSWyXIx3TsulJuAQ07BgmnN6oIbto=;
+        b=dNtIu875TWm83flmINy3wCmDh7rOUqI8pS6xlZpY6YVIR/I8t1zRfkVTj2kXGgGRbh
+         XQY7RXflETDoCCyEGuwDDVpvDon43bIHQFRAfqmEIPsJ9BXHZZTK0eTy9f9EXV3M2te+
+         3Ylp1FCWekopm9jkeF7g0V1IloposuX/GGEXV1rv8Jo1aZqvezlzmc5xHvyyynEq6lcj
+         RjBP9M89I4j7RKJ2vo+7EmhloAJdo491zS0OTnBMDWC6FlAVKag/amxpPjdu5nGPdLdu
+         oeqr5eypdMGyUY/gVtXcg3u+Q+HanUO/3BGx/qAc7qyhvWkIq/Cv2Kwsft/tMo2gznZS
+         mSHw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1707757373; x=1708362173;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=Glg4WPNjCjWUYTPSWyXIx3TsulJuAQ07BgmnN6oIbto=;
+        b=FpqIBc8Rlk205QqcKMRspZMSHvaNWE4fUkFC6cAsIweaqf6fu+MGE8N0eYvAnw35E/
+         g2zr6Ia6E0wdzThSkh0xUqer+wGUbWTzFkDM5W7/iPAzY66Ofj9MHyl8ZMS4XylWa301
+         qH5mND4WOfrG0GJE/utmM4dpIfcsb46bNqIcASssQlH/WqBly7GsJtjJS4x6Y7xHp6IF
+         qlpeJ39TWPzdDj6lK1W0smlb+/TZlmd9M/MtBjdhRYqAKstj42P+H+7M1zL6+pGJ/cwL
+         P1bSlPK5I62pW4F3RfG7sI54ubQcx+Yka5TjPGU/RK7wcvdPMtLowNhjAR33TpdCmSaJ
+         hhOw==
+X-Gm-Message-State: AOJu0YxbPEWt7FKqX31QPumxCiw9ZFl1LjIfKKXObl+TMi4N4czNog0H
+	hIe1IXArzpCWbWw94xfc7Dx7+HVi6/u03dn+f2VaIfZ1RPEKZmDXbqKW6rPBSOE=
+X-Google-Smtp-Source: AGHT+IEObiDJ+lPv9tBw5NH4DThm25ty5XwAVlLgnIgSMvFdfXzooCjz8i931pQ1mcoDJLnSv1Im8w==
+X-Received: by 2002:a05:6512:3494:b0:511:29ee:83b8 with SMTP id v20-20020a056512349400b0051129ee83b8mr4336538lfr.62.1707757372838;
+        Mon, 12 Feb 2024 09:02:52 -0800 (PST)
+X-Forwarded-Encrypted: i=1; AJvYcCWsrJMgEm1KKo6RrePDwPj88tQQpYSUIAH5HZUr0OUxSvTGI80E5ATulpEFTvlrgb6h9Vcvg5J6YH0CHrM/ZPYxdTVeVSuPG7sPJHBr5mKWfUPUMwqe0ZiAkM2lI4MFnl7/iLTNJQmNWKB8viHkfunEplGlJp0uDq1fqxwq39pRBGKQj/Lw1vTt8PR1zbxaowfr3U0lg+pbhttq7H4TXH4EF5yH5pvHZJNjALdt8M3qm/NRo8bJ4BgF9hOjS7m83745C3oi1WNRRX9Wudx1mHMnKf+KWfxcqVfWer4E9DgB9Fed8qtYUmuc+JvuOQGIohKmy2CDIWXTQDYGGx8x+GVScP4EXNlHwciC9TUpuopPCTaPb1LzBZz2YMrrX0VW8sMwy+7Tg1+eF7msSEzUbleoPAW00QYgSFDTLh6rCQPQmDTy+n7DtVC+QXTQmete9byqYsNRkALbRye87REzhXLk4JSlYGPbUr/abgBXrnHdz3GufP9gOKY4kc0hRrWC+1h/OlVUC7aw47mU7mWNbc1GhYvzsvR/8PA44Mn2mrB1yaPGiXyBNxTiNfM=
+Received: from [127.0.1.1] ([188.24.162.93])
+        by smtp.gmail.com with ESMTPSA id h23-20020a170906261700b00a3c9951edf1sm379600ejc.115.2024.02.12.09.02.51
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 12 Feb 2024 09:02:52 -0800 (PST)
+From: Abel Vesa <abel.vesa@linaro.org>
+Subject: [PATCH v2 0/3] remoteproc: qcom_q6v5_pas: Add aDSP and cDSP for
+ X1E80100
+Date: Mon, 12 Feb 2024 19:02:41 +0200
+Message-Id: <20240212-x1e80100-remoteproc-v2-0-604614367f38@linaro.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v5 0/5] arm64: dts: add description for solidrun am642 som
- and hummingboard evb
-Content-Language: en-US
-To: Josua Mayer <josua@solid-run.com>, Vignesh Raghavendra <vigneshr@ti.com>,
-        Nishanth Menon <nm@ti.com>, Tero Kristo <kristo@kernel.org>,
-        Rob Herring
-	<robh+dt@kernel.org>,
-        Krzysztof Kozlowski
-	<krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Alessandro Zummo <a.zummo@towertech.it>,
-        Alexandre Belloni
-	<alexandre.belloni@bootlin.com>
-CC: Yazan Shhady <yazan.shhady@solid-run.com>,
-        "linux-arm-kernel@lists.infradead.org"
-	<linux-arm-kernel@lists.infradead.org>,
-        "devicetree@vger.kernel.org"
-	<devicetree@vger.kernel.org>,
-        "linux-kernel@vger.kernel.org"
-	<linux-kernel@vger.kernel.org>,
-        "linux-rtc@vger.kernel.org"
-	<linux-rtc@vger.kernel.org>,
-        Krzysztof Kozlowski
-	<krzysztof.kozlowski@linaro.org>,
-        Suman Anna <s-anna@ti.com>,
-        "Grygorii
- Strashko" <grygorii.strashko@ti.com>,
-        MD Danish Anwar <danishanwar@ti.com>
-References: <20240211-add-am64-som-v5-0-790ed7121249@solid-run.com>
- <359993c5-3387-443c-8cef-30ee7ad1f521@ti.com>
- <b918364e-cfca-4342-acc2-2b51bad75596@solid-run.com>
-From: Andrew Davis <afd@ti.com>
-In-Reply-To: <b918364e-cfca-4342-acc2-2b51bad75596@solid-run.com>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 8bit
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIADFPymUC/22NQQqDMBAAvyI5d0s2Kk176j+KhySuGrCJbKxYx
+ L83eu5xBobZRCL2lMSj2ATT4pOPIYO6FMINJvQEvs0slFQlKomwImmJUgLTO840cXRg1a01tS5
+ JOydyaU0isGyCG3IbPuOY5cTU+fVcvZrMg09z5O95XvCwx6SSqO5/JwuCBKxbhdTV2lT2OfpgO
+ F4j96LZ9/0H1C1fUMwAAAA=
+To: Bjorn Andersson <andersson@kernel.org>, 
+ Konrad Dybcio <konrad.dybcio@linaro.org>, 
+ Mathieu Poirier <mathieu.poirier@linaro.org>, 
+ Rob Herring <robh+dt@kernel.org>, 
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, 
+ Conor Dooley <conor+dt@kernel.org>, 
+ Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>, 
+ Rob Herring <robh@kernel.org>
+Cc: linux-arm-msm@vger.kernel.org, linux-remoteproc@vger.kernel.org, 
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+ Abel Vesa <abel.vesa@linaro.org>, 
+ Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>, 
+ Sibi Sankar <quic_sibis@quicinc.com>, 
+ Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+X-Mailer: b4 0.12.4
+X-Developer-Signature: v=1; a=openpgp-sha256; l=959; i=abel.vesa@linaro.org;
+ h=from:subject:message-id; bh=nnFi0dz7hSqMF4DlCZ0/X5ltymPDZD4pOj9wQcTNkyg=;
+ b=owEBbQKS/ZANAwAKARtfRMkAlRVWAcsmYgBlyk8zjo2LpSiWbWfUFl2ggatdDySA7XoLWRBbe
+ rFm4RiAwqmJAjMEAAEKAB0WIQRO8+4RTnqPKsqn0bgbX0TJAJUVVgUCZcpPMwAKCRAbX0TJAJUV
+ VuWjD/4zkmQlH31HEOFN+lLSp7LBm+ePX3wXH2/mlJhurPQewMSZjZpAxSPDOaEuSxhROPD4pB1
+ WD0d0ch+mgd2C0pksFq5qyFmT6R1XAHhWEr1fzF4zWQMW8xG/kHRvjBt+zdPLP5GCXmkrbCgaJi
+ Kvmv7if3fPdp/UDFPsHtbPUU7TDKpGWLiKibQlrXV3rwFNbgcDT8rX614XXkvfL1PmbF3AXe8QE
+ cYqW3LbEOn6ff32jk4nJpHMbNT8zNa3pVNS0xtnLopUd2H1PhF/xpdLUVLCXvQ3Qj5aEOy253oT
+ UnQGuiU9Balvuw+QK0QgVjbUyBWLXEjHQLIYbfbWmHp0a4YTRPFrQqQrL4AoOeb4pHnKoHgT6Ql
+ 0dt8a8z3A9D6H9xIDYKJTa2oPFTFjV2k/Y9GuewgCVse5FFVTDvu8A3bMfS34ALltNZkLRK90Ve
+ 8zW1MOCYqfaPYDCYnDq1H3jPuDsFUA9roowIqWQR09RRWuATAJC0seuaJr+MugO2bKJH+rszOoc
+ /6dSvLTUMb4TJSuVs3p6C1+tvO4HgofEPMP2CPf2pYiA0dTuZ8zX5kD3Cl6YDF3wFil/8UgoADG
+ qGpTE60Rb6yBM2Af42FG9ht2ZUw20IsPPPvrHM4OYO1vVZBUp/GPVYkZefd6J1rDI4p+ZFi2cMU
+ Yq9vyQw+2G7lgTQ==
+X-Developer-Key: i=abel.vesa@linaro.org; a=openpgp;
+ fpr=6AFF162D57F4223A8770EF5AF7BF214136F41FAE
 
-On 2/12/24 10:39 AM, Josua Mayer wrote:
-> Hi Vignesh,
-> 
-> Am 12.02.24 um 05:10 schrieb Vignesh Raghavendra:
->> Hi Josua,
->>
->> On 11/02/24 20:37, Josua Mayer wrote:
->>> This series adds DT bindings and dts descriptions for SolidRun AM642
->>> based SoM and Hummingboard EVB.
->>>
->>> Additionally a commit from downstream vendor kernel are included,
->>> enhancing support for pru based ethernet.
->>> I wasn't sure how to properly annotate it in commit description /
->>> signed-off area ...:
->>>
->>> 1. add description for "Industrial Ethernet Peripherals" (IEP) to am64
->>>     https://git.ti.com/cgit/ti-linux-kernel/ti-linux-kernel/commit/arch/arm64/boot/dts/ti/k3-am64-main.dtsi?h=ti-linux-6.1.y-cicd&id=5afb73d82a014b59462162d960b350b8c58e5ae6
->>>     IEP is already supported in-tree by a driver, and used in
->>>     k3-am65-main.dtsi.
->>>
->>> Unfortunately dtbs_check reported many problems, I put some remarks:
->>>
->>> - 'mux-controller' does not match any of the regexes
->>>    The expectation seems to be that a mux-controller at minimum has an
->>>    address, something to put behind an @. However this is a gpio mux, not
->>>    sure how to name it better.
->>>
->> I don't see this warning locally. Are you using updated dt-schema?
-> pip3 install dtschema --upgrade
-> Defaulting to user installation because normal site-packages is not writeable
-> Requirement already satisfied: dtschema in ~/.local/lib/python3.11/site-packages (2023.11)
-> 
-> Re-Tested on 6.8-rc1
-> 
->> reg
->> is not necessary gpio-mux as per gpio-mux.yaml
-> The error is not about reg property, it is about the node name:
-> 
-> mux-controller {
->      compatible = "gpio-mux";
->      ...
-> };
-> 
->    DTC_CHK arch/arm64/boot/dts/ti/k3-am642-hummingboard-t.dtb
-> .../arch/arm64/boot/dts/ti/k3-am642-hummingboard-t.dtb: syscon@43000000: 'mux-controller' does not match any of the regexes: '^chipid@[0-9a-f]+$', '^clock-controller@[0-9a-f]+$', '^mux-controller@[0-9a-f]+$', 'phy@[0-9a-f]+$', 'pinctrl-[0-9]+'
->         from schema $id: http://devicetree.org/schemas/mfd/ti,j721e-system-controller.yaml#
+Signed-off-by: Abel Vesa <abel.vesa@linaro.org>
+---
+Changes in v2:
+- Added Krzysztof's R-b tag to bindings patch
+- Added Dmitry's R-b tag to the X1E80100 related patch
+- Dropped the comment about the comment from adsp_load about lite
+  version
+- Link to v1: https://lore.kernel.org/r/20240129-x1e80100-remoteproc-v1-0-15d21ef58a4b@linaro.org
 
-This is an existing issue that we are working to fix. Nothing you
-can do about it, all boards that include k3-am64-main.dtsi
-will have this warning currently.
+---
+Abel Vesa (1):
+      dt-bindings: remoteproc: qcom,sm8550-pas: document the X1E80100 aDSP & cDSP
 
-Andrew
+Sibi Sankar (2):
+      remoteproc: qcom_q6v5_pas: Add support for X1E80100 ADSP/CDSP
+      remoteproc: qcom_q6v5_pas: Unload lite firmware on ADSP
 
->>
->>> - unevaluated properties: interrupts, interrupt-parent
->>>    sensors and flash yaml are missing interrupt descriptions, but these
->>>    parts definitely have an interrupt signal in this solidrun board.
->>>
->> Please add them to appropriate schema as necessary
-> Okay.
-> Looks like it is only two:
-> .../arch/arm64/boot/dts/ti/k3-am642-hummingboard-t.dtb: humidity-sensor@41: 'interrupt-parent', 'interrupts' do not match any of the regexes: 'pinctrl-[0-9]+'
->         from schema $id: http://devicetree.org/schemas/iio/humidity/ti,hdc2010.yaml#
-> .../arch/arm64/boot/dts/ti/k3-am642-hummingboard-t.dtb: flash@0: Unevaluated properties are not allowed ('interrupt-parent', 'interrupts' were unexpected)
->         from schema $id: http://devicetree.org/schemas/mtd/jedec,spi-nor.yaml#
->>
->>> - wrong names for pinctrl nodes
->>>    Other TI DTSs consistently end with *-pins-default. Should a different
->>>    naming convention be used?
->>>
->> No, pinctrl nodes need to end in -pins. All TI boards have been updated
->> to new schema [0] and sysconfig tool on dev.ti.com/sysconfig generates
->> appropriately. Please fix
-> Okay, will do ...
->>
->>
->>> - cdns,phy-type required property
->>>    inherited from k3-am64-main.dtsi
->>>    there is a PHY_NONE value in dt-bindings/phy/phy.h,
->>>    but not allowed in phy-cadence-torrent.yaml
->>>
->> Sorry, I didnt get what's the issue wrt cdns,phy-type ?
-> There were two issues, but they both disappeared as per 6.8-rc1 :)
->>
->>
->> Note, I really don't want to accept patches that add new dtbs_check
->> issues especially for nodes that already have YAML bindings. Please
->> update the .yaml files as necessary.
-> I have succeeded locally getting rid of all but one, the node name of mux-controller mentioned above.
-> Will include yaml patches in next version.
->>
->> [0]
->> https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/commit/?id=a49568115143435390f20965902809471b6f830c
->>
->>
+ .../bindings/remoteproc/qcom,sm8550-pas.yaml       |  6 +++
+ drivers/remoteproc/qcom_q6v5_pas.c                 | 48 ++++++++++++++++++++++
+ 2 files changed, 54 insertions(+)
+---
+base-commit: 445a555e0623387fa9b94e68e61681717e70200a
+change-id: 20231201-x1e80100-remoteproc-b27da583e8cc
+
+Best regards,
+-- 
+Abel Vesa <abel.vesa@linaro.org>
+
 
