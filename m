@@ -1,95 +1,98 @@
-Return-Path: <devicetree+bounces-40700-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-40701-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 31A848513B1
-	for <lists+devicetree@lfdr.de>; Mon, 12 Feb 2024 13:43:16 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id BCC1C8513DB
+	for <lists+devicetree@lfdr.de>; Mon, 12 Feb 2024 13:54:19 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 646B21C216FD
-	for <lists+devicetree@lfdr.de>; Mon, 12 Feb 2024 12:43:15 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 77CCA2827C5
+	for <lists+devicetree@lfdr.de>; Mon, 12 Feb 2024 12:54:18 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 467BD39AFE;
-	Mon, 12 Feb 2024 12:43:11 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8728439FF8;
+	Mon, 12 Feb 2024 12:54:14 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b="5YwFMP4D"
+	dkim=pass (2048-bit key) header.d=dolcini.it header.i=@dolcini.it header.b="0potI20j"
 X-Original-To: devicetree@vger.kernel.org
-Received: from madrid.collaboradmins.com (madrid.collaboradmins.com [46.235.227.194])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail11.truemail.it (mail11.truemail.it [217.194.8.81])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C056839FC3
-	for <devicetree@vger.kernel.org>; Mon, 12 Feb 2024 12:43:09 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=46.235.227.194
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 608A939FF4;
+	Mon, 12 Feb 2024 12:54:09 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.194.8.81
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1707741791; cv=none; b=AO7Ob/qtwy+EiyksQuMOrJGVBrXHI04h61Ihacft6h6EKfvriXlFuSvagxnJJUbb8v5kwWmn1phSy5MJ5YqLh2eCkv/q05xG9vTgIZLCSvP8QXQvOsKmD4Vpd0rCQR7eFHYqPIETLTkrc8sNRyGEO1ZOsPDlDa6QoeLl/ah/pto=
+	t=1707742454; cv=none; b=sYqC18Ec/+CFCRGgItK9iktdNdRQ00iDydLlLcaGmEEMFlSCIIHEFRGFjcXRkOYnU+goIJMBFKlLi34qDjWTrSBsA7x6zQX1gurd0J5PFf4/AtRZxmyvOFqEWY3NZXFAN9wiAI2z+9JLdJ8LN+HfVBb6fpaba8tuhkCQEnftUD8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1707741791; c=relaxed/simple;
-	bh=1dir5fid+1BGP0VzNCQXLya74RU+ai/AxGeDGbyKkeI=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=MzeBzHOk81HswjgXFNJBkGqnmuy3W02okutFkPiraCGEAXqah7+LNTonmRcbsu9tN6XJzaD6XxTmEau5zEMRKZNfIw9Dw42x2HhBEpyU8tXubnAeMwXaP1FeItxIrSzONtJV/80OnSzQLNg8efp/ajzoZAx5hN2keVeQc8I+r28=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b=5YwFMP4D; arc=none smtp.client-ip=46.235.227.194
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=collabora.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-	s=mail; t=1707741787;
-	bh=1dir5fid+1BGP0VzNCQXLya74RU+ai/AxGeDGbyKkeI=;
-	h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-	b=5YwFMP4DeWXpV3MmppPdhv2otz0AfjEV7858thCkMLuKqGmypoif0Iz8KJeT+IfZ8
-	 QGPobwUqn4zjrPBD5pWzblbaqnNK/l9gyQ6fQTc7RqJANoxKMitTv5YcXh3jy6enJG
-	 EleRoF+czMspoV1lK+DQWuDPau1a54bnaSqzTdYB+wmAtU5XszxrGbNkI9w/CjuLAH
-	 pDpaK4JXX1aH7gVglI5ZBeikBCVc5jqE3X1okUPernMgQ3T4dZBXWHfE3OXWx6eqSa
-	 2gHQW9v1a0K4BOSDFRitrTSKxjyK5HtrIZn2lDqKpoWF4xdiLroqjZjHJbhAa+gtZ8
-	 MKfxcgAKeYcNQ==
-Received: from IcarusMOD.eternityproject.eu (cola.collaboradmins.com [195.201.22.229])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
-	(No client certificate requested)
-	(Authenticated sender: kholk11)
-	by madrid.collaboradmins.com (Postfix) with ESMTPSA id 105AC3781FCE;
-	Mon, 12 Feb 2024 12:43:07 +0000 (UTC)
-From: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
-To: Matthias Brugger <matthias.bgg@gmail.com>,
-	=?UTF-8?q?Rafa=C5=82=20Mi=C5=82ecki?= <zajec5@gmail.com>
-Cc: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
-	Rob Herring <robh+dt@kernel.org>,
+	s=arc-20240116; t=1707742454; c=relaxed/simple;
+	bh=oE/IMGqKpiy3HjHmRhnL54QXNMGICW3K60ABAhZCIsk=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=ScmcEN/YFamZ+OSQnHAlAYvZu62A7AFjidbCKY57ZTPU43e/+qVlpcpNPEi25E56mfD2eXvp0wSg/WIGHpxXoGYwmWzM3EKRMKo+FLvyYlD1DtzYL8DqXHHB63IXoAtZHKxPBBd55fgpGudgISFlKtH1bp5CVRVg5kUCTq/1H0s=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=dolcini.it; spf=pass smtp.mailfrom=dolcini.it; dkim=pass (2048-bit key) header.d=dolcini.it header.i=@dolcini.it header.b=0potI20j; arc=none smtp.client-ip=217.194.8.81
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=dolcini.it
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=dolcini.it
+Received: from francesco-nb (93-49-2-63.ip317.fastwebnet.it [93.49.2.63])
+	by mail11.truemail.it (Postfix) with ESMTPA id 68C97206F0;
+	Mon, 12 Feb 2024 13:54:06 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=dolcini.it;
+	s=default; t=1707742446;
+	bh=mKFrr/tv7+577+b46UKYGQ31Twn6Ut5p48YTAr9iamE=; h=From:To:Subject;
+	b=0potI20jbbs/o4+fJug8vPLTUfzapnQJ4nVhpNhztYWaFh3GhvDkKJD9M1iFNl2tO
+	 p7f16NfeXkDLyZpOryG4NO5c/eQ+lChhMDxtgKZuOVeowBx9eKndzsR0auEqUCAea0
+	 9rRJWDhghwEA/ASVRxWR+r/ms7BoZOhbJowNdOlvL4e+D1xVjsbFdAW+wES0mkZLDh
+	 9uesKqXDDxhMt+jFjDcmTjawsjcjsxBdLLmyNyThqR0tAIr0j7hanyVxIfKZ9cJuwP
+	 y/pKTjkWJzwsE1nmndT1kFGfLyHfjJ0Bhz4v9l5QDMvFsIGBDo2z1HVl27brM0dXez
+	 j61vqYrNY189A==
+Date: Mon, 12 Feb 2024 13:54:02 +0100
+From: Francesco Dolcini <francesco@dolcini.it>
+To: Roger Quadros <rogerq@kernel.org>
+Cc: Andrejs Cainikovs <andrejs.cainikovs@gmail.com>,
+	Nishanth Menon <nm@ti.com>, Vignesh Raghavendra <vigneshr@ti.com>,
+	Tero Kristo <kristo@kernel.org>, Rob Herring <robh+dt@kernel.org>,
 	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
 	Conor Dooley <conor+dt@kernel.org>,
-	devicetree@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	linux-mediatek@lists.infradead.org,
-	=?UTF-8?q?Rafa=C5=82=20Mi=C5=82ecki?= <rafal@milecki.pl>
-Subject: Re: [PATCH] arm64: dts: mediatek: mt7622: add missing "device_type" to memory nodes
-Date: Mon, 12 Feb 2024 13:42:50 +0100
-Message-ID: <170774176471.19382.17605326667599843858.b4-ty@collabora.com>
-X-Mailer: git-send-email 2.43.0
-In-Reply-To: <20240122132357.31264-1-zajec5@gmail.com>
-References: <20240122132357.31264-1-zajec5@gmail.com>
+	Aswath Govindraju <a-govindraju@ti.com>,
+	Sjoerd Simons <sjoerd@collabora.com>,
+	Andrejs Cainikovs <andrejs.cainikovs@toradex.com>,
+	linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org, "Bin Liu [EP]" <b-liu@ti.com>,
+	"Gunasekaran, Ravi" <r-gunasekaran@ti.com>
+Subject: Re: [PATCH v1] arm64: dts: ti: k3-am62-main: disable usb lpm
+Message-ID: <20240212125402.GA5043@francesco-nb>
+References: <20240209130213.38908-1-andrejs.cainikovs@gmail.com>
+ <2629cd30-23aa-4f03-8452-ae13297fd6b6@kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <2629cd30-23aa-4f03-8452-ae13297fd6b6@kernel.org>
 
-On Mon, 22 Jan 2024 14:23:57 +0100, Rafał Miłecki wrote:
-> This fixes:
-> arch/arm64/boot/dts/mediatek/mt7622-rfb1.dtb: /: memory@40000000: 'device_type' is a required property
->         from schema $id: http://devicetree.org/schemas/memory.yaml#
-> arch/arm64/boot/dts/mediatek/mt7622-bananapi-bpi-r64.dtb: /: memory@40000000: 'device_type' is a required property
->         from schema $id: http://devicetree.org/schemas/memory.yaml#
+Hello Roger,
+
+On Mon, Feb 12, 2024 at 02:13:56PM +0200, Roger Quadros wrote:
+> On 09/02/2024 15:02, Andrejs Cainikovs wrote:
+> > diff --git a/arch/arm64/boot/dts/ti/k3-am62-main.dtsi b/arch/arm64/boot/dts/ti/k3-am62-main.dtsi
+> > index 464b7565d085..c49fbce5cb70 100644
+> > --- a/arch/arm64/boot/dts/ti/k3-am62-main.dtsi
+> > +++ b/arch/arm64/boot/dts/ti/k3-am62-main.dtsi
+> > @@ -663,6 +665,8 @@ usb1: usb@31100000 {
+> >  			interrupt-names = "host", "peripheral";
+> >  			maximum-speed = "high-speed";
+> >  			dr_mode = "otg";
+> > +			snps,usb2-gadget-lpm-disable;
+> > +			snps,usb2-lpm-disable;
 > 
-> 
-> [...]
+> Instead of this could you please check if this series fixes the issue for you?
+> https://lore.kernel.org/all/20240205141221.56076-1-rogerq@kernel.org/
 
-Applied to v6.8-next/dts64, thanks!
+Isn't this change correct despite whatever the test results on that
+change are going to be? The manual is pretty adamant on LPM not being
+supported by the AM62 SoC.
 
-[1/1] arm64: dts: mediatek: mt7622: add missing "device_type" to memory nodes
-      https://git.kernel.org/mediatek/c/99d100e0
-
-Cheers,
-Angelo
+Francesco
 
 
