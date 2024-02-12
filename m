@@ -1,283 +1,201 @@
-Return-Path: <devicetree+bounces-40728-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-40729-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6BBE385152E
-	for <lists+devicetree@lfdr.de>; Mon, 12 Feb 2024 14:32:18 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4F36F85153A
+	for <lists+devicetree@lfdr.de>; Mon, 12 Feb 2024 14:33:09 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id D0A421F20F44
-	for <lists+devicetree@lfdr.de>; Mon, 12 Feb 2024 13:32:17 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 74A1A1C21336
+	for <lists+devicetree@lfdr.de>; Mon, 12 Feb 2024 13:33:08 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E38D53AC12;
-	Mon, 12 Feb 2024 13:18:41 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 548863B1B7;
+	Mon, 12 Feb 2024 13:20:57 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="cf53r4jR"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="eBdcQKlp"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-yb1-f173.google.com (mail-yb1-f173.google.com [209.85.219.173])
+Received: from mail-wm1-f45.google.com (mail-wm1-f45.google.com [209.85.128.45])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 148DA3A1B4
-	for <devicetree@vger.kernel.org>; Mon, 12 Feb 2024 13:18:40 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.219.173
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7AA383B287
+	for <devicetree@vger.kernel.org>; Mon, 12 Feb 2024 13:20:55 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.45
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1707743921; cv=none; b=UfxYw9l1kKjDrAmyirZYVPz+hB1MK6vICD6K7gNiPwnzvfYjSyVu1CVcuv9tNOYCZtUqDkmPOc854Jrs9fGmL+Mx97Oen6T5u/nwE9Y815E55Qnzi0MGiR2dqOeHXETdYwJ1sXZ2x4fieIHOjd5Zasrl4rQv7K746lVGIft+sz8=
+	t=1707744057; cv=none; b=iWcTrRMf2kM+zjZL/6AGvyP5WOplBxv5Z/1WmhymHJu9Z25wAZZyAbSI13/KvGm/RuwrEbvukoMk0Bz8ALvHWhOai6xWZ+s448X0buTNNPBDdxYJYDbs0F3BbKw0hJ985V5E8ceBNLd0+jFccjpUfCU/486px/CdHE/3JU41Bic=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1707743921; c=relaxed/simple;
-	bh=+WzR0/Plgj4RqrsNGL0DQcCrsC1lpai3jmjW+byx+Q8=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=agIGyQzFguDSy568ETqobAh9IcphAi7pKxIY8+UNrlpYqazqyVC7S20DuyNFhCDHZ2sFwe7h9zU1bMEj3WxJGZxhiYw+Rvq93JRzI9Bll8uIf7NsO8VUT5a9fLzfRNsOlpQVXEJtiYLJCWsrjNlqBtlECDv3nQYI4jxshZw0Uvg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=cf53r4jR; arc=none smtp.client-ip=209.85.219.173
+	s=arc-20240116; t=1707744057; c=relaxed/simple;
+	bh=CwagiQX0vtF/brg2LBqoHB97ypDZZDbujXgTqE/0KB0=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=APdikmUaDdMXINf7cHOD/ZokaesyJFV7kq86T5M1Aq+d77oxXLaRUdfVxZE7EZD2klN8i8Mw+1YLVl0z0U643pwjkt9bue/JP0HF+ih5SzzdtUtC+bZ9n6AukSd/uqQ72br/SgLN0nHGb2vkIkw40Ojhrh6yq3HPa+TjS7W0Xyg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=eBdcQKlp; arc=none smtp.client-ip=209.85.128.45
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-yb1-f173.google.com with SMTP id 3f1490d57ef6-dc74aac68a1so3091839276.2
-        for <devicetree@vger.kernel.org>; Mon, 12 Feb 2024 05:18:40 -0800 (PST)
+Received: by mail-wm1-f45.google.com with SMTP id 5b1f17b1804b1-410c804e933so7926125e9.0
+        for <devicetree@vger.kernel.org>; Mon, 12 Feb 2024 05:20:55 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1707743919; x=1708348719; darn=vger.kernel.org;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=X+4O7T+QNAB1EyOlytFcAI0HkI63SoJwqZgkRk9iFYU=;
-        b=cf53r4jRC52ooiTk7xtkDszEfDqhRLlFHeO9bmjG7WZNEv/2eJT3BZYiP0Nadi5BwP
-         BVLKJo6EC0xSOOx7tOSc31DYNLpQETaZbjzBV1jBLVkxe3lPRg6yVioJqy6w7oq7msrJ
-         WDunCFOJbKw6AEps4f/AUrS/EolDPYeIhy9lpYOO9nm3gfzBepou43i61assp8bqbrrW
-         ohosr3KmYFEdC8F/863+RZCZ+WywzolZR9D0MvAbFfRTiG2IizwMNgqpfKcqZSV11S1c
-         i4gN9vo66tFhCKinLluMcDFSYgcsp8ufOq93elxnaq47X2TFVZ2G3Boohv9fXyl0pxeK
-         fq5w==
+        d=linaro.org; s=google; t=1707744054; x=1708348854; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from
+         :content-language:references:cc:to:subject:user-agent:mime-version
+         :date:message-id:from:to:cc:subject:date:message-id:reply-to;
+        bh=GmLkYyLFTr5bJLK1oFTdEIMZTQyk1WHw7r7dqKQBBNk=;
+        b=eBdcQKlpDXD0JyFZo1ECnAkV8iw8ftPdvuFMwBM+jOe/3HZnhLf7KCyhLs9yr1F0jI
+         Cx+WeAYyujENRD4vkwn8pRvQYlSir9cb3t6XkWVrFI/pKC4ZHa8Z+M5G9hnqDR6JSPHI
+         yIMcD/cg0S+2DSMpx17XIkrkl8DU+GuV1TRqK3M24cBTlPhWeOP7VbtVmO3P0fweLfnV
+         5Upz25QcRpyn8VCjNORnGidfKbCxlczfc585QDoxk+/ySirYu7/Kc9TSSQAArDfGYV+v
+         vzi+63lQ5CYR+mtZetDbDtnobH03SnZdcinR1geeH5adWWCPGfYXsqJYuyAjIkN6Fv+j
+         ZHTQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1707743919; x=1708348719;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=X+4O7T+QNAB1EyOlytFcAI0HkI63SoJwqZgkRk9iFYU=;
-        b=QJZv9pM6Fq3IKQEfameO2+7YQ1za78lxzN2XFqsc86rQk5UkLZQ2zIph/0lA9mu0WE
-         xFb1OIBb4BWr7NvMZAyBpxzLKXyJbXCK7dKQP0Ekd9+Aj1I76Dk14jLpmEtXRQUmdmf3
-         rbajIOO96un7OYrdTAly+NkjZ9t6gSOtcU1gHv2JoVg4okmrCRl8IWK1EFDZe7pxN+g3
-         To/Ef5WMC6uGK7UuPEMdpvVxLcZM/ooDBZYLZ/4TdmWw7G9P0lybf9c1u/M+tQ0Gv1s/
-         mSHSHWNIDqBPKIn6o/SJmYhB7n3/Ru/PJeBeIwKjeLHfbN6eBqohGBK+ept0pXyWF54y
-         GClg==
-X-Gm-Message-State: AOJu0Yx2U1sI+Xyox2u4+VlqhAKpD+kzVSS2lvTZ7nWBMJmAU4MbIQ1O
-	D2rbJIaY4zBg7sZ6Ca0w1LA1Q6kJZOGjzf5MkvLvBmA5CrXQ373Sn5U+eLmuALQPZcYl5yaSIgB
-	gLGbsU+zEe3FPWLlJaQTxDs3WtyCYliOF75PBGA==
-X-Google-Smtp-Source: AGHT+IEanT3FSaEWgyDfDfpVTZv0Tz/F4vvSuGO1dH8EO7Kuf6Vx7dgNh0AYreub1pylYw0FLpDAoMrr9anLSHhEAz8=
-X-Received: by 2002:a25:aaa6:0:b0:dc6:9b89:3f75 with SMTP id
- t35-20020a25aaa6000000b00dc69b893f75mr5912473ybi.40.1707743919225; Mon, 12
- Feb 2024 05:18:39 -0800 (PST)
+        d=1e100.net; s=20230601; t=1707744054; x=1708348854;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from
+         :content-language:references:cc:to:subject:user-agent:mime-version
+         :date:message-id:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=GmLkYyLFTr5bJLK1oFTdEIMZTQyk1WHw7r7dqKQBBNk=;
+        b=W3Zajjr6mpMHhApnmW5I1P+JqtMzl5fY2rhCNtzYNyk/yNQNCeFC8hbHCSLKI1tlgx
+         fVdbHgAiyTPxiNeGw+a5fJnl3OMX0f4s7BpXaM7/vMNrC8LvdVIc5y54Is2TQBy+TXqT
+         hspvnV0VYK+9PqQppXjoHTpOfd6xSelOGWDlEmhN76p2qWIiQuTHfFy9Bu5iYnEjCDYF
+         TbxERbjLmCGBL68nHqwHCIPukSlOc5hGoMiz++alteo4bmb1D/ojw3W40JBTtxPc3dVL
+         aTp5OqsucfVK+MWuY26eup4PSZ2Kgdy62G5He3wBFpBrXFOUjRtSadj7gKfMQZUSOiUU
+         E+vA==
+X-Forwarded-Encrypted: i=1; AJvYcCULewI3nYVdjc6VcyYrO2Mo0LigWvNhZFl0I+URowQIgEI1NCFgYZolxiaE5awnlfb5eEr6+3Te92quSGXFxoBKbAn6eHe7MOsXUA==
+X-Gm-Message-State: AOJu0YyqQDFe8xKaB7f7EXa3VYJ1y74bbSg898jB936tgqBoU4oW7dQa
+	XfPwYd+4S7aPQ6ZSAJPAoK1cwLy1H8XRuP39V68rbkMqiMw4WNAPYkLuBbvpFEQ=
+X-Google-Smtp-Source: AGHT+IGdom73dgZKyuLHj5qBrrPW3Oe8BkHCzT1iWTTKS1oQ9EW3kK1UgkzHWSVS3zzPwZzLSKPnjg==
+X-Received: by 2002:a7b:c445:0:b0:410:5876:63bf with SMTP id l5-20020a7bc445000000b00410587663bfmr6016802wmi.17.1707744053788;
+        Mon, 12 Feb 2024 05:20:53 -0800 (PST)
+X-Forwarded-Encrypted: i=1; AJvYcCWs6X67cnMZgF64ETjIRxhpDYnqCYpBRwI9MX56adWYMRsiuZl4k8AJ7MFVbkX2WMJQV1Hhm6DaY+Ei/iOGg7WSq5Xyz38miafs2/bBuds3Z3HntGUiS79QG7iMOMNeohEpBymEi0LHo+hgz9kr2/C/OXLueQS6Ge/dXxZYi+nQG+4l+kSH1mBpBgqUvz7rBOZGS26tRY1Lzl/LP5rRElvi657wK3lW8nDQaJwnGDdSg3C9ZG9MvIKt7chEiZtNK8Kk1AQjNWuHvYNzxuzQTWm1oLGaeUF7pYq6eKqZq4vW0tQ0LrLm5BX9JST1zgLzqItY0boQyf8xnuOJf0ii3tkalFJgooeoTpWcK2XASsKtneYQXT5nRs0OFOgJRaAiSeTwIo4Bl7PrlqFja6wN/R4Fa47WbgIyh/Swr2gi9IEUv8fVQ4JnA3fIaGX1UvXdyyhWTaZphG3c74Ua7kCRZ6qAiREcePi6Y5xoVMVNY5vGLxaGw6dN/VVY/A4=
+Received: from [192.168.1.20] ([178.197.223.6])
+        by smtp.gmail.com with ESMTPSA id z19-20020a1c4c13000000b00410bc0cbdfasm4227505wmf.18.2024.02.12.05.20.51
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 12 Feb 2024 05:20:52 -0800 (PST)
+Message-ID: <38ba0c8c-8d82-4bff-bf80-ce30ba04c5ef@linaro.org>
+Date: Mon, 12 Feb 2024 14:20:50 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20240206113145.31096-1-quic_jkona@quicinc.com>
- <20240206113145.31096-3-quic_jkona@quicinc.com> <CAA8EJpqbKQS7Bp28xNZ0twu7BFLdOES9qS5xBvoonux8Ma4q6Q@mail.gmail.com>
- <e90522c1-7a2d-40ff-bf4e-c8f974722ddf@quicinc.com> <CAA8EJpqCDOE_5vg+4ew8H0HbhQM1w8reqU6Pu0MAYJtMw8zXUw@mail.gmail.com>
- <d88f0f42-c9ec-4638-8090-055bc4806574@quicinc.com>
-In-Reply-To: <d88f0f42-c9ec-4638-8090-055bc4806574@quicinc.com>
-From: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-Date: Mon, 12 Feb 2024 15:18:27 +0200
-Message-ID: <CAA8EJpq9AE_B9rvXRa1Q803yWzmwZxwiF_hwokq8XJZgJy59PA@mail.gmail.com>
-Subject: Re: [PATCH 2/5] clk: qcom: videocc-sm8550: Add support for SM8650 videocc
-To: Jagadeesh Kona <quic_jkona@quicinc.com>
-Cc: Bjorn Andersson <andersson@kernel.org>, Konrad Dybcio <konrad.dybcio@linaro.org>, 
-	Michael Turquette <mturquette@baylibre.com>, Stephen Boyd <sboyd@kernel.org>, 
-	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, 
-	Conor Dooley <conor+dt@kernel.org>, Vladimir Zapolskiy <vladimir.zapolskiy@linaro.org>, 
-	Taniya Das <quic_tdas@quicinc.com>, linux-arm-msm@vger.kernel.org, 
-	linux-clk@vger.kernel.org, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org, Imran Shaik <quic_imrashai@quicinc.com>, 
-	Ajit Pandey <quic_ajipan@quicinc.com>
-Content-Type: text/plain; charset="UTF-8"
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH] arm64: dts: exynos: gs101: add stable i2c aliases for
+ gs101-oriole
+To: =?UTF-8?Q?Andr=C3=A9_Draszik?= <andre.draszik@linaro.org>,
+ peter.griffin@linaro.org, robh+dt@kernel.org,
+ krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org
+Cc: linux-kernel@vger.kernel.org, kernel-team@android.com,
+ tudor.ambarus@linaro.org, willmcvicker@google.com,
+ semen.protsenko@linaro.org, alim.akhtar@samsung.com,
+ linux-arm-kernel@lists.infradead.org, linux-samsung-soc@vger.kernel.org,
+ devicetree@vger.kernel.org
+References: <20240130233700.2287442-1-andre.draszik@linaro.org>
+ <170737972037.52344.9107022607101399076.b4-ty@linaro.org>
+ <5972b6a4ae8669e2a9e872278b740b182217906b.camel@linaro.org>
+ <dce39e15-32a8-482c-8751-af4a133f82d2@linaro.org>
+ <c16c1f18a8c6f33a608618d4ccf7d8c8dbb6f88b.camel@linaro.org>
+ <67a6564a-00bb-461d-b7eb-ca169df6d251@linaro.org>
+ <0ad3082c50e21a74de41ca9908bd53b72e1f1a9c.camel@linaro.org>
+ <b6ec1d0e-e35c-4917-871b-049efcb2ea22@linaro.org>
+ <fbd335e81928c1c3cd63ee44514cf95a23dafb6f.camel@linaro.org>
+Content-Language: en-US
+From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
+ 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
+ D2GYIS41Kv4Isx2dEFh+/Q==
+In-Reply-To: <fbd335e81928c1c3cd63ee44514cf95a23dafb6f.camel@linaro.org>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 
-On Mon, 12 Feb 2024 at 15:07, Jagadeesh Kona <quic_jkona@quicinc.com> wrote:
->
->
->
-> On 2/7/2024 12:49 PM, Dmitry Baryshkov wrote:
-> > On Wed, 7 Feb 2024 at 08:59, Jagadeesh Kona <quic_jkona@quicinc.com> wrote:
-> >>
-> >>
-> >>
-> >> On 2/6/2024 5:24 PM, Dmitry Baryshkov wrote:
-> >>> On Tue, 6 Feb 2024 at 13:39, Jagadeesh Kona <quic_jkona@quicinc.com> wrote:
-> >>>>
-> >>>> Add support to the SM8650 video clock controller by extending the
-> >>>> SM8550 video clock controller, which is mostly identical but SM8650
-> >>>> has few additional clocks and minor differences.
-> >>>
-> >>> In the past we tried merging similar clock controllers. In the end
-> >>> this results in the ugly source code. Please consider submitting a
-> >>> separate driver.
-> >>>
-> >>
-> >> Thanks Dmitry for your review. SM8650 has only few clock additions and
-> >> minor changes compared to SM8550, so I believe it is better to reuse
-> >> this existing driver and extend it.
-> >
-> > I'd say, the final decision is on Bjorn and Konrad as maintainers.
-> >
-> >>
-> >>>>
-> >>>> Signed-off-by: Jagadeesh Kona <quic_jkona@quicinc.com>
-> >>>> ---
-> >>>>    drivers/clk/qcom/videocc-sm8550.c | 160 +++++++++++++++++++++++++++++-
-> >>>>    1 file changed, 156 insertions(+), 4 deletions(-)
-> >>>>
-> >>>> diff --git a/drivers/clk/qcom/videocc-sm8550.c b/drivers/clk/qcom/videocc-sm8550.c
-> >>>> index f3c9dfaee968..cdc08f5900fc 100644
-> >>>> --- a/drivers/clk/qcom/videocc-sm8550.c
-> >>>> +++ b/drivers/clk/qcom/videocc-sm8550.c
-> >>>> @@ -1,6 +1,6 @@
-> >>>>    // SPDX-License-Identifier: GPL-2.0-only
-> >>>>    /*
-> >>>> - * Copyright (c) 2023, Qualcomm Innovation Center, Inc. All rights reserved.
-> >>>> + * Copyright (c) 2023-2024, Qualcomm Innovation Center, Inc. All rights reserved.
-> >>>>     */
-> >>>>
-> >>>>    #include <linux/clk-provider.h>
-> >>>
-> >>> [skipping]
-> >>>
-> >>>>    static struct gdsc video_cc_mvs0c_gdsc = {
-> >>>>           .gdscr = 0x804c,
-> >>>>           .en_rest_wait_val = 0x2,
-> >>>> @@ -354,15 +481,20 @@ static struct clk_regmap *video_cc_sm8550_clocks[] = {
-> >>>>           [VIDEO_CC_MVS0_CLK] = &video_cc_mvs0_clk.clkr,
-> >>>>           [VIDEO_CC_MVS0_CLK_SRC] = &video_cc_mvs0_clk_src.clkr,
-> >>>>           [VIDEO_CC_MVS0_DIV_CLK_SRC] = &video_cc_mvs0_div_clk_src.clkr,
-> >>>> +       [VIDEO_CC_MVS0_SHIFT_CLK] = &video_cc_mvs0_shift_clk.clkr,
-> >>>>           [VIDEO_CC_MVS0C_CLK] = &video_cc_mvs0c_clk.clkr,
-> >>>>           [VIDEO_CC_MVS0C_DIV2_DIV_CLK_SRC] = &video_cc_mvs0c_div2_div_clk_src.clkr,
-> >>>> +       [VIDEO_CC_MVS0C_SHIFT_CLK] = &video_cc_mvs0c_shift_clk.clkr,
-> >>>>           [VIDEO_CC_MVS1_CLK] = &video_cc_mvs1_clk.clkr,
-> >>>>           [VIDEO_CC_MVS1_CLK_SRC] = &video_cc_mvs1_clk_src.clkr,
-> >>>>           [VIDEO_CC_MVS1_DIV_CLK_SRC] = &video_cc_mvs1_div_clk_src.clkr,
-> >>>> +       [VIDEO_CC_MVS1_SHIFT_CLK] = &video_cc_mvs1_shift_clk.clkr,
-> >>>>           [VIDEO_CC_MVS1C_CLK] = &video_cc_mvs1c_clk.clkr,
-> >>>>           [VIDEO_CC_MVS1C_DIV2_DIV_CLK_SRC] = &video_cc_mvs1c_div2_div_clk_src.clkr,
-> >>>> +       [VIDEO_CC_MVS1C_SHIFT_CLK] = &video_cc_mvs1c_shift_clk.clkr,
-> >>>>           [VIDEO_CC_PLL0] = &video_cc_pll0.clkr,
-> >>>>           [VIDEO_CC_PLL1] = &video_cc_pll1.clkr,
-> >>>> +       [VIDEO_CC_XO_CLK_SRC] = &video_cc_xo_clk_src.clkr,
-> >>>>    };
-> >>>>
-> >>>>    static struct gdsc *video_cc_sm8550_gdscs[] = {
-> >>>> @@ -380,6 +512,7 @@ static const struct qcom_reset_map video_cc_sm8550_resets[] = {
-> >>>>           [CVP_VIDEO_CC_MVS1C_BCR] = { 0x8074 },
-> >>>>           [VIDEO_CC_MVS0C_CLK_ARES] = { 0x8064, 2 },
-> >>>>           [VIDEO_CC_MVS1C_CLK_ARES] = { 0x8090, 2 },
-> >>>> +       [VIDEO_CC_XO_CLK_ARES] = { 0x8124, 2 },
-> >>>
-> >>> Is this reset applicable to videocc-sm8550?
-> >>>
-> >>
-> >> SM8550 also has above reset support in hardware, hence it is safe to
-> >> model above reset for both SM8550 and SM8650.
-> >
-> > Then, separate commit, Fixes tag.
-> >
->
-> Sure, will separate and add Fixes tag in next series.
->
-> >>
-> >>>>    };
-> >>>>
-> >>>>    static const struct regmap_config video_cc_sm8550_regmap_config = {
-> >>>> @@ -402,6 +535,7 @@ static struct qcom_cc_desc video_cc_sm8550_desc = {
-> >>>>
-> >>>>    static const struct of_device_id video_cc_sm8550_match_table[] = {
-> >>>>           { .compatible = "qcom,sm8550-videocc" },
-> >>>> +       { .compatible = "qcom,sm8650-videocc" },
-> >>>>           { }
-> >>>>    };
-> >>>>    MODULE_DEVICE_TABLE(of, video_cc_sm8550_match_table);
-> >>>> @@ -410,6 +544,7 @@ static int video_cc_sm8550_probe(struct platform_device *pdev)
-> >>>>    {
-> >>>>           struct regmap *regmap;
-> >>>>           int ret;
-> >>>> +       u32 offset;
-> >>>>
-> >>>>           ret = devm_pm_runtime_enable(&pdev->dev);
-> >>>>           if (ret)
-> >>>> @@ -425,6 +560,23 @@ static int video_cc_sm8550_probe(struct platform_device *pdev)
-> >>>>                   return PTR_ERR(regmap);
-> >>>>           }
-> >>>>
-> >>>> +       if (of_device_is_compatible(pdev->dev.of_node, "qcom,sm8550-videocc")) {
-> >>>> +               video_cc_sm8550_clocks[VIDEO_CC_MVS0_SHIFT_CLK] = NULL;
-> >>>> +               video_cc_sm8550_clocks[VIDEO_CC_MVS0C_SHIFT_CLK] = NULL;
-> >>>> +               video_cc_sm8550_clocks[VIDEO_CC_MVS1_SHIFT_CLK] = NULL;
-> >>>> +               video_cc_sm8550_clocks[VIDEO_CC_MVS1C_SHIFT_CLK] = NULL;
-> >>>> +               video_cc_sm8550_clocks[VIDEO_CC_XO_CLK_SRC] = NULL;
-> >>>
-> >>> Please invert the logic. Make video_cc_sm8550_clocks reflect SM8550
-> >>> and patch in new clocks in the SM8650-specific branch below.
-> >>>
-> >>
-> >> Sure, will add these clocks as NULL in video_cc_sm8550_clocks and patch
-> >> in new clocks here for SM8650. Then we can remove above check for SM8550.
-> >
-> > No need to set them to NULL, it is the default value. Just add them to
-> > the sm8650 branch.
-> >
->
-> The video_cc_sm8550_clocks[] array size is fixed and has memory
-> allocated only for current sm8550 clocks. To be able to accommodate
-> sm8650 clocks in the same array, we need to initialize the clocks to
-> NULL as below snippet to increase the array size.
->
-> static struct clk_regmap *video_cc_sm8550_clocks[] = {
-> .....
->         [VIDEO_CC_XO_CLK_SRC] = NULL,
-> }
+On 12/02/2024 13:38, André Draszik wrote:
+> On Mon, 2024-02-12 at 13:07 +0100, Krzysztof Kozlowski wrote:
+>> On 12/02/2024 12:52, André Draszik wrote:
+>>> As I said above, we won't care if downstream changes again at that stage, so
+>>> no, I wouldn't plan on changing again.
+>>
+>> Then I am lost. What stage are you thinking? What differs between now
+>> and let's say 1 month for the GS101 which was released more than three
+>> years ago?
+> 
+> The idea was to make the initial transition to using upstream easier,
+> hence we added the same aliases as downstream (at the time).
+> Given the transition is not happening right now, we might as well hold
+> off with the aliases and add them later, with whatever downstream will
+> be using at that time.
 
-The question/comment was regarding video_cc_sm8550_probe() rather than
-video_cc_sm8550_clocks.
+Hm ok, I just did not understand what are the criteria of choosing point
+in time when you take the aliases from dowstream.
 
->
-> Thanks,
-> Jagadeesh
->
-> >>
-> >> Thanks,
-> >> Jagadeesh
-> >>
-> >>>> +               offset = 0x8140;
-> >>>> +       } else  if (of_device_is_compatible(pdev->dev.of_node, "qcom,sm8650-videocc")) {
-> >>>> +               video_cc_pll0_config.l = 0x1e;
-> >>>> +               video_cc_pll0_config.alpha = 0xa000;
-> >>>> +               video_cc_pll1_config.l = 0x2b;
-> >>>> +               video_cc_pll1_config.alpha = 0xc000;
-> >>>> +               video_cc_mvs0_clk_src.freq_tbl = ftbl_video_cc_mvs0_clk_src_sm8650;
-> >>>> +               video_cc_mvs1_clk_src.freq_tbl = ftbl_video_cc_mvs1_clk_src_sm8650;
-> >>>> +               offset = 0x8150;
-> >>>> +       }
-> >>>> +
-> >>>>           clk_lucid_ole_pll_configure(&video_cc_pll0, regmap, &video_cc_pll0_config);
-> >>>>           clk_lucid_ole_pll_configure(&video_cc_pll1, regmap, &video_cc_pll1_config);
-> >>>>
-> >>>> @@ -435,7 +587,7 @@ static int video_cc_sm8550_probe(struct platform_device *pdev)
-> >>>>            *      video_cc_xo_clk
-> >>>>            */
-> >>>>           regmap_update_bits(regmap, 0x80f4, BIT(0), BIT(0));
-> >>>> -       regmap_update_bits(regmap, 0x8140, BIT(0), BIT(0));
-> >>>> +       regmap_update_bits(regmap, offset, BIT(0), BIT(0));
-> >>>>           regmap_update_bits(regmap, 0x8124, BIT(0), BIT(0));
-> >>>>
-> >>>>           ret = qcom_cc_really_probe(pdev, &video_cc_sm8550_desc, regmap);
-> >>>> --
-> >>>> 2.43.0
-> >>>>
-> >>>>
-> >>>
-> >>>
-> >
-> >
-> >
+> 
+> If in the future somebody downstream decides 'I want this' (changed again),
+> why should upstream care at that stage?
+> 
+> Again, this patch was just trying to make initial transition easier, do you
+> have a better recommendation?
+> 
+>> BTW, the aliases I see in downstream DTS (gs101-usi.dtsi) - since
+>> beginning up to Android 14 are:
+>>
+>>                 hsi2c8 = &hsi2c_8;
+>>                 hsi2c9 = &hsi2c_9;
+>>                 hsi2c10 = &hsi2c_10;
+>>                 hsi2c11 = &hsi2c_11;
+>>                 hsi2c12 = &hsi2c_12;
+>>
+>> They were set like this in 2020 and never changed afterwards.
+> 
+> Those were incorrect and didn't actually work as intended, here's a
+> better place to look:
+> 
+> https://android.googlesource.com/kernel/google-modules/raviole-device/+log/refs/heads/android-gs-raviole-mainline
+> and
+> https://android.googlesource.com/kernel/google-modules/raviole-device/+/9864593c894da90cd8b631ab57f15c25f4e11465%5E%21/
+
+Thanks, so it's like Qualcomm - DTS separate from the kernel, although
+here a bit confusing because partially overlapping.
 
 
+Best regards,
+Krzysztof
 
--- 
-With best wishes
-Dmitry
 
