@@ -1,98 +1,100 @@
-Return-Path: <devicetree+bounces-40959-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-40967-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9596D851C36
-	for <lists+devicetree@lfdr.de>; Mon, 12 Feb 2024 18:56:43 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9A9F6851C5F
+	for <lists+devicetree@lfdr.de>; Mon, 12 Feb 2024 19:02:18 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 50719280FBA
-	for <lists+devicetree@lfdr.de>; Mon, 12 Feb 2024 17:56:42 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id CD1DD1C211AE
+	for <lists+devicetree@lfdr.de>; Mon, 12 Feb 2024 18:02:17 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E338845C08;
-	Mon, 12 Feb 2024 17:54:18 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6A1A23F9E5;
+	Mon, 12 Feb 2024 18:02:14 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=xff.cz header.i=@xff.cz header.b="g6PZhm/P"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="D7Pmnx+a"
 X-Original-To: devicetree@vger.kernel.org
-Received: from vps.xff.cz (vps.xff.cz [195.181.215.36])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8AFE645BED;
-	Mon, 12 Feb 2024 17:54:16 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=195.181.215.36
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 46A803F9D7
+	for <devicetree@vger.kernel.org>; Mon, 12 Feb 2024 18:02:13 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1707760458; cv=none; b=F3xMLZTBC0JJ4glsUhofYXD29DGRdVVI+ZmpDL1PLwapBnewz+iHyMAXN+aw5py0lMPYdDsMUshAbHZsw1o8z39d5W9LTIDwdWNGMKouueN0JOrGfavcT8WLVaXkGaWN7ItuYAQ+RE4XEbxR9X1pmTFWz3NMYuHheno2nrqDFz8=
+	t=1707760934; cv=none; b=am/RXBJ5JwWpYcwLn5/CM+yvVM/DsBHkTNQNHPzcfpsmto76xZM2fnISFIiKoKXj3YW6Bw1x7CzyUnGhaYnc1q+4DMswDIWHfYu/0Lj0XrEqqmlXCDEbZTO234l23cwp3vnClysJGsPnxb1u6AJKSM0dfCNHp6UPurdnLSFlYBc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1707760458; c=relaxed/simple;
-	bh=w4dFeJN6ekT4fZLMgY0MSjyE6BSqXIkBWnDC/steBeE=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=EIlC4X8rmpv50Zj1eYv96EkQFk4myQclATHGXYiH40HQghgGeiPY6xpPYBjSKTLMRl+o+OjxdiKFGXhxJyheTlSBor6FI7enwn7FOYBRB/UnuEzFB0ANzncLmC1+7VQ0XJOdhL1755TcM9+/2kkUr4goI2lEpR72Xc2cmZl9ZL0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=xff.cz; spf=pass smtp.mailfrom=xff.cz; dkim=pass (1024-bit key) header.d=xff.cz header.i=@xff.cz header.b=g6PZhm/P; arc=none smtp.client-ip=195.181.215.36
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=xff.cz
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=xff.cz
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=xff.cz; s=mail;
-	t=1707760454; bh=w4dFeJN6ekT4fZLMgY0MSjyE6BSqXIkBWnDC/steBeE=;
-	h=From:To:Cc:Subject:Date:References:From;
-	b=g6PZhm/Prk73mVVUFfWlw4G87khYBj4/3uYUDF/qZlgJkO/84G1G8JzUCaTlQ7Nrv
-	 LqO0FKEtTuLxXb2fm0k2ijhFcouznFtXWihL5gSj33pNfBHvmtyaLEpxAvzyhkTxCS
-	 r2mWGyLtDitwYKtdbkZqu2jxcGjBNQ7fbQX1K0vU=
-From: =?UTF-8?q?Ond=C5=99ej=20Jirman?= <megi@xff.cz>
-To: Jonathan Cameron <jic23@kernel.org>,
-	Lars-Peter Clausen <lars@metafoo.de>,
+	s=arc-20240116; t=1707760934; c=relaxed/simple;
+	bh=9gbv+NcQcD3ZyPjI/+60jSNlPd+JXy2PrfzQ74Ne0fo=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=j1MohInYI3M1Wcujst+jXuxXx6pEbmHDaJVjv4WtnT+7ZUBvv624RZGOY9i8poxDBRHPhUtunyZzkl6Tn34aMkEBsHWuYH2EUixt8E6SGPeyUSqSmzj/KPg9p6tRAam2eUX54vTze6hjLzlRKeP2RKWxQ3UQvh+4vB6zmb9ZNHg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=D7Pmnx+a; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 7F7DCC433C7;
+	Mon, 12 Feb 2024 18:02:11 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1707760933;
+	bh=9gbv+NcQcD3ZyPjI/+60jSNlPd+JXy2PrfzQ74Ne0fo=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=D7Pmnx+aIkCbOAZg6+6YYrvFYnisSB0PKeFuF0mnoODcXQQGtoea7lW5PEwLA74Si
+	 r60i29SkOjI0x4Mj7tbjJw7p0cbT0v8AJ9to+UIMzoAMbVtpYaapxfTpqlKtNONmpk
+	 W/6smCr6CERZ5IkiI8MgWyqScgvw/eLZjNUwEUHycs1UmnZJBvv1fozORKGidP+JU2
+	 iqXeuwGvnJy8DSW2mf5Ke1rmMf/VbDpGxmkHofmaKKfeQwMgGsFHspUHexSiNwGMd8
+	 3EACBrn5GI2yTMhnugUl6b++RtbXAKtoUqD0QQkK74ThH2ZguWAn1TRjSEumlhESs6
+	 p0yVtBigUmT2w==
+Date: Mon, 12 Feb 2024 18:02:09 +0000
+From: Conor Dooley <conor@kernel.org>
+To: Marc Gonzalez <mgonzalez@freebox.fr>
+Cc: AML <linux-amlogic@lists.infradead.org>,
+	DT <devicetree@vger.kernel.org>,
+	Neil Armstrong <neil.armstrong@linaro.org>,
+	Kevin Hilman <khilman@baylibre.com>,
+	Jerome Brunet <jbrunet@baylibre.com>,
+	Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
 	Rob Herring <robh+dt@kernel.org>,
 	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
 	Conor Dooley <conor+dt@kernel.org>,
-	Andrey Skvortsov <andrej.skvortzov@gmail.com>
-Cc: Ondrej Jirman <megi@xff.cz>,
-	Icenowy Zheng <icenowy@aosc.io>,
-	Dalton Durst <dalton@ubports.com>,
-	Shoji Keita <awaittrot@shjk.jp>,
-	linux-iio@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org
-Subject: [PATCH v2 4/4] MAINTAINERS: Add an entry for AF8133J driver
-Date: Mon, 12 Feb 2024 18:53:56 +0100
-Message-ID: <20240212175410.3101973-5-megi@xff.cz>
-In-Reply-To: <20240212175410.3101973-1-megi@xff.cz>
-References: <20240212175410.3101973-1-megi@xff.cz>
+	Pierre-Hugues Husson <phhusson@freebox.fr>
+Subject: Re: [PATCH v2 1/4] dt-bindings: vendor-prefixes: add freebox
+Message-ID: <20240212-relative-alkaline-ba33b36f7a6b@spud>
+References: <77edaf7e-aeb5-4fc0-8b69-85dcddfd5a58@freebox.fr>
+ <47a5baee-866d-437d-8950-4e730f210bdf@freebox.fr>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+Content-Type: multipart/signed; micalg=pgp-sha256;
+	protocol="application/pgp-signature"; boundary="+qn9gfo/ju42T3ts"
+Content-Disposition: inline
+In-Reply-To: <47a5baee-866d-437d-8950-4e730f210bdf@freebox.fr>
 
-From: Ondrej Jirman <megi@xff.cz>
 
-As I am submitting the driver and have the device to test. I'll maintain
-the driver.
+--+qn9gfo/ju42T3ts
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-Signed-off-by: Ondrej Jirman <megi@xff.cz>
----
- MAINTAINERS | 6 ++++++
- 1 file changed, 6 insertions(+)
+On Mon, Feb 12, 2024 at 06:49:11PM +0100, Marc Gonzalez wrote:
+> Freebox is a French ISP who makes gateways and STBs.
+>=20
+> Signed-off-by: Marc Gonzalez <mgonzalez@freebox.fr>
 
-diff --git a/MAINTAINERS b/MAINTAINERS
-index dc5ca7a042b5..cc691f61a77e 100644
---- a/MAINTAINERS
-+++ b/MAINTAINERS
-@@ -579,6 +579,12 @@ F:	drivers/iio/accel/adxl372.c
- F:	drivers/iio/accel/adxl372_i2c.c
- F:	drivers/iio/accel/adxl372_spi.c
- 
-+AF8133J THREE-AXIS MAGNETOMETER DRIVER
-+M:	Ondřej Jirman <megi@xff.cz>
-+S:	Maintained
-+F:	Documentation/devicetree/bindings/iio/magnetometer/voltafield,af8133j.yaml
-+F:	drivers/iio/magnetometer/af8133j.c
-+
- AF9013 MEDIA DRIVER
- L:	linux-media@vger.kernel.org
- S:	Orphan
--- 
-2.43.0
+Acked-by: Conor Dooley <conor.dooley@microchip.com>
 
+Cheers,
+Conor.
+
+--+qn9gfo/ju42T3ts
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZcpdIQAKCRB4tDGHoIJi
+0qG7AP9BsiQSCzXozaccBvF4tAp5eGTWw9GGc2L6v6mz4RQz9QD/ds/pbcd6KGly
+8ugLQH1ZO3/RdJRQvlWwqJKyfvyAugA=
+=X/EP
+-----END PGP SIGNATURE-----
+
+--+qn9gfo/ju42T3ts--
 
