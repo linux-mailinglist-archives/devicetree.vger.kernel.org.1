@@ -1,178 +1,116 @@
-Return-Path: <devicetree+bounces-40662-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-40663-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 33435851204
-	for <lists+devicetree@lfdr.de>; Mon, 12 Feb 2024 12:18:50 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id AB505851227
+	for <lists+devicetree@lfdr.de>; Mon, 12 Feb 2024 12:25:47 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 688BCB23AF6
-	for <lists+devicetree@lfdr.de>; Mon, 12 Feb 2024 11:18:47 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 3B583B25B2C
+	for <lists+devicetree@lfdr.de>; Mon, 12 Feb 2024 11:25:45 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1D571383BF;
-	Mon, 12 Feb 2024 11:18:41 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="oE1p/+wc"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 99B6238DE1;
+	Mon, 12 Feb 2024 11:25:40 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lj1-f170.google.com (mail-lj1-f170.google.com [209.85.208.170])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
-	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 61B9439857
-	for <devicetree@vger.kernel.org>; Mon, 12 Feb 2024 11:18:39 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.170
+Received: from foss.arm.com (foss.arm.com [217.140.110.172])
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 94CEE28DDE;
+	Mon, 12 Feb 2024 11:25:38 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.140.110.172
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1707736721; cv=none; b=LCPLo6ODtbqiZFGu5eoBo3IgggyH3zNFNhO1IylQbzuB0+KlJxQsFccfD0EYpk/YtuG+BRULXLTMkXaKAOE+LAoRDYrtM2NottxMm1Tkx3c14umclryuShVU/r94klFwn5NepBPhYX7EAadyKG54G66Yp/c5yJjxYrC91jr7lyE=
+	t=1707737140; cv=none; b=Dmt0c9W4zWx1pVQdRUeYYjTHd6tgKRWMAtvI+TFQboVpZP8+RN1jR8w8/+xN2hhx8K7P/s2UjSG613vdgPnGFIHNickpp9yfWGvPXLBJGoeNcUA96AgVZPy0WKDAWnFTZV2QZzxmbMxWsw/jPEgnjaOaEJ0AjH94eireJ7cdqyI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1707736721; c=relaxed/simple;
-	bh=YrSH6oKFLF8HZYaabc4CdOODa7w6LOjWPGVemiAGkMo=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=d1B6XqwILwzmgJY7wCY4XN3F4wuvVX+//GmFT9IqLKgE9rALOL5NxJoe3rC6AYfT34csbEAX8SovXHGHF5WfxmJjHXnpDHPbzuc9FkqTIzfD0NFj3c+IDRGeLxIGi40cZ1VNr0Kgek+xSwG/httDSas7utw2ByIySoRz7QkmhqE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=oE1p/+wc; arc=none smtp.client-ip=209.85.208.170
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-lj1-f170.google.com with SMTP id 38308e7fff4ca-2d0e2adfeefso28329641fa.2
-        for <devicetree@vger.kernel.org>; Mon, 12 Feb 2024 03:18:39 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1707736717; x=1708341517; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
-         :to:content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=kJb6SlIbNq78TNpPH5y0DK7EbDWTtCJKMmLSORzpT10=;
-        b=oE1p/+wcOVi09DxmLxjIE1m0oNhjVVRBOwmb9g3+HaOmjuZAFZFadABE/uJJS7kUXY
-         ifeaVVSeAgOvFJUnEW4GkKgflaIIFFNxXPXRXZBX+gGTmDbzQ69axKFCcEopi+N17yAT
-         +wfnKBwhtYCrvRoFkfx7PJJJnA7wZEfUpph7ShDAHqqu6YUifnhN9eihhDIReYyKeJGC
-         w1RsVyHvDwvvZmUwceJnB0pazhw2k/5J098LcuCuZq0HdSH7mKfqD5bNUfGwp5anAaZG
-         c+DyePcpbAzZh0TEnuuR8HT5Q27nCpwgScn7W9u/88PE1YiENO5YgSw485es5dGib16O
-         Ltgg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1707736717; x=1708341517;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
-         :to:content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=kJb6SlIbNq78TNpPH5y0DK7EbDWTtCJKMmLSORzpT10=;
-        b=N5amuyej4YXqFY/BORr4Hp4UC8Sn6i4M3dFj2jW4Mu0TC4GHMpXeHQWeuJp6b1EmBR
-         DoUNhlHklZ53zD33FpUdx1PM7hqfjm8ZZ9SOpwuH861+424L52GhjZOkDy1r6Jlf0lUg
-         BhXfJs5mfgbFj1RJguUiz2v2mkqYryHUwiO9iue4DZUgkjYgYPqhkMDbj/bpjoBLsrXh
-         +C9cyeiudLaMy7WHh1SL8idMOhMjL4LVvR1uVq0125vOeVmayH6HsnHgdxX9ZRI5W02/
-         URCP2m4LMh6HG3NQL32N7k4lcA/i8rCio+IjKEY47ZjW/xio1uIKzscmCoiZBkGe44R0
-         /Bqg==
-X-Forwarded-Encrypted: i=1; AJvYcCVqR5Io+WIvyZHQDrDKZqIxsn6WmkAIrEj/jfN6Hy8grTPr04O8FqsWE4vbc/H4mPFZL2eAnU/0feBby7OOBgu5udBdY3LGwx2ggA==
-X-Gm-Message-State: AOJu0Yz//0m8LBhNHANnpIDjunVdYh0bGbQxGKYv+4qq3R22RMIT+u5p
-	5cOfr3nbiOrWo5JBw7rHQQB8KB67/CyFGiM8b9AVfuzTDLzJ6gdlBBaA8qUXFVc=
-X-Google-Smtp-Source: AGHT+IEN8QlJ89qIn9bwWROw3eV8+//0NU+QMzxuLRMA35KzbGIPbh8Ko/OAjt6aZm5EzwmVyxdntg==
-X-Received: by 2002:a2e:879a:0:b0:2d0:cfe6:4364 with SMTP id n26-20020a2e879a000000b002d0cfe64364mr4638900lji.36.1707736717489;
-        Mon, 12 Feb 2024 03:18:37 -0800 (PST)
-X-Forwarded-Encrypted: i=1; AJvYcCWKfpBDpyEAfY7lKhRle0mDEXJ46xqdPoDhVxtJpyyrzBQIU2j3nFXgAstEA6AU+nL2o93FID8iT4TQSH3h4ZGu8WHcyj4igSOZwGrHjH2IqXeaNKiSJwEZHvCpIp5grGnC67peFPIvuha9OtPC8K5jzmkxlMmHB69I+MlGFQZG3oPLGMNRK6wU1zNoRH7UFRA3syztdv9uF3pXyKnm5mEmLh22goWe87reP+sJ4Ie/QQ3q1J4Wlif1C/LBnpPb/gcE2T+kJJ2RxYSi14Fsh6LAjThPsWmErtbyqKXoVfF48+t/v24u68PqUuo/qR/7/vbuYdhz1Melkb6MYGlGQiHbxD7K+XxcfiPz0zp4b7YvA6ThNUGttPuIAu60y8V12E5mCHtz06jhuI7T+o2jD03sX6yVwlBxc3f8LaI5igiQRGbjiWHTdkPp+JcmZ2Xi0KLoZP8/J4ES8VGGF2gKzj3IHF/v3vYmidNhYjlf3aeyESAKtrFRbKIwsic=
-Received: from [192.168.1.20] ([178.197.223.6])
-        by smtp.gmail.com with ESMTPSA id cl7-20020a5d5f07000000b0033b8881f31dsm384181wrb.68.2024.02.12.03.18.35
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 12 Feb 2024 03:18:37 -0800 (PST)
-Message-ID: <dce39e15-32a8-482c-8751-af4a133f82d2@linaro.org>
-Date: Mon, 12 Feb 2024 12:18:35 +0100
+	s=arc-20240116; t=1707737140; c=relaxed/simple;
+	bh=oX9zawn8w42iSe548Q/L408crulfgqh73G2TUKXYY4A=;
+	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=tSXPfPY4t4usBtSqXS5I0pq8cm7nODV8wNXD25bHBNgHMRZ/YQ/e9cDBJe1PRaF1T/fonESbiRSBYKc+JKG45wsGXjgIC5rkUYvoIuSNRqDTNkbUiG4RyZpu1sqe6MKk8vKonSI8cE/KhuvevazbRiPbqmIPi5pZkadAzHzOo18=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com; spf=pass smtp.mailfrom=arm.com; arc=none smtp.client-ip=217.140.110.172
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=arm.com
+Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
+	by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 9DD70DA7;
+	Mon, 12 Feb 2024 03:26:19 -0800 (PST)
+Received: from ewhatever.cambridge.arm.com (ewhatever.cambridge.arm.com [10.1.197.1])
+	by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPA id 7A1403F762;
+	Mon, 12 Feb 2024 03:25:35 -0800 (PST)
+From: Suzuki K Poulose <suzuki.poulose@arm.com>
+To: Konrad Dybcio <konradybcio@gmail.com>,
+	Mathieu Poirier <mathieu.poirier@linaro.org>,
+	Rob Herring <robh+dt@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Alexander Shishkin <alexander.shishkin@linux.intel.com>,
+	Tao Zhang <quic_taozha@quicinc.com>,
+	Mike Leach <mike.leach@linaro.org>
+Cc: Suzuki K Poulose <suzuki.poulose@arm.com>,
+	Jinlong Mao <quic_jinlmao@quicinc.com>,
+	Yuanfang Zhang <quic_yuanfang@quicinc.com>,
+	linux-arm-msm@vger.kernel.org,
+	Tingwei Zhang <quic_tingweiz@quicinc.com>,
+	linux-arm-kernel@lists.infradead.org,
+	devicetree@vger.kernel.org,
+	Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+	Song Chai <quic_songchai@quicinc.com>,
+	linux-kernel@vger.kernel.org,
+	coresight@lists.linaro.org,
+	Leo Yan <leo.yan@linaro.org>,
+	andersson@kernel.org,
+	Trilok Soni <quic_tsoni@quicinc.com>
+Subject: Re: [PATCH v7 00/10] Add support to configure TPDM CMB subunit
+Date: Mon, 12 Feb 2024 11:25:29 +0000
+Message-Id: <170773624998.2157180.11126865505279178953.b4-ty@arm.com>
+X-Mailer: git-send-email 2.34.1
+In-Reply-To: <1707024641-22460-1-git-send-email-quic_taozha@quicinc.com>
+References: <1707024641-22460-1-git-send-email-quic_taozha@quicinc.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH] arm64: dts: exynos: gs101: add stable i2c aliases for
- gs101-oriole
-Content-Language: en-US
-To: =?UTF-8?Q?Andr=C3=A9_Draszik?= <andre.draszik@linaro.org>,
- peter.griffin@linaro.org, robh+dt@kernel.org,
- krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org
-Cc: linux-kernel@vger.kernel.org, kernel-team@android.com,
- tudor.ambarus@linaro.org, willmcvicker@google.com,
- semen.protsenko@linaro.org, alim.akhtar@samsung.com,
- linux-arm-kernel@lists.infradead.org, linux-samsung-soc@vger.kernel.org,
- devicetree@vger.kernel.org
-References: <20240130233700.2287442-1-andre.draszik@linaro.org>
- <170737972037.52344.9107022607101399076.b4-ty@linaro.org>
- <5972b6a4ae8669e2a9e872278b740b182217906b.camel@linaro.org>
-From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
- 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
- D2GYIS41Kv4Isx2dEFh+/Q==
-In-Reply-To: <5972b6a4ae8669e2a9e872278b740b182217906b.camel@linaro.org>
-Content-Type: text/plain; charset=UTF-8
+Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 8bit
 
-On 12/02/2024 11:17, André Draszik wrote:
-> Hi Krzysztof,
+On Sun, 4 Feb 2024 13:30:31 +0800, Tao Zhang wrote:
+> Introduction of TPDM CMB(Continuous Multi Bit) subunit
+> CMB subunit is responsible for creating a dataset element, and is also
+> optionally responsible for packing it to fit multiple elements on a
+> single ATB transfer if possible in the configuration. The TPDM Core
+> Datapath requests timestamps be stored by the TPDA and then delivering
+> ATB sized data (depending on ATB width and element size, this could
+> be smaller or larger than a dataset element) to the ATB Mast FSM.
+> The CMB makes trace elements in two modes. In �continuous� mode, every
+> valid data cycle creates an element. In �trace on change� mode, when
+> valid data changes on the bus, a trace element is created. In
+> continuous mode, all cycles where this condition is true create trace
+> elements. In trace on change mode, a data element is only when the
+> previously sampled input is different from the current sampled input.
 > 
-> On Thu, 2024-02-08 at 09:08 +0100, Krzysztof Kozlowski wrote:
->>
->> On Tue, 30 Jan 2024 23:37:00 +0000, André Draszik wrote:
->>> Now that we have more than i2c interface, add aliases to ensure
->>> deterministic bus number assignment.
->>>
->>> So as to keep compatibility with existing Pixel userspace builds, use
->>> the same bus numbers for hsi2c_8 and hsi2c_12 as the downstream
->>> drivers with the intention to eventually add all the earlier busses as
->>> well.
->>>
->>> [...]
->>
->> Applied, thanks!
->>
->> [1/1] arm64: dts: exynos: gs101: add stable i2c aliases for gs101-oriole
->>       https://git.kernel.org/krzk/linux/c/72ccd925dcbd2ad6935a4874679b6cf5b3de7156
-> 
-> Is it too late to ask for this patch to be dropped please? It appears
-> downstream has just changed all their aliases on Friday, whereas the
-> point of this patch was to keep things aligned.
-> 
-> I won't post anything similar until we start integrating with Android/AOSP
-> at some point in the future.
+> [...]
 
-I can drop it, but the actual problem is that what if downstream keeps
-changing aliases? They can do it... The aliases are not there to match
-with downstream, but to have stable interface matching SCHEMATICS.
+Applied, thanks!
+
+[01/10] coresight-tpdm: Optimize the store function of tpdm simple dataset
+        https://git.kernel.org/coresight/c/9f0ea8e8344b
+[02/10] coresight-tpdm: Optimize the useage of tpdm_has_dsb_dataset
+        https://git.kernel.org/coresight/c/f021801c418e
+[03/10] dt-bindings: arm: qcom,coresight-tpdm: Add support for CMB element size
+        https://git.kernel.org/coresight/c/4ed57f75898c
+[04/10] coresight-tpdm: Add CMB dataset support
+        https://git.kernel.org/coresight/c/a1705ffcce52
+[05/10] coresight-tpda: Add support to configure CMB element
+        https://git.kernel.org/coresight/c/e6d7f5252f73
+[06/10] coresight-tpdm: Add support to configure CMB
+        https://git.kernel.org/coresight/c/2d9ab11c262e
+[07/10] coresight-tpdm: Add pattern registers support for CMB
+        https://git.kernel.org/coresight/c/53d4a017a524
+[08/10] coresight-tpdm: Add timestamp control register support for the CMB
+        https://git.kernel.org/coresight/c/dc6ce57e2aa0
+[09/10] dt-bindings: arm: qcom,coresight-tpdm: Add support for TPDM CMB MSR register
+        https://git.kernel.org/coresight/c/19bfaff38457
+[10/10] coresight-tpdm: Add msr register support for CMB
+        https://git.kernel.org/coresight/c/8e8804145a46
 
 Best regards,
-Krzysztof
-
+-- 
+Suzuki K Poulose <suzuki.poulose@arm.com>
 
