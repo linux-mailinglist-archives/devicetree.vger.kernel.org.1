@@ -1,114 +1,115 @@
-Return-Path: <devicetree+bounces-40962-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-40942-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8E3CF851C40
-	for <lists+devicetree@lfdr.de>; Mon, 12 Feb 2024 18:58:54 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8CC94851BFE
+	for <lists+devicetree@lfdr.de>; Mon, 12 Feb 2024 18:50:16 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id B32431C21AB1
-	for <lists+devicetree@lfdr.de>; Mon, 12 Feb 2024 17:58:53 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 2C3C9B274B9
+	for <lists+devicetree@lfdr.de>; Mon, 12 Feb 2024 17:50:14 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 88D9E3F9D7;
-	Mon, 12 Feb 2024 17:55:05 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0ED2F3F9D7;
+	Mon, 12 Feb 2024 17:50:07 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=freebox-fr.20230601.gappssmtp.com header.i=@freebox-fr.20230601.gappssmtp.com header.b="Zagc3QVo"
+	dkim=pass (2048-bit key) header.d=foss.st.com header.i=@foss.st.com header.b="QEG6TZ6H"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wr1-f43.google.com (mail-wr1-f43.google.com [209.85.221.43])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mx08-00178001.pphosted.com (mx08-00178001.pphosted.com [91.207.212.93])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EC8434D5A1
-	for <devicetree@vger.kernel.org>; Mon, 12 Feb 2024 17:55:02 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.43
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 496313F9CC;
+	Mon, 12 Feb 2024 17:50:03 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=91.207.212.93
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1707760505; cv=none; b=nINVXnfF8rXNiyEe5FkZ1FbNdGOMMfPAuFOFTwNdapR5vU7E3Dtu0oK0kAalryKbCg1FBdqUzXg10zozGuaJvVcWijHtdD9q0MlWQe2Od1gEddrOUffIJxsvq9GI0hUnHsvSGP06IyMNNyhyrabPBOYD7iarytFEDTMlJIv9bRo=
+	t=1707760207; cv=none; b=q9e7PUVqZqGIKksYqZfO4Fa0byGlzyRAsj8GktlzRl9aVQZ+WffvJqnt5EprjHMsSWa8IDhIzQoQ07ja3DRRQSIor8Tp54Ge4JDAKmneYR+FWjM2GPHWk8Q14um5GbGK1UCR43/vlgw8NGMq9R7sR5DAoo5ZtyUpdpA/HcdmxEU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1707760505; c=relaxed/simple;
-	bh=Yvxc4nHefH9DrCwhrSxYN5g6la56a6axoejMC2NxMZc=;
-	h=Message-ID:Date:MIME-Version:From:Subject:To:Cc:Content-Type; b=OykFdJFNtoB5NgybS3CaA7/EhI6HhB9faxSnuHSa/Ji+Up9ha379rx/r88AJ7U1w8ENU5oQvyaXivpMtWbYrWLu2/spXNZkaBv0SZ+IQIDqHGpfyFeEorQsqJqK4KsKL39Hh7CATfYjTDPE61h/oCNIiLh6EvjW8HEt8mDrq8qA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=freebox.fr; spf=pass smtp.mailfrom=freebox.fr; dkim=pass (2048-bit key) header.d=freebox-fr.20230601.gappssmtp.com header.i=@freebox-fr.20230601.gappssmtp.com header.b=Zagc3QVo; arc=none smtp.client-ip=209.85.221.43
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=freebox.fr
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=freebox.fr
-Received: by mail-wr1-f43.google.com with SMTP id ffacd0b85a97d-33b8806c22aso473278f8f.0
-        for <devicetree@vger.kernel.org>; Mon, 12 Feb 2024 09:55:02 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=freebox-fr.20230601.gappssmtp.com; s=20230601; t=1707760501; x=1708365301; darn=vger.kernel.org;
-        h=content-transfer-encoding:content-language:cc:to:subject:from
-         :user-agent:mime-version:date:message-id:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=yRsulA9wKxUZFMueNGpnJFLKm00NQFXP6LrhnaRanY4=;
-        b=Zagc3QVogBvB244P/ajUYJBqkzpYsJkCXDAQ4B5b4fy6Ik8y8qOOsbsQokOVF/ENeM
-         oHS3B78JHXuJ1tvBMufV5Egjanso94EL0LONv6gfBDDsN7ES4I8J1B0uBMkCm3PbymLz
-         /c7p5aY63mfAk7/R8hxE631CUGdAVTGmcWAZo+6TkroidQM49N05h0WKY12sZFAPTmsf
-         UuLj69NzCxnQkXJkbNfeYi/5tRd2RNWZmvZoIt3FJuwhYp/MyFmPg24dJ/tAknOAX0hy
-         PPvm/aGubup/ZvjuH9mc1uvKpoi3rid76c3RAb6Zzm9QtBmbMgPok6zk/3T+wFlCRdT9
-         diVA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1707760501; x=1708365301;
-        h=content-transfer-encoding:content-language:cc:to:subject:from
-         :user-agent:mime-version:date:message-id:x-gm-message-state:from:to
-         :cc:subject:date:message-id:reply-to;
-        bh=yRsulA9wKxUZFMueNGpnJFLKm00NQFXP6LrhnaRanY4=;
-        b=QuN84jwKibtJl9v4xwzreHIHgx5dptRaYlbqzyN16qGojba+Im+NMMrKRd2Sq0XP9f
-         +wagMSrCTtdK9J4cttU4O4Ak9fXjlU9HjCqVA38XWElgBNqD6TLyg5ZCDP8Z9RE2a2Z8
-         Nn4dTf/6sFT2veDg1bGBdCJm7DYknUFTyTDBeLO5us35DqcwE57D1QOshrAlPJwjFcHl
-         ltkUs4r0R/hsolFk2UFA96NMEjGgcMSGITRkR9t+k62siHn6lz4azYV6R1S34drV7gg5
-         EELzhiT7MqhWeycHwvojMBqY7HPMYH/sdpav1n97WSkhUMNcrWCUfLMiL5pX3+EMZ8C3
-         0ZWg==
-X-Forwarded-Encrypted: i=1; AJvYcCUGUsAMO7NWlMsefadV2UgS7Cb2Ve7Le+C64+xEwhbH5McUSoblBV6HoJvrts+YtWVzlztuoGItRPRw9QBU7grJYjwI8XTPDe61PQ==
-X-Gm-Message-State: AOJu0YxRaTwkx676VCuNf4ImhwuYajgkgeF/Ti+ri4aOWg+TQmwRbjJk
-	SFmLNx0GV5ZyvJRqhANRla26V60yqTXPULPeWP2lClyAc7sWa/fS2s5hZ7clpPM=
-X-Google-Smtp-Source: AGHT+IG5madseBdrajPLDfi0JCmZAVRobzfk5jeLqyUONyOfoYpeCPi0a69zI4Bsl3Q/LkUSFq/W/Q==
-X-Received: by 2002:adf:ee4a:0:b0:33b:74a3:dcfb with SMTP id w10-20020adfee4a000000b0033b74a3dcfbmr4566180wro.1.1707760501088;
-        Mon, 12 Feb 2024 09:55:01 -0800 (PST)
-X-Forwarded-Encrypted: i=1; AJvYcCWsN/zwLrqeA43ZV7v5OAsnu3UizrfqlhAFqAMmkLXkWNl5y+f5YWLR7VfGDVBy24P5uiVzvF5UJT/lCA0lKWH3iM27/yRddiuJSTBqYr9Ysv6TPobJvhtbwSlRamJFVfVzKsuwIBOxsARCHhMTx9jGKBgmwl5tzHgLiRFthQ1hFnC9nDpM05yxL/7lKLHx5nRncAbssSVF2Flr1uMlbGmSeJqdkIJzyMwqfciFtKQHbZdGp882oaUwHGFceZ/irRlSlGO3gqtDU/J/7pfcIDEJVRdeHrq9CX6fZDUHNIuKpssT3Hbm5w0yeVp3klJ48KZLiKoeGUb7lgIIMk8ukbizKYfNZNSdbNpl1p6SYGTPMQ0=
-Received: from ?IPV6:2a02:8428:2a4:1a01:8c00:686f:ba67:b4c9? ([2a02:8428:2a4:1a01:8c00:686f:ba67:b4c9])
-        by smtp.gmail.com with ESMTPSA id z7-20020adfe547000000b0033b55186901sm7380912wrm.94.2024.02.12.09.55.00
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 12 Feb 2024 09:55:00 -0800 (PST)
-Message-ID: <77edaf7e-aeb5-4fc0-8b69-85dcddfd5a58@freebox.fr>
-Date: Mon, 12 Feb 2024 18:47:33 +0100
+	s=arc-20240116; t=1707760207; c=relaxed/simple;
+	bh=bvBzhLTbgJwtFJi9i8ZPE8IPcn6YXPYx10MSyPxIuRY=;
+	h=From:To:CC:Subject:Date:Message-ID:MIME-Version:Content-Type; b=YHbKcpalGNevhH+77qdNEGognkb3iNnC5z2jx/OSbu0rnnHbiNLdGEbkbhWauzTY8x8iiODV6yhgQAWXe48rMxDvl8fwcCLQHD/eeKgZ3f3htiQmAVNKyCvLT64DAuWQHeYvCivPu2XyTjl901cW2Ld3l/zLXgBkvVg4cVyX5/s=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=foss.st.com; spf=pass smtp.mailfrom=foss.st.com; dkim=pass (2048-bit key) header.d=foss.st.com header.i=@foss.st.com header.b=QEG6TZ6H; arc=none smtp.client-ip=91.207.212.93
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=foss.st.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=foss.st.com
+Received: from pps.filterd (m0369457.ppops.net [127.0.0.1])
+	by mx07-00178001.pphosted.com (8.17.1.24/8.17.1.24) with ESMTP id 41CBflad027664;
+	Mon, 12 Feb 2024 18:49:26 +0100
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=foss.st.com; h=
+	from:to:cc:subject:date:message-id:mime-version
+	:content-transfer-encoding:content-type; s=selector1; bh=iG9lTCL
+	5x6tc33cbUiqDXTjCZznE1C2VEmTB9j9Cvs0=; b=QEG6TZ6HWjBuHT1COxwVc/y
+	B2AAMbrvZNHVl3zs8mqxcOSbPuydF4pEuJQoT2OwoDOp6QFtn7pmPugAjPyW8uBv
+	L3t5N/5BKibv6CLVWPqjAdhpuCDn3YQ1KpBNLlmPx3B1K8nNNtOxDP+N7crSg2DI
+	e+iKUvoZs3nZzv60K8TcyKH0eeXSkJ9WzXh1JOJbz1bzCmLlu/bDfFp9eW1/Uc8f
+	8Rk9B/ptw1ZH6Rv73vHCQKhX8WbujlQpgxjcsTCIvtxYR8Ir4smWxSUWnJaH3I30
+	r9PfTuiV4eAZi8ZmI/KmTqmR5uEX/qwKDrO5Qqzli6+cft7oaXs4x6Fi2gBDpIQ=
+	=
+Received: from beta.dmz-ap.st.com (beta.dmz-ap.st.com [138.198.100.35])
+	by mx07-00178001.pphosted.com (PPS) with ESMTPS id 3w6mynd420-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Mon, 12 Feb 2024 18:49:26 +0100 (CET)
+Received: from euls16034.sgp.st.com (euls16034.sgp.st.com [10.75.44.20])
+	by beta.dmz-ap.st.com (STMicroelectronics) with ESMTP id 3CAA840045;
+	Mon, 12 Feb 2024 18:49:22 +0100 (CET)
+Received: from Webmail-eu.st.com (shfdag1node3.st.com [10.75.129.71])
+	by euls16034.sgp.st.com (STMicroelectronics) with ESMTP id AABF427B40C;
+	Mon, 12 Feb 2024 18:48:39 +0100 (CET)
+Received: from localhost (10.201.22.200) by SHFDAG1NODE3.st.com (10.75.129.71)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.27; Mon, 12 Feb
+ 2024 18:48:39 +0100
+From: Christophe Kerello <christophe.kerello@foss.st.com>
+To: <miquel.raynal@bootlin.com>, <richard@nod.at>, <vigneshr@ti.com>,
+        <krzysztof.kozlowski@linaro.org>, <robh+dt@kernel.org>,
+        <krzysztof.kozlowski+dt@linaro.org>, <conor+dt@kernel.org>
+CC: <linux-mtd@lists.infradead.org>, <linux-kernel@vger.kernel.org>,
+        <linux-stm32@st-md-mailman.stormreply.com>,
+        <devicetree@vger.kernel.org>,
+        Christophe Kerello <christophe.kerello@foss.st.com>
+Subject: [PATCH 00/12] Add MP25 FMC2 support
+Date: Mon, 12 Feb 2024 18:48:10 +0100
+Message-ID: <20240212174822.77734-1-christophe.kerello@foss.st.com>
+X-Mailer: git-send-email 2.25.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-From: Marc Gonzalez <mgonzalez@freebox.fr>
-Subject: [PATCH v2 0/4] Add support for Freebox fbx8am boards
-To: AML <linux-amlogic@lists.infradead.org>, DT <devicetree@vger.kernel.org>
-Cc: Neil Armstrong <neil.armstrong@linaro.org>,
- Kevin Hilman <khilman@baylibre.com>, Jerome Brunet <jbrunet@baylibre.com>,
- Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
- Rob Herring <robh+dt@kernel.org>,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Conor Dooley <conor+dt@kernel.org>,
- Pierre-Hugues Husson <phhusson@freebox.fr>
-Content-Language: en-US
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-ClientProxiedBy: SHFCAS1NODE1.st.com (10.75.129.72) To SHFDAG1NODE3.st.com
+ (10.75.129.71)
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.272,Aquarius:18.0.1011,Hydra:6.0.619,FMLib:17.11.176.26
+ definitions=2024-02-12_15,2024-02-12_03,2023-05-22_02
 
-Add support for Freebox fbx8am boards
+Add MP25 SOC support in stm32_fmc2 drivers:
+ - Update stm32-fmc2-ebi driver to support FMC2 revision 2 and MP25 SOC.
+ - Update stm32_fmc2_nand driver to support FMC2 revision 2 and MP25 SOC.
 
-Marc Gonzalez (4):
-   dt-bindings: vendor-prefixes: add freebox
-   dt-bindings: arm: amlogic: add fbx8am binding
-   arm64: dts: amlogic: add fbx8am board
-   arm64: dts: amlogic: add fbx8am DT overlays
+Christophe Kerello (11):
+  dt-bindings: memory-controller: st,stm32: add MP25 support
+  memory: stm32-fmc2-ebi: add a platform data structure
+  memory: stm32-fmc2-ebi: add MP25 support
+  memory: stm32-fmc2-ebi: update the driver to support revision 2
+  memory: stm32-fmc2-ebi: add RIF support
+  memory: stm32-fmc2-ebi: add runtime PM support
+  dt-bindings: mtd: st,stm32: add MP25 support
+  mtd: rawnand: stm32_fmc2: use dma_get_slave_caps to get DMA max burst
+  mtd: rawnand: stm32_fmc2: add a platform data structure
+  mtd: rawnand: stm32_fmc2: add MP25 support
+  mtd: rawnand: stm32_fmc2: update the driver to support revision 2
 
-  Documentation/devicetree/bindings/arm/amlogic.yaml         |   1 +
-  Documentation/devicetree/bindings/vendor-prefixes.yaml     |   2 +
-  arch/arm64/boot/dts/amlogic/Makefile                       |   8 +
-  arch/arm64/boot/dts/amlogic/meson-g12a-fbx8am-brcm.dtso    |  35 +++
-  arch/arm64/boot/dts/amlogic/meson-g12a-fbx8am-realtek.dtso |  25 ++
-  arch/arm64/boot/dts/amlogic/meson-g12a-fbx8am.dts          | 462 +++++++++++++++++++++++++++++++++
-  6 files changed, 533 insertions(+)
-  create mode 100644 arch/arm64/boot/dts/amlogic/meson-g12a-fbx8am-brcm.dtso
-  create mode 100644 arch/arm64/boot/dts/amlogic/meson-g12a-fbx8am-realtek.dtso
-  create mode 100644 arch/arm64/boot/dts/amlogic/meson-g12a-fbx8am.dts
+Patrick Delaunay (1):
+  dt-bindings: memory-controller: st,stm32: add 'power-domains' property
+
+ .../memory-controllers/st,stm32-fmc2-ebi.yaml |   7 +-
+ .../bindings/mtd/st,stm32-fmc2-nand.yaml      |  58 ++-
+ drivers/memory/stm32-fmc2-ebi.c               | 445 ++++++++++++++++--
+ drivers/mtd/nand/raw/stm32_fmc2_nand.c        | 108 ++++-
+ 4 files changed, 547 insertions(+), 71 deletions(-)
 
 -- 
-2.34.1
+2.25.1
+
 
