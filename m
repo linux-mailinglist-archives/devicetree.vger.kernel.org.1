@@ -1,168 +1,115 @@
-Return-Path: <devicetree+bounces-40913-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-40914-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 438FC851B1C
-	for <lists+devicetree@lfdr.de>; Mon, 12 Feb 2024 18:17:06 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7C73D851B22
+	for <lists+devicetree@lfdr.de>; Mon, 12 Feb 2024 18:19:17 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id D28411F292A5
-	for <lists+devicetree@lfdr.de>; Mon, 12 Feb 2024 17:17:05 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 312871F2BAB5
+	for <lists+devicetree@lfdr.de>; Mon, 12 Feb 2024 17:19:17 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C3E143D570;
-	Mon, 12 Feb 2024 17:16:33 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 54A943D57A;
+	Mon, 12 Feb 2024 17:19:12 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="i/acnuYh"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="fjSpG3uA"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.12])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 80B1E3F8D0;
-	Mon, 12 Feb 2024 17:16:30 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=192.198.163.12
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1FBA53D56E;
+	Mon, 12 Feb 2024 17:19:11 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1707758193; cv=none; b=iA4c8cWa1bkK1RzJLSximNBYKBYLDZDpl51rGBG3nZF6T/sKVIEND0BzKbH3epTQ/ruF0reGTnC6otVxBV26Np2x9cKgWeEV9+H1BLcf+ofxKR2xLsG5IEO4YJoPz0Vmiyvpw8QArPJ6vVVj/aFXTVw+LdQTkwS2w0LIWXS6ddw=
+	t=1707758352; cv=none; b=OXaxrGRP0n0MWFsJz2GMCX8eQgaVLQ42occE6WXm9+TXHsYwLWLyfwvCZySnwp1OOSa5YpynqniIsW0Yua8uI6BQIds9B3NhlpiMmEYeuT2VbIFRghCmEyb61PCPtn9/1GadsdeVhKqTa64jJsmGitCOZUt4i7euR+3j+hHXnm4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1707758193; c=relaxed/simple;
-	bh=VMnufid5qErbMfja9S1C5HtGzP6eTvRfvDnZTjXAy0Q=;
+	s=arc-20240116; t=1707758352; c=relaxed/simple;
+	bh=no2/NzxWWuHICc6wckxr+ESPrBfhnTVeMBX9zwKQ47Q=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=AlV04YPPTrP2jAVIMr4E0U3fdDbqj7vRS4efjAXkT+Pf3+aFqhwr79JbFSCViZo6J3hGkjPvFkpj0Cdu3xQMUqQ1JlvEOoMwnB3bD7FbD8JzOOLqt6dMYJeN7Q2WI9DKu5Ln9P3DDGHa67ISq6xN5IEbclxMlrPteaVOJCPOeRs=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com; spf=none smtp.mailfrom=linux.intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=i/acnuYh; arc=none smtp.client-ip=192.198.163.12
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com
-Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=linux.intel.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1707758190; x=1739294190;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=VMnufid5qErbMfja9S1C5HtGzP6eTvRfvDnZTjXAy0Q=;
-  b=i/acnuYhrawXr3F841BQxR0eoykw0cPoatJ268z9kZJQxBTM3NJgwgUb
-   Kp4avFoViACYJsrK8wKTBUH4sGaweQ/ITX5ilc8ul5qEtk6Ktt4aVYha4
-   B4ZR2zpSVx2wSMEycanohPWw/bvi/SVpMYW60bEch+TjX2LEv7kejjszB
-   G0MejiuypqyeDVwJqMuI0XiWNTqgNDvyYSNI4FG25PcC6snM/aICOWX/1
-   K1yhEHpVjUV8E2UEuvgsofBs/9tUenGb+fnj+dRQYSdENVT8zC3OrvrIt
-   wKaOV6YkoMvmkPxHmbybWUwz30c8v4aovcB8yO0PAp1nJlKykOxkIBf4t
-   Q==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10982"; a="5519185"
-X-IronPort-AV: E=Sophos;i="6.06,264,1705392000"; 
-   d="scan'208";a="5519185"
-Received: from fmsmga002.fm.intel.com ([10.253.24.26])
-  by fmvoesa106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 12 Feb 2024 09:16:29 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10982"; a="911553773"
-X-IronPort-AV: E=Sophos;i="6.06,155,1705392000"; 
-   d="scan'208";a="911553773"
-Received: from smile.fi.intel.com ([10.237.72.54])
-  by fmsmga002.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 12 Feb 2024 09:16:27 -0800
-Received: from andy by smile.fi.intel.com with local (Exim 4.97)
-	(envelope-from <andriy.shevchenko@linux.intel.com>)
-	id 1rZZuq-00000003xbF-31mJ;
-	Mon, 12 Feb 2024 19:16:24 +0200
-Date: Mon, 12 Feb 2024 19:16:24 +0200
-From: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
-To: devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Cc: Geert Uytterhoeven <geert@linux-m68k.org>,
-	Rob Herring <robh+dt@kernel.org>,
+	 Content-Type:Content-Disposition:In-Reply-To; b=MI9pcbQJFc6zcA0dai57I6uU6ycl2309AYYJaL1fzPOA9Vg0gnyvHgBcV0VBfH/eZlw9f0jehk3hu0NBXnZejas92FOzBnsrjaH1CYJ54NUUpOUThvS0BH4H646VcLVvQ+HhIxVSvunyMY+Mk+Q6COtKVdz9Z3AlTO0xuCuebu8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=fjSpG3uA; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 30DBFC433C7;
+	Mon, 12 Feb 2024 17:19:09 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1707758351;
+	bh=no2/NzxWWuHICc6wckxr+ESPrBfhnTVeMBX9zwKQ47Q=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=fjSpG3uAoqBmFhPZb5Vy7vbtQ5bZuCXvr472iN5qyabQCi8CbqztWaZucLZ+hi4K/
+	 x6Ns+n1Dj9JFAXcLRTwUxC9wGztQ2hJLYyJUWMWSjlCBvJlP6JU5sdVnbF4gsLpKSo
+	 aJ+DVrd93wi0i3pOv3cqakuxpfuscwxcfwNsRSlkKVvuTabjVBD7zHauxCbo7n4dcu
+	 wc3sUIRV3wo23rpFKgh9piDNt8tcOo8rWHT2DtW02TjQ/Xx8FiU6sRiNMlovCUP7DZ
+	 YAFTfZRAtHCYxQ2aQ7NU8AbvxvyeR77HzTAIPmMWKxPqGxRqYL4oPBwQpFyc3TjrVz
+	 sfIUVd+bZqOZg==
+Date: Mon, 12 Feb 2024 17:19:06 +0000
+From: Conor Dooley <conor@kernel.org>
+To: Frank Li <Frank.Li@nxp.com>
+Cc: Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+	Rob Herring <robh@kernel.org>,
 	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Robin van der Gracht <robin@protonic.nl>,
-	Paul Burton <paulburton@kernel.org>
-Subject: Re: [PATCH v2 14/15] dt-bindings: auxdisplay: Add Maxim MAX6958/6959
-Message-ID: <ZcpSaHW-RQ3dzywP@smile.fi.intel.com>
-References: <20240212170423.2860895-1-andriy.shevchenko@linux.intel.com>
- <20240212170423.2860895-15-andriy.shevchenko@linux.intel.com>
- <ZcpSDOk-IQVasHud@smile.fi.intel.com>
+	Conor Dooley <conor+dt@kernel.org>, Felipe Balbi <balbi@kernel.org>,
+	Thinh Nguyen <Thinh.Nguyen@synopsys.com>, linux-usb@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	imx@lists.linux.dev
+Subject: Re: [PATCH v2 0/2] usb: dwc3: drop 'snps,host-vbus-glitches-quirk'
+Message-ID: <20240212-removed-ecard-3ea529f8fd67@spud>
+References: <20240212-vbus-glitch-v2-0-d71b73a82de1@nxp.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+Content-Type: multipart/signed; micalg=pgp-sha256;
+	protocol="application/pgp-signature"; boundary="DMeqOs24phb1cRj3"
+Content-Disposition: inline
+In-Reply-To: <20240212-vbus-glitch-v2-0-d71b73a82de1@nxp.com>
+
+
+--DMeqOs24phb1cRj3
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <ZcpSDOk-IQVasHud@smile.fi.intel.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+Content-Transfer-Encoding: quoted-printable
 
-On Mon, Feb 12, 2024 at 07:14:53PM +0200, Andy Shevchenko wrote:
-> On Mon, Feb 12, 2024 at 07:01:47PM +0200, Andy Shevchenko wrote:
-> > Add initial device tree documentation for Maxim MAX6958/6959.
-> 
-> Oh, this is an old version :-(
+On Mon, Feb 12, 2024 at 11:19:06AM -0500, Frank Li wrote:
+> Since dt maintainer give comments at old thread
+> https://lore.kernel.org/linux-usb/20240119213130.3147517-1-Frank.Li@nxp.c=
+om/
+>=20
+> The patch v4 already merged.
+> https://lore.kernel.org/linux-usb/20240124152525.3910311-1-Frank.Li@nxp.c=
+om/
+>=20
+> In thread "dwc3: drop 'quirk' suffix at snps,host-vbus-glitches-quirk"
+> https://lore.kernel.org/imx/ZcVr05vAYsObrrRR@lizhi-Precision-Tower-5810/T=
+/#t
+>=20
+> DT maintainer and DWC maintainer think it is better to apply workaround
+> unconditionaly.=20
+>=20
+> Drop 'snps,host-vbus-glitches-quirk' and apply workaround unconditional.
+>=20
+> Signed-off-by: Frank Li <Frank.Li@nxp.com>
+> ---
+> Changes in v2:
+> - Drop 'snps,host-vbus-glitches-quirk' and apply workaround unconditional=
+=2E=20
 
-Here is a new one:
+Acked-by: Conor Dooley <conor.dooley@microchip.com>
 
-From d8c826e06cf9237cd5fc6b2bb0b1cac5aff4fd8a Mon Sep 17 00:00:00 2001
-From: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
-Date: Thu, 8 Feb 2024 17:23:38 +0200
-Subject: [PATCH 1/1] dt-bindings: auxdisplay: Add Maxim MAX6958/6959
+Cheers,
+Conor.
 
-Add initial device tree documentation for Maxim MAX6958/6959.
+--DMeqOs24phb1cRj3
+Content-Type: application/pgp-signature; name="signature.asc"
 
-Signed-off-by: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
----
- .../bindings/auxdisplay/maxim,max6959.yaml    | 44 +++++++++++++++++++
- 1 file changed, 44 insertions(+)
- create mode 100644 Documentation/devicetree/bindings/auxdisplay/maxim,max6959.yaml
+-----BEGIN PGP SIGNATURE-----
 
-diff --git a/Documentation/devicetree/bindings/auxdisplay/maxim,max6959.yaml b/Documentation/devicetree/bindings/auxdisplay/maxim,max6959.yaml
-new file mode 100644
-index 000000000000..e7d602d02df1
---- /dev/null
-+++ b/Documentation/devicetree/bindings/auxdisplay/maxim,max6959.yaml
-@@ -0,0 +1,44 @@
-+# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/auxdisplay/maxim,max6959.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: MAX6958/6959 7-segment LED display controller with keyscan
-+
-+maintainers:
-+  - Andy Shevchenko <andriy.shevchenko@linux.intel.com>
-+
-+description:
-+  The Maxim MAX6958/6959 7-segment LED display controller provides
-+  an I2C interface to up to four 7-segment LED digits. The MAX6959
-+  in comparison to MAX6958 has the debounce and interrupt support.
-+  Type of the chip can be autodetected via specific register read,
-+  and hence the features may be enabled in the driver at run-time.
-+  Given hardware is simple and does not provide any additional pins,
-+  such as reset or enable.
-+
-+properties:
-+  compatible:
-+    const: maxim,max6959
-+
-+  reg:
-+    maxItems: 1
-+
-+required:
-+  - compatible
-+  - reg
-+
-+additionalProperties: false
-+
-+examples:
-+  - |
-+    i2c {
-+        #address-cells = <1>;
-+        #size-cells = <0>;
-+
-+        display-controller@38 {
-+            compatible = "maxim,max6959";
-+            reg = <0x38>;
-+        };
-+    };
--- 
-2.43.0
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZcpTCgAKCRB4tDGHoIJi
+0rY0AP9DLd2fuLnE1WJVdYXWzXD20luOJuu0+RrjCoEp2Xhn7AD/WLcZsvbA1PNs
+DcZfUzPkWR4nEhXK1rExTlBN/OPvjwA=
+=KALA
+-----END PGP SIGNATURE-----
 
-
-
--- 
-With Best Regards,
-Andy Shevchenko
-
-
+--DMeqOs24phb1cRj3--
 
