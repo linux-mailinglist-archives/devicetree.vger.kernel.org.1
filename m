@@ -1,75 +1,75 @@
-Return-Path: <devicetree+bounces-40660-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-40661-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 040AA8511EE
-	for <lists+devicetree@lfdr.de>; Mon, 12 Feb 2024 12:13:07 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id A863C8511F8
+	for <lists+devicetree@lfdr.de>; Mon, 12 Feb 2024 12:16:52 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id AE0E2280F72
-	for <lists+devicetree@lfdr.de>; Mon, 12 Feb 2024 11:13:05 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id CD3E81C210AB
+	for <lists+devicetree@lfdr.de>; Mon, 12 Feb 2024 11:16:51 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id BA95C38FA7;
-	Mon, 12 Feb 2024 11:12:54 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E4F1438FA9;
+	Mon, 12 Feb 2024 11:16:42 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="tSmvQS/S"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="GHr9nCBy"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lj1-f177.google.com (mail-lj1-f177.google.com [209.85.208.177])
+Received: from mail-wm1-f50.google.com (mail-wm1-f50.google.com [209.85.128.50])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 39EA22B9BA
-	for <devicetree@vger.kernel.org>; Mon, 12 Feb 2024 11:12:52 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.177
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 86578383BF
+	for <devicetree@vger.kernel.org>; Mon, 12 Feb 2024 11:16:40 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.50
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1707736374; cv=none; b=BEbjbBNxO9ZTfR73Q7jGIx8YfrYXILooIMFVNbc3URH2gpd0lt3gmkRQ37zZ4dCVJ8fx4STyBlewJIfn1a7oXCes9KG+d8kTQ7BY65+1okC8zMT3sygT+Z6ClCiqzbzXbeL3a3tvYpwFbU1+8ZorUa++VVIBlZihPaAvbp6Rv8E=
+	t=1707736602; cv=none; b=KBJj3jtR6gqoMmubrwX2gsXyYMtywDEa1d9E597xRuamHq2P0TyOtLp1QTFPWlhERN5p0tx+AVy8RQ7TcqYIkNGzDHb4erINpO5Af3Bav2dwxL63KKxWTnWQ1Z85SHLltMX7KBVoC7G878qPZby6PQHPseYJBVlkR+JW1nzLYOY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1707736374; c=relaxed/simple;
-	bh=xb6g2Lh6Q/m6ugN9GaEtnMLMn3L6Af6xeDDDvsp64HQ=;
+	s=arc-20240116; t=1707736602; c=relaxed/simple;
+	bh=+/dv/rjnTdZRDkLIWwNl3OVUhyJ/TnHTE0m66DG81mo=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=gfs7k0yV+sO7sx51bfvKFV37c2kHA/Sh5kHu4980K9QgP58WSgvaMOKVMsZNBaF7smP0JcyGxC6nAdzYmEbypCd0QaOUyUY9QCkTkgOexS0PXcFMEO32Gv5ESi6FWK9y7DxaOv6cwCNhlWDextwct1A7ukArK/fQbQlur92GQpI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=tSmvQS/S; arc=none smtp.client-ip=209.85.208.177
+	 In-Reply-To:Content-Type; b=kMVXagM9+Gg/ZDxs9SNj+smDMe7deLJiqg/0c3wptI/KZhK/ye7NjGo3A4PPzgSjjgU5db82tjWjeGDLFZ7H9zf1fDLFkRE28hqiWI1TlRXYVU8Ho/5AZNBGz6O0yNt9p6Y52AFBNANBF716AgLggn7Yz8fl0Q2wafTOHPsL1Mk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=GHr9nCBy; arc=none smtp.client-ip=209.85.128.50
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-lj1-f177.google.com with SMTP id 38308e7fff4ca-2cf1fd1cc5bso37961051fa.3
-        for <devicetree@vger.kernel.org>; Mon, 12 Feb 2024 03:12:51 -0800 (PST)
+Received: by mail-wm1-f50.google.com with SMTP id 5b1f17b1804b1-410c804e933so6986465e9.0
+        for <devicetree@vger.kernel.org>; Mon, 12 Feb 2024 03:16:40 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1707736370; x=1708341170; darn=vger.kernel.org;
+        d=linaro.org; s=google; t=1707736599; x=1708341399; darn=vger.kernel.org;
         h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
          :to:content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=lHBVPTLCCK1K07+ATMZqLBCAfy1jkjgoH7L1BwVKMB4=;
-        b=tSmvQS/S8tD/6PWE/wOHiibjBuWzQyBEMKCqZWAfh/P8IUF81HpwfrEsDHmBZehBaI
-         NqInUYAHhMIZJdOwcicuyuC2rUgmmMLWGT1TlfFlaYemOH0SlZuMgw2GKzv2/nG6uv5p
-         RDQg3BexW10iShJRSavHOWPu2zeTKK5uBAnx6Zh8AUGIKh05ctKXfVRzSx+eqWBB6IGP
-         0ZzratPGyIAk3ro58PBXofHPo3kf1fy8WZvnOubt9Zlki7OTsRMdCpVkq8mPVkJDKtiR
-         dgOJv6BYmhnPhU86foFOplJR2wqMxc1nZEgsiHhpIoRDAggph/y5PW61aW+wWU6nvC95
-         pfIw==
+        bh=OhJlFfknc7JfVoq7noZrf9tAfPeenqXQkKrMu3gZlEQ=;
+        b=GHr9nCByuvGtKNmJbJzkgiBs+RYNksn3oM9LIsa7ZR8PbQ2MAf21ds0ALdD8WX0iEJ
+         4qzb9486BzGI1zUc7i/xf8DPP4CAKgiavXM9xkvt3/1IEUb+OgEPtcKA5CRH1cnfsCCz
+         vNRUhzepSGft85HZrS3PkEJFfoot8BB8m+sDlLE5FZnoK9nlF/8rfqSFO7Q7h+mVbDFo
+         VwlSrJh4eIgTOoqZrlzRLeWMAI79ZA5XJc/OmZkRbjcbKtyMkpVI5RJFcbRMZrhq+WVJ
+         dUBhENL+W+tNpRlwTPWzX09OmQ/BO0ySGYtNqgch4/VJfwBBIE699X0AO2THdyh1L498
+         T5gA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1707736370; x=1708341170;
+        d=1e100.net; s=20230601; t=1707736599; x=1708341399;
         h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
          :to:content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=lHBVPTLCCK1K07+ATMZqLBCAfy1jkjgoH7L1BwVKMB4=;
-        b=TtqOk9Si9jqaRRVwBv7tbrz02Mmo7YHmCQzEHVLW4/WUa+8t+IszIiCsV/ZMfdV45J
-         uhlMyx8RK2F8/BdnAMO8LXFs+OQh+4sSIlRxLoaxbulHzhsJCr42fL+UNeRxjTRKekHG
-         zVOJQwVae1ddjFBoJtDQqwFBuCeP86mF3/WSFkoWy2ZK8Tg4OYzx79BU3KZVTbd1UJnn
-         6FQTCQ/VXmJf+AdJ18CowumFPbSUJqnq5n9jjlDgEVEgnGXEaoJpMms7pxdbuM92NsVP
-         BLBXANnwty06Vjlg24zAjljGpk23nvbu1HdERXLw83AHTnLpBCjqpyNP/pzb5TrQuOJ4
-         SkPw==
-X-Forwarded-Encrypted: i=1; AJvYcCULHhst47nJ8CZababSLseKgDGWP+FhXn3S541z7CyqoSBPA3tH2chdeEqJH8k1WWoHIxdJTXGL461/6B2V9yKAQ/MJDB+bbK7BMA==
-X-Gm-Message-State: AOJu0YyyW/c5WDi8jrBadSItBPlyXA5ErtLlExSFow9Pumfhm8qTFBCQ
-	BMBML8v8rAFaTgOzmf7Jn7/+q7Jnbf41zMuKUopOZyHIXaW/hMcvLHMpRQ3TtWc=
-X-Google-Smtp-Source: AGHT+IEa4vK0/xkbABkqYgx6sLNT5sOa2wgD+dsbTeY5TgLxQcqEaEq90er8k3ZLOVrmr08VnFablA==
-X-Received: by 2002:a2e:9659:0:b0:2d0:b336:e0f1 with SMTP id z25-20020a2e9659000000b002d0b336e0f1mr4052361ljh.14.1707736370294;
-        Mon, 12 Feb 2024 03:12:50 -0800 (PST)
-X-Forwarded-Encrypted: i=1; AJvYcCVDK3TNDg+4YUkz3ICxegjKKt8gvtMHZKqOC9wcNHxu2Boe8zFK/MZ+eq+BxsNdK0sRGOkG+uFCpaJUCOMNJ5i1fkF05cTUSEY7TuwX8eicCHhWEq63Ah4/fmdDaoG8teSSpRKu6LIp70MdAiq3VFbU19o04uvgz2twSFTkO4mdAquB88ItWcQcdZkCaFXP86mxUs18/pqF8+FaGgVDzuvE++XLDrG5E3e58JmA52HZY6I2sDR4bMywgsdOt4A+4886RDImfAl/2m8M7dsH59i7+qlawfcNqhWx4uiE9aiFpYqAHip5huRGMZzlqtwfmpHyEJHRY7pecAyPItkI2xcEUfBI8VfYyr+fOxOltghQMkHMg7zjd6vwzqUzATd3OS4ryjGxhZXZcAcJGdkpBbRWd0yQjCzdN2fb6D6RWSa0SKxRgF/sKJxEXl9ykgVHXjnDS5Wd3yTseo2AyNylvGMDRFQxrhJXvyQ4j65xbQf1floFdLQjOYHMe6HpduJX
-Received: from [192.168.192.135] (037008245233.garwolin.vectranet.pl. [37.8.245.233])
-        by smtp.gmail.com with ESMTPSA id a23-20020a05640233d700b0055ff708dee3sm2618622edc.11.2024.02.12.03.12.48
+        bh=OhJlFfknc7JfVoq7noZrf9tAfPeenqXQkKrMu3gZlEQ=;
+        b=IH74XCAbNBOA2UJFI1OZQoDNGsj6VfeO6vRcj7W1Q8HFkxoITBr8etHDbaIYyBA/EH
+         BjoWLOHsheVMihe4NGwCMmqTlL4mR7PyRCYqJ+z7zdsge7zwMohE/kwv8d0JZKLEcTzr
+         4hBCq1Ac4LaRue4+6Hs1PDHIKgyWWC8ci8C23zzgtuvVN1SglnJrex3S8SkdC4mfWxn+
+         McBZ7R/4j+eOfE8i8lgJBoV3fGsvpKCXLPexf6S8TB6Lv0rm7q99oNx50c8ZMW8HgPSy
+         Q0y66rg//L5d05lB181xBJOF6fN99SvoMG7zKGBmOEnGMwGoS/03FS1tzJ/rPKbRfAD/
+         TzCg==
+X-Forwarded-Encrypted: i=1; AJvYcCVW5yFnBV+cCKLS4MUw+ABaAVtv1q+nKu8Zv6yLMaeubthOgjD67k1PnT4C1ivU0WpiX/8hBg7gfbetu6DESCV9WqeLzQ/e87ezZg==
+X-Gm-Message-State: AOJu0YwdEj6iqjw78PfVakaQRQwg4DBDofbH1UhKO5YISQWo/nfiIZxI
+	W74yKTmxOkmE2grqnzQpMgDYYs/NS/dz+R6MZoJekZ/lOZS2I4jYFNiwT3bQPmM=
+X-Google-Smtp-Source: AGHT+IFpAuLt1rb2QXW7m15x5ZnRaszV16GeULOePJs1dUDRnz4ues0/eHXNmd/xmA3d49MPrNUtWg==
+X-Received: by 2002:a05:600c:6018:b0:410:c0d5:ffe4 with SMTP id az24-20020a05600c601800b00410c0d5ffe4mr2527727wmb.36.1707736598746;
+        Mon, 12 Feb 2024 03:16:38 -0800 (PST)
+X-Forwarded-Encrypted: i=1; AJvYcCUnZgs0QRj6ByPtSYirwVOpHF6IwlnTsUSXOKKPNqNUEKwh/PN8Sokad/JL8GjPSBu7o2SJxbJVMy87obmTi5pOWiSrup/qrrI/dOb5mD6Nqwf3sV5jfKrZ7OX8DHZVOLsguhVpbGz8FEeyzWstuOZWnoIuFRKH2OgPkSH2s9nNaqe3S0GxAUvScAJQIVN2k/mUg7ltOTvK2WbTxtIf5CHBvtKrgyLvVxXed2tu0eUlwnDLKfp/hqCZUSbt4FvjogKoHME5smtzzQw71IJiUyTH1lCJWHyjNX8zz6zaSE59/K2c6M+kQ7aytnPfFcwTodSG8FDQxGO3FTKIdW5/HN9qPnYsBFvZ+Xz2tiRlJ6n3hAyC3j4L7UrHbzE25ELkYG+yGJCLJoopdMgF7vvnGXmd93cFC4m4R8WIvUdQFljqmQ==
+Received: from [192.168.1.20] ([178.197.223.6])
+        by smtp.gmail.com with ESMTPSA id jr6-20020a05600c560600b0041079d336c7sm8295768wmb.39.2024.02.12.03.16.37
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 12 Feb 2024 03:12:49 -0800 (PST)
-Message-ID: <03d5d556-9477-4f2e-a737-c2f6a96d97a4@linaro.org>
-Date: Mon, 12 Feb 2024 12:12:47 +0100
+        Mon, 12 Feb 2024 03:16:38 -0800 (PST)
+Message-ID: <db0d9666-796b-48e1-b830-2c9817a92b4f@linaro.org>
+Date: Mon, 12 Feb 2024 12:16:36 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -77,92 +77,96 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH RFC 2/4] wifi: ath10k: support board-specific firmware
- overrides
+Subject: Re: [PATCH] dt-bindings: usb: typec: anx7688: start a binding
+ document
 Content-Language: en-US
-To: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
- Kalle Valo <kvalo@kernel.org>, Jeff Johnson <quic_jjohnson@quicinc.com>,
- "David S. Miller" <davem@davemloft.net>, Eric Dumazet <edumazet@google.com>,
- Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
- Rob Herring <robh+dt@kernel.org>,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Conor Dooley <conor+dt@kernel.org>, Bjorn Andersson <andersson@kernel.org>
-Cc: ath10k@lists.infradead.org, linux-wireless@vger.kernel.org,
- netdev@vger.kernel.org, devicetree@vger.kernel.org,
- linux-arm-msm@vger.kernel.org
-References: <20240130-wcn3990-firmware-path-v1-0-826b93202964@linaro.org>
- <20240130-wcn3990-firmware-path-v1-2-826b93202964@linaro.org>
-From: Konrad Dybcio <konrad.dybcio@linaro.org>
-Autocrypt: addr=konrad.dybcio@linaro.org; keydata=
- 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
- izWDgYvmBE8=
-In-Reply-To: <20240130-wcn3990-firmware-path-v1-2-826b93202964@linaro.org>
+To: Pavel Machek <pavel@ucw.cz>
+Cc: phone-devel@vger.kernel.org, kernel list <linux-kernel@vger.kernel.org>,
+ fiona.klute@gmx.de, martijn@brixit.nl, samuel@sholland.org,
+ heikki.krogerus@linux.intel.com, gregkh@linuxfoundation.org,
+ linux-usb@vger.kernel.org, robh+dt@kernel.org,
+ krzysztof.kozlowski+dt@linaro.org, devicetree@vger.kernel.org, megi@xff.cz
+References: <ZcaCXYOf6o4VNneu@duo.ucw.cz>
+ <3a662ef2-1888-4f24-bebe-3ce32da9d277@linaro.org>
+ <Zcn6sSOqb+QpZtCC@duo.ucw.cz>
+From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
+ 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
+ D2GYIS41Kv4Isx2dEFh+/Q==
+In-Reply-To: <Zcn6sSOqb+QpZtCC@duo.ucw.cz>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 30.01.2024 17:38, Dmitry Baryshkov wrote:
-> Different Qualcomm platforms using WCN3990 WiFI chip use SoC-specific
-> firmware versions with different features. For example firmware for
-> SDM845 doesn't use single-chan-info-per-channel feature, while firmware
-> for QRB2210 / QRB4210 requires that feature. Allow board DT files to
-> override the subdir of the fw dir used to lookup the firmware-N.bin file
-> decribing corresponding WiFi firmware.
+On 12/02/2024 12:02, Pavel Machek wrote:
+> Hi!
+>>> Add binding for anx7688 usb type-c bridge. I don't have a datasheet,
+>>> but I did best I could.
+>>>
+>>> Signed-off-by: Pavel Machek <pavel@ucw.cz>
+>>>
+>>
+>> You miss proper diffstat which makes reviewing difficult.
 > 
-> Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-> ---
->  drivers/net/wireless/ath/ath10k/core.c | 11 ++++++++++-
->  drivers/net/wireless/ath/ath10k/core.h |  2 ++
->  drivers/net/wireless/ath/ath10k/snoc.c |  3 +++
->  3 files changed, 15 insertions(+), 1 deletion(-)
+>> Actually entire patch is corrupted and impossible to apply.
 > 
-> diff --git a/drivers/net/wireless/ath/ath10k/core.c b/drivers/net/wireless/ath/ath10k/core.c
-> index 0032f8aa892f..ef7ce8b3f8fb 100644
-> --- a/drivers/net/wireless/ath/ath10k/core.c
-> +++ b/drivers/net/wireless/ath/ath10k/core.c
-> @@ -942,11 +942,20 @@ static const struct firmware *ath10k_fetch_fw_file(struct ath10k *ar,
->  	if (dir == NULL)
->  		dir = ".";
->  
-> +	if (ar->board_name) {
-> +		snprintf(filename, sizeof(filename), "%s/%s/%s",
-> +			 dir, ar->board_name, file);
-> +		ret = firmware_request_nowarn(&fw, filename, ar->dev);
-> +		ath10k_dbg(ar, ATH10K_DBG_BOOT, "boot fw request '%s': %d\n",
-> +			   filename, ret);
+> Sorry about that.
+> 
+>> Anyway, where is any user of this? Nothing in commit msg explains
+>>  this.
+> 
+> User being is worked on:
+> 
+> https://lore.kernel.org/lkml/2024020126-emote-unsubtly-3394@gregkh/T/
+> 
+> Thanks for comments. I'll go through them and try to improve things.
 
-Perhaps it'd be useful to move to a more noisy loglevel
+OK, please send bindings patch in the same patchset as the driver.
+Preferably first bindings patch, then driver patch(es). The bindings
+document ABI exposed by driver, so we expect to see and apply both of
+them together (apply through subsystem, so USB in this case).
 
-Konrad
+Best regards,
+Krzysztof
+
 
