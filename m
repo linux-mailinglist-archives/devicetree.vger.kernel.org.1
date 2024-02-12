@@ -1,72 +1,72 @@
-Return-Path: <devicetree+bounces-40987-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-40988-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 566E4851D4E
-	for <lists+devicetree@lfdr.de>; Mon, 12 Feb 2024 19:50:50 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 35F90851D4D
+	for <lists+devicetree@lfdr.de>; Mon, 12 Feb 2024 19:50:49 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 8C0CDB22FDE
-	for <lists+devicetree@lfdr.de>; Mon, 12 Feb 2024 18:50:47 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id C92111F245CA
+	for <lists+devicetree@lfdr.de>; Mon, 12 Feb 2024 18:50:48 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6398646B83;
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A3DFF46B9B;
 	Mon, 12 Feb 2024 18:50:04 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="UbJoUQo6"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="lvao136A"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-oo1-f42.google.com (mail-oo1-f42.google.com [209.85.161.42])
+Received: from mail-oo1-f46.google.com (mail-oo1-f46.google.com [209.85.161.46])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AD51E46551
-	for <devicetree@vger.kernel.org>; Mon, 12 Feb 2024 18:50:02 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.161.42
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2FBC84655F
+	for <devicetree@vger.kernel.org>; Mon, 12 Feb 2024 18:50:03 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.161.46
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1707763804; cv=none; b=fV/K5pkplYpMWES2drA6fbVaSdutW6tkuqWc4pU/xlzZ/f7DHi2C2fHeTwc44E20NzpdKsywZYs5pL64XxcH+emRttRvEDllZj8NTr00OXq32uJ0UuRhrgUZLratYDcIeF0dl8Vam8Wp3fmqJVukF6tqET0LX50KOvrdEj7hQQI=
+	t=1707763804; cv=none; b=OKi3U2lbqBO7RdMKeaTyJnnac7uXAOMQiyHHzaOwCD+SJNSuT8GAti3Vg5zH4saOAQz0++Ju2JcnTwVV4VjzrTiQxuNeg82Uiz8Ch3y3N27e+3swveKjG4kTFLLmrV63NvuurP/XyjWymqVb8jPk/XmpF5CFJquoWwUhkZG8J84=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
 	s=arc-20240116; t=1707763804; c=relaxed/simple;
-	bh=UE3MFqXf9/iOHcPbIpeeoHWvFg2vM5sFut2XdgbnjZw=;
+	bh=fsog7bRQyUmSQxm+iyi5bAQ24xHjHX/fPwKSICX+nzg=;
 	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
-	 MIME-Version; b=aJ8i1Dphkve4PU2PVaLoj/BNOWzAV7mPO0lSvA/CV3YHyHbQTS0Au9OfpF5LdMP36jNxCsDkbQQJ1um9WaWAv1PAG1jhOe+Oygl6chv7O23FSHpJkzFLMoTzQtH40WNZxN9q1P9J6jGjWuOOADFhMaauOeKkdgMdgP0Y3WONAA0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=UbJoUQo6; arc=none smtp.client-ip=209.85.161.42
+	 MIME-Version; b=ZvgIMBQp7yrOpTfjMcoimCGywY2Khp1dgLgswi5l8BbON2smnpdzpHmf9gio8qa80POtpCl1kU5oVmOj3MJ7xhvMdk21I0Q5MGKR8QYBzQSSLpOsXCNnTeINWmhT7Vs2Onuo1p8+bC014eT+sdAJ2MenuooUlDs/57H+EEhr6VI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=lvao136A; arc=none smtp.client-ip=209.85.161.46
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-oo1-f42.google.com with SMTP id 006d021491bc7-5957ede4deaso2216061eaf.1
-        for <devicetree@vger.kernel.org>; Mon, 12 Feb 2024 10:50:02 -0800 (PST)
+Received: by mail-oo1-f46.google.com with SMTP id 006d021491bc7-59883168a83so1191878eaf.2
+        for <devicetree@vger.kernel.org>; Mon, 12 Feb 2024 10:50:03 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1707763801; x=1708368601; darn=vger.kernel.org;
+        d=gmail.com; s=20230601; t=1707763802; x=1708368602; darn=vger.kernel.org;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=w8Muw6h1Q9P9TaGArYYX/lVFQTdPnjrlwu+lY7NfQMY=;
-        b=UbJoUQo63ldgiEuJpIAB8yKaZMDJDyDUriaGgKLdcViFSIZOgIafVRYWTApxdJy6QN
-         uvk89czo/VyendAjGwU6C8YrvNq+mj6+nn4Hjcd8Ri/EdNmcuKNRQrnV3f4qL+Gcy/nc
-         oi0Aj+lQjRj8ZAVpAW4x5/scCEgoJ7wtmTH05OKU6V8QKz0OVPvbQAK2mFqGCXBAx1VP
-         9ptwZamEzFNDQf3YHmrQMtr/gExslV6KwtOJc/3UufkpubmP0B9M/zWfg8RXH+ZR1YSP
-         FcAX3gQUyliv9tPRtf7bSfmeechNoi+MlhUVCxakVVMUwcY7LbnnlzqAT4KWLnRDR7O3
-         oBvA==
+        bh=GAxk6zsY006+CdXJFHNEbBOsPg1Aj77aFmaDPPFfc8o=;
+        b=lvao136ADpONcvdrZG3hIoI1CHJC4EJQlxQQzFmX+hsk89FJ02R2waZEHBtwB0oBHL
+         Kq24VLO9Yrc4OJN3lOs57D1ewrF+zdYy29pthpl8PUnDXWnvx+tL2WGkjQA/Tpn73kNL
+         +OWr9WQtTibDIGidzjQ+b+VgHcx7Hj3BRK3XKGn5QavQxB6O3ebXEBmoAOXKne/m7r5v
+         Ti85mLsPvtG+hyWK6E4uYSkYyEkAueSbVfhFW2JANe3cffIgZYtSFFAg3hnULL46+sWK
+         fsT84Q840o1WPWyvmkjF75GEtvYxn0Tu62x94O1X7l0uorWizm6CgUP9r/A+DRmBdXEm
+         HtzQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1707763801; x=1708368601;
+        d=1e100.net; s=20230601; t=1707763802; x=1708368602;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=w8Muw6h1Q9P9TaGArYYX/lVFQTdPnjrlwu+lY7NfQMY=;
-        b=mPOGH3PD+nTd9FOO6lJWbJH7UwGSQisN2W5F7QZ4hPItTkWdPR24ZjzEI8g4M8BZ7S
-         c5KJw5uUUhOAhZVUYvGyLIQSiRLBnX87txoSgjTukaTzdM/Xq9JJkDI5y0Wc5VMcidFv
-         +q76EhTQsf2h5kn0wS8i3rWsrc72nukS25+1uTs7z0dEkMGYSX7TOxeB2gY6hefyx6iX
-         NiuVWZJsPc0gtS5LKOoLsL9ft6coMf+pPCoM1VVwX8O9+QHkefIA+joGQHN/g8k2WfVk
-         nghg+ZOSs9Xy5LL6uZhQa93PrEVroQ8OZSOvFOzJUKQITxBybbytWyeZbdaCGdfTUqgM
-         pLBg==
-X-Gm-Message-State: AOJu0Yz+IkqjRoc4wb7XLX+N2Vo4Zc92Vw3Q7lQh1qE6EsVc9J04AbD9
-	qPEquhX7z8c6aBrpchDKLaujwdTXaoyxocl7M8b9SE18ePL4WP2G
-X-Google-Smtp-Source: AGHT+IEyol+40Ytm7NwX5jgfgRdxMGoz711CEzuTbCrMDRmaGjM6JITqTjIMUT4sVuKU/aYQV+lhGA==
-X-Received: by 2002:a4a:3043:0:b0:59d:4eb1:1b7d with SMTP id z3-20020a4a3043000000b0059d4eb11b7dmr4373629ooz.6.1707763801581;
-        Mon, 12 Feb 2024 10:50:01 -0800 (PST)
-X-Forwarded-Encrypted: i=1; AJvYcCVCAHg8jjwVNnCn2wDfiU8wLFp8CZBjM/oUV2aG9tbS1Z6mEifTK/co8G7mdxU3NFTMxkVXlzUSDgCIg/le/ishPNtgv4QzxFsilMo0UQJvtCUbp23pd4Xzy9OlES50/DW9uJX0zL0V9gYl3338z3OdOftCK67W6XfsjBCu4XqsPNbHpvf7RS5ayEJ/ka46m0vYZRnIz9ID/osCSEb/g+0AS1Ro3Sj8DA+x73mFOgU3iAcSIkyI1Mkx/RCV1CZsO8KkVBQ8CBCQACkZokmU/v3nAcoqxzT2Se2p8l1Sjv3HVdX0OmiDNYcoBH+QJ2sdcyFaOWCoT47V/JHEfeUIitSxFEWAc4XPyExwiVMJcpZSxobhXmCUQjcbNETcAystZJuLVWUBhAeuFOt/gCx8DuWY+gXs9bSBoDpSGGYYvPT8ijidf0/IMUjkQ/IeBMiW1P0x62EY7g/r5WD+8C+AsVX2zlHBxkWYPpRrYFI51Ucdud93t3LGk0Th0nhnFus72/U/Cq0sB/n0cAexOUV1z5zDJYr/8yutqxNydGdobOpVKLI9S/sTSPqCmLjD
+        bh=GAxk6zsY006+CdXJFHNEbBOsPg1Aj77aFmaDPPFfc8o=;
+        b=R5EdFWlonrRmaEgfqNO8fmlYMORMMDcm+h3WNHH/0pjyGfVFbdWRcsWqEsvtaA6Q9N
+         kqSlEqkr3mmqVQOGZBu71EMldSDcg4kKQFHX5F+DoDgkZLrNuyzPVDwRHBaEAGA8RzHf
+         RgTXVKXDBVEzuwhxzSzc6ZZAYz8uocMQ8rs/sJBJ7ecU7TQFqAOelJ3GLtg+u5HJ2vct
+         tYtsLe+n2hcGp52HXUu5hW+pIf+AkL31FavvhVvxRf5bMha+6sB5omfobq/PiZwy/PIy
+         gDbeUHLW8jCCiRhWDoU6BuF4AWO+ljw3rVIxyUpjo9AVLJ2ZqwApIcRCd92X30bk7g4s
+         VwsA==
+X-Gm-Message-State: AOJu0YxvbUFynKMZep+ZVe1op4JuhW9HK+fc6uPAyVJFPdx+EZvHb8ip
+	gdFk0TNX++WuS+gneygKlnJaQ/619UunC7jnk4M30y1pncsfONrI
+X-Google-Smtp-Source: AGHT+IG4JPNFvgManuBh98r3P3BSUJPLxom8f7QyRDcXHUAlIIydohC2YLLtPabAms2kr1vtYZp36Q==
+X-Received: by 2002:a05:6820:c0f:b0:59d:4a67:cebc with SMTP id eh15-20020a0568200c0f00b0059d4a67cebcmr4021084oob.8.1707763802286;
+        Mon, 12 Feb 2024 10:50:02 -0800 (PST)
+X-Forwarded-Encrypted: i=1; AJvYcCXMe37f4x8CkBxc259TgyyFevQ4PbfKk2cgrpJtoMQJprs4FHbRuHdqk6qGveNFCAO7mz0AUXnTqouRTOea3ifPqPOxxpUmzXeaPH3jiPiyNJz1Mx8lH3KjypKRbfSPqGXLxVrp88B2i8rqXcuV8B1aMScc/mynw4vtGfEQHGom3QBgVcTOAgv8MOZkRwHJqrq+LrSdwgnwQOS6+NjK4Q9CF7JQRBoyH1uIADgcuDKqOFQbBgt2AFBCQtYxrlP2qdiUNQhmvtVmM8Ls9sNqplA+VFY2/Jr7lPDLRg0/j+yRbxIiQhrKlVqICWjYZtFch4oAzixg+8yDgSjJ0kxxqAZIsCCAXtcPUokAbrAiDLr88KJ5ezBmVCilzL/lvSeac36P39iKP1IPyKA2QPGxBn4bJEHZV/62IswtO6LBNTD1piuZKoc5WeIL0Vk/GR614iuwOAnvl5ctMVY21O0upAUut/kN/LGzLNlspsRGZIHTdc84elIkBZbrT9XRrxVqKHDgPVl/YGjeqeB2YzU+PQq9VjZf8jMal/HH52dngMfkUugHFBhCJdNTkGTu
 Received: from localhost.localdomain ([75.28.21.198])
-        by smtp.gmail.com with ESMTPSA id b7-20020a4a3407000000b0059d5360c62esm171939ooa.11.2024.02.12.10.50.00
+        by smtp.gmail.com with ESMTPSA id b7-20020a4a3407000000b0059d5360c62esm171939ooa.11.2024.02.12.10.50.01
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 12 Feb 2024 10:50:01 -0800 (PST)
+        Mon, 12 Feb 2024 10:50:02 -0800 (PST)
 From: Chris Morgan <macroalpha82@gmail.com>
 To: linux-rockchip@lists.infradead.org
 Cc: devicetree@vger.kernel.org,
@@ -87,9 +87,9 @@ Cc: devicetree@vger.kernel.org,
 	krzysztof.kozlowski+dt@linaro.org,
 	robh+dt@kernel.org,
 	Chris Morgan <macromorgan@hotmail.com>
-Subject: [PATCH 5/7] arm64: dts: rockchip: Update powkiddy rk2023 dtsi for RGB10MAX3
-Date: Mon, 12 Feb 2024 12:49:48 -0600
-Message-Id: <20240212184950.52210-6-macroalpha82@gmail.com>
+Subject: [PATCH 6/7] dt-bindings: arm: rockchip: Add Powkiddy RGB10MAX3
+Date: Mon, 12 Feb 2024 12:49:49 -0600
+Message-Id: <20240212184950.52210-7-macroalpha82@gmail.com>
 X-Mailer: git-send-email 2.34.1
 In-Reply-To: <20240212184950.52210-1-macroalpha82@gmail.com>
 References: <20240212184950.52210-1-macroalpha82@gmail.com>
@@ -103,109 +103,26 @@ Content-Transfer-Encoding: 8bit
 
 From: Chris Morgan <macromorgan@hotmail.com>
 
-Move the vdd_cpu regulator to the device specific dts. This is in
-preparation of adding the Powkiddy RGB10MAX3 device, which uses
-a different vendor for the CPU regulator at a different i2c address.
-
-Also add an alias to the bluetooth device so that we can change the
-compatible string for the RGB10MAX3. This device uses the same pinouts
-but a different bluetooth device.
+The Powkiddy RGB10MAX3 is a handheld gaming device made by Powkiddy and
+powered by the Rockchip RK3566 SoC.
 
 Signed-off-by: Chris Morgan <macromorgan@hotmail.com>
 ---
- .../dts/rockchip/rk3566-powkiddy-rgb30.dts     | 18 ++++++++++++++++++
- .../dts/rockchip/rk3566-powkiddy-rk2023.dts    | 18 ++++++++++++++++++
- .../dts/rockchip/rk3566-powkiddy-rk2023.dtsi   | 18 +-----------------
- 3 files changed, 37 insertions(+), 17 deletions(-)
+ Documentation/devicetree/bindings/arm/rockchip.yaml | 1 +
+ 1 file changed, 1 insertion(+)
 
-diff --git a/arch/arm64/boot/dts/rockchip/rk3566-powkiddy-rgb30.dts b/arch/arm64/boot/dts/rockchip/rk3566-powkiddy-rgb30.dts
-index 0ac64f043b80..1f567a14ac84 100644
---- a/arch/arm64/boot/dts/rockchip/rk3566-powkiddy-rgb30.dts
-+++ b/arch/arm64/boot/dts/rockchip/rk3566-powkiddy-rgb30.dts
-@@ -37,3 +37,21 @@ mipi_in_panel: endpoint {
- 		};
- 	};
- };
-+
-+&i2c0 {
-+	vdd_cpu: regulator@1c {
-+		compatible = "tcs,tcs4525";
-+		reg = <0x1c>;
-+		fcs,suspend-voltage-selector = <1>;
-+		regulator-always-on;
-+		regulator-boot-on;
-+		regulator-min-microvolt = <712500>;
-+		regulator-max-microvolt = <1390000>;
-+		regulator-name = "vdd_cpu";
-+		regulator-ramp-delay = <2300>;
-+		vin-supply = <&vcc_sys>;
-+		regulator-state-mem {
-+			regulator-off-in-suspend;
-+		};
-+	};
-+};
-diff --git a/arch/arm64/boot/dts/rockchip/rk3566-powkiddy-rk2023.dts b/arch/arm64/boot/dts/rockchip/rk3566-powkiddy-rk2023.dts
-index ba32d0793dca..bc9933d9e262 100644
---- a/arch/arm64/boot/dts/rockchip/rk3566-powkiddy-rk2023.dts
-+++ b/arch/arm64/boot/dts/rockchip/rk3566-powkiddy-rk2023.dts
-@@ -36,3 +36,21 @@ mipi_in_panel: endpoint {
- 		};
- 	};
- };
-+
-+&i2c0 {
-+	vdd_cpu: regulator@1c {
-+		compatible = "tcs,tcs4525";
-+		reg = <0x1c>;
-+		fcs,suspend-voltage-selector = <1>;
-+		regulator-always-on;
-+		regulator-boot-on;
-+		regulator-min-microvolt = <712500>;
-+		regulator-max-microvolt = <1390000>;
-+		regulator-name = "vdd_cpu";
-+		regulator-ramp-delay = <2300>;
-+		vin-supply = <&vcc_sys>;
-+		regulator-state-mem {
-+			regulator-off-in-suspend;
-+		};
-+	};
-+};
-diff --git a/arch/arm64/boot/dts/rockchip/rk3566-powkiddy-rk2023.dtsi b/arch/arm64/boot/dts/rockchip/rk3566-powkiddy-rk2023.dtsi
-index 0fa8f06f94cd..3ab751a01cb2 100644
---- a/arch/arm64/boot/dts/rockchip/rk3566-powkiddy-rk2023.dtsi
-+++ b/arch/arm64/boot/dts/rockchip/rk3566-powkiddy-rk2023.dtsi
-@@ -614,22 +614,6 @@ rk817_charger: charger {
- 			rockchip,sleep-filter-current-microamp = <100000>;
- 		};
- 	};
--
--	vdd_cpu: regulator@1c {
--		compatible = "tcs,tcs4525";
--		reg = <0x1c>;
--		fcs,suspend-voltage-selector = <1>;
--		regulator-always-on;
--		regulator-boot-on;
--		regulator-min-microvolt = <712500>;
--		regulator-max-microvolt = <1390000>;
--		regulator-name = "vdd_cpu";
--		regulator-ramp-delay = <2300>;
--		vin-supply = <&vcc_sys>;
--		regulator-state-mem {
--			regulator-off-in-suspend;
--		};
--	};
- };
- 
- &i2c5 {
-@@ -805,7 +789,7 @@ &uart1 {
- 	uart-has-rtscts;
- 	status = "okay";
- 
--	bluetooth {
-+	bluetooth: bluetooth {
- 		compatible = "realtek,rtl8821cs-bt", "realtek,rtl8723bs-bt";
- 		device-wake-gpios = <&gpio4 4 GPIO_ACTIVE_HIGH>;
- 		enable-gpios = <&gpio4 3 GPIO_ACTIVE_HIGH>;
+diff --git a/Documentation/devicetree/bindings/arm/rockchip.yaml b/Documentation/devicetree/bindings/arm/rockchip.yaml
+index 5cf5cbef2cf5..4ab0b92cf241 100644
+--- a/Documentation/devicetree/bindings/arm/rockchip.yaml
++++ b/Documentation/devicetree/bindings/arm/rockchip.yaml
+@@ -692,6 +692,7 @@ properties:
+       - description: Powkiddy RK3566 Handheld Gaming Console
+         items:
+           - enum:
++              - powkiddy,rgb10max3
+               - powkiddy,rgb30
+               - powkiddy,rk2023
+               - powkiddy,x55
 -- 
 2.34.1
 
