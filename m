@@ -1,138 +1,214 @@
-Return-Path: <devicetree+bounces-41000-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-41001-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 71832851DF2
-	for <lists+devicetree@lfdr.de>; Mon, 12 Feb 2024 20:34:58 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4BA2A851DFD
+	for <lists+devicetree@lfdr.de>; Mon, 12 Feb 2024 20:36:36 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 0E7FF1F21DFA
-	for <lists+devicetree@lfdr.de>; Mon, 12 Feb 2024 19:34:58 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 6F6291C20C10
+	for <lists+devicetree@lfdr.de>; Mon, 12 Feb 2024 19:36:35 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D3FB94655D;
-	Mon, 12 Feb 2024 19:34:51 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="LWeOW25H"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 21DFB46B8B;
+	Mon, 12 Feb 2024 19:36:30 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-yw1-f170.google.com (mail-yw1-f170.google.com [209.85.128.170])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A31F941208;
-	Mon, 12 Feb 2024 19:34:51 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 108864596E;
+	Mon, 12 Feb 2024 19:36:27 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.170
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1707766491; cv=none; b=qGIab9FCdV0ZSOIs6V5FoxrEQlzONJPMSd2W1n1GWED6/IeY9jXIRh2NkAbW0xJUQn2o/lNuzC2TJjkQMI24fQM+uxo2GzMQiUnVT/GqzEI5VBNlZ05m0IQhK/bqW+bK77lMkLh92dhSCBb9aTI8tf+LXFoix7PBxnnIiIhxqrQ=
+	t=1707766590; cv=none; b=tpemCI4aLOEzL0OGJj9ajD1ECcvGzv9nGXNpispKAz0lpyUzsxa9cAbIpiX1O4n+/DK45BLW78hyNqCUr5bd8gr8hgQLjYunYgoi4EGQ1fgIpO49+0eFGqg7zTZbOKLxrsIlFrw7rAdDJ1atDuhv1SYUe6I8XdpBqssrtUCXxjs=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1707766491; c=relaxed/simple;
-	bh=nF/W9im/q2B4aRyWcrrSClAFU50zTQuGi9M8O1D/k7A=;
-	h=Date:From:To:Cc:Subject:Message-ID:MIME-Version:Content-Type:
-	 Content-Disposition:In-Reply-To; b=r0P9OMPVAwDoq7bbapurWYUkHnDwOQmHD7vDc3LgPNoGrmSOsJteq91sgam3WCde6M5l3oWma/Cg4kqaEgIrAyDq9Emc63twpvoa0sRVvVSt3E1VINCinx7gPbtEvqhnadPkptVhKDuyfU2JXqgHIncz9XpsOxHrXZXXdHI2XLE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=LWeOW25H; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id E1FA7C433C7;
-	Mon, 12 Feb 2024 19:34:50 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1707766491;
-	bh=nF/W9im/q2B4aRyWcrrSClAFU50zTQuGi9M8O1D/k7A=;
-	h=Date:From:To:Cc:Subject:In-Reply-To:From;
-	b=LWeOW25H53HICdFI6UZvcSCaQycgQwTPoIOz/IgrUsF1fE3Pj9qAahLbda13Yb94a
-	 bB8FzXdPrcrf8qXXP4nFok5/Kq55TChFbJLVlUq81T2XQ7uKyeSm7tPeRCIygnNtLe
-	 upBZm/EJCsFqVMsMTvEFNKW4HHcqfvwGA89iCLG80xhYhn5glk37Essoz/N6iePCc3
-	 U/9QoTxXQ6eUpn3lzdZF5Ay2n/aSGv2fC2fhwYr2EtRD3XUrPwjbRijUd9yufw0VOB
-	 rfXiP6hAaDYPK5/Aiafdx/35SChK+TzShzaGph2W1KTTIeZITe+wZCdDp5HPHlPPkj
-	 UpvkyxG7Memxg==
-Date: Mon, 12 Feb 2024 13:34:49 -0600
-From: Bjorn Helgaas <helgaas@kernel.org>
-To: Johan Hovold <johan+linaro@kernel.org>
-Cc: Bjorn Andersson <andersson@kernel.org>,
-	Bjorn Helgaas <bhelgaas@google.com>,
-	Konrad Dybcio <konrad.dybcio@linaro.org>,
-	Lorenzo Pieralisi <lpieralisi@kernel.org>,
-	Krzysztof =?utf-8?Q?Wilczy=C5=84ski?= <kw@linux.com>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
-	linux-arm-msm@vger.kernel.org, linux-pci@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [RFC 08/10] PCI: qcom: Add support for disabling ASPM L0s in
- devicetree
-Message-ID: <20240212193449.GA1142362@bhelgaas>
+	s=arc-20240116; t=1707766590; c=relaxed/simple;
+	bh=MOOgzf4Y7qv2sC/nhPq7u4XY7HwhYErQ2/TDYSFQXlk=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=TOfhbnYLWzuzNwpiLdt7vd6jfrGce754pt2MHnMRvXEd+XX3UjvwNCbXL1FlBN+9KIp2kfnmwbLH0/VWLtarG96EN1Wjl8Tv2CVNC/8ZtEeLtAUFHd4G5UJGYmiOPQgt/wkBE/TiBFHBU7B/u1K4zmeK3B50s1miu5Q0gF1GMbM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org; spf=pass smtp.mailfrom=gmail.com; arc=none smtp.client-ip=209.85.128.170
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-yw1-f170.google.com with SMTP id 00721157ae682-6077a1d441eso4236237b3.1;
+        Mon, 12 Feb 2024 11:36:27 -0800 (PST)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1707766587; x=1708371387;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=jnYnsGGg4lon5Zm4HMkwsmj4AeAbvyhWhQ7hOsWi91Y=;
+        b=WLyWymLHxYPZiRMXOjQeNO8R/qSh9/MpWeikUFM/v+2AcY1ifcuOBCe3gj5erX9xwE
+         ErXy9xPAEufwu9C5FLPY0EckQNQExx0zdsfv65RLQVpYSaan3M6oIAQjzDkjPX4OO6dv
+         zXteL9tiyxquMpIn56RY+0m6ZJcvIKGftoscLuFAEQy+dNdnG4jVs7G19WfWKhtBtBRp
+         6ZDtV6C2GsbJxWRVEM13lCmPa87Xhl/EHki2vl/HXcPalBoIMhHwhchxR7xkMgNuRI/h
+         HaXdElKnJiJdP+XhyzLgrWSYjxvMmgRTlBp8X4uZrg/MO9KOIYcGO/dSC5UBgsFmL2n2
+         abrQ==
+X-Forwarded-Encrypted: i=1; AJvYcCVyBkZJcQuqaGlSXpMhfeEvoQajnDcBVpC0Cq8iwv9bLnOlxMHUv2QTcT51i0P1H+AVfoflfOcZlfmEblVAsOwrGmfhjIb2jPeGfueHvg1+o95lm7qi9lB9z05SuamvqTyIirC7NC8oXjzBEZYV
+X-Gm-Message-State: AOJu0Yyvh44RjODZnIaA9IhYUBM5mz0Bax3fe4Bzv5vDzNAdcrTHUjXK
+	uX1FURM+Q8I59lRQ5qFy4lQXGkUNMPk9o4XRjIhFyjfcXNB4Jq0OAJl9QROs4lY=
+X-Google-Smtp-Source: AGHT+IHuTg6sg9jmuVBdw23D4mbioYW5UJdXfu5Yoz6pmioCK4oiaEOojsxWPF54efbm/LDxt6GxMA==
+X-Received: by 2002:a81:6c41:0:b0:604:a081:c198 with SMTP id h62-20020a816c41000000b00604a081c198mr4627755ywc.42.1707766585203;
+        Mon, 12 Feb 2024 11:36:25 -0800 (PST)
+X-Forwarded-Encrypted: i=1; AJvYcCUBfYRGGWsjUKrSQ1UUD4+5G9aL4K8lxvI3sDRkGXptHM0M2AHyZO1NVg1sGTmKG/5ubLWManhw6BjhQD+usKGjZI9u+fv9DF8kNtdWW5CxEEFTpN7ec89B5l7BY8qQcU1nKYX67o6eXRuaOp9S
+Received: from mail-yw1-f175.google.com (mail-yw1-f175.google.com. [209.85.128.175])
+        by smtp.gmail.com with ESMTPSA id t4-20020a0dd104000000b00604863dc35csm1309663ywd.111.2024.02.12.11.36.24
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 12 Feb 2024 11:36:24 -0800 (PST)
+Received: by mail-yw1-f175.google.com with SMTP id 00721157ae682-60779014458so5212717b3.0;
+        Mon, 12 Feb 2024 11:36:24 -0800 (PST)
+X-Forwarded-Encrypted: i=1; AJvYcCV+sMBTK9dZb6c6yEh2KeXXrjWd2KS7+D2W+bOYv45H6LaEjTx5Q4/0PyzdUkJUmd6WPlitDpk+lTgAjrW4TtuMiQC/jHScPSCOXoT/ijqxJCOgzk23sMiB1KkCvev3LHUywH6NpwytVV86epx8
+X-Received: by 2002:a05:6902:1b93:b0:dc6:bcd5:9503 with SMTP id
+ ei19-20020a0569021b9300b00dc6bcd59503mr5175877ybb.48.1707766584469; Mon, 12
+ Feb 2024 11:36:24 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20240212165043.26961-9-johan+linaro@kernel.org>
+References: <20240127121937.2372098-1-niklas.soderlund+renesas@ragnatech.se>
+In-Reply-To: <20240127121937.2372098-1-niklas.soderlund+renesas@ragnatech.se>
+From: Geert Uytterhoeven <geert@linux-m68k.org>
+Date: Mon, 12 Feb 2024 20:36:12 +0100
+X-Gmail-Original-Message-ID: <CAMuHMdUJ0U9qnxtdJmVUJQqRhbmu0rmOxpyDZ8Lp=+hv=Oe4Og@mail.gmail.com>
+Message-ID: <CAMuHMdUJ0U9qnxtdJmVUJQqRhbmu0rmOxpyDZ8Lp=+hv=Oe4Og@mail.gmail.com>
+Subject: Re: [PATCH v2] dt-bindings: renesas: Document preferred compatible naming
+To: =?UTF-8?Q?Niklas_S=C3=B6derlund?= <niklas.soderlund+renesas@ragnatech.se>
+Cc: Rob Herring <robh+dt@kernel.org>, 
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, 
+	devicetree@vger.kernel.org, linux-renesas-soc@vger.kernel.org, 
+	Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-On Mon, Feb 12, 2024 at 05:50:41PM +0100, Johan Hovold wrote:
-> A recent commit started enabling ASPM unconditionally when the hardware
-> claims to support it. This triggers Correctable Errors for some PCIe
-> devices on machines like the Lenovo ThinkPad X13s, which could indicate
-> an incomplete driver ASPM implementation or that the hardware does in
-> fact not support L0s.
+Hi Niklas,
 
-I think it would be useful for debugging purposes to identify the
-specific commit.  Maybe it's 9f4f3dfad8cf ("PCI: qcom: Enable ASPM for
-platforms supporting 1.9.0 ops") ?
-
-> Add support for disabling ASPM L0s in the devicetree when it is not
-> supported on a particular machine and controller.
-> 
-> Note that only the 1.9.0 ops enable ASPM currently.
-> 
-> Fixes: a9a023c05697 ("PCI: qcom: Add support for disabling ASPM L0s in devicetree")
-
-I don't see this SHA1 in the PCI tree; is it a stable SHA1 from
-somewhere else?
-
-> Signed-off-by: Johan Hovold <johan+linaro@kernel.org>
+On Sat, Jan 27, 2024 at 1:20=E2=80=AFPM Niklas S=C3=B6derlund
+<niklas.soderlund+renesas@ragnatech.se> wrote:
+> Compatibles can come in two formats. Either "vendor,ip-soc" or
+> "vendor,soc-ip". Add a DT schema file documenting Renesas preferred
+> policy and enforcing it for all new compatibles, except few existing
+> patterns.
+>
+> Suggested-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+> Signed-off-by: Niklas S=C3=B6derlund <niklas.soderlund+renesas@ragnatech.=
+se>
 > ---
->  drivers/pci/controller/dwc/pcie-qcom.c | 20 ++++++++++++++++++++
->  1 file changed, 20 insertions(+)
-> 
-> diff --git a/drivers/pci/controller/dwc/pcie-qcom.c b/drivers/pci/controller/dwc/pcie-qcom.c
-> index 2455decc574a..071741b81644 100644
-> --- a/drivers/pci/controller/dwc/pcie-qcom.c
-> +++ b/drivers/pci/controller/dwc/pcie-qcom.c
-> @@ -273,6 +273,25 @@ static int qcom_pcie_start_link(struct dw_pcie *pci)
->  	return 0;
->  }
->  
-> +static void qcom_pcie_clear_aspm_l0s(struct dw_pcie *pci)
-> +{
-> +	u16 offset;
-> +	u32 val;
+> * Changes since v1
+> - Split the "SoC agnostic compatibles" section into two to make it's
+>   intent clearer.
+> - Improved the documentation for each group of compatibles.
+> - Reduced the number of regexp to create a larger target area. As
+>   suggested by Krzysztof the goal is not to validate each SoC name but
+>   check for the correct order of SoC-IP.
+
+Thanks for the update!
+
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/soc/renesas/renesas-soc.yaml
+> @@ -0,0 +1,135 @@
+> +# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/soc/renesas/renesas-soc.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
 > +
-> +	if (!of_property_read_bool(pci->dev->of_node, "aspm-no-l0s"))
-> +		return;
+> +title: Renesas SoC compatibles naming convention
 > +
-> +	offset = dw_pcie_find_capability(pci, PCI_CAP_ID_EXP);
+> +maintainers:
+> +  - Geert Uytterhoeven <geert+renesas@glider.be>
+> +  - Niklas S=C3=B6derlund <niklas.soderlund@ragnatech.se>
 > +
-> +	dw_pcie_dbi_ro_wr_en(pci);
+> +description: |
+> +  Guidelines for new compatibles for SoC blocks/components.
+> +  When adding new compatibles in new bindings, use the format::
+> +    renesas,SoC-IP
+
+or renesas,Family-IP?
+
 > +
-> +	val = readl(pci->dbi_base + offset + PCI_EXP_LNKCAP);
-> +	val &= ~PCI_EXP_LNKCAP_ASPM_L0S;
-> +	writel(val, pci->dbi_base + offset + PCI_EXP_LNKCAP);
+> +  For example::
+> +   renesas,r8a77965-csi2
 > +
-> +	dw_pcie_dbi_ro_wr_dis(pci);
-> +}
+> +  When adding new compatibles to existing bindings, use the format in th=
+e
+> +  existing binding, even if it contradicts the above.
 > +
->  static void qcom_pcie_clear_hpc(struct dw_pcie *pci)
->  {
->  	u16 offset = dw_pcie_find_capability(pci, PCI_CAP_ID_EXP);
-> @@ -962,6 +981,7 @@ static int qcom_pcie_init_2_7_0(struct qcom_pcie *pcie)
->  
->  static int qcom_pcie_post_init_2_7_0(struct qcom_pcie *pcie)
->  {
-> +	qcom_pcie_clear_aspm_l0s(pcie->pci);
->  	qcom_pcie_clear_hpc(pcie->pci);
->  
->  	return 0;
-> -- 
-> 2.43.0
-> 
+> +select:
+> +  properties:
+> +    compatible:
+> +      pattern: "^renesas,.*-.*$"
+> +  required:
+> +    - compatible
+> +
+> +properties:
+> +  compatible:
+> +    oneOf:
+> +      # Preferred naming style for compatibles of SoC components
+> +      - pattern: "^renesas,emev2-[a-z0-9-]+$"
+> +      - pattern: "^renesas,r(7s|8a|9a)[a-z0-9]+-[a-z0-9-]+$"
+> +      - pattern: "^renesas,rcar-[a-z0-9-]+$"
+> +      - pattern: "^renesas,rz[a-z0-9]*-[a-z0-9-]+$"
+> +      - pattern: "^renesas,sh-[a-z0-9-]+$"
+> +      - pattern: "^renesas,sh7[a-z0-9]+-[a-z0-9-]+$"
+
+I guess it's not worth adding rmobile and shmobile prefixes?
+
+> +      # Fixed legacy compatibles
+> +      #
+> +      # List cannot grow with new bindings.
+> +      - enum:
+> +          - renesas,bsc-r8a73a4
+> +          - renesas,bsc-sh73a0
+> +          - renesas,dbsc-r8a73a4
+> +          - renesas,dbsc3-r8a7740
+> +          - renesas,em-gio
+> +          - renesas,em-sti
+> +          - renesas,em-uart
+
+Perhaps combine these three: "renesas,em-(gpio|sti|usrt)"?
+
+> +          - renesas,fsi2-r8a7740
+> +          - renesas,fsi2-sh73a0
+
+Likewise
+
+> +          - renesas,hspi-r8a7778
+> +          - renesas,hspi-r8a7779
+
+Etc. ;-)
+
+Now, how do I trigger violations?
+
+I added the following to a binding file:
+
+          - enum:
+              - renesas,bogus-r8a7778
+              - renesas,bogus-r8a7779
+          - const: renesas,bogus
+
+but nothing happened with "make dt_binding_check".
+
+I added the following to a DTS file:
+
+        compatible =3D "renesas,bogus-r8a7778", "renesas,bogus";
+
+again, nothing happened with "make dtbs_check".
+
+What am I missing?
+Thanks!
+
+Gr{oetje,eeting}s,
+
+                        Geert
+
+--
+Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k=
+.org
+
+In personal conversations with technical people, I call myself a hacker. Bu=
+t
+when I'm talking to journalists I just say "programmer" or something like t=
+hat.
+                                -- Linus Torvalds
 
