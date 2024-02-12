@@ -1,196 +1,189 @@
-Return-Path: <devicetree+bounces-40965-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-40956-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 474BF851C5C
-	for <lists+devicetree@lfdr.de>; Mon, 12 Feb 2024 19:01:35 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 0CE1D851C60
+	for <lists+devicetree@lfdr.de>; Mon, 12 Feb 2024 19:02:19 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 4E2DFB2B5CA
-	for <lists+devicetree@lfdr.de>; Mon, 12 Feb 2024 17:58:59 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 201D6B280CA
+	for <lists+devicetree@lfdr.de>; Mon, 12 Feb 2024 17:56:13 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 273C545958;
-	Mon, 12 Feb 2024 17:55:08 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 396693FE5B;
+	Mon, 12 Feb 2024 17:53:59 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=freebox-fr.20230601.gappssmtp.com header.i=@freebox-fr.20230601.gappssmtp.com header.b="N+2SqyJI"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="V4obhhep"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f53.google.com (mail-wm1-f53.google.com [209.85.128.53])
+Received: from mail-ua1-f45.google.com (mail-ua1-f45.google.com [209.85.222.45])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2C0043F9E9
-	for <devicetree@vger.kernel.org>; Mon, 12 Feb 2024 17:55:06 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.53
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 84F6D3FE52;
+	Mon, 12 Feb 2024 17:53:57 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.222.45
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1707760508; cv=none; b=aUlBInI+AdL0oQgsKHnKJ7p9IGjXJd0m5Uo+4ER6QJWECpxEJkWDgKpimUsPIC5U3UEJq5jzPf+hlSQwZSDL9pcD/ceEuDZxR/2SM67dMCCR/MRYcu0LqL8Y2ZmaCtFvkeSlC/LOD8l4FQ5EZAJFpYtVsoySz+z1ucO/zLqavTw=
+	t=1707760439; cv=none; b=tbMEe75R7AsG0hQon6nNQxuDcSCOHGOnkMXIvfolTLhwQQADVjJw5llCXRYQimIs11pANjkIemB9V1igxWEkZtxz6R9IBvjjxd3ka32H7khULpLQEZ3wGwUt71tLaA+/niBxokYaI4GMOuNBS2nYS56nVUnJ4rS+IL4RZqeWHMc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1707760508; c=relaxed/simple;
-	bh=PYTqQHAs5im1hxSum6ERuJdRTako0FO4iOUdFSdW2s8=;
-	h=Message-ID:Date:MIME-Version:Subject:From:To:Cc:References:
-	 In-Reply-To:Content-Type; b=bG2GrV3JEPcBogReX0mEnJovrKQkTN7uHw1eHkS7k/S6ySDZK0qqy/VPuV4lzoJ2cFMKhbohtD6WaIpKOz5MSncw5SsOcz5q2ELj2MvVfnD7P4/Wuk1cNpjDvgn3b3212zAqy57SvdBTKNWqqQY9g2SfUJ6Lr99igkHa8nD0ud8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=freebox.fr; spf=pass smtp.mailfrom=freebox.fr; dkim=pass (2048-bit key) header.d=freebox-fr.20230601.gappssmtp.com header.i=@freebox-fr.20230601.gappssmtp.com header.b=N+2SqyJI; arc=none smtp.client-ip=209.85.128.53
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=freebox.fr
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=freebox.fr
-Received: by mail-wm1-f53.google.com with SMTP id 5b1f17b1804b1-4116650a345so5335885e9.1
-        for <devicetree@vger.kernel.org>; Mon, 12 Feb 2024 09:55:05 -0800 (PST)
+	s=arc-20240116; t=1707760439; c=relaxed/simple;
+	bh=F6SsN4ngSTP5carvI6Q6KddAfM3OoB7+2wTWiu+HrVw=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=E1ztV79RrejTbP8lvGEHOauUyvRFHUHy7LxZKaUJX4Mpek4oIawDi1nfs+yxsYcWpWX03WyMcy1w5CKW5IJCiNIGxaT9S4abOXa5SOM0NoS7eCmu+tSRCZcgmTC/9zPwjmcE3NuQ40o1PabVg6pBuGmbjlCWoZFi/vQm4c/y0Lw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=V4obhhep; arc=none smtp.client-ip=209.85.222.45
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-ua1-f45.google.com with SMTP id a1e0cc1a2514c-7d5a6b1dd60so1476358241.3;
+        Mon, 12 Feb 2024 09:53:57 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=freebox-fr.20230601.gappssmtp.com; s=20230601; t=1707760504; x=1708365304; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:references:cc:to:from
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=H2zOp39JdTBdqMs5UBO9EPz5yFfp8eAgceufC0MfE6Y=;
-        b=N+2SqyJIBgIBYGGNcPk7CEHTwSKaaENLYOlZxOlBeyWDm0WFaPTgYdYnSdeZyS7LHD
-         RifEoTIC+hgpyBKPBpw974Em9SZlY2SoWTwIsa3V0P6AGeZZ5FKVdhwTZpj2iBHqad5z
-         K4WVsAo1Devt5ljiKIi9vPtnDEQA1sk/8kja/FZoMxlD1a164i1ZU3fEdK0hTiv3A/YL
-         CB2cpS4Wn5Bdchg5QPTbOXpGtNJ/w/grrm+injmoZv636kiY3wrSC3wL7exnRTRp9vNw
-         dtbr5CEV+D0Dzvnh7TaH2hdLVEDE5SVxQXYaQZIipAn2MlglGTsuCLu0KujV7xf2YBDs
-         TKpA==
+        d=gmail.com; s=20230601; t=1707760436; x=1708365236; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=lNx4A3iHZp5oxyNcXN+og4JNdWFeIzGNClAgiRIvrec=;
+        b=V4obhhepuuZE7V8nJsKyGD5mmEEbpFjksc5xcYB+/Ds1ulzJZ3tA1t0t4YrfP7n19L
+         izepzRSZmZ0424nWGhTa+efmzt4CxihUmN11jUPYqjco9fF4W59Is0Z0CYsLkbixC8Pc
+         NtqVEt8pTRgBuR8ZPmZk22RU75bsVjuIznDr4qOWr0KzXAcOblMiznZZsu+uzL7LX5hQ
+         XxcNI71BYKmogIHkJVZ85PrLVHaVv3Z5vwyEQu0fp/8h5IR/nJuLL6LDwnVq1mwy72et
+         K2gmYVQYKL1od4/dDVeUfFsTWZiSdRsV8OcqTEcPh4/R9uo+ZN1jXfHjO8u6dmb6JbQx
+         /kEQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1707760504; x=1708365304;
-        h=content-transfer-encoding:in-reply-to:references:cc:to:from
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=H2zOp39JdTBdqMs5UBO9EPz5yFfp8eAgceufC0MfE6Y=;
-        b=IAo3+cjplJvWv3etdFM7AuSvm/zShB3KkDisZk2dRqbbo7l1+OOv4zCtsb2cf0v/G4
-         5WY2W1J+iUn/KDE0lt00e4cib9rO2s6xDU4PXqTax8iuxRxLs6wh4yaPd6BiYTgfCGBk
-         JiYdxms/lAgUUZspSUT5DV+S9HSwj7vQw3hIk6RzUrGHwmdTy2jO1LzCwkooi583ADcc
-         08kjhMQRcFmK2djCw/ln992AMukMcy8InjpqCPvYLwwmsNmHITOMZ+zuBpEK7pH67chz
-         6t4lMUI8pYESDOWRKbgFlMERQ0qiJAvcbb4SWCtDK2a7mZmlV3q953wqOqdDHqT9Arfv
-         MKgg==
-X-Gm-Message-State: AOJu0Yy4/P4HSs6rbqGoZ5EbtoyQ+fqRwMwnZ3G3axgux+Rd8N3Ye0mG
-	gU8jot3ul/+Ub9vIZCV7QMUELVbKVCofl5XBvmkoHGhIPEUqzpiU4Lyva4iJBts=
-X-Google-Smtp-Source: AGHT+IFcQHkhbij6vz+6yEgCBbgPycZJ0MGVMp8xLQK1W01QI+pymKu0X1w9vlj4UDsihgAwWC0R8g==
-X-Received: by 2002:a5d:634e:0:b0:33b:3a90:13ea with SMTP id b14-20020a5d634e000000b0033b3a9013eamr5719024wrw.4.1707760504579;
-        Mon, 12 Feb 2024 09:55:04 -0800 (PST)
-X-Forwarded-Encrypted: i=1; AJvYcCUMgnBwLznNVA7Ie3YoygxcsRbmBBl7Yy6HETG0NMCMylb0cp2POpo75roLyUF8lpkMU+wRgVeQoZGg5O3Ifr1m3BY1vUgeMAUTH3oENwOcN1Zw74rynReZf2FkC6tU8AHNyxrMsLyJbXKG0VRLAjxAZDuH6UQ6em/Qn1NtFb3tjKsmFyiil3+iwxTvPIG1R4Aiy95eY+AelDfoYuNyCTn4iJA8je3p8fv+UBsRhzDaVxDw1/nBVwqEYxTSeUKr5+1MA7WV7+oG/b+SY40rNO3GqApGjE2prOn0vdXHO2HId8MWKmvjtw97zV9uWkf/SeuWOrqnTVXn7r37RRyxSmKplaCVutfc9yE9pBCXHDxNSJ8=
-Received: from ?IPV6:2a02:8428:2a4:1a01:8c00:686f:ba67:b4c9? ([2a02:8428:2a4:1a01:8c00:686f:ba67:b4c9])
-        by smtp.gmail.com with ESMTPSA id z7-20020adfe547000000b0033b55186901sm7380912wrm.94.2024.02.12.09.55.04
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 12 Feb 2024 09:55:04 -0800 (PST)
-Message-ID: <5ac4741d-766d-4b6d-95ac-669474d05e6a@freebox.fr>
-Date: Mon, 12 Feb 2024 18:53:01 +0100
+        d=1e100.net; s=20230601; t=1707760436; x=1708365236;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=lNx4A3iHZp5oxyNcXN+og4JNdWFeIzGNClAgiRIvrec=;
+        b=Ou/Q4ivcc7w/+Qk54C7aM7DbJ4RSkOgjlKkARRnqdJB3hsuWDuD2deC/f4ff/psOr1
+         iG15y+Cwqr8RO+KSbr18lXWasuwG8FgYhaW/QLwIjCKVkUlCsTyTrPD5MAxOSEjx5fzt
+         o17eEKuheDb0ESh5/Oov+4/OXOkdlKPmdoTi9SZCtxRW5JQOfkG1PhPZchauNFAw2SMp
+         QBGPrZbuQ3jLpmgtNZMPVkpTgGGKA4iqogcdXsXhKq8zlGdpluiqQCD0bLmMNPTSnogr
+         mG6tLxNyfsh9tLt0H/x4qyfc0pgewNjPGEm4xehqIS11qkbX6hdqb81vBbgn9D9ftKIc
+         0tpw==
+X-Forwarded-Encrypted: i=1; AJvYcCUwm9H1VN4FToiRkzMXv9sBSfBx17FPLjgsdB4l5RqmpqmZBO89LBejLRuwmMtkI0S6HJZZ6lrPL4C2bqUs32QR41E94oXdSmFtpudsNBOXXrRNoVkazmNgWnoqGGIt8S6rE957COImVPzybqXSUMokG8KHTlVT05Jj/wS55TuQfpWI2iPMu5W7PnUV
+X-Gm-Message-State: AOJu0Yymqc4SJ4FScxD5A71d6UByt7zUrf0/Vg+WmB2+FhURDOvCVnWj
+	QAeicyC4Vv+3qGnSriPcrUKFv7R7GcHUh8K8GmGcQ6jIcJpAAiGZVWqUvDKSXNZU6J3K1uz9lYw
+	lj09OB+jptGUEnObB9/ShBG5Q+8g=
+X-Google-Smtp-Source: AGHT+IGa+SWVFDlNa61GPWR/EEMj0AtnZiRgMFDtCjXrUmtsngHq0jI8TRLNTwoBRezWlo1H819EZqhtEe6J7M7PCCU=
+X-Received: by 2002:a1f:6642:0:b0:4c0:2b39:dc86 with SMTP id
+ a63-20020a1f6642000000b004c02b39dc86mr4582286vkc.5.1707760435327; Mon, 12 Feb
+ 2024 09:53:55 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: [PATCH v2 4/4] arm64: dts: amlogic: add fbx8am DT overlays
-Content-Language: en-US
-From: Marc Gonzalez <mgonzalez@freebox.fr>
-To: AML <linux-amlogic@lists.infradead.org>, DT <devicetree@vger.kernel.org>
-Cc: Neil Armstrong <neil.armstrong@linaro.org>,
- Kevin Hilman <khilman@baylibre.com>, Jerome Brunet <jbrunet@baylibre.com>,
- Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
- Rob Herring <robh+dt@kernel.org>,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Conor Dooley <conor+dt@kernel.org>,
- Pierre-Hugues Husson <phhusson@freebox.fr>
-References: <77edaf7e-aeb5-4fc0-8b69-85dcddfd5a58@freebox.fr>
-In-Reply-To: <77edaf7e-aeb5-4fc0-8b69-85dcddfd5a58@freebox.fr>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+References: <20240205144421.51195-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
+ <20240205144421.51195-2-prabhakar.mahadev-lad.rj@bp.renesas.com> <CAMuHMdW0xWgA+9rtDcRUgoS1HYvd+mukvK25MHbzHpo=1uGq0g@mail.gmail.com>
+In-Reply-To: <CAMuHMdW0xWgA+9rtDcRUgoS1HYvd+mukvK25MHbzHpo=1uGq0g@mail.gmail.com>
+From: "Lad, Prabhakar" <prabhakar.csengg@gmail.com>
+Date: Mon, 12 Feb 2024 17:53:28 +0000
+Message-ID: <CA+V-a8t2c30g8vDeACagqPTiNPq4oVUT2nFXaSD=AoDCyKXK7Q@mail.gmail.com>
+Subject: Re: [PATCH v2 1/3] dt-bindings: interrupt-controller:
+ renesas,rzg2l-irqc: Update interrupts
+To: Geert Uytterhoeven <geert@linux-m68k.org>
+Cc: Thomas Gleixner <tglx@linutronix.de>, Rob Herring <robh+dt@kernel.org>, 
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Magnus Damm <magnus.damm@gmail.com>, devicetree@vger.kernel.org, 
+	linux-renesas-soc@vger.kernel.org, linux-kernel@vger.kernel.org, 
+	Biju Das <biju.das.jz@bp.renesas.com>, 
+	Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>, 
+	Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-From: Pierre-Hugues Husson <phhusson@freebox.fr>
+Hi Geert,
 
-Add support for two variants of the fbx8am board.
+Thank you for the review.
 
-Signed-off-by: Pierre-Hugues Husson <phhusson@freebox.fr>
-Signed-off-by: Marc Gonzalez <mgonzalez@freebox.fr>
----
-  arch/arm64/boot/dts/amlogic/Makefile                       |  7 +++++++
-  arch/arm64/boot/dts/amlogic/meson-g12a-fbx8am-brcm.dtso    | 35 ++++++++++++++++++++++++++++++++++
-  arch/arm64/boot/dts/amlogic/meson-g12a-fbx8am-realtek.dtso | 25 ++++++++++++++++++++++++
-  3 files changed, 67 insertions(+)
+On Mon, Feb 12, 2024 at 4:25=E2=80=AFPM Geert Uytterhoeven <geert@linux-m68=
+k.org> wrote:
+>
+> Hi Prabhakar,
+>
+> On Mon, Feb 5, 2024 at 3:44=E2=80=AFPM Prabhakar <prabhakar.csengg@gmail.=
+com> wrote:
+> > From: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+> >
+> > All the RZ/G2L and alike SoC's (listed below) have ECCRAM0/1 interrupts
+> > supported by the IRQC block, reflect the same in DT binding doc.
+> >
+> > - R9A07G043U              - RZ/G2UL
+> > - R9A07G044L/R9A07G044LC  - RZ/{G2L,G2LC}
+> > - R9A07G054               - RZ/V2L
+> > - R9A08G045               - RZ/G3S
+> >
+> > For the RZ/G3S SoC ("R9A08G045") ECCRAM0/1 interrupts combined into sin=
+gle
+> > interrupt so we just use the below to represent them:
+> > - ec7tie1-0
+> > - ec7tie2-0
+> > - ec7tiovf-0
+> >
+> > Previously, it was assumed that BUS-error and ECCRAM0/1 error interrupt=
+s
+> > were only supported by RZ/G2UL ("R9A07G043U") and RZ/G3S ("R9A08G045")
+> > SoCs. However, in reality, all RZ/G2L and similar SoCs (listed above)
+> > support these interrupts. Therefore, mark the 'interrupt-names' propert=
+y
+> > as required for all the SoCs and update the example node in the binding
+> > document.
+> >
+> > Fixes: 96fed779d3d4 ("dt-bindings: interrupt-controller: Add Renesas RZ=
+/G2L Interrupt Controller")
+> > Fixes: 1cf0697a24ef ("dt-bindings: interrupt-controller: renesas,rzg2l-=
+irqc: Document RZ/G3S")
+> > Signed-off-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+>
+> Thanks for your patch!
+>
+> Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
+>
+> > --- a/Documentation/devicetree/bindings/interrupt-controller/renesas,rz=
+g2l-irqc.yaml
+> > +++ b/Documentation/devicetree/bindings/interrupt-controller/renesas,rz=
+g2l-irqc.yaml
+> > @@ -88,9 +88,15 @@ properties:
+> >        - description: GPIO interrupt, TINT30
+> >        - description: GPIO interrupt, TINT31
+> >        - description: Bus error interrupt
+> > +      - description: ECCRAM0 1bit error interrupt
+> > +      - description: ECCRAM0 2bit error interrupt
+> > +      - description: ECCRAM0 error overflow interrupt
+> > +      - description: ECCRAM1 1bit error interrupt
+> > +      - description: ECCRAM1 2bit error interrupt
+> > +      - description: ECCRAM1 error overflow interrupt
+> >
+> >    interrupt-names:
+> > -    minItems: 41
+> > +    minItems: 45
+> >      items:
+> >        - const: nmi
+> >        - const: irq0
+> > @@ -134,6 +140,12 @@ properties:
+> >        - const: tint30
+> >        - const: tint31
+> >        - const: bus-err
+> > +      - const: ec7tie1-0   # For RZ/G3S SoC ("R9A08G045") ECCRAM0/1 in=
+terrupts are combined into single interrupt.
+> > +      - const: ec7tie2-0   # For RZ/G3S SoC ("R9A08G045") ECCRAM0/1 in=
+terrupts are combined into single interrupt.
+> > +      - const: ec7tiovf-0  # For RZ/G3S SoC ("R9A08G045") ECCRAM0/1 in=
+terrupts are combined into single interrupt.
+>
+> These lines are indeed a bit long, and might become longer when newer
+> SoCs are introduced.
+>
+Agreed.
 
-diff --git a/arch/arm64/boot/dts/amlogic/Makefile b/arch/arm64/boot/dts/amlogic/Makefile
-index e9baa2cf02273..2fd7c7a18126f 100644
---- a/arch/arm64/boot/dts/amlogic/Makefile
-+++ b/arch/arm64/boot/dts/amlogic/Makefile
-@@ -81,3 +81,10 @@ dtb-$(CONFIG_ARCH_MESON) += meson-sm1-odroid-hc4.dtb
-  dtb-$(CONFIG_ARCH_MESON) += meson-sm1-sei610.dtb
-  dtb-$(CONFIG_ARCH_MESON) += meson-sm1-x96-air-gbit.dtb
-  dtb-$(CONFIG_ARCH_MESON) += meson-sm1-x96-air.dtb
-+
-+# Overlays
-+dtb-$(CONFIG_ARCH_MESON) += meson-g12a-fbx8am-brcm.dtbo
-+dtb-$(CONFIG_ARCH_MESON) += meson-g12a-fbx8am-realtek.dtbo
-+
-+# Enable support for DT overlays
-+DTC_FLAGS_meson-g12a-fbx8am += -@
-diff --git a/arch/arm64/boot/dts/amlogic/meson-g12a-fbx8am-brcm.dtso b/arch/arm64/boot/dts/amlogic/meson-g12a-fbx8am-brcm.dtso
-new file mode 100644
-index 0000000000000..ed79809b15859
---- /dev/null
-+++ b/arch/arm64/boot/dts/amlogic/meson-g12a-fbx8am-brcm.dtso
-@@ -0,0 +1,35 @@
-+// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
-+// Copyright (c) 2024 Freebox SAS
-+
-+/dts-v1/;
-+/plugin/;
-+
-+#include <dt-bindings/gpio/gpio.h>
-+#include <dt-bindings/gpio/meson-g12a-gpio.h>
-+
-+/ {
-+	compatible = "freebox,fbx8am-brcm", "freebox,fbx8am", "amlogic,g12a";
-+};
-+
-+&uart_A {
-+	bluetooth {
-+		compatible = "brcm,bcm43438-bt";
-+		shutdown-gpios = <&gpio GPIOX_17 GPIO_ACTIVE_HIGH>;
-+		max-speed = <2000000>;
-+		clocks = <&wifi32k>;
-+		clock-names = "lpo";
-+		vbat-supply = <&vddao_3v3>;
-+		vddio-supply = <&vddio_ao1v8>;
-+	};
-+};
-+
-+&sd_emmc_a {
-+	/* Per mmc-controller.yaml */
-+	#address-cells = <1>;
-+	#size-cells = <0>;
-+	/* NB: may be either AP6398S or AP6398SR3 wifi module */
-+	brcmf: wifi@1 {
-+		reg = <1>;
-+		compatible = "brcm,bcm4329-fmac";
-+	};
-+};
-diff --git a/arch/arm64/boot/dts/amlogic/meson-g12a-fbx8am-realtek.dtso b/arch/arm64/boot/dts/amlogic/meson-g12a-fbx8am-realtek.dtso
-new file mode 100644
-index 0000000000000..5da88fb94fb98
---- /dev/null
-+++ b/arch/arm64/boot/dts/amlogic/meson-g12a-fbx8am-realtek.dtso
-@@ -0,0 +1,25 @@
-+// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
-+// Copyright (c) 2024 Freebox SAS
-+
-+/dts-v1/;
-+/plugin/;
-+
-+#include <dt-bindings/gpio/gpio.h>
-+#include <dt-bindings/gpio/meson-g12a-gpio.h>
-+
-+/ {
-+	compatible = "freebox,fbx8am-realtek", "freebox,fbx8am", "amlogic,g12a";
-+};
-+
-+&uart_A {
-+	bluetooth {
-+		compatible = "realtek,rtl8822cs-bt";
-+		enable-gpios = <&gpio GPIOX_17 GPIO_ACTIVE_HIGH>;
-+		host-wake-gpios = <&gpio GPIOX_19 GPIO_ACTIVE_HIGH>;
-+		device-wake-gpios = <&gpio GPIOX_18 GPIO_ACTIVE_HIGH>;
-+	};
-+};
-+
-+&sd_emmc_a {
-+	/* No explicit compatible for rtl8822cs sdio */
-+};
--- 
-2.34.1
+> What about changing the descriptions instead, like
+>
+>     -      - description: ECCRAM0 1bit error interrupt
+>     +      - description: ECCRAM0 or combined ECCRAM0/1 1bit error interr=
+upt
+>
+> ?
+>
+Agreed, sounds good. I'll just resend this patch fixing this.
+
+Cheers,
+Prabhakar
 
