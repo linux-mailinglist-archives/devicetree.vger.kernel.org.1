@@ -1,216 +1,126 @@
-Return-Path: <devicetree+bounces-40562-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-40563-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 03DD5850C7E
-	for <lists+devicetree@lfdr.de>; Mon, 12 Feb 2024 01:49:09 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2FE9B850CFC
+	for <lists+devicetree@lfdr.de>; Mon, 12 Feb 2024 04:01:42 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id B4A7A2827BC
-	for <lists+devicetree@lfdr.de>; Mon, 12 Feb 2024 00:49:07 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id DAD041F245B8
+	for <lists+devicetree@lfdr.de>; Mon, 12 Feb 2024 03:01:41 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2DD66A47;
-	Mon, 12 Feb 2024 00:49:06 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 658AB1841;
+	Mon, 12 Feb 2024 03:01:36 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="DaBLuR2q"
 X-Original-To: devicetree@vger.kernel.org
-Received: from pidgin.makrotopia.org (pidgin.makrotopia.org [185.142.180.65])
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D41037E9;
-	Mon, 12 Feb 2024 00:49:03 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.142.180.65
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7A4073C0B;
+	Mon, 12 Feb 2024 03:01:34 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1707698946; cv=none; b=kzvPrMop/UrTnf5dUky+/bNCGy9o1dmimyeUnPwt7Ky/23OTgc67BqiEfNZ+PmDDb4JXOoDdNKlYCNg+fTcY2j7oMIZPf6EDbpsjz8d0Y1OEq6EohfaPZj1ZkXApEAKXydVPkd9Tqg1t97p6haHV/BSONrZmqoytRfm2e2uWrfA=
+	t=1707706896; cv=none; b=o1JxiPOeePxMd28Ujlw/s4KXvvsst1m8H08O1Pq8/1lQ0e2whmwYLrAPXi5ZI+dX6B51w0XjLgpG38cYcFT0uo3tu0HZEGj6NXwGZOZaGJaCsFfAl0thiRwEj4b6i2j3W09WxZQmNTu81FIswfFDCr0P1Kq9GqF1/zt7woycxCs=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1707698946; c=relaxed/simple;
-	bh=mi0NgfkwL1/wL71nse3PNzf/n1K9dKgS9w+2s8U1HOI=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=n9OGAt228J3Knk+D8uYo940WX1M5nQXqOIYgFcyu5OvY4y7X2H1x15J73fdSUEz6pXaUbe8QxPRkbYpwIRD+sqCebaYf7LqYiQgnkLjZ3vwGUIMPrlZv0s8F5NJDEAy3OBL3mMcgj+fvQIh5ucpY9Ey8bRbfkgtHfClYKbZHh7Y=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=makrotopia.org; spf=pass smtp.mailfrom=makrotopia.org; arc=none smtp.client-ip=185.142.180.65
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=makrotopia.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=makrotopia.org
-Received: from local
-	by pidgin.makrotopia.org with esmtpsa (TLS1.3:TLS_AES_256_GCM_SHA384:256)
-	 (Exim 4.96.2)
-	(envelope-from <daniel@makrotopia.org>)
-	id 1rZKUv-0001Um-1b;
-	Mon, 12 Feb 2024 00:48:37 +0000
-Date: Mon, 12 Feb 2024 00:48:34 +0000
-From: Daniel Golle <daniel@makrotopia.org>
-To: Miquel Raynal <miquel.raynal@bootlin.com>,
-	Richard Weinberger <richard@nod.at>,
-	Vignesh Raghavendra <vigneshr@ti.com>,
-	Rob Herring <robh+dt@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	=?utf-8?B?UmFmYcWCIE1pxYJlY2tp?= <zajec5@gmail.com>,
-	linux-mtd@lists.infradead.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org
-Cc: John Crispin <john@phrozen.org>
-Subject: Re: [PATCH v7 0/7] mtd: ubi: allow UBI volumes to provide NVMEM
-Message-ID: <Zclq4mG0HIBVHnyj@makrotopia.org>
-References: <cover.1702952891.git.daniel@makrotopia.org>
+	s=arc-20240116; t=1707706896; c=relaxed/simple;
+	bh=4jxNxqbbPkOSw8ue3Nyb20xACqDs10FTDEVUKIMb1w4=;
+	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
+	 In-Reply-To:Content-Type; b=t+4r5mr0E3eGb2mQ9nOXZDhqr/ynSpMdqRkr6BWTbxsnyr8pVHXMTmzBcyVU1CjPkZUebCcYcPE5ZwYZkIkR+2eo+FQ3HLetiadcG46vtZK/Kvr07ZuV7Qruv8Y41+EE2Vf8B7+8ougSTjIGp8w5dHmRflyQbF0p8dnfSzYjBzQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=DaBLuR2q; arc=none smtp.client-ip=205.220.180.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
+Received: from pps.filterd (m0279869.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.17.1.24/8.17.1.24) with ESMTP id 41C2kaKt007373;
+	Mon, 12 Feb 2024 03:01:05 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
+	message-id:date:mime-version:subject:to:cc:references:from
+	:in-reply-to:content-type:content-transfer-encoding; s=
+	qcppdkim1; bh=HbyEud8oCRMq2ig6tJgd3FsKNUjDeJrJ85T3IXPqjBQ=; b=Da
+	BLuR2q/W+4mXnc4vKyu282ayH6XJfyKMt+GAMx/rQ4I2DQ2Rjp2TYrDAPcEhqDyE
+	n/KVq9TBYwEr8fdpObgZPIUfzwdFSI0YrMl2sfHjv1zBD5eDy6LfWVYJKugGy2K7
+	DJb9Y8LFQ+wL0AwB+r4FXTylOT+DGgBV/t9LNJpISJphi58DHlmFarRUdq1LnHqV
+	pw8mToXUb0+TmUCWq2YOEdjQi62qXcUyb7N3kNX+ZX1y2KtrZIVG5UDMxa5EV7rI
+	djRoF/XFh+l3EeMFvO3VKZg1ibzqYiggW03tbzQx7+kSnhxonAmQYh3k4ukcAqYZ
+	XT/lEGdWgh6r4V2/GjdA==
+Received: from nalasppmta01.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3w62q2tbpm-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Mon, 12 Feb 2024 03:01:04 +0000 (GMT)
+Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
+	by NALASPPMTA01.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 41C313T4018081
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Mon, 12 Feb 2024 03:01:03 GMT
+Received: from [10.131.116.149] (10.80.80.8) by nalasex01a.na.qualcomm.com
+ (10.47.209.196) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1118.40; Sun, 11 Feb
+ 2024 19:01:00 -0800
+Message-ID: <06abbdc3-266b-47a9-8d08-fe90311269d3@quicinc.com>
+Date: Mon, 12 Feb 2024 08:30:49 +0530
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <cover.1702952891.git.daniel@makrotopia.org>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH] dt-bindings: watchdog: qcom-wdt: Update maintainer to
+ Rajendra Nayak
+Content-Language: en-US
+To: Jeffrey Hugo <quic_jhugo@quicinc.com>, <andersson@kernel.org>,
+        <konrad.dybcio@linaro.org>, <wim@linux-watchdog.org>,
+        <linux@roeck-us.net>, <robh@kernel.org>,
+        <krzysztof.kozlowski+dt@linaro.org>, <conor+dt@kernel.org>
+CC: <linux-arm-msm@vger.kernel.org>, <linux-watchdog@vger.kernel.org>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>
+References: <20240209161800.3872964-1-quic_jhugo@quicinc.com>
+From: Rajendra Nayak <quic_rjendra@quicinc.com>
+In-Reply-To: <20240209161800.3872964-1-quic_jhugo@quicinc.com>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 7bit
+X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
+ nalasex01a.na.qualcomm.com (10.47.209.196)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-ORIG-GUID: TT6eLdPACJTuM5n9TB48ItyazQY26F8V
+X-Proofpoint-GUID: TT6eLdPACJTuM5n9TB48ItyazQY26F8V
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.272,Aquarius:18.0.1011,Hydra:6.0.619,FMLib:17.11.176.26
+ definitions=2024-02-11_23,2024-02-08_01,2023-05-22_02
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 bulkscore=0
+ priorityscore=1501 lowpriorityscore=0 adultscore=0 suspectscore=0
+ impostorscore=0 phishscore=0 mlxscore=0 mlxlogscore=832 clxscore=1011
+ malwarescore=0 spamscore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.19.0-2401310000 definitions=main-2402120022
 
-Dear MTD and UBI maintainers,
 
-On Tue, Dec 19, 2023 at 02:31:44AM +0000, Daniel Golle wrote:
-> Similar to how MAC addresses and Wi-Fi calibration data would be
-> stored inside an MTD partition on devices coming with NOR flash, a UBI
-> volume is used by some vendors in the same way on devices with NAND
-> flash.
+
+On 2/9/2024 9:48 PM, Jeffrey Hugo wrote:
+> The servers for the @codeaurora domain are long retired and any messages
+> sent there will bounce. Sai has left the company and appears no longer
+> active in the community which leaves this binding orphaned. Rajendra Nayak
+> has volunteered to take over as maintainer.
 > 
-> The goal of this series is to support such embedded Linux devices which
-> got NVMEM bits stored inside a UBI volume.
+> Signed-off-by: Jeffrey Hugo <quic_jhugo@quicinc.com>
+
+Acked-by: Rajendra Nayak <quic_rjendra@quicinc.com>
+
+> ---
+>   Documentation/devicetree/bindings/watchdog/qcom-wdt.yaml | 2 +-
+>   1 file changed, 1 insertion(+), 1 deletion(-)
 > 
-> Representing the UBI volume in the Device Tree and adding a phandle to
-> be referenced by NVMEM consumers allows such devices to come up with
-> their correct MAC addresses and device-specific Wi-Fi calibration data
-> loaded.
-> 
-
-I hope I don't nag too much but please someone review (and ideally
-merge) this very series, also found on Patchwork:
-
-https://patchwork.ozlabs.org/project/linux-mtd/list/?series=387243
-
-In case any part needs further fixing, it would be great to even only
-have the dt-bindings part merged already so we can start using this
-feature in OpenWrt knowing that dt-bindings will not change any more.
-(instead of piling up device-specific fixup-scripts in userspace...)
-
-A good example of why this is needed in the wild is the ASUS RT-AC58U
-router which is the first device we found having almost everything
-stored in UBI, including NVMEM-areas for WiFi calibration as well as
-MAC addresses for both WiFi and Ethernet.
-
-https://openwrt.org/toh/asus/rt-ac58u#flash_layout
-
-Even more devices with all-UBI layout are likely to show up in the
-near future as by now even ARM TrustedFirmware-A which is used as
-first-stage loader (like MBR on PC or U-Boot SPL on ARMv7) on Aarch64
-platforms by now supports UBI to load further bootloader stages. MTD
-layout on such devices becomes simply something like
-
-0x0      ~ 0x200000 : ARM TrustedFirmware-A bl2 (redundant if supported
-                                                 by SoC's BootROM)
-0x200000 ~ END      : UBI
-
-See this (pending) commit adding UBI support to TF-A:
-https://github.com/mtk-openwrt/arm-trusted-firmware/commit/e7a7b94373cf2b8baca66b3b0ced8e70bdbb273a
-
-
-Obviously this is better than what vendors have been doing previously
-(using UBI only for the rootfs, if at all) and having proper support
-for that in vanilla Linux would further encourage this development.
-
-PS: Also the planned OpenWrt One router to celebrate the 20th
-anniversary of OpenWrt will use an all-UBI layout and we will hence
-need to load NVMEM-bits from UBI volumes...
-
-
-Thank you!
-
-
-Best regards
-
-
-Daniel
-
-> In order for NVMEM bits to be available for other drivers, attaching
-> UBI devices has to be moved from late_initcall (which is too late for
-> other drivers) to happen earlier. As an alternative to the existing
-> kernel cmdline parameter the Device Tree property 'compatible =
-> "linux,ubi";' inside an MTD partition can be used to have that MTD
-> device attached as UBI device. MTD partitions which serve as UBI
-> devices may have a "volumes" subnode with volumes, and volumes may
-> have an "nvmem-layout" object which will trigger the creation of an
-> emulated NVMEM device on top of the UBI volume.
-> 
-> In this way, other drivers (think: Ethernet, Wi-Fi) can resolve and
-> acquire NVMEM bits using the usual device tree phandle, just this time
-> the NVMEM content is read from a UBI volume.
-> 
-> This series is a follow-up and contains most patches of the previous
-> series "mtd: ubi: behave like a good MTD citizen"[1] which was meant in
-> preparation for implementing the NVMEM provider.
-> 
-> [1]: https://patchwork.ozlabs.org/project/linux-mtd/list/?series=353177&state=%2A&archive=both
-> 
-> Changes since v6:
->  * dt-bindings fixes got squashed into the wrong patch, fix that and
->    newly introduced YAML white space issues
-> 
-> Changes since v5:
->  * fix whitespace problems in dt-schema additions
-> 
-> Changes since v4:
->  * split ubi_open_volume_path() breaking out reusable parts for
->    new match_volume_desc() function as suggested by Richard Weinberger.
->    Doing the same for ubi_open_volume_nm() doesn't work as we are working
->    on struct ubi_volume_info in match_volume_desc() while ubi_open_volume_nm()
->    is working on struct ubi_volume. That reduces the common part to a string
->    comparision and length check which doesn't seem worth breaking out of the
->    existing function.
->  * drop patches and changes not strictly needed for NVMEM use-case:
->    - don't handle ubi detach on MTD removal notification. It was not done
->      until now and the locking hell I was facing when trying to implement
->      that is non trivial.
->    - don't relocate the call to ubiblock device creation to the
->      notification handler
->    - change ubiblock only as far as needed to handle creation from cmdline
->      parameter when a volume is added.
->  * improve commit messages and comments
-> 
-> Changes since v3:
->  * dt-bindings fixes as requested
-> 
-> Changes since v2:
->  * include dt-bindings additions
-> 
-> Changes since v1:
->  * include patch to fix exiting Kconfig formatting issues
->  * fix typo and indentation in Kconfig
-> 
-> 
-> 
-> Daniel Golle (7):
->   dt-bindings: mtd: add basic bindings for UBI
->   dt-bindings: mtd: ubi-volume: allow UBI volumes to provide NVMEM
->   mtd: ubi: block: use notifier to create ubiblock from parameter
->   mtd: ubi: attach from device tree
->   mtd: ubi: introduce pre-removal notification for UBI volumes
->   mtd: ubi: populate ubi volume fwnode
->   mtd: ubi: provide NVMEM layer over UBI volumes
-> 
->  .../bindings/mtd/partitions/linux,ubi.yaml    |  75 +++++++
->  .../bindings/mtd/partitions/ubi-volume.yaml   |  40 ++++
->  drivers/mtd/ubi/Kconfig                       |  12 ++
->  drivers/mtd/ubi/Makefile                      |   1 +
->  drivers/mtd/ubi/block.c                       | 136 ++++++-------
->  drivers/mtd/ubi/build.c                       | 154 ++++++++++----
->  drivers/mtd/ubi/kapi.c                        |  56 ++++--
->  drivers/mtd/ubi/nvmem.c                       | 188 ++++++++++++++++++
->  drivers/mtd/ubi/ubi.h                         |   3 +
->  drivers/mtd/ubi/vmt.c                         |  44 +++-
->  include/linux/mtd/ubi.h                       |   2 +
->  11 files changed, 579 insertions(+), 132 deletions(-)
->  create mode 100644 Documentation/devicetree/bindings/mtd/partitions/linux,ubi.yaml
->  create mode 100644 Documentation/devicetree/bindings/mtd/partitions/ubi-volume.yaml
->  create mode 100644 drivers/mtd/ubi/nvmem.c
-> 
-> -- 
-> 2.43.0
-> 
-> ______________________________________________________
-> Linux MTD discussion mailing list
-> http://lists.infradead.org/mailman/listinfo/linux-mtd/
+> diff --git a/Documentation/devicetree/bindings/watchdog/qcom-wdt.yaml b/Documentation/devicetree/bindings/watchdog/qcom-wdt.yaml
+> index a4f35c598cdb..47587971fb0b 100644
+> --- a/Documentation/devicetree/bindings/watchdog/qcom-wdt.yaml
+> +++ b/Documentation/devicetree/bindings/watchdog/qcom-wdt.yaml
+> @@ -7,7 +7,7 @@ $schema: http://devicetree.org/meta-schemas/core.yaml#
+>   title: Qualcomm Krait Processor Sub-system (KPSS) Watchdog timer
+>   
+>   maintainers:
+> -  - Sai Prakash Ranjan <saiprakash.ranjan@codeaurora.org>
+> +  - Rajendra Nayak <quic_rjendra@quicinc.com>
+>   
+>   properties:
+>     $nodename:
 
