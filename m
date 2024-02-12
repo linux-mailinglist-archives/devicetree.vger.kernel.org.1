@@ -1,649 +1,290 @@
-Return-Path: <devicetree+bounces-40702-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-40703-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0D4348513FC
-	for <lists+devicetree@lfdr.de>; Mon, 12 Feb 2024 14:02:48 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4B4E4851416
+	for <lists+devicetree@lfdr.de>; Mon, 12 Feb 2024 14:07:47 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 76BAA1F22D09
-	for <lists+devicetree@lfdr.de>; Mon, 12 Feb 2024 13:02:47 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 99975B20AAC
+	for <lists+devicetree@lfdr.de>; Mon, 12 Feb 2024 13:07:44 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D0B633A1A3;
-	Mon, 12 Feb 2024 13:02:41 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0E0003A1AC;
+	Mon, 12 Feb 2024 13:07:40 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="YwMrvMOr"
 X-Original-To: devicetree@vger.kernel.org
-Received: from frasgout.his.huawei.com (frasgout.his.huawei.com [185.176.79.56])
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8CE0A1E52A;
-	Mon, 12 Feb 2024 13:02:37 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.176.79.56
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3CA9C39FFD;
+	Mon, 12 Feb 2024 13:07:37 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1707742961; cv=none; b=V7vL4p0b6HmkKpcqZiUqH0iYgbAHOmaJggaoamdn7i1HuXKhdS6Nc4I1hki9MvOb0JNPthWL5fR4tZP/p9D+G+ApLtErlTCy4JijmJ34m6W+aCnvdyPRlZTae8UIAwNrHkrXh0mzfhuewrGEzdBmgzjc5A8Eqssuqf5wH5Aou8U=
+	t=1707743259; cv=none; b=TMjdrQY/pW9Y1BDwaQ7cyXcgV5CnTseU3tdgkdpnPQ9kVg70G1RJs4FPtTRb7TCwQVtnvDlZ2BOWB2wuYZwD+fcF/SCDP22yXSeZNF/PqK4CIRs7I28JH77WroazOHm6Ne32DcOZ/VUGGT5yyL0eIsmxMHz6HPdiiegOwPEa5U0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1707742961; c=relaxed/simple;
-	bh=dj4CI+BQmzbnaK/tJAWDhb4fIdz5SZMX9znWSJLe47I=;
-	h=Date:From:To:CC:Subject:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=IL3fSrvEIDH9KhUQnm6FeGNjyyJwAzv0v1SDbgEoFJcrvsTqedoYOoRyrT3J4TMGuDV7yGbqhEXBcSJU1EmxOcpv9/6jisQYwfZueE/LS/OnW/6KyQRwQkMDs35f1GIdO+TGwyiLCbjOvRyIDE7F1zSNqq5ETBC8wDsohYYVP2g=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=Huawei.com; spf=pass smtp.mailfrom=huawei.com; arc=none smtp.client-ip=185.176.79.56
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=Huawei.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=huawei.com
-Received: from mail.maildlp.com (unknown [172.18.186.231])
-	by frasgout.his.huawei.com (SkyGuard) with ESMTP id 4TYPfl32S7z6839B;
-	Mon, 12 Feb 2024 20:59:11 +0800 (CST)
-Received: from lhrpeml500005.china.huawei.com (unknown [7.191.163.240])
-	by mail.maildlp.com (Postfix) with ESMTPS id B133F140136;
-	Mon, 12 Feb 2024 21:02:34 +0800 (CST)
-Received: from localhost (10.202.227.76) by lhrpeml500005.china.huawei.com
- (7.191.163.240) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.35; Mon, 12 Feb
- 2024 13:02:34 +0000
-Date: Mon, 12 Feb 2024 13:02:32 +0000
-From: Jonathan Cameron <Jonathan.Cameron@Huawei.com>
-To: =?UTF-8?Q?Ond=C5=99ej?= Jirman <megi@xff.cz>
-CC: Jonathan Cameron <jic23@kernel.org>, Lars-Peter Clausen <lars@metafoo.de>,
-	Rob Herring <robh+dt@kernel.org>, Krzysztof Kozlowski
-	<krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>,
-	Andrey Skvortsov <andrej.skvortzov@gmail.com>, Icenowy Zheng
-	<icenowy@aosc.io>, <linux-iio@vger.kernel.org>, <devicetree@vger.kernel.org>,
-	<linux-kernel@vger.kernel.org>, Dalton Durst <dalton@ubports.com>, "Shoji
- Keita" <awaittrot@shjk.jp>
-Subject: Re: [PATCH 4/4] iio: magnetometer: add a driver for Voltafield
- AF8133J magnetometer
-Message-ID: <20240212130232.00007ebd@Huawei.com>
-In-Reply-To: <20240211205211.2890931-5-megi@xff.cz>
-References: <20240211205211.2890931-1-megi@xff.cz>
-	<20240211205211.2890931-5-megi@xff.cz>
-Organization: Huawei Technologies Research and Development (UK) Ltd.
-X-Mailer: Claws Mail 4.1.0 (GTK 3.24.33; x86_64-w64-mingw32)
+	s=arc-20240116; t=1707743259; c=relaxed/simple;
+	bh=vZ+hSARcnLjxR8aMhf3FOMyEWNZPAUjXRDllNiuoaY0=;
+	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
+	 In-Reply-To:Content-Type; b=GRm37julXdSze1tEw4E9RozCrVWoO6pQSPHweKLL0XIrCXFwrJ2OamtX4IGLb6ESnPin5qxOreie/R669j4MOHwDweD0OUnivaBXJQcJwZypyDDMSpXTSu1jr/j0+k3mMFHTCFpHESp5fniErriz+Uj8qwiuO/bcwf/dAzOqW/w=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=YwMrvMOr; arc=none smtp.client-ip=205.220.180.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
+Received: from pps.filterd (m0279868.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.17.1.24/8.17.1.24) with ESMTP id 41C8ePKF018491;
+	Mon, 12 Feb 2024 13:07:33 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
+	message-id:date:mime-version:subject:to:cc:references:from
+	:in-reply-to:content-type:content-transfer-encoding; s=
+	qcppdkim1; bh=Jm/Rp6PYFPPRH1G1KAQNpPCE+cXaHQkYUggUJFrTmOs=; b=Yw
+	MrvMOrctK/k5gm8oigBsvvpvXIWkvlr2+JYcOkGWNLcXetLcKEu8CAM2vWh26TbA
+	Kr4pPz/02Wbxgy/CcPaA+NauY5SSP47kf9VoPgTNlBAwXyJaSi/0BpFy3zShvhzj
+	rrF6ozZzw2tR9XPX5vOXW7AdrYZwe05IRZsfTPXbNQ88JJ6tYVzaFWUlTg2h2Qrr
+	iV9Bs2lqq/wSiKESszKohEkT+3OGo57O/nUSX1Dd/ZC0fG6jFEtcNzQanOs3y8wj
+	8vrfR1KiDv+nKlDgpAZcZvWr5GJ3tuH0yy3ueYUPhmmX8wsAbAx4BGb7pkPv7FT7
+	QuSzOR+2+cckHEyl9COQ==
+Received: from nalasppmta02.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3w62ps3e2n-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Mon, 12 Feb 2024 13:07:33 +0000 (GMT)
+Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
+	by NALASPPMTA02.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 41CD7WSn023381
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Mon, 12 Feb 2024 13:07:32 GMT
+Received: from [10.216.29.101] (10.80.80.8) by nalasex01a.na.qualcomm.com
+ (10.47.209.196) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1118.40; Mon, 12 Feb
+ 2024 05:07:27 -0800
+Message-ID: <d88f0f42-c9ec-4638-8090-055bc4806574@quicinc.com>
+Date: Mon, 12 Feb 2024 18:36:31 +0530
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-ClientProxiedBy: lhrpeml500002.china.huawei.com (7.191.160.78) To
- lhrpeml500005.china.huawei.com (7.191.163.240)
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 2/5] clk: qcom: videocc-sm8550: Add support for SM8650
+ videocc
+Content-Language: en-US
+To: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+CC: Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio
+	<konrad.dybcio@linaro.org>,
+        Michael Turquette <mturquette@baylibre.com>,
+        Stephen Boyd <sboyd@kernel.org>, Rob Herring <robh@kernel.org>,
+        "Krzysztof
+ Kozlowski" <krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley
+	<conor+dt@kernel.org>,
+        Vladimir Zapolskiy <vladimir.zapolskiy@linaro.org>,
+        Taniya Das <quic_tdas@quicinc.com>, <linux-arm-msm@vger.kernel.org>,
+        <linux-clk@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>,
+        Imran Shaik <quic_imrashai@quicinc.com>,
+        "Ajit Pandey" <quic_ajipan@quicinc.com>
+References: <20240206113145.31096-1-quic_jkona@quicinc.com>
+ <20240206113145.31096-3-quic_jkona@quicinc.com>
+ <CAA8EJpqbKQS7Bp28xNZ0twu7BFLdOES9qS5xBvoonux8Ma4q6Q@mail.gmail.com>
+ <e90522c1-7a2d-40ff-bf4e-c8f974722ddf@quicinc.com>
+ <CAA8EJpqCDOE_5vg+4ew8H0HbhQM1w8reqU6Pu0MAYJtMw8zXUw@mail.gmail.com>
+From: Jagadeesh Kona <quic_jkona@quicinc.com>
+In-Reply-To: <CAA8EJpqCDOE_5vg+4ew8H0HbhQM1w8reqU6Pu0MAYJtMw8zXUw@mail.gmail.com>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 7bit
+X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
+ nalasex01a.na.qualcomm.com (10.47.209.196)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-ORIG-GUID: MZusrz6iviKqZhiYSYNZNQ-SuxQ5798z
+X-Proofpoint-GUID: MZusrz6iviKqZhiYSYNZNQ-SuxQ5798z
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.272,Aquarius:18.0.1011,Hydra:6.0.619,FMLib:17.11.176.26
+ definitions=2024-02-12_09,2024-02-12_02,2023-05-22_02
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 lowpriorityscore=0
+ malwarescore=0 bulkscore=0 spamscore=0 phishscore=0 suspectscore=0
+ mlxscore=0 priorityscore=1501 adultscore=0 clxscore=1015 mlxlogscore=999
+ impostorscore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.19.0-2401310000 definitions=main-2402120099
 
-On Sun, 11 Feb 2024 21:52:00 +0100
-Ond=C5=99ej Jirman <megi@xff.cz> wrote:
 
-> From: Icenowy Zheng <icenowy@aosc.io>
->=20
-> AF8133J is a simple I2C-connected magnetometer, without interrupts.
->=20
-> Add a simple IIO driver for it.
->=20
-> Signed-off-by: Icenowy Zheng <icenowy@aosc.io>
-> Signed-off-by: Dalton Durst <dalton@ubports.com>
-> Signed-off-by: Shoji Keita <awaittrot@shjk.jp>
-> Signed-off-by: Ondrej Jirman <megi@xff.cz>
 
-This is a lot of sign offs.  If accurate it menas.
+On 2/7/2024 12:49 PM, Dmitry Baryshkov wrote:
+> On Wed, 7 Feb 2024 at 08:59, Jagadeesh Kona <quic_jkona@quicinc.com> wrote:
+>>
+>>
+>>
+>> On 2/6/2024 5:24 PM, Dmitry Baryshkov wrote:
+>>> On Tue, 6 Feb 2024 at 13:39, Jagadeesh Kona <quic_jkona@quicinc.com> wrote:
+>>>>
+>>>> Add support to the SM8650 video clock controller by extending the
+>>>> SM8550 video clock controller, which is mostly identical but SM8650
+>>>> has few additional clocks and minor differences.
+>>>
+>>> In the past we tried merging similar clock controllers. In the end
+>>> this results in the ugly source code. Please consider submitting a
+>>> separate driver.
+>>>
+>>
+>> Thanks Dmitry for your review. SM8650 has only few clock additions and
+>> minor changes compared to SM8550, so I believe it is better to reuse
+>> this existing driver and extend it.
+> 
+> I'd say, the final decision is on Bjorn and Konrad as maintainers.
+> 
+>>
+>>>>
+>>>> Signed-off-by: Jagadeesh Kona <quic_jkona@quicinc.com>
+>>>> ---
+>>>>    drivers/clk/qcom/videocc-sm8550.c | 160 +++++++++++++++++++++++++++++-
+>>>>    1 file changed, 156 insertions(+), 4 deletions(-)
+>>>>
+>>>> diff --git a/drivers/clk/qcom/videocc-sm8550.c b/drivers/clk/qcom/videocc-sm8550.c
+>>>> index f3c9dfaee968..cdc08f5900fc 100644
+>>>> --- a/drivers/clk/qcom/videocc-sm8550.c
+>>>> +++ b/drivers/clk/qcom/videocc-sm8550.c
+>>>> @@ -1,6 +1,6 @@
+>>>>    // SPDX-License-Identifier: GPL-2.0-only
+>>>>    /*
+>>>> - * Copyright (c) 2023, Qualcomm Innovation Center, Inc. All rights reserved.
+>>>> + * Copyright (c) 2023-2024, Qualcomm Innovation Center, Inc. All rights reserved.
+>>>>     */
+>>>>
+>>>>    #include <linux/clk-provider.h>
+>>>
+>>> [skipping]
+>>>
+>>>>    static struct gdsc video_cc_mvs0c_gdsc = {
+>>>>           .gdscr = 0x804c,
+>>>>           .en_rest_wait_val = 0x2,
+>>>> @@ -354,15 +481,20 @@ static struct clk_regmap *video_cc_sm8550_clocks[] = {
+>>>>           [VIDEO_CC_MVS0_CLK] = &video_cc_mvs0_clk.clkr,
+>>>>           [VIDEO_CC_MVS0_CLK_SRC] = &video_cc_mvs0_clk_src.clkr,
+>>>>           [VIDEO_CC_MVS0_DIV_CLK_SRC] = &video_cc_mvs0_div_clk_src.clkr,
+>>>> +       [VIDEO_CC_MVS0_SHIFT_CLK] = &video_cc_mvs0_shift_clk.clkr,
+>>>>           [VIDEO_CC_MVS0C_CLK] = &video_cc_mvs0c_clk.clkr,
+>>>>           [VIDEO_CC_MVS0C_DIV2_DIV_CLK_SRC] = &video_cc_mvs0c_div2_div_clk_src.clkr,
+>>>> +       [VIDEO_CC_MVS0C_SHIFT_CLK] = &video_cc_mvs0c_shift_clk.clkr,
+>>>>           [VIDEO_CC_MVS1_CLK] = &video_cc_mvs1_clk.clkr,
+>>>>           [VIDEO_CC_MVS1_CLK_SRC] = &video_cc_mvs1_clk_src.clkr,
+>>>>           [VIDEO_CC_MVS1_DIV_CLK_SRC] = &video_cc_mvs1_div_clk_src.clkr,
+>>>> +       [VIDEO_CC_MVS1_SHIFT_CLK] = &video_cc_mvs1_shift_clk.clkr,
+>>>>           [VIDEO_CC_MVS1C_CLK] = &video_cc_mvs1c_clk.clkr,
+>>>>           [VIDEO_CC_MVS1C_DIV2_DIV_CLK_SRC] = &video_cc_mvs1c_div2_div_clk_src.clkr,
+>>>> +       [VIDEO_CC_MVS1C_SHIFT_CLK] = &video_cc_mvs1c_shift_clk.clkr,
+>>>>           [VIDEO_CC_PLL0] = &video_cc_pll0.clkr,
+>>>>           [VIDEO_CC_PLL1] = &video_cc_pll1.clkr,
+>>>> +       [VIDEO_CC_XO_CLK_SRC] = &video_cc_xo_clk_src.clkr,
+>>>>    };
+>>>>
+>>>>    static struct gdsc *video_cc_sm8550_gdscs[] = {
+>>>> @@ -380,6 +512,7 @@ static const struct qcom_reset_map video_cc_sm8550_resets[] = {
+>>>>           [CVP_VIDEO_CC_MVS1C_BCR] = { 0x8074 },
+>>>>           [VIDEO_CC_MVS0C_CLK_ARES] = { 0x8064, 2 },
+>>>>           [VIDEO_CC_MVS1C_CLK_ARES] = { 0x8090, 2 },
+>>>> +       [VIDEO_CC_XO_CLK_ARES] = { 0x8124, 2 },
+>>>
+>>> Is this reset applicable to videocc-sm8550?
+>>>
+>>
+>> SM8550 also has above reset support in hardware, hence it is safe to
+>> model above reset for both SM8550 and SM8650.
+> 
+> Then, separate commit, Fixes tag.
+> 
 
-Icenowy wrote teh driver,
-Dalton then 'handled' it on the path to Shoji who
-then 'handled' it on the path to Ondrej.
+Sure, will separate and add Fixes tag in next series.
 
-That's possible if it's been in various other trees for instance, but
-I'd like some more explanation below the --- if that is the case.
-Otherwise, maybe Co-developed-by: is appropriate for some of
-the above list?
+>>
+>>>>    };
+>>>>
+>>>>    static const struct regmap_config video_cc_sm8550_regmap_config = {
+>>>> @@ -402,6 +535,7 @@ static struct qcom_cc_desc video_cc_sm8550_desc = {
+>>>>
+>>>>    static const struct of_device_id video_cc_sm8550_match_table[] = {
+>>>>           { .compatible = "qcom,sm8550-videocc" },
+>>>> +       { .compatible = "qcom,sm8650-videocc" },
+>>>>           { }
+>>>>    };
+>>>>    MODULE_DEVICE_TABLE(of, video_cc_sm8550_match_table);
+>>>> @@ -410,6 +544,7 @@ static int video_cc_sm8550_probe(struct platform_device *pdev)
+>>>>    {
+>>>>           struct regmap *regmap;
+>>>>           int ret;
+>>>> +       u32 offset;
+>>>>
+>>>>           ret = devm_pm_runtime_enable(&pdev->dev);
+>>>>           if (ret)
+>>>> @@ -425,6 +560,23 @@ static int video_cc_sm8550_probe(struct platform_device *pdev)
+>>>>                   return PTR_ERR(regmap);
+>>>>           }
+>>>>
+>>>> +       if (of_device_is_compatible(pdev->dev.of_node, "qcom,sm8550-videocc")) {
+>>>> +               video_cc_sm8550_clocks[VIDEO_CC_MVS0_SHIFT_CLK] = NULL;
+>>>> +               video_cc_sm8550_clocks[VIDEO_CC_MVS0C_SHIFT_CLK] = NULL;
+>>>> +               video_cc_sm8550_clocks[VIDEO_CC_MVS1_SHIFT_CLK] = NULL;
+>>>> +               video_cc_sm8550_clocks[VIDEO_CC_MVS1C_SHIFT_CLK] = NULL;
+>>>> +               video_cc_sm8550_clocks[VIDEO_CC_XO_CLK_SRC] = NULL;
+>>>
+>>> Please invert the logic. Make video_cc_sm8550_clocks reflect SM8550
+>>> and patch in new clocks in the SM8650-specific branch below.
+>>>
+>>
+>> Sure, will add these clocks as NULL in video_cc_sm8550_clocks and patch
+>> in new clocks here for SM8650. Then we can remove above check for SM8550.
+> 
+> No need to set them to NULL, it is the default value. Just add them to
+> the sm8650 branch.
+> 
 
-Various comments inline, but looks pretty good in general.
+The video_cc_sm8550_clocks[] array size is fixed and has memory 
+allocated only for current sm8550 clocks. To be able to accommodate 
+sm8650 clocks in the same array, we need to initialize the clocks to 
+NULL as below snippet to increase the array size.
+
+static struct clk_regmap *video_cc_sm8550_clocks[] = {
+.....
+	[VIDEO_CC_XO_CLK_SRC] = NULL,
+}
 
 Thanks,
+Jagadeesh
 
-Jonathan
-
-> diff --git a/drivers/iio/magnetometer/af8133j.c b/drivers/iio/magnetomete=
-r/af8133j.c
-> new file mode 100644
-> index 000000000000..0b03417ba134
-> --- /dev/null
-> +++ b/drivers/iio/magnetometer/af8133j.c
-> @@ -0,0 +1,525 @@
-> +// SPDX-License-Identifier: GPL-2.0-only
-> +/*
-> + * af8133j.c - Voltafield AF8133J magnetometer driver
-> + *
-> + * Copyright 2021 Icenowy Zheng <icenowy@aosc.io>
-> + * Copyright 2024 Ond=C5=99ej Jirman <megi@xff.cz>
-> + */
-> +
-> +#include <linux/module.h>
-
-Alphabetical order for these.
-It's fine to separate out he IIO ones on their own as you have
-done.
-
-> +#include <linux/i2c.h>
-> +#include <linux/delay.h>
-> +#include <linux/regmap.h>
-> +#include <linux/gpio/consumer.h>
-> +#include <linux/pm_runtime.h>
-> +#include <linux/regulator/consumer.h>
-> +
-> +#include <linux/iio/iio.h>
-> +#include <linux/iio/sysfs.h>
-
-Don't think you are using this as no custom attrs.
-
-
-> +#include <linux/iio/trigger_consumer.h>
-> +#include <linux/iio/triggered_buffer.h>
-> +
-> +#define AF8133J_DRV_NAME "af8133j"
-> +
-> +#define AF8133J_REG_OUT		0x03
-> +#define AF8133J_REG_PCODE	0x00
-> +#define AF8133J_REG_PCODE_VAL	0x5e
-> +#define AF8133J_REG_STATUS	0x02
-> +#define AF8133J_REG_STATUS_ACQ	BIT(0)
-> +#define AF8133J_REG_STATE	0x0a
-> +#define AF8133J_REG_STATE_STBY	0x00
-> +#define AF8133J_REG_STATE_WORK	0x01
-> +#define AF8133J_REG_RANGE	0x0b
-> +#define AF8133J_REG_RANGE_22G	0x12
-> +#define AF8133J_REG_RANGE_12G	0x34
-> +#define AF8133J_REG_SWR		0x11
-> +#define AF8133J_REG_SWR_PERFORM	0x81
-> +
-> +static const char * const af8133j_supply_names[] =3D {
-> +	"avdd",
-> +	"dvdd",
-> +};
-> +
-> +#define AF8133J_NUM_SUPPLIES ARRAY_SIZE(af8133j_supply_names)
-
-Just use this inline, or the size of the array of regulators.
-No need for this define.
-
-
-> +static int af8133j_product_check(struct af8133j_data *data)
-> +{
-> +	struct device *dev =3D &data->client->dev;
-> +	unsigned int val;
-> +	int ret;
-> +
-> +	ret =3D regmap_read(data->regmap, AF8133J_REG_PCODE, &val);
-> +	if (ret < 0) {
-> +		dev_err(dev, "Error reading product code (%d)\n", ret);
-> +		return ret;
-> +	}
-> +
-> +	if (val !=3D AF8133J_REG_PCODE_VAL) {
-> +		dev_err(dev, "Invalid product code (0x%02x)\n", val);
-> +		return -EINVAL;
-> +	}
-> +
-> +	return 0;
-> +}
-> +
-> +static int af8133j_reset(struct af8133j_data *data)
-> +{
-> +	struct device *dev =3D &data->client->dev;
-> +	int ret;
-> +
-> +	if (data->reset_gpiod) {
-> +		/* If we have GPIO reset line, use it */
-> +		gpiod_set_value_cansleep(data->reset_gpiod, 1);
-> +		udelay(10);
-> +		gpiod_set_value_cansleep(data->reset_gpiod, 0);
-> +	} else {
-> +		/* Otherwise use software reset */
-> +		ret =3D regmap_write(data->regmap, AF8133J_REG_SWR,
-> +				   AF8133J_REG_SWR_PERFORM);
-> +		if (ret < 0) {
-> +			dev_err(dev, "Failed to reset the chip\n");
-> +			return ret;
-> +		}
-> +	}
-> +
-> +	/* Wait for reset to finish */
-> +	usleep_range(1000, 1100);
-> +
-> +	/* Restore range setting */
-> +	if (data->range =3D=3D AF8133J_REG_RANGE_22G) {
-> +		ret =3D regmap_write(data->regmap, AF8133J_REG_RANGE, data->range);
-> +		if (ret)
-> +			return ret;
-> +	}
-> +
-> +	return 0;
-> +}
-> +
-> +static int af8133j_power_up(struct af8133j_data *data)
-> +{
-> +	struct device *dev =3D &data->client->dev;
-> +	int ret;
-> +
-> +	if (data->powered)
-> +		return 0;
-> +
-> +	ret =3D regulator_bulk_enable(AF8133J_NUM_SUPPLIES, data->supplies);
-> +	if (ret) {
-> +		dev_err(dev, "Could not enable regulators\n");
-> +		return ret;
-> +	}
-> +
-> +	gpiod_set_value_cansleep(data->reset_gpiod, 0);
-> +
-> +	/* Wait for power on reset */
-> +	usleep_range(15000, 16000);
-> +
-> +	data->powered =3D true;
-
-Why is this needed?  The RPM code is reference counted, so I don't think
-we should need this.
-
-> +	return 0;
-> +}
-> +
-> +static void af8133j_power_down(struct af8133j_data *data)
-> +{
-> +	if (!data->powered)
-> +		return;
-> +
-> +	gpiod_set_value_cansleep(data->reset_gpiod, 1);
-> +	regulator_bulk_disable(AF8133J_NUM_SUPPLIES, data->supplies);
-> +	data->powered =3D false;
-> +}
-
-> +
-> +static int af8133j_read_measurement(struct af8133j_data *data, __le16 bu=
-f[3])
-> +{
-> +	struct device *dev =3D &data->client->dev;
-> +	int ret;
-> +
-> +	ret =3D pm_runtime_resume_and_get(dev);
-> +	if (ret) {
-> +		dev_err(dev, "failed to power on\n");
-> +		return ret;
-> +	}
-> +
-> +	mutex_lock(&data->mutex);
-	scoped_guard(mutex, &data->mutex) {
-		ret =3D af8133j_take_measurement(data);
-		if (ret)
-			goto error_ret;
-
-		ret =3D regmap_bulk_read(...)
-	}
-
-error_ret:
-
-	pm_runtime_mark_last_busy(dev);
-
-
-> +
-> +	ret =3D af8133j_take_measurement(data);
-> +	if (ret =3D=3D 0)
-> +		ret =3D regmap_bulk_read(data->regmap, AF8133J_REG_OUT,
-> +				       buf, sizeof(__le16) * 3);
-> +
-> +	mutex_unlock(&data->mutex);
-> +
-> +	pm_runtime_mark_last_busy(dev);
-> +	if (pm_runtime_put_autosuspend(dev))
-> +		dev_err(dev, "failed to power off\n");
-I think this will only happen if suspend returns non 0 and yours
-doesn't.  What else might cause this?
-> +
-> +	return ret;
-> +}
-
-> +
-> +static int af8133j_read_raw(struct iio_dev *indio_dev,
-> +			    struct iio_chan_spec const *chan, int *val,
-> +			    int *val2, long mask)
-> +{
-> +	struct af8133j_data *data =3D iio_priv(indio_dev);
-> +	__le16 buf[3];
-> +	int ret;
-> +
-> +	switch (mask) {
-> +	case IIO_CHAN_INFO_RAW:
-> +		ret =3D af8133j_read_measurement(data, buf);
-> +		if (ret < 0)
-> +			return ret;
-> +
-> +		*val =3D sign_extend32(le16_to_cpu(buf[chan->address]),
-> +				     chan->scan_type.realbits - 1);
-> +		return IIO_VAL_INT;
-> +	case IIO_CHAN_INFO_SCALE:
-> +		*val =3D 0;
-> +		*val2 =3D af8133j_scales[data->range =3D=3D AF8133J_REG_RANGE_12G ? 0 =
-: 1][1];
-
-Line length is a bit long and the ternary makes it less easy to read than w=
-ould be ideal.
-I'd just use an if / else.
-		if (data->Range =3D=3D AF8133J_REG_RANGE_12G)
-			*val2 =3D af8133j_scales[0][1];
-		else
-			*val2 =3D af8133j_scales[1][1];
-> +		return IIO_VAL_INT_PLUS_NANO;
-> +	default:
-> +		return -EINVAL;
-> +	}
-> +}
-> +
-> +static int af8133j_set_scale(struct af8133j_data *data,
-> +			     unsigned int val, unsigned int val2)
-> +{
-> +	u8 range;
-> +	int ret;
-> +
-> +	if (af8133j_scales[0][0] =3D=3D val && af8133j_scales[0][1] =3D=3D val2)
-> +		range =3D AF8133J_REG_RANGE_12G;
-> +	else if (af8133j_scales[1][0] =3D=3D val && af8133j_scales[1][1] =3D=3D=
- val2)
-> +		range =3D AF8133J_REG_RANGE_22G;
-> +	else
-> +		return -EINVAL;
-> +
-> +	ret =3D regmap_write(data->regmap, AF8133J_REG_RANGE, range);
-> +	if (ret =3D=3D 0)
-	if (ret)
-		return ret;
-
-	data->range =3D range;
-
-	return 0;
-
-A little more code, but it is easier to review if we use the same pattern
-everywhere.
-
-> +		data->range =3D range;
-> +
-> +	return ret;
-> +}
-> +
-> +static int af8133j_write_raw(struct iio_dev *indio_dev,
-> +			     struct iio_chan_spec const *chan,
-> +			     int val, int val2, long mask)
-> +{
-> +	struct af8133j_data *data =3D iio_priv(indio_dev);
-> +	int ret;
-> +
-> +	switch (mask) {
-> +	case IIO_CHAN_INFO_SCALE:
-> +		mutex_lock(&data->mutex);
-
-Consider using scoped_guard().
-
-> +		ret =3D af8133j_set_scale(data, val, val2);
-> +		mutex_unlock(&data->mutex);
-> +		return ret;
-> +	default:
-> +		return -EINVAL;
-> +	}
-> +}
-> +
-> +static int af8133j_write_raw_get_fmt(struct iio_dev *indio_dev,
-> +				     struct iio_chan_spec const *chan,
-> +				     long mask)
-> +{
-> +	return IIO_VAL_INT_PLUS_NANO;
-> +}
-> +
-> +static const struct iio_info af8133j_info =3D {
-> +	.read_raw =3D af8133j_read_raw,
-> +	.read_avail =3D af8133j_read_avail,
-> +	.write_raw =3D af8133j_write_raw,
-> +	.write_raw_get_fmt =3D af8133j_write_raw_get_fmt,
-> +};
-> +
-> +static irqreturn_t af8133j_trigger_handler(int irq, void *p)
-> +{
-> +	struct iio_poll_func *pf =3D p;
-> +	struct iio_dev *indio_dev =3D pf->indio_dev;
-> +	struct af8133j_data *data =3D iio_priv(indio_dev);
-> +	s64 timestamp =3D iio_get_time_ns(indio_dev);
-> +	struct {
-> +		__le16 values[3];
-> +		s64 timestamp __aligned(8);
-> +	} sample;
-> +	int ret;
-> +
-> +	memset(&sample, 0, sizeof(sample));
-> +
-> +	ret =3D af8133j_read_measurement(data, sample.values);
-> +	if (ret =3D=3D 0)
-> +		iio_push_to_buffers_with_timestamp(indio_dev, &sample, timestamp);
-Prefer to keep the error path out of line
-
-	if (ret)
-		goto err_ret;
-
-	iio_push_to_...
-
-error_ret:
-	iio_trigger...
-
-It's a little more code, but the consistency of code organization makes
-for easier review etc.
-
-> +
-> +	iio_trigger_notify_done(indio_dev->trig);
-> +
-> +	return IRQ_HANDLED;
-> +}
-> +
-> +static const struct regmap_config af8133j_regmap_config =3D {
-> +	.name =3D "af8133j_regmap",
-> +	.reg_bits =3D 8,
-> +	.val_bits =3D 8,
-> +	.max_register =3D AF8133J_REG_SWR,
-> +	.cache_type =3D REGCACHE_NONE,
-> +};
-> +
-> +static int af8133j_probe(struct i2c_client *client)
-> +{
-> +	struct device *dev =3D &client->dev;
-> +	struct af8133j_data *data;
-> +	struct iio_dev *indio_dev;
-> +	struct regmap *regmap;
-> +	int ret, i;
-> +
-> +	indio_dev =3D devm_iio_device_alloc(dev, sizeof(*data));
-> +	if (!indio_dev)
-> +		return -ENOMEM;
-> +
-> +	regmap =3D devm_regmap_init_i2c(client, &af8133j_regmap_config);
-> +	if (IS_ERR(regmap))
-> +		return dev_err_probe(dev, PTR_ERR(regmap),
-> +				     "regmap initialization failed\n");
-> +
-> +	data =3D iio_priv(indio_dev);
-> +	i2c_set_clientdata(client, indio_dev);
-> +	data->client =3D client;
-> +	data->regmap =3D regmap;
-> +	data->range =3D AF8133J_REG_RANGE_12G;
-> +	mutex_init(&data->mutex);
-> +
-> +	data->reset_gpiod =3D devm_gpiod_get_optional(dev, "reset", GPIOD_OUT_H=
-IGH);
-> +	if (IS_ERR(data->reset_gpiod))
-> +		return dev_err_probe(dev, PTR_ERR(data->reset_gpiod),
-> +				     "Failed to get reset gpio\n");
-> +
-> +	for (i =3D 0; i < AF8133J_NUM_SUPPLIES; i++)
-> +		data->supplies[i].supply =3D af8133j_supply_names[i];
-> +	ret =3D devm_regulator_bulk_get(dev, AF8133J_NUM_SUPPLIES, data->suppli=
-es);
-> +	if (ret)
-> +		return ret;
-> +
-> +	ret =3D iio_read_mount_matrix(dev, &data->orientation);
-> +	if (ret)
-> +		return dev_err_probe(dev, ret, "Failed to read mount matrix\n");
-> +
-> +	ret =3D af8133j_power_up(data);
-> +	if (ret)
-> +		return ret;
-> +
-> +	ret =3D af8133j_reset(data);
-> +	if (ret) {
-> +		af8133j_power_down(data);
-Moving over to this being handled by a devm callback would remove the need
-for these manual calls.
-
-> +		return ret;
-> +	}
-> +
-> +	ret =3D af8133j_product_check(data);
-> +	if (ret) {
-> +		af8133j_power_down(data);
-> +		return ret;
-> +	}
-> +
-> +	af8133j_power_down(data);
-
-Leave this to runtime_pm autosuspend.
-Just make sure to set it as active with appropriate get and put to ensure
-the autosuspend handling deals with this.
-
-
-> +
-> +	indio_dev->info =3D &af8133j_info;
-> +	indio_dev->name =3D AF8133J_DRV_NAME;
-
-As below. I'd rather see the string here.
-
-> +	indio_dev->channels =3D af8133j_channels;
-> +	indio_dev->num_channels =3D ARRAY_SIZE(af8133j_channels);
-> +	indio_dev->modes =3D INDIO_DIRECT_MODE;
-> +
-> +	ret =3D devm_iio_triggered_buffer_setup(dev, indio_dev, NULL,
-> +					      &af8133j_trigger_handler, NULL);
-> +	if (ret < 0)
-> +		return dev_err_probe(&client->dev, ret,
-> +				     "failed to setup iio triggered buffer\n");
-> +
-> +	ret =3D devm_iio_device_register(dev, indio_dev);
-> +	if (ret)
-> +		return dev_err_probe(dev, ret, "Failed to register iio device");
-> +
-> +	pm_runtime_set_autosuspend_delay(dev, 500);
-> +	pm_runtime_use_autosuspend(dev);
-
-See the comment on this call in the header. You need to undo it manually - =
-or
-use devm_pm_runtime_enable()
-
-> +	pm_runtime_enable(dev);
-> +
-> +	return 0;
-> +}
-> +
-> +static void af8133j_remove(struct i2c_client *client)
-> +{
-> +	struct iio_dev *indio_dev =3D i2c_get_clientdata(client);
-> +	struct af8133j_data *data =3D iio_priv(indio_dev);
-> +	struct device *dev =3D &data->client->dev;
-> +
-> +	pm_runtime_disable(dev);
-> +	pm_runtime_set_suspended(dev);
-> +
-> +	af8133j_power_down(data);
-
-Can normally push these into callbacks using
-devm_add_action_or_reset()=20
-That avoids need for either explicit error handling or a remove()
-
-You power the device down here, but there isn't a matching call to
-power it up in probe() (as it is powered down in there - which you
-should leave to runtime_pm())
-
-
-
-
-> +}
-> +
-> +static int __maybe_unused af8133j_runtime_suspend(struct device *dev)
-> +{
-> +	struct iio_dev *indio_dev =3D dev_get_drvdata(dev);
-> +	struct af8133j_data *data =3D iio_priv(indio_dev);
-> +
-> +	af8133j_power_down(data);
-> +
-> +	return 0;
-> +}
-> +
-> +static int __maybe_unused af8133j_runtime_resume(struct device *dev)
-
-No need to do the __maybe_unused with the changes below.
-The new way of handling this is to expose them all to the compiler and
-let it do dead code removal.
-
-That's what the pm_ptr() magic does for us.
-
-
-
-> +{
-> +	struct iio_dev *indio_dev =3D dev_get_drvdata(dev);
-> +	struct af8133j_data *data =3D iio_priv(indio_dev);
-> +	int ret;
-> +
-> +	ret =3D af8133j_power_up(data);
-> +	if (ret)
-> +		return ret;
-> +
-> +	ret =3D af8133j_reset(data);
-> +	if (ret) {
-> +		af8133j_power_down(data);
-> +		return ret;
-> +	}
-> +
-> +	return 0;
-> +}
-> +
-> +const struct dev_pm_ops af8133j_pm_ops =3D {
-> +	SET_SYSTEM_SLEEP_PM_OPS(pm_runtime_force_suspend, pm_runtime_force_resu=
-me)
-
-This set of macros are deprecated. =20
-Use SYSTEM_SLEEP_PM_OPS etc in combination with pm_ptr()
-
-> +	SET_RUNTIME_PM_OPS(af8133j_runtime_suspend, af8133j_runtime_resume, NUL=
-L)
-> +};
-
-> +
-> +static struct i2c_driver af8133j_driver =3D {
-> +	.driver =3D {
-> +		.name =3D AF8133J_DRV_NAME,
-
-I'd prefer to just see the string here and where it used above.
-The define just makes the code harder to read.  There is no
-particular reason the driver name should match the iio_dev->name
-so little advantage in enforcing that via a define.
-
-> +		.of_match_table =3D af8133j_of_match,
-> +		.pm =3D &af8133j_pm_ops,
-
-pm_ptr()
-
-otherwise you are going to get unused warnings for the struct.
-
-
-> +	},
-> +	.probe =3D af8133j_probe,
-> +	.remove =3D af8133j_remove,
-> +	.id_table =3D af8133j_id,
-> +};
-> +
-> +module_i2c_driver(af8133j_driver);
-> +
-> +MODULE_AUTHOR("Icenowy Zheng <icenowy@aosc.io>");
-> +MODULE_AUTHOR("Ond=C5=99ej Jirman <megi@xff.cz>");
-> +MODULE_DESCRIPTION("Voltafield AF8133J magnetic sensor driver");
-> +MODULE_LICENSE("GPL");
-
+>>
+>> Thanks,
+>> Jagadeesh
+>>
+>>>> +               offset = 0x8140;
+>>>> +       } else  if (of_device_is_compatible(pdev->dev.of_node, "qcom,sm8650-videocc")) {
+>>>> +               video_cc_pll0_config.l = 0x1e;
+>>>> +               video_cc_pll0_config.alpha = 0xa000;
+>>>> +               video_cc_pll1_config.l = 0x2b;
+>>>> +               video_cc_pll1_config.alpha = 0xc000;
+>>>> +               video_cc_mvs0_clk_src.freq_tbl = ftbl_video_cc_mvs0_clk_src_sm8650;
+>>>> +               video_cc_mvs1_clk_src.freq_tbl = ftbl_video_cc_mvs1_clk_src_sm8650;
+>>>> +               offset = 0x8150;
+>>>> +       }
+>>>> +
+>>>>           clk_lucid_ole_pll_configure(&video_cc_pll0, regmap, &video_cc_pll0_config);
+>>>>           clk_lucid_ole_pll_configure(&video_cc_pll1, regmap, &video_cc_pll1_config);
+>>>>
+>>>> @@ -435,7 +587,7 @@ static int video_cc_sm8550_probe(struct platform_device *pdev)
+>>>>            *      video_cc_xo_clk
+>>>>            */
+>>>>           regmap_update_bits(regmap, 0x80f4, BIT(0), BIT(0));
+>>>> -       regmap_update_bits(regmap, 0x8140, BIT(0), BIT(0));
+>>>> +       regmap_update_bits(regmap, offset, BIT(0), BIT(0));
+>>>>           regmap_update_bits(regmap, 0x8124, BIT(0), BIT(0));
+>>>>
+>>>>           ret = qcom_cc_really_probe(pdev, &video_cc_sm8550_desc, regmap);
+>>>> --
+>>>> 2.43.0
+>>>>
+>>>>
+>>>
+>>>
+> 
+> 
+> 
 
