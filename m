@@ -1,214 +1,433 @@
-Return-Path: <devicetree+bounces-41001-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-41002-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4BA2A851DFD
-	for <lists+devicetree@lfdr.de>; Mon, 12 Feb 2024 20:36:36 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0F9AB851E41
+	for <lists+devicetree@lfdr.de>; Mon, 12 Feb 2024 21:00:55 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 6F6291C20C10
-	for <lists+devicetree@lfdr.de>; Mon, 12 Feb 2024 19:36:35 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 7B5F9B23131
+	for <lists+devicetree@lfdr.de>; Mon, 12 Feb 2024 20:00:52 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 21DFB46B8B;
-	Mon, 12 Feb 2024 19:36:30 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id CAC9347A7A;
+	Mon, 12 Feb 2024 20:00:26 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-yw1-f170.google.com (mail-yw1-f170.google.com [209.85.128.170])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from metis.whiteo.stw.pengutronix.de (metis.whiteo.stw.pengutronix.de [185.203.201.7])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 108864596E;
-	Mon, 12 Feb 2024 19:36:27 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.170
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 544A5481D5
+	for <devicetree@vger.kernel.org>; Mon, 12 Feb 2024 20:00:23 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.203.201.7
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1707766590; cv=none; b=tpemCI4aLOEzL0OGJj9ajD1ECcvGzv9nGXNpispKAz0lpyUzsxa9cAbIpiX1O4n+/DK45BLW78hyNqCUr5bd8gr8hgQLjYunYgoi4EGQ1fgIpO49+0eFGqg7zTZbOKLxrsIlFrw7rAdDJ1atDuhv1SYUe6I8XdpBqssrtUCXxjs=
+	t=1707768026; cv=none; b=Hic0mifbYpfVa7iIH+vkGR92ny1VX21nTZErgOk4peYHalyjewcdw38gDYyrJIuokhoN3u4aj8ylO8H5trXPHaHRHL7mLZtF2Gb07ngk+orcCXsTALL5QiyJCCENHYeyWBFhn93eTJv3/7aG+MRmSRGiSZT7yHJ7eaEbuZKw7oc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1707766590; c=relaxed/simple;
-	bh=MOOgzf4Y7qv2sC/nhPq7u4XY7HwhYErQ2/TDYSFQXlk=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=TOfhbnYLWzuzNwpiLdt7vd6jfrGce754pt2MHnMRvXEd+XX3UjvwNCbXL1FlBN+9KIp2kfnmwbLH0/VWLtarG96EN1Wjl8Tv2CVNC/8ZtEeLtAUFHd4G5UJGYmiOPQgt/wkBE/TiBFHBU7B/u1K4zmeK3B50s1miu5Q0gF1GMbM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org; spf=pass smtp.mailfrom=gmail.com; arc=none smtp.client-ip=209.85.128.170
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-yw1-f170.google.com with SMTP id 00721157ae682-6077a1d441eso4236237b3.1;
-        Mon, 12 Feb 2024 11:36:27 -0800 (PST)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1707766587; x=1708371387;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=jnYnsGGg4lon5Zm4HMkwsmj4AeAbvyhWhQ7hOsWi91Y=;
-        b=WLyWymLHxYPZiRMXOjQeNO8R/qSh9/MpWeikUFM/v+2AcY1ifcuOBCe3gj5erX9xwE
-         ErXy9xPAEufwu9C5FLPY0EckQNQExx0zdsfv65RLQVpYSaan3M6oIAQjzDkjPX4OO6dv
-         zXteL9tiyxquMpIn56RY+0m6ZJcvIKGftoscLuFAEQy+dNdnG4jVs7G19WfWKhtBtBRp
-         6ZDtV6C2GsbJxWRVEM13lCmPa87Xhl/EHki2vl/HXcPalBoIMhHwhchxR7xkMgNuRI/h
-         HaXdElKnJiJdP+XhyzLgrWSYjxvMmgRTlBp8X4uZrg/MO9KOIYcGO/dSC5UBgsFmL2n2
-         abrQ==
-X-Forwarded-Encrypted: i=1; AJvYcCVyBkZJcQuqaGlSXpMhfeEvoQajnDcBVpC0Cq8iwv9bLnOlxMHUv2QTcT51i0P1H+AVfoflfOcZlfmEblVAsOwrGmfhjIb2jPeGfueHvg1+o95lm7qi9lB9z05SuamvqTyIirC7NC8oXjzBEZYV
-X-Gm-Message-State: AOJu0Yyvh44RjODZnIaA9IhYUBM5mz0Bax3fe4Bzv5vDzNAdcrTHUjXK
-	uX1FURM+Q8I59lRQ5qFy4lQXGkUNMPk9o4XRjIhFyjfcXNB4Jq0OAJl9QROs4lY=
-X-Google-Smtp-Source: AGHT+IHuTg6sg9jmuVBdw23D4mbioYW5UJdXfu5Yoz6pmioCK4oiaEOojsxWPF54efbm/LDxt6GxMA==
-X-Received: by 2002:a81:6c41:0:b0:604:a081:c198 with SMTP id h62-20020a816c41000000b00604a081c198mr4627755ywc.42.1707766585203;
-        Mon, 12 Feb 2024 11:36:25 -0800 (PST)
-X-Forwarded-Encrypted: i=1; AJvYcCUBfYRGGWsjUKrSQ1UUD4+5G9aL4K8lxvI3sDRkGXptHM0M2AHyZO1NVg1sGTmKG/5ubLWManhw6BjhQD+usKGjZI9u+fv9DF8kNtdWW5CxEEFTpN7ec89B5l7BY8qQcU1nKYX67o6eXRuaOp9S
-Received: from mail-yw1-f175.google.com (mail-yw1-f175.google.com. [209.85.128.175])
-        by smtp.gmail.com with ESMTPSA id t4-20020a0dd104000000b00604863dc35csm1309663ywd.111.2024.02.12.11.36.24
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 12 Feb 2024 11:36:24 -0800 (PST)
-Received: by mail-yw1-f175.google.com with SMTP id 00721157ae682-60779014458so5212717b3.0;
-        Mon, 12 Feb 2024 11:36:24 -0800 (PST)
-X-Forwarded-Encrypted: i=1; AJvYcCV+sMBTK9dZb6c6yEh2KeXXrjWd2KS7+D2W+bOYv45H6LaEjTx5Q4/0PyzdUkJUmd6WPlitDpk+lTgAjrW4TtuMiQC/jHScPSCOXoT/ijqxJCOgzk23sMiB1KkCvev3LHUywH6NpwytVV86epx8
-X-Received: by 2002:a05:6902:1b93:b0:dc6:bcd5:9503 with SMTP id
- ei19-20020a0569021b9300b00dc6bcd59503mr5175877ybb.48.1707766584469; Mon, 12
- Feb 2024 11:36:24 -0800 (PST)
+	s=arc-20240116; t=1707768026; c=relaxed/simple;
+	bh=9r0Id5Y9RoU/xKvxd9uPoImX5rBlLcjKbbbOl+v6fnQ=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=t/Jt9OLnJiYSSz30SgSdbtmor3sQOHRIp+xzn6pd5uBa/iQ/hL4qI7XJQ6mq1ECwntSmYropzbtOuyzqa2R9twarT2M4z3tSyn2KbvpEN3AAm4ofT7gb2lTOB54+5vKL5v8vdMhITl4V36IVYuXob1x4dOYkL+voZAJqMlSELwA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de; spf=pass smtp.mailfrom=pengutronix.de; arc=none smtp.client-ip=185.203.201.7
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=pengutronix.de
+Received: from drehscheibe.grey.stw.pengutronix.de ([2a0a:edc0:0:c01:1d::a2])
+	by metis.whiteo.stw.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
+	(Exim 4.92)
+	(envelope-from <ore@pengutronix.de>)
+	id 1rZcTE-00053s-4C; Mon, 12 Feb 2024 21:00:04 +0100
+Received: from [2a0a:edc0:2:b01:1d::c5] (helo=pty.whiteo.stw.pengutronix.de)
+	by drehscheibe.grey.stw.pengutronix.de with esmtps  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+	(Exim 4.94.2)
+	(envelope-from <ore@pengutronix.de>)
+	id 1rZcTC-000LdK-94; Mon, 12 Feb 2024 21:00:02 +0100
+Received: from ore by pty.whiteo.stw.pengutronix.de with local (Exim 4.96)
+	(envelope-from <ore@pengutronix.de>)
+	id 1rZcTC-005fbl-0Z;
+	Mon, 12 Feb 2024 21:00:02 +0100
+Date: Mon, 12 Feb 2024 21:00:02 +0100
+From: Oleksij Rempel <o.rempel@pengutronix.de>
+To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Cc: Andrew Lunn <andrew@lunn.ch>, Florian Fainelli <f.fainelli@gmail.com>,
+	Vladimir Oltean <olteanv@gmail.com>,
+	"David S. Miller" <davem@davemloft.net>,
+	Eric Dumazet <edumazet@google.com>,
+	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>, netdev@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v2] dt-bindings: net: qca,ar9331: convert to DT schema
+Message-ID: <Zcp4wvmGX-CJvC5J@pengutronix.de>
+References: <20240212182911.233819-1-krzysztof.kozlowski@linaro.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20240127121937.2372098-1-niklas.soderlund+renesas@ragnatech.se>
-In-Reply-To: <20240127121937.2372098-1-niklas.soderlund+renesas@ragnatech.se>
-From: Geert Uytterhoeven <geert@linux-m68k.org>
-Date: Mon, 12 Feb 2024 20:36:12 +0100
-X-Gmail-Original-Message-ID: <CAMuHMdUJ0U9qnxtdJmVUJQqRhbmu0rmOxpyDZ8Lp=+hv=Oe4Og@mail.gmail.com>
-Message-ID: <CAMuHMdUJ0U9qnxtdJmVUJQqRhbmu0rmOxpyDZ8Lp=+hv=Oe4Og@mail.gmail.com>
-Subject: Re: [PATCH v2] dt-bindings: renesas: Document preferred compatible naming
-To: =?UTF-8?Q?Niklas_S=C3=B6derlund?= <niklas.soderlund+renesas@ragnatech.se>
-Cc: Rob Herring <robh+dt@kernel.org>, 
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, 
-	devicetree@vger.kernel.org, linux-renesas-soc@vger.kernel.org, 
-	Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+In-Reply-To: <20240212182911.233819-1-krzysztof.kozlowski@linaro.org>
+X-Sent-From: Pengutronix Hildesheim
+X-URL: http://www.pengutronix.de/
+X-Accept-Language: de,en
+X-Accept-Content-Type: text/plain
+X-SA-Exim-Connect-IP: 2a0a:edc0:0:c01:1d::a2
+X-SA-Exim-Mail-From: ore@pengutronix.de
+X-SA-Exim-Scanned: No (on metis.whiteo.stw.pengutronix.de); SAEximRunCond expanded to false
+X-PTX-Original-Recipient: devicetree@vger.kernel.org
 
-Hi Niklas,
+On Mon, Feb 12, 2024 at 07:29:11PM +0100, Krzysztof Kozlowski wrote:
+> Convert the Qualcomm Atheros AR9331 built-in switch bindings to DT
+> schema.
+> 
+> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
-On Sat, Jan 27, 2024 at 1:20=E2=80=AFPM Niklas S=C3=B6derlund
-<niklas.soderlund+renesas@ragnatech.se> wrote:
-> Compatibles can come in two formats. Either "vendor,ip-soc" or
-> "vendor,soc-ip". Add a DT schema file documenting Renesas preferred
-> policy and enforcing it for all new compatibles, except few existing
-> patterns.
->
-> Suggested-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-> Signed-off-by: Niklas S=C3=B6derlund <niklas.soderlund+renesas@ragnatech.=
-se>
+Reviewed-by: Oleksij Rempel <o.rempel@pengutronix.de>
+
+Thank you!
+
 > ---
-> * Changes since v1
-> - Split the "SoC agnostic compatibles" section into two to make it's
->   intent clearer.
-> - Improved the documentation for each group of compatibles.
-> - Reduced the number of regexp to create a larger target area. As
->   suggested by Krzysztof the goal is not to validate each SoC name but
->   check for the correct order of SoC-IP.
-
-Thanks for the update!
-
+> 
+> DSA switch bindings still bring me headache...
+> 
+> Changes in v2:
+> 1. Narrow pattern for phy children to ethernet-phy@ or phy@ (MIPS DTS
+>    has the latter) - Conor.
+> ---
+>  .../devicetree/bindings/net/dsa/ar9331.txt    | 147 ----------------
+>  .../bindings/net/dsa/qca,ar9331.yaml          | 161 ++++++++++++++++++
+>  2 files changed, 161 insertions(+), 147 deletions(-)
+>  delete mode 100644 Documentation/devicetree/bindings/net/dsa/ar9331.txt
+>  create mode 100644 Documentation/devicetree/bindings/net/dsa/qca,ar9331.yaml
+> 
+> diff --git a/Documentation/devicetree/bindings/net/dsa/ar9331.txt b/Documentation/devicetree/bindings/net/dsa/ar9331.txt
+> deleted file mode 100644
+> index f824fdae0da2..000000000000
+> --- a/Documentation/devicetree/bindings/net/dsa/ar9331.txt
+> +++ /dev/null
+> @@ -1,147 +0,0 @@
+> -Atheros AR9331 built-in switch
+> -=============================
+> -
+> -It is a switch built-in to Atheros AR9331 WiSoC and addressable over internal
+> -MDIO bus. All PHYs are built-in as well.
+> -
+> -Required properties:
+> -
+> - - compatible: should be: "qca,ar9331-switch"
+> - - reg: Address on the MII bus for the switch.
+> - - resets : Must contain an entry for each entry in reset-names.
+> - - reset-names : Must include the following entries: "switch"
+> - - interrupt-parent: Phandle to the parent interrupt controller
+> - - interrupts: IRQ line for the switch
+> - - interrupt-controller: Indicates the switch is itself an interrupt
+> -   controller. This is used for the PHY interrupts.
+> - - #interrupt-cells: must be 1
+> - - mdio: Container of PHY and devices on the switches MDIO bus.
+> -
+> -See Documentation/devicetree/bindings/net/dsa/dsa.txt for a list of additional
+> -required and optional properties.
+> -Examples:
+> -
+> -eth0: ethernet@19000000 {
+> -	compatible = "qca,ar9330-eth";
+> -	reg = <0x19000000 0x200>;
+> -	interrupts = <4>;
+> -
+> -	resets = <&rst 9>, <&rst 22>;
+> -	reset-names = "mac", "mdio";
+> -	clocks = <&pll ATH79_CLK_AHB>, <&pll ATH79_CLK_AHB>;
+> -	clock-names = "eth", "mdio";
+> -
+> -	phy-mode = "mii";
+> -	phy-handle = <&phy_port4>;
+> -};
+> -
+> -eth1: ethernet@1a000000 {
+> -	compatible = "qca,ar9330-eth";
+> -	reg = <0x1a000000 0x200>;
+> -	interrupts = <5>;
+> -	resets = <&rst 13>, <&rst 23>;
+> -	reset-names = "mac", "mdio";
+> -	clocks = <&pll ATH79_CLK_AHB>, <&pll ATH79_CLK_AHB>;
+> -	clock-names = "eth", "mdio";
+> -
+> -	phy-mode = "gmii";
+> -
+> -	fixed-link {
+> -		speed = <1000>;
+> -		full-duplex;
+> -	};
+> -
+> -	mdio {
+> -		#address-cells = <1>;
+> -		#size-cells = <0>;
+> -
+> -		switch10: switch@10 {
+> -			#address-cells = <1>;
+> -			#size-cells = <0>;
+> -
+> -			compatible = "qca,ar9331-switch";
+> -			reg = <0x10>;
+> -			resets = <&rst 8>;
+> -			reset-names = "switch";
+> -
+> -			interrupt-parent = <&miscintc>;
+> -			interrupts = <12>;
+> -
+> -			interrupt-controller;
+> -			#interrupt-cells = <1>;
+> -
+> -			ports {
+> -				#address-cells = <1>;
+> -				#size-cells = <0>;
+> -
+> -				switch_port0: port@0 {
+> -					reg = <0x0>;
+> -					ethernet = <&eth1>;
+> -
+> -					phy-mode = "gmii";
+> -
+> -					fixed-link {
+> -						speed = <1000>;
+> -						full-duplex;
+> -					};
+> -				};
+> -
+> -				switch_port1: port@1 {
+> -					reg = <0x1>;
+> -					phy-handle = <&phy_port0>;
+> -					phy-mode = "internal";
+> -				};
+> -
+> -				switch_port2: port@2 {
+> -					reg = <0x2>;
+> -					phy-handle = <&phy_port1>;
+> -					phy-mode = "internal";
+> -				};
+> -
+> -				switch_port3: port@3 {
+> -					reg = <0x3>;
+> -					phy-handle = <&phy_port2>;
+> -					phy-mode = "internal";
+> -				};
+> -
+> -				switch_port4: port@4 {
+> -					reg = <0x4>;
+> -					phy-handle = <&phy_port3>;
+> -					phy-mode = "internal";
+> -				};
+> -			};
+> -
+> -			mdio {
+> -				#address-cells = <1>;
+> -				#size-cells = <0>;
+> -
+> -				interrupt-parent = <&switch10>;
+> -
+> -				phy_port0: phy@0 {
+> -					reg = <0x0>;
+> -					interrupts = <0>;
+> -				};
+> -
+> -				phy_port1: phy@1 {
+> -					reg = <0x1>;
+> -					interrupts = <0>;
+> -				};
+> -
+> -				phy_port2: phy@2 {
+> -					reg = <0x2>;
+> -					interrupts = <0>;
+> -				};
+> -
+> -				phy_port3: phy@3 {
+> -					reg = <0x3>;
+> -					interrupts = <0>;
+> -				};
+> -
+> -				phy_port4: phy@4 {
+> -					reg = <0x4>;
+> -					interrupts = <0>;
+> -				};
+> -			};
+> -		};
+> -	};
+> -};
+> diff --git a/Documentation/devicetree/bindings/net/dsa/qca,ar9331.yaml b/Documentation/devicetree/bindings/net/dsa/qca,ar9331.yaml
+> new file mode 100644
+> index 000000000000..fd9ddc59d38c
 > --- /dev/null
-> +++ b/Documentation/devicetree/bindings/soc/renesas/renesas-soc.yaml
-> @@ -0,0 +1,135 @@
+> +++ b/Documentation/devicetree/bindings/net/dsa/qca,ar9331.yaml
+> @@ -0,0 +1,161 @@
 > +# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
 > +%YAML 1.2
 > +---
-> +$id: http://devicetree.org/schemas/soc/renesas/renesas-soc.yaml#
+> +$id: http://devicetree.org/schemas/net/dsa/qca,ar9331.yaml#
 > +$schema: http://devicetree.org/meta-schemas/core.yaml#
 > +
-> +title: Renesas SoC compatibles naming convention
+> +title: Qualcomm Atheros AR9331 built-in switch
 > +
 > +maintainers:
-> +  - Geert Uytterhoeven <geert+renesas@glider.be>
-> +  - Niklas S=C3=B6derlund <niklas.soderlund@ragnatech.se>
+> +  - Oleksij Rempel <o.rempel@pengutronix.de>
 > +
-> +description: |
-> +  Guidelines for new compatibles for SoC blocks/components.
-> +  When adding new compatibles in new bindings, use the format::
-> +    renesas,SoC-IP
-
-or renesas,Family-IP?
-
-> +
-> +  For example::
-> +   renesas,r8a77965-csi2
-> +
-> +  When adding new compatibles to existing bindings, use the format in th=
-e
-> +  existing binding, even if it contradicts the above.
-> +
-> +select:
-> +  properties:
-> +    compatible:
-> +      pattern: "^renesas,.*-.*$"
-> +  required:
-> +    - compatible
+> +description:
+> +  Qualcomm Atheros AR9331 is a switch built-in to Atheros AR9331 WiSoC and
+> +  addressable over internal MDIO bus. All PHYs are built-in as well.
 > +
 > +properties:
 > +  compatible:
-> +    oneOf:
-> +      # Preferred naming style for compatibles of SoC components
-> +      - pattern: "^renesas,emev2-[a-z0-9-]+$"
-> +      - pattern: "^renesas,r(7s|8a|9a)[a-z0-9]+-[a-z0-9-]+$"
-> +      - pattern: "^renesas,rcar-[a-z0-9-]+$"
-> +      - pattern: "^renesas,rz[a-z0-9]*-[a-z0-9-]+$"
-> +      - pattern: "^renesas,sh-[a-z0-9-]+$"
-> +      - pattern: "^renesas,sh7[a-z0-9]+-[a-z0-9-]+$"
+> +    const: qca,ar9331-switch
+> +
+> +  reg:
+> +    maxItems: 1
+> +
+> +  interrupts:
+> +    maxItems: 1
+> +
+> +  interrupt-controller: true
+> +
+> +  '#interrupt-cells':
+> +    const: 1
+> +
+> +  mdio:
+> +    $ref: /schemas/net/mdio.yaml#
+> +    unevaluatedProperties: false
+> +    properties:
+> +      interrupt-parent: true
+> +
+> +    patternProperties:
+> +      '(ethernet-)?phy@[0-4]+$':
+> +        type: object
+> +        unevaluatedProperties: false
+> +
+> +        properties:
+> +          reg: true
+> +          interrupts:
+> +            maxItems: 1
+> +
+> +  resets:
+> +    maxItems: 1
+> +
+> +  reset-names:
+> +    items:
+> +      - const: switch
+> +
+> +required:
+> +  - compatible
+> +  - reg
+> +  - interrupts
+> +  - interrupt-controller
+> +  - '#interrupt-cells'
+> +  - mdio
+> +  - ports
+> +  - resets
+> +  - reset-names
+> +
+> +allOf:
+> +  - $ref: dsa.yaml#/$defs/ethernet-ports
+> +
+> +unevaluatedProperties: false
+> +
+> +examples:
+> +  - |
+> +    mdio {
+> +        #address-cells = <1>;
+> +        #size-cells = <0>;
+> +
+> +        switch10: switch@10 {
+> +            compatible = "qca,ar9331-switch";
+> +            reg = <0x10>;
+> +
+> +            interrupt-parent = <&miscintc>;
+> +            interrupts = <12>;
+> +            interrupt-controller;
+> +            #interrupt-cells = <1>;
+> +
+> +            resets = <&rst 8>;
+> +            reset-names = "switch";
+> +
+> +            ports {
+> +                #address-cells = <1>;
+> +                #size-cells = <0>;
+> +
+> +                port@0 {
+> +                    reg = <0x0>;
+> +                    ethernet = <&eth1>;
+> +
+> +                    phy-mode = "gmii";
+> +
+> +                    fixed-link {
+> +                        speed = <1000>;
+> +                        full-duplex;
+> +                    };
+> +                };
+> +
+> +                port@1 {
+> +                    reg = <0x1>;
+> +                    phy-handle = <&phy_port0>;
+> +                    phy-mode = "internal";
+> +                };
+> +
+> +                port@2 {
+> +                    reg = <0x2>;
+> +                    phy-handle = <&phy_port1>;
+> +                    phy-mode = "internal";
+> +                };
+> +
+> +                port@3 {
+> +                    reg = <0x3>;
+> +                    phy-handle = <&phy_port2>;
+> +                    phy-mode = "internal";
+> +                };
+> +
+> +                port@4 {
+> +                    reg = <0x4>;
+> +                    phy-handle = <&phy_port3>;
+> +                    phy-mode = "internal";
+> +                };
+> +            };
+> +
+> +            mdio {
+> +                #address-cells = <1>;
+> +                #size-cells = <0>;
+> +
+> +                interrupt-parent = <&switch10>;
+> +
+> +                phy_port0: ethernet-phy@0 {
+> +                    reg = <0x0>;
+> +                    interrupts = <0>;
+> +                };
+> +
+> +                phy_port1: ethernet-phy@1 {
+> +                    reg = <0x1>;
+> +                    interrupts = <0>;
+> +                };
+> +
+> +                phy_port2: ethernet-phy@2 {
+> +                    reg = <0x2>;
+> +                    interrupts = <0>;
+> +                };
+> +
+> +                phy_port3: ethernet-phy@3 {
+> +                    reg = <0x3>;
+> +                    interrupts = <0>;
+> +                };
+> +
+> +                phy_port4: ethernet-phy@4 {
+> +                    reg = <0x4>;
+> +                    interrupts = <0>;
+> +                };
+> +            };
+> +        };
+> +    };
+> -- 
+> 2.34.1
+> 
+> 
 
-I guess it's not worth adding rmobile and shmobile prefixes?
-
-> +      # Fixed legacy compatibles
-> +      #
-> +      # List cannot grow with new bindings.
-> +      - enum:
-> +          - renesas,bsc-r8a73a4
-> +          - renesas,bsc-sh73a0
-> +          - renesas,dbsc-r8a73a4
-> +          - renesas,dbsc3-r8a7740
-> +          - renesas,em-gio
-> +          - renesas,em-sti
-> +          - renesas,em-uart
-
-Perhaps combine these three: "renesas,em-(gpio|sti|usrt)"?
-
-> +          - renesas,fsi2-r8a7740
-> +          - renesas,fsi2-sh73a0
-
-Likewise
-
-> +          - renesas,hspi-r8a7778
-> +          - renesas,hspi-r8a7779
-
-Etc. ;-)
-
-Now, how do I trigger violations?
-
-I added the following to a binding file:
-
-          - enum:
-              - renesas,bogus-r8a7778
-              - renesas,bogus-r8a7779
-          - const: renesas,bogus
-
-but nothing happened with "make dt_binding_check".
-
-I added the following to a DTS file:
-
-        compatible =3D "renesas,bogus-r8a7778", "renesas,bogus";
-
-again, nothing happened with "make dtbs_check".
-
-What am I missing?
-Thanks!
-
-Gr{oetje,eeting}s,
-
-                        Geert
-
---
-Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k=
-.org
-
-In personal conversations with technical people, I call myself a hacker. Bu=
-t
-when I'm talking to journalists I just say "programmer" or something like t=
-hat.
-                                -- Linus Torvalds
+-- 
+Pengutronix e.K.                           |                             |
+Steuerwalder Str. 21                       | http://www.pengutronix.de/  |
+31137 Hildesheim, Germany                  | Phone: +49-5121-206917-0    |
+Amtsgericht Hildesheim, HRA 2686           | Fax:   +49-5121-206917-5555 |
 
