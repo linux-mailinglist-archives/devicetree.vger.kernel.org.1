@@ -1,112 +1,111 @@
-Return-Path: <devicetree+bounces-40853-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-40854-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id D62438518A5
-	for <lists+devicetree@lfdr.de>; Mon, 12 Feb 2024 17:06:58 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 15D128518AC
+	for <lists+devicetree@lfdr.de>; Mon, 12 Feb 2024 17:09:07 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id F313B1C21991
-	for <lists+devicetree@lfdr.de>; Mon, 12 Feb 2024 16:06:57 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 526801C21BD9
+	for <lists+devicetree@lfdr.de>; Mon, 12 Feb 2024 16:09:06 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A5CD03D0A8;
-	Mon, 12 Feb 2024 16:06:53 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 77CE93D0AF;
+	Mon, 12 Feb 2024 16:09:02 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b="2o+41Bo6"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-yb1-f176.google.com (mail-yb1-f176.google.com [209.85.219.176])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from vps0.lunn.ch (vps0.lunn.ch [156.67.10.101])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F2A193CF7C;
-	Mon, 12 Feb 2024 16:06:51 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.219.176
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CBBDE3D0A9;
+	Mon, 12 Feb 2024 16:09:00 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=156.67.10.101
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1707754013; cv=none; b=qK/rnqjURhOOSk26lhUzvS0rQVuousvdvS3c/azOw30sK4Jqd6ocfXqwXnm5Y4VYm/qYPA/jiFfdA/nQVm0h7BxE2QsVHlplwjjClnYsXdb4pBnWtrn5lSrhw2Oue0n+1HZh19VzNioF4soXUzlJXCgXiK3vuMCZUxgXtye1cKA=
+	t=1707754142; cv=none; b=f87YMEjNBUvQ0Qu0n12WboJOkOjoqSpppGA8pNroD+E6rIAWfrV5MrdnIp/ZCvNfxsvFPgrZYXhT5OJTnjr8lNwTkXxnmAU/OoKcz2i+Gy+qYV3k8c2E4Yq/hCUpvyvCnZyovg2fxvmwkCmtZRMXxbSFKpCqF5CxD4fz2101qek=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1707754013; c=relaxed/simple;
-	bh=eu8yVSLA3BKIkoJ10Jm9voSf8PwLnL5xz+s5QOM1Xrc=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=ilCvb9zZnZlrB6TeVB1AlvkfbTjcN7Cldhi1ys6b8LeYVwjKAWyrCB4u6zANBtVtF15f8PuraNWb+oILMwCdU9MJ5Q7U1D6CXg3EBA1Xl47X5q12nYx9Tz4fBGj/lr76o1m4mdC82Mq2HuHA7nn4yY+TJ7b8d+ynl+zREhW6oWs=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org; spf=pass smtp.mailfrom=gmail.com; arc=none smtp.client-ip=209.85.219.176
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-yb1-f176.google.com with SMTP id 3f1490d57ef6-dbed0710c74so2706296276.1;
-        Mon, 12 Feb 2024 08:06:51 -0800 (PST)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1707754009; x=1708358809;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=7gdwZc5+s56DZO0JOI15ZmhwmQHAyRJK2BxS4wcW7KI=;
-        b=CSDUKwbqXr5z+6ORCeDtdIiRmekDG+ge6s+WS9YKtc0lxWOadKhRQ6ZDUYZGvgd2IW
-         NNcyCV1WY+IQcGHfJXwHZNkfY0sCx0nLd1HZjvUWeBB8/9LoYbm+N36YdfLUFFhTFgLh
-         PLu9n82wLLBpsLkinzrBURVMjZ7qtONagwV0j40xiD7Ug+YDPnJfOGYZX3lpSfX7PLjD
-         nnTWEJ/8kPyaxyxKQ1SAXdOZwjgI/3iFyH7FyNYpOnfMo13UXD5SfX1wWVnD6QVUqDOc
-         saIq312FDWwHeZJA5qX8Yxpz68F+IWtibJBelW//OJBQC7UbgjGt0oFtNSMus+tWte2n
-         dKqQ==
-X-Gm-Message-State: AOJu0YycwRoc1ekpkz4pkFFfPxltKCPdQUrDaAAsNYPhmpuHLhpfqCdR
-	Sk1q9KoOrrBj0WLyEESCOhlv8QNH1cSuvnsSueqarAyXg1Te1hySjAZdaF957GI=
-X-Google-Smtp-Source: AGHT+IFTUNkCyU8oYvLHSMxCIgfJS1ITNJwHHySkYqvZY9azjB8khLpqKkpZZpBfRSqLYYioHESr7A==
-X-Received: by 2002:a25:ae61:0:b0:dc7:30cc:f264 with SMTP id g33-20020a25ae61000000b00dc730ccf264mr4866272ybe.56.1707754009390;
-        Mon, 12 Feb 2024 08:06:49 -0800 (PST)
-X-Forwarded-Encrypted: i=1; AJvYcCVZDXixsoObVE+GV5dX6I7cfyNvA+j9BdimCcmfe6bevnvoKNxAjYM1Wy8JwlvUS9rv8TZd1BYpHCutxUSP+4ZJ34GKtzUTGpVozq9BPiGdqUFPIVL91ncuFZLge1vZq8rHFwgnLRb5hGc9c1iGB/pZuaCqy7UnOLlICTAqidm7YCutbztym702XaGq
-Received: from mail-yb1-f175.google.com (mail-yb1-f175.google.com. [209.85.219.175])
-        by smtp.gmail.com with ESMTPSA id g7-20020a056902134700b00dc701e0bdbcsm1221103ybu.44.2024.02.12.08.06.49
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 12 Feb 2024 08:06:49 -0800 (PST)
-Received: by mail-yb1-f175.google.com with SMTP id 3f1490d57ef6-dc75bc22a10so2353468276.0;
-        Mon, 12 Feb 2024 08:06:49 -0800 (PST)
-X-Received: by 2002:a25:ae61:0:b0:dc7:30cc:f264 with SMTP id
- g33-20020a25ae61000000b00dc730ccf264mr4866250ybe.56.1707754008919; Mon, 12
- Feb 2024 08:06:48 -0800 (PST)
+	s=arc-20240116; t=1707754142; c=relaxed/simple;
+	bh=lFQ13ZdkGLoXG1jizC4q4UNS8hJ2RH6AqRXJj1aalVo=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=dqPaE1q4SueryUVL+m0TWICR5kEIqD4FkumKfTakMWoQEwKOdOab9DQ+D/pvtcsGZnA667CB+/0nZoTAm7QnJT++JDV43Q/5H7Ry9C3dBK5m9jUu45KtzB2euXwTBS4NIvsAZjadxAMp2KB1rNTC/LegSjpoShRteFRUX7QmuLY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch; spf=pass smtp.mailfrom=lunn.ch; dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b=2o+41Bo6; arc=none smtp.client-ip=156.67.10.101
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=lunn.ch
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
+	s=20171124; h=In-Reply-To:Content-Transfer-Encoding:Content-Disposition:
+	Content-Type:MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:From:
+	Sender:Reply-To:Subject:Date:Message-ID:To:Cc:MIME-Version:Content-Type:
+	Content-Transfer-Encoding:Content-ID:Content-Description:Content-Disposition:
+	In-Reply-To:References; bh=6onZmQzOzTUVxLoq6PYi5yWge8qbTLIuvhUFhRpmHVs=; b=2o
+	+41Bo6FmLs3CFKu7/PnppPbXJlVbPahVnWc8gQAehr0FYkL6JCAvclXwJ73rbToYbNuTK3lX8NnMh
+	faq2sh3kD3SaMYmJrC0akBsQOya5VPkaj/o6Jm/FlknDTPuKtoLrS1Cr/Oe0xjxfRKJQOnpbXk0Ok
+	lNvfbw7RV/jVIKQ=;
+Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
+	(envelope-from <andrew@lunn.ch>)
+	id 1rZYra-007aZq-AW; Mon, 12 Feb 2024 17:08:58 +0100
+Date: Mon, 12 Feb 2024 17:08:58 +0100
+From: Andrew Lunn <andrew@lunn.ch>
+To: Michal =?utf-8?B?Vm9rw6HEjQ==?= <michal.vokac@ysoft.com>
+Cc: Shawn Guo <shawnguo@kernel.org>, Fabio Estevam <festevam@gmail.com>,
+	Rob Herring <robh+dt@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Sascha Hauer <s.hauer@pengutronix.de>,
+	Pengutronix Kernel Team <kernel@pengutronix.de>,
+	NXP Linux Team <linux-imx@nxp.com>, devicetree@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH 1/2] ARM: dts: imx6dl-yapp4: Fix the QCA switch register
+ address
+Message-ID: <c5dad8e7-c486-4dd9-bfb5-bdfa2ddc18b3@lunn.ch>
+References: <1707751422-31517-1-git-send-email-michal.vokac@ysoft.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20240208120455.48009-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
-In-Reply-To: <20240208120455.48009-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
-From: Geert Uytterhoeven <geert@linux-m68k.org>
-Date: Mon, 12 Feb 2024 17:06:37 +0100
-X-Gmail-Original-Message-ID: <CAMuHMdUxBb5W_FTArzDWYx+qeYC0JKxwo1sXp_iCRsQjPD3rmg@mail.gmail.com>
-Message-ID: <CAMuHMdUxBb5W_FTArzDWYx+qeYC0JKxwo1sXp_iCRsQjPD3rmg@mail.gmail.com>
-Subject: Re: [PATCH] dt-bindings: soc: renesas: Preserve the order of SoCs
- based on their part numbers
-To: Prabhakar <prabhakar.csengg@gmail.com>
-Cc: Magnus Damm <magnus.damm@gmail.com>, Rob Herring <robh+dt@kernel.org>, 
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, 
-	devicetree@vger.kernel.org, linux-renesas-soc@vger.kernel.org, 
-	linux-kernel@vger.kernel.org, Biju Das <biju.das.jz@bp.renesas.com>, 
-	Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>, 
-	Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <1707751422-31517-1-git-send-email-michal.vokac@ysoft.com>
 
-On Thu, Feb 8, 2024 at 1:05=E2=80=AFPM Prabhakar <prabhakar.csengg@gmail.co=
-m> wrote:
-> From: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
->
-> This commit ensures the preservation of the order of SoCs according to
-> their part numbers.
->
-> Fixes: 9c57c4a9a45c0 ("dt-bindings: soc: renesas: Document Renesas RZ/G3S=
- SoC variants")
-> Signed-off-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+On Mon, Feb 12, 2024 at 04:23:41PM +0100, Michal Vokáč wrote:
+> The switch address in the node name is in hex while the address in the reg
+> property is decimal which is wrong. Fix that and write the reg address
+> as a hexadecimal number.
 
-Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
-i.e. will queue in renesas-devel for v6.9.
+This feels the wrong way around. The reg value is used by the kernel,
+where as the node name is not. If the reg value was wrong, the switch
+would not be found. If this file was tested, why did somebody not
+notice the switch was missing?
 
-Gr{oetje,eeting}s,
+Do you have the hardware? Can you confirm is really does not work
+without this patch? Was 15b43e497ffd never actually tested?
 
-                        Geert
+Thanks
+	Andrew
 
---=20
-Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k=
-.org
-
-In personal conversations with technical people, I call myself a hacker. Bu=
-t
-when I'm talking to journalists I just say "programmer" or something like t=
-hat.
-                                -- Linus Torvalds
+> 
+> Fixes: 15b43e497ffd ("ARM: dts: imx6dl-yapp4: Use correct pseudo PHY address for the switch")
+> Signed-off-by: Michal Vokáč <michal.vokac@ysoft.com>
+> ---
+>  arch/arm/boot/dts/nxp/imx/imx6dl-yapp4-common.dtsi | 2 +-
+>  1 file changed, 1 insertion(+), 1 deletion(-)
+> 
+> diff --git a/arch/arm/boot/dts/nxp/imx/imx6dl-yapp4-common.dtsi b/arch/arm/boot/dts/nxp/imx/imx6dl-yapp4-common.dtsi
+> index cfb0fc924b42..5763f8253d51 100644
+> --- a/arch/arm/boot/dts/nxp/imx/imx6dl-yapp4-common.dtsi
+> +++ b/arch/arm/boot/dts/nxp/imx/imx6dl-yapp4-common.dtsi
+> @@ -143,7 +143,7 @@
+>  
+>  		switch@10 {
+>  			compatible = "qca,qca8334";
+> -			reg = <10>;
+> +			reg = <0x10>;
+>  			reset-gpios = <&gpio1 25 GPIO_ACTIVE_LOW>;
+>  
+>  			switch_ports: ports {
+> -- 
+> 2.1.4
+> 
 
