@@ -1,400 +1,232 @@
-Return-Path: <devicetree+bounces-40696-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-40697-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8FFCA85136D
-	for <lists+devicetree@lfdr.de>; Mon, 12 Feb 2024 13:18:22 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id E4F4085138B
+	for <lists+devicetree@lfdr.de>; Mon, 12 Feb 2024 13:29:05 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 20D50286A86
-	for <lists+devicetree@lfdr.de>; Mon, 12 Feb 2024 12:18:21 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id E66A31C21956
+	for <lists+devicetree@lfdr.de>; Mon, 12 Feb 2024 12:29:04 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 61A8F39FC9;
-	Mon, 12 Feb 2024 12:17:48 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D56D339FD3;
+	Mon, 12 Feb 2024 12:29:01 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="bIOm69G7"
+	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="QARv9sdM"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pl1-f179.google.com (mail-pl1-f179.google.com [209.85.214.179])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8F61D39FEB;
-	Mon, 12 Feb 2024 12:17:46 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.179
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 158191864C;
+	Mon, 12 Feb 2024 12:28:59 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1707740268; cv=none; b=OP/iuQa2d/fLNV/RZeDffUcj+qCtHWG9MebuxnUkXNgYriFOrI0NkhJoVRRwbwnAXNKhrUY6X9xlxXswZ79jd+Li/HnHRBhuD0W0vovle3CA+u4XJUuY/u4hYCIZcSwfaARVZ+k3upogkWlHwi5Ffy9Wvel98IfsmXfZZ2O5IBU=
+	t=1707740941; cv=none; b=bsGsq+81TSQ8ZEROHS5QT+ViRmkUsiKMqrObCMOly7HItD7zgW2j2bQhvLBZ6k/TE4Fudx8eEWOQZo7MK3Pj/mc1l/M5KBk4ZfGeOaoiwb7ptrj6/uduaPduv+Ncy4KaD0EfGdvMNg77Sp4M+lzz17uZj0o6wgQKfys4dJKR6C0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1707740268; c=relaxed/simple;
-	bh=wvglWGO75Qjvj5RpZfPRJJ6urx7SCXxgZ1mdrXsCA3Y=;
-	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
-	 MIME-Version; b=Q0xOhL7K7tGQwNrD0r1u+R3UBhUEXHZruyx5ZaeN5JBKb+h/UGrWrSxPIcwjAD72/KUE5AWrEsHcfmpq1VX9r5eadnLjTWLyrbBVhOsm6RuHXRUyGzrcg1ErazrTNXZMTJCvcz92vkDLX5m7yD0uD4et7VuUnpxsigdSYUkLeVE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=bIOm69G7; arc=none smtp.client-ip=209.85.214.179
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-pl1-f179.google.com with SMTP id d9443c01a7336-1d7881b1843so28118545ad.3;
-        Mon, 12 Feb 2024 04:17:46 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1707740266; x=1708345066; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=H8JsWK1VjXINCCnx1TiFd25vutvpFxoA0z9S5qj1OSU=;
-        b=bIOm69G7q11IbA3TwSInJV7/Cavyfu9v4V9kRuwMu3zeRUMzJxnL+sBq/wyM0sDveQ
-         CihQLsjW4Gr2apY2dA6Zk45H5vpR/pcgKLz0/SA96Ob/IBKoDMae99RFABmRiRnaJTcV
-         NwbPmJCAcq9QtTNO6veRj7SKD0RlqRHB0cv12JAkuf/LuCulAMVzUwWPG87Vg1BIZrj2
-         94uX9SJl/M8hWrB2kRgxbyLbtAgCbkdxAfwv4mle4J/lh1j99e8i9k3vRgIVCpNB1YJD
-         evCseAWxugI+QjJlSojyM2tUsTqiH+BBmiZa2AC0bi5Uh5uoefyP45rDuSIeDeYbsMTr
-         R/QQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1707740266; x=1708345066;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=H8JsWK1VjXINCCnx1TiFd25vutvpFxoA0z9S5qj1OSU=;
-        b=e7C0pVEIx5C+Q6/WK/c+mJvutov5OM9Or9Xw4YQpLrmONDhfNbhsC9TJKljrkLnDry
-         P9xiSt3D7fi7BKzSezp6muJGxaLGTtxuxXrOleztJ22X5E7O/2hULNNSayolmlSMAfs7
-         UoZXsd1NEuzQCh2ZiMaVOL+mnCR1b33s8b7IpjplFL+GV51lnn3kT+4JNPtHFCeWL2lC
-         ia0MXVV2ODghiYA2VFNUejmpQegJ3TcTJPe1CsFIqmFpZ/R19rsucItocv5TWfuxuzZ7
-         ZWjzaBBixE7M+enPY8/spbHZHXU0Z7Hy3kmJ/VmngfL6mauqBol1Is9+3pNKK0ynKd4O
-         CRlg==
-X-Forwarded-Encrypted: i=1; AJvYcCXGTlUT0Qz7t8j3rF4O15rtrS5KOESbU47cZTmyrXgeVHAv9a55TN3lktveed6TsK655528U6kFFMKk8hVEv7quXhdqB9gKaSIdMBVrnv86UCqjNHYr+RvCu0zHKOeG4KQRQBHtw1Twqw==
-X-Gm-Message-State: AOJu0YxLXWxG+84dK774rx2ey6kFgfSHfGR/ftMBRFdzVdCF+/M6WbXi
-	N0HQl8Uq07W/BycBl+mT6QdI9dEiqLI+C4Y6RyfEc3CGXw6sr4SL
-X-Google-Smtp-Source: AGHT+IFZ00zMOJPjjtHPiprchx1xR6W+J665tjo+QgpFWjdeLeZAgzp5M7EJmB7qZ029QdeOR3Gk6Q==
-X-Received: by 2002:a17:902:d2c5:b0:1d9:4282:4be8 with SMTP id n5-20020a170902d2c500b001d942824be8mr9730577plc.25.1707740265161;
-        Mon, 12 Feb 2024 04:17:45 -0800 (PST)
-X-Forwarded-Encrypted: i=1; AJvYcCVasJX8HbaV+JHQS7zJZ5KCEG6WsX49qi8aXZxsxyWDMHwnDN0nqoB9lc2zyaJAK+DAT4nt4GxvyMKPBfO78IcR5kEdLNU0+WDI/q3MiSlkNMQ76Dtk2+7f92illLqJG8BqevZBcjbu6dVKhu5RfCohultVxNUau91iwyCyGCr4V5kNrgu/5x63kwuLyYODSltWWqf/NwSZc1zrqdURKWPfR6cBB2L+kuq0Cl7rbiphAGXjycJcwBLnRCxPUiwGZo1yXC2X9N25If/OwhcJxjdjKR9JQZFddTpg6dRzKQQdkcYSnrqZWWU/1tOPNdCYABWEIV8kc/szQTbgDmUhI/y6WDxCULqBK2hYzocsIy6aU+0zZcsZVz5AWaPtEXeJcAF0FVNWvyBDr4/2TA14ZnzVfQkHcuL2TAHXUgtKlpC7IJITakQ3jxoAHHHi32qENFH9EKq+aA00MBCn7Fjh
-Received: from localhost ([46.3.240.105])
-        by smtp.gmail.com with ESMTPSA id jx8-20020a170903138800b001d705b43724sm247721plb.169.2024.02.12.04.17.44
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 12 Feb 2024 04:17:44 -0800 (PST)
-From: Jingbao Qiu <qiujingbao.dlmu@gmail.com>
-To: u.kleine-koenig@pengutronix.de,
-	robh+dt@kernel.org,
-	krzysztof.kozlowski+dt@linaro.org,
-	conor+dt@kernel.org,
-	paul.walmsley@sifive.com,
-	palmer@dabbelt.com,
-	aou@eecs.berkeley.edu
-Cc: linux-pwm@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	linux-riscv@lists.infradead.org,
-	dlan@gentoo.org,
-	inochiama@outlook.com,
-	Jingbao Qiu <qiujingbao.dlmu@gmail.com>
-Subject: [PATCH v2 2/2] pwm: sophgo: add pwm support for Sophgo CV1800 SoC
-Date: Mon, 12 Feb 2024 20:17:29 +0800
-Message-Id: <20240212121729.1086718-3-qiujingbao.dlmu@gmail.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20240212121729.1086718-1-qiujingbao.dlmu@gmail.com>
-References: <20240212121729.1086718-1-qiujingbao.dlmu@gmail.com>
+	s=arc-20240116; t=1707740941; c=relaxed/simple;
+	bh=7PJj2msmk4dQMXOL4dv5NOIOGOF0PXOzFte4+3Icwfc=;
+	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
+	 In-Reply-To:Content-Type; b=d2RuBj23oZ2gwcO6uFwYjuaFGuVoEEoKoHGK+2fEZCYYyXjR9/NDe+7XLjqRLQtNgC65OJRdO97O5/gaSIYla3gaaqBK0a/C4Nge3lnmdtT8DS7Ykj2oVDGZTMWTFCqYQC2+bz5D63iQhL9MUWUHsbsG9VkcnigYK8lGsQ2uH+c=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=QARv9sdM; arc=none smtp.client-ip=205.220.180.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
+Received: from pps.filterd (m0279872.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.17.1.24/8.17.1.24) with ESMTP id 41CBcwY7028412;
+	Mon, 12 Feb 2024 12:28:39 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
+	message-id:date:mime-version:subject:to:cc:references:from
+	:in-reply-to:content-type:content-transfer-encoding; s=
+	qcppdkim1; bh=LyAR9Ky0LhG2Wb408/zQXSn+8a0n2Xf9kdFtUVe/EH0=; b=QA
+	Rv9sdMCt1eM7klTxSydUAnffWPU32OVqBENpWdlH/xJPmZ/BHRbE3TmBUtDV6yuj
+	8tXPKlLDPXAvPc4pURbvgOrbjCUVlcnDtbIbUnaqfgyw9/+rSv+BrduCh/7Bi59x
+	IDvpJhX0HSXYu0K/hFeWMTpW9KlhcAvjlULXVKSwe7748ghd1uJySWFm7ij8hMez
+	7w4rpilbNhCSB+iJBDPfXI57g5D/5nhuBpItL/pPPkMzcrT8+6kRxKVdsUgptzYm
+	pJ2S9XSzQJg1xuN1vTh434OYOWMxlaXJQ7P8BafWPGVFRU8hRF3HpNmRNe//5p9i
+	5XWDwNbB7RS0ubtGqgzg==
+Received: from nasanppmta05.qualcomm.com (i-global254.qualcomm.com [199.106.103.254])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3w62nwk90q-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Mon, 12 Feb 2024 12:28:39 +0000 (GMT)
+Received: from nasanex01a.na.qualcomm.com (nasanex01a.na.qualcomm.com [10.52.223.231])
+	by NASANPPMTA05.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 41CCScEA014931
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Mon, 12 Feb 2024 12:28:38 GMT
+Received: from [10.204.67.124] (10.80.80.8) by nasanex01a.na.qualcomm.com
+ (10.52.223.231) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1118.40; Mon, 12 Feb
+ 2024 04:28:32 -0800
+Message-ID: <7932ccbb-3b41-49e2-bb88-9c2633002a0d@quicinc.com>
+Date: Mon, 12 Feb 2024 17:58:29 +0530
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 2/2] arm64: dts: qcom: qcm6490-idp: add display and panel
+Content-Language: en-US
+To: Konrad Dybcio <konrad.dybcio@linaro.org>,
+        Dmitry Baryshkov
+	<dmitry.baryshkov@linaro.org>
+CC: <andersson@kernel.org>, <robh+dt@kernel.org>,
+        <krzysztof.kozlowski+dt@linaro.org>, <conor+dt@kernel.org>,
+        <catalin.marinas@arm.com>, <will@kernel.org>,
+        <quic_bjorande@quicinc.com>, <geert+renesas@glider.be>,
+        <arnd@arndb.de>, <neil.armstrong@linaro.org>,
+        <nfraprado@collabora.com>, <m.szyprowski@samsung.com>,
+        <linux-arm-msm@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>, <linux-arm-kernel@lists.infradead.org>,
+        <quic_abhinavk@quicinc.com>, <quic_rajeevny@quicinc.com>,
+        <quic_vproddut@quicinc.com>
+References: <20240116094935.9988-1-quic_riteshk@quicinc.com>
+ <20240116094935.9988-3-quic_riteshk@quicinc.com>
+ <20a8efd1-e243-434e-8f75-aa786ac8014f@linaro.org>
+ <CAA8EJpqQVuS+yqXQ2y5sNQrRVg7tcQAJ3ywsEjg+O=7TkUZWLQ@mail.gmail.com>
+ <99a9a562-9f6f-411c-be1c-0a28fc2524dd@quicinc.com>
+ <CAA8EJppj+cDnw7p4yANvF0FmEhX3+L5xUq8w3TeevAGhcpo1Yg@mail.gmail.com>
+ <9d1c684f-51ac-4d9c-a189-940ff65e0cab@linaro.org>
+From: Ritesh Kumar <quic_riteshk@quicinc.com>
+In-Reply-To: <9d1c684f-51ac-4d9c-a189-940ff65e0cab@linaro.org>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
 Content-Transfer-Encoding: 8bit
+X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
+ nasanex01a.na.qualcomm.com (10.52.223.231)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-GUID: ERe9fjQUvxdTw12Qkc_kIo02E4PHDDAu
+X-Proofpoint-ORIG-GUID: ERe9fjQUvxdTw12Qkc_kIo02E4PHDDAu
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.272,Aquarius:18.0.1011,Hydra:6.0.619,FMLib:17.11.176.26
+ definitions=2024-02-12_09,2024-02-12_01,2023-05-22_02
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 mlxlogscore=999 spamscore=0
+ adultscore=0 bulkscore=0 impostorscore=0 malwarescore=0 suspectscore=0
+ phishscore=0 clxscore=1011 mlxscore=0 lowpriorityscore=0
+ priorityscore=1501 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.19.0-2401310000 definitions=main-2402120092
 
-Implement the PWM driver for CV1800.
 
-Signed-off-by: Jingbao Qiu <qiujingbao.dlmu@gmail.com>
----
- drivers/pwm/Kconfig      |  10 ++
- drivers/pwm/Makefile     |   1 +
- drivers/pwm/pwm-cv1800.c | 248 +++++++++++++++++++++++++++++++++++++++
- 3 files changed, 259 insertions(+)
- create mode 100644 drivers/pwm/pwm-cv1800.c
+On 1/23/2024 11:34 PM, Konrad Dybcio wrote:
+>
+>
+> On 1/23/24 16:12, Dmitry Baryshkov wrote:
+>> On Tue, 23 Jan 2024 at 15:43, Ritesh Kumar <quic_riteshk@quicinc.com> 
+>> wrote:
+>>>
+>>>
+>>> On 1/16/2024 6:27 PM, Dmitry Baryshkov wrote:
+>>>
+>>>> On Tue, 16 Jan 2024 at 14:06, Konrad Dybcio 
+>>>> <konrad.dybcio@linaro.org> wrote:
+>>>>>
+>>>>>
+>>>>> On 1/16/24 10:49, Ritesh Kumar wrote:
+>>>>>> Enable Display Subsystem with Novatek NT36672E Panel
+>>>>>> on qcm6490 idp platform.
+>>>>>>
+>>>>>> Signed-off-by: Ritesh Kumar <quic_riteshk@quicinc.com>
+>>>>>> ---
+>>>>>>     arch/arm64/boot/dts/qcom/qcm6490-idp.dts | 100 
+>>>>>> +++++++++++++++++++++++
+>>>>>>     1 file changed, 100 insertions(+)
+>>>>>>
+>>>>>> diff --git a/arch/arm64/boot/dts/qcom/qcm6490-idp.dts 
+>>>>>> b/arch/arm64/boot/dts/qcom/qcm6490-idp.dts
+>>>>>> index 2a6e4907c5ee..efa5252130a1 100644
+>>>>>> --- a/arch/arm64/boot/dts/qcom/qcm6490-idp.dts
+>>>>>> +++ b/arch/arm64/boot/dts/qcom/qcm6490-idp.dts
+>>>>>> @@ -9,6 +9,7 @@
+>>>>>>     #define PM7250B_SID 8
+>>>>>>     #define PM7250B_SID1 9
+>>>>>>
+>>>>>> +#include <dt-bindings/pinctrl/qcom,pmic-gpio.h>
+>>>>>>     #include <dt-bindings/regulator/qcom,rpmh-regulator.h>
+>>>>>>     #include "sc7280.dtsi"
+>>>>>>     #include "pm7250b.dtsi"
+>>>>>> @@ -38,6 +39,25 @@
+>>>>>>                 stdout-path = "serial0:115200n8";
+>>>>>>         };
+>>>>>>
+>>>>>> +     lcd_disp_bias: lcd-disp-bias-regulator {
+>>>>>> +             compatible = "regulator-fixed";
+>>>>>> +             regulator-name = "lcd_disp_bias";
+>>>>>> +             regulator-min-microvolt = <5500000>;
+>>>>>> +             regulator-max-microvolt = <5500000>;
+>>>>>> +             gpio = <&pm7250b_gpios 2 GPIO_ACTIVE_HIGH>;
+>>>>>> +             enable-active-high;
+>>>>>> +             pinctrl-names = "default";
+>>>>>> +             pinctrl-0 = <&lcd_disp_bias_en>;
+>>>>> property-n
+>>>>> property-names
+>>>>>
+>>>>> all throughout the patch
+>>>
+>>> Thanks, I will update in the new version.
+>>>
+>>>>>> +&gpu {
+>>>>>> +     status = "disabled";
+>>>>>> +};
+>>>>> Hm.. generally we disable the GPU in the SoC DT, but that doesn't
+>>>>> seem to have happened here..
+>>>>>
+>>>>> Thinking about it more, is disabling it here necessary? Does it
+>>>>> not fail gracefully?
+>>>> Missed this.
+>>>>
+>>>> I'd say, I don't see a reason to disable it at all. The GPU should be
+>>>> working on sc7280 / qcm4290.
+>>>
+>>> With GPU device node enabled, adreno_bind failure is seen as the
+>>> "speed_bin" was not populated on QCM6490 target which leads to display
+>>> bind failure.
+>>
+>> Excuse me please. The GPU node for sc7280 already has speed_bin, which
+>> points to qfprom + 0x1e9, bits 5 to 9.
+>>
+>> Do you mean that qcm6490 uses different speed bin location? Or
+>> different values for the speed bins?
+>>
+>>> Spoke with GPU team and on QCM6490 board, only CPU rendering is
+>>> supported for now and there is no plan to enable GPU rendering in near
+>>> future.
+>>
+>> This sounds like having the feature disabled for no particular reason.
+>> Both the kernel and Mesa have supported the Adreno 635 for quite a
+>> while.
+>
+> 643 [1], [2]
+>
+>>
+>>> In this regard, what do you suggest
+>>>
+>>> 1) Disable GPU in QCM6490 DT (as per the current patch)
+>>> 2) Disable GPU in the SoC DT, but enable it in other platform DTs. 
+>>> (This
+>>> will prompt change in all the dt's and we don't have all the devices to
+>>> test)
+>>
+>> The second option definitely follows what is present on other platforms.
+>>
+>>> Please let me know your views on it.
+>>
+>> Please enable the GPU instead.
+>
+> +1
+>
+> Konrad
+>
+> [1] 
+> https://gitlab.freedesktop.org/mesa/mesa/-/merge_requests/25408/diffs?commit_id=b1e851d66c3a3e53f1a464023f675f3f6cbd3503
+> [2] 
+> https://patches.linaro.org/project/linux-arm-msm/cover/20230926-topic-a643-v1-0-7af6937ac0a3@linaro.org/
 
-diff --git a/drivers/pwm/Kconfig b/drivers/pwm/Kconfig
-index 4b956d661755..455f07af94f7 100644
---- a/drivers/pwm/Kconfig
-+++ b/drivers/pwm/Kconfig
-@@ -186,6 +186,16 @@ config PWM_CROS_EC
- 	  PWM driver for exposing a PWM attached to the ChromeOS Embedded
- 	  Controller.
- 
-+config PWM_CV1800
-+	tristate "Sophgo CV1800 PWM driver"
-+	depends on ARCH_SOPHGO || COMPILE_TEST
-+	help
-+	  Generic PWM framework driver for the Sophgo CV1800 series
-+	  SoCs.
-+
-+	  To compile this driver as a module, build the dependecies
-+	  as modules, this will be called pwm-cv1800.
-+
- config PWM_DWC_CORE
- 	tristate
- 	depends on HAS_IOMEM
-diff --git a/drivers/pwm/Makefile b/drivers/pwm/Makefile
-index c5ec9e168ee7..6c3c4a07a316 100644
---- a/drivers/pwm/Makefile
-+++ b/drivers/pwm/Makefile
-@@ -15,6 +15,7 @@ obj-$(CONFIG_PWM_CLK)		+= pwm-clk.o
- obj-$(CONFIG_PWM_CLPS711X)	+= pwm-clps711x.o
- obj-$(CONFIG_PWM_CRC)		+= pwm-crc.o
- obj-$(CONFIG_PWM_CROS_EC)	+= pwm-cros-ec.o
-+obj-$(CONFIG_PWM_CV1800)	+= pwm-cv1800.o
- obj-$(CONFIG_PWM_DWC_CORE)	+= pwm-dwc-core.o
- obj-$(CONFIG_PWM_DWC)		+= pwm-dwc.o
- obj-$(CONFIG_PWM_EP93XX)	+= pwm-ep93xx.o
-diff --git a/drivers/pwm/pwm-cv1800.c b/drivers/pwm/pwm-cv1800.c
-new file mode 100644
-index 000000000000..3d7f2ff3a6c2
---- /dev/null
-+++ b/drivers/pwm/pwm-cv1800.c
-@@ -0,0 +1,248 @@
-+// SPDX-License-Identifier: GPL-2.0-only
-+/*
-+ * pwm-cv1800.c: PWM driver for Sophgo cv1800
-+ *
-+ * Author: Jingbao Qiu <qiujingbao.dlmu@gmail.com>
-+ *
-+ * Limitations:
-+ * - It output low when PWM channel disabled.
-+ * - This pwm device supports dynamic loading of PWM parameters. When PWMSTART
-+ *   is written from 0 to 1, the register value (HLPERIODn, PERIODn) will be
-+ *   temporarily stored inside the PWM. If you want to dynamically change the
-+ *   waveform during PWM output, after writing the new value to HLPERIODn and
-+ *   PERIODn, write 1 and then 0 to PWMUPDATE[n] to make the new value effective.
-+ * - Supports up to Rate/2 output, and the lowest is about Rate/(2^30-1).
-+ * - By setting HLPERIODn to 0, can produce 100% duty cycle.
-+ */
-+
-+#include <linux/clk.h>
-+#include <linux/kernel.h>
-+#include <linux/module.h>
-+#include <linux/of.h>
-+#include <linux/platform_device.h>
-+#include <linux/pwm.h>
-+#include <linux/regmap.h>
-+
-+#define PWM_CV1800_HLPERIOD_BASE       0x00
-+#define PWM_CV1800_PERIOD_BASE         0x04
-+#define PWM_CV1800_PWM_CV1800_POLARITY 0x40
-+#define PWM_CV1800_START               0x44
-+#define PWM_CV1800_DONE                0x48
-+#define PWM_CV1800_UPDATE              0x4c
-+#define PWM_CV1800_OE                  0xd0
-+#define PWM_CV1800_HLPERIOD_SHIFT      0x08
-+#define PWM_CV1800_PERIOD_SHIFT        0x08
-+
-+#define PWM_CV1800_HLPERIOD(n)         \
-+	(PWM_CV1800_HLPERIOD_BASE + ((n) * PWM_CV1800_HLPERIOD_SHIFT))
-+#define PWM_CV1800_PERIOD(n)           \
-+	(PWM_CV1800_PERIOD_BASE + ((n) * PWM_CV1800_PERIOD_SHIFT))
-+
-+#define PWM_CV1800_UPDATE_MASK(n) (BIT(0) << (n))
-+#define PWM_CV1800_OE_MASK(n)     (BIT(0) << (n))
-+#define PWM_CV1800_START_MASK(n)  (BIT(0) << (n))
-+
-+#define PWM_CV1800_MAXPERIOD      (BIT(30) - 1)
-+#define PWM_CV1800_MINPERIOD      BIT(1)
-+#define PWM_CV1800_MINHLPERIOD    BIT(0)
-+#define PWM_CV1800_PERIOD_RESET   BIT(1)
-+#define PWM_CV1800_HLPERIOD_RESET BIT(0)
-+#define PWM_CV1800_REG_DISABLE    0x0U
-+#define PWM_CV1800_REG_ENABLE(n)  (BIT(0) << (n))
-+
-+struct cv1800_pwm {
-+	struct pwm_chip chip;
-+	struct regmap *map;
-+	struct clk *clk;
-+	unsigned long clk_rate;
-+};
-+
-+static const struct regmap_config cv1800_pwm_regmap_config = {
-+	.reg_bits = 32,
-+	.val_bits = 32,
-+	.reg_stride = 4,
-+};
-+
-+static inline struct cv1800_pwm *to_cv1800_pwm_dev(struct pwm_chip *chip)
-+{
-+	return container_of(chip, struct cv1800_pwm, chip);
-+}
-+
-+static int cv1800_pwm_enable(struct pwm_chip *chip, struct pwm_device *pwm,
-+			     bool enable)
-+{
-+	struct cv1800_pwm *priv = to_cv1800_pwm_dev(chip);
-+	u32 pwm_enable;
-+
-+	regmap_read(priv->map, PWM_CV1800_START, &pwm_enable);
-+	pwm_enable &= PWM_CV1800_START_MASK(pwm->hwpwm);
-+
-+	/*
-+	 * If the parameters are changed during runtime, Register needs
-+	 * to be updated to take effect.
-+	 */
-+	if (pwm_enable && enable) {
-+		regmap_update_bits(priv->map, PWM_CV1800_UPDATE,
-+				   PWM_CV1800_UPDATE_MASK(pwm->hwpwm),
-+				   PWM_CV1800_REG_ENABLE(pwm->hwpwm));
-+		regmap_update_bits(priv->map, PWM_CV1800_UPDATE,
-+				   PWM_CV1800_UPDATE_MASK(pwm->hwpwm),
-+				   PWM_CV1800_REG_DISABLE);
-+	} else if (!pwm_enable && enable) {
-+		regmap_update_bits(priv->map, PWM_CV1800_OE,
-+				   PWM_CV1800_OE_MASK(pwm->hwpwm),
-+				   PWM_CV1800_REG_ENABLE(pwm->hwpwm));
-+		regmap_update_bits(priv->map, PWM_CV1800_START,
-+				   PWM_CV1800_START_MASK(pwm->hwpwm),
-+				   PWM_CV1800_REG_ENABLE(pwm->hwpwm));
-+	} else if (pwm_enable && !enable) {
-+		regmap_update_bits(priv->map, PWM_CV1800_OE,
-+				   PWM_CV1800_OE_MASK(pwm->hwpwm),
-+				   PWM_CV1800_REG_DISABLE);
-+		regmap_update_bits(priv->map, PWM_CV1800_START,
-+				   PWM_CV1800_START_MASK(pwm->hwpwm),
-+				   PWM_CV1800_REG_DISABLE);
-+	}
-+
-+	return 0;
-+}
-+
-+static int cv1800_pwm_apply(struct pwm_chip *chip, struct pwm_device *pwm,
-+			    const struct pwm_state *state)
-+{
-+	struct cv1800_pwm *priv = to_cv1800_pwm_dev(chip);
-+	u32 period_val, hlperiod_val;
-+	u64 tem;
-+
-+	if (state->polarity != PWM_POLARITY_NORMAL)
-+		return -EINVAL;
-+
-+	tem = mul_u64_u64_div_u64(state->period, priv->clk_rate, NSEC_PER_SEC);
-+	if (tem > PWM_CV1800_MAXPERIOD || tem < PWM_CV1800_MINPERIOD)
-+		return -EINVAL;
-+	period_val = (u32)tem;
-+
-+	tem = mul_u64_u64_div_u64(state->period - state->duty_cycle,
-+				  priv->clk_rate, NSEC_PER_SEC);
-+	if (tem > period_val)
-+		return -EINVAL;
-+	hlperiod_val = (u32)tem;
-+
-+	regmap_write(priv->map, PWM_CV1800_PERIOD(pwm->hwpwm), period_val);
-+	regmap_write(priv->map, PWM_CV1800_HLPERIOD(pwm->hwpwm), hlperiod_val);
-+
-+	cv1800_pwm_enable(chip, pwm, state->enabled);
-+
-+	return 0;
-+}
-+
-+static int cv1800_pwm_get_state(struct pwm_chip *chip, struct pwm_device *pwm,
-+				struct pwm_state *state)
-+{
-+	struct cv1800_pwm *priv = to_cv1800_pwm_dev(chip);
-+	u32 period_val, hlperiod_val;
-+	u64 period_ns = 0;
-+	u64 duty_ns = 0;
-+	u32 enable = 0;
-+
-+	regmap_read(priv->map, PWM_CV1800_PERIOD(pwm->hwpwm), &period_val);
-+	regmap_read(priv->map, PWM_CV1800_HLPERIOD(pwm->hwpwm), &hlperiod_val);
-+
-+	if (period_val != PWM_CV1800_PERIOD_RESET ||
-+	    hlperiod_val != PWM_CV1800_HLPERIOD_RESET) {
-+		period_ns = DIV_ROUND_UP_ULL(period_val * NSEC_PER_SEC, priv->clk_rate);
-+		duty_ns = DIV_ROUND_UP_ULL(hlperiod_val * period_ns, period_val);
-+
-+		regmap_read(priv->map, PWM_CV1800_START, &enable);
-+
-+		enable &= PWM_CV1800_START_MASK(pwm->hwpwm);
-+	}
-+
-+	state->period = period_ns;
-+	state->duty_cycle = duty_ns;
-+	state->enabled = enable;
-+	state->polarity = PWM_POLARITY_NORMAL;
-+
-+	return 0;
-+}
-+
-+static const struct pwm_ops cv1800_pwm_ops = {
-+	.apply = cv1800_pwm_apply,
-+	.get_state = cv1800_pwm_get_state,
-+};
-+
-+static void devm_clk_rate_exclusive_put(void *data)
-+{
-+	struct clk *clk = data;
-+
-+	clk_rate_exclusive_put(clk);
-+}
-+
-+static int cv1800_pwm_probe(struct platform_device *pdev)
-+{
-+	struct device *dev = &pdev->dev;
-+	struct cv1800_pwm *priv;
-+	void __iomem *base;
-+	int ret;
-+
-+	priv = devm_kzalloc(dev, sizeof(*priv), GFP_KERNEL);
-+	if (!priv)
-+		return -ENOMEM;
-+
-+	base = devm_platform_ioremap_resource(pdev, 0);
-+	if (IS_ERR(base))
-+		return PTR_ERR(base);
-+
-+	priv->map = devm_regmap_init_mmio(&pdev->dev, base,
-+					  &cv1800_pwm_regmap_config);
-+	if (IS_ERR(priv->map))
-+		return PTR_ERR(priv->map);
-+
-+	priv->clk = devm_clk_get_enabled(&pdev->dev, NULL);
-+	if (IS_ERR(priv->clk))
-+		return dev_err_probe(&pdev->dev, PTR_ERR(priv->clk),
-+				     "clk not found\n");
-+
-+	ret = clk_rate_exclusive_get(priv->clk);
-+	if (ret)
-+		return dev_err_probe(&pdev->dev, ret,
-+				     "failed to get exclusive rate\n");
-+
-+	ret = devm_add_action_or_reset(&pdev->dev, devm_clk_rate_exclusive_put,
-+				       priv->clk);
-+	if (ret) {
-+		clk_rate_exclusive_put(priv->clk);
-+		return ret;
-+	}
-+
-+	priv->clk_rate = clk_get_rate(priv->clk);
-+	if (!priv->clk_rate)
-+		return dev_err_probe(&pdev->dev, -EINVAL,
-+				     "Invalid clock rate: %lu\n", priv->clk_rate);
-+
-+	priv->chip.dev = dev;
-+	priv->chip.ops = &cv1800_pwm_ops;
-+	priv->chip.npwm = 4;
-+	priv->chip.atomic = true;
-+
-+	return devm_pwmchip_add(dev, &priv->chip);
-+}
-+
-+static const struct of_device_id cv1800_pwm_dt_ids[] = {
-+	{ .compatible = "sophgo,cv1800-pwm" },
-+	{},
-+};
-+MODULE_DEVICE_TABLE(of, cv1800_pwm_dt_ids);
-+
-+static struct platform_driver cv1800_pwm_driver = {
-+	.driver = {
-+		.name = "cv1800-pwm",
-+		.of_match_table = cv1800_pwm_dt_ids,
-+	},
-+	.probe = cv1800_pwm_probe,
-+};
-+module_platform_driver(cv1800_pwm_driver);
-+
-+MODULE_AUTHOR("Jingbao Qiu");
-+MODULE_DESCRIPTION("Sophgo cv1800 PWM Driver");
-+MODULE_LICENSE("GPL");
--- 
-2.25.1
+Thanks for the help. After applying missing patches from series 
+https://patches.linaro.org/project/linux-arm-msm/cover/20230926-topic-a643-v1-0-7af6937ac0a3@linaro.org/
+in my local build, GPU is working fine. GPU disablement change is not 
+needed. I will send new version of patch removing GPU part and 
+addressing other review comments.
 
+Thanks,
+Ritesh
 
