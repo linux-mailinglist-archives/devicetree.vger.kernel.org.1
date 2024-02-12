@@ -1,175 +1,134 @@
-Return-Path: <devicetree+bounces-41027-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-41028-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 73C2D851FA1
-	for <lists+devicetree@lfdr.de>; Mon, 12 Feb 2024 22:33:00 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 453D4851FA8
+	for <lists+devicetree@lfdr.de>; Mon, 12 Feb 2024 22:33:38 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id F23741F22E0B
-	for <lists+devicetree@lfdr.de>; Mon, 12 Feb 2024 21:32:59 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id E7A3D1F22E9F
+	for <lists+devicetree@lfdr.de>; Mon, 12 Feb 2024 21:33:37 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id F06DC4E1CA;
-	Mon, 12 Feb 2024 21:32:06 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6A9194CB4E;
+	Mon, 12 Feb 2024 21:33:09 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=google.com header.i=@google.com header.b="OHBx6F9b"
+	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b="eFEm9K9Q"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-yb1-f202.google.com (mail-yb1-f202.google.com [209.85.219.202])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from madrid.collaboradmins.com (madrid.collaboradmins.com [46.235.227.194])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5B8AB4DA14
-	for <devicetree@vger.kernel.org>; Mon, 12 Feb 2024 21:32:05 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.219.202
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9A5474EB43;
+	Mon, 12 Feb 2024 21:33:07 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=46.235.227.194
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1707773526; cv=none; b=f3rdnhxL3+Z9e+FScepqAoyFrt2TA72+GkzlYqZS9j+imaZvgyaM5Cwm9JIYW3zL60FpAwM+OuuVxz9IDXvIrXD7mKeWjnvzoK5YtpKfdhEYfdH5WRl1zv2JexmjdXq16j+q2FaoTSDeeM5OkFpXuKqOFjjOaFAsZkLDAwAR6rM=
+	t=1707773589; cv=none; b=VaPtDwbx6rP5mj7HYz1Ed3bFQu8iTPlWP0KRo6fldS3wtGxbggeo89Mh03ClcfNQP4Mce95zZVa8i+AqOjwd3K0aQwoZkJE1JdMNQfzGwy/mFXcNuPZAfEnOOfr1NmTdct6/xIEbEW0CSNT59ZBIMuTVdWpNqznr7g6K6Q++o14=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1707773526; c=relaxed/simple;
-	bh=09nOuvy1xCjK1iYqCopDQXrnPVKpNm2a5rJaJXsm9lU=;
-	h=Date:In-Reply-To:Message-Id:Mime-Version:References:Subject:From:
-	 To:Cc:Content-Type; b=FOPHIjnjCRSb5Gy5d75+wn2HevzAWSyXUkcUOp2LuVNEaf1zGG7AMO1oP+AY4EdBZrf6LaK/ZkeHqIOPfRN+OXhOLC1688Fkws5V1hgs3LWYK2wlL+jPwiFY7QtuQIBOBwgtb6ACOJrkzw8NawyX6WIaSNKyyR2yhZ9Q1qCqcjg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=google.com; spf=pass smtp.mailfrom=flex--saravanak.bounces.google.com; dkim=pass (2048-bit key) header.d=google.com header.i=@google.com header.b=OHBx6F9b; arc=none smtp.client-ip=209.85.219.202
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=google.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=flex--saravanak.bounces.google.com
-Received: by mail-yb1-f202.google.com with SMTP id 3f1490d57ef6-dc64f63d768so6829248276.2
-        for <devicetree@vger.kernel.org>; Mon, 12 Feb 2024 13:32:05 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=google.com; s=20230601; t=1707773524; x=1708378324; darn=vger.kernel.org;
-        h=cc:to:from:subject:references:mime-version:message-id:in-reply-to
-         :date:from:to:cc:subject:date:message-id:reply-to;
-        bh=F5s7UC2LI5606ztlkySRh4zEDw9ZNIX2+7Suzh+XsVU=;
-        b=OHBx6F9bhwsJvj9SRIzninQd62CTd0mat67Ry0G4dzfpMXC9lLLH/2cqAtkPZBKWOs
-         rCJlNGFOdzUHHSyx00VaV5roKpsat69I49vXVWf9nM10D5g6AdFuX3akbE1MiBcmwf/3
-         U//fWlNw92ilZqOqSovV9mdpvdT5dJ202Xq3Gnl5XmSg5+K/5u0KYaPEpqu1aRUQ7I8R
-         bMzmPnomy8vPKmO1iyBgm0mVL9Emn4B+OM9TotHLWNPRZjnhPKrNz83/FOQvMN7JijYp
-         UeCGftAtQwFbnm3brtQMnWqc1osOv0HsjGW9FkVb887vW7Th/2S/CTchqaHupDFuZYjz
-         CGjw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1707773524; x=1708378324;
-        h=cc:to:from:subject:references:mime-version:message-id:in-reply-to
-         :date:x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=F5s7UC2LI5606ztlkySRh4zEDw9ZNIX2+7Suzh+XsVU=;
-        b=CqGkZtDsHdkLsEJMSSY1bRi0fHq7IQH/X8Kv1pVA0NmBAMwapm2hLwryE1AcTh87eh
-         nMUBPZS6GV2JtLx4CRAymnjRoMGzU9XV0oYxqRRHRKzTDoV6jXIcZyTmLbe2agnGFsmA
-         h8M5VEkqTp4XiZLAO+x4crTmkzVe2EnwM0oIQ7q3sKGMMww/crOMrG4roH9aFzzskxbf
-         PolQsJr2GCJJrQg48DAyxeALjP07v9Ioe9fjPd+zLiujnvRA+NRwID35r2bmkn8J2gWE
-         qgJsw3DUuK+XF4B4Qeyc//wmTlJkTIbcrx4X0DcPZDSnuRphfOm47o8awhJ7Z+/yy9xI
-         NooQ==
-X-Forwarded-Encrypted: i=1; AJvYcCU9skRhPGZ+2tZGhzw2EuJzsJT5bTgVQkbCLSK9Ae8HSbaVCKIN+l2JIxyoO4C61MXTQfPEoz4ohcgp783xIyrZLDp7JJVw1sVg9A==
-X-Gm-Message-State: AOJu0YzOcVRf12Toz63fKhqtgp3U5m6qFmtSNUp9bVkaRE3D79YZpwMJ
-	MbxT6oM3zp5TE6PQnDEMrdLXkLTisveLCGb80+r0c6Nfr3pNv2OEMfBhV+tYNilC/DDKU1yKATR
-	ck8a6h8eA/QLnrg==
-X-Google-Smtp-Source: AGHT+IHiNYw+GukjhfLl9L/fVI79H8vPnI8fJB4kfhzgTN7MWnsY3Vn7qmvxy/2wW9UUYOelc46oL3dxnDIBR8A=
-X-Received: from saravanak.san.corp.google.com ([2620:15c:2d:3:496d:5de1:a404:8bee])
- (user=saravanak job=sendgmr) by 2002:a05:6902:120b:b0:dc7:6efe:1aab with SMTP
- id s11-20020a056902120b00b00dc76efe1aabmr1793262ybu.6.1707773524580; Mon, 12
- Feb 2024 13:32:04 -0800 (PST)
-Date: Mon, 12 Feb 2024 13:31:45 -0800
-In-Reply-To: <20240212213147.489377-1-saravanak@google.com>
-Message-Id: <20240212213147.489377-5-saravanak@google.com>
+	s=arc-20240116; t=1707773589; c=relaxed/simple;
+	bh=uL2VF2cuPmkBo5+K9BYWgnyBPmjt/fB97ck51Phazr0=;
+	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:To:Cc; b=D8mIM9d8RxT/0yRcm1MyxM3HnN0nnYmhUWIRFqQWkw7gWQlguIky7gbZC0dxz7+C8X0QCgRt8fC7bu6iIkPsJczwRA8V6qJbdkASeB4qA8Aw6TUO+4e2ztXhXv1UjbWxeOpWs6O4axWzNf+1qu2o/y5ysr9a+iCX53+ffCPB6Jk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b=eFEm9K9Q; arc=none smtp.client-ip=46.235.227.194
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=collabora.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
+	s=mail; t=1707773584;
+	bh=uL2VF2cuPmkBo5+K9BYWgnyBPmjt/fB97ck51Phazr0=;
+	h=From:Date:Subject:To:Cc:From;
+	b=eFEm9K9QpelSO+d7WVm/xhJd8+qlJVpl+tnlGZsb8vckGa1tyIHVKBBxNBVdg5h3g
+	 3xn2YJbATiyjnp+W1pamAs+m/yX7gjozx61rrNayDWpJYrw3Mm+FAxyt0f8gSibUTl
+	 qiGnQfhI+E8SQMHzYAK+vBlQHnYB7bbVTYnW9KGqXIytwVtQnB045arzq3sWOmOPKf
+	 +CP8ZGVO7vSS1mcVCImsZCKPeOTOOYrmVnN74ekEC0A65d7GaICBVkMBcLCKWe5rb4
+	 F3i/YS4CiM3Sm0Ddj0/LX3jrrkpA3LtymZwNI9RTJ2/HmANT99dOlTnnyrZmWQzK8R
+	 a1cANRtoq1K7Q==
+Received: from [192.168.1.38] (zone.collabora.co.uk [167.235.23.81])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+	(No client certificate requested)
+	(Authenticated sender: nfraprado)
+	by madrid.collaboradmins.com (Postfix) with ESMTPSA id 9619237813D5;
+	Mon, 12 Feb 2024 21:33:01 +0000 (UTC)
+From: =?utf-8?q?N=C3=ADcolas_F=2E_R=2E_A=2E_Prado?= <nfraprado@collabora.com>
+Date: Mon, 12 Feb 2024 16:32:44 -0500
+Subject: [PATCH] arm64: dts: mediatek: mt8186: Add missing clocks to ssusb
+ power domains
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-Mime-Version: 1.0
-References: <20240212213147.489377-1-saravanak@google.com>
-X-Mailer: git-send-email 2.43.0.687.g38aa6559b0-goog
-Subject: [PATCH v2 4/4] of: property: fw_devlink: Add support for
- "post-init-supplier" property
-From: Saravana Kannan <saravanak@google.com>
-To: Saravana Kannan <saravanak@google.com>, Rob Herring <robh+dt@kernel.org>, 
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Greg Kroah-Hartman <gregkh@linuxfoundation.org>, "Rafael J. Wysocki" <rafael@kernel.org>, 
-	Ard Biesheuvel <ardb@kernel.org>, Frank Rowand <frowand.list@gmail.com>, Len Brown <lenb@kernel.org>, 
-	Andy Shevchenko <andriy.shevchenko@linux.intel.com>, Daniel Scally <djrscally@gmail.com>, 
-	Heikki Krogerus <heikki.krogerus@linux.intel.com>, 
-	Sakari Ailus <sakari.ailus@linux.intel.com>
-Cc: kernel-team@android.com, linux-kernel@vger.kernel.org, 
-	devicetree@vger.kernel.org, linux-efi@vger.kernel.org, 
-	linux-acpi@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
+MIME-Version: 1.0
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
+Message-Id: <20240212-mt8186-ssusb-domain-clk-fix-v1-1-26cb98746aa3@collabora.com>
+X-B4-Tracking: v=1; b=H4sIAHuOymUC/x3MQQqDMBBA0avIrDuQRJHUq5QuYjLRoRpLRkUQ7
+ 25w+f7inyCUmQS66oRMOwsvqUC/KvCjSwMhh2IwyjTKaIPzarVtUWSTHsMyO07opx9GPtC1b03
+ kbd3EAOXwz1Tyc/98r+sGwYRV3W0AAAA=
+To: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>, 
+ Matthias Brugger <matthias.bgg@gmail.com>
+Cc: Chen-Yu Tsai <wenst@chromium.org>, 
+ Eugen Hristev <eugen.hristev@collabora.com>, Rob Herring <robh@kernel.org>, 
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, 
+ Conor Dooley <conor+dt@kernel.org>, 
+ Allen-KH Cheng <allen-kh.cheng@mediatek.com>, kernel@collabora.com, 
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+ linux-arm-kernel@lists.infradead.org, linux-mediatek@lists.infradead.org, 
+ =?utf-8?q?N=C3=ADcolas_F=2E_R=2E_A=2E_Prado?= <nfraprado@collabora.com>
+X-Mailer: b4 0.12.4
 
-Add support for this property so that dependency cycles can be broken and
-fw_devlink can do better probe/suspend/resume ordering between devices in a
-dependency cycle.
+The ssusb power domains currently don't list any clocks, despite
+depending on some, and thus rely on the bootloader leaving the required
+clocks on in order to work.
 
-Signed-off-by: Saravana Kannan <saravanak@google.com>
+When booting with the upstream arm64 defconfig, the power domain
+controller will defer probe until modules have loaded since it has an
+indirect dependency on CONFIG_MTK_CMDQ, which is configured as a module.
+However at the point where modules are loaded, unused clocks are also
+disabled, causing the ssusb domains to fail to be enabled and
+consequently the controller to fail probe:
+
+mtk-power-controller 10006000.syscon:power-controller: /soc/syscon@10006000/power-controller/power-domain@4: failed to power on domain: -110
+mtk-power-controller: probe of 10006000.syscon:power-controller failed with error -110
+
+Add the missing clocks to the ssusb power domains so the power
+controller can boot without relying on bootloader state.
+
+Fixes: d9e43c1e7a38 ("arm64: dts: mt8186: Add power domains controller")
+Signed-off-by: Nícolas F. R. A. Prado <nfraprado@collabora.com>
 ---
- drivers/of/property.c | 17 ++++++++++++++---
- 1 file changed, 14 insertions(+), 3 deletions(-)
+ arch/arm64/boot/dts/mediatek/mt8186.dtsi | 8 ++++++++
+ 1 file changed, 8 insertions(+)
 
-diff --git a/drivers/of/property.c b/drivers/of/property.c
-index 751c11a28f33..dce451161c99 100644
---- a/drivers/of/property.c
-+++ b/drivers/of/property.c
-@@ -1066,7 +1066,8 @@ of_fwnode_device_get_match_data(const struct fwnode_handle *fwnode,
- }
+diff --git a/arch/arm64/boot/dts/mediatek/mt8186.dtsi b/arch/arm64/boot/dts/mediatek/mt8186.dtsi
+index adaf5e57fac5..02f33ec3cbd3 100644
+--- a/arch/arm64/boot/dts/mediatek/mt8186.dtsi
++++ b/arch/arm64/boot/dts/mediatek/mt8186.dtsi
+@@ -931,11 +931,19 @@ power-domain@MT8186_POWER_DOMAIN_CSIRX_TOP {
  
- static void of_link_to_phandle(struct device_node *con_np,
--			      struct device_node *sup_np)
-+			      struct device_node *sup_np,
-+			      u8 flags)
- {
- 	struct device_node *tmp_np = of_node_get(sup_np);
+ 				power-domain@MT8186_POWER_DOMAIN_SSUSB {
+ 					reg = <MT8186_POWER_DOMAIN_SSUSB>;
++					clocks = <&topckgen CLK_TOP_USB_TOP>,
++						 <&infracfg_ao CLK_INFRA_AO_SSUSB_TOP_REF>,
++						 <&infracfg_ao CLK_INFRA_AO_SSUSB_TOP_XHCI>;
++					clock-names = "sys_ck", "ref_ck", "xhci_ck";
+ 					#power-domain-cells = <0>;
+ 				};
  
-@@ -1085,7 +1086,8 @@ static void of_link_to_phandle(struct device_node *con_np,
- 		tmp_np = of_get_next_parent(tmp_np);
- 	}
+ 				power-domain@MT8186_POWER_DOMAIN_SSUSB_P1 {
+ 					reg = <MT8186_POWER_DOMAIN_SSUSB_P1>;
++					clocks = <&infracfg_ao CLK_INFRA_AO_SSUSB_TOP_P1_SYS>,
++						 <&infracfg_ao CLK_INFRA_AO_SSUSB_TOP_P1_REF>,
++						 <&infracfg_ao CLK_INFRA_AO_SSUSB_TOP_P1_XHCI>;
++					clock-names = "sys_ck", "ref_ck", "xhci_ck";
+ 					#power-domain-cells = <0>;
+ 				};
  
--	fwnode_link_add(of_fwnode_handle(con_np), of_fwnode_handle(sup_np), 0);
-+	fwnode_link_add(of_fwnode_handle(con_np), of_fwnode_handle(sup_np),
-+			flags);
- }
- 
- /**
-@@ -1198,6 +1200,8 @@ static struct device_node *parse_##fname(struct device_node *np,	     \
-  *		 to a struct device, implement this ops so fw_devlink can use it
-  *		 to find the true consumer.
-  * @optional: Describes whether a supplier is mandatory or not
-+ * @fwlink_flags: Optional fwnode link flags to use when creating a fwnode link
-+ *		  for this property.
-  *
-  * Returns:
-  * parse_prop() return values are
-@@ -1210,6 +1214,7 @@ struct supplier_bindings {
- 					  const char *prop_name, int index);
- 	struct device_node *(*get_con_dev)(struct device_node *np);
- 	bool optional;
-+	u8 fwlink_flags;
- };
- 
- DEFINE_SIMPLE_PROP(clocks, "clocks", "#clock-cells")
-@@ -1240,6 +1245,7 @@ DEFINE_SIMPLE_PROP(leds, "leds", NULL)
- DEFINE_SIMPLE_PROP(backlight, "backlight", NULL)
- DEFINE_SIMPLE_PROP(panel, "panel", NULL)
- DEFINE_SIMPLE_PROP(msi_parent, "msi-parent", "#msi-cells")
-+DEFINE_SIMPLE_PROP(post_init_supplier, "post-init-supplier", NULL)
- DEFINE_SUFFIX_PROP(regulators, "-supply", NULL)
- DEFINE_SUFFIX_PROP(gpio, "-gpio", "#gpio-cells")
- 
-@@ -1349,6 +1355,10 @@ static const struct supplier_bindings of_supplier_bindings[] = {
- 	{ .parse_prop = parse_regulators, },
- 	{ .parse_prop = parse_gpio, },
- 	{ .parse_prop = parse_gpios, },
-+	{
-+		.parse_prop = parse_post_init_supplier,
-+		.fwlink_flags = FWLINK_FLAG_IGNORE,
-+	},
- 	{}
- };
- 
-@@ -1393,7 +1403,8 @@ static int of_link_property(struct device_node *con_np, const char *prop_name)
- 					: of_node_get(con_np);
- 			matched = true;
- 			i++;
--			of_link_to_phandle(con_dev_np, phandle);
-+			of_link_to_phandle(con_dev_np, phandle,
-+					   s->fwlink_flags);
- 			of_node_put(phandle);
- 			of_node_put(con_dev_np);
- 		}
+
+---
+base-commit: 2ae0a045e6814c8c1d676d6153c605a65746aa29
+change-id: 20240212-mt8186-ssusb-domain-clk-fix-a691eec834fd
+
+Best regards,
 -- 
-2.43.0.687.g38aa6559b0-goog
+Nícolas F. R. A. Prado <nfraprado@collabora.com>
 
 
