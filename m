@@ -1,105 +1,112 @@
-Return-Path: <devicetree+bounces-40852-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-40853-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7CC5A851897
-	for <lists+devicetree@lfdr.de>; Mon, 12 Feb 2024 17:02:41 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id D62438518A5
+	for <lists+devicetree@lfdr.de>; Mon, 12 Feb 2024 17:06:58 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 0FEF12838CD
-	for <lists+devicetree@lfdr.de>; Mon, 12 Feb 2024 16:02:40 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id F313B1C21991
+	for <lists+devicetree@lfdr.de>; Mon, 12 Feb 2024 16:06:57 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3C2923CF79;
-	Mon, 12 Feb 2024 16:02:35 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="TujBrWeB"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A5CD03D0A8;
+	Mon, 12 Feb 2024 16:06:53 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-yb1-f176.google.com (mail-yb1-f176.google.com [209.85.219.176])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 117DC3D0A4;
-	Mon, 12 Feb 2024 16:02:34 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F2A193CF7C;
+	Mon, 12 Feb 2024 16:06:51 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.219.176
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1707753755; cv=none; b=psnAn8N8QLL+U2Ih9ahNcVw9rjlXzxNyCynGJIxD2chwrF6HmsLgXuxIaKPqEqozhDjy9kVlNvDRTvsf2zRwismVowUI83J1cp0WkrYj9AdJdzOh2zXrQOmGqKjsQNR6esj/ZOmMi+ZAw8HyCZpV0yvc7jD6Yha6czG5Rhsnh+4=
+	t=1707754013; cv=none; b=qK/rnqjURhOOSk26lhUzvS0rQVuousvdvS3c/azOw30sK4Jqd6ocfXqwXnm5Y4VYm/qYPA/jiFfdA/nQVm0h7BxE2QsVHlplwjjClnYsXdb4pBnWtrn5lSrhw2Oue0n+1HZh19VzNioF4soXUzlJXCgXiK3vuMCZUxgXtye1cKA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1707753755; c=relaxed/simple;
-	bh=BO82b3pF0PgWZbp7XtrFt5+deNdyxcVfHCqOz7Kr9Us=;
-	h=Content-Type:Date:Message-Id:Subject:Cc:From:To:References:
-	 In-Reply-To; b=OxvKBCNG25TsayJNDvB0TipjdSIQ+fza0xeKv/zctZhGQ3+kDDV5SKmtFGFXwoVavruKUssnULIWYSyecplQR8hUVdQr9KlpU0SKo118AAVF6OCkMrWKT8DctkCPalGnrszT+H/71pyuVo0gqYXy3bwettKoVbuUF+/ioMax3vg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=TujBrWeB; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 16B67C433F1;
-	Mon, 12 Feb 2024 16:02:33 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1707753754;
-	bh=BO82b3pF0PgWZbp7XtrFt5+deNdyxcVfHCqOz7Kr9Us=;
-	h=Date:Subject:Cc:From:To:References:In-Reply-To:From;
-	b=TujBrWeBJT+lImis8uQdYb3Iw8y7ZrBPelEPlFc7/JVzV/uLFR5WBrp5XFNsLMILQ
-	 rUAgsBTbUWdq+SULdLgg3/3HnEsDaEqvvdYi0bmeguYyj9mhs/CC1ZXlu81dqAq+qf
-	 YEE6IzXXI2rDiCANqzvLbss0xHw1Sehrhw05/75gxYX6wlLSlcCmywGvQYXVppUbhu
-	 kTO8g7S4Iu1sDj5hoKVDyxlzLTv5EngrCz/yNU0j5xhQfO/C/moznk2rXyoxw7qRQI
-	 R96Rc1rXQqOI+416w/QJKP8uFAtMNuMNxTPmGTdgwci9mLRnQ44i6UZXw06OIeT0UX
-	 E14MSFs4+esng==
-Content-Type: multipart/signed;
- boundary=05d8fdd48591a07013dcd1904d8242782772683d9de18a86a0b1a38b036b;
- micalg=pgp-sha256; protocol="application/pgp-signature"
-Date: Mon, 12 Feb 2024 17:02:31 +0100
-Message-Id: <CZ386ITQ83KH.1KNOV5MXLXPBF@kernel.org>
-Subject: Re: [PATCH v2 3/3] arm64: dts: ti: Add support for TI J722S
- Evaluation Module
-Cc: <devicetree@vger.kernel.org>, <linux-arm-kernel@lists.infradead.org>,
- <linux-kernel@vger.kernel.org>, <u-kumar1@ti.com>, <j-choudhary@ti.com>
-From: "Michael Walle" <mwalle@kernel.org>
-To: "Andrew Davis" <afd@ti.com>, "Vaishnav Achath" <vaishnav.a@ti.com>,
- <nm@ti.com>, <vigneshr@ti.com>, <conor+dt@kernel.org>,
- <krzysztof.kozlowski+dt@linaro.org>, <kristo@kernel.org>,
- <robh+dt@kernel.org>
-X-Mailer: aerc 0.16.0
-References: <20240206100608.127702-1-vaishnav.a@ti.com>
- <20240206100608.127702-4-vaishnav.a@ti.com>
-In-Reply-To: <20240206100608.127702-4-vaishnav.a@ti.com>
+	s=arc-20240116; t=1707754013; c=relaxed/simple;
+	bh=eu8yVSLA3BKIkoJ10Jm9voSf8PwLnL5xz+s5QOM1Xrc=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=ilCvb9zZnZlrB6TeVB1AlvkfbTjcN7Cldhi1ys6b8LeYVwjKAWyrCB4u6zANBtVtF15f8PuraNWb+oILMwCdU9MJ5Q7U1D6CXg3EBA1Xl47X5q12nYx9Tz4fBGj/lr76o1m4mdC82Mq2HuHA7nn4yY+TJ7b8d+ynl+zREhW6oWs=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org; spf=pass smtp.mailfrom=gmail.com; arc=none smtp.client-ip=209.85.219.176
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-yb1-f176.google.com with SMTP id 3f1490d57ef6-dbed0710c74so2706296276.1;
+        Mon, 12 Feb 2024 08:06:51 -0800 (PST)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1707754009; x=1708358809;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=7gdwZc5+s56DZO0JOI15ZmhwmQHAyRJK2BxS4wcW7KI=;
+        b=CSDUKwbqXr5z+6ORCeDtdIiRmekDG+ge6s+WS9YKtc0lxWOadKhRQ6ZDUYZGvgd2IW
+         NNcyCV1WY+IQcGHfJXwHZNkfY0sCx0nLd1HZjvUWeBB8/9LoYbm+N36YdfLUFFhTFgLh
+         PLu9n82wLLBpsLkinzrBURVMjZ7qtONagwV0j40xiD7Ug+YDPnJfOGYZX3lpSfX7PLjD
+         nnTWEJ/8kPyaxyxKQ1SAXdOZwjgI/3iFyH7FyNYpOnfMo13UXD5SfX1wWVnD6QVUqDOc
+         saIq312FDWwHeZJA5qX8Yxpz68F+IWtibJBelW//OJBQC7UbgjGt0oFtNSMus+tWte2n
+         dKqQ==
+X-Gm-Message-State: AOJu0YycwRoc1ekpkz4pkFFfPxltKCPdQUrDaAAsNYPhmpuHLhpfqCdR
+	Sk1q9KoOrrBj0WLyEESCOhlv8QNH1cSuvnsSueqarAyXg1Te1hySjAZdaF957GI=
+X-Google-Smtp-Source: AGHT+IFTUNkCyU8oYvLHSMxCIgfJS1ITNJwHHySkYqvZY9azjB8khLpqKkpZZpBfRSqLYYioHESr7A==
+X-Received: by 2002:a25:ae61:0:b0:dc7:30cc:f264 with SMTP id g33-20020a25ae61000000b00dc730ccf264mr4866272ybe.56.1707754009390;
+        Mon, 12 Feb 2024 08:06:49 -0800 (PST)
+X-Forwarded-Encrypted: i=1; AJvYcCVZDXixsoObVE+GV5dX6I7cfyNvA+j9BdimCcmfe6bevnvoKNxAjYM1Wy8JwlvUS9rv8TZd1BYpHCutxUSP+4ZJ34GKtzUTGpVozq9BPiGdqUFPIVL91ncuFZLge1vZq8rHFwgnLRb5hGc9c1iGB/pZuaCqy7UnOLlICTAqidm7YCutbztym702XaGq
+Received: from mail-yb1-f175.google.com (mail-yb1-f175.google.com. [209.85.219.175])
+        by smtp.gmail.com with ESMTPSA id g7-20020a056902134700b00dc701e0bdbcsm1221103ybu.44.2024.02.12.08.06.49
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 12 Feb 2024 08:06:49 -0800 (PST)
+Received: by mail-yb1-f175.google.com with SMTP id 3f1490d57ef6-dc75bc22a10so2353468276.0;
+        Mon, 12 Feb 2024 08:06:49 -0800 (PST)
+X-Received: by 2002:a25:ae61:0:b0:dc7:30cc:f264 with SMTP id
+ g33-20020a25ae61000000b00dc730ccf264mr4866250ybe.56.1707754008919; Mon, 12
+ Feb 2024 08:06:48 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-
---05d8fdd48591a07013dcd1904d8242782772683d9de18a86a0b1a38b036b
-Mime-Version: 1.0
+MIME-Version: 1.0
+References: <20240208120455.48009-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
+In-Reply-To: <20240208120455.48009-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
+From: Geert Uytterhoeven <geert@linux-m68k.org>
+Date: Mon, 12 Feb 2024 17:06:37 +0100
+X-Gmail-Original-Message-ID: <CAMuHMdUxBb5W_FTArzDWYx+qeYC0JKxwo1sXp_iCRsQjPD3rmg@mail.gmail.com>
+Message-ID: <CAMuHMdUxBb5W_FTArzDWYx+qeYC0JKxwo1sXp_iCRsQjPD3rmg@mail.gmail.com>
+Subject: Re: [PATCH] dt-bindings: soc: renesas: Preserve the order of SoCs
+ based on their part numbers
+To: Prabhakar <prabhakar.csengg@gmail.com>
+Cc: Magnus Damm <magnus.damm@gmail.com>, Rob Herring <robh+dt@kernel.org>, 
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, 
+	devicetree@vger.kernel.org, linux-renesas-soc@vger.kernel.org, 
+	linux-kernel@vger.kernel.org, Biju Das <biju.das.jz@bp.renesas.com>, 
+	Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>, 
+	Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
-Content-Type: text/plain; charset=UTF-8
 
-Hi,
+On Thu, Feb 8, 2024 at 1:05=E2=80=AFPM Prabhakar <prabhakar.csengg@gmail.co=
+m> wrote:
+> From: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+>
+> This commit ensures the preservation of the order of SoCs according to
+> their part numbers.
+>
+> Fixes: 9c57c4a9a45c0 ("dt-bindings: soc: renesas: Document Renesas RZ/G3S=
+ SoC variants")
+> Signed-off-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
 
-On Tue Feb 6, 2024 at 11:06 AM CET, Vaishnav Achath wrote:
-> +# Boards with J722s SoC
-> +dtb-$(CONFIG_ARCH_K3) +=3D k3-j722s-evm.dtb
+Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
+i.e. will queue in renesas-devel for v6.9.
 
-I'm a bit confused by your names. What are the new/correct ones now?
-Some seem to use the amXX names and some the jXX ones. I've read [1]
-and it appears it was suggested to use the am67 names for the device
-trees. Esp. because there is already, am62, am64, am65, am68 and
-am69 in as names for the device trees.
+Gr{oetje,eeting}s,
 
-The TRM you've linked in the cover letter doesn't shed much light
-either. It just lists both.
+                        Geert
 
--michael
+--=20
+Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k=
+.org
 
-[1] https://lore.kernel.org/all/81f90d13-da10-4a68-a0e7-95212f40b3e8@ti.com=
-/           =20
-
---05d8fdd48591a07013dcd1904d8242782772683d9de18a86a0b1a38b036b
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iIgEABYIADAWIQQCnWSOYTtih6UXaxvNyh2jtWxG+wUCZcpBFxIcbXdhbGxlQGtl
-cm5lbC5vcmcACgkQzcodo7VsRvv0uwEA4jm13dBnm43Oj2GFAFm9iSVBGGpr5Z5A
-SSqmgG6p8ooBAMXFFQ4/G3rtFucR6XBarqueSUXKQmTbzoaXpC4t1a8B
-=hBTt
------END PGP SIGNATURE-----
-
---05d8fdd48591a07013dcd1904d8242782772683d9de18a86a0b1a38b036b--
+In personal conversations with technical people, I call myself a hacker. Bu=
+t
+when I'm talking to journalists I just say "programmer" or something like t=
+hat.
+                                -- Linus Torvalds
 
