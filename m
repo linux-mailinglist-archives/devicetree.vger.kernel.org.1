@@ -1,144 +1,133 @@
-Return-Path: <devicetree+bounces-40850-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-40851-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 90F90851879
-	for <lists+devicetree@lfdr.de>; Mon, 12 Feb 2024 16:53:07 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 0A3B9851886
+	for <lists+devicetree@lfdr.de>; Mon, 12 Feb 2024 16:56:25 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 4554C1F21493
-	for <lists+devicetree@lfdr.de>; Mon, 12 Feb 2024 15:53:07 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id A9B561F231B4
+	for <lists+devicetree@lfdr.de>; Mon, 12 Feb 2024 15:56:24 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 16ADD3CF5C;
-	Mon, 12 Feb 2024 15:53:03 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 92D323CF6D;
+	Mon, 12 Feb 2024 15:56:17 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=google.com header.i=@google.com header.b="hBBuBINc"
+	dkim=pass (2048-bit key) header.d=cirrus.com header.i=@cirrus.com header.b="kHJS4noC"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-io1-f51.google.com (mail-io1-f51.google.com [209.85.166.51])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mx0b-001ae601.pphosted.com (mx0a-001ae601.pphosted.com [67.231.149.25])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 614EF3CF4C
-	for <devicetree@vger.kernel.org>; Mon, 12 Feb 2024 15:53:01 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.166.51
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B970B3C473;
+	Mon, 12 Feb 2024 15:56:15 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=67.231.149.25
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1707753183; cv=none; b=p9GK2JzGwmFqk1AePnmGIubkiOFBKDyBz9yRsU7jKyXMPPWFR+IcG6T3D1OxyzubSu836HHpLhM8q0wjGQoPCabID+z28QsrQmroimjbpo7+GuB4FogXoFUIHMNCeKEJUkqhaBR1ZNq+ZfXNPv8uYIMJ1Pehc1CEhRJJqYLOxUo=
+	t=1707753377; cv=none; b=apV1loz64EOwzzDoejNm0L+WBRDVXvMNtgHfvLiy9yu+FIVWrZNkpy+G2GMX1RO1nsWAgU/E06Zw7gaJ0osM94T0fhHjRgctX0R1ZMrfshW1JfGcadxWcjHjoZ+2iYAySHc4qvNX9LTep7YWnEhKXMsFLoDx7LeU+jC3AZ7DkKs=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1707753183; c=relaxed/simple;
-	bh=sDj8wpAKnqZJTDtv8CskxWzkhDzZyqf5QDNAuuapONo=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=LXQ7g1G9yPxTsJ0U/BiaIxrG1e1N0StXPajVxpl16PVLDlCxsn6PWO0O51CkaSOBoKRNhBfHB9koMVaeSU6UhqskBmW+QGb2XoqJW1+lSbUREofbfMwZZZDQduuKVlKGFlM4gyJ74UnTDifjP/hvYl2ziIhfkbWDyX/0D5M+gyU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=google.com; spf=pass smtp.mailfrom=google.com; dkim=pass (2048-bit key) header.d=google.com header.i=@google.com header.b=hBBuBINc; arc=none smtp.client-ip=209.85.166.51
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=google.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=google.com
-Received: by mail-io1-f51.google.com with SMTP id ca18e2360f4ac-7bfe5aa702fso135222639f.3
-        for <devicetree@vger.kernel.org>; Mon, 12 Feb 2024 07:53:01 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=google.com; s=20230601; t=1707753180; x=1708357980; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=8ga0BKab3mro7xv/pvLTvYj5RDzbbT2tT8OrhfimfXY=;
-        b=hBBuBINcBTXzo0xwsjFPOt6hEE38XATCh3G78M+5aZG9UduhkbjIBUxMdNjVwc/wIB
-         gsZ5TNNeisQtwMYDkFURuyaigid7FNm2tQcd769VUT3Yt9ctbN2AjhSTBHAy4DeWZnSN
-         FdY3AfYhKb2Ug5SOD0kfhBpho4ltoAvfik7806Onfk5H+W/UOzXv3jxOwquhmVrIOnX6
-         3HpWppLdukLfD7YsxsnzndFmglC8TEGnpbIn3NKA43Rm5fmMTWLO+E32NBTZoRxH9oOm
-         iEpwAx2rfoFJdAkVWkn7mnuigqaPWxJmYJU0XwHtyZ3eUI0uIzXRPRRMMgf5xc01kJTp
-         iZrQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1707753180; x=1708357980;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=8ga0BKab3mro7xv/pvLTvYj5RDzbbT2tT8OrhfimfXY=;
-        b=PiQF0LahU4XlN5nlf8Jav4GurfhlNg+r1GPpy2NPAT7IauL0lTjtktReMUFV1M002b
-         7XtLHsZ3435qoFoYJGqMI4qRiwt8eDAHk6q6cs4PeOuRYKCHVVha6eiq5ntBYdqENEvs
-         uoWjb7982qLLTU2XD/xRpTnfqLAYeZOId/ByQF3u36mQIa8S7t6tGjFqHt+TmTR8Jtav
-         qfdqnZPdQRebNP/3d7l9Dt+CWe+vNJSXP+4zwflHYsaZNft2zPeHUUXY5hjHU36fiW3j
-         Ca1bdQtJQfCNeF7vIYWven7u95L3Y/YS/h7OtnlUgROMmdiXTbWBSi07v62XtsHr37XV
-         jxOQ==
-X-Gm-Message-State: AOJu0YzcAVzgi7Yl02goKC9yuMvV3IvQkidmoLLHOGad6qf2Tr+skVYu
-	SknbZb3TXonuJIM5o/f2BeCj4pBrxePiLMmhZtjtPXEQj4Tz0NWiaeOqUlSYvWEY4Wi9yX+saJj
-	Pt9Gm0XhOv9Wl0X/SfbFJINtZF5t/amxWMCI+
-X-Google-Smtp-Source: AGHT+IFaG5EUEd3w22+15UIe+fR9vs0Mizvgy4uB3bklxmWtpF0mFVHrOZPdEsANkshqajsm1XKOVsyrbwBB5whufrc=
-X-Received: by 2002:a5e:8d0b:0:b0:7c4:3b9e:f766 with SMTP id
- m11-20020a5e8d0b000000b007c43b9ef766mr8640816ioj.20.1707753180672; Mon, 12
- Feb 2024 07:53:00 -0800 (PST)
+	s=arc-20240116; t=1707753377; c=relaxed/simple;
+	bh=UEoUzI0eopOfpfMWL9+ubXLmnf6UPKl4bf+SH/FfhF8=;
+	h=Content-Type:MIME-Version:Subject:From:In-Reply-To:Date:CC:
+	 Message-ID:References:To; b=f/PNH0VE/4LcNtjcSvRC3BxycJUq2PbfzXMqiNKlSiNkAZp8JPMvL20Afu5E7suYsWj0ahSfphyeIpyy6glYl2xEKJq4l9ncrsQKBHr/ILDKuWplqtoIRA9EdEUumts0QUp6tZwJ0WeIdqXTTULvUAXbWKGtcsZsAhEqNAZ8rSo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=opensource.cirrus.com; spf=pass smtp.mailfrom=opensource.cirrus.com; dkim=pass (2048-bit key) header.d=cirrus.com header.i=@cirrus.com header.b=kHJS4noC; arc=none smtp.client-ip=67.231.149.25
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=opensource.cirrus.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=opensource.cirrus.com
+Received: from pps.filterd (m0077473.ppops.net [127.0.0.1])
+	by mx0a-001ae601.pphosted.com (8.17.1.24/8.17.1.24) with ESMTP id 41C7wuOt021531;
+	Mon, 12 Feb 2024 09:55:47 -0600
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=cirrus.com; h=
+	content-type:mime-version:subject:from:in-reply-to:date:cc
+	:content-transfer-encoding:message-id:references:to; s=
+	PODMain02222019; bh=UEoUzI0eopOfpfMWL9+ubXLmnf6UPKl4bf+SH/FfhF8=; b=
+	kHJS4noCFaqhHA00df2Nyt5FmY+gB7OQUEEpeP6D0ExctWUJA3mYo5WEuWviyrsZ
+	zHrY3ylV93fWTxp591elNivJTtdqJyFz84ghlZhNvVbLM/Li4w8cSVjED4gkx51C
+	s4zl9UzYuYZNN7Cg86cNIsX6NftCxBvhN8UlXkMfAlPN4EYP+owuwTQYVAA60zpa
+	gxzz2LJgSv2+w2XisaJbdqntbrL1ARM57umBDUA/n2AN0PAqEf/xCTXMjvqdanPN
+	JbN6nYOJQL1XQf5Rhm61D1HnvGjI82/rS/IijKmAjCLoHhqhKYdTqliVB8S9UqRP
+	vA+9bmzebhDR/jr8EXGHwQ==
+Received: from ediex01.ad.cirrus.com ([84.19.233.68])
+	by mx0a-001ae601.pphosted.com (PPS) with ESMTPS id 3w67e220gf-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Mon, 12 Feb 2024 09:55:47 -0600 (CST)
+Received: from ediex02.ad.cirrus.com (198.61.84.81) by ediex01.ad.cirrus.com
+ (198.61.84.80) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1118.40; Mon, 12 Feb
+ 2024 15:55:45 +0000
+Received: from ediswmail9.ad.cirrus.com (198.61.86.93) by
+ anon-ediex02.ad.cirrus.com (198.61.84.81) with Microsoft SMTP Server id
+ 15.2.1118.40 via Frontend Transport; Mon, 12 Feb 2024 15:55:45 +0000
+Received: from smtpclient.apple (unknown [141.131.76.118])
+	by ediswmail9.ad.cirrus.com (Postfix) with ESMTPS id 7CA6A820242;
+	Mon, 12 Feb 2024 15:55:41 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-MIME-Version: 1.0
-References: <20240212131323.2162161-1-panikiel@google.com> <20240212131323.2162161-9-panikiel@google.com>
- <170774854550.294485.3708612918527188826.robh@kernel.org>
-In-Reply-To: <170774854550.294485.3708612918527188826.robh@kernel.org>
-From: =?UTF-8?Q?Pawe=C5=82_Anikiel?= <panikiel@google.com>
-Date: Mon, 12 Feb 2024 16:52:49 +0100
-Message-ID: <CAM5zL5r69im5OENJa0drmZ=Er=uMgJJUC_d3FemZaLgq12in0A@mail.gmail.com>
-Subject: Re: [PATCH 8/9] media: dt-bindings: Add Intel Displayport RX IP
-To: Rob Herring <robh@kernel.org>
-Cc: linux-kernel@vger.kernel.org, linux-media@vger.kernel.org, 
-	conor+dt@kernel.org, airlied@gmail.com, mripard@kernel.org, 
-	dinguyen@kernel.org, maarten.lankhorst@linux.intel.com, tzimmermann@suse.de, 
-	robh+dt@kernel.org, hverkuil-cisco@xs4all.nl, devicetree@vger.kernel.org, 
-	ribalda@chromium.org, daniel@ffwll.ch, chromeos-krk-upstreaming@google.com, 
-	mchehab@kernel.org, akpm@linux-foundation.org, 
-	dri-devel@lists.freedesktop.org, krzysztof.kozlowski+dt@linaro.org
-Content-Type: text/plain; charset="UTF-8"
+MIME-Version: 1.0 (Mac OS X Mail 16.0 \(3774.300.61.1.2\))
+Subject: Re: [PATCH 1/7] dt-bindings: ASoC: cs35l45: Add interrupts
+From: "Rivera-Matos, Ricardo" <rriveram@opensource.cirrus.com>
+In-Reply-To: <ac5cbfbf-45ea-4d34-ac3d-d3a0fc6ff061@linaro.org>
+Date: Mon, 12 Feb 2024 09:55:29 -0600
+CC: James Schulman <james.schulman@cirrus.com>,
+        David Rhodes
+	<david.rhodes@cirrus.com>,
+        Richard Fitzgerald <rf@opensource.cirrus.com>,
+        Liam Girdwood <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>,
+        "Rob
+ Herring" <robh@kernel.org>,
+        Krzysztof Kozlowski
+	<krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Abel Vesa <abel.vesa@linaro.org>,
+        "Sai Prakash Ranjan" <quic_saipraka@quicinc.com>,
+        Neil Armstrong
+	<neil.armstrong@linaro.org>,
+        Kees Cook <keescook@chromium.org>, Tony Luck
+	<tony.luck@intel.com>,
+        "Guilherme G. Piccoli" <gpiccoli@igalia.com>,
+        "Marijn
+ Suijten" <marijn.suijten@somainline.org>,
+        <alsa-devel@alsa-project.org>, <patches@opensource.cirrus.com>,
+        <linux-sound@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>, <linux-arm-msm@vger.kernel.org>,
+        <linux-hardening@vger.kernel.org>,
+        "Krzysztof Kozlowski" <krzysztof.kozlowski@linaro.org>
 Content-Transfer-Encoding: quoted-printable
+Message-ID: <C8A97AB6-A3BB-4018-A8E3-CEEECFCBECE2@opensource.cirrus.com>
+References: <20240210-topic-1v-v1-0-fda0db38e29b@linaro.org>
+ <20240210-topic-1v-v1-1-fda0db38e29b@linaro.org>
+ <ac5cbfbf-45ea-4d34-ac3d-d3a0fc6ff061@linaro.org>
+To: Konrad Dybcio <konrad.dybcio@linaro.org>
+X-Mailer: Apple Mail (2.3774.300.61.1.2)
+X-Proofpoint-ORIG-GUID: HVAAhL2KDvY-331du_lPmDeJ2OJzJ91Y
+X-Proofpoint-GUID: HVAAhL2KDvY-331du_lPmDeJ2OJzJ91Y
+X-Proofpoint-Spam-Reason: safe
 
-On Mon, Feb 12, 2024 at 3:35=E2=80=AFPM Rob Herring <robh@kernel.org> wrote=
-:
->
->
-> On Mon, 12 Feb 2024 13:13:22 +0000, Pawe=C5=82 Anikiel wrote:
-> > The Intel Displayport RX IP is a part of the DisplayPort Intel FPGA IP
-> > Core. It implements a DisplayPort 1.4 receiver capable of HBR3 video
-> > capture and Multi-Stream Transport. The user guide can be found here:
-> >
-> > https://www.intel.com/programmable/technical-pdfs/683273.pdf
-> >
-> > Signed-off-by: Pawe=C5=82 Anikiel <panikiel@google.com>
-> > ---
-> >  .../devicetree/bindings/media/intel,dprx.yaml | 125 ++++++++++++++++++
-> >  1 file changed, 125 insertions(+)
-> >  create mode 100644 Documentation/devicetree/bindings/media/intel,dprx.=
-yaml
-> >
->
-> My bot found errors running 'make DT_CHECKER_FLAGS=3D-m dt_binding_check'
-> on your patch (DT_CHECKER_FLAGS is new in v5.13):
->
-> yamllint warnings/errors:
->
-> dtschema/dtc warnings/errors:
-> Error: Documentation/devicetree/bindings/media/intel,dprx.example.dts:28.=
-27-28 syntax error
-> make[2]: *** [scripts/Makefile.lib:419: Documentation/devicetree/bindings=
-/media/intel,dprx.example.dtb] Error 1
->
-> doc reference errors (make refcheckdocs):
->
-> See https://patchwork.ozlabs.org/project/devicetree-bindings/patch/202402=
-12131323.2162161-9-panikiel@google.com
->
-> The base for the series is generally the latest rc1. A different dependen=
-cy
-> should be noted in *this* patch.
->
-> If you already ran 'make dt_binding_check' and didn't see the above
-> error(s), then make sure 'yamllint' is installed and dt-schema is up to
-> date:
->
-> pip3 install dtschema --upgrade
->
-> Please check and re-submit after running the above command yourself. Note
-> that DT_SCHEMA_FILES can be set to your schema file to speed up checking
-> your schema. However, it must be unset to test all examples with your sch=
-ema.
->
+Konrad,
 
-As with the previous patch, I was missing a #include in the example. I
-will include the fix in v2.
+> On Feb 12, 2024, at 7:25=E2=80=AFAM, Krzysztof Kozlowski =
+<krzysztof.kozlowski@linaro.org> wrote:
+>=20
+> On 12/02/2024 14:10, Konrad Dybcio wrote:
+>> This chip seems to have an IRQ line, let us describe it.
+>>=20
+>> Signed-off-by: Konrad Dybcio <konrad.dybcio@linaro.org>
+>=20
+> Subject: ASoC: dt-bindings: cs35l45=E2=80=A6=E2=80=A6
+ditto
+>=20
+>=20
+> Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Acked-by: Ricardo Rivera-Matos <rriveram@opensource.cirrus.com =
+<mailto:rriveram@opensource.cirrus.com>>
+>=20
+> Best regards,
+> Krzysztof
+>=20
+
+Thanks,
+Ricardo
+
 
