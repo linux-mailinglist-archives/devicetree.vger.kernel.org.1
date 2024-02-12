@@ -1,78 +1,148 @@
-Return-Path: <devicetree+bounces-41037-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-41038-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5853A8521A1
-	for <lists+devicetree@lfdr.de>; Mon, 12 Feb 2024 23:43:26 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 397E68521C4
+	for <lists+devicetree@lfdr.de>; Mon, 12 Feb 2024 23:51:20 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 8B73A1C2228E
-	for <lists+devicetree@lfdr.de>; Mon, 12 Feb 2024 22:43:25 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 6B69D1C22DE7
+	for <lists+devicetree@lfdr.de>; Mon, 12 Feb 2024 22:51:19 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2A4994D5A5;
-	Mon, 12 Feb 2024 22:43:20 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 65B5D4E1B5;
+	Mon, 12 Feb 2024 22:51:16 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="tyQWWHQa"
+	dkim=pass (1024-bit key) header.d=yandex.com header.i=@yandex.com header.b="ItaX6CF4"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from forward500c.mail.yandex.net (forward500c.mail.yandex.net [178.154.239.208])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0112C4F889;
-	Mon, 12 Feb 2024 22:43:19 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 946A14F881;
+	Mon, 12 Feb 2024 22:51:12 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=178.154.239.208
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1707777800; cv=none; b=nQr2GQTo18PmGqKTQc5vac9PTZwfGDW3VwoScXem2h+gZMhRmxaxeh+Rvu4vWw99BmEFCo/s8tGbFcL4ca2SDf1hjigLk08+ZsiTNlSahKMABgmFtftuQXsetgy095ppNOTOIOmwBu5FBKzqutDoM98Nkvw4w8MkZ81d5kcALhs=
+	t=1707778276; cv=none; b=R74oVdXlBKeQAvgQCMjIZ28jS+9h6LgjCdxMvjEc6HiB5Kdzotxc7f4tNkJF987oa0s4Lf7AG+yahuFB1N2D1kkQhkzymk0CdQOEv7VnylH0fT5JNVa9iOlHLUOMM/0E9mqxI8Ork2emWTCIwIlpnLLCUHQiG+wD/n/pxbYJ+NQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1707777800; c=relaxed/simple;
-	bh=x2mMi/fx9SnRvghtCGTJEcD7mZ+U4vCfO/kAy4ITm8g=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=ZVoBNn/WlMMSeUNOyYX9NsRjI+1xQoWmSvPKMikZwJUFb+zf2Ddu0830R9A0dl/tV0ymW+HGBYTW0FIS91systzbr+8uoZ0nwdDH2unFFLgIQwkpx3/uSk44iaZwK/VJqnjWmPE8R7F7wPS4aW1/Bwy9i/+O3HN76X3XRzpruBM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=tyQWWHQa; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 3FAF9C433F1;
-	Mon, 12 Feb 2024 22:43:19 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1707777799;
-	bh=x2mMi/fx9SnRvghtCGTJEcD7mZ+U4vCfO/kAy4ITm8g=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=tyQWWHQafzrMSy+PFMbNIlAtOPCP+JbIKLPlilmaTOZs7SegUA5XNyZQsexCR1xwp
-	 wY9bB8fW5NB9Pk2QzYQ2LU82o7wcsEyTMu3rnqqWL33fi5rqkc7mqTXuavT8sVm/VR
-	 QM++PBoO1qT//fuLwZLwc9XxCYZ9RMpkGur1fnq3pNDMZoDEeY56oXLFgfU1pS/QJf
-	 +rMYG68S8q7Hp9BeFowp1jOfugLgrAfWI1TDbbcqC6t9Dn+9FPnoI42cGJUN9n1lKQ
-	 FrDvpuihjceONJS4QVPKR5GLACt+RE47S2IyEU9PDQdm8Grn4V/vHQCCT3sDP3Sqws
-	 Pi2dE41qavslQ==
-Date: Mon, 12 Feb 2024 16:43:17 -0600
-From: Rob Herring <robh@kernel.org>
-To: Saravana Kannan <saravanak@google.com>
-Cc: linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-	kernel-team@android.com
-Subject: Re: [PATCH] MAINTAINERS: of: Add Saravana Kannan
-Message-ID: <170777778090.2688977.14804637560473102697.robh@kernel.org>
-References: <20240210231513.111117-1-saravanak@google.com>
+	s=arc-20240116; t=1707778276; c=relaxed/simple;
+	bh=Rp0F2p2xa4tMIVuAskKB9+PZDyi3+DpKiaCAZIuQVJ0=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=I9lmn0U0Lc1hIC0FzymYPlsrwoPtzJveB3jVJSGuVVm+/ZgXiImwDJgXadMVSehDIWYsFM7YVqMH2fkzydqgUGtQFlEK/SdxXkwlrkaomsE0lDw2rDrhHNAYkfXd4Wf3FZWAZgnp18B2HVQ8SthzsZcocYCosjB3L4HCc3NVFrs=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=yandex.com; spf=pass smtp.mailfrom=yandex.com; dkim=pass (1024-bit key) header.d=yandex.com header.i=@yandex.com header.b=ItaX6CF4; arc=none smtp.client-ip=178.154.239.208
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=yandex.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=yandex.com
+Received: from mail-nwsmtp-smtp-production-main-19.sas.yp-c.yandex.net (mail-nwsmtp-smtp-production-main-19.sas.yp-c.yandex.net [IPv6:2a02:6b8:c24:5a6:0:640:ee22:0])
+	by forward500c.mail.yandex.net (Yandex) with ESMTPS id CC6E460F42;
+	Tue, 13 Feb 2024 01:44:42 +0300 (MSK)
+Received: by mail-nwsmtp-smtp-production-main-19.sas.yp-c.yandex.net (smtp/Yandex) with ESMTPSA id civpIX0pHCg0-aviaNSvO;
+	Tue, 13 Feb 2024 01:44:41 +0300
+X-Yandex-Fwd: 1
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=yandex.com; s=mail;
+	t=1707777881; bh=l8YSD2byZe121ynq36axzQobriPKExDpwph35JKavO8=;
+	h=From:In-Reply-To:Cc:Date:References:To:Subject:Message-ID;
+	b=ItaX6CF4USzkVKNlQQCdzilewN5z2Q7DBFIvnEZuIxlmcJs8onDIXydbmfYoYRpg+
+	 tHqvqS52aa+lhAHGn064WwlFWUku1+2lHNGxi4OuotcDy55wgflA6pak2SgMR0MkQA
+	 lZuvjnIRIiCGvY0L5gkQTcYYJS/Srfu5XwLvfyrc=
+Authentication-Results: mail-nwsmtp-smtp-production-main-19.sas.yp-c.yandex.net; dkim=pass header.i=@yandex.com
+Message-ID: <9f8d39c1-66ca-4bb7-994e-de15cb516473@yandex.com>
+Date: Mon, 12 Feb 2024 23:44:37 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20240210231513.111117-1-saravanak@google.com>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v1 06/10] arm64: dts: rockchip: add USBDP phys on rk3588
+Content-Language: en-US
+To: Sebastian Reichel <sebastian.reichel@collabora.com>
+Cc: Heiko Stuebner <heiko@sntech.de>, Vinod Koul <vkoul@kernel.org>,
+ Kishon Vijay Abraham I <kishon@kernel.org>,
+ linux-rockchip@lists.infradead.org, linux-phy@lists.infradead.org,
+ Rob Herring <robh+dt@kernel.org>,
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+ Conor Dooley <conor+dt@kernel.org>, Frank Wang <frank.wang@rock-chips.com>,
+ Kever Yang <kever.yang@rock-chips.com>, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, kernel@collabora.com
+References: <20240209181831.104687-1-sebastian.reichel@collabora.com>
+ <20240209181831.104687-7-sebastian.reichel@collabora.com>
+ <6bc2f825-7e50-488d-a373-a211ac2cc8e1@yandex.com>
+ <dsfne22iebd7mvyyskhpw3rkkfhlxpv32afht456vq3u52axyr@kgkxfzm5vn4c>
+From: Johan Jonker <jbx6244@yandex.com>
+In-Reply-To: <dsfne22iebd7mvyyskhpw3rkkfhlxpv32afht456vq3u52axyr@kgkxfzm5vn4c>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
 
-On Sat, 10 Feb 2024 15:15:12 -0800, Saravana Kannan wrote:
-> Adding myself as a second maintainer for Open Firmware and Device Tree
-> to help Rob out with reviews and other maintainer work.
+
+On 2/12/24 19:48, Sebastian Reichel wrote:
+> Hi Johan,
 > 
-> Cc: devicetree@vger.kernel.org
-> Signed-off-by: Saravana Kannan <saravanak@google.com>
-> ---
-> Discussed this with Rob.
+> On Sun, Feb 11, 2024 at 08:24:36PM +0100, Johan Jonker wrote:
+>>> +		u2phy1: usb2-phy@4000 {
+>>
+>>         "usb2phy@[0-9a-f]+$":
 > 
->  MAINTAINERS | 1 +
->  1 file changed, 1 insertion(+)
+> Interesting. I would have expected that to pop up in dtbs_check, but
+> it does not for some reason. I will fix it for all usb2phy instances
+> in rk3588.
 > 
+>>> +			compatible = "rockchip,rk3588-usb2phy";
+>>> +			reg = <0x4000 0x10>;
+>>> +			interrupts = <GIC_SPI 394 IRQ_TYPE_LEVEL_HIGH 0>;
+>>
+>>> +			resets = <&cru SRST_OTGPHY_U3_1>, <&cru SRST_P_USB2PHY_U3_1_GRF0>;
+>>> +			reset-names = "phy", "apb";
+>>> +			clocks = <&cru CLK_USB2PHY_HDPTXRXPHY_REF>;
+>>> +			clock-names = "phyclk";
+>>> +			clock-output-names = "usb480m_phy1";
+>>> +			#clock-cells = <0>;
+>>
+>> Align with the (new) documentation
+>> about property ordering.
+>>
+>>> +			status = "disabled";
+>>> +
+>>> +			u2phy1_otg: otg-port {
+>>> +				#phy-cells = <0>;
+>>> +				status = "disabled";
+>>> +			};
+>>> +		};
+>>> +	};
+> 
+> The above follows everything from [0], which does not specify an
+> order for the "standard/common  properties". For those this follows
+> the order of existing usb2phy nodes. Did I miss any other new
+> Documentation?
+> 
+> [0] https://www.kernel.org/doc/html/next/devicetree/bindings/dts-coding-style.html#order-of-properties-in-device-node
 
-Applied, thanks!
+While reading the text below I think it's in need for a clarification that the property order for common and vendor category is alpha-numerical as is for nodes.
+For Rockchip DT in this case "reset*" below "clock*", so that the person after you can add properties in a sort list.
 
+Johan
+
+.===
+
+The following order of properties in device nodes is preferred:
+
+    "compatible"
+
+    "reg"
+
+    "ranges"
+
+    Standard/common properties (defined by common bindings, e.g. without vendor-prefixes)
+
+    Vendor-specific properties
+
+    "status" (if applicable)
+
+    Child nodes, where each node is preceded with a blank line
+
+The "status" property is by default "okay", thus it can be omitted.
+
+
+> 
+> -- Sebastian
 
