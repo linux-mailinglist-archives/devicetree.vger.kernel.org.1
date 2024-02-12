@@ -1,109 +1,102 @@
-Return-Path: <devicetree+bounces-40820-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-40821-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 813F385171C
-	for <lists+devicetree@lfdr.de>; Mon, 12 Feb 2024 15:36:14 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7A3DF851731
+	for <lists+devicetree@lfdr.de>; Mon, 12 Feb 2024 15:40:16 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id AB0AF1F2171A
-	for <lists+devicetree@lfdr.de>; Mon, 12 Feb 2024 14:36:13 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 0D6AEB21389
+	for <lists+devicetree@lfdr.de>; Mon, 12 Feb 2024 14:40:12 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 238EF3BB28;
-	Mon, 12 Feb 2024 14:35:51 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="QSWM1AHS"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 924BD3B290;
+	Mon, 12 Feb 2024 14:40:05 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from tux.runtux.com (tux.runtux.com [176.9.82.136])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EB2EA3B79E;
-	Mon, 12 Feb 2024 14:35:50 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DE7DDFC16;
+	Mon, 12 Feb 2024 14:40:03 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=176.9.82.136
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1707748551; cv=none; b=AEUBS0MfuXmBEsTfuv4PIk2ULZq5IuaGpgDtvcEt/90SBmsVhVdG/YeFFjRT58Bu6rive21YF+uBzH2VGbx0IcfU5ZBpOMQ3r9YdVnTSN6Dho121YUEKfNsKHV8VvGoT5KuBuwBpnyTm71z7zLxpV1T4+YTBmbIoAxB+9+hM2sY=
+	t=1707748805; cv=none; b=khE9Wwsh8K9EjPpTIEZ3TeNohgagZ/5RVnexVZWYgufAeuGh7j6PUDAEw9NDPbBV5k5PGXvFxyotW9zJY11qFZ1xCt9w16iepHW1IDVRqP2N/khjQml6hXdGqC2vdPOZ/Xhn+Z/COYTjFF8r+riAiHdFKXP/QyJJe30oFIF4mTQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1707748551; c=relaxed/simple;
-	bh=QYf+5/QTHe/pR5frJUhbCNA1+D/FWdDxUAFsDka0kaI=;
-	h=Date:Content-Type:MIME-Version:From:To:Cc:In-Reply-To:References:
-	 Message-Id:Subject; b=XY3l2ocfexmQtk6tdv/pSxC68cQu0hVTMu47xpJ2LuzyjrL5xOvFRQK8EYKPrS+SZZ6pIhq1ESVaMcjo96tArsCBhDI3T/Rm09i2KVZusKok7Ce1tOlXZ+LecMOSsRij1pypnBzXiBgeF6ef9WXQuSmiOCqmfGwoKvdMCr5GCzI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=QSWM1AHS; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 40729C43394;
-	Mon, 12 Feb 2024 14:35:50 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1707748550;
-	bh=QYf+5/QTHe/pR5frJUhbCNA1+D/FWdDxUAFsDka0kaI=;
-	h=Date:From:To:Cc:In-Reply-To:References:Subject:From;
-	b=QSWM1AHSP/9zAdL55MyTxzban42kr7Xhzbkh2+x1k9Ln+dAhovPnd9YJMx17NZ9fh
-	 8Yye1aQu9uG458Z4cet443NCQl6Jb0GHVfXEJEyyzYi3vEcFs9aPESpURnOuU9jmGn
-	 H9fokutBg2itYfACFL2vXLRBBR6v3g1w3pg2+OCU3zSF/IUThK1WzdaZBVHPxsG39V
-	 UW8lu7GPmHWVPalnxxY6Rpi64YT2yGShdBdMDxnHuQhTAyIEv+WCsUACULJlkIGpux
-	 SP9AguvNNQwLuPszJF+mlgjRPBOLJQdd+d/xyVK6ZUn2002RGhqjk2+ie3dYpa2key
-	 I/Epe7TIhZICw==
-Date: Mon, 12 Feb 2024 08:35:49 -0600
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
+	s=arc-20240116; t=1707748805; c=relaxed/simple;
+	bh=stDOpKX2vOjeRZ0yU+kSRW2NtkeM5LOv9GIRMijbGtA=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=mrnIWI+eCPfpv6Pb5JBghH8oYshu6HheX1hBZdhszKSzRa3FLYl7u5oS1t7G6cNoL8SJk6IOJODDmirITr6n6nGJ6spiAl6Yw88+AGAXB31QVyrIW8B9Po0+hQs/ny86jG/W9TdyT0TbzGcmAr5p4fSBo6/Hv0/OV6eGFcfJ29Q=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=runtux.com; spf=pass smtp.mailfrom=runtux.com; arc=none smtp.client-ip=176.9.82.136
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=runtux.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=runtux.com
+Received: from localhost (localhost [127.0.0.1])
+	by tux.runtux.com (Postfix) with ESMTP id 6CA786F065;
+	Mon, 12 Feb 2024 15:40:00 +0100 (CET)
+X-Virus-Scanned: Debian amavisd-new at tux.runtux.com
+Received: from tux.runtux.com ([127.0.0.1])
+	by localhost (tux2.runtux.com [127.0.0.1]) (amavisd-new, port 10026)
+	with LMTP id PkmeLa6QKAcP; Mon, 12 Feb 2024 15:39:59 +0100 (CET)
+Received: from bee.priv.zoo (62-99-217-90.static.upcbusiness.at [62.99.217.90])
+	(Authenticated sender: postmaster@runtux.com)
+	by tux.runtux.com (Postfix) with ESMTPSA id E8B6C6EF02;
+	Mon, 12 Feb 2024 15:39:58 +0100 (CET)
+Received: by bee.priv.zoo (Postfix, from userid 1002)
+	id 44DCD46A; Mon, 12 Feb 2024 15:39:58 +0100 (CET)
+Date: Mon, 12 Feb 2024 15:39:58 +0100
+From: Ralf Schlatterbeck <rsc@runtux.com>
+To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Cc: Geert Uytterhoeven <geert@linux-m68k.org>,
+	Linus Walleij <linus.walleij@linaro.org>,
+	Miguel Ojeda <ojeda@kernel.org>, Rob Herring <robh+dt@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Robin van der Gracht <robin@protonic.nl>,
+	Paul Burton <paulburton@kernel.org>,
+	linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	Andy Shevchenko <andriy.shevchenko@linux.intel.com>
+Subject: Re: [PATCH 1/3] dt-bindings: auxdisplay: hit, hd44780: drop
+ redundant GPIO node
+Message-ID: <20240212143957.gaxxz3nt7pxhlmqh@runtux.com>
+References: <20240212083426.26757-1-krzysztof.kozlowski@linaro.org>
+ <CAMuHMdU-c5_Z2AMNtNH4Cc4JUrn+oKU-1CumEOAP6=5Zomcj_A@mail.gmail.com>
+ <2922eece-5486-4eff-af99-f7060cb61d17@linaro.org>
+ <20240212115837.efz73yxinkysdmgh@runtux.com>
+ <e2a5b005-7916-4296-b072-c24efd4b3357@linaro.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-From: Rob Herring <robh@kernel.org>
-To: =?utf-8?q?Pawe=C5=82_Anikiel?= <panikiel@google.com>
-Cc: linux-kernel@vger.kernel.org, linux-media@vger.kernel.org, 
- conor+dt@kernel.org, airlied@gmail.com, mripard@kernel.org, 
- dinguyen@kernel.org, maarten.lankhorst@linux.intel.com, tzimmermann@suse.de, 
- robh+dt@kernel.org, hverkuil-cisco@xs4all.nl, devicetree@vger.kernel.org, 
- ribalda@chromium.org, daniel@ffwll.ch, chromeos-krk-upstreaming@google.com, 
- mchehab@kernel.org, akpm@linux-foundation.org, 
- dri-devel@lists.freedesktop.org, krzysztof.kozlowski+dt@linaro.org
-In-Reply-To: <20240212131323.2162161-9-panikiel@google.com>
-References: <20240212131323.2162161-1-panikiel@google.com>
- <20240212131323.2162161-9-panikiel@google.com>
-Message-Id: <170774854550.294485.3708612918527188826.robh@kernel.org>
-Subject: Re: [PATCH 8/9] media: dt-bindings: Add Intel Displayport RX IP
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <e2a5b005-7916-4296-b072-c24efd4b3357@linaro.org>
+X-ray: beware
+User-Agent: NeoMutt/20180716
 
-
-On Mon, 12 Feb 2024 13:13:22 +0000, Paweł Anikiel wrote:
-> The Intel Displayport RX IP is a part of the DisplayPort Intel FPGA IP
-> Core. It implements a DisplayPort 1.4 receiver capable of HBR3 video
-> capture and Multi-Stream Transport. The user guide can be found here:
+On Mon, Feb 12, 2024 at 02:38:27PM +0100, Krzysztof Kozlowski wrote:
+> On 12/02/2024 12:58, Ralf Schlatterbeck wrote:
 > 
-> https://www.intel.com/programmable/technical-pdfs/683273.pdf
-> 
-> Signed-off-by: Paweł Anikiel <panikiel@google.com>
-> ---
->  .../devicetree/bindings/media/intel,dprx.yaml | 125 ++++++++++++++++++
->  1 file changed, 125 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/media/intel,dprx.yaml
-> 
+> GPIO expanders and their usage is nothing specific to this device -
+> other devices also might benefit of them. Or the SoCs which have enough
+> of GPIOs... I really do not understand why do we need expander here and
+> how does it help
 
-My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
-on your patch (DT_CHECKER_FLAGS is new in v5.13):
+Can we then at least link the I/O Expander example to the docs of that
+display?
+I've documented my experience here:
+https://blog.runtux.com/posts/2021/01/06/
 
-yamllint warnings/errors:
+And at the time there were two out-of-tree implementations.
 
-dtschema/dtc warnings/errors:
-Error: Documentation/devicetree/bindings/media/intel,dprx.example.dts:28.27-28 syntax error
-make[2]: *** [scripts/Makefile.lib:419: Documentation/devicetree/bindings/media/intel,dprx.example.dtb] Error 1
+Note that I think that redundancy in code is bad.
+Not so for documentation.
 
-doc reference errors (make refcheckdocs):
-
-See https://patchwork.ozlabs.org/project/devicetree-bindings/patch/20240212131323.2162161-9-panikiel@google.com
-
-The base for the series is generally the latest rc1. A different dependency
-should be noted in *this* patch.
-
-If you already ran 'make dt_binding_check' and didn't see the above
-error(s), then make sure 'yamllint' is installed and dt-schema is up to
-date:
-
-pip3 install dtschema --upgrade
-
-Please check and re-submit after running the above command yourself. Note
-that DT_SCHEMA_FILES can be set to your schema file to speed up checking
-your schema. However, it must be unset to test all examples with your schema.
-
+Thanks + kind regards
+Ralf
+-- 
+Dr. Ralf Schlatterbeck                  Tel:   +43/2243/26465-16
+Open Source Consulting                  www:   www.runtux.com
+Reichergasse 131, A-3411 Weidling       email: office@runtux.com
 
