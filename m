@@ -1,120 +1,122 @@
-Return-Path: <devicetree+bounces-41031-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-41032-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 704F4852149
-	for <lists+devicetree@lfdr.de>; Mon, 12 Feb 2024 23:17:27 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 79CFD85214F
+	for <lists+devicetree@lfdr.de>; Mon, 12 Feb 2024 23:21:18 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 118F4B268E1
-	for <lists+devicetree@lfdr.de>; Mon, 12 Feb 2024 22:17:25 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 1775C1F21C5F
+	for <lists+devicetree@lfdr.de>; Mon, 12 Feb 2024 22:21:18 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id AD34C4D9F1;
-	Mon, 12 Feb 2024 22:17:18 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5DF534D9F1;
+	Mon, 12 Feb 2024 22:21:12 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="GC6faghg"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="jHGa4s3w"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 75CB14D5BA;
-	Mon, 12 Feb 2024 22:17:18 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 28AF1481D0;
+	Mon, 12 Feb 2024 22:21:11 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1707776238; cv=none; b=s7QMwkGjidk5OdUyADbFYaZfU+3FKJymHC6LqWhqrwr6BKSzWhHCboEdFDcd6ia+IciBNoOoPljgMe8QcYBxYcQt73vfOZdZqxT8muc7uFBr2LIlbvL100z4VdAKlUtGgZFTTXRmtwEz0E8ifLJoONbsga6RLeKqkZsHACWG+Wc=
+	t=1707776472; cv=none; b=p4cFkZoi9fwWKsloACUqEgmpTJLnzx70xx0QXVWbsWfoURTDlJl4g5DHe7owp5gcSj9cm5j3z+9PMkpyfjEEb2xE/9uULWZ2Mad/Uw4n2c5yvTwKHS3cyx3koauivUEej+g4423FBUtbCxFW/AbjaUGL6VhRCt/9y4lFujxBdwk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1707776238; c=relaxed/simple;
-	bh=a6uWx2pOU/OPfI6mfvFI1nNygrviHWQu38BsJoU3WL8=;
-	h=Date:Content-Type:MIME-Version:From:To:Cc:In-Reply-To:References:
-	 Message-Id:Subject; b=uiUCeyIIqZnwnOnCyUbG0hfCZBlb0WByi7P+X4GphNatEbxjh23FGkzq0TG7BIQl8p21qgxiWvAAQIgcIcszxXMlVBrsoTgpEYNu4ova0tcUbtz+NNikWPGl8eLzL1L9jrbGQbb7w7/1Pkomew1ziuM9W9h5UIe31Z4cpuQbdx8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=GC6faghg; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id BE775C433C7;
-	Mon, 12 Feb 2024 22:17:17 +0000 (UTC)
+	s=arc-20240116; t=1707776472; c=relaxed/simple;
+	bh=BwZIUGw5rwhWZMHBntEgD6evsLiGKtlOXbv6xGs3Uik=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=IAawfu3dv1GDmtvo/UkJ2uiuQ3YkEq+rGk4yLB+4xTMY7IuwE8Ius/tFw8g0ZHgNzQnj3ZRbg2E9r9jLJyz/X4Z9+Jqnblek9eRhITOpDnXFYWEan5gxtA3DNN4rbZh02pbM4Q1Cuz/sAGuhQxLq2xIdZhVmqc+MqmMy+F3f4Mw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=jHGa4s3w; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 5CBEDC433C7;
+	Mon, 12 Feb 2024 22:21:11 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1707776238;
-	bh=a6uWx2pOU/OPfI6mfvFI1nNygrviHWQu38BsJoU3WL8=;
-	h=Date:From:To:Cc:In-Reply-To:References:Subject:From;
-	b=GC6faghgqHlSd4t9ygiawwHv2PtJIEyp5bcSzDkCUjNl+Mm+vDKsDm+RO36BsT5tm
-	 fQSWTsqALLFm4j4iC4IlNx8ofx/vLe+xUhHFGjCKUJwXVej8+hqmqGwDGBwpwOeQLz
-	 gnADzL7yp1nZnfpwMh+7z8ey1AWKn1YkzRaZIf4HX4b9J05rBLG/tXOndFc01RsRGx
-	 FNbiKz260xUKaoEOMsh2LKG8RiVvG5aSfAf68JSQTz+sFdURAIC0pPR5b5sqOzwr2j
-	 8Vx9x4n6KsrsiyeVjdwbhqXJKjvBHTYfa7o6oC9Ikk5fVm8m4+mNWCXZbxF6OunRNC
-	 HxaoUMrUlKILg==
-Date: Mon, 12 Feb 2024 16:17:16 -0600
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
+	s=k20201202; t=1707776471;
+	bh=BwZIUGw5rwhWZMHBntEgD6evsLiGKtlOXbv6xGs3Uik=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=jHGa4s3wLIvyZ48+8ZoMXJbUOtFhN9/WKiYUycimjDaa2jWq4/Q2rYPoHosSdpXYe
+	 N33HualANFR1t/5b+2s16ERLdJ/OrqHCM+cYGKIiW5m/3jB8OZ7knyxvOd2gf1ATD3
+	 9cYMzBDpYXHp4t6Yvilvj9RtzBeAD3WsZunRKiOI+x66eUtnmrZCUG7JQKz4v6OZVT
+	 +BJE0jUdYqRgd7Md7z9O1qhUkUfwe5V6F4w/wBsPR6UTn2yDM0YlZhv2fa1YiOTFxG
+	 6tf7FsPXip19YfYwCnnDF3RfGwsxZaV8o/EMI6+1V2zWKutRMwCVBliPNOExtBhkYF
+	 SgK/lAKFauqtw==
+Date: Mon, 12 Feb 2024 16:21:09 -0600
+From: Rob Herring <robh@kernel.org>
+To: David Wronek <davidwronek@gmail.com>
+Cc: Bjorn Andersson <andersson@kernel.org>,
+	Konrad Dybcio <konrad.dybcio@linaro.org>,
+	Herbert Xu <herbert@gondor.apana.org.au>,
+	"David S. Miller" <davem@davemloft.net>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
+	Alim Akhtar <alim.akhtar@samsung.com>,
+	Avri Altman <avri.altman@wdc.com>,
+	Bart Van Assche <bvanassche@acm.org>,
+	Andy Gross <agross@kernel.org>, Vinod Koul <vkoul@kernel.org>,
+	Kishon Vijay Abraham I <kishon@kernel.org>,
+	cros-qcom-dts-watchers@chromium.org, linux-arm-msm@vger.kernel.org,
+	linux-crypto@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org, linux-scsi@vger.kernel.org,
+	linux-phy@lists.infradead.org,
+	~postmarketos/upstreaming@lists.sr.ht
+Subject: Re: [PATCH v4 3/8] dt-bindings: phy: Add QMP UFS PHY compatible for
+ SC7180
+Message-ID: <20240212222109.GA2655166-robh@kernel.org>
+References: <20240121-sm7125-upstream-v4-0-f7d1212c8ebb@gmail.com>
+ <20240121-sm7125-upstream-v4-3-f7d1212c8ebb@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-From: Rob Herring <robh@kernel.org>
-To: Saravana Kannan <saravanak@google.com>
-Cc: linux-efi@vger.kernel.org, Conor Dooley <conor+dt@kernel.org>, 
- Rob Herring <robh+dt@kernel.org>, 
- Andy Shevchenko <andriy.shevchenko@linux.intel.com>, 
- Daniel Scally <djrscally@gmail.com>, Frank Rowand <frowand.list@gmail.com>, 
- linux-kernel@vger.kernel.org, kernel-team@android.com, 
- devicetree@vger.kernel.org, Greg Kroah-Hartman <gregkh@linuxfoundation.org>, 
- Heikki Krogerus <heikki.krogerus@linux.intel.com>, 
- Sakari Ailus <sakari.ailus@linux.intel.com>, Len Brown <lenb@kernel.org>, 
- linux-acpi@vger.kernel.org, 
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, 
- "Rafael J. Wysocki" <rafael@kernel.org>, Ard Biesheuvel <ardb@kernel.org>
-In-Reply-To: <20240212213147.489377-4-saravanak@google.com>
-References: <20240212213147.489377-1-saravanak@google.com>
- <20240212213147.489377-4-saravanak@google.com>
-Message-Id: <170777623558.2654155.17686339859837179281.robh@kernel.org>
-Subject: Re: [PATCH v2 3/4] dt-bindings: Add post-init-supplier property
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20240121-sm7125-upstream-v4-3-f7d1212c8ebb@gmail.com>
 
-
-On Mon, 12 Feb 2024 13:31:44 -0800, Saravana Kannan wrote:
-> The post-init-supplier property can be used to break a dependency cycle by
-> marking some supplier(s) as a post device initialization supplier(s). This
-> allows an OS to do a better job at ordering initialization and
-> suspend/resume of the devices in a dependency cycle.
+On Sun, Jan 21, 2024 at 05:57:43PM +0100, David Wronek wrote:
+> Document the QMP UFS PHY compatible for SC7180
 > 
-> Signed-off-by: Saravana Kannan <saravanak@google.com>
+> Acked-by: Rob Herring <robh@kernel.org>
+> Signed-off-by: David Wronek <davidwronek@gmail.com>
 > ---
->  .../bindings/post-init-supplier.yaml          | 101 ++++++++++++++++++
->  MAINTAINERS                                   |  13 +--
->  2 files changed, 108 insertions(+), 6 deletions(-)
->  create mode 100644 Documentation/devicetree/bindings/post-init-supplier.yaml
+>  Documentation/devicetree/bindings/phy/qcom,sc8280xp-qmp-ufs-phy.yaml | 2 ++
+>  1 file changed, 2 insertions(+)
 > 
+> diff --git a/Documentation/devicetree/bindings/phy/qcom,sc8280xp-qmp-ufs-phy.yaml b/Documentation/devicetree/bindings/phy/qcom,sc8280xp-qmp-ufs-phy.yaml
+> index 8474eef8d0ff..5faa1cb3a12e 100644
+> --- a/Documentation/devicetree/bindings/phy/qcom,sc8280xp-qmp-ufs-phy.yaml
+> +++ b/Documentation/devicetree/bindings/phy/qcom,sc8280xp-qmp-ufs-phy.yaml
+> @@ -19,6 +19,7 @@ properties:
+>        - qcom,msm8996-qmp-ufs-phy
+>        - qcom,msm8998-qmp-ufs-phy
+>        - qcom,sa8775p-qmp-ufs-phy
+> +      - qcom,sc7180-qmp-ufs-phy
 
-My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
-on your patch (DT_CHECKER_FLAGS is new in v5.13):
+This doesn't match what you put in the dts which is adding to the 
+warnings:
 
-yamllint warnings/errors:
-./Documentation/devicetree/bindings/post-init-supplier.yaml:84:12: [error] syntax error: mapping values are not allowed here (syntax)
+     51  phy@1d87000: compatible: ['qcom,sc7180-qmp-ufs-phy', 'qcom,sm7150-qmp-ufs-phy'] is too long
+     51  phy@1d87000: clock-names: ['ref', 'ref_aux'] is too short
+     48  phy@1d87000: clocks: [[39, 97], [39, 103]] is too short
+     30  phy@1d87000: 'power-domains' is a required property
 
-dtschema/dtc warnings/errors:
-make[2]: *** Deleting file 'Documentation/devicetree/bindings/post-init-supplier.example.dts'
-Documentation/devicetree/bindings/post-init-supplier.yaml:84:12: mapping values are not allowed in this context
-make[2]: *** [Documentation/devicetree/bindings/Makefile:26: Documentation/devicetree/bindings/post-init-supplier.example.dts] Error 1
-make[2]: *** Waiting for unfinished jobs....
-./Documentation/devicetree/bindings/post-init-supplier.yaml:84:12: mapping values are not allowed in this context
-/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/post-init-supplier.yaml: ignoring, error parsing file
-make[1]: *** [/builds/robherring/dt-review-ci/linux/Makefile:1428: dt_binding_check] Error 2
-make: *** [Makefile:240: __sub-make] Error 2
 
-doc reference errors (make refcheckdocs):
-
-See https://patchwork.ozlabs.org/project/devicetree-bindings/patch/20240212213147.489377-4-saravanak@google.com
-
-The base for the series is generally the latest rc1. A different dependency
-should be noted in *this* patch.
-
-If you already ran 'make dt_binding_check' and didn't see the above
-error(s), then make sure 'yamllint' is installed and dt-schema is up to
-date:
-
-pip3 install dtschema --upgrade
-
-Please check and re-submit after running the above command yourself. Note
-that DT_SCHEMA_FILES can be set to your schema file to speed up checking
-your schema. However, it must be unset to test all examples with your schema.
-
+>        - qcom,sc7280-qmp-ufs-phy
+>        - qcom,sc8180x-qmp-ufs-phy
+>        - qcom,sc8280xp-qmp-ufs-phy
+> @@ -102,6 +103,7 @@ allOf:
+>            contains:
+>              enum:
+>                - qcom,msm8998-qmp-ufs-phy
+> +              - qcom,sc7180-qmp-ufs-phy
+>                - qcom,sc8180x-qmp-ufs-phy
+>                - qcom,sc8280xp-qmp-ufs-phy
+>                - qcom,sdm845-qmp-ufs-phy
+> 
+> -- 
+> 2.43.0
+> 
 
