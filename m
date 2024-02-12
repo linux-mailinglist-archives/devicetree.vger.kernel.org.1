@@ -1,160 +1,132 @@
-Return-Path: <devicetree+bounces-40565-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-40566-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3DC4D850D1D
-	for <lists+devicetree@lfdr.de>; Mon, 12 Feb 2024 05:11:17 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 68AE0850D44
+	for <lists+devicetree@lfdr.de>; Mon, 12 Feb 2024 05:51:56 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id B6293B22FAD
-	for <lists+devicetree@lfdr.de>; Mon, 12 Feb 2024 04:11:14 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id EBA1728613F
+	for <lists+devicetree@lfdr.de>; Mon, 12 Feb 2024 04:51:54 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E912E46A4;
-	Mon, 12 Feb 2024 04:11:01 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 408D42F55;
+	Mon, 12 Feb 2024 04:51:50 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="tY8/JvBP"
+	dkim=pass (2048-bit key) header.d=pdp7-com.20230601.gappssmtp.com header.i=@pdp7-com.20230601.gappssmtp.com header.b="hDFCrnOo"
 X-Original-To: devicetree@vger.kernel.org
-Received: from fllv0016.ext.ti.com (fllv0016.ext.ti.com [198.47.19.142])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-pl1-f173.google.com (mail-pl1-f173.google.com [209.85.214.173])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EFA026FBF;
-	Mon, 12 Feb 2024 04:10:59 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.19.142
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A9AE76FAD
+	for <devicetree@vger.kernel.org>; Mon, 12 Feb 2024 04:51:48 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.173
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1707711061; cv=none; b=nmNQmMcK5BugrVGmYzs29CFAD2W6l13HnSOFs1Qisk/SGGkaJfeqmP5w7c1DxzPbVGKL/PLc1PG40yel2tG3hukEEEp2FFGPD0bdp6s2wSsJCbmOToXNWUfwn38PiM7vt1Hd9svW4FJ5ykycNjA21kLCZ2VcEJyUj+I3Oi8HBO8=
+	t=1707713510; cv=none; b=EBwDKVwOc+acTKZ3ILNVQb2UemcSBdIBSBG11c0cGI15SiLmEXCL+j2hcoVk592xfAd+TSmFodJgSZ9WisMFotsaEcxsMdNGaG+Nueq10c2cs61RvRCTcEtQu1k4vr0MgjK1lhhAKQ7ifu4PtfEQZiTJZzQ/heMMTeUUkMC5gbE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1707711061; c=relaxed/simple;
-	bh=AX+o0JnqtMI2XzlPE3EyRlmUfPtaB6Tip9MGV6o16pM=;
-	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
-	 In-Reply-To:Content-Type; b=W9Ykk5XuhC8U4LgJ4tkjwzQuBMBGGo34zqeV/Ny6Ab3iFtVquFCFdOwTvY1OVmbEFfzKZL94oMSnvDdvXoWMyT2PDU5L4JLFVO7r9okBVnGThR1GRTs5wdog/7jYsHDDNuKX+OjjUMVW8L3uDP9kkMj4QKVYrEMiXBh6snIhL0c=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=tY8/JvBP; arc=none smtp.client-ip=198.47.19.142
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
-Received: from lelv0266.itg.ti.com ([10.180.67.225])
-	by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id 41C4ANMn038175;
-	Sun, 11 Feb 2024 22:10:23 -0600
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1707711024;
-	bh=xLHO//KwhnZEjV6AuR2VlOJ6LDEJagIspJgvME7YXEg=;
-	h=Date:Subject:To:CC:References:From:In-Reply-To;
-	b=tY8/JvBP/9Jx9hhd/+MLEYB0yB+JTmvx1HqOJ91y1STI3/XN9reskNfvrnI/WYvqM
-	 Q4+YsR16FBka8n+5ztLdIwTy7+GtO7Ib12QHlJhwXP6efYhAC5fQHI0g9n0FKerW+Y
-	 yonkbWkf1XeGGQrhMRhtIrxWXvLTf/izlimZkdxc=
-Received: from DLEE107.ent.ti.com (dlee107.ent.ti.com [157.170.170.37])
-	by lelv0266.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 41C4ANED036766
-	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-	Sun, 11 Feb 2024 22:10:23 -0600
-Received: from DLEE104.ent.ti.com (157.170.170.34) by DLEE107.ent.ti.com
- (157.170.170.37) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Sun, 11
- Feb 2024 22:10:23 -0600
-Received: from lelvsmtp6.itg.ti.com (10.180.75.249) by DLEE104.ent.ti.com
- (157.170.170.34) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
- Frontend Transport; Sun, 11 Feb 2024 22:10:23 -0600
-Received: from [172.24.227.94] (uda0132425.dhcp.ti.com [172.24.227.94])
-	by lelvsmtp6.itg.ti.com (8.15.2/8.15.2) with ESMTP id 41C4AI0F101679;
-	Sun, 11 Feb 2024 22:10:18 -0600
-Message-ID: <359993c5-3387-443c-8cef-30ee7ad1f521@ti.com>
-Date: Mon, 12 Feb 2024 09:40:17 +0530
+	s=arc-20240116; t=1707713510; c=relaxed/simple;
+	bh=ycDmJ8sSzq/z4s/iOCsk1Vsc5DOZRrjGfbxabXVUfMw=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=JvjfKUA5dHXZgNtMVmzVCDHt05T0j81Z0TMXNgtmvKKhv/z5wDrSYfVpWgM4x3S4tCwLTu6l2mWkZTwF4YGB26Tnl0pbpV/3cC6cUTfK29KdtqAH4lqKK1NK1pur9gr3HinxZms0gZHPZ1vg/9WHM+JkpuliWOKjGF/F2aXmG9g=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pdp7.com; spf=none smtp.mailfrom=pdp7.com; dkim=pass (2048-bit key) header.d=pdp7-com.20230601.gappssmtp.com header.i=@pdp7-com.20230601.gappssmtp.com header.b=hDFCrnOo; arc=none smtp.client-ip=209.85.214.173
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pdp7.com
+Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=pdp7.com
+Received: by mail-pl1-f173.google.com with SMTP id d9443c01a7336-1d731314e67so16892325ad.1
+        for <devicetree@vger.kernel.org>; Sun, 11 Feb 2024 20:51:48 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=pdp7-com.20230601.gappssmtp.com; s=20230601; t=1707713508; x=1708318308; darn=vger.kernel.org;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=TN1N5wHd/5s/p1QMyzLjtp6F087WNnhanJgsh/0rH+g=;
+        b=hDFCrnOotm1QglenU7JYk2VxDjysOmPUDtCSONvlv+IkIt8uC9HefD/M7eh1tEaqu+
+         t/cIgp8GF4FCY+nzehZaFQVxVix+S7Gzd9NwVGZ78TufwRwDahJAVZ4CLn9thOqHY6Nd
+         PMZjCf/jqL9RMFtH2IRiNyHkLc+Yyc8l8cjE23i0rvaRSo9rJAJeAkDSVqVyzg0il7oy
+         mcCBk8XXBn0P3exT+CF8cl3F6yGFkeD6hbkdtAWUQ8AUVRBM7T3JeTpNKo12fduonC8x
+         U+Wgz3ba+HRVPNbKW09l85UqQ+77ePHHCUIn7zzRAufw90FikzflB3IMV/vAqVXdgoEm
+         TCJw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1707713508; x=1708318308;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=TN1N5wHd/5s/p1QMyzLjtp6F087WNnhanJgsh/0rH+g=;
+        b=a9jKWRF1xKkkd2xhP2hddlSETGA9SlnIA4WpqjR2TXM+V6V8S8lvQM40zuX2xJK071
+         tgRT9U3Xi6Wkh/vcR8QqGqxDLspdSMIG3vIzY9dSRC2BOLeuVt8BNN+ryEwRfdkzHQ05
+         MMBeV/8ttusmV79xX6NassICXimVlrrGRNsHxc3t/iMefAPCg9eaSA+W96Vdk/LBpcw/
+         N6pMSxCQ9+nHjeWFnSXQdK0vXHjfZuj+dmr4fuFkZPzhz00jkrPLMhAhdvCAIcFHEH88
+         n6q6CU5Bg+oCss8ttIGixVxtr4szZ7Lq8+eOqNP/fq8G9P/C/nPGLtNL7yFFrcjay2Wp
+         sc+w==
+X-Forwarded-Encrypted: i=1; AJvYcCWR2I162ip9kFTa2V2OD4HAI0hV+YW0DGKv7KVRn/qv8hBj8vreR2SVJjOOdTEdEyeu3wfn/m9qlH80Jh9v1g4Ye98K4lnbmAZEeg==
+X-Gm-Message-State: AOJu0Yy3uR/Y71/RiGrei/7mvAsaarUZfY40VhDL8iU/ulgpzmNOhbI3
+	4lp81LsWyze4LPEX3Xwx5fgOf+ziAq1zxr8SgK52umx5jGKBmN5EyQBCS/cM5GA=
+X-Google-Smtp-Source: AGHT+IEY75u/xGNwtso6ikxk6UIGByK6eYyNtc4JEQmcS7pJ05+PReKBC2npnp/ZrQdzl+9s0BWt7A==
+X-Received: by 2002:a17:902:d4c8:b0:1da:1d05:7a9d with SMTP id o8-20020a170902d4c800b001da1d057a9dmr6074230plg.16.1707713507909;
+        Sun, 11 Feb 2024 20:51:47 -0800 (PST)
+X-Forwarded-Encrypted: i=1; AJvYcCVaPIfssrHeVXME5NSMoqDcFAbff4F2+6YsQy+XASCsypNoJZZdJHge7fzlNUi7H3PsNCFUndZbUckz7YHhySgjrUiLVYUNbPBrLxwjOaQccFIxgkFRw3Zg41GRWir8liPg+DvGfitTROQU6FPAq+yTsR4a+Qm8IwSAuenAgEjHqdCJ86Av8CdW4Cy97co/t28+wrRjzQP/W+K/WqosgfJcBV+g2fgiT2ipQmpUXMmot4CvVxOtXNtQWKE0ezI2cYxPJyZ7W902ZAVQMi5/On+PtLhfRTdiJV9b1xCZrVlp4G6mFqm8KPQT9jEJE03awXg2VMQ9KHkO7fig1rccHthlW/rtxFXAmtbG4MNYaGk5xOf6C2yjjWozW3z44Feqs302nDBIh3t+E2frxXIsM1qsrSEaE6F2Qw7jeSNGUixgfnYQUtXszVCVK2ZRTRvwEoDRVK0YHY1tovWkbtPrayC8jBHBuYmAQLlS1O8ZxVc1LhQ+AYJQgKYPiir2Xrm9
+Received: from x1 ([2601:1c2:1800:f680:a936:a777:2d19:7ea9])
+        by smtp.gmail.com with ESMTPSA id jz8-20020a170903430800b001d8e41b3f95sm5038876plb.51.2024.02.11.20.51.46
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Sun, 11 Feb 2024 20:51:47 -0800 (PST)
+Date: Sun, 11 Feb 2024 20:51:44 -0800
+From: Drew Fustini <drew@pdp7.com>
+To: Palmer Dabbelt <palmer@dabbelt.com>
+Cc: Conor Dooley <conor@kernel.org>,
+	Paul Walmsley <paul.walmsley@sifive.com>,
+	Albert Ou <aou@eecs.berkeley.edu>,
+	Jisheng Zhang <jszhang@kernel.org>, Guo Ren <guoren@kernel.org>,
+	Fu Wei <wefu@redhat.com>, Rob Herring <robh+dt@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor.dooley@microchip.com>,
+	Jason Kridner <jkridner@beagleboard.org>,
+	Robert Nelson <robertcnelson@beagleboard.org>,
+	linux-riscv@lists.infradead.org, linux-kernel@vger.kernel.org,
+	devicetree@vger.kernel.org
+Subject: Re: (subset) [PATCH v8 0/4] RISC-V: Add MMC support for TH1520 boards
+Message-ID: <Zcmj4Pbi/1c49dR+@x1>
+References: <20231206-th1520_mmc_dts-v8-0-69220e373e8f@baylibre.com>
+ <20231212-flammable-idiom-660b1d85e20d@spud>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v5 0/5] arm64: dts: add description for solidrun am642 som
- and hummingboard evb
-Content-Language: en-US
-To: Josua Mayer <josua@solid-run.com>, Nishanth Menon <nm@ti.com>,
-        Tero Kristo
-	<kristo@kernel.org>, Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski
-	<krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Alessandro Zummo <a.zummo@towertech.it>,
-        Alexandre Belloni
-	<alexandre.belloni@bootlin.com>
-CC: Yazan Shhady <yazan.shhady@solid-run.com>,
-        <linux-arm-kernel@lists.infradead.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>, <linux-rtc@vger.kernel.org>,
-        "Krzysztof
- Kozlowski" <krzysztof.kozlowski@linaro.org>,
-        Suman Anna <s-anna@ti.com>,
-        Grygorii Strashko <grygorii.strashko@ti.com>,
-        MD Danish Anwar
-	<danishanwar@ti.com>, Andrew Davis <afd@ti.com>
-References: <20240211-add-am64-som-v5-0-790ed7121249@solid-run.com>
-From: Vignesh Raghavendra <vigneshr@ti.com>
-In-Reply-To: <20240211-add-am64-som-v5-0-790ed7121249@solid-run.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 7bit
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20231212-flammable-idiom-660b1d85e20d@spud>
 
-Hi Josua,
-
-On 11/02/24 20:37, Josua Mayer wrote:
-> This series adds DT bindings and dts descriptions for SolidRun AM642
-> based SoM and Hummingboard EVB.
+On Tue, Dec 12, 2023 at 07:13:25PM +0000, Conor Dooley wrote:
+> From: Conor Dooley <conor.dooley@microchip.com>
 > 
-> Additionally a commit from downstream vendor kernel are included,
-> enhancing support for pru based ethernet.
-> I wasn't sure how to properly annotate it in commit description /
-> signed-off area ...:
+> On Wed, 06 Dec 2023 00:09:20 -0800, Drew Fustini wrote:
+> > This series enables the MMC controller in the T-Head TH1520 SoC and
+> > enables the eMMC and microSD on both the BeagleV Ahead and the Sipeed
+> > LicheePi 4A.
+> > 
+> > The drivers/mmc/host patches from v6 were applied by Ulf and are already
+> > in the linux-next [1][2] as well as the bindings patch [3]. Thus v7 was
+> > only a defconfig patch and three device tree patches. This v8 is a
+> > followup to change the dwcmshc node names to match the documentation.
+> > 
+> > [...]
 > 
-> 1. add description for "Industrial Ethernet Peripherals" (IEP) to am64
->    https://git.ti.com/cgit/ti-linux-kernel/ti-linux-kernel/commit/arch/arm64/boot/dts/ti/k3-am64-main.dtsi?h=ti-linux-6.1.y-cicd&id=5afb73d82a014b59462162d960b350b8c58e5ae6
->    IEP is already supported in-tree by a driver, and used in
->    k3-am65-main.dtsi.
+> Applied to riscv-dt-for-next, thanks! The defconfig patch is Palmer's
+> to take :)
 > 
-> Unfortunately dtbs_check reported many problems, I put some remarks:
-> 
-> - 'mux-controller' does not match any of the regexes
->   The expectation seems to be that a mux-controller at minimum has an
->   address, something to put behind an @. However this is a gpio mux, not
->   sure how to name it better.
-> 
+> [2/4] riscv: dts: thead: Add TH1520 mmc controllers and sdhci clock
+>       https://git.kernel.org/conor/c/a77f02e84896
+> [3/4] riscv: dts: thead: Enable BeagleV Ahead eMMC and microSD
+>       https://git.kernel.org/conor/c/18d92a03b319
+> [4/4] riscv: dts: thead: Enable LicheePi 4A eMMC and microSD
+>       https://git.kernel.org/conor/c/b6b5028473ce
 
-I don't see this warning locally. Are you using updated dt-schema? reg
-is not necessary gpio-mux as per gpio-mux.yaml
+Hi Palmer,
 
-> - unevaluated properties: interrupts, interrupt-parent
->   sensors and flash yaml are missing interrupt descriptions, but these
->   parts definitely have an interrupt signal in this solidrun board.
-> 
+I don't see this in fixes or for-next. Could you pick it up please?
 
-Please add them to appropriate schema as necessary
+I've tested that Lichee Pi 4a and Ahead boot okay on 6.8-rc4 once
+'CONFIG_MMC_SDHCI_OF_DWCMSHC=y' is set.
 
-> - wrong names for pinctrl nodes
->   Other TI DTSs consistently end with *-pins-default. Should a different
->   naming convention be used?
-> 
-
-No, pinctrl nodes need to end in -pins. All TI boards have been updated
-to new schema [0] and sysconfig tool on dev.ti.com/sysconfig generates
-appropriately. Please fix
-
-
-> - cdns,phy-type required property
->   inherited from k3-am64-main.dtsi
->   there is a PHY_NONE value in dt-bindings/phy/phy.h,
->   but not allowed in phy-cadence-torrent.yaml
->
-
-Sorry, I didnt get what's the issue wrt cdns,phy-type ?
-
-
-Note, I really don't want to accept patches that add new dtbs_check
-issues especially for nodes that already have YAML bindings. Please
-update the .yaml files as necessary.
-
-[0]
-https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/commit/?id=a49568115143435390f20965902809471b6f830c
-
-
--- 
-Regards
-Vignesh
+Thanks,
+Drew
 
