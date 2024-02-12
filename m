@@ -1,107 +1,99 @@
-Return-Path: <devicetree+bounces-41040-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-41041-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id B02FF852246
-	for <lists+devicetree@lfdr.de>; Tue, 13 Feb 2024 00:06:31 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5EB7A852251
+	for <lists+devicetree@lfdr.de>; Tue, 13 Feb 2024 00:11:06 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 6BEBD28529F
-	for <lists+devicetree@lfdr.de>; Mon, 12 Feb 2024 23:06:30 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 1177A1F22BC7
+	for <lists+devicetree@lfdr.de>; Mon, 12 Feb 2024 23:11:06 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B3D1D4EB3D;
-	Mon, 12 Feb 2024 23:06:26 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7F79D4EB5C;
+	Mon, 12 Feb 2024 23:11:00 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=google.com header.i=@google.com header.b="L2YqIc6C"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="K82rgZj6"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-qt1-f171.google.com (mail-qt1-f171.google.com [209.85.160.171])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 24F484D5A2
-	for <devicetree@vger.kernel.org>; Mon, 12 Feb 2024 23:06:23 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.160.171
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 56B804EB49;
+	Mon, 12 Feb 2024 23:11:00 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1707779186; cv=none; b=OE6dgQMtdsjtKYLTwgg2NV14V0BrYSZwid6tmW1VQ5greS0rhRhhWEfe9gKJxoVWadHvQ7XoTfadEyx14PhP7wth2JPaWYvj39dgLitPVoP4ynMlw508mKCnGGjEW4oQ73cMw1K86GGj40Cla8r7QdQ8YQgPoSnwGe++Z+bIpqI=
+	t=1707779460; cv=none; b=lOFUwCQ2nnxBjnnHazKSUdYh6AbST4/aQtZ0kQ8XrkR4YsH351lEsi8zrv6Sp6XvVeyBWT+l4xn1ops0Lg0qEm32g96N0+G9GTdJa2x0SHTe55OVfnZNotYtu+KszTrgwV8nMnmEFIUulhEdVG82FK/ZcJYsGjVvkxYFnlbJhCc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1707779186; c=relaxed/simple;
-	bh=xyJS4yDPKZrA2HdoXcsXz6GNBDwVIVv4GWpRJK3vmJ8=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=k6g3+1z7gZlajbFsUliHIu0bIuEPJFo1hFJIuyOvHmy4yOmOUaM1bL8xjwG/9O8zb63U21bSkKpQNA18lgsnRlqOjDNwYnFVAmXR5up5YEB+1TdE1+C1Hf0p7a996Syu/xXu+XfnFXW2vUrUNl9cvjRKED+xuKR0PkOAO5FFFik=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=google.com; spf=pass smtp.mailfrom=google.com; dkim=pass (2048-bit key) header.d=google.com header.i=@google.com header.b=L2YqIc6C; arc=none smtp.client-ip=209.85.160.171
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=google.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=google.com
-Received: by mail-qt1-f171.google.com with SMTP id d75a77b69052e-42a99dc9085so27181cf.0
-        for <devicetree@vger.kernel.org>; Mon, 12 Feb 2024 15:06:23 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=google.com; s=20230601; t=1707779183; x=1708383983; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=X8bSh9OQLoWAq/ajMiSXj5T+yruvi0AGogBnnOcqqrA=;
-        b=L2YqIc6C/WIr3CLYw6RHdVTKxFWpAdgxNyvGqylmjugvhGeqv+z7T9HvcBNa7g+SMu
-         2UQK4w7WDejjXhNYihqC4sX0RPCYPihkGS9NWTB2xomwZUYZkM5K04TOU9tKn0EofKcv
-         qYo/hU9U6hZlElgiowc6hJTfajvWfQ0bVRR8FEN907frjuaL+b95mOg1KOy2Cz/Q/5ft
-         f1CMKJ59Vf/MDOjypsUu4m9L7wO0+XopbAgTptKeS5S+2pTnOdnNqZggFIOJdyB+JUve
-         PiLNzSR4CCYDT6lFJ67X9jZKbqFkx7CnX2vgeuLdBvbHqAUCguvyHTg04bLl26nj2PRU
-         RaLQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1707779183; x=1708383983;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=X8bSh9OQLoWAq/ajMiSXj5T+yruvi0AGogBnnOcqqrA=;
-        b=H8+bDt8VwyEQPOAZKIC6hBBBMG8uE/elPlmQwaAwAK5JmTN8xkkWjXstKkVUgszvWe
-         O+7xouaBMmUVQEySc92qQTiaqDeScLK6P9IL0OE6toB9XIOAyXVFbhs141OmSULRSFUT
-         FrjRC7GKaUGW+NhZUrPySr4jCnsmvAfTtWbBy4/NMxctjcos+7hmXNqLv3y0VH7kBOtk
-         LVJ52gt9TgBGQzbr0sIxRF0nvoXCWDb55OiIV6faMPDOhgWml5Jgl1bo+Tdip3MplPfC
-         ppZT29w7O4FPk5k4byF4wn+jF3w/qZn9BdXnUaWXuJEYYHWvt8cfb1uIYVp/Dg+QQlJo
-         Hq+g==
-X-Gm-Message-State: AOJu0Yxke8eyiwNlKOWFFt14x2T9GLMw3+g8LOXog0tzlTnq9mRqy1Wr
-	sC+ZAPTajJuuC40zlSuulyxaZVurgS04D5kCRuICCVKKpBMuLFJIEF8Pz8rID3YpGbmHd+M0HKi
-	84860IzqqiLOEbnGzTHycERNfiDxe0sJ3skzc
-X-Google-Smtp-Source: AGHT+IGLwPGjPlcidiwBmZE3kuLoR8uVLPyIRXUTeScX5Zmv0+siKRJVA8fBuiJgIKgOYS2Z5jzRoW/X6p9fOVKX7Zo=
-X-Received: by 2002:ac8:1386:0:b0:42c:7de1:c96b with SMTP id
- h6-20020ac81386000000b0042c7de1c96bmr46715qtj.24.1707779182851; Mon, 12 Feb
- 2024 15:06:22 -0800 (PST)
+	s=arc-20240116; t=1707779460; c=relaxed/simple;
+	bh=pDDsqmdQFRiFzmJFubeCQnwDZA8NVX7LbcVD1ftUghQ=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=B+cmhUieUDZHX0r9EB/kTj74qZ701BgFKOWU6a5VjED6aytEvQzGTtp0lfAgMQjUdCjjphwa8IIFh7l12hcoatnaOvRbuTGKXsAVA+H5PWNJaBBopCLlmCK5OSUiW0WqvmR/RMOcEDxPXxA9RpDJUyGLSP3rCbpnPgP2rv7qXyA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=K82rgZj6; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 983BBC433F1;
+	Mon, 12 Feb 2024 23:10:58 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1707779459;
+	bh=pDDsqmdQFRiFzmJFubeCQnwDZA8NVX7LbcVD1ftUghQ=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=K82rgZj6YmUtE3BC0zZBZsiXjcvfUmjeXkHAFvDN/Q/JiCsKfWtg8qB0BfnU2Q4bx
+	 fc7yCTPogLXyoaGtDmcF/9YzaqxCj4sef6pp4ZoqOUyrtA/dTX1mig5amErUARtvoV
+	 757gsAoi0pOGnj9jdutfM6goglMeJjXA2c7SxqrP9WlhOo3STLuYzpU6s1Ob6rn/Yv
+	 PfrTPTzZaM2qw5+nR+W9cRu1gHLTjmNTYudaHD9xiPmMm92kFsy8gw1EDk+ghzrbVX
+	 x3zuUlG8+uPQ3rudmLzS9242cDEBmapXI8uO8pCNauQv1RUb2jbVquj4sCEdT0oojA
+	 l10H6TFt8YzrA==
+Received: by mercury (Postfix, from userid 1000)
+	id ECE1F106A041; Tue, 13 Feb 2024 00:10:55 +0100 (CET)
+Date: Tue, 13 Feb 2024 00:10:55 +0100
+From: Sebastian Reichel <sre@kernel.org>
+To: Stefan Wahren <wahrenst@gmx.net>
+Cc: Rob Herring <robh+dt@kernel.org>, 
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Shawn Guo <shawnguo@kernel.org>, Sascha Hauer <s.hauer@pengutronix.de>, 
+	Fabio Estevam <festevam@gmail.com>, Pengutronix Kernel Team <kernel@pengutronix.de>, 
+	NXP Linux Team <linux-imx@nxp.com>, Dong Aisheng <aisheng.dong@nxp.com>, 
+	Linus Walleij <linus.walleij@linaro.org>, Dmitry Torokhov <dmitry.torokhov@gmail.com>, 
+	Mark Brown <broonie@kernel.org>, linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v1 07/14] dt-bindings: lcdif: Do not require
+ power-domains for i.MX6ULL
+Message-ID: <khwsxrpj5fgxl7ukiur2tdyy7a6d6h6zryc5z2h7o6f7k3b32p@cjqsmdbocfpe>
+References: <20240210012114.489102-1-sre@kernel.org>
+ <20240210012114.489102-8-sre@kernel.org>
+ <a8b55331-a8c3-457e-83e0-2aa361ed23c6@gmx.net>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20240210231513.111117-1-saravanak@google.com> <170777778090.2688977.14804637560473102697.robh@kernel.org>
-In-Reply-To: <170777778090.2688977.14804637560473102697.robh@kernel.org>
-From: Saravana Kannan <saravanak@google.com>
-Date: Mon, 12 Feb 2024 15:05:45 -0800
-Message-ID: <CAGETcx9Aw8-Phc0MpNkRz6rGmvCzwBSxJgBahNQCUg-BBdNHzQ@mail.gmail.com>
-Subject: Re: [PATCH] MAINTAINERS: of: Add Saravana Kannan
-To: Rob Herring <robh@kernel.org>
-Cc: linux-kernel@vger.kernel.org, devicetree@vger.kernel.org, 
-	kernel-team@android.com
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <a8b55331-a8c3-457e-83e0-2aa361ed23c6@gmx.net>
 
-On Mon, Feb 12, 2024 at 2:43=E2=80=AFPM Rob Herring <robh@kernel.org> wrote=
-:
->
->
-> On Sat, 10 Feb 2024 15:15:12 -0800, Saravana Kannan wrote:
-> > Adding myself as a second maintainer for Open Firmware and Device Tree
-> > to help Rob out with reviews and other maintainer work.
-> >
-> > Cc: devicetree@vger.kernel.org
-> > Signed-off-by: Saravana Kannan <saravanak@google.com>
-> > ---
-> > Discussed this with Rob.
-> >
-> >  MAINTAINERS | 1 +
-> >  1 file changed, 1 insertion(+)
-> >
->
-> Applied, thanks!
+Hi Stefan,
 
-Thanks!
+On Mon, Feb 12, 2024 at 08:20:35PM +0100, Stefan Wahren wrote:
+> Am 10.02.24 um 02:18 schrieb Sebastian Reichel:
+> > i.MX6UL(L) uses "fsl,imx6sx-lcdif" as fallback compatible string,
+> > but has only very lightweight DISPLAY power domain. Its DISPLAY
+> > power domain is not supported by the binding / Linux kernel at
+> > the moment. Since the current setup is working, let's remove the
+> > power-domain from being required for that platform to fix the warning
+> > printed by CHECK_DTBS=y.
+> i'm not sure this is a good idea. In case i.MX6UL(L) is different from
+> i.MX6SX here, then it should have a different compatible.
 
--Saravana
+It already has. The i.MX6UL(L) compatible looks like this:
+
+compatible = "fsl,imx6ul-lcdif", "fsl,imx6sx-lcdif"
+
+So the i.MX6SX one is just a fallback compatible. But the current
+requirement for power-domains affects i.MX6UL(L), since it says
+the compatible only needs to contain "fsl,imx6sx-lcdif" somewhere
+to make power-domains mandatory.
+
+Note, that the kernel driver does not use "fsl,imx6ul-lcdif", so
+the hardware itself is indeed compatible.
+
+-- Sebastian
 
