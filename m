@@ -1,76 +1,75 @@
-Return-Path: <devicetree+bounces-40729-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-40730-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4F36F85153A
-	for <lists+devicetree@lfdr.de>; Mon, 12 Feb 2024 14:33:09 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id C34E5851540
+	for <lists+devicetree@lfdr.de>; Mon, 12 Feb 2024 14:33:57 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 74A1A1C21336
-	for <lists+devicetree@lfdr.de>; Mon, 12 Feb 2024 13:33:08 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 7920F28184F
+	for <lists+devicetree@lfdr.de>; Mon, 12 Feb 2024 13:33:56 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 548863B1B7;
-	Mon, 12 Feb 2024 13:20:57 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9605F3F8D0;
+	Mon, 12 Feb 2024 13:22:49 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="eBdcQKlp"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="QsYVeZpo"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f45.google.com (mail-wm1-f45.google.com [209.85.128.45])
+Received: from mail-wr1-f43.google.com (mail-wr1-f43.google.com [209.85.221.43])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7AA383B287
-	for <devicetree@vger.kernel.org>; Mon, 12 Feb 2024 13:20:55 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.45
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C68ED3EA9D
+	for <devicetree@vger.kernel.org>; Mon, 12 Feb 2024 13:22:47 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.43
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1707744057; cv=none; b=iWcTrRMf2kM+zjZL/6AGvyP5WOplBxv5Z/1WmhymHJu9Z25wAZZyAbSI13/KvGm/RuwrEbvukoMk0Bz8ALvHWhOai6xWZ+s448X0buTNNPBDdxYJYDbs0F3BbKw0hJ985V5E8ceBNLd0+jFccjpUfCU/486px/CdHE/3JU41Bic=
+	t=1707744169; cv=none; b=lM3r389nRd5yLGD3kXNx3WIrBq4CJhFs+a1IHJQKY2dvVHFFX50K/WLuxDoZpXgkESIuOu5q76aOFp865t8RFDP6EKBAzt5I76Jva49IJS29iGHix+Vf7r11KmcKiYTE+ajvis2sdnLaq967e1A5lNcu6RVzmYCOQSqdJ7Qs6t4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1707744057; c=relaxed/simple;
-	bh=CwagiQX0vtF/brg2LBqoHB97ypDZZDbujXgTqE/0KB0=;
+	s=arc-20240116; t=1707744169; c=relaxed/simple;
+	bh=X9Q5+2TlUzUnmsFKMEoSk6Tsa61ElxRh2JwsL+jRt5M=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=APdikmUaDdMXINf7cHOD/ZokaesyJFV7kq86T5M1Aq+d77oxXLaRUdfVxZE7EZD2klN8i8Mw+1YLVl0z0U643pwjkt9bue/JP0HF+ih5SzzdtUtC+bZ9n6AukSd/uqQ72br/SgLN0nHGb2vkIkw40Ojhrh6yq3HPa+TjS7W0Xyg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=eBdcQKlp; arc=none smtp.client-ip=209.85.128.45
+	 In-Reply-To:Content-Type; b=fqA322so7wmd2ua9IzhVwJ8ruJ5HhRR+FICwaALM1GAH3WGfZybs3Wp5Trxe7S9KGpUo4AUMgZ1IqUzyWYHMztwpXnu9CbDghQg6T/UfSlqGOF2cPYIYFumQ/chtHj+LXR8ASHqjV106fbFJEbRnhMZwHaaZ5HEn4adrA2obdXM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=QsYVeZpo; arc=none smtp.client-ip=209.85.221.43
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-wm1-f45.google.com with SMTP id 5b1f17b1804b1-410c804e933so7926125e9.0
-        for <devicetree@vger.kernel.org>; Mon, 12 Feb 2024 05:20:55 -0800 (PST)
+Received: by mail-wr1-f43.google.com with SMTP id ffacd0b85a97d-33b66a7f859so1097075f8f.3
+        for <devicetree@vger.kernel.org>; Mon, 12 Feb 2024 05:22:47 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1707744054; x=1708348854; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from
-         :content-language:references:cc:to:subject:user-agent:mime-version
-         :date:message-id:from:to:cc:subject:date:message-id:reply-to;
-        bh=GmLkYyLFTr5bJLK1oFTdEIMZTQyk1WHw7r7dqKQBBNk=;
-        b=eBdcQKlpDXD0JyFZo1ECnAkV8iw8ftPdvuFMwBM+jOe/3HZnhLf7KCyhLs9yr1F0jI
-         Cx+WeAYyujENRD4vkwn8pRvQYlSir9cb3t6XkWVrFI/pKC4ZHa8Z+M5G9hnqDR6JSPHI
-         yIMcD/cg0S+2DSMpx17XIkrkl8DU+GuV1TRqK3M24cBTlPhWeOP7VbtVmO3P0fweLfnV
-         5Upz25QcRpyn8VCjNORnGidfKbCxlczfc585QDoxk+/ySirYu7/Kc9TSSQAArDfGYV+v
-         vzi+63lQ5CYR+mtZetDbDtnobH03SnZdcinR1geeH5adWWCPGfYXsqJYuyAjIkN6Fv+j
-         ZHTQ==
+        d=linaro.org; s=google; t=1707744166; x=1708348966; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
+         :to:content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=cI2jKSsRdCkdhU88BMA0Y+iUU2U1B5Jm4ieaR+xGaAU=;
+        b=QsYVeZpoTuFwjkMDnjY9sslchhUvsh+mywryk7DIHCVsqFnW7Frb7kaPJ9ZNImeM2M
+         rhp1JOW0ENZa7Z68O/jFVX2DNP0ppsD49KhjHjF0iwlEWOcYr79UzQzZunm6akzZVhH+
+         EaB83c9yY3or0c2GzLwN/s5/5vjxARi60et4HDpJCLm91j1P9kthffaWYvJIRQntPkuC
+         u9plPvfUCQrcr2cqabpI8aex5MlniD2jq9LpQ2I8B+CQRCLHO/9wf48OadOaVuA6nrT7
+         tGSNWvzoNLtYC+PjUoaO+VUaqPnwnBU9bsG5UTX+17Dx1pyrHvKA0eCEG0tuzSq0lLJJ
+         N5+Q==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1707744054; x=1708348854;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from
-         :content-language:references:cc:to:subject:user-agent:mime-version
-         :date:message-id:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=GmLkYyLFTr5bJLK1oFTdEIMZTQyk1WHw7r7dqKQBBNk=;
-        b=W3Zajjr6mpMHhApnmW5I1P+JqtMzl5fY2rhCNtzYNyk/yNQNCeFC8hbHCSLKI1tlgx
-         fVdbHgAiyTPxiNeGw+a5fJnl3OMX0f4s7BpXaM7/vMNrC8LvdVIc5y54Is2TQBy+TXqT
-         hspvnV0VYK+9PqQppXjoHTpOfd6xSelOGWDlEmhN76p2qWIiQuTHfFy9Bu5iYnEjCDYF
-         TbxERbjLmCGBL68nHqwHCIPukSlOc5hGoMiz++alteo4bmb1D/ojw3W40JBTtxPc3dVL
-         aTp5OqsucfVK+MWuY26eup4PSZ2Kgdy62G5He3wBFpBrXFOUjRtSadj7gKfMQZUSOiUU
-         E+vA==
-X-Forwarded-Encrypted: i=1; AJvYcCULewI3nYVdjc6VcyYrO2Mo0LigWvNhZFl0I+URowQIgEI1NCFgYZolxiaE5awnlfb5eEr6+3Te92quSGXFxoBKbAn6eHe7MOsXUA==
-X-Gm-Message-State: AOJu0YyqQDFe8xKaB7f7EXa3VYJ1y74bbSg898jB936tgqBoU4oW7dQa
-	XfPwYd+4S7aPQ6ZSAJPAoK1cwLy1H8XRuP39V68rbkMqiMw4WNAPYkLuBbvpFEQ=
-X-Google-Smtp-Source: AGHT+IGdom73dgZKyuLHj5qBrrPW3Oe8BkHCzT1iWTTKS1oQ9EW3kK1UgkzHWSVS3zzPwZzLSKPnjg==
-X-Received: by 2002:a7b:c445:0:b0:410:5876:63bf with SMTP id l5-20020a7bc445000000b00410587663bfmr6016802wmi.17.1707744053788;
-        Mon, 12 Feb 2024 05:20:53 -0800 (PST)
-X-Forwarded-Encrypted: i=1; AJvYcCWs6X67cnMZgF64ETjIRxhpDYnqCYpBRwI9MX56adWYMRsiuZl4k8AJ7MFVbkX2WMJQV1Hhm6DaY+Ei/iOGg7WSq5Xyz38miafs2/bBuds3Z3HntGUiS79QG7iMOMNeohEpBymEi0LHo+hgz9kr2/C/OXLueQS6Ge/dXxZYi+nQG+4l+kSH1mBpBgqUvz7rBOZGS26tRY1Lzl/LP5rRElvi657wK3lW8nDQaJwnGDdSg3C9ZG9MvIKt7chEiZtNK8Kk1AQjNWuHvYNzxuzQTWm1oLGaeUF7pYq6eKqZq4vW0tQ0LrLm5BX9JST1zgLzqItY0boQyf8xnuOJf0ii3tkalFJgooeoTpWcK2XASsKtneYQXT5nRs0OFOgJRaAiSeTwIo4Bl7PrlqFja6wN/R4Fa47WbgIyh/Swr2gi9IEUv8fVQ4JnA3fIaGX1UvXdyyhWTaZphG3c74Ua7kCRZ6qAiREcePi6Y5xoVMVNY5vGLxaGw6dN/VVY/A4=
+        d=1e100.net; s=20230601; t=1707744166; x=1708348966;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
+         :to:content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=cI2jKSsRdCkdhU88BMA0Y+iUU2U1B5Jm4ieaR+xGaAU=;
+        b=pjKIoyQFiZYJz7eOiSrxVtlp41mcyUH8AW6m50aSv+BWVVytvR2dgJFgxg7cBX9Zj4
+         FlSSj6qYwHzAqK0NdboboavZnqfIMcSTuKx6Z9gnrc92fzqMB+pfAyJNOVI4BuzJtTs+
+         mLsQ8Pw/ykHh90XRQS2ci6N37RXeACssr9t4nW2TWrWGTLu1LwcjpUZmBWZwY+JtZEXe
+         ElJ5YvbNJrkIbfbCIjJeD0lwEG+JJhEJ9h8GSg3RDmBrV0kLXU8Lgk7TzxZbDYep+j1D
+         gAXs5CIkEewG6FGiqo58xxjo239pTNLXqVWmGjp7fv19eBaAGKK6jQ6c5d3PwBqRfWON
+         YApQ==
+X-Forwarded-Encrypted: i=1; AJvYcCXb6BegYHn2B7da2AcJuz9N7iiqu20bXORpl7limuN2xYDUR6xwXk5qVejQqB7Yeg4Lh4joJoETRqDcbVAK31wCwBxXoX1RQsj/vg==
+X-Gm-Message-State: AOJu0YwQ1p5AnXAKK0ioRPbHKN6b+TrZBfPA/cSpfjdk27g0Bpqyl6nV
+	WPHQsE8Fjd3T7PwOJyqkba8yKto67wGAGGZcFrd5JENJsrz9s4lktK6D7Z7rBoU=
+X-Google-Smtp-Source: AGHT+IHjzVxIEnUb+cBW32ajbIGNxI5A8aoxXlNUxHOs8ptUq/b4r7ASxA20+XMgTxztsGeFfh3EuA==
+X-Received: by 2002:adf:ed4f:0:b0:33b:daa:3b5a with SMTP id u15-20020adfed4f000000b0033b0daa3b5amr4033482wro.71.1707744165970;
+        Mon, 12 Feb 2024 05:22:45 -0800 (PST)
+X-Forwarded-Encrypted: i=1; AJvYcCVgLoob+TZePyqqUvDKFxm6gqdEgMME4xS7Rk4XqVRltLJluK+d3OkHlUkh/b7Zw3WP3OMHJR2JFDMIQCCel8mb+mS7qY0xB7Yx77zYs1WkTMUbmcoP7PPyKkJweoh02jANYii9woLIdupy/oKGgsRXMaAwsoveS36BMjIuE0iWGbMu/PY2Oo53++aYXobFOX+a/aU7jdpibEP8GU+LwSY5mPO/uX+J+R5EYCrDDW2M4WivvEwZEiS4Kn8hoHAtLRhcddmqg99p8mINV4b8o0QoSb8dU2zWl/SQ0sbl4o3INYF491vuLc+MqsYzr0KYhwx4m5d6yROCkyofg4JvmIHvcnvAyUuvlo4+KipvQgTebWuk/H7Kb4lziUvf9f8xbGY5bieYtroRCRceQnAeUDlxI5sv0+ks1ZSFruJLSbPqZiqkhv2p3yEHRWIV5AdKFlmdF9eNLriQ+jbfQplhin4P0T0NjlU87jAReMprvNsUDFSWvce3pMsTSgU=
 Received: from [192.168.1.20] ([178.197.223.6])
-        by smtp.gmail.com with ESMTPSA id z19-20020a1c4c13000000b00410bc0cbdfasm4227505wmf.18.2024.02.12.05.20.51
+        by smtp.gmail.com with ESMTPSA id bn8-20020a056000060800b0033b198efbedsm6938782wrb.15.2024.02.12.05.22.43
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 12 Feb 2024 05:20:52 -0800 (PST)
-Message-ID: <38ba0c8c-8d82-4bff-bf80-ce30ba04c5ef@linaro.org>
-Date: Mon, 12 Feb 2024 14:20:50 +0100
+        Mon, 12 Feb 2024 05:22:44 -0800 (PST)
+Message-ID: <27b85493-62d6-49b2-a6a8-c656c534d697@linaro.org>
+Date: Mon, 12 Feb 2024 14:22:43 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -80,6 +79,7 @@ MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
 Subject: Re: [PATCH] arm64: dts: exynos: gs101: add stable i2c aliases for
  gs101-oriole
+Content-Language: en-US
 To: =?UTF-8?Q?Andr=C3=A9_Draszik?= <andre.draszik@linaro.org>,
  peter.griffin@linaro.org, robh+dt@kernel.org,
  krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org
@@ -89,15 +89,6 @@ Cc: linux-kernel@vger.kernel.org, kernel-team@android.com,
  linux-arm-kernel@lists.infradead.org, linux-samsung-soc@vger.kernel.org,
  devicetree@vger.kernel.org
 References: <20240130233700.2287442-1-andre.draszik@linaro.org>
- <170737972037.52344.9107022607101399076.b4-ty@linaro.org>
- <5972b6a4ae8669e2a9e872278b740b182217906b.camel@linaro.org>
- <dce39e15-32a8-482c-8751-af4a133f82d2@linaro.org>
- <c16c1f18a8c6f33a608618d4ccf7d8c8dbb6f88b.camel@linaro.org>
- <67a6564a-00bb-461d-b7eb-ca169df6d251@linaro.org>
- <0ad3082c50e21a74de41ca9908bd53b72e1f1a9c.camel@linaro.org>
- <b6ec1d0e-e35c-4917-871b-049efcb2ea22@linaro.org>
- <fbd335e81928c1c3cd63ee44514cf95a23dafb6f.camel@linaro.org>
-Content-Language: en-US
 From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  xsFNBFVDQq4BEAC6KeLOfFsAvFMBsrCrJ2bCalhPv5+KQF2PS2+iwZI8BpRZoV+Bd5kWvN79
@@ -143,57 +134,28 @@ Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  KQ06ztUMRrj8eVtpImjsWCd0bDWRaaR4vqhCHvAG9iWXZu4qh3ipie2Y0oSJygcZT7H3UZxq
  fyYKiqEmRuqsvv6dcbblD8ZLkz1EVZL6djImH5zc5x8qpVxlA0A0i23v5QvN00m6G9NFF0Le
  D2GYIS41Kv4Isx2dEFh+/Q==
-In-Reply-To: <fbd335e81928c1c3cd63ee44514cf95a23dafb6f.camel@linaro.org>
+In-Reply-To: <20240130233700.2287442-1-andre.draszik@linaro.org>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
 
-On 12/02/2024 13:38, André Draszik wrote:
-> On Mon, 2024-02-12 at 13:07 +0100, Krzysztof Kozlowski wrote:
->> On 12/02/2024 12:52, André Draszik wrote:
->>> As I said above, we won't care if downstream changes again at that stage, so
->>> no, I wouldn't plan on changing again.
->>
->> Then I am lost. What stage are you thinking? What differs between now
->> and let's say 1 month for the GS101 which was released more than three
->> years ago?
+On 31/01/2024 00:37, André Draszik wrote:
+> Now that we have more than i2c interface, add aliases to ensure
+> deterministic bus number assignment.
 > 
-> The idea was to make the initial transition to using upstream easier,
-> hence we added the same aliases as downstream (at the time).
-> Given the transition is not happening right now, we might as well hold
-> off with the aliases and add them later, with whatever downstream will
-> be using at that time.
+> So as to keep compatibility with existing Pixel userspace builds, use
+> the same bus numbers for hsi2c_8 and hsi2c_12 as the downstream
+> drivers with the intention to eventually add all the earlier busses as
+> well.
+> 
+> Suggested-by: Will McVicker <willmcvicker@google.com>
+> Signed-off-by: André Draszik <andre.draszik@linaro.org>
+> 
+> ---
+> Note, this patch should only be applied after series
+> "[PATCH v3 0/7] gs101 oriole: peripheral block 1 (peric1) and i2c12 support"
+> https://lore.kernel.org/all/20240129174703.1175426-1-andre.draszik@linaro.org/
 
-Hm ok, I just did not understand what are the criteria of choosing point
-in time when you take the aliases from dowstream.
-
-> 
-> If in the future somebody downstream decides 'I want this' (changed again),
-> why should upstream care at that stage?
-> 
-> Again, this patch was just trying to make initial transition easier, do you
-> have a better recommendation?
-> 
->> BTW, the aliases I see in downstream DTS (gs101-usi.dtsi) - since
->> beginning up to Android 14 are:
->>
->>                 hsi2c8 = &hsi2c_8;
->>                 hsi2c9 = &hsi2c_9;
->>                 hsi2c10 = &hsi2c_10;
->>                 hsi2c11 = &hsi2c_11;
->>                 hsi2c12 = &hsi2c_12;
->>
->> They were set like this in 2020 and never changed afterwards.
-> 
-> Those were incorrect and didn't actually work as intended, here's a
-> better place to look:
-> 
-> https://android.googlesource.com/kernel/google-modules/raviole-device/+log/refs/heads/android-gs-raviole-mainline
-> and
-> https://android.googlesource.com/kernel/google-modules/raviole-device/+/9864593c894da90cd8b631ab57f15c25f4e11465%5E%21/
-
-Thanks, so it's like Qualcomm - DTS separate from the kernel, although
-here a bit confusing because partially overlapping.
-
+Dropped on request.
 
 Best regards,
 Krzysztof
