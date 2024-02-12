@@ -1,226 +1,106 @@
-Return-Path: <devicetree+bounces-40626-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-40642-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 708DF8510F9
-	for <lists+devicetree@lfdr.de>; Mon, 12 Feb 2024 11:33:50 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0CB9085117D
+	for <lists+devicetree@lfdr.de>; Mon, 12 Feb 2024 11:52:18 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id DA9351F22226
-	for <lists+devicetree@lfdr.de>; Mon, 12 Feb 2024 10:33:49 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id B79DE2870E1
+	for <lists+devicetree@lfdr.de>; Mon, 12 Feb 2024 10:52:16 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id CD2061BC47;
-	Mon, 12 Feb 2024 10:33:26 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B3B4C22067;
+	Mon, 12 Feb 2024 10:47:38 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="GdsGQ2eH"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="IrMEgCCr"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EABD9179B7;
-	Mon, 12 Feb 2024 10:33:24 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 873FF2555B;
+	Mon, 12 Feb 2024 10:47:38 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1707734006; cv=none; b=gb3Y+Qg5OWB7MRWP/RUSx7fKtl3uFtBLBEuygFv9zdWhCaM8fbRi8Op3OQ08Jes7gA8WLEsKtQCYSf1D1sJ1fljxm1+fszygetKzX5OhKBrM/txREndhtHLPXxugpaiCECwttBgNHhli577LNrXKZ5QHXwXMglcbs7bFfzVUP3w=
+	t=1707734858; cv=none; b=p2vH39TrhMkD3E1Qb89z8QJcDJR3h0cGZivzk7erjBIMsbqYUgzgtu1H1s87p78nmUvTTDQfJ0VvBnOaw2nBHDBvBs9hnUiyBOmYq7vN7RVGseNb0Nm4RTAkjnIfRODXzQW9TkEJI0OdQ2fDJ97W1QLEIsrVTMpkOR2Fz47asgk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1707734006; c=relaxed/simple;
-	bh=P/y0up7SGLgK5F7RzQvdVZehJ1i9DsWj//tCjIRH2Cg=;
-	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
-	 In-Reply-To:Content-Type; b=pzplozczv+YUM0WwKtfJ/8p8DybIO5pO3VqH1iKrRQ38A9660zL07dXtLjxeP1d21petuW3Uq4IF5s3Ufmsh6jlDKGvoPX41UATLvTmjJ20t/bwqrMSvIWFr5Ua28W0PDbcb76/13QLIaU8JxCnGzP0xregNGtpSK53lRAO0XM4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=GdsGQ2eH; arc=none smtp.client-ip=205.220.180.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
-Received: from pps.filterd (m0279869.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.17.1.24/8.17.1.24) with ESMTP id 41C9gItH019557;
-	Mon, 12 Feb 2024 10:33:18 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
-	message-id:date:mime-version:subject:to:cc:references:from
-	:in-reply-to:content-type:content-transfer-encoding; s=
-	qcppdkim1; bh=+16d7oYWLNV2SUg7+HumgOXtzadS2OTfaBlJ0iT53ZE=; b=Gd
-	sGQ2eH0vxnPpsaLDY3nLToAiqxvFUXa8o/xfyjFC6bkLNF0t/AA82Ef2e9sKlhgq
-	l+bxErY74e/aYrw6Y6uzDBaHP029Jo5W4utUHPt8qjD4JoKOiFsvG2nNU1rqULDp
-	hFHgEbJPlpKLcg/LMdlxarNGZC7899ArvVnjmMyoPfW6RH4ZthqhWUsBbrzBXqi+
-	GmMeeFq8W9fv3MiReSA3aBhk3laQoDGhm+Ymran09mVkjuboc9/2YXbog5WHsMFm
-	whaRJfwN8X/N5KrqNKRq4Gu+tsEfpCwlLCQRKrp6qfUqdCPsXk1I/x9opwsZQqch
-	6CBbHbJDhy8NdrOeQE+g==
-Received: from nalasppmta02.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3w62q2u0qn-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Mon, 12 Feb 2024 10:33:17 +0000 (GMT)
-Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
-	by NALASPPMTA02.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 41CAXGpf013422
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Mon, 12 Feb 2024 10:33:16 GMT
-Received: from [10.131.33.37] (10.80.80.8) by nalasex01a.na.qualcomm.com
- (10.47.209.196) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1118.40; Mon, 12 Feb
- 2024 02:33:11 -0800
-Message-ID: <d24a3372-8ee5-528d-09ac-86c64f0896e5@quicinc.com>
-Date: Mon, 12 Feb 2024 16:03:08 +0530
+	s=arc-20240116; t=1707734858; c=relaxed/simple;
+	bh=t/ZTePsKdIVKC4gWLazaU/Eiquk8TE+7jyT9VDJ6mgI=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=QL1bxiJiOlvQ6Px/a4HNS9w9HAkebL4VdRyZIcZ23pqcI/THHlj2JfVxyL7gVU+9hSnmFMCLULxFBltteJXn06q3WE21ybWKz8G4l5WkSmp8WaMcGj8Ucl+UTia0UjSXjUFNk8z9xcPMx+uKw4mWs61IHSl38pHi/CRERkgX800=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=IrMEgCCr; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id EC055C433C7;
+	Mon, 12 Feb 2024 10:47:35 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1707734858;
+	bh=t/ZTePsKdIVKC4gWLazaU/Eiquk8TE+7jyT9VDJ6mgI=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=IrMEgCCrpHvdMCfGdToN4BxinirdDqARNMPWtQr6H0NW0Ziy4uCKXTzVJNZzRMj58
+	 8i3nL8Wt1M8k7yHb5AwI1vfq5kMm4QUDOe/nCQYd/0eR4+tz/6YJUJ2z1i4TK6c3xS
+	 9KBE4sTFK1ZsfJ10qNJPzY/D3qLP7PxFqZYSUvRrEfYa+aTx50rO/VNZxKAe4z8Kkl
+	 mfdASZ/EL62Ke6TFpTVpNJkv+8jpbDdpRusebAwh4RhibDdD9sGrprQi63knxoFMY1
+	 uGmrIQ7LhSV7aHwT8OOWme+PuuvJSJBdE7FeIwnrJrjcSTzsdfq232wBvqEBPVpTsb
+	 bqE9m+5ee5GAg==
+Date: Mon, 12 Feb 2024 18:34:36 +0800
+From: Jisheng Zhang <jszhang@kernel.org>
+To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Cc: Rob Herring <robh+dt@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>, Chen-Yu Tsai <wens@csie.org>,
+	Jernej Skrabec <jernej.skrabec@gmail.com>,
+	Samuel Holland <samuel@sholland.org>,
+	Andre Przywara <andre.przywara@arm.com>, devicetree@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org, linux-sunxi@lists.linux.dev,
+	linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v3 1/2] dt-bindings: arm: sunxi: Add Sipeed Longan Module
+ 3H and Longan Pi 3H
+Message-ID: <Zcn0POS-4BFGlRm9@xhacker>
+References: <20240211081739.395-1-jszhang@kernel.org>
+ <20240211081739.395-2-jszhang@kernel.org>
+ <7ee6df91-76fa-44e8-ab81-fd4b63b58ce9@linaro.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.11.0
-Subject: Re: [RFC 4/7] soc: qcom: Utilize qcom scmi vendor protocol for bus
- dvfs
-Content-Language: en-US
-To: Konrad Dybcio <konrad.dybcio@linaro.org>, <sudeep.holla@arm.com>,
-        <cristian.marussi@arm.com>, <andersson@kernel.org>,
-        <jassisinghbrar@gmail.com>, <robh+dt@kernel.org>,
-        <krzysztof.kozlowski+dt@linaro.org>
-CC: <linux-kernel@vger.kernel.org>, <linux-arm-msm@vger.kernel.org>,
-        <devicetree@vger.kernel.org>, <quic_rgottimu@quicinc.com>,
-        <quic_kshivnan@quicinc.com>, <conor+dt@kernel.org>,
-        Amir Vajid
-	<avajid@quicinc.com>
-References: <20240117173458.2312669-1-quic_sibis@quicinc.com>
- <20240117173458.2312669-5-quic_sibis@quicinc.com>
- <7e48e51e-e16a-41b9-800d-960c627b8da6@linaro.org>
-From: Sibi Sankar <quic_sibis@quicinc.com>
-In-Reply-To: <7e48e51e-e16a-41b9-800d-960c627b8da6@linaro.org>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 8bit
-X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
- nalasex01a.na.qualcomm.com (10.47.209.196)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-ORIG-GUID: qRpvPqz-8WjAJ1iFa5cV35SJEcOyjWGA
-X-Proofpoint-GUID: qRpvPqz-8WjAJ1iFa5cV35SJEcOyjWGA
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.272,Aquarius:18.0.1011,Hydra:6.0.619,FMLib:17.11.176.26
- definitions=2024-02-12_07,2024-02-12_01,2023-05-22_02
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 bulkscore=0
- priorityscore=1501 lowpriorityscore=0 adultscore=0 suspectscore=0
- impostorscore=0 phishscore=0 mlxscore=0 mlxlogscore=999 clxscore=1015
- malwarescore=0 spamscore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.19.0-2401310000 definitions=main-2402120079
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+In-Reply-To: <7ee6df91-76fa-44e8-ab81-fd4b63b58ce9@linaro.org>
 
+On Sun, Feb 11, 2024 at 05:29:32PM +0100, Krzysztof Kozlowski wrote:
+> On 11/02/2024 09:17, Jisheng Zhang wrote:
+> > Add name & compatible for the Sipeed Longan Module 3H and Longan PI 3H
+> > board.
+> > 
+> > Signed-off-by: Jisheng Zhang <jszhang@kernel.org>
+> > Reviewed-by: Andre Przywara <andre.przywara@arm.com>
+> > ---
+> 
+> This is a friendly reminder during the review process.
 
+Oops, I forgot to add Conor's ack...
+> 
+> It looks like you received a tag and forgot to add it.
+> 
+> If you do not know the process, here is a short explanation:
+> Please add Acked-by/Reviewed-by/Tested-by tags when posting new
+> versions, under or above your Signed-off-by tag. Tag is "received", when
+> provided in a message replied to you on the mailing list. Tools like b4
+> can help here. However, there's no need to repost patches *only* to add
+> the tags. The upstream maintainer will do that for tags received on the
+> version they apply.
 
-On 1/18/24 01:58, Konrad Dybcio wrote:
-> 
-> 
-> On 1/17/24 18:34, Sibi Sankar wrote:
->> From: Shivnandan Kumar <quic_kshivnan@quicinc.com>
->>
->> This patch introduces a client driver that interacts with the SCMI QCOM
->> vendor protocol and passes on the required tuneables to start various
->> features running on the SCMI controller.
->>
->> Signed-off-by: Shivnandan Kumar <quic_kshivnan@quicinc.com>
->> Co-developed-by: Ramakrishna Gottimukkula <quic_rgottimu@quicinc.com>
->> Signed-off-by: Ramakrishna Gottimukkula <quic_rgottimu@quicinc.com>
->> Co-developed-by: Amir Vajid <avajid@quicinc.com>
->> Signed-off-by: Amir Vajid <avajid@quicinc.com>
->> Co-developed-by: Sibi Sankar <quic_sibis@quicinc.com>
->> Signed-off-by: Sibi Sankar <quic_sibis@quicinc.com>
->> ---
-> 
-> [...]
-> 
-> 
->> +
->> +struct cpufreq_memfreq_map {
->> +    unsigned int            cpufreq_mhz;
->> +    unsigned int            memfreq_khz;
->> +};
-> 
-> Weird use of tabs
+IIRC, the b4 can only help on the latest version. If I missed the ack
+in v3, the ack tag will be lost. So how to handle this case? repost or
+Conor gave an ack to v3 again?
 
-will fix it in the next re-spin.
-
+Thanks for your information.
 > 
-> [...]
+> https://elixir.bootlin.com/linux/v6.5-rc3/source/Documentation/process/submitting-patches.rst#L577
 > 
->> +static int get_mask(struct device_node *np, u32 *mask)
->> +{
->> +    struct device_node *dev_phandle;
->> +    struct device *cpu_dev;
->> +    int cpu, i = 0;
->> +    int ret = -ENODEV;
+> If a tag was not added on purpose, please state why and what changed.
+> Best regards,
+> Krzysztof
 > 
-> Don't initialize ret here, return 0 instead of breaking and return
-> enodev otherwise.
-
-ack
-
-> 
->> +
->> +    dev_phandle = of_parse_phandle(np, "qcom,cpulist", i++);
->> +    while (dev_phandle) {
->> +        for_each_possible_cpu(cpu) {
->> +            cpu_dev = get_cpu_device(cpu);
->> +            if (cpu_dev && cpu_dev->of_node == dev_phandle) {
->> +                *mask |= BIT(cpu);
->> +                ret = 0;
->> +                break;
->> +            }
->> +        }
-> 
-> of_cpu_node_to_id()
-
-ack
-
-> 
->> +        dev_phandle = of_parse_phandle(np, "qcom,cpulist", i++);
->> +    }
->> +
->> +    return ret;
->> +}
-> 
-> 
->> +
->> +static struct cpufreq_memfreq_map *init_cpufreq_memfreq_map(struct 
->> device *dev,
->> +                                struct device_node *of_node,
->> +                                u32 *cnt)
-> 
-> I really feel like this is trying to reinvent OPP..
-> 
-> if you structure your entries like so:
-> 
-> opp-0 {
->      opp-hz = /bits/ 64 <12341234 43214321>;
-> };
-> 
-> you'll be able to use all the fantastic APIs that have been
-> created over the years!
-
-I didn't know listing multiple frequencies in a opp was allowed. We can
-probably get away with it here since we just parse the data here and not
-populate data in the opp core.
-
-> 
-> [...]
-> 
->> +            monitor->mon_type = (of_property_read_bool(monitor_np, 
->> "qcom,compute-mon")) ? 1 : 0;
->> +            monitor->ipm_ceil = (of_property_read_bool(monitor_np, 
->> "qcom,compute-mon")) ? 0 : 20000000;
-> 
-> What does it even mean for a monitor to be a compute mon?
-> 
-
-When a monitor is marked compute-mon it means that the table is
-followed religiously irrespective whether the instruction per miss
-count threshold (ipm) is exceeded or not. Equivalent to having
-a cpufreq map -> l3/DDR bw mapping upstream.
-
-> There seem to be no dt-bindings for properties referenced in this
-> driver, neither in the series nor in the dependencies. This is
-> strictly required.
-
-Ack
-
-Thanks again for reviewing the series. :)
-
--Sibi
-
-> 
-> Konrad
 
