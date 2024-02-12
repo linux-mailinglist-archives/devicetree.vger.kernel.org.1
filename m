@@ -1,148 +1,115 @@
-Return-Path: <devicetree+bounces-41038-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-41039-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 397E68521C4
-	for <lists+devicetree@lfdr.de>; Mon, 12 Feb 2024 23:51:20 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1CBA785222C
+	for <lists+devicetree@lfdr.de>; Tue, 13 Feb 2024 00:00:54 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 6B69D1C22DE7
-	for <lists+devicetree@lfdr.de>; Mon, 12 Feb 2024 22:51:19 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id AF5CD1F2370C
+	for <lists+devicetree@lfdr.de>; Mon, 12 Feb 2024 23:00:53 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 65B5D4E1B5;
-	Mon, 12 Feb 2024 22:51:16 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2A7E94EB32;
+	Mon, 12 Feb 2024 23:00:19 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=yandex.com header.i=@yandex.com header.b="ItaX6CF4"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="G4J0/cuQ"
 X-Original-To: devicetree@vger.kernel.org
-Received: from forward500c.mail.yandex.net (forward500c.mail.yandex.net [178.154.239.208])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 946A14F881;
-	Mon, 12 Feb 2024 22:51:12 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=178.154.239.208
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0198D51C21;
+	Mon, 12 Feb 2024 23:00:18 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1707778276; cv=none; b=R74oVdXlBKeQAvgQCMjIZ28jS+9h6LgjCdxMvjEc6HiB5Kdzotxc7f4tNkJF987oa0s4Lf7AG+yahuFB1N2D1kkQhkzymk0CdQOEv7VnylH0fT5JNVa9iOlHLUOMM/0E9mqxI8Ork2emWTCIwIlpnLLCUHQiG+wD/n/pxbYJ+NQ=
+	t=1707778819; cv=none; b=jiVMl+djj/hZ7FTS6koEcIQhnCeZ76X8QnXEaUC0Q7weS3UvB8igXUFJybRsHbmXtponDvHbblG12/i6X+2vRcsPtABuX1FP8m7/sWuDApeAOW5vbvOqrGBLr8xTvHIKZkpFXq1qQFguGf4/AqKEszZNgWaCp6cooQxpnLf693c=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1707778276; c=relaxed/simple;
-	bh=Rp0F2p2xa4tMIVuAskKB9+PZDyi3+DpKiaCAZIuQVJ0=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=I9lmn0U0Lc1hIC0FzymYPlsrwoPtzJveB3jVJSGuVVm+/ZgXiImwDJgXadMVSehDIWYsFM7YVqMH2fkzydqgUGtQFlEK/SdxXkwlrkaomsE0lDw2rDrhHNAYkfXd4Wf3FZWAZgnp18B2HVQ8SthzsZcocYCosjB3L4HCc3NVFrs=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=yandex.com; spf=pass smtp.mailfrom=yandex.com; dkim=pass (1024-bit key) header.d=yandex.com header.i=@yandex.com header.b=ItaX6CF4; arc=none smtp.client-ip=178.154.239.208
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=yandex.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=yandex.com
-Received: from mail-nwsmtp-smtp-production-main-19.sas.yp-c.yandex.net (mail-nwsmtp-smtp-production-main-19.sas.yp-c.yandex.net [IPv6:2a02:6b8:c24:5a6:0:640:ee22:0])
-	by forward500c.mail.yandex.net (Yandex) with ESMTPS id CC6E460F42;
-	Tue, 13 Feb 2024 01:44:42 +0300 (MSK)
-Received: by mail-nwsmtp-smtp-production-main-19.sas.yp-c.yandex.net (smtp/Yandex) with ESMTPSA id civpIX0pHCg0-aviaNSvO;
-	Tue, 13 Feb 2024 01:44:41 +0300
-X-Yandex-Fwd: 1
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=yandex.com; s=mail;
-	t=1707777881; bh=l8YSD2byZe121ynq36axzQobriPKExDpwph35JKavO8=;
-	h=From:In-Reply-To:Cc:Date:References:To:Subject:Message-ID;
-	b=ItaX6CF4USzkVKNlQQCdzilewN5z2Q7DBFIvnEZuIxlmcJs8onDIXydbmfYoYRpg+
-	 tHqvqS52aa+lhAHGn064WwlFWUku1+2lHNGxi4OuotcDy55wgflA6pak2SgMR0MkQA
-	 lZuvjnIRIiCGvY0L5gkQTcYYJS/Srfu5XwLvfyrc=
-Authentication-Results: mail-nwsmtp-smtp-production-main-19.sas.yp-c.yandex.net; dkim=pass header.i=@yandex.com
-Message-ID: <9f8d39c1-66ca-4bb7-994e-de15cb516473@yandex.com>
-Date: Mon, 12 Feb 2024 23:44:37 +0100
+	s=arc-20240116; t=1707778819; c=relaxed/simple;
+	bh=jZpc+jpwI8JbN6GWK7eGKpI9q/rxuDmvkjAcn+AKPCo=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=Hk/zMKNGhqKY9+3msuwNa9Wyf2ctv7uoqnHZR39aGwakxK7Lf+rHB+EwoBQcSRzybTECyVjsojNRkBBlrHy1iwSrO4tQ+kvEdeug+VD+0+q90JFiOKWVONh7m9TjeJ7Bs/sPJKH4wTaWDB93tT1Bis6oJ2LoP5xCn6NsH66wU1Y=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=G4J0/cuQ; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 34407C433F1;
+	Mon, 12 Feb 2024 23:00:18 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1707778818;
+	bh=jZpc+jpwI8JbN6GWK7eGKpI9q/rxuDmvkjAcn+AKPCo=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=G4J0/cuQRWgYA/y0VLvLAzsILeQ1usA/v5oj4022qQx8yWjum0KNB9rVZ5REDVOMX
+	 iuqDuYYpYgQnkC57kvWptf3XrhHrFfBGHec/ZvYNIJBtsBZOsJiqAitaaV+tE3pgsr
+	 HFq8tNq0ylJWRjJS2VFi/MvWIjNhm8cGQ6velKKxZHIAAE9BQoGEHFJm5aSCWAguU0
+	 ou++v/rX99EAPALjKePLNsts5FznbZO4/bhnaRX3uH0dIN/2efzSJN/4d6W0qUq3rp
+	 C1xC4HTP0zmd09RdiFW2a1rGvpH5h3wEae5knGn+j2VsDbOQ0hjRSamzZ5W3PGt7Hy
+	 uxeUrBWMVH72g==
+Received: by mercury (Postfix, from userid 1000)
+	id 73990106A041; Tue, 13 Feb 2024 00:00:15 +0100 (CET)
+Date: Tue, 13 Feb 2024 00:00:15 +0100
+From: Sebastian Reichel <sre@kernel.org>
+To: Stefan Wahren <wahrenst@gmx.net>
+Cc: Rob Herring <robh+dt@kernel.org>, 
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Shawn Guo <shawnguo@kernel.org>, Sascha Hauer <s.hauer@pengutronix.de>, 
+	Fabio Estevam <festevam@gmail.com>, Pengutronix Kernel Team <kernel@pengutronix.de>, 
+	NXP Linux Team <linux-imx@nxp.com>, Dong Aisheng <aisheng.dong@nxp.com>, 
+	Linus Walleij <linus.walleij@linaro.org>, Dmitry Torokhov <dmitry.torokhov@gmail.com>, 
+	Mark Brown <broonie@kernel.org>, linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v1 14/14] ARM: dts: imx6ull-uti260b: Add board
+Message-ID: <56eb2fnpmaya5rwfk5jvluvsidokzpoujeatihgrbxlytbzx5x@ozco7pbgkugp>
+References: <20240210012114.489102-1-sre@kernel.org>
+ <20240210012114.489102-15-sre@kernel.org>
+ <c38e7c68-e725-4174-aa0a-0594a55c8d56@gmx.net>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v1 06/10] arm64: dts: rockchip: add USBDP phys on rk3588
-Content-Language: en-US
-To: Sebastian Reichel <sebastian.reichel@collabora.com>
-Cc: Heiko Stuebner <heiko@sntech.de>, Vinod Koul <vkoul@kernel.org>,
- Kishon Vijay Abraham I <kishon@kernel.org>,
- linux-rockchip@lists.infradead.org, linux-phy@lists.infradead.org,
- Rob Herring <robh+dt@kernel.org>,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Conor Dooley <conor+dt@kernel.org>, Frank Wang <frank.wang@rock-chips.com>,
- Kever Yang <kever.yang@rock-chips.com>, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, kernel@collabora.com
-References: <20240209181831.104687-1-sebastian.reichel@collabora.com>
- <20240209181831.104687-7-sebastian.reichel@collabora.com>
- <6bc2f825-7e50-488d-a373-a211ac2cc8e1@yandex.com>
- <dsfne22iebd7mvyyskhpw3rkkfhlxpv32afht456vq3u52axyr@kgkxfzm5vn4c>
-From: Johan Jonker <jbx6244@yandex.com>
-In-Reply-To: <dsfne22iebd7mvyyskhpw3rkkfhlxpv32afht456vq3u52axyr@kgkxfzm5vn4c>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <c38e7c68-e725-4174-aa0a-0594a55c8d56@gmx.net>
 
+Hi Stefan,
 
+On Mon, Feb 12, 2024 at 07:28:36PM +0100, Stefan Wahren wrote:
+> > +	reg_vsd: regulator-vsd {
+> i think the node name should be just "regulator"
+> > +		compatible = "regulator-fixed";
+> > +		regulator-name = "VSD_3V3";
+> > +		regulator-min-microvolt = <3300000>;
+> > +		regulator-max-microvolt = <3300000>;
+> > +	};
+> > +
+> > +	reg_vref: regulator-vref-4v2 {
+> dito
 
-On 2/12/24 19:48, Sebastian Reichel wrote:
-> Hi Johan,
-> 
-> On Sun, Feb 11, 2024 at 08:24:36PM +0100, Johan Jonker wrote:
->>> +		u2phy1: usb2-phy@4000 {
->>
->>         "usb2phy@[0-9a-f]+$":
-> 
-> Interesting. I would have expected that to pop up in dtbs_check, but
-> it does not for some reason. I will fix it for all usb2phy instances
-> in rk3588.
-> 
->>> +			compatible = "rockchip,rk3588-usb2phy";
->>> +			reg = <0x4000 0x10>;
->>> +			interrupts = <GIC_SPI 394 IRQ_TYPE_LEVEL_HIGH 0>;
->>
->>> +			resets = <&cru SRST_OTGPHY_U3_1>, <&cru SRST_P_USB2PHY_U3_1_GRF0>;
->>> +			reset-names = "phy", "apb";
->>> +			clocks = <&cru CLK_USB2PHY_HDPTXRXPHY_REF>;
->>> +			clock-names = "phyclk";
->>> +			clock-output-names = "usb480m_phy1";
->>> +			#clock-cells = <0>;
->>
->> Align with the (new) documentation
->> about property ordering.
->>
->>> +			status = "disabled";
->>> +
->>> +			u2phy1_otg: otg-port {
->>> +				#phy-cells = <0>;
->>> +				status = "disabled";
->>> +			};
->>> +		};
->>> +	};
-> 
-> The above follows everything from [0], which does not specify an
-> order for the "standard/common  properties". For those this follows
-> the order of existing usb2phy nodes. Did I miss any other new
-> Documentation?
-> 
-> [0] https://www.kernel.org/doc/html/next/devicetree/bindings/dts-coding-style.html#order-of-properties-in-device-node
+The nodename must be unique. So just "regulator" does not work. In
+the past this was sometimes solved by adding something like @0,
+which is part of the nodename. But that is not ok, since there is no
+reg property.
 
-While reading the text below I think it's in need for a clarification that the property order for common and vendor category is alpha-numerical as is for nodes.
-For Rockchip DT in this case "reset*" below "clock*", so that the person after you can add properties in a sort list.
+> > +&ecspi3 {
+> > +	cs-gpios = <&gpio1 20 GPIO_ACTIVE_LOW>;
+> > +	pinctrl-names = "default";
+> > +	pinctrl-0 = <&mux_spi3>, <&mux_spi3_cs>;
+> > +	status = "okay";
+> > +
+> > +	panel@0 {
+> > +		compatible = "inanbo,t28cp45tn89-v17";
+> > +		reg = <0>;
+> > +		backlight = <&panel_backlight>;
+> > +		power-supply = <&reg_vsd>;
+> > +		spi-cpha;
+> > +		spi-cpol;
+> > +		spi-max-frequency = <100000>;
+>
+> This seems slow to me. Is this a limitation of the display?
 
-Johan
+I just used something slow, which should definitely work. I will try
+to increase to 1MHz. Note, that the display is not driven via SPI.
+SPI is just used for the configuration.
 
-.===
+Thanks for the review,
 
-The following order of properties in device nodes is preferred:
-
-    "compatible"
-
-    "reg"
-
-    "ranges"
-
-    Standard/common properties (defined by common bindings, e.g. without vendor-prefixes)
-
-    Vendor-specific properties
-
-    "status" (if applicable)
-
-    Child nodes, where each node is preceded with a blank line
-
-The "status" property is by default "okay", thus it can be omitted.
-
-
-> 
-> -- Sebastian
+-- Sebastian
 
