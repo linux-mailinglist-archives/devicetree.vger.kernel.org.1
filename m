@@ -1,144 +1,166 @@
-Return-Path: <devicetree+bounces-41011-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-41012-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 71891851EF5
-	for <lists+devicetree@lfdr.de>; Mon, 12 Feb 2024 21:57:09 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4D908851F21
+	for <lists+devicetree@lfdr.de>; Mon, 12 Feb 2024 22:07:13 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id A48221C21705
-	for <lists+devicetree@lfdr.de>; Mon, 12 Feb 2024 20:57:08 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id F355F1F20C93
+	for <lists+devicetree@lfdr.de>; Mon, 12 Feb 2024 21:07:12 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 81B8547F7A;
-	Mon, 12 Feb 2024 20:57:05 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="QUPIWdUl"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6F633495E5;
+	Mon, 12 Feb 2024 21:07:07 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D90474CDE0;
-	Mon, 12 Feb 2024 20:57:03 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
+Received: from relmlie5.idc.renesas.com (relmlor1.renesas.com [210.160.252.171])
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 524CE4CB28;
+	Mon, 12 Feb 2024 21:07:03 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=210.160.252.171
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1707771425; cv=none; b=DMQe3gUCK07O4OIEtDPjc0qhy54JRXE9E1Cfe2jfdOUKFbBHjFceiyBneAgMXXc4F0YW2YjvibO10OwhJjIHSl+YnSIGzjztPYxV7cAWFoscg6iSUB+jM0EYdVaVqTkDrr2QadJEOVE2dFHSGU1oB3ccf2EZhwdp1XjdrMTBSHQ=
+	t=1707772027; cv=none; b=BtGuRPQ53x915vljVNA9BdUHxAbZSwn+E2MTVFFaIpBnsta/01TJJoiI5B62HHFg+jOJd4r0o0dvUyITCrZozL+5L2e4+XX4sS7YwN2OcctZyUM6qzRO2Dhaea9a9/Nj4GV0WtEngZwpuT3wlfcke2tf9un+1LUhIbFyZYXYMQI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1707771425; c=relaxed/simple;
-	bh=W5I8hgPwwBAyzQHQfZk2G35oMt4b5jINXtjFVACOhvs=;
-	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
-	 In-Reply-To:Content-Type; b=YUqUrLDC7CIWvAsfe1yka13eLiFNfmZskRCk354TmmD4LhK+qVwiGDxNrRGH+KeB7h78m2M3yCaBvQM7OfJEXiQ00YKCwfDz3LdtcH6KSDJVaVzDWDA2Ymm0HG7mkf/dnxho+QkHSOsZ/g+BSB+YOjeny2BIJLPEooYEYJbtDIk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=QUPIWdUl; arc=none smtp.client-ip=205.220.168.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
-Received: from pps.filterd (m0279864.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.17.1.24/8.17.1.24) with ESMTP id 41CKNJQD006780;
-	Mon, 12 Feb 2024 20:56:53 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
-	message-id:date:mime-version:subject:to:cc:references:from
-	:in-reply-to:content-type:content-transfer-encoding; s=
-	qcppdkim1; bh=OPbrlq1m98uTfCMnFJ6G1tzc5WlIlN1tivo58zQxrRY=; b=QU
-	PIWdUlo/uBqS7JVV3AGQO8/TsAlVn/O58VEoVHUjuA6fD+yLfT57yFWdxQv0Ebmb
-	Q9F8EYWemmfXPZd1QKhV3oJzgJxCtzCHDsZMRMUxyD6SIrJLxLae51d12uMMBc93
-	CopubSGDTgjVZrr6UR8nYI8G9WpQF+XLAaEN67grSswiDZX1uq0MKpRkJUi9NHH/
-	JigG3JSSj8lSY1zbJZfFrdU6v8BXbBjpzzu51AwNYrH/kRfnjryul3ZjFzpgvws1
-	AxKowcJP1YDJmo/QAmf57EBwmB8AMzLhezuWtUYkE8cRjwItwTRDxyMjEYmwdawv
-	Vk/BEJ/k2xYyk6mvBoEg==
-Received: from nalasppmta02.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3w7tanr1pm-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Mon, 12 Feb 2024 20:56:53 +0000 (GMT)
-Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
-	by NALASPPMTA02.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 41CKuqQ9020216
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Mon, 12 Feb 2024 20:56:52 GMT
-Received: from [10.227.110.203] (10.80.80.8) by nalasex01a.na.qualcomm.com
- (10.47.209.196) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1118.40; Mon, 12 Feb
- 2024 12:56:51 -0800
-Message-ID: <08c312f4-f3d3-4980-b998-b28026b5180f@quicinc.com>
-Date: Mon, 12 Feb 2024 12:56:51 -0800
+	s=arc-20240116; t=1707772027; c=relaxed/simple;
+	bh=iNA2iUff0owITGTsriSI3yilXsnepyXEIJyQetmwJ78=;
+	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version; b=azNVDrkszQFAXMuYEwi4bP3ynvuA9t+HpakHqqsu7cpXv59Z74PX3Gzib/tdceyHSUN5Oet3+t3Mta/Fug37vfhclm0wsebNDczgA7qaLwnbBkVhAzS2nPCnD93obR8zjXQf0QfO/zq6Z2Mi8T6LdQ27eKXgPat4aQTqm5Ckamc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=renesas.com; spf=pass smtp.mailfrom=renesas.com; arc=none smtp.client-ip=210.160.252.171
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=renesas.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=renesas.com
+X-IronPort-AV: E=Sophos;i="6.06,155,1705330800"; 
+   d="scan'208";a="193681617"
+Received: from unknown (HELO relmlir5.idc.renesas.com) ([10.200.68.151])
+  by relmlie5.idc.renesas.com with ESMTP; 13 Feb 2024 06:07:02 +0900
+Received: from mulinux.home (unknown [10.226.93.37])
+	by relmlir5.idc.renesas.com (Postfix) with ESMTP id EADF0400386B;
+	Tue, 13 Feb 2024 06:06:58 +0900 (JST)
+From: Fabrizio Castro <fabrizio.castro.jz@renesas.com>
+To: =?UTF-8?q?Uwe=20Kleine-K=C3=B6nig?= <u.kleine-koenig@pengutronix.de>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Philipp Zabel <p.zabel@pengutronix.de>,
+	Geert Uytterhoeven <geert+renesas@glider.be>
+Cc: Fabrizio Castro <fabrizio.castro.jz@renesas.com>,
+	Magnus Damm <magnus.damm@gmail.com>,
+	Biju Das <biju.das.jz@bp.renesas.com>,
+	linux-pwm@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	linux-renesas-soc@vger.kernel.org
+Subject: [PATCH v7 0/4] Add RZ/V2{M, MA} PWM driver support
+Date: Mon, 12 Feb 2024 21:06:48 +0000
+Message-Id: <20240212210652.368680-1-fabrizio.castro.jz@renesas.com>
+X-Mailer: git-send-email 2.34.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH RFC 0/4] wifi: ath10k: support board-specific firmware
- overrides
-Content-Language: en-US
-To: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
-        Kalle Valo
-	<kvalo@kernel.org>,
-        "David S. Miller" <davem@davemloft.net>,
-        Eric Dumazet
-	<edumazet@google.com>, Jakub Kicinski <kuba@kernel.org>,
-        Paolo Abeni
-	<pabeni@redhat.com>, Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski
-	<krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio
-	<konrad.dybcio@linaro.org>
-CC: <ath10k@lists.infradead.org>, <linux-wireless@vger.kernel.org>,
-        <netdev@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-arm-msm@vger.kernel.org>
-References: <20240130-wcn3990-firmware-path-v1-0-826b93202964@linaro.org>
-From: Jeff Johnson <quic_jjohnson@quicinc.com>
-In-Reply-To: <20240130-wcn3990-firmware-path-v1-0-826b93202964@linaro.org>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
- nalasex01a.na.qualcomm.com (10.47.209.196)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-GUID: g4-fB0Y-JmWvy8lcJl8LgKG4GzMQwrSp
-X-Proofpoint-ORIG-GUID: g4-fB0Y-JmWvy8lcJl8LgKG4GzMQwrSp
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.272,Aquarius:18.0.1011,Hydra:6.0.619,FMLib:17.11.176.26
- definitions=2024-02-12_16,2024-02-12_03,2023-05-22_02
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 phishscore=0 malwarescore=0
- clxscore=1015 lowpriorityscore=0 spamscore=0 impostorscore=0
- mlxlogscore=925 bulkscore=0 priorityscore=1501 suspectscore=0 adultscore=0
- mlxscore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.19.0-2401310000 definitions=main-2402120162
+Content-Transfer-Encoding: 8bit
 
-On 1/30/2024 8:38 AM, Dmitry Baryshkov wrote:
-> On WCN3990 platforms actual firmware, wlanmdsp.mbn, is sideloaded to the
-> modem DSP via the TQFTPserv. These MBN files are signed by the device
-> vendor, can only be used with the particular SoC or device.
-> 
-> Unfortunately different firmware versions come with different features.
-> For example firmware for SDM845 doesn't use single-chan-info-per-channel
-> feature, while firmware for QRB2210 / QRB4210 requires that feature.
-> 
-> Allow board DT files to override the subdir of the fw dir used to lookup
-> the firmware-N.bin file decribing corresponding WiFi firmware.
-> For example, adding firmware-name = "qrb4210" property will make the
-> driver look for the firmware-N.bin first in ath10k/WCN3990/hw1.0/qrb4210
-> directory and then fallback to the default ath10k/WCN3990/hw1.0 dir.
-> 
-> Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-> ---
-> Dmitry Baryshkov (4):
->       dt-bindings: net: wireless: ath10k: describe firmware-name property
->       wifi: ath10k: support board-specific firmware overrides
->       arm64: dts: qcom: qrb2210-rb1: add firmware-name qualifier to WiFi node
->       arm64: dts: qcom: qrb4210-rb1: add firmware-name qualifier to WiFi node
-> 
->  .../devicetree/bindings/net/wireless/qcom,ath10k.yaml         |  6 ++++++
->  arch/arm64/boot/dts/qcom/qrb2210-rb1.dts                      |  1 +
->  arch/arm64/boot/dts/qcom/qrb4210-rb2.dts                      |  1 +
->  drivers/net/wireless/ath/ath10k/core.c                        | 11 ++++++++++-
->  drivers/net/wireless/ath/ath10k/core.h                        |  2 ++
->  drivers/net/wireless/ath/ath10k/snoc.c                        |  3 +++
->  6 files changed, 23 insertions(+), 1 deletion(-)
-> ---
-> base-commit: 596764183be8ebb13352b281a442a1f1151c9b06
-> change-id: 20240130-wcn3990-firmware-path-7a05a0cf8107
-> 
-> Best regards,
-This series looks OK to me, but would like Kalle to review as well
+The RZ/V2{M, MA} PWM Timer (PWM) is composed of 16 channels.
+Linux is only allowed access to channels 8 to 14 on RZ/V2M,
+while there is no restriction for RZ/V2MA.
+
+The RZ/V2{M, MA} PWM Timer (PWM) supports the following functions:
+ * The PWM has 24-bit counters which operate at PWM_CLK (48 MHz).
+ * The frequency division ratio for internal counter operation is
+   selectable as PWM_CLK divided by 1, 16, 256, or 2048.
+ * The period as well as the duty cycle is adjustable.
+ * The low-level and high-level order of the PWM signals can be
+   inverted.
+ * The duty cycle of the PWM signal is selectable in the range from
+   0 to 100%.
+ * The minimum resolution is 20.83 ns.
+ * Three interrupt sources: Rising and falling edges of the PWM signal
+   and clearing of the counter.
+ * Counter operation and the bus interface are asynchronous and both can
+   operate independently of the magnitude relationship of the respective
+   clock periods.
+
+v6->v7:
+ * Addressed the build issue reported by the kernel test robot.
+ * Replaced / with div64_u64 in driver.
+ * Added rzv2m_pwm_mul_u64_u64_div_u64_rounddown to driver.
+v5->v6:
+ * Updated copyright in driver (2023->2024).
+ * Several improvements to the driver, as suggested by Uwe.
+v4->v5:
+ * rebased to pwm for-next.
+ * Sorted KConfig file
+ * Sorted Make file
+ * Updated copyright header 2022->2023.
+ * Updated limitation section.
+ * Replaced the variable chip->rzv2m_pwm in rzv2m_pwm_wait_delay()
+ * Replaced polarity logic as per HW manual dutycycle = Ton/Ton+Toff, so
+   eventhough native polarity is inverted from period point of view it
+   is correct.
+ * Updated logic for supporting 0% , 100% and remaining duty cycles.
+ * On config() replaced
+   pm_runtime_resume_and_get()->pm_runtime_get_sync()
+ * Counter is stopped while updating period/polarity to avoid glitches.
+ * Added error check for clk_prepare_enable()
+ * Introduced is_ch_enabled variable to cache channel enable status.
+ * clk_get_rate is called after enabling the clock and
+   clk_rate_exclusive_get()
+ * Added comment for delay
+ * Replaced 1000000000UL->NSEC_PER_SEC.
+ * Improved error handling in probe().
+v3->v4:
+ * Documented the hardware properties in "Limitations" section
+ * Dropped the macros F2CYCLE_NSEC, U24_MASK and U24_MAX.
+ * Added RZV2M_PWMCYC_PERIOD macro for U24_MAX
+ * Dropped rzv2m_pwm_freq_div variable and started using 1 << (4 * i)
+   for calculating divider as it is power of 16.
+ * Reordered the functions to have rzv2m_pwm_config() directly before
+   rzv2m_pwm_apply().
+ * Improved the logic for calculating period and duty cycle in config()
+ * Merged multiple RZV2M_PWMCTR register writes to a single write in
+   config()
+ * Replaced pwm_is_enabled()->pwm->state.enabled
+ * Avoided assigning bit value as enum pwm_polarity instead used enum
+   constant.
+ * Fixed various issues in probe error path.
+ * Updated the logic for PWM cycle setting register
+ * A 100% duty cycle is only possible with PWMLOW > PWMCYC. So
+   restricting PWMCYC values < 0xffffff
+ * The native polarity of the hardware is inverted (i.e. it starts with
+   the low part). So switched the inversion bit handling.
+v2->v3:
+ * Removed clock patch#1 as it is queued for 6.3 renesas-clk
+ * Added Rb tag from Geert for bindings and dt patches
+ * Added return code for rzv2m_pwm_get_state()
+ * Added comment in rzv2m_pwm_reset_assert_pm_disable()
+v1->v2:
+ * Updated commit description
+ * Replaced pwm8_15_pclk->cperi_grpf
+ * Added reset entry R9A09G011_PWM_GPF_PRESETN
+ * Added Rb tag from Krzysztof for bindings and the keep the Rb tag as
+   the below changes are trivial
+ * Updated the description for APB clock
+ * Added resets required property
+ * Updated the example with resets property
+ * Replaced
+   devm_reset_control_get_optional_shared->devm_reset_control_get_shared
+ * Added resets property in pwm nodes.
+
+Biju Das (4):
+  dt-bindings: pwm: Add RZ/V2M PWM binding
+  pwm: Add support for RZ/V2M PWM driver
+  arm64: dts: renesas: r9a09g011: Add pwm nodes
+  arm64: dts: renesas: rzv2m evk: Enable pwm
+
+ .../bindings/pwm/renesas,rzv2m-pwm.yaml       |  90 ++++
+ .../boot/dts/renesas/r9a09g011-v2mevk2.dts    |  70 +++
+ arch/arm64/boot/dts/renesas/r9a09g011.dtsi    |  98 ++++
+ drivers/pwm/Kconfig                           |  11 +
+ drivers/pwm/Makefile                          |   1 +
+ drivers/pwm/pwm-rzv2m.c                       | 480 ++++++++++++++++++
+ 6 files changed, 750 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/pwm/renesas,rzv2m-pwm.yaml
+ create mode 100644 drivers/pwm/pwm-rzv2m.c
+
+-- 
+2.34.1
+
 
