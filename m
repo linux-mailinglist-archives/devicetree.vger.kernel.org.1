@@ -1,112 +1,266 @@
-Return-Path: <devicetree+bounces-40844-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-40847-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5D8FA85180B
-	for <lists+devicetree@lfdr.de>; Mon, 12 Feb 2024 16:33:10 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8423885182C
+	for <lists+devicetree@lfdr.de>; Mon, 12 Feb 2024 16:35:30 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 196FE281FB3
-	for <lists+devicetree@lfdr.de>; Mon, 12 Feb 2024 15:33:09 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 39BF12852D5
+	for <lists+devicetree@lfdr.de>; Mon, 12 Feb 2024 15:35:29 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C9B013CF78;
-	Mon, 12 Feb 2024 15:32:48 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6956D3C492;
+	Mon, 12 Feb 2024 15:35:26 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="EIfXYpzq"
+	dkim=pass (2048-bit key) header.d=tuxon.dev header.i=@tuxon.dev header.b="HTZvufrO"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lf1-f41.google.com (mail-lf1-f41.google.com [209.85.167.41])
+Received: from mail-lf1-f48.google.com (mail-lf1-f48.google.com [209.85.167.48])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 284E53C699
-	for <devicetree@vger.kernel.org>; Mon, 12 Feb 2024 15:32:45 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.41
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EFC573BB33
+	for <devicetree@vger.kernel.org>; Mon, 12 Feb 2024 15:35:23 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.48
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1707751968; cv=none; b=bFH656PgXk4VkG3f2/ZVH4ZjW10QFW3Aef5qUvl1cgd4cMsK3P0YhFKJkDkLjmTawn1/g8eABiz3w/pBVxfjBNcUgjKf5QNhwR/51TTpFCbnZZcnEIESd6NhWq5ovOSPpoDV3EvN/8cG/FodEuZw/XKnkKnPwqdHHDV9oAGxIQw=
+	t=1707752126; cv=none; b=NmY6IviTV1Ll8rsPDRm5qYYgQ/OyTgXndGWyiXC3CPTmgZ2ko6D0R+4+s3Dm4U9jDYz/1v577Rs6A59NfDJFXNWuTWR6BCFQAXeHKv9jYJQPQt9qr1CivrUkKA3QcPTO8eJenGxHRmkJDiR0VGU2unDreODMw8vAEK6ErkD2mzg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1707751968; c=relaxed/simple;
-	bh=bkIEBakJHgzcITFpIpV/EovxuKe348rKh+SCyNQmYHg=;
-	h=From:To:Cc:In-Reply-To:References:Subject:Message-Id:Date:
-	 MIME-Version:Content-Type; b=OoLg71ixLjeq8B8bXIfs4Z1Afyuwvm8bJI8Pw43mNfd63eB796e2biVyjSAPMW7p+/zxcwJML8NJOk5F2jWhqH3ewsMdrmFVFvwuoD1yyIoK0SpQMAUtjZROSSVkqMrZTGY+o3iIMaztPq95zd3cvvq7tNRvWUgrnTsZeWiCSFg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=EIfXYpzq; arc=none smtp.client-ip=209.85.167.41
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-lf1-f41.google.com with SMTP id 2adb3069b0e04-5101cd91017so3559891e87.2
-        for <devicetree@vger.kernel.org>; Mon, 12 Feb 2024 07:32:45 -0800 (PST)
+	s=arc-20240116; t=1707752126; c=relaxed/simple;
+	bh=Zi7JEi6YPgc+JjQ1wS95Usof0AO1kO+ROduLnLywNyU=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=QfiELk7p0TTXHuPYUsOY/05BaffRB0+WAeZcgfQUulHA7gLZ4bjSjusYV1pmZesEauKrt0MTy5mSbo/t5CD+L+jeG522+fYqL7cMl5TFDIiuQFUMcwn2giwU0pOq2ghAHFHMOrVfxiYZ9kpy4QIAU7ul8uO1OuP+DO1wR9nX72Q=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=tuxon.dev; spf=pass smtp.mailfrom=tuxon.dev; dkim=pass (2048-bit key) header.d=tuxon.dev header.i=@tuxon.dev header.b=HTZvufrO; arc=none smtp.client-ip=209.85.167.48
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=tuxon.dev
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=tuxon.dev
+Received: by mail-lf1-f48.google.com with SMTP id 2adb3069b0e04-51178bbb5d9so2801168e87.2
+        for <devicetree@vger.kernel.org>; Mon, 12 Feb 2024 07:35:23 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1707751964; x=1708356764; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:date:message-id:subject
-         :references:in-reply-to:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=mLSV6GjpLboPb6N+6P/meSbXl15EO0I8zNkKPhFyDy4=;
-        b=EIfXYpzqmyRazoMq/7ZVQW82UExYibnw8FDc0B+MgEs0/EowxeD4AEYirwtYaJMjQq
-         B85MZa8PgZfsSufBCg01mlYnFygVHEt5AJEa3zptvBdvI64CweD1jlvmji2timj1eder
-         TCR7J3KKEKF5aeIbaV18dwhEEL0HsVWqbwwomma4y4qFG/coAQpeFewOYpuVpmeTp6CY
-         eAO1f6uJNDYvRXn0Ka6wHx/BNEnB/NDSdpcXcbqFcdHZj9HJCBMShxf3HuA8rOVSKebO
-         HFtwFtMhe+MnAZyuhjFHgTsWQt5kHVnwk0oNOOtXyD0TJsr7a5XfgumKwZA2CrYbJdXm
-         xRww==
+        d=tuxon.dev; s=google; t=1707752122; x=1708356922; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=Qopyo3g10i5kqlmGmP5yEhAcn5jQx+ngibzauIEWa8s=;
+        b=HTZvufrOeMQ2NHCKcQlhOG7CmW0RBs/WKTRNW7KVKva8LVB1yefY1ukoiEPz5f5VaG
+         YGhNSesmC4AYmJ8cAUVERy2VmISe1b2tnz++l312Ho+c+xWqW3eVQKYVb/X59A6W/BOH
+         Dh3xM9iy8yMgAUrxCqdB4PFEqAjZtJ4MEj092wiqOsd3wuwf47hVQUjMGOKWu8rX61cf
+         lPlaiH0IqmtlcFg74Dx+KlDLVoTGVoA+H/ZocC1MjB5ks+YUhoITgm1VtTPIvINRWJnl
+         OTUGZLCZgeHV4C2LfMML8YpN7LmWNSKOxfIWVKzBRx41rq+ZTAy87Ik2vNkhDWypW65c
+         atuA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1707751964; x=1708356764;
-        h=content-transfer-encoding:mime-version:date:message-id:subject
-         :references:in-reply-to:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=mLSV6GjpLboPb6N+6P/meSbXl15EO0I8zNkKPhFyDy4=;
-        b=gJGACNOh8Z4LLgcWKTW36jgyjhuX/Yr66yyaTiUlvwHQZvMLZ0KAhFNGOkwsBOBzzZ
-         UQ1GSHXqLwf7IQjBU0J2Cst7rPBw72F47ESKrSlWQkhjBKw8Sj78MVGxt1WyeEd7cpST
-         j3zp7JOTF3ZQYh+QOmlDQHG9NzV1J0Zf8fBi78oewGaoV8QM0UM9Tj8n54RggqMvUPqa
-         UgtKCISE//tCidmw8H443DqD+va8zoPn99Z7bK2nu88NE5aHpWEeXtihp0xBkTNDPHRd
-         Mhkq604wWiwOa+wtjFEZFnm70ZBwCaFSPZfSSci1A115LFqgAuydPeKEyqPonfAG/QQZ
-         f40w==
-X-Gm-Message-State: AOJu0Yx1Z1N1HS+M6esrgbZiZ3ITtgdiLXcMpRXQE7py6lxpBPZgcWjV
-	UfGApHQYLiibzLwnBjgCbH/JvVb48ObqgB5cd0yWPF9gMAKlUt69YVjsfaFJILRoObl7Mr+aE/N
-	r
-X-Google-Smtp-Source: AGHT+IFkktTI7b8C/0MZmf1ZoZaTMWPEwtj/4mwT3DX5ltYcu8ivv0j2DVv+6Kjcd9DXtG857xoIHQ==
-X-Received: by 2002:a05:6512:3b6:b0:511:4e64:fe09 with SMTP id v22-20020a05651203b600b005114e64fe09mr4117367lfp.43.1707751964099;
-        Mon, 12 Feb 2024 07:32:44 -0800 (PST)
-X-Forwarded-Encrypted: i=1; AJvYcCXul3/DI8HHdRFW6INdE1VLow1IRySwSgACJ5O7Uqxk5j1nww3ybk1876pVa0LwgPTV8xoo0ZagV6dkrF0CWcVGZtnMICL17556kAyLZDBMzVPJYEt2c35OYF7bDki4NmVwEgWqrImmPP1DIqRMfVBHuVCZuaVAYgaAyiO2drHXW8TkKkMMOW4eF7rW5WpcfM506+gTwAsl+jCJSr7fH/BXrQvmdiUBc10ZL05LSsoxvgXI8o0toAFIZaWjbgA5JA925WygLiZrIHsGEs4SemQ+r4IVcprXPl1DjD4V/EtNSnC2OvDOFoW2vvcvew2T64kihmEw52tLgwqC6cTB3CB6NItbBr/ZHDP5tExN15JKkw+WxcuLeZ7m
-Received: from [127.0.1.1] ([178.197.223.6])
-        by smtp.gmail.com with ESMTPSA id a1-20020a05600c348100b00410a843b57dsm5819675wmq.43.2024.02.12.07.32.42
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 12 Feb 2024 07:32:43 -0800 (PST)
-From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-To: Rob Herring <robh+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
- Rob Herring <robh@kernel.org>, 
- Greg Kroah-Hartman <gregkh@linuxfoundation.org>, 
- Jiri Slaby <jirislaby@kernel.org>, 
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, 
- Jonathan Corbet <corbet@lwn.net>, 
- Christoph Winklhofer <cj.winklhofer@gmail.com>
-Cc: devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
- linux-serial@vger.kernel.org, linux-doc@vger.kernel.org
-In-Reply-To: <20240209-w1-uart-v6-2-3e753c149196@gmail.com>
-References: <20240209-w1-uart-v6-0-3e753c149196@gmail.com>
- <20240209-w1-uart-v6-2-3e753c149196@gmail.com>
-Subject: Re: (subset) [PATCH v6 2/3] dt-bindings: w1: UART 1-Wire bus
-Message-Id: <170775196240.98164.13229670157028243681.b4-ty@linaro.org>
-Date: Mon, 12 Feb 2024 16:32:42 +0100
+        d=1e100.net; s=20230601; t=1707752122; x=1708356922;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=Qopyo3g10i5kqlmGmP5yEhAcn5jQx+ngibzauIEWa8s=;
+        b=GfMYVXrdepvminYC/qrorzVTiYfHyRl9n0f+ZYSXhvZKMwMBKEmlvdd6HN7djnDuGU
+         2CQnnTxzq2OseqP5wBQk/b99itJK5Zk1QzmrWOvxHCF7bVz/YJiPwBb6yPPrsCun0pIM
+         4KdwlKBGznITJMj3/PhLFdo8rrZk2BUyBqqLI3AReH0fwGfBhRw/tuHRgEtiWEX94t70
+         OieiPa1GiiKpFTnOEbzg4qkDmMppey+mbih8598GOqAF4kf9MEzLZ/PoDziKpuWdz0vj
+         kpHm1vVz2tSiMQIuPIDHLDOWimc5qqutFeVpyx/FDZNnlhuLNXzIOA9PYyFyigvLnFZM
+         31zg==
+X-Gm-Message-State: AOJu0YzF/deMQDt89avCx2pSQqqtYozUdAr2J8sQj+SleQPiP43EhEC6
+	e9BuPzsvvOzrepV5lZfKRR0DrdTLoIDC+2mylzNNS95gO7FbgkUOiZGPA18rmjI=
+X-Google-Smtp-Source: AGHT+IGYPLbRxjQYQAEy0cR8B7ts9DH2FHbCPQq+MYtBDCF+JI08fz5SYSihtI4W9WJQvPVMQOBowA==
+X-Received: by 2002:ac2:46e8:0:b0:511:54e5:491d with SMTP id q8-20020ac246e8000000b0051154e5491dmr5042168lfo.15.1707752121706;
+        Mon, 12 Feb 2024 07:35:21 -0800 (PST)
+X-Forwarded-Encrypted: i=1; AJvYcCX7kYaKMxfMtF+/BEoSwjoRFYEs3PRBZKjKbLGWDDu4ahfEvW5c2l4pLotLeHE+L1D6dIrzrg90GxCN6w+jvkwtejCQt9ek9Hc4mAvMj/HlkTK8WhBOX2+gw3K/fydMsNUeSeWZQxcUyJTYZoZnqlO5VB6j54pcO6IZKcYdaJBAJTSZD0QtNqVuXxFumFnf6gKUusU/3WX/xIAsHwXenCZNjYZKFOlsX0YiOs1tEUVFNUf9WibMDdmgsuW0z8gqfk5HXZgnvBQkAou0FdNHm/YYDW11ieV8YEQGtYVN7GTw0w537+FR0UlCkzjWYoR2bUA0WKSObIW7N3ApyoJc7z05SXZwTh1kV4Q67GZB3U1LGw4tobURIr1s8yLYDxBAEVS2AEBunqeGW2oB68V0iQGqVpjqi3ngvagqasCTfUapapa03sDxbw==
+Received: from [192.168.50.4] ([82.78.167.20])
+        by smtp.gmail.com with ESMTPSA id v11-20020a05600c444b00b004110e8d605bsm1560755wmn.44.2024.02.12.07.35.20
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 12 Feb 2024 07:35:21 -0800 (PST)
+Message-ID: <2dab40a5-1e9b-4396-ad97-b2a810ff703d@tuxon.dev>
+Date: Mon, 12 Feb 2024 17:35:19 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-X-Mailer: b4 0.12.4
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 1/2] pinctrl: renesas: rzg2l: Add suspend/resume support
+Content-Language: en-US
+To: Geert Uytterhoeven <geert@linux-m68k.org>
+Cc: magnus.damm@gmail.com, robh@kernel.org,
+ krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
+ linus.walleij@linaro.org, linux-renesas-soc@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ linux-gpio@vger.kernel.org, Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>
+References: <20240208135629.2840932-1-claudiu.beznea.uj@bp.renesas.com>
+ <20240208135629.2840932-2-claudiu.beznea.uj@bp.renesas.com>
+ <CAMuHMdUG595o8u1kgqW6DxfvBuzKuOPv7XkJhg_GQmnbRui8Tw@mail.gmail.com>
+From: claudiu beznea <claudiu.beznea@tuxon.dev>
+In-Reply-To: <CAMuHMdUG595o8u1kgqW6DxfvBuzKuOPv7XkJhg_GQmnbRui8Tw@mail.gmail.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 
+Hi, Geert,
 
-On Fri, 09 Feb 2024 07:22:38 +0100, Christoph Winklhofer wrote:
-> Add device tree binding for UART 1-Wire bus.
+On 12.02.2024 17:06, Geert Uytterhoeven wrote:
+> Hi Claudiu,
+> 
+> On Thu, Feb 8, 2024 at 6:59 PM Claudiu <claudiu.beznea@tuxon.dev> wrote:
+>> From: Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>
+>>
+>> pinctrl-rzg2l driver is used on RZ/G3S which support deep sleep states
+>> where power to most of the SoC components is turned off.
+>>
+>> For this add suspend/resume support. This involves saving and restoring
+>> configured registers along with disabling clock in case there is no pin
+>> configured as wakeup sources.
+>>
+>> To save/restore registers 2 caches were allocated: one for GPIO pins and
+>> one for dedicated pins.
+>>
+>> On suspend path the pin controller registers are saved and if none of the
+>> pins are configured as wakeup sources the pinctrl clock is disabled.
+>> Otherwise it remains on.
+>>
+>> On resume path the configuration is done as follows:
+>> 1/ setup PFCs by writing to registers on pin based accesses
+>> 2/ setup GPIOs by writing to registers on port based accesses and
+>>    following configuration steps specified in hardware manual
+>> 3/ setup dedicated pins by writing to registers on port based accesses
+>> 4/ setup interrupts.
+>>
+>> Because interrupt signals are routed to IA55 interrupt controller and
+>> IA55 interrupt controller resumes before pin controller, patch restores
+>> also the configured interrupts just after pin settings are restored to
+>> avoid invalid interrupts while resuming.
+>>
+>> Signed-off-by: Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>
+> 
+> Thanks for your patch!
+> 
+> In my review below, I am focussing on the wake-up part, as that is
+> usually the hardest part to get right.
+> 
+>> --- a/drivers/pinctrl/renesas/pinctrl-rzg2l.c
+>> +++ b/drivers/pinctrl/renesas/pinctrl-rzg2l.c
+>> @@ -260,6 +315,9 @@ struct rzg2l_pinctrl {
+>>         struct mutex                    mutex; /* serialize adding groups and functions */
+>>
+>>         struct rzg2l_pinctrl_pin_settings *settings;
+>> +       struct rzg2l_pinctrl_reg_cache  *cache;
+>> +       struct rzg2l_pinctrl_reg_cache  *dedicated_cache;
+>> +       atomic_t                        wakeup_source;
+> 
+> I'd call this wakeup_path, as the wake-up source is the ultimate device
+> that triggers the GPIO.
+
+OK!
+
+> 
+>>  };
+>>
+>>  static const u16 available_ps[] = { 1800, 2500, 3300 };
+>> @@ -1880,6 +1938,19 @@ static void rzg2l_gpio_irq_print_chip(struct irq_data *data, struct seq_file *p)
+>>         seq_printf(p, dev_name(gc->parent));
+>>  }
+>>
+>> +static int rzg2l_gpio_irq_set_wake(struct irq_data *data, unsigned int on)
+>> +{
+>> +       struct gpio_chip *gc = irq_data_get_irq_chip_data(data);
+>> +       struct rzg2l_pinctrl *pctrl = container_of(gc, struct rzg2l_pinctrl, gpio_chip);
+>> +
+> 
+> I think you also have to call irq_set_irq_wake(pctrl->hwirq[...]) here.
+> Cfr. drivers/gpio/gpio-rcar.c (which is simpler, as it has a single interrupt
+> parent, instead of a parent irq_domain with multiple interrupts).
+
+I had it in my initial implementation (done long time ago) but I don't
+remember why I removed it. I'll re-add it anyway.
+
+> 
+>> +       if (on)
+>> +               atomic_inc(&pctrl->wakeup_source);
+>> +       else
+>> +               atomic_dec(&pctrl->wakeup_source);
+>> +
+>> +       return 0;
+>> +}
+>> +
+>>  static const struct irq_chip rzg2l_gpio_irqchip = {
+>>         .name = "rzg2l-gpio",
+>>         .irq_disable = rzg2l_gpio_irq_disable,
 > 
 > 
+>> +static int rzg2l_pinctrl_suspend_noirq(struct device *dev)
+>> +{
+>> +       struct rzg2l_pinctrl *pctrl = dev_get_drvdata(dev);
+>> +       const struct rzg2l_hwcfg *hwcfg = pctrl->data->hwcfg;
+>> +       const struct rzg2l_register_offsets *regs = &hwcfg->regs;
+>> +       struct rzg2l_pinctrl_reg_cache *cache = pctrl->cache;
+>> +
+>> +       rzg2l_pinctrl_pm_setup_regs(pctrl, true);
+>> +       rzg2l_pinctrl_pm_setup_dedicated_regs(pctrl, true);
+>> +
+>> +       for (u8 i = 0; i < 2; i++) {
+>> +               cache->sd_ch[i] = readl(pctrl->base + SD_CH(regs->sd_ch, i));
+>> +               cache->eth_poc[i] = readl(pctrl->base + ETH_POC(regs->eth_poc, i));
+>> +       }
+>> +
+>> +       cache->qspi = readl(pctrl->base + QSPI);
+>> +       cache->eth_mode = readl(pctrl->base + ETH_MODE);
+>> +
+>> +       if (!atomic_read(&pctrl->wakeup_source))
+>> +               clk_disable_unprepare(pctrl->clk);
+> 
+> While you handle the module clock yourself, I think there is still merit
+> in calling device_set_wakeup_path(dev) when the clock is kept enabled.
 
-Applied, thanks!
+Ok, I'll explore it.
 
-[2/3] dt-bindings: w1: UART 1-Wire bus
-      https://git.kernel.org/krzk/linux-w1/c/56552c1a412fd7cce65d95786ed5f05fe157a714
+> 
+> BTW, is there any need to save the registers when pinctrl is part of
+> the wake-up path, and its module clock is not disabled?
 
-Best regards,
--- 
-Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Yes, for scenarios where the pinctrl is part of the wake-up path but the
+system is going a deep sleep state where pinctrl registers will be lost anyway.
 
+Same for the resume path.
+
+Thank you for your review,
+Claudiu Beznea
+
+> 
+>> +
+>> +       return 0;
+>> +}
+>> +
+>> +static int rzg2l_pinctrl_resume_noirq(struct device *dev)
+>> +{
+>> +       struct rzg2l_pinctrl *pctrl = dev_get_drvdata(dev);
+>> +       const struct rzg2l_hwcfg *hwcfg = pctrl->data->hwcfg;
+>> +       const struct rzg2l_register_offsets *regs = &hwcfg->regs;
+>> +       struct rzg2l_pinctrl_reg_cache *cache = pctrl->cache;
+>> +       int ret;
+>> +
+>> +       if (!atomic_read(&pctrl->wakeup_source)) {
+>> +               ret = clk_prepare_enable(pctrl->clk);
+>> +               if (ret)
+>> +                       return ret;
+>> +       }
+> 
+> Is there any need to restore the registers when pinctrl is part of
+> the wake-up path, and its module clock was not disabled?
+> 
+>> +
+>> +       writel(cache->qspi, pctrl->base + QSPI);
+>> +       writel(cache->eth_mode, pctrl->base + ETH_MODE);
+>> +       for (u8 i = 0; i < 2; i++) {
+>> +               writel(cache->sd_ch[i], pctrl->base + SD_CH(regs->sd_ch, i));
+>> +               writel(cache->eth_poc[i], pctrl->base + ETH_POC(regs->eth_poc, i));
+>> +       }
+>> +
+>> +       rzg2l_pinctrl_pm_setup_pfc(pctrl);
+>> +       rzg2l_pinctrl_pm_setup_regs(pctrl, false);
+>> +       rzg2l_pinctrl_pm_setup_dedicated_regs(pctrl, false);
+>> +       rzg2l_gpio_irq_restore(pctrl);
+>> +
+>> +       return 0;
+>> +}
+> 
+> Gr{oetje,eeting}s,
+> 
+>                         Geert
+> 
 
