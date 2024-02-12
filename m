@@ -1,155 +1,134 @@
-Return-Path: <devicetree+bounces-40738-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-40739-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8066A851574
-	for <lists+devicetree@lfdr.de>; Mon, 12 Feb 2024 14:39:49 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id BF0DB85157A
+	for <lists+devicetree@lfdr.de>; Mon, 12 Feb 2024 14:40:39 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id B2D341C22145
-	for <lists+devicetree@lfdr.de>; Mon, 12 Feb 2024 13:39:48 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 7C087284FBD
+	for <lists+devicetree@lfdr.de>; Mon, 12 Feb 2024 13:40:38 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id AF8DE3BB3A;
-	Mon, 12 Feb 2024 13:30:02 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B32753A8E8;
+	Mon, 12 Feb 2024 13:32:26 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="T4l71HbN"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-yb1-f176.google.com (mail-yb1-f176.google.com [209.85.219.176])
+Received: from mail-yb1-f182.google.com (mail-yb1-f182.google.com [209.85.219.182])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8DE033BB35;
-	Mon, 12 Feb 2024 13:30:00 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.219.176
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 63E393A8C9
+	for <devicetree@vger.kernel.org>; Mon, 12 Feb 2024 13:32:24 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.219.182
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1707744602; cv=none; b=cJFx+ibPByipPIld77JSjhiQT/DFiB9Sqb9Pl+KI7CNzKTPnwDdvjiof3UE3W3l5u/DzS40lo3M3/9p/HGp9FaJ4C3WvgocNV7TAOkkrc1RGN+r+ftM37a3pzj708fAqdjy6fTUv/tFQuryiVyeCDD5dkyxysoojl7JVU4AjIH0=
+	t=1707744746; cv=none; b=RcE878MEBNat5xZOd4k+cSC6JArBVrEcaDTlnHKsEW5VPVmBGwt/CB8vBrHQfs5tTVhrehthsth6LCqDza7BXKDweKU0wWqEOh3KPh5XsycJqHaQCtUiHAgKt5a8DV9FBoLwXkxP1SNLa2HPtqmuARUc1NpetgCAm/XRP6ABBrA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1707744602; c=relaxed/simple;
-	bh=1oVIpdA3PWu0N2hwgGsr+QE7zE+6Gl0uk0jmM/Llz0c=;
+	s=arc-20240116; t=1707744746; c=relaxed/simple;
+	bh=mgxzYa/YHbjlNLGRFv1voK9063RzidnEcbp86ft+y0k=;
 	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=MzbR9Yo+gZ7Bl3Xg2I4rpQe/zUKzsG/Fo/wzAQ1Wk/dJc4MV65rbmy3NSiHizYaIl9RtidGNI2HEjJM3DuQuNr3MURv6Pu98V+PG8jdDUklGEwXQNHYP/NJhZKOW1MWyjbEDW+T2Q5qo6Ce0rpP/6iILL621eq3o6KtAJ0DuXRU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org; spf=pass smtp.mailfrom=gmail.com; arc=none smtp.client-ip=209.85.219.176
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-yb1-f176.google.com with SMTP id 3f1490d57ef6-dcbbc41d3d5so200220276.3;
-        Mon, 12 Feb 2024 05:30:00 -0800 (PST)
+	 To:Cc:Content-Type; b=IsQ4+CvgRU3r+FYE0mH2fNEK5VYihXpa2AAboliEIzVox2wF8xzDWXmYFjLtykdFhOfoKf1xCXC8P+6I9YEx4eGCuV2kYjsqmTvtNpuwWlax2R8s26HrH3BsFK03MgW2Mv0/2nX0eYhoPPDo/A7u8m3xep1znHNOQ//zfAKHr/o=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=T4l71HbN; arc=none smtp.client-ip=209.85.219.182
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-yb1-f182.google.com with SMTP id 3f1490d57ef6-dc75c2c3574so1983407276.0
+        for <devicetree@vger.kernel.org>; Mon, 12 Feb 2024 05:32:24 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1707744743; x=1708349543; darn=vger.kernel.org;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=Cc0i1kM3GFsjytyQWwKzSBYGY5dJXRRO6XelaSiPAvw=;
+        b=T4l71HbNmFjDN2/4WvdZxq4kgbZwo4w+Cuc3IKTCeO3YLIyWUuu06kxJ5NiliG3OyW
+         LV8tiJ3bSDBOd9OI/nOSvtHQ8X/ONBjzjK0EC2LCykC7PJ+3MFb95eHnAOVZNXqK9CIK
+         24kz7M//GshXB+z8HP3djVlvcZRdkBZe9jGhyfeB+beZs5g51cCB9La4tYErhkYiV24E
+         6JJfO/ZB2MbJ4jGc84Ak5TX01za5vSOl7oSBcONS7JayNooxi+QhlM+Pp4WW6gU1597f
+         dyRsOScOfKmcaSPhl2tIlO+DMuJnBH9xpj1iZdB3X3CgpTVt4hJBUzUvYVe2MCDtxbSF
+         r/3w==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1707744599; x=1708349399;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=mDv+FBRkyzx2DZnQ26S++v9SBrU+T+SPPA5jSEnI6wE=;
-        b=rcV5s+iJQnm7yV+xZY7oRB3oc7Hbrg5CHOLhLLeDAMr/N9Fowf5PpwK7z7J19EYIAj
-         Ts8wkdPkcazV00yDoAg6zHGH2B8KYYfPJ6jUCF7Qf/qGlOxBuRJm4oaT8BpQpOVTI513
-         V0+N13Pui9GXo/iGQOOzberGZjyFgfkXHLVgsxFUymGmts+uqNgZPPlRvuv+fN3yL4UA
-         ji17ZLQMaveH61S8/vs7X+X6FS7/xmGCG59faK7ww3OIlWFd2CJsLvKIe9vd/PEE+5KX
-         FwkJ9b5r7LbJ0133gmn7sFdnQKewXqX8EVhi5zFOXRZ4UrKL3sCDQuAisaLFrgtUi3AX
-         jn8A==
-X-Forwarded-Encrypted: i=1; AJvYcCW6S6MNusqwMwe7bjB71P7Jb/1+E9d5mv+8CC7AP4WUwJfyf8uF1zUgeIfn+eiixeWKcKuR6uTzE+kgqcb5e014fFXIVyo7OQIuintDztZNKv7UttMhb07PjOW4lMWA1/w6+TE572rAUQ==
-X-Gm-Message-State: AOJu0Yyz9NRm0eXOf3qQSOkfQ+4zcw8BKc8qLSoDjlKk8fuDvLddW+zs
-	kvx2qyN1xp7ymFA8yr6UiT9K9omgDW64fCCbUICaplErGXwnvB+mFFsruXlDHlo=
-X-Google-Smtp-Source: AGHT+IF5/4SkXJ3leLn/t7HooEWb0fsuipMG/ViFIU2YIDaDvH15x55LrAsj5HrWtc2hFEP+acd3lg==
-X-Received: by 2002:a25:fc21:0:b0:dc2:7018:806d with SMTP id v33-20020a25fc21000000b00dc27018806dmr5160771ybd.16.1707744598894;
-        Mon, 12 Feb 2024 05:29:58 -0800 (PST)
-X-Forwarded-Encrypted: i=1; AJvYcCWtUqTyLe8R2G4Ia0vpM7mESNloChTfMkWzHWqBc4VEhiwjvoZ0uKzIFVbGyu1pvpuSv/wblyboXnmHsDXyVJEjB2k1EZWlCF/gw7RiDCG5CIzSf64bQ6ab/b1qWLJ3i9FMW26/RHSfNQ==
-Received: from mail-yb1-f172.google.com (mail-yb1-f172.google.com. [209.85.219.172])
-        by smtp.gmail.com with ESMTPSA id z19-20020a25ad93000000b00dc73705ec59sm1243948ybi.0.2024.02.12.05.29.58
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 12 Feb 2024 05:29:58 -0800 (PST)
-Received: by mail-yb1-f172.google.com with SMTP id 3f1490d57ef6-dcbbc41d3d5so200204276.3;
-        Mon, 12 Feb 2024 05:29:58 -0800 (PST)
-X-Forwarded-Encrypted: i=1; AJvYcCUt1L+mYbhYWpc4oe7g/VSGre25Y3M22VTjIEySrfDxa9+FU3IUxzDWfskVKmnSYX5MrOfyNhPkkgpvZrykBtW2A12gvNHvxnbJ7cmGjYTT1NPFfU77VtgYeD9SrKhu6X0n7Jo4ZHtELA==
-X-Received: by 2002:a25:d88d:0:b0:dc6:c3e0:82d1 with SMTP id
- p135-20020a25d88d000000b00dc6c3e082d1mr4746653ybg.60.1707744598434; Mon, 12
- Feb 2024 05:29:58 -0800 (PST)
+        d=1e100.net; s=20230601; t=1707744743; x=1708349543;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=Cc0i1kM3GFsjytyQWwKzSBYGY5dJXRRO6XelaSiPAvw=;
+        b=Ed1mQorzhJTFEKvXuWfKCHIo3/CyGRhW8eS9X+niF44f8m8cB3CWU1DaQ5ZCuuXIVQ
+         l0IOJZXvutPWx9mjgeboHbFLNkMeFMrpVF0bhK6ZgD+N5yr39KbzZ3/ujFUuqS5Ze+Yx
+         NaPQDzw2nnJyMCwchofVyVqpe5rhONA9xBeE4C9ZeUwS2TAV7lCTmoMb82wgo/haSO35
+         XyMEr+rFzUqFsXg0lvOARyg8sbyxvhlV71twvLVZGTTMvDBt2gCchaImRGrdFycu18kH
+         a0otUVe5b1POQIBcGFHJlQ4MMnxp2Q0mv0KUSR1JRE2MYzny7JP2O2pOZAp6G6x7nAGX
+         UAyQ==
+X-Forwarded-Encrypted: i=1; AJvYcCVRI+UboS+27P9memYumZVZA4OwGfaNvkp4FvzYnb7Ho6Wiulc2J4JWKNw4KPAgJIA3CVWQSvD9NNd9j/SNGeRZcfMu3fIvvRgOoQ==
+X-Gm-Message-State: AOJu0YxcZStYzgfd1d8bDtXHReRqH9KB7s6X1CUE6Hn9bndut+V0bV/j
+	aJoEQ4mXBmxaXvTYGbVA0bWOmdslH/oSa+Tu9xiP67XPwddY59pAGo8U0MqYfYfNt2eIbVNBkku
+	7wAgfbPjDqCh3TniusyjzB+O8Jzqj94oOghy6Ug==
+X-Google-Smtp-Source: AGHT+IHrimlujObx0gy/3DfQFabszO/ewn4clRRIqfcAPZot0WCgYdNU8XudKJCEXiqOZqbCse/xPRfzJJEpg6oz5Yc=
+X-Received: by 2002:a25:b117:0:b0:dc7:4439:d14d with SMTP id
+ g23-20020a25b117000000b00dc74439d14dmr5093350ybj.54.1707744743273; Mon, 12
+ Feb 2024 05:32:23 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20240129212350.33370-1-wsa+renesas@sang-engineering.com> <20240129212350.33370-2-wsa+renesas@sang-engineering.com>
-In-Reply-To: <20240129212350.33370-2-wsa+renesas@sang-engineering.com>
-From: Geert Uytterhoeven <geert@linux-m68k.org>
-Date: Mon, 12 Feb 2024 14:29:46 +0100
-X-Gmail-Original-Message-ID: <CAMuHMdXuWHCLa8HFXBZK4M4fqivudxjHcqqUyZ2=a3=OfFLPYQ@mail.gmail.com>
-Message-ID: <CAMuHMdXuWHCLa8HFXBZK4M4fqivudxjHcqqUyZ2=a3=OfFLPYQ@mail.gmail.com>
-Subject: Re: [RFC PATCH 1/2] arm64: dts: renesas: ulcb-kf: adapt 1.8V HDMI
- regulator to schematics
-To: Wolfram Sang <wsa+renesas@sang-engineering.com>
-Cc: linux-renesas-soc@vger.kernel.org, Magnus Damm <magnus.damm@gmail.com>, 
-	Rob Herring <robh+dt@kernel.org>, 
+References: <20240212-topic-sm8650-gpu-v1-0-708a40b747b5@linaro.org> <20240212-topic-sm8650-gpu-v1-5-708a40b747b5@linaro.org>
+In-Reply-To: <20240212-topic-sm8650-gpu-v1-5-708a40b747b5@linaro.org>
+From: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+Date: Mon, 12 Feb 2024 15:32:12 +0200
+Message-ID: <CAA8EJpryCXUxs69ockt0TN4LOuBB-4dZkLYHUZyN1Uq0isMjYg@mail.gmail.com>
+Subject: Re: [PATCH 5/5] arm64: dts: qcom: sm8650-qrd: enable GPU
+To: Neil Armstrong <neil.armstrong@linaro.org>
+Cc: Rob Clark <robdclark@gmail.com>, Abhinav Kumar <quic_abhinavk@quicinc.com>, 
+	Sean Paul <sean@poorly.run>, Marijn Suijten <marijn.suijten@somainline.org>, 
+	David Airlie <airlied@gmail.com>, Daniel Vetter <daniel@ffwll.ch>, 
+	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, Maxime Ripard <mripard@kernel.org>, 
+	Thomas Zimmermann <tzimmermann@suse.de>, Rob Herring <robh@kernel.org>, 
 	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, 
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+	Will Deacon <will@kernel.org>, Robin Murphy <robin.murphy@arm.com>, Joerg Roedel <joro@8bytes.org>, 
+	Bjorn Andersson <andersson@kernel.org>, Konrad Dybcio <konrad.dybcio@linaro.org>, 
+	linux-arm-msm@vger.kernel.org, dri-devel@lists.freedesktop.org, 
+	freedreno@lists.freedesktop.org, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
+	iommu@lists.linux.dev
 Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
 
-Hi Wolfram,
-
-Thanks for your patch!
-
-On Mon, Jan 29, 2024 at 10:23=E2=80=AFPM Wolfram Sang
-<wsa+renesas@sang-engineering.com> wrote:
-> It is named T1.8V in the schematics. Also add properties dcoumenting it
-
-documenting
-
-> is always on, also during boot.
+On Mon, 12 Feb 2024 at 12:37, Neil Armstrong <neil.armstrong@linaro.org> wrote:
 >
-> Signed-off-by: Wolfram Sang <wsa+renesas@sang-engineering.com>
-
-> --- a/arch/arm64/boot/dts/renesas/ulcb-kf.dtsi
-> +++ b/arch/arm64/boot/dts/renesas/ulcb-kf.dtsi
-> @@ -32,11 +32,13 @@ hdmi1_con: endpoint {
->                 };
->         };
+> Add path of the GPU firmware for the SM8650-QRD board
 >
-> -       hdmi_1v8: regulator-hdmi-1v8 {
-> +       t1v8: regulator-t1v8 {
-
-"t1p8v"?
-Or "reg_t1p8v", as the former is a rather short name, causing conflicts?
-
->                 compatible =3D "regulator-fixed";
-> -               regulator-name =3D "hdmi-1v8";
-> +               regulator-name =3D "t1v8";
->                 regulator-min-microvolt =3D <1800000>;
->                 regulator-max-microvolt =3D <1800000>;
-> +               regulator-boot-on;
-> +               regulator-always-on;
->         };
+> Signed-off-by: Neil Armstrong <neil.armstrong@linaro.org>
+> ---
+>  arch/arm64/boot/dts/qcom/sm8650-qrd.dts | 8 ++++++++
+>  1 file changed, 8 insertions(+)
 >
->         pcie_1v5: regulator-pcie-1v5 {
-> @@ -154,11 +156,11 @@ hdmi@3d {
+> diff --git a/arch/arm64/boot/dts/qcom/sm8650-qrd.dts b/arch/arm64/boot/dts/qcom/sm8650-qrd.dts
+> index 8515498553bf..7151f3dc67c4 100644
+> --- a/arch/arm64/boot/dts/qcom/sm8650-qrd.dts
+> +++ b/arch/arm64/boot/dts/qcom/sm8650-qrd.dts
+> @@ -525,6 +525,14 @@ &ipa {
+>         status = "okay";
+>  };
 >
->                                 pd-gpios =3D <&gpio_exp_75 5 GPIO_ACTIVE_=
-LOW>;
+> +&gpu {
+> +       status = "okay";
+> +
+> +       zap-shader {
+> +               firmware-name = "qcom/sm8650/gen70900_zap.mbn";
+
+But why? For sm8450 / sm8550 we had "a730_zap.mbn" and "a740_zap.mbn"
+
+> +       };
+> +};
+> +
+>  &mdss {
+>         status = "okay";
+>  };
 >
-> -                               avdd-supply =3D <&hdmi_1v8>;
-> -                               dvdd-supply =3D <&hdmi_1v8>;
-> -                               pvdd-supply =3D <&hdmi_1v8>;
-> +                               avdd-supply =3D <&t1v8>;
-> +                               dvdd-supply =3D <&t1v8>;
-> +                               pvdd-supply =3D <&t1v8>;
->                                 dvdd-3v-supply =3D <&reg_3p3v>;
-> -                               bgvdd-supply =3D <&hdmi_1v8>;
-> +                               bgvdd-supply =3D <&t1v8>;
+> --
+> 2.34.1
 >
->                                 adi,input-depth =3D <8>;
->                                 adi,input-colorspace =3D "rgb";
-
-The rest LGTM.
-
-Gr{oetje,eeting}s,
-
-                        Geert
 
 
---
-Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k=
-.org
-
-In personal conversations with technical people, I call myself a hacker. Bu=
-t
-when I'm talking to journalists I just say "programmer" or something like t=
-hat.
-                                -- Linus Torvalds
+-- 
+With best wishes
+Dmitry
 
