@@ -1,973 +1,158 @@
-Return-Path: <devicetree+bounces-40713-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-40714-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id A221A851448
-	for <lists+devicetree@lfdr.de>; Mon, 12 Feb 2024 14:13:13 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 095188514B7
+	for <lists+devicetree@lfdr.de>; Mon, 12 Feb 2024 14:19:21 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 17620B23003
-	for <lists+devicetree@lfdr.de>; Mon, 12 Feb 2024 13:13:11 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 13D4A1C20D90
+	for <lists+devicetree@lfdr.de>; Mon, 12 Feb 2024 13:19:20 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A6CE53CF42;
-	Mon, 12 Feb 2024 13:10:39 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4DCB53B18A;
+	Mon, 12 Feb 2024 13:14:19 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="NCFYkqm1"
+	dkim=pass (2048-bit key) header.d=google.com header.i=@google.com header.b="qrqViZLi"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ed1-f42.google.com (mail-ed1-f42.google.com [209.85.208.42])
+Received: from mail-yw1-f201.google.com (mail-yw1-f201.google.com [209.85.128.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 064913C6A3
-	for <devicetree@vger.kernel.org>; Mon, 12 Feb 2024 13:10:36 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.42
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7FC913F9E2
+	for <devicetree@vger.kernel.org>; Mon, 12 Feb 2024 13:14:17 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1707743439; cv=none; b=JV0JzvE4fR+m78ZalgXcwIJk9+fVpA+DmJABvAd43gmh5BAYqE+uPtoFX6moo8dnSQ2h/RhdRmx1lK9YnpzcJPkuYkQ7ww6JJEZdomG9AxEWPvK5p1KwDtuG0ctPbxlm2MoCsdVVzP7Ewbhb1aaaoixaMjbB7v8RUZjDY/OcGoI=
+	t=1707743659; cv=none; b=sjD5907YFhrrBJIUGNLy3JcHYBKJfPkE7mT4vR0GJxw6G2i0uDagj1fqibtIfcmyNXp9kvfNeAymNWkY5k1JiETrR9ppNcR6wFHudVHQdskM4wwTY2qTmFCNTD7SpiEuykSBXyZ1J6A/e3/yshbRv6Bqp066pAgtU1wLmENaxms=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1707743439; c=relaxed/simple;
-	bh=RKTKSpnq7umb+4fU+UBs7880UjfiZvFKMpd6xVM+qMs=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=ZGhv6Hzz7TkbJOYPPRZrrY2fB6rTquMk5CH7CynyX/0+gbFDj2HUUH6XS5Gbu79EsodkZo1Lc9qIsFzPP4ccc6Rh70vl6FwE7spxeE69lq3V5rReM+iocff1wUldOW/ZluR+mvcm6WqoV6G9SIAat0bFmAzw6WtdICDS4jURab0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=NCFYkqm1; arc=none smtp.client-ip=209.85.208.42
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-ed1-f42.google.com with SMTP id 4fb4d7f45d1cf-557dcb0f870so4093444a12.2
-        for <devicetree@vger.kernel.org>; Mon, 12 Feb 2024 05:10:36 -0800 (PST)
+	s=arc-20240116; t=1707743659; c=relaxed/simple;
+	bh=JSAWGIZBNCAZSWbCjPYZeQI/FYDdaMk1VJYHwKb53zs=;
+	h=Date:Mime-Version:Message-ID:Subject:From:To:Cc:Content-Type; b=h3Hpa+Pcwe8nSbKcxHeL7rWmbmMQm6i3F88H/evMrD31JEQKrTJ7iu1lNFRicTHYdPTKW7OlnBHVI2FOfY42CFFNoq9ukrReK058oOWs+a1tsKydM1WDJHz0vEh6bGYEsYw/otx5RIIt19agZCCMVdYGqTJVWlm7fMaledmSr0c=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=google.com; spf=pass smtp.mailfrom=flex--panikiel.bounces.google.com; dkim=pass (2048-bit key) header.d=google.com header.i=@google.com header.b=qrqViZLi; arc=none smtp.client-ip=209.85.128.201
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=google.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=flex--panikiel.bounces.google.com
+Received: by mail-yw1-f201.google.com with SMTP id 00721157ae682-604c208b147so52091127b3.1
+        for <devicetree@vger.kernel.org>; Mon, 12 Feb 2024 05:14:17 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1707743435; x=1708348235; darn=vger.kernel.org;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=nEpC85HaJHjps7u9qXX2iFK9E/1tRVU1sKPhZz4k634=;
-        b=NCFYkqm1LOXZPEurpteyyqVfyEkwqjX8RrnPA85DHzCDAlCOOFxwaRw0HQEeGy2Q9K
-         6l2u5uZzVMZO9BhYepNWIrCr8OsqhrrdfpqbO6QM+mLG224jnlUPxh84vN1vmfY4pxNs
-         vLHLJTY7r4xzvPOnWCjClc+ZAOF9cRhxZHyv5zEAcNwyu81/290sxILR3jKn+l7g+1us
-         iKHx7ozQ3quUmmM27zzLyWnd2CiQd2DMfBIczQB7eEjep0+xhqQTpeFGJ1XIzKteptZW
-         cS24fkgQKvtohtoS6R07gxmCFM/Cu0m2tKcm3ukYOW2nO0xhFGxpxKDlH69BwT5naLe6
-         QP1g==
+        d=google.com; s=20230601; t=1707743656; x=1708348456; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:from:subject:message-id
+         :mime-version:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=kvuLvApdM/ZlGaK4NZuFt8gRWwgyTlGJWJvpEXVTb1w=;
+        b=qrqViZLizdf0aql/k5PcPKn8ORvJ/+FSAIqs6eRLaRQkbEWsMnwesFc05DXnMomrqN
+         laYghTiRnmMOv5Wnn2xG7XsNa2rD4FX+b6QhiIgnK27ccPXQ9f4gmn5YBkuJxP59Cr7+
+         iWXIij8WbEwDyQPUbVh/HF6WAip+9MXLO6Zm1xzGsAgeOVRC+OWu6mpkEsWwxyJlAoxu
+         mDRBvzKfwcg01c0hcDSIunAvthrNGesWdCL/ZvBHVmSCR2WhqDc1Pla5ntrFNX4KoJ+N
+         OdsIZrzlXJ09GpbwwKNT1xLtmB53RoD5frXE7/VkH64gnM+T94Th9jOXgMniT30z2v8X
+         duWg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1707743435; x=1708348235;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=nEpC85HaJHjps7u9qXX2iFK9E/1tRVU1sKPhZz4k634=;
-        b=CuNnYEf36mRM/q5oTB0BjZO5DFhyyBimrZP7qccM8WJendXUiuwHnLLa3GH1P601FY
-         ZovJ+Qkgh1Uo7IgB2btKNUDBA250qrSBXU0njTvGBJqPPP4nWQI5qcBO+yxIMW5fOMyq
-         yyhYqMcphfgLT3feJeEANDmnFWzAYC0VTtHXA/Ot58vx0dGNaXT1vi8YZSbVB5YtTiNf
-         ikplcq0Bni7JHRZsiapy2DsG+h+Xtw4P3ebH0HG5OLPf5Soq61N7gFxyst3akVv8wPuA
-         hUc3dRp3hAiSkTBxSfXn6wD7p8d/XqQhs5kAqOiHLZxJr8Es/V88WcoYoEfd5Flwjdsp
-         f8HA==
-X-Gm-Message-State: AOJu0YwXGMJpFgVu4dwYgnKpohuO8iUCM4/2zYW0Iv4qYLrjTBVlVYhs
-	3b1zMQ1Go0sqqO3nOxNsVn4SLLD1lPvyDnSaAjJ6FsR/B4O77/CiZCBASL5H1vY=
-X-Google-Smtp-Source: AGHT+IEsaTnMH3oMopizAu6CA7GTle7EL46mSKQT1n2c9WcXwr+zfYdrr0YLFuqMIk6UdOLR8yEK2g==
-X-Received: by 2002:a17:906:1c4b:b0:a3c:4f51:19a0 with SMTP id l11-20020a1709061c4b00b00a3c4f5119a0mr3614232ejg.56.1707743435149;
-        Mon, 12 Feb 2024 05:10:35 -0800 (PST)
-X-Forwarded-Encrypted: i=1; AJvYcCXqrWAWAd9uPdRq5fWKunrlfWqNYL+rJxz71Mpoh6I4C5Ikh9KVFj2Xm2+iPt1WdZDdYE2BrnuW89FEPxx+xefGPLqI0y62UWmf4t36llu0u2VV7BzsLjQXET2N+K8avKHzuYLNEyLTG7N8s4wwvcy5oa2KVpPKq9I2vezqdT3QvAJOcdZGr0Se21yW0QolfB6R7dd90ofNX/AdaTrSIY2MtAqlQJQXOlsU4bC4Nrd/TKTtupROWb1Tgn1SvUg5poJ1JnP+0MfSlo8OTA4iq7eLXl9xKXPsTEmIQwvpEXIuJOEyu29zpEEcs17EAYbw9p77AWZesDKiYtaU2DOleSIdJcPqJ/Iboex3yPwU3JFgWJQr+Nq7H67uUc22MAbJ3s+L9xAvMWf0pFEv6tDSRtwimzEiL9OQmRq5sTs0l7nEoaLysw9Dbg5tXAmEiyoL8TpfmvUpYpDDdJtJ0v0K9pPDPsEAFOkwo4JEshgE4r2MC6KkgWC00+maGZMRt6tk4ua10vL870BZwZ204MAln9j1VKRLhE8hQoTNE1b+iXO5E0pxX17z934EBTbJhFTXA7/MgRaW6rOhHlH2nLt3kHVccdVQ+gBmZf5sXdcyg5jOyboYKe/CVUMdoQs+Y4QLhmYKMai0PUmZHPfeVo11lhyQBjzjRt+P1O82lz8wTlCx2AfGJjZRh2OUwk79sroP4yCV+EnZI9a2CGat2ttbXDudsQn+EI18kEbOjREgj49piz+eQZUT2LqNkr/e87vql6dbu/BtaE3SYB98e1rQyHnM6C/IVW/CUxC9lL1zEM9Zv3n06hZxCYzwsVWEwIA3m6pC2Y2Zoz/x1sFZtKhjMKUPR8ZW
-Received: from [10.167.154.1] (037008245233.garwolin.vectranet.pl. [37.8.245.233])
-        by smtp.gmail.com with ESMTPSA id gz9-20020a170906f2c900b00a3515b35be4sm193052ejb.104.2024.02.12.05.10.32
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 12 Feb 2024 05:10:34 -0800 (PST)
-From: Konrad Dybcio <konrad.dybcio@linaro.org>
-Date: Mon, 12 Feb 2024 14:10:15 +0100
-Subject: [PATCH 7/7] arm64: dts: qcom: Add SM8550 Xperia 1 V
+        d=1e100.net; s=20230601; t=1707743656; x=1708348456;
+        h=content-transfer-encoding:cc:to:from:subject:message-id
+         :mime-version:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=kvuLvApdM/ZlGaK4NZuFt8gRWwgyTlGJWJvpEXVTb1w=;
+        b=lpq+k/1PPke5KUEkC0Wl1+xu1CqA77A7MQ4otCdmMzIWeSALLImDmXSqQKwJmwbBUy
+         g3N4md566Astdm+3F4TjmV+fKLgahfSWEiRjvJM96gWVQv210e1fl9JXqpp6DVn8xHhF
+         vXevN+kkQS2v152008KfKgPlkH4yVXJKOVf6ArOYxAPITqw9NvngHFLtG6YwDZHZyvrZ
+         dj+TfwDqovxKwfiTICp98DCG7n5fXGZW7eYA2rWUqxtr+r3VshReLC1XurGYjTv8bp30
+         w7d6vGwDoMU0R7KqpHPNgKhS6ZCMYcNbk9vDvhjBmlqUmxdQsbiS5pQiOi90sSJm7WkN
+         dNYQ==
+X-Gm-Message-State: AOJu0Yw0UXaiWk1UW71d1W+3W4ueo3bql2biB03ZvZR4bRJt/vbl2Z6P
+	yS5cpgvFy4Voeutkbc0EZctXU3YY6vd/X+NXBhvssD4xvTg7sGU24KNHNraKhKaRH92/6TmG67v
+	jFWDdyqq+WA==
+X-Google-Smtp-Source: AGHT+IFr9+EiSzPAdqxdDrunMziFdLc97Szl2+/YcVLrl65gByrGUTWmItIayvjwjfIhJaI2on5s096RjZxdJg==
+X-Received: from szatan.c.googlers.com ([fda3:e722:ac3:cc00:28:9cb1:c0a8:2d83])
+ (user=panikiel job=sendgmr) by 2002:a05:6902:120c:b0:dc6:e5d3:5f03 with SMTP
+ id s12-20020a056902120c00b00dc6e5d35f03mr1820499ybu.4.1707743656565; Mon, 12
+ Feb 2024 05:14:16 -0800 (PST)
+Date: Mon, 12 Feb 2024 13:13:14 +0000
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20240210-topic-1v-v1-7-fda0db38e29b@linaro.org>
-References: <20240210-topic-1v-v1-0-fda0db38e29b@linaro.org>
-In-Reply-To: <20240210-topic-1v-v1-0-fda0db38e29b@linaro.org>
-To: James Schulman <james.schulman@cirrus.com>, 
- David Rhodes <david.rhodes@cirrus.com>, 
- Richard Fitzgerald <rf@opensource.cirrus.com>, 
- Liam Girdwood <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>, 
- Rob Herring <robh@kernel.org>, 
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, 
- Conor Dooley <conor+dt@kernel.org>, 
- Ricardo Rivera-Matos <rriveram@opensource.cirrus.com>, 
- Bjorn Andersson <andersson@kernel.org>, Abel Vesa <abel.vesa@linaro.org>, 
- Sai Prakash Ranjan <quic_saipraka@quicinc.com>, 
- Neil Armstrong <neil.armstrong@linaro.org>, 
- Kees Cook <keescook@chromium.org>, Tony Luck <tony.luck@intel.com>, 
- "Guilherme G. Piccoli" <gpiccoli@igalia.com>
-Cc: Marijn Suijten <marijn.suijten@somainline.org>, 
- alsa-devel@alsa-project.org, patches@opensource.cirrus.com, 
- linux-sound@vger.kernel.org, devicetree@vger.kernel.org, 
- linux-kernel@vger.kernel.org, linux-arm-msm@vger.kernel.org, 
- linux-hardening@vger.kernel.org, Konrad Dybcio <konrad.dybcio@linaro.org>
-X-Mailer: b4 0.12.2
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1707743413; l=21987;
- i=konrad.dybcio@linaro.org; s=20230215; h=from:subject:message-id;
- bh=RKTKSpnq7umb+4fU+UBs7880UjfiZvFKMpd6xVM+qMs=;
- b=n80aZUcqcoyBgIg9eJD2vDXcrnfKyj/yR9bB4HnAHKOhFsfFsPkmtlMJOKVILVrZPktBymQCi
- 603ICmpAMWZBWkX0yVjbR257zY4oXTCmAw28KK12CeFhyI+tBycQjpo
-X-Developer-Key: i=konrad.dybcio@linaro.org; a=ed25519;
- pk=iclgkYvtl2w05SSXO5EjjSYlhFKsJ+5OSZBjOkQuEms=
+Mime-Version: 1.0
+X-Mailer: git-send-email 2.43.0.687.g38aa6559b0-goog
+Message-ID: <20240212131323.2162161-1-panikiel@google.com>
+Subject: [PATCH 0/9] Add Chameleon v3 video support
+From: "=?UTF-8?q?Pawe=C5=82=20Anikiel?=" <panikiel@google.com>
+To: airlied@gmail.com, akpm@linux-foundation.org, conor+dt@kernel.org, 
+	daniel@ffwll.ch, dinguyen@kernel.org, hverkuil-cisco@xs4all.nl, 
+	krzysztof.kozlowski+dt@linaro.org, maarten.lankhorst@linux.intel.com, 
+	mchehab@kernel.org, mripard@kernel.org, robh+dt@kernel.org, 
+	tzimmermann@suse.de
+Cc: devicetree@vger.kernel.org, dri-devel@lists.freedesktop.org, 
+	linux-kernel@vger.kernel.org, linux-media@vger.kernel.org, 
+	chromeos-krk-upstreaming@google.com, ribalda@chromium.org, 
+	"=?UTF-8?q?Pawe=C5=82=20Anikiel?=" <panikiel@google.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-Add support for Sony Xperia 1 V, a.k.a PDX234. This device is a part
-of the SoMC SM8550 Yodo platform.
+Google Chameleon v3 is a testing device capable of emulating multiple
+DisplayPort monitors, used for testing purposes.  It is based on an Arria
+10 SoCFPGA.  This patchset adds V4L2 drivers for two IP blocks used in
+the device's FPGA: the Chameleon v3 framebuffer, and the Intel DisplayPort
+RX IP.  The former is a video capture device that takes video signal and
+writes frames into memory, which can be later processed by userspace.
+The latter is a DisplayPort receiver IP from Intel, its datasheet can
+be found at:
+https://www.intel.com/programmable/technical-pdfs/683273.pdf
 
-This commit brings support for:
-* Remoteprocs (sans modem for now)
-* Flash LED (the notification LED is gone :((((()
-* SD Card
-* USB (*including SuperSpeed*) + PMIC_GLINK (it's funky, requires a replug
-  with an cable flip sometimes..)
-* Most regulators
-* Part of I2C-connected peripherals (notably no touch due to a
-driver bug)
-* PCIe0 (PCIe1 is unused)
+The framebuffer driver is a regular v4l2 capture device driver, while
+the DP RX driver is a v4l2 subdevice driver. In order to avoid code
+duplication, some parts of the DisplayPort code from the DRM subsystem
+were put into headers usable by the DP RX driver. Apart from that, the
+patchset adds a new callback to the internal v4l2 subdevice API to allow
+querying the dv timings of individual video streams of the DP receiver.
 
-Do note display via simplefb is not supported, as the display is blanked
-upon exiting XBL.
+Pawe=C5=82 Anikiel (9):
+  media: v4l2-subdev: Add a pad variant of .query_dv_timings()
+  media: Add Chameleon v3 framebuffer driver
+  drm/dp_mst: Move DRM-independent structures to separate header
+  lib: Move DisplayPort CRC functions to common lib
+  drm/display: Add mask definitions for DP_PAYLOAD_ALLOCATE_* registers
+  media: intel: Add Displayport RX IP driver
+  media: dt-bindings: Add Chameleon v3 framebuffer
+  media: dt-bindings: Add Intel Displayport RX IP
+  ARM: dts: chameleonv3: Add video device nodes
 
-To create a working boot image, you need to run:
-cat arch/arm64/boot/Image.gz arch/arm64/boot/dts/qcom/sm8550-sony-xperia-\
-yodo-pdx234.dtb > .Image.gz-dtb
+ .../bindings/media/google,chv3-fb.yaml        |   77 +
+ .../devicetree/bindings/media/intel,dprx.yaml |  125 +
+ .../socfpga/socfpga_arria10_chameleonv3.dts   |  130 +
+ drivers/gpu/drm/display/Kconfig               |    1 +
+ drivers/gpu/drm/display/drm_dp_mst_topology.c |   76 +-
+ drivers/media/platform/Kconfig                |    1 +
+ drivers/media/platform/Makefile               |    1 +
+ drivers/media/platform/google/Kconfig         |    3 +
+ drivers/media/platform/google/Makefile        |    2 +
+ .../media/platform/google/chameleonv3/Kconfig |   13 +
+ .../platform/google/chameleonv3/Makefile      |    3 +
+ .../platform/google/chameleonv3/chv3-fb.c     |  897 +++++++
+ drivers/media/platform/intel/Kconfig          |   12 +
+ drivers/media/platform/intel/Makefile         |    1 +
+ drivers/media/platform/intel/intel-dprx.c     | 2171 +++++++++++++++++
+ drivers/media/v4l2-core/v4l2-subdev.c         |   11 +
+ include/drm/display/drm_dp.h                  |    9 +-
+ include/drm/display/drm_dp_mst.h              |  238 ++
+ include/drm/display/drm_dp_mst_helper.h       |  232 +-
+ include/linux/crc-dp.h                        |   10 +
+ include/media/v4l2-subdev.h                   |    5 +
+ lib/Kconfig                                   |    8 +
+ lib/Makefile                                  |    1 +
+ lib/crc-dp.c                                  |   78 +
+ 24 files changed, 3801 insertions(+), 304 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/media/google,chv3-fb.=
+yaml
+ create mode 100644 Documentation/devicetree/bindings/media/intel,dprx.yaml
+ create mode 100644 drivers/media/platform/google/Kconfig
+ create mode 100644 drivers/media/platform/google/Makefile
+ create mode 100644 drivers/media/platform/google/chameleonv3/Kconfig
+ create mode 100644 drivers/media/platform/google/chameleonv3/Makefile
+ create mode 100644 drivers/media/platform/google/chameleonv3/chv3-fb.c
+ create mode 100644 drivers/media/platform/intel/intel-dprx.c
+ create mode 100644 include/drm/display/drm_dp_mst.h
+ create mode 100644 include/linux/crc-dp.h
+ create mode 100644 lib/crc-dp.c
 
-mkbootimg \
---kernel .Image.gz-dtb \
---ramdisk some_initrd.img \
---pagesize 4096 \
---base 0x0 \
---kernel_offset 0x8000 \
---ramdisk_offset 0x1000000 \
---tags_offset 0x100 \
---cmdline "SOME_CMDLINE" \
---dtb_offset 0x1f00000 \
---header_version 2 \
--o boot.img-sony-xperia-pdx234
-
-Then, you need to flash it on the device and get rid of all the
-vendor_boot/dtbo mess:
-
-// You have to either pull vbmeta{"","_system"} from
-// /dev/block/bootdevice/by-name/ or build one as a part of AOSP build process
-fastboot --disable-verity --disable-verification flash vbmeta vbmeta.img
-fastboot --disable-verity --disable-verification flash vbmeta_system \
-vbmeta_system.img
-
-fastboot flash boot boot.img-sony-xperia-pdx234
-fastboot erase vendor_boot
-fastboot erase recovery
-fastboot flash dtbo emptydtbo.img
-fastboot erase init_boot // ? I don't remember if it's necessary, sorry
-fastboot continue
-
-Where emptydtbo.img is a tiny file that consists of 2 bytes (all zeroes), doing
-a "fastboot erase" won't cut it, the bootloader will go crazy and things will
-fall apart when it tries to overlay random bytes from an empty partition onto a
-perfectly good appended DTB.
-
-Signed-off-by: Konrad Dybcio <konrad.dybcio@linaro.org>
----
- arch/arm64/boot/dts/qcom/Makefile                  |   1 +
- .../dts/qcom/sm8550-sony-xperia-yodo-pdx234.dts    | 779 +++++++++++++++++++++
- 2 files changed, 780 insertions(+)
-
-diff --git a/arch/arm64/boot/dts/qcom/Makefile b/arch/arm64/boot/dts/qcom/Makefile
-index f7c5662213e4..9bbea531660d 100644
---- a/arch/arm64/boot/dts/qcom/Makefile
-+++ b/arch/arm64/boot/dts/qcom/Makefile
-@@ -237,6 +237,7 @@ dtb-$(CONFIG_ARCH_QCOM)	+= sm8450-sony-xperia-nagara-pdx224.dtb
- dtb-$(CONFIG_ARCH_QCOM)	+= sm8550-hdk.dtb
- dtb-$(CONFIG_ARCH_QCOM)	+= sm8550-mtp.dtb
- dtb-$(CONFIG_ARCH_QCOM)	+= sm8550-qrd.dtb
-+dtb-$(CONFIG_ARCH_QCOM)	+= sm8550-sony-xperia-yodo-pdx234.dtb
- dtb-$(CONFIG_ARCH_QCOM)	+= sm8650-mtp.dtb
- dtb-$(CONFIG_ARCH_QCOM)	+= sm8650-qrd.dtb
- dtb-$(CONFIG_ARCH_QCOM)	+= x1e80100-crd.dtb
-diff --git a/arch/arm64/boot/dts/qcom/sm8550-sony-xperia-yodo-pdx234.dts b/arch/arm64/boot/dts/qcom/sm8550-sony-xperia-yodo-pdx234.dts
-new file mode 100644
-index 000000000000..85e0d3d66e16
---- /dev/null
-+++ b/arch/arm64/boot/dts/qcom/sm8550-sony-xperia-yodo-pdx234.dts
-@@ -0,0 +1,779 @@
-+// SPDX-License-Identifier: BSD-3-Clause
-+/*
-+ * Copyright (c) 2023, Linaro Limited
-+ */
-+
-+/dts-v1/;
-+
-+#include <dt-bindings/firmware/qcom,scm.h>
-+#include <dt-bindings/leds/common.h>
-+#include <dt-bindings/pinctrl/qcom,pmic-gpio.h>
-+#include <dt-bindings/regulator/qcom,rpmh-regulator.h>
-+#include <dt-bindings/sound/cs35l45.h>
-+#include "sm8550.dtsi"
-+#include "pm8010.dtsi"
-+#include "pm8550.dtsi"
-+#include "pm8550b.dtsi"
-+#define PMK8550VE_SID 5
-+#include "pm8550ve.dtsi"
-+#include "pm8550vs.dtsi"
-+#include "pmk8550.dtsi"
-+/* TODO: Only one SID of PMR735D seems accessible? */
-+
-+/delete-node/ &hwfence_shbuf;
-+/delete-node/ &mpss_mem;
-+/delete-node/ &rmtfs_mem;
-+/ {
-+	model = "Sony Xperia 1 V";
-+	compatible = "sony,pdx234", "qcom,sm8550";
-+	chassis-type = "handset";
-+
-+	aliases {
-+		i2c0 = &i2c0;
-+		i2c4 = &i2c4;
-+		i2c10 = &i2c10;
-+		i2c11 = &i2c11;
-+		i2c16 = &i2c_hub_2;
-+		serial0 = &uart7;
-+	};
-+
-+	chosen {
-+		stdout-path = "serial0:115200n8";
-+	};
-+
-+	gpio-keys {
-+		compatible = "gpio-keys";
-+		label = "gpio-keys";
-+
-+		pinctrl-0 = <&focus_n &snapshot_n &vol_down_n>;
-+		pinctrl-names = "default";
-+
-+		key-camera-focus {
-+			label = "Camera Focus";
-+			linux,code = <KEY_CAMERA_FOCUS>;
-+			gpios = <&pm8550b_gpios 8 GPIO_ACTIVE_LOW>;
-+			debounce-interval = <15>;
-+			linux,can-disable;
-+			wakeup-source;
-+		};
-+
-+		key-camera-snapshot {
-+			label = "Camera Snapshot";
-+			gpios = <&pm8550b_gpios 7 GPIO_ACTIVE_LOW>;
-+			linux,code = <KEY_CAMERA>;
-+			debounce-interval = <15>;
-+			linux,can-disable;
-+			wakeup-source;
-+		};
-+
-+		key-volume-down {
-+			label = "Volume Down";
-+			linux,code = <KEY_VOLUMEDOWN>;
-+			gpios = <&pm8550_gpios 6 GPIO_ACTIVE_LOW>;
-+			debounce-interval = <15>;
-+			linux,can-disable;
-+			wakeup-source;
-+		};
-+	};
-+
-+	pmic-glink {
-+		compatible = "qcom,sm8550-pmic-glink", "qcom,pmic-glink";
-+		orientation-gpios = <&tlmm 11 GPIO_ACTIVE_HIGH>;
-+		#address-cells = <1>;
-+		#size-cells = <0>;
-+
-+		connector@0 {
-+			compatible = "usb-c-connector";
-+			reg = <0>;
-+			power-role = "dual";
-+			data-role = "dual";
-+
-+			ports {
-+				#address-cells = <1>;
-+				#size-cells = <0>;
-+
-+				port@0 {
-+					reg = <0>;
-+
-+					pmic_glink_hs_in: endpoint {
-+						remote-endpoint = <&usb_1_dwc3_hs>;
-+					};
-+				};
-+
-+				port@1 {
-+					reg = <1>;
-+
-+					pmic_glink_ss_in: endpoint {
-+						remote-endpoint = <&usb_dp_qmpphy_out>;
-+					};
-+				};
-+			};
-+		};
-+	};
-+
-+	reserved-memory {
-+		mpss_mem: mpss-region@89800000 {
-+			reg = <0x0 0x89800000 0x0 0x10800000>;
-+			no-map;
-+		};
-+
-+		splash@b8000000 {
-+			reg = <0x0 0xb8000000 0x0 0x2b00000>;
-+			no-map;
-+		};
-+
-+		hwfence_shbuf: hwfence-shbuf-region@e6440000 {
-+			reg = <0x0 0xe6440000 0x0 0x2dd000>;
-+			no-map;
-+		};
-+
-+		rmtfs_mem: memory@f8b00000 {
-+			compatible = "qcom,rmtfs-mem";
-+			reg = <0x0 0xf8b00000 0x0 0x280000>;
-+			no-map;
-+
-+			qcom,client-id = <1>;
-+			qcom,vmid = <QCOM_SCM_VMID_MSS_MSA>;
-+		};
-+
-+		ramoops@ffd00000 {
-+			compatible = "ramoops";
-+			reg = <0x0 0xffd00000 0x0 0xc0000>;
-+			console-size = <0x40000>;
-+			record-size = <0x1000>;
-+			pmsg-size = <0x40000>;
-+			ecc-size = <16>;
-+		};
-+
-+		rdtag-store-region@ffdc0000 {
-+			reg = <0x0 0xffdc0000 0x0 0x40000>;
-+			no-map;
-+		};
-+	};
-+
-+	vph_pwr: vph-pwr-regulator {
-+		compatible = "regulator-fixed";
-+		regulator-name = "vph_pwr";
-+		regulator-min-microvolt = <3700000>;
-+		regulator-max-microvolt = <3700000>;
-+
-+		regulator-always-on;
-+		regulator-boot-on;
-+	};
-+};
-+
-+&apps_rsc {
-+	regulators-0 {
-+		compatible = "qcom,pm8550-rpmh-regulators";
-+		qcom,pmic-id = "b";
-+
-+		pm8550_bob1: bob1 {
-+			regulator-name = "pm8550_bob1";
-+			regulator-min-microvolt = <3416000>;
-+			regulator-max-microvolt = <3960000>;
-+			regulator-initial-mode = <RPMH_REGULATOR_MODE_HPM>;
-+		};
-+
-+		/* TODO: bob2 @ 2.704-3.008V doesn't fall into the vreg driver constraints */
-+
-+		pm8550_l1: ldo1 {
-+			regulator-name = "pm8550_l1";
-+			regulator-min-microvolt = <1800000>;
-+			regulator-max-microvolt = <1800000>;
-+			regulator-initial-mode = <RPMH_REGULATOR_MODE_HPM>;
-+		};
-+
-+		pm8550_l2: ldo2 {
-+			regulator-name = "pm8550_l2";
-+			regulator-min-microvolt = <3008000>;
-+			regulator-max-microvolt = <3008000>;
-+			regulator-initial-mode = <RPMH_REGULATOR_MODE_HPM>;
-+		};
-+
-+		/* L4 exists in cmd-db, but the board seems to crash on access */
-+
-+		pm8550_l5: ldo5 {
-+			regulator-name = "pm8550_l5";
-+			regulator-min-microvolt = <3104000>;
-+			regulator-max-microvolt = <3104000>;
-+			regulator-initial-mode = <RPMH_REGULATOR_MODE_HPM>;
-+		};
-+
-+		pm8550_l6: ldo6 {
-+			regulator-name = "pm8550_l6";
-+			regulator-min-microvolt = <1800000>;
-+			regulator-max-microvolt = <3008000>;
-+			regulator-initial-mode = <RPMH_REGULATOR_MODE_HPM>;
-+		};
-+
-+		pm8550_l7: ldo7 {
-+			regulator-name = "pm8550_l7";
-+			regulator-min-microvolt = <1800000>;
-+			regulator-max-microvolt = <3008000>;
-+			regulator-initial-mode = <RPMH_REGULATOR_MODE_HPM>;
-+		};
-+
-+		pm8550_l8: ldo8 {
-+			regulator-name = "pm8550_l8";
-+			regulator-min-microvolt = <1800000>;
-+			regulator-max-microvolt = <3008000>;
-+			regulator-initial-mode = <RPMH_REGULATOR_MODE_HPM>;
-+		};
-+
-+		pm8550_l9: ldo9 {
-+			regulator-name = "pm8550_l9";
-+			regulator-min-microvolt = <2960000>;
-+			regulator-max-microvolt = <3008000>;
-+			regulator-initial-mode = <RPMH_REGULATOR_MODE_HPM>;
-+		};
-+
-+		pm8550_l10: ldo10 {
-+			regulator-name = "pm8550_l10";
-+			regulator-min-microvolt = <1800000>;
-+			regulator-max-microvolt = <1800000>;
-+			regulator-initial-mode = <RPMH_REGULATOR_MODE_HPM>;
-+		};
-+
-+		pm8550_l11: ldo11 {
-+			regulator-name = "pm8550_l11";
-+			regulator-min-microvolt = <1200000>;
-+			regulator-max-microvolt = <1504000>;
-+			regulator-initial-mode = <RPMH_REGULATOR_MODE_HPM>;
-+		};
-+
-+		pm8550_l12: ldo12 {
-+			regulator-name = "pm8550_l12";
-+			regulator-min-microvolt = <1800000>;
-+			regulator-max-microvolt = <1800000>;
-+			regulator-initial-mode = <RPMH_REGULATOR_MODE_HPM>;
-+		};
-+
-+		pm8550_l13: ldo13 {
-+			regulator-name = "pm8550_l13";
-+			regulator-min-microvolt = <3000000>;
-+			regulator-max-microvolt = <3000000>;
-+			regulator-initial-mode = <RPMH_REGULATOR_MODE_HPM>;
-+		};
-+
-+		pm8550_l14: ldo14 {
-+			regulator-name = "pm8550_l14";
-+			regulator-min-microvolt = <3304000>;
-+			regulator-max-microvolt = <3304000>;
-+			regulator-initial-mode = <RPMH_REGULATOR_MODE_HPM>;
-+		};
-+
-+		pm8550_l15: ldo15 {
-+			regulator-name = "pm8550_l15";
-+			regulator-min-microvolt = <1800000>;
-+			regulator-max-microvolt = <1800000>;
-+			regulator-initial-mode = <RPMH_REGULATOR_MODE_HPM>;
-+		};
-+
-+		pm8550_l16: ldo16 {
-+			regulator-name = "pm8550_l16";
-+			regulator-min-microvolt = <2800000>;
-+			regulator-max-microvolt = <2800000>;
-+			regulator-initial-mode = <RPMH_REGULATOR_MODE_HPM>;
-+		};
-+
-+		pm8550_l17: ldo17 {
-+			regulator-name = "pm8550_l17";
-+			regulator-min-microvolt = <2504000>;
-+			regulator-max-microvolt = <2504000>;
-+			regulator-initial-mode = <RPMH_REGULATOR_MODE_HPM>;
-+		};
-+	};
-+
-+	regulators-1 {
-+		compatible = "qcom,pm8550vs-rpmh-regulators";
-+		qcom,pmic-id = "c";
-+
-+		pm8550vs_0_l1: ldo1 {
-+			regulator-name = "pm8550vs_0_l1";
-+			regulator-min-microvolt = <1200000>;
-+			regulator-max-microvolt = <1200000>;
-+			regulator-initial-mode = <RPMH_REGULATOR_MODE_HPM>;
-+		};
-+
-+		pm8550vs_0_l3: ldo3 {
-+			regulator-name = "pm8550vs_0_l3";
-+			regulator-min-microvolt = <880000>;
-+			regulator-max-microvolt = <912000>;
-+			regulator-initial-mode = <RPMH_REGULATOR_MODE_HPM>;
-+		};
-+	};
-+
-+	regulators-2 {
-+		compatible = "qcom,pm8550vs-rpmh-regulators";
-+		qcom,pmic-id = "d";
-+
-+		pm8550vs_1_l1: ldo1 {
-+			regulator-name = "pm8550vs_1_l1";
-+			regulator-min-microvolt = <880000>;
-+			regulator-max-microvolt = <920000>;
-+			regulator-initial-mode = <RPMH_REGULATOR_MODE_HPM>;
-+		};
-+
-+		/* L3 exists in cmd-db, but the board seems to crash on access */
-+	};
-+
-+	regulators-3 {
-+		compatible = "qcom,pm8550vs-rpmh-regulators";
-+		qcom,pmic-id = "e";
-+
-+		pm8550vs_2_s4: smps4 {
-+			regulator-name = "pm8550vs_2_s4";
-+			regulator-min-microvolt = <904000>;
-+			regulator-max-microvolt = <984000>;
-+			regulator-initial-mode = <RPMH_REGULATOR_MODE_HPM>;
-+		};
-+
-+		pm8550vs_2_s5: smps5 {
-+			regulator-name = "pm8550vs_2_s5";
-+			regulator-min-microvolt = <1010000>;
-+			regulator-max-microvolt = <1120000>;
-+			regulator-initial-mode = <RPMH_REGULATOR_MODE_HPM>;
-+		};
-+
-+		pm8550vs_2_l1: ldo1 {
-+			regulator-name = "pm8550vs_2_l1";
-+			regulator-min-microvolt = <880000>;
-+			regulator-max-microvolt = <912000>;
-+			regulator-initial-mode = <RPMH_REGULATOR_MODE_HPM>;
-+		};
-+
-+		pm8550vs_2_l2: ldo2 {
-+			regulator-name = "pm8550vs_2_l2";
-+			regulator-min-microvolt = <880000>;
-+			regulator-max-microvolt = <968000>;
-+			regulator-initial-mode = <RPMH_REGULATOR_MODE_HPM>;
-+		};
-+
-+		pm8550vs_2_l3: ldo3 {
-+			regulator-name = "pm8550vs_2_l3";
-+			regulator-min-microvolt = <1200000>;
-+			regulator-max-microvolt = <1200000>;
-+			regulator-initial-mode = <RPMH_REGULATOR_MODE_HPM>;
-+		};
-+	};
-+
-+	regulators-4 {
-+		compatible = "qcom,pm8550ve-rpmh-regulators";
-+		qcom,pmic-id = "f";
-+
-+		pm8550ve_s4: smps4 {
-+			regulator-name = "pm8550ve_s4";
-+			regulator-min-microvolt = <500000>;
-+			regulator-max-microvolt = <700000>;
-+			regulator-initial-mode = <RPMH_REGULATOR_MODE_HPM>;
-+		};
-+
-+		pm8550ve_l1: ldo1 {
-+			regulator-name = "pm8550ve_l1";
-+			regulator-min-microvolt = <912000>;
-+			regulator-max-microvolt = <912000>;
-+			regulator-initial-mode = <RPMH_REGULATOR_MODE_HPM>;
-+		};
-+
-+		pm8550ve_l2: ldo2 {
-+			regulator-name = "pm8550ve_l2";
-+			regulator-min-microvolt = <880000>;
-+			regulator-max-microvolt = <912000>;
-+			regulator-initial-mode = <RPMH_REGULATOR_MODE_HPM>;
-+		};
-+
-+		pm8550ve_l3: ldo3 {
-+			regulator-name = "pm8550ve_l3";
-+			regulator-min-microvolt = <912000>;
-+			regulator-max-microvolt = <912000>;
-+			regulator-initial-mode = <RPMH_REGULATOR_MODE_HPM>;
-+		};
-+	};
-+
-+	regulators-5 {
-+		compatible = "qcom,pm8550vs-rpmh-regulators";
-+		qcom,pmic-id = "g";
-+
-+		pm8550vs_3_s1: smps1 {
-+			regulator-name = "pm8550vs_3_s1";
-+			regulator-min-microvolt = <1200000>;
-+			regulator-max-microvolt = <1300000>;
-+			regulator-initial-mode = <RPMH_REGULATOR_MODE_HPM>;
-+		};
-+
-+		pm8550vs_3_s2: smps2 {
-+			regulator-name = "pm8550vs_3_s2";
-+			regulator-min-microvolt = <500000>;
-+			regulator-max-microvolt = <1036000>;
-+			regulator-initial-mode = <RPMH_REGULATOR_MODE_HPM>;
-+		};
-+
-+		pm8550vs_3_s3: smps3 {
-+			regulator-name = "pm8550vs_3_s3";
-+			regulator-min-microvolt = <300000>;
-+			regulator-max-microvolt = <1004000>;
-+			regulator-initial-mode = <RPMH_REGULATOR_MODE_HPM>;
-+		};
-+
-+		pm8550vs_3_s4: smps4 {
-+			regulator-name = "pm8550vs_3_s4";
-+			regulator-min-microvolt = <1200000>;
-+			regulator-max-microvolt = <1352000>;
-+			regulator-initial-mode = <RPMH_REGULATOR_MODE_HPM>;
-+		};
-+
-+		pm8550vs_3_s5: smps5 {
-+			regulator-name = "pm8550vs_3_s5";
-+			regulator-min-microvolt = <500000>;
-+			regulator-max-microvolt = <1004000>;
-+			regulator-initial-mode = <RPMH_REGULATOR_MODE_HPM>;
-+		};
-+
-+		pm8550vs_3_s6: smps6 {
-+			regulator-name = "pm8550vs_3_s6";
-+			regulator-min-microvolt = <1800000>;
-+			regulator-max-microvolt = <2000000>;
-+			regulator-initial-mode = <RPMH_REGULATOR_MODE_HPM>;
-+		};
-+
-+		pm8550vs_3_l1: ldo1 {
-+			regulator-name = "pm8550vs_3_l1";
-+			regulator-min-microvolt = <1144000>;
-+			regulator-max-microvolt = <1256000>;
-+			regulator-initial-mode = <RPMH_REGULATOR_MODE_HPM>;
-+		};
-+
-+		pm8550vs_3_l2: ldo2 {
-+			regulator-name = "pm8550vs_3_l2";
-+			regulator-min-microvolt = <1104000>;
-+			regulator-max-microvolt = <1200000>;
-+			regulator-initial-mode = <RPMH_REGULATOR_MODE_HPM>;
-+		};
-+
-+		pm8550vs_3_l3: ldo3 {
-+			regulator-name = "pm8550vs_3_l3";
-+			regulator-min-microvolt = <1200000>;
-+			regulator-max-microvolt = <1200000>;
-+			regulator-initial-mode = <RPMH_REGULATOR_MODE_HPM>;
-+		};
-+	};
-+
-+	/* TODO: Unknown PMIC @ k, l, PM8010 @ m, n */
-+};
-+
-+&gpi_dma1 {
-+	status = "okay";
-+};
-+
-+&gpi_dma2 {
-+	status = "okay";
-+};
-+
-+&i2c_hub_2 {
-+	clock-frequency = <400000>;
-+	status = "okay";
-+
-+	pmic@75 {
-+		compatible = "dlg,slg51000";
-+		reg = <0x75>;
-+		dlg,cs-gpios = <&pm8550vs_g_gpios 4 GPIO_ACTIVE_HIGH>;
-+
-+		pinctrl-0 = <&cam_pwr_a_cs>;
-+		pinctrl-names = "default";
-+
-+		regulators {
-+			slg51000_a_ldo1: ldo1 {
-+				regulator-name = "slg51000_a_ldo1";
-+				regulator-min-microvolt = <2400000>;
-+				regulator-max-microvolt = <3300000>;
-+			};
-+
-+			slg51000_a_ldo2: ldo2 {
-+				regulator-name = "slg51000_a_ldo2";
-+				regulator-min-microvolt = <2400000>;
-+				regulator-max-microvolt = <3300000>;
-+			};
-+
-+			slg51000_a_ldo3: ldo3 {
-+				regulator-name = "slg51000_a_ldo3";
-+				regulator-min-microvolt = <1200000>;
-+				regulator-max-microvolt = <3750000>;
-+			};
-+
-+			slg51000_a_ldo4: ldo4 {
-+				regulator-name = "slg51000_a_ldo4";
-+				regulator-min-microvolt = <1200000>;
-+				regulator-max-microvolt = <3750000>;
-+			};
-+
-+			slg51000_a_ldo5: ldo5 {
-+				regulator-name = "slg51000_a_ldo5";
-+				regulator-min-microvolt = <500000>;
-+				regulator-max-microvolt = <1200000>;
-+			};
-+
-+			slg51000_a_ldo6: ldo6 {
-+				regulator-name = "slg51000_a_ldo6";
-+				regulator-min-microvolt = <500000>;
-+				regulator-max-microvolt = <1200000>;
-+			};
-+
-+			slg51000_a_ldo7: ldo7 {
-+				regulator-name = "slg51000_a_ldo7";
-+				regulator-min-microvolt = <1200000>;
-+				regulator-max-microvolt = <3750000>;
-+			};
-+		};
-+	};
-+};
-+
-+&i2c_master_hub_0 {
-+	status = "okay";
-+};
-+
-+&i2c0 {
-+	clock-frequency = <1000000>;
-+	status = "okay";
-+
-+	/* NXP NFC @ 28 */
-+};
-+
-+&i2c4 {
-+	clock-frequency = <400000>;
-+	status = "okay";
-+
-+	/* LX Semi SW82907 touchscreen @ 28 */
-+};
-+
-+&i2c10 {
-+	clock-frequency = <1000000>;
-+	status = "okay";
-+
-+	/* Cirrus Logic CS40L25A boosted haptics driver @ 40 */
-+};
-+
-+&i2c11 {
-+	clock-frequency = <1000000>;
-+	status = "okay";
-+
-+	cs35l41_l: speaker-amp@30 {
-+		compatible = "cirrus,cs35l45";
-+		reg = <0x30>;
-+		interrupts-extended = <&tlmm 182 IRQ_TYPE_LEVEL_LOW>;
-+		reset-gpios = <&tlmm 183 GPIO_ACTIVE_HIGH>;
-+		cirrus,asp-sdout-hiz-ctrl = <(CS35L45_ASP_TX_HIZ_UNUSED | CS35L45_ASP_TX_HIZ_DISABLED)>;
-+		#sound-dai-cells = <1>;
-+
-+		cirrus,gpio-ctrl2 {
-+			gpio-ctrl = <0x2>;
-+		};
-+	};
-+
-+	cs35l41_r: speaker-amp@31 {
-+		compatible = "cirrus,cs35l45";
-+		reg = <0x31>;
-+		interrupts-extended = <&tlmm 182 IRQ_TYPE_LEVEL_LOW>;
-+		reset-gpios = <&tlmm 183 GPIO_ACTIVE_HIGH>;
-+		cirrus,asp-sdout-hiz-ctrl = <(CS35L45_ASP_TX_HIZ_UNUSED | CS35L45_ASP_TX_HIZ_DISABLED)>;
-+		#sound-dai-cells = <1>;
-+
-+		cirrus,gpio-ctrl2 {
-+			gpio-ctrl = <0x2>;
-+		};
-+	};
-+};
-+
-+&pcie0 {
-+	wake-gpios = <&tlmm 96 GPIO_ACTIVE_HIGH>;
-+	perst-gpios = <&tlmm 94 GPIO_ACTIVE_LOW>;
-+
-+	pinctrl-0 = <&pcie0_default_state>;
-+	pinctrl-names = "default";
-+
-+	status = "okay";
-+};
-+
-+&pcie0_phy {
-+	vdda-phy-supply = <&pm8550vs_2_l1>;
-+	vdda-pll-supply = <&pm8550vs_2_l3>;
-+
-+	status = "okay";
-+};
-+
-+&pm8550_flash {
-+	status = "okay";
-+
-+	led-0 {
-+		function = LED_FUNCTION_FLASH;
-+		color = <LED_COLOR_ID_WHITE>;
-+		led-sources = <1>, <4>;
-+		led-max-microamp = <500000>;
-+		flash-max-microamp = <1000000>;
-+		flash-max-timeout-us = <1280000>;
-+		function-enumerator = <0>;
-+	};
-+
-+	led-1 {
-+		function = LED_FUNCTION_FLASH;
-+		color = <LED_COLOR_ID_YELLOW>;
-+		led-sources = <2>, <3>;
-+		led-max-microamp = <500000>;
-+		flash-max-microamp = <1000000>;
-+		flash-max-timeout-us = <1280000>;
-+		function-enumerator = <1>;
-+	};
-+};
-+
-+&pm8550_gpios {
-+	vol_down_n: volume-down-n-state {
-+		pins = "gpio6";
-+		function = "normal";
-+		power-source = <1>;
-+		bias-pull-up;
-+		input-enable;
-+	};
-+
-+	sdc2_card_det_n: sd-card-det-n-state {
-+		pins = "gpio12";
-+		function = "normal";
-+		power-source = <1>;
-+		bias-pull-down;
-+		output-disable;
-+		input-enable;
-+	};
-+};
-+
-+&pm8550b_gpios {
-+	snapshot_n: snapshot-n-state {
-+		pins = "gpio7";
-+		function = "normal";
-+		power-source = <1>;
-+		bias-pull-up;
-+		input-enable;
-+	};
-+
-+	focus_n: focus-n-state {
-+		pins = "gpio8";
-+		function = "normal";
-+		power-source = <1>;
-+		bias-pull-up;
-+		input-enable;
-+	};
-+};
-+
-+&pm8550vs_g_gpios {
-+	cam_pwr_a_cs: cam-pwr-a-cs-state {
-+		pins = "gpio4";
-+		function = "normal";
-+		power-source = <0x01>;
-+		drive-push-pull;
-+		output-low;
-+		qcom,drive-strength = <PMIC_GPIO_STRENGTH_HIGH>;
-+	};
-+};
-+
-+&pm8550b_eusb2_repeater {
-+	qcom,tune-usb2-disc-thres = /bits/ 8 <0x6>;
-+	qcom,tune-usb2-amplitude = /bits/ 8 <0xf>;
-+	qcom,tune-usb2-preem = /bits/ 8 <0x7>;
-+	vdd18-supply = <&pm8550_l15>;
-+	vdd3-supply = <&pm8550_l5>;
-+};
-+
-+&pon_pwrkey {
-+	status = "okay";
-+};
-+
-+&pon_resin {
-+	linux,code = <KEY_VOLUMEUP>;
-+	status = "okay";
-+};
-+
-+&qupv3_id_0 {
-+	status = "okay";
-+};
-+
-+&qupv3_id_1 {
-+	status = "okay";
-+};
-+
-+&remoteproc_adsp {
-+	firmware-name = "qcom/sm8550/Sony/yodo/adsp.mbn",
-+			"qcom/sm8550/Sony/yodo/adsp_dtb.mbn";
-+	status = "okay";
-+};
-+
-+&remoteproc_cdsp {
-+	firmware-name = "qcom/sm8550/Sony/yodo/cdsp.mbn",
-+			"qcom/sm8550/Sony/yodo/cdsp_dtb.mbn";
-+	status = "okay";
-+};
-+
-+&sdhc_2 {
-+	cd-gpios = <&pm8550_gpios 12 GPIO_ACTIVE_HIGH>;
-+	pinctrl-0 = <&sdc2_default &sdc2_card_det_n>;
-+	pinctrl-1 = <&sdc2_sleep &sdc2_card_det_n>;
-+	pinctrl-names = "default", "sleep";
-+	vmmc-supply = <&pm8550_l9>;
-+	vqmmc-supply = <&pm8550_l8>;
-+	no-sdio;
-+	no-mmc;
-+	status = "okay";
-+};
-+
-+&sleep_clk {
-+	clock-frequency = <32000>;
-+};
-+
-+&tlmm {
-+	gpio-reserved-ranges = <32 8>;
-+};
-+
-+&uart7 {
-+	status = "okay";
-+};
-+
-+&usb_1 {
-+	status = "okay";
-+};
-+
-+&usb_1_dwc3 {
-+	dr_mode = "otg";
-+	usb-role-switch;
-+};
-+
-+&usb_1_dwc3_hs {
-+	remote-endpoint = <&pmic_glink_hs_in>;
-+};
-+
-+&usb_1_dwc3_ss {
-+	remote-endpoint = <&usb_dp_qmpphy_usb_ss_in>;
-+};
-+
-+&usb_1_hsphy {
-+	vdd-supply = <&pm8550vs_2_l1>;
-+	vdda12-supply = <&pm8550vs_2_l3>;
-+	phys = <&pm8550b_eusb2_repeater>;
-+
-+	status = "okay";
-+};
-+
-+&usb_dp_qmpphy {
-+	vdda-phy-supply = <&pm8550vs_2_l3>;
-+	vdda-pll-supply = <&pm8550ve_l3>;
-+	orientation-switch;
-+
-+	status = "okay";
-+};
-+
-+&usb_dp_qmpphy_out {
-+	remote-endpoint = <&pmic_glink_ss_in>;
-+};
-+
-+&usb_dp_qmpphy_usb_ss_in {
-+	remote-endpoint = <&usb_1_dwc3_ss>;
-+};
-+
-+&xo_board {
-+	clock-frequency = <76800000>;
-+};
-
--- 
-2.43.1
+--=20
+2.43.0.687.g38aa6559b0-goog
 
 
