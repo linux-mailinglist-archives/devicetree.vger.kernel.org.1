@@ -1,74 +1,63 @@
-Return-Path: <devicetree+bounces-40585-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-40586-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id BEA17850E93
-	for <lists+devicetree@lfdr.de>; Mon, 12 Feb 2024 09:06:30 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id DD35A850E97
+	for <lists+devicetree@lfdr.de>; Mon, 12 Feb 2024 09:07:19 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id E3A421C216B4
-	for <lists+devicetree@lfdr.de>; Mon, 12 Feb 2024 08:06:29 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 0CDF61C2130E
+	for <lists+devicetree@lfdr.de>; Mon, 12 Feb 2024 08:07:19 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id BAA9D3207;
-	Mon, 12 Feb 2024 08:06:15 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id EDF4979E2;
+	Mon, 12 Feb 2024 08:07:14 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="j36Kf9Vn"
+	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="TsR7nBuk"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lf1-f52.google.com (mail-lf1-f52.google.com [209.85.167.52])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from lelv0143.ext.ti.com (lelv0143.ext.ti.com [198.47.23.248])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E46C5F9CA
-	for <devicetree@vger.kernel.org>; Mon, 12 Feb 2024 08:06:13 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.52
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A321C321D;
+	Mon, 12 Feb 2024 08:07:12 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.23.248
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1707725175; cv=none; b=jHMzmM9G3GMNP1ckl8UzRjNopso+C5miE/m5pKlwwukbKMxfz8sg2dBjUDR2fm5S1o7xLYTFIXDvhi3YygW0M5Cne7DEgfRyJ4JVpFY+UEifpJi6pEJhN4QnmQ+pbOuOd9EfqOu8ayJ2kCC/9sANCJ/KsYTCEPDmb3ejtu/73Cs=
+	t=1707725234; cv=none; b=Pzc5euJroMaSRb/emeAYmSBrnqHYACbN05ga72oNukxWk84os7ge6rdvyxC4+SdElMAf0zJEQLtpnLATCbF6yh9x9irEbcKJi76v5hWh3mt+/EZ/n2yNwf/TXRCTvwhsEuwMw35unZMgCBMl7FY6eytzAmobGk/mxqvdYu3RtPE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1707725175; c=relaxed/simple;
-	bh=36XQO96DsT3oPwV40x5XQq5zFj/eQDZiSVBrPKBRKxU=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=bI5lFf/XIUjeeAB2/KWZiPv9M+mvmgAARLJG5oT69v4L4T+HB6lgBHzCO8a9evCdTNKumvHoOOExoT12XbCBwf874OdGAmHkE+p+jUYVsNg1Qj8rRh61lqF4l64jKS4Wgzsq4NwF05PtM3B7RwcUz5/IsZGic64NN13YjdahcbM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=j36Kf9Vn; arc=none smtp.client-ip=209.85.167.52
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-lf1-f52.google.com with SMTP id 2adb3069b0e04-51181d8f52fso1815029e87.3
-        for <devicetree@vger.kernel.org>; Mon, 12 Feb 2024 00:06:13 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1707725172; x=1708329972; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
-         :to:content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=CbQOlcS38lNorYOFMdrL1FUETrD2W5+o8O5DySchflQ=;
-        b=j36Kf9VnFDZ+jxDsaKmVOa90w7Lg6yNl3tyiVp8twl4qZ+UY9ygsnMpzzXFG5oQcvq
-         ZsOKk8+iR9zrgT44zhNdvQB7RMJMqleHoWyBiHE8mcqO69DgifCnurK/TYpjmRhqr8l9
-         FEEYpUre3u/DtFg7wx+5vd051+FmVq7ENq6ISIF1DvBMkkKeuGqHycwREv91LxIv/JRB
-         t54gWXpbt5k5aPcCh95GwYmaHHpAiUqooGyVKLv96Sec9myHMW116+oWMA4vqVqXrDml
-         pz0a2iBOfoYKelXIscN7tPHdtyLFoAAWbhRos8PdOvLqA4b1Q9YpsXpSmypQZebbSfaB
-         3JjQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1707725172; x=1708329972;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
-         :to:content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=CbQOlcS38lNorYOFMdrL1FUETrD2W5+o8O5DySchflQ=;
-        b=sRuWJYSZD1drERRm3sVN5e0c5JHCSEvUWE6Ti4RPfFiTZBQwhoYUi2roW2y8wpe1n4
-         5fxnuoLiIJdEYkjsLV9TWkFI+ahGTWiy9Jfm8+ISexFSoEIM3/2IYHSguLUa1TzAdOu3
-         Em3fpddqdHs5ZxRvx8gDbINhxJRIqu+VJIkIw1uQgwrnPHjFf1gHHZ0zp9FRuVelmOxb
-         hkecQkYJqmdcB7/AxMTZsYwhesVDVu8LAiXURi5crhEJXqqp0AjCbNTjTtKh59dtkK4i
-         Ai6/p//Ti3pb3cmQsvJUQTGSM8HT01sHhrDS8p8LskJ5Qazn+UZzut3qPt+j2ifUCgC6
-         BTOA==
-X-Gm-Message-State: AOJu0Yz1oyvRvROLG+BMFU0/hVktkC2Vs3brVjSCLZJoBJfZ7qzkP6Bo
-	PQ0AuYGGsIP2iRIMSLY/0/R/I7rWr40hS6zQd+lyYflOWzzNBQO3u4cPolFW4MM=
-X-Google-Smtp-Source: AGHT+IFpW16b4m/9wQZgcZ5u0hre5D1K3WEKW27nJjwubvdGFaxOrN9QSXyQ7/cdWCy0dyRWRO5+FQ==
-X-Received: by 2002:a05:6512:39c4:b0:511:8b95:1384 with SMTP id k4-20020a05651239c400b005118b951384mr2421709lfu.26.1707725171788;
-        Mon, 12 Feb 2024 00:06:11 -0800 (PST)
-X-Forwarded-Encrypted: i=1; AJvYcCWFSpXChVUyjQMK2D6qSa+WZAyVhOJze/M6O+MXzry1OU56mmiQ8nEfO738tsY+l3HFMNp+u5Wy/HrfqoGVh1r1a1OOsUjRyk8sIxcR5xgoX6t2TEd7v+vY9gRk+RGYAO25Pfw0qoLnlDxKn+cRIYGA417aKTXMuVAnhKl8duC9YlpWsWyrB4jGuToVlK3Oywtje20TYtk/FwSDzxioXmn6xJhk8aKE5IDWlTkcOBVfH7DVCZkUaR5/48jzM4TdlRIAqShCJc5bFE2xfq80vOQL39gQ7PhyeHGA6mVAIVpCoIl1ged+eN1MraF4bgi2Q9Z10agNHUoVllWXX1SlkVFSpDcsTwRWOY4tqgvJCXsNVO3ukLHRH/UD81wTbHyO1uaT/2I+KnkETJryMgclT7Wa2qy342prK9L97FBVZBEadKgQIUJK2rmcLD6VcKtnY+gC1ClrXwcKw4Sa3dMC/1o8zUp+clSG5SyJ8BbQC9z1lR1Af6Yu9wkNsb+PdXyp8KQYO81DzCgVOWyLFH6216cgyOOrVFIzKpjcD4bwwJ8JdI44nG5IsQhoihNFpC+54w6yYLDN+s4r061Xd2qbsJ5gX55+vN/OmW4DxFkUTITf/hgaqep5wKLBNQ8nGULmif1R4n1YQEGaiX9fL65ihsLJozF6Og==
-Received: from [192.168.1.20] ([178.197.223.6])
-        by smtp.gmail.com with ESMTPSA id h16-20020a05600c351000b00410e6a6403esm980417wmq.34.2024.02.12.00.06.09
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 12 Feb 2024 00:06:11 -0800 (PST)
-Message-ID: <adeb3ebb-76ed-4f00-8b46-a1b9c36cfc64@linaro.org>
-Date: Mon, 12 Feb 2024 09:06:09 +0100
+	s=arc-20240116; t=1707725234; c=relaxed/simple;
+	bh=/NObT2BJIRRk804yYtLjSJP7XuBFv1Z6SfpCILaMLCQ=;
+	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
+	 In-Reply-To:Content-Type; b=lDSn9Qfxz/TUbFKWqyWiWXjVqsx8m/AnElYo30ayD611zIR47yMleQ8i5zQDjcgqq6W6WomwJcINu4sc1FEDh0HytY5Miymer/QPALAF+bfUYs+PXVA/vvqyFYnWSzM0WeZJYYmxUSPo3u3bFsUn0Sw+8l1/NGOfHHm/bmUnuvU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=TsR7nBuk; arc=none smtp.client-ip=198.47.23.248
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
+Received: from fllv0035.itg.ti.com ([10.64.41.0])
+	by lelv0143.ext.ti.com (8.15.2/8.15.2) with ESMTP id 41C86xDK060972;
+	Mon, 12 Feb 2024 02:06:59 -0600
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+	s=ti-com-17Q1; t=1707725219;
+	bh=LJcHlbKaaeOSneIcBbGao3hkbua7EzT+M3NQRcb+ECI=;
+	h=Date:Subject:To:CC:References:From:In-Reply-To;
+	b=TsR7nBukuq6qd5GXTJPbS5M89uxd8CYUSwToNoMqQBNQYJwEVgm/DhsyW77IgQhdq
+	 khzcaGbQ4dxALyaHFHEq35TtSxwcfEu6oevai0Ps0U6kurOsJVGUzzSvVEoyYN2Zzu
+	 4oMlu6goBVHy6lWUIn682T7mlPg03AdPQ++tiHV4=
+Received: from DLEE101.ent.ti.com (dlee101.ent.ti.com [157.170.170.31])
+	by fllv0035.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 41C86xTU039332
+	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+	Mon, 12 Feb 2024 02:06:59 -0600
+Received: from DLEE108.ent.ti.com (157.170.170.38) by DLEE101.ent.ti.com
+ (157.170.170.31) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Mon, 12
+ Feb 2024 02:06:58 -0600
+Received: from lelvsmtp6.itg.ti.com (10.180.75.249) by DLEE108.ent.ti.com
+ (157.170.170.38) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
+ Frontend Transport; Mon, 12 Feb 2024 02:06:59 -0600
+Received: from [10.24.69.25] (danish-tpc.dhcp.ti.com [10.24.69.25])
+	by lelvsmtp6.itg.ti.com (8.15.2/8.15.2) with ESMTP id 41C86suZ031111;
+	Mon, 12 Feb 2024 02:06:55 -0600
+Message-ID: <1a29102b-b3b6-4aee-96b2-5169fefeecb3@ti.com>
+Date: Mon, 12 Feb 2024 13:36:53 +0530
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -76,92 +65,195 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v3 03/10] dt-bindings: display: bridge: tc358775: Add
- support for tc358765
+Subject: Re: [PATCH v3 3/3] arm64: dts: ti: k3-am642-evm: add overlay for
+ icssg1 2nd port
 Content-Language: en-US
-To: Tony Lindgren <tony@atomide.com>, Andrzej Hajda
- <andrzej.hajda@intel.com>, Neil Armstrong <neil.armstrong@linaro.org>,
- Robert Foss <rfoss@kernel.org>,
- Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
- Jonas Karlman <jonas@kwiboo.se>, Jernej Skrabec <jernej.skrabec@gmail.com>,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>,
- David Airlie <airlied@gmail.com>, Daniel Vetter <daniel@ffwll.ch>,
- Rob Herring <robh+dt@kernel.org>,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Conor Dooley <conor+dt@kernel.org>, Simha BN <simhavcs@gmail.com>,
- Sam Ravnborg <sam@ravnborg.org>
-Cc: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
- Michael Walle <mwalle@kernel.org>, dri-devel@lists.freedesktop.org,
- devicetree@vger.kernel.org
-References: <20240211095144.2589-1-tony@atomide.com>
- <20240211095144.2589-4-tony@atomide.com>
-From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
- 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
- D2GYIS41Kv4Isx2dEFh+/Q==
-In-Reply-To: <20240211095144.2589-4-tony@atomide.com>
-Content-Type: text/plain; charset=UTF-8
+To: Roger Quadros <rogerq@kernel.org>, Vignesh Raghavendra <vigneshr@ti.com>,
+        Nishanth Menon <nm@ti.com>
+CC: Andrew Lunn <andrew@lunn.ch>, Conor Dooley <conor+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Rob Herring
+	<robh+dt@kernel.org>, <linux-kernel@vger.kernel.org>,
+        <devicetree@vger.kernel.org>, <linux-arm-kernel@lists.infradead.org>,
+        Tero
+ Kristo <kristo@kernel.org>, <srk@ti.com>, <r-gunasekaran@ti.com>
+References: <20240122113045.1711818-1-danishanwar@ti.com>
+ <20240122113045.1711818-4-danishanwar@ti.com>
+ <33e62844-a148-4374-aba8-481dc7799e15@kernel.org>
+From: MD Danish Anwar <danishanwar@ti.com>
+In-Reply-To: <33e62844-a148-4374-aba8-481dc7799e15@kernel.org>
+Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: 7bit
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 
-On 11/02/2024 10:51, Tony Lindgren wrote:
-> The tc358765 is similar to tc358775. The tc358765 just an earlier version
-> of the hardware, and it's pin and register compatible with tc358775 for
-> most part.
+Hi Roger,
+
+On 02/02/24 5:56 pm, Roger Quadros wrote:
 > 
-> From the binding point of view the only difference is that the tc358765
-> does not have stdby-gpios.
 > 
-> Signed-off-by: Tony Lindgren <tony@atomide.com>
-> ---
+> On 22/01/2024 13:30, MD Danish Anwar wrote:
+>> The am642-evm doesn't allow to enable 2 x CPSW3g ports and 2 x ICSSG1 ports
+>> all together, so base k3-am642-evm.dts enables by default 2 x CPSW3g ports
+>> and 1 x ICSSG1 ports, but it also possible to support 1 x CPSW3g ports and
+>> 2 x ICSSG1 ports configuration.
+> 
+> "it is also possible"
+> 
+> OK so there can only be 3 ethernet ports on this board. There is no "ethernet3" alias.
+> 
+>>
+>> This patch adds overlay to support 1 x CPSW3g ports and 2 x ICSSG1 ports
+>> configuration:
+>> - Add label name 'mdio_mux_1' for 'mdio-mux-1' node so that the node
+>>   'mdio-mux-1' can be disabled in the overlay using the label name.
+>> - disable 2nd CPSW3g port
+>> - update CPSW3g pinmuxes to not use RGMII2
+>> - disable mdio-mux-1 and define mdio-mux-2 to route ICSSG1 MDIO to the
+>>   shared DP83869 PHY
+>> - add and enable ICSSG1 RGMII2 pinmuxes
+>> - enable ICSSG1 MII1 port
+>>
+>> Signed-off-by: MD Danish Anwar <danishanwar@ti.com>
+>> ---
+>>  arch/arm64/boot/dts/ti/Makefile               |  5 ++
+>>  .../dts/ti/k3-am642-evm-icssg1-dualemac.dtso  | 75 +++++++++++++++++++
+>>  arch/arm64/boot/dts/ti/k3-am642-evm.dts       |  2 +-
+>>  3 files changed, 81 insertions(+), 1 deletion(-)
+>>  create mode 100644 arch/arm64/boot/dts/ti/k3-am642-evm-icssg1-dualemac.dtso
+>>
+>> diff --git a/arch/arm64/boot/dts/ti/Makefile b/arch/arm64/boot/dts/ti/Makefile
+>> index 52c1dc910308..320b2fae5730 100644
+>> --- a/arch/arm64/boot/dts/ti/Makefile
+>> +++ b/arch/arm64/boot/dts/ti/Makefile
+>> @@ -43,6 +43,7 @@ dtb-$(CONFIG_ARCH_K3) += k3-am642-sk.dtb
+>>  dtb-$(CONFIG_ARCH_K3) += k3-am642-tqma64xxl-mbax4xxl.dtb
+>>  dtb-$(CONFIG_ARCH_K3) += k3-am64-tqma64xxl-mbax4xxl-sdcard.dtbo
+>>  dtb-$(CONFIG_ARCH_K3) += k3-am64-tqma64xxl-mbax4xxl-wlan.dtbo
+>> +dtb-$(CONFIG_ARCH_K3) += k3-am642-evm-icssg1-dualemac.dtbo
+>>  
+>>  # Boards with AM65x SoC
+>>  k3-am654-gp-evm-dtbs := k3-am654-base-board.dtb k3-am654-base-board-rocktech-rk101-panel.dtbo
+>> @@ -105,6 +106,8 @@ k3-am642-tqma64xxl-mbax4xxl-sdcard-dtbs := \
+>>  	k3-am642-tqma64xxl-mbax4xxl.dtb k3-am64-tqma64xxl-mbax4xxl-sdcard.dtbo
+>>  k3-am642-tqma64xxl-mbax4xxl-wlan-dtbs := \
+>>  	k3-am642-tqma64xxl-mbax4xxl.dtb k3-am64-tqma64xxl-mbax4xxl-wlan.dtbo
+>> +k3-am642-evm-icssg1-dualemac-dtbs := \
+>> +	k3-am642-evm.dtb k3-am642-evm-icssg1-dualemac.dtbo
+>>  k3-j721e-evm-pcie0-ep-dtbs := k3-j721e-common-proc-board.dtb \
+>>  	k3-j721e-evm-pcie0-ep.dtbo
+>>  k3-j721s2-evm-pcie1-ep-dtbs := k3-j721s2-common-proc-board.dtb \
+>> @@ -120,6 +123,7 @@ dtb- += k3-am625-beagleplay-csi2-ov5640.dtb \
+>>  	k3-am62a7-sk-csi2-ov5640.dtb \
+>>  	k3-am642-tqma64xxl-mbax4xxl-sdcard.dtb \
+>>  	k3-am642-tqma64xxl-mbax4xxl-wlan.dtb \
+>> +	k3-am642-evm-icssg1-dualemac.dtb \
+>>  	k3-j721e-evm-pcie0-ep.dtb \
+>>  	k3-j721s2-evm-pcie1-ep.dtb
+>>  
+>> @@ -129,6 +133,7 @@ DTC_FLAGS_k3-am625-sk += -@
+>>  DTC_FLAGS_k3-am62-lp-sk += -@
+>>  DTC_FLAGS_k3-am62a7-sk += -@
+>>  DTC_FLAGS_k3-am642-tqma64xxl-mbax4xxl += -@
+>> +DTC_FLAGS_k3-am642-evm += -@
+>>  DTC_FLAGS_k3-am6548-iot2050-advanced-m2 += -@
+>>  DTC_FLAGS_k3-j721e-common-proc-board += -@
+>>  DTC_FLAGS_k3-j721s2-common-proc-board += -@
+>> diff --git a/arch/arm64/boot/dts/ti/k3-am642-evm-icssg1-dualemac.dtso b/arch/arm64/boot/dts/ti/k3-am642-evm-icssg1-dualemac.dtso
+>> new file mode 100644
+>> index 000000000000..b2b1a6252e73
+>> --- /dev/null
+>> +++ b/arch/arm64/boot/dts/ti/k3-am642-evm-icssg1-dualemac.dtso
+>> @@ -0,0 +1,75 @@
+>> +// SPDX-License-Identifier: GPL-2.0
+> 
+> Don't you need to use updated licensing header like in the series [1]
+> 
+> [1] https://lore.kernel.org/all/20240110140903.4090946-1-nm@ti.com/
+> 
+>> +/**
+>> + * DT overlay for enabling 2nd ICSSG1 port on AM642 EVM
+>> + *
+>> + * Copyright (C) 2023 Texas Instruments Incorporated - https://www.ti.com/
+>> + */
+>> +
+>> +/dts-v1/;
+>> +/plugin/;
+>> +
+>> +#include <dt-bindings/gpio/gpio.h>
+>> +#include "k3-pinctrl.h"
+>> +
+>> +&{/} {
+> 
+> You need to fixup alias for ethernet1 to icssg1_emac1?
+> 
+>> +	mdio-mux-2 {
+> 
+> this should be mdio-mux@0 ?
+> 
+>> +		compatible = "mdio-mux-multiplexer";
+>> +		mux-controls = <&mdio_mux>;
+>> +		mdio-parent-bus = <&icssg1_mdio>;
+>> +		#address-cells = <1>;
+>> +		#size-cells = <0>;
+>> +
+>> +		mdio@0 {
+>> +			reg = <0x0>;
+>> +			#address-cells = <1>;
+>> +			#size-cells = <0>;
+>> +
+>> +			icssg1_phy2: ethernet-phy@3 {
+>> +				reg = <3>;
+>> +				tx-internal-delay-ps = <250>;
+>> +				rx-internal-delay-ps = <2000>;
+>> +			};
+>> +		};
+>> +	};
+>> +};
+>> +
 
-It does not look like you tested the bindings, at least after quick
-look. Please run `make dt_binding_check` (see
-Documentation/devicetree/bindings/writing-schema.rst for instructions).
-Maybe you need to update your dtschema and yamllint.
+<snip>
 
-Best regards,
-Krzysztof
+>> +};
+>> diff --git a/arch/arm64/boot/dts/ti/k3-am642-evm.dts b/arch/arm64/boot/dts/ti/k3-am642-evm.dts
+>> index c08b0223be52..6ae43c12419f 100644
+>> --- a/arch/arm64/boot/dts/ti/k3-am642-evm.dts
+>> +++ b/arch/arm64/boot/dts/ti/k3-am642-evm.dts
+>> @@ -200,7 +200,7 @@ mdio_mux: mux-controller {
+>>  		mux-gpios = <&exp1 12 GPIO_ACTIVE_HIGH>;
+>>  	};
+>>  
+>> -	mdio-mux-1 {
+>> +	mdio_mux_1: mdio-mux-1 {
+> 
+> mdio_mux_1: mdio-mux@1
+> 
 
+Changing this from mdio-mux-1 to mdio-mux@1 is giving me erorr in DTBS_CHECK
+
+/home/danish/workspace/linux-next/arch/arm64/boot/dts/ti/k3-am642-evm.dtb:
+/: mdio-mux@1: 'anyOf' conditional failed, one must be fixed:
+	'reg' is a required property
+	'ranges' is a required property
+	from schema $id: http://devicetree.org/schemas/root-node.yaml#
+
+The documentation of mdio-mux-multiplexer [1] also has example section
+with node name as -1 instead of @1. I don't think node should be renamed
+to mdio-mux@1.
+
+I hadn't done DTBS_CHECK earlier have already made this change in v4
+[2]. I will revert back this change and keep the nodes as mdio-mux-1 and
+mdio-mux-2 in v5. Let me know if it's OK with you.
+
+[1]
+https://git.kernel.org/pub/scm/linux/kernel/git/next/linux-next.git/tree/Documentation/devicetree/bindings/net/mdio-mux-multiplexer.yaml#n34
+[2] https://lore.kernel.org/all/20240205090546.4000446-4-danishanwar@ti.com/
+
+>>  		compatible = "mdio-mux-multiplexer";
+>>  		mux-controls = <&mdio_mux>;
+>>  		mdio-parent-bus = <&cpsw3g_mdio>;
+> 
+
+-- 
+Thanks and Regards,
+Danish
 
