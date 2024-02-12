@@ -1,253 +1,568 @@
-Return-Path: <devicetree+bounces-40834-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-40836-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id C3413851798
-	for <lists+devicetree@lfdr.de>; Mon, 12 Feb 2024 16:07:00 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 00A118517A0
+	for <lists+devicetree@lfdr.de>; Mon, 12 Feb 2024 16:07:55 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 335FA1F22C60
-	for <lists+devicetree@lfdr.de>; Mon, 12 Feb 2024 15:07:00 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 7260F1F22E2D
+	for <lists+devicetree@lfdr.de>; Mon, 12 Feb 2024 15:07:55 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 23B203BB35;
-	Mon, 12 Feb 2024 15:06:46 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7BDA43CF62;
+	Mon, 12 Feb 2024 15:07:17 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b="y8r5XbP7"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-yb1-f170.google.com (mail-yb1-f170.google.com [209.85.219.170])
+Received: from mail-ed1-f43.google.com (mail-ed1-f43.google.com [209.85.208.43])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E68BA3C47E;
-	Mon, 12 Feb 2024 15:06:43 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.219.170
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 84BE23CF55
+	for <devicetree@vger.kernel.org>; Mon, 12 Feb 2024 15:07:14 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.43
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1707750406; cv=none; b=Z+3ocziLe4jIigyEHX453Jj3Ta2ZCBUoZotioj89DKIVz1X3GBluZCIyey2DAmcnzF7yG9YiyoA9zkfM5eAghN/FDPM/ZHajaNemhi50kkhJcy/gDbmnybAUY4AvWRwdUxWECZGtigJqDWNvN1N9LznHal4wBkXftlVaPjXElFk=
+	t=1707750437; cv=none; b=hKe4oHfE0+tDnUZg+t+CpHwpexkO+bwDF4AGDxYi3/8oO6JVvEBNxK7inPpwCORIwbOKKr1v4+JoGoq32YeOY3PGJAOrmw3Rv6eQd67gb+JjAz5ykLnyRoEfWOlgdjF/3d3s5o9mVu4qOT3ge+9yAQsMOXrpNEdu+oVRxfN3y24=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1707750406; c=relaxed/simple;
-	bh=ufnmT2e9W6WABLB7hjySQbl0BaqV/Nq73vu6yex5qFc=;
+	s=arc-20240116; t=1707750437; c=relaxed/simple;
+	bh=iAq0vYG/SsCMrTq7cZmj2bBoP9DrqTRoY+5WZPk8mbA=;
 	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=n1bYGxwovZT/okc7ocHorUVJRIc4gigLcktKwS8ogbPCfOHxx73ekuBO1JVOs39pVHH/8NCHmp/f5iysZCfJDU6PffgkiOirl5wbv5EeIU2x0TVcnY2+lpXWqsfIxIJD1fDTAlf2154NlAsLZyjk/KcqzfWTemXRcemzhIZCXF4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org; spf=pass smtp.mailfrom=gmail.com; arc=none smtp.client-ip=209.85.219.170
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-yb1-f170.google.com with SMTP id 3f1490d57ef6-dcbbc41d3d5so322914276.3;
-        Mon, 12 Feb 2024 07:06:43 -0800 (PST)
+	 To:Cc:Content-Type; b=VJo18ubjPvERdyBbBoxRMdJYhWbggzJv/d1ud/g1oSESIag3mnOKOecaIrFBfFBaOKPPVa+3ywl6A0EfbrqGwUMsKeusHbWDYy6GgOaV301Pa8QN/QhHf3Kzej+Z4xSNrdv+3l+q90IKKpNR9RhY4M8yXZEurPwlg9RvlQ+rL3I=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com; spf=pass smtp.mailfrom=baylibre.com; dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b=y8r5XbP7; arc=none smtp.client-ip=209.85.208.43
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=baylibre.com
+Received: by mail-ed1-f43.google.com with SMTP id 4fb4d7f45d1cf-5611e54a92dso4076471a12.2
+        for <devicetree@vger.kernel.org>; Mon, 12 Feb 2024 07:07:14 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1707750433; x=1708355233; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=EC3i7WPMyRp3IYdvEIEGD0i8jh4jq28FmjUJ5nE720E=;
+        b=y8r5XbP78dK1hpKiomRK1tDJUqtuRJrBNpjjGPqszPHS4/j7XDkMAg+K3X00NVYk4O
+         gW0R1t4tYyzsLQAe2AUKZXxz+WqdcxwCzqhNbbVSktkIhJ2Czf/e08jaVLRwB/eNYsgE
+         QJJvW1brTnV3iOODOCAv2KNq9DJtIgVPVHB8q+jYDG4CqGs25chpk5dE1K13zC4VfLT7
+         0ABtqkLldpzmc1Yulkj9I92ajMSXrQQeMInHCIP0wDCawl5JEgi0PNgbGkpuVSNPxyaN
+         RYEFPJCNKaaKXis3TFsPpemTEMD5GW8U+adqGSwyYyI45BC1DcEst9Ovw1oLtgRftSlO
+         bWkw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1707750402; x=1708355202;
+        d=1e100.net; s=20230601; t=1707750433; x=1708355233;
         h=content-transfer-encoding:cc:to:subject:message-id:date:from
          :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=aBYpbL0dwUHHMyiE3/WYZAgE3cO8Wbbe2N6Kc8nfj4s=;
-        b=ixESpnbLYz3Crlt1CJ/WKv17oODLpMeS8T6LXvAju+L81kL+WTp6WLX6WsmBEjgh5r
-         g9aRT5458Q4PVoGakZkm+5MS0GzTn2kF6v0ja1i4fMI8WR/cP72+cbXFLIYvIyBj0zSU
-         qVlJ1ddK0WDMddWmCtsznH0lqPCT+kb9u7oMtb781PjSdJ5eZgMY7EMXiXs1paJRhmkB
-         dvsd07bMkmGiRGtxPWr2JzCqYfa6/Gl1SC1JizULG0j4Cd5YfvE8qLmgVHvol2yiQmmm
-         4hWI291FI1agIXJnl1ydQPoIdaLAZKLOwbq2Y4LwZv7t/+NeFW39biGf2XmByqw+RA/r
-         A7mQ==
-X-Forwarded-Encrypted: i=1; AJvYcCWHPT/rHdhT0aTskVl4ylL0/M6EV/jbV5HWNOHqPk8wAD85Tb8ef5Jakm1c7DebyxWY/aPkWm7E343oiePBFhrnbbJRGECCkDN9kOu7iRnvsJwsvFATmQjYCbO/v531+bYLYhj94j7VgwC6jQ1ONTEBpxgphVsMIQflGH4JnUZX6CUoZW69XAzQTG/E8fwqZWAnFwq9fPeFmfcU9N076vx4sAbsHo4Ovw==
-X-Gm-Message-State: AOJu0YyC2L5GM2CveRqmcEf/Ppn3iU1QM8zV+RgPAOKf+7DEjiJNDAJ1
-	gpFsCoj7RuXscPIr5u9rXYABEYiuCEBPpERsBcaQqkuIf8+c0jJ3XdoWTluzGvY=
-X-Google-Smtp-Source: AGHT+IHz6VvCgpyoqm9gCZ5w++EtGkTJYD6Iv01W86LO4rU6HXC4B4El54S8sZHAsc8pshIT9wDK4Q==
-X-Received: by 2002:a25:a28d:0:b0:dc6:db0c:4ff0 with SMTP id c13-20020a25a28d000000b00dc6db0c4ff0mr5654838ybi.32.1707750401871;
-        Mon, 12 Feb 2024 07:06:41 -0800 (PST)
-X-Forwarded-Encrypted: i=1; AJvYcCXfqP2bxEiN7SYCFI0mdeAxet/cVLsj2DZv9/rq/7NzL1avFODdWTopv0GozM1ewCdax0Yfq+EqDjM/Eoepx5hEcTGyz+Yze/XrZv+zmEp134MVwfZwReI8OKwOkrq7P6MpLTsKoiJWZRp2RextkJikVt3N2vPUKNQ1ZgOnvXkEiHOUkPfIuDxppr4I2ml1bXrYRB1eep4hHbxSwT6kfKQfYBUtsG8DWw==
-Received: from mail-yb1-f174.google.com (mail-yb1-f174.google.com. [209.85.219.174])
-        by smtp.gmail.com with ESMTPSA id w26-20020a25ac1a000000b00dc6bd47cc03sm1260067ybi.5.2024.02.12.07.06.41
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 12 Feb 2024 07:06:41 -0800 (PST)
-Received: by mail-yb1-f174.google.com with SMTP id 3f1490d57ef6-dc236729a2bso3059250276.0;
-        Mon, 12 Feb 2024 07:06:41 -0800 (PST)
-X-Forwarded-Encrypted: i=1; AJvYcCUitnGNnBJFqV58VoJ0Cg80lXUA7S8wi8Y6worc1ooRp6te+ChZHbqWiLLE0pT+6th47Yfk4alczRY+i7Iqjm+nDod9hOw8fhp5QyNtu3f/MMf6sd19FYong/pILdOHP+w0HZ5tRPZerv7mX0w0vzl37tbK3dR+gAOFd8v2XXxEgllCaT+m+YUyK3gKtkKalOsJ58+mj++zSrsUGsL19R8aB+Tl2jkwEQ==
-X-Received: by 2002:a05:6902:2007:b0:dc6:978:19a4 with SMTP id
- dh7-20020a056902200700b00dc6097819a4mr6031942ybb.56.1707750401390; Mon, 12
- Feb 2024 07:06:41 -0800 (PST)
+        bh=EC3i7WPMyRp3IYdvEIEGD0i8jh4jq28FmjUJ5nE720E=;
+        b=ZzpFY9uIpQZFQD5IY6s7YDJfX3D3jzB8O1yZu8FsV1kmyVwfHW4/UcMhvfQ1m93pdr
+         UDv2QWzViQVNXvR6QpprlvEsMk2dI1ZLXWl/PwjityFStyqqAMZ8hjSKKmkn4O/ID94H
+         Y5k+2ji07YSkJT+kajLM3uI+y6D9YTCBUXSAAEkipt3Wc0K8uQujE6OheuRcsP57/0AT
+         ix3egXeMPKWcPx4fk3aYDyQkY+SkK/TACEvK/Jdx9J3wg9nAsMgpFNOAmcmgYnee+Htr
+         GFpZ3wVe3qh8Z3dHr4dEN5dltcqpzky5O3IMKtf0IRPAhalZY4/6ri9cRxJvKwtnEi3k
+         zjNg==
+X-Gm-Message-State: AOJu0YwPfDLoh8Mhcv4wAgpxOfEgQpzOoDH2AeEPIcMImpuJzqQahDcj
+	Y1P6KvLGg1yxINSQouDnhRutcNrRlnwDBsAoQj5ZW9N+yHDO65c4+y3dtG9XaFrgp3dvvB6npc9
+	vUCz8REkpp+ZjQ//vHeJImZazjI17Yv07RCUz1oRbI6L+0MV/QSo=
+X-Google-Smtp-Source: AGHT+IGOztcD6VUkwD3HWT6e1rn0+70jwBqA/VXoPNP45PWBLZM25XLMCH/NpPo2qWX16wJHIZztxtkKeA3vGhJSmGw=
+X-Received: by 2002:aa7:c393:0:b0:55e:ea35:1da4 with SMTP id
+ k19-20020aa7c393000000b0055eea351da4mr4872130edq.4.1707750432529; Mon, 12 Feb
+ 2024 07:07:12 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20240208135629.2840932-1-claudiu.beznea.uj@bp.renesas.com> <20240208135629.2840932-2-claudiu.beznea.uj@bp.renesas.com>
-In-Reply-To: <20240208135629.2840932-2-claudiu.beznea.uj@bp.renesas.com>
-From: Geert Uytterhoeven <geert@linux-m68k.org>
-Date: Mon, 12 Feb 2024 16:06:28 +0100
-X-Gmail-Original-Message-ID: <CAMuHMdUG595o8u1kgqW6DxfvBuzKuOPv7XkJhg_GQmnbRui8Tw@mail.gmail.com>
-Message-ID: <CAMuHMdUG595o8u1kgqW6DxfvBuzKuOPv7XkJhg_GQmnbRui8Tw@mail.gmail.com>
-Subject: Re: [PATCH 1/2] pinctrl: renesas: rzg2l: Add suspend/resume support
-To: Claudiu <claudiu.beznea@tuxon.dev>
-Cc: magnus.damm@gmail.com, robh@kernel.org, krzysztof.kozlowski+dt@linaro.org, 
-	conor+dt@kernel.org, linus.walleij@linaro.org, 
-	linux-renesas-soc@vger.kernel.org, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org, linux-gpio@vger.kernel.org, 
-	Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>
+References: <20240110141443.364655-1-jstephan@baylibre.com>
+ <20240110141443.364655-4-jstephan@baylibre.com> <3c2bee40-3792-409c-b42f-f8b013ff641c@collabora.com>
+In-Reply-To: <3c2bee40-3792-409c-b42f-f8b013ff641c@collabora.com>
+From: Julien Stephan <jstephan@baylibre.com>
+Date: Mon, 12 Feb 2024 16:07:03 +0100
+Message-ID: <CAEHHSvaUSJTTQpUD0eX3dFw7rohRm6Z=_RO0Sknn9JxfH603UQ@mail.gmail.com>
+Subject: Re: [PATCH v4 3/5] media: platform: mediatek: isp_30: add mediatek
+ ISP3.0 sensor interface
+To: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
+Cc: Louis Kuo <louis.kuo@mediatek.com>, Phi-bang Nguyen <pnguyen@baylibre.com>, 
+	Florian Sylvestre <fsylvestre@baylibre.com>, 
+	Laurent Pinchart <laurent.pinchart@ideasonboard.com>, Andy Hsieh <andy.hsieh@mediatek.com>, 
+	Conor Dooley <conor+dt@kernel.org>, devicetree@vger.kernel.org, 
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, linux-arm-kernel@lists.infradead.org, 
+	linux-kernel@vger.kernel.org, linux-mediatek@lists.infradead.org, 
+	linux-media@vger.kernel.org, Matthias Brugger <matthias.bgg@gmail.com>, 
+	Mauro Carvalho Chehab <mchehab@kernel.org>, Paul Elder <paul.elder@ideasonboard.com>, 
+	Rob Herring <robh+dt@kernel.org>
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-Hi Claudiu,
+Hi Angelo,
 
-On Thu, Feb 8, 2024 at 6:59=E2=80=AFPM Claudiu <claudiu.beznea@tuxon.dev> w=
-rote:
-> From: Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>
+Thank you for your comments. Few questions below.
+
+Cheers
+Julien
+
+Le jeu. 11 janv. 2024 =C3=A0 13:04, AngeloGioacchino Del Regno
+<angelogioacchino.delregno@collabora.com> a =C3=A9crit :
+ .. snip ..
 >
-> pinctrl-rzg2l driver is used on RZ/G3S which support deep sleep states
-> where power to most of the SoC components is turned off.
+> > +             .code =3D MEDIA_BUS_FMT_S5C_UYVY_JPEG_1X8,
+> > +             .flags =3D MTK_SENINF_FORMAT_JPEG,
+> > +     },
+> > +     /* Keep the input-only formats last. */
 >
-> For this add suspend/resume support. This involves saving and restoring
-> configured registers along with disabling clock in case there is no pin
-> configured as wakeup sources.
+> Your comment doesn't make me understand why input-only formats shall be
+> placed last - and makes me think that having two arrays (one for both
+> and one for input only) would be easier and less error prone, other than
+> making you able to drop the MTK_SENINF_FORMAT_INPUT_ONLY flag entirely.
 >
-> To save/restore registers 2 caches were allocated: one for GPIO pins and
-> one for dedicated pins.
+
+Not sure I agree with you on this... If I want to split into two I
+will have to duplicate
+the whole mtk_seninf_formats[] which is quite big because the first 26
+formats are
+for both input and source pad. Moreover it will introduce some check on the=
+ pad
+before choosing the correct format structure..  or maybe I am missing
+your point?
+
+> > +     {
+> > +             .code =3D MEDIA_BUS_FMT_SGRBG10_DPCM8_1X8,
+> > +             .flags =3D MTK_SENINF_FORMAT_DPCM | MTK_SENINF_FORMAT_INP=
+UT_ONLY,
+> > +     }, {
+> > +             .code =3D MEDIA_BUS_FMT_SRGGB10_DPCM8_1X8,
+> > +             .flags =3D MTK_SENINF_FORMAT_DPCM | MTK_SENINF_FORMAT_INP=
+UT_ONLY,
+> > +     }, {
+> > +             .code =3D MEDIA_BUS_FMT_SBGGR10_DPCM8_1X8,
+> > +             .flags =3D MTK_SENINF_FORMAT_DPCM | MTK_SENINF_FORMAT_INP=
+UT_ONLY,
+> > +     }, {
+> > +             .code =3D MEDIA_BUS_FMT_SGBRG10_DPCM8_1X8,
+> > +             .flags =3D MTK_SENINF_FORMAT_DPCM | MTK_SENINF_FORMAT_INP=
+UT_ONLY,
+> > +     }
+> > +};
+> > +
+> > +static const struct mtk_seninf_format_info *mtk_seninf_format_info(u32=
+ code)
+> > +{
+> > +     unsigned int i;
+> > +
+> > +     for (i =3D 0; i < ARRAY_SIZE(mtk_seninf_formats); ++i) {
+> > +             if (mtk_seninf_formats[i].code =3D=3D code)
+> > +                     return &mtk_seninf_formats[i];
+> > +     }
+> > +
+> > +     return NULL;
+> > +}
+> > +
 >
-> On suspend path the pin controller registers are saved and if none of the
-> pins are configured as wakeup sources the pinctrl clock is disabled.
-> Otherwise it remains on.
+> ..snip..
 >
-> On resume path the configuration is done as follows:
-> 1/ setup PFCs by writing to registers on pin based accesses
-> 2/ setup GPIOs by writing to registers on port based accesses and
->    following configuration steps specified in hardware manual
-> 3/ setup dedicated pins by writing to registers on port based accesses
-> 4/ setup interrupts.
+> > +
+> > +static void mtk_seninf_input_setup_csi2(struct mtk_seninf_input *input=
+,
+> > +                                     struct v4l2_subdev_state *state)
+> > +{
+> > +     const struct mtk_seninf_format_info *fmtinfo;
+> > +     const struct v4l2_mbus_framefmt *format;
+> > +     unsigned int num_data_lanes =3D input->bus.num_data_lanes;
+> > +     unsigned int val =3D 0;
+> > +
+> > +     format =3D v4l2_subdev_state_get_stream_format(state, input->pad,=
+ 0);
+> > +     fmtinfo =3D mtk_seninf_format_info(format->code);
+> > +
+> > +     /* Configure timestamp */
+> > +     writel(SENINF_TIMESTAMP_STEP, input->base + SENINF_TG1_TM_STP);
+> > +
+> > +     /* HQ */
+> > +     writel(0x0, input->base + SENINF_TG1_PH_CNT);
 >
-> Because interrupt signals are routed to IA55 interrupt controller and
-> IA55 interrupt controller resumes before pin controller, patch restores
-> also the configured interrupts just after pin settings are restored to
-> avoid invalid interrupts while resuming.
+> Zero means:
+>   - Sensor master clock: ISP_CLK
+>   - Sensor clock polarity: Rising edge
+>   - Sensor reset deasserted
+>   - Sensor powered up
+>   - Pixel clock inversion disabled
+>   - Sensor master clock polarity disabled
+>   - Phase counter disabled
 >
-> Signed-off-by: Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>
-
-Thanks for your patch!
-
-In my review below, I am focussing on the wake-up part, as that is
-usually the hardest part to get right.
-
-> --- a/drivers/pinctrl/renesas/pinctrl-rzg2l.c
-> +++ b/drivers/pinctrl/renesas/pinctrl-rzg2l.c
-> @@ -260,6 +315,9 @@ struct rzg2l_pinctrl {
->         struct mutex                    mutex; /* serialize adding groups=
- and functions */
+> > +     writel(0x10001, input->base + SENINF_TG1_SEN_CK);
 >
->         struct rzg2l_pinctrl_pin_settings *settings;
-> +       struct rzg2l_pinctrl_reg_cache  *cache;
-> +       struct rzg2l_pinctrl_reg_cache  *dedicated_cache;
-> +       atomic_t                        wakeup_source;
-
-I'd call this wakeup_path, as the wake-up source is the ultimate device
-that triggers the GPIO.
-
->  };
+> Unroll this one... this is the TG1 sensor clock divider.
 >
->  static const u16 available_ps[] =3D { 1800, 2500, 3300 };
-> @@ -1880,6 +1938,19 @@ static void rzg2l_gpio_irq_print_chip(struct irq_d=
-ata *data, struct seq_file *p)
->         seq_printf(p, dev_name(gc->parent));
->  }
+> CLKFL GENMASK(5, 0)
+> CLKRS GENMASK(13, 8)
+> CLKCNT GENMASK(21,16)
 >
-> +static int rzg2l_gpio_irq_set_wake(struct irq_data *data, unsigned int o=
-n)
-> +{
-> +       struct gpio_chip *gc =3D irq_data_get_irq_chip_data(data);
-> +       struct rzg2l_pinctrl *pctrl =3D container_of(gc, struct rzg2l_pin=
-ctrl, gpio_chip);
-> +
+> Like this, I don't get what you're trying to set, because you're using a =
+fixed
+> sensor clock rate, meaning that only a handful of camera sensors will be =
+usable.
+>
+> Is this 8Mhz? 16? 24? what? :-)
+>
+> Two hints:
+>   - sensor_clk =3D clk_get_rate(isp_clk) / (tg1_sen_ck_clkcnt + 1);
+>   - int mtk_seninf_set_sensor_clk(u8 rate_mhz);
+>
+> Please :-)
+>
+> > +
+> > +     /* First Enable Sensor interface and select pad (0x1a04_0200) */
+> > +     mtk_seninf_input_update(input, SENINF_CTRL, SENINF_EN, 1);
+> > +     mtk_seninf_input_update(input, SENINF_CTRL, PAD2CAM_DATA_SEL, SEN=
+INF_PAD_10BIT);
+> > +     mtk_seninf_input_update(input, SENINF_CTRL, SENINF_SRC_SEL, 0);
+> > +     mtk_seninf_input_update(input, SENINF_CTRL_EXT, SENINF_CSI2_IP_EN=
+, 1);
+> > +     mtk_seninf_input_update(input, SENINF_CTRL_EXT, SENINF_NCSI2_IP_E=
+N, 0);
+> > +
+> > +     /* DPCM Enable */
+> > +     if (fmtinfo->flags & MTK_SENINF_FORMAT_DPCM)
+> > +             val =3D SENINF_CSI2_DPCM_DI_2A_DPCM_EN;
+> > +     else
+> > +             val =3D SENINF_CSI2_DPCM_DI_30_DPCM_EN;
+> > +     writel(val, input->base + SENINF_CSI2_DPCM);
+> > +
+> > +     /* Settle delay */
+> > +     mtk_seninf_input_update(input, SENINF_CSI2_LNRD_TIMING,
+> > +                             DATA_SETTLE_PARAMETER, SENINF_SETTLE_DELA=
+Y);
+> > +
+> > +     /* HQ */
+> > +     writel(0x10, input->base + SENINF_CSI2_LNRC_FSM);
+>
+> As far as I know, SENINF_CSI2_LNRC_FSM is a read-only register: this writ=
+e will do
+> exactly nothing...
+>
+> > +
+> > +     /* CSI2 control */
+> > +     val =3D readl(input->base + SENINF_CSI2_CTL)
+> > +         | (FIELD_PREP(SENINF_CSI2_CTL_ED_SEL, DATA_HEADER_ORDER_DI_WC=
+L_WCH)
+> > +         | SENINF_CSI2_CTL_CLOCK_LANE_EN | (BIT(num_data_lanes) - 1));
+> > +     writel(val, input->base + SENINF_CSI2_CTL);
+> > +
+> > +     mtk_seninf_input_update(input, SENINF_CSI2_RESYNC_MERGE_CTL,
+> > +                             BYPASS_LANE_RESYNC, 0);
+>
+> 93 columns: fits in one line (not only this one!).
+>
+> > +     mtk_seninf_input_update(input, SENINF_CSI2_RESYNC_MERGE_CTL, CDPH=
+Y_SEL, 0);
+> > +     mtk_seninf_input_update(input, SENINF_CSI2_RESYNC_MERGE_CTL,
+> > +                             CPHY_LANE_RESYNC_CNT, 3);
+> > +     mtk_seninf_input_update(input, SENINF_CSI2_MODE, CSR_CSI2_MODE, 0=
+);
+> > +     mtk_seninf_input_update(input, SENINF_CSI2_MODE, CSR_CSI2_HEADER_=
+LEN, 0);
+> > +     mtk_seninf_input_update(input, SENINF_CSI2_DPHY_SYNC, SYNC_SEQ_MA=
+SK_0, 0xff00);
+> > +     mtk_seninf_input_update(input, SENINF_CSI2_DPHY_SYNC, SYNC_SEQ_PA=
+T_0, 0x001d);
+> > +
+> > +     mtk_seninf_input_update(input, SENINF_CSI2_CTL, CLOCK_HS_OPTION, =
+0);
+> > +     mtk_seninf_input_update(input, SENINF_CSI2_CTL, HSRX_DET_EN, 0);
+> > +     mtk_seninf_input_update(input, SENINF_CSI2_CTL, HS_TRAIL_EN, 1);
+> > +     mtk_seninf_input_update(input, SENINF_CSI2_HS_TRAIL, HS_TRAIL_PAR=
+AMETER,
+> > +                             SENINF_HS_TRAIL_PARAMETER);
+> > +
+> > +     /* Set debug port to output packet number */
+> > +     mtk_seninf_input_update(input, SENINF_CSI2_DGB_SEL, DEBUG_EN, 1);
+> > +     mtk_seninf_input_update(input, SENINF_CSI2_DGB_SEL, DEBUG_SEL, 0x=
+1a);
+> > +
+> > +     /* HQ */
+> > +     writel(0xfffffffe, input->base + SENINF_CSI2_SPARE0);
+>
+> I have no idea what this SPARE0 does, but I think that this is something =
+that you
+> want to get from platform_data, as I guess this would be different on var=
+ious SoCs?
+>
+> > +
+> > +     /* Enable CSI2 IRQ mask */
+> > +     /* Turn on all interrupt */
+> > +     writel(0xffffffff, input->base + SENINF_CSI2_INT_EN);
+> > +     /* Write clear CSI2 IRQ */
+> > +     writel(0xffffffff, input->base + SENINF_CSI2_INT_STATUS);
+> > +     /* Enable CSI2 Extend IRQ mask */
+>
+> You missed:
+>         writel(0xffffffff, input->base + SENINF_CSI2_INT_EN_EXT);
+>
+> P.S.: #define SENINF_CSI2_INT_EN_EXT 0x0b10
+>
+>
+> > +     /* Turn on all interrupt */
+>
+> /* Reset the CSI2 to commit changes */ <-- makes more sense, doesn't it?
+>
+> > +     mtk_seninf_input_update(input, SENINF_CTRL, CSI2_SW_RST, 1);
+> > +     udelay(1);
+> > +     mtk_seninf_input_update(input, SENINF_CTRL, CSI2_SW_RST, 0);
+> > +}
+> > +
+> > +static void mtk_seninf_mux_setup(struct mtk_seninf_mux *mux,
+> > +                              struct mtk_seninf_input *input,
+> > +                              struct v4l2_subdev_state *state)
+> > +{
+> > +     const struct mtk_seninf_format_info *fmtinfo;
+> > +     const struct v4l2_mbus_framefmt *format;
+> > +     unsigned int pix_sel_ext;
+> > +     unsigned int pix_sel;
+> > +     unsigned int hs_pol =3D 0;
+> > +     unsigned int vs_pol =3D 0;
+> > +     unsigned int val;
+> > +     u32 rst_mask;
+> > +
+> > +     format =3D v4l2_subdev_state_get_stream_format(state, input->pad,=
+ 0);
+> > +     fmtinfo =3D mtk_seninf_format_info(format->code);
+> > +
+> > +     /* Enable mux */
+> > +     mtk_seninf_mux_update(mux, SENINF_MUX_CTRL, SENINF_MUX_EN, 1);
+> > +     mtk_seninf_mux_update(mux, SENINF_MUX_CTRL, SENINF_SRC_SEL, SENIN=
+F_MIPI_SENSOR);
+> > +     mtk_seninf_mux_update(mux, SENINF_MUX_CTRL_EXT, SENINF_SRC_SEL_EX=
+T, SENINF_NORMAL_MODEL);
+> > +
+> > +     pix_sel_ext =3D 0;
+> > +     pix_sel =3D 1;
+>
+>
+>         pixels_per_cycle =3D 1;
+>         bus_width =3D pixels_per_cycle >> 1;
+>
+> because:  0 =3D=3D 1pix/cyc, 1 =3D=3D 2pix/cyc, 2 =3D=3D 4pix/cyc, 3 =3D=
+=3D 8pix... etc
+> ...but the width of this register depends on the SoC, so you also want to=
+ set
+> constraints to the bus width on a per-soc basis (platform data again, or =
+at
+> least leave a comment here).>
+>         mtk_seninf_mux_update(....  PIX_SEL_EXT, bus_width);
+>         mtk_seninf_mux_update(....  PIX_SEL, bus_width);
+>
 
-I think you also have to call irq_set_irq_wake(pctrl->hwirq[...]) here.
-Cfr. drivers/gpio/gpio-rcar.c (which is simpler, as it has a single interru=
-pt
-parent, instead of a parent irq_domain with multiple interrupts).
-
-> +       if (on)
-> +               atomic_inc(&pctrl->wakeup_source);
-> +       else
-> +               atomic_dec(&pctrl->wakeup_source);
-> +
-> +       return 0;
-> +}
-> +
->  static const struct irq_chip rzg2l_gpio_irqchip =3D {
->         .name =3D "rzg2l-gpio",
->         .irq_disable =3D rzg2l_gpio_irq_disable,
+Again, not sure to get your point here. PIX_SEL_EXT and PIX_SEL are 1 bit e=
+ach
+and according to the datasheet 1pix/cycle is 0 in PIX_SEL_EXT and 0 in PIX_=
+SEL,
+2 pix/cycles is 0 in PIX_SEL_EXT and 1 in PIX_SEL
+and 4 pix/cycle is 1 in PIX_SEL_EXT and 0 in PIX_SEL
 
 
-> +static int rzg2l_pinctrl_suspend_noirq(struct device *dev)
-> +{
-> +       struct rzg2l_pinctrl *pctrl =3D dev_get_drvdata(dev);
-> +       const struct rzg2l_hwcfg *hwcfg =3D pctrl->data->hwcfg;
-> +       const struct rzg2l_register_offsets *regs =3D &hwcfg->regs;
-> +       struct rzg2l_pinctrl_reg_cache *cache =3D pctrl->cache;
-> +
-> +       rzg2l_pinctrl_pm_setup_regs(pctrl, true);
-> +       rzg2l_pinctrl_pm_setup_dedicated_regs(pctrl, true);
-> +
-> +       for (u8 i =3D 0; i < 2; i++) {
-> +               cache->sd_ch[i] =3D readl(pctrl->base + SD_CH(regs->sd_ch=
-, i));
-> +               cache->eth_poc[i] =3D readl(pctrl->base + ETH_POC(regs->e=
-th_poc, i));
-> +       }
-> +
-> +       cache->qspi =3D readl(pctrl->base + QSPI);
-> +       cache->eth_mode =3D readl(pctrl->base + ETH_MODE);
-> +
-> +       if (!atomic_read(&pctrl->wakeup_source))
-> +               clk_disable_unprepare(pctrl->clk);
-
-While you handle the module clock yourself, I think there is still merit
-in calling device_set_wakeup_path(dev) when the clock is kept enabled.
-
-BTW, is there any need to save the registers when pinctrl is part of
-the wake-up path, and its module clock is not disabled?
-
-> +
-> +       return 0;
-> +}
-> +
-> +static int rzg2l_pinctrl_resume_noirq(struct device *dev)
-> +{
-> +       struct rzg2l_pinctrl *pctrl =3D dev_get_drvdata(dev);
-> +       const struct rzg2l_hwcfg *hwcfg =3D pctrl->data->hwcfg;
-> +       const struct rzg2l_register_offsets *regs =3D &hwcfg->regs;
-> +       struct rzg2l_pinctrl_reg_cache *cache =3D pctrl->cache;
-> +       int ret;
-> +
-> +       if (!atomic_read(&pctrl->wakeup_source)) {
-> +               ret =3D clk_prepare_enable(pctrl->clk);
-> +               if (ret)
-> +                       return ret;
-> +       }
-
-Is there any need to restore the registers when pinctrl is part of
-the wake-up path, and its module clock was not disabled?
-
-> +
-> +       writel(cache->qspi, pctrl->base + QSPI);
-> +       writel(cache->eth_mode, pctrl->base + ETH_MODE);
-> +       for (u8 i =3D 0; i < 2; i++) {
-> +               writel(cache->sd_ch[i], pctrl->base + SD_CH(regs->sd_ch, =
-i));
-> +               writel(cache->eth_poc[i], pctrl->base + ETH_POC(regs->eth=
-_poc, i));
-> +       }
-> +
-> +       rzg2l_pinctrl_pm_setup_pfc(pctrl);
-> +       rzg2l_pinctrl_pm_setup_regs(pctrl, false);
-> +       rzg2l_pinctrl_pm_setup_dedicated_regs(pctrl, false);
-> +       rzg2l_gpio_irq_restore(pctrl);
-> +
-> +       return 0;
-> +}
-
-Gr{oetje,eeting}s,
-
-                        Geert
-
---=20
-Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k=
-.org
-
-In personal conversations with technical people, I call myself a hacker. Bu=
-t
-when I'm talking to journalists I just say "programmer" or something like t=
-hat.
-                                -- Linus Torvalds
+> > +     mtk_seninf_mux_update(mux, SENINF_MUX_CTRL_EXT, SENINF_PIX_SEL_EX=
+T, pix_sel_ext);
+> > +     mtk_seninf_mux_update(mux, SENINF_MUX_CTRL, SENINF_PIX_SEL, pix_s=
+el);
+> > +
+> > +     if (fmtinfo->flags & MTK_SENINF_FORMAT_JPEG) {
+> > +             mtk_seninf_mux_update(mux, SENINF_MUX_CTRL, FIFO_FULL_WR_=
+EN, 0);
+> > +             mtk_seninf_mux_update(mux, SENINF_MUX_CTRL, FIFO_FLUSH_EN=
+,
+> > +                                   FIFO_FLUSH_EN_JPEG_2_PIXEL_MODE);
+> > +             mtk_seninf_mux_update(mux, SENINF_MUX_CTRL, FIFO_PUSH_EN,
+> > +                             FIFO_PUSH_EN_JPEG_2_PIXEL_MODE);
+> > +     } else {
+> > +             mtk_seninf_mux_update(mux, SENINF_MUX_CTRL, FIFO_FULL_WR_=
+EN, 2);
+> > +             mtk_seninf_mux_update(mux, SENINF_MUX_CTRL, FIFO_FLUSH_EN=
+,
+> > +                                  FIFO_FLUSH_EN_NORMAL_MODE);
+> > +             mtk_seninf_mux_update(mux, SENINF_MUX_CTRL, FIFO_PUSH_EN,
+> > +                             FIFO_PUSH_EN_NORMAL_MODE);
+> > +     }
+> > +
+> > +     mtk_seninf_mux_update(mux, SENINF_MUX_CTRL, SENINF_HSYNC_POL, hs_=
+pol);
+> > +     mtk_seninf_mux_update(mux, SENINF_MUX_CTRL, SENINF_VSYNC_POL, vs_=
+pol);
+> > +
+> > +     val =3D mtk_seninf_mux_read(mux, SENINF_MUX_CTRL);
+> > +     rst_mask =3D SENINF_MUX_CTRL_SENINF_IRQ_SW_RST | SENINF_MUX_CTRL_=
+SENINF_MUX_SW_RST;
+> > +
+> > +     mtk_seninf_mux_write(mux, SENINF_MUX_CTRL, val | rst_mask);
+>
+> Are you sure that you don't need any wait between assertion and deasserti=
+on of RST?
+> Looks strange, but I don't really know then.
+>
+> > +     mtk_seninf_mux_write(mux, SENINF_MUX_CTRL, val & ~rst_mask);
+> > +
+> > +     /* HQ */
+> > +     mtk_seninf_mux_write(mux, SENINF_MUX_SPARE, 0xc2000);
+>
+> val =3D SENINF_FIFO_FULL_SEL;
+>
+> /* SPARE field meaning is unknown */
+> val |=3D 0xc0000;
+>
+>         mtk_seninf_mux_write(mux, SENINF_MUX_SPARE, val);
+>
+> > +}
+> > +
+> > +static void mtk_seninf_top_mux_setup(struct mtk_seninf *priv,
+> > +                                  enum mtk_seninf_id seninf_id,
+> > +                                  struct mtk_seninf_mux *mux)
+> > +{
+> > +     unsigned int val;
+> > +
+> > +     /*
+> > +      * Use the top mux (from SENINF input to MUX) to configure routin=
+g, and
+> > +      * hardcode a 1:1 mapping from the MUX instances to the SENINF ou=
+tputs.
+> > +      */
+> > +     val =3D readl(priv->base + SENINF_TOP_MUX_CTRL)
+> > +             & ~(0xf << (mux->mux_id * 4));
+> > +     val |=3D (seninf_id & 0xf) << (mux->mux_id * 4);
+> > +     writel(val, priv->base + SENINF_TOP_MUX_CTRL);
+> > +
+> > +     writel(0x76541010, priv->base + SENINF_TOP_CAM_MUX_CTRL);
+>
+> Each four bits of TOP_CAM_MUX_CTRL selects between seninf1 to seninf8 mux=
+es, and
+> TOP_MUX_CTRL is laid out in the very same way.
+>
+> This means that if you're calculating a value for TOP_MUX_CTRL, you can d=
+o exactly
+> the same for TOP_CAM_MUX_CTRL.
+>
+> > +}
+> > +
+> > +static void seninf_enable_test_pattern(struct mtk_seninf *priv,
+> > +                                    struct v4l2_subdev_state *state)
+> > +{
+> > +     struct mtk_seninf_input *input =3D &priv->inputs[CSI_PORT_0];
+> > +     struct mtk_seninf_mux *mux =3D &priv->muxes[0];
+> > +     const struct mtk_seninf_format_info *fmtinfo;
+> > +     const struct v4l2_mbus_framefmt *format;
+> > +     unsigned int val;
+> > +     unsigned int pix_sel_ext;
+> > +     unsigned int pix_sel;
+> > +     unsigned int hs_pol =3D 0;
+> > +     unsigned int vs_pol =3D 0;
+> > +     unsigned int seninf =3D 0;
+> > +     unsigned int tm_size =3D 0;
+> > +     unsigned int mux_id =3D mux->mux_id;
+> > +
+> > +     format =3D v4l2_subdev_state_get_stream_format(state, priv->conf-=
+>nb_inputs, 0);
+> > +     fmtinfo =3D mtk_seninf_format_info(format->code);
+> > +
+> > +     mtk_seninf_update(priv, SENINF_TOP_CTRL, MUX_LP_MODE, 0);
+> > +
+> > +     mtk_seninf_update(priv, SENINF_TOP_CTRL, SENINF_PCLK_EN, 1);
+> > +     mtk_seninf_update(priv, SENINF_TOP_CTRL, SENINF2_PCLK_EN, 1);
+> > +
+> > +     mtk_seninf_input_update(input, SENINF_CTRL, SENINF_EN, 1);
+> > +     mtk_seninf_input_update(input, SENINF_CTRL, SENINF_SRC_SEL, 1);
+> > +     mtk_seninf_input_update(input, SENINF_CTRL_EXT,
+> > +                             SENINF_TESTMDL_IP_EN, 1);
+> > +
+> > +     mtk_seninf_input_update(input, SENINF_TG1_TM_CTL, TM_EN, 1);
+> > +     mtk_seninf_input_update(input, SENINF_TG1_TM_CTL, TM_PAT, 0xc);
+> > +     mtk_seninf_input_update(input, SENINF_TG1_TM_CTL, TM_VSYNC, 4);
+> > +     mtk_seninf_input_update(input, SENINF_TG1_TM_CTL, TM_DUMMYPXL, 0x=
+28);
+> > +
+> > +     if (fmtinfo->flags & MTK_SENINF_FORMAT_BAYER)
+> > +             mtk_seninf_input_update(input, SENINF_TG1_TM_CTL, TM_FMT,=
+ 0x0);
+> > +     else
+> > +             mtk_seninf_input_update(input, SENINF_TG1_TM_CTL, TM_FMT,=
+ 0x1);
+> > +
+> > +     tm_size =3D FIELD_PREP(SENINF_TG1_TM_SIZE_TM_LINE, format->height=
+ + 8);
+> > +     switch (format->code) {
+> > +     case MEDIA_BUS_FMT_UYVY8_1X16:
+> > +     case MEDIA_BUS_FMT_VYUY8_1X16:
+> > +     case MEDIA_BUS_FMT_YUYV8_1X16:
+> > +     case MEDIA_BUS_FMT_YVYU8_1X16:
+> > +             tm_size |=3D FIELD_PREP(SENINF_TG1_TM_SIZE_TM_PXL, format=
+->width * 2);
+> > +             break;
+> > +     default:
+> > +             tm_size |=3D FIELD_PREP(SENINF_TG1_TM_SIZE_TM_PXL, format=
+->width);
+> > +             break;
+> > +     }
+> > +     writel(tm_size, input->base + SENINF_TG1_TM_SIZE);
+> > +
+> > +     writel(TEST_MODEL_CLK_DIVIDED_CNT, input->base + SENINF_TG1_TM_CL=
+K);
+> > +     writel(TIME_STAMP_DIVIDER, input->base + SENINF_TG1_TM_STP);
+> > +
+> > +     /* Set top mux */
+> > +     val =3D (readl(priv->base + SENINF_TOP_MUX_CTRL) & (~(0xf << (mux=
+_id * 4)))) |
+> > +             ((seninf & 0xf) << (mux_id * 4));
+> > +     writel(val, priv->base + SENINF_TOP_MUX_CTRL);
+>
+> This is duplicated, and it is the same that you have in mtk_seninf_top_mu=
+x_setup()
+>
+> > +
+> > +     mtk_seninf_mux_update(mux, SENINF_MUX_CTRL, SENINF_MUX_EN, 1);
+> > +     mtk_seninf_mux_update(mux, SENINF_MUX_CTRL_EXT,
+> > +                           SENINF_SRC_SEL_EXT, SENINF_TEST_MODEL);
+> > +     mtk_seninf_mux_update(mux, SENINF_MUX_CTRL, SENINF_SRC_SEL, 1);
+> > +
+> > +     pix_sel_ext =3D 0;
+> > +     pix_sel =3D 1;
+> > +
+>
+> This is in mtk_seninf_mux_setup(), but if you apply my suggestion, it won=
+'t be in
+> there anymore, so you'll call a function here to set the right value :-)
+>
+> > +     mtk_seninf_mux_update(mux, SENINF_MUX_CTRL_EXT,
+> > +                           SENINF_PIX_SEL_EXT, pix_sel_ext);
+> > +
+> > +     mtk_seninf_mux_update(mux, SENINF_MUX_CTRL, SENINF_PIX_SEL, pix_s=
+el);
+> > +
+> > +     mtk_seninf_mux_update(mux, SENINF_MUX_CTRL, FIFO_PUSH_EN, 0x1f);
+> > +     mtk_seninf_mux_update(mux, SENINF_MUX_CTRL, FIFO_FLUSH_EN, 0x1b);
+> > +     mtk_seninf_mux_update(mux, SENINF_MUX_CTRL, FIFO_FULL_WR_EN, 2);
+> > +
+> > +     mtk_seninf_mux_update(mux, SENINF_MUX_CTRL, SENINF_HSYNC_POL, hs_=
+pol);
+> > +     mtk_seninf_mux_update(mux, SENINF_MUX_CTRL, SENINF_VSYNC_POL, vs_=
+pol);
+> > +     mtk_seninf_mux_update(mux, SENINF_MUX_CTRL, SENINF_HSYNC_MASK, 1)=
+;
+> > +
+> > +     mtk_seninf_mux_write(mux, SENINF_MUX_INTEN,
+> > +                          SENINF_IRQ_CLR_SEL | SENINF_ALL_ERR_IRQ_EN);
+> > +
+> > +     mtk_seninf_mux_write(mux, SENINF_MUX_CTRL,
+> > +                          mtk_seninf_mux_read(mux, SENINF_MUX_CTRL) |
+> > +                          SENINF_MUX_CTRL_SENINF_IRQ_SW_RST |
+> > +                          SENINF_MUX_CTRL_SENINF_MUX_SW_RST);
+> > +     udelay(1);
+> > +     mtk_seninf_mux_write(mux, SENINF_MUX_CTRL,
+> > +                          mtk_seninf_mux_read(mux, SENINF_MUX_CTRL) &
+> > +                          ~(SENINF_MUX_CTRL_SENINF_IRQ_SW_RST |
+> > +                            SENINF_MUX_CTRL_SENINF_MUX_SW_RST));
+> > +
+> > +     //check this
+> > +     writel(0x76540010, priv->base + SENINF_TOP_CAM_MUX_CTRL);
+> > +
+> > +     dev_dbg(priv->dev, "%s: OK\n", __func__);
+> > +}
+> > +
+>
+> Cheers,
+> Angelo
+>
 
