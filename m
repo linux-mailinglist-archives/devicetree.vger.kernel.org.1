@@ -1,221 +1,232 @@
-Return-Path: <devicetree+bounces-41143-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-41144-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id DF1A0852915
-	for <lists+devicetree@lfdr.de>; Tue, 13 Feb 2024 07:39:53 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id BD3CF85295F
+	for <lists+devicetree@lfdr.de>; Tue, 13 Feb 2024 07:48:03 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 3CC88B21D06
-	for <lists+devicetree@lfdr.de>; Tue, 13 Feb 2024 06:39:51 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id ACE5C1C22EFA
+	for <lists+devicetree@lfdr.de>; Tue, 13 Feb 2024 06:48:02 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5763814287;
-	Tue, 13 Feb 2024 06:39:45 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 03A8814291;
+	Tue, 13 Feb 2024 06:47:59 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="Q+MGNRiQ"
+	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="MOKxO+fk"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ed1-f41.google.com (mail-ed1-f41.google.com [209.85.208.41])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 833D51426A;
-	Tue, 13 Feb 2024 06:39:43 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.41
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 414C01426A;
+	Tue, 13 Feb 2024 06:47:56 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1707806385; cv=none; b=paPfjtlnWGykuRUKbL33XeqR10I+5OmVDnVJmm28bi1IjNwZK8cH2v4pRwi2joxYcd/K+fdf6lyxHYy8fO1ah2Emcp3UUp68PmFtFMQi+WGFtYBJjpFUiUprDVoFiSKOSNEtk/ix26QFsrgh6/y8cNt4b3PUvFYgwLsoLeiEBN8=
+	t=1707806878; cv=none; b=bCUIq6mzQDqOvueSfZc89e+cyjhLipuODZ1JGxvr2VPGX51PlwtDNa39dgavMaQ4SNxr43eNPocRhutONfGW0Y/XwRcJS0VUDxfQG7qd2j+p56wv6I5gwbMumiyXpa6w9WP75McTaFkFiS0mkuOJjIKt4uHWMz/xOkkXPDfk7n0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1707806385; c=relaxed/simple;
-	bh=5z9UIrzaRsQ7ZunjBz8WH+0j8VWBYxAQUZhJg20X9eY=;
-	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version:Content-Type; b=h1Y3Os/DN5VAYniJ6wdJI5n+3gMq1PNG+ueCWzWA+ogSvgEWvnh0awwjuC0sIgOFzHMxMHQ95f6Orx8YJX4MFy6fPijiBv0QPUrZaYbs4GxV2Dv4gmkUU2pPNwiZ2GAbXbFJdZqtQ8I7CuezmmUufzMyKYiS+Pz1ES4kBhcxwqE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=Q+MGNRiQ; arc=none smtp.client-ip=209.85.208.41
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-ed1-f41.google.com with SMTP id 4fb4d7f45d1cf-55fe4534e9bso5103237a12.0;
-        Mon, 12 Feb 2024 22:39:43 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1707806382; x=1708411182; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=+8pt6VHhKtuQrCkrL4eYU+g664w9Q1Xy3QJwOydZtt8=;
-        b=Q+MGNRiQsqnUizrS6rSXTOr9KDrjdQj321PCAXf31mYLucXFnp1OLnfqHVYpDlD2OS
-         Bz5IcU68W1qrH3vi4aqLcG/x+BEWAplluI3v1+aGuTltowmIa6cvGvRUNbzRpo56k31K
-         TD7RaWyYdAS7VYB0nEkJHxTQf7EC+FTnmEoIeV5Kz4wSsULiOxYDmCrpf63OdqV8Wi4M
-         BLcXmCPdh+EMd6R7ZAcYh4HN8+mjZTlk27VGpjwZfrVbd8nGj1o+C2l597WYK9q5MqDb
-         QL6LbaF2DTo7RrfAw3U0PxdTzzuKhnvnbM6nk5mmEKNy+IJKAlX5F2jRo4Inx/xFuNOi
-         xKsQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1707806382; x=1708411182;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=+8pt6VHhKtuQrCkrL4eYU+g664w9Q1Xy3QJwOydZtt8=;
-        b=p9Mj/fnqz1Jb//vQyRt5uEqoNF59Blq9AVQPoaBW9b2pSnzxVZ+NBT+4ZHXVwxB3hU
-         hDCq51jCekpSsFKYJG9Fh8Is2BgfCwL2Ihk6Sb7Si9oBdH58Xn/0TY2OOkMOYdLhUjNo
-         huEnnKCPmzEpryG8hD258j5jMrSvyKnz+x2pWp1LeeBjv8/2ET4S6whQBjgQD56xCQ+O
-         MLIhfrH+to3k9MNQiPhkOJ1rl1etMnMjlLcASzO6p+1Y9V1j7CZ1tBblj48W+kqQGd6v
-         yEIFxnQqTKRAMnV3e2k/u11Xoly99FZuvNxQJB5a24CMQGT/iR1GRjds8KPH0eoAHxnA
-         wZcg==
-X-Forwarded-Encrypted: i=1; AJvYcCW4LWRuItuFs2J7/b4wuT92fu8sUKh6eHszMSGWzuQRQNa/DCnR3IofK2fn0GRm6NWZ8spys4SlV41rD8ycui7WyO6600RcuQfZAHGkeMw+8FmUTNUumnVCfQ0kqCFa7ZQk2F/+EAESrxBO8mqY4xzBUXx2/rqEVN8hcUubkmNV8/Y8ZQ==
-X-Gm-Message-State: AOJu0YzRU0O8Qi6wbyNe0zo5jMKX1hs6aUzfLEllCYilQZYLsgv44NWc
-	K0cYvrVmJwKPFxtg/v0zB00jYcOIjIHrIkn8vCUiKoZzFGi4zoyv
-X-Google-Smtp-Source: AGHT+IEqTmOc0sq5TASgr87A4NKy6RXgxM2CfARszUCki67UusO4d/oDgeciP7n5Wq9/B0mV0FG0vQ==
-X-Received: by 2002:a05:6402:22ec:b0:561:f77b:c0b0 with SMTP id dn12-20020a05640222ec00b00561f77bc0b0mr366141edb.39.1707806381728;
-        Mon, 12 Feb 2024 22:39:41 -0800 (PST)
-X-Forwarded-Encrypted: i=1; AJvYcCWmM20RiFucNWcWudlwle5UIyivsj+VmyDj7ESp8ItNoGl5Yc18W9SP3AlsHqwsqVhGWO2jvgKyufk2AkNY/kAD7VeW+AyCnXMFpNiPKQE3S/sTlke2zF7/3CBJL6u/KU058BjWwOxnhM9KyOH/OT1e7xPJ+XrN3Qclo5vCGFpkhzC0uM6UVp7b3W5clFIF3+c0ap7yZxWuPUH8SSwwE3/okSnIeLpnOOqlMcrWHE5+ZHlBEvgpSVlwDRm5Bb4QfaLsswyoKzvTAWoIwwj3ctKeudkLu5+8ggfaIUscp8N3YO7D16b5lH2WMzFppilQ/WYcW7t8DM8Yb5sP3RKNnI7XSiAhQYMK2JQPMLlQY/MiMiZ9enOfMxvC11YJWP5KpcqWyhPiy40pWVS5tlb88WdcYF6fEs3I1rIfmmHdYdlYuC8P/uhwKKWjS+XIFHD6Nhdfyz+iU7ca6CBmaMbcDGUc7rjLOZgrUXJh
-Received: from localhost.lan (031011218106.poznan.vectranet.pl. [31.11.218.106])
-        by smtp.gmail.com with ESMTPSA id fg5-20020a056402548500b00561814de0easm2847074edb.62.2024.02.12.22.39.40
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 12 Feb 2024 22:39:41 -0800 (PST)
-From: =?UTF-8?q?Rafa=C5=82=20Mi=C5=82ecki?= <zajec5@gmail.com>
-To: Vinod Koul <vkoul@kernel.org>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>
-Cc: Matthias Brugger <matthias.bgg@gmail.com>,
-	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
-	Sean Wang <sean.wang@mediatek.com>,
-	dmaengine@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	linux-mediatek@lists.infradead.org,
-	=?UTF-8?q?Rafa=C5=82=20Mi=C5=82ecki?= <rafal@milecki.pl>
-Subject: [PATCH] dt-bindings: dma: convert MediaTek High-Speed controller to the json-schema
-Date: Tue, 13 Feb 2024 07:39:19 +0100
-Message-Id: <20240213063919.20196-1-zajec5@gmail.com>
-X-Mailer: git-send-email 2.35.3
+	s=arc-20240116; t=1707806878; c=relaxed/simple;
+	bh=CLzIozoMqKyU0DRj84tcGE1rca1rs3iZhCK34uQKCTc=;
+	h=From:Date:Subject:MIME-Version:Content-Type:Message-ID:To:CC; b=it2ysTu9Ih0t2xP6XUBahaS/i49wF7yfK/lCtpYszaNuT7ZsLllCb/6PRAAobWBhLjEo1PQ8uaQbQaw96CwZSzo+6dpIeAx1kM3inzc1MSmFbz9D6AfW+vy5WAvuo5RDQiW2r+xe56TOaJKezbLADf4nB95UtTord61DwWVEkB4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=MOKxO+fk; arc=none smtp.client-ip=205.220.180.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
+Received: from pps.filterd (m0279873.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.17.1.24/8.17.1.24) with ESMTP id 41D68AWv019517;
+	Tue, 13 Feb 2024 06:47:52 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
+	from:date:subject:mime-version:content-type
+	:content-transfer-encoding:message-id:to:cc; s=qcppdkim1; bh=I/s
+	Kdqsdfjt0XvKL2lIL1k30/MAC02Xj8ecBcRIWFrg=; b=MOKxO+fk7VM0iYc9x5I
+	7upv8g/UcE74rTfeSA0v0y+O77BnkUtQktxNT2NL/zYXISj9wgNGQb/ZrXqwW2f8
+	JieAZmioL3+tnmKQ9MwyQ1BG+7Z7sTDWIK81fGdvHAH+eVgGFM1ODxojXMFzDDXa
+	6d7olu2LS0CFFm78BAF1bPB3P7/Rz1Pl4NaKmx8aQc/cbQ2NyI8wUPIw1PEe56kz
+	UpCNkhhHZ843SQ0pI7eIQHrLtbDLDEoLJpyP1xtAJrpG/x0jDi69+RNxpOnMtnJx
+	YRqbz5+aJRtkn42U82wLxokO+ASnOa3vgzLfBZhugZSGTjvCqWcG52ps7eKhsPkO
+	qjA==
+Received: from nalasppmta01.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3w7yh30b8u-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Tue, 13 Feb 2024 06:47:52 +0000 (GMT)
+Received: from nalasex01c.na.qualcomm.com (nalasex01c.na.qualcomm.com [10.47.97.35])
+	by NALASPPMTA01.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 41D6lcDM002309
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Tue, 13 Feb 2024 06:47:38 GMT
+Received: from hu-skakitap-hyd.qualcomm.com (10.80.80.8) by
+ nalasex01c.na.qualcomm.com (10.47.97.35) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.1118.40; Mon, 12 Feb 2024 22:47:34 -0800
+From: Satya Priya Kakitapalli <quic_skakitap@quicinc.com>
+Date: Tue, 13 Feb 2024 12:17:24 +0530
+Subject: [PATCH v2] clk: qcom: gcc-sm8150: De-register
+ gcc_cpuss_ahb_clk_src
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+Message-ID: <20240213-gcc-ao-support-v2-1-fd2127e8d8f4@quicinc.com>
+X-B4-Tracking: v=1; b=H4sIAHsQy2UC/3XMQQ6CMBCF4auQWTumLa0SV97DsCjTArOwxRaIh
+ nB3K3uX/0vet0H2iX2GW7VB8itnjqGEOlVAow2DR3alQQmlhVQ1DkRoI+ZlmmKa0XW2M0Z6q3s
+ B5TQl3/P7AB9t6ZHzHNPn8Ff5W/9Sq0SBF5KNM7UUzVXfXwsTBzpTfEK77/sXo7MuDK4AAAA=
+To: Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio
+	<konrad.dybcio@linaro.org>,
+        Michael Turquette <mturquette@baylibre.com>,
+        Stephen Boyd <sboyd@kernel.org>, Rob Herring <robh+dt@kernel.org>,
+        "Krzysztof
+ Kozlowski" <krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley
+	<conor+dt@kernel.org>,
+        Taniya Das <quic_tdas@quicinc.com>
+CC: <linux-arm-msm@vger.kernel.org>, <linux-clk@vger.kernel.org>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        Ajit Pandey
+	<quic_ajipan@quicinc.com>,
+        Imran Shaik <quic_imrashai@quicinc.com>,
+        "Jagadeesh Kona" <quic_jkona@quicinc.com>,
+        Satya Priya Kakitapalli
+	<quic_skakitap@quicinc.com>
+X-Mailer: b4 0.12.4
+X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
+ nalasex01c.na.qualcomm.com (10.47.97.35)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-ORIG-GUID: AZ7u9ZVSENaFfAoiY6w2Jit7sAIru79Z
+X-Proofpoint-GUID: AZ7u9ZVSENaFfAoiY6w2Jit7sAIru79Z
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.272,Aquarius:18.0.1011,Hydra:6.0.619,FMLib:17.11.176.26
+ definitions=2024-02-13_03,2024-02-12_03,2023-05-22_02
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 impostorscore=0 bulkscore=0
+ mlxlogscore=964 phishscore=0 spamscore=0 malwarescore=0 clxscore=1015
+ suspectscore=0 mlxscore=0 priorityscore=1501 adultscore=0
+ lowpriorityscore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.19.0-2401310000 definitions=main-2402130051
 
-From: Rafał Miłecki <rafal@milecki.pl>
+De-register the gcc_cpuss_ahb_clk_src and its branch clocks
+as there is no rate setting happening on them.
 
-This helps validating DTS files. Introduced changes:
-1. Adjusted "reg" in example
-2. Added includes to example
-
-Signed-off-by: Rafał Miłecki <rafal@milecki.pl>
+Signed-off-by: Satya Priya Kakitapalli <quic_skakitap@quicinc.com>
 ---
- .../bindings/dma/mediatek,mt7622-hsdma.yaml   | 63 +++++++++++++++++++
- .../devicetree/bindings/dma/mtk-hsdma.txt     | 33 ----------
- 2 files changed, 63 insertions(+), 33 deletions(-)
- create mode 100644 Documentation/devicetree/bindings/dma/mediatek,mt7622-hsdma.yaml
- delete mode 100644 Documentation/devicetree/bindings/dma/mtk-hsdma.txt
+Remove gcc_cpuss_ahb_clk_src and its branch clocks.
+---
+Changes in v2:
+- As per Konrad's comments, de-register the gcc_cpuss_ahb_clk_src
+  instead of adding AO support as no rate-setting is happening on it.
+- Link to v1: https://lore.kernel.org/r/20240123-gcc-ao-support-v1-0-6c18d5310874@quicinc.com
+---
+ drivers/clk/qcom/gcc-sm8150.c | 61 -------------------------------------------
+ 1 file changed, 61 deletions(-)
 
-diff --git a/Documentation/devicetree/bindings/dma/mediatek,mt7622-hsdma.yaml b/Documentation/devicetree/bindings/dma/mediatek,mt7622-hsdma.yaml
-new file mode 100644
-index 000000000000..3f1e120e40a3
---- /dev/null
-+++ b/Documentation/devicetree/bindings/dma/mediatek,mt7622-hsdma.yaml
-@@ -0,0 +1,63 @@
-+# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/dma/mediatek,mt7622-hsdma.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: MediaTek High-Speed DMA Controller
-+
-+maintainers:
-+  - Sean Wang <sean.wang@mediatek.com>
-+
-+allOf:
-+  - $ref: dma-controller.yaml#
-+
-+properties:
-+  compatible:
-+    enum:
-+      - mediatek,mt7622-hsdma
-+      - mediatek,mt7623-hsdma
-+
-+  reg:
-+    maxItems: 1
-+
-+  interrupts:
-+    maxItems: 1
-+
-+  clocks:
-+    maxItems: 1
-+
-+  clock-names:
-+    const: hsdma
-+
-+  power-domains:
-+    maxItems: 1
-+
-+  "#dma-cells":
-+    description: Channel number
-+    const: 1
-+
-+required:
-+  - reg
-+  - interrupts
-+  - clocks
-+  - clock-names
-+  - power-domains
-+
-+unevaluatedProperties: false
-+
-+examples:
-+  - |
-+    #include <dt-bindings/clock/mt2701-clk.h>
-+    #include <dt-bindings/interrupt-controller/arm-gic.h>
-+    #include <dt-bindings/power/mt2701-power.h>
-+
-+    dma-controller@1b007000 {
-+        compatible = "mediatek,mt7623-hsdma";
-+        reg = <0x1b007000 0x1000>;
-+        interrupts = <GIC_SPI 98 IRQ_TYPE_LEVEL_LOW>;
-+        clocks = <&ethsys CLK_ETHSYS_HSDMA>;
-+        clock-names = "hsdma";
-+        power-domains = <&scpsys MT2701_POWER_DOMAIN_ETH>;
-+        #dma-cells = <1>;
-+    };
-diff --git a/Documentation/devicetree/bindings/dma/mtk-hsdma.txt b/Documentation/devicetree/bindings/dma/mtk-hsdma.txt
-deleted file mode 100644
-index 4bb317359dc6..000000000000
---- a/Documentation/devicetree/bindings/dma/mtk-hsdma.txt
-+++ /dev/null
-@@ -1,33 +0,0 @@
--MediaTek High-Speed DMA Controller
--==================================
+diff --git a/drivers/clk/qcom/gcc-sm8150.c b/drivers/clk/qcom/gcc-sm8150.c
+index 05d115c52dfe..f06f0548fe7d 100644
+--- a/drivers/clk/qcom/gcc-sm8150.c
++++ b/drivers/clk/qcom/gcc-sm8150.c
+@@ -207,28 +207,6 @@ static const struct clk_parent_data gcc_parents_7[] = {
+ 	{ .hw = &gpll0_out_even.clkr.hw },
+ };
+ 
+-static const struct freq_tbl ftbl_gcc_cpuss_ahb_clk_src[] = {
+-	F(19200000, P_BI_TCXO, 1, 0, 0),
+-	F(50000000, P_GPLL0_OUT_MAIN, 12, 0, 0),
+-	F(100000000, P_GPLL0_OUT_MAIN, 6, 0, 0),
+-	{ }
+-};
 -
--This device follows the generic DMA bindings defined in dma/dma.txt.
+-static struct clk_rcg2 gcc_cpuss_ahb_clk_src = {
+-	.cmd_rcgr = 0x48014,
+-	.mnd_width = 0,
+-	.hid_width = 5,
+-	.parent_map = gcc_parent_map_0,
+-	.freq_tbl = ftbl_gcc_cpuss_ahb_clk_src,
+-	.clkr.hw.init = &(struct clk_init_data){
+-		.name = "gcc_cpuss_ahb_clk_src",
+-		.parent_data = gcc_parents_0,
+-		.num_parents = ARRAY_SIZE(gcc_parents_0),
+-		.flags = CLK_SET_RATE_PARENT,
+-		.ops = &clk_rcg2_ops,
+-	},
+-};
 -
--Required properties:
+ static const struct freq_tbl ftbl_gcc_emac_ptp_clk_src[] = {
+ 	F(19200000, P_BI_TCXO, 1, 0, 0),
+ 	F(50000000, P_GPLL0_OUT_EVEN, 6, 0, 0),
+@@ -1321,24 +1299,6 @@ static struct clk_branch gcc_cfg_noc_usb3_sec_axi_clk = {
+ 	},
+ };
+ 
+-static struct clk_branch gcc_cpuss_ahb_clk = {
+-	.halt_reg = 0x48000,
+-	.halt_check = BRANCH_HALT_VOTED,
+-	.clkr = {
+-		.enable_reg = 0x52004,
+-		.enable_mask = BIT(21),
+-		.hw.init = &(struct clk_init_data){
+-			.name = "gcc_cpuss_ahb_clk",
+-			.parent_hws = (const struct clk_hw *[]){
+-				      &gcc_cpuss_ahb_clk_src.clkr.hw },
+-			.num_parents = 1,
+-			 /* required for cpuss */
+-			.flags = CLK_IS_CRITICAL | CLK_SET_RATE_PARENT,
+-			.ops = &clk_branch2_ops,
+-		},
+-	},
+-};
 -
--- compatible:	Must be one of
--		  "mediatek,mt7622-hsdma": for MT7622 SoC
--		  "mediatek,mt7623-hsdma": for MT7623 SoC
--- reg:		Should contain the register's base address and length.
--- interrupts:	Should contain a reference to the interrupt used by this
--		device.
--- clocks:	Should be the clock specifiers corresponding to the entry in
--		clock-names property.
--- clock-names:	Should contain "hsdma" entries.
--- power-domains: Phandle to the power domain that the device is part of
--- #dma-cells: 	The length of the DMA specifier, must be <1>. This one cell
--		in dmas property of a client device represents the channel
--		number.
--Example:
+ static struct clk_branch gcc_cpuss_dvm_bus_clk = {
+ 	.halt_reg = 0x48190,
+ 	.halt_check = BRANCH_HALT,
+@@ -2645,24 +2605,6 @@ static struct clk_branch gcc_sdcc4_apps_clk = {
+ 	},
+ };
+ 
+-static struct clk_branch gcc_sys_noc_cpuss_ahb_clk = {
+-	.halt_reg = 0x4819c,
+-	.halt_check = BRANCH_HALT_VOTED,
+-	.clkr = {
+-		.enable_reg = 0x52004,
+-		.enable_mask = BIT(0),
+-		.hw.init = &(struct clk_init_data){
+-			.name = "gcc_sys_noc_cpuss_ahb_clk",
+-			.parent_hws = (const struct clk_hw *[]){
+-				      &gcc_cpuss_ahb_clk_src.clkr.hw },
+-			.num_parents = 1,
+-			/* required for cpuss */
+-			.flags = CLK_IS_CRITICAL | CLK_SET_RATE_PARENT,
+-			.ops = &clk_branch2_ops,
+-		},
+-	},
+-};
 -
--        hsdma: dma-controller@1b007000 {
--		compatible = "mediatek,mt7623-hsdma";
--		reg = <0 0x1b007000 0 0x1000>;
--		interrupts = <GIC_SPI 98 IRQ_TYPE_LEVEL_LOW>;
--		clocks = <&ethsys CLK_ETHSYS_HSDMA>;
--		clock-names = "hsdma";
--		power-domains = <&scpsys MT2701_POWER_DOMAIN_ETH>;
--		#dma-cells = <1>;
--	};
--
--DMA clients must use the format described in dma/dma.txt file.
+ static struct clk_branch gcc_tsif_ahb_clk = {
+ 	.halt_reg = 0x36004,
+ 	.halt_check = BRANCH_HALT,
+@@ -3510,8 +3452,6 @@ static struct clk_regmap *gcc_sm8150_clocks[] = {
+ 	[GCC_CAMERA_XO_CLK] = &gcc_camera_xo_clk.clkr,
+ 	[GCC_CFG_NOC_USB3_PRIM_AXI_CLK] = &gcc_cfg_noc_usb3_prim_axi_clk.clkr,
+ 	[GCC_CFG_NOC_USB3_SEC_AXI_CLK] = &gcc_cfg_noc_usb3_sec_axi_clk.clkr,
+-	[GCC_CPUSS_AHB_CLK] = &gcc_cpuss_ahb_clk.clkr,
+-	[GCC_CPUSS_AHB_CLK_SRC] = &gcc_cpuss_ahb_clk_src.clkr,
+ 	[GCC_CPUSS_DVM_BUS_CLK] = &gcc_cpuss_dvm_bus_clk.clkr,
+ 	[GCC_CPUSS_GNOC_CLK] = &gcc_cpuss_gnoc_clk.clkr,
+ 	[GCC_CPUSS_RBCPR_CLK] = &gcc_cpuss_rbcpr_clk.clkr,
+@@ -3629,7 +3569,6 @@ static struct clk_regmap *gcc_sm8150_clocks[] = {
+ 	[GCC_SDCC4_AHB_CLK] = &gcc_sdcc4_ahb_clk.clkr,
+ 	[GCC_SDCC4_APPS_CLK] = &gcc_sdcc4_apps_clk.clkr,
+ 	[GCC_SDCC4_APPS_CLK_SRC] = &gcc_sdcc4_apps_clk_src.clkr,
+-	[GCC_SYS_NOC_CPUSS_AHB_CLK] = &gcc_sys_noc_cpuss_ahb_clk.clkr,
+ 	[GCC_TSIF_AHB_CLK] = &gcc_tsif_ahb_clk.clkr,
+ 	[GCC_TSIF_INACTIVITY_TIMERS_CLK] = &gcc_tsif_inactivity_timers_clk.clkr,
+ 	[GCC_TSIF_REF_CLK] = &gcc_tsif_ref_clk.clkr,
+
+---
+base-commit: 774551425799cb5bbac94e1768fd69eec4f78dd4
+change-id: 20240123-gcc-ao-support-dbab551ea4f0
+
+Best regards,
 -- 
-2.35.3
+Satya Priya Kakitapalli <quic_skakitap@quicinc.com>
 
 
