@@ -1,148 +1,145 @@
-Return-Path: <devicetree+bounces-41159-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-41160-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 046EE852A7D
-	for <lists+devicetree@lfdr.de>; Tue, 13 Feb 2024 09:05:48 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 33D53852A86
+	for <lists+devicetree@lfdr.de>; Tue, 13 Feb 2024 09:07:10 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 94695B21EF2
-	for <lists+devicetree@lfdr.de>; Tue, 13 Feb 2024 08:05:45 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 6714F1C21A97
+	for <lists+devicetree@lfdr.de>; Tue, 13 Feb 2024 08:07:09 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E8D3217983;
-	Tue, 13 Feb 2024 08:05:41 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A448D1799C;
+	Tue, 13 Feb 2024 08:07:04 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=sigxcpu.org header.i=@sigxcpu.org header.b="uFon58O1";
-	dkim=pass (2048-bit key) header.d=sigxcpu.org header.i=@sigxcpu.org header.b="T0PjJTTC"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="y1tfD3wY"
 X-Original-To: devicetree@vger.kernel.org
-Received: from honk.sigxcpu.org (honk.sigxcpu.org [24.134.29.49])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-yb1-f171.google.com (mail-yb1-f171.google.com [209.85.219.171])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3045F182BE
-	for <devicetree@vger.kernel.org>; Tue, 13 Feb 2024 08:05:39 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=24.134.29.49
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E362617985
+	for <devicetree@vger.kernel.org>; Tue, 13 Feb 2024 08:07:02 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.219.171
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1707811541; cv=none; b=UT/sAuDmR5tTY65QLz1Yi0b48rTvi2bmxLVqqqpL37vJTQl+LTLqglt95uGk60LfzAoOhC5Q0fqy4uon8uU7Vf8H/WoYOvugQEIohsj8zwuJ3cHvNak/scOjNOtgYASsg5oWfrapqki79IH/PnjSw/QzU4JWdBJfsDFxcs0qelg=
+	t=1707811624; cv=none; b=KKqPwLb4eD71QuFruVcOHNT4/P6oze0KKXjOurf1zQTNoFED6KIr98ThFJIoMMvB1CbGA7SV6N7r3mNH6FtxHWeaCJO3ecoqoBj/ZC9vk9jF3ouwnlEAnTA8vb0HXaS1J9gc+EE2GnSQtTsG82eKoQGEZFBTEZvlcs1bO66H8W0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1707811541; c=relaxed/simple;
-	bh=KRuuw7YzU7/CW38+mXRnIoY4ogV8wheL/KaqE7yovF0=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=EItzS5rKV+tNOFXVqGjTlHxylNI5I06CAWfrMHiBj4EwmQoCVAJQDXAGIq534n58d2Ne7suPRmUeldH4HkcPHoHCm79wXSBBjavIMCxbTSAVDm7YdOvSlOKD7P713+zIGJdrHG+ohcHvaPxmB2a2TWqWaiNDQWvYnxwGxqQKxY4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=sigxcpu.org; spf=pass smtp.mailfrom=sigxcpu.org; dkim=pass (2048-bit key) header.d=sigxcpu.org header.i=@sigxcpu.org header.b=uFon58O1; dkim=pass (2048-bit key) header.d=sigxcpu.org header.i=@sigxcpu.org header.b=T0PjJTTC; arc=none smtp.client-ip=24.134.29.49
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=sigxcpu.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=sigxcpu.org
-Received: from localhost (localhost [127.0.0.1])
-	by honk.sigxcpu.org (Postfix) with ESMTP id D6A6AFB06;
-	Tue, 13 Feb 2024 09:05:37 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=sigxcpu.org; s=2024;
-	t=1707811538; bh=KRuuw7YzU7/CW38+mXRnIoY4ogV8wheL/KaqE7yovF0=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=uFon58O1DvfPx32KLoXpPxq4qeeHDGEBv8gniIc2KoFx93xU61/OkOxtb0pxN7/Ti
-	 2eVnPfUU+V8jqxIUP8aG+Xu/GPxQ5mFFQtiMJPHlP29VsyZSCK8Oxpfo7AG7yq5/1C
-	 Q1SpvL6Zp6Xumt+KlhpVkOnNDb3A/r+nEgrWKI/IaXRxTlBoJIybl2UuFtzYavQwyh
-	 1r2yWNnPLTKIagBbHAOn/ICBvcQCQd058F0fT9ALftdcZNn+3dPTt1Zae9EExRuuGe
-	 oNNOrzvm7C7qzHWMv4YCFV2F6hmF62hqLepyAcKHPaQWXdjGKsu3VIj6RzcSP9Eg+f
-	 rCzCGMJJ1iWEA==
-Received: from honk.sigxcpu.org ([127.0.0.1])
-	by localhost (honk.sigxcpu.org [127.0.0.1]) (amavisd-new, port 10024)
-	with ESMTP id EdovbXp8vkH5; Tue, 13 Feb 2024 09:05:36 +0100 (CET)
-Date: Tue, 13 Feb 2024 09:05:34 +0100
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=sigxcpu.org; s=2024;
-	t=1707811536; bh=KRuuw7YzU7/CW38+mXRnIoY4ogV8wheL/KaqE7yovF0=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=T0PjJTTCKwcEYxG9bEmKTWBhYhtb6RilEBkrOc0r3g1HzDvG7AZWWhJk3vJJMwbG2
-	 +VOBuz8jpvi64umw4MDceS409oBwx043J2SrfkBnulQ4oI/4eH1cfIYkR5UdqKM1QB
-	 xhIB0Aqa2YeARY95cJRrO8UiVYc+hzSHELyyJNpab8xxHMUSntGQAlvXptd6hMbLKQ
-	 3+dIuQWYG15rFGjEQhzizsMHk4cJoOd/DghYrgd1wR7D6voA1btw9iE10kk2Appa/R
-	 QAYJY1eslbduDQRlkU/yBlN5a/hRDPBxe+nAZiakbu+pedWvWcD4ejeoOVt700mGZB
-	 ZnSnDAoptc3LA==
-From: Guido =?iso-8859-1?Q?G=FCnther?= <agx@sigxcpu.org>
-To: Chris Morgan <macroalpha82@gmail.com>
-Cc: linux-rockchip@lists.infradead.org, devicetree@vger.kernel.org,
-	dri-devel@lists.freedesktop.org, tzimmermann@suse.de,
-	mripard@kernel.org, maarten.lankhorst@linux.intel.com,
-	daniel@ffwll.ch, airlied@gmail.com, sam@ravnborg.org,
-	quic_jesszhan@quicinc.com, neil.armstrong@linaro.org, megi@xff.cz,
-	kernel@puri.sm, heiko@sntech.de, conor+dt@kernel.org,
-	krzysztof.kozlowski+dt@linaro.org, robh+dt@kernel.org,
-	Chris Morgan <macromorgan@hotmail.com>
-Subject: Re: [PATCH 4/7] drm/panel: st7703: Add Panel Rotation Support
-Message-ID: <ZcsizkRuBPdmG_Qy@qwark.sigxcpu.org>
-References: <20240212184950.52210-1-macroalpha82@gmail.com>
- <20240212184950.52210-5-macroalpha82@gmail.com>
+	s=arc-20240116; t=1707811624; c=relaxed/simple;
+	bh=TMO98LmTeFWaooCAosxSAV4g4gfDcC8Mxcbv1f1b7yQ=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=k9rOaY66ydAjrfXbKturauksT+THziVU0xBjjTW6lwrVbL6vxD9T7TR1iOYSelxEUW9TT/NQTMSkGmJ4UHetuZs8V2ZO67Dt0Ow0bGSUdoa4wiGQGWbu44Ax4jtyWWuNSwdJtzukiy+V3rtcLqvezyFyqVVK+R5BtEzYJXxmfvE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=y1tfD3wY; arc=none smtp.client-ip=209.85.219.171
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-yb1-f171.google.com with SMTP id 3f1490d57ef6-dc74435c428so3865044276.2
+        for <devicetree@vger.kernel.org>; Tue, 13 Feb 2024 00:07:02 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1707811622; x=1708416422; darn=vger.kernel.org;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=LoE7SaCuCYZTXnO1AQekF/KrLmOVDpMhP6b6ysce880=;
+        b=y1tfD3wY2/hrNKHO3F/fV9zQbVXvkYUIbduNATxjmH3RH7gZppYd6YnuPMmcmoK1Yo
+         l44MlCxAGlfZkCmIrYw786Xm5iC2OtZYAYCc4qUJVU+oRrzVXPh2h5X7DvBeHoToIv6n
+         Dg84ugm+czi7TID1wVCNLhBpXRXrrb9viHiQeWkoAciQjqSi0C24RnOCNF6mXIP0t2zN
+         eUO7cL2MvYYMyY10D/dDmWwKmzcDxenqUS9MmXAuNKkBsSfszc8kthsJ0Ul9t71L5ZEf
+         S0G0rBp7yh5H7yMCy2/C/GSxqHRRckj1VVYHLCayjgurKzOCLAIqB/cI+piB0QBc1A/m
+         TRVg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1707811622; x=1708416422;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=LoE7SaCuCYZTXnO1AQekF/KrLmOVDpMhP6b6ysce880=;
+        b=o9XJzsrnf50+o4dDRXzkJbgVozfn0HmcukvkE946lJsQk4ZiHBPNy414+hrGEfVXIl
+         9hmiMc6d46VQyQlGSnsx8BL9krmCxCJyNZ36Q2MMgDffiEpku4I6bVXD9n5ejO1jm+TB
+         C1PHugOr8QNKbc4od/NcBU/HNPH268QypMV8axXt53S5GNms4OPfpjnb83h/F0sd6skg
+         ot7FlqnGhLtFkqUv+nH+AslP8UvKrPXmw+kKcm+oWJffas1W2gBBJWwhcdQFbP+imiM9
+         Mh2tsZxPEFBAehwQ1fJSnHamFJHYR57BrRAzchTmTx1lVepgp93mAO609go//mbJtVnE
+         dHDg==
+X-Forwarded-Encrypted: i=1; AJvYcCXaQCQ31+KhYrHUgj+nkLW0io69gEsVx0FsSkExnhp/GC59Gj1ry9XveIJNFLMxK1yTQ30OJ3WFtsRMhv2ZSnx6yyCnZTZlUGQXyw==
+X-Gm-Message-State: AOJu0YyqzIUSNpcz6L0RvXisnSgX+UeWojPxSuTd6muuKrEBq1E8AHoE
+	a6+kbG3cglJ2slUDnJHQV1FoCF4w6hxrBPi0CBowYO9wOLWAwr+AquzDqypEQla8at0Pg+Ifem8
+	fa2LqBuYscqUFxepiB97AsJl8V1n6sfgYVwCsqA==
+X-Google-Smtp-Source: AGHT+IFJmNGwqkSI7VGiPpEbPYK61g9bG8fKHxYPKHEEFuP3n+/ab1e0w0YV5rg3cP19wA3QJhBHdbAVAxvLdL0n29I=
+X-Received: by 2002:a5b:18e:0:b0:dc7:4564:fe6b with SMTP id
+ r14-20020a5b018e000000b00dc74564fe6bmr6581471ybl.60.1707811621907; Tue, 13
+ Feb 2024 00:07:01 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20240212184950.52210-5-macroalpha82@gmail.com>
+References: <20240201210529.7728-4-quic_c_gdjako@quicinc.com> <20240213062608.13018-1-quic_pbrahma@quicinc.com>
+In-Reply-To: <20240213062608.13018-1-quic_pbrahma@quicinc.com>
+From: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+Date: Tue, 13 Feb 2024 10:06:51 +0200
+Message-ID: <CAA8EJpoh-m_fzt9WcUXOkTxVZRQMDf-WrgqqoM0C_-qzjgDm1w@mail.gmail.com>
+Subject: Re: [PATCH 1/1] iommu/arm-smmu-qcom: Fix use-after-free issue in qcom_smmu_create()
+To: Pratyush Brahma <quic_pbrahma@quicinc.com>
+Cc: quic_c_gdjako@quicinc.com, andersson@kernel.org, conor+dt@kernel.org, 
+	devicetree@vger.kernel.org, djakov@kernel.org, iommu@lists.linux.dev, 
+	joro@8bytes.org, konrad.dybcio@linaro.org, krzysztof.kozlowski+dt@linaro.org, 
+	linux-arm-kernel@lists.infradead.org, linux-arm-msm@vger.kernel.org, 
+	linux-kernel@vger.kernel.org, quic_cgoldswo@quicinc.com, 
+	quic_pdaly@quicinc.com, quic_sudaraja@quicinc.com, quic_sukadev@quicinc.com, 
+	robdclark@gmail.com, robh+dt@kernel.org, robin.murphy@arm.com, 
+	will@kernel.org
+Content-Type: text/plain; charset="UTF-8"
 
-Hi,
-On Mon, Feb 12, 2024 at 12:49:47PM -0600, Chris Morgan wrote:
-> From: Chris Morgan <macromorgan@hotmail.com>
-> 
-> Add support for panel rotation to ST7703 based devices.
-> 
-> Signed-off-by: Chris Morgan <macromorgan@hotmail.com>
+On Tue, 13 Feb 2024 at 08:27, Pratyush Brahma <quic_pbrahma@quicinc.com> wrote:
+>
+> Currently, during arm smmu probe, struct arm_smmu_device pointer
+> is allocated. The pointer is reallocated to a new struct qcom_smmu in
+> qcom_smmu_create() with devm_krealloc() which frees the smmu device
+> after copying the data into the new pointer.
+>
+> The freed pointer is then passed again in devm_of_platform_populate()
+> inside qcom_smmu_create() which causes a use-after-free issue.
+>
+> Fix the use-after-free issue by reassigning the old pointer to
+> the new pointer where the struct was copied by devm_krealloc().
+>
+> Signed-off-by: Pratyush Brahma <quic_pbrahma@quicinc.com>
+
+Missing Fixes tag.
+
 > ---
->  drivers/gpu/drm/panel/panel-sitronix-st7703.c | 13 +++++++++++++
->  1 file changed, 13 insertions(+)
-> 
-> diff --git a/drivers/gpu/drm/panel/panel-sitronix-st7703.c b/drivers/gpu/drm/panel/panel-sitronix-st7703.c
-> index 939ba05c9b58..a3e142f156d5 100644
-> --- a/drivers/gpu/drm/panel/panel-sitronix-st7703.c
-> +++ b/drivers/gpu/drm/panel/panel-sitronix-st7703.c
-> @@ -62,6 +62,7 @@ struct st7703 {
->  
->  	struct dentry *debugfs;
->  	const struct st7703_panel_desc *desc;
-> +	enum drm_panel_orientation orientation;
->  };
->  
->  struct st7703_panel_desc {
-> @@ -743,12 +744,20 @@ static int st7703_get_modes(struct drm_panel *panel,
->  	return 1;
+>  drivers/iommu/arm/arm-smmu/arm-smmu-qcom.c | 3 ++-
+>  1 file changed, 2 insertions(+), 1 deletion(-)
+>
+> diff --git a/drivers/iommu/arm/arm-smmu/arm-smmu-qcom.c b/drivers/iommu/arm/arm-smmu/arm-smmu-qcom.c
+> index ed5ed5da7740..49eaeed6a91c 100644
+> --- a/drivers/iommu/arm/arm-smmu/arm-smmu-qcom.c
+> +++ b/drivers/iommu/arm/arm-smmu/arm-smmu-qcom.c
+> @@ -710,6 +710,7 @@ static struct arm_smmu_device *qcom_smmu_create(struct arm_smmu_device *smmu,
+>         qsmmu = devm_krealloc(smmu->dev, smmu, sizeof(*qsmmu), GFP_KERNEL);
+>         if (!qsmmu)
+>                 return ERR_PTR(-ENOMEM);
+> +       smmu = &qsmmu->smmu;
+>
+>         qsmmu->smmu.impl = impl;
+>         qsmmu->data = data;
+> @@ -719,7 +720,7 @@ static struct arm_smmu_device *qcom_smmu_create(struct arm_smmu_device *smmu,
+>         if (ret)
+>                 return ERR_PTR(ret);
+
+What is the tree that you have been developing this against? I don't
+see this part of the code in the linux-next.
+
+>
+> -       return &qsmmu->smmu;
+> +       return smmu;
 >  }
->  
-> +static enum drm_panel_orientation st7703_get_orientation(struct drm_panel *panel)
-> +{
-> +	struct st7703 *st7703 = panel_to_st7703(panel);
-> +
-> +	return st7703->orientation;
-> +}
-> +
->  static const struct drm_panel_funcs st7703_drm_funcs = {
->  	.disable   = st7703_disable,
->  	.unprepare = st7703_unprepare,
->  	.prepare   = st7703_prepare,
->  	.enable	   = st7703_enable,
->  	.get_modes = st7703_get_modes,
-> +	.get_orientation = st7703_get_orientation,
->  };
->  
->  static int allpixelson_set(void *data, u64 val)
-> @@ -817,6 +826,10 @@ static int st7703_probe(struct mipi_dsi_device *dsi)
->  		return dev_err_probe(dev, PTR_ERR(ctx->iovcc),
->  				     "Failed to request iovcc regulator\n");
->  
-> +	ret = of_drm_get_panel_orientation(dsi->dev.of_node, &ctx->orientation);
-> +	if (ret < 0)
-> +		return dev_err_probe(&dsi->dev, ret, "Failed to get orientation\n");
-> +
->  	drm_panel_init(&ctx->panel, dev, &st7703_drm_funcs,
->  		       DRM_MODE_CONNECTOR_DSI);
+>
+>  /* Implementation Defined Register Space 0 register offsets */
+> --
+> 2.17.1
+>
+>
 
-Reviewed-by: Guido Günther <agx@sigxcpu.org>
-Cheers,
- -- Guido
 
->  
-> -- 
-> 2.34.1
-> 
+-- 
+With best wishes
+Dmitry
 
