@@ -1,167 +1,127 @@
-Return-Path: <devicetree+bounces-41178-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-41182-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 93BF5852B12
-	for <lists+devicetree@lfdr.de>; Tue, 13 Feb 2024 09:26:50 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 37E27852B2B
+	for <lists+devicetree@lfdr.de>; Tue, 13 Feb 2024 09:29:13 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 1EDFB1F2335C
-	for <lists+devicetree@lfdr.de>; Tue, 13 Feb 2024 08:26:50 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 6AE8C1C21F80
+	for <lists+devicetree@lfdr.de>; Tue, 13 Feb 2024 08:29:12 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 68D2117C62;
-	Tue, 13 Feb 2024 08:26:44 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id AF9742231C;
+	Tue, 13 Feb 2024 08:27:55 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="Gt1EpKSe"
+	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="ewD8vTTs"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wr1-f48.google.com (mail-wr1-f48.google.com [209.85.221.48])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 90C47224CF
-	for <devicetree@vger.kernel.org>; Tue, 13 Feb 2024 08:26:42 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.48
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 296AF225A4;
+	Tue, 13 Feb 2024 08:27:53 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1707812804; cv=none; b=A3lddS6KzbdSrdhtxU/HIe8XO8tb2hSS0RLjbTKd9gKueRSDaMg3SysSwJfacQgpdlNgXFRq/Qe5s+S834/M/OmgASz1/YHw0p9SAEg4+QwSc3m5nsyFXxRfyeU3GICU0Pe6qSL6yuCA1RcUXDM28NRmDDBokAFHKKae4S3Ogzg=
+	t=1707812875; cv=none; b=CpI8Itg62/HOSb5gBG/TW6cfmec9r9C9fo4UVYiP8vVaI27nDFitiOWxEVlEYZlbI3FTKhu62cYyMNs3fQxFd81E+BSisfnRoilEAgJrbxXtkuXYq3qmGyQaqF2YRghKK4ltvcxumVECji7D4JZCWgRKFFFM0TmDMPUq7/otfyg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1707812804; c=relaxed/simple;
-	bh=AU2vMbcPBoPGMezuBVaBZOgLEbV3i+mUFWNBFEj0I8A=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=OcPCzq+12CxyKzdJOSyJp8+qc340WfEHcRrb6bQykRVJfNY5GDTFZcF6lA/G5QNRp09Lux08oKMaTZrk4qujmbLY2Ww8/eAfSKgvYYMbHGS+xuLjdi03Rk/0RkusgSSEuThnF/PXee98/bBGqMyzoXwjx4IsDLdR3FPFdJ+AO2c=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=Gt1EpKSe; arc=none smtp.client-ip=209.85.221.48
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-wr1-f48.google.com with SMTP id ffacd0b85a97d-3392b12dd21so2519394f8f.0
-        for <devicetree@vger.kernel.org>; Tue, 13 Feb 2024 00:26:42 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1707812801; x=1708417601; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from
-         :content-language:references:cc:to:subject:user-agent:mime-version
-         :date:message-id:from:to:cc:subject:date:message-id:reply-to;
-        bh=yt8OEsnV2/t6o3bQYdJsUNyb66Zbj5OvLC5Be7YQ91U=;
-        b=Gt1EpKSeR69cP93R5W9woRqcplKgtiCT0yQ5kN/2AVjUwTGkQngeFsmX4lmVqxThKb
-         EcJBijDhN/a+5WyC7vvtDaAuXCcUKU4dIsdFRm+Pupv3C3Pf1JjPlyHnTdnNMY4VtfpB
-         xV3f8X0vJmBdmUdaUsNmmQ3UhpUGpl/2/GTuePGM0Nu9TQuC4gx9f77ia3elocluB2e/
-         HTNp8WfzmR8IJkcQvtxxMszOgciTJ8okYVlF2KC/ZGOXuO30dBvMDBi8WjxHvqya7BeC
-         p7EqO8cHbchsSQEPcFzOvQVOBNKtSwuWqxi2FgM1sr36Abs8+YRZxGsTkh0jo7eq4zrO
-         VnlQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1707812801; x=1708417601;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from
-         :content-language:references:cc:to:subject:user-agent:mime-version
-         :date:message-id:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=yt8OEsnV2/t6o3bQYdJsUNyb66Zbj5OvLC5Be7YQ91U=;
-        b=AuaCXoAlD0N7JkT3wcFsfha+3R5xcr97mUFBqmvTzQbYyyr7dWWz9XAWwWkSAObYQS
-         J6IOgKUsoq/en4zg80mtfIW7ym3N54w8dNV77j3ze+Yeh2P9qmTlaciepgaQvDpKXAS3
-         HjAYha2ldD4oFppEmydpXU6ozn4aQXFDEsRYwavlX7kBy/Cqje20aRMx2vXdQe8Gs5Xq
-         BdV6tST4UZ7q+VGTmOIhzljE1lZt7J6CqQC2qp3krjmG9BxF8ef/rItjpNlq4In5hoT1
-         JxpvGm+mRKT+KaTjTUaVXlCKkqhflr9Pj/P8+yqPL1lNBMU9oX9mSektc2BxVMCC5UA4
-         89Eg==
-X-Forwarded-Encrypted: i=1; AJvYcCUFS3IpBDd7xiMS/Kav/WPpoXleJGMLZPwff2rioTkXwKk54A6jQR1VMbidApgSUvKIxZNmepxxJ1RI/ZIAAZIE3zeFioME8efN/g==
-X-Gm-Message-State: AOJu0Yykn+K1WilqwG4ln/pg37T9GwZgiuV2+RjteRPNhz6cQYUGZJbQ
-	QmwG+c/iRZ6wQSdzilVovC6hw95c929XfdTklgWrnNvpiSz3t68+zpmIIJt/FAM=
-X-Google-Smtp-Source: AGHT+IE6OUGMcogQyW0XBmBrEdPGiYrKBLV5abFqeD0G1KnUVwRe0AAxv25YaC0S05SjTIBjZH3JXA==
-X-Received: by 2002:adf:f4d0:0:b0:33b:4382:c50 with SMTP id h16-20020adff4d0000000b0033b43820c50mr5649006wrp.26.1707812800815;
-        Tue, 13 Feb 2024 00:26:40 -0800 (PST)
-X-Forwarded-Encrypted: i=1; AJvYcCVtAjT64GmWQpyv3hCLbSMV5N1RUq8Hs7hhwctTbekc2NvzNMwyPi189+B84CuyPCJUWeldPTVd6lvNKxrTz06eVbDtccrOEe1yqkS2q8qzyepBbY9hsiZIWrBmW5I02hIAx9AHEjrmFYK0uDYCX6/NsEOlgOFN+bIJA4C9K1npWG5rxvzJm4nMisSaQh7ZVUIZRV1IADsbpdmLGKf4apiWUNbAJF+5r5TWXUjXdlIyEQiNamADYNzY7g0xnBCq41o119U+EAlXI5uEfpZ3/XDgsCHJWAaK6KrcKxJpI2byccQqjvbtBcwqN/Se3q6mtUbnGKetLp8UHz0xE7ZKUIFmnC4C1mEtkhZXH5l4hYD67gvjOlctlSV5QIWmDjTfTc7/Z6iYYrf29yXWBeMKvwgvj+QLuD7usni2rhA63cYZ8o5b3NMCBeISJiMC02+bKWu4Mqwnhk0dUunQOKdcs8F+TVsoKJ5R/iaoJxKBHG1sM44cse77KXDYoiXQZpY8ZTduYMR70sxF5AiPkn0E/DJia/WHX1YtUgX9+kNW6sI3tw2qEzuv5c2n1bdwFBeFcnRvM6MlUNFEM6aEGb0=
-Received: from [192.168.1.20] ([178.197.223.6])
-        by smtp.gmail.com with ESMTPSA id l21-20020adfa395000000b0033b3ceda5dbsm8933060wrb.44.2024.02.13.00.26.38
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 13 Feb 2024 00:26:40 -0800 (PST)
-Message-ID: <feab0ab8-9c34-41f4-a013-e66e0c74048b@linaro.org>
-Date: Tue, 13 Feb 2024 09:26:38 +0100
+	s=arc-20240116; t=1707812875; c=relaxed/simple;
+	bh=5BrtsPcQx+QRTJ3NMzBqp6AJkDSTp2WBQaacQu55MT0=;
+	h=From:To:CC:Subject:Date:Message-ID:MIME-Version:Content-Type; b=uqXxC+os5ynsUGxgUx/h3x2oJqZYktPRAy3mEkW0lFwqYDtrIpmIpqds0KgUDXs/TMPOIWQ8qK0jD5TuLNMwFglhxBYSn8zxR8rgQssRIxHvxrya0ElFPOncnlEKLmn1qX4/mGXiyjFKja34jTIEXQewE/2LSS/8eldJnzOIUbQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=ewD8vTTs; arc=none smtp.client-ip=205.220.180.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
+Received: from pps.filterd (m0279871.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.17.1.24/8.17.1.24) with ESMTP id 41D6oG5j000796;
+	Tue, 13 Feb 2024 08:27:50 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
+	from:to:cc:subject:date:message-id:mime-version
+	:content-transfer-encoding:content-type; s=qcppdkim1; bh=GZs8MDJ
+	oMB0ANV4SJ9D4KZPTcm9muUvls4lZ0YPfw+Y=; b=ewD8vTTshzv4IDBiO6zdK4o
+	G1fCqzUiV4Jz2fZrbNy5WZXsb6NqamjAyGhmBmuscEah9En8M1F87aun5/UCHqYp
+	cNTRWQf+cpyDpF68/6rb23OO/+YysM9DpuIzhU4uc4F4QTN20K4IIanGbLPt9s9o
+	o++WwoSGg5IWiWfeEyvDiJ1PAMaqATC1F5vH4r1AtGnZyD1VQk+p2GNrzBWfph1Q
+	PxYK2jnQmeuqM7gCY15Nw2Ks/ICVlqHAFOM3fa3lAd1bVQTbFeKfnGPupN5YOfKQ
+	TbAh1ZYEH2DDVXboHeiGEKbXDpN2u87M95169lyVNJrbQheqONlx/T79tzbbhqg=
+	=
+Received: from nalasppmta04.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3w7gvjjgc8-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Tue, 13 Feb 2024 08:27:50 +0000 (GMT)
+Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
+	by NALASPPMTA04.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 41D8Rbsb013935
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Tue, 13 Feb 2024 08:27:37 GMT
+Received: from hu-kriskura-hyd.qualcomm.com (10.80.80.8) by
+ nalasex01a.na.qualcomm.com (10.47.209.196) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.1118.40; Tue, 13 Feb 2024 00:27:33 -0800
+From: Krishna Kurapati <quic_kriskura@quicinc.com>
+To: Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Rob Herring
+	<robh+dt@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio
+	<konrad.dybcio@linaro.org>,
+        Conor Dooley <conor+dt@kernel.org>
+CC: <devicetree@vger.kernel.org>, <linux-arm-msm@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>, <quic_ppratap@quicinc.com>,
+        <quic_jackp@quicinc.com>, Krishna Kurapati <quic_kriskura@quicinc.com>
+Subject: [PATCH v2 0/2] Add DT support for Multiport controller on SC8280XP
+Date: Tue, 13 Feb 2024 13:57:22 +0530
+Message-ID: <20240213082724.1789096-1-quic_kriskura@quicinc.com>
+X-Mailer: git-send-email 2.34.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [Patch v2] dt-bindings: media: s5p-mfc: Remove s5p-mfc.txt
- binding
-To: Aakarsh Jain <aakarsh.jain@samsung.com>,
- linux-arm-kernel@lists.infradead.org, linux-media@vger.kernel.org,
- linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
-Cc: m.szyprowski@samsung.com, andrzej.hajda@intel.com, mchehab@kernel.org,
- hverkuil-cisco@xs4all.nl, robh+dt@kernel.org,
- krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
- linux-samsung-soc@vger.kernel.org, andi@etezian.org, gost.dev@samsung.com,
- alim.akhtar@samsung.com, pankaj.dubey@samsung.com
-References: <CGME20240213045739epcas5p49f28920efda3cb80351b1fcae580b21e@epcas5p4.samsung.com>
- <20240213045733.63876-1-aakarsh.jain@samsung.com>
-Content-Language: en-US
-From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
- 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
- D2GYIS41Kv4Isx2dEFh+/Q==
-In-Reply-To: <20240213045733.63876-1-aakarsh.jain@samsung.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
+ nalasex01a.na.qualcomm.com (10.47.209.196)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-GUID: NF6QisKSHEVfhYZEzNmNfrLX7oPI9jwE
+X-Proofpoint-ORIG-GUID: NF6QisKSHEVfhYZEzNmNfrLX7oPI9jwE
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.272,Aquarius:18.0.1011,Hydra:6.0.619,FMLib:17.11.176.26
+ definitions=2024-02-13_04,2024-02-12_03,2023-05-22_02
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 malwarescore=0 phishscore=0
+ suspectscore=0 spamscore=0 mlxscore=0 lowpriorityscore=0
+ priorityscore=1501 impostorscore=0 mlxlogscore=393 adultscore=0
+ bulkscore=0 clxscore=1015 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.19.0-2401310000 definitions=main-2402130065
 
-On 13/02/2024 05:57, Aakarsh Jain wrote:
-> commit "538af6e5856b" which convert s5p-mfc bindings to
+Series [1] introduces binding and driver support for DWC3 Multiport
+controllers. This series adds support for tertiary controller of SC8280
+and enabled multiport controller for SA8295P-ADP platform.
 
-Nothing improved here, that's still not correct commit reference. Drop
-the quotes and look at submitting patches how this is supposed to be
-done. It's explicitly documented.
+Till v13 the DT was pushed along with driver code. Separate the DT changes
+from driver update and pushing it as this series.
 
+Changes in v2:
+SA8540 Ride related code changes have been dropped and will pushed later
+due to unavailability of hardware with either Andrew or me for testing the
+gpio hog changes suggested in v1.
+Implemented vbus boost regulators as fixed regulators instead of modelling
+their enable pins as pinctrl nodes.
 
-> json-schema is already merged. Remove "s5p-mfc.txt" file.
-> 
-> Fixes: 538af6e5856b ("dt-bindings: media: s5p-mfc: convert
-> bindings to json-schema")
+Link to v1:
+https://lore.kernel.org/all/20240206114745.1388491-1-quic_kriskura@quicinc.com/
 
-Don't break tags.
+[1]: https://lore.kernel.org/all/20240206051825.1038685-1-quic_kriskura@quicinc.com/
 
-> Signed-off-by: Aakarsh Jain <aakarsh.jain@samsung.com>
-> ---
-> changelog:
+Krishna Kurapati (2):
+  arm64: dts: qcom: sc8280xp: Add multiport controller node for SC8280
+  arm64: dts: qcom: sa8295p: Enable tertiary controller and its 4 USB
+    ports
 
-> index e69de29bb2d1..000000000000
+ arch/arm64/boot/dts/qcom/sa8295p-adp.dts | 83 ++++++++++++++++++++++++
+ arch/arm64/boot/dts/qcom/sc8280xp.dtsi   | 82 +++++++++++++++++++++++
+ 2 files changed, 165 insertions(+)
 
-Best regards,
-Krzysztof
+-- 
+2.34.1
 
 
