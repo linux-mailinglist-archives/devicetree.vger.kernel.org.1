@@ -1,160 +1,138 @@
-Return-Path: <devicetree+bounces-41223-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-41224-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id DAAAF852D6E
-	for <lists+devicetree@lfdr.de>; Tue, 13 Feb 2024 11:05:33 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 94D32852DA2
+	for <lists+devicetree@lfdr.de>; Tue, 13 Feb 2024 11:15:00 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 954A828DC4F
-	for <lists+devicetree@lfdr.de>; Tue, 13 Feb 2024 10:05:32 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id E63F11F22FB9
+	for <lists+devicetree@lfdr.de>; Tue, 13 Feb 2024 10:14:59 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 19C3E22635;
-	Tue, 13 Feb 2024 10:04:57 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5D6FE224FA;
+	Tue, 13 Feb 2024 10:14:50 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linutronix.de header.i=@linutronix.de header.b="SE49GUQb";
-	dkim=permerror (0-bit key) header.d=linutronix.de header.i=@linutronix.de header.b="hwPVCOob"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="dcVdIZWH"
 X-Original-To: devicetree@vger.kernel.org
-Received: from galois.linutronix.de (Galois.linutronix.de [193.142.43.55])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-yb1-f169.google.com (mail-yb1-f169.google.com [209.85.219.169])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7053722630;
-	Tue, 13 Feb 2024 10:04:55 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=193.142.43.55
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 116502C68A
+	for <devicetree@vger.kernel.org>; Tue, 13 Feb 2024 10:14:47 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.219.169
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1707818697; cv=none; b=VpgUMJipLQwGZZAGw4ndt5vj1YWen2Bvz+FU7vGi9FeErChDR6iUXlstenSWlE00WngTaCgNr9OsWx9Ux5xAWGZsnQQNCE/XjGlprTJXMpi+48sOPgUjTEbAqQfCH3ed9wm6f+RkigQWBYPFQ+CsfcAx4rnWgYv+lvsZVcavj28=
+	t=1707819290; cv=none; b=WiTioQDG2jaPs5/Iqqnh3u1j+qwMYuy9YmZVyGMm9Waj7EkNMOsMFqiAgS/BUypqQhiIyrsGXPDhudgXvb+mBreK49jEwmjBeOksZ8wLQq78wGmHwM1So9aTIC5e/98Kr+jUYQW0NU6dH62D9bAWpmYpI9aIdd2m5gFoEyKt7PE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1707818697; c=relaxed/simple;
-	bh=6TSHYiFO7t6qPOK5xs2M2DE46SDMBFbNXGbksGWwjH4=;
-	h=From:To:Cc:Subject:In-Reply-To:References:Date:Message-ID:
-	 MIME-Version:Content-Type; b=dgHEQnQJv/aFFTd0s77ljy0GfqqTQ7AqCwgfOCjMbgAq4P8IrmX3WUs59NDI2ZxZqfXn/IAhXpUB2pY9FKed9THvbIGOdBULMhNcW2QewEWUVMgK0G7YpHdxeHdl9dBA9SjNIwuuSnWHryCFYWCd9+X2/B7DwG76cqwRznWYERE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linutronix.de; spf=pass smtp.mailfrom=linutronix.de; dkim=pass (2048-bit key) header.d=linutronix.de header.i=@linutronix.de header.b=SE49GUQb; dkim=permerror (0-bit key) header.d=linutronix.de header.i=@linutronix.de header.b=hwPVCOob; arc=none smtp.client-ip=193.142.43.55
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linutronix.de
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linutronix.de
-From: Thomas Gleixner <tglx@linutronix.de>
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=linutronix.de;
-	s=2020; t=1707818693;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 in-reply-to:in-reply-to:references:references;
-	bh=Y1HrfL+SrlW2XWR5pU7cGgxYMFs+Qr2zZ76ZBVxutfE=;
-	b=SE49GUQbwTclIrg8Ek0Z3VpThQD1o9FAH8SAfIXoKnzTV3UsTWw9PR3oootZv4e+BrIiEw
-	mdQccGiNG42+Pm2ePTR4i97kp8932eaGmbf9YEyCPmZhmlW6DTxYRik/XdRPpaf/1d9Rj+
-	iw237txMkf2vF9jD/1ZLzDd0rm8LrsgK/C2xIiSWgoOKHIUVHZ9nngnvzOVUFKnc6moxK7
-	BpEj8jkWpHHDobcUxfUsyG+G/u9okIlxlJR4RBySpQ43POtEj6N7+cSAuQiP7GiM5XpWMC
-	zt2UBKcuYOqCl9/NGww8Fi+s6sVfQA4TLjGzQeVeq9V65GziT/r7Yaga1vZYqA==
-DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=linutronix.de;
-	s=2020e; t=1707818693;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 in-reply-to:in-reply-to:references:references;
-	bh=Y1HrfL+SrlW2XWR5pU7cGgxYMFs+Qr2zZ76ZBVxutfE=;
-	b=hwPVCOobELnpGmo9aIjJ/oKtSoM7jE5zNUcYVknaR65ECFvfFEULvht2Ghlz1V5bazoRzP
-	gBUt4M68cX7NwTDg==
-To: Yu Chien Peter Lin <peterlin@andestech.com>, acme@kernel.org,
- adrian.hunter@intel.com, ajones@ventanamicro.com,
- alexander.shishkin@linux.intel.com, andre.przywara@arm.com,
- anup@brainfault.org, aou@eecs.berkeley.edu, atishp@atishpatra.org,
- conor+dt@kernel.org, conor.dooley@microchip.com, conor@kernel.org,
- devicetree@vger.kernel.org, evan@rivosinc.com, geert+renesas@glider.be,
- guoren@kernel.org, heiko@sntech.de, irogers@google.com,
- jernej.skrabec@gmail.com, jolsa@kernel.org, jszhang@kernel.org,
- krzysztof.kozlowski+dt@linaro.org, linux-arm-kernel@lists.infradead.org,
- linux-kernel@vger.kernel.org, linux-perf-users@vger.kernel.org,
- linux-renesas-soc@vger.kernel.org, linux-riscv@lists.infradead.org,
- linux-sunxi@lists.linux.dev, locus84@andestech.com, magnus.damm@gmail.com,
- mark.rutland@arm.com, mingo@redhat.com, n.shubin@yadro.com,
- namhyung@kernel.org, palmer@dabbelt.com, paul.walmsley@sifive.com,
- peterlin@andestech.com, peterz@infradead.org,
- prabhakar.mahadev-lad.rj@bp.renesas.com, rdunlap@infradead.org,
- robh+dt@kernel.org, samuel@sholland.org, sunilvl@ventanamicro.com,
- tim609@andestech.com, uwu@icenowy.me, wens@csie.org, will@kernel.org,
- inochiama@outlook.com, unicorn_wang@outlook.com, wefu@redhat.com
-Cc: Randolph <randolph@andestech.com>, Atish Patra <atishp@rivosinc.com>
-Subject: Re: [PATCH v8 02/10] irqchip/riscv-intc: Allow large non-standard
- interrupt number
-In-Reply-To: <20240129092553.2058043-3-peterlin@andestech.com>
-References: <20240129092553.2058043-1-peterlin@andestech.com>
- <20240129092553.2058043-3-peterlin@andestech.com>
-Date: Tue, 13 Feb 2024 11:04:53 +0100
-Message-ID: <877cj8issa.ffs@tglx>
+	s=arc-20240116; t=1707819290; c=relaxed/simple;
+	bh=qdwBhSjUwQlPmDF34us+O31ur8u9qEpELpEa5WnbVSc=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=C+ZFuaW00nn2Xbxyzqw7Gfze9z4elERg32Vlr887Y95C/yDzaPqzwhd+WTP+VPp96bbpp8KVa2jIMYgTyeiTiONmhOYOJGh6YCalC2g/Cl5i4Jl8Em1Y8jPU+mQIPYy7GI9dr+7womklbBXaLU6sy5nUvD5gBPT1wkQuI+3FXaU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=dcVdIZWH; arc=none smtp.client-ip=209.85.219.169
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-yb1-f169.google.com with SMTP id 3f1490d57ef6-dc238cb1b17so3976828276.0
+        for <devicetree@vger.kernel.org>; Tue, 13 Feb 2024 02:14:47 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1707819287; x=1708424087; darn=vger.kernel.org;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=uAkusKZXu4VxkCaxFs2ANE2O6DTRMuupESPk1UtuR8I=;
+        b=dcVdIZWHNjh2cBUAqKtpcZxko4CQ+60s+eaEd9GMHyolKoUkSKw1s1m1SMCFQULvsf
+         6brq/PQr2gxb7Qha4MMFPtVqD0vRVUtF5y03qrllgiBav9b/ueksOfbEjhf5zNiYB9DG
+         yuN09+ZrSOEYji66D1xnFFGPGMnMr44pkCt2MV/Uf7FgGTdrPXtSkdavEU+sZcX3TEim
+         I+RKshzL/sBLAUk+JJjnRK8EEm4eCcpTgsuuZQTUjegviflsAy5xABGQ1fi+RkB7AsNL
+         f+S9GRnmkMBorgkKi8meVU1Owsn6dSdI9xzEFyYGUJvR3oubgmtWMVS/+08uh8chNCCs
+         TGSw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1707819287; x=1708424087;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=uAkusKZXu4VxkCaxFs2ANE2O6DTRMuupESPk1UtuR8I=;
+        b=gn8a6wKYxVjR/T7d4khkCnssiATDZlMqTPG+shXO4brfp01CVsu5+S/NKnpZxACCXg
+         bPvUPHurXmv6xZplLgHzR7Uh1OzsbzWksCS1Ee/WHDwlhFjLlXiikGqlcTrGtrn+GM18
+         iGmKaSuJtOD3q5miyIXe4BUACMCoLGpRc+DuFGWBUZiy8sCiXKyF6TCmV351BuDs6t8i
+         f5oE8/v1m0ErTb0AwzygGKn9FzVl96LfPyCkeMwokDFuyYLnhiWETuQQDU/awSfoezno
+         e3PWkuOTngRStUibJV5ioprShA/euIvTxXuIrkDjsjjCWScOGMMkfZoem7ju4EROUbgU
+         nP6A==
+X-Gm-Message-State: AOJu0YxaUUmr/h9w0o4JVxfxefc/WZM9vyMw5W0YvO7TDCB0BcMu5kIT
+	s5VlJn6iLZzB0zV7JVPZ+eCGBk6DWHWiLBqPuOMSs1B7CX6QazUpkTQd8HQcP1MIzPVUqsMQAHi
+	ZNdYo3rFuk+3gqSpgEiuTqgB4X+6b+pryWwDACRas9Tp4OmIH
+X-Google-Smtp-Source: AGHT+IEVm1Knjlt3O7qiDjxwD0iN4GvXtg7Ltb1tOjcwmWakmQZAsoE0ftYUaSsSBXyfT4khwq+X23qqApBdH/Do5JI=
+X-Received: by 2002:a05:6902:1b89:b0:dcc:f6e2:44d0 with SMTP id
+ ei9-20020a0569021b8900b00dccf6e244d0mr593209ybb.37.1707819287099; Tue, 13 Feb
+ 2024 02:14:47 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain
+References: <20240209-msm8996-fix-ufs-v1-0-107b52e57420@linaro.org>
+ <20240209-msm8996-fix-ufs-v1-1-107b52e57420@linaro.org> <6dd8b54e-8334-4bc7-a6c5-7a81c04ed8bb@linaro.org>
+In-Reply-To: <6dd8b54e-8334-4bc7-a6c5-7a81c04ed8bb@linaro.org>
+From: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+Date: Tue, 13 Feb 2024 12:14:36 +0200
+Message-ID: <CAA8EJprOh0PB1n3c9NS276ck8YrbSTj8wd6J8QqvoozpaB4H9A@mail.gmail.com>
+Subject: Re: [PATCH 1/8] dt-bindings: ufs: qcom,ufs: add second RX lane on
+ MSM8996 platform
+To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Cc: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>, 
+	Bjorn Andersson <andersson@kernel.org>, Konrad Dybcio <konrad.dybcio@linaro.org>, 
+	"James E.J. Bottomley" <jejb@linux.ibm.com>, "Martin K. Petersen" <martin.petersen@oracle.com>, 
+	Nitin Rawat <quic_nitirawa@quicinc.com>, Can Guo <quic_cang@quicinc.com>, 
+	Naveen Kumar Goud Arepalli <quic_narepall@quicinc.com>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Andy Gross <andy.gross@linaro.org>, Alim Akhtar <alim.akhtar@samsung.com>, 
+	Avri Altman <avri.altman@wdc.com>, Bart Van Assche <bvanassche@acm.org>, Andy Gross <agross@kernel.org>, 
+	linux-arm-msm@vger.kernel.org, linux-scsi@vger.kernel.org, 
+	devicetree@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
 
-On Mon, Jan 29 2024 at 17:25, Yu Chien Peter Lin wrote:
->  static asmlinkage void riscv_intc_irq(struct pt_regs *regs)
->  {
->  	unsigned long cause = regs->cause & ~CAUSE_IRQ_FLAG;
->  
-> -	if (unlikely(cause >= BITS_PER_LONG))
-> -		panic("unexpected interrupt cause");
-> -
-> -	generic_handle_domain_irq(intc_domain, cause);
-> +	if (generic_handle_domain_irq(intc_domain, cause))
-> +		pr_warn_ratelimited("Failed to handle interrupt (cause: %ld)\n",
-> +				    cause);
+On Sun, 11 Feb 2024 at 16:02, Krzysztof Kozlowski
+<krzysztof.kozlowski@linaro.org> wrote:
+>
+> On 09/02/2024 22:50, Dmitry Baryshkov wrote:
+> > Describe the second RX lane used by the UFS controller on MSM8996
+> > platform.
+> >
+> > Fixes: 462c5c0aa798 ("dt-bindings: ufs: qcom,ufs: convert to dtschema")
+>
+> Your commit msg does not explain why this is a fix.
 
-Either let the cause stick out or you need brackets. See:
+.. and it is probably unnecessary, as msm8996 has 'lanes-per-direcion
+= <1>;' I'll drop this for v2.
 
-  https://www.kernel.org/doc/html/latest/process/maintainer-tip.html#bracket-rules
+>
+> > Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+> > ---
+> >  Documentation/devicetree/bindings/ufs/qcom,ufs.yaml | 11 ++++++-----
+> >  1 file changed, 6 insertions(+), 5 deletions(-)
+> >
+> > diff --git a/Documentation/devicetree/bindings/ufs/qcom,ufs.yaml b/Documentation/devicetree/bindings/ufs/qcom,ufs.yaml
+> > index 10c146424baa..f1de3244b473 100644
+> > --- a/Documentation/devicetree/bindings/ufs/qcom,ufs.yaml
+> > +++ b/Documentation/devicetree/bindings/ufs/qcom,ufs.yaml
+> > @@ -43,11 +43,11 @@ properties:
+> >
+> >    clocks:
+> >      minItems: 8
+> > -    maxItems: 11
+> > +    maxItems: 12
+> >
+> >    clock-names:
+> >      minItems: 8
+> > -    maxItems: 11
+> > +    maxItems: 12
+>
+>
+> Best regards,
+> Krzysztof
+>
 
->  }
->  
->  /*
-> @@ -93,6 +95,14 @@ static int riscv_intc_domain_alloc(struct irq_domain *domain,
->  	if (ret)
->  		return ret;
->  
-> +	/*
-> +	 * Only allow hwirq for which we have corresponding standard or
-> +	 * custom interrupt enable register.
-> +	 */
-> +	if ((riscv_intc_nr_irqs <= hwirq && hwirq < riscv_intc_custom_base) ||
-> +	    (riscv_intc_custom_base + riscv_intc_custom_nr_irqs) <= hwirq)
-> +		return -EINVAL;
 
-Duh. This mix of ordering required to read this 3 times. What's wrong
-with writing this consistently:
-
-	if ((hwirq >= riscv_intc_nr_irqs && hwirq < riscv_intc_custom_base) ||
-	    (hwirq >= iscv_intc_custom_base + riscv_intc_custom_nr_irqs)
-		return -EINVAL;
-
-Hmm?
-
-> -	pr_info("%d local interrupts mapped\n", BITS_PER_LONG);
-> +	pr_info("%d local interrupts mapped\n", riscv_intc_nr_irqs);
-> +	if (riscv_intc_custom_nr_irqs)
-> +		pr_info("%d custom local interrupts mapped\n",
-> +			riscv_intc_custom_nr_irqs);
-
-See bracket rules.
-  
->  	return 0;
->  }
-> @@ -166,6 +178,10 @@ static int __init riscv_intc_init(struct device_node *node,
->  		return 0;
->  	}
->  
-> +	riscv_intc_nr_irqs = BITS_PER_LONG;
-> +	riscv_intc_custom_base = riscv_intc_nr_irqs;
-
-Why don't you initialize the static variables with constants right away?
-
-> +	riscv_intc_custom_nr_irqs = 0;
-
-It's already 0, no?
-
->  	return riscv_intc_init_common(of_node_to_fwnode(node));
->  }
-
-Thanks,
-
-        tglx
+-- 
+With best wishes
+Dmitry
 
