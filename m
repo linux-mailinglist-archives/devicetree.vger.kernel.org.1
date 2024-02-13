@@ -1,131 +1,121 @@
-Return-Path: <devicetree+bounces-41341-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-41343-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id CF354853396
-	for <lists+devicetree@lfdr.de>; Tue, 13 Feb 2024 15:51:46 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id E281A8533D0
+	for <lists+devicetree@lfdr.de>; Tue, 13 Feb 2024 15:57:41 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 0DDBE1C27AE1
-	for <lists+devicetree@lfdr.de>; Tue, 13 Feb 2024 14:51:46 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 9F3B428DD5C
+	for <lists+devicetree@lfdr.de>; Tue, 13 Feb 2024 14:57:40 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id EE6AE5DF1B;
-	Tue, 13 Feb 2024 14:51:34 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 305175F564;
+	Tue, 13 Feb 2024 14:56:21 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="YLOvO8N+"
+	dkim=pass (2048-bit key) header.d=microchip.com header.i=@microchip.com header.b="x9VajuEs"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from esa.microchip.iphmx.com (esa.microchip.iphmx.com [68.232.153.233])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C20405DF1F;
-	Tue, 13 Feb 2024 14:51:34 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8299A5EE74;
+	Tue, 13 Feb 2024 14:56:19 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=68.232.153.233
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1707835894; cv=none; b=ItV0Cit+4p+1AbO/5MH14mqMIEdM6nrPCO3c56KCh2HVvbfvpFC5Zit8PYGgoZ+3ZPbdSq4n5IRv6Vbx41NkK/XNF77NTOgu82KZxyQdV5Lv93IbHU8v3dmX699o1W7SLUEGaSKAWvEmMC5Vw32HcO4uiMbWS5zgaJmI+AhSMBo=
+	t=1707836181; cv=none; b=Prif1gKjONtLIZIbeNFzK8+n/cdZ/KEz8HUvdkz4v0FfiNNQmlE7yzxvUDHy3b9dBPnt2If8B2QAfnQO/fWu16rLj4J9mV2IcEY37tjRpakVipV9mqNiWunMuBvzHPW+s2iUKoFAzdrGYhJrxaSPxT1dk9xlIpJXD+PtuLrJO/0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1707835894; c=relaxed/simple;
-	bh=DA7XyugR56rHmd6lff3TrQPIS1ykFC2LcDFfHg0VqqM=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=gKwnjnzKJ0l+JPL8D1A6bDCE2v/A1uXaM1oZlZDnTz9WZEkpTSPoq4gZNTdGP3qdYHrf2YqFXUt5IhA7NJ4KYy9hLbjuV/2JjQDsaFp2a9HITaa4b3sV+Vitdxx8TxZ20sjYp/Xtqnlo/fm9RW4fzTOa0Jk6wOfq2uF5YdKTzKA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=YLOvO8N+; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 1C57EC43399;
-	Tue, 13 Feb 2024 14:51:34 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1707835894;
-	bh=DA7XyugR56rHmd6lff3TrQPIS1ykFC2LcDFfHg0VqqM=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=YLOvO8N+mj5s1gLoQ4l8kWQPX94KxNmu1vXJXLq2m+fVEaUb25XDWhvAjQ5vuX0QE
-	 ps5rf3S0cxBRShYe9DGQa1uaPGk/2LKPA8VOUd4fzyqwNgdXcU9mmGB1bujJ/1RleC
-	 zhTmt+MoWeGPVJTpFVezCaYdnzoIiNyXSlXgFbe26nw+wZMDLHGRwtJnkenU+Qnp9X
-	 ZwiFWpwKtHsNB23prNGZjopxtxhxyBE4+0WQ6dNrJ/QLbcJHw57mE877diGmLsKrzQ
-	 3vfHBGFKCT74PeHpf/g4XzLTNFfroEXK48lpQ+tgmo+KwjfMtW676GtguxyipYddy7
-	 FHqJ6qdcjHGuw==
-Date: Tue, 13 Feb 2024 08:51:31 -0600
-From: Rob Herring <robh@kernel.org>
-To: Nuno =?iso-8859-1?Q?S=E1?= <noname.nuno@gmail.com>,
-	Saravana Kannan <saravanak@google.com>
-Cc: Nuno Sa <nuno.sa@analog.com>,
-	Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-	"Rafael J. Wysocki" <rafael@kernel.org>,
-	Frank Rowand <frowand.list@gmail.com>,
-	Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
-	Daniel Scally <djrscally@gmail.com>,
-	Heikki Krogerus <heikki.krogerus@linux.intel.com>,
-	Sakari Ailus <sakari.ailus@linux.intel.com>,
-	Len Brown <lenb@kernel.org>, linux-acpi@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v2 2/2] of: dynamic: flush devlinks workqueue before
- destroying the changeset
-Message-ID: <20240213145131.GA1180152-robh@kernel.org>
-References: <20240205-fix-device-links-overlays-v2-0-5344f8c79d57@analog.com>
- <20240205-fix-device-links-overlays-v2-2-5344f8c79d57@analog.com>
- <aed988a09cb4347ec7ac1b682c4ee53b7d2a840b.camel@gmail.com>
+	s=arc-20240116; t=1707836181; c=relaxed/simple;
+	bh=fwm7IvpVj/fw5X0jlvNJTx3hGBMtAxLOyuATPE9ICMY=;
+	h=From:To:CC:Subject:Date:Message-ID:MIME-Version:Content-Type; b=BLRisPU7h1Wi3G+hbyR7kjfxZSjA7jTEGSgybEVbTbVd35Ool0AVS44psS3c0DXXCKYSnYL2o4Tt0Hp9IyIj4e7KgsL5AnISeSz9rwhdp/JAql/hEVBgtFqxZRce8omdmR32UeDE/iwcjU+uVsQHLY1CxxsdkoGBuM40iNz+eT0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=microchip.com; spf=pass smtp.mailfrom=microchip.com; dkim=pass (2048-bit key) header.d=microchip.com header.i=@microchip.com header.b=x9VajuEs; arc=none smtp.client-ip=68.232.153.233
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=microchip.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=microchip.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
+  t=1707836179; x=1739372179;
+  h=from:to:cc:subject:date:message-id:mime-version:
+   content-transfer-encoding;
+  bh=fwm7IvpVj/fw5X0jlvNJTx3hGBMtAxLOyuATPE9ICMY=;
+  b=x9VajuEs1B4XONcTUSFd1nyfVFtHZUHRqCPrertuYgnjMLQdnUBe0hRx
+   pOau6lrSVJW5m0jwt3g42LirYGv+Az2SVNoOrAxJpPqJz/9t3NiInzleY
+   3lSebh3Aj90hY8xB18myWLauJ0P0Z/ET8rKos3CSpz6rLR533jgO4kgBp
+   rA6qTpp4YjHmsNK7lqJ/7d5HpsQDeG4lm3X5/yPaAeeMlufIroVsl6Ua3
+   4nxHWHPHMeubjcx5AyksMCfn+ZfBj2rFUwGorC9KYnFyN9u0CeSj6txXN
+   GuZwgaArlQQiS9872q0Lp0MBpj4AIg5oIBdNoqhQ1H2U2B1oMijrdh0QT
+   A==;
+X-CSE-ConnectionGUID: notrBuGtRbuSS13mA3DSPA==
+X-CSE-MsgGUID: ht6/YnX5Q/SodX370MUNQQ==
+X-IronPort-AV: E=Sophos;i="6.06,157,1705388400"; 
+   d="scan'208";a="17608936"
+X-Amp-Result: SKIPPED(no attachment in message)
+Received: from unknown (HELO email.microchip.com) ([170.129.1.10])
+  by esa1.microchip.iphmx.com with ESMTP/TLS/ECDHE-RSA-AES128-GCM-SHA256; 13 Feb 2024 07:56:12 -0700
+Received: from chn-vm-ex01.mchp-main.com (10.10.85.143) by
+ chn-vm-ex03.mchp-main.com (10.10.85.151) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.35; Tue, 13 Feb 2024 07:55:51 -0700
+Received: from virtualbox.microchip.com (10.10.85.11) by
+ chn-vm-ex01.mchp-main.com (10.10.85.143) with Microsoft SMTP Server id
+ 15.1.2507.35 via Frontend Transport; Tue, 13 Feb 2024 07:55:49 -0700
+From: Mihai Sain <mihai.sain@microchip.com>
+To: <claudiu.beznea@tuxon.dev>, <robh+dt@kernel.org>,
+	<krzysztof.kozlowski+dt@linaro.org>, <conor+dt@kernel.org>,
+	<nicolas.ferre@microchip.com>, <alexandre.belloni@bootlin.com>,
+	<devicetree@vger.kernel.org>, <linux-arm-kernel@lists.infradead.org>,
+	<linux-kernel@vger.kernel.org>
+CC: <cristian.birsan@microchip.com>, Mihai Sain <mihai.sain@microchip.com>
+Subject: [PATCH v4 0/8] Add power-supply properties for sdmmc nodes on Microchip boards
+Date: Tue, 13 Feb 2024 16:55:34 +0200
+Message-ID: <20240213145542.23207-1-mihai.sain@microchip.com>
+X-Mailer: git-send-email 2.43.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <aed988a09cb4347ec7ac1b682c4ee53b7d2a840b.camel@gmail.com>
+Content-Type: text/plain
 
-On Mon, Feb 12, 2024 at 01:10:27PM +0100, Nuno Sá wrote:
-> On Mon, 2024-02-05 at 13:09 +0100, Nuno Sa wrote:
-> > Device links will drop their supplier + consumer refcounts
-> > asynchronously. That means that the refcount of the of_node attached to
-> > these devices will also be dropped asynchronously and so we cannot
-> > guarantee the DT overlay assumption that the of_node refcount must be 1 in
-> > __of_changeset_entry_destroy().
-> > 
-> > Given the above, call the new fwnode_links_flush_queue() helper to flush
-> > the devlink workqueue so we can be sure that all links are dropped before
-> > doing the proper checks.
-> > 
-> > Signed-off-by: Nuno Sa <nuno.sa@analog.com>
-> > ---
-> >  drivers/of/dynamic.c | 8 ++++++++
-> >  1 file changed, 8 insertions(+)
-> > 
-> > diff --git a/drivers/of/dynamic.c b/drivers/of/dynamic.c
-> > index 3bf27052832f..b7153c72c9c9 100644
-> > --- a/drivers/of/dynamic.c
-> > +++ b/drivers/of/dynamic.c
-> > @@ -14,6 +14,7 @@
-> >  #include <linux/slab.h>
-> >  #include <linux/string.h>
-> >  #include <linux/proc_fs.h>
-> > +#include <linux/fwnode.h>
-> >  
-> >  #include "of_private.h"
-> >  
-> > @@ -518,6 +519,13 @@ EXPORT_SYMBOL(of_changeset_create_node);
-> >  
-> >  static void __of_changeset_entry_destroy(struct of_changeset_entry *ce)
-> >  {
-> > +	/*
-> > +	 * device links drop their device references (and hence their of_node
-> > +	 * references) asynchronously on a dedicated workqueue. Hence we need
-> > +	 * to flush it to make sure everything is done before doing the below
-> > +	 * checks.
-> > +	 */
-> > +	fwnode_links_flush_queue();
-> >  	if (ce->action == OF_RECONFIG_ATTACH_NODE &&
-> >  	    of_node_check_flag(ce->np, OF_OVERLAY)) {
-> >  		if (kref_read(&ce->np->kobj.kref) > 1) {
-> > 
-> 
-> Hi Rob and Frank,
-> 
-> Any way you could take a look at this and see if you're ok with the change in the
-> overlay code? 
-> 
-> On the devlink side , we already got the ok from Rafael.
+This patch series adds power-supply properties for sdmmc nodes on Microchip boards.
 
-Didn't Saravana say he was going to look at this? As of yesterday, he's 
-also a DT maintainer so deferring to him.
+Changes in v4:
+--------------
 
-Rob
+* Simplify the commit description for each board to have a better understanding.
+
+Changes in v3:
+--------------
+
+* Update the commit description for each board in order to wrap the line at max 75 columns.
+
+Changes in v2:
+--------------
+
+* Update the commit description for each board.
+* The goal is to keep the vqmmc at 3V3 in order to use the sd high-speed mode.
+
+Mihai Sain (8):
+  ARM: dts: microchip: sam9x60_curiosity: Add power-supply properties for sdmmc nodes
+  ARM: dts: microchip: sam9x60ek: Add power-supply properties for sdmmc nodes
+  ARM: dts: microchip: sama5d27_som1_ek: Add power-supply properties for sdmmc nodes
+  ARM: dts: microchip: sama5d27_wlsom1: Add power-supply property for sdmmc1 node
+  ARM: dts: microchip: sama5d27_wlsom1_ek: Add power-supply property for sdmmc0 node
+  ARM: dts: microchip: sama5d29_curiosity: Add power-supply properties for sdmmc nodes
+  ARM: dts: microchip: sama5d2_icp: Add power-supply property for sdmmc0 node
+  ARM: dts: microchip: sama5d2_xplained: Add power-supply property for sdmmc0 node
+
+ arch/arm/boot/dts/microchip/at91-sam9x60_curiosity.dts  | 4 ++++
+ arch/arm/boot/dts/microchip/at91-sam9x60ek.dts          | 4 ++++
+ arch/arm/boot/dts/microchip/at91-sama5d27_som1_ek.dts   | 4 ++++
+ arch/arm/boot/dts/microchip/at91-sama5d27_wlsom1.dtsi   | 2 ++
+ arch/arm/boot/dts/microchip/at91-sama5d27_wlsom1_ek.dts | 2 ++
+ arch/arm/boot/dts/microchip/at91-sama5d29_curiosity.dts | 4 ++++
+ arch/arm/boot/dts/microchip/at91-sama5d2_icp.dts        | 2 ++
+ arch/arm/boot/dts/microchip/at91-sama5d2_xplained.dts   | 2 ++
+ 8 files changed, 24 insertions(+)
+
+-- 
+2.43.0
+
 
