@@ -1,75 +1,74 @@
-Return-Path: <devicetree+bounces-41290-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-41291-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1773E85306E
-	for <lists+devicetree@lfdr.de>; Tue, 13 Feb 2024 13:24:05 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id A166785307A
+	for <lists+devicetree@lfdr.de>; Tue, 13 Feb 2024 13:27:21 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 7C3371F285E1
-	for <lists+devicetree@lfdr.de>; Tue, 13 Feb 2024 12:24:04 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id C67891C23093
+	for <lists+devicetree@lfdr.de>; Tue, 13 Feb 2024 12:27:20 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2CC203D396;
-	Tue, 13 Feb 2024 12:23:59 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id DF86B3A1D9;
+	Tue, 13 Feb 2024 12:27:15 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="uSWzAzVP"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="DEkBD8MJ"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f54.google.com (mail-wm1-f54.google.com [209.85.128.54])
+Received: from mail-wm1-f48.google.com (mail-wm1-f48.google.com [209.85.128.48])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5AC2B39FF0
-	for <devicetree@vger.kernel.org>; Tue, 13 Feb 2024 12:23:57 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.54
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1100041C77
+	for <devicetree@vger.kernel.org>; Tue, 13 Feb 2024 12:27:13 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.48
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1707827039; cv=none; b=qhQNJvUe/4PErsmBAHDcc2S1hqHsgxDgYhAYcwkMDiJw3KF99T4spOxwVPV5mS+ZSSFtnWF7hjfqlAW/j/XOM175GiF+kRge30rRQoyLChiAXI4GELrACofjmps2dNG8srzFGMvn0LudMBAWwAlxuXmMdSe9hmUx8cctATtedzw=
+	t=1707827235; cv=none; b=GbEJ5Rksh9kbAped5aEXYtCDA/s95XHgY3Hn+GTSZWjUMNWeE1EjFde6l7Zjpa3Xq+G7t0qxIjripo4XItM/TwHECZtVa9l3YD0EX7uVykoQcT097XftQai7UZiTR5S8MM1OsFb/sniwZxeMUh+apn3Wfk9e9wTFNPD+KvmZP1k=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1707827039; c=relaxed/simple;
-	bh=AFzq6YvOpk1JWl3esmnVfeI0g0eFEnBJK1sJT3ynJkk=;
+	s=arc-20240116; t=1707827235; c=relaxed/simple;
+	bh=bjkIq7wl2eARH0U8/btgn3LpomiEBzfaWXOPIvCdCoc=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=rNRW+UbMUVO42xguBreDGbtxbI+EsyKOzROqyajMdgCAKHybSeNkOSp/DXiploR9dDvh+FH9WjfIX9hxXqHCqiL+TgWDbjvvLDaf/7A16M+JwOJENZuYvmW9bScWp97qB6xhCiLhxpuYOqQdXV6FEjYJsYykj9HA1s3mjvqdQ0k=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=uSWzAzVP; arc=none smtp.client-ip=209.85.128.54
+	 In-Reply-To:Content-Type; b=fLFhmbfhleqJmpvMBEQUXNqaQPVbFnffxcFXD4CyCb0Q1b5t8zruwpkeBbBA9E9YRZH8pn1jtz+pqjOFRzih26g63SWpcHyIE7bJqdU1OaR3ps8WhWhrEhhvDheAo9/d72VorxBcuzV8RMD4cJH737a6SZPaHL4+/Ei6ibukwFQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=DEkBD8MJ; arc=none smtp.client-ip=209.85.128.48
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-wm1-f54.google.com with SMTP id 5b1f17b1804b1-40efcb37373so34109935e9.2
-        for <devicetree@vger.kernel.org>; Tue, 13 Feb 2024 04:23:57 -0800 (PST)
+Received: by mail-wm1-f48.google.com with SMTP id 5b1f17b1804b1-410e820a4feso9603275e9.1
+        for <devicetree@vger.kernel.org>; Tue, 13 Feb 2024 04:27:13 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1707827035; x=1708431835; darn=vger.kernel.org;
+        d=linaro.org; s=google; t=1707827232; x=1708432032; darn=vger.kernel.org;
         h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
          :to:content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=ZpL9rs6tYbWfCZj0rAvlmWiNAcCqPggXC5kMgMm3Or0=;
-        b=uSWzAzVPjDLPuNog6lLut38aYfiH7TUPPWzr73xH8dgNds1KyrXlVkydL0FOBUeTGX
-         +I3bm7XvxyDOpTS2SCsETO3kCHzPcN5+DB1dcqTLV2tEiwyuUVoP2b5zCDe/im0+VxzT
-         SERl2hpfQKwR2duI9ZLMQFXeaVoUHh7aq0GmvxG8XR6DEldHsXIrC9yLGohCGzEagLuu
-         OtYH/HsnCkzY/FjHjPo3rt8Wgs5C+eFBp+QwODwiWqWl5/aSDQ5u7LA9xhyGfSYOUQq6
-         ipI47KedEg5bPP46w3sXUDPNWSzuDdSPWtyQhEH5Vl6xngtxN1n+N1PNZc6pqcNl70xL
-         9OMQ==
+        bh=gpJhCN3vLprOIm3zRckJyvjcGrROFXwHZaUhtOClizQ=;
+        b=DEkBD8MJGnrpwCWEZZhqNq/I2bsqk5CyNLcAG93bpz7v4RK71su56nkCZTQnPcRjMw
+         OpbAQsBokv37fNxVsRPkCkKSooywX6JvDea3VxX1HuOJyWfI8VJ5OpBoJ95Q5wLTsJz2
+         6s7riQ6OPeqxQdVLai9kD7Yhc9dZnYQFuacRleD/rvuQy9nXT+SuYeiv8u+lXnISo15v
+         1WU1zFvR1qQAcUTFgJIg0FBl/76QzaRiL39goo5uRrgJ+TGv3honXxqxQhMXUVofHXgl
+         bcLu3uAjxoFNB7lQ7ROEsUVZUyqJWgkjmThet6uEZ8XYPPKkPDVMbSFh9ywmLPSvS/4b
+         Nm7w==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1707827035; x=1708431835;
+        d=1e100.net; s=20230601; t=1707827232; x=1708432032;
         h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
          :to:content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=ZpL9rs6tYbWfCZj0rAvlmWiNAcCqPggXC5kMgMm3Or0=;
-        b=fFiOzzzXpdGPEPIx9QW7+lU8AHM0P59Px22WbmPiKaX33PXcrWKPCLV19KdDp6TRuG
-         /W0UWyM4daIxVclmoPDiADAVIDgAQVHqILIHMoQBublURHuVdSR0mBL+SjfG0ePWWCYv
-         JVkSmRdWSznp8HNgisqYWlsJUR/5TTriYO5PbKWPqjGNYS1mdRXn6XV2L82AsVXHZWht
-         aZBj6JabSUSUurqVtkMcGx+WsxurJqS9lAquxe5o1YMT2Di5kp6WaaiEVbuCYi+eCb1B
-         cBq/Uc3+Zp38aWBrx6imvp1Ug/QaXJVkIcco0D90pOPetQ3dN65dn6IolUhmXCainY7i
-         TsBQ==
-X-Forwarded-Encrypted: i=1; AJvYcCWnWyCzGLy3yGy/tdkVpIN7yJ1zRr8PUDqBvmAcY8Cr1xFSb3CFPrdv5X6Nc4IrnZE/uuWENTv8yd9u254vAKsI3TSE0LkssW8K2g==
-X-Gm-Message-State: AOJu0YyVelFj0NPad7jSNsKn8r1C4F1HykK12dmYU9764jl4MFVZ4x6r
-	+smJtCmhA+Zz+fhNaGwIt639qU1ZXK/RV7zUz5mVENpRYjDL9yloaBbPYuXDGoY=
-X-Google-Smtp-Source: AGHT+IEvD95c2WHfMPKb7mqbPqDQXK57Wm9RohZcqQJDlFG7KGsa6K3zritnrx6C5KHpWHjkR1h3wA==
-X-Received: by 2002:a05:600c:518a:b0:411:a802:700f with SMTP id fa10-20020a05600c518a00b00411a802700fmr2409629wmb.39.1707827035595;
-        Tue, 13 Feb 2024 04:23:55 -0800 (PST)
-X-Forwarded-Encrypted: i=1; AJvYcCUXv/Ww5dBd79YVYBH/rPu6G7oCMIT8sAPjan+u78BejyxG7qjQ2iRHR9xUockJtcjJE47aQ7CqFhKsDC3lOkgpWqpG1HniRatGP/1/lIfc1bfc2ZqH8H3aSln7O6QHiDeQgcCHTUe3RiEbBXIH2454XzOlrBfLYgJLhDMHpKCWEVGrAgU87p3fCc9Yu9NCLH4WZkk4bQSOntbIxKlpqtV8vQZLvEZy/jmaMJs5laz1uURXMPda52lQLdPQzDXlAcLuE7vBAustEVTInMoPXV9vVy2AzV6ZCvAFftBkS0lWnK0bRY1b27bpRB3dpcQu/WyTFe22j52px8U7Gv4yqTqjVKbOGZf0uiLIZE0StDJRFluLqvkh51eTHn1fE8ehTcXmWnYMppiGmJD9MTjW3ab0DbyI48kGje87heptYiAJzSWpR7O1nlCbty/baNJ6guHajE31k85uIbZUL4cXTlGGu9Q3ngHeYACMcmVp4X7Hyao+u0zNlwfW6t8uesy3Co5wxosMXHLRXLeNz3BLkg==
+        bh=gpJhCN3vLprOIm3zRckJyvjcGrROFXwHZaUhtOClizQ=;
+        b=DClXb6kQ+y5Bm+hoYHhYcWLuYIW3cjSv90PAriT03a/Wc0M4VOqqIXwlakI0eKGtQn
+         WtcDcsFT0wmiXXfK+FdZQ5q4Ru3+bNWPwJZTraS3oT0PbK03Wbz6u0MxT227cgTi1V5t
+         ghiF+52OOKihc+R8soAc1p98abF/Kyf9VToSk+sswI7uXq1q/aKh9uEGbcUtZPMURx5m
+         bM87kQSEefCtDwYhdadOTFeX2xefP+JP+wiGMo0HTgT4+ma+evjDbPkseukIF9vhq7iZ
+         WaDGI1JNlxuFHTzQJ5Lu8DWmyWAK1aRwjREIjrfvgxUDL4ibfqa2LL8/D/gtaFV2SGMU
+         ElqA==
+X-Gm-Message-State: AOJu0YzAPOcimKIBAtiq1c2mQf/13dAPL/tNLXyijC/6nlYISMKUjsf8
+	nQeNP/AltbvQRo2RIeJ634hsP7N6jBRVRd+06jk1Ol2dSzkD6K38ndrQLNv7hkA=
+X-Google-Smtp-Source: AGHT+IGPVB4ptEvsrAiJNsOWx16hApPdpcjJQGekjp7k1HntHmt8ChpOga3AFIaSuNUg46knazs+wg==
+X-Received: by 2002:a05:600c:4586:b0:410:8a3d:d29a with SMTP id r6-20020a05600c458600b004108a3dd29amr2166620wmo.8.1707827232301;
+        Tue, 13 Feb 2024 04:27:12 -0800 (PST)
+X-Forwarded-Encrypted: i=1; AJvYcCXsv7dauGY5RSvde5gKIxepZNyMZNp8cNF06wuqbNHPXQCHpfx1boOvWAq65mzzOfkuXqKbpFiqCMUad2wbpaE68aplr78UBmvz7TkWgfE8lU0anZ/CCnWwG0731eYwDNnbIn5ZFbsBRVKM0wQGzu6Uhg6XZVzKXAnrHYGJOq/YU72RiNttICkl+vcyopKsGxTvDNujo6X64ZwENYdgZPLKeVgm9AHUOwNvQX/0A+exEivJSZRt2+BjjljJIFlCwXpNsCrESjhOyK2ZzsjeAg/9jjWup0/Prol8mQgJSfQNS2wYJmIjqkOMHov1YnycR+ANWoPRevX6OWjV+JA0xiw9dXJ1yciCYaoNDGgIg1DwtbcgIVYdqN4coGXUfkbmjrTB52B2GCchtY1nZOFdP4TWWnu+wm77T0rPcz2M68z3ckY5k7vG+jl8ezLsCGcZ0IdtDEmiEwzH82lavQXiSqTtWLN8WATQ8jUEliNwJS2Z120P1vXP7El4j+T/YuEyhHSRFQcJ/SPGsbZuMSWYMA==
 Received: from [192.168.1.20] ([178.197.223.6])
-        by smtp.gmail.com with ESMTPSA id a4-20020a05600c224400b00410ebcf8180sm4505067wmm.43.2024.02.13.04.23.53
+        by smtp.gmail.com with ESMTPSA id bh23-20020a05600c3d1700b00411b9d04b17sm1862441wmb.43.2024.02.13.04.27.10
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 13 Feb 2024 04:23:54 -0800 (PST)
-Message-ID: <7edacc5f-ee3e-456a-93bf-cd4324c03720@linaro.org>
-Date: Tue, 13 Feb 2024 13:23:52 +0100
+        Tue, 13 Feb 2024 04:27:11 -0800 (PST)
+Message-ID: <eaf37a1e-58e2-4cc7-85f9-8cb81537b3b9@linaro.org>
+Date: Tue, 13 Feb 2024 13:27:09 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -77,7 +76,8 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 03/17] ASoC: dt-bindings: fsl,imx-asrc: convert to YAML
+Subject: Re: [PATCH v2 05/17] dt-bindings: soc: imx: fsl,imx-anatop: add
+ binding
 Content-Language: en-US
 To: Sebastian Reichel <sre@kernel.org>, Rob Herring <robh+dt@kernel.org>,
  Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
@@ -91,7 +91,7 @@ Cc: Dong Aisheng <aisheng.dong@nxp.com>,
  <broonie@kernel.org>, linux-arm-kernel@lists.infradead.org,
  devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
 References: <20240213010347.1075251-1-sre@kernel.org>
- <20240213010347.1075251-4-sre@kernel.org>
+ <20240213010347.1075251-6-sre@kernel.org>
 From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  xsFNBFVDQq4BEAC6KeLOfFsAvFMBsrCrJ2bCalhPv5+KQF2PS2+iwZI8BpRZoV+Bd5kWvN79
@@ -137,22 +137,71 @@ Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  KQ06ztUMRrj8eVtpImjsWCd0bDWRaaR4vqhCHvAG9iWXZu4qh3ipie2Y0oSJygcZT7H3UZxq
  fyYKiqEmRuqsvv6dcbblD8ZLkz1EVZL6djImH5zc5x8qpVxlA0A0i23v5QvN00m6G9NFF0Le
  D2GYIS41Kv4Isx2dEFh+/Q==
-In-Reply-To: <20240213010347.1075251-4-sre@kernel.org>
+In-Reply-To: <20240213010347.1075251-6-sre@kernel.org>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
 On 13/02/2024 02:00, Sebastian Reichel wrote:
-> Convert the i.MX ASRC DT binding to YAML.
+> Add missing binding for i.MX anatop syscon.
 > 
 > Signed-off-by: Sebastian Reichel <sre@kernel.org>
 > ---
->  .../devicetree/bindings/sound/fsl,asrc.txt    |  80 ---------
->  .../bindings/sound/fsl,imx-asrc.yaml          | 162 ++++++++++++++++++
->  2 files changed, 162 insertions(+), 80 deletions(-)
->  delete mode 100644 Documentation/devicetree/bindings/sound/fsl,asrc.txt
->  create mode 100644 Documentation/devicetree/bindings/sound/fsl,imx-asrc.yaml
+>  .../bindings/soc/imx/fsl,imx-anatop.yaml      | 128 ++++++++++++++++++
+>  1 file changed, 128 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/soc/imx/fsl,imx-anatop.yaml
+> 
+> diff --git a/Documentation/devicetree/bindings/soc/imx/fsl,imx-anatop.yaml b/Documentation/devicetree/bindings/soc/imx/fsl,imx-anatop.yaml
+> new file mode 100644
+> index 000000000000..5a59e3470510
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/soc/imx/fsl,imx-anatop.yaml
+> @@ -0,0 +1,128 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/soc/imx/fsl,imx-anatop.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: ANATOP register
+> +
+> +maintainers:
+> +  - Shawn Guo <shawnguo@kernel.org>
+> +  - Sascha Hauer <s.hauer@pengutronix.de>
+> +
+> +properties:
+> +  compatible:
+> +    oneOf:
+> +      - items:
+> +          - enum:
+> +              - fsl,imx6sl-anatop
+> +              - fsl,imx6sll-anatop
+> +              - fsl,imx6sx-anatop
+> +              - fsl,imx6ul-anatop
+> +              - fsl,imx7d-anatop
+> +          - const: fsl,imx6q-anatop
+> +          - const: syscon
+> +          - const: simple-mfd
+> +      - items:
+> +          - const: fsl,imx6q-anatop
+> +          - const: syscon
+> +          - const: simple-mfd
+> +
+> +  reg:
+> +    maxItems: 1
+> +
+> +  interrupts:
+> +    items:
+> +      - description: Temperature sensor event
+> +      - description: Brown-out event on either of the support regulators
+> +      - description: Brown-out event on either the core, gpu or soc regulators
+> +
+> +  tempmon:
+> +    type: object
+> +    unevaluatedProperties: false
+> +    $ref: /schemas/thermal/imx-thermal.yaml
 
-Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+So you just ignored my comment? I did not receive any response from you
+on this.
 
 Best regards,
 Krzysztof
