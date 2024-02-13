@@ -1,237 +1,140 @@
-Return-Path: <devicetree+bounces-41209-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-41210-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id DF6C3852BDF
-	for <lists+devicetree@lfdr.de>; Tue, 13 Feb 2024 10:03:27 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 2C6C3852BE3
+	for <lists+devicetree@lfdr.de>; Tue, 13 Feb 2024 10:05:56 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 2A6E328207A
-	for <lists+devicetree@lfdr.de>; Tue, 13 Feb 2024 09:03:26 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id B3356283374
+	for <lists+devicetree@lfdr.de>; Tue, 13 Feb 2024 09:05:54 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9046920B02;
-	Tue, 13 Feb 2024 09:03:16 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linutronix.de header.i=@linutronix.de header.b="Sndpvb0D";
-	dkim=permerror (0-bit key) header.d=linutronix.de header.i=@linutronix.de header.b="mPzWZKTX"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 936971B7EB;
+	Tue, 13 Feb 2024 09:05:51 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from galois.linutronix.de (Galois.linutronix.de [193.142.43.55])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-yb1-f174.google.com (mail-yb1-f174.google.com [209.85.219.174])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BC2C6208C3;
-	Tue, 13 Feb 2024 09:03:14 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=193.142.43.55
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6FB411C68E;
+	Tue, 13 Feb 2024 09:05:49 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.219.174
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1707814996; cv=none; b=tU3Me9DTsnK7ZiHbNm1dVa5pxnZrCvlGDliw9ZdmmPJNb9auO8pPKiXh8J4GgQPeaFiOJVjbxjQCJRuSZkpdOWh+t7iBWM6b3re4vTZuwMXxLy33DS9JFR35J8HRJeBjgUvQuy0iagf+ir3oQKlaHGQ9cFnlKJ9J+v/7hxfFb8U=
+	t=1707815151; cv=none; b=LJVwzXIS2+khxWPqZHXgfEb0tZ0v7F2FU3LI3ElmAOa+7LLcDVBUxpmSDxHNLtT2sQlPZtVbXWJ2JJWGWAAaAGBZDZKap44Ou9usQMk2EBPqbhAdxACuiM8xEGFNuNNiadYvtw5ONkmyODjwo3dEzB/6XPsNytcTY03Txr3XApA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1707814996; c=relaxed/simple;
-	bh=gLbhyPC1ZnLyN/5YEgFVKTykViATyzllgItFsyVFqmA=;
-	h=From:To:Cc:Subject:In-Reply-To:References:Date:Message-ID:
-	 MIME-Version:Content-Type; b=hn5YsKx7wcJY88gGE71W9ReGIQoPDac1kTZ0JjwmaKhUlg4KcetOL0fRZWcOha0dz0StNSEn7p9OqF1dtcYiqdrd/u/jS6Qb4Y+xgZ4dmmZd2wrr6Z+2XCZ7clkR2mJqPPaoOvMRQ5kvXFvfrHOQug4B6Ls8r5ggyOKQAs/6cu8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linutronix.de; spf=pass smtp.mailfrom=linutronix.de; dkim=pass (2048-bit key) header.d=linutronix.de header.i=@linutronix.de header.b=Sndpvb0D; dkim=permerror (0-bit key) header.d=linutronix.de header.i=@linutronix.de header.b=mPzWZKTX; arc=none smtp.client-ip=193.142.43.55
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linutronix.de
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linutronix.de
-From: Thomas Gleixner <tglx@linutronix.de>
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=linutronix.de;
-	s=2020; t=1707814992;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 in-reply-to:in-reply-to:references:references;
-	bh=i6BkF0UFKnJMGjWiJAiIbSA+roMcS63IGX3gCMnqyxY=;
-	b=Sndpvb0DgXvIkTtZrlJB3MFD1BU0yaK89cZb0EVlrgtSomCXTWHy0AXuguSxw0puaBIS17
-	JZOlKdtNHcDdv+sIZxXi8YBAtGnAVEY3QZ8JhkzdnaFiNzuGQmT30hxvCsXcld3WQ4qwV6
-	W3i+V6o6iL6m7Xx6/tWIFxjlON2SPDku6SbAO8u88OoY6ZU6sHidpzQqXTt72RbSNuRD5y
-	tTgKynEFsybdCNic68siTDM2qcgJLYhbiGbJSoDmkzYJuasWokYcWEzVtAGDC/YqUqyd79
-	jPqZLuZ83AgqAkJa9PLU1lNHinnoNWJkbEIHhjCtYqy81AJ5ZbLXsXwnAT2BsQ==
-DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=linutronix.de;
-	s=2020e; t=1707814992;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 in-reply-to:in-reply-to:references:references;
-	bh=i6BkF0UFKnJMGjWiJAiIbSA+roMcS63IGX3gCMnqyxY=;
-	b=mPzWZKTX3Zf0yCuaq/GYMTpdGtQ4v/5pgLbCUkITD6JSXtKcC3fYs70W0AL2SgOwHEqVJD
-	QlZ6bxb3SYxwUqCg==
-To: Changhuang Liang <changhuang.liang@starfivetech.com>, Rob Herring
- <robh+dt@kernel.org>, Krzysztof Kozlowski
- <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>,
- Philipp Zabel <p.zabel@pengutronix.de>
-Cc: Ley Foon Tan <leyfoon.tan@starfivetech.com>, Jack Zhu
- <jack.zhu@starfivetech.com>, Changhuang Liang
- <changhuang.liang@starfivetech.com>, linux-kernel@vger.kernel.org,
- devicetree@vger.kernel.org
-Subject: Re: [PATCH v2 2/2] irqchip: Add StarFive external interrupt controller
-In-Reply-To: <20240130055843.216342-3-changhuang.liang@starfivetech.com>
-References: <20240130055843.216342-1-changhuang.liang@starfivetech.com>
- <20240130055843.216342-3-changhuang.liang@starfivetech.com>
-Date: Tue, 13 Feb 2024 10:03:12 +0100
-Message-ID: <87cyt0ivn3.ffs@tglx>
+	s=arc-20240116; t=1707815151; c=relaxed/simple;
+	bh=FfFqrAXQmAjTt+8Bu5s9ZKzqV1A1ADlvxCsN+bbef9Y=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=sPaye+IBbyXgZ08VhGs5KRtGgiqHq010A0bRJ4RRmcSu9DQNK6sBWgeFCsmye5gkTyzGzt784FrA3oiLTYVOuPVTOq9a5K4MGHeLdQuiYK7YEEjwWRNb9nCWK4sEKnVoqcNAMytnymZ5iaSwIM0xiUOXHZIpt7Jty+8YkeSQIOw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org; spf=pass smtp.mailfrom=gmail.com; arc=none smtp.client-ip=209.85.219.174
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-yb1-f174.google.com with SMTP id 3f1490d57ef6-dc74435c428so3905411276.2;
+        Tue, 13 Feb 2024 01:05:49 -0800 (PST)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1707815148; x=1708419948;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=MuURYQOwee17LWBBo2vHscRz5g8g3MQtGwSiu1BG0Hg=;
+        b=aV36jC7lcWenoGEhiWNOz25grc69Ln+di+s1utZ2KB7WdcfCut3OHLKOVUdT8tuPVG
+         lCWsolTIUivcEI/6lfushb9T5N31R4npI8JF0HhwPqzOK9vAPArgszeWMbYIInEqDC4D
+         s1h4ZtgSl25XfvdqtRWEiJOg4PFiw+C67WnCw1enJndf5q6QnnVT8B6rmsf+UBqvn41u
+         vWGdBdE3J0JyIKtYe4+mG2qhA7h7W2NNYszEX2P1ZAvc6EDmkxIXxnPh8HwPH4jSG1H/
+         kCU9IhQNmctzWwWK0DxaY6vCmJvDl/BxonLnAA6JU7XITFp7fwJKYbHKc250z6Rm4jmZ
+         w6sg==
+X-Forwarded-Encrypted: i=1; AJvYcCVYS5ytMfjUAROFifhnldBqDKW/oJUK0hmv5lkKFQbtktY3UQZFgIs+0o1iiHLm7EY4o5DLFWDySfxcoQxCTAsBN3kNehREESJqdtKJHRu9z4xGGMsk1HkN62ugvmefEDS5yPZp/F1y3Foqpwn57Te2YmdvESV1SEOeGdui5fufp4jGUm0v1xh7nRAx
+X-Gm-Message-State: AOJu0YzPW34QeVR3/NYsMjdbFefaWnRY7QxAkbv1AHevulVa4ohS9glj
+	k0/K+DUd7KA/sVLefvV8K3i53AOIhSfIWXZIH3qlkySgfCY1RYmKNqxR42Tsi74=
+X-Google-Smtp-Source: AGHT+IF9b6Zs8sgAJySimeeAwc/byYS632OGj672ixlQyji9wDWG2j8TBdEhFg2PVEeJrDoSeLUXyA==
+X-Received: by 2002:a25:8745:0:b0:dc7:4776:e31 with SMTP id e5-20020a258745000000b00dc747760e31mr7443428ybn.24.1707815147629;
+        Tue, 13 Feb 2024 01:05:47 -0800 (PST)
+X-Forwarded-Encrypted: i=1; AJvYcCV0pB35EpM+VNkepI8lixDxd0Ub+OZMp6Fspr+AUyV/lR7JwhlRNLgUeivTlFc6DERe+YprL9sSC89+YkIM3imAe+df/zyMcro2qZxTdIQK8oTpKVAGEK+W4e1G4GKZF6kl3TWPwwRNCV2NO4ePolhIdoL+xrYN4pmMTSpM8f9gAwmH1MjXcWeOu/sP
+Received: from mail-yb1-f176.google.com (mail-yb1-f176.google.com. [209.85.219.176])
+        by smtp.gmail.com with ESMTPSA id a8-20020a256608000000b00dc6f1cdd45csm1557949ybc.22.2024.02.13.01.05.47
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 13 Feb 2024 01:05:47 -0800 (PST)
+Received: by mail-yb1-f176.google.com with SMTP id 3f1490d57ef6-dcbd1d4904dso1172226276.3;
+        Tue, 13 Feb 2024 01:05:47 -0800 (PST)
+X-Forwarded-Encrypted: i=1; AJvYcCWlu7YEPScc5bUPIszVbUd0DICWdLwAW6Fu8qqhYrKycyerrJrM1lb3zgIKbl/ERtyTkfGuSkn0jRESIGxzG8pRCFAYF+juzyB8Efpifl9gx7YKOdHMMghzD8V4h+p5GGibiJyPbLoJJQiOQlvX9U7OYr9P4taN9rSJVcxurTC1Ou6M1bKD1OA+bCVy
+X-Received: by 2002:a25:bfcd:0:b0:dc6:c617:7ca with SMTP id
+ q13-20020a25bfcd000000b00dc6c61707camr7330323ybm.29.1707815147208; Tue, 13
+ Feb 2024 01:05:47 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain
+References: <20240213085912.56600-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
+In-Reply-To: <20240213085912.56600-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
+From: Geert Uytterhoeven <geert@linux-m68k.org>
+Date: Tue, 13 Feb 2024 10:05:35 +0100
+X-Gmail-Original-Message-ID: <CAMuHMdVbG4bVNOYkycOOYV1oszzj9WPTbU936PokOE9jmp7iDQ@mail.gmail.com>
+Message-ID: <CAMuHMdVbG4bVNOYkycOOYV1oszzj9WPTbU936PokOE9jmp7iDQ@mail.gmail.com>
+Subject: Re: [PATCH v3] dt-bindings: interrupt-controller: renesas,rzg2l-irqc:
+ Update interrupts
+To: Prabhakar <prabhakar.csengg@gmail.com>
+Cc: Thomas Gleixner <tglx@linutronix.de>, Rob Herring <robh+dt@kernel.org>, 
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Geert Uytterhoeven <geert+renesas@glider.be>, Magnus Damm <magnus.damm@gmail.com>, 
+	linux-kernel@vger.kernel.org, devicetree@vger.kernel.org, 
+	linux-renesas-soc@vger.kernel.org, Biju Das <biju.das.jz@bp.renesas.com>, 
+	Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>, 
+	Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-On Mon, Jan 29 2024 at 21:58, Changhuang Liang wrote:
-> +
-> +struct starfive_irq_chip {
-> +	void __iomem *base;
-> +	struct irq_domain *root_domain;
-> +	struct clk *clk;
-> +};
+On Tue, Feb 13, 2024 at 9:59=E2=80=AFAM Prabhakar <prabhakar.csengg@gmail.c=
+om> wrote:
+> From: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+>
+> All the RZ/G2L and alike SoC's (listed below) have ECCRAM0/1 interrupts
+> supported by the IRQC block, reflect the same in DT binding doc.
+>
+> - R9A07G043U              - RZ/G2UL
+> - R9A07G044L/R9A07G044LC  - RZ/{G2L,G2LC}
+> - R9A07G054               - RZ/V2L
+> - R9A08G045               - RZ/G3S
+>
+> For the RZ/G3S SoC ("R9A08G045") ECCRAM0/1 interrupts combined into singl=
+e
+> interrupt so we just use the below to represent them:
+> - ec7tie1-0
+> - ec7tie2-0
+> - ec7tiovf-0
+>
+> Previously, it was assumed that BUS-error and ECCRAM0/1 error interrupts
+> were only supported by RZ/G2UL ("R9A07G043U") and RZ/G3S ("R9A08G045")
+> SoCs. However, in reality, all RZ/G2L and similar SoCs (listed above)
+> support these interrupts. Therefore, mark the 'interrupt-names' property
+> as required for all the SoCs and update the example node in the binding
+> document.
+>
+> Fixes: 96fed779d3d4 ("dt-bindings: interrupt-controller: Add Renesas RZ/G=
+2L Interrupt Controller")
+> Fixes: 1cf0697a24ef ("dt-bindings: interrupt-controller: renesas,rzg2l-ir=
+qc: Document RZ/G3S")
+> Signed-off-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+> ---
+> v2 -> v3:
+> - Fixed IRQ description as pointed by Geert
+> - Sending this individual patch as DTSI patches have been Reviewed by Gee=
+rt
 
-https://www.kernel.org/doc/html/latest/process/maintainer-tip.html#struct-declarations-and-initializers
+Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
 
-Please.
+Gr{oetje,eeting}s,
 
-> +static void starfive_intc_mod(struct starfive_irq_chip *irqc, u32 reg, u32 mask, u32 data)
-> +{
-> +	u32 value;
-> +
-> +	value = ioread32(irqc->base + reg) & ~mask;
-> +	data &= mask;
+                        Geert
 
-Why?
+--=20
+Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k=
+.org
 
-> +	data |= value;
-> +	iowrite32(data, irqc->base + reg);
-
-How is this serialized against concurrent invocations of this code on
-different CPUs for different interrupts?
-
-It's not and this requires a raw_spinlock for protection.
-
-> +}
-> +
-> +static void starfive_intc_unmask(struct irq_data *d)
-> +{
-> +	struct starfive_irq_chip *irqc = irq_data_get_irq_chip_data(d);
-> +
-> +	starfive_intc_mod(irqc, STARFIVE_INTC_SRC0_MASK, BIT(d->hwirq), 0);
-> +}
-> +
-> +static void starfive_intc_mask(struct irq_data *d)
-> +{
-> +	struct starfive_irq_chip *irqc = irq_data_get_irq_chip_data(d);
-> +
-> +	starfive_intc_mod(irqc, STARFIVE_INTC_SRC0_MASK, BIT(d->hwirq), BIT(d->hwirq));
-> +}
-> +
-> +static struct irq_chip intc_dev = {
-> +	.name = "starfive jh8100 intc",
-> +	.irq_unmask = starfive_intc_unmask,
-> +	.irq_mask = starfive_intc_mask,
-> +};
-
-See documentation please.
-
-> +static int starfive_intc_map(struct irq_domain *d, unsigned int irq, irq_hw_number_t hwirq)
-> +{
-> +	irq_domain_set_info(d, irq, hwirq, &intc_dev, d->host_data,
-> +			    handle_level_irq, NULL, NULL);
-> +
-> +	return 0;
-> +}
-> +
-> +static const struct irq_domain_ops starfive_intc_domain_ops = {
-> +	.xlate = irq_domain_xlate_onecell,
-> +	.map = starfive_intc_map,
-> +};
-
-Ditto.
-
-> +static void starfive_intc_irq_handler(struct irq_desc *desc)
-> +{
-> +	struct irq_chip *chip = irq_desc_get_chip(desc);
-> +	struct starfive_irq_chip *irqc = irq_data_get_irq_handler_data(&desc->irq_data);
-
-https://www.kernel.org/doc/html/latest/process/maintainer-tip.html#variable-declarations
-
-> +	unsigned long value = 0;
-
-Pointless initialization
-
-> +	int hwirq;
-> +
-> +	chained_irq_enter(chip, desc);
-> +
-> +	value = ioread32(irqc->base + STARFIVE_INTC_SRC0_INT);
-> +	while (value) {
-> +		hwirq = ffs(value) - 1;
-> +
-> +		generic_handle_domain_irq(irqc->root_domain, hwirq);
-> +
-> +		starfive_intc_mod(irqc, STARFIVE_INTC_SRC0_CLEAR, BIT(hwirq), BIT(hwirq));
-> +		starfive_intc_mod(irqc, STARFIVE_INTC_SRC0_CLEAR, BIT(hwirq), 0);
-> +
-> +		clear_bit(hwirq, &value);
-> +	}
-> +
-> +	chained_irq_exit(chip, desc);
-> +}
-> +
-> +static int __init starfive_intc_init(struct device_node *intc,
-> +				     struct device_node *parent)
-> +{
-> +	struct starfive_irq_chip *irqc;
-> +	struct reset_control *rst;
-> +	int ret;
-> +	int parent_irq;
-
-See Documentation
-
-> +	irqc = kzalloc(sizeof(*irqc), GFP_KERNEL);
-> +	if (!irqc)
-> +		return -ENOMEM;
-> +
-> +	irqc->base = of_iomap(intc, 0);
-> +	if (!irqc->base) {
-> +		pr_err("Unable to map IC registers\n");
-> +		ret = -ENXIO;
-> +		goto err_free;
-> +	}
-> +
-> +	rst = of_reset_control_get_exclusive(intc, NULL);
-> +	if (IS_ERR(rst)) {
-> +		pr_err("Unable to get reset control %pe\n", rst);
-> +		ret = PTR_ERR(rst);
-> +		goto err_unmap;
-> +	}
-> +
-> +	irqc->clk = of_clk_get(intc, 0);
-> +	if (IS_ERR(irqc->clk)) {
-> +		pr_err("Unable to get clock\n");
-> +		ret = PTR_ERR(irqc->clk);
-> +		goto err_rst;
-> +	}
-> +
-> +	ret = reset_control_deassert(rst);
-> +	if (ret)
-> +		goto err_clk;
-> +
-> +	ret = clk_prepare_enable(irqc->clk);
-> +	if (ret)
-> +		goto err_clk;
-> +
-> +	irqc->root_domain = irq_domain_add_linear(intc, STARFIVE_INTC_SRC_IRQ_NUM,
-> +						  &starfive_intc_domain_ops, irqc);
-> +	if (!irqc->root_domain) {
-> +		pr_err("Unable to create IRQ domain\n");
-> +		ret = -EINVAL;
-> +		goto err_clk;
-> +	}
-> +
-> +	parent_irq = of_irq_get(intc, 0);
-> +	if (parent_irq < 0) {
-> +		pr_err("Failed to get main IRQ: %d\n", parent_irq);
-> +		ret = parent_irq;
-> +		goto err_clk;
-
-Leaks the interrupt domain, no?
-
-Thanks,
-
-        tglx
+In personal conversations with technical people, I call myself a hacker. Bu=
+t
+when I'm talking to journalists I just say "programmer" or something like t=
+hat.
+                                -- Linus Torvalds
 
