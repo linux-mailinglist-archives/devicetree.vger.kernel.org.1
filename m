@@ -1,139 +1,90 @@
-Return-Path: <devicetree+bounces-41392-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-41395-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id B800785363A
-	for <lists+devicetree@lfdr.de>; Tue, 13 Feb 2024 17:37:35 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 51F10853656
+	for <lists+devicetree@lfdr.de>; Tue, 13 Feb 2024 17:42:11 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id EAE541C2271B
-	for <lists+devicetree@lfdr.de>; Tue, 13 Feb 2024 16:37:34 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 037F61F23197
+	for <lists+devicetree@lfdr.de>; Tue, 13 Feb 2024 16:42:11 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9457F6027F;
-	Tue, 13 Feb 2024 16:36:19 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 043883D3B9;
+	Tue, 13 Feb 2024 16:42:05 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b="T6IojCJQ"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="nvl7/Rd9"
 X-Original-To: devicetree@vger.kernel.org
-Received: from madrid.collaboradmins.com (madrid.collaboradmins.com [46.235.227.194])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B1B695FEF1;
-	Tue, 13 Feb 2024 16:36:17 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=46.235.227.194
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CEFB12919;
+	Tue, 13 Feb 2024 16:42:04 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1707842179; cv=none; b=Il1F5hOPRaSIak+2/CZUUbqXC4p1vBspa9fZ5ZMvkFTqHNe/xmxvAYZEut5RsJJh+evSDBv+M1GAaFYGopZRDKuwqcbDPOyhJkvfIRxLT5wfUZ9n/eOx2jZAnDZSweOG3HQc6Vpd+VV/hy1CifYr+Ebai5GA94SI2gS8VLfd6Hk=
+	t=1707842524; cv=none; b=YA4ldBJnOkTDWQtcM8gL2FiaHBDUAYXdbTSuaEguk2E1FvYVHz5PdoGEHGAKFExchd63ap2j//cDBn4gZHjI4BSZ81vfLk5YBvx6qL81B5iGj2mTeWQ3J2YJTvtiKLlulsA2I+aQYWeUtAhD1hs1TmhTMsVzJKcRwB1iWqB0YmQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1707842179; c=relaxed/simple;
-	bh=WeIVl1zwKI+IWUXLWKWVFzcLpHB4iw+lJXds4NyJ6UY=;
+	s=arc-20240116; t=1707842524; c=relaxed/simple;
+	bh=xbvPqK9JRSwLRR2qAODE8w5KCwA2ZAi76JUCkpeivY8=;
 	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=CQBCtGXllnrqFZ063N9jkC+j7jJbxDgSFgzR5Ovjmmx+ihWXLemXdM9fsbNQrJgUXKknA4wTqYyMDMogB7SIJhMwU9pvRxr5MKj+uyECJaLlT3Nqn4XIhxYeHbtChhinYCtEwS2AZqX42CkNXVJjH4rOFLkBNLp59kNucxoKwU8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b=T6IojCJQ; arc=none smtp.client-ip=46.235.227.194
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=collabora.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-	s=mail; t=1707842172;
-	bh=WeIVl1zwKI+IWUXLWKWVFzcLpHB4iw+lJXds4NyJ6UY=;
+	 MIME-Version:Content-Type; b=omG8YlXAoyziWsS3XDi7rPTtkdrvMryPk6kXKWATmo5Fo+9DvIdFesvHvIkOQ2Uuju4TQZPVfm5G8IOzsnv6+0HaIrTIwKIyWZsYafxdqydLiys37vVvF/u0m5Tl2GRAbFxEC1zOsteHMH8iKwZ3F20pUMZ2uP2DK/ARyNC00KU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=nvl7/Rd9; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id ACCDAC433F1;
+	Tue, 13 Feb 2024 16:42:01 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1707842524;
+	bh=xbvPqK9JRSwLRR2qAODE8w5KCwA2ZAi76JUCkpeivY8=;
 	h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-	b=T6IojCJQcKuaD4s03s3nHmGEWbprPDIvQX1swRdEkPFGlk5G7cfftfyiuDobL7MtX
-	 Xrzf7afTZJO4aGF2GMTGI50+KbqxetsqakKAhvaHi+HXN3+IySuENymWnvrQxcF6zc
-	 Bm03aSWhTC1TgSnEHLKsSPFNQTKyoJIHhNzCmjhlbypQFx+JYUye3UuE5jaVQDQOMI
-	 u/pk2ni2D0NQG8r9V/J4+ZBzg6UqPDrsacxo5ckSj/h9wikeQ9F5vPBWtDSeafP6aJ
-	 IPcL1RqYwg5RWpTTW2a1+Gb3PWXDELJtlH5AtB0myz8pJKP7LiIh8dZbsApBKz63XS
-	 8unYd0BDo9Phw==
-Received: from jupiter.universe (cola.collaboradmins.com [195.201.22.229])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange X25519 server-signature RSA-PSS (4096 bits))
-	(No client certificate requested)
-	(Authenticated sender: sre)
-	by madrid.collaboradmins.com (Postfix) with ESMTPSA id 28B6B3782087;
-	Tue, 13 Feb 2024 16:36:12 +0000 (UTC)
-Received: by jupiter.universe (Postfix, from userid 1000)
-	id 0FEBD4800E1; Tue, 13 Feb 2024 17:36:11 +0100 (CET)
-From: Sebastian Reichel <sebastian.reichel@collabora.com>
-To: Heiko Stuebner <heiko@sntech.de>,
-	Vinod Koul <vkoul@kernel.org>,
-	Kishon Vijay Abraham I <kishon@kernel.org>,
-	linux-rockchip@lists.infradead.org,
-	linux-phy@lists.infradead.org
-Cc: Rob Herring <robh+dt@kernel.org>,
+	b=nvl7/Rd9f/dgNSSy+oG73mLbWVb2Ca3G0/HlNI1cGGJzOWyouYpt3VJ418xqkFInY
+	 nlXUH6ppypCPTn1dz3P9n7UuUEHCtxuJPRBYyx/60TPMxffYbcPw0RYzZuA0K5GYIE
+	 vzd7V4QYMCs00FAiFRZ+wUnvF9OOSgp/FcZHWG5xZIxHecSrkPLOv2UtsXtUF/p8ms
+	 1G0/YnOQX2CiFly1rXUeKMji5SqJfx6qhs3rVFxJonxDSml7SeAFc1f4atputWNAgU
+	 kfj8cQHu10I42ss1EqlqkSHidYSFVUJyYAKTPeyax/pde48MqMWxez5znMo76dvu8w
+	 ZjrV0uORvUl+A==
+From: Conor Dooley <conor@kernel.org>
+To: Emil Renner Berthing <kernel@esmil.dk>,
+	Rob Herring <robh@kernel.org>,
 	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
 	Conor Dooley <conor+dt@kernel.org>,
-	Frank Wang <frank.wang@rock-chips.com>,
-	Kever Yang <kever.yang@rock-chips.com>,
+	Paul Walmsley <paul.walmsley@sifive.com>,
+	Palmer Dabbelt <palmer@dabbelt.com>,
+	Albert Ou <aou@eecs.berkeley.edu>,
 	devicetree@vger.kernel.org,
+	linux-riscv@lists.infradead.org,
 	linux-kernel@vger.kernel.org,
-	Sebastian Reichel <sebastian.reichel@collabora.com>,
-	kernel@collabora.com
-Subject: [PATCH v2 12/12] arm64: dts: rockchip: add lower USB3 port to rock-5b
-Date: Tue, 13 Feb 2024 17:32:46 +0100
-Message-ID: <20240213163609.44930-13-sebastian.reichel@collabora.com>
+	Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Cc: conor@kernel.org,
+	Conor Dooley <conor.dooley@microchip.com>
+Subject: Re: [PATCH] riscv: dts: starfive: replace underscores in node names
+Date: Tue, 13 Feb 2024 16:41:55 +0000
+Message-ID: <20240213-commodore-egging-baf7ad19ec56@spud>
 X-Mailer: git-send-email 2.43.0
-In-Reply-To: <20240213163609.44930-1-sebastian.reichel@collabora.com>
-References: <20240213163609.44930-1-sebastian.reichel@collabora.com>
+In-Reply-To: <20240213144638.341509-1-krzysztof.kozlowski@linaro.org>
+References: <20240213144638.341509-1-krzysztof.kozlowski@linaro.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+Content-Type: text/plain; charset="utf-8"
+X-Developer-Signature: v=1; a=openpgp-sha256; l=359; i=conor.dooley@microchip.com; h=from:subject:message-id; bh=HRBHjd47TJfW8gNCG2QlfEZlC+TxUvJev6JfcO10PXI=; b=owGbwMvMwCFWscWwfUFT0iXG02pJDKmnZ18KmROe9t5Bcd+Ur8c37okpOZBe8vBSieTp/vgzM zg7zv5K6ihlYRDjYJAVU2RJvN3XIrX+j8sO5563MHNYmUCGMHBxCsBEAlQZGS5+2jL73DlHHYeW a+83Lnkcw1hvEvbgQN+HjKWmEYu8+5UZ/mf/tTq7915zS1r2vf6Fwos7/x2RlLzwxmrNF22DqtR 8Ww4A
+X-Developer-Key: i=conor.dooley@microchip.com; a=openpgp; fpr=F9ECA03CF54F12CD01F1655722E2C55B37CF380C
 Content-Transfer-Encoding: 8bit
 
-Enable full support (XHCI, EHCI, OHCI) for the lower USB3 port from
-Radxa Rock 5 Model B. The upper one is already supported.
+From: Conor Dooley <conor.dooley@microchip.com>
 
-Signed-off-by: Sebastian Reichel <sebastian.reichel@collabora.com>
----
- .../boot/dts/rockchip/rk3588-rock-5b.dts      | 21 +++++++++++++++++++
- 1 file changed, 21 insertions(+)
+On Tue, 13 Feb 2024 15:46:38 +0100, Krzysztof Kozlowski wrote:
+> Underscores should not be used in node names (dtc with W=2 warns about
+> them), so replace them with hyphens.
+> 
+> 
 
-diff --git a/arch/arm64/boot/dts/rockchip/rk3588-rock-5b.dts b/arch/arm64/boot/dts/rockchip/rk3588-rock-5b.dts
-index a0e303c3a1dc..db6f0e91f62d 100644
---- a/arch/arm64/boot/dts/rockchip/rk3588-rock-5b.dts
-+++ b/arch/arm64/boot/dts/rockchip/rk3588-rock-5b.dts
-@@ -736,6 +736,14 @@ &uart2 {
- 	status = "okay";
- };
- 
-+&u2phy1 {
-+	status = "okay";
-+};
-+
-+&u2phy1_otg {
-+	status = "okay";
-+};
-+
- &u2phy2 {
- 	status = "okay";
- };
-@@ -755,6 +763,14 @@ &u2phy3_host {
- 	status = "okay";
- };
- 
-+&usbdp_phy1 {
-+	status = "okay";
-+};
-+
-+&usbdp_phy1_u3 {
-+	status = "okay";
-+};
-+
- &usb_host0_ehci {
- 	status = "okay";
- };
-@@ -771,6 +787,11 @@ &usb_host1_ohci {
- 	status = "okay";
- };
- 
-+&usb_host1_xhci {
-+	dr_mode = "host";
-+	status = "okay";
-+};
-+
- &usb_host2_xhci {
- 	status = "okay";
- };
--- 
-2.43.0
+Applied to riscv-dt-fixes, thanks!
 
+[1/1] riscv: dts: starfive: replace underscores in node names
+      https://git.kernel.org/conor/c/f03606470886
+
+Thanks,
+Conor.
 
