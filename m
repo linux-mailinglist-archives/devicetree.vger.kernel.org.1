@@ -1,149 +1,259 @@
-Return-Path: <devicetree+bounces-41453-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-41454-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9A996853C38
-	for <lists+devicetree@lfdr.de>; Tue, 13 Feb 2024 21:27:14 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id F32ED853C4F
+	for <lists+devicetree@lfdr.de>; Tue, 13 Feb 2024 21:38:05 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 1F566B25AF3
-	for <lists+devicetree@lfdr.de>; Tue, 13 Feb 2024 20:27:12 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id A9A0928913D
+	for <lists+devicetree@lfdr.de>; Tue, 13 Feb 2024 20:38:04 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id BEBB560B9B;
-	Tue, 13 Feb 2024 20:27:03 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1E4D5612DD;
+	Tue, 13 Feb 2024 20:38:03 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="lPFkxYPR"
+	dkim=pass (1024-bit key) header.d=amd.com header.i=@amd.com header.b="xreowZjO"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from NAM12-MW2-obe.outbound.protection.outlook.com (mail-mw2nam12on2084.outbound.protection.outlook.com [40.107.244.84])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7AC8E1097D;
-	Tue, 13 Feb 2024 20:27:03 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1707856023; cv=none; b=W44FPD8nVvRomyLSYWa/sAXRLj9b3M38FXp7DeTOwmNN+up397WCkB5zsuxrGrOL+3IloghQiDwSs4IuZ45o0v61VBXQVFA2cd7Jgo+aovy9475BDCocGk3wi5SWCLxMRbJiTbAghqF2sRFaPBEQR9OT+ik4Zyw5Gd05Q+6ip9E=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1707856023; c=relaxed/simple;
-	bh=wr2SPv5Ld/DSkoS5vcAzZJ9Df9CxqcjpNgsKUEXsmMg=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=hlJplD7J9TgmdqwIxGJcBQAJy0AOrIxN5j2YL98JZ9YGQJMVH8qNdxPhXgGUQy0gRvceaicH3Y8UIrQRAj2oXmo54V0yRS7maLxq2djwO29QmcHqjeTlPqyGs2lN9pK6AmF2fgT5O3wo7NANmMSHS1LXjNoTMgQMVpviUKC0SWY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=lPFkxYPR; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id ACEE0C433F1;
-	Tue, 13 Feb 2024 20:26:53 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1707856023;
-	bh=wr2SPv5Ld/DSkoS5vcAzZJ9Df9CxqcjpNgsKUEXsmMg=;
-	h=Date:From:To:List-Id:Cc:Subject:References:In-Reply-To:From;
-	b=lPFkxYPR0J3NXG1zdBfo423wECnKhWMgXPxCg52F3jS4QKKMEyqjBhXaUGKE3tgG6
-	 37ZF1eFh/KlF2KXEvZh8+5akK0hqsrS1FZnabOENmkW6SqKVRepSFJf7g6xxh7ojEV
-	 jnkdi6FQUiy1uKshzEZhLb5yve1bg3+EMiWyulcWid6e7LMamsxlhTvq2275lGDRVd
-	 PYq1svZG2Lc2X9dtgFRoH1KjCqQDhIoYjVbGHKXP+VJjE7rPkT9HdKzpsCs5RzEGYP
-	 ef1gd/J3wmRP/+qW2yBa+bsr9UVpRx1oatwybDxzT9Hk3Wx4NArI6+dQLf7ihqU6h7
-	 NgaQAYTbgz0rQ==
-Date: Tue, 13 Feb 2024 20:26:51 +0000
-From: Conor Dooley <conor@kernel.org>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 44F8B612D2;
+	Tue, 13 Feb 2024 20:37:57 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.107.244.84
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1707856683; cv=fail; b=Xf+EAtVtBK7BVnigFKDKtiBz4VEgt+A5rIDUYkERjXeD4a9c9guoUe2GCqoSJuhI9sOc3QeCWLtNe/XIT2onhcXlavPn64gpz2BBqqGWufvg2OpBrk/IaRXfN0j5NyKcxmwTdD+FY/dciyRmJOSyIQ1Ui1cuk1ecDhaGxOlWmVk=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1707856683; c=relaxed/simple;
+	bh=U34l1ZBP5Z/MMwJbJG6KaKbgAFL/GjQLdUtMX7YgsjA=;
+	h=Message-ID:Date:Subject:To:Cc:References:From:In-Reply-To:
+	 Content-Type:MIME-Version; b=QsUQ7vbiEdz0BSt2t/+loz+xMKHiITx1kX9hinAlFZRZOJ/l4K/b6b141rIIhaq4aGiEH/mu0umqOQ5qqo6CC/DXpWAMt0orNxZM88TL0wFRU84hA+/cCK5cn34gkOKABNxIs7QwS5vFRaFtDAdlRaM8UJp2BHHMvDZpJFHSRiE=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=amd.com; spf=fail smtp.mailfrom=amd.com; dkim=pass (1024-bit key) header.d=amd.com header.i=@amd.com header.b=xreowZjO; arc=fail smtp.client-ip=40.107.244.84
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=amd.com
+Authentication-Results: smtp.subspace.kernel.org; spf=fail smtp.mailfrom=amd.com
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=WVwbk+dkoRD6l7k8ZmN7LsxzWs2qUcmxuey7sYDVmAPhCLQfMn02iTjKNityUiy8QW6DhlCB010ZUVSP4204/azty3IdaZftngfNZhm+7JSVAYSjYo9y9yAgUZhbpzzy1KNBvIisvyaPA9oHRct1ctwGy98x1iIr9U2S/QFnzae7jCPmHRNaWUTdz0rnrAaO4tOJkOFhLjLA4GCc5DkTBpx+UfhHkldnQvoHn0FpC0Od23ClNNjvRp4ZMCGPYCKN1UCXjClmKHNWu+0OOZbWTkMLY30MNJNG7y7f05n5TZF4v+GNxYEtSiSqou6Zo1mMAxH+FzU+0qzAMJQIaPmNXg==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=IfYvuNqzRxf4ki/BdGABCrnSCOU+YnzakCVEpv56FaI=;
+ b=d2GIWcYT76BsSH9vk+sTkG5LeOKFy6VNMjWE2ajIhsSPS6AY3urYAADh+LcX4sYFZUkUjCWHxP4RO/AsCKbRE6f/5DIsOQ6Kih7SJZIlWUzykC28HtxCPgpPUM3aNw/AkJOhcl5UcLqKoIosWzdhQYFTWqNFsAUxPtutHEIpwXa+YOyAts5p/GVxM4K75I8exjrlbcJIxx3qjbHLm5KCYahmGOkpPjubII369v1bcB4UimtLYn163q6AvD2LLVdRrp30JUT4o4C80SWbF31+0iZWM1eHJw5Y5ArIHBXNeuxnA3ud7pjc5j5B6rBUqN3vh0Z1LlVUhvEqnkR+UzwQWQ==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
+ header.d=amd.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=IfYvuNqzRxf4ki/BdGABCrnSCOU+YnzakCVEpv56FaI=;
+ b=xreowZjOxuWkqCZ3F/4jCB8tUlq+tz+HcuGk+2q+4wNLD4vVtVwbvJZMTQuVos2Nce2Ay22Fey2Gm72jIDbkQzXyAUy1YUx0fSvQ06FRnIsPSKrIEEzflIAYpg9wFllt2p2t8vV1D4FK95U5yqo8rBUH32WgPk85MrkMJjJlyRk=
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=amd.com;
+Received: from BL1PR12MB5874.namprd12.prod.outlook.com (2603:10b6:208:396::17)
+ by PH7PR12MB7985.namprd12.prod.outlook.com (2603:10b6:510:27b::5) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7270.17; Tue, 13 Feb
+ 2024 20:37:52 +0000
+Received: from BL1PR12MB5874.namprd12.prod.outlook.com
+ ([fe80::251:b545:952c:18dd]) by BL1PR12MB5874.namprd12.prod.outlook.com
+ ([fe80::251:b545:952c:18dd%7]) with mapi id 15.20.7292.022; Tue, 13 Feb 2024
+ 20:37:52 +0000
+Message-ID: <b931a24c-f676-4ddb-bb7c-e7a509d5dd4b@amd.com>
+Date: Tue, 13 Feb 2024 14:37:49 -0600
+User-Agent: Mozilla Thunderbird Beta
+Subject: Re: [PATCH v10 2/4] dt-bindings: remoteproc: add Tightly Coupled
+ Memory (TCM) bindings
+Content-Language: en-US
 To: Rob Herring <robh@kernel.org>
-Cc: soc@kernel.org, Shawn Guo <shawnguo@kernel.org>,
-	Sascha Hauer <s.hauer@pengutronix.de>,
-	Pengutronix Kernel Team <kernel@pengutronix.de>,
-	Fabio Estevam <festevam@gmail.com>,
-	NXP Linux Team <linux-imx@nxp.com>,
-	Rob Herring <robh+dt@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Tsahee Zidenberg <tsahee@annapurnalabs.com>,
-	Antoine Tenart <atenart@kernel.org>, Joel Stanley <joel@jms.id.au>,
-	Andrew Jeffery <andrew@codeconstruct.com.au>,
-	Ray Jui <rjui@broadcom.com>, Scott Branden <sbranden@broadcom.com>,
-	Broadcom internal kernel review list <bcm-kernel-feedback-list@broadcom.com>,
-	Andrew Lunn <andrew@lunn.ch>,
-	Gregory Clement <gregory.clement@bootlin.com>,
-	Sebastian Hesselbarth <sebastian.hesselbarth@gmail.com>,
-	Jonathan =?iso-8859-1?Q?Neusch=E4fer?= <j.neuschaefer@gmx.net>,
-	Thierry Reding <thierry.reding@gmail.com>,
-	Jonathan Hunter <jonathanh@nvidia.com>,
-	Stefan Agner <stefan@agner.ch>,
-	Maxime Coquelin <mcoquelin.stm32@gmail.com>,
-	Alexandre Torgue <alexandre.torgue@foss.st.com>,
-	=?iso-8859-1?Q?Beno=EEt?= Cousson <bcousson@baylibre.com>,
-	Tony Lindgren <tony@atomide.com>, Chanho Min <chanho.min@lge.com>,
-	Matthias Brugger <matthias.bgg@gmail.com>,
-	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
-	Geert Uytterhoeven <geert+renesas@glider.be>,
-	Magnus Damm <magnus.damm@gmail.com>,
-	Linus Walleij <linusw@kernel.org>, Imre Kaloz <kaloz@openwrt.org>,
-	Bjorn Andersson <andersson@kernel.org>,
-	Konrad Dybcio <konrad.dybcio@linaro.org>,
-	Masahiro Yamada <masahiroy@kernel.org>,
-	Nathan Chancellor <nathan@kernel.org>,
-	Nicolas Schier <nicolas@fjasle.eu>,
-	linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org, linux-aspeed@lists.ozlabs.org,
-	openbmc@lists.ozlabs.org, linux-tegra@vger.kernel.org,
-	linux-stm32@st-md-mailman.stormreply.com,
-	linux-omap@vger.kernel.org, linux-mediatek@lists.infradead.org,
-	linux-renesas-soc@vger.kernel.org, linux-arm-msm@vger.kernel.org,
-	linux-kbuild@vger.kernel.org
-Subject: Re: [PATCH 0/6] dts: Fix dtc interrupt warnings
-Message-ID: <20240213-wafer-garnish-88287bc5d4a5@spud>
-References: <20240213-arm-dt-cleanups-v1-0-f2dee1292525@kernel.org>
+Cc: andersson@kernel.org, robh+dt@kernel.org, devicetree@vger.kernel.org,
+ krzysztof.kozlowski+dt@linaro.org, linux-remoteproc@vger.kernel.org,
+ michal.simek@amd.com, Radhey Shyam Pandey <radhey.shyam.pandey@amd.com>,
+ ben.levinsky@amd.com, linux-kernel@vger.kernel.org,
+ mathieu.poirier@linaro.org, conor+dt@kernel.org,
+ linux-arm-kernel@lists.infradead.org
+References: <20240213175450.3097308-1-tanmay.shah@amd.com>
+ <20240213175450.3097308-3-tanmay.shah@amd.com>
+ <170785205177.2155555.1311787541370066483.robh@kernel.org>
+From: Tanmay Shah <tanmay.shah@amd.com>
+In-Reply-To: <170785205177.2155555.1311787541370066483.robh@kernel.org>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+X-ClientProxiedBy: DM6PR02CA0139.namprd02.prod.outlook.com
+ (2603:10b6:5:332::6) To BL1PR12MB5874.namprd12.prod.outlook.com
+ (2603:10b6:208:396::17)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-	protocol="application/pgp-signature"; boundary="4XczAmSSxV0XIpGO"
-Content-Disposition: inline
-In-Reply-To: <20240213-arm-dt-cleanups-v1-0-f2dee1292525@kernel.org>
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: BL1PR12MB5874:EE_|PH7PR12MB7985:EE_
+X-MS-Office365-Filtering-Correlation-Id: 834f90c7-7213-451d-9f7e-08dc2cd3a641
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info:
+	ESfaontTFqnQWGCsLUsdu5l2fem2r6HOoiPkG5f5HTjILlX4SBQxWioUxW5Ng8/grVTHZbzcKRgaWgPGh8q8yABS1JZx79jdk1iyfT1MJdFYOnhM76towURwhIrCV+9KzCoB3ADQnw0ojFhaXbHoJWCHR1ryDvXgondDAV76vmCwLjOMsrIEsYk2JrakX6D/I1iczr6HTQEuA1/wGyVsPyi2QGtYCOCkPhvaQ6+A2DMwhWzIObwPJvDjq6rO/GNdjkHHe17KFa3wwlfn63qmMVndH28Ihx8/DVKIPfQEijYl5yU27FjZ61VZGYAyDTWUWE5eJ42wHJ0mBj+LyxL+//E7FzCkVBZRTv6URJLDl7mTKzy/c/4Nfp14EgH9E2Qw7D2WbLBCcGylh5FSJZ1ZtaPNm6CIwmz6C5TskgX1Knx+2nN3mwZbgHnauYlYv7KPnVTE4SavDnMH53RUUxaqqDu18iHaxUvfGK1gVmDCinpqHINTvG5C3414I5qMwVaXiY7GS8dJKD/VP53EI09GH5X66lJvTq3wOlk4as9o6Z0/PlCH7BD9Q+x5NdTp7Zcb
+X-Forefront-Antispam-Report:
+	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:BL1PR12MB5874.namprd12.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230031)(376002)(39860400002)(346002)(136003)(366004)(396003)(230922051799003)(230273577357003)(451199024)(64100799003)(186009)(1800799012)(2906002)(8936002)(8676002)(4326008)(5660300002)(44832011)(7416002)(2616005)(36756003)(31696002)(26005)(83380400001)(38100700002)(53546011)(86362001)(316002)(66556008)(66476007)(66946007)(6916009)(6506007)(6666004)(966005)(6486002)(478600001)(31686004)(6512007)(41300700001);DIR:OUT;SFP:1101;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0:
+	=?utf-8?B?QmJJaVVMcC90MTlsbU1wcFdobjEwMWNnazhuT2MxUFo0enJRSVpEVTUrZSt5?=
+ =?utf-8?B?amhacmpLT2hQSVNmM0ZqWW5IT1lvY0hQU256MkFZY3NjWFNnVnFoT3JER3ZC?=
+ =?utf-8?B?UFNlVnRzNm5uMDg1M2tjdHlHcFYxMlg3NTkvQ1QrZ2d5aUVuOWxpRzN1K29j?=
+ =?utf-8?B?S2pzbU9LTFlKeGJEOWxkMTBubFBTdVBZWmRYbmF2NzY1VzZVWStqS2FCcS9K?=
+ =?utf-8?B?bWhaTEpYUzJVZ1NRNUZ1bUE1WWphaGFWZm0xSVlSanRKRlk0Z200RndiR1gz?=
+ =?utf-8?B?elFzN1IwNElUcldSZVlyZmJSa0ozSTM5V1RzOFVsZ1hpYUlWQ2llYlNCa1Yz?=
+ =?utf-8?B?WlNiT09pN0ZpUkRxQmtVUld1dm03UzZGckxTZEFVcndnNjRDVWVRbitvQkxY?=
+ =?utf-8?B?NEcvT3owcHRSMk5YeEwrMDh1WnZCREwrNTkrRmszVHBCMUFlWUFsQjUzRVJy?=
+ =?utf-8?B?MGR0TlhMdHNpa2I5MU5DaWdsdEhybTRaUnVuYjBxWVJ3aVF2ZmptMDBKNnFt?=
+ =?utf-8?B?Sk9YVGk3RExxeHFEd0MydzdPNHMxeVpERzRLTHF2eFRIdzJ4TXZocGdRUlhX?=
+ =?utf-8?B?dUpFVFFrSFNXQThYVkpSY284VVJDOVcvbDFyQzdGRCtzOE5WdEpjYmw5clhX?=
+ =?utf-8?B?Ym9PWGhXUFR0R1VXVzUvbEszU2s5cDRPK0hEOGNQQW5ZVVM2Z1ZGRExCbGxS?=
+ =?utf-8?B?cU8zdWJ2ZmRiMnhmalVsMVN0SUZRVDBKUmpxbWFNV1JNaGM3cGZIWnloeC8v?=
+ =?utf-8?B?VG1HWURBRC84Si9EN1IvUmlKMy9OeE56VlpIZXRrbTNTMktwOU1BcHFJNTcx?=
+ =?utf-8?B?S2ZPMXNmdlRWN0VjYjV2ZUJNTGZCUm15c2dSRU94cTk5OFptbUpld1JLeUdm?=
+ =?utf-8?B?aWpwK3lSamsvVnF1bDQ3eW1FeDlLa2lBdDRPd3hJajV1MVZVS0E5QWpJUTE4?=
+ =?utf-8?B?RnhrMksyRE96SFNITjR1Y2hiNWZINmxIdEJRQXVvNjBkdkg4bmFMRyttSHYw?=
+ =?utf-8?B?QnhvM29pWnJiSkxvK2NMU2tmWldUUllUN2I2YnNSSitDT1RkVzhuWlBqQnJm?=
+ =?utf-8?B?WEpsZmR0L291NzdGMk1QdUdnT21Cb2NiQlhvT1VlQ0NkYzhSdVlMdkZvcjRq?=
+ =?utf-8?B?d2hLVllKRU9McUlnN1V2WSthN2VZU0c4YitwQU0zOHlDWGwwWUsrZDNhL2or?=
+ =?utf-8?B?V3UzaHNSVi9jNWVrRWxlREN2TTVJMTg1VUlTMk9mVUIwOFVuUXIycTFyNEFQ?=
+ =?utf-8?B?RTRUVElQVTRXYjR0TFVuWi9OWng5SUhaWmxXQkl3ZUc4ZDZVY1U1VWJBdWt2?=
+ =?utf-8?B?S0MzcVRMRFNxMi9HdlNVbk5odnUzSThxTXoxc0h3ZFkzcTdIblBrZ3h6bDFi?=
+ =?utf-8?B?K1Y0eUNQRmVPS21Temk0akNuVGx4R0NQSnVXbVdDdXhkeldVRWxDOTNpdUJB?=
+ =?utf-8?B?UTBHRE5janR0RThaL0treEIybXZUZGxGQlg0QnpGdkNNcU9odW1ya3dLUUh5?=
+ =?utf-8?B?cmt0WlBYdVF0K0lmeCtPSTJWVGFnUEczQWFJNUVmNmNRdzVSZmozMjlnUmd1?=
+ =?utf-8?B?QXRXY29waDlMU3BiVWs4YnhBWStnbnAvajgyS1ZhU1FEOStUYmRFcDlZZUJs?=
+ =?utf-8?B?bG1ESTZONXIzVisvMDVOcHRYOVMrOHV1enZRVVBOL0V3a3NRY3ljUW1GUjYz?=
+ =?utf-8?B?aXlWYXAwZnlxMHl0VVlldWxma1dOR2dBejJlcE53aXBsbkxJSG1mNjE2SVM5?=
+ =?utf-8?B?Q3hFaWVkYXpLRzhrL1YzemFDa3lDSXNsNUUxNmJDend2OFkvVlN2TjVETGR0?=
+ =?utf-8?B?RERmMG1KbFlqeFBqYm9HMTB5bjh2dXRFYWg5djBUUDNKT3dVOUZNSTFxS25I?=
+ =?utf-8?B?SnRYalZkRHFpUHRFTVlHVWNDUWN0RkZ3OS9PYnhSUy9VRGd4czFiTVB2VmU4?=
+ =?utf-8?B?ckJWN3BVUk5LU0RhczU2K1JMQ0xJVm1ucmx6MVRVL1lvekFIODltbXZOQ2Jk?=
+ =?utf-8?B?cGhiQktIeTkwRnB3NG1LekI4WHVuY3JBL1JmNnQ1S2M4N25pbjhWc0ZiR0E5?=
+ =?utf-8?B?b1BmdnBFMmo3czFkYkhObVVwNXh6alBMR3pwbWRzbWRYMEJxUUVEaW9DVVRT?=
+ =?utf-8?Q?FxOWKgMcFYCKxeSBinIps97Js?=
+X-OriginatorOrg: amd.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 834f90c7-7213-451d-9f7e-08dc2cd3a641
+X-MS-Exchange-CrossTenant-AuthSource: BL1PR12MB5874.namprd12.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 13 Feb 2024 20:37:52.0840
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: Gw9A0DFLUg+SZdzF77Bzk8U3X6lxOO7AyfSSdDzCE8AZJAh3IahQtPSipwdV2XfW
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: PH7PR12MB7985
+
+Hello,
+
+Thanks for reviews please find my comments below.
+
+On 2/13/24 1:20 PM, Rob Herring wrote:
+> On Tue, 13 Feb 2024 09:54:48 -0800, Tanmay Shah wrote:
+> > From: Radhey Shyam Pandey <radhey.shyam.pandey@amd.com>
+> > 
+> > Introduce bindings for TCM memory address space on AMD-xilinx Zynq
+> > UltraScale+ platform. It will help in defining TCM in device-tree
+> > and make it's access platform agnostic and data-driven.
+> > 
+> > Tightly-coupled memories(TCMs) are low-latency memory that provides
+> > predictable instruction execution and predictable data load/store
+> > timing. Each Cortex-R5F processor contains two 64-bit wide 64 KB memory
+> > banks on the ATCM and BTCM ports, for a total of 128 KB of memory.
+> > 
+> > The TCM resources(reg, reg-names and power-domain) are documented for
+> > each TCM in the R5 node. The reg and reg-names are made as required
+> > properties as we don't want to hardcode TCM addresses for future
+> > platforms and for zu+ legacy implementation will ensure that the
+> > old dts w/o reg/reg-names works and stable ABI is maintained.
+> > 
+> > It also extends the examples for TCM split and lockstep modes.
+> > 
+> > Signed-off-by: Radhey Shyam Pandey <radhey.shyam.pandey@amd.com>
+> > Signed-off-by: Tanmay Shah <tanmay.shah@amd.com>
+> > ---
+> > 
+> > Changes in v10:
+> >   - modify number of "reg", "reg-names" and "power-domains" entries
+> >     based on cluster mode
+> >   - Add extra optional atcm and btcm in "reg" property for lockstep mode
+> >   - Add "reg-names" for extra optional atcm and btcm for lockstep mode
+> >   - Drop previous Ack as bindings has new change
+> > 
+> > Changes in v9:
+> >   - None
+> > Changes in v8:
+> >   - None
+> > Changes in v7:
+> >   - None
+> > Changes in v6:
+> >   - None
+> > Changes in v5:
+> >   - None
+> > 
+> > Changes in v4:
+> >   - Use address-cells and size-cells value 2
+> >   - Modify ranges property as per new value of address-cells
+> >     and size-cells
+> >   - Modify child node "reg" property accordingly
+> >   - Remove previous ack for further review
+> > 
+> > v4 link: https://lore.kernel.org/all/20230829181900.2561194-2-tanmay.shah@amd.com/
+> > 
+> >  .../remoteproc/xlnx,zynqmp-r5fss.yaml         | 192 ++++++++++++++++--
+> >  1 file changed, 170 insertions(+), 22 deletions(-)
+> > 
+>
+> My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
+> on your patch (DT_CHECKER_FLAGS is new in v5.13):
+>
+> yamllint warnings/errors:
+> ./Documentation/devicetree/bindings/remoteproc/xlnx,zynqmp-r5fss.yaml:118:13: [warning] wrong indentation: expected 10 but found 12 (indentation)
+Ack. I will fix this.
+
+However, can I still get reviews on patch itself so if something else needs to be fixed I can fix in next revision as well.
+
+Also, I tried to run yamllint with following command:
+
+make DT_CHECKER_FLAGS=-m dt_binding_check DT_SCHEMA_FILES=Documentation/devicetree/bindings/remoteproc/xlnx,zynqmp-r5fss.yaml O=../build/zynqmp/linux-next/
 
 
---4XczAmSSxV0XIpGO
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+However, I see following logs without any error on bindings:
 
-On Tue, Feb 13, 2024 at 01:34:24PM -0600, Rob Herring wrote:
-> I had a branch with most of these changes sitting in my tree for some=20
-> time. Geert's asking about some errors not getting found prompted me to=
-=20
-> clean it up and send it out. This series fixes all* interrupt related=20
-> warnings and enables the check by default.=20
->=20
-> SoC maintainers, Can you please take this series directly.=20
->=20
-> Rob
->=20
-> *There's a few Renesas warnings still Geert said he would fix.
->=20
-> Signed-off-by: Rob Herring <robh@kernel.org>
-> ---
-> Rob Herring (6):
->       arm64: dts: freescale: Disable interrupt_map check
->       arm: dts: Fix dtc interrupt_provider warnings
->       arm64: dts: Fix dtc interrupt_provider warnings
->       arm: dts: Fix dtc interrupt_map warnings
->       arm64: dts: qcom: Fix interrupt-map cell sizes
->       dtc: Enable dtc interrupt_provider check
+  LINT    Documentation/devicetree/bindings
+invalid config: unknown option "required" for rule "quoted-strings"
+*xargs: /usr/bin/yamllint: exited with status 255; aborting*
+  CHKDT   Documentation/devicetree/bindings/processed-schema.json
+  SCHEMA  Documentation/devicetree/bindings/processed-schema.json
+  DTEX    Documentation/devicetree/bindings/remoteproc/xlnx,zynqmp-r5fss.example.dts
+  DTC_CHK Documentation/devicetree/bindings/remoteproc/xlnx,zynqmp-r5fss.example.dtb
 
-Only fixing it for arm, Sadge.
+I am not sure if my system is missing something but, yamllint tool is failing.
 
-Co-incidentally I noticed there was one for riscv while looking at
-Krzysztof's underscore in node name patch earlier, so I'd already
-written a patch to fix it :)
+I appreciate if someone can point to quick fix if this is known issue and is already resolved.
 
---4XczAmSSxV0XIpGO
-Content-Type: application/pgp-signature; name="signature.asc"
+Thanks,
 
------BEGIN PGP SIGNATURE-----
+Tanmay
 
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZcvQiwAKCRB4tDGHoIJi
-0iKoAP9EkRpfMdcQD2Rxy6EyQrFHOf9aK1XBqWvwsM+uYWZVZAD9El92XfSbd1tC
-IcCJORhtpqwWl2bRDhMSRtSpWpqRygA=
-=9Yjc
------END PGP SIGNATURE-----
-
---4XczAmSSxV0XIpGO--
+> dtschema/dtc warnings/errors:
+>
+> doc reference errors (make refcheckdocs):
+>
+> See https://patchwork.ozlabs.org/project/devicetree-bindings/patch/20240213175450.3097308-3-tanmay.shah@amd.com
+>
+> The base for the series is generally the latest rc1. A different dependency
+> should be noted in *this* patch.
+>
+> If you already ran 'make dt_binding_check' and didn't see the above
+> error(s), then make sure 'yamllint' is installed and dt-schema is up to
+> date:
+>
+> pip3 install dtschema --upgrade
+>
+> Please check and re-submit after running the above command yourself. Note
+> that DT_SCHEMA_FILES can be set to your schema file to speed up checking
+> your schema. However, it must be unset to test all examples with your schema.
+>
 
