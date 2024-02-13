@@ -1,128 +1,120 @@
-Return-Path: <devicetree+bounces-41396-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-41397-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9989685365E
-	for <lists+devicetree@lfdr.de>; Tue, 13 Feb 2024 17:43:52 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id CB02B853682
+	for <lists+devicetree@lfdr.de>; Tue, 13 Feb 2024 17:48:17 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 5472F286D3B
-	for <lists+devicetree@lfdr.de>; Tue, 13 Feb 2024 16:43:51 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 8723B28BE01
+	for <lists+devicetree@lfdr.de>; Tue, 13 Feb 2024 16:48:16 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9BE085DF01;
-	Tue, 13 Feb 2024 16:43:48 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 30FDE5FDCD;
+	Tue, 13 Feb 2024 16:47:00 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="Z0kyfBtf"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="CpjM2CsC"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.13])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-ed1-f46.google.com (mail-ed1-f46.google.com [209.85.208.46])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 07F905FB8D;
-	Tue, 13 Feb 2024 16:43:46 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=192.198.163.13
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6C9005FDC4;
+	Tue, 13 Feb 2024 16:46:58 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.46
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1707842628; cv=none; b=Ht5Hy4VmfVjyfBArI7tkdbexF3XlK7bWkczYjP2A2cFdg6uV/Jb5DMC7uQPS7+JhZMfj56xfCTjt1J0+t1Rv29YyDhwIzGz07EUrRAbmh9w57Pr6Las9asYig2LAoi7tENaTJm50Ess5QyxMIkCw68L1nGCge8rhRz0PilA00Sw=
+	t=1707842820; cv=none; b=T0uboLj10Cwwu/Ng79X9uO57UMWj3sHmItQszTZpseg9V4Qy0jJoS3Z+SY35E9Cy1VO3uXtNaYqiZB0I+DTRPQkoyrb/rQPBESnPlc7hgf46TB+EYfl54fSqXk9fKIsrBi8eEf22vWhlsPN304JYjxRa5igXcmxTk20Nni5cKqE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1707842628; c=relaxed/simple;
-	bh=IVfpppykE2plUKwWtkp2z9oyNL8LDEqus0ZAW9zqGZE=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=LvEahupiFP4BwG5LlZarjiqLNSJHEib1RR4rxG8pgtWTlouQ2/iF+hbtFOkGeGTaiqVVkuODH7aDF5fyO1TtUslgQ6iWWRAZSg8NQB6tWABLSQzU5yUj0ZxHgpfpbPii8sl+OqvKz7xhUcagqN69Y8w4x5sMerVXc1KyVRDr2ag=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com; spf=none smtp.mailfrom=linux.intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=Z0kyfBtf; arc=none smtp.client-ip=192.198.163.13
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com
-Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=linux.intel.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1707842627; x=1739378627;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=IVfpppykE2plUKwWtkp2z9oyNL8LDEqus0ZAW9zqGZE=;
-  b=Z0kyfBtfwEDFLulQ4PW1vqSBijq4o5cgv2g7RbwTZsZ0F+6lVRqZFtJZ
-   Xfiypjv7BLLRh8CMnrNqpc6YkJUw6H2Ms6I93VTtTmXwsc+VwOPmWp0Qc
-   OfviAeufVT2IHS9zPKDePFHA3/mAJkgIuw47c7IdRJ4WESQoGSfVVQ0g5
-   udG6sIHYlKUJw2GKeZftYX6N6z6gFUrpEqtX5e50GJf/d6QOGFlUgaiWB
-   Q8maci8v76PPZnybeYi0uwr72azu6BDv9aLHEL8DTMm/K3a2AV5EvuEpk
-   02TUDy4gXHo55Jg/amyiNnR7IuKEw0lllIWtZDkD3vRitfcjDxMGX3z5E
-   A==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10982"; a="4825908"
-X-IronPort-AV: E=Sophos;i="6.06,157,1705392000"; 
-   d="scan'208";a="4825908"
-Received: from fmsmga002.fm.intel.com ([10.253.24.26])
-  by fmvoesa107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 13 Feb 2024 08:43:46 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10982"; a="911830782"
-X-IronPort-AV: E=Sophos;i="6.06,157,1705392000"; 
-   d="scan'208";a="911830782"
-Received: from smile.fi.intel.com ([10.237.72.54])
-  by fmsmga002.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 13 Feb 2024 08:43:42 -0800
-Received: from andy by smile.fi.intel.com with local (Exim 4.97)
-	(envelope-from <andriy.shevchenko@linux.intel.com>)
-	id 1rZvsh-00000004Gee-36D7;
-	Tue, 13 Feb 2024 18:43:39 +0200
-Date: Tue, 13 Feb 2024 18:43:39 +0200
-From: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
-To: Rob Herring <robh@kernel.org>
-Cc: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-	Ralf Schlatterbeck <rsc@runtux.com>,
-	Geert Uytterhoeven <geert@linux-m68k.org>,
-	Linus Walleij <linus.walleij@linaro.org>,
-	Miguel Ojeda <ojeda@kernel.org>,
+	s=arc-20240116; t=1707842820; c=relaxed/simple;
+	bh=geJKg2I7LNYdPbFdc9UH/iCmUpyiA5IJaHKKy0d92EA=;
+	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version:Content-Type; b=Z17SeNBlkvhG9jtUQTEJC3qBmeml+nMxXIgMf94pDI1qarPXmUnCMZZgRwWoXzgeCrmgSyQB3HF2/3jDJSkJE0XqLlOi9qpzlmUOXCAVXx2NXEB4HgT+VulaA3KI6Rbe5rYvjIzOmiFfMbXEtpoTp7m6dF5kT6RHJ5dKr8RurtU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=CpjM2CsC; arc=none smtp.client-ip=209.85.208.46
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-ed1-f46.google.com with SMTP id 4fb4d7f45d1cf-560037b6975so5081135a12.2;
+        Tue, 13 Feb 2024 08:46:58 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1707842817; x=1708447617; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=Jt2WxlQdO4fysvQIUvE9sZzH3jia5VewAudv21NzUl8=;
+        b=CpjM2CsCO1uO2WgJ7FOxf2E3toV+6tCizgtXsNeSU6YKUDmD5xBwayv1EiAnrdKp5R
+         KP411laMz9/KF+FlZf1bRH2tPmfFXwKh0vF8oAm/XWEkL+jFduEgSmkgp5+k/X+Q8Kwf
+         dDNVH27dqCmP/tzuEwGhlZMP9am40uDMhEYnraiHV3NVFpRqC9mBUa+B/1x1HTYuyiec
+         vkQqEccgQIo70ShpIosCDbzOscxDAWhBhXZQzkmp1SKYFm2uQJTdxvreEy9ntYCIB7RC
+         LNPS+NHE/ceqbKYm8si9C3j3Sj0pKpeZwgehbggNRpe68jeKj+P+UgZRK5tuBh1shJtz
+         +H6g==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1707842817; x=1708447617;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=Jt2WxlQdO4fysvQIUvE9sZzH3jia5VewAudv21NzUl8=;
+        b=QXRQkA7eWS4ggzBexx/WchCCz1I82sRD1guJQL6zC298WcNvraKL6TfnCS9/9m6eWh
+         4mqZGMD4dsbqAWWB3+WwxoV2WOw2pq3OplEYp1w582g/1XgN4EVOipCpDqVWtJHS4r3b
+         fEtshH7N4mt6OkWx92R98s1WueDNdDbZTgKc9UpP1mElUgSGDUsnzbJye8nkx4E/lCjv
+         LHnjqXNa1AZODZc+A06NFAdWprdpRNrYKU1iuR3m7Imhb1y0B8A8YipaSpioH42OwrJm
+         fs7NBox9iHEnVFsMcPc2KLY6bRS5wgpy4VeWyG21MZVtWe8m0U+0BcB41uPQyc1Pk5sA
+         +wjQ==
+X-Forwarded-Encrypted: i=1; AJvYcCUTLtI8nZwQ+IVCXbZnyUhXOJk+UtZRABKfXp+svybZh4Pt1FMb8XVAegSKGZ+KFD6Ul8dOKplKYAg60BRNgOcYUErSTyZcKQnziDzUohVQYDm5Dxaw4z31qi+3qI/OZxHSX9N38CQYfgeCH2mEqizJ2zz2PDIbzAu/t0kI1NQGsLXXDA==
+X-Gm-Message-State: AOJu0YxSrNFrOT2FezGw5Uo/iEPF+1nvp/3PKdPQFoER3guzom437Pf5
+	QevyDbvEXy9dUqnpw5inrC2AlTJFtlAgbaI0M+y1pQ+MHaC2IWNw
+X-Google-Smtp-Source: AGHT+IEOCuvXmALVsWy4q9bGIKo+OXF34mZhyPYSUBl6z9/EoOR8YE2mtz0a0xXVLC4slWArIRenxQ==
+X-Received: by 2002:aa7:c40c:0:b0:561:1917:eb9e with SMTP id j12-20020aa7c40c000000b005611917eb9emr150247edq.35.1707842816518;
+        Tue, 13 Feb 2024 08:46:56 -0800 (PST)
+X-Forwarded-Encrypted: i=1; AJvYcCUp1qw97K6riBY5hQWZ39Xfd6wBeiupyxbDZhQ9Tw0QXIGrw09l88kbuSjt4WSUlnYTmfmDSo+5AG1vhQGUSPSmPYVmd2kCMAlXPM2tOdLdoUvzGq/VqyEXih48rOYxOn0LW/aV+jnI3nF32md93O7aqg52dc+zOzxx2SnoDllN1R2MX59F1wwDQPTa8jGYsqWhxmp+kul1yUbi9XKt+cIbCH3pD4zRPFfbnTnRxrJ3RJkiUqu+ZL6wSqR60kXr1yGS9LWTCREp9hK/uxr92f9iZ+HetZHfE3FdkncOrnxaFxzGwqBAPr02WfachN0NWEyYzulhEUU5eo6axA6zyHE4rokQMd8a72hiAsD2ZvxLtWNirXV1bmioFIJfvLwNmVsL3kx57P/I1Gn+RGDktMP3UnRVRI0D2/APSMPtsNlfPW482lxJ5TcHsWExx7/Yh+vO2VlQxUQhhek97SlV1qJlsHmyYBe7DiYHxLHtMchQX5yHK5Pit6oWnTem22k/g7bmxsIUdVOP7PTHeOaw
+Received: from localhost.lan (031011218106.poznan.vectranet.pl. [31.11.218.106])
+        by smtp.gmail.com with ESMTPSA id v10-20020a056402184a00b0055f0b3ec5d8sm3863582edy.36.2024.02.13.08.46.55
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 13 Feb 2024 08:46:56 -0800 (PST)
+From: =?UTF-8?q?Rafa=C5=82=20Mi=C5=82ecki?= <zajec5@gmail.com>
+To: Matthias Brugger <matthias.bgg@gmail.com>,
+	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
+	Rob Herring <robh@kernel.org>,
 	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
 	Conor Dooley <conor+dt@kernel.org>,
-	Robin van der Gracht <robin@protonic.nl>,
-	Paul Burton <paulburton@kernel.org>,
-	linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org
-Subject: Re: [PATCH 1/3] dt-bindings: auxdisplay: hit, hd44780: drop
- redundant GPIO node
-Message-ID: <ZcucO8R8ZOtR38jl@smile.fi.intel.com>
-References: <20240212083426.26757-1-krzysztof.kozlowski@linaro.org>
- <CAMuHMdU-c5_Z2AMNtNH4Cc4JUrn+oKU-1CumEOAP6=5Zomcj_A@mail.gmail.com>
- <2922eece-5486-4eff-af99-f7060cb61d17@linaro.org>
- <20240212115837.efz73yxinkysdmgh@runtux.com>
- <e2a5b005-7916-4296-b072-c24efd4b3357@linaro.org>
- <Zcogl6tqbMdQldKA@smile.fi.intel.com>
- <d603a588-d312-486e-b6c9-647a6b90580c@linaro.org>
- <20240213161905.GA1459669-robh@kernel.org>
+	=?UTF-8?q?Uwe=20Kleine-K=C3=B6nig?= <u.kleine-koenig@pengutronix.de>
+Cc: John Crispin <john@phrozen.org>,
+	linux-pwm@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	linux-mediatek@lists.infradead.org,
+	=?UTF-8?q?Rafa=C5=82=20Mi=C5=82ecki?= <rafal@milecki.pl>
+Subject: [PATCH 1/2] dt-bindings: pwm: mediatek,mt2712: add compatible for MT7988
+Date: Tue, 13 Feb 2024 17:46:32 +0100
+Message-Id: <20240213164633.25447-1-zajec5@gmail.com>
+X-Mailer: git-send-email 2.35.3
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20240213161905.GA1459669-robh@kernel.org>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 
-On Tue, Feb 13, 2024 at 10:19:05AM -0600, Rob Herring wrote:
-> On Mon, Feb 12, 2024 at 02:59:02PM +0100, Krzysztof Kozlowski wrote:
-> > On 12/02/2024 14:43, Andy Shevchenko wrote:
-> > > On Mon, Feb 12, 2024 at 02:38:27PM +0100, Krzysztof Kozlowski wrote:
-> > >> On 12/02/2024 12:58, Ralf Schlatterbeck wrote:
+From: Rafał Miłecki <rafal@milecki.pl>
 
-...
+MT7988 has on-SoC controller that can control up to 8 PWMs.
 
-> > >> Anyway, binding examples should not be collection of unrelated
-> > >> solutions, because then we should accept for each device schema several
-> > >> other variations and combinations.
-> > > 
-> > > Is this documented?
-> > 
-> > Yes, writing schema says what the example is. We repeated it multiple
-> > times on multiple reviews, we made multiple commits multiple times and I
-> > briefly mentioned it also in my talks.
-> 
-> While yes, this is the guidance, I think this case has provided enough
-> justification to keep it. Let's move on please.
+Signed-off-by: Rafał Miłecki <rafal@milecki.pl>
+---
+ Documentation/devicetree/bindings/pwm/mediatek,mt2712-pwm.yaml | 1 +
+ 1 file changed, 1 insertion(+)
 
-Thank you, Rob.
-
-Krzysztof, can you send v2, I'll apply it to the tree?
-
+diff --git a/Documentation/devicetree/bindings/pwm/mediatek,mt2712-pwm.yaml b/Documentation/devicetree/bindings/pwm/mediatek,mt2712-pwm.yaml
+index 0fbe8a6469eb..a5c308801619 100644
+--- a/Documentation/devicetree/bindings/pwm/mediatek,mt2712-pwm.yaml
++++ b/Documentation/devicetree/bindings/pwm/mediatek,mt2712-pwm.yaml
+@@ -24,6 +24,7 @@ properties:
+           - mediatek,mt7629-pwm
+           - mediatek,mt7981-pwm
+           - mediatek,mt7986-pwm
++          - mediatek,mt7988-pwm
+           - mediatek,mt8183-pwm
+           - mediatek,mt8365-pwm
+           - mediatek,mt8516-pwm
 -- 
-With Best Regards,
-Andy Shevchenko
-
+2.35.3
 
 
