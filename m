@@ -1,122 +1,97 @@
-Return-Path: <devicetree+bounces-41201-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-41203-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 31CC8852BAE
-	for <lists+devicetree@lfdr.de>; Tue, 13 Feb 2024 09:53:02 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 47A23852BB8
+	for <lists+devicetree@lfdr.de>; Tue, 13 Feb 2024 09:56:43 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id BF8F5B2380A
-	for <lists+devicetree@lfdr.de>; Tue, 13 Feb 2024 08:52:59 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 7AF8A1C22CD7
+	for <lists+devicetree@lfdr.de>; Tue, 13 Feb 2024 08:56:42 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 668FF175AC;
-	Tue, 13 Feb 2024 08:52:54 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3E1FD1B5A0;
+	Tue, 13 Feb 2024 08:56:41 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmx.net header.i=wahrenst@gmx.net header.b="cWUxlPWk"
+	dkim=pass (2048-bit key) header.d=microchip.com header.i=@microchip.com header.b="qdWIZLjD"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mout.gmx.net (mout.gmx.net [212.227.17.20])
+Received: from esa.microchip.iphmx.com (esa.microchip.iphmx.com [68.232.154.123])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0ADC1224C6;
-	Tue, 13 Feb 2024 08:52:51 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=212.227.17.20
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3ED3C175AC;
+	Tue, 13 Feb 2024 08:56:38 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=68.232.154.123
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1707814374; cv=none; b=JnRNeRHCXNRTodabcPOdwcwdMx4XxC4lYKooHflyOspenaabNV2bkNL7hUWQKnM142wJVGYTDWsJuik7qJo96xefr4qKjqNdFdajBwvlYeTfuj4BMFK404zmpabKF8jo5O88mff9MtNzaEqilOSHX5AGdGhGTb5/zyytRZjUwU8=
+	t=1707814601; cv=none; b=P1SfzbSjnTFiTReLnK3DQUGmgWFDLELYYdxoprlsvpZzad0oU9Ns5V29u4MPshj3Yr/yluuPGg8eBjZTi5LqkE/KNKsWvupPJWXQK6VZQr2pjJsS5gpsYSJJv9sApX2IWkagUTBAuqWVqIhKXGUt3sZgpTvY1Uvbyo4ma5+pFOQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1707814374; c=relaxed/simple;
-	bh=hd1AvOuOlZBHBqTRp39Wkr6DhdcKty7DtCe8l8y2b3Y=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=hCookVBTwGyUvAJBGQtUK6kJMBP6KWPDofPw+KgtTBIrcCMCjETnnS/rYuB5DIQDyTc4oNOqIYJTq6ZI3kEKDYaxfupqzXOoeDaXFdcWQb/kabKnxY6hx3J+M5VzEewNZ72wDVLxt0izJhf42gxkCIgFgw1MzvVRNPh3ITmsE+Q=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=gmx.net; spf=pass smtp.mailfrom=gmx.net; dkim=pass (2048-bit key) header.d=gmx.net header.i=wahrenst@gmx.net header.b=cWUxlPWk; arc=none smtp.client-ip=212.227.17.20
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=gmx.net
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmx.net
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=gmx.net;
-	s=s31663417; t=1707814358; x=1708419158; i=wahrenst@gmx.net;
-	bh=hd1AvOuOlZBHBqTRp39Wkr6DhdcKty7DtCe8l8y2b3Y=;
-	h=X-UI-Sender-Class:Date:Subject:To:Cc:References:From:
-	 In-Reply-To;
-	b=cWUxlPWkI0/9xTfruG+N6LCyJYghvtIrJuszr4L0CkNRE0TlJKdyt72j/f8MO/Jr
-	 ca+q99WM9rAuL5yCd743rIli1ZvpnHGLxvYM3QXm2lGI0CYorQjRhHrQQpXaGfqQM
-	 eGrpR3a9c/JWdOIzssiatbKFVMiEuQqeqsfTK3hNIUhIlsKFtg5QzOHIclepWhWV6
-	 LO9wJWLDp8R3OpxNHGEOTpdmxposMU1Q4sUQeS0ir/8RZR0kyelWRRZq8xLF8rres
-	 qnuSABq+9HgvwqKgmumi7uOr6KKQOgdj4LwgNwF3RebztPedRVoO6gy14w6PoR9ik
-	 HXOy8rAqy2MMG9gNMg==
-X-UI-Sender-Class: 724b4f7f-cbec-4199-ad4e-598c01a50d3a
-Received: from [192.168.1.167] ([37.4.248.43]) by mail.gmx.net (mrgmx104
- [212.227.17.168]) with ESMTPSA (Nemesis) id 1Mplbx-1rCXwB082X-00qDsP; Tue, 13
- Feb 2024 09:52:38 +0100
-Message-ID: <bb7eccc2-a821-4326-b071-2f8a89038dd7@gmx.net>
-Date: Tue, 13 Feb 2024 09:52:36 +0100
+	s=arc-20240116; t=1707814601; c=relaxed/simple;
+	bh=ZELX4+MLTKxtg9D7FUzdHL+NDEwTGDHqMEb4bZqJ/As=;
+	h=From:To:CC:Subject:Date:Message-ID:MIME-Version:Content-Type; b=UU1CT8AHdP3zES/P5RPzaIy9wZRiUv+I3GKutP3CxAa9mYSWokD4OEkbuxqGPI9TBKxqgAas8Gm6BbCwPpgE7JwKPqET6s2inBBst6YRdMkC5AIlYLUL3a/a7w20O4KBRjp30gTHwuAjvBVGic7RW+QlCp+Bn2onc0Z89XRyvNc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=microchip.com; spf=pass smtp.mailfrom=microchip.com; dkim=pass (2048-bit key) header.d=microchip.com header.i=@microchip.com header.b=qdWIZLjD; arc=none smtp.client-ip=68.232.154.123
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=microchip.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=microchip.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
+  t=1707814599; x=1739350599;
+  h=from:to:cc:subject:date:message-id:mime-version:
+   content-transfer-encoding;
+  bh=ZELX4+MLTKxtg9D7FUzdHL+NDEwTGDHqMEb4bZqJ/As=;
+  b=qdWIZLjDBujtJZirgKSi3LVpg4qmHgdm0YD7U8TYgI4DfLJvFHXxlczX
+   9j3JOBH7+XcbQNWJuMgfQvyNggo7s63alAo3afMfLuE0iuUyO10ub5KUa
+   i4OAN1AlMEK6nyuZio/FrTJ1oTQoQ32VILBk4yaiGebBBqRh+3yM12J5U
+   4UZLtoW2iJ3erNrwZtND0BlDzy93i7QmLixZiC+1Ww7zR/Bk60QvWmArT
+   t5eL27kHx2C5GBF3i4IEUCgNthwZ5xq1zEYT9B66tRVMByy9qA6AH+ndF
+   kuxnJAzaESSDLs/EwuspCAtebSiEwdsKApNJs0hyJTbWLRlEzkj6DHRLE
+   A==;
+X-CSE-ConnectionGUID: Tcx08rzESzahUneDj9mfvQ==
+X-CSE-MsgGUID: CnpQXNWuQdKhwFHE+fUijg==
+X-IronPort-AV: E=Sophos;i="6.06,156,1705388400"; 
+   d="scan'208";a="183422416"
+X-Amp-Result: SKIPPED(no attachment in message)
+Received: from unknown (HELO email.microchip.com) ([170.129.1.10])
+  by esa6.microchip.iphmx.com with ESMTP/TLS/ECDHE-RSA-AES128-GCM-SHA256; 13 Feb 2024 01:56:38 -0700
+Received: from chn-vm-ex02.mchp-main.com (10.10.85.144) by
+ chn-vm-ex04.mchp-main.com (10.10.85.152) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.35; Tue, 13 Feb 2024 01:56:23 -0700
+Received: from virtualbox.microchip.com (10.10.85.11) by
+ chn-vm-ex02.mchp-main.com (10.10.85.144) with Microsoft SMTP Server id
+ 15.1.2507.35 via Frontend Transport; Tue, 13 Feb 2024 01:56:20 -0700
+From: Mihai Sain <mihai.sain@microchip.com>
+To: <claudiu.beznea@tuxon.dev>, <robh+dt@kernel.org>,
+	<krzysztof.kozlowski+dt@linaro.org>, <conor+dt@kernel.org>,
+	<nicolas.ferre@microchip.com>, <alexandre.belloni@bootlin.com>,
+	<andre.przywara@arm.com>, <devicetree@vger.kernel.org>,
+	<linux-arm-kernel@lists.infradead.org>, <linux-kernel@vger.kernel.org>
+CC: <cristian.birsan@microchip.com>, Mihai Sain <mihai.sain@microchip.com>
+Subject: [PATCH 0/3] Add initial support for Microchip SAMA7G54 Curiosity board
+Date: Tue, 13 Feb 2024 10:56:11 +0200
+Message-ID: <20240213085614.26804-1-mihai.sain@microchip.com>
+X-Mailer: git-send-email 2.43.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v1 14/14] ARM: dts: imx6ull-uti260b: Add board
-To: Sebastian Reichel <sre@kernel.org>
-Cc: Rob Herring <robh+dt@kernel.org>,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Conor Dooley <conor+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>,
- Sascha Hauer <s.hauer@pengutronix.de>, Fabio Estevam <festevam@gmail.com>,
- Pengutronix Kernel Team <kernel@pengutronix.de>,
- NXP Linux Team <linux-imx@nxp.com>, Dong Aisheng <aisheng.dong@nxp.com>,
- Linus Walleij <linus.walleij@linaro.org>,
- Dmitry Torokhov <dmitry.torokhov@gmail.com>, Mark Brown
- <broonie@kernel.org>, linux-arm-kernel@lists.infradead.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-References: <20240210012114.489102-1-sre@kernel.org>
- <20240210012114.489102-15-sre@kernel.org>
- <c38e7c68-e725-4174-aa0a-0594a55c8d56@gmx.net>
- <56eb2fnpmaya5rwfk5jvluvsidokzpoujeatihgrbxlytbzx5x@ozco7pbgkugp>
-Content-Language: en-US
-From: Stefan Wahren <wahrenst@gmx.net>
-In-Reply-To: <56eb2fnpmaya5rwfk5jvluvsidokzpoujeatihgrbxlytbzx5x@ozco7pbgkugp>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Provags-ID: V03:K1:QwGYrtJOh2GSob57qG1BTL4524eNR06439bHtY0/90JfT5NIu84
- vxLrtONRTylt/pdpbEkXnOBuFv/qRTzSMEHmzzUQOpK+y5jNp8Jr2EnO0dnruk++dNsakfx
- SbLvrVbpLkrnM4PBLM1YtyFNDZrP5hHqkU/oiXIOCdmUFMiow74S0lHopY49FriUKY2+jrx
- aoR2ACHBxTPg+2nR4t5hA==
-X-Spam-Flag: NO
-UI-OutboundReport: notjunk:1;M01:P0:hzP5LxJpaj0=;JcejgMcwxeIaQkcltr7ilZz32QG
- UdjUQAkloUWOCgUaIJPXHfppTNiwOkbZtGjjy+3uz40QAv2KuFeKhANogM7kJXfwjqgSYTwX2
- yJ0OnmJdjc5o0koikbirLv0qUoPVbGNX9KI5sdC1WMw9fUba5+Vyy+rtzUJKw3FveMF1RSLVS
- JaniyBhGY0YJIjXdZa6fh4qlgM3pmolG8buFz9KIQ0fGLGmfcqtMFWoq9d3ZwzdXwrc6mCn8c
- vcXbhiwMIM50ZW0INa42ygxNJEMkzrUeiuYZnnRvW/AYBhEuheS8KHdknPjxUXLLoWO1a2iWc
- BmSqnpKiOg1UIWYQNtkspb1GaxF77s+xILaO3tm5E/YVIGeNM2+tsXdqzPU5uhuddOLoHIiUo
- KkRbIaTRhLWKj6y4+/4d7oamEKSGsFEEKOOk2JeOf7wJeb22JsYwlwfCxSxs7uCVDx+42FS7w
- bdMrMEDfb7kjesJWPW4I9HNL34BloUWYRLJER5UmMB4A5wy83zy3QBZ9U9wJRoh1xQD5EFDtg
- 1UJrevt652XGZ2VNAalb+hxSccZPLQ6o7ylMWWtcEdHiVghu6KmeB+j+eh+lbT8s/9Q1bXbHG
- vXzU/u0Bk+BsoxID6zeNsWijsWzfRI3zjWD+b1J9k/2kYK6rkYyJVsi7hQLUM+JuJlsuNv2c6
- 3rskaLXA0PRW/MiBPB79Bpa4a7Ku035md+jEyIhmyrcnqPj/pLoHCfiCYlAyNC3wjcHGEgoZ0
- 9ln2+M84j8KiJYraAs21mDxZW3uHzNZt6cuatdnkfaLkHXBAjp7yJwu55ji18Hq+A8B8IqfdA
- 0gNlYlglsPCgaO2jSNPxt5+AgYO3EUA5Pnsb7vNPWBVzE=
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
 
->>> +&ecspi3 {
->>> +	cs-gpios = <&gpio1 20 GPIO_ACTIVE_LOW>;
->>> +	pinctrl-names = "default";
->>> +	pinctrl-0 = <&mux_spi3>, <&mux_spi3_cs>;
->>> +	status = "okay";
->>> +
->>> +	panel@0 {
->>> +		compatible = "inanbo,t28cp45tn89-v17";
->>> +		reg = <0>;
->>> +		backlight = <&panel_backlight>;
->>> +		power-supply = <&reg_vsd>;
->>> +		spi-cpha;
->>> +		spi-cpol;
->>> +		spi-max-frequency = <100000>;
->> This seems slow to me. Is this a limitation of the display?
-> I just used something slow, which should definitely work. I will try
-> to increase to 1MHz. Note, that the display is not driven via SPI.
-> SPI is just used for the configuration.
-Thanks for clarification. Yes, 1 MHz would be better.
->
-> Thanks for the review,
->
-> -- Sebastian
+This patch series adds initial support for Microchip SAMA7G54 Curiosity board.
+
+Mihai Sain (3):
+  dt-bindings: ARM: at91: Document Microchip SAMA7G54 Curiosity
+  ARM: dts: microchip: sama7g5: Add flexcom 10 node
+  ARM: dts: microchip: sama7g54_curiosity: Add initial device tree of the board
+
+ .../devicetree/bindings/arm/atmel-at91.yaml   |   6 +
+ arch/arm/boot/dts/microchip/Makefile          |   4 +-
+ .../dts/microchip/at91-sama7g54_curiosity.dts | 491 ++++++++++++++++++
+ arch/arm/boot/dts/microchip/sama7g5.dtsi      |  26 +
+ 4 files changed, 526 insertions(+), 1 deletion(-)
+ create mode 100644 arch/arm/boot/dts/microchip/at91-sama7g54_curiosity.dts
+
+-- 
+2.43.0
 
 
