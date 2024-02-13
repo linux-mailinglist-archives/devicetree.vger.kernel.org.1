@@ -1,83 +1,160 @@
-Return-Path: <devicetree+bounces-41381-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-41384-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 98296853607
-	for <lists+devicetree@lfdr.de>; Tue, 13 Feb 2024 17:31:09 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9E68885362B
+	for <lists+devicetree@lfdr.de>; Tue, 13 Feb 2024 17:36:25 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 5263F28B66E
-	for <lists+devicetree@lfdr.de>; Tue, 13 Feb 2024 16:31:08 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 5509928CDDA
+	for <lists+devicetree@lfdr.de>; Tue, 13 Feb 2024 16:36:24 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9404FB661;
-	Tue, 13 Feb 2024 16:30:58 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1D1025F87C;
+	Tue, 13 Feb 2024 16:36:16 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="qGbC2s9/"
+	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b="BLSffZfU"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from madrid.collaboradmins.com (madrid.collaboradmins.com [46.235.227.194])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6322C7491;
-	Tue, 13 Feb 2024 16:30:58 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2401C182C5;
+	Tue, 13 Feb 2024 16:36:14 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=46.235.227.194
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1707841858; cv=none; b=lQnVjDlIra8FbE179ryOzYEM2xttIaxX6nB03kH/wp9ikdSULUvjF3uG+uxvbN4/j8WEqqUQNrGMymgF7Qx6jOsGHgujXS/f6CHkVPyIo7HvN5BsWDubdx/VwzEiH3932oPznWr+g65838FTGF+QbHdGPihBZ6wa57ThgqcQZmM=
+	t=1707842176; cv=none; b=O7LsrfCtQZ1kcgYbpkWSYoVXcD7SIE83ZNb3V564eVhBmFW/pW+ukmJRKE/bpgn4tHaJ6xZNIwKZt79sWI3Vh37odhrapo2kVn/31FY7mlLk9uFsg4BU6hgCqNlJz9MiDcTx5ptsgYoFQzI18GiuQkXdkJKKN5m6Laz0p724Lts=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1707841858; c=relaxed/simple;
-	bh=M+iSkQzlFvKqKVdIDb0KbYwtekmltOd8aXuh0uIB/co=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=JrokOPcb5qwK1NKpGo1kVmKa6mSEQoBxMIOqSgR9wh9hgAs38D4bGIjQLNH5QgrYwW8fH8J7hBxGks6Rfy/HpDhpQMT5Joj/nWQi5cdY/dOvhs9nzsttEVHiaXx5Uxub9Cc+LuEYL1XHxBClTmjsBpn/osOtn7XNwnHhePiShmE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=qGbC2s9/; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id B7628C433C7;
-	Tue, 13 Feb 2024 16:30:57 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1707841857;
-	bh=M+iSkQzlFvKqKVdIDb0KbYwtekmltOd8aXuh0uIB/co=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=qGbC2s9/34KrvzdF2opEnNBqHmFpoCBeeJ5TpzKvEu4eOYaq9VObtJAqzXpUvh8gd
-	 /EXxH3lec5MXI9BLsBE9PA8ynrhhV9r54uZ+2Eeb27sQxEdaFceGZY3FyyZBvdZn7e
-	 S28ni/aizs8SKJC4ec+q35QiW2LvEpoVMdBpUIyjEIUqlxR6chrFOcXR1i5/6G01qC
-	 Dt9Z964Rn51vqFAJ0/i0EE0retrWpnb1Du0cEk68RiRo0WqPp5yTL/ALGvd8+2p2mR
-	 AmbJRk01uxBA9COfFdpY3MhgBRkfd2QdFxt7rxkPLSNo26iTqcxSJXFB7OjFu2iSfe
-	 m/uisfECjRnDw==
-Date: Tue, 13 Feb 2024 10:30:55 -0600
-From: Rob Herring <robh@kernel.org>
-To: Rob Herring <robh@kernel.org>
-Cc: Conor Dooley <conor+dt@kernel.org>, linux-scsi@vger.kernel.org,
-	linux-samsung-soc@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	Avri Altman <avri.altman@wdc.com>,
+	s=arc-20240116; t=1707842176; c=relaxed/simple;
+	bh=tTsD+mIweRSyvF3kzqeplej243uAAw1oTRST1KUyAAM=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=njiP/R1/SwdQgtcchPLfjhwijwhLp85CrjleLuWq6eRK2y74Z51FVjc/k65BdXVs+uXKT5dAFCOXFqgPJC+Wt7roP/wgny0c1bCJykE/wiga0L69VIuGZ7PG3iG9pLkxlmHsELCAoNTEQ5twRelIhtGV2vaOZhDQRYuA+XmBojQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b=BLSffZfU; arc=none smtp.client-ip=46.235.227.194
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=collabora.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
+	s=mail; t=1707842171;
+	bh=tTsD+mIweRSyvF3kzqeplej243uAAw1oTRST1KUyAAM=;
+	h=From:To:Cc:Subject:Date:From;
+	b=BLSffZfUMwr5EAZR9bLqh9WTEEwDcB1Ls7ivzoKaHDerfIirHx75fG5uCvV2JPAyA
+	 P4XfijvVIefyrhRXzMG0sAveluchRmBSOk03uFu6WmTP3adQg+SJLnY6t1waEgTbos
+	 tQ0/QAMf8Eqx1VFGCYAuxrieWWgQUgz2rBvBqlLMyjwXsECIfo4BsTzJ6QW4xOGm3p
+	 hjxga92jzqn7w4GMMmEc44qfX6H1g8wtttM1lR0S0lyc/0DqeBOag7ke4q6wqtn+Xl
+	 b1f7LDSD1hpLK1dSf0dVfRwaGt7kcVLNe0eW017WgBZ/4ZLAE7oFsonN7DpduIIgiz
+	 kQTZeF8z7dbew==
+Received: from jupiter.universe (cola.collaboradmins.com [195.201.22.229])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+	(No client certificate requested)
+	(Authenticated sender: sre)
+	by madrid.collaboradmins.com (Postfix) with ESMTPSA id 55BF83781123;
+	Tue, 13 Feb 2024 16:36:11 +0000 (UTC)
+Received: by jupiter.universe (Postfix, from userid 1000)
+	id EE76E4800CE; Tue, 13 Feb 2024 17:36:10 +0100 (CET)
+From: Sebastian Reichel <sebastian.reichel@collabora.com>
+To: Heiko Stuebner <heiko@sntech.de>,
+	Vinod Koul <vkoul@kernel.org>,
+	Kishon Vijay Abraham I <kishon@kernel.org>,
+	linux-rockchip@lists.infradead.org,
+	linux-phy@lists.infradead.org
+Cc: Rob Herring <robh+dt@kernel.org>,
 	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Alim Akhtar <alim.akhtar@samsung.com>, linux-kernel@vger.kernel.org,
-	Bart Van Assche <bvanassche@acm.org>, devicetree@vger.kernel.org
-Subject: Re: [PATCH] dt-bindings: ufs: samsung,exynos-ufs: Add size
- constraints on "samsung,sysreg"
-Message-ID: <170784184808.1480991.12030700618297062106.robh@kernel.org>
-References: <20240124190733.1554314-1-robh@kernel.org>
+	Conor Dooley <conor+dt@kernel.org>,
+	Frank Wang <frank.wang@rock-chips.com>,
+	Kever Yang <kever.yang@rock-chips.com>,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	Sebastian Reichel <sebastian.reichel@collabora.com>,
+	kernel@collabora.com
+Subject: [PATCH v2 00/12] RK3588 USBDP support
+Date: Tue, 13 Feb 2024 17:32:34 +0100
+Message-ID: <20240213163609.44930-1-sebastian.reichel@collabora.com>
+X-Mailer: git-send-email 2.43.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20240124190733.1554314-1-robh@kernel.org>
+Content-Transfer-Encoding: 8bit
 
+Hi,
 
-On Wed, 24 Jan 2024 13:07:33 -0600, Rob Herring wrote:
-> The 'phandle-array' type is a bit ambiguous. It can be either just an
-> array of phandles or an array of phandles plus args. "samsung,sysreg" is
-> the latter and needs to be constrained to a single entry with a phandle and
-> offset.
-> 
-> Signed-off-by: Rob Herring <robh@kernel.org>
-> ---
->  .../devicetree/bindings/ufs/samsung,exynos-ufs.yaml      | 9 ++++++---
->  1 file changed, 6 insertions(+), 3 deletions(-)
-> 
+This adds Rockchip RK3588 USBDP PHY support, which is used for two of the three
+USB3 controllers in the RK3588 (the third one uses a different PHY, which is
+already supported). The USBDP PHY offers USB3 dual-role and DisplayPort. The
+driver and bindings being upstreamed contains the DP parts, but only USB3 has
+been tested by me (upstream does not yet have a DRM DP bridge driver for this
+platform).
 
-Applied, thanks!
+What has been tested by me:
+ - USB3 Type A ports on Rock 5A, Rock 5B, EVB1
+ - USB Type C port on EVB1 in Host mode
+
+I did not yet include a patch to enable the Type-C from the Rock 5B, since that
+requires enabling proper support for the fusb302. Since the system is usually
+supplied via USB-C and without any battery backup, this easily results in
+system reset when the power-delivery negotiation happens. As this issue is
+independent from the USBDP PHY, I skipped enabling that port on Rock 5B for
+now.
+
+You can find a branch with these patches here:
+
+https://gitlab.collabora.com/hardware-enablement/rockchip-3588/linux/-/commits/rk3588-usbdp
+
+The binding updates introduces one DT warning, for vo1 grf, which is already
+upstream and does not describe its clock. Fixing that requires this series,
+which adds the necessary clock ID for vo1:
+
+https://lore.kernel.org/linux-rockchip/20240126182919.48402-1-sebastian.reichel@collabora.com/T/#mbc27d87270f7f182fb85bf1ceaf03b902688cbb8
+
+Changes since PATCHv1:
+ * https://lore.kernel.org/all/20240209181831.104687-1-sebastian.reichel@collabora.com/
+ * VO GRF DT binding: Collect Acked-by from Conor Dooley
+ * USB3 syscon DT binding: Collect Acked-by from Conor Dooley
+ * USBDP PHY DT binding: fix spelling
+ * USBDP PHY DT binding: add maxItems: 1 to gpios
+ * USBDP PHY driver: use rk_udphy_ prefix everywhere
+ * USBDP PHY DT addition: fix nodenames and property order
+ * USBDP PHY DT addition: fix position of the GRF nodes
+ * add new patches fixing existing USB2 PHY nodenames/property order
+
+Not changed:
+ * rockchip,dp-lane-mux: Why "mux" and not "map"?
+  - This is about muxing DP lanes vs USB3 lanes. I kept mux instead
+    of map, since that's used downstream and there does not seem to
+    be a good reason to diverge?
+
+-- Sebastian
+
+Sebastian Reichel (12):
+  dt-bindings: soc: rockchip: add clock to RK3588 VO grf
+  dt-bindings: soc: rockchip: add rk3588 USB3 syscon
+  dt-bindings: phy: add rockchip usbdp combo phy document
+  phy: rockchip: add usbdp combo phy driver
+  arm64: defconfig: enable Rockchip Samsung USBDP PHY
+  arm64: dts: rockchip: Fix usb2phy nodename for rk3588
+  arm64: dts: rockchip: reorder usb2phy properties for rk3588
+  arm64: dts: rockchip: add USBDP phys on rk3588
+  arm64: dts: rockchip: add USB3 DRD controllers on rk3588
+  arm64: dts: rockchip: add USB3 to rk3588-evb1
+  arm64: dts: rockchip: add upper USB3 port to rock-5a
+  arm64: dts: rockchip: add lower USB3 port to rock-5b
+
+ .../bindings/phy/phy-rockchip-usbdp.yaml      |  169 ++
+ .../devicetree/bindings/soc/rockchip/grf.yaml |   21 +
+ .../boot/dts/rockchip/rk3588-evb1-v10.dts     |  151 ++
+ .../boot/dts/rockchip/rk3588-rock-5b.dts      |   21 +
+ arch/arm64/boot/dts/rockchip/rk3588.dtsi      |   81 +
+ .../boot/dts/rockchip/rk3588s-rock-5a.dts     |   22 +
+ arch/arm64/boot/dts/rockchip/rk3588s.dtsi     |  114 +-
+ arch/arm64/configs/defconfig                  |    1 +
+ drivers/phy/rockchip/Kconfig                  |   12 +
+ drivers/phy/rockchip/Makefile                 |    1 +
+ drivers/phy/rockchip/phy-rockchip-usbdp.c     | 1639 +++++++++++++++++
+ 11 files changed, 2222 insertions(+), 10 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/phy/phy-rockchip-usbdp.yaml
+ create mode 100644 drivers/phy/rockchip/phy-rockchip-usbdp.c
+
+-- 
+2.43.0
 
 
