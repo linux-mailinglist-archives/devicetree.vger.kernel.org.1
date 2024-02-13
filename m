@@ -1,55 +1,55 @@
-Return-Path: <devicetree+bounces-41213-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-41214-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2B4F5852BF6
-	for <lists+devicetree@lfdr.de>; Tue, 13 Feb 2024 10:09:17 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 59222852C03
+	for <lists+devicetree@lfdr.de>; Tue, 13 Feb 2024 10:11:41 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 4FDDF1C224C7
-	for <lists+devicetree@lfdr.de>; Tue, 13 Feb 2024 09:09:16 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 8C8C81C23010
+	for <lists+devicetree@lfdr.de>; Tue, 13 Feb 2024 09:11:40 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2E3CF1C6AD;
-	Tue, 13 Feb 2024 09:09:11 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D478A20B2C;
+	Tue, 13 Feb 2024 09:11:35 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b="M2JZ3glv"
+	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b="y3/SvmFT"
 X-Original-To: devicetree@vger.kernel.org
 Received: from madrid.collaboradmins.com (madrid.collaboradmins.com [46.235.227.194])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 56B2B1799D;
-	Tue, 13 Feb 2024 09:09:08 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2F8872208E;
+	Tue, 13 Feb 2024 09:11:33 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=46.235.227.194
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1707815351; cv=none; b=j25IvJl3p1PV1VsfC3qWiA4MlwDhsbXYt5imfb+LqSEKtP+/xYP66mr+h6oAsIP3I5B0IsNAVNih0QQFWb9ovf5E1hw7oKRHedWGHPAnzbALxJ0ffuKSftZQRNa7qk2CEhIGGsnlXYHUtIQYigkmYNlZl0iqwYJL1xXU4GH0hns=
+	t=1707815495; cv=none; b=mW8bxb9r/q+6EdGB5LUL5KxAjcxXYGhTZp87rv9nFeEFzjd5XwelK2FjjC/15ET//fP4VZDDRL5i9KdNmjOxOYtsW0eUCe3ht9YU3dOSubwz/bo+jC9afFfr0dIoR9iXt1tQfvvEuXLtKALx8inQOPMymg8mnX8LfUGMTXiJOeA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1707815351; c=relaxed/simple;
-	bh=fp9FGluwMSXxSuqD4GvNc9fG6fxLNPpYbuY+L6o9QAU=;
+	s=arc-20240116; t=1707815495; c=relaxed/simple;
+	bh=9knv+ODPdDJCuZiyTJw6oxKEkgd2kVoris7GQl7tfmQ=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=bDoQVDmt9PXBLBSWWxeTwg+GiZf9Pu4N6Naaxl3Tv6cuMsUACr3jfJeg8DXFu63v5w5gDMhSRqnXIJ2cppGIyIuDZbDoIN46eFwz6JHiZvY5eT6C3k2FIJkbAeFhXeXFYo0PKzNRzUke59MLQKrLzVsFTib27ZXmZ96v6vS2o/g=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b=M2JZ3glv; arc=none smtp.client-ip=46.235.227.194
+	 In-Reply-To:Content-Type; b=M82dEXdkF0Gpg+NU+gHCK2rw8efUDivdsGYJu5zg6SOvMrxuwbqwjnGrcXOPFe+bs3OAv1pH9X1rHWdoPOdYl486/GEkO2RvXqxC4qQisINbBLTiit/AoDkd7MdQddjP+j1coaQ3+aOVdDcsqY3wGF4opgG/cFE+4K6ksb0iVOk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b=y3/SvmFT; arc=none smtp.client-ip=46.235.227.194
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=collabora.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-	s=mail; t=1707815347;
-	bh=fp9FGluwMSXxSuqD4GvNc9fG6fxLNPpYbuY+L6o9QAU=;
+	s=mail; t=1707815492;
+	bh=9knv+ODPdDJCuZiyTJw6oxKEkgd2kVoris7GQl7tfmQ=;
 	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=M2JZ3glvC7qhQgMUEee6dMUQpQy4grZJc7duZhsoSxfLjpVAgIbyCiZVLPAGeDaWu
-	 CWxjEcWAv29bG0mkxPSJWzzHqCS+yrC0fW/iXJwux1TBAqG5wft9Id8nkh7PoEopeQ
-	 xWgttt3GZ/dy+vUx8wRXHXmUJFkKv7dqDHAI8IMipIRNhfMIoslcmE3wCbP1mLRfbk
-	 PTrN/ADI8YYQtTF07p/QUutDhR4FqXL2l5mQc6QuMQZ6DkBLtw6eelM0TUgOgtCQnQ
-	 T7NKpFXMPG5cEUkuBKsjmjXVpfaE9at9ckJV4dDxgJAwVD/uAF33lrGGwTVVZk4Mig
-	 xkJb5z5jRmfjQ==
+	b=y3/SvmFTdf2l5qEhn9PHwYdshIWEor+YHOecyE4Dl1L60lJC3BmxG1wgZqYOB/C46
+	 FeTF8rFnpwEhTIFWyd2g+xZPI/VQYB+EYLUWw5Yv3ILrsQtSGT5+v8oOV18X8S7kyd
+	 C/K+rugmFEX2HkkNDUZUsbTKGPIekpUBl2hjCYlZdMVp1v4wLSKsJn6h44rgIMPIzT
+	 Krh/x0zxozFpfbufTtxxI8Uqt1BsWQUo5PHROhlx8SgabK4MURIzMfqI5uKEGkVoS0
+	 7XRxqCVrP4nNpnVcl23YJOR80Eds3xR1cEsyO8i1XSI9Jn47fbmg7V10QGIZKVn2//
+	 0Y+0bC8YPcoKQ==
 Received: from [100.113.186.2] (cola.collaboradmins.com [195.201.22.229])
 	(using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
 	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
 	(No client certificate requested)
 	(Authenticated sender: kholk11)
-	by madrid.collaboradmins.com (Postfix) with ESMTPSA id 6EE023781FEF;
-	Tue, 13 Feb 2024 09:09:06 +0000 (UTC)
-Message-ID: <6429a878-af3c-4182-b65f-60e1c0afccc5@collabora.com>
-Date: Tue, 13 Feb 2024 10:09:05 +0100
+	by madrid.collaboradmins.com (Postfix) with ESMTPSA id 5627B3781FEF;
+	Tue, 13 Feb 2024 09:11:31 +0000 (UTC)
+Message-ID: <a99af719-4b2c-4c38-830e-b49a89971cb1@collabora.com>
+Date: Tue, 13 Feb 2024 10:11:30 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -57,110 +57,48 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH] arm64: dts: mediatek: mt8186: Add missing clocks to ssusb
- power domains
+Subject: Re: [PATCH 3/3] arm64: dts: mediatek: mt7986: drop invalid thermal
+ block clock
 Content-Language: en-US
-To: =?UTF-8?B?TsOtY29sYXMgRi4gUi4gQS4gUHJhZG8=?= <nfraprado@collabora.com>,
- Matthias Brugger <matthias.bgg@gmail.com>
-Cc: Chen-Yu Tsai <wenst@chromium.org>,
- Eugen Hristev <eugen.hristev@collabora.com>, Rob Herring <robh@kernel.org>,
+To: =?UTF-8?B?UmFmYcWCIE1pxYJlY2tp?= <zajec5@gmail.com>,
+ Matthias Brugger <matthias.bgg@gmail.com>, Rob Herring <robh@kernel.org>,
  Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Conor Dooley <conor+dt@kernel.org>,
- Allen-KH Cheng <allen-kh.cheng@mediatek.com>, kernel@collabora.com,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, linux-mediatek@lists.infradead.org
-References: <20240212-mt8186-ssusb-domain-clk-fix-v1-1-26cb98746aa3@collabora.com>
- <985e1a4f-c538-4a9d-be58-2c688aa7350c@notapiano>
+ Conor Dooley <conor+dt@kernel.org>
+Cc: Sam Shih <sam.shih@mediatek.com>, Lorenzo Bianconi <lorenzo@kernel.org>,
+ "David S . Miller" <davem@davemloft.net>,
+ Daniel Golle <daniel@makrotopia.org>,
+ Frank Wunderlich <frank-w@public-files.de>, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ linux-mediatek@lists.infradead.org, =?UTF-8?B?UmFmYcWCIE1pxYJlY2tp?=
+ <rafal@milecki.pl>
+References: <20240213053739.14387-1-zajec5@gmail.com>
+ <20240213053739.14387-3-zajec5@gmail.com>
 From: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
-In-Reply-To: <985e1a4f-c538-4a9d-be58-2c688aa7350c@notapiano>
+In-Reply-To: <20240213053739.14387-3-zajec5@gmail.com>
 Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 8bit
 
-Il 12/02/24 22:53, Nícolas F. R. A. Prado ha scritto:
-> On Mon, Feb 12, 2024 at 04:32:44PM -0500, Nícolas F. R. A. Prado wrote:
->> The ssusb power domains currently don't list any clocks, despite
->> depending on some, and thus rely on the bootloader leaving the required
->> clocks on in order to work.
->>
->> When booting with the upstream arm64 defconfig, the power domain
->> controller will defer probe until modules have loaded since it has an
->> indirect dependency on CONFIG_MTK_CMDQ, which is configured as a module.
->> However at the point where modules are loaded, unused clocks are also
->> disabled, causing the ssusb domains to fail to be enabled and
->> consequently the controller to fail probe:
->>
->> mtk-power-controller 10006000.syscon:power-controller: /soc/syscon@10006000/power-controller/power-domain@4: failed to power on domain: -110
->> mtk-power-controller: probe of 10006000.syscon:power-controller failed with error -110
->>
->> Add the missing clocks to the ssusb power domains so the power
->> controller can boot without relying on bootloader state.
->>
->> Fixes: d9e43c1e7a38 ("arm64: dts: mt8186: Add power domains controller")
->> Signed-off-by: Nícolas F. R. A. Prado <nfraprado@collabora.com>
->> ---
->>   arch/arm64/boot/dts/mediatek/mt8186.dtsi | 8 ++++++++
->>   1 file changed, 8 insertions(+)
->>
->> diff --git a/arch/arm64/boot/dts/mediatek/mt8186.dtsi b/arch/arm64/boot/dts/mediatek/mt8186.dtsi
->> index adaf5e57fac5..02f33ec3cbd3 100644
->> --- a/arch/arm64/boot/dts/mediatek/mt8186.dtsi
->> +++ b/arch/arm64/boot/dts/mediatek/mt8186.dtsi
->> @@ -931,11 +931,19 @@ power-domain@MT8186_POWER_DOMAIN_CSIRX_TOP {
->>   
->>   				power-domain@MT8186_POWER_DOMAIN_SSUSB {
->>   					reg = <MT8186_POWER_DOMAIN_SSUSB>;
->> +					clocks = <&topckgen CLK_TOP_USB_TOP>,
->> +						 <&infracfg_ao CLK_INFRA_AO_SSUSB_TOP_REF>,
->> +						 <&infracfg_ao CLK_INFRA_AO_SSUSB_TOP_XHCI>;
->> +					clock-names = "sys_ck", "ref_ck", "xhci_ck";
->>   					#power-domain-cells = <0>;
->>   				};
->>   
->>   				power-domain@MT8186_POWER_DOMAIN_SSUSB_P1 {
->>   					reg = <MT8186_POWER_DOMAIN_SSUSB_P1>;
->> +					clocks = <&infracfg_ao CLK_INFRA_AO_SSUSB_TOP_P1_SYS>,
->> +						 <&infracfg_ao CLK_INFRA_AO_SSUSB_TOP_P1_REF>,
->> +						 <&infracfg_ao CLK_INFRA_AO_SSUSB_TOP_P1_XHCI>;
->> +					clock-names = "sys_ck", "ref_ck", "xhci_ck";
+Il 13/02/24 06:37, Rafał Miłecki ha scritto:
+> From: Rafał Miłecki <rafal@milecki.pl>
 > 
-> I forgot to mention this here, but the XHCI clock wasn't needed to get the power
-> domains to work per se, but leaving it out caused issues when probing the mtu3
-> devices:
-> <3>[   15.431506] mtu3 11201000.usb: clks of sts1 are not stable!
-> <3>[   15.443965] mtu3 11201000.usb: device enable failed -110
-> <3>[   15.454306] mtu3 11201000.usb: mtu3 hw init failed:-110
-> <3>[   15.463865] mtu3 11201000.usb: failed to initialize gadget
-> <4>[   15.477890] mtu3: probe of 11201000.usb failed with error -110
+> Thermal block uses only two clocks. Its binding doesn't document or
+> allow "adc_32k". Also Linux driver doesn't support it.
 > 
-> <3>[   15.514603] mtu3 11281000.usb: clks of sts1 are not stable!
-> <3>[   15.525239] mtu3 11281000.usb: device enable failed -110
-> <3>[   15.614174] mtu3 11281000.usb: mtu3 hw init failed:-110
-> <3>[   15.619647] mtu3 11281000.usb: failed to initialize gadget
-> <4>[   15.630623] mtu3: probe of 11281000.usb failed with error -110
+> It has been additionally verified by Angelo by his detailed research on
+> MT7981 / MT7986 clocks (thanks!).
 > 
-> Not sure if this issue should be handled separately (maybe the mtu3 device
-> should enable the XHCI clock?), but I opted to include the clock here to get
-> boot working for this device at once.
+> This fixes:
+> arch/arm64/boot/dts/mediatek/mt7986a-bananapi-bpi-r3.dtb: thermal@1100c800: clocks: [[4, 27], [4, 44], [4, 45]] is too long
+>          from schema $id: http://devicetree.org/schemas/thermal/mediatek,thermal.yaml#
+> arch/arm64/boot/dts/mediatek/mt7986a-bananapi-bpi-r3.dtb: thermal@1100c800: clock-names: ['therm', 'auxadc', 'adc_32k'] is too long
+>          from schema $id: http://devicetree.org/schemas/thermal/mediatek,thermal.yaml#
 > 
+> Fixes: 0a9615d58d04 ("arm64: dts: mt7986: add thermal and efuse")
+> Cc: Daniel Golle <daniel@makrotopia.org>
+> Link: https://lore.kernel.org/linux-devicetree/17d143aa-576e-4d67-a0ea-b79f3518b81c@collabora.com/
+> Signed-off-by: Rafał Miłecki <rafal@milecki.pl>
 
-Hey Nicolas,
-As you just said: having the XHCI clock in the power domain is wrong :-)
+Reviewed-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
 
-Almost comically, the MTU3 binding already supports having a XHCI clock
-named "xhci_ck" after "dma_ck"... so the solution is to add the TOP_XHCI
-clock in the mtu3 node and that's it. Do not remove it from the children.
 
-mtu3-node-at-somewhere {
-		clocks = <&topckgen CLK_TOP_USB_TOP>,
-			 <&infracfg_ao CLK_INFRA_AO_SSUSB_TOP_REF>,
-			 <&infracfg_ao CLK_INFRA_AO_SSUSB_TOP_HCLK>,
-			 <&infracfg_ao CLK_INFRA_AO_ICUSB>,
-			 <&infracfg_ao CLK_INFRA_AO_SSUSB_TOP_XHCI>;
-		clock-names = "sys_ck", "ref_ck", "mcu_ck", "dma_ck", "xhci_ck";
-}
-
-Waiting for a v2...
-
-Cheers,
-Angelo
 
