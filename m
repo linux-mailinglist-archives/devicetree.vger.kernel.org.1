@@ -1,233 +1,213 @@
-Return-Path: <devicetree+bounces-41230-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-41234-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4AA2A852E0C
-	for <lists+devicetree@lfdr.de>; Tue, 13 Feb 2024 11:37:13 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id DB33A852E26
+	for <lists+devicetree@lfdr.de>; Tue, 13 Feb 2024 11:39:32 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id C44531F23E0E
-	for <lists+devicetree@lfdr.de>; Tue, 13 Feb 2024 10:37:12 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 0C4C11C22260
+	for <lists+devicetree@lfdr.de>; Tue, 13 Feb 2024 10:39:32 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6DC1122636;
-	Tue, 13 Feb 2024 10:37:03 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 87036364C5;
+	Tue, 13 Feb 2024 10:38:51 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="aJ9quviD"
 X-Original-To: devicetree@vger.kernel.org
-Received: from metis.whiteo.stw.pengutronix.de (metis.whiteo.stw.pengutronix.de [185.203.201.7])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AA7DC249F3
-	for <devicetree@vger.kernel.org>; Tue, 13 Feb 2024 10:37:01 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.203.201.7
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 54323364BE;
+	Tue, 13 Feb 2024 10:38:51 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1707820623; cv=none; b=drh/ut40DajkN5DuHooKuOgC8tCRIGHzKRKj96+J+BlJgsCamwubp1mlEtRbLS9WCawA9s7uCuzB4RF6OGJcCQMOc6qZjoQbksmRY5ikjiyJ59/Bx9uaF3sANZptaZlNHc+NN5Tpzx17Rkc+yK4YTdAGakyN6KJuIntcdSbw530=
+	t=1707820731; cv=none; b=UNnZYPw+nhqlu1yVzKz+oxceQ9Z0F8E741He3E5dW08TR7Yif6LSblEtxm5thpQwcBzbEUHTSavqtwqTbhUGCYc3pHK0e338lZisMQmHMGVmdRCUidPV+grKUdZJg+15oawiwtnYDps/f1n5aTjgk8YbrXgNbSTnltggA+MFKsI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1707820623; c=relaxed/simple;
-	bh=Jp6tNSdjSsC9LzR+F9BEv8HFfLEkEp33evtGY9YtxYY=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=af5i4kNdrfJSbFg+KvJIDDeakl2e0ECl5C19U6FYvtk+REnGYqRAvRDdawDJXlc6jNJlOEWRioSTmcxQ8XToAYZ+7hoZhX8+PJSiMYV4eAnabzjpyQZ2gnKFA2kREXfX1h7ugRwEUv2ZkY1Ty3zQHMqllDydLWV/JAONTwR95bU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de; spf=pass smtp.mailfrom=pengutronix.de; arc=none smtp.client-ip=185.203.201.7
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=pengutronix.de
-Received: from drehscheibe.grey.stw.pengutronix.de ([2a0a:edc0:0:c01:1d::a2])
-	by metis.whiteo.stw.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
-	(Exim 4.92)
-	(envelope-from <mkl@pengutronix.de>)
-	id 1rZq9s-0003JB-4S
-	for devicetree@vger.kernel.org; Tue, 13 Feb 2024 11:37:00 +0100
-Received: from [2a0a:edc0:0:b01:1d::7b] (helo=bjornoya.blackshift.org)
-	by drehscheibe.grey.stw.pengutronix.de with esmtps  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-	(Exim 4.94.2)
-	(envelope-from <mkl@pengutronix.de>)
-	id 1rZq9r-000Spk-Kq
-	for devicetree@vger.kernel.org; Tue, 13 Feb 2024 11:36:59 +0100
-Received: from dspam.blackshift.org (localhost [127.0.0.1])
-	by bjornoya.blackshift.org (Postfix) with SMTP id 52A1D28D557
-	for <devicetree@vger.kernel.org>; Tue, 13 Feb 2024 10:36:59 +0000 (UTC)
-Received: from hardanger.blackshift.org (unknown [172.20.34.65])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
-	(Client did not present a certificate)
-	by bjornoya.blackshift.org (Postfix) with ESMTPS id 1BC1128D525;
-	Tue, 13 Feb 2024 10:36:56 +0000 (UTC)
-Received: from [172.20.34.65] (localhost [::1])
-	by hardanger.blackshift.org (OpenSMTPD) with ESMTP id 176c2619;
-	Tue, 13 Feb 2024 10:36:55 +0000 (UTC)
-From: Marc Kleine-Budde <mkl@pengutronix.de>
-Date: Tue, 13 Feb 2024 11:36:45 +0100
-Subject: [PATCH v8 3/3] can: xilinx_can: Add ethtool stats interface for
- ECC errors
+	s=arc-20240116; t=1707820731; c=relaxed/simple;
+	bh=WcE4bpvmsl5VfCuHe/MlIkl5JrTCTkvLgvaxBT5+0Fc=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=M74IwLyDv7N7uz4aobBwX2+PLXerIqOUqeGldpXOqelM3ZsWk2vwgF5DWaVojhETemXoj9HjNwtCdqM0XPg1KxPANZHU7WtX7bKTt4JZ+V39FY/SeHf2/SEAT6N1pk0btsYooDiUq+Tb/QBOv1Tbjb0/A6r3mjm+RoY9LtmHqsA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=aJ9quviD; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 0DC26C43390;
+	Tue, 13 Feb 2024 10:38:45 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1707820730;
+	bh=WcE4bpvmsl5VfCuHe/MlIkl5JrTCTkvLgvaxBT5+0Fc=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=aJ9quviDphi5o+aM4hVS76ZVdjose712xI0E9nXVkhvB6497uUXsDb/FOszQu1i1j
+	 qMDzeIS8RJBngLTcqAESIuMb6b1BZ2/cG/aEla6peQLWT/46LiJe38ZEqlD9I4CbWR
+	 clOqbsgZjdY6aJix4oro1B+kEyOWrT5pnpIW1ogf7AkLb+MOnqlDfXL7WXDHo/WcZ5
+	 rG52yqBH1JklZr6fM9f4smFdXiDZdcrnNLJXqxO0uopEkR3wNgyHUInZ20kzN0pf4/
+	 df7wPXg5F3j/iIHt58IJtPVH4JhDrfTgD39MmbrG8mWxd8+m1r2WV/tJtKS4bGk6zM
+	 TyMoCiba808eg==
+Date: Tue, 13 Feb 2024 11:38:43 +0100
+From: Lorenzo Pieralisi <lpieralisi@kernel.org>
+To: Frank Li <Frank.Li@nxp.com>
+Cc: manivannan.sadhasivam@linaro.org, bhelgaas@google.com,
+	conor+dt@kernel.org, devicetree@vger.kernel.org, festevam@gmail.com,
+	helgaas@kernel.org, hongxing.zhu@nxp.com, imx@lists.linux.dev,
+	kernel@pengutronix.de, krzysztof.kozlowski+dt@linaro.org,
+	krzysztof.kozlowski@linaro.org, kw@linux.com,
+	l.stach@pengutronix.de, linux-arm-kernel@lists.infradead.org,
+	linux-imx@nxp.com, linux-kernel@vger.kernel.org,
+	linux-pci@vger.kernel.org, robh@kernel.org, s.hauer@pengutronix.de,
+	shawnguo@kernel.org, hch@lst.de, robin.murphy@arm.com
+Subject: Re: [PATCH v9 16/16] PCI: imx6: Add iMX95 Endpoint (EP) support
+Message-ID: <ZctGs2d9ccnmYysL@lpieralisi>
+References: <20240119171122.3057511-1-Frank.Li@nxp.com>
+ <20240119171122.3057511-17-Frank.Li@nxp.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20240213-xilinx_ecc-v8-3-8d75f8b80771@pengutronix.de>
-References: <20240213-xilinx_ecc-v8-0-8d75f8b80771@pengutronix.de>
-In-Reply-To: <20240213-xilinx_ecc-v8-0-8d75f8b80771@pengutronix.de>
-To: Appana Durga Kedareswara rao <appana.durga.rao@xilinx.com>, 
- Naga Sureshkumar Relli <naga.sureshkumar.relli@xilinx.com>, 
- Wolfgang Grandegger <wg@grandegger.com>, 
- Marc Kleine-Budde <mkl@pengutronix.de>, 
- "David S. Miller" <davem@davemloft.net>, Eric Dumazet <edumazet@google.com>, 
- Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>, 
- Rob Herring <robh+dt@kernel.org>, 
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, 
- Conor Dooley <conor+dt@kernel.org>, Michal Simek <michal.simek@amd.com>
-Cc: linux-can@vger.kernel.org, netdev@vger.kernel.org, 
- devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
- linux-kernel@vger.kernel.org, Srinivas Goud <srinivas.goud@amd.com>
-X-Mailer: b4 0.13-dev-f0463
-X-Developer-Signature: v=1; a=openpgp-sha256; l=4531; i=mkl@pengutronix.de;
- h=from:subject:message-id; bh=dNs+TfFXHp8UoDrintPodrh7/2sUKiVmMtrwIfjEaDA=;
- b=owEBbQGS/pANAwAKASg4oj56LbxvAcsmYgBly0ZEUHK7FW/4BO0TagCM8AasjVGSlWduY1Pdu
- 3MDqmGYmNGJATMEAAEKAB0WIQRQQLqG4LYE3Sm8Pl8oOKI+ei28bwUCZctGRAAKCRAoOKI+ei28
- b/1eB/9SIIq+eB8ulaG3zZoCZclbhuQxdvbvH87ds3WiJeZejquKSGhnvr1KSE1D1B+tnzrJJp8
- hKEA2n4z/8kuGM+n8lIfP5bJyTivOZju8zi504sGHq91HeGG53AJxjFZP7wvOJ/miL7zG/ne6Ru
- 5M1LfZrovBgSGIXokdlMy1YIKj0WVg65M8T7AIAZ9PVOzv48YYG8mNIWGRm3/HBXLJ2Q+lhMbHt
- ddhpdDL33nwUng2gHOs0BoaQ+j1tIyvFzdrk8r1tdbs+Xifv0QMLEO/XKyJuKcebteIEYJz1qwD
- DlYW2pukarxHeJA6UabmQp32YU8dJTxsREmHX8he1LiLSt8U
-X-Developer-Key: i=mkl@pengutronix.de; a=openpgp;
- fpr=C1400BA0B3989E6FBC7D5B5C2B5EE211C58AEA54
-X-SA-Exim-Connect-IP: 2a0a:edc0:0:c01:1d::a2
-X-SA-Exim-Mail-From: mkl@pengutronix.de
-X-SA-Exim-Scanned: No (on metis.whiteo.stw.pengutronix.de); SAEximRunCond expanded to false
-X-PTX-Original-Recipient: devicetree@vger.kernel.org
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20240119171122.3057511-17-Frank.Li@nxp.com>
 
-From: Srinivas Goud <srinivas.goud@amd.com>
+[+Christoph, Robin - just checking with you if the DMA mask handling is
+what you expect from drivers, don't want to merge code that breaks your
+expectations]
 
-Add ethtool stats interface for reading FIFO 1bit/2bit ECC errors
-information.
-
-Signed-off-by: Srinivas Goud <srinivas.goud@amd.com>
-Signed-off-by: Marc Kleine-Budde <mkl@pengutronix.de>
----
- drivers/net/can/xilinx_can.c | 64 ++++++++++++++++++++++++++++++++++++++++++++
- 1 file changed, 64 insertions(+)
-
-diff --git a/drivers/net/can/xilinx_can.c b/drivers/net/can/xilinx_can.c
-index af2af4eade3c..fae0120473f8 100644
---- a/drivers/net/can/xilinx_can.c
-+++ b/drivers/net/can/xilinx_can.c
-@@ -228,6 +228,7 @@ struct xcan_devtype_data {
-  * @transceiver:		Optional pointer to associated CAN transceiver
-  * @rstc:			Pointer to reset control
-  * @ecc_enable:			ECC enable flag
-+ * @syncp:			synchronization for ECC error stats
-  * @ecc_rx_2_bit_errors:	RXFIFO 2bit ECC count
-  * @ecc_rx_1_bit_errors:	RXFIFO 1bit ECC count
-  * @ecc_txol_2_bit_errors:	TXOLFIFO 2bit ECC count
-@@ -254,6 +255,7 @@ struct xcan_priv {
- 	struct phy *transceiver;
- 	struct reset_control *rstc;
- 	bool ecc_enable;
-+	struct u64_stats_sync syncp;
- 	u64_stats_t ecc_rx_2_bit_errors;
- 	u64_stats_t ecc_rx_1_bit_errors;
- 	u64_stats_t ecc_txol_2_bit_errors;
-@@ -347,6 +349,24 @@ static const struct can_tdc_const xcan_tdc_const_canfd2 = {
- 	.tdcf_max = 0,
- };
- 
-+enum xcan_stats_type {
-+	XCAN_ECC_RX_2_BIT_ERRORS,
-+	XCAN_ECC_RX_1_BIT_ERRORS,
-+	XCAN_ECC_TXOL_2_BIT_ERRORS,
-+	XCAN_ECC_TXOL_1_BIT_ERRORS,
-+	XCAN_ECC_TXTL_2_BIT_ERRORS,
-+	XCAN_ECC_TXTL_1_BIT_ERRORS,
-+};
-+
-+static const char xcan_priv_flags_strings[][ETH_GSTRING_LEN] = {
-+	[XCAN_ECC_RX_2_BIT_ERRORS] = "ecc_rx_2_bit_errors",
-+	[XCAN_ECC_RX_1_BIT_ERRORS] = "ecc_rx_1_bit_errors",
-+	[XCAN_ECC_TXOL_2_BIT_ERRORS] = "ecc_txol_2_bit_errors",
-+	[XCAN_ECC_TXOL_1_BIT_ERRORS] = "ecc_txol_1_bit_errors",
-+	[XCAN_ECC_TXTL_2_BIT_ERRORS] = "ecc_txtl_2_bit_errors",
-+	[XCAN_ECC_TXTL_1_BIT_ERRORS] = "ecc_txtl_1_bit_errors",
-+};
-+
- /**
-  * xcan_write_reg_le - Write a value to the device register little endian
-  * @priv:	Driver private data structure
-@@ -1182,6 +1202,8 @@ static void xcan_err_interrupt(struct net_device *ndev, u32 isr)
- 		priv->write_reg(priv, XCAN_ECC_CFG_OFFSET, XCAN_ECC_CFG_REECRX_MASK |
- 				XCAN_ECC_CFG_REECTXOL_MASK | XCAN_ECC_CFG_REECTXTL_MASK);
- 
-+		u64_stats_update_begin(&priv->syncp);
-+
- 		if (isr & XCAN_IXR_E2BERX_MASK) {
- 			u64_stats_add(&priv->ecc_rx_2_bit_errors,
- 				      FIELD_GET(XCAN_ECC_2BIT_CNT_MASK, reg_rx_ecc));
-@@ -1211,6 +1233,8 @@ static void xcan_err_interrupt(struct net_device *ndev, u32 isr)
- 			u64_stats_add(&priv->ecc_txtl_1_bit_errors,
- 				      FIELD_GET(XCAN_ECC_1BIT_CNT_MASK, reg_txtl_ecc));
- 		}
-+
-+		u64_stats_update_end(&priv->syncp);
- 	}
- 
- 	if (cf.can_id) {
-@@ -1637,6 +1661,43 @@ static int xcan_get_auto_tdcv(const struct net_device *ndev, u32 *tdcv)
- 	return 0;
- }
- 
-+static void xcan_get_strings(struct net_device *ndev, u32 stringset, u8 *buf)
-+{
-+	switch (stringset) {
-+	case ETH_SS_STATS:
-+		memcpy(buf, &xcan_priv_flags_strings,
-+		       sizeof(xcan_priv_flags_strings));
-+	}
-+}
-+
-+static int xcan_get_sset_count(struct net_device *netdev, int sset)
-+{
-+	switch (sset) {
-+	case ETH_SS_STATS:
-+		return ARRAY_SIZE(xcan_priv_flags_strings);
-+	default:
-+		return -EOPNOTSUPP;
-+	}
-+}
-+
-+static void xcan_get_ethtool_stats(struct net_device *ndev,
-+				   struct ethtool_stats *stats, u64 *data)
-+{
-+	struct xcan_priv *priv = netdev_priv(ndev);
-+	unsigned int start;
-+
-+	do {
-+		start = u64_stats_fetch_begin(&priv->syncp);
-+
-+		data[XCAN_ECC_RX_2_BIT_ERRORS] = u64_stats_read(&priv->ecc_rx_2_bit_errors);
-+		data[XCAN_ECC_RX_1_BIT_ERRORS] = u64_stats_read(&priv->ecc_rx_1_bit_errors);
-+		data[XCAN_ECC_TXOL_2_BIT_ERRORS] = u64_stats_read(&priv->ecc_txol_2_bit_errors);
-+		data[XCAN_ECC_TXOL_1_BIT_ERRORS] = u64_stats_read(&priv->ecc_txol_1_bit_errors);
-+		data[XCAN_ECC_TXTL_2_BIT_ERRORS] = u64_stats_read(&priv->ecc_txtl_2_bit_errors);
-+		data[XCAN_ECC_TXTL_1_BIT_ERRORS] = u64_stats_read(&priv->ecc_txtl_1_bit_errors);
-+	} while (u64_stats_fetch_retry(&priv->syncp, start));
-+}
-+
- static const struct net_device_ops xcan_netdev_ops = {
- 	.ndo_open	= xcan_open,
- 	.ndo_stop	= xcan_close,
-@@ -1646,6 +1707,9 @@ static const struct net_device_ops xcan_netdev_ops = {
- 
- static const struct ethtool_ops xcan_ethtool_ops = {
- 	.get_ts_info = ethtool_op_get_ts_info,
-+	.get_strings = xcan_get_strings,
-+	.get_sset_count = xcan_get_sset_count,
-+	.get_ethtool_stats = xcan_get_ethtool_stats,
- };
- 
- /**
-
--- 
-2.43.0
-
-
+On Fri, Jan 19, 2024 at 12:11:22PM -0500, Frank Li wrote:
+> Add iMX95 EP support and add 64bit address support. Internal bus bridge for
+> PCI support 64bit dma address in iMX95. Hence, call
+> dma_set_mask_and_coherent() to set 64 bit DMA mask.
+> 
+> Reviewed-by: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
+> Signed-off-by: Frank Li <Frank.Li@nxp.com>
+> ---
+> 
+> Notes:
+>     Change from v8 to v9
+>     - update fixme comments
+>     - update BAR1 comments
+>     - Add mani's review tag
+>     Change from v7 to v8
+>     - Update commit message
+>     - Using Fixme
+>     - Update clks_cnts by ARRAY_SIZE
+>     
+>     Change from v4 to v7
+>     - none
+>     Change from v3 to v4
+>     - change align to 4k for imx95
+>     Change from v1 to v3
+>     - new patches at v3
+> 
+>  drivers/pci/controller/dwc/pci-imx6.c | 47 +++++++++++++++++++++++++++
+>  1 file changed, 47 insertions(+)
+> 
+> diff --git a/drivers/pci/controller/dwc/pci-imx6.c b/drivers/pci/controller/dwc/pci-imx6.c
+> index bbaa45c08323b..7889318f6555a 100644
+> --- a/drivers/pci/controller/dwc/pci-imx6.c
+> +++ b/drivers/pci/controller/dwc/pci-imx6.c
+> @@ -75,6 +75,7 @@ enum imx6_pcie_variants {
+>  	IMX8MQ_EP,
+>  	IMX8MM_EP,
+>  	IMX8MP_EP,
+> +	IMX95_EP,
+>  };
+>  
+>  #define IMX6_PCIE_FLAG_IMX6_PHY			BIT(0)
+> @@ -84,6 +85,7 @@ enum imx6_pcie_variants {
+>  #define IMX6_PCIE_FLAG_HAS_APP_RESET		BIT(4)
+>  #define IMX6_PCIE_FLAG_HAS_PHY_RESET		BIT(5)
+>  #define IMX6_PCIE_FLAG_HAS_SERDES		BIT(6)
+> +#define IMX6_PCIE_FLAG_SUPPORT_64BIT		BIT(7)
+>  
+>  #define imx6_check_flag(pci, val)     (pci->drvdata->flags & val)
+>  
+> @@ -616,6 +618,7 @@ static int imx6_pcie_enable_ref_clk(struct imx6_pcie *imx6_pcie)
+>  		break;
+>  	case IMX7D:
+>  	case IMX95:
+> +	case IMX95_EP:
+>  		break;
+>  	case IMX8MM:
+>  	case IMX8MM_EP:
+> @@ -1050,6 +1053,23 @@ static const struct pci_epc_features imx8m_pcie_epc_features = {
+>  	.align = SZ_64K,
+>  };
+>  
+> +/*
+> + * BAR#	| Default BAR enable	| Default BAR Type	| Default BAR Size	| BAR Sizing Scheme
+> + * ================================================================================================
+> + * BAR0	| Enable		| 64-bit		| 1 MB			| Programmable Size
+> + * BAR1	| Disable		| 32-bit		| 64 KB			| Fixed Size
+> + *        BAR1 should be disabled if BAR0 is 64bit.
+> + * BAR2	| Enable		| 32-bit		| 1 MB			| Programmable Size
+> + * BAR3	| Enable		| 32-bit		| 64 KB			| Programmable Size
+> + * BAR4	| Enable		| 32-bit		| 1M			| Programmable Size
+> + * BAR5	| Enable		| 32-bit		| 64 KB			| Programmable Size
+> + */
+> +static const struct pci_epc_features imx95_pcie_epc_features = {
+> +	.msi_capable = true,
+> +	.bar_fixed_size[1] = SZ_64K,
+> +	.align = SZ_4K,
+> +};
+> +
+>  static const struct pci_epc_features*
+>  imx6_pcie_ep_get_features(struct dw_pcie_ep *ep)
+>  {
+> @@ -1092,6 +1112,15 @@ static int imx6_add_pcie_ep(struct imx6_pcie *imx6_pcie,
+>  
+>  	pci->dbi_base2 = pci->dbi_base + pcie_dbi2_offset;
+>  
+> +	/*
+> +	 * FIXME: Ideally, dbi2 base address should come from DT. But since only IMX95 is defining
+> +	 * "dbi2" in DT, "dbi_base2" is set to NULL here for that platform alone so that the DWC
+> +	 * core code can fetch that from DT. But once all platform DTs were fixed, this and the
+> +	 * above "dbi_base2" setting should be removed.
+> +	 */
+> +	if (imx6_pcie->drvdata->variant == IMX95_EP)
+> +		pci->dbi_base2 = NULL;
+> +
+>  	ret = dw_pcie_ep_init(ep);
+>  	if (ret) {
+>  		dev_err(dev, "failed to initialize endpoint\n");
+> @@ -1345,6 +1374,9 @@ static int imx6_pcie_probe(struct platform_device *pdev)
+>  					     "unable to find iomuxc registers\n");
+>  	}
+>  
+> +	if (imx6_check_flag(imx6_pcie, IMX6_PCIE_FLAG_SUPPORT_64BIT))
+> +		dma_set_mask_and_coherent(dev, DMA_BIT_MASK(64));
+> +
+>  	/* Grab PCIe PHY Tx Settings */
+>  	if (of_property_read_u32(node, "fsl,tx-deemph-gen1",
+>  				 &imx6_pcie->tx_deemph_gen1))
+> @@ -1563,6 +1595,20 @@ static const struct imx6_pcie_drvdata drvdata[] = {
+>  		.mode_mask[0] = IMX6Q_GPR12_DEVICE_TYPE,
+>  		.epc_features = &imx8m_pcie_epc_features,
+>  	},
+> +	[IMX95_EP] = {
+> +		.variant = IMX95_EP,
+> +		.flags = IMX6_PCIE_FLAG_HAS_SERDES |
+> +			 IMX6_PCIE_FLAG_SUPPORT_64BIT,
+> +		.clk_names = imx8mq_clks,
+> +		.clks_cnt = ARRAY_SIZE(imx8mq_clks),
+> +		.ltssm_off = IMX95_PE0_GEN_CTRL_3,
+> +		.ltssm_mask = IMX95_PCIE_LTSSM_EN,
+> +		.mode_off[0]  = IMX95_PE0_GEN_CTRL_1,
+> +		.mode_mask[0] = IMX95_PCIE_DEVICE_TYPE,
+> +		.init_phy = imx95_pcie_init_phy,
+> +		.epc_features = &imx95_pcie_epc_features,
+> +		.mode = DW_PCIE_EP_TYPE,
+> +	},
+>  };
+>  
+>  static const struct of_device_id imx6_pcie_of_match[] = {
+> @@ -1577,6 +1623,7 @@ static const struct of_device_id imx6_pcie_of_match[] = {
+>  	{ .compatible = "fsl,imx8mq-pcie-ep", .data = &drvdata[IMX8MQ_EP], },
+>  	{ .compatible = "fsl,imx8mm-pcie-ep", .data = &drvdata[IMX8MM_EP], },
+>  	{ .compatible = "fsl,imx8mp-pcie-ep", .data = &drvdata[IMX8MP_EP], },
+> +	{ .compatible = "fsl,imx95-pcie-ep", .data = &drvdata[IMX95_EP], },
+>  	{},
+>  };
+>  
+> -- 
+> 2.34.1
+> 
 
