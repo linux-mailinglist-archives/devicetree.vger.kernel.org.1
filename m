@@ -1,90 +1,175 @@
-Return-Path: <devicetree+bounces-41302-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-41322-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3E896853128
-	for <lists+devicetree@lfdr.de>; Tue, 13 Feb 2024 14:02:41 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id C83D8853296
+	for <lists+devicetree@lfdr.de>; Tue, 13 Feb 2024 15:05:53 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 580F4B26090
-	for <lists+devicetree@lfdr.de>; Tue, 13 Feb 2024 13:02:38 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 8408F280E0B
+	for <lists+devicetree@lfdr.de>; Tue, 13 Feb 2024 14:05:52 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C785443ADD;
-	Tue, 13 Feb 2024 13:02:32 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=atomide.com header.i=@atomide.com header.b="tE8B0o6o"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4A25A5646E;
+	Tue, 13 Feb 2024 14:05:50 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail5.25mail.st (mail5.25mail.st [74.50.62.9])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from andre.telenet-ops.be (andre.telenet-ops.be [195.130.132.53])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B410D4F1EF;
-	Tue, 13 Feb 2024 13:02:30 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=74.50.62.9
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3C9D856767
+	for <devicetree@vger.kernel.org>; Tue, 13 Feb 2024 14:05:47 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=195.130.132.53
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1707829352; cv=none; b=KunrzKl6bVfdwiR9c3kPQqwwcfXCY9EeCOZzM/F4xypFC1uRZyoqFxHgnTsl92agcM51uCGagh/hBwguQM5mdCmE1OmJmgndF5p5vg1DfQFYciuD220NVLjfvSbTPQHjk61OulhUCoq99mzlzpj7NJRcwfSi1NwbzuAlB+PAbMY=
+	t=1707833150; cv=none; b=P7hlOSSSWW0oCSqoVtInJwgp/BdVIFH13+OHPJhLBb7F3PtupOCpVBauxh60OEk/snG/2LVTHBVFw01yZgjNZdOn2iLmJdNcWRBcfhEJeZexCQw/PSJ4vsgyPjzbRTSRxA33sCjd2O9XweAWfXqv+6gAL7dm9GELLwwp1NIyKDc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1707829352; c=relaxed/simple;
-	bh=dlM175U+C8aayNuvUs0Vo/+s/Ov3qYpSkK3PAw6G+Dk=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=qv+j5Ygg6Uc85U3FNnCBGtTtF480Hifo1uDJb/kCHvMGkQSXczUaGpmGprX5pXlCFTAvxIGPLuulMCZ4SpqAsmWXkIMIYBcaq8Tzrjv1pIvLsCjUcdFzcNgv2o7VrttyWoV8MSzElgOnbqtogAqI5Lo03jjLbvTd0RIunxLlues=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=atomide.com; spf=fail smtp.mailfrom=atomide.com; dkim=pass (2048-bit key) header.d=atomide.com header.i=@atomide.com header.b=tE8B0o6o; arc=none smtp.client-ip=74.50.62.9
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=atomide.com
-Authentication-Results: smtp.subspace.kernel.org; spf=fail smtp.mailfrom=atomide.com
-Received: from localhost (91-158-86-216.elisa-laajakaista.fi [91.158.86.216])
-	by mail5.25mail.st (Postfix) with ESMTPSA id D1C636033F;
-	Tue, 13 Feb 2024 13:02:10 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple; d=atomide.com;
-	s=25mailst; t=1707829349;
-	bh=dlM175U+C8aayNuvUs0Vo/+s/Ov3qYpSkK3PAw6G+Dk=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=tE8B0o6o5jHRphzAzKu8FMc0/MbVtbhFI8+pdHsrMCON3bbMzKlg1Fpp4yxQ7exFG
-	 09NUYOa7d+9EcirZ+2WtO/yCpbKtSTXnVCx0n6NjHHI0wdK5e2rhdXdu+983nrwqcx
-	 KDMYSS9wOjCCJHrP5HwQQBUfb2LSoQ9unp0xGsTzFgAqcRCdsKUqSQ8baK4kyqgvNE
-	 ZpENHNmThNIjFVE+6o165hRFhJV919ZZ/DY79mYrO6pq2plO5oK0zBDT8CbV3Rd0kk
-	 3eQD/5EsHQUxTtrCmoT7uVhciKQ3PydeQ5gACFw7HX2jPal8HrWAZxtuoayJK0JXjp
-	 Nd9sC7eoVTVfw==
-Date: Tue, 13 Feb 2024 15:02:08 +0200
-From: Tony Lindgren <tony@atomide.com>
-To: Adam Ford <aford173@gmail.com>
-Cc: linux-omap@vger.kernel.org, aford@beaconembedded.com,
-	=?utf-8?Q?Beno=C3=AEt?= Cousson <bcousson@baylibre.com>,
+	s=arc-20240116; t=1707833150; c=relaxed/simple;
+	bh=ZffPAM8vbEKI9/iymjjwBQJuBEoGb2F5+MVh2HRI0PQ=;
+	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version:Content-Type; b=lC8PMn+M9/ylTBFoe7VZcWMW4O0zXn0nR1m/KTxG6Dqkba4rLUALl3/+HBZGaytHCRyjP+c1A710FjoynnRuJwV8ONQjJbreVDe/quYy64BYc68wnB+67zZ1cKSUhh7uDbR9np59xmFjWBfFceoOM8w11D0+6xTDwpmudlyimQo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=glider.be; spf=none smtp.mailfrom=linux-m68k.org; arc=none smtp.client-ip=195.130.132.53
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=glider.be
+Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=linux-m68k.org
+Received: from ramsan.of.borg ([IPv6:2a02:1810:ac12:ed40:47b8:b872:d87c:512])
+	by andre.telenet-ops.be with bizsmtp
+	id me5d2B0091wMtyi01e5dSF; Tue, 13 Feb 2024 15:05:39 +0100
+Received: from rox.of.borg ([192.168.97.57])
+	by ramsan.of.borg with esmtp (Exim 4.95)
+	(envelope-from <geert@linux-m68k.org>)
+	id 1rZtPe-000Z13-Fy;
+	Tue, 13 Feb 2024 15:05:37 +0100
+Received: from geert by rox.of.borg with local (Exim 4.95)
+	(envelope-from <geert@linux-m68k.org>)
+	id 1rZpxf-00G3dP-K7;
+	Tue, 13 Feb 2024 11:24:23 +0100
+From: Geert Uytterhoeven <geert+renesas@glider.be>
+To: Andrew Davis <afd@ti.com>,
+	Jonathan Corbet <corbet@lwn.net>,
+	Alex Shi <alexs@kernel.org>,
+	Yanteng Si <siyanteng@loongson.cn>,
 	Rob Herring <robh@kernel.org>,
 	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org
-Subject: Re: [PATCH] arm: dts: omap3:  Migrate hsmmc driver to sdhci driver
-Message-ID: <20240213130208.GI52537@atomide.com>
-References: <20240213124146.202391-1-aford173@gmail.com>
- <20240213125618.GG52537@atomide.com>
+	Conor Dooley <conor+dt@kernel.org>
+Cc: linux-doc@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	Geert Uytterhoeven <geert+renesas@glider.be>
+Subject: [PATCH] docs: dt: Update overlay file extension
+Date: Tue, 13 Feb 2024 11:24:18 +0100
+Message-Id: <5ac79104822cdce7a4caab87f14ce02477f85820.1707819511.git.geert+renesas@glider.be>
+X-Mailer: git-send-email 2.34.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20240213125618.GG52537@atomide.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 
-* Tony Lindgren <tony@atomide.com> [240213 12:56]:
-> * Adam Ford <aford173@gmail.com> [240213 12:41]:
-> > The sdhci driver has been around for several years, and it supports
-> > the OMAP3 family.  Instead of using the older driver, let's finally
-> > migrate to the newer one.
-> 
-> I think we also should do these to avoid incomplete conversion:
-> 
-> - ti,dual-volt property can be dropped
-> 
-> - ti,non-removable should become non-removable
-> 
-> - ti,omap3-pre-es3-hsmmc probably should not be needed with sdhci
+Building DTB overlays from .dts files is no longer supported.
+Update the documentation to reflect this.
 
-Hmm actually we may need to set SDHCI_QUIRK_NO_MULTIBLOCK for
-compatible ti,omap3-pre-es3-hsmmc.
+Fixes: 81d362732bac05f6 ("kbuild: Disallow DTB overlays to built from .dts named source files")
+Signed-off-by: Geert Uytterhoeven <geert+renesas@glider.be>
+---
+ Documentation/devicetree/overlay-notes.rst           | 12 ++++++------
+ .../translations/zh_CN/devicetree/overlay-notes.rst  | 12 ++++++------
+ 2 files changed, 12 insertions(+), 12 deletions(-)
 
-Regards,
+diff --git a/Documentation/devicetree/overlay-notes.rst b/Documentation/devicetree/overlay-notes.rst
+index e139f22b363e9f36..35e79242af9a928d 100644
+--- a/Documentation/devicetree/overlay-notes.rst
++++ b/Documentation/devicetree/overlay-notes.rst
+@@ -38,10 +38,10 @@ Lets take an example where we have a foo board with the following base tree::
+ 	};
+     ---- foo.dts ---------------------------------------------------------------
+ 
+-The overlay bar.dts,
++The overlay bar.dtso,
+ ::
+ 
+-    ---- bar.dts - overlay target location by label ----------------------------
++    ---- bar.dtso - overlay target location by label ---------------------------
+ 	/dts-v1/;
+ 	/plugin/;
+ 	&ocp {
+@@ -51,7 +51,7 @@ The overlay bar.dts,
+ 			... /* various properties and child nodes */
+ 		};
+ 	};
+-    ---- bar.dts ---------------------------------------------------------------
++    ---- bar.dtso --------------------------------------------------------------
+ 
+ when loaded (and resolved as described in [1]) should result in foo+bar.dts::
+ 
+@@ -88,9 +88,9 @@ in the base DT. In this case, the target path can be provided. The target
+ location by label syntax is preferred because the overlay can be applied to
+ any base DT containing the label, no matter where the label occurs in the DT.
+ 
+-The above bar.dts example modified to use target path syntax is::
++The above bar.dtso example modified to use target path syntax is::
+ 
+-    ---- bar.dts - overlay target location by explicit path --------------------
++    ---- bar.dtso - overlay target location by explicit path -------------------
+ 	/dts-v1/;
+ 	/plugin/;
+ 	&{/ocp} {
+@@ -100,7 +100,7 @@ The above bar.dts example modified to use target path syntax is::
+ 			... /* various properties and child nodes */
+ 		}
+ 	};
+-    ---- bar.dts ---------------------------------------------------------------
++    ---- bar.dtso --------------------------------------------------------------
+ 
+ 
+ Overlay in-kernel API
+diff --git a/Documentation/translations/zh_CN/devicetree/overlay-notes.rst b/Documentation/translations/zh_CN/devicetree/overlay-notes.rst
+index 43e3c0bc5a9f8235..ba5edd05dc1e7fd2 100644
+--- a/Documentation/translations/zh_CN/devicetree/overlay-notes.rst
++++ b/Documentation/translations/zh_CN/devicetree/overlay-notes.rst
+@@ -43,10 +43,10 @@ Documentation/devicetree/dynamic-resolution-notes.rst[1]的配套文档。
+ 	};
+     ---- foo.dts ---------------------------------------------------------------
+ 
+-覆盖bar.dts,
++覆盖bar.dtso,
+ ::
+ 
+-    ---- bar.dts - 按标签覆盖目标位置 ----------------------------
++    ---- bar.dtso - 按标签覆盖目标位置 ---------------------------
+ 	/dts-v1/;
+ 	/插件/;
+ 	&ocp {
+@@ -56,7 +56,7 @@ Documentation/devicetree/dynamic-resolution-notes.rst[1]的配套文档。
+ 			... /* 各种属性和子节点 */
+ 		};
+ 	};
+-    ---- bar.dts ---------------------------------------------------------------
++    ---- bar.dtso --------------------------------------------------------------
+ 
+ 当加载（并按照[1]中描述的方式解决）时，应该产生foo+bar.dts::
+ 
+@@ -90,9 +90,9 @@ Documentation/devicetree/dynamic-resolution-notes.rst[1]的配套文档。
+ DT中的适当位置。在这种情况下，可以提供目标路径。通过标签的目标位置的语法是比
+ 较好的，因为不管标签在DT中出现在哪里，覆盖都可以被应用到任何包含标签的基础DT上。
+ 
+-上面的bar.dts例子被修改为使用目标路径语法，即为::
++上面的bar.dtso例子被修改为使用目标路径语法，即为::
+ 
+-    ---- bar.dts - 通过明确的路径覆盖目标位置 --------------------
++    ---- bar.dtso - 通过明确的路径覆盖目标位置 -------------------
+ 	/dts-v1/;
+ 	/插件/;
+ 	&{/ocp} {
+@@ -102,7 +102,7 @@ DT中的适当位置。在这种情况下，可以提供目标路径。通过标
+ 			... /* 各种外围设备和子节点 */
+ 		}
+ 	};
+-    ---- bar.dts ---------------------------------------------------------------
++    ---- bar.dtso --------------------------------------------------------------
+ 
+ 
+ 内核中关于覆盖的API
+-- 
+2.34.1
 
-Tony
 
