@@ -1,122 +1,166 @@
-Return-Path: <devicetree+bounces-41212-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-41213-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 60529852BF0
-	for <lists+devicetree@lfdr.de>; Tue, 13 Feb 2024 10:08:10 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2B4F5852BF6
+	for <lists+devicetree@lfdr.de>; Tue, 13 Feb 2024 10:09:17 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 149041F221E5
-	for <lists+devicetree@lfdr.de>; Tue, 13 Feb 2024 09:08:10 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 4FDDF1C224C7
+	for <lists+devicetree@lfdr.de>; Tue, 13 Feb 2024 09:09:16 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C0C171B971;
-	Tue, 13 Feb 2024 09:07:59 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2E3CF1C6AD;
+	Tue, 13 Feb 2024 09:09:11 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b="M2JZ3glv"
 X-Original-To: devicetree@vger.kernel.org
-Received: from tux.runtux.com (tux.runtux.com [176.9.82.136])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from madrid.collaboradmins.com (madrid.collaboradmins.com [46.235.227.194])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 024662231C;
-	Tue, 13 Feb 2024 09:07:57 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=176.9.82.136
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 56B2B1799D;
+	Tue, 13 Feb 2024 09:09:08 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=46.235.227.194
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1707815279; cv=none; b=R8ZcNed3RzU8MrBj2szX7l7DQAHDLJn59aMguVgQZSAbmCr/WvrnHZB3q47pW6jZYABJcvCYFH2yOP9CV7jzudCCs/+aBy8xOdmc3Q3o23eeKNv6eMehsL4QZZzePAgkMikmrmTxR+O60l0sce+ACyOCgtkGp4/Q64VTCnxDjwE=
+	t=1707815351; cv=none; b=j25IvJl3p1PV1VsfC3qWiA4MlwDhsbXYt5imfb+LqSEKtP+/xYP66mr+h6oAsIP3I5B0IsNAVNih0QQFWb9ovf5E1hw7oKRHedWGHPAnzbALxJ0ffuKSftZQRNa7qk2CEhIGGsnlXYHUtIQYigkmYNlZl0iqwYJL1xXU4GH0hns=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1707815279; c=relaxed/simple;
-	bh=6bs7SErVT3CfTr4R0wEWjpG2eNuE9rUybLdZOMUD2iU=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=e9lTCkATZWUGLaTo7jJkxFJ/bZA6pndgqpAli9hnT772upmsf5taCXI8VpX1CvaBwCBbP5ffPf3n9o+eeATKN6wlVuZ0fETJxaoTU8prZlMCIEgPqc41ZF4fEV4SgwBeZzX/0kGVYEco8d9O+nHVB1uef+Bh0KwwyK1dK4Cek+g=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=runtux.com; spf=pass smtp.mailfrom=runtux.com; arc=none smtp.client-ip=176.9.82.136
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=runtux.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=runtux.com
-Received: from localhost (localhost [127.0.0.1])
-	by tux.runtux.com (Postfix) with ESMTP id 922E26EF5B;
-	Tue, 13 Feb 2024 10:07:54 +0100 (CET)
-X-Virus-Scanned: Debian amavisd-new at tux.runtux.com
-Received: from tux.runtux.com ([127.0.0.1])
-	by localhost (tux2.runtux.com [127.0.0.1]) (amavisd-new, port 10026)
-	with LMTP id dicLrwJAa5ue; Tue, 13 Feb 2024 10:07:53 +0100 (CET)
-Received: from bee.priv.zoo (62-99-217-90.static.upcbusiness.at [62.99.217.90])
-	(Authenticated sender: postmaster@runtux.com)
-	by tux.runtux.com (Postfix) with ESMTPSA id DE5596EF02;
-	Tue, 13 Feb 2024 10:07:52 +0100 (CET)
-Received: by bee.priv.zoo (Postfix, from userid 1002)
-	id 7576B469; Tue, 13 Feb 2024 10:07:52 +0100 (CET)
-Date: Tue, 13 Feb 2024 10:07:52 +0100
-From: Ralf Schlatterbeck <rsc@runtux.com>
-To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Cc: Geert Uytterhoeven <geert@linux-m68k.org>,
-	Linus Walleij <linus.walleij@linaro.org>,
-	Miguel Ojeda <ojeda@kernel.org>, Rob Herring <robh+dt@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Robin van der Gracht <robin@protonic.nl>,
-	Paul Burton <paulburton@kernel.org>,
-	linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	Andy Shevchenko <andriy.shevchenko@linux.intel.com>
-Subject: Re: [PATCH 1/3] dt-bindings: auxdisplay: hit, hd44780: drop
- redundant GPIO node
-Message-ID: <20240213090752.5g7cnzkaqrfdqi4p@runtux.com>
-References: <20240212083426.26757-1-krzysztof.kozlowski@linaro.org>
- <CAMuHMdU-c5_Z2AMNtNH4Cc4JUrn+oKU-1CumEOAP6=5Zomcj_A@mail.gmail.com>
- <2922eece-5486-4eff-af99-f7060cb61d17@linaro.org>
- <20240212115837.efz73yxinkysdmgh@runtux.com>
- <e2a5b005-7916-4296-b072-c24efd4b3357@linaro.org>
+	s=arc-20240116; t=1707815351; c=relaxed/simple;
+	bh=fp9FGluwMSXxSuqD4GvNc9fG6fxLNPpYbuY+L6o9QAU=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=bDoQVDmt9PXBLBSWWxeTwg+GiZf9Pu4N6Naaxl3Tv6cuMsUACr3jfJeg8DXFu63v5w5gDMhSRqnXIJ2cppGIyIuDZbDoIN46eFwz6JHiZvY5eT6C3k2FIJkbAeFhXeXFYo0PKzNRzUke59MLQKrLzVsFTib27ZXmZ96v6vS2o/g=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b=M2JZ3glv; arc=none smtp.client-ip=46.235.227.194
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=collabora.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
+	s=mail; t=1707815347;
+	bh=fp9FGluwMSXxSuqD4GvNc9fG6fxLNPpYbuY+L6o9QAU=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=M2JZ3glvC7qhQgMUEee6dMUQpQy4grZJc7duZhsoSxfLjpVAgIbyCiZVLPAGeDaWu
+	 CWxjEcWAv29bG0mkxPSJWzzHqCS+yrC0fW/iXJwux1TBAqG5wft9Id8nkh7PoEopeQ
+	 xWgttt3GZ/dy+vUx8wRXHXmUJFkKv7dqDHAI8IMipIRNhfMIoslcmE3wCbP1mLRfbk
+	 PTrN/ADI8YYQtTF07p/QUutDhR4FqXL2l5mQc6QuMQZ6DkBLtw6eelM0TUgOgtCQnQ
+	 T7NKpFXMPG5cEUkuBKsjmjXVpfaE9at9ckJV4dDxgJAwVD/uAF33lrGGwTVVZk4Mig
+	 xkJb5z5jRmfjQ==
+Received: from [100.113.186.2] (cola.collaboradmins.com [195.201.22.229])
+	(using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
+	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+	(No client certificate requested)
+	(Authenticated sender: kholk11)
+	by madrid.collaboradmins.com (Postfix) with ESMTPSA id 6EE023781FEF;
+	Tue, 13 Feb 2024 09:09:06 +0000 (UTC)
+Message-ID: <6429a878-af3c-4182-b65f-60e1c0afccc5@collabora.com>
+Date: Tue, 13 Feb 2024 10:09:05 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <e2a5b005-7916-4296-b072-c24efd4b3357@linaro.org>
-X-ray: beware
-User-Agent: NeoMutt/20180716
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH] arm64: dts: mediatek: mt8186: Add missing clocks to ssusb
+ power domains
+Content-Language: en-US
+To: =?UTF-8?B?TsOtY29sYXMgRi4gUi4gQS4gUHJhZG8=?= <nfraprado@collabora.com>,
+ Matthias Brugger <matthias.bgg@gmail.com>
+Cc: Chen-Yu Tsai <wenst@chromium.org>,
+ Eugen Hristev <eugen.hristev@collabora.com>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+ Conor Dooley <conor+dt@kernel.org>,
+ Allen-KH Cheng <allen-kh.cheng@mediatek.com>, kernel@collabora.com,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, linux-mediatek@lists.infradead.org
+References: <20240212-mt8186-ssusb-domain-clk-fix-v1-1-26cb98746aa3@collabora.com>
+ <985e1a4f-c538-4a9d-be58-2c688aa7350c@notapiano>
+From: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
+In-Reply-To: <985e1a4f-c538-4a9d-be58-2c688aa7350c@notapiano>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
 
-On Mon, Feb 12, 2024 at 02:38:27PM +0100, Krzysztof Kozlowski wrote:
-> On 12/02/2024 12:58, Ralf Schlatterbeck wrote:
-> > On Mon, Feb 12, 2024 at 12:25:48PM +0100, Krzysztof Kozlowski wrote:
-> >>
-> >> Hm, I don't understand how exactly it helps. The GPIO expander has its
-> >> own example and as you pointed below, this is basically the same code,
-> >> except rw and backlight GPIOs.
-> > 
-> > The hd44780 is a display that is very often used.
+Il 12/02/24 22:53, Nícolas F. R. A. Prado ha scritto:
+> On Mon, Feb 12, 2024 at 04:32:44PM -0500, Nícolas F. R. A. Prado wrote:
+>> The ssusb power domains currently don't list any clocks, despite
+>> depending on some, and thus rely on the bootloader leaving the required
+>> clocks on in order to work.
+>>
+>> When booting with the upstream arm64 defconfig, the power domain
+>> controller will defer probe until modules have loaded since it has an
+>> indirect dependency on CONFIG_MTK_CMDQ, which is configured as a module.
+>> However at the point where modules are loaded, unused clocks are also
+>> disabled, causing the ssusb domains to fail to be enabled and
+>> consequently the controller to fail probe:
+>>
+>> mtk-power-controller 10006000.syscon:power-controller: /soc/syscon@10006000/power-controller/power-domain@4: failed to power on domain: -110
+>> mtk-power-controller: probe of 10006000.syscon:power-controller failed with error -110
+>>
+>> Add the missing clocks to the ssusb power domains so the power
+>> controller can boot without relying on bootloader state.
+>>
+>> Fixes: d9e43c1e7a38 ("arm64: dts: mt8186: Add power domains controller")
+>> Signed-off-by: Nícolas F. R. A. Prado <nfraprado@collabora.com>
+>> ---
+>>   arch/arm64/boot/dts/mediatek/mt8186.dtsi | 8 ++++++++
+>>   1 file changed, 8 insertions(+)
+>>
+>> diff --git a/arch/arm64/boot/dts/mediatek/mt8186.dtsi b/arch/arm64/boot/dts/mediatek/mt8186.dtsi
+>> index adaf5e57fac5..02f33ec3cbd3 100644
+>> --- a/arch/arm64/boot/dts/mediatek/mt8186.dtsi
+>> +++ b/arch/arm64/boot/dts/mediatek/mt8186.dtsi
+>> @@ -931,11 +931,19 @@ power-domain@MT8186_POWER_DOMAIN_CSIRX_TOP {
+>>   
+>>   				power-domain@MT8186_POWER_DOMAIN_SSUSB {
+>>   					reg = <MT8186_POWER_DOMAIN_SSUSB>;
+>> +					clocks = <&topckgen CLK_TOP_USB_TOP>,
+>> +						 <&infracfg_ao CLK_INFRA_AO_SSUSB_TOP_REF>,
+>> +						 <&infracfg_ao CLK_INFRA_AO_SSUSB_TOP_XHCI>;
+>> +					clock-names = "sys_ck", "ref_ck", "xhci_ck";
+>>   					#power-domain-cells = <0>;
+>>   				};
+>>   
+>>   				power-domain@MT8186_POWER_DOMAIN_SSUSB_P1 {
+>>   					reg = <MT8186_POWER_DOMAIN_SSUSB_P1>;
+>> +					clocks = <&infracfg_ao CLK_INFRA_AO_SSUSB_TOP_P1_SYS>,
+>> +						 <&infracfg_ao CLK_INFRA_AO_SSUSB_TOP_P1_REF>,
+>> +						 <&infracfg_ao CLK_INFRA_AO_SSUSB_TOP_P1_XHCI>;
+>> +					clock-names = "sys_ck", "ref_ck", "xhci_ck";
 > 
-> GPIO expanders and their usage is nothing specific to this device -
-> other devices also might benefit of them. Or the SoCs which have enough
-> of GPIOs... I really do not understand why do we need expander here and
-> how does it help
+> I forgot to mention this here, but the XHCI clock wasn't needed to get the power
+> domains to work per se, but leaving it out caused issues when probing the mtu3
+> devices:
+> <3>[   15.431506] mtu3 11201000.usb: clks of sts1 are not stable!
+> <3>[   15.443965] mtu3 11201000.usb: device enable failed -110
+> <3>[   15.454306] mtu3 11201000.usb: mtu3 hw init failed:-110
+> <3>[   15.463865] mtu3 11201000.usb: failed to initialize gadget
+> <4>[   15.477890] mtu3: probe of 11201000.usb failed with error -110
+> 
+> <3>[   15.514603] mtu3 11281000.usb: clks of sts1 are not stable!
+> <3>[   15.525239] mtu3 11281000.usb: device enable failed -110
+> <3>[   15.614174] mtu3 11281000.usb: mtu3 hw init failed:-110
+> <3>[   15.619647] mtu3 11281000.usb: failed to initialize gadget
+> <4>[   15.630623] mtu3: probe of 11281000.usb failed with error -110
+> 
+> Not sure if this issue should be handled separately (maybe the mtu3 device
+> should enable the XHCI clock?), but I opted to include the clock here to get
+> boot working for this device at once.
+> 
 
-The hd44780 is most often sold together with that specific I/O expander.
-The idea was to help people with that combination how to get their
-device working.
+Hey Nicolas,
+As you just said: having the XHCI clock in the power domain is wrong :-)
 
-> Anyway, binding examples should not be collection of unrelated
-> solutions, because then we should accept for each device schema several
-> other variations and combinations.
+Almost comically, the MTU3 binding already supports having a XHCI clock
+named "xhci_ck" after "dma_ck"... so the solution is to add the TOP_XHCI
+clock in the mtu3 node and that's it. Do not remove it from the children.
 
-The solutions in that case are not unrelated because they document the
-most-often-used hw combo.
+mtu3-node-at-somewhere {
+		clocks = <&topckgen CLK_TOP_USB_TOP>,
+			 <&infracfg_ao CLK_INFRA_AO_SSUSB_TOP_REF>,
+			 <&infracfg_ao CLK_INFRA_AO_SSUSB_TOP_HCLK>,
+			 <&infracfg_ao CLK_INFRA_AO_ICUSB>,
+			 <&infracfg_ao CLK_INFRA_AO_SSUSB_TOP_XHCI>;
+		clock-names = "sys_ck", "ref_ck", "mcu_ck", "dma_ck", "xhci_ck";
+}
 
-I also didn't find any documentation of how to actually *use* the
-pcf8575 I/O expander. Even
-Documentation/devicetree/bindings/gpio/nxp,pcf8575.yaml
-has only docs on how to instantiate the device on the i2c bus but not
-how then to use the I/Os of the chip for something else.
+Waiting for a v2...
 
-So I'd ask again to not remove that piece of useful documentation.
-
-And to get somehow philosophic:
-I think that docs should be didactic, not optimized to the least
-redundancy.
-
-Thanks and kind regards,
-Ralf
--- 
-Dr. Ralf Schlatterbeck                  Tel:   +43/2243/26465-16
-Open Source Consulting                  www:   www.runtux.com
-Reichergasse 131, A-3411 Weidling       email: office@runtux.com
+Cheers,
+Angelo
 
