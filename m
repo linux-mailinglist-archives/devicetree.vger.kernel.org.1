@@ -1,77 +1,75 @@
-Return-Path: <devicetree+bounces-41187-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-41188-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4CF8F852B4C
-	for <lists+devicetree@lfdr.de>; Tue, 13 Feb 2024 09:38:23 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id CC301852B52
+	for <lists+devicetree@lfdr.de>; Tue, 13 Feb 2024 09:40:02 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id AC9D128202C
-	for <lists+devicetree@lfdr.de>; Tue, 13 Feb 2024 08:38:21 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 828F328272E
+	for <lists+devicetree@lfdr.de>; Tue, 13 Feb 2024 08:40:01 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7A37218021;
-	Tue, 13 Feb 2024 08:38:18 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B96021864C;
+	Tue, 13 Feb 2024 08:39:57 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="F90KYP6d"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="ulUePcVn"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lf1-f41.google.com (mail-lf1-f41.google.com [209.85.167.41])
+Received: from mail-lf1-f49.google.com (mail-lf1-f49.google.com [209.85.167.49])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A11BC182A1
-	for <devicetree@vger.kernel.org>; Tue, 13 Feb 2024 08:38:15 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.41
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D9FFE134CB
+	for <devicetree@vger.kernel.org>; Tue, 13 Feb 2024 08:39:55 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.49
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1707813498; cv=none; b=LlYuckfEomIWyyOZ7URgla9UvLh6aEk2trqPMGhZgNomYSIxUQtPkxk7eHrgmkpMcwdQ95+NVws/7pNWKQb+d/pyBaVi1PQ2jpX8mtp1r5a1uTQI5yOOUUgbEcWGkvI7BXqR/AiV8WmnrE6JeMnmLsFZ0vodYyTO44A31CdOJZ0=
+	t=1707813597; cv=none; b=T27rEugOvJYwJojqZFwTHbbXJX3QxhInUf7F9KGae1kCBioXhD4wnn0Fw1S2dKlU4x1NpyWwVTk5sY0DU7qyFpW+NOhgiWnOcFegf/K/ESAz/74/Mj/AG12I+TO5da+D4QWvYBa8roOKGN72XBQPw6W5eQ7IMfzlwCtRBvUtjSs=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1707813498; c=relaxed/simple;
-	bh=I9jBnYIWhipEV/qzDjWRu5VpS4nxIslJQA/mnywgwSY=;
-	h=Message-ID:Date:MIME-Version:From:Subject:To:Cc:References:
-	 In-Reply-To:Content-Type; b=sM5dWwClNVzzDlYzQa0QMkEaV5ITACC9THQJlpMSGhx+gw5lqpcHYWF0KaOA2YMxUcOekd6NqurJ7GuYEa/HvpE7puPeGOXxO7KmKjOta5kWL+opyLLely54+off1bbxget/ZwoWwdb6+FuNDdqbebOxb+h1Sr80S5jq3sQ0+w8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=F90KYP6d; arc=none smtp.client-ip=209.85.167.41
+	s=arc-20240116; t=1707813597; c=relaxed/simple;
+	bh=CXODdfHRF8EcwyoTQZNwzppKR+EmBpLtqQj9CeT169k=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=C7b3DFMp0fo2phYYgxFOM8+mkqvxJmKnLEhviyHYCaqXM+mXYoigffJnVRXSSMJybdOTCKo2T3SLgNM4MYR3qk1g7cFET8X1SAICKQx3+kEsn6uktwT+q9LKYu4OD3s5i9ujB8doOYHK/IEo5R6vQ35cb4byGYTPmZWjZkWtLWE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=ulUePcVn; arc=none smtp.client-ip=209.85.167.49
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-lf1-f41.google.com with SMTP id 2adb3069b0e04-51197ca63f5so699641e87.1
-        for <devicetree@vger.kernel.org>; Tue, 13 Feb 2024 00:38:15 -0800 (PST)
+Received: by mail-lf1-f49.google.com with SMTP id 2adb3069b0e04-50eac018059so5205004e87.0
+        for <devicetree@vger.kernel.org>; Tue, 13 Feb 2024 00:39:55 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1707813494; x=1708418294; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:organization:autocrypt
-         :references:cc:to:content-language:subject:reply-to:from:user-agent
-         :mime-version:date:message-id:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=RXPlfNasOUmNVQN5Xo/0NoJYpOYXgb4I9baD/+RaFaM=;
-        b=F90KYP6dr7YtG5gg2hWYmzZ0haWE/zC+H/yzrI6z9Hpbt0pSgmhOJjEIbQtzMiEX6d
-         7t90OAN3axutyKNvJJn1MAGt5br2EMC4JKqie9xuRAxU+8r1wPLhgRiRhCj1fBgfXLWm
-         xUMPZCCgWiFdFjPMEIRTCCAqFtDHvDdS6AfW7VFmdGd5zUym5UoPEdFHW2qxEjOGzbMz
-         PS/vGjLSd0a3Eee3/TPgwW9s3ptn3gIRpoK8JDGvvm0FjhbL4klMw5iV1Nz1NRHvb0A/
-         FQvVvJlgu2nGy/wmsfFQW5WsW9L383RAAXQ6j36+1mG7skRYL9cQF7zMYwjzmqgMtcpj
-         hpmQ==
+        d=linaro.org; s=google; t=1707813594; x=1708418394; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
+         :to:content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=P3RxmLsVbnbUP7U67nLjdpooWU8Ch7hTMjG3mEOZDbU=;
+        b=ulUePcVnNTD/Pl7uYqzGh7F7oKSKovOoaZ4gNWLdUQtmJ5gn2q0ciGNdb4St0XVMaB
+         LIJeHHeXxaqobYBXOjBYP93xVhAl3mN04Xaf+jW9v6ARsCffjzoD/RMbT3lNULlQPIVL
+         tcGaRryxjuMbFWyo2xSt14NqEr1ePLQqSfUtI5/fHbO9dJkMc7OZGHkqrDmU5ajz/2fi
+         49aTneSU8znX6pHCppkI2GPXK2X/7FmhoYVHx0gKU4tqpEEMg8ZgXqvJM06r+LiCX09y
+         w1YBKWNTXmV55Z3mvhla+rYNzSm8yBER5u8CGZQANlOA727WRfTLItnHSY7QMpSNDNyB
+         Sb+w==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1707813494; x=1708418294;
-        h=content-transfer-encoding:in-reply-to:organization:autocrypt
-         :references:cc:to:content-language:subject:reply-to:from:user-agent
-         :mime-version:date:message-id:x-gm-message-state:from:to:cc:subject
-         :date:message-id:reply-to;
-        bh=RXPlfNasOUmNVQN5Xo/0NoJYpOYXgb4I9baD/+RaFaM=;
-        b=VcUt8Qx4+xDF6A0OAJoKacgcMTNAS+L6tLdxZNcAhpV/qPNOXLsMgXzwDKT7c2pY3W
-         52Jkid5wLdBP2T6B388Y+4cNfaMRCtorMucxNjDQctrqNez0J/8UwhJ6ZMC2DopBWnlg
-         5MiwrJvHw1cumMKY7BwiCoEF8PL8bcJCZ5pE5bTMmkA69oTK90HccLGpXAtECid7TOxa
-         mZjOQ8Dkvw0i+TCL4m/yufhSNvNBO68fEEdCRp5IcycLmjg/jI3v6O2XWn1em0J2qHlh
-         R84v50SEwz4J+6GXaC+AfMUnkyQMPowBWMm4aFdP7FfzvHYI4YwGPcNvVnYKmnQkEe/g
-         g7iQ==
-X-Forwarded-Encrypted: i=1; AJvYcCWTBIkXhaP3rV/JvcdlxPpJe+1kGM1cacbnLYEEJY8hp4TzjgmFIi56kAxjOcE2gZfVpgOSjyyQoQoXCFhBM52RDJ4tXvMBXtNU1w==
-X-Gm-Message-State: AOJu0YzhLDLjnGAPxQPCKsY8yeYqGLE3ZNRWegwXXpFulCHhyPTrVW4K
-	Rg29yHVWgVZMVmILPFMznnDyKJlFmSLrQTyWxfmENRIlsWPfu/21uStlV8Wse6Y=
-X-Google-Smtp-Source: AGHT+IExvEWxCnsYH2h23+wvPh84TZru8K3RC4vkEiVnBHm0PLoJE0tb1kZ5gA//qpfMe0NC+XOpoA==
-X-Received: by 2002:ac2:5201:0:b0:511:66f0:8287 with SMTP id a1-20020ac25201000000b0051166f08287mr5401868lfl.28.1707813494190;
-        Tue, 13 Feb 2024 00:38:14 -0800 (PST)
-X-Forwarded-Encrypted: i=1; AJvYcCWYT2BT3oYdNDLBy/GiXKTfN/0dA5ipW2YNTEJc8pvwG+5wpL7oncwzp2v8kNOIbJdFxL/Y2OzEkiv7P+A5EgGrMuMtTJfKnY66sBL8HQWua9UHqywNnKoPcOOScP5fWsMLCdzxyV6reUAbZXUtnkBog/4pIKX6g/xhjfuQf3b9u9z5z6hSTzGNPmFAAn/fZ3lU5Gn43CNMJGytg8+GB9skgS0abVd6eNMaPu1cBGnLZcygtEiEz/r2Psxbgo04HIlyqYwAw3iN/y+58WccH7EqJQJI+pszS2B7+f3cvoPFM07Pda3eWv3uKakSMzKHyR0ls+3ANwAA5lJ/H9DjBdsFP7IbDPqMyOg=
-Received: from ?IPV6:2a01:e0a:982:cbb0:6dfb:5e62:c51f:304b? ([2a01:e0a:982:cbb0:6dfb:5e62:c51f:304b])
-        by smtp.gmail.com with ESMTPSA id 4-20020a05600c028400b00411a0477755sm2857827wmk.9.2024.02.13.00.38.13
+        d=1e100.net; s=20230601; t=1707813594; x=1708418394;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
+         :to:content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=P3RxmLsVbnbUP7U67nLjdpooWU8Ch7hTMjG3mEOZDbU=;
+        b=EOZNBFkw9SD1T+42ApfLcVt2KVj4qC6u9GBr+Ln0yxulCOz61jfM7WEyObyfsH81BS
+         rHqrkjFKRl+9/jmk9EOLwIdU3biivRYV8lr9ie4eQxeR7V2djO8RslipIbACKs+FeoP1
+         gkRkzR/K4NfvQ/gZt/tFT0JHbOxh6y9ZqdXjdCz5IRzfxWmnGMcMNeVO1O/UQUUY0IkV
+         EldDLHFbuRaFNWMNtqejebBxxrXnHPRFX2GVz5yptvaJyKY4O6Kt6Zfqz9gCmrQCK5+Q
+         3mqpaG8FZo6ZW40uQnmMhcf0CljLY5EIBYJC50GOiAt4XzqFqvi0Uul9WgYPYozoxLrH
+         lUWg==
+X-Gm-Message-State: AOJu0YzM+7+56lejU+6tcpPdRmGxAqn/4adnWv8QbKOgVVVuV4yfHHBm
+	ZiTMMYSuqf5oD3J6px4Pe473C1h4XSekJ8gUPaAD0XnUiq04/ucjKsejwBUANLNdZcFshFIFVxW
+	w
+X-Google-Smtp-Source: AGHT+IEH3Y9V61oP0zkkNyBFwQQBwSuQrMQ1YQBzaqzcnW/20KC7jvRaJxDo3NmvpY6fgru/1HHtrA==
+X-Received: by 2002:a05:6512:328a:b0:511:4e91:4a3b with SMTP id p10-20020a056512328a00b005114e914a3bmr5133344lfe.50.1707813593931;
+        Tue, 13 Feb 2024 00:39:53 -0800 (PST)
+X-Forwarded-Encrypted: i=1; AJvYcCXfAKyUSJ4CbSRGWbArh7A4ov21ceEh49P1pwWaUQGPnG0VBwNQf2xF19vLdlUIwKs/LTiz13R2p0qoByANO/yd+xc0OQsRAf1Ob0dJ47LM38oxbQmIkh83xVzjdm5ECjKD1BJLEdGJ3Vvs4c73gETWs1gZcwXt/Fo4CVv7Mzz6jPiz4a8M2RpO8lUyK3LCHM62F79dwXUNZGU+2pwYE5jMzmMYy7l9Kmu7fCCmoes8LINwbhByJJGhON0poMw7HiBFEUYXsSbIpep/5d12SSUOPkLBuli2U1cycYJ1EjLEf2KsCko6lXa9LVuIPjp2vXe5XZFJG7aYnfDo6Za560T/h7ImfM7bhMh9BbPV0bnEx0PTauodvGRt4g==
+Received: from [192.168.1.20] ([178.197.223.6])
+        by smtp.gmail.com with ESMTPSA id jg8-20020a05600ca00800b00410820995dcsm10446311wmb.23.2024.02.13.00.39.52
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 13 Feb 2024 00:38:13 -0800 (PST)
-Message-ID: <64f65168-c7b0-4365-8d0a-e57b47797d95@linaro.org>
-Date: Tue, 13 Feb 2024 09:38:13 +0100
+        Tue, 13 Feb 2024 00:39:53 -0800 (PST)
+Message-ID: <efbd57e8-6cbb-480e-b2d5-1d064a27b3a4@linaro.org>
+Date: Tue, 13 Feb 2024 09:39:51 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -79,76 +77,144 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-From: Neil Armstrong <neil.armstrong@linaro.org>
-Reply-To: neil.armstrong@linaro.org
-Subject: Re: [PATCH v2 0/4] Add support for Freebox fbx8am boards
-Content-Language: en-US, fr
-To: Marc Gonzalez <mgonzalez@freebox.fr>,
- AML <linux-amlogic@lists.infradead.org>, DT <devicetree@vger.kernel.org>
-Cc: Kevin Hilman <khilman@baylibre.com>, Jerome Brunet
- <jbrunet@baylibre.com>,
- Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
- Rob Herring <robh+dt@kernel.org>,
+Subject: Re: [PATCH v2 2/2] arm64: dts: qcom: sa8295p: Enable tertiary
+ controller and its 4 USB ports
+Content-Language: en-US
+To: Krishna Kurapati <quic_kriskura@quicinc.com>,
  Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Conor Dooley <conor+dt@kernel.org>,
- Pierre-Hugues Husson <phhusson@freebox.fr>
-References: <77edaf7e-aeb5-4fc0-8b69-85dcddfd5a58@freebox.fr>
-Autocrypt: addr=neil.armstrong@linaro.org; keydata=
- xsBNBE1ZBs8BCAD78xVLsXPwV/2qQx2FaO/7mhWL0Qodw8UcQJnkrWmgTFRobtTWxuRx8WWP
- GTjuhvbleoQ5Cxjr+v+1ARGCH46MxFP5DwauzPekwJUD5QKZlaw/bURTLmS2id5wWi3lqVH4
- BVF2WzvGyyeV1o4RTCYDnZ9VLLylJ9bneEaIs/7cjCEbipGGFlfIML3sfqnIvMAxIMZrvcl9
- qPV2k+KQ7q+aXavU5W+yLNn7QtXUB530Zlk/d2ETgzQ5FLYYnUDAaRl+8JUTjc0CNOTpCeik
- 80TZcE6f8M76Xa6yU8VcNko94Ck7iB4vj70q76P/J7kt98hklrr85/3NU3oti3nrIHmHABEB
- AAHNKk5laWwgQXJtc3Ryb25nIDxuZWlsLmFybXN0cm9uZ0BsaW5hcm8ub3JnPsLAkQQTAQoA
- OwIbIwULCQgHAwUVCgkICwUWAgMBAAIeAQIXgBYhBInsPQWERiF0UPIoSBaat7Gkz/iuBQJk
- Q5wSAhkBAAoJEBaat7Gkz/iuyhMIANiD94qDtUTJRfEW6GwXmtKWwl/mvqQtaTtZID2dos04
- YqBbshiJbejgVJjy+HODcNUIKBB3PSLaln4ltdsV73SBcwUNdzebfKspAQunCM22Mn6FBIxQ
- GizsMLcP/0FX4en9NaKGfK6ZdKK6kN1GR9YffMJd2P08EO8mHowmSRe/ExAODhAs9W7XXExw
- UNCY4pVJyRPpEhv373vvff60bHxc1k/FF9WaPscMt7hlkbFLUs85kHtQAmr8pV5Hy9ezsSRa
- GzJmiVclkPc2BY592IGBXRDQ38urXeM4nfhhvqA50b/nAEXc6FzqgXqDkEIwR66/Gbp0t3+r
- yQzpKRyQif3OwE0ETVkGzwEIALyKDN/OGURaHBVzwjgYq+ZtifvekdrSNl8TIDH8g1xicBYp
- QTbPn6bbSZbdvfeQPNCcD4/EhXZuhQXMcoJsQQQnO4vwVULmPGgtGf8PVc7dxKOeta+qUh6+
- SRh3vIcAUFHDT3f/Zdspz+e2E0hPV2hiSvICLk11qO6cyJE13zeNFoeY3ggrKY+IzbFomIZY
- 4yG6xI99NIPEVE9lNBXBKIlewIyVlkOaYvJWSV+p5gdJXOvScNN1epm5YHmf9aE2ZjnqZGoM
- Mtsyw18YoX9BqMFInxqYQQ3j/HpVgTSvmo5ea5qQDDUaCsaTf8UeDcwYOtgI8iL4oHcsGtUX
- oUk33HEAEQEAAcLAXwQYAQIACQUCTVkGzwIbDAAKCRAWmrexpM/4rrXiB/sGbkQ6itMrAIfn
- M7IbRuiSZS1unlySUVYu3SD6YBYnNi3G5EpbwfBNuT3H8//rVvtOFK4OD8cRYkxXRQmTvqa3
- 3eDIHu/zr1HMKErm+2SD6PO9umRef8V82o2oaCLvf4WeIssFjwB0b6a12opuRP7yo3E3gTCS
- KmbUuLv1CtxKQF+fUV1cVaTPMyT25Od+RC1K+iOR0F54oUJvJeq7fUzbn/KdlhA8XPGzwGRy
- 4zcsPWvwnXgfe5tk680fEKZVwOZKIEuJC3v+/yZpQzDvGYJvbyix0lHnrCzq43WefRHI5XTT
- QbM0WUIBIcGmq38+OgUsMYu4NzLu7uZFAcmp6h8g
-Organization: Linaro Developer Services
-In-Reply-To: <77edaf7e-aeb5-4fc0-8b69-85dcddfd5a58@freebox.fr>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
+ Rob Herring <robh+dt@kernel.org>, Bjorn Andersson <andersson@kernel.org>,
+ Konrad Dybcio <konrad.dybcio@linaro.org>, Conor Dooley <conor+dt@kernel.org>
+Cc: devicetree@vger.kernel.org, linux-arm-msm@vger.kernel.org,
+ linux-kernel@vger.kernel.org, quic_ppratap@quicinc.com,
+ quic_jackp@quicinc.com
+References: <20240213082724.1789096-1-quic_kriskura@quicinc.com>
+ <20240213082724.1789096-3-quic_kriskura@quicinc.com>
+From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
+ 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
+ D2GYIS41Kv4Isx2dEFh+/Q==
+In-Reply-To: <20240213082724.1789096-3-quic_kriskura@quicinc.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
-Hi Marc,
-
-On 12/02/2024 18:47, Marc Gonzalez wrote:
-> Add support for Freebox fbx8am boards
+On 13/02/2024 09:27, Krishna Kurapati wrote:
+> Multiport USB controller (host-only) of SA8295 ADP has 4 Type-A ports
+> exposed for connecting peripherals. The VBUS to these peripherals is
+> provided by TPS2559QWDRCTQ1 regulators connected to these ports. Each
+> regulator has an enable pin controlled by PMM8540. Since these regulators
+> are GPIO controlled regulators, model them as fixed regulators and keep
+> them Always-On at boot since we are wakeup capable and we don't need to
+> turn them off on suspend. Also since we don't enter device mode, these
+> regulators can be kept on.
 > 
-> Marc Gonzalez (4):
->    dt-bindings: vendor-prefixes: add freebox
->    dt-bindings: arm: amlogic: add fbx8am binding
->    arm64: dts: amlogic: add fbx8am board
->    arm64: dts: amlogic: add fbx8am DT overlays
+> Signed-off-by: Krishna Kurapati <quic_kriskura@quicinc.com>
+> ---
+>  arch/arm64/boot/dts/qcom/sa8295p-adp.dts | 83 ++++++++++++++++++++++++
+>  1 file changed, 83 insertions(+)
 > 
->   Documentation/devicetree/bindings/arm/amlogic.yaml         |   1 +
->   Documentation/devicetree/bindings/vendor-prefixes.yaml     |   2 +
+> diff --git a/arch/arm64/boot/dts/qcom/sa8295p-adp.dts b/arch/arm64/boot/dts/qcom/sa8295p-adp.dts
+> index fd253942e5e5..49418843c214 100644
+> --- a/arch/arm64/boot/dts/qcom/sa8295p-adp.dts
+> +++ b/arch/arm64/boot/dts/qcom/sa8295p-adp.dts
+> @@ -9,6 +9,7 @@
+>  #include <dt-bindings/gpio/gpio.h>
+>  #include <dt-bindings/regulator/qcom,rpmh-regulator.h>
+>  #include <dt-bindings/spmi/spmi.h>
+> +#include <dt-bindings/pinctrl/qcom,pmic-gpio.h>
+>  
+>  #include "sa8540p.dtsi"
+>  #include "sa8540p-pmics.dtsi"
+> @@ -108,6 +109,46 @@ edp3_connector_in: endpoint {
+>  			};
+>  		};
+>  	};
+> +
+> +	regulator-usb2-vbus {
+> +		compatible = "regulator-fixed";
+> +		regulator-name = "USB2_VBUS";
+> +		gpio = <&pmm8540c_gpios 9 GPIO_ACTIVE_HIGH>;
+> +		pinctrl-0 = <&usb2_en>;
+> +		pinctrl-names = "default";
+> +		enable-active-high;
+> +		regulator-always-on;
+> +	};
+> +
+> +	regulator-usb3-vbus {
+> +		compatible = "regulator-fixed";
+> +		regulator-name = "USB3_VBUS";
+> +		gpio = <&pmm8540e_gpios 5 GPIO_ACTIVE_HIGH>;
+> +		pinctrl-0 = <&usb3_en>;
+> +		pinctrl-names = "default";
+> +		enable-active-high;
+> +		regulator-always-on;
+> +	};
+> +
+> +	regulator-usb4-vbus {
+> +		compatible = "regulator-fixed";
+> +		regulator-name = "USB4_VBUS";
+> +		gpio = <&pmm8540g_gpios 5 GPIO_ACTIVE_HIGH>;
+> +		pinctrl-0 = <&usb4_en>;
+> +		pinctrl-names = "default";
+> +		enable-active-high;
+> +		regulator-always-on;
+> +	};
+> +
+> +	regulator-usb5-vbus {
+> +		compatible = "regulator-fixed";
+> +		regulator-name = "USB5_VBUS";
+> +		gpio = <&pmm8540g_gpios 9 GPIO_ACTIVE_HIGH>;
+> +		pinctrl-0 = <&usb5_en>;
+> +		pinctrl-names = "default";
+> +		enable-active-high;
+> +		regulator-always-on;
 
-This change doesn't apply on top of either v6.8-rc1 or linux-next, could you rebase on v6.8-rc1 ?
+Why all these regulators are always on? If USB controller does not probe
+for any reason, why keeping them enabled? These must not be always-on,
+but instead used by connector as VBUS supply (or by whatever you have
+there for USB).
 
-Thanks,
-Neil
-
->   arch/arm64/boot/dts/amlogic/Makefile                       |   8 +
->   arch/arm64/boot/dts/amlogic/meson-g12a-fbx8am-brcm.dtso    |  35 +++
->   arch/arm64/boot/dts/amlogic/meson-g12a-fbx8am-realtek.dtso |  25 ++
->   arch/arm64/boot/dts/amlogic/meson-g12a-fbx8am.dts          | 462 +++++++++++++++++++++++++++++++++
->   6 files changed, 533 insertions(+)
->   create mode 100644 arch/arm64/boot/dts/amlogic/meson-g12a-fbx8am-brcm.dtso
->   create mode 100644 arch/arm64/boot/dts/amlogic/meson-g12a-fbx8am-realtek.dtso
->   create mode 100644 arch/arm64/boot/dts/amlogic/meson-g12a-fbx8am.dts
-> 
+Best regards,
+Krzysztof
 
 
