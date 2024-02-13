@@ -1,88 +1,112 @@
-Return-Path: <devicetree+bounces-41314-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-41315-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4688C85320B
-	for <lists+devicetree@lfdr.de>; Tue, 13 Feb 2024 14:35:31 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 99A9B85320F
+	for <lists+devicetree@lfdr.de>; Tue, 13 Feb 2024 14:36:51 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id EE90F1F23741
-	for <lists+devicetree@lfdr.de>; Tue, 13 Feb 2024 13:35:30 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id D625C1C2196A
+	for <lists+devicetree@lfdr.de>; Tue, 13 Feb 2024 13:36:50 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3EA3E55E7F;
-	Tue, 13 Feb 2024 13:35:18 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2A0FB56449;
+	Tue, 13 Feb 2024 13:36:46 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="h8kUuA8D"
+	dkim=pass (2048-bit key) header.d=atomide.com header.i=@atomide.com header.b="k5WiWRy0"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from mail5.25mail.st (mail5.25mail.st [74.50.62.9])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1159B55E72;
-	Tue, 13 Feb 2024 13:35:17 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6921555E70;
+	Tue, 13 Feb 2024 13:36:44 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=74.50.62.9
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1707831318; cv=none; b=d27zEm8di3JfeC6BC9kRa1/JfoX1mQtt8ELrg6kM7YXRqSmz+TxyESze+8cErmkRJxSUIY3MglxGAr+C7JjcT1zQgjs35vQUpB9seTFlRt+4GykMJdY1Cx8Dbe3Z/T71CU5i6S3E8Fqg8yVpfM2IQPk+DrWmZCkZlC/btWmvOEs=
+	t=1707831406; cv=none; b=lvzUmsCSakQPcJ8Kfx0JVgUSLhBn4Wa2H4aUuLWp0WMm2FI5pUiTKLSOZhIl89v0UfqYIzGcdj/movSq+/I35Zn3a44T+wGgmPO9NDOvTY2lRAKsB4IEo9A69krsoUMKciF4jecRZaSthFXqVC9z0VKeKESrgN9bLse3TJm3XlE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1707831318; c=relaxed/simple;
-	bh=hWYB7hzE02nmcZir4gyGszu+ssGzykhABiMcXYZhWc4=;
+	s=arc-20240116; t=1707831406; c=relaxed/simple;
+	bh=mjTZ1TQrSFe8LDnKFWgz0FauMtLusLC+oCe1Q0r3aw8=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=Nsd/b2je9nM8dr1XW08NV5C4hogmSaEEoXG1uHnkiel/S2LR2RxVd/lH5rtSyJsjecd+5BqMkIFANcsqwxzM3IbjGd9CUIw9djQI63hVWoiyZu6nFH2h6ebzejOes1TyTzLQJpOw5IfsQnf2Au8GxmXT9ojKBXAx16/zLpv6Ez0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=h8kUuA8D; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 5B9E5C433C7;
-	Tue, 13 Feb 2024 13:35:17 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1707831317;
-	bh=hWYB7hzE02nmcZir4gyGszu+ssGzykhABiMcXYZhWc4=;
+	 Content-Type:Content-Disposition:In-Reply-To; b=uK3iSvwvkXTUglsA4/ml3g/8RUFWsVKxNy9T6q+URTBSwwptIhwNXkv+VXxvSngjXgNx5RxaYox5dgMJlqB6gOibrK03RHgKOfcDxL+jy1ZZM6V1p33UqNJl8HDEOobnHLLLAxz/WiigUDmf2xdU2tMRqtaFn3wPBnVHTEvXTxQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=atomide.com; spf=fail smtp.mailfrom=atomide.com; dkim=pass (2048-bit key) header.d=atomide.com header.i=@atomide.com header.b=k5WiWRy0; arc=none smtp.client-ip=74.50.62.9
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=atomide.com
+Authentication-Results: smtp.subspace.kernel.org; spf=fail smtp.mailfrom=atomide.com
+Received: from localhost (91-158-86-216.elisa-laajakaista.fi [91.158.86.216])
+	by mail5.25mail.st (Postfix) with ESMTPSA id 95EF4604A1;
+	Tue, 13 Feb 2024 13:36:24 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple; d=atomide.com;
+	s=25mailst; t=1707831403;
+	bh=mjTZ1TQrSFe8LDnKFWgz0FauMtLusLC+oCe1Q0r3aw8=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=h8kUuA8DVRrTOU30krCZjESSXRmrvf8X3glSUNjwzAmH3Mlp+o50Kutkc3E+xXYAQ
-	 Jn359JgRelrX8ncdBaRxUOEN7L8i0KkgEHFLWhhszwwEFIfE51haAi8WL5gJjKdqeX
-	 AtcJSQIabuPyLnn2/TZIMZUmPaxrCOuAOaaRUbWJQ5FrmNbEdijdVaJ8gcdyVc6179
-	 yIgUHdpXo5qGq9x4TPW8rGZ7S9N1FPW889Wo7ebQPSH873yGII2goqvufDv40rOtJD
-	 03Wm36B+MqXlIhoIACQgHajYz8Y9ikpevYcf2e7ywr+mEP5FIIcBeVzoi8elc4EEGJ
-	 qILZr4nkCg34A==
-Date: Tue, 13 Feb 2024 07:35:15 -0600
-From: Rob Herring <robh@kernel.org>
-To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Cc: Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	b=k5WiWRy0R3Rmurel7+6LyuchnxN5J1AmcbxoO41Fz1XjABun9aX4AMuiEIqRZBAkY
+	 8hLurdeLOdnkHIWWFJU/e6VHi32JWD72uPRycUKo2bAUyy1DJ1lKMGNT3iYcmOXltJ
+	 rAASaWjDZEHdMidSPIwTyBYxSqjFZFZ0Eie5kV9jIrnWXmJlXzgrXxpRHiHIK1BBzn
+	 4fJa3Qp7iKk4P0w7U51f7R/R5c1nolRbRkbcWRD5HF1y5GrgadzEuz6ZNNPaiQCxsf
+	 4Pl5/7UcAgFH3DzDu55fY4HV/2N2xizKXvL0DdHx9Wklf7VOfBLQhnlOs8HyiPLQQC
+	 pGVpB5xvsORxQ==
+Date: Tue, 13 Feb 2024 15:36:22 +0200
+From: Tony Lindgren <tony@atomide.com>
+To: Adam Ford <aford173@gmail.com>
+Cc: linux-omap@vger.kernel.org, aford@beaconembedded.com,
+	=?utf-8?Q?Beno=C3=AEt?= Cousson <bcousson@baylibre.com>,
+	Rob Herring <robh@kernel.org>,
 	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	linux-arm-msm@vger.kernel.org, Conor Dooley <conor+dt@kernel.org>,
-	Bjorn Andersson <andersson@kernel.org>,
-	Amol Maheshwari <amahesh@qti.qualcomm.com>,
-	Konrad Dybcio <konrad.dybcio@linaro.org>
-Subject: Re: [PATCH v2] dt-bindings: misc: qcom,fastrpc: Compute callbacks
- can be DMA coherent
-Message-ID: <170783131383.1076615.17145419971543353598.robh@kernel.org>
-References: <20240212110827.59302-1-krzysztof.kozlowski@linaro.org>
+	Conor Dooley <conor+dt@kernel.org>, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org
+Subject: Re: [PATCH] arm: dts: omap3: Migrate hsmmc driver to sdhci driver
+Message-ID: <20240213133622.GJ52537@atomide.com>
+References: <20240213124146.202391-1-aford173@gmail.com>
+ <20240213125618.GG52537@atomide.com>
+ <20240213130208.GI52537@atomide.com>
+ <CAHCN7xLmTEk0439XTuRPG7SSdH=4YiMTmrSXmfTkpC2bo_kNGw@mail.gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <20240212110827.59302-1-krzysztof.kozlowski@linaro.org>
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <CAHCN7xLmTEk0439XTuRPG7SSdH=4YiMTmrSXmfTkpC2bo_kNGw@mail.gmail.com>
 
+* Adam Ford <aford173@gmail.com> [240213 13:29]:
+> On Tue, Feb 13, 2024 at 7:02 AM Tony Lindgren <tony@atomide.com> wrote:
+> >
+> > * Tony Lindgren <tony@atomide.com> [240213 12:56]:
+> > > * Adam Ford <aford173@gmail.com> [240213 12:41]:
+> > > > The sdhci driver has been around for several years, and it supports
+> > > > the OMAP3 family.  Instead of using the older driver, let's finally
+> > > > migrate to the newer one.
+> > >
+> > > I think we also should do these to avoid incomplete conversion:
+> > >
+> > > - ti,dual-volt property can be dropped
+> > >
+> > > - ti,non-removable should become non-removable
+> 
+> I'll do a more comprehensive search for these flags.  When I did my
+> testing on the AM3517, I didn't notice these, but I see now that
+> others might.  I'll do a multi-patch series to first address the
+> multi-block, then  omap3-ldp.dts, then migrate the omap3.dtsi to the
+> new driver while dropping the flags, and lastly update the individual
+> boards accordingly.  I just have one question below.
 
-On Mon, 12 Feb 2024 12:08:27 +0100, Krzysztof Kozlowski wrote:
-> Apparently on Qualcomm SM8550 and SM8650 the FastRPC compute callbacks
-> are DMA coherent:
-> 
->   sm8650-qrd.dtb: fastrpc: compute-cb@2: 'dma-coherent' does not match any of the regexes: 'pinctrl-[0-9]+'
-> 
-> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-> 
-> ---
-> 
-> Changes in v2:
-> 1. Add missing subject prefix.
-> ---
->  Documentation/devicetree/bindings/misc/qcom,fastrpc.yaml | 2 ++
->  1 file changed, 2 insertions(+)
-> 
+OK sounds good to me :)
 
-Applied, thanks!
+> > > - ti,omap3-pre-es3-hsmmc probably should not be needed with sdhci
+> >
+> > Hmm actually we may need to set SDHCI_QUIRK_NO_MULTIBLOCK for
+> > compatible ti,omap3-pre-es3-hsmmc.
+> 
+> Should I update the driver and binding to add  ti,omap3-pre-es3-sdhci
+> to set that flag, or should we create a boolean (maybe
+> 'ti,sdhci-no-multiblock') to the device tree options for that driver?
 
+Probably best to set up some sdhci generic property for it that then
+sets SDHCI_QUIRK_NO_MULTIBLOCK.
+
+Regards,
+
+Tony
 
