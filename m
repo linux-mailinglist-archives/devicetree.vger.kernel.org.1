@@ -1,124 +1,92 @@
-Return-Path: <devicetree+bounces-41306-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-41307-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id E5C3E853171
-	for <lists+devicetree@lfdr.de>; Tue, 13 Feb 2024 14:10:47 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 79B71853182
+	for <lists+devicetree@lfdr.de>; Tue, 13 Feb 2024 14:14:27 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 251391C26E65
-	for <lists+devicetree@lfdr.de>; Tue, 13 Feb 2024 13:10:47 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id ACDB41C22A11
+	for <lists+devicetree@lfdr.de>; Tue, 13 Feb 2024 13:14:26 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 279F85381A;
-	Tue, 13 Feb 2024 13:10:43 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2519855776;
+	Tue, 13 Feb 2024 13:14:08 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b="uKlKkjZm"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="BAMkzeJy"
 X-Original-To: devicetree@vger.kernel.org
-Received: from vps0.lunn.ch (vps0.lunn.ch [156.67.10.101])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 591F253813;
-	Tue, 13 Feb 2024 13:10:41 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=156.67.10.101
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E752455769;
+	Tue, 13 Feb 2024 13:14:07 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1707829843; cv=none; b=UkS2jeXmTPxIuNmMUHx4ViU0cCrWS6i+GmOFtiAEtmzL1QbNrSbUzKKl/opGfdT+gW2E5Ln9rb7rglMKOG7EMaJgFLay7P6jpDrYgz8/tNHwd9NgJEe3eNZLd2s/rvNyxcApGrgvp07EjryHbl0jim3stgihSbFuhbHkfrJcYXY=
+	t=1707830048; cv=none; b=Q2Y9rQjg891Tz1Zl9olfhbn79NbDUInEsDI6a5czK0FYGPSlpF6YYuBvubPwqAuDhvAsEiFRHKhsSiOKfVUfM8TGxVCKLBhpl+qbhTM1yikIK7l23+mGMcYXQy3gfOJvpkShfa7GMvbj1RQnQbDIGo6ovIu5VP27qS9+RWasMWY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1707829843; c=relaxed/simple;
-	bh=ErfgDXhiipWo6UTfivgIO33Glx/+fm68/fY8BAz0NFQ=;
+	s=arc-20240116; t=1707830048; c=relaxed/simple;
+	bh=+vPxa+J/7hvWU17r1zp1OBnxkzfzLxPHNrKMEj/0zHM=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=OGtZAAIALb0WWagDCitn0PIhHaQRRcm7QtlYaEq1VLDSVG3QKAyPXPh8UX5b/SJbYGCtouUBVdOLu5z+Ra4yxVRemjtBtIJinoH/zjjI1JySuvrUdnhMblaQ9Rhe/p7RYzbS1LKVmri91rGwOD2uN2i8olJ81jeid2UJYb0oRVk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch; spf=pass smtp.mailfrom=lunn.ch; dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b=uKlKkjZm; arc=none smtp.client-ip=156.67.10.101
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=lunn.ch
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
-	s=20171124; h=In-Reply-To:Content-Transfer-Encoding:Content-Disposition:
-	Content-Type:MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:From:
-	Sender:Reply-To:Subject:Date:Message-ID:To:Cc:MIME-Version:Content-Type:
-	Content-Transfer-Encoding:Content-ID:Content-Description:Content-Disposition:
-	In-Reply-To:References; bh=3ig8/hoTtbhy80ogS8uSOp9SFFQKfTzlGTZZfEqeCAg=; b=uK
-	lKkjZmcr48PGWo0prm69OS16580SSdihn5yY4dqMcSNq2Ce1aSuVQ0N57nQ+wI+0MqYsDqqZPE22W
-	+vCLS+cssvlk3cEJoJYb/NXQqDJFZcIbWyk3uzq05eiKvBL90iWuzilfpWHD8uZvMjEgSOdMIvSnv
-	u9X4i2Dr5aIclHw=;
-Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
-	(envelope-from <andrew@lunn.ch>)
-	id 1rZsYc-007g8X-7T; Tue, 13 Feb 2024 14:10:42 +0100
-Date: Tue, 13 Feb 2024 14:10:42 +0100
-From: Andrew Lunn <andrew@lunn.ch>
-To: Michal =?utf-8?B?Vm9rw6HEjQ==?= <michal.vokac@ysoft.com>
-Cc: Shawn Guo <shawnguo@kernel.org>, Fabio Estevam <festevam@gmail.com>,
-	Rob Herring <robh+dt@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Sascha Hauer <s.hauer@pengutronix.de>,
-	Pengutronix Kernel Team <kernel@pengutronix.de>,
-	NXP Linux Team <linux-imx@nxp.com>, devicetree@vger.kernel.org,
+	 Content-Type:Content-Disposition:In-Reply-To; b=NeXfIlCS7QOucrDNNoJNLSOuZ2NGNKcJxComBqtapZDbHP8yDeSg8jc6dHo7ovPZrT3u7FFnL7WItqje0AUw4uiYmNT1ujiu2/PBJNCRBjKuJass6SdlzGkOsWUkVs82zefmSun+zBEfnPuCvihx+FINryv14au8/6ZrZX67rt0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=BAMkzeJy; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 7880AC433C7;
+	Tue, 13 Feb 2024 13:14:07 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1707830047;
+	bh=+vPxa+J/7hvWU17r1zp1OBnxkzfzLxPHNrKMEj/0zHM=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=BAMkzeJy/N+tXl6fJq0i5v/9/D7xKPiPfkk8frxKtzxqgTm6cNqAPXlx5mpeMynZm
+	 O9LaDS26HkHo1o+t2sBfTVm+PnNvnkWI50/XnL1Kg63X0Xq1zjET1euoaLzUHi+Cdz
+	 eIVwTGN4SZig9BQKzob5vpyCYpRCRf2WFQQBmfXsHtWDZUTTiQmeKK4vrjq41z+NNt
+	 1U3GluvfX5JtfgQ4lc87G1cxIkquX+8eG3Yl0RRwdSwZJkl99IdksbSsYM76WTfCbQ
+	 JLw9i612XyMWFhObBP4mCagDCE8XRZCOd2unYxJ+ThKA7CRPiaLdTpL/LPediFjNRp
+	 enjhVdi+75UnQ==
+Date: Tue, 13 Feb 2024 07:14:05 -0600
+From: Rob Herring <robh@kernel.org>
+To: Tudor Ambarus <tudor.ambarus@linaro.org>
+Cc: broonie@kernel.org, andi.shyti@kernel.org,
+	krzysztof.kozlowski@linaro.org, semen.protsenko@linaro.org,
+	conor+dt@kernel.org, alim.akhtar@samsung.com,
+	linux-spi@vger.kernel.org, linux-samsung-soc@vger.kernel.org,
 	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-	Jonathan McDowell <noodles@earth.li>
-Subject: Re: [PATCH 1/2] ARM: dts: imx6dl-yapp4: Fix the QCA switch register
- address
-Message-ID: <e00ed8cb-f73d-48a6-9999-f5acd5a202a0@lunn.ch>
-References: <1707751422-31517-1-git-send-email-michal.vokac@ysoft.com>
- <c5dad8e7-c486-4dd9-bfb5-bdfa2ddc18b3@lunn.ch>
- <db282aa5-2db3-49b9-a7dd-86e94226aa7b@ysoft.com>
+	andre.draszik@linaro.org, peter.griffin@linaro.org,
+	kernel-team@android.com, willmcvicker@google.com,
+	devicetree@vger.kernel.org, arnd@arndb.de
+Subject: Re: [PATCH v2 01/12] spi: dt-bindings: introduce FIFO depth
+ properties
+Message-ID: <20240213131405.GA1047438-robh@kernel.org>
+References: <20240212140331.915498-1-tudor.ambarus@linaro.org>
+ <20240212140331.915498-2-tudor.ambarus@linaro.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <db282aa5-2db3-49b9-a7dd-86e94226aa7b@ysoft.com>
+In-Reply-To: <20240212140331.915498-2-tudor.ambarus@linaro.org>
 
-On Tue, Feb 13, 2024 at 01:20:44PM +0100, Michal Vokáč wrote:
-> On 12. 02. 24 17:08, Andrew Lunn wrote:
-> > On Mon, Feb 12, 2024 at 04:23:41PM +0100, Michal Vokáč wrote:
-> > > The switch address in the node name is in hex while the address in the reg
-> > > property is decimal which is wrong. Fix that and write the reg address
-> > > as a hexadecimal number.
-> > 
-> > This feels the wrong way around. The reg value is used by the kernel,
-> > where as the node name is not. If the reg value was wrong, the switch
-> > would not be found. If this file was tested, why did somebody not
-> > notice the switch was missing?
-> > 
-> > Do you have the hardware? Can you confirm is really does not work
-> > without this patch? Was 15b43e497ffd never actually tested?
-> Yes, I have bunch of these boards all around my desk - we manufacture
-> them. I am pretty sure I tested all the patches I have ever sent to
-> the mailing list regarding these boards.
+On Mon, Feb 12, 2024 at 02:03:20PM +0000, Tudor Ambarus wrote:
+> There are SPI IPs that can be configured by the integrator with a
+> specific FIFO depth depending on the system's capabilities. For example,
+> the samsung USI SPI IP can be configured by the integrator with a TX/RX
+> FIFO from 8 byte to 256 bytes.
 > 
-> The fact is that the switch actually works regardless of the reg value.
-> It worked prior to the 15b43e497ffd commit with address 0, it worked
-> later on with the reg value 10 and it works now with reg value 0x10.
+> Introduce the ``fifo-depth`` property for such instances of IPs where the
+> same FIFO depth is used for both RX and TX. Introduce ``rx-fifo-depth``
+> and ``tx-fifo-depth`` properties for cases where the RX FIFO depth is
+> different from the TX FIFO depth.
+> 
+> Make the dedicated RX/TX properties dependent on each other and mutual
+> exclusive with the other.
+> 
+> Signed-off-by: Tudor Ambarus <tudor.ambarus@linaro.org>
+> ---
+>  .../bindings/spi/spi-controller.yaml          | 27 +++++++++++++++++++
+>  1 file changed, 27 insertions(+)
 
-Ah, so that is the missing piece of information from the commit
-message. That the reg value does not actually matter. Hence it is safe
-to change it.
+With the indentation fixed,
 
-Please reword the commit message.
-
-> I admit that my understanding of the MDIO bus and addressing of
-> the connected external/internal devices is pretty limited. I have no
-> answer to why it works like that but as you brought up your questions
-> I would actually like to know as well.
-
-My guess is, the switch assumes it has full access to all the
-addresses on the bus. It probably uses a subset, but that subset is
-hard coded. But the MDIO DT binding requires a valid reg value, so
-something has to be used.
-
-There are some devices which use a single address on the bus. The
-mv88e6xxx can be strapped into such a mode, so you can have multiple
-switches on the bus. The reg value is then used. But you can also
-strap it so it takes over the whole bus, and uses #num_ports + 3
-addresses on the bus, and those addresses are hard coded in the
-silicon, so the reg value is ignored.
-
-    Andrew
-
----
-pw-bot: cr
+Reviewed-by: Rob Herring <robh@kernel.org>
 
