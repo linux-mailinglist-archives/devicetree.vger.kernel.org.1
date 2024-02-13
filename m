@@ -1,128 +1,147 @@
-Return-Path: <devicetree+bounces-41456-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-41457-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 02236853CFE
-	for <lists+devicetree@lfdr.de>; Tue, 13 Feb 2024 22:23:38 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 66E3E853D1A
+	for <lists+devicetree@lfdr.de>; Tue, 13 Feb 2024 22:25:56 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 961951F26CCF
-	for <lists+devicetree@lfdr.de>; Tue, 13 Feb 2024 21:23:37 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id E395AB29268
+	for <lists+devicetree@lfdr.de>; Tue, 13 Feb 2024 21:25:53 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A2E2E62156;
-	Tue, 13 Feb 2024 21:09:53 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 58EE462A0D;
+	Tue, 13 Feb 2024 21:21:37 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=chromium.org header.i=@chromium.org header.b="MDMpb4pm"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="ItoZzt0U"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lf1-f49.google.com (mail-lf1-f49.google.com [209.85.167.49])
+Received: from mail-lf1-f41.google.com (mail-lf1-f41.google.com [209.85.167.41])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C749F62142
-	for <devicetree@vger.kernel.org>; Tue, 13 Feb 2024 21:09:51 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.49
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7E76362A02;
+	Tue, 13 Feb 2024 21:21:35 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.41
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1707858593; cv=none; b=uVRJXGlcL1jfnUcZX1DmD6dYk29oz7pDV2uGw1s97o99M/zAc3pNppupEhRK4tOtvMFd/GuMsTBgibKQ8W5pDVYyMvPU4vqkOZbJKUC1CVBWPW2Cd0Df1U2MWaDy4gak/VoJuKgBWlEau/J0FrMkTXGL3opldLcpgl7M2AbyMX4=
+	t=1707859297; cv=none; b=S2RdPVTj0rHyCPPOCkYwSUvhym6QFNEAnLfgV8IUJFGM+4RzrFHtalgqf9a0N24z9C+22BNyDWgVebovZr+u63Dwbapa+SIYvSClCiQFwK39h25AB1sXpgWM7BQGfjCmwgr6Kr9APz/9zB5qJ8KTEkxLCEozLWow1ARnUCRBdP8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1707858593; c=relaxed/simple;
-	bh=yE563jYemyl/vAZ+FK/z0jc0wfNO0ntt3wJwgwq9H40=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=dDIMYVyiVKYAdsuZBP18fv4AHegZ/4rKvpzWZv4clriE12m61F2BANlY0+cDAXl8Qg3wvNthajesidskO7GJ9BKZSGVdAt8tdHcMtdqVwESWmKZ7CqOspIp7/m2ZDuZfKph1JHfAY5+aLJnLTn4B3j2uD2T/y+1gNMtKq8LL7OQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=chromium.org; spf=pass smtp.mailfrom=chromium.org; dkim=pass (1024-bit key) header.d=chromium.org header.i=@chromium.org header.b=MDMpb4pm; arc=none smtp.client-ip=209.85.167.49
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=chromium.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=chromium.org
-Received: by mail-lf1-f49.google.com with SMTP id 2adb3069b0e04-51181d8f52fso1803033e87.3
-        for <devicetree@vger.kernel.org>; Tue, 13 Feb 2024 13:09:51 -0800 (PST)
+	s=arc-20240116; t=1707859297; c=relaxed/simple;
+	bh=EgadWgVM7l3Yx0UTg9aDJrNq0U9PSlb6sOu5Wiu2Jlo=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=GOVp9Y1TW1pP6yZIbpTcLL6bdvZ6H1ovGjRCqh7GZdoKg5tCKfkUvvhi4GL4PQDzitNnw9A4Otty2Faf12hMunshe5Dt7kE8qqTMj+H03bIOaf1kQN6aVLvZIIEY2kcq3LdspEni919AwEmmX9Axowm6hRVsa9gqKcnTV++QRxk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=ItoZzt0U; arc=none smtp.client-ip=209.85.167.41
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-lf1-f41.google.com with SMTP id 2adb3069b0e04-5114c05806eso7830126e87.1;
+        Tue, 13 Feb 2024 13:21:35 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google; t=1707858587; x=1708463387; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=odSVkG5Ep60HRCR2A/0o61mTWPkFfp+uEG3bmWlcvqQ=;
-        b=MDMpb4pmYr5kNXB94iWQO9W3RymH8jC8OzQZIHa04lsZZtKnk56Tg+LnvQ7GcvyuLb
-         Gtuep7G0JleVYgKgM2Dyi+izFPQ9etLhWLMdy/Vh2UiCLeruHwa/ysy4vmPS55eCNFsW
-         nEE6328pdD0OtCGJn6aSXDinxyeW1aNFjfTck=
+        d=gmail.com; s=20230601; t=1707859293; x=1708464093; darn=vger.kernel.org;
+        h=in-reply-to:content-transfer-encoding:content-disposition
+         :mime-version:references:mail-followup-to:message-id:subject:cc:to
+         :from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=uunHV2kuzJlVZf98Idg9yHivF9Hc4C9Du40eWv37yD8=;
+        b=ItoZzt0URO0JwfezS69v6xObWINKMEcFiUosChdhPzEpKMN7LI99Po42hI/VaBzQPp
+         0PeiFG7fGKcvzGgvqhi9YLebw1uH1tuMYtU/Yi38SNFfDoGeHlTOqM43TwlvdKAzSr2B
+         vpJ0Kc8S2OitvatgsLggeGHftB//E+Z1Z/0MOzf5ITmrbnqb1urgckYcfc12ifxW64k8
+         f77q4U8l2fpWbE/6NQ7Sci5yLAT/eq4TOdv50zfTzqCpl2561/MUlwEVSqvB5rSpM1BD
+         3SsuHWU/mLKV1e8VCZczOLUjxQO+MLYg4B1qESlhrMqXR2J+CRkhUDl29CI0+8ih4kD2
+         6dzg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1707858587; x=1708463387;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=odSVkG5Ep60HRCR2A/0o61mTWPkFfp+uEG3bmWlcvqQ=;
-        b=ubrEpBgGrUtHRaJ+ksZdJ6VYnD/dTLgG2hCooYcd351Urq6JNynJrxlsrDl2b4Xrge
-         SlDrt8UBC63N+VQppMINi3JcJycyVwTMDA2xmLtZfUGuQzoWBRinPAEfL3ZYXkUybg3E
-         vboQuVNTU+YETXWvV9vWrpsLpbRjgPi78P30t8f6Rvi1WzZMb1ww62DU1j0GA0GcMfEk
-         lotCWBV5+MNZzJtTPKs6JvWFftQrEEZxj+M9GBlJhsUsQbUjJQegIE+bzFebOPKgOAjY
-         T2g/5X5YuykP7YV49RUkuWb9R8VGIKXc9v5apchyEiqwhnvEM+11c4wRWO06FNA5hRLe
-         e3Rg==
-X-Forwarded-Encrypted: i=1; AJvYcCWB4sgL0B2vUEuoSmK3YhwLiCbs4spfKIguEzhrRBCAMLhrivR8JNf20RrNATVxPKY963iAD4QinGzSloFhn/3fv/MUFYsd6LwW4Q==
-X-Gm-Message-State: AOJu0Yz+Uol4YUeHMrDiWpG5LApy7VUzTofXfyna2YRom3PbQZEmTSaQ
-	Yeqt9Ot+DdXj3+hhDnZH02b/DDkBcAeMgwC1arwYT6h6qrAIgjhXOMPa+afDZ025qv3kISUbj0D
-	p6g==
-X-Google-Smtp-Source: AGHT+IE/0CurNLogMjYpiIiLUbBX8RbBsVscJHE+j8y6rYa5LGtjo4n9gEXm9L4m+NC7lqb2u3kzVQ==
-X-Received: by 2002:ac2:51aa:0:b0:511:9008:7266 with SMTP id f10-20020ac251aa000000b0051190087266mr451553lfk.6.1707858587275;
-        Tue, 13 Feb 2024 13:09:47 -0800 (PST)
-X-Forwarded-Encrypted: i=1; AJvYcCUmVbwtg5+G9c/+m5j6cGDkYVdPv/dVZzPCB1FlNrc6hkRPf7utloRqvGIMpBaoDqLnHUHK7FFYsgi4qlyoY7k8xvbHEPn3+dlkLQ==
-Received: from mail-wm1-f41.google.com (mail-wm1-f41.google.com. [209.85.128.41])
-        by smtp.gmail.com with ESMTPSA id tz3-20020a170907c78300b00a3d28aa375bsm326070ejc.151.2024.02.13.13.09.46
-        for <devicetree@vger.kernel.org>
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 13 Feb 2024 13:09:47 -0800 (PST)
-Received: by mail-wm1-f41.google.com with SMTP id 5b1f17b1804b1-410cf70a057so88525e9.0
-        for <devicetree@vger.kernel.org>; Tue, 13 Feb 2024 13:09:46 -0800 (PST)
-X-Forwarded-Encrypted: i=1; AJvYcCUhWsRmBeLhyVPrqyRtMGu2faW19nGBssADTCDgGHJ9JKhaAu/C+hQ6NC81DEZo5V0T+NbJuOt1EGzmpgBW6kEh6L8deVMXw7mK/A==
-X-Received: by 2002:a05:600c:1d93:b0:411:cdf8:f3d1 with SMTP id
- p19-20020a05600c1d9300b00411cdf8f3d1mr85206wms.0.1707858585791; Tue, 13 Feb
- 2024 13:09:45 -0800 (PST)
+        d=1e100.net; s=20230601; t=1707859293; x=1708464093;
+        h=in-reply-to:content-transfer-encoding:content-disposition
+         :mime-version:references:mail-followup-to:message-id:subject:cc:to
+         :from:date:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=uunHV2kuzJlVZf98Idg9yHivF9Hc4C9Du40eWv37yD8=;
+        b=ONRxlYY/Nn6S09zwbLAp0yP90mpIl1jeSSvI25UNC0t7WizW2HSbNhhl5tch4zmRRB
+         4W/1x13t7zwaSgGrWJ4y2rA5kvdkK4z6Bzbh9nipd0EVaj2l91b+yda5XEM3jqUx5zMq
+         t1Nu5g5xkO0ufQdDzDGCRqJoxJ/IT8Pz1eY/EP3WQjz9Of0MD4z2yICeGWxaFYGQhBQj
+         t4u8vrd9NxaGqdQ9GE4TZsToA6zST/LAMAMIiu6O0RGpknVwLVDMUZuMiFAi/v3dyQlx
+         euzye9buAAfx2SJNViavI76KPfV3sqxRSNl1NoDtvfoeMsWvmODzmL7bggkj5YWhfxhH
+         /HJQ==
+X-Forwarded-Encrypted: i=1; AJvYcCUeaqtWlyIqKcSvWiMndsHFNmoI16dUAWefnQD78eeIaAWFBITbud3/xNnhziZavNwj+Y9S4kAKwNXB0EBuem94M7HQgLL+2zcMjPDpcr8Vlsr4aBS3cmB3RpSy3sI8bNMhtIRVBcW7BwgJStD2BHNmWpHUnRTR1/MaswRy6e8IHMeBmw==
+X-Gm-Message-State: AOJu0Yw0V9V9OHsI/xOtJrQnd1nERSMCTqMtchkPBui0GxbTL7APsM2q
+	D+n6soK8TVqiAPxIMX+zonOWIO6wifle8FnNCfQKmDWjBnp5I5nw
+X-Google-Smtp-Source: AGHT+IHJfwf2LvJ0GHILLonTQ9VnmO/eDPOFrKz+HE4cvtW24vVZRyW15A2iSbA+lVB/lNTt50XgrA==
+X-Received: by 2002:a05:6512:480c:b0:511:6ec8:9b30 with SMTP id eo12-20020a056512480c00b005116ec89b30mr460285lfb.50.1707859293182;
+        Tue, 13 Feb 2024 13:21:33 -0800 (PST)
+X-Forwarded-Encrypted: i=1; AJvYcCVg6HUzOvBTkF/Sfmc8dtfzLhMmrYqG9BawULxz5QZc1jlF3NQvoDR/nLjqY0eXaMMy0xxZQH4WT4sX55Ck7YeUaNX6c2vNq8fu45TUr95L8xy+OI+I59ephH/pUCG6jSiJdGmB4JAWuCMwOg1CS/LMpSozyXMQUF8igzLQQ7Qf+1aCvB9X0eaaG2kEeYXfAZ3B5Phx5M812q9RDLxBbu9TV3TT0aeqPXv+TQ9yufkasliBl1ZYhh6A//0RIlHcnTNhzJZeRrH5kDE71uWE8RCavmHyQbYDXeGNRcrPhqGSCrbyeriMd770T4na6gh0LLBT7pxv9MPw/uY17nCErcJP01evngAHyQallWBM7L81jblyJTrvbuyb
+Received: from localhost ([2a05:3580:f312:6c01:1b8f:2a1b:d18:1951])
+        by smtp.gmail.com with ESMTPSA id g25-20020ac25399000000b0051186594564sm1181615lfh.174.2024.02.13.13.21.31
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 13 Feb 2024 13:21:32 -0800 (PST)
+Date: Wed, 14 Feb 2024 00:21:31 +0300
+From: Andrey Skvortsov <andrej.skvortzov@gmail.com>
+To: =?utf-8?Q?Ond=C5=99ej?= Jirman <megi@xff.cz>
+Cc: Jonathan Cameron <jic23@kernel.org>,
+	Lars-Peter Clausen <lars@metafoo.de>,
+	Rob Herring <robh+dt@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>, Icenowy Zheng <icenowy@aosc.io>,
+	Dalton Durst <dalton@ubports.com>, Shoji Keita <awaittrot@shjk.jp>,
+	linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v2 3/4] iio: magnetometer: add a driver for Voltafield
+ AF8133J magnetometer
+Message-ID: <ZcvdW3SvgIuhJtKX@skv.local>
+Mail-Followup-To: Andrey Skvortsov <andrej.skvortzov@gmail.com>,
+	=?utf-8?Q?Ond=C5=99ej?= Jirman <megi@xff.cz>,
+	Jonathan Cameron <jic23@kernel.org>,
+	Lars-Peter Clausen <lars@metafoo.de>,
+	Rob Herring <robh+dt@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>, Icenowy Zheng <icenowy@aosc.io>,
+	Dalton Durst <dalton@ubports.com>, Shoji Keita <awaittrot@shjk.jp>,
+	linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org
+References: <20240212175410.3101973-1-megi@xff.cz>
+ <20240212175410.3101973-4-megi@xff.cz>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20240213145124.342514-1-krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20240213145124.342514-1-krzysztof.kozlowski@linaro.org>
-From: Doug Anderson <dianders@chromium.org>
-Date: Tue, 13 Feb 2024 13:09:30 -0800
-X-Gmail-Original-Message-ID: <CAD=FV=V+MNxSpNLCjrHb553QrK4NjZHNJZymQ9+Q7qB2qjOfEw@mail.gmail.com>
-Message-ID: <CAD=FV=V+MNxSpNLCjrHb553QrK4NjZHNJZymQ9+Q7qB2qjOfEw@mail.gmail.com>
-Subject: Re: [PATCH] arm64: dts: qcom: replace underscores in node names
-To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Cc: Bjorn Andersson <andersson@kernel.org>, Konrad Dybcio <konrad.dybcio@linaro.org>, 
-	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, 
-	Conor Dooley <conor+dt@kernel.org>, cros-qcom-dts-watchers@chromium.org, 
-	linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20240212175410.3101973-4-megi@xff.cz>
 
-Hi,
+Hi Ondřej,
 
-On Tue, Feb 13, 2024 at 6:51=E2=80=AFAM Krzysztof Kozlowski
-<krzysztof.kozlowski@linaro.org> wrote:
->
-> Underscores should not be used in node names (dtc with W=3D2 warns about
-> them), so replace them with hyphens.
->
-> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+thank you for submitting the driver.
+
+On 24-02-12 18:53, Ondřej Jirman wrote:
+> From: Icenowy Zheng <icenowy@aosc.io>
+> 
+> AF8133J is a simple I2C-connected magnetometer, without interrupts.
+> 
+> Add a simple IIO driver for it.
+> 
+> Co-developed-by: Icenowy Zheng <icenowy@aosc.io>
+> Signed-off-by: Icenowy Zheng <icenowy@aosc.io>
+> Signed-off-by: Dalton Durst <dalton@ubports.com>
+> Signed-off-by: Shoji Keita <awaittrot@shjk.jp>
+> Co-developed-by: Ondrej Jirman <megi@xff.cz>
+> Signed-off-by: Ondrej Jirman <megi@xff.cz>
 > ---
->  arch/arm64/boot/dts/qcom/msm8939.dtsi              |  2 +-
->  .../boot/dts/qcom/msm8994-msft-lumia-octagon.dtsi  |  2 +-
->  .../dts/qcom/msm8994-sony-xperia-kitakami.dtsi     |  2 +-
->  arch/arm64/boot/dts/qcom/msm8994.dtsi              |  4 ++--
->  arch/arm64/boot/dts/qcom/msm8996.dtsi              |  4 ++--
->  arch/arm64/boot/dts/qcom/qcm6490-idp.dts           |  2 +-
->  arch/arm64/boot/dts/qcom/qcs6490-rb3gen2.dts       |  2 +-
->  arch/arm64/boot/dts/qcom/sc7180.dtsi               |  2 +-
->  arch/arm64/boot/dts/qcom/sc7280.dtsi               |  2 +-
->  arch/arm64/boot/dts/qcom/sdm845-shift-axolotl.dts  |  2 +-
->  arch/arm64/boot/dts/qcom/sdm845.dtsi               |  4 ++--
->  arch/arm64/boot/dts/qcom/sm6115.dtsi               | 14 +++++++-------
->  arch/arm64/boot/dts/qcom/sm8150.dtsi               | 10 +++++-----
->  arch/arm64/boot/dts/qcom/sm8250.dtsi               |  6 +++---
->  arch/arm64/boot/dts/qcom/sm8350.dtsi               |  4 ++--
->  15 files changed, 31 insertions(+), 31 deletions(-)
+>  drivers/iio/magnetometer/Kconfig   |  12 +
+>  drivers/iio/magnetometer/Makefile  |   1 +
+>  drivers/iio/magnetometer/af8133j.c | 528 +++++++++++++++++++++++++++++
+>  3 files changed, 541 insertions(+)
+>  create mode 100644 drivers/iio/magnetometer/af8133j.c
+> 
+> diff --git a/drivers/iio/magnetometer/Kconfig b/drivers/iio/magnetometer/Kconfig
+> index 38532d840f2a..cd2917d71904 100644
+> --- a/drivers/iio/magnetometer/Kconfig
+> +++ b/drivers/iio/magnetometer/Kconfig
+> @@ -6,6 +6,18 @@
+>  
 
-FWIW, everything here looks reasonable to me. Thanks for the cleanup!
+Reviewed-by: Andrey Skvortsov <andrej.skvortzov@gmail.com>
 
-Reviewed-by: Douglas Anderson <dianders@chromium.org>
+I've successfully tested driver from v2 on 6.8-rc3.
+
+-- 
+Best regards,
+Andrey Skvortsov
 
