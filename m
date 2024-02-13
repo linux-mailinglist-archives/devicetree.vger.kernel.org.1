@@ -1,166 +1,177 @@
-Return-Path: <devicetree+bounces-41352-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-41351-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id C0C788533EC
-	for <lists+devicetree@lfdr.de>; Tue, 13 Feb 2024 16:00:45 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 140D38533E7
+	for <lists+devicetree@lfdr.de>; Tue, 13 Feb 2024 16:00:11 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 4C78C1F2CE2A
-	for <lists+devicetree@lfdr.de>; Tue, 13 Feb 2024 15:00:45 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id BFC1C285C0B
+	for <lists+devicetree@lfdr.de>; Tue, 13 Feb 2024 15:00:09 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 11E035F49A;
-	Tue, 13 Feb 2024 14:58:09 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id F18025EE69;
+	Tue, 13 Feb 2024 14:58:00 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=freebox-fr.20230601.gappssmtp.com header.i=@freebox-fr.20230601.gappssmtp.com header.b="TsO/TnvY"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="axsbd6Ky"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f54.google.com (mail-wm1-f54.google.com [209.85.128.54])
+Received: from mail-ed1-f54.google.com (mail-ed1-f54.google.com [209.85.208.54])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 137DA5F47C
-	for <devicetree@vger.kernel.org>; Tue, 13 Feb 2024 14:58:05 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.54
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2AD505EE62;
+	Tue, 13 Feb 2024 14:57:58 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.54
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1707836289; cv=none; b=qLdvmGkiI89qJQGhayC2VgRidm65Ac07vkrR6U9XDfVpMR80chSRKF+y07Cg94jR05ViFNhY08sFM2T6IV7tYl2l0QIb6U4Q5U1lzNlCvHA3cYSOsif/OLyuCY1IoLToazVpHj3wvThbMzQBHAx+OAG+OJF/pgiJMP2ZX1xce9M=
+	t=1707836280; cv=none; b=HOxMmZ4dHAHa8MqUiX42FhBrDFu87ahuHgEM2OD7nhbZCKWiN7UJTSjKIvOT+fcS348p5eJZLVEppmDNxBoj6BGtEjwRJJ2e6JLHCeWOu6wcMcBQpCDaAp/DUhsE7AVH2o+C0USFHdpSWCz0HL6dkgudX27xNqBEcb2d0LriE3c=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1707836289; c=relaxed/simple;
-	bh=N1JU1hwYOc0ttZcn0Phty74nfapJ1gxUs3qYcBsO0Sc=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=BVF7u2nC5EvnwCmWPlFrl5VtNleIh2dkXMG8wh2HjhPjM7D5jspvAZCkjEFiAlQpRShW9VjG+hFs3ry+Ctnwx3G1LYwzHOoZbsuoIEaVKSEyeQkylQ68YRoMuDp1PNDpVAp/YisZ9cflZp4uZiwXpWHVdgXfP1DXVNA9FO2E6lg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=freebox.fr; spf=pass smtp.mailfrom=freebox.fr; dkim=pass (2048-bit key) header.d=freebox-fr.20230601.gappssmtp.com header.i=@freebox-fr.20230601.gappssmtp.com header.b=TsO/TnvY; arc=none smtp.client-ip=209.85.128.54
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=freebox.fr
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=freebox.fr
-Received: by mail-wm1-f54.google.com with SMTP id 5b1f17b1804b1-4114e0a2978so12570645e9.3
-        for <devicetree@vger.kernel.org>; Tue, 13 Feb 2024 06:58:05 -0800 (PST)
+	s=arc-20240116; t=1707836280; c=relaxed/simple;
+	bh=Beylajy+OD5xwTFO0kWRd7nCaF7rx/fnxJEH3rZBbAE=;
+	h=Message-ID:Subject:From:To:Cc:Date:In-Reply-To:References:
+	 Content-Type:MIME-Version; b=aMF0TIYOUdgb2w3hd/k2Bcizi+TE6SXK3oS/ScmoKfNSZQ7L0XVyNBXYBlpwOnvbfR0fb48UGbmULfjuY9entyanndIz4CR6T2R6O6KAwKZkBHWMXJ/8m3m+4Daa46rgwFJ+2qm2rkTviXhBJvf3ngsVn3SKk5nI+swer5mc+zI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=axsbd6Ky; arc=none smtp.client-ip=209.85.208.54
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-ed1-f54.google.com with SMTP id 4fb4d7f45d1cf-562131bb958so201105a12.2;
+        Tue, 13 Feb 2024 06:57:58 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=freebox-fr.20230601.gappssmtp.com; s=20230601; t=1707836284; x=1708441084; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=LUAbcsBTGnXuZrFl0zL+fom+b/QnzF91JdS1snsJMaU=;
-        b=TsO/TnvYk8sLzy7dGqlXar3F7KogtoJ2GEkXPEmzzLUWAAXWTsNrZJm/nqiiEXVOOz
-         HGt/skgUMXIPiBoNrRD6RvxXGB4IlUfto5KLaQuEtKkHFITSrqv+rSqTwt2kt9GBRjdp
-         qMuGmYzv2RrCgI2udopVVSEjzbyRCrTyLkntNUoqu3jOtwROBHFO/vPJmG+eXzZTJIiG
-         1kzcih/TRJj2gcn60Ac+ZwT1OZ40U3WguIeCdzYV8krrRuQebS+FsQHscqBaHW9JQlEN
-         9ckuQcvwvdP33fIO/n8+WeoyUQM5CTCs/hYYfe40jb+FR3c/pdLu0TkeY74Wru+SFvVv
-         dINg==
+        d=gmail.com; s=20230601; t=1707836277; x=1708441077; darn=vger.kernel.org;
+        h=mime-version:user-agent:content-transfer-encoding:references
+         :in-reply-to:date:cc:to:from:subject:message-id:from:to:cc:subject
+         :date:message-id:reply-to;
+        bh=Hx/0sTmo97XnxiVkWjsDz4DVqW2/rhqvFLAhp3VXV20=;
+        b=axsbd6KyEK/QxePkWDzeP82DJgLqa9oz6YxBcF/hao+ZgoTUncU4PSSH4VVyf9Sp0A
+         Mi1zLHXXPJgAsU3Hwlc0L7dISSuLmrtEN3M0rNTcT6vct4LLmnsR310+ognqxChEbEyM
+         8gbnA3amZLEYmuTUC0IUeF5IMtK4IV/ueL7abKG6QI/WOnWkrXL8sTFct5Y2lc0ZBrNy
+         3I+Jptk8WhKlE4I+BgnI8qiUEDJ9zhQhy0JV4/Xb4ckcpnu92MEMNOoV4sdBLSreifIu
+         ymzhA1pGASzbbCvvDJTPWojU/4kUjMkPj+L2arWL9r4NoWAt3UEH276muDeFkUbyzaSS
+         khtw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1707836284; x=1708441084;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=LUAbcsBTGnXuZrFl0zL+fom+b/QnzF91JdS1snsJMaU=;
-        b=swsMC0vkt81hFV2B2nDtWEByoGfhb0a2AXLJDMEGptTmg5daohCFG3zpgt70kzLMpZ
-         CLjvj8dpt/DV8iZPjzNd/JxM9jfsAo32YEsohIZxL71ZXryPg6ocr4sgTc2LjU57aJiz
-         japl37tkQewjsUfmpQo9QLjDV5bf1FuWsF/hryeTlJWMb29YG48Hdt9VB+gK7Acid5+T
-         730znzexsXTr93q5u+wUQGRrWGcKhCwC5KVIaZ3rXDA6KgmxY66rkhZE0iDUWzajvtWe
-         ddkd9PqvMjysAzaxsPOWi1r/2GuAadoQI6AmgCkI5kPrh2wrDs2lNRo3eYLdMbUt6vac
-         4gjw==
-X-Forwarded-Encrypted: i=1; AJvYcCWcy7/Q+oBZ3+kvNTE61qJtQwiOTh8ARD7c/sCdJGn1wJev3Mbu4fXFDKnruw1+Q2AdBW97n+3ddSUGqSc6cRv2TKfRUhiDC/2hfQ==
-X-Gm-Message-State: AOJu0Yxb+E7UALlZ8K2hxsJjNBJXo99SAYE2eLo9LSE8yQVwkOlYM2XE
-	FSWHaqIkl1ZqI2gHDL7LZEp8WJGuzgdQBYRc69TlIlTHd158JlgXmiAC1c/IJec=
-X-Google-Smtp-Source: AGHT+IGqfRF0yh6VsToHHlqtzgQWSF70JzdGHamH70Hi33pe3KApe0JmU4lCyALR1YdPeCC4MuCzvQ==
-X-Received: by 2002:a05:600c:3552:b0:40f:d422:930d with SMTP id i18-20020a05600c355200b0040fd422930dmr8263822wmq.33.1707836284268;
-        Tue, 13 Feb 2024 06:58:04 -0800 (PST)
-X-Forwarded-Encrypted: i=1; AJvYcCXHCRGy++srjBDjMNAaQ800GvAvokm72yRTgdzlb6dzhi5HX7HLv05tgMClb8mblTILP3L7bFauUSHuphWdFjoky0Nsz6Lx+uyrSpzo7/4uv2XLprX5CpVBdmP7yZUjsVFete3Q1Yk78VP3+OHIFXt3ALbvspr2UPSYHv7tGUiAuztAvV74jjR32TOZjjVChusmt3SHfrku4jWOQJCCol9V1aY4XMLcjNfk1hCPuxQ434vIGhqfRT8F+B4u0pgTpQP7983WUUegcq9IzoL36+X3DvjL6IaolUvpKEyjM0wiizLuJa6pmOCabDqyNbn7cbPLSYm2dJgflaElFC6OoTB1NniaTdNgvJAmryH42klZCwW1Zga9mUes
-Received: from [192.168.108.81] (freebox.vlq16.iliad.fr. [213.36.7.13])
-        by smtp.gmail.com with ESMTPSA id r11-20020a05600c458b00b00410504b582csm12072435wmo.11.2024.02.13.06.58.03
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 13 Feb 2024 06:58:03 -0800 (PST)
-Message-ID: <c7a88346-8221-4098-8112-a5e2c3eb5e98@freebox.fr>
-Date: Tue, 13 Feb 2024 15:58:03 +0100
+        d=1e100.net; s=20230601; t=1707836277; x=1708441077;
+        h=mime-version:user-agent:content-transfer-encoding:references
+         :in-reply-to:date:cc:to:from:subject:message-id:x-gm-message-state
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=Hx/0sTmo97XnxiVkWjsDz4DVqW2/rhqvFLAhp3VXV20=;
+        b=d4JH23ugE9zOq9dsCSOcA3jcT8afhZKwkp3FioF4b45Yg2Jp1XG0pyKCwH3CpJO4wc
+         1IeGCgsYvwM4mU9bgU3tViVpYggFPcQZSTd6cy4Rk1NRAR/pEmwmHFD7PtFMihO1Nzik
+         HYEYrcq36acCD8bgh+Sxx91GRmwx5hrlGjOwBWJ9kgycrP+6SIEn1/9Ydi622zphWpzq
+         wqg1vA8uas2TlPqdU43JW5azXdGEZY89oQCIWLUun1JxsQlTYB9rZrmXbx+0EWq6wUDV
+         iv/VANq7EQmdb2pYaf4vUlPMcf3Z3UpUDPsao/BNBvreM4qpomgO7QMJXLyOwQJq+nBQ
+         jdNg==
+X-Forwarded-Encrypted: i=1; AJvYcCVygQ+j/Qu3D6noTJbEG6+bgwle3gODbImLMi4va4qSRAUkgWneBDhm5O1fR3zfI3h2df5AUa/qzKniZTRSUhj9nHm1q31laC6yP5SYemAeigFVeEK9iu5FdF6uZ968gLFeYRn5Sfjx2M2PVrNFb+OJLy/pMOW4Ae15KboOYvVIUgU8+rI=
+X-Gm-Message-State: AOJu0Yw+BJklzn3RemBTKtzapxdfpDH4hZ5ll6Mnf6J4sy6RnffyU5Lh
+	60xMrXOncfSvHd/LGLSX/ZcjQoHRUo5T0q167OEI3L4JQ9m0w1vJfG3D759OX94IUo76
+X-Google-Smtp-Source: AGHT+IFQ/tL3dvPNh3W0cUOuqyBlE6gW5LNl+XlyXHBhQJpI07z8Sq1dDKE9jE5kNBCmlfhbs0VpHw==
+X-Received: by 2002:a05:6402:1812:b0:55e:b942:aaab with SMTP id g18-20020a056402181200b0055eb942aaabmr7519608edy.23.1707836276969;
+        Tue, 13 Feb 2024 06:57:56 -0800 (PST)
+X-Forwarded-Encrypted: i=1; AJvYcCWypHjMnO1tuyvO0Jc8gaeeWc89Zuvx2zLZzWB9TDSem3tXpVAThl8CHhQYulq2/2yQCS0Nt8wmITLnzGh4+rkW0TcuFFTipUkXZSYYtlWUBOAe4ThIDtifOrhsakG9Gf4Cku2+3TeIkDN8rVe+UPQgFcmziApfKPiZu2mDmA5dxEv1gwU7AXNaW6dO1PJnEvgusgDxxoN5s7Nb6OrvalNhi6Wu5W+ciCH9JLxI8rJPSgQc63dU0vKBFWH+60OyCFMS/IxHwo2+sZEnjGY6ECzb58cIn9XBTRFWEZS4DWJNiwlymS8GwG7MG6IsHv8+ylVbeEHshOOerpTk8xvbwJ66Yd+BFyQqsEiEMiCcOa6ZWrcVVPRpLL9t8Tg4SWv0tgXgl68xosRYeV39r6thwo8P49L8YYJq/nUtXUWsYarb9wuSydGbtM3vUXIoFC1IeMBCjH8pJkiPcJyjMyd9gGD/+ibYAIWjnUPQ
+Received: from ?IPv6:2003:f6:ef1b:2000:944c:cbc7:1e1c:2c47? (p200300f6ef1b2000944ccbc71e1c2c47.dip0.t-ipconnect.de. [2003:f6:ef1b:2000:944c:cbc7:1e1c:2c47])
+        by smtp.gmail.com with ESMTPSA id cb18-20020a0564020b7200b0055f50417843sm3755120edb.22.2024.02.13.06.57.56
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 13 Feb 2024 06:57:56 -0800 (PST)
+Message-ID: <48a86fa6908a2a7a38a45dc6dbb5574c4a9d7400.camel@gmail.com>
+Subject: Re: [PATCH v2 2/2] of: dynamic: flush devlinks workqueue before
+ destroying the changeset
+From: Nuno =?ISO-8859-1?Q?S=E1?= <noname.nuno@gmail.com>
+To: Rob Herring <robh@kernel.org>, Saravana Kannan <saravanak@google.com>
+Cc: Nuno Sa <nuno.sa@analog.com>, Greg Kroah-Hartman
+ <gregkh@linuxfoundation.org>, "Rafael J. Wysocki" <rafael@kernel.org>,
+ Frank Rowand <frowand.list@gmail.com>, Andy Shevchenko
+ <andriy.shevchenko@linux.intel.com>, Daniel Scally <djrscally@gmail.com>,
+ Heikki Krogerus <heikki.krogerus@linux.intel.com>, Sakari Ailus
+ <sakari.ailus@linux.intel.com>, Len Brown <lenb@kernel.org>, 
+ linux-acpi@vger.kernel.org, devicetree@vger.kernel.org, 
+ linux-kernel@vger.kernel.org
+Date: Tue, 13 Feb 2024 16:01:15 +0100
+In-Reply-To: <20240213145131.GA1180152-robh@kernel.org>
+References: 
+	<20240205-fix-device-links-overlays-v2-0-5344f8c79d57@analog.com>
+	 <20240205-fix-device-links-overlays-v2-2-5344f8c79d57@analog.com>
+	 <aed988a09cb4347ec7ac1b682c4ee53b7d2a840b.camel@gmail.com>
+	 <20240213145131.GA1180152-robh@kernel.org>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+User-Agent: Evolution 3.50.3 
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 4/4] arm64: dts: amlogic: add fbx8am DT overlays
-Content-Language: en-US
-To: Rob Herring <robh@kernel.org>
-Cc: AML <linux-amlogic@lists.infradead.org>, DT <devicetree@vger.kernel.org>,
- Neil Armstrong <neil.armstrong@linaro.org>,
- Kevin Hilman <khilman@baylibre.com>, Jerome Brunet <jbrunet@baylibre.com>,
- Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Conor Dooley <conor+dt@kernel.org>,
- Pierre-Hugues Husson <phhusson@freebox.fr>
-References: <77edaf7e-aeb5-4fc0-8b69-85dcddfd5a58@freebox.fr>
- <5ac4741d-766d-4b6d-95ac-669474d05e6a@freebox.fr>
- <20240213135115.GA1090963-robh@kernel.org>
-From: Marc Gonzalez <mgonzalez@freebox.fr>
-In-Reply-To: <20240213135115.GA1090963-robh@kernel.org>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
 
-On 13/02/2024 14:51, Rob Herring wrote:
+On Tue, 2024-02-13 at 08:51 -0600, Rob Herring wrote:
+> On Mon, Feb 12, 2024 at 01:10:27PM +0100, Nuno S=C3=A1 wrote:
+> > On Mon, 2024-02-05 at 13:09 +0100, Nuno Sa wrote:
+> > > Device links will drop their supplier + consumer refcounts
+> > > asynchronously. That means that the refcount of the of_node attached =
+to
+> > > these devices will also be dropped asynchronously and so we cannot
+> > > guarantee the DT overlay assumption that the of_node refcount must be=
+ 1 in
+> > > __of_changeset_entry_destroy().
+> > >=20
+> > > Given the above, call the new fwnode_links_flush_queue() helper to fl=
+ush
+> > > the devlink workqueue so we can be sure that all links are dropped be=
+fore
+> > > doing the proper checks.
+> > >=20
+> > > Signed-off-by: Nuno Sa <nuno.sa@analog.com>
+> > > ---
+> > > =C2=A0drivers/of/dynamic.c | 8 ++++++++
+> > > =C2=A01 file changed, 8 insertions(+)
+> > >=20
+> > > diff --git a/drivers/of/dynamic.c b/drivers/of/dynamic.c
+> > > index 3bf27052832f..b7153c72c9c9 100644
+> > > --- a/drivers/of/dynamic.c
+> > > +++ b/drivers/of/dynamic.c
+> > > @@ -14,6 +14,7 @@
+> > > =C2=A0#include <linux/slab.h>
+> > > =C2=A0#include <linux/string.h>
+> > > =C2=A0#include <linux/proc_fs.h>
+> > > +#include <linux/fwnode.h>
+> > > =C2=A0
+> > > =C2=A0#include "of_private.h"
+> > > =C2=A0
+> > > @@ -518,6 +519,13 @@ EXPORT_SYMBOL(of_changeset_create_node);
+> > > =C2=A0
+> > > =C2=A0static void __of_changeset_entry_destroy(struct of_changeset_en=
+try *ce)
+> > > =C2=A0{
+> > > +	/*
+> > > +	 * device links drop their device references (and hence their
+> > > of_node
+> > > +	 * references) asynchronously on a dedicated workqueue. Hence we
+> > > need
+> > > +	 * to flush it to make sure everything is done before doing the
+> > > below
+> > > +	 * checks.
+> > > +	 */
+> > > +	fwnode_links_flush_queue();
+> > > =C2=A0	if (ce->action =3D=3D OF_RECONFIG_ATTACH_NODE &&
+> > > =C2=A0	=C2=A0=C2=A0=C2=A0 of_node_check_flag(ce->np, OF_OVERLAY)) {
+> > > =C2=A0		if (kref_read(&ce->np->kobj.kref) > 1) {
+> > >=20
+> >=20
+> > Hi Rob and Frank,
+> >=20
+> > Any way you could take a look at this and see if you're ok with the cha=
+nge
+> > in the
+> > overlay code?=20
+> >=20
+> > On the devlink side , we already got the ok from Rafael.
+>=20
+> Didn't Saravana say he was going to look at this? As of yesterday, he's=
+=20
+> also a DT maintainer so deferring to him.
+>=20
 
-> On Mon, Feb 12, 2024 at 06:53:01PM +0100, Marc Gonzalez wrote:
->
->> From: Pierre-Hugues Husson <phhusson@freebox.fr>
->>
->> Add support for two variants of the fbx8am board.
->>
->> Signed-off-by: Pierre-Hugues Husson <phhusson@freebox.fr>
->> Signed-off-by: Marc Gonzalez <mgonzalez@freebox.fr>
->> ---
->>  arch/arm64/boot/dts/amlogic/Makefile                       |  7 +++++++
->>  arch/arm64/boot/dts/amlogic/meson-g12a-fbx8am-brcm.dtso    | 35 ++++++++++++++++++++++++++++++++++
->>  arch/arm64/boot/dts/amlogic/meson-g12a-fbx8am-realtek.dtso | 25 ++++++++++++++++++++++++
->>  3 files changed, 67 insertions(+)
->>
->> diff --git a/arch/arm64/boot/dts/amlogic/Makefile b/arch/arm64/boot/dts/amlogic/Makefile
->> index e9baa2cf02273..2fd7c7a18126f 100644
->> --- a/arch/arm64/boot/dts/amlogic/Makefile
->> +++ b/arch/arm64/boot/dts/amlogic/Makefile
->> @@ -81,3 +81,10 @@ dtb-$(CONFIG_ARCH_MESON) += meson-sm1-odroid-hc4.dtb
->>  dtb-$(CONFIG_ARCH_MESON) += meson-sm1-sei610.dtb
->>  dtb-$(CONFIG_ARCH_MESON) += meson-sm1-x96-air-gbit.dtb
->>  dtb-$(CONFIG_ARCH_MESON) += meson-sm1-x96-air.dtb
->> +
->> +# Overlays
->> +dtb-$(CONFIG_ARCH_MESON) += meson-g12a-fbx8am-brcm.dtbo
->> +dtb-$(CONFIG_ARCH_MESON) += meson-g12a-fbx8am-realtek.dtbo
->> +
->> +# Enable support for DT overlays
->> +DTC_FLAGS_meson-g12a-fbx8am += -@
-> 
-> Overlays need to be applied to something in the kernel at build time.
-> Applying is done the same way as composing object files for modules.
+Yeah, I did asked him but I guess he never had the time for it... Saravana,
+could you please give some feedback on this? I think the most sensible part=
+ is
+on the devlink side but I assume this is not going to be merged without an =
+ack
+from a DT maintainer...
 
-Hello Rob,
-
-I don't quite understand your remark.
-I copied what other platforms do:
-
-$ git grep DTC_FLAGS_ arch/arm64/boot/dts/
-arch/arm64/boot/dts/amlogic/Makefile:DTC_FLAGS_meson-g12a-fbx8am += -@
-arch/arm64/boot/dts/nvidia/Makefile:DTC_FLAGS_tegra210-p2371-2180 := -@
-arch/arm64/boot/dts/nvidia/Makefile:DTC_FLAGS_tegra210-p3450-0000 := -@
-arch/arm64/boot/dts/nvidia/Makefile:DTC_FLAGS_tegra186-p2771-0000 := -@
-arch/arm64/boot/dts/nvidia/Makefile:DTC_FLAGS_tegra186-p3509-0000+p3636-0001 := -@
-arch/arm64/boot/dts/nvidia/Makefile:DTC_FLAGS_tegra194-p2972-0000 := -@
-arch/arm64/boot/dts/nvidia/Makefile:DTC_FLAGS_tegra194-p3509-0000+p3668-0000 := -@
-arch/arm64/boot/dts/nvidia/Makefile:DTC_FLAGS_tegra194-p3509-0000+p3668-0001 := -@
-arch/arm64/boot/dts/nvidia/Makefile:DTC_FLAGS_tegra234-p3737-0000+p3701-0000 := -@
-arch/arm64/boot/dts/nvidia/Makefile:DTC_FLAGS_tegra234-p3740-0002+p3701-0008 := -@
-arch/arm64/boot/dts/nvidia/Makefile:DTC_FLAGS_tegra234-p3768-0000+p3767-0000 := -@
-arch/arm64/boot/dts/nvidia/Makefile:DTC_FLAGS_tegra234-p3768-0000+p3767-0005 := -@
-arch/arm64/boot/dts/ti/Makefile:DTC_FLAGS_k3-am625-beagleplay += -@
-arch/arm64/boot/dts/ti/Makefile:DTC_FLAGS_k3-am625-sk += -@
-arch/arm64/boot/dts/ti/Makefile:DTC_FLAGS_k3-am62-lp-sk += -@
-arch/arm64/boot/dts/ti/Makefile:DTC_FLAGS_k3-am62a7-sk += -@
-arch/arm64/boot/dts/ti/Makefile:DTC_FLAGS_k3-am642-tqma64xxl-mbax4xxl += -@
-arch/arm64/boot/dts/ti/Makefile:DTC_FLAGS_k3-am6548-iot2050-advanced-m2 += -@
-arch/arm64/boot/dts/ti/Makefile:DTC_FLAGS_k3-j721e-common-proc-board += -@
-arch/arm64/boot/dts/ti/Makefile:DTC_FLAGS_k3-j721s2-common-proc-board += -@
-
-
-Are you saying that is NOT the way it should be done?
-
-Regards
-
-
+- Nuno S=C3=A1
 
