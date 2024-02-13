@@ -1,74 +1,65 @@
-Return-Path: <devicetree+bounces-41291-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-41293-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id A166785307A
-	for <lists+devicetree@lfdr.de>; Tue, 13 Feb 2024 13:27:21 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 3B110853087
+	for <lists+devicetree@lfdr.de>; Tue, 13 Feb 2024 13:31:03 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id C67891C23093
-	for <lists+devicetree@lfdr.de>; Tue, 13 Feb 2024 12:27:20 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 6DB5B1C2302A
+	for <lists+devicetree@lfdr.de>; Tue, 13 Feb 2024 12:31:02 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id DF86B3A1D9;
-	Tue, 13 Feb 2024 12:27:15 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A3B272AF13;
+	Tue, 13 Feb 2024 12:31:01 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="DEkBD8MJ"
+	dkim=pass (2048-bit key) header.d=foss.st.com header.i=@foss.st.com header.b="t/DSLgBP"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f48.google.com (mail-wm1-f48.google.com [209.85.128.48])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mx07-00178001.pphosted.com (mx08-00178001.pphosted.com [91.207.212.93])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1100041C77
-	for <devicetree@vger.kernel.org>; Tue, 13 Feb 2024 12:27:13 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.48
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 71E283A8FE;
+	Tue, 13 Feb 2024 12:30:58 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=91.207.212.93
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1707827235; cv=none; b=GbEJ5Rksh9kbAped5aEXYtCDA/s95XHgY3Hn+GTSZWjUMNWeE1EjFde6l7Zjpa3Xq+G7t0qxIjripo4XItM/TwHECZtVa9l3YD0EX7uVykoQcT097XftQai7UZiTR5S8MM1OsFb/sniwZxeMUh+apn3Wfk9e9wTFNPD+KvmZP1k=
+	t=1707827461; cv=none; b=X0aGS2teaF7OQmIQ8Alar4p/XNFmIgyd9fLthUKQLOBt9NDXTZcNLhyQIromsC9UwnHQe3fe7bczAgYRAmOIp98XueM5Xgm/5UNykddERkDRw7cwrb8tSvlWfZuan2uwUee1bfj0+0wEHLFg/D+sl4eoa/bCy8PRCXcMydNuExQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1707827235; c=relaxed/simple;
-	bh=bjkIq7wl2eARH0U8/btgn3LpomiEBzfaWXOPIvCdCoc=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=fLFhmbfhleqJmpvMBEQUXNqaQPVbFnffxcFXD4CyCb0Q1b5t8zruwpkeBbBA9E9YRZH8pn1jtz+pqjOFRzih26g63SWpcHyIE7bJqdU1OaR3ps8WhWhrEhhvDheAo9/d72VorxBcuzV8RMD4cJH737a6SZPaHL4+/Ei6ibukwFQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=DEkBD8MJ; arc=none smtp.client-ip=209.85.128.48
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-wm1-f48.google.com with SMTP id 5b1f17b1804b1-410e820a4feso9603275e9.1
-        for <devicetree@vger.kernel.org>; Tue, 13 Feb 2024 04:27:13 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1707827232; x=1708432032; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
-         :to:content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=gpJhCN3vLprOIm3zRckJyvjcGrROFXwHZaUhtOClizQ=;
-        b=DEkBD8MJGnrpwCWEZZhqNq/I2bsqk5CyNLcAG93bpz7v4RK71su56nkCZTQnPcRjMw
-         OpbAQsBokv37fNxVsRPkCkKSooywX6JvDea3VxX1HuOJyWfI8VJ5OpBoJ95Q5wLTsJz2
-         6s7riQ6OPeqxQdVLai9kD7Yhc9dZnYQFuacRleD/rvuQy9nXT+SuYeiv8u+lXnISo15v
-         1WU1zFvR1qQAcUTFgJIg0FBl/76QzaRiL39goo5uRrgJ+TGv3honXxqxQhMXUVofHXgl
-         bcLu3uAjxoFNB7lQ7ROEsUVZUyqJWgkjmThet6uEZ8XYPPKkPDVMbSFh9ywmLPSvS/4b
-         Nm7w==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1707827232; x=1708432032;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
-         :to:content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=gpJhCN3vLprOIm3zRckJyvjcGrROFXwHZaUhtOClizQ=;
-        b=DClXb6kQ+y5Bm+hoYHhYcWLuYIW3cjSv90PAriT03a/Wc0M4VOqqIXwlakI0eKGtQn
-         WtcDcsFT0wmiXXfK+FdZQ5q4Ru3+bNWPwJZTraS3oT0PbK03Wbz6u0MxT227cgTi1V5t
-         ghiF+52OOKihc+R8soAc1p98abF/Kyf9VToSk+sswI7uXq1q/aKh9uEGbcUtZPMURx5m
-         bM87kQSEefCtDwYhdadOTFeX2xefP+JP+wiGMo0HTgT4+ma+evjDbPkseukIF9vhq7iZ
-         WaDGI1JNlxuFHTzQJ5Lu8DWmyWAK1aRwjREIjrfvgxUDL4ibfqa2LL8/D/gtaFV2SGMU
-         ElqA==
-X-Gm-Message-State: AOJu0YzAPOcimKIBAtiq1c2mQf/13dAPL/tNLXyijC/6nlYISMKUjsf8
-	nQeNP/AltbvQRo2RIeJ634hsP7N6jBRVRd+06jk1Ol2dSzkD6K38ndrQLNv7hkA=
-X-Google-Smtp-Source: AGHT+IGPVB4ptEvsrAiJNsOWx16hApPdpcjJQGekjp7k1HntHmt8ChpOga3AFIaSuNUg46knazs+wg==
-X-Received: by 2002:a05:600c:4586:b0:410:8a3d:d29a with SMTP id r6-20020a05600c458600b004108a3dd29amr2166620wmo.8.1707827232301;
-        Tue, 13 Feb 2024 04:27:12 -0800 (PST)
-X-Forwarded-Encrypted: i=1; AJvYcCXsv7dauGY5RSvde5gKIxepZNyMZNp8cNF06wuqbNHPXQCHpfx1boOvWAq65mzzOfkuXqKbpFiqCMUad2wbpaE68aplr78UBmvz7TkWgfE8lU0anZ/CCnWwG0731eYwDNnbIn5ZFbsBRVKM0wQGzu6Uhg6XZVzKXAnrHYGJOq/YU72RiNttICkl+vcyopKsGxTvDNujo6X64ZwENYdgZPLKeVgm9AHUOwNvQX/0A+exEivJSZRt2+BjjljJIFlCwXpNsCrESjhOyK2ZzsjeAg/9jjWup0/Prol8mQgJSfQNS2wYJmIjqkOMHov1YnycR+ANWoPRevX6OWjV+JA0xiw9dXJ1yciCYaoNDGgIg1DwtbcgIVYdqN4coGXUfkbmjrTB52B2GCchtY1nZOFdP4TWWnu+wm77T0rPcz2M68z3ckY5k7vG+jl8ezLsCGcZ0IdtDEmiEwzH82lavQXiSqTtWLN8WATQ8jUEliNwJS2Z120P1vXP7El4j+T/YuEyhHSRFQcJ/SPGsbZuMSWYMA==
-Received: from [192.168.1.20] ([178.197.223.6])
-        by smtp.gmail.com with ESMTPSA id bh23-20020a05600c3d1700b00411b9d04b17sm1862441wmb.43.2024.02.13.04.27.10
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 13 Feb 2024 04:27:11 -0800 (PST)
-Message-ID: <eaf37a1e-58e2-4cc7-85f9-8cb81537b3b9@linaro.org>
-Date: Tue, 13 Feb 2024 13:27:09 +0100
+	s=arc-20240116; t=1707827461; c=relaxed/simple;
+	bh=lD1PS/JX+bbCuKijEg/mbIfGVLbRgFl+UYCqNJpCNvQ=;
+	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
+	 In-Reply-To:Content-Type; b=bleOGq/QtBy5Jq79bI8jzF9x0hOTBq5mPlh4v3/XlQIhAA8GUwdCvuwTodydhclVMuc+QWE2fMflr/Sdte5PZaSq2z9q8GKy+uYU1IFMLgjmRm5gP5qd+x5gdLezpAAr6jtRWX69GADbPpN6apiNm4M3/KTyBuc/eVe25xKyTTA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=foss.st.com; spf=pass smtp.mailfrom=foss.st.com; dkim=pass (2048-bit key) header.d=foss.st.com header.i=@foss.st.com header.b=t/DSLgBP; arc=none smtp.client-ip=91.207.212.93
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=foss.st.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=foss.st.com
+Received: from pps.filterd (m0046661.ppops.net [127.0.0.1])
+	by mx07-00178001.pphosted.com (8.17.1.24/8.17.1.24) with ESMTP id 41D7d0cd002349;
+	Tue, 13 Feb 2024 13:30:37 +0100
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=foss.st.com; h=
+	message-id:date:mime-version:subject:to:cc:references:from
+	:in-reply-to:content-type:content-transfer-encoding; s=
+	selector1; bh=kHU+w4G8rI34Tv3Gohyrk/JVIGnrPjuaVTS+MdoFwXk=; b=t/
+	DSLgBPM5IwMdlpBqfKAukMqNYXOPKwWIutP9G5ZbBlV36IoNpQK7fHQ2ckWL/3kO
+	bzRp9HRF3XMXQrfs5HeF6ETaRGmp+xQn930VdL0uVwnFWBcZCoCPf7klmyXdZoBn
+	uFJ2h4DhhLsUgoblkaPx3W7MT4nzMZcSQojx8qfsSZPYDybWivvJoSlpi3KeD5XG
+	4A0CkC8yH5Aml8m4n0XBhyA1yk/me/hIs+kRoIra7Em39z6xB4XXO0AzclHI8SD+
+	/i+8Mcd9n81L1jzlxHKbIYtQC3uvmRBxtR+woghddxK4OUk8Ohx9FIhN6fp7nkQt
+	7aHnZ58DqqEDvUJ+jtZA==
+Received: from beta.dmz-ap.st.com (beta.dmz-ap.st.com [138.198.100.35])
+	by mx07-00178001.pphosted.com (PPS) with ESMTPS id 3w62shtndr-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Tue, 13 Feb 2024 13:30:37 +0100 (CET)
+Received: from euls16034.sgp.st.com (euls16034.sgp.st.com [10.75.44.20])
+	by beta.dmz-ap.st.com (STMicroelectronics) with ESMTP id A4D004002D;
+	Tue, 13 Feb 2024 13:30:32 +0100 (CET)
+Received: from Webmail-eu.st.com (shfdag1node3.st.com [10.75.129.71])
+	by euls16034.sgp.st.com (STMicroelectronics) with ESMTP id B971F23C6AC;
+	Tue, 13 Feb 2024 13:29:48 +0100 (CET)
+Received: from [10.201.22.200] (10.201.22.200) by SHFDAG1NODE3.st.com
+ (10.75.129.71) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.27; Tue, 13 Feb
+ 2024 13:29:48 +0100
+Message-ID: <f8525765-4c91-43ab-a57c-d236889cf122@foss.st.com>
+Date: Tue, 13 Feb 2024 13:29:47 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -76,134 +67,59 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 05/17] dt-bindings: soc: imx: fsl,imx-anatop: add
- binding
+Subject: Re: [PATCH 04/12] memory: stm32-fmc2-ebi: add MP25 support
 Content-Language: en-US
-To: Sebastian Reichel <sre@kernel.org>, Rob Herring <robh+dt@kernel.org>,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Conor Dooley <conor+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>,
- Sascha Hauer <s.hauer@pengutronix.de>, Fabio Estevam <festevam@gmail.com>,
- Pengutronix Kernel Team <kernel@pengutronix.de>,
- NXP Linux Team <linux-imx@nxp.com>
-Cc: Dong Aisheng <aisheng.dong@nxp.com>,
- Linus Walleij <linus.walleij@linaro.org>,
- Dmitry Torokhov <dmitry.torokhov@gmail.com>, Mark Brown
- <broonie@kernel.org>, linux-arm-kernel@lists.infradead.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-References: <20240213010347.1075251-1-sre@kernel.org>
- <20240213010347.1075251-6-sre@kernel.org>
-From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
- xsFNBFVDQq4BEAC6KeLOfFsAvFMBsrCrJ2bCalhPv5+KQF2PS2+iwZI8BpRZoV+Bd5kWvN79
- cFgcqTTuNHjAvxtUG8pQgGTHAObYs6xeYJtjUH0ZX6ndJ33FJYf5V3yXqqjcZ30FgHzJCFUu
- JMp7PSyMPzpUXfU12yfcRYVEMQrmplNZssmYhiTeVicuOOypWugZKVLGNm0IweVCaZ/DJDIH
- gNbpvVwjcKYrx85m9cBVEBUGaQP6AT7qlVCkrf50v8bofSIyVa2xmubbAwwFA1oxoOusjPIE
- J3iadrwpFvsZjF5uHAKS+7wHLoW9hVzOnLbX6ajk5Hf8Pb1m+VH/E8bPBNNYKkfTtypTDUCj
- NYcd27tjnXfG+SDs/EXNUAIRefCyvaRG7oRYF3Ec+2RgQDRnmmjCjoQNbFrJvJkFHlPeHaeS
- BosGY+XWKydnmsfY7SSnjAzLUGAFhLd/XDVpb1Een2XucPpKvt9ORF+48gy12FA5GduRLhQU
- vK4tU7ojoem/G23PcowM1CwPurC8sAVsQb9KmwTGh7rVz3ks3w/zfGBy3+WmLg++C2Wct6nM
- Pd8/6CBVjEWqD06/RjI2AnjIq5fSEH/BIfXXfC68nMp9BZoy3So4ZsbOlBmtAPvMYX6U8VwD
- TNeBxJu5Ex0Izf1NV9CzC3nNaFUYOY8KfN01X5SExAoVTr09ewARAQABzTRLcnp5c3p0b2Yg
- S296bG93c2tpIDxrcnp5c3p0b2Yua296bG93c2tpQGxpbmFyby5vcmc+wsGUBBMBCgA+FiEE
- m9B+DgxR+NWWd7dUG5NDfTtBYpsFAmI+BxMCGwMFCRRfreEFCwkIBwIGFQoJCAsCBBYCAwEC
- HgECF4AACgkQG5NDfTtBYptgbhAAjAGunRoOTduBeC7V6GGOQMYIT5n3OuDSzG1oZyM4kyvO
- XeodvvYv49/ng473E8ZFhXfrre+c1olbr1A8pnz9vKVQs9JGVa6wwr/6ddH7/yvcaCQnHRPK
- mnXyP2BViBlyDWQ71UC3N12YCoHE2cVmfrn4JeyK/gHCvcW3hUW4i5rMd5M5WZAeiJj3rvYh
- v8WMKDJOtZFXxwaYGbvFJNDdvdTHc2x2fGaWwmXMJn2xs1ZyFAeHQvrp49mS6PBQZzcx0XL5
- cU9ZjhzOZDn6Apv45/C/lUJvPc3lo/pr5cmlOvPq1AsP6/xRXsEFX/SdvdxJ8w9KtGaxdJuf
- rpzLQ8Ht+H0lY2On1duYhmro8WglOypHy+TusYrDEry2qDNlc/bApQKtd9uqyDZ+rx8bGxyY
- qBP6bvsQx5YACI4p8R0J43tSqWwJTP/R5oPRQW2O1Ye1DEcdeyzZfifrQz58aoZrVQq+innR
- aDwu8qDB5UgmMQ7cjDSeAQABdghq7pqrA4P8lkA7qTG+aw8Z21OoAyZdUNm8NWJoQy8m4nUP
- gmeeQPRc0vjp5JkYPgTqwf08cluqO6vQuYL2YmwVBIbO7cE7LNGkPDA3RYMu+zPY9UUi/ln5
- dcKuEStFZ5eqVyqVoZ9eu3RTCGIXAHe1NcfcMT9HT0DPp3+ieTxFx6RjY3kYTGLOwU0EVUNc
- NAEQAM2StBhJERQvgPcbCzjokShn0cRA4q2SvCOvOXD+0KapXMRFE+/PZeDyfv4dEKuCqeh0
- hihSHlaxTzg3TcqUu54w2xYskG8Fq5tg3gm4kh1Gvh1LijIXX99ABA8eHxOGmLPRIBkXHqJY
- oHtCvPc6sYKNM9xbp6I4yF56xVLmHGJ61KaWKf5KKWYgA9kfHufbja7qR0c6H79LIsiYqf92
- H1HNq1WlQpu/fh4/XAAaV1axHFt/dY/2kU05tLMj8GjeQDz1fHas7augL4argt4e+jum3Nwt
- yupodQBxncKAUbzwKcDrPqUFmfRbJ7ARw8491xQHZDsP82JRj4cOJX32sBg8nO2N5OsFJOcd
- 5IE9v6qfllkZDAh1Rb1h6DFYq9dcdPAHl4zOj9EHq99/CpyccOh7SrtWDNFFknCmLpowhct9
- 5ZnlavBrDbOV0W47gO33WkXMFI4il4y1+Bv89979rVYn8aBohEgET41SpyQz7fMkcaZU+ok/
- +HYjC/qfDxT7tjKXqBQEscVODaFicsUkjheOD4BfWEcVUqa+XdUEciwG/SgNyxBZepj41oVq
- FPSVE+Ni2tNrW/e16b8mgXNngHSnbsr6pAIXZH3qFW+4TKPMGZ2rZ6zITrMip+12jgw4mGjy
- 5y06JZvA02rZT2k9aa7i9dUUFggaanI09jNGbRA/ABEBAAHCwXwEGAEKACYCGwwWIQSb0H4O
- DFH41ZZ3t1Qbk0N9O0FimwUCYDzvagUJFF+UtgAKCRAbk0N9O0Fim9JzD/0auoGtUu4mgnna
- oEEpQEOjgT7l9TVuO3Qa/SeH+E0m55y5Fjpp6ZToc481za3xAcxK/BtIX5Wn1mQ6+szfrJQ6
- 59y2io437BeuWIRjQniSxHz1kgtFECiV30yHRgOoQlzUea7FgsnuWdstgfWi6LxstswEzxLZ
- Sj1EqpXYZE4uLjh6dW292sO+j4LEqPYr53hyV4I2LPmptPE9Rb9yCTAbSUlzgjiyyjuXhcwM
- qf3lzsm02y7Ooq+ERVKiJzlvLd9tSe4jRx6Z6LMXhB21fa5DGs/tHAcUF35hSJrvMJzPT/+u
- /oVmYDFZkbLlqs2XpWaVCo2jv8+iHxZZ9FL7F6AHFzqEFdqGnJQqmEApiRqH6b4jRBOgJ+cY
- qc+rJggwMQcJL9F+oDm3wX47nr6jIsEB5ZftdybIzpMZ5V9v45lUwmdnMrSzZVgC4jRGXzsU
- EViBQt2CopXtHtYfPAO5nAkIvKSNp3jmGxZw4aTc5xoAZBLo0OV+Ezo71pg3AYvq0a3/oGRG
- KQ06ztUMRrj8eVtpImjsWCd0bDWRaaR4vqhCHvAG9iWXZu4qh3ipie2Y0oSJygcZT7H3UZxq
- fyYKiqEmRuqsvv6dcbblD8ZLkz1EVZL6djImH5zc5x8qpVxlA0A0i23v5QvN00m6G9NFF0Le
- D2GYIS41Kv4Isx2dEFh+/Q==
-In-Reply-To: <20240213010347.1075251-6-sre@kernel.org>
-Content-Type: text/plain; charset=UTF-8
+To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        <miquel.raynal@bootlin.com>, <richard@nod.at>, <vigneshr@ti.com>,
+        <robh+dt@kernel.org>, <krzysztof.kozlowski+dt@linaro.org>,
+        <conor+dt@kernel.org>
+CC: <linux-mtd@lists.infradead.org>, <linux-kernel@vger.kernel.org>,
+        <linux-stm32@st-md-mailman.stormreply.com>,
+        <devicetree@vger.kernel.org>
+References: <20240212174822.77734-1-christophe.kerello@foss.st.com>
+ <20240212174822.77734-5-christophe.kerello@foss.st.com>
+ <afb4bd72-aa22-4d74-aeb8-d3875c6d07ca@linaro.org>
+From: Christophe Kerello <christophe.kerello@foss.st.com>
+In-Reply-To: <afb4bd72-aa22-4d74-aeb8-d3875c6d07ca@linaro.org>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
 Content-Transfer-Encoding: 7bit
+X-ClientProxiedBy: SHFCAS1NODE1.st.com (10.75.129.72) To SHFDAG1NODE3.st.com
+ (10.75.129.71)
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.272,Aquarius:18.0.1011,Hydra:6.0.619,FMLib:17.11.176.26
+ definitions=2024-02-13_06,2024-02-12_03,2023-05-22_02
 
-On 13/02/2024 02:00, Sebastian Reichel wrote:
-> Add missing binding for i.MX anatop syscon.
+
+
+On 2/13/24 08:36, Krzysztof Kozlowski wrote:
+> On 12/02/2024 18:48, Christophe Kerello wrote:
+>> Add MP25 SOC support. RNB and NWAIT signals are differentiated.
+>
+
+Hi Krzysztof,
+
+> s/SOC/SoC/
+> everywhere
+
+Ok.
+
 > 
-> Signed-off-by: Sebastian Reichel <sre@kernel.org>
-> ---
->  .../bindings/soc/imx/fsl,imx-anatop.yaml      | 128 ++++++++++++++++++
->  1 file changed, 128 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/soc/imx/fsl,imx-anatop.yaml
+>>
 > 
-> diff --git a/Documentation/devicetree/bindings/soc/imx/fsl,imx-anatop.yaml b/Documentation/devicetree/bindings/soc/imx/fsl,imx-anatop.yaml
-> new file mode 100644
-> index 000000000000..5a59e3470510
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/soc/imx/fsl,imx-anatop.yaml
-> @@ -0,0 +1,128 @@
-> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/soc/imx/fsl,imx-anatop.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: ANATOP register
-> +
-> +maintainers:
-> +  - Shawn Guo <shawnguo@kernel.org>
-> +  - Sascha Hauer <s.hauer@pengutronix.de>
-> +
-> +properties:
-> +  compatible:
-> +    oneOf:
-> +      - items:
-> +          - enum:
-> +              - fsl,imx6sl-anatop
-> +              - fsl,imx6sll-anatop
-> +              - fsl,imx6sx-anatop
-> +              - fsl,imx6ul-anatop
-> +              - fsl,imx7d-anatop
-> +          - const: fsl,imx6q-anatop
-> +          - const: syscon
-> +          - const: simple-mfd
-> +      - items:
-> +          - const: fsl,imx6q-anatop
-> +          - const: syscon
-> +          - const: simple-mfd
-> +
-> +  reg:
-> +    maxItems: 1
-> +
-> +  interrupts:
-> +    items:
-> +      - description: Temperature sensor event
-> +      - description: Brown-out event on either of the support regulators
-> +      - description: Brown-out event on either the core, gpu or soc regulators
-> +
-> +  tempmon:
-> +    type: object
-> +    unevaluatedProperties: false
-> +    $ref: /schemas/thermal/imx-thermal.yaml
+> The way you split patches is a bit odd. Shall we understand that this
+> patch is the complete MP25 SoC support?
+> 
 
-So you just ignored my comment? I did not receive any response from you
-on this.
+No, it is not the full support but the way the FMC2 IP has been
+integrated in this SoC. As patch 5 has to be written, I am going to
+merge this patch and patch 5 in one patch. I am going to follow your
+recommendation and use the platform data to distinguish between each
+variant.
 
-Best regards,
-Krzysztof
+Regards,
+Christophe Kerello.
 
+> Best regards,
+> Krzysztof
+> 
 
