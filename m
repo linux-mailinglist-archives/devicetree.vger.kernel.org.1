@@ -1,144 +1,99 @@
-Return-Path: <devicetree+bounces-41319-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-41320-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 63C02853252
-	for <lists+devicetree@lfdr.de>; Tue, 13 Feb 2024 14:52:50 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id EE6D7853257
+	for <lists+devicetree@lfdr.de>; Tue, 13 Feb 2024 14:53:25 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 96CEF1C225A7
-	for <lists+devicetree@lfdr.de>; Tue, 13 Feb 2024 13:52:49 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 826D31F23847
+	for <lists+devicetree@lfdr.de>; Tue, 13 Feb 2024 13:53:25 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0BD875647D;
-	Tue, 13 Feb 2024 13:52:44 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 61CD956473;
+	Tue, 13 Feb 2024 13:53:20 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="R2l1TEuX"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="lCCW2vmc"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pf1-f174.google.com (mail-pf1-f174.google.com [209.85.210.174])
+Received: from mail-pg1-f181.google.com (mail-pg1-f181.google.com [209.85.215.181])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9AD8253814;
-	Tue, 13 Feb 2024 13:52:42 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.174
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 05DB45674B;
+	Tue, 13 Feb 2024 13:53:18 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.215.181
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1707832363; cv=none; b=bw80jy2IJlXn3B6q4+TZWe4Qc2nmOIeqYE6fT4MsQkLy76ke4quThQ55z+dI5k2qFkrAj2N+jFIhDnLBOXspxn9HJ/5bai5s3c7PO79s2Obr324uMKrOMeBlE8qNeRN9xhiXuwd6UGDBY3V7y3OrC5RH5Zu+wew0cTRX6dGpGM8=
+	t=1707832400; cv=none; b=UWFYKUWqkalAbwsEHUUSjE4wysjX+igz9bg1UihSQcwJr+TqJimR/6iNaAdNjwNcrSJrtbffYmbA4Mgxh3KNGM+zQVRoopl7L8szQQaGsAB7EQ8llCywEXwzGdDdt8bFOryIPMI6xPX7gC0N1NWRtE9WG4sLr5Ut7qTwzB50bh0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1707832363; c=relaxed/simple;
-	bh=gZHJaV0n/bY1ZeOAShu+ZH8f8JsMNVFp3tEUsMb8Osk=;
+	s=arc-20240116; t=1707832400; c=relaxed/simple;
+	bh=B2Ue+hDfl+m5G2hGaMiDiw2jjGGWc3+YxMBflUIzaWM=;
 	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=FLrv0it5P+6WobCUxAI/50pqRsLpGhbgrXHTFiT6GHMQWhn9tvV+frlbQHaoqfv36SQYs+v4dGrbyWpQw+2UTkK6NOBpu83Eia8eYxUsUFg/mXmYDkoRcVumjKKArI/asQpwh9S+HGSt+7iMvSxLzE/nqRZszThs/s439GIyhug=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=R2l1TEuX; arc=none smtp.client-ip=209.85.210.174
+	 To:Cc:Content-Type; b=g+1OHgHmYD2XfKRTtqsgF7e6xj3cHYyhCp8oh4fcDNgzQweAarGKAnxdgNFhK5zLt8YHz2CCxd52US81Di5Ocurw58wiyQPm994J52OopkJWs/hASJ9y6Sw4VUd6qwnZATnTBCQauShW/fSvwycYWR5p4Ee1vIMwBNTNrEzlVy0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=lCCW2vmc; arc=none smtp.client-ip=209.85.215.181
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-pf1-f174.google.com with SMTP id d2e1a72fcca58-6e10614c276so19259b3a.3;
-        Tue, 13 Feb 2024 05:52:42 -0800 (PST)
+Received: by mail-pg1-f181.google.com with SMTP id 41be03b00d2f7-5dc8961f5a9so73856a12.1;
+        Tue, 13 Feb 2024 05:53:18 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1707832362; x=1708437162; darn=vger.kernel.org;
+        d=gmail.com; s=20230601; t=1707832398; x=1708437198; darn=vger.kernel.org;
         h=content-transfer-encoding:cc:to:subject:message-id:date:from
          :in-reply-to:references:mime-version:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=9lrAqqYQAE/5azD8jUmo4B37QDeKUelyT/u/vST2pSs=;
-        b=R2l1TEuXUzgz77somDqoHL+NyliaxqwBUeMUUUtZdw2yNp9egvXIpVAc8VdWRz828S
-         OzeDUuvHvjHNdHGBSqT60NU2CBSxze00RHcTsdXNM0udDZJ5kn8OIlgp1BDpQDcSNSW1
-         PouQgdRk/ciIBh56PLzCZ+O4xmyFOqNDIiN7g/BDm7RN7aWEnp3+MUuOTyXgJ8ruyKfY
-         1DyhsWgre29McKTtjE4K+JPDflt+5By0mZuFt1+QIsZ0Qynh9vYYPQDch2pupGO3oJzr
-         xtG4t7PCA60OVTPIUtmL1A6pjtxmaD0IcOvTH+bQ03QpUgftxdFI/v5kXOQuxLcF/d+t
-         H3ag==
+        bh=B2Ue+hDfl+m5G2hGaMiDiw2jjGGWc3+YxMBflUIzaWM=;
+        b=lCCW2vmcw7zagVmCQzKG4SV8iX69qck8tq05OQcryLeSj8UtiT6riwrSLkTgUOtjXL
+         WzpcEjt2xFI/9WtYEbhp+bePE5iSi78d8253XzlFfdUZ6zawEZFneSCZRBC/StD/RPeJ
+         wO/Jp2hPbDwcha7h8ewRBKpsaixHLXWaybe8XrUMPL0JDp6DOwWgNwwE1KXJuzv68+NX
+         ywsSDtKPNSJYs+99nPA0QgX2PtUFznAli0mvTMjeTOBrQAgHvdx9rwCFmilgmSYtNKeB
+         1GlYFJLiLu4iMHoXua0B9+xTH4x7vKhGsFARokKwec0Vm4N2wcK0QSqT3FRQrOD8JD4s
+         ajYg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1707832362; x=1708437162;
+        d=1e100.net; s=20230601; t=1707832398; x=1708437198;
         h=content-transfer-encoding:cc:to:subject:message-id:date:from
          :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=9lrAqqYQAE/5azD8jUmo4B37QDeKUelyT/u/vST2pSs=;
-        b=PFNXkyIjMpqCWoJ64XjLt66jz+wcuq5rWDA59AL3hegP+c5yhctvqKl7F7+W2pO/pk
-         s7EE3fNJBRaq+Vkhx855GtutFlFcns6ydPZ+Oy1O0TQGMj+0YQF7JCBGp1AB87YJAW3l
-         W6rIssEpdZC0pLoA0Une+FGtLzElasnYIGop24aUMChcSDWFiJPmCFsGD6Y8RfeR+Uv0
-         68HDJ90xIbhRIEvUoLsvb2YxiZC/qPa62DIirzwqVB4v2jDrt7VdAhAyAlmiLsttLLRK
-         Cbvo1so5hg/TpHnvkQOQp8W1ufIaQ60XN+I2ZCKPWsXfxhWVKggEuW8Ijkk8TbwdLdzV
-         0QWw==
-X-Forwarded-Encrypted: i=1; AJvYcCXwzlb6xsAqisvbkAXVAZD5TRs+Mkg2Zd2yMqlr+ksHpXoIow2KCbIB9Nzq7vZmTLMwH4znB8dKDxOIA2A0N+zaEwdc06Ss3d7/sDMGIyvDn/kjApmW0eRIOZjUmVo1U5Qdl8PCVaLlFg==
-X-Gm-Message-State: AOJu0YxID5OXflQvWN0DRzBv4lE1ZmETWJLAc0HsSWTwbeW1YeT3NnJq
-	i9H5XLCzNccWQXYVlmqI8UeALD0waMcJtuoKeGA9K9gcZHPh6134zKySBv8ku8CTt5czOnfrvqr
-	qAltJ1ms2TmyRTgNwTMK/obslsFtgQUPe
-X-Google-Smtp-Source: AGHT+IGO7vUaCrxPrStR6/UVK+qGCt1f71Bb3woNmrr0dc2/pWgTowRBUjm/B5cQhZfOZS47d4luy9Aa97+7AxGNl8U=
-X-Received: by 2002:a05:6a21:3a42:b0:19e:b15c:be06 with SMTP id
- zu2-20020a056a213a4200b0019eb15cbe06mr8795657pzb.16.1707832361709; Tue, 13
- Feb 2024 05:52:41 -0800 (PST)
+        bh=B2Ue+hDfl+m5G2hGaMiDiw2jjGGWc3+YxMBflUIzaWM=;
+        b=bkoRgCtVpAD0e4gyiT4Soolfux0kufv3MiAycTfODaJ30sTYKcQbW7sAJzpxklPxpX
+         FlrmvTv48NBeczF6mgSyZUZtrrf2nc0rmcANR9lBO58pDqoneGGOjjsnKxTQTNtO4KZ+
+         x6wJyWPQN7ki2CkpDs+1PPpApR2KE02OVgcZyF2i76f0Uu/S8pZzX2ojnv/3GhTkiamz
+         6K3u6GVEjYbBTqWvVM5uCK8NniBg+gfPsKOACvrvtn6zmToA6bOJF7rkRb1HTef+l/UJ
+         PkMZ7G8m203zLAd53VJrTirdkB92810RqHrr4I+AgFARMY4A7jhibSXVP3pMIRo+7aaa
+         rpGQ==
+X-Forwarded-Encrypted: i=1; AJvYcCX+Fy7Ktx0cf0T2Htl5/eXPGzWret/i45yVQfr9erVO6weOydRlmtYhlL9Rlkw4LmbdHUQNCJmDbdPFcKycryglH8Ab3wTp29p/EtRqB6BsI3mDlSx8VjfVj6vKf589s9HC4DW+Q/XkXA==
+X-Gm-Message-State: AOJu0Yz11jVKQs09lNIBNnxSbBCU3VtnrHiZ3dwBxALODVCu0EXLlyoh
+	+Goa2fYt8ezp/wWUTkw+Srrg50XzYBp5Ntc9jtS/hiZ33jp8zDoFPeRJ3zWep7vBBRBVC2FUf2k
+	fQj1aZRMgWaXpuilt85HlUOOyfkw=
+X-Google-Smtp-Source: AGHT+IHl0wY8HalJSuc70Ci1sxHHD4/CGJYNc38Fg7u7sBtYnjj+oqvC8p6y/6VUopUPpAIW5AIJ5muiEsmUj1L+B5E=
+X-Received: by 2002:a05:6a20:7d81:b0:19e:ca20:1374 with SMTP id
+ v1-20020a056a207d8100b0019eca201374mr9161063pzj.0.1707832398131; Tue, 13 Feb
+ 2024 05:53:18 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20240213124146.202391-1-aford173@gmail.com> <20240213125618.GG52537@atomide.com>
- <20240213130208.GI52537@atomide.com> <CAHCN7xLmTEk0439XTuRPG7SSdH=4YiMTmrSXmfTkpC2bo_kNGw@mail.gmail.com>
- <20240213133622.GJ52537@atomide.com>
-In-Reply-To: <20240213133622.GJ52537@atomide.com>
-From: Adam Ford <aford173@gmail.com>
-Date: Tue, 13 Feb 2024 07:52:30 -0600
-Message-ID: <CAHCN7x+C5KOQK1muXkpW95-kGrtkRNH_=Jy4m6igbxGBVZfTyQ@mail.gmail.com>
-Subject: Re: [PATCH] arm: dts: omap3: Migrate hsmmc driver to sdhci driver
-To: Tony Lindgren <tony@atomide.com>
-Cc: linux-omap@vger.kernel.org, aford@beaconembedded.com, 
-	=?UTF-8?Q?Beno=C3=AEt_Cousson?= <bcousson@baylibre.com>, 
-	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, 
-	Conor Dooley <conor+dt@kernel.org>, devicetree@vger.kernel.org, 
+References: <20240213010347.1075251-1-sre@kernel.org> <20240213010347.1075251-13-sre@kernel.org>
+In-Reply-To: <20240213010347.1075251-13-sre@kernel.org>
+From: Fabio Estevam <festevam@gmail.com>
+Date: Tue, 13 Feb 2024 10:53:05 -0300
+Message-ID: <CAOMZO5BUzaqHEvd877te_Tgiaz+QvWrvLC_oKg+mRPzmL26pDw@mail.gmail.com>
+Subject: Re: [PATCH v2 12/17] ARM: dts: nxp: imx6ul: xnur-gpio -> xnur-gpios
+To: Sebastian Reichel <sre@kernel.org>
+Cc: Rob Herring <robh+dt@kernel.org>, 
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Shawn Guo <shawnguo@kernel.org>, Sascha Hauer <s.hauer@pengutronix.de>, 
+	Pengutronix Kernel Team <kernel@pengutronix.de>, NXP Linux Team <linux-imx@nxp.com>, 
+	Dong Aisheng <aisheng.dong@nxp.com>, Linus Walleij <linus.walleij@linaro.org>, 
+	Dmitry Torokhov <dmitry.torokhov@gmail.com>, Mark Brown <broonie@kernel.org>, 
+	linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org, 
 	linux-kernel@vger.kernel.org
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-On Tue, Feb 13, 2024 at 7:36=E2=80=AFAM Tony Lindgren <tony@atomide.com> wr=
-ote:
+On Mon, Feb 12, 2024 at 10:03=E2=80=AFPM Sebastian Reichel <sre@kernel.org>=
+ wrote:
 >
-> * Adam Ford <aford173@gmail.com> [240213 13:29]:
-> > On Tue, Feb 13, 2024 at 7:02=E2=80=AFAM Tony Lindgren <tony@atomide.com=
-> wrote:
-> > >
-> > > * Tony Lindgren <tony@atomide.com> [240213 12:56]:
-> > > > * Adam Ford <aford173@gmail.com> [240213 12:41]:
-> > > > > The sdhci driver has been around for several years, and it suppor=
-ts
-> > > > > the OMAP3 family.  Instead of using the older driver, let's final=
-ly
-> > > > > migrate to the newer one.
-> > > >
-> > > > I think we also should do these to avoid incomplete conversion:
-> > > >
-> > > > - ti,dual-volt property can be dropped
-> > > >
-> > > > - ti,non-removable should become non-removable
-> >
-> > I'll do a more comprehensive search for these flags.  When I did my
-> > testing on the AM3517, I didn't notice these, but I see now that
-> > others might.  I'll do a multi-patch series to first address the
-> > multi-block, then  omap3-ldp.dts, then migrate the omap3.dtsi to the
-> > new driver while dropping the flags, and lastly update the individual
-> > boards accordingly.  I just have one question below.
->
-> OK sounds good to me :)
->
-> > > > - ti,omap3-pre-es3-hsmmc probably should not be needed with sdhci
-> > >
-> > > Hmm actually we may need to set SDHCI_QUIRK_NO_MULTIBLOCK for
-> > > compatible ti,omap3-pre-es3-hsmmc.
-> >
-> > Should I update the driver and binding to add  ti,omap3-pre-es3-sdhci
-> > to set that flag, or should we create a boolean (maybe
-> > 'ti,sdhci-no-multiblock') to the device tree options for that driver?
->
-> Probably best to set up some sdhci generic property for it that then
-> sets SDHCI_QUIRK_NO_MULTIBLOCK.
+> Replace all "xnur-gpio" with "xnur-gpios" in the
+> i.MX6UL(L) Touchscreen node.
 
-Sounds good.  I'll try to work on this tonight, but it might be a day
-or two before I get the more comprehensive update out.  Hopefully in
-the meantime, people may respond with other comments too.  I also want
-to retest my OMAP35 and DM37 boards.  It's been since kernel 6.1 since
-I tested them all.
-
-adam
->
-> Regards,
->
-> Tony
+Please explain the reason for doing this.
 
