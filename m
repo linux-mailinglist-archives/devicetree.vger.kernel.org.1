@@ -1,249 +1,150 @@
-Return-Path: <devicetree+bounces-41145-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-41167-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2EBF5852986
-	for <lists+devicetree@lfdr.de>; Tue, 13 Feb 2024 08:02:44 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6FEB9852AD8
+	for <lists+devicetree@lfdr.de>; Tue, 13 Feb 2024 09:21:01 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 52D341C22F05
-	for <lists+devicetree@lfdr.de>; Tue, 13 Feb 2024 07:02:43 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 8BEFEB236F4
+	for <lists+devicetree@lfdr.de>; Tue, 13 Feb 2024 08:20:58 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id CAE8514A96;
-	Tue, 13 Feb 2024 07:02:39 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B3F3A179A6;
+	Tue, 13 Feb 2024 08:19:33 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="ZE5Fb00n"
+	dkim=pass (1024-bit key) header.d=samsung.com header.i=@samsung.com header.b="n45jA2m5"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ed1-f54.google.com (mail-ed1-f54.google.com [209.85.208.54])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mailout3.samsung.com (mailout3.samsung.com [203.254.224.33])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 012D4171AF;
-	Tue, 13 Feb 2024 07:02:37 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.54
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 89D701B7E8
+	for <devicetree@vger.kernel.org>; Tue, 13 Feb 2024 08:19:31 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=203.254.224.33
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1707807759; cv=none; b=QFhpZScfAL3iI9hV6tBtIgARSbJ8x+zLzBIbmt9g+BUyuhAVmN4I7h1BGjPk46mcHmE6Py22tLac//n1ZfaFBgAWI3TqMnKAEBfM3R7bsSHUgLUNrtvFXDEYsJSP9bzK9bKNV9rqmDuJF+lqBjEKBgqjJzni0fXUCcDy2b6fERg=
+	t=1707812373; cv=none; b=MOTMUe1YzfU62P6Ydn2PkYs0GglzBt0Ik5iHyBdUhPi4WcGidf522XBxYerUG68ZDJr1DwS+YWf0JcKfrIwxf7yiGeUsQofnhKTKFwhP97qCGCUXKiUDzoHqZkz1wwGU8l2f+RD2ZTlxmX7vPnWGgVPFVQylTrTPFZfFR6VuJmI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1707807759; c=relaxed/simple;
-	bh=lZeK2gRHpuUy0pQK9B/76rraAeuXtQdDGPNtMRsJMF8=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=rmHL3yz+AEOsMIlWJNw29HXZ1f+hEnOeBmH1ASj0PTlJ8TZUFdFwxA4JoMjPxgQEjkjDmlSWcXY5HtuoWsk22C7c1ZSKw901pVtWYtPNX84hd7kIY6MBp/scWXAuUd37ZiHbjGmpCPs0kMjFocKHTU/4TaIDmwTEd00h9Bg0Bh8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=ZE5Fb00n; arc=none smtp.client-ip=209.85.208.54
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-ed1-f54.google.com with SMTP id 4fb4d7f45d1cf-55fc7f63639so5059041a12.1;
-        Mon, 12 Feb 2024 23:02:37 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1707807756; x=1708412556; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=z+udwVZEdtua1lL/X4tovmfNwH/O3Old1O5MzEt/irs=;
-        b=ZE5Fb00nnHxD8PsR03/c5TrpVaOllm/UVBNFOXos5T6J4Fm1oaakHk9VFXXq2yUPam
-         TN4UwaX8zrwt93uusJV6Ph/utyvbahLraaC1obwg6DGENxrSdsK01SFRjWNNYKVA4sMU
-         lH7acMOOeqRnfleqOr5/5x/ZA9VOTXpVKoUMZfCgHn2aDqwXEpHmgnTppBG2EcAFtyJc
-         nitsKgy6aDEKnsvM7mfIQ7IQ2fQyDXRTdf731Pz9/3mFLWfo6xI8vtBSrB0P/J3JQq6s
-         P7y2Wj8O9LWQxe5bpFS6A4GE7pEgN0LlcwST6m7LKNIfLb2HXov9/L1b6iGTS6zHKRr+
-         9dDg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1707807756; x=1708412556;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=z+udwVZEdtua1lL/X4tovmfNwH/O3Old1O5MzEt/irs=;
-        b=PRSu5uZzGtN7iVOSiZa/rtAKaLEq1K+qSBISX0TfG6aSixGrGhUeDgglPcMUkue1IS
-         K3y9jQsm3zrsAR1wdhCnKseiyG97xSwdtWZI3R0OrafO7isSWbgnaTVu6MKlkGk7f8co
-         /SnduQ2FN1E3Mb/1fKZCeZoF1go4iXftIQ1LPEKv2bGpI+JbaPT2pAQRHnkaWUhc/vMO
-         efgrxyni+5z8m8iP8wqTJ114d1yRGLbDJ8Ftkz7iIw+eUX9mX9NYDFkoj5+NagT+Un4d
-         l2cIsSGv+aDFvJUcTlu/lpBYzyfTxtHEaiXdAf0mNcYKzZOIExii9Jo8Q+s/51mLBmUu
-         0SkQ==
-X-Forwarded-Encrypted: i=1; AJvYcCWEf9jKn4pImKcz5iAsE2lW6pPWCGbjHnA9FralO0q520Q3mIBN8fMC7QPxudzbSzSaJa9Uy1sIcF43OIPljb/fNc7w3gNYJBC4+Xg70g8FUcQTvdxK4HiluOWQ57CuHKzxIfHMDXW+z2gLC3bXpM2fdyJO980y/h/h2BNYLo0vT1sr5n71V2LsREW+Wq1QgmCgAR0t1I6DalAjSCmQiDpWRQ==
-X-Gm-Message-State: AOJu0YypugRqdUOH8G+dHICo2jiFAwvY0liWg/KZXgD6WcpyGXM6ZwWQ
-	r7yi8qv96/DSpj3VqigHog4meusPCktsnKt2poJJsOetzBFmjX3w
-X-Google-Smtp-Source: AGHT+IH32n/VabfZRui3/N1kTk9igIxKOYGMUC2zi3BJn1fDEZGUSEd0VTQEtIvUszYxkgShIm+Mvw==
-X-Received: by 2002:a05:6402:2c2:b0:561:d3d4:242d with SMTP id b2-20020a05640202c200b00561d3d4242dmr2187954edx.38.1707807756060;
-        Mon, 12 Feb 2024 23:02:36 -0800 (PST)
-X-Forwarded-Encrypted: i=1; AJvYcCVUfht4Z1J2zaP0zNNC/mk7MaOFF4NJRIq6XBG/hkGxTMG/VqdYWnKEjzcFoEjuOTY1sxXW8La/POimFkUCplPmF1sCypg9DPPRX417dFmMr37YYUyMgX1UiIYR9RPij1flWIQcbV/PLuTaE4es/5AX88SMDOdGU2u0Piz2880i/ji4Snkh4QSqVN5Q7qDns7aOHevOG119hzutDzEbqk2hDfba219tNOU2rL9YhMYh4JhwY7M1wFCMK/fX0GojQdXHP9I86qSYwZt4EnzaoEWWox2YI6YKUhJnluTPjMG3SD3EN67NJVUcUy5Zz4Z025XwqVdiMV6M8w==
-Received: from cjw-notebook (2a02-8388-0502-f480-6c32-186a-368b-d6a9.cable.dynamic.v6.surfer.at. [2a02:8388:502:f480:6c32:186a:368b:d6a9])
-        by smtp.gmail.com with ESMTPSA id a23-20020a05640233d700b0055ff708dee3sm3409005edc.11.2024.02.12.23.02.34
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 12 Feb 2024 23:02:35 -0800 (PST)
-Date: Tue, 13 Feb 2024 08:02:32 +0100
-From: Christoph Winklhofer <cj.winklhofer@gmail.com>
-To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Cc: Rob Herring <robh+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>,
-	Rob Herring <robh@kernel.org>,
-	Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-	Jiri Slaby <jirislaby@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Jonathan Corbet <corbet@lwn.net>, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org, linux-serial@vger.kernel.org,
-	linux-doc@vger.kernel.org
-Subject: Re: [PATCH v6 3/3] w1: add UART w1 bus driver
-Message-ID: <ZcsUCHu42ILfKSBs@cjw-notebook>
-References: <20240209-w1-uart-v6-0-3e753c149196@gmail.com>
- <20240209-w1-uart-v6-3-3e753c149196@gmail.com>
- <466d7be4-6ca1-4eb2-a59b-a3f0a846a2df@linaro.org>
+	s=arc-20240116; t=1707812373; c=relaxed/simple;
+	bh=a9KpPEigrsX1iLMABeTlXtvEaBlx5SwQTXXvUiczMB0=;
+	h=From:To:Cc:Subject:Date:Message-Id:Content-Type:References; b=EgNa0Q9FiuzKm7qZLSbjoGsUTY4V1EYvkpXNX8Z1o9dD4QBXKCZB2dI+m5LhWGQBRIbhIRaAalS3IOBtXzVy+/fFTNREmYTKn7URq83O0biBmd1WM+MWkeNlxhFdMkE1BmD6ZfhXWSf3MpHKzFBsa/UOpqjEcNswX7KTJtwfdIA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=samsung.com; spf=pass smtp.mailfrom=samsung.com; dkim=pass (1024-bit key) header.d=samsung.com header.i=@samsung.com header.b=n45jA2m5; arc=none smtp.client-ip=203.254.224.33
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=samsung.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=samsung.com
+Received: from epcas5p2.samsung.com (unknown [182.195.41.40])
+	by mailout3.samsung.com (KnoxPortal) with ESMTP id 20240213081929epoutp032da00fc57b180c94b0368ccc2d6c7dd6~zXk03Thln1769917699epoutp03n
+	for <devicetree@vger.kernel.org>; Tue, 13 Feb 2024 08:19:29 +0000 (GMT)
+DKIM-Filter: OpenDKIM Filter v2.11.0 mailout3.samsung.com 20240213081929epoutp032da00fc57b180c94b0368ccc2d6c7dd6~zXk03Thln1769917699epoutp03n
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=samsung.com;
+	s=mail20170921; t=1707812369;
+	bh=H1tmDljItywEqFTrCeVCWWEvSW1ptNZPOJ2e9OZtBDU=;
+	h=From:To:Cc:Subject:Date:References:From;
+	b=n45jA2m5Khgp+gF6RFYFySgSlZT9CDOxAOUd4ycn9dYHvn7FygcCV9OEL4NqevpOH
+	 JsOGGtvhe6DUebUjL5GEhy4TTaQCfnsHLWnHsBMQHtJIUaZAt8PGh8Nvdxzkcr9yLm
+	 0lFnNhsHM6MF5Na8YatpJi20iO09915MH0DHvyT4=
+Received: from epsnrtp2.localdomain (unknown [182.195.42.163]) by
+	epcas5p3.samsung.com (KnoxPortal) with ESMTP id
+	20240213081928epcas5p335b1317d210ea234c717440690a8224d~zXk0Zpb9U1947019470epcas5p3-;
+	Tue, 13 Feb 2024 08:19:28 +0000 (GMT)
+Received: from epsmges5p2new.samsung.com (unknown [182.195.38.175]) by
+	epsnrtp2.localdomain (Postfix) with ESMTP id 4TYvPW1Rzyz4x9Pw; Tue, 13 Feb
+	2024 08:19:27 +0000 (GMT)
+Received: from epcas5p1.samsung.com ( [182.195.41.39]) by
+	epsmges5p2new.samsung.com (Symantec Messaging Gateway) with SMTP id
+	8B.49.10009.F062BC56; Tue, 13 Feb 2024 17:19:27 +0900 (KST)
+Received: from epsmtrp1.samsung.com (unknown [182.195.40.13]) by
+	epcas5p4.samsung.com (KnoxPortal) with ESMTPA id
+	20240213045739epcas5p49f28920efda3cb80351b1fcae580b21e~zU0mg__Ak3076530765epcas5p4j;
+	Tue, 13 Feb 2024 04:57:39 +0000 (GMT)
+Received: from epsmgmc1p1new.samsung.com (unknown [182.195.42.40]) by
+	epsmtrp1.samsung.com (KnoxPortal) with ESMTP id
+	20240213045739epsmtrp195d85b4c2bfb9a6608a56432f75f2021~zU0mf7ZVQ2138221382epsmtrp1U;
+	Tue, 13 Feb 2024 04:57:39 +0000 (GMT)
+X-AuditID: b6c32a4a-261fd70000002719-78-65cb260f034a
+Received: from epsmtip1.samsung.com ( [182.195.34.30]) by
+	epsmgmc1p1new.samsung.com (Symantec Messaging Gateway) with SMTP id
+	4D.0C.07368.3C6FAC56; Tue, 13 Feb 2024 13:57:39 +0900 (KST)
+Received: from cheetah.sa.corp.samsungelectronics.net (unknown
+	[107.109.115.53]) by epsmtip1.samsung.com (KnoxPortal) with ESMTPA id
+	20240213045736epsmtip1f0d0b60a43c700a19890074823abd3b6~zU0kNhaz_0854708547epsmtip1E;
+	Tue, 13 Feb 2024 04:57:36 +0000 (GMT)
+From: Aakarsh Jain <aakarsh.jain@samsung.com>
+To: linux-arm-kernel@lists.infradead.org, linux-media@vger.kernel.org,
+	linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
+Cc: m.szyprowski@samsung.com, andrzej.hajda@intel.com, mchehab@kernel.org,
+	hverkuil-cisco@xs4all.nl, robh+dt@kernel.org,
+	krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
+	linux-samsung-soc@vger.kernel.org, andi@etezian.org, gost.dev@samsung.com,
+	alim.akhtar@samsung.com, pankaj.dubey@samsung.com, aakarsh.jain@samsung.com
+Subject: [Patch v2] dt-bindings: media: s5p-mfc: Remove s5p-mfc.txt binding
+Date: Tue, 13 Feb 2024 10:27:33 +0530
+Message-Id: <20240213045733.63876-1-aakarsh.jain@samsung.com>
+X-Mailer: git-send-email 2.17.1
+X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFprEJsWRmVeSWpSXmKPExsWy7bCmui6/2ulUg7aDHBZPd8xktXgwbxub
+	xeIfz5ks7i/+zGKxZu85Jov5R86xWtw8sJPJ4uLMuywWfS8eMltsenyN1eLyrjlsFj0btrJa
+	zDi/j8li7ZG77BbLNv1hsli09Qu7ReveI+wOgh7Xl3xi9li85yWTx6ZVnWwed67tYfPYvKTe
+	o2/LKkaPz5vkPE59/cwewBGVbZORmpiSWqSQmpecn5KZl26r5B0c7xxvamZgqGtoaWGupJCX
+	mJtqq+TiE6DrlpkD9IaSQlliTilQKCCxuFhJ386mKL+0JFUhI7+4xFYptSAlp8CkQK84Mbe4
+	NC9dLy+1xMrQwMDIFKgwITtj4Y60gn2sFfPerGdrYHzK0sXIySEhYCJx9csU1i5GLg4hgd2M
+	Esc33IRyPjFKXL+5jQXC+cYo0fhzJSNMy6OpF5kgEnsZJTbdPcoO4bQySZyc8J65i5GDg01A
+	V+Ls9hyQBhGBRkaJxx0lIDazwHkmiQudKSC2sIC3xLX1D9lBbBYBVYldzw4zg9i8ArYS06Zf
+	YodYJi+xesMBZpD5EgK9HBLX2s5DHe4iMXvfMWYIW1ji1fEtUA1SEi/726DsZInHi15C1eRI
+	rN8zBarXXuLAlTksIHcyC2hKrN+lDxGWlZh6ah0TxJ18Er2/nzBBxHkldsyDsdUk5tz5wQph
+	y0gcXr0UGigeEi3vH4KtEhKIldh/9S7bBEbZWQgbFjAyrmKUTC0ozk1PLTYtMMpLLYfHU3J+
+	7iZGcOLU8trB+PDBB71DjEwcjIcYJTiYlUR4L804kSrEm5JYWZValB9fVJqTWnyI0RQYZhOZ
+	pUST84GpO68k3tDE0sDEzMzMxNLYzFBJnPd169wUIYH0xJLU7NTUgtQimD4mDk6pBqZtsjzT
+	OzgvM76/aWrY7LSFsckhPJKxwP2nS4fP+nzGTzf8lhw0v3Rst96SuY35sfYKS/gmLCzyP8c2
+	U3zve+0/n/T0Gdjv3eza9ajReYvETOdfz7c6fvlYz1tx4n9e/IH29nshJ3b6GioGqaVM2rtg
+	qbhSVfzHhTNM3v+QuRX8UF//9j1/b0Xvuv3NSnc/n3RbyK5Uv9zA7O3h0zyRnZf9K3gPH+0w
+	Efr990ue5eWury+3my4PvVQrzl3Kkr/nyjGOFZdFz+ioei1k7DAyXrJG76GFjdSarbPP2ymu
+	qQtymL9sxQP+/6b6k06n3rrxf9Kmay2y2f/uVe7d7sD24+WtXZnyNktqsv53yZR3Gv9WYinO
+	SDTUYi4qTgQAlmfW9iUEAAA=
+X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFtrPLMWRmVeSWpSXmKPExsWy7bCSnO7hb6dSDS7ME7R4umMmq8WDedvY
+	LBb/eM5kcX/xZxaLNXvPMVnMP3KO1eLmgZ1MFhdn3mWx6HvxkNli0+NrrBaXd81hs+jZsJXV
+	Ysb5fUwWa4/cZbdYtukPk8WirV/YLVr3HmF3EPS4vuQTs8fiPS+ZPDat6mTzuHNtD5vH5iX1
+	Hn1bVjF6fN4k53Hq62f2AI4oLpuU1JzMstQifbsEroyFO9IK9rFWzHuznq2B8SlLFyMnh4SA
+	icSjqReZuhi5OIQEdjNKdL7bBpWQkfjfdowdwhaWWPnvOTtEUTOTxMab+4E6ODjYBHQlzm7P
+	AYmLCLQySlxf2Qk2iVngPpPElYm3WUG6hQW8Ja6tfwg2iUVAVWLXs8PMIDavgK3EtOmXoDbI
+	S6zecIB5AiPPAkaGVYySqQXFuem5yYYFhnmp5XrFibnFpXnpesn5uZsYwWGspbGD8d78f3qH
+	GJk4GA8xSnAwK4nwXppxIlWINyWxsiq1KD++qDQntfgQozQHi5I4r+GM2SlCAumJJanZqakF
+	qUUwWSYOTqkGJuUJE7kuvcjiX8GapGAVZWNzl+eHYOujiOIjBdOfKpSVvjaQ//86htf52M6d
+	RbxnLJ9GrUirTUqYwVb8pT1vxYvYhv7Nwga9iWfe6TvJR71zUTCp3a3FP0H0dz1n8JGaLqfP
+	LNnGKZE7BC6f0ma6mj2nfs+UpE+60hv+LvZcueLwl9dKsd86lS0WVBZaVad0lmQcer52UsLC
+	zsdLTRtvuvrVCbLbqSn0b4vVWPB489LerGnvzuc7avMder51jf/XYsvJUn/V7LsvyWs58GUr
+	mDzpn33JtLjd/sZX/9zZr+ITfk9plr05J+kkB/vFHQ6//77L+seyumvRmxtnmB9NmtS1Wzg0
+	vzj2a8KxM85KSizFGYmGWsxFxYkAY8iUUNICAAA=
+X-CMS-MailID: 20240213045739epcas5p49f28920efda3cb80351b1fcae580b21e
+X-Msg-Generator: CA
+Content-Type: text/plain; charset="utf-8"
+X-Sendblock-Type: REQ_APPROVE
+CMS-TYPE: 105P
+DLP-Filter: Pass
+X-CFilter-Loop: Reflected
+X-CMS-RootMailID: 20240213045739epcas5p49f28920efda3cb80351b1fcae580b21e
+References: <CGME20240213045739epcas5p49f28920efda3cb80351b1fcae580b21e@epcas5p4.samsung.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <466d7be4-6ca1-4eb2-a59b-a3f0a846a2df@linaro.org>
 
-On Mon, Feb 12, 2024 at 04:30:00PM +0100, Krzysztof Kozlowski wrote:
-> On 09/02/2024 07:22, Christoph Winklhofer via B4 Relay wrote:
-> > From: Christoph Winklhofer <cj.winklhofer@gmail.com>
-> > 
-> > Add a UART 1-Wire bus driver. The driver utilizes the UART interface via
-> > the Serial Device Bus to create the 1-Wire timing patterns. The driver
-> > was tested on a "Raspberry Pi 3B" with a DS18B20 and on a "Variscite
-> > DART-6UL" with a DS18S20 temperature sensor.
-> > 
-> > The 1-Wire timing pattern and the corresponding UART baud-rate with the
-> > interpretation of the transferred bytes are described in the document:
-> 
-> 
-> > +/*
-> > + * struct w1_uart_config - configuration for 1-Wire operation
-> > + *
-> > + * @baudrate: baud-rate returned from serdev
-> > + * @delay_us: delay to complete a 1-Wire cycle (in us)
-> > + * @tx_byte: byte to generate 1-Wire timing pattern
-> > + */
-> > +struct w1_uart_config {
-> > +	unsigned int baudrate;
-> > +	unsigned int delay_us;
-> > +	u8 tx_byte;
-> > +};
-> > +
-> > +/*
-> > + * struct w1_uart_config - w1-uart device data
-> 
-> That's neither correct (device, not config) nor proper kerneldoc nor
-> useful. Your comment repeats struct name. If you want to make it
-> kerneldoc, go ahead, but then make it a full kerneldoc.
-> 
+commit "538af6e5856b" which convert s5p-mfc bindings to
+json-schema is already merged. Remove "s5p-mfc.txt" file.
 
-Yes, sorry - will use the correct name.
+Fixes: 538af6e5856b ("dt-bindings: media: s5p-mfc: convert
+bindings to json-schema")
+Signed-off-by: Aakarsh Jain <aakarsh.jain@samsung.com>
+---
+changelog:
+v1->v2
+Add Fixes tag suggested by Krzysztof
+ Documentation/devicetree/bindings/media/s5p-mfc.txt | 0
+ 1 file changed, 0 insertions(+), 0 deletions(-)
+ delete mode 100644 Documentation/devicetree/bindings/media/s5p-mfc.txt
 
-> And obviously compile with W=1.
-> 
+diff --git a/Documentation/devicetree/bindings/media/s5p-mfc.txt b/Documentation/devicetree/bindings/media/s5p-mfc.txt
+deleted file mode 100644
+index e69de29bb2d1..000000000000
+-- 
+2.17.1
 
-You mean the padding error of mutex, I get it with W=3 and will fix it
-by moving mutex up.
-
-> > + *
-> > + * @serdev: serial device
-> > + * @bus: w1-bus master
-> > + * @cfg_reset: config for 1-Wire reset
-> > + * @cfg_touch_0: config for 1-Wire write-0 cycle
-> > + * @cfg_touch_1: config for 1-Wire write-1 and read cycle
-> > + * @rx_byte_received: completion for serdev receive
-> > + * @rx_err: indicates an error in serdev-receive
-> > + * @rx_byte: result byte from serdev-receive
-> > + * @mutex: mutex to protected rx_err and rx_byte from concurrent access
-> > + *         in w1-callbacks and serdev-receive.
-> > + */
-> > +struct w1_uart_device {
-> > +	struct serdev_device *serdev;
-> > +	struct w1_bus_master bus;
-> > +
-> > +	struct w1_uart_config cfg_reset;
-> > +	struct w1_uart_config cfg_touch_0;
-> > +	struct w1_uart_config cfg_touch_1;
-> > +
-> > +	struct completion rx_byte_received;
-> > +	int rx_err;
-> > +	u8 rx_byte;
-> > +
-> 
-> How did you solve my comment and checkpatch warning from previous version:
-> 
-> CHECK: struct mutex definition without comment
-> 
-
-Thanks, I missed the option --strict in checkpatch.pl and dit not get
-this warning. Will add a comment.
-
-> > +	struct mutex mutex;
-> > +};
-> > +
-> > +/*
-> > + * struct w1_uart_limits - limits for 1-Wire operations
-> > + *
-> > + * @baudrate: Requested baud-rate to create 1-Wire timing pattern
-> > + * @bit_min_us: minimum time for a bit (in us)
-> > + * @bit_max_us: maximum time for a bit (in us)
-> > + * @sample_us: timespan to sample 1-Wire response
-> > + * @cycle_us: duration of the 1-Wire cycle
-> > + */
-> > +struct w1_uart_limits {
-> > +	unsigned int baudrate;
-> > +	unsigned int bit_min_us;
-> > +	unsigned int bit_max_us;
-> > +	unsigned int sample_us;
-> > +	unsigned int cycle_us;
-> 
-> ...
-> 
-> > +/*
-> > + * Configuration for write-1 and read cycle (touch bit 1)
-> > + * - bit_min_us is 5us, add margin and use 6us
-> > + * - limits for sample time 5us-15us, use 15us
-> > + */
-> > +static int w1_uart_set_config_touch_1(struct w1_uart_device *w1dev)
-> > +{
-> > +	struct serdev_device *serdev = w1dev->serdev;
-> > +	struct device_node *np = serdev->dev.of_node;
-> > +
-> > +	struct w1_uart_limits limits = { .baudrate = 115200,
-> > +					 .bit_min_us = 6,
-> > +					 .bit_max_us = 15,
-> > +					 .sample_us = 15,
-> > +					 .cycle_us = 70 };
-> > +
-> > +	of_property_read_u32(np, "write-1-bps", &limits.baudrate);
-> > +
-> > +	return w1_uart_set_config(serdev, &limits, &w1dev->cfg_touch_1);
-> > +}
-> > +
-> > +/*
-> > + * Configure and open the serial device
-> > + */
-> > +static int w1_uart_serdev_open(struct w1_uart_device *w1dev)
-> > +{
-> > +	struct serdev_device *serdev = w1dev->serdev;
-> > +	struct device *dev = &serdev->dev;
-> > +	int ret;
-> > +
-> > +	/* serdev is automatically closed on unbind or driver remove */
-> 
-> Drop comment, that's obvious. That's what devm* functions are for.
-> 
-> 
-
-Ok.
-
-> > +	ret = devm_serdev_device_open(dev, serdev);
-> 
-> 
-> > +	if (ret < 0)
-> > +		return ret;
-> > +
-> > +	ret = serdev_device_set_parity(serdev, SERDEV_PARITY_NONE);
-> > +	if (ret < 0) {
-> > +		dev_err(dev, "set parity failed\n");
-> > +		return ret;
-> > +	}
-> 
-> 
-> Best regards,
-> Krzysztof
-> 
-
-Thanks!
-Christoph
 
