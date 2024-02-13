@@ -1,164 +1,120 @@
-Return-Path: <devicetree+bounces-41226-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-41227-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4C6B1852DDE
-	for <lists+devicetree@lfdr.de>; Tue, 13 Feb 2024 11:29:31 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id D3211852DE0
+	for <lists+devicetree@lfdr.de>; Tue, 13 Feb 2024 11:30:06 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id E0A651F222F5
-	for <lists+devicetree@lfdr.de>; Tue, 13 Feb 2024 10:29:30 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 128541C21133
+	for <lists+devicetree@lfdr.de>; Tue, 13 Feb 2024 10:30:06 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B4DD822626;
-	Tue, 13 Feb 2024 10:29:26 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 29AB422EF4;
+	Tue, 13 Feb 2024 10:30:01 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="LubQVgbX"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="DcNcbdEK"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-yb1-f169.google.com (mail-yb1-f169.google.com [209.85.219.169])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1FBDD22625;
-	Tue, 13 Feb 2024 10:29:25 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 359A222630
+	for <devicetree@vger.kernel.org>; Tue, 13 Feb 2024 10:29:59 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.219.169
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1707820166; cv=none; b=WJs+KWE6df9n2CNyMnPp4402TwzQ8P+I8TCkGmZxj+6GHyzKlE9hQjiyTUnCjBuibCX53LazSX85aNWl79xrFCgdT0s35TV+DRCh1MIWW9cU15DGiiydoBUHMRcHgid5Ke9E4NiEnSPfMCZsu1Q2/MxXyuBmrI9IsdqHrW/kyKU=
+	t=1707820201; cv=none; b=ovFoAXEqq3XRB1NAgWNwn5h8fYtplMsnuRa53EJ1hF5RYB6Dmlv9hDmkSvaXNepIABPDibr8+c/r449feR63Fm13FTRPp53knueAzbzy1XdL0uwkDJ8A92JCYd6s6o86P+PexxOx91Yk41b63h/WX2Rc6qYdYkF1FKGR1ancgIA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1707820166; c=relaxed/simple;
-	bh=1MtHBzrAaVaupNPIKmMCHFWFqYJTRYrNVYPx/Ra5p3o=;
-	h=Message-ID:Date:MIME-Version:To:CC:References:Subject:From:
-	 In-Reply-To:Content-Type; b=oqH3BrQggbo/JNxChYS0eZCXCYkh4kkvvk46PGgdUj9q9JKO5OhW0dzh5545lds8V+fd10VMjX1vW3fv2rtYHD+6397N1+jnwJj/2Ix2szEAb4YbDrxrSIaEtbmgoxiryxLzxHOHlr29F0K8iujl/oY3GobD6Hzy/iL7oGv7cB0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=LubQVgbX; arc=none smtp.client-ip=205.220.180.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
-Received: from pps.filterd (m0279870.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.17.1.24/8.17.1.24) with ESMTP id 41DAQrwY015569;
-	Tue, 13 Feb 2024 10:29:02 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
-	message-id:date:mime-version:to:cc:references:subject:from
-	:in-reply-to:content-type:content-transfer-encoding; s=
-	qcppdkim1; bh=VegaMagVQniNscL7KTdqEiW+htF2BU6YuYFykpHmS/k=; b=Lu
-	bQVgbX395WsLssF16sxG0yO7jXQlFKhPK2rlCmFx0OKFs4WGOywUA3mZn6XojtNZ
-	rZrSfzAdtk41fyBD7ulpDe7UgfoBb6rcYjO1oI7n7aY3cEodn0SX027x0e/FS4QM
-	Z3ufKRxue+wJLP/LaeAA0T7+4/jWMViq16P0QfhfMW3Qua5yZNFDGI6IdjH99vvg
-	uIFNwxK10Io8EBozYmlHG32NTK/Dbu8ts5OKGWdYM2qqjmdXKbmlH8NFZbYQH9cK
-	5wZxh45+mz8feQMgKpoeDRYO+idPQcugWQSoM8Gqzv3n961QRlHcPep+a/H9NKu+
-	iNil0VhJngyrntcPbp2w==
-Received: from nasanppmta03.qualcomm.com (i-global254.qualcomm.com [199.106.103.254])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3w7nk9207j-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Tue, 13 Feb 2024 10:29:02 +0000 (GMT)
-Received: from nasanex01c.na.qualcomm.com (nasanex01c.na.qualcomm.com [10.45.79.139])
-	by NASANPPMTA03.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 41DAT0Qg024709
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Tue, 13 Feb 2024 10:29:00 GMT
-Received: from [10.214.25.202] (10.80.80.8) by nasanex01c.na.qualcomm.com
- (10.45.79.139) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1118.40; Tue, 13 Feb
- 2024 02:28:56 -0800
-Message-ID: <a61a3561-0dde-472b-b8a5-451703f6d8ee@quicinc.com>
-Date: Tue, 13 Feb 2024 15:58:53 +0530
+	s=arc-20240116; t=1707820201; c=relaxed/simple;
+	bh=BAFPNPzJQXtyCWF5XDn1RobzHn1V1SnAs/ZanbUdfKY=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=qRB+LDeOiqbYKWz5dXJIOfkM+BqZYphQSk5vn3eikDpJda758m/0V5t7HbNT1k9HaUyCFs4AAfq3CxycVEOCAUQyfUCLzi7eo5zDEjoUjbt3UfVqFoQIxD62d5L4vRgeKvJWxBuWQKEHJU7pP5umZHHBbJshDpnwcRMo8zeu8XM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=DcNcbdEK; arc=none smtp.client-ip=209.85.219.169
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-yb1-f169.google.com with SMTP id 3f1490d57ef6-dcbc00f6c04so1172018276.3
+        for <devicetree@vger.kernel.org>; Tue, 13 Feb 2024 02:29:58 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1707820198; x=1708424998; darn=vger.kernel.org;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=+EqDonj7KQZLiaPp6D4ZvH1t+lrAEwUNc/fnEAHBEOI=;
+        b=DcNcbdEKUxMv4AtS+vABGbgp0+Yl2IvqLbxYGiAwtW96WJ2uzGzFpCsdsJV2NigBmv
+         72oKFdlJmEwojo3olVaRTcsMmVIQqI3UDtSzqFSsT9yG/xKR/TEYi4KZCnC2DMtJa7Ng
+         4wo18UIcsvKnjuVSq8u65kcNBzl9tMVVVh/2CmdvU59oEky8eWuJ9qC/duiTLnNxmmsf
+         7LuOL21lAhH904E+T2V1nJyK6S+7O4+eN4/ua1BZU/JrhGgYBjJBbNyg/KpZsiI6oy1H
+         dVcVqa0NoPpvEJOrBjLFSXJMjCIhyOslNq5ot0WEcxMDI3cWy2U6fn148pmJmxIRUMHW
+         aBGQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1707820198; x=1708424998;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=+EqDonj7KQZLiaPp6D4ZvH1t+lrAEwUNc/fnEAHBEOI=;
+        b=a9sNFoSVvsSScz4yOD0Pja8/6SjPQA17V5vZHt0tx8nDWt1pAKFBj26+uEBTztw5m/
+         aEn2u+5HpXKjXh1KD2GOsLAj1eY0e0+HT8rHjhdl7jleEo1uX/vLsg0MLSDsOQYEeQD8
+         Z83AVldhxqMNHDoBkOltdasPGX/t6l/1rztNyJ0LgkmMF2cm+7tq6ZYiZyvHVLsqZ6iC
+         JgD4VvMY0SN3tUb40jM5dLE4UcpPDR0utvELxWzxiQfQRMAayH5P1TcCE6M3jaPUV+U3
+         wPHJ9w+iqPwQwhpqqEAd1jUcBmsQ3LajSh4UNb+qm1AKi2beijzBI/xlCjt4rY3ivHsw
+         WouA==
+X-Forwarded-Encrypted: i=1; AJvYcCXCcKtqq6gKtR3Bh3zBd8KpFLsU3yGgQc69CRamSA8MnhUyz07AD+CdRZLx+c98R7+MnF1K3TRl6UBN+I334VNMPviJanlPCB4GRw==
+X-Gm-Message-State: AOJu0Yz+OmHrFwjq0HJS1H9Cclwny/Gb2KNFVk9ptcrW5+cqZN//5wWd
+	PSIr4yvQTqPvD97/OkvSIxmGR8pJ514kiUXmCuIDjIJ9WFUPofHKxirSP/Kaa4rXjjzx37pi3jU
+	c6Yn3GEA7iM9jiEiU1uK9HHhd7TKla4jIgqPTfA==
+X-Google-Smtp-Source: AGHT+IHkdJx+zFat9qPbr3h4Rdcuck1pBATP4FKcmKR8VS5uJISAam7tCEk56SEDoapPdlF1E/YwhM52Daf0RNngWRA=
+X-Received: by 2002:a25:ad45:0:b0:dc7:4313:8b6f with SMTP id
+ l5-20020a25ad45000000b00dc743138b6fmr7824715ybe.54.1707820198159; Tue, 13 Feb
+ 2024 02:29:58 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-To: <dmitry.baryshkov@linaro.org>
-CC: <andersson@kernel.org>, <devicetree@vger.kernel.org>,
-        <freedreno@lists.freedesktop.org>, <iommu@lists.linux.dev>,
-        <joro@8bytes.org>, <konrad.dybcio@somainline.org>,
-        <krzysztof.kozlowski+dt@linaro.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <linux-arm-msm@vger.kernel.org>, <quic_saipraka@quicinc.com>,
-        <robdclark@gmail.com>, <robh+dt@kernel.org>, <robin.murphy@arm.com>,
-        <vkoul@kernel.org>, <will@kernel.org>
-References: <20221114170635.1406534-9-dmitry.baryshkov@linaro.org>
-Subject: Re: [PATCH v1 08/10] iommu/arm-smmu-qcom: Merge table from
- arm-smmu-qcom-debug into match data
-Content-Language: en-US
-From: Pratyush Brahma <quic_pbrahma@quicinc.com>
-In-Reply-To: <20221114170635.1406534-9-dmitry.baryshkov@linaro.org>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 8bit
-X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
- nasanex01c.na.qualcomm.com (10.45.79.139)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-GUID: Ay6v_HvyIMErZ2r65D3_MvV26FYlYaVb
-X-Proofpoint-ORIG-GUID: Ay6v_HvyIMErZ2r65D3_MvV26FYlYaVb
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.272,Aquarius:18.0.1011,Hydra:6.0.619,FMLib:17.11.176.26
- definitions=2024-02-13_04,2024-02-12_03,2023-05-22_02
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 phishscore=0
- lowpriorityscore=0 adultscore=0 spamscore=0 malwarescore=0 mlxscore=0
- bulkscore=0 priorityscore=1501 mlxlogscore=999 impostorscore=0
- clxscore=1011 suspectscore=0 classifier=spam adjust=0 reason=mlx
- scancount=1 engine=8.19.0-2401310000 definitions=main-2402130081
+References: <20240121-sm7125-upstream-v4-0-f7d1212c8ebb@gmail.com>
+ <20240121-sm7125-upstream-v4-2-f7d1212c8ebb@gmail.com> <20240212222232.GB2655166-robh@kernel.org>
+In-Reply-To: <20240212222232.GB2655166-robh@kernel.org>
+From: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+Date: Tue, 13 Feb 2024 12:29:47 +0200
+Message-ID: <CAA8EJpoymmOBc3CfNHJKBT8BNje_s2a5uGPde3QHYv3vQ97=-Q@mail.gmail.com>
+Subject: Re: [PATCH v4 2/8] dt-bindings: ufs: qcom: Add SC7180 compatible string
+To: Rob Herring <robh@kernel.org>
+Cc: David Wronek <davidwronek@gmail.com>, Bjorn Andersson <andersson@kernel.org>, 
+	Konrad Dybcio <konrad.dybcio@linaro.org>, Herbert Xu <herbert@gondor.apana.org.au>, 
+	"David S. Miller" <davem@davemloft.net>, 
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>, Alim Akhtar <alim.akhtar@samsung.com>, 
+	Avri Altman <avri.altman@wdc.com>, Bart Van Assche <bvanassche@acm.org>, Andy Gross <agross@kernel.org>, 
+	Vinod Koul <vkoul@kernel.org>, Kishon Vijay Abraham I <kishon@kernel.org>, 
+	cros-qcom-dts-watchers@chromium.org, linux-arm-msm@vger.kernel.org, 
+	linux-crypto@vger.kernel.org, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org, linux-scsi@vger.kernel.org, 
+	linux-phy@lists.infradead.org, ~postmarketos/upstreaming@lists.sr.ht, 
+	Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Content-Type: text/plain; charset="UTF-8"
 
-Hi
+On Tue, 13 Feb 2024 at 00:22, Rob Herring <robh@kernel.org> wrote:
+>
+> On Sun, Jan 21, 2024 at 05:57:42PM +0100, David Wronek wrote:
+> > Document the compatible for the UFS found on SC7180.
+> >
+> > Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+> > Signed-off-by: David Wronek <davidwronek@gmail.com>
+> > ---
+> >  Documentation/devicetree/bindings/ufs/qcom,ufs.yaml | 2 ++
+> >  1 file changed, 2 insertions(+)
+>
+> Should have been picked up by SCSI/UFS maintainers, but it
+> hasn't, so I applied it.
 
-Patch [1] introduces a use after free bug in the function 
-"qcom_smmu_create()" in file: drivers/iommu/arm/arm-smmu/arm-smmu-qcom.c
-wherein devm_krealloc() frees the old pointer marked by "smmu" but it is 
-still being accessed later in qcom_smmu_impl_data() in the same function 
-as:
+And it now triggers schema warnings, because sc7180-ufshc has 7 clocks
+and 1 reg entries.
 
-qsmmu->cfg = qcom_smmu_impl_data(smmu);
-
-The current patchset [2] implicitly fixes this issue as it doesn't 
-access the freed ptr in the line:
-
-qsmmu->cfg = data->cfg;
-
-Hence, can this patchset[2] be propagated to branches where patchset[1] 
-has been propagated already? The bug is currently present in all branches
-that have patchset[1] but do not have patchset[2].
-
-RFC:
-
-This bug would be reintroduced if patchset [3] is accepted. This makes 
-the path prone to such errors as it relies on the
-developer's understanding on the internal implementation of devm_krealloc().
-
-Hence, a better fix IMO, would be to remove the confusion around the 
-freed "smmu" ptr in the following way:
-
-diff --git a/drivers/iommu/arm/arm-smmu/arm-smmu-qcom.c 
-b/drivers/iommu/arm/arm-smmu/arm-smmu-qcom.c
-index 549ae4dba3a6..6dd142ce75d1 100644
---- a/drivers/iommu/arm/arm-smmu/arm-smmu-qcom.c
-+++ b/drivers/iommu/arm/arm-smmu/arm-smmu-qcom.c
-@@ -463,11 +463,12 @@ static struct arm_smmu_device 
-*qcom_smmu_create(struct arm_smmu_device *smmu,
-         qsmmu = devm_krealloc(smmu->dev, smmu, sizeof(*qsmmu), GFP_KERNEL);
-         if (!qsmmu)
-                 return ERR_PTR(-ENOMEM);
-+       smmu = &qsmmu->smmu;
-
-         qsmmu->smmu.impl = impl;
-         qsmmu->cfg = data->cfg;
-
--       return &qsmmu->smmu;
-+       return smmu;
-  }
-
-This is similar to the patch[4] which I've sent in-reply-to patch[3]. 
-Will send a formal patch if you think this approach is better.
-
-Please let me know your thoughts.
-
-Thanks,
-Pratyush
+>
+> Rob
+>
 
 
-[1] 
-https://lore.kernel.org/all/20220708094230.4349-1-quic_saipraka@quicinc.com/
-[2] 
-https://lore.kernel.org/all/20221114170635.1406534-9-dmitry.baryshkov@linaro.org/
-[3] 
-https://lore.kernel.org/all/20240201210529.7728-4-quic_c_gdjako@quicinc.com/
-[4] 
-https://lore.kernel.org/all/20240213062608.13018-1-quic_pbrahma@quicinc.com/
+-- 
+With best wishes
+Dmitry
 
