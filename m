@@ -1,173 +1,132 @@
-Return-Path: <devicetree+bounces-41297-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-41298-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 75A9B8530A9
-	for <lists+devicetree@lfdr.de>; Tue, 13 Feb 2024 13:40:25 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9CC7C8530AE
+	for <lists+devicetree@lfdr.de>; Tue, 13 Feb 2024 13:42:02 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id DEF101F22614
-	for <lists+devicetree@lfdr.de>; Tue, 13 Feb 2024 12:40:24 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id CEB901C23F11
+	for <lists+devicetree@lfdr.de>; Tue, 13 Feb 2024 12:42:01 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4124D3BB3A;
-	Tue, 13 Feb 2024 12:40:20 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4F6E73D99E;
+	Tue, 13 Feb 2024 12:41:58 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="TKxIq7oi"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-yb1-f175.google.com (mail-yb1-f175.google.com [209.85.219.175])
+Received: from mail-oa1-f42.google.com (mail-oa1-f42.google.com [209.85.160.42])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EDF053D994;
-	Tue, 13 Feb 2024 12:40:17 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.219.175
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C9FD12EB12;
+	Tue, 13 Feb 2024 12:41:56 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.160.42
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1707828020; cv=none; b=ZadY92+h6bOHg6xr+ns7Ba7bVQwxzngktiQn0phOMNK1dXOFl1J1YEnOhurMaS9fFHb2hwhp7Y6JLbY10wx5+4cF8HfezssriEl0P9iAtx38VM7ZQS4Ie9o7Ht9Xf+0tpaH9qDgTVY6jqS2c4e9gW/HA/JXsW9KSn1Vhzo8ZYd0=
+	t=1707828118; cv=none; b=d1AzzF+tqrgrjLUkA1QWacQChTAlWlOG4FDWqo28v/W8hoNk2eLn2URbpCpVXlFuaIpUvsKGBG0dkU2pdlsVOmaYlGG5vyegcmR8s5znq3JEk3G7b/xSmNa4vG5Cd7ZMidbE5/owjoWFOtnOWvUjSge8eeKUNGbWF2A6CkPmtD8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1707828020; c=relaxed/simple;
-	bh=wUJyXXbGTBOy94MIUIV71WzTBb8rRYur4YremCO0Cno=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=TKfQsXhCz6hwGq0q9Kk5DWI1sFSN9Xo70DGqLMEKRYoHDhQMRXTwoEc7H480NxtJeKQMK7uRjE5yIbnMfMbfhJJgWyO8WTEWAxDAQIIfTkjCaXoRLynzcrd9K3gSUmH/N27pKiKrQcRaO+e84mN5FWcrPsUfXSwE3pTdaow7Qu0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org; spf=pass smtp.mailfrom=gmail.com; arc=none smtp.client-ip=209.85.219.175
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org
+	s=arc-20240116; t=1707828118; c=relaxed/simple;
+	bh=7HTb1FTG0w4am0moU2ZfJ+vXyBYLytKgdVhTQ/rfeJk=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=Nv9YI+fX98zZ9M+URataMp77lxv0CvKXXDes21hZQo/6HpmFRXlyLglGHhnGCVR4Uvf+6bCJ7j5l3RhudEtCyv6krbIfhBYiac+loSsScUK4I2Whl7IIWH0YGMwasGWOMib1XnpplBRW6PpVTVa8HA/+vK8rpHWyCgEoW0uERHo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=TKxIq7oi; arc=none smtp.client-ip=209.85.160.42
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-yb1-f175.google.com with SMTP id 3f1490d57ef6-dc745927098so3576809276.3;
-        Tue, 13 Feb 2024 04:40:17 -0800 (PST)
+Received: by mail-oa1-f42.google.com with SMTP id 586e51a60fabf-21d56bb3714so35037fac.2;
+        Tue, 13 Feb 2024 04:41:56 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1707828115; x=1708432915; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=3H9KUGhzPdQrreUofYKz+zO35fKsLzTBb4VkOZjhuu4=;
+        b=TKxIq7oiHw3B9Ag4537jmuSh8z0Fqkz38b0EqyzLJ/2x4qHL5pPr1VuFnUcNob0Zrk
+         iNwcxLo4o+TrEKYTpNoyXZqmeIASps7d+uER8GRCE5KKE6a+V++REvzPVUi9o6we7SBL
+         RswLJIaBEQkjEduzFYw3L1St7qjUpplt30NB1z86nd7zmlHUfGmlCS/+Hktl0dY/ItH0
+         79GunPRYh3EmYhU/ytF1ROjKc7loWhXKihWo/9yu9ReH/Y5FmiTt1VwQJbrC+5FT6g3F
+         gypWDxIZQ6weikFzLERgN7Kejjm2D1M80H7ZOkVUVsSdfSQZV9Qmp7T95tBakK5PpcHk
+         mmjg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1707828016; x=1708432816;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=qHxqgeHF2z9NmdWD9679XNCgSO+veA7sR2au5H0s50A=;
-        b=FnRfvkoffZPLCPD0c19FjPy2mE96biLFj59+rYCuVUhgDAou4kL3AoM4nD5t9ywKCc
-         sDoAgtkaudWGT2WrYb89gjEFqE5t6sSeZCKsiR2OukV2zhg7TyUwUKhGIuhyjvwld6UI
-         hOprwBh4jCXNqyABFJ7qVYHoVKFmhd7Mb1/WAIavhzKUl8BWlxKQwk2DyLGwK60AqCJO
-         Z3ICTcj8o/47ZXSskjDwGbUjal58UpgFem1257ami2BnnGNMS16+89hNsfhmzH1Uw+Vq
-         V7e60VHb1WA0WCBTpRH2buNes8KfG3FIIuDndawBgwV3e5ejfFXOadYvms/qOJOpxxgT
-         oyOA==
-X-Forwarded-Encrypted: i=1; AJvYcCWFGbNrZMjuah0zrp2+JWbQVIxjmMiMgOXK84RJG5HJyMjrt/p/tiyd1iVRDcU61oPiA3Gm4pOZribWpJnr/c5CPTJJAAeaXpvdQmcanycTh70/OM/souA1Wa5/3pVodf71uACmPLkRuKobwzRf
-X-Gm-Message-State: AOJu0YyWwYmtn9f8gAK3M64G7HiEzRmBhvAgYO6j1+yK/wYyBGveg4Be
-	NyaPLbWpuKotAkrfroe1aZVzJ07heDcot0wcBnRmP30gav1GUIgGdy+0Mwq3Iw0=
-X-Google-Smtp-Source: AGHT+IGQ5XX7OaiGgKZn94tFBpih26UsZYpso2EbvW+HlNQ11VyveV8wv65aTU37jDoEi+gVGcoOCg==
-X-Received: by 2002:a81:8313:0:b0:604:727c:695 with SMTP id t19-20020a818313000000b00604727c0695mr7379915ywf.42.1707828016440;
-        Tue, 13 Feb 2024 04:40:16 -0800 (PST)
-X-Forwarded-Encrypted: i=1; AJvYcCX6agGFl+PpJBinAQEYZufrNMIgRpRlkxBLcRetM//rLXIMVnYj0xStMrY/mKp6gQs2srnhoi4MLrGBBwET/lC42/X/imSk9a3B5FnzgLKEPg4euB3SPDSEJ3KhmmZN1FQ+qxFKN3UvRDo2bg3n
-Received: from mail-yb1-f182.google.com (mail-yb1-f182.google.com. [209.85.219.182])
-        by smtp.gmail.com with ESMTPSA id em7-20020a05690c2b0700b006073145eccesm1044071ywb.13.2024.02.13.04.40.16
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 13 Feb 2024 04:40:16 -0800 (PST)
-Received: by mail-yb1-f182.google.com with SMTP id 3f1490d57ef6-dcc80d6004bso594216276.0;
-        Tue, 13 Feb 2024 04:40:16 -0800 (PST)
-X-Forwarded-Encrypted: i=1; AJvYcCU7d2QgfiqV1ffxBDeuMozaVjm2vdN+MdaSd3cmbpUPwKdS9SdWFB+oozZpUKNESakCwxOpt5wY63pa8nnxZF+Sd9SaPEwey0rIR8O4KpK+6UZG+meA4E5g+gasuVBCNIItAd9q1sVuP/XljMzg
-X-Received: by 2002:a25:5f09:0:b0:dc2:2d75:5fde with SMTP id
- t9-20020a255f09000000b00dc22d755fdemr7699131ybb.29.1707828015982; Tue, 13 Feb
- 2024 04:40:15 -0800 (PST)
+        d=1e100.net; s=20230601; t=1707828115; x=1708432915;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=3H9KUGhzPdQrreUofYKz+zO35fKsLzTBb4VkOZjhuu4=;
+        b=fptBnWXBpZ/grCLn+e9ET8+5r0H65P99xaNbuqVKDO8930QNi14YajKlCnJsbAz0JV
+         z5y08lu9OqDBmZzCLZVymhWpP0YERQ/hiznEDLxxXsbkEZethtLLPUmUjuUh095Hn2z7
+         W99mpwplfsdkLc68BfqX2x5gpab8dDHZ0IUTTRVrd9C5qqVPThbrBjAj+l2XnJOVs3SG
+         vEvFlmPWrq+/qpUfTi3Q/+ZoKMxL8IdZp6ZrP+G2xOJ80RFpZEYquuN1Zb0QUkPkx8Bf
+         xJOt5tojpgO39r5PCGQNlYVxit0uD8NAkPbhlRfeznhjevFPbeT+goX2DNHl5B0yXiSC
+         Xgdg==
+X-Forwarded-Encrypted: i=1; AJvYcCVdtDQ7kMAoUm2xq/BJ7nDc3mUd7hpLyNqeW9Mzz7E8/OLKuoyJVU/QnLpnbAxN72ae1gPsfgcdld9Lldl2EF4R0JYs+/4F+r6bGeuLWO78F79G3TwhWNbD502wzjlf+netKAX4xk+yFg==
+X-Gm-Message-State: AOJu0Yyl7WQ6W1aENkraz59K0KaG5VOy+JlS+yXcDCel0xDmjMENuHv0
+	PkBA1RVLR8Fnpcdr0pYC/oy33NW9MVj2WGjnrnVZSHTZh7O6I10KyqyvvqeT
+X-Google-Smtp-Source: AGHT+IFzUXvMoAAyLBJl8/bQkVkxeHRfO+AbIFfEm0xabkjcD0mmuJu/kJbcF2bRTjBvvAJepwBW8A==
+X-Received: by 2002:a05:6870:46a6:b0:218:73ae:3f24 with SMTP id a38-20020a05687046a600b0021873ae3f24mr12286829oap.13.1707828115011;
+        Tue, 13 Feb 2024 04:41:55 -0800 (PST)
+X-Forwarded-Encrypted: i=1; AJvYcCU+IqbakiLosG4JttF1fz0dUcS7rrSYtd0FyPbqq8P6vPJ8A3E0n6ePVRfF24Fave9tXBcAbIabuIFJVvaFz50Fc8YvW8uEq4mtFH8V6fteGCBTuLr3UCOw/hB6rfZCBFroGigRoWYkCtUEFOZOk4xUwWINJblyoJ26/p3pxyqSnxDJr6cCmGquW12JXC7qwMNf29s/cfY3uO/MyCTuatNpQaTnAwmq4uJ3iueFD1ZMIJCDxgU5n5UnCS3sEojyf5g9lCS9/P5i3jI9hZ8r4wDroD6B1UGEDa44WrOpH4ODk4DnqSsi8ZKQDAptMrTz
+Received: from aford-System-Version.lan ([2601:447:d002:5be:cae3:528f:52c:80d8])
+        by smtp.gmail.com with ESMTPSA id c3-20020ac86603000000b0042dae4c1594sm483385qtp.47.2024.02.13.04.41.54
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 13 Feb 2024 04:41:54 -0800 (PST)
+From: Adam Ford <aford173@gmail.com>
+To: linux-omap@vger.kernel.org
+Cc: aford@beaconembedded.com,
+	Adam Ford <aford173@gmail.com>,
+	=?UTF-8?q?Beno=C3=AEt=20Cousson?= <bcousson@baylibre.com>,
+	Tony Lindgren <tony@atomide.com>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org
+Subject: [PATCH] arm: dts: omap3:  Migrate hsmmc driver to sdhci driver
+Date: Tue, 13 Feb 2024 06:41:45 -0600
+Message-ID: <20240213124146.202391-1-aford173@gmail.com>
+X-Mailer: git-send-email 2.43.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20240127121937.2372098-1-niklas.soderlund+renesas@ragnatech.se>
- <CAMuHMdUJ0U9qnxtdJmVUJQqRhbmu0rmOxpyDZ8Lp=+hv=Oe4Og@mail.gmail.com>
- <20240212233836.GE1870743@ragnatech.se> <CAMuHMdXBYfi==T_EzbagJFVYkvYU=usEsru1T7Z=rBHFHt-CMg@mail.gmail.com>
- <20240213123046.GF1870743@ragnatech.se>
-In-Reply-To: <20240213123046.GF1870743@ragnatech.se>
-From: Geert Uytterhoeven <geert@linux-m68k.org>
-Date: Tue, 13 Feb 2024 13:40:03 +0100
-X-Gmail-Original-Message-ID: <CAMuHMdX+YwSHqH=CKgj-xWOQYQ28OEjJb1SPP1CGPyQLOrRfJw@mail.gmail.com>
-Message-ID: <CAMuHMdX+YwSHqH=CKgj-xWOQYQ28OEjJb1SPP1CGPyQLOrRfJw@mail.gmail.com>
-Subject: Re: [PATCH v2] dt-bindings: renesas: Document preferred compatible naming
-To: =?UTF-8?Q?Niklas_S=C3=B6derlund?= <niklas.soderlund+renesas@ragnatech.se>
-Cc: Rob Herring <robh+dt@kernel.org>, 
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, 
-	devicetree@vger.kernel.org, linux-renesas-soc@vger.kernel.org, 
-	Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Transfer-Encoding: 8bit
 
-Hi Niklas,
+The sdhci driver has been around for several years, and it supports
+the OMAP3 family.  Instead of using the older driver, let's finally
+migrate to the newer one.
 
-On Tue, Feb 13, 2024 at 1:30=E2=80=AFPM Niklas S=C3=B6derlund
-<niklas.soderlund+renesas@ragnatech.se> wrote:
-> On 2024-02-13 09:29:55 +0100, Geert Uytterhoeven wrote:
-> > On Tue, Feb 13, 2024 at 12:38=E2=80=AFAM Niklas S=C3=B6derlund
-> > <niklas.soderlund+renesas@ragnatech.se> wrote:
-> > > On 2024-02-12 20:36:12 +0100, Geert Uytterhoeven wrote:
-> > > > On Sat, Jan 27, 2024 at 1:20=E2=80=AFPM Niklas S=C3=B6derlund
-> > > > <niklas.soderlund+renesas@ragnatech.se> wrote:
-> > > > > Compatibles can come in two formats. Either "vendor,ip-soc" or
-> > > > > "vendor,soc-ip". Add a DT schema file documenting Renesas preferr=
-ed
-> > > > > policy and enforcing it for all new compatibles, except few exist=
-ing
-> > > > > patterns.
-> > > > >
-> > > > > Suggested-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org=
->
-> > > > > Signed-off-by: Niklas S=C3=B6derlund <niklas.soderlund+renesas@ra=
-gnatech.se>
-> > > > > ---
-> > > > > * Changes since v1
-> > > > > - Split the "SoC agnostic compatibles" section into two to make i=
-t's
-> > > > >   intent clearer.
-> > > > > - Improved the documentation for each group of compatibles.
-> > > > > - Reduced the number of regexp to create a larger target area. As
-> > > > >   suggested by Krzysztof the goal is not to validate each SoC nam=
-e but
-> > > > >   check for the correct order of SoC-IP.
-> > > >
-> > > > Thanks for the update!
-> > > >
-> > > > > --- /dev/null
-> > > > > +++ b/Documentation/devicetree/bindings/soc/renesas/renesas-soc.y=
-aml
+Signed-off-by: Adam Ford <aford173@gmail.com>
 
-> > > > > +      # Fixed legacy compatibles
-> > > > > +      #
-> > > > > +      # List cannot grow with new bindings.
-> > > > > +      - enum:
-> > > > > +          - renesas,bsc-r8a73a4
-> > > > > +          - renesas,bsc-sh73a0
-> > > > > +          - renesas,dbsc-r8a73a4
-> > > > > +          - renesas,dbsc3-r8a7740
-> > > > > +          - renesas,em-gio
-> > > > > +          - renesas,em-sti
-> > > > > +          - renesas,em-uart
-> > > >
-> > > > Perhaps combine these three: "renesas,em-(gpio|sti|usrt)"?
-> > >
-> > > Will do.
-> >
-> > That does mean these lines need to use
-> >
-> >   - pattern: "^renesas,em-(gpio|sti|uart)$"
-> >
-> > right?
->
-> Yes, a pattern is needed. I will try to condense the lists as much as
-> possible at the cost of strictness as this seems to be the common theme
-> in reviewer. This will be,
->
->     pattern: "^renesas,em-[a-z0-9]+$"
->
-> Or
->     pattern: "^renesas,(em|foo|bar|baz)-[a-z0-9]+$"
+diff --git a/arch/arm/boot/dts/ti/omap/omap3.dtsi b/arch/arm/boot/dts/ti/omap/omap3.dtsi
+index 92cd4c99dae7..218d7212c749 100644
+--- a/arch/arm/boot/dts/ti/omap/omap3.dtsi
++++ b/arch/arm/boot/dts/ti/omap/omap3.dtsi
+@@ -507,7 +507,7 @@ hdqw1w: 1w@480b2000 {
+ 		};
+ 
+ 		mmc1: mmc@4809c000 {
+-			compatible = "ti,omap3-hsmmc";
++			compatible = "ti,omap3-sdhci";
+ 			reg = <0x4809c000 0x200>;
+ 			interrupts = <83>;
+ 			ti,hwmods = "mmc1";
+@@ -518,7 +518,7 @@ mmc1: mmc@4809c000 {
+ 		};
+ 
+ 		mmc2: mmc@480b4000 {
+-			compatible = "ti,omap3-hsmmc";
++			compatible = "ti,omap3-sdhci";
+ 			reg = <0x480b4000 0x200>;
+ 			interrupts = <86>;
+ 			ti,hwmods = "mmc2";
+@@ -527,7 +527,7 @@ mmc2: mmc@480b4000 {
+ 		};
+ 
+ 		mmc3: mmc@480ad000 {
+-			compatible = "ti,omap3-hsmmc";
++			compatible = "ti,omap3-sdhci";
+ 			reg = <0x480ad000 0x200>;
+ 			interrupts = <94>;
+ 			ti,hwmods = "mmc3";
+-- 
+2.43.0
 
-I'd rather keep these as strict as possible, to make sure no new ones
-pop up accidentally.  I.e. I prefer "^renesas,em-(gpio|sti|uart)$" over
-"^renesas,em-[a-z0-9-]+$".
-
-Gr{oetje,eeting}s,
-
-                        Geert
-
---=20
-Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k=
-.org
-
-In personal conversations with technical people, I call myself a hacker. Bu=
-t
-when I'm talking to journalists I just say "programmer" or something like t=
-hat.
-                                -- Linus Torvalds
 
