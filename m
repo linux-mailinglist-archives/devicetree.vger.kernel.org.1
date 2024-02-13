@@ -1,215 +1,167 @@
-Return-Path: <devicetree+bounces-41177-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-41178-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3DD0A852B0A
-	for <lists+devicetree@lfdr.de>; Tue, 13 Feb 2024 09:25:54 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 93BF5852B12
+	for <lists+devicetree@lfdr.de>; Tue, 13 Feb 2024 09:26:50 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id E7CD1284205
-	for <lists+devicetree@lfdr.de>; Tue, 13 Feb 2024 08:25:52 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 1EDFB1F2335C
+	for <lists+devicetree@lfdr.de>; Tue, 13 Feb 2024 08:26:50 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1D04A2231C;
-	Tue, 13 Feb 2024 08:23:22 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 68D2117C62;
+	Tue, 13 Feb 2024 08:26:44 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=outlook.com header.i=@outlook.com header.b="U4smRfWx"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="Gt1EpKSe"
 X-Original-To: devicetree@vger.kernel.org
-Received: from NAM02-BN1-obe.outbound.protection.outlook.com (mail-bn1nam02olkn2041.outbound.protection.outlook.com [40.92.15.41])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wr1-f48.google.com (mail-wr1-f48.google.com [209.85.221.48])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6F3062940D;
-	Tue, 13 Feb 2024 08:23:20 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.92.15.41
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1707812602; cv=fail; b=HDwxv+QMNqS9IUoxEXXyyVjfpTOM1U3gXaxqWAOxWJtNtNio6oi+jrOM8zWXl6VA57Lykc/cPJFeWW2kPByo2g6mJjteAtOL6b7xcJF1K7zyAknVFXWXbagM0TCNjLKbRwP4kSU5Tsvb5xQrS1ky565Kb/HG6K7bLtGqnjMUZ60=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1707812602; c=relaxed/simple;
-	bh=j0YFqDLrVB6p/qewm7BdBZaNWb+9et08c7w1rq+TqVs=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 Content-Type:MIME-Version; b=poN46dvf2RZf44WukaHKYxuhWa2Uej2wzXhn0hK5CS8Nz/znQ+hQSvlznFdCuA1jYohuAGTW0RjwKclC5ur35UZ0oFQmbnJ8JXyfLwUR0QiyAFXorG63tbJnC2wAj5u+qgIPe8OE7bLMd+he0NUc+/d4U/uHO9MoSZYFEMM85M0=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=outlook.com; spf=pass smtp.mailfrom=outlook.com; dkim=pass (2048-bit key) header.d=outlook.com header.i=@outlook.com header.b=U4smRfWx; arc=fail smtp.client-ip=40.92.15.41
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=outlook.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=outlook.com
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=OcKd1qhozzi9GPYnZGmaST46OtAAQhpn4FwHCzlgQX/rMr2r2/IUEzmOYxThAtC3idLV9KazApr3Q3dhgR0S5zw4iPGee3VUyMU2rW7V4oxV0iMk2CUed1KVVbNir9hkJw/KVNu6s5efxVTaQxLjHebj43v7YgHYBBsnzvCVlmC8feBnYuciIjfW/JFR+/feCgSCE3B78ym3JPSXPuEWrzrwyT9huMpwY9fRtfF+fsbOymOYOmlKYMAy4REEo30rzcwoDQ37OsbT5neAdV76S33Wmil5I05IjdU+3Bn+2ONTGZwIseSynyoxNFgbJpRp/cCp1/7GKMaBcdtO24x37g==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=weCkVjGKX55Z8IJIrlCWo17og2J2tJDerIg+HBoNhdQ=;
- b=PkRNPZ41G6bxngMyS8fiMEmjOzjMStLNSpHhoIUPHd2ZwvdngksLr6k0csedSOVJ8NCFugUib73rbOYH0AugnIVBtYGYd3wL5LLEXPY9BNnwQLbkduGE5v7EjFM/En/UoFRXLkhEZ+2N2Sc4qhM7S3wSi9qyXTtRq1AL3xuSYP4QwDnO5Fmm8ApJulccZVnCp/2UYGMfl6jqfhAvMjBo28UoeTWV3FT7loZxG96XK3QbpbEDgfWukQ/TtdOgzuX0c/D1ObSAHTMkV3smxgKJP8ggYf+DiIy1EUx8JjIXdOxyFyWEBFfBGXSml1enPk1YG8oD7Unk9hClbfSgFBNYfQ==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=none; dmarc=none;
- dkim=none; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=outlook.com;
- s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=weCkVjGKX55Z8IJIrlCWo17og2J2tJDerIg+HBoNhdQ=;
- b=U4smRfWxv+IyXpzwsvdzOvJGGoJhsiKG1IauOdeT7j5v97RecKVZ1xK0bUPOl5U5TPgJ5aGgZlYwZrt6glulysOYDeK6D2wUV1FbYjUn4gxA2dMSovDxsQ7VGcsz4lv/LRrf2BmU+b4NSNOicV7JfyOnxj8c2028FBZVbbcePFTc5WITipJKTmhIQ5ny8mX6wdoAZ/92AQqq0EuD0pj0xycinTHsvl/TH4x1os2mWlyKSsEyIRbWPFhnSaBZpNkgv058lFDgo4TXSScUZw8WLq1/dGZrTFyzPeZYLo75ta5oq1x82/+8kdBH/sCjdBKRtv6RbdgfVacr/oqd9M1peQ==
-Received: from IA1PR20MB4953.namprd20.prod.outlook.com (2603:10b6:208:3af::19)
- by DS7PR20MB3776.namprd20.prod.outlook.com (2603:10b6:5:3ab::9) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7292.25; Tue, 13 Feb
- 2024 08:23:18 +0000
-Received: from IA1PR20MB4953.namprd20.prod.outlook.com
- ([fe80::406a:664b:b8bc:1e6b]) by IA1PR20MB4953.namprd20.prod.outlook.com
- ([fe80::406a:664b:b8bc:1e6b%2]) with mapi id 15.20.7270.036; Tue, 13 Feb 2024
- 08:23:18 +0000
-From: Inochi Amaoto <inochiama@outlook.com>
-To: Michael Turquette <mturquette@baylibre.com>,
-	Stephen Boyd <sboyd@kernel.org>,
-	Rob Herring <robh+dt@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Chao Wei <chao.wei@sophgo.com>,
-	Chen Wang <unicorn_wang@outlook.com>,
-	Paul Walmsley <paul.walmsley@sifive.com>,
-	Palmer Dabbelt <palmer@dabbelt.com>,
-	Albert Ou <aou@eecs.berkeley.edu>,
-	Inochi Amaoto <inochiama@outlook.com>
-Cc: Jisheng Zhang <jszhang@kernel.org>,
-	Liu Gui <kenneth.liu@sophgo.com>,
-	Jingbao Qiu <qiujingbao.dlmu@gmail.com>,
-	dlan@gentoo.org,
-	linux-clk@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	linux-riscv@lists.infradead.org
-Subject: [PATCH v8 8/8] riscv: dts: sophgo: add uart clock for Sophgo CV1800 series SoC
-Date: Tue, 13 Feb 2024 16:22:40 +0800
-Message-ID:
- <IA1PR20MB4953B7A8E00DF94B8B25A0C6BB4F2@IA1PR20MB4953.namprd20.prod.outlook.com>
-X-Mailer: git-send-email 2.43.1
-In-Reply-To: <IA1PR20MB4953366482FEBFC5E7F6F34BBB4F2@IA1PR20MB4953.namprd20.prod.outlook.com>
-References: <IA1PR20MB4953366482FEBFC5E7F6F34BBB4F2@IA1PR20MB4953.namprd20.prod.outlook.com>
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-TMN: [nmoKBqumVqVU2/6W4FApKSQkv1jFhnSoAjUPmZ8UM0sKP70bdlaasjvMr8sY2W0F]
-X-ClientProxiedBy: TYBP286CA0033.JPNP286.PROD.OUTLOOK.COM
- (2603:1096:404:10a::21) To IA1PR20MB4953.namprd20.prod.outlook.com
- (2603:10b6:208:3af::19)
-X-Microsoft-Original-Message-ID:
- <20240213082243.591875-8-inochiama@outlook.com>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 90C47224CF
+	for <devicetree@vger.kernel.org>; Tue, 13 Feb 2024 08:26:42 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.48
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1707812804; cv=none; b=A3lddS6KzbdSrdhtxU/HIe8XO8tb2hSS0RLjbTKd9gKueRSDaMg3SysSwJfacQgpdlNgXFRq/Qe5s+S834/M/OmgASz1/YHw0p9SAEg4+QwSc3m5nsyFXxRfyeU3GICU0Pe6qSL6yuCA1RcUXDM28NRmDDBokAFHKKae4S3Ogzg=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1707812804; c=relaxed/simple;
+	bh=AU2vMbcPBoPGMezuBVaBZOgLEbV3i+mUFWNBFEj0I8A=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=OcPCzq+12CxyKzdJOSyJp8+qc340WfEHcRrb6bQykRVJfNY5GDTFZcF6lA/G5QNRp09Lux08oKMaTZrk4qujmbLY2Ww8/eAfSKgvYYMbHGS+xuLjdi03Rk/0RkusgSSEuThnF/PXee98/bBGqMyzoXwjx4IsDLdR3FPFdJ+AO2c=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=Gt1EpKSe; arc=none smtp.client-ip=209.85.221.48
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-wr1-f48.google.com with SMTP id ffacd0b85a97d-3392b12dd21so2519394f8f.0
+        for <devicetree@vger.kernel.org>; Tue, 13 Feb 2024 00:26:42 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1707812801; x=1708417601; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from
+         :content-language:references:cc:to:subject:user-agent:mime-version
+         :date:message-id:from:to:cc:subject:date:message-id:reply-to;
+        bh=yt8OEsnV2/t6o3bQYdJsUNyb66Zbj5OvLC5Be7YQ91U=;
+        b=Gt1EpKSeR69cP93R5W9woRqcplKgtiCT0yQ5kN/2AVjUwTGkQngeFsmX4lmVqxThKb
+         EcJBijDhN/a+5WyC7vvtDaAuXCcUKU4dIsdFRm+Pupv3C3Pf1JjPlyHnTdnNMY4VtfpB
+         xV3f8X0vJmBdmUdaUsNmmQ3UhpUGpl/2/GTuePGM0Nu9TQuC4gx9f77ia3elocluB2e/
+         HTNp8WfzmR8IJkcQvtxxMszOgciTJ8okYVlF2KC/ZGOXuO30dBvMDBi8WjxHvqya7BeC
+         p7EqO8cHbchsSQEPcFzOvQVOBNKtSwuWqxi2FgM1sr36Abs8+YRZxGsTkh0jo7eq4zrO
+         VnlQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1707812801; x=1708417601;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from
+         :content-language:references:cc:to:subject:user-agent:mime-version
+         :date:message-id:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=yt8OEsnV2/t6o3bQYdJsUNyb66Zbj5OvLC5Be7YQ91U=;
+        b=AuaCXoAlD0N7JkT3wcFsfha+3R5xcr97mUFBqmvTzQbYyyr7dWWz9XAWwWkSAObYQS
+         J6IOgKUsoq/en4zg80mtfIW7ym3N54w8dNV77j3ze+Yeh2P9qmTlaciepgaQvDpKXAS3
+         HjAYha2ldD4oFppEmydpXU6ozn4aQXFDEsRYwavlX7kBy/Cqje20aRMx2vXdQe8Gs5Xq
+         BdV6tST4UZ7q+VGTmOIhzljE1lZt7J6CqQC2qp3krjmG9BxF8ef/rItjpNlq4In5hoT1
+         JxpvGm+mRKT+KaTjTUaVXlCKkqhflr9Pj/P8+yqPL1lNBMU9oX9mSektc2BxVMCC5UA4
+         89Eg==
+X-Forwarded-Encrypted: i=1; AJvYcCUFS3IpBDd7xiMS/Kav/WPpoXleJGMLZPwff2rioTkXwKk54A6jQR1VMbidApgSUvKIxZNmepxxJ1RI/ZIAAZIE3zeFioME8efN/g==
+X-Gm-Message-State: AOJu0Yykn+K1WilqwG4ln/pg37T9GwZgiuV2+RjteRPNhz6cQYUGZJbQ
+	QmwG+c/iRZ6wQSdzilVovC6hw95c929XfdTklgWrnNvpiSz3t68+zpmIIJt/FAM=
+X-Google-Smtp-Source: AGHT+IE6OUGMcogQyW0XBmBrEdPGiYrKBLV5abFqeD0G1KnUVwRe0AAxv25YaC0S05SjTIBjZH3JXA==
+X-Received: by 2002:adf:f4d0:0:b0:33b:4382:c50 with SMTP id h16-20020adff4d0000000b0033b43820c50mr5649006wrp.26.1707812800815;
+        Tue, 13 Feb 2024 00:26:40 -0800 (PST)
+X-Forwarded-Encrypted: i=1; AJvYcCVtAjT64GmWQpyv3hCLbSMV5N1RUq8Hs7hhwctTbekc2NvzNMwyPi189+B84CuyPCJUWeldPTVd6lvNKxrTz06eVbDtccrOEe1yqkS2q8qzyepBbY9hsiZIWrBmW5I02hIAx9AHEjrmFYK0uDYCX6/NsEOlgOFN+bIJA4C9K1npWG5rxvzJm4nMisSaQh7ZVUIZRV1IADsbpdmLGKf4apiWUNbAJF+5r5TWXUjXdlIyEQiNamADYNzY7g0xnBCq41o119U+EAlXI5uEfpZ3/XDgsCHJWAaK6KrcKxJpI2byccQqjvbtBcwqN/Se3q6mtUbnGKetLp8UHz0xE7ZKUIFmnC4C1mEtkhZXH5l4hYD67gvjOlctlSV5QIWmDjTfTc7/Z6iYYrf29yXWBeMKvwgvj+QLuD7usni2rhA63cYZ8o5b3NMCBeISJiMC02+bKWu4Mqwnhk0dUunQOKdcs8F+TVsoKJ5R/iaoJxKBHG1sM44cse77KXDYoiXQZpY8ZTduYMR70sxF5AiPkn0E/DJia/WHX1YtUgX9+kNW6sI3tw2qEzuv5c2n1bdwFBeFcnRvM6MlUNFEM6aEGb0=
+Received: from [192.168.1.20] ([178.197.223.6])
+        by smtp.gmail.com with ESMTPSA id l21-20020adfa395000000b0033b3ceda5dbsm8933060wrb.44.2024.02.13.00.26.38
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 13 Feb 2024 00:26:40 -0800 (PST)
+Message-ID: <feab0ab8-9c34-41f4-a013-e66e0c74048b@linaro.org>
+Date: Tue, 13 Feb 2024 09:26:38 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-MS-Exchange-MessageSentRepresentingType: 1
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: IA1PR20MB4953:EE_|DS7PR20MB3776:EE_
-X-MS-Office365-Filtering-Correlation-Id: 4e537e09-e3b9-4eb5-3b9e-08dc2c6d082f
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info:
-	qUEjElS5LYyFV+BZccYyyakXAVtDE3OT+UQQ5otvDpaD+ccWFVuppNL3w/RxqDl78n/UytS9ZdLwk9ejpKc6hrpzRY41otTT9RUI0PxClvvUlOm4MiMhipVSDHVdrh8jM/jF4OaYGFi6S2FXqvK74Jj/22IR9+lOUXNkjJQWvngPH2ePFpS1iEw5N6Q8FlLBhCoJyaxUJpCYQuRdsp93MVl9hzyf5wgjdZ0/pPi9cru+M2dTjki6VmteOJK/f3dQCxy58SlztU94rTN4PHitPW6XHOKuibCHcDb0jPlvrNUo26qwK0AB3NZ+ccb0+2bDTrJOFwU+PTmZLxoP7IlnjbQvvYcs3C1K40BCb5WQFtopZTQb6ASJFGBs6bg39cydrNIvrAQua5YlDY605RUgzxWKIfc0EwB+wGtArhVJ88eS+r+93CDp1ruORwOgHUnFpXz/B+pKzH8AIORopJAiEeMFmli0tmgSS+GowX1Sv94b6ovMkTe4RcsSdYcPIwC8h6ZAFI9NG6dc8c5dmXDV26uYsQkvZ/QnwhbCyw2fNC6NHfEMLP578NEqmnIHPga8alAq/IEABI2Kye0EGmzAp333/QJaF+dcEuEoi3mRRDykJVLIf0TESKAM5mpGgbIm
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0:
-	=?us-ascii?Q?tw/gSBJa91DWKGm/WSB3IwnSRrjh7PjueN6wVv3j5Di5p1kzx1HWluocl8TW?=
- =?us-ascii?Q?Q7rzlR0J7cEZPTC6AWVHpeA9U+c56Rx4YWuRPjH5IJ56C/qhzREeZ+pGUlr7?=
- =?us-ascii?Q?ahTRbalJj0QR2kO9kxIuqTw42ktxbsXQWJWYkjTwgq5wF5FC6Qou+Ww06+7Y?=
- =?us-ascii?Q?RhQ70P44RVizFbrapyvmuEh7C9CdWb1zy1rz1rMcvhRRd0tUxpGdf/EPu7lf?=
- =?us-ascii?Q?HjJoRE6t77uve+/AVrVa1KsRzNJqAY68EujxSECoDC/CAq83cNNotSdZGr5s?=
- =?us-ascii?Q?eMjgshg0YGUidx1sU394JrcnUjmAM3GWPABbdBK1Rl4MdeJDzkRjiaYK0zZw?=
- =?us-ascii?Q?0XYsLf5hGfguR02tmED+o51M76ImdjEdvcGdKLOmJ9nWzEfGZOGjrXxHGoVA?=
- =?us-ascii?Q?Mk4Jm1PDJrFBFf63j1Czp6BzJubRCfhbdzjH9Fe1x2G8qYFf95vXoK4yuiJB?=
- =?us-ascii?Q?qI+ilSIjzUsFUr+AcD+7qQmnS63g8DO1kw6vOR38TQ7BXtJ4kVPpu5XgAQW6?=
- =?us-ascii?Q?V/S6PeoL/Y3IxY4VuEH/02MR55y1c0kDRXM9r3tf5UTlIxQy381MrbihPfCl?=
- =?us-ascii?Q?45oWKQY/9jxkZBx5A9hedJkkoWFTJTcic5FbnBRm6p2oG0bLfhd1FD/IPXXy?=
- =?us-ascii?Q?aVQHgry7dl85wnehm5dGUwGyW0o8q4v+E25Na8UJq+91yQFoj8nAGV4bvKEd?=
- =?us-ascii?Q?G+iBU/Ahn90ETPLeRO+8U0GMA9Bn8YRwOKEDuZGPba1vP1MxIIHGPR29kD9f?=
- =?us-ascii?Q?ACEiI9Qz2xjjsv5Of7VMhRIITMtdCShZPjxEDpaTibVTcphf83ezh64m6IDf?=
- =?us-ascii?Q?PPAV6Sc7ueX48xF1+rSnaWD5psnWOgruzpLJD1tYYtA4z1SQT5dmN+qtxaiM?=
- =?us-ascii?Q?m/w3MUk9Me4WMuKPZLazCuK1y8uH3lWI5pDrZRagPt0pZS6zO25Lh61OMGlf?=
- =?us-ascii?Q?5pMYpVRtEY3/keirsmFXKfEvlFXbCVgTa8vH7iC7+pSwtLNUiXoQgLcIpWx5?=
- =?us-ascii?Q?JjTWxm3KOiP7Qhu4Z4hvj7wSsjGov1B+hYxI2MQoeCbL43XTqxtUYI3puhZF?=
- =?us-ascii?Q?DlqXB3PQbweSWnjqJU3lHeZuV+iA6+oXOkoSUebsRxN3O4Gr8hPvr+wUA5Gf?=
- =?us-ascii?Q?vj6FfWjuYAdfpbi/1skcg3q2/A1JakG15G5kNjQXtUg+gORuaWXG/j0Fql50?=
- =?us-ascii?Q?xAYYBrp5WE0NZ6no/NVO7U/1OBL1riDzhgBTof72hhyH95BVDR5+MyM5OSbT?=
- =?us-ascii?Q?kqKeOIbfgshUsoCHrivGm3XAmmr9ZlBX8W5eu98/2b/q5H7uh6Q2VozGHb0r?=
- =?us-ascii?Q?QGE=3D?=
-X-OriginatorOrg: outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 4e537e09-e3b9-4eb5-3b9e-08dc2c6d082f
-X-MS-Exchange-CrossTenant-AuthSource: IA1PR20MB4953.namprd20.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 13 Feb 2024 08:23:18.1608
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 84df9e7f-e9f6-40af-b435-aaaaaaaaaaaa
-X-MS-Exchange-CrossTenant-RMS-PersistedConsumerOrg:
-	00000000-0000-0000-0000-000000000000
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DS7PR20MB3776
+User-Agent: Mozilla Thunderbird
+Subject: Re: [Patch v2] dt-bindings: media: s5p-mfc: Remove s5p-mfc.txt
+ binding
+To: Aakarsh Jain <aakarsh.jain@samsung.com>,
+ linux-arm-kernel@lists.infradead.org, linux-media@vger.kernel.org,
+ linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
+Cc: m.szyprowski@samsung.com, andrzej.hajda@intel.com, mchehab@kernel.org,
+ hverkuil-cisco@xs4all.nl, robh+dt@kernel.org,
+ krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
+ linux-samsung-soc@vger.kernel.org, andi@etezian.org, gost.dev@samsung.com,
+ alim.akhtar@samsung.com, pankaj.dubey@samsung.com
+References: <CGME20240213045739epcas5p49f28920efda3cb80351b1fcae580b21e@epcas5p4.samsung.com>
+ <20240213045733.63876-1-aakarsh.jain@samsung.com>
+Content-Language: en-US
+From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
+ xsFNBFVDQq4BEAC6KeLOfFsAvFMBsrCrJ2bCalhPv5+KQF2PS2+iwZI8BpRZoV+Bd5kWvN79
+ cFgcqTTuNHjAvxtUG8pQgGTHAObYs6xeYJtjUH0ZX6ndJ33FJYf5V3yXqqjcZ30FgHzJCFUu
+ JMp7PSyMPzpUXfU12yfcRYVEMQrmplNZssmYhiTeVicuOOypWugZKVLGNm0IweVCaZ/DJDIH
+ gNbpvVwjcKYrx85m9cBVEBUGaQP6AT7qlVCkrf50v8bofSIyVa2xmubbAwwFA1oxoOusjPIE
+ J3iadrwpFvsZjF5uHAKS+7wHLoW9hVzOnLbX6ajk5Hf8Pb1m+VH/E8bPBNNYKkfTtypTDUCj
+ NYcd27tjnXfG+SDs/EXNUAIRefCyvaRG7oRYF3Ec+2RgQDRnmmjCjoQNbFrJvJkFHlPeHaeS
+ BosGY+XWKydnmsfY7SSnjAzLUGAFhLd/XDVpb1Een2XucPpKvt9ORF+48gy12FA5GduRLhQU
+ vK4tU7ojoem/G23PcowM1CwPurC8sAVsQb9KmwTGh7rVz3ks3w/zfGBy3+WmLg++C2Wct6nM
+ Pd8/6CBVjEWqD06/RjI2AnjIq5fSEH/BIfXXfC68nMp9BZoy3So4ZsbOlBmtAPvMYX6U8VwD
+ TNeBxJu5Ex0Izf1NV9CzC3nNaFUYOY8KfN01X5SExAoVTr09ewARAQABzTRLcnp5c3p0b2Yg
+ S296bG93c2tpIDxrcnp5c3p0b2Yua296bG93c2tpQGxpbmFyby5vcmc+wsGUBBMBCgA+FiEE
+ m9B+DgxR+NWWd7dUG5NDfTtBYpsFAmI+BxMCGwMFCRRfreEFCwkIBwIGFQoJCAsCBBYCAwEC
+ HgECF4AACgkQG5NDfTtBYptgbhAAjAGunRoOTduBeC7V6GGOQMYIT5n3OuDSzG1oZyM4kyvO
+ XeodvvYv49/ng473E8ZFhXfrre+c1olbr1A8pnz9vKVQs9JGVa6wwr/6ddH7/yvcaCQnHRPK
+ mnXyP2BViBlyDWQ71UC3N12YCoHE2cVmfrn4JeyK/gHCvcW3hUW4i5rMd5M5WZAeiJj3rvYh
+ v8WMKDJOtZFXxwaYGbvFJNDdvdTHc2x2fGaWwmXMJn2xs1ZyFAeHQvrp49mS6PBQZzcx0XL5
+ cU9ZjhzOZDn6Apv45/C/lUJvPc3lo/pr5cmlOvPq1AsP6/xRXsEFX/SdvdxJ8w9KtGaxdJuf
+ rpzLQ8Ht+H0lY2On1duYhmro8WglOypHy+TusYrDEry2qDNlc/bApQKtd9uqyDZ+rx8bGxyY
+ qBP6bvsQx5YACI4p8R0J43tSqWwJTP/R5oPRQW2O1Ye1DEcdeyzZfifrQz58aoZrVQq+innR
+ aDwu8qDB5UgmMQ7cjDSeAQABdghq7pqrA4P8lkA7qTG+aw8Z21OoAyZdUNm8NWJoQy8m4nUP
+ gmeeQPRc0vjp5JkYPgTqwf08cluqO6vQuYL2YmwVBIbO7cE7LNGkPDA3RYMu+zPY9UUi/ln5
+ dcKuEStFZ5eqVyqVoZ9eu3RTCGIXAHe1NcfcMT9HT0DPp3+ieTxFx6RjY3kYTGLOwU0EVUNc
+ NAEQAM2StBhJERQvgPcbCzjokShn0cRA4q2SvCOvOXD+0KapXMRFE+/PZeDyfv4dEKuCqeh0
+ hihSHlaxTzg3TcqUu54w2xYskG8Fq5tg3gm4kh1Gvh1LijIXX99ABA8eHxOGmLPRIBkXHqJY
+ oHtCvPc6sYKNM9xbp6I4yF56xVLmHGJ61KaWKf5KKWYgA9kfHufbja7qR0c6H79LIsiYqf92
+ H1HNq1WlQpu/fh4/XAAaV1axHFt/dY/2kU05tLMj8GjeQDz1fHas7augL4argt4e+jum3Nwt
+ yupodQBxncKAUbzwKcDrPqUFmfRbJ7ARw8491xQHZDsP82JRj4cOJX32sBg8nO2N5OsFJOcd
+ 5IE9v6qfllkZDAh1Rb1h6DFYq9dcdPAHl4zOj9EHq99/CpyccOh7SrtWDNFFknCmLpowhct9
+ 5ZnlavBrDbOV0W47gO33WkXMFI4il4y1+Bv89979rVYn8aBohEgET41SpyQz7fMkcaZU+ok/
+ +HYjC/qfDxT7tjKXqBQEscVODaFicsUkjheOD4BfWEcVUqa+XdUEciwG/SgNyxBZepj41oVq
+ FPSVE+Ni2tNrW/e16b8mgXNngHSnbsr6pAIXZH3qFW+4TKPMGZ2rZ6zITrMip+12jgw4mGjy
+ 5y06JZvA02rZT2k9aa7i9dUUFggaanI09jNGbRA/ABEBAAHCwXwEGAEKACYCGwwWIQSb0H4O
+ DFH41ZZ3t1Qbk0N9O0FimwUCYDzvagUJFF+UtgAKCRAbk0N9O0Fim9JzD/0auoGtUu4mgnna
+ oEEpQEOjgT7l9TVuO3Qa/SeH+E0m55y5Fjpp6ZToc481za3xAcxK/BtIX5Wn1mQ6+szfrJQ6
+ 59y2io437BeuWIRjQniSxHz1kgtFECiV30yHRgOoQlzUea7FgsnuWdstgfWi6LxstswEzxLZ
+ Sj1EqpXYZE4uLjh6dW292sO+j4LEqPYr53hyV4I2LPmptPE9Rb9yCTAbSUlzgjiyyjuXhcwM
+ qf3lzsm02y7Ooq+ERVKiJzlvLd9tSe4jRx6Z6LMXhB21fa5DGs/tHAcUF35hSJrvMJzPT/+u
+ /oVmYDFZkbLlqs2XpWaVCo2jv8+iHxZZ9FL7F6AHFzqEFdqGnJQqmEApiRqH6b4jRBOgJ+cY
+ qc+rJggwMQcJL9F+oDm3wX47nr6jIsEB5ZftdybIzpMZ5V9v45lUwmdnMrSzZVgC4jRGXzsU
+ EViBQt2CopXtHtYfPAO5nAkIvKSNp3jmGxZw4aTc5xoAZBLo0OV+Ezo71pg3AYvq0a3/oGRG
+ KQ06ztUMRrj8eVtpImjsWCd0bDWRaaR4vqhCHvAG9iWXZu4qh3ipie2Y0oSJygcZT7H3UZxq
+ fyYKiqEmRuqsvv6dcbblD8ZLkz1EVZL6djImH5zc5x8qpVxlA0A0i23v5QvN00m6G9NFF0Le
+ D2GYIS41Kv4Isx2dEFh+/Q==
+In-Reply-To: <20240213045733.63876-1-aakarsh.jain@samsung.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
-Add missing clocks of uart node for CV1800B and CV1812H.
+On 13/02/2024 05:57, Aakarsh Jain wrote:
+> commit "538af6e5856b" which convert s5p-mfc bindings to
 
-Reviewed-by: Chen Wang <unicorn_wang@outlook.com>
-Signed-off-by: Inochi Amaoto <inochiama@outlook.com>
----
- arch/riscv/boot/dts/sophgo/cv18xx.dtsi | 16 +++++++++++-----
- 1 file changed, 11 insertions(+), 5 deletions(-)
+Nothing improved here, that's still not correct commit reference. Drop
+the quotes and look at submitting patches how this is supposed to be
+done. It's explicitly documented.
 
-diff --git a/arch/riscv/boot/dts/sophgo/cv18xx.dtsi b/arch/riscv/boot/dts/sophgo/cv18xx.dtsi
-index 6ea1b2784db9..7c88cbe8e91d 100644
---- a/arch/riscv/boot/dts/sophgo/cv18xx.dtsi
-+++ b/arch/riscv/boot/dts/sophgo/cv18xx.dtsi
-@@ -5,6 +5,7 @@
-  */
 
- #include <dt-bindings/interrupt-controller/irq.h>
-+#include <dt-bindings/clock/sophgo,cv1800.h>
+> json-schema is already merged. Remove "s5p-mfc.txt" file.
+> 
+> Fixes: 538af6e5856b ("dt-bindings: media: s5p-mfc: convert
+> bindings to json-schema")
 
- / {
- 	#address-cells = <1>;
-@@ -135,7 +136,8 @@ uart0: serial@4140000 {
- 			compatible = "snps,dw-apb-uart";
- 			reg = <0x04140000 0x100>;
- 			interrupts = <44 IRQ_TYPE_LEVEL_HIGH>;
--			clocks = <&osc>;
-+			clocks = <&clk CLK_UART0>, <&clk CLK_APB_UART0>;
-+			clock-names = "baudclk", "apb_pclk";
- 			reg-shift = <2>;
- 			reg-io-width = <4>;
- 			status = "disabled";
-@@ -145,7 +147,8 @@ uart1: serial@4150000 {
- 			compatible = "snps,dw-apb-uart";
- 			reg = <0x04150000 0x100>;
- 			interrupts = <45 IRQ_TYPE_LEVEL_HIGH>;
--			clocks = <&osc>;
-+			clocks = <&clk CLK_UART1>, <&clk CLK_APB_UART1>;
-+			clock-names = "baudclk", "apb_pclk";
- 			reg-shift = <2>;
- 			reg-io-width = <4>;
- 			status = "disabled";
-@@ -155,7 +158,8 @@ uart2: serial@4160000 {
- 			compatible = "snps,dw-apb-uart";
- 			reg = <0x04160000 0x100>;
- 			interrupts = <46 IRQ_TYPE_LEVEL_HIGH>;
--			clocks = <&osc>;
-+			clocks = <&clk CLK_UART2>, <&clk CLK_APB_UART2>;
-+			clock-names = "baudclk", "apb_pclk";
- 			reg-shift = <2>;
- 			reg-io-width = <4>;
- 			status = "disabled";
-@@ -165,7 +169,8 @@ uart3: serial@4170000 {
- 			compatible = "snps,dw-apb-uart";
- 			reg = <0x04170000 0x100>;
- 			interrupts = <47 IRQ_TYPE_LEVEL_HIGH>;
--			clocks = <&osc>;
-+			clocks = <&clk CLK_UART3>, <&clk CLK_APB_UART3>;
-+			clock-names = "baudclk", "apb_pclk";
- 			reg-shift = <2>;
- 			reg-io-width = <4>;
- 			status = "disabled";
-@@ -175,7 +180,8 @@ uart4: serial@41c0000 {
- 			compatible = "snps,dw-apb-uart";
- 			reg = <0x041c0000 0x100>;
- 			interrupts = <48 IRQ_TYPE_LEVEL_HIGH>;
--			clocks = <&osc>;
-+			clocks = <&clk CLK_UART4>, <&clk CLK_APB_UART4>;
-+			clock-names = "baudclk", "apb_pclk";
- 			reg-shift = <2>;
- 			reg-io-width = <4>;
- 			status = "disabled";
---
-2.43.1
+Don't break tags.
+
+> Signed-off-by: Aakarsh Jain <aakarsh.jain@samsung.com>
+> ---
+> changelog:
+
+> index e69de29bb2d1..000000000000
+
+Best regards,
+Krzysztof
 
 
