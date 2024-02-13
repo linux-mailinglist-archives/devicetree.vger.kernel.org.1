@@ -1,127 +1,126 @@
-Return-Path: <devicetree+bounces-41458-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-41459-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id DEED4853D68
-	for <lists+devicetree@lfdr.de>; Tue, 13 Feb 2024 22:42:12 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7B3AB853D93
+	for <lists+devicetree@lfdr.de>; Tue, 13 Feb 2024 22:50:01 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 94A41281C3F
-	for <lists+devicetree@lfdr.de>; Tue, 13 Feb 2024 21:42:11 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 2D75DB2B58C
+	for <lists+devicetree@lfdr.de>; Tue, 13 Feb 2024 21:48:36 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id DC3F7629F7;
-	Tue, 13 Feb 2024 21:40:24 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B4C326169B;
+	Tue, 13 Feb 2024 21:47:52 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=savoirfairelinux.com header.i=@savoirfairelinux.com header.b="hbXXMyCc"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="s3eyQZx5"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail.savoirfairelinux.com (mail.savoirfairelinux.com [208.88.110.44])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-yb1-f172.google.com (mail-yb1-f172.google.com [209.85.219.172])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4B7FE626DB;
-	Tue, 13 Feb 2024 21:40:19 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=208.88.110.44
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CA7616168D
+	for <devicetree@vger.kernel.org>; Tue, 13 Feb 2024 21:47:50 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.219.172
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1707860424; cv=none; b=pCt5nSyZb7EWMSuYv2cq78nQWHs3LV6VzgV4/9dBXaOiKjW9aVMYsg48pRGz/P9OWiM6XNL/7shpur2eHOU5nqLT7DREzKxnykhFRgq+Indu3eP9DWB/2aUHZG9J3ooC2KpmY5F1YkUlJqd1rruW8cjW2jNBNBJe7fS7Uq1zMUU=
+	t=1707860872; cv=none; b=o/Qp2eNgmFGxYNI3xNo6AAacfnzvRdkggezsngnT/5dCbHbr0r2IVlc7fi9FFArDyyIVXT8HzinvkA4uRtzU8lllv62L4sCBo7F6qdP7Bg7l6epHMhCzzS19zTV/SkYXbYPq2DxFWI5DnlfOvC4Lczp7gIow/C8m8WoKMGRrJbk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1707860424; c=relaxed/simple;
-	bh=Am0SdY5XDfkfN9XClvIWzxvrMD3Ma/uMq9rRKBz1zVM=;
-	h=Date:From:To:Cc:Message-ID:In-Reply-To:References:Subject:
-	 MIME-Version:Content-Type; b=N3hXwcOya6zAjAvPwBj/xuZSkphJPBdtQfgHuwvXDrLv/hONLDhfq2OV4JYyxbeJ7U15c9vcTihlr0byHH0l20S8lMphV0WJ5g0H1UroL97czyqHgPMXG2m1aJS1t5iS6NB7L6Nyzq9i3uceOQoxdqXerBQXqGpEHFxMqJi+gmA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=savoirfairelinux.com; spf=pass smtp.mailfrom=savoirfairelinux.com; dkim=pass (2048-bit key) header.d=savoirfairelinux.com header.i=@savoirfairelinux.com header.b=hbXXMyCc; arc=none smtp.client-ip=208.88.110.44
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=savoirfairelinux.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=savoirfairelinux.com
-Received: from localhost (localhost [127.0.0.1])
-	by mail.savoirfairelinux.com (Postfix) with ESMTP id 549859C4408;
-	Tue, 13 Feb 2024 16:40:13 -0500 (EST)
-Received: from mail.savoirfairelinux.com ([127.0.0.1])
- by localhost (mail.savoirfairelinux.com [127.0.0.1]) (amavis, port 10032)
- with ESMTP id 0AR89831jv7z; Tue, 13 Feb 2024 16:40:12 -0500 (EST)
-Received: from localhost (localhost [127.0.0.1])
-	by mail.savoirfairelinux.com (Postfix) with ESMTP id AB8A99C48F2;
-	Tue, 13 Feb 2024 16:40:12 -0500 (EST)
-DKIM-Filter: OpenDKIM Filter v2.10.3 mail.savoirfairelinux.com AB8A99C48F2
+	s=arc-20240116; t=1707860872; c=relaxed/simple;
+	bh=4Xj7EazHfkvqhAcFDgWE71D7H9yEicOk1M857cHV2u0=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=PPQYR+03CgIrCcIraFJyc0MqMR2g1CWMPQJZZ2cFppHZlsm/W/O+DRrSvl/HOdl/vj0gvA7Egxo2mYX35hQW5NCxEbs0S7Y4WEcTYF59qk2wx4mqhZe0g5kJVrqIG2E6m69zhhU9mwCnxYDL9dxrlxHBqXmBelx1BWL05I6jVTI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=s3eyQZx5; arc=none smtp.client-ip=209.85.219.172
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-yb1-f172.google.com with SMTP id 3f1490d57ef6-dc6e080c1f0so4186343276.2
+        for <devicetree@vger.kernel.org>; Tue, 13 Feb 2024 13:47:50 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=savoirfairelinux.com; s=DFC430D2-D198-11EC-948E-34200CB392D2;
-	t=1707860412; bh=OLowQGLdyAKcj7Y0FKOcf7tGXW+sq0JROGANmY0A+Wo=;
-	h=Date:From:To:Message-ID:MIME-Version;
-	b=hbXXMyCcnSbiDOis84z1rPH366GZ/q0jOZVSHbHn0xnHvkXnwSMCSxR9jgMzNWM+v
-	 +WBSNXUDBCfLaVYa3cibhNRdQnV+nbladEQVdqH1XFbrPlQH50Uf7zIIf2AqEIlmHG
-	 nKBMswF0NeFMsaz29PxRdtEsZbldtvsEj9SQdOEexxvDh7V+CtSfjg6t9s0AkOPpAg
-	 8scqu6e+i2ymw+OOB+BEv63fKn2ieEptqDJdssZT/Ecsi9jJ390xwrmKcNpTnzUIDU
-	 e81yECbOHQTVxhu3+VBA5TCIQKeBAYkDYZrQPDlG16O4FHzEqDneUJ1HiMPSil3Wri
-	 r/bW5/g7MlgCw==
-X-Virus-Scanned: amavis at mail.savoirfairelinux.com
-Received: from mail.savoirfairelinux.com ([127.0.0.1])
- by localhost (mail.savoirfairelinux.com [127.0.0.1]) (amavis, port 10026)
- with ESMTP id W4wzPNlSx12O; Tue, 13 Feb 2024 16:40:12 -0500 (EST)
-Received: from mail.savoirfairelinux.com (mail.savoirfairelinux.com [192.168.48.237])
-	by mail.savoirfairelinux.com (Postfix) with ESMTP id 6FBCD9C4408;
-	Tue, 13 Feb 2024 16:40:12 -0500 (EST)
-Date: Tue, 13 Feb 2024 16:40:12 -0500 (EST)
-From: Charles Perry <charles.perry@savoirfairelinux.com>
-To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Cc: mdf <mdf@kernel.org>, Allen VANDIVER <avandiver@markem-imaje.com>, 
-	Brian CODY <bcody@markem-imaje.com>, hao wu <hao.wu@intel.com>, 
-	yilun xu <yilun.xu@intel.com>, Tom Rix <trix@redhat.com>, 
-	Rob Herring <robh+dt@kernel.org>, 
-	krzysztof kozlowski+dt <krzysztof.kozlowski+dt@linaro.org>, 
-	Conor Dooley <conor+dt@kernel.org>, 
-	Michal Simek <michal.simek@amd.com>, 
-	kishore Manne <nava.kishore.manne@amd.com>, 
-	linux-fpga <linux-fpga@vger.kernel.org>, 
-	devicetree <devicetree@vger.kernel.org>, 
-	linux-kernel <linux-kernel@vger.kernel.org>, 
-	linux-arm-kernel <linux-arm-kernel@lists.infradead.org>
-Message-ID: <1139371633.970589.1707860412394.JavaMail.zimbra@savoirfairelinux.com>
-In-Reply-To: <69679d9a-02e9-498f-8f5a-7c029059a8c1@linaro.org>
-References: <20240207180142.79625-1-charles.perry@savoirfairelinux.com> <20240207180142.79625-3-charles.perry@savoirfairelinux.com> <69679d9a-02e9-498f-8f5a-7c029059a8c1@linaro.org>
-Subject: Re: [PATCH v3 2/5] dt-bindings: fpga: xlnx,fpga-slave-serial:
- rename gpios
+        d=linaro.org; s=google; t=1707860870; x=1708465670; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=4Xj7EazHfkvqhAcFDgWE71D7H9yEicOk1M857cHV2u0=;
+        b=s3eyQZx5jV7ThhYFnv4fc4t0MH2AG7GTPJ12W3fm4/0jqq75Acl8m3eyz94117VKwR
+         u8Mn+eQjRgF+8m2pz6vkDhTs/waZxPZXRdnfYZalO/6e4ZVWqVekPqDJX8FDg7TWYrln
+         6Gudg4YUHAwilqcfFdnkVOQA5oYITMJf1FzN0tN1Kb1yoHBgoKFpl+dfSjUsB4pf2AnC
+         r4BtMo7TDw9Aj7Oqz6HPj4ZuWhecAhb6lrUsI4XwlYRt1N5cwLQCaLkCh/IRfFDoaFOE
+         u8kPcUZcArTUVM3ooDwtoVDfTVqDVfX1dEvYr5UUcM85CZiXBjf14xt/ZRIli+hrhG2W
+         +LZg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1707860870; x=1708465670;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=4Xj7EazHfkvqhAcFDgWE71D7H9yEicOk1M857cHV2u0=;
+        b=Wp/kgBX8GgLzQG0oZW1pt4JlWZvWvTEAwKB7dgD3zemKbHiMcSEDt7YbgjrP7dsfTq
+         mn0D4yetinVOLHfgFQlQWoA9IZJrBRBdjdIf7hZxMwNv/+e6wqgWcNyUV9B1gtah/RgP
+         N2GR8e+WJPT6UT4QNtEvHCDjzlGyEI+xJW79GB7i9JUaxntsgKbN0tWAcYDDFsZZQnQX
+         y12AaaIDOFaCP80SWjsLISHw3VrkYsD04gc/arljSvM+hXuaV0BqJT5F78TDhhBan3Ou
+         1eQIppCWK4Rjxnhij5igIqTot8bn2IDMCSp+GRdWWPnDEKO3vvAN4dyIs6pErz9yS/yo
+         CsRQ==
+X-Forwarded-Encrypted: i=1; AJvYcCWQyBZl0iWoBp7AY0M4REuYWb2YPn9mJ1kl1Ob2wOROZTfTPpKPwRHIh4t6jozQuuASI8v+4WWOZxibrKeT694R/jI5em2Sw7StSw==
+X-Gm-Message-State: AOJu0YyQxOlwFOoDTZY0VCa4rEQLHvcOAxyft7/LRwlNTyRagitcdtXP
+	ssOrvM6UiwNau70RcrAu0O36nABDZIKPnUfCVgAQxdJwVoW8xjVXBEcnES65S7ayH2vH3m1LzBx
+	qulFCXrHzWrPWRRZlomz8MYgoP4J+yYNBvL8M6w==
+X-Google-Smtp-Source: AGHT+IFa7Zt8v9y973vv6MpdAwv7+Tn3+by0Zhu9bHJxIuhmjm9zf8ed0hjSWCanmVOGM7vq2XjFxfCkSYAs+ofuT1Q=
+X-Received: by 2002:a25:ae47:0:b0:dcd:49d0:eece with SMTP id
+ g7-20020a25ae47000000b00dcd49d0eecemr434149ybe.60.1707860869809; Tue, 13 Feb
+ 2024 13:47:49 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: 7bit
-X-Mailer: Zimbra 8.8.15_GA_4581 (ZimbraWebClient - FF120 (Linux)/8.8.15_GA_4581)
-Thread-Topic: dt-bindings: fpga: xlnx,fpga-slave-serial: rename gpios
-Thread-Index: JNVv3qISWN3DobtT0S2yFs/0J3QuiQ==
+References: <20240213-arm-dt-cleanups-v1-0-f2dee1292525@kernel.org> <20240213-arm-dt-cleanups-v1-4-f2dee1292525@kernel.org>
+In-Reply-To: <20240213-arm-dt-cleanups-v1-4-f2dee1292525@kernel.org>
+From: Linus Walleij <linus.walleij@linaro.org>
+Date: Tue, 13 Feb 2024 22:47:39 +0100
+Message-ID: <CACRpkdbPANM0-h_g+6Zazgw9U5W8ZDc=EG4ZiTv64JVmZAPivg@mail.gmail.com>
+Subject: Re: [PATCH 4/6] arm: dts: Fix dtc interrupt_map warnings
+To: Rob Herring <robh@kernel.org>
+Cc: soc@kernel.org, Shawn Guo <shawnguo@kernel.org>, 
+	Sascha Hauer <s.hauer@pengutronix.de>, Pengutronix Kernel Team <kernel@pengutronix.de>, 
+	Fabio Estevam <festevam@gmail.com>, NXP Linux Team <linux-imx@nxp.com>, Rob Herring <robh+dt@kernel.org>, 
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Tsahee Zidenberg <tsahee@annapurnalabs.com>, Antoine Tenart <atenart@kernel.org>, 
+	Joel Stanley <joel@jms.id.au>, Andrew Jeffery <andrew@codeconstruct.com.au>, 
+	Ray Jui <rjui@broadcom.com>, Scott Branden <sbranden@broadcom.com>, 
+	Broadcom internal kernel review list <bcm-kernel-feedback-list@broadcom.com>, Andrew Lunn <andrew@lunn.ch>, 
+	Gregory Clement <gregory.clement@bootlin.com>, 
+	Sebastian Hesselbarth <sebastian.hesselbarth@gmail.com>, 
+	=?UTF-8?Q?Jonathan_Neusch=C3=A4fer?= <j.neuschaefer@gmx.net>, 
+	Thierry Reding <thierry.reding@gmail.com>, Jonathan Hunter <jonathanh@nvidia.com>, 
+	Stefan Agner <stefan@agner.ch>, Maxime Coquelin <mcoquelin.stm32@gmail.com>, 
+	Alexandre Torgue <alexandre.torgue@foss.st.com>, =?UTF-8?Q?Beno=C3=AEt_Cousson?= <bcousson@baylibre.com>, 
+	Tony Lindgren <tony@atomide.com>, Chanho Min <chanho.min@lge.com>, 
+	Matthias Brugger <matthias.bgg@gmail.com>, 
+	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>, 
+	Geert Uytterhoeven <geert+renesas@glider.be>, Magnus Damm <magnus.damm@gmail.com>, 
+	Linus Walleij <linusw@kernel.org>, Imre Kaloz <kaloz@openwrt.org>, 
+	Bjorn Andersson <andersson@kernel.org>, Konrad Dybcio <konrad.dybcio@linaro.org>, 
+	Masahiro Yamada <masahiroy@kernel.org>, Nathan Chancellor <nathan@kernel.org>, 
+	Nicolas Schier <nicolas@fjasle.eu>, linux-arm-kernel@lists.infradead.org, 
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+	linux-aspeed@lists.ozlabs.org, openbmc@lists.ozlabs.org, 
+	linux-tegra@vger.kernel.org, linux-stm32@st-md-mailman.stormreply.com, 
+	linux-omap@vger.kernel.org, linux-mediatek@lists.infradead.org, 
+	linux-renesas-soc@vger.kernel.org, linux-arm-msm@vger.kernel.org, 
+	linux-kbuild@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-On Feb 11, 2024, at 10:39 AM, Krzysztof Kozlowski krzysztof.kozlowski@linaro.org wrote:
-> On 07/02/2024 19:01, Charles Perry wrote:
->> By convention, gpio consumer names should not contain underscores
->> (prog_b here) and shouldn't contain active low suffixes (-b here).
->> 
->> Signed-off-by: Charles Perry <charles.perry@savoirfairelinux.com>
->> ---
->>  .../bindings/fpga/xlnx,fpga-slave-serial.yaml        | 12 ++++++------
->>  1 file changed, 6 insertions(+), 6 deletions(-)
->> 
->> diff --git a/Documentation/devicetree/bindings/fpga/xlnx,fpga-slave-serial.yaml
->> b/Documentation/devicetree/bindings/fpga/xlnx,fpga-slave-serial.yaml
->> index 614d86ad825f3..650a4d8792b64 100644
->> --- a/Documentation/devicetree/bindings/fpga/xlnx,fpga-slave-serial.yaml
->> +++ b/Documentation/devicetree/bindings/fpga/xlnx,fpga-slave-serial.yaml
->> @@ -36,7 +36,7 @@ properties:
->>    reg:
->>      maxItems: 1
->>  
->> -  prog_b-gpios:
->> +  prog-gpios:
-> 
-> Please deprecate old property and add allOf excluding the usage of both.
-> Driver still parses old property, so we should have it documented.
-> 
-> https://lore.kernel.org/all/20230118163208.GA117919-robh@kernel.org/
-> 
-> Best regards,
-> Krzysztof
+On Tue, Feb 13, 2024 at 8:35=E2=80=AFPM Rob Herring <robh@kernel.org> wrote=
+:
 
-Ok. Thank you for the example.
+> The dtc interrupt_map warning is off because its dependency,
+> interrupt_provider, is off by default. Fix all the warnings so it can be
+> enabled.
+>
+> Signed-off-by: Rob Herring <robh@kernel.org>
 
-Regards,
-Charles
+Thanks for doing this Rob! The schemas finds so many mistakes...
+Reviewed-by: Linus Walleij <linus.walleij@linaro.org>
+
+Yours,
+Linus Walleij
 
