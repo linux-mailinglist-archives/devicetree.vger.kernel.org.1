@@ -1,161 +1,88 @@
-Return-Path: <devicetree+bounces-41313-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-41314-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 383F2853200
-	for <lists+devicetree@lfdr.de>; Tue, 13 Feb 2024 14:33:23 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4688C85320B
+	for <lists+devicetree@lfdr.de>; Tue, 13 Feb 2024 14:35:31 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id A10761F228E5
-	for <lists+devicetree@lfdr.de>; Tue, 13 Feb 2024 13:33:22 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id EE90F1F23741
+	for <lists+devicetree@lfdr.de>; Tue, 13 Feb 2024 13:35:30 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7472F55E7F;
-	Tue, 13 Feb 2024 13:33:18 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3EA3E55E7F;
+	Tue, 13 Feb 2024 13:35:18 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="kslz+AqL"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="h8kUuA8D"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wr1-f48.google.com (mail-wr1-f48.google.com [209.85.221.48])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BC9C755E71
-	for <devicetree@vger.kernel.org>; Tue, 13 Feb 2024 13:33:16 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.48
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1159B55E72;
+	Tue, 13 Feb 2024 13:35:17 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1707831198; cv=none; b=kQAwe6ipLXSOYecgvNQIEUh61nB2buetBSLUpJ6PSKPswv/UpQ5mX3VDGyhB7BTrzgqBzHLHPaoLPyrwjldTSoSu1tffYVwK7q8LyFWs/qZUU24UtwssesD7UIfUG1QhZTeAuUbyQtIpbE8qrNZ63qHb+Ypk0BdjpghvEUyhaEQ=
+	t=1707831318; cv=none; b=d27zEm8di3JfeC6BC9kRa1/JfoX1mQtt8ELrg6kM7YXRqSmz+TxyESze+8cErmkRJxSUIY3MglxGAr+C7JjcT1zQgjs35vQUpB9seTFlRt+4GykMJdY1Cx8Dbe3Z/T71CU5i6S3E8Fqg8yVpfM2IQPk+DrWmZCkZlC/btWmvOEs=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1707831198; c=relaxed/simple;
-	bh=h01ngBOlSGw4F8wlO81TU9/G6JRx5OX8UHYwBeWAvMk=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=tVIeMA0AF1QYpn9uT7kZzQcD8lUfbGV7xIK6sjZwbVcavpxGML9qoHwU247Ywad6uXyl7M5aq6SnhrY6p9Y2GIumYoHOxwr0bQT1QOxz2lsFhn37H1R5Jpvsc3aaHGp4sfcpC7v+ekXxDAT2k8/I0WN4eMiT1sHiTUvIxpxGEtM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=kslz+AqL; arc=none smtp.client-ip=209.85.221.48
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-wr1-f48.google.com with SMTP id ffacd0b85a97d-33b4e6972f6so2309629f8f.2
-        for <devicetree@vger.kernel.org>; Tue, 13 Feb 2024 05:33:16 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1707831195; x=1708435995; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
-         :to:content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=OaD0B1TuLNeYNpMlA6iizr8UK6j9fkAx97a/7QghzcU=;
-        b=kslz+AqLeIaRhtJM134sVP6omXFrWGHF+BtkDWF7pVjUBkBmNl2US66F5vc0orrTg8
-         z8OVSKWyQcT3F6Nl5nKdK+bsrXL/OFcXSSPGY7QT/ES2nVVxl04wJc0ws1N3PRXFMdr3
-         AoGbN3bfaUGHi0o30xUIGnamJdh5gWojbu4sOR48nF+0uOkST2UpAeeczRZHF0hycZ9o
-         iqHBkDkOewgrU6Bgchq2s6CuL05//18LdlCiMG0n15Ap6fhDATt8ANLMExIDIia4LKDN
-         Q3o0sYgRhYJjzxYNsFopdkvoWIvAf1Ler82aVFWIGO81yBzIUXVguPDb4MBfpvVyQpNF
-         yPrw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1707831195; x=1708435995;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
-         :to:content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=OaD0B1TuLNeYNpMlA6iizr8UK6j9fkAx97a/7QghzcU=;
-        b=MKUjczgoAm4HXLAJ5n/UqCFgj0js0mIBgXdAD9bPcTcUOusGGQ9TUGx/EPI8hibiFl
-         Ok0/Jij7WxLtySATVGuaYsGUnSBhhp/hfJDbSq7DlnpZQEdW2CCueGu62go4gxmQyoQc
-         lrWNpL4eDEgBI/Eo9jcoFxw9wT0Sd+xdJ5WbBA24PYY3yDebF75nvTQZLzS/fgnFCmGa
-         gxH+yLmfaJKMSRVT/+lQ6Vflp/SE8nMzJfDpo2zTU3OgTM8QQKiM97oI12l+Gw8l/Hxd
-         WpiEGXP8Lpd8sgYOrK3EmEMoZZjn1+bhauQZd35tRGTXrBOT9k+JY9oGGodbY0ONHXEZ
-         B6+A==
-X-Forwarded-Encrypted: i=1; AJvYcCWM5Aq7TPUgatDMqyHFdEBhgRKKjH/al50nT4M7KWlLAmApG7vcYq8nVe2N96UpANVk5c4mJwMes5xs1598GyotJpvtzE0OgLgJ1w==
-X-Gm-Message-State: AOJu0YyKQajZZHFJUtdC9q2ZZkJqOEmAxUf7av0Qt1g93y43K7Yjk4os
-	bHTD/MBxUNihkE0K832g617YtjggbC44MoCHrT2uEpY8MwZYOzIbmym6jcOFp74=
-X-Google-Smtp-Source: AGHT+IHf84yuxchXNd+daOoZKvcoUdxbsSzE2sC1WIC2WiFbCPCP1Jc4oNFQ0WYs9GkQaBZ4ckhwKw==
-X-Received: by 2002:a05:6000:1182:b0:33c:e2d0:a9a2 with SMTP id g2-20020a056000118200b0033ce2d0a9a2mr318308wrx.18.1707831195090;
-        Tue, 13 Feb 2024 05:33:15 -0800 (PST)
-X-Forwarded-Encrypted: i=1; AJvYcCVWP0egO+6Qsein9lR2MZnxdm93iqghiryO5SosoaIxdRXjlBM+nu0fWgBvZq6SWht1fYQVyi/u8y8hYihS4+nOxVoPf1HcCFYHxlhcxYjzLYPzTi0pt+hpsYVIMKZ1YYLLn2GjzdriY/RDzPqfSUmcJD5151l+7bx79nrpjK6TZ8sl0HpdLmfLZkNpmJ9aD2p52o1MQVYdcj1Wnvn4Lfe5i/hnmNIY6UH1jduzv6LTiPwKOb5571pVxyeufSekwJbGFIcwnvyZlCfhz6bUnLNGK0YF3+hplPEbE8g5oF4wnjfBu0L4Tz3GO2aSFCkn9DImgl7ZwxIe7VQt/c7H3UUaQXTi3AZjyguK2FcHOuwPVtcaAW/ReBkuRE0=
-Received: from [192.168.1.20] ([178.197.223.6])
-        by smtp.gmail.com with ESMTPSA id bh2-20020a05600005c200b0033b7fb4d7dbsm6735150wrb.34.2024.02.13.05.33.13
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 13 Feb 2024 05:33:14 -0800 (PST)
-Message-ID: <681368b9-4c28-4611-a555-d7287a0eb209@linaro.org>
-Date: Tue, 13 Feb 2024 14:33:13 +0100
+	s=arc-20240116; t=1707831318; c=relaxed/simple;
+	bh=hWYB7hzE02nmcZir4gyGszu+ssGzykhABiMcXYZhWc4=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=Nsd/b2je9nM8dr1XW08NV5C4hogmSaEEoXG1uHnkiel/S2LR2RxVd/lH5rtSyJsjecd+5BqMkIFANcsqwxzM3IbjGd9CUIw9djQI63hVWoiyZu6nFH2h6ebzejOes1TyTzLQJpOw5IfsQnf2Au8GxmXT9ojKBXAx16/zLpv6Ez0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=h8kUuA8D; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 5B9E5C433C7;
+	Tue, 13 Feb 2024 13:35:17 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1707831317;
+	bh=hWYB7hzE02nmcZir4gyGszu+ssGzykhABiMcXYZhWc4=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=h8kUuA8DVRrTOU30krCZjESSXRmrvf8X3glSUNjwzAmH3Mlp+o50Kutkc3E+xXYAQ
+	 Jn359JgRelrX8ncdBaRxUOEN7L8i0KkgEHFLWhhszwwEFIfE51haAi8WL5gJjKdqeX
+	 AtcJSQIabuPyLnn2/TZIMZUmPaxrCOuAOaaRUbWJQ5FrmNbEdijdVaJ8gcdyVc6179
+	 yIgUHdpXo5qGq9x4TPW8rGZ7S9N1FPW889Wo7ebQPSH873yGII2goqvufDv40rOtJD
+	 03Wm36B+MqXlIhoIACQgHajYz8Y9ikpevYcf2e7ywr+mEP5FIIcBeVzoi8elc4EEGJ
+	 qILZr4nkCg34A==
+Date: Tue, 13 Feb 2024 07:35:15 -0600
+From: Rob Herring <robh@kernel.org>
+To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Cc: Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	linux-arm-msm@vger.kernel.org, Conor Dooley <conor+dt@kernel.org>,
+	Bjorn Andersson <andersson@kernel.org>,
+	Amol Maheshwari <amahesh@qti.qualcomm.com>,
+	Konrad Dybcio <konrad.dybcio@linaro.org>
+Subject: Re: [PATCH v2] dt-bindings: misc: qcom,fastrpc: Compute callbacks
+ can be DMA coherent
+Message-ID: <170783131383.1076615.17145419971543353598.robh@kernel.org>
+References: <20240212110827.59302-1-krzysztof.kozlowski@linaro.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 07/12] memory: stm32-fmc2-ebi: add runtime PM support
-Content-Language: en-US
-To: Christophe Kerello <christophe.kerello@foss.st.com>,
- miquel.raynal@bootlin.com, richard@nod.at, vigneshr@ti.com,
- robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org
-Cc: linux-mtd@lists.infradead.org, linux-kernel@vger.kernel.org,
- linux-stm32@st-md-mailman.stormreply.com, devicetree@vger.kernel.org
-References: <20240212174822.77734-1-christophe.kerello@foss.st.com>
- <20240212174822.77734-8-christophe.kerello@foss.st.com>
- <7cb51fed-66fc-4ab1-be09-85a00d94514b@linaro.org>
- <ebd4b93a-80c5-4f22-974b-eb91e896e510@foss.st.com>
-From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
- 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
- D2GYIS41Kv4Isx2dEFh+/Q==
-In-Reply-To: <ebd4b93a-80c5-4f22-974b-eb91e896e510@foss.st.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20240212110827.59302-1-krzysztof.kozlowski@linaro.org>
 
-On 13/02/2024 14:31, Christophe Kerello wrote:
->>>   
->>> @@ -1381,6 +1382,7 @@ static int stm32_fmc2_ebi_probe(struct platform_device *pdev)
->>>   		return -ENOMEM;
->>>   
->>>   	ebi->dev = dev;
->>> +	platform_set_drvdata(pdev, ebi);
->>
->> Does not look related.
->>
+
+On Mon, 12 Feb 2024 12:08:27 +0100, Krzysztof Kozlowski wrote:
+> Apparently on Qualcomm SM8550 and SM8650 the FastRPC compute callbacks
+> are DMA coherent:
 > 
-> With pm_runtime_resume_and_get API now called, 
-> stm32_fmc2_ebi_runtime_resume needs ebi data to enable the clock. It
-> means that the platform data has to be set before this call.
+>   sm8650-qrd.dtb: fastrpc: compute-cb@2: 'dma-coherent' does not match any of the regexes: 'pinctrl-[0-9]+'
+> 
+> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+> 
+> ---
+> 
+> Changes in v2:
+> 1. Add missing subject prefix.
+> ---
+>  Documentation/devicetree/bindings/misc/qcom,fastrpc.yaml | 2 ++
+>  1 file changed, 2 insertions(+)
 > 
 
-Ah, OK.
-
-Best regards,
-Krzysztof
+Applied, thanks!
 
 
