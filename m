@@ -1,403 +1,273 @@
-Return-Path: <devicetree+bounces-41151-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-41152-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id C4C32852A3B
-	for <lists+devicetree@lfdr.de>; Tue, 13 Feb 2024 08:47:16 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id D3CB6852A3F
+	for <lists+devicetree@lfdr.de>; Tue, 13 Feb 2024 08:48:11 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 39E521F22206
-	for <lists+devicetree@lfdr.de>; Tue, 13 Feb 2024 07:47:16 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 8B202284086
+	for <lists+devicetree@lfdr.de>; Tue, 13 Feb 2024 07:48:10 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 00F64171AF;
-	Tue, 13 Feb 2024 07:46:57 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 74A00175B5;
+	Tue, 13 Feb 2024 07:48:06 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="xIo5zFN+"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="HifzyN0T"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f51.google.com (mail-wm1-f51.google.com [209.85.128.51])
+Received: from mail-ed1-f42.google.com (mail-ed1-f42.google.com [209.85.208.42])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 010211946F
-	for <devicetree@vger.kernel.org>; Tue, 13 Feb 2024 07:46:50 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.51
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 92F3B175AC;
+	Tue, 13 Feb 2024 07:48:04 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.42
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1707810416; cv=none; b=D0jt/JxjNJBcQAoZYaTVhHMJkNrZOUoPKqOfd8P+ILGV9bvpLyahPMrFm9xkCVKm5LGLYKFshHfm+P5EISlWixvWoA/ZT0NHZ/1eZs283E3++ZS1YU7NUn+bwl4TL/EOHXyoKaAt8wMjuTDVtxXuEB5pWV7AwWIvq6F30Wo/uAU=
+	t=1707810486; cv=none; b=cQsZ0y7enMjhX4m2vKztuY7p2upf8RUFBB/bkVY3WIEexIJQ6qo3U/ViYhFkMROxEJQ9/ymVs9qNPiLEG/f9ck6Qag6T1wSW6UExH4Ra0JkqNi8Xv2a1tBhLpY6WJizSDQEpVUxjLcvorNCTLomddxFDzUc6o3OZz0E6mashhko=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1707810416; c=relaxed/simple;
-	bh=oZKt5LG2w5Yz4qKHvivygXCsJ6lz+ZnxJkNmmOYscVk=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=C7vV8KRYAA46jNTLgFc02GJqqQBlSb2p9foOnL3sz0jfUdXgBcN4NQUPWkpbTUOWQaezrSoUJv0qoHFjB70hh80I8rYwwjbCSantVpfWYasRdq0Jko+sTa5nxh927wmTcNPDAtx/GWy3A0hITMj7zzs/a8aV8QS3nC3fg+sdwxk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=xIo5zFN+; arc=none smtp.client-ip=209.85.128.51
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-wm1-f51.google.com with SMTP id 5b1f17b1804b1-410cb93185dso14598275e9.3
-        for <devicetree@vger.kernel.org>; Mon, 12 Feb 2024 23:46:50 -0800 (PST)
+	s=arc-20240116; t=1707810486; c=relaxed/simple;
+	bh=O7o6nrStpO/q/9GtQ75zQ0rTf7m6SOpylrVSW4RtKYk=;
+	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version:Content-Type; b=Sx9Dmcosnh+VE3nqr6oCQz+YHMpQlga86dCca1IQPdTQ0hLWseAIj1LOkQE+C7ihZHD8S/BeHjninaIIOlzwtph9FLPnSg/Bok50FI5TTNfcrxWN7PLRgM9n7BfSP0zKutPIA5/RisMnq9VJrjk6A7jTewc/U3IJBBf0ABHIQhw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=HifzyN0T; arc=none smtp.client-ip=209.85.208.42
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-ed1-f42.google.com with SMTP id 4fb4d7f45d1cf-55fcceb5f34so4568103a12.3;
+        Mon, 12 Feb 2024 23:48:04 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1707810409; x=1708415209; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
-         :to:content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=TsRrHrpLNGxvj3Hpc9o+8hI8G6R3/zQa/0HCfH7df84=;
-        b=xIo5zFN+xI1qTZ7Wzhxnf/AVmznrBy2j5H5MUlq6rAvpGXdljOi2n+owSMds41Pvb1
-         2F4p1NFVpucC8KZRIaI9S7dRHmdBWQHifmvExUjsanu8KDGkfXzrhXJQZ0atNwg3q755
-         0xxRR6nsXocIJksZbEMLHLkyNR65M2ZXTSCYoqAK20p2JAeYuSqO4OD/SQ49zoUaz+XH
-         kgy+adIlp113rVcFMmm1z9nh7yBMDwX1HUB+mJ/ICbqEGHr9HKVwCBXsSUc7dC5eYzp3
-         mQyq3wMmw2giAGUTHVhrklZxZUodRo+XdnCb42MWDAeNQOPFCMFA3tvO+9cgoEbxugoT
-         jscg==
+        d=gmail.com; s=20230601; t=1707810483; x=1708415283; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=YVvE6JGrrW+bdoM2H4XHHoW+Iw01AOmS4Rx/471szCE=;
+        b=HifzyN0T7+f4Lrs4HMTjdq81KP6MNRq6TmjFIbRJIPBNMOw15KHFCQyX2oE7vPrKkg
+         +EuEktevY5c2/WrbW+KyrKNy9vOPds/DJzN4Xqx9tz/lLHFGNLJ8KZRktvi49lnFyLbU
+         Y09AlQmOrZyYbF3MM8E7G16TFwDUkgZ5bEWbnmcG2DiOmp0YDKLljPkk8Rw4TLlbPb12
+         ZFVhFw3WVZypJjdKIf3nqji07TpSYJ7Wyd9pF7PTf/Kt+Z9WaYhMTayzF40o6S3Zhpwl
+         R4IaBAomi1E4TBvEVJDqLmFMFy3oZA8qidfXhu6ElW5EJl6Qxm+BBZs+GvMWL0o4MTO9
+         iSJA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1707810409; x=1708415209;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
-         :to:content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=TsRrHrpLNGxvj3Hpc9o+8hI8G6R3/zQa/0HCfH7df84=;
-        b=v6x2t7zehh+FDLh19mXkxVCQjYapVU6a44FmOHFrgoA2dT0d2nBsQE4NrbTUWgomgG
-         28JddTIT2izWUhBGkL2VJwZL00sKSAlqdYnsqSejU/xKZA1JiPEzF30/5NGxwNK3Y/Ch
-         noXUS45TVltGF/XKM8CglDvDGCRDvPY0abmIC81MG6B5cZQDGcWsl01clP2e0Ae0rRQa
-         PhzbVJFvStv70/RKoFgvfs3SF2mqugwOr5wjKlR9/ymoP75CZFOvBHLB+3YNZ1YABDQj
-         s+ylxH+WbUY57vnxL4LrhpN+F6PEIdgk14bdki+Tiw0N1w0PW1kVp2MovGj68YLd0/qI
-         g9Fg==
-X-Forwarded-Encrypted: i=1; AJvYcCVOBMQ/InuDN64/CYYZeU092rMVFBWPgkKAUHvI94SADQ17LsOyIW/oqDCi+pj2GwCmW5GT6qpVSANxFE2ljweGuKpZzgjdUbe8Ag==
-X-Gm-Message-State: AOJu0YwhKrEgIADAdt38C2tx2pP4oIZShKiGDBSZebP6LJYnwddm9bhO
-	KNk82Gqxzen79ay5Cpsx5MgFkQRRLM/39f9gBQMM9IfpwlN7cE9cD/z8g/9ml+U=
-X-Google-Smtp-Source: AGHT+IGLlGPKUXKUCZMz1EaVZ6mJB3Pvj1K630QCRVUmMxA6RlZZZV77RDHcUhhc9uVzQ4zernkqhQ==
-X-Received: by 2002:a05:600c:4f42:b0:410:726b:6f87 with SMTP id m2-20020a05600c4f4200b00410726b6f87mr6790081wmq.32.1707810409078;
-        Mon, 12 Feb 2024 23:46:49 -0800 (PST)
-X-Forwarded-Encrypted: i=1; AJvYcCUYP7h+XC3hcncLIeqOcdYxjoS5oh28yxDHfTTz8B6cshmu4ZEyCifZhVkdk8U71LV29RzvuoMPUHky+0r8ciBxHTicZvkA+iUFBd4O+ikuqXGMDUEVv7IiwicuIxgXRhzdfFNCcSc46jQH/C/gWRmahIky2IQOhR/L2Sxg1CjfZ7N6nlrgROGfmh+PGztvkvfZdHHJ71w+b/v8VlpktyJib7Ddy/sxje3Xs16qqJCFzGjdpmY+zsm7G0uK+O8SHwPYxEs54YyFFx3F41Fek60BLHArRsdfXPAUdf9Y8pCeIv1EVPpRWI8yn0qW21kYqPCcyq+tlZTecgSPGFy79dg9SUhLztVaxZBxqH2MKkFX8ZQivpTps8FiiOg=
-Received: from [192.168.1.20] ([178.197.223.6])
-        by smtp.gmail.com with ESMTPSA id dn7-20020a05600c654700b00411b7c91470sm1128366wmb.12.2024.02.12.23.46.47
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 12 Feb 2024 23:46:48 -0800 (PST)
-Message-ID: <6bc91742-66d8-425b-ba40-fe5fa6ba18c4@linaro.org>
-Date: Tue, 13 Feb 2024 08:46:46 +0100
+        d=1e100.net; s=20230601; t=1707810483; x=1708415283;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=YVvE6JGrrW+bdoM2H4XHHoW+Iw01AOmS4Rx/471szCE=;
+        b=h44TQiakWk0bfeiOsQomn3B4JdOywICUYa9idvu+vy25mDjpovOiOP+IPfhZvSHjbE
+         vBDhAuP9maJySKxx6lxaJuXJEVAEyg5iZ+d5Y7zlpClFomSEv8wxrfr3nJRtFh+W6mHT
+         Y15xEAtxAaPTqqPv+WaXMPv8fi/6Jl29Wy5IScW0u7gEelc0CBUBumY8mEmnXdFMDuA5
+         2tJFRjexrxuQXVnXkLvstocKhhY4IvnvO1MUHH+W7ybctA4r7PF5l3EnzCEpzwmfrc7l
+         GGLoXgSCsKjTJxuE4roa1OkGNyZ3xzI+oDquN0zOsj8iQif8yxebWMFYziVZ1A5g0mwA
+         X96A==
+X-Forwarded-Encrypted: i=1; AJvYcCX1IgsJRR2pU7kNH07hRewbC6phUjWloZ1Vwcauc4k+/492ajpjM9nyfwUNAUx+SpvKwiGX4IGDHlMZ0UAw6cRFJaSeEVThY1utfRpRpMVH782hsvFKg6ns3v7P7ENLqPeWk/bkukOZx/tQUNO69Eh0DSR3ZZCT+dKyD6XuFx1hmjEWbw==
+X-Gm-Message-State: AOJu0YyrPnF5MqfNJXLlHGjMD1XsPsEh9Ieq3XyLwYbg+lHYZ+AYaEzC
+	NiVSIBx/qm/KgPdgE6NaxYOPzVyf43kBdtJ8QkmC7RF81c4UO2NuTFQDw6mU
+X-Google-Smtp-Source: AGHT+IF0gttBNcV8sh6ab8bf5+rN66Ur/dk0idrz9NdowKTUw3UVn+HwH+clIeE2oz8xxvtquJ3uyA==
+X-Received: by 2002:a17:906:80c5:b0:a3c:c614:82bf with SMTP id a5-20020a17090680c500b00a3cc61482bfmr2868502ejx.76.1707810482394;
+        Mon, 12 Feb 2024 23:48:02 -0800 (PST)
+X-Forwarded-Encrypted: i=1; AJvYcCV6Vv+QdIy1Uwbyf/48Qht/36JdZFbwumkD4KHX7ZovhK07p7UCvN6ULGkxfVnjjVaVMnF02VxgWpUCOfLlY2PIR6cJ8V29xfsYRnhLZjUVuyvUxgSETT69/hN4PUxkaoCEH5lM+i+95sFu+cbq3gFcDN+qllWKq5+/YrAz4n+ehgkY2ALBRIGdmVbzEHw7RFr31brz5OtJmS/VkU8WG/ctiW4O7dDqHB+gVD2lpd6/YXsJJZru+kIy63uj/18PJhzsvQYAY9aj3mEEZhhgkk5P3Dlc8YGxLHg3/1mwdtW483HaYmnYg7VRbVzFJPgsmYK8mp1jIIUnPC/gYdV0tLb6P56r0X8lUb2wvwwYPYig1YpZNrGXxtHA93qk5xKFBtRC5PiP+iHy6JFHGvUiUzKhXJ0mUEhyy3D40JygSix9q8pHtsChj2Y/F/AHe6bPaxIc+iDPEFkWqkc8SftFW2RFGbKtvYwjbBKT8XNU1ULfgwMPr80HNVbegj4UVw==
+Received: from localhost.lan (031011218106.poznan.vectranet.pl. [31.11.218.106])
+        by smtp.gmail.com with ESMTPSA id vw3-20020a170907a70300b00a36c5b01ef3sm1015845ejc.225.2024.02.12.23.48.00
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 12 Feb 2024 23:48:02 -0800 (PST)
+From: =?UTF-8?q?Rafa=C5=82=20Mi=C5=82ecki?= <zajec5@gmail.com>
+To: Damien Le Moal <dlemoal@kernel.org>,
+	Niklas Cassel <cassel@kernel.org>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>
+Cc: Matthias Brugger <matthias.bgg@gmail.com>,
+	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
+	Ryder Lee <ryder.lee@mediatek.com>,
+	linux-ide@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	linux-mediatek@lists.infradead.org,
+	=?UTF-8?q?Rafa=C5=82=20Mi=C5=82ecki?= <rafal@milecki.pl>
+Subject: [PATCH] dt-bindings: ata: convert MediaTek controller to the json-schema
+Date: Tue, 13 Feb 2024 08:47:47 +0100
+Message-Id: <20240213074747.26151-1-zajec5@gmail.com>
+X-Mailer: git-send-email 2.35.3
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 05/12] memory: stm32-fmc2-ebi: update the driver to
- support revision 2
-Content-Language: en-US
-To: Christophe Kerello <christophe.kerello@foss.st.com>,
- miquel.raynal@bootlin.com, richard@nod.at, vigneshr@ti.com,
- robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org
-Cc: linux-mtd@lists.infradead.org, linux-kernel@vger.kernel.org,
- linux-stm32@st-md-mailman.stormreply.com, devicetree@vger.kernel.org
-References: <20240212174822.77734-1-christophe.kerello@foss.st.com>
- <20240212174822.77734-6-christophe.kerello@foss.st.com>
-From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
- xsFNBFVDQq4BEAC6KeLOfFsAvFMBsrCrJ2bCalhPv5+KQF2PS2+iwZI8BpRZoV+Bd5kWvN79
- cFgcqTTuNHjAvxtUG8pQgGTHAObYs6xeYJtjUH0ZX6ndJ33FJYf5V3yXqqjcZ30FgHzJCFUu
- JMp7PSyMPzpUXfU12yfcRYVEMQrmplNZssmYhiTeVicuOOypWugZKVLGNm0IweVCaZ/DJDIH
- gNbpvVwjcKYrx85m9cBVEBUGaQP6AT7qlVCkrf50v8bofSIyVa2xmubbAwwFA1oxoOusjPIE
- J3iadrwpFvsZjF5uHAKS+7wHLoW9hVzOnLbX6ajk5Hf8Pb1m+VH/E8bPBNNYKkfTtypTDUCj
- NYcd27tjnXfG+SDs/EXNUAIRefCyvaRG7oRYF3Ec+2RgQDRnmmjCjoQNbFrJvJkFHlPeHaeS
- BosGY+XWKydnmsfY7SSnjAzLUGAFhLd/XDVpb1Een2XucPpKvt9ORF+48gy12FA5GduRLhQU
- vK4tU7ojoem/G23PcowM1CwPurC8sAVsQb9KmwTGh7rVz3ks3w/zfGBy3+WmLg++C2Wct6nM
- Pd8/6CBVjEWqD06/RjI2AnjIq5fSEH/BIfXXfC68nMp9BZoy3So4ZsbOlBmtAPvMYX6U8VwD
- TNeBxJu5Ex0Izf1NV9CzC3nNaFUYOY8KfN01X5SExAoVTr09ewARAQABzTRLcnp5c3p0b2Yg
- S296bG93c2tpIDxrcnp5c3p0b2Yua296bG93c2tpQGxpbmFyby5vcmc+wsGUBBMBCgA+FiEE
- m9B+DgxR+NWWd7dUG5NDfTtBYpsFAmI+BxMCGwMFCRRfreEFCwkIBwIGFQoJCAsCBBYCAwEC
- HgECF4AACgkQG5NDfTtBYptgbhAAjAGunRoOTduBeC7V6GGOQMYIT5n3OuDSzG1oZyM4kyvO
- XeodvvYv49/ng473E8ZFhXfrre+c1olbr1A8pnz9vKVQs9JGVa6wwr/6ddH7/yvcaCQnHRPK
- mnXyP2BViBlyDWQ71UC3N12YCoHE2cVmfrn4JeyK/gHCvcW3hUW4i5rMd5M5WZAeiJj3rvYh
- v8WMKDJOtZFXxwaYGbvFJNDdvdTHc2x2fGaWwmXMJn2xs1ZyFAeHQvrp49mS6PBQZzcx0XL5
- cU9ZjhzOZDn6Apv45/C/lUJvPc3lo/pr5cmlOvPq1AsP6/xRXsEFX/SdvdxJ8w9KtGaxdJuf
- rpzLQ8Ht+H0lY2On1duYhmro8WglOypHy+TusYrDEry2qDNlc/bApQKtd9uqyDZ+rx8bGxyY
- qBP6bvsQx5YACI4p8R0J43tSqWwJTP/R5oPRQW2O1Ye1DEcdeyzZfifrQz58aoZrVQq+innR
- aDwu8qDB5UgmMQ7cjDSeAQABdghq7pqrA4P8lkA7qTG+aw8Z21OoAyZdUNm8NWJoQy8m4nUP
- gmeeQPRc0vjp5JkYPgTqwf08cluqO6vQuYL2YmwVBIbO7cE7LNGkPDA3RYMu+zPY9UUi/ln5
- dcKuEStFZ5eqVyqVoZ9eu3RTCGIXAHe1NcfcMT9HT0DPp3+ieTxFx6RjY3kYTGLOwU0EVUNc
- NAEQAM2StBhJERQvgPcbCzjokShn0cRA4q2SvCOvOXD+0KapXMRFE+/PZeDyfv4dEKuCqeh0
- hihSHlaxTzg3TcqUu54w2xYskG8Fq5tg3gm4kh1Gvh1LijIXX99ABA8eHxOGmLPRIBkXHqJY
- oHtCvPc6sYKNM9xbp6I4yF56xVLmHGJ61KaWKf5KKWYgA9kfHufbja7qR0c6H79LIsiYqf92
- H1HNq1WlQpu/fh4/XAAaV1axHFt/dY/2kU05tLMj8GjeQDz1fHas7augL4argt4e+jum3Nwt
- yupodQBxncKAUbzwKcDrPqUFmfRbJ7ARw8491xQHZDsP82JRj4cOJX32sBg8nO2N5OsFJOcd
- 5IE9v6qfllkZDAh1Rb1h6DFYq9dcdPAHl4zOj9EHq99/CpyccOh7SrtWDNFFknCmLpowhct9
- 5ZnlavBrDbOV0W47gO33WkXMFI4il4y1+Bv89979rVYn8aBohEgET41SpyQz7fMkcaZU+ok/
- +HYjC/qfDxT7tjKXqBQEscVODaFicsUkjheOD4BfWEcVUqa+XdUEciwG/SgNyxBZepj41oVq
- FPSVE+Ni2tNrW/e16b8mgXNngHSnbsr6pAIXZH3qFW+4TKPMGZ2rZ6zITrMip+12jgw4mGjy
- 5y06JZvA02rZT2k9aa7i9dUUFggaanI09jNGbRA/ABEBAAHCwXwEGAEKACYCGwwWIQSb0H4O
- DFH41ZZ3t1Qbk0N9O0FimwUCYDzvagUJFF+UtgAKCRAbk0N9O0Fim9JzD/0auoGtUu4mgnna
- oEEpQEOjgT7l9TVuO3Qa/SeH+E0m55y5Fjpp6ZToc481za3xAcxK/BtIX5Wn1mQ6+szfrJQ6
- 59y2io437BeuWIRjQniSxHz1kgtFECiV30yHRgOoQlzUea7FgsnuWdstgfWi6LxstswEzxLZ
- Sj1EqpXYZE4uLjh6dW292sO+j4LEqPYr53hyV4I2LPmptPE9Rb9yCTAbSUlzgjiyyjuXhcwM
- qf3lzsm02y7Ooq+ERVKiJzlvLd9tSe4jRx6Z6LMXhB21fa5DGs/tHAcUF35hSJrvMJzPT/+u
- /oVmYDFZkbLlqs2XpWaVCo2jv8+iHxZZ9FL7F6AHFzqEFdqGnJQqmEApiRqH6b4jRBOgJ+cY
- qc+rJggwMQcJL9F+oDm3wX47nr6jIsEB5ZftdybIzpMZ5V9v45lUwmdnMrSzZVgC4jRGXzsU
- EViBQt2CopXtHtYfPAO5nAkIvKSNp3jmGxZw4aTc5xoAZBLo0OV+Ezo71pg3AYvq0a3/oGRG
- KQ06ztUMRrj8eVtpImjsWCd0bDWRaaR4vqhCHvAG9iWXZu4qh3ipie2Y0oSJygcZT7H3UZxq
- fyYKiqEmRuqsvv6dcbblD8ZLkz1EVZL6djImH5zc5x8qpVxlA0A0i23v5QvN00m6G9NFF0Le
- D2GYIS41Kv4Isx2dEFh+/Q==
-In-Reply-To: <20240212174822.77734-6-christophe.kerello@foss.st.com>
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
 
-On 12/02/2024 18:48, Christophe Kerello wrote:
-> Add the support of the revision 2 of FMC2 IP.
->  - PCSCNTR register has been removed,
->  - CFGR register has been added,
->  - the bit used to enable the IP has moved from BCR1 to CFGR,
->  - the timeout for CEx deassertion has moved from PCSCNTR to BCRx,
->  - the continuous clock enable has moved from BCR1 to CFGR,
->  - the clk divide ratio has moved from BCR1 to CFGR.
-> 
-> Signed-off-by: Christophe Kerello <christophe.kerello@foss.st.com>
-> ---
->  drivers/memory/stm32-fmc2-ebi.c | 206 +++++++++++++++++++++++++-------
->  1 file changed, 163 insertions(+), 43 deletions(-)
-> 
-> diff --git a/drivers/memory/stm32-fmc2-ebi.c b/drivers/memory/stm32-fmc2-ebi.c
-> index d79dcb6c239a..066722274a45 100644
-> --- a/drivers/memory/stm32-fmc2-ebi.c
-> +++ b/drivers/memory/stm32-fmc2-ebi.c
-> @@ -20,8 +20,10 @@
->  #define FMC2_BCR(x)			((x) * 0x8 + FMC2_BCR1)
->  #define FMC2_BTR(x)			((x) * 0x8 + FMC2_BTR1)
->  #define FMC2_PCSCNTR			0x20
-> +#define FMC2_CFGR			0x20
->  #define FMC2_BWTR1			0x104
->  #define FMC2_BWTR(x)			((x) * 0x8 + FMC2_BWTR1)
-> +#define FMC2_VERR			0x3f4
->  
->  /* Register: FMC2_BCR1 */
->  #define FMC2_BCR1_CCLKEN		BIT(20)
-> @@ -42,6 +44,7 @@
->  #define FMC2_BCR_ASYNCWAIT		BIT(15)
->  #define FMC2_BCR_CPSIZE			GENMASK(18, 16)
->  #define FMC2_BCR_CBURSTRW		BIT(19)
-> +#define FMC2_BCR_CSCOUNT		GENMASK(21, 20)
->  #define FMC2_BCR_NBLSET			GENMASK(23, 22)
->  
->  /* Register: FMC2_BTRx/FMC2_BWTRx */
-> @@ -58,6 +61,15 @@
->  #define FMC2_PCSCNTR_CSCOUNT		GENMASK(15, 0)
->  #define FMC2_PCSCNTR_CNTBEN(x)		BIT((x) + 16)
->  
-> +/* Register: FMC2_CFGR */
-> +#define FMC2_CFGR_CLKDIV		GENMASK(19, 16)
-> +#define FMC2_CFGR_CCLKEN		BIT(20)
-> +#define FMC2_CFGR_FMC2EN		BIT(31)
-> +
-> +/* Register: FMC2_VERR */
-> +#define FMC2_VERR_MAJREV		GENMASK(7, 4)
-> +#define FMC2_VERR_MAJREV_2		2
-> +
->  #define FMC2_MAX_EBI_CE			4
->  #define FMC2_MAX_BANKS			5
->  
-> @@ -74,6 +86,11 @@
->  #define FMC2_BCR_MTYP_PSRAM		0x1
->  #define FMC2_BCR_MTYP_NOR		0x2
->  
-> +#define FMC2_BCR_CSCOUNT_0		0x0
-> +#define FMC2_BCR_CSCOUNT_1		0x1
-> +#define FMC2_BCR_CSCOUNT_64		0x2
-> +#define FMC2_BCR_CSCOUNT_256		0x3
-> +
->  #define FMC2_BXTR_EXTMOD_A		0x0
->  #define FMC2_BXTR_EXTMOD_B		0x1
->  #define FMC2_BXTR_EXTMOD_C		0x2
-> @@ -85,7 +102,7 @@
->  #define FMC2_BXTR_DATAST_MAX		0xff
->  #define FMC2_BXTR_BUSTURN_MAX		0xf
->  #define FMC2_BXTR_DATAHLD_MAX		0x3
-> -#define FMC2_BTR_CLKDIV_MAX		0xf
-> +#define FMC2_REG_CLKDIV_MAX		0xf
+From: Rafał Miłecki <rafal@milecki.pl>
 
-Why?
+This helps validating DTS files.
 
->  #define FMC2_BTR_DATLAT_MAX		0xf
->  #define FMC2_PCSCNTR_CSCOUNT_MAX	0xff
->  
-> @@ -101,7 +118,8 @@ enum stm32_fmc2_ebi_register_type {
->  	FMC2_REG_BCR = 1,
->  	FMC2_REG_BTR,
->  	FMC2_REG_BWTR,
-> -	FMC2_REG_PCSCNTR
-> +	FMC2_REG_PCSCNTR,
-> +	FMC2_REG_CFGR,
->  };
->  
->  enum stm32_fmc2_ebi_transaction_type {
-> @@ -132,6 +150,13 @@ enum stm32_fmc2_ebi_cpsize {
->  	FMC2_CPSIZE_1024 = 1024
->  };
->  
-> +enum stm32_fmc2_ebi_cscount {
-> +	FMC2_CSCOUNT_0 = 0,
-> +	FMC2_CSCOUNT_1 = 1,
-> +	FMC2_CSCOUNT_64 = 64,
-> +	FMC2_CSCOUNT_256 = 256
-> +};
-> +
->  struct stm32_fmc2_ebi_data {
->  	bool rnb_for_nand;
->  };
-> @@ -142,11 +167,13 @@ struct stm32_fmc2_ebi {
->  	struct regmap *regmap;
->  	const struct stm32_fmc2_ebi_data *data;
->  	u8 bank_assigned;
-> +	u8 majrev;
->  
->  	u32 bcr[FMC2_MAX_EBI_CE];
->  	u32 btr[FMC2_MAX_EBI_CE];
->  	u32 bwtr[FMC2_MAX_EBI_CE];
->  	u32 pcscntr;
-> +	u32 cfgr;
->  };
->  
->  /*
-> @@ -274,15 +301,29 @@ static int stm32_fmc2_ebi_check_clk_period(struct stm32_fmc2_ebi *ebi,
->  					   const struct stm32_fmc2_prop *prop,
->  					   int cs)
->  {
-> -	u32 bcr, bcr1;
-> +	u32 bcr, cfgr;
->  
->  	regmap_read(ebi->regmap, FMC2_BCR(cs), &bcr);
-> -	if (cs)
-> -		regmap_read(ebi->regmap, FMC2_BCR1, &bcr1);
-> -	else
-> -		bcr1 = bcr;
->  
-> -	if (bcr & FMC2_BCR_BURSTEN && (!cs || !(bcr1 & FMC2_BCR1_CCLKEN)))
-> +	if (ebi->majrev < FMC2_VERR_MAJREV_2) {
-> +		u32 bcr1;
-> +
-> +		if (cs)
-> +			regmap_read(ebi->regmap, FMC2_BCR1, &bcr1);
-> +		else
-> +			bcr1 = bcr;
-> +
-> +		if (bcr & FMC2_BCR_BURSTEN &&
-> +		    (!cs || !(bcr1 & FMC2_BCR1_CCLKEN)))
-> +			return 0;
-> +
-> +		return -EINVAL;
-> +	}
+Signed-off-by: Rafał Miłecki <rafal@milecki.pl>
+---
+ .../devicetree/bindings/ata/ahci-mtk.txt      | 51 ----------
+ .../bindings/ata/mediatek,mtk-ahci.yaml       | 98 +++++++++++++++++++
+ 2 files changed, 98 insertions(+), 51 deletions(-)
+ delete mode 100644 Documentation/devicetree/bindings/ata/ahci-mtk.txt
+ create mode 100644 Documentation/devicetree/bindings/ata/mediatek,mtk-ahci.yaml
 
-The function is not really readable anymore. Please split it into three
-functions: for v1 (so original code), v2 and wrapper choosing it based
-on revision). Or two functions and some sort of ops with function
-pointers (so you call ops->check_clk_period). Or just parametrize the
-registers with two different "struct reg_field" and use appropriate one
-for given revision (the code looks the same!)
-Or just two set of stm32_fmc2_child_props...
-
-Anyway the duplicated code just two read different register is it not
-the way to go.
-
-
-> +
-> +	regmap_read(ebi->regmap, FMC2_CFGR, &cfgr);
-> +
-> +	if (bcr & FMC2_BCR_BURSTEN &&
-> +	    (!cs || !(cfgr & FMC2_CFGR_CCLKEN)))
->  		return 0;
->  
->  	return -EINVAL;
-> @@ -311,15 +352,29 @@ static u32 stm32_fmc2_ebi_ns_to_clk_period(struct stm32_fmc2_ebi *ebi,
->  					   int cs, u32 setup)
->  {
->  	u32 nb_clk_cycles = stm32_fmc2_ebi_ns_to_clock_cycles(ebi, cs, setup);
-> -	u32 bcr, btr, clk_period;
-> +	u32 btr, clk_period;
->  
-> -	regmap_read(ebi->regmap, FMC2_BCR1, &bcr);
-> -	if (bcr & FMC2_BCR1_CCLKEN || !cs)
-> -		regmap_read(ebi->regmap, FMC2_BTR1, &btr);
-> -	else
-> -		regmap_read(ebi->regmap, FMC2_BTR(cs), &btr);
-> +	if (ebi->majrev < FMC2_VERR_MAJREV_2) {
-> +		u32 bcr;
->  
-> -	clk_period = FIELD_GET(FMC2_BTR_CLKDIV, btr) + 1;
-> +		regmap_read(ebi->regmap, FMC2_BCR1, &bcr);
-> +		if (bcr & FMC2_BCR1_CCLKEN || !cs)
-> +			regmap_read(ebi->regmap, FMC2_BTR1, &btr);
-> +		else
-> +			regmap_read(ebi->regmap, FMC2_BTR(cs), &btr);
-> +
-> +		clk_period = FIELD_GET(FMC2_BTR_CLKDIV, btr) + 1;
-> +	} else {
-> +		u32 cfgr;
-> +
-> +		regmap_read(ebi->regmap, FMC2_CFGR, &cfgr);
-> +		if (cfgr & FMC2_CFGR_CCLKEN) {
-> +			clk_period = FIELD_GET(FMC2_CFGR_CLKDIV, cfgr) + 1;
-> +		} else {
-> +			regmap_read(ebi->regmap, FMC2_BTR(cs), &btr);
-> +			clk_period = FIELD_GET(FMC2_BTR_CLKDIV, btr) + 1;
-> +		}
-> +	}
->  
->  	return DIV_ROUND_UP(nb_clk_cycles, clk_period);
->  }
-> @@ -339,6 +394,9 @@ static int stm32_fmc2_ebi_get_reg(int reg_type, int cs, u32 *reg)
->  	case FMC2_REG_PCSCNTR:
->  		*reg = FMC2_PCSCNTR;
->  		break;
-> +	case FMC2_REG_CFGR:
-> +		*reg = FMC2_CFGR;
-> +		break;
->  	default:
->  		return -EINVAL;
->  	}
-> @@ -672,10 +730,26 @@ static int stm32_fmc2_ebi_set_clk_period(struct stm32_fmc2_ebi *ebi,
->  					 int cs, u32 setup)
->  {
->  	u32 val;
-> +	u32 reg = FMC2_BTR(cs);
-> +	u32 mask = FMC2_BTR_CLKDIV;
->  
-> -	val = setup ? clamp_val(setup - 1, 1, FMC2_BTR_CLKDIV_MAX) : 1;
-> -	val = FIELD_PREP(FMC2_BTR_CLKDIV, val);
-> -	regmap_update_bits(ebi->regmap, FMC2_BTR(cs), FMC2_BTR_CLKDIV, val);
-> +	if (ebi->majrev >= FMC2_VERR_MAJREV_2) {
-> +		u32 cfgr;
-> +
-> +		regmap_read(ebi->regmap, FMC2_CFGR, &cfgr);
-> +
-> +		if (cfgr & FMC2_CFGR_CCLKEN) {
-> +			reg = FMC2_CFGR;
-> +			mask = FMC2_CFGR_CLKDIV;
-> +		}
-> +	}
-> +
-> +	val = setup ? clamp_val(setup - 1, 1, FMC2_REG_CLKDIV_MAX) : 1;
-> +	if (reg == FMC2_CFGR)
-> +		val = FIELD_PREP(FMC2_CFGR_CLKDIV, val);
-> +	else
-> +		val = FIELD_PREP(FMC2_BTR_CLKDIV, val);
-
-This scales poorly for any new revision. You should really start using
-reg_field per each version.
-
-> +	regmap_update_bits(ebi->regmap, reg, mask, val);
->  
->  	return 0;
->  }
-> @@ -697,27 +771,58 @@ static int stm32_fmc2_ebi_set_max_low_pulse(struct stm32_fmc2_ebi *ebi,
->  					    const struct stm32_fmc2_prop *prop,
->  					    int cs, u32 setup)
->  {
-> -	u32 old_val, new_val, pcscntr;
-> +	u32 val;
-> +	u32 reg = ebi->majrev < FMC2_VERR_MAJREV_2 ? FMC2_PCSCNTR :
-> +						     FMC2_BCR(cs);
-> +	u32 mask = ebi->majrev < FMC2_VERR_MAJREV_2 ? FMC2_PCSCNTR_CSCOUNT :
-> +						      FMC2_BCR_CSCOUNT;
-
-You have such code everywhere... sorry, that's not readable at all. No
-conditional assignmnents, that's a clear NAK.
-
-
-
-Best regards,
-Krzysztof
+diff --git a/Documentation/devicetree/bindings/ata/ahci-mtk.txt b/Documentation/devicetree/bindings/ata/ahci-mtk.txt
+deleted file mode 100644
+index d2aa696b161b..000000000000
+--- a/Documentation/devicetree/bindings/ata/ahci-mtk.txt
++++ /dev/null
+@@ -1,51 +0,0 @@
+-MediaTek Serial ATA controller
+-
+-Required properties:
+- - compatible	   : Must be "mediatek,<chip>-ahci", "mediatek,mtk-ahci".
+-		     When using "mediatek,mtk-ahci" compatible strings, you
+-		     need SoC specific ones in addition, one of:
+-		     - "mediatek,mt7622-ahci"
+- - reg		   : Physical base addresses and length of register sets.
+- - interrupts	   : Interrupt associated with the SATA device.
+- - interrupt-names : Associated name must be: "hostc".
+- - clocks	   : A list of phandle and clock specifier pairs, one for each
+-		     entry in clock-names.
+- - clock-names	   : Associated names must be: "ahb", "axi", "asic", "rbc", "pm".
+- - phys		   : A phandle and PHY specifier pair for the PHY port.
+- - phy-names	   : Associated name must be: "sata-phy".
+- - ports-implemented : See ./ahci-platform.txt for details.
+-
+-Optional properties:
+- - power-domains   : A phandle and power domain specifier pair to the power
+-		     domain which is responsible for collapsing and restoring
+-		     power to the peripheral.
+- - resets	   : Must contain an entry for each entry in reset-names.
+-		     See ../reset/reset.txt for details.
+- - reset-names	   : Associated names must be: "axi", "sw", "reg".
+- - mediatek,phy-mode : A phandle to the system controller, used to enable
+-		       SATA function.
+-
+-Example:
+-
+-	sata: sata@1a200000 {
+-		compatible = "mediatek,mt7622-ahci",
+-			     "mediatek,mtk-ahci";
+-		reg = <0 0x1a200000 0 0x1100>;
+-		interrupts = <GIC_SPI 233 IRQ_TYPE_LEVEL_HIGH>;
+-		interrupt-names = "hostc";
+-		clocks = <&pciesys CLK_SATA_AHB_EN>,
+-			 <&pciesys CLK_SATA_AXI_EN>,
+-			 <&pciesys CLK_SATA_ASIC_EN>,
+-			 <&pciesys CLK_SATA_RBC_EN>,
+-			 <&pciesys CLK_SATA_PM_EN>;
+-		clock-names = "ahb", "axi", "asic", "rbc", "pm";
+-		phys = <&u3port1 PHY_TYPE_SATA>;
+-		phy-names = "sata-phy";
+-		ports-implemented = <0x1>;
+-		power-domains = <&scpsys MT7622_POWER_DOMAIN_HIF0>;
+-		resets = <&pciesys MT7622_SATA_AXI_BUS_RST>,
+-			 <&pciesys MT7622_SATA_PHY_SW_RST>,
+-			 <&pciesys MT7622_SATA_PHY_REG_RST>;
+-		reset-names = "axi", "sw", "reg";
+-		mediatek,phy-mode = <&pciesys>;
+-	};
+diff --git a/Documentation/devicetree/bindings/ata/mediatek,mtk-ahci.yaml b/Documentation/devicetree/bindings/ata/mediatek,mtk-ahci.yaml
+new file mode 100644
+index 000000000000..a34bd2e9c352
+--- /dev/null
++++ b/Documentation/devicetree/bindings/ata/mediatek,mtk-ahci.yaml
+@@ -0,0 +1,98 @@
++# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/ata/mediatek,mtk-ahci.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
++
++title: MediaTek Serial ATA controller
++
++maintainers:
++  - Ryder Lee <ryder.lee@mediatek.com>
++
++allOf:
++  - $ref: ahci-common.yaml#
++
++properties:
++  compatible:
++    items:
++      - enum:
++          - mediatek,mt7622-ahci
++      - const: mediatek,mtk-ahci
++
++  reg:
++    maxItems: 1
++
++  interrupts:
++    maxItems: 1
++
++  interrupt-names:
++    const: hostc
++
++  clocks:
++    maxItems: 5
++
++  clock-names:
++    items:
++      - const: ahb
++      - const: axi
++      - const: asic
++      - const: rbc
++      - const: pm
++
++  power-domains:
++    maxItems: 1
++
++  resets:
++    maxItems: 3
++
++  reset-names:
++    items:
++      - const: axi
++      - const: sw
++      - const: reg
++
++  mediatek,phy-mode:
++    description: System controller phandle, used to enable SATA function
++    $ref: /schemas/types.yaml#/definitions/phandle
++
++required:
++  - reg
++  - interrupts
++  - interrupt-names
++  - clocks
++  - clock-names
++  - phys
++  - phy-names
++  - ports-implemented
++
++unevaluatedProperties: false
++
++examples:
++  - |
++    #include <dt-bindings/clock/mt7622-clk.h>
++    #include <dt-bindings/interrupt-controller/arm-gic.h>
++    #include <dt-bindings/phy/phy.h>
++    #include <dt-bindings/power/mt7622-power.h>
++    #include <dt-bindings/reset/mt7622-reset.h>
++
++    sata@1a200000 {
++        compatible = "mediatek,mt7622-ahci", "mediatek,mtk-ahci";
++        reg = <0x1a200000 0x1100>;
++        interrupts = <GIC_SPI 233 IRQ_TYPE_LEVEL_HIGH>;
++        interrupt-names = "hostc";
++        clocks = <&pciesys CLK_SATA_AHB_EN>,
++                 <&pciesys CLK_SATA_AXI_EN>,
++                 <&pciesys CLK_SATA_ASIC_EN>,
++                 <&pciesys CLK_SATA_RBC_EN>,
++                 <&pciesys CLK_SATA_PM_EN>;
++        clock-names = "ahb", "axi", "asic", "rbc", "pm";
++        phys = <&u3port1 PHY_TYPE_SATA>;
++        phy-names = "sata-phy";
++        ports-implemented = <0x1>;
++        power-domains = <&scpsys MT7622_POWER_DOMAIN_HIF0>;
++        resets = <&pciesys MT7622_SATA_AXI_BUS_RST>,
++                 <&pciesys MT7622_SATA_PHY_SW_RST>,
++                 <&pciesys MT7622_SATA_PHY_REG_RST>;
++        reset-names = "axi", "sw", "reg";
++        mediatek,phy-mode = <&pciesys>;
++    };
+-- 
+2.35.3
 
 
