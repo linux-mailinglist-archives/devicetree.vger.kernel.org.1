@@ -1,263 +1,116 @@
-Return-Path: <devicetree+bounces-41282-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-41284-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 88FB9853027
-	for <lists+devicetree@lfdr.de>; Tue, 13 Feb 2024 13:05:20 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 012AF853040
+	for <lists+devicetree@lfdr.de>; Tue, 13 Feb 2024 13:11:10 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id ACCCD1C22495
-	for <lists+devicetree@lfdr.de>; Tue, 13 Feb 2024 12:05:19 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 94CF41F28975
+	for <lists+devicetree@lfdr.de>; Tue, 13 Feb 2024 12:11:09 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id EB12438DDA;
-	Tue, 13 Feb 2024 12:05:13 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0188339FF0;
+	Tue, 13 Feb 2024 12:11:07 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=iki.fi header.i=@iki.fi header.b="tA4/TsMB"
+	dkim=pass (2048-bit key) header.d=foss.st.com header.i=@foss.st.com header.b="XPTm/XEJ"
 X-Original-To: devicetree@vger.kernel.org
-Received: from lahtoruutu.iki.fi (lahtoruutu.iki.fi [185.185.170.37])
+Received: from mx07-00178001.pphosted.com (mx07-00178001.pphosted.com [185.132.182.106])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 90C542C697;
-	Tue, 13 Feb 2024 12:05:10 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=pass smtp.client-ip=185.185.170.37
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1707825913; cv=pass; b=Vzugyu7gVQbjj9BEtnh/sF+S05qlwO1Hs+AsWolhZGqn0uoL4eOQu0Gxem/LcH/7K5JmMvT5TCvYQESFT3iAqehd2PbhLNOB/vjFh3wMUYjnbCNXEntwKZgoK+Yud1mNDWytx9dNJnv+MQtdvY5P2DPkuQbyQlGK1YjkOnXsfLM=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1707825913; c=relaxed/simple;
-	bh=8OkoQz8ES9UkCj9vBvR+d75EqRHjA64RcQNleAzUOMw=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=hv9HdoBxD1vO3pKatusqK/ChLTQaXXHibksEpAErbWxTKTkmUF1Zxqae90rwjaivphD9c13cfd97GtSyVxrI5zopQfmavMZeB5uEE90B4MJnKa2FxoE3cZTrVEFxFkc115WDB7CS288/2m4oGlTJ0Yx7/TGAdMM0h/YFpkpBHyE=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=iki.fi; spf=pass smtp.mailfrom=iki.fi; dkim=pass (2048-bit key) header.d=iki.fi header.i=@iki.fi header.b=tA4/TsMB; arc=pass smtp.client-ip=185.185.170.37
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=iki.fi
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=iki.fi
-Received: from hillosipuli.retiisi.eu (2a00-1190-d1dd-0-c641-1eff-feae-163c.v6.cust.suomicom.net [IPv6:2a00:1190:d1dd:0:c641:1eff:feae:163c])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
-	(No client certificate requested)
-	(Authenticated sender: sailus)
-	by lahtoruutu.iki.fi (Postfix) with ESMTPSA id 4TZ0Pn4D3pz49Q3r;
-	Tue, 13 Feb 2024 14:05:01 +0200 (EET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=iki.fi; s=lahtoruutu;
-	t=1707825902;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 in-reply-to:in-reply-to:references:references;
-	bh=lu+DAqM0vLbVqdWvGB4a60F6/2Pa4siZTHbYrPWKyAc=;
-	b=tA4/TsMB61erjvY8wN3FM1mD3ADVlcIPF9IRLWd/ElCPf3lquCdjszJhzTav4TTfVrbkwC
-	iAaidtXKLMPXBS+/5xjMQBHr9/94C+/7ZVAVYkhfqSaVRX03bIrE74CnKGSvPwGjUD7PFU
-	FuFEBegYNW+fXk64CfJIFd6RyZxobO/DDxD6IkKQiID3SH2//sViJ8sLfTheaVRxAQSwvl
-	Q5kvngcm0CN3m2Ruu9q6lxRs0U/7Br8SLKv+RtlmbWj++5N1f2kObThRCogbhBMk27zyMs
-	/AhFsR47GlAB+L5X8JTbVLBLwuh0rphzZuXCdsrhQtqI0UW5YuGQ8qD9FN6zxQ==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=iki.fi;
-	s=lahtoruutu; t=1707825902;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 in-reply-to:in-reply-to:references:references;
-	bh=lu+DAqM0vLbVqdWvGB4a60F6/2Pa4siZTHbYrPWKyAc=;
-	b=rUbWzrvuREMVhCfMuBwSuCPvUUTCetlwleOxXYljRpAnlN++BCukKIH6cmpRm0A2AVuL64
-	8Ky7Pv5w2iA3sNtT+FQnhUl2puDXcjSwlkKMuU1ykHwkx8GGpYGS4oGc4Z0jtiW2F7y/Iv
-	h73PNh5sXT6/wdlP8KYFq6niEADpgSH8itd30jGe5PIa7JXbnW88bQjMAupuxrOHKeSQBD
-	Ls9KfTfPLr8GylrA1i5g1eW9R8MqvOcQQwUS3M4RonIiP/0BA0s+K9ubovMFb7rLYIYvPt
-	A/hBmujsmfmHxMKLInZSkOoZsKf8qJxJV3SzQ3LQIAf1ZqAUTAzBuBn0y0cRyQ==
-ARC-Authentication-Results: i=1;
-	ORIGINATING;
-	auth=pass smtp.auth=sailus smtp.mailfrom=sakari.ailus@iki.fi
-ARC-Seal: i=1; s=lahtoruutu; d=iki.fi; t=1707825902; a=rsa-sha256;
-	cv=none;
-	b=CLPVwuFUFUoQeloXutgTtInKNqSTMWBW6lNTRidMwUEmcmfdwebA7D5Cjsgvjqgmb//JSR
-	49s+czty+WiMzMLairSfg3k1KGC/8OZg+vjIaEFF6+kg11R2Mm23/fZZoOTtQRxEy93Rd1
-	fcujjdeka85SQJwUoH1L2Gsnr9E4bUYulBtznLK2cGuEd2LQiPO0hKXn2s/XSvbmljASKa
-	NOj6MIuyWfv626jj3RG9J87+X6I40R4sjDRrRsUEIdEDfI883mIpj3+9jrJKvRn/3Hjlfi
-	hA3ocqgRvseqMwd0iZvh8QNm6XvfFuObpIIurbRSfbrJ3z60rQr2o6YQn+q1mQ==
-Received: from valkosipuli.retiisi.eu (valkosipuli.localdomain [192.168.4.2])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange ECDHE (prime256v1) server-signature RSA-PSS (4096 bits) server-digest SHA256)
-	(No client certificate requested)
-	by hillosipuli.retiisi.eu (Postfix) with ESMTPS id 31D7E634C93;
-	Tue, 13 Feb 2024 14:04:59 +0200 (EET)
-Date: Tue, 13 Feb 2024 12:04:58 +0000
-From: Sakari Ailus <sakari.ailus@iki.fi>
-To: Mehdi Djait <mehdi.djait.k@gmail.com>
-Cc: mchehab@kernel.org, heiko@sntech.de, hverkuil-cisco@xs4all.nl,
-	krzysztof.kozlowski+dt@linaro.org, robh+dt@kernel.org,
-	conor+dt@kernel.org, linux-media@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	thomas.petazzoni@bootlin.com, alexandre.belloni@bootlin.com,
-	maxime.chevallier@bootlin.com, paul.kocialkowski@bootlin.com,
-	michael.riesch@wolfvision.net, laurent.pinchart@ideasonboard.com,
-	Mehdi Djait <mehdi.djait@bootlin.com>,
-	Conor Dooley <conor.dooley@microchip.com>
-Subject: Re: [RESEND Patch v13 1/3] media: dt-bindings: media: add bindings
- for Rockchip CIF
-Message-ID: <Zcta6hhSio67ahKs@valkosipuli.retiisi.eu>
-References: <cover.1707677804.git.mehdi.djait.k@gmail.com>
- <13deb8c5cb58e08c1b47decd112b51e8e0b6c4dc.1707677804.git.mehdi.djait.k@gmail.com>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 39F783FE2E;
+	Tue, 13 Feb 2024 12:11:04 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.132.182.106
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1707826267; cv=none; b=ZZspwPLCqVAcV/04KtY+7mSrSFYxHhkcFupE/IUZ0dlvbNcsA6CMkz70SYeNOffBBO9yz/JrstpVxM7a4cq+s25l7IzlSGGn4GnPBnzeLvtxxQvvoT+vQOWcyAYOI/KSzssNx4kxPwoW/+ODdsHLDzDLwfYX85dCHRwLshqI250=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1707826267; c=relaxed/simple;
+	bh=+N6oWphlV7CU8man21/8n4+EzJmAqK7AheWgjqy0khU=;
+	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
+	 In-Reply-To:Content-Type; b=jblZsztlVwdw6RTC2Nbm5DUWRAV+qSjEHq6rsLogp1IqzrdlU8KVLYY9L+du8mVwtTLb/3+tF3b06rAuCyctw1TXLzy5mXnHCjLnhX42kBWkMh6fq/og3kdH4H9Kvehi4+hCxYI7ofUbNJ2AJg5N11HCx82iF/IldfuHmGHOZeE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=foss.st.com; spf=pass smtp.mailfrom=foss.st.com; dkim=pass (2048-bit key) header.d=foss.st.com header.i=@foss.st.com header.b=XPTm/XEJ; arc=none smtp.client-ip=185.132.182.106
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=foss.st.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=foss.st.com
+Received: from pps.filterd (m0288072.ppops.net [127.0.0.1])
+	by mx07-00178001.pphosted.com (8.17.1.24/8.17.1.24) with ESMTP id 41D9saVg015351;
+	Tue, 13 Feb 2024 13:10:46 +0100
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=foss.st.com; h=
+	message-id:date:mime-version:subject:to:cc:references:from
+	:in-reply-to:content-type:content-transfer-encoding; s=
+	selector1; bh=ChetLBdDsyZCoOZVq/CcmKPawKKxLlNm8k9kly42dxc=; b=XP
+	Tm/XEJXAj0h03nwlwl/5vxOFM6OZLESY21fyNEWi0nQ/8/y0YIVcbyeNNmqfeN0D
+	SwLoUTSRgO78vD9fJTSxJL+uRY3CWqcjZ76WQ1Czj5Mu7RSy34gpSsZVZtDr5y7i
+	NWYZaPwXWhfMPlIINoPXFCOEmu7hwz5ARJrTbn9RURFPVCC7pjh4Jm+pU6+GxG1s
+	7oqMgPSWe8VOaR9JwFI/2UuS/YrUysTHG+AMFcJ6PWRuO+l5BCpHNF1OYSu/5eeI
+	psFdzYGXlZrW4ioscXxhwNj0n4ayVmD+XYGCZZu7kPxfVlW7/7YY9sV5xC/hIC4s
+	U9R0H2GHa1Sgk3zdYYAg==
+Received: from beta.dmz-ap.st.com (beta.dmz-ap.st.com [138.198.100.35])
+	by mx07-00178001.pphosted.com (PPS) with ESMTPS id 3w62jsatc8-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Tue, 13 Feb 2024 13:10:46 +0100 (CET)
+Received: from euls16034.sgp.st.com (euls16034.sgp.st.com [10.75.44.20])
+	by beta.dmz-ap.st.com (STMicroelectronics) with ESMTP id 472C04002D;
+	Tue, 13 Feb 2024 13:10:41 +0100 (CET)
+Received: from Webmail-eu.st.com (shfdag1node3.st.com [10.75.129.71])
+	by euls16034.sgp.st.com (STMicroelectronics) with ESMTP id 8C219236951;
+	Tue, 13 Feb 2024 13:09:56 +0100 (CET)
+Received: from [10.201.22.200] (10.201.22.200) by SHFDAG1NODE3.st.com
+ (10.75.129.71) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.27; Tue, 13 Feb
+ 2024 13:09:55 +0100
+Message-ID: <9f20563b-bef1-41d0-a1ba-fefeabed2e09@foss.st.com>
+Date: Tue, 13 Feb 2024 13:09:55 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <13deb8c5cb58e08c1b47decd112b51e8e0b6c4dc.1707677804.git.mehdi.djait.k@gmail.com>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 00/12] Add MP25 FMC2 support
+Content-Language: en-US
+To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        <miquel.raynal@bootlin.com>, <richard@nod.at>, <vigneshr@ti.com>,
+        <robh+dt@kernel.org>, <krzysztof.kozlowski+dt@linaro.org>,
+        <conor+dt@kernel.org>
+CC: <linux-mtd@lists.infradead.org>, <linux-kernel@vger.kernel.org>,
+        <linux-stm32@st-md-mailman.stormreply.com>,
+        <devicetree@vger.kernel.org>
+References: <20240212174822.77734-1-christophe.kerello@foss.st.com>
+ <fbaad3c7-13b7-41a2-a8f6-7036ec1ca2fe@linaro.org>
+From: Christophe Kerello <christophe.kerello@foss.st.com>
+In-Reply-To: <fbaad3c7-13b7-41a2-a8f6-7036ec1ca2fe@linaro.org>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 7bit
+X-ClientProxiedBy: SHFCAS1NODE1.st.com (10.75.129.72) To SHFDAG1NODE3.st.com
+ (10.75.129.71)
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.272,Aquarius:18.0.1011,Hydra:6.0.619,FMLib:17.11.176.26
+ definitions=2024-02-13_06,2024-02-12_03,2023-05-22_02
 
-Hi Mehdi,
 
-Thanks for the patchset.
 
-On Sun, Feb 11, 2024 at 08:03:30PM +0100, Mehdi Djait wrote:
-> From: Mehdi Djait <mehdi.djait@bootlin.com>
+On 2/13/24 08:34, Krzysztof Kozlowski wrote:
+> On 12/02/2024 18:48, Christophe Kerello wrote:
+>> Add MP25 SOC support in stm32_fmc2 drivers:
+>>   - Update stm32-fmc2-ebi driver to support FMC2 revision 2 and MP25 SOC.
+>>   - Update stm32_fmc2_nand driver to support FMC2 revision 2 and MP25 SOC
 > 
-> Add a documentation for the Rockchip Camera Interface binding.
+> Why do you combine memory controller driver and NAND in one patchset if
+> there is no dependency? On any further submissions, please split
+> independent works.
+
+Hi Krzysztof,
+
+NAND driver patch 11 refers to the compatible described for the memory
+controller (so there is a dependency), but anyway, I am going to split
+this patchet.
+
+Regards,
+Christophe Kerello.
+
 > 
-> Reviewed-by: Conor Dooley <conor.dooley@microchip.com>
-> Reviewed-by: Michael Riesch <michael.riesch@wolfvision.net>
-> Signed-off-by: Mehdi Djait <mehdi.djait@bootlin.com>
-> Signed-off-by: Mehdi Djait <mehdi.djait.k@gmail.com>
-> ---
->  .../bindings/media/rockchip,px30-vip.yaml     | 123 ++++++++++++++++++
->  1 file changed, 123 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/media/rockchip,px30-vip.yaml
+> Best regards,
+> Krzysztof
 > 
-> diff --git a/Documentation/devicetree/bindings/media/rockchip,px30-vip.yaml b/Documentation/devicetree/bindings/media/rockchip,px30-vip.yaml
-> new file mode 100644
-> index 000000000000..6af4a9b6774a
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/media/rockchip,px30-vip.yaml
-> @@ -0,0 +1,123 @@
-> +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/media/rockchip,px30-vip.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: Rockchip Camera Interface (CIF)
-> +
-> +maintainers:
-> +  - Mehdi Djait <mehdi.djait@bootlin.com>
-> +
-> +description:
-> +  CIF is a camera interface present on some Rockchip SoCs. It receives the data
-> +  from Camera sensor or CCIR656 encoder and transfers it into system main memory
-> +  by AXI bus.
-> +
-> +properties:
-> +  compatible:
-> +    const: rockchip,px30-vip
-> +
-> +  reg:
-> +    maxItems: 1
-> +
-> +  interrupts:
-> +    maxItems: 1
-> +
-> +  clocks:
-> +    items:
-> +      - description: ACLK
-> +      - description: HCLK
-> +      - description: PCLK
-> +
-> +  clock-names:
-> +    items:
-> +      - const: aclk
-> +      - const: hclk
-> +      - const: pclk
-> +
-> +  resets:
-> +    items:
-> +      - description: AXI
-> +      - description: AHB
-> +      - description: PCLK IN
-> +
-> +  reset-names:
-> +    items:
-> +      - const: axi
-> +      - const: ahb
-> +      - const: pclkin
-> +
-> +  power-domains:
-> +    maxItems: 1
-> +
-> +  ports:
-> +    $ref: /schemas/graph.yaml#/properties/ports
-> +
-> +    properties:
-> +      port@0:
-> +        $ref: /schemas/graph.yaml#/$defs/port-base
-> +        unevaluatedProperties: false
-> +        description: input port on the parallel interface
-> +
-> +        properties:
-> +          endpoint:
-> +            $ref: video-interfaces.yaml#
-> +            unevaluatedProperties: false
-> +
-> +            properties:
-> +              bus-type:
-> +                enum: [5, 6]
-> +
-> +            required:
-> +              - bus-type
-
-What about the vsync-active, hsync-active and data-active properties?
-Aren't they relevant for this device? Are there default values? This should
-be part of the bindings for the device, shouldn't it?
-
-> +
-> +    required:
-> +      - port@0
-> +
-> +required:
-> +  - compatible
-> +  - reg
-> +  - interrupts
-> +  - clocks
-> +  - ports
-> +
-> +additionalProperties: false
-> +
-> +examples:
-> +  - |
-> +    #include <dt-bindings/clock/px30-cru.h>
-> +    #include <dt-bindings/interrupt-controller/arm-gic.h>
-> +    #include <dt-bindings/media/video-interfaces.h>
-> +    #include <dt-bindings/power/px30-power.h>
-> +
-> +    parent {
-> +        #address-cells = <2>;
-> +        #size-cells = <2>;
-> +
-> +        video-capture@ff490000 {
-> +            compatible = "rockchip,px30-vip";
-> +            reg = <0x0 0xff490000 0x0 0x200>;
-> +            interrupts = <GIC_SPI 69 IRQ_TYPE_LEVEL_HIGH>;
-> +            clocks = <&cru ACLK_CIF>, <&cru HCLK_CIF>, <&cru PCLK_CIF>;
-> +            clock-names = "aclk", "hclk", "pclk";
-> +            power-domains = <&power PX30_PD_VI>;
-> +            resets = <&cru SRST_CIF_A>, <&cru SRST_CIF_H>, <&cru SRST_CIF_PCLKIN>;
-> +            reset-names = "axi", "ahb", "pclkin";
-> +
-> +            ports {
-> +                #address-cells = <1>;
-> +                #size-cells = <0>;
-> +
-> +                port@0 {
-> +                    reg = <0>;
-> +
-> +                    cif_in: endpoint {
-> +                        remote-endpoint = <&tw9900_out>;
-> +                        bus-type = <MEDIA_BUS_TYPE_BT656>;
-> +                    };
-> +                };
-> +            };
-> +        };
-> +    };
-> +...
-
--- 
-Kind regards,
-
-Sakari Ailus
 
