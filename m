@@ -1,273 +1,383 @@
-Return-Path: <devicetree+bounces-41152-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-41153-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id D3CB6852A3F
-	for <lists+devicetree@lfdr.de>; Tue, 13 Feb 2024 08:48:11 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 73033852A48
+	for <lists+devicetree@lfdr.de>; Tue, 13 Feb 2024 08:52:56 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 8B202284086
-	for <lists+devicetree@lfdr.de>; Tue, 13 Feb 2024 07:48:10 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 2ADD4283B0F
+	for <lists+devicetree@lfdr.de>; Tue, 13 Feb 2024 07:52:55 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 74A00175B5;
-	Tue, 13 Feb 2024 07:48:06 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 917A217743;
+	Tue, 13 Feb 2024 07:52:51 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="HifzyN0T"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="qgHRw08G"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ed1-f42.google.com (mail-ed1-f42.google.com [209.85.208.42])
+Received: from mail-lf1-f44.google.com (mail-lf1-f44.google.com [209.85.167.44])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 92F3B175AC;
-	Tue, 13 Feb 2024 07:48:04 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.42
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 78F7D175B5
+	for <devicetree@vger.kernel.org>; Tue, 13 Feb 2024 07:52:49 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.44
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1707810486; cv=none; b=cQsZ0y7enMjhX4m2vKztuY7p2upf8RUFBB/bkVY3WIEexIJQ6qo3U/ViYhFkMROxEJQ9/ymVs9qNPiLEG/f9ck6Qag6T1wSW6UExH4Ra0JkqNi8Xv2a1tBhLpY6WJizSDQEpVUxjLcvorNCTLomddxFDzUc6o3OZz0E6mashhko=
+	t=1707810771; cv=none; b=fNeXURLJDRSMWrdIL3in2DMQN1IqGHRzRma4w9yJVPJdE0wlWfZTqDozljAM7KG9qEv2Tbsn7Mmz2zm51sGXNfXqT1aCfHbv+EudTC1lMBkZlS0+ss8jNfP1qMsGSZnU88ZD6fL1GuuY3MkHbKB/p2hhW3czU86kOWwFAg/ngcc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1707810486; c=relaxed/simple;
-	bh=O7o6nrStpO/q/9GtQ75zQ0rTf7m6SOpylrVSW4RtKYk=;
-	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version:Content-Type; b=Sx9Dmcosnh+VE3nqr6oCQz+YHMpQlga86dCca1IQPdTQ0hLWseAIj1LOkQE+C7ihZHD8S/BeHjninaIIOlzwtph9FLPnSg/Bok50FI5TTNfcrxWN7PLRgM9n7BfSP0zKutPIA5/RisMnq9VJrjk6A7jTewc/U3IJBBf0ABHIQhw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=HifzyN0T; arc=none smtp.client-ip=209.85.208.42
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-ed1-f42.google.com with SMTP id 4fb4d7f45d1cf-55fcceb5f34so4568103a12.3;
-        Mon, 12 Feb 2024 23:48:04 -0800 (PST)
+	s=arc-20240116; t=1707810771; c=relaxed/simple;
+	bh=9p7YWmkMT2ZQ1y3hqYiB0H2HUZg7hqi/cq7zDlSBiUQ=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=UhDYNlDhsmJg+dSt/281nh9g2lICMR+8ENwROe2SgFbV/P9WgJe+dg4FbNBxsJCaAVUMAqxRcSd2/07GKi1xdQUrXtl7QQ4Ju7FdLn0uQjMofSgAtUsOrI/9TvcrQTgafVyKfZYfljf6y0hqKyZKtlM2fmonQ5TuOAu3dsCfsEI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=qgHRw08G; arc=none smtp.client-ip=209.85.167.44
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-lf1-f44.google.com with SMTP id 2adb3069b0e04-5114c05806eso6470315e87.1
+        for <devicetree@vger.kernel.org>; Mon, 12 Feb 2024 23:52:49 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1707810483; x=1708415283; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=YVvE6JGrrW+bdoM2H4XHHoW+Iw01AOmS4Rx/471szCE=;
-        b=HifzyN0T7+f4Lrs4HMTjdq81KP6MNRq6TmjFIbRJIPBNMOw15KHFCQyX2oE7vPrKkg
-         +EuEktevY5c2/WrbW+KyrKNy9vOPds/DJzN4Xqx9tz/lLHFGNLJ8KZRktvi49lnFyLbU
-         Y09AlQmOrZyYbF3MM8E7G16TFwDUkgZ5bEWbnmcG2DiOmp0YDKLljPkk8Rw4TLlbPb12
-         ZFVhFw3WVZypJjdKIf3nqji07TpSYJ7Wyd9pF7PTf/Kt+Z9WaYhMTayzF40o6S3Zhpwl
-         R4IaBAomi1E4TBvEVJDqLmFMFy3oZA8qidfXhu6ElW5EJl6Qxm+BBZs+GvMWL0o4MTO9
-         iSJA==
+        d=linaro.org; s=google; t=1707810767; x=1708415567; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
+         :to:content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=4gUdl2/6yyUfOH9+d0TxWj7DiTsTpgfUjt65todPL28=;
+        b=qgHRw08GboD0J38CWGZgXeugye72IuguctRWezymCwQZEYeO44njMBT/AqVKTfUT0m
+         ePiXCXLRkRwmveCpg90VQKEZIEP6hlnopkJLtT4YOvj1VQNC3jIBqSk+gMMUd2fn6mSx
+         YrEADepWhynDHzV2CEkhD1EJ6x6+JpgeG50UXVXyZ0uF7RHnSAvaEbZggROc/HJNMnvy
+         HvMlK61NA5kgyapsx1IbdXhMxxwdWCMFaWN7TQrBWJbataUMFZTl9CaMvoEOTiPID8mU
+         sWxCo2aWdZ9hd/aTvvfQLSn0X4gCkPqbYYAGWU/0+lcXdCssyw4oRqCXOQfag5uoj6wD
+         p6Vg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1707810483; x=1708415283;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=YVvE6JGrrW+bdoM2H4XHHoW+Iw01AOmS4Rx/471szCE=;
-        b=h44TQiakWk0bfeiOsQomn3B4JdOywICUYa9idvu+vy25mDjpovOiOP+IPfhZvSHjbE
-         vBDhAuP9maJySKxx6lxaJuXJEVAEyg5iZ+d5Y7zlpClFomSEv8wxrfr3nJRtFh+W6mHT
-         Y15xEAtxAaPTqqPv+WaXMPv8fi/6Jl29Wy5IScW0u7gEelc0CBUBumY8mEmnXdFMDuA5
-         2tJFRjexrxuQXVnXkLvstocKhhY4IvnvO1MUHH+W7ybctA4r7PF5l3EnzCEpzwmfrc7l
-         GGLoXgSCsKjTJxuE4roa1OkGNyZ3xzI+oDquN0zOsj8iQif8yxebWMFYziVZ1A5g0mwA
-         X96A==
-X-Forwarded-Encrypted: i=1; AJvYcCX1IgsJRR2pU7kNH07hRewbC6phUjWloZ1Vwcauc4k+/492ajpjM9nyfwUNAUx+SpvKwiGX4IGDHlMZ0UAw6cRFJaSeEVThY1utfRpRpMVH782hsvFKg6ns3v7P7ENLqPeWk/bkukOZx/tQUNO69Eh0DSR3ZZCT+dKyD6XuFx1hmjEWbw==
-X-Gm-Message-State: AOJu0YyrPnF5MqfNJXLlHGjMD1XsPsEh9Ieq3XyLwYbg+lHYZ+AYaEzC
-	NiVSIBx/qm/KgPdgE6NaxYOPzVyf43kBdtJ8QkmC7RF81c4UO2NuTFQDw6mU
-X-Google-Smtp-Source: AGHT+IF0gttBNcV8sh6ab8bf5+rN66Ur/dk0idrz9NdowKTUw3UVn+HwH+clIeE2oz8xxvtquJ3uyA==
-X-Received: by 2002:a17:906:80c5:b0:a3c:c614:82bf with SMTP id a5-20020a17090680c500b00a3cc61482bfmr2868502ejx.76.1707810482394;
-        Mon, 12 Feb 2024 23:48:02 -0800 (PST)
-X-Forwarded-Encrypted: i=1; AJvYcCV6Vv+QdIy1Uwbyf/48Qht/36JdZFbwumkD4KHX7ZovhK07p7UCvN6ULGkxfVnjjVaVMnF02VxgWpUCOfLlY2PIR6cJ8V29xfsYRnhLZjUVuyvUxgSETT69/hN4PUxkaoCEH5lM+i+95sFu+cbq3gFcDN+qllWKq5+/YrAz4n+ehgkY2ALBRIGdmVbzEHw7RFr31brz5OtJmS/VkU8WG/ctiW4O7dDqHB+gVD2lpd6/YXsJJZru+kIy63uj/18PJhzsvQYAY9aj3mEEZhhgkk5P3Dlc8YGxLHg3/1mwdtW483HaYmnYg7VRbVzFJPgsmYK8mp1jIIUnPC/gYdV0tLb6P56r0X8lUb2wvwwYPYig1YpZNrGXxtHA93qk5xKFBtRC5PiP+iHy6JFHGvUiUzKhXJ0mUEhyy3D40JygSix9q8pHtsChj2Y/F/AHe6bPaxIc+iDPEFkWqkc8SftFW2RFGbKtvYwjbBKT8XNU1ULfgwMPr80HNVbegj4UVw==
-Received: from localhost.lan (031011218106.poznan.vectranet.pl. [31.11.218.106])
-        by smtp.gmail.com with ESMTPSA id vw3-20020a170907a70300b00a36c5b01ef3sm1015845ejc.225.2024.02.12.23.48.00
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 12 Feb 2024 23:48:02 -0800 (PST)
-From: =?UTF-8?q?Rafa=C5=82=20Mi=C5=82ecki?= <zajec5@gmail.com>
-To: Damien Le Moal <dlemoal@kernel.org>,
-	Niklas Cassel <cassel@kernel.org>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>
-Cc: Matthias Brugger <matthias.bgg@gmail.com>,
-	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
-	Ryder Lee <ryder.lee@mediatek.com>,
-	linux-ide@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	linux-mediatek@lists.infradead.org,
-	=?UTF-8?q?Rafa=C5=82=20Mi=C5=82ecki?= <rafal@milecki.pl>
-Subject: [PATCH] dt-bindings: ata: convert MediaTek controller to the json-schema
-Date: Tue, 13 Feb 2024 08:47:47 +0100
-Message-Id: <20240213074747.26151-1-zajec5@gmail.com>
-X-Mailer: git-send-email 2.35.3
+        d=1e100.net; s=20230601; t=1707810767; x=1708415567;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
+         :to:content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=4gUdl2/6yyUfOH9+d0TxWj7DiTsTpgfUjt65todPL28=;
+        b=mhv4imfYn95e67xHY6Ri5LAxiykfNOLKu+WbmYR258NrCM7/YUN2Em2Xx9qBIS3++r
+         nXPdNNYZMKxaN6VVqZfDk+nwHoELj4JjyWDs1mpeNUlQDbF0/Y0xnLJaSMsuGaiPYuC/
+         RvZDbRFSr4nYOcj45x1x+9CuSNRKaSbg8uLzD5PE5YGQ0B5CcT1f/+zZ3386mf4ky/xK
+         kfGgWhkKngBY55DMXr37SQ3Px31lv1x5xaqt2mYC4z2oFKab14fjP/rkQ6HIaw6MnZ2w
+         bhhClYXvVTrZDo8d06tPPBYuu+HsRreIsLo/iYk+MCFMEUzRZ49ucsVm+HeUTgXHCEss
+         GUIQ==
+X-Forwarded-Encrypted: i=1; AJvYcCWr61KZteC6EaU0xjR5vSxKYuia1K1Zd5OGjXi0ymu0vP7l1lPRDoHQPhmb6BTJ+TXiDLfys37gW+xFGaVQBp1FzXiLmivWdY7fZQ==
+X-Gm-Message-State: AOJu0YwcqcXgdOxx6+WrZlkaYpXGm5QJHDbikwfiKVE7bjuWl0x1hNCU
+	I6E0VAv/XYDhckTTwG1mOrOwLn8ypRnHe97vUe0KDIGq1mH7Zm3NKp8A2wLOFnSUH5rbCEPLUik
+	L
+X-Google-Smtp-Source: AGHT+IGb1cmv23Djtnq5yjHeIK0VKg3qB6uyfQOubZv26Q3PESmao9vQc4FXyx18Z/la97IOwrOeGQ==
+X-Received: by 2002:ac2:41ca:0:b0:511:1ed7:61b8 with SMTP id d10-20020ac241ca000000b005111ed761b8mr6112291lfi.30.1707810767434;
+        Mon, 12 Feb 2024 23:52:47 -0800 (PST)
+X-Forwarded-Encrypted: i=1; AJvYcCWfIDnmXSHQs9RC0eoASbW20HKcbnPj50wh9FUN+kizs9ao1dURas9VwCeuqxtwEPZiIacvm72Kz/N2AH8XlcscBWq097C+iovnIqNPr3UMBdL2bFx2qExOObM64qvpdYTDNQ9R4wwN+Lxn6tfOEpfDEh6CFdUz5PQxfkviU+upojm3mmHslvGf7v9yZF5bDo8hJTunE+RnVWwmJsR+nhknn/OksnjmvQrz5GPf2u1R2nRQ53QBf7glwaooK098HUxr+LaeRNaRJQfffjTscWqoetkIko+m+yIGtl4Cjf44CYRVBg81DMHN6eHjo1qfbM8FqlFsqUgbVbZrUzbNUmQ5BkajBhJAft7WSbMrhE155Vkh36wku3aUkds=
+Received: from [192.168.1.20] ([178.197.223.6])
+        by smtp.gmail.com with ESMTPSA id jx6-20020a05600c578600b0040ffd94cd27sm10703773wmb.45.2024.02.12.23.52.46
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 12 Feb 2024 23:52:47 -0800 (PST)
+Message-ID: <989661f0-f539-43c3-a332-13c0e99ed7b9@linaro.org>
+Date: Tue, 13 Feb 2024 08:52:45 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 06/12] memory: stm32-fmc2-ebi: add RIF support
+Content-Language: en-US
+To: Christophe Kerello <christophe.kerello@foss.st.com>,
+ miquel.raynal@bootlin.com, richard@nod.at, vigneshr@ti.com,
+ robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org
+Cc: linux-mtd@lists.infradead.org, linux-kernel@vger.kernel.org,
+ linux-stm32@st-md-mailman.stormreply.com, devicetree@vger.kernel.org
+References: <20240212174822.77734-1-christophe.kerello@foss.st.com>
+ <20240212174822.77734-7-christophe.kerello@foss.st.com>
+From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
+ 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
+ D2GYIS41Kv4Isx2dEFh+/Q==
+In-Reply-To: <20240212174822.77734-7-christophe.kerello@foss.st.com>
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+Content-Transfer-Encoding: 7bit
 
-From: Rafał Miłecki <rafal@milecki.pl>
+On 12/02/2024 18:48, Christophe Kerello wrote:
+> The FMC2 revision 2 supports security and isolation compliant with
+> the Resource Isolation Framework (RIF). From RIF point of view,
+> the FMC2 is composed of several independent resources, listed below,
+> which can be assigned to different security and compartment domains:
+>   - 0: Common FMC_CFGR register.
+>   - 1: EBI controller for Chip Select 1.
+>   - 2: EBI controller for Chip Select 2.
+>   - 3: EBI controller for Chip Select 3.
+>   - 4: EBI controller for Chip Select 4.
+>   - 5: NAND controller.
+> 
 
-This helps validating DTS files.
 
-Signed-off-by: Rafał Miłecki <rafal@milecki.pl>
----
- .../devicetree/bindings/ata/ahci-mtk.txt      | 51 ----------
- .../bindings/ata/mediatek,mtk-ahci.yaml       | 98 +++++++++++++++++++
- 2 files changed, 98 insertions(+), 51 deletions(-)
- delete mode 100644 Documentation/devicetree/bindings/ata/ahci-mtk.txt
- create mode 100644 Documentation/devicetree/bindings/ata/mediatek,mtk-ahci.yaml
+>  	regmap_update_bits(ebi->regmap, reg, mask, setup ? mask : 0);
+>  
+>  	return 0;
+> @@ -990,6 +1023,107 @@ static const struct stm32_fmc2_prop stm32_fmc2_child_props[] = {
+>  	},
+>  };
+>  
+> +static int stm32_fmc2_ebi_check_rif(struct stm32_fmc2_ebi *ebi, u32 resource)
+> +{
+> +	u32 seccfgr, cidcfgr, semcr;
+> +	int cid;
+> +
+> +	if (ebi->majrev < FMC2_VERR_MAJREV_2)
+> +		return 0;
+> +
+> +	if (resource >= FMC2_MAX_RESOURCES)
+> +		return -EINVAL;
+> +
+> +	regmap_read(ebi->regmap, FMC2_SECCFGR, &seccfgr);
 
-diff --git a/Documentation/devicetree/bindings/ata/ahci-mtk.txt b/Documentation/devicetree/bindings/ata/ahci-mtk.txt
-deleted file mode 100644
-index d2aa696b161b..000000000000
---- a/Documentation/devicetree/bindings/ata/ahci-mtk.txt
-+++ /dev/null
-@@ -1,51 +0,0 @@
--MediaTek Serial ATA controller
--
--Required properties:
-- - compatible	   : Must be "mediatek,<chip>-ahci", "mediatek,mtk-ahci".
--		     When using "mediatek,mtk-ahci" compatible strings, you
--		     need SoC specific ones in addition, one of:
--		     - "mediatek,mt7622-ahci"
-- - reg		   : Physical base addresses and length of register sets.
-- - interrupts	   : Interrupt associated with the SATA device.
-- - interrupt-names : Associated name must be: "hostc".
-- - clocks	   : A list of phandle and clock specifier pairs, one for each
--		     entry in clock-names.
-- - clock-names	   : Associated names must be: "ahb", "axi", "asic", "rbc", "pm".
-- - phys		   : A phandle and PHY specifier pair for the PHY port.
-- - phy-names	   : Associated name must be: "sata-phy".
-- - ports-implemented : See ./ahci-platform.txt for details.
--
--Optional properties:
-- - power-domains   : A phandle and power domain specifier pair to the power
--		     domain which is responsible for collapsing and restoring
--		     power to the peripheral.
-- - resets	   : Must contain an entry for each entry in reset-names.
--		     See ../reset/reset.txt for details.
-- - reset-names	   : Associated names must be: "axi", "sw", "reg".
-- - mediatek,phy-mode : A phandle to the system controller, used to enable
--		       SATA function.
--
--Example:
--
--	sata: sata@1a200000 {
--		compatible = "mediatek,mt7622-ahci",
--			     "mediatek,mtk-ahci";
--		reg = <0 0x1a200000 0 0x1100>;
--		interrupts = <GIC_SPI 233 IRQ_TYPE_LEVEL_HIGH>;
--		interrupt-names = "hostc";
--		clocks = <&pciesys CLK_SATA_AHB_EN>,
--			 <&pciesys CLK_SATA_AXI_EN>,
--			 <&pciesys CLK_SATA_ASIC_EN>,
--			 <&pciesys CLK_SATA_RBC_EN>,
--			 <&pciesys CLK_SATA_PM_EN>;
--		clock-names = "ahb", "axi", "asic", "rbc", "pm";
--		phys = <&u3port1 PHY_TYPE_SATA>;
--		phy-names = "sata-phy";
--		ports-implemented = <0x1>;
--		power-domains = <&scpsys MT7622_POWER_DOMAIN_HIF0>;
--		resets = <&pciesys MT7622_SATA_AXI_BUS_RST>,
--			 <&pciesys MT7622_SATA_PHY_SW_RST>,
--			 <&pciesys MT7622_SATA_PHY_REG_RST>;
--		reset-names = "axi", "sw", "reg";
--		mediatek,phy-mode = <&pciesys>;
--	};
-diff --git a/Documentation/devicetree/bindings/ata/mediatek,mtk-ahci.yaml b/Documentation/devicetree/bindings/ata/mediatek,mtk-ahci.yaml
-new file mode 100644
-index 000000000000..a34bd2e9c352
---- /dev/null
-+++ b/Documentation/devicetree/bindings/ata/mediatek,mtk-ahci.yaml
-@@ -0,0 +1,98 @@
-+# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/ata/mediatek,mtk-ahci.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: MediaTek Serial ATA controller
-+
-+maintainers:
-+  - Ryder Lee <ryder.lee@mediatek.com>
-+
-+allOf:
-+  - $ref: ahci-common.yaml#
-+
-+properties:
-+  compatible:
-+    items:
-+      - enum:
-+          - mediatek,mt7622-ahci
-+      - const: mediatek,mtk-ahci
-+
-+  reg:
-+    maxItems: 1
-+
-+  interrupts:
-+    maxItems: 1
-+
-+  interrupt-names:
-+    const: hostc
-+
-+  clocks:
-+    maxItems: 5
-+
-+  clock-names:
-+    items:
-+      - const: ahb
-+      - const: axi
-+      - const: asic
-+      - const: rbc
-+      - const: pm
-+
-+  power-domains:
-+    maxItems: 1
-+
-+  resets:
-+    maxItems: 3
-+
-+  reset-names:
-+    items:
-+      - const: axi
-+      - const: sw
-+      - const: reg
-+
-+  mediatek,phy-mode:
-+    description: System controller phandle, used to enable SATA function
-+    $ref: /schemas/types.yaml#/definitions/phandle
-+
-+required:
-+  - reg
-+  - interrupts
-+  - interrupt-names
-+  - clocks
-+  - clock-names
-+  - phys
-+  - phy-names
-+  - ports-implemented
-+
-+unevaluatedProperties: false
-+
-+examples:
-+  - |
-+    #include <dt-bindings/clock/mt7622-clk.h>
-+    #include <dt-bindings/interrupt-controller/arm-gic.h>
-+    #include <dt-bindings/phy/phy.h>
-+    #include <dt-bindings/power/mt7622-power.h>
-+    #include <dt-bindings/reset/mt7622-reset.h>
-+
-+    sata@1a200000 {
-+        compatible = "mediatek,mt7622-ahci", "mediatek,mtk-ahci";
-+        reg = <0x1a200000 0x1100>;
-+        interrupts = <GIC_SPI 233 IRQ_TYPE_LEVEL_HIGH>;
-+        interrupt-names = "hostc";
-+        clocks = <&pciesys CLK_SATA_AHB_EN>,
-+                 <&pciesys CLK_SATA_AXI_EN>,
-+                 <&pciesys CLK_SATA_ASIC_EN>,
-+                 <&pciesys CLK_SATA_RBC_EN>,
-+                 <&pciesys CLK_SATA_PM_EN>;
-+        clock-names = "ahb", "axi", "asic", "rbc", "pm";
-+        phys = <&u3port1 PHY_TYPE_SATA>;
-+        phy-names = "sata-phy";
-+        ports-implemented = <0x1>;
-+        power-domains = <&scpsys MT7622_POWER_DOMAIN_HIF0>;
-+        resets = <&pciesys MT7622_SATA_AXI_BUS_RST>,
-+                 <&pciesys MT7622_SATA_PHY_SW_RST>,
-+                 <&pciesys MT7622_SATA_PHY_REG_RST>;
-+        reset-names = "axi", "sw", "reg";
-+        mediatek,phy-mode = <&pciesys>;
-+    };
--- 
-2.35.3
+No checking of read value?
+
+> +	if (seccfgr & BIT(resource)) {
+
+Then on read failure this is random stack junk.
+
+> +		if (resource)
+> +			dev_err(ebi->dev, "resource %d is configured as secure\n",
+> +				resource);
+> +
+> +		return -EACCES;
+> +	}
+> +
+> +	regmap_read(ebi->regmap, FMC2_CIDCFGR(resource), &cidcfgr);
+> +	if (!(cidcfgr & FMC2_CIDCFGR_CFEN))
+> +		/* CID filtering is turned off: access granted */
+> +		return 0;
+> +
+> +	if (!(cidcfgr & FMC2_CIDCFGR_SEMEN)) {
+> +		/* Static CID mode */
+> +		cid = FIELD_GET(FMC2_CIDCFGR_SCID, cidcfgr);
+> +		if (cid != FMC2_CID1) {
+> +			if (resource)
+> +				dev_err(ebi->dev, "static CID%d set for resource %d\n",
+> +					cid, resource);
+> +
+> +			return -EACCES;
+> +		}
+> +
+> +		return 0;
+> +	}
+> +
+> +	/* Pass-list with semaphore mode */
+> +	if (!(cidcfgr & FMC2_CIDCFGR_SEMWLC1)) {
+> +		if (resource)
+> +			dev_err(ebi->dev, "CID1 is block-listed for resource %d\n",
+> +				resource);
+> +
+> +		return -EACCES;
+> +	}
+> +
+> +	regmap_read(ebi->regmap, FMC2_SEMCR(resource), &semcr);
+> +	if (!(semcr & FMC2_SEMCR_SEM_MUTEX)) {
+> +		regmap_update_bits(ebi->regmap, FMC2_SEMCR(resource),
+> +				   FMC2_SEMCR_SEM_MUTEX, FMC2_SEMCR_SEM_MUTEX);
+> +		regmap_read(ebi->regmap, FMC2_SEMCR(resource), &semcr);
+> +	}
+> +
+> +	cid = FIELD_GET(FMC2_SEMCR_SEMCID, semcr);
+> +	if (cid != FMC2_CID1) {
+> +		if (resource)
+> +			dev_err(ebi->dev, "resource %d is already used by CID%d\n",
+> +				resource, cid);
+> +
+> +		return -EACCES;
+> +	}
+> +
+> +	ebi->sem_taken |= BIT(resource);
+> +
+> +	return 0;
+> +}
+> +
+> +static void stm32_fmc2_ebi_put_sems(struct stm32_fmc2_ebi *ebi)
+> +{
+> +	unsigned int resource;
+> +
+> +	if (ebi->majrev < FMC2_VERR_MAJREV_2)
+> +		return;
+> +
+> +	for (resource = 0; resource < FMC2_MAX_RESOURCES; resource++) {
+> +		if (!(ebi->sem_taken & BIT(resource)))
+> +			continue;
+> +
+> +		regmap_update_bits(ebi->regmap, FMC2_SEMCR(resource),
+> +				   FMC2_SEMCR_SEM_MUTEX, 0);
+> +	}
+> +}
+> +
+> +static void stm32_fmc2_ebi_get_sems(struct stm32_fmc2_ebi *ebi)
+> +{
+> +	unsigned int resource;
+> +
+> +	if (ebi->majrev < FMC2_VERR_MAJREV_2)
+> +		return;
+> +
+> +	for (resource = 0; resource < FMC2_MAX_RESOURCES; resource++) {
+> +		if (!(ebi->sem_taken & BIT(resource)))
+> +			continue;
+> +
+> +		regmap_update_bits(ebi->regmap, FMC2_SEMCR(resource),
+> +				   FMC2_SEMCR_SEM_MUTEX, FMC2_SEMCR_SEM_MUTEX);
+> +	}
+> +}
+> +
+>  static int stm32_fmc2_ebi_parse_prop(struct stm32_fmc2_ebi *ebi,
+>  				     struct device_node *dev_node,
+>  				     const struct stm32_fmc2_prop *prop,
+> @@ -1057,6 +1191,9 @@ static void stm32_fmc2_ebi_save_setup(struct stm32_fmc2_ebi *ebi)
+>  	unsigned int cs;
+>  
+>  	for (cs = 0; cs < FMC2_MAX_EBI_CE; cs++) {
+> +		if (!(ebi->bank_assigned & BIT(cs)))
+> +			continue;
+> +
+>  		regmap_read(ebi->regmap, FMC2_BCR(cs), &ebi->bcr[cs]);
+>  		regmap_read(ebi->regmap, FMC2_BTR(cs), &ebi->btr[cs]);
+>  		regmap_read(ebi->regmap, FMC2_BWTR(cs), &ebi->bwtr[cs]);
+> @@ -1064,7 +1201,7 @@ static void stm32_fmc2_ebi_save_setup(struct stm32_fmc2_ebi *ebi)
+>  
+>  	if (ebi->majrev < FMC2_VERR_MAJREV_2)
+>  		regmap_read(ebi->regmap, FMC2_PCSCNTR, &ebi->pcscntr);
+> -	else
+> +	else if (ebi->access_granted)
+>  		regmap_read(ebi->regmap, FMC2_CFGR, &ebi->cfgr);
+>  }
+>  
+> @@ -1073,6 +1210,9 @@ static void stm32_fmc2_ebi_set_setup(struct stm32_fmc2_ebi *ebi)
+>  	unsigned int cs;
+>  
+>  	for (cs = 0; cs < FMC2_MAX_EBI_CE; cs++) {
+> +		if (!(ebi->bank_assigned & BIT(cs)))
+> +			continue;
+> +
+>  		regmap_write(ebi->regmap, FMC2_BCR(cs), ebi->bcr[cs]);
+>  		regmap_write(ebi->regmap, FMC2_BTR(cs), ebi->btr[cs]);
+>  		regmap_write(ebi->regmap, FMC2_BWTR(cs), ebi->bwtr[cs]);
+> @@ -1080,7 +1220,7 @@ static void stm32_fmc2_ebi_set_setup(struct stm32_fmc2_ebi *ebi)
+>  
+>  	if (ebi->majrev < FMC2_VERR_MAJREV_2)
+>  		regmap_write(ebi->regmap, FMC2_PCSCNTR, ebi->pcscntr);
+> -	else
+> +	else if (ebi->access_granted)
+>  		regmap_write(ebi->regmap, FMC2_CFGR, ebi->cfgr);
+
+So this is kind of half-allowed-half-not. How is it supposed to work
+with !access_granted? You configure some registers but some not. So will
+it work or not? If yes, why even needing to write to FMC2_CFGR!
+
+>  }
+>  
+> @@ -1124,7 +1264,8 @@ static void stm32_fmc2_ebi_enable(struct stm32_fmc2_ebi *ebi)
+>  	u32 mask = ebi->majrev < FMC2_VERR_MAJREV_2 ? FMC2_BCR1_FMC2EN :
+>  						      FMC2_CFGR_FMC2EN;
+>  
+> -	regmap_update_bits(ebi->regmap, reg, mask, mask);
+> +	if (ebi->access_granted)
+> +		regmap_update_bits(ebi->regmap, reg, mask, mask);
+>  }
+>  
+>  static void stm32_fmc2_ebi_disable(struct stm32_fmc2_ebi *ebi)
+> @@ -1133,7 +1274,8 @@ static void stm32_fmc2_ebi_disable(struct stm32_fmc2_ebi *ebi)
+>  	u32 mask = ebi->majrev < FMC2_VERR_MAJREV_2 ? FMC2_BCR1_FMC2EN :
+>  						      FMC2_CFGR_FMC2EN;
+>  
+> -	regmap_update_bits(ebi->regmap, reg, mask, 0);
+> +	if (ebi->access_granted)
+> +		regmap_update_bits(ebi->regmap, reg, mask, 0);
+>  }
+>  
+>  static int stm32_fmc2_ebi_setup_cs(struct stm32_fmc2_ebi *ebi,
+> @@ -1190,6 +1332,13 @@ static int stm32_fmc2_ebi_parse_dt(struct stm32_fmc2_ebi *ebi)
+>  			return -EINVAL;
+>  		}
+>  
+> +		ret = stm32_fmc2_ebi_check_rif(ebi, bank + 1);
+> +		if (ret) {
+> +			dev_err(dev, "bank access failed: %d\n", bank);
+> +			of_node_put(child);
+> +			return ret;
+> +		}
+> +
+>  		if (bank < FMC2_MAX_EBI_CE) {
+>  			ret = stm32_fmc2_ebi_setup_cs(ebi, child, bank);
+>  			if (ret) {
+> @@ -1261,6 +1410,23 @@ static int stm32_fmc2_ebi_probe(struct platform_device *pdev)
+>  	regmap_read(ebi->regmap, FMC2_VERR, &verr);
+>  	ebi->majrev = FIELD_GET(FMC2_VERR_MAJREV, verr);
+>  
+> +	/* Check if CFGR register can be modified */
+> +	ret = stm32_fmc2_ebi_check_rif(ebi, 0);
+> +	if (!ret)
+> +		ebi->access_granted = true;
+
+I don't understand why you need to store it. If access is not granted,
+what else is to do for this driver? Why even probing it? Why enabling
+clocks and keep everything running if it cannot work?
+
+> +
+> +	/* In case of CFGR is secure, just check that the FMC2 is enabled */
+> +	if (!ebi->access_granted) {
+
+This is just "else", isn't it?
+
+> +		u32 sr;
+> +
+> +		regmap_read(ebi->regmap, FMC2_SR, &sr);
+> +		if (sr & FMC2_SR_ISOST) {
+> +			dev_err(dev, "FMC2 is not ready to be used.\n");
+> +			ret = -EACCES;
+> +			goto err_release;
+> +		}
+> +	}
+> +
+>  	ret = stm32_fmc2_ebi_parse_dt(ebi);
+
+>  
+
+Best regards,
+Krzysztof
 
 
