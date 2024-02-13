@@ -1,57 +1,60 @@
-Return-Path: <devicetree+bounces-41380-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-41381-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id BA3698535EB
-	for <lists+devicetree@lfdr.de>; Tue, 13 Feb 2024 17:23:39 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 98296853607
+	for <lists+devicetree@lfdr.de>; Tue, 13 Feb 2024 17:31:09 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id ED2401C21A64
-	for <lists+devicetree@lfdr.de>; Tue, 13 Feb 2024 16:23:38 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 5263F28B66E
+	for <lists+devicetree@lfdr.de>; Tue, 13 Feb 2024 16:31:08 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id F04CC5FDC7;
-	Tue, 13 Feb 2024 16:23:08 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9404FB661;
+	Tue, 13 Feb 2024 16:30:58 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="HLeB+qYk"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="qGbC2s9/"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C8C635FDBC;
-	Tue, 13 Feb 2024 16:23:08 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6322C7491;
+	Tue, 13 Feb 2024 16:30:58 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1707841388; cv=none; b=uswaGG+dlVMTaPwHKAtfZxHxabKvi9KKuNEpVyQJnfOZNxYMAJg6u0nLSqg9fJe1D9DDpe6Ak7C83c1bXPRbPgsKY6WnvmsHE9z9vfw4Vha94CA7g0ttBa1cNGwdUXKQIamn6VDe7ceLukHezSKmUBxx8MubMKBpU27NMXY3t2Y=
+	t=1707841858; cv=none; b=lQnVjDlIra8FbE179ryOzYEM2xttIaxX6nB03kH/wp9ikdSULUvjF3uG+uxvbN4/j8WEqqUQNrGMymgF7Qx6jOsGHgujXS/f6CHkVPyIo7HvN5BsWDubdx/VwzEiH3932oPznWr+g65838FTGF+QbHdGPihBZ6wa57ThgqcQZmM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1707841388; c=relaxed/simple;
-	bh=3i4GdydSftiCj1W1u+Jm/PpXtfDwToM0GIQpqW2yLjY=;
+	s=arc-20240116; t=1707841858; c=relaxed/simple;
+	bh=M+iSkQzlFvKqKVdIDb0KbYwtekmltOd8aXuh0uIB/co=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=Gyg91256c8l7E04tpzUM7+JHJ/gIAtgDjq+gX9uTOreoBTZbiurAIzyijY157f7OtbmFVInYEbpqyEU1VFowuAsnDohxLFlC6HnRX1I3rz1gBz7ItxkxmifjFcizV9wRbTEbge+IigO3EX1zn6f4b4H0bxLcf+Re0ahqVK6k69M=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=HLeB+qYk; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 1E283C433F1;
-	Tue, 13 Feb 2024 16:23:08 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=JrokOPcb5qwK1NKpGo1kVmKa6mSEQoBxMIOqSgR9wh9hgAs38D4bGIjQLNH5QgrYwW8fH8J7hBxGks6Rfy/HpDhpQMT5Joj/nWQi5cdY/dOvhs9nzsttEVHiaXx5Uxub9Cc+LuEYL1XHxBClTmjsBpn/osOtn7XNwnHhePiShmE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=qGbC2s9/; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id B7628C433C7;
+	Tue, 13 Feb 2024 16:30:57 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1707841388;
-	bh=3i4GdydSftiCj1W1u+Jm/PpXtfDwToM0GIQpqW2yLjY=;
+	s=k20201202; t=1707841857;
+	bh=M+iSkQzlFvKqKVdIDb0KbYwtekmltOd8aXuh0uIB/co=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=HLeB+qYklmQMxjilrcwWfIu956gmind9aFgmbjdHBcassOt5mVc188rscgHVdcyDV
-	 1RWetKxW94PA2/lp2kPg8mIu9R152MZZAowyYPJHTv+0/YBBtgX0T6zKJ/JFz8Pk6S
-	 ZwzeSL5ts6/r1F2jbq7BkZ8ygtXx2YRWwow3XjT3tpFmfi4D6+XEMcxYP5Qnev2w89
-	 N//7S8dA+zZNtw/Punrwasl0qpb3RgqSTvstkEr7qZdJM/7JOVgOe0AAFcNuawHgiI
-	 80VCgJPYNdsAYkakqesAuOwiY7JHUXLd1dzDrA80V5/HNB+QodR4ufo2OhS4/QD5SF
-	 NCkC3Hw7nC5iA==
-Date: Tue, 13 Feb 2024 10:23:06 -0600
+	b=qGbC2s9/34KrvzdF2opEnNBqHmFpoCBeeJ5TpzKvEu4eOYaq9VObtJAqzXpUvh8gd
+	 /EXxH3lec5MXI9BLsBE9PA8ynrhhV9r54uZ+2Eeb27sQxEdaFceGZY3FyyZBvdZn7e
+	 S28ni/aizs8SKJC4ec+q35QiW2LvEpoVMdBpUIyjEIUqlxR6chrFOcXR1i5/6G01qC
+	 Dt9Z964Rn51vqFAJ0/i0EE0retrWpnb1Du0cEk68RiRo0WqPp5yTL/ALGvd8+2p2mR
+	 AmbJRk01uxBA9COfFdpY3MhgBRkfd2QdFxt7rxkPLSNo26iTqcxSJXFB7OjFu2iSfe
+	 m/uisfECjRnDw==
+Date: Tue, 13 Feb 2024 10:30:55 -0600
 From: Rob Herring <robh@kernel.org>
-To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Cc: Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	devicetree@vger.kernel.org, Conor Dooley <conor+dt@kernel.org>,
-	linux-kernel@vger.kernel.org
-Subject: Re: [PATCH 3/3] docs: dt: writing-schema: document expectations on
- example DTS
-Message-ID: <170784138526.1472222.12187200205428604794.robh@kernel.org>
-References: <20240212150524.81819-1-krzysztof.kozlowski@linaro.org>
- <20240212150524.81819-3-krzysztof.kozlowski@linaro.org>
+To: Rob Herring <robh@kernel.org>
+Cc: Conor Dooley <conor+dt@kernel.org>, linux-scsi@vger.kernel.org,
+	linux-samsung-soc@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	Avri Altman <avri.altman@wdc.com>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Alim Akhtar <alim.akhtar@samsung.com>, linux-kernel@vger.kernel.org,
+	Bart Van Assche <bvanassche@acm.org>, devicetree@vger.kernel.org
+Subject: Re: [PATCH] dt-bindings: ufs: samsung,exynos-ufs: Add size
+ constraints on "samsung,sysreg"
+Message-ID: <170784184808.1480991.12030700618297062106.robh@kernel.org>
+References: <20240124190733.1554314-1-robh@kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -60,18 +63,19 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20240212150524.81819-3-krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20240124190733.1554314-1-robh@kernel.org>
 
 
-On Mon, 12 Feb 2024 16:05:24 +0100, Krzysztof Kozlowski wrote:
-> Devicetree binding maintainers expect the example DTS in a binding to
-> show the usage of only this one particular binding, without unrelated
-> device nodes.
+On Wed, 24 Jan 2024 13:07:33 -0600, Rob Herring wrote:
+> The 'phandle-array' type is a bit ambiguous. It can be either just an
+> array of phandles or an array of phandles plus args. "samsung,sysreg" is
+> the latter and needs to be constrained to a single entry with a phandle and
+> offset.
 > 
-> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+> Signed-off-by: Rob Herring <robh@kernel.org>
 > ---
->  Documentation/devicetree/bindings/writing-schema.rst | 6 ++++--
->  1 file changed, 4 insertions(+), 2 deletions(-)
+>  .../devicetree/bindings/ufs/samsung,exynos-ufs.yaml      | 9 ++++++---
+>  1 file changed, 6 insertions(+), 3 deletions(-)
 > 
 
 Applied, thanks!
