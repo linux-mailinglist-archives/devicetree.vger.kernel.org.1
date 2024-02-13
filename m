@@ -1,75 +1,75 @@
-Return-Path: <devicetree+bounces-41262-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-41263-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6E753852EF1
-	for <lists+devicetree@lfdr.de>; Tue, 13 Feb 2024 12:17:35 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 92ED4852F1B
+	for <lists+devicetree@lfdr.de>; Tue, 13 Feb 2024 12:24:29 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 293C228108B
-	for <lists+devicetree@lfdr.de>; Tue, 13 Feb 2024 11:17:34 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id A758DB20BC1
+	for <lists+devicetree@lfdr.de>; Tue, 13 Feb 2024 11:24:26 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id CB2DC33CD2;
-	Tue, 13 Feb 2024 11:17:30 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id EC4E451C31;
+	Tue, 13 Feb 2024 11:21:42 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="WWNToN2I"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="mkoTpQjl"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wr1-f42.google.com (mail-wr1-f42.google.com [209.85.221.42])
+Received: from mail-wr1-f43.google.com (mail-wr1-f43.google.com [209.85.221.43])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F1E7136AF0
-	for <devicetree@vger.kernel.org>; Tue, 13 Feb 2024 11:17:28 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.42
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 329CC51C47
+	for <devicetree@vger.kernel.org>; Tue, 13 Feb 2024 11:21:40 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.43
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1707823050; cv=none; b=BziJOv4jwWsohxtXyquJjGzcIQXx3/lcnPZmTAkhdacuQeKAP+gd2RB3uJWq/23tkoL/dwn+g3ApFgL3YRDtswgQSHCj2SaxAkfRFEaXKtoNL7hNC7emYMhBCX94fVkReUQwgjgUw9cM9+Z4d1+fI0GLK6shIKnjBATJiYsBB+8=
+	t=1707823302; cv=none; b=kfZX5RoG4/UF7E64rahVpL/Vmd65U1DaQvmaBfJRtzN36DmjdxeSBF9TW8zRk3FB9ajpUzR4Pc6OlQjlGgVYP4IRLvuUlEUuFYMtVuDnnYWsGYrEN9vhNZ5xMFBjpdGN2RAgUh7cESXzqo62tDTlonVPDqZkAhbQP5fS5rnWsCY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1707823050; c=relaxed/simple;
-	bh=sOp0L9276RQk5N7pDqHiW2ztghbUWpHZM7NAj/DjT0E=;
+	s=arc-20240116; t=1707823302; c=relaxed/simple;
+	bh=E/MH+y6TEKPyCEaTZoFzK1+I1nEXs5zapLHFnAW9WWo=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=VxmO9gYfFK4RhfWJPI+CCCEAJSmjLb1zE2v09w0H/LGvn/DuF6MrUjWloy5k/EG0yvaDbSg8VVu8YrH71Go8h5JG/XcK7PvHk914gd+upc6S29L5+NsTnLkLx1qzV3pRPEFTcDCIYtpWJjgVKaIRRxskFC5UprFB7usMNGyLRL4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=WWNToN2I; arc=none smtp.client-ip=209.85.221.42
+	 In-Reply-To:Content-Type; b=D4p1VU1qdgtEMf7VCZVj5wFk7jjq3c8mjsiQo08fzfKUB3B5YElAjy/JB7twInmftYWvFXGQbyIlJJhfkm0hZHfW6ttUOBB4a2Pbphb5v0itfOgErhjkdHZLVhprt7zn7tJbX7V56IuXIR0dfRV4IrS5xUb2O10+zBlKDq6piB8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=mkoTpQjl; arc=none smtp.client-ip=209.85.221.43
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-wr1-f42.google.com with SMTP id ffacd0b85a97d-33b4e6972f6so2245372f8f.2
-        for <devicetree@vger.kernel.org>; Tue, 13 Feb 2024 03:17:28 -0800 (PST)
+Received: by mail-wr1-f43.google.com with SMTP id ffacd0b85a97d-3394ca0c874so2892736f8f.2
+        for <devicetree@vger.kernel.org>; Tue, 13 Feb 2024 03:21:39 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1707823047; x=1708427847; darn=vger.kernel.org;
+        d=linaro.org; s=google; t=1707823298; x=1708428098; darn=vger.kernel.org;
         h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
          :to:content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=bGfIBuUn3FP2SYLtZvcHC2lanAjFP64z2DdyMdiHEUc=;
-        b=WWNToN2IcM9+AwdpOb9jc5J3KOSkf8/dzMxoUmyaEAr9ff45MxoqpQyIJcj7HX8+Q9
-         VEVnY6NW634+0rsozQ84pIOyuNts7DXVJsI93EVTPmpv4/18mITOZOyApSShBdj9UNzP
-         EAue7k0DHWWkKeukmV8knOmSnMIsGAUFPVLrwe/0Gx9m1AAwnjpFEIGWaT1J3U9aj5z2
-         Ewi/89CokTtnV8XV5Kjwl7JaGX284RUtyI4k11p9T6xkucSIxUG1f+Jv0GiXF02EQeG/
-         JIKAj8g/kmIKb9Py30mTHJmPC31kZ2KBH3Brkjf+UvsR5QrmzROGOsZ4OjCsH2qW7JVy
-         /1dA==
+        bh=ZwJM8W1yq1JtwPkFDokQV9gTBoLw3sc+SISnD390BVE=;
+        b=mkoTpQjlaULllc8Lrm1YA81ye9ugzGrmW8fKdGaJMnS1wch52vCGMA08q6GJwCuV5Y
+         jB75W/W6VkELFSwuRODZI78esg1SgeNvfulu+PMWcLMtEaEvMECLkpd3pkaQx/goql6P
+         LbShCaMAFzGc0EsEEeH4wbEOTPqgJKdD1kT4gLUevePDvyqm52KIKKraHVS94Zb3Tzs1
+         HJjmf0OQfZ/9Kt6GX3XZXDeZcB8rXGtc3lsKzFVqK5H4yGx2F7ZFH8QEJWWEM0uq6P9B
+         Y8YlRkfe4VRo3CedgTDy20CJyqBeFi0Kcxiq9FVTPVUO7eG76upHwWJvw4Qr8DxskzRt
+         oSGg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1707823047; x=1708427847;
+        d=1e100.net; s=20230601; t=1707823298; x=1708428098;
         h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
          :to:content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=bGfIBuUn3FP2SYLtZvcHC2lanAjFP64z2DdyMdiHEUc=;
-        b=bt/driEReEwlQ3GKf3+fB2/Sx47fEg/dkU27CQNgn+fTlUN953tdb2t9zlttvYqmag
-         hDY5z6SIXM2kOZUyvHU0+oNei3iI636/VSpg7K2o8Kv5IvRjX/wxalRx/TbOGymM3tw7
-         e7Mhruu8AymP/2UMqA12NqNzaq5vo9VfZ3ThMwLc7tn+7h+oXm7mNcZJIbvHQRqJ14pH
-         V1RcBRN/vFZc7+xkXLxfn8BrjmcjGzORdKOEHTQzIMzjnkXpMQisbMnFTQMWZO3Vt7KM
-         sNy0/L1clZBhecrFmhYSQKPv6x3uO6SbPU7qC9YBIlDus5F5cpMbm+vpIp36drbVfttW
-         s9yQ==
-X-Forwarded-Encrypted: i=1; AJvYcCUe2jJdw0nsNihUSQ3AJ/Wup2ZBrIzr7JBJun6Z2BBk1SxGPzeTrofO5sju7sWBy8DL3qJLJp0RsXus522pekRBZevV3KauLdfp+A==
-X-Gm-Message-State: AOJu0Ywp5QrvOObkQydQ034sn9USiWhwgiSeCs3uHvPq+dxAHyVIdKdE
-	KsCgVpE5F3vWGCMnPrY9f9F5swfHx1HqRZO6a0mjlmH44Xtf4KDTGDHLsCFXqBA=
-X-Google-Smtp-Source: AGHT+IFhVhgzZrUzE5dtS+3hv1zdN4ToCDF8UqKtf2BVxYPLIA9hXYELbOafAjJ2irEU/AspJqpx3g==
-X-Received: by 2002:adf:ed03:0:b0:33b:377f:7aa with SMTP id a3-20020adfed03000000b0033b377f07aamr5806640wro.52.1707823047180;
-        Tue, 13 Feb 2024 03:17:27 -0800 (PST)
-X-Forwarded-Encrypted: i=1; AJvYcCUGG1roBGe0QPR6Tlb5UyMjnQ7AUQHE+lpY3g3RrSvXvoDHKFx1zFdghg+B/c7ezhGO6WpYVrzSzaP209+kcssGmfI+LJKd0hnnWRoBs+FtGM//eA/jkQvVYvAAq0V/uSx6oLJSTUxw9zJ1TCZWpwz2q6d3KzHi3MPep8VRgIpMiOA9exI2nt+bDTAQGngMTxS6XU+Z1TWvLapNw2Ew9iLNTANiWLUvZGksvQibFyFvwn7N7bbtVzCv8cNTo8AJXHtElidkZe2aQYMu+AEXvtNvCDN95fj/HdXvGZuHzXXafIJprcX7nsfudYptq9JYrdQzBJjq
+        bh=ZwJM8W1yq1JtwPkFDokQV9gTBoLw3sc+SISnD390BVE=;
+        b=wtuQaE4sEncQGqFGh/EpO+D8gDN6n0cJ2TJCOUmE/SdGVPvoJ72Zxdx6ymTb0DF72A
+         miuuCAtQ5uiGVNgjt4NTSDCVn9Bda3a4roGAZ764mJgsnfV5oVs9h9XQCBGm2gYK5NhP
+         2k/M1k0jGO0mnU1TxT720DjDKWEGOrCKrm4tUBKFocQ4yzV54gqQyxwZgvWzkSI5TBya
+         fcbBRMKzW2YUH+3AkzNqACS/l8YHzFl6V/08PbZjhJGyqQBAuD34Lqh0SCdSOth9+NOi
+         iwDAMwKLb9nu5S7icqEZdeY4Lvkk30L2LU4ktKMNMm2wRDI/o1/oa5KD2h1EW4REsmaV
+         Xq2A==
+X-Forwarded-Encrypted: i=1; AJvYcCVwtKd9aYEgw0STZOcUwlB/eYWR785qBVlD9BBKN4b9vDkcTODCTkTVmoBjREJJpbwTQkpQw4d5Ooj6shBEAIYnWepA2i73GBpaTQ==
+X-Gm-Message-State: AOJu0YwpWSKY6s1AlzOEzV64N8hmqvMtAl69HunEPd5SICXCo6urWxdC
+	l3dBHVddn6Wx7l8B8DfUdOnV3BUweUab50mVP4qusvt0FRQsOYt4LWWk+Ej5Z80=
+X-Google-Smtp-Source: AGHT+IHlPJHwR5q+JFrphVeuRd8/uPI8ffAIkfJZ60S+xsdnSPX0H7+SdWZ31HCCtVOn0vEF+rMHYQ==
+X-Received: by 2002:adf:f1cf:0:b0:33b:5725:e516 with SMTP id z15-20020adff1cf000000b0033b5725e516mr6721500wro.51.1707823298499;
+        Tue, 13 Feb 2024 03:21:38 -0800 (PST)
+X-Forwarded-Encrypted: i=1; AJvYcCUzYiJlRwoEGRPR3ACaDYhrZWUNFScEBW5fkT7ucYfJv2cfUvf+p/JPEXxEdbPnYAlfgdjGfCsNg0xf5s2C5JX2HDhk0yQxGvlFULY8f3Q8skLt1EJgC/92/mdK0VwVVdC+1j2kpGQqxXFRSujeW/V/FCnYEmmulPjgC2yF1qOFMDBINqWqktJqaPWZsLLr7O/P1P2N4VAH75F3uvlKYBk2UoA0Qse8UW8/zpuQhWGEOjIC3vlQemmV7LJrpEYvWJez0QL2CfMtGtHs+4NH1oaq0vgaJig7xlpq22qcmeqAYO3OpTP+aXZUyI1334xRPRObNOpv
 Received: from [192.168.1.20] ([178.197.223.6])
-        by smtp.gmail.com with ESMTPSA id cl3-20020a5d5f03000000b0033b7ce8b496sm6750413wrb.108.2024.02.13.03.17.25
+        by smtp.gmail.com with ESMTPSA id bp9-20020a5d5a89000000b0033b4796641asm9435420wrb.22.2024.02.13.03.21.37
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 13 Feb 2024 03:17:26 -0800 (PST)
-Message-ID: <7d29267a-cf88-4e97-bfde-4ee21e6d2cc2@linaro.org>
-Date: Tue, 13 Feb 2024 12:17:25 +0100
+        Tue, 13 Feb 2024 03:21:37 -0800 (PST)
+Message-ID: <6b24ce0a-94d8-40d7-aa77-de88d597fa45@linaro.org>
+Date: Tue, 13 Feb 2024 12:21:36 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -77,8 +77,8 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v3 3/4] dt-bindings: arm: qcom: Add Samsung Galaxy S5
- China (kltechn)
+Subject: Re: [PATCH v3 1/4] ARM: dts: qcom: msm8974: Split out common part of
+ samsung-klte
 Content-Language: en-US
 To: Rong Zhang <i@rong.moe>, Bjorn Andersson <andersson@kernel.org>,
  Konrad Dybcio <konrad.dybcio@linaro.org>, Rob Herring <robh+dt@kernel.org>,
@@ -87,7 +87,7 @@ To: Rong Zhang <i@rong.moe>, Bjorn Andersson <andersson@kernel.org>,
 Cc: linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
  linux-kernel@vger.kernel.org, Icenowy Zheng <uwu@icenowy.me>
 References: <20240213110137.122737-1-i@rong.moe>
- <20240213110137.122737-4-i@rong.moe>
+ <20240213110137.122737-2-i@rong.moe>
 From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  xsFNBFVDQq4BEAC6KeLOfFsAvFMBsrCrJ2bCalhPv5+KQF2PS2+iwZI8BpRZoV+Bd5kWvN79
@@ -133,19 +133,26 @@ Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  KQ06ztUMRrj8eVtpImjsWCd0bDWRaaR4vqhCHvAG9iWXZu4qh3ipie2Y0oSJygcZT7H3UZxq
  fyYKiqEmRuqsvv6dcbblD8ZLkz1EVZL6djImH5zc5x8qpVxlA0A0i23v5QvN00m6G9NFF0Le
  D2GYIS41Kv4Isx2dEFh+/Q==
-In-Reply-To: <20240213110137.122737-4-i@rong.moe>
+In-Reply-To: <20240213110137.122737-2-i@rong.moe>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
 On 13/02/2024 11:58, Rong Zhang wrote:
-> Document Samsung Galaxy S5 China (kltechn) as a klte variant based on
-> msm8974pro. Also including "samsung,klte" in the compatible chain as
-> kltechn works fine with the klte DTB except for LEDs and WiFi missing.
+> Samsung Galaxy S5 has many variants. Variants that support LTE use klte*
+> as their codename. Currently, the only supported one is the one without
+> any suffix, namely, klte. It is known that other klte* variants have
+> only minor differences compared to klte and can mostly work with the
+> klte DTB.
+> 
+> Split the common part into a common DTSI so that it can be imported in
+> the DTS of klte and other klte* variants.
 > 
 > Signed-off-by: Rong Zhang <i@rong.moe>
 > ---
+>  ... qcom-msm8974pro-samsung-klte-common.dtsi} |   7 +-
+>  .../dts/qcom/qcom-msm8974pro-samsung-klte.dts | 833 +-----------------
 
-Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
 Best regards,
 Krzysztof
