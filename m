@@ -1,222 +1,124 @@
-Return-Path: <devicetree+bounces-41321-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-41323-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id C5565853292
-	for <lists+devicetree@lfdr.de>; Tue, 13 Feb 2024 15:04:16 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 35D0F8532BB
+	for <lists+devicetree@lfdr.de>; Tue, 13 Feb 2024 15:11:38 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 3A9A71F23998
-	for <lists+devicetree@lfdr.de>; Tue, 13 Feb 2024 14:04:16 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id E4B5E281627
+	for <lists+devicetree@lfdr.de>; Tue, 13 Feb 2024 14:11:36 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 95AB55730A;
-	Tue, 13 Feb 2024 14:04:10 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="B6oTbLcX"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 33CF45730A;
+	Tue, 13 Feb 2024 14:11:34 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 63C5C57300;
-	Tue, 13 Feb 2024 14:04:09 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+Received: from relmlie5.idc.renesas.com (relmlor1.renesas.com [210.160.252.171])
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 09E7D56770;
+	Tue, 13 Feb 2024 14:11:31 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=210.160.252.171
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1707833050; cv=none; b=XpXluRiveYQ5sR68wIJxZoWfvEbr0ACHb5j8YWcF8zLsBTCIPnNvBb7MbcMUR0/i0Ww7LHNUZ78x4FiaqIj7S7quRGJkflsT3rwLNNQCfQV7jB0YACYD+GTVF7zDvFVMvtp3PhPf7iGQXLpDcp0CbYxkApfgpIJ0YmYO6mc/XWU=
+	t=1707833494; cv=none; b=lNT+KPTVYu27vZsa4SOhmkWB5Th78dva1Pc5yvGx+o9TL7pbWahuB4prle7Ysi1Hnk1Rgs0Vezq6Keet+Dzbay+GlLKx+oKy01Ka0CgMzrvpiMT5tfFu8gAf+rRCHUp/QxQjnTyS1CghYy3vEmQpNqvf+op532h6nKLyLdaIhJc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1707833050; c=relaxed/simple;
-	bh=o78OnlwnYhWQz6fK1xJE8KAH3CBYnt55b482qC2CxzQ=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=m49IkVrV3787XMNLcJSNWGW/exOr4vkI8A5rboCkDvwwo79N7kO2zbvou6z82LNZC0DNUBDinJsOBTvH/NscQP3ElHCS96097IYn93DW/WM8tUqYMIrAZnlDfgkpykfgiuQR/y1nbja7IilrNpsqjkjy4biWXIzt5oaRBCvQuec=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=B6oTbLcX; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 57EDDC43394;
-	Tue, 13 Feb 2024 14:04:08 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1707833048;
-	bh=o78OnlwnYhWQz6fK1xJE8KAH3CBYnt55b482qC2CxzQ=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=B6oTbLcX65Y1yPWcSU+wVK7zfQGji1w9jUe8wedMA4beE5xu2JlKWtb841Mm2uZlR
-	 qm8k5laoWPsXPw4ryiS8fTANTWrMjf30gHsSCH2I8aK+07eoAl9jgDMGFoFqkxizKw
-	 lEhdjYWZjQIhvFLpvKaC0w+1jaKL+ci5AIKKu33Gvn82+DYRn6GOJJsGoj2C6nO9Do
-	 gBdWxw/o1AEn7cyMVOUQPhIJ15i+5/dw6ibKJSmn6ReKLIwT/B6+oDV1uDRKvW7aEt
-	 H/Rb4FxyqDzBgLmPMVfUxwefcL1WC0N4/+YZWMPRTGwXINjfYrdjfvZ225gPyi16ei
-	 df6V4Jxq1hEOw==
-Date: Tue, 13 Feb 2024 15:04:05 +0100
-From: Maxime Ripard <mripard@kernel.org>
-To: Devarsh Thakkar <devarsht@ti.com>
-Cc: jyri.sarha@iki.fi, tomi.valkeinen@ideasonboard.com, airlied@gmail.com, 
-	daniel@ffwll.ch, maarten.lankhorst@linux.intel.com, tzimmermann@suse.de, 
-	robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org, 
-	dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
-	linux-arm-kernel@lists.infradead.org, nm@ti.com, vigneshr@ti.com, kristo@kernel.org, praneeth@ti.com, 
-	a-bhatia1@ti.com, j-luthra@ti.com
-Subject: Re: Re: [RFC PATCH 2/3] drm/tidss: Add support for display sharing
-Message-ID: <qiqrhpqtnox47wj6az7t3fjp4vc6k32fw42tp5slqggrhe6utb@i7lkpaf3v3od>
-References: <20240116134142.2092483-1-devarsht@ti.com>
- <20240116134142.2092483-3-devarsht@ti.com>
- <vgfzhamtiwkpdyk5ndagsb63subclinotoe6tsi3wu6z7454ec@igxfzjc5gyqm>
- <88018f5f-a7db-7278-e5c3-bb1dbf0e3f14@ti.com>
+	s=arc-20240116; t=1707833494; c=relaxed/simple;
+	bh=FfMfq+QYwXRgRU9iHsMJ8lQjypM1kw4cHRme5vED+QQ=;
+	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version; b=Stp4lDKZrUlIYGXTTH3t1Ckg9IAyKLtH++NrAEM1puYnZK+diYKHvLAbp1dklqN3VMUhCriXrxtZy4oifnyNNtQhmoApiF9vhrTEvFwlUaUad1KmnLhz6Xp7DJ7zduB1nwI75e90WibtcTrZa15c/4ZSViPNxa/MNgqoDNxI+jw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=bp.renesas.com; spf=pass smtp.mailfrom=bp.renesas.com; arc=none smtp.client-ip=210.160.252.171
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=bp.renesas.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bp.renesas.com
+X-IronPort-AV: E=Sophos;i="6.06,157,1705330800"; 
+   d="scan'208";a="193788353"
+Received: from unknown (HELO relmlir5.idc.renesas.com) ([10.200.68.151])
+  by relmlie5.idc.renesas.com with ESMTP; 13 Feb 2024 23:11:30 +0900
+Received: from localhost.localdomain (unknown [10.226.93.58])
+	by relmlir5.idc.renesas.com (Postfix) with ESMTP id ABBCE4003EA8;
+	Tue, 13 Feb 2024 23:11:27 +0900 (JST)
+From: Biju Das <biju.das.jz@bp.renesas.com>
+To: Rob Herring <robh+dt@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>
+Cc: Biju Das <biju.das.jz@bp.renesas.com>,
+	Geert Uytterhoeven <geert+renesas@glider.be>,
+	Magnus Damm <magnus.damm@gmail.com>,
+	linux-renesas-soc@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	Prabhakar Mahadev Lad <prabhakar.mahadev-lad.rj@bp.renesas.com>,
+	Biju Das <biju.das.au@gmail.com>
+Subject: [PATCH] arm64: dts: renesas: rzg2ul-smarc: Enable CRU, CSI support
+Date: Tue, 13 Feb 2024 14:11:25 +0000
+Message-Id: <20240213141125.159758-1-biju.das.jz@bp.renesas.com>
+X-Mailer: git-send-email 2.25.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="mec2gkni2rkjd75q"
-Content-Disposition: inline
-In-Reply-To: <88018f5f-a7db-7278-e5c3-bb1dbf0e3f14@ti.com>
+Content-Transfer-Encoding: 8bit
 
+Enable CRU, CSI on RZ/G2UL SMARC EVK and tie the CSI to the OV5645 sensor
+using Device Tree overlay.
 
---mec2gkni2rkjd75q
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+Signed-off-by: Biju Das <biju.das.jz@bp.renesas.com>
+---
+Note:
+ * This patch has a functional dependecy [1]
+   [1] https://lore.kernel.org/all/20240213140240.159057-1-biju.das.jz@bp.renesas.com/
+v2->v3:
+ * Added missing r9a07g043u11-smarc-cru-csi-ov5645.dtbo entry in Makefile.
+ * Made this as separate patch as SoC dtsi is accepted and dropping the
+   i2c workaround patch for ov5645.
+v1->v2:
+ * No change.
+---
+ arch/arm64/boot/dts/renesas/Makefile          |  3 +++
+ .../r9a07g043u11-smarc-cru-csi-ov5645.dtso    | 21 +++++++++++++++++++
+ 2 files changed, 24 insertions(+)
+ create mode 100644 arch/arm64/boot/dts/renesas/r9a07g043u11-smarc-cru-csi-ov5645.dtso
 
-Hi Devarsh,
+diff --git a/arch/arm64/boot/dts/renesas/Makefile b/arch/arm64/boot/dts/renesas/Makefile
+index 4c5ac5f02829..5f3e0e61d78d 100644
+--- a/arch/arm64/boot/dts/renesas/Makefile
++++ b/arch/arm64/boot/dts/renesas/Makefile
+@@ -108,7 +108,10 @@ r8a779m5-salvator-xs-panel-aa104xd12-dtbs := r8a779m5-salvator-xs.dtb salvator-p
+ dtb-$(CONFIG_ARCH_R8A77965) += r8a779m5-salvator-xs-panel-aa104xd12.dtb
+ 
+ dtb-$(CONFIG_ARCH_R9A07G043) += r9a07g043u11-smarc.dtb
++dtb-$(CONFIG_ARCH_R9A07G043) += r9a07g043u11-smarc-cru-csi-ov5645.dtbo
+ dtb-$(CONFIG_ARCH_R9A07G043) += r9a07g043-smarc-pmod.dtbo
++r9a07g043u11-smarc-cru-csi-ov5645-dtbs := r9a07g043u11-smarc.dtb r9a07g043u11-smarc-cru-csi-ov5645.dtbo
++dtb-$(CONFIG_ARCH_R9A07G043) += r9a07g043u11-smarc-cru-csi-ov5645.dtb
+ r9a07g043u11-smarc-pmod-dtbs := r9a07g043u11-smarc.dtb r9a07g043-smarc-pmod.dtbo
+ dtb-$(CONFIG_ARCH_R9A07G043) += r9a07g043u11-smarc-pmod.dtb
+ 
+diff --git a/arch/arm64/boot/dts/renesas/r9a07g043u11-smarc-cru-csi-ov5645.dtso b/arch/arm64/boot/dts/renesas/r9a07g043u11-smarc-cru-csi-ov5645.dtso
+new file mode 100644
+index 000000000000..b41bb4b31a26
+--- /dev/null
++++ b/arch/arm64/boot/dts/renesas/r9a07g043u11-smarc-cru-csi-ov5645.dtso
+@@ -0,0 +1,21 @@
++// SPDX-License-Identifier: GPL-2.0
++/*
++ * Device Tree overlay for the RZ/G2UL SMARC EVK with OV5645 camera
++ * connected to CSI and CRU enabled.
++ *
++ * Copyright (C) 2024 Renesas Electronics Corp.
++ */
++
++/dts-v1/;
++/plugin/;
++
++#include <dt-bindings/gpio/gpio.h>
++#include <dt-bindings/pinctrl/rzg2l-pinctrl.h>
++
++#define OV5645_PARENT_I2C i2c0
++#include "rz-smarc-cru-csi-ov5645.dtsi"
++
++&ov5645 {
++	enable-gpios = <&pinctrl RZG2L_GPIO(4, 4) GPIO_ACTIVE_HIGH>;
++	reset-gpios = <&pinctrl RZG2L_GPIO(0, 1) GPIO_ACTIVE_LOW>;
++};
+-- 
+2.25.1
 
-On Thu, Feb 08, 2024 at 06:26:17PM +0530, Devarsh Thakkar wrote:
-> Hi Maxime,
->=20
-> Thanks a lot for checking on this.
->=20
-> On 26/01/24 17:45, Maxime Ripard wrote:
-> > Hi,
-> >=20
-> > Thanks a lot for working on that.
-> >=20
-> > On Tue, Jan 16, 2024 at 07:11:41PM +0530, Devarsh Thakkar wrote:
-> >> Display subsystem present in TI Keystone family of devices supports sh=
-aring
-> >> of display between multiple hosts as it provides separate register spa=
-ce
-> >> (common* region) for each host to programming display controller and a=
-lso a
-> >> unique interrupt line for each host.
-> >>
-> >> This adds support for display sharing, by allowing partitioning of
-> >> resources either at video port level or at video plane level as
-> >> described below :
-> >>
-> >> 1) Linux can own (i.e have write access) completely one or more of vid=
-eo
-> >> ports along with corresponding resources (viz. overlay managers,
-> >> video planes) used by Linux in context of those video ports.
-> >> Even if Linux is owning
-> >> these video ports it can still share this video port with a remote core
-> >> which can own one or more video planes associated with this video port.
-> >>
-> >> 2) Linux owns one or more of the video planes with video port
-> >> (along with corresponding overlay manager) associated with these planes
-> >> being owned and controlled by a remote core. Linux still has read-only
-> >> access to the associated video port and overlay managers so that it can
-> >> parse the settings made by remote core.
-> >=20
-> > So, just to make sure we're on the same page. 1) means Linux drives the
-> > whole display engine, but can lend planes to the R5? How does that work,
-> > is Linux aware of the workload being there (plane size, format, etc) ?
-> >=20
->=20
-> Well, there is no dynamic procedure being followed for lending. The
-> partitioning scheme is decided and known before hand, and the remote
-> core firmware updated and compiled accordingly, and similarly the
-> device-tree overlay for Linux is also updated with partitioning
-> information before bootup.
->=20
-> What would happen here is that Linux will know before-hand this
-> partitioning information via device-tree properties and won't enumerate
-> the plane owned by RTOS, but it will enumerate the rest of the display
-> components and initialize the DSS, after which user can load the DSS
-> firmware on remote core and this firmware will only have control of
-> plane as it was compiled with that configuration.
-
-Right. If the RTOS is in control of a single plane, how it is expected
-to deal with Linux shutting the CRTC down, or enforcing a configuration
-that isn't compatible with what the RTOS expects (like a plane with a
-higher zpos masking its plane), what is the mechanism to reconcile it?
-
-> > And 2) would mean that the display engine is under the R5 control and
-> > Linux only gets to fill the plane and let the firmware know of what it
-> > wants?
-> >=20
->=20
-> Here too the partitioning information is pre-decided and remote core
-> firmware and device-tree overlay for Linux updated accordingly. But in
-> this case as remote core firmware owns the display (minus the plane
-> owned by Linux) it is started and initialized during the bootloader
-> phase itself where it initializes the DSS and starts rendering using the
-> plane owned by it and Linux just latches to the DSS without
-> re-initializing it, with write access only to the plane that is owned by
-> Linux. You can refer [1] for more details on this.
->
-> > If so, do we even need the tidss driver in the second case? We could
-> > just write a fwkms driver of some sorts that could be used by multiple
-> > implementations of the same "defer to firmware" logic.
-> >=20
->=20
-> This feature of static partitioning of DSS resources is specific to DSS7
-> hardware (which is controlled by tidss driver) which supports dedicated
-> register space and interrupt line for each of the hosts [0], so that
-> multiple hosts can drive the display controller simultaneously as  per
-> the desired static partitioning of resources, and so I don't think a
-> separate driver is required here and tidss seems the right place to
-> support this, where using this device-tree approach different resource
-> partitioning schemas can be achieved as described here [1]. This was
-> also aligned with Tomi too where we discussed that tidss is the right
-> place to support this as we are simply leveraging the DSS hardware
-> capabilities of static partitioning here.
-
-If the only thing tidss does in the "owned by RTOS" is forwarding KMS
-atomic states to the RTOS, then I'm still not sure why we need to
-involve tidss at all.
-
-It's not just about interrupts, it's also about how your arbitrate
-between what Linux wants and what the RTOS wants. Like if the RTOS still
-wants to output something but Linux wants to disable it, how do you
-reconcile the two?
-
-You have to have something that reconciles both, and typically for
-firmware-based setup this will be the firmware's job.
-
-That's very similar to what the RaspberryPi did with fkms, and I believe
-that having a generic KMS-on-remoteproc driver when the firmware has
-control over the display is the path forward.
-
-> >> For both the cases, the resources used in context of processing core
-> >> running Linux along with ownership information are exposed by user as
-> >> part of device-tree blob and driver uses an updated feature list tailo=
-red
-> >> for this shared mode accordingly. The driver also auto-populates
-> >> matching overlay managers and output types from shared video
-> >> port list provided in device-tree blob.
-> >> In dispc_feature struct remove const access specfier for output_type
-> >> array as it is required to be updated dynamically in run-time for shar=
-ed
-> >> mode.
-> >=20
-> > I'm also not entirely sure that the device tree is the right path there.
-> > Surely the firmware capabilities will evolve over time, while the device
-> > tree won't. Is there some way to make it discoverable at probe time by
-> > the driver?
->
-> I think the main highlight of the sharing feature is the hardware
-> capability where each host is provided separate irq and register space
-> to program display for their display context independently
-
-Wait, what do you mean by display context here?
-
-Maxime
-
---mec2gkni2rkjd75q
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iHUEABYKAB0WIQRcEzekXsqa64kGDp7j7w1vZxhRxQUCZct21QAKCRDj7w1vZxhR
-xcvHAP40dv4AWr1xUiTUL1KMGGWshZE0Hu8pf/vQPrlh7aA+MwEA5FZHpV8kiImZ
-cTaxg1C63wAZkBpkb/jDEQI5vhL6ZAI=
-=wSAc
------END PGP SIGNATURE-----
-
---mec2gkni2rkjd75q--
 
