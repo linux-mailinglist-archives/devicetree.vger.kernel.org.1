@@ -1,114 +1,130 @@
-Return-Path: <devicetree+bounces-41451-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-41452-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id E4DAE853C18
-	for <lists+devicetree@lfdr.de>; Tue, 13 Feb 2024 21:14:04 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id C3B3A853C1F
+	for <lists+devicetree@lfdr.de>; Tue, 13 Feb 2024 21:21:09 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 9EDEB2864B1
-	for <lists+devicetree@lfdr.de>; Tue, 13 Feb 2024 20:14:03 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 024EC1C263E6
+	for <lists+devicetree@lfdr.de>; Tue, 13 Feb 2024 20:21:09 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B262A608FD;
-	Tue, 13 Feb 2024 20:14:00 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2449460B90;
+	Tue, 13 Feb 2024 20:21:06 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="rsySa6xI"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="WE2gFmlg"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 821C160EC3;
-	Tue, 13 Feb 2024 20:14:00 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F029D1CD10;
+	Tue, 13 Feb 2024 20:21:05 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1707855240; cv=none; b=p6n8bwb+bY8SIabZmUZo2afRJzas1K8WHfl3JlmwmzMkQij5DWYY7PlT+Wj12nv1yb6JRwdKUxW06+0pUDcmv9UKwk1FDj9knR1i9/LJH7aL1yreiMVFXsY6lwu06vunfEVR+WHhL4IRUYsrTQBGs8p9EIjLtPtzRBdytB5ZOxc=
+	t=1707855666; cv=none; b=WnG5VXEAKdVl2rWtenqsxnEfDDwBMzm6zTq0tnfCbd28nPK9sSodGV651WMTq5m7RYjilYI65uE/PveEYvRA2Q3Ny3+R6OZ64ZC2MtTsGIy3DfxPCep6CPL0NK01iZhXXBnnrnt0gsYOPz+aqYlsAC+/txF70Bu/0VnT5DPMFwQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1707855240; c=relaxed/simple;
-	bh=oJqi+TkCFTQfeAF3TAmEu+UcwKS0++cFDBDB9TAcdDA=;
-	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=jEIpx/mpZuBP32DJcJmskZ9uQ8tGtJzuYKH50NE99NdgETtQnOBGaER3bIG51EwkVxMtu5StetpzvbS4cFescrxcJ1eWmO7Qf6TK3ye+haYJzrTUw8gNwGP4huXHh74Y/cG2R+w3RVbibO1xE4f+5iF8Ltf/rCfmBghiwtm2uoU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=rsySa6xI; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 9DAF2C433C7;
-	Tue, 13 Feb 2024 20:13:57 +0000 (UTC)
+	s=arc-20240116; t=1707855666; c=relaxed/simple;
+	bh=NC4XhaOdHJS9ruYUKoeAr7zc6tZbtNyyxJjF6AwNkAc=;
+	h=Date:Content-Type:MIME-Version:From:To:Cc:In-Reply-To:References:
+	 Message-Id:Subject; b=s3WRvsvdSSZZnnwqHtOULhxmyr9KV/dNM88oWZbdPhu/mYFT3ajrsrJww8/H7W0K+0SF+R5x+4mrPRvgT2bg85/hpgXONxZ0jsH46Lrt1+HecPegi/NI27pTZCTXrcxNqfloNoM0e+NrM/ch8j50/BrYJMn/GKpqcsFk8E0w3Qo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=WE2gFmlg; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 30DF8C433C7;
+	Tue, 13 Feb 2024 20:21:05 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1707855240;
-	bh=oJqi+TkCFTQfeAF3TAmEu+UcwKS0++cFDBDB9TAcdDA=;
-	h=From:To:Cc:Subject:Date:From;
-	b=rsySa6xIVALy8A8vdXWYBEIVuHAhI9HBVDZNQLg+JtlYjWUVfiVVJSG63o7py12SH
-	 jMCKONPxC1IaLaxVnQmfhbucetwhFWPSpUYWHenWfaj412Q5G53e016I7CP4Q3mZMF
-	 wYxSD4TlnfRKCa+3f2Yr4bMdrNNWQAQ2YKaZ4jljvHWeq1WEbvCBJlt4VK4/KCPsZX
-	 2glaNKmDJIuasE/s9o0XtMsVjZ7uEKaVqHZaHIXig6q+J1q9F4ZCFgf+bYVGQ/YR1w
-	 yUX4nhhRdlIw7BTSJ3iaJBLV+E6PU4mLbh8LOODVCb0IZsRKdVUjkUJGd4ltHzoT4q
-	 Hh64pW+l2EzRw==
-From: Conor Dooley <conor@kernel.org>
-To: Lee Jones <lee@kernel.org>
-Cc: conor@kernel.org,
-	Conor Dooley <conor.dooley@microchip.com>,
-	Pavel Machek <pavel@ucw.cz>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Sven Schwermer <sven.schwermer@disruptive-technologies.com>,
-	Christian Marangi <ansuelsmth@gmail.com>,
-	linux-leds@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org
-Subject: [PATCH] dt-bindings: leds: pwm-multicolour: re-allow active-low
-Date: Tue, 13 Feb 2024 20:13:41 +0000
-Message-ID: <20240213-verse-clinic-e6de06e1f18d@spud>
-X-Mailer: git-send-email 2.43.0
+	s=k20201202; t=1707855665;
+	bh=NC4XhaOdHJS9ruYUKoeAr7zc6tZbtNyyxJjF6AwNkAc=;
+	h=Date:From:To:Cc:In-Reply-To:References:Subject:From;
+	b=WE2gFmlgS/RiE9JZomlqwwufF7ZLenOhKzRJF6fa+Oq95Wqu5Lh1uG493NOR1UbSf
+	 HaVdEi+JsqaVRJfIByrx5WPS1IpYtF0SoLewK1SlSSM2VWnKv4/Ss3HS3RUR/Fhcbh
+	 TpI2cMweRAmbqrGA/GfRRspeTYzrO5SU3vIM/f/a8MtB+0hW4+Z0AtLB87xYhjNXUF
+	 5e7R8kobLs3lhyWo8r9Pa4ezKLcoKyagKbjZnB/FuETiDKhC8YpdM3ti2s+1eS3EKB
+	 OH/iIMThLpjG3md8HQX2+yMOdL9rnPrG2nYsdktmiND1fBYDQKytPqtW9mXRpWmVFs
+	 BlpxlVRFDWLjg==
+Date: Tue, 13 Feb 2024 14:21:04 -0600
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-Developer-Signature: v=1; a=openpgp-sha256; l=1565; i=conor.dooley@microchip.com; h=from:subject:message-id; bh=EBDvz2f7L83vswny9H9PgyID1DoSZ6oLH7Vj9u17jOE=; b=owGbwMvMwCFWscWwfUFT0iXG02pJDKmnz5ZKr2S5F3UlL+9BSMDiAx6plTP+ibWVRv5IWz/JZ Jld4umwjlIWBjEOBlkxRZbE230tUuv/uOxw7nkLM4eVCWQIAxenAEzkyGOGf0oc25gmJJauXLQ4 aLNKEvPUXyahsYz3RHq73eU8Jxz10GP4X8bZfdtzyZ9flk1bjIrsVptFn57Tkxvv8vtdQPPtqnm a7AA=
-X-Developer-Key: i=conor.dooley@microchip.com; a=openpgp; fpr=F9ECA03CF54F12CD01F1655722E2C55B37CF380C
-Content-Transfer-Encoding: 8bit
+From: Rob Herring <robh@kernel.org>
+To: =?utf-8?q?Niklas_S=C3=B6derlund?= <niklas.soderlund+renesas@ragnatech.se>
+Cc: Conor Dooley <conor+dt@kernel.org>, 
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, 
+ Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org, 
+ Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>, 
+ linux-renesas-soc@vger.kernel.org, 
+ Geert Uytterhoeven <geert+renesas@glider.be>
+In-Reply-To: <20240213192340.2786430-1-niklas.soderlund+renesas@ragnatech.se>
+References: <20240213192340.2786430-1-niklas.soderlund+renesas@ragnatech.se>
+Message-Id: <170785566315.2270051.17137975742792836119.robh@kernel.org>
+Subject: Re: [PATCH v3] dt-bindings: renesas: Document preferred compatible
+ naming
 
-From: Conor Dooley <conor.dooley@microchip.com>
 
-active-low was lifted to the common schema for leds, but it went
-unnoticed that the leds-multicolour binding had "additionalProperties:
-false" where the other users had "unevaluatedProperties: false", thereby
-disallowing active-low for multicolour leds. Explicitly permit it again.
+On Tue, 13 Feb 2024 20:23:40 +0100, Niklas Söderlund wrote:
+> Compatibles can come in two formats. Either "vendor,ip-soc" or
+> "vendor,soc-ip". Add a DT schema file documenting Renesas preferred
+> policy and enforcing it for all new compatibles, except few existing
+> patterns.
+> 
+> Suggested-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+> Signed-off-by: Niklas Söderlund <niklas.soderlund+renesas@ragnatech.se>
+> ---
+> * Changes since v2
+> - Improve the select so it matches on any compatible containing a
+>   component specific Renesas value.
+> - Make the regexps more compact.
+> - Define MaxItems to allow the increased selection to work.
+> - Add rmobile and shmobile prefixes.
+> - I did not take Rob's ack from v2 as the schema changed a lot after
+>   Geerts review.
+> 
+> * Changes since v1
+> - Split the "SoC agnostic compatibles" section into two to make it's
+>   intent clearer.
+> - Improved the documentation for each group of compatibles.
+> - Reduced the number of regexp to create a larger target area. As
+>   suggested by Krzysztof the goal is not to validate each SoC name but
+>   check for the correct order of SoC-IP.
+> 
+> * Changes since RFC
+> - Moved to Documentation/devicetree/bindings/soc/renesas.
+> - Changed the pattern in the initial select to match on .*-.*.
+> - Added a lot of missing compatible values.
+> ---
+>  .../bindings/soc/renesas/renesas-soc.yaml     | 72 +++++++++++++++++++
+>  1 file changed, 72 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/soc/renesas/renesas-soc.yaml
+> 
 
-Fixes: c94d1783136e ("dt-bindings: net: phy: Make LED active-low property common")
-Signed-off-by: Conor Dooley <conor.dooley@microchip.com>
----
+My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
+on your patch (DT_CHECKER_FLAGS is new in v5.13):
 
-I'm just assuming this is intentionally restrictive, if its not, we
-could easily just change this to uneval: false.
+yamllint warnings/errors:
 
-CC: Pavel Machek <pavel@ucw.cz>
-CC: Lee Jones <lee@kernel.org>
-CC: Rob Herring <robh@kernel.org>
-CC: Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-CC: Conor Dooley <conor+dt@kernel.org>
-CC: Sven Schwermer <sven.schwermer@disruptive-technologies.com>
-CC: Christian Marangi <ansuelsmth@gmail.com>
-CC: linux-leds@vger.kernel.org
-CC: devicetree@vger.kernel.org
-CC: linux-kernel@vger.kernel.org
----
- Documentation/devicetree/bindings/leds/leds-pwm-multicolor.yaml | 2 ++
- 1 file changed, 2 insertions(+)
+dtschema/dtc warnings/errors:
+/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/soc/renesas/renesas-soc.yaml: properties:compatible:items: {'anyOf': [{'pattern': '^renesas,(emev2|r(7s|8a|9a)[a-z0-9]+|rcar|rmobile|rz[a-z0-9]*|sh(7[a-z0-9]+)?|mobile)-[a-z0-9-]+$'}, {'pattern': '^renesas,(condor|falcon|gr-peach|salvator|sk-rz|smar(c(2)?)?|spider|white-hawk)(.*)?$'}, {'pattern': '^renesas,(can|cpg|dmac|du|(g)?ether(avb)?|gpio|hscif|(r)?i[i2]c|imr|intc|ipmmu|irqc|jpu|mmcif|msiof|mtu2|pci(e)?|pfc|pwm|[rq]spi|rcar_sound|sata|scif[ab]*|sdhi|thermal|tmu|tpu|usb(2|hs)?|vin|xhci)-[a-z0-9-]+$'}, {'pattern': '^renesas,(d|s)?bsc(3)?-(r8a73a4|r8a7740|sh73a0)$'}, {'pattern': '^renesas,em-(gio|sti|uart)$'}, {'pattern': '^renesas,fsi2-(r8a7740|sh73a0)$'}, {'pattern': '^renesas,hspi-r8a777[89]$'}, {'pattern': '^renesas,sysc-(r8a73a4|r8a7740|rmobile|sh73a0)$'}, {'enum': ['renesas,imr-lx4', 'renesas,mtu2-r7s72100']}, {'enum': ['renesas,smp-sram']}, {'pattern': '^(?!renesas,.+-.+).+$'}]} is not of type 'array'
+	from schema $id: http://devicetree.org/meta-schemas/string-array.yaml#
 
-diff --git a/Documentation/devicetree/bindings/leds/leds-pwm-multicolor.yaml b/Documentation/devicetree/bindings/leds/leds-pwm-multicolor.yaml
-index 5edfbe347341..a31a202afe5c 100644
---- a/Documentation/devicetree/bindings/leds/leds-pwm-multicolor.yaml
-+++ b/Documentation/devicetree/bindings/leds/leds-pwm-multicolor.yaml
-@@ -41,6 +41,8 @@ properties:
- 
-           pwm-names: true
- 
-+          active-low: true
-+
-           color: true
- 
-         required:
--- 
-2.43.0
+doc reference errors (make refcheckdocs):
+
+See https://patchwork.ozlabs.org/project/devicetree-bindings/patch/20240213192340.2786430-1-niklas.soderlund+renesas@ragnatech.se
+
+The base for the series is generally the latest rc1. A different dependency
+should be noted in *this* patch.
+
+If you already ran 'make dt_binding_check' and didn't see the above
+error(s), then make sure 'yamllint' is installed and dt-schema is up to
+date:
+
+pip3 install dtschema --upgrade
+
+Please check and re-submit after running the above command yourself. Note
+that DT_SCHEMA_FILES can be set to your schema file to speed up checking
+your schema. However, it must be unset to test all examples with your schema.
 
 
