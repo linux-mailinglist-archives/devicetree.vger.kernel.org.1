@@ -1,90 +1,128 @@
-Return-Path: <devicetree+bounces-41395-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-41396-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 51F10853656
-	for <lists+devicetree@lfdr.de>; Tue, 13 Feb 2024 17:42:11 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9989685365E
+	for <lists+devicetree@lfdr.de>; Tue, 13 Feb 2024 17:43:52 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 037F61F23197
-	for <lists+devicetree@lfdr.de>; Tue, 13 Feb 2024 16:42:11 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 5472F286D3B
+	for <lists+devicetree@lfdr.de>; Tue, 13 Feb 2024 16:43:51 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 043883D3B9;
-	Tue, 13 Feb 2024 16:42:05 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9BE085DF01;
+	Tue, 13 Feb 2024 16:43:48 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="nvl7/Rd9"
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="Z0kyfBtf"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.13])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CEFB12919;
-	Tue, 13 Feb 2024 16:42:04 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 07F905FB8D;
+	Tue, 13 Feb 2024 16:43:46 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=192.198.163.13
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1707842524; cv=none; b=YA4ldBJnOkTDWQtcM8gL2FiaHBDUAYXdbTSuaEguk2E1FvYVHz5PdoGEHGAKFExchd63ap2j//cDBn4gZHjI4BSZ81vfLk5YBvx6qL81B5iGj2mTeWQ3J2YJTvtiKLlulsA2I+aQYWeUtAhD1hs1TmhTMsVzJKcRwB1iWqB0YmQ=
+	t=1707842628; cv=none; b=Ht5Hy4VmfVjyfBArI7tkdbexF3XlK7bWkczYjP2A2cFdg6uV/Jb5DMC7uQPS7+JhZMfj56xfCTjt1J0+t1Rv29YyDhwIzGz07EUrRAbmh9w57Pr6Las9asYig2LAoi7tENaTJm50Ess5QyxMIkCw68L1nGCge8rhRz0PilA00Sw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1707842524; c=relaxed/simple;
-	bh=xbvPqK9JRSwLRR2qAODE8w5KCwA2ZAi76JUCkpeivY8=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=omG8YlXAoyziWsS3XDi7rPTtkdrvMryPk6kXKWATmo5Fo+9DvIdFesvHvIkOQ2Uuju4TQZPVfm5G8IOzsnv6+0HaIrTIwKIyWZsYafxdqydLiys37vVvF/u0m5Tl2GRAbFxEC1zOsteHMH8iKwZ3F20pUMZ2uP2DK/ARyNC00KU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=nvl7/Rd9; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id ACCDAC433F1;
-	Tue, 13 Feb 2024 16:42:01 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1707842524;
-	bh=xbvPqK9JRSwLRR2qAODE8w5KCwA2ZAi76JUCkpeivY8=;
-	h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-	b=nvl7/Rd9f/dgNSSy+oG73mLbWVb2Ca3G0/HlNI1cGGJzOWyouYpt3VJ418xqkFInY
-	 nlXUH6ppypCPTn1dz3P9n7UuUEHCtxuJPRBYyx/60TPMxffYbcPw0RYzZuA0K5GYIE
-	 vzd7V4QYMCs00FAiFRZ+wUnvF9OOSgp/FcZHWG5xZIxHecSrkPLOv2UtsXtUF/p8ms
-	 1G0/YnOQX2CiFly1rXUeKMji5SqJfx6qhs3rVFxJonxDSml7SeAFc1f4atputWNAgU
-	 kfj8cQHu10I42ss1EqlqkSHidYSFVUJyYAKTPeyax/pde48MqMWxez5znMo76dvu8w
-	 ZjrV0uORvUl+A==
-From: Conor Dooley <conor@kernel.org>
-To: Emil Renner Berthing <kernel@esmil.dk>,
-	Rob Herring <robh@kernel.org>,
+	s=arc-20240116; t=1707842628; c=relaxed/simple;
+	bh=IVfpppykE2plUKwWtkp2z9oyNL8LDEqus0ZAW9zqGZE=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=LvEahupiFP4BwG5LlZarjiqLNSJHEib1RR4rxG8pgtWTlouQ2/iF+hbtFOkGeGTaiqVVkuODH7aDF5fyO1TtUslgQ6iWWRAZSg8NQB6tWABLSQzU5yUj0ZxHgpfpbPii8sl+OqvKz7xhUcagqN69Y8w4x5sMerVXc1KyVRDr2ag=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com; spf=none smtp.mailfrom=linux.intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=Z0kyfBtf; arc=none smtp.client-ip=192.198.163.13
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com
+Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=linux.intel.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1707842627; x=1739378627;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=IVfpppykE2plUKwWtkp2z9oyNL8LDEqus0ZAW9zqGZE=;
+  b=Z0kyfBtfwEDFLulQ4PW1vqSBijq4o5cgv2g7RbwTZsZ0F+6lVRqZFtJZ
+   Xfiypjv7BLLRh8CMnrNqpc6YkJUw6H2Ms6I93VTtTmXwsc+VwOPmWp0Qc
+   OfviAeufVT2IHS9zPKDePFHA3/mAJkgIuw47c7IdRJ4WESQoGSfVVQ0g5
+   udG6sIHYlKUJw2GKeZftYX6N6z6gFUrpEqtX5e50GJf/d6QOGFlUgaiWB
+   Q8maci8v76PPZnybeYi0uwr72azu6BDv9aLHEL8DTMm/K3a2AV5EvuEpk
+   02TUDy4gXHo55Jg/amyiNnR7IuKEw0lllIWtZDkD3vRitfcjDxMGX3z5E
+   A==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10982"; a="4825908"
+X-IronPort-AV: E=Sophos;i="6.06,157,1705392000"; 
+   d="scan'208";a="4825908"
+Received: from fmsmga002.fm.intel.com ([10.253.24.26])
+  by fmvoesa107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 13 Feb 2024 08:43:46 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=McAfee;i="6600,9927,10982"; a="911830782"
+X-IronPort-AV: E=Sophos;i="6.06,157,1705392000"; 
+   d="scan'208";a="911830782"
+Received: from smile.fi.intel.com ([10.237.72.54])
+  by fmsmga002.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 13 Feb 2024 08:43:42 -0800
+Received: from andy by smile.fi.intel.com with local (Exim 4.97)
+	(envelope-from <andriy.shevchenko@linux.intel.com>)
+	id 1rZvsh-00000004Gee-36D7;
+	Tue, 13 Feb 2024 18:43:39 +0200
+Date: Tue, 13 Feb 2024 18:43:39 +0200
+From: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
+To: Rob Herring <robh@kernel.org>
+Cc: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+	Ralf Schlatterbeck <rsc@runtux.com>,
+	Geert Uytterhoeven <geert@linux-m68k.org>,
+	Linus Walleij <linus.walleij@linaro.org>,
+	Miguel Ojeda <ojeda@kernel.org>,
 	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
 	Conor Dooley <conor+dt@kernel.org>,
-	Paul Walmsley <paul.walmsley@sifive.com>,
-	Palmer Dabbelt <palmer@dabbelt.com>,
-	Albert Ou <aou@eecs.berkeley.edu>,
-	devicetree@vger.kernel.org,
-	linux-riscv@lists.infradead.org,
-	linux-kernel@vger.kernel.org,
-	Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Cc: conor@kernel.org,
-	Conor Dooley <conor.dooley@microchip.com>
-Subject: Re: [PATCH] riscv: dts: starfive: replace underscores in node names
-Date: Tue, 13 Feb 2024 16:41:55 +0000
-Message-ID: <20240213-commodore-egging-baf7ad19ec56@spud>
-X-Mailer: git-send-email 2.43.0
-In-Reply-To: <20240213144638.341509-1-krzysztof.kozlowski@linaro.org>
-References: <20240213144638.341509-1-krzysztof.kozlowski@linaro.org>
+	Robin van der Gracht <robin@protonic.nl>,
+	Paul Burton <paulburton@kernel.org>,
+	linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org
+Subject: Re: [PATCH 1/3] dt-bindings: auxdisplay: hit, hd44780: drop
+ redundant GPIO node
+Message-ID: <ZcucO8R8ZOtR38jl@smile.fi.intel.com>
+References: <20240212083426.26757-1-krzysztof.kozlowski@linaro.org>
+ <CAMuHMdU-c5_Z2AMNtNH4Cc4JUrn+oKU-1CumEOAP6=5Zomcj_A@mail.gmail.com>
+ <2922eece-5486-4eff-af99-f7060cb61d17@linaro.org>
+ <20240212115837.efz73yxinkysdmgh@runtux.com>
+ <e2a5b005-7916-4296-b072-c24efd4b3357@linaro.org>
+ <Zcogl6tqbMdQldKA@smile.fi.intel.com>
+ <d603a588-d312-486e-b6c9-647a6b90580c@linaro.org>
+ <20240213161905.GA1459669-robh@kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-X-Developer-Signature: v=1; a=openpgp-sha256; l=359; i=conor.dooley@microchip.com; h=from:subject:message-id; bh=HRBHjd47TJfW8gNCG2QlfEZlC+TxUvJev6JfcO10PXI=; b=owGbwMvMwCFWscWwfUFT0iXG02pJDKmnZ18KmROe9t5Bcd+Ur8c37okpOZBe8vBSieTp/vgzM zg7zv5K6ihlYRDjYJAVU2RJvN3XIrX+j8sO5563MHNYmUCGMHBxCsBEAlQZGS5+2jL73DlHHYeW a+83Lnkcw1hvEvbgQN+HjKWmEYu8+5UZ/mf/tTq7915zS1r2vf6Fwos7/x2RlLzwxmrNF22DqtR 8Ww4A
-X-Developer-Key: i=conor.dooley@microchip.com; a=openpgp; fpr=F9ECA03CF54F12CD01F1655722E2C55B37CF380C
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20240213161905.GA1459669-robh@kernel.org>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
 
-From: Conor Dooley <conor.dooley@microchip.com>
+On Tue, Feb 13, 2024 at 10:19:05AM -0600, Rob Herring wrote:
+> On Mon, Feb 12, 2024 at 02:59:02PM +0100, Krzysztof Kozlowski wrote:
+> > On 12/02/2024 14:43, Andy Shevchenko wrote:
+> > > On Mon, Feb 12, 2024 at 02:38:27PM +0100, Krzysztof Kozlowski wrote:
+> > >> On 12/02/2024 12:58, Ralf Schlatterbeck wrote:
 
-On Tue, 13 Feb 2024 15:46:38 +0100, Krzysztof Kozlowski wrote:
-> Underscores should not be used in node names (dtc with W=2 warns about
-> them), so replace them with hyphens.
+...
+
+> > >> Anyway, binding examples should not be collection of unrelated
+> > >> solutions, because then we should accept for each device schema several
+> > >> other variations and combinations.
+> > > 
+> > > Is this documented?
+> > 
+> > Yes, writing schema says what the example is. We repeated it multiple
+> > times on multiple reviews, we made multiple commits multiple times and I
+> > briefly mentioned it also in my talks.
 > 
-> 
+> While yes, this is the guidance, I think this case has provided enough
+> justification to keep it. Let's move on please.
 
-Applied to riscv-dt-fixes, thanks!
+Thank you, Rob.
 
-[1/1] riscv: dts: starfive: replace underscores in node names
-      https://git.kernel.org/conor/c/f03606470886
+Krzysztof, can you send v2, I'll apply it to the tree?
 
-Thanks,
-Conor.
+-- 
+With Best Regards,
+Andy Shevchenko
+
+
 
