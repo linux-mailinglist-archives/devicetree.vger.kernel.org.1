@@ -1,195 +1,118 @@
-Return-Path: <devicetree+bounces-41370-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-41371-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 820F2853581
-	for <lists+devicetree@lfdr.de>; Tue, 13 Feb 2024 17:01:27 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 93A2E853597
+	for <lists+devicetree@lfdr.de>; Tue, 13 Feb 2024 17:06:23 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 3831E2832C3
-	for <lists+devicetree@lfdr.de>; Tue, 13 Feb 2024 16:01:26 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 32DD41F2344F
+	for <lists+devicetree@lfdr.de>; Tue, 13 Feb 2024 16:06:23 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id CF88B5F491;
-	Tue, 13 Feb 2024 16:01:23 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 425045FB9B;
+	Tue, 13 Feb 2024 16:05:55 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="dpxQDKQg"
+	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="eCa/zNsB"
 X-Original-To: devicetree@vger.kernel.org
-Received: from fllv0015.ext.ti.com (fllv0015.ext.ti.com [198.47.19.141])
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E59D758108;
-	Tue, 13 Feb 2024 16:01:21 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.19.141
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9EC2E5FB8D;
+	Tue, 13 Feb 2024 16:05:53 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1707840083; cv=none; b=J3ndUyggoRnkG+1z9HVRJKAfM8/6udirL9Y7lbxraoJ40SEFXbFr4b2YxYGXYXso5gbBc+meHbLmnIhO8uP/JvlZLAGVZOI+nK1/Uq4KBiMdckWOYSXhK8we/s9Dh7c+dGuUCppEAoDeM1ctMN+j2vudL5h3trJg99sHSx3150I=
+	t=1707840355; cv=none; b=hoqOC2BvyDi7oNPb8agV95yGDQfWNx9zjgFOIE2+iDtqZb2S5/dnDUmCzuhQ7Isw/fhFX9wfhTOurqGhNEDwLE1+8nD9KVQTxHzth2oJk6qVGotJp8ExPGO/TqHtMCXCz2dkuaT1a/IoFsdeS6ZbSmGSddFyrsJMvQRiCKj7dn8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1707840083; c=relaxed/simple;
-	bh=Rmmr5ve2QPJb9LsgoZooJA8bclacYw+Kli7QPTZIrwA=;
-	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
-	 In-Reply-To:Content-Type; b=VkGHwEIzS+UWLbOuTDd40DSiUiNbMLeo2Sra4ZYDJspTV+9jLZEaxRFEfYFveWBfzboK++yy4oE0WFouxL9ebcOcZWmEHHw1D4HpH7mdvYxG3t7jFVCfHU1YJNMAFTV4WTaNra0UncP2YDWmoOk27WClBhywHR+UhvoILVfrxEM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=dpxQDKQg; arc=none smtp.client-ip=198.47.19.141
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
-Received: from lelv0265.itg.ti.com ([10.180.67.224])
-	by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id 41DG0qO7018324;
-	Tue, 13 Feb 2024 10:00:52 -0600
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1707840052;
-	bh=4A6mcITJSv/WywOIQJrp5wMO3GTMsH5C1aAFPUy40jA=;
-	h=Date:Subject:To:CC:References:From:In-Reply-To;
-	b=dpxQDKQgs/LQNe3rKX922HO/KiwWoy9vxkPHl1WIb/Qq/bA2iu/+ZDuU5zvWb0JRE
-	 q4GPX2x/EInhN40kOmctGcvi1mGQdwoxbZKl8Ce/X+c8oV2pvMTH5YoMZMRifL2OSV
-	 R77xfAm61noBrO0tt02tuYEPGI+9OecRq1BKKnx4=
-Received: from DFLE115.ent.ti.com (dfle115.ent.ti.com [10.64.6.36])
-	by lelv0265.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 41DG0qAW011385
-	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-	Tue, 13 Feb 2024 10:00:52 -0600
-Received: from DFLE104.ent.ti.com (10.64.6.25) by DFLE115.ent.ti.com
- (10.64.6.36) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Tue, 13
- Feb 2024 10:00:51 -0600
-Received: from lelvsmtp5.itg.ti.com (10.180.75.250) by DFLE104.ent.ti.com
- (10.64.6.25) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
- Frontend Transport; Tue, 13 Feb 2024 10:00:51 -0600
-Received: from [10.249.42.149] ([10.249.42.149])
-	by lelvsmtp5.itg.ti.com (8.15.2/8.15.2) with ESMTP id 41DG0pnV070046;
-	Tue, 13 Feb 2024 10:00:51 -0600
-Message-ID: <ec079a72-adc7-4a33-8486-e3b624ef6ba5@ti.com>
-Date: Tue, 13 Feb 2024 10:00:50 -0600
+	s=arc-20240116; t=1707840355; c=relaxed/simple;
+	bh=uMcRI6AGrJm0s+87WXTb7ztcpujligYNic9LZD/J/g4=;
+	h=From:To:CC:Subject:Date:Message-ID:MIME-Version:Content-Type; b=AoaffuiZYVZekQS1EYLObkhBk5cW1Oeim4tjGfS1ggCBNoEkT76qv70sAYD4vMus/rO6BYLClXLcqySdqKMMsDHNVau9Va/1AV/FlXhUcgE/jDrJX5UhO7vDMjaP6IbB82Ek7Fcbxr+l6rSyX2SPuISyWVnOUUx9Dd/yIaS7CSU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=eCa/zNsB; arc=none smtp.client-ip=205.220.180.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
+Received: from pps.filterd (m0279868.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.17.1.24/8.17.1.24) with ESMTP id 41DEMYMk017977;
+	Tue, 13 Feb 2024 16:05:34 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
+	from:to:cc:subject:date:message-id:mime-version
+	:content-transfer-encoding:content-type; s=qcppdkim1; bh=Rnm9gaj
+	as+B3WYbpQ/+ZSa+PKnnpl5dm6jgMymLFYeE=; b=eCa/zNsBdqaRB5yXu2oq6HU
+	tljn5Azx3CZm5z9w1KhOkt/d4ZmdS3ov4zwN48xOJHmb3NAfFiD9EgTvU6BRPZrS
+	S6vLNz+QZ9uogV10Twm3F8LnQcRrfxySO9bQ/2NWY58YIMTofMBAONzVXxN/kY6V
+	/oUEdQJ5ykjhhFeNV1Hw+00uXZjPrAxwEFAuFerkTbWxEX6r7XMZBZWQ6pEXqsD3
+	nLaO/GCAevctXKHtkJOeKkTDCL8p3FmeOREwVTO/EbfQ/qeb8bRWwdUWATbi8CgH
+	yE3MSWmQq6EYwT9QCBbMleNFOhuxPW/vtoWJH2xoFI8mLsKvMh860WnzRMNA5Gg=
+	=
+Received: from nalasppmta04.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3w7ww5sjvr-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Tue, 13 Feb 2024 16:05:34 +0000 (GMT)
+Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
+	by NALASPPMTA04.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 41DG5XVv000924
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Tue, 13 Feb 2024 16:05:33 GMT
+Received: from hu-jinlmao-lv.qualcomm.com (10.49.16.6) by
+ nalasex01a.na.qualcomm.com (10.47.209.196) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.1118.40; Tue, 13 Feb 2024 08:05:32 -0800
+From: Mao Jinlong <quic_jinlmao@quicinc.com>
+To: Suzuki K Poulose <suzuki.poulose@arm.com>,
+        Mike Leach
+	<mike.leach@linaro.org>, James Clark <james.clark@arm.com>,
+        Bjorn Andersson
+	<andersson@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@linaro.org>,
+        Rob Herring
+	<robh+dt@kernel.org>,
+        Krzysztof Kozlowski
+	<krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        "Mao
+ Jinlong" <quic_jinlmao@quicinc.com>,
+        Tao Zhang <quic_taozha@quicinc.com>,
+        Alexander Shishkin <alexander.shishkin@linux.intel.com>
+CC: <coresight@lists.linaro.org>, <linux-arm-kernel@lists.infradead.org>,
+        <linux-arm-msm@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>
+Subject: [PATCH v1 0/2] coresight: tpdm: Change qcom,dsb-element-size to qcom,dsb-elem-bits
+Date: Tue, 13 Feb 2024 08:05:16 -0800
+Message-ID: <20240213160521.15925-1-quic_jinlmao@quicinc.com>
+X-Mailer: git-send-email 2.41.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH] docs: dt: Update overlay file extension
-To: Geert Uytterhoeven <geert+renesas@glider.be>,
-        Jonathan Corbet
-	<corbet@lwn.net>, Alex Shi <alexs@kernel.org>,
-        Yanteng Si
-	<siyanteng@loongson.cn>, Rob Herring <robh@kernel.org>,
-        Krzysztof Kozlowski
-	<krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>
-CC: <linux-doc@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>
-References: <5ac79104822cdce7a4caab87f14ce02477f85820.1707819511.git.geert+renesas@glider.be>
-Content-Language: en-US
-From: Andrew Davis <afd@ti.com>
-In-Reply-To: <5ac79104822cdce7a4caab87f14ce02477f85820.1707819511.git.geert+renesas@glider.be>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
 Content-Transfer-Encoding: 8bit
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+Content-Type: text/plain
+X-ClientProxiedBy: nalasex01a.na.qualcomm.com (10.47.209.196) To
+ nalasex01a.na.qualcomm.com (10.47.209.196)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-GUID: Az3vrLrOb0HTvj_a8-1BlTtjlurCfDSq
+X-Proofpoint-ORIG-GUID: Az3vrLrOb0HTvj_a8-1BlTtjlurCfDSq
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.272,Aquarius:18.0.1011,Hydra:6.0.619,FMLib:17.11.176.26
+ definitions=2024-02-13_08,2024-02-12_03,2023-05-22_02
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 priorityscore=1501
+ impostorscore=0 mlxscore=0 phishscore=0 mlxlogscore=749 bulkscore=0
+ spamscore=0 adultscore=0 clxscore=1011 lowpriorityscore=0 malwarescore=0
+ suspectscore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.19.0-2401310000 definitions=main-2402130126
 
-On 2/13/24 4:24 AM, Geert Uytterhoeven wrote:
-> Building DTB overlays from .dts files is no longer supported.
-> Update the documentation to reflect this.
-> 
-> Fixes: 81d362732bac05f6 ("kbuild: Disallow DTB overlays to built from .dts named source files")
-> Signed-off-by: Geert Uytterhoeven <geert+renesas@glider.be>
-> ---
+As unit of dsb element size is bit, change qcom,dsb-element-size to
+qcom,dsb-elem-bits.
 
-Acked-by: Andrew Davis <afd@ti.com>
+Mao Jinlong (2):
+  dt-bindings: arm: qcom,coresight-tpdm: Rename qcom,dsb-element-size
+  coresight-tpda: Change qcom,dsb-element-size to qcom,dsb-elem-bits
 
->   Documentation/devicetree/overlay-notes.rst           | 12 ++++++------
->   .../translations/zh_CN/devicetree/overlay-notes.rst  | 12 ++++++------
->   2 files changed, 12 insertions(+), 12 deletions(-)
-> 
-> diff --git a/Documentation/devicetree/overlay-notes.rst b/Documentation/devicetree/overlay-notes.rst
-> index e139f22b363e9f36..35e79242af9a928d 100644
-> --- a/Documentation/devicetree/overlay-notes.rst
-> +++ b/Documentation/devicetree/overlay-notes.rst
-> @@ -38,10 +38,10 @@ Lets take an example where we have a foo board with the following base tree::
->   	};
->       ---- foo.dts ---------------------------------------------------------------
->   
-> -The overlay bar.dts,
-> +The overlay bar.dtso,
->   ::
->   
-> -    ---- bar.dts - overlay target location by label ----------------------------
-> +    ---- bar.dtso - overlay target location by label ---------------------------
->   	/dts-v1/;
->   	/plugin/;
->   	&ocp {
-> @@ -51,7 +51,7 @@ The overlay bar.dts,
->   			... /* various properties and child nodes */
->   		};
->   	};
-> -    ---- bar.dts ---------------------------------------------------------------
-> +    ---- bar.dtso --------------------------------------------------------------
->   
->   when loaded (and resolved as described in [1]) should result in foo+bar.dts::
->   
-> @@ -88,9 +88,9 @@ in the base DT. In this case, the target path can be provided. The target
->   location by label syntax is preferred because the overlay can be applied to
->   any base DT containing the label, no matter where the label occurs in the DT.
->   
-> -The above bar.dts example modified to use target path syntax is::
-> +The above bar.dtso example modified to use target path syntax is::
->   
-> -    ---- bar.dts - overlay target location by explicit path --------------------
-> +    ---- bar.dtso - overlay target location by explicit path -------------------
->   	/dts-v1/;
->   	/plugin/;
->   	&{/ocp} {
-> @@ -100,7 +100,7 @@ The above bar.dts example modified to use target path syntax is::
->   			... /* various properties and child nodes */
->   		}
->   	};
-> -    ---- bar.dts ---------------------------------------------------------------
-> +    ---- bar.dtso --------------------------------------------------------------
->   
->   
->   Overlay in-kernel API
-> diff --git a/Documentation/translations/zh_CN/devicetree/overlay-notes.rst b/Documentation/translations/zh_CN/devicetree/overlay-notes.rst
-> index 43e3c0bc5a9f8235..ba5edd05dc1e7fd2 100644
-> --- a/Documentation/translations/zh_CN/devicetree/overlay-notes.rst
-> +++ b/Documentation/translations/zh_CN/devicetree/overlay-notes.rst
-> @@ -43,10 +43,10 @@ Documentation/devicetree/dynamic-resolution-notes.rst[1]的配套文档。
->   	};
->       ---- foo.dts ---------------------------------------------------------------
->   
-> -覆盖bar.dts,
-> +覆盖bar.dtso,
->   ::
->   
-> -    ---- bar.dts - 按标签覆盖目标位置 ----------------------------
-> +    ---- bar.dtso - 按标签覆盖目标位置 ---------------------------
->   	/dts-v1/;
->   	/插件/;
->   	&ocp {
-> @@ -56,7 +56,7 @@ Documentation/devicetree/dynamic-resolution-notes.rst[1]的配套文档。
->   			... /* 各种属性和子节点 */
->   		};
->   	};
-> -    ---- bar.dts ---------------------------------------------------------------
-> +    ---- bar.dtso --------------------------------------------------------------
->   
->   当加载（并按照[1]中描述的方式解决）时，应该产生foo+bar.dts::
->   
-> @@ -90,9 +90,9 @@ Documentation/devicetree/dynamic-resolution-notes.rst[1]的配套文档。
->   DT中的适当位置。在这种情况下，可以提供目标路径。通过标签的目标位置的语法是比
->   较好的，因为不管标签在DT中出现在哪里，覆盖都可以被应用到任何包含标签的基础DT上。
->   
-> -上面的bar.dts例子被修改为使用目标路径语法，即为::
-> +上面的bar.dtso例子被修改为使用目标路径语法，即为::
->   
-> -    ---- bar.dts - 通过明确的路径覆盖目标位置 --------------------
-> +    ---- bar.dtso - 通过明确的路径覆盖目标位置 -------------------
->   	/dts-v1/;
->   	/插件/;
->   	&{/ocp} {
-> @@ -102,7 +102,7 @@ DT中的适当位置。在这种情况下，可以提供目标路径。通过标
->   			... /* 各种外围设备和子节点 */
->   		}
->   	};
-> -    ---- bar.dts ---------------------------------------------------------------
-> +    ---- bar.dtso --------------------------------------------------------------
->   
->   
->   内核中关于覆盖的API
+ .../devicetree/bindings/arm/qcom,coresight-tpdm.yaml          | 4 ++--
+ drivers/hwtracing/coresight/coresight-tpda.c                  | 2 +-
+ 2 files changed, 3 insertions(+), 3 deletions(-)
+
+-- 
+2.41.0
+
 
