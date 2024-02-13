@@ -1,88 +1,192 @@
-Return-Path: <devicetree+bounces-41127-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-41128-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id BA142852712
-	for <lists+devicetree@lfdr.de>; Tue, 13 Feb 2024 02:52:23 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 084B4852726
+	for <lists+devicetree@lfdr.de>; Tue, 13 Feb 2024 02:56:07 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 10A35B29BDE
-	for <lists+devicetree@lfdr.de>; Tue, 13 Feb 2024 01:49:06 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 6A455B26A8E
+	for <lists+devicetree@lfdr.de>; Tue, 13 Feb 2024 01:53:06 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 931BD1427A;
-	Tue, 13 Feb 2024 01:29:45 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 807D9A93C;
+	Tue, 13 Feb 2024 01:52:03 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b="Z9J6jH36"
+	dkim=pass (1024-bit key) header.d=bewilderbeest.net header.i=@bewilderbeest.net header.b="cm+vuK/f"
 X-Original-To: devicetree@vger.kernel.org
-Received: from vps0.lunn.ch (vps0.lunn.ch [156.67.10.101])
+Received: from thorn.bewilderbeest.net (thorn.bewilderbeest.net [71.19.156.171])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D57CC1401E;
-	Tue, 13 Feb 2024 01:29:42 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=156.67.10.101
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A19DFA937;
+	Tue, 13 Feb 2024 01:52:01 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=71.19.156.171
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1707787785; cv=none; b=Xx7++KULtmC3bmyTOpH23tTaSlcuUEC5IoQ3tiUEnsXvPo9wDChlyP3F6304InKk/OeXVsT9HNu9EYQd75u+OO75ZP6nkpxnA3bOasW19AKek1Kr/oWfu0jSBRC9h05i89GqD28V01I/LKUFEJF0zzJyVzX9JOyXdAwEjsc4GN8=
+	t=1707789123; cv=none; b=f8d4w/XTKaKSYSZ4zn6Z4r0zE3F3verk3zuJdoZuLX6N4A+1cfQskkFgFLugVK76aTd3rHy2wuoeImkTa9xVno/TWfoHMV5MAm6rc4CFIbPC8dzjSy/KV0d8ecXypm/lFepzAhlHrZ5GUh+E+LkgTCSHKfwmicijA4rFQsKThaA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1707787785; c=relaxed/simple;
-	bh=Tjnv2F2tmKHGGqszFFh0HeqfWo6dF/PQLZDD/lIfgyQ=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=naPf2HpuxyWL5Nqc0MZ10m99Waj+G3lgYLwOxHh/dNYfy+jzslVoNEYu/yPEsi4u4jk+jngQedjxZ6zOpFQJjAA1uijy27ktR0o7KprgsSa36U3D2PPMZkHssIkW9xS1T06UNE1I4om9oucpbeGMYdNcbYS0pfH7u0roz0bNgCE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch; spf=pass smtp.mailfrom=lunn.ch; dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b=Z9J6jH36; arc=none smtp.client-ip=156.67.10.101
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=lunn.ch
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
-	s=20171124; h=In-Reply-To:Content-Disposition:Content-Type:MIME-Version:
-	References:Message-ID:Subject:Cc:To:From:Date:From:Sender:Reply-To:Subject:
-	Date:Message-ID:To:Cc:MIME-Version:Content-Type:Content-Transfer-Encoding:
-	Content-ID:Content-Description:Content-Disposition:In-Reply-To:References;
-	bh=a+l3RwTWnNWwFciVajfFmBts8p6VEX7T1aYyB4l98oQ=; b=Z9J6jH36sazu2t3A33oiG2sf1y
-	4Qd/z/v3eHtykVIirj7/iH9C+asjP2ipFLPPBOhzJ5JtyTvsPOEDpPPCC9LgBhC59TV+7W4I3Z3MY
-	5RnOvvrGMCGovdjDmb7hL2T3N35S9lmMMI89BtpiguADOOG4v/zFpNBwIwGKTStm5KA8=;
-Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
-	(envelope-from <andrew@lunn.ch>)
-	id 1rZhc9-007ccG-3B; Tue, 13 Feb 2024 02:29:37 +0100
-Date: Tue, 13 Feb 2024 02:29:37 +0100
-From: Andrew Lunn <andrew@lunn.ch>
-To: Catalin Popescu <catalin.popescu@leica-geosystems.com>
-Cc: davem@davemloft.net, kuba@kernel.org, pabeni@redhat.com,
-	robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
-	conor+dt@kernel.org, afd@ti.com, hkallweit1@gmail.com,
-	linux@armlinux.org.uk, netdev@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	bsp-development.geo@leica-geosystems.com, m.felsch@pengutronix.de
-Subject: Re: [PATCH v4 2/2] net: phy: dp83826: support TX data voltage tuning
-Message-ID: <e1eaefe0-6a22-48b5-9429-13f71cc0e6fb@lunn.ch>
-References: <20240212074649.806812-1-catalin.popescu@leica-geosystems.com>
- <20240212074649.806812-2-catalin.popescu@leica-geosystems.com>
+	s=arc-20240116; t=1707789123; c=relaxed/simple;
+	bh=TWXO2hZBdIqovo/18+auLeZhmPNeyNftRZkYDtp07Kw=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=MbCCurC73vtgZ5w4N5T6hMsMZ1KTV2LJTsg8oFTXm3BYfXsph26SENjBfbpCxmTfBexMqsZbbA4pAaAnHm2yVH1fmVxqW998RcbS6zAyc1lNI3moXEVBS9TgvgbQK4IYQQHERer9IYz+OqrQ4w587KErq30ZuJbHUVidfWmhts8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=bewilderbeest.net; spf=pass smtp.mailfrom=bewilderbeest.net; dkim=pass (1024-bit key) header.d=bewilderbeest.net header.i=@bewilderbeest.net header.b=cm+vuK/f; arc=none smtp.client-ip=71.19.156.171
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=bewilderbeest.net
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bewilderbeest.net
+Received: from hatter.bewilderbeest.net (unknown [IPv6:2602:61:712b:6300::2])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+	(No client certificate requested)
+	(Authenticated sender: zev)
+	by thorn.bewilderbeest.net (Postfix) with ESMTPSA id 07BABA15;
+	Mon, 12 Feb 2024 17:51:54 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bewilderbeest.net;
+	s=thorn; t=1707789115;
+	bh=EU+GYVFoVSrVPFH+I5Rq0CxlWwOPwFjuP4K4HYrpXM4=;
+	h=From:To:Cc:Subject:Date:From;
+	b=cm+vuK/fGnBwBPyf2B1dtsj6Fmbr2traTegxGV8HfYLApU+8uRoVk+CP30oURWfcS
+	 LPkpSr8LYDvy8geca9x+pCT47R8ELbeZVUASM2AktntmXpnVDJ1fyg9McwLcVPw7US
+	 TavtV6qXQn+rSnvkc32hJBHfDlsT7lnRJXRNgE/4=
+From: Zev Weiss <zev@bewilderbeest.net>
+To: Joel Stanley <joel@jms.id.au>,
+	Andrew Jeffery <andrew@codeconstruct.com.au>,
+	linux-aspeed@lists.ozlabs.org
+Cc: Zev Weiss <zev@bewilderbeest.net>,
+	Rob Herring <robh+dt@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	devicetree@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	linux-kernel@vger.kernel.org,
+	openbmc@lists.ozlabs.org
+Subject: [PATCH] ARM: dts: aspeed: asrock: Add BIOS SPI flash chips
+Date: Mon, 12 Feb 2024 17:51:36 -0800
+Message-ID: <20240213015138.12452-2-zev@bewilderbeest.net>
+X-Mailer: git-send-email 2.43.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20240212074649.806812-2-catalin.popescu@leica-geosystems.com>
+Content-Transfer-Encoding: 8bit
 
-On Mon, Feb 12, 2024 at 08:46:49AM +0100, Catalin Popescu wrote:
-> DP83826 offers the possibility to tune the voltage of logical
-> levels of the MLT-3 encoded TX data. This is useful when there
-> is a voltage drop in between the PHY and the connector and we
-> want to increase the voltage levels to compensate for that drop.
-> 
-> Prior to PHY configuration, the driver SW resets the PHY which has
-> the same effect as the HW reset pin according to the datasheet.
-> Hence, there's no need to force update the VOD_CFG registers to make
-> sure they hold their reset values. VOD_CFG registers need to be
-> updated only if the DT has been configured with values other than
-> the reset ones.
-> 
-> Signed-off-by: Catalin Popescu <catalin.popescu@leica-geosystems.com>
+On e3c246d4i, e3c256d4i, romed8hm3, and spc621d8hm3 the host firmware
+flash is accessible to the BMC via the AST2500 SPI1 interface with an
+external GPIO-controlled mux switching the flash chip between the host
+and the BMC.
 
-Reviewed-by: Andrew Lunn <andrew@lunn.ch>
+The default state of the mux GPIO leaves it connected to the host, so
+the BMC's attempt to bind a driver to it during its boot sequence will
+fail, but a write to a sysfs 'bind' file after toggling the mux GPIO
+(along with whatever other preparatory steps are required) can later
+allow it to be attached and accessed by the BMC.  It's not an ideal
+arrangement, but in the absence of DT overlays or any other
+alternative it is at least a functional one, if somewhat clumsily so.
 
-FYI: The WoL discussion should not prevent this from being merged.
+Signed-off-by: Zev Weiss <zev@bewilderbeest.net>
+---
 
-    Andrew
+Note that this patch is based on Joel's for-next tree, since the
+e3c256d4i and spc621d8hm3 device-trees haven't been merged in mainline
+yet.
+
+ .../boot/dts/aspeed/aspeed-bmc-asrock-e3c246d4i.dts  | 12 ++++++++++++
+ .../boot/dts/aspeed/aspeed-bmc-asrock-e3c256d4i.dts  | 12 ++++++++++++
+ .../boot/dts/aspeed/aspeed-bmc-asrock-romed8hm3.dts  | 12 ++++++++++++
+ .../dts/aspeed/aspeed-bmc-asrock-spc621d8hm3.dts     | 12 ++++++++++++
+ 4 files changed, 48 insertions(+)
+
+diff --git a/arch/arm/boot/dts/aspeed/aspeed-bmc-asrock-e3c246d4i.dts b/arch/arm/boot/dts/aspeed/aspeed-bmc-asrock-e3c246d4i.dts
+index c4b2efbfdf56..557ce20e305d 100644
+--- a/arch/arm/boot/dts/aspeed/aspeed-bmc-asrock-e3c246d4i.dts
++++ b/arch/arm/boot/dts/aspeed/aspeed-bmc-asrock-e3c246d4i.dts
+@@ -68,6 +68,18 @@ flash@0 {
+ 	};
+ };
+ 
++&spi1 {
++	status = "okay";
++	pinctrl-names = "default";
++	pinctrl-0 = <&pinctrl_spi1_default>;
++	flash@0 {
++		status = "okay";
++		label = "bios";
++		m25p,fast-read;
++		spi-max-frequency = <25000000>; /* 25 MHz */
++	};
++};
++
+ &uart5 {
+ 	status = "okay";
+ };
+diff --git a/arch/arm/boot/dts/aspeed/aspeed-bmc-asrock-e3c256d4i.dts b/arch/arm/boot/dts/aspeed/aspeed-bmc-asrock-e3c256d4i.dts
+index 263fcc8106ff..bf752ff8204f 100644
+--- a/arch/arm/boot/dts/aspeed/aspeed-bmc-asrock-e3c256d4i.dts
++++ b/arch/arm/boot/dts/aspeed/aspeed-bmc-asrock-e3c256d4i.dts
+@@ -69,6 +69,18 @@ flash@0 {
+ 	};
+ };
+ 
++&spi1 {
++	status = "okay";
++	pinctrl-names = "default";
++	pinctrl-0 = <&pinctrl_spi1_default>;
++	flash@0 {
++		status = "okay";
++		label = "bios";
++		m25p,fast-read;
++		spi-max-frequency = <25000000>; /* 25 MHz */
++	};
++};
++
+ &uart1 {
+ 	status = "okay";
+ };
+diff --git a/arch/arm/boot/dts/aspeed/aspeed-bmc-asrock-romed8hm3.dts b/arch/arm/boot/dts/aspeed/aspeed-bmc-asrock-romed8hm3.dts
+index 4554abf0c7cd..8dff2cbf042b 100644
+--- a/arch/arm/boot/dts/aspeed/aspeed-bmc-asrock-romed8hm3.dts
++++ b/arch/arm/boot/dts/aspeed/aspeed-bmc-asrock-romed8hm3.dts
+@@ -56,6 +56,18 @@ flash@0 {
+ 	};
+ };
+ 
++&spi1 {
++	status = "okay";
++	pinctrl-names = "default";
++	pinctrl-0 = <&pinctrl_spi1_default>;
++	flash@0 {
++		status = "okay";
++		label = "bios";
++		m25p,fast-read;
++		spi-max-frequency = <33000000>; /* 33 MHz */
++	};
++};
++
+ &uart5 {
+ 	status = "okay";
+ };
+diff --git a/arch/arm/boot/dts/aspeed/aspeed-bmc-asrock-spc621d8hm3.dts b/arch/arm/boot/dts/aspeed/aspeed-bmc-asrock-spc621d8hm3.dts
+index 555485871e7a..54b40776c7e3 100644
+--- a/arch/arm/boot/dts/aspeed/aspeed-bmc-asrock-spc621d8hm3.dts
++++ b/arch/arm/boot/dts/aspeed/aspeed-bmc-asrock-spc621d8hm3.dts
+@@ -66,6 +66,18 @@ flash@0 {
+ 	};
+ };
+ 
++&spi1 {
++	status = "okay";
++	pinctrl-names = "default";
++	pinctrl-0 = <&pinctrl_spi1_default>;
++	flash@0 {
++		status = "okay";
++		label = "bios";
++		m25p,fast-read;
++		spi-max-frequency = <17000000>; /* 17 MHz */
++	};
++};
++
+ &uart5 {
+ 	status = "okay";
+ };
+-- 
+2.43.0
+
 
