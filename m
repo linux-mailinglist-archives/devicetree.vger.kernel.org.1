@@ -1,101 +1,105 @@
-Return-Path: <devicetree+bounces-41353-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-41354-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9BD15853413
-	for <lists+devicetree@lfdr.de>; Tue, 13 Feb 2024 16:03:57 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 509B9853426
+	for <lists+devicetree@lfdr.de>; Tue, 13 Feb 2024 16:05:15 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 4B7261F2AC15
-	for <lists+devicetree@lfdr.de>; Tue, 13 Feb 2024 15:03:57 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id CB300B27D0F
+	for <lists+devicetree@lfdr.de>; Tue, 13 Feb 2024 15:05:12 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 28EBF5EE7E;
-	Tue, 13 Feb 2024 15:01:04 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 52D905F875;
+	Tue, 13 Feb 2024 15:02:50 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="h6dM+pCT"
+	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b="RW5U5X5J"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from madrid.collaboradmins.com (madrid.collaboradmins.com [46.235.227.194])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E968D5EE60;
-	Tue, 13 Feb 2024 15:01:03 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 959DF58108;
+	Tue, 13 Feb 2024 15:02:48 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=46.235.227.194
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1707836464; cv=none; b=d+zE5ewbX2ZGT/A3ukNp2VmOGgcN8ntqGQEmnHLOyUwy2D7vxMxim/490R8hLJGyCUN/VfklIptXwyKD8TEffUokwngdh8PXVpFPyimSrmUA+DCTc3N/HSDWPtGjyGbQDMXoWFIHSVPL8fkFB+cME9XxQFw/zH+CKzPYYAhOX5I=
+	t=1707836570; cv=none; b=RjMqbWPrJLRDMW+Z+V8tYt4aI6dwTmpZOe4rUDP0wiq/+LsjBq5tR51WuzoG+GhgZ4lC95cl5Y4MayOLcwPpIQNC4wlsGR/VpOazRbEF1D3i0R+bFgNA/Bh5AkZVfQ77mS1j/4kp3bJEVCVYpjbGQSdeocTojH6SHMRPVFIbXXg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1707836464; c=relaxed/simple;
-	bh=uHJ8QMuS8ivI4WXQ9n9PNE82twukstL8Xzx1tgomXCE=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=lbbAHWYJ0RGFTJojn52M/vezUcfITUPa7Dv1G4SApTDHoP3yD31OnyZVpe8ntPXtqpR4UJ5POrN5QpEQ/kFipvnjFkgEyoCXfn1vkbXdu5VwmQ5q+k7NQzwhkKDhr+YxuFcojOZGI/ToxdzeelJ9l2dqcw89EDekavYZlr1EgIo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=h6dM+pCT; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 43FD8C433F1;
-	Tue, 13 Feb 2024 15:01:03 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1707836463;
-	bh=uHJ8QMuS8ivI4WXQ9n9PNE82twukstL8Xzx1tgomXCE=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=h6dM+pCT9QqTKsIRTYvJPtYFp/lx2ZogzuCbx2tKGnYUK6IAX8MaD1O6TV2xiLSKe
-	 w8eqqBU1OiQ7GeQdhQKtz5D2yRrYTBhIPa7MMd0mwCiYRCQnjFtB0/rGZEgSvVC4gj
-	 zPYrQkb1Vm696S7hTnFWb+uKN1uVXjRJ4G1fp9hXm/u+xErzTdv/tAtgtZUZ1KTb1j
-	 Zhp+INdOkmFHESjQl92xg3pm+AQb5fCWoPEFmR2+YrMZ/XQZdDiWbiUutZUN2BQau+
-	 c4hsOdWf8U9rSKyV6ePBkGgpVopu0pd0A5KIqcjgq7yzypCCfHkVrz+To+MK4u9Gkt
-	 4NqcUq1O6TI7Q==
-Date: Tue, 13 Feb 2024 09:01:01 -0600
-From: Rob Herring <robh@kernel.org>
-To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Cc: Bjorn Andersson <andersson@kernel.org>,
-	Konrad Dybcio <konrad.dybcio@linaro.org>,
-	Lorenzo Pieralisi <lpieralisi@kernel.org>,
-	Krzysztof =?utf-8?Q?Wilczy=C5=84ski?= <kw@linux.com>,
-	Bjorn Helgaas <bhelgaas@google.com>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Manivannan Sadhasivam <mani@kernel.org>,
-	linux-arm-msm@vger.kernel.org, linux-pci@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH 0/3] dt-bindings: PCI: qcom: move to dedicated schema
- (part two)
-Message-ID: <20240213150101.GA1186205-robh@kernel.org>
-References: <20240205-dt-bindings-pci-qcom-split-continued-v1-0-c333cab5eeea@linaro.org>
+	s=arc-20240116; t=1707836570; c=relaxed/simple;
+	bh=eEv8+8VvC86Bw7Uzhzb/XCZwOrbOPyVh+VvVVKoxqyM=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=MKUeCbXaQXB4tKR96Z1NKOWbN78xtEUajO46vibo8UjqjWTz4hYynHBgCbmOxwx7tWiEfxuppVgSItRaI6ADa5mpPhYKIcDXzCIMC4pqibBWdN2R/SBM3/97dtWvNd6+E9HC6CI+D7T49AmY9qdRqFFoJk6HGHjlL94/+x78ufs=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b=RW5U5X5J; arc=none smtp.client-ip=46.235.227.194
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=collabora.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
+	s=mail; t=1707836563;
+	bh=eEv8+8VvC86Bw7Uzhzb/XCZwOrbOPyVh+VvVVKoxqyM=;
+	h=From:Subject:Date:To:Cc:From;
+	b=RW5U5X5JHjwOZzH44YpfCuXOVcUUlLHIWNRTX3iI6/5ddJ+8fo0fm0lnEmrzuSmLI
+	 2soL9QJSTeS6pa4ufqbyycCFUUh7rp5PxyP9CH2sIlMJfpum0cm+fv1KmB5DztZ9uH
+	 a+uC8ACYdi7GrCazaRADh3OrXYQpC52iVtT/qT81Doww6fRiMvBdyJEUr99u3V+zZi
+	 ifHGixsc1ZYtPIVD5CpoIjv/9wnherQxp5QPeqicqav6PEDhoDKGO86Op5W1fsKWn6
+	 Cx3Sw3Y1nk9bRv9jvu9rPT0Kd1lPauoZly7IZOolHhzSAbu+LjcFtlfewj5xi6GKpj
+	 0c+HizhaYg3dw==
+Received: from [192.168.1.42] (zone.collabora.co.uk [167.235.23.81])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+	(No client certificate requested)
+	(Authenticated sender: nfraprado)
+	by madrid.collaboradmins.com (Postfix) with ESMTPSA id E18013780BFE;
+	Tue, 13 Feb 2024 15:02:40 +0000 (UTC)
+From: =?utf-8?q?N=C3=ADcolas_F=2E_R=2E_A=2E_Prado?= <nfraprado@collabora.com>
+Subject: [PATCH v2 0/2] arm64: dts: mediatek: mt8186: Fixes for ssusb hang
+ using defconfig
+Date: Tue, 13 Feb 2024 10:02:36 -0500
+Message-Id: <20240213-mt8186-ssusb-domain-clk-fix-v2-0-1f981d35f3fd@collabora.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20240205-dt-bindings-pci-qcom-split-continued-v1-0-c333cab5eeea@linaro.org>
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
+X-B4-Tracking: v=1; b=H4sIAI2Ey2UC/42NQQ6CMBAAv0L27BpaSC2e/IfhsJRFNgIlLRIN4
+ e9WXuBx5jCzQeQgHOGabRB4lSh+SqBPGbiepgejtIlB57rMtdI4LlZZgzG+YoOtH0kmdMMTO3k
+ jmUoxO1uUXQupMAdO+qjf68S9xMWHzzFb1c/+110VKtTGNZW9lIaouDk/DNT4QGfnR6j3ff8Cz
+ Yfb/coAAAA=
+To: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>, 
+ Matthias Brugger <matthias.bgg@gmail.com>
+Cc: Chen-Yu Tsai <wenst@chromium.org>, 
+ Eugen Hristev <eugen.hristev@collabora.com>, Rob Herring <robh@kernel.org>, 
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, 
+ Conor Dooley <conor+dt@kernel.org>, 
+ Allen-KH Cheng <allen-kh.cheng@mediatek.com>, kernel@collabora.com, 
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+ linux-arm-kernel@lists.infradead.org, linux-mediatek@lists.infradead.org, 
+ =?utf-8?q?N=C3=ADcolas_F=2E_R=2E_A=2E_Prado?= <nfraprado@collabora.com>
+X-Mailer: b4 0.12.4
 
-On Mon, Feb 05, 2024 at 04:58:00PM +0100, Krzysztof Kozlowski wrote:
-> Hi,
-> 
-> Please take this patchset and its dependency via PCI tree.
-> 
-> Dependency
-> ==========
-> This depends on:
-> https://lore.kernel.org/all/20240126-dt-bindings-pci-qcom-split-v3-0-f23cda4d74c0@linaro.org/
-> 
-> DTS fixes for interrupts will be send separately.
-> 
-> Description
-> ===========
-> The qcom,pcie.yaml containing all devices results in huge allOf: section
-> with a lot of if:then: clauses making review and changes quite
-> difficult.
-> 
-> Split individual devices into their own files, so we get rid of
-> multiple if:then: clauses.
+Two fixes in ssusb components (the power domain and usb controller) to
+allow them to successfully probe and the mt8186 to boot using the
+upstream defconfig.
 
-The downside to this is the resource names don't live next to each 
-other. Then it is just a free-for-all on making up names with little 
-attempt at alignment.
+Signed-off-by: Nícolas F. R. A. Prado <nfraprado@collabora.com>
+---
+Changes in v2:
+- Moved the XHCI clock from the power domain to the mtu3 node and to a
+  separate commit
+- Link to v1: https://lore.kernel.org/r/20240212-mt8186-ssusb-domain-clk-fix-v1-1-26cb98746aa3@collabora.com
 
-OTOH, I give up and your mess to maintain...
+---
+Nícolas F. R. A. Prado (2):
+      arm64: dts: mediatek: mt8186: Add missing clocks to ssusb power domains
+      arm64: dts: mediatek: mt8186: Add missing xhci clock to usb controllers
 
-Acked-by: Rob Herring <robh@kernel.org>
+ arch/arm64/boot/dts/mediatek/mt8186.dtsi | 16 ++++++++++++----
+ 1 file changed, 12 insertions(+), 4 deletions(-)
+---
+base-commit: 2ae0a045e6814c8c1d676d6153c605a65746aa29
+change-id: 20240212-mt8186-ssusb-domain-clk-fix-a691eec834fd
 
-Rob
+Best regards,
+-- 
+Nícolas F. R. A. Prado <nfraprado@collabora.com>
+
 
