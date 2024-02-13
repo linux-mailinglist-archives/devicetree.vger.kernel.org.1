@@ -1,103 +1,144 @@
-Return-Path: <devicetree+bounces-41318-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-41319-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id E3C42853245
-	for <lists+devicetree@lfdr.de>; Tue, 13 Feb 2024 14:51:22 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 63C02853252
+	for <lists+devicetree@lfdr.de>; Tue, 13 Feb 2024 14:52:50 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 22B8F1C26FBD
-	for <lists+devicetree@lfdr.de>; Tue, 13 Feb 2024 13:51:22 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 96CEF1C225A7
+	for <lists+devicetree@lfdr.de>; Tue, 13 Feb 2024 13:52:49 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3972F56465;
-	Tue, 13 Feb 2024 13:51:18 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0BD875647D;
+	Tue, 13 Feb 2024 13:52:44 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="jBQJNzpS"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="R2l1TEuX"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-pf1-f174.google.com (mail-pf1-f174.google.com [209.85.210.174])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1686C57867
-	for <devicetree@vger.kernel.org>; Tue, 13 Feb 2024 13:51:17 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9AD8253814;
+	Tue, 13 Feb 2024 13:52:42 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.174
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1707832278; cv=none; b=e15epOKoRMPrUttvMzhr5qxEmHpnYJIuJEwPb4LMblCN0BLvpKffVcbIqBA99U7/VtBiAj1LUvUGDxI2tqewS4WmAO63cE5As1334Pg5LHo3a0nuOay707V5jF94bYGDpSCrAWcY8cQIFl5ImZrdVlgpIrfq1P8zn2Qkcoko2+o=
+	t=1707832363; cv=none; b=bw80jy2IJlXn3B6q4+TZWe4Qc2nmOIeqYE6fT4MsQkLy76ke4quThQ55z+dI5k2qFkrAj2N+jFIhDnLBOXspxn9HJ/5bai5s3c7PO79s2Obr324uMKrOMeBlE8qNeRN9xhiXuwd6UGDBY3V7y3OrC5RH5Zu+wew0cTRX6dGpGM8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1707832278; c=relaxed/simple;
-	bh=HNhK27P/m0iZHnaSdD6ARgBcTakNthY+kBcRycKd/LE=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=BxViRLlSexsQGNyOUrqDUDpxmPxR3LDXG1AWJfeLncV63fY28KfzcYecf3bfSt0ELRYyGmUo4IRPUmdhOmq/hZWH4k4txbwQXyK+4EwLP58jicIQc2LisSZ0M58FF4h440yvP9oxa4otzg60J9pT/QEcnyNd1Nc6Z7Xptas3k04=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=jBQJNzpS; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 5A650C433C7;
-	Tue, 13 Feb 2024 13:51:17 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1707832277;
-	bh=HNhK27P/m0iZHnaSdD6ARgBcTakNthY+kBcRycKd/LE=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=jBQJNzpS0WRPH8pgo/PWe64NvyKCeFuzLG/q949mn/LVMrLK5bB5x8iw8Jfb0bNIs
-	 5HVDuGaY4i3dRZqMhOcq6fSOoWohTANgn8OTu3+UOB+MD/4R8HY8hpuJVQ4dJDeywf
-	 9653oQzL3wKE+zp6iTR5TIwLTcuActBiun+mD91pmBEw5LAYx36jkREB8heM3yPwlx
-	 B5rRJo2Z6Kv3V4sahdkkcWJs1a4aJxvBxhOmOuQb5Pw+3dviiZ7OfkxPDoCKqxTOOf
-	 Bth2NP2gsRmFarGIS0E9NgQy/Tt6aQc5NLQJpKDMTUjThGABYV6d+R8sxkViMjzVNK
-	 rCJzzzF/V1dfA==
-Date: Tue, 13 Feb 2024 07:51:15 -0600
-From: Rob Herring <robh@kernel.org>
-To: Marc Gonzalez <mgonzalez@freebox.fr>
-Cc: AML <linux-amlogic@lists.infradead.org>,
-	DT <devicetree@vger.kernel.org>,
-	Neil Armstrong <neil.armstrong@linaro.org>,
-	Kevin Hilman <khilman@baylibre.com>,
-	Jerome Brunet <jbrunet@baylibre.com>,
-	Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Pierre-Hugues Husson <phhusson@freebox.fr>
-Subject: Re: [PATCH v2 4/4] arm64: dts: amlogic: add fbx8am DT overlays
-Message-ID: <20240213135115.GA1090963-robh@kernel.org>
-References: <77edaf7e-aeb5-4fc0-8b69-85dcddfd5a58@freebox.fr>
- <5ac4741d-766d-4b6d-95ac-669474d05e6a@freebox.fr>
+	s=arc-20240116; t=1707832363; c=relaxed/simple;
+	bh=gZHJaV0n/bY1ZeOAShu+ZH8f8JsMNVFp3tEUsMb8Osk=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=FLrv0it5P+6WobCUxAI/50pqRsLpGhbgrXHTFiT6GHMQWhn9tvV+frlbQHaoqfv36SQYs+v4dGrbyWpQw+2UTkK6NOBpu83Eia8eYxUsUFg/mXmYDkoRcVumjKKArI/asQpwh9S+HGSt+7iMvSxLzE/nqRZszThs/s439GIyhug=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=R2l1TEuX; arc=none smtp.client-ip=209.85.210.174
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-pf1-f174.google.com with SMTP id d2e1a72fcca58-6e10614c276so19259b3a.3;
+        Tue, 13 Feb 2024 05:52:42 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1707832362; x=1708437162; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=9lrAqqYQAE/5azD8jUmo4B37QDeKUelyT/u/vST2pSs=;
+        b=R2l1TEuXUzgz77somDqoHL+NyliaxqwBUeMUUUtZdw2yNp9egvXIpVAc8VdWRz828S
+         OzeDUuvHvjHNdHGBSqT60NU2CBSxze00RHcTsdXNM0udDZJ5kn8OIlgp1BDpQDcSNSW1
+         PouQgdRk/ciIBh56PLzCZ+O4xmyFOqNDIiN7g/BDm7RN7aWEnp3+MUuOTyXgJ8ruyKfY
+         1DyhsWgre29McKTtjE4K+JPDflt+5By0mZuFt1+QIsZ0Qynh9vYYPQDch2pupGO3oJzr
+         xtG4t7PCA60OVTPIUtmL1A6pjtxmaD0IcOvTH+bQ03QpUgftxdFI/v5kXOQuxLcF/d+t
+         H3ag==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1707832362; x=1708437162;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=9lrAqqYQAE/5azD8jUmo4B37QDeKUelyT/u/vST2pSs=;
+        b=PFNXkyIjMpqCWoJ64XjLt66jz+wcuq5rWDA59AL3hegP+c5yhctvqKl7F7+W2pO/pk
+         s7EE3fNJBRaq+Vkhx855GtutFlFcns6ydPZ+Oy1O0TQGMj+0YQF7JCBGp1AB87YJAW3l
+         W6rIssEpdZC0pLoA0Une+FGtLzElasnYIGop24aUMChcSDWFiJPmCFsGD6Y8RfeR+Uv0
+         68HDJ90xIbhRIEvUoLsvb2YxiZC/qPa62DIirzwqVB4v2jDrt7VdAhAyAlmiLsttLLRK
+         Cbvo1so5hg/TpHnvkQOQp8W1ufIaQ60XN+I2ZCKPWsXfxhWVKggEuW8Ijkk8TbwdLdzV
+         0QWw==
+X-Forwarded-Encrypted: i=1; AJvYcCXwzlb6xsAqisvbkAXVAZD5TRs+Mkg2Zd2yMqlr+ksHpXoIow2KCbIB9Nzq7vZmTLMwH4znB8dKDxOIA2A0N+zaEwdc06Ss3d7/sDMGIyvDn/kjApmW0eRIOZjUmVo1U5Qdl8PCVaLlFg==
+X-Gm-Message-State: AOJu0YxID5OXflQvWN0DRzBv4lE1ZmETWJLAc0HsSWTwbeW1YeT3NnJq
+	i9H5XLCzNccWQXYVlmqI8UeALD0waMcJtuoKeGA9K9gcZHPh6134zKySBv8ku8CTt5czOnfrvqr
+	qAltJ1ms2TmyRTgNwTMK/obslsFtgQUPe
+X-Google-Smtp-Source: AGHT+IGO7vUaCrxPrStR6/UVK+qGCt1f71Bb3woNmrr0dc2/pWgTowRBUjm/B5cQhZfOZS47d4luy9Aa97+7AxGNl8U=
+X-Received: by 2002:a05:6a21:3a42:b0:19e:b15c:be06 with SMTP id
+ zu2-20020a056a213a4200b0019eb15cbe06mr8795657pzb.16.1707832361709; Tue, 13
+ Feb 2024 05:52:41 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <5ac4741d-766d-4b6d-95ac-669474d05e6a@freebox.fr>
+References: <20240213124146.202391-1-aford173@gmail.com> <20240213125618.GG52537@atomide.com>
+ <20240213130208.GI52537@atomide.com> <CAHCN7xLmTEk0439XTuRPG7SSdH=4YiMTmrSXmfTkpC2bo_kNGw@mail.gmail.com>
+ <20240213133622.GJ52537@atomide.com>
+In-Reply-To: <20240213133622.GJ52537@atomide.com>
+From: Adam Ford <aford173@gmail.com>
+Date: Tue, 13 Feb 2024 07:52:30 -0600
+Message-ID: <CAHCN7x+C5KOQK1muXkpW95-kGrtkRNH_=Jy4m6igbxGBVZfTyQ@mail.gmail.com>
+Subject: Re: [PATCH] arm: dts: omap3: Migrate hsmmc driver to sdhci driver
+To: Tony Lindgren <tony@atomide.com>
+Cc: linux-omap@vger.kernel.org, aford@beaconembedded.com, 
+	=?UTF-8?Q?Beno=C3=AEt_Cousson?= <bcousson@baylibre.com>, 
+	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, 
+	Conor Dooley <conor+dt@kernel.org>, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-On Mon, Feb 12, 2024 at 06:53:01PM +0100, Marc Gonzalez wrote:
-> From: Pierre-Hugues Husson <phhusson@freebox.fr>
-> 
-> Add support for two variants of the fbx8am board.
-> 
-> Signed-off-by: Pierre-Hugues Husson <phhusson@freebox.fr>
-> Signed-off-by: Marc Gonzalez <mgonzalez@freebox.fr>
-> ---
->  arch/arm64/boot/dts/amlogic/Makefile                       |  7 +++++++
->  arch/arm64/boot/dts/amlogic/meson-g12a-fbx8am-brcm.dtso    | 35 ++++++++++++++++++++++++++++++++++
->  arch/arm64/boot/dts/amlogic/meson-g12a-fbx8am-realtek.dtso | 25 ++++++++++++++++++++++++
->  3 files changed, 67 insertions(+)
-> 
-> diff --git a/arch/arm64/boot/dts/amlogic/Makefile b/arch/arm64/boot/dts/amlogic/Makefile
-> index e9baa2cf02273..2fd7c7a18126f 100644
-> --- a/arch/arm64/boot/dts/amlogic/Makefile
-> +++ b/arch/arm64/boot/dts/amlogic/Makefile
-> @@ -81,3 +81,10 @@ dtb-$(CONFIG_ARCH_MESON) += meson-sm1-odroid-hc4.dtb
->  dtb-$(CONFIG_ARCH_MESON) += meson-sm1-sei610.dtb
->  dtb-$(CONFIG_ARCH_MESON) += meson-sm1-x96-air-gbit.dtb
->  dtb-$(CONFIG_ARCH_MESON) += meson-sm1-x96-air.dtb
-> +
-> +# Overlays
-> +dtb-$(CONFIG_ARCH_MESON) += meson-g12a-fbx8am-brcm.dtbo
-> +dtb-$(CONFIG_ARCH_MESON) += meson-g12a-fbx8am-realtek.dtbo
-> +
-> +# Enable support for DT overlays
-> +DTC_FLAGS_meson-g12a-fbx8am += -@
+On Tue, Feb 13, 2024 at 7:36=E2=80=AFAM Tony Lindgren <tony@atomide.com> wr=
+ote:
+>
+> * Adam Ford <aford173@gmail.com> [240213 13:29]:
+> > On Tue, Feb 13, 2024 at 7:02=E2=80=AFAM Tony Lindgren <tony@atomide.com=
+> wrote:
+> > >
+> > > * Tony Lindgren <tony@atomide.com> [240213 12:56]:
+> > > > * Adam Ford <aford173@gmail.com> [240213 12:41]:
+> > > > > The sdhci driver has been around for several years, and it suppor=
+ts
+> > > > > the OMAP3 family.  Instead of using the older driver, let's final=
+ly
+> > > > > migrate to the newer one.
+> > > >
+> > > > I think we also should do these to avoid incomplete conversion:
+> > > >
+> > > > - ti,dual-volt property can be dropped
+> > > >
+> > > > - ti,non-removable should become non-removable
+> >
+> > I'll do a more comprehensive search for these flags.  When I did my
+> > testing on the AM3517, I didn't notice these, but I see now that
+> > others might.  I'll do a multi-patch series to first address the
+> > multi-block, then  omap3-ldp.dts, then migrate the omap3.dtsi to the
+> > new driver while dropping the flags, and lastly update the individual
+> > boards accordingly.  I just have one question below.
+>
+> OK sounds good to me :)
+>
+> > > > - ti,omap3-pre-es3-hsmmc probably should not be needed with sdhci
+> > >
+> > > Hmm actually we may need to set SDHCI_QUIRK_NO_MULTIBLOCK for
+> > > compatible ti,omap3-pre-es3-hsmmc.
+> >
+> > Should I update the driver and binding to add  ti,omap3-pre-es3-sdhci
+> > to set that flag, or should we create a boolean (maybe
+> > 'ti,sdhci-no-multiblock') to the device tree options for that driver?
+>
+> Probably best to set up some sdhci generic property for it that then
+> sets SDHCI_QUIRK_NO_MULTIBLOCK.
 
-Overlays need to be applied to something in the kernel at build time.
-Applying is done the same way as composing object files for modules.
+Sounds good.  I'll try to work on this tonight, but it might be a day
+or two before I get the more comprehensive update out.  Hopefully in
+the meantime, people may respond with other comments too.  I also want
+to retest my OMAP35 and DM37 boards.  It's been since kernel 6.1 since
+I tested them all.
 
-Rob
+adam
+>
+> Regards,
+>
+> Tony
 
