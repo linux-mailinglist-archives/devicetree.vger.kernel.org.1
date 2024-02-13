@@ -1,185 +1,154 @@
-Return-Path: <devicetree+bounces-41186-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-41187-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7E275852B49
-	for <lists+devicetree@lfdr.de>; Tue, 13 Feb 2024 09:36:23 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4CF8F852B4C
+	for <lists+devicetree@lfdr.de>; Tue, 13 Feb 2024 09:38:23 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id E807CB216D6
-	for <lists+devicetree@lfdr.de>; Tue, 13 Feb 2024 08:36:20 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id AC9D128202C
+	for <lists+devicetree@lfdr.de>; Tue, 13 Feb 2024 08:38:21 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A98B21755B;
-	Tue, 13 Feb 2024 08:36:18 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7A37218021;
+	Tue, 13 Feb 2024 08:38:18 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=raspberrypi.com header.i=@raspberrypi.com header.b="M+l6xsqK"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="F90KYP6d"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-yw1-f180.google.com (mail-yw1-f180.google.com [209.85.128.180])
+Received: from mail-lf1-f41.google.com (mail-lf1-f41.google.com [209.85.167.41])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id ED8541C68E
-	for <devicetree@vger.kernel.org>; Tue, 13 Feb 2024 08:36:16 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.180
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A11BC182A1
+	for <devicetree@vger.kernel.org>; Tue, 13 Feb 2024 08:38:15 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.41
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1707813378; cv=none; b=JRyEp8u/EEIKg/obi72sGl8LDzXRSyXF8AbEVkul0IFlD5AAnka8Pma1ig4V+fi5PHIjjV8y9S6WOrkq1eGo9FcxH1M2XqHO+0crY0U0LAYi4ye1q5al867I4wuvVBXJNHkYsK7E1JtjftxwTndSWrmeqO0I8kKPCY7ES82r4j8=
+	t=1707813498; cv=none; b=LlYuckfEomIWyyOZ7URgla9UvLh6aEk2trqPMGhZgNomYSIxUQtPkxk7eHrgmkpMcwdQ95+NVws/7pNWKQb+d/pyBaVi1PQ2jpX8mtp1r5a1uTQI5yOOUUgbEcWGkvI7BXqR/AiV8WmnrE6JeMnmLsFZ0vodYyTO44A31CdOJZ0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1707813378; c=relaxed/simple;
-	bh=mDukPBKr3Xk8Mefu28gVTkdEH0Hv2hGdWUSm5teWlBg=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=FYFGYnSeOHqGOiODKU1+5zrUneZ1kjliAouj2kPA0/JlCXN+jtLK99wUtNiYgU4gcklnQDGQyUb7OmBjfxFWr0tBH56ObluvoSbNjG94UuFROO5QnOWFsxNF1QCjUj1d+lcY0ej5oX7B6JA61DSFLJHASNrZkKLDOZmLuU+Fcv4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=raspberrypi.com; spf=pass smtp.mailfrom=raspberrypi.com; dkim=pass (2048-bit key) header.d=raspberrypi.com header.i=@raspberrypi.com header.b=M+l6xsqK; arc=none smtp.client-ip=209.85.128.180
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=raspberrypi.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=raspberrypi.com
-Received: by mail-yw1-f180.google.com with SMTP id 00721157ae682-60778cd55caso9090477b3.1
-        for <devicetree@vger.kernel.org>; Tue, 13 Feb 2024 00:36:16 -0800 (PST)
+	s=arc-20240116; t=1707813498; c=relaxed/simple;
+	bh=I9jBnYIWhipEV/qzDjWRu5VpS4nxIslJQA/mnywgwSY=;
+	h=Message-ID:Date:MIME-Version:From:Subject:To:Cc:References:
+	 In-Reply-To:Content-Type; b=sM5dWwClNVzzDlYzQa0QMkEaV5ITACC9THQJlpMSGhx+gw5lqpcHYWF0KaOA2YMxUcOekd6NqurJ7GuYEa/HvpE7puPeGOXxO7KmKjOta5kWL+opyLLely54+off1bbxget/ZwoWwdb6+FuNDdqbebOxb+h1Sr80S5jq3sQ0+w8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=F90KYP6d; arc=none smtp.client-ip=209.85.167.41
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-lf1-f41.google.com with SMTP id 2adb3069b0e04-51197ca63f5so699641e87.1
+        for <devicetree@vger.kernel.org>; Tue, 13 Feb 2024 00:38:15 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=raspberrypi.com; s=google; t=1707813376; x=1708418176; darn=vger.kernel.org;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=kajttsvUANHUaNsyP3l39ol7GX1p8iwx0Lu08hUgqCU=;
-        b=M+l6xsqKIooUaJcqGvFgs/IvCdEZf3z4yv6vaoAvIM/Q+q+j85duDzQogsVY8g87NK
-         QLw08TswC+YMnlgG15SFxBeCp4hOKG+6NsHdRROi7L3UwnxEsrwfKheJ8rUrXiPdEcAO
-         FlOLfxjS5ddUzDSnj6yEE5dxvkjGfodIMtzduNMCJ2ouwPj/YKjOQ/DRJCNnC3zugz2U
-         I3GZTNWK/gCzQ7QT62xQP2ENI5bXUGF8p1D2Str0OIJf1NHNX0QwHwkXMsyOEGRT56rU
-         e2PSYHbBNuelIn5B2ptd4VUfw3abaoFgo1cdattN3rBGEp/yYkSHxXS5JXjMYxhorZgA
-         F4fA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1707813376; x=1708418176;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+        d=linaro.org; s=google; t=1707813494; x=1708418294; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:organization:autocrypt
+         :references:cc:to:content-language:subject:reply-to:from:user-agent
+         :mime-version:date:message-id:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=kajttsvUANHUaNsyP3l39ol7GX1p8iwx0Lu08hUgqCU=;
-        b=jeNbHV3Rl2Ngv1ohj575607zMkcBI2amwr7EgzXftmois0YZrG71EG0DgMrI4dnE79
-         l/fcRpaODQJPNmaBaPVb6ERBFLkdi81ROxlByAMAGgNAd3fhgkd7ItNPlYNYftN+jzXJ
-         JXNyRMccZTDx8iT5FBrxrLYt0i4gNi/h+YVXc7I0h5QNq03B/wfhk5VIlIZT0nHSEaJv
-         Y9XPbdSPQN9IJOnttBbBPe3v4f8AwMS0x6t4WhWiHjaIjryK75JTz17bA/FnWKco6ogI
-         nNXH6HL1GIwJnmWOsGj2TiN28Te573voLQIqVITL02+118uog35mOE8/PTZXyPaxPkqb
-         ZQsw==
-X-Gm-Message-State: AOJu0YydT7f6+uAnk7ONAwy6lvEdRWkMp4AGASaCndCvscU57g2HHjDt
-	pyCgxoEc/Md/bxyEhLZQKe8Uo6UK9hzU+QXT4PGdZe9M8CUAgVmVwE/43KsmTZz5x7qFK9cRvVa
-	+FMkBU2uxINziipK1QJHaW8+kSuMHl53hFyzKrQ==
-X-Google-Smtp-Source: AGHT+IHJzEzSyd53b9+rOHzNSx0pPrmjRSMLLeRT+ICU1LSnVG3IxoWBOiuUlkvuIv1eKcVs5zDUhk1ngnfzPZ9QKOw=
-X-Received: by 2002:a81:77d7:0:b0:604:7b59:4472 with SMTP id
- s206-20020a8177d7000000b006047b594472mr6769809ywc.31.1707813375646; Tue, 13
- Feb 2024 00:36:15 -0800 (PST)
+        bh=RXPlfNasOUmNVQN5Xo/0NoJYpOYXgb4I9baD/+RaFaM=;
+        b=F90KYP6dr7YtG5gg2hWYmzZ0haWE/zC+H/yzrI6z9Hpbt0pSgmhOJjEIbQtzMiEX6d
+         7t90OAN3axutyKNvJJn1MAGt5br2EMC4JKqie9xuRAxU+8r1wPLhgRiRhCj1fBgfXLWm
+         xUMPZCCgWiFdFjPMEIRTCCAqFtDHvDdS6AfW7VFmdGd5zUym5UoPEdFHW2qxEjOGzbMz
+         PS/vGjLSd0a3Eee3/TPgwW9s3ptn3gIRpoK8JDGvvm0FjhbL4klMw5iV1Nz1NRHvb0A/
+         FQvVvJlgu2nGy/wmsfFQW5WsW9L383RAAXQ6j36+1mG7skRYL9cQF7zMYwjzmqgMtcpj
+         hpmQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1707813494; x=1708418294;
+        h=content-transfer-encoding:in-reply-to:organization:autocrypt
+         :references:cc:to:content-language:subject:reply-to:from:user-agent
+         :mime-version:date:message-id:x-gm-message-state:from:to:cc:subject
+         :date:message-id:reply-to;
+        bh=RXPlfNasOUmNVQN5Xo/0NoJYpOYXgb4I9baD/+RaFaM=;
+        b=VcUt8Qx4+xDF6A0OAJoKacgcMTNAS+L6tLdxZNcAhpV/qPNOXLsMgXzwDKT7c2pY3W
+         52Jkid5wLdBP2T6B388Y+4cNfaMRCtorMucxNjDQctrqNez0J/8UwhJ6ZMC2DopBWnlg
+         5MiwrJvHw1cumMKY7BwiCoEF8PL8bcJCZ5pE5bTMmkA69oTK90HccLGpXAtECid7TOxa
+         mZjOQ8Dkvw0i+TCL4m/yufhSNvNBO68fEEdCRp5IcycLmjg/jI3v6O2XWn1em0J2qHlh
+         R84v50SEwz4J+6GXaC+AfMUnkyQMPowBWMm4aFdP7FfzvHYI4YwGPcNvVnYKmnQkEe/g
+         g7iQ==
+X-Forwarded-Encrypted: i=1; AJvYcCWTBIkXhaP3rV/JvcdlxPpJe+1kGM1cacbnLYEEJY8hp4TzjgmFIi56kAxjOcE2gZfVpgOSjyyQoQoXCFhBM52RDJ4tXvMBXtNU1w==
+X-Gm-Message-State: AOJu0YzhLDLjnGAPxQPCKsY8yeYqGLE3ZNRWegwXXpFulCHhyPTrVW4K
+	Rg29yHVWgVZMVmILPFMznnDyKJlFmSLrQTyWxfmENRIlsWPfu/21uStlV8Wse6Y=
+X-Google-Smtp-Source: AGHT+IExvEWxCnsYH2h23+wvPh84TZru8K3RC4vkEiVnBHm0PLoJE0tb1kZ5gA//qpfMe0NC+XOpoA==
+X-Received: by 2002:ac2:5201:0:b0:511:66f0:8287 with SMTP id a1-20020ac25201000000b0051166f08287mr5401868lfl.28.1707813494190;
+        Tue, 13 Feb 2024 00:38:14 -0800 (PST)
+X-Forwarded-Encrypted: i=1; AJvYcCWYT2BT3oYdNDLBy/GiXKTfN/0dA5ipW2YNTEJc8pvwG+5wpL7oncwzp2v8kNOIbJdFxL/Y2OzEkiv7P+A5EgGrMuMtTJfKnY66sBL8HQWua9UHqywNnKoPcOOScP5fWsMLCdzxyV6reUAbZXUtnkBog/4pIKX6g/xhjfuQf3b9u9z5z6hSTzGNPmFAAn/fZ3lU5Gn43CNMJGytg8+GB9skgS0abVd6eNMaPu1cBGnLZcygtEiEz/r2Psxbgo04HIlyqYwAw3iN/y+58WccH7EqJQJI+pszS2B7+f3cvoPFM07Pda3eWv3uKakSMzKHyR0ls+3ANwAA5lJ/H9DjBdsFP7IbDPqMyOg=
+Received: from ?IPV6:2a01:e0a:982:cbb0:6dfb:5e62:c51f:304b? ([2a01:e0a:982:cbb0:6dfb:5e62:c51f:304b])
+        by smtp.gmail.com with ESMTPSA id 4-20020a05600c028400b00411a0477755sm2857827wmk.9.2024.02.13.00.38.13
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 13 Feb 2024 00:38:13 -0800 (PST)
+Message-ID: <64f65168-c7b0-4365-8d0a-e57b47797d95@linaro.org>
+Date: Tue, 13 Feb 2024 09:38:13 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20240209164825.166800-1-jacopo.mondi@ideasonboard.com>
- <20240209164825.166800-7-jacopo.mondi@ideasonboard.com> <7f7979af-8eda-48cd-a334-bb64ddf5b9b8@linaro.org>
- <myfjzqh4wqa3lf4dcrgaswrarlh7sril6vz3mtnbz646rwxylt@oz75b5j5srot>
- <b55f4d1e-2e77-4539-8d18-8d8f2185b501@linaro.org> <5db2c830-2615-4416-9bb1-18fcd2a3a980@ideasonboard.com>
-In-Reply-To: <5db2c830-2615-4416-9bb1-18fcd2a3a980@ideasonboard.com>
-From: Naushir Patuck <naush@raspberrypi.com>
-Date: Tue, 13 Feb 2024 08:35:39 +0000
-Message-ID: <CAEmqJPo-A4wiAiuCa2pb84UU_rTTo9i5P9Kj6eo78MFEs1Y45w@mail.gmail.com>
-Subject: Re: [PATCH 6/8] media: dt-bindings: Add bindings for Raspberry Pi
- PiSP Back End
-To: Tomi Valkeinen <tomi.valkeinen@ideasonboard.com>
-Cc: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>, 
-	Jacopo Mondi <jacopo.mondi@ideasonboard.com>, 
-	Linux Media Mailing List <linux-media@vger.kernel.org>, Rob Herring <robh+dt@kernel.org>, 
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, 
-	David Plowman <david.plowman@raspberrypi.com>, 
-	Nick Hollinghurst <nick.hollinghurst@raspberrypi.org>, 
-	Dave Stevenson <dave.stevenson@raspberrypi.com>, 
-	Laurent Pinchart <laurent.pinchart@ideasonboard.com>, 
-	Kieran Bingham <kieran.bingham@ideasonboard.com>, Sakari Ailus <sakari.ailus@iki.fi>, 
-	Hans Verkuil <hverkuil-cisco@xs4all.nl>, Mauro Carvalho Chehab <mchehab@kernel.org>, 
-	devicetree@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
+User-Agent: Mozilla Thunderbird
+From: Neil Armstrong <neil.armstrong@linaro.org>
+Reply-To: neil.armstrong@linaro.org
+Subject: Re: [PATCH v2 0/4] Add support for Freebox fbx8am boards
+Content-Language: en-US, fr
+To: Marc Gonzalez <mgonzalez@freebox.fr>,
+ AML <linux-amlogic@lists.infradead.org>, DT <devicetree@vger.kernel.org>
+Cc: Kevin Hilman <khilman@baylibre.com>, Jerome Brunet
+ <jbrunet@baylibre.com>,
+ Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
+ Rob Herring <robh+dt@kernel.org>,
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+ Conor Dooley <conor+dt@kernel.org>,
+ Pierre-Hugues Husson <phhusson@freebox.fr>
+References: <77edaf7e-aeb5-4fc0-8b69-85dcddfd5a58@freebox.fr>
+Autocrypt: addr=neil.armstrong@linaro.org; keydata=
+ xsBNBE1ZBs8BCAD78xVLsXPwV/2qQx2FaO/7mhWL0Qodw8UcQJnkrWmgTFRobtTWxuRx8WWP
+ GTjuhvbleoQ5Cxjr+v+1ARGCH46MxFP5DwauzPekwJUD5QKZlaw/bURTLmS2id5wWi3lqVH4
+ BVF2WzvGyyeV1o4RTCYDnZ9VLLylJ9bneEaIs/7cjCEbipGGFlfIML3sfqnIvMAxIMZrvcl9
+ qPV2k+KQ7q+aXavU5W+yLNn7QtXUB530Zlk/d2ETgzQ5FLYYnUDAaRl+8JUTjc0CNOTpCeik
+ 80TZcE6f8M76Xa6yU8VcNko94Ck7iB4vj70q76P/J7kt98hklrr85/3NU3oti3nrIHmHABEB
+ AAHNKk5laWwgQXJtc3Ryb25nIDxuZWlsLmFybXN0cm9uZ0BsaW5hcm8ub3JnPsLAkQQTAQoA
+ OwIbIwULCQgHAwUVCgkICwUWAgMBAAIeAQIXgBYhBInsPQWERiF0UPIoSBaat7Gkz/iuBQJk
+ Q5wSAhkBAAoJEBaat7Gkz/iuyhMIANiD94qDtUTJRfEW6GwXmtKWwl/mvqQtaTtZID2dos04
+ YqBbshiJbejgVJjy+HODcNUIKBB3PSLaln4ltdsV73SBcwUNdzebfKspAQunCM22Mn6FBIxQ
+ GizsMLcP/0FX4en9NaKGfK6ZdKK6kN1GR9YffMJd2P08EO8mHowmSRe/ExAODhAs9W7XXExw
+ UNCY4pVJyRPpEhv373vvff60bHxc1k/FF9WaPscMt7hlkbFLUs85kHtQAmr8pV5Hy9ezsSRa
+ GzJmiVclkPc2BY592IGBXRDQ38urXeM4nfhhvqA50b/nAEXc6FzqgXqDkEIwR66/Gbp0t3+r
+ yQzpKRyQif3OwE0ETVkGzwEIALyKDN/OGURaHBVzwjgYq+ZtifvekdrSNl8TIDH8g1xicBYp
+ QTbPn6bbSZbdvfeQPNCcD4/EhXZuhQXMcoJsQQQnO4vwVULmPGgtGf8PVc7dxKOeta+qUh6+
+ SRh3vIcAUFHDT3f/Zdspz+e2E0hPV2hiSvICLk11qO6cyJE13zeNFoeY3ggrKY+IzbFomIZY
+ 4yG6xI99NIPEVE9lNBXBKIlewIyVlkOaYvJWSV+p5gdJXOvScNN1epm5YHmf9aE2ZjnqZGoM
+ Mtsyw18YoX9BqMFInxqYQQ3j/HpVgTSvmo5ea5qQDDUaCsaTf8UeDcwYOtgI8iL4oHcsGtUX
+ oUk33HEAEQEAAcLAXwQYAQIACQUCTVkGzwIbDAAKCRAWmrexpM/4rrXiB/sGbkQ6itMrAIfn
+ M7IbRuiSZS1unlySUVYu3SD6YBYnNi3G5EpbwfBNuT3H8//rVvtOFK4OD8cRYkxXRQmTvqa3
+ 3eDIHu/zr1HMKErm+2SD6PO9umRef8V82o2oaCLvf4WeIssFjwB0b6a12opuRP7yo3E3gTCS
+ KmbUuLv1CtxKQF+fUV1cVaTPMyT25Od+RC1K+iOR0F54oUJvJeq7fUzbn/KdlhA8XPGzwGRy
+ 4zcsPWvwnXgfe5tk680fEKZVwOZKIEuJC3v+/yZpQzDvGYJvbyix0lHnrCzq43WefRHI5XTT
+ QbM0WUIBIcGmq38+OgUsMYu4NzLu7uZFAcmp6h8g
+Organization: Linaro Developer Services
+In-Reply-To: <77edaf7e-aeb5-4fc0-8b69-85dcddfd5a58@freebox.fr>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
 
-Hi Tomi,
+Hi Marc,
 
-On Tue, 13 Feb 2024 at 07:28, Tomi Valkeinen
-<tomi.valkeinen@ideasonboard.com> wrote:
->
-> Hi,
->
-> On 12/02/2024 11:05, Krzysztof Kozlowski wrote:
-> > On 12/02/2024 09:50, Jacopo Mondi wrote:
-> >
-> >>>> +properties:
-> >>>> +  compatible:
-> >>>> +    const: raspberrypi,pispbe
-> >>>
-> >>> Nothing more specific? No model name, no version? It's quite generic
-> >>> compatible which in general should not be allowed. I would assume that
-> >>> at least version of Pi could denote some sort of a model... unless
-> >>> version is detectable?
-> >>>
-> >>
-> >> The driver matches on a version register and that should be enough to
-> >> handle quirks which are specific to an IP revision in the driver
-> >> itself.
-> >>
-> >> Considering how minimal the integration with the SoC is (one clock, one
-> >> interrupt and one optional iommu reference) even if we'll get future
-> >> revisions of the SoC I don't think there will be any need to match on
-> >> a dedicated compatible for bindings-validation purposes.
-> >>
-> >> However I understand that to be future-proof it's good practice to
-> >> allow a more flexible scheme, so we can have a generic fallback and a
-> >> revision-specific entry.
-> >>
-> >> Would
-> >>
-> >>    compatible:
-> >>      items:
-> >>        - enum:
-> >>          - raspberrypi,pipspbe-bcm2712
-> >
-> > bcm2712 is manufactured by Broadcom, not Raspberry Pi, so it should be
-> > rather Pi model?
->
-> Indeed, this is something I don't get. If the BE is in the bcm2712, is
-> it not a broadcom IP? Why is raspberrypi in the compatible name at all?
->
-> Naush, Dave?
+On 12/02/2024 18:47, Marc Gonzalez wrote:
+> Add support for Freebox fbx8am boards
+> 
+> Marc Gonzalez (4):
+>    dt-bindings: vendor-prefixes: add freebox
+>    dt-bindings: arm: amlogic: add fbx8am binding
+>    arm64: dts: amlogic: add fbx8am board
+>    arm64: dts: amlogic: add fbx8am DT overlays
+> 
+>   Documentation/devicetree/bindings/arm/amlogic.yaml         |   1 +
+>   Documentation/devicetree/bindings/vendor-prefixes.yaml     |   2 +
 
-The Backend (and Frontend) IP are both owned solely by Raspberry Pi,
-and the BE is instantiated on the BCM2712.  So I think "raspberry" in
-the compatible string is correct here.
+This change doesn't apply on top of either v6.8-rc1 or linux-next, could you rebase on v6.8-rc1 ?
 
->
-> >>        - const: raspberrypi,pispbe
-> >>
-> >> do in this case ?
-> >>
-> >> Also, let's see what RPi think as they are certainly more informed
-> >> than me on what a good revision-specific match could be
-> >
-> > I am fine with auto-detection, though.
-> >
-> > ...
-> >
-> >>>> +
-> >>>> +examples:
-> >>>> +  - |
-> >>>> +    #include <dt-bindings/interrupt-controller/arm-gic.h>
-> >>>> +
-> >>>> +    rpi1 {
-> >>>
-> >>> soc {
-> >>>
-> >>
-> >> Are you sure ? This will only ever live in the 'rp1' node.
-> >
-> > What is "rp1" node? Does not look like a generic name.
->
-> I don't think this is right. RP1 is a separate chip, an IO controller,
-> on raspberrypi 5. BE is not in the RP1.
+Thanks,
+Neil
 
-Oops, missed this.  Yes, I think it should be the "soc" node.
+>   arch/arm64/boot/dts/amlogic/Makefile                       |   8 +
+>   arch/arm64/boot/dts/amlogic/meson-g12a-fbx8am-brcm.dtso    |  35 +++
+>   arch/arm64/boot/dts/amlogic/meson-g12a-fbx8am-realtek.dtso |  25 ++
+>   arch/arm64/boot/dts/amlogic/meson-g12a-fbx8am.dts          | 462 +++++++++++++++++++++++++++++++++
+>   6 files changed, 533 insertions(+)
+>   create mode 100644 arch/arm64/boot/dts/amlogic/meson-g12a-fbx8am-brcm.dtso
+>   create mode 100644 arch/arm64/boot/dts/amlogic/meson-g12a-fbx8am-realtek.dtso
+>   create mode 100644 arch/arm64/boot/dts/amlogic/meson-g12a-fbx8am.dts
+> 
 
-Regards,
-Naush
-
->
->   Tomi
->
 
