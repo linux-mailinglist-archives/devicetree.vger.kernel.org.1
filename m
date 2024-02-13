@@ -1,143 +1,127 @@
-Return-Path: <devicetree+bounces-41418-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-41419-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8350585398F
-	for <lists+devicetree@lfdr.de>; Tue, 13 Feb 2024 19:12:11 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id DDC278539BB
+	for <lists+devicetree@lfdr.de>; Tue, 13 Feb 2024 19:18:46 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id A73891C2100D
-	for <lists+devicetree@lfdr.de>; Tue, 13 Feb 2024 18:12:10 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 9A3B2281DCF
+	for <lists+devicetree@lfdr.de>; Tue, 13 Feb 2024 18:18:45 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6E9C85F56B;
-	Tue, 13 Feb 2024 18:12:06 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C8F0C605BD;
+	Tue, 13 Feb 2024 18:18:41 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="VpaXiTQR"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="ad5JWAs5"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 39E59605A9;
-	Tue, 13 Feb 2024 18:12:05 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9543A5FB8E;
+	Tue, 13 Feb 2024 18:18:41 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1707847926; cv=none; b=q79Hy4CSTPg0NCcAnxypbV2zw1UjgozCjNEMXJPx/pnnIO2UxgE9RG+lo3Lk6CgqSIRYUShXMWhi1oanl5lWFxTJmzjBcnD8eFA+XKf7BjqxzjD4QC+5MJ+bX4iOz0/t/bj9OgKgnkdK+TeaTDIT38WdogNXbK3LDw5hlCUD5Oc=
+	t=1707848321; cv=none; b=C/G0SmK8P5+ilMtPU3VQTKPQkBl1pRsCm1mSf9rR90HDaj6ipp4AhhDK5iPjIMG3uBzlUSsbSI6OOan5Y0i8PUdPegrSOZxxS1O9ql3QLKFcD/JGMVZ9hkF48Qss9hNWqeyCY5K43E2rB9Ue3KITyaSfM4GIhwrQxMOh1LtZ8pg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1707847926; c=relaxed/simple;
-	bh=iKy4z4zbKIkEBLCIqbOOas6HQLerzLx+0jCCkBHBKZQ=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=DbrJ2evyg/xfgSGHgV1cUNjUEby8d6BEKZboE5seiA+zBHovIVGRc25YPfV+wKp0pT3k2IOf1WJNRwv6pwENRFThRmkG0fLqf35KVYgf/5jCvfjdYeoy/D6JUnC4xctbMbXSeP6MsQ3lHi1qK3SBv8iWM489iEqdC5MTFh9WJo8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=VpaXiTQR; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id B4FEBC43399;
-	Tue, 13 Feb 2024 18:12:05 +0000 (UTC)
+	s=arc-20240116; t=1707848321; c=relaxed/simple;
+	bh=SXLQ1pLcws2l0Xu0viSOaOO/O0DM9PSjTl8YaFye7O4=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=OBErasOwtnWqvRNRlOjRtg8ARI2b3TRBi2BcKQkg+3W5gHLeqmC1qmDQpEkqlU0pXSVCBcwhWI9VIY/YBIzzLc8m3cz32QCQy8ICk+Md62sLmeDI1Gv0+ElaN7qvRaqFTqZpC0bYJe/c3lqQ7oRcnRiZv2+xkZ+hEfMvVO7z7jk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=ad5JWAs5; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 57B2BC433C7;
+	Tue, 13 Feb 2024 18:18:38 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1707847925;
-	bh=iKy4z4zbKIkEBLCIqbOOas6HQLerzLx+0jCCkBHBKZQ=;
-	h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-	b=VpaXiTQRZg0ZnhTOPSLiTS1eVkEjhPem+tuLW+dpBxbdW1/zwKPLqoD5WcVrKV9GN
-	 KAmQnYLIKVPtJ4cVaRg0y3MyYaa/HG7w5plt0NU7g1CrfkjiY5C1vMP+0mlPQI9lbc
-	 uCNk4tkjvAtodbZVXzC44ulWdQEC2PdpqUyzjIUfzf3cuO6ddcm/0Yh9e+6gigtUL4
-	 yX1S3zHv5DaXqUO5jyldY1ynnS9ao8JpUr8rOwM1oPlf1v6fzC3yZE34/s/TCczVwS
-	 cavEw7tRNDQiVG5HPZ9+gTjDiBuv4qYNrBpYdwh+sV+RMREETZiT80tldloTh+H/LY
-	 dHqfKk6i/GcIQ==
-Received: by mail-lj1-f179.google.com with SMTP id 38308e7fff4ca-2d0fd07ba8bso26444361fa.1;
-        Tue, 13 Feb 2024 10:12:05 -0800 (PST)
-X-Forwarded-Encrypted: i=1; AJvYcCVcoy0CMjwZYNdrLramCnrNtWb7qQMcFREcQ6Y3L2IibcPmrzAnQI9BUSTJJpDHhVSEOxpGxnOZaT/ndyKmu6yYVb1Zmws3vFWMXW776yU4dGC2007xVBRGZf7bRk8eJPuccVuXdRyG3kWMpOsaZrk6pocdIGuiyRgBlo2GYJLMHzmhlzuKFP+ztsNv4SqbN94ECuw/hSI1KDCfr3y6YtT1hRVZjz1KfwtXgGi7UrO+8txxtPMTRZAp0IISpb4NNgYK
-X-Gm-Message-State: AOJu0YzlTxJ9ZSB0K9C56uq5c4j33vw5vIQYC8R477tSNFoC2Of0mRuO
-	vQpJDX+068svuqvFjxXgubAehU1mm/+/v+GghhAFV3tNUdp3jd4LnaqKRy+tgMUaLItn5c/3xBt
-	RgFJFMQ2laVpwsCh2R6WlG0VsJw==
-X-Google-Smtp-Source: AGHT+IFoI2nIw8HIgZSb58YNqQnldThBVqDuYOeRmmQBRueJPhHiaK9E85g01QPZR04/VBn2+u4CxK0TcwjK6Jta0Xg=
-X-Received: by 2002:a05:651c:b07:b0:2d1:1440:56f0 with SMTP id
- b7-20020a05651c0b0700b002d1144056f0mr30600ljr.15.1707847923891; Tue, 13 Feb
- 2024 10:12:03 -0800 (PST)
+	s=k20201202; t=1707848321;
+	bh=SXLQ1pLcws2l0Xu0viSOaOO/O0DM9PSjTl8YaFye7O4=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=ad5JWAs5XvKh8//hxsQfl8sVNqHO31XPsh+ZF8+QSExCv6zGXvJzPT5IGPP9aRFeN
+	 0wjW8TZGBHZCHFSEVjr6P8iE+daTR0e8NnAluUKjvAT4adPufiTasPE+Uqdv0lbw8U
+	 d6gwYaWj1W00LAzE8ntx72wAfwn62hcHengKnCpS49gz2Jgy/IndIVhyMO7XFGq9E/
+	 xH6t91BnSH9I/tMgtoNLiYl8bA45jzuKULGxgMrEU/u/xgJ2WIkh9kB3oeLT22VJn6
+	 nvL6jqxyg6zvs4HTDRKb359KCTZEDNx4bYMNjFKRFU2MVTB0LH3kjxak2fyFPFRzae
+	 12mz6EtEUxCiw==
+Date: Tue, 13 Feb 2024 18:18:36 +0000
+From: Conor Dooley <conor@kernel.org>
+To: =?utf-8?B?UmFmYcWCIE1pxYJlY2tp?= <zajec5@gmail.com>
+Cc: Matthias Brugger <matthias.bgg@gmail.com>,
+	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Uwe =?iso-8859-1?Q?Kleine-K=F6nig?= <u.kleine-koenig@pengutronix.de>,
+	John Crispin <john@phrozen.org>, linux-pwm@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	linux-mediatek@lists.infradead.org,
+	=?utf-8?B?UmFmYcWCIE1pxYJlY2tp?= <rafal@milecki.pl>
+Subject: Re: [PATCH 1/2] dt-bindings: pwm: mediatek,mt2712: add compatible
+ for MT7988
+Message-ID: <20240213-resource-evaluator-0754cfd5882d@spud>
+References: <20240213164633.25447-1-zajec5@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20240121-sm7125-upstream-v4-0-f7d1212c8ebb@gmail.com>
- <20240121-sm7125-upstream-v4-2-f7d1212c8ebb@gmail.com> <20240212222232.GB2655166-robh@kernel.org>
- <CAA8EJpoymmOBc3CfNHJKBT8BNje_s2a5uGPde3QHYv3vQ97=-Q@mail.gmail.com>
-In-Reply-To: <CAA8EJpoymmOBc3CfNHJKBT8BNje_s2a5uGPde3QHYv3vQ97=-Q@mail.gmail.com>
-From: Rob Herring <robh@kernel.org>
-Date: Tue, 13 Feb 2024 18:11:50 +0000
-X-Gmail-Original-Message-ID: <CAL_JsqLGVBjiYt5tG0GFxxeHmNDD1PgJx3ab-n2x0nHPEaX9iQ@mail.gmail.com>
-Message-ID: <CAL_JsqLGVBjiYt5tG0GFxxeHmNDD1PgJx3ab-n2x0nHPEaX9iQ@mail.gmail.com>
-Subject: Re: [PATCH v4 2/8] dt-bindings: ufs: qcom: Add SC7180 compatible string
-To: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-Cc: David Wronek <davidwronek@gmail.com>, Bjorn Andersson <andersson@kernel.org>, 
-	Konrad Dybcio <konrad.dybcio@linaro.org>, Herbert Xu <herbert@gondor.apana.org.au>, 
-	"David S. Miller" <davem@davemloft.net>, 
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>, Alim Akhtar <alim.akhtar@samsung.com>, 
-	Avri Altman <avri.altman@wdc.com>, Bart Van Assche <bvanassche@acm.org>, Andy Gross <agross@kernel.org>, 
-	Vinod Koul <vkoul@kernel.org>, Kishon Vijay Abraham I <kishon@kernel.org>, 
-	cros-qcom-dts-watchers@chromium.org, linux-arm-msm@vger.kernel.org, 
-	linux-crypto@vger.kernel.org, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org, linux-scsi@vger.kernel.org, 
-	linux-phy@lists.infradead.org, ~postmarketos/upstreaming@lists.sr.ht, 
-	Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: multipart/signed; micalg=pgp-sha256;
+	protocol="application/pgp-signature"; boundary="IwSpqDfDVNcc7RLA"
+Content-Disposition: inline
+In-Reply-To: <20240213164633.25447-1-zajec5@gmail.com>
+
+
+--IwSpqDfDVNcc7RLA
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
 Content-Transfer-Encoding: quoted-printable
 
-On Tue, Feb 13, 2024 at 4:30=E2=80=AFAM Dmitry Baryshkov
-<dmitry.baryshkov@linaro.org> wrote:
->
-> On Tue, 13 Feb 2024 at 00:22, Rob Herring <robh@kernel.org> wrote:
-> >
-> > On Sun, Jan 21, 2024 at 05:57:42PM +0100, David Wronek wrote:
-> > > Document the compatible for the UFS found on SC7180.
-> > >
-> > > Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-> > > Signed-off-by: David Wronek <davidwronek@gmail.com>
-> > > ---
-> > >  Documentation/devicetree/bindings/ufs/qcom,ufs.yaml | 2 ++
-> > >  1 file changed, 2 insertions(+)
-> >
-> > Should have been picked up by SCSI/UFS maintainers, but it
-> > hasn't, so I applied it.
->
-> And it now triggers schema warnings, because sc7180-ufshc has 7 clocks
-> and 1 reg entries.
+On Tue, Feb 13, 2024 at 05:46:32PM +0100, Rafa=C5=82 Mi=C5=82ecki wrote:
+> From: Rafa=C5=82 Mi=C5=82ecki <rafal@milecki.pl>
+>=20
+> MT7988 has on-SoC controller that can control up to 8 PWMs.
 
-And now dropped... Perhaps the dts changes should be too.
+I see a binding and a dts patch, but no driver patch, how come?
 
-Maybe QCom maintainers should require a report of dtbs_check on new
-boards. My comparisons of Linus vs. next warnings often show an
-increase in QCom warnings. Like right now:
+Also, what makes this incompatibly different with the other devices in
+the binding, like the 8183?
 
-linus: arch/arm64/boot/dts/qcom:1990:265
-next: arch/arm64/boot/dts/qcom:1610:298
+Cheers,
+Conor.
 
-First number is total warnings. Second number is unique warnings
-(stripping dtb name). Some of this is just mismatch between schemas
-and dts changes showing up in next, but it doesn't tend to go to 0 as
-the merge window approaches. I've seen this several cycles. All the
-data is available from my CI jobs, and I regularly look at the diff
-with this:
+>=20
+> Signed-off-by: Rafa=C5=82 Mi=C5=82ecki <rafal@milecki.pl>
+> ---
+>  Documentation/devicetree/bindings/pwm/mediatek,mt2712-pwm.yaml | 1 +
+>  1 file changed, 1 insertion(+)
+>=20
+> diff --git a/Documentation/devicetree/bindings/pwm/mediatek,mt2712-pwm.ya=
+ml b/Documentation/devicetree/bindings/pwm/mediatek,mt2712-pwm.yaml
+> index 0fbe8a6469eb..a5c308801619 100644
+> --- a/Documentation/devicetree/bindings/pwm/mediatek,mt2712-pwm.yaml
+> +++ b/Documentation/devicetree/bindings/pwm/mediatek,mt2712-pwm.yaml
+> @@ -24,6 +24,7 @@ properties:
+>            - mediatek,mt7629-pwm
+>            - mediatek,mt7981-pwm
+>            - mediatek,mt7986-pwm
+> +          - mediatek,mt7988-pwm
+>            - mediatek,mt8183-pwm
+>            - mediatek,mt8365-pwm
+>            - mediatek,mt8516-pwm
+> --=20
+> 2.35.3
+>=20
 
-$ less ~/bin/gl-diff-dtb-warnings
-#!/bin/sh
+--IwSpqDfDVNcc7RLA
+Content-Type: application/pgp-signature; name="signature.asc"
 
-[ -z "$1" ] && { echo "Missing arch!"; exit 1; }
+-----BEGIN PGP SIGNATURE-----
 
-arch=3D"$1"
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZcuyewAKCRB4tDGHoIJi
+0uxEAQDGsfDNcKZx9Z0a6eodrNyCrahRr5IkdabX4h7AqUDWPAEA17xUt82LhKde
+tA7TZ/ft3fpvv0XodKAVGbutj7bELQA=
+=znwI
+-----END PGP SIGNATURE-----
 
-job=3D"job-dtbs-check"
-logfile=3D"platform-warnings.log"
-
-# url <branch> <arch>
-url() {
-        local branch=3D"$1"
-        local arch=3D"$2"
-        echo "https://gitlab.com/robherring/linux-dt/-/jobs/artifacts/${bra=
-nch}/raw/${logfile}?job=3D${job}%3A+%5B${arch}%5D"
-
-}
-
-curl -Ls -o orig.log $(url linus ${arch})
-curl -Ls -o next.log $(url next ${arch})
-meld orig.log next.log
+--IwSpqDfDVNcc7RLA--
 
