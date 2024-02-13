@@ -1,154 +1,114 @@
-Return-Path: <devicetree+bounces-41450-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-41451-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9C9D6853BB3
-	for <lists+devicetree@lfdr.de>; Tue, 13 Feb 2024 20:56:07 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id E4DAE853C18
+	for <lists+devicetree@lfdr.de>; Tue, 13 Feb 2024 21:14:04 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 33DB31F24760
-	for <lists+devicetree@lfdr.de>; Tue, 13 Feb 2024 19:56:07 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 9EDEB2864B1
+	for <lists+devicetree@lfdr.de>; Tue, 13 Feb 2024 20:14:03 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3AF5960890;
-	Tue, 13 Feb 2024 19:56:01 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B262A608FD;
+	Tue, 13 Feb 2024 20:14:00 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="sI6Ay+Fi"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="rsySa6xI"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0BBC960885;
-	Tue, 13 Feb 2024 19:56:00 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 821C160EC3;
+	Tue, 13 Feb 2024 20:14:00 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1707854161; cv=none; b=I01lbYL7qk9BswQN99Xn7MiFHMlKzLW38mwtBrkpjD6iAicGbRqDaPCoHGQXVqxxlpDqTkyc6o3u+8n2mzDgEJA3/Iv5i6i0LhMPAs+FjfOzawGAA6QhUHO4Z7lohR0SzuND7uniOH1jNx1YUDc0NWxP4RZf5PdKaEEa6I4A9pU=
+	t=1707855240; cv=none; b=p6n8bwb+bY8SIabZmUZo2afRJzas1K8WHfl3JlmwmzMkQij5DWYY7PlT+Wj12nv1yb6JRwdKUxW06+0pUDcmv9UKwk1FDj9knR1i9/LJH7aL1yreiMVFXsY6lwu06vunfEVR+WHhL4IRUYsrTQBGs8p9EIjLtPtzRBdytB5ZOxc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1707854161; c=relaxed/simple;
-	bh=JbDi2so13IXuNMzobsgV6oJhiET/FBG0pFLl8iib4Q4=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=Xj7HPjltgvD0WgDGdL9mfY/E8M51dJXLB8+8UWTIiqP+ZayXBs6ud+dWExrBknjOQpMXGFYY0b86g0WHNWDJGTDIk+/qSYYvQD0XKeoBFI4BeuSaH13IE85Vb/60dkWDSYWEGwEG9EdO6zLG5uySTQS3VXe/+xPlDrPemY6aOYs=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=sI6Ay+Fi; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 075A8C433F1;
-	Tue, 13 Feb 2024 19:55:57 +0000 (UTC)
+	s=arc-20240116; t=1707855240; c=relaxed/simple;
+	bh=oJqi+TkCFTQfeAF3TAmEu+UcwKS0++cFDBDB9TAcdDA=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=jEIpx/mpZuBP32DJcJmskZ9uQ8tGtJzuYKH50NE99NdgETtQnOBGaER3bIG51EwkVxMtu5StetpzvbS4cFescrxcJ1eWmO7Qf6TK3ye+haYJzrTUw8gNwGP4huXHh74Y/cG2R+w3RVbibO1xE4f+5iF8Ltf/rCfmBghiwtm2uoU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=rsySa6xI; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 9DAF2C433C7;
+	Tue, 13 Feb 2024 20:13:57 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1707854160;
-	bh=JbDi2so13IXuNMzobsgV6oJhiET/FBG0pFLl8iib4Q4=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=sI6Ay+FixXlPKGrjdHtLGfd1Yc/jUTlYrZMTDv7TmEAnHJ/AI3OrciU/aRA22vO5n
-	 3x/h0kFjKE7qpRhMPYlGay4djeujMAadMDxVwIook2WtVTLorsPJWtZBXkC9LOzLo3
-	 0qaL8P8sdXJmGO/RqMvf4vfv5ixL39ahgTz43eO4HncXAPev1cxLnIdLHB5v42bIEy
-	 z3E1pK5meTEYOdyvtkrm5LCitfZnpEvTcEqfhKxN2CMj5n4OXtgJRR6QsbzCbzPsfb
-	 Xag1hUGhFosjhqZTB2oHnQY7I54mgpc5Sk8nQ9bgI1y8APIQj60T69ZuP28sLdn2Pw
-	 pHGSUqaykuwcg==
-Date: Tue, 13 Feb 2024 19:55:54 +0000
-From: Mark Brown <broonie@kernel.org>
-To: James Ogletree <jogletre@opensource.cirrus.com>
-Cc: dmitry.torokhov@gmail.com, robh+dt@kernel.org,
-	krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
-	lee@kernel.org, jeff@labundy.com, patches@opensource.cirrus.com,
-	linux-sound@vger.kernel.org, linux-input@vger.kernel.org,
-	devicetree@vger.kernel.org
-Subject: Re: [PATCH v7 5/5] ASoC: cs40l50: Support I2S streaming to CS40L50
-Message-ID: <2e22f00a-fbf4-4e6d-8aed-dc78f423c735@sirena.org.uk>
-References: <20240212173111.771107-1-jogletre@opensource.cirrus.com>
- <20240212173111.771107-6-jogletre@opensource.cirrus.com>
+	s=k20201202; t=1707855240;
+	bh=oJqi+TkCFTQfeAF3TAmEu+UcwKS0++cFDBDB9TAcdDA=;
+	h=From:To:Cc:Subject:Date:From;
+	b=rsySa6xIVALy8A8vdXWYBEIVuHAhI9HBVDZNQLg+JtlYjWUVfiVVJSG63o7py12SH
+	 jMCKONPxC1IaLaxVnQmfhbucetwhFWPSpUYWHenWfaj412Q5G53e016I7CP4Q3mZMF
+	 wYxSD4TlnfRKCa+3f2Yr4bMdrNNWQAQ2YKaZ4jljvHWeq1WEbvCBJlt4VK4/KCPsZX
+	 2glaNKmDJIuasE/s9o0XtMsVjZ7uEKaVqHZaHIXig6q+J1q9F4ZCFgf+bYVGQ/YR1w
+	 yUX4nhhRdlIw7BTSJ3iaJBLV+E6PU4mLbh8LOODVCb0IZsRKdVUjkUJGd4ltHzoT4q
+	 Hh64pW+l2EzRw==
+From: Conor Dooley <conor@kernel.org>
+To: Lee Jones <lee@kernel.org>
+Cc: conor@kernel.org,
+	Conor Dooley <conor.dooley@microchip.com>,
+	Pavel Machek <pavel@ucw.cz>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Sven Schwermer <sven.schwermer@disruptive-technologies.com>,
+	Christian Marangi <ansuelsmth@gmail.com>,
+	linux-leds@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org
+Subject: [PATCH] dt-bindings: leds: pwm-multicolour: re-allow active-low
+Date: Tue, 13 Feb 2024 20:13:41 +0000
+Message-ID: <20240213-verse-clinic-e6de06e1f18d@spud>
+X-Mailer: git-send-email 2.43.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="wrai+nMFUwI6KUQf"
-Content-Disposition: inline
-In-Reply-To: <20240212173111.771107-6-jogletre@opensource.cirrus.com>
-X-Cookie: Does not include installation.
+X-Developer-Signature: v=1; a=openpgp-sha256; l=1565; i=conor.dooley@microchip.com; h=from:subject:message-id; bh=EBDvz2f7L83vswny9H9PgyID1DoSZ6oLH7Vj9u17jOE=; b=owGbwMvMwCFWscWwfUFT0iXG02pJDKmnz5ZKr2S5F3UlL+9BSMDiAx6plTP+ibWVRv5IWz/JZ Jld4umwjlIWBjEOBlkxRZbE230tUuv/uOxw7nkLM4eVCWQIAxenAEzkyGOGf0oc25gmJJauXLQ4 aLNKEvPUXyahsYz3RHq73eU8Jxz10GP4X8bZfdtzyZ9flk1bjIrsVptFn57Tkxvv8vtdQPPtqnm a7AA=
+X-Developer-Key: i=conor.dooley@microchip.com; a=openpgp; fpr=F9ECA03CF54F12CD01F1655722E2C55B37CF380C
+Content-Transfer-Encoding: 8bit
 
+From: Conor Dooley <conor.dooley@microchip.com>
 
---wrai+nMFUwI6KUQf
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
+active-low was lifted to the common schema for leds, but it went
+unnoticed that the leds-multicolour binding had "additionalProperties:
+false" where the other users had "unevaluatedProperties: false", thereby
+disallowing active-low for multicolour leds. Explicitly permit it again.
 
-On Mon, Feb 12, 2024 at 05:31:11PM +0000, James Ogletree wrote:
+Fixes: c94d1783136e ("dt-bindings: net: phy: Make LED active-low property common")
+Signed-off-by: Conor Dooley <conor.dooley@microchip.com>
+---
 
-> @@ -0,0 +1,311 @@
-> +// SPDX-License-Identifier: GPL-2.0
-> +/*
-> + * CS40L50 Advanced Haptic Driver with waveform memory,
+I'm just assuming this is intentionally restrictive, if its not, we
+could easily just change this to uneval: false.
 
-Please use C++ style for the whole comment to make things look more
-intentional.
+CC: Pavel Machek <pavel@ucw.cz>
+CC: Lee Jones <lee@kernel.org>
+CC: Rob Herring <robh@kernel.org>
+CC: Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
+CC: Conor Dooley <conor+dt@kernel.org>
+CC: Sven Schwermer <sven.schwermer@disruptive-technologies.com>
+CC: Christian Marangi <ansuelsmth@gmail.com>
+CC: linux-leds@vger.kernel.org
+CC: devicetree@vger.kernel.org
+CC: linux-kernel@vger.kernel.org
+---
+ Documentation/devicetree/bindings/leds/leds-pwm-multicolor.yaml | 2 ++
+ 1 file changed, 2 insertions(+)
 
-> +#define CS40L50_PLL_CLK_FRQ_32768	32768
-> +#define CS40L50_PLL_CLK_FRQ_1536000	1536000
-> +#define CS40L50_PLL_CLK_FRQ_3072000	3072000
-> +#define CS40L50_PLL_CLK_FRQ_6144000	6144000
-> +#define CS40L50_PLL_CLK_FRQ_9600000	9600000
-> +#define CS40L50_PLL_CLK_FRQ_12288000	12288000
+diff --git a/Documentation/devicetree/bindings/leds/leds-pwm-multicolor.yaml b/Documentation/devicetree/bindings/leds/leds-pwm-multicolor.yaml
+index 5edfbe347341..a31a202afe5c 100644
+--- a/Documentation/devicetree/bindings/leds/leds-pwm-multicolor.yaml
++++ b/Documentation/devicetree/bindings/leds/leds-pwm-multicolor.yaml
+@@ -41,6 +41,8 @@ properties:
+ 
+           pwm-names: true
+ 
++          active-low: true
++
+           color: true
+ 
+         required:
+-- 
+2.43.0
 
-I'm not sure these defines add greatly to legibility, indeed they make
-me wonder where the translation function is when we take a directly
-specified clock value in...
-
-> +	switch (clk_src) {
-> +	case CS40L50_PLL_REFCLK_BCLK:
-> +		ret = cs40l50_get_clk_config(codec->sysclk_rate, &clk_cfg);
-> +		if (ret)
-> +			return ret;
-> +		break;
-
-We appear to have a set_sysclk() operation but this is saying the sysclk
-is BCLK?  Should the driver be using the bclk_ratio() interface rather
-than set_sysclk(), especially given that the device only appears to
-support either 32.768kHz with no audio or 48kHz and a rather restrictive
-set of multiples of that for the clock?
-
-> +	case CS40L50_PLL_REFCLK_MCLK:
-> +		clk_cfg = CS40L50_PLL_CLK_CFG_32768;
-> +		break;
-
-MCLK is always 32.768kHz?
-
-> +static int cs40l50_set_dai_fmt(struct snd_soc_dai *codec_dai, unsigned int fmt)
-> +{
-> +	struct cs40l50_codec *codec = snd_soc_component_get_drvdata(codec_dai->component);
-> +
-> +	if ((fmt & SND_SOC_DAIFMT_MASTER_MASK) != SND_SOC_DAIFMT_CBS_CFS)
-> +		return -EINVAL;
-
-Please use the modern names, the device is a clock consumer (it would be
-nice if someone from Cirrus could update your drivers...).
-
-> +static struct platform_driver cs40l50_codec_driver = {
-> +	.probe = cs40l50_codec_driver_probe,
-> +	.driver = {
-> +		.name = "cs40l50-codec",
-> +	},
-> +};
-> +module_platform_driver(cs40l50_codec_driver);
-> +
-> +MODULE_DESCRIPTION("ASoC CS40L50 driver");
-> +MODULE_AUTHOR("James Ogletree <james.ogletree@cirrus.com>");
-> +MODULE_LICENSE("GPL");
-
-There's nothing here that ensures the driver autoloads, you need to
-either a MODULE_DEVICE_TABLE or a MODULE_ALIAS.
-
---wrai+nMFUwI6KUQf
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAmXLyUoACgkQJNaLcl1U
-h9BvnAf+OUvtPK0FIEzxx0lWqdFm8SX2xBXfZuhID6vsBzvBncqEv3x0iT0yWtZW
-kYmPdTUmJJ9A3+HkUIFeBnSmNcf6v1sEuW7uk7m77QU0y5PldT2nu3F7mqDaVXUB
-34dS0X0FLQNGoxX3Oe1VCDopoWaRPUKmv4d1zSEZ9tKT+Z+a3/FMjnC5045ezHF8
-IqiPCWIVi/CQpXsmhnLnkN9tRBKE8ADvY1yWP6UFBLW8HU1E7N2fJEVyFo2xvVnV
-9kpOtTajVqCqgH7LhOI2taMDvaXOLLeuQqgqs1p8tQqf7toqznuXbnN3w1rILDVV
-3+QcQXQK7nj/CCNnQKmn2Kf1w8c3Nw==
-=WcOy
------END PGP SIGNATURE-----
-
---wrai+nMFUwI6KUQf--
 
