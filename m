@@ -1,134 +1,165 @@
-Return-Path: <devicetree+bounces-41439-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-41440-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 43E47853AF7
-	for <lists+devicetree@lfdr.de>; Tue, 13 Feb 2024 20:32:27 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id DE791853B03
+	for <lists+devicetree@lfdr.de>; Tue, 13 Feb 2024 20:35:21 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id E8B33287A93
-	for <lists+devicetree@lfdr.de>; Tue, 13 Feb 2024 19:32:25 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 943152898A9
+	for <lists+devicetree@lfdr.de>; Tue, 13 Feb 2024 19:35:20 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 53B21604C9;
-	Tue, 13 Feb 2024 19:32:22 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7E7C8605D9;
+	Tue, 13 Feb 2024 19:35:10 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="bAHFe5L7"
 X-Original-To: devicetree@vger.kernel.org
-Received: from gloria.sntech.de (gloria.sntech.de [185.11.138.130])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 69E3B10A3D;
-	Tue, 13 Feb 2024 19:32:19 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.11.138.130
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3AA0C60263;
+	Tue, 13 Feb 2024 19:35:09 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1707852742; cv=none; b=PhBVXWh+GaM6+GrXHUfJzmzMAHt/KBQCZgpjLfvdCrnftHC/3VPh3gqybV8oG7hDI3LysO0JBXOV4cQ+1Tf+GmIONetHzB0Xwym5iZUtE78dyEFNoAzuzjzH0gWUihkbj4igqfUp1juli7vjt7wkORFZXhfmaRdn+l0eb+N+d5w=
+	t=1707852910; cv=none; b=U+wFv3M1ZQRZbedM83cQvho7GzUlaEz8I3OeEx6rhyNtWqAimcsHq70DZ8k7aAoxMYFRFNV1Kj5gwmwhVpqUwnEUZ/YbfNl5GcagRudQmozAQGD6f2+Nx7evh/+lOByN35fSliDeRxlO/Fke4b9guB7VJ8pJo5l9PLPKJPKWbjY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1707852742; c=relaxed/simple;
-	bh=+dWU2wumMmM+JuL0HBE6MCloJNjkKYefewt62HqiROM=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=SjuqFSVL9E3iyjjaF1fC4NeYBRZb5F39kXfDb5bennmxsHadOwuXB04OgEjQVtcnMspk9ZwYqOhvYlZMPM0/rjeWqaGrxn8t2Af1h6UTxFUTY7Oo0RnjKdY10hWsrvHJMIcEYzAdph8NGWzBun5AFKAtjUsWif8INgLI36wwhMc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=sntech.de; spf=pass smtp.mailfrom=sntech.de; arc=none smtp.client-ip=185.11.138.130
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=sntech.de
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=sntech.de
-Received: from [194.95.143.137] (helo=phil.localnet)
-	by gloria.sntech.de with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-	(Exim 4.94.2)
-	(envelope-from <heiko@sntech.de>)
-	id 1rZyVc-0008Or-10; Tue, 13 Feb 2024 20:32:00 +0100
-From: Heiko Stuebner <heiko@sntech.de>
-To: Rob Herring <robh@kernel.org>, Tim Lunn <tim@feathertop.org>
-Cc: KyuHyuk Lee <lee@kyuhyuk.kr>,
- Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Conor Dooley <conor+dt@kernel.org>, Chris Morgan <macromorgan@hotmail.com>,
- Tianling Shen <cnsztl@gmail.com>, Jagan Teki <jagan@edgeble.ai>,
- Ondrej Jirman <megi@xff.cz>, Andy Yan <andyshrk@163.com>,
- devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org
-Subject:
- Re: [PATCH] dt-bindings: rockchip: Fix Hardkernel ODROID-M1 board bindings
-Date: Tue, 13 Feb 2024 20:31:58 +0100
-Message-ID: <2185016.Icojqenx9y@phil>
-In-Reply-To: <194a0894-a9f9-4c5e-b304-e7278104d8e7@feathertop.org>
-References:
- <20240115145142.6292-1-lee@kyuhyuk.kr> <47795047.XUcTiDjVJD@diego>
- <194a0894-a9f9-4c5e-b304-e7278104d8e7@feathertop.org>
+	s=arc-20240116; t=1707852910; c=relaxed/simple;
+	bh=O2rijBlETPV1mvIsb2fGr/xbJahLcxzbFbT0uIUHBKg=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=rz95cV8kqQJLIcHoqzfCO82OWzq7lFnxGeRPbk5gbCGZDkGCcnPji+It01tnnqHwcogxj8g5Omv6SGZbDcWiASg9VF8qW1WNZz0FwpmVKaaRTGlMNaCvddFQqcIS1/22ebNanA5qX0z8g53idsUqd0PCIuhlTT/hSKEhj62B0r4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=bAHFe5L7; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 70A66C433F1;
+	Tue, 13 Feb 2024 19:35:09 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1707852909;
+	bh=O2rijBlETPV1mvIsb2fGr/xbJahLcxzbFbT0uIUHBKg=;
+	h=From:Subject:Date:List-Id:To:Cc:From;
+	b=bAHFe5L7UR7xP/kCitee/iv9eS0lpinKuT9Yamt03CiuUYMC7YJ8S4Mo8zhHyvvXy
+	 smFxcN0KVo8KGPSRn74E/DsZvyDbmiOw9J/sMQczNXr1h5eq06vGIQiQ323cA/mjOD
+	 AIURazkAWZvo+DmAwMndDAtePLjU7O+a1JwaRdMswSLa8kkV8Wgnnqs61BPbbm8W4S
+	 nx4RoBLQByL4sGoYmlGrGvVSTBTl2O8sOskTgzgaAn+sk0Gwid6QOtaxruZKGNBVYx
+	 3JKFh3NMw7YVWEgSHzVc/H2bHWxr8Yk82Rih7f0/OmBlzs1hXYaWV6p4YCKCR0A8dm
+	 bDrQYULSGpk5Q==
+From: Rob Herring <robh@kernel.org>
+Subject: [PATCH 0/6] dts: Fix dtc interrupt warnings
+Date: Tue, 13 Feb 2024 13:34:24 -0600
+Message-Id: <20240213-arm-dt-cleanups-v1-0-f2dee1292525@kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
-Content-Type: text/plain; charset="iso-8859-1"
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIAEDEy2UC/6tWKk4tykwtVrJSqFYqSi3LLM7MzwNyDHUUlJIzE
+ vPSU3UzU4B8JSMDIxMDI0Nj3cSiXN2UEt3knNTEvNKCYl1zs6QkcyOzlFRLEwsloK6CotS0zAq
+ widGxtbUANsZJ1WEAAAA=
+To: soc@kernel.org, Shawn Guo <shawnguo@kernel.org>, 
+ Sascha Hauer <s.hauer@pengutronix.de>, 
+ Pengutronix Kernel Team <kernel@pengutronix.de>, 
+ Fabio Estevam <festevam@gmail.com>, NXP Linux Team <linux-imx@nxp.com>, 
+ Rob Herring <robh+dt@kernel.org>, 
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, 
+ Conor Dooley <conor+dt@kernel.org>, 
+ Tsahee Zidenberg <tsahee@annapurnalabs.com>, 
+ Antoine Tenart <atenart@kernel.org>, Joel Stanley <joel@jms.id.au>, 
+ Andrew Jeffery <andrew@codeconstruct.com.au>, Ray Jui <rjui@broadcom.com>, 
+ Scott Branden <sbranden@broadcom.com>, 
+ Broadcom internal kernel review list <bcm-kernel-feedback-list@broadcom.com>, 
+ Andrew Lunn <andrew@lunn.ch>, Gregory Clement <gregory.clement@bootlin.com>, 
+ Sebastian Hesselbarth <sebastian.hesselbarth@gmail.com>, 
+ =?utf-8?q?Jonathan_Neusch=C3=A4fer?= <j.neuschaefer@gmx.net>, 
+ Thierry Reding <thierry.reding@gmail.com>, 
+ Jonathan Hunter <jonathanh@nvidia.com>, Stefan Agner <stefan@agner.ch>, 
+ Maxime Coquelin <mcoquelin.stm32@gmail.com>, 
+ Alexandre Torgue <alexandre.torgue@foss.st.com>, 
+ =?utf-8?q?Beno=C3=AEt_Cousson?= <bcousson@baylibre.com>, 
+ Tony Lindgren <tony@atomide.com>, Chanho Min <chanho.min@lge.com>, 
+ Matthias Brugger <matthias.bgg@gmail.com>, 
+ AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>, 
+ Geert Uytterhoeven <geert+renesas@glider.be>, 
+ Magnus Damm <magnus.damm@gmail.com>, Linus Walleij <linusw@kernel.org>, 
+ Imre Kaloz <kaloz@openwrt.org>, Bjorn Andersson <andersson@kernel.org>, 
+ Konrad Dybcio <konrad.dybcio@linaro.org>, 
+ Masahiro Yamada <masahiroy@kernel.org>, 
+ Nathan Chancellor <nathan@kernel.org>, Nicolas Schier <nicolas@fjasle.eu>
+Cc: linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org, 
+ linux-kernel@vger.kernel.org, linux-aspeed@lists.ozlabs.org, 
+ openbmc@lists.ozlabs.org, linux-tegra@vger.kernel.org, 
+ linux-stm32@st-md-mailman.stormreply.com, linux-omap@vger.kernel.org, 
+ linux-mediatek@lists.infradead.org, linux-renesas-soc@vger.kernel.org, 
+ linux-arm-msm@vger.kernel.org, linux-kbuild@vger.kernel.org
+X-Mailer: b4 0.13-dev
 
-Hi Tim,
+I had a branch with most of these changes sitting in my tree for some 
+time. Geert's asking about some errors not getting found prompted me to 
+clean it up and send it out. This series fixes all* interrupt related 
+warnings and enables the check by default. 
 
-Am Mittwoch, 17. Januar 2024, 11:03:26 CET schrieb Tim Lunn:
-> On 1/17/24 06:55, Heiko St=FCbner wrote:
-> > Am Dienstag, 16. Januar 2024, 20:26:05 CET schrieb Rob Herring:
-> >> On Tue, Jan 16, 2024 at 09:31:35AM +0100, Heiko St=FCbner wrote:
-> >>> Am Dienstag, 16. Januar 2024, 08:24:44 CET schrieb Krzysztof Kozlowsk=
-i:
-> >>>> On 16/01/2024 03:00, Tim Lunn wrote:
-> >>>>> On 1/16/24 01:58, Krzysztof Kozlowski wrote:
-> >>>>>> On 15/01/2024 15:51, KyuHyuk Lee wrote:
-> >>>>>>> The vendor in ODROID-M1 is hardkernel, but it was incorrectly wri=
-tten
-> >>>>>>> as rockchip. Fixed the vendor prefix correctly.
-> >>>>>>>
-> >>>>>>> Signed-off-by: KyuHyuk Lee <lee@kyuhyuk.kr>
-> >>>>>>> ---
-> >>>>>>>    Documentation/devicetree/bindings/arm/rockchip.yaml | 2 +-
-> >>>>>>>    1 file changed, 1 insertion(+), 1 deletion(-)
-> >>>>>> You need to start testing your patches. Your last M1 fails as well=
- in
-> >>>>>> multiple places.
-> >>>>>>
-> >>>>>> It does not look like you tested the DTS against bindings. Please =
-run
-> >>>>>> `make dtbs_check W=3D1` (see
-> >>>>>> Documentation/devicetree/bindings/writing-schema.rst or
-> >>>>>> https://www.linaro.org/blog/tips-and-tricks-for-validating-devicet=
-ree-sources-with-the-devicetree-schema/
-> >>>>>> for instructions).
-> >>>>>>
-> >>>>>> The DTS change will break the users, so would be nice to mention t=
-his in
-> >>>>>> its commit msg.
-> >>>>> I notice there are a couple of other boards that incorrectly use
-> >>>>> rockchip as the vendor also:
-> >>>>>
-> >>>>>             - const: rockchip,rk3399-orangepi
-> >>>>>             - const: rockchip,rk3568-bpi-r2pro
-> >>>>>
-> >>>>> Perhaps these should also be fixed at the same time?
-> >>>> What is happening with rockchip boards?
-> >>> Copy-paste stuff ... boards using rockchip,boardname instead of
-> >>> vendor,boardname for their compatible.
-> >>>
-> >>> I do remember us noticing this a number of times on some boards
-> >>> and requesting fixes, but looks like some slipped through.
-> >>>
-> >>> So I guess Tim is suggesting changing the compatible, but with boards
-> >>> being merged a while ago, this would break backwards compatibility.
-> >>> So I guess both the Orange and Banana Pies will need to live with tha=
-t.
-> >> You may get away with it because we generally don't use the names...
-> >>
-> >> Though there are some discussions to start using them to select dtbs by
-> >> bootloaders.
-> > Ah, that's good to know (both points) ... so essentially right now woul=
-d be
-> > a good time to do what Tim suggested, before the names get actual usage.
-> >
-> > @Tim: is that something you'd want to do?
-> >
-> Sure, I will prepare patches and send them out soon.
+SoC maintainers, Can you please take this series directly. 
 
-As I stumbled upon this patch just now, how is that coming along? :-)
+Rob
 
-Thanks
-Heiko
+*There's a few Renesas warnings still Geert said he would fix.
 
+Signed-off-by: Rob Herring <robh@kernel.org>
+---
+Rob Herring (6):
+      arm64: dts: freescale: Disable interrupt_map check
+      arm: dts: Fix dtc interrupt_provider warnings
+      arm64: dts: Fix dtc interrupt_provider warnings
+      arm: dts: Fix dtc interrupt_map warnings
+      arm64: dts: qcom: Fix interrupt-map cell sizes
+      dtc: Enable dtc interrupt_provider check
+
+ arch/arm/boot/dts/amazon/alpine.dtsi                  |  1 -
+ arch/arm/boot/dts/aspeed/aspeed-g4.dtsi               | 14 --------------
+ arch/arm/boot/dts/aspeed/aspeed-g5.dtsi               | 15 +--------------
+ arch/arm/boot/dts/aspeed/aspeed-g6.dtsi               | 18 ++----------------
+ arch/arm/boot/dts/broadcom/bcm-cygnus.dtsi            |  3 +++
+ arch/arm/boot/dts/broadcom/bcm-hr2.dtsi               |  1 +
+ arch/arm/boot/dts/broadcom/bcm-nsp.dtsi               |  2 ++
+ .../boot/dts/intel/ixp/intel-ixp42x-gateway-7001.dts  |  2 ++
+ .../dts/intel/ixp/intel-ixp42x-goramo-multilink.dts   |  2 ++
+ arch/arm/boot/dts/marvell/kirkwood-l-50.dts           |  2 ++
+ arch/arm/boot/dts/nuvoton/nuvoton-wpcm450.dtsi        |  2 ++
+ arch/arm/boot/dts/nvidia/tegra30-apalis-v1.1.dtsi     |  1 -
+ arch/arm/boot/dts/nvidia/tegra30-apalis.dtsi          |  1 -
+ arch/arm/boot/dts/nvidia/tegra30-colibri.dtsi         |  1 -
+ arch/arm/boot/dts/nxp/imx/imx6q-b850v3.dts            |  3 ---
+ arch/arm/boot/dts/nxp/imx/imx6q-bx50v3.dtsi           |  2 +-
+ arch/arm/boot/dts/nxp/imx/imx6qdl-apalis.dtsi         |  1 -
+ arch/arm/boot/dts/nxp/imx/imx6qdl-colibri.dtsi        |  1 -
+ arch/arm/boot/dts/nxp/imx/imx6qdl-emcon.dtsi          |  1 -
+ arch/arm/boot/dts/nxp/imx/imx6qdl-phytec-pfla02.dtsi  |  1 +
+ .../boot/dts/nxp/imx/imx6qdl-phytec-phycore-som.dtsi  |  1 +
+ arch/arm/boot/dts/nxp/imx/imx7d-pico-dwarf.dts        |  1 +
+ arch/arm/boot/dts/nxp/vf/vf610-zii-dev-rev-b.dts      |  1 +
+ arch/arm/boot/dts/qcom/qcom-sdx55.dtsi                |  8 ++++----
+ arch/arm/boot/dts/st/stm32429i-eval.dts               |  1 -
+ arch/arm/boot/dts/st/stm32mp157c-dk2.dts              |  1 -
+ arch/arm/boot/dts/ti/omap/am5729-beagleboneai.dts     |  1 -
+ arch/arm64/boot/dts/amazon/alpine-v2.dtsi             |  1 -
+ arch/arm64/boot/dts/amazon/alpine-v3.dtsi             |  1 -
+ arch/arm64/boot/dts/broadcom/northstar2/ns2.dtsi      |  1 +
+ arch/arm64/boot/dts/broadcom/stingray/stingray.dtsi   |  1 +
+ arch/arm64/boot/dts/freescale/Makefile                | 19 +++++++++++++++++++
+ arch/arm64/boot/dts/lg/lg1312.dtsi                    |  1 -
+ arch/arm64/boot/dts/lg/lg1313.dtsi                    |  1 -
+ arch/arm64/boot/dts/marvell/armada-ap80x.dtsi         |  1 -
+ arch/arm64/boot/dts/mediatek/mt8195-demo.dts          |  1 +
+ arch/arm64/boot/dts/qcom/ipq6018.dtsi                 |  8 ++++----
+ arch/arm64/boot/dts/qcom/ipq8074.dtsi                 | 16 ++++++++--------
+ arch/arm64/boot/dts/renesas/ulcb-kf.dtsi              |  4 ++++
+ scripts/Makefile.lib                                  |  3 +--
+ 40 files changed, 65 insertions(+), 81 deletions(-)
+---
+base-commit: 6613476e225e090cc9aad49be7fa504e290dd33d
+change-id: 20240213-arm-dt-cleanups-76bb726de948
+
+Best regards,
+-- 
+Rob Herring <robh@kernel.org>
 
 
