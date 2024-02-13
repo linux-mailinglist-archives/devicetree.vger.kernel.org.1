@@ -1,94 +1,149 @@
-Return-Path: <devicetree+bounces-41435-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-41436-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id E59A8853AC0
-	for <lists+devicetree@lfdr.de>; Tue, 13 Feb 2024 20:20:14 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 66EB0853ACB
+	for <lists+devicetree@lfdr.de>; Tue, 13 Feb 2024 20:21:12 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 86DF9B27693
-	for <lists+devicetree@lfdr.de>; Tue, 13 Feb 2024 19:20:12 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 16F3A1F281DC
+	for <lists+devicetree@lfdr.de>; Tue, 13 Feb 2024 19:21:12 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 638BF1CF9C;
-	Tue, 13 Feb 2024 19:20:07 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8AEC85FB8F;
+	Tue, 13 Feb 2024 19:20:54 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="sbd0fqH+"
 X-Original-To: devicetree@vger.kernel.org
-Received: from gloria.sntech.de (gloria.sntech.de [185.11.138.130])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C66C110A3A;
-	Tue, 13 Feb 2024 19:20:04 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.11.138.130
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5E1A15812E;
+	Tue, 13 Feb 2024 19:20:54 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1707852007; cv=none; b=pfbTCCWW7j6Ak8lq1gSbA4XhoEVvIfzUzjJGozjaiD9/ZfWofb/OImoT2r3mDxu1ryvspr2FdrE2sTZFPoYSobSNICbRdgpKiGJe56yhU/ibMdzeHqUrlVcYA5tJJuUAE5XusMRdk0+/D/5LrJDBqart5LJ0kmwnvWixoBtAXzA=
+	t=1707852054; cv=none; b=W/fa5R1yVK7pungNQgaFhX6pvvuVv/qF7iAQ31ifm1QWW0Dwlr2l+MYNw+DowaboZJqJP57R/vVZ9c/Ucv30O/AAsoMvejlcPnVRJ8lBoZ0zWfjmrb3pc1HGvM4iK3/VzjIEXokc15+yqfTGOh917qKBGPU62hkBI4tQpcIlHwc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1707852007; c=relaxed/simple;
-	bh=L6CFmHzcsf+jEGi+d8zlHyKMcEu6Clt494lEjZjuXkw=;
-	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=Zphjq+hoR3T0ZXY5fbKdPaGC6WXtIDT9KssgPmxWxR8/w/of9j22OzZNk552xBZlijutx6Nlv2482mNiu9qI+aLGUZRYPKcbRGTwKsBUxoJ6qbTPJOm1FreVmdVO2MPdaZsxPj/r9+gdBQ+rapefkVKzDkuLsnD/SrjaD5SxzkQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=sntech.de; spf=pass smtp.mailfrom=sntech.de; arc=none smtp.client-ip=185.11.138.130
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=sntech.de
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=sntech.de
-Received: from [194.95.143.137] (helo=phil.dip.tu-dresden.de)
-	by gloria.sntech.de with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-	(Exim 4.94.2)
-	(envelope-from <heiko@sntech.de>)
-	id 1rZyK2-0008K1-KX; Tue, 13 Feb 2024 20:20:02 +0100
-From: Heiko Stuebner <heiko@sntech.de>
-To: robh+dt@kernel.org,
-	Johan Jonker <jbx6244@gmail.com>
-Cc: Heiko Stuebner <heiko@sntech.de>,
-	linux-arm-kernel@lists.infradead.org,
-	daniel@ffwll.ch,
-	linux-kernel@vger.kernel.org,
-	markyao0591@gmail.com,
-	devicetree@vger.kernel.org,
-	maarten.lankhorst@linux.intel.com,
-	dri-devel@lists.freedesktop.org,
-	conor+dt@kernel.org,
-	hjc@rock-chips.com,
-	linux-rockchip@lists.infradead.org,
-	airlied@gmail.com,
-	andy.yan@rock-chips.com,
-	mripard@kernel.org,
-	krzysztof.kozlowski+dt@linaro.org,
-	tzimmermann@suse.de
-Subject: Re: (subset) [PATCH v2 1/6] dt-bindings: display: rockchip: rockchip,dw-hdmi: remove port property
-Date: Tue, 13 Feb 2024 20:20:01 +0100
-Message-Id: <170785199080.3350387.14199175297568955666.b4-ty@sntech.de>
-X-Mailer: git-send-email 2.39.2
-In-Reply-To: <a493c65e-7cf9-455f-95d5-8c98cad35710@gmail.com>
-References: <a493c65e-7cf9-455f-95d5-8c98cad35710@gmail.com>
+	s=arc-20240116; t=1707852054; c=relaxed/simple;
+	bh=62+TMzhu0tgv3ZB2azIQJRCmQ4u6vlGyJMQahNrc4uk=;
+	h=Date:Content-Type:MIME-Version:From:To:Cc:In-Reply-To:References:
+	 Message-Id:Subject; b=ofCL8ariIGf07bjbu+6hORcn6HuaQKileR8574bdXxQS6zVIsgT3IlGL3RiUCKlFwlvbyfjJsLNdmF1GsOtmJONphhdV+iYNV4iBx0d9ra36puOKMu/arY3Xr5ofdUWvvkIT12wfW1H7cYjRv4Qbkj8WSPw2b62CrYYmTq+EO9E=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=sbd0fqH+; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id EA009C43390;
+	Tue, 13 Feb 2024 19:20:53 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1707852054;
+	bh=62+TMzhu0tgv3ZB2azIQJRCmQ4u6vlGyJMQahNrc4uk=;
+	h=Date:From:To:Cc:In-Reply-To:References:Subject:From;
+	b=sbd0fqH+8fvVZaS1HuE3/gKHgknB/hO//wWuduGJaEFz/hazFvc04ACkBmNqNtx8n
+	 H7mDZmu6KSOn/t5P4Msus8XXa3SnUz6qf55F1iS7YTgf1Zyrm3TPA+gr8bQjxrF7Pa
+	 E42YrmQ6GXCnMHkxl3xqCXtD9+mq+dOKgZvN8HsLGiBTtTDcUTyOZF/JBOnXi2i7Np
+	 hfKv02rU9a4xvwksbgoxZUExV3ZCoLIi9dg09ID5eb2L9nZMsOdPWCKx1LRTldneai
+	 OA0oYU1Hz6GbJiT7vCCbaG9dNXpQ92iO82K4wIHVTHRzL3Vm0oePYTO3CwsG0dcKlp
+	 6YbKhq522Lj6w==
+Date: Tue, 13 Feb 2024 13:20:52 -0600
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
+From: Rob Herring <robh@kernel.org>
+To: Tanmay Shah <tanmay.shah@amd.com>
+Cc: andersson@kernel.org, robh+dt@kernel.org, devicetree@vger.kernel.org, 
+ krzysztof.kozlowski+dt@linaro.org, linux-remoteproc@vger.kernel.org, 
+ michal.simek@amd.com, Radhey Shyam Pandey <radhey.shyam.pandey@amd.com>, 
+ ben.levinsky@amd.com, linux-kernel@vger.kernel.org, 
+ mathieu.poirier@linaro.org, conor+dt@kernel.org, 
+ linux-arm-kernel@lists.infradead.org
+In-Reply-To: <20240213175450.3097308-3-tanmay.shah@amd.com>
+References: <20240213175450.3097308-1-tanmay.shah@amd.com>
+ <20240213175450.3097308-3-tanmay.shah@amd.com>
+Message-Id: <170785205177.2155555.1311787541370066483.robh@kernel.org>
+Subject: Re: [PATCH v10 2/4] dt-bindings: remoteproc: add Tightly Coupled
+ Memory (TCM) bindings
 
-On Wed, 31 Jan 2024 22:14:29 +0100, Johan Jonker wrote:
-> The hdmi-connector nodes are now functional and the new way to model
-> hdmi ports nodes with both in and output port subnodes. Unfortunately
-> with the conversion to YAML the old method with only an input port node
-> was used. Later the new method was also added to the binding.
-> A binding must be unambiguously, so remove the old port property
-> entirely and make port@0 and port@1 a requirement as all
-> upstream dts files are updated as well and because checking
-> deprecated stuff is a bit pointless.
-> Update the example to avoid use of the removed property.
+
+On Tue, 13 Feb 2024 09:54:48 -0800, Tanmay Shah wrote:
+> From: Radhey Shyam Pandey <radhey.shyam.pandey@amd.com>
 > 
-> [...]
+> Introduce bindings for TCM memory address space on AMD-xilinx Zynq
+> UltraScale+ platform. It will help in defining TCM in device-tree
+> and make it's access platform agnostic and data-driven.
+> 
+> Tightly-coupled memories(TCMs) are low-latency memory that provides
+> predictable instruction execution and predictable data load/store
+> timing. Each Cortex-R5F processor contains two 64-bit wide 64 KB memory
+> banks on the ATCM and BTCM ports, for a total of 128 KB of memory.
+> 
+> The TCM resources(reg, reg-names and power-domain) are documented for
+> each TCM in the R5 node. The reg and reg-names are made as required
+> properties as we don't want to hardcode TCM addresses for future
+> platforms and for zu+ legacy implementation will ensure that the
+> old dts w/o reg/reg-names works and stable ABI is maintained.
+> 
+> It also extends the examples for TCM split and lockstep modes.
+> 
+> Signed-off-by: Radhey Shyam Pandey <radhey.shyam.pandey@amd.com>
+> Signed-off-by: Tanmay Shah <tanmay.shah@amd.com>
+> ---
+> 
+> Changes in v10:
+>   - modify number of "reg", "reg-names" and "power-domains" entries
+>     based on cluster mode
+>   - Add extra optional atcm and btcm in "reg" property for lockstep mode
+>   - Add "reg-names" for extra optional atcm and btcm for lockstep mode
+>   - Drop previous Ack as bindings has new change
+> 
+> Changes in v9:
+>   - None
+> Changes in v8:
+>   - None
+> Changes in v7:
+>   - None
+> Changes in v6:
+>   - None
+> Changes in v5:
+>   - None
+> 
+> Changes in v4:
+>   - Use address-cells and size-cells value 2
+>   - Modify ranges property as per new value of address-cells
+>     and size-cells
+>   - Modify child node "reg" property accordingly
+>   - Remove previous ack for further review
+> 
+> v4 link: https://lore.kernel.org/all/20230829181900.2561194-2-tanmay.shah@amd.com/
+> 
+>  .../remoteproc/xlnx,zynqmp-r5fss.yaml         | 192 ++++++++++++++++--
+>  1 file changed, 170 insertions(+), 22 deletions(-)
+> 
 
-Applied, thanks!
+My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
+on your patch (DT_CHECKER_FLAGS is new in v5.13):
 
-[1/6] dt-bindings: display: rockchip: rockchip,dw-hdmi: remove port property
-      commit: 0d192c4c72ce00ab07a6b27f068607e21f754a46
-[2/6] dt-bindings: display: rockchip,dw-hdmi: add power-domains property
-      commit: 6b1f93ea345947c94bf3a7a6e668a2acfd310918
+yamllint warnings/errors:
+./Documentation/devicetree/bindings/remoteproc/xlnx,zynqmp-r5fss.yaml:118:13: [warning] wrong indentation: expected 10 but found 12 (indentation)
 
-Best regards,
--- 
-Heiko Stuebner <heiko@sntech.de>
+dtschema/dtc warnings/errors:
+
+doc reference errors (make refcheckdocs):
+
+See https://patchwork.ozlabs.org/project/devicetree-bindings/patch/20240213175450.3097308-3-tanmay.shah@amd.com
+
+The base for the series is generally the latest rc1. A different dependency
+should be noted in *this* patch.
+
+If you already ran 'make dt_binding_check' and didn't see the above
+error(s), then make sure 'yamllint' is installed and dt-schema is up to
+date:
+
+pip3 install dtschema --upgrade
+
+Please check and re-submit after running the above command yourself. Note
+that DT_SCHEMA_FILES can be set to your schema file to speed up checking
+your schema. However, it must be unset to test all examples with your schema.
+
 
