@@ -1,145 +1,172 @@
-Return-Path: <devicetree+bounces-41221-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-41220-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 94F4E852D29
-	for <lists+devicetree@lfdr.de>; Tue, 13 Feb 2024 10:57:21 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id D1249852D12
+	for <lists+devicetree@lfdr.de>; Tue, 13 Feb 2024 10:54:10 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 477851F2907E
-	for <lists+devicetree@lfdr.de>; Tue, 13 Feb 2024 09:57:21 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 017CC1C274A0
+	for <lists+devicetree@lfdr.de>; Tue, 13 Feb 2024 09:54:10 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4C2722232D;
-	Tue, 13 Feb 2024 09:56:26 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4B16E383B4;
+	Tue, 13 Feb 2024 09:51:02 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=maquefel.me header.i=@maquefel.me header.b="tHSpq6lL"
+	dkim=pass (2048-bit key) header.d=arndb.de header.i=@arndb.de header.b="CQiIePV5";
+	dkim=pass (2048-bit key) header.d=messagingengine.com header.i=@messagingengine.com header.b="ImQV3ToI"
 X-Original-To: devicetree@vger.kernel.org
-Received: from forward500b.mail.yandex.net (forward500b.mail.yandex.net [178.154.239.144])
+Received: from wfhigh6-smtp.messagingengine.com (wfhigh6-smtp.messagingengine.com [64.147.123.157])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6AD0924B23;
-	Tue, 13 Feb 2024 09:56:21 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=178.154.239.144
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 89EB1381BF;
+	Tue, 13 Feb 2024 09:50:59 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=64.147.123.157
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1707818186; cv=none; b=QI7nBdzTdNc4W0bA9jmM5hHsnvmhg/HKtoT/6Mk+y/tZUirFBIeCclB//pfVQ611ADmfF7v6xH9FzT8c58o77YDIlvvwYWCrkLXTnt6FAZ74wFdfDMe8h/q/aE3diqXcuKWLcwh26l9aMUT/sBRi8udWRZEXGW67LNluUaYk9tM=
+	t=1707817862; cv=none; b=f3/FXloa1OMlncWJqcPoHnP0bIVFWG6qJ7P8wHX/pdX+Pf1fwSXXidTPLWIsLkca0gUdkDj0J1w5W8VQvIAq066AThesPZjKuj8rkHnUq7nbdq69rDq359yO5cehv4TXlM0ZwSiGy4jrKeopW8nzH840L/aavFD2mQdCnSuomOo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1707818186; c=relaxed/simple;
-	bh=BNSX9WQo4fdZixPgrChnndimSE1LeUip7SbHQG3EiRk=;
-	h=Message-ID:Subject:From:To:Cc:Date:In-Reply-To:References:
-	 Content-Type:MIME-Version; b=lnVHOfnO/tsUVI4Dqx9fzVPhFcYxDlxJLDe7xuZgHe1Ld7yh54uLGNwD6EeINwBugvtkNZw1W36Tt2BL9uErg9apphFAj82+QqqWfQ50RFTi9oTJYxTD/7iT7t31xoNP/L1/fI9zk6scWUsKoD/hRAkc1QDXr2UYPgfZ6FdX6Yc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=maquefel.me; spf=pass smtp.mailfrom=maquefel.me; dkim=pass (1024-bit key) header.d=maquefel.me header.i=@maquefel.me header.b=tHSpq6lL; arc=none smtp.client-ip=178.154.239.144
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=maquefel.me
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=maquefel.me
-Received: from mail-nwsmtp-smtp-production-main-91.myt.yp-c.yandex.net (mail-nwsmtp-smtp-production-main-91.myt.yp-c.yandex.net [IPv6:2a02:6b8:c12:3019:0:640:a0d4:0])
-	by forward500b.mail.yandex.net (Yandex) with ESMTPS id 9CCD561154;
-	Tue, 13 Feb 2024 12:48:16 +0300 (MSK)
-Received: by mail-nwsmtp-smtp-production-main-91.myt.yp-c.yandex.net (smtp/Yandex) with ESMTPSA id Amja449YvOs0-Ohe7AJJt;
-	Tue, 13 Feb 2024 12:48:14 +0300
-X-Yandex-Fwd: 1
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=maquefel.me; s=mail;
-	t=1707817694; bh=BNSX9WQo4fdZixPgrChnndimSE1LeUip7SbHQG3EiRk=;
-	h=References:Date:In-Reply-To:Cc:To:From:Subject:Message-ID;
-	b=tHSpq6lLbJRzMUl5S+AQdH+yFWqgLs5dAvYesqMe255xcZfmaDSgVPRqcA1r0bzrw
-	 TkfIPDSLR62NkdUlPI+s/lCQcEhokM08txNkwukmx6USimZGbDh66EHaLNxEHxEu27
-	 3BeQU0snEq2nQPzdmEknsfQ0A1hkYVGjcAylct3Y=
-Authentication-Results: mail-nwsmtp-smtp-production-main-91.myt.yp-c.yandex.net; dkim=pass header.i=@maquefel.me
-Message-ID: <84444657b86c7a25ea2e6031ea85978917f33342.camel@maquefel.me>
-Subject: Re: [PATCH v7 00/39] ep93xx device tree conversion
-From: Nikita Shubin <nikita.shubin@maquefel.me>
-To: andy.shevchenko@gmail.com, Vinod Koul <vkoul@kernel.org>, Stephen Boyd
-	 <sboyd@kernel.org>
-Cc: Hartley Sweeten <hsweeten@visionengravers.com>, Alexander Sverdlin
- <alexander.sverdlin@gmail.com>, Russell King <linux@armlinux.org.uk>,
- Lukasz Majewski <lukma@denx.de>, Linus Walleij <linus.walleij@linaro.org>,
- Bartosz Golaszewski <brgl@bgdev.pl>, Andy Shevchenko <andy@kernel.org>,
- Michael Turquette <mturquette@baylibre.com>, Stephen Boyd
- <sboyd@kernel.org>, Sebastian Reichel <sre@kernel.org>, Rob Herring
- <robh+dt@kernel.org>, Krzysztof Kozlowski
- <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, 
- Vinod Koul <vkoul@kernel.org>, Wim Van Sebroeck <wim@linux-watchdog.org>,
- Guenter Roeck <linux@roeck-us.net>, Thierry Reding
- <thierry.reding@gmail.com>, Uwe =?ISO-8859-1?Q?Kleine-K=F6nig?=
- <u.kleine-koenig@pengutronix.de>, Mark Brown <broonie@kernel.org>, "David
- S. Miller" <davem@davemloft.net>, Eric Dumazet <edumazet@google.com>, Jakub
- Kicinski <kuba@kernel.org>,  Paolo Abeni <pabeni@redhat.com>, Miquel Raynal
- <miquel.raynal@bootlin.com>, Richard Weinberger <richard@nod.at>, Vignesh
- Raghavendra <vigneshr@ti.com>, Damien Le Moal <dlemoal@kernel.org>, Sergey
- Shtylyov <s.shtylyov@omp.ru>, Dmitry Torokhov <dmitry.torokhov@gmail.com>,
- Liam Girdwood <lgirdwood@gmail.com>, Jaroslav Kysela <perex@perex.cz>,
- Takashi Iwai <tiwai@suse.com>, Ralf Baechle <ralf@linux-mips.org>,  "Wu,
- Aaron" <Aaron.Wu@analog.com>, Lee Jones <lee@kernel.org>, Olof Johansson
- <olof@lixom.net>, Niklas Cassel <cassel@kernel.org>,
- linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org, 
- linux-gpio@vger.kernel.org, linux-clk@vger.kernel.org,
- linux-pm@vger.kernel.org,  devicetree@vger.kernel.org,
- dmaengine@vger.kernel.org,  linux-watchdog@vger.kernel.org,
- linux-pwm@vger.kernel.org,  linux-spi@vger.kernel.org,
- netdev@vger.kernel.org, linux-mtd@lists.infradead.org, 
- linux-ide@vger.kernel.org, linux-input@vger.kernel.org, 
- linux-sound@vger.kernel.org, Arnd Bergmann <arnd@arndb.de>, Andy Shevchenko
- <andriy.shevchenko@intel.com>, Bartosz Golaszewski
- <bartosz.golaszewski@linaro.org>, Krzysztof Kozlowski
- <krzysztof.kozlowski@linaro.org>, Andy Shevchenko
- <andriy.shevchenko@linux.intel.com>, Andrew Lunn <andrew@lunn.ch>
-Date: Tue, 13 Feb 2024 12:48:11 +0300
-In-Reply-To: <Zb_DfISgoNyTKWMp@surfacebook.localdomain>
-References: <20240118-ep93xx-v7-0-d953846ae771@maquefel.me>
-	 <Zb_DfISgoNyTKWMp@surfacebook.localdomain>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-User-Agent: Evolution 3.48.4 
+	s=arc-20240116; t=1707817862; c=relaxed/simple;
+	bh=du5IWnetsbefdXGP7RTt9oa3EydqVOtEqT7mUA/DKPM=;
+	h=MIME-Version:Message-Id:In-Reply-To:References:Date:From:To:Cc:
+	 Subject:Content-Type; b=pLjZDJJc+DrAzTaGiAYrRdKL8+yVBAcvz/licZYCh2Fkyd6lBioAnRGm8dx5GDoCzd/LLQa8TAG5aiwtSdX5o96WvJMryCI8G2z6ILEBdXCqqGKsKS8IpYb/am0w3RYGBdQOlmUNoM446VB2OXEWyBEucNQHSpxz8aMo0lAXNYM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arndb.de; spf=pass smtp.mailfrom=arndb.de; dkim=pass (2048-bit key) header.d=arndb.de header.i=@arndb.de header.b=CQiIePV5; dkim=pass (2048-bit key) header.d=messagingengine.com header.i=@messagingengine.com header.b=ImQV3ToI; arc=none smtp.client-ip=64.147.123.157
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arndb.de
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=arndb.de
+Received: from compute5.internal (compute5.nyi.internal [10.202.2.45])
+	by mailfhigh.west.internal (Postfix) with ESMTP id CD29E1800092;
+	Tue, 13 Feb 2024 04:50:56 -0500 (EST)
+Received: from imap51 ([10.202.2.101])
+  by compute5.internal (MEProxy); Tue, 13 Feb 2024 04:50:58 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=arndb.de; h=cc
+	:cc:content-type:content-type:date:date:from:from:in-reply-to
+	:in-reply-to:message-id:mime-version:references:reply-to:subject
+	:subject:to:to; s=fm3; t=1707817856; x=1707904256; bh=lHYsTK1bfv
+	xaz8ZLnxtMiOszwDEbZ3X5lHEYDDbn/s4=; b=CQiIePV5jYKolbhb+hZq6ezei6
+	Wtv+RrejZ+2KBZJy8yq2wk1h/pKErRHX/0afATPyG8zEIuqVvH9xMzssrPftbTri
+	4P/cU32EASZA4yUv/4HOUQXkxfl5tjyJH2SzluKJ/RHCgzIt4JTOLYO4L0UdXjft
+	V0ztrpdwdQXyGvGArBPS71XPPYRcHMoE3V+jpzpixBVZA+3qN+aGasQrhW4eeD5p
+	oqOIvFyKpDC+kBOd45QmnOnqZw2oRpsZbAtX1QA1QOujVs/TJKhy57itdo1r2EwR
+	knQXmQ0CV+PlVcgUPzySY5pIL1mwUqWff6ioVUP0+/d4JEdOtnx79ci35EGg==
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
+	messagingengine.com; h=cc:cc:content-type:content-type:date:date
+	:feedback-id:feedback-id:from:from:in-reply-to:in-reply-to
+	:message-id:mime-version:references:reply-to:subject:subject:to
+	:to:x-me-proxy:x-me-proxy:x-me-sender:x-me-sender:x-sasl-enc; s=
+	fm3; t=1707817856; x=1707904256; bh=lHYsTK1bfvxaz8ZLnxtMiOszwDEb
+	Z3X5lHEYDDbn/s4=; b=ImQV3ToIG2iFqj7LvNzhWlLy0JJpcQkwHH8CPhHvPF5M
+	fcGH6tgJDeM7mdornTeX3N/rp2b5+IiQrDku4RKRz4eibn98+wIbH95xgHOYhUhP
+	KRFXplMeo6lmUMEhxttLPiKIw38XzeOvdhDup6drNVtf597M1NzwUA5gKRUlDCkr
+	qNVPENfarayqRCd7xfPZFs0ZDHKsyHxEGWZllgpSGqgcloLNb0WexWxnkSzNNnSu
+	CR6Sjo5tjhX4KM9YlzTJRRBICQWPh76iOok3n6w51prR+0qx8iDZp/VS2PWmzaZR
+	BMG8EfBslDyJB7EPKvHhRbq3Z8bwZeGDgHobwJWF1A==
+X-ME-Sender: <xms:gDvLZfHHHEVOk9EVqJDdwZqjypKSMXu9MV_5mkY0WkB9kufUQ705YQ>
+    <xme:gDvLZcXDBeElJo3nFjgPksrliMVjZBMpXeJLcJuqKAWcu7nRNkZV8VJNTd7nTolTe
+    pLUeSVR2_KW5de04J4>
+X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedvledrudehgddtjecutefuodetggdotefrodftvf
+    curfhrohhfihhlvgemucfhrghsthforghilhdpqfgfvfdpuffrtefokffrpgfnqfghnecu
+    uegrihhlohhuthemuceftddtnecusecvtfgvtghiphhivghnthhsucdlqddutddtmdenuc
+    fjughrpefofgggkfgjfhffhffvvefutgesthdtredtreertdenucfhrhhomhepfdetrhhn
+    ugcuuegvrhhgmhgrnhhnfdcuoegrrhhnugesrghrnhgusgdruggvqeenucggtffrrghtth
+    gvrhhnpeffheeugeetiefhgeethfejgfdtuefggeejleehjeeutefhfeeggefhkedtkeet
+    ffenucevlhhushhtvghrufhiiigvpedtnecurfgrrhgrmhepmhgrihhlfhhrohhmpegrrh
+    hnugesrghrnhgusgdruggv
+X-ME-Proxy: <xmx:gDvLZRKxU0SaVK-LVEq_Aihz8OxEqONY9ITHaoAiKT5BTqsPiY4wtQ>
+    <xmx:gDvLZdH8M2Z93jqDfmKi8QDO-FyZk_FbrJWJw8op6zgsZzF2Py4LXw>
+    <xmx:gDvLZVUvNsTvd9l76WHdGPV-aKNFdj4BTkqcK_9Uqm0wnjIxdzLH_w>
+    <xmx:gDvLZafzJYs9f85v-Xjcw_OAiHiVON9oOLpKGDs687AFRn7oe_C44YxTmoQ>
+Feedback-ID: i56a14606:Fastmail
+Received: by mailuser.nyi.internal (Postfix, from userid 501)
+	id F075FB6008D; Tue, 13 Feb 2024 04:50:55 -0500 (EST)
+X-Mailer: MessagingEngine.com Webmail Interface
+User-Agent: Cyrus-JMAP/3.11.0-alpha0-144-ge5821d614e-fm-20240125.002-ge5821d61
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+Message-Id: <7723c9f1-fda7-4dc9-bb5a-e12d4908becf@app.fastmail.com>
+In-Reply-To: <1707024641-22460-9-git-send-email-quic_taozha@quicinc.com>
+References: <1707024641-22460-1-git-send-email-quic_taozha@quicinc.com>
+ <1707024641-22460-9-git-send-email-quic_taozha@quicinc.com>
+Date: Tue, 13 Feb 2024 10:50:35 +0100
+From: "Arnd Bergmann" <arnd@arndb.de>
+To: "Tao Zhang" <quic_taozha@quicinc.com>,
+ "Mathieu Poirier" <mathieu.poirier@linaro.org>,
+ "Suzuki K Poulose" <suzuki.poulose@arm.com>,
+ "Alexander Shishkin" <alexander.shishkin@linux.intel.com>,
+ "Konrad Dybcio" <konradybcio@gmail.com>,
+ "Mike Leach" <mike.leach@linaro.org>, "Rob Herring" <robh+dt@kernel.org>,
+ "Krzysztof Kozlowski" <krzysztof.kozlowski+dt@linaro.org>,
+ regressions@lists.linux.dev
+Cc: "Mao Jinlong" <quic_jinlmao@quicinc.com>, "Leo Yan" <leo.yan@linaro.org>,
+ "Greg Kroah-Hartman" <gregkh@linuxfoundation.org>,
+ coresight@lists.linaro.org, linux-arm-kernel@lists.infradead.org,
+ linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+ "Tingwei Zhang" <quic_tingweiz@quicinc.com>,
+ "Yuanfang Zhang" <quic_yuanfang@quicinc.com>,
+ "Trilok Soni" <quic_tsoni@quicinc.com>,
+ "Song Chai" <quic_songchai@quicinc.com>, linux-arm-msm@vger.kernel.org,
+ "Bjorn Andersson" <andersson@kernel.org>
+Subject: Re: [PATCH v7 08/10] coresight-tpdm: Add timestamp control register support
+ for the CMB
+Content-Type: text/plain
 
-On Sun, 2024-02-04 at 19:03 +0200, andy.shevchenko@gmail.com wrote:
-> Thu, Jan 18, 2024 at 11:20:43AM +0300, Nikita Shubin kirjoitti:
-> > The goal is to recieve ACKs for all patches in series to merge it
-> > via Arnd branch.
-> >=20
-> > No major changes since last version (v6) all changes are cometic.
-> >=20
-> > Following patches require attention from Stephen Boyd, as they were
-> > converted to aux_dev as suggested:
-> >=20
-> > - ARM: ep93xx: add regmap aux_dev
-> > - clk: ep93xx: add DT support for Cirrus EP93xx
-> >=20
-> > Following patches require attention from Vinod Koul:
-> >=20
-> > - dma: cirrus: Convert to DT for Cirrus EP93xx
-> > - dma: cirrus: remove platform code
-> >=20
-> > Following patches are dropped:
-> > - dt-bindings: wdt: Add ts72xx (pulled requested by Wim Van
-> > Sebroeck)
-> >=20
-> > Big Thanks to Andy Shevchenko once again.
->=20
-> You're welcome!
->=20
+On Sun, Feb 4, 2024, at 06:30, Tao Zhang wrote:
 
-Thank you Andy!
+> @@ -910,7 +1014,7 @@ static struct attribute *tpdm_dsb_patt_attrs[] = {
+>  	DSB_PATT_MASK_ATTR(5),
+>  	DSB_PATT_MASK_ATTR(6),
+>  	DSB_PATT_MASK_ATTR(7),
+> -	&dev_attr_enable_ts.attr,
+> +	DSB_PATT_ENABLE_TS,
+>  	&dev_attr_set_type.attr,
+>  	NULL,
+>  };
+> @@ -964,6 +1068,7 @@ static struct attribute *tpdm_cmb_patt_attrs[] = {
+>  	CMB_PATT_ATTR(1),
+>  	CMB_PATT_MASK_ATTR(0),
+>  	CMB_PATT_MASK_ATTR(1),
+> +	CMB_PATT_ENABLE_TS,
+>  	NULL,
+>  };
+> 
+> @@ -158,6 +175,10 @@
+>  		tpdm_simple_dataset_rw(tpmr##nr,		\
+>  		DSB_PATT_MASK, nr)
+> 
+> +#define DSB_PATT_ENABLE_TS					\
+> +		tpdm_patt_enable_ts(enable_ts,			\
+> +		DSB_PATT)
+> +
+>  #define DSB_MSR_ATTR(nr)					\
+>  		tpdm_simple_dataset_rw(msr##nr,			\
+>  		DSB_MSR, nr)
 
-> I have a few minor comments, I believe if you send a new version it
-> will be
-> final (at least from my p.o.v.).
->=20
+This is causing build failures in linux-next now:
 
-Still waiting for some comment from Stephen Boyd and Vinod Koul on:
+drivers/hwtracing/coresight/coresight-tpdm.c:1055:2: error: missing field 'idx' initializer [-Werror,-Wmissing-field-initializers]
+ 1055 |         DSB_PATT_ENABLE_TS,
+      |         ^
+drivers/hwtracing/coresight/coresight-tpdm.h:184:3: note: expanded from macro 'DSB_PATT_ENABLE_TS'
+  184 |                 tpdm_patt_enable_ts(enable_ts,                  \
+      |                 ^
+drivers/hwtracing/coresight/coresight-tpdm.h:156:5: note: expanded from macro 'tpdm_patt_enable_ts'
+  156 |            }                                                    \
+      |            ^
+drivers/hwtracing/coresight/coresight-tpdm.c:1109:2: error: missing field 'idx' initializer [-Werror,-Wmissing-field-initializers]
+ 1109 |         CMB_PATT_ENABLE_TS,
+      |         ^
+drivers/hwtracing/coresight/coresight-tpdm.h:208:3: note: expanded from macro 'CMB_PATT_ENABLE_TS'
+  208 |                 tpdm_patt_enable_ts(enable_ts,                  \
+      |                 ^
+drivers/hwtracing/coresight/coresight-tpdm.h:156:5: note: expanded from macro 'tpdm_patt_enable_ts'
+  156 |            }                                                    \
+      |            ^
 
-- ARM: ep93xx: add regmap aux_dev
-- clk: ep93xx: add DT support for Cirrus EP93xx
+Not sure what is going on, so I reverted your patch locally
+for my test setup.
+Can you send a fix to make it build again?
 
-- dma: cirrus: Convert to DT for Cirrus EP93xx
-- dma: cirrus: remove platform code
-
-
-
-
-
+      Arnd
 
