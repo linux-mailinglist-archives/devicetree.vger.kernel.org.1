@@ -1,75 +1,74 @@
-Return-Path: <devicetree+bounces-41277-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-41278-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 45A5C852FDE
-	for <lists+devicetree@lfdr.de>; Tue, 13 Feb 2024 12:52:37 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 47AF3852FE1
+	for <lists+devicetree@lfdr.de>; Tue, 13 Feb 2024 12:52:47 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 6A73D1C229C0
-	for <lists+devicetree@lfdr.de>; Tue, 13 Feb 2024 11:52:36 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 6D0F31C229A9
+	for <lists+devicetree@lfdr.de>; Tue, 13 Feb 2024 11:52:46 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id CE5CA38DEC;
-	Tue, 13 Feb 2024 11:51:13 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id BBF0538380;
+	Tue, 13 Feb 2024 11:52:05 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="deyJfSsv"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="Z0UOAGBZ"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wr1-f43.google.com (mail-wr1-f43.google.com [209.85.221.43])
+Received: from mail-wm1-f42.google.com (mail-wm1-f42.google.com [209.85.128.42])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 04A0F51000
-	for <devicetree@vger.kernel.org>; Tue, 13 Feb 2024 11:51:11 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.43
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F2B2B381CF
+	for <devicetree@vger.kernel.org>; Tue, 13 Feb 2024 11:52:03 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.42
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1707825073; cv=none; b=myFRCUTXUpSt5QAmowHTTp/gG39f9OcyhafBEO0XaWiUjiauBcR2z1+rqsv9GTaBa6BxxgztTpFxMtECFnyYHL8h9XyfKTZCI02lYFxud4obqPi79Ru4RISP+RhiNi2BurbOIokc0mUF6grPZY3lWS5lNMzrn2IIMbDxSjPypVA=
+	t=1707825125; cv=none; b=uUk0SKuus7VRW6yJKE56wC32+QLToSVGpY6EYrtsGjuWmvnkhjNJekwslyR40fJBkA5sI+XOgAp7NA9hXO/nrscXxlWpVSLq32FCWqwZ5l5vTIjBMRRgWNmip0jOvls/wKmLERMupYaH7hqBreTwv1pjAaUJpSTE4Vt5maIlyDQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1707825073; c=relaxed/simple;
-	bh=4603e3PkZNbPXtHeYYO5vNd86aqUG4Vw1hr5xQG0ETs=;
+	s=arc-20240116; t=1707825125; c=relaxed/simple;
+	bh=8PVeWWEzc89wIRJEgxvjCzfcaaHKlOXSsiMYtbhCdJY=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=lWzrUPoYY0O525bh6fdXHyS4aYelFKfLtGmyWfskp6lq/SIaGEEjXRPXNjiJq2m4E1D4xV5DZF8HKR31eFvcu7K407Sx4zFvdhJjf/o9Ze2BOmqxNunbtcWAf46E/Pqd9r2zrWXqAdE+XBkC+knmUDL30zSNG5B+o9LaLYNVAs8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=deyJfSsv; arc=none smtp.client-ip=209.85.221.43
+	 In-Reply-To:Content-Type; b=hsilXRukNbBl0aIoBTNXOx1aUFoj50XukAdUmZ5ESSyeINUrna9H2XVX1LnwScSaT39xe7GcRLvl5pESNhLisD6PeUINzLAYQowptbe1NXw9Y3TUubkoSRHgC9lMC2ZkGipsJuJ21fHRoX5ZUFel0gnioDdTkDyT6vnAcyLQQSI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=Z0UOAGBZ; arc=none smtp.client-ip=209.85.128.42
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-wr1-f43.google.com with SMTP id ffacd0b85a97d-33b401fd72bso2809255f8f.3
-        for <devicetree@vger.kernel.org>; Tue, 13 Feb 2024 03:51:11 -0800 (PST)
+Received: by mail-wm1-f42.google.com with SMTP id 5b1f17b1804b1-410db155e57so13464635e9.1
+        for <devicetree@vger.kernel.org>; Tue, 13 Feb 2024 03:52:03 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1707825070; x=1708429870; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from
-         :content-language:references:cc:to:subject:user-agent:mime-version
-         :date:message-id:from:to:cc:subject:date:message-id:reply-to;
-        bh=KCJUUo4NY8H1iJowVwWL5uTUekQPIffQFSEsxY0BDG8=;
-        b=deyJfSsvC2xFNy5syC0ImzO3F5AjEFCwZ52t7Em4xzAmHwfHd09rDqYaR726EROlaK
-         JWEpWzpCSuET8lsxJxzjnvTHdU9WdeIuxGEgvf4WoauXe0sYoP7zvYz/JH8Y4BdTeZqA
-         EBavx0M/Eu1vXIjJAL2NDJZoXH6cLue11G/8TTz4qiZ0ocb0GvXMuhMZ4hNGd8e0su4h
-         TbwC8bTjUL4WOjzCZ0bRRNa8cwmNkqN4hOT6Ft1oJhmvQlanBnphRv1WeFF1YTbo1h1o
-         DC+BmThuZYQb7NpJDeB1jg1mc1pAxHhXQNPhGHYDGtnZCSdu/D8+arvBLwMZ6WZy0X7b
-         2Zvw==
+        d=linaro.org; s=google; t=1707825122; x=1708429922; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
+         :to:content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=d/8hvfnB52WKyQuDYeSY+T60yEnMttg2LqXyXeds56w=;
+        b=Z0UOAGBZpsK8vZbaYTEfdvugUHgiBN3xMhO5212l2mWXFF5m8N+KGEBxxE0l7F0NfE
+         7fPUwMtgH0t9lFiYN2rgPP0fW306hrvZD6M5E0syY6EdPzpu5Zn+280NTWSrJ6NCw18u
+         b6N6XGK4oZHmHLrqd6S1eLn5i4t7h0nZSDT29tAOazXTkyA5AnKZD3usIuO1IUFQWyqs
+         THf7BE2mQap+6ZLvQSP3PvL3+Ew/XbxAY4pGCqZfI9WqFJMWahW/RL6EkZXjsrC4XVD4
+         d8hQ5TesIddxrsSXYQpRWvNsD9PMCwjjlP7tyoVdl0KrrJ3YdMY/vCsEEemPu26AdzSj
+         2lzA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1707825070; x=1708429870;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from
-         :content-language:references:cc:to:subject:user-agent:mime-version
-         :date:message-id:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=KCJUUo4NY8H1iJowVwWL5uTUekQPIffQFSEsxY0BDG8=;
-        b=qgO3SSGS29PZx3AdyL+/A94S9PJpyO/Z+NyuHgG15RAdhCOWc8dfDY2/gwtarUpsao
-         k55cv1eKTSLBwYyCClYb6I18E56cCJknN+kzSgPSWZWsjKtEusWz14xrNH5NVAbxZs0v
-         lGRp0aZLbQZaQybhR4F4A8g+163T4rAZWmTXS5eTFBWQOGcaK/MOAI03d9lN78/6kKZH
-         ZYtlpnQAdagCnl1b/njEh+lP/D/r1nGsbbElhuPb0KeWfbsTO+2QMaeA9XUGEzosjuH8
-         wcsUmgdoJYsZ7nh4750d0FKSsNMDOthMF1KilCVtKAjs6uj+ZdsTmf0RB0eUdFIEAR5z
-         frbw==
-X-Gm-Message-State: AOJu0Yy8kvoyPUM4aTz+x3noafAMP+JUiQsN7OxdojJtiVCBB1TbA6zf
-	QpYI9WJ64xYcyJfUh0o/ihTG0nklDTcllNY7KZ+xYmb9XE6OFD4HbZEqp6i1XhY=
-X-Google-Smtp-Source: AGHT+IEnrKObr5hq2yICYsBQYVK4BBhB9K7XzXqG4lCfv3DJwJUjXYEQmv8obG0ucBf+pSFKQNJy5g==
-X-Received: by 2002:a5d:53c2:0:b0:33b:876f:b7d8 with SMTP id a2-20020a5d53c2000000b0033b876fb7d8mr2697559wrw.42.1707825070298;
-        Tue, 13 Feb 2024 03:51:10 -0800 (PST)
-X-Forwarded-Encrypted: i=1; AJvYcCVJ4/81GGNGYeGVI0uJVMAHZzGFpiB2/ulmLhkks6BholmwE53sv1Elt5CYUNaSK+3eSOKAG8PobsfaiJWPDQBh4lmZGnBgJC/g2WyvTTenDNuoPUvRLbD81KfoLUnudAN0M3BrX4h1kFYyPYGHojz9BKFliqy7h0qFN4nPj6doeao1ZHjwFAXGAyfzDFPdJne52JagoGJfr6KrwcJu8QsOWm79BQWRGR05cSvk/oOVSUM6fSIgVh0nQE4sOaJ9RgS5H7/a/bFv83IKYxQI42wOe6WN1t1QjKfRnEbN9F8FAmZEune27N39cRsJYkTE10FS8fp/uBbtYQ1nvbR0jg7270KiTcrFPTQ2DUvNGs3YgTsOwNdiEbuvo5ALZrwO8vrJ24RrX3XpcZuuoqCFNhSsOWyeEtKlRKUqUNXXZYEZ2T8JbUQx/q4x74W6+J/s6neGI1NfR2OL2xIAKxfEziWzDPCe/a8Knsc6hLYAAzLM6rfTVW0+yMmDDzttaBiWqwx7A0CefrISR1vFMAQd6PntCBZazYvpR8JeSl5t6lGGeKIWFQrDLjm/ajTXq2qGbXLBjaYU19Y9+z3iGVaAyOMJUpy0IrsbHve6aKRM0508
+        d=1e100.net; s=20230601; t=1707825122; x=1708429922;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
+         :to:content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=d/8hvfnB52WKyQuDYeSY+T60yEnMttg2LqXyXeds56w=;
+        b=VWVtNaiCDOlahX4EjzNMiYNtARyYgKspAHNft2Ce5ppDAEVypBseWyxP1xwabOaSOy
+         PGVAlo3HPZNl+I/gwL12xBohcW2wZ7gxQLeTJIlEKOEtwyxT/s61rAIBpl+JymMFSHnj
+         2y39+a9hf2kN0bYhanf1/tAJPUJRIwlSFqOoV+c0n+DmtJnry/A8jk8ecl4HlZRwZToi
+         C2/LH+z5yX38HxClhjOUWYpfcUzcGzZSwX7NGz6mkbkSB08VQwjI0odw6h2PUmQYJsk9
+         3d/J0sJmGGVtgCR8Nnp9fCKYFIOJXylXmCTkHai9dMu8TLfQ1fP0jmXq3oDZ0o8v07C2
+         vrNA==
+X-Gm-Message-State: AOJu0YwcNAFM2uSfjjGrgl/mUsehZAb2yGFUdotgTHGVVsJc17NuKcOS
+	2SgGsP8ISFy6bQOUbes2f4yFdGU4uNpiEFpdOq6JoAAq1Te+28idQZ/GU1ldBxc=
+X-Google-Smtp-Source: AGHT+IHonkkurPUvJavEJpeMYX9VSCpuekmQBUsogxy3x8teNWtObawj37dzh2fc1R7htZFP4Udrxw==
+X-Received: by 2002:a05:600c:4709:b0:40e:e834:3d86 with SMTP id v9-20020a05600c470900b0040ee8343d86mr8201325wmo.37.1707825122315;
+        Tue, 13 Feb 2024 03:52:02 -0800 (PST)
+X-Forwarded-Encrypted: i=1; AJvYcCXKMaS9AuJ7XQ3rkJVqEFEokJo3tjRWlKUvffNx5SXum2LJHH3Bvw0+P7i2To8z3wox0BEW8GkCSwe+SXVk3znoZmyeshQISrNsyjs7zMDUyJFL38qjuUmhfy5k4SegeW8Wp5aIs6dRoHJYx0xDPZUi8/TBF+rF36VGvWP2GTKRiaBchP2AOHZFbrJxURBoUNQf5tGycsufQQObs88oRRy4vzTCA0pxcCXin917IQaQ9nac097iwu1NoLeih0Vcc4b5VRf+pNj4zpcDfxeTg8LL0+gFv2fptmONcPLI4r5S9DaNNlKW4Naw1H80d72U7w4uHzakpGcWtRFSf8hehB+bBzJn35LwduBRv4A5QXdL3WIA4f26kw28jVrFyBL3AY4qHh80wcDU61ArYNO55urLifMR8JDj1v3Wam/JYebbFY4c/4vr88kiVXpT5AGcjvOPd+JJf3fy4doEHm6PlHFEIFJikG92FVTH2soa2Gew4rq2bcqdOJLA3uISsCqtEkPHV6RITM5ictW24MYhvREgM41McQU7s/geUbKFl/KbGSK7JUU9thr1zfQcSsTi1J9B9OZg89vKL/lwCnmCoNRtpNkSPoZJs9Jle3JBf+Aa
 Received: from [192.168.1.20] ([178.197.223.6])
-        by smtp.gmail.com with ESMTPSA id ce9-20020a5d5e09000000b0033cddadde6esm1090631wrb.80.2024.02.13.03.51.07
+        by smtp.gmail.com with ESMTPSA id ce9-20020a5d5e09000000b0033cddadde6esm1090631wrb.80.2024.02.13.03.51.59
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 13 Feb 2024 03:51:09 -0800 (PST)
-Message-ID: <d39c2186-026f-4326-b666-5a90422a5d68@linaro.org>
-Date: Tue, 13 Feb 2024 12:51:06 +0100
+        Tue, 13 Feb 2024 03:52:01 -0800 (PST)
+Message-ID: <840738f2-abfb-422e-bf2a-c2763e76197b@linaro.org>
+Date: Tue, 13 Feb 2024 12:51:59 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -77,8 +76,8 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 1/7] dt-bindings: display: st7703: Add Powkiddy RGB10MAX3
- panel
+Subject: Re: [PATCH 3/7] dt-bindings: display: Document ST7703 panel rotation
+Content-Language: en-US
 To: Chris Morgan <macroalpha82@gmail.com>, linux-rockchip@lists.infradead.org
 Cc: devicetree@vger.kernel.org, dri-devel@lists.freedesktop.org,
  tzimmermann@suse.de, mripard@kernel.org, maarten.lankhorst@linux.intel.com,
@@ -88,8 +87,7 @@ Cc: devicetree@vger.kernel.org, dri-devel@lists.freedesktop.org,
  krzysztof.kozlowski+dt@linaro.org, robh+dt@kernel.org,
  Chris Morgan <macromorgan@hotmail.com>
 References: <20240212184950.52210-1-macroalpha82@gmail.com>
- <20240212184950.52210-2-macroalpha82@gmail.com>
-Content-Language: en-US
+ <20240212184950.52210-4-macroalpha82@gmail.com>
 From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  xsFNBFVDQq4BEAC6KeLOfFsAvFMBsrCrJ2bCalhPv5+KQF2PS2+iwZI8BpRZoV+Bd5kWvN79
@@ -135,20 +133,22 @@ Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  KQ06ztUMRrj8eVtpImjsWCd0bDWRaaR4vqhCHvAG9iWXZu4qh3ipie2Y0oSJygcZT7H3UZxq
  fyYKiqEmRuqsvv6dcbblD8ZLkz1EVZL6djImH5zc5x8qpVxlA0A0i23v5QvN00m6G9NFF0Le
  D2GYIS41Kv4Isx2dEFh+/Q==
-In-Reply-To: <20240212184950.52210-2-macroalpha82@gmail.com>
+In-Reply-To: <20240212184950.52210-4-macroalpha82@gmail.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
 On 12/02/2024 19:49, Chris Morgan wrote:
 > From: Chris Morgan <macromorgan@hotmail.com>
 > 
-> The RGB10MAX3 panel is a panel specific to the Powkiddy RGB10MAX3
-> handheld device that measures 5 inches diagonally with a resolution
-> of 720x1280.
+> Document the rotation property for ST7703 based panels.
 > 
 > Signed-off-by: Chris Morgan <macromorgan@hotmail.com>
+> ---
+
 
 Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+
+(with or without empty line removal)
 
 Best regards,
 Krzysztof
