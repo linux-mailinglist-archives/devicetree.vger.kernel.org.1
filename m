@@ -1,92 +1,124 @@
-Return-Path: <devicetree+bounces-41217-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-41218-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id ADF61852C0D
-	for <lists+devicetree@lfdr.de>; Tue, 13 Feb 2024 10:12:55 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 75F44852C27
+	for <lists+devicetree@lfdr.de>; Tue, 13 Feb 2024 10:18:58 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 69921285E7E
-	for <lists+devicetree@lfdr.de>; Tue, 13 Feb 2024 09:12:54 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 064E1286468
+	for <lists+devicetree@lfdr.de>; Tue, 13 Feb 2024 09:18:57 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 094A1208CB;
-	Tue, 13 Feb 2024 09:12:50 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1CA49210FE;
+	Tue, 13 Feb 2024 09:18:46 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b="qzzapQ4j"
+	dkim=pass (1024-bit key) header.d=ucw.cz header.i=@ucw.cz header.b="BmfTHJra"
 X-Original-To: devicetree@vger.kernel.org
-Received: from madrid.collaboradmins.com (madrid.collaboradmins.com [46.235.227.194])
+Received: from jabberwock.ucw.cz (jabberwock.ucw.cz [46.255.230.98])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8A80A224C6;
-	Tue, 13 Feb 2024 09:12:48 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=46.235.227.194
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A1B10224CF;
+	Tue, 13 Feb 2024 09:18:41 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=46.255.230.98
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1707815569; cv=none; b=a9deZZSA+QE59CcjshqfDdw62ft+GB/0yhzZALtcKMFTe0ualOmSptbZbxzP5AAJfwJ7OeGegosUXcZOwc7qMeDIMhTdfl62W9kG47jVrf6PQvzmpMQh0/W49Mzjs3+s6ktVRxu8wUXVrXHbwon/z/OYKjSOLwFSXu4BjFwD+Ho=
+	t=1707815926; cv=none; b=O8IcWj6g2vMy3xUiRQhWEsV3F/EzuhChOeAzXlBLhAfxKsnPh492l47h5bhi3zFbIMdaUAXsw80AYpxQW860NZCWjFsth+fhp723vKC2LMVebvOKqsMuvskzkIwRUqY/1D+qqD/yvk91R9ypNZgQVGVWoXtVICXscU4T/hPBUqw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1707815569; c=relaxed/simple;
-	bh=IF9JkPNFvE+ZhS23bc558VWeMouFPJSwGah7iUkeyQI=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=oYF86wJcsJwzDA4ppSBG00F4SI494G5a9becgG90TJ9ND8UbSlvTS96FotXoA6nFG4Ps0pwxnd7l0y6kMJ84pJCvnC3RlTt2lBii5A6UdogDmeok1CmCXoc0vIkWUh9OV0TRJlLm0T0shkHQ5E57i0HN6jF6fM0+AWfzSTDADC4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b=qzzapQ4j; arc=none smtp.client-ip=46.235.227.194
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=collabora.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-	s=mail; t=1707815567;
-	bh=IF9JkPNFvE+ZhS23bc558VWeMouFPJSwGah7iUkeyQI=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=qzzapQ4jZZQHyDb2s7cv9CxYUZwuwm+L8YsGJwME6JSybXHz2O23UMHZ7HC58e+BS
-	 kkaSuQqHyIMfTemMh17Fa/6NuchfPjcL9QQ6dcBBcwXHVtrbnEgpm3F7hWstTfkwDH
-	 arxSPTUBIH9zNp2hnSRbd/1tpPQDsefrCJLrGQ0gcZpUiuIADznBLMf1OpFLstdxVG
-	 74UUTMmhBe9AOSI8E6YStWrbVrYu3o+buco/+ZkddvCcvLTFWDmKE+U4zaEbIzbC5V
-	 Sqk4yaUAF46iwuuV0prWHaFiheA0NpTAJJH2uWkhqYK09Xq6mJpvdvX5QtUTVMGane
-	 4BerPvF1EKTxA==
-Received: from [100.113.186.2] (cola.collaboradmins.com [195.201.22.229])
-	(using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
-	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
-	(No client certificate requested)
-	(Authenticated sender: kholk11)
-	by madrid.collaboradmins.com (Postfix) with ESMTPSA id 3941D3781FEF;
-	Tue, 13 Feb 2024 09:12:46 +0000 (UTC)
-Message-ID: <3df28f8e-4efa-4fa6-b529-daba04969ede@collabora.com>
-Date: Tue, 13 Feb 2024 10:12:46 +0100
+	s=arc-20240116; t=1707815926; c=relaxed/simple;
+	bh=cvSxx7Ohr60BHYOexEqdTgq+FckwJDQkZo+QPbEUsZc=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=oI6F9Z/hWFsQToL4Nr3e4xlj9RI9lvG5YptRhrLQI2rVAlWtqHsVwvGYbvcw9R0fQvPf6LGZljLfpOczcOk30G7slQbtPEPT1aIYCVzVQ43y+V44em6r1GE7fXSk16fDLvmXM6KkJEDEy28PrwapJODtGV/Jy/DcMS9He00Wvn8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ucw.cz; spf=pass smtp.mailfrom=ucw.cz; dkim=pass (1024-bit key) header.d=ucw.cz header.i=@ucw.cz header.b=BmfTHJra; arc=none smtp.client-ip=46.255.230.98
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ucw.cz
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ucw.cz
+Received: by jabberwock.ucw.cz (Postfix, from userid 1017)
+	id 8E5951C007F; Tue, 13 Feb 2024 10:18:39 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ucw.cz; s=gen1;
+	t=1707815919;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 in-reply-to:in-reply-to:references:references;
+	bh=kQ6Lvb6WvQfO/ZL1XThmMYEqS/uVfVMsg69aI8jKXas=;
+	b=BmfTHJra1LbjfT7B71ztCOLmv3KVsOka7y/FL5r1hyHIBIS21mFjFxUrWAuqQi7vERaObl
+	E0Y25zcIoxlJFNzo/9irxLO7q9aHaN8fncF0SYq3DFXymh/JQvKXp9HGgRpCLXgLxL/yaD
+	tpQHyK/eBzaiSjdtrn4MSwj5296x8ek=
+Date: Tue, 13 Feb 2024 10:18:39 +0100
+From: Pavel Machek <pavel@ucw.cz>
+To: Abdel Alkuor <alkuor@gmail.com>
+Cc: Lee Jones <lee@kernel.org>, Rob Herring <robh+dt@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Lukas Bulwahn <lukas.bulwahn@gmail.com>,
+	Jean-Jacques Hiblot <jjhiblot@traphandler.com>,
+	ChiYuan Huang <cy_huang@richtek.com>,
+	=?iso-8859-1?Q?Andr=E9?= Apitzsch <git@apitzsch.eu>,
+	Alice Chen <alice_chen@richtek.com>,
+	Jacek Anaszewski <jacek.anaszewski@gmail.com>,
+	ChiaEn Wu <chiaen_wu@richtek.com>, linux-kernel@vger.kernel.org,
+	linux-leds@vger.kernel.org, devicetree@vger.kernel.org
+Subject: Re: [PATCH 2/2] leds: Add NCP5623 multi-led driver
+Message-ID: <Zcsz7x1rXgYP3e7b@duo.ucw.cz>
+References: <20240203175910.301099-1-alkuor@gmail.com>
+ <20240203175910.301099-2-alkuor@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH] arm64: dts: mediatek: mt7986: prefix BPI-R3 cooling maps
- with "map-"
-Content-Language: en-US
-To: =?UTF-8?B?UmFmYcWCIE1pxYJlY2tp?= <zajec5@gmail.com>,
- Matthias Brugger <matthias.bgg@gmail.com>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Conor Dooley <conor+dt@kernel.org>
-Cc: Daniel Golle <daniel@makrotopia.org>,
- Frank Wunderlich <frank-w@public-files.de>, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- linux-mediatek@lists.infradead.org, =?UTF-8?B?UmFmYcWCIE1pxYJlY2tp?=
- <rafal@milecki.pl>
-References: <20240213061459.17917-1-zajec5@gmail.com>
-From: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
-In-Reply-To: <20240213061459.17917-1-zajec5@gmail.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
-
-Il 13/02/24 07:14, Rafał Miłecki ha scritto:
-> From: Rafał Miłecki <rafal@milecki.pl>
-> 
-> This fixes:
-> arch/arm64/boot/dts/mediatek/mt7986a-bananapi-bpi-r3.dtb: thermal-zones: cpu-thermal:cooling-maps: 'cpu-active-high', 'cpu-active-low', 'cpu-active-med' do not match any of the regexes: '^map[-a-zA-Z0-9]*$', 'pinctrl-[0-9]+'
->          from schema $id: http://devicetree.org/schemas/thermal/thermal-zones.yaml#
-> 
-> Fixes: c26f779a2295 ("arm64: dts: mt7986: add pwm-fan and cooling-maps to BPI-R3 dts")
-> Cc: Daniel Golle <daniel@makrotopia.org>
-> Signed-off-by: Rafał Miłecki <rafal@milecki.pl>
-
-Reviewed-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
+Content-Type: multipart/signed; micalg=pgp-sha1;
+	protocol="application/pgp-signature"; boundary="pIcXbQiXcgKFKqs/"
+Content-Disposition: inline
+In-Reply-To: <20240203175910.301099-2-alkuor@gmail.com>
 
 
+--pIcXbQiXcgKFKqs/
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
+
+Hi!
+
+>  .../sysfs-class-led-multicolor-driver-ncp5623 |  46 +++
+>  drivers/leds/rgb/Kconfig                      |  11 +
+>  drivers/leds/rgb/Makefile                     |   1 +
+>  drivers/leds/rgb/leds-ncp5623.c               | 320 ++++++++++++++++++
+>  4 files changed, 378 insertions(+)
+>  create mode 100644 Documentation/ABI/testing/sysfs-class-led-multicolor-=
+driver-ncp5623
+>  create mode 100644 drivers/leds/rgb/leds-ncp5623.c
+>=20
+> diff --git a/Documentation/ABI/testing/sysfs-class-led-multicolor-driver-=
+ncp5623 b/Documentation/ABI/testing/sysfs-class-led-multicolor-driver-ncp56=
+23
+> new file mode 100644
+> index 000000000000..6b9f4849852b
+> --- /dev/null
+> +++ b/Documentation/ABI/testing/sysfs-class-led-multicolor-driver-ncp5623
+> @@ -0,0 +1,46 @@
+> +What:		/sys/class/leds/<led>/direction
+> +Date:		Feb 2024
+> +What:		/sys/class/leds/<led>/dim_step
+
+You are reinventing hardware_pattern trigger. NAK.
+
+I suggest you add basic support first, then look at hardware pattern
+trigger and add that support in separate patch.
+
+Thanks,
+								Pavel
+--=20
+People of Russia, stop Putin before his war on Ukraine escalates.
+
+--pIcXbQiXcgKFKqs/
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iF0EABECAB0WIQRPfPO7r0eAhk010v0w5/Bqldv68gUCZcsz7wAKCRAw5/Bqldv6
+8ojFAJ9xenpCaeaaI2rONzaxvf3vOwURYQCgmCO+rVjSS3JO30mgiLqi40kQ0gY=
+=Ijkc
+-----END PGP SIGNATURE-----
+
+--pIcXbQiXcgKFKqs/--
 
