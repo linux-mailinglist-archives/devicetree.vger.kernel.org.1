@@ -1,139 +1,164 @@
-Return-Path: <devicetree+bounces-41225-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-41226-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 775BE852DC8
-	for <lists+devicetree@lfdr.de>; Tue, 13 Feb 2024 11:23:30 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4C6B1852DDE
+	for <lists+devicetree@lfdr.de>; Tue, 13 Feb 2024 11:29:31 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id AA7501C22112
-	for <lists+devicetree@lfdr.de>; Tue, 13 Feb 2024 10:23:29 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id E0A651F222F5
+	for <lists+devicetree@lfdr.de>; Tue, 13 Feb 2024 10:29:30 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B0FA522612;
-	Tue, 13 Feb 2024 10:23:26 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B4DD822626;
+	Tue, 13 Feb 2024 10:29:26 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="jQmPDah8"
+	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="LubQVgbX"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-vk1-f171.google.com (mail-vk1-f171.google.com [209.85.221.171])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 12582225DE;
-	Tue, 13 Feb 2024 10:23:24 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.171
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1FBDD22625;
+	Tue, 13 Feb 2024 10:29:25 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1707819806; cv=none; b=bumZRVB1r9SoF+xfqRaX0tZV+J80YzHHwnGTFGTjlEDxIUWiIyRSMbp/hL8cpRdnETHkADmC6u8i1QbY/NHMtk8ruiQB2SKOjb80gE9l57XKIqd+0tsp5xn2cN1fWnkRdkkuo4xYbmmRRm+mbNKk7kNy74h5fY5dgib2nVVqUDY=
+	t=1707820166; cv=none; b=WJs+KWE6df9n2CNyMnPp4402TwzQ8P+I8TCkGmZxj+6GHyzKlE9hQjiyTUnCjBuibCX53LazSX85aNWl79xrFCgdT0s35TV+DRCh1MIWW9cU15DGiiydoBUHMRcHgid5Ke9E4NiEnSPfMCZsu1Q2/MxXyuBmrI9IsdqHrW/kyKU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1707819806; c=relaxed/simple;
-	bh=CzpheErL3PUNz1bQEXoER7w/wKXn54oS+TEQWZ4lbKw=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=jpaHTfPEehKH/qQNrpFfnL3J64/VeODkDR/1Jay83DdTgPSFAKAfU2fal43sucf1ME+vVSuQeLsu1EvKE9ZfZQ5cfC+yd2+MsLUUX39VmNKZvjf7p2yRwHsbnd7aJC4zmZreWU0XNToUFUwfngntRQxgVCAEJp+qMklCpVU9ufE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=jQmPDah8; arc=none smtp.client-ip=209.85.221.171
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-vk1-f171.google.com with SMTP id 71dfb90a1353d-4c02779e68cso755367e0c.3;
-        Tue, 13 Feb 2024 02:23:24 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1707819804; x=1708424604; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=P6kghJqnnvzrivpJN4qYxQyxAg/hb6vlcHjDQwTaVHk=;
-        b=jQmPDah8SNNJ4xSMrMNrB9pwFKiO+Duhmb38O7fAGHPlHm2yS5vUcUtqq1jueamwUS
-         uJwotw0tyGM3jwF9pqAtq3CPvZaa5t0RIT3GnAWWNm6PsYxeGPzMcYMWe5l0lqyC1HXa
-         B0K9qtAU3N2V4xgxqeZX/+wtihmP1IC0ENDXYAGo9kCqZckCvJwYgqVGZHeiewJHac25
-         CwNUqPamGxi4LddmcvlqxneC392FwgY1LIXqlVdlqZq6CNAfGbXrNjB6weCPzj6IvwI6
-         s/y8jt2ioCLDySJs9+I8eca+BUoH2DtiRPcyhF1Mcs5g5EdJoOiBtcRGXxUFcX7HD/xP
-         otXA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1707819804; x=1708424604;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=P6kghJqnnvzrivpJN4qYxQyxAg/hb6vlcHjDQwTaVHk=;
-        b=gJuQWVvGoQrdImtw/Uk2Gdj0NkzOrBiLqlae89pljg4CymD4xkjuyi8Qdu4ctdzHfH
-         sRnyDDVgqeDcWb/D6ivQTXFz0Lqo5KgQ8m+LW4C1jKvdrk3OOkeOvrsGpTTBnIlWPj0B
-         j4OQNX0X+VVZfu5kS5kUvny8roZ+Ywz+QF475XWHzInE+9XLjkz+sjGsNfwPdaldPzk7
-         2DVhshc8IxNRTYN89WtXyQeW6m7EubZZgJST9vVl+wXdfQxCMNbnmHQ4zWgYHlvX7LjX
-         RDuSDiZyyEwq7B6HVGlRG33kH4k7psOAWj4QtuMxSnY6MPll/Y4qlfeetLiObASd1Hey
-         NWlA==
-X-Forwarded-Encrypted: i=1; AJvYcCUF1gs6ODxFhdnacpCbI37dPKlDe7RqdjF6nH4GX6S6YQDEm6JZfLhkGl7VeNb4jydU0ZS8JtfSDjItpWRduG+ku/FrjOmxqnfPj7BbSg6eNzABNkX9SWOwon6ajh6JRSXLAvAmrrwzUHuGTOV6g6FRinXNGquLbtZraqC3x/fIWz33RyLtSYQj27j4
-X-Gm-Message-State: AOJu0Yzs6vVABuxezoxYy7hR4m7H/xDSBmYI3HIHmx13syb7+JH5D/Hz
-	DNM4i3/AAo4Wm0evASwcGnSfk3XVkJ0HoPLnyHrNDK8miqpPUYjOTa6hbqygZIYoE3TvtzHH3JP
-	tWD8kC2LCBy30rEKDYbLoX7oHb0tLQU/y
-X-Google-Smtp-Source: AGHT+IGxPHOACF2JseXG6DKdDUst+O0caNbXHJGDrvhj/rQJCEfV2PnlmnoNFdOp6iYQAL14j19DKNfZ5oOrEiMlHBI=
-X-Received: by 2002:a1f:cbc3:0:b0:4c0:34e8:d55d with SMTP id
- b186-20020a1fcbc3000000b004c034e8d55dmr5118655vkg.11.1707819803720; Tue, 13
- Feb 2024 02:23:23 -0800 (PST)
+	s=arc-20240116; t=1707820166; c=relaxed/simple;
+	bh=1MtHBzrAaVaupNPIKmMCHFWFqYJTRYrNVYPx/Ra5p3o=;
+	h=Message-ID:Date:MIME-Version:To:CC:References:Subject:From:
+	 In-Reply-To:Content-Type; b=oqH3BrQggbo/JNxChYS0eZCXCYkh4kkvvk46PGgdUj9q9JKO5OhW0dzh5545lds8V+fd10VMjX1vW3fv2rtYHD+6397N1+jnwJj/2Ix2szEAb4YbDrxrSIaEtbmgoxiryxLzxHOHlr29F0K8iujl/oY3GobD6Hzy/iL7oGv7cB0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=LubQVgbX; arc=none smtp.client-ip=205.220.180.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
+Received: from pps.filterd (m0279870.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.17.1.24/8.17.1.24) with ESMTP id 41DAQrwY015569;
+	Tue, 13 Feb 2024 10:29:02 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
+	message-id:date:mime-version:to:cc:references:subject:from
+	:in-reply-to:content-type:content-transfer-encoding; s=
+	qcppdkim1; bh=VegaMagVQniNscL7KTdqEiW+htF2BU6YuYFykpHmS/k=; b=Lu
+	bQVgbX395WsLssF16sxG0yO7jXQlFKhPK2rlCmFx0OKFs4WGOywUA3mZn6XojtNZ
+	rZrSfzAdtk41fyBD7ulpDe7UgfoBb6rcYjO1oI7n7aY3cEodn0SX027x0e/FS4QM
+	Z3ufKRxue+wJLP/LaeAA0T7+4/jWMViq16P0QfhfMW3Qua5yZNFDGI6IdjH99vvg
+	uIFNwxK10Io8EBozYmlHG32NTK/Dbu8ts5OKGWdYM2qqjmdXKbmlH8NFZbYQH9cK
+	5wZxh45+mz8feQMgKpoeDRYO+idPQcugWQSoM8Gqzv3n961QRlHcPep+a/H9NKu+
+	iNil0VhJngyrntcPbp2w==
+Received: from nasanppmta03.qualcomm.com (i-global254.qualcomm.com [199.106.103.254])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3w7nk9207j-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Tue, 13 Feb 2024 10:29:02 +0000 (GMT)
+Received: from nasanex01c.na.qualcomm.com (nasanex01c.na.qualcomm.com [10.45.79.139])
+	by NASANPPMTA03.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 41DAT0Qg024709
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Tue, 13 Feb 2024 10:29:00 GMT
+Received: from [10.214.25.202] (10.80.80.8) by nasanex01c.na.qualcomm.com
+ (10.45.79.139) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1118.40; Tue, 13 Feb
+ 2024 02:28:56 -0800
+Message-ID: <a61a3561-0dde-472b-b8a5-451703f6d8ee@quicinc.com>
+Date: Tue, 13 Feb 2024 15:58:53 +0530
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20231115212908.33131-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
-In-Reply-To: <20231115212908.33131-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
-From: "Lad, Prabhakar" <prabhakar.csengg@gmail.com>
-Date: Tue, 13 Feb 2024 10:22:57 +0000
-Message-ID: <CA+V-a8tN-qn8zuimte=-riahJBWGgGi8i5botNfWqdWwJ7w-4g@mail.gmail.com>
-Subject: Re: [PATCH] dt-bindings: timer: renesas: ostm: Document RZ/Five SoC
-To: Daniel Lezcano <daniel.lezcano@linaro.org>
-Cc: Chris Brandt <chris.brandt@renesas.com>, Maxime Coquelin <mcoquelin.stm32@gmail.com>, 
-	Alexandre Torgue <alexandre.torgue@foss.st.com>, Geert Uytterhoeven <geert+renesas@glider.be>, 
-	Conor Dooley <conor+dt@kernel.org>, 
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Rob Herring <robh+dt@kernel.org>, 
-	Thomas Gleixner <tglx@linutronix.de>, Magnus Damm <magnus.damm@gmail.com>, 
-	linux-stm32@st-md-mailman.stormreply.com, 
-	linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org, linux-renesas-soc@vger.kernel.org, 
-	Biju Das <biju.das.jz@bp.renesas.com>, 
-	Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+User-Agent: Mozilla Thunderbird
+To: <dmitry.baryshkov@linaro.org>
+CC: <andersson@kernel.org>, <devicetree@vger.kernel.org>,
+        <freedreno@lists.freedesktop.org>, <iommu@lists.linux.dev>,
+        <joro@8bytes.org>, <konrad.dybcio@somainline.org>,
+        <krzysztof.kozlowski+dt@linaro.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <linux-arm-msm@vger.kernel.org>, <quic_saipraka@quicinc.com>,
+        <robdclark@gmail.com>, <robh+dt@kernel.org>, <robin.murphy@arm.com>,
+        <vkoul@kernel.org>, <will@kernel.org>
+References: <20221114170635.1406534-9-dmitry.baryshkov@linaro.org>
+Subject: Re: [PATCH v1 08/10] iommu/arm-smmu-qcom: Merge table from
+ arm-smmu-qcom-debug into match data
+Content-Language: en-US
+From: Pratyush Brahma <quic_pbrahma@quicinc.com>
+In-Reply-To: <20221114170635.1406534-9-dmitry.baryshkov@linaro.org>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 8bit
+X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
+ nasanex01c.na.qualcomm.com (10.45.79.139)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-GUID: Ay6v_HvyIMErZ2r65D3_MvV26FYlYaVb
+X-Proofpoint-ORIG-GUID: Ay6v_HvyIMErZ2r65D3_MvV26FYlYaVb
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.272,Aquarius:18.0.1011,Hydra:6.0.619,FMLib:17.11.176.26
+ definitions=2024-02-13_04,2024-02-12_03,2023-05-22_02
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 phishscore=0
+ lowpriorityscore=0 adultscore=0 spamscore=0 malwarescore=0 mlxscore=0
+ bulkscore=0 priorityscore=1501 mlxlogscore=999 impostorscore=0
+ clxscore=1011 suspectscore=0 classifier=spam adjust=0 reason=mlx
+ scancount=1 engine=8.19.0-2401310000 definitions=main-2402130081
 
-Hi Daniel,
+Hi
 
-On Wed, Nov 15, 2023 at 9:29=E2=80=AFPM Prabhakar <prabhakar.csengg@gmail.c=
-om> wrote:
->
-> From: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
->
-> The OSTM block on the RZ/Five SoC is identical to one found on the RZ/G2U=
-L
-> SoC. "renesas,r9a07g043-ostm" compatible string will be used on the RZ/Fi=
-ve
-> SoC so to make this clear and to keep this file consistent, update the
-> comment to include RZ/Five SoC.
->
-> No driver changes are required as generic compatible string "renesas,ostm=
-"
-> will be used as a fallback on RZ/Five SoC.
->
-> Signed-off-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
-> ---
->  Documentation/devicetree/bindings/timer/renesas,ostm.yaml | 2 +-
->  1 file changed, 1 insertion(+), 1 deletion(-)
->
-Gentle ping!
+Patch [1] introduces a use after free bug in the function 
+"qcom_smmu_create()" in file: drivers/iommu/arm/arm-smmu/arm-smmu-qcom.c
+wherein devm_krealloc() frees the old pointer marked by "smmu" but it is 
+still being accessed later in qcom_smmu_impl_data() in the same function 
+as:
 
-Cheers,
-Prabhakar
+qsmmu->cfg = qcom_smmu_impl_data(smmu);
 
-> diff --git a/Documentation/devicetree/bindings/timer/renesas,ostm.yaml b/=
-Documentation/devicetree/bindings/timer/renesas,ostm.yaml
-> index 7207929e5cd6..8b06a681764e 100644
-> --- a/Documentation/devicetree/bindings/timer/renesas,ostm.yaml
-> +++ b/Documentation/devicetree/bindings/timer/renesas,ostm.yaml
-> @@ -23,7 +23,7 @@ properties:
->        - enum:
->            - renesas,r7s72100-ostm  # RZ/A1H
->            - renesas,r7s9210-ostm   # RZ/A2M
-> -          - renesas,r9a07g043-ostm # RZ/G2UL
-> +          - renesas,r9a07g043-ostm # RZ/G2UL and RZ/Five
->            - renesas,r9a07g044-ostm # RZ/G2{L,LC}
->            - renesas,r9a07g054-ostm # RZ/V2L
->        - const: renesas,ostm        # Generic
-> --
-> 2.34.1
->
+The current patchset [2] implicitly fixes this issue as it doesn't 
+access the freed ptr in the line:
+
+qsmmu->cfg = data->cfg;
+
+Hence, can this patchset[2] be propagated to branches where patchset[1] 
+has been propagated already? The bug is currently present in all branches
+that have patchset[1] but do not have patchset[2].
+
+RFC:
+
+This bug would be reintroduced if patchset [3] is accepted. This makes 
+the path prone to such errors as it relies on the
+developer's understanding on the internal implementation of devm_krealloc().
+
+Hence, a better fix IMO, would be to remove the confusion around the 
+freed "smmu" ptr in the following way:
+
+diff --git a/drivers/iommu/arm/arm-smmu/arm-smmu-qcom.c 
+b/drivers/iommu/arm/arm-smmu/arm-smmu-qcom.c
+index 549ae4dba3a6..6dd142ce75d1 100644
+--- a/drivers/iommu/arm/arm-smmu/arm-smmu-qcom.c
++++ b/drivers/iommu/arm/arm-smmu/arm-smmu-qcom.c
+@@ -463,11 +463,12 @@ static struct arm_smmu_device 
+*qcom_smmu_create(struct arm_smmu_device *smmu,
+         qsmmu = devm_krealloc(smmu->dev, smmu, sizeof(*qsmmu), GFP_KERNEL);
+         if (!qsmmu)
+                 return ERR_PTR(-ENOMEM);
++       smmu = &qsmmu->smmu;
+
+         qsmmu->smmu.impl = impl;
+         qsmmu->cfg = data->cfg;
+
+-       return &qsmmu->smmu;
++       return smmu;
+  }
+
+This is similar to the patch[4] which I've sent in-reply-to patch[3]. 
+Will send a formal patch if you think this approach is better.
+
+Please let me know your thoughts.
+
+Thanks,
+Pratyush
+
+
+[1] 
+https://lore.kernel.org/all/20220708094230.4349-1-quic_saipraka@quicinc.com/
+[2] 
+https://lore.kernel.org/all/20221114170635.1406534-9-dmitry.baryshkov@linaro.org/
+[3] 
+https://lore.kernel.org/all/20240201210529.7728-4-quic_c_gdjako@quicinc.com/
+[4] 
+https://lore.kernel.org/all/20240213062608.13018-1-quic_pbrahma@quicinc.com/
 
