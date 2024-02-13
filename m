@@ -1,174 +1,105 @@
-Return-Path: <devicetree+bounces-41272-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-41273-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 34D2C852F45
-	for <lists+devicetree@lfdr.de>; Tue, 13 Feb 2024 12:28:29 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3B473852F68
+	for <lists+devicetree@lfdr.de>; Tue, 13 Feb 2024 12:34:26 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 9F81BB21C35
-	for <lists+devicetree@lfdr.de>; Tue, 13 Feb 2024 11:28:26 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id EDA8C1F2281E
+	for <lists+devicetree@lfdr.de>; Tue, 13 Feb 2024 11:34:25 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8069B374E0;
-	Tue, 13 Feb 2024 11:25:44 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 00E6C36AF3;
+	Tue, 13 Feb 2024 11:34:20 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=atomide.com header.i=@atomide.com header.b="E09C4rLA"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="J3kXMLLw"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail5.25mail.st (mail5.25mail.st [74.50.62.9])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DCF472BB18
-	for <devicetree@vger.kernel.org>; Tue, 13 Feb 2024 11:25:42 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=74.50.62.9
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CA80236AE3;
+	Tue, 13 Feb 2024 11:34:19 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1707823544; cv=none; b=rJmj/VHqzlKP3p3PXPyuucjGHZhys5QT1sHIxpKDVIz4iUPDMtLuLBvLNwYGPB935ANagSDCXS+/01oTRrXGguXHW+YNrkTKj0DXc8vmq+3wZfIIgbFISLe8ogXq0iHcmTmKzNs52Z2bQZch1mCf8nyu/ezvSjNpwoKA6gKwObI=
+	t=1707824059; cv=none; b=t5/5E+lhWHouLk/gQl7UXIen3GawiQ8dNTKWz8mbt1BrCk3Xjc4yIkinffWo03TTTxYd8mt3+npaaT45qZQqV2OQuHMUCte6Jchv6Aaqp6B+CZ022lP8X/SxDo6SF9NUImlNj9p+QBocK6Uhi56arX6a7+6on8tSCdccpdSHn8c=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1707823544; c=relaxed/simple;
-	bh=beAkS1EXZy+AnMloyE8KngEFiFSGgRB8J/QXq+I0+n8=;
-	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=pEhyD95Y3qVytTkKOgdQrnKO33OtXb6MlbyR8iicdJiOV/bwUD/TYaQpVNIsqi8z0YBV5kvn/ljofa/pTck5H2vcn8mnkgI2HosMmcNEbOtWJN/fl41T/9iiyIphI2zj51EZSxBoJsqhonURei6QE8xlU0lqP1hiVx+obkARxOg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=atomide.com; spf=fail smtp.mailfrom=atomide.com; dkim=pass (2048-bit key) header.d=atomide.com header.i=@atomide.com header.b=E09C4rLA; arc=none smtp.client-ip=74.50.62.9
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=atomide.com
-Authentication-Results: smtp.subspace.kernel.org; spf=fail smtp.mailfrom=atomide.com
-Received: from localhost (91-158-86-216.elisa-laajakaista.fi [91.158.86.216])
-	by mail5.25mail.st (Postfix) with ESMTPSA id 282C860857;
-	Tue, 13 Feb 2024 11:25:18 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple; d=atomide.com;
-	s=25mailst; t=1707823542;
-	bh=beAkS1EXZy+AnMloyE8KngEFiFSGgRB8J/QXq+I0+n8=;
-	h=From:To:Cc:Subject:Date:From;
-	b=E09C4rLAdlj0lDwalHAVvknREFciNCLq8ZSaG/dg4lI0Xgra0XPoy+cDEXtw0FbQB
-	 BQtkOcWwapDMGusLCL2SBWoQHz8KRne5DhT5O7YAvFL59gaM1mFNQ1VlcMz/scT1X+
-	 mDg52QhyHzpc2hBdJYKPVrOWiDwTx1qjUybhEJBBWxla54cLoNuQ+ioeneS+ooPRQD
-	 ib8w/tU0l3944/laBuz/XFihm+4DvdSlXUpAhmS2xxepB0BVuRrlI9JrlcgStnOT7k
-	 h6+LEjdayiRHL4zkhMmNF3oDl60j6NvSKfEQDlhNx7Rsk3lwIrXXITYvOTUOaq6MNI
-	 6cdXdj8TbGTrA==
-From: Tony Lindgren <tony@atomide.com>
-To: Nishanth Menon <nm@ti.com>,
-	Vignesh Raghavendra <vigneshr@ti.com>,
-	Tero Kristo <kristo@kernel.org>,
-	Rob Herring <robh+dt@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>
-Cc: Dhruva Gole <d-gole@ti.com>,
-	Kevin Hilman <khilman@baylibre.com>,
-	Markus Schneider-Pargmann <msp@baylibre.com>,
-	linux-arm-kernel@lists.infradead.org,
-	devicetree@vger.kernel.org
-Subject: [PATCH v5 1/1] arm64: dts: ti: k3-am62-wakeup: Configure ti-sysc for wkup_uart0
-Date: Tue, 13 Feb 2024 13:25:08 +0200
-Message-ID: <20240213112510.6334-1-tony@atomide.com>
-X-Mailer: git-send-email 2.43.1
+	s=arc-20240116; t=1707824059; c=relaxed/simple;
+	bh=D1yTR7Hkjf1Q/JBdRs5uAQEJoKM36Ugzbda+39ABM0A=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=aBNg63XHvdiXgBLFhRqJJaH1DZAJ6+n7ZlCkO7KU6eJ5ACnCpwTItKxrSUdb9Yq4N0XfzLL9MOqf/K+LZH3hMuTXmKwbOJJtXKEcviRf6eC9tR8/xt4wFRsiee+QB/AT+dGfpROk1qwZk6fbrIwLKysGvXQUavQtoLQyWwDYwGs=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=J3kXMLLw; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id D2F87C433F1;
+	Tue, 13 Feb 2024 11:34:15 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1707824059;
+	bh=D1yTR7Hkjf1Q/JBdRs5uAQEJoKM36Ugzbda+39ABM0A=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=J3kXMLLwZQcsVOJPIY46iG4E9cc8H+nNo5w3R3x4+9u7DCOZh2xN2fDPjBm9u7UB9
+	 cmLBe/NueNC4Wk9+jnqkGucNGY96W4sZD2ZW5eQzIAxiuPABXiiFHUMXLQDfHQJE9s
+	 0xE1zTxPMyCZlA0CTmmQppzbDAMQ9mflzdSLx45cPEceAOFV/cQ+fEDtamsJ6r2c17
+	 lS2g32iH7WtGEXw7Sz1D/8JN2YqEMLGZ0LXl6d3CGhqBFi2GpqJdzY8Grv+K5b9qdE
+	 DKTWkWmU4W22zMhjIO7R/qzFHudgCZNBgfA2+yNXHjVafo72SMUu7aIgLN0UdaiAaW
+	 rxLPKBwBOL3Lg==
+Message-ID: <4adb0a74-4789-4b9d-b970-1cd94602c27c@kernel.org>
+Date: Tue, 13 Feb 2024 13:34:12 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v1] arm64: dts: ti: k3-am62-main: disable usb lpm
+To: Francesco Dolcini <francesco@dolcini.it>
+Cc: Andrejs Cainikovs <andrejs.cainikovs@gmail.com>,
+ Nishanth Menon <nm@ti.com>, Vignesh Raghavendra <vigneshr@ti.com>,
+ Tero Kristo <kristo@kernel.org>, Rob Herring <robh+dt@kernel.org>,
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+ Conor Dooley <conor+dt@kernel.org>, Aswath Govindraju <a-govindraju@ti.com>,
+ Sjoerd Simons <sjoerd@collabora.com>,
+ Andrejs Cainikovs <andrejs.cainikovs@toradex.com>,
+ linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, "Bin Liu [EP]" <b-liu@ti.com>,
+ "Gunasekaran, Ravi" <r-gunasekaran@ti.com>
+References: <20240209130213.38908-1-andrejs.cainikovs@gmail.com>
+ <2629cd30-23aa-4f03-8452-ae13297fd6b6@kernel.org>
+ <20240212125402.GA5043@francesco-nb>
+Content-Language: en-US
+From: Roger Quadros <rogerq@kernel.org>
+In-Reply-To: <20240212125402.GA5043@francesco-nb>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
-The devices in the wkup domain are capable of waking up the system from
-suspend. We can configure the wkup domain devices in a generic way using
-the ti-sysc interconnect target module driver like we have done with the
-earlier TI SoCs.
 
-As ti-sysc manages the SYSCONFIG related registers independent of the
-child hardware device, the wake-up configuration is also set even if
-wkup_uart0 is reserved by sysfw.
 
-The wkup_uart0 device has interconnect target module register mapping like
-dra7 wkup uart. There is a 1 MB interconnect target range with one uart IP
-block in the target module. The power domain and clock affects the whole
-interconnect target module.
+On 12/02/2024 14:54, Francesco Dolcini wrote:
+> Hello Roger,
+> 
+> On Mon, Feb 12, 2024 at 02:13:56PM +0200, Roger Quadros wrote:
+>> On 09/02/2024 15:02, Andrejs Cainikovs wrote:
+>>> diff --git a/arch/arm64/boot/dts/ti/k3-am62-main.dtsi b/arch/arm64/boot/dts/ti/k3-am62-main.dtsi
+>>> index 464b7565d085..c49fbce5cb70 100644
+>>> --- a/arch/arm64/boot/dts/ti/k3-am62-main.dtsi
+>>> +++ b/arch/arm64/boot/dts/ti/k3-am62-main.dtsi
+>>> @@ -663,6 +665,8 @@ usb1: usb@31100000 {
+>>>  			interrupt-names = "host", "peripheral";
+>>>  			maximum-speed = "high-speed";
+>>>  			dr_mode = "otg";
+>>> +			snps,usb2-gadget-lpm-disable;
+>>> +			snps,usb2-lpm-disable;
+>>
+>> Instead of this could you please check if this series fixes the issue for you?
+>> https://lore.kernel.org/all/20240205141221.56076-1-rogerq@kernel.org/
+> 
+> Isn't this change correct despite whatever the test results on that
+> change are going to be? The manual is pretty adamant on LPM not being
+> supported by the AM62 SoC.
+> 
 
-Note we change the functional clock name to follow the ti-sysc binding
-and use "fck" instead of "fclk".
+You are right. We should have this in regardless.
 
-Also note that we need to disable the target module reset as noted by
-Markus. Otherwise the sysfw using wkup_uart0 can get confused on some
-devices leading to boot time issues such as mbox timeouts.
-
-Tested-by: Dhruva Gole <d-gole@ti.com>
-Reviewed-by: Kevin Hilman <khilman@baylibre.com>
-Tested-by: Markus Schneider-Pargmann <msp@baylibre.com>
-Signed-off-by: Tony Lindgren <tony@atomide.com>
----
-Changes since v4:
-
-- Add ti,no-reset-on-init as noted by Markus
-
-Changes since v3:
-
-- Use the first reg for the target module node name to avoid a
-  make W=1 dtbs warning as noted by Nishanth
-
-Changes since v2:
-
-- Fix node name for 8250 IP, it's at offset 0 from the target module
-
-- Added Kevin's Reviewed-by from v2 as the node name change is mostly
-  cosmetic
-
-Changes since v1:
-
-- Added Tested-by from Dhruva
----
- arch/arm64/boot/dts/ti/k3-am62-wakeup.dtsi | 34 ++++++++++++++++++----
- 1 file changed, 28 insertions(+), 6 deletions(-)
-
-diff --git a/arch/arm64/boot/dts/ti/k3-am62-wakeup.dtsi b/arch/arm64/boot/dts/ti/k3-am62-wakeup.dtsi
---- a/arch/arm64/boot/dts/ti/k3-am62-wakeup.dtsi
-+++ b/arch/arm64/boot/dts/ti/k3-am62-wakeup.dtsi
-@@ -5,6 +5,8 @@
-  * Copyright (C) 2020-2022 Texas Instruments Incorporated - https://www.ti.com/
-  */
- 
-+#include <dt-bindings/bus/ti-sysc.h>
-+
- &cbass_wakeup {
- 	wkup_conf: syscon@43000000 {
- 		bootph-all;
-@@ -21,14 +23,34 @@ chipid: chipid@14 {
- 		};
- 	};
- 
--	wkup_uart0: serial@2b300000 {
--		compatible = "ti,am64-uart", "ti,am654-uart";
--		reg = <0x00 0x2b300000 0x00 0x100>;
--		interrupts = <GIC_SPI 186 IRQ_TYPE_LEVEL_HIGH>;
-+	target-module@2b300050 {
-+		compatible = "ti,sysc-omap2", "ti,sysc";
-+		reg = <0 0x2b300050 0 0x4>,
-+		      <0 0x2b300054 0 0x4>,
-+		      <0 0x2b300058 0 0x4>;
-+		reg-names = "rev", "sysc", "syss";
-+		ti,sysc-mask = <(SYSC_OMAP2_ENAWAKEUP |
-+				 SYSC_OMAP2_SOFTRESET |
-+				 SYSC_OMAP2_AUTOIDLE)>;
-+		ti,sysc-sidle = <SYSC_IDLE_FORCE>,
-+				<SYSC_IDLE_NO>,
-+				<SYSC_IDLE_SMART>,
-+				<SYSC_IDLE_SMART_WKUP>;
-+		ti,syss-mask = <1>;
-+		ti,no-reset-on-init;
- 		power-domains = <&k3_pds 114 TI_SCI_PD_EXCLUSIVE>;
- 		clocks = <&k3_clks 114 0>;
--		clock-names = "fclk";
--		status = "disabled";
-+		clock-names = "fck";
-+		#address-cells = <1>;
-+		#size-cells = <1>;
-+		ranges = <0 0 0x2b300000 0x100000>;
-+
-+		wkup_uart0: serial@0 {
-+			compatible = "ti,am64-uart", "ti,am654-uart";
-+			reg = <0 0x100>;
-+			interrupts = <GIC_SPI 186 IRQ_TYPE_LEVEL_HIGH>;
-+			status = "disabled";
-+		};
- 	};
- 
- 	wkup_i2c0: i2c@2b200000 {
 -- 
-2.43.1
+cheers,
+-roger
 
