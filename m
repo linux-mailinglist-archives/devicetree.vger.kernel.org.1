@@ -1,100 +1,83 @@
-Return-Path: <devicetree+bounces-41457-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-41458-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 66E3E853D1A
-	for <lists+devicetree@lfdr.de>; Tue, 13 Feb 2024 22:25:56 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id DEED4853D68
+	for <lists+devicetree@lfdr.de>; Tue, 13 Feb 2024 22:42:12 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id E395AB29268
-	for <lists+devicetree@lfdr.de>; Tue, 13 Feb 2024 21:25:53 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 94A41281C3F
+	for <lists+devicetree@lfdr.de>; Tue, 13 Feb 2024 21:42:11 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 58EE462A0D;
-	Tue, 13 Feb 2024 21:21:37 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id DC3F7629F7;
+	Tue, 13 Feb 2024 21:40:24 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="ItoZzt0U"
+	dkim=pass (2048-bit key) header.d=savoirfairelinux.com header.i=@savoirfairelinux.com header.b="hbXXMyCc"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lf1-f41.google.com (mail-lf1-f41.google.com [209.85.167.41])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mail.savoirfairelinux.com (mail.savoirfairelinux.com [208.88.110.44])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7E76362A02;
-	Tue, 13 Feb 2024 21:21:35 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.41
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4B7FE626DB;
+	Tue, 13 Feb 2024 21:40:19 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=208.88.110.44
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1707859297; cv=none; b=S2RdPVTj0rHyCPPOCkYwSUvhym6QFNEAnLfgV8IUJFGM+4RzrFHtalgqf9a0N24z9C+22BNyDWgVebovZr+u63Dwbapa+SIYvSClCiQFwK39h25AB1sXpgWM7BQGfjCmwgr6Kr9APz/9zB5qJ8KTEkxLCEozLWow1ARnUCRBdP8=
+	t=1707860424; cv=none; b=pCt5nSyZb7EWMSuYv2cq78nQWHs3LV6VzgV4/9dBXaOiKjW9aVMYsg48pRGz/P9OWiM6XNL/7shpur2eHOU5nqLT7DREzKxnykhFRgq+Indu3eP9DWB/2aUHZG9J3ooC2KpmY5F1YkUlJqd1rruW8cjW2jNBNBJe7fS7Uq1zMUU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1707859297; c=relaxed/simple;
-	bh=EgadWgVM7l3Yx0UTg9aDJrNq0U9PSlb6sOu5Wiu2Jlo=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=GOVp9Y1TW1pP6yZIbpTcLL6bdvZ6H1ovGjRCqh7GZdoKg5tCKfkUvvhi4GL4PQDzitNnw9A4Otty2Faf12hMunshe5Dt7kE8qqTMj+H03bIOaf1kQN6aVLvZIIEY2kcq3LdspEni919AwEmmX9Axowm6hRVsa9gqKcnTV++QRxk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=ItoZzt0U; arc=none smtp.client-ip=209.85.167.41
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-lf1-f41.google.com with SMTP id 2adb3069b0e04-5114c05806eso7830126e87.1;
-        Tue, 13 Feb 2024 13:21:35 -0800 (PST)
+	s=arc-20240116; t=1707860424; c=relaxed/simple;
+	bh=Am0SdY5XDfkfN9XClvIWzxvrMD3Ma/uMq9rRKBz1zVM=;
+	h=Date:From:To:Cc:Message-ID:In-Reply-To:References:Subject:
+	 MIME-Version:Content-Type; b=N3hXwcOya6zAjAvPwBj/xuZSkphJPBdtQfgHuwvXDrLv/hONLDhfq2OV4JYyxbeJ7U15c9vcTihlr0byHH0l20S8lMphV0WJ5g0H1UroL97czyqHgPMXG2m1aJS1t5iS6NB7L6Nyzq9i3uceOQoxdqXerBQXqGpEHFxMqJi+gmA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=savoirfairelinux.com; spf=pass smtp.mailfrom=savoirfairelinux.com; dkim=pass (2048-bit key) header.d=savoirfairelinux.com header.i=@savoirfairelinux.com header.b=hbXXMyCc; arc=none smtp.client-ip=208.88.110.44
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=savoirfairelinux.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=savoirfairelinux.com
+Received: from localhost (localhost [127.0.0.1])
+	by mail.savoirfairelinux.com (Postfix) with ESMTP id 549859C4408;
+	Tue, 13 Feb 2024 16:40:13 -0500 (EST)
+Received: from mail.savoirfairelinux.com ([127.0.0.1])
+ by localhost (mail.savoirfairelinux.com [127.0.0.1]) (amavis, port 10032)
+ with ESMTP id 0AR89831jv7z; Tue, 13 Feb 2024 16:40:12 -0500 (EST)
+Received: from localhost (localhost [127.0.0.1])
+	by mail.savoirfairelinux.com (Postfix) with ESMTP id AB8A99C48F2;
+	Tue, 13 Feb 2024 16:40:12 -0500 (EST)
+DKIM-Filter: OpenDKIM Filter v2.10.3 mail.savoirfairelinux.com AB8A99C48F2
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1707859293; x=1708464093; darn=vger.kernel.org;
-        h=in-reply-to:content-transfer-encoding:content-disposition
-         :mime-version:references:mail-followup-to:message-id:subject:cc:to
-         :from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=uunHV2kuzJlVZf98Idg9yHivF9Hc4C9Du40eWv37yD8=;
-        b=ItoZzt0URO0JwfezS69v6xObWINKMEcFiUosChdhPzEpKMN7LI99Po42hI/VaBzQPp
-         0PeiFG7fGKcvzGgvqhi9YLebw1uH1tuMYtU/Yi38SNFfDoGeHlTOqM43TwlvdKAzSr2B
-         vpJ0Kc8S2OitvatgsLggeGHftB//E+Z1Z/0MOzf5ITmrbnqb1urgckYcfc12ifxW64k8
-         f77q4U8l2fpWbE/6NQ7Sci5yLAT/eq4TOdv50zfTzqCpl2561/MUlwEVSqvB5rSpM1BD
-         3SsuHWU/mLKV1e8VCZczOLUjxQO+MLYg4B1qESlhrMqXR2J+CRkhUDl29CI0+8ih4kD2
-         6dzg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1707859293; x=1708464093;
-        h=in-reply-to:content-transfer-encoding:content-disposition
-         :mime-version:references:mail-followup-to:message-id:subject:cc:to
-         :from:date:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=uunHV2kuzJlVZf98Idg9yHivF9Hc4C9Du40eWv37yD8=;
-        b=ONRxlYY/Nn6S09zwbLAp0yP90mpIl1jeSSvI25UNC0t7WizW2HSbNhhl5tch4zmRRB
-         4W/1x13t7zwaSgGrWJ4y2rA5kvdkK4z6Bzbh9nipd0EVaj2l91b+yda5XEM3jqUx5zMq
-         t1Nu5g5xkO0ufQdDzDGCRqJoxJ/IT8Pz1eY/EP3WQjz9Of0MD4z2yICeGWxaFYGQhBQj
-         t4u8vrd9NxaGqdQ9GE4TZsToA6zST/LAMAMIiu6O0RGpknVwLVDMUZuMiFAi/v3dyQlx
-         euzye9buAAfx2SJNViavI76KPfV3sqxRSNl1NoDtvfoeMsWvmODzmL7bggkj5YWhfxhH
-         /HJQ==
-X-Forwarded-Encrypted: i=1; AJvYcCUeaqtWlyIqKcSvWiMndsHFNmoI16dUAWefnQD78eeIaAWFBITbud3/xNnhziZavNwj+Y9S4kAKwNXB0EBuem94M7HQgLL+2zcMjPDpcr8Vlsr4aBS3cmB3RpSy3sI8bNMhtIRVBcW7BwgJStD2BHNmWpHUnRTR1/MaswRy6e8IHMeBmw==
-X-Gm-Message-State: AOJu0Yw0V9V9OHsI/xOtJrQnd1nERSMCTqMtchkPBui0GxbTL7APsM2q
-	D+n6soK8TVqiAPxIMX+zonOWIO6wifle8FnNCfQKmDWjBnp5I5nw
-X-Google-Smtp-Source: AGHT+IHJfwf2LvJ0GHILLonTQ9VnmO/eDPOFrKz+HE4cvtW24vVZRyW15A2iSbA+lVB/lNTt50XgrA==
-X-Received: by 2002:a05:6512:480c:b0:511:6ec8:9b30 with SMTP id eo12-20020a056512480c00b005116ec89b30mr460285lfb.50.1707859293182;
-        Tue, 13 Feb 2024 13:21:33 -0800 (PST)
-X-Forwarded-Encrypted: i=1; AJvYcCVg6HUzOvBTkF/Sfmc8dtfzLhMmrYqG9BawULxz5QZc1jlF3NQvoDR/nLjqY0eXaMMy0xxZQH4WT4sX55Ck7YeUaNX6c2vNq8fu45TUr95L8xy+OI+I59ephH/pUCG6jSiJdGmB4JAWuCMwOg1CS/LMpSozyXMQUF8igzLQQ7Qf+1aCvB9X0eaaG2kEeYXfAZ3B5Phx5M812q9RDLxBbu9TV3TT0aeqPXv+TQ9yufkasliBl1ZYhh6A//0RIlHcnTNhzJZeRrH5kDE71uWE8RCavmHyQbYDXeGNRcrPhqGSCrbyeriMd770T4na6gh0LLBT7pxv9MPw/uY17nCErcJP01evngAHyQallWBM7L81jblyJTrvbuyb
-Received: from localhost ([2a05:3580:f312:6c01:1b8f:2a1b:d18:1951])
-        by smtp.gmail.com with ESMTPSA id g25-20020ac25399000000b0051186594564sm1181615lfh.174.2024.02.13.13.21.31
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 13 Feb 2024 13:21:32 -0800 (PST)
-Date: Wed, 14 Feb 2024 00:21:31 +0300
-From: Andrey Skvortsov <andrej.skvortzov@gmail.com>
-To: =?utf-8?Q?Ond=C5=99ej?= Jirman <megi@xff.cz>
-Cc: Jonathan Cameron <jic23@kernel.org>,
-	Lars-Peter Clausen <lars@metafoo.de>,
-	Rob Herring <robh+dt@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>, Icenowy Zheng <icenowy@aosc.io>,
-	Dalton Durst <dalton@ubports.com>, Shoji Keita <awaittrot@shjk.jp>,
-	linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v2 3/4] iio: magnetometer: add a driver for Voltafield
- AF8133J magnetometer
-Message-ID: <ZcvdW3SvgIuhJtKX@skv.local>
-Mail-Followup-To: Andrey Skvortsov <andrej.skvortzov@gmail.com>,
-	=?utf-8?Q?Ond=C5=99ej?= Jirman <megi@xff.cz>,
-	Jonathan Cameron <jic23@kernel.org>,
-	Lars-Peter Clausen <lars@metafoo.de>,
-	Rob Herring <robh+dt@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>, Icenowy Zheng <icenowy@aosc.io>,
-	Dalton Durst <dalton@ubports.com>, Shoji Keita <awaittrot@shjk.jp>,
-	linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org
-References: <20240212175410.3101973-1-megi@xff.cz>
- <20240212175410.3101973-4-megi@xff.cz>
+	d=savoirfairelinux.com; s=DFC430D2-D198-11EC-948E-34200CB392D2;
+	t=1707860412; bh=OLowQGLdyAKcj7Y0FKOcf7tGXW+sq0JROGANmY0A+Wo=;
+	h=Date:From:To:Message-ID:MIME-Version;
+	b=hbXXMyCcnSbiDOis84z1rPH366GZ/q0jOZVSHbHn0xnHvkXnwSMCSxR9jgMzNWM+v
+	 +WBSNXUDBCfLaVYa3cibhNRdQnV+nbladEQVdqH1XFbrPlQH50Uf7zIIf2AqEIlmHG
+	 nKBMswF0NeFMsaz29PxRdtEsZbldtvsEj9SQdOEexxvDh7V+CtSfjg6t9s0AkOPpAg
+	 8scqu6e+i2ymw+OOB+BEv63fKn2ieEptqDJdssZT/Ecsi9jJ390xwrmKcNpTnzUIDU
+	 e81yECbOHQTVxhu3+VBA5TCIQKeBAYkDYZrQPDlG16O4FHzEqDneUJ1HiMPSil3Wri
+	 r/bW5/g7MlgCw==
+X-Virus-Scanned: amavis at mail.savoirfairelinux.com
+Received: from mail.savoirfairelinux.com ([127.0.0.1])
+ by localhost (mail.savoirfairelinux.com [127.0.0.1]) (amavis, port 10026)
+ with ESMTP id W4wzPNlSx12O; Tue, 13 Feb 2024 16:40:12 -0500 (EST)
+Received: from mail.savoirfairelinux.com (mail.savoirfairelinux.com [192.168.48.237])
+	by mail.savoirfairelinux.com (Postfix) with ESMTP id 6FBCD9C4408;
+	Tue, 13 Feb 2024 16:40:12 -0500 (EST)
+Date: Tue, 13 Feb 2024 16:40:12 -0500 (EST)
+From: Charles Perry <charles.perry@savoirfairelinux.com>
+To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Cc: mdf <mdf@kernel.org>, Allen VANDIVER <avandiver@markem-imaje.com>, 
+	Brian CODY <bcody@markem-imaje.com>, hao wu <hao.wu@intel.com>, 
+	yilun xu <yilun.xu@intel.com>, Tom Rix <trix@redhat.com>, 
+	Rob Herring <robh+dt@kernel.org>, 
+	krzysztof kozlowski+dt <krzysztof.kozlowski+dt@linaro.org>, 
+	Conor Dooley <conor+dt@kernel.org>, 
+	Michal Simek <michal.simek@amd.com>, 
+	kishore Manne <nava.kishore.manne@amd.com>, 
+	linux-fpga <linux-fpga@vger.kernel.org>, 
+	devicetree <devicetree@vger.kernel.org>, 
+	linux-kernel <linux-kernel@vger.kernel.org>, 
+	linux-arm-kernel <linux-arm-kernel@lists.infradead.org>
+Message-ID: <1139371633.970589.1707860412394.JavaMail.zimbra@savoirfairelinux.com>
+In-Reply-To: <69679d9a-02e9-498f-8f5a-7c029059a8c1@linaro.org>
+References: <20240207180142.79625-1-charles.perry@savoirfairelinux.com> <20240207180142.79625-3-charles.perry@savoirfairelinux.com> <69679d9a-02e9-498f-8f5a-7c029059a8c1@linaro.org>
+Subject: Re: [PATCH v3 2/5] dt-bindings: fpga: xlnx,fpga-slave-serial:
+ rename gpios
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -102,46 +85,43 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20240212175410.3101973-4-megi@xff.cz>
+Content-Transfer-Encoding: 7bit
+X-Mailer: Zimbra 8.8.15_GA_4581 (ZimbraWebClient - FF120 (Linux)/8.8.15_GA_4581)
+Thread-Topic: dt-bindings: fpga: xlnx,fpga-slave-serial: rename gpios
+Thread-Index: JNVv3qISWN3DobtT0S2yFs/0J3QuiQ==
 
-Hi Ondřej,
-
-thank you for submitting the driver.
-
-On 24-02-12 18:53, Ondřej Jirman wrote:
-> From: Icenowy Zheng <icenowy@aosc.io>
+On Feb 11, 2024, at 10:39 AM, Krzysztof Kozlowski krzysztof.kozlowski@linaro.org wrote:
+> On 07/02/2024 19:01, Charles Perry wrote:
+>> By convention, gpio consumer names should not contain underscores
+>> (prog_b here) and shouldn't contain active low suffixes (-b here).
+>> 
+>> Signed-off-by: Charles Perry <charles.perry@savoirfairelinux.com>
+>> ---
+>>  .../bindings/fpga/xlnx,fpga-slave-serial.yaml        | 12 ++++++------
+>>  1 file changed, 6 insertions(+), 6 deletions(-)
+>> 
+>> diff --git a/Documentation/devicetree/bindings/fpga/xlnx,fpga-slave-serial.yaml
+>> b/Documentation/devicetree/bindings/fpga/xlnx,fpga-slave-serial.yaml
+>> index 614d86ad825f3..650a4d8792b64 100644
+>> --- a/Documentation/devicetree/bindings/fpga/xlnx,fpga-slave-serial.yaml
+>> +++ b/Documentation/devicetree/bindings/fpga/xlnx,fpga-slave-serial.yaml
+>> @@ -36,7 +36,7 @@ properties:
+>>    reg:
+>>      maxItems: 1
+>>  
+>> -  prog_b-gpios:
+>> +  prog-gpios:
 > 
-> AF8133J is a simple I2C-connected magnetometer, without interrupts.
+> Please deprecate old property and add allOf excluding the usage of both.
+> Driver still parses old property, so we should have it documented.
 > 
-> Add a simple IIO driver for it.
+> https://lore.kernel.org/all/20230118163208.GA117919-robh@kernel.org/
 > 
-> Co-developed-by: Icenowy Zheng <icenowy@aosc.io>
-> Signed-off-by: Icenowy Zheng <icenowy@aosc.io>
-> Signed-off-by: Dalton Durst <dalton@ubports.com>
-> Signed-off-by: Shoji Keita <awaittrot@shjk.jp>
-> Co-developed-by: Ondrej Jirman <megi@xff.cz>
-> Signed-off-by: Ondrej Jirman <megi@xff.cz>
-> ---
->  drivers/iio/magnetometer/Kconfig   |  12 +
->  drivers/iio/magnetometer/Makefile  |   1 +
->  drivers/iio/magnetometer/af8133j.c | 528 +++++++++++++++++++++++++++++
->  3 files changed, 541 insertions(+)
->  create mode 100644 drivers/iio/magnetometer/af8133j.c
-> 
-> diff --git a/drivers/iio/magnetometer/Kconfig b/drivers/iio/magnetometer/Kconfig
-> index 38532d840f2a..cd2917d71904 100644
-> --- a/drivers/iio/magnetometer/Kconfig
-> +++ b/drivers/iio/magnetometer/Kconfig
-> @@ -6,6 +6,18 @@
->  
+> Best regards,
+> Krzysztof
 
-Reviewed-by: Andrey Skvortsov <andrej.skvortzov@gmail.com>
+Ok. Thank you for the example.
 
-I've successfully tested driver from v2 on 6.8-rc3.
-
--- 
-Best regards,
-Andrey Skvortsov
+Regards,
+Charles
 
