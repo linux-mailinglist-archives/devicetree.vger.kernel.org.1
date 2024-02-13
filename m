@@ -1,190 +1,163 @@
-Return-Path: <devicetree+bounces-41229-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-41232-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8DF5F852E06
-	for <lists+devicetree@lfdr.de>; Tue, 13 Feb 2024 11:36:38 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 68620852E0E
+	for <lists+devicetree@lfdr.de>; Tue, 13 Feb 2024 11:37:17 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id B1ADB1C22DC4
-	for <lists+devicetree@lfdr.de>; Tue, 13 Feb 2024 10:36:37 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 252F8282963
+	for <lists+devicetree@lfdr.de>; Tue, 13 Feb 2024 10:37:16 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 591C524B23;
-	Tue, 13 Feb 2024 10:36:32 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=wolfvision.net header.i=@wolfvision.net header.b="q5vxIuYd"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5CAA828DCF;
+	Tue, 13 Feb 2024 10:37:04 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from EUR02-AM0-obe.outbound.protection.outlook.com (mail-am0eur02on2090.outbound.protection.outlook.com [40.107.247.90])
+Received: from metis.whiteo.stw.pengutronix.de (metis.whiteo.stw.pengutronix.de [185.203.201.7])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5373023754;
-	Tue, 13 Feb 2024 10:36:30 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.107.247.90
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1707820592; cv=fail; b=TNMoB9g71wAaEPcF1oeUm9SB3BbBZW4R7NqO277rVqcHyEaMOujjqyBGmyny5O6yoP2jL5FdSZeB7vITRIr34FEbOzLJ2LglHlG8xVi0iAvkUW9NBFOakZSudtmPOzdpl/OkqIB+bdAEinq00fzR4l4uX4/e0ABeuAWU06FUYiM=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1707820592; c=relaxed/simple;
-	bh=eCh60O+D8G3e6vyOWJlLgbd9PB0XT3G3IZzNcmVY7Vk=;
-	h=Message-ID:Date:Subject:To:Cc:References:From:In-Reply-To:
-	 Content-Type:MIME-Version; b=Rb36fZuyUL4jJ+8J2w3r5mrHhilfft9ktqqM7buc1JL0EAR2tc9JMhzfnFitYnIzd3iTvTGb4qNWTo7FIlMUYTYDFeVNHxoYqC2hhiN0kTcaMkf/06T61zjkiQNizns7FEBkSSjivYHobkLKgbCe8IHhKr9VoCqjd8aoxJ7PPms=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=wolfvision.net; spf=pass smtp.mailfrom=wolfvision.net; dkim=pass (1024-bit key) header.d=wolfvision.net header.i=@wolfvision.net header.b=q5vxIuYd; arc=fail smtp.client-ip=40.107.247.90
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=wolfvision.net
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=wolfvision.net
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=fC6tJr+rkpXlV+DKJZCrl1wtAOIHtpitACWihS72gGhcoEXE+/A3saBUiE7h+3/zTAlabhbHIlMErzn3aVpsp0Yd2ZxOTzhXpC3DhDDz4xTOAUsVvJFwMlnSVDhmw5v1q9ypItF9DZnDXg2SzmEX4f8Jp7/NWRmsm5MPBU4Zh7b2fMoi3JgXaFKgPM+AQcUuduBBhEb0CUin5MqI9CEEga1o0Q43glZQL4xgG0vAuUG4A40lSaPvelNN25dqHNRKsa1Dul/mRkKUVMk0uMZip4XvNHLclFJBWMs9/IwT3fyslf2TrGeNTwGYzHsCk/UT9EVmdiNwtJM7SZ7skZvFfg==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=4imtw8GQBpYNjDrhDMFARn02wWhnL4xlSFDmy8PAae4=;
- b=PQXKW+3RZzVAUijMY8Hr2N3d7kQVlKapamkD9q8tJVbX3ke3k+t6J+/Y5RATWzojH5yZOze0HipSCrmXvZfI4Iea/l4emO/i8pzo7lno1hyeiBBQwaGJH+SR71lvf5MXwvfKHloxOS0lNdu8DIcGvazQuNg1P76g+RHAljUlfFdzUNXplfPlOT+xqSdX3Rei9Ve00cjxgLqq7BHcLG4sc1Yk0aidjuvLYZZfF1VrL4pwuHkqJkiFth3l2cPj7qgSRR247DPEmjNEh75FDKJxptMFH1Oe5tzOxTjpupn1rTnRKc0hh45WYVTqoSs1NyzF8TEgyMRYedvwuEKPa1ecGA==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=wolfvision.net; dmarc=pass action=none
- header.from=wolfvision.net; dkim=pass header.d=wolfvision.net; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=wolfvision.net;
- s=selector2;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=4imtw8GQBpYNjDrhDMFARn02wWhnL4xlSFDmy8PAae4=;
- b=q5vxIuYdNhyRw3cWUwxxz4q1t7iDkRpbubGtPdXVGrs8GwZAogEW2+R/jaubyOcUtx1iLU1qUNdDJfnfvShTR4MgVfuOb9ftULQwTCTK98ghv5FqiO8Rve79NUoF6mZDs3vo08YoMnq4RHBdZCcJnVVYDhJyFtxx5LehQQrVvUA=
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=wolfvision.net;
-Received: from VE1PR08MB4974.eurprd08.prod.outlook.com (2603:10a6:803:111::15)
- by AM9PR08MB5890.eurprd08.prod.outlook.com (2603:10a6:20b:281::23) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7270.39; Tue, 13 Feb
- 2024 10:36:27 +0000
-Received: from VE1PR08MB4974.eurprd08.prod.outlook.com
- ([fe80::e661:f010:4f67:a6c]) by VE1PR08MB4974.eurprd08.prod.outlook.com
- ([fe80::e661:f010:4f67:a6c%6]) with mapi id 15.20.7270.031; Tue, 13 Feb 2024
- 10:36:27 +0000
-Message-ID: <36b813ad-fdcb-495b-9d27-3573b6177831@wolfvision.net>
-Date: Tue, 13 Feb 2024 11:36:25 +0100
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v3 1/7] usb: misc: onboard_hub: rename to onboard_dev
-Content-Language: en-US
-To: Matthias Kaehlcke <mka@chromium.org>
-Cc: Liam Girdwood <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>,
- Rob Herring <robh+dt@kernel.org>,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Conor Dooley <conor+dt@kernel.org>,
- Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
- linux-sound@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, linux-usb@vger.kernel.org,
- Matthias Kaehlcke <matthias@kaehlcke.net>
-References: <20240206-onboard_xvf3500-v3-0-f85b04116688@wolfvision.net>
- <20240206-onboard_xvf3500-v3-1-f85b04116688@wolfvision.net>
- <ZcJynrwp7zcs-aIT@google.com>
-From: Javier Carrasco <javier.carrasco@wolfvision.net>
-In-Reply-To: <ZcJynrwp7zcs-aIT@google.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: VI1PR06CA0097.eurprd06.prod.outlook.com
- (2603:10a6:803:8c::26) To VE1PR08MB4974.eurprd08.prod.outlook.com
- (2603:10a6:803:111::15)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BC93E24A1D
+	for <devicetree@vger.kernel.org>; Tue, 13 Feb 2024 10:37:01 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.203.201.7
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1707820624; cv=none; b=kgJ0bBpvetYsASLCaCkNgJ1ZJTj3I8VCtY+hPULJefzTTU1aEcUmTmaS4z1ed3qYngZBeMYya8Yy7SGwujbosS2kBW+VCgZ6TryvGJGODqdHu8UJ9UE9w0wHpbbAPXU6Vl3UtrrehNODc8FO8is1RqdKbYIuk44VCLEJpr0DTuU=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1707820624; c=relaxed/simple;
+	bh=NQFk6wv6h9t3jdfRJgwcW/SYE2bxvuDeigGOTR/4ws0=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=R8B6JIVs7/KxiNd33+nSYF6BhFawLh3U904OA811u0mN5/o1tZrmGLJ3AWGo7D9Yh4e7w+epBh7tAc1xispch59uSuD9LDYXEU3JeGR1tCN1v5Msu/IqnaJhJKW0wHYq/5DYFJ+YV3+d0xjPlx7whdYsG4ek2nShhVeq/x/qgI0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de; spf=pass smtp.mailfrom=pengutronix.de; arc=none smtp.client-ip=185.203.201.7
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=pengutronix.de
+Received: from drehscheibe.grey.stw.pengutronix.de ([2a0a:edc0:0:c01:1d::a2])
+	by metis.whiteo.stw.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
+	(Exim 4.92)
+	(envelope-from <mkl@pengutronix.de>)
+	id 1rZq9r-0003Ik-Tt
+	for devicetree@vger.kernel.org; Tue, 13 Feb 2024 11:36:59 +0100
+Received: from [2a0a:edc0:0:b01:1d::7b] (helo=bjornoya.blackshift.org)
+	by drehscheibe.grey.stw.pengutronix.de with esmtps  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+	(Exim 4.94.2)
+	(envelope-from <mkl@pengutronix.de>)
+	id 1rZq9r-000SpT-E6
+	for devicetree@vger.kernel.org; Tue, 13 Feb 2024 11:36:59 +0100
+Received: from dspam.blackshift.org (localhost [127.0.0.1])
+	by bjornoya.blackshift.org (Postfix) with SMTP id 1EC8F28D555
+	for <devicetree@vger.kernel.org>; Tue, 13 Feb 2024 10:36:59 +0000 (UTC)
+Received: from hardanger.blackshift.org (unknown [172.20.34.65])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+	(Client did not present a certificate)
+	by bjornoya.blackshift.org (Postfix) with ESMTPS id 6BF6028D51F;
+	Tue, 13 Feb 2024 10:36:55 +0000 (UTC)
+Received: from [172.20.34.65] (localhost [::1])
+	by hardanger.blackshift.org (OpenSMTPD) with ESMTP id dc26c151;
+	Tue, 13 Feb 2024 10:36:54 +0000 (UTC)
+From: Marc Kleine-Budde <mkl@pengutronix.de>
+Subject: [PATCH v8 0/3] Add ECC feature support to Tx and Rx FIFOs for
+ Xilinx CAN Controller.
+Date: Tue, 13 Feb 2024 11:36:42 +0100
+Message-Id: <20240213-xilinx_ecc-v8-0-8d75f8b80771@pengutronix.de>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: VE1PR08MB4974:EE_|AM9PR08MB5890:EE_
-X-MS-Office365-Filtering-Correlation-Id: 263a7a03-1672-4feb-0c3b-08dc2c7fa1e6
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info:
-	Kab9DsSA0hnpY7gzaKlUmq3Uu9uh/iaN180WphB9bL3X6p/wF5szGdt9L4YLPyTCC7ZPiKxMEEU7SkD1H86Qfp5lvRlR5XZ1KTcaTbqoys2iSpKvQ9qnMv7Et6Ujodkwe2h+s8b9ujfD//2VhRir3vOXy4KbiQPZdDPNmYVKsAQRyoO5d9hOL2hw+Ylk/5iTTu4bOAob/GaMmJ3Y36656B/xhAGGpdL6JoMvyeQuzJlLEAMEqOFpMdLgEc66+wn+/7OovCOaSwKaMaSNmEqAbnlTYHqvi5SdV7gFfX9vU/mG6BSqLhdXkqDxE8HAqsq5owGchLlitoYoe2w8UEsnsSfT9xHQu8K0QJqTIHEAXqbmn8VpsqihttL1IDQUurTrURC1JlaGb1n5yM4MbMAFYuqNeclDRgibkArTLm62xieRy4kVtv0caWKByS1KS+3nDBakpJbu82ayde2kCx5Re9JTKcJzzhRwK1VlsipCJDAfwho/ZuJhIIIoQ5F8UAVbsDg0yTEaCd9otcEN0aan5+ZFp4+UMqeRKZAVlhpM8Tc6en3mu70R93jesYbw2xEi
-X-Forefront-Antispam-Report:
-	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:VE1PR08MB4974.eurprd08.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230031)(366004)(136003)(376002)(39850400004)(346002)(396003)(230922051799003)(1800799012)(186009)(64100799003)(451199024)(31686004)(86362001)(36756003)(38100700002)(31696002)(5660300002)(2906002)(44832011)(7416002)(26005)(66476007)(54906003)(66556008)(66946007)(316002)(8936002)(6916009)(8676002)(4326008)(478600001)(6512007)(6486002)(6506007)(53546011)(41300700001)(2616005);DIR:OUT;SFP:1102;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0:
-	=?utf-8?B?ejIzdVRTTkhmbVRyd2o0a0YwMzJab1kvTXJsNmRRRDJ0RGNKa3dKa05kQTlu?=
- =?utf-8?B?RG1HelhnR216WG9ydjRrL01kbVpOS05BZWltRFRCU1RLUGRtcmhwMklvWHpm?=
- =?utf-8?B?VDR2OWltamt6d1h1b0FudUNyYVBsdE5mZEJsOUw3NnBTT0pYcW0yVE5YSFdp?=
- =?utf-8?B?UGs3eEFvU1Y0M0h6cEhFQjE5ZnpWNWt2VElwYnRBeXg2ek9zY21xNFN5ZXRU?=
- =?utf-8?B?eStVTGNmN0Y5WmhiVS9qOGRLWWRWdHZwRExPSlFNblEyNmhKSlpNNGVENU52?=
- =?utf-8?B?OTFHZHJBS2krdE5za3g5dkthZ3VZQ1p6Z2thQTVQZTQycHdZNmdaNTh0NU80?=
- =?utf-8?B?NGYxNW03YjhRQTRaZVdRelpUdVBvT25TeGhySzBwNWpYRWR2cUJQUnYrbDUv?=
- =?utf-8?B?cG4xYVZRQndHMGZaSGI4eFFXSGxTbVAxQStRaGMvbWliN3pydjRjTytLQjds?=
- =?utf-8?B?WDhWQUlPOUhVVm1vSzI1TmVUY3owWGlOWVJYVzUvUXhoa2x5OUdqcFZRNXJK?=
- =?utf-8?B?WHB0bzVCTGN1NnljMnpaZy9zTWxiMmZlSC9DdWtEUVpDREZXeU1tVTR2MVFX?=
- =?utf-8?B?MFRkR1lWS3NlME0vNG1OSmJGemh0aUNYMGp4MkJKU2pLanV1ZTNnajFob2ZK?=
- =?utf-8?B?OHhreUxaOTcyaWo3UDdvTDJ0d0lsTWhLeWNvaklXV2w4WCtXVzVCL0czZ29m?=
- =?utf-8?B?VDliMk1OSG5qMEEzeGJQSDNLYnN5UzN2RThLUU9HSjVVbVgvTzUvMUtWZ3Vo?=
- =?utf-8?B?OVZSNTAwc2luNTd1YzlZdktrSEo1YUdXSFU4UDZaeVpYUWswNHBXaHZXdmtZ?=
- =?utf-8?B?T2p4NU5TN01LcjYySHRqNXMvQ3Y2N0swYmovcDRDZEpnSjVaY3piV2dwWjBq?=
- =?utf-8?B?WmxtOVM5Vjc1d1U5UktwYWtZR2xzN3R4UHdJTElSUmlKWkc5Q1YrWDUwNXpE?=
- =?utf-8?B?UTlCdzM3K1dhNUN6SWNSaFRKZXRWQVNiclVTU25PcEhOVVN6Rm4zUXVaNjds?=
- =?utf-8?B?dStRRHk0cFNmOHVMOXIrcVlqVmpMUXJFZjdoTEdvTFV3NXMrakllYVh1Zjhi?=
- =?utf-8?B?MEkwWDAyTk5JRlNSOTJhT0dHeW5GTFkxQ3VxWXM5QkFVWVdGQ2ZSK2F0bWkz?=
- =?utf-8?B?emxwMjl1V2d1Z2lNNnFKQWZWUXgvaGhUTWVucGhnSVR4Sm9MTUl5alBtSU9w?=
- =?utf-8?B?WDNoN0RFb3lUc2M1SndMdGhkUVk1ZTNKY1ovZEYwbXkxZUpqVnpzc2RpK2c1?=
- =?utf-8?B?TmYvL3NHeXREcGx0OXpwTVZvclhOK0JqRk80QjJsVVhPQkowSmhLdStxb043?=
- =?utf-8?B?dVIzVTF2NTJISEFyNjU5aXFObm1sZjhOc2h2d3FpeDhsWjZMNzB5WDRtd215?=
- =?utf-8?B?R1lCTWdMVFROV2MvYnZnNlU0WEpWY09OeVhDZWhoMXRtM2JLK0taQkhYeG92?=
- =?utf-8?B?K1ZtSFdvR2FRU0g0UmtPVVRrVXlEK3JJMG14N2MxR2krQzY3a3VsQmh6YWxT?=
- =?utf-8?B?ZUxpM1o0SVQ1LzVFUUlOL1JLLzZsTlpPTCt5eWJHWHlsdStnWEZsbXRucHU4?=
- =?utf-8?B?RGZ1ajdINFVvKytpMnh6d2FLTHcwdE5LT3JoNnE3RmdWRk9FUWRJSE9OcWFC?=
- =?utf-8?B?RFdGNjlTMWVaNFdxQ0grZW9YMWk4amJNb1NIUURheEpvNUtQTUFUek5jSm55?=
- =?utf-8?B?VmN1a2RIUjBHRE9sNXo5NDZob3hSa2I4a2MrTDRNeUQ2NXBCdDFraVlDaHQ1?=
- =?utf-8?B?Q2ZuQWZWbGc2dWc4VHdWZFNTMUN3ZzFYRzVkZWZtaFhvTG9xVWV2Z25aUzk4?=
- =?utf-8?B?NFZvUGdsQUNaYy9WNDBTcXJYUGFLTUZMSlBZanlzVENMQWhiRHVuYWVQbjM2?=
- =?utf-8?B?emdvMjh6T3lCL3VIRzVBMXFNY2tHUUpGcU9KbENoV2U1a01UbDlEVWx6cTE2?=
- =?utf-8?B?WkRIREU4WmU2Zk1GN0FacHhZc2tJTkdqZzh1OXZ5T1FHOW5CMTkraGUyUDNa?=
- =?utf-8?B?cTFxMm5Ed0tWZGxtQTlvTlhZdzVYRlNRQjA3S3I0MnlPZUFwZHJLVURWaGJI?=
- =?utf-8?B?TVE2MFVsYjVKeHpOWEt0ZGhQRHhDZ3hLWU1VQjF6N080SDAwZTVoQmxUd0lJ?=
- =?utf-8?B?dlpjdW1VWmhSWko0ZURKM1pIdGp2NmdhaEYyWERRemJxZzMvbld3Y0JjSUdT?=
- =?utf-8?Q?6yxN1AEN4oBkxgZtybQzwKg=3D?=
-X-OriginatorOrg: wolfvision.net
-X-MS-Exchange-CrossTenant-Network-Message-Id: 263a7a03-1672-4feb-0c3b-08dc2c7fa1e6
-X-MS-Exchange-CrossTenant-AuthSource: VE1PR08MB4974.eurprd08.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 13 Feb 2024 10:36:26.9553
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: e94ec9da-9183-471e-83b3-51baa8eb804f
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: njt+9cwpukEYG9s5Ad6KLwVGi6b7UXKQNp6ylSxAG6VrEZWp2UxoDobvkF4PN2jR2Vc32q8jhjQigwXKArtifoYpiDR3y3BGIfs8yQxJM/8=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: AM9PR08MB5890
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIADpGy2UC/23MQQrCMBCF4auUWRuZJMZWV95Dithk2g5IWpIaI
+ qV3N3bt8n/wvhUiBaYI12qFQIkjT75Ec6jAjk8/kGBXGhSqEyqpReYX+/wga0WjJfbGmDNKhHK
+ YA/Wcd+zelh45LlP47HaSv/Uvk6RAQVpp7C5Yu66+zeSH9xImz/noCNpt277ak10qqQAAAA==
+To: Appana Durga Kedareswara rao <appana.durga.rao@xilinx.com>, 
+ Naga Sureshkumar Relli <naga.sureshkumar.relli@xilinx.com>, 
+ Wolfgang Grandegger <wg@grandegger.com>, 
+ Marc Kleine-Budde <mkl@pengutronix.de>, 
+ "David S. Miller" <davem@davemloft.net>, Eric Dumazet <edumazet@google.com>, 
+ Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>, 
+ Rob Herring <robh+dt@kernel.org>, 
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, 
+ Conor Dooley <conor+dt@kernel.org>, Michal Simek <michal.simek@amd.com>
+Cc: linux-can@vger.kernel.org, netdev@vger.kernel.org, 
+ devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
+ linux-kernel@vger.kernel.org, Srinivas Goud <srinivas.goud@amd.com>, 
+ Conor Dooley <conor.dooley@microchip.com>
+X-Mailer: b4 0.13-dev-f0463
+X-Developer-Signature: v=1; a=openpgp-sha256; l=1791; i=mkl@pengutronix.de;
+ h=from:subject:message-id; bh=NQFk6wv6h9t3jdfRJgwcW/SYE2bxvuDeigGOTR/4ws0=;
+ b=owEBbQGS/pANAwAKASg4oj56LbxvAcsmYgBly0Y9E5T3iPK50/89vKqgjcywzg9volRy+nQIf
+ dUYqANooaqJATMEAAEKAB0WIQRQQLqG4LYE3Sm8Pl8oOKI+ei28bwUCZctGPQAKCRAoOKI+ei28
+ b0E8CACYXyqGOOSlVUU8TCQhBIQYUM7pvlFJyeiYZH6lEk+WOOJlHzCRj7m2H7me41Ph+IsapmR
+ Dhw0+wnW2N/gY38OdzFsVPiYm9D5LW8TeIV4KsMyx6k6+rekLJ4lvfgYYEbMKxZqtmliJAwwTOC
+ JK82YS/oatenIiKRfMehabQrk6nNkxUn3Ax/ABdTPDE21DVZjy+AwWV1Fh5H6yarXmrdUXd0sDo
+ Fq25I0WAhK8FICjoXMGwUEcyZWrjooJUFD8WLEJ8NNryH4uG1s0OTqlgYqrZ4TTJZwPVwqhS0Jk
+ 97l52iA8Y4ynL8GY3JsxnNVFDZ6Wk5YwAFrysPByB8JKbn1D
+X-Developer-Key: i=mkl@pengutronix.de; a=openpgp;
+ fpr=C1400BA0B3989E6FBC7D5B5C2B5EE211C58AEA54
+X-SA-Exim-Connect-IP: 2a0a:edc0:0:c01:1d::a2
+X-SA-Exim-Mail-From: mkl@pengutronix.de
+X-SA-Exim-Scanned: No (on metis.whiteo.stw.pengutronix.de); SAEximRunCond expanded to false
+X-PTX-Original-Recipient: devicetree@vger.kernel.org
 
-Hi Matthias,
+ECC is an IP configuration option where counter registers are added in
+IP for 1bit/2bit ECC errors count and reset.
 
-On 06.02.24 18:55, Matthias Kaehlcke wrote:
-> Hi Javier,
->
-> a few comments inline
->
-> On Tue, Feb 06, 2024 at 02:59:29PM +0100, Javier Carrasco wrote:
->> +static struct onboard_dev *_find_onboard_dev(struct device *dev)
->> +{
->> +	struct platform_device *pdev;
->> +	struct device_node *np;
->> +	struct onboard_dev *onboard_dev;
->> +
->> +	pdev = of_find_device_by_node(dev->of_node);
->> +	if (!pdev) {
->> +		np = of_parse_phandle(dev->of_node, "peer-hub", 0);
->> +		if (!np) {
->> +			dev_err(dev, "failed to find device node for peer hub\n");
->> +			return ERR_PTR(-EINVAL);
->> +		}
->> +
->> +		pdev = of_find_device_by_node(np);
->> +		of_node_put(np);
->> +
->> +		if (!pdev)
->> +			return ERR_PTR(-ENODEV);
->> +	}
->
-> The above branch should probably be guarded by 'if (!onboard_dev->pdata->is_hub)',
-> this is also a change for ""usb: misc: onboard_dev: add support for non-hub devices"
->
-I am not sure how to guard the branch like that because onboard_dev is
-retrieved by means of pdev->dev, which is not available if
-of_find_device_by_node returns NULL. The non-hub device will not have a
-peer-hub property according to its bindings anyway, right?
+Also driver reports 1bit/2bit ECC errors for FIFOs based on ECC error
+interrupts.
 
-Thanks again for your feedback and best regards,
-Javier Carrasco
+Add xlnx,has-ecc optional property for Xilinx AXI CAN controller
+to support ECC if the ECC block is enabled in the HW.
+
+Add ethtool stats interface for getting all the ECC errors information.
+
+There is no public documentation for it available.
+
+Changes in v8:
+- Use u64_stats_sync instead of spinlock
+- Renamed stats strings: use "_" instead of "-"
+- Renamed stats strings: add "_errors" trailer
+- Renamed stats variables similar to stats strings
+
+Changes in v7:
+- Update with spinlock only for stats counters
+
+Changes in v6:
+- Update commit description
+
+Changes in v5:
+- Fix review comments
+- Change the sequence of updates the stats
+- Add get_strings and get_sset_count stats interface
+- Use u64 stats helper function
+
+Changes in v4:
+- Fix DT binding check warning
+- Update xlnx,has-ecc property description
+
+Changes in v3:
+- Update mailing list
+- Update commit description
+
+Changes in v2:
+- Address review comments
+- Add ethtool stats interface
+- Update commit description
+
+---
+Srinivas Goud (3):
+      dt-bindings: can: xilinx_can: Add 'xlnx,has-ecc' optional property
+      can: xilinx_can: Add ECC support
+      can: xilinx_can: Add ethtool stats interface for ECC errors
+
+ .../devicetree/bindings/net/can/xilinx,can.yaml    |   5 +
+ drivers/net/can/xilinx_can.c                       | 169 ++++++++++++++++++++-
+ 2 files changed, 170 insertions(+), 4 deletions(-)
+---
+base-commit: a3522a2edb3faf8cb98d38c2a99f5967beef24e2
+change-id: 20240213-xilinx_ecc-8310f5556010
+
+Best regards,
+-- 
+Marc Kleine-Budde <mkl@pengutronix.de>
+
+
 
