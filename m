@@ -1,84 +1,117 @@
-Return-Path: <devicetree+bounces-41164-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-41165-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id B0978852AA6
-	for <lists+devicetree@lfdr.de>; Tue, 13 Feb 2024 09:16:15 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 552F7852AA8
+	for <lists+devicetree@lfdr.de>; Tue, 13 Feb 2024 09:16:35 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 653811F22108
-	for <lists+devicetree@lfdr.de>; Tue, 13 Feb 2024 08:16:15 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id E88FD1F211AC
+	for <lists+devicetree@lfdr.de>; Tue, 13 Feb 2024 08:16:34 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C7A011799C;
-	Tue, 13 Feb 2024 08:15:54 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C5A81179AC;
+	Tue, 13 Feb 2024 08:16:19 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=dolcini.it header.i=@dolcini.it header.b="T5s4Qsoq"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="A3s39C6k"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail11.truemail.it (mail11.truemail.it [217.194.8.81])
+Received: from mail-qk1-f170.google.com (mail-qk1-f170.google.com [209.85.222.170])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 78DB41B263;
-	Tue, 13 Feb 2024 08:15:50 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.194.8.81
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2C3821E88C
+	for <devicetree@vger.kernel.org>; Tue, 13 Feb 2024 08:16:17 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.222.170
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1707812154; cv=none; b=EPpvbCCMzBmnsACLDQzaVEhk4bSqUz17gH6Cu7loy9RATtiXkE7oARCQf0jN5U9lTNKoz5qftqjeUtlzi96UpkJuFnl1Fty4ombW4mTI0seckFjK6esXL6hvQsujzTkKcza7r+VpbzWvt0Crb/622MVIIuhzk0lxHK5Xd4oVxsY=
+	t=1707812179; cv=none; b=RkxccclMedR0d3GP780au+0uwow8hivvVUQq/k9Em7mIX0vOFpvD8SP/eCJzpgGIq4AMl5to394Liw/Jewgp0+wSo4ad9VELcXdu2LNMoiU0AWaVr4lYuqTfv2J0PCDY0zGw1Fxuasf5yqjwCs74aHoOtpOKvmDnEd+T/y8I21k=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1707812154; c=relaxed/simple;
-	bh=92DXHF71+7oeTsGWV/4lnuDoWyAgG+ypk3ikJNSrEJk=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=OjItLEyxVZRVA63QhrfQaXabMP4EDwf4sPGm3urR8c8rxV4STDcr15WhFG2OdPTl0D1FVeVsivoFzbRzFkE4qV6Uu7g+Pn5mBezi6QamqD8nLHHTIhWJRPCBg+maR+5L0XYC7Q7SkCl0duVRg7EkqQ5Er3sPnas8+T+l1NqZFZs=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=dolcini.it; spf=pass smtp.mailfrom=dolcini.it; dkim=pass (2048-bit key) header.d=dolcini.it header.i=@dolcini.it header.b=T5s4Qsoq; arc=none smtp.client-ip=217.194.8.81
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=dolcini.it
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=dolcini.it
-Received: from francesco-nb (unknown [5.170.16.17])
-	by mail11.truemail.it (Postfix) with ESMTPA id 59F491FDBE;
-	Tue, 13 Feb 2024 09:15:47 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=dolcini.it;
-	s=default; t=1707812148;
-	bh=qa9g6JHYXRNvSH7o+p2aLOAnOYPsxZBPVhohALq2dRo=; h=From:To:Subject;
-	b=T5s4QsoqMEC6Aya3tHWFNsxDZffu3zc3VgvZbXSnIYemxuARche6nYs2iCyb4x4bU
-	 CgpQZ+DJxnw3A6AksOx9WFL5MAY5DoKL1cXlFFhpxFwtQCjCIjhqeDwSfNqwIFM3n5
-	 WdCrp82SeFN8tHcp6Osi20/c4ROFqVTtMrjYZkbXbEdp7cuq3nzmYvjxDJTKwW89c2
-	 +8NCJZ8zVrATox4a2nB/D7uEXOE15WmK6VD5VAIgDAohp8TqtGp3O2apSnksXw+y2h
-	 QukkDvCJTBdUVWlPbeXJXnZxQZaEA/3dn/VV+nUEeWI/5UQ5wJ2CbjQx7icQmLX7NO
-	 b+cpkVOc1v67w==
-Date: Tue, 13 Feb 2024 09:15:43 +0100
-From: Francesco Dolcini <francesco@dolcini.it>
-To: Judith Mendez <jm@ti.com>
-Cc: Rob Herring <robh+dt@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>, Nishanth Menon <nm@ti.com>,
-	Vignesh Raghavendra <vigneshr@ti.com>,
-	Tero Kristo <kristo@kernel.org>,
-	linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org, Wadim Egorov <w.egorov@phytec.de>,
-	Francesco Dolcini <francesco.dolcini@toradex.com>
-Subject: Re: [PATCH v2 6/9] arm64: dts: ti: k3-am6*: Remove DLL properties
- for soft PHYs
-Message-ID: <20240213081543.GA3810@francesco-nb>
-References: <20240213002416.1560357-1-jm@ti.com>
- <20240213002416.1560357-7-jm@ti.com>
+	s=arc-20240116; t=1707812179; c=relaxed/simple;
+	bh=U2Y+Kr0bMWSXAxm+KD/WY4ZomXjGBgW7nt3qNovWZek=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=rQkBqln4bx9XmeMQ/3TjA6vT+epzs0yMKXmM1OdUnnMGwUAs2m0ZbSdpLRQKfMXsqyYvr15dv1MKctCewI1QL4N9jI/+DJum/8nepZVaHigZL6A/HkFITyZ1qigqU3qIhY+8HJIOUMG2Ad16roRyYM6Szb/9dTILCnrp4xmdlGc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=A3s39C6k; arc=none smtp.client-ip=209.85.222.170
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-qk1-f170.google.com with SMTP id af79cd13be357-785d5fa8169so139386185a.1
+        for <devicetree@vger.kernel.org>; Tue, 13 Feb 2024 00:16:17 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1707812177; x=1708416977; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:content-language:from
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=YKJQkExMKM9CelsaTo12mwlgC53OjDZqQ7+f/ZWjGZo=;
+        b=A3s39C6kbUDQXi7XLUq7MC4bsJ17k9vRCBOZNYDxXLrdqhY0bCA46jiqgTbBQBsXtd
+         T52abosp/ABRzppd9+Y9XR6za1Pku0xoO9hxo15lt9k+HYuhAo7vq4kni9uSkkpJf8ZI
+         AtZgoZCgBISDllAc6JoNFgJwmM7SGKWNtn8h1cGbF3SI0cloVoDxb7jzS4g8TxVzD9Xp
+         abEY4URwisOGKpWal3HOpuzmR7aIHZUBTqGVWapFINDg+XwS5mKi0MXYfTbQhTwRfd+2
+         ne3bVOXOplQVkhHzbyaR3CIVbpAUNP3+iFI0zpZF2iEA7WA9eS78wRrZIxQsyDDRQ6Ow
+         v1sA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1707812177; x=1708416977;
+        h=content-transfer-encoding:in-reply-to:content-language:from
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=YKJQkExMKM9CelsaTo12mwlgC53OjDZqQ7+f/ZWjGZo=;
+        b=pOLIA8in+WlqcfQ+wovGD19KFAchdp2F9U6WABw9OSF3mMPI0/b00hnaJX4z9Jr+K9
+         cuxyutj4XHjT867O/FrvKJOTooO6R8BNpXz/tGT4xVi3WIkdLPkL+CmsvEDQUhWNzT1f
+         0LGE8l60fpsXkqc5tEVhrK5lMNbG+tXmxceldgVO64UFGUDiSr+yoiQmuLuOS4P1+15U
+         0ZUSBS3gunbavOim8FreeKONpdsxMnWe8nJQ3dHf5BTM5nwwyjUzDOUWamF0n9bh04QY
+         qm7nP+tZybaZ7FxIE0eMe3OGhHskqYqZYxGxifqEJx/lLx2Dm5As2Ne9RcWSkPXljeaR
+         9UUA==
+X-Forwarded-Encrypted: i=1; AJvYcCUC8qbQUELynPwoZTbNORUc6+tXhXKLgsENubED6LA1XNfllCYEBr4cTok6vWHqben53JNmNHtqbQbjNFpkXNozdqtGhjmeH3lw2A==
+X-Gm-Message-State: AOJu0YyQUJZgh3cOhj/Apl6fYsoDm/VF2j00niLL6d78C6avDjCcMQZv
+	f4duCfI8RAfZTF+qVlkzjAlyUldklPJZykekffchM2gYVcGHVglzzzQdJExGPQU=
+X-Google-Smtp-Source: AGHT+IG6jo1lxsF+ClvpfvbjDv99ccu77l6Z35LSDCMmP9ugZtjW0POcLsQdhQYXMhWGIicalHcSqQ==
+X-Received: by 2002:a05:620a:4556:b0:787:15df:39c0 with SMTP id u22-20020a05620a455600b0078715df39c0mr3056929qkp.71.1707812176946;
+        Tue, 13 Feb 2024 00:16:16 -0800 (PST)
+X-Forwarded-Encrypted: i=1; AJvYcCUyVnVykstms9WOryasekInAxzKUDAPpQfoa7J7EpCrGx2aCT+4wbDQfnfbuzm7Q20r8FubRrythtMzBZbYGsiNAhlNP9MIGlM38yTIonLlo94enyvgLENRmxS8K6EX4sfxEsKwi4AvjFhwg8LIJ9Slg9NEPno5tyAfmRJOpz/RZQgQ1yrChbVxn1kpwVB+8jhxTSQ8/juzqPR/L+liz8EYgykssvGlUIlAIUVb2nRfLcOsuemnqpsX1eTZ0b0Aj5jrh4ProArEDBJA8DPhga+YujkKwlxTGsp1yjpNLIU94M8+L4d/ESy6yg5mKS5Q/9xcHC+mXXXuittp3oaC0oTt8+SbW7UTd3sLwLFFtimUsahSibArupZa3BlhFhdHx4Makp8VnParFTNbzB5n5DmPtJZoMHPojzENPtabQKhC0VTp7x6c+0dBsi6z3fc85K2VyApVxFZZtorEntbj2vwHVMvVmeFPbG35UZPuu63dZxmECd3RJR28ChKJFUHNlQZSpwvdORYqLnm5DHGkMC7bxKC2kOuxyJn/FvAapJoSkLMEpStFSMpScQxqiPu9HNHxfIujweG/1PoWw1h6KRFi8t+1sbx2OA==
+Received: from [192.168.2.173] ([79.115.63.202])
+        by smtp.gmail.com with ESMTPSA id t14-20020a05620a034e00b00786e8e0f8f7sm926281qkm.3.2024.02.13.00.16.13
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 13 Feb 2024 00:16:16 -0800 (PST)
+Message-ID: <1d6e104d-6833-48c5-b95d-8f10617cd5c5@linaro.org>
+Date: Tue, 13 Feb 2024 10:16:11 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20240213002416.1560357-7-jm@ti.com>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v2 01/12] spi: dt-bindings: introduce FIFO depth
+ properties
+To: Rob Herring <robh@kernel.org>
+Cc: arnd@arndb.de, krzysztof.kozlowski@linaro.org, andre.draszik@linaro.org,
+ willmcvicker@google.com, andi.shyti@kernel.org, alim.akhtar@samsung.com,
+ linux-spi@vger.kernel.org, linux-kernel@vger.kernel.org,
+ kernel-team@android.com, linux-arm-kernel@lists.infradead.org,
+ conor+dt@kernel.org, linux-samsung-soc@vger.kernel.org,
+ semen.protsenko@linaro.org, devicetree@vger.kernel.org,
+ peter.griffin@linaro.org, broonie@kernel.org
+References: <20240212140331.915498-1-tudor.ambarus@linaro.org>
+ <20240212140331.915498-2-tudor.ambarus@linaro.org>
+ <170775215967.605422.1424850912641172864.robh@kernel.org>
+From: Tudor Ambarus <tudor.ambarus@linaro.org>
+Content-Language: en-US
+In-Reply-To: <170775215967.605422.1424850912641172864.robh@kernel.org>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
-Judith, you asked for tests, but if this property does nothing
-on AM62 there is no much to test, these changes will just have zero
-effect given your explanation.
 
-On Mon, Feb 12, 2024 at 06:24:13PM -0600, Judith Mendez wrote:
-> Remove DLL properties which are not applicable for soft PHYs
-> since these PHYs do not have a DLL to enable.
+
+On 12.02.2024 17:36, Rob Herring wrote:
+> My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
+> on your patch (DT_CHECKER_FLAGS is new in v5.13):
 > 
-> Signed-off-by: Judith Mendez <jm@ti.com>
+> yamllint warnings/errors:
+> ./Documentation/devicetree/bindings/spi/spi-controller.yaml:152:9: 
+> [warning] wrong indentation: expected 6 but found 8 (indentation)
+> ./Documentation/devicetree/bindings/spi/spi-controller.yaml:156:9: 
+> [warning] wrong indentation: expected 6 but found 8 (indentation)
+> 
+> dtschema/dtc warnings/errors:
 
-Acked-by: Francesco Dolcini <francesco.dolcini@toradex.com> # Verdin AM62
+oh, the horror, I missed these. I'll re-check and resend.
 
+Thanks,
+ta
 
