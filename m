@@ -1,136 +1,135 @@
-Return-Path: <devicetree+bounces-41475-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-41476-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id BDA87853F22
-	for <lists+devicetree@lfdr.de>; Tue, 13 Feb 2024 23:50:38 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5D00A853F3E
+	for <lists+devicetree@lfdr.de>; Tue, 13 Feb 2024 23:56:31 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id F12191C27D10
-	for <lists+devicetree@lfdr.de>; Tue, 13 Feb 2024 22:50:37 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 1A66C1F24176
+	for <lists+devicetree@lfdr.de>; Tue, 13 Feb 2024 22:56:31 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9106563087;
-	Tue, 13 Feb 2024 22:49:19 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id DCD69627EE;
+	Tue, 13 Feb 2024 22:56:24 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="IYveZ237"
+	dkim=pass (2048-bit key) header.d=infradead.org header.i=@infradead.org header.b="vyivi4l3"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CD8636310E;
-	Tue, 13 Feb 2024 22:49:17 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E8FBB629E3;
+	Tue, 13 Feb 2024 22:56:22 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.137.202.133
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1707864559; cv=none; b=lLDL71mF/gGaJ+uYT/tWcDORvxMTZetx4JfZfOgrb9NM4171ETajiO3FWriEqvFFhC92GTjup8dOPBkm2FUNaUpgqvlem0V4RAE1CnGa7hHC5sVuN4G16hzQx2uhpijERlHDC9bPoaA5eOSe6Fz6TPYU95lEP1WBwBdi8eAJlyI=
+	t=1707864984; cv=none; b=s8hhWYE+H/NQlzKuN9pHjSbWCvByyjRRXgyJrMaW0iTI1zWnQco7ztyybamXLGmE38w44K03xFdPefiaaiUmEGL4zseUajMeruT4B2wAQwnzOjSZBXQdXMzukwDi7tvRAB5U/m0X0iE4N/IP2pzJJrEjEgnEU9/P63UO3dNsawE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1707864559; c=relaxed/simple;
-	bh=jHvv+4ryYbSvF7PPwhAN75HK+TodxoZw2ak0Ibxc0XA=;
-	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
-	 In-Reply-To:Content-Type; b=f9nfOLhtiNRbhKXwnZwDJXRUuoPMzzRHnC+aRa4RW7pqeHkzkoqlKzkbxOnGRmQEKPcg7fylDE82vWfsO87IoZX+Yyi2xn4oZw9rpqDIC7XNqfDeJtLiLI6/ol68ITlVrjVShNOKqKCymwNToEtGigEQXW42DnbRqvbj6FE0Msw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=IYveZ237; arc=none smtp.client-ip=205.220.180.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
-Received: from pps.filterd (m0279873.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.17.1.24/8.17.1.24) with ESMTP id 41DMNqvB013597;
-	Tue, 13 Feb 2024 22:48:38 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
-	message-id:date:mime-version:subject:to:cc:references:from
-	:in-reply-to:content-type:content-transfer-encoding; s=
-	qcppdkim1; bh=kS0BuS/dFc0Sb2CDmjSXKeRKMVaweomB8kr69lr3DUI=; b=IY
-	veZ237BYo3/8kkpCqtX8a0sQz3ISSeSw1tccp3RkOlE6Y43Axf71iYjuE2NSieSv
-	09W7xZATnKZfM+C7VArnuqvb/mqOn8+hfN6Irq8zT7seH9rqT6SAMcGkUu2FCZlF
-	Iprk/CyP+3OLlBJ6gS+QTOsqPHtdI5JD74oarLbPAp8Rs8Wf4ChGdUWXXRJTMSf8
-	aQWUiCHRcr+QQBQPOPQ9bXOB7u5GeOXd7AUq+/CrKHcVQsTRQyNlcat5kB8mndON
-	n1cHkAmUFWFO5DqBIWsyb73MUimvr2IeLhKT/zWMxDS4aAH5cOsWZgwidmCYpwiR
-	dderqNLjSn7fbZJk4sFw==
-Received: from nalasppmta05.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3w7yh329ba-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Tue, 13 Feb 2024 22:48:37 +0000 (GMT)
-Received: from nalasex01b.na.qualcomm.com (nalasex01b.na.qualcomm.com [10.47.209.197])
-	by NALASPPMTA05.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 41DMma8G004283
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Tue, 13 Feb 2024 22:48:36 GMT
-Received: from [10.110.76.255] (10.80.80.8) by nalasex01b.na.qualcomm.com
- (10.47.209.197) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1118.40; Tue, 13 Feb
- 2024 14:48:36 -0800
-Message-ID: <289ae266-c1a4-796a-1f87-387d8ec98646@quicinc.com>
-Date: Tue, 13 Feb 2024 14:48:31 -0800
+	s=arc-20240116; t=1707864984; c=relaxed/simple;
+	bh=kQBIMbkQ/cFGFHAymRMtaRiM8GO2JKPBgI/mNvZsgYA=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=DrWgAJJCP0yUiGG0n2ShCYxh2u/olhdjX1gkPrFzcAxdEXyUkEkDeH7lZsfvcgdv2YcR4gE1vPFOHIBj5e3s3WHIatecOKOu83vvcExRElq0c9srdwIJT5ugwIhoAup/uizGfYLJsJTv8/xsggVkZEuhnvUandU/wskkdU+1v0I=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=infradead.org; spf=none smtp.mailfrom=infradead.org; dkim=pass (2048-bit key) header.d=infradead.org header.i=@infradead.org header.b=vyivi4l3; arc=none smtp.client-ip=198.137.202.133
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=infradead.org
+Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=infradead.org
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
+	d=infradead.org; s=bombadil.20210309; h=Content-Transfer-Encoding:
+	MIME-Version:Message-ID:Date:Subject:Cc:To:From:Sender:Reply-To:Content-Type:
+	Content-ID:Content-Description:In-Reply-To:References;
+	bh=wy6heJa7Ut654C3QHTTlQbb4DZypUdZ0Hs04M2BHvRw=; b=vyivi4l3WzwptNPmQRXcnUrPcr
+	ryCBBjD/01OBxD/Wj2btsSqByFtqipUCuCnIAii9TI07uhaTqYh9REssEtbBreuMKL75zF26hgG6a
+	iPOKJL3Ua4nXdKD1Nl6EApst3SKeTiBnfWnXqZdGq7uQAYkFoScKcHhI4Vh6dgBzqKPdUepEFt2hn
+	lPWIujtfvlq3KH4nDuj0PdS+2zXkCs2u8SNn141en+Ekkee0AJvwLfE8F6DgQwW1Zo2sj3RXVottm
+	wXsNWpoizBUkf0cI1IV9n05hcIe6SAlt07sKiM7ln2Dk25ZH1ah++gGzNAd4hHmGjgmmobUIwKQcB
+	PYocyBhA==;
+Received: from [50.53.50.0] (helo=bombadil.infradead.org)
+	by bombadil.infradead.org with esmtpsa (Exim 4.97.1 #2 (Red Hat Linux))
+	id 1ra1hN-0000000B9zN-0o8e;
+	Tue, 13 Feb 2024 22:56:21 +0000
+From: Randy Dunlap <rdunlap@infradead.org>
+To: linux-kernel@vger.kernel.org
+Cc: Randy Dunlap <rdunlap@infradead.org>,
+	Geert Uytterhoeven <geert@linux-m68k.org>,
+	Rob Herring <robh@kernel.org>,
+	Marc Zyngier <maz@kernel.org>,
+	Arnd Bergmann <arnd@arndb.de>,
+	Philipp Zabel <p.zabel@pengutronix.de>,
+	Peter Rosin <peda@axentia.se>,
+	devicetree@vger.kernel.org
+Subject: [PATCH v2] of: OF_IRQ: select IRQ_DOMAIN instead of depending on it
+Date: Tue, 13 Feb 2024 14:56:19 -0800
+Message-ID: <20240213225619.11726-1-rdunlap@infradead.org>
+X-Mailer: git-send-email 2.43.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:91.0) Gecko/20100101
- Thunderbird/91.9.1
-Subject: Re: [PATCH v15 29/50] ALSA: usb-audio: qcom: Introduce QC USB SND
- offloading support
-Content-Language: en-US
-To: Takashi Iwai <tiwai@suse.de>
-CC: <srinivas.kandagatla@linaro.org>, <mathias.nyman@intel.com>,
-        <perex@perex.cz>, <conor+dt@kernel.org>, <corbet@lwn.net>,
-        <lgirdwood@gmail.com>, <andersson@kernel.org>,
-        <krzysztof.kozlowski+dt@linaro.org>, <gregkh@linuxfoundation.org>,
-        <Thinh.Nguyen@synopsys.com>, <broonie@kernel.org>,
-        <bgoswami@quicinc.com>, <tiwai@suse.com>, <robh+dt@kernel.org>,
-        <konrad.dybcio@linaro.org>, <linux-kernel@vger.kernel.org>,
-        <devicetree@vger.kernel.org>, <linux-sound@vger.kernel.org>,
-        <linux-usb@vger.kernel.org>, <linux-arm-msm@vger.kernel.org>,
-        <linux-doc@vger.kernel.org>, <alsa-devel@alsa-project.org>
-References: <20240213005422.3121-1-quic_wcheng@quicinc.com>
- <20240213005422.3121-30-quic_wcheng@quicinc.com>
- <87wmr8y6hi.wl-tiwai@suse.de>
-From: Wesley Cheng <quic_wcheng@quicinc.com>
-In-Reply-To: <87wmr8y6hi.wl-tiwai@suse.de>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
- nalasex01b.na.qualcomm.com (10.47.209.197)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-ORIG-GUID: CPkrbzsESQIWkFFv2CJithY9DWfBhg74
-X-Proofpoint-GUID: CPkrbzsESQIWkFFv2CJithY9DWfBhg74
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.272,Aquarius:18.0.1011,Hydra:6.0.619,FMLib:17.11.176.26
- definitions=2024-02-13_14,2024-02-12_03,2023-05-22_02
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 impostorscore=0 bulkscore=0
- mlxlogscore=666 phishscore=0 spamscore=0 malwarescore=0 clxscore=1015
- suspectscore=0 mlxscore=0 priorityscore=1501 adultscore=0
- lowpriorityscore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.19.0-2401310000 definitions=main-2402130179
+Content-Transfer-Encoding: 8bit
 
-Hi Takashi,
+IRQ_DOMAIN is a hidden (not user visible) symbol. Users cannot set
+it directly thru "make *config", so drivers should select it instead
+of depending on it if they need it.
+Relying on it being set for a dependency is risky.
 
-On 2/13/2024 2:59 AM, Takashi Iwai wrote:
-> On Tue, 13 Feb 2024 01:54:01 +0100,
-> Wesley Cheng wrote:
->> +static int __init qc_usb_audio_offload_init(void)
->> +{
->> +	struct uaudio_qmi_svc *svc;
->> +	int ret;
->> +
->> +	svc = kzalloc(sizeof(struct uaudio_qmi_svc), GFP_KERNEL);
->> +	if (!svc)
->> +		return -ENOMEM;
->> +
->> +	svc->uaudio_wq = create_singlethread_workqueue("uaudio_svc");
->> +	if (!svc->uaudio_wq) {
->> +		ret = -ENOMEM;
->> +		goto free_svc;
->> +	}
-> 
-> Do we need a dedicated workqueue?  I don't mind much, but an own
-> workqueue isn't usually needed unless specifically required such as
-> the request quantity control or isolation.
-> 
+Consistently using "select" or "depends on" can also help reduce
+Kconfig circular dependency issues.
 
-I think we can remove this.  I checked the QMI interface implementation 
-and looks like they are running all the notifications on its own WQ, so 
-doing duplicate work with queuing to our own WQ here in qc_audio_offload.
+Therefore, change OF_IRQ's use of "depends on" to "select".
 
-Thanks
-Wesley Cheng
+This patch reduces one Kconfig circular dependency in
+drivers/mux/Kconfig when MUX_MMIO attempts to select REGMAP (a failed
+patch), which that driver needs (but does not completely resolve that
+issue). [1]
+
+before this patch: (10 lines of detail)
+drivers/net/ethernet/arc/Kconfig:19:error: recursive dependency detected!
+drivers/net/ethernet/arc/Kconfig:19:	symbol ARC_EMAC_CORE is selected by ARC_EMAC
+drivers/net/ethernet/arc/Kconfig:26:	symbol ARC_EMAC depends on OF_IRQ
+drivers/of/Kconfig:81:	symbol OF_IRQ depends on IRQ_DOMAIN
+kernel/irq/Kconfig:60:	symbol IRQ_DOMAIN is selected by REGMAP
+drivers/base/regmap/Kconfig:6:	symbol REGMAP is selected by MUX_MMIO
+drivers/mux/Kconfig:48:	symbol MUX_MMIO depends on MULTIPLEXER
+drivers/mux/Kconfig:6:	symbol MULTIPLEXER is selected by MDIO_BUS_MUX_MULTIPLEXER
+drivers/net/mdio/Kconfig:275:	symbol MDIO_BUS_MUX_MULTIPLEXER depends on MDIO_DEVICE
+drivers/net/mdio/Kconfig:6:	symbol MDIO_DEVICE is selected by PHYLIB
+drivers/net/phy/Kconfig:16:	symbol PHYLIB is selected by ARC_EMAC_CORE
+
+after this patch: (5 lines of detail)
+drivers/mux/Kconfig:6:error: recursive dependency detected!
+drivers/mux/Kconfig:6:	symbol MULTIPLEXER is selected by MDIO_BUS_MUX_MULTIPLEXER
+drivers/net/mdio/Kconfig:275:	symbol MDIO_BUS_MUX_MULTIPLEXER depends on MDIO_BUS
+drivers/net/mdio/Kconfig:13:	symbol MDIO_BUS is selected by REGMAP
+drivers/base/regmap/Kconfig:6:	symbol REGMAP is selected by MUX_MMIO
+drivers/mux/Kconfig:48:	symbol MUX_MMIO depends on MULTIPLEXER
+
+[1] https://lore.kernel.org/lkml/20230210115625.GA30942@pengutronix.de/
+
+Fixes: 63c60e3a6dc3 ("of: OF_IRQ should depend on IRQ_DOMAIN")
+Signed-off-by: Randy Dunlap <rdunlap@infradead.org>
+Cc: Geert Uytterhoeven <geert@linux-m68k.org>
+Cc: Rob Herring <robh@kernel.org>
+Cc: Marc Zyngier <maz@kernel.org>
+Cc: Arnd Bergmann <arnd@arndb.de>
+Cc: Philipp Zabel <p.zabel@pengutronix.de>
+Cc: Peter Rosin <peda@axentia.se>
+Cc: devicetree@vger.kernel.org
+---
+v2: update patch description, rebase & resend
+
+ drivers/of/Kconfig |    3 ++-
+ 1 file changed, 2 insertions(+), 1 deletion(-)
+
+diff -- a/drivers/of/Kconfig b/drivers/of/Kconfig
+--- a/drivers/of/Kconfig
++++ b/drivers/of/Kconfig
+@@ -80,7 +80,8 @@ config OF_ADDRESS
+ 
+ config OF_IRQ
+ 	def_bool y
+-	depends on !SPARC && IRQ_DOMAIN
++	depends on !SPARC
++	select IRQ_DOMAIN
+ 
+ config OF_RESERVED_MEM
+ 	def_bool OF_EARLY_FLATTREE
 
