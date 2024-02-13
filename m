@@ -1,63 +1,58 @@
-Return-Path: <devicetree+bounces-41470-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-41471-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id DB143853EBA
-	for <lists+devicetree@lfdr.de>; Tue, 13 Feb 2024 23:31:44 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 86577853ED8
+	for <lists+devicetree@lfdr.de>; Tue, 13 Feb 2024 23:37:46 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 17EFA1C21DE8
-	for <lists+devicetree@lfdr.de>; Tue, 13 Feb 2024 22:31:44 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 3C36D284BC4
+	for <lists+devicetree@lfdr.de>; Tue, 13 Feb 2024 22:37:45 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3A2186217C;
-	Tue, 13 Feb 2024 22:31:33 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E2BD46214A;
+	Tue, 13 Feb 2024 22:37:41 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="kj9Ww9VM"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="oD1E3yuL"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0FDE1433AB;
-	Tue, 13 Feb 2024 22:31:32 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B600E12E59;
+	Tue, 13 Feb 2024 22:37:41 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1707863493; cv=none; b=MIuZZ56VZ/IyOCwlzLi9Fa7SU/383R8Hhot46u8bTLuZhR1Frlx4vEyqSmiFs4UzYVN83BmJ9kdcvkgZOB6GjtppeLy/gBITTUhVWlRHVE8c7jtc1EhA7uVfapDOVO0a601i77UfY7A/Y5hsi7MbpZ1sviiHyGL/kjac+90JIPg=
+	t=1707863861; cv=none; b=Ndj+mjLmeELMy5iQtNm7JyMndDr7aRH/ukBVzz+ZasXY5PiL1mWg6WyUQX3lXnVJYguKfGtSVA76kv76MFmpJDXmH9/7LfJ36X0oQqZrbli7aC/fu9IHWAM3Qk2Jz3mwzPhGewdiwNfKGraELqJdtKP2wARoGBORaEXe/POMMmw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1707863493; c=relaxed/simple;
-	bh=tUMsXY/XfFkqr7u0iiEPY04YFBGnHpoUhaqNlD4VLF4=;
+	s=arc-20240116; t=1707863861; c=relaxed/simple;
+	bh=yNrPFrOQuZ++lycKgUdj2Y51wk4eR9u/KT8Qrxg7YqY=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=fs0fNf3Hx5aO3O6560I7DJceLfJ6jq6eOZCWS8o3z/hZ5sxzxKpRwoHQ7rrW4Ea97NdAebLGN30NDBS7q3ZarBkCT754jAz6pSPtg36MdPMGf/ZnKJrkVHmbiRcdfFme3aQ4sCFJTwcshKogwWd5iTQV/xzCgGhi/oc0YeGr7wk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=kj9Ww9VM; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 4D7F7C433F1;
-	Tue, 13 Feb 2024 22:31:32 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=gyynKuP/N5KZe8YVnDIYfIscIU8mmuceR3N4lqs7//mQu9fXl5aG77abY5gubuhQmI0oAXc8SDr5mKmhcRXnP4TJ+jb0O+p8estmFbZjUDv7e5C6NRs9MvXzkQumtPJwL+dJr6UuuZe+FsBHNIHAJmX6pkw6cGgZsIYYMACQ1wg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=oD1E3yuL; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 11B37C433C7;
+	Tue, 13 Feb 2024 22:37:40 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1707863492;
-	bh=tUMsXY/XfFkqr7u0iiEPY04YFBGnHpoUhaqNlD4VLF4=;
+	s=k20201202; t=1707863861;
+	bh=yNrPFrOQuZ++lycKgUdj2Y51wk4eR9u/KT8Qrxg7YqY=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=kj9Ww9VMf2s40wjwtHIk/4onEZen6N4x8brxw8zIQYpWt9ckJpLD0s1PsT1D7Ia4b
-	 rr2biX+69XirmVQ1ZHWV7XJ9mxseJb1hE58+/+s8cwIBW5dBHX+PexEUR3sGzke4rZ
-	 5m5gzjxGgFtIZ5SssmS9sjsAjZDSIz77/F0zzHUbpK5uHdFlzlge/QvRan4fgWux6N
-	 gLyH70dAC1VOq5bTjKC60y4/PcpqjtK8rKpSz9hy3y67IEX7NhDqNy/GzlnJ3sXT2y
-	 J/1vuXMajieuCWoMVIgh7QSHrLpk+Kgbqc1Rpd0Z5dxLiCzoeCkFOgO3j0g76rHU5U
-	 9W+cutZzWdbBw==
-Date: Tue, 13 Feb 2024 16:31:30 -0600
+	b=oD1E3yuLtKTkeF6IeP6efNrRzU0H2Nm4tscRy3huHE2RDEBD2xVhYD8wAgZVSabx4
+	 4mE22l8RCRMUyK8nnYaRR3NfnphIDNexSvgNJIXz8QgvvhQb6VZeQSwaMjFelGBQ4t
+	 VXXT9TcXKNbPGCz137HN0I+qLUjffa/9N9rqqU5CxgeMBlpveXl6Ev+GNzKTQ8Lf8X
+	 I4mgfQLcw6mtIlk4sx0yVJzDCnVbB7kxobyWI5Dv2xNCd34S27Qzga9deZW1WYeakR
+	 8cJguZwBbtpJe6yyZsNYuxPnqmFxodbvHfJ66nIwqFUvYbwJ+cuvUCttkO7qFxFWSo
+	 kTZN5p5DynPhQ==
+Date: Tue, 13 Feb 2024 16:37:38 -0600
 From: Rob Herring <robh@kernel.org>
-To: Tanmay Shah <tanmay.shah@amd.com>
-Cc: andersson@kernel.org, devicetree@vger.kernel.org,
-	krzysztof.kozlowski+dt@linaro.org, linux-remoteproc@vger.kernel.org,
-	michal.simek@amd.com,
-	Radhey Shyam Pandey <radhey.shyam.pandey@amd.com>,
-	ben.levinsky@amd.com, linux-kernel@vger.kernel.org,
-	mathieu.poirier@linaro.org, conor+dt@kernel.org,
-	linux-arm-kernel@lists.infradead.org
-Subject: Re: [PATCH v10 2/4] dt-bindings: remoteproc: add Tightly Coupled
- Memory (TCM) bindings
-Message-ID: <20240213223130.GA2504650-robh@kernel.org>
-References: <20240213175450.3097308-1-tanmay.shah@amd.com>
- <20240213175450.3097308-3-tanmay.shah@amd.com>
- <170785205177.2155555.1311787541370066483.robh@kernel.org>
- <b931a24c-f676-4ddb-bb7c-e7a509d5dd4b@amd.com>
+To: Niklas =?iso-8859-1?Q?S=F6derlund?= <niklas.soderlund+renesas@ragnatech.se>
+Cc: Geert Uytterhoeven <geert+renesas@glider.be>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>, devicetree@vger.kernel.org,
+	linux-renesas-soc@vger.kernel.org,
+	Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Subject: Re: [PATCH v3] dt-bindings: renesas: Document preferred compatible
+ naming
+Message-ID: <20240213223738.GA2506718-robh@kernel.org>
+References: <20240213192340.2786430-1-niklas.soderlund+renesas@ragnatech.se>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -67,96 +62,126 @@ MIME-Version: 1.0
 Content-Type: text/plain; charset=iso-8859-1
 Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <b931a24c-f676-4ddb-bb7c-e7a509d5dd4b@amd.com>
+In-Reply-To: <20240213192340.2786430-1-niklas.soderlund+renesas@ragnatech.se>
 
-On Tue, Feb 13, 2024 at 02:37:49PM -0600, Tanmay Shah wrote:
-> Hello,
+On Tue, Feb 13, 2024 at 08:23:40PM +0100, Niklas Söderlund wrote:
+> Compatibles can come in two formats. Either "vendor,ip-soc" or
+> "vendor,soc-ip". Add a DT schema file documenting Renesas preferred
+> policy and enforcing it for all new compatibles, except few existing
+> patterns.
 > 
-> Thanks for reviews please find my comments below.
+> Suggested-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+> Signed-off-by: Niklas Söderlund <niklas.soderlund+renesas@ragnatech.se>
+> ---
+> * Changes since v2
+> - Improve the select so it matches on any compatible containing a
+>   component specific Renesas value.
+> - Make the regexps more compact.
+> - Define MaxItems to allow the increased selection to work.
+> - Add rmobile and shmobile prefixes.
+> - I did not take Rob's ack from v2 as the schema changed a lot after
+>   Geerts review.
 > 
-> On 2/13/24 1:20 PM, Rob Herring wrote:
-> > On Tue, 13 Feb 2024 09:54:48 -0800, Tanmay Shah wrote:
-> > > From: Radhey Shyam Pandey <radhey.shyam.pandey@amd.com>
-> > > 
-> > > Introduce bindings for TCM memory address space on AMD-xilinx Zynq
-> > > UltraScale+ platform. It will help in defining TCM in device-tree
-> > > and make it's access platform agnostic and data-driven.
-> > > 
-> > > Tightly-coupled memories(TCMs) are low-latency memory that provides
-> > > predictable instruction execution and predictable data load/store
-> > > timing. Each Cortex-R5F processor contains two 64-bit wide 64 KB memory
-> > > banks on the ATCM and BTCM ports, for a total of 128 KB of memory.
-> > > 
-> > > The TCM resources(reg, reg-names and power-domain) are documented for
-> > > each TCM in the R5 node. The reg and reg-names are made as required
-> > > properties as we don't want to hardcode TCM addresses for future
-> > > platforms and for zu+ legacy implementation will ensure that the
-> > > old dts w/o reg/reg-names works and stable ABI is maintained.
-> > > 
-> > > It also extends the examples for TCM split and lockstep modes.
-> > > 
-> > > Signed-off-by: Radhey Shyam Pandey <radhey.shyam.pandey@amd.com>
-> > > Signed-off-by: Tanmay Shah <tanmay.shah@amd.com>
-> > > ---
-> > > 
-> > > Changes in v10:
-> > >   - modify number of "reg", "reg-names" and "power-domains" entries
-> > >     based on cluster mode
-> > >   - Add extra optional atcm and btcm in "reg" property for lockstep mode
-> > >   - Add "reg-names" for extra optional atcm and btcm for lockstep mode
-> > >   - Drop previous Ack as bindings has new change
-> > > 
-> > > Changes in v9:
-> > >   - None
-> > > Changes in v8:
-> > >   - None
-> > > Changes in v7:
-> > >   - None
-> > > Changes in v6:
-> > >   - None
-> > > Changes in v5:
-> > >   - None
-> > > 
-> > > Changes in v4:
-> > >   - Use address-cells and size-cells value 2
-> > >   - Modify ranges property as per new value of address-cells
-> > >     and size-cells
-> > >   - Modify child node "reg" property accordingly
-> > >   - Remove previous ack for further review
-> > > 
-> > > v4 link: https://lore.kernel.org/all/20230829181900.2561194-2-tanmay.shah@amd.com/
-> > > 
-> > >  .../remoteproc/xlnx,zynqmp-r5fss.yaml         | 192 ++++++++++++++++--
-> > >  1 file changed, 170 insertions(+), 22 deletions(-)
-> > > 
-> >
-> > My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
-> > on your patch (DT_CHECKER_FLAGS is new in v5.13):
-> >
-> > yamllint warnings/errors:
-> > ./Documentation/devicetree/bindings/remoteproc/xlnx,zynqmp-r5fss.yaml:118:13: [warning] wrong indentation: expected 10 but found 12 (indentation)
-> Ack. I will fix this.
+> * Changes since v1
+> - Split the "SoC agnostic compatibles" section into two to make it's
+>   intent clearer.
+> - Improved the documentation for each group of compatibles.
+> - Reduced the number of regexp to create a larger target area. As
+>   suggested by Krzysztof the goal is not to validate each SoC name but
+>   check for the correct order of SoC-IP.
 > 
-> However, can I still get reviews on patch itself so if something else needs to be fixed I can fix in next revision as well.
+> * Changes since RFC
+> - Moved to Documentation/devicetree/bindings/soc/renesas.
+> - Changed the pattern in the initial select to match on .*-.*.
+> - Added a lot of missing compatible values.
+> ---
+>  .../bindings/soc/renesas/renesas-soc.yaml     | 72 +++++++++++++++++++
+>  1 file changed, 72 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/soc/renesas/renesas-soc.yaml
 > 
-> Also, I tried to run yamllint with following command:
-> 
-> make DT_CHECKER_FLAGS=-m dt_binding_check DT_SCHEMA_FILES=Documentation/devicetree/bindings/remoteproc/xlnx,zynqmp-r5fss.yaml O=../build/zynqmp/linux-next/
-> 
-> 
-> However, I see following logs without any error on bindings:
-> 
->   LINT    Documentation/devicetree/bindings
-> invalid config: unknown option "required" for rule "quoted-strings"
-> *xargs: /usr/bin/yamllint: exited with status 255; aborting*
->   CHKDT   Documentation/devicetree/bindings/processed-schema.json
->   SCHEMA  Documentation/devicetree/bindings/processed-schema.json
->   DTEX    Documentation/devicetree/bindings/remoteproc/xlnx,zynqmp-r5fss.example.dts
->   DTC_CHK Documentation/devicetree/bindings/remoteproc/xlnx,zynqmp-r5fss.example.dtb
-> 
-> I am not sure if my system is missing something but, yamllint tool is failing.
+> diff --git a/Documentation/devicetree/bindings/soc/renesas/renesas-soc.yaml b/Documentation/devicetree/bindings/soc/renesas/renesas-soc.yaml
+> new file mode 100644
+> index 000000000000..57c11022d793
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/soc/renesas/renesas-soc.yaml
+> @@ -0,0 +1,72 @@
+> +# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/soc/renesas/renesas-soc.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: Renesas SoC compatibles naming convention
+> +
+> +maintainers:
+> +  - Geert Uytterhoeven <geert+renesas@glider.be>
+> +  - Niklas Söderlund <niklas.soderlund@ragnatech.se>
+> +
+> +description: |
+> +  Guidelines for new compatibles for SoC blocks/components.
+> +  When adding new compatibles in new bindings, use the format::
+> +    renesas,SoC-IP
+> +
+> +  For example::
+> +   renesas,r8a77965-csi2
+> +
+> +  When adding new compatibles to existing bindings, use the format in the
+> +  existing binding, even if it contradicts the above.
+> +
+> +select:
+> +  properties:
+> +    compatible:
+> +      contains:
+> +        pattern: "^renesas,.+-.+$"
+> +  required:
+> +    - compatible
+> +
+> +properties:
+> +  compatible:
+> +    maxItems: 4
 
-"unknown option" means old version of yamllint.
+'minItems: 1' should fix the error reported.
 
-Rob
+
+> +    items:
+> +      anyOf:
+> +        # Preferred naming style for compatibles of SoC components
+> +        - pattern: "^renesas,(emev2|r(7s|8a|9a)[a-z0-9]+|rcar|rmobile|rz[a-z0-9]*|sh(7[a-z0-9]+)?|mobile)-[a-z0-9-]+$"
+> +        - pattern: "^renesas,(condor|falcon|gr-peach|salvator|sk-rz|smar(c(2)?)?|spider|white-hawk)(.*)?$"
+> +
+> +        # Legacy compatibles
+> +        #
+> +        # New compatibles are not allowed.
+> +        - pattern: "^renesas,(can|cpg|dmac|du|(g)?ether(avb)?|gpio|hscif|(r)?i[i2]c|imr|intc|ipmmu|irqc|jpu|mmcif|msiof|mtu2|pci(e)?|pfc|pwm|[rq]spi|rcar_sound|sata|scif[ab]*|sdhi|thermal|tmu|tpu|usb(2|hs)?|vin|xhci)-[a-z0-9-]+$"
+> +        - pattern: "^renesas,(d|s)?bsc(3)?-(r8a73a4|r8a7740|sh73a0)$"
+> +        - pattern: "^renesas,em-(gio|sti|uart)$"
+> +        - pattern: "^renesas,fsi2-(r8a7740|sh73a0)$"
+> +        - pattern: "^renesas,hspi-r8a777[89]$"
+> +        - pattern: "^renesas,sysc-(r8a73a4|r8a7740|rmobile|sh73a0)$"
+> +        - enum:
+> +            - renesas,imr-lx4
+> +            - renesas,mtu2-r7s72100
+> +
+> +        # None SoC component compatibles
+> +        #
+> +        # Compatibles with the Renesas vendor prefix that do not relate to any SoC
+> +        # component are OK. New compatibles are allowed.
+> +        - enum:
+> +            - renesas,smp-sram
+> +
+> +        # Do not fail compatibles not matching the select pattern
+> +        #
+> +        # Some SoC components in addition to a Renesas compatible list
+> +        # compatibles not related to Renesas. The select pattern for this
+> +        # schema hits all compatibles that have at lest one Renesas compatible
+> +        # and try to validate all values in that compatible array, allow all
+> +        # that don't match the schema select pattern. For example,
+> +        #
+> +        #   compatible = "renesas,r9a07g044-mali", "arm,mali-bifrost";
+> +        - pattern: "^(?!renesas,.+-.+).+$"
+> +
+> +additionalProperties: true
+> -- 
+> 2.43.0
+> 
 
