@@ -1,150 +1,123 @@
-Return-Path: <devicetree+bounces-41406-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-41407-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6CB3985382B
-	for <lists+devicetree@lfdr.de>; Tue, 13 Feb 2024 18:34:05 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 574108538EE
+	for <lists+devicetree@lfdr.de>; Tue, 13 Feb 2024 18:49:09 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 0C1111F2A4C8
-	for <lists+devicetree@lfdr.de>; Tue, 13 Feb 2024 17:34:05 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 8A5251C21659
+	for <lists+devicetree@lfdr.de>; Tue, 13 Feb 2024 17:49:08 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D65F460256;
-	Tue, 13 Feb 2024 17:33:50 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=postmarketos.org header.i=@postmarketos.org header.b="Euodfbnd"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2D2CF604C5;
+	Tue, 13 Feb 2024 17:49:07 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from out-183.mta1.migadu.com (out-183.mta1.migadu.com [95.215.58.183])
+Received: from metis.whiteo.stw.pengutronix.de (metis.whiteo.stw.pengutronix.de [185.203.201.7])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 332145F54E
-	for <devicetree@vger.kernel.org>; Tue, 13 Feb 2024 17:33:46 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=95.215.58.183
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4364260266
+	for <devicetree@vger.kernel.org>; Tue, 13 Feb 2024 17:49:03 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.203.201.7
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1707845630; cv=none; b=KfRnbZm1OS8rgLG9MF7M3scYyuAuRP9izLiHbGpTXsBctLKacgcld9DyRFUC83qPDJrIO7pWd/HqQCZfFwLe3kJnw8GHpbS629Yem3DO+T7wJBcxFtEJXDZQvVUDkDHNXm2SaCmO6FuhsNp1xXH48bkKWlC3HizInziBaOMMOE8=
+	t=1707846547; cv=none; b=rz26RhvLC063EiI8fpzbEdzX7qFqBrnVa5x6QBHwC/GNcCYZWR4do+wjGjnXMT7edHlfmJhkov4I9tyB9DJU5aJNGwgqmqDJ4mMfhpFWnLQmi9qv0Tl32yr68+OjxHCNoBauf0mQp52XRd915hnU535szXS/t178ZrakiGCaqW4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1707845630; c=relaxed/simple;
-	bh=ogElmpBeYC6s08IIi9mwFQqUlOH/ywQJ9JWoyhP/PMo=;
-	h=MIME-Version:Date:Content-Type:From:Message-ID:Subject:To:Cc:
-	 In-Reply-To:References; b=cVCotxZY6qTT8o9ZcZpsHABy+znA4gHCLeHhPkkzb1JVy6ivO5kn83l6hSlfyEcOWK7gYusis/zwk0MNgQisjAtOg5EHASNSbYg2hTPg8ez5flBJUbG4+R31JVgaiGuneqf+XgESA+/XJlok9GS4y8C9+HhOfm99cJs2ohrXtP8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=postmarketos.org; spf=pass smtp.mailfrom=postmarketos.org; dkim=pass (2048-bit key) header.d=postmarketos.org header.i=@postmarketos.org header.b=Euodfbnd; arc=none smtp.client-ip=95.215.58.183
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=postmarketos.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=postmarketos.org
+	s=arc-20240116; t=1707846547; c=relaxed/simple;
+	bh=QWIuBAJ3e+TCWmBbhbpgT4PWb2RX18XR04uHZ6yIclw=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=fIPXGNJi1eETQBcogL0Hs8fE0kFWWbblk/szS2LXYLbMI3lOrWfrQADAuUZ5skbJKmBphyFEAlOASe6zz93O7ahgVfzw+43/jeFnRzcp5g+uGLuJiNlgWGXrCxVZUEhjE9SF6KGl2ydfk/Hv9SdCPIk6sDKwKxBO4l9oMpe+vA0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de; spf=pass smtp.mailfrom=pengutronix.de; arc=none smtp.client-ip=185.203.201.7
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=pengutronix.de
+Received: from drehscheibe.grey.stw.pengutronix.de ([2a0a:edc0:0:c01:1d::a2])
+	by metis.whiteo.stw.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
+	(Exim 4.92)
+	(envelope-from <ukl@pengutronix.de>)
+	id 1rZwtm-0007eB-T1; Tue, 13 Feb 2024 18:48:50 +0100
+Received: from [2a0a:edc0:0:900:1d::77] (helo=ptz.office.stw.pengutronix.de)
+	by drehscheibe.grey.stw.pengutronix.de with esmtps  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+	(Exim 4.94.2)
+	(envelope-from <ukl@pengutronix.de>)
+	id 1rZwtk-000Wtk-TI; Tue, 13 Feb 2024 18:48:48 +0100
+Received: from ukl by ptz.office.stw.pengutronix.de with local (Exim 4.96)
+	(envelope-from <ukl@pengutronix.de>)
+	id 1rZwtk-0046pb-2d;
+	Tue, 13 Feb 2024 18:48:48 +0100
+Date: Tue, 13 Feb 2024 18:48:48 +0100
+From: Uwe =?utf-8?Q?Kleine-K=C3=B6nig?= <u.kleine-koenig@pengutronix.de>
+To: =?utf-8?B?UmFmYcWCIE1pxYJlY2tp?= <zajec5@gmail.com>
+Cc: Matthias Brugger <matthias.bgg@gmail.com>, 
+	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, 
+	John Crispin <john@phrozen.org>, linux-pwm@vger.kernel.org, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
+	linux-mediatek@lists.infradead.org, =?utf-8?B?UmFmYcWCIE1pxYJlY2tp?= <rafal@milecki.pl>
+Subject: Re: [PATCH 1/2] dt-bindings: pwm: mediatek,mt2712: add compatible
+ for MT7988
+Message-ID: <onnokyq7ciza7i7jzc74cun2khpst5iocuccks2cm433ux3za3@dou4oacrvuxj>
+References: <20240213164633.25447-1-zajec5@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=postmarketos.org;
-	s=key1; t=1707845625;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=DIMtwWY99j3gR/ZuRWXSO4C5SoLWY57z64ISbD+bbLY=;
-	b=Euodfbndw/6vygTTO50g4XMxI6l/hVSo18FdgPkiD0GzNCTQK4D7xpUM7idl5UjuB7fW/u
-	p6QqBqPlZMB8PfskUeCCxWMM6Sa06D/WcxT/P4mQSGL8oVwY0osT//TPniNNaUYHk561bM
-	jywy0blayaxRi+tMGQeiAb9keBU6+eMB3tdHj8kwUzA214nvfJCZaqNFEeIIEU2j0bo+BK
-	EEMfybMf3xANdPsdrlqYu0U25wLuOjOLuO+j27uMvWrWStIQ57g0YFEgGMn/4SpbUmyZje
-	K/4bUkuc9fOXcjQWjIqLzoOeI2z7yTQ6fuFjdQT2sKjLeHZtOoXo7oStIZKuow==
-Date: Tue, 13 Feb 2024 17:33:42 +0000
-Content-Type: text/plain; charset="utf-8"
+Content-Type: multipart/signed; micalg=pgp-sha512;
+	protocol="application/pgp-signature"; boundary="jhwaxkndpklwhxal"
+Content-Disposition: inline
+In-Reply-To: <20240213164633.25447-1-zajec5@gmail.com>
+X-SA-Exim-Connect-IP: 2a0a:edc0:0:c01:1d::a2
+X-SA-Exim-Mail-From: ukl@pengutronix.de
+X-SA-Exim-Scanned: No (on metis.whiteo.stw.pengutronix.de); SAEximRunCond expanded to false
+X-PTX-Original-Recipient: devicetree@vger.kernel.org
+
+
+--jhwaxkndpklwhxal
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
 Content-Transfer-Encoding: quoted-printable
-X-Report-Abuse: Please report any abuse attempt to abuse@migadu.com and include these headers.
-From: jenneron@postmarketos.org
-Message-ID: <94bdff480e699f27f25f483e1207a22801f41174@postmarketos.org>
-TLS-Required: No
-Subject: Re: [PATCH v2 1/6] arm64: dts: qcom: sc8180x-lenovo-flex-5g: fix GPU
- firmware path
-To: "Manivannan Sadhasivam" <manivannan.sadhasivam@linaro.org>
-Cc: "Bjorn Andersson" <andersson@kernel.org>, "Konrad Dybcio"
- <konrad.dybcio@linaro.org>, "Rob Herring" <robh+dt@kernel.org>,
- "Krzysztof Kozlowski" <krzysztof.kozlowski+dt@linaro.org>, "Conor Dooley"
- <conor+dt@kernel.org>, linux-arm-msm@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-In-Reply-To: <20240213171416.GB30092@thinkpad>
-References: <20240203191200.99185-1-jenneron@postmarketos.org>
- <20240203191200.99185-2-jenneron@postmarketos.org>
- <20240213171416.GB30092@thinkpad>
-X-Migadu-Flow: FLOW_OUT
 
-February 13, 2024 at 7:14 PM, "Manivannan Sadhasivam" <manivannan.sadhasi=
-vam@linaro.org> wrote:
+Hello Rafa=C5=82,
 
+On Tue, Feb 13, 2024 at 05:46:32PM +0100, Rafa=C5=82 Mi=C5=82ecki wrote:
+> From: Rafa=C5=82 Mi=C5=82ecki <rafal@milecki.pl>
+>=20
+> MT7988 has on-SoC controller that can control up to 8 PWMs.
+>=20
+> Signed-off-by: Rafa=C5=82 Mi=C5=82ecki <rafal@milecki.pl>
 
+please make sure that the email address used for sending the patch
+matches the Signed-off-by line.
 
->=20
->=20On Sat, Feb 03, 2024 at 09:11:55PM +0200, Anton Bambura wrote:
->=20
->=20>=20
->=20> Fix GPU firmware path so it uses model-specific directory.
-> >=20
->=20>=20=20
->=20>=20
->=20>  Signed-off-by: Anton Bambura <jenneron@postmarketos.org>
-> >=20
->=20>  Reviewed-by: Konrad Dybcio <konrad.dybcio@linaro.org>
-> >=20
->=20>  ---
-> >=20
->=20>  arch/arm64/boot/dts/qcom/sc8180x-lenovo-flex-5g.dts | 2 +-
-> >=20
->=20>  1 file changed, 1 insertion(+), 1 deletion(-)
-> >=20
->=20>=20=20
->=20>=20
->=20>  diff --git a/arch/arm64/boot/dts/qcom/sc8180x-lenovo-flex-5g.dts b=
-/arch/arm64/boot/dts/qcom/sc8180x-lenovo-flex-5g.dts
-> >=20
->=20>  index 0c22f3efec20..49b740c54674 100644
-> >=20
->=20>  --- a/arch/arm64/boot/dts/qcom/sc8180x-lenovo-flex-5g.dts
-> >=20
->=20>  +++ b/arch/arm64/boot/dts/qcom/sc8180x-lenovo-flex-5g.dts
-> >=20
->=20>  @@ -350,7 +350,7 @@ &gpu {
-> >=20
->=20>=20=20
->=20>=20
->=20>  zap-shader {
-> >=20
->=20>  memory-region =3D <&gpu_mem>;
-> >=20
->=20>  - firmware-name =3D "qcom/sc8180x/qcdxkmsuc8180.mbn";
-> >=20
->=20>  + firmware-name =3D "qcom/sc8180x/LENOVO/82AK/qcdxkmsuc8180.mbn";
-> >=20
->=20
-> Where is the firmware located for this device? I couldn't find it in
+(It depends on the pickyness of the relevant maintainer if that is a
+stopper or not.)
 
-NHLOS partition on the storage. I also maintain a package in postmarketOS
+Assuming this patch will go in via a mediatek tree:
 
->=20
->=20linux-firmware [1].
->=20
->=20- Mani
->=20
->=20[1] https://git.kernel.org/pub/scm/linux/kernel/git/firmware/linux-fi=
-rmware.git/tree/qcom
->=20
->=20>=20
->=20> };
-> >=20
->=20>  };
-> >=20
->=20>=20=20
->=20>=20
->=20>  --=20
->=20>=20
->=20>  2.42.0
-> >=20
->=20
-> --=20
->=20
-> =E0=AE=AE=E0=AE=A3=E0=AE=BF=E0=AE=B5=E0=AE=A3=E0=AF=8D=E0=AE=A3=E0=AE=
-=A9=E0=AF=8D =E0=AE=9A=E0=AE=A4=E0=AE=BE=E0=AE=9A=E0=AE=BF=E0=AE=B5=E0=AE=
-=AE=E0=AF=8D
->
+Acked-by: Uwe Kleine-K=C3=B6nig <u.kleine-koenig@pengutronix.de>
+
+Thanks
+Uwe
+
+--=20
+Pengutronix e.K.                           | Uwe Kleine-K=C3=B6nig         =
+   |
+Industrial Linux Solutions                 | https://www.pengutronix.de/ |
+
+--jhwaxkndpklwhxal
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQEzBAABCgAdFiEEP4GsaTp6HlmJrf7Tj4D7WH0S/k4FAmXLq38ACgkQj4D7WH0S
+/k5Yxgf+MGDk4UWSSThMXzK6DjwTQdURT3za9jTq2ls/OQIHoQfyaw902waKPjVr
+mPIVGTESq0AvIpQNcZQQH8WUjNfI7at0cWPaTA/iZD07h9nMOEztTp4wP3rYwBp5
+yicKjx5McHb1nR5poDAXFudd+7v/gOgXBLPxABfx4FiOLWqnNuDJF2xwmge8mKHp
+NKlYSZk+kiCbBwsZk3LBwLqKv45TnPI2yuayws+r1jYLnmXMyRUkVQqCpX2/CUGq
+wESqm70l9ty5FmyiE86YbJkgx+b5o9Z/nJt223FluL3Ftnxfc0sABjdCI9IxmFCg
+sWhDm4LJVkrMbtBmn8VK5huxt/BXmw==
+=o3gj
+-----END PGP SIGNATURE-----
+
+--jhwaxkndpklwhxal--
 
