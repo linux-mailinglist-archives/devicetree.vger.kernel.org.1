@@ -1,113 +1,138 @@
-Return-Path: <devicetree+bounces-41140-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-41141-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3FE818528A3
-	for <lists+devicetree@lfdr.de>; Tue, 13 Feb 2024 07:14:30 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id A55DB8528A6
+	for <lists+devicetree@lfdr.de>; Tue, 13 Feb 2024 07:15:18 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id D03871F233E7
-	for <lists+devicetree@lfdr.de>; Tue, 13 Feb 2024 06:14:29 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 34826B22DDE
+	for <lists+devicetree@lfdr.de>; Tue, 13 Feb 2024 06:15:16 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C405812E48;
-	Tue, 13 Feb 2024 06:14:17 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 60BF812E4A;
+	Tue, 13 Feb 2024 06:15:10 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=atomide.com header.i=@atomide.com header.b="EXsyfvra"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="e3glaTYJ"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail5.25mail.st (mail5.25mail.st [74.50.62.9])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-ej1-f50.google.com (mail-ej1-f50.google.com [209.85.218.50])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 081561427A
-	for <devicetree@vger.kernel.org>; Tue, 13 Feb 2024 06:14:15 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=74.50.62.9
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 983F5134A1;
+	Tue, 13 Feb 2024 06:15:08 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.50
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1707804857; cv=none; b=rBZNU6VJTtCCDS7bGwa6qKzKxT8f6GsXmcJejIvcXxEq2sZhkyNtOYfriGK1qdLZUk2MWiLiPtuDLiAU2VammbRmNW/Fc35JAM3zItNhGnxXuHZwTPDDMI3MwDh+wDFesnJwx0Xr57GAEFWHCFK+vpnODiGmM0D+3vvnmArEw7w=
+	t=1707804910; cv=none; b=sb6/g5egS/HEkZuMDJ4CYiYIP/KLofmZFe5g1nYr/nrMJe1pJLcWcj/34bSOaaYfjbolMfGhHA8QHAm+i0eoRyIM5sAASW+G4JkICGeJs3ePIYP/gN5nADWUsFKHyd3yijEYBlGrM2Q4cWlP9lSP5wFiac2ORvp4WFoK7YCIwBc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1707804857; c=relaxed/simple;
-	bh=R0znUu0GHXFoqcSfi4LlBwu1nXMDxEP+E6wmeGG7Tno=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=eB/NhrLPf3KJyR2oLoiT7X6GgQ7ItKukaELVtMGexfD2PPfKgI1R7VjtRRL92onjHP1L1LtzxtNnRYCfVp3Ak3uKvt2GYJk/CxWABxUZtlmxDzkah6okqvvwRgOew7goTqMmt/xJUDgu3LKAV9bML7P5x3RVenOGp7mhEXbzEpA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=atomide.com; spf=fail smtp.mailfrom=atomide.com; dkim=pass (2048-bit key) header.d=atomide.com header.i=@atomide.com header.b=EXsyfvra; arc=none smtp.client-ip=74.50.62.9
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=atomide.com
-Authentication-Results: smtp.subspace.kernel.org; spf=fail smtp.mailfrom=atomide.com
-Received: from localhost (91-158-86-216.elisa-laajakaista.fi [91.158.86.216])
-	by mail5.25mail.st (Postfix) with ESMTPSA id 0FC1B60525;
-	Tue, 13 Feb 2024 06:13:30 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple; d=atomide.com;
-	s=25mailst; t=1707804854;
-	bh=R0znUu0GHXFoqcSfi4LlBwu1nXMDxEP+E6wmeGG7Tno=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=EXsyfvraULAU/vDytEyspCQlWiFxwJAbEVsRXUAGq07TgFEip2L6AUoRnJcjLeskz
-	 YF/mm3KZJDTHM/j4ruL0wC/YQPs6AhdTqEZuP3uLVZQV4BAkbBi0va18vmAp8905Ri
-	 w7GF+otQc+9tcKemjsZwiaYpO80cECGpjrSXvzkTLAgSsu0TuKV5OtN3I7PvvcnBR5
-	 PKC8aJRRgJ2/16NaJi0AtLWGrtYm476QWT7mxv3rQ9MHImeiPRXH/XkV8qIxX1x7iJ
-	 +wYNvoiTLK4LTYqpk9c3Rp6aV7W64wnDnm9jdP/U+L95Uu9jfDtBqPWUAcuxqOEM2g
-	 ksYddTFVhZUEg==
-Date: Tue, 13 Feb 2024 08:13:29 +0200
-From: Tony Lindgren <tony@atomide.com>
-To: Rob Herring <robh@kernel.org>
-Cc: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-	Andrzej Hajda <andrzej.hajda@intel.com>,
-	Neil Armstrong <neil.armstrong@linaro.org>,
-	Robert Foss <rfoss@kernel.org>,
-	Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
-	Jonas Karlman <jonas@kwiboo.se>,
-	Jernej Skrabec <jernej.skrabec@gmail.com>,
-	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
-	Maxime Ripard <mripard@kernel.org>,
-	Thomas Zimmermann <tzimmermann@suse.de>,
-	David Airlie <airlied@gmail.com>, Daniel Vetter <daniel@ffwll.ch>,
+	s=arc-20240116; t=1707804910; c=relaxed/simple;
+	bh=W+XnatEuWjY55uYnIcTVImixNZpiX7TXUq4AWRF7L2U=;
+	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version:Content-Type; b=NQbc8WA5yClp8ThEa0ljOkYCaE75pg19K92uL9YVxrTnhAg7qinaRYMIQxVHNeB54Vm+XfDC86uc1oD5Xt7NJymnGmW3qvaraelGFxVp1o6HWNGC1gTzKRgDJ404tML0giOD2IhKdQO93imLbC1SV3dxV/kI/dJild8tlxbJ+QA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=e3glaTYJ; arc=none smtp.client-ip=209.85.218.50
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-ej1-f50.google.com with SMTP id a640c23a62f3a-a3832ef7726so457100066b.0;
+        Mon, 12 Feb 2024 22:15:08 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1707804907; x=1708409707; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=xU96ytnGGcxSAcqxvNbh0M7/JHhcz9bM8B0eaNoETfA=;
+        b=e3glaTYJp4d2Iil+rTo7RgluBNMABrj0kjOgdOBGhk3D5ECaCVUkyMHc+9inrbBpU2
+         NxchzjnzbIdI4dLWJQxF3MsIOwvkrRakh98ZWdm3sgBcmIwFgmEYv4mfFSfZITPuHqyj
+         wY7WKtDwCq/U0Qac5dKjfKmw8FM5DrUBChWmQ1S/DGZARTu5gi+LZtUspOy632t6h9Zb
+         +qy3a6CvzGjRF2L8Ck2pMNvyH/MOOSHcwPN7YUchuH6xWZwC/POQjrNJJhzYwyAHJFjt
+         1PcXv+gp7IHnTou2wlrKa9sxhSzi9Yg/axs70Rcckc/CyLQMHBFHyaaNDSJCu+4oGeCw
+         Ltyw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1707804907; x=1708409707;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=xU96ytnGGcxSAcqxvNbh0M7/JHhcz9bM8B0eaNoETfA=;
+        b=wyjItYuAycZEfR+GoLMY27NAkcx7zv0MqKAhR/oLtsINXGQnHSVqq9da2+wu39qUL7
+         Th6uhMeYs2eNctEP1vq/PDn1RxlI+d2WfYbt8g1yaDEHaY6OxbYJ3A56eDWDlEy14Ush
+         PcZfrArJWOKDYgQAdOLMXcV9Dl4pZQLaeR0CB/tucLCIe5Q8+objjehas7AL0nT1IQf9
+         Q0xz/HgxiHVew0V83RcmaPyhfQNDigeO/JJwuwUULwqiGvmluoDJEJdSiVZpYx0muZdB
+         2IpHiH1qeM25SaiVSglNmR9p+7svfEPmYWeZEtbvMpIhyvTkvDW9ggb7jl0DnMnroJUT
+         TqEg==
+X-Forwarded-Encrypted: i=1; AJvYcCV2NuojaBf8O3xhXW7Nmsaf0QSVsA6aXAeZ5DHRm7LYrdyCqWxl2V/QEYOvlDJQcspLG8xtgpT1AAUvjAM2TJmshKJUCKQT0zZP18aQAua3I0EfJV0ou1pIK77UTmbQytzEUdaCOC2rLA==
+X-Gm-Message-State: AOJu0YwveEqUMP+BFbET65A0XlYeUMBDTWLoRrtIeunymyPwPuVORduw
+	19mFbmatNbEcJYMQavlYILfeq9WZt8izFVgXyME2BaFjTdk6Jh8q
+X-Google-Smtp-Source: AGHT+IFzSg0OICApgiUNwb4wnigBaoMrIrGDV77w26PaubZJj3Ppm2rFAgElGTRB+vEGLfTc3Y/z5w==
+X-Received: by 2002:a17:906:cf86:b0:a28:d1f9:976 with SMTP id um6-20020a170906cf8600b00a28d1f90976mr5110872ejb.65.1707804906663;
+        Mon, 12 Feb 2024 22:15:06 -0800 (PST)
+X-Forwarded-Encrypted: i=1; AJvYcCXA0GOg4AbFYK+3P17jrNUNemuktljTy4SPxvPykPgsseH74kIius1m5cEmLlM9ilsehaRtioqzrXyzv/WAZrNkyBJ+IiQMD6wdrYRQCdWyxJWXB7cCxmtfSRlHLFUMDhT3zdOzP/kLbI/MiJR0WmVM+SdB225+UzC775dZPjttNYjCzylKu8N9jWXnHqgO2xLpncu+wf7hZWa8REiTC85FcDj0FUMySEE+VH+HXEmIY+HO0ykNxOXP7wjLDKt8ZQymypghJiPM1JWlyiiNmPkRvAta3+SXLi2WhNIbH8Ycvu1YeMF9BddVWrIL652YmL6NvipWmFykdgbeaoem8e0jYAlc0R75uhM4TNLJVj8ssLSP9RxfArfgOkG5pGH7sAj7ycMLtEQ7D0jvpqCygfGtUYrsLUw/Kc06BinSu7z5NpSsDvwq/zmnJ3BJhK36cA==
+Received: from localhost.lan (031011218106.poznan.vectranet.pl. [31.11.218.106])
+        by smtp.gmail.com with ESMTPSA id hw20-20020a170907a0d400b00a3cf243de37sm508679ejc.111.2024.02.12.22.15.05
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 12 Feb 2024 22:15:06 -0800 (PST)
+From: =?UTF-8?q?Rafa=C5=82=20Mi=C5=82ecki?= <zajec5@gmail.com>
+To: Matthias Brugger <matthias.bgg@gmail.com>,
+	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
+	Rob Herring <robh@kernel.org>,
 	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>, Simha BN <simhavcs@gmail.com>,
-	Sam Ravnborg <sam@ravnborg.org>,
-	Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
-	Michael Walle <mwalle@kernel.org>, dri-devel@lists.freedesktop.org,
-	devicetree@vger.kernel.org
-Subject: Re: [PATCH v3 03/10] dt-bindings: display: bridge: tc358775: Add
- support for tc358765
-Message-ID: <20240213061329.GH5299@atomide.com>
-References: <20240211095144.2589-1-tony@atomide.com>
- <20240211095144.2589-4-tony@atomide.com>
- <adeb3ebb-76ed-4f00-8b46-a1b9c36cfc64@linaro.org>
- <20240212081744.GE5299@atomide.com>
- <d6ecc1aa-419d-4f3c-8ba2-b124e5423293@linaro.org>
- <20240212135108.GA49008-robh@kernel.org>
+	Conor Dooley <conor+dt@kernel.org>
+Cc: Daniel Golle <daniel@makrotopia.org>,
+	Frank Wunderlich <frank-w@public-files.de>,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	linux-mediatek@lists.infradead.org,
+	=?UTF-8?q?Rafa=C5=82=20Mi=C5=82ecki?= <rafal@milecki.pl>
+Subject: [PATCH] arm64: dts: mediatek: mt7986: prefix BPI-R3 cooling maps with "map-"
+Date: Tue, 13 Feb 2024 07:14:59 +0100
+Message-Id: <20240213061459.17917-1-zajec5@gmail.com>
+X-Mailer: git-send-email 2.35.3
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20240212135108.GA49008-robh@kernel.org>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 
-* Rob Herring <robh@kernel.org> [240212 13:51]:
-> On Mon, Feb 12, 2024 at 12:30:12PM +0100, Krzysztof Kozlowski wrote:
-> > On 12/02/2024 09:17, Tony Lindgren wrote:
-> > > usage: yamllint [-h] [-] [-c CONFIG_FILE | -d CONFIG_DATA] [--list-files] [-f {parsable,standard,colored,github,auto}] [-s] [--no-warnings] [-v] [FILE_OR_DIR ...]
-> > > yamllint: error: one of the arguments FILE_OR_DIR - is required
-> > >   CHKDT   Documentation/devicetree/bindings/processed-schema.json
-> > >   SCHEMA  Documentation/devicetree/bindings/processed-schema.json
-> > > 
-> > > After removing the ">2&1" from the Makefile, there's some more info:
-> > > 
-> > > yamllint: error: one of the arguments FILE_OR_DIR - is required
-> > > 
-> > > Where DT_SCHEMA_FILES ends up empty. I guess dt_binding_check needs
-> > > to be now run with just:
-> > > 
-> > > $ make dt_binding_check DT_SCHEMA_FILES=toshiba,tc358775.yaml
-> > > 
-> > 
-> > Yes, since June last year. Rob later brought (in July) backwards
-> > compatible way, but apparently something changed now in Makefile.
-> 
-> It broke in 6.8-rc1. I have a fix in my tree which I'll send to Linus 
-> this week.
+From: Rafał Miłecki <rafal@milecki.pl>
 
-OK good to hear, thanks!
+This fixes:
+arch/arm64/boot/dts/mediatek/mt7986a-bananapi-bpi-r3.dtb: thermal-zones: cpu-thermal:cooling-maps: 'cpu-active-high', 'cpu-active-low', 'cpu-active-med' do not match any of the regexes: '^map[-a-zA-Z0-9]*$', 'pinctrl-[0-9]+'
+        from schema $id: http://devicetree.org/schemas/thermal/thermal-zones.yaml#
 
-Tony
+Fixes: c26f779a2295 ("arm64: dts: mt7986: add pwm-fan and cooling-maps to BPI-R3 dts")
+Cc: Daniel Golle <daniel@makrotopia.org>
+Signed-off-by: Rafał Miłecki <rafal@milecki.pl>
+---
+ arch/arm64/boot/dts/mediatek/mt7986a-bananapi-bpi-r3.dts | 6 +++---
+ 1 file changed, 3 insertions(+), 3 deletions(-)
+
+diff --git a/arch/arm64/boot/dts/mediatek/mt7986a-bananapi-bpi-r3.dts b/arch/arm64/boot/dts/mediatek/mt7986a-bananapi-bpi-r3.dts
+index e04b1c0c0ebb..ed79ad1ae871 100644
+--- a/arch/arm64/boot/dts/mediatek/mt7986a-bananapi-bpi-r3.dts
++++ b/arch/arm64/boot/dts/mediatek/mt7986a-bananapi-bpi-r3.dts
+@@ -146,19 +146,19 @@ sfp2: sfp-2 {
+ 
+ &cpu_thermal {
+ 	cooling-maps {
+-		cpu-active-high {
++		map-cpu-active-high {
+ 			/* active: set fan to cooling level 2 */
+ 			cooling-device = <&fan 2 2>;
+ 			trip = <&cpu_trip_active_high>;
+ 		};
+ 
+-		cpu-active-med {
++		map-cpu-active-med {
+ 			/* active: set fan to cooling level 1 */
+ 			cooling-device = <&fan 1 1>;
+ 			trip = <&cpu_trip_active_med>;
+ 		};
+ 
+-		cpu-active-low {
++		map-cpu-active-low {
+ 			/* active: set fan to cooling level 0 */
+ 			cooling-device = <&fan 0 0>;
+ 			trip = <&cpu_trip_active_low>;
+-- 
+2.35.3
+
 
