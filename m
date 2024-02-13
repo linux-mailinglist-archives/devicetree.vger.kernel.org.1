@@ -1,137 +1,241 @@
-Return-Path: <devicetree+bounces-41207-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-41208-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 98C57852BC4
-	for <lists+devicetree@lfdr.de>; Tue, 13 Feb 2024 09:58:13 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5E796852BD2
+	for <lists+devicetree@lfdr.de>; Tue, 13 Feb 2024 09:59:30 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 37F8B1F24128
-	for <lists+devicetree@lfdr.de>; Tue, 13 Feb 2024 08:58:13 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id DD39B1F2442B
+	for <lists+devicetree@lfdr.de>; Tue, 13 Feb 2024 08:59:29 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C897D1B598;
-	Tue, 13 Feb 2024 08:57:36 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 998FA1BDC2;
+	Tue, 13 Feb 2024 08:59:22 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmx.net header.i=wahrenst@gmx.net header.b="ffnhq5ea"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="F/Im/KNI"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mout.gmx.net (mout.gmx.net [212.227.17.20])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-lj1-f180.google.com (mail-lj1-f180.google.com [209.85.208.180])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C310D22625;
-	Tue, 13 Feb 2024 08:57:34 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=212.227.17.20
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B4E1C1B7E6;
+	Tue, 13 Feb 2024 08:59:20 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.180
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1707814656; cv=none; b=BV8e8zMlHZGApCno39zCVjVAFc2NSYWRH+vw7ORwwOk1+jg1UmEXNmRbv+yORILXqsQOZ3hVZrNvmM55WcjReRotIJXJtj4s+/oDzJCQiiWwfcv/JfzfRJqa7qig3IxYH7TOfzUB4EjchktU8x/sDycdVq6xR8y5obAxuQAzQ+E=
+	t=1707814762; cv=none; b=ZihFsrbqYfFN6KdKd3BspyxqDuIVdQokWWblWd8no0FJHuwHte4EVGi208ppj8sxNs58EtnyGcbkWrdPgbq7Y66UblZeEvMCKZAhbllxyzjaW26kwLLNFHkkKaq7ORIEV0V3S/b/EEvsDe854tbKh7iPAMilvA+To5ye/TtieRY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1707814656; c=relaxed/simple;
-	bh=8hcEDI+1fFHAzHnAO9Tad+flYn4kPs+ybb5BLAKvRlc=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=myPWVLuzNzN8XXbtyr+3TKrXwzCpt8QCFDvbltRZ5u5zekrkXZLi0Vv4TK+pvx0YN9mb+Dul2cQxxDorDX//We1U9gkAAV9tg2PQq5Fph4P7AFJLF+RfitwcL88v7TmOcIikOof7nUKqKil7F+b8Px3+hoZRFtmPsAYvfoimKlI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=gmx.net; spf=pass smtp.mailfrom=gmx.net; dkim=pass (2048-bit key) header.d=gmx.net header.i=wahrenst@gmx.net header.b=ffnhq5ea; arc=none smtp.client-ip=212.227.17.20
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=gmx.net
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmx.net
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=gmx.net;
-	s=s31663417; t=1707814642; x=1708419442; i=wahrenst@gmx.net;
-	bh=8hcEDI+1fFHAzHnAO9Tad+flYn4kPs+ybb5BLAKvRlc=;
-	h=X-UI-Sender-Class:Date:Subject:To:Cc:References:From:
-	 In-Reply-To;
-	b=ffnhq5eaTjVfDJ+24RJY8pSezOCcfem7ev3VTXABvMFUlAoIM+T13Nb8w/fuVxUm
-	 /RrqbyltUiSM/gypeQq1lBsF8HMtBosCdz+f02xqXE1Mo/Qu7t0yCIuenQCx7Vub2
-	 RNdoDZBcWWDx2W7XPvFzgPS+RS6y+Knw1iyIyGSwNiDgd+KkQNnaMAwe8wXzH9fV2
-	 ac7bcTkleUgx38kKw1+DIg8KcJHr/3va/JtwjARljokp3k5+KeEy564mJif/fBHef
-	 oisrJFcqVhHY/yCJv8enEcwPmkO5vv+1YxhFGfXa2lt69San3nb6XdCiQSDZRh1qV
-	 k9SKR2Jv4sEAX8DiVg==
-X-UI-Sender-Class: 724b4f7f-cbec-4199-ad4e-598c01a50d3a
-Received: from [192.168.1.167] ([37.4.248.43]) by mail.gmx.net (mrgmx105
- [212.227.17.168]) with ESMTPSA (Nemesis) id 1MPogF-1rLsLi3odn-00MstZ; Tue, 13
- Feb 2024 09:57:22 +0100
-Message-ID: <d50150e4-79d7-4f1c-b221-a0503e6a0899@gmx.net>
-Date: Tue, 13 Feb 2024 09:57:20 +0100
+	s=arc-20240116; t=1707814762; c=relaxed/simple;
+	bh=IB+Cqii8gfzUfHQMIEHpcpm15e5ALfL6x97JYW+pD/s=;
+	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version; b=VMke9+HVcMbWXjSJ9AukrPBSdXN0lurfOF7jj2cq+pxDJEPcM4bMAuHiP7UytGLIL6iT+b+HC3LeaHt41mEVoEpXR4hzUCacKp5MDf0xhhQmwwaixSKDl7MUAylw1tWhhQMyrIpOkCPNt75GWx6L4KehjV6HNPZs/0O6szlFGfE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=F/Im/KNI; arc=none smtp.client-ip=209.85.208.180
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-lj1-f180.google.com with SMTP id 38308e7fff4ca-2d10ad265d5so3381051fa.0;
+        Tue, 13 Feb 2024 00:59:20 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1707814758; x=1708419558; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=A+rca7UJDShH+g1ZK8dFbCY12cccgTgH8rSZBK2oZgU=;
+        b=F/Im/KNIzZxWXeJ5mcq8vth0ZHHvmwMEDv3GO6CL4kRLEmv4QE6WImzeZ9KouFRgyN
+         rnH/y4z9HvFbSuiXJw+8a4jWWJAFU+WMkSMrtFVeF3Scj2b7Ghgnl9ykHQmj/AFQpLTF
+         fCTR8laVihVmMKH5avZLRkJvqdYsQM9RmxIEy9D9Df+ODurDt7zGV54bZmIcqQ2HhJrt
+         vy91QVK9l0IYbKwdZ/V6m1JvfU2vwmitTdyj4N5RLe19memR4EH8er8DakCNDctbcL7b
+         ncqsGeZRpMKGaUV7sCGvimctfX1UZUF+xwe0vA8bVsbqRzv+5fT/I73xlIXqu0HQ1aDm
+         RFyQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1707814758; x=1708419558;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=A+rca7UJDShH+g1ZK8dFbCY12cccgTgH8rSZBK2oZgU=;
+        b=KrxH6ycJpy9EGQzHW4Ulcr43nrbkSNYVeIIalsBjHQEd1TlMd2MZWYfPIPhe+DRbGK
+         wRInrlHCYfYzBeyzLJZ5gQmUFm9iSOjeHWj3w4oh2wRPv/Y2/pw/lX2YFM9m6UN7aNJb
+         AhjWsyORaOONKjhepNxUkPejwe1jCrwEPmbm9d0kCaiNXhboxqIaqOzcmaovbnMvMOAK
+         vmCxbGMoFIM9qo7kOrfQYyk7dye9Qj4KAbOrrBWA272KPFJH36KjeUoq7ZkLhhpYUZuA
+         lZNjL0Q7frTVX8zxxFPctivYiS0l1eK2bpnTP9ZJGlO/q99MaDPul9ron77lq8dg3bCg
+         1Emw==
+X-Gm-Message-State: AOJu0YyAVBt03WCfl153YrbZKfUiSAr7R1kpQ4DIrfCUHIfvz6vIMMwQ
+	S8f7rOSfa5F5R7WUdeagf8nBt7F2S1CZtHJpQbzjkZm5CM7wtnUB
+X-Google-Smtp-Source: AGHT+IE7ctqI5RzwANomWKNPi1hR0T+q0t/trY4j4qC/ca8SuAIFzV4xG2TfZWEpYXrM/YjKPIjjGA==
+X-Received: by 2002:a2e:a544:0:b0:2d0:f8f2:233 with SMTP id e4-20020a2ea544000000b002d0f8f20233mr4176626ljn.45.1707814758239;
+        Tue, 13 Feb 2024 00:59:18 -0800 (PST)
+X-Forwarded-Encrypted: i=1; AJvYcCUV3PIlcuCNm8Qeb94qKsjF3jpQzWk26R8WB3aOyQtKU8J6JPqC+PfB5/30C56G92RvoqiWoazI2MYNDBdPoCUCUylffXmgA0oC28jyWIFeb/jZ99EdcBNqu3DCRLqNU/QlUcfaB3r4/WBHwTDQv4QhpXfQnzh5FLwEmypY1S6IexySsfvu5E2tWJ0RnnXnzvkYeH/3kWso6LvRjBA1EEkxWdeKpZCL9hKgp8DpwCcM4l0Ep2NIpOdYQlVQYvasgS2fVK4ykilsZbVIsoCz4MaemqKdKru4+6SAep2gi1MhEd6knrbmN30eOoFyR3LPidmButHyBuJdmhGt5yJfVPtma90W9dODpWNGoqCN1NsV9K4uswFU31surpblj73vkYGjg5DIluMjf6BVnSU8UpiKkoAH2gYigBJHPXv9vxBfpWlXSO+TZg5UdhSY0C+3iRTmCevIV+urGheA3fMlM6ifulQMbdjKd4ZrXJTj
+Received: from prasmi.home ([2a00:23c8:2500:a01:3791:9495:d351:f873])
+        by smtp.gmail.com with ESMTPSA id u10-20020a05600c00ca00b00410cc2f5550sm5845166wmm.19.2024.02.13.00.59.17
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 13 Feb 2024 00:59:17 -0800 (PST)
+From: Prabhakar <prabhakar.csengg@gmail.com>
+X-Google-Original-From: Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+To: Thomas Gleixner <tglx@linutronix.de>,
+	Rob Herring <robh+dt@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Geert Uytterhoeven <geert+renesas@glider.be>,
+	Magnus Damm <magnus.damm@gmail.com>
+Cc: linux-kernel@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	linux-renesas-soc@vger.kernel.org,
+	Prabhakar <prabhakar.csengg@gmail.com>,
+	Biju Das <biju.das.jz@bp.renesas.com>,
+	Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>,
+	Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+Subject: [PATCH v3] dt-bindings: interrupt-controller: renesas,rzg2l-irqc: Update interrupts
+Date: Tue, 13 Feb 2024 08:59:12 +0000
+Message-Id: <20240213085912.56600-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
+X-Mailer: git-send-email 2.34.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v1 07/14] dt-bindings: lcdif: Do not require power-domains
- for i.MX6ULL
-Content-Language: en-US
-To: Sebastian Reichel <sre@kernel.org>
-Cc: Rob Herring <robh+dt@kernel.org>,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Conor Dooley <conor+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>,
- Sascha Hauer <s.hauer@pengutronix.de>, Fabio Estevam <festevam@gmail.com>,
- Pengutronix Kernel Team <kernel@pengutronix.de>,
- NXP Linux Team <linux-imx@nxp.com>, Dong Aisheng <aisheng.dong@nxp.com>,
- Linus Walleij <linus.walleij@linaro.org>,
- Dmitry Torokhov <dmitry.torokhov@gmail.com>, Mark Brown
- <broonie@kernel.org>, linux-arm-kernel@lists.infradead.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-References: <20240210012114.489102-1-sre@kernel.org>
- <20240210012114.489102-8-sre@kernel.org>
- <a8b55331-a8c3-457e-83e0-2aa361ed23c6@gmx.net>
- <khwsxrpj5fgxl7ukiur2tdyy7a6d6h6zryc5z2h7o6f7k3b32p@cjqsmdbocfpe>
-From: Stefan Wahren <wahrenst@gmx.net>
-In-Reply-To: <khwsxrpj5fgxl7ukiur2tdyy7a6d6h6zryc5z2h7o6f7k3b32p@cjqsmdbocfpe>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: quoted-printable
-X-Provags-ID: V03:K1:L76oI2eGAIugc0iZ9AyZhLxWiz0qcSr63A98X9bSTQkO2dY5s0R
- Xyh110e2ZmkKC9DKQ3JgdNwFkI0LGqnwRH40dVC78K8IgOOOFwySbPz9t/H9W0O5boXO3QP
- kBZh+zCvymePZnsuy/CFgE9yrsI+UgYt7Tbt0iF2ivq9OTapAa2duBnUekE4GxGVHvRuxgz
- b4v1y35XORDdeECHRKmxg==
-X-Spam-Flag: NO
-UI-OutboundReport: notjunk:1;M01:P0:upZr6uS7dWI=;oN9M6RraHij6ziKV8tXX0xqoh6C
- j2Uho8Kn6t5q7GjRdMGYzRhN2n1m+cAnrkaM0aNaK+Svhnphpw6PW9Ez163ziYOy+7IMnWYPI
- 0LsO2Tys3w0yjjDWLeL2F6ab9x95HQhVj24QciKjqx52jT/uteyPEcKhqFpqEYjrob4DGbWrs
- 9AncnxkUEGgvj6KsGp9/gmkEY3UKzzP43Fgul83uAMLNA1iboinRWD7k9S53CXQoBtSfHmAwR
- 8szEavwbIgG0JH6KztPO3sbfL7ya4yG00BX4jOHo4WwFvnQK8YIglFldPI4pqMwGke8R7Lfe8
- kNUKqkrz3OzO8S9S09rDYZb7a74uceiFtlcy48HVCJHeakVt3jR1KSEfb9qmXNvsSRHuBBUaM
- yfdGd+sVnPZB0knw5w2L16JI28SVk5ltYO6MYsgbpRKh7BbbpIHNPJtez0D3k+EoW2leSxXZr
- OsrpReSWNe/yWijZs6cxcYnNoZ472oonF06mM/zLdK6B4U8ISfnIDcWxFeMBLqVZBlqF2+TDn
- 19unguarYtDBFF2ftjhau2Z1mtEr9C38iKiepUSEzE/4aIOKDrdNkgBGtqeixePyoVyzCy9sO
- WsGWdOp8+4cbT8UzlBYBT3tuIoMLw5OFCCm5rxofgI/RQjZGsJDqhEP72RhFCZYU72tMbNAXJ
- Ikdfx1RfcD422zZ+6uu9oYgv/cyFT1hNmvn/xrG9ZijZvxesqMBe/dqwNP82tTEnOWmBvCNjF
- KZrf2h2Zorf2gbfzMJoiLRoZ/G6xu2jiFGF8W0qfq3IEyAQt1QQxgkumsXCxGfaC0QEKjEM8b
- zX/XsRp+RR9tFGbEmLsXBWrgwBZT2P+8gYODNiodgZiuQ=
+Content-Transfer-Encoding: 8bit
 
-Hi Sebastian,
+From: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
 
-Am 13.02.24 um 00:10 schrieb Sebastian Reichel:
-> Hi Stefan,
->
-> On Mon, Feb 12, 2024 at 08:20:35PM +0100, Stefan Wahren wrote:
->> Am 10.02.24 um 02:18 schrieb Sebastian Reichel:
->>> i.MX6UL(L) uses "fsl,imx6sx-lcdif" as fallback compatible string,
->>> but has only very lightweight DISPLAY power domain. Its DISPLAY
->>> power domain is not supported by the binding / Linux kernel at
->>> the moment. Since the current setup is working, let's remove the
->>> power-domain from being required for that platform to fix the warning
->>> printed by CHECK_DTBS=3Dy.
->> i'm not sure this is a good idea. In case i.MX6UL(L) is different from
->> i.MX6SX here, then it should have a different compatible.
-> It already has. The i.MX6UL(L) compatible looks like this:
->
-> compatible =3D "fsl,imx6ul-lcdif", "fsl,imx6sx-lcdif"
->
-> So the i.MX6SX one is just a fallback compatible. But the current
-> requirement for power-domains affects i.MX6UL(L), since it says
-> the compatible only needs to contain "fsl,imx6sx-lcdif" somewhere
-> to make power-domains mandatory.
-thanks, i misunderstood the commit message. I thought this was a
-i.MX6UL(L) specific issue and the i.MX6SX is slightly different. In the
-past the fallback compatible was sometimes abused.
+All the RZ/G2L and alike SoC's (listed below) have ECCRAM0/1 interrupts
+supported by the IRQC block, reflect the same in DT binding doc.
 
-So everything makes sense now.
-> Note, that the kernel driver does not use "fsl,imx6ul-lcdif", so
-> the hardware itself is indeed compatible.
->
-> -- Sebastian
->
-> _______________________________________________
-> linux-arm-kernel mailing list
-> linux-arm-kernel@lists.infradead.org
-> http://lists.infradead.org/mailman/listinfo/linux-arm-kernel
+- R9A07G043U              - RZ/G2UL
+- R9A07G044L/R9A07G044LC  - RZ/{G2L,G2LC}
+- R9A07G054               - RZ/V2L
+- R9A08G045               - RZ/G3S
+
+For the RZ/G3S SoC ("R9A08G045") ECCRAM0/1 interrupts combined into single
+interrupt so we just use the below to represent them:
+- ec7tie1-0
+- ec7tie2-0
+- ec7tiovf-0
+
+Previously, it was assumed that BUS-error and ECCRAM0/1 error interrupts
+were only supported by RZ/G2UL ("R9A07G043U") and RZ/G3S ("R9A08G045")
+SoCs. However, in reality, all RZ/G2L and similar SoCs (listed above)
+support these interrupts. Therefore, mark the 'interrupt-names' property
+as required for all the SoCs and update the example node in the binding
+document.
+
+Fixes: 96fed779d3d4 ("dt-bindings: interrupt-controller: Add Renesas RZ/G2L Interrupt Controller")
+Fixes: 1cf0697a24ef ("dt-bindings: interrupt-controller: renesas,rzg2l-irqc: Document RZ/G3S")
+Signed-off-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+---
+v2 -> v3:
+- Fixed IRQ description as pointed by Geert
+- Sending this individual patch as DTSI patches have been Reviewed by Geert
+
+v1 -> v2:
+- Fixed review comments pointed by Conor
+
+v1: https://patchwork.kernel.org/project/linux-renesas-soc/patch/20240202093907.9465-2-prabhakar.mahadev-lad.rj@bp.renesas.com/
+---
+ .../renesas,rzg2l-irqc.yaml                   | 44 +++++++++++++++----
+ 1 file changed, 35 insertions(+), 9 deletions(-)
+
+diff --git a/Documentation/devicetree/bindings/interrupt-controller/renesas,rzg2l-irqc.yaml b/Documentation/devicetree/bindings/interrupt-controller/renesas,rzg2l-irqc.yaml
+index d3b5aec0a3f7..daef4ee06f4e 100644
+--- a/Documentation/devicetree/bindings/interrupt-controller/renesas,rzg2l-irqc.yaml
++++ b/Documentation/devicetree/bindings/interrupt-controller/renesas,rzg2l-irqc.yaml
+@@ -44,7 +44,7 @@ properties:
+     maxItems: 1
+ 
+   interrupts:
+-    minItems: 41
++    minItems: 45
+     items:
+       - description: NMI interrupt
+       - description: IRQ0 interrupt
+@@ -88,9 +88,15 @@ properties:
+       - description: GPIO interrupt, TINT30
+       - description: GPIO interrupt, TINT31
+       - description: Bus error interrupt
++      - description: ECCRAM0 or combined ECCRAM0/1 1bit error interrupt
++      - description: ECCRAM0 or combined ECCRAM0/1 2bit error interrupt
++      - description: ECCRAM0 or combined ECCRAM0/1 error overflow interrupt
++      - description: ECCRAM1 1bit error interrupt
++      - description: ECCRAM1 2bit error interrupt
++      - description: ECCRAM1 error overflow interrupt
+ 
+   interrupt-names:
+-    minItems: 41
++    minItems: 45
+     items:
+       - const: nmi
+       - const: irq0
+@@ -134,6 +140,12 @@ properties:
+       - const: tint30
+       - const: tint31
+       - const: bus-err
++      - const: ec7tie1-0
++      - const: ec7tie2-0
++      - const: ec7tiovf-0
++      - const: ec7tie1-1
++      - const: ec7tie2-1
++      - const: ec7tiovf-1
+ 
+   clocks:
+     maxItems: 2
+@@ -156,6 +168,7 @@ required:
+   - interrupt-controller
+   - reg
+   - interrupts
++  - interrupt-names
+   - clocks
+   - clock-names
+   - power-domains
+@@ -169,16 +182,19 @@ allOf:
+         compatible:
+           contains:
+             enum:
+-              - renesas,r9a07g043u-irqc
+               - renesas,r9a08g045-irqc
+     then:
+       properties:
+         interrupts:
+-          minItems: 42
++          maxItems: 45
+         interrupt-names:
+-          minItems: 42
+-      required:
+-        - interrupt-names
++          maxItems: 45
++    else:
++      properties:
++        interrupts:
++          minItems: 48
++        interrupt-names:
++          minItems: 48
+ 
+ unevaluatedProperties: false
+ 
+@@ -233,7 +249,14 @@ examples:
+                      <GIC_SPI 472 IRQ_TYPE_LEVEL_HIGH>,
+                      <GIC_SPI 473 IRQ_TYPE_LEVEL_HIGH>,
+                      <GIC_SPI 474 IRQ_TYPE_LEVEL_HIGH>,
+-                     <GIC_SPI 475 IRQ_TYPE_LEVEL_HIGH>;
++                     <GIC_SPI 475 IRQ_TYPE_LEVEL_HIGH>,
++                     <GIC_SPI 25 IRQ_TYPE_EDGE_RISING>,
++                     <GIC_SPI 34 IRQ_TYPE_EDGE_RISING>,
++                     <GIC_SPI 35 IRQ_TYPE_EDGE_RISING>,
++                     <GIC_SPI 36 IRQ_TYPE_EDGE_RISING>,
++                     <GIC_SPI 37 IRQ_TYPE_EDGE_RISING>,
++                     <GIC_SPI 38 IRQ_TYPE_EDGE_RISING>,
++                     <GIC_SPI 39 IRQ_TYPE_EDGE_RISING>;
+         interrupt-names = "nmi",
+                           "irq0", "irq1", "irq2", "irq3",
+                           "irq4", "irq5", "irq6", "irq7",
+@@ -244,7 +267,10 @@ examples:
+                           "tint16", "tint17", "tint18", "tint19",
+                           "tint20", "tint21", "tint22", "tint23",
+                           "tint24", "tint25", "tint26", "tint27",
+-                          "tint28", "tint29", "tint30", "tint31";
++                          "tint28", "tint29", "tint30", "tint31",
++                          "bus-err", "ec7tie1-0", "ec7tie2-0",
++                          "ec7tiovf-0", "ec7tie1-1", "ec7tie2-1",
++                          "ec7tiovf-1";
+         clocks = <&cpg CPG_MOD R9A07G044_IA55_CLK>,
+                  <&cpg CPG_MOD R9A07G044_IA55_PCLK>;
+         clock-names = "clk", "pclk";
+-- 
+2.34.1
 
 
