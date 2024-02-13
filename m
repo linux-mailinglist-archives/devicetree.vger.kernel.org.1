@@ -1,109 +1,85 @@
-Return-Path: <devicetree+bounces-41428-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-41431-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3D06E853A9D
-	for <lists+devicetree@lfdr.de>; Tue, 13 Feb 2024 20:14:18 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 44174853AA7
+	for <lists+devicetree@lfdr.de>; Tue, 13 Feb 2024 20:16:42 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id E6A2B286413
-	for <lists+devicetree@lfdr.de>; Tue, 13 Feb 2024 19:14:16 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 7694D1C23FA0
+	for <lists+devicetree@lfdr.de>; Tue, 13 Feb 2024 19:16:41 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3DE2F605C8;
-	Tue, 13 Feb 2024 19:14:02 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="DF1MFRUo"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3700F605C2;
+	Tue, 13 Feb 2024 19:16:29 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from gloria.sntech.de (gloria.sntech.de [185.11.138.130])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0E8531F618;
-	Tue, 13 Feb 2024 19:14:01 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4A1005FF0A;
+	Tue, 13 Feb 2024 19:16:27 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.11.138.130
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1707851642; cv=none; b=g+6Q5/Y87tC72iWtuFXh+HTlA8ejJ4aYE6GfuOqIpNOsTSIDMAzgZradxYlVXtNazW1y94qATU5KBJfPomg3/TtH9BRTc1PLCeY6Y3YdtzCoQNgGw0Q/D6qc6s82UXoZIaece22Tnm3zNrIFk5VgPc4Zo5DXiN1OiAqzbrvMBKA=
+	t=1707851789; cv=none; b=f6EGC/V9ZVyjyEMgAWEVDQkbEINQcAhkd69uQcIJzNg6qvZXfgPnx6y0fgxGFxfQ1Db9vCQSHpVz83n8c/TAXyBD/3oiRQ5hnw2hB7llA5jAF7D5CzhiFGJB9ZHCPLCoALnW4dvqqRHp+AG7/IGKBatcnh9RaKjAkEeX/LJNwKI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1707851642; c=relaxed/simple;
-	bh=6kiN4wiwZ7wdwYwbdv3uD0MprwgKoWw3N+XaXtyJk2w=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=TguuHeVOEIkERStrBF1aTHTtkEPu3Ta263mUfSMayvykEdBYZ4YYZFS/vpUC0zNVkuD9ap7qgaxahgJGZAChnjvH+D/ERirCyqsmBi68Bw7HHtva6jwx1WInjAWMuWxiRogTTsfHjVNaUoJcKkv/fyOAlbSRED2hHBMDvzl988g=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=DF1MFRUo; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 56EF7C433C7;
-	Tue, 13 Feb 2024 19:13:59 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1707851641;
-	bh=6kiN4wiwZ7wdwYwbdv3uD0MprwgKoWw3N+XaXtyJk2w=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=DF1MFRUou46Tj8Yh/v3Tt3bOTRl3z5a288sgY90GPcDH5XaHjs0erCmjmEXjon6HX
-	 c2NtVP4v3bLBZbdCYWHtUfsDuZ5mKVASKvr8nuyvaYWXWRWEOiVO5iZnubWbgVJGGk
-	 W2a7laXAEc6u5HRan3TmEvFFYQE8EyNs7ArN3qZYrcOlB/J5JoEhbNSGn7gqX6P/ww
-	 DuzX7gvhUKY4IOkSEoI5v/Osj5/neF23jDdVI1MVvSxMO/XCc/kYZgzYe0Mm3Wn8OL
-	 BDF+HQsJY+QIf0t5j93H1tU/KNqmqOCP0ZrBS+SNx8DLV/fQlp5C+G3IPCbDzYN3/1
-	 RNhYk8dRW6Zug==
-Date: Tue, 13 Feb 2024 19:13:57 +0000
-From: Conor Dooley <conor@kernel.org>
-To: Dharma.B@microchip.com
-Cc: robh@kernel.org, tglx@linutronix.de, krzysztof.kozlowski+dt@linaro.org,
-	conor+dt@kernel.org, Nicolas.Ferre@microchip.com,
-	alexandre.belloni@bootlin.com, claudiu.beznea@tuxon.dev,
-	linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org
-Subject: Re: [PATCH v2] dt-bindings: interrupt-controller: Convert Atmel AIC
- to json-schema
-Message-ID: <20240213-estranged-charger-bf0372f367e0@spud>
-References: <20240209100122.61335-1-dharma.b@microchip.com>
- <20240212140824.GA107736-robh@kernel.org>
- <003d61c9-b914-4e1c-b3f8-1140ea640039@microchip.com>
+	s=arc-20240116; t=1707851789; c=relaxed/simple;
+	bh=OUU1YZXo3yo0PciRPdb54Wmqd4/2SZ750LGczHwVk/A=;
+	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=mf7ySwOzyCssdFzL77gCliErD7juCs79GzFXxlBRULUUHvZW3xbYSWUrxF6i55SpK2mF3CUBl/lSlYW0a4wuLYjjmaz51PfQ05ZgrAfLTe4tSFvajnsml+XbzMr6zJFhk/dIiOmmN4nRcQBaVS/+6sg40YoDJdbjvaSlZKztHYE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=sntech.de; spf=pass smtp.mailfrom=sntech.de; arc=none smtp.client-ip=185.11.138.130
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=sntech.de
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=sntech.de
+Received: from [194.95.143.137] (helo=phil.dip.tu-dresden.de)
+	by gloria.sntech.de with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+	(Exim 4.94.2)
+	(envelope-from <heiko@sntech.de>)
+	id 1rZyGU-0008FY-SS; Tue, 13 Feb 2024 20:16:22 +0100
+From: Heiko Stuebner <heiko@sntech.de>
+To: Farouk Bouabid <farouk.bouabid@theobroma-systems.com>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Rob Herring <robh+dt@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
+Cc: Heiko Stuebner <heiko@sntech.de>,
+	quentin.schulz@theobroma-systems.com,
+	linux-kernel@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	linux-rockchip@lists.infradead.org
+Subject: Re: [PATCH v6 0/2] serial: 8250: Add support for rs485 half/full duplex on puma/ringneck-haikou
+Date: Tue, 13 Feb 2024 20:16:15 +0100
+Message-Id: <170785172857.3347621.5386366884287991661.b4-ty@sntech.de>
+X-Mailer: git-send-email 2.39.2
+In-Reply-To: <20240208-dev-rx-enable-v6-0-39e68e17a339@theobroma-systems.com>
+References: <20240208-dev-rx-enable-v6-0-39e68e17a339@theobroma-systems.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-	protocol="application/pgp-signature"; boundary="DP2O63EPE4l7uJmE"
-Content-Disposition: inline
-In-Reply-To: <003d61c9-b914-4e1c-b3f8-1140ea640039@microchip.com>
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
 
+On Thu, 08 Feb 2024 16:39:54 +0100, Farouk Bouabid wrote:
+> On the boards that we are using (ringneck/puma-haikou) a hardware switch
+> can set the rs485 transceiver into half or full duplex mode.
+> 
+> In half-duplex mode the DE/RE signal of the rs485 transceiver is not
+> connected to an RTS signal whose control is already handled in the rs485
+> emulation (start/stop callbacks), but rather to a gpio. And since enabling
+> the receiver requires setting this gpio active we need to do that in em485
+> while receiving and disable it while sending to enable the driver mode.
+> 
+> [...]
 
---DP2O63EPE4l7uJmE
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+Applied, thanks!
 
-On Tue, Feb 13, 2024 at 04:23:36AM +0000, Dharma.B@microchip.com wrote:
-> On 12/02/24 7:38 pm, Rob Herring wrote:
-> > On Fri, Feb 09, 2024 at 03:31:22PM +0530, Dharma Balasubiramani wrote:
-> >> +  atmel,external-irqs:
-> >> +    $ref: /schemas/types.yaml#/definitions/uint32-array
-> >> +    description: u32 array of external irqs.
-> >=20
-> > Constraints on the array size and/or entry values?
->=20
-> The hardware's support for external IRQs may differ, which is why a u32=
-=20
-> array is utilized. This choice is based on the fact that IRQ numbers are=
-=20
-> commonly expressed as integers, and a 32-bit unsigned integer provides a=
-=20
-> standardized size capable of representing a broad range of numbers. This=
-=20
-> size is more than adequate for accommodating IRQ numbering.
+[1/2] arm64: dts: rockchip: rk3399-puma-haikou: add rs485 support on uart2
+      commit: 54448f711aa32f176534bbd7b1903cc6d1c8a50d
+[2/2] arm64: dts: rockchip: px30-ringneck-haikou: add rs485 support on uart5
+      commit: 5963d97aa780619ffb66cf4886c0ca1175ccbd3e
 
-I don't think Rob was questioning your use of u32s, but rather the fact
-that you do not limit the values at all nor the number of values.
-
---DP2O63EPE4l7uJmE
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZcu/dAAKCRB4tDGHoIJi
-0hRGAQDFmS0WZOIhtx+CxVE2or6F0Xb2Sy0lXRItnm9EtBauHgD+J50w1UOrdUOX
-LsiY0HyUU5V9F0jwzQmdiaR/ntTSfAY=
-=eCUq
------END PGP SIGNATURE-----
-
---DP2O63EPE4l7uJmE--
+Best regards,
+-- 
+Heiko Stuebner <heiko@sntech.de>
 
