@@ -1,131 +1,122 @@
-Return-Path: <devicetree+bounces-41211-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-41212-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3FCB8852BE7
-	for <lists+devicetree@lfdr.de>; Tue, 13 Feb 2024 10:06:14 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 60529852BF0
+	for <lists+devicetree@lfdr.de>; Tue, 13 Feb 2024 10:08:10 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 9400C1F211A5
-	for <lists+devicetree@lfdr.de>; Tue, 13 Feb 2024 09:06:13 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 149041F221E5
+	for <lists+devicetree@lfdr.de>; Tue, 13 Feb 2024 09:08:10 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A42E01B7EB;
-	Tue, 13 Feb 2024 09:06:01 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=fail reason="signature verification failed" (1024-bit key) header.d=phytec.de header.i=@phytec.de header.b="SlMwwo4n"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C0C171B971;
+	Tue, 13 Feb 2024 09:07:59 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mickerik.phytec.de (mickerik.phytec.de [91.26.50.163])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from tux.runtux.com (tux.runtux.com [176.9.82.136])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C2A0422319
-	for <devicetree@vger.kernel.org>; Tue, 13 Feb 2024 09:05:57 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=91.26.50.163
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 024662231C;
+	Tue, 13 Feb 2024 09:07:57 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=176.9.82.136
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1707815161; cv=none; b=DCNs8mc1t4hXSDJyvu8mMuQU7TQ4QqhEp6FYfEQkVSsuVLzTXFh2Kefd6Dge8sHjoa6Ns9vEesP9rdjeqF5DiX6kOaF0w5+tMgMCvR6x7Dx0ABCys/4Fk4saxM4y7y3KCb7t4tnCtAoWdwd57XV3OvVY8xjXExNbBXVYYpK2b5E=
+	t=1707815279; cv=none; b=R8ZcNed3RzU8MrBj2szX7l7DQAHDLJn59aMguVgQZSAbmCr/WvrnHZB3q47pW6jZYABJcvCYFH2yOP9CV7jzudCCs/+aBy8xOdmc3Q3o23eeKNv6eMehsL4QZZzePAgkMikmrmTxR+O60l0sce+ACyOCgtkGp4/Q64VTCnxDjwE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1707815161; c=relaxed/simple;
-	bh=HSrUZ41VNdnvYhAQ/IMyr9Isrfz3FJedb6hFHGlYTKQ=;
-	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
-	 In-Reply-To:Content-Type; b=LQVD12Se3dgExhgxKGUX0KNhb4JeHcMf+7Qk6p1DKYzlVUtaagpaGnSeO3kE8WJbJv1M5r6vTYnnXF0djl7NjIrVV0LPQJ2L6bq5sgWQSZURm9NvDCEar+TygqzEhYxEXGVmz9KG8uLHgEAHMxIDkn1n7wTGEH1f8ZwiWkGnykQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=phytec.de; spf=pass smtp.mailfrom=phytec.de; dkim=pass (1024-bit key) header.d=phytec.de header.i=@phytec.de header.b=SlMwwo4n; arc=none smtp.client-ip=91.26.50.163
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=phytec.de
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=phytec.de
-DKIM-Signature: v=1; a=rsa-sha256; d=phytec.de; s=a4; c=relaxed/simple;
-	q=dns/txt; i=@phytec.de; t=1707815154; x=1710407154;
-	h=From:Sender:Reply-To:Subject:Date:Message-ID:To:CC:MIME-Version:Content-Type:
-	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:Resent-From:
-	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:List-Id:
-	List-Help:List-Unsubscribe:List-Subscribe:List-Post:List-Owner:List-Archive;
-	bh=HSrUZ41VNdnvYhAQ/IMyr9Isrfz3FJedb6hFHGlYTKQ=;
-	b=SlMwwo4nhAQzaFmynwxVbAymD6XokuxWcrXhHbMTM3LGui/Mh38yj3ReNTzcdeoI
-	qXvX0xY6OoLnhGKAF5I1WRPTqs83gq5hyOGxhdoAMnxkZ7iWYpT9UJciNi8PUULF
-	9hObejOjRqLLTWEBuIVNIrkL+FFiruw0tsQGVGfgpow=;
-X-AuditID: ac14000a-fbefe7000000290d-1a-65cb30f2ff50
-Received: from berlix.phytec.de (Unknown_Domain [172.25.0.12])
-	(using TLS with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
-	(Client did not present a certificate)
-	by mickerik.phytec.de (PHYTEC Mail Gateway) with SMTP id 82.8E.10509.2F03BC56; Tue, 13 Feb 2024 10:05:54 +0100 (CET)
-Received: from [172.25.39.28] (172.25.0.11) by Berlix.phytec.de (172.25.0.12)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.6; Tue, 13 Feb
- 2024 10:05:49 +0100
-Message-ID: <0d8d8b85-1208-4021-b1f8-1c1c593ddbfe@phytec.de>
-Date: Tue, 13 Feb 2024 10:05:46 +0100
+	s=arc-20240116; t=1707815279; c=relaxed/simple;
+	bh=6bs7SErVT3CfTr4R0wEWjpG2eNuE9rUybLdZOMUD2iU=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=e9lTCkATZWUGLaTo7jJkxFJ/bZA6pndgqpAli9hnT772upmsf5taCXI8VpX1CvaBwCBbP5ffPf3n9o+eeATKN6wlVuZ0fETJxaoTU8prZlMCIEgPqc41ZF4fEV4SgwBeZzX/0kGVYEco8d9O+nHVB1uef+Bh0KwwyK1dK4Cek+g=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=runtux.com; spf=pass smtp.mailfrom=runtux.com; arc=none smtp.client-ip=176.9.82.136
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=runtux.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=runtux.com
+Received: from localhost (localhost [127.0.0.1])
+	by tux.runtux.com (Postfix) with ESMTP id 922E26EF5B;
+	Tue, 13 Feb 2024 10:07:54 +0100 (CET)
+X-Virus-Scanned: Debian amavisd-new at tux.runtux.com
+Received: from tux.runtux.com ([127.0.0.1])
+	by localhost (tux2.runtux.com [127.0.0.1]) (amavisd-new, port 10026)
+	with LMTP id dicLrwJAa5ue; Tue, 13 Feb 2024 10:07:53 +0100 (CET)
+Received: from bee.priv.zoo (62-99-217-90.static.upcbusiness.at [62.99.217.90])
+	(Authenticated sender: postmaster@runtux.com)
+	by tux.runtux.com (Postfix) with ESMTPSA id DE5596EF02;
+	Tue, 13 Feb 2024 10:07:52 +0100 (CET)
+Received: by bee.priv.zoo (Postfix, from userid 1002)
+	id 7576B469; Tue, 13 Feb 2024 10:07:52 +0100 (CET)
+Date: Tue, 13 Feb 2024 10:07:52 +0100
+From: Ralf Schlatterbeck <rsc@runtux.com>
+To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Cc: Geert Uytterhoeven <geert@linux-m68k.org>,
+	Linus Walleij <linus.walleij@linaro.org>,
+	Miguel Ojeda <ojeda@kernel.org>, Rob Herring <robh+dt@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Robin van der Gracht <robin@protonic.nl>,
+	Paul Burton <paulburton@kernel.org>,
+	linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	Andy Shevchenko <andriy.shevchenko@linux.intel.com>
+Subject: Re: [PATCH 1/3] dt-bindings: auxdisplay: hit, hd44780: drop
+ redundant GPIO node
+Message-ID: <20240213090752.5g7cnzkaqrfdqi4p@runtux.com>
+References: <20240212083426.26757-1-krzysztof.kozlowski@linaro.org>
+ <CAMuHMdU-c5_Z2AMNtNH4Cc4JUrn+oKU-1CumEOAP6=5Zomcj_A@mail.gmail.com>
+ <2922eece-5486-4eff-af99-f7060cb61d17@linaro.org>
+ <20240212115837.efz73yxinkysdmgh@runtux.com>
+ <e2a5b005-7916-4296-b072-c24efd4b3357@linaro.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 8/9] arm64: dts: ti: k3-am6*: Fix bus-width property in
- MMC nodes
-Content-Language: en-US
-To: Francesco Dolcini <francesco@dolcini.it>
-CC: Judith Mendez <jm@ti.com>, Rob Herring <robh+dt@kernel.org>, Krzysztof
- Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley
-	<conor+dt@kernel.org>, Nishanth Menon <nm@ti.com>, Vignesh Raghavendra
-	<vigneshr@ti.com>, Tero Kristo <kristo@kernel.org>,
-	<linux-arm-kernel@lists.infradead.org>, <devicetree@vger.kernel.org>,
-	<linux-kernel@vger.kernel.org>, Francesco Dolcini
-	<francesco.dolcini@toradex.com>
-References: <20240213002416.1560357-1-jm@ti.com>
- <20240213002416.1560357-9-jm@ti.com>
- <c6ad3a3e-330c-40cd-8e25-fd259fd1e398@phytec.de>
- <20240213081953.GB3810@francesco-nb>
-From: Wadim Egorov <w.egorov@phytec.de>
-In-Reply-To: <20240213081953.GB3810@francesco-nb>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: Berlix.phytec.de (172.25.0.12) To Berlix.phytec.de
- (172.25.0.12)
-X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFprLIsWRmVeSWpSXmKPExsWyRpKBR/eTwelUg2lzzSzW7D3HZDH/yDlW
-	i7tLfzJavD22ksni04dMi+WfZ7Nb9L14yGyx6fE1VovLu+awWbz5cZbJonXvEXaL/2c/sDvw
-	eGzZ85PFY9OqTjaPO9f2sHlsXlLvcfzGdiaPTa88PD5vkgtgj+KySUnNySxLLdK3S+DK6Dk4
-	h6XgJWfFhLsPmBsY77B3MXJySAiYSLxr7GHtYuTiEBJYzCSxYNs6RgjnLqPEk9vTWEGqeAVs
-	JJauXMYCYrMIqEpM+zCVDSIuKHFy5hOwuKiAvMT9WzPApgoLREncefAEzGYWEJe49WQ+E4gt
-	IqAjceXyMrAFzAJLmSWabrcyQWzbyCixYc9BsCo2AXWJOxu+gW3mFDCU+DD7FDPEJAuJxW8O
-	Qk2Vl9j+dg5YXAjIfnFpOQvEP/IS0869ZoawQyW2ftnONIFReBaSY2chOWoWkrGzkIxdwMiy
-	ilEoNzM5O7UoM1uvIKOyJDVZLyV1EyMoCkUYuHYw9s3xOMTIxMF4iFGCg1lJhPfSjBOpQrwp
-	iZVVqUX58UWlOanFhxilOViUxHlXdwSnCgmkJ5akZqemFqQWwWSZODilGhi3GkYej6+WsPuh
-	9T2KK76msbfK57fvs4jCwPJZF6V+ypuy7te+7Ntpfm2SwcozFpfd7sxsPtXaE7bQ5GR6sokU
-	v0mztLJTguXEI6v/uWXv0rQ2jbC+xP2xUmb+UaH1qcevW08Uuv7tRY0v24XShQkFclOfcRhl
-	LljtbhJ4bd332iLzxTEnq5VYijMSDbWYi4oTAcDzcWiwAgAA
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <e2a5b005-7916-4296-b072-c24efd4b3357@linaro.org>
+X-ray: beware
+User-Agent: NeoMutt/20180716
 
+On Mon, Feb 12, 2024 at 02:38:27PM +0100, Krzysztof Kozlowski wrote:
+> On 12/02/2024 12:58, Ralf Schlatterbeck wrote:
+> > On Mon, Feb 12, 2024 at 12:25:48PM +0100, Krzysztof Kozlowski wrote:
+> >>
+> >> Hm, I don't understand how exactly it helps. The GPIO expander has its
+> >> own example and as you pointed below, this is basically the same code,
+> >> except rw and backlight GPIOs.
+> > 
+> > The hd44780 is a display that is very often used.
+> 
+> GPIO expanders and their usage is nothing specific to this device -
+> other devices also might benefit of them. Or the SoCs which have enough
+> of GPIOs... I really do not understand why do we need expander here and
+> how does it help
 
-Am 13.02.24 um 09:19 schrieb Francesco Dolcini:
-> On Tue, Feb 13, 2024 at 06:07:28AM +0100, Wadim Egorov wrote:
->> Hi Judith,
->>
->> Am 13.02.24 um 01:24 schrieb Judith Mendez:
->>> Move bus-width property to *main.dtsi, above the OTAP/ITAP
->>> delay values. While there is no error with where it is
->>> currently at, it is easier to read the MMC node if the
->>> bus-width property is located above the OTAP/ITAP delay
->>> values consistently across MMC nodes.
->>>
->>> Add missing bus-width for MMC2 in k3-am62-main.
->>>
->>> Signed-off-by: Judith Mendez <jm@ti.com>
->>> ---
->>>    arch/arm64/boot/dts/ti/k3-am62-main.dtsi       | 5 +++--
->>>    arch/arm64/boot/dts/ti/k3-am625-beagleplay.dts | 1 -
->>>    arch/arm64/boot/dts/ti/k3-am62a-main.dtsi      | 2 +-
->>>    arch/arm64/boot/dts/ti/k3-am64-main.dtsi       | 2 ++
->>>    arch/arm64/boot/dts/ti/k3-am642-evm.dts        | 2 --
->>>    arch/arm64/boot/dts/ti/k3-am642-sk.dts         | 1 -
->> I think you missed to update all non TI boards.
-> Not sure which boards are you referring to.
->
-> I would not change the verdin-am62 boards, the bus-width there is
-> consistent with the schematics, it's just correct and in the right place
-> IMO.
+The hd44780 is most often sold together with that specific I/O expander.
+The idea was to help people with that combination how to get their
+device working.
 
-Ah, yes. Agree.
+> Anyway, binding examples should not be collection of unrelated
+> solutions, because then we should accept for each device schema several
+> other variations and combinations.
 
+The solutions in that case are not unrelated because they document the
+most-often-used hw combo.
 
->
-> Francesco
->
+I also didn't find any documentation of how to actually *use* the
+pcf8575 I/O expander. Even
+Documentation/devicetree/bindings/gpio/nxp,pcf8575.yaml
+has only docs on how to instantiate the device on the i2c bus but not
+how then to use the I/Os of the chip for something else.
+
+So I'd ask again to not remove that piece of useful documentation.
+
+And to get somehow philosophic:
+I think that docs should be didactic, not optimized to the least
+redundancy.
+
+Thanks and kind regards,
+Ralf
+-- 
+Dr. Ralf Schlatterbeck                  Tel:   +43/2243/26465-16
+Open Source Consulting                  www:   www.runtux.com
+Reichergasse 131, A-3411 Weidling       email: office@runtux.com
 
