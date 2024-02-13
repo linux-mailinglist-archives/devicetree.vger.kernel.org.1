@@ -1,75 +1,74 @@
-Return-Path: <devicetree+bounces-41285-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-41286-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 32C4E853048
-	for <lists+devicetree@lfdr.de>; Tue, 13 Feb 2024 13:12:40 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 49D63853053
+	for <lists+devicetree@lfdr.de>; Tue, 13 Feb 2024 13:16:48 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id DDD7428B562
-	for <lists+devicetree@lfdr.de>; Tue, 13 Feb 2024 12:12:38 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 6B9051C223B2
+	for <lists+devicetree@lfdr.de>; Tue, 13 Feb 2024 12:16:47 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7905D39AF0;
-	Tue, 13 Feb 2024 12:12:32 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3137A3A8E4;
+	Tue, 13 Feb 2024 12:16:44 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="PFsbh+uy"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="T5Tdd+aB"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wr1-f54.google.com (mail-wr1-f54.google.com [209.85.221.54])
+Received: from mail-wm1-f41.google.com (mail-wm1-f41.google.com [209.85.128.41])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A2F2F4EB3E
-	for <devicetree@vger.kernel.org>; Tue, 13 Feb 2024 12:12:30 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.54
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 075FE383B4
+	for <devicetree@vger.kernel.org>; Tue, 13 Feb 2024 12:16:41 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.41
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1707826352; cv=none; b=cqxCDIVzyOHQ/xycQ5jpabj3tp6N8UNjgfaI5ukMg/l90ShFI+AJ6VtItptDXu/D7olozC/+coM0Gpj0zcjlNUuxeqqkaD+msdV1VNwbsx0GLw5bM8wD/g2VRsE7tA5jsqHHlST/Ibn/3wKbRbmiXM8I48BDh7Dbnb6vr0WtU8M=
+	t=1707826604; cv=none; b=Ilf1/IgSkqLVopq9ciBJeqlKG5OnFqNgbD14X6VZc261LZTOzH2UF7pJHpHVWY7cO3DW+CluKWVVOWKE8PNI6OYF8sldZovl2foqQ+7SkzKHb29rgwgoIuBgoDJKcUNV6Q7khc5CUgxq69kkjagKmC7Lq3fqfp5xno1E8RPErq8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1707826352; c=relaxed/simple;
-	bh=LW/Jq4Q5LtHY9P229cxVjiwUe/lGXRqz+oNQr3nq8L8=;
+	s=arc-20240116; t=1707826604; c=relaxed/simple;
+	bh=eQKcWv8ehomvZXrP5QdQtoxuR9kXHOHCFhwzoLoKSiM=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=RGANLkSxyGFxSxE0PhkXUUCrL9DV4tchhBwNp9hfjVqfhg6gYDD5dpNnDey8oak8cWM6CfjZQP54J2ycnoPC4CB8yxR3iAkOq4RIJnjbcp0N8UagNXfoMdXwLUozJfS94y3/TJBu5Laps5OS5V/L7/D2rhDOT09Xbafob+CMGOU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=PFsbh+uy; arc=none smtp.client-ip=209.85.221.54
+	 In-Reply-To:Content-Type; b=WleqcLutkTUdfGCvu3dq3pDxYUk/gFNbi79IrlAFvXRhG/+7obgkXmcUOzdg/Qa5pOlXrvyjpvSFWqBeKWuLYUQ8xPcwgtKYE/00NaDKTG3JJX12ZXmm+5H1ZCPQ9zlGUE5kE34xPzbjvyMLUmB4LzZzKjPBfoRen4Pis44eeLM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=T5Tdd+aB; arc=none smtp.client-ip=209.85.128.41
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-wr1-f54.google.com with SMTP id ffacd0b85a97d-33ce2d6a243so32590f8f.1
-        for <devicetree@vger.kernel.org>; Tue, 13 Feb 2024 04:12:30 -0800 (PST)
+Received: by mail-wm1-f41.google.com with SMTP id 5b1f17b1804b1-411cf319da4so1096795e9.2
+        for <devicetree@vger.kernel.org>; Tue, 13 Feb 2024 04:16:41 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1707826349; x=1708431149; darn=vger.kernel.org;
+        d=linaro.org; s=google; t=1707826600; x=1708431400; darn=vger.kernel.org;
         h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
          :to:content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=K67weB9dwxJ63WFWBRK4344YdSvRm3NpywijV8bIi14=;
-        b=PFsbh+uyiF2QFLAGys30HzG5C7Mu6RhkX9fqH2VFoAkWPuhrnIs1MEAgTWVxHCbq51
-         c1H/NiqTRaBsSY0FWYI+Tk0G5r/QFdQ62n9DhCaGXz8+1iMSwUNzQ4tVwOclPgmwe1Oj
-         VOFGkGvJOPf67Re28zBwPpX/K1batRKZOxHXlGQ7jB+GNFO42orO5xIT2fH3NMRaU9VS
-         W4J3RKeoy3B/4r67u6AEqPnbLXWZlhPvRzxYonjvOxwYRiYX1Z/ekY4B6zGGpz0rRic+
-         n1GkDE2XSe09Hmh3b6YTMmCK5rUyjvayOk73MhaeqG4dwFoAJFShDRVhyvoA7wFWPgZE
-         OnhA==
+        bh=XvutVI4vhckb36wRv9xQ3G85CklqzEdmIVWxR5pe3EM=;
+        b=T5Tdd+aBgV7PDEPUUivUXEJwLN6joe58TZWugAiqNFKTuf7WjaxgA+eZrScbGzgtKW
+         bLEAbgw/zeY5+C/9LWNqS0ZMxWlqayxxFnGGlQpSqRyF06NMgA17pg6AsHHYBGqXTKK8
+         5yPDBGP0FqY+QulGWR//iA9jzn2y0gDSvUci4PHZx1TohRlmuDouOWFN75WVdRr/l2Xa
+         rINAJJ+N9fugxvDTlyCD+K89p/wHAqin+o1InXb89ddxr88NSR64bahYlHp9zjMZA7Yf
+         GHoU6isioriws34HpeOSi8cySL9BhQZRj9dkzOCbMXVltYFmqv8Kxs/0uiJEcc785TTS
+         nrgQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1707826349; x=1708431149;
+        d=1e100.net; s=20230601; t=1707826600; x=1708431400;
         h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
          :to:content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=K67weB9dwxJ63WFWBRK4344YdSvRm3NpywijV8bIi14=;
-        b=ZL6KYGlLxoKBaIhkoGtTR0zKvczzXJYyxPRmPuoZvpLhDw4/bdOENJS/E0il1Dmf2A
-         5iBMddYqd+UzaRNJ+Ms56cQAfY6gpNbhOYBmkwatYrePvIweZXgCOGtK3AJLXsDW/SHr
-         PLO/GSJmTZq35VMP5BSCdV0fBHlx6fLiAJBefOM2KkGNoVTA6VnpW+TUQeaDB7UL7sRE
-         Vf+gpE433aBzJYqWXIvmL/Utj4wpVaoA2E+1c/jRPv8UYer6sOsGXANEUPpsNRrC2xKn
-         b+iih71t2hfxqjIexbebH6+UTOKu/JxTwlABYzM5MHi2ftiQlm/SnRPYruOfjgNwvd1+
-         KPsg==
-X-Forwarded-Encrypted: i=1; AJvYcCWdZD0WQgq9yjxJfsuyrIC4fEN0VphJTHLfas+bEgOS+ll/i4gT3R5PH4hSHGkD7uHb4gPXpMbD8BWzPrOFZwjvoq7WzRhXf7JJjQ==
-X-Gm-Message-State: AOJu0Yw8wp/Efsz0GrbqjwDP+XBU1DKfsOtwAPfGwCix9gsgPx0saR60
-	ZEVF9BzLjg7LAQW9CqRW4uPODvctv8SziAzmdnGvaVBze3AcYtR02tqlY3vcRBk=
-X-Google-Smtp-Source: AGHT+IFK73zazqStcyyAnH0zibxGpVhtHc8BbQmI/yCRGXSNRhY0sc3+hjDaY0pWPTwEggWHEs8D7A==
-X-Received: by 2002:a5d:490a:0:b0:33b:1d2a:4f7c with SMTP id x10-20020a5d490a000000b0033b1d2a4f7cmr7392336wrq.30.1707826348784;
-        Tue, 13 Feb 2024 04:12:28 -0800 (PST)
-X-Forwarded-Encrypted: i=1; AJvYcCUvUokeu2GOtloMGtT0hmiJ8LAuZGbzAaziaWTcCHh1RdvyVxRR4HKRUOf77+o1Tnzdbl/7C6+j91VyNGk25VWeDq/ZBsEfeYQ0ls6HnXmZ5rvBjYBDCYo2UAZh7vZtY6B3yxlyI0btutiM3B60cxHDBF+hRNQn/r7/UtFYgDo5gcq8r5izE7Pl4H+g87mWm1HDmVfj3s7EpQJgY4oUhBWtqe7Ytl2mcSRzfw3ACdok8HCSV4ZfZAe/lEMyOY6alvRdC6QtQuHpnnK6Cu5bNio7do3d1RtPpxe/0Ml6IQhP5PA+FcuyMq8mHnafEpJV9U63B1MzDRTgfWyAPksuqg13/Dw47qh/4KWgGDSNDKlqUA/O6PUEvUq2oLFrAOpYvhopnVyjlgyitDKztqOGLogU3Bs7+ZlyoIVqE4FRdLI2uhDBwJqmXS39
+        bh=XvutVI4vhckb36wRv9xQ3G85CklqzEdmIVWxR5pe3EM=;
+        b=sPsSeC9XyWaP6NQKgYPFenDiq/j2lmgjc9RSZjz67dgc9OuGRJEklyfi85jrMZ7R7R
+         MvYNPM4/qDDPEXbJgzt4ItjXtOc7rh4hclkY7MtYL9eA60SzZ2GfPPsUhELMpqEy9XPt
+         1vLzQv2+z12IzaEgaJ9wQ8/+bDOtoUQpuguoZXF7Cly12YcySA2HZB4pU+cRJNGUVsNw
+         P/tdruaywYn3QfyOyj3upAKmQXopY54yAXe0THFFO925oIZjTK6bn+2l3NRe5HhAqNrf
+         rrFsZX3nio2VGbO1gZ1VZa0dQzz2BRNjf4lRmS9O/HdlNoyNN6rqIUbeS8/WEEwnhDQN
+         DskA==
+X-Gm-Message-State: AOJu0YwCQoauxO8iyRi9qXBq2hd3GOrV9BORMU1ogs3ay9LauYgG/9HN
+	RqdsZ7iSpY2oo22k0imyrH5bSCAfPSCNNIsH8sSClA3XqCbhHiHoW72/8NqLgXY=
+X-Google-Smtp-Source: AGHT+IEtHfBXMOT9CM9N7oyWHcsHOKqjjg//DUpPNnRVSpiHzVrxZ1PrkDoSJkMd+7Z1+eVvtutukQ==
+X-Received: by 2002:a05:600c:474d:b0:40e:55ca:5a48 with SMTP id w13-20020a05600c474d00b0040e55ca5a48mr7875172wmo.16.1707826600210;
+        Tue, 13 Feb 2024 04:16:40 -0800 (PST)
+X-Forwarded-Encrypted: i=1; AJvYcCUyRO2lA00i33UiEjlwdueBFo8tkoN7ppioYMbPi4QR8dt3QSQdQl5NIU0j6eDZ/7RcTnZD1LUH7vaLHfwpCvSpvRjVCvN3rdsS1ISEgJoimoyd5V8rHa7KYW68QlJ6O711+ar2Nu9kw/z8iBz5rWjrHVWPZMDcBjK0NcRVGcMLQj+CxrHYJC0DGMYh+S7m+7WjlR5nKIgF6SUZyhohhcZWtbZDLtmQ3y+W3PwBo7Apwf1nTc4N8YwM5N0qKForrwYUNTegBObGNppFsBxvhaqXOY/OtaYxlsLcLuZpPItDu8JapHUVIXhyGcdtKtEWuwATIKsrx0wpZ6vQXBHl0Onx4ZNXFbfO8D5/wnadezMvxYnXexD7zlQWV5TY0G9l+BygwvaXx5qFHEJ4uM6pKAlSrrlp78KgeRIvAbLLNgIWyZuPtM2766o1
 Received: from [192.168.1.20] ([178.197.223.6])
-        by smtp.gmail.com with ESMTPSA id h16-20020a056000001000b0033cdedb3e84sm971070wrx.18.2024.02.13.04.12.27
+        by smtp.gmail.com with ESMTPSA id f7-20020a05600c4e8700b00410709fa0d3sm11781414wmq.33.2024.02.13.04.16.38
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 13 Feb 2024 04:12:28 -0800 (PST)
-Message-ID: <9ff75d56-73b4-42b2-bcc4-6888b247fc0c@linaro.org>
-Date: Tue, 13 Feb 2024 13:12:26 +0100
+        Tue, 13 Feb 2024 04:16:39 -0800 (PST)
+Message-ID: <1895b682-288c-4645-bc8e-2e4c364e7de1@linaro.org>
+Date: Tue, 13 Feb 2024 13:16:37 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -77,8 +76,8 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 1/3] dt-bindings: ARM: at91: Document Microchip SAMA7G54
- Curiosity
+Subject: Re: [PATCH 3/3] ARM: dts: microchip: sama7g54_curiosity: Add initial
+ device tree of the board
 Content-Language: en-US
 To: Mihai Sain <mihai.sain@microchip.com>, claudiu.beznea@tuxon.dev,
  robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
@@ -87,7 +86,7 @@ To: Mihai Sain <mihai.sain@microchip.com>, claudiu.beznea@tuxon.dev,
  linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
 Cc: cristian.birsan@microchip.com
 References: <20240213085614.26804-1-mihai.sain@microchip.com>
- <20240213085614.26804-2-mihai.sain@microchip.com>
+ <20240213085614.26804-4-mihai.sain@microchip.com>
 From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  xsFNBFVDQq4BEAC6KeLOfFsAvFMBsrCrJ2bCalhPv5+KQF2PS2+iwZI8BpRZoV+Bd5kWvN79
@@ -133,20 +132,433 @@ Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  KQ06ztUMRrj8eVtpImjsWCd0bDWRaaR4vqhCHvAG9iWXZu4qh3ipie2Y0oSJygcZT7H3UZxq
  fyYKiqEmRuqsvv6dcbblD8ZLkz1EVZL6djImH5zc5x8qpVxlA0A0i23v5QvN00m6G9NFF0Le
  D2GYIS41Kv4Isx2dEFh+/Q==
-In-Reply-To: <20240213085614.26804-2-mihai.sain@microchip.com>
+In-Reply-To: <20240213085614.26804-4-mihai.sain@microchip.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
 On 13/02/2024 09:56, Mihai Sain wrote:
-> Document device tree binding of the Microchip SAMA7G54 Curiosity board.
+> Add initial device tree of the SAMA7G54 Curiosity board.
 > 
 > Signed-off-by: Mihai Sain <mihai.sain@microchip.com>
 > ---
->  Documentation/devicetree/bindings/arm/atmel-at91.yaml | 6 ++++++
->  1 file changed, 6 insertions(+)
+>  arch/arm/boot/dts/microchip/Makefile          |   4 +-
+>  .../dts/microchip/at91-sama7g54_curiosity.dts | 491 ++++++++++++++++++
+>  2 files changed, 494 insertions(+), 1 deletion(-)
+>  create mode 100644 arch/arm/boot/dts/microchip/at91-sama7g54_curiosity.dts
 > 
+> diff --git a/arch/arm/boot/dts/microchip/Makefile b/arch/arm/boot/dts/microchip/Makefile
+> index efde9546c8f4..29b2a788748f 100644
+> --- a/arch/arm/boot/dts/microchip/Makefile
+> +++ b/arch/arm/boot/dts/microchip/Makefile
+> @@ -12,6 +12,7 @@ DTC_FLAGS_at91-sama5d3_eds := -@
+>  DTC_FLAGS_at91-sama5d3_xplained := -@
+>  DTC_FLAGS_at91-sama5d4_xplained := -@
+>  DTC_FLAGS_at91-sama7g5ek := -@
+> +DTC_FLAGS_at91-sama7g54_curiosity := -@
+>  dtb-$(CONFIG_SOC_AT91RM9200) += \
+>  	at91rm9200ek.dtb \
+>  	mpa1600.dtb
+> @@ -87,7 +88,8 @@ dtb-$(CONFIG_SOC_SAM_V7) += \
+>  	at91-sama5d4ek.dtb \
+>  	at91-vinco.dtb
+>  dtb-$(CONFIG_SOC_SAMA7G5) += \
+> -	at91-sama7g5ek.dtb
+> +	at91-sama7g5ek.dtb \
+> +	at91-sama7g54_curiosity.dtb
+>  
+>  dtb-$(CONFIG_SOC_LAN966) += \
+>  	lan966x-kontron-kswitch-d10-mmt-6g-2gs.dtb \
+> diff --git a/arch/arm/boot/dts/microchip/at91-sama7g54_curiosity.dts b/arch/arm/boot/dts/microchip/at91-sama7g54_curiosity.dts
+> new file mode 100644
+> index 000000000000..c2955a170658
+> --- /dev/null
+> +++ b/arch/arm/boot/dts/microchip/at91-sama7g54_curiosity.dts
+> @@ -0,0 +1,491 @@
+> +// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
+> +/*
+> + * at91-sama7g54_curiosity.dts - Device Tree file for SAMA7G54 Curiosity Board
+> + *
+> + * Copyright (C) 2024 Microchip Technology Inc. and its subsidiaries
+> + *
+> + * Author: Mihai Sain <mihai.sain@microchip.com>
+> + *
+> + */
+> +/dts-v1/;
+> +#include "sama7g5-pinfunc.h"
+> +#include "sama7g5.dtsi"
+> +#include <dt-bindings/input/input.h>
+> +#include <dt-bindings/mfd/atmel-flexcom.h>
+> +#include <dt-bindings/pinctrl/at91.h>
+> +
+> +/ {
+> +	model = "Microchip SAMA7G54 Curiosity";
+> +	compatible = "microchip,sama7g54-curiosity", "microchip,sama7g5", "microchip,sama7";
+> +
+> +	chosen {
+> +		bootargs = "console=ttyS0,115200 root=/dev/mmcblk1p2 rw rootwait";
 
-Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+What if user wants root from other place? What if mmc number changes,
+which is actually happening all the time (hint: use partuuid)? Drop
+root, it's not that helpful.
+
+You also do not need console, so drop entire bootargs.
+
+
+> +		stdout-path = "serial0:115200n8";
+> +	};
+> +
+> +	aliases {
+> +		serial0 = &uart3;
+> +		i2c0 = &i2c10;
+> +	};
+> +
+> +	clocks {
+> +		slow_xtal {
+
+No underscores in node names. Generic node names, so at least generic
+prefix or suffix. Anyway you should override your properties via
+phandle/label style.
+
+
+> +			clock-frequency = <32768>;
+> +		};
+> +
+> +		main_xtal {
+> +			clock-frequency = <24000000>;
+> +		};
+> +	};
+> +
+> +	gpio-keys {
+> +		compatible = "gpio-keys";
+> +
+> +		pinctrl-names = "default";
+> +		pinctrl-0 = <&pinctrl_key_gpio_default>;
+> +
+> +		button-user {
+> +			label = "user-button";
+> +			gpios = <&pioA PIN_PD19 GPIO_ACTIVE_LOW>;
+> +			linux,code = <KEY_PROG1>;
+> +			wakeup-source;
+> +		};
+> +	};
+> +
+> +	leds {
+> +		compatible = "gpio-leds";
+> +		pinctrl-names = "default";
+> +		pinctrl-0 = <&pinctrl_led_gpio_default>;
+> +		status = "okay";
+
+Why do you need it? Was it disabled anywhere?
+
+> +
+> +		led-red {
+> +			label = "red";
+
+Use color and function instead.
+
+> +			gpios = <&pioA PIN_PD13 GPIO_ACTIVE_HIGH>;
+> +			default-state = "off";
+> +		};
+> +
+> +		led-green {
+> +			label = "green";
+
+Use color and function instead.
+
+> +			gpios = <&pioA PIN_PD14 GPIO_ACTIVE_HIGH>;
+> +			default-state = "off";
+> +		};
+> +
+> +		led-blue {
+> +			label = "blue";
+
+Use color and function instead.
+
+> +			gpios = <&pioA PIN_PB15 GPIO_ACTIVE_HIGH>;
+> +			linux,default-trigger = "heartbeat";
+> +		};
+> +	};
+> +
+> +	memory@60000000 {
+> +		device_type = "memory";
+> +		reg = <0x60000000 0x10000000>; // 256 MiB DDR3L-1066 16-bit
+> +	};
+> +};
+> +
+> +&adc {
+> +	vddana-supply = <&vddout25>;
+> +	vref-supply = <&vddout25>;
+> +	pinctrl-names = "default";
+> +	pinctrl-0 = <&pinctrl_mikrobus1_an_default &pinctrl_mikrobus2_an_default>;
+> +	status = "okay";
+> +};
+> +
+> +&cpu0 {
+> +	cpu-supply = <&vddcpu>;
+> +};
+> +
+> +&dma0 {
+> +	status = "okay";
+> +};
+> +
+> +&dma1 {
+> +	status = "okay";
+> +};
+> +
+> +&dma2 {
+> +	status = "okay";
+> +};
+> +
+> +&ebi {
+> +	pinctrl-names = "default";
+> +	pinctrl-0 = <&pinctrl_nand_default>;
+> +	status = "okay";
+> +
+> +	nand_controller: nand-controller {
+> +		status = "okay";
+> +
+> +		nand@3 {
+> +			reg = <0x3 0x0 0x800000>;
+> +			atmel,rb = <0>;
+> +			nand-bus-width = <8>;
+> +			nand-ecc-mode = "hw";
+> +			nand-ecc-strength = <8>;
+> +			nand-ecc-step-size = <512>;
+> +			nand-on-flash-bbt;
+> +			label = "nand";
+> +			status = "okay";
+
+Was it disabled anywhere?
+
+> +
+> +			partitions {
+> +				compatible = "fixed-partitions";
+> +				#address-cells = <1>;
+> +				#size-cells = <1>;
+> +
+> +				at91bootstrap@0 {
+> +					label = "nand: at91bootstrap";
+> +					reg = <0x0 0x40000>;
+> +				};
+> +
+> +				bootloader@40000 {
+> +					label = "nand: u-boot";
+> +					reg = <0x40000 0x100000>;
+> +				};
+> +
+> +				bootloaderenv@140000 {
+> +					label = "nand: u-boot env";
+> +					reg = <0x140000 0x40000>;
+> +				};
+> +
+> +				dtb@180000 {
+> +					label = "nand: device tree";
+> +					reg = <0x180000 0x80000>;
+> +				};
+> +
+> +				kernel@200000 {
+> +					label = "nand: kernel";
+> +					reg = <0x200000 0x600000>;
+> +				};
+> +
+> +				rootfs@800000 {
+> +					label = "nand: rootfs";
+> +					reg = <0x800000 0x1f800000>;
+> +				};
+> +			};
+> +		};
+> +	};
+> +};
+> +
+> +&flx3 {
+> +	atmel,flexcom-mode = <ATMEL_FLEXCOM_MODE_USART>;
+> +	status = "okay";
+> +
+> +	uart3: serial@200 {
+> +		pinctrl-names = "default";
+> +		pinctrl-0 = <&pinctrl_flx3_default>;
+> +		status = "okay";
+> +	};
+> +};
+> +
+> +&flx10 {
+> +	atmel,flexcom-mode = <ATMEL_FLEXCOM_MODE_TWI>;
+> +	status = "okay";
+> +
+> +	i2c10: i2c@600 {
+> +		pinctrl-names = "default";
+> +		pinctrl-0 = <&pinctrl_flx10_default>;
+> +		i2c-analog-filter;
+> +		i2c-digital-filter;
+> +		i2c-digital-filter-width-ns = <35>;
+> +		status = "okay";
+> +
+> +		adc@1f {
+> +			compatible = "microchip,pac1934";
+> +			reg = <0x1f>;
+> +		};
+> +
+> +		eeprom@51 {
+> +			compatible = "atmel,24c02";
+> +			reg = <0x51>;
+> +			pagesize = <16>;
+> +			size = <256>;
+> +			status = "okay";
+
+Was it disabled anywhere?
+
+> +		};
+> +
+> +		mcp16502@5b {
+
+Node names should be generic. See also an explanation and list of
+examples (not exhaustive) in DT specification:
+https://devicetree-specification.readthedocs.io/en/latest/chapter2-devicetree-basics.html#generic-names-recommendation
+
+
+> +			compatible = "microchip,mcp16502";
+> +			reg = <0x5b>;
+> +			status = "okay";
+
+Was it disabled anywhere?
+
+> +
+> +			regulators {
+> +				vdd_3v3: VDD_IO {
+> +					regulator-name = "VDD_IO";
+> +					regulator-min-microvolt = <3300000>;
+> +					regulator-max-microvolt = <3300000>;
+> +					regulator-initial-mode = <2>;
+> +					regulator-allowed-modes = <2>, <4>;
+> +					regulator-always-on;
+> +
+> +					regulator-state-standby {
+> +						regulator-on-in-suspend;
+> +						regulator-suspend-microvolt = <3300000>;
+> +						regulator-mode = <4>;
+> +					};
+> +
+> +					regulator-state-mem {
+> +						regulator-off-in-suspend;
+> +						regulator-mode = <4>;
+> +					};
+> +				};
+> +
+> +				vddioddr: VDD_DDR {
+> +					regulator-name = "VDD_DDR";
+> +					regulator-min-microvolt = <1350000>;
+> +					regulator-max-microvolt = <1350000>;
+> +					regulator-initial-mode = <2>;
+> +					regulator-allowed-modes = <2>, <4>;
+> +					regulator-always-on;
+> +
+> +					regulator-state-standby {
+> +						regulator-on-in-suspend;
+> +						regulator-suspend-microvolt = <1350000>;
+> +						regulator-mode = <4>;
+> +					};
+> +
+> +					regulator-state-mem {
+> +						regulator-on-in-suspend;
+> +						regulator-suspend-microvolt = <1350000>;
+> +						regulator-mode = <4>;
+> +					};
+> +				};
+> +
+> +				vddcore: VDD_CORE {
+> +					regulator-name = "VDD_CORE";
+> +					regulator-min-microvolt = <1150000>;
+> +					regulator-max-microvolt = <1150000>;
+> +					regulator-initial-mode = <2>;
+> +					regulator-allowed-modes = <2>, <4>;
+> +					regulator-always-on;
+> +
+> +					regulator-state-standby {
+> +						regulator-on-in-suspend;
+> +						regulator-suspend-voltage = <1150000>;
+> +						regulator-mode = <4>;
+> +					};
+> +
+> +					regulator-state-mem {
+> +						regulator-off-in-suspend;
+> +						regulator-mode = <4>;
+> +					};
+> +				};
+> +
+> +				vddcpu: VDD_OTHER {
+> +					regulator-name = "VDD_OTHER";
+> +					regulator-min-microvolt = <1050000>;
+> +					regulator-max-microvolt = <1250000>;
+> +					regulator-initial-mode = <2>;
+> +					regulator-allowed-modes = <2>, <4>;
+> +					regulator-ramp-delay = <3125>;
+> +					regulator-always-on;
+> +
+> +					regulator-state-standby {
+> +						regulator-on-in-suspend;
+> +						regulator-suspend-voltage = <1050000>;
+> +						regulator-mode = <4>;
+> +					};
+> +
+> +					regulator-state-mem {
+> +						regulator-off-in-suspend;
+> +						regulator-mode = <4>;
+> +					};
+> +				};
+> +
+> +				vldo1: LDO1 {
+> +					regulator-name = "LDO1";
+> +					regulator-min-microvolt = <1800000>;
+> +					regulator-max-microvolt = <1800000>;
+> +					regulator-always-on;
+> +
+> +					regulator-state-standby {
+> +						regulator-suspend-voltage = <1800000>;
+> +						regulator-on-in-suspend;
+> +					};
+> +
+> +					regulator-state-mem {
+> +						regulator-off-in-suspend;
+> +					};
+> +				};
+> +
+> +				vldo2: LDO2 {
+> +					regulator-name = "LDO2";
+> +					regulator-min-microvolt = <3300000>;
+> +					regulator-max-microvolt = <3300000>;
+> +					regulator-always-on;
+> +
+> +					regulator-state-standby {
+> +						regulator-suspend-voltage = <3300000>;
+> +						regulator-on-in-suspend;
+> +					};
+> +
+> +					regulator-state-mem {
+> +						regulator-off-in-suspend;
+> +					};
+> +				};
+> +			};
+> +		};
+> +	};
+> +};
+> +
+> +&qspi1 {
+> +	pinctrl-names = "default";
+> +	pinctrl-0 = <&pinctrl_qspi1_default>;
+> +	status = "okay";
+> +
+> +	flash@0 {
+> +		compatible = "jedec,spi-nor";
+> +		reg = <0x0>;
+> +		spi-max-frequency = <100000000>;
+> +		spi-tx-bus-width = <4>;
+> +		spi-rx-bus-width = <4>;
+> +		m25p,fast-read;
+> +		status = "okay";
+
+Was it disabled anywhere?
+
+
 
 Best regards,
 Krzysztof
