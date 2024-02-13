@@ -1,123 +1,101 @@
-Return-Path: <devicetree+bounces-41407-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-41408-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 574108538EE
-	for <lists+devicetree@lfdr.de>; Tue, 13 Feb 2024 18:49:09 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5B64A8538F4
+	for <lists+devicetree@lfdr.de>; Tue, 13 Feb 2024 18:50:36 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 8A5251C21659
-	for <lists+devicetree@lfdr.de>; Tue, 13 Feb 2024 17:49:08 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 0CEC01F2448A
+	for <lists+devicetree@lfdr.de>; Tue, 13 Feb 2024 17:50:36 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2D2CF604C5;
-	Tue, 13 Feb 2024 17:49:07 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B9A7C604C6;
+	Tue, 13 Feb 2024 17:50:30 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=gmx.net header.i=wahrenst@gmx.net header.b="o8Nj47xp"
 X-Original-To: devicetree@vger.kernel.org
-Received: from metis.whiteo.stw.pengutronix.de (metis.whiteo.stw.pengutronix.de [185.203.201.7])
+Received: from mout.gmx.net (mout.gmx.net [212.227.17.20])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4364260266
-	for <devicetree@vger.kernel.org>; Tue, 13 Feb 2024 17:49:03 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.203.201.7
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 61C0F5FF08;
+	Tue, 13 Feb 2024 17:50:27 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=212.227.17.20
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1707846547; cv=none; b=rz26RhvLC063EiI8fpzbEdzX7qFqBrnVa5x6QBHwC/GNcCYZWR4do+wjGjnXMT7edHlfmJhkov4I9tyB9DJU5aJNGwgqmqDJ4mMfhpFWnLQmi9qv0Tl32yr68+OjxHCNoBauf0mQp52XRd915hnU535szXS/t178ZrakiGCaqW4=
+	t=1707846630; cv=none; b=FtfTQq/ZGMgcz2OIcU8JboQdYKPAtxHMcc84MJj0de6gtCqYA7Nt0Dn88zoWI3Vfr55eJSqQ6cghFsHwe1zPrTCCbZiOU7da1n5ZxtnuqBDAovFfr9zPk9peKeSAR4oy6L/qqB8ZewmES50rHW6V3YPIuz0xt2Id+K4/lX9BS2E=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1707846547; c=relaxed/simple;
-	bh=QWIuBAJ3e+TCWmBbhbpgT4PWb2RX18XR04uHZ6yIclw=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=fIPXGNJi1eETQBcogL0Hs8fE0kFWWbblk/szS2LXYLbMI3lOrWfrQADAuUZ5skbJKmBphyFEAlOASe6zz93O7ahgVfzw+43/jeFnRzcp5g+uGLuJiNlgWGXrCxVZUEhjE9SF6KGl2ydfk/Hv9SdCPIk6sDKwKxBO4l9oMpe+vA0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de; spf=pass smtp.mailfrom=pengutronix.de; arc=none smtp.client-ip=185.203.201.7
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=pengutronix.de
-Received: from drehscheibe.grey.stw.pengutronix.de ([2a0a:edc0:0:c01:1d::a2])
-	by metis.whiteo.stw.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
-	(Exim 4.92)
-	(envelope-from <ukl@pengutronix.de>)
-	id 1rZwtm-0007eB-T1; Tue, 13 Feb 2024 18:48:50 +0100
-Received: from [2a0a:edc0:0:900:1d::77] (helo=ptz.office.stw.pengutronix.de)
-	by drehscheibe.grey.stw.pengutronix.de with esmtps  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-	(Exim 4.94.2)
-	(envelope-from <ukl@pengutronix.de>)
-	id 1rZwtk-000Wtk-TI; Tue, 13 Feb 2024 18:48:48 +0100
-Received: from ukl by ptz.office.stw.pengutronix.de with local (Exim 4.96)
-	(envelope-from <ukl@pengutronix.de>)
-	id 1rZwtk-0046pb-2d;
-	Tue, 13 Feb 2024 18:48:48 +0100
-Date: Tue, 13 Feb 2024 18:48:48 +0100
-From: Uwe =?utf-8?Q?Kleine-K=C3=B6nig?= <u.kleine-koenig@pengutronix.de>
-To: =?utf-8?B?UmFmYcWCIE1pxYJlY2tp?= <zajec5@gmail.com>
-Cc: Matthias Brugger <matthias.bgg@gmail.com>, 
-	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, 
-	John Crispin <john@phrozen.org>, linux-pwm@vger.kernel.org, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
-	linux-mediatek@lists.infradead.org, =?utf-8?B?UmFmYcWCIE1pxYJlY2tp?= <rafal@milecki.pl>
-Subject: Re: [PATCH 1/2] dt-bindings: pwm: mediatek,mt2712: add compatible
- for MT7988
-Message-ID: <onnokyq7ciza7i7jzc74cun2khpst5iocuccks2cm433ux3za3@dou4oacrvuxj>
-References: <20240213164633.25447-1-zajec5@gmail.com>
+	s=arc-20240116; t=1707846630; c=relaxed/simple;
+	bh=Z2v6JGqCm50Cs7heCO5mmVfihgm9IBUemPTwI+gQtHc=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=jMFzmfgayOy6iKPiuTma29dw1ksCclz5PzQWQwViMaZgHlQ7Uv/IRcf1SH3R/NJiBU1GwLdNQLMX7fw4Soqe6S1K2JOQ3Hr/zDp7bq3d9rdbsGgSuWl7f1J81pp1Cx1Qyp+9CPXcqiCItX7vBhFEnKvY1bMdiXluCG/iG46qAdE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=gmx.net; spf=pass smtp.mailfrom=gmx.net; dkim=pass (2048-bit key) header.d=gmx.net header.i=wahrenst@gmx.net header.b=o8Nj47xp; arc=none smtp.client-ip=212.227.17.20
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=gmx.net
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmx.net
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=gmx.net;
+	s=s31663417; t=1707846616; x=1708451416; i=wahrenst@gmx.net;
+	bh=Z2v6JGqCm50Cs7heCO5mmVfihgm9IBUemPTwI+gQtHc=;
+	h=X-UI-Sender-Class:Date:Subject:To:Cc:References:From:
+	 In-Reply-To;
+	b=o8Nj47xprO7JzvNpFp8Qh/Tt/2xD29REfdkhcLW3LglxPNdDQkYKqxmSAxNnNXfx
+	 yq7cZP2TtpXoaaOBvdowQUYNmGdffC7qa5fHwX8a6zaZ5HxxRBbKAz+a8PEb0EyH3
+	 1VHNVZsXy2QX98WDDwlhxHzE7RiP6oUCXqf0mWtt/dCKjt2NSoc93DkzfK8UE/+vK
+	 MVadMoHPf3gHE2bP0x4vkvhTIsCQDqnxDxKuH5LW15A11yc02/0SGLGyUd6+VKASg
+	 XTKEqy4IZs+3OCjpDp5DT1UvGZSCRrhuoGawq39VujQGy/1AlkubINmbGq3MdjsDc
+	 OCMDB7w2zHdM7hF9gQ==
+X-UI-Sender-Class: 724b4f7f-cbec-4199-ad4e-598c01a50d3a
+Received: from [192.168.1.167] ([37.4.248.43]) by mail.gmx.net (mrgmx105
+ [212.227.17.168]) with ESMTPSA (Nemesis) id 1MsHru-1qgK453Hhq-00tier; Tue, 13
+ Feb 2024 18:50:15 +0100
+Message-ID: <95d56903-7893-4a12-a451-f1bcc1d5316e@gmx.net>
+Date: Tue, 13 Feb 2024 18:50:11 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="jhwaxkndpklwhxal"
-Content-Disposition: inline
-In-Reply-To: <20240213164633.25447-1-zajec5@gmail.com>
-X-SA-Exim-Connect-IP: 2a0a:edc0:0:c01:1d::a2
-X-SA-Exim-Mail-From: ukl@pengutronix.de
-X-SA-Exim-Scanned: No (on metis.whiteo.stw.pengutronix.de); SAEximRunCond expanded to false
-X-PTX-Original-Recipient: devicetree@vger.kernel.org
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v2 17/17] ARM: dts: imx6ull-uti260b: Add board
+Content-Language: en-US
+To: Sebastian Reichel <sre@kernel.org>, Rob Herring <robh+dt@kernel.org>,
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+ Conor Dooley <conor+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>,
+ Sascha Hauer <s.hauer@pengutronix.de>, Fabio Estevam <festevam@gmail.com>,
+ Pengutronix Kernel Team <kernel@pengutronix.de>,
+ NXP Linux Team <linux-imx@nxp.com>
+Cc: Dong Aisheng <aisheng.dong@nxp.com>,
+ Linus Walleij <linus.walleij@linaro.org>,
+ Dmitry Torokhov <dmitry.torokhov@gmail.com>, Mark Brown
+ <broonie@kernel.org>, linux-arm-kernel@lists.infradead.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+References: <20240213010347.1075251-1-sre@kernel.org>
+ <20240213010347.1075251-18-sre@kernel.org>
+From: Stefan Wahren <wahrenst@gmx.net>
+In-Reply-To: <20240213010347.1075251-18-sre@kernel.org>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Provags-ID: V03:K1:nGPV/9A2970hb7rXmUZE6Jp+por/U2rqq2yjDR+mGXU9TOetXzV
+ RRBdu07Ao5WXVF2gtPstOXmaiGRmHKF29VNw4e+Ww0RxfDOikuDs1Tp0ZPP38s9xfU3m1GX
+ J+rMa50409QHCfoDWNn75E+g2Fhs5/mB722Uw+scyp3VrEwWvNx4y56ND15WvYu2lt/UDTE
+ zqkWjkPUggtwalYOEtJEw==
+X-Spam-Flag: NO
+UI-OutboundReport: notjunk:1;M01:P0:AidHz1kBfT4=;rmh//cTf7dE7bIkfBFcQuoiMUuz
+ odC7hu9oKns99OULhgQvW6nJ085KGGuobhxEE/c37TqAH89BjDOBbFjSDA9Grv4UDR+y3yiWq
+ 9PSVuPwXrIC264CJxqsQZHCaJmt1+/p8STmMvewUKRXtesO6XfGdTHUXbFw27nj3+/H3rmSLi
+ GN390NI+s3ShGEIEXVkLlLuE1szWm8znesZSp2d3OJpzzS5u/RSPPD2V5yI6ItVX/Xqh3Va5t
+ 1K+CdF/eoLCgfAMu5hyA/WFQ1bDBPlS1hrv8OulNGi+aaFLhWe2W3K0+ODlqyLWsLjTRXW6AK
+ vUIxwjJS44RgcLwTxGerzf4ReXlJ1Hc7gVVhwoJygMR0/wgLO9mmN+TIB16cFzj63uJs8hvyh
+ FlxqKEn3VstidSgRlzjufAnNGkCXwvWhpRTzERR6uECjhuWh+ZCsorUq2yUxvDG5MCpiOGIAm
+ x9q5G95RzpPDTexjMiU8S4c/WiyA5+UCa9XjWRiAcLezSQdkGnd9vDZzuoDS42VZgwf4S0/Se
+ l/jtJmf3LgPDO4v4WmZPiTa3qjd+ssa25PhrR0kVs4UFiieYBbPGVFnROngXcSLEVx6NgONXA
+ RgTlF45RbDHBLsQZuPv0a4WY3aNL/jx6TBnF8djVTh2agVIPLoSurhXdlahpvybAT2g8jY8uD
+ RJTNjq8mX6SBlPjEmRDnfCyOASFUCR5ubdM5e1H990ZWSgSQt7d1980Hn+S2+aO6NiMrTjYMG
+ kXAi5FyWNuqJ6P3C+bBEE0ZClPESkfXYjy/AxMqMry8Tk5Vw1PzS3rASPw0PgepMNp+gt9Sov
+ im6hzTJCKtnsUafDHqehf2qDDMRJErTNuILNvjBztehPQ=
 
-
---jhwaxkndpklwhxal
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
-
-Hello Rafa=C5=82,
-
-On Tue, Feb 13, 2024 at 05:46:32PM +0100, Rafa=C5=82 Mi=C5=82ecki wrote:
-> From: Rafa=C5=82 Mi=C5=82ecki <rafal@milecki.pl>
->=20
-> MT7988 has on-SoC controller that can control up to 8 PWMs.
->=20
-> Signed-off-by: Rafa=C5=82 Mi=C5=82ecki <rafal@milecki.pl>
-
-please make sure that the email address used for sending the patch
-matches the Signed-off-by line.
-
-(It depends on the pickyness of the relevant maintainer if that is a
-stopper or not.)
-
-Assuming this patch will go in via a mediatek tree:
-
-Acked-by: Uwe Kleine-K=C3=B6nig <u.kleine-koenig@pengutronix.de>
-
-Thanks
-Uwe
-
---=20
-Pengutronix e.K.                           | Uwe Kleine-K=C3=B6nig         =
-   |
-Industrial Linux Solutions                 | https://www.pengutronix.de/ |
-
---jhwaxkndpklwhxal
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQEzBAABCgAdFiEEP4GsaTp6HlmJrf7Tj4D7WH0S/k4FAmXLq38ACgkQj4D7WH0S
-/k5Yxgf+MGDk4UWSSThMXzK6DjwTQdURT3za9jTq2ls/OQIHoQfyaw902waKPjVr
-mPIVGTESq0AvIpQNcZQQH8WUjNfI7at0cWPaTA/iZD07h9nMOEztTp4wP3rYwBp5
-yicKjx5McHb1nR5poDAXFudd+7v/gOgXBLPxABfx4FiOLWqnNuDJF2xwmge8mKHp
-NKlYSZk+kiCbBwsZk3LBwLqKv45TnPI2yuayws+r1jYLnmXMyRUkVQqCpX2/CUGq
-wESqm70l9ty5FmyiE86YbJkgx+b5o9Z/nJt223FluL3Ftnxfc0sABjdCI9IxmFCg
-sWhDm4LJVkrMbtBmn8VK5huxt/BXmw==
-=o3gj
------END PGP SIGNATURE-----
-
---jhwaxkndpklwhxal--
+Am 13.02.24 um 02:01 schrieb Sebastian Reichel:
+> Add UNI-T UTi260b thermal camera board.
+>
+> Signed-off-by: Sebastian Reichel <sre@kernel.org>
+Reviewed-by: Stefan Wahren <wahrenst@gmx.net>
 
