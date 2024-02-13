@@ -1,135 +1,153 @@
-Return-Path: <devicetree+bounces-41476-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-41477-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5D00A853F3E
-	for <lists+devicetree@lfdr.de>; Tue, 13 Feb 2024 23:56:31 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id C0954853F49
+	for <lists+devicetree@lfdr.de>; Tue, 13 Feb 2024 23:59:13 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 1A66C1F24176
-	for <lists+devicetree@lfdr.de>; Tue, 13 Feb 2024 22:56:31 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id E877D1C27353
+	for <lists+devicetree@lfdr.de>; Tue, 13 Feb 2024 22:59:12 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id DCD69627EE;
-	Tue, 13 Feb 2024 22:56:24 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1E0EC6280D;
+	Tue, 13 Feb 2024 22:59:07 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=infradead.org header.i=@infradead.org header.b="vyivi4l3"
+	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="DbTtKKru"
 X-Original-To: devicetree@vger.kernel.org
-Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E8FBB629E3;
-	Tue, 13 Feb 2024 22:56:22 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.137.202.133
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7B999627EA;
+	Tue, 13 Feb 2024 22:59:05 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1707864984; cv=none; b=s8hhWYE+H/NQlzKuN9pHjSbWCvByyjRRXgyJrMaW0iTI1zWnQco7ztyybamXLGmE38w44K03xFdPefiaaiUmEGL4zseUajMeruT4B2wAQwnzOjSZBXQdXMzukwDi7tvRAB5U/m0X0iE4N/IP2pzJJrEjEgnEU9/P63UO3dNsawE=
+	t=1707865147; cv=none; b=fObLvVW1DlbXwj3heH/fCNmKrrgy+EU2j5dRv97cQE34PJ9urv3cyhDJGG08u8DIvzgVJbwXxoeoEtDnkRuaLQoZrjHa5Phun9M/hAWAlmjTB5Un5pzNmpJUO2I8HYLivCJcc5KuD/E3bLoxnidIjZIUK27bEqEiZ4ARP9s/Hno=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1707864984; c=relaxed/simple;
-	bh=kQBIMbkQ/cFGFHAymRMtaRiM8GO2JKPBgI/mNvZsgYA=;
-	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=DrWgAJJCP0yUiGG0n2ShCYxh2u/olhdjX1gkPrFzcAxdEXyUkEkDeH7lZsfvcgdv2YcR4gE1vPFOHIBj5e3s3WHIatecOKOu83vvcExRElq0c9srdwIJT5ugwIhoAup/uizGfYLJsJTv8/xsggVkZEuhnvUandU/wskkdU+1v0I=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=infradead.org; spf=none smtp.mailfrom=infradead.org; dkim=pass (2048-bit key) header.d=infradead.org header.i=@infradead.org header.b=vyivi4l3; arc=none smtp.client-ip=198.137.202.133
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=infradead.org
-Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=infradead.org
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=infradead.org; s=bombadil.20210309; h=Content-Transfer-Encoding:
-	MIME-Version:Message-ID:Date:Subject:Cc:To:From:Sender:Reply-To:Content-Type:
-	Content-ID:Content-Description:In-Reply-To:References;
-	bh=wy6heJa7Ut654C3QHTTlQbb4DZypUdZ0Hs04M2BHvRw=; b=vyivi4l3WzwptNPmQRXcnUrPcr
-	ryCBBjD/01OBxD/Wj2btsSqByFtqipUCuCnIAii9TI07uhaTqYh9REssEtbBreuMKL75zF26hgG6a
-	iPOKJL3Ua4nXdKD1Nl6EApst3SKeTiBnfWnXqZdGq7uQAYkFoScKcHhI4Vh6dgBzqKPdUepEFt2hn
-	lPWIujtfvlq3KH4nDuj0PdS+2zXkCs2u8SNn141en+Ekkee0AJvwLfE8F6DgQwW1Zo2sj3RXVottm
-	wXsNWpoizBUkf0cI1IV9n05hcIe6SAlt07sKiM7ln2Dk25ZH1ah++gGzNAd4hHmGjgmmobUIwKQcB
-	PYocyBhA==;
-Received: from [50.53.50.0] (helo=bombadil.infradead.org)
-	by bombadil.infradead.org with esmtpsa (Exim 4.97.1 #2 (Red Hat Linux))
-	id 1ra1hN-0000000B9zN-0o8e;
-	Tue, 13 Feb 2024 22:56:21 +0000
-From: Randy Dunlap <rdunlap@infradead.org>
-To: linux-kernel@vger.kernel.org
-Cc: Randy Dunlap <rdunlap@infradead.org>,
-	Geert Uytterhoeven <geert@linux-m68k.org>,
-	Rob Herring <robh@kernel.org>,
-	Marc Zyngier <maz@kernel.org>,
-	Arnd Bergmann <arnd@arndb.de>,
-	Philipp Zabel <p.zabel@pengutronix.de>,
-	Peter Rosin <peda@axentia.se>,
-	devicetree@vger.kernel.org
-Subject: [PATCH v2] of: OF_IRQ: select IRQ_DOMAIN instead of depending on it
-Date: Tue, 13 Feb 2024 14:56:19 -0800
-Message-ID: <20240213225619.11726-1-rdunlap@infradead.org>
-X-Mailer: git-send-email 2.43.0
+	s=arc-20240116; t=1707865147; c=relaxed/simple;
+	bh=5GZjg5DkIYbt13jrl4mBTCYCb0dRu3ZBmp2agCG9D2k=;
+	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
+	 In-Reply-To:Content-Type; b=i8xWHh5fKkD9+MPGXhAPI2Pr6411d3l2rtMG7c0i0vNVHcHu4YuMBLnYdPBM4lqt8YSI2Wr0tzP1quAhXrZLKXN7lNUYe8yw7INcH1+NfJFBpIkTBNyoRQqhhlgjYcooHKl7zYh9LRPZtMUfPRVGN/UNf/WQ/dojZ+cu/J446do=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=DbTtKKru; arc=none smtp.client-ip=205.220.168.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
+Received: from pps.filterd (m0279863.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.17.1.24/8.17.1.24) with ESMTP id 41DK9qi9014988;
+	Tue, 13 Feb 2024 22:58:43 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
+	message-id:date:mime-version:subject:to:cc:references:from
+	:in-reply-to:content-type:content-transfer-encoding; s=
+	qcppdkim1; bh=6EmYNtRmbGEYRyUXFF7l3ex2WkY1Ic6WX4gLszPjpLM=; b=Db
+	TtKKruMCpWe0Wa0h3biQsBw0j1apSzb6VjG+VXXpr8Eo51b7jFOai58wY4o/+dEL
+	3fkso2QAwrRpphdGJAWaF2ig9kpGY70ogk11tNMnkkdC32logT82XGyLD0PbC8dG
+	bHvR/1/5m3OVEVNUe3za2JC5rzBaxZ/1V5OKwosmrfritWqWOSpHMNzAWn0e4Q/M
+	rhZXm+2cv7AEiWiZVxBfAZApt+FW+IGWknk3RFAmy+tFoQ9D7RosP9hIX9WLTLKC
+	iUqJ8HEdQ2T+lVmUBWYKzhcKWjJ2YQMKa2uL78ViPVa97K0VjZgk7VGlBFtbi76i
+	RVV+x/fSQLQaCm+xTPwA==
+Received: from nalasppmta02.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3w7gse45hs-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Tue, 13 Feb 2024 22:58:43 +0000 (GMT)
+Received: from nalasex01b.na.qualcomm.com (nalasex01b.na.qualcomm.com [10.47.209.197])
+	by NALASPPMTA02.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 41DMwgYg021602
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Tue, 13 Feb 2024 22:58:42 GMT
+Received: from [10.110.76.255] (10.80.80.8) by nalasex01b.na.qualcomm.com
+ (10.47.209.197) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1118.40; Tue, 13 Feb
+ 2024 14:58:41 -0800
+Message-ID: <5b7af169-1fc0-265c-5253-c82010388e82@quicinc.com>
+Date: Tue, 13 Feb 2024 14:58:40 -0800
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:91.0) Gecko/20100101
+ Thunderbird/91.9.1
+Subject: Re: [PATCH v15 41/50] ASoC: Add SND kcontrol for fetching USB offload
+ status
+Content-Language: en-US
+To: Takashi Iwai <tiwai@suse.de>
+CC: <srinivas.kandagatla@linaro.org>, <mathias.nyman@intel.com>,
+        <perex@perex.cz>, <conor+dt@kernel.org>, <corbet@lwn.net>,
+        <lgirdwood@gmail.com>, <andersson@kernel.org>,
+        <krzysztof.kozlowski+dt@linaro.org>, <gregkh@linuxfoundation.org>,
+        <Thinh.Nguyen@synopsys.com>, <broonie@kernel.org>,
+        <bgoswami@quicinc.com>, <tiwai@suse.com>, <robh+dt@kernel.org>,
+        <konrad.dybcio@linaro.org>, <linux-kernel@vger.kernel.org>,
+        <devicetree@vger.kernel.org>, <linux-sound@vger.kernel.org>,
+        <linux-usb@vger.kernel.org>, <linux-arm-msm@vger.kernel.org>,
+        <linux-doc@vger.kernel.org>, <alsa-devel@alsa-project.org>
+References: <20240213005422.3121-1-quic_wcheng@quicinc.com>
+ <20240213005422.3121-42-quic_wcheng@quicinc.com>
+ <87plx0y37z.wl-tiwai@suse.de>
+From: Wesley Cheng <quic_wcheng@quicinc.com>
+In-Reply-To: <87plx0y37z.wl-tiwai@suse.de>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 7bit
+X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
+ nalasex01b.na.qualcomm.com (10.47.209.197)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-GUID: 4LQsJgrgUhNL98vd3cVNsTKE56avszOU
+X-Proofpoint-ORIG-GUID: 4LQsJgrgUhNL98vd3cVNsTKE56avszOU
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.272,Aquarius:18.0.1011,Hydra:6.0.619,FMLib:17.11.176.26
+ definitions=2024-02-13_14,2024-02-12_03,2023-05-22_02
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 impostorscore=0
+ suspectscore=0 adultscore=0 spamscore=0 clxscore=1015 phishscore=0
+ malwarescore=0 mlxscore=0 bulkscore=0 mlxlogscore=939 lowpriorityscore=0
+ priorityscore=1501 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.19.0-2401310000 definitions=main-2402130181
 
-IRQ_DOMAIN is a hidden (not user visible) symbol. Users cannot set
-it directly thru "make *config", so drivers should select it instead
-of depending on it if they need it.
-Relying on it being set for a dependency is risky.
+Hi Takashi,
 
-Consistently using "select" or "depends on" can also help reduce
-Kconfig circular dependency issues.
+On 2/13/2024 4:10 AM, Takashi Iwai wrote:
+> On Tue, 13 Feb 2024 01:54:13 +0100,
+> Wesley Cheng wrote:
+>>
+>> Add a kcontrol to the platform sound card to fetch the current offload
+>> status.  This can allow for userspace to ensure/check which USB SND
+>> resources are actually busy versus having to attempt opening the USB SND
+>> devices, which will result in an error if offloading is active.
+>>
+>> An example of fetching the USB offloading status would look like:
+>> tinymix -D 0 get 'USB Offload Playback Route Status'
+>> -1, -1 (range -1->32) --> [Offload is idle]
+>>
+>> tinymix -D 0 get 'USB Offload Playback Route Status'
+>> 1, 0 (range -1->32)  --> [Offload active on card#1 pcm#0]
+> 
+> Ah, I didn't notice until now that the second value is the PCM index.
+> 
+>> +static int snd_soc_usb_offload_status_info(struct snd_kcontrol *kcontrol,
+>> +			      struct snd_ctl_elem_info *uinfo)
+>> +{
+>> +	struct snd_soc_component *component = snd_kcontrol_chip(kcontrol);
+>> +	struct snd_soc_usb *ctx = snd_soc_find_usb_ctx(component->dev->of_node);
+>> +
+>> +	uinfo->type = SNDRV_CTL_ELEM_TYPE_INTEGER;
+>> +	uinfo->count = 2*ctx->num_supported_streams;
+>> +	uinfo->value.integer.min = -1;
+>> +	uinfo->value.integer.max = SNDRV_CARDS;
+> 
+> Then it's bogus to set SNDRV_CARDS as max.  The PCM index number is
+> independent from the card number.  In theory, it can be even more than
+> the card max (very unlikely, though).
+> 
 
-Therefore, change OF_IRQ's use of "depends on" to "select".
+I don't think its technically capped anywhere :).  I just used 
+SNDRV_CARDS to cap the sound card number.  If I split this as a separate 
+entity, then I'll need to change the max value for the PCM dev.
 
-This patch reduces one Kconfig circular dependency in
-drivers/mux/Kconfig when MUX_MMIO attempts to select REGMAP (a failed
-patch), which that driver needs (but does not completely resolve that
-issue). [1]
+> Wouldn't it be more intuitive to provide two different controls, one
+> for card number and one for PCM index number?
+> 
 
-before this patch: (10 lines of detail)
-drivers/net/ethernet/arc/Kconfig:19:error: recursive dependency detected!
-drivers/net/ethernet/arc/Kconfig:19:	symbol ARC_EMAC_CORE is selected by ARC_EMAC
-drivers/net/ethernet/arc/Kconfig:26:	symbol ARC_EMAC depends on OF_IRQ
-drivers/of/Kconfig:81:	symbol OF_IRQ depends on IRQ_DOMAIN
-kernel/irq/Kconfig:60:	symbol IRQ_DOMAIN is selected by REGMAP
-drivers/base/regmap/Kconfig:6:	symbol REGMAP is selected by MUX_MMIO
-drivers/mux/Kconfig:48:	symbol MUX_MMIO depends on MULTIPLEXER
-drivers/mux/Kconfig:6:	symbol MULTIPLEXER is selected by MDIO_BUS_MUX_MULTIPLEXER
-drivers/net/mdio/Kconfig:275:	symbol MDIO_BUS_MUX_MULTIPLEXER depends on MDIO_DEVICE
-drivers/net/mdio/Kconfig:6:	symbol MDIO_DEVICE is selected by PHYLIB
-drivers/net/phy/Kconfig:16:	symbol PHYLIB is selected by ARC_EMAC_CORE
+Sure, I can split this up.
 
-after this patch: (5 lines of detail)
-drivers/mux/Kconfig:6:error: recursive dependency detected!
-drivers/mux/Kconfig:6:	symbol MULTIPLEXER is selected by MDIO_BUS_MUX_MULTIPLEXER
-drivers/net/mdio/Kconfig:275:	symbol MDIO_BUS_MUX_MULTIPLEXER depends on MDIO_BUS
-drivers/net/mdio/Kconfig:13:	symbol MDIO_BUS is selected by REGMAP
-drivers/base/regmap/Kconfig:6:	symbol REGMAP is selected by MUX_MMIO
-drivers/mux/Kconfig:48:	symbol MUX_MMIO depends on MULTIPLEXER
-
-[1] https://lore.kernel.org/lkml/20230210115625.GA30942@pengutronix.de/
-
-Fixes: 63c60e3a6dc3 ("of: OF_IRQ should depend on IRQ_DOMAIN")
-Signed-off-by: Randy Dunlap <rdunlap@infradead.org>
-Cc: Geert Uytterhoeven <geert@linux-m68k.org>
-Cc: Rob Herring <robh@kernel.org>
-Cc: Marc Zyngier <maz@kernel.org>
-Cc: Arnd Bergmann <arnd@arndb.de>
-Cc: Philipp Zabel <p.zabel@pengutronix.de>
-Cc: Peter Rosin <peda@axentia.se>
-Cc: devicetree@vger.kernel.org
----
-v2: update patch description, rebase & resend
-
- drivers/of/Kconfig |    3 ++-
- 1 file changed, 2 insertions(+), 1 deletion(-)
-
-diff -- a/drivers/of/Kconfig b/drivers/of/Kconfig
---- a/drivers/of/Kconfig
-+++ b/drivers/of/Kconfig
-@@ -80,7 +80,8 @@ config OF_ADDRESS
- 
- config OF_IRQ
- 	def_bool y
--	depends on !SPARC && IRQ_DOMAIN
-+	depends on !SPARC
-+	select IRQ_DOMAIN
- 
- config OF_RESERVED_MEM
- 	def_bool OF_EARLY_FLATTREE
+Thanks
+Wesley Cheng
 
