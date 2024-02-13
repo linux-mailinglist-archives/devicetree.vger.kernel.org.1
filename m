@@ -1,157 +1,178 @@
-Return-Path: <devicetree+bounces-41398-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-41399-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 132C9853684
-	for <lists+devicetree@lfdr.de>; Tue, 13 Feb 2024 17:48:31 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8E1D18536D8
+	for <lists+devicetree@lfdr.de>; Tue, 13 Feb 2024 18:09:07 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id BFDE228D5D3
-	for <lists+devicetree@lfdr.de>; Tue, 13 Feb 2024 16:48:29 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 039BC1F25350
+	for <lists+devicetree@lfdr.de>; Tue, 13 Feb 2024 17:09:07 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 689E3604D8;
-	Tue, 13 Feb 2024 16:47:03 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 54E365FBB3;
+	Tue, 13 Feb 2024 17:09:04 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="fx+WGuHj"
+	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="UWDbW4DF"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ed1-f41.google.com (mail-ed1-f41.google.com [209.85.208.41])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from fllv0015.ext.ti.com (fllv0015.ext.ti.com [198.47.19.141])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A1E735FEEF;
-	Tue, 13 Feb 2024 16:47:01 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.41
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5407A5FB9D;
+	Tue, 13 Feb 2024 17:09:02 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.19.141
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1707842823; cv=none; b=cnL9Q+LfHBJ+Ae4tB82XQy/qcbYS2D5RepR0jDA9iCY2YaqdWt0O/3GG5mQ219nqAuVZNvheTRBSkHIQWgFPv3YeiGooT47CtNTMG8m/PtCc+f8X1JvYF3TtYkcQEcNk+f8SiUpv0Dh5bS44+xPaYroOQIDk1oWQ0LibI1zbdn0=
+	t=1707844144; cv=none; b=uOK7+KYuiz64TwAl6tn4VGrtrXbCh8kzvIe33+stpS/tZYNa8ejYCWkN9y4OsdaMkQa4FTUM6m+U/kirVLXPe6fF5t29Rl3He9EuCFVqkcquPbagZr5EmXseK7tMLlJvlkD6GlzAznOwCSGQG5/dy27gKNFb9YIc3AqI2CJSGBE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1707842823; c=relaxed/simple;
-	bh=Ts9rTkO5j5nGKALcg9pGKYCXK/axLho53cM/U24J3OE=;
-	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=gJ129xpWKItu3rrpNHP0zlaeALwn+5/o0S2rkv6J95USRviP1tFP2alds/U1DMRZx/wtblObkGja8awIFSXT33J6YpGpRmO8xUotYybItQNBPVh96K3LNAeFHozkfGDLrA9iLLHDcpUrdIU/DBcSsLR8wakSrbvXQ8E81bjw/hk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=fx+WGuHj; arc=none smtp.client-ip=209.85.208.41
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-ed1-f41.google.com with SMTP id 4fb4d7f45d1cf-5600c43caddso5516582a12.2;
-        Tue, 13 Feb 2024 08:47:01 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1707842820; x=1708447620; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=T+F4oKcixpMDMjtibRGARd2c9eJAlVuiYPpkn0XIejY=;
-        b=fx+WGuHjAHU5PapbnPHuRCYMGl5v2hMJiF59DXTnlIAGfc9dfkh8vpO3gS3YwWXTC4
-         1PTfVkxk5FNDsEOUivy18Vyg7Sk5dRa5eNUmG7ldJRvf65jLKTPPBSGLgKyulb6Ss/Fj
-         tilYH2mDJtUFplUCkYnE3Ugr4Vqw5yd1PzFL3pSoS5YTM5fet51ljFbsO5hyQ8Bmuqo5
-         TQ/LX54AUtsWt2UH2EmjlmxmniMrEJc4Ya+FxkhgZPCdYzwUPnsBPmNlDW52WzSarFvX
-         vISuj1+UqklYZH9DJMxOtKrVLGkTj8FPh9UB/WwLjHGxBMYVjxOzlrPdAtc/wjdyB3Bl
-         Lo3w==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1707842820; x=1708447620;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=T+F4oKcixpMDMjtibRGARd2c9eJAlVuiYPpkn0XIejY=;
-        b=WRUAlHJDh3LADk4y3hgK1xpzUb+OudC+Coo6LZEp8HilBNVYarK7sauj2GQJKow5Tt
-         tM5xRV4fV5BWfOmIKEkcjhIU7IXKkq4dOrhJ42dnKqwkUQHLC7qhbdP3AAt/xGA3QL1x
-         SaFa/pPa6t/ea7ASAEBmHEZeC+RPSliLAksyIzpmehnf36sceVPl8nPYHDipuU+IvDpc
-         KNs6bavDgBqzviUDn1HihZLiQ1rnCAvgkG0nR8xvkzylALgiW2hGTrc2mwKfvhfxUiRj
-         +v1oEG/b0uFrmoXybiGFdk4uqpMCfdsjh/OQ+JsJve53WNMKuQxPnuxliyHQti87sDJ4
-         2Wqw==
-X-Forwarded-Encrypted: i=1; AJvYcCWpic/vnPmCoUDqu+RQHOdG7+XLZmuW9TS7bd7sofV0tYeFzSj02QTfOH1OWKpFJauC1MqL10sg1jDp1/+2dIQTs2flE4NM3bzkKtYmy3rndoFc1m+I4oU/Eds+tL2/ALei0WS3emcU5evWW8XRSJPS3vrP9oTZCE1SCE0BsI4xb9wFiQ==
-X-Gm-Message-State: AOJu0Yydv7whHh7OhdvYd5uGYJBpjkzlzmvIO5PTuB8/2kxzX3hFhcIS
-	KkQgHCRcbVsIjVoZdqFHrBNDyhZBP5Oo5hGH7mc1RZdDTQvPtkRU
-X-Google-Smtp-Source: AGHT+IEeCwyqkHpoeY0sJgs+ZgFzlmCq6/tbYDuHpnER0Oiuvl6HmAKPTXql31UVCs75XR7jLk+zFw==
-X-Received: by 2002:aa7:d590:0:b0:55f:d9d1:6de1 with SMTP id r16-20020aa7d590000000b0055fd9d16de1mr169835edq.16.1707842819607;
-        Tue, 13 Feb 2024 08:46:59 -0800 (PST)
-X-Forwarded-Encrypted: i=1; AJvYcCUJ01uweZYgi6dyBpmqVKNY1aQLUGcn9okDSZxLvkc2fCvETs8lVM4QVRx/Z3UztsF9TRQeXuZv/iau8+VVonrwh0Ry0Mn+5XUDbCYIjne4NE/Pej4Qh5E1hwcPPtAMJGpCWAKslgCCvepxqQ06Hx8Gg07VgFvdvx2whcix6fexV8J/r+KnLQYAo6JhhK5/sSxEtCpj8m9DTrcYMfZlrkph73xQOjSKo377khXaBW77sEJwhLlkYHDU0T3M5T+uVtl0sUQKeyQzJt8IhVwCCBIf3qeTzMdGEhd9Lq44n126Mco+rueEbFSuBpU4oAicwyj7dVz/ed2U3kq5x+HRBurmrth8PDMvEhsSQblKFMG4ct8vP2knzwvgwbO5aeMz2AjDS5zJ1x2vezF6F6UHPtE4ic66Btj5guMzAD4gLoVsrO//Z9smQwShv2+xuG7D0mFdQR6dyYJTosntQHSxY4zinuFqQ+HkqSVDgeDL7p7MLKbTm3VGuOUrf9ioWbafHveji9qflnl8zgS5jjke
-Received: from localhost.lan (031011218106.poznan.vectranet.pl. [31.11.218.106])
-        by smtp.gmail.com with ESMTPSA id v10-20020a056402184a00b0055f0b3ec5d8sm3863582edy.36.2024.02.13.08.46.58
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 13 Feb 2024 08:46:59 -0800 (PST)
-From: =?UTF-8?q?Rafa=C5=82=20Mi=C5=82ecki?= <zajec5@gmail.com>
-To: Matthias Brugger <matthias.bgg@gmail.com>,
-	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	=?UTF-8?q?Uwe=20Kleine-K=C3=B6nig?= <u.kleine-koenig@pengutronix.de>
-Cc: John Crispin <john@phrozen.org>,
-	linux-pwm@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	linux-mediatek@lists.infradead.org,
-	=?UTF-8?q?Rafa=C5=82=20Mi=C5=82ecki?= <rafal@milecki.pl>
-Subject: [PATCH 2/2] arm64: dts: mediatek: mt7988: add PWM controller
-Date: Tue, 13 Feb 2024 17:46:33 +0100
-Message-Id: <20240213164633.25447-2-zajec5@gmail.com>
-X-Mailer: git-send-email 2.35.3
-In-Reply-To: <20240213164633.25447-1-zajec5@gmail.com>
-References: <20240213164633.25447-1-zajec5@gmail.com>
+	s=arc-20240116; t=1707844144; c=relaxed/simple;
+	bh=hDjPdXfN+yMLunBnu3HBhRXW2ysCyXYaOInSXjhO410=;
+	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
+	 In-Reply-To:Content-Type; b=MWOnaNgOFEmsUaqH1jBVowCz5baf5GwQ90yRb/EEhN0EAs1JRcI2dyiQj6Ag8u/ExxD2nzcFUMdAAWIANMShWxslWVyLcwX/DpZ2xZYp1IA7JkLoKtCV1qpPzQFzfiLro6g67wvS4Y8HqJfxWq6Aq43v1MXp3nazpOisWxLQ4r8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=UWDbW4DF; arc=none smtp.client-ip=198.47.19.141
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
+Received: from lelv0266.itg.ti.com ([10.180.67.225])
+	by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id 41DH8nT8035273;
+	Tue, 13 Feb 2024 11:08:49 -0600
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+	s=ti-com-17Q1; t=1707844129;
+	bh=OHaBar8sdC9xa0e0bmpA7en2/L+4CDhbSqeyzJZcf/M=;
+	h=Date:Subject:To:CC:References:From:In-Reply-To;
+	b=UWDbW4DFSaB/Yo4M++aICZeEgnWv4jiCtCkNR6mNq6jUrOvRKRtPH8oUJiVNP+k1Q
+	 J4IAuagKeNOYCvQoR7gbP3R4zjxPNSsA5fzzhGyAvxDqb7ItZJ1q26b8mY9H5qkD8l
+	 16DYJzxWNFxfvDDZSy9w1M4d3HDRg1TNnEyU2Izo=
+Received: from DLEE101.ent.ti.com (dlee101.ent.ti.com [157.170.170.31])
+	by lelv0266.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 41DH8nEc021131
+	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+	Tue, 13 Feb 2024 11:08:49 -0600
+Received: from DLEE103.ent.ti.com (157.170.170.33) by DLEE101.ent.ti.com
+ (157.170.170.31) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Tue, 13
+ Feb 2024 11:08:48 -0600
+Received: from lelvsmtp5.itg.ti.com (10.180.75.250) by DLEE103.ent.ti.com
+ (157.170.170.33) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
+ Frontend Transport; Tue, 13 Feb 2024 11:08:48 -0600
+Received: from [10.249.42.149] ([10.249.42.149])
+	by lelvsmtp5.itg.ti.com (8.15.2/8.15.2) with ESMTP id 41DH8mHf037609;
+	Tue, 13 Feb 2024 11:08:48 -0600
+Message-ID: <af73545a-1746-4e14-a3f2-772d72e6ff97@ti.com>
+Date: Tue, 13 Feb 2024 11:08:48 -0600
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v5] arm64: dts: ti: k3-j784s4-main: Fix mux-reg-masks in
+ serdes_ln_ctrl
+Content-Language: en-US
+To: Peter Rosin <peda@axentia.se>, Siddharth Vadapalli <s-vadapalli@ti.com>,
+        <nm@ti.com>, <vigneshr@ti.com>, <kristo@kernel.org>, <robh@kernel.org>,
+        <krzysztof.kozlowski+dt@linaro.org>, <conor+dt@kernel.org>,
+        <gregkh@linuxfoundation.org>
+CC: <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>, <c-vankar@ti.com>,
+        <srk@ti.com>
+References: <20240213080348.248916-1-s-vadapalli@ti.com>
+ <1be60db1-f292-1074-5898-801380e1fb22@axentia.se>
+From: Andrew Davis <afd@ti.com>
+In-Reply-To: <1be60db1-f292-1074-5898-801380e1fb22@axentia.se>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 7bit
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 
-From: Rafał Miłecki <rafal@milecki.pl>
+On 2/13/24 3:19 AM, Peter Rosin wrote:
+> Hi!
+> 
+> 2024-02-13 at 09:03, Siddharth Vadapalli wrote:
+>> From: Chintan Vankar <c-vankar@ti.com>
+>>
+>> Change offset in mux-reg-masks property for serdes_ln_ctrl node
+>> since reg-mux property is used in compatible.
+>>
+>> Fixes: 2765149273f4 ("mux: mmio: use reg property when parent device is not a syscon")
+>> Signed-off-by: Chintan Vankar <c-vankar@ti.com>
+>> Acked-by: Andrew Davis <afd@ti.com>
+>> Signed-off-by: Siddharth Vadapalli <s-vadapalli@ti.com>
+>> ---
+>> Hello,
+>>
+>> This patch is based on linux-next tagged next-20240213.
+>> The v4 of this patch is a part of the series at:
+>> https://lore.kernel.org/r/20240131101441.1362409-1-c-vankar@ti.com/
+>>
+>> Since the v4 series mentioned above has open comments on the other
+>> patches in the series, this patch is being posted separately to unblock
+>> other dependent series which rely on the fix implemented by this patch.
+>>
+>> Changes since v4:
+>> - Rebased patch on linux-next tagged next-20240213.
+>>
+>> Regards,
+>> Siddharth.
+>>
+>>   arch/arm64/boot/dts/ti/k3-j784s4-main.dtsi | 12 ++++++------
+>>   1 file changed, 6 insertions(+), 6 deletions(-)
+>>
+>> diff --git a/arch/arm64/boot/dts/ti/k3-j784s4-main.dtsi b/arch/arm64/boot/dts/ti/k3-j784s4-main.dtsi
+>> index 3cb964982792..3b7f0eca977b 100644
+>> --- a/arch/arm64/boot/dts/ti/k3-j784s4-main.dtsi
+>> +++ b/arch/arm64/boot/dts/ti/k3-j784s4-main.dtsi
+>> @@ -52,12 +52,12 @@ serdes_ln_ctrl: mux-controller@4080 {
+>>   			compatible = "reg-mux";
+>>   			reg = <0x00004080 0x30>;
+>>   			#mux-control-cells = <1>;
+>> -			mux-reg-masks = <0x4080 0x3>, <0x4084 0x3>, /* SERDES0 lane0/1 select */
+>> -					<0x4088 0x3>, <0x408c 0x3>, /* SERDES0 lane2/3 select */
+>> -					<0x4090 0x3>, <0x4094 0x3>, /* SERDES1 lane0/1 select */
+>> -					<0x4098 0x3>, <0x409c 0x3>, /* SERDES1 lane2/3 select */
+>> -					<0x40a0 0x3>, <0x40a4 0x3>, /* SERDES2 lane0/1 select */
+>> -					<0x40a8 0x3>, <0x40ac 0x3>; /* SERDES2 lane2/3 select */
+>> +			mux-reg-masks = <0x0 0x3>, <0x4 0x3>, /* SERDES0 lane0/1 select */
+>> +					<0x8 0x3>, <0xc 0x3>, /* SERDES0 lane2/3 select */
+>> +					<0x10 0x3>, <0x14 0x3>, /* SERDES1 lane0/1 select */
+>> +					<0x18 0x3>, <0x1c 0x3>, /* SERDES1 lane2/3 select */
+>> +					<0x20 0x3>, <0x24 0x3>, /* SERDES2 lane0/1 select */
+>> +					<0x28 0x3>, <0x2c 0x3>; /* SERDES2 lane2/3 select */
+>>   			idle-states = <J784S4_SERDES0_LANE0_PCIE1_LANE0>,
+>>   				      <J784S4_SERDES0_LANE1_PCIE1_LANE1>,
+>>   				      <J784S4_SERDES0_LANE2_IP3_UNUSED>,
+> 
+> Ouch. I suspect there is a similar problem in
+> arch/arm64/boot/dts/ti/k3-j721e-mcu-wakeup.dtsi:
+> 
+> 
+> 	fss: bus@47000000 {
+> 		compatible = "simple-bus";
+> 		reg = <0x0 0x47000000 0x0 0x100>;
+> 		#address-cells = <2>;
+> 		#size-cells = <2>;
+> 		ranges;
+> 
+> 		hbmc_mux: mux-controller@47000004 {
+> 			compatible = "reg-mux";
+> 			reg = <0x00 0x47000004 0x00 0x2>;
+> 			#mux-control-cells = <1>;
+> -			mux-reg-masks = <0x4 0x2>; /* HBMC select */
+> +			mux-reg-masks = <0x0 0x2>; /* HBMC select */
+> 		};
+> 
+> Who knows what non-upstreamed devices and devicetrees are affected?
+> I guess we need to revert 2765149273f4 ("mux: mmio: use reg property
+> when parent device is not a syscon") unless someone sees a sane way
+> to fix this.
 
-Add binding for on-SoC controller that can control up to 8 PWMs.
+There are only two in-tree nodes with "reg-mux" with a reg property: the
+one this patch fixes, and the hbmc_mux you point out, both in TI devices.
+I'd say it is safe to assume we are the only users, and our non-upstreamed
+DTs depend on that patch, reverting it would cause more issues for
+out-of-tree users than just fixing the two broken nodes above.
 
-Signed-off-by: Rafał Miłecki <rafal@milecki.pl>
----
- arch/arm64/boot/dts/mediatek/mt7988a.dtsi | 21 ++++++++++++++++++++-
- 1 file changed, 20 insertions(+), 1 deletion(-)
+Andrew
 
-diff --git a/arch/arm64/boot/dts/mediatek/mt7988a.dtsi b/arch/arm64/boot/dts/mediatek/mt7988a.dtsi
-index bba97de4fb44..67007626b5cd 100644
---- a/arch/arm64/boot/dts/mediatek/mt7988a.dtsi
-+++ b/arch/arm64/boot/dts/mediatek/mt7988a.dtsi
-@@ -1,5 +1,6 @@
- // SPDX-License-Identifier: GPL-2.0-only OR MIT
- 
-+#include <dt-bindings/clock/mediatek,mt7988-clk.h>
- #include <dt-bindings/interrupt-controller/arm-gic.h>
- 
- / {
-@@ -78,7 +79,7 @@ gic: interrupt-controller@c000000 {
- 			#interrupt-cells = <3>;
- 		};
- 
--		clock-controller@10001000 {
-+		infracfg: clock-controller@10001000 {
- 			compatible = "mediatek,mt7988-infracfg", "syscon";
- 			reg = <0 0x10001000 0 0x1000>;
- 			#clock-cells = <1>;
-@@ -103,6 +104,24 @@ clock-controller@1001e000 {
- 			#clock-cells = <1>;
- 		};
- 
-+		pwm@10048000 {
-+			compatible = "mediatek,mt7988-pwm";
-+			reg = <0 0x10048000 0 0x1000>;
-+			clocks = <&infracfg CLK_INFRA_66M_PWM_BCK>,
-+				 <&infracfg CLK_INFRA_66M_PWM_HCK>,
-+				 <&infracfg CLK_INFRA_66M_PWM_CK1>,
-+				 <&infracfg CLK_INFRA_66M_PWM_CK2>,
-+				 <&infracfg CLK_INFRA_66M_PWM_CK3>,
-+				 <&infracfg CLK_INFRA_66M_PWM_CK4>,
-+				 <&infracfg CLK_INFRA_66M_PWM_CK5>,
-+				 <&infracfg CLK_INFRA_66M_PWM_CK6>,
-+				 <&infracfg CLK_INFRA_66M_PWM_CK7>,
-+				 <&infracfg CLK_INFRA_66M_PWM_CK8>;
-+			clock-names = "top", "main", "pwm1", "pwm2", "pwm3", "pwm4", "pwm5", "pwm6",
-+				      "pwm7","pwm8";
-+			#pwm-cells = <2>;
-+		};
-+
- 		clock-controller@11f40000 {
- 			compatible = "mediatek,mt7988-xfi-pll";
- 			reg = <0 0x11f40000 0 0x1000>;
--- 
-2.35.3
-
+> 
+> Cheers,
+> Peter
 
