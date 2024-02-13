@@ -1,192 +1,162 @@
-Return-Path: <devicetree+bounces-41128-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-41129-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 084B4852726
-	for <lists+devicetree@lfdr.de>; Tue, 13 Feb 2024 02:56:07 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id F11028527CD
+	for <lists+devicetree@lfdr.de>; Tue, 13 Feb 2024 04:39:09 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 6A455B26A8E
-	for <lists+devicetree@lfdr.de>; Tue, 13 Feb 2024 01:53:06 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 593AD285E6A
+	for <lists+devicetree@lfdr.de>; Tue, 13 Feb 2024 03:39:08 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 807D9A93C;
-	Tue, 13 Feb 2024 01:52:03 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id EB21AA937;
+	Tue, 13 Feb 2024 03:38:22 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=bewilderbeest.net header.i=@bewilderbeest.net header.b="cm+vuK/f"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="rzLqbW6R"
 X-Original-To: devicetree@vger.kernel.org
-Received: from thorn.bewilderbeest.net (thorn.bewilderbeest.net [71.19.156.171])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A19DFA937;
-	Tue, 13 Feb 2024 01:52:01 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=71.19.156.171
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BE4B4A929;
+	Tue, 13 Feb 2024 03:38:22 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1707789123; cv=none; b=f8d4w/XTKaKSYSZ4zn6Z4r0zE3F3verk3zuJdoZuLX6N4A+1cfQskkFgFLugVK76aTd3rHy2wuoeImkTa9xVno/TWfoHMV5MAm6rc4CFIbPC8dzjSy/KV0d8ecXypm/lFepzAhlHrZ5GUh+E+LkgTCSHKfwmicijA4rFQsKThaA=
+	t=1707795502; cv=none; b=gxD8MPDNFvsDmBI2/GD2CxB4rkPH+OoYbpSul38bsgVIAmYbdvO5PXIhFV+1iLDqcp2HW5IgUd4qCBni6ByktpiajfgWpF7YbK6qCysoNJ4dXv/yM3LvHZPO9bPetxsbmPMyQeCUQPJCJ6Mu4rPo3ZwKmDl4hDq1kAgBojI4V9Q=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1707789123; c=relaxed/simple;
-	bh=TWXO2hZBdIqovo/18+auLeZhmPNeyNftRZkYDtp07Kw=;
-	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=MbCCurC73vtgZ5w4N5T6hMsMZ1KTV2LJTsg8oFTXm3BYfXsph26SENjBfbpCxmTfBexMqsZbbA4pAaAnHm2yVH1fmVxqW998RcbS6zAyc1lNI3moXEVBS9TgvgbQK4IYQQHERer9IYz+OqrQ4w587KErq30ZuJbHUVidfWmhts8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=bewilderbeest.net; spf=pass smtp.mailfrom=bewilderbeest.net; dkim=pass (1024-bit key) header.d=bewilderbeest.net header.i=@bewilderbeest.net header.b=cm+vuK/f; arc=none smtp.client-ip=71.19.156.171
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=bewilderbeest.net
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bewilderbeest.net
-Received: from hatter.bewilderbeest.net (unknown [IPv6:2602:61:712b:6300::2])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
-	(No client certificate requested)
-	(Authenticated sender: zev)
-	by thorn.bewilderbeest.net (Postfix) with ESMTPSA id 07BABA15;
-	Mon, 12 Feb 2024 17:51:54 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bewilderbeest.net;
-	s=thorn; t=1707789115;
-	bh=EU+GYVFoVSrVPFH+I5Rq0CxlWwOPwFjuP4K4HYrpXM4=;
-	h=From:To:Cc:Subject:Date:From;
-	b=cm+vuK/fGnBwBPyf2B1dtsj6Fmbr2traTegxGV8HfYLApU+8uRoVk+CP30oURWfcS
-	 LPkpSr8LYDvy8geca9x+pCT47R8ELbeZVUASM2AktntmXpnVDJ1fyg9McwLcVPw7US
-	 TavtV6qXQn+rSnvkc32hJBHfDlsT7lnRJXRNgE/4=
-From: Zev Weiss <zev@bewilderbeest.net>
-To: Joel Stanley <joel@jms.id.au>,
-	Andrew Jeffery <andrew@codeconstruct.com.au>,
-	linux-aspeed@lists.ozlabs.org
-Cc: Zev Weiss <zev@bewilderbeest.net>,
-	Rob Herring <robh+dt@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	devicetree@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	linux-kernel@vger.kernel.org,
-	openbmc@lists.ozlabs.org
-Subject: [PATCH] ARM: dts: aspeed: asrock: Add BIOS SPI flash chips
-Date: Mon, 12 Feb 2024 17:51:36 -0800
-Message-ID: <20240213015138.12452-2-zev@bewilderbeest.net>
-X-Mailer: git-send-email 2.43.0
+	s=arc-20240116; t=1707795502; c=relaxed/simple;
+	bh=kwHg/8yeDZh54hwz8uAm2M9HXikrnVyKxYeaYuDaks8=;
+	h=Date:Content-Type:MIME-Version:From:To:Cc:In-Reply-To:References:
+	 Message-Id:Subject; b=Q8rRmt3DUIjzMqxeMy4aNdVTQpFwdNe8dlv4N0YdGNKiCC13Y96Nzo//jFqQExE6tWqiGr6WbOGmuwn0xHiZlBcC4AXJRODOtJwIs6HtTDsxjDGtW1nGwn8BAlytZVvQ2lnLDsKzvanTTONr2qWuwUyQcZ/T7gV+xHIQ2mpSGWo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=rzLqbW6R; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id E887DC433F1;
+	Tue, 13 Feb 2024 03:38:21 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1707795502;
+	bh=kwHg/8yeDZh54hwz8uAm2M9HXikrnVyKxYeaYuDaks8=;
+	h=Date:From:To:Cc:In-Reply-To:References:Subject:From;
+	b=rzLqbW6R5Hmi6zNkXMZjPbZbCym+9Q/jGRNYl8bQuDqEbNbi3JcEuyx99bWAuVXa/
+	 cDlR5/fdrVOJkdJOZBddXvKF+7QE9ahDycPrzH870c7B80/ffWazcqkjDBnorx3Nyy
+	 xkKmwizKe23xCn2UPZNQX7SBg3JQ4rjRpTjmGxvNDssdHehhgJue3EmpLcBod3losk
+	 PUETEcWgl3Q225G0zU+ypS+cZliaFo2HADSVQPBVTExlQ0bQ+shPS0niW4ZLM7pEfB
+	 ZRSoIjXrj/BB+KCD7EkaH6aFyKhCIx88GMaAnQwA4VOkAQTNipL+lOlLtcbaY6Hq0t
+	 eqtfm2fIC5A1Q==
+Date: Mon, 12 Feb 2024 21:38:20 -0600
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+From: Rob Herring <robh@kernel.org>
+To: Sebastian Reichel <sre@kernel.org>
+Cc: linux-kernel@vger.kernel.org, 
+ Dmitry Torokhov <dmitry.torokhov@gmail.com>, 
+ NXP Linux Team <linux-imx@nxp.com>, Fabio Estevam <festevam@gmail.com>, 
+ devicetree@vger.kernel.org, Sascha Hauer <s.hauer@pengutronix.de>, 
+ Pengutronix Kernel Team <kernel@pengutronix.de>, 
+ Shawn Guo <shawnguo@kernel.org>, Linus Walleij <linus.walleij@linaro.org>, 
+ Rob Herring <robh+dt@kernel.org>, 
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, 
+ Mark Brown <broonie@kernel.org>, linux-arm-kernel@lists.infradead.org, 
+ Conor Dooley <conor+dt@kernel.org>, Dong Aisheng <aisheng.dong@nxp.com>
+In-Reply-To: <20240213010347.1075251-3-sre@kernel.org>
+References: <20240213010347.1075251-1-sre@kernel.org>
+ <20240213010347.1075251-3-sre@kernel.org>
+Message-Id: <170779549979.3767632.14798050917184496330.robh@kernel.org>
+Subject: Re: [PATCH v2 02/17] dt-bindings: bus: imx-weim: convert to YAML
 
-On e3c246d4i, e3c256d4i, romed8hm3, and spc621d8hm3 the host firmware
-flash is accessible to the BMC via the AST2500 SPI1 interface with an
-external GPIO-controlled mux switching the flash chip between the host
-and the BMC.
 
-The default state of the mux GPIO leaves it connected to the host, so
-the BMC's attempt to bind a driver to it during its boot sequence will
-fail, but a write to a sysfs 'bind' file after toggling the mux GPIO
-(along with whatever other preparatory steps are required) can later
-allow it to be attached and accessed by the BMC.  It's not an ideal
-arrangement, but in the absence of DT overlays or any other
-alternative it is at least a functional one, if somewhat clumsily so.
+On Tue, 13 Feb 2024 02:00:51 +0100, Sebastian Reichel wrote:
+> Convert the i.MX  Wireless External Interface Module binding to YAML.
+> 
+> Signed-off-by: Sebastian Reichel <sre@kernel.org>
+> ---
+>  .../devicetree/bindings/bus/imx-weim.txt      | 117 ----------
+>  .../fsl/fsl,imx-weim-peripherals.yaml         |  36 ++++
+>  .../memory-controllers/fsl/fsl,imx-weim.yaml  | 201 ++++++++++++++++++
+>  .../mc-peripheral-props.yaml                  |   1 +
+>  .../fieldbus/arcx,anybus-controller.txt       |   2 +-
+>  5 files changed, 239 insertions(+), 118 deletions(-)
+>  delete mode 100644 Documentation/devicetree/bindings/bus/imx-weim.txt
+>  create mode 100644 Documentation/devicetree/bindings/memory-controllers/fsl/fsl,imx-weim-peripherals.yaml
+>  create mode 100644 Documentation/devicetree/bindings/memory-controllers/fsl/fsl,imx-weim.yaml
+> 
 
-Signed-off-by: Zev Weiss <zev@bewilderbeest.net>
----
+My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
+on your patch (DT_CHECKER_FLAGS is new in v5.13):
 
-Note that this patch is based on Joel's for-next tree, since the
-e3c256d4i and spc621d8hm3 device-trees haven't been merged in mainline
-yet.
+yamllint warnings/errors:
 
- .../boot/dts/aspeed/aspeed-bmc-asrock-e3c246d4i.dts  | 12 ++++++++++++
- .../boot/dts/aspeed/aspeed-bmc-asrock-e3c256d4i.dts  | 12 ++++++++++++
- .../boot/dts/aspeed/aspeed-bmc-asrock-romed8hm3.dts  | 12 ++++++++++++
- .../dts/aspeed/aspeed-bmc-asrock-spc621d8hm3.dts     | 12 ++++++++++++
- 4 files changed, 48 insertions(+)
+dtschema/dtc warnings/errors:
+/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/bus/socionext,uniphier-system-bus.example.dtb: serial@5,200000: 'fsl,weim-cs-timing' is a required property
+	from schema $id: http://devicetree.org/schemas/serial/8250.yaml#
+/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/memory-controllers/intel,ixp4xx-expansion-bus-controller.example.dtb: flash@0,0: 'fsl,weim-cs-timing' is a required property
+	from schema $id: http://devicetree.org/schemas/mtd/mtd-physmap.yaml#
+/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/memory-controllers/intel,ixp4xx-expansion-bus-controller.example.dtb: serial@1,0: 'fsl,weim-cs-timing' is a required property
+	from schema $id: http://devicetree.org/schemas/serial/8250.yaml#
+/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/memory-controllers/intel,ixp4xx-expansion-bus-controller.example.dtb: serial@1,0: Unevaluated properties are not allowed ('intel,ixp4xx-eb-byte-access', 'intel,ixp4xx-eb-cycle-type', 'intel,ixp4xx-eb-t3', 'intel,ixp4xx-eb-write-enable' were unexpected)
+	from schema $id: http://devicetree.org/schemas/serial/8250.yaml#
+/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/memory-controllers/fsl/fsl,ifc.example.dtb: flash@0,0: 'fsl,weim-cs-timing' is a required property
+	from schema $id: http://devicetree.org/schemas/mtd/mtd-physmap.yaml#
+/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/memory-controllers/ingenic,nemc.example.dtb: memory-controller@13410000: ethernet@6: 'fsl,weim-cs-timing' is a required property
+	from schema $id: http://devicetree.org/schemas/memory-controllers/ingenic,nemc.yaml#
+/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/memory-controllers/ingenic,nemc.example.dtb: ethernet@6: 'fsl,weim-cs-timing' is a required property
+	from schema $id: http://devicetree.org/schemas/net/davicom,dm9000.yaml#
+/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/memory-controllers/ingenic,nemc.example.dtb: ethernet@6: Unevaluated properties are not allowed ('ingenic,nemc-tAH', 'ingenic,nemc-tAS', 'ingenic,nemc-tAW', 'ingenic,nemc-tBP', 'ingenic,nemc-tSTRV' were unexpected)
+	from schema $id: http://devicetree.org/schemas/net/davicom,dm9000.yaml#
+/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/memory-controllers/st,stm32-fmc2-ebi.example.dtb: memory-controller@58002000: psram@0,0: 'fsl,weim-cs-timing' is a required property
+	from schema $id: http://devicetree.org/schemas/memory-controllers/st,stm32-fmc2-ebi.yaml#
+/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/memory-controllers/st,stm32-fmc2-ebi.example.dtb: memory-controller@58002000: nand-controller@4,0: 'fsl,weim-cs-timing' is a required property
+	from schema $id: http://devicetree.org/schemas/memory-controllers/st,stm32-fmc2-ebi.yaml#
+/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/memory-controllers/st,stm32-fmc2-ebi.example.dtb: psram@0,0: 'fsl,weim-cs-timing' is a required property
+	from schema $id: http://devicetree.org/schemas/mtd/mtd-physmap.yaml#
+/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/watchdog/maxim,max63xx.example.dtb: watchdog@50000000: 'fsl,weim-cs-timing' is a required property
+	from schema $id: http://devicetree.org/schemas/watchdog/maxim,max63xx.yaml#
+/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/serial/serial.example.dtb: serial@1234: 'fsl,weim-cs-timing' is a required property
+	from schema $id: http://devicetree.org/schemas/serial/8250.yaml#
+/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/serial/8250.example.dtb: serial@80230000: 'fsl,weim-cs-timing' is a required property
+	from schema $id: http://devicetree.org/schemas/serial/8250.yaml#
+/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/serial/8250.example.dtb: serial@49042000: 'fsl,weim-cs-timing' is a required property
+	from schema $id: http://devicetree.org/schemas/serial/8250.yaml#
+/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/serial/8250.example.dtb: serial@1e787000: 'fsl,weim-cs-timing' is a required property
+	from schema $id: http://devicetree.org/schemas/serial/8250.yaml#
+/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/net/davicom,dm9000.example.dtb: ethernet@a8000000: 'fsl,weim-cs-timing' is a required property
+	from schema $id: http://devicetree.org/schemas/net/davicom,dm9000.yaml#
+/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/net/micrel,ks8851.example.dtb: ethernet@1,0: 'fsl,weim-cs-timing' is a required property
+	from schema $id: http://devicetree.org/schemas/net/micrel,ks8851.yaml#
+/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/mtd/ti,am654-hbmc.example.dtb: memory-controller@47034000: flash@0,0: 'fsl,weim-cs-timing' is a required property
+	from schema $id: http://devicetree.org/schemas/mtd/ti,am654-hbmc.yaml#
+/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/mtd/ti,am654-hbmc.example.dtb: flash@0,0: 'fsl,weim-cs-timing' is a required property
+	from schema $id: http://devicetree.org/schemas/mtd/mtd-physmap.yaml#
+/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/mtd/mtd-physmap.example.dtb: flash@ff000000: 'fsl,weim-cs-timing' is a required property
+	from schema $id: http://devicetree.org/schemas/mtd/mtd-physmap.yaml#
+/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/mtd/mtd-physmap.example.dtb: flash@0: 'fsl,weim-cs-timing' is a required property
+	from schema $id: http://devicetree.org/schemas/mtd/mtd-physmap.yaml#
+/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/mtd/mtd-physmap.example.dtb: sram@2,0: 'fsl,weim-cs-timing' is a required property
+	from schema $id: http://devicetree.org/schemas/mtd/mtd-physmap.yaml#
+/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/mtd/mtd-physmap.example.dtb: flash@20000000: 'fsl,weim-cs-timing' is a required property
+	from schema $id: http://devicetree.org/schemas/mtd/mtd-physmap.yaml#
+/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/mtd/ingenic,nand.example.dtb: memory-controller@13410000: nand-controller@1: 'fsl,weim-cs-timing' is a required property
+	from schema $id: http://devicetree.org/schemas/memory-controllers/ingenic,nemc.yaml#
 
-diff --git a/arch/arm/boot/dts/aspeed/aspeed-bmc-asrock-e3c246d4i.dts b/arch/arm/boot/dts/aspeed/aspeed-bmc-asrock-e3c246d4i.dts
-index c4b2efbfdf56..557ce20e305d 100644
---- a/arch/arm/boot/dts/aspeed/aspeed-bmc-asrock-e3c246d4i.dts
-+++ b/arch/arm/boot/dts/aspeed/aspeed-bmc-asrock-e3c246d4i.dts
-@@ -68,6 +68,18 @@ flash@0 {
- 	};
- };
- 
-+&spi1 {
-+	status = "okay";
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&pinctrl_spi1_default>;
-+	flash@0 {
-+		status = "okay";
-+		label = "bios";
-+		m25p,fast-read;
-+		spi-max-frequency = <25000000>; /* 25 MHz */
-+	};
-+};
-+
- &uart5 {
- 	status = "okay";
- };
-diff --git a/arch/arm/boot/dts/aspeed/aspeed-bmc-asrock-e3c256d4i.dts b/arch/arm/boot/dts/aspeed/aspeed-bmc-asrock-e3c256d4i.dts
-index 263fcc8106ff..bf752ff8204f 100644
---- a/arch/arm/boot/dts/aspeed/aspeed-bmc-asrock-e3c256d4i.dts
-+++ b/arch/arm/boot/dts/aspeed/aspeed-bmc-asrock-e3c256d4i.dts
-@@ -69,6 +69,18 @@ flash@0 {
- 	};
- };
- 
-+&spi1 {
-+	status = "okay";
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&pinctrl_spi1_default>;
-+	flash@0 {
-+		status = "okay";
-+		label = "bios";
-+		m25p,fast-read;
-+		spi-max-frequency = <25000000>; /* 25 MHz */
-+	};
-+};
-+
- &uart1 {
- 	status = "okay";
- };
-diff --git a/arch/arm/boot/dts/aspeed/aspeed-bmc-asrock-romed8hm3.dts b/arch/arm/boot/dts/aspeed/aspeed-bmc-asrock-romed8hm3.dts
-index 4554abf0c7cd..8dff2cbf042b 100644
---- a/arch/arm/boot/dts/aspeed/aspeed-bmc-asrock-romed8hm3.dts
-+++ b/arch/arm/boot/dts/aspeed/aspeed-bmc-asrock-romed8hm3.dts
-@@ -56,6 +56,18 @@ flash@0 {
- 	};
- };
- 
-+&spi1 {
-+	status = "okay";
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&pinctrl_spi1_default>;
-+	flash@0 {
-+		status = "okay";
-+		label = "bios";
-+		m25p,fast-read;
-+		spi-max-frequency = <33000000>; /* 33 MHz */
-+	};
-+};
-+
- &uart5 {
- 	status = "okay";
- };
-diff --git a/arch/arm/boot/dts/aspeed/aspeed-bmc-asrock-spc621d8hm3.dts b/arch/arm/boot/dts/aspeed/aspeed-bmc-asrock-spc621d8hm3.dts
-index 555485871e7a..54b40776c7e3 100644
---- a/arch/arm/boot/dts/aspeed/aspeed-bmc-asrock-spc621d8hm3.dts
-+++ b/arch/arm/boot/dts/aspeed/aspeed-bmc-asrock-spc621d8hm3.dts
-@@ -66,6 +66,18 @@ flash@0 {
- 	};
- };
- 
-+&spi1 {
-+	status = "okay";
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&pinctrl_spi1_default>;
-+	flash@0 {
-+		status = "okay";
-+		label = "bios";
-+		m25p,fast-read;
-+		spi-max-frequency = <17000000>; /* 17 MHz */
-+	};
-+};
-+
- &uart5 {
- 	status = "okay";
- };
--- 
-2.43.0
+doc reference errors (make refcheckdocs):
+
+See https://patchwork.ozlabs.org/project/devicetree-bindings/patch/20240213010347.1075251-3-sre@kernel.org
+
+The base for the series is generally the latest rc1. A different dependency
+should be noted in *this* patch.
+
+If you already ran 'make dt_binding_check' and didn't see the above
+error(s), then make sure 'yamllint' is installed and dt-schema is up to
+date:
+
+pip3 install dtschema --upgrade
+
+Please check and re-submit after running the above command yourself. Note
+that DT_SCHEMA_FILES can be set to your schema file to speed up checking
+your schema. However, it must be unset to test all examples with your schema.
 
 
