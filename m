@@ -1,81 +1,162 @@
-Return-Path: <devicetree+bounces-41469-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-41470-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 719F4853ECB
-	for <lists+devicetree@lfdr.de>; Tue, 13 Feb 2024 23:34:16 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id DB143853EBA
+	for <lists+devicetree@lfdr.de>; Tue, 13 Feb 2024 23:31:44 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id ACD3BB28827
-	for <lists+devicetree@lfdr.de>; Tue, 13 Feb 2024 22:30:25 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 17EFA1C21DE8
+	for <lists+devicetree@lfdr.de>; Tue, 13 Feb 2024 22:31:44 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 42AE362169;
-	Tue, 13 Feb 2024 22:30:01 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3A2186217C;
+	Tue, 13 Feb 2024 22:31:33 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Ic1ftN/J"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="kj9Ww9VM"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1678862167;
-	Tue, 13 Feb 2024 22:29:59 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0FDE1433AB;
+	Tue, 13 Feb 2024 22:31:32 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1707863401; cv=none; b=TMetafkAqg35+w5JVMKYFvFQ4odvY4O4GZhhwVA1CNXClIAUH5ow76zOesBc9TVUnUzvE4WV20bVxToJl3KmSYvWy5EufVO8bNhma/JgDgN97uyYy2exT229ozh33+i7rl6s4dtdre4nQJ4V+EmkRAiqbaA6g+zKcKXNv05ENv0=
+	t=1707863493; cv=none; b=MIuZZ56VZ/IyOCwlzLi9Fa7SU/383R8Hhot46u8bTLuZhR1Frlx4vEyqSmiFs4UzYVN83BmJ9kdcvkgZOB6GjtppeLy/gBITTUhVWlRHVE8c7jtc1EhA7uVfapDOVO0a601i77UfY7A/Y5hsi7MbpZ1sviiHyGL/kjac+90JIPg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1707863401; c=relaxed/simple;
-	bh=Fudw3qoxvHN9Hf18ZS81IuKfFF23V8VoXx2unf+dOW0=;
+	s=arc-20240116; t=1707863493; c=relaxed/simple;
+	bh=tUMsXY/XfFkqr7u0iiEPY04YFBGnHpoUhaqNlD4VLF4=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=cSDTBOgA7HwzJ+JSQkt5ayK4DPQwpfjjTv0l3a9pMdWqWuaT64Hz65TvhvQF9U5d2OUKJ5Taq8yzlDK5367j8My0ZWm6nPlE1VU/fZlECFNZIHvMH/dirHv2vBIdfSRbxKTEJon4mH8INPRFrFMlGvVLcUzfjlK+x4rSkXuLTmo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Ic1ftN/J; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 6D4B2C433C7;
-	Tue, 13 Feb 2024 22:29:59 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=fs0fNf3Hx5aO3O6560I7DJceLfJ6jq6eOZCWS8o3z/hZ5sxzxKpRwoHQ7rrW4Ea97NdAebLGN30NDBS7q3ZarBkCT754jAz6pSPtg36MdPMGf/ZnKJrkVHmbiRcdfFme3aQ4sCFJTwcshKogwWd5iTQV/xzCgGhi/oc0YeGr7wk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=kj9Ww9VM; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 4D7F7C433F1;
+	Tue, 13 Feb 2024 22:31:32 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1707863399;
-	bh=Fudw3qoxvHN9Hf18ZS81IuKfFF23V8VoXx2unf+dOW0=;
+	s=k20201202; t=1707863492;
+	bh=tUMsXY/XfFkqr7u0iiEPY04YFBGnHpoUhaqNlD4VLF4=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=Ic1ftN/JPB4ikN2uzgIR2Fpin1nzDVRSYVZRJ11EMXM0SMtyHAbPonIUET46qqSxd
-	 9Ojes7k7SEOxKhcYs2RsQ0Q8xpbqRuKCi2joz2aSTCCZAV+ay0PAnwD2Fy6tA5NehW
-	 AsDP5w/utBNn0mdl4czZncZcSiXowz0QkG9qeuY2wTeuFPZWXdS6WoolWwT7KxDplB
-	 C6kJZFzkm4rKDxuMEXdRrcT/SxZIAJ+EmXmOfkH/+rzG/3Zd8TzXsEqJpD323b6wTy
-	 /aU65DWSCcLEOJIeRbja1kIh/ut5ysn/gEhb1HXqxsMBRaYcJb74jX8LeMLLvb74q0
-	 tUp617BnHdBTw==
-Date: Tue, 13 Feb 2024 16:29:57 -0600
+	b=kj9Ww9VMf2s40wjwtHIk/4onEZen6N4x8brxw8zIQYpWt9ckJpLD0s1PsT1D7Ia4b
+	 rr2biX+69XirmVQ1ZHWV7XJ9mxseJb1hE58+/+s8cwIBW5dBHX+PexEUR3sGzke4rZ
+	 5m5gzjxGgFtIZ5SssmS9sjsAjZDSIz77/F0zzHUbpK5uHdFlzlge/QvRan4fgWux6N
+	 gLyH70dAC1VOq5bTjKC60y4/PcpqjtK8rKpSz9hy3y67IEX7NhDqNy/GzlnJ3sXT2y
+	 J/1vuXMajieuCWoMVIgh7QSHrLpk+Kgbqc1Rpd0Z5dxLiCzoeCkFOgO3j0g76rHU5U
+	 9W+cutZzWdbBw==
+Date: Tue, 13 Feb 2024 16:31:30 -0600
 From: Rob Herring <robh@kernel.org>
-To: Mao Jinlong <quic_jinlmao@quicinc.com>
-Cc: Suzuki K Poulose <suzuki.poulose@arm.com>,
-	Mike Leach <mike.leach@linaro.org>,
-	James Clark <james.clark@arm.com>,
-	Bjorn Andersson <andersson@kernel.org>,
-	Konrad Dybcio <konrad.dybcio@linaro.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Tao Zhang <quic_taozha@quicinc.com>,
-	Alexander Shishkin <alexander.shishkin@linux.intel.com>,
-	coresight@lists.linaro.org, linux-arm-kernel@lists.infradead.org,
-	linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v1 1/2] dt-bindings: arm: qcom,coresight-tpdm: Rename
- qcom,dsb-element-size
-Message-ID: <20240213222957.GA2502642-robh@kernel.org>
-References: <20240213160521.15925-1-quic_jinlmao@quicinc.com>
- <20240213160521.15925-2-quic_jinlmao@quicinc.com>
+To: Tanmay Shah <tanmay.shah@amd.com>
+Cc: andersson@kernel.org, devicetree@vger.kernel.org,
+	krzysztof.kozlowski+dt@linaro.org, linux-remoteproc@vger.kernel.org,
+	michal.simek@amd.com,
+	Radhey Shyam Pandey <radhey.shyam.pandey@amd.com>,
+	ben.levinsky@amd.com, linux-kernel@vger.kernel.org,
+	mathieu.poirier@linaro.org, conor+dt@kernel.org,
+	linux-arm-kernel@lists.infradead.org
+Subject: Re: [PATCH v10 2/4] dt-bindings: remoteproc: add Tightly Coupled
+ Memory (TCM) bindings
+Message-ID: <20240213223130.GA2504650-robh@kernel.org>
+References: <20240213175450.3097308-1-tanmay.shah@amd.com>
+ <20240213175450.3097308-3-tanmay.shah@amd.com>
+ <170785205177.2155555.1311787541370066483.robh@kernel.org>
+ <b931a24c-f676-4ddb-bb7c-e7a509d5dd4b@amd.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: text/plain; charset=iso-8859-1
 Content-Disposition: inline
-In-Reply-To: <20240213160521.15925-2-quic_jinlmao@quicinc.com>
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <b931a24c-f676-4ddb-bb7c-e7a509d5dd4b@amd.com>
 
-On Tue, Feb 13, 2024 at 08:05:17AM -0800, Mao Jinlong wrote:
-> Change qcom,dsb-element-size to qcom,dsb-element-bits as the unit is
-> bit.
+On Tue, Feb 13, 2024 at 02:37:49PM -0600, Tanmay Shah wrote:
+> Hello,
+> 
+> Thanks for reviews please find my comments below.
+> 
+> On 2/13/24 1:20 PM, Rob Herring wrote:
+> > On Tue, 13 Feb 2024 09:54:48 -0800, Tanmay Shah wrote:
+> > > From: Radhey Shyam Pandey <radhey.shyam.pandey@amd.com>
+> > > 
+> > > Introduce bindings for TCM memory address space on AMD-xilinx Zynq
+> > > UltraScale+ platform. It will help in defining TCM in device-tree
+> > > and make it's access platform agnostic and data-driven.
+> > > 
+> > > Tightly-coupled memories(TCMs) are low-latency memory that provides
+> > > predictable instruction execution and predictable data load/store
+> > > timing. Each Cortex-R5F processor contains two 64-bit wide 64 KB memory
+> > > banks on the ATCM and BTCM ports, for a total of 128 KB of memory.
+> > > 
+> > > The TCM resources(reg, reg-names and power-domain) are documented for
+> > > each TCM in the R5 node. The reg and reg-names are made as required
+> > > properties as we don't want to hardcode TCM addresses for future
+> > > platforms and for zu+ legacy implementation will ensure that the
+> > > old dts w/o reg/reg-names works and stable ABI is maintained.
+> > > 
+> > > It also extends the examples for TCM split and lockstep modes.
+> > > 
+> > > Signed-off-by: Radhey Shyam Pandey <radhey.shyam.pandey@amd.com>
+> > > Signed-off-by: Tanmay Shah <tanmay.shah@amd.com>
+> > > ---
+> > > 
+> > > Changes in v10:
+> > >   - modify number of "reg", "reg-names" and "power-domains" entries
+> > >     based on cluster mode
+> > >   - Add extra optional atcm and btcm in "reg" property for lockstep mode
+> > >   - Add "reg-names" for extra optional atcm and btcm for lockstep mode
+> > >   - Drop previous Ack as bindings has new change
+> > > 
+> > > Changes in v9:
+> > >   - None
+> > > Changes in v8:
+> > >   - None
+> > > Changes in v7:
+> > >   - None
+> > > Changes in v6:
+> > >   - None
+> > > Changes in v5:
+> > >   - None
+> > > 
+> > > Changes in v4:
+> > >   - Use address-cells and size-cells value 2
+> > >   - Modify ranges property as per new value of address-cells
+> > >     and size-cells
+> > >   - Modify child node "reg" property accordingly
+> > >   - Remove previous ack for further review
+> > > 
+> > > v4 link: https://lore.kernel.org/all/20230829181900.2561194-2-tanmay.shah@amd.com/
+> > > 
+> > >  .../remoteproc/xlnx,zynqmp-r5fss.yaml         | 192 ++++++++++++++++--
+> > >  1 file changed, 170 insertions(+), 22 deletions(-)
+> > > 
+> >
+> > My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
+> > on your patch (DT_CHECKER_FLAGS is new in v5.13):
+> >
+> > yamllint warnings/errors:
+> > ./Documentation/devicetree/bindings/remoteproc/xlnx,zynqmp-r5fss.yaml:118:13: [warning] wrong indentation: expected 10 but found 12 (indentation)
+> Ack. I will fix this.
+> 
+> However, can I still get reviews on patch itself so if something else needs to be fixed I can fix in next revision as well.
+> 
+> Also, I tried to run yamllint with following command:
+> 
+> make DT_CHECKER_FLAGS=-m dt_binding_check DT_SCHEMA_FILES=Documentation/devicetree/bindings/remoteproc/xlnx,zynqmp-r5fss.yaml O=../build/zynqmp/linux-next/
+> 
+> 
+> However, I see following logs without any error on bindings:
+> 
+>   LINT    Documentation/devicetree/bindings
+> invalid config: unknown option "required" for rule "quoted-strings"
+> *xargs: /usr/bin/yamllint: exited with status 255; aborting*
+>   CHKDT   Documentation/devicetree/bindings/processed-schema.json
+>   SCHEMA  Documentation/devicetree/bindings/processed-schema.json
+>   DTEX    Documentation/devicetree/bindings/remoteproc/xlnx,zynqmp-r5fss.example.dts
+>   DTC_CHK Documentation/devicetree/bindings/remoteproc/xlnx,zynqmp-r5fss.example.dtb
+> 
+> I am not sure if my system is missing something but, yamllint tool is failing.
 
-That may be, but this is an ABI and you are stuck with it. Unless, you 
-can justify why that doesn't matter. (IIRC, this is new, so maybe no 
-users yet?)
+"unknown option" means old version of yamllint.
+
+Rob
 
