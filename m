@@ -1,90 +1,162 @@
-Return-Path: <devicetree+bounces-41483-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-41491-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9CB37854051
-	for <lists+devicetree@lfdr.de>; Wed, 14 Feb 2024 00:48:13 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 8DF67854082
+	for <lists+devicetree@lfdr.de>; Wed, 14 Feb 2024 00:58:58 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 51FA41F23C1E
-	for <lists+devicetree@lfdr.de>; Tue, 13 Feb 2024 23:48:13 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 18D8A1F26138
+	for <lists+devicetree@lfdr.de>; Tue, 13 Feb 2024 23:58:58 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A4F9262811;
-	Tue, 13 Feb 2024 23:48:08 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id F31556341C;
+	Tue, 13 Feb 2024 23:57:44 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="oR0oY9dH"
+	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="Zi9hkaCg"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from fllv0016.ext.ti.com (fllv0016.ext.ti.com [198.47.19.142])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7AD4E63124;
-	Tue, 13 Feb 2024 23:48:08 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 306E865BD5;
+	Tue, 13 Feb 2024 23:57:42 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.19.142
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1707868088; cv=none; b=g2Zg9cASaPuKPMbIg8l3K0Z6kELiFDYnLTich7KfpQXckCZukWyqc5ZTUqZGOpUffv+Mj+UTdThJ61Ud97RpFqC/xHniqdoWK2zR2llC22ROobVTiwUC9+msT6hIDRpzqBK860ipbkNTkbt60jglXh4OWfxuEjVq8OKKNwZ6rzQ=
+	t=1707868664; cv=none; b=A5sVvUCRTyio3MoWnoUxS6LuGb3TV4ek4pOFS+RgrZSIYZe6a5Cbbs3MNYQlqZnIWUkQlLzsTEwkRXubjOGsJn54Hr1wbfDuxmkwdplyqXHvLj8NAELP/V/ch0FVZLJyvmOsGCn1BPVWih/eT/849LMDdjwZE8RxJQU0irdvcqI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1707868088; c=relaxed/simple;
-	bh=iMqHLcS5+XHylKovVfwkIRUUAlQkcvIn3nwvIFAPJfg=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=iNTC7nKwASJVMKe4UtkvA+rWc0e54jPje/9k7xhoNduYxDvLHV1AT3Qr8IYmmZ1sWkkverOHgbtqjoQmK9RPGRApkC/MAGWWuPRv9JqK4cH4+e1UfuzPP6HiCyzfTklfn3cg+9IWVedgdm1m8R4CVzVK7ucg2nqeGSqIlbZjJyk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=oR0oY9dH; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id AFB7EC433F1;
-	Tue, 13 Feb 2024 23:48:07 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1707868087;
-	bh=iMqHLcS5+XHylKovVfwkIRUUAlQkcvIn3nwvIFAPJfg=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=oR0oY9dHytVgT7lURvsy69EYN06W2tEr3VLnVAGwuXR8DoaXRr99PcLqOKPYpzcY3
-	 u1hf80bcG4TjH6DwWY6coNcLyIxh+ilnqkkuF7+eJ/Zbs/tBLeWY11mYN4gwb1Ri5t
-	 zZxl+wtriekUkZbgSMtfBikOBcPhv+T5wpcvvdm/QnEam1CqhTUKmsstNFeRkYGI/g
-	 7x/XTjc9KedwWCT60vXsaL2oLFshbzdJZ+CVyLi7TpEkQgII14rsaXUWQmmJEel/vY
-	 /b1Bs7TcSJCqfLOu5Ln9F0mgVJjiAX/ReDVR4bwyCy34Nx8AIBmolRmpeDGJq2JRGA
-	 tcpGSeQ0hMjhw==
-Received: by mercury (Postfix, from userid 1000)
-	id 3E88B1061C38; Wed, 14 Feb 2024 00:48:05 +0100 (CET)
-Date: Wed, 14 Feb 2024 00:48:05 +0100
-From: Sebastian Reichel <sre@kernel.org>
-To: Fabio Estevam <festevam@gmail.com>
-Cc: Rob Herring <robh+dt@kernel.org>, 
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Shawn Guo <shawnguo@kernel.org>, Sascha Hauer <s.hauer@pengutronix.de>, 
-	Pengutronix Kernel Team <kernel@pengutronix.de>, NXP Linux Team <linux-imx@nxp.com>, 
-	Dong Aisheng <aisheng.dong@nxp.com>, Linus Walleij <linus.walleij@linaro.org>, 
-	Dmitry Torokhov <dmitry.torokhov@gmail.com>, Mark Brown <broonie@kernel.org>, 
-	linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v2 12/17] ARM: dts: nxp: imx6ul: xnur-gpio -> xnur-gpios
-Message-ID: <wowv3yiz2xis3fafel4rkedorrh2n3iamfctyvtuwxrvdxroq2@dojgmuotvzml>
-References: <20240213010347.1075251-1-sre@kernel.org>
- <20240213010347.1075251-13-sre@kernel.org>
- <CAOMZO5BUzaqHEvd877te_Tgiaz+QvWrvLC_oKg+mRPzmL26pDw@mail.gmail.com>
+	s=arc-20240116; t=1707868664; c=relaxed/simple;
+	bh=piAU5tC1h1y3vvrNsOA2aQ3BtK64uKqiYYvZ0WADs+Y=;
+	h=From:To:CC:Subject:Date:Message-ID:MIME-Version:Content-Type; b=i7Z3SJJUk3t0P5E1Pn7LYIXCFfqf74OiUZyFPjdaCBdEgyTutXZA/+N4i578sH8AasM2UsB0i5Us39H9v10d+DIGKbrtoKwxzt20IYF3kGWd6Vu3b3J1nsWKgrhnFwYqiv0HodkeESkS+/1chckLBfxWae1YwzTfeP1YRi27O0E=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=Zi9hkaCg; arc=none smtp.client-ip=198.47.19.142
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
+Received: from lelv0265.itg.ti.com ([10.180.67.224])
+	by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id 41DNv1X7010135;
+	Tue, 13 Feb 2024 17:57:01 -0600
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+	s=ti-com-17Q1; t=1707868621;
+	bh=3S3Qh1mo0rfRIPDFHYJT0K7IV8QikFSO5XW0LQrfkrc=;
+	h=From:To:CC:Subject:Date;
+	b=Zi9hkaCg+wq7kfGHtJEQSHBkhTFsyZfpwlvkxXs7D9ybRicm3kq25S/HzUUgbugpw
+	 CWZdUS25bsLcbc+diuJKKVFF1eMfngxpFwENdDTlpw8E1SrLVYM6W6EwcJyrSvvy8Y
+	 WTXmUOh+tevj4uXv3sj4r/thVsaWC9zf/gnjO8jE=
+Received: from DLEE104.ent.ti.com (dlee104.ent.ti.com [157.170.170.34])
+	by lelv0265.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 41DNv1Z2006441
+	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+	Tue, 13 Feb 2024 17:57:01 -0600
+Received: from DLEE111.ent.ti.com (157.170.170.22) by DLEE104.ent.ti.com
+ (157.170.170.34) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Tue, 13
+ Feb 2024 17:57:01 -0600
+Received: from lelvsmtp6.itg.ti.com (10.180.75.249) by DLEE111.ent.ti.com
+ (157.170.170.22) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
+ Frontend Transport; Tue, 13 Feb 2024 17:57:01 -0600
+Received: from judy-hp.dhcp.ti.com (judy-hp.dhcp.ti.com [128.247.81.105])
+	by lelvsmtp6.itg.ti.com (8.15.2/8.15.2) with ESMTP id 41DNv1R4091761;
+	Tue, 13 Feb 2024 17:57:01 -0600
+From: Judith Mendez <jm@ti.com>
+To: Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski
+	<krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley <conor+dt@kernel.org>
+CC: Nishanth Menon <nm@ti.com>, Vignesh Raghavendra <vigneshr@ti.com>,
+        Tero
+ Kristo <kristo@kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>, Wadim Egorov
+	<w.egorov@phytec.de>,
+        Francesco Dolcini <francesco.dolcini@toradex.com>
+Subject: [PATCH v3 0/9] Fix MMC properties on Sitara K3 devices
+Date: Tue, 13 Feb 2024 17:56:52 -0600
+Message-ID: <20240213235701.2438513-1-jm@ti.com>
+X-Mailer: git-send-email 2.43.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <CAOMZO5BUzaqHEvd877te_Tgiaz+QvWrvLC_oKg+mRPzmL26pDw@mail.gmail.com>
+Content-Type: text/plain
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 
-Hi,
+This patch series aims to fix and update MMC nodes for TI
+Sitara K3 devices with the following changes.
 
-On Tue, Feb 13, 2024 at 10:53:05AM -0300, Fabio Estevam wrote:
-> On Mon, Feb 12, 2024 at 10:03 PM Sebastian Reichel <sre@kernel.org> wrote:
-> > Replace all "xnur-gpio" with "xnur-gpios" in the
-> > i.MX6UL(L) Touchscreen node.
-> 
-> Please explain the reason for doing this.
+The series introduces sdhci0 and sdhci2 nodes and enables
+eMMC for AM62ax platform.
 
-DT binding maintainers asked to use xnur-gpios instead of xnur-gpio
-in the DT binding when converting to YAML (the -gpio suffix is
-deprecated in favour of -gpios). This updates the DT files to become
-compliant. The Linux kernel driver has already been using gpiod API
-when it was added to the kernel, so this change is backwards compatible.
+Also introduce fixes for MMC ITAP/OTAP values for AM64x
+platform according to device datasheet [0], and add ITAP/
+OTAP values for AM62p to enable the highest timing possible
+for MMC0 and MMC1, according to device datasheet [1].
 
-I will extend the description from this patch in v3.
+The DLL properties ti,trm-icp and ti,driver-strength-ohm
+should be removed for soft PHYs since drive strength cannot
+be changed, so remove these properties when not applicable.
+Since this fix touches non-TI boards and therefore cannot be
+tested, all tested-by's are welcome.
 
--- Sebastian
+Also include a few fixes for ti,clkbuf-sel, bus-width,
+and bootph-all device tree properties in MMC nodes.
+
+This series was tested on:
+- AM62a SK
+- AM62x SK
+- AM62p SK
+- AM64x GP EVM
+- AM64x SK EVM
+- Beagleplay
+
+[0] https://www.ti.com/lit/ds/symlink/am6442.pdf
+[1] https://www.ti.com/lit/ds/symlink/am62p.pdf
+
+Fixes since V2:
+- Remove ti,driver-strength-ohm property in sdhci1 node for
+ k3-am642-tqma64xxl-mbax4xxl and k3-am642-phyboard-electra-rdk board files.
+- Add Francesco's Acked-by
+
+V2: https://lore.kernel.org/linux-devicetree/20240213002416.1560357-1-jm@ti.com/
+V1: https://lore.kernel.org/linux-devicetree/22af7436-8833-4049-bdbb-f79bb3314ee8@ti.com/
+RFC: https://lore.kernel.org/linux-devicetree/c94b7399-31c0-4e7d-a616-8f29c86a27ba@ti.com/
+
+Judith Mendez (7):
+  arm64: dts: ti: k3-am62a-main: Add sdhci2 instance
+  arm64: dts: ti: k3-am64-main: Fix ITAP/OTAP values for MMC
+  arm64: dts: ti: k3-am62p: Add ITAP/OTAP values for MMC
+  arm64: dts: ti: k3-am6*: Remove DLL properties for soft PHYs
+  arm64: dts: ti: k3-am6*: Fix ti,clkbuf-sel property in MMC nodes
+  arm64: dts: ti: k3-am6*: Fix bus-width property in MMC nodes
+  arm64: dts: ti: k3-am6*: Add bootph-all property in MMC node
+
+Nitin Yadav (2):
+  arm64: dts: ti: k3-am62a-main: Add sdhci0 instance
+  arm64: dts: ti: k3-am62a7-sk: Enable eMMC support
+
+ arch/arm64/boot/dts/ti/k3-am62-main.dtsi      | 12 +++--
+ .../boot/dts/ti/k3-am62-phycore-som.dtsi      |  1 -
+ .../boot/dts/ti/k3-am62-verdin-dahlia.dtsi    |  1 -
+ .../arm64/boot/dts/ti/k3-am62-verdin-dev.dtsi |  1 -
+ .../boot/dts/ti/k3-am62-verdin-wifi.dtsi      |  1 -
+ arch/arm64/boot/dts/ti/k3-am62-verdin.dtsi    |  2 -
+ .../arm64/boot/dts/ti/k3-am625-beagleplay.dts |  4 --
+ .../dts/ti/k3-am625-phyboard-lyra-rdk.dts     |  1 -
+ arch/arm64/boot/dts/ti/k3-am62a-main.dtsi     | 45 ++++++++++++++++++-
+ arch/arm64/boot/dts/ti/k3-am62a7-sk.dts       | 27 ++++++++++-
+ arch/arm64/boot/dts/ti/k3-am62p-main.dtsi     | 44 ++++++++++++++++--
+ arch/arm64/boot/dts/ti/k3-am62p5-sk.dts       |  3 +-
+ .../arm64/boot/dts/ti/k3-am62x-sk-common.dtsi |  2 -
+ arch/arm64/boot/dts/ti/k3-am64-main.dtsi      | 15 +++++--
+ arch/arm64/boot/dts/ti/k3-am642-evm.dts       |  4 +-
+ .../dts/ti/k3-am642-phyboard-electra-rdk.dts  |  1 -
+ arch/arm64/boot/dts/ti/k3-am642-sk.dts        |  2 -
+ .../dts/ti/k3-am642-tqma64xxl-mbax4xxl.dts    |  1 -
+ 18 files changed, 129 insertions(+), 38 deletions(-)
+
+
+base-commit: 1e6bbc5185bcd113c8d2f7aa0a02f588a6bdbe5d
+-- 
+2.43.0
+
 
