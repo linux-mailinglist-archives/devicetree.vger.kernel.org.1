@@ -1,168 +1,160 @@
-Return-Path: <devicetree+bounces-41818-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-41819-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 20485855384
-	for <lists+devicetree@lfdr.de>; Wed, 14 Feb 2024 20:55:42 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6AF2985539E
+	for <lists+devicetree@lfdr.de>; Wed, 14 Feb 2024 21:04:38 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id B3FFFB26E67
-	for <lists+devicetree@lfdr.de>; Wed, 14 Feb 2024 19:55:39 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 8ED691C21C41
+	for <lists+devicetree@lfdr.de>; Wed, 14 Feb 2024 20:04:37 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6423913DB88;
-	Wed, 14 Feb 2024 19:55:32 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 858E013DB8C;
+	Wed, 14 Feb 2024 20:04:34 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="BPF7r5o8"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="ECUbcmGz"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-lj1-f175.google.com (mail-lj1-f175.google.com [209.85.208.175])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2B3CC13B7B5;
-	Wed, 14 Feb 2024 19:55:31 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B76A65C90E;
+	Wed, 14 Feb 2024 20:04:32 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.175
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1707940532; cv=none; b=qWiyZ1Sl9oYOrS/zkrAbrp/UCfVfRFNOmr7OAM3+d70MF86fZkQYfiFFRfg2strSwaPVg1ZwopdmLVK5jwfhOtuMsO7MR1KE5dcOvtpIJi18ewGOBFUAOZKzVx22LZ2eIVo43tNYHCqrpfWCWSFD+6YEKxUoiqzYDFrhj2B7GDE=
+	t=1707941074; cv=none; b=bWpA1X7If7XatwmbAAXOyGdR2SVDh+86DZ4VIPpuquTxo4hfVQggEtLAehtJykuY7M8Cc7inKna2Y/cBY/BPH6u7tcguc7n1apMVxBaqG9VCvLGXZxEdooJh/Zg7RqXxQSjg37RTy+bfw9LtLXhZJddUQrtCYbaK/RA7faoZZrY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1707940532; c=relaxed/simple;
-	bh=aN1RQYhpuVAtEpsc/MudXniLKa3dvmAiLsNZ9i8++FQ=;
+	s=arc-20240116; t=1707941074; c=relaxed/simple;
+	bh=Nyn4zdMUYJcetucv3ZLRDWdEDWYVJZ7irXf29bg1UYc=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=TxfEQ1CGRWj7ULMDEKGQpHgVjVgdTbgQHjRtudkGWMSeo3R5ZdRcR/pZ09NaaEdjP1HfEins+osDuw+cyhbAInkw81fiPjgTU9pqc/p8Cdaf1FVl5Z+jh0Nh/tb8DqL57ChfMQgysTk0Y6vurbwLAbZSeWXHi5+dDmjzABF1ICM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=BPF7r5o8; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 82B97C433C7;
-	Wed, 14 Feb 2024 19:55:29 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1707940531;
-	bh=aN1RQYhpuVAtEpsc/MudXniLKa3dvmAiLsNZ9i8++FQ=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=BPF7r5o8y4H7bDrDpLcEtMHw2F5B4qUrp6FwYfjwuCg/FcXarE+YdrxY69PpTtat9
-	 JxJPI2PdTNzOC1wmE2B7cpj3GL2NmnAFGMhFQjtT4C34N4olyB5orZB7XhfHjyy5Wh
-	 scfs3njKTQZOU+LywXw1fjBRxl4IIe2dc+hoQgzwaQeN7At17fp1IMFHWQTXM1yDqj
-	 aHICeaEL/1iZQSa33XVXUSrPS4g70whSndILPuQgfT1DpOhXfzabSATDF8SBpEN2TW
-	 sDNt6VjfQ+r2A/sqMutDNkSZ0cB2cKugqhjsRFOyXyVOGwCy4TEhLQH9r8h1CGn8c9
-	 3IUomvF86kyGA==
-Date: Wed, 14 Feb 2024 19:55:27 +0000
-From: Conor Dooley <conor@kernel.org>
-To: Guenter Roeck <linux@roeck-us.net>
-Cc: Naresh Solanki <naresh.solanki@9elements.com>,
-	Jean Delvare <jdelvare@suse.com>, Rob Herring <robh+dt@kernel.org>,
+	 Content-Type:Content-Disposition:In-Reply-To; b=gdwQsLOs9Rj37WTZ1wWbYFz89D5B5GBrVVrYtfestbifEL1Y6q94ujROOfZs/uLc4Os3ZGZcYS9xCUKoJ0/7eiw7kcbxAN0NRhqZyfa603BO8sNo9MVCP4H3CSxrHEf77VC5lBGor0Nx4QUPt7U/pjwNEgBXXniOJT6IISleKDU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=ECUbcmGz; arc=none smtp.client-ip=209.85.208.175
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-lj1-f175.google.com with SMTP id 38308e7fff4ca-2d09bdddfc9so1028411fa.2;
+        Wed, 14 Feb 2024 12:04:32 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1707941071; x=1708545871; darn=vger.kernel.org;
+        h=in-reply-to:content-transfer-encoding:content-disposition
+         :mime-version:references:mail-followup-to:message-id:subject:cc:to
+         :from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=y0+QBUAm/aVRpiPaqhCze/LDszKrnlyY/NggllvOcA0=;
+        b=ECUbcmGzTskJcHkgrvyawdZGtqmBIkf/vSjf2iEOtt3HKWp4n+oY05HEVf7lg01bSS
+         xT6pfIMET1doO95Ydgp4VnU64XG26ip82R5vUAHkN8xBmKi9psx9gsHyyi9hobMQL1pf
+         hpCaFxnM8VjmlPZTwM8cPZvdBMAuRpBLuNbRPWdq4PYS0VF2/Acmt/XWdCCFMC7U0fkU
+         M1DncO8HDDKDLK4XI4INLwUUgEbn0adqDWUPondFBzrVOlcfKW5Tj/2fEL7cEBfLhosp
+         U2Bb82U/yXKQJGlOzyloTfHLbxFnQto5XG1+qtQuPtVhQgM5/E7fOAvT1vku3G76eo5b
+         q98w==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1707941071; x=1708545871;
+        h=in-reply-to:content-transfer-encoding:content-disposition
+         :mime-version:references:mail-followup-to:message-id:subject:cc:to
+         :from:date:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=y0+QBUAm/aVRpiPaqhCze/LDszKrnlyY/NggllvOcA0=;
+        b=ADxT0gMd8lWP5WAsQC8x44uAtIAhUDxKYTGywpoz9vVzn0204U3iD1VumunOx23G4x
+         LjsY4VxHozQHgqoIl8vaCZam0Qy8SK7fZv2L8TkEosa4D1xQon4DmmPmZQJbG2tULPzJ
+         kItH3IC+mv0eIs0DyA2n52l+pEJA8KyFjEVrsfIYgBXL1UIXwaD5Fvymp5wB03fkrOyO
+         +e8z617kaodREP1JKXitjBUOYjUdbFnOLY1qXW0iI1keuzC+6cc4ejGN+eb1sYiVZ8ZA
+         PFvSJZK6r+1/Xkq2Vvpb2wKFVphfOlh74iIaL377yJyz3YPq2QgRq+OvtL4J6wN7TXfm
+         /FEg==
+X-Forwarded-Encrypted: i=1; AJvYcCX2vcuCPio85LUsas8hdpX2IjP8asB7EViTY5EyjVH27oAQ6xCrE7IgzlLktQwJ2Sl8PbF8J9yHKkN4enfCGA72B8Vs6oqm9pNGNjQrOgT16KAP3iTPpEE7OVyiuUGV6YaI1Og2RGs+TlsRLG9asMtcaXGltTdX82kja9FI20XLWG1pWg==
+X-Gm-Message-State: AOJu0YysspTUsQkDkKMGg5Jne16ooRb2jNL/yiyUdMkNmNY5GHjN5XSR
+	H65pBEoIr7GwSNuZUIxAkJ1tZpOJewBhZExDzcJriJ6cFFjsppFA
+X-Google-Smtp-Source: AGHT+IHCCk3h4RYYrdY/RIfjuz0KCiI8lT7wSiom63AMX0z71+lISRylWaJNs5DSlXnpEHv75qUPPQ==
+X-Received: by 2002:a2e:2206:0:b0:2d0:e587:8f44 with SMTP id i6-20020a2e2206000000b002d0e5878f44mr2866879lji.10.1707941070425;
+        Wed, 14 Feb 2024 12:04:30 -0800 (PST)
+X-Forwarded-Encrypted: i=1; AJvYcCVnLQH8oTYViKRCiyoOTnDGWCL46suRUTUlmiNTgxkByAk2D7QSsuJLlbRBVRdsCu2tgNENk9IXt7n+vsfKJXZ85C9z3kg7wfjKoXybug2PYT6eUDEw0fu0TlnFyng0/Q834uWq9bss+GPzVM7QYHYfMW6FY/MPc6I5JawLs8fuyQThW7UcOnFKpV9t2iFg79b2r0qYf+OcVxxhESjsGk438Z/EiXF9zn/0P1aO/xwmIb/BxpoD+tfvifNXxPQoIM518sQZy9OqvH0tWwnTw5CUCteJNewY7PYH3VN0hUMtPhI/BCHdMy3RoqV1AQT930V4kX/xaPUfLk8h75UD9cRbEfgxrsQFmMuR1NwjxzKqyjr46A3mXtPtCKbE2+NJRPedF50wTa6HRroF
+Received: from localhost ([2a05:3580:f312:6c01:1b8f:2a1b:d18:1951])
+        by smtp.gmail.com with ESMTPSA id u22-20020a2e8456000000b002d08f4f0adasm969187ljh.16.2024.02.14.12.04.29
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 14 Feb 2024 12:04:29 -0800 (PST)
+Date: Wed, 14 Feb 2024 23:04:29 +0300
+From: Andrey Skvortsov <andrej.skvortzov@gmail.com>
+To: Jonathan Cameron <Jonathan.Cameron@huawei.com>
+Cc: =?utf-8?Q?Ond=C5=99ej?= Jirman <megi@xff.cz>,
+	Jonathan Cameron <jic23@kernel.org>,
+	Lars-Peter Clausen <lars@metafoo.de>,
+	Rob Herring <robh+dt@kernel.org>,
 	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>, mazziesaccount@gmail.com,
-	linux-hwmon@vger.kernel.org, devicetree@vger.kernel.org,
+	Conor Dooley <conor+dt@kernel.org>, Icenowy Zheng <icenowy@aosc.io>,
+	Dalton Durst <dalton@ubports.com>, Shoji Keita <awaittrot@shjk.jp>,
+	linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
 	linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v2] dt-bindings: hwmon: tda38640: Add interrupt &
- regulator properties
-Message-ID: <20240214-dimly-wife-5b6239d4adec@spud>
-References: <20240214092504.1237402-1-naresh.solanki@9elements.com>
- <20240214-trinity-delouse-6dcd0b046895@spud>
- <0f1665e5-bae1-4a17-a976-cc225a28dad3@roeck-us.net>
+Subject: Re: [PATCH v2 3/4] iio: magnetometer: add a driver for Voltafield
+ AF8133J magnetometer
+Message-ID: <Zc0czfbphqRABxYR@skv.local>
+Mail-Followup-To: Andrey Skvortsov <andrej.skvortzov@gmail.com>,
+	Jonathan Cameron <Jonathan.Cameron@huawei.com>,
+	=?utf-8?Q?Ond=C5=99ej?= Jirman <megi@xff.cz>,
+	Jonathan Cameron <jic23@kernel.org>,
+	Lars-Peter Clausen <lars@metafoo.de>,
+	Rob Herring <robh+dt@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>, Icenowy Zheng <icenowy@aosc.io>,
+	Dalton Durst <dalton@ubports.com>, Shoji Keita <awaittrot@shjk.jp>,
+	linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org
+References: <20240212175410.3101973-1-megi@xff.cz>
+ <20240212175410.3101973-4-megi@xff.cz>
+ <ZcvdW3SvgIuhJtKX@skv.local>
+ <20240214163815.00005a02@Huawei.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-	protocol="application/pgp-signature"; boundary="xG+P4JTtsjcaH+61"
+Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <0f1665e5-bae1-4a17-a976-cc225a28dad3@roeck-us.net>
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20240214163815.00005a02@Huawei.com>
 
-
---xG+P4JTtsjcaH+61
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
-
-On Wed, Feb 14, 2024 at 10:48:52AM -0800, Guenter Roeck wrote:
-> On 2/14/24 09:51, Conor Dooley wrote:
-> > On Wed, Feb 14, 2024 at 02:55:03PM +0530, Naresh Solanki wrote:
-> > > Add properties for interrupt & regulator.
-> > > Also update example.
-> >=20
-> > I feel like a broken record. Your patches need to explain _why_ you're
-> > doing what you're doing. I can read the diff and see this, but I do not
-> > know what the justification for it is.
-> >=20
-> > /30 seconds later
-> > I really am a broken record, to quote from v1:
-> > | Feeling like a broken record, given I am leaving the same comments on
-> > | multiple patches. The commit message needs to explain why you're doing
-> > | something. I can read the diff and see what you did!
-> >=20
-> > https://lore.kernel.org/all/20240126-fleshed-subdued-36bae813e2ba@spud/
-> >=20
-> > The patch itself does look better than the v1, with one minor comment
-> > below.
-> >=20
-> > Thanks,
-> > Conor.
-> >=20
-> > > Signed-off-by: Naresh Solanki <naresh.solanki@9elements.com>
-> > >=20
+On 24-02-14 16:38, Jonathan Cameron wrote:
+> On Wed, 14 Feb 2024 00:21:31 +0300
+> Andrey Skvortsov <andrej.skvortzov@gmail.com> wrote:
+> 
+> > Hi Ondřej,
+> > 
+> > thank you for submitting the driver.
+> > 
+> > On 24-02-12 18:53, Ondřej Jirman wrote:
+> > > From: Icenowy Zheng <icenowy@aosc.io>
+> > > 
+> > > AF8133J is a simple I2C-connected magnetometer, without interrupts.
+> > > 
+> > > Add a simple IIO driver for it.
+> > > 
+> > > Co-developed-by: Icenowy Zheng <icenowy@aosc.io>
+> > > Signed-off-by: Icenowy Zheng <icenowy@aosc.io>
+> > > Signed-off-by: Dalton Durst <dalton@ubports.com>
+> > > Signed-off-by: Shoji Keita <awaittrot@shjk.jp>
+> > > Co-developed-by: Ondrej Jirman <megi@xff.cz>
+> > > Signed-off-by: Ondrej Jirman <megi@xff.cz>
 > > > ---
-> > > Changes in v2:
-> > > 1. Remove TEST=3D..
-> > > 2. Update regulator subnode property as vout0
-> > > 3. Restore commented line in example
-> > > 4. blank line after interrupts property in example.
-> > > ---
-> > >   .../hwmon/pmbus/infineon,tda38640.yaml        | 28 ++++++++++++++++=
-+++
-> > >   1 file changed, 28 insertions(+)
-> > >=20
-> > > diff --git a/Documentation/devicetree/bindings/hwmon/pmbus/infineon,t=
-da38640.yaml b/Documentation/devicetree/bindings/hwmon/pmbus/infineon,tda38=
-640.yaml
-> > > index ded1c115764b..a93b3f86ee87 100644
-> > > --- a/Documentation/devicetree/bindings/hwmon/pmbus/infineon,tda38640=
-=2Eyaml
-> > > +++ b/Documentation/devicetree/bindings/hwmon/pmbus/infineon,tda38640=
-=2Eyaml
-> > > @@ -30,6 +30,23 @@ properties:
-> > >         unconnected(has internal pull-down).
-> > >       type: boolean
-> > > +  interrupts:
-> > > +    maxItems: 1
-> > > +
-> > > +  regulators:
-> > > +    type: object
-> > > +    description:
-> > > +      list of regulators provided by this controller.
-> > > +
-> > > +    properties:
-> > > +      vout0:
-> >=20
-> > Why "vout0" if there's only one output? Is it called that in the
-> > documentation? I had a quick check but only saw it called "vout".
-> > Are there other related devices that would have multiple regulators
-> > that might end up sharing the binding?
-> >=20
->=20
-> Primarily because that is what the PMBus core generates for the driver
-> because no one including me was aware that this is unacceptable
-> for single-output drivers.
+> > >  drivers/iio/magnetometer/Kconfig   |  12 +
+> > >  drivers/iio/magnetometer/Makefile  |   1 +
+> > >  drivers/iio/magnetometer/af8133j.c | 528 +++++++++++++++++++++++++++++
+> > >  3 files changed, 541 insertions(+)
+> > >  create mode 100644 drivers/iio/magnetometer/af8133j.c
+> > > 
+> > > diff --git a/drivers/iio/magnetometer/Kconfig b/drivers/iio/magnetometer/Kconfig
+> > > index 38532d840f2a..cd2917d71904 100644
+> > > --- a/drivers/iio/magnetometer/Kconfig
+> > > +++ b/drivers/iio/magnetometer/Kconfig
+> > > @@ -6,6 +6,18 @@
+> > >    
+> > 
+> > Reviewed-by: Andrey Skvortsov <andrej.skvortzov@gmail.com>
+> > 
+> > I've successfully tested driver from v2 on 6.8-rc3.
+> > 
+> How about a Tested-by tag so we can keep that for ever?
+I have nothing against that.
 
-Is it unacceptable? If you're implying that I am saying it is, that's
-not what I was doing here - I'm just wondering why it was chosen.
-Numbering when there's only one seems odd, so I was just looking for the
-rationale.
+Tested-by: Andrey Skvortsov <andrej.skvortzov@gmail.com>
 
-> We now have commit 88b5970e92d0 ("hwmon:
-> (pmbus/core) Add helper macro to define single pmbus regulator").
-> I guess we can update the tda38640 driver to use the new macro
-> to register vout instead of vout0.
-
-
---xG+P4JTtsjcaH+61
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZc0arwAKCRB4tDGHoIJi
-0lyZAQDo72m1JTDm3RB2kzIKmBYKf7gk6P+U/7VON1Kjca7/+wD+KDyCgv+ptSlb
-2Gv/TNj8JuKGhWht70cIyT72yXA1QwI=
-=enKi
------END PGP SIGNATURE-----
-
---xG+P4JTtsjcaH+61--
+-- 
+Best regards,
+Andrey Skvortsov
 
