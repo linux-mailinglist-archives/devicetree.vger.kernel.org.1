@@ -1,118 +1,119 @@
-Return-Path: <devicetree+bounces-41835-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-41836-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8D9678555AA
-	for <lists+devicetree@lfdr.de>; Wed, 14 Feb 2024 23:22:17 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 565E8855613
+	for <lists+devicetree@lfdr.de>; Wed, 14 Feb 2024 23:37:54 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 49277290443
-	for <lists+devicetree@lfdr.de>; Wed, 14 Feb 2024 22:22:16 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 0AB651F2A591
+	for <lists+devicetree@lfdr.de>; Wed, 14 Feb 2024 22:37:54 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A45C714199C;
-	Wed, 14 Feb 2024 22:22:11 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3B78F1420A5;
+	Wed, 14 Feb 2024 22:36:17 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="YFlHyR2U"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="nvVULrNW"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 73C41126F3B;
-	Wed, 14 Feb 2024 22:22:11 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0EAC313DBA7;
+	Wed, 14 Feb 2024 22:36:16 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1707949331; cv=none; b=W+smALPMmikseEx8H6UgDId6Zn2id9El7qPVfsCxxdmvux+iWrJg/FOutE6eNp7XIZzizltaPWRrXfhllraxP60UEtTAyAOTcbiWLa7qQhEucdvCVeWgEsDjjJkUhzCqUE+XiD0q2ypcKH5gO5AAP++7LKvrAoVsw1WwoOz/t/s=
+	t=1707950177; cv=none; b=rS1BlMhjEe8BRiGHN7vok9FNxnBoMyRI5bhkBnrAOs8JwaDPOe82s9I2Md/vp3jlaBjyK8dvI1uqTTfP8xr/qU4KhdUQoRpeRgbQDoagG/R650YP4pFl/KoH3mLd1BUR2JbK/5qczDYknuFxokeYTqpdhYm7wlVwxTVhtBP4HEs=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1707949331; c=relaxed/simple;
-	bh=haWbbEkw2NY+b1BhQhricbLDp7rvk1DgxpMz4z97Gsc=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:To:Cc; b=AdGR+7ed+/dCH9tuFuDYau7Kk5BhUceS638UmV3LBNiAWHsPMungixTR0uspzPKmWLxcz6fEV9gjwFJyx+sP1VKfOtAaPw4F1XfBEf/KlJBld+pbue7EdvToY+RPnlhgD3pTdISt5ZkJaNAcU0kiTbbfjeGOTJatHJ/cgS1m6a8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=YFlHyR2U; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPS id D734AC433F1;
-	Wed, 14 Feb 2024 22:22:10 +0000 (UTC)
+	s=arc-20240116; t=1707950177; c=relaxed/simple;
+	bh=cuk5v3UVSkias2/T3msBj4KycCIN+ZE+xQFPHrHtltA=;
+	h=Date:Content-Type:MIME-Version:From:To:Cc:In-Reply-To:References:
+	 Message-Id:Subject; b=laX3wBdKSpYAeYtN312etp2ZzD2t9gniryvfgKpGwIbn0nmIqtRDdeBFDdaN0BEqCsUvoOW00ycWQo534/7awd+t0IqQS/lQitm3vRB61VQNAMffQVAA5QK4FI0CCKaAqg7g7cb8tGAT5oWYGMLkjEhl0K7vMrOk6hsFEKwFlr4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=nvVULrNW; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 45377C433C7;
+	Wed, 14 Feb 2024 22:36:16 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1707949330;
-	bh=haWbbEkw2NY+b1BhQhricbLDp7rvk1DgxpMz4z97Gsc=;
-	h=From:Date:Subject:To:Cc:Reply-To:From;
-	b=YFlHyR2UhwrTMFFPuRlUOHVUVrFfr8+BxUcZ8Y3yg4Vb+mEBKXE0EQAulm1hZnSRi
-	 gSm+mGbyjPIaqsGZ0NKuZBUmBerRv7hj7KoidbBqoxRnyHao1TRtyMtuIU6gfdEBT5
-	 hs7gvrSqIkJp+hTorV/SQ31so4aoyyjxFX47HHcTjKrOLqILbUyDA2Y5pnbtrhmhwz
-	 8giBYc7+jK2LikWvrfrkL4nV77C2suazVuB9UPMoT1rffFrsK68pR2NvFYJ3If3YZ6
-	 Wl6/zdrLH8JPDTpJ2WUBUVp9+E03UWTS9jPNhqd33MwaoN8ADiX2EBL5Beh4SRXaou
-	 kFDnMlzvvRuFg==
-Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id C18DDC48BEB;
-	Wed, 14 Feb 2024 22:22:10 +0000 (UTC)
-From: Zachary Goldstein via B4 Relay
- <devnull+zachary.goldstein.concurrent-rt.com@kernel.org>
-Date: Wed, 14 Feb 2024 17:21:54 -0500
-Subject: [PATCH] arm64: ls1046ardb: Replace XGMII with 10GBASE-R phy mode
+	s=k20201202; t=1707950176;
+	bh=cuk5v3UVSkias2/T3msBj4KycCIN+ZE+xQFPHrHtltA=;
+	h=Date:From:To:Cc:In-Reply-To:References:Subject:From;
+	b=nvVULrNWO6OHTXzeiA/aff8L7LAVeWUldrf30FQbige0JDpC3WwsYRZsvat9sOW91
+	 uSTBn96wSSdhMBzhx3t7P0dzky5G/CFngUBeKGeR0hkBpOUz9VTrr0eMoKOEehK7kb
+	 tRDvgTs4QNS0cAf88ILs2+OCO9dBew5MinzwhX/7Mqb+haqsQnXzo2sPuKn+pN3j+0
+	 C1C+4lRQa++p5t6B9fvyXra5R3uuOHBaMFBIOxohr1v8R3s4wD8bQdAFu1xBHkvddl
+	 61AzLJY4T4VTYbXirpTt2GbplAM3W7xkmmgL1ctN54jTy645vqc0Qrm/d3mLhmIP1C
+	 dmXKHlSwcCXgQ==
+Date: Wed, 14 Feb 2024 16:36:15 -0600
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id:
- <20240214-ls1046-dts-use-10gbase-r-v1-1-8c2d68547393@concurrent-rt.com>
-X-B4-Tracking: v=1; b=H4sIAAE9zWUC/x2MQQqDMBAAvyJ77sJuiIH0K+IhrZt0oVjJWhHEv
- xs8DXOYOcCkqhg8uwOqbGr6m5vwo4P3J81FUKfm4Mh5cuzxa0w+4LQa/k2QqbxSY0USipFzCn2
- O0PKlStb9Xg/jeV6yi7OvagAAAA==
-To: Shawn Guo <shawnguo@kernel.org>, Madalin Bucur <madalin.bucur@nxp.com>, 
- Li Yang <leoyang.li@nxp.com>, Rob Herring <robh+dt@kernel.org>, 
+From: Rob Herring <robh@kernel.org>
+To: Abel Vesa <abel.vesa@linaro.org>
+Cc: Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org, 
+ Daniel Vetter <daniel@ffwll.ch>, Sean Paul <sean@poorly.run>, 
+ Marijn Suijten <marijn.suijten@somainline.org>, 
+ linux-arm-msm@vger.kernel.org, Rob Clark <robdclark@gmail.com>, 
+ Maxime Ripard <mripard@kernel.org>, David Airlie <airlied@gmail.com>, 
  Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, 
- Conor Dooley <conor+dt@kernel.org>, Andrew Lunn <andrew@lunn.ch>, 
- Heiner Kallweit <hkallweit1@gmail.com>, 
- Russell King <linux@armlinux.org.uk>, 
- "David S. Miller" <davem@davemloft.net>, Eric Dumazet <edumazet@google.com>, 
- Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>
-Cc: linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org, 
- linux-kernel@vger.kernel.org, netdev@vger.kernel.org, 
- Zachary Goldstein <zachary.goldstein@concurrent-rt.com>
-X-Mailer: b4 0.12.3
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1707949330; l=1035;
- i=zachary.goldstein@concurrent-rt.com; s=20230809; h=from:subject:message-id;
- bh=BGRIPx+hnBEVvcJ92A45ST1Vx+ijHTH7otOABNKiaNE=;
- b=cnJjLYsULO9fgq8vCh9rD+0wuwb3Lt2hZFgIo9bcbpGw2f8YVDH07WSZL9LCktQlciB1AD9P7
- cU7g9eKBOCODnYsM5p+LfRiwjSZ2jE5iP2/N7RZAjkgqZx0LJiboJjh
-X-Developer-Key: i=zachary.goldstein@concurrent-rt.com; a=ed25519;
- pk=GLF18lQ96tRolyWMpDtJzDQ9bi7+1+rMHript5TFdSg=
-X-Endpoint-Received:
- by B4 Relay for zachary.goldstein@concurrent-rt.com/20230809 with auth_id=74
-X-Original-From: Zachary Goldstein <zachary.goldstein@concurrent-rt.com>
-Reply-To: <zachary.goldstein@concurrent-rt.com>
+ Neil Armstrong <neil.armstrong@linaro.org>, 
+ Thomas Zimmermann <tzimmermann@suse.de>, dri-devel@lists.freedesktop.org, 
+ Dmitry Baryshkov <dmitry.baryshkov@linaro.org>, 
+ Abhinav Kumar <quic_abhinavk@quicinc.com>, 
+ Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>, 
+ Conor Dooley <conor+dt@kernel.org>, 
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, 
+ freedreno@lists.freedesktop.org, linux-kernel@vger.kernel.org
+In-Reply-To: <20240214-x1e80100-display-v2-1-cf05ba887453@linaro.org>
+References: <20240214-x1e80100-display-v2-0-cf05ba887453@linaro.org>
+ <20240214-x1e80100-display-v2-1-cf05ba887453@linaro.org>
+Message-Id: <170795017346.2201348.120007615715215491.robh@kernel.org>
+Subject: Re: [PATCH v2 1/4] dt-bindings: display/msm: document MDSS on
+ X1E80100
 
-From: Zachary Goldstein <zachary.goldstein@concurrent-rt.com>
 
-The AQR107 family does not support XGMII, but USXGMII and
-10GBASE-R instead. Since ce64c1f77a9d ("net: phy: aquantia: add USXGMII
-support and warn if XGMII mode is set") the kernel warns about XGMII
-being used. The LS1046A SoC does not support USXGMII, so use 10GBASE-R
-instead.
+On Wed, 14 Feb 2024 23:24:30 +0200, Abel Vesa wrote:
+> Document the MDSS hardware found on the Qualcomm X1E80100 platform.
+> 
+> Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+> Signed-off-by: Abel Vesa <abel.vesa@linaro.org>
+> ---
+>  .../bindings/display/msm/qcom,x1e80100-mdss.yaml   | 252 +++++++++++++++++++++
+>  1 file changed, 252 insertions(+)
+> 
 
-Signed-off-by: Zachary Goldstein <zachary.goldstein@concurrent-rt.com>
----
- arch/arm64/boot/dts/freescale/fsl-ls1046a-rdb.dts | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
+on your patch (DT_CHECKER_FLAGS is new in v5.13):
 
-diff --git a/arch/arm64/boot/dts/freescale/fsl-ls1046a-rdb.dts b/arch/arm64/boot/dts/freescale/fsl-ls1046a-rdb.dts
-index 07f6cc6e354a..d2066f733dc5 100644
---- a/arch/arm64/boot/dts/freescale/fsl-ls1046a-rdb.dts
-+++ b/arch/arm64/boot/dts/freescale/fsl-ls1046a-rdb.dts
-@@ -149,7 +149,7 @@ ethernet@ea000 {
- 
- 	ethernet@f0000 { /* 10GEC1 */
- 		phy-handle = <&aqr106_phy>;
--		phy-connection-type = "xgmii";
-+		phy-connection-type = "10gbase-r";
- 	};
- 
- 	ethernet@f2000 { /* 10GEC2 */
+yamllint warnings/errors:
 
----
-2.40.1
-base-commit: 841c35169323cd833294798e58b9bf63fa4fa1de
+dtschema/dtc warnings/errors:
+Documentation/devicetree/bindings/display/msm/qcom,x1e80100-mdss.example.dts:24:18: fatal error: dt-bindings/clock/qcom,x1e80100-dispcc.h: No such file or directory
+   24 |         #include <dt-bindings/clock/qcom,x1e80100-dispcc.h>
+      |                  ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+compilation terminated.
+make[2]: *** [scripts/Makefile.lib:419: Documentation/devicetree/bindings/display/msm/qcom,x1e80100-mdss.example.dtb] Error 1
+make[2]: *** Waiting for unfinished jobs....
+make[1]: *** [/builds/robherring/dt-review-ci/linux/Makefile:1428: dt_binding_check] Error 2
+make: *** [Makefile:240: __sub-make] Error 2
+
+doc reference errors (make refcheckdocs):
+
+See https://patchwork.ozlabs.org/project/devicetree-bindings/patch/20240214-x1e80100-display-v2-1-cf05ba887453@linaro.org
+
+The base for the series is generally the latest rc1. A different dependency
+should be noted in *this* patch.
+
+If you already ran 'make dt_binding_check' and didn't see the above
+error(s), then make sure 'yamllint' is installed and dt-schema is up to
+date:
+
+pip3 install dtschema --upgrade
+
+Please check and re-submit after running the above command yourself. Note
+that DT_SCHEMA_FILES can be set to your schema file to speed up checking
+your schema. However, it must be unset to test all examples with your schema.
 
 
