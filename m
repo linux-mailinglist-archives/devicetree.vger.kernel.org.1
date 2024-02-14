@@ -1,58 +1,76 @@
-Return-Path: <devicetree+bounces-41685-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-41686-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5D6AB854B5D
-	for <lists+devicetree@lfdr.de>; Wed, 14 Feb 2024 15:28:32 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id A808C854B65
+	for <lists+devicetree@lfdr.de>; Wed, 14 Feb 2024 15:29:19 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 158ED285769
-	for <lists+devicetree@lfdr.de>; Wed, 14 Feb 2024 14:28:31 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 63BF5285F0A
+	for <lists+devicetree@lfdr.de>; Wed, 14 Feb 2024 14:29:18 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A9E7755E40;
-	Wed, 14 Feb 2024 14:28:27 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8361456B98;
+	Wed, 14 Feb 2024 14:29:07 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b="dmN5GpzP"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="hVXjPJU0"
 X-Original-To: devicetree@vger.kernel.org
-Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [213.167.242.64])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1CFC71A58B;
-	Wed, 14 Feb 2024 14:28:25 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=213.167.242.64
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4EE5454BC9;
+	Wed, 14 Feb 2024 14:29:07 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1707920907; cv=none; b=nC8xQFnKPw0JSFYwO7c40tD0BV5fIJ0vbQxYQsz+JF8jsRSU+kE/BztqtQon+YpSyPi5ErjpRbHIoGvOFXFjJ+f/n3wksrUTm/2GiAMfwSNdlRKsDGPf1e/uhyNBNbz53y1NWCJ/OX9o/GneWq6rJVlXe4/O0mPRsUZlZFMG4g4=
+	t=1707920947; cv=none; b=YlaVR1nH4Qm95VwD6+FKyRHA1w+XgDOpdYgL7MpnDeSaHmdIHw+baT+Svfv/qlyBQFJB/rSLLawkGeOK9fA5XK98a91+Tvdr+RrCkT5IhJNfFd2Cqrkfx/tGkqKeh1Y1qjXutuLPpHuwKqY04Xro8XiTV6dnH/oR2R38HxmKkVM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1707920907; c=relaxed/simple;
-	bh=Fgpr7G+xiPL9+Bqa70xzdEPo/a3bsJ7epPYvlzYyGi0=;
+	s=arc-20240116; t=1707920947; c=relaxed/simple;
+	bh=4PZnpdOC7nL7iSy6IqRjbXbXnr5kNh4hCRe0YlxfpbY=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=WTP4uICtqbi8xCNc8leUk8n+QZu8Pta9TUUneSku3YLOt0uwlJA38EBMBetk3FYumEPuZtPEOmhP+liK8+LYhGj55CPUnFgauHptZgKdhYN2dmgZ4HdyJ2ooezimPxHfHfueMz0IafgI5lmy6pw3INK2nN7is1utKQHE9xifkqM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ideasonboard.com; spf=pass smtp.mailfrom=ideasonboard.com; dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b=dmN5GpzP; arc=none smtp.client-ip=213.167.242.64
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ideasonboard.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ideasonboard.com
-Received: from pendragon.ideasonboard.com (85-76-48-253-nat.elisa-mobile.fi [85.76.48.253])
-	by perceval.ideasonboard.com (Postfix) with ESMTPSA id C26D1B3;
-	Wed, 14 Feb 2024 15:28:20 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
-	s=mail; t=1707920901;
-	bh=Fgpr7G+xiPL9+Bqa70xzdEPo/a3bsJ7epPYvlzYyGi0=;
+	 Content-Type:Content-Disposition:In-Reply-To; b=dU92+VZOvKtbCHFw0r5NGCotM3lDH86kNrB/hosjUQAE6DiRwMbQ6i2vsLoErlHEadD335JhCE7FECWA7+hVRzOyK/4xv0PvlwtoIDpNtqU+Wec5op+P8Nc6ZYyj0/6TW/E0gBXEwXdExjBKboK8iAmLt1dl0Ih9bw2Y91RVaUE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=hVXjPJU0; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id E7AA6C433F1;
+	Wed, 14 Feb 2024 14:29:00 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1707920946;
+	bh=4PZnpdOC7nL7iSy6IqRjbXbXnr5kNh4hCRe0YlxfpbY=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=dmN5GpzPyYF8c/MW379dyWK7VZd/lBHPMga6p8Yy2Dno9bxz59ayHeT2lzbb2pMNd
-	 oI/q7fQ/dQr5TcEy/kyULcmdUWkn0SjdMbm8eZvawZa9nIBdVLa2y768gbic9ZD/3m
-	 3RFD3eyB4qqn6EgBymwz3Pru4rqN0kzRMy84BG+0=
-Date: Wed, 14 Feb 2024 16:28:25 +0200
-From: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-To: Daniel Scally <dan.scally@ideasonboard.com>
-Cc: linux-media@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org, jacopo.mondi@ideasonboard.com,
-	nayden.kanchev@arm.com, robh+dt@kernel.org, mchehab@kernel.org,
-	krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
-	jerome.forissier@linaro.org, kieran.bingham@ideasonboard.com
-Subject: Re: [PATCH v2 2/5] dt-bindings: media: Add bindings for ARM mali-c55
-Message-ID: <20240214142825.GA7873@pendragon.ideasonboard.com>
-References: <20240214141906.245685-1-dan.scally@ideasonboard.com>
- <20240214141906.245685-3-dan.scally@ideasonboard.com>
+	b=hVXjPJU0NBcOWMTf39vw8+II4IjZ6ZS1xuxWZCaEPpMRtVrcpjvdSZ5pbQbrzfyl5
+	 5p+9MWOmLWaPsr7LOgqJVuXpNEGu9HP5o6oHpfYm48mw/cwuZA2rOiL0TSqwgjNwtz
+	 Te7GoztDlKGI1AjilnKM5j4xJ++Ihif+bCcL80YZs2PpixddZDzKfANZjpMNrMTAKA
+	 m1PIhUC8uWSafZPkoiTw++ALnHkJPvW96yiRupPJsd6ECJAQnxwBqtTMY8b5ucoUh3
+	 icNpqgGguQ5ARz4ENnmS+uuUsuFTn88qiMgy7Lk72p/ca5ZczM4VSsbR95m3vy8ro5
+	 PVL/t1eKkJnZQ==
+Date: Wed, 14 Feb 2024 19:58:56 +0530
+From: Manivannan Sadhasivam <mani@kernel.org>
+To: Bjorn Andersson <andersson@kernel.org>
+Cc: Manivannan Sadhasivam <mani@kernel.org>,
+	Bartosz Golaszewski <brgl@bgdev.pl>,
+	Konrad Dybcio <konrad.dybcio@linaro.org>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Marcel Holtmann <marcel@holtmann.org>,
+	Luiz Augusto von Dentz <luiz.dentz@gmail.com>,
+	Bjorn Helgaas <bhelgaas@google.com>,
+	Neil Armstrong <neil.armstrong@linaro.org>,
+	Alex Elder <elder@linaro.org>,
+	Srini Kandagatla <srinivas.kandagatla@linaro.org>,
+	Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+	Arnd Bergmann <arnd@arndb.de>, Abel Vesa <abel.vesa@linaro.org>,
+	Lukas Wunner <lukas@wunner.de>, linux-arm-msm@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	linux-bluetooth@vger.kernel.org, linux-pci@vger.kernel.org,
+	Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
+Subject: Re: Re: Re: [RFC 8/9] PCI/pwrctl: add PCI power control core code
+Message-ID: <20240214142856.GG4618@thinkpad>
+References: <20240201155532.49707-1-brgl@bgdev.pl>
+ <20240201155532.49707-9-brgl@bgdev.pl>
+ <7tbhdkqpl4iuaxmc73pje2nbbkarxxpgmabc7j4q26d2rhzrv5@ltu6niel5eb4>
+ <CAMRc=Md1oTrVMjZRH+Ux3JJKYeficKMYh+8V7ZA=Xz_X1hNd1g@mail.gmail.com>
+ <2q5vwm7tgmpgbrm4dxfhypbs5pdggprxouvzfcherqeevpjhrj@6wtkv4za2gg5>
+ <20240208113201.GA17587@thinkpad>
+ <ycorratd3jxzg5nijbpgk6hrlgq5rl66cttfg7wv4oyyxivfm4@kfbhrlytiafe>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -61,122 +79,74 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <20240214141906.245685-3-dan.scally@ideasonboard.com>
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <ycorratd3jxzg5nijbpgk6hrlgq5rl66cttfg7wv4oyyxivfm4@kfbhrlytiafe>
 
-Hi Dan,
-
-Thank you for the patch.
-
-On Wed, Feb 14, 2024 at 02:19:03PM +0000, Daniel Scally wrote:
-> Add the yaml binding for ARM's Mali-C55 Image Signal Processor.
+On Fri, Feb 09, 2024 at 05:43:56PM -0600, Bjorn Andersson wrote:
+> On Thu, Feb 08, 2024 at 05:02:01PM +0530, Manivannan Sadhasivam wrote:
+> > On Fri, Feb 02, 2024 at 10:52:11AM -0600, Bjorn Andersson wrote:
+> > > On Fri, Feb 02, 2024 at 10:11:42AM +0100, Bartosz Golaszewski wrote:
+> > > > On Fri, Feb 2, 2024 at 4:53 AM Bjorn Andersson <andersson@kernel.org> wrote:
+> > > [..]
+> > > > > > +             break;
+> > > > > > +     }
+> > > > > > +
+> > > > > > +     return NOTIFY_DONE;
+> > > > > > +}
+> > > > > > +
+> > > > > > +int pci_pwrctl_device_enable(struct pci_pwrctl *pwrctl)
+> > > > >
+> > > > > This function doesn't really "enable the device", looking at the example
+> > > > > driver it's rather "device_enabled" than "device_enable"...
+> > > > >
+> > > > 
+> > > > I was also thinking about pci_pwrctl_device_ready() or
+> > > > pci_pwrctl_device_prepared().
+> > > 
+> > > I like both of these.
+> > > 
+> > > I guess the bigger question is how the flow would look like in the event
+> > > that we need to power-cycle the attached PCIe device, e.g. because
+> > > firmware has gotten into a really bad state.
+> > > 
+> > > Will we need an operation that removes the device first, and then cut
+> > > the power, or do we cut the power and then call unprepared()?
+> > > 
+> > 
+> > Currently, we don't power cycle while resetting the devices. Most of the drivers
+> > just do a software reset using some register writes. Part of the reason for
+> > that is, the drivers themselves don't control the power to the devices and there
+> > would be no way to let the parent know about the firmware crash.
+> > 
 > 
-> Acked-by: Nayden Kanchev <nayden.kanchev@arm.com>
-> Signed-off-by: Daniel Scally <dan.scally@ideasonboard.com>
-> ---
-> Changes in v2:
+> I don't know what the appropriate design for this is, but we do have a
+> need for being able to recover from this state by the means of
+> power-cycling the device.
 > 
-> 	- Added clocks information
-> 	- Fixed the warnings raised by Rob
+> If it's not possible to let the device do it (in any fashion), then
+> perhaps a user-space-assisted model is needed?
 > 
->  .../bindings/media/arm,mali-c55.yaml          | 77 +++++++++++++++++++
->  1 file changed, 77 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/media/arm,mali-c55.yaml
+> Turning on power is an important first step, but please do consider the
+> full scope of the known problem space.
 > 
-> diff --git a/Documentation/devicetree/bindings/media/arm,mali-c55.yaml b/Documentation/devicetree/bindings/media/arm,mali-c55.yaml
-> new file mode 100644
-> index 000000000000..30038cfec3a4
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/media/arm,mali-c55.yaml
-> @@ -0,0 +1,77 @@
-> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/media/arm,mali-c55.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: ARM Mali-C55 Image Signal Processor
-> +
-> +maintainers:
-> +  - Daniel Scally <dan.scally@ideasonboard.com>
-> +  - Jacopo Mondi <jacopo.mondi@ideasonboard.com>
-> +
-> +properties:
-> +  compatible:
-> +    const: arm,mali-c55
-> +
-> +  reg:
-> +    maxItems: 1
-> +
-> +  interrupts:
-> +    maxItems: 1
-> +
-> +  clocks:
-> +    items:
-> +      - description: ISP video clock
 
-I wonder if we need this clock. Granted, it's an input clock to the ISP,
-but it's part of the input video bus. I don't expect anyone would ever
-need to control it manually, it should be provided by the video source
-automatically.
+Agree. I'm not ignoring this issue, but this is a separate topic IMO (or an
+incremental change). Because, power cycling the device in the event of a
+firmware crash or even upon receiving AER Fatal errors is valid for platforms
+not making use of this driver and an existing issue.
 
-> +      - description: ISP AXI clock
-> +      - description: ISP AHB-lite clock
+For sure we can accomodate that functionality in this series itself, but that's
+going to drag this series to many releases (you already know how long it took
+for us to get to the current state). Instead, I'd recommend to merge it in its
+current form and have Bartosz or someone work on incremental features such as:
 
-These two other clocks look good to me.
+1. Runtime/System PM
+2. Resetting the device in the event of fw crash etc...
 
-> +
-> +  clock-names:
-> +    items:
-> +      - const: vclk
-> +      - const: aclk
-> +      - const: hclk
-> +
-> +  ports:
-> +    $ref: /schemas/graph.yaml#/properties/ports
-> +
-> +    properties:
-> +      port@0:
-> +        $ref: /schemas/graph.yaml#/properties/port
-> +
-> +        properties:
-> +          endpoint:
-> +            $ref: /schemas/graph.yaml#/properties/endpoint
-> +
-> +required:
-> +  - compatible
-> +  - reg
-> +  - interrupts
-> +  - clocks
-> +  - clock-names
-> +  - ports
-> +
-> +additionalProperties: false
-> +
-> +examples:
-> +  - |
-> +    mali_c55: isp@400000 {
-> +      compatible = "arm,mali-c55";
-> +      reg = <0x400000 0x200000>;
-> +      clocks = <&clk 0>, <&clk 1>, <&clk 2>;
-> +      clock-names = "vclk", "aclk", "hclk";
-> +      interrupts = <0>;
-> +
-> +      ports {
-> +        #address-cells = <1>;
-> +        #size-cells = <0>;
-> +
-> +        port@0 {
-> +          reg = <0>;
-> +          isp_in: endpoint {
-> +              remote-endpoint = <&mipi_out>;
-> +          };
-> +        };
-> +      };
-> +    };
-> +...
+Wdyt?
+
+- Mani
 
 -- 
-Regards,
-
-Laurent Pinchart
+மணிவண்ணன் சதாசிவம்
 
