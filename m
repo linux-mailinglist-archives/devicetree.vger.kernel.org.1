@@ -1,75 +1,75 @@
-Return-Path: <devicetree+bounces-41641-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-41642-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0AFD28548D0
-	for <lists+devicetree@lfdr.de>; Wed, 14 Feb 2024 12:58:03 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 951148548D9
+	for <lists+devicetree@lfdr.de>; Wed, 14 Feb 2024 13:01:32 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 89FDF1F22570
-	for <lists+devicetree@lfdr.de>; Wed, 14 Feb 2024 11:58:02 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id BA1231C23474
+	for <lists+devicetree@lfdr.de>; Wed, 14 Feb 2024 12:01:31 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 491571B802;
-	Wed, 14 Feb 2024 11:57:41 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 820791B593;
+	Wed, 14 Feb 2024 12:01:26 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="Q4lHv33l"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="DZHvnTAt"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ej1-f52.google.com (mail-ej1-f52.google.com [209.85.218.52])
+Received: from mail-lf1-f44.google.com (mail-lf1-f44.google.com [209.85.167.44])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7CB911BC31
-	for <devicetree@vger.kernel.org>; Wed, 14 Feb 2024 11:57:39 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.52
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D9B9A1AADE
+	for <devicetree@vger.kernel.org>; Wed, 14 Feb 2024 12:01:24 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.44
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1707911861; cv=none; b=CHgFDpv1H1bFNNNKKvzl86mOQc4f5iXCCmtn9NeU/Hs59ZmBFQyIdO1uS1ii0XTUbYvNQiZ935AFmS2UzxIcEyGpOxTq09zr7g8igNDXQk5uPSwwQvDDZ5+xMyufPACJNTfsvVNHtWPQGG5+jRXEkhEh7CLbz6fZmXloGfgCCW0=
+	t=1707912086; cv=none; b=W4lrc4LbePJFbszCJY+OqY0TyqZrmlGwPHGaBDpZa1siBoYWbdwyNUKOgsarhQdAP6G2HDCGfv7FcnunOBvEx63NGwJF00xQ9fZQTas6c+TmsZHMZ8fGEiW9Y1NnT1zvwp+3ZiVwM2WRnBa2Da4hAS5mOYYWp9Fm9tSSwc3uNmQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1707911861; c=relaxed/simple;
-	bh=h4KbTL61QB+JiFC9XG6gAWCagP6OOPnl1hSrrrkSn/o=;
+	s=arc-20240116; t=1707912086; c=relaxed/simple;
+	bh=ze2xk/yum4xXS/FawI02oCYNDp+kaute6dF+KU6LR0o=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=oBwWkyb87vLddnnLW2hQ4I2D1SBg5u6oyO/+bmvDEYlag/PAeobsWVhuHaW9eBi8yo7zrb1AvVceQKT+g3Q8vdb3XXelvj1FOzLSP6BCVMNz3XdaRnuhq+LjhTv5gbitCO61vVyYX1NPt/b4QM+WgRmgHgo4XKB3EIenjreQ8tE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=Q4lHv33l; arc=none smtp.client-ip=209.85.218.52
+	 In-Reply-To:Content-Type; b=klv+GmZFx1c3//u4hjKx4jNSOQIaMPKBHg9QSXp9zwDQrLWkYDqYA1t0ZZNlj+lGSi50WY1ecP7xESsl+MzshapMF7jcip3ML4Nf2PkK4Vxw2xjJ8FkyihRAu8tjhIK49xYwiwU1x5DsoJ2Fw1VyAeWooknJ8i//YBfRLJBlyy4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=DZHvnTAt; arc=none smtp.client-ip=209.85.167.44
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-ej1-f52.google.com with SMTP id a640c23a62f3a-a3122b70439so691237166b.3
-        for <devicetree@vger.kernel.org>; Wed, 14 Feb 2024 03:57:39 -0800 (PST)
+Received: by mail-lf1-f44.google.com with SMTP id 2adb3069b0e04-5116ec49365so6307535e87.3
+        for <devicetree@vger.kernel.org>; Wed, 14 Feb 2024 04:01:24 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1707911857; x=1708516657; darn=vger.kernel.org;
+        d=linaro.org; s=google; t=1707912083; x=1708516883; darn=vger.kernel.org;
         h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
          :to:content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=67q8O6A3dDM88ECGRBJ5lZvEBNDnrZm5U5GWLi3eh9E=;
-        b=Q4lHv33l1tLKxmPfytNdbSQNTn6zoB13D9Dr8ZoLvE642G3tuB7H+g9Tm2EzGuoFJI
-         A0ly1t98c+aiuyFz4Rfa8HdU9JT5GaYuDUvMj8YFK7ZlssUk28zquvFd2hjWg4wqILGn
-         7W4PIZsOp6n6xL3qnz1o4fE5MGYh/UDuxN02beZ3xVPeG5cqzpbnOqCr9ivH9nMS6bs8
-         OnY71MEH8ztwn33haBb6XxBMM2puhgTnZnS1O81wLHngj3dTnbYOTxLkwDzWxP1hRjzm
-         BM5dYGB2l2GB582mQxNaAcVhBmWeE99LK0OaCuBlzU6UNR4nGLhsOa+XIdvRn9F6i3Xa
-         eC7Q==
+        bh=ze2xk/yum4xXS/FawI02oCYNDp+kaute6dF+KU6LR0o=;
+        b=DZHvnTAt3sqcHRkBX6evyJTd+373zUM1F5WyZ0n3OEHHvj9ldvSDkuoKQ3wjLYtLTP
+         TbRfxZTHSsYY0IDSBL50V28eJIZ9XhyntjJze41lLy67GyqyjncX5b8eiTFH6jnIsGPR
+         DaITyTKJkaFmf4SlMroBaMYKHS7Au0vTIJkpnjjmDKq8UaR9NYgtvfGhR5t+luO80XWQ
+         poqHtpCwKv/ZMcGkf3+7sC7DmvhdB00HNfrZs6n8f28EbDFAz9tPe67t622Y4Ne6KW52
+         xEfRvzFG9LNpPpiPs2Fwf+Knzn/6XHq43SeDedHflJGBezpZ/FBEGKlKDtT11h3b7drm
+         /X7Q==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1707911857; x=1708516657;
+        d=1e100.net; s=20230601; t=1707912083; x=1708516883;
         h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
          :to:content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=67q8O6A3dDM88ECGRBJ5lZvEBNDnrZm5U5GWLi3eh9E=;
-        b=i+oBcxd0f70r5Wq4BDi0AJHucvxb5LHJ1qK1z3QC7uLmwwQEiOU1X5GnWwcfr35Ako
-         67JIHUfQVZabsrvyrlacbXyNWPgZP8SxLEb59DKDXvIjgh7aGqwz//tNqbHby5MHUNaY
-         eHHOTopNRKH6EO9EzajnKiZxqK+5lVoTjLiWVEV+5I4NwTasmmROVKne9bHUPyxgwt9H
-         3wxZ0UFoCn/DXLuW2s1/B7ZIoa2XH1P0TW252ZoBwAxo4b2aJvYy8gXmH7xR9b1GOIgV
-         qmGO9Lw+R1gNjn5WHdQNVOFosaKksLpwLdD/OUzRYGSvXOS9/XznQzxxTaoM3tqtFjmJ
-         fmGg==
-X-Forwarded-Encrypted: i=1; AJvYcCUrW1cjYd2xAr7VGnXw6t/S2OPA30wRfzWmJp1zhsbccpdEAdbeC5rGrpm+0XPRXroZHloPHHF0Y0F0d8f6/x7kR7ySIXtz09rqAA==
-X-Gm-Message-State: AOJu0Yz+RcCRdbUH7Uok7mwh7HSksUN1DoCs2PwSSZWg2c9IGCqHBHri
-	saLjt7h7FosHd6bjoDqx5zHpw2Oqbz5uRKcxP9rSmPzsckADpfzNpkkY1vyv4oI=
-X-Google-Smtp-Source: AGHT+IGE1Vuu7kglDmlBOi46q1a0g5RNdAQeeirYMFNz+tvDmx6rwXqVbVxN462cZFPcPsNwINX0EQ==
-X-Received: by 2002:a17:906:5291:b0:a3d:5406:a437 with SMTP id c17-20020a170906529100b00a3d5406a437mr889248ejm.28.1707911857651;
-        Wed, 14 Feb 2024 03:57:37 -0800 (PST)
-X-Forwarded-Encrypted: i=1; AJvYcCVN8h0YmVC/rv0qAQYdSl4KNCIy+El5+WYB8lB5xiPBKPn3aLgLPJMrvXLIuDatahpbtz316xK0RKE9baEAzgEQTBcccwDm4+5V9V7NwJ+cf2XRWuoHnbqARh2FQD9Ml/kmm71rpTmU7S1gqN6nmePf/ZRhHBbECwIXTpdrVKa2p0fLJQWblUZmU7+IO7NwwjDGdZm46V62UaB6/TLbMJaKjotg7MttGq5ewADhqpxDRPYYWLehxi+YnSCDEjfE3pNO4fqWEx8WrYF+6E27LbnpsQRFibYUJxyGR/okQWx/3HCG08GhcQ8iv6IwVIus5yAT66vri30cro5zA86/xHOf8E7z8deH6lF2wupoMm6taXHyQsG9Tm6YB+qQHeVS1XDeokxjnEBRr6NtRx4hior7u3CvL3U+lrLhoGToIpaX2ORcey8phOcnHCjlEnVlbCdg6pdaWdv/U91qZlw6
+        bh=ze2xk/yum4xXS/FawI02oCYNDp+kaute6dF+KU6LR0o=;
+        b=iLidrTmnYV7UTsXvARmCbRXT4hXdCTgMNrXdYIY+5hUq0W2UM754Q65+focIx1pQLw
+         DRcucKC6iR/Sj2mOHXcCRXUDEMQI41a5wo2PDL9qJOjoduWgD2ZKX11U2ZZEaH2lRogY
+         k20m51LqI6gun+8tD9LwVoBW+8BBZ5yk7oluop75RGxX/Kx6SlxRQIjml8FcL3K/7ups
+         MfSrk3qcbABy8Ra/kfReYBJufYNjN3l876vv4WGSrJWGQ2qEHDE2qoFLCcpmyyzIvOPk
+         ArvP4BdemgutweIfFsQ4ZHzNpIhaP3PHBMWmT7hQdf4wmPVIDjJXUSB/x29mELTW5gfM
+         UxwA==
+X-Forwarded-Encrypted: i=1; AJvYcCWrF8PsBs3ayz2j+9Ggz5hfNEv/lQta62IXx9bcrw9Oh9iraYhb02GtgSfWoI+LE1IZUpj/vMpOGFvqf6Pq4XCMfTAOeQIEIyh35Q==
+X-Gm-Message-State: AOJu0Yz/2LwUxmR9ovQ+8QfI5LHapckRKOyGdvwl1tzeXxkEdhn8FaW8
+	Cx2VLsa41Dj5aPmCtm8cFDxG5lJilHKGfAbLQJPnr1XDuq9KzjgcWKkg2uui2v4=
+X-Google-Smtp-Source: AGHT+IH06lyRqlycbULytAA/0ErCkieBhMtRKUOos3/3HuTlCUtx9xqU2S7suOsuyaIfLLG6rRNrKw==
+X-Received: by 2002:ac2:58e9:0:b0:511:4ab0:8ddc with SMTP id v9-20020ac258e9000000b005114ab08ddcmr1615743lfo.57.1707912082942;
+        Wed, 14 Feb 2024 04:01:22 -0800 (PST)
+X-Forwarded-Encrypted: i=1; AJvYcCVLXuFjwB3lPbyK9oncZnBCuHgU59qSdRT8Gxspoq8pYpIeRVgel2rjQ50UA6Z/62fYIsatulLI3xUEyAq86mtIaGSDfkMxdr1TsFAvWe25SuwoGwtFbX4TcQFy3OWGNhUImUozpX/K5mgklAZWLGeO2ebTnt6xTbs1ZpHuDro+qdcNN9ItjTzvEFWZ1sQ8ayd/p/YUgDvOhd0IQ8jo4CJ0CqtUB5NhkI6ptuHwiB7uNUaqmEGKvD8+FGAM3ieD57LhvTi3j3AlX3eUD10tVhT+lUXhPvGdrPf1sP55saFlK56DM8h2ap1UPKEE60itEq7AS+1Ibpx7njhlhqR+NFs8xuIpMPa4ZD6pGSf3vzLC54+tA8kLE4B8lHFjv0tmQeM3O7u711rB0EXCL2A5C+nvoU6M5Xmzd+aaVulWmj/m3Ah7oxKQrTmRUGNamIm0xHKGhyeuSaIMLxD3Ox+7
 Received: from [192.168.0.22] ([78.10.207.130])
-        by smtp.gmail.com with ESMTPSA id xa4-20020a170907b9c400b00a3d669a2055sm88651ejc.88.2024.02.14.03.57.36
+        by smtp.gmail.com with ESMTPSA id d6-20020aa7d5c6000000b00563819d224esm380051eds.21.2024.02.14.04.01.21
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 14 Feb 2024 03:57:37 -0800 (PST)
-Message-ID: <d1d95a3a-8164-44c3-9156-5233d3e787ba@linaro.org>
-Date: Wed, 14 Feb 2024 12:57:36 +0100
+        Wed, 14 Feb 2024 04:01:22 -0800 (PST)
+Message-ID: <e396cf20-8598-4437-b635-09a4a737a772@linaro.org>
+Date: Wed, 14 Feb 2024 13:01:20 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -77,7 +77,8 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 01/10] dt-bindings: PCI: qcom: Allow 'required-opps'
+Subject: Re: [PATCH 02/10] dt-bindings: PCI: qcom: Do not require
+ 'msi-map-mask'
 Content-Language: en-US
 To: Johan Hovold <johan+linaro@kernel.org>,
  Bjorn Andersson <andersson@kernel.org>, Bjorn Helgaas <bhelgaas@google.com>
@@ -91,7 +92,7 @@ Cc: Konrad Dybcio <konrad.dybcio@linaro.org>,
  linux-arm-msm@vger.kernel.org, linux-pci@vger.kernel.org,
  devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
 References: <20240212165043.26961-1-johan+linaro@kernel.org>
- <20240212165043.26961-2-johan+linaro@kernel.org>
+ <20240212165043.26961-3-johan+linaro@kernel.org>
 From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  xsFNBFVDQq4BEAC6KeLOfFsAvFMBsrCrJ2bCalhPv5+KQF2PS2+iwZI8BpRZoV+Bd5kWvN79
@@ -137,18 +138,18 @@ Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  KQ06ztUMRrj8eVtpImjsWCd0bDWRaaR4vqhCHvAG9iWXZu4qh3ipie2Y0oSJygcZT7H3UZxq
  fyYKiqEmRuqsvv6dcbblD8ZLkz1EVZL6djImH5zc5x8qpVxlA0A0i23v5QvN00m6G9NFF0Le
  D2GYIS41Kv4Isx2dEFh+/Q==
-In-Reply-To: <20240212165043.26961-2-johan+linaro@kernel.org>
+In-Reply-To: <20240212165043.26961-3-johan+linaro@kernel.org>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
 On 12/02/2024 17:50, Johan Hovold wrote:
-> Some Qualcomm SoCs require a minimum performance level for the power
-> domain so add 'required-opps' to the binding.
-> 
-> Signed-off-by: Johan Hovold <johan+linaro@kernel.org>
+> Whether the 'msi-map-mask' property is needed or not depends on how the
+> MSI interrupts are mapped and it should therefore not be described as
+> required.
 
-
-Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+I could imagine that on all devices the interrupts are mapped in a way
+you need to provide msi-map-mask. IOW, can there be a Qualcomm platform
+without msi-map-mask?
 
 Best regards,
 Krzysztof
