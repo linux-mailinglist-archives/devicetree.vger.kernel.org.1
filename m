@@ -1,89 +1,161 @@
-Return-Path: <devicetree+bounces-41797-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-41798-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3BFE385516A
-	for <lists+devicetree@lfdr.de>; Wed, 14 Feb 2024 19:04:45 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 875A58551A1
+	for <lists+devicetree@lfdr.de>; Wed, 14 Feb 2024 19:10:04 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id E4B901F21755
-	for <lists+devicetree@lfdr.de>; Wed, 14 Feb 2024 18:04:44 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 5047DB2E7D4
+	for <lists+devicetree@lfdr.de>; Wed, 14 Feb 2024 18:08:34 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 41E1D12F5B6;
-	Wed, 14 Feb 2024 17:58:16 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="ES9QI0tv"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A2C9112BF0A;
+	Wed, 14 Feb 2024 18:02:46 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-pf1-f178.google.com (mail-pf1-f178.google.com [209.85.210.178])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1799D12FF9F;
-	Wed, 14 Feb 2024 17:58:15 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DD4E212BF0B
+	for <devicetree@vger.kernel.org>; Wed, 14 Feb 2024 18:02:44 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.178
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1707933496; cv=none; b=o0duMjPkV7i8Mad9yrUePLCzk3kcLA8IQwYEUyzdO3Q/Pulrmd5Khd2tl7Trb4cATwfhqscSl1X6VGXxu5fCR4eteFGbx0VG+mqN6tihXd3XF6uniwRyEqIeT5ObLpIxQ+N+k60FQVTmyo9LuHMNqK01pl+VFI7I1G4LW2O8d4Y=
+	t=1707933766; cv=none; b=AmmhvBbssCy0JPIYFDaHpEsR/tY7IKzvBtBIpGIs3JdBzlJuVxaJFMBtP73cbenwe3K8Y92mPMxeNHFA5v1aAwhyYH++Kb3+v6XXZ6kMNGMC2k/YAHm8qtUX4xL9KLyIYXUSHmtgpB96rXVd8ZsGqKcTRf8vD/Z5RqAbUBi3wzM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1707933496; c=relaxed/simple;
-	bh=Ya63E65YcbVHL4uPFHoX6f2hfQp8l81yI8tgBeiUBTQ=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=rRQ8DZL9WOuuTtm9IEEYqe7R6w4d/7TKd+gJShZ5d6Xs9IT/CnxekjaqhkQVst82hbWeFfrYXKocAOxhv7Qi9uh3m+/iuy4BAVo1MeZ6ZRcp0DoILDnnvLvnfTiAG06BYXttQWnzo+q5edgYAMuOhYQrC/uZu4Hu7vXqYTTKaVk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=ES9QI0tv; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id C1D31C43399;
-	Wed, 14 Feb 2024 17:58:14 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1707933495;
-	bh=Ya63E65YcbVHL4uPFHoX6f2hfQp8l81yI8tgBeiUBTQ=;
-	h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-	b=ES9QI0tvnxYax7I47IMhhicFTT2aMY48oIwFFHJ/Wijy4Hu3oYkVQnNoOqz3Xyvw/
-	 lGX902/OBlx+wdojjI+nGnafPoODeJ4qjH9op4UFeGvIQR3nJQvUU+kCh3m2c5piXz
-	 otLpUOiMEwdjItne7De007uN0ux4pTycKuSbsAPXcAHu9e7NXw59hqPHr6Qk7nfxJy
-	 P+A1Gvcdba4N5ZrvNFjoQdQ4p6LugU/PydSs52AEKmLOXmxs5KqJlt3XbQqVgfGbSl
-	 xItZI0kdF5G7oDUeMTuCyrHw4KQVvXvMZBmHIP1/pvcmjMcyM5EfXS1SXPP0lU1bnp
-	 Yr52C31wK7jUQ==
-From: Bjorn Andersson <andersson@kernel.org>
-To: Andy Gross <agross@kernel.org>,
-	Konrad Dybcio <konrad.dybcio@linaro.org>,
-	Rob Herring <robh+dt@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Yassine Oudjana <y.oudjana@protonmail.com>
-Cc: Yassine Oudjana <yassine.oudjana@gmail.com>,
-	linux-arm-msm@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org
-Subject: Re: [PATCH] arm64: dts: qcom: msm8996: Define UFS UniPro clock limits
-Date: Wed, 14 Feb 2024 11:57:43 -0600
-Message-ID: <170793345802.27225.14414738389431861403.b4-ty@kernel.org>
-X-Mailer: git-send-email 2.43.0
-In-Reply-To: <20231218133917.78770-1-y.oudjana@protonmail.com>
-References: <20231218133917.78770-1-y.oudjana@protonmail.com>
+	s=arc-20240116; t=1707933766; c=relaxed/simple;
+	bh=Dn8Yf9ohMCVYwaXn9xt9wqXH07NnHBYPagCsBQQza38=;
+	h=From:To:Cc:Subject:In-Reply-To:References:Date:Message-ID:
+	 MIME-Version:Content-Type; b=HVF3BxcuWWXFeFwhhOzg+kxj0dVWHor0FO/S+GqUGzcpWf8dT10nbMMuxEnshYC39w8ORR9jJNi/Lml+lpwUXQoU9LOrnYI69H+aC522qFNTtnClrEPvJQjfQQY/FmyIseZiifUKQzVCmWoqd4GEUwsNNskNWxTAeM5yfO/kl9U=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=fail (p=none dis=none) header.from=kernel.org; spf=pass smtp.mailfrom=baylibre.com; arc=none smtp.client-ip=209.85.210.178
+Authentication-Results: smtp.subspace.kernel.org; dmarc=fail (p=none dis=none) header.from=kernel.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=baylibre.com
+Received: by mail-pf1-f178.google.com with SMTP id d2e1a72fcca58-6e09493eb8eso891011b3a.1
+        for <devicetree@vger.kernel.org>; Wed, 14 Feb 2024 10:02:44 -0800 (PST)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1707933764; x=1708538564;
+        h=content-transfer-encoding:mime-version:message-id:date:references
+         :in-reply-to:subject:cc:to:from:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=PMJfvLePNW+r5ZqNm2Ch6Q0binx03GwTJpQuwxk2R24=;
+        b=Xsu4icpaachHwXVt8GAnbw7M3vZpXxE2kkF4oUP4CE5CenfzJ4uE78oLOLS9LeYYoR
+         q88+y0qrU+6YS4t0Tx1GiDj838JMsSwil/AByp1Ojs7Ve9VZb/Xuj2cP0/prqNb7FHNM
+         j/Aa5/msjz8niJPdt3krMO1v37JPc0o8lz/umrNOhvzDO5MurmPGSSKV6x4JUdSOG6Br
+         /E3jMg0cTCJRID50ftekFF2XpPOcAFP4iYDdL0NusQNVaJ9gxwBE98eDWkqwK6Rp/HAF
+         +S6T4VOv/XpzNVaT6ymCMD9sacPLvLkVZf3zB5+Nqy6rJAp2fFaW3hFSXT7+CPhGaPee
+         zcAA==
+X-Forwarded-Encrypted: i=1; AJvYcCVjiqanLgCg1mUmItJtWfYniN1mKBFq8lZnjPOCbYkTPJTu2VlYfoljJ4lbFq3C2//Q9RMxAClUJZb1KwvWsvX5eKyYXJlwVYFbDQ==
+X-Gm-Message-State: AOJu0YwmfaExU+nnpJVyq897aZOaUaV+C0TTL6z5kxMtVqpB/Nmm8mXm
+	a5HPFJy96i31RO4/0AFIIZHuPlb047FmltoiFbcqyv/nFX/TkOr0YRnpEH2zaIg=
+X-Google-Smtp-Source: AGHT+IFjOxETxVsVXKwukbbq2O521EndVIHxuM/6CgL2FSRzyaA/fnhtAcZfZBZklFd5yIpLmvaj3w==
+X-Received: by 2002:a05:6a21:3a84:b0:19e:b477:33a4 with SMTP id zv4-20020a056a213a8400b0019eb47733a4mr3973134pzb.27.1707933764227;
+        Wed, 14 Feb 2024 10:02:44 -0800 (PST)
+X-Forwarded-Encrypted: i=1; AJvYcCULxq1SGeV5gBCWcwYdeJVGn8aW5V5K9HiqGq6clZ5Wm4x0VwZAQD9Eu9zGQ70Ray/ifa0zGSeNJCPKdEjmwJzmgf4D79S2pf5ZQc4zfgnsnYJ6x12heJlwbueus7A6Mh1b6EBIMPOEH5Q1Y4ZjD6hKtiygQ2J3NfUzBZo6DJmn2+zahl1mi0FDT3UxFk+tcuNAhPAH/FAJgmCD6tAEEz2J2/sbhtT8xA+G/3QmGNqGfTxPsYXrPQrVab9Gptn3DpipaGLKKvwIIuzQP5CxTbfz5+yvbFZuyS2GBKY6gXEQiIyG/ePCKu9QfsmekUvf8vWwDw5rf3XUwODb1dn5fzoxWLbu2GvZX+gTHqYvDb4c1nBxvCRgsKwY0I6HllMH8L4VJbTX0kCHIqPAzso7G3IA0FI6omEOHUmjZ7yQsGnwintoYWrKU7pGvRpSHm/EX+dbfNU858uHfspDFC+QSv/bA3+2Lu1IWse5g+fq1QWW7AhswEpAixAtUVJrlKygMhQLiy8l/XKCk8a+woVPtVyn363pCMAjyYU+MD+P0E8HhunMvkEJyTN4hoexy79Pno4T0mjR84qLMhjYWg==
+Received: from localhost (71-212-63-227.tukw.qwest.net. [71.212.63.227])
+        by smtp.gmail.com with ESMTPSA id u33-20020a056a0009a100b006e0f7b8d15bsm3722898pfg.185.2024.02.14.10.02.42
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 14 Feb 2024 10:02:42 -0800 (PST)
+From: Kevin Hilman <khilman@kernel.org>
+To: Conor Dooley <conor@kernel.org>
+Cc: Bhargav Raviprakash <bhargav.r@ltts.com>, arnd@arndb.de,
+ broonie@kernel.org, conor+dt@kernel.org, devicetree@vger.kernel.org,
+ gregkh@linuxfoundation.org, jpanis@baylibre.com, kristo@kernel.org,
+ krzysztof.kozlowski+dt@linaro.org, lee@kernel.org, lgirdwood@gmail.com,
+ linus.walleij@linaro.org, linux-arm-kernel@lists.infradead.org,
+ linux-gpio@vger.kernel.org, linux-kernel@vger.kernel.org,
+ m.nirmaladevi@ltts.com, nm@ti.com, robh+dt@kernel.org, vigneshr@ti.com
+Subject: Re: [RESEND PATCH v1 03/13] dt-bindings: mfd: ti,tps6594: Add TI
+ TPS65224 PMIC
+In-Reply-To: <20240214-depraved-unfunded-3f0b3d6bf3e2@spud>
+References: <20240209-blitz-fidgety-78469aa80d6d@spud>
+ <20240214093106.86483-1-bhargav.r@ltts.com>
+ <20240214-galley-dweller-1e9872229d80@spud> <7hil2r5556.fsf@baylibre.com>
+ <20240214-depraved-unfunded-3f0b3d6bf3e2@spud>
+Date: Wed, 14 Feb 2024 10:02:42 -0800
+Message-ID: <7hfrxu6i0t.fsf@baylibre.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
 
+Conor Dooley <conor@kernel.org> writes:
 
-On Mon, 18 Dec 2023 13:39:42 +0000, Yassine Oudjana wrote:
-> These limits were always defined as 0, but that didn't cause any issue
-> since the driver had hardcoded limits. In commit b4e13e1ae95e ("scsi: ufs:
-> qcom: Add multiple frequency support for MAX_CORE_CLK_1US_CYCLES") the
-> hardcoded limits were removed and the driver started reading them from DT,
-> causing UFS to stop working on MSM8996. Add real UniPro clock limits to fix
-> UFS.
-> 
-> [...]
+> On Wed, Feb 14, 2024 at 09:26:13AM -0800, Kevin Hilman wrote:
+>> Conor Dooley <conor@kernel.org> writes:
+>> > On Wed, Feb 14, 2024 at 03:01:06PM +0530, Bhargav Raviprakash wrote:
+>> >> On Fri 2/9/2024 10:41 PM, Conor Dooley wrote:
+>> >> > On Thu, Feb 08, 2024 at 04:23:33PM +0530, Bhargav Raviprakash wrote:
+>> >> > > TPS65224 is a Power Management IC with 4 Buck regulators and 3 LDO
+>> >> > > regulators, it includes additional features like GPIOs, watchdog,=
+ ESMs
+>> >> > > (Error Signal Monitor), and PFSM (Pre-configurable Finite State M=
+achine)
+>> >> > > managing the state of the device.
+>> >> >=20
+>> >> > > TPS6594 and TPS65224 have significant functional overlap.
+>> >> >=20
+>> >> > What does "significant functional overlap" mean? Does one implement=
+ a
+>> >> > compatible subset of the other? I assume the answer is no, given th=
+ere
+>> >> > seems to be some core looking registers at different addresses.
+>> >>=20
+>> >> The intention behind =E2=80=9Csignificant functional overlap=E2=80=9D=
+ was meant to
+>> >> indicate a lot of the features between TPS6594 and TPS65224 overlap,
+>> >> while there are some features specific to TPS65224.
+>> >> There is compatibility between the PMIC register maps, I2C, PFSM,
+>> >> and other drivers even though there are some core registers at
+>> >> different addresses.
+>> >>=20
+>> >> Would it be more appropriate to say the 2 devices are compatible and =
+have
+>> >> sufficient feature overlap rather than significant functional overlap?
+>> >
+>> > If core registers are at different addresses, then it is unlikely that
+>> > these devices are compatible.
+>>=20
+>> That's not necessarily true.  Hardware designers can sometimes be
+>> creative. :)
+>
+> Hence "unlikely" in my mail :)
+>
+>> > In this context, compatible means that existing software intended for
+>> > the 6594 would run without modification on the 65224, although maybe
+>> > only supporting a subset of features.  If that's not the case, then
+>> > the devices are not compatible.
+>>=20
+>> Compatible is a fuzzy term... so we need to get into the gray area.
+>>=20
+>> What's going on here is that this new part is derivative in many
+>> signifcant (but not all) ways from an existing similar part.  When
+>> writing drivers for new, derivative parts, there's always a choice
+>> between 1) extending the existing driver (using a new compatible string
+>> & match table for the diffs) or 2) creating a new driver which will have
+>> a bunch of duplicated code.
+>>=20
+>> The first verion of this series[1] took the 2nd approach, but due to the
+>> significant functional (and feature) overlap, the recommendation was
+>> instead to take the "reuse" path to avoid signficant amounts of
+>> duplicated code.
+>>=20
+>> Of course, it's possible that while going down the "reuse" path, there
+>> may be a point where creating a separate driver for some aspects might
+>> make sense, but that needs to be justified.  Based on a quick glance of
+>> what I see in this series so far (I have not done a detailed review),
+>> the differences with the new device look to me like they can be handled
+>> with chip-specific data in a match table.
+>
+> This is all nice information, but not really relevant here - this is a
+> binding patch, not a driver one & the conversation stemmed from me
+> making sure that a fallback compatible was not suitable.
 
-Applied, thanks!
+hehe, oops. <blush>.  my fault for mixing the two together
 
-[1/1] arm64: dts: qcom: msm8996: Define UFS UniPro clock limits
-      commit: 68c4c20848d71b0e69c3403becb5dd23e89e5896
+Sorry for the noise.
 
-Best regards,
--- 
-Bjorn Andersson <andersson@kernel.org>
+Kevin
 
