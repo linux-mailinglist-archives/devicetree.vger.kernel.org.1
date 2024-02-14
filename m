@@ -1,75 +1,65 @@
-Return-Path: <devicetree+bounces-41666-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-41667-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 10CFF854A99
-	for <lists+devicetree@lfdr.de>; Wed, 14 Feb 2024 14:39:16 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id A796D854AAB
+	for <lists+devicetree@lfdr.de>; Wed, 14 Feb 2024 14:43:16 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 14E631F26D15
-	for <lists+devicetree@lfdr.de>; Wed, 14 Feb 2024 13:39:10 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 5A4EB281712
+	for <lists+devicetree@lfdr.de>; Wed, 14 Feb 2024 13:43:05 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id CD2605475D;
-	Wed, 14 Feb 2024 13:39:02 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A02AB5475D;
+	Wed, 14 Feb 2024 13:42:52 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="g4PgU3+J"
+	dkim=pass (2048-bit key) header.d=foss.st.com header.i=@foss.st.com header.b="sQVn/JNr"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ej1-f45.google.com (mail-ej1-f45.google.com [209.85.218.45])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mx08-00178001.pphosted.com (mx08-00178001.pphosted.com [91.207.212.93])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E0FA11DFEA
-	for <devicetree@vger.kernel.org>; Wed, 14 Feb 2024 13:39:00 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.45
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E0B787499;
+	Wed, 14 Feb 2024 13:42:49 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=91.207.212.93
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1707917942; cv=none; b=GWwi818NsGiBDErWDvBWAQ8eunB1EcRE86Jq8DGPfpXHZWcEdHt82Ha5zdLlUj1qh4RA8hRHUFTjUM+45BqfaeYsqnZl6BWNrb23hbGMcN6NN6HyHPR2tsWL3D80XJyU4CDsjFop1mUL+FkXTvWvFh4gRIJsNcQOVLjsD7vz9a4=
+	t=1707918172; cv=none; b=EDkICiVgiNBcyLLjXELHShEQhIbspgLsM6E9IGYCbLoqSbI23HegB/qwkJshAo0gzBuH7cJ1N0C4la0s5ajJr1prgoXiG8KypU0ftOH+GvXechva8RN5R6LfOcWYoFAR534zCLo25RHpzVX0Z+tfPbnzAaAmQqTm4k9JjG7eNmo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1707917942; c=relaxed/simple;
-	bh=7m8FgKYenpbcQV+utnPx5tYHSqTgQ+N6XM820y2I76w=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=rzXDpa/5aWVcchw+j6B1AcYkHRHAURM8GKRl+uRDvAFdN9IOAGn7ZU37HNHEz1qxs82C4jqJoMOCYyamwPIq0O/5JbEa+CvoEdGPBfjNb3NRBr8gsCmWgSrjCNfrZ+zRxdeiE1zJgU/iil4co4ua7/81zWm7r9raOs6o3qWIjzM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=g4PgU3+J; arc=none smtp.client-ip=209.85.218.45
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-ej1-f45.google.com with SMTP id a640c23a62f3a-a3d6cd979b6so13237266b.1
-        for <devicetree@vger.kernel.org>; Wed, 14 Feb 2024 05:39:00 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1707917939; x=1708522739; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
-         :to:content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=Xl8fdjNkOnOLzOdA3INQoYZq3zTCdkc/JpETQWx04dE=;
-        b=g4PgU3+JNBdD9XtKfcu5JuDpxTJKycOZduEkVn/hL+hR01J3Ifo2cIZAtnRKC0+Orr
-         +xX2v+tkv7/YHDabik6O5QG6qATKoIXMHKIxkJOH8P+L5NxL5ANKWCzL98Qowjar3Yib
-         W4oNYpgbpWG8nzRAfG1L68L+Ti0LzPFWJas1K75l/69nXGCq8gcrAgPCvqxlm01BRAfJ
-         KgbSGu7LkG81FFQwZ/PPw5IcY4MmRgvGRHGexk8yDx5F3w6QJBJA+iSxE+c+8q/m6BSP
-         gAEHH7bcE8QyfdZn1X4MkHH8g+E2yFuwZzpfWJ7w4abTN8uLAKMGDdWhGI/T/nBOJvqq
-         UErg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1707917939; x=1708522739;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
-         :to:content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=Xl8fdjNkOnOLzOdA3INQoYZq3zTCdkc/JpETQWx04dE=;
-        b=eea38NS9dLgtmjqh6Wpag4ETyHan9BwmxKcr+ISJ4GFC83T3MoLiRDqL4zA1IcuSCm
-         kcxVFYbSBZSB4TZfUdYzgN6VLGRI7VimHTLn0Wfeju0Cu8PcsKJUF3Y2WGoOwfpSw9jo
-         4YUyUbZC5g2UDyrSb1uwq+vO+d/i8LJy3vCyom8CepUBvUCwzsK86B0aHp8QNmhJJTkR
-         CURWjRCue6zKmgLSNnqB+NuxGBYdxVTDa2ZmBe739qtfa9zQF0l5QPs3M2zxmEP5/kBI
-         9BqyS0qj9ZljYlsKh3rwhx65MNQ5fAt0IMB0ihlogMmPNUdxkTO21nt/TtthGMx69fBd
-         xXzQ==
-X-Forwarded-Encrypted: i=1; AJvYcCVJrC/q8YkSLIygEd7k//AlQJO7YsELcSiDMRpmKQxEbDJxn2qWWPrv95sKJesGBEeoROwbu8o5JhRbjkT9oByBces/SlUCUW0xFg==
-X-Gm-Message-State: AOJu0Yxa0529b22fzfh7eOND3MpYAoPi35igF8qxDV/AR6uZnw3z3UT6
-	/CN1bMMxH8k5LrTRlRNQB3KTLZcp4wIinnUmijVEwT+mV5uRfGKYuTAr61QY3CI=
-X-Google-Smtp-Source: AGHT+IF44O3lJTfCP6eOt0ZcLCXWtiMF4tmyCTUbIV05jahWoL5XKoVoJ8TihVtEPkQQWbiVUTIBHQ==
-X-Received: by 2002:a17:906:d10a:b0:a3d:2392:b025 with SMTP id b10-20020a170906d10a00b00a3d2392b025mr1776457ejz.50.1707917939141;
-        Wed, 14 Feb 2024 05:38:59 -0800 (PST)
-X-Forwarded-Encrypted: i=1; AJvYcCW/VPB0bBip8Y19tYjb13eVOw4gZeMb4PXsejWTzIAoHHUyZXUDK4xI/c1o6R98uZC6MQrs0Z9+AlKE1g1d084AQJoGH/I3pIuMVwTdIlkJHXlrXRpcT2D1t9BW3Hgw9jmry0MVN/6G5VN/58k0iMbb0RBgKFYOvTh1sig/51HEo7an6k4uLHDl8I1Q5HN9PycOAyBqJyKsBi3WrpLmYnhK3Ut49r+3lRv0yt8iFnbt+ykXzy68dOw2xu1KdKKFFQ239Tk2GPW04zcmlT1n/oePcKJgAZG9OzCuFq0hh4eSMOGmptElBFAKDggQVkXryIZFptY/cdNzN3qHMEr4WxUhVFM9UTXuBgXeKaGjmu/2Naf6WLw+SI8EyAG7xgKRbqx9MoblQ+ZB702r3WFiTSGV5bHry8Sx8mvrbVvb3Sc+ZKg0gJYLkszXBlaXg9Yq9SjaKXXQjvhOPakvUpDLRbwO+njo6Ss1Rh4lSu8wUteREEhEL76ISnc=
-Received: from [192.168.0.22] ([78.10.207.130])
-        by smtp.gmail.com with ESMTPSA id ty8-20020a170907c70800b00a3d09d09e90sm1561399ejc.59.2024.02.14.05.38.57
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 14 Feb 2024 05:38:58 -0800 (PST)
-Message-ID: <59bd6e54-0d5d-4e1a-818a-475a96c223ff@linaro.org>
-Date: Wed, 14 Feb 2024 14:38:57 +0100
+	s=arc-20240116; t=1707918172; c=relaxed/simple;
+	bh=13bQMTuQ0O/w/8KCA26cmAgHP6sRzVp6/H88jjKyAks=;
+	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
+	 In-Reply-To:Content-Type; b=mE+7lmhkzfqqP3EaQjqm5qRnwlpCkDYfSbgNiSQtllATAsoZmdhnut7vYM5V1HVNrWG8htdjbgLmgQm+TQTV2SRLtA5lR11IUJ2p1pOSoOJw9esIxiQ6cWVRK2j6F4WsZIt7OH0RC0JaWLeVrh7ybpTQh2T4smK54TUfqjQKuu4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=foss.st.com; spf=pass smtp.mailfrom=foss.st.com; dkim=pass (2048-bit key) header.d=foss.st.com header.i=@foss.st.com header.b=sQVn/JNr; arc=none smtp.client-ip=91.207.212.93
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=foss.st.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=foss.st.com
+Received: from pps.filterd (m0369457.ppops.net [127.0.0.1])
+	by mx07-00178001.pphosted.com (8.17.1.24/8.17.1.24) with ESMTP id 41ECKIHK025049;
+	Wed, 14 Feb 2024 14:42:20 +0100
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=foss.st.com; h=
+	message-id:date:mime-version:subject:to:cc:references:from
+	:in-reply-to:content-type:content-transfer-encoding; s=
+	selector1; bh=63ccJdkmYj60Sx0VF1iQ9ToU2xIdXBSWALt0f6lAonM=; b=sQ
+	Vn/JNrCwCL1yvVvfxCInR4HZow6dCVibArvy5c/Myj4zD4aWOJNx0Tw6gJBGmJy2
+	kr7mrK98ISDsF+jrRl9YB4d7t+54kafIu2kN/44/DeX54+cd+CoWLBibaoZL0IAB
+	SGBS2jgAG9sF6pzQmZp41odZ2n7KF6JX217efB/UfkcQRw4NJ22HqGODSnZqKi5w
+	RKmhnOOB2LddukuWAc2hx3p95W4bG3OFhaSoCyGqJfCx8eiJ7hF1BlBPOZZ5b2XC
+	ijvqAXFpcw8xkOoq+/3gIUST/DZNU+rU3eYl6/HURQQWALt7WOrD7g8hH7/O8Tdy
+	c/rpIteNx2dVCEtgTGYA==
+Received: from beta.dmz-ap.st.com (beta.dmz-ap.st.com [138.198.100.35])
+	by mx07-00178001.pphosted.com (PPS) with ESMTPS id 3w6mynmqee-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Wed, 14 Feb 2024 14:42:20 +0100 (CET)
+Received: from euls16034.sgp.st.com (euls16034.sgp.st.com [10.75.44.20])
+	by beta.dmz-ap.st.com (STMicroelectronics) with ESMTP id 6AEEE4002D;
+	Wed, 14 Feb 2024 14:42:10 +0100 (CET)
+Received: from Webmail-eu.st.com (shfdag1node1.st.com [10.75.129.69])
+	by euls16034.sgp.st.com (STMicroelectronics) with ESMTP id 0F06A264AF6;
+	Wed, 14 Feb 2024 14:41:00 +0100 (CET)
+Received: from [10.201.21.122] (10.201.21.122) by SHFDAG1NODE1.st.com
+ (10.75.129.69) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.27; Wed, 14 Feb
+ 2024 14:40:58 +0100
+Message-ID: <0c551a84-5c4a-4d79-ae59-d5b0d34b017d@foss.st.com>
+Date: Wed, 14 Feb 2024 14:40:58 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -77,100 +67,118 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 02/10] dt-bindings: PCI: qcom: Do not require
- 'msi-map-mask'
+Subject: Re: [PATCH 0/5] Add display support for stm32mp135f-dk board
 Content-Language: en-US
-To: Johan Hovold <johan@kernel.org>
-Cc: Johan Hovold <johan+linaro@kernel.org>,
- Bjorn Andersson <andersson@kernel.org>, Bjorn Helgaas <bhelgaas@google.com>,
- Konrad Dybcio <konrad.dybcio@linaro.org>,
- Lorenzo Pieralisi <lpieralisi@kernel.org>,
- =?UTF-8?Q?Krzysztof_Wilczy=C5=84ski?= <kw@linux.com>,
- Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Conor Dooley <conor+dt@kernel.org>,
- Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
- linux-arm-msm@vger.kernel.org, linux-pci@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-References: <20240212165043.26961-1-johan+linaro@kernel.org>
- <20240212165043.26961-3-johan+linaro@kernel.org>
- <e396cf20-8598-4437-b635-09a4a737a772@linaro.org>
- <Zcy4Atjmb6-wofCL@hovoldconsulting.com>
-From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
- 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
- D2GYIS41Kv4Isx2dEFh+/Q==
-In-Reply-To: <Zcy4Atjmb6-wofCL@hovoldconsulting.com>
-Content-Type: text/plain; charset=UTF-8
+To: Raphael Gallais-Pou <raphael.gallais-pou@foss.st.com>,
+        Rob Herring
+	<robh+dt@kernel.org>,
+        Krzysztof Kozlowski
+	<krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Maxime Coquelin <mcoquelin.stm32@gmail.com>,
+        Neil Armstrong
+	<neil.armstrong@linaro.org>,
+        Jessica Zhang <quic_jesszhan@quicinc.com>,
+        Sam
+ Ravnborg <sam@ravnborg.org>,
+        Maarten Lankhorst
+	<maarten.lankhorst@linux.intel.com>,
+        Maxime Ripard <mripard@kernel.org>,
+        Thomas Zimmermann <tzimmermann@suse.de>,
+        David Airlie <airlied@gmail.com>, Daniel Vetter <daniel@ffwll.ch>
+CC: <devicetree@vger.kernel.org>, <linux-stm32@st-md-mailman.stormreply.com>,
+        <linux-arm-kernel@lists.infradead.org>, <linux-kernel@vger.kernel.org>,
+        <dri-devel@lists.freedesktop.org>,
+        Yannick Fertre
+	<yannick.fertre@foss.st.com>
+References: <20240205-ltdc_mp13-v1-0-072d24bf1b36@foss.st.com>
+From: Alexandre TORGUE <alexandre.torgue@foss.st.com>
+In-Reply-To: <20240205-ltdc_mp13-v1-0-072d24bf1b36@foss.st.com>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
 Content-Transfer-Encoding: 7bit
+X-ClientProxiedBy: EQNCAS1NODE4.st.com (10.75.129.82) To SHFDAG1NODE1.st.com
+ (10.75.129.69)
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.272,Aquarius:18.0.1011,Hydra:6.0.619,FMLib:17.11.176.26
+ definitions=2024-02-14_06,2024-02-14_01,2023-05-22_02
 
-On 14/02/2024 13:54, Johan Hovold wrote:
-> On Wed, Feb 14, 2024 at 01:01:20PM +0100, Krzysztof Kozlowski wrote:
->> On 12/02/2024 17:50, Johan Hovold wrote:
->>> Whether the 'msi-map-mask' property is needed or not depends on how the
->>> MSI interrupts are mapped and it should therefore not be described as
->>> required.
->>
->> I could imagine that on all devices the interrupts are mapped in a way
->> you need to provide msi-map-mask. IOW, can there be a Qualcomm platform
->> without msi-map-mask?
+Hi Raphael
+
+On 2/5/24 10:06, Raphael Gallais-Pou wrote:
+> This serie aims to enable display support for the stm32mp135f-dk board
 > 
-> I don't have access to the documentation so I'll leave that for you guys
-> to determine. I do note that the downstream DT does not use it and that
-> we have a new devicetree in linux-next which also does not have it:
+> Those are only patches of the device-tree since the driver support has
+> already been added [1].
 > 
-> 	https://lore.kernel.org/r/20240125-topic-sm8650-upstream-pcie-its-v1-1-cb506deeb43e@linaro.org
+> It respectivelly:
+> 	- adds support for the display controller on stm32mp135
+> 	- adds pinctrl for the display controller
+> 	- enables panel, backlight and display controller on
+> 	  stm32mp135f-dk
 > 
-> But at least the latter looks like an omission that should be fixed.
+> Finally it fixes the flags on the panel default mode in the
+> 'panel-simple' driver, allowing to override the default mode by one
+> described in the device tree, and push further the blanking limit on the
+> panel.
+> 
+> [1] commit 1726cee3d053 ("drm/stm: ltdc: support of new hardware version")
+> 
+> Signed-off-by: Raphael Gallais-Pou <raphael.gallais-pou@foss.st.com>
+> ---
+> Raphael Gallais-Pou (5):
+>        ARM: dts: stm32: add LTDC support for STM32MP13x SoC family
+>        ARM: dts: stm32: add LTDC pinctrl on STM32MP13x SoC family
+>        ARM: dts: stm32: enable display support on stm32mp135f-dk board
+>        drm/panel: simple: fix flags on RK043FN48H
+>        drm/panel: simple: push blanking limit on RK32FN48H
+> 
+>   arch/arm/boot/dts/st/stm32mp13-pinctrl.dtsi | 57 +++++++++++++++++++++++++++++
+>   arch/arm/boot/dts/st/stm32mp135.dtsi        | 11 ++++++
+>   arch/arm/boot/dts/st/stm32mp135f-dk.dts     | 55 ++++++++++++++++++++++++++++
+>   drivers/gpu/drm/panel/panel-simple.c        |  7 ++--
+>   4 files changed, 127 insertions(+), 3 deletions(-)
+> ---
+> base-commit: 6613476e225e090cc9aad49be7fa504e290dd33d
+> change-id: 20240124-ltdc_mp13-2f86a782424c
+> 
+> Best regards,
 
-Hm, either that or the mask for sm8450 was not needed as well. Anyway,
-thanks for explanation, appreciated!
+I got the following errors during YAML verification:
 
+arch/arm/boot/dts/st/stm32mp135f-dk.dtb: /soc/i2c@40012000/pinctrl@21: 
+failed to match any schema with compatible: ['microchip,mcp23017']
+/local/home/frq08678/STLINUX/kernel/my-kernel/stm32/arch/arm/boot/dts/st/stm32mp135f-dk.dtb: 
+panel-backlight: 'default-brightness-level' does not match any of the 
+regexes: 'pinctrl-[0-9]+'
+	from schema $id: 
+http://devicetree.org/schemas/leds/backlight/gpio-backlight.yaml#
+/local/home/frq08678/STLINUX/kernel/my-kernel/stm32/arch/arm/boot/dts/st/stm32mp135f-dk.dtb: 
+panel-rgb: data-mapping:0: 'bgr666' is not one of ['jeida-18', 
+'jeida-24', 'vesa-24']
+	from schema $id: 
+http://devicetree.org/schemas/display/panel/panel-simple.yaml#
+/local/home/frq08678/STLINUX/kernel/my-kernel/stm32/arch/arm/boot/dts/st/stm32mp135f-dk.dtb: 
+panel-rgb: compatible: ['rocktech,rk043fn48h', 'panel-dpi'] is too long
+	from schema $id: 
+http://devicetree.org/schemas/display/panel/panel-simple.yaml#
+/local/home/frq08678/STLINUX/kernel/my-kernel/stm32/arch/arm/boot/dts/st/stm32mp135f-dk.dtb: 
+panel-rgb: data-mapping: False schema does not allow ['bgr666']
+	from schema $id: 
+http://devicetree.org/schemas/display/panel/panel-simple.yaml#
+/local/home/frq08678/STLINUX/kernel/my-kernel/stm32/arch/arm/boot/dts/st/stm32mp135f-dk.dtb: 
+panel-rgb: 'height-mm', 'panel-timing', 'width-mm' do not match any of 
+the regexes: 'pinctrl-[0-9]+'
+	from schema $id: 
+http://devicetree.org/schemas/display/panel/panel-simple.yaml#
+/local/home/frq08678/STLINUX/kernel/my-kernel/stm32/arch/arm/boot/dts/st/stm32mp135f-dk.dtb: 
+panel-rgb: 'data-mapping' does not match any of the regexes: 
+'pinctrl-[0-9]+'
+	from schema $id: 
+http://devicetree.org/schemas/display/panel/panel-dpi.yaml#
 
-Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Do I miss something ?
 
-Best regards,
-Krzysztof
+Alex
+
 
 
