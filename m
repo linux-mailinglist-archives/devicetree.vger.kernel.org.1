@@ -1,160 +1,175 @@
-Return-Path: <devicetree+bounces-41562-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-41563-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 32179854491
-	for <lists+devicetree@lfdr.de>; Wed, 14 Feb 2024 10:04:49 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 83F97854499
+	for <lists+devicetree@lfdr.de>; Wed, 14 Feb 2024 10:06:05 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id E2356284C30
-	for <lists+devicetree@lfdr.de>; Wed, 14 Feb 2024 09:04:47 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id D6C29B27B8F
+	for <lists+devicetree@lfdr.de>; Wed, 14 Feb 2024 09:06:02 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 68BD679E1;
-	Wed, 14 Feb 2024 09:04:33 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D6710D2E6;
+	Wed, 14 Feb 2024 09:05:53 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ysoft.com header.i=@ysoft.com header.b="L7PteXqc"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="RJDAQngR"
 X-Original-To: devicetree@vger.kernel.org
-Received: from uho.ysoft.cz (uho.ysoft.cz [81.19.3.130])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-ej1-f53.google.com (mail-ej1-f53.google.com [209.85.218.53])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B351679D2;
-	Wed, 14 Feb 2024 09:04:31 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=81.19.3.130
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 66A41BA27
+	for <devicetree@vger.kernel.org>; Wed, 14 Feb 2024 09:05:51 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.53
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1707901473; cv=none; b=tMf5lBoLNUC8l/MIcxkqHrtGFnrQ9IahtvPQHUXo5uGvRzwz2AO+ZmZLIk4GbcYBI0FYAWpbMIFumgaqa0w1n7BL5bOTyLMAQK4HeBX0eIn4EiC2e33mXqRPPTBSVLOw8sxxjl00QXrlGeGYx2J9VQnGXtaMm2DTmRT9L+g8Whg=
+	t=1707901553; cv=none; b=W+GIxHn+Fe03zu4g+oB8P+dZjElp6lYcSd6BarMWVaSWaxD2AqJWlbR348iphO6XGtCVsIdb9XrgfpLdMFNoGM5wyHM1cifdaPYpqWXpIAeMjo+nSmDJL4DPUEYoT4Q9FEs5IU3sNEF0p1GoHZ5heWygs2YRfb08ZtqCFRe14nU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1707901473; c=relaxed/simple;
-	bh=NabSFMAj7QEe5/xa7bW5tvQsHBXSCoMhb1gIoOGlJ8w=;
-	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=kAv9f+B7HLy3eMfs4hLXSz/WmSj8gB49OMM5t73LoDB4hdy7margtWOSalORdR2Goju29NOFDPqtPfc88R6KHR0R8AOMhnJr3g+wCc5Tj+fA4ieZBEHT4rpsfsIFeHd2OxcNkeDfDC8mQGsPlPGFbVPPaDxUJXtpfUwVQsTwCxs=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ysoft.com; spf=pass smtp.mailfrom=ysoft.com; dkim=pass (1024-bit key) header.d=ysoft.com header.i=@ysoft.com header.b=L7PteXqc; arc=none smtp.client-ip=81.19.3.130
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ysoft.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ysoft.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ysoft.com;
-	s=20160406-ysoft-com; t=1707901463;
-	bh=De7gtKQUI6kPNqgDef3IVCXJrTn70XyIKQzykcjjq/E=;
-	h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-	b=L7PteXqcQIxxQVD0d9+WyBdF7XK0uUHG7ot4YTRj0L1DTzu6M8zK8NQFogNsVsrX7
-	 9sfuhUaGjSyRsBy2B/IuzKh2IfHWyQibTUo8RTGBqZANgw7xCcS/7JoUo1rmB9jtjX
-	 UURSFCo5hYzbKYk6GMwA3frj5zr5JVmry8dm3MnM=
-Received: from iota-build.ysoft.local (unknown [10.1.5.151])
-	by uho.ysoft.cz (Postfix) with ESMTP id 6D6E3A0336;
-	Wed, 14 Feb 2024 10:04:23 +0100 (CET)
-From: =?UTF-8?q?Michal=20Vok=C3=A1=C4=8D?= <michal.vokac@ysoft.com>
-To: Shawn Guo <shawnguo@kernel.org>,
-	Fabio Estevam <festevam@gmail.com>,
-	Andrew Lunn <andrew@lunn.ch>
-Cc: Rob Herring <robh+dt@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Sascha Hauer <s.hauer@pengutronix.de>,
-	Pengutronix Kernel Team <kernel@pengutronix.de>,
-	NXP Linux Team <linux-imx@nxp.com>,
-	devicetree@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	linux-kernel@vger.kernel.org,
-	Jonathan McDowell <noodles@earth.li>,
-	=?UTF-8?q?Michal=20Vok=C3=A1=C4=8D?= <michal.vokac@ysoft.com>
-Subject: [PATCH v2 2/2] ARM: dts: imx6dl-yapp4: Move the internal switch PHYs under the switch node
-Date: Wed, 14 Feb 2024 10:03:28 +0100
-Message-Id: <1707901408-17084-2-git-send-email-michal.vokac@ysoft.com>
-X-Mailer: git-send-email 2.1.4
-In-Reply-To: <1707901408-17084-1-git-send-email-michal.vokac@ysoft.com>
-References: <1707901408-17084-1-git-send-email-michal.vokac@ysoft.com>
+	s=arc-20240116; t=1707901553; c=relaxed/simple;
+	bh=I8D/NVeZlWyXUSuy1g8l5l45XPggH39b8RzJqNF+BpM=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=boOdmPbJUxeSMFrj0EZqegJFhtb1ttbqGN2C/EJsBI8eTU7j12LIvOKO9IK71581RDv5QoIA+QOS31taZxVCia5FeN5ZfG333Fw82pdmk297JUMtN18D/Yu5YbQe5s8izwdV93UaLS498duH9hT3PwvddD9HKfOaYqUuE9KntCs=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=RJDAQngR; arc=none smtp.client-ip=209.85.218.53
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-ej1-f53.google.com with SMTP id a640c23a62f3a-a3cb228b90bso309608166b.3
+        for <devicetree@vger.kernel.org>; Wed, 14 Feb 2024 01:05:51 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1707901549; x=1708506349; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
+         :to:content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=/lqba7VkE2HTVepiVP1TeOFkS6pBAOY08pjklGS4aIc=;
+        b=RJDAQngRn1Qf9EB7+wcTUrfKMmOBlcW1siXsRLbfm5mH5lVO1yXQJ54yIhdXorCn/U
+         j5g1vSahdvgUrknFJ2oF04+8XehXS0FtjZhSTyndd+AMTFtI4s0tONZEtGGsOOrf9exa
+         FdUDI3eE8muc1kIPhs2TQyYf/hVJcn5z0XQn52zTOBXp0PjVNpZ8YB3qT2DWbYh8XrMr
+         NeZxBJbjqjk41IUO9HA/C5mQckuGriD9UBeAyQnHd5xQrnZ82JJ+jh/lhkIQ97YXQsjI
+         b8m0HpaslRNjDeFU1ZSA5hSWFnpE42wcjPg2ZIw4fyvo8D6UGgFVvl+ODM26+W8Y3xRm
+         7VZQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1707901549; x=1708506349;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
+         :to:content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=/lqba7VkE2HTVepiVP1TeOFkS6pBAOY08pjklGS4aIc=;
+        b=lg2MW7ErjMm9z7FzsekefPoO+qN9Gt8REapCqrZE2nIhaOJZ/psDbGP062DD2mkhrb
+         xQm+HTzg1/1X4ijt/j0T5+4gS1hbDlagl4NvrEmWDHEDJBMLp77OsnGP7swHasYuLx4b
+         19+QGVd0d3Qz2/JGi1Tgrv5j0UKTSOIYI+d/MoVrghOf/R+WVN3oxkHmPUSNLreVYoFO
+         9zG1fzzxoNcO0nsy3HN4eZST6X46X/nTUtUsXBLSQNDJb59WOILJaCC4prtw37zD3gZc
+         fdXDT7C4F45Bk/2WoXQzuN8yWEtTgy7VTkNPDl9mRaO159JdTHUrklqbRnAJUc5Uwk0V
+         rKOA==
+X-Forwarded-Encrypted: i=1; AJvYcCWhDhWsrUhhkzC+MWTv4gLAq8X8pW8qeWAyPaVm7WGhiol2NotUzNzjU3qYOqvQNcnn+yUwXjQvcewQcE6JfgDRCNyQb3OarVriww==
+X-Gm-Message-State: AOJu0YygLjg14zFUUCb4rcOeoLp5ipTILrILCpSx019+pRq+rdwd29bC
+	5TzBdDFULThjLHR+U6SsLQPRtmddS81Gr7RcMLbN3ZW2CQlslQVX+9m27oxsJrE=
+X-Google-Smtp-Source: AGHT+IHpfzSB3UUkNobzLN8Vi9rrVWDrFR5E2F7N2kju1nQrJg5vax6bdIsqlAz6p3UUZxExtRBB7w==
+X-Received: by 2002:a17:906:5a8a:b0:a3c:e99f:c08f with SMTP id l10-20020a1709065a8a00b00a3ce99fc08fmr1377804ejq.40.1707901549703;
+        Wed, 14 Feb 2024 01:05:49 -0800 (PST)
+X-Forwarded-Encrypted: i=1; AJvYcCWFzIXfw3EKu3QR3Lpmz52Q0qgGCEIZ/NIRWL7eliD7DpXtG+mo+WvSbG4lvj841OWGLwIlI60JnvXuYv9ZTnKrb0wOWFd02g/qJ/p7BKwg1t503KcpT3dPAarBHwShgUjZT2T/w69kxB3ldvrTlzP7pYgE2mdl1pnhaL+UnFrmy8muQweceYPU22idzltPLBpA1TUSyByulXPo0nbuenXzoF7wSujtfDuQMSzZSH15EHb/eUMvklt0SD3NHHMsm/Lr5KdZo1rjXRMOviuyy9ZOWJTSR1KBSZuaPOgMFmpcA4wffn8hVgOYhM0kddkMz3LqPMtNc0CvHyUXuGW9eagbIzI4ftSXl+L61ETGDO6t4TRNWwsG4crwHaSKiUoqK704+swd356+sDYepExune427iTh7+tObD3QduKdAKewsOlGLx7LEJ92VhxUPVypWi3QL/W/xzFFDNZ5GvbxphyZ1nFcmppaKogeUf445vH7QeTH9QPN
+Received: from [192.168.0.22] ([78.10.207.130])
+        by smtp.gmail.com with ESMTPSA id th7-20020a1709078e0700b00a3d07f3ac61sm1363299ejc.101.2024.02.14.01.05.48
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 14 Feb 2024 01:05:49 -0800 (PST)
+Message-ID: <2dac95be-b23a-4c42-ac67-241100c7a51b@linaro.org>
+Date: Wed, 14 Feb 2024 10:05:47 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 1/2] dt-bindings: pwm: mediatek,mt2712: add compatible for
+ MT7988
+Content-Language: en-US
+To: =?UTF-8?Q?Uwe_Kleine-K=C3=B6nig?= <u.kleine-koenig@pengutronix.de>,
+ =?UTF-8?B?UmFmYcWCIE1pxYJlY2tp?= <zajec5@gmail.com>
+Cc: Matthias Brugger <matthias.bgg@gmail.com>,
+ AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
+ Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+ Conor Dooley <conor+dt@kernel.org>, John Crispin <john@phrozen.org>,
+ linux-pwm@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ linux-mediatek@lists.infradead.org, =?UTF-8?B?UmFmYcWCIE1pxYJlY2tp?=
+ <rafal@milecki.pl>
+References: <20240213164633.25447-1-zajec5@gmail.com>
+ <onnokyq7ciza7i7jzc74cun2khpst5iocuccks2cm433ux3za3@dou4oacrvuxj>
+From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
+ 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
+ D2GYIS41Kv4Isx2dEFh+/Q==
+In-Reply-To: <onnokyq7ciza7i7jzc74cun2khpst5iocuccks2cm433ux3za3@dou4oacrvuxj>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
 
-We identified that the PHYs actually do not work since commit 7da7b84fee58
-("ARM: dts: imx6dl-yapp4: Move phy reset into switch node") as
-a coincidence of several circumstances.
+On 13/02/2024 18:48, Uwe Kleine-König wrote:
+> Hello Rafał,
+> 
+> On Tue, Feb 13, 2024 at 05:46:32PM +0100, Rafał Miłecki wrote:
+>> From: Rafał Miłecki <rafal@milecki.pl>
+>>
+>> MT7988 has on-SoC controller that can control up to 8 PWMs.
+>>
+>> Signed-off-by: Rafał Miłecki <rafal@milecki.pl>
+> 
+> please make sure that the email address used for sending the patch
+> matches the Signed-off-by line.
+> 
+> (It depends on the pickyness of the relevant maintainer if that is a
+> stopper or not.)
 
-The reset signal is kept asserted by a pull-down resistor on the board
-unless it is deasserted by GPIO from the SoC. This is to keep the switch
-dead until it is configured properly by the kernel and user space.
+Does not have to... It must match From field which is correct here.
+Syntax like:
 
-Prior to the referenced commit the switch was reset by the FEC driver
-and the reset GPIO was actively deasserted. The mdio-bus was scanned
-and the attached switch and its PHYs were found and configured.
+From: Foo <foo@com>
+Signed-off-by: Foo <foo@com>
+Signed-off-by: Foo <my-other-email-foo@com>
 
-With the referenced commit the switch is reset by the qca8k driver.
-Because of another bug in the qca8k driver, functionality of the reset
-pin depends on its pre-kernel configuration. See commit c44fc98f0a8f
-("net: dsa: qca8k: fix illegal usage of GPIO")
+makes sense only if copyrights change (e.g. change of employers) and/or
+one email stop working. How would be the point of having to SoBs for the
+same person in other cases?
 
-The problem did not appear until we removed support for the switch
-and configuration of its reset pin from the bootloader.
-
-To fix that, properly describe the internal mdio-bus configuration of
-the qca8334 switch. The PHYs are internal to the switch and sit on its
-internal mdio-bus.
-
-Fixes: 7da7b84fee58 ("ARM: dts: imx6dl-yapp4: Move phy reset into switch node")
-Signed-off-by: Michal Vokáč <michal.vokac@ysoft.com>
----
-changes in v2:
-- none
-
- arch/arm/boot/dts/nxp/imx/imx6dl-yapp4-common.dtsi | 23 ++++++++++++++--------
- 1 file changed, 15 insertions(+), 8 deletions(-)
-
-diff --git a/arch/arm/boot/dts/nxp/imx/imx6dl-yapp4-common.dtsi b/arch/arm/boot/dts/nxp/imx/imx6dl-yapp4-common.dtsi
-index 5763f8253d51..eec1f9092572 100644
---- a/arch/arm/boot/dts/nxp/imx/imx6dl-yapp4-common.dtsi
-+++ b/arch/arm/boot/dts/nxp/imx/imx6dl-yapp4-common.dtsi
-@@ -133,14 +133,6 @@
- 		#address-cells = <1>;
- 		#size-cells = <0>;
- 
--		phy_port2: phy@1 {
--			reg = <1>;
--		};
--
--		phy_port3: phy@2 {
--			reg = <2>;
--		};
--
- 		switch@10 {
- 			compatible = "qca,qca8334";
- 			reg = <0x10>;
-@@ -165,15 +157,30 @@
- 				eth2: port@2 {
- 					reg = <2>;
- 					label = "eth2";
-+					phy-mode = "internal";
- 					phy-handle = <&phy_port2>;
- 				};
- 
- 				eth1: port@3 {
- 					reg = <3>;
- 					label = "eth1";
-+					phy-mode = "internal";
- 					phy-handle = <&phy_port3>;
- 				};
- 			};
-+
-+			mdio {
-+				#address-cells = <1>;
-+				#size-cells = <0>;
-+
-+				phy_port2: ethernet-phy@1 {
-+					reg = <1>;
-+				};
-+
-+				phy_port3: ethernet-phy@2 {
-+					reg = <2>;
-+				};
-+			};
- 		};
- 	};
- };
--- 
-2.1.4
+Best regards,
+Krzysztof
 
 
