@@ -1,98 +1,104 @@
-Return-Path: <devicetree+bounces-41644-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-41645-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id EF04F8548EF
-	for <lists+devicetree@lfdr.de>; Wed, 14 Feb 2024 13:10:31 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id A924285492A
+	for <lists+devicetree@lfdr.de>; Wed, 14 Feb 2024 13:25:08 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 2F7911C23948
-	for <lists+devicetree@lfdr.de>; Wed, 14 Feb 2024 12:10:31 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 44624B22AF2
+	for <lists+devicetree@lfdr.de>; Wed, 14 Feb 2024 12:25:06 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id AFC2D1B7EF;
-	Wed, 14 Feb 2024 12:10:26 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 60A4F1B97C;
+	Wed, 14 Feb 2024 12:25:02 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="FyrMFbas"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="sY+W//+o"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 708D94436;
-	Wed, 14 Feb 2024 12:10:25 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3413C1B813;
+	Wed, 14 Feb 2024 12:25:01 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1707912626; cv=none; b=iiYMDnbpkR5DeUsUBduHlejVKzCsSMfwoFs6fUo+huNWr0lgnHup11u38irC5QcCKgKY+ozoTyNz74b3H+CgA4+6cg7b553Not2yuW487o+38WniO/oTPqP0TpM8x5x7yCJ42LGO+bg/I38bpY8YpLgc/zGhb4jw9jbQe2OP+Og=
+	t=1707913502; cv=none; b=db58AvSrT7m0YecBxKdl9LklxN5EGht3L7dd57fRSEyoO12eOVv7yFnaZKVhT7j1kg9imzlLnMivihZCoMKuf+HXv3+sEYSvKOyAi2rKcQnJU8bgvntsbxnDXi/h0lRI5YuLdjKx31P9sAysW21Sy0zQ9pQ/MNdKCJAVshIaNNo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1707912626; c=relaxed/simple;
-	bh=x1g6GMNkLoMW1m0Fc0n7IJtC/rw991yy2r9DfS39pRQ=;
-	h=Content-Type:MIME-Version:Subject:From:Message-Id:Date:References:
-	 In-Reply-To:To:Cc; b=jWYfN5vPmkL6AITZvEl9rg0S0khMBpX48Zrvz9fZFzAJGOUYLMGWs9Oq1SbOHGwoBlu00tCnYXR+61GGV05usdLlQTfWhrAfrU5JNOw/bao4tk+UWnrsUVVeaGaopO9mlADvBVTJYQa+xE3TSPjNsmqc02Bc2lbnEAgSzYAXibk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=FyrMFbas; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPS id 6A0D7C433F1;
-	Wed, 14 Feb 2024 12:10:25 +0000 (UTC)
+	s=arc-20240116; t=1707913502; c=relaxed/simple;
+	bh=om12AIRXbhoBkX5ErV9iC57tbcp9qmnO+XHs8NR0XaA=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=pst2ZP/FPvYwsprb52cDBfog4IkNVroBsvoWQ+tHZOyg/vcWcfsGrMVFKkLO48yfF+vcSbnfwlodr2XL2bYyiwzf6O60SvyHVfxif/kyKwTOEs1+Hyk8nSg4wpQs6Ac8s8K/4MotID3cu0HDLrejUMAW1RYBAimDoDY0MpaB1po=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=sY+W//+o; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id E18DDC433F1;
+	Wed, 14 Feb 2024 12:24:58 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1707912625;
-	bh=x1g6GMNkLoMW1m0Fc0n7IJtC/rw991yy2r9DfS39pRQ=;
-	h=Subject:From:Date:References:In-Reply-To:To:Cc:From;
-	b=FyrMFbasaadIkbNrMUy9vE03K5vYZIFJmQbWGN/ptTjFv7K9HCTHXzZBXawzonz8S
-	 Cv/g6bGaiMnf0fVZexvFbzuAiXhkdlrwDPFuOxcZPbBQSWzndY5OV+kTLW5llA4Y+q
-	 q23zc3E9syZRXI79Tuyel5Iuayuw29+4z8k+UKhVgWPZFhLy3OzOel/kAQi1RmxCLm
-	 3JHkGJXDsxbH6IYn5kgOWV3WzbsiEYskXvur066PmvyRp8FroeZUmfpECCSDvjGXfb
-	 ESnxF72KUryMNRP5R3FNTyJC3n681zigVIV25s4ApnZtTAzGWB06XpORABq6TrJLFZ
-	 gfjfNcv6LS4wg==
-Received: from aws-us-west-2-korg-oddjob-1.ci.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by aws-us-west-2-korg-oddjob-1.ci.codeaurora.org (Postfix) with ESMTP id 4D476D84BCD;
-	Wed, 14 Feb 2024 12:10:25 +0000 (UTC)
-Content-Type: text/plain; charset="utf-8"
+	s=k20201202; t=1707913501;
+	bh=om12AIRXbhoBkX5ErV9iC57tbcp9qmnO+XHs8NR0XaA=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=sY+W//+oR5pT+WqLTp1mUjOaDEV57w6AM2zyTU5R+puNv38dmMoH3d477WwuHMWCc
+	 Byzg4+kFesYaTSSssDgxb+3kjerABcZ2lY6PXSEIQE8Ag7sRhypfakz6Q8fTRn6Yok
+	 fzK4Cw9GnU+bUQrxxMnq9eJ9B2URNGFJbpEOC8xCHLyzw/1SsYyVAXsnK24PMJUsae
+	 rN9i3eNBbqJ1OePuJ7qeOah1liQQE6RbNN0+0uYBxP1iF8ow0YivnQZ9ZT5+kHFZnc
+	 juE1ksU1dgDn4v9IXyAHJ8M/sicz3YNjb+9nW1koJPEhZMeEmeYcy4VOdmLNsUvCno
+	 ZwlOG9l8DAwjA==
+Date: Wed, 14 Feb 2024 12:24:56 +0000
+From: Mark Brown <broonie@kernel.org>
+To: Balakrishnan Sambath <balakrishnan.s@microchip.com>
+Cc: Claudiu Beznea <claudiu.beznea@tuxon.dev>,
+	Liam Girdwood <lgirdwood@gmail.com>,
+	Rob Herring <robh+dt@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Nicolas Ferre <nicolas.ferre@microchip.com>,
+	Alexandre Belloni <alexandre.belloni@bootlin.com>,
+	alsa-devel@alsa-project.org, linux-sound@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+	linux-kernel@vger.kernel.org
+Subject: Re: [PATCH] dt-bindings: sound:atmel-at91sam9g20ek: convert bindings
+ to json-schema
+Message-ID: <aa707af2-b0ef-46de-83ae-584756d5569d@sirena.org.uk>
+References: <20240214-at91sam9g20ek-wm8731-yaml-v1-1-33333e17383b@microchip.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Subject: Re: [PATCH v5 1/2] dt-bindings: net: dp83826: support TX data voltage
- tuning
-From: patchwork-bot+netdevbpf@kernel.org
-Message-Id: 
- <170791262530.17764.12992441887115183588.git-patchwork-notify@kernel.org>
-Date: Wed, 14 Feb 2024 12:10:25 +0000
-References: <20240213080705.4184566-1-catalin.popescu@leica-geosystems.com>
-In-Reply-To: <20240213080705.4184566-1-catalin.popescu@leica-geosystems.com>
-To: Catalin Popescu <catalin.popescu@leica-geosystems.com>
-Cc: davem@davemloft.net, kuba@kernel.org, pabeni@redhat.com,
- robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
- afd@ti.com, andrew@lunn.ch, hkallweit1@gmail.com, linux@armlinux.org.uk,
- netdev@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, bsp-development.geo@leica-geosystems.com,
- m.felsch@pengutronix.de, krzysztof.kozlowski@linaro.org
-
-Hello:
-
-This series was applied to netdev/net-next.git (main)
-by David S. Miller <davem@davemloft.net>:
-
-On Tue, 13 Feb 2024 09:07:04 +0100 you wrote:
-> Add properties ti,cfg-dac-minus-one-bp/ti,cfg-dac-plus-one-bp
-> to support voltage tuning of logical levels -1/+1 of the MLT-3
-> encoded TX data.
-> 
-> Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-> Signed-off-by: Catalin Popescu <catalin.popescu@leica-geosystems.com>
-> 
-> [...]
-
-Here is the summary with links:
-  - [v5,1/2] dt-bindings: net: dp83826: support TX data voltage tuning
-    https://git.kernel.org/netdev/net-next/c/ed1d7dac08c5
-  - [v5,2/2] net: phy: dp83826: support TX data voltage tuning
-    https://git.kernel.org/netdev/net-next/c/d1d77120bc28
-
-You are awesome, thank you!
--- 
-Deet-doot-dot, I am a bot.
-https://korg.docs.kernel.org/patchwork/pwbot.html
+Content-Type: multipart/signed; micalg=pgp-sha512;
+	protocol="application/pgp-signature"; boundary="s7rTl/oWJRMeE7uX"
+Content-Disposition: inline
+In-Reply-To: <20240214-at91sam9g20ek-wm8731-yaml-v1-1-33333e17383b@microchip.com>
+X-Cookie: Available while quantities last.
 
 
+--s7rTl/oWJRMeE7uX
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+
+On Wed, Feb 14, 2024 at 12:10:06PM +0530, Balakrishnan Sambath wrote:
+> Convert atmel-at91sam9g20ek-wm8731-audio DT binding to yaml
+> based json-schema.Change file name to match json-scheme naming.
+
+Please submit patches using subject lines reflecting the style for the
+subsystem, this makes it easier for people to identify relevant patches.
+Look at what existing commits in the area you're changing are doing and
+make sure your subject lines visually resemble what they're doing.
+There's no need to resubmit to fix this alone.
+
+--s7rTl/oWJRMeE7uX
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAmXMsRcACgkQJNaLcl1U
+h9AUYQf+IoYLzVMnh8iw5Nit64An1Vh3KQ/uSzayMzfztETr+85K7EGJw6RuAuEF
+X9XXAgq5jPkq4VvN57Urd4ieIR4gajNsEoOk09cM3w7hYF0UNk8BcnX1LF/c4/JZ
++ItbXiyPZUNXGjHwi4IEoMK1g0Og6Y0B7lSwTb+bYV0NYTu1LIZytwpYQEBeXRGY
+g5dm+0Hh0dzJ5yAT8zT7PyoxMaHmNB7lHU9v0RYtSVbj7lg836C3uI1TM8TllMMZ
+afjmEjNPP7I8eCI+X8NzorvWLi+e0CwHvI3SZnZoflcGhuxQGlGNPPtdeT2hmFq5
+hrT3azEJn0Olq8RI61G+QCJK9J8ziw==
+=dEZg
+-----END PGP SIGNATURE-----
+
+--s7rTl/oWJRMeE7uX--
 
