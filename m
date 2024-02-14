@@ -1,125 +1,108 @@
-Return-Path: <devicetree+bounces-41574-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-41575-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 12F8E8544FC
-	for <lists+devicetree@lfdr.de>; Wed, 14 Feb 2024 10:21:11 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id B0D31854507
+	for <lists+devicetree@lfdr.de>; Wed, 14 Feb 2024 10:23:00 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id BB3771F2C2B9
-	for <lists+devicetree@lfdr.de>; Wed, 14 Feb 2024 09:21:10 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 4E8151F2C52D
+	for <lists+devicetree@lfdr.de>; Wed, 14 Feb 2024 09:23:00 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id ECD26125DD;
-	Wed, 14 Feb 2024 09:20:55 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A8F70125AD;
+	Wed, 14 Feb 2024 09:22:55 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="ARE4m//X"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="sXREtOAL"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7081ACA73;
-	Wed, 14 Feb 2024 09:20:54 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7C1B012B60;
+	Wed, 14 Feb 2024 09:22:55 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1707902455; cv=none; b=Fp/hYVGFqed0dQCOrGfqf2+BPvv7h1YFxYFwI3jqJrqQ7CGGKUrhvZhE/kA/3FTkNRlRoz5K6hIM4a3xauBDX3EHugXWQ+x47YoCNp7zem2/QDkxpH11O7Hn3g+bYI2OGpwKmIJPCFXnsEGTfLbdnFmAVGTU8NlLiaW9ua41Bo4=
+	t=1707902575; cv=none; b=RVmyo+hje+3GTDlAGmhwQ3/bcSsiWvBKqDA9hADVUG6HAxMFpqHzmFNCyGTYAtjTTgHkv8WtNQYbPIXWNlgqxwCc6genKZbiANWsfZ7xN5Cj7bRJ9Lk8AWHZZuSmyQPYxTZmSwJU9ITTQVQnK4qYJxalAnLP+ViDBfPXpNPAfNE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1707902455; c=relaxed/simple;
-	bh=1V7vBgcSelzRxGc+Yp06s7YCcpAeGumWC0XRRRTAgJE=;
-	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
-	 In-Reply-To:Content-Type; b=eNAMFmq+BIzo4DYcA1LJl1Vuk3uiaHWvoslujpe5CFQviMLjrri7y3uxnx9oykH46vfkFf2k6STLM+BncaGnnEQUxItt1g8IAFXWRxHXpyAN9u9PcID3tZjl8wgOzA8r/7/7NPS+naL0RRN354qNZ3W6wEeh/7dbyOC8P5dgN1U=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=ARE4m//X; arc=none smtp.client-ip=205.220.168.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
-Received: from pps.filterd (m0279867.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.17.1.24/8.17.1.24) with ESMTP id 41E6qvXl020154;
-	Wed, 14 Feb 2024 09:20:41 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
-	message-id:date:mime-version:subject:to:cc:references:from
-	:in-reply-to:content-type:content-transfer-encoding; s=
-	qcppdkim1; bh=c1fGLw+Aj6mriPq5WpKl/zYCaU0Xd8piAX+/oLGdicg=; b=AR
-	E4m//X3oroCi1qswAUYrzIiiFRCx7YOTVo/CRkOwzy+N1+0dhGqo3dN2Iq/+uLn7
-	ubyVoCrzqe2BC751Xg3vH1N+oUkKxezWdYbazJi4xXUsvMZLR4dsWBPZTqTqpgpe
-	Cg9floGgzHSUl/GF1bMPtAQGR5qg3RGC1XbsL1dCGZYr+6gex/JEv9UmHXTxLMnA
-	2HOsKzwu38kMsfWTBD/Xvo/Vm7tMoFCWKdWVKDNN+fj1O89vBaqHw8iEKw1Sde6M
-	/iF0rmDCIhU2HZMekS+89TBxlkURbXqgqA4ycucIzI+ja09xgEfT1rBAktjXyaxk
-	xhpQPIDrn4vVHHgbIv1Q==
-Received: from nalasppmta05.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3w8enn97dc-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Wed, 14 Feb 2024 09:20:40 +0000 (GMT)
-Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
-	by NALASPPMTA05.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 41E9KduW027597
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Wed, 14 Feb 2024 09:20:39 GMT
-Received: from [10.201.2.96] (10.80.80.8) by nalasex01a.na.qualcomm.com
- (10.47.209.196) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1118.40; Wed, 14 Feb
- 2024 01:20:33 -0800
-Message-ID: <d121c049-ad77-4783-b42e-626c809fe98c@quicinc.com>
-Date: Wed, 14 Feb 2024 14:50:33 +0530
+	s=arc-20240116; t=1707902575; c=relaxed/simple;
+	bh=WCHyzEMYsmkXeKhRjOyGsH4SWHf2Zvhc93CpPJCsZ70=;
+	h=Date:Content-Type:MIME-Version:From:To:Cc:In-Reply-To:References:
+	 Message-Id:Subject; b=sb7fNq3ci6+/8x7F3trFoAopuLkFL06uG/rWRjABHGBwNtdf1zTYtdHfHMhuRsHPYdYe0wTSuaeZ4OlPm+NXVlo3b9XWVx/9bX5/7QqsxyNHYgumq8s/BBZHE69P1y2eOedXMnu7tJ8uq1AZbrdOxcJojirC798QVrVbUJgu9hA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=sXREtOAL; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id B94F1C433C7;
+	Wed, 14 Feb 2024 09:22:54 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1707902575;
+	bh=WCHyzEMYsmkXeKhRjOyGsH4SWHf2Zvhc93CpPJCsZ70=;
+	h=Date:From:To:Cc:In-Reply-To:References:Subject:From;
+	b=sXREtOALLSk9HLU/IAkBc01Hi9HoDS6Or5Sv/JMYpiKFgjkf4xdspqPQGqomiYxx5
+	 sxP35EhvKauE8uaveXi5cS95yAP+lYX9o6/0qZTE+6tJO9q/t+yDkCi/VAluBT2zWV
+	 cCrcJ2ODMKPizw3HZ2OhChXVBvhxP3PpQor4m1akf9gHQ68SftBeCa/1txMmLcx4Uc
+	 FsxTu5hCf/edc1IXOClP9fmCJgRiiCzRhjpvoTgjeuuIShtxgS3/j7nX/nbN1CorHs
+	 VldjhSBRZRuJVzQhmponH0NXjJ8r3p0Km2t4aDMLZ0QigKFVT2JEj4DcpiFLaS6vuG
+	 yR1WPHXGFGKJg==
+Date: Wed, 14 Feb 2024 03:22:53 -0600
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v4 3/8] dt-bindings: clock: ipq5332: add definition for
- GPLL0_OUT_AUX clock
-Content-Language: en-US
-To: Andrew Lunn <andrew@lunn.ch>
-CC: Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio
-	<konrad.dybcio@linaro.org>,
-        Michael Turquette <mturquette@baylibre.com>,
-        Stephen Boyd <sboyd@kernel.org>, Rob Herring <robh+dt@kernel.org>,
-        Krzysztof
- Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley
-	<conor+dt@kernel.org>,
-        Richard Cochran <richardcochran@gmail.com>,
-        Catalin
- Marinas <catalin.marinas@arm.com>,
-        Will Deacon <will@kernel.org>, <linux-arm-msm@vger.kernel.org>,
-        <linux-clk@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <devicetree@vger.kernel.org>, <netdev@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        Krzysztof
- Kozlowski <krzysztof.kozlowski@linaro.org>
-References: <20240122-ipq5332-nsscc-v4-0-19fa30019770@quicinc.com>
- <20240122-ipq5332-nsscc-v4-3-19fa30019770@quicinc.com>
- <b939445e-c0a8-48fd-bc95-25c4f22e1e0d@lunn.ch>
-From: Kathiravan Thirumoorthy <quic_kathirav@quicinc.com>
-In-Reply-To: <b939445e-c0a8-48fd-bc95-25c4f22e1e0d@lunn.ch>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
- nalasex01a.na.qualcomm.com (10.47.209.196)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-GUID: kLLLijcgKzudMQkHfupaqSNWqyV6OgEv
-X-Proofpoint-ORIG-GUID: kLLLijcgKzudMQkHfupaqSNWqyV6OgEv
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.272,Aquarius:18.0.1011,Hydra:6.0.619,FMLib:17.11.176.26
- definitions=2024-02-14_02,2024-02-12_03,2023-05-22_02
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 lowpriorityscore=0
- suspectscore=0 phishscore=0 mlxscore=0 impostorscore=0 priorityscore=1501
- spamscore=0 malwarescore=0 bulkscore=0 adultscore=0 mlxlogscore=635
- clxscore=1015 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.19.0-2401310000 definitions=main-2402140071
+From: Rob Herring <robh@kernel.org>
+To: Balakrishnan Sambath <balakrishnan.s@microchip.com>
+Cc: Rob Herring <robh+dt@kernel.org>, 
+ Alexandre Belloni <alexandre.belloni@bootlin.com>, 
+ Nicolas Ferre <nicolas.ferre@microchip.com>, alsa-devel@alsa-project.org, 
+ Conor Dooley <conor+dt@kernel.org>, devicetree@vger.kernel.org, 
+ linux-kernel@vger.kernel.org, Liam Girdwood <lgirdwood@gmail.com>, 
+ linux-arm-kernel@lists.infradead.org, 
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, 
+ Mark Brown <broonie@kernel.org>, Claudiu Beznea <claudiu.beznea@tuxon.dev>, 
+ linux-sound@vger.kernel.org
+In-Reply-To: <20240214-at91sam9g20ek-wm8731-yaml-v1-1-33333e17383b@microchip.com>
+References: <20240214-at91sam9g20ek-wm8731-yaml-v1-1-33333e17383b@microchip.com>
+Message-Id: <170790257251.233964.609546720299928474.robh@kernel.org>
+Subject: Re: [PATCH] dt-bindings: sound:atmel-at91sam9g20ek: convert
+ bindings to json-schema
 
 
-
-On 1/26/2024 1:37 AM, Andrew Lunn wrote:
-> On Mon, Jan 22, 2024 at 11:26:59AM +0530, Kathiravan Thirumoorthy wrote:
->> Add the definition for GPLL0_OUT_AUX clock.
+On Wed, 14 Feb 2024 12:10:06 +0530, Balakrishnan Sambath wrote:
+> Convert atmel-at91sam9g20ek-wm8731-audio DT binding to yaml
+> based json-schema.Change file name to match json-scheme naming.
 > 
-> The commit message should answer the question "Why?". Why are you
-> adding this clock? What consumes it?
+> Signed-off-by: Balakrishnan Sambath <balakrishnan.s@microchip.com>
+> ---
+>  .../bindings/sound/atmel,at91sam9g20ek-wm8731.yaml | 60 ++++++++++++++++++++++
+>  .../sound/atmel-at91sam9g20ek-wm8731-audio.txt     | 26 ----------
+>  2 files changed, 60 insertions(+), 26 deletions(-)
 > 
->         Andrew
 
+My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
+on your patch (DT_CHECKER_FLAGS is new in v5.13):
 
-Ack, will add more details in the next spin.
+yamllint warnings/errors:
+./Documentation/devicetree/bindings/sound/atmel,at91sam9g20ek-wm8731.yaml:26:11: [error] string value is redundantly quoted with any quotes (quoted-strings)
+./Documentation/devicetree/bindings/sound/atmel,at91sam9g20ek-wm8731.yaml:27:11: [error] string value is redundantly quoted with any quotes (quoted-strings)
+
+dtschema/dtc warnings/errors:
+
+doc reference errors (make refcheckdocs):
+
+See https://patchwork.ozlabs.org/project/devicetree-bindings/patch/20240214-at91sam9g20ek-wm8731-yaml-v1-1-33333e17383b@microchip.com
+
+The base for the series is generally the latest rc1. A different dependency
+should be noted in *this* patch.
+
+If you already ran 'make dt_binding_check' and didn't see the above
+error(s), then make sure 'yamllint' is installed and dt-schema is up to
+date:
+
+pip3 install dtschema --upgrade
+
+Please check and re-submit after running the above command yourself. Note
+that DT_SCHEMA_FILES can be set to your schema file to speed up checking
+your schema. However, it must be unset to test all examples with your schema.
+
 
