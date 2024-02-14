@@ -1,104 +1,168 @@
-Return-Path: <devicetree+bounces-41713-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-41730-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id B71BA854DEE
-	for <lists+devicetree@lfdr.de>; Wed, 14 Feb 2024 17:18:45 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id A6688854E74
+	for <lists+devicetree@lfdr.de>; Wed, 14 Feb 2024 17:31:46 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id E9BBF1C25FFF
-	for <lists+devicetree@lfdr.de>; Wed, 14 Feb 2024 16:18:44 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id D6069B2C399
+	for <lists+devicetree@lfdr.de>; Wed, 14 Feb 2024 16:31:04 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4A0915FF03;
-	Wed, 14 Feb 2024 16:18:40 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 53EEC60B9B;
+	Wed, 14 Feb 2024 16:27:59 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="DwTKqPcC"
 X-Original-To: devicetree@vger.kernel.org
-Received: from foss.arm.com (foss.arm.com [217.140.110.172])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id DA67C5FDD5;
-	Wed, 14 Feb 2024 16:18:37 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.140.110.172
+Received: from mslow1.mail.gandi.net (mslow1.mail.gandi.net [217.70.178.240])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+	(No client certificate requested)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 75DD060261;
+	Wed, 14 Feb 2024 16:27:56 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.70.178.240
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1707927520; cv=none; b=pJ7u5l/6ySdAheg4dv4DavsNHXwZrt0JAixd8buKgd6z/IfzM+S81e9qDxYMevmVbXGNiPVDQIIXClb6OSjzjQO7p5DLNhQl2sfLegqH772KPGd7B5ssVG3kvnozC3GKWXAX+Lc4aMr4JCevrEa9Nd3iy9KTPvfpowpE8eApiNg=
+	t=1707928079; cv=none; b=Y4J1gPHhjGuEbxD0y9py6uBXIawFRfYC8pavDiNX4GZ8FswDdfY2B5OhVdBnTXD20Rq3hFC+bsUoiv4sEcFXB5FE8cDDVsqTGjYgapDVvhzCSaSVgc/TP8wFo/O7Olv1807Oq63tbeqekO6/eRXRoIDwFbB2Db4W72fPCb4PSss=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1707927520; c=relaxed/simple;
-	bh=iqVM3Nbl0mt1+TLQBiJZGR5wCnWn4U71gfKB9sZvOfw=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=IAXWUqtj4vm0GFbeidIbyheuTtuB4aBg5k9Su6nC4hAfMJKYsNy0upDmwEmUcwCD4zJHsNULJFgoBM0ao5GmRWJI9361+JWJRgql0Mv4rOrsuHc6m7vG6/3jbLxZU58rf83aJmrvGRSFwasOfrWLOPaeh19SWq2Tj5v4zxTnq6E=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com; spf=pass smtp.mailfrom=arm.com; arc=none smtp.client-ip=217.140.110.172
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=arm.com
-Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
-	by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id EA7A11FB;
-	Wed, 14 Feb 2024 08:19:17 -0800 (PST)
-Received: from [10.57.49.250] (unknown [10.57.49.250])
-	by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id BCDDB3F762;
-	Wed, 14 Feb 2024 08:18:34 -0800 (PST)
-Message-ID: <729a4c17-9e86-467f-85cf-652c503fa14e@arm.com>
-Date: Wed, 14 Feb 2024 16:18:33 +0000
+	s=arc-20240116; t=1707928079; c=relaxed/simple;
+	bh=MssyRsKrJRRAkkJJGN6qgNf78K+Hb3T00EQE6Vl581o=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=sgKjhF4lFlDNvHBwhU7Tnu5LRKv2y3VrSff+I4DujRKdX1Tw3p1Oh8mxmA/qVY4Gl0syeCptUH+Pe05BUQOzefLBlnComctkdyz+ECRw3HA7pMZSN0bFyiMTzTtO2TnChePynuuX4WDCNxr4WxIjmwbqRQOnBixgAjimmp4lPZM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=DwTKqPcC; arc=none smtp.client-ip=217.70.178.240
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
+Received: from relay3-d.mail.gandi.net (unknown [IPv6:2001:4b98:dc4:8::223])
+	by mslow1.mail.gandi.net (Postfix) with ESMTP id F3FC7C12D0;
+	Wed, 14 Feb 2024 16:24:51 +0000 (UTC)
+Received: by mail.gandi.net (Postfix) with ESMTPSA id 4EC5A60005;
+	Wed, 14 Feb 2024 16:24:43 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
+	t=1707927884;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding;
+	bh=1yZvka761LxwcjsXeq77kW67boXyJRbXbzQuSUTAikw=;
+	b=DwTKqPcCrCFZsN6NsHcT/7rxGWfeCjdNnnI9PR0jdxKUMT0TO+WIQvhxXsoIHmOUKXnEWI
+	S+q1zlSwPidwJEQQhAIeatmHflRqgb0lEEkG/7BxEHsAaa2e/jL4nwFTUzOKg4epii17Yz
+	odGBoS+04/n3WaiKDAJ671W8wB+89ORCC2hHLq3PmLVufRbCLO48u+MUKcFTiVS2Xdpbtd
+	w7I5ry3xelUlIYCO6igxHmrLrgdSdDnmsZa54lg+4yJxN7jMxteASlaah/vjpXOiI/Cc3Q
+	KqYnY9tCRnv9H8K7NFwLgtL4Vqg6CDwkPi4BJa+zECtDIuDvMgM0dEzpmrFSfA==
+From: =?utf-8?q?Th=C3=A9o_Lebrun?= <theo.lebrun@bootlin.com>
+Subject: [PATCH 00/23] Rework Nomadik GPIO to add Mobileye EyeQ5 support
+Date: Wed, 14 Feb 2024 17:23:53 +0100
+Message-Id: <20240214-mbly-gpio-v1-0-f88c0ccf372b@bootlin.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v1 1/2] dt-bindings: arm: qcom,coresight-tpdm: Rename
- qcom,dsb-element-size
-Content-Language: en-GB
-To: Rob Herring <robh@kernel.org>
-Cc: Mao Jinlong <quic_jinlmao@quicinc.com>, Mike Leach
- <mike.leach@linaro.org>, James Clark <james.clark@arm.com>,
- Bjorn Andersson <andersson@kernel.org>,
- Konrad Dybcio <konrad.dybcio@linaro.org>,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Conor Dooley <conor+dt@kernel.org>, Tao Zhang <quic_taozha@quicinc.com>,
- Alexander Shishkin <alexander.shishkin@linux.intel.com>,
- coresight@lists.linaro.org, linux-arm-kernel@lists.infradead.org,
- linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, Greg Kroah-Hartman <gregkh@linuxfoundation.org>
-References: <20240213160521.15925-1-quic_jinlmao@quicinc.com>
- <20240213160521.15925-2-quic_jinlmao@quicinc.com>
- <20240213222957.GA2502642-robh@kernel.org>
- <c70df5a6-20af-4cee-b147-5847751fa36b@arm.com>
- <CAL_JsqKdAzPEGh941S05kraTjOcEpsPCnDRkppNkb8pBCpZu6g@mail.gmail.com>
-From: Suzuki K Poulose <suzuki.poulose@arm.com>
-In-Reply-To: <CAL_JsqKdAzPEGh941S05kraTjOcEpsPCnDRkppNkb8pBCpZu6g@mail.gmail.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 8bit
+X-B4-Tracking: v=1; b=H4sIABnpzGUC/6tWKk4tykwtVrJSqFYqSi3LLM7MzwNyDHUUlJIzE
+ vPSU3UzU4B8JSMDI2NDINbNTcqp1E0vyMzXTTQ2MDU3TE02NrIwVgKqLyhKTcusAJsVHVtbCwB
+ ftdvwWwAAAA==
+To: Linus Walleij <linus.walleij@linaro.org>, 
+ Bartosz Golaszewski <brgl@bgdev.pl>, Rob Herring <robh+dt@kernel.org>, 
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, 
+ Conor Dooley <conor+dt@kernel.org>, Philipp Zabel <p.zabel@pengutronix.de>, 
+ Thomas Bogendoerfer <tsbogend@alpha.franken.de>
+Cc: linux-gpio@vger.kernel.org, devicetree@vger.kernel.org, 
+ linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
+ linux-mips@vger.kernel.org, Gregory CLEMENT <gregory.clement@bootlin.com>, 
+ Vladimir Kondratiev <vladimir.kondratiev@mobileye.com>, 
+ Thomas Petazzoni <thomas.petazzoni@bootlin.com>, 
+ Tawfik Bayouk <tawfik.bayouk@mobileye.com>, 
+ =?utf-8?q?Th=C3=A9o_Lebrun?= <theo.lebrun@bootlin.com>
+X-Mailer: b4 0.12.4
+X-GND-Sasl: theo.lebrun@bootlin.com
 
-On 14/02/2024 16:03, Rob Herring wrote:
-> On Wed, Feb 14, 2024 at 9:56 AM Suzuki K Poulose <suzuki.poulose@arm.com> wrote:
->>
->> On 13/02/2024 22:29, Rob Herring wrote:
->>> On Tue, Feb 13, 2024 at 08:05:17AM -0800, Mao Jinlong wrote:
->>>> Change qcom,dsb-element-size to qcom,dsb-element-bits as the unit is
->>>> bit.
->>>
->>> That may be, but this is an ABI and you are stuck with it. Unless, you
->>> can justify why that doesn't matter. (IIRC, this is new, so maybe no
->>> users yet?)
->>
->> This was added and support queued in v6.8. This change won't make it to
->> v6.8 (given it has to go via two levels and is technically not a fix).
-> 
-> I'd argue it is a fix. But given no users yet, delaying is fine.
+Hi,
 
-I agree it is a fix, but not something that maintainers would like to
-pull it during an rc cycle. As you said, since there are no real users
-for this yet (and given it is all under a single vendor), it may be fine
-to queue this if the DT maintainers are OK with this.
+This patch series reworks the Nomadik GPIO driver to bring it up to date
+to current kernel standards. We then add Mobileye EyeQ5 support that
+uses the same IP block but with limited functionality. We also add
+features required by our newly supported platform:
 
+ - Dynamic GPIO ID allocation;
+ - Make clock optional;
+ - Shared IRQ (usecase: EyeQ5 has two banks using the same IRQ);
+ - Handle variadic GPIO counts (usecase: EyeQ5 has <32 GPIOs per bank);
+ - Grab optional reset at probe (usecase: EyeQ5 has a reset available).
 
-> 
->> As James also pointed out, it doesn't matter what the name is (now that
->> it has been published).
-> 
-> v6.8 final is what we consider published.
+This GPIO platform driver was previously declared & registered inside
+drivers/pinctrl/nomadik/pinctrl-nomadik.c, side-by-side with the
+pinctrl driver. Both are tightly integrated, mostly for muxing reasons.
+Now that gpio-nomadik is used for another platform, we loosen the
+relationship. The behavior should not change on already supported
+hardware but I do not have Nomadik hardware to test for that.
 
-I can't send this to Greg as a fix. For v6.8. We can fix it for v6.9 cycle.
+We have some dependencies, kept neatly to the end. Those are:
+- The base platform support series from Grégory [1]. This relates to the
+  last four patches (20 thru 23), ie defconfig and devicetree.
+- The OLB syscon support series [0]. It provides reset and pinctrl nodes
+  inside the devicetree. This relates to the last two patches (22 and
+  23), ie resets and gpio-ranges DT props. GPIO works fine without it
+  if patches 22 and 23 are dropped.
 
-Suzuki
-> 
-> Rob
+This has been tested on the EyeQ5 hardware, with the two parent series
+applied. It also works fine without the OLB syscon series when our last
+two patches are removed. It has been built on both Arm defconfigs that
+rely on pinctrl-nomadik: nhk8815_defconfig and u8500_defconfig. I don't
+have any Nomadik hardware to test though.
+
+Have a nice day,
+Théo
+
+[0]: https://lore.kernel.org/lkml/20240212-mbly-clk-v6-0-c46fa1f93839@bootlin.com/
+[1]: https://lore.kernel.org/lkml/20240205153503.574468-1-gregory.clement@bootlin.com/
+
+Signed-off-by: Théo Lebrun <theo.lebrun@bootlin.com>
+---
+Théo Lebrun (23):
+      dt-bindings: gpio: nomadik: convert into yaml format
+      dt-bindings: gpio: nomadik: add optional ngpios property
+      dt-bindings: gpio: nomadik: add mobileye,eyeq5-gpio compatible
+      dt-bindings: gpio: nomadik: add optional reset property
+      gpio: nomadik: extract GPIO platform driver from drivers/pinctrl/nomadik/
+      pinctrl: nomadik: fix build warning (-Wformat)
+      pinctrl: nomadik: fix build warning (-Wpointer-to-int-cast)
+      pinctrl: nomadik: minimise indentation in probe
+      pinctrl: nomadik: follow type-system kernel coding conventions
+      pinctrl: nomadik: follow whitespace kernel coding conventions
+      pinctrl: nomadik: follow conditional kernel coding conventions
+      gpio: nomadik: request dynamic ID allocation
+      gpio: nomadik: fix offset bug in nmk_pmx_set()
+      gpio: nomadik: make clock optional
+      gpio: nomadik: change driver name from gpio to gpio-nomadik
+      gpio: nomadik: support shared GPIO IRQs
+      gpio: nomadik: handle variadic GPIO count
+      gpio: nomadik: support mobileye,eyeq5-gpio
+      gpio: nomadik: grab optional reset control and deassert it at probe
+      MIPS: eyeq5_defconfig: enable GPIO by default
+      MIPS: mobileye: eyeq5: add two GPIO bank nodes
+      MIPS: mobileye: eyeq5: add resets to GPIO banks
+      MIPS: mobileye: eyeq5: map GPIOs to pins using gpio-ranges
+
+ .../devicetree/bindings/gpio/gpio-nmk.txt          |  31 -
+ .../devicetree/bindings/gpio/st,nomadik-gpio.yaml  |  96 +++
+ MAINTAINERS                                        |   2 +
+ arch/mips/boot/dts/mobileye/eyeq5.dtsi             |  30 +
+ arch/mips/configs/eyeq5_defconfig                  |   2 +
+ drivers/gpio/Kconfig                               |  13 +
+ drivers/gpio/Makefile                              |   1 +
+ drivers/gpio/gpio-nomadik.c                        | 725 ++++++++++++++++
+ drivers/pinctrl/nomadik/Kconfig                    |   5 +-
+ drivers/pinctrl/nomadik/pinctrl-nomadik-db8500.c   |   3 +-
+ drivers/pinctrl/nomadik/pinctrl-nomadik-stn8815.c  |   3 +-
+ drivers/pinctrl/nomadik/pinctrl-nomadik.c          | 938 +++------------------
+ .../linux/gpio/gpio-nomadik.h                      | 124 ++-
+ 13 files changed, 1118 insertions(+), 855 deletions(-)
+---
+base-commit: d55aa725e32849f709b61eab3b7a50b810a71a84
+change-id: 20231023-mbly-gpio-a30571ec3283
+
+Best regards,
+-- 
+Théo Lebrun <theo.lebrun@bootlin.com>
 
 
