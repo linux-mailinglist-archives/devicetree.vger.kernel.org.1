@@ -1,95 +1,111 @@
-Return-Path: <devicetree+bounces-41658-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-41659-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 83A9B8549E0
-	for <lists+devicetree@lfdr.de>; Wed, 14 Feb 2024 14:00:52 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 900FC8549FE
+	for <lists+devicetree@lfdr.de>; Wed, 14 Feb 2024 14:03:37 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id B49C71C26F4B
-	for <lists+devicetree@lfdr.de>; Wed, 14 Feb 2024 13:00:51 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 44B9A1F28E31
+	for <lists+devicetree@lfdr.de>; Wed, 14 Feb 2024 13:03:37 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 338D752F90;
-	Wed, 14 Feb 2024 13:00:46 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C7AAE5337E;
+	Wed, 14 Feb 2024 13:03:32 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=sang-engineering.com header.i=@sang-engineering.com header.b="E2XCnMR4"
 X-Original-To: devicetree@vger.kernel.org
-Received: from michel.telenet-ops.be (michel.telenet-ops.be [195.130.137.88])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mail.zeus03.de (www.zeus03.de [194.117.254.33])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 37B7352F82
-	for <devicetree@vger.kernel.org>; Wed, 14 Feb 2024 13:00:43 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=195.130.137.88
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C6293524CF
+	for <devicetree@vger.kernel.org>; Wed, 14 Feb 2024 13:03:26 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=194.117.254.33
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1707915646; cv=none; b=hHS5hiYEGLyMsGBrRiiMkITc52h6H26EIg1ZeU+SQBojeSjsEIQOetUkeThxqDuk5VjoOvHYw3Gui9/DKV0MkWpUqr8+xArbhR4GUCqf/4ENmOn8ebSNuPwayN6C5TxQnmhutRDmnV892nuaE3NZMVd1IDMgjucm4C9HNRyX60w=
+	t=1707915812; cv=none; b=sAYOLR/HI4c/DAN0p/HOZUdGeHoMdZ0/n0+XpGdVk1FmLefXcoOf8ei1Cnk5orbi4hXr6MGucqKTRzLZMDG8ghiHtMX1amin0MwrFZfTYe0caUbKkz+hG8u3gyWqNHKXyMGYvJ7/xEFDXj75boRXzeMDshsPKY6Ish8z1kC+D/8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1707915646; c=relaxed/simple;
-	bh=LzxoTaWp9eedO8hmt9+Sy4tlj/1LNVZIECA5zijI2PE=;
-	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version; b=HAoBefnWZwLbvOAHJ26gPKJL22UzEF8q+naRQPjqjddVn5kzpUTl/A0O0STCjWnxEMVT5yfpWJvAuPfBL0BT20DG0OwS715g426/P8MnyMPQgMBBJRoCs3Dt90b3py0yzgltiomVYMzjM0RWSH+UrWUFQX7hbClnDRThpT1CSDU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=glider.be; spf=none smtp.mailfrom=linux-m68k.org; arc=none smtp.client-ip=195.130.137.88
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=glider.be
-Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=linux-m68k.org
-Received: from ramsan.of.borg ([IPv6:2a02:1810:ac12:ed40:ac52:3a54:2a84:d65a])
-	by michel.telenet-ops.be with bizsmtp
-	id n10b2B00A0LVNSS0610bA3; Wed, 14 Feb 2024 14:00:35 +0100
-Received: from rox.of.borg ([192.168.97.57])
-	by ramsan.of.borg with esmtp (Exim 4.95)
-	(envelope-from <geert@linux-m68k.org>)
-	id 1raEsG-000d4T-Dn;
-	Wed, 14 Feb 2024 14:00:35 +0100
-Received: from geert by rox.of.borg with local (Exim 4.95)
-	(envelope-from <geert@linux-m68k.org>)
-	id 1raEsN-00GpXd-0R;
-	Wed, 14 Feb 2024 14:00:35 +0100
-From: Geert Uytterhoeven <geert+renesas@glider.be>
-To: Vinod Koul <vkoul@kernel.org>,
-	Rob Herring <robh@kernel.org>,
+	s=arc-20240116; t=1707915812; c=relaxed/simple;
+	bh=VazCOfpJEA7KeIqdMGJMMEhA/DGg07WQYUkeXbBf0zI=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=LtsQ+ktDhMXLIeyifG67/3O3Yvumgu9Vi7pPaCEh2OsFr7dtb0CngIBoes4dJgzTmwprEuHgEGVV0Sbcs2eS7s3SuyO4Vuh7yb2FAEX3vCCh0HhsjcaVnzt1NTcmA7V9TTPjyqobHwmzf2oOrjhlSZV4H0HO0n0+8+Z/XEjBEHw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=sang-engineering.com; spf=pass smtp.mailfrom=sang-engineering.com; dkim=pass (2048-bit key) header.d=sang-engineering.com header.i=@sang-engineering.com header.b=E2XCnMR4; arc=none smtp.client-ip=194.117.254.33
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=sang-engineering.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=sang-engineering.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
+	sang-engineering.com; h=date:from:to:cc:subject:message-id
+	:references:mime-version:content-type:in-reply-to; s=k1; bh=VazC
+	OfpJEA7KeIqdMGJMMEhA/DGg07WQYUkeXbBf0zI=; b=E2XCnMR4wOrNlZ4w6NaP
+	K7XCaByu+PPSzwmAH4ZO8UtuvQtAmjItNa7fn7+BfwFPczjPD4XPTXTnKItoIjEk
+	gycOG7iB7qVvkjHFQuP1GDbrC26qLf9VqKBGxuzbYdC9kVz1fE/WojzEw4C0GpDn
+	U/zTDVRxTKU1CGf7Z35FbImeaOS0KctkMU0LmlzPnr0F2UGbVIMdESaaScjbrmJF
+	/fid2ETTd5IxukxUJA7OTqXCT+jF2EuRM7On0u7RJCba6Y6zBTM7gzeNm9ljnlW/
+	QPew8x56FzpiPbW7UX/yKhXg/1UoyV1eaDrvKLffzWaXongDP9cG+QvJxZUwsKSq
+	7w==
+Received: (qmail 1429072 invoked from network); 14 Feb 2024 14:03:24 +0100
+Received: by mail.zeus03.de with ESMTPSA (TLS_AES_256_GCM_SHA384 encrypted, authenticated); 14 Feb 2024 14:03:24 +0100
+X-UD-Smtp-Session: l3s3148p1@6G/JIlcRnOAujnsZ
+Date: Wed, 14 Feb 2024 14:03:22 +0100
+From: Wolfram Sang <wsa+renesas@sang-engineering.com>
+To: Geert Uytterhoeven <geert+renesas@glider.be>
+Cc: Ulf Hansson <ulf.hansson@linaro.org>, Rob Herring <robh@kernel.org>,
 	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>
-Cc: dmaengine@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	linux-renesas-soc@vger.kernel.org,
-	Geert Uytterhoeven <geert+renesas@glider.be>
-Subject: [PATCH] dt-bindings: renesas,rcar-dmac: Add r8a779h0 support
-Date: Wed, 14 Feb 2024 14:00:34 +0100
-Message-Id: <96aad3b532ee401f19693e18038494f43ddb90e9.1707915609.git.geert+renesas@glider.be>
-X-Mailer: git-send-email 2.34.1
+	Conor Dooley <conor+dt@kernel.org>, linux-mmc@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-renesas-soc@vger.kernel.org
+Subject: Re: [PATCH] dt-bindings: mmc: renesas,sdhi: Document R-Car V4M
+ support
+Message-ID: <Zcy6GggFaFiEQGr-@shikoro>
+Mail-Followup-To: Wolfram Sang <wsa+renesas@sang-engineering.com>,
+	Geert Uytterhoeven <geert+renesas@glider.be>,
+	Ulf Hansson <ulf.hansson@linaro.org>, Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>, linux-mmc@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-renesas-soc@vger.kernel.org
+References: <fffc5a0a73c4cc8e8d7c5d93679531cc24e006ca.1707915511.git.geert+renesas@glider.be>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: multipart/signed; micalg=pgp-sha512;
+	protocol="application/pgp-signature"; boundary="ZgB2wK3Gn78cFs4Q"
+Content-Disposition: inline
+In-Reply-To: <fffc5a0a73c4cc8e8d7c5d93679531cc24e006ca.1707915511.git.geert+renesas@glider.be>
 
-Document support for the Direct Memory Access Controllers (DMAC) in the
-Renesas R-Car V4M (R8A779H0) SoC.
 
-Based on a patch in the BSP by Thanh Le.
+--ZgB2wK3Gn78cFs4Q
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-Signed-off-by: Geert Uytterhoeven <geert+renesas@glider.be>
----
-Changes compared to the BSP:
-  - Replace items/const by enum,
-  - Drop changes to non-upstream rate-{read,write} properties,
-  - Drop unneeded Channel register block change.
----
- Documentation/devicetree/bindings/dma/renesas,rcar-dmac.yaml | 1 +
- 1 file changed, 1 insertion(+)
+On Wed, Feb 14, 2024 at 01:59:57PM +0100, Geert Uytterhoeven wrote:
+> Document support for the SD Card/MMC Interface in the Renesas R-Car V4M
+> (R8A779H0) SoC.
+>=20
+> Signed-off-by: Geert Uytterhoeven <geert+renesas@glider.be>
 
-diff --git a/Documentation/devicetree/bindings/dma/renesas,rcar-dmac.yaml b/Documentation/devicetree/bindings/dma/renesas,rcar-dmac.yaml
-index 03aa067b1229f676..04fc4a99a7cb539a 100644
---- a/Documentation/devicetree/bindings/dma/renesas,rcar-dmac.yaml
-+++ b/Documentation/devicetree/bindings/dma/renesas,rcar-dmac.yaml
-@@ -46,6 +46,7 @@ properties:
-               - renesas,dmac-r8a779a0     # R-Car V3U
-               - renesas,dmac-r8a779f0     # R-Car S4-8
-               - renesas,dmac-r8a779g0     # R-Car V4H
-+              - renesas,dmac-r8a779h0     # R-Car V4M
-           - const: renesas,rcar-gen4-dmac # R-Car Gen4
- 
-   reg: true
--- 
-2.34.1
+Reviewed-by: Wolfram Sang <wsa+renesas@sang-engineering.com>
 
+
+--ZgB2wK3Gn78cFs4Q
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQIzBAABCgAdFiEEOZGx6rniZ1Gk92RdFA3kzBSgKbYFAmXMuhcACgkQFA3kzBSg
+Kbbf1xAArpRtQYgefOvNPbGU7V8ZX9RX6HP99h30GPsdkAkWAg3qEXTdM3iQQEY6
+y3rNMAZ6FpKPfujH60BHGyQjWDy+f7OMkKhPrZiUi7wrivJ+6ZVBapDOixFk+hL9
+ahiij7YwMNSP/1vF7KQR6ZJZK32W0Su98ptmGKhHj3rIWEItduUNngkO8z8qUQFy
+YZMWHacKNH138N19vpUbcS3vGUBcYaEYhyN8LD9xEi24z9LP0QsKkfNraL8vnnty
+UDsFQ++2ZAdEVN1JNrR0WY/xMFKJMIJ1C0pMraXZfYglVl/xRCwTBD0u7zSz0VC1
+F9nWESGtIjoywosnKr7UP4k+u1b0N7mN+mJ49nI10s1zo0NxAcyZ6sRA/4lH61B0
+dFhu2Gm21mewDvJGcSb9dGgmjQD0Od4K8RRqBefX6yfAyXaForJW7/mxo6OTwd08
+ao4grUuQajivWUJAvmA8g6PDWqINEZv1+fSaxkr9WtMBO4C3WjSjtmHsO9evUPCa
+qEbwSL7wjT1vy7AYiy0rUvDaBPCUPMaunXnFVAdptV6/R7TCar4PvjqRBZ7Q7bW+
+FyR11QRq8a/B3iuytQQY2P28j0Xt+LhEdIALqPpHb1KI7VX3OXL+svtwMh0TtV4k
+UH5FPpZfKyP2HC29GWfFRN+zyTlsSPAEILI9sbseX8mXo2QHQVo=
+=GS3v
+-----END PGP SIGNATURE-----
+
+--ZgB2wK3Gn78cFs4Q--
 
