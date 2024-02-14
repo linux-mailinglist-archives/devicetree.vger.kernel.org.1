@@ -1,129 +1,145 @@
-Return-Path: <devicetree+bounces-41799-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-41800-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6AB4B8551A6
-	for <lists+devicetree@lfdr.de>; Wed, 14 Feb 2024 19:10:15 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id D67F38551C5
+	for <lists+devicetree@lfdr.de>; Wed, 14 Feb 2024 19:13:20 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id E0762298064
-	for <lists+devicetree@lfdr.de>; Wed, 14 Feb 2024 18:10:07 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 931D3299534
+	for <lists+devicetree@lfdr.de>; Wed, 14 Feb 2024 18:13:19 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4B2F612CDA6;
-	Wed, 14 Feb 2024 18:04:24 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="o10FIg7E"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id BA84D12BEA7;
+	Wed, 14 Feb 2024 18:10:21 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-pf1-f172.google.com (mail-pf1-f172.google.com [209.85.210.172])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2466D12CD95;
-	Wed, 14 Feb 2024 18:04:22 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C50AF12BE9B
+	for <devicetree@vger.kernel.org>; Wed, 14 Feb 2024 18:10:18 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.172
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1707933864; cv=none; b=IZMiKjECO07raR4s4Qg3dXU34X34yOoDGHOoS4m2X+YXGaGhBNvwTehhOZXMr1gCx3GVLVjFgBgeCn9hOkAXPNuBANlxEDQZG+RHFaIq7PXbOgBc5+yQ1u9Jyyst2eMeVkcJYYS8pqqsAxO9tg8J5Ega23l6jci5D+uI3q3qcdo=
+	t=1707934221; cv=none; b=Nl6fb1TcG5G1Iw3EjY3AlWktWgdZX3cl+47Daq8GwJ10oRWjt8GI3VRjtEYf1pXA32wbaPwb6Wfp2avlBkPde7B7oxix1NEXFSL8P6iioHeBEnqummmVuFUDjzp1HjPDXAuUvqXLBac/pPkKvOC8GZMZF7OP9yQHlAMA5tO0zOo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1707933864; c=relaxed/simple;
-	bh=IDeUiMyZPUnEfKxpDIXHipIIOqaWatBhHTQI+AiVf+M=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=KF3AtYMU68HY2Hnm4Ta2vb4I7iHP9yPzUuKGBeBRv+nNseI6KTudYCcfaLA9xnOiLKXVM705LYYbN3Vi0XeBQvQrSRy8aDmbEYmJ4xE023+lAwTUHmbcaLeyDNuMwl6yBvXtdm41/D14xXCEXDf1yO8c6uMTdUuGkrcyNddvpfE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=o10FIg7E; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id A9BBDC43394;
-	Wed, 14 Feb 2024 18:04:19 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1707933862;
-	bh=IDeUiMyZPUnEfKxpDIXHipIIOqaWatBhHTQI+AiVf+M=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=o10FIg7EJ8HGW+DA+b7COwvaLG9skhdRVdxvVBUwfoHXJyJcPCpun0NVQAw9S0TTq
-	 /EEUVEdBeeg3crTDamwO6b24lTxcreqNUYhQDy8zKYZfuOgwzPP2oYJeNzWi/eMP0l
-	 uQR7Qy6t4BD7YGwctYT8kQOoy084lAB/h5jugVYXmFAazffTpNdzoooBmgONDZ/LNS
-	 Igm9bk6oD/X21OLL0s/XL3MhjbX2ptQROaECd6cR+4yurV+i4qNeR/oEumeAXBOrhQ
-	 SZR7/oZ1BCALnNwb57auPvIzVfa28KqGbFWM0FNo9epA1xEHFPDxtTMfxhbKmah8hC
-	 p8JvUHvwqC4HQ==
-Date: Wed, 14 Feb 2024 18:04:17 +0000
-From: Conor Dooley <conor@kernel.org>
-To: Balakrishnan Sambath <balakrishnan.s@microchip.com>
-Cc: Lee Jones <lee@kernel.org>, Rob Herring <robh+dt@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Nicolas Ferre <nicolas.ferre@microchip.com>,
-	Alexandre Belloni <alexandre.belloni@bootlin.com>,
-	Claudiu Beznea <claudiu.beznea@tuxon.dev>,
-	Kavyasree Kotagiri <kavyasree.kotagiri@microchip.com>,
-	devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-	linux-kernel@vger.kernel.org,
-	Hari Prasath Gujulan Elango <hari.prasathge@microchip.com>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Subject: Re: [PATCH] dt-bindings: mfd: Convert atmel-flexcom to json-schema
-Message-ID: <20240214-vagueness-voice-15fb82c56bfb@spud>
-References: <20240214-sama5d2-flexcom-yaml-v1-1-5dedd0eba08e@microchip.com>
+	s=arc-20240116; t=1707934221; c=relaxed/simple;
+	bh=7WHypSyBTQURJb5wYeOqNKQSqCQBE8H+799axs0Jw9s=;
+	h=From:To:Cc:Subject:In-Reply-To:References:Date:Message-ID:
+	 MIME-Version:Content-Type; b=eN2ZRD7VO3Bw4X/Rx/oo5O8jfrCT1yx9qFc8EOxj2OL11U4OHo3hoyHAAG5tocnW3PXDNLAfTUjkKd/FzUc+2lc992cYNhOjwOFgClThJ2eQ04qcfVymhLlC2nmE29x9Z/oSg6mCrjR7P6BqR1L85wUyyrW8m5VmEd5KVHgF1cM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=fail (p=none dis=none) header.from=kernel.org; spf=pass smtp.mailfrom=baylibre.com; arc=none smtp.client-ip=209.85.210.172
+Authentication-Results: smtp.subspace.kernel.org; dmarc=fail (p=none dis=none) header.from=kernel.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=baylibre.com
+Received: by mail-pf1-f172.google.com with SMTP id d2e1a72fcca58-6e1126f57f1so44958b3a.2
+        for <devicetree@vger.kernel.org>; Wed, 14 Feb 2024 10:10:18 -0800 (PST)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1707934218; x=1708539018;
+        h=mime-version:message-id:date:references:in-reply-to:subject:cc:to
+         :from:x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=n+mkaTMkL4XuODOYIB1UDzOU7ovvrohzK27gHXfKWZ0=;
+        b=sKdTLDllRB/t+lBX0116zNoJlj/kFQga6jACwdQ3+OPs6MG9P0U0qLpyNWY5UeoaCr
+         E3aZ6U/elcifxF/obNAO0fYhZdztQV1PPsIb/6PjhBDkbpnnbSYeGtsqJme/8LfVgQKi
+         XODF9kyFTyfWctQ+5DzFL15RTLRJU0BQe9ksT2/ozrCpgeghgOrYUgKIIqJL13WfnzzE
+         +RsK5e8hR4iNmjfiNEYtIPvno0zbG6NZGbhXmmCTcp9dtIMl5V8cvTlIQZOGI5AmPC59
+         8bux1nAxoyMxsaworI62+2Ht6R2B4UblzgAOT1htjNl8EeotKLJ7kZSB+vwaJTtYIIno
+         whSA==
+X-Forwarded-Encrypted: i=1; AJvYcCX4VG26vq9VQoOOAOLZacCZrX7BNbGg5LcnoCSJ1vmMQUB5TEVvxwLd6WtffAKQkQzvAoz/QdKrDC+lQmLkchXHoa1b8fEXrpjkEg==
+X-Gm-Message-State: AOJu0Yz/6ps9UUAo0nwTq86sY+wY6VoYbJOBcC6KdG1ihrEMk99+xJYe
+	zjvQm0vC6ShJgvi77ngcrVQyOfMS0wXmkOwQ1ZShJTrdnB8C9rz3B48hpuahf2U=
+X-Google-Smtp-Source: AGHT+IFK8wvq8PyTXN9WiF1EgezBeODa2rncnP+7DQvKpvpDW4iDd5x4TKvcCiEvEGI0JGnO+CQD1A==
+X-Received: by 2002:a17:90a:c38e:b0:297:966:8f4d with SMTP id h14-20020a17090ac38e00b0029709668f4dmr3199103pjt.46.1707934218133;
+        Wed, 14 Feb 2024 10:10:18 -0800 (PST)
+Received: from localhost (71-212-63-227.tukw.qwest.net. [71.212.63.227])
+        by smtp.gmail.com with ESMTPSA id sb14-20020a17090b50ce00b00298bc475539sm1766130pjb.33.2024.02.14.10.10.17
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 14 Feb 2024 10:10:17 -0800 (PST)
+From: Kevin Hilman <khilman@kernel.org>
+To: Bhargav Raviprakash <bhargav.r@ltts.com>, linux-kernel@vger.kernel.org
+Cc: m.nirmaladevi@ltts.com, lee@kernel.org, robh+dt@kernel.org,
+ krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
+ jpanis@baylibre.com, devicetree@vger.kernel.org, arnd@arndb.de,
+ gregkh@linuxfoundation.org, lgirdwood@gmail.com, broonie@kernel.org,
+ linus.walleij@linaro.org, linux-gpio@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, nm@ti.com, vigneshr@ti.com,
+ kristo@kernel.org, Bhargav Raviprakash <bhargav.r@ltts.com>
+Subject: Re: [RESEND PATCH v1 05/13] mfd: tps6594-spi: Add TI TPS65224 PMIC SPI
+In-Reply-To: <20240208105343.1212902-6-bhargav.r@ltts.com>
+References: <20240208105343.1212902-1-bhargav.r@ltts.com>
+ <20240208105343.1212902-6-bhargav.r@ltts.com>
+Date: Wed, 14 Feb 2024 10:10:17 -0800
+Message-ID: <7hcysy6ho6.fsf@baylibre.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-	protocol="application/pgp-signature"; boundary="wQNHLYaQdvjLT5wU"
-Content-Disposition: inline
-In-Reply-To: <20240214-sama5d2-flexcom-yaml-v1-1-5dedd0eba08e@microchip.com>
+Content-Type: text/plain
 
+Bhargav Raviprakash <bhargav.r@ltts.com> writes:
 
---wQNHLYaQdvjLT5wU
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
-
-On Wed, Feb 14, 2024 at 11:13:43AM +0530, Balakrishnan Sambath wrote:
-> From: Kavyasree Kotagiri <kavyasree.kotagiri@microchip.com>
->=20
-> Convert the Atmel flexcom device tree bindings to json schema.
->=20
-> Signed-off-by: Kavyasree Kotagiri <kavyasree.kotagiri@microchip.com>
-> Reviewed-by: Rob Herring <robh@kernel.org>
-> Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-> Signed-off-by: Balakrishnan Sambath <balakrishnan.s@microchip.com>
+> Add support for TPS65224 PMIC in the TPS6594 driver as they share
+> significant functional overlap.
+>
+> Signed-off-by: Bhargav Raviprakash <bhargav.r@ltts.com>
 > ---
-> The yaml DT bindings for the atmel-flexcom driver were submitted
-> upstream in a separate patch series in 2022 [1] which was Acked-by
-> Krzysztof Kozlowski. However, it has been observed recently that the
-> patch has not been merged into the mainline codebase.When attempting to
-> apply the patch to the latest upstream kernel,a conflict arose due to a
-> recent addition to the original device tree binding in text format. The
-> conflict has now been resolved and we are sending a updated version of
-> the patch.=20
+>  drivers/mfd/tps6594-spi.c | 16 ++++++++++------
+>  1 file changed, 10 insertions(+), 6 deletions(-)
+>
+> diff --git a/drivers/mfd/tps6594-spi.c b/drivers/mfd/tps6594-spi.c
+> index 5afb1736f..7ec66d31b 100644
+> --- a/drivers/mfd/tps6594-spi.c
+> +++ b/drivers/mfd/tps6594-spi.c
+> @@ -1,6 +1,6 @@
+>  // SPDX-License-Identifier: GPL-2.0
+>  /*
+> - * SPI access driver for TI TPS6594/TPS6593/LP8764 PMICs
+> + * SPI access driver for TI TPS65224/TPS6594/TPS6593/LP8764 PMICs
+>   *
+>   * Copyright (C) 2023 BayLibre Incorporated - https://www.baylibre.com/
+>   */
+> @@ -66,7 +66,7 @@ static int tps6594_spi_reg_write(void *context, unsigned int reg, unsigned int v
+>  	return spi_write(spi, buf, count);
+>  }
+>  
+> -static const struct regmap_config tps6594_spi_regmap_config = {
+> +static struct regmap_config tps6594_spi_regmap_config = {
+>  	.reg_bits = 16,
+>  	.val_bits = 8,
+>  	.max_register = TPS6594_REG_DWD_FAIL_CNT_REG,
+> @@ -81,6 +81,7 @@ static const struct of_device_id tps6594_spi_of_match_table[] = {
+>  	{ .compatible = "ti,tps6594-q1", .data = (void *)TPS6594, },
+>  	{ .compatible = "ti,tps6593-q1", .data = (void *)TPS6593, },
+>  	{ .compatible = "ti,lp8764-q1",  .data = (void *)LP8764,  },
+> +	{ .compatible = "ti,tps65224-q1", .data = (void *)TPS65224, },
+>  	{}
+>  };
+>  MODULE_DEVICE_TABLE(of, tps6594_spi_of_match_table);
+> @@ -101,15 +102,18 @@ static int tps6594_spi_probe(struct spi_device *spi)
+>  	tps->reg = spi_get_chipselect(spi, 0);
+>  	tps->irq = spi->irq;
+>  
+> -	tps->regmap = devm_regmap_init(dev, NULL, spi, &tps6594_spi_regmap_config);
+> -	if (IS_ERR(tps->regmap))
+> -		return dev_err_probe(dev, PTR_ERR(tps->regmap), "Failed to init regmap\n");
+> -
+>  	match = of_match_device(tps6594_spi_of_match_table, dev);
+>  	if (!match)
+>  		return dev_err_probe(dev, -EINVAL, "Failed to find matching chip ID\n");
+>  	tps->chip_id = (unsigned long)match->data;
+>  
+> +	if (tps->chip_id == TPS65224)
+> +		tps6594_spi_regmap_config.volatile_table = &tps65224_volatile_table;
 
-I don't think you actually resolved this conflict:
+Similar to my comment on the i2c series, but to be more specific:
 
-> +properties:
-> +  compatible:
-> +    enum:
-> +      - atmel,sama5d2-flexcom
+Rather than use the .data pointer in the of_match_table as simply a
+chip_id, instead make that into a struct that can contain chip-specific
+values/pointers etc, and then each compatible can have a custom struct
+(if needed.)
 
-> -- compatible:		Should be "atmel,sama5d2-flexcom"
+This way, at probe/match time, all the chip-specific data is setup using
+that struct, so that at runtime, there doesn't need to be any "if
+(chip_id)" checking.
 
-> -			or "microchip,sam9x7-flexcom", "atmel,sama5d2-flexcom"
-
-This line here is the "recent addition", but this is not in the new yaml
-binding.
-
-Please fix!
-
-Thanks,
-Conor.
-
---wQNHLYaQdvjLT5wU
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZc0AoQAKCRB4tDGHoIJi
-0tIEAQC/q08UAG37AzdYes9SCpdwGsOdCtlrsF3TYziiNJHCgAD+K3uUQBf7BsKM
-ujNCelvDidii75c7qh66+xespxlJuwA=
-=DBLx
------END PGP SIGNATURE-----
-
---wQNHLYaQdvjLT5wU--
+Kevin
 
